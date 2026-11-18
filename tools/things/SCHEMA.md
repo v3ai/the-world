@@ -48,6 +48,7 @@ to each part and a `stats` block. Coordinates are thing-local metres, **base at 
 | `shadow` | `{radius_m, opacity, offset?}` soft contact shadow disc on the ground |
 | `cut` | cut-open definition, see below |
 | `hotspots` | `[{id, node, at:[x,y,z], label}]` yellow markers shown in cut-open modes; each opens its card |
+| `anim` | RESERVED, not implemented in the runtime yet (T1d). Planned shape: `[{part, kind:'sway'|'wag'|'flap'|'flow', axis, amp_deg, hz, phase}]`, per-part and data-only; the runtime will ignore it until then, so a thing may already carry it. |
 | `parts` | see below |
 | `ink_w` | default outline width (0.0018) |
 | `seed`, `stats` | informational |
