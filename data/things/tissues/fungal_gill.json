@@ -1,0 +1,161 @@
+{
+ "id": "fungal_gill",
+ "title": "Under a mushroom cap",
+ "node": "park_mushroom",
+ "blurb": "The underside of a gilled mushroom cap, magnified about 200 times. Thin gills hang down; each is lined with club-shaped cells that make spores. Click a part.",
+ "note": "Hypha width (4 to 6 micrometres) and spore length (5 to 10 micrometres) are published typical values for fungi; the number of cells, the gill spacing and the layout are illustrative, and a real gill carries millions of basidia.",
+ "bg": "#f3efe6",
+ "center": [
+  0,
+  150,
+  0
+ ],
+ "D_um": 600,
+ "labels": [
+  {
+   "text": "Hypha: a fungal thread",
+   "at": [
+    -160,
+    80,
+    60
+   ],
+   "pop": "hypha"
+  },
+  {
+   "text": "Basidium: spore-making cell",
+   "at": [
+    -160,
+    240,
+    60
+   ],
+   "pop": "basidium"
+  },
+  {
+   "text": "Spore (5-10 \u00b5m)",
+   "at": [
+    160,
+    330,
+    60
+   ],
+   "pop": "spore"
+  }
+ ],
+ "populations": [
+  {
+   "id": "gill",
+   "name": "Gill (flesh of the cap)",
+   "node": "park_mushroom",
+   "shape": "rbox",
+   "size": [
+    360,
+    150,
+    40
+   ],
+   "color": "#e9dcc2",
+   "opacity": 0.9,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       75,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "hypha",
+   "name": "Hypha (fungal thread)",
+   "node": "oak_mycorrhiza",
+   "shape": "tube_z",
+   "size": [
+    5,
+    5,
+    60
+   ],
+   "color": "#f4f0e4",
+   "opacity": 0.95,
+   "ink": 1,
+   "arrange": {
+    "kind": "random",
+    "n": 70,
+    "min": [
+     -170,
+     5,
+     -18
+    ],
+    "max": [
+     170,
+     140,
+     18
+    ],
+    "gap": 1,
+    "seed": 4
+   }
+  },
+  {
+   "id": "basidium",
+   "name": "Basidium",
+   "node": "park_mushroom",
+   "shape": "ellipsoid",
+   "size": [
+    10,
+    30,
+    10
+   ],
+   "color": "#cfa66a",
+   "opacity": 1,
+   "ink": 1,
+   "arrange": {
+    "kind": "random",
+    "n": 60,
+    "min": [
+     -170,
+     150,
+     -18
+    ],
+    "max": [
+     170,
+     168,
+     18
+    ],
+    "gap": 2,
+    "seed": 8
+   }
+  },
+  {
+   "id": "spore",
+   "name": "Basidiospore",
+   "node": "park_mushroom",
+   "shape": "ellipsoid",
+   "size": [
+    7,
+    9,
+    7
+   ],
+   "color": "#7a5a3a",
+   "opacity": 1,
+   "ink": 1,
+   "arrange": {
+    "kind": "random",
+    "n": 120,
+    "min": [
+     -170,
+     175,
+     -18
+    ],
+    "max": [
+     170,
+     330,
+     18
+    ],
+    "gap": 3,
+    "seed": 12
+   }
+  }
+ ]
+}

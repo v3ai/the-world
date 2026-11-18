@@ -1,1 +1,31 @@
-[]
+[
+ {
+  "id": "park_bird",
+  "title": "Bird",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.3,
+  "area": "bio_ecology",
+  "parents": [
+   "park_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A bird: a feathered animal that flies by flapping its wings.",
+  "layers": {
+   "basics": "The three dark shapes circling over the park are birds. A bird's wings push air downwards and backwards, and the air pushes the bird up and forwards. Zoom in and you move into the air around it.",
+   "deeper": "Flight needs a light body and strong wing muscles, and feathers that are both stiff and very light. The close-up here is of the air, which is mostly nitrogen and oxygen molecules.",
+   "expert": "The bird is a placeholder model; a fuller bird, with feathers and bones, is planned. The park is a simplified scene, not a scan of a real place."
+  },
+  "facts": [
+   [
+    "Shown here",
+    "3 birds circling (simplified model)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [],
+  "ext": []
+ }
+]

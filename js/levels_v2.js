@@ -921,6 +921,9 @@ BUILD.life = (c) => {
     g.add(b); c.pickables.push(b); birds.push({ b, ws, r: 9 + i * 3, h: 8 + i * 1.5, sp: .25 + i * .05, ph: i * 2 });
   }
   c.addLabel(birds[0].b, 'Bird', { offset: new V3(0, .5, 0) });
+  // every clickable park object opens its own card (data/nodes/park_*.json); objects that have no card yet keep the old INFO text
+  { const PN = { pond: 'park_pond', flower: 'park_flower', bee: 'park_bee', mushroom: 'park_mushroom', cloud: 'park_cloud', bird: 'park_bird', sunSky: 'park_sun', air: 'park_sky', ground: 'park_ground' };
+    c.pickables.forEach(o => o.traverse(m => { const n = m.userData && PN[m.userData.id]; if (n) m.userData.node = n; })); }
   c.update = (dt, t) => {
     const wave = false;
     arms[1].piv.rotation.z = lerp(arms[1].piv.rotation.z, wave ? 2.7 : .12, dt * 5);

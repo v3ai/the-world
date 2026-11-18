@@ -1,1 +1,94 @@
-[]
+[
+ {
+  "id": "park_cloud",
+  "title": "Cloud",
+  "kind": "phenomenon",
+  "template": "thing",
+  "scale_m": 1000,
+  "area": "bio_ecology",
+  "parents": [
+   "park_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A cloud is a mass of tiny water droplets or ice crystals floating in the air.",
+  "layers": {
+   "basics": "Clouds form when air containing water vapour cools. The vapour condenses into droplets so small that they float. What looks like a solid white shape is a huge number of droplets scattering sunlight in every direction.",
+   "deeper": "Condensation usually happens on tiny particles of dust or salt in the air, called cloud condensation nuclei. The drifting clouds in the park are simple shapes, not a weather model.",
+   "expert": "Source: water vapor normally condenses to form cloud drops, usually on cloud condensation nuclei such as small salt or dust particles. The park is a simplified scene, not a scan of a real place."
+  },
+  "facts": [
+   [
+    "What a cloud is made of",
+    "liquid droplets and/or ice crystals"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Cloud (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Cloud"
+   }
+  ]
+ },
+ {
+  "id": "park_sun",
+  "title": "The Sun",
+  "kind": "star",
+  "template": "thing",
+  "scale_m": 1390000000.0,
+  "area": "bio_ecology",
+  "parents": [
+   "park_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The Sun is the star that lights and warms the Earth.",
+  "layers": {
+   "basics": "Nearly all the energy that living things use arrives as sunlight. Plants and algae turn some of it into sugar, and animals eat the plants. The Sun in the sky of the park is a drawn disc, not to scale.",
+   "deeper": "Light takes about 8 minutes to cross the 150 million kilometres between the Sun and the Earth (a result of dividing one astronomical unit, 1.496 × 10^11 m, by the speed of light, 2.998 × 10^8 m/s: ≈ 499 s).",
+   "expert": "The Sun's diameter is about 109 Earth diameters; use the Solar system view for the real thing. The disc shown in the park is a glowing sprite whose size is chosen for the look of the scene."
+  },
+  "facts": [
+   [
+    "Light travel time to Earth",
+    "≈ 499 s ≈ 8.3 min (calculated)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [],
+  "ext": []
+ },
+ {
+  "id": "park_sky",
+  "title": "Sky and air",
+  "kind": "phenomenon",
+  "template": "thing",
+  "scale_m": 10000.0,
+  "area": "bio_ecology",
+  "parents": [
+   "park_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The sky is the air above us. Air is a mixture of gases, mostly nitrogen and oxygen.",
+  "layers": {
+   "basics": "You cannot see air, but it is there: a sea of molecules, each far smaller than the thickness of a hair. The blue of the sky is sunlight scattered by those molecules. Zoom in to see a simple picture of air at a very small scale.",
+   "deeper": "Dry air is about 78% nitrogen and 21% oxygen by volume, with about 1% argon and small amounts of carbon dioxide and other gases.",
+   "expert": "The close-up is an illustration of molecules in air and not to scale in spacing. The park is a simplified scene, not a scan of a real place."
+  },
+  "facts": [
+   [
+    "Composition of dry air",
+    "≈ 78% nitrogen, ≈ 21% oxygen (by volume)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [],
+  "ext": []
+ }
+]

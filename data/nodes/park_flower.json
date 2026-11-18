@@ -1,1 +1,33 @@
-[]
+[
+ {
+  "id": "park_flower",
+  "title": "Flower patch",
+  "kind": "habitat",
+  "template": "thing",
+  "scale_m": 1,
+  "area": "bio_ecology",
+  "parents": [
+   "park_scene"
+  ],
+  "parts": [
+   "oak_leaf"
+  ],
+  "processes": [],
+  "summary": "A patch of wild flowers: the part of a plant that makes seeds, and a meeting place for insects.",
+  "layers": {
+   "basics": "A flower is how many plants reproduce. The coloured petals and the scent advertise to insects. A visiting bee collects sugary nectar and sticky pollen, and carries pollen from flower to flower, which lets the plants make seeds.",
+   "deeper": "Pollen carries the plant's male cells; the part of the flower that receives it leads to the seed. When an insect moves pollen between flowers of the same kind, that is pollination. Close-up, the leaf and stem surfaces are covered in tiny pores and hairs.",
+   "expert": "Flowering plants (angiosperms) are the largest group of land plants. The close-up here shows a generic leaf surface, not the flowers drawn. The park is a simplified scene, not a scan of a real place."
+  },
+  "facts": [
+   [
+    "Shown here",
+    "16 flowers in one patch (a simplified model)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [],
+  "ext": []
+ }
+]

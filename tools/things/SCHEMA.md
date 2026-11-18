@@ -166,3 +166,50 @@ Every tissue scene must say in `note` which sizes are real and which are illustr
 * Instanced parts cost triangles x count: a 16-triangle card with an alpha-cut texture beats a 48-triangle modelled leaf for foliage.
 * Every part needs a `node`; reuse existing `bio_*` or body cards where one fits and list them in the parent card's `parts`.
 
+
+## 7. Level of detail, performance numbers, and the park wiring (added in T1d finish)
+
+**Three detail tiers.** `thing.lod = { near_m, far_m }` (metres from the thing, with hysteresis). A part's `lod` is `'near'`, `'mid'`, `'far'` or a union such as `'near+mid'`;
+a part with no `lod` is drawn at every distance. Tier 0 (closer than `near_m`) is full detail; tier 1 (between) the middle stand-in; tier 2 (beyond `far_m`) the far stand-in.
+With no `far_m` the middle tier acts as the far one (the boulder). Parts swap at once, never fading, so two tiers are never drawn together. The bake prints triangles per part;
+`stats.nearTris / midTris / farTris` in thing.json give the totals that a placement draws in the default mode (the preview page lists them).
+Budget used by the oak: near about 150-200k triangles (only the one or two oaks within 22 m), middle about 15k (trunk, main limbs, 2,000 leaf-tuft cards), far about 9k (blobs). All 19 oaks together
+draw well under one million triangles in a typical park view. Instanced parts share one set of instance buffers between all placements of a thing (built once, in `TH.inst`), so the number of placements costs draw calls, not memory or load time.
+Do not put per-leaf geometry above 4 triangles; use `card` textures (`lobed_leaf` for one leaf, `leaf_cluster` for a tuft).
+
+**Cards for the park objects.** Park objects that are not yet things (pond, flowers, bee, mushroom, clouds, birds, sun, sky, ground) get their card from `userData.node`, set at the end of
+`BUILD.life` from a table (`PN`) of pick id to node id; the cards live in `data/nodes/park_*.json` and are written by `tools/things/content/park_nodes.py`. When you convert one of them to a thing, delete its row from `PN`
+and its primitive from `BUILD.life`. Where "Zoom in" on a park object goes is `F.spawn` of `FT.park` in `js/world_matter.js`: a micro surface (`microFrame(kind)`) or a tissue scene
+(`tissue2Frame(id, T)`, used for the mushroom and the bee).
+
+## 8. How to add a thing: a worked recipe (read this first; it is meant to be enough on its own)
+
+Example target: **a dog**. The same steps give a bee, a flower, a mushroom or a bird; the notes in brackets say what changes.
+
+1. **Decide the truth.** Write the numbers at the top of `tools/things/models/dog.mjs` as one object `M` (shoulder height, body length, mass, number of teeth, bones...), each with its source in a comment
+   (fetch the source; do not recall numbers). Decide what is *modelled* (a typical medium dog, not a breed or an individual) and say so in `model_note`.
+   [Bee: body length, wing span, number of ommatidia, from a published description. Flower: petal count, floret count in the head.]
+2. **Name the layers (systems).** For a dog: `coat`, `muscles`, `skeleton`, `organs`. For a bee: `cuticle`, `wings`, `muscles`, `organs`. For a flower: `petals`, `stem`, `reproductive parts`, `roots`.
+   One system = one set of parts that appear together. Write `modes[]`: each has `id`, a plain-language `label` ("Show the skeleton"), and `show: {system: opacity}`; optional `cut`, `legend`, `hotspots`, `groundSeeThrough`, `pivot`.
+3. **Write the model script** `models/dog.mjs`, `export default function build()` returning `{ thing, meshes, instances, flows? }` (see `oak.mjs` for a large one, `boulder.mjs` for a small one).
+   Meshes come from the toolkit: `sphere/ellipsoid/capsule/roundCone` SDFs with `smoothUnion`, meshed by `surfaceNets` (bodies, heads, organs); `tube` along `spline` (legs, tail, vessels, antennae, roots);
+   `lathe` (acorns, bones' shafts, stems); `blade`/`extrudeOutline` (petals, wings, ears); `spaceColonize` + `pipeRadii` or a recursive grower (the oak's `grow`) for branching systems;
+   `Instances` for repeated organs (fur tufts as 2-triangle cards, scales, teeth, florets). Parts that are cut open must be analytic geometry (see section 6).
+   Each part entry: `{id, name, system, node, color, mesh | instances | flow, lod?, parent?, deeper?, ink_w?, noink?, priority?}`. `parent` marks a detail part drawn only in cut views; `deeper` says what it is made of
+   (`{type:'tissue2', id, D, button}`; or `crystal`, `micro`, `tissue` of the body).
+4. **Make the three detail tiers** (section 7): full detail, a middle version (`simplify`, fewer sides, fewer instances scaled up), a far blob. Keep near under about 200k triangles.
+5. **Bake and look**: `node tools/things/bake.mjs dog` (prints triangles per part, problems); open `tools/things/preview.html?thing=dog` (orbit, layers, tiers, click parts). Fix proportions against photographs or drawings.
+6. **Cards**: write `tools/things/content/dog_nodes.py` modelled on `oak_nodes.py`: one node per part (whole animal, coat, skull, heart...), summary + basics/deeper/expert, `facts` with units and `≈`, `certainty`, `open_questions`,
+   `refs` to OpenStax sections that exist, `ext` links to the sources you consulted. Reuse existing `bio_*` and body nodes (search `data/nodes/*.json`) and link them in `parts`. Add a figure per card to `data/viz/park.json` and run
+   `node tools/viz/validate.mjs data/viz/park.json`. Put the "model, not a scan" sentence in `model_note` (shown at the top of every card).
+7. **Tissue scenes** for what the parts are made of: write `data/things/tissues/<id>.json` (section 5): populations of cells with real sizes (cite them; mark illustrative ones in `note`), arranged with
+   `list`/`grid`/`random`/`inside`; each population names its card and a `deeper` (`cell`, or a molecule from `data/molecules_all.json`). Reach it from the part with `deeper: {type:'tissue2', ...}`.
+   Check the whole path in the browser: click the part, press its button, click a cell, press its button, until you reach a molecule.
+8. **Place it**: add `{id, placements:[{at:[x,z], rot, scale, seed}]}` to `data/things/index.json`. Nothing else is needed for it to appear, hide, be clicked and have layer buttons.
+9. **Remove the old primitive** (`makeDog` etc. in `BUILD.life`) and its `PN` row, only after the data version is better. Make sure there is exactly one click target per object and that it opens the right card.
+10. **Test** with the harness: `jumpTo(FR.thing_dog, new V3(0, 0.5, 0), 3)`; `FR.thing_dog.T.setMode('skeleton')` (settle a few seconds after jumpTo first: `T` exists once the frame has been drawn once);
+    scan with `pickAt` for each part id, click it, read `#info h2`; `renderer.info.render` for triangles and `performance.now()` around two `requestAnimationFrame`s for frame time. Screenshots at 1280x800 and 390x844.
+    Software rendering takes tens of seconds per frame with many things: hide other placements (`FR.things.forEach(f => f !== FR.thing_dog && f.T && (f.T.holder.visible = false))`) and pass `timeout=180000` to the screenshot.
+11. **Write notes** (`/home/rhett/projects/how/.devtools/notes/<workstream>.md`): files, how to see it, every source with what it supported, what is approximate and where the screen says so, known gaps.
+
+Animation (tail wag, wing beat, swaying leaves) is not implemented: `anim` is reserved in the schema; flows (section 5) are the only moving thing so far.

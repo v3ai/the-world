@@ -1,1 +1,50 @@
-[]
+[
+ {
+  "id": "park_mushroom",
+  "title": "Mushroom",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.12,
+  "area": "bio_ecology",
+  "parents": [
+   "park_scene"
+  ],
+  "parts": [
+   "oak_mycorrhiza"
+  ],
+  "processes": [],
+  "summary": "A mushroom is the spore-making part of a fungus; the rest of the fungus is a hidden web of threads in the soil.",
+  "layers": {
+   "basics": "What you see is only the fruit. Underground the fungus is a network of fine threads that digests dead material and absorbs the nutrients. The cap makes dust-like spores that drift away to start new fungi. Zoom in to the underside of a cap.",
+   "deeper": "The threads are called hyphae and together they form a mycelium. Under a gilled cap, the thin plates called gills are lined with club-shaped cells (basidia) that each carry spores on tiny stalks.",
+   "expert": "Hyphae are tubes enclosed in a cell wall whose main structural polymer is typically chitin. Basidia typically bear four spores, which are shot off by a drop of water that condenses at the spore's base. The park is a simplified scene, not a scan of a real place."
+  },
+  "facts": [
+   [
+    "Hypha diameter",
+    "≈ 4–6 µm on average"
+   ],
+   [
+    "Basidiospore length",
+    "≈ 5–10 µm (some as small as ≈ 2 µm)"
+   ],
+   [
+    "Spores per basidium",
+    "typically 4 (range 1–8)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Hypha (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Hypha"
+   },
+   {
+    "title": "Basidiospore (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Basidiospore"
+   }
+  ]
+ }
+]
