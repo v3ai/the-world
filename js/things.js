@@ -459,7 +459,7 @@ const TH_TIS = {};
 function thLoadTissue(id) { return TH_TIS[id] || (TH_TIS[id] = getJSON('data/things/tissues/' + id + '.json')); }
 function tissue2Frame(id, T0) {
   thLoadTissue(id);
-  return new Frame({ type: 'tissue2', name: 'Inside the leaf', unit: 1e-6, radius: 400, r0: 1e-6, r1: 2e-3, spawnD: 3e-5, pos: T0.clone(), opts: { id } });
+  return new Frame({ type: 'tissue2', name: 'Inside the tissue', unit: 1e-6, radius: 3000, r0: 1e-6, r1: 3e-2, spawnD: 3e-5, pos: T0.clone(), opts: { id } });
 }
 // an outline for instanced meshes (the engine's outlineMat does not know about instancing)
 function thInstOutline(color = 0x1a1f2b, w = .003) {

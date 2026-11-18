@@ -549,6 +549,12 @@
    "node": "oak_root_hairs",
    "color": "#d7c294",
    "mesh": "fine_roots",
+   "deeper": {
+    "type": "tissue2",
+    "id": "root_tip",
+    "D": 0.003,
+    "button": "Look at root hairs"
+   },
    "priority": 1.8,
    "solid": false,
    "noink": true,
@@ -662,6 +668,12 @@
    "color": "#dcbd7e",
    "mesh": "log_sapwood",
    "pivot": "wood",
+   "deeper": {
+    "type": "tissue2",
+    "id": "wood_section",
+    "D": 0.0042,
+    "button": "Look inside the wood"
+   },
    "noink": true,
    "priority": 1.7,
    "solid": false,
@@ -681,6 +693,12 @@
    "color": "#b07a44",
    "mesh": "log_heartwood",
    "pivot": "wood",
+   "deeper": {
+    "type": "tissue2",
+    "id": "wood_section",
+    "D": 0.0042,
+    "button": "Look inside the wood"
+   },
    "noink": true,
    "priority": 1.7,
    "solid": false,
