@@ -119,6 +119,14 @@ Other fields: `w:[ωmin,ωmax]` (log), `unit`, and `phase:false` to hide the pha
 - **Parameters:** `mu, sigma, a, b, lambda, n, p`, as expressions. For `custom`, give `f` and `x`.
 - **Options:** `shade:[a,b]` shows the probability of that range. `sample:true` animates a histogram of random draws, for the law of large numbers and the central limit theorem.
 
+**ode**: a system of differential equations, solved numerically (RK4). Use it for population dynamics, epidemics, chemical kinetics, circuits, orbits and control loops.
+- **Fields:**
+  - `vars:[{id, init, f, label?, color?, hide?}]`, where `f` is the expression for d(id)/dt. It may use every var id, the params, and `time`.
+  - `t` is the end time; `steps` (default 1200) sets the resolution.
+  - Optional: `y:[min,max]`, `xlabel`, `ylabel`.
+- **Phase portrait:** `phase:["N","P"]` plots one variable against another, with a moving dot (`xr` and `yr` are optional ranges).
+- **Example:** `data/viz/curated.json` holds the SIR epidemic and Lotka–Volterra models.
+
 **bits**: a binary word with clickable bits. Fields: `bits` (count), `value`, and `mode:"unsigned"|"twos"`. Use it for number systems, registers and two's complement.
 
 **bars**: a comparison bar chart. Fields: `bars:[{label, value, color?}]`, `logy?`, `ylabel?`. Use it for orders of magnitude and comparing quantities.

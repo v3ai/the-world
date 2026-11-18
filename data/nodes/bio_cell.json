@@ -9,7 +9,36 @@
   "parents": [
    "biology_degree"
   ],
-  "parts": [],
+  "parts": [
+   "bio_prokaryote_eukaryote",
+   "bio_cell_size_limits",
+   "bio_fluid_mosaic",
+   "bio_diffusion_osmosis",
+   "bio_facilitated_transport",
+   "bio_active_transport",
+   "bio_bulk_transport",
+   "bio_membrane_potential",
+   "bio_nuclear_organization",
+   "bio_protein_targeting_secretory",
+   "bio_autophagy",
+   "bio_endosymbiosis",
+   "bio_chloroplasts_plastids",
+   "bio_cell_wall_ecm",
+   "bio_cell_junctions",
+   "bio_microtubules_motors",
+   "bio_actin_intermediate",
+   "bio_signaling_overview",
+   "bio_gpcr_signaling",
+   "bio_rtk_cascades",
+   "bio_second_messengers",
+   "bio_nuclear_receptors",
+   "bio_cell_cycle",
+   "bio_cell_cycle_control",
+   "bio_cytokinesis_prokaryotic_division",
+   "bio_apoptosis",
+   "bio_stem_cells_differentiation",
+   "bio_telomeres_senescence"
+  ],
   "made_of": [],
   "processes": [],
   "related": [],
@@ -194,6 +223,12 @@
   "molecules": [
    "popc",
    "cholesterol"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Fluid mosaic model",
+    "url": "https://en.wikipedia.org/wiki/Fluid_mosaic_model"
+   }
   ]
  },
  {
@@ -676,7 +711,13 @@
    "mitochondria_org",
    "chloroplast_org"
   ],
-  "where": "place:cell"
+  "where": "place:cell",
+  "ext": [
+   {
+    "title": "Wikipedia: Symbiogenesis",
+    "url": "https://en.wikipedia.org/wiki/Symbiogenesis"
+   }
+  ]
  },
  {
   "id": "bio_chloroplasts_plastids",
@@ -1271,7 +1312,13 @@
   "kn": [
    "cell_cycle"
   ],
-  "where": "place:cell"
+  "where": "place:cell",
+  "ext": [
+   {
+    "title": "Wikipedia: Cell cycle",
+    "url": "https://en.wikipedia.org/wiki/Cell_cycle"
+   }
+  ]
  },
  {
   "id": "bio_cell_cycle_control",
@@ -1436,7 +1483,13 @@
   "kn": [
    "cell_cycle"
   ],
-  "where": "place:cell"
+  "where": "place:cell",
+  "ext": [
+   {
+    "title": "Wikipedia: Apoptosis",
+    "url": "https://en.wikipedia.org/wiki/Apoptosis"
+   }
+  ]
  },
  {
   "id": "bio_stem_cells_differentiation",
@@ -1492,7 +1545,13 @@
    "cell_types",
    "development_biology"
   ],
-  "where": "stem_cell"
+  "where": "stem_cell",
+  "ext": [
+   {
+    "title": "Wikipedia: Stem cell",
+    "url": "https://en.wikipedia.org/wiki/Stem_cell"
+   }
+  ]
  },
  {
   "id": "bio_telomeres_senescence",
@@ -1547,6 +1606,12 @@
   "kn": [
    "aging_biology"
   ],
-  "where": "place:dna"
+  "where": "place:dna",
+  "ext": [
+   {
+    "title": "Wikipedia: Telomere",
+    "url": "https://en.wikipedia.org/wiki/Telomere"
+   }
+  ]
  }
 ]

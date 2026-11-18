@@ -279,7 +279,7 @@ function showBodyNode(id, h) {
   html += layered([['Basics', basics], ['Deeper', L.deeper ? `<div class="body"><p>${L.deeper}</p></div>` : ''], ['Expert', L.expert ? `<div class="body expert"><p>${L.expert}</p></div>` : '']]);
   const canLook = h && h.frame && h.frame.children && h.frame.children.some(c => c.type === 'organ' && c.opts.organ === id);
   html += `<div class="btnrow">${h ? `<button class="zoom" id="zoomBtn">${canLook ? 'Look inside' : 'Zoom in'}</button>` : ''}${h && n.made_of && n.made_of.length ? `<button class="zoom alt" id="madeBtn"><span>See what it is made of</span><span>▾</span></button>` : ''}</div>`;
-  const tw = typeof TEAR !== 'undefined' && (TEAR[id] || (n.where && TEAR[n.where]));
+  const tw = (typeof TEAR !== 'undefined' && (TEAR[id] || (n.where && TEAR[n.where]))) || (n.where && /^(place|mol|crystal):/.test(n.where));
   if (n.lab || (tw && !h)) html += `<div class="btnrow">${n.lab ? `<button class="zoom lab" id="labBtn">${labAvailable(n.lab.id) ? 'Open in the ' : 'Planned: '}${LAB_NAMES[n.lab.id] || n.lab.id}</button>` : ''}${tw && !h ? `<button class="zoom alt" id="whereBtn">Show where it is</button>` : ''}</div>`;
   if (n.processes && n.processes.length) html += `<div class="refs"><div class="rh">How it works</div><div class="chips">${n.processes.map(p => `<button class="chip pr" data-p="${p}">${nodeTitle(p)}</button>`).join('')}</div></div>`;
   html += chipList(n.parts, 'Parts');
@@ -334,6 +334,7 @@ function goToNode(id) {
   const n = NODE[id]; if (!n) return;
   const tw = TEAR[id] || (n.where && TEAR[n.where]) || (n.hotspot && TEAR[n.hotspot.of]);
   if (tw) { showBodyNode(id, null); flyTo(tw.frame, tw.pos, tw.D); return; }
+  if (n.where && !TEAR[n.where] && n.where !== id && placeGo(n.where)) { setTimeout(() => showBodyNode(id, null), 0); return; }
   const body = FR.body, ix = ANAT_SYNC, find = nid => ix && ix.parts.find(p => !p.parent && nodeForMesh(p.id) === nid);
   const org = n.hotspot && body && body.children.find(c => c.type === 'organ' && c.opts.organ === n.hotspot.of);
   if (org && n.hotspot.at) { showBodyNode(id, null); flyTo(org, new V3(...n.hotspot.at), org.opts.R * 1.2); return; }
@@ -342,3 +343,35 @@ function goToNode(id) {
   showBodyNode(id, null);
 }
 let ANAT_SYNC = null; loadAnatomyIndex().then(a => ANAT_SYNC = a);
+
+/* ---------- "where it lives": fly to a topic's home in the world ---------- */
+function parkPointOf(id, fallback) {
+  const park = FR.park; if (!park || !park.built) return fallback.clone();
+  const m = park.pickables.find(o => o.userData && o.userData.id === id); if (!m) return fallback.clone();
+  park.root.updateMatrixWorld(true); const b = new THREE.Box3().setFromObject(m); const c = b.getCenter(new V3()).sub(park.root.position);
+  if (id === 'tree') c.y = b.max.y - park.root.position.y - 1; if (id === 'pond') c.y = b.max.y - park.root.position.y; return c;
+}
+function placeChild(parent, f, D) { f.dynamic = true; f.keep = performance.now() + 90000; parent.addChild(f); f.ensure(); flyTo(f, new V3(), D); }
+function placeGo(w) {
+  if (!w || !FR.park) return false;
+  const micro = (kind, at) => () => { FR.park.ensure(); placeChild(FR.park, microFrame(kind, at()), 1.2e-3); };
+  const P = {
+    'place:park': () => flyTo(FR.park, new V3(0, 1, 0), 60),
+    'place:human': () => flyTo(FR.body, new V3(0, 1, 0), 3),
+    'place:skin': () => { if (FR.skin.place) FR.skin.place(); flyTo(FR.skin, new V3(), 1.5e-3); },
+    'place:cell': () => flyTo(FR.cell, new V3(), 4e-5),
+    'place:dna': () => flyTo(FR.dna, new V3(), 2e-8),
+    'place:base_pair': () => flyTo(FR.bp, new V3(), 3e-9),
+    'place:atom': () => { if (FR.atom.place) FR.atom.place(); flyTo(FR.atom, new V3(), 3.2e-10); },
+    'place:earth': () => flyTo(FR.earth, new V3(), 3e7),
+    'place:leaf': micro('leaf', () => parkPointOf('tree', new V3(-6, 6, -4))),
+    'place:pond': micro('pond', () => parkPointOf('pond', new V3(8, 0, -6))),
+    'place:soil': micro('soil', () => new V3(1.2, 0, 1.4)),
+    'place:air': micro('air', () => new V3(0, 2.6, 2.5)),
+  };
+  if (P[w]) { P[w](); return true; }
+  if (w.startsWith('mol:')) { FR.cell.ensure(); placeChild(FR.cell, new Frame({ type: 'mol', name: w.slice(4), unit: 1e-10, radius: 40, r1: 2.5e-8, spawnD: 1e-9, pos: new V3(3, 2, 0), opts: { mol: w.slice(4) } }), 3.2e-9); return true; }
+  if (w.startsWith('crystal:')) { FR.park.ensure(); placeChild(FR.park, crystalFrame(w.slice(8), new V3(1.2, 0.01, 1.4)), 4e-9); return true; }
+  if (NODE[w] && w !== arguments[1]) { goToNode(w); return true; }
+  return false;
+}

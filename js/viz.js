@@ -395,6 +395,21 @@
     cols.forEach((h, j) => { c.fillStyle = COL.accent; c.fillText(h, 8 + j * cw + 4, 6 + rh / 2); });
     rows.forEach((r, i) => { if (i % 2 === 0) { c.fillStyle = 'rgba(255,255,255,.04)'; c.fillRect(8, 6 + (i + 1) * rh, W - 16, rh); } r.forEach((v, j) => { c.fillStyle = '#e8ecf5'; c.font = '11px Inter'; c.fillText(interp(String(v), s), 8 + j * cw + 4, 6 + (i + 1.5) * rh); }); });
   };
+  TYPES.ode = (c, W, H, sp, s) => { // dx/dt systems, integrated with RK4
+    const vars = sp.vars || [], ids = vars.map(v => v.id), fs = vars.map(v => E(v.f)), T = num(sp.t ?? 50, s), N = Math.min(4000, sp.steps || 1200), h = T / N;
+    let y = vars.map(v => num(v.init ?? 0, s)); const out = [y.slice()];
+    const F = (t, yy) => { const q = Object.assign({}, s, { time: t }); ids.forEach((id, i) => q[id] = yy[i]); return fs.map(f => f(q)); };
+    for (let k = 0; k < N; k++) { const t = k * h, k1 = F(t, y), k2 = F(t + h / 2, y.map((v, i) => v + h / 2 * k1[i])), k3 = F(t + h / 2, y.map((v, i) => v + h / 2 * k2[i])), k4 = F(t + h, y.map((v, i) => v + h * k3[i])); y = y.map((v, i) => v + h / 6 * (k1[i] + 2 * k2[i] + 2 * k3[i] + k4[i])); if (!y.every(isFinite)) break; out.push(y.slice()); }
+    const show = sp.phase ? 'phase' : 'time';
+    if (show === 'phase') { const [ix, iy] = sp.phase.map(id => ids.indexOf(id)); const xs = out.map(r => r[ix]), ys = out.map(r => r[iy]); const pad = (a, b) => { const d = (b - a) || 1; return [a - d * .08, b + d * .08]; }; const [x0, x1] = sp.xr ? sp.xr.map(v => num(v, s)) : pad(Math.min(...xs), Math.max(...xs)), [y0, y1] = sp.yr ? sp.yr.map(v => num(v, s)) : pad(Math.min(...ys), Math.max(...ys));
+      const V = new View(c, W, H, [x0, x1, y0, y1], {}); V.axes({ xlabel: vars[ix].label || ids[ix], ylabel: vars[iy].label || ids[iy] }); V.clip(); c.strokeStyle = COL.accent; c.lineWidth = 2; c.beginPath(); xs.forEach((x, i) => i ? c.lineTo(V.fx(x), V.fy(ys[i])) : c.moveTo(V.fx(x), V.fy(ys[i]))); c.stroke();
+      const k = Math.floor(((s.t || 0) * .12 % 1) * (out.length - 1)); c.fillStyle = COL.gold; c.beginPath(); c.arc(V.fx(xs[k]), V.fy(ys[k]), 5, 0, 7); c.fill(); c.restore(); return; }
+    let lo = Infinity, hi = -Infinity; out.forEach(r => vars.forEach((v, i) => { if (v.hide) return; lo = Math.min(lo, r[i]); hi = Math.max(hi, r[i]); })); if (sp.y) { lo = num(sp.y[0], s); hi = num(sp.y[1], s); } const pd = (hi - lo || 1) * .08;
+    const V = new View(c, W, H, [0, T, sp.y ? lo : lo - pd, sp.y ? hi : hi + pd], {}); V.axes({ xlabel: sp.xlabel || 'time', ylabel: sp.ylabel }); V.clip();
+    vars.forEach((v, i) => { if (v.hide) return; c.strokeStyle = col(v.color, i); c.lineWidth = 2.2; c.beginPath(); out.forEach((r, k) => k ? c.lineTo(V.fx(k * h), V.fy(r[i])) : c.moveTo(V.fx(0), V.fy(r[i]))); c.stroke(); });
+    if (usesT(sp)) { const tt = ((s.t || 0) * (sp.speed || .15) % 1) * T; c.strokeStyle = 'rgba(255,255,255,.35)'; c.beginPath(); c.moveTo(V.fx(tt), V.m.t); c.lineTo(V.fx(tt), H - V.m.b); c.stroke(); }
+    c.restore(); let ly = V.m.t + (sp.ylabel ? 24 : 6); vars.forEach((v, i) => { if (v.hide || !v.label) return; label(c, v.label, V.m.l + 8, ly + 6, col(v.color, i)); ly += 17; });
+  };
   TYPES.geometry = (c, W, H, sp, s) => {
     const r = (sp.range || [-5, 5, -5, 5]).map(v => num(v, s)), V = sp._V || new View(c, W, H, r, { equal: sp.equal !== false, ml: sp.axes ? 38 : 8, mb: sp.axes ? 24 : 8 });
     if (!sp._V) { if (sp.axes) V.axes(sp); else if (sp.grid) { c.strokeStyle = 'rgba(255,255,255,.06)'; const st = niceStep(V.x1 - V.x0, 10); for (let x = Math.ceil(V.x0 / st) * st; x <= V.x1; x += st) { c.beginPath(); c.moveTo(V.fx(x), 0); c.lineTo(V.fx(x), H); c.stroke(); } for (let y = Math.ceil(V.y0 / st) * st; y <= V.y1; y += st) { c.beginPath(); c.moveTo(0, V.fy(y)); c.lineTo(W, V.fy(y)); c.stroke(); } } }

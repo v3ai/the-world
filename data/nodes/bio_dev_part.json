@@ -1,0 +1,605 @@
+[
+ {
+  "id": "bio_development",
+  "title": "Developmental biology",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_development",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [
+   "bio_fertilization",
+   "bio_cleavage_blastula",
+   "bio_gastrulation_germ_layers",
+   "bio_neurulation_organogenesis",
+   "bio_morphogens_gradients",
+   "bio_hox_developmental_genes",
+   "bio_developmental_signaling",
+   "bio_organoids_regeneration",
+   "bio_human_prenatal_development",
+   "bio_plant_embryogenesis_note",
+   "bio_spemann_induction",
+   "bio_sex_determination_development",
+   "bio_axis_symmetry_breaking"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "How a single cell becomes an organism.",
+  "layers": {
+   "basics": "A fertilised egg divides and its cells specialise, folding into layers and organs. Chemical gradients and signals tell cells where they are and what to become.",
+   "deeper": "Key stages are fertilisation, cleavage, gastrulation and organogenesis. Genes like Hox set the body plan, and signalling pathways (Wnt, Hedgehog, Notch, BMP) are reused again and again.",
+   "expert": "Development is a gene regulatory program in space and time. Evo-devo shows conserved toolkits underlying very different body plans; regeneration and stem cells show how plastic it can be."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "development_biology"
+  ]
+ },
+ {
+  "id": "bio_fertilization",
+  "title": "Fertilisation",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_development",
+  "parents": [
+   "bio_development"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_meiosis_variation"
+  ],
+  "summary": "Sperm meets egg.",
+  "layers": {
+   "basics": "A sperm binds and fuses with an egg, combining genetic material and starting development. The egg then blocks other sperm.",
+   "deeper": "A calcium wave sweeps the egg to activate it. In humans fertilisation occurs in the fallopian tube.",
+   "expert": "Fast block (membrane depolarisation) and slow block (cortical reaction) prevent polyspermy. Human zygote genome activation occurs at the 4–8 cell stage."
+  },
+  "facts": [
+   [
+    "Sperm number in ejaculate",
+    "≈ 10⁸"
+   ],
+   [
+    "Zygote genome activation",
+    "4–8 cell stage"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "43.2",
+    "43-2-fertilization"
+   ],
+   [
+    "BIO",
+    "43.6",
+    "43-6-fertilization-and-early-embryonic-development"
+   ],
+   [
+    "ANP",
+    "28.1",
+    "28-1-fertilization"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ],
+  "where": "egg_cell"
+ },
+ {
+  "id": "bio_cleavage_blastula",
+  "title": "Cleavage and blastula",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_development",
+  "parents": [
+   "bio_development"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_fertilization"
+  ],
+  "summary": "Rapid divisions of the embryo.",
+  "layers": {
+   "basics": "The zygote divides repeatedly without growing, forming a ball of cells and then a hollow blastula.",
+   "deeper": "In mammals the blastocyst has an inner cell mass (source of embryonic stem cells) and a trophoblast that forms the placenta.",
+   "expert": "Yolk amount shapes cleavage patterns (holoblastic vs meroblastic). Cell polarity and cell–cell contacts set the first fate decisions (Hippo pathway in mouse embryos)."
+  },
+  "facts": [
+   [
+    "Human blastocyst day",
+    "≈ 5–6 days"
+   ],
+   [
+    "Cells at blastocyst",
+    "≈ 100–200"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "43.6",
+    "43-6-fertilization-and-early-embryonic-development"
+   ],
+   [
+    "ANP",
+    "28.2",
+    "28-2-embryonic-development"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_gastrulation_germ_layers",
+  "title": "Gastrulation and germ layers",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_development",
+  "parents": [
+   "bio_development"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "gastrulation_process"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_cleavage_blastula"
+  ],
+  "summary": "Making three layers.",
+  "layers": {
+   "basics": "Cells move inward to form three layers: ectoderm (skin, nerves), mesoderm (muscle, bone, blood) and endoderm (gut lining, organs).",
+   "deeper": "Gastrulation sets up the body axes. Lewis Wolpert said \"it is not birth, marriage or death, but gastrulation which is truly the most important time in your life.\"",
+   "expert": "In humans gastrulation occurs at ≈ day 14–16 with the primitive streak. Conserved movements include invagination, ingression, involution and convergent extension."
+  },
+  "facts": [
+   [
+    "Primitive streak appears",
+    "≈ day 15"
+   ],
+   [
+    "Germ layers",
+    "3"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "43.6",
+    "43-6-fertilization-and-early-embryonic-development"
+   ],
+   [
+    "BIO",
+    "43.7",
+    "43-7-organogenesis-and-vertebrate-axis-formation"
+   ],
+   [
+    "ANP",
+    "28.2",
+    "28-2-embryonic-development"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ],
+  "where": "place:cell",
+  "ext": [
+   {
+    "title": "Wikipedia: Gastrulation",
+    "url": "https://en.wikipedia.org/wiki/Gastrulation"
+   }
+  ]
+ },
+ {
+  "id": "bio_neurulation_organogenesis",
+  "title": "Neurulation and organogenesis",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_development",
+  "parents": [
+   "bio_development"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_gastrulation_germ_layers"
+  ],
+  "summary": "Building nervous system and organs.",
+  "layers": {
+   "basics": "The ectoderm folds to form a neural tube, which becomes the brain and spinal cord; organs then form from the three layers.",
+   "deeper": "Folic acid helps prevent neural tube defects such as spina bifida. The heart is the first functional organ, beating by ≈ week 4.",
+   "expert": "Neural crest cells migrate widely and give rise to peripheral neurons, pigment cells and facial cartilage. Somitogenesis uses a segmentation clock with ≈ 4–6 h (human) period."
+  },
+  "facts": [
+   [
+    "Heart begins beating",
+    "≈ week 4"
+   ],
+   [
+    "Neural tube closure",
+    "≈ week 4"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "43.7",
+    "43-7-organogenesis-and-vertebrate-axis-formation"
+   ],
+   [
+    "ANP",
+    "28.2",
+    "28-2-embryonic-development"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ],
+  "where": "place:cell",
+  "molecules": [
+   "folic_acid"
+  ]
+ },
+ {
+  "id": "bio_morphogens_gradients",
+  "title": "Morphogens and pattern formation",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_development",
+  "parents": [
+   "bio_development"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_cleavage_blastula",
+   "bio_signaling_overview"
+  ],
+  "summary": "Concentration gradients give positional information.",
+  "layers": {
+   "basics": "A morphogen forms a concentration gradient and cells respond according to how much they receive. In fly embryos, Bicoid sets head–tail pattern.",
+   "deeper": "Wolpert's French-flag model explains thresholds. Other morphogens: Sonic hedgehog in limbs, BMP in dorsal–ventral patterning.",
+   "expert": "Turing reaction–diffusion systems explain periodic patterns (digits, animal skin). The robustness of gradients to noise and scaling with embryo size are active research areas."
+  },
+  "facts": [
+   [
+    "Bicoid gradient length",
+    "≈ 100 µm"
+   ],
+   [
+    "Turing paper",
+    "1952"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "43.7",
+    "43-7-organogenesis-and-vertebrate-axis-formation"
+   ]
+  ],
+  "kn": [
+   "dynamical_chaos",
+   "development_biology"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_hox_developmental_genes",
+  "title": "Hox genes and body plan",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_development",
+  "parents": [
+   "bio_development"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_morphogens_gradients",
+   "bio_eukaryotic_gene_regulation"
+  ],
+  "summary": "Genes that give each segment an identity.",
+  "layers": {
+   "basics": "Hox genes specify what each body segment becomes. Mutations can turn an antenna into a leg in flies.",
+   "deeper": "They are arranged along the chromosome in the same order as their expression along the body (colinearity). Vertebrates have four Hox clusters.",
+   "expert": "Hox genes encode homeodomain transcription factors. Lewis, Nüsslein-Volhard and Wieschaus won the 1995 Nobel. Changes in Hox regulation underlie differences in vertebrate neck and limb."
+  },
+  "facts": [
+   [
+    "Human Hox genes",
+    "39 in 4 clusters"
+   ],
+   [
+    "Homeodomain",
+    "≈ 60 aa"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "43.7",
+    "43-7-organogenesis-and-vertebrate-axis-formation"
+   ],
+   [
+    "COB",
+    "18.2",
+    "18-2-development-and-organogenesis"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ],
+  "where": "place:dna",
+  "ext": [
+   {
+    "title": "Wikipedia: Hox gene",
+    "url": "https://en.wikipedia.org/wiki/Hox_gene"
+   }
+  ]
+ },
+ {
+  "id": "bio_developmental_signaling",
+  "title": "Developmental signalling pathways",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_development",
+  "parents": [
+   "bio_development"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_rtk_cascades",
+   "bio_morphogens_gradients"
+  ],
+  "summary": "Wnt, Hedgehog, Notch, BMP/TGF-β.",
+  "layers": {
+   "basics": "A handful of signalling pathways are reused throughout development to tell cells to divide, specialise or die.",
+   "deeper": "Notch handles neighbour-to-neighbour decisions (lateral inhibition); Wnt controls axis and stem cell renewal; Hedgehog patterns limbs.",
+   "expert": "Mutations in these pathways cause birth defects and cancers (Wnt/APC in colon cancer, Hedgehog/PTCH1 in basal-cell carcinoma). Pathway crosstalk is context-dependent."
+  },
+  "facts": [
+   [
+    "Core pathways",
+    "≈ 7–10"
+   ],
+   [
+    "Colon cancers with Wnt pathway mutations",
+    "> 80%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "9.3",
+    "9-3-response-to-the-signal"
+   ],
+   [
+    "BIO",
+    "43.7",
+    "43-7-organogenesis-and-vertebrate-axis-formation"
+   ]
+  ],
+  "kn": [
+   "cell_signaling",
+   "development_biology"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_organoids_regeneration",
+  "title": "Regeneration and metamorphosis",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_development",
+  "parents": [
+   "bio_development"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_stem_cells_differentiation",
+   "bio_hox_developmental_genes"
+  ],
+  "summary": "Rebuilding and remodelling.",
+  "layers": {
+   "basics": "Some animals regrow lost parts: salamanders limbs, planarians whole bodies. Insects and amphibians undergo metamorphosis.",
+   "deeper": "Mammals regenerate livers and fingertips but not limbs. Hormones (ecdysone, thyroid hormone) control metamorphosis.",
+   "expert": "Blastema formation, dedifferentiation and positional memory underlie limb regeneration. Planarians use ≈ 20–30% neoblasts. Organoids derived from stem cells mimic organ structures in vitro."
+  },
+  "facts": [
+   [
+    "Axolotl limb regrowth",
+    "≈ weeks"
+   ],
+   [
+    "Liver regeneration (human)",
+    "≈ 8–15 days"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "43.7",
+    "43-7-organogenesis-and-vertebrate-axis-formation"
+   ],
+   [
+    "ANP",
+    "28.2",
+    "28-2-embryonic-development"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_human_prenatal_development",
+  "title": "Human pregnancy and prenatal development",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_development",
+  "parents": [
+   "bio_development"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_neurulation_organogenesis",
+   "bio_reproduction_strategies"
+  ],
+  "summary": "From zygote to newborn.",
+  "layers": {
+   "basics": "Pregnancy lasts about 38 weeks. The embryo forms organs in the first 8 weeks; then the fetus grows.",
+   "deeper": "The placenta supplies nutrients and oxygen and removes waste. Hormones (hCG, progesterone, oxytocin) regulate pregnancy and birth.",
+   "expert": "Teratogens (thalidomide, alcohol, rubella) act during sensitive windows. Fetal hemoglobin has higher O₂ affinity than adult Hb. Fetal programming of adult disease (Barker hypothesis) is supported by epidemiology but mechanisms are partly unclear."
+  },
+  "facts": [
+   [
+    "Full-term gestation",
+    "≈ 38 weeks (from conception)"
+   ],
+   [
+    "Newborn weight",
+    "≈ 3.4 kg"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "43.5",
+    "43-5-human-pregnancy-and-birth"
+   ],
+   [
+    "ANP",
+    "28.2",
+    "28-2-embryonic-development"
+   ],
+   [
+    "ANP",
+    "28.3",
+    "28-3-fetal-development"
+   ],
+   [
+    "ANP",
+    "28.4",
+    "28-4-changes-during-pregnancy-labor-and-birth"
+   ]
+  ],
+  "kn": [
+   "human_development",
+   "development_biology"
+  ],
+  "where": "uterus"
+ },
+ {
+  "id": "bio_plant_embryogenesis_note",
+  "title": "Plant embryogenesis and germination",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_development",
+  "parents": [
+   "bio_development"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_plant_development_flower"
+  ],
+  "summary": "Seeds from zygote to seedling.",
+  "layers": {
+   "basics": "In plants the zygote becomes a seed embryo with a root and shoot tip and cotyledons; it can wait for years before germinating.",
+   "deeper": "Germination starts when water is taken up (imbibition) and hormones trigger enzyme production.",
+   "expert": "Seed dormancy is broken by light, cold stratification or fire. The oldest seed germinated: a ≈ 2,000-year-old date palm."
+  },
+  "facts": [
+   [
+    "Date palm seed age",
+    "≈ 2,000 y"
+   ],
+   [
+    "Seed hormone for dormancy",
+    "abscisic acid"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "32.1",
+    "32-1-reproductive-development-and-structure"
+   ],
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ]
+  ],
+  "kn": [
+   "plant_physiology"
+  ],
+  "where": "place:soil"
+ }
+]

@@ -1,7 +1,7 @@
 'use strict';
 /* ===== LAB HOST: full-screen interactive labs that open over the world ===== */
 const LAB_FILES = { circuit: 'js/labs/circuit.js', device: 'js/labs/device.js' };
-const LAB_NAMES = { circuit: 'Circuit Lab', device: 'Semiconductor Device Lab', signal: 'Signal Lab', logic: 'Logic & CPU Lab', control: 'Control Lab', field: 'Field Lab', math: 'Math Lab', prob: 'Probability Lab', code: 'Code Lab', network: 'Network Lab' };
+const LAB_NAMES = { circuit: 'Circuit Lab', device: 'Semiconductor Device Lab', signal: 'Signal Lab', logic: 'Logic & CPU Lab', control: 'Control Lab', field: 'Field Lab', math: 'Math Lab', prob: 'Probability Lab', code: 'Code Lab', network: 'Network Lab', genetics: 'Genetics Lab', population: 'Population Lab', microscope: 'Microscope', molecule: 'Molecule Lab', enzyme: 'Enzyme Lab', ecosystem: 'Ecosystem Lab' };
 window.LABS = window.LABS || {};
 let labInst = null;
 function labAvailable(id) { return !!LAB_FILES[id]; }
@@ -33,7 +33,7 @@ function openTracks() {
     const seenS = new Set(store.get('seen', []));
     $('#trList').innerHTML = ts.map((t, ti) => {
       const all = t.sections.flatMap(s => s.nodes), done = all.filter(id => seenS.has(id)).length;
-      return `<details open><summary><b>${t.title}</b> <span class="mini">${done}/${all.length} visited</span></summary><div class="meter"><i style="width:${(done / Math.max(all.length, 1) * 100).toFixed(1)}%"></i></div>${t.description ? `<div class="sub">${t.description}</div>` : ''}${t.sections.map((s, si) => `<details><summary>${si + 1}. ${s.title} <span class="mini">(${s.nodes.length})</span></summary><div class="trn">${s.nodes.map(id => `<button class="trk${seenS.has(id) ? ' seen' : ''}" data-n="${id}">${NODE[id] ? NODE[id].title : id}${NODE[id] && NODE[id].lab && labAvailable(NODE[id].lab.id) ? ' <span class="lb">lab</span>' : ''}</button>`).join('')}</div></details>`).join('')}</details>`;
+      return `<details${ts.length === 1 ? ' open' : ''}><summary><b>${t.title}</b> <span class="mini">${done}/${all.length} visited</span></summary><div class="meter"><i style="width:${(done / Math.max(all.length, 1) * 100).toFixed(1)}%"></i></div>${t.description ? `<div class="sub">${t.description}</div>` : ''}${t.sections.map((s, si) => `<details><summary>${si + 1}. ${s.title} <span class="mini">(${s.nodes.length})</span></summary><div class="trn">${s.nodes.map(id => `<button class="trk${seenS.has(id) ? ' seen' : ''}" data-n="${id}">${NODE[id] ? NODE[id].title : id}${NODE[id] && NODE[id].lab && labAvailable(NODE[id].lab.id) ? ' <span class="lb">lab</span>' : ''}</button>`).join('')}</div></details>`).join('')}</details>`;
     }).join('') || '<div class="sub">No tracks yet.</div>';
     el.querySelectorAll('.trk').forEach(b => b.onclick = () => { const t = ts.find(t => t.sections.some(s => s.nodes.includes(b.dataset.n))); TRACK_CTX = t ? { title: t.title, ids: t.sections.flatMap(s => s.nodes) } : null; goToNode(b.dataset.n); b.classList.add('seen'); el.querySelectorAll('.trk.cur').forEach(x => x.classList.remove('cur')); b.classList.add('cur'); });
   });

@@ -1,0 +1,52 @@
+[
+ {
+  "id": "biology_degree",
+  "title": "Biology (B.S.)",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "biology_degree",
+  "parents": [],
+  "parts": [
+   "bio_foundations",
+   "bio_chem_life",
+   "bio_orgchem",
+   "bio_biochem",
+   "bio_cell_biology",
+   "bio_molecular",
+   "bio_genetics",
+   "bio_genomics",
+   "bio_microbiology",
+   "bio_evolution",
+   "bio_diversity",
+   "bio_plants",
+   "bio_animal_phys",
+   "bio_neuro",
+   "bio_immuno",
+   "bio_development",
+   "bio_ecology",
+   "bio_biostats",
+   "bio_lab",
+   "bio_electives",
+   "bio_processes"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "An undergraduate map of the science of life, from atoms to the biosphere.",
+  "layers": {
+   "basics": "Biology asks how living things work, how they came to be, and how they interact. This track walks from chemistry through cells, genes, evolution, organisms and ecosystems.",
+   "deeper": "The degree is organised in levels: molecules, cells, organisms, populations, ecosystems. Each level has its own laws, but evolution and energy flow tie them together.",
+   "expert": "Modern biology is quantitative and comparative: statistics, modelling and sequencing now sit beside microscopy and physiology as core skills. Claims are graded by certainty so open questions stay visibly open."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "cell_biology_intro",
+   "natural_selection"
+  ]
+ }
+]

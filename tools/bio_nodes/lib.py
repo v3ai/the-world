@@ -11,7 +11,7 @@ for _b in BOOKS:
 NODES = []          # nodes of the current output file
 ALL = []            # every new node in generation order
 TRACK = []          # [{title, hub, nodes:[ids]}]
-_cur = {'hub': None}
+_cur = {'hub': None, 't': None}
 ROOT_ID = 'biology_degree'
 AREA_WHERE = {'bio_chem_life':'place:atom','bio_biochem':'place:cell','bio_cell_biology':'place:cell','bio_molecular':'place:dna',
  'bio_genetics':'place:dna','bio_genomics':'place:dna','bio_microbiology':'place:pond','bio_evolution':'place:earth','bio_diversity':'place:park',
@@ -40,7 +40,7 @@ def section(hub, title, summary, basics, deeper, expert, kn=''):
     d.update(facts=[], certainty='C1', refs=[])
     if kn: d['kn'] = sp(kn)
     NODES.append(d); ALL.append(d)
-    TRACK.append({"title": title, "area": hub, "nodes": [hub]})
+    TRACK.append({"title": title, "area": hub, "nodes": [hub]}); _cur['t'] = TRACK[-1]
 
 def n(id, title, kind, needs, summary, basics, deeper, expert, facts='', refs='', f=None, d=None,
       w=None, lab=None, k='', mol='', c='C1', oq=None, rel='', ext='', par=None):
@@ -60,7 +60,7 @@ def n(id, title, kind, needs, summary, basics, deeper, expert, facts='', refs=''
     if w is None: w = AREA_WHERE.get(hub, '')
     if w: dd['where'] = w
     if mol: dd['molecules'] = sp(mol)
-    NODES.append(dd); ALL.append(dd); TRACK[-1]['nodes'].append(id)
+    NODES.append(dd); ALL.append(dd); _cur['t']['nodes'].append(id)
     return dd
 
 def proc(id, title, needs, summary, basics, deeper, expert, facts, refs, steps, **kw):
@@ -73,11 +73,11 @@ def proc(id, title, needs, summary, basics, deeper, expert, facts, refs, steps, 
 def use(ids):
     """Reuse existing node ids at this point of the current track section."""
     for i in sp(ids):
-        TRACK[-1]['nodes'].append(i)
+        _cur['t']['nodes'].append(i)
 
+FILES = {}
 def save(name):
-    json.dump(NODES, open(ROOT + f'/data/nodes/{name}.json', 'w'), indent=1, ensure_ascii=False)
-    print(name, len(NODES)); NODES.clear()
+    FILES[name] = list(NODES); print(name, len(NODES)); NODES.clear()
 
 def root():
     d = _base(ROOT_ID, 'Biology (B.S.)', 'field', 'concept', '',
@@ -87,3 +87,8 @@ def root():
               'Modern biology is quantitative and comparative: statistics, modelling and sequencing now sit beside microscopy and physiology as core skills. Claims are graded by certainty so open questions stay visibly open.', [], ROOT_ID)
     d.update(facts=[], certainty='C1', refs=[], kn=['cell_biology_intro', 'natural_selection'])
     return d
+
+def resume(hub):
+    """Add more nodes to an existing track section (appended at its end)."""
+    _cur['hub'] = hub
+    _cur['t'] = next(t for t in TRACK if t['area'] == hub)

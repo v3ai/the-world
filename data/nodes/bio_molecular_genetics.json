@@ -9,7 +9,32 @@
   "parents": [
    "biology_degree"
   ],
-  "parts": [],
+  "parts": [
+   "bio_dna_structure",
+   "bio_chromatin_packaging",
+   "bio_central_dogma",
+   "bio_replication_machinery",
+   "bio_dna_damage_repair",
+   "bio_recombination_transposons",
+   "bio_genetic_code",
+   "bio_transcription_prokaryotic",
+   "bio_transcription_eukaryotic",
+   "bio_rna_processing",
+   "bio_trna_translation_machinery",
+   "bio_translation_regulation_ptm",
+   "bio_lac_operon",
+   "bio_eukaryotic_gene_regulation",
+   "bio_epigenetics",
+   "bio_x_inactivation_imprinting",
+   "bio_noncoding_rna",
+   "bio_post_transcriptional_control",
+   "bio_cancer_gene_regulation",
+   "bio_genome_organization",
+   "bio_mitochondrial_genome",
+   "bio_riboswitches_ribozymes",
+   "bio_translation_steps",
+   "bio_chromatin_remodeling_histone_code"
+  ],
   "made_of": [],
   "processes": [],
   "related": [],
@@ -87,6 +112,10 @@
    {
     "title": "RCSB PDB: 1BNA B-DNA",
     "url": "https://www.rcsb.org/structure/1BNA"
+   },
+   {
+    "title": "Wikipedia: DNA",
+    "url": "https://en.wikipedia.org/wiki/DNA"
    }
   ],
   "kn": [
@@ -427,6 +456,12 @@
   "where": "mol:aa_met",
   "molecules": [
    "aa_met"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Genetic code",
+    "url": "https://en.wikipedia.org/wiki/Genetic_code"
+   }
   ]
  },
  {
@@ -751,7 +786,13 @@
    "id": "molecule",
    "preset": "lac_operon"
   },
-  "where": "place:pond"
+  "where": "place:pond",
+  "ext": [
+   {
+    "title": "Wikipedia: Lac operon",
+    "url": "https://en.wikipedia.org/wiki/Lac_operon"
+   }
+  ]
  },
  {
   "id": "bio_eukaryotic_gene_regulation",
@@ -861,7 +902,13 @@
    "chromatin_genome",
    "gene_regulation"
   ],
-  "where": "place:dna"
+  "where": "place:dna",
+  "ext": [
+   {
+    "title": "Wikipedia: Epigenetics",
+    "url": "https://en.wikipedia.org/wiki/Epigenetics"
+   }
+  ]
  },
  {
   "id": "bio_x_inactivation_imprinting",
@@ -970,7 +1017,13 @@
    "id": "molecule",
    "preset": "rnai"
   },
-  "where": "place:dna"
+  "where": "place:dna",
+  "ext": [
+   {
+    "title": "Wikipedia: RNA interference",
+    "url": "https://en.wikipedia.org/wiki/RNA_interference"
+   }
+  ]
  },
  {
   "id": "bio_post_transcriptional_control",
@@ -1085,7 +1138,32 @@
   "parents": [
    "biology_degree"
   ],
-  "parts": [],
+  "parts": [
+   "bio_mendel_laws",
+   "bio_alleles_genotype",
+   "bio_genetics_probability",
+   "bio_punnett_squares",
+   "bio_dihybrid_assortment",
+   "bio_dominance_extensions",
+   "bio_epistasis_pleiotropy",
+   "bio_meiosis_variation",
+   "bio_chromosome_theory",
+   "bio_linkage_mapping",
+   "bio_sex_linkage",
+   "bio_pedigree_analysis",
+   "bio_mutations",
+   "bio_chromosomal_aberrations",
+   "bio_single_gene_disorders",
+   "bio_quantitative_traits",
+   "bio_gwas",
+   "bio_population_genetics",
+   "bio_hardy_weinberg",
+   "bio_drift_flow_selection_pop",
+   "bio_inbreeding_conservation_genetics",
+   "bio_genetic_counseling_screening",
+   "bio_twin_family_studies",
+   "bio_genetic_screens"
+  ],
   "made_of": [],
   "processes": [],
   "related": [],
@@ -1572,7 +1650,13 @@
   "kn": [
    "genetics_inheritance"
   ],
-  "where": "place:cell"
+  "where": "place:cell",
+  "ext": [
+   {
+    "title": "Wikipedia: Meiosis",
+    "url": "https://en.wikipedia.org/wiki/Meiosis"
+   }
+  ]
  },
  {
   "id": "bio_chromosome_theory",
@@ -1788,7 +1872,13 @@
   "lab": {
    "id": "genetics",
    "preset": "pedigree_analysis"
-  }
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Pedigree chart",
+    "url": "https://en.wikipedia.org/wiki/Pedigree_chart"
+   }
+  ]
  },
  {
   "id": "bio_mutations",
@@ -2165,7 +2255,13 @@
    "id": "genetics",
    "preset": "hardy_weinberg"
   },
-  "where": "place:park"
+  "where": "place:park",
+  "ext": [
+   {
+    "title": "Wikipedia: Hardy–Weinberg principle",
+    "url": "https://en.wikipedia.org/wiki/Hardy%E2%80%93Weinberg_principle"
+   }
+  ]
  },
  {
   "id": "bio_drift_flow_selection_pop",

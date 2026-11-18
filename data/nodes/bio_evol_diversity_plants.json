@@ -1,0 +1,2612 @@
+[
+ {
+  "id": "bio_evolution",
+  "title": "Evolution",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [
+   "bio_natural_selection",
+   "bio_selection_modes",
+   "bio_sexual_selection",
+   "bio_evidence_for_evolution",
+   "bio_species_concepts",
+   "bio_speciation_mechanisms",
+   "bio_adaptive_radiation",
+   "bio_phylogeny_cladistics",
+   "bio_molecular_clock",
+   "bio_geologic_time",
+   "bio_mass_extinctions",
+   "bio_macroevolution_evodevo",
+   "bio_neutral_theory_drift",
+   "bio_kin_selection_behavior_evo",
+   "bio_human_evolution",
+   "bio_origin_of_life",
+   "bio_rna_world_luca",
+   "bio_evolution_misconceptions",
+   "bio_experimental_evolution"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Descent with modification: mechanisms, evidence, history and origins.",
+  "layers": {
+   "basics": "Evolution is change in the inherited traits of populations over generations. Natural selection, drift, mutation and gene flow drive it, and all life shares common ancestry.",
+   "deeper": "Fossils, DNA, anatomy and geography all point to the same tree of life. New species form when populations become reproductively isolated, and the history of life is punctuated by mass extinctions and radiations.",
+   "expert": "Modern evolutionary theory integrates population genetics, development and phylogenetics. Open questions include the origin of life, the tempo of macroevolution and the role of non-genetic inheritance."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "natural_selection",
+   "common_descent"
+  ]
+ },
+ {
+  "id": "bio_natural_selection",
+  "title": "Natural selection",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "natural_selection_process"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_population_genetics"
+  ],
+  "summary": "Differential survival and reproduction.",
+  "layers": {
+   "basics": "Individuals vary, some traits are heritable, and more offspring are born than can survive. Those with helpful traits leave more offspring, so such traits spread.",
+   "deeper": "Darwin and Wallace proposed the idea in 1858–59. Fitness is relative reproductive success, not strength.",
+   "expert": "Selection acts on phenotypes but changes allele frequencies: Δp = p(w̄ₐ − w̄)/w̄. The Price equation generalises it; the response to selection is R = h²S."
+  },
+  "facts": [
+   [
+    "Darwin's Origin",
+    "1859"
+   ],
+   [
+    "Peppered moth melanic frequency",
+    "≈ 2% to ≈ 95% (1848–1895)"
+   ]
+  ],
+  "formula": "R = h²·S",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "18.1",
+    "18-1-understanding-evolution"
+   ],
+   [
+    "COB",
+    "11.1",
+    "11-1-discovering-how-populations-change"
+   ],
+   [
+    "COB",
+    "11.2",
+    "11-2-mechanisms-of-evolution"
+   ]
+  ],
+  "kn": [
+   "natural_selection"
+  ],
+  "lab": {
+   "id": "genetics",
+   "preset": "drift_selection"
+  },
+  "where": "place:park",
+  "ext": [
+   {
+    "title": "Wikipedia: Natural selection",
+    "url": "https://en.wikipedia.org/wiki/Natural_selection"
+   }
+  ]
+ },
+ {
+  "id": "bio_selection_modes",
+  "title": "Modes of selection and adaptation",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_natural_selection"
+  ],
+  "summary": "Directional, stabilising, disruptive.",
+  "layers": {
+   "basics": "Directional selection favours one extreme, stabilising favours the middle and disruptive favours both extremes.",
+   "deeper": "Human birth weight is under stabilising selection; beak size in Galápagos finches changed during droughts (Grants' studies).",
+   "expert": "Frequency-dependent and balancing selection maintain variation (MHC, sickle-cell). Adaptations differ from exaptations, and not every trait is an adaptation (Gould & Lewontin \"spandrels\")."
+  },
+  "facts": [
+   [
+    "Finch beak change in drought",
+    "≈ 4–5% in one generation"
+   ],
+   [
+    "Balancing example",
+    "sickle-cell allele"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "19.3",
+    "19-3-adaptive-evolution"
+   ],
+   [
+    "COB",
+    "11.2",
+    "11-2-mechanisms-of-evolution"
+   ]
+  ],
+  "kn": [
+   "natural_selection"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_sexual_selection",
+  "title": "Sexual selection",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_selection_modes"
+  ],
+  "summary": "Competing for mates.",
+  "layers": {
+   "basics": "Traits like peacock tails and antlers evolve because they help in winning mates, even at a cost to survival.",
+   "deeper": "Female choice and male–male competition are the two main mechanisms.",
+   "expert": "Handicap and good-genes models explain costly ornaments; Fisherian runaway selection explains exaggerated traits. Sperm competition and sexual conflict drive rapid evolution of reproductive proteins."
+  },
+  "facts": [
+   [
+    "Proposed by",
+    "Darwin, 1871"
+   ],
+   [
+    "Peacock train length",
+    "≈ 1.5 m"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "19.3",
+    "19-3-adaptive-evolution"
+   ],
+   [
+    "BIO",
+    "45.7",
+    "45-7-behavioral-biology-proximate-and-ultimate-causes-of-behavior"
+   ]
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_evidence_for_evolution",
+  "title": "Evidence for evolution",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_natural_selection"
+  ],
+  "summary": "Fossils, anatomy, DNA and observation.",
+  "layers": {
+   "basics": "Fossils show change over time, homologous structures (the forelimb of a bat and a whale) show common ancestry, and DNA sequences nest into a tree.",
+   "deeper": "Vestigial structures and shared pseudogenes (e.g., the broken vitamin C gene in primates) fit descent. Observed evolution includes antibiotic resistance and Lenski's E. coli.",
+   "expert": "Independent trees from morphology and molecules agree; transitional fossils (Tiktaalik, Archaeopteryx) fill predicted gaps. Lenski's experiment has run since 1988 (> 75,000 generations)."
+  },
+  "facts": [
+   [
+    "Lenski experiment start",
+    "1988"
+   ],
+   [
+    "Human–chimp DNA similarity",
+    "≈ 98.8%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "18.1",
+    "18-1-understanding-evolution"
+   ],
+   [
+    "COB",
+    "11.3",
+    "11-3-evidence-of-evolution"
+   ]
+  ],
+  "kn": [
+   "common_descent",
+   "fossils_paleontology"
+  ],
+  "where": "place:earth"
+ },
+ {
+  "id": "bio_species_concepts",
+  "title": "Species concepts",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_natural_selection"
+  ],
+  "summary": "What is a species?",
+  "layers": {
+   "basics": "The biological species concept defines a species as interbreeding populations reproductively isolated from others.",
+   "deeper": "Alternatives include morphological, phylogenetic and ecological concepts. Bacteria and asexual organisms fit poorly with the biological concept.",
+   "expert": "Ring species and hybrid zones show that speciation is gradual. About 8.7 million eukaryotic species are estimated, with only ≈ 1.2–2 million described."
+  },
+  "facts": [
+   [
+    "Estimated eukaryotic species",
+    "≈ 8.7 million"
+   ],
+   [
+    "Described",
+    "≈ 2 million"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "No single species concept works for all life; the boundaries are a matter of convention in many groups."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "18.2",
+    "18-2-formation-of-new-species"
+   ],
+   [
+    "COB",
+    "11.4",
+    "11-4-speciation"
+   ]
+  ],
+  "kn": [
+   "speciation_biodiversity"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_speciation_mechanisms",
+  "title": "Speciation and reproductive isolation",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "speciation_process"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_species_concepts",
+   "bio_drift_flow_selection_pop"
+  ],
+  "summary": "How one species becomes two.",
+  "layers": {
+   "basics": "Populations separated by a barrier (allopatric) diverge until they can no longer interbreed. Speciation can also occur without barriers (sympatric), such as by polyploidy.",
+   "deeper": "Prezygotic barriers (timing, behaviour, mechanical) and postzygotic barriers (hybrid sterility, inviability) keep species apart.",
+   "expert": "Dobzhansky–Muller incompatibilities accumulate in isolation. Polyploid speciation is common in plants. Speciation can take from a few generations (polyploids) to millions of years."
+  },
+  "facts": [
+   [
+    "Cichlid species in Lake Victoria",
+    "≈ 500 in ≈ 15,000 y"
+   ],
+   [
+    "Hybrid sterility example",
+    "mule"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "18.2",
+    "18-2-formation-of-new-species"
+   ],
+   [
+    "BIO",
+    "18.3",
+    "18-3-reconnection-and-speciation-rates"
+   ],
+   [
+    "COB",
+    "11.4",
+    "11-4-speciation"
+   ]
+  ],
+  "kn": [
+   "speciation_biodiversity"
+  ],
+  "where": "place:earth",
+  "ext": [
+   {
+    "title": "Wikipedia: Speciation",
+    "url": "https://en.wikipedia.org/wiki/Speciation"
+   }
+  ]
+ },
+ {
+  "id": "bio_adaptive_radiation",
+  "title": "Adaptive radiation and coevolution",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_speciation_mechanisms"
+  ],
+  "summary": "Rapid diversification into new niches.",
+  "layers": {
+   "basics": "When a lineage enters a new environment with open niches it can split into many species, like Darwin's finches and Hawaiian honeycreepers.",
+   "deeper": "Coevolution is reciprocal evolutionary change in interacting species, such as flowers and pollinators or hosts and parasites.",
+   "expert": "Radiations often follow key innovations or mass extinctions (mammals after the Cretaceous). Red Queen dynamics describe perpetual arms races between hosts and parasites."
+  },
+  "facts": [
+   [
+    "Hawaiian drosophilids",
+    "≈ 1,000 species"
+   ],
+   [
+    "Darwin's finches",
+    "≈ 15 species"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "18.3",
+    "18-3-reconnection-and-speciation-rates"
+   ],
+   [
+    "BIO",
+    "19.3",
+    "19-3-adaptive-evolution"
+   ]
+  ],
+  "kn": [
+   "speciation_biodiversity"
+  ],
+  "where": "place:earth"
+ },
+ {
+  "id": "bio_phylogeny_cladistics",
+  "title": "Phylogenies and cladistics",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_evidence_for_evolution"
+  ],
+  "summary": "Reading and building evolutionary trees.",
+  "layers": {
+   "basics": "A phylogenetic tree shows branching ancestry. A clade includes an ancestor and all its descendants.",
+   "deeper": "Characters shared because of a common ancestor (synapomorphies) define clades; similarity from convergent evolution (analogy) misleads.",
+   "expert": "Cladistic methods use parsimony or probabilistic models. Monophyletic, paraphyletic and polyphyletic groups are distinguished; \"reptiles\" excluding birds is paraphyletic."
+  },
+  "facts": [
+   [
+    "Tree terms",
+    "node, branch, clade, outgroup"
+   ],
+   [
+    "Birds are",
+    "dinosaurs (clade Theropoda)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "20.1",
+    "20-1-organizing-life-on-earth"
+   ],
+   [
+    "BIO",
+    "20.2",
+    "20-2-determining-evolutionary-relationships"
+   ],
+   [
+    "COB",
+    "12.1",
+    "12-1-organizing-life-on-earth"
+   ],
+   [
+    "COB",
+    "12.2",
+    "12-2-determining-evolutionary-relationships"
+   ]
+  ],
+  "kn": [
+   "common_descent"
+  ],
+  "lab": {
+   "id": "population",
+   "preset": "phylogeny_builder"
+  },
+  "where": "place:earth",
+  "ext": [
+   {
+    "title": "Wikipedia: Cladistics",
+    "url": "https://en.wikipedia.org/wiki/Cladistics"
+   }
+  ]
+ },
+ {
+  "id": "bio_molecular_clock",
+  "title": "Molecular clocks and divergence times",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_phylogeny_cladistics",
+   "bio_mutations"
+  ],
+  "summary": "Dating splits using sequence change.",
+  "layers": {
+   "basics": "If mutations accumulate at a steady rate, the number of differences between species estimates how long ago they split.",
+   "deeper": "Clocks are calibrated with fossils. Human and chimp lineages split about 6–7 million years ago.",
+   "expert": "Rates vary between lineages (relaxed clocks) and with generation time; Bayesian dating (BEAST) integrates calibrations. Rate heterogeneity gives wide credible intervals."
+  },
+  "facts": [
+   [
+    "Human–chimp split",
+    "≈ 6–7 Ma"
+   ],
+   [
+    "Substitution rate (human)",
+    "≈ 10⁻⁹ per bp per year"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "20.3",
+    "20-3-perspectives-on-the-phylogenetic-tree"
+   ]
+  ],
+  "kn": [
+   "radiometric_dating",
+   "common_descent"
+  ],
+  "where": "place:earth"
+ },
+ {
+  "id": "bio_geologic_time",
+  "title": "Geologic time and the history of life",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_evidence_for_evolution"
+  ],
+  "summary": "Eons, eras and key events.",
+  "layers": {
+   "basics": "Earth is ≈ 4.54 billion years old. Life appeared by ≈ 3.5–3.8 billion years ago, animals by ≈ 575 million, and humans only in the last ≈ 300,000 years.",
+   "deeper": "Key events: oxygenation (≈ 2.4 Ga), eukaryotes (≈ 1.6–2 Ga), Cambrian explosion (≈ 540 Ma), land plants (≈ 470 Ma), dinosaurs (≈ 230–66 Ma).",
+   "expert": "Radiometric dating (U–Pb, K–Ar) calibrates the timescale. Banded iron formations, stromatolites and biomarkers document early life; Ediacaran biota precede the Cambrian."
+  },
+  "facts": [
+   [
+    "Age of Earth",
+    "≈ 4.54 Ga"
+   ],
+   [
+    "Cambrian explosion",
+    "≈ 540 Ma"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "20.3",
+    "20-3-perspectives-on-the-phylogenetic-tree"
+   ],
+   [
+    "COB",
+    "11.3",
+    "11-3-evidence-of-evolution"
+   ]
+  ],
+  "kn": [
+   "deep_time",
+   "fossils_paleontology"
+  ],
+  "where": "place:earth",
+  "ext": [
+   {
+    "title": "Wikipedia: Geologic time scale",
+    "url": "https://en.wikipedia.org/wiki/Geologic_time_scale"
+   }
+  ]
+ },
+ {
+  "id": "bio_mass_extinctions",
+  "title": "Mass extinctions",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_geologic_time"
+  ],
+  "summary": "Five great die-offs.",
+  "layers": {
+   "basics": "Five mass extinctions wiped out most species, including the end-Permian event (≈ 252 Ma, ≈ 90% of marine species) and the end-Cretaceous event (≈ 66 Ma).",
+   "deeper": "Causes include volcanism, climate change, ocean anoxia and, for the dinosaurs, an asteroid impact at Chicxulub.",
+   "expert": "Recovery takes ≈ 5–10 million years. Many scientists argue we are entering a sixth mass extinction; current rates are ≈ 100–1,000× background."
+  },
+  "facts": [
+   [
+    "End-Permian loss",
+    "≈ 90% marine species"
+   ],
+   [
+    "Current extinction rate",
+    "≈ 100–1000× background"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "47.1",
+    "47-1-the-biodiversity-crisis"
+   ],
+   [
+    "BIO",
+    "20.3",
+    "20-3-perspectives-on-the-phylogenetic-tree"
+   ]
+  ],
+  "kn": [
+   "mass_extinctions"
+  ],
+  "where": "place:earth",
+  "ext": [
+   {
+    "title": "Wikipedia: Extinction event",
+    "url": "https://en.wikipedia.org/wiki/Extinction_event"
+   }
+  ]
+ },
+ {
+  "id": "bio_macroevolution_evodevo",
+  "title": "Macroevolution and evo-devo",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_adaptive_radiation",
+   "bio_phylogeny_cladistics"
+  ],
+  "summary": "Big changes and the genes behind body plans.",
+  "layers": {
+   "basics": "Large-scale changes arise by the accumulation of small ones, plus changes in genes that control development.",
+   "deeper": "Hox genes pattern the body axis in animals; small regulatory changes can alter limbs, eyes or body segments. Whale limbs and bird wings show repurposing.",
+   "expert": "Evo-devo studies modular regulatory evolution and deep homology (Pax6 for eyes). Punctuated equilibrium proposes stasis with bursts of change; the fossil record supports both tempo patterns in different lineages."
+  },
+  "facts": [
+   [
+    "Hox clusters in vertebrates",
+    "4 (≈ 39 genes)"
+   ],
+   [
+    "Pax6 homologue",
+    "eye development in flies and mice"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "27.2",
+    "27-2-features-used-to-classify-animals"
+   ],
+   [
+    "BIO",
+    "43.7",
+    "43-7-organogenesis-and-vertebrate-axis-formation"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ],
+  "where": "place:earth"
+ },
+ {
+  "id": "bio_neutral_theory_drift",
+  "title": "Neutral and nearly neutral theory",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_drift_flow_selection_pop"
+  ],
+  "summary": "Most molecular change is random.",
+  "layers": {
+   "basics": "Most mutations that persist in a genome are effectively neutral and spread through drift rather than selection.",
+   "deeper": "Kimura proposed the neutral theory in 1968. It underlies molecular clocks.",
+   "expert": "Substitution rate for neutral mutations equals the mutation rate (k = μ). Nearly neutral dynamics depend on Ne·s; how much of genome evolution is selected remains actively debated."
+  },
+  "facts": [
+   [
+    "Kimura",
+    "1968"
+   ],
+   [
+    "Neutral substitution rate",
+    "k = μ"
+   ]
+  ],
+  "formula": "k = μ",
+  "certainty": "C2",
+  "open_questions": [
+   "The proportion of genomic divergence driven by positive selection versus drift is still disputed."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "19.1",
+    "19-1-population-evolution"
+   ]
+  ],
+  "kn": [
+   "natural_selection"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_kin_selection_behavior_evo",
+  "title": "Kin selection and altruism",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_natural_selection"
+  ],
+  "summary": "Helping relatives.",
+  "layers": {
+   "basics": "Animals may help relatives because relatives share genes. Worker bees and meerkat helpers are examples.",
+   "deeper": "Hamilton's rule says altruism evolves when relatedness × benefit exceeds cost.",
+   "expert": "rb > c, where r is relatedness. Haplodiploidy gives full sisters r = 0.75, a historical explanation for eusociality, though other factors matter. Group selection models remain debated."
+  },
+  "facts": [
+   [
+    "Relatedness full siblings",
+    "0.5"
+   ],
+   [
+    "Relatedness cousins",
+    "0.125"
+   ]
+  ],
+  "formula": "r·b > c",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "45.7",
+    "45-7-behavioral-biology-proximate-and-ultimate-causes-of-behavior"
+   ]
+  ],
+  "where": "place:park",
+  "ext": [
+   {
+    "title": "Wikipedia: Kin selection",
+    "url": "https://en.wikipedia.org/wiki/Kin_selection"
+   }
+  ]
+ },
+ {
+  "id": "bio_human_evolution",
+  "title": "Human evolution",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_phylogeny_cladistics",
+   "bio_comparative_human_genomics"
+  ],
+  "summary": "The primate lineage leading to us.",
+  "layers": {
+   "basics": "Humans share ancestors with the African apes. The hominin line includes Australopithecus (e.g. \"Lucy\", ≈ 3.2 Ma), early Homo (≈ 2.8 Ma) and Homo sapiens (≈ 300,000 years ago in Africa).",
+   "deeper": "Bipedalism came early, large brains later. Neanderthals and Denisovans interbred with modern humans; most non-Africans carry ≈ 1–2% Neanderthal DNA.",
+   "expert": "Ancient DNA has reshaped the story: multiple dispersals, admixture and local adaptation (lactase persistence, high altitude EPAS1). Details of the Out-of-Africa timing and the role of archaic admixture in Africa remain under active study."
+  },
+  "facts": [
+   [
+    "Homo sapiens origin",
+    "≈ 300,000 y (Jebel Irhoud)"
+   ],
+   [
+    "Neanderthal DNA in non-Africans",
+    "≈ 1–2%"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Exact branching of early Homo lineages and the geography of H. sapiens origins (multiregional African model) are debated."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "29.7",
+    "29-7-the-evolution-of-primates"
+   ]
+  ],
+  "kn": [
+   "human_evolution"
+  ],
+  "where": "place:earth"
+ },
+ {
+  "id": "bio_origin_of_life",
+  "title": "Origin of life",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_atp_energy_coupling",
+   "bio_nucleotides"
+  ],
+  "summary": "How chemistry became biology.",
+  "layers": {
+   "basics": "Life likely began on early Earth more than 3.5 billion years ago from chemical reactions that formed organic molecules, which then organised into self-copying systems.",
+   "deeper": "Leading ideas: RNA world, metabolism-first at hydrothermal vents, and lipid vesicle protocells. Miller–Urey (1953) made amino acids from simple gases.",
+   "expert": "No complete pathway is known. Challenges: chirality, polymerisation in water, and the origin of coding. Prebiotic synthesis of nucleotides (Sutherland 2009) suggests plausible routes; none has produced a full cell from chemistry."
+  },
+  "facts": [
+   [
+    "Miller–Urey",
+    "1953"
+   ],
+   [
+    "Earliest accepted evidence of life",
+    "≈ 3.5–3.8 Ga"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "Whether life began as RNA, metabolism, lipids or something else is unresolved.",
+   "Where it began (vents, ponds, clay surfaces) is not settled.",
+   "How information-bearing polymers first arose without enzymes is unknown."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "20.3",
+    "20-3-perspectives-on-the-phylogenetic-tree"
+   ]
+  ],
+  "kn": [
+   "origin_of_life",
+   "rna_world",
+   "luca"
+  ],
+  "where": "place:earth",
+  "molecules": [
+   "hydrogen_cyanide",
+   "formamide",
+   "ammonia"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Abiogenesis",
+    "url": "https://en.wikipedia.org/wiki/Abiogenesis"
+   }
+  ]
+ },
+ {
+  "id": "bio_rna_world_luca",
+  "title": "RNA world and the last universal common ancestor",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_origin_of_life",
+   "bio_rna_types"
+  ],
+  "summary": "Early life's likely machinery.",
+  "layers": {
+   "basics": "The RNA world hypothesis proposes that RNA both stored information and catalysed reactions before DNA and proteins.",
+   "deeper": "Ribozymes support the idea: the ribosome itself is an RNA enzyme. LUCA, the last universal common ancestor of bacteria, archaea and eukaryotes, lived ≈ 3.5–4.2 billion years ago.",
+   "expert": "Reconstructions suggest LUCA was a anaerobic, hydrogen-using cell possibly with a Wood–Ljungdahl pathway, though estimates differ. In vitro evolution has produced RNA polymerase ribozymes that copy short templates."
+  },
+  "facts": [
+   [
+    "LUCA age (est.)",
+    "≈ 3.5–4.2 Ga"
+   ],
+   [
+    "Ribozyme discovery Nobel",
+    "1989"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "Whether an RNA world preceded DNA/protein life is unproven.",
+   "The complexity and habitat of LUCA are contested."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "20.3",
+    "20-3-perspectives-on-the-phylogenetic-tree"
+   ]
+  ],
+  "kn": [
+   "rna_world",
+   "luca"
+  ],
+  "where": "place:earth"
+ },
+ {
+  "id": "bio_evolution_misconceptions",
+  "title": "Common misconceptions about evolution",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_natural_selection"
+  ],
+  "summary": "What evolution does not say.",
+  "layers": {
+   "basics": "Individuals do not evolve; populations do. Evolution has no goal, and \"survival of the fittest\" means reproductive success, not strength.",
+   "deeper": "Humans did not evolve from today's chimps; both share an ancestor. \"Theory\" in science means a well-tested explanation.",
+   "expert": "Evolution is not progress towards complexity. Adaptation is limited by history, trade-offs and chance; many traits are compromises or by-products."
+  },
+  "facts": [
+   [
+    "Theory status",
+    "well-supported explanatory framework"
+   ],
+   [
+    "Chimp–human common ancestor",
+    "≈ 6–7 Ma"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "COB",
+    "11.5",
+    "11-5-common-misconceptions-about-evolution"
+   ],
+   [
+    "BIO",
+    "18.1",
+    "18-1-understanding-evolution"
+   ]
+  ]
+ },
+ {
+  "id": "bio_experimental_evolution",
+  "title": "Experimental evolution",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_evolution",
+  "parents": [
+   "bio_evolution"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_natural_selection"
+  ],
+  "summary": "Watching evolution in the lab.",
+  "layers": {
+   "basics": "Researchers grow microbes or flies for hundreds or thousands of generations under controlled conditions and watch them adapt.",
+   "deeper": "Lenski's E. coli lines evolved the ability to use citrate after ≈ 31,000 generations.",
+   "expert": "Frozen fossil records allow replay experiments to test contingency. Repeatability of outcomes tells us how deterministic adaptation is."
+  },
+  "facts": [
+   [
+    "Lenski generations",
+    "> 75,000"
+   ],
+   [
+    "Citrate use appeared",
+    "≈ 31,500 generations"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "18.1",
+    "18-1-understanding-evolution"
+   ]
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_diversity",
+  "title": "Diversity of life",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [
+   "bio_fungi_basics",
+   "bio_fungal_ecology",
+   "bio_algae_green_origin",
+   "bio_bryophytes_seedless",
+   "bio_seed_plants",
+   "bio_animal_features",
+   "bio_sponges_cnidarians",
+   "bio_lophotrochozoans",
+   "bio_nematodes_arthropods",
+   "bio_entomology_insects",
+   "bio_echinoderms_chordates",
+   "bio_fishes_amphibians",
+   "bio_reptiles_birds",
+   "bio_mammals_primates",
+   "bio_zoology_taxonomy_methods",
+   "bio_arachnids_crustaceans",
+   "bio_parasites_helminths",
+   "bio_evolution_of_flight",
+   "bio_lichens_fungal_biotech",
+   "bio_deuterostome_protostome"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Fungi, protists, plants and animals, from invertebrates to vertebrates.",
+  "layers": {
+   "basics": "Life on Earth is enormously diverse. This section tours the major groups of eukaryotes: fungi, algae, plants and animals, with their body plans and lifestyles.",
+   "deeper": "Groups are defined by shared ancestry. Key transitions include multicellularity, the move to land, the evolution of seeds and flowers, and of backbones, jaws, limbs, feathers and fur.",
+   "expert": "Phylogenomics keeps revising animal and plant relationships (e.g., placement of ctenophores or sponges at the base of animals). Diversity gradients and extinction risk are explored in ecology and conservation."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "animal_diversity"
+  ]
+ },
+ {
+  "id": "bio_fungi_basics",
+  "title": "Fungi: biology and classification",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_protists"
+  ],
+  "summary": "Absorptive heterotrophs with chitin walls.",
+  "layers": {
+   "basics": "Fungi are mostly made of threads (hyphae) forming a mycelium. They absorb food from their surroundings after digesting it with enzymes.",
+   "deeper": "Major groups: chytrids, zygomycetes, ascomycetes (yeasts, molds, morels) and basidiomycetes (mushrooms). Fungi are more closely related to animals than to plants.",
+   "expert": "The largest known organism is an Armillaria mycelium in Oregon (≈ 9 km², perhaps 2,000+ years old). Fungi reproduce both sexually and asexually, and many have long dikaryotic stages."
+  },
+  "facts": [
+   [
+    "Described fungal species",
+    "≈ 150,000"
+   ],
+   [
+    "Estimated total",
+    "2–5 million"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "24.1",
+    "24-1-characteristics-of-fungi"
+   ],
+   [
+    "BIO",
+    "24.2",
+    "24-2-classifications-of-fungi"
+   ],
+   [
+    "COB",
+    "13.4",
+    "13-4-fungi"
+   ],
+   [
+    "MIC",
+    "5.3",
+    "5-3-fungi"
+   ]
+  ],
+  "kn": [
+   "animal_diversity"
+  ],
+  "where": "place:soil"
+ },
+ {
+  "id": "bio_fungal_ecology",
+  "title": "Fungal ecology and symbioses",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_fungi_basics"
+  ],
+  "summary": "Decomposers, partners and pathogens.",
+  "layers": {
+   "basics": "Fungi decompose dead matter, form mycorrhizae with plant roots, and make lichens with algae or cyanobacteria. Some cause disease in plants and animals.",
+   "deeper": "About 90% of land plants have mycorrhizal partners that trade soil minerals for sugar. Yeasts bring us bread, beer and antibiotics (penicillin).",
+   "expert": "Chytrid fungus Batrachochytrium has caused amphibian declines in > 500 species. White-nose syndrome has killed millions of bats. Fungal infections kill ≈ 1.5 million people yearly."
+  },
+  "facts": [
+   [
+    "Plants with mycorrhizae",
+    "≈ 80–90%"
+   ],
+   [
+    "Amphibian species hit by chytrid",
+    "> 500"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "24.3",
+    "24-3-ecology-of-fungi"
+   ],
+   [
+    "BIO",
+    "24.4",
+    "24-4-fungal-parasites-and-pathogens"
+   ],
+   [
+    "BIO",
+    "24.5",
+    "24-5-importance-of-fungi-in-human-life"
+   ],
+   [
+    "MIC",
+    "5.5",
+    "5-5-lichens"
+   ]
+  ],
+  "kn": [
+   "soil_biology"
+  ],
+  "where": "place:soil"
+ },
+ {
+  "id": "bio_algae_green_origin",
+  "title": "Algae and the origin of land plants",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_protists"
+  ],
+  "summary": "Green algae are the closest relatives of land plants.",
+  "layers": {
+   "basics": "Land plants descended from freshwater green algae (charophytes) about 470 million years ago.",
+   "deeper": "Moving onto land needed protection from drying (cuticle), support, and water transport.",
+   "expert": "Streptophyte algae share cell-division and cell-wall features with plants; Zygnematophyceae may be the sister group. Key innovations: sporopollenin, embryos, vascular tissue."
+  },
+  "facts": [
+   [
+    "Land plant origin",
+    "≈ 470 Ma"
+   ],
+   [
+    "Closest algal relatives",
+    "charophytes"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "25.1",
+    "25-1-early-plant-life"
+   ],
+   [
+    "BIO",
+    "25.2",
+    "25-2-green-algae-precursors-of-land-plants"
+   ]
+  ],
+  "kn": [
+   "plant_physiology"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_bryophytes_seedless",
+  "title": "Bryophytes and seedless vascular plants",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_algae_green_origin"
+  ],
+  "summary": "Mosses, ferns and relatives.",
+  "layers": {
+   "basics": "Mosses, liverworts and hornworts have no true vascular tissue and stay small. Ferns and lycophytes have vascular tissue but still need water for sperm to swim.",
+   "deeper": "These plants have alternation of generations: a gametophyte stage and a sporophyte stage. In mosses the gametophyte dominates; in ferns the sporophyte does.",
+   "expert": "Carboniferous seedless forests formed much of today's coal. Ferns number ≈ 10,500 species; vascular tissue with lignin evolved ≈ 430 Ma."
+  },
+  "facts": [
+   [
+    "Ferns",
+    "≈ 10,500 species"
+   ],
+   [
+    "Moss species",
+    "≈ 12,000"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "25.3",
+    "25-3-bryophytes"
+   ],
+   [
+    "BIO",
+    "25.4",
+    "25-4-seedless-vascular-plants"
+   ],
+   [
+    "COB",
+    "14.2",
+    "14-2-seedless-plants"
+   ]
+  ],
+  "kn": [
+   "plant_physiology"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_seed_plants",
+  "title": "Gymnosperms and angiosperms",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_bryophytes_seedless"
+  ],
+  "summary": "Seeds, pollen and flowers.",
+  "layers": {
+   "basics": "Seeds protect and feed the embryo. Gymnosperms (conifers) have \"naked\" seeds in cones; angiosperms (flowering plants) enclose seeds in fruit.",
+   "deeper": "Angiosperms are ≈ 300,000 species. Double fertilisation produces an embryo and nutritive endosperm. Flowers attract animals for pollination.",
+   "expert": "Angiosperms diversified in the Cretaceous, which Darwin called an \"abominable mystery\". Basal lineages include Amborella. Monocots and eudicots differ in cotyledons, vascular arrangement and pollen apertures."
+  },
+  "facts": [
+   [
+    "Angiosperm species",
+    "≈ 300,000"
+   ],
+   [
+    "Conifer species",
+    "≈ 600–700"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "26.1",
+    "26-1-evolution-of-seed-plants"
+   ],
+   [
+    "BIO",
+    "26.2",
+    "26-2-gymnosperms"
+   ],
+   [
+    "BIO",
+    "26.3",
+    "26-3-angiosperms"
+   ],
+   [
+    "COB",
+    "14.3",
+    "14-3-seed-plants-gymnosperms"
+   ],
+   [
+    "COB",
+    "14.4",
+    "14-4-seed-plants-angiosperms"
+   ]
+  ],
+  "kn": [
+   "flowers_pollination",
+   "plant_physiology"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_animal_features",
+  "title": "Animal features and body plans",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_phylogeny_cladistics"
+  ],
+  "summary": "What makes an animal and how animals are organised.",
+  "layers": {
+   "basics": "Animals are multicellular heterotrophs without cell walls that develop from an embryo. Body plans differ in symmetry, layers and body cavity.",
+   "deeper": "Radial vs bilateral symmetry, diploblastic vs triploblastic layers, and protostome vs deuterostome development are the main categories.",
+   "expert": "Molecular phylogeny groups bilaterians into Lophotrochozoa, Ecdysozoa and Deuterostomia. Whether sponges or ctenophores branch first remains debated."
+  },
+  "facts": [
+   [
+    "Described animal species",
+    "≈ 1.5 million"
+   ],
+   [
+    "Animal phyla",
+    "≈ 35"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Whether sponges or comb jellies are sister to all other animals is unsettled."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "27.1",
+    "27-1-features-of-the-animal-kingdom"
+   ],
+   [
+    "BIO",
+    "27.2",
+    "27-2-features-used-to-classify-animals"
+   ],
+   [
+    "BIO",
+    "27.3",
+    "27-3-animal-phylogeny"
+   ],
+   [
+    "COB",
+    "15.1",
+    "15-1-features-of-the-animal-kingdom"
+   ]
+  ],
+  "kn": [
+   "animal_diversity"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_sponges_cnidarians",
+  "title": "Sponges and cnidarians",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_animal_features"
+  ],
+  "summary": "The simplest animals.",
+  "layers": {
+   "basics": "Sponges filter water through pores and have no true tissues. Cnidarians (jellyfish, corals, anemones) have stinging cells and radial symmetry.",
+   "deeper": "Coral reefs, built by cnidarians with symbiotic algae, cover < 1% of the sea floor but host ≈ 25% of marine species.",
+   "expert": "Cnidocytes fire nematocysts in ≈ 700 ns, among the fastest cellular events. Coral bleaching occurs when symbionts are expelled under heat stress."
+  },
+  "facts": [
+   [
+    "Reef share of marine species",
+    "≈ 25%"
+   ],
+   [
+    "Nematocyst discharge",
+    "≈ 700 ns"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "28.1",
+    "28-1-phylum-porifera"
+   ],
+   [
+    "BIO",
+    "28.2",
+    "28-2-phylum-cnidaria"
+   ],
+   [
+    "COB",
+    "15.2",
+    "15-2-sponges-and-cnidarians"
+   ]
+  ],
+  "kn": [
+   "animal_diversity"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_lophotrochozoans",
+  "title": "Flatworms, mollusks and annelids",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_sponges_cnidarians"
+  ],
+  "summary": "Soft-bodied bilaterians.",
+  "layers": {
+   "basics": "Flatworms include free-living planarians and parasitic tapeworms and flukes. Mollusks have a muscular foot, mantle and often a shell; annelids are segmented worms.",
+   "deeper": "Octopuses are mollusks with large brains and ≈ 500 million neurons. Earthworms aerate soil.",
+   "expert": "Cephalopods have closed circulatory systems and camera-type eyes arising independently of vertebrates. Annelid segmentation parallels but evolved separately from arthropods' and vertebrates'."
+  },
+  "facts": [
+   [
+    "Mollusk species",
+    "≈ 85,000"
+   ],
+   [
+    "Octopus neurons",
+    "≈ 500 million"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "28.3",
+    "28-3-superphylum-lophotrochozoa-flatworms-rotifers-and-nemerteans"
+   ],
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ],
+   [
+    "COB",
+    "15.3",
+    "15-3-flatworms-nematodes-and-arthropods"
+   ],
+   [
+    "COB",
+    "15.4",
+    "15-4-mollusks-and-annelids"
+   ]
+  ],
+  "kn": [
+   "animal_diversity"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_nematodes_arthropods",
+  "title": "Nematodes and arthropods",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_lophotrochozoans"
+  ],
+  "summary": "Molting animals: roundworms and jointed-legged animals.",
+  "layers": {
+   "basics": "Nematodes are unsegmented roundworms found nearly everywhere. Arthropods (insects, spiders, crustaceans) have jointed legs and a chitin exoskeleton.",
+   "deeper": "Arthropods make up ≈ 80% of described animal species. Moulting lets them grow despite the rigid exoskeleton.",
+   "expert": "Ecdysozoa moult under ecdysone control. The arthropod body plan has repeated segments modified by Hox genes into specialised appendages."
+  },
+  "facts": [
+   [
+    "Arthropods share of animal species",
+    "≈ 80%"
+   ],
+   [
+    "Insect species described",
+    "≈ 1 million"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "28.5",
+    "28-5-superphylum-ecdysozoa-nematodes-and-tardigrades"
+   ],
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ],
+   [
+    "COB",
+    "15.3",
+    "15-3-flatworms-nematodes-and-arthropods"
+   ]
+  ],
+  "kn": [
+   "animal_diversity"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_entomology_insects",
+  "title": "Insects and entomology basics",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_nematodes_arthropods"
+  ],
+  "summary": "The most diverse animal class.",
+  "layers": {
+   "basics": "Insects have three body regions, six legs and usually wings. They pollinate crops, spread diseases and decompose waste.",
+   "deeper": "Complete metamorphosis (egg, larva, pupa, adult) occurs in beetles, flies, butterflies and bees; incomplete metamorphosis in grasshoppers.",
+   "expert": "Beetles alone are ≈ 400,000 described species. Social insects (ants, termites, bees) show eusociality with castes. Insect declines of ≈ 1–2% per year in some regions are a concern."
+  },
+  "facts": [
+   [
+    "Beetle species",
+    "≈ 400,000"
+   ],
+   [
+    "Insects pollinate",
+    "≈ 75% of crop types"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ],
+   [
+    "COB",
+    "15.3",
+    "15-3-flatworms-nematodes-and-arthropods"
+   ]
+  ],
+  "kn": [
+   "animal_diversity"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_echinoderms_chordates",
+  "title": "Echinoderms and chordates",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_nematodes_arthropods"
+  ],
+  "summary": "Deuterostomes, including us.",
+  "layers": {
+   "basics": "Echinoderms (sea stars, urchins) have radial adult symmetry; chordates have a notochord, dorsal nerve cord, pharyngeal slits and a post-anal tail at some stage.",
+   "deeper": "Tunicates and lancelets are invertebrate chordates. Vertebrates add a backbone and a skull.",
+   "expert": "Echinoderms and chordates are both deuterostomes, sharing ancestry; hemichordates link them. Vertebrate genomes show two whole-genome duplications."
+  },
+  "facts": [
+   [
+    "Chordate hallmark features",
+    "4"
+   ],
+   [
+    "Vertebrate genome duplications",
+    "2 rounds"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "28.7",
+    "28-7-superphylum-deuterostomia"
+   ],
+   [
+    "BIO",
+    "29.1",
+    "29-1-chordates"
+   ],
+   [
+    "COB",
+    "15.5",
+    "15-5-echinoderms-and-chordates"
+   ]
+  ],
+  "kn": [
+   "animal_diversity"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_fishes_amphibians",
+  "title": "Fishes and amphibians",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_echinoderms_chordates"
+  ],
+  "summary": "Fins to legs.",
+  "layers": {
+   "basics": "Fishes (jawless, cartilaginous, ray-finned, lobe-finned) are the oldest vertebrates. Amphibians moved to land but still need water to breed.",
+   "deeper": "Tetrapods evolved from lobe-finned fishes ≈ 375 Ma (Tiktaalik). Amphibian skin breathes and is sensitive to pollution.",
+   "expert": "Ray-finned fish are ≈ 99% of fish species (≈ 35,000). Frogs' decline is among the fastest of any vertebrate group (≈ 40% of species threatened)."
+  },
+  "facts": [
+   [
+    "Fish species",
+    "≈ 35,000"
+   ],
+   [
+    "Amphibian species threatened",
+    "≈ 40%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "29.2",
+    "29-2-fishes"
+   ],
+   [
+    "BIO",
+    "29.3",
+    "29-3-amphibians"
+   ],
+   [
+    "COB",
+    "15.6",
+    "15-6-vertebrates"
+   ]
+  ],
+  "kn": [
+   "animal_diversity"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_reptiles_birds",
+  "title": "Reptiles and birds",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_fishes_amphibians"
+  ],
+  "summary": "Amniotes and feathered dinosaurs.",
+  "layers": {
+   "basics": "Reptiles have scaly skin and lay shelled eggs on land. Birds, descended from theropod dinosaurs, have feathers and lay hard-shelled eggs.",
+   "deeper": "The amniotic egg freed vertebrates from water. Bird bones are light and air-sacs give efficient breathing.",
+   "expert": "Birds (≈ 11,000 species) are a clade within Reptilia as phylogenetically defined. Feathers evolved before flight, probably for insulation and display."
+  },
+  "facts": [
+   [
+    "Bird species",
+    "≈ 11,000"
+   ],
+   [
+    "Reptile species",
+    "≈ 12,000"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "29.4",
+    "29-4-reptiles"
+   ],
+   [
+    "BIO",
+    "29.5",
+    "29-5-birds"
+   ],
+   [
+    "COB",
+    "15.6",
+    "15-6-vertebrates"
+   ]
+  ],
+  "kn": [
+   "animal_diversity"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_mammals_primates",
+  "title": "Mammals and primates",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_reptiles_birds"
+  ],
+  "summary": "Hair, milk and big brains.",
+  "layers": {
+   "basics": "Mammals have hair, three middle-ear bones and mammary glands. The three groups are monotremes (egg-laying), marsupials and placentals.",
+   "deeper": "Primates have grasping hands, forward-facing eyes and large brains; they include lemurs, monkeys, apes and humans.",
+   "expert": "Mammals radiated after the end-Cretaceous extinction. There are ≈ 6,500 mammal species and ≈ 500 primates; ≈ 25% of mammals are threatened."
+  },
+  "facts": [
+   [
+    "Mammal species",
+    "≈ 6,500"
+   ],
+   [
+    "Primate species",
+    "≈ 500"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "29.6",
+    "29-6-mammals"
+   ],
+   [
+    "BIO",
+    "29.7",
+    "29-7-the-evolution-of-primates"
+   ],
+   [
+    "COB",
+    "15.6",
+    "15-6-vertebrates"
+   ]
+  ],
+  "kn": [
+   "animal_diversity",
+   "human_evolution"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_zoology_taxonomy_methods",
+  "title": "Zoology field methods and identification",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_animal_features"
+  ],
+  "summary": "How animals are surveyed and named.",
+  "layers": {
+   "basics": "Zoologists identify species with keys, specimens, photos and DNA barcodes, and count animals with transects, traps and cameras.",
+   "deeper": "The COI gene is the standard animal barcode (≈ 650 bp). Mark–recapture estimates population size.",
+   "expert": "Lincoln–Petersen: N ≈ (M·C)/R. Occupancy models separate detection from presence. Specimen collection follows permits, ethics and museum curation standards."
+  },
+  "facts": [
+   [
+    "Barcode gene",
+    "COI, ≈ 650 bp"
+   ],
+   [
+    "Lincoln–Petersen",
+    "N ≈ MC/R"
+   ]
+  ],
+  "formula": "N ≈ M·C / R",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "45.1",
+    "45-1-population-demography"
+   ],
+   [
+    "COB",
+    "12.1",
+    "12-1-organizing-life-on-earth"
+   ]
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_plants",
+  "title": "Plant biology",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [
+   "bio_plant_body_tissues",
+   "bio_leaf_structure_gas_exchange",
+   "bio_water_transport",
+   "bio_phloem_transport",
+   "bio_plant_nutrition_soil",
+   "bio_photosynthetic_adaptations",
+   "bio_plant_hormones",
+   "bio_plant_responses",
+   "bio_plant_reproduction",
+   "bio_plant_development_flower",
+   "bio_roots_mycorrhiza",
+   "bio_plant_secondary_metabolites",
+   "bio_plant_stress_drought",
+   "bio_crop_domestication",
+   "bio_plant_pathogens_defense",
+   "bio_plant_polyploidy"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "How plants are built, move water, make food, grow and respond.",
+  "layers": {
+   "basics": "Plants are living factories that capture sunlight. They have roots, stems and leaves, move water from soil to air, and respond to light, gravity and seasons.",
+   "deeper": "Xylem carries water up and phloem carries sugars around. Hormones such as auxin, gibberellin and ethylene coordinate growth, flowering and fruit ripening.",
+   "expert": "Plant physiology blends biophysics (water potential, cohesion–tension) with molecular signalling and development. C4 and CAM adaptations address the Rubisco oxygenase problem in warm, dry settings."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "plant_physiology"
+  ]
+ },
+ {
+  "id": "bio_plant_body_tissues",
+  "title": "Plant body and tissues",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "bio_plants"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_chloroplasts_plastids",
+   "bio_seed_plants"
+  ],
+  "summary": "Roots, stems, leaves and their tissues.",
+  "layers": {
+   "basics": "Roots anchor and absorb, stems support and transport, leaves capture light. Dermal, ground and vascular tissues form the plant body.",
+   "deeper": "Meristems at tips (apical) and sides (lateral) allow growth throughout life. Secondary growth makes wood and bark.",
+   "expert": "Monocots have scattered vascular bundles; eudicots have them in a ring. Annual rings result from seasonal cambial activity and are used in dendrochronology."
+  },
+  "facts": [
+   [
+    "Tallest tree",
+    "≈ 116 m (coast redwood)"
+   ],
+   [
+    "Meristems",
+    "apical, lateral"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "30.1",
+    "30-1-the-plant-body"
+   ],
+   [
+    "BIO",
+    "30.2",
+    "30-2-stems"
+   ],
+   [
+    "BIO",
+    "30.3",
+    "30-3-roots"
+   ],
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ]
+  ],
+  "kn": [
+   "plant_physiology"
+  ],
+  "where": "place:leaf"
+ },
+ {
+  "id": "bio_leaf_structure_gas_exchange",
+  "title": "Leaf anatomy and stomata",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "bio_plants"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_plant_body_tissues"
+  ],
+  "summary": "Built for light, CO2 and water balance.",
+  "layers": {
+   "basics": "Leaves are thin and flat to catch light. Stomata (pores flanked by guard cells) let CO2 in and water vapour out.",
+   "deeper": "Guard cells open in light by taking up K+ and water, and close in drought via abscisic acid. A leaf loses ≈ 400 water molecules for each CO2 fixed (C3).",
+   "expert": "Stomatal density and index record past CO2 levels. Trade-off between carbon gain and water loss shapes plant strategies and water-use efficiency."
+  },
+  "facts": [
+   [
+    "Water lost per CO2 fixed (C3)",
+    "≈ 400"
+   ],
+   [
+    "Stomata density",
+    "≈ 100–500/mm²"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ],
+   [
+    "COB",
+    "5.1",
+    "5-1-overview-of-photosynthesis"
+   ]
+  ],
+  "kn": [
+   "plant_physiology"
+  ],
+  "where": "place:leaf"
+ },
+ {
+  "id": "bio_water_transport",
+  "title": "Water transport: xylem and cohesion–tension",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "bio_plants"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_leaf_structure_gas_exchange",
+   "bio_water_properties"
+  ],
+  "summary": "Moving water up tall trees.",
+  "layers": {
+   "basics": "Water evaporating from leaves pulls a continuous column of water up through the xylem from the roots.",
+   "deeper": "Cohesion between water molecules and adhesion to xylem walls support the column. Water flows from high to low water potential.",
+   "expert": "Cohesion–tension theory predicts xylem pressures of −1 to −3 MPa; cavitation (embolism) is a risk in drought. Water potential Ψ = Ψs + Ψp."
+  },
+  "facts": [
+   [
+    "Xylem tension",
+    "≈ −1 to −3 MPa"
+   ],
+   [
+    "Redwood water rise",
+    "≈ 100 m"
+   ]
+  ],
+  "formula": "Ψ = Ψs + Ψp",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "30.5",
+    "30-5-transport-of-water-and-solutes-in-plants"
+   ]
+  ],
+  "kn": [
+   "plant_physiology"
+  ],
+  "where": "place:leaf",
+  "ext": [
+   {
+    "title": "Wikipedia: Cohesion-tension theory",
+    "url": "https://en.wikipedia.org/wiki/Cohesion-tension_theory"
+   }
+  ]
+ },
+ {
+  "id": "bio_phloem_transport",
+  "title": "Phloem and pressure-flow",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "bio_plants"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_water_transport"
+  ],
+  "summary": "Moving sugars from source to sink.",
+  "layers": {
+   "basics": "Phloem carries sugars from leaves (sources) to roots, fruits and growing tips (sinks).",
+   "deeper": "Sugar loading raises osmotic pressure at the source so water enters; at the sink sugar leaves and water follows, driving bulk flow (Münch pressure-flow).",
+   "expert": "Phloem sap flows ≈ 0.5–1 m/h in sieve tubes; companion cells load sucrose using H⁺-coupled symporters. Aphid stylets sample phloem sap."
+  },
+  "facts": [
+   [
+    "Phloem flow speed",
+    "≈ 0.5–1 m/h"
+   ],
+   [
+    "Sucrose in phloem",
+    "≈ 0.5 M"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "30.5",
+    "30-5-transport-of-water-and-solutes-in-plants"
+   ]
+  ],
+  "kn": [
+   "plant_physiology"
+  ],
+  "where": "place:leaf"
+ },
+ {
+  "id": "bio_plant_nutrition_soil",
+  "title": "Plant nutrition and soil",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "bio_plants"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_water_transport"
+  ],
+  "summary": "Minerals, nitrogen and symbionts.",
+  "layers": {
+   "basics": "Plants need nitrogen, phosphorus, potassium and micronutrients from soil. Legumes host nitrogen-fixing bacteria in root nodules.",
+   "deeper": "Mycorrhizae extend root reach. Soil pH and structure control nutrient availability.",
+   "expert": "Rhizobia fix N₂ via nitrogenase at ≈ 100–200 kg N/ha/yr in good legume stands. Haber–Bosch fertiliser supports ≈ half of the world's food nitrogen. Carnivorous plants supplement N in poor soils."
+  },
+  "facts": [
+   [
+    "Essential plant elements",
+    "17"
+   ],
+   [
+    "Legume N fixation",
+    "≈ 100–200 kg/ha/yr"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "31.1",
+    "31-1-nutritional-requirements-of-plants"
+   ],
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ],
+   [
+    "BIO",
+    "31.3",
+    "31-3-nutritional-adaptations-of-plants"
+   ]
+  ],
+  "kn": [
+   "soil_biology",
+   "haber_bosch"
+  ],
+  "where": "place:soil"
+ },
+ {
+  "id": "bio_photosynthetic_adaptations",
+  "title": "C3, C4 and CAM photosynthesis",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "bio_plants"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_calvin_cycle",
+   "bio_leaf_structure_gas_exchange"
+  ],
+  "summary": "Ways to avoid photorespiration.",
+  "layers": {
+   "basics": "In hot, dry places some plants concentrate CO2 around Rubisco. C4 plants (corn, sugarcane) separate steps in space; CAM plants (cacti, pineapple) separate them in time.",
+   "deeper": "Photorespiration wastes up to ≈ 25–30% of fixed carbon in C3 plants at high temperature. C4 uses PEP carboxylase in mesophyll and the Calvin cycle in bundle sheath.",
+   "expert": "C4 evolved independently > 60 times; ≈ 3% of plant species, ≈ 25% of terrestrial primary production. CAM opens stomata at night. Engineering C4 rice is an active project."
+  },
+  "facts": [
+   [
+    "C4 species",
+    "≈ 3% of plants"
+   ],
+   [
+    "C4 independent origins",
+    "> 60"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "8.3",
+    "8-3-using-light-energy-to-make-organic-molecules"
+   ],
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ]
+  ],
+  "kn": [
+   "plant_physiology",
+   "photosynthesis_light"
+  ],
+  "where": "place:leaf",
+  "ext": [
+   {
+    "title": "Wikipedia: C4 carbon fixation",
+    "url": "https://en.wikipedia.org/wiki/C4_carbon_fixation"
+   }
+  ]
+ },
+ {
+  "id": "bio_plant_hormones",
+  "title": "Plant hormones",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "bio_plants"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_plant_body_tissues",
+   "bio_signaling_overview"
+  ],
+  "summary": "Chemical signals for growth and development.",
+  "layers": {
+   "basics": "Auxin steers growth towards light; gibberellins promote stem elongation and germination; cytokinins promote cell division; abscisic acid closes stomata; ethylene ripens fruit.",
+   "deeper": "Apical dominance is auxin-mediated. Ripe apples release ethylene that ripens neighbours.",
+   "expert": "Auxin transport by PIN proteins creates gradients (chemiosmotic polar transport). Hormone receptors include TIR1 (auxin) and ETR1 (ethylene)."
+  },
+  "facts": [
+   [
+    "Auxin discovered",
+    "Darwin 1880, Went 1928"
+   ],
+   [
+    "Ethylene",
+    "a gas hormone"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "30.6",
+    "30-6-plant-sensory-systems-and-responses"
+   ]
+  ],
+  "kn": [
+   "plant_physiology"
+  ],
+  "where": "place:leaf"
+ },
+ {
+  "id": "bio_plant_responses",
+  "title": "Tropisms, photoperiodism and plant defences",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "bio_plants"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_plant_hormones"
+  ],
+  "summary": "How plants sense and respond.",
+  "layers": {
+   "basics": "Plants bend toward light (phototropism) and roots grow down (gravitropism). Flowering time is set by day length via photoreceptors such as phytochrome.",
+   "deeper": "Plants defend with thorns, toxins and signals; attacked plants release volatile compounds warning neighbours.",
+   "expert": "Phytochromes switch between Pr and Pfr forms by red/far-red light; the FT protein is the mobile \"florigen\". Systemic acquired resistance involves salicylic acid."
+  },
+  "facts": [
+   [
+    "Phytochrome forms",
+    "Pr (660 nm), Pfr (730 nm)"
+   ],
+   [
+    "Florigen",
+    "FT protein"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "30.6",
+    "30-6-plant-sensory-systems-and-responses"
+   ],
+   [
+    "BIO",
+    "32.1",
+    "32-1-reproductive-development-and-structure"
+   ]
+  ],
+  "kn": [
+   "plant_physiology"
+  ],
+  "where": "place:leaf"
+ },
+ {
+  "id": "bio_plant_reproduction",
+  "title": "Plant reproduction and flowers",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "bio_plants"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_seed_plants"
+  ],
+  "summary": "Flowers, pollination, fertilisation and seeds.",
+  "layers": {
+   "basics": "Flowers are reproductive organs. Pollen carries sperm to the ovule; after double fertilisation the ovule becomes a seed and the ovary becomes a fruit.",
+   "deeper": "Pollinators include insects, birds, bats and wind. Fruits aid seed dispersal; plants can also reproduce asexually (runners, cloning).",
+   "expert": "Self-incompatibility systems prevent selfing. Seed dormancy and germination are controlled by abscisic acid and gibberellin. Agriculture exploits vegetative propagation and grafting."
+  },
+  "facts": [
+   [
+    "Pollinator-dependent crops",
+    "≈ 35% of global crop production"
+   ],
+   [
+    "Orchid seed size",
+    "≈ 0.3 mm"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "32.1",
+    "32-1-reproductive-development-and-structure"
+   ],
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ],
+   [
+    "BIO",
+    "32.3",
+    "32-3-asexual-reproduction"
+   ]
+  ],
+  "kn": [
+   "flowers_pollination"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_plant_development_flower",
+  "title": "Plant development and the ABC model",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "bio_plants"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_plant_reproduction"
+  ],
+  "summary": "Genes that build a flower.",
+  "layers": {
+   "basics": "A seedling grows from a seed by cell division at meristems, and flowers form when a shoot meristem switches to reproductive development.",
+   "deeper": "In the ABC model, combinations of three gene classes decide sepals, petals, stamens and carpels.",
+   "expert": "Arabidopsis mutants (apetala2, pistillata, agamous) led to the model; MADS-box genes are central. Plant development is plastic and modular, with indeterminate growth."
+  },
+  "facts": [
+   [
+    "Flower whorls",
+    "4 (sepal, petal, stamen, carpel)"
+   ],
+   [
+    "ABC classes",
+    "A, B, C (+ E)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "32.1",
+    "32-1-reproductive-development-and-structure"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ],
+  "where": "place:leaf"
+ }
+]

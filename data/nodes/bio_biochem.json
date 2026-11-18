@@ -9,7 +9,51 @@
   "parents": [
    "biology_degree"
   ],
-  "parts": [],
+  "parts": [
+   "bio_monosaccharides",
+   "bio_disaccharides",
+   "bio_polysaccharides",
+   "bio_glycoconjugates",
+   "bio_fatty_acids_fats",
+   "bio_membrane_lipids",
+   "bio_steroids_terpenoids",
+   "bio_amino_acids",
+   "bio_peptide_bond",
+   "bio_protein_structure",
+   "bio_protein_folding",
+   "bio_chaperones_proteostasis",
+   "bio_ubiquitin_proteasome",
+   "bio_hemoglobin_cooperativity",
+   "bio_protein_analysis",
+   "bio_nucleotides",
+   "bio_rna_types",
+   "bio_enzyme_catalysis",
+   "bio_active_site_induced_fit",
+   "bio_cofactors_coenzymes",
+   "bio_michaelis_menten",
+   "bio_lineweaver_burk",
+   "bio_enzyme_inhibition",
+   "bio_allostery",
+   "bio_enzyme_conditions",
+   "bio_covalent_regulation",
+   "bio_metabolism_overview",
+   "bio_glycolysis",
+   "bio_fermentation",
+   "bio_pyruvate_oxidation",
+   "bio_krebs_cycle",
+   "bio_electron_transport_chain",
+   "bio_chemiosmosis_atp_synthase",
+   "bio_beta_oxidation",
+   "bio_gluconeogenesis",
+   "bio_pentose_phosphate_pathway",
+   "bio_amino_acid_catabolism",
+   "bio_fatty_acid_synthesis",
+   "bio_photosynthesis_overview",
+   "bio_light_reactions",
+   "bio_calvin_cycle",
+   "bio_metabolic_regulation",
+   "bio_metabolic_integration"
+  ],
   "made_of": [],
   "processes": [],
   "related": [],
@@ -720,7 +764,13 @@
   "kn": [
    "protein_structure"
   ],
-  "where": "mol:aa_gly"
+  "where": "mol:aa_gly",
+  "ext": [
+   {
+    "title": "Wikipedia: Protein folding",
+    "url": "https://en.wikipedia.org/wiki/Protein_folding"
+   }
+  ]
  },
  {
   "id": "bio_chaperones_proteostasis",
@@ -827,6 +877,10 @@
    {
     "title": "RCSB PDB: 1UBQ ubiquitin",
     "url": "https://www.rcsb.org/structure/1UBQ"
+   },
+   {
+    "title": "Wikipedia: Ubiquitin",
+    "url": "https://en.wikipedia.org/wiki/Ubiquitin"
    }
   ],
   "where": "mol:aa_lys"
@@ -883,6 +937,10 @@
    {
     "title": "RCSB PDB: 4HHB hemoglobin",
     "url": "https://www.rcsb.org/structure/4HHB"
+   },
+   {
+    "title": "Wikipedia: Hemoglobin",
+    "url": "https://en.wikipedia.org/wiki/Hemoglobin"
    }
   ],
   "kn": [
@@ -1299,7 +1357,13 @@
    "id": "enzyme",
    "preset": "michaelis_menten"
   },
-  "where": "mol:aa_ser"
+  "where": "mol:aa_ser",
+  "ext": [
+   {
+    "title": "Wikipedia: Michaelis–Menten kinetics",
+    "url": "https://en.wikipedia.org/wiki/Michaelis%E2%80%93Menten_kinetics"
+   }
+  ]
  },
  {
   "id": "bio_lineweaver_burk",
@@ -1696,6 +1760,12 @@
    "phosphoenolpyruvate",
    "nadh",
    "atp"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Glycolysis",
+    "url": "https://en.wikipedia.org/wiki/Glycolysis"
+   }
   ]
  },
  {
@@ -1755,6 +1825,12 @@
    "lactate",
    "ethanol",
    "pyruvate"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Fermentation",
+    "url": "https://en.wikipedia.org/wiki/Fermentation"
+   }
   ]
  },
  {
@@ -1878,6 +1954,12 @@
    "acetate",
    "nadh",
    "fad"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Citric acid cycle",
+    "url": "https://en.wikipedia.org/wiki/Citric_acid_cycle"
+   }
   ]
  },
  {
@@ -1940,6 +2022,12 @@
    "heme_b",
    "nadh",
    "oxygen"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Electron transport chain",
+    "url": "https://en.wikipedia.org/wiki/Electron_transport_chain"
+   }
   ]
  },
  {
@@ -1999,6 +2087,12 @@
    "atp",
    "adp",
    "phosphate"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: ATP synthase",
+    "url": "https://en.wikipedia.org/wiki/ATP_synthase"
+   }
   ]
  },
  {
@@ -2417,6 +2511,12 @@
   "molecules": [
    "chlorophyll_a",
    "beta_carotene"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Light-dependent reactions",
+    "url": "https://en.wikipedia.org/wiki/Light-dependent_reactions"
+   }
   ]
  },
  {
@@ -2474,6 +2574,12 @@
   "where": "mol:carbon_dioxide",
   "molecules": [
    "carbon_dioxide"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Calvin cycle",
+    "url": "https://en.wikipedia.org/wiki/Calvin_cycle"
+   }
   ]
  },
  {

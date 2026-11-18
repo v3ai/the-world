@@ -1,0 +1,1897 @@
+[
+ {
+  "id": "bio_genome_organization",
+  "title": "Genome organisation and size",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_chromatin_packaging"
+  ],
+  "summary": "How much DNA, and what is in it.",
+  "layers": {
+   "basics": "Genomes range from ≈ 160 kb in small bacterial symbionts to > 100 Gb in some plants. Bacteria have compact, gene-dense genomes; eukaryotes carry large amounts of noncoding DNA.",
+   "deeper": "The \"C-value paradox\" notes that genome size does not track organismal complexity: onions have ≈ 5× more DNA than humans.",
+   "expert": "Genome size correlates with cell size and division time and is shaped by transposon expansion and drift (Lynch). Human genome: ≈ 1.5% coding, ≈ 45% transposon-derived, ≈ 8% from retroviral insertions."
+  },
+  "facts": [
+   [
+    "Human genome",
+    "≈ 3.1 Gb"
+   ],
+   [
+    "E. coli genome",
+    "≈ 4.6 Mb"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.2",
+    "17-2-mapping-genomes"
+   ],
+   [
+    "BIO",
+    "14.2",
+    "14-2-dna-structure-and-sequencing"
+   ]
+  ],
+  "kn": [
+   "chromatin_genome"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_mitochondrial_genome",
+  "title": "Mitochondrial genome and heteroplasmy",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_endosymbiosis",
+   "bio_replication_machinery"
+  ],
+  "summary": "The small genome inside mitochondria.",
+  "layers": {
+   "basics": "Mitochondria carry their own circular DNA, inherited almost entirely from the mother. Human mtDNA codes for 13 proteins, 22 tRNAs and 2 rRNAs.",
+   "deeper": "Cells hold many copies; a mix of normal and mutant copies is called heteroplasmy. Mitochondrial diseases appear when mutant copies exceed a threshold (often ≈ 60–90%).",
+   "expert": "mtDNA has a higher mutation rate (≈ 10–20× nuclear) and slightly different genetic code. mtDNA is used for maternal-lineage studies and ancient DNA (e.g., Neanderthal mtDNA)."
+  },
+  "facts": [
+   [
+    "Human mtDNA",
+    "16,569 bp"
+   ],
+   [
+    "Copies per cell",
+    "≈ 100–10,000"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ],
+   [
+    "BIO",
+    "13.2",
+    "13-2-chromosomal-basis-of-inherited-disorders"
+   ]
+  ],
+  "kn": [
+   "mitochondria_org"
+  ],
+  "where": "mitochondrion"
+ },
+ {
+  "id": "bio_riboswitches_ribozymes",
+  "title": "Riboswitches and ribozymes",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_rna_types",
+   "bio_enzyme_catalysis"
+  ],
+  "summary": "RNA that senses and catalyses.",
+  "layers": {
+   "basics": "Riboswitches are RNA segments in mRNAs that change shape when they bind a small molecule, turning a gene on or off. Ribozymes are RNAs that act as enzymes.",
+   "deeper": "Examples: the thiamine pyrophosphate riboswitch in bacteria; self-splicing introns and RNase P. Cech and Altman won the 1989 Nobel.",
+   "expert": "Riboswitch aptamers reach nanomolar affinity and discriminate close analogues. They are targets for antibiotics and support the RNA-world idea that RNA once combined genotype and phenotype roles."
+  },
+  "facts": [
+   [
+    "Ribozyme Nobel",
+    "1989"
+   ],
+   [
+    "Known riboswitch classes",
+    "> 50"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "16.5",
+    "16-5-eukaryotic-post-transcriptional-gene-regulation"
+   ]
+  ],
+  "kn": [
+   "rna_world"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_translation_steps",
+  "title": "Translation: initiation, elongation, termination",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "protein_synthesis"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_trna_translation_machinery"
+  ],
+  "summary": "The three stages of protein synthesis.",
+  "layers": {
+   "basics": "The ribosome assembles at a start codon, adds amino acids one by one as tRNAs match codons, and stops at a stop codon.",
+   "deeper": "Initiation uses Shine–Dalgarno (bacteria) or the 5′ cap and scanning (eukaryotes). Elongation cycles through A-site binding, peptide bond formation and translocation.",
+   "expert": "EF-Tu delivers tRNAs and GTP hydrolysis proofreads; error rate ≈ 10⁻⁴ per codon. Release factors recognise stop codons. Polysomes allow many ribosomes per mRNA."
+  },
+  "facts": [
+   [
+    "Translation error rate",
+    "≈ 10⁻⁴ per codon"
+   ],
+   [
+    "Ribosomes per polysome",
+    "≈ 5–10"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "15.5",
+    "15-5-ribosomes-and-protein-synthesis"
+   ],
+   [
+    "MIC",
+    "11.4",
+    "11-4-protein-synthesis-translation"
+   ],
+   [
+    "COB",
+    "9.4",
+    "9-4-translation"
+   ]
+  ],
+  "kn": [
+   "central_dogma"
+  ],
+  "where": "ribosome"
+ },
+ {
+  "id": "bio_chromatin_remodeling_histone_code",
+  "title": "Chromatin remodelling and the histone code",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_epigenetics"
+  ],
+  "summary": "Enzymes that read and rewrite chromatin.",
+  "layers": {
+   "basics": "Writer enzymes add marks to histones, eraser enzymes remove them and reader proteins recognise them, so chromatin can be opened or closed.",
+   "deeper": "ATP-driven remodelers slide or evict nucleosomes. Together they make genes accessible to transcription machinery.",
+   "expert": "The \"histone code\" hypothesis proposes combinatorial marks encode regulatory states; how instructive versus consequential marks are is debated. Polycomb and Trithorax complexes maintain repressed and active states."
+  },
+  "facts": [
+   [
+    "Remodeler families",
+    "SWI/SNF, ISWI, CHD, INO80"
+   ],
+   [
+    "Histone acetyltransferases",
+    "writers of H3K27ac"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Which histone modifications cause, rather than follow, changes in transcription remains contested."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "16.3",
+    "16-3-eukaryotic-epigenetic-gene-regulation"
+   ]
+  ],
+  "kn": [
+   "chromatin_genome",
+   "gene_regulation"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_genetic_counseling_screening",
+  "title": "Genetic testing, counselling and screening",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_single_gene_disorders",
+   "bio_pedigree_analysis"
+  ],
+  "summary": "Using genetics to inform health decisions.",
+  "layers": {
+   "basics": "Genetic tests check for carrier status, risk of disease, or conditions in embryos and newborns. Counsellors explain what the results mean.",
+   "deeper": "Newborn screening tests for dozens of treatable conditions (PKU, CF). Polygenic scores give modest risk predictions for common diseases.",
+   "expert": "Test performance (sensitivity, specificity, PPV) depends on prevalence; variants of uncertain significance (VUS) are common. Ethical issues include privacy, discrimination and embryo selection."
+  },
+  "facts": [
+   [
+    "PKU newborn screening",
+    "since 1960s"
+   ],
+   [
+    "Typical VUS rate in panel tests",
+    "≈ 10–40%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "28.7",
+    "28-7-patterns-of-inheritance"
+   ],
+   [
+    "BIO",
+    "17.4",
+    "17-4-applying-genomics"
+   ]
+  ],
+  "kn": [
+   "bayes_stats"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_twin_family_studies",
+  "title": "Twin and family studies",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_quantitative_traits"
+  ],
+  "summary": "Separating genes from environment.",
+  "layers": {
+   "basics": "Identical twins share all genes; fraternal twins share half. Comparing them estimates how much of a trait's variation is genetic.",
+   "deeper": "Falconer's formula h² ≈ 2(r_MZ − r_DZ). Twin studies suggest high heritability for height and moderate for many behaviours.",
+   "expert": "Assumptions (equal environments, no assortative mating) can fail; gene–environment correlation and interaction complicate interpretation. Molecular methods (GREML, GWAS) now complement twin designs."
+  },
+  "facts": [
+   [
+    "Falconer's estimate",
+    "h² ≈ 2(r_MZ − r_DZ)"
+   ],
+   [
+    "Identical twin height correlation",
+    "≈ 0.9"
+   ]
+  ],
+  "formula": "h² ≈ 2(r_MZ − r_DZ)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "19.3",
+    "19-3-adaptive-evolution"
+   ]
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_genetic_screens",
+  "title": "Forward and reverse genetics",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "bio_crispr_cas9"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_mutations"
+  ],
+  "summary": "Linking genes to functions.",
+  "layers": {
+   "basics": "Forward genetics starts from a mutant trait and finds the gene; reverse genetics starts from a gene and creates a mutant to see the effect.",
+   "deeper": "Screens in yeast, flies, worms and zebrafish found cell-cycle, development and signalling genes. CRISPR now lets researchers knock out every gene in a genome-wide screen.",
+   "expert": "Complementation tests group mutations into genes. Genome-wide CRISPR screens use pooled guides with sequencing readout and statistical tools (MAGeCK) to find essential genes (≈ 2,000 in human cell lines)."
+  },
+  "facts": [
+   [
+    "Essential genes in human cells",
+    "≈ 2,000"
+   ],
+   [
+    "Yeast deletion collection",
+    "≈ 6,000 strains"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.1",
+    "17-1-biotechnology"
+   ]
+  ],
+  "kn": [
+   "crispr_biotech"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_roots_mycorrhiza",
+  "title": "Roots, nutrient uptake and rhizosphere",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "bio_plants"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_plant_nutrition_soil"
+  ],
+  "summary": "The underground half of the plant.",
+  "layers": {
+   "basics": "Roots anchor plants and take up water and nutrients through root hairs. The soil around roots (rhizosphere) is full of microbes.",
+   "deeper": "Mycorrhizal fungi extend the root's reach; nodules host nitrogen-fixing bacteria in legumes. Roots secrete acids and sugars to shape the rhizosphere.",
+   "expert": "The Casparian strip forces water and solutes through selective membranes in the endodermis. Total root length in a single rye plant has been estimated at > 600 km."
+  },
+  "facts": [
+   [
+    "Root hair length",
+    "≈ 1 mm"
+   ],
+   [
+    "Rye root system",
+    "> 600 km"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "30.3",
+    "30-3-roots"
+   ],
+   [
+    "BIO",
+    "31.3",
+    "31-3-nutritional-adaptations-of-plants"
+   ]
+  ],
+  "kn": [
+   "soil_biology"
+  ],
+  "where": "place:soil"
+ },
+ {
+  "id": "bio_plant_secondary_metabolites",
+  "title": "Plant secondary metabolites",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "bio_plants"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_plant_responses"
+  ],
+  "summary": "Defensive and attractive chemicals.",
+  "layers": {
+   "basics": "Plants make compounds not needed for basic growth but useful for defence and signalling: caffeine, nicotine, morphine, capsaicin and pigments.",
+   "deeper": "Many human medicines come from plants (aspirin, taxol, artemisinin, digitoxin).",
+   "expert": "Three main classes: terpenoids, phenolics and alkaloids. Metabolic gene clusters and coevolutionary arms races with herbivores shape diversity; ≈ 200,000 plant natural products are known."
+  },
+  "facts": [
+   [
+    "Plant natural products",
+    "≈ 200,000"
+   ],
+   [
+    "Taxol source",
+    "Pacific yew bark"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "27.5",
+    "27-5-terpenoids"
+   ],
+   [
+    "BIO",
+    "30.6",
+    "30-6-plant-sensory-systems-and-responses"
+   ]
+  ],
+  "kn": [
+   "pharmacology"
+  ],
+  "where": "place:leaf",
+  "molecules": [
+   "caffeine",
+   "nicotine",
+   "morphine",
+   "capsaicin",
+   "salicylic_acid",
+   "thc"
+  ]
+ },
+ {
+  "id": "bio_plant_stress_drought",
+  "title": "Plant responses to stress",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "bio_plants"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_plant_hormones",
+   "bio_leaf_structure_gas_exchange"
+  ],
+  "summary": "Drought, cold, salt and pathogens.",
+  "layers": {
+   "basics": "Under drought, roots signal leaves, hormone abscisic acid builds up and stomata close to save water.",
+   "deeper": "Plants also respond to cold with antifreeze proteins and to salt by sequestering ions in vacuoles.",
+   "expert": "Osmolytes (proline, sucrose) lower water potential; heat shock proteins protect proteins. Breeding and engineering of stress tolerance is a major agricultural goal under climate change."
+  },
+  "facts": [
+   [
+    "ABA rise in drought",
+    "≈ 10–30×"
+   ],
+   [
+    "Wilting point",
+    "≈ −1.5 MPa"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "30.6",
+    "30-6-plant-sensory-systems-and-responses"
+   ]
+  ],
+  "kn": [
+   "plant_physiology"
+  ],
+  "where": "place:leaf"
+ },
+ {
+  "id": "bio_crop_domestication",
+  "title": "Crop domestication and plant breeding",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "bio_plants"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_plant_reproduction",
+   "bio_quantitative_traits"
+  ],
+  "summary": "Humans reshaping plants.",
+  "layers": {
+   "basics": "Farmers selected wild plants over ≈ 10,000 years to make crops like wheat, rice and maize with larger seeds and less shattering.",
+   "deeper": "Modern breeding uses crosses, mutation breeding, marker-assisted selection and genome editing. Green Revolution dwarf wheat boosted yields.",
+   "expert": "Domestication syndrome genes (e.g., teosinte branched1 in maize, Rht in wheat) were identified by QTL mapping. Crop diversity narrows risk (Irish potato famine, banana TR4)."
+  },
+  "facts": [
+   [
+    "Maize domestication",
+    "≈ 9,000 y ago (Mexico)"
+   ],
+   [
+    "Rice, wheat, maize share of calories",
+    "≈ 50%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "32.3",
+    "32-3-asexual-reproduction"
+   ],
+   [
+    "COB",
+    "10.2",
+    "10-2-biotechnology-in-medicine-and-agriculture"
+   ]
+  ],
+  "kn": [
+   "demography_agriculture"
+  ],
+  "where": "place:soil"
+ },
+ {
+  "id": "bio_plant_pathogens_defense",
+  "title": "Plant pathogens and immunity",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "bio_plants"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_plant_responses",
+   "bio_pathogenesis"
+  ],
+  "summary": "Diseases of plants and how they fight back.",
+  "layers": {
+   "basics": "Fungi, bacteria, viruses and nematodes attack plants. Plants respond with physical barriers, chemicals and localised cell death.",
+   "deeper": "The hypersensitive response sacrifices infected cells. Resistance (R) genes recognise pathogen effectors.",
+   "expert": "Plants lack mobile immune cells but have PAMP-triggered and effector-triggered immunity. Wheat rust and rice blast threaten food security; durable resistance requires pyramiding R genes."
+  },
+  "facts": [
+   [
+    "Crop losses to pests and disease",
+    "≈ 20–40%"
+   ],
+   [
+    "Rust spore travel",
+    "continents"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "30.6",
+    "30-6-plant-sensory-systems-and-responses"
+   ],
+   [
+    "BIO",
+    "24.4",
+    "24-4-fungal-parasites-and-pathogens"
+   ]
+  ],
+  "kn": [
+   "plant_physiology"
+  ],
+  "where": "place:leaf"
+ },
+ {
+  "id": "bio_plant_polyploidy",
+  "title": "Polyploidy and plant genome evolution",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_plants",
+  "parents": [
+   "bio_plants"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_chromosomal_aberrations",
+   "bio_speciation_mechanisms"
+  ],
+  "summary": "Genome doubling in plants.",
+  "layers": {
+   "basics": "Many plants have extra sets of chromosomes. Bread wheat has six sets and strawberries have eight.",
+   "deeper": "Polyploidy can instantly create new species and often gives larger organs; breeders use colchicine to double chromosomes.",
+   "expert": "Allopolyploids combine genomes of two species (e.g., Brassica napus). Roughly 30% of living plant species are recent polyploids and all flowering plants show ancient duplications."
+  },
+  "facts": [
+   [
+    "Polyploid fraction of plants",
+    "≈ 30%"
+   ],
+   [
+    "Wheat ploidy",
+    "6n = 42"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "13.2",
+    "13-2-chromosomal-basis-of-inherited-disorders"
+   ],
+   [
+    "BIO",
+    "18.2",
+    "18-2-formation-of-new-species"
+   ]
+  ],
+  "kn": [
+   "speciation_biodiversity"
+  ],
+  "where": "place:leaf"
+ },
+ {
+  "id": "bio_arachnids_crustaceans",
+  "title": "Arachnids and crustaceans",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_nematodes_arthropods"
+  ],
+  "summary": "Spiders, mites and crabs.",
+  "layers": {
+   "basics": "Arachnids (spiders, scorpions, mites, ticks) have eight legs and two body regions. Crustaceans (crabs, shrimp, barnacles) mostly live in water and have two pairs of antennae.",
+   "deeper": "Ticks and mites spread diseases; krill form a keystone food source in the Southern Ocean.",
+   "expert": "Spider silk is a protein with tensile strength ≈ 1 GPa. Antarctic krill biomass is estimated at 100–500 million tonnes. Pancrustacean phylogeny places insects within crustaceans."
+  },
+  "facts": [
+   [
+    "Spider species",
+    "≈ 51,000"
+   ],
+   [
+    "Krill biomass",
+    "≈ 100–500 Mt"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "kn": [
+   "animal_diversity"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_parasites_helminths",
+  "title": "Parasites and helminths",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_lophotrochozoans",
+   "bio_nematodes_arthropods"
+  ],
+  "summary": "Life on and in other animals.",
+  "layers": {
+   "basics": "Parasites such as tapeworms, flukes and roundworms live in hosts and take nutrients. Some have complex life cycles with multiple hosts.",
+   "deeper": "About 1.5 billion people are infected with soil-transmitted worms. Schistosomiasis affects ≈ 240 million.",
+   "expert": "Parasites make up a large share of biodiversity, perhaps 40% of animal species. They manipulate host behaviour and immune responses; the hygiene hypothesis links reduced helminth exposure to allergy risk (still debated)."
+  },
+  "facts": [
+   [
+    "Soil-transmitted worm infections",
+    "≈ 1.5 billion"
+   ],
+   [
+    "Schistosomiasis",
+    "≈ 240 million"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "28.3",
+    "28-3-superphylum-lophotrochozoa-flatworms-rotifers-and-nemerteans"
+   ],
+   [
+    "MIC",
+    "5.2",
+    "5-2-parasitic-helminths"
+   ]
+  ],
+  "kn": [
+   "animal_diversity"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_evolution_of_flight",
+  "title": "Evolution of flight and key innovations",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_reptiles_birds"
+  ],
+  "summary": "Wings evolved several times.",
+  "layers": {
+   "basics": "Flight evolved independently in insects, pterosaurs, birds and bats. Each used different wing structures.",
+   "deeper": "Feathered dinosaurs show feathers came before flight; Archaeopteryx (≈ 150 Ma) shows a mix of reptile and bird features.",
+   "expert": "Hypotheses for bird flight origin include ground-up (running) and trees-down (gliding); evidence from wing-assisted incline running supports a mix. Flight requires high power-to-weight and efficient lungs."
+  },
+  "facts": [
+   [
+    "Archaeopteryx",
+    "≈ 150 Ma"
+   ],
+   [
+    "Independent origins of flight",
+    "4 (vertebrates + insects)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Whether bird flight arose from ground-up or arboreal origins is not settled."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "29.5",
+    "29-5-birds"
+   ]
+  ],
+  "kn": [
+   "fossils_paleontology"
+  ],
+  "where": "place:air"
+ },
+ {
+  "id": "bio_lichens_fungal_biotech",
+  "title": "Lichens and fungal biotechnology",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_fungal_ecology"
+  ],
+  "summary": "Fungi as partners and tools.",
+  "layers": {
+   "basics": "Lichens are partnerships between fungi and algae or cyanobacteria that colonise bare rock. Yeasts and moulds are used to make bread, beer, antibiotics and enzymes.",
+   "deeper": "Lichens are sensitive to air pollution. Penicillium makes penicillin; Aspergillus makes citric acid industrially.",
+   "expert": "Saccharomyces cerevisiae is the first eukaryote with a fully sequenced genome (1996, ≈ 12 Mb, ≈ 6,000 genes). Fungal enzymes and mycoprotein are growing industries."
+  },
+  "facts": [
+   [
+    "Yeast genome",
+    "≈ 12 Mb, ≈ 6,000 genes"
+   ],
+   [
+    "Lichen species",
+    "≈ 20,000"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "5.5",
+    "5-5-lichens"
+   ],
+   [
+    "BIO",
+    "24.5",
+    "24-5-importance-of-fungi-in-human-life"
+   ]
+  ],
+  "kn": [
+   "soil_biology"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_deuterostome_protostome",
+  "title": "Protostome and deuterostome development",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_diversity",
+  "parents": [
+   "bio_diversity"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_animal_features"
+  ],
+  "summary": "Two ways to form a mouth.",
+  "layers": {
+   "basics": "In protostomes the first opening in the embryo (blastopore) becomes the mouth; in deuterostomes it becomes the anus.",
+   "deeper": "Humans and sea urchins are deuterostomes; insects and snails are protostomes. Cleavage patterns and coelom formation also differ.",
+   "expert": "Molecular phylogeny supports the split but shows exceptions to the textbook developmental differences. Xenacoelomorphs' position (basal or with deuterostomes) is still debated."
+  },
+  "facts": [
+   [
+    "Protostome examples",
+    "insects, mollusks, annelids"
+   ],
+   [
+    "Deuterostome examples",
+    "echinoderms, chordates"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "The phylogenetic position of Xenacoelomorpha affects interpretations of early bilaterian evolution."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "27.2",
+    "27-2-features-used-to-classify-animals"
+   ],
+   [
+    "BIO",
+    "27.3",
+    "27-3-animal-phylogeny"
+   ]
+  ],
+  "kn": [
+   "animal_diversity"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_countercurrent_exchange",
+  "title": "Countercurrent exchange and multiplication",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_comparative_respiration",
+   "bio_excretion_nitrogen"
+  ],
+  "summary": "A recurring design for efficient transfer.",
+  "layers": {
+   "basics": "When two fluids flow in opposite directions side by side, heat or solutes can transfer along the whole length. Fish gills, bird legs and kidneys use this.",
+   "deeper": "Countercurrent heat exchange stops a duck's feet from losing body heat. In the kidney, the loop of Henle multiplies a salt gradient.",
+   "expert": "Countercurrent exchange can in principle transfer nearly 100% versus 50% for concurrent flow. Multiplication uses active transport to create a gradient larger than the single-step difference."
+  },
+  "facts": [
+   [
+    "Max efficiency concurrent",
+    "50%"
+   ],
+   [
+    "Human medullary osmolality",
+    "up to ≈ 1,200 mOsm/L"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "39.2",
+    "39-2-gas-exchange-across-respiratory-surfaces"
+   ],
+   [
+    "BIO",
+    "41.2",
+    "41-2-the-kidneys-and-osmoregulatory-organs"
+   ],
+   [
+    "ANP",
+    "25.6",
+    "25-6-tubular-reabsorption"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ],
+  "where": "loop_of_henle"
+ },
+ {
+  "id": "bio_acid_base_physiology",
+  "title": "Acid–base and fluid balance in the body",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_buffers",
+   "bio_osmoregulation"
+  ],
+  "summary": "Regulating pH, water and electrolytes.",
+  "layers": {
+   "basics": "The body holds blood pH steady using buffers, breathing (removes CO₂) and the kidneys (excrete acid or base).",
+   "deeper": "Respiratory acidosis follows CO₂ retention; metabolic acidosis may follow diabetic ketosis. Hormones ADH, aldosterone and ANP control water and sodium.",
+   "expert": "The Henderson–Hasselbalch equation for bicarbonate links pH to PCO₂ and [HCO₃⁻]. Compensation takes minutes (respiratory) to days (renal). Body water ≈ 60% of mass: two-thirds intracellular, one-third extracellular."
+  },
+  "facts": [
+   [
+    "Normal arterial PCO₂",
+    "≈ 40 mmHg"
+   ],
+   [
+    "Body water",
+    "≈ 60% of mass"
+   ]
+  ],
+  "formula": "pH = 6.1 + log([HCO₃⁻]/(0.03·PCO₂))",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "26.1",
+    "26-1-body-fluids-and-fluid-compartments"
+   ],
+   [
+    "ANP",
+    "26.4",
+    "26-4-acid-base-balance"
+   ],
+   [
+    "ANP",
+    "26.5",
+    "26-5-disorders-of-acid-base-balance"
+   ]
+  ],
+  "kn": [
+   "homeostasis"
+  ],
+  "where": "kidney_l"
+ },
+ {
+  "id": "bio_blood_pressure_control",
+  "title": "Blood pressure and cardiovascular regulation",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_comparative_circulation",
+   "bio_homeostasis_concept"
+  ],
+  "summary": "Keeping blood flowing at the right pressure.",
+  "layers": {
+   "basics": "Blood pressure depends on heart output and resistance in vessels. Nerves and hormones adjust both.",
+   "deeper": "Baroreceptors sense stretch and change heart rate; the kidneys regulate volume through the renin–angiotensin–aldosterone system.",
+   "expert": "MAP ≈ CO × SVR; CO = HR × SV. Normal adult values: ≈ 120/80 mmHg, CO ≈ 5 L/min. Hypertension affects ≈ 30% of adults and is controlled with drugs targeting RAAS, calcium channels or diuresis."
+  },
+  "facts": [
+   [
+    "Normal blood pressure",
+    "≈ 120/80 mmHg"
+   ],
+   [
+    "Cardiac output (rest)",
+    "≈ 5 L/min"
+   ]
+  ],
+  "formula": "MAP = CO × SVR;  CO = HR × SV",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "20.2",
+    "20-2-blood-flow-blood-pressure-and-resistance"
+   ],
+   [
+    "ANP",
+    "20.4",
+    "20-4-homeostatic-regulation-of-the-vascular-system"
+   ],
+   [
+    "BIO",
+    "40.4",
+    "40-4-blood-flow-and-blood-pressure-regulation"
+   ]
+  ],
+  "kn": [
+   "blood_circulation"
+  ],
+  "where": "heart"
+ },
+ {
+  "id": "bio_exercise_physiology",
+  "title": "Exercise physiology and muscle metabolism",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_locomotion_skeletons",
+   "bio_fermentation"
+  ],
+  "summary": "Energy systems for movement.",
+  "layers": {
+   "basics": "Muscles use stored ATP and creatine phosphate for seconds, glycolysis for minutes and aerobic metabolism for long efforts.",
+   "deeper": "Fast-twitch fibres suit sprinting and slow-twitch fibres suit endurance. Training raises mitochondria number and capillary density.",
+   "expert": "VO₂max (≈ 35–45 mL/kg/min untrained, > 80 in elite endurance athletes) is limited by cardiac output. Lactate threshold, oxygen debt and muscle fibre types predict performance."
+  },
+  "facts": [
+   [
+    "Creatine phosphate energy supply",
+    "≈ 10 s"
+   ],
+   [
+    "Elite VO₂max",
+    "> 80 mL/kg/min"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "10.5",
+    "10-5-types-of-muscle-fibers"
+   ],
+   [
+    "ANP",
+    "10.6",
+    "10-6-exercise-and-muscle-performance"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction"
+  ],
+  "where": "skeletal_muscle_tissue",
+  "molecules": [
+   "creatine",
+   "lactate"
+  ]
+ },
+ {
+  "id": "bio_torpor_hibernation",
+  "title": "Torpor, hibernation and extreme physiology",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_thermoregulation_animals"
+  ],
+  "summary": "Surviving cold, drought and low oxygen.",
+  "layers": {
+   "basics": "Some animals lower their metabolism and body temperature to save energy: bears, ground squirrels and hummingbirds.",
+   "deeper": "Arctic ground squirrels can cool to below 0 °C; wood frogs freeze solid and thaw. Tardigrades survive near-total dehydration.",
+   "expert": "Hibernators suppress metabolism to ≈ 2–5% of normal and preserve muscle by unknown mechanisms. Antifreeze proteins and cryoprotectants (glucose, glycerol) protect cells."
+  },
+  "facts": [
+   [
+    "Hibernation metabolic rate",
+    "≈ 2–5% of basal"
+   ],
+   [
+    "Arctic ground squirrel min. body temp.",
+    "≈ −2.9 °C"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "33.3",
+    "33-3-homeostasis"
+   ]
+  ],
+  "kn": [
+   "homeostasis"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_cytokines_chemokines",
+  "title": "Cytokines and chemokines",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_immuno",
+  "parents": [
+   "bio_immuno"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_innate_immunity"
+  ],
+  "summary": "The messengers of the immune system.",
+  "layers": {
+   "basics": "Cytokines are small proteins that immune cells use to talk, such as interleukins and interferons. Chemokines guide cells to sites of infection.",
+   "deeper": "Too much cytokine release causes a \"cytokine storm\" in severe infections. Drugs that block TNF or IL-6 treat autoimmune disease.",
+   "expert": "Cytokines signal through JAK–STAT pathways; receptors share common chains. Interferons induce hundreds of antiviral genes. Pleiotropy and redundancy complicate therapeutic targeting."
+  },
+  "facts": [
+   [
+    "Interferon-stimulated genes",
+    "≈ 300–500"
+   ],
+   [
+    "First anti-TNF drug",
+    "1998"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "42.1",
+    "42-1-innate-immune-response"
+   ],
+   [
+    "MIC",
+    "17.5",
+    "17-5-inflammation-and-fever"
+   ],
+   [
+    "ANP",
+    "21.2",
+    "21-2-barrier-defenses-and-the-innate-immune-response"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ],
+  "where": "macrophage"
+ },
+ {
+  "id": "bio_hematopoiesis",
+  "title": "Hematopoiesis: making blood cells",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_immuno",
+  "parents": [
+   "bio_immuno"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_stem_cells_differentiation",
+   "bio_innate_immunity"
+  ],
+  "summary": "Blood cells from stem cells.",
+  "layers": {
+   "basics": "Blood cells are made in bone marrow from haematopoietic stem cells. These make red cells, platelets and all white cells.",
+   "deeper": "Erythropoietin from the kidney boosts red blood cell production; G-CSF boosts neutrophils. Bone marrow transplants replace diseased stem cells.",
+   "expert": "The tree splits into myeloid and lymphoid lineages; cell fate is controlled by transcription factors (GATA1, PU.1) and cytokines. About 2×10¹¹ red cells are made daily."
+  },
+  "facts": [
+   [
+    "Red blood cells made per day",
+    "≈ 2×10¹¹"
+   ],
+   [
+    "RBC lifespan",
+    "≈ 120 days"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "18.2",
+    "18-2-production-of-the-formed-elements"
+   ],
+   [
+    "ANP",
+    "18.3",
+    "18-3-erythrocytes"
+   ],
+   [
+    "ANP",
+    "18.4",
+    "18-4-leukocytes-and-platelets"
+   ]
+  ],
+  "kn": [
+   "cell_types"
+  ],
+  "where": "bone_marrow",
+  "ext": [
+   {
+    "title": "Wikipedia: Haematopoiesis",
+    "url": "https://en.wikipedia.org/wiki/Haematopoiesis"
+   }
+  ]
+ },
+ {
+  "id": "bio_complement_system",
+  "title": "Complement and acute-phase defences",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_immuno",
+  "parents": [
+   "bio_immuno"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_innate_immunity"
+  ],
+  "summary": "A cascade of blood proteins.",
+  "layers": {
+   "basics": "Complement proteins in blood coat microbes so phagocytes eat them, and can punch holes in bacterial membranes.",
+   "deeper": "Three pathways (classical, lectin, alternative) converge on C3 cleavage. Inflammation signals C3a and C5a attract immune cells.",
+   "expert": "The membrane attack complex (C5b–C9) forms ≈ 10 nm pores. Complement deficiencies increase infections; excessive activation contributes to autoimmune and eye diseases (complement inhibitors approved)."
+  },
+  "facts": [
+   [
+    "Complement proteins",
+    "≈ 30"
+   ],
+   [
+    "MAC pore size",
+    "≈ 10 nm"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "17.2",
+    "17-2-chemical-defenses"
+   ],
+   [
+    "ANP",
+    "21.2",
+    "21-2-barrier-defenses-and-the-innate-immune-response"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ],
+  "where": "blood_tissue"
+ },
+ {
+  "id": "bio_spemann_induction",
+  "title": "Embryonic induction and the organiser",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_development",
+  "parents": [
+   "bio_development"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_gastrulation_germ_layers"
+  ],
+  "summary": "Signals from one tissue direct another.",
+  "layers": {
+   "basics": "In 1924, Spemann and Mangold transplanted a small region of a newt embryo and showed it could organise a second body axis.",
+   "deeper": "Induction is when one group of cells signals to another to change its fate, as the lens is induced by the optic cup.",
+   "expert": "The organiser secretes BMP antagonists (noggin, chordin) that set up dorsal–ventral patterning. Spemann received the 1935 Nobel Prize. Induction principles are reused in organ formation."
+  },
+  "facts": [
+   [
+    "Spemann–Mangold",
+    "1924"
+   ],
+   [
+    "Nobel",
+    "1935"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "43.7",
+    "43-7-organogenesis-and-vertebrate-axis-formation"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_sex_determination_development",
+  "title": "Sex determination and gonad development",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_development",
+  "parents": [
+   "bio_development"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_sex_linkage",
+   "bio_developmental_signaling"
+  ],
+  "summary": "How embryos become male or female.",
+  "layers": {
+   "basics": "In humans, the SRY gene on the Y chromosome switches the gonad towards testis; without it ovaries develop. Hormones then shape other tissues.",
+   "deeper": "Testosterone and anti-Müllerian hormone direct male structures. Variations in sex development (DSD) arise from differences in genes, hormones or receptors.",
+   "expert": "SRY activates SOX9; WNT4/RSPO1/FOXL2 maintain ovarian identity. Other animals use temperature (many reptiles), chromosome counts (bees) or social cues (clownfish)."
+  },
+  "facts": [
+   [
+    "SRY discovery",
+    "1990"
+   ],
+   [
+    "Clownfish",
+    "sequential hermaphrodite"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.3",
+    "27-3-development-of-the-male-and-female-reproductive-systems"
+   ],
+   [
+    "BIO",
+    "43.3",
+    "43-3-human-reproductive-anatomy-and-gametogenesis"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_axis_symmetry_breaking",
+  "title": "Axis formation and symmetry breaking",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_development",
+  "parents": [
+   "bio_development"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_morphogens_gradients"
+  ],
+  "summary": "Establishing front, back and left, right.",
+  "layers": {
+   "basics": "Early embryos need to know up from down and left from right. Maternal molecules and early signals break the initial symmetry.",
+   "deeper": "In flies, Bicoid and Nanos mRNAs are placed at opposite ends of the egg. In vertebrates, cilia generate flow that sets left–right asymmetry.",
+   "expert": "Nodal signalling and cilia-driven flow in the node break left–right symmetry; defects cause situs inversus. Symmetry breaking uses reaction–diffusion and mechanical feedback."
+  },
+  "facts": [
+   [
+    "Fly egg length",
+    "≈ 0.5 mm"
+   ],
+   [
+    "Situs inversus incidence",
+    "≈ 1 in 10,000"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "43.7",
+    "43-7-organogenesis-and-vertebrate-axis-formation"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_flow_cytometry",
+  "title": "Flow cytometry and cell sorting",
+  "kind": "tool",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_lab",
+  "parents": [
+   "bio_lab"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_fluorescence_microscopy",
+   "bio_immunoassays"
+  ],
+  "summary": "Counting and sorting single cells.",
+  "layers": {
+   "basics": "Cells stream one by one past lasers, and detectors record scattered and fluorescent light. This counts cell types and can sort them.",
+   "deeper": "Fluorescent antibodies label markers such as CD4 or CD8. Clinical uses include blood cell counts, leukaemia diagnosis and CD4 counts in HIV.",
+   "expert": "Instruments measure ≈ 10⁴ cells per second across ≥ 10–40 parameters; compensation corrects for spectral overlap. Gating strategies and controls (FMO) drive correct interpretation."
+  },
+  "facts": [
+   [
+    "Typical event rate",
+    "≈ 10,000/s"
+   ],
+   [
+    "Parameters measured",
+    "10–40"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "20.5",
+    "20-5-fluorescent-antibody-techniques"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Flow cytometry",
+    "url": "https://en.wikipedia.org/wiki/Flow_cytometry"
+   }
+  ]
+ },
+ {
+  "id": "bio_calibration_standard_curves",
+  "title": "Calibration, standard curves and detection limits",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_lab",
+  "parents": [
+   "bio_lab"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_spectrophotometry",
+   "bio_regression_correlation"
+  ],
+  "summary": "Making measurements quantitative.",
+  "layers": {
+   "basics": "To turn a signal into a concentration, you measure known standards, draw a calibration curve, and read unknowns from it.",
+   "deeper": "Include a blank and replicates. Keep unknowns within the linear range, or dilute them.",
+   "expert": "Limit of detection ≈ 3.3σ/slope and limit of quantitation ≈ 10σ/slope. Weighted regression handles heteroscedastic errors; four-parameter logistic fits are standard for ELISA."
+  },
+  "facts": [
+   [
+    "LOD",
+    "≈ 3.3 σ/slope"
+   ],
+   [
+    "LOQ",
+    "≈ 10 σ/slope"
+   ]
+  ],
+  "formula": "LOD ≈ 3.3·σ/slope",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CHE",
+    "1.5",
+    "1-5-measurement-uncertainty-accuracy-and-precision"
+   ],
+   [
+    "IST",
+    "12.3",
+    "12-3-the-regression-equation"
+   ]
+  ]
+ },
+ {
+  "id": "bio_western_blot_elisa_protocols",
+  "title": "Western blots and ELISA in practice",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_lab",
+  "parents": [
+   "bio_lab"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_protein_analysis",
+   "bio_immunoassays"
+  ],
+  "summary": "From lysate to a quantified band or well.",
+  "layers": {
+   "basics": "In a Western blot, proteins are separated on a gel, moved onto a membrane and detected with antibodies. In an ELISA, antibodies capture and detect the target in a plate well.",
+   "deeper": "Loading controls (actin, tubulin) check equal loading. Validation of antibodies with knockout controls prevents false conclusions.",
+   "expert": "Quantitation requires signals in the linear range; saturated bands cannot be compared. Many published antibodies fail specificity tests, a recognised reproducibility problem."
+  },
+  "facts": [
+   [
+    "Gel-to-membrane transfer",
+    "≈ 1–2 h"
+   ],
+   [
+    "ELISA typical range",
+    "≈ 1 pg–100 ng/mL"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "20.4",
+    "20-4-eias-and-elisas"
+   ],
+   [
+    "MIC",
+    "12.2",
+    "12-2-visualizing-and-characterizing-dna-rna-and-protein"
+   ]
+  ]
+ },
+ {
+  "id": "bio_ecosystem_stability",
+  "title": "Ecosystem stability, resilience and tipping points",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_ecology",
+  "parents": [
+   "bio_ecology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_community_structure",
+   "bio_succession_disturbance"
+  ],
+  "summary": "How ecosystems respond to shocks.",
+  "layers": {
+   "basics": "Ecosystems can resist change, bounce back (resilience), or shift to a new state if pushed too far.",
+   "deeper": "Diverse communities often show more stable production over time (insurance effect). Lakes can flip from clear to algal-dominated.",
+   "expert": "Alternative stable states and hysteresis arise from feedbacks (Scheffer). Early-warning signals (critical slowing down) are proposed but difficult to apply in practice; evidence for global tipping points is mixed."
+  },
+  "facts": [
+   [
+    "Diversity–stability studies",
+    "Cedar Creek (since 1994)"
+   ],
+   [
+    "Lake regime shift",
+    "clear ↔ turbid"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How general and predictable ecological tipping points are remains uncertain."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "44.1",
+    "44-1-the-scope-of-ecology"
+   ],
+   [
+    "BIO",
+    "46.1",
+    "46-1-ecology-of-ecosystems"
+   ]
+  ],
+  "kn": [
+   "dynamical_chaos",
+   "ecology_energy"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_pollination_networks",
+  "title": "Plant–animal interaction networks",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_ecology",
+  "parents": [
+   "bio_ecology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_symbiosis",
+   "bio_plant_reproduction"
+  ],
+  "summary": "Webs of pollinators, plants and seed dispersers.",
+  "layers": {
+   "basics": "Plants and animals form webs of mutual benefit: bees pollinate flowers, birds and mammals disperse seeds.",
+   "deeper": "Networks tend to be nested: specialists interact with subsets of what generalists use, which may buffer against loss.",
+   "expert": "Network metrics (nestedness, modularity) link structure to robustness. Declines in pollinators (habitat loss, pesticides, disease) threaten ≈ 75% of leading crops to some degree."
+  },
+  "facts": [
+   [
+    "Animal-pollinated flowering plants",
+    "≈ 87%"
+   ],
+   [
+    "Honeybee colony loss (US, annual)",
+    "≈ 30–40%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ],
+   [
+    "BIO",
+    "45.6",
+    "45-6-community-ecology"
+   ]
+  ],
+  "kn": [
+   "flowers_pollination"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_soil_ecology",
+  "title": "Soil ecology and the soil food web",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_ecology",
+  "parents": [
+   "bio_ecology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_primary_production_decomposition"
+  ],
+  "summary": "Life beneath our feet.",
+  "layers": {
+   "basics": "A handful of soil holds billions of microbes plus fungi, worms and mites. They break down organic matter and make nutrients available.",
+   "deeper": "Earthworms mix soil; fungi bind particles; bacteria fix nitrogen. Soil carbon is the largest terrestrial carbon store.",
+   "expert": "Soil holds ≈ 1,500–2,400 Pg C, about 2–3× atmospheric carbon. Soil carbon persistence depends more on mineral association and microbial processing than on chemical recalcitrance (the microbial carbon pump view)."
+  },
+  "facts": [
+   [
+    "Soil organic carbon (top 1–2 m)",
+    "≈ 1,500–2,400 Pg C"
+   ],
+   [
+    "Bacteria per gram of soil",
+    "≈ 10⁸–10⁹"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "kn": [
+   "soil_biology"
+  ],
+  "where": "place:soil"
+ }
+]

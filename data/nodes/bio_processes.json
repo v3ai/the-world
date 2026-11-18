@@ -1,0 +1,1924 @@
+[
+ {
+  "id": "bio_processes",
+  "title": "Processes (how life works)",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [
+   "dna_replication_process",
+   "transcription_process",
+   "glycolysis_process",
+   "krebs_cycle_process",
+   "oxidative_phosphorylation_process",
+   "photosynthesis_light_process",
+   "calvin_cycle_process",
+   "meiosis_process",
+   "pcr_process",
+   "crispr_editing_process",
+   "viral_replication_process",
+   "natural_selection_process",
+   "speciation_process",
+   "nitrogen_cycle_process",
+   "carbon_cycle_process",
+   "signal_transduction_process",
+   "vaccine_immunity_process",
+   "gastrulation_process",
+   "sanger_ngs_sequencing_process"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Step-by-step walkthroughs of the key processes of life.",
+  "layers": {
+   "basics": "Many biological ideas are really stories with a sequence of steps. This section lines them up so you can watch them unfold, from copying DNA to building an embryo.",
+   "deeper": "Each process links to the molecules, organelles and cells where it happens.",
+   "expert": "Processes are summaries of branching, regulated, noisy networks; steps shown are the canonical pathway."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "central_dogma"
+  ]
+ },
+ {
+  "id": "dna_replication_process",
+  "title": "DNA replication",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_replication_machinery"
+  ],
+  "summary": "Copying the genome before cell division.",
+  "layers": {
+   "basics": "The cell unzips its DNA and builds a new partner strand for each old strand, so two identical double helices result.",
+   "deeper": "Replication starts at origins, runs in both directions, and is checked for mistakes as it goes.",
+   "expert": "Fork speed ≈ 1,000 nt/s (E. coli) or ≈ 50 nt/s (human); error rate ≈ 10⁻⁹–10⁻¹⁰ per base after proofreading and mismatch repair."
+  },
+  "facts": [
+   [
+    "Human origins",
+    "≈ 30,000–50,000"
+   ],
+   [
+    "Okazaki fragment length",
+    "≈ 100–200 nt (eukaryotes)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "14.3",
+    "14-3-basics-of-dna-replication"
+   ],
+   [
+    "BIO",
+    "14.4",
+    "14-4-dna-replication-in-prokaryotes"
+   ],
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ]
+  ],
+  "kn": [
+   "dna_structure"
+  ],
+  "where": "place:dna",
+  "steps": [
+   {
+    "title": "Origin recognition",
+    "text": "Initiator proteins bind an origin of replication and load the helicase.",
+    "focus": [
+     "nucleus",
+     "bio_dna_structure"
+    ]
+   },
+   {
+    "title": "Unwinding",
+    "text": "Helicase separates the two strands, forming two replication forks; single-strand binding proteins and topoisomerase relieve strain.",
+    "focus": [
+     "bio_replication_machinery"
+    ]
+   },
+   {
+    "title": "Priming",
+    "text": "Primase lays down short RNA primers to give DNA polymerase a starting point.",
+    "focus": [
+     "bio_replication_machinery"
+    ]
+   },
+   {
+    "title": "Leading strand",
+    "text": "DNA polymerase extends the new strand continuously in the 5′→3′ direction towards the fork.",
+    "focus": [
+     "bio_nucleotides"
+    ]
+   },
+   {
+    "title": "Lagging strand",
+    "text": "The other strand is made in Okazaki fragments, each needing a primer.",
+    "focus": [
+     "bio_replication_machinery"
+    ]
+   },
+   {
+    "title": "Joining and proofreading",
+    "text": "Primers are replaced, ligase seals nicks and proofreading and mismatch repair correct errors.",
+    "focus": [
+     "bio_dna_damage_repair"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "transcription_process",
+  "title": "Transcription",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_transcription_eukaryotic",
+   "bio_rna_processing"
+  ],
+  "summary": "Copying a gene into RNA.",
+  "layers": {
+   "basics": "RNA polymerase reads one strand of DNA and builds a matching RNA molecule.",
+   "deeper": "In eukaryotes the new RNA is capped, spliced and tailed before it leaves the nucleus.",
+   "expert": "Pol II elongates ≈ 1–4 kb/min; the Pol II CTD coordinates RNA processing. Bacterial transcription and translation are coupled."
+  },
+  "facts": [
+   [
+    "Elongation rate (human Pol II)",
+    "≈ 1–4 kb/min"
+   ],
+   [
+    "Promoter box",
+    "TATA at ≈ −30"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "15.2",
+    "15-2-prokaryotic-transcription"
+   ],
+   [
+    "BIO",
+    "15.3",
+    "15-3-eukaryotic-transcription"
+   ],
+   [
+    "BIO",
+    "15.4",
+    "15-4-rna-processing-in-eukaryotes"
+   ]
+  ],
+  "kn": [
+   "central_dogma"
+  ],
+  "where": "place:dna",
+  "steps": [
+   {
+    "title": "Initiation",
+    "text": "Transcription factors and RNA polymerase assemble at the promoter.",
+    "focus": [
+     "bio_eukaryotic_gene_regulation"
+    ]
+   },
+   {
+    "title": "Promoter opening",
+    "text": "The DNA is opened to a bubble of ≈ 12–14 bp and the template strand enters the polymerase.",
+    "focus": [
+     "bio_transcription_prokaryotic"
+    ]
+   },
+   {
+    "title": "Elongation",
+    "text": "The polymerase adds ribonucleotides complementary to the template, 5′→3′.",
+    "focus": [
+     "bio_rna_types"
+    ]
+   },
+   {
+    "title": "Termination",
+    "text": "A terminator signal causes the polymerase to release RNA and DNA.",
+    "focus": [
+     "bio_transcription_prokaryotic"
+    ]
+   },
+   {
+    "title": "Capping and polyadenylation",
+    "text": "A 5′ cap and a poly-A tail are added to pre-mRNA.",
+    "focus": [
+     "bio_rna_processing"
+    ]
+   },
+   {
+    "title": "Splicing and export",
+    "text": "The spliceosome removes introns; the mature mRNA exits through nuclear pores.",
+    "focus": [
+     "bio_nuclear_organization"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "glycolysis_process",
+  "title": "Glycolysis (steps)",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_glycolysis"
+  ],
+  "summary": "Ten steps from glucose to pyruvate.",
+  "layers": {
+   "basics": "One glucose is split in two halves with a small net profit of ATP and NADH.",
+   "deeper": "It has an investment phase (uses 2 ATP) and a payoff phase (makes 4 ATP and 2 NADH).",
+   "expert": "PFK-1 is the main control point; steps with ΔG ≪ 0 are hexokinase, PFK-1 and pyruvate kinase."
+  },
+  "facts": [
+   [
+    "Net ATP",
+    "2"
+   ],
+   [
+    "NADH",
+    "2"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "7.2",
+    "7-2-glycolysis"
+   ],
+   [
+    "ORG",
+    "29.5",
+    "29-5-catabolism-of-carbohydrates-glycolysis"
+   ]
+  ],
+  "kn": [
+   "metabolism_overview"
+  ],
+  "where": "mol:glucose_6_phosphate",
+  "molecules": [
+   "glucose_alpha",
+   "pyruvate",
+   "atp",
+   "nadh"
+  ],
+  "steps": [
+   {
+    "title": "Phosphorylation",
+    "text": "Hexokinase adds a phosphate to glucose, trapping it as glucose-6-phosphate (−1 ATP).",
+    "focus": [
+     "mol:glucose_6_phosphate"
+    ]
+   },
+   {
+    "title": "Isomerisation and second phosphate",
+    "text": "G6P becomes fructose-6-phosphate; PFK-1 adds a second phosphate (−1 ATP), the committed step.",
+    "focus": [
+     "bio_allostery"
+    ]
+   },
+   {
+    "title": "Splitting",
+    "text": "Aldolase cleaves the six-carbon sugar into two three-carbon sugars.",
+    "focus": [
+     "bio_carbonyl_chemistry"
+    ]
+   },
+   {
+    "title": "Oxidation",
+    "text": "G3P is oxidised and phosphorylated, making NADH.",
+    "focus": [
+     "mol:nadh"
+    ]
+   },
+   {
+    "title": "Substrate-level phosphorylation",
+    "text": "Phosphate groups are transferred to ADP, making 4 ATP in all.",
+    "focus": [
+     "mol:atp"
+    ]
+   },
+   {
+    "title": "Pyruvate",
+    "text": "Pyruvate kinase makes pyruvate, which goes to the mitochondrion or to fermentation.",
+    "focus": [
+     "mol:pyruvate"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "krebs_cycle_process",
+  "title": "Citric acid cycle (steps)",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_krebs_cycle"
+  ],
+  "summary": "Eight steps that oxidise acetyl units.",
+  "layers": {
+   "basics": "An acetyl group joins a four-carbon molecule, is oxidised around a loop, and leaves as CO₂.",
+   "deeper": "Each turn makes 3 NADH, 1 FADH₂ and 1 GTP.",
+   "expert": "α-Ketoglutarate dehydrogenase and isocitrate dehydrogenase are key regulated steps."
+  },
+  "facts": [
+   [
+    "NADH per turn",
+    "3"
+   ],
+   [
+    "CO₂ per turn",
+    "2"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "7.3",
+    "7-3-oxidation-of-pyruvate-and-the-citric-acid-cycle"
+   ],
+   [
+    "ORG",
+    "29.7",
+    "29-7-the-citric-acid-cycle"
+   ]
+  ],
+  "kn": [
+   "metabolism_overview"
+  ],
+  "where": "mol:citrate",
+  "molecules": [
+   "citrate",
+   "oxaloacetate",
+   "nadh",
+   "fad"
+  ],
+  "steps": [
+   {
+    "title": "Condensation",
+    "text": "Acetyl-CoA joins oxaloacetate to make citrate.",
+    "focus": [
+     "mol:citrate"
+    ]
+   },
+   {
+    "title": "Isomerisation",
+    "text": "Citrate is rearranged to isocitrate.",
+    "focus": [
+     "mol:citrate"
+    ]
+   },
+   {
+    "title": "First decarboxylation",
+    "text": "Isocitrate is oxidised to α-ketoglutarate, releasing CO₂ and NADH.",
+    "focus": [
+     "mol:alpha_ketoglutarate"
+    ]
+   },
+   {
+    "title": "Second decarboxylation",
+    "text": "α-Ketoglutarate is oxidised to succinyl-CoA, releasing CO₂ and NADH.",
+    "focus": [
+     "mol:alpha_ketoglutarate"
+    ]
+   },
+   {
+    "title": "Substrate-level phosphorylation",
+    "text": "Succinyl-CoA yields succinate and GTP.",
+    "focus": [
+     "mol:succinate"
+    ]
+   },
+   {
+    "title": "Regeneration",
+    "text": "Succinate, fumarate and malate are oxidised, giving FADH₂ and NADH, and regenerating oxaloacetate.",
+    "focus": [
+     "mol:oxaloacetate"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "oxidative_phosphorylation_process",
+  "title": "Oxidative phosphorylation",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_chemiosmosis_atp_synthase",
+   "bio_electron_transport_chain"
+  ],
+  "summary": "From electrons to ATP.",
+  "layers": {
+   "basics": "Electrons from NADH and FADH₂ flow to oxygen, pumping protons that power ATP synthase.",
+   "deeper": "The proton gradient across the inner mitochondrial membrane is the energy store.",
+   "expert": "≈ 10 H⁺ pumped per NADH; ≈ 4 H⁺ per ATP including phosphate transport; P/O ≈ 2.5 for NADH."
+  },
+  "facts": [
+   [
+    "P/O ratio (NADH)",
+    "≈ 2.5"
+   ],
+   [
+    "Total ATP per glucose",
+    "≈ 30–32"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "7.4",
+    "7-4-oxidative-phosphorylation"
+   ],
+   [
+    "MIC",
+    "8.3",
+    "8-3-cellular-respiration"
+   ]
+  ],
+  "kn": [
+   "oxidative_phosphorylation"
+  ],
+  "where": "mitochondrion",
+  "molecules": [
+   "nadh",
+   "atp",
+   "oxygen"
+  ],
+  "steps": [
+   {
+    "title": "Electron donation",
+    "text": "NADH gives electrons to Complex I; FADH₂ gives them to Complex II.",
+    "focus": [
+     "mol:nadh"
+    ]
+   },
+   {
+    "title": "Proton pumping",
+    "text": "Complexes I, III and IV pump protons from matrix to intermembrane space.",
+    "focus": [
+     "mitochondrion"
+    ]
+   },
+   {
+    "title": "Carriers",
+    "text": "Ubiquinone and cytochrome c ferry electrons between complexes.",
+    "focus": [
+     "mol:ubiquinone_q1"
+    ]
+   },
+   {
+    "title": "Oxygen reduction",
+    "text": "Complex IV passes electrons to O₂, making water.",
+    "focus": [
+     "mol:oxygen"
+    ]
+   },
+   {
+    "title": "Gradient",
+    "text": "The proton gradient (Δp ≈ 150–200 mV) accumulates.",
+    "focus": [
+     "bio_membrane_potential"
+    ]
+   },
+   {
+    "title": "ATP synthesis",
+    "text": "Protons flow through ATP synthase, driving ADP + Pi → ATP.",
+    "focus": [
+     "mol:atp"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "photosynthesis_light_process",
+  "title": "Photosynthesis: light reactions",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_light_reactions"
+  ],
+  "summary": "Light to ATP and NADPH.",
+  "layers": {
+   "basics": "Light energy excites electrons in chlorophyll; the electrons make ATP and NADPH and water is split to oxygen.",
+   "deeper": "Two photosystems work in series in the thylakoid membrane.",
+   "expert": "The Z-scheme combines PSII (P680), cytochrome b6f, PSI (P700) and ATP synthase; ≈ 8 photons per O₂."
+  },
+  "facts": [
+   [
+    "Photons per O₂ (minimum)",
+    "≈ 8"
+   ],
+   [
+    "Products",
+    "ATP, NADPH, O₂"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "8.2",
+    "8-2-the-light-dependent-reactions-of-photosynthesis"
+   ]
+  ],
+  "kn": [
+   "photosynthesis_light"
+  ],
+  "where": "mol:chlorophyll_a",
+  "molecules": [
+   "chlorophyll_a",
+   "water",
+   "oxygen"
+  ],
+  "steps": [
+   {
+    "title": "Light capture",
+    "text": "Antenna pigments absorb photons and funnel energy to the PSII reaction centre.",
+    "focus": [
+     "mol:chlorophyll_a"
+    ]
+   },
+   {
+    "title": "Water splitting",
+    "text": "The oxygen-evolving complex splits water, releasing O₂, protons and electrons.",
+    "focus": [
+     "mol:water"
+    ]
+   },
+   {
+    "title": "Electron transport",
+    "text": "Electrons travel through plastoquinone and cytochrome b6f, pumping protons into the lumen.",
+    "focus": [
+     "bio_electron_transport_chain"
+    ]
+   },
+   {
+    "title": "Second photosystem",
+    "text": "PSI re-excites the electrons.",
+    "focus": [
+     "bio_light_reactions"
+    ]
+   },
+   {
+    "title": "NADPH formation",
+    "text": "Ferredoxin and NADP⁺ reductase make NADPH.",
+    "focus": [
+     "bio_redox_biology"
+    ]
+   },
+   {
+    "title": "ATP formation",
+    "text": "Protons exit via ATP synthase, forming ATP.",
+    "focus": [
+     "bio_chemiosmosis_atp_synthase"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "calvin_cycle_process",
+  "title": "Calvin cycle",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_calvin_cycle"
+  ],
+  "summary": "Fixing CO₂ into sugar.",
+  "layers": {
+   "basics": "Plants attach CO₂ to a five-carbon sugar and reshuffle carbons to make sugar and regenerate the starter.",
+   "deeper": "Three phases: fixation, reduction and regeneration.",
+   "expert": "Rubisco catalyses carboxylation of RuBP; the cycle consumes 3 ATP and 2 NADPH per CO₂."
+  },
+  "facts": [
+   [
+    "ATP per CO₂",
+    "3"
+   ],
+   [
+    "NADPH per CO₂",
+    "2"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "8.3",
+    "8-3-using-light-energy-to-make-organic-molecules"
+   ],
+   [
+    "COB",
+    "5.3",
+    "5-3-the-calvin-cycle"
+   ]
+  ],
+  "kn": [
+   "photosynthesis_light"
+  ],
+  "where": "place:leaf",
+  "molecules": [
+   "carbon_dioxide",
+   "glyceraldehyde"
+  ],
+  "steps": [
+   {
+    "title": "Fixation",
+    "text": "Rubisco joins CO₂ to RuBP, making two 3-phosphoglycerate.",
+    "focus": [
+     "mol:carbon_dioxide"
+    ]
+   },
+   {
+    "title": "Phosphorylation",
+    "text": "ATP converts 3-PGA to 1,3-bisphosphoglycerate.",
+    "focus": [
+     "mol:atp"
+    ]
+   },
+   {
+    "title": "Reduction",
+    "text": "NADPH reduces it to glyceraldehyde-3-phosphate (G3P).",
+    "focus": [
+     "mol:glyceraldehyde"
+    ]
+   },
+   {
+    "title": "Export",
+    "text": "One G3P leaves for every three CO₂ fixed.",
+    "focus": [
+     "bio_polysaccharides"
+    ]
+   },
+   {
+    "title": "Regeneration",
+    "text": "The remaining G3P is rearranged to RuBP using ATP.",
+    "focus": [
+     "bio_calvin_cycle"
+    ]
+   },
+   {
+    "title": "Control",
+    "text": "Light activates the enzymes through pH, Mg²⁺ and thioredoxin.",
+    "focus": [
+     "bio_metabolic_regulation"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "meiosis_process",
+  "title": "Meiosis",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_meiosis_variation"
+  ],
+  "summary": "Halving the chromosome number.",
+  "layers": {
+   "basics": "One diploid cell divides twice to make four haploid cells with new gene combinations.",
+   "deeper": "Homologues pair and swap pieces in prophase I; sister chromatids separate in meiosis II.",
+   "expert": "Chiasmata hold homologues together; cohesin protection at centromeres lets sisters stay joined until meiosis II."
+  },
+  "facts": [
+   [
+    "Daughter cells",
+    "4 haploid"
+   ],
+   [
+    "Human crossovers",
+    "≈ 40–60 per meiosis"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "11.1",
+    "11-1-the-process-of-meiosis"
+   ],
+   [
+    "COB",
+    "7.2",
+    "7-2-meiosis"
+   ]
+  ],
+  "kn": [
+   "genetics_inheritance"
+  ],
+  "where": "place:cell",
+  "steps": [
+   {
+    "title": "Prophase I",
+    "text": "Homologous chromosomes pair (synapsis) and crossing over occurs.",
+    "focus": [
+     "bio_recombination_transposons"
+    ]
+   },
+   {
+    "title": "Metaphase I",
+    "text": "Homologous pairs align at the equator; orientation is random.",
+    "focus": [
+     "cytoskeleton"
+    ]
+   },
+   {
+    "title": "Anaphase I",
+    "text": "Homologues are pulled to opposite poles; sisters stay together.",
+    "focus": [
+     "bio_microtubules_motors"
+    ]
+   },
+   {
+    "title": "Telophase I",
+    "text": "Two haploid cells form, each with duplicated chromosomes.",
+    "focus": [
+     "bio_cytokinesis_prokaryotic_division"
+    ]
+   },
+   {
+    "title": "Meiosis II",
+    "text": "Sister chromatids separate as in mitosis.",
+    "focus": [
+     "mitosis"
+    ]
+   },
+   {
+    "title": "Gametes",
+    "text": "Four genetically distinct haploid cells result.",
+    "focus": [
+     "sperm",
+     "egg_cell"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "pcr_process",
+  "title": "PCR",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_pcr"
+  ],
+  "summary": "A DNA photocopier.",
+  "layers": {
+   "basics": "Heat splits DNA, primers attach, and a polymerase copies the target; repeating doubles the copies each time.",
+   "deeper": "Each cycle has denaturation, annealing and extension.",
+   "expert": "Efficiency E < 1 gives N = N₀(1 + E)ⁿ; Taq error ≈ 10⁻⁵–10⁻⁴ per base, higher-fidelity enzymes ≈ 10⁻⁶."
+  },
+  "facts": [
+   [
+    "Cycle length",
+    "≈ 1–3 min"
+   ],
+   [
+    "Copies after 30 cycles",
+    "≈ 10⁹"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.1",
+    "17-1-biotechnology"
+   ],
+   [
+    "ORG",
+    "28.8",
+    "28-8-the-polymerase-chain-reaction"
+   ]
+  ],
+  "kn": [
+   "crispr_biotech"
+  ],
+  "where": "place:dna",
+  "steps": [
+   {
+    "title": "Prepare",
+    "text": "Mix template DNA, primers, dNTPs, buffer and heat-stable polymerase.",
+    "focus": [
+     "bio_pipetting_solutions"
+    ]
+   },
+   {
+    "title": "Denature",
+    "text": "Heat to ≈ 95 °C to separate the strands.",
+    "focus": [
+     "bio_dna_structure"
+    ]
+   },
+   {
+    "title": "Anneal",
+    "text": "Cool to ≈ 55–65 °C so primers bind the target.",
+    "focus": [
+     "bio_nucleotides"
+    ]
+   },
+   {
+    "title": "Extend",
+    "text": "Heat to ≈ 72 °C; polymerase extends the primers.",
+    "focus": [
+     "bio_replication_machinery"
+    ]
+   },
+   {
+    "title": "Repeat",
+    "text": "25–35 cycles amplify the target exponentially.",
+    "focus": [
+     "bio_pcr"
+    ]
+   },
+   {
+    "title": "Analyse",
+    "text": "Check product size by gel electrophoresis or measure by qPCR.",
+    "focus": [
+     "bio_gel_electrophoresis"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "crispr_editing_process",
+  "title": "CRISPR–Cas9 editing",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_crispr_cas9"
+  ],
+  "summary": "Programmable cutting and repair.",
+  "layers": {
+   "basics": "A guide RNA leads Cas9 to a matching site, Cas9 cuts, and the cell's repair changes the gene.",
+   "deeper": "The edit can disable a gene or insert a new sequence from a template.",
+   "expert": "Requires a PAM (NGG for SpCas9); NHEJ yields indels in most cells, HDR efficiency is typically < 20% and cell-cycle-dependent."
+  },
+  "facts": [
+   [
+    "Guide length",
+    "≈ 20 nt"
+   ],
+   [
+    "Typical HDR efficiency",
+    "≲ 20%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "12.4",
+    "12-4-gene-therapy"
+   ]
+  ],
+  "kn": [
+   "crispr_biotech"
+  ],
+  "where": "place:dna",
+  "steps": [
+   {
+    "title": "Design",
+    "text": "Choose a 20-nt guide next to a PAM in the target gene.",
+    "focus": [
+     "bio_noncoding_rna"
+    ]
+   },
+   {
+    "title": "Delivery",
+    "text": "Deliver Cas9 and guide RNA into cells (plasmid, RNP or viral vector).",
+    "focus": [
+     "bio_gene_therapy"
+    ]
+   },
+   {
+    "title": "Target search",
+    "text": "The Cas9–guide complex scans DNA for the PAM and matching sequence.",
+    "focus": [
+     "bio_dna_structure"
+    ]
+   },
+   {
+    "title": "Cut",
+    "text": "Cas9 makes a double-strand break 3 bp from the PAM.",
+    "focus": [
+     "bio_crispr_cas9"
+    ]
+   },
+   {
+    "title": "Repair",
+    "text": "NHEJ makes small indels; HDR copies a supplied template.",
+    "focus": [
+     "bio_dna_damage_repair"
+    ]
+   },
+   {
+    "title": "Verify",
+    "text": "Sequence the target and check off-target sites.",
+    "focus": [
+     "bio_ngs"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "viral_replication_process",
+  "title": "Viral replication cycle",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_viral_life_cycles"
+  ],
+  "summary": "How a virus copies itself.",
+  "layers": {
+   "basics": "A virus enters a cell, uses the cell's machinery to copy its genome and proteins, assembles new particles and leaves.",
+   "deeper": "Lytic viruses burst cells; some viruses bud out; some integrate and hide.",
+   "expert": "Burst size ranges 10–10⁵; eclipse period from minutes (phage T4 ≈ 12 min) to hours; Baltimore class determines the replication strategy."
+  },
+  "facts": [
+   [
+    "Phage T4 latent period",
+    "≈ 25 min"
+   ],
+   [
+    "Influenza assembly site",
+    "plasma membrane"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "21.2",
+    "21-2-virus-infections-and-hosts"
+   ],
+   [
+    "MIC",
+    "6.2",
+    "6-2-the-viral-life-cycle"
+   ]
+  ],
+  "kn": [
+   "viruses"
+  ],
+  "where": "place:cell",
+  "steps": [
+   {
+    "title": "Attachment",
+    "text": "Viral proteins bind specific host receptors.",
+    "focus": [
+     "cell_membrane"
+    ]
+   },
+   {
+    "title": "Entry",
+    "text": "The virus enters by fusion or endocytosis and uncoats.",
+    "focus": [
+     "bio_bulk_transport"
+    ]
+   },
+   {
+    "title": "Genome replication",
+    "text": "The genome is copied by viral or host polymerases.",
+    "focus": [
+     "bio_replication_machinery"
+    ]
+   },
+   {
+    "title": "Protein synthesis",
+    "text": "Host ribosomes translate viral mRNA.",
+    "focus": [
+     "ribosome"
+    ]
+   },
+   {
+    "title": "Assembly",
+    "text": "Genomes and capsid proteins assemble into virions.",
+    "focus": [
+     "bio_viruses_structure"
+    ]
+   },
+   {
+    "title": "Release",
+    "text": "Virions leave by lysis or budding, infecting new cells.",
+    "focus": [
+     "bio_viral_life_cycles"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "natural_selection_process",
+  "title": "Natural selection",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_natural_selection"
+  ],
+  "summary": "Variation, inheritance, and differential success.",
+  "layers": {
+   "basics": "Individuals differ, some differences are inherited, and those that help survival and reproduction become more common.",
+   "deeper": "Across generations this leads to adaptation to the environment.",
+   "expert": "Change per generation Δp = s·p·q/w̄ (haploid, simple); rate depends on selection coefficient and variation."
+  },
+  "facts": [
+   [
+    "Peppered moth dark form",
+    "≈ 2% to ≈ 95% in 50 years"
+   ],
+   [
+    "Required conditions",
+    "variation, heritability, differential fitness"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "18.1",
+    "18-1-understanding-evolution"
+   ],
+   [
+    "COB",
+    "11.2",
+    "11-2-mechanisms-of-evolution"
+   ]
+  ],
+  "kn": [
+   "natural_selection"
+  ],
+  "where": "place:park",
+  "steps": [
+   {
+    "title": "Variation",
+    "text": "Mutation and recombination produce heritable differences.",
+    "focus": [
+     "bio_mutations"
+    ]
+   },
+   {
+    "title": "Overproduction",
+    "text": "More offspring are born than the environment supports.",
+    "focus": [
+     "bio_exponential_logistic_growth"
+    ]
+   },
+   {
+    "title": "Differential survival",
+    "text": "Individuals with advantageous traits survive and reproduce more.",
+    "focus": [
+     "bio_selection_modes"
+    ]
+   },
+   {
+    "title": "Inheritance",
+    "text": "Offspring inherit the advantageous alleles.",
+    "focus": [
+     "bio_alleles_genotype"
+    ]
+   },
+   {
+    "title": "Frequency change",
+    "text": "The allele becomes more common in the population.",
+    "focus": [
+     "bio_hardy_weinberg"
+    ]
+   },
+   {
+    "title": "Adaptation",
+    "text": "Over many generations, populations become better suited to the environment.",
+    "focus": [
+     "bio_evidence_for_evolution"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "speciation_process",
+  "title": "Speciation",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_speciation_mechanisms"
+  ],
+  "summary": "How one species splits into two.",
+  "layers": {
+   "basics": "Two populations stop exchanging genes, differ over time and eventually cannot interbreed.",
+   "deeper": "A geographic barrier often starts the process.",
+   "expert": "Reproductive isolation accumulates by Dobzhansky–Muller incompatibilities; reinforcement may strengthen prezygotic barriers in sympatry."
+  },
+  "facts": [
+   [
+    "Typical time to isolation",
+    "10⁴–10⁷ y"
+   ],
+   [
+    "Polyploid speciation",
+    "1 generation"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "18.2",
+    "18-2-formation-of-new-species"
+   ],
+   [
+    "COB",
+    "11.4",
+    "11-4-speciation"
+   ]
+  ],
+  "kn": [
+   "speciation_biodiversity"
+  ],
+  "where": "place:earth",
+  "steps": [
+   {
+    "title": "Separation",
+    "text": "A barrier or distance splits a population.",
+    "focus": [
+     "bio_species_concepts"
+    ]
+   },
+   {
+    "title": "Divergence",
+    "text": "Mutation, drift and selection differ in each group.",
+    "focus": [
+     "bio_drift_flow_selection_pop"
+    ]
+   },
+   {
+    "title": "Local adaptation",
+    "text": "Each group adapts to its own environment.",
+    "focus": [
+     "bio_selection_modes"
+    ]
+   },
+   {
+    "title": "Isolating barriers",
+    "text": "Mating-time, behaviour and genetic incompatibilities evolve.",
+    "focus": [
+     "bio_speciation_mechanisms"
+    ]
+   },
+   {
+    "title": "Secondary contact",
+    "text": "If groups meet, hybrids are less fit and mate choice may be reinforced.",
+    "focus": [
+     "bio_adaptive_radiation"
+    ]
+   },
+   {
+    "title": "Two species",
+    "text": "The groups are now reproductively isolated.",
+    "focus": [
+     "bio_phylogeny_cladistics"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "nitrogen_cycle_process",
+  "title": "Nitrogen cycle",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_biogeochemical_cycles_concept",
+   "bio_microbial_metabolism"
+  ],
+  "summary": "How nitrogen moves between air, soil and life.",
+  "layers": {
+   "basics": "Bacteria turn atmospheric nitrogen into forms plants can use, and other bacteria return it to the air.",
+   "deeper": "Key steps are fixation, nitrification, assimilation, ammonification and denitrification.",
+   "expert": "Biological N fixation ≈ 100–140 Tg N/yr on land plus ocean; human fixation (Haber–Bosch, crops, fossil fuel) ≈ 150–200 Tg N/yr."
+  },
+  "facts": [
+   [
+    "Atmospheric N₂",
+    "≈ 78%"
+   ],
+   [
+    "Haber–Bosch fertiliser",
+    "≈ 120 Tg N/yr"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "46.3",
+    "46-3-biogeochemical-cycles"
+   ],
+   [
+    "MIC",
+    "8.7",
+    "8-7-biogeochemical-cycles"
+   ]
+  ],
+  "kn": [
+   "nitrogen_cycle",
+   "biogeochemical_cycles"
+  ],
+  "where": "place:soil",
+  "molecules": [
+   "ammonia",
+   "nitrate",
+   "nitrous_oxide",
+   "nitrogen"
+  ],
+  "steps": [
+   {
+    "title": "Fixation",
+    "text": "Nitrogenase in bacteria (and lightning, industry) converts N₂ to ammonia.",
+    "focus": [
+     "mol:ammonia"
+    ]
+   },
+   {
+    "title": "Nitrification",
+    "text": "Soil bacteria oxidise ammonium to nitrite and nitrate.",
+    "focus": [
+     "mol:nitrate"
+    ]
+   },
+   {
+    "title": "Assimilation",
+    "text": "Plants take up nitrate or ammonium and build amino acids.",
+    "focus": [
+     "bio_plant_nutrition_soil"
+    ]
+   },
+   {
+    "title": "Consumption",
+    "text": "Animals eat plants and obtain nitrogen.",
+    "focus": [
+     "bio_food_webs_energy_flow"
+    ]
+   },
+   {
+    "title": "Ammonification",
+    "text": "Decomposers return organic nitrogen as ammonium.",
+    "focus": [
+     "bio_primary_production_decomposition"
+    ]
+   },
+   {
+    "title": "Denitrification",
+    "text": "Anaerobic bacteria convert nitrate back to N₂ (and N₂O).",
+    "focus": [
+     "mol:nitrous_oxide"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "carbon_cycle_process",
+  "title": "Carbon cycle",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_biogeochemical_cycles_concept",
+   "bio_photosynthesis_overview"
+  ],
+  "summary": "Carbon through air, life, ocean and rock.",
+  "layers": {
+   "basics": "Plants take CO₂ from the air; respiration, decay and burning return it.",
+   "deeper": "Oceans and soils store large amounts of carbon, and humans add CO₂ by burning fossil fuels.",
+   "expert": "Atmosphere ≈ 880 Pg C; fossil fuel emissions ≈ 10 Pg C/yr; land and ocean sinks absorb roughly half."
+  },
+  "facts": [
+   [
+    "Atmospheric carbon",
+    "≈ 880 Pg C"
+   ],
+   [
+    "Fossil emissions",
+    "≈ 10 Pg C/yr"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "46.3",
+    "46-3-biogeochemical-cycles"
+   ]
+  ],
+  "kn": [
+   "carbon_cycle_climate"
+  ],
+  "where": "place:earth",
+  "molecules": [
+   "carbon_dioxide",
+   "methane"
+  ],
+  "steps": [
+   {
+    "title": "Fixation",
+    "text": "Photosynthesis converts CO₂ to organic carbon (≈ 120 Pg C/yr on land).",
+    "focus": [
+     "bio_photosynthesis_overview"
+    ]
+   },
+   {
+    "title": "Transfer",
+    "text": "Herbivores and predators pass carbon along food webs.",
+    "focus": [
+     "bio_food_webs_energy_flow"
+    ]
+   },
+   {
+    "title": "Respiration",
+    "text": "Organisms oxidise organic carbon and return CO₂.",
+    "focus": [
+     "cellular_respiration"
+    ]
+   },
+   {
+    "title": "Decomposition",
+    "text": "Microbes release CO₂ and CH₄ from dead matter.",
+    "focus": [
+     "bio_primary_production_decomposition"
+    ]
+   },
+   {
+    "title": "Ocean exchange",
+    "text": "CO₂ dissolves in seawater; biological pump sinks carbon.",
+    "focus": [
+     "bio_marine_biology"
+    ]
+   },
+   {
+    "title": "Human perturbation",
+    "text": "Fossil fuels and land-use change add CO₂, warming the climate.",
+    "focus": [
+     "bio_climate_change_biology"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "signal_transduction_process",
+  "title": "Signal transduction",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_rtk_cascades",
+   "bio_gpcr_signaling"
+  ],
+  "summary": "From a message at the surface to a change in the cell.",
+  "layers": {
+   "basics": "A signal binds a receptor, which passes the message through a chain of molecules to change what the cell does.",
+   "deeper": "The message is amplified and can be switched off.",
+   "expert": "Examples: GPCR → G-protein → adenylyl cyclase → cAMP → PKA; RTK → Ras → MAPK cascade → transcription factors."
+  },
+  "facts": [
+   [
+    "Amplification",
+    "10²–10⁴-fold"
+   ],
+   [
+    "Cascade tiers (MAPK)",
+    "3"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "9.1",
+    "9-1-signaling-molecules-and-cellular-receptors"
+   ],
+   [
+    "BIO",
+    "9.2",
+    "9-2-propagation-of-the-signal"
+   ],
+   [
+    "BIO",
+    "9.3",
+    "9-3-response-to-the-signal"
+   ]
+  ],
+  "kn": [
+   "cell_signaling"
+  ],
+  "where": "cell_membrane",
+  "molecules": [
+   "camp"
+  ],
+  "steps": [
+   {
+    "title": "Reception",
+    "text": "A ligand binds its receptor.",
+    "focus": [
+     "cell_membrane"
+    ]
+   },
+   {
+    "title": "Transduction start",
+    "text": "The receptor changes shape and activates intracellular proteins such as G proteins or kinases.",
+    "focus": [
+     "bio_gpcr_signaling"
+    ]
+   },
+   {
+    "title": "Second messengers",
+    "text": "cAMP, Ca²⁺ or IP₃ spread the signal.",
+    "focus": [
+     "bio_second_messengers"
+    ]
+   },
+   {
+    "title": "Kinase cascade",
+    "text": "Successive phosphorylations amplify the signal.",
+    "focus": [
+     "bio_rtk_cascades"
+    ]
+   },
+   {
+    "title": "Response",
+    "text": "Enzymes or transcription factors change cell activity or gene expression.",
+    "focus": [
+     "bio_eukaryotic_gene_regulation"
+    ]
+   },
+   {
+    "title": "Termination",
+    "text": "Phosphatases, GTP hydrolysis and phosphodiesterases switch off the signal.",
+    "focus": [
+     "bio_covalent_regulation"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "vaccine_immunity_process",
+  "title": "How a vaccine builds immunity",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_vaccines"
+  ],
+  "summary": "Training memory without disease.",
+  "layers": {
+   "basics": "A vaccine shows the immune system a harmless piece of a pathogen so it can respond quickly later.",
+   "deeper": "Memory cells and antibodies persist, giving protection.",
+   "expert": "Primary response ≈ 1–2 weeks; boosters trigger germinal-centre affinity maturation; durability varies from months to decades by antigen."
+  },
+  "facts": [
+   [
+    "Smallpox eradicated",
+    "1980"
+   ],
+   [
+    "Measles vaccine effectiveness (2 doses)",
+    "≈ 97%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "18.5",
+    "18-5-vaccines"
+   ],
+   [
+    "BIO",
+    "42.2",
+    "42-2-adaptive-immune-response"
+   ]
+  ],
+  "kn": [
+   "vaccines_medicine",
+   "immune_system"
+  ],
+  "where": "lymph_nodes",
+  "steps": [
+   {
+    "title": "Antigen delivery",
+    "text": "The vaccine delivers an antigen or its mRNA.",
+    "focus": [
+     "bio_vaccines"
+    ]
+   },
+   {
+    "title": "Uptake",
+    "text": "Dendritic cells take up the antigen and travel to lymph nodes.",
+    "focus": [
+     "lymph_nodes"
+    ]
+   },
+   {
+    "title": "Presentation",
+    "text": "Antigen is displayed on MHC to T cells.",
+    "focus": [
+     "bio_antigen_presentation_mhc"
+    ]
+   },
+   {
+    "title": "Activation",
+    "text": "Helper T cells activate B cells, which make antibodies.",
+    "focus": [
+     "bio_b_cells_antibodies"
+    ]
+   },
+   {
+    "title": "Maturation",
+    "text": "Germinal centres raise antibody affinity.",
+    "focus": [
+     "bio_antibody_diversity"
+    ]
+   },
+   {
+    "title": "Memory",
+    "text": "Memory B and T cells persist and respond fast on exposure.",
+    "focus": [
+     "bio_immune_memory_clonal"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "gastrulation_process",
+  "title": "Gastrulation",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_gastrulation_germ_layers"
+  ],
+  "summary": "Forming the three germ layers.",
+  "layers": {
+   "basics": "Cells of the early embryo move inward, forming layers that give rise to all tissues.",
+   "deeper": "In humans the primitive streak marks the start.",
+   "expert": "Epithelial-to-mesenchymal transition, ingression and convergent extension reshape the embryo; Nodal, Wnt and FGF signalling drive it."
+  },
+  "facts": [
+   [
+    "Human primitive streak",
+    "≈ day 15"
+   ],
+   [
+    "Layers formed",
+    "3"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "43.6",
+    "43-6-fertilization-and-early-embryonic-development"
+   ],
+   [
+    "BIO",
+    "43.7",
+    "43-7-organogenesis-and-vertebrate-axis-formation"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ],
+  "where": "place:cell",
+  "steps": [
+   {
+    "title": "Epiblast and hypoblast",
+    "text": "The embryo is a two-layered disc.",
+    "focus": [
+     "bio_cleavage_blastula"
+    ]
+   },
+   {
+    "title": "Primitive streak",
+    "text": "A groove forms along the midline of the epiblast.",
+    "focus": [
+     "bio_morphogens_gradients"
+    ]
+   },
+   {
+    "title": "Ingression",
+    "text": "Epiblast cells move through the streak.",
+    "focus": [
+     "bio_gastrulation_germ_layers"
+    ]
+   },
+   {
+    "title": "Endoderm and mesoderm",
+    "text": "Cells that move in first form endoderm; later cells form mesoderm.",
+    "focus": [
+     "bio_developmental_signaling"
+    ]
+   },
+   {
+    "title": "Ectoderm",
+    "text": "Cells remaining at the surface form ectoderm.",
+    "focus": [
+     "bio_neurulation_organogenesis"
+    ]
+   },
+   {
+    "title": "Axis",
+    "text": "The body axes (head–tail, left–right) are set.",
+    "focus": [
+     "bio_hox_developmental_genes"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "sanger_ngs_sequencing_process",
+  "title": "Sanger and next-generation sequencing",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "bio_processes",
+  "parents": [
+   "bio_processes"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_sanger_sequencing",
+   "bio_ngs"
+  ],
+  "summary": "Two ways to read DNA.",
+  "layers": {
+   "basics": "Sanger sequencing reads one fragment at a time; NGS reads millions in parallel.",
+   "deeper": "Both use polymerases and fluorescent bases to detect sequence.",
+   "expert": "Sanger: ddNTP chain termination, capillary electrophoresis; Illumina: bridge amplification and reversible terminators; ONT: current changes through nanopores."
+  },
+  "facts": [
+   [
+    "Sanger read",
+    "≈ 800–1,000 bp"
+   ],
+   [
+    "Illumina read",
+    "≈ 100–300 bp"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.3",
+    "17-3-whole-genome-sequencing"
+   ],
+   [
+    "ORG",
+    "28.6",
+    "28-6-dna-sequencing"
+   ]
+  ],
+  "kn": [
+   "crispr_biotech"
+  ],
+  "where": "place:dna",
+  "steps": [
+   {
+    "title": "Sample preparation",
+    "text": "DNA is fragmented and adaptors added (NGS) or amplified by PCR (Sanger).",
+    "focus": [
+     "bio_pcr"
+    ]
+   },
+   {
+    "title": "Sanger synthesis",
+    "text": "Chain-terminating ddNTPs with fluorescent tags stop synthesis at each base.",
+    "focus": [
+     "bio_sanger_sequencing"
+    ]
+   },
+   {
+    "title": "Sanger read-out",
+    "text": "Fragments are separated by size in a capillary and read by laser.",
+    "focus": [
+     "bio_gel_electrophoresis"
+    ]
+   },
+   {
+    "title": "NGS clusters",
+    "text": "Fragments are amplified on a flow cell into clusters.",
+    "focus": [
+     "bio_ngs"
+    ]
+   },
+   {
+    "title": "Sequencing by synthesis",
+    "text": "Fluorescent reversible terminators are imaged base by base.",
+    "focus": [
+     "bio_ngs"
+    ]
+   },
+   {
+    "title": "Assembly and analysis",
+    "text": "Reads are aligned or assembled and variants are called.",
+    "focus": [
+     "bio_genome_assembly"
+    ]
+   }
+  ]
+ }
+]

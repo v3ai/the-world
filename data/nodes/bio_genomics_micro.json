@@ -1,0 +1,2223 @@
+[
+ {
+  "id": "bio_genomics",
+  "title": "Genomics, biotechnology and bioinformatics",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [
+   "bio_gel_electrophoresis",
+   "bio_pcr",
+   "bio_restriction_cloning",
+   "bio_recombinant_expression",
+   "bio_sanger_sequencing",
+   "bio_ngs",
+   "bio_genome_assembly",
+   "bio_transcriptomics",
+   "bio_proteomics_omics",
+   "bio_crispr_cas9",
+   "bio_gmo_transgenics",
+   "bio_gene_therapy",
+   "bio_dna_fingerprinting_blotting",
+   "bio_sequence_alignment",
+   "bio_blast_databases",
+   "bio_phylogenetic_methods",
+   "bio_comparative_human_genomics",
+   "bio_metagenomics"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Reading, copying and editing DNA, and analysing biological data.",
+  "layers": {
+   "basics": "Biotechnology uses cells and molecules as tools. PCR copies DNA, gels separate it, sequencers read it, and CRISPR edits it.",
+   "deeper": "Sequencing has become a million-fold cheaper in two decades, producing datasets that need computing to interpret. Alignment, phylogenetics and omics methods turn raw sequences into biological insight.",
+   "expert": "Method choice depends on read length, throughput, error profile and cost. Editing technologies raise safety and ethics questions that are as important as the technical ones."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "crispr_biotech",
+   "chromatin_genome"
+  ]
+ },
+ {
+  "id": "bio_gel_electrophoresis",
+  "title": "Gel electrophoresis",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_dna_structure"
+  ],
+  "summary": "Separating DNA, RNA or proteins by size.",
+  "layers": {
+   "basics": "An electric field pulls charged molecules through a gel; smaller pieces move faster, so fragments separate by size.",
+   "deeper": "DNA is stained (ethidium bromide or safer dyes) and compared to a ladder of known sizes. Agarose is used for DNA, polyacrylamide for proteins and small DNA.",
+   "expert": "Migration is roughly linear in log10 (size) over a range. Pulsed-field gels separate megabase DNA; capillary electrophoresis underlies automated sequencing."
+  },
+  "facts": [
+   [
+    "Typical agarose gel",
+    "0.7–2%"
+   ],
+   [
+    "Voltage",
+    "≈ 5–10 V/cm"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.1",
+    "17-1-biotechnology"
+   ],
+   [
+    "MIC",
+    "12.2",
+    "12-2-visualizing-and-characterizing-dna-rna-and-protein"
+   ]
+  ],
+  "kn": [
+   "crispr_biotech"
+  ],
+  "lab": {
+   "id": "molecule",
+   "preset": "gel_electrophoresis"
+  },
+  "where": "mol:bp_AT",
+  "ext": [
+   {
+    "title": "Wikipedia: Gel electrophoresis",
+    "url": "https://en.wikipedia.org/wiki/Gel_electrophoresis"
+   }
+  ]
+ },
+ {
+  "id": "bio_pcr",
+  "title": "Polymerase chain reaction (PCR)",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "pcr_process"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_replication_machinery",
+   "bio_enzyme_conditions"
+  ],
+  "summary": "Exponentially copying a chosen DNA region.",
+  "layers": {
+   "basics": "PCR uses heat cycles, short primers and a heat-stable DNA polymerase to make millions of copies of one DNA segment.",
+   "deeper": "Each cycle (denature ≈ 95 °C, anneal ≈ 55–65 °C, extend ≈ 72 °C) roughly doubles the target, so 30 cycles give ≈ 10⁹ copies. Kary Mullis devised it in 1983 (Nobel 1993).",
+   "expert": "Primer design (Tm, specificity), polymerase fidelity and inhibitors determine success. qPCR measures amplification in real time; RT-PCR starts from RNA; digital PCR counts single molecules."
+  },
+  "facts": [
+   [
+    "Copies after n cycles",
+    "2ⁿ"
+   ],
+   [
+    "Typical run",
+    "25–35 cycles, 1–2 h"
+   ]
+  ],
+  "formula": "N = N₀·2ⁿ",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.1",
+    "17-1-biotechnology"
+   ],
+   [
+    "MIC",
+    "12.2",
+    "12-2-visualizing-and-characterizing-dna-rna-and-protein"
+   ],
+   [
+    "ORG",
+    "28.8",
+    "28-8-the-polymerase-chain-reaction"
+   ]
+  ],
+  "kn": [
+   "crispr_biotech"
+  ],
+  "lab": {
+   "id": "molecule",
+   "preset": "pcr_amplification"
+  },
+  "where": "mol:bp_AT",
+  "ext": [
+   {
+    "title": "Wikipedia: Polymerase chain reaction",
+    "url": "https://en.wikipedia.org/wiki/Polymerase_chain_reaction"
+   }
+  ]
+ },
+ {
+  "id": "bio_restriction_cloning",
+  "title": "Restriction enzymes and DNA cloning",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_gel_electrophoresis"
+  ],
+  "summary": "Cutting and pasting DNA.",
+  "layers": {
+   "basics": "Restriction enzymes cut DNA at specific sequences; DNA ligase pastes fragments into a vector such as a plasmid.",
+   "deeper": "Cloned plasmids are put into bacteria (transformation), which copy the DNA as they grow. Antibiotic resistance genes help select the cells that took up the plasmid.",
+   "expert": "Type II enzymes recognise 4–8 bp palindromes and leave sticky or blunt ends. Modern cloning also uses Gibson assembly and Golden Gate. Blue–white screening uses lacZ to detect inserts."
+  },
+  "facts": [
+   [
+    "EcoRI site",
+    "GAATTC"
+   ],
+   [
+    "Typical plasmid size",
+    "≈ 3–10 kb"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.1",
+    "17-1-biotechnology"
+   ],
+   [
+    "MIC",
+    "12.1",
+    "12-1-microbes-and-the-tools-of-genetic-engineering"
+   ],
+   [
+    "COB",
+    "10.1",
+    "10-1-cloning-and-genetic-engineering"
+   ]
+  ],
+  "kn": [
+   "crispr_biotech"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_recombinant_expression",
+  "title": "Recombinant protein expression",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_restriction_cloning",
+   "bio_lac_operon"
+  ],
+  "summary": "Making proteins in host cells.",
+  "layers": {
+   "basics": "A gene is put into bacteria, yeast or other cells so they make a human or useful protein, such as insulin.",
+   "deeper": "Human insulin made in E. coli was approved in 1982. Systems include bacteria, yeast, insect and mammalian cells, chosen by folding and modification needs.",
+   "expert": "Expression is commonly driven by IPTG-inducible T7 promoters; inclusion bodies, codon bias and missing glycosylation are common problems. Therapeutic antibodies are produced in CHO cells."
+  },
+  "facts": [
+   [
+    "First recombinant drug",
+    "human insulin, 1982"
+   ],
+   [
+    "Common host",
+    "E. coli BL21"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.1",
+    "17-1-biotechnology"
+   ],
+   [
+    "MIC",
+    "12.1",
+    "12-1-microbes-and-the-tools-of-genetic-engineering"
+   ],
+   [
+    "COB",
+    "10.2",
+    "10-2-biotechnology-in-medicine-and-agriculture"
+   ]
+  ],
+  "kn": [
+   "crispr_biotech"
+  ],
+  "where": "mol:aa_gly"
+ },
+ {
+  "id": "bio_sanger_sequencing",
+  "title": "Sanger sequencing",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "sanger_ngs_sequencing_process"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_pcr"
+  ],
+  "summary": "Chain-termination DNA sequencing.",
+  "layers": {
+   "basics": "A polymerase copies DNA with a few chain-stopping bases that carry fluorescent tags. Fragments ending at each base are sorted by size to read the sequence.",
+   "deeper": "Reads are up to ≈ 800–1,000 bases with high accuracy (≈ 99.99%). It was used for the Human Genome Project and is still the gold standard for verifying clones.",
+   "expert": "Capillary arrays read 96 samples in parallel. Read-quality scores (Phred Q = −10 log₁₀P) quantify base-call confidence."
+  },
+  "facts": [
+   [
+    "Read length",
+    "≈ 800–1,000 bp"
+   ],
+   [
+    "Invented",
+    "Sanger, 1977"
+   ]
+  ],
+  "formula": "Q = −10·log₁₀(P_error)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "14.2",
+    "14-2-dna-structure-and-sequencing"
+   ],
+   [
+    "MIC",
+    "12.2",
+    "12-2-visualizing-and-characterizing-dna-rna-and-protein"
+   ],
+   [
+    "ORG",
+    "28.6",
+    "28-6-dna-sequencing"
+   ]
+  ],
+  "kn": [
+   "crispr_biotech"
+  ],
+  "where": "place:dna",
+  "ext": [
+   {
+    "title": "Wikipedia: Sanger sequencing",
+    "url": "https://en.wikipedia.org/wiki/Sanger_sequencing"
+   }
+  ]
+ },
+ {
+  "id": "bio_ngs",
+  "title": "Next-generation sequencing",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_sanger_sequencing"
+  ],
+  "summary": "Massively parallel DNA reading.",
+  "layers": {
+   "basics": "Instead of one fragment at a time, NGS reads millions to billions of short fragments simultaneously, typically 100–300 bases each.",
+   "deeper": "Illumina sequencing-by-synthesis images fluorescent bases added cycle by cycle. Sequencing a human genome fell from ≈ $3 billion (2003) to ≈ $200–600 now.",
+   "expert": "Coverage (reads per base, ≈ 30× for human WGS) determines variant-calling confidence. Long-read platforms (PacBio HiFi, Oxford Nanopore) give 10 kb–Mb reads that resolve repeats and structural variants."
+  },
+  "facts": [
+   [
+    "Human genome sequencing cost",
+    "≈ $200–600"
+   ],
+   [
+    "Standard coverage",
+    "≈ 30×"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.3",
+    "17-3-whole-genome-sequencing"
+   ]
+  ],
+  "kn": [
+   "crispr_biotech"
+  ],
+  "lab": {
+   "id": "molecule",
+   "preset": "ngs_library"
+  },
+  "where": "place:dna",
+  "ext": [
+   {
+    "title": "Wikipedia: DNA sequencing",
+    "url": "https://en.wikipedia.org/wiki/DNA_sequencing"
+   }
+  ]
+ },
+ {
+  "id": "bio_genome_assembly",
+  "title": "Genome assembly and annotation",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_ngs"
+  ],
+  "summary": "From reads to a genome and its genes.",
+  "layers": {
+   "basics": "Short reads are stitched into longer sequences (assembly) and genes and other features are marked (annotation).",
+   "deeper": "Repeats make assembly hard. The first complete human genome without gaps (T2T-CHM13) was published in 2022.",
+   "expert": "Assemblers use overlap or de Bruijn graphs; scaffolding uses Hi-C or optical maps. Annotation combines ab initio prediction, RNA-seq evidence and homology."
+  },
+  "facts": [
+   [
+    "Human genome size",
+    "≈ 3.1 Gb"
+   ],
+   [
+    "T2T-CHM13",
+    "2022"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.2",
+    "17-2-mapping-genomes"
+   ],
+   [
+    "BIO",
+    "17.3",
+    "17-3-whole-genome-sequencing"
+   ]
+  ],
+  "kn": [
+   "chromatin_genome"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_transcriptomics",
+  "title": "RNA-seq and transcriptomics",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_ngs",
+   "bio_rna_processing"
+  ],
+  "summary": "Measuring which genes are active.",
+  "layers": {
+   "basics": "RNA-seq counts RNA molecules to show which genes are expressed and how much, in a tissue or a single cell.",
+   "deeper": "Differential expression finds genes that change between conditions. Single-cell RNA-seq reveals cell types and states in a tissue.",
+   "expert": "Counts are normalised (TPM, DESeq2 size factors) and modelled with negative-binomial statistics. Multiple-testing correction (FDR) is essential when testing ≈ 20,000 genes."
+  },
+  "facts": [
+   [
+    "Genes tested",
+    "≈ 20,000"
+   ],
+   [
+    "Single-cell throughput",
+    "10⁴–10⁶ cells"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.5",
+    "17-5-genomics-and-proteomics"
+   ]
+  ],
+  "kn": [
+   "gene_regulation"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_proteomics_omics",
+  "title": "Proteomics, metabolomics and systems biology",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_transcriptomics",
+   "bio_protein_analysis"
+  ],
+  "summary": "Measuring whole sets of proteins and metabolites.",
+  "layers": {
+   "basics": "Proteomics and metabolomics identify and measure all proteins or small molecules in a sample, mostly using mass spectrometry.",
+   "deeper": "Combining omics layers with networks gives a systems view of a cell. Biomarker discovery and drug target studies use these methods.",
+   "expert": "Shotgun proteomics digests proteins and matches peptide spectra to databases; detection of ≈ 10,000 human proteins from one cell line is now routine. Dynamic range of plasma proteins spans ≈ 10 orders of magnitude."
+  },
+  "facts": [
+   [
+    "Human proteins (reviewed)",
+    "≈ 20,000"
+   ],
+   [
+    "Plasma protein dynamic range",
+    "≈ 10¹⁰"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.5",
+    "17-5-genomics-and-proteomics"
+   ]
+  ],
+  "kn": [
+   "networks_complexity"
+  ]
+ },
+ {
+  "id": "bio_crispr_cas9",
+  "title": "CRISPR–Cas9 genome editing",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "crispr_editing_process"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_dna_damage_repair",
+   "bio_noncoding_rna"
+  ],
+  "summary": "Programmable DNA cutting.",
+  "layers": {
+   "basics": "A guide RNA leads the Cas9 enzyme to a matching DNA sequence and cuts both strands. The cell's repair then disrupts or edits the gene.",
+   "deeper": "CRISPR began as a bacterial immune system against phages. Doudna and Charpentier turned it into a tool in 2012 (Nobel 2020). Casgevy (2023) is the first approved CRISPR therapy, for sickle-cell disease.",
+   "expert": "Cas9 needs an NGG PAM. Repair by NHEJ makes indels; HDR can insert a template. Off-target cuts, delivery and mosaicism are limits. Base editors and prime editors change bases without double-strand breaks."
+  },
+  "facts": [
+   [
+    "Guide RNA length",
+    "≈ 20 nt"
+   ],
+   [
+    "Nobel Prize",
+    "2020 (Doudna, Charpentier)"
+   ]
+  ],
+  "did_you_know": "The CRISPR repeats were first noticed in E. coli in 1987 and only decades later linked to bacterial immunity.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.1",
+    "17-1-biotechnology"
+   ],
+   [
+    "MIC",
+    "12.4",
+    "12-4-gene-therapy"
+   ],
+   [
+    "ORG",
+    "28.8",
+    "28-8-the-polymerase-chain-reaction"
+   ]
+  ],
+  "kn": [
+   "crispr_biotech"
+  ],
+  "where": "place:dna",
+  "ext": [
+   {
+    "title": "Wikipedia: CRISPR",
+    "url": "https://en.wikipedia.org/wiki/CRISPR"
+   }
+  ]
+ },
+ {
+  "id": "bio_gmo_transgenics",
+  "title": "GMOs and transgenic organisms",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_restriction_cloning"
+  ],
+  "summary": "Organisms with added or edited genes.",
+  "layers": {
+   "basics": "Genetically modified organisms carry genes from another species or edited genes. Examples include Bt corn and insulin-producing bacteria.",
+   "deeper": "Bt crops make a bacterial toxin that kills certain insect pests. Golden Rice is engineered to make beta-carotene. Regulators assess each product for safety and environmental risk.",
+   "expert": "Meta-analyses find approved GM foods are as safe to eat as conventional ones; environmental questions (gene flow, resistance evolution, herbicide use) are assessed case by case. Gene drives are a distinct, more contested technology."
+  },
+  "facts": [
+   [
+    "Share of US corn that is GM",
+    "≈ 90%"
+   ],
+   [
+    "First GM food approved",
+    "1994 (Flavr Savr)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.1",
+    "17-1-biotechnology"
+   ],
+   [
+    "COB",
+    "10.2",
+    "10-2-biotechnology-in-medicine-and-agriculture"
+   ]
+  ],
+  "kn": [
+   "crispr_biotech"
+  ],
+  "where": "place:soil"
+ },
+ {
+  "id": "bio_gene_therapy",
+  "title": "Gene therapy and genomic medicine",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_crispr_cas9",
+   "bio_gmo_transgenics"
+  ],
+  "summary": "Treating disease by changing genes.",
+  "layers": {
+   "basics": "Gene therapy delivers a working gene or edits a faulty one to treat disease. Viruses are the usual delivery vehicles.",
+   "deeper": "Approved examples include treatments for SMA, certain inherited blindness, haemophilia and sickle-cell disease. Prices can reach millions of dollars per patient.",
+   "expert": "AAV vectors have ≈ 4.7 kb capacity and trigger immune responses; lentiviral vectors integrate. Early trials revealed insertional mutagenesis and the 1999 Gelsinger death, shaping oversight."
+  },
+  "facts": [
+   [
+    "AAV cargo limit",
+    "≈ 4.7 kb"
+   ],
+   [
+    "First approved gene therapy (EU)",
+    "2012"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "12.4",
+    "12-4-gene-therapy"
+   ],
+   [
+    "BIO",
+    "17.4",
+    "17-4-applying-genomics"
+   ]
+  ],
+  "kn": [
+   "crispr_biotech"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_dna_fingerprinting_blotting",
+  "title": "DNA profiling and blotting",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_pcr",
+   "bio_gel_electrophoresis"
+  ],
+  "summary": "Identifying individuals and specific sequences.",
+  "layers": {
+   "basics": "DNA profiling compares short repeating sequences (STRs) that vary between people. Southern, northern and western blots detect specific DNA, RNA and proteins.",
+   "deeper": "Forensic profiles use 13–20 STR loci, giving random match probabilities below 1 in a billion. Paternity and identification cases use similar methods.",
+   "expert": "Match probabilities multiply allele frequencies across loci (product rule), with corrections for relatedness and population structure. Western blots use antibody detection after SDS-PAGE transfer."
+  },
+  "facts": [
+   [
+    "CODIS core loci",
+    "20"
+   ],
+   [
+    "Random match probability",
+    "< 1 in 10⁹ typical"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.1",
+    "17-1-biotechnology"
+   ],
+   [
+    "MIC",
+    "12.2",
+    "12-2-visualizing-and-characterizing-dna-rna-and-protein"
+   ]
+  ],
+  "kn": [
+   "bayes_stats"
+  ]
+ },
+ {
+  "id": "bio_sequence_alignment",
+  "title": "Sequence alignment",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_genetic_code"
+  ],
+  "summary": "Comparing sequences to find similarity.",
+  "layers": {
+   "basics": "Alignment lines up two or more DNA or protein sequences to show matches, mismatches and gaps.",
+   "deeper": "Similarity between sequences suggests common ancestry (homology). Algorithms score matches, mismatches and gap penalties; the best alignment has the highest score.",
+   "expert": "Needleman–Wunsch (global) and Smith–Waterman (local) dynamic programming are O(mn). Substitution matrices (BLOSUM62, PAM) capture amino-acid exchange. Multiple alignment (Clustal, MAFFT) underlies phylogenetics."
+  },
+  "facts": [
+   [
+    "Global algorithm",
+    "Needleman–Wunsch, 1970"
+   ],
+   [
+    "Standard protein matrix",
+    "BLOSUM62"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "20.2",
+    "20-2-determining-evolutionary-relationships"
+   ]
+  ],
+  "kn": [
+   "information_theory"
+  ],
+  "lab": {
+   "id": "molecule",
+   "preset": "sequence_alignment"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Sequence alignment",
+    "url": "https://en.wikipedia.org/wiki/Sequence_alignment"
+   }
+  ]
+ },
+ {
+  "id": "bio_blast_databases",
+  "title": "BLAST and biological databases",
+  "kind": "tool",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_sequence_alignment"
+  ],
+  "summary": "Searching for related sequences.",
+  "layers": {
+   "basics": "BLAST quickly searches huge databases for sequences similar to yours. Databases like GenBank, UniProt and the PDB store sequences and structures.",
+   "deeper": "The E-value says how many matches of that score you would expect by chance; smaller is more significant. Annotated databases link sequences to function.",
+   "expert": "BLAST uses seeds (words of ≈ 3 aa or 11 nt) extended into high-scoring pairs. GenBank holds > 10¹² bases; AlphaFold DB provides > 200 million predicted structures."
+  },
+  "facts": [
+   [
+    "Significant E-value",
+    "< 10⁻⁵ often used"
+   ],
+   [
+    "GenBank size",
+    "> 10¹² bases"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.5",
+    "17-5-genomics-and-proteomics"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "NCBI BLAST",
+    "url": "https://blast.ncbi.nlm.nih.gov/Blast.cgi"
+   },
+   {
+    "title": "UniProt",
+    "url": "https://www.uniprot.org/"
+   }
+  ],
+  "kn": [
+   "information_theory"
+  ]
+ },
+ {
+  "id": "bio_phylogenetic_methods",
+  "title": "Building phylogenetic trees from data",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_sequence_alignment"
+  ],
+  "summary": "Inferring evolutionary relationships.",
+  "layers": {
+   "basics": "Trees are built from aligned sequences by distance, parsimony, maximum-likelihood or Bayesian methods.",
+   "deeper": "Branch lengths show amount of change; bootstrap values (percent) show support. Rooting uses an outgroup.",
+   "expert": "ML and Bayesian approaches use substitution models (GTR, LG) and rate variation. Molecular clocks calibrated by fossils estimate divergence times. Horizontal gene transfer makes trees of genes differ from the species tree."
+  },
+  "facts": [
+   [
+    "Bootstrap \"good support\"",
+    "≥ 70–95%"
+   ],
+   [
+    "Number of rooted trees for n taxa",
+    "(2n−3)!!"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "20.2",
+    "20-2-determining-evolutionary-relationships"
+   ],
+   [
+    "COB",
+    "12.2",
+    "12-2-determining-evolutionary-relationships"
+   ]
+  ],
+  "kn": [
+   "common_descent"
+  ],
+  "lab": {
+   "id": "population",
+   "preset": "phylogeny_builder"
+  },
+  "where": "place:earth"
+ },
+ {
+  "id": "bio_comparative_human_genomics",
+  "title": "Comparative and human genomics",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_genome_assembly"
+  ],
+  "summary": "What genomes reveal when compared.",
+  "layers": {
+   "basics": "Comparing genomes shows shared genes between species and what makes each unique. Humans and chimpanzees differ by ≈ 1.2% in single-base changes.",
+   "deeper": "Humans have ≈ 20,000 protein-coding genes, similar to other mammals; most of the genome is regulatory or repetitive. The Human Genome Project (1990–2003) cost ≈ $2.7 billion.",
+   "expert": "Conserved noncoding elements flag functional regions. Human populations share ≈ 99.9% of their DNA; most variation lies within, not between, continental groups (≈ 85–90%)."
+  },
+  "facts": [
+   [
+    "Human–chimp difference",
+    "≈ 1.2% (SNVs)"
+   ],
+   [
+    "Variation within populations",
+    "≈ 85–90%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.2",
+    "17-2-mapping-genomes"
+   ],
+   [
+    "BIO",
+    "17.4",
+    "17-4-applying-genomics"
+   ]
+  ],
+  "kn": [
+   "chromatin_genome",
+   "human_evolution"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_metagenomics",
+  "title": "Metagenomics and environmental DNA",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genomics",
+  "parents": [
+   "bio_genomics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_ngs"
+  ],
+  "summary": "Sequencing whole communities.",
+  "layers": {
+   "basics": "Sequencing all DNA from a sample (soil, water, gut) reveals the microbes present without growing them.",
+   "deeper": "16S rRNA gene sequencing classifies bacteria; shotgun metagenomics adds functional genes. eDNA from water can detect rare animals.",
+   "expert": "Most microbial species have never been cultured (the \"great plate count anomaly\"); metagenome-assembled genomes expand the tree of life, including Asgard archaea and the CPR bacteria."
+  },
+  "facts": [
+   [
+    "Cultured share of microbes",
+    "≈ < 1–2% (many habitats)"
+   ],
+   [
+    "16S gene length",
+    "≈ 1.5 kb"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.5",
+    "17-5-genomics-and-proteomics"
+   ],
+   [
+    "MIC",
+    "12.3",
+    "12-3-whole-genome-methods-and-pharmaceutical-applications-of-genetic-engineering"
+   ]
+  ],
+  "kn": [
+   "bacteria_archaea"
+  ],
+  "where": "place:soil"
+ },
+ {
+  "id": "bio_microbiology",
+  "title": "Microbiology and virology",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [
+   "bio_bacterial_structure",
+   "bio_microbial_growth",
+   "bio_microbial_metabolism",
+   "bio_horizontal_gene_transfer",
+   "bio_bacterial_diversity",
+   "bio_archaea",
+   "bio_viruses_structure",
+   "bio_viral_life_cycles",
+   "bio_bacteriophages",
+   "bio_retroviruses_hiv",
+   "bio_viroids_prions",
+   "bio_emerging_viruses",
+   "bio_protists",
+   "bio_human_microbiome",
+   "bio_pathogenesis",
+   "bio_antibiotics",
+   "bio_antibiotic_resistance",
+   "bio_microbial_control",
+   "bio_biofilms_quorum"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Bacteria, archaea, protists, fungi and viruses, and how they affect us.",
+  "layers": {
+   "basics": "Microbes are the most numerous and diverse living things. Many are harmless or helpful, a few cause disease, and viruses are particles that replicate only inside cells.",
+   "deeper": "Bacteria and archaea show enormous metabolic variety, exchange genes horizontally and form communities such as biofilms and the human microbiome. Viruses are classified by their genomes and replication.",
+   "expert": "Microbial genetics, growth kinetics and ecology link to medicine and the environment: antibiotics, resistance, epidemiology, biogeochemical cycling and biotechnology all depend on them."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "bacteria_archaea",
+   "viruses"
+  ]
+ },
+ {
+  "id": "bio_bacterial_structure",
+  "title": "Bacterial cell structure",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_prokaryote_eukaryote",
+   "bio_cell_wall_ecm"
+  ],
+  "summary": "Wall, membrane, nucleoid and appendages.",
+  "layers": {
+   "basics": "Bacteria have a cell wall of peptidoglycan, a nucleoid region, ribosomes, and often flagella or pili.",
+   "deeper": "Gram-positive bacteria have a thick peptidoglycan layer; Gram-negative ones have a thin layer plus an outer membrane. This explains Gram stain results and antibiotic susceptibility.",
+   "expert": "The outer membrane carries lipopolysaccharide (endotoxin). Capsules, S-layers and endospores add protection; endospores of Bacillus can survive > 10⁵ years in some reports."
+  },
+  "facts": [
+   [
+    "Typical bacterial cell",
+    "0.5–5 µm"
+   ],
+   [
+    "Peptidoglycan thickness (Gram+)",
+    "≈ 20–80 nm"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "3.3",
+    "3-3-unique-characteristics-of-prokaryotic-cells"
+   ],
+   [
+    "BIO",
+    "22.2",
+    "22-2-structure-of-prokaryotes-bacteria-and-archaea"
+   ]
+  ],
+  "kn": [
+   "bacteria_archaea"
+  ],
+  "lab": {
+   "id": "microscope",
+   "preset": "gram_stain"
+  },
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_microbial_growth",
+  "title": "Microbial growth and culture",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_cytokinesis_prokaryotic_division"
+  ],
+  "summary": "Growth curves and culture media.",
+  "layers": {
+   "basics": "Bacteria grow exponentially in a lag, log, stationary and death-phase pattern. They are grown on media with nutrients like agar plates or broth.",
+   "deeper": "Growth depends on temperature, pH, oxygen and nutrients; organisms are classed as psychrophiles, mesophiles, thermophiles, aerobes, anaerobes and so on.",
+   "expert": "Exponential growth follows N = N₀·2^(t/g) with generation time g. Selective and differential media (MacConkey, blood agar) help identify species."
+  },
+  "facts": [
+   [
+    "Generation time E. coli",
+    "≈ 20 min"
+   ],
+   [
+    "Colony count",
+    "CFU/mL"
+   ]
+  ],
+  "formula": "N = N₀·2^(t/g)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "9.1",
+    "9-1-how-microbes-grow"
+   ],
+   [
+    "MIC",
+    "9.2",
+    "9-2-oxygen-requirements-for-microbial-growth"
+   ],
+   [
+    "MIC",
+    "9.4",
+    "9-4-temperature-and-microbial-growth"
+   ],
+   [
+    "MIC",
+    "9.6",
+    "9-6-media-used-for-bacterial-growth"
+   ]
+  ],
+  "kn": [
+   "population_dynamics"
+  ],
+  "lab": {
+   "id": "population",
+   "preset": "bacterial_growth"
+  },
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_microbial_metabolism",
+  "title": "Microbial metabolic diversity",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_metabolism_overview",
+   "bio_bacterial_structure"
+  ],
+  "summary": "Many ways to make a living.",
+  "layers": {
+   "basics": "Microbes get energy from light (phototrophs), organic molecules (heterotrophs) or inorganic chemicals (chemolithotrophs), and carbon from CO2 or organic matter.",
+   "deeper": "Anaerobic respiration uses alternatives to oxygen (nitrate, sulfate, CO2). Cyanobacteria invented oxygenic photosynthesis ≈ 2.4–3 billion years ago.",
+   "expert": "Nitrogen fixers (nitrogenase), methanogens, sulfate reducers and anammox bacteria drive global cycles. Electron donors and acceptors set energy yield via the redox tower."
+  },
+  "facts": [
+   [
+    "Oxygenic photosynthesis arose",
+    "≈ 2.4–3 Ga"
+   ],
+   [
+    "Methanogens",
+    "archaea only"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "8.3",
+    "8-3-cellular-respiration"
+   ],
+   [
+    "MIC",
+    "8.4",
+    "8-4-fermentation"
+   ],
+   [
+    "MIC",
+    "8.6",
+    "8-6-photosynthesis"
+   ],
+   [
+    "BIO",
+    "22.3",
+    "22-3-prokaryotic-metabolism"
+   ]
+  ],
+  "kn": [
+   "biogeochemical_cycles"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_horizontal_gene_transfer",
+  "title": "Bacterial genetics and horizontal gene transfer",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_bacterial_structure",
+   "bio_replication_machinery"
+  ],
+  "summary": "Swapping genes between cells.",
+  "layers": {
+   "basics": "Bacteria share genes by conjugation (plasmid transfer), transformation (taking up free DNA) and transduction (via phage).",
+   "deeper": "This spreads traits like antibiotic resistance among species. Griffith's 1928 mouse experiments revealed transformation.",
+   "expert": "Genomes of one species can differ by 10–30% in gene content (pan-genome). Integrons, transposons and plasmids (F, R) drive gene mobility; CRISPR provides adaptive defence."
+  },
+  "facts": [
+   [
+    "Griffith experiment",
+    "1928"
+   ],
+   [
+    "E. coli core genome",
+    "≈ 50% of pan-genome"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "11.6",
+    "11-6-how-asexual-prokaryotes-achieve-genetic-diversity"
+   ],
+   [
+    "BIO",
+    "22.2",
+    "22-2-structure-of-prokaryotes-bacteria-and-archaea"
+   ]
+  ],
+  "kn": [
+   "bacteria_archaea"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_bacterial_diversity",
+  "title": "Bacterial diversity and phyla",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_bacterial_structure"
+  ],
+  "summary": "Major groups of bacteria.",
+  "layers": {
+   "basics": "Notable groups include Proteobacteria (E. coli, Salmonella), Firmicutes (Bacillus, Streptococcus), Actinobacteria, Cyanobacteria and spirochetes.",
+   "deeper": "Different groups cause disease, fix nitrogen, make antibiotics (Streptomyces) or photosynthesise (cyanobacteria).",
+   "expert": "Culture-independent surveys revealed dozens of phyla, including Candidate Phyla Radiation bacteria with tiny genomes. Bacteria are probably 10⁹–10¹⁰ species; only ≈ 10⁴ are formally described."
+  },
+  "facts": [
+   [
+    "Estimated bacterial cells on Earth",
+    "≈ 10³⁰"
+   ],
+   [
+    "Formally named species",
+    "≈ 10⁴–10⁵"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "22.1",
+    "22-1-prokaryotic-diversity"
+   ],
+   [
+    "MIC",
+    "4.1",
+    "4-1-prokaryote-habitats-relationships-and-microbiomes"
+   ],
+   [
+    "MIC",
+    "4.2",
+    "4-2-proteobacteria"
+   ],
+   [
+    "MIC",
+    "4.4",
+    "4-4-gram-positive-bacteria"
+   ]
+  ],
+  "kn": [
+   "bacteria_archaea"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_archaea",
+  "title": "Archaea",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_bacterial_diversity"
+  ],
+  "summary": "The third domain of life.",
+  "layers": {
+   "basics": "Archaea look like bacteria but are genetically closer to eukaryotes. Many live in extreme places, though they also live in soil and oceans.",
+   "deeper": "Groups include methanogens, halophiles and thermophiles. They have ether-linked membrane lipids and no peptidoglycan.",
+   "expert": "Asgard archaea contain eukaryote-like proteins and are the closest known relatives of the eukaryotic host. Thermococcus and Pyrolobus can grow above 100 °C (record ≈ 122 °C)."
+  },
+  "facts": [
+   [
+    "Growth record",
+    "≈ 122 °C (Methanopyrus kandleri strain 116)"
+   ],
+   [
+    "Discovered as a domain",
+    "1977 (Woese)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "22.1",
+    "22-1-prokaryotic-diversity"
+   ],
+   [
+    "MIC",
+    "4.6",
+    "4-6-archaea"
+   ]
+  ],
+  "kn": [
+   "bacteria_archaea",
+   "luca"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_viruses_structure",
+  "title": "Viruses: structure and classification",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_cell_theory",
+   "bio_nucleotides"
+  ],
+  "summary": "Genetic material in a protein coat.",
+  "layers": {
+   "basics": "A virus is genetic material (DNA or RNA) in a protein shell (capsid), sometimes inside a lipid envelope. It can replicate only within a host cell.",
+   "deeper": "Shapes include helical, icosahedral and complex. Baltimore classification sorts viruses by genome type and mRNA production (seven classes).",
+   "expert": "Genomes range from ≈ 1.7 kb (circoviruses) to > 2.5 Mb (pandoraviruses). Whether viruses are alive and how they originated (virus-first, escape, reduction) is unsettled."
+  },
+  "facts": [
+   [
+    "Typical virion",
+    "≈ 20–300 nm"
+   ],
+   [
+    "Baltimore classes",
+    "7"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "The origin of viruses (before cells, escaped genes, or reduced cells) remains unresolved and may differ between groups."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "21.1",
+    "21-1-viral-evolution-morphology-and-classification"
+   ],
+   [
+    "MIC",
+    "6.1",
+    "6-1-viruses"
+   ]
+  ],
+  "kn": [
+   "viruses"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_viral_life_cycles",
+  "title": "Viral replication cycles",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "viral_replication_process"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_viruses_structure"
+  ],
+  "summary": "Attach, enter, replicate, assemble, exit.",
+  "layers": {
+   "basics": "A virus attaches to a host receptor, enters, hijacks the cell to copy itself, assembles new particles and leaves.",
+   "deeper": "Lytic viruses burst the cell; lysogenic viruses integrate their DNA and wait. Enveloped viruses bud from the membrane.",
+   "expert": "Burst sizes range from ≈ 10 to > 10⁵ particles per cell. Latency (herpesviruses), antigenic drift (influenza) and reassortment (flu pandemics) are key evolutionary features."
+  },
+  "facts": [
+   [
+    "Phage burst size",
+    "≈ 100–200"
+   ],
+   [
+    "Influenza genome",
+    "8 RNA segments"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "21.2",
+    "21-2-virus-infections-and-hosts"
+   ],
+   [
+    "MIC",
+    "6.2",
+    "6-2-the-viral-life-cycle"
+   ]
+  ],
+  "kn": [
+   "viruses"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_bacteriophages",
+  "title": "Bacteriophages",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_viral_life_cycles"
+  ],
+  "summary": "Viruses that infect bacteria.",
+  "layers": {
+   "basics": "Bacteriophages are the most abundant biological entities (≈ 10³¹ on Earth). They infect bacteria and can control bacterial populations.",
+   "deeper": "Phage T4 and λ were model systems that shaped molecular biology. Phage therapy is being revisited for resistant infections.",
+   "expert": "Phages shuttle genes (transduction), transfer toxins, and shape ocean carbon cycling by lysing ≈ 20% of marine bacteria daily. Phage display evolves binding proteins (Nobel 2018)."
+  },
+  "facts": [
+   [
+    "Phages on Earth",
+    "≈ 10³¹"
+   ],
+   [
+    "Ocean bacteria lysed/day",
+    "≈ 20%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "6.2",
+    "6-2-the-viral-life-cycle"
+   ],
+   [
+    "BIO",
+    "21.1",
+    "21-1-viral-evolution-morphology-and-classification"
+   ]
+  ],
+  "kn": [
+   "viruses",
+   "bacteria_archaea"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_retroviruses_hiv",
+  "title": "Retroviruses and HIV",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_viral_life_cycles",
+   "bio_central_dogma"
+  ],
+  "summary": "RNA viruses that write DNA.",
+  "layers": {
+   "basics": "Retroviruses like HIV copy their RNA genome into DNA and insert it into the host genome. HIV attacks CD4⁺ T cells and causes AIDS if untreated.",
+   "deeper": "Antiretroviral drugs target reverse transcriptase, protease and integrase; combination therapy makes HIV a manageable infection. About 39 million people live with HIV.",
+   "expert": "Reverse transcriptase is error-prone (≈ 10⁻⁴ per base) giving rapid evolution and drug resistance. Latent reservoirs in resting cells prevent cure; rare bone-marrow transplants have cured a few patients."
+  },
+  "facts": [
+   [
+    "People with HIV",
+    "≈ 39 million"
+   ],
+   [
+    "RT error rate",
+    "≈ 10⁻⁴ per base"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "21.2",
+    "21-2-virus-infections-and-hosts"
+   ],
+   [
+    "MIC",
+    "6.2",
+    "6-2-the-viral-life-cycle"
+   ],
+   [
+    "MIC",
+    "25.3",
+    "25-3-viral-infections-of-the-circulatory-and-lymphatic-systems"
+   ]
+  ],
+  "kn": [
+   "viruses"
+  ],
+  "where": "lymphocyte_t",
+  "ext": [
+   {
+    "title": "Wikipedia: HIV",
+    "url": "https://en.wikipedia.org/wiki/HIV"
+   }
+  ]
+ },
+ {
+  "id": "bio_viroids_prions",
+  "title": "Viroids and prions",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_viruses_structure",
+   "bio_protein_folding"
+  ],
+  "summary": "Smaller or simpler infectious agents.",
+  "layers": {
+   "basics": "Viroids are naked circular RNAs that infect plants. Prions are misfolded proteins that convert normal proteins into the misfolded form.",
+   "deeper": "Prion diseases include mad cow disease (BSE) and Creutzfeldt–Jakob disease. They are not destroyed by normal sterilisation.",
+   "expert": "PrP^Sc seeds conversion of PrP^C; strain diversity is encoded in conformations. Stanley Prusiner received the 1997 Nobel for prion research."
+  },
+  "facts": [
+   [
+    "Viroid size",
+    "≈ 250–400 nt"
+   ],
+   [
+    "Prusiner Nobel",
+    "1997"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "21.4",
+    "21-4-other-acellular-entities-prions-and-viroids"
+   ],
+   [
+    "MIC",
+    "6.4",
+    "6-4-viroids-virusoids-and-prions"
+   ]
+  ],
+  "kn": [
+   "viruses"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_emerging_viruses",
+  "title": "Emerging viruses and pandemics",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_viral_life_cycles"
+  ],
+  "summary": "Where new viral threats come from.",
+  "layers": {
+   "basics": "New viruses often jump from animals to people (zoonosis). Examples are HIV, influenza, Ebola and SARS-CoV-2.",
+   "deeper": "Mutation, reassortment and recombination give variants. Surveillance, vaccines and antivirals are the main responses.",
+   "expert": "R₀ and generation time drive spread; COVID-19 pandemic (2019–) caused > 7 million reported deaths. Origin investigations weigh zoonotic spillover against lab-related hypotheses; this remains debated for SARS-CoV-2."
+  },
+  "facts": [
+   [
+    "R₀ (measles)",
+    "≈ 12–18"
+   ],
+   [
+    "R₀ (seasonal flu)",
+    "≈ 1.3"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "The precise origin of SARS-CoV-2 has not been conclusively established."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "21.3",
+    "21-3-prevention-and-treatment-of-viral-infections"
+   ],
+   [
+    "MIC",
+    "16.4",
+    "16-4-global-public-health"
+   ]
+  ],
+  "kn": [
+   "viruses"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_protists",
+  "title": "Protists",
+  "kind": "organism",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_endosymbiosis"
+  ],
+  "summary": "Diverse eukaryotes that are not plants, animals or fungi.",
+  "layers": {
+   "basics": "Protists are mostly single-celled eukaryotes: amoebas, ciliates, algae, diatoms and parasites like Plasmodium.",
+   "deeper": "They include producers, predators and parasites. Diatoms and dinoflagellates are important marine photosynthesisers, and malaria kills ≈ 600,000 people a year.",
+   "expert": "Protists are polyphyletic; eukaryotic supergroups (Opisthokonta, Archaeplastida, SAR, Excavata, Amoebozoa) reflect phylogenomics. Secondary endosymbiosis shaped plastids of many algae."
+  },
+  "facts": [
+   [
+    "Malaria deaths",
+    "≈ 600,000/yr"
+   ],
+   [
+    "Diatom share of ocean productivity",
+    "≈ 20%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "23.2",
+    "23-2-characteristics-of-protists"
+   ],
+   [
+    "BIO",
+    "23.3",
+    "23-3-groups-of-protists"
+   ],
+   [
+    "BIO",
+    "23.4",
+    "23-4-ecology-of-protists"
+   ],
+   [
+    "MIC",
+    "5.1",
+    "5-1-unicellular-eukaryotic-parasites"
+   ],
+   [
+    "MIC",
+    "5.4",
+    "5-4-algae"
+   ]
+  ],
+  "kn": [
+   "cell_types"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_human_microbiome",
+  "title": "Human microbiome",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_bacterial_diversity"
+  ],
+  "summary": "Microbes living on and in us.",
+  "layers": {
+   "basics": "Trillions of microbes live in the gut, on the skin and elsewhere. Most are harmless or helpful, aiding digestion and training immunity.",
+   "deeper": "Gut bacteria make vitamins and short-chain fatty acids. Antibiotics, diet and early life shape the community; imbalance (dysbiosis) is linked with disease.",
+   "expert": "Human cells and bacteria are roughly 1:1 (≈ 3.8×10¹³ bacteria). Causation versus correlation in microbiome–disease links is still being tested, and fecal transplants are approved for recurrent C. difficile."
+  },
+  "facts": [
+   [
+    "Gut bacteria",
+    "≈ 4×10¹³ cells"
+   ],
+   [
+    "Microbial genes in gut",
+    "≈ 3 million"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Which microbiome–disease associations are causal (versus consequences) is still mostly unresolved."
+  ],
+  "refs": [
+   [
+    "MIC",
+    "21.1",
+    "21-1-anatomy-and-normal-microbiota-of-the-skin-and-eyes"
+   ],
+   [
+    "BIO",
+    "22.5",
+    "22-5-beneficial-prokaryotes"
+   ]
+  ],
+  "kn": [
+   "soil_biology"
+  ],
+  "where": "microbiome",
+  "ext": [
+   {
+    "title": "Wikipedia: Human microbiome",
+    "url": "https://en.wikipedia.org/wiki/Human_microbiome"
+   }
+  ]
+ },
+ {
+  "id": "bio_pathogenesis",
+  "title": "Pathogenesis and virulence",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_bacterial_structure",
+   "bio_emerging_viruses"
+  ],
+  "summary": "How microbes cause disease.",
+  "layers": {
+   "basics": "A pathogen must reach the host, attach, evade defences and damage tissue. Toxins, enzymes and capsules help.",
+   "deeper": "Exotoxins (cholera, botulinum) are proteins; endotoxin is LPS from Gram-negative walls. Koch's postulates link a microbe to a disease.",
+   "expert": "Virulence factors are often on pathogenicity islands or plasmids. ID50 (infectious dose) and LD50 quantify virulence; botulinum toxin is among the most lethal known (≈ 1 ng/kg)."
+  },
+  "facts": [
+   [
+    "Botulinum toxin lethal dose",
+    "≈ 1 ng/kg"
+   ],
+   [
+    "Koch's postulates",
+    "1884"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "15.1",
+    "15-1-characteristics-of-infectious-disease"
+   ],
+   [
+    "MIC",
+    "15.2",
+    "15-2-how-pathogens-cause-disease"
+   ],
+   [
+    "MIC",
+    "15.3",
+    "15-3-virulence-factors-of-bacterial-and-viral-pathogens"
+   ],
+   [
+    "MIC",
+    "15.4",
+    "15-4-virulence-factors-of-eukaryotic-pathogens"
+   ]
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_antibiotics",
+  "title": "Antibiotics: mechanisms and discovery",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_bacterial_structure",
+   "bio_trna_translation_machinery"
+  ],
+  "summary": "Drugs that kill or stop bacteria.",
+  "layers": {
+   "basics": "Antibiotics target bacterial structures absent from human cells: cell wall synthesis (penicillin), ribosomes, DNA gyrase or folate synthesis.",
+   "deeper": "Fleming discovered penicillin in 1928. Antibiotics do not work on viruses.",
+   "expert": "Selective toxicity depends on target differences (70S vs 80S ribosomes). Spectrum, MIC and pharmacokinetics guide use; many antibiotics derive from soil actinomycetes."
+  },
+  "facts": [
+   [
+    "Penicillin discovery",
+    "1928"
+   ],
+   [
+    "Targets",
+    "wall, ribosome, DNA gyrase, folate"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "14.2",
+    "14-2-fundamentals-of-antimicrobial-chemotherapy"
+   ],
+   [
+    "MIC",
+    "14.3",
+    "14-3-mechanisms-of-antibacterial-drugs"
+   ],
+   [
+    "MIC",
+    "14.4",
+    "14-4-mechanisms-of-other-antimicrobial-drugs"
+   ]
+  ],
+  "kn": [
+   "pharmacology"
+  ],
+  "where": "mol:penicillin_g",
+  "molecules": [
+   "penicillin_g",
+   "amoxicillin"
+  ]
+ },
+ {
+  "id": "bio_antibiotic_resistance",
+  "title": "Antibiotic resistance",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_antibiotics",
+   "bio_horizontal_gene_transfer",
+   "bio_drift_flow_selection_pop"
+  ],
+  "summary": "Evolution of resistant bacteria.",
+  "layers": {
+   "basics": "Bacteria evolve resistance when exposed to antibiotics. The sensitive ones die and the resistant ones multiply.",
+   "deeper": "Mechanisms: drug inactivation (β-lactamases), altered targets, efflux pumps and reduced uptake. Misuse in medicine and farming speeds resistance.",
+   "expert": "AMR was associated with ≈ 4.7 million deaths in 2021 (≈ 1.1 million directly attributable). MRSA, CRE and drug-resistant TB are priority threats; new classes are rare, so stewardship, phage therapy and diagnostics matter."
+  },
+  "facts": [
+   [
+    "Deaths linked to AMR (2021)",
+    "≈ 4.7 million"
+   ],
+   [
+    "New antibiotic classes since 1987",
+    "few"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "14.5",
+    "14-5-drug-resistance"
+   ],
+   [
+    "MIC",
+    "14.7",
+    "14-7-current-strategies-for-antimicrobial-discovery"
+   ]
+  ],
+  "kn": [
+   "natural_selection",
+   "pharmacology"
+  ],
+  "lab": {
+   "id": "population",
+   "preset": "antibiotic_resistance"
+  },
+  "where": "place:pond",
+  "ext": [
+   {
+    "title": "Wikipedia: Antimicrobial resistance",
+    "url": "https://en.wikipedia.org/wiki/Antimicrobial_resistance"
+   }
+  ]
+ },
+ {
+  "id": "bio_microbial_control",
+  "title": "Sterilisation, disinfection and aseptic control",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_microbial_growth"
+  ],
+  "summary": "Controlling microbial growth.",
+  "layers": {
+   "basics": "Heat, filtration, radiation and chemicals kill or remove microbes. Sterilisation kills all life; disinfection reduces pathogens.",
+   "deeper": "An autoclave uses steam at 121 °C and 15 psi for ≈ 15–20 minutes. Alcohol (70%) works better than 100% on many bacteria.",
+   "expert": "D-value and Z-value describe thermal death kinetics; endospores and prions need harsher treatment. Efficacy tests include the phenol coefficient and disk diffusion."
+  },
+  "facts": [
+   [
+    "Autoclave",
+    "121 °C, 15 psi, ≈ 15 min"
+   ],
+   [
+    "Pasteurisation (HTST)",
+    "72 °C, 15 s"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "13.1",
+    "13-1-controlling-microbial-growth"
+   ],
+   [
+    "MIC",
+    "13.2",
+    "13-2-using-physical-methods-to-control-microorganisms"
+   ],
+   [
+    "MIC",
+    "13.3",
+    "13-3-using-chemicals-to-control-microorganisms"
+   ]
+  ]
+ },
+ {
+  "id": "bio_biofilms_quorum",
+  "title": "Biofilms and quorum sensing",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_microbiology",
+  "parents": [
+   "bio_microbiology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_microbial_growth"
+  ],
+  "summary": "Microbial communities that talk.",
+  "layers": {
+   "basics": "Microbes stick to surfaces inside a slimy matrix (biofilm) and use chemical signals (quorum sensing) to coordinate when they are numerous.",
+   "deeper": "Biofilms on teeth (plaque) and catheters resist antibiotics and immune cells. Vibrio fischeri's glow in squid is the classic quorum example.",
+   "expert": "Biofilm cells can tolerate 10–1,000× higher antibiotic doses. Signals include AHLs (Gram-negatives) and peptides (Gram-positives)."
+  },
+  "facts": [
+   [
+    "Biofilm antibiotic tolerance",
+    "≈ 10–1000×"
+   ],
+   [
+    "Quorum signal",
+    "AHL / peptide"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "4.1",
+    "4-1-prokaryote-habitats-relationships-and-microbiomes"
+   ],
+   [
+    "BIO",
+    "22.5",
+    "22-5-beneficial-prokaryotes"
+   ]
+  ],
+  "where": "place:pond"
+ }
+]

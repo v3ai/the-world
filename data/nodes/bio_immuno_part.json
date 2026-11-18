@@ -1,0 +1,694 @@
+[
+ {
+  "id": "bio_immuno",
+  "title": "Immunology",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_immuno",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [
+   "bio_innate_immunity",
+   "bio_antigen_presentation_mhc",
+   "bio_t_cell_immunity",
+   "bio_b_cells_antibodies",
+   "bio_antibody_diversity",
+   "bio_immune_memory_clonal",
+   "bio_vaccines",
+   "bio_hypersensitivity_autoimmunity",
+   "bio_immunodeficiency_transplant",
+   "bio_cancer_immunotherapy",
+   "bio_immunoassays",
+   "bio_cytokines_chemokines",
+   "bio_hematopoiesis",
+   "bio_complement_system"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Innate and adaptive defences, antibodies, vaccines and disorders.",
+  "layers": {
+   "basics": "The immune system recognises and removes threats. Innate defences respond fast and generally; adaptive defences respond specifically and remember.",
+   "deeper": "Barriers, phagocytes and inflammation form the first response. B and T lymphocytes recognise specific antigens, make antibodies and kill infected cells, and memory cells give lasting protection after infection or vaccination.",
+   "expert": "Immune responses balance defence and tolerance. Failures cause allergy, autoimmunity or immunodeficiency; manipulating them underlies vaccines, transplants and cancer immunotherapy."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "immune_system"
+  ]
+ },
+ {
+  "id": "bio_innate_immunity",
+  "title": "Innate immunity: barriers, phagocytes and inflammation",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_immuno",
+  "parents": [
+   "bio_immuno"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "immune_response"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_pathogenesis"
+  ],
+  "summary": "The first line of defence.",
+  "layers": {
+   "basics": "Skin, mucus and acid block most invaders. Phagocytes (neutrophils, macrophages) engulf microbes and inflammation brings more cells.",
+   "deeper": "Complement proteins mark and kill microbes; interferons warn neighbouring cells about viruses; fever helps.",
+   "expert": "Pattern-recognition receptors (Toll-like receptors) detect PAMPs. NF-κB drives cytokine release; neutrophil extracellular traps catch microbes. Sepsis is a dysregulated systemic response."
+  },
+  "facts": [
+   [
+    "Neutrophils in blood",
+    "≈ 50–70% of leukocytes"
+   ],
+   [
+    "TLR family in humans",
+    "10 members"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "42.1",
+    "42-1-innate-immune-response"
+   ],
+   [
+    "MIC",
+    "17.1",
+    "17-1-physical-defenses"
+   ],
+   [
+    "MIC",
+    "17.3",
+    "17-3-cellular-defenses"
+   ],
+   [
+    "MIC",
+    "17.4",
+    "17-4-pathogen-recognition-and-phagocytosis"
+   ],
+   [
+    "MIC",
+    "17.5",
+    "17-5-inflammation-and-fever"
+   ],
+   [
+    "ANP",
+    "21.2",
+    "21-2-barrier-defenses-and-the-innate-immune-response"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ],
+  "where": "lymphatic_immune_system"
+ },
+ {
+  "id": "bio_antigen_presentation_mhc",
+  "title": "MHC and antigen presentation",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_immuno",
+  "parents": [
+   "bio_immuno"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_innate_immunity"
+  ],
+  "summary": "Showing fragments to T cells.",
+  "layers": {
+   "basics": "Cells display protein fragments on MHC molecules. T cells check these fragments to decide whether a cell is infected or foreign.",
+   "deeper": "MHC I (on all nucleated cells) presents to CD8⁺ cytotoxic T cells; MHC II (on dendritic cells, macrophages, B cells) presents to CD4⁺ helper T cells.",
+   "expert": "HLA genes are the most polymorphic in humans (> 30,000 alleles). Matching HLA is key for transplants. The thymus selects T cells that recognise self-MHC but not self-peptides."
+  },
+  "facts": [
+   [
+    "HLA alleles known",
+    "> 30,000"
+   ],
+   [
+    "Peptide length on MHC I",
+    "8–10 aa"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "18.2",
+    "18-2-major-histocompatibility-complexes-and-antigen-presenting-cells"
+   ],
+   [
+    "BIO",
+    "42.2",
+    "42-2-adaptive-immune-response"
+   ],
+   [
+    "ANP",
+    "21.3",
+    "21-3-the-adaptive-immune-response-t-lymphocytes-and-their-functional-types"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ],
+  "where": "macrophage"
+ },
+ {
+  "id": "bio_t_cell_immunity",
+  "title": "T cells and cellular immunity",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_immuno",
+  "parents": [
+   "bio_immuno"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_antigen_presentation_mhc"
+  ],
+  "summary": "Helper and killer T cells.",
+  "layers": {
+   "basics": "Helper T cells coordinate other immune cells; cytotoxic T cells kill infected or cancerous cells.",
+   "deeper": "Naive T cells activate in lymph nodes after meeting antigen with co-stimulation, then expand ≈ 10,000-fold.",
+   "expert": "T cell receptors are generated by V(D)J recombination (repertoire ≈ 10¹⁵ theoretically). Regulatory T cells enforce tolerance; checkpoint receptors (PD-1, CTLA-4) restrain responses."
+  },
+  "facts": [
+   [
+    "T cell clonal expansion",
+    "≈ 10⁴–10⁵ fold"
+   ],
+   [
+    "CD4 count healthy",
+    "≈ 500–1,500/µL"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "18.3",
+    "18-3-t-lymphocytes-and-cellular-immunity"
+   ],
+   [
+    "BIO",
+    "42.2",
+    "42-2-adaptive-immune-response"
+   ],
+   [
+    "ANP",
+    "21.3",
+    "21-3-the-adaptive-immune-response-t-lymphocytes-and-their-functional-types"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ],
+  "where": "lymphocyte_t"
+ },
+ {
+  "id": "bio_b_cells_antibodies",
+  "title": "B cells and antibodies",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_immuno",
+  "parents": [
+   "bio_immuno"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_antigen_presentation_mhc"
+  ],
+  "summary": "Producing specific antibodies.",
+  "layers": {
+   "basics": "B cells make antibodies that bind antigens, marking them for destruction or neutralising them.",
+   "deeper": "Antibody classes: IgM (first), IgG (most abundant), IgA (mucosal), IgE (allergy), IgD. Plasma cells secrete thousands of antibodies per second.",
+   "expert": "Antibodies are Y-shaped with two heavy and two light chains; variable regions give specificity. Somatic hypermutation and class switching refine responses in germinal centres; affinity often rises ≈ 10–1,000-fold."
+  },
+  "facts": [
+   [
+    "IgG half-life",
+    "≈ 21 days"
+   ],
+   [
+    "Antibodies per plasma cell",
+    "≈ 2,000/s"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "18.4",
+    "18-4-b-lymphocytes-and-humoral-immunity"
+   ],
+   [
+    "BIO",
+    "42.3",
+    "42-3-antibodies"
+   ],
+   [
+    "ANP",
+    "21.4",
+    "21-4-the-adaptive-immune-response-b-lymphocytes-and-antibodies"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ],
+  "where": "lymphocyte_b"
+ },
+ {
+  "id": "bio_antibody_diversity",
+  "title": "Antibody and receptor diversity (V(D)J)",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_immuno",
+  "parents": [
+   "bio_immuno"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_b_cells_antibodies",
+   "bio_recombination_transposons"
+  ],
+  "summary": "Generating a vast repertoire from few genes.",
+  "layers": {
+   "basics": "Gene segments are cut and pasted in developing lymphocytes to make a unique receptor in each cell.",
+   "deeper": "RAG1/2 enzymes drive the rearrangement. Junctional diversity and hypermutation add more variation.",
+   "expert": "The potential repertoire exceeds 10¹¹ antibodies. Tonegawa received the 1987 Nobel for explaining this. Immune repertoire sequencing now tracks clones during disease and vaccination."
+  },
+  "facts": [
+   [
+    "Possible antibody types",
+    "> 10¹¹"
+   ],
+   [
+    "Nobel",
+    "1987 (Tonegawa)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "42.3",
+    "42-3-antibodies"
+   ],
+   [
+    "MIC",
+    "18.1",
+    "18-1-overview-of-specific-adaptive-immunity"
+   ]
+  ],
+  "where": "lymphocyte_b"
+ },
+ {
+  "id": "bio_immune_memory_clonal",
+  "title": "Clonal selection and immune memory",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_immuno",
+  "parents": [
+   "bio_immuno"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_t_cell_immunity",
+   "bio_b_cells_antibodies"
+  ],
+  "summary": "Why second infections are milder.",
+  "layers": {
+   "basics": "When an antigen meets the matching lymphocyte it multiplies. After infection some cells remain as memory cells.",
+   "deeper": "Primary responses take ≈ 1–2 weeks; secondary responses peak in ≈ 2–3 days with far more antibody.",
+   "expert": "Burnet's clonal selection theory (1957) is a cornerstone of immunology. Memory B-cell and long-lived plasma cell pools can last decades; some antigens (influenza) drift and evade memory."
+  },
+  "facts": [
+   [
+    "Primary response peak",
+    "≈ 1–2 weeks"
+   ],
+   [
+    "Secondary response peak",
+    "≈ 2–3 days"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "42.2",
+    "42-2-adaptive-immune-response"
+   ],
+   [
+    "MIC",
+    "18.1",
+    "18-1-overview-of-specific-adaptive-immunity"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ],
+  "where": "lymph_nodes"
+ },
+ {
+  "id": "bio_vaccines",
+  "title": "Vaccines and herd immunity",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_immuno",
+  "parents": [
+   "bio_immuno"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "vaccine_immunity_process"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_immune_memory_clonal"
+  ],
+  "summary": "Training the immune system safely.",
+  "layers": {
+   "basics": "A vaccine shows the immune system a harmless form of a pathogen so it builds memory. Types include live-attenuated, inactivated, subunit and mRNA vaccines.",
+   "deeper": "Smallpox was eradicated in 1980 through vaccination. When enough people are immune (herd immunity threshold ≈ 1 − 1/R₀), outbreaks fade.",
+   "expert": "Adjuvants boost responses; mRNA-LNP vaccines encode antigens and were deployed in 2020–21 (Nobel 2023 for nucleoside modification). Vaccine effectiveness is evaluated by randomised trials and observational data; waning immunity and escape require boosters."
+  },
+  "facts": [
+   [
+    "Smallpox eradicated",
+    "1980"
+   ],
+   [
+    "Herd immunity threshold (measles)",
+    "≈ 92–95%"
+   ]
+  ],
+  "formula": "HIT = 1 − 1/R₀",
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "18.5",
+    "18-5-vaccines"
+   ],
+   [
+    "BIO",
+    "21.3",
+    "21-3-prevention-and-treatment-of-viral-infections"
+   ],
+   [
+    "ANP",
+    "21.5",
+    "21-5-the-immune-response-against-pathogens"
+   ]
+  ],
+  "kn": [
+   "vaccines_medicine"
+  ],
+  "where": "lymphatic_immune_system",
+  "ext": [
+   {
+    "title": "Wikipedia: Vaccine",
+    "url": "https://en.wikipedia.org/wiki/Vaccine"
+   }
+  ]
+ },
+ {
+  "id": "bio_hypersensitivity_autoimmunity",
+  "title": "Allergy and autoimmunity",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_immuno",
+  "parents": [
+   "bio_immuno"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_b_cells_antibodies"
+  ],
+  "summary": "Immune overreaction and self-attack.",
+  "layers": {
+   "basics": "Allergies are overreactions to harmless substances, driven by IgE. In autoimmune disease the body attacks its own tissues, as in type 1 diabetes and rheumatoid arthritis.",
+   "deeper": "Gell–Coombs types I–IV classify hypersensitivity. Anaphylaxis can be life threatening and is treated with adrenaline.",
+   "expert": "Autoimmune diseases affect ≈ 5–8% of people, mostly women. Triggers combine genes (HLA), infection and environment; molecular mimicry is one proposed mechanism."
+  },
+  "facts": [
+   [
+    "People with autoimmune disease",
+    "≈ 5–8%"
+   ],
+   [
+    "Peanut allergy prevalence",
+    "≈ 1–2% (children, US)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "42.4",
+    "42-4-disruptions-in-the-immune-system"
+   ],
+   [
+    "MIC",
+    "19.1",
+    "19-1-hypersensitivities"
+   ],
+   [
+    "MIC",
+    "19.2",
+    "19-2-autoimmune-disorders"
+   ],
+   [
+    "ANP",
+    "21.6",
+    "21-6-diseases-associated-with-depressed-or-overactive-immune-responses"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ],
+  "where": "lymphatic_immune_system"
+ },
+ {
+  "id": "bio_immunodeficiency_transplant",
+  "title": "Immunodeficiency, transplantation and tolerance",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_immuno",
+  "parents": [
+   "bio_immuno"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_t_cell_immunity"
+  ],
+  "summary": "Weak immunity and foreign tissue.",
+  "layers": {
+   "basics": "Immunodeficiency can be inherited or acquired (HIV). Transplants are rejected unless donors are matched and immune responses are suppressed.",
+   "deeper": "Tolerance means not attacking self. Immunosuppressive drugs like cyclosporine prevent rejection but raise infection risk.",
+   "expert": "SCID (\"bubble boy\") was the first target for gene therapy. Graft-versus-host disease occurs when donor T cells attack the recipient. Pregnancy involves unique fetal tolerance mechanisms."
+  },
+  "facts": [
+   [
+    "Kidney transplants (US)",
+    "≈ 25,000/yr"
+   ],
+   [
+    "Cyclosporine introduced",
+    "1983"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "19.3",
+    "19-3-organ-transplantation-and-rejection"
+   ],
+   [
+    "MIC",
+    "19.4",
+    "19-4-immunodeficiency"
+   ],
+   [
+    "ANP",
+    "21.7",
+    "21-7-transplantation-and-cancer-immunology"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ],
+  "where": "lymphatic_immune_system"
+ },
+ {
+  "id": "bio_cancer_immunotherapy",
+  "title": "Cancer and immunotherapy",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_immuno",
+  "parents": [
+   "bio_immuno"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_t_cell_immunity",
+   "bio_cancer_gene_regulation"
+  ],
+  "summary": "Using immunity against tumours.",
+  "layers": {
+   "basics": "Immunotherapy removes brakes on T cells (checkpoint inhibitors) or engineers T cells to attack tumours (CAR-T).",
+   "deeper": "Allison and Honjo won the 2018 Nobel for checkpoint blockade. Responses can be durable in some melanoma and lung cancer patients.",
+   "expert": "Response rates vary (≈ 20–40% in many tumours); biomarkers include PD-L1 and tumour mutational burden. Side effects include immune-related adverse events."
+  },
+  "facts": [
+   [
+    "Nobel",
+    "2018 (Allison, Honjo)"
+   ],
+   [
+    "CAR-T first approval",
+    "2017"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "19.5",
+    "19-5-cancer-immunobiology-and-immunotherapy"
+   ],
+   [
+    "ANP",
+    "21.7",
+    "21-7-transplantation-and-cancer-immunology"
+   ]
+  ],
+  "kn": [
+   "cancer_biology",
+   "immune_system"
+  ],
+  "where": "lymphocyte_t"
+ },
+ {
+  "id": "bio_immunoassays",
+  "title": "Immunoassays: ELISA and flow cytometry",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_immuno",
+  "parents": [
+   "bio_immuno"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_b_cells_antibodies"
+  ],
+  "summary": "Detecting antigens and antibodies.",
+  "layers": {
+   "basics": "ELISA uses an enzyme-linked antibody to produce a colour change that tells how much antigen is present.",
+   "deeper": "Lateral-flow tests (pregnancy, rapid antigen) use antibodies on a strip. Flow cytometry counts and sorts cells by fluorescent antibody labels.",
+   "expert": "Sandwich ELISA sensitivities reach ≈ pg/mL. Monoclonal antibodies (Köhler and Milstein, 1975) provide specificity. Controls and standard curves are essential for quantitation."
+  },
+  "facts": [
+   [
+    "ELISA sensitivity",
+    "≈ pg–ng/mL"
+   ],
+   [
+    "Monoclonal antibody invention",
+    "1975"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "20.1",
+    "20-1-polyclonal-and-monoclonal-antibody-production"
+   ],
+   [
+    "MIC",
+    "20.2",
+    "20-2-detecting-antigen-antibody-complexes"
+   ],
+   [
+    "MIC",
+    "20.4",
+    "20-4-eias-and-elisas"
+   ],
+   [
+    "MIC",
+    "20.5",
+    "20-5-fluorescent-antibody-techniques"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ]
+ }
+]

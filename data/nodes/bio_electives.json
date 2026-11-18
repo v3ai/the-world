@@ -1,0 +1,939 @@
+[
+ {
+  "id": "bio_electives",
+  "title": "Electives and frontiers",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [
+   "bio_marine_biology",
+   "bio_cancer_hallmarks",
+   "bio_pharmacology_adme",
+   "bio_toxicology",
+   "bio_epidemiology",
+   "bio_epidemic_modeling",
+   "bio_advanced_endocrinology",
+   "bio_virology_advanced",
+   "bio_bioinformatics_advanced",
+   "bio_conservation_genomics",
+   "bio_synthetic_biology",
+   "bio_astrobiology",
+   "bio_systems_biology_networks",
+   "bio_biophysics_elective",
+   "bio_microbial_ecology_elective",
+   "bio_bioethics_society"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Specialised topics that build on the core: marine, cancer, drugs, disease spread, synthetic biology and life beyond Earth.",
+  "layers": {
+   "basics": "Electives let you go deeper in an area you like: oceans, cancer, medicine, public health, engineering life or searching for it elsewhere.",
+   "deeper": "Each elective applies core ideas (evolution, cell biology, ecology, statistics) to a specialised problem, often with open scientific questions.",
+   "expert": "Frontier topics have partly settled and partly unsettled science, so uncertainty is flagged. Skills such as modelling, computing and ethics are as important as facts here."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "cancer_biology",
+   "pharmacology"
+  ]
+ },
+ {
+  "id": "bio_marine_biology",
+  "title": "Marine biology",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "bio_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_biomes",
+   "bio_osmoregulation"
+  ],
+  "summary": "Life in the ocean.",
+  "layers": {
+   "basics": "The ocean covers ≈ 71% of Earth and contains most of its living space. Plankton make about half of the world's oxygen-producing photosynthesis.",
+   "deeper": "Zones: intertidal, pelagic, benthic and deep sea. Coral reefs, kelp forests and hydrothermal vents host distinct communities.",
+   "expert": "Marine food webs are driven by phytoplankton (turnover days) and mesopelagic fish. Chemosynthetic symbioses at vents (tubeworms) were discovered in 1977. Overfishing, warming and acidification are key threats; ≈ 35% of fish stocks are overfished (FAO)."
+  },
+  "facts": [
+   [
+    "Ocean share of Earth",
+    "≈ 71%"
+   ],
+   [
+    "Overfished stocks (FAO)",
+    "≈ 35%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "44.4",
+    "44-4-aquatic-biomes"
+   ],
+   [
+    "BIO",
+    "23.4",
+    "23-4-ecology-of-protists"
+   ]
+  ],
+  "kn": [
+   "oceans_circulation",
+   "ocean_acidification"
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_cancer_hallmarks",
+  "title": "Cancer biology and hallmarks",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "bio_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_cancer_gene_regulation",
+   "bio_apoptosis"
+  ],
+  "summary": "How cells escape normal control.",
+  "layers": {
+   "basics": "Cancer is uncontrolled cell growth caused by accumulated gene changes. Tumours can invade tissues and spread (metastasis).",
+   "deeper": "Hallmarks include sustained proliferation, evading suppressors, resisting death, immortality, angiogenesis, invasion, altered metabolism and immune evasion.",
+   "expert": "Clonal evolution within a tumour drives drug resistance. Targeted therapies (imatinib for BCR-ABL, trastuzumab for HER2) and immunotherapy have improved outcomes. About 1 in 5 people develop cancer in a lifetime; ≈ 10 million deaths yearly worldwide."
+  },
+  "facts": [
+   [
+    "Global cancer deaths",
+    "≈ 10 million/yr"
+   ],
+   [
+    "Imatinib approval",
+    "2001"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "10.4",
+    "10-4-cancer-and-the-cell-cycle"
+   ],
+   [
+    "BIO",
+    "16.7",
+    "16-7-cancer-and-gene-regulation"
+   ]
+  ],
+  "kn": [
+   "cancer_biology"
+  ],
+  "where": "place:cell",
+  "ext": [
+   {
+    "title": "Wikipedia: Hallmarks of cancer",
+    "url": "https://en.wikipedia.org/wiki/Hallmarks_of_cancer"
+   }
+  ]
+ },
+ {
+  "id": "bio_pharmacology_adme",
+  "title": "Pharmacology: drug action and ADME",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "bio_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_enzyme_inhibition",
+   "bio_gpcr_signaling"
+  ],
+  "summary": "How drugs work and move in the body.",
+  "layers": {
+   "basics": "Drugs bind targets (receptors, enzymes, channels) and change their activity. The body absorbs, distributes, metabolises and excretes them (ADME).",
+   "deeper": "Dose–response curves give potency (EC₅₀) and efficacy. The liver's cytochrome P450 enzymes metabolise most drugs.",
+   "expert": "Half-life t½ = 0.693·Vd/CL determines dosing intervals. Drug–drug interactions via CYP3A4 are clinically important. Pharmacogenomics (e.g. CYP2C19 and clopidogrel) personalises therapy."
+  },
+  "facts": [
+   [
+    "Steady state reached after",
+    "≈ 5 half-lives"
+   ],
+   [
+    "Drug-metabolising enzyme family",
+    "CYP450"
+   ]
+  ],
+  "formula": "t½ = 0.693·Vd/CL",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "24.5",
+    "24-5-metabolic-states-of-the-body"
+   ]
+  ],
+  "kn": [
+   "pharmacology"
+  ],
+  "where": "mol:aspirin",
+  "molecules": [
+   "aspirin",
+   "paracetamol",
+   "ibuprofen",
+   "morphine",
+   "caffeine",
+   "metformin"
+  ]
+ },
+ {
+  "id": "bio_toxicology",
+  "title": "Toxicology and dose–response",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "bio_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_pharmacology_adme"
+  ],
+  "summary": "The dose makes the poison.",
+  "layers": {
+   "basics": "Substances are harmful above some dose. LD₅₀ is the dose that kills half of test animals; NOAEL is the highest dose with no observed harm.",
+   "deeper": "Paracelsus: \"the dose makes the poison\". Heavy metals, pesticides and drugs have different mechanisms and thresholds.",
+   "expert": "Some toxicants show hormesis (low-dose benefit) or non-monotonic dose responses. Regulators use safety factors (often 100×) from NOAEL to set reference doses. Bioaccumulation and biomagnification (DDT, mercury) raise exposure up the food web."
+  },
+  "facts": [
+   [
+    "Typical safety factor",
+    "≈ 100×"
+   ],
+   [
+    "DDT in top predators",
+    "biomagnified ≈ 10⁶×"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "CHE",
+    "21.6",
+    "21-6-biological-effects-of-radiation"
+   ]
+  ],
+  "kn": [
+   "pharmacology"
+  ],
+  "where": "mol:cisplatin",
+  "molecules": [
+   "cisplatin",
+   "nicotine",
+   "hydrogen_cyanide",
+   "carbon_monoxide"
+  ]
+ },
+ {
+  "id": "bio_epidemiology",
+  "title": "Epidemiology and study design",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "bio_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_pathogenesis",
+   "bio_hypothesis_testing"
+  ],
+  "summary": "Studying disease in populations.",
+  "layers": {
+   "basics": "Epidemiologists measure how often disease occurs and what raises or lowers risk. Key measures are incidence, prevalence and relative risk.",
+   "deeper": "Designs: cohort, case–control, cross-sectional and randomised trials. John Snow's 1854 Broad Street map linked cholera to a water pump.",
+   "expert": "Confounding, selection bias and measurement error threaten causal inference; Bradford Hill criteria and causal diagrams help. Relative risk RR = [a/(a+b)]/[c/(c+d)], odds ratio OR = ad/bc."
+  },
+  "facts": [
+   [
+    "Snow's cholera study",
+    "1854"
+   ],
+   [
+    "Relative risk",
+    "ratio of risks"
+   ]
+  ],
+  "formula": "OR = (a·d)/(b·c)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "16.1",
+    "16-1-the-language-of-epidemiologists"
+   ],
+   [
+    "MIC",
+    "16.2",
+    "16-2-tracking-infectious-diseases"
+   ],
+   [
+    "MIC",
+    "16.3",
+    "16-3-modes-of-disease-transmission"
+   ],
+   [
+    "MIC",
+    "16.4",
+    "16-4-global-public-health"
+   ]
+  ],
+  "kn": [
+   "medicine_evidence"
+  ]
+ },
+ {
+  "id": "bio_epidemic_modeling",
+  "title": "Epidemic modelling (SIR)",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "bio_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_epidemiology",
+   "bio_ode_models_biology"
+  ],
+  "summary": "Modelling outbreaks with equations.",
+  "layers": {
+   "basics": "The SIR model splits a population into susceptible, infected and recovered groups and tracks flows between them.",
+   "deeper": "An epidemic grows when R₀ > 1. Vaccination, distancing and treatment aim to bring the effective reproduction number R below 1.",
+   "expert": "dS/dt = −βSI/N, dI/dt = βSI/N − γI, dR/dt = γI; R₀ = β/γ. Final size solves ln(S∞/S₀) = R₀(S∞ − 1). Extensions: SEIR, age structure, networks and stochastic effects; parameter uncertainty is considerable."
+  },
+  "facts": [
+   [
+    "R₀",
+    "β/γ"
+   ],
+   [
+    "Herd immunity threshold",
+    "1 − 1/R₀"
+   ]
+  ],
+  "formula": "dI/dt = βSI/N − γI;  R₀ = β/γ",
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "16.1",
+    "16-1-the-language-of-epidemiologists"
+   ]
+  ],
+  "kn": [
+   "networks_complexity"
+  ],
+  "lab": {
+   "id": "population",
+   "preset": "sir_epidemic"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Compartmental models in epidemiology",
+    "url": "https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology"
+   }
+  ]
+ },
+ {
+  "id": "bio_advanced_endocrinology",
+  "title": "Endocrine disorders and hormone physiology",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "bio_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_endocrine_comparative",
+   "bio_metabolic_integration"
+  ],
+  "summary": "When hormone systems go wrong.",
+  "layers": {
+   "basics": "Diabetes, thyroid disease and Cushing's syndrome involve hormones out of balance. Many are treated by replacing or blocking hormones.",
+   "deeper": "Type 1 diabetes lacks insulin; type 2 has insulin resistance. Hypothyroidism slows metabolism; hyperthyroidism speeds it.",
+   "expert": "Hormone axes (HPA, HPT, HPG) use negative feedback; set-point dysregulation shows in lab ratios such as TSH/T4. Endocrine disruptors (BPA) are studied for low-dose effects; evidence is mixed and debated."
+  },
+  "facts": [
+   [
+    "Diabetes prevalence (adults, global)",
+    "≈ 10–11%"
+   ],
+   [
+    "Thyroid hormones",
+    "T3, T4"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "17.3",
+    "17-3-the-pituitary-gland-and-hypothalamus"
+   ],
+   [
+    "ANP",
+    "17.4",
+    "17-4-the-thyroid-gland"
+   ],
+   [
+    "ANP",
+    "17.9",
+    "17-9-the-endocrine-pancreas"
+   ]
+  ],
+  "kn": [
+   "endocrine_physiology"
+  ],
+  "where": "thyroid",
+  "molecules": [
+   "thyroxine",
+   "bisphenol_a",
+   "cortisol"
+  ]
+ },
+ {
+  "id": "bio_virology_advanced",
+  "title": "Advanced virology: antivirals and evolution",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "bio_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_retroviruses_hiv",
+   "bio_emerging_viruses"
+  ],
+  "summary": "Virus evolution and control.",
+  "layers": {
+   "basics": "Antivirals block steps of the viral cycle: entry, copying or release. RNA viruses mutate fast, so drugs and vaccines may need updating.",
+   "deeper": "Flu drifts every season (antigenic drift) and occasionally shifts by swapping gene segments (shift). Combination therapy limits resistance in HIV and hepatitis C (cure rates > 95%).",
+   "expert": "RNA virus mutation rates ≈ 10⁻⁶–10⁻⁴ per base per replication; error catastrophe limits viability. Deep mutational scanning maps escape. Viral metagenomics has revealed ≈ 10⁵ new viral species."
+  },
+  "facts": [
+   [
+    "RNA virus mutation rate",
+    "≈ 10⁻⁶–10⁻⁴ per base"
+   ],
+   [
+    "HCV cure rate",
+    "> 95%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "14.4",
+    "14-4-mechanisms-of-other-antimicrobial-drugs"
+   ],
+   [
+    "MIC",
+    "6.3",
+    "6-3-isolation-culture-and-identification-of-viruses"
+   ],
+   [
+    "BIO",
+    "21.3",
+    "21-3-prevention-and-treatment-of-viral-infections"
+   ]
+  ],
+  "kn": [
+   "viruses"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_bioinformatics_advanced",
+  "title": "Advanced bioinformatics and machine learning",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "bio_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_blast_databases",
+   "bio_bayesian_inference_bio",
+   "bio_transcriptomics"
+  ],
+  "summary": "Learning from large biological data.",
+  "layers": {
+   "basics": "Machine learning finds patterns in sequences, images and expression data. AlphaFold-type networks predict protein structure from sequence.",
+   "deeper": "Tools include clustering of single-cell data, variant-effect predictors and image segmentation of microscopy. Models need careful validation to avoid overfitting.",
+   "expert": "Protein language models learn evolutionary constraints from sequence alone. Pitfalls: data leakage, batch effects, ancestry bias and interpretability. AlphaFold 2 was recognised with the 2024 Nobel Prize in Chemistry."
+  },
+  "facts": [
+   [
+    "AlphaFold Nobel",
+    "2024 (Hassabis, Jumper, Baker)"
+   ],
+   [
+    "Single-cell atlases",
+    "millions of cells"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "DSC",
+    "1.1",
+    "1-1-what-is-data-science"
+   ]
+  ],
+  "kn": [
+   "neural_nets"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_conservation_genomics",
+  "title": "Conservation genetics and genomics",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "bio_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_inbreeding_conservation_genetics",
+   "bio_conservation_strategies",
+   "bio_ngs"
+  ],
+  "summary": "Using DNA to save species.",
+  "layers": {
+   "basics": "Genetic data show how diverse and how related individuals in small populations are, guiding breeding and relocation.",
+   "deeper": "Tools: microsatellites, SNP arrays, eDNA monitoring and genomic assessment of inbreeding. Genetic rescue helped Florida panthers.",
+   "expert": "The 50/500 rule (now 100/1,000) is a rough guide to minimum Ne for short- and long-term viability. Genomic load can be measured directly. De-extinction proposals (woolly mammoth, thylacine) are scientifically and ethically contested."
+  },
+  "facts": [
+   [
+    "Ne rule of thumb",
+    "100 (short), 1,000 (long term)"
+   ],
+   [
+    "Thylacine extinction",
+    "1936"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "47.4",
+    "47-4-preserving-biodiversity"
+   ]
+  ],
+  "kn": [
+   "biodiversity_conservation"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_synthetic_biology",
+  "title": "Synthetic biology",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "bio_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_lac_operon",
+   "bio_crispr_cas9"
+  ],
+  "summary": "Engineering organisms with designed parts.",
+  "layers": {
+   "basics": "Synthetic biologists design genetic circuits, pathways and even whole genomes using standard parts, and build them in cells.",
+   "deeper": "Examples: yeast making artemisinin precursor, engineered bacteria sensing molecules, and a minimal bacterial genome (JCVI-syn3.0, 473 genes). Biosecurity and ethics need attention.",
+   "expert": "Design–build–test–learn cycles are accelerated by DNA synthesis and automation. Genetic toggle switch (2000) and repressilator (2000) were early circuits. Orthogonal ribosomes and expanded genetic alphabets (unnatural base pairs) extend the code."
+  },
+  "facts": [
+   [
+    "JCVI-syn3.0 genes",
+    "473"
+   ],
+   [
+    "Repressilator",
+    "2000 (Elowitz, Leibler)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "12.1",
+    "12-1-microbes-and-the-tools-of-genetic-engineering"
+   ],
+   [
+    "MIC",
+    "12.4",
+    "12-4-gene-therapy"
+   ]
+  ],
+  "kn": [
+   "crispr_biotech",
+   "evolution_algorithm"
+  ],
+  "lab": {
+   "id": "molecule",
+   "preset": "genetic_circuit"
+  },
+  "where": "place:pond",
+  "ext": [
+   {
+    "title": "Wikipedia: Synthetic biology",
+    "url": "https://en.wikipedia.org/wiki/Synthetic_biology"
+   }
+  ]
+ },
+ {
+  "id": "bio_astrobiology",
+  "title": "Astrobiology and the search for life",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "bio_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_origin_of_life",
+   "bio_microbial_metabolism"
+  ],
+  "summary": "Life beyond Earth.",
+  "layers": {
+   "basics": "Astrobiology asks where life might exist elsewhere. Targets include Mars, Europa and Enceladus and planets orbiting other stars.",
+   "deeper": "Habitable zones are where water could be liquid. Biosignatures include oxygen with methane, or organic patterns in rocks.",
+   "expert": "No confirmed extraterrestrial life exists. Perseverance is collecting Mars samples; the 1996 Martian meteorite ALH84001 claim and the 2020 Venus phosphine claim remain unconfirmed or disputed. Extremophile limits (e.g., ≈ 122 °C, pH 0, high radiation) widen possible habitats."
+  },
+  "facts": [
+   [
+    "Confirmed alien life",
+    "none"
+   ],
+   [
+    "Confirmed exoplanets",
+    "> 5,500"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "Whether life exists or ever existed beyond Earth is unknown.",
+   "How to reliably distinguish biosignatures from abiotic false positives is unresolved."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "20.3",
+    "20-3-perspectives-on-the-phylogenetic-tree"
+   ]
+  ],
+  "kn": [
+   "habitability",
+   "exoplanets",
+   "origin_of_life"
+  ],
+  "where": "place:earth",
+  "ext": [
+   {
+    "title": "Wikipedia: Astrobiology",
+    "url": "https://en.wikipedia.org/wiki/Astrobiology"
+   }
+  ]
+ },
+ {
+  "id": "bio_systems_biology_networks",
+  "title": "Systems biology and biological networks",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "bio_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_ode_models_biology",
+   "bio_proteomics_omics"
+  ],
+  "summary": "Cells as networks.",
+  "layers": {
+   "basics": "Systems biology studies how many parts interact to produce cell behaviour. Networks of genes, proteins and metabolites are mapped and modelled.",
+   "deeper": "Network motifs (feedback, feed-forward loops) give circuits functions like switching, oscillation and noise filtering.",
+   "expert": "Flux balance analysis predicts metabolic flows from stoichiometry. Gene-expression noise is both a nuisance and a feature (bet-hedging in bacteria). Scale-free claims for networks are controversial."
+  },
+  "facts": [
+   [
+    "E. coli metabolic model",
+    "≈ 2,700 reactions"
+   ],
+   [
+    "Network motif example",
+    "feed-forward loop"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.5",
+    "17-5-genomics-and-proteomics"
+   ]
+  ],
+  "kn": [
+   "networks_complexity"
+  ],
+  "lab": {
+   "id": "molecule",
+   "preset": "network_motifs"
+  }
+ },
+ {
+  "id": "bio_biophysics_elective",
+  "title": "Biophysics of cells and molecules",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "bio_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_thermo_laws",
+   "bio_active_transport"
+  ],
+  "summary": "Physics applied to living matter.",
+  "layers": {
+   "basics": "Biophysics uses physical laws to explain life: diffusion in cells, forces from motor proteins, and electrical signals in nerves.",
+   "deeper": "Single-molecule techniques (optical tweezers, AFM) measure forces of ≈ 1–100 pN. Motor proteins like kinesin work near thermal-noise limits.",
+   "expert": "At low Reynolds number (Re ≈ 10⁻⁵ for bacteria), inertia is negligible; flagella use non-reciprocal motion. Thermal energy kBT ≈ 4.1 pN·nm sets the scale of molecular events."
+  },
+  "facts": [
+   [
+    "kBT at 25 °C",
+    "≈ 4.1 pN·nm"
+   ],
+   [
+    "Kinesin stall force",
+    "≈ 6 pN"
+   ]
+  ],
+  "formula": "kBT ≈ 4.1 pN·nm",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP1",
+    "1.1",
+    "1-1-the-scope-and-scale-of-physics"
+   ]
+  ],
+  "kn": [
+   "statistical_mechanics",
+   "soft_matter"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_microbial_ecology_elective",
+  "title": "Microbial ecology and biogeochemistry",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "bio_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_microbial_metabolism",
+   "bio_biogeochemical_cycles_concept",
+   "bio_metagenomics"
+  ],
+  "summary": "Microbes running the planet's chemistry.",
+  "layers": {
+   "basics": "Microbes drive the carbon, nitrogen and sulfur cycles. In soil and oceans they decompose, fix nitrogen and produce or consume greenhouse gases.",
+   "deeper": "Nitrification, denitrification and anammox shape the nitrogen budget; methanogens and methanotrophs control methane.",
+   "expert": "Marine Prochlorococcus (≈ 10²⁷ cells) is the most abundant photosynthesiser. Microbial loop and viral shunt shape ocean carbon export. Soil microbial carbon-use efficiency is a key uncertain parameter in climate models."
+  },
+  "facts": [
+   [
+    "Prochlorococcus cells",
+    "≈ 3×10²⁷"
+   ],
+   [
+    "Marine microbes share of ocean respiration",
+    "≈ 70–90%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "MIC",
+    "8.7",
+    "8-7-biogeochemical-cycles"
+   ],
+   [
+    "BIO",
+    "22.3",
+    "22-3-prokaryotic-metabolism"
+   ]
+  ],
+  "kn": [
+   "biogeochemical_cycles",
+   "soil_biology"
+  ],
+  "where": "place:soil"
+ },
+ {
+  "id": "bio_bioethics_society",
+  "title": "Bioethics and biology in society",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_electives",
+  "parents": [
+   "bio_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_research_ethics",
+   "bio_gene_therapy"
+  ],
+  "summary": "Questions technology raises.",
+  "layers": {
+   "basics": "Biology raises ethical questions: gene editing of embryos, GMOs, privacy of genetic data, animal use and access to treatments.",
+   "deeper": "The 2018 birth of CRISPR-edited babies in China was widely condemned. Ethical frameworks weigh autonomy, beneficence, non-maleficence and justice.",
+   "expert": "Policy responds through oversight bodies, international summits and law (GINA in the US). Equity of benefit, dual-use risks and public engagement are active governance areas, and views legitimately differ."
+  },
+  "facts": [
+   [
+    "CRISPR babies announced",
+    "2018 (He Jiankui)"
+   ],
+   [
+    "GINA enacted",
+    "2008"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BET",
+    "1.1",
+    "1-1-being-a-professional-of-integrity"
+   ]
+  ],
+  "kn": [
+   "medicine_evidence"
+  ]
+ }
+]

@@ -1,0 +1,1633 @@
+[
+ {
+  "id": "bio_animal_phys",
+  "title": "Animal physiology",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [
+   "bio_animal_form_scaling",
+   "bio_energy_budgets_nutrition",
+   "bio_comparative_digestion",
+   "bio_comparative_circulation",
+   "bio_comparative_respiration",
+   "bio_oxygen_transport_diving",
+   "bio_osmoregulation",
+   "bio_excretion_nitrogen",
+   "bio_thermoregulation_animals",
+   "bio_locomotion_skeletons",
+   "bio_endocrine_comparative",
+   "bio_reproduction_strategies",
+   "bio_countercurrent_exchange",
+   "bio_acid_base_physiology",
+   "bio_blood_pressure_control",
+   "bio_exercise_physiology",
+   "bio_torpor_hibernation"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "How animal bodies work, compared across species.",
+  "layers": {
+   "basics": "Animals solve the same problems in different ways: getting energy and oxygen, moving fluids, balancing water and salts, controlling temperature and coordinating organs.",
+   "deeper": "Human organ systems are one example of a general plan; comparisons across fish, insects, birds and mammals show how physical constraints and evolution shape solutions.",
+   "expert": "Physiological scaling (Kleiber's law), countercurrent exchange and feedback control recur from kidneys to gills to heat exchangers, linking physiology to physics and evolution."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "homeostasis"
+  ]
+ },
+ {
+  "id": "bio_animal_form_scaling",
+  "title": "Animal form, size and scaling",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_homeostasis_concept",
+   "bio_cell_size_limits"
+  ],
+  "summary": "Body size shapes physiology.",
+  "layers": {
+   "basics": "Bigger animals have lower surface-area-to-volume ratios, so they lose less heat per gram and need special structures for exchange.",
+   "deeper": "Metabolic rate rises with mass, but less than proportionally: a shrew burns far more energy per gram than an elephant.",
+   "expert": "Kleiber's law: BMR ∝ M^0.75. The origin of the 3/4 exponent (fractal supply networks vs other models) is debated. Heart rate scales ≈ M^−0.25, so most mammals have ≈ 10⁹ lifetime heartbeats."
+  },
+  "facts": [
+   [
+    "Kleiber exponent",
+    "≈ 0.75"
+   ],
+   [
+    "Shrew heart rate",
+    "≈ 800–1,000 bpm"
+   ]
+  ],
+  "formula": "B ∝ M^(3/4)",
+  "certainty": "C2",
+  "open_questions": [
+   "The mechanistic origin and universality of the 3/4 exponent are still debated."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "33.1",
+    "33-1-animal-form-and-function"
+   ],
+   [
+    "BIO",
+    "33.3",
+    "33-3-homeostasis"
+   ]
+  ],
+  "kn": [
+   "dimensional_scaling"
+  ],
+  "where": "human_body"
+ },
+ {
+  "id": "bio_energy_budgets_nutrition",
+  "title": "Nutrition and energy budgets",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_metabolic_integration"
+  ],
+  "summary": "Intake, expenditure and storage.",
+  "layers": {
+   "basics": "Animals get energy from food: carbohydrates, fats and proteins, and need vitamins, minerals and water.",
+   "deeper": "Basal metabolic rate is the minimum energy at rest. Ectotherms use ≈ 10× less energy than endotherms of the same size.",
+   "expert": "Respiratory quotient (CO₂/O₂) is ≈ 1.0 for carbohydrate, ≈ 0.7 for fat. Energy balance relates intake, work, heat and storage. Obesity and undernutrition are major public-health issues."
+  },
+  "facts": [
+   [
+    "RQ carbohydrate / fat",
+    "≈ 1.0 / 0.7"
+   ],
+   [
+    "Human BMR",
+    "≈ 1,400–1,800 kcal/day"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "34.2",
+    "34-2-nutrition-and-energy-production"
+   ],
+   [
+    "ANP",
+    "24.6",
+    "24-6-energy-and-heat-balance"
+   ],
+   [
+    "ANP",
+    "24.7",
+    "24-7-nutrition-and-diet"
+   ]
+  ],
+  "where": "human_body"
+ },
+ {
+  "id": "bio_comparative_digestion",
+  "title": "Comparative digestive systems",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_energy_budgets_nutrition"
+  ],
+  "summary": "Digestion across animals.",
+  "layers": {
+   "basics": "Animals have sac-like or tube-like guts. Herbivores have long guts or fermentation chambers, carnivores shorter ones.",
+   "deeper": "Ruminants (cows) ferment plant material in a rumen with microbes. Birds use a muscular gizzard with grit in place of teeth.",
+   "expert": "Hindgut fermenters (horses, rabbits) differ from foregut fermenters; microbial fermentation yields short-chain fatty acids that supply ≈ 60–70% of a cow's energy."
+  },
+  "facts": [
+   [
+    "Ruminant energy from SCFAs",
+    "≈ 60–70%"
+   ],
+   [
+    "Cow stomach chambers",
+    "4"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "34.1",
+    "34-1-digestive-systems"
+   ],
+   [
+    "BIO",
+    "34.3",
+    "34-3-digestive-system-processes"
+   ],
+   [
+    "COB",
+    "16.2",
+    "16-2-digestive-system"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ],
+  "where": "digestive_system"
+ },
+ {
+  "id": "bio_comparative_circulation",
+  "title": "Comparative circulation",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_animal_form_scaling"
+  ],
+  "summary": "Open, closed, single and double circuits.",
+  "layers": {
+   "basics": "Insects have open circulation; fish have a single circuit with a two-chambered heart; birds and mammals have two circuits with a four-chambered heart.",
+   "deeper": "Double circulation keeps oxygenated and deoxygenated blood separate and allows high pressure systemic flow, supporting endothermy.",
+   "expert": "Amphibian and reptile three-chambered hearts allow shunting; crocodilians have a four-chambered heart with a foramen of Panizza. Blood pressure scales little with body size, except in giraffes (≈ 250 mmHg at heart level)."
+  },
+  "facts": [
+   [
+    "Fish heart chambers",
+    "2"
+   ],
+   [
+    "Bird and mammal heart chambers",
+    "4"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "40.1",
+    "40-1-overview-of-the-circulatory-system"
+   ],
+   [
+    "BIO",
+    "40.3",
+    "40-3-mammalian-heart-and-blood-vessels"
+   ],
+   [
+    "COB",
+    "16.3",
+    "16-3-circulatory-and-respiratory-systems"
+   ]
+  ],
+  "kn": [
+   "blood_circulation"
+  ],
+  "where": "heart"
+ },
+ {
+  "id": "bio_comparative_respiration",
+  "title": "Gas exchange across animals",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_comparative_circulation"
+  ],
+  "summary": "Skin, gills, tracheae and lungs.",
+  "layers": {
+   "basics": "Small animals exchange gases through the skin. Fish use gills, insects use tracheal tubes and vertebrates on land use lungs.",
+   "deeper": "Fish gills use countercurrent flow to extract up to ≈ 80% of O₂ from water. Bird lungs have one-way airflow through air sacs, giving them an advantage at altitude.",
+   "expert": "Water holds ≈ 30× less O₂ than air and is 800× denser and ≈ 50× more viscous. Fick's law sets diffusion limits: rate ∝ area × ΔP / thickness."
+  },
+  "facts": [
+   [
+    "O₂ capacity of water vs air",
+    "≈ 1/30 per litre"
+   ],
+   [
+    "Fish gill extraction",
+    "up to ≈ 80%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "39.1",
+    "39-1-systems-of-gas-exchange"
+   ],
+   [
+    "BIO",
+    "39.2",
+    "39-2-gas-exchange-across-respiratory-surfaces"
+   ],
+   [
+    "BIO",
+    "39.3",
+    "39-3-breathing"
+   ]
+  ],
+  "kn": [
+   "respiratory_physiology"
+  ],
+  "where": "respiratory_system"
+ },
+ {
+  "id": "bio_oxygen_transport_diving",
+  "title": "Oxygen binding, myoglobin and diving",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_hemoglobin_cooperativity",
+   "bio_comparative_respiration"
+  ],
+  "summary": "Oxygen carriers and extreme adaptations.",
+  "layers": {
+   "basics": "Myoglobin stores oxygen in muscle. Diving mammals have high myoglobin, large blood volume and slow their heart rate.",
+   "deeper": "Elephant seals dive > 1 h; sperm whales over 2 h. Bar-headed geese fly over the Himalayas with hemoglobin of high O₂ affinity.",
+   "expert": "Myoglobin has a hyperbolic binding curve with P₅₀ ≈ 2.8 mmHg, versus Hb ≈ 26 mmHg. Antarctic icefish have no hemoglobin at all, relying on dissolved O₂ in cold water."
+  },
+  "facts": [
+   [
+    "Myoglobin P₅₀",
+    "≈ 2.8 mmHg"
+   ],
+   [
+    "Hb P₅₀",
+    "≈ 26 mmHg"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "39.4",
+    "39-4-transport-of-gases-in-human-bodily-fluids"
+   ],
+   [
+    "ANP",
+    "22.5",
+    "22-5-transport-of-gases"
+   ]
+  ],
+  "kn": [
+   "heme_oxygen"
+  ],
+  "where": "mol:heme_b"
+ },
+ {
+  "id": "bio_osmoregulation",
+  "title": "Osmoregulation across animals",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_diffusion_osmosis",
+   "bio_comparative_circulation"
+  ],
+  "summary": "Balancing water and salt.",
+  "layers": {
+   "basics": "Marine fish lose water and drink seawater; freshwater fish gain water and make dilute urine. Osmoconformers match their surroundings, osmoregulators do not.",
+   "deeper": "Salt glands, gills and kidneys excrete excess salts. Desert mammals make very concentrated urine.",
+   "expert": "Kangaroo rat urine reaches ≈ 5,000 mOsm/L (human max ≈ 1,200). Sharks retain urea and TMAO to equal seawater osmolarity (≈ 1,000 mOsm/L)."
+  },
+  "facts": [
+   [
+    "Kangaroo rat urine",
+    "≈ 5,000 mOsm/L"
+   ],
+   [
+    "Human max urine",
+    "≈ 1,200 mOsm/L"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "41.1",
+    "41-1-osmoregulation-and-osmotic-balance"
+   ],
+   [
+    "BIO",
+    "41.2",
+    "41-2-the-kidneys-and-osmoregulatory-organs"
+   ],
+   [
+    "COB",
+    "16.1",
+    "16-1-homeostasis-and-osmoregulation"
+   ]
+  ],
+  "kn": [
+   "digestion_renal",
+   "homeostasis"
+  ],
+  "where": "kidney_l"
+ },
+ {
+  "id": "bio_excretion_nitrogen",
+  "title": "Excretory systems and nitrogenous wastes",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_osmoregulation",
+   "bio_amino_acid_catabolism"
+  ],
+  "summary": "Disposing of waste.",
+  "layers": {
+   "basics": "Flatworms use protonephridia, insects Malpighian tubules and vertebrates kidneys. Wastes are ammonia, urea or uric acid.",
+   "deeper": "Ammonia is toxic but water-hungry to excrete; uric acid is nearly dry. The choice reflects the habitat and egg-laying style.",
+   "expert": "The vertebrate nephron filters ≈ 180 L plasma per day, reabsorbing > 99%. Countercurrent multiplication in the loop of Henle builds the medullary gradient."
+  },
+  "facts": [
+   [
+    "GFR (human)",
+    "≈ 125 mL/min"
+   ],
+   [
+    "Waste of birds",
+    "uric acid"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "41.3",
+    "41-3-excretion-systems"
+   ],
+   [
+    "BIO",
+    "41.4",
+    "41-4-nitrogenous-wastes"
+   ],
+   [
+    "ANP",
+    "25.5",
+    "25-5-physiology-of-urine-formation"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ],
+  "where": "nephron"
+ },
+ {
+  "id": "bio_thermoregulation_animals",
+  "title": "Thermoregulation: ectotherms and endotherms",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "thermoregulation"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_homeostasis_concept",
+   "bio_energy_budgets_nutrition"
+  ],
+  "summary": "Keeping body temperature in range.",
+  "layers": {
+   "basics": "Endotherms (birds, mammals) make heat internally; ectotherms (most reptiles, fish, insects) rely on environmental heat and behaviour.",
+   "deeper": "Insulation, sweating, shivering, vasodilation and countercurrent heat exchange help control temperature. Hibernation and torpor save energy.",
+   "expert": "Endothermy costs ≈ 5–10× more energy but extends activity to cold and night. Bluefin tuna and some sharks are regionally endothermic using retia mirabilia. Brown fat uncoupling protein (UCP1) produces heat without ATP."
+  },
+  "facts": [
+   [
+    "Human core temperature",
+    "≈ 37 °C"
+   ],
+   [
+    "Torpid hummingbird metabolism",
+    "≈ 1/15 of normal"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "33.3",
+    "33-3-homeostasis"
+   ],
+   [
+    "ANP",
+    "24.6",
+    "24-6-energy-and-heat-balance"
+   ]
+  ],
+  "kn": [
+   "homeostasis",
+   "temperature_heat"
+  ],
+  "where": "hypothalamus"
+ },
+ {
+  "id": "bio_locomotion_skeletons",
+  "title": "Skeletons and locomotion",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_comparative_circulation"
+  ],
+  "summary": "Hydrostatic, exo- and endoskeletons.",
+  "layers": {
+   "basics": "Animals support and move their bodies with hydrostatic skeletons (worms), exoskeletons (insects) or endoskeletons (vertebrates).",
+   "deeper": "Muscles work in antagonistic pairs across joints. Running, flying and swimming each have different mechanical trade-offs.",
+   "expert": "Cost of transport falls with body size and is lowest for swimming, then flying, then running. Insect flight muscles can be asynchronous, contracting multiple times per nerve impulse."
+  },
+  "facts": [
+   [
+    "Bee wingbeat",
+    "≈ 230 Hz"
+   ],
+   [
+    "Muscle shortening speed",
+    "≈ 5–10 lengths/s"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "38.1",
+    "38-1-types-of-skeletal-systems"
+   ],
+   [
+    "BIO",
+    "38.3",
+    "38-3-joints-and-skeletal-movement"
+   ],
+   [
+    "BIO",
+    "38.4",
+    "38-4-muscle-contraction-and-locomotion"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ],
+  "where": "skeletal_system"
+ },
+ {
+  "id": "bio_endocrine_comparative",
+  "title": "Hormones and endocrine regulation",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_signaling_overview",
+   "bio_nuclear_receptors"
+  ],
+  "summary": "Chemical coordination across animals.",
+  "layers": {
+   "basics": "Hormones are chemical messengers released into the blood. Insects have ecdysone for moulting and juvenile hormone; vertebrates have a wide range of peptide and steroid hormones.",
+   "deeper": "Feedback keeps levels stable, such as thyroid hormone controlled via the hypothalamus and pituitary. Amphibian metamorphosis is driven by thyroid hormone.",
+   "expert": "Hormone classes: peptide, steroid, amine. Half-lives range from minutes (insulin ≈ 5 min) to days (thyroxine ≈ 7 days). The hypothalamic–pituitary axes work as cascades with negative feedback."
+  },
+  "facts": [
+   [
+    "Insulin half-life",
+    "≈ 5 min"
+   ],
+   [
+    "Thyroxine half-life",
+    "≈ 7 days"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "37.1",
+    "37-1-types-of-hormones"
+   ],
+   [
+    "BIO",
+    "37.2",
+    "37-2-how-hormones-work"
+   ],
+   [
+    "BIO",
+    "37.3",
+    "37-3-regulation-of-body-processes"
+   ],
+   [
+    "BIO",
+    "37.4",
+    "37-4-regulation-of-hormone-production"
+   ],
+   [
+    "ANP",
+    "17.2",
+    "17-2-hormones"
+   ]
+  ],
+  "kn": [
+   "endocrine_physiology"
+  ],
+  "where": "endocrine_system"
+ },
+ {
+  "id": "bio_reproduction_strategies",
+  "title": "Animal reproduction strategies",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_animal_phys",
+  "parents": [
+   "bio_animal_phys"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_meiosis_variation"
+  ],
+  "summary": "Sexual and asexual reproduction.",
+  "layers": {
+   "basics": "Animals reproduce sexually or asexually, with external or internal fertilisation, and lay eggs, give live birth or both.",
+   "deeper": "Parthenogenesis occurs in some insects, lizards and sharks. Hormones tightly control human cycles.",
+   "expert": "Reproductive strategies lie on an r/K continuum. Placental mammals nourish embryos via a placenta; marsupials give birth early; monotremes lay eggs."
+  },
+  "facts": [
+   [
+    "Human gestation",
+    "≈ 38 weeks"
+   ],
+   [
+    "Menstrual cycle",
+    "≈ 28 days"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "43.1",
+    "43-1-reproduction-methods"
+   ],
+   [
+    "BIO",
+    "43.2",
+    "43-2-fertilization"
+   ],
+   [
+    "BIO",
+    "43.3",
+    "43-3-human-reproductive-anatomy-and-gametogenesis"
+   ],
+   [
+    "BIO",
+    "43.4",
+    "43-4-hormonal-control-of-human-reproduction"
+   ],
+   [
+    "COB",
+    "18.1",
+    "18-1-how-animals-reproduce"
+   ],
+   [
+    "COB",
+    "18.3",
+    "18-3-human-reproduction"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ],
+  "where": "reproductive_system"
+ },
+ {
+  "id": "bio_neuro",
+  "title": "Neuroscience and behavior",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_neuro",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [
+   "bio_neuron_glia",
+   "bio_action_potential_channels",
+   "bio_synapse_neurotransmitters",
+   "bio_synaptic_plasticity_memory",
+   "bio_sensory_transduction",
+   "bio_vision_photoreception",
+   "bio_hearing_chemosense",
+   "bio_brain_organization",
+   "bio_autonomic_reflexes",
+   "bio_sleep_circadian",
+   "bio_nervous_disorders",
+   "bio_behavior_proximate_ultimate",
+   "bio_learning_social_behavior",
+   "bio_migration_navigation",
+   "bio_neuro_methods"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "How nervous systems sense, compute and drive behaviour.",
+  "layers": {
+   "basics": "Neurons send electrical and chemical signals. Networks of neurons sense the world, store memories, make decisions and control the body.",
+   "deeper": "Action potentials travel along axons, synapses pass the message, and plasticity changes connections with experience. Behaviour has both proximate (mechanism) and ultimate (evolutionary) explanations.",
+   "expert": "Understanding the brain spans scales: ion channels, synaptic plasticity, circuits and whole-brain dynamics. Many questions, such as consciousness and memory encoding, remain open."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "brain_organization"
+  ]
+ },
+ {
+  "id": "bio_neuron_glia",
+  "title": "Neurons and glial cells",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_neuro",
+  "parents": [
+   "bio_neuro"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_membrane_potential"
+  ],
+  "summary": "Cells of the nervous system.",
+  "layers": {
+   "basics": "Neurons have dendrites that receive input, a cell body and an axon that sends output. Glia (astrocytes, oligodendrocytes, microglia) support them.",
+   "deeper": "Myelin from oligodendrocytes and Schwann cells speeds conduction. The brain has ≈ 86 billion neurons and about as many glia.",
+   "expert": "Neuron types are classified by shape, transmitter and gene expression (hundreds of types by single-cell RNA-seq). Axon lengths reach 1 m or more in humans."
+  },
+  "facts": [
+   [
+    "Human brain neurons",
+    "≈ 86 billion"
+   ],
+   [
+    "Myelinated conduction speed",
+    "≈ 100 m/s"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "35.1",
+    "35-1-neurons-and-glial-cells"
+   ],
+   [
+    "ANP",
+    "12.2",
+    "12-2-nervous-tissue"
+   ]
+  ],
+  "kn": [
+   "cell_types"
+  ],
+  "where": "neuron"
+ },
+ {
+  "id": "bio_action_potential_channels",
+  "title": "Action potentials and ion channels",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_neuro",
+  "parents": [
+   "bio_neuro"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "action_potential"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_neuron_glia",
+   "bio_facilitated_transport"
+  ],
+  "summary": "All-or-none electrical spikes.",
+  "layers": {
+   "basics": "When a neuron's membrane voltage reaches threshold, voltage-gated Na⁺ channels open, causing a rapid spike that is then terminated by K⁺ channels.",
+   "deeper": "The spike regenerates down the axon without weakening. Refractory periods keep it moving in one direction.",
+   "expert": "Hodgkin and Huxley's squid axon model (1952) describes the gating variables m, h, n. Peak potential ≈ +30 to +40 mV; speed ≈ 1 m/s unmyelinated to ≈ 120 m/s myelinated (saltatory conduction)."
+  },
+  "facts": [
+   [
+    "Threshold",
+    "≈ −55 mV"
+   ],
+   [
+    "Peak",
+    "≈ +30 to +40 mV"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "35.2",
+    "35-2-how-neurons-communicate"
+   ],
+   [
+    "ANP",
+    "12.4",
+    "12-4-the-action-potential"
+   ]
+  ],
+  "kn": [
+   "action_potential"
+  ],
+  "lab": {
+   "id": "microscope",
+   "preset": "neuron_spike_demo"
+  },
+  "where": "neuron",
+  "ext": [
+   {
+    "title": "Wikipedia: Action potential",
+    "url": "https://en.wikipedia.org/wiki/Action_potential"
+   }
+  ]
+ },
+ {
+  "id": "bio_synapse_neurotransmitters",
+  "title": "Synapses and neurotransmitters",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_neuro",
+  "parents": [
+   "bio_neuro"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "synaptic_transmission"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_action_potential_channels"
+  ],
+  "summary": "Chemical communication between neurons.",
+  "layers": {
+   "basics": "At a synapse, an arriving spike triggers release of neurotransmitter, which binds receptors on the next cell and excites or inhibits it.",
+   "deeper": "Glutamate is the main excitatory transmitter and GABA the main inhibitory one. Others: dopamine, serotonin, acetylcholine.",
+   "expert": "Ca²⁺ entry triggers vesicle fusion (SNAREs) within ≈ 0.2 ms. Ionotropic receptors act in ms; metabotropic ones in 100s ms to s. SSRIs block serotonin reuptake; botulinum toxin cleaves SNAREs."
+  },
+  "facts": [
+   [
+    "Synaptic delay",
+    "≈ 0.5–1 ms"
+   ],
+   [
+    "Synapses in human brain",
+    "≈ 10¹⁴"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "35.2",
+    "35-2-how-neurons-communicate"
+   ],
+   [
+    "ANP",
+    "12.5",
+    "12-5-communication-between-neurons"
+   ]
+  ],
+  "kn": [
+   "synapse_plasticity"
+  ],
+  "where": "synapse",
+  "molecules": [
+   "dopamine",
+   "serotonin",
+   "gaba",
+   "acetylcholine",
+   "noradrenaline"
+  ]
+ },
+ {
+  "id": "bio_synaptic_plasticity_memory",
+  "title": "Synaptic plasticity, learning and memory",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_neuro",
+  "parents": [
+   "bio_neuro"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "hippocampus"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_synapse_neurotransmitters"
+  ],
+  "summary": "Connections change with experience.",
+  "layers": {
+   "basics": "Synapses strengthen or weaken with use. This is a main basis for learning and memory.",
+   "deeper": "Long-term potentiation (LTP) in the hippocampus is the best studied form. Memories move from short-term to long-term storage via consolidation.",
+   "expert": "LTP involves NMDA receptors, Ca²⁺ influx and AMPA receptor insertion. H.M. showed the hippocampus is needed to form new declarative memories. How engrams store information over years remains an active question."
+  },
+  "facts": [
+   [
+    "H.M. surgery",
+    "1953"
+   ],
+   [
+    "Memory consolidation",
+    "hours to years"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How long-term memory is physically encoded and maintained across molecular turnover is unresolved."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "35.3",
+    "35-3-the-central-nervous-system"
+   ],
+   [
+    "ANP",
+    "14.2",
+    "14-2-central-processing"
+   ]
+  ],
+  "kn": [
+   "memory_learning",
+   "synapse_plasticity"
+  ],
+  "where": "hippocampus",
+  "ext": [
+   {
+    "title": "Wikipedia: Long-term potentiation",
+    "url": "https://en.wikipedia.org/wiki/Long-term_potentiation"
+   }
+  ]
+ },
+ {
+  "id": "bio_sensory_transduction",
+  "title": "Sensory receptors and transduction",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_neuro",
+  "parents": [
+   "bio_neuro"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_action_potential_channels"
+  ],
+  "summary": "Turning stimuli into nerve signals.",
+  "layers": {
+   "basics": "Receptors convert light, sound, chemicals, touch and heat into electrical signals. Different receptor types respond to different stimuli.",
+   "deeper": "Sensory neurons adapt to constant stimuli. Signal strength is coded by firing rate and number of cells.",
+   "expert": "Weber–Fechner and Stevens' power law relate stimulus to perceived intensity. TRP channels sense temperature and chemicals; Piezo channels sense force (2021 Nobel)."
+  },
+  "facts": [
+   [
+    "Weber fraction",
+    "ΔI/I ≈ constant"
+   ],
+   [
+    "Nobel for TRPV1/Piezo",
+    "2021"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "36.1",
+    "36-1-sensory-processes"
+   ],
+   [
+    "BIO",
+    "36.2",
+    "36-2-somatosensation"
+   ],
+   [
+    "ANP",
+    "14.1",
+    "14-1-sensory-perception"
+   ]
+  ],
+  "kn": [
+   "sensory_systems"
+  ],
+  "where": "peripheral_nerves"
+ },
+ {
+  "id": "bio_vision_photoreception",
+  "title": "Vision and photoreception",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_neuro",
+  "parents": [
+   "bio_neuro"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "vision"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_sensory_transduction"
+  ],
+  "summary": "From photons to sight.",
+  "layers": {
+   "basics": "Light hits rods and cones in the retina. A pigment molecule changes shape and starts a signal that travels via the optic nerve to the brain.",
+   "deeper": "Rods work in dim light; cones give colour (three types in humans). The fovea has the sharpest vision.",
+   "expert": "Retinal isomerises from 11-cis to all-trans in ≈ 200 fs; the cascade (rhodopsin → transducin → PDE) amplifies a single photon response ≈ 10⁵-fold. Rods can respond to single photons."
+  },
+  "facts": [
+   [
+    "Rods / cones",
+    "≈ 120 M / 6 M"
+   ],
+   [
+    "Isomerisation time",
+    "≈ 200 fs"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "36.5",
+    "36-5-vision"
+   ],
+   [
+    "ANP",
+    "14.1",
+    "14-1-sensory-perception"
+   ]
+  ],
+  "kn": [
+   "vision_eye"
+  ],
+  "where": "retina",
+  "molecules": [
+   "retinal"
+  ]
+ },
+ {
+  "id": "bio_hearing_chemosense",
+  "title": "Hearing, balance, taste and smell",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_neuro",
+  "parents": [
+   "bio_neuro"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_sensory_transduction"
+  ],
+  "summary": "Other senses.",
+  "layers": {
+   "basics": "Hair cells in the cochlea turn sound vibrations into signals. Taste and smell detect molecules with chemical receptors.",
+   "deeper": "Humans have ≈ 400 functional olfactory receptor genes and five basic tastes. The vestibular system senses head motion.",
+   "expert": "The cochlea performs a frequency analysis along the basilar membrane (≈ 20 Hz–20 kHz). Olfactory receptors are GPCRs; Buck and Axel won the 2004 Nobel."
+  },
+  "facts": [
+   [
+    "Human hearing range",
+    "≈ 20 Hz–20 kHz"
+   ],
+   [
+    "Olfactory receptor genes",
+    "≈ 400"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "36.3",
+    "36-3-taste-and-smell"
+   ],
+   [
+    "BIO",
+    "36.4",
+    "36-4-hearing-and-vestibular-sensation"
+   ]
+  ],
+  "kn": [
+   "sound_hearing",
+   "sensory_systems"
+  ],
+  "where": "temporal_lobe"
+ },
+ {
+  "id": "bio_brain_organization",
+  "title": "Organisation of the central nervous system",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_neuro",
+  "parents": [
+   "bio_neuro"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_neuron_glia"
+  ],
+  "summary": "Brain regions and their roles.",
+  "layers": {
+   "basics": "The brain's major regions are the cerebrum (thinking, senses, movement), cerebellum (coordination) and brainstem (vital functions).",
+   "deeper": "The cerebral cortex has four lobes. Hippocampus is key for memory, amygdala for emotion and hypothalamus for homeostasis.",
+   "expert": "Brain mass ≈ 1.4 kg (2% of body mass, ≈ 20% of resting energy). Functional specialisation coexists with distributed networks; connectomics maps wiring (fly connectome 2023, ≈ 140,000 neurons)."
+  },
+  "facts": [
+   [
+    "Brain energy share",
+    "≈ 20% of resting"
+   ],
+   [
+    "Cortex thickness",
+    "≈ 2–4 mm"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "35.3",
+    "35-3-the-central-nervous-system"
+   ],
+   [
+    "ANP",
+    "13.2",
+    "13-2-the-central-nervous-system"
+   ]
+  ],
+  "kn": [
+   "brain_organization",
+   "connectome"
+  ],
+  "where": "brain"
+ },
+ {
+  "id": "bio_autonomic_reflexes",
+  "title": "Autonomic nervous system and reflexes",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_neuro",
+  "parents": [
+   "bio_neuro"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_brain_organization"
+  ],
+  "summary": "Automatic control of organs.",
+  "layers": {
+   "basics": "The sympathetic system prepares the body for action (\"fight or flight\") and the parasympathetic system promotes rest and digestion.",
+   "deeper": "A reflex arc (sensor, spinal circuit, effector) gives fast responses without the brain, such as the knee jerk.",
+   "expert": "Sympathetic postganglionic fibres use noradrenaline and parasympathetic use acetylcholine. Baroreflex adjusts heart rate within 1–2 beats of blood-pressure change."
+  },
+  "facts": [
+   [
+    "Knee-jerk latency",
+    "≈ 50 ms"
+   ],
+   [
+    "Parasympathetic nerve",
+    "vagus (cranial X)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "35.4",
+    "35-4-the-peripheral-nervous-system"
+   ],
+   [
+    "ANP",
+    "15.1",
+    "15-1-divisions-of-the-autonomic-nervous-system"
+   ],
+   [
+    "ANP",
+    "15.2",
+    "15-2-autonomic-reflexes-and-homeostasis"
+   ]
+  ],
+  "kn": [
+   "homeostasis"
+  ],
+  "where": "brainstem"
+ },
+ {
+  "id": "bio_sleep_circadian",
+  "title": "Sleep and circadian rhythms",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_neuro",
+  "parents": [
+   "bio_neuro"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_brain_organization"
+  ],
+  "summary": "Daily cycles in physiology.",
+  "layers": {
+   "basics": "Animals have internal clocks with a ≈ 24 h cycle set by light. Sleep alternates between NREM and REM stages.",
+   "deeper": "The suprachiasmatic nucleus is the master clock; melatonin from the pineal rises at night.",
+   "expert": "Clock genes (PER, CRY, CLOCK, BMAL1) form a transcription–translation feedback loop with ≈ 24 h period (Nobel 2017). Sleep functions (memory, waste clearance) are active research topics."
+  },
+  "facts": [
+   [
+    "Circadian period (humans)",
+    "≈ 24.2 h"
+   ],
+   [
+    "Nobel Prize for clock genes",
+    "2017"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "The core biological function of sleep is not settled."
+  ],
+  "refs": [
+   [
+    "ANP",
+    "15.3",
+    "15-3-central-control"
+   ]
+  ],
+  "kn": [
+   "sleep_circadian"
+  ],
+  "where": "hypothalamus",
+  "molecules": [
+   "melatonin"
+  ]
+ },
+ {
+  "id": "bio_nervous_disorders",
+  "title": "Neurological disorders",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_neuro",
+  "parents": [
+   "bio_neuro"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_synaptic_plasticity_memory"
+  ],
+  "summary": "When circuits fail.",
+  "layers": {
+   "basics": "Disorders include stroke, epilepsy, Parkinson's, Alzheimer's and multiple sclerosis.",
+   "deeper": "Parkinson's disease follows loss of dopamine neurons in the substantia nigra; MS is autoimmune demyelination.",
+   "expert": "Alzheimer's is linked to amyloid-β plaques and tau tangles; amyloid-targeting antibodies slow decline modestly. Causal chains and best targets remain contested."
+  },
+  "facts": [
+   [
+    "Dementia prevalence worldwide",
+    "≈ 55 million"
+   ],
+   [
+    "Parkinson's dopamine neuron loss",
+    "≈ 60–80% at diagnosis"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "The causal role of amyloid and tau in Alzheimer's disease and best therapeutic targets are still debated."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "35.5",
+    "35-5-nervous-system-disorders"
+   ],
+   [
+    "ANP",
+    "16.1",
+    "16-1-overview-of-the-neurological-exam"
+   ]
+  ],
+  "kn": [
+   "aging_biology"
+  ],
+  "where": "brain"
+ },
+ {
+  "id": "bio_behavior_proximate_ultimate",
+  "title": "Animal behaviour: proximate and ultimate causes",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_neuro",
+  "parents": [
+   "bio_neuro"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_natural_selection",
+   "bio_brain_organization"
+  ],
+  "summary": "Tinbergen's four questions.",
+  "layers": {
+   "basics": "Behaviour has immediate causes (hormones, neurons) and evolutionary causes (why selection favoured it).",
+   "deeper": "Tinbergen asked: mechanism, development, function and evolution. Fixed action patterns (egg-rolling in geese) are innate; imprinting and song learning are learned.",
+   "expert": "Behavioural genetics (foraging gene in Drosophila) and optimality models link genes to ecology. Nobel to Lorenz, Tinbergen, von Frisch (1973)."
+  },
+  "facts": [
+   [
+    "Nobel for ethology",
+    "1973"
+   ],
+   [
+    "Tinbergen questions",
+    "4"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "45.7",
+    "45-7-behavioral-biology-proximate-and-ultimate-causes-of-behavior"
+   ],
+   [
+    "COB",
+    "19.4",
+    "19-4-community-ecology"
+   ]
+  ],
+  "kn": [
+   "natural_selection"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_learning_social_behavior",
+  "title": "Learning, foraging and social behaviour",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_neuro",
+  "parents": [
+   "bio_neuro"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_behavior_proximate_ultimate",
+   "bio_kin_selection_behavior_evo"
+  ],
+  "summary": "Habituation, conditioning, foraging and cooperation.",
+  "layers": {
+   "basics": "Animals learn through habituation, conditioning and imitation. They also forage, defend territories, form groups and sometimes cooperate.",
+   "deeper": "Optimal foraging models predict diet choice. Honeybees communicate food location by the waggle dance (von Frisch).",
+   "expert": "Marginal value theorem predicts when to leave a patch. Eusocial insects and naked mole-rats have reproductive division of labour; cooperative breeding is common in birds."
+  },
+  "facts": [
+   [
+    "Honeybee dance",
+    "encodes distance and direction"
+   ],
+   [
+    "Marginal value",
+    "leave when rate drops to average"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "45.7",
+    "45-7-behavioral-biology-proximate-and-ultimate-causes-of-behavior"
+   ],
+   [
+    "COB",
+    "19.4",
+    "19-4-community-ecology"
+   ]
+  ],
+  "kn": [
+   "cognition_psychology"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_migration_navigation",
+  "title": "Migration and animal navigation",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_neuro",
+  "parents": [
+   "bio_neuro"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_learning_social_behavior"
+  ],
+  "summary": "Long journeys with built-in compasses.",
+  "layers": {
+   "basics": "Birds, turtles, salmon and butterflies migrate thousands of kilometres using the Sun, stars, magnetic fields and smell.",
+   "deeper": "Arctic terns migrate ≈ 70,000 km a year. Salmon return to natal streams using odour cues.",
+   "expert": "Magnetoreception may involve cryptochromes (radical-pair mechanism) and magnetite. Evidence for specifics remains incomplete."
+  },
+  "facts": [
+   [
+    "Arctic tern migration",
+    "≈ 70,000 km/yr"
+   ],
+   [
+    "Bar-tailed godwit nonstop flight",
+    "≈ 11,000 km"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "The molecular basis of magnetoreception in animals is not established."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "45.7",
+    "45-7-behavioral-biology-proximate-and-ultimate-causes-of-behavior"
+   ]
+  ],
+  "where": "place:air"
+ },
+ {
+  "id": "bio_neuro_methods",
+  "title": "Methods in neuroscience",
+  "kind": "tool",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_neuro",
+  "parents": [
+   "bio_neuro"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_brain_organization"
+  ],
+  "summary": "Recording and manipulating the brain.",
+  "layers": {
+   "basics": "Neuroscientists record electrical activity (EEG, patch clamp), image the brain (fMRI, PET) and manipulate circuits with light (optogenetics).",
+   "deeper": "EEG has ms resolution but poor spatial detail; fMRI has mm resolution but is slow (seconds).",
+   "expert": "fMRI measures BOLD, an indirect proxy for neural activity. Two-photon calcium imaging records hundreds of neurons; Neuropixels probes record from thousands. Statistical issues in neuroimaging (cluster inflation, small samples) are known concerns."
+  },
+  "facts": [
+   [
+    "EEG time resolution",
+    "≈ ms"
+   ],
+   [
+    "fMRI spatial resolution",
+    "≈ 1–3 mm"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "1.7",
+    "1-7-medical-imaging"
+   ],
+   [
+    "BIO",
+    "35.3",
+    "35-3-the-central-nervous-system"
+   ]
+  ],
+  "kn": [
+   "medical_imaging",
+   "mri_tech",
+   "replication_crisis"
+  ],
+  "where": "brain"
+ }
+]

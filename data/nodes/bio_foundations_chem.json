@@ -9,7 +9,18 @@
   "parents": [
    "biology_degree"
   ],
-  "parts": [],
+  "parts": [
+   "bio_scientific_method",
+   "bio_themes_of_life",
+   "bio_levels_organization",
+   "bio_characteristics_life",
+   "bio_cell_theory",
+   "bio_homeostasis_concept",
+   "bio_model_organisms",
+   "bio_taxonomy_intro",
+   "bio_experimental_basics",
+   "bio_history_of_biology"
+  ],
   "made_of": [],
   "processes": [],
   "related": [],
@@ -550,7 +561,27 @@
   "parents": [
    "biology_degree"
   ],
-  "parts": [],
+  "parts": [
+   "bio_atoms_isotopes",
+   "bio_electron_shells",
+   "bio_ionic_covalent",
+   "bio_polarity_hbonds",
+   "bio_noncovalent_forces",
+   "bio_water_properties",
+   "bio_solutions_concentration",
+   "bio_acids_bases_ph",
+   "bio_buffers",
+   "bio_mole_molarity",
+   "bio_reaction_equilibrium",
+   "bio_reaction_kinetics",
+   "bio_thermo_laws",
+   "bio_gibbs_free_energy",
+   "bio_redox_biology",
+   "bio_atp_energy_coupling",
+   "bio_electrolytes_ions",
+   "bio_carbon_chemistry",
+   "bio_macromolecule_synthesis"
+  ],
   "made_of": [],
   "processes": [],
   "related": [],
@@ -900,6 +931,12 @@
   "where": "mol:water",
   "molecules": [
    "water"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Properties of water",
+    "url": "https://en.wikipedia.org/wiki/Properties_of_water"
+   }
   ]
  },
  {
@@ -1020,6 +1057,12 @@
   "molecules": [
    "hydroxide",
    "ammonium"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: PH",
+    "url": "https://en.wikipedia.org/wiki/PH"
+   }
   ]
  },
  {
@@ -1080,6 +1123,12 @@
    "bicarbonate",
    "carbonate",
    "phosphate"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Buffer solution",
+    "url": "https://en.wikipedia.org/wiki/Buffer_solution"
+   }
   ]
  },
  {
@@ -1657,7 +1706,22 @@
   "parents": [
    "biology_degree"
   ],
-  "parts": [],
+  "parts": [
+   "bio_functional_groups",
+   "bio_isomers",
+   "bio_chirality",
+   "bio_fischer_cyclic_sugars",
+   "bio_conformations",
+   "bio_acid_base_organic",
+   "bio_nucleophile_electrophile",
+   "bio_substitution_elimination",
+   "bio_carbonyl_chemistry",
+   "bio_acyl_substitution",
+   "bio_phosphoryl_transfer",
+   "bio_redox_organic",
+   "bio_resonance_aromatic",
+   "bio_spectroscopy_structure"
+  ],
   "made_of": [],
   "processes": [],
   "related": [],
