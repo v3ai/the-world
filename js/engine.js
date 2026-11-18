@@ -125,11 +125,14 @@ function rotAnchored(fn) { fn(cam.T, 'p'); fn(cam.dir, 'd'); fn(cam.up, 'd'); an
 function ascend() { const f = cam.A; rotAnchored((v, k) => k === 'p' ? toParentP(f, v) : toParentD(f, v)); cam.A = f.parent; }
 function descend(c) { rotAnchored((v, k) => k === 'p' ? fromParentP(c, v) : fromParentD(c, v)); cam.A = c; c.entered = true; }
 let lastZoomHit = null; // {frame, obj, point (frame-local), normal (frame-local)}
+let _fp = null;
 function reanchor() {
   for (let g = 0; g < 60 && cam.A.parent; g++) {
     const A = cam.A;
     const outside = A.radius !== Infinity && (A.center ? _cc.copy(cam.T).sub(A.center) : cam.T).length() > A.radius * 1.08;
-    if (cam.D > A.r1 || outside) { ascend(); continue; }
+    // a flight heading for a frame that is not under A, but is under A's parent (a sibling): step back out to get there
+    const offPath = fly && fly.frame && A.parent && (_fp = chainOf(fly.frame), !_fp.includes(A) && _fp.includes(A.parent));
+    if (cam.D > A.r1 || outside || offPath) { ascend(); continue; }
     break;
   }
   for (let g = 0; g < 60; g++) {
