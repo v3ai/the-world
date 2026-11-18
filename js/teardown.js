@@ -246,10 +246,10 @@ function buildTeardown(body) {
   tearReg('finfet_transistor', fin, new V3(0, 0, 23), 1.6e-7); tearReg('silicon_channel', si, new V3(), 3e-9);
   Object.assign(FR, { phone, die, core, cells, inv, fin, si });
   return [
-    { label: 'Your phone', D: .3, side: true, go: then => flyTo(phone, new V3(), .3, then) },
-    { label: 'Phone processor', D: .018, side: true, go: then => flyTo(die, new V3(), .018, then) },
-    { label: 'CPU core', D: 3e-3, side: true, go: then => flyTo(core, new V3(), 3e-3, then) },
-    { label: 'Logic gates', D: 6e-6, side: true, go: then => flyTo(cells, new V3(), 6e-6, then) },
-    { label: 'Transistor', D: 2.4e-7, side: true, go: then => flyTo(fin, new V3(0, 0, 23), 2.4e-7, then) },
+    { label: 'Your phone', frame: phone, D: .3, side: true, go: then => flyTo(phone, new V3(), .3, then) },
+    { label: 'Phone processor', frame: die, D: .018, side: true, go: then => flyTo(die, new V3(), .018, then) },
+    { label: 'CPU core', frame: core, D: 3e-3, side: true, go: then => flyTo(core, new V3(), 3e-3, then) },
+    { label: 'Logic gates', frame: cells, D: 6e-6, side: true, go: then => flyTo(cells, new V3(), 6e-6, then) },
+    { label: 'Transistor', frame: fin, D: 2.4e-7, side: true, go: then => flyTo(fin, new V3(0, 0, 23), 2.4e-7, then) },
   ];
 }

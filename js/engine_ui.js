@@ -59,7 +59,7 @@ function wireTabs() {
   });
 }
 function openPanel(h) { document.body.classList.add('cardOpen'); infoEl.innerHTML = `<button class="x" aria-label="Close">×</button>` + h; infoEl.classList.add('open'); infoEl.scrollTop = 0; infoEl.querySelector('.x').onclick = closeInfo; wireTabs(); }
-function closeInfo() { infoEl.classList.remove('open'); document.body.classList.remove('cardOpen'); infoState = null; }
+function closeInfo() { infoEl.classList.remove('open'); document.body.classList.remove('cardOpen'); infoState = null; if (typeof FR !== 'undefined' && FR.body) FR.body.sel = null; }
 function closePops() { ['#library', '#tourPop', '#tracks'].forEach(s => { const e = $(s); if (e) e.classList.remove('open'); }); document.body.classList.remove('trackOpen'); }
 function scienceSection(simIds) {
   const nodes = []; simIds.forEach(s => (KN_BY_SIM[s] || []).forEach(n => { if (!nodes.includes(n)) nodes.push(n); }));
@@ -155,7 +155,7 @@ function buildRuler() {
   const over = (items.length ? items[items.length - 1].p : 0) - (h - 6); if (over > 0) for (let k = items.length - 1; k >= 0; k--) { items[k].p -= over; if (k && items[k - 1].p > items[k].p - gap) items[k - 1].p = items[k].p - gap; }
   items.forEach(it => { svg += `<path class="lead" d="M15 ${it.y} L48 ${it.y} L58 ${it.p}"/>`; });
   svg += '</svg>'; box.insertAdjacentHTML('beforeend', svg);
-  items.forEach(it => { const b = document.createElement('button'); b.className = 'lm'; b.style.top = it.p + 'px'; b.textContent = it.L.label; b.title = `Fly to ${it.L.label} (${fmtLen(it.L.D)} across)`; b.onclick = () => { tour = null; it.L.go(); }; it.L._el = b; box.appendChild(b); });
+  items.forEach(it => { const b = document.createElement('button'); b.className = 'lm'; b.style.top = it.p + 'px'; b.textContent = it.L.label; b.title = `Fly to ${it.L.label} (${fmtLen(it.L.D)} across)`; b.onclick = () => { cancelTour(); it.L.go(); }; it.L._el = b; box.appendChild(b); });
   const m = document.createElement('i'); m.id = 'rulerMark'; m.innerHTML = '<span class="ro" id="rulerRO"></span>'; box.appendChild(m);
   if (!buildRuler._ro) { buildRuler._ro = new ResizeObserver(() => buildRuler()); buildRuler._ro.observe(box); }
 }
@@ -168,27 +168,60 @@ function updateRuler() {
 }
 
 /* ================= TOUR (continuous Powers-of-Ten flight) ================= */
+/* A tour walks the spine of landmarks one stop at a time: fly there, pause on it so the caption can be read, go on.
+   Escape, the Stop button, or any manual input (wheel, drag, keys, a ruler click) ends it. */
 let tour = null;
+const TOUR_PAUSE = 2600; // ms to rest at each stop
+function tourBar() {
+  let el = $('#tourBar');
+  if (!el) { el = document.createElement('div'); el.id = 'tourBar'; el.setAttribute('role', 'status'); document.body.appendChild(el); }
+  return el;
+}
+function cancelTour() { if (!tour) return; tour = null; tourBar().classList.remove('on'); }
 function startTour(dirIn) {
   const spine = LANDMARKS.filter(L => !L.side); // side branches (organs, the phone, the black hole) are ruler stops, not tour stops
   const list = dirIn ? spine.sort((a, b) => b.D - a.D) : spine.sort((a, b) => a.D - b.D);
   const view = cam.D * 2 * Math.tan(25 * Math.PI / 180);
   const rest = list.filter(L => dirIn ? L.D < view * .9 : L.D > view * 1.1);
   if (!rest.length) { message('Nothing further in that direction.'); return; }
-  tour = { list: rest, i: 0 };
+  closeInfo(); closePops();
+  tour = { list: rest, i: 0, dirIn };
   nextTour();
 }
-function nextTour() { if (!tour) return; const L = tour.list[tour.i++]; if (!L) { tour = null; return; } L.go(() => setTimeout(nextTour, 900)); }
+function nextTour() {
+  const T = tour; if (!T) return;
+  const L = T.list[T.i++], bar = tourBar();
+  if (!L) { cancelTour(); message('End of the tour.'); return; }
+  bar.innerHTML = `<span><b>${T.dirIn ? 'Tour in' : 'Tour out'}</b> · stop ${T.i} of ${T.list.length}: ${L.label}</span><button id="tourStop">Stop</button>`;
+  bar.classList.add('on'); $('#tourStop').onclick = cancelTour;
+  L.go(() => {
+    if (tour !== T) return;
+    bar.innerHTML = `<span><b>${T.dirIn ? 'Tour in' : 'Tour out'}</b> · stop ${T.i} of ${T.list.length}: <b>${L.label}</b>${T.i < T.list.length ? '' : ' (last stop)'}</span><button id="tourStop">Stop</button>`;
+    $('#tourStop').onclick = cancelTour;
+    setTimeout(() => { if (tour === T) nextTour(); }, TOUR_PAUSE);
+  });
+}
 
 /* ================= CAPTION ================= */
 let capFrame = null;
+/* The name shown for a frame: never a raw id such as bp_GC. */
+function humanName(f) {
+  let n = f.name || '';
+  if (!n || /^[A-Za-z0-9]+(_[A-Za-z0-9]+)+$/.test(n)) {
+    const k = (f.opts && (f.opts.mol || f.opts.node || f.opts.kind)) || n;
+    const t = (f.info && f.info.title) || (typeof NODE !== 'undefined' && NODE[n] && NODE[n].title) || (typeof NODE !== 'undefined' && NODE[k] && NODE[k].title);
+    n = t || String(n || k || f.type || 'Scene').replace(/_/g, ' ');
+  }
+  return n;
+}
 function updateCaption() {
   let f = active[active.length - 1];
   for (let i = active.length - 1; i >= 0; i--) if (active[i].alpha > .6) { f = active[i]; break; }
   const view = cam.D * 2 * Math.tan(25 * Math.PI / 180), e = Math.log10(view);
-  if (f !== capFrame) {
+  const nm = humanName(f);
+  if (f !== capFrame || $('#capN').textContent !== nm) {
     capFrame = f;
-    $('#capN').textContent = f.name || '';
+    $('#capN').textContent = nm;
     $('#capD').textContent = f.blurb || '';
     $('#capNote').textContent = f.note || '';
     updateControls(f);

@@ -128,7 +128,7 @@ function reanchor() {
   }
   for (let g = 0; g < 60; g++) {
     const A = cam.A; A.ensure(); let next = null;
-    for (const c of A.children) { if (c.place) c.place(); if (cam.D <= c.r1 && c.containsP(cam.T)) { next = c; break; } }
+    next = pickChild(A);
     if (!next && A.spawn && !fly && cam.D < (A.spawnD || A.r0 * 1.6)) next = trySpawn(A); // a flight heads for a frame that already exists: never spawn stand-ins on the way
     if (!next) break;
     descend(next);
@@ -140,6 +140,23 @@ function reanchor() {
       f.dispose(); f.parent.children.splice(f.parent.children.indexOf(f), 1); if (f.proxy) f.proxy.visible = true;
     }
   });
+}
+// Which child frame to enter when several overlap the camera target. Prefer the one on the path of the current flight.
+// Otherwise prefer a frame whose core (`core`, default `radius`, in its own units) holds the target, the smallest such core first
+// (a heart sits inside the chest volume of a lung); failing that, the best fit: smallest distance from its centre relative to its radius.
+function pickChild(A) {
+  const path = fly && fly.frame ? chainOf(fly.frame) : null;
+  let best = null, bs = Infinity;
+  for (const c of A.children) {
+    if (c.place) c.place();
+    if (cam.D > c.r1 || !c.containsP(cam.T)) continue;
+    if (path && path.includes(c)) return c;
+    const k = c.unit / A.unit, dist = cam.T.distanceTo(c.pos), rad = c.radius === Infinity ? Infinity : c.radius * k;
+    const core = (c.core ?? c.radius) * k;
+    const s = dist <= core ? core : 1e3 + (rad === Infinity ? 1e9 : dist / rad); // inside a core: ranked by core size, below any fit score
+    if (s < bs) { bs = s; best = c; }
+  }
+  return best;
 }
 function trySpawn(A) {
   let hint = null;
@@ -264,7 +281,7 @@ function pivotAt(x, y) {
   return p;
 }
 function zoomBy(lnDelta, x, y) {
-  lastInput = performance.now(); fly = null;
+  lastInput = performance.now(); fly = null; cancelTour();
   if (lnDelta < 0 && x !== undefined) { const p = pivotAt(x, y); zoom.pivot = zoom.pivot || { p }; zoom.pivot.p.copy(p); if (!anchored.includes(zoom.pivot)) anchored.push(zoom.pivot); }
   else if (lnDelta > 0) { zoom.pivot = null; anchored.length = 0; }
   zoom.pending += lnDelta;
@@ -335,7 +352,7 @@ canvas.addEventListener('pointermove', e => {
   mouse.x = e.clientX; mouse.y = e.clientY; mouse.has = true; mouse.dirty = true;
   const p = pointers.get(e.pointerId); if (!p) return;
   const dx = e.clientX - p.x, dy = e.clientY - p.y; p.x = e.clientX; p.y = e.clientY;
-  if (pointers.size === 1) { if (Math.hypot(e.clientX - downPos.x, e.clientY - downPos.y) > 6) dragMoved = true; if (dragMoved) { orbit(dx, dy); fly = null; } }
+  if (pointers.size === 1) { if (Math.hypot(e.clientX - downPos.x, e.clientY - downPos.y) > 6) dragMoved = true; if (dragMoved) { orbit(dx, dy); fly = null; cancelTour(); } }
   else if (pointers.size === 2) { const [a, b] = [...pointers.values()]; const d = Math.hypot(a.x - b.x, a.y - b.y); if (pinchD > 0 && d > 0) zoomBy(Math.log(pinchD / d), (a.x + b.x) / 2, (a.y + b.y) / 2); pinchD = d; }
   lastInput = performance.now();
 });
@@ -348,7 +365,7 @@ function endPointer(e, click) {
 canvas.addEventListener('pointerup', e => endPointer(e, true));
 canvas.addEventListener('pointercancel', e => endPointer(e, false));
 canvas.addEventListener('pointerleave', () => { mouse.has = false; setHover(null); });
-canvas.addEventListener('dblclick', e => { const h = pickAt(e.clientX, e.clientY); if (h) zoomIntoHit(h); });
+canvas.addEventListener('dblclick', e => { cancelTour(); const h = pickAt(e.clientX, e.clientY); if (h) zoomIntoHit(h); });
 let holdZoom = 0;
 function bindHold(el, dir) {
   const start = e => { e.preventDefault(); holdZoom = dir; }, stop = () => { holdZoom = 0; };
@@ -359,7 +376,7 @@ addEventListener('keydown', e => {
   const k = e.key;
   if (k === '+' || k === '=') zoomBy(-.25, W / 2, H / 2);
   else if (k === '-' || k === '_') zoomBy(.25);
-  else if (k === 'Escape') { closeInfo(); closePops(); fly = null; tour = null; $('#help').classList.add('hide'); }
+  else if (k === 'Escape') { closeInfo(); closePops(); fly = null; cancelTour(); $('#help').classList.add('hide'); }
   else if (k === 'ArrowLeft') orbit(-25, 0); else if (k === 'ArrowRight') orbit(25, 0);
   else if (k === 'ArrowUp') orbit(0, -17); else if (k === 'ArrowDown') orbit(0, 17);
   else return;
@@ -374,16 +391,18 @@ function pickFrame(f, forZoom) { // best candidate inside one frame: highest pri
   raycaster.setFromCamera(ndc, f.cam);
   raycaster.params.Points.threshold = f.dLoc * .012; raycaster.params.Line.threshold = f.dLoc * .01;
   const hits = raycaster.intersectObjects(f.pickables, true);
-  let fb = null, bp = -Infinity;
+  const cands = [];
   for (const h of hits) {
     if (!visibleChain(h.object)) continue;
     let o = h.object; while (o && !o.userData.id && !o.userData.resolve) o = o.parent;
     if (!o) continue;
-    const p = o.userData.priority ?? 1;
     if (forZoom && o.userData.noZoom && hits.length > 1) continue;
-    if (p > bp) { fb = { frame: f, obj: o, hit: h }; bp = p; }
+    cands.push({ frame: f, obj: o, hit: h, pri: o.userData.priority ?? 1 });
   }
-  if (fb) { fb.meters = fb.hit.distance * f.unit; fb.pri = bp; }
+  let fb = null;
+  if (f.chooseHit) fb = f.chooseHit(cands, forZoom); // a frame may apply its own rule (the body: nearest part you can actually see)
+  else { let bp = -Infinity; for (const c of cands) if (c.pri > bp) { fb = c; bp = c.pri; } }
+  if (fb) fb.meters = fb.hit.distance * f.unit;
   return fb;
 }
 function pickAt(x, y, forZoom) {
@@ -400,7 +419,7 @@ function pickAt(x, y, forZoom) {
     i = j - 1;
   }
   if (!best) return null;
-  const f = best.frame;
+  const f = best.frame; best.ndc = ndc.clone();
   best.pointLocal = best.hit.point.clone().add(f.C);
   best.normalLocal = best.hit.face ? best.hit.face.normal.clone().transformDirection(best.hit.object.matrixWorld) : null;
   best.id = best.obj.userData.resolve ? best.obj.userData.resolve(best.hit) : best.obj.userData.id;
@@ -420,7 +439,7 @@ function doHover() {
   if (!mouse.has || mouse.touch || pointers.size) { tipEl.classList.remove('show'); return; }
   const h = pickAt(mouse.x, mouse.y);
   if (h && (h.obj.userData.priority ?? 1) >= 0) {
-    const d = h.obj.userData.info || (h.obj.userData.infoFn && h.obj.userData.infoFn(h)) || INFO[h.id] || (h.obj.userData.title ? { title: h.obj.userData.title } : null);
+    const ud = h.obj.userData, tf = ud.tipFn && ud.tipFn(h), d = tf ? { title: tf } : (ud.infoFn && ud.infoFn(h)) || ud.info || INFO[h.id] || (ud.title ? { title: ud.title } : null);
     setHover(h.obj);
     if (d) { tipEl.textContent = d.title; tipEl.classList.add('show'); tipEl.style.left = (mouse.x + 14) + 'px'; tipEl.style.top = (mouse.y + 14) + 'px'; } else tipEl.classList.remove('show');
   } else { setHover(null); tipEl.classList.remove('show'); }
