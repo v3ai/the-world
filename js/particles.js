@@ -148,7 +148,7 @@ FT.proton = {
     const flav = PX.quarksOf(kind), cols = [0, 1, 2];
     const colOrder = shuffle(cols.slice(), rnd);
     flav.forEach((fl, i) => {
-      const orb = PX.orb(.17, PX.CC[colOrder[i]], { glyph: { main: fl, line: PX.CL[colOrder[i]] }, halo: 4.2, haloA: .32, hitK: 1.5 });
+      const orb = PX.orb(.17, PX.CC[colOrder[i]], { glyph: { main: fl, line: PX.CL[colOrder[i]] }, halo: 4.2, haloA: .32, hitK: 1.2 });
       orb.userData.id = PX.FLAV[fl].node; orb.userData.node = PX.FLAV[fl].node; orb.userData.priority = 2; orb.userData.title = PX.FLAV[fl].name + ' (valence)'; orb.userData.sm = fl === 'u' ? 'up' : 'down';
       root.add(orb); F.pickables.push(orb);
       S.Q.push({ orb, fl, ci: colOrder[i], tgt: colOrder[i], col: new THREE.Color(PX.CC[colOrder[i]]), p: new V3(), ph: [rnd() * 6, rnd() * 6, rnd() * 6] });
@@ -212,7 +212,7 @@ FT.proton = {
       capFrame = null;
     };
     F.update = (dt, t) => {
-      S.t += dt; const T = S.t, fa = PX.fa(F);
+      S.t += dt; const T = S.t, zf = smooth(1.1e-16, 3.3e-16, cam.D), fa = PX.fa(F) * zf;   // below about 3e-16 m the cartoon dissolves, leaving room for the Standard Model view
       // quark positions: a slowly tumbling triangle plus a wander, so that no quark has a fixed place
       qa.setFromEuler(new THREE.Euler(T * .17, T * .11, T * .07)); e1.set(1, 0, 0).applyQuaternion(qa); e2.set(0, 1, 0).applyQuaternion(qa);
       junction.position.set(0, 0, 0);
@@ -267,7 +267,7 @@ FT.proton = {
       ring.material.opacity = .55 * fa; ring.material.userData.baseOp = .55; _px_v.set(1, 0, 0).applyQuaternion(F.cam.quaternion); _px_v2.set(0, 1, 0).applyQuaternion(F.cam.quaternion);
       edge.position.copy(_px_v).multiplyScalar(R * .72).addScaledVector(_px_v2, R * .72);
       PX.face(F, S.Q.map(q => q.orb).concat(S.pairs.flatMap(p => [p.qo, p.ao])));
-      PX.declutter(F, labs);
+      if (zf < .5) labs.forEach(l => { if (l.L.el.textContent) l.L.el.textContent = ''; }); else PX.declutter(F, labs);
     };
   }
 };
@@ -650,6 +650,7 @@ PX.smBind = F => {
   F.update = (dt, t) => {
     const fa = PX.fa(F), k = 1 - Math.exp(-dt * 6), mode = SM.mode, sel = SM.sel;
     if (mode !== lastMode) { lastMode = mode; F.lvl = 3; }          // after a change of view, turn the camera square-on again (unless you are dragging)
+    if (cam.A === F && !fly) { const cx = F._focus ? 0 : -S.board.position.x * 0, d = cam.T.length(); if (d > 40) { const kk = 1 - Math.exp(-dt * 3); cam.T.multiplyScalar(1 - kk * .9); if (zoom.pivot) zoom.pivot.p.set(0, 0, 0); } }   // never lose the board: if the zoom has carried the view far from it, bring it back
     if (cam.A === F && F.lvl > 0 && !pointers.size) { F.lvl -= dt; const kk = 1 - Math.exp(-dt * 2.2); cam.dir.lerp(tmp.set(0, .06, 1), kk).normalize(); }
     const showGrid = mode === 'overview' || mode === 'forces' || mode === 'everyday';
     { const st = F._focus ? tmp.set(0, 0, 0) : mode === 'mass' ? tmp.set(0, 3, 0) : showGrid ? tmp.set(0, 2, 0) : tmp.set(0, 1, 0); S.shift.lerp(st, k); S.board.position.copy(F.boardBase).add(S.shift); }
@@ -673,7 +674,8 @@ PX.smBind = F => {
       const anti = p.hol > .5; if (anti !== p.anti) { p.anti = anti; PX.setGlyph(o, PX.glyphSpec(id, anti).main, PX.glyphSpec(id, anti)); }
       PX.hollow(o, Math.round(p.hol * 20) / 20);
       const hp = o.userData.haloPart; if (hp) { hp.base = p.glow * .75; o.userData.halo.material.color.copy(p.gcol); }
-      PX.setA(o, p.dim, fa);
+      { const dc = _px_v.copy(F.C).sub(_px_v2.copy(p.pos).add(S.board.position)).length(), r = 1.1 * p.scale, near = Math.min(1, Math.max(0, (dc - .7 * r) / (2.4 * r))); p.near = near; }
+      PX.setA(o, p.dim * (.08 + .92 * p.near), fa);
       p.lab.off.set(0, -(1.25 * p.scale + .3), 0);
       // coupling lines
       if (mode === 'forces' && SM.force !== 'gravity' && nl < 19 && !carriers.includes(id) && feels.includes(id)) {
@@ -713,6 +715,8 @@ PX.smBind = F => {
     const hdrTxt = []; S.hdr.forEach(h => hdrTxt.push({ L: h.L, text: h.text, pri: 2 }));
     const extra = [{ L: gravLab, text: 'gravity: not in the model', pri: 3 }, { L: twinLab, text: () => sel && PX.META[sel] ? (SM.anti ? PX.META[sel].short : PX.META[sel].aname) : '', pri: 6 }];
     const axL = S.axLabs.map(L => ({ L, text: L.txt, pri: 1, on: mass }));
+    const px = H / (2 * Math.tan(25 * Math.PI / 180) * F.dLoc), tiny = px * 4.2 < 40;
+    if (tiny) { labs.concat(hdrTxt, extra, axL).forEach(l => { if (l.L.el.textContent) l.L.el.textContent = ''; }); } else
     PX.declutter(F, labs.concat(hdrTxt, extra, axL.filter(a => { if (!a.on && a.L.el.textContent) a.L.el.textContent = ''; return a.on; }), PX.smStageLabels(F, S)));
     // the deepest zoom: nothing to find inside
     const deep = F.dLoc < 1.1, nt = deep ? 'Nothing is drawn inside the balls because nothing has been found there. These balls are for the eye: no structure has been seen in any of these particles, down to about 10⁻¹⁹ m, and below that nobody has looked.' : 'This is not a place. It is the list of everything matter and the forces (except gravity) are made of, as far as experiments have reached.';
@@ -882,6 +886,7 @@ WORLD_EXT.push(async FRx => {
   sm.place = () => {
     const A = cam.A; if (A !== FRx.proton || fly) return;
     sm.pos.copy(cam.T); if (cam.D > 1.8e-16) PX.smFocus(sm, PX.nearestQuark(FRx.proton, cam.T));
+    if (zoom.pivot && cam.D < 7e-16) zoom.pivot.p.copy(cam.T);   // from here the zoom aims at where the new frame will be centred
   };
   EXT_LANDMARKS.push({ label: 'Standard Model', D: 3.8e-17, go: then => { FRx.nuc.ensure(); FRx.proton.place && FRx.proton.place(); sm.ensure(); sm.pos.set(0, 0, 0); PX.smFocus(sm, null); flyTo(sm, PX.smPos(sm, null), 3.8e-17, then); } });
   // search and topic links: a particle's topic card flies to it in the Standard Model view
@@ -894,3 +899,9 @@ WORLD_EXT.push(async FRx => {
     try { SEARCH_SOURCES.push({ id: 'particles', label: 'Particles', search: q => { q = (q || '').toLowerCase(); return Object.keys(NODE).filter(k => k.startsWith('sm_') && NODE[k].title.toLowerCase().includes(q)).slice(0, 8).map(k => ({ id: k, title: NODE[k].title, sub: NODE[k].summary || '', go: () => goToNode(k) })); } }); } catch (e) { console.error(e); }
   }
 });
+
+/* labels sit above the canvas and swallow the mouse wheel; hand it on, so that zooming works with the pointer over a label */
+(function forwardWheel() {
+  const layer = document.getElementById('labels'), cv = document.getElementById('c'); if (!layer || !cv) return;
+  layer.addEventListener('wheel', e => { e.preventDefault(); cv.dispatchEvent(new WheelEvent('wheel', { deltaX: e.deltaX, deltaY: e.deltaY, deltaMode: e.deltaMode, clientX: e.clientX, clientY: e.clientY, shiftKey: e.shiftKey, bubbles: true, cancelable: true })); }, { passive: false });
+})();
