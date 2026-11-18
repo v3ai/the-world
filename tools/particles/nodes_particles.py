@@ -7,8 +7,8 @@ MASSBARS = [('u', 'up'), ('d', 'down'), ('s', 'strange'), ('c', 'charm'), ('b', 
 def massbars(me):
     bars = []
     for lab, pid in MASSBARS:
-        bars.append({'label': lab, 'value': round(mevs(pid), 6), 'color': 'gold' if pid == me else 'dim'})
-    return {'type': 'bars', 'bars': bars, 'logy': True, 'ylabel': 'rest mass, MeV/c² (log scale)',
+        bars.append({'label': lab, 'value': float('%.4g' % (mevs(pid) / 1000)), 'color': 'gold' if pid == me else 'dim'})
+    return {'type': 'bars', 'bars': bars, 'logy': True, 'ylabel': 'rest mass, GeV/c² (log scale)',
             'caption': 'Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card).'}
 
 def feats(p):
@@ -126,9 +126,9 @@ pnode('gluon', 'The carrier of the strong force: it glues quarks together, and i
       '<p>There are <b>eight</b> gluons (eight colour–anticolour combinations). A single gluon is never seen on its own; the first evidence came in 1979 from collision events at the PETRA collider in Hamburg in which a quark and antiquark flew out with a third spray (jet) of particles, a gluon, radiated from one of them.</p><p>Lattice calculations indicate gluons carry about half of the proton\'s momentum (51% in a 2022 calculation at 2 GeV).</p>',
       '<p>Massless spin-1 gauge bosons of SU(3) colour. The theory has self-interaction vertices (three and four gluons) with colour factor C_A = 3; the PDG notes a measured world average C_A = 2.89 ± 0.03 (stat) ± 0.21 (syst), consistent with the SU(3) value. Whether the gluon field has a mass gap and confines colour is the subject of a Clay Millennium Prize problem (Yang–Mills existence and mass gap), unsolved in rigorous mathematics even though lattice calculations support it.</p>',
       kn=['qcd', 'standard_model'], refs=STD_REFS, viz={'type': 'blocks', 'flow': True, 'nodes': [
-          {'id': 'q1', 'label': 'quark (red)', 'x': 5, 'y': 50}, {'id': 'g', 'label': 'gluon (red + anti-green)', 'x': 50, 'y': 15, 'color': 'gold'},
-          {'id': 'q2', 'label': 'quark (green)', 'x': 95, 'y': 50}], 'edges': [{'from': 'q1', 'to': 'g', 'label': 'emits'}, {'from': 'g', 'to': 'q2', 'label': 'absorbed'}],
-          'caption': 'Schematic bookkeeping of one gluon exchange. The "colours" are only labels for three kinds of charge; a quark that emits a gluon changes colour while the colour total is kept. Nothing here is a picture of a path.'}, cert='C1',
+          {'id': 'q1', 'label': 'quark (red)', 'x': 5, 'y': 50}, {'id': 'g', 'label': 'gluon', 'x': 50, 'y': 15, 'color': 'gold'},
+          {'id': 'q2', 'label': 'quark (green)', 'x': 95, 'y': 50}], 'edges': [{'from': 'q1', 'to': 'g'}, {'from': 'g', 'to': 'q2'}],
+          'caption': 'Schematic bookkeeping of one gluon exchange, where the gluon carries a colour and an anticolour (here red and anti-green). The "colours" are only labels for three kinds of charge; a quark that emits a gluon changes colour while the colour total is kept. Nothing here is a picture of a path.'}, cert='C1',
       oq=['Why does the theory confine colour at all, and can that be proved mathematically?'])
 pnode('photon', 'The particle of light, and the carrier of the electromagnetic force.',
       '<p>A photon is the smallest possible bundle of light, and also of any electric or magnetic force between charged particles. It has no mass, no charge, and always moves at the speed of light. Sunlight on the park is a stream of photons; so are radio waves and X-rays, with different energies.</p>',

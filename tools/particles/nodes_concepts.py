@@ -22,7 +22,7 @@ N('sm_overview', 'The Standard Model', 'concept',
       {'id': 'q', 'label': 'quarks: u d  c s  t b', 'x': 16, 'y': 18, 'color': 'accent'}, {'id': 'l', 'label': 'leptons: e μ τ + 3 neutrinos', 'x': 16, 'y': 62, 'color': 'accent'},
       {'id': 'g', 'label': 'gluon, photon, W, Z', 'x': 62, 'y': 18, 'color': 'gold'}, {'id': 'h', 'label': 'Higgs boson', 'x': 62, 'y': 62, 'color': 'pink'},
       {'id': 'x', 'label': 'gravity: not in the model', 'x': 62, 'y': 100, 'color': 'dim'}],
-      'edges': [{'from': 'g', 'to': 'q', 'label': 'forces'}, {'from': 'g', 'to': 'l', 'label': 'forces'}, {'from': 'h', 'to': 'q', 'label': 'mass'}, {'from': 'h', 'to': 'l', 'label': 'mass'}],
+      'edges': [{'from': 'g', 'to': 'q'}, {'from': 'g', 'to': 'l'}, {'from': 'h', 'to': 'q'}, {'from': 'h', 'to': 'l'}],
       'caption': 'The Standard Model at a glance: matter particles (blue), force carriers (gold) and the Higgs (pink). Gravity is left out. A map of ideas, not a picture of anything.'})
 
 N('sm_quantum_fields', 'Quantum fields: what a particle is', 'field',
@@ -156,7 +156,8 @@ N('sm_beta_decay', 'Beta decay', 'process',
 rows = []
 for pid, d in (('neutron', NEU['decay']), ('muon', PBY['muon']['decays'][0]), ('tau', PBY['tau']['decays'][0]), ('lambda', HAD['lambda']['decays'][0]), ('pi_zero', HAD['pi_zero']['decays'][0])):
     qi, Li, Bi = qn.totals(d['in']); qo, Lo, Bo = qn.totals(d['out'])
-    rows.append([d['label'], '%s → %s' % (frac(qi), frac(qo)), '%s → %s' % (frac(Li), frac(Lo)), '%s → %s' % (frac(Bi), frac(Bo))])
+    short = d['label'].replace(' + ', ' ').replace('_μ', 'μ').replace('_τ', 'τ')
+    rows.append([short, '%s → %s' % (frac(qi), frac(qo)), '%s → %s' % (frac(Li), frac(Lo)), '%s → %s' % (frac(Bi), frac(Bo))])
 N('sm_conservation_laws', 'Conservation laws', 'law',
   'Some quantities (energy, momentum, electric charge, baryon number and lepton number) are the same before and after any reaction we have seen.',
   '<p>In every decay and collision ever observed, certain totals are unchanged. <b>Energy</b> and <b>momentum</b> are conserved. So is <b>electric charge</b>: a neutron (0) becomes a proton (+1) plus an electron (−1). So is <b>baryon number</b> (quarks count +⅓, antiquarks −⅓), which is why a proton cannot simply vanish, and <b>lepton number</b> (leptons count +1, antileptons −1), which is why the neutron\'s decay comes with an antineutrino.</p><p>These rules decide which reactions can happen. They are bookkeeping that nature always balances.</p>',
@@ -218,8 +219,8 @@ N('sm_neutron', 'The neutron', 'particle',
 hrows = []
 for h in D['hadrons']:
     sym = {'u': 'u', 'd': 'd', 's': 's', 'c': 'c', 'b': 'b', 'ubar': 'ū', 'dbar': 'd̄', 'sbar': 's̄', 'cbar': 'c̄', 'bbar': 'b̄'}
-    hrows.append([h['symbol'], ''.join(sym[q] for q in h['quarks']), h['charge'].replace('-', '−'), h['mass']['display']])
-hrows = [['p', 'uud', '+1', PRO['mass']['display']], ['n', 'udd', '0', NEU['mass']['display']]] + hrows
+    hrows.append([h['symbol'], ''.join(sym[q] for q in h['quarks']), h['charge'].replace('-', '−'), ('%.7g' % h['mass']['value']) if h['mass']['unit'] == 'MeV' else h['mass']['display']])
+hrows = [['p', 'uud', '+1', '%.7g' % PRO['mass']['value']], ['n', 'udd', '0', '%.7g' % NEU['mass']['value']]] + hrows
 N('sm_hadrons', 'Hadrons: what else quarks can make', 'concept',
   'Particles built from quarks come in two main kinds: baryons (three quarks, like the proton) and mesons (a quark and an antiquark).',
   '<p>A <b>hadron</b> is any particle made of quarks held by the strong force. <b>Baryons</b> are three quarks, like the proton (uud) and the neutron (udd). <b>Mesons</b> are a quark with an antiquark, like the pion (up and anti-down) and the J/ψ (charm and anti-charm). The allowed combinations are the colourless ones (see "Colour charge and confinement"); more exotic hadrons with four or five quarks have been seen in recent years and are reviewed by the Particle Data Group.</p><p>Hundreds of hadrons are known; almost all decay quickly.</p>',
@@ -227,7 +228,7 @@ N('sm_hadrons', 'Hadrons: what else quarks can make', 'concept',
   '<p>Hadron masses are mostly strong-field energy, not the sum of the quark masses: the pion (139.57 MeV/c²) is far lighter than a proton, because the pion is a near-massless Goldstone-like boson of chiral symmetry breaking. The charged pion mass is known to ±0.00018 MeV (PDG 2026).</p>',
   [['Baryon', 'three quarks (e.g. uud, udd, uds, uuu, sss)'], ['Meson', 'quark + antiquark (e.g. u d̄, c c̄)'], ['Exotics', 'four- and five-quark states have been reported (PDG pentaquark review)']],
   'C1', (('UP3', '11.3'), ('CPH', '33.5')), ['quarks_leptons', 'qcd'], made_of=['sm_up', 'sm_down', 'sm_strange', 'sm_charm', 'sm_bottom'],
-  viz={'type': 'table', 'cols': ['Particle', 'Quarks', 'Charge', 'Mass (PDG 2026)'], 'rows': hrows})
+  viz={'type': 'table', 'cols': ['Particle', 'Quarks', 'Charge', 'Mass (MeV)'], 'rows': hrows})
 
 N('sm_residual_strong', 'The nuclear force and binding energy', 'concept',
   'The force that holds protons and neutrons together in a nucleus is a leftover of the strong force, often described as exchange of pions.',
@@ -236,7 +237,7 @@ N('sm_residual_strong', 'The nuclear force and binding energy', 'concept',
   '<p>The pion-exchange picture goes back to Yukawa (1935): a force mediated by a particle of mass m has range about ħ/(mc). It is an effective description; modern chiral effective field theory builds the nuclear force from pion exchange plus short-range terms, derived from QCD\'s symmetries. In the picture of this explorer, the pion is a quark–antiquark meson and the exchange is a bookkeeping device.</p>',
   [['Range (my calculation, ħ / m_π c)', '≈ 1.4 fm'], ['He-4', '7.07 MeV per nucleon'], ['Fe-56', '8.79 MeV per nucleon'], ['U-238', '7.57 MeV per nucleon'], ['Source', 'AME2020 (Wang et al., Chinese Physics C 45, 030003)']],
   'C1', (('UP3', '10.2'), ('CHE', '21.1'), ('CPH', '33.1')), ['nuclear_force', 'nuclear_binding'], 
-  viz={'type': 'bars', 'bars': [{'label': 'H-2', 'value': 1.112, 'color': 'dim'}, {'label': 'He-4', 'value': 7.074}, {'label': 'C-12', 'value': 7.680}, {'label': 'O-16', 'value': 7.976}, {'label': 'Ca-40', 'value': 8.551}, {'label': 'Fe-56', 'value': 8.790, 'color': 'gold'}, {'label': 'Ni-62', 'value': 8.795, 'color': 'gold'}, {'label': 'Sn-120', 'value': 8.504}, {'label': 'Pb-208', 'value': 7.867}, {'label': 'U-238', 'value': 7.570}],
+  viz={'type': 'bars', 'bars': [{'label': 'H-2', 'value': 1.112, 'color': 'dim'}, {'label': 'He-4', 'value': 7.074, 'color': 'dim'}, {'label': 'C-12', 'value': 7.680, 'color': 'dim'}, {'label': 'O-16', 'value': 7.976, 'color': 'dim'}, {'label': 'Ca-40', 'value': 8.551, 'color': 'dim'}, {'label': 'Fe-56', 'value': 8.790, 'color': 'gold'}, {'label': 'Ni-62', 'value': 8.795, 'color': 'gold'}, {'label': 'Sn-120', 'value': 8.504, 'color': 'dim'}, {'label': 'Pb-208', 'value': 7.867, 'color': 'dim'}, {'label': 'U-238', 'value': 7.570, 'color': 'dim'}],
        'ylabel': 'binding energy per nucleon (MeV)', 'caption': 'Binding energy per nucleon for ten nuclides (AME2020, atomic mass evaluation). Iron and nickel are the most tightly bound per particle.'})
 
 N('sm_how_we_know', 'How we know: colliders and detectors', 'concept',

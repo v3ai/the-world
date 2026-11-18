@@ -4,67 +4,67 @@
   "bars": [
    {
     "label": "u",
-    "value": 2.16,
+    "value": 0.00216,
     "color": "gold"
    },
    {
     "label": "d",
-    "value": 4.7,
+    "value": 0.0047,
     "color": "dim"
    },
    {
     "label": "s",
-    "value": 92.9,
+    "value": 0.0929,
     "color": "dim"
    },
    {
     "label": "c",
-    "value": 1272.9,
+    "value": 1.273,
     "color": "dim"
    },
    {
     "label": "b",
-    "value": 4186.0,
+    "value": 4.186,
     "color": "dim"
    },
    {
     "label": "t",
-    "value": 172603.559587,
+    "value": 172.6,
     "color": "dim"
    },
    {
     "label": "e",
-    "value": 0.510999,
+    "value": 0.000511,
     "color": "dim"
    },
    {
     "label": "μ",
-    "value": 105.658376,
+    "value": 0.1057,
     "color": "dim"
    },
    {
     "label": "τ",
-    "value": 1776.932465,
+    "value": 1.777,
     "color": "dim"
    },
    {
     "label": "W",
-    "value": 80362.5,
+    "value": 80.36,
     "color": "dim"
    },
    {
     "label": "Z",
-    "value": 91187.873297,
+    "value": 91.19,
     "color": "dim"
    },
    {
     "label": "H",
-    "value": 125130.943828,
+    "value": 125.1,
     "color": "dim"
    }
   ],
   "logy": true,
-  "ylabel": "rest mass, MeV/c² (log scale)",
+  "ylabel": "rest mass, GeV/c² (log scale)",
   "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_down": {
@@ -72,67 +72,67 @@
   "bars": [
    {
     "label": "u",
-    "value": 2.16,
+    "value": 0.00216,
     "color": "dim"
    },
    {
     "label": "d",
-    "value": 4.7,
+    "value": 0.0047,
     "color": "gold"
    },
    {
     "label": "s",
-    "value": 92.9,
+    "value": 0.0929,
     "color": "dim"
    },
    {
     "label": "c",
-    "value": 1272.9,
+    "value": 1.273,
     "color": "dim"
    },
    {
     "label": "b",
-    "value": 4186.0,
+    "value": 4.186,
     "color": "dim"
    },
    {
     "label": "t",
-    "value": 172603.559587,
+    "value": 172.6,
     "color": "dim"
    },
    {
     "label": "e",
-    "value": 0.510999,
+    "value": 0.000511,
     "color": "dim"
    },
    {
     "label": "μ",
-    "value": 105.658376,
+    "value": 0.1057,
     "color": "dim"
    },
    {
     "label": "τ",
-    "value": 1776.932465,
+    "value": 1.777,
     "color": "dim"
    },
    {
     "label": "W",
-    "value": 80362.5,
+    "value": 80.36,
     "color": "dim"
    },
    {
     "label": "Z",
-    "value": 91187.873297,
+    "value": 91.19,
     "color": "dim"
    },
    {
     "label": "H",
-    "value": 125130.943828,
+    "value": 125.1,
     "color": "dim"
    }
   ],
   "logy": true,
-  "ylabel": "rest mass, MeV/c² (log scale)",
+  "ylabel": "rest mass, GeV/c² (log scale)",
   "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_strange": {
@@ -140,67 +140,67 @@
   "bars": [
    {
     "label": "u",
-    "value": 2.16,
+    "value": 0.00216,
     "color": "dim"
    },
    {
     "label": "d",
-    "value": 4.7,
+    "value": 0.0047,
     "color": "dim"
    },
    {
     "label": "s",
-    "value": 92.9,
+    "value": 0.0929,
     "color": "gold"
    },
    {
     "label": "c",
-    "value": 1272.9,
+    "value": 1.273,
     "color": "dim"
    },
    {
     "label": "b",
-    "value": 4186.0,
+    "value": 4.186,
     "color": "dim"
    },
    {
     "label": "t",
-    "value": 172603.559587,
+    "value": 172.6,
     "color": "dim"
    },
    {
     "label": "e",
-    "value": 0.510999,
+    "value": 0.000511,
     "color": "dim"
    },
    {
     "label": "μ",
-    "value": 105.658376,
+    "value": 0.1057,
     "color": "dim"
    },
    {
     "label": "τ",
-    "value": 1776.932465,
+    "value": 1.777,
     "color": "dim"
    },
    {
     "label": "W",
-    "value": 80362.5,
+    "value": 80.36,
     "color": "dim"
    },
    {
     "label": "Z",
-    "value": 91187.873297,
+    "value": 91.19,
     "color": "dim"
    },
    {
     "label": "H",
-    "value": 125130.943828,
+    "value": 125.1,
     "color": "dim"
    }
   ],
   "logy": true,
-  "ylabel": "rest mass, MeV/c² (log scale)",
+  "ylabel": "rest mass, GeV/c² (log scale)",
   "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_charm": {
@@ -208,67 +208,67 @@
   "bars": [
    {
     "label": "u",
-    "value": 2.16,
+    "value": 0.00216,
     "color": "dim"
    },
    {
     "label": "d",
-    "value": 4.7,
+    "value": 0.0047,
     "color": "dim"
    },
    {
     "label": "s",
-    "value": 92.9,
+    "value": 0.0929,
     "color": "dim"
    },
    {
     "label": "c",
-    "value": 1272.9,
+    "value": 1.273,
     "color": "gold"
    },
    {
     "label": "b",
-    "value": 4186.0,
+    "value": 4.186,
     "color": "dim"
    },
    {
     "label": "t",
-    "value": 172603.559587,
+    "value": 172.6,
     "color": "dim"
    },
    {
     "label": "e",
-    "value": 0.510999,
+    "value": 0.000511,
     "color": "dim"
    },
    {
     "label": "μ",
-    "value": 105.658376,
+    "value": 0.1057,
     "color": "dim"
    },
    {
     "label": "τ",
-    "value": 1776.932465,
+    "value": 1.777,
     "color": "dim"
    },
    {
     "label": "W",
-    "value": 80362.5,
+    "value": 80.36,
     "color": "dim"
    },
    {
     "label": "Z",
-    "value": 91187.873297,
+    "value": 91.19,
     "color": "dim"
    },
    {
     "label": "H",
-    "value": 125130.943828,
+    "value": 125.1,
     "color": "dim"
    }
   ],
   "logy": true,
-  "ylabel": "rest mass, MeV/c² (log scale)",
+  "ylabel": "rest mass, GeV/c² (log scale)",
   "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_bottom": {
@@ -276,67 +276,67 @@
   "bars": [
    {
     "label": "u",
-    "value": 2.16,
+    "value": 0.00216,
     "color": "dim"
    },
    {
     "label": "d",
-    "value": 4.7,
+    "value": 0.0047,
     "color": "dim"
    },
    {
     "label": "s",
-    "value": 92.9,
+    "value": 0.0929,
     "color": "dim"
    },
    {
     "label": "c",
-    "value": 1272.9,
+    "value": 1.273,
     "color": "dim"
    },
    {
     "label": "b",
-    "value": 4186.0,
+    "value": 4.186,
     "color": "gold"
    },
    {
     "label": "t",
-    "value": 172603.559587,
+    "value": 172.6,
     "color": "dim"
    },
    {
     "label": "e",
-    "value": 0.510999,
+    "value": 0.000511,
     "color": "dim"
    },
    {
     "label": "μ",
-    "value": 105.658376,
+    "value": 0.1057,
     "color": "dim"
    },
    {
     "label": "τ",
-    "value": 1776.932465,
+    "value": 1.777,
     "color": "dim"
    },
    {
     "label": "W",
-    "value": 80362.5,
+    "value": 80.36,
     "color": "dim"
    },
    {
     "label": "Z",
-    "value": 91187.873297,
+    "value": 91.19,
     "color": "dim"
    },
    {
     "label": "H",
-    "value": 125130.943828,
+    "value": 125.1,
     "color": "dim"
    }
   ],
   "logy": true,
-  "ylabel": "rest mass, MeV/c² (log scale)",
+  "ylabel": "rest mass, GeV/c² (log scale)",
   "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_top": {
@@ -344,67 +344,67 @@
   "bars": [
    {
     "label": "u",
-    "value": 2.16,
+    "value": 0.00216,
     "color": "dim"
    },
    {
     "label": "d",
-    "value": 4.7,
+    "value": 0.0047,
     "color": "dim"
    },
    {
     "label": "s",
-    "value": 92.9,
+    "value": 0.0929,
     "color": "dim"
    },
    {
     "label": "c",
-    "value": 1272.9,
+    "value": 1.273,
     "color": "dim"
    },
    {
     "label": "b",
-    "value": 4186.0,
+    "value": 4.186,
     "color": "dim"
    },
    {
     "label": "t",
-    "value": 172603.559587,
+    "value": 172.6,
     "color": "gold"
    },
    {
     "label": "e",
-    "value": 0.510999,
+    "value": 0.000511,
     "color": "dim"
    },
    {
     "label": "μ",
-    "value": 105.658376,
+    "value": 0.1057,
     "color": "dim"
    },
    {
     "label": "τ",
-    "value": 1776.932465,
+    "value": 1.777,
     "color": "dim"
    },
    {
     "label": "W",
-    "value": 80362.5,
+    "value": 80.36,
     "color": "dim"
    },
    {
     "label": "Z",
-    "value": 91187.873297,
+    "value": 91.19,
     "color": "dim"
    },
    {
     "label": "H",
-    "value": 125130.943828,
+    "value": 125.1,
     "color": "dim"
    }
   ],
   "logy": true,
-  "ylabel": "rest mass, MeV/c² (log scale)",
+  "ylabel": "rest mass, GeV/c² (log scale)",
   "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_electron": {
@@ -412,67 +412,67 @@
   "bars": [
    {
     "label": "u",
-    "value": 2.16,
+    "value": 0.00216,
     "color": "dim"
    },
    {
     "label": "d",
-    "value": 4.7,
+    "value": 0.0047,
     "color": "dim"
    },
    {
     "label": "s",
-    "value": 92.9,
+    "value": 0.0929,
     "color": "dim"
    },
    {
     "label": "c",
-    "value": 1272.9,
+    "value": 1.273,
     "color": "dim"
    },
    {
     "label": "b",
-    "value": 4186.0,
+    "value": 4.186,
     "color": "dim"
    },
    {
     "label": "t",
-    "value": 172603.559587,
+    "value": 172.6,
     "color": "dim"
    },
    {
     "label": "e",
-    "value": 0.510999,
+    "value": 0.000511,
     "color": "gold"
    },
    {
     "label": "μ",
-    "value": 105.658376,
+    "value": 0.1057,
     "color": "dim"
    },
    {
     "label": "τ",
-    "value": 1776.932465,
+    "value": 1.777,
     "color": "dim"
    },
    {
     "label": "W",
-    "value": 80362.5,
+    "value": 80.36,
     "color": "dim"
    },
    {
     "label": "Z",
-    "value": 91187.873297,
+    "value": 91.19,
     "color": "dim"
    },
    {
     "label": "H",
-    "value": 125130.943828,
+    "value": 125.1,
     "color": "dim"
    }
   ],
   "logy": true,
-  "ylabel": "rest mass, MeV/c² (log scale)",
+  "ylabel": "rest mass, GeV/c² (log scale)",
   "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_muon": {
@@ -480,67 +480,67 @@
   "bars": [
    {
     "label": "u",
-    "value": 2.16,
+    "value": 0.00216,
     "color": "dim"
    },
    {
     "label": "d",
-    "value": 4.7,
+    "value": 0.0047,
     "color": "dim"
    },
    {
     "label": "s",
-    "value": 92.9,
+    "value": 0.0929,
     "color": "dim"
    },
    {
     "label": "c",
-    "value": 1272.9,
+    "value": 1.273,
     "color": "dim"
    },
    {
     "label": "b",
-    "value": 4186.0,
+    "value": 4.186,
     "color": "dim"
    },
    {
     "label": "t",
-    "value": 172603.559587,
+    "value": 172.6,
     "color": "dim"
    },
    {
     "label": "e",
-    "value": 0.510999,
+    "value": 0.000511,
     "color": "dim"
    },
    {
     "label": "μ",
-    "value": 105.658376,
+    "value": 0.1057,
     "color": "gold"
    },
    {
     "label": "τ",
-    "value": 1776.932465,
+    "value": 1.777,
     "color": "dim"
    },
    {
     "label": "W",
-    "value": 80362.5,
+    "value": 80.36,
     "color": "dim"
    },
    {
     "label": "Z",
-    "value": 91187.873297,
+    "value": 91.19,
     "color": "dim"
    },
    {
     "label": "H",
-    "value": 125130.943828,
+    "value": 125.1,
     "color": "dim"
    }
   ],
   "logy": true,
-  "ylabel": "rest mass, MeV/c² (log scale)",
+  "ylabel": "rest mass, GeV/c² (log scale)",
   "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_tau": {
@@ -548,67 +548,67 @@
   "bars": [
    {
     "label": "u",
-    "value": 2.16,
+    "value": 0.00216,
     "color": "dim"
    },
    {
     "label": "d",
-    "value": 4.7,
+    "value": 0.0047,
     "color": "dim"
    },
    {
     "label": "s",
-    "value": 92.9,
+    "value": 0.0929,
     "color": "dim"
    },
    {
     "label": "c",
-    "value": 1272.9,
+    "value": 1.273,
     "color": "dim"
    },
    {
     "label": "b",
-    "value": 4186.0,
+    "value": 4.186,
     "color": "dim"
    },
    {
     "label": "t",
-    "value": 172603.559587,
+    "value": 172.6,
     "color": "dim"
    },
    {
     "label": "e",
-    "value": 0.510999,
+    "value": 0.000511,
     "color": "dim"
    },
    {
     "label": "μ",
-    "value": 105.658376,
+    "value": 0.1057,
     "color": "dim"
    },
    {
     "label": "τ",
-    "value": 1776.932465,
+    "value": 1.777,
     "color": "gold"
    },
    {
     "label": "W",
-    "value": 80362.5,
+    "value": 80.36,
     "color": "dim"
    },
    {
     "label": "Z",
-    "value": 91187.873297,
+    "value": 91.19,
     "color": "dim"
    },
    {
     "label": "H",
-    "value": 125130.943828,
+    "value": 125.1,
     "color": "dim"
    }
   ],
   "logy": true,
-  "ylabel": "rest mass, MeV/c² (log scale)",
+  "ylabel": "rest mass, GeV/c² (log scale)",
   "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_nu_e": {
@@ -702,36 +702,34 @@
    {
     "id": "q1",
     "label": "quark (red)",
-    "x": 5,
+    "x": 17.6,
     "y": 50
    },
    {
     "id": "g",
-    "label": "gluon (red + anti-green)",
-    "x": 50,
+    "label": "gluon",
+    "x": 50.0,
     "y": 15,
     "color": "gold"
    },
    {
     "id": "q2",
     "label": "quark (green)",
-    "x": 95,
+    "x": 82.4,
     "y": 50
    }
   ],
   "edges": [
    {
     "from": "q1",
-    "to": "g",
-    "label": "emits"
+    "to": "g"
    },
    {
     "from": "g",
-    "to": "q2",
-    "label": "absorbed"
+    "to": "q2"
    }
   ],
-  "caption": "Schematic bookkeeping of one gluon exchange. The \"colours\" are only labels for three kinds of charge; a quark that emits a gluon changes colour while the colour total is kept. Nothing here is a picture of a path."
+  "caption": "Schematic bookkeeping of one gluon exchange, where the gluon carries a colour and an anticolour (here red and anti-green). The \"colours\" are only labels for three kinds of charge; a quark that emits a gluon changes colour while the colour total is kept. Nothing here is a picture of a path."
  },
  "sm_photon": {
   "type": "blocks",
@@ -740,20 +738,20 @@
    {
     "id": "a",
     "label": "electron",
-    "x": 5,
+    "x": 17.6,
     "y": 50
    },
    {
     "id": "p",
     "label": "photon",
-    "x": 50,
+    "x": 50.0,
     "y": 50,
     "color": "gold"
    },
    {
     "id": "b",
     "label": "electron",
-    "x": 95,
+    "x": 82.4,
     "y": 50
    }
   ],
@@ -774,67 +772,67 @@
   "bars": [
    {
     "label": "u",
-    "value": 2.16,
+    "value": 0.00216,
     "color": "dim"
    },
    {
     "label": "d",
-    "value": 4.7,
+    "value": 0.0047,
     "color": "dim"
    },
    {
     "label": "s",
-    "value": 92.9,
+    "value": 0.0929,
     "color": "dim"
    },
    {
     "label": "c",
-    "value": 1272.9,
+    "value": 1.273,
     "color": "dim"
    },
    {
     "label": "b",
-    "value": 4186.0,
+    "value": 4.186,
     "color": "dim"
    },
    {
     "label": "t",
-    "value": 172603.559587,
+    "value": 172.6,
     "color": "dim"
    },
    {
     "label": "e",
-    "value": 0.510999,
+    "value": 0.000511,
     "color": "dim"
    },
    {
     "label": "μ",
-    "value": 105.658376,
+    "value": 0.1057,
     "color": "dim"
    },
    {
     "label": "τ",
-    "value": 1776.932465,
+    "value": 1.777,
     "color": "dim"
    },
    {
     "label": "W",
-    "value": 80362.5,
+    "value": 80.36,
     "color": "gold"
    },
    {
     "label": "Z",
-    "value": 91187.873297,
+    "value": 91.19,
     "color": "dim"
    },
    {
     "label": "H",
-    "value": 125130.943828,
+    "value": 125.1,
     "color": "dim"
    }
   ],
   "logy": true,
-  "ylabel": "rest mass, MeV/c² (log scale)",
+  "ylabel": "rest mass, GeV/c² (log scale)",
   "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_z_boson": {
@@ -842,67 +840,67 @@
   "bars": [
    {
     "label": "u",
-    "value": 2.16,
+    "value": 0.00216,
     "color": "dim"
    },
    {
     "label": "d",
-    "value": 4.7,
+    "value": 0.0047,
     "color": "dim"
    },
    {
     "label": "s",
-    "value": 92.9,
+    "value": 0.0929,
     "color": "dim"
    },
    {
     "label": "c",
-    "value": 1272.9,
+    "value": 1.273,
     "color": "dim"
    },
    {
     "label": "b",
-    "value": 4186.0,
+    "value": 4.186,
     "color": "dim"
    },
    {
     "label": "t",
-    "value": 172603.559587,
+    "value": 172.6,
     "color": "dim"
    },
    {
     "label": "e",
-    "value": 0.510999,
+    "value": 0.000511,
     "color": "dim"
    },
    {
     "label": "μ",
-    "value": 105.658376,
+    "value": 0.1057,
     "color": "dim"
    },
    {
     "label": "τ",
-    "value": 1776.932465,
+    "value": 1.777,
     "color": "dim"
    },
    {
     "label": "W",
-    "value": 80362.5,
+    "value": 80.36,
     "color": "dim"
    },
    {
     "label": "Z",
-    "value": 91187.873297,
+    "value": 91.19,
     "color": "gold"
    },
    {
     "label": "H",
-    "value": 125130.943828,
+    "value": 125.1,
     "color": "dim"
    }
   ],
   "logy": true,
-  "ylabel": "rest mass, MeV/c² (log scale)",
+  "ylabel": "rest mass, GeV/c² (log scale)",
   "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_higgs": {
@@ -910,67 +908,67 @@
   "bars": [
    {
     "label": "u",
-    "value": 2.16,
+    "value": 0.00216,
     "color": "dim"
    },
    {
     "label": "d",
-    "value": 4.7,
+    "value": 0.0047,
     "color": "dim"
    },
    {
     "label": "s",
-    "value": 92.9,
+    "value": 0.0929,
     "color": "dim"
    },
    {
     "label": "c",
-    "value": 1272.9,
+    "value": 1.273,
     "color": "dim"
    },
    {
     "label": "b",
-    "value": 4186.0,
+    "value": 4.186,
     "color": "dim"
    },
    {
     "label": "t",
-    "value": 172603.559587,
+    "value": 172.6,
     "color": "dim"
    },
    {
     "label": "e",
-    "value": 0.510999,
+    "value": 0.000511,
     "color": "dim"
    },
    {
     "label": "μ",
-    "value": 105.658376,
+    "value": 0.1057,
     "color": "dim"
    },
    {
     "label": "τ",
-    "value": 1776.932465,
+    "value": 1.777,
     "color": "dim"
    },
    {
     "label": "W",
-    "value": 80362.5,
+    "value": 80.36,
     "color": "dim"
    },
    {
     "label": "Z",
-    "value": 91187.873297,
+    "value": 91.19,
     "color": "dim"
    },
    {
     "label": "H",
-    "value": 125130.943828,
+    "value": 125.1,
     "color": "gold"
    }
   ],
   "logy": true,
-  "ylabel": "rest mass, MeV/c² (log scale)",
+  "ylabel": "rest mass, GeV/c² (log scale)",
   "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_overview": {
@@ -979,35 +977,35 @@
    {
     "id": "q",
     "label": "quarks: u d  c s  t b",
-    "x": 16,
+    "x": 25.5,
     "y": 18,
     "color": "accent"
    },
    {
     "id": "l",
     "label": "leptons: e μ τ + 3 neutrinos",
-    "x": 16,
+    "x": 25.5,
     "y": 62,
     "color": "accent"
    },
    {
     "id": "g",
     "label": "gluon, photon, W, Z",
-    "x": 62,
+    "x": 58.6,
     "y": 18,
     "color": "gold"
    },
    {
     "id": "h",
     "label": "Higgs boson",
-    "x": 62,
+    "x": 58.6,
     "y": 62,
     "color": "pink"
    },
    {
     "id": "x",
     "label": "gravity: not in the model",
-    "x": 62,
+    "x": 58.6,
     "y": 100,
     "color": "dim"
    }
@@ -1015,23 +1013,19 @@
   "edges": [
    {
     "from": "g",
-    "to": "q",
-    "label": "forces"
+    "to": "q"
    },
    {
     "from": "g",
-    "to": "l",
-    "label": "forces"
+    "to": "l"
    },
    {
     "from": "h",
-    "to": "q",
-    "label": "mass"
+    "to": "q"
    },
    {
     "from": "h",
-    "to": "l",
-    "label": "mass"
+    "to": "l"
    }
   ],
   "caption": "The Standard Model at a glance: matter particles (blue), force carriers (gold) and the Higgs (pink). Gravity is left out. A map of ideas, not a picture of anything."
@@ -1114,26 +1108,26 @@
    {
     "id": "a",
     "label": "quark",
-    "x": 5,
+    "x": 17.6,
     "y": 50
    },
    {
     "id": "g",
     "label": "gluon",
-    "x": 50,
+    "x": 50.0,
     "y": 20,
     "color": "gold"
    },
    {
     "id": "b",
     "label": "quark",
-    "x": 95,
+    "x": 82.4,
     "y": 50
    },
    {
     "id": "c",
     "label": "gluon",
-    "x": 50,
+    "x": 50.0,
     "y": 85,
     "color": "gold"
    }
@@ -1262,32 +1256,32 @@
    {
     "id": "e",
     "label": "electron",
-    "x": 5,
+    "x": 17.6,
     "y": 22
    },
    {
     "id": "p",
     "label": "positron",
-    "x": 5,
+    "x": 17.6,
     "y": 78
    },
    {
     "id": "v",
     "label": "annihilate",
-    "x": 50,
+    "x": 50.0,
     "y": 50,
     "color": "gold"
    },
    {
     "id": "g1",
     "label": "photon",
-    "x": 95,
+    "x": 82.4,
     "y": 22
    },
    {
     "id": "g2",
     "label": "photon",
-    "x": 95,
+    "x": 82.4,
     "y": 78
    }
   ],
@@ -1468,31 +1462,31 @@
   ],
   "rows": [
    [
-    "n → p + e⁻ + ν̄ₑ",
+    "n → p e⁻ ν̄ₑ",
     "0 → 0",
     "0 → 0",
     "+1 → +1"
    ],
    [
-    "μ⁻ → e⁻ + ν̄ₑ + ν_μ",
+    "μ⁻ → e⁻ ν̄ₑ νμ",
     "-1 → -1",
     "+1 → +1",
     "0 → 0"
    ],
    [
-    "τ⁻ → e⁻ + ν̄ₑ + ν_τ",
+    "τ⁻ → e⁻ ν̄ₑ ντ",
     "-1 → -1",
     "+1 → +1",
     "0 → 0"
    ],
    [
-    "Λ → p + π⁻",
+    "Λ → p π⁻",
     "0 → 0",
     "0 → 0",
     "+1 → +1"
    ],
    [
-    "π⁰ → γ + γ",
+    "π⁰ → γ γ",
     "0 → 0",
     "0 → 0",
     "0 → 0"
@@ -1678,92 +1672,92 @@
    "Particle",
    "Quarks",
    "Charge",
-   "Mass (PDG 2026)"
+   "Mass (MeV)"
   ],
   "rows": [
    [
     "p",
     "uud",
     "+1",
-    "938.27208943 ± 0.00000029 MeV"
+    "938.2721"
    ],
    [
     "n",
     "udd",
     "0",
-    "939.5654219 ± 0.0000005 MeV"
+    "939.5654"
    ],
    [
     "π⁺",
     "ud̄",
     "+1",
-    "139.57039 ± 0.00018 MeV"
+    "139.5704"
    ],
    [
     "π⁰",
     "uū",
     "0",
-    "134.9768 ± 0.0005 MeV"
+    "134.9768"
    ],
    [
     "K⁺",
     "us̄",
     "+1",
-    "493.677 ± 0.015 MeV"
+    "493.6766"
    ],
    [
     "K⁰",
     "ds̄",
     "0",
-    "497.611 ± 0.013 MeV"
+    "497.6108"
    ],
    [
     "D⁰",
     "cū",
     "0",
-    "1864.84 ± 0.04 MeV"
+    "1864.842"
    ],
    [
     "B⁺",
     "ub̄",
     "+1",
-    "5279.41 ± 0.07 MeV"
+    "5279.406"
    ],
    [
     "J/ψ",
     "cc̄",
     "0",
-    "3096.900 ± 0.006 MeV"
+    "3096.9"
    ],
    [
     "Υ(1S)",
     "bb̄",
     "0",
-    "9460.40 ± 0.10 MeV"
+    "9460.4"
    ],
    [
     "Λ",
     "uds",
     "0",
-    "1115.683 ± 0.006 MeV"
+    "1115.683"
    ],
    [
     "Λc⁺",
     "udc",
     "+1",
-    "2286.46 ± 0.14 MeV"
+    "2286.462"
    ],
    [
     "Δ⁺⁺",
     "uuu",
     "+2",
-    "1232 (range 1230 to 1234) MeV"
+    "1232"
    ],
    [
     "Ω⁻",
     "sss",
     "−1",
-    "1672.45 ± 0.29 MeV"
+    "1672.452"
    ]
   ]
  },
@@ -1777,19 +1771,23 @@
    },
    {
     "label": "He-4",
-    "value": 7.074
+    "value": 7.074,
+    "color": "dim"
    },
    {
     "label": "C-12",
-    "value": 7.68
+    "value": 7.68,
+    "color": "dim"
    },
    {
     "label": "O-16",
-    "value": 7.976
+    "value": 7.976,
+    "color": "dim"
    },
    {
     "label": "Ca-40",
-    "value": 8.551
+    "value": 8.551,
+    "color": "dim"
    },
    {
     "label": "Fe-56",
@@ -1803,15 +1801,18 @@
    },
    {
     "label": "Sn-120",
-    "value": 8.504
+    "value": 8.504,
+    "color": "dim"
    },
    {
     "label": "Pb-208",
-    "value": 7.867
+    "value": 7.867,
+    "color": "dim"
    },
    {
     "label": "U-238",
-    "value": 7.57
+    "value": 7.57,
+    "color": "dim"
    }
   ],
   "ylabel": "binding energy per nucleon (MeV)",
@@ -1823,26 +1824,26 @@
    {
     "id": "b",
     "label": "beams collide",
-    "x": 3,
+    "x": 16.2,
     "y": 50,
     "color": "gold"
    },
    {
     "id": "t",
     "label": "tracker",
-    "x": 28,
+    "x": 34.2,
     "y": 50
    },
    {
     "id": "e",
     "label": "calorimeters",
-    "x": 56,
+    "x": 54.3,
     "y": 50
    },
    {
     "id": "m",
     "label": "muon chambers",
-    "x": 84,
+    "x": 74.5,
     "y": 50
    }
   ],
@@ -1872,26 +1873,26 @@
    {
     "id": "e",
     "label": "electron in",
-    "x": 4,
+    "x": 16.9,
     "y": 50
    },
    {
     "id": "q",
     "label": "quark inside proton",
-    "x": 50,
+    "x": 50.0,
     "y": 50,
     "color": "gold"
    },
    {
     "id": "o",
     "label": "electron out (angle measured)",
-    "x": 96,
+    "x": 83.1,
     "y": 12
    },
    {
     "id": "h",
     "label": "spray of hadrons",
-    "x": 96,
+    "x": 83.1,
     "y": 88
    }
   ],

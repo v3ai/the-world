@@ -109,7 +109,7 @@ lepton('muon', 'μ⁻', 'Muon', 2, mass('S004M', 'Measured directly'),
        {'kind': 'unstable', 'text': 'Mean life 2.1969811×10⁻⁶ s (PDG).', 'ref': pdg('S004T')},
        [dec('μ⁻ → e⁻ + ν̄ₑ + ν_μ', ['mu-'], ['e-', 'nubar_e', 'nu_mu'], None, 'Essentially 100% of muon decays (PDG listing); the rare radiative and e⁺e⁻ variants are small. The rate follows the weak force through a virtual W.')],
        {'name': 'Antimuon', 'symbol': 'μ⁺', 'self_conjugate': False, 'note': 'Same mass and lifetime, charge +1.'},
-       'Seth Neddermeyer and Carl Anderson (and, independently, Jabez Street and Edward Stevenson) in cosmic-ray cloud-chamber tracks in 1936–37. Nobody had predicted it.',
+       'Seth Neddermeyer and Carl Anderson (and, independently, Jabez Street and Edward Stevenson) in cosmic-ray cloud-chamber tracks, reported in 1937.',
        'Cosmic-ray muons pass through you all the time: roughly one per square centimetre of horizontal surface per minute at sea level (PDG cosmic-ray review, 2000 edition).',
        ['S004M', 'S004T'])
 lepton('tau', 'τ⁻', 'Tau lepton', 3, mass('S035M', 'Measured directly'),
