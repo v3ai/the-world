@@ -1,0 +1,3196 @@
+{
+ "_meta": {
+  "edition": "2026",
+  "citation": "F. Takahashi <i>et al.</i> (Particle Data Group), Int. J. Mod. Phys. A 41, 2630011 (2026)",
+  "licence": "CC BY 4.0",
+  "release": "2026-05-30 13:41:24 PDT",
+  "source": "https://pdg.lbl.gov/2026/api/pdg-2026.0.sqlite"
+ },
+ "records": {
+  "Q001M": {
+   "pdgid": "Q001M",
+   "description": "d-QUARK MASS",
+   "values": [
+    {
+     "type": "V",
+     "in_summary": 1,
+     "cl": 90.0,
+     "limit": null,
+     "comment": null,
+     "value": 4.7,
+     "text": "4.70+-0.07",
+     "err_plus": 0.07,
+     "err_minus": 0.07,
+     "scale": null,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "Q002M": {
+   "pdgid": "Q002M",
+   "description": "u-QUARK MASS",
+   "values": [
+    {
+     "type": "V",
+     "in_summary": 1,
+     "cl": 90.0,
+     "limit": null,
+     "comment": null,
+     "value": 2.16,
+     "text": "2.16+-0.07",
+     "err_plus": 0.07,
+     "err_minus": 0.07,
+     "scale": null,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "Q003M": {
+   "pdgid": "Q003M",
+   "description": "s-QUARK MASS",
+   "values": [
+    {
+     "type": "V",
+     "in_summary": 1,
+     "cl": 90.0,
+     "limit": null,
+     "comment": null,
+     "value": 92.9,
+     "text": "92.9 +-0.7",
+     "err_plus": 0.7,
+     "err_minus": 0.7,
+     "scale": null,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "Q004M": {
+   "pdgid": "Q004M",
+   "description": "c-QUARK MASS",
+   "values": [
+    {
+     "type": "V",
+     "in_summary": 1,
+     "cl": 90.0,
+     "limit": null,
+     "comment": null,
+     "value": 1.2729,
+     "text": "1.2729+-0.0045",
+     "err_plus": 0.0045,
+     "err_minus": 0.0045,
+     "scale": null,
+     "unit": "GeV"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1.272866024243004,
+     "text": "1.2729+-0.0027",
+     "err_plus": 0.002661407023419468,
+     "err_minus": 0.00265758112015523,
+     "scale": 1.0,
+     "unit": "GeV"
+    }
+   ]
+  },
+  "Q005M": {
+   "pdgid": "Q005M",
+   "description": "b-QUARK MASS",
+   "values": [
+    {
+     "type": "V",
+     "in_summary": 1,
+     "cl": 90.0,
+     "limit": null,
+     "comment": null,
+     "value": 4.186,
+     "text": "4.186+-0.006",
+     "err_plus": 0.006,
+     "err_minus": 0.006,
+     "scale": null,
+     "unit": "GeV"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 4.185908697963024,
+     "text": "4.1859+-0.0034",
+     "err_plus": 0.003418375597227496,
+     "err_minus": 0.003470800665251742,
+     "scale": 1.043796,
+     "unit": "GeV"
+    }
+   ]
+  },
+  "Q007TP": {
+   "pdgid": "Q007TP",
+   "description": "t-Quark Mass (Direct Measurements)",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 172.6035595874743,
+     "text": "172.60+-0.27",
+     "err_plus": 0.2713750020275726,
+     "err_minus": 0.273047806741856,
+     "scale": 1.519116,
+     "unit": "GeV"
+    }
+   ]
+  },
+  "Q007TP2": {
+   "pdgid": "Q007TP2",
+   "description": "t-Quark Mass from Cross-Section Measurements",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 162.5002846980492,
+     "text": "162.5+2.1-1.5",
+     "err_plus": 2.13161370878598,
+     "err_minus": 1.5324334305524,
+     "scale": 1.0,
+     "unit": "GeV"
+    }
+   ]
+  },
+  "Q007TP4": {
+   "pdgid": "Q007TP4",
+   "description": "t-Quark Pole Mass from Cross-Section Measurements",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 172.054218792374,
+     "text": "172.1+-0.6",
+     "err_plus": 0.6140864470014742,
+     "err_minus": 0.5896776206425237,
+     "scale": 1.0,
+     "unit": "GeV"
+    }
+   ]
+  },
+  "Q007W": {
+   "pdgid": "Q007W",
+   "description": "t-quark DECAY WIDTH",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1.424101758196898,
+     "text": "1.42+0.19-0.15",
+     "err_plus": 0.1905134297354235,
+     "err_minus": 0.1525604117117907,
+     "scale": 1.424286,
+     "unit": "GeV"
+    }
+   ]
+  },
+  "Q007R9": {
+   "pdgid": "Q007R9",
+   "description": "G(t --> e nu(e) b)/G(total)",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.111,
+     "text": "0.111+-0.003",
+     "err_plus": 0.003,
+     "err_minus": 0.003,
+     "scale": 1.0,
+     "unit": ""
+    }
+   ]
+  },
+  "Q007R10": {
+   "pdgid": "Q007R10",
+   "description": "G(t --> mu nu_mu b)/G(total)",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.114,
+     "text": "0.114+-0.002",
+     "err_plus": 0.002,
+     "err_minus": 0.002,
+     "scale": 1.0,
+     "unit": ""
+    }
+   ]
+  },
+  "Q007R6": {
+   "pdgid": "Q007R6",
+   "description": "G(t --> W b)/G(t --> W q (q = b , s , d))",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.9568439140926629,
+     "text": "0.957+-0.034",
+     "err_plus": 0.03424299152868759,
+     "err_minus": 0.03424299152868759,
+     "scale": 1.500684,
+     "unit": ""
+    }
+   ]
+  },
+  "S003M": {
+   "pdgid": "S003M",
+   "description": "e MASS",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.51099895069,
+     "text": "0.51099895069+-0.00000000016",
+     "err_plus": 1.6e-10,
+     "err_minus": 1.6e-10,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S004M": {
+   "pdgid": "S004M",
+   "description": "mu MASS",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 105.6583755,
+     "text": "105.6583755+-0.0000023",
+     "err_plus": 2.3e-06,
+     "err_minus": 2.3e-06,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S004T": {
+   "pdgid": "S004T",
+   "description": "mu MEAN LIFE tau",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 2.196981148893498e-06,
+     "text": "(2.1969811+-0.0000022)E-6",
+     "err_plus": 2.196152998470871e-12,
+     "err_minus": 2.196152998470871e-12,
+     "scale": 1.0,
+     "unit": "s"
+    }
+   ]
+  },
+  "S035M": {
+   "pdgid": "S035M",
+   "description": "tau MASS",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1776.93246513409,
+     "text": "1776.93+-0.09",
+     "err_plus": 0.08491495391323055,
+     "err_minus": 0.08758019173411406,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S035T": {
+   "pdgid": "S035T",
+   "description": "tau MEAN LIFE",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 2.902908481725749e-13,
+     "text": "(2.903+-0.005)E-13",
+     "err_plus": 5.252136673846729e-16,
+     "err_minus": 5.252136673846729e-16,
+     "scale": 1.0,
+     "unit": "s"
+    }
+   ]
+  },
+  "S003T": {
+   "pdgid": "S003T",
+   "description": "e --> nu(e) gamma and astrophysical limits",
+   "values": [
+    {
+     "type": "L",
+     "in_summary": 1,
+     "cl": 90.0,
+     "limit": "L",
+     "comment": null,
+     "value": 6.599999999999999e+28,
+     "text": ">6.6 E28",
+     "err_plus": 0.0,
+     "err_minus": 0.0,
+     "scale": null,
+     "unit": "yr"
+    }
+   ]
+  },
+  "S003TD": {
+   "pdgid": "S003TD",
+   "description": "Disappearance and nuclear-de-excitation experiments",
+   "values": [
+    {
+     "type": "L",
+     "in_summary": 1,
+     "cl": 90.0,
+     "limit": "L",
+     "comment": null,
+     "value": 3.2e+25,
+     "text": ">3.2 E25",
+     "err_plus": 0.0,
+     "err_minus": 0.0,
+     "scale": null,
+     "unit": "yr"
+    }
+   ]
+  },
+  "S066MAE": {
+   "pdgid": "S066MAE",
+   "description": "nubar MASS (electron based)",
+   "values": [
+    {
+     "type": "L",
+     "in_summary": 1,
+     "cl": 90.0,
+     "limit": "U",
+     "comment": null,
+     "value": 0.45,
+     "text": "<0.45",
+     "err_plus": 0.0,
+     "err_minus": 0.0,
+     "scale": null,
+     "unit": "eV"
+    }
+   ]
+  },
+  "S066M2E": {
+   "pdgid": "S066M2E",
+   "description": "nubar MASS SQUARED (electron based)",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": -0.1425647241003134,
+     "text": "-0.14+0.13-0.15",
+     "err_plus": 0.1297105960282386,
+     "err_minus": 0.1495559127151796,
+     "scale": 1.0,
+     "unit": "eV**2"
+    }
+   ]
+  },
+  "S066MNE": {
+   "pdgid": "S066MNE",
+   "description": "nu MASS (electron based)",
+   "values": [
+    {
+     "type": "L",
+     "in_summary": 1,
+     "cl": 90.0,
+     "limit": "U",
+     "comment": null,
+     "value": 27.0,
+     "text": "<27",
+     "err_plus": 0.0,
+     "err_minus": 0.0,
+     "scale": null,
+     "unit": "eV"
+    }
+   ]
+  },
+  "S066MNM": {
+   "pdgid": "S066MNM",
+   "description": "nu MASS (muon based)",
+   "values": [
+    {
+     "type": "V",
+     "in_summary": 1,
+     "cl": 90.0,
+     "limit": "U",
+     "comment": null,
+     "value": null,
+     "text": "<0.19",
+     "err_plus": null,
+     "err_minus": null,
+     "scale": null,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S066MNT": {
+   "pdgid": "S066MNT",
+   "description": "nu MASS (tau based)",
+   "values": [
+    {
+     "type": "L",
+     "in_summary": 1,
+     "cl": 95.0,
+     "limit": "U",
+     "comment": null,
+     "value": 18.2,
+     "text": "<18.2",
+     "err_plus": 0.0,
+     "err_minus": 0.0,
+     "scale": null,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S066CHR": {
+   "pdgid": "S066CHR",
+   "description": "nu CHARGE",
+   "values": [
+    {
+     "type": "L",
+     "in_summary": 1,
+     "cl": 95.0,
+     "limit": "U",
+     "comment": null,
+     "value": 4e-35,
+     "text": "<4 E-35",
+     "err_plus": 0.0,
+     "err_minus": 0.0,
+     "scale": null,
+     "unit": "e"
+    }
+   ]
+  },
+  "S066MGM": {
+   "pdgid": "S066MGM",
+   "description": "nu MAGNETIC MOMENT",
+   "values": [
+    {
+     "type": "L",
+     "in_summary": 1,
+     "cl": 90.0,
+     "limit": "U",
+     "comment": null,
+     "value": 6.4e-12,
+     "text": "<6.4 E-12",
+     "err_plus": 0.0,
+     "err_minus": 0.0,
+     "scale": null,
+     "unit": "mu(B)"
+    }
+   ]
+  },
+  "S067P12": {
+   "pdgid": "S067P12",
+   "description": "sin**2(theta(12))",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.307,
+     "text": "0.307+-0.012",
+     "err_plus": 0.012,
+     "err_minus": 0.012,
+     "scale": 1.0,
+     "unit": ""
+    }
+   ]
+  },
+  "S067DM3": {
+   "pdgid": "S067DM3",
+   "description": "Deltam(21)**2",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 7.596351811384622e-05,
+     "text": "(7.60+-0.17)E-5",
+     "err_plus": 1.74479690711908e-06,
+     "err_minus": 1.642293112832004e-06,
+     "scale": 1.000296,
+     "unit": "eV**2"
+    }
+   ]
+  },
+  "S067P23": {
+   "pdgid": "S067P23",
+   "description": "sin**2(theta(23))",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": "Assuming inverted mass ordering",
+     "value": 0.5233553166548395,
+     "text": "0.523+0.031-0.027",
+     "err_plus": 0.03065884017046941,
+     "err_minus": 0.02748916001038307,
+     "scale": 1.300628,
+     "unit": ""
+    },
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": "Assuming normal mass ordering",
+     "value": 0.5332766370629638,
+     "text": "0.533+-0.018",
+     "err_plus": 0.01760725032280703,
+     "err_minus": 0.01939162075479745,
+     "scale": 1.0,
+     "unit": ""
+    }
+   ]
+  },
+  "S067DM1": {
+   "pdgid": "S067DM1",
+   "description": "Deltam(32)**2",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": "Assuming inverted ordering",
+     "value": -0.002516509514471402,
+     "text": "-0.00252+-0.00004",
+     "err_plus": 4.004872544557284e-05,
+     "err_minus": 4.077315199205133e-05,
+     "scale": 1.259586,
+     "unit": "eV**2"
+    },
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": "Assuming normal ordering",
+     "value": 0.002444797463431942,
+     "text": "0.002445+-0.000023",
+     "err_plus": 2.290034882622281e-05,
+     "err_minus": 2.371320535729313e-05,
+     "scale": 1.005552,
+     "unit": "eV**2"
+    }
+   ]
+  },
+  "S067P13": {
+   "pdgid": "S067P13",
+   "description": "sin**2(theta(13))",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.02171230090328958,
+     "text": "0.0217+-0.0007",
+     "err_plus": 0.0007443481550062476,
+     "err_minus": 0.0007512936387519211,
+     "scale": 1.430974,
+     "unit": ""
+    }
+   ]
+  },
+  "S067DEL": {
+   "pdgid": "S067DEL",
+   "description": "delta, CP violating phase",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1.207839732594692,
+     "text": "1.21+0.19-0.17",
+     "err_plus": 0.1942577937618826,
+     "err_minus": 0.165276927784777,
+     "scale": 1.192008,
+     "unit": "pi rad"
+    }
+   ]
+  },
+  "S000M": {
+   "pdgid": "S000M",
+   "description": "gamma MASS",
+   "values": [
+    {
+     "type": "L",
+     "in_summary": 1,
+     "cl": null,
+     "limit": "U",
+     "comment": null,
+     "value": 1e-18,
+     "text": "<1 E-18",
+     "err_plus": 0.0,
+     "err_minus": 0.0,
+     "scale": null,
+     "unit": "eV"
+    }
+   ]
+  },
+  "S000Q": {
+   "pdgid": "S000Q",
+   "description": "gamma CHARGE",
+   "values": [
+    {
+     "type": "L",
+     "in_summary": 1,
+     "cl": null,
+     "limit": "U",
+     "comment": null,
+     "value": 1e-46,
+     "text": "<1 E-46",
+     "err_plus": 0.0,
+     "err_minus": 0.0,
+     "scale": null,
+     "unit": "e"
+    }
+   ]
+  },
+  "S043M": {
+   "pdgid": "S043M",
+   "description": "W MASS",
+   "values": [
+    {
+     "type": "V",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": "(LHC-TeVatron M_{{W}} Working Group)",
+     "value": 80.3625,
+     "text": "80.3625 +-0.0077",
+     "err_plus": 0.0077,
+     "err_minus": 0.0077,
+     "scale": null,
+     "unit": "GeV"
+    }
+   ]
+  },
+  "S043W": {
+   "pdgid": "S043W",
+   "description": "W WIDTH",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 2.137328174029357,
+     "text": "2.14+-0.05",
+     "err_plus": 0.05365622500314941,
+     "err_minus": 0.05365622500314941,
+     "scale": 1.713951,
+     "unit": "GeV"
+    }
+   ]
+  },
+  "S044M": {
+   "pdgid": "S044M",
+   "description": "Z MASS",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 91.18787329722134,
+     "text": "91.1879+-0.0020",
+     "err_plus": 0.00196689903262915,
+     "err_minus": 0.00196689903262915,
+     "scale": 1.0,
+     "unit": "GeV"
+    }
+   ]
+  },
+  "S044W": {
+   "pdgid": "S044W",
+   "description": "Z WIDTH",
+   "values": [
+    {
+     "type": "V",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 2.4955,
+     "text": "2.4955+-0.0023",
+     "err_plus": 0.0023,
+     "err_minus": 0.0023,
+     "scale": null,
+     "unit": "GeV"
+    }
+   ]
+  },
+  "S126M": {
+   "pdgid": "S126M",
+   "description": "H MASS",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 125.1309438281615,
+     "text": "125.13+-0.11",
+     "err_plus": 0.111721447765488,
+     "err_minus": 0.111721447765488,
+     "scale": 1.518243,
+     "unit": "GeV"
+    }
+   ]
+  },
+  "S126W": {
+   "pdgid": "S126W",
+   "description": "H DECAY WIDTH",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 3.035493483037885,
+     "text": "3.0+1.5-0.7",
+     "err_plus": 1.452973690017683,
+     "err_minus": 0.7150119194099107,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S043.7": {
+   "pdgid": "S043.7",
+   "description": "W+ --> lepton+ nu",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.1086,
+     "text": "(10.86+-0.09)E-2",
+     "err_plus": 0.0009,
+     "err_minus": 0.0009,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S043.8": {
+   "pdgid": "S043.8",
+   "description": "W+ --> hadrons",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.6741,
+     "text": "(67.41+-0.27)E-2",
+     "err_plus": 0.0027,
+     "err_minus": 0.0027,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S043.1": {
+   "pdgid": "S043.1",
+   "description": "W+ --> e+ nu",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.1071,
+     "text": "(10.71+-0.16)E-2",
+     "err_plus": 0.0016,
+     "err_minus": 0.0016,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S043.2": {
+   "pdgid": "S043.2",
+   "description": "W+ --> mu+ nu",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.1063,
+     "text": "(10.63+-0.15)E-2",
+     "err_plus": 0.0015,
+     "err_minus": 0.0015,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S043.5": {
+   "pdgid": "S043.5",
+   "description": "W+ --> tau+ nu",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.1138,
+     "text": "(11.38+-0.21)E-2",
+     "err_plus": 0.0021,
+     "err_minus": 0.0021,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S044.7": {
+   "pdgid": "S044.7",
+   "description": "Z --> hadrons",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.69911,
+     "text": "(69.911 +-0.056)E-2",
+     "err_plus": 0.00056,
+     "err_minus": 0.00056,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S044.9": {
+   "pdgid": "S044.9",
+   "description": "Z --> invisible",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.2,
+     "text": "(20.000 +-0.055)E-2",
+     "err_plus": 0.00055,
+     "err_minus": 0.00055,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S044.16": {
+   "pdgid": "S044.16",
+   "description": "Z --> lepton+ lepton-",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.033658,
+     "text": "(3.3658 +-0.0023)E-2",
+     "err_plus": 2.3e-05,
+     "err_minus": 2.3e-05,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S044.1": {
+   "pdgid": "S044.1",
+   "description": "Z --> e+ e-",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.033632,
+     "text": "(3.3632 +-0.0042)E-2",
+     "err_plus": 4.2e-05,
+     "err_minus": 4.2e-05,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S044.2": {
+   "pdgid": "S044.2",
+   "description": "Z --> mu+ mu-",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.033662,
+     "text": "(3.3662 +-0.0066)E-2",
+     "err_plus": 6.6e-05,
+     "err_minus": 6.6e-05,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S044.8": {
+   "pdgid": "S044.8",
+   "description": "Z --> tau+ tau-",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.033696,
+     "text": "(3.3696 +-0.0083)E-2",
+     "err_plus": 8.3e-05,
+     "err_minus": 8.3e-05,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S126.4": {
+   "pdgid": "S126.4",
+   "description": "H --> b bbar",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.53,
+     "text": "(53+-8)E-2",
+     "err_plus": 0.08,
+     "err_minus": 0.08,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S126.1": {
+   "pdgid": "S126.1",
+   "description": "H --> W W^*",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.257,
+     "text": "(25.7+-2.5)E-2",
+     "err_plus": 0.026,
+     "err_minus": 0.024,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S126.5": {
+   "pdgid": "S126.5",
+   "description": "H --> tau+ tau-",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.06,
+     "text": "(6.0+0.8-0.7)E-2",
+     "err_plus": 0.008,
+     "err_minus": 0.007,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S126.2": {
+   "pdgid": "S126.2",
+   "description": "H --> Z Z^*",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.028,
+     "text": "(2.80+-0.30)E-2",
+     "err_plus": 0.003,
+     "err_minus": 0.003,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S126.3": {
+   "pdgid": "S126.3",
+   "description": "H --> gamma gamma",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.0025,
+     "text": "(2.50+-0.20)E-3",
+     "err_plus": 0.0002,
+     "err_minus": 0.0002,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S126.8": {
+   "pdgid": "S126.8",
+   "description": "H --> mu+ mu-",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.0003,
+     "text": "(3.0+-0.9)E-4",
+     "err_plus": 9e-05,
+     "err_minus": 9e-05,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S126.7": {
+   "pdgid": "S126.7",
+   "description": "H --> invisible",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": 95.0,
+     "limit": "U",
+     "comment": null,
+     "value": 0.107,
+     "text": "<10.7 E-2",
+     "err_plus": 0.0,
+     "err_minus": 0.0,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S035.2": {
+   "pdgid": "S035.2",
+   "description": "tau- --> e- nubar_e nu_tau",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.1784677289,
+     "text": "(17.85+-0.04)E-2",
+     "err_plus": 0.0003680678929,
+     "err_minus": 0.0003680678929,
+     "scale": 1.0,
+     "unit": ""
+    }
+   ]
+  },
+  "S035.1": {
+   "pdgid": "S035.1",
+   "description": "tau- --> mu- nubar_mu nu_tau",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.1736568957,
+     "text": "(17.37+-0.04)E-2",
+     "err_plus": 0.0003552621718,
+     "err_minus": 0.0003552621718,
+     "scale": 1.0,
+     "unit": ""
+    }
+   ]
+  },
+  "S035.12": {
+   "pdgid": "S035.12",
+   "description": "tau- --> pi- nu_tau",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.1081512536,
+     "text": "(10.82+-0.05)E-2",
+     "err_plus": 0.0005120351249,
+     "err_minus": 0.0005120351249,
+     "scale": 1.0,
+     "unit": ""
+    }
+   ]
+  },
+  "S035.16": {
+   "pdgid": "S035.16",
+   "description": "tau- --> pi- pi0 nu_tau",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.2549309362,
+     "text": "(25.49+-0.09)E-2",
+     "err_plus": 0.0008932430891,
+     "err_minus": 0.0008932430891,
+     "scale": 1.0,
+     "unit": ""
+    }
+   ]
+  },
+  "S035.257": {
+   "pdgid": "S035.257",
+   "description": "tau- --> pi- pi+ pi- nu_tau",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.09305919166,
+     "text": "(9.31+-0.05)E-2",
+     "err_plus": 0.0005129994559,
+     "err_minus": 0.0005129994559,
+     "scale": 1.0,
+     "unit": ""
+    }
+   ]
+  },
+  "S008.1": {
+   "pdgid": "S008.1",
+   "description": "pi+ --> mu+ nu_mu",
+   "values": [
+    {
+     "type": "V",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.999877,
+     "text": "(99.98770+-0.00004)E-2",
+     "err_plus": 4e-07,
+     "err_minus": 4e-07,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S009.1": {
+   "pdgid": "S009.1",
+   "description": "pi0 --> 2gamma",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.9882312200541876,
+     "text": "(98.823+-0.034)E-2",
+     "err_plus": 0.000344994511056095,
+     "err_minus": 0.000344994511056095,
+     "scale": 1.466206,
+     "unit": ""
+    }
+   ]
+  },
+  "S009.2": {
+   "pdgid": "S009.2",
+   "description": "pi0 --> e+ e- gamma",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.01173537929795153,
+     "text": "(1.174+-0.035)E-2",
+     "err_plus": 0.0003450026103035864,
+     "err_minus": 0.0003450026103035864,
+     "scale": 1.466224,
+     "unit": ""
+    }
+   ]
+  },
+  "S010.1": {
+   "pdgid": "S010.1",
+   "description": "K+ --> mu+ nu_mu",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.6356026422917163,
+     "text": "(63.56+-0.11)E-2",
+     "err_plus": 0.001070997633729529,
+     "err_minus": 0.001070997633729529,
+     "scale": 1.239679,
+     "unit": ""
+    },
+    {
+     "type": "DR",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.5134207995730241,
+     "text": "0.5134+-0.0012",
+     "err_plus": 0.001224983894800369,
+     "err_minus": 0.001224983894800369,
+     "scale": 1.452901,
+     "unit": ""
+    }
+   ]
+  },
+  "S010.2": {
+   "pdgid": "S010.2",
+   "description": "K+ --> pi+ pi0",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.2067049769407654,
+     "text": "(20.67+-0.08)E-2",
+     "err_plus": 0.0007533435602685098,
+     "err_minus": 0.0007533435602685098,
+     "scale": 1.219994,
+     "unit": ""
+    },
+    {
+     "type": "DR",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.1669700965276091,
+     "text": "0.1670+-0.0007",
+     "err_plus": 0.0006708281027345399,
+     "err_minus": 0.0006708281027345399,
+     "scale": 1.285048,
+     "unit": ""
+    }
+   ]
+  },
+  "S010.3": {
+   "pdgid": "S010.3",
+   "description": "K+ --> pi+ pi+ pi-",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.0558347733897552,
+     "text": "(5.583+-0.024)E-2",
+     "err_plus": 0.0002425887113819864,
+     "err_minus": 0.0002425887113819864,
+     "scale": 1.027153,
+     "unit": ""
+    },
+    {
+     "type": "DR",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.04510165957521278,
+     "text": "0.04510+-0.00019",
+     "err_plus": 0.0001923582827211564,
+     "err_minus": 0.0001923582827211564,
+     "scale": 1.013721,
+     "unit": ""
+    }
+   ]
+  },
+  "S010.6": {
+   "pdgid": "S010.6",
+   "description": "K+ --> pi0 e+ nu_e",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.05071898455649143,
+     "text": "(5.07+-0.04)E-2",
+     "err_plus": 0.0004321283616822069,
+     "err_minus": 0.0004321283616822069,
+     "scale": 2.126003,
+     "unit": ""
+    },
+    {
+     "type": "DR",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.0409692784011025,
+     "text": "0.0410+-0.0004",
+     "err_plus": 0.0003563631830354377,
+     "err_minus": 0.0003563631830354377,
+     "scale": 2.114931,
+     "unit": ""
+    }
+   ]
+  },
+  "S012.1": {
+   "pdgid": "S012.1",
+   "description": "K0S --> pi+ pi-",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.6919512697789951,
+     "text": "(69.20+-0.05)E-2",
+     "err_plus": 0.0005088502798268763,
+     "err_minus": 0.0005088502798268763,
+     "scale": 1.0,
+     "unit": ""
+    }
+   ]
+  },
+  "S012.2": {
+   "pdgid": "S012.2",
+   "description": "K0S --> pi0 pi0",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.3068785016614082,
+     "text": "(30.69+-0.05)E-2",
+     "err_plus": 0.0005091688756789147,
+     "err_minus": 0.0005091688756789147,
+     "scale": 1.0,
+     "unit": ""
+    }
+   ]
+  },
+  "S013.4": {
+   "pdgid": "S013.4",
+   "description": "K0L --> pi+- e-+ nu_e",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.4055391660042724,
+     "text": "(40.55+-0.11)E-2",
+     "err_plus": 0.001113260176219781,
+     "err_minus": 0.001113260176219781,
+     "scale": 1.718021,
+     "unit": ""
+    },
+    {
+     "type": "DR",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.07927297387757185,
+     "text": "0.07927+-0.00034",
+     "err_plus": 0.0003424412888239118,
+     "err_minus": 0.0003382799922973275,
+     "scale": 1.057858,
+     "unit": ""
+    }
+   ]
+  },
+  "S013.3": {
+   "pdgid": "S013.3",
+   "description": "K0L --> pi+- mu-+ nu_mu",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.2704384978011732,
+     "text": "(27.04+-0.07)E-2",
+     "err_plus": 0.0006844693444988942,
+     "err_minus": 0.0006844693444988942,
+     "scale": 1.055057,
+     "unit": ""
+    },
+    {
+     "type": "DR",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.05286410233298235,
+     "text": "0.05286+-0.00025",
+     "err_plus": 0.0002464732762135682,
+     "err_minus": 0.0002438385760275216,
+     "scale": 1.068036,
+     "unit": ""
+    }
+   ]
+  },
+  "S013.1": {
+   "pdgid": "S013.1",
+   "description": "K0L --> 3pi0",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.1951761564842854,
+     "text": "(19.52+-0.12)E-2",
+     "err_plus": 0.001157292705905872,
+     "err_minus": 0.001157292705905872,
+     "scale": 1.605466,
+     "unit": ""
+    },
+    {
+     "type": "DR",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.03815215804418907,
+     "text": "0.03815+-0.00030",
+     "err_plus": 0.0003048886075526388,
+     "err_minus": 0.0003048886075526388,
+     "scale": 1.45338,
+     "unit": ""
+    }
+   ]
+  },
+  "S013.2": {
+   "pdgid": "S013.2",
+   "description": "K0L --> pi+ pi- pi0",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.1253892235738107,
+     "text": "(12.54+-0.05)E-2",
+     "err_plus": 0.0005152757904526328,
+     "err_minus": 0.0005152757904526328,
+     "scale": 1.023637,
+     "unit": ""
+    },
+    {
+     "type": "DR",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.02451052198689729,
+     "text": "0.02451+-0.00015",
+     "err_plus": 0.000152853862664023,
+     "err_minus": 0.000152853862664023,
+     "scale": 1.048744,
+     "unit": ""
+    }
+   ]
+  },
+  "S018.1": {
+   "pdgid": "S018.1",
+   "description": "Lambda --> p pi-",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.6410693390722082,
+     "text": "(64.1+-0.5)E-2",
+     "err_plus": 0.004860553814547058,
+     "err_minus": 0.004860553814547058,
+     "scale": 1.0,
+     "unit": ""
+    }
+   ]
+  },
+  "S018.2": {
+   "pdgid": "S018.2",
+   "description": "Lambda --> n pi0",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.3587799480245009,
+     "text": "(35.9+-0.5)E-2",
+     "err_plus": 0.004860543480627565,
+     "err_minus": 0.004860543480627565,
+     "scale": 1.0,
+     "unit": ""
+    }
+   ]
+  },
+  "S024.1": {
+   "pdgid": "S024.1",
+   "description": "Omega- --> Lambda K-",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.6765672514619884,
+     "text": "(67.7+-0.7)E-2",
+     "err_plus": 0.006657303366165748,
+     "err_minus": 0.006657303366165748,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S024.2": {
+   "pdgid": "S024.2",
+   "description": "Omega- --> Xi0 pi-",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.2432649040953862,
+     "text": "(24.3+-0.7)E-2",
+     "err_plus": 0.007149076380692745,
+     "err_minus": 0.007149076380692745,
+     "scale": 1.456079,
+     "unit": ""
+    }
+   ]
+  },
+  "S024.3": {
+   "pdgid": "S024.3",
+   "description": "Omega- --> Xi- pi0",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.08546540880503144,
+     "text": "(8.55+-0.33)E-2",
+     "err_plus": 0.003311880652909989,
+     "err_minus": 0.003311880652909989,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "B033.1": {
+   "pdgid": "B033.1",
+   "description": "Delta(1232) --> N pi",
+   "values": [
+    {
+     "type": "E",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.994,
+     "text": "(99.4)E-2",
+     "err_plus": 0.0,
+     "err_minus": 0.0,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S016M": {
+   "pdgid": "S016M",
+   "description": "p MASS (MeV)",
+   "values": [
+    {
+     "type": "V",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": "2022 CODATA",
+     "value": 938.27208943,
+     "text": "938.27208943+-0.00000029",
+     "err_plus": 2.9e-07,
+     "err_minus": 2.9e-07,
+     "scale": null,
+     "unit": "MeV"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 938.27208943,
+     "text": "938.27208943+-0.00000029",
+     "err_plus": 2.9e-07,
+     "err_minus": 2.9e-07,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S016AMU": {
+   "pdgid": "S016AMU",
+   "description": "p MASS (atomic mass units u)",
+   "values": [
+    {
+     "type": "V",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": "2022 CODATA",
+     "value": 1.0072764665789,
+     "text": "1.0072764665789+-0.0000000000083",
+     "err_plus": 8.3e-12,
+     "err_minus": 8.3e-12,
+     "scale": null,
+     "unit": "u"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1.0072764665789,
+     "text": "1.007276466579+-0.000000000008",
+     "err_plus": 8.3e-12,
+     "err_minus": 8.3e-12,
+     "scale": 1.0,
+     "unit": "u"
+    }
+   ]
+  },
+  "S016T": {
+   "pdgid": "S016T",
+   "description": "p MEAN LIFE",
+   "values": [
+    {
+     "type": "L",
+     "in_summary": 1,
+     "cl": 90.0,
+     "limit": "L",
+     "comment": null,
+     "value": 9e+29,
+     "text": ">9 E29",
+     "err_plus": 0.0,
+     "err_minus": 0.0,
+     "scale": null,
+     "unit": "years"
+    }
+   ]
+  },
+  "S016CR": {
+   "pdgid": "S016CR",
+   "description": "p CHARGE RADIUS",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.84075,
+     "text": "0.8407+-0.0006",
+     "err_plus": 0.00064,
+     "err_minus": 0.00064,
+     "scale": 1.0,
+     "unit": "fm"
+    }
+   ]
+  },
+  "S016MCR": {
+   "pdgid": "S016MCR",
+   "description": "p MAGNETIC RADIUS",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.851,
+     "text": "0.851+-0.026",
+     "err_plus": 0.026,
+     "err_minus": 0.026,
+     "scale": 1.0,
+     "unit": "fm"
+    }
+   ]
+  },
+  "S016MM": {
+   "pdgid": "S016MM",
+   "description": "p MAGNETIC MOMENT",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 2.79284734463,
+     "text": "2.7928473446+-0.0000000008",
+     "err_plus": 8.2e-10,
+     "err_minus": 8.2e-10,
+     "scale": 1.0,
+     "unit": "mu(N)"
+    }
+   ]
+  },
+  "S016DQ": {
+   "pdgid": "S016DQ",
+   "description": "|q_p+q_e|/e",
+   "values": [
+    {
+     "type": "L",
+     "in_summary": 1,
+     "cl": null,
+     "limit": "U",
+     "comment": null,
+     "value": 1e-21,
+     "text": "<1 E-21",
+     "err_plus": 0.0,
+     "err_minus": 0.0,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S017M": {
+   "pdgid": "S017M",
+   "description": "n MASS (MeV)",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 939.56542194,
+     "text": "939.5654219+-0.0000005",
+     "err_plus": 4.8e-07,
+     "err_minus": 4.8e-07,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S017AMU": {
+   "pdgid": "S017AMU",
+   "description": "n MASS (atomic mass units u)",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1.00866491606,
+     "text": "1.0086649161+-0.0000000004",
+     "err_plus": 4e-10,
+     "err_minus": 4e-10,
+     "scale": 1.0,
+     "unit": "u"
+    }
+   ]
+  },
+  "S017T": {
+   "pdgid": "S017T",
+   "description": "n MEAN LIFE",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 878.347449550673,
+     "text": "878.3+-0.4",
+     "err_plus": 0.4357406107292319,
+     "err_minus": 0.4128178886402047,
+     "scale": 1.811531,
+     "unit": "s"
+    }
+   ]
+  },
+  "S017MM": {
+   "pdgid": "S017MM",
+   "description": "n MAGNETIC MOMENT",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": -1.91304276,
+     "text": "-1.9130428+-0.0000005",
+     "err_plus": 4.5e-07,
+     "err_minus": 4.5e-07,
+     "scale": 1.0,
+     "unit": "mu(N)"
+    }
+   ]
+  },
+  "S017MCR": {
+   "pdgid": "S017MCR",
+   "description": "n MEAN-SQUARE CHARGE RADIUS",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": -0.1154674827850038,
+     "text": "-0.1155+-0.0017",
+     "err_plus": 0.001744594888116415,
+     "err_minus": 0.001744594888116415,
+     "scale": 1.0,
+     "unit": "fm**2"
+    }
+   ]
+  },
+  "S017D": {
+   "pdgid": "S017D",
+   "description": "mass(n)-mass(p)",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1.29333251,
+     "text": "1.2933325+-0.0000004",
+     "err_plus": 3.8e-07,
+     "err_minus": 3.8e-07,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S017Q": {
+   "pdgid": "S017Q",
+   "description": "n CHARGE",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": -2.5e-22,
+     "text": "(-2+-8)E-22",
+     "err_plus": 7.778174593052023e-22,
+     "err_minus": 7.778174593052023e-22,
+     "scale": 1.0,
+     "unit": "e"
+    }
+   ]
+  },
+  "S017R1": {
+   "pdgid": "S017R1",
+   "description": "G(n --> p nu(e) nubar_e)/G(total)",
+   "values": [
+    {
+     "type": "L",
+     "in_summary": 0,
+     "cl": 68.0,
+     "limit": "U",
+     "comment": null,
+     "value": 8e-27,
+     "text": "<8 E-27",
+     "err_plus": 0.0,
+     "err_minus": 0.0,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S008M": {
+   "pdgid": "S008M",
+   "description": "pi+- MASS",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 139.5703909836813,
+     "text": "139.57039+-0.00018",
+     "err_plus": 0.0001820071604082601,
+     "err_minus": 0.0001820071604082601,
+     "scale": 1.76094,
+     "unit": "MeV"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 139.5703909836813,
+     "text": "139.57039+-0.00017",
+     "err_plus": 0.0001693589698941287,
+     "err_minus": 0.0001693589698941287,
+     "scale": 1.638568,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S008T": {
+   "pdgid": "S008T",
+   "description": "pi+- MEAN LIFE",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 2.603313199949126e-08,
+     "text": "(2.6033+-0.0005)E-8",
+     "err_plus": 5.291235720709906e-12,
+     "err_minus": 5.291235720709906e-12,
+     "scale": 1.174286,
+     "unit": "s"
+    }
+   ]
+  },
+  "S009M": {
+   "pdgid": "S009M",
+   "description": "pi0 MASS",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 134.9768277676847,
+     "text": "134.9768+-0.0005",
+     "err_plus": 0.0004856792822842335,
+     "err_minus": 0.0004856792822842335,
+     "scale": 1.051262,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S009T": {
+   "pdgid": "S009T",
+   "description": "pi0 MEAN LIFE",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 8.425512205250367e-17,
+     "text": "(8.43+-0.13)E-17",
+     "err_plus": 1.344748885230856e-18,
+     "err_minus": 1.344748885230856e-18,
+     "scale": 1.245535,
+     "unit": "s"
+    }
+   ]
+  },
+  "S010M": {
+   "pdgid": "S010M",
+   "description": "K+- MASS",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 493.6765994580406,
+     "text": "493.677+-0.015",
+     "err_plus": 0.01540566522607151,
+     "err_minus": 0.01540566522607151,
+     "scale": 2.81252,
+     "unit": "MeV"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 493.6765994580406,
+     "text": "493.677+-0.013",
+     "err_plus": 0.01297534229774416,
+     "err_minus": 0.01297534229774416,
+     "scale": 2.368831,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S010T": {
+   "pdgid": "S010T",
+   "description": "K+- MEAN LIFE",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1.237976028279926e-08,
+     "text": "(1.2380+-0.0020)E-8",
+     "err_plus": 2.022692731624734e-11,
+     "err_minus": 2.022692731624734e-11,
+     "scale": 1.839949,
+     "unit": "s"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1.237943561277378e-08,
+     "text": "(1.2379+-0.0021)E-8",
+     "err_plus": 2.134003680473026e-11,
+     "err_minus": 2.134003680473026e-11,
+     "scale": 1.930947,
+     "unit": "s"
+    }
+   ]
+  },
+  "S011M": {
+   "pdgid": "S011M",
+   "description": "K0 MASS",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 497.6107675312575,
+     "text": "497.611+-0.013",
+     "err_plus": 0.0129901997564242,
+     "err_minus": 0.0129901997564242,
+     "scale": 1.169028,
+     "unit": "MeV"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 497.6107675312575,
+     "text": "497.611+-0.013",
+     "err_plus": 0.01344754250670581,
+     "err_minus": 0.01344754250670581,
+     "scale": 1.210186,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S012T": {
+   "pdgid": "S012T",
+   "description": "tau_s",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": "Assuming CPT",
+     "value": 8.954327104067105e-11,
+     "text": "(8.954+-0.004)E-11",
+     "err_plus": 3.558392220334313e-14,
+     "err_minus": 3.558392220334313e-14,
+     "scale": 1.122566,
+     "unit": "s"
+    },
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": "Not assuming CPT",
+     "value": 8.956378653974459e-11,
+     "text": "(8.9564+-0.0033)E-11",
+     "err_plus": 3.347871107380465e-14,
+     "err_minus": 3.347871107380465e-14,
+     "scale": 1.029674,
+     "unit": "s"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 8.958282909948985e-11,
+     "text": "(8.9583+-0.0027)E-11",
+     "err_plus": 2.741799971277583e-14,
+     "err_minus": 2.741799971277583e-14,
+     "scale": 1.0,
+     "unit": "s"
+    }
+   ]
+  },
+  "S013T": {
+   "pdgid": "S013T",
+   "description": "K(L)0 MEAN LIFE",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 5.115730445921984e-08,
+     "text": "(5.116+-0.021)E-8",
+     "err_plus": 2.106780516325306e-10,
+     "err_minus": 2.106780516325306e-10,
+     "scale": 1.067168,
+     "unit": "s"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 5.099293602616239e-08,
+     "text": "(5.099+-0.021)E-8",
+     "err_plus": 2.140911726612516e-10,
+     "err_minus": 2.140911726612516e-10,
+     "scale": 1.038632,
+     "unit": "s"
+    }
+   ]
+  },
+  "S018M": {
+   "pdgid": "S018M",
+   "description": "Lambda MASS",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1115.683138712051,
+     "text": "1115.683+-0.006",
+     "err_plus": 0.006437637778621987,
+     "err_minus": 0.006437637778621987,
+     "scale": 1.001364,
+     "unit": "MeV"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1115.683023255814,
+     "text": "1115.683+-0.006",
+     "err_plus": 0.006469966392206304,
+     "err_minus": 0.006469966392206304,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S018T": {
+   "pdgid": "S018T",
+   "description": "Lambda MEAN LIFE",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 2.616647748955701e-10,
+     "text": "(2.617+-0.010)E-10",
+     "err_plus": 1.031119479293961e-12,
+     "err_minus": 1.031119479293961e-12,
+     "scale": 1.507386,
+     "unit": "s"
+    }
+   ]
+  },
+  "S024M": {
+   "pdgid": "S024M",
+   "description": "Omega- MASS",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1672.451952857838,
+     "text": "1672.45+-0.29",
+     "err_plus": 0.2931463197665125,
+     "err_minus": 0.2931463197665125,
+     "scale": 1.0,
+     "unit": "MeV"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1672.431609910652,
+     "text": "1672.43+-0.32",
+     "err_plus": 0.3220879435897469,
+     "err_minus": 0.3220879435897469,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S024T": {
+   "pdgid": "S024T",
+   "description": "Omega- MEAN LIFE",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 8.207651819249314e-11,
+     "text": "(8.21+-0.11)E-11",
+     "err_plus": 1.07359273359023e-12,
+     "err_minus": 1.07359273359023e-12,
+     "scale": 1.039117,
+     "unit": "s"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 8.205869219226047e-11,
+     "text": "(8.21+-0.11)E-11",
+     "err_plus": 1.073593293399778e-12,
+     "err_minus": 1.073593293399778e-12,
+     "scale": 1.0,
+     "unit": "s"
+    }
+   ]
+  },
+  "M070M": {
+   "pdgid": "M070M",
+   "description": "J/psi(1S) MASS",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 3096.900354542921,
+     "text": "3096.900+-0.006",
+     "err_plus": 0.006185881129937449,
+     "err_minus": 0.006185881129937449,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "M070W": {
+   "pdgid": "M070W",
+   "description": "J/psi(1S) WIDTH",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 92.6029482296019,
+     "text": "92.6+-1.7",
+     "err_plus": 1.718251160572071,
+     "err_minus": 1.71191328371001,
+     "scale": 1.065406,
+     "unit": "keV"
+    }
+   ]
+  },
+  "M049M": {
+   "pdgid": "M049M",
+   "description": "Upsilon(1S) MASS",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 9460.399964216766,
+     "text": "9460.40+-0.10",
+     "err_plus": 0.09842982316061093,
+     "err_minus": 0.09842982316061093,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "M049W": {
+   "pdgid": "M049W",
+   "description": "Upsilon(1S) WIDTH",
+   "values": [
+    {
+     "type": "V",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": "See the Note on ``Width Determinations of the Upsilon States''",
+     "value": 54.02,
+     "text": "54.02+-1.25",
+     "err_plus": 1.25,
+     "err_minus": 1.25,
+     "scale": null,
+     "unit": "keV"
+    }
+   ]
+  },
+  "B033M": {
+   "pdgid": "B033M",
+   "description": "MIXED CHARGES",
+   "values": [
+    {
+     "type": "E",
+     "in_summary": 1,
+     "cl": null,
+     "limit": "R",
+     "comment": null,
+     "value": 1232.0,
+     "text": "1230 TO 1232 TO 1234",
+     "err_plus": 2.0,
+     "err_minus": 2.0,
+     "scale": null,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "B033W": {
+   "pdgid": "B033W",
+   "description": "MIXED CHARGES",
+   "values": [
+    {
+     "type": "E",
+     "in_summary": 1,
+     "cl": null,
+     "limit": "R",
+     "comment": null,
+     "value": null,
+     "text": "114 TO 117 TO 120",
+     "err_plus": null,
+     "err_minus": null,
+     "scale": null,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S031M": {
+   "pdgid": "S031M",
+   "description": "D+- MASS",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1869.664743570898,
+     "text": "1869.66+-0.05",
+     "err_plus": 0.04680602241160903,
+     "err_minus": 0.04680602241160903,
+     "scale": 1.028551,
+     "unit": "MeV"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1869.553454574718,
+     "text": "1869.55+-0.27",
+     "err_plus": 0.2660899833677659,
+     "err_minus": 0.2660899833677659,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S031T": {
+   "pdgid": "S031T",
+   "description": "D+- MEAN LIFE",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1.033276298013913e-12,
+     "text": "(1.033+-0.005)E-12",
+     "err_plus": 4.644247971164231e-15,
+     "err_minus": 4.644247971164231e-15,
+     "scale": 1.0,
+     "unit": "s"
+    }
+   ]
+  },
+  "S032M": {
+   "pdgid": "S032M",
+   "description": "D0 MASS",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1864.842442150871,
+     "text": "1864.84+-0.04",
+     "err_plus": 0.04445870561980128,
+     "err_minus": 0.04445870561980128,
+     "scale": 1.026043,
+     "unit": "MeV"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1864.849397104738,
+     "text": "1864.85+-0.04",
+     "err_plus": 0.04473010030107335,
+     "err_minus": 0.04473010030107335,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S032T": {
+   "pdgid": "S032T",
+   "description": "D0 MEAN LIFE",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 4.103159088861596e-13,
+     "text": "(4.103+-0.010)E-13",
+     "err_plus": 1.019388946809018e-15,
+     "err_minus": 1.018945949854559e-15,
+     "scale": 1.0,
+     "unit": "s"
+    }
+   ]
+  },
+  "S041M": {
+   "pdgid": "S041M",
+   "description": "B+- MASS",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 5279.405997146907,
+     "text": "5279.41+-0.07",
+     "err_plus": 0.07108797774343734,
+     "err_minus": 0.07108797774343734,
+     "scale": 1.030912,
+     "unit": "MeV"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 5279.421540658166,
+     "text": "5279.42+-0.08",
+     "err_plus": 0.08162520960561141,
+     "err_minus": 0.08162520960561141,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S041T": {
+   "pdgid": "S041T",
+   "description": "B+- MEAN LIFE",
+   "values": [
+    {
+     "type": "V",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": "(Produced by HFLAV)",
+     "value": 1.637e-12,
+     "text": "1637+-4E-15",
+     "err_plus": 4e-15,
+     "err_minus": 4e-15,
+     "scale": null,
+     "unit": "s"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1.637954070592509e-12,
+     "text": "(1.638+-0.004)E-12",
+     "err_plus": 4.226488122757391e-15,
+     "err_minus": 4.225944142164816e-15,
+     "scale": 1.0,
+     "unit": "s"
+    }
+   ]
+  },
+  "S042M": {
+   "pdgid": "S042M",
+   "description": "B0 MASS",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 5279.7166045222,
+     "text": "5279.72+-0.08",
+     "err_plus": 0.08435943092202255,
+     "err_minus": 0.08435943092202255,
+     "scale": 1.035637,
+     "unit": "MeV"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 5279.626341565405,
+     "text": "5279.63+-0.20",
+     "err_plus": 0.1987755131487697,
+     "err_minus": 0.1987755131487697,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S042T": {
+   "pdgid": "S042T",
+   "description": "B0 MEAN LIFE",
+   "values": [
+    {
+     "type": "V",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": "(Produced by HFLAV)",
+     "value": 1.5113e-12,
+     "text": "1511.3+-2.7E-15",
+     "err_plus": 2.7e-15,
+     "err_minus": 2.7e-15,
+     "scale": null,
+     "unit": "s"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 1.511558890044526e-12,
+     "text": "(1.5116+-0.0031)E-12",
+     "err_plus": 3.143555337538149e-15,
+     "err_minus": 3.133086528025289e-15,
+     "scale": 1.213616,
+     "unit": "s"
+    }
+   ]
+  },
+  "S033M": {
+   "pdgid": "S033M",
+   "description": "Lambda_c+ MASS",
+   "values": [
+    {
+     "type": "FC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 2286.461583065634,
+     "text": "2286.46+-0.14",
+     "err_plus": 0.1399999999999989,
+     "err_minus": 0.1399999999999989,
+     "scale": 1.00199,
+     "unit": "MeV"
+    },
+    {
+     "type": "AC",
+     "in_summary": 0,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 2286.46,
+     "text": "2286.46+-0.14",
+     "err_plus": 0.14,
+     "err_minus": 0.14,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "S014M": {
+   "pdgid": "S014M",
+   "description": "eta MASS",
+   "values": [
+    {
+     "type": "AC",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 547.8618711440199,
+     "text": "547.862+-0.017",
+     "err_plus": 0.01733421371191479,
+     "err_minus": 0.01733421371191479,
+     "scale": 1.0,
+     "unit": "MeV"
+    }
+   ]
+  },
+  "M070.1": {
+   "pdgid": "M070.1",
+   "description": "J/psi(1S) --> e+ e-",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.0597104969174883,
+     "text": "(5.971+-0.032)E-2",
+     "err_plus": 0.000320822910836268,
+     "err_minus": 0.000320822910836268,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "M070.2": {
+   "pdgid": "M070.2",
+   "description": "J/psi(1S) --> mu+ mu-",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.05961220553898916,
+     "text": "(5.961+-0.033)E-2",
+     "err_plus": 0.0003297793587680668,
+     "err_minus": 0.0003297793587680668,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "M070.3": {
+   "pdgid": "M070.3",
+   "description": "J/psi(1S) --> hadrons",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.8769411764705882,
+     "text": "(87.7+-0.5)E-2",
+     "err_plus": 0.00485071250072666,
+     "err_minus": 0.00485071250072666,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "M049.1": {
+   "pdgid": "M049.1",
+   "description": "Upsilon(1S) --> mu+ mu-",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.02479893727220494,
+     "text": "(2.48+-0.04)E-2",
+     "err_plus": 0.000425138870044943,
+     "err_minus": 0.0004249761764625546,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "M049.2": {
+   "pdgid": "M049.2",
+   "description": "Upsilon(1S) --> e+ e-",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.02386830571727375,
+     "text": "(2.39+-0.08)E-2",
+     "err_plus": 0.0007997871079088265,
+     "err_minus": 0.0007997871079088265,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "M049.101": {
+   "pdgid": "M049.101",
+   "description": "Upsilon(1S) --> hadrons",
+   "values": [
+    {
+     "type": "D",
+     "in_summary": 1,
+     "cl": null,
+     "limit": null,
+     "comment": null,
+     "value": 0.9615996242783357,
+     "text": "(96+-4)E-2",
+     "err_plus": 0.04103093607712993,
+     "err_minus": 0.04103093607712993,
+     "scale": null,
+     "unit": ""
+    }
+   ]
+  },
+  "S016T06P": {
+   "pdgid": "S016T06",
+   "description": "tau(N --> e+ pi), limit for the proton (SKAM), 90% CL",
+   "values": [
+    {
+     "type": "L",
+     "in_summary": 1,
+     "cl": 90.0,
+     "limit": "L",
+     "comment": null,
+     "value": 2.4e+34,
+     "text": ">24000 E30",
+     "err_plus": 0.0,
+     "err_minus": 0.0,
+     "scale": null,
+     "unit": "years"
+    }
+   ]
+  }
+ },
+ "particles": {
+  "1": {
+   "pdgid": "Q001",
+   "name": "d",
+   "cc_type": "P",
+   "charge": -0.3333333333333333,
+   "J": "1/2"
+  },
+  "2": {
+   "pdgid": "Q002",
+   "name": "u",
+   "cc_type": "P",
+   "charge": 0.6666666666666666,
+   "J": "1/2"
+  },
+  "3": {
+   "pdgid": "Q003",
+   "name": "s",
+   "cc_type": "P",
+   "charge": -0.3333333333333333,
+   "J": "1/2"
+  },
+  "4": {
+   "pdgid": "Q004",
+   "name": "c",
+   "cc_type": "P",
+   "charge": 0.6666666666666666,
+   "J": "1/2"
+  },
+  "5": {
+   "pdgid": "Q005",
+   "name": "b",
+   "cc_type": "P",
+   "charge": -0.3333333333333333,
+   "J": "1/2"
+  },
+  "6": {
+   "pdgid": "Q007",
+   "name": "t",
+   "cc_type": "P",
+   "charge": 0.6666666666666666,
+   "J": "1/2"
+  },
+  "11": {
+   "pdgid": "S003",
+   "name": "e-",
+   "cc_type": "P",
+   "charge": -1.0,
+   "J": "1/2"
+  },
+  "12": {
+   "pdgid": "S001",
+   "name": "nu_e",
+   "cc_type": "P",
+   "charge": 0.0,
+   "J": "1/2"
+  },
+  "13": {
+   "pdgid": "S004",
+   "name": "mu-",
+   "cc_type": "S",
+   "charge": -1.0,
+   "J": "1/2"
+  },
+  "14": {
+   "pdgid": "S002",
+   "name": "nu_mu",
+   "cc_type": "P",
+   "charge": 0.0,
+   "J": "1/2"
+  },
+  "15": {
+   "pdgid": "S035",
+   "name": "tau-",
+   "cc_type": "S",
+   "charge": -1.0,
+   "J": "1/2"
+  },
+  "16": {
+   "pdgid": "S036",
+   "name": "nu_tau",
+   "cc_type": "P",
+   "charge": 0.0,
+   "J": "1/2"
+  },
+  "21": {
+   "pdgid": "G021",
+   "name": "g",
+   "cc_type": "S",
+   "charge": 0.0,
+   "J": "1"
+  },
+  "22": {
+   "pdgid": "S000",
+   "name": "gamma",
+   "cc_type": "S",
+   "charge": 0.0,
+   "J": "1"
+  },
+  "23": {
+   "pdgid": "S044",
+   "name": "Z0",
+   "cc_type": "S",
+   "charge": 0.0,
+   "J": "1"
+  },
+  "24": {
+   "pdgid": "S043",
+   "name": "W+",
+   "cc_type": "P",
+   "charge": 1.0,
+   "J": "1"
+  },
+  "25": {
+   "pdgid": "S126",
+   "name": "H",
+   "cc_type": "S",
+   "charge": 0.0,
+   "J": "0"
+  },
+  "211": {
+   "pdgid": "S008",
+   "name": "pi+",
+   "cc_type": "P",
+   "charge": 1.0,
+   "J": "0"
+  },
+  "111": {
+   "pdgid": "S009",
+   "name": "pi0",
+   "cc_type": "S",
+   "charge": 0.0,
+   "J": "0"
+  },
+  "321": {
+   "pdgid": "S010",
+   "name": "K+",
+   "cc_type": "P",
+   "charge": 1.0,
+   "J": "0"
+  },
+  "310": {
+   "pdgid": "S012",
+   "name": "K(S)0",
+   "cc_type": "P",
+   "charge": 0.0,
+   "J": "0"
+  },
+  "130": {
+   "pdgid": "S013",
+   "name": "K(L)0",
+   "cc_type": "P",
+   "charge": 0.0,
+   "J": "0"
+  },
+  "443": {
+   "pdgid": "M070",
+   "name": "J/psi(1S)",
+   "cc_type": "S",
+   "charge": 0.0,
+   "J": "1"
+  },
+  "553": {
+   "pdgid": "M049",
+   "name": "Upsilon(1S)",
+   "cc_type": "S",
+   "charge": 0.0,
+   "J": "1"
+  },
+  "2212": {
+   "pdgid": "S016",
+   "name": "p",
+   "cc_type": "P",
+   "charge": 1.0,
+   "J": "1/2"
+  },
+  "2112": {
+   "pdgid": "S017",
+   "name": "n",
+   "cc_type": "P",
+   "charge": 0.0,
+   "J": "1/2"
+  },
+  "3122": {
+   "pdgid": "S018",
+   "name": "Lambda0",
+   "cc_type": "P",
+   "charge": 0.0,
+   "J": "1/2"
+  },
+  "2224": {
+   "pdgid": "B033",
+   "name": "Delta(1232)++",
+   "cc_type": "P",
+   "charge": 2.0,
+   "J": "3/2"
+  },
+  "3334": {
+   "pdgid": "S024",
+   "name": "Omega-",
+   "cc_type": "P",
+   "charge": -1.0,
+   "J": "3/2"
+  },
+  "-11": {
+   "pdgid": "S003",
+   "name": "e+",
+   "cc_type": "A",
+   "charge": 1.0,
+   "J": "1/2"
+  },
+  "-1": {
+   "pdgid": "Q001",
+   "name": "dbar",
+   "cc_type": "A",
+   "charge": 0.3333333333333333,
+   "J": "1/2"
+  },
+  "-2": {
+   "pdgid": "Q002",
+   "name": "ubar",
+   "cc_type": "A",
+   "charge": -0.6666666666666666,
+   "J": "1/2"
+  },
+  "-3": {
+   "pdgid": "Q003",
+   "name": "sbar",
+   "cc_type": "A",
+   "charge": 0.3333333333333333,
+   "J": "1/2"
+  },
+  "-4": {
+   "pdgid": "Q004",
+   "name": "cbar",
+   "cc_type": "A",
+   "charge": -0.6666666666666666,
+   "J": "1/2"
+  },
+  "-5": {
+   "pdgid": "Q005",
+   "name": "bbar",
+   "cc_type": "A",
+   "charge": 0.3333333333333333,
+   "J": "1/2"
+  },
+  "-6": {
+   "pdgid": "Q007",
+   "name": "tbar",
+   "cc_type": "A",
+   "charge": -0.6666666666666666,
+   "J": "1/2"
+  }
+ },
+ "missing": []
+}

@@ -1,1 +1,2015 @@
-{}
+{
+ "sm_up": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "u",
+    "value": 0.00216,
+    "color": "gold"
+   },
+   {
+    "label": "d",
+    "value": 0.0047,
+    "color": "dim"
+   },
+   {
+    "label": "s",
+    "value": 0.0929,
+    "color": "dim"
+   },
+   {
+    "label": "c",
+    "value": 1.273,
+    "color": "dim"
+   },
+   {
+    "label": "b",
+    "value": 4.186,
+    "color": "dim"
+   },
+   {
+    "label": "t",
+    "value": 172.6,
+    "color": "dim"
+   },
+   {
+    "label": "e",
+    "value": 0.000511,
+    "color": "dim"
+   },
+   {
+    "label": "μ",
+    "value": 0.1057,
+    "color": "dim"
+   },
+   {
+    "label": "τ",
+    "value": 1.777,
+    "color": "dim"
+   },
+   {
+    "label": "W",
+    "value": 80.36,
+    "color": "dim"
+   },
+   {
+    "label": "Z",
+    "value": 91.19,
+    "color": "dim"
+   },
+   {
+    "label": "H",
+    "value": 125.1,
+    "color": "dim"
+   }
+  ],
+  "logy": true,
+  "ylabel": "rest mass, GeV/c² (log scale)",
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+ },
+ "sm_down": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "u",
+    "value": 0.00216,
+    "color": "dim"
+   },
+   {
+    "label": "d",
+    "value": 0.0047,
+    "color": "gold"
+   },
+   {
+    "label": "s",
+    "value": 0.0929,
+    "color": "dim"
+   },
+   {
+    "label": "c",
+    "value": 1.273,
+    "color": "dim"
+   },
+   {
+    "label": "b",
+    "value": 4.186,
+    "color": "dim"
+   },
+   {
+    "label": "t",
+    "value": 172.6,
+    "color": "dim"
+   },
+   {
+    "label": "e",
+    "value": 0.000511,
+    "color": "dim"
+   },
+   {
+    "label": "μ",
+    "value": 0.1057,
+    "color": "dim"
+   },
+   {
+    "label": "τ",
+    "value": 1.777,
+    "color": "dim"
+   },
+   {
+    "label": "W",
+    "value": 80.36,
+    "color": "dim"
+   },
+   {
+    "label": "Z",
+    "value": 91.19,
+    "color": "dim"
+   },
+   {
+    "label": "H",
+    "value": 125.1,
+    "color": "dim"
+   }
+  ],
+  "logy": true,
+  "ylabel": "rest mass, GeV/c² (log scale)",
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+ },
+ "sm_strange": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "u",
+    "value": 0.00216,
+    "color": "dim"
+   },
+   {
+    "label": "d",
+    "value": 0.0047,
+    "color": "dim"
+   },
+   {
+    "label": "s",
+    "value": 0.0929,
+    "color": "gold"
+   },
+   {
+    "label": "c",
+    "value": 1.273,
+    "color": "dim"
+   },
+   {
+    "label": "b",
+    "value": 4.186,
+    "color": "dim"
+   },
+   {
+    "label": "t",
+    "value": 172.6,
+    "color": "dim"
+   },
+   {
+    "label": "e",
+    "value": 0.000511,
+    "color": "dim"
+   },
+   {
+    "label": "μ",
+    "value": 0.1057,
+    "color": "dim"
+   },
+   {
+    "label": "τ",
+    "value": 1.777,
+    "color": "dim"
+   },
+   {
+    "label": "W",
+    "value": 80.36,
+    "color": "dim"
+   },
+   {
+    "label": "Z",
+    "value": 91.19,
+    "color": "dim"
+   },
+   {
+    "label": "H",
+    "value": 125.1,
+    "color": "dim"
+   }
+  ],
+  "logy": true,
+  "ylabel": "rest mass, GeV/c² (log scale)",
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+ },
+ "sm_charm": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "u",
+    "value": 0.00216,
+    "color": "dim"
+   },
+   {
+    "label": "d",
+    "value": 0.0047,
+    "color": "dim"
+   },
+   {
+    "label": "s",
+    "value": 0.0929,
+    "color": "dim"
+   },
+   {
+    "label": "c",
+    "value": 1.273,
+    "color": "gold"
+   },
+   {
+    "label": "b",
+    "value": 4.186,
+    "color": "dim"
+   },
+   {
+    "label": "t",
+    "value": 172.6,
+    "color": "dim"
+   },
+   {
+    "label": "e",
+    "value": 0.000511,
+    "color": "dim"
+   },
+   {
+    "label": "μ",
+    "value": 0.1057,
+    "color": "dim"
+   },
+   {
+    "label": "τ",
+    "value": 1.777,
+    "color": "dim"
+   },
+   {
+    "label": "W",
+    "value": 80.36,
+    "color": "dim"
+   },
+   {
+    "label": "Z",
+    "value": 91.19,
+    "color": "dim"
+   },
+   {
+    "label": "H",
+    "value": 125.1,
+    "color": "dim"
+   }
+  ],
+  "logy": true,
+  "ylabel": "rest mass, GeV/c² (log scale)",
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+ },
+ "sm_bottom": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "u",
+    "value": 0.00216,
+    "color": "dim"
+   },
+   {
+    "label": "d",
+    "value": 0.0047,
+    "color": "dim"
+   },
+   {
+    "label": "s",
+    "value": 0.0929,
+    "color": "dim"
+   },
+   {
+    "label": "c",
+    "value": 1.273,
+    "color": "dim"
+   },
+   {
+    "label": "b",
+    "value": 4.186,
+    "color": "gold"
+   },
+   {
+    "label": "t",
+    "value": 172.6,
+    "color": "dim"
+   },
+   {
+    "label": "e",
+    "value": 0.000511,
+    "color": "dim"
+   },
+   {
+    "label": "μ",
+    "value": 0.1057,
+    "color": "dim"
+   },
+   {
+    "label": "τ",
+    "value": 1.777,
+    "color": "dim"
+   },
+   {
+    "label": "W",
+    "value": 80.36,
+    "color": "dim"
+   },
+   {
+    "label": "Z",
+    "value": 91.19,
+    "color": "dim"
+   },
+   {
+    "label": "H",
+    "value": 125.1,
+    "color": "dim"
+   }
+  ],
+  "logy": true,
+  "ylabel": "rest mass, GeV/c² (log scale)",
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+ },
+ "sm_top": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "u",
+    "value": 0.00216,
+    "color": "dim"
+   },
+   {
+    "label": "d",
+    "value": 0.0047,
+    "color": "dim"
+   },
+   {
+    "label": "s",
+    "value": 0.0929,
+    "color": "dim"
+   },
+   {
+    "label": "c",
+    "value": 1.273,
+    "color": "dim"
+   },
+   {
+    "label": "b",
+    "value": 4.186,
+    "color": "dim"
+   },
+   {
+    "label": "t",
+    "value": 172.6,
+    "color": "gold"
+   },
+   {
+    "label": "e",
+    "value": 0.000511,
+    "color": "dim"
+   },
+   {
+    "label": "μ",
+    "value": 0.1057,
+    "color": "dim"
+   },
+   {
+    "label": "τ",
+    "value": 1.777,
+    "color": "dim"
+   },
+   {
+    "label": "W",
+    "value": 80.36,
+    "color": "dim"
+   },
+   {
+    "label": "Z",
+    "value": 91.19,
+    "color": "dim"
+   },
+   {
+    "label": "H",
+    "value": 125.1,
+    "color": "dim"
+   }
+  ],
+  "logy": true,
+  "ylabel": "rest mass, GeV/c² (log scale)",
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+ },
+ "sm_electron": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "u",
+    "value": 0.00216,
+    "color": "dim"
+   },
+   {
+    "label": "d",
+    "value": 0.0047,
+    "color": "dim"
+   },
+   {
+    "label": "s",
+    "value": 0.0929,
+    "color": "dim"
+   },
+   {
+    "label": "c",
+    "value": 1.273,
+    "color": "dim"
+   },
+   {
+    "label": "b",
+    "value": 4.186,
+    "color": "dim"
+   },
+   {
+    "label": "t",
+    "value": 172.6,
+    "color": "dim"
+   },
+   {
+    "label": "e",
+    "value": 0.000511,
+    "color": "gold"
+   },
+   {
+    "label": "μ",
+    "value": 0.1057,
+    "color": "dim"
+   },
+   {
+    "label": "τ",
+    "value": 1.777,
+    "color": "dim"
+   },
+   {
+    "label": "W",
+    "value": 80.36,
+    "color": "dim"
+   },
+   {
+    "label": "Z",
+    "value": 91.19,
+    "color": "dim"
+   },
+   {
+    "label": "H",
+    "value": 125.1,
+    "color": "dim"
+   }
+  ],
+  "logy": true,
+  "ylabel": "rest mass, GeV/c² (log scale)",
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+ },
+ "sm_muon": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "u",
+    "value": 0.00216,
+    "color": "dim"
+   },
+   {
+    "label": "d",
+    "value": 0.0047,
+    "color": "dim"
+   },
+   {
+    "label": "s",
+    "value": 0.0929,
+    "color": "dim"
+   },
+   {
+    "label": "c",
+    "value": 1.273,
+    "color": "dim"
+   },
+   {
+    "label": "b",
+    "value": 4.186,
+    "color": "dim"
+   },
+   {
+    "label": "t",
+    "value": 172.6,
+    "color": "dim"
+   },
+   {
+    "label": "e",
+    "value": 0.000511,
+    "color": "dim"
+   },
+   {
+    "label": "μ",
+    "value": 0.1057,
+    "color": "gold"
+   },
+   {
+    "label": "τ",
+    "value": 1.777,
+    "color": "dim"
+   },
+   {
+    "label": "W",
+    "value": 80.36,
+    "color": "dim"
+   },
+   {
+    "label": "Z",
+    "value": 91.19,
+    "color": "dim"
+   },
+   {
+    "label": "H",
+    "value": 125.1,
+    "color": "dim"
+   }
+  ],
+  "logy": true,
+  "ylabel": "rest mass, GeV/c² (log scale)",
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+ },
+ "sm_tau": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "u",
+    "value": 0.00216,
+    "color": "dim"
+   },
+   {
+    "label": "d",
+    "value": 0.0047,
+    "color": "dim"
+   },
+   {
+    "label": "s",
+    "value": 0.0929,
+    "color": "dim"
+   },
+   {
+    "label": "c",
+    "value": 1.273,
+    "color": "dim"
+   },
+   {
+    "label": "b",
+    "value": 4.186,
+    "color": "dim"
+   },
+   {
+    "label": "t",
+    "value": 172.6,
+    "color": "dim"
+   },
+   {
+    "label": "e",
+    "value": 0.000511,
+    "color": "dim"
+   },
+   {
+    "label": "μ",
+    "value": 0.1057,
+    "color": "dim"
+   },
+   {
+    "label": "τ",
+    "value": 1.777,
+    "color": "gold"
+   },
+   {
+    "label": "W",
+    "value": 80.36,
+    "color": "dim"
+   },
+   {
+    "label": "Z",
+    "value": 91.19,
+    "color": "dim"
+   },
+   {
+    "label": "H",
+    "value": 125.1,
+    "color": "dim"
+   }
+  ],
+  "logy": true,
+  "ylabel": "rest mass, GeV/c² (log scale)",
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+ },
+ "sm_nu_e": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "electron",
+    "value": 510998.95,
+    "color": "dim"
+   },
+   {
+    "label": "KATRIN limit (νₑ)",
+    "value": 0.45,
+    "color": "gold"
+   },
+   {
+    "label": "cosmic limit (sum)",
+    "value": 0.064,
+    "color": "pink"
+   },
+   {
+    "label": "heaviest ν (min)",
+    "value": 0.0494,
+    "color": "accent"
+   }
+  ],
+  "logy": true,
+  "ylabel": "eV (log scale)",
+  "caption": "Neutrino masses are not known. These are bounds, not measurements: an upper limit from KATRIN, an upper limit on the sum from cosmology, and a lower limit from oscillations (about 0.049 eV for the heaviest of the three). The electron's mass is shown for scale."
+ },
+ "sm_nu_mu": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "electron",
+    "value": 510998.95,
+    "color": "dim"
+   },
+   {
+    "label": "KATRIN limit (νₑ)",
+    "value": 0.45,
+    "color": "gold"
+   },
+   {
+    "label": "cosmic limit (sum)",
+    "value": 0.064,
+    "color": "pink"
+   },
+   {
+    "label": "heaviest ν (min)",
+    "value": 0.0494,
+    "color": "accent"
+   }
+  ],
+  "logy": true,
+  "ylabel": "eV (log scale)",
+  "caption": "Neutrino masses are not known. These are bounds, not measurements: an upper limit from KATRIN, an upper limit on the sum from cosmology, and a lower limit from oscillations (about 0.049 eV for the heaviest of the three). The electron's mass is shown for scale."
+ },
+ "sm_nu_tau": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "electron",
+    "value": 510998.95,
+    "color": "dim"
+   },
+   {
+    "label": "KATRIN limit (νₑ)",
+    "value": 0.45,
+    "color": "gold"
+   },
+   {
+    "label": "cosmic limit (sum)",
+    "value": 0.064,
+    "color": "pink"
+   },
+   {
+    "label": "heaviest ν (min)",
+    "value": 0.0494,
+    "color": "accent"
+   }
+  ],
+  "logy": true,
+  "ylabel": "eV (log scale)",
+  "caption": "Neutrino masses are not known. These are bounds, not measurements: an upper limit from KATRIN, an upper limit on the sum from cosmology, and a lower limit from oscillations (about 0.049 eV for the heaviest of the three). The electron's mass is shown for scale."
+ },
+ "sm_gluon": {
+  "type": "blocks",
+  "flow": true,
+  "nodes": [
+   {
+    "id": "q1",
+    "label": "quark (red)",
+    "x": 17.6,
+    "y": 50
+   },
+   {
+    "id": "g",
+    "label": "gluon",
+    "x": 50.0,
+    "y": 15,
+    "color": "gold"
+   },
+   {
+    "id": "q2",
+    "label": "quark (green)",
+    "x": 82.4,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "q1",
+    "to": "g"
+   },
+   {
+    "from": "g",
+    "to": "q2"
+   }
+  ],
+  "caption": "Schematic bookkeeping of one gluon exchange, where the gluon carries a colour and an anticolour (here red and anti-green). The \"colours\" are only labels for three kinds of charge; a quark that emits a gluon changes colour while the colour total is kept. Nothing here is a picture of a path."
+ },
+ "sm_photon": {
+  "type": "blocks",
+  "flow": true,
+  "nodes": [
+   {
+    "id": "a",
+    "label": "electron",
+    "x": 17.6,
+    "y": 50
+   },
+   {
+    "id": "p",
+    "label": "photon",
+    "x": 50.0,
+    "y": 50,
+    "color": "gold"
+   },
+   {
+    "id": "b",
+    "label": "electron",
+    "x": 82.4,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "a",
+    "to": "p"
+   },
+   {
+    "from": "p",
+    "to": "b"
+   }
+  ],
+  "caption": "Bookkeeping for one photon exchange between two electrons. The line is not a path the photon takes; it records an interaction in a calculation."
+ },
+ "sm_w_boson": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "u",
+    "value": 0.00216,
+    "color": "dim"
+   },
+   {
+    "label": "d",
+    "value": 0.0047,
+    "color": "dim"
+   },
+   {
+    "label": "s",
+    "value": 0.0929,
+    "color": "dim"
+   },
+   {
+    "label": "c",
+    "value": 1.273,
+    "color": "dim"
+   },
+   {
+    "label": "b",
+    "value": 4.186,
+    "color": "dim"
+   },
+   {
+    "label": "t",
+    "value": 172.6,
+    "color": "dim"
+   },
+   {
+    "label": "e",
+    "value": 0.000511,
+    "color": "dim"
+   },
+   {
+    "label": "μ",
+    "value": 0.1057,
+    "color": "dim"
+   },
+   {
+    "label": "τ",
+    "value": 1.777,
+    "color": "dim"
+   },
+   {
+    "label": "W",
+    "value": 80.36,
+    "color": "gold"
+   },
+   {
+    "label": "Z",
+    "value": 91.19,
+    "color": "dim"
+   },
+   {
+    "label": "H",
+    "value": 125.1,
+    "color": "dim"
+   }
+  ],
+  "logy": true,
+  "ylabel": "rest mass, GeV/c² (log scale)",
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+ },
+ "sm_z_boson": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "u",
+    "value": 0.00216,
+    "color": "dim"
+   },
+   {
+    "label": "d",
+    "value": 0.0047,
+    "color": "dim"
+   },
+   {
+    "label": "s",
+    "value": 0.0929,
+    "color": "dim"
+   },
+   {
+    "label": "c",
+    "value": 1.273,
+    "color": "dim"
+   },
+   {
+    "label": "b",
+    "value": 4.186,
+    "color": "dim"
+   },
+   {
+    "label": "t",
+    "value": 172.6,
+    "color": "dim"
+   },
+   {
+    "label": "e",
+    "value": 0.000511,
+    "color": "dim"
+   },
+   {
+    "label": "μ",
+    "value": 0.1057,
+    "color": "dim"
+   },
+   {
+    "label": "τ",
+    "value": 1.777,
+    "color": "dim"
+   },
+   {
+    "label": "W",
+    "value": 80.36,
+    "color": "dim"
+   },
+   {
+    "label": "Z",
+    "value": 91.19,
+    "color": "gold"
+   },
+   {
+    "label": "H",
+    "value": 125.1,
+    "color": "dim"
+   }
+  ],
+  "logy": true,
+  "ylabel": "rest mass, GeV/c² (log scale)",
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+ },
+ "sm_higgs": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "u",
+    "value": 0.00216,
+    "color": "dim"
+   },
+   {
+    "label": "d",
+    "value": 0.0047,
+    "color": "dim"
+   },
+   {
+    "label": "s",
+    "value": 0.0929,
+    "color": "dim"
+   },
+   {
+    "label": "c",
+    "value": 1.273,
+    "color": "dim"
+   },
+   {
+    "label": "b",
+    "value": 4.186,
+    "color": "dim"
+   },
+   {
+    "label": "t",
+    "value": 172.6,
+    "color": "dim"
+   },
+   {
+    "label": "e",
+    "value": 0.000511,
+    "color": "dim"
+   },
+   {
+    "label": "μ",
+    "value": 0.1057,
+    "color": "dim"
+   },
+   {
+    "label": "τ",
+    "value": 1.777,
+    "color": "dim"
+   },
+   {
+    "label": "W",
+    "value": 80.36,
+    "color": "dim"
+   },
+   {
+    "label": "Z",
+    "value": 91.19,
+    "color": "dim"
+   },
+   {
+    "label": "H",
+    "value": 125.1,
+    "color": "gold"
+   }
+  ],
+  "logy": true,
+  "ylabel": "rest mass, GeV/c² (log scale)",
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+ },
+ "sm_overview": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "q",
+    "label": "quarks: u d  c s  t b",
+    "x": 25.5,
+    "y": 18,
+    "color": "accent"
+   },
+   {
+    "id": "l",
+    "label": "leptons: e μ τ + 3 neutrinos",
+    "x": 25.5,
+    "y": 62,
+    "color": "accent"
+   },
+   {
+    "id": "g",
+    "label": "gluon, photon, W, Z",
+    "x": 58.6,
+    "y": 18,
+    "color": "gold"
+   },
+   {
+    "id": "h",
+    "label": "Higgs boson",
+    "x": 58.6,
+    "y": 62,
+    "color": "pink"
+   },
+   {
+    "id": "x",
+    "label": "gravity: not in the model",
+    "x": 58.6,
+    "y": 100,
+    "color": "dim"
+   }
+  ],
+  "edges": [
+   {
+    "from": "g",
+    "to": "q"
+   },
+   {
+    "from": "g",
+    "to": "l"
+   },
+   {
+    "from": "h",
+    "to": "q"
+   },
+   {
+    "from": "h",
+    "to": "l"
+   }
+  ],
+  "caption": "The Standard Model at a glance: matter particles (blue), force carriers (gold) and the Higgs (pink). Gravity is left out. A map of ideas, not a picture of anything."
+ },
+ "sm_quantum_fields": {
+  "type": "plot",
+  "x": [
+   -6,
+   6
+  ],
+  "y": [
+   -1.6,
+   1.6
+  ],
+  "fns": [
+   {
+    "f": "a*gauss(x,0,w)*cos(4*x-3*t)",
+    "label": "a ripple in a field",
+    "color": "accent",
+    "width": 2
+   }
+  ],
+  "params": [
+   {
+    "id": "a",
+    "label": "strength of the ripple",
+    "min": 0.2,
+    "max": 1.5,
+    "value": 1
+   },
+   {
+    "id": "w",
+    "label": "width of the ripple",
+    "min": 0.5,
+    "max": 3,
+    "value": 1.2
+   }
+  ],
+  "caption": "Schematic, in one dimension: a field's value across space, with a single localised ripple travelling along it. A real particle is not a visible wave: this only illustrates the idea that a particle is an excitation of a field. Not to scale and not a measurement."
+ },
+ "sm_interactions": {
+  "type": "table",
+  "cols": [
+   "Interaction",
+   "Carrier",
+   "Acts on",
+   "Range"
+  ],
+  "rows": [
+   [
+    "Strong",
+    "gluon (8)",
+    "quarks, gluons",
+    "quarks and gluons are confined; leftover force between hadrons about 1.4×10⁻¹⁵ m"
+   ],
+   [
+    "Electromagnetic",
+    "photon",
+    "electrically charged particles",
+    "unlimited"
+   ],
+   [
+    "Weak",
+    "W⁺, W⁻, Z",
+    "all quarks and leptons",
+    "about 2.5×10⁻¹⁸ m"
+   ],
+   [
+    "Gravity",
+    "no tested quantum carrier",
+    "everything",
+    "unlimited"
+   ]
+  ]
+ },
+ "sm_strong_force": {
+  "type": "blocks",
+  "flow": true,
+  "nodes": [
+   {
+    "id": "a",
+    "label": "quark",
+    "x": 17.6,
+    "y": 50
+   },
+   {
+    "id": "g",
+    "label": "gluon",
+    "x": 50.0,
+    "y": 20,
+    "color": "gold"
+   },
+   {
+    "id": "b",
+    "label": "quark",
+    "x": 82.4,
+    "y": 50
+   },
+   {
+    "id": "c",
+    "label": "gluon",
+    "x": 50.0,
+    "y": 85,
+    "color": "gold"
+   }
+  ],
+  "edges": [
+   {
+    "from": "a",
+    "to": "g"
+   },
+   {
+    "from": "g",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "c"
+   },
+   {
+    "from": "c",
+    "to": "a"
+   }
+  ],
+  "caption": "Quarks exchange gluons back and forth. Bookkeeping only: nothing literally travels along these lines, and \"colour\" is just a name for the strong force's kind of charge."
+ },
+ "sm_colour_confinement": {
+  "type": "plot",
+  "x": [
+   0.05,
+   3
+  ],
+  "y": [
+   -4,
+   6
+  ],
+  "fns": [
+   {
+    "f": "-a/x + s*x",
+    "label": "energy of a quark–antiquark pair",
+    "color": "gold",
+    "width": 2.2
+   }
+  ],
+  "params": [
+   {
+    "id": "a",
+    "label": "short-range strength",
+    "min": 0.1,
+    "max": 1,
+    "value": 0.4,
+    "step": 0.05
+   },
+   {
+    "id": "s",
+    "label": "long-range pull",
+    "min": 0.5,
+    "max": 3,
+    "value": 1.5,
+    "step": 0.1
+   }
+  ],
+  "xlabel": "separation (arbitrary units)",
+  "ylabel": "energy (arbitrary units)",
+  "caption": "A SCHEMATIC model, not a measurement: at short range the energy falls like a Coulomb attraction, and at long range it rises in proportion to the separation, so separating the pair costs ever more energy. The parameters are chosen to make the shape visible, not fitted to data."
+ },
+ "sm_asymptotic_freedom": {
+  "type": "plot",
+  "x": [
+   5,
+   1000
+  ],
+  "y": [
+   0,
+   0.25
+  ],
+  "logx": true,
+  "fns": [
+   {
+    "f": "0.118/(1+(23/3)*0.118/(2*pi)*ln(x/91.1876))",
+    "label": "αs (one-loop)",
+    "color": "gold",
+    "width": 2.2
+   }
+  ],
+  "points": [
+   {
+    "x": 91.1876,
+    "y": 0.118,
+    "label": "Z mass: 0.118"
+   }
+  ],
+  "xlabel": "collision energy Q (GeV)",
+  "ylabel": "strong coupling αs",
+  "caption": "The strong coupling falls as the energy rises. This is the one-loop approximation with five quark flavours, anchored at αs(M_Z) = 0.118; it shows the trend, not precision values."
+ },
+ "sm_proton_mass_origin": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "quark energy",
+    "value": 33,
+    "color": "accent"
+   },
+   {
+    "label": "glue energy",
+    "value": 37,
+    "color": "gold"
+   },
+   {
+    "label": "trace anomaly",
+    "value": 23,
+    "color": "pink"
+   },
+   {
+    "label": "sigma terms",
+    "value": 9,
+    "color": "green"
+   }
+  ],
+  "ylabel": "percent of the proton mass",
+  "caption": "Lattice-QCD decomposition of the proton mass (Yang et al., 2018, MS-bar at 2 GeV). The sigma terms (about 9%) are the part that scales with the quark masses; the valence quark masses alone are about 1%. The percentages depend on the scheme and scale and add to 102% within the uncertainties, which are 4–5 percentage points on the larger bars."
+ },
+ "sm_antimatter": {
+  "type": "blocks",
+  "flow": true,
+  "nodes": [
+   {
+    "id": "e",
+    "label": "electron",
+    "x": 17.6,
+    "y": 22
+   },
+   {
+    "id": "p",
+    "label": "positron",
+    "x": 17.6,
+    "y": 78
+   },
+   {
+    "id": "v",
+    "label": "annihilate",
+    "x": 50.0,
+    "y": 50,
+    "color": "gold"
+   },
+   {
+    "id": "g1",
+    "label": "photon",
+    "x": 82.4,
+    "y": 22
+   },
+   {
+    "id": "g2",
+    "label": "photon",
+    "x": 82.4,
+    "y": 78
+   }
+  ],
+  "edges": [
+   {
+    "from": "e",
+    "to": "v"
+   },
+   {
+    "from": "p",
+    "to": "v"
+   },
+   {
+    "from": "v",
+    "to": "g1"
+   },
+   {
+    "from": "v",
+    "to": "g2"
+   }
+  ],
+  "caption": "Annihilation: charge before is −1 + 1 = 0 and after is 0. Bookkeeping, not a picture of paths."
+ },
+ "sm_spin_statistics": {
+  "type": "table",
+  "cols": [
+   "Particle",
+   "Spin",
+   "Class"
+  ],
+  "rows": [
+   [
+    "quarks, charged leptons, neutrinos",
+    "1/2",
+    "fermion"
+   ],
+   [
+    "gluon, photon, W, Z",
+    "1",
+    "boson"
+   ],
+   [
+    "Higgs",
+    "0",
+    "boson"
+   ],
+   [
+    "proton, neutron",
+    "1/2",
+    "fermion (made of three quarks)"
+   ],
+   [
+    "pion",
+    "0",
+    "boson (quark + antiquark)"
+   ]
+  ]
+ },
+ "sm_generations": {
+  "type": "table",
+  "cols": [
+   "",
+   "Generation 1",
+   "Generation 2",
+   "Generation 3"
+  ],
+  "rows": [
+   [
+    "up-type quark (+2/3)",
+    "u 2.16 ± 0.07 MeV",
+    "c 1.2729 ± 0.0045 GeV",
+    "t 172.60 ± 0.27 GeV"
+   ],
+   [
+    "down-type quark (−1/3)",
+    "d 4.70 ± 0.07 MeV",
+    "s 92.9 ± 0.7 MeV",
+    "b 4.186 ± 0.006 GeV"
+   ],
+   [
+    "charged lepton (−1)",
+    "e⁻ 0.51099895069 ± 0.00000000016 MeV",
+    "μ⁻ 105.6583755 ± 0.0000023 MeV",
+    "τ⁻ 1776.93 ± 0.09 MeV"
+   ],
+   [
+    "neutrino (0)",
+    "νₑ: mass unknown",
+    "ν_μ: mass unknown",
+    "ν_τ: mass unknown"
+   ]
+  ]
+ },
+ "sm_neutrino_oscillation": {
+  "type": "plot",
+  "x": [
+   0,
+   3000
+  ],
+  "y": [
+   0,
+   1.05
+  ],
+  "fns": [
+   {
+    "f": "1-s2*sin(1.267*dm*x/E)^2",
+    "label": "chance of staying the same flavour",
+    "color": "gold",
+    "width": 2.2
+   }
+  ],
+  "params": [
+   {
+    "id": "s2",
+    "label": "sin²2θ",
+    "min": 0.1,
+    "max": 1,
+    "value": 0.99,
+    "step": 0.01
+   },
+   {
+    "id": "dm",
+    "label": "Δm² (eV²)",
+    "min": 0.0005,
+    "max": 0.005,
+    "value": 0.002445,
+    "step": 5e-05
+   },
+   {
+    "id": "E",
+    "label": "energy (GeV)",
+    "min": 0.5,
+    "max": 5,
+    "value": 1,
+    "step": 0.1
+   }
+  ],
+  "xlabel": "distance travelled (km)",
+  "ylabel": "probability",
+  "caption": "A TWO-FLAVOUR APPROXIMATION of what is really a three-flavour effect. Defaults use the PDG atmospheric Δm² (normal ordering) with near-maximal mixing, so it is a sketch of the shape, not a prediction for a particular detector."
+ },
+ "sm_beta_decay": {
+  "type": "plot",
+  "x": [
+   0,
+   3600
+  ],
+  "y": [
+   0,
+   1.05
+  ],
+  "fns": [
+   {
+    "f": "exp(-x/878.3)",
+    "label": "fraction of neutrons left",
+    "color": "gold",
+    "width": 2.2
+   }
+  ],
+  "points": [
+   {
+    "x": 878.3,
+    "y": "exp(-1)",
+    "label": "mean life 878.3 s"
+   }
+  ],
+  "xlabel": "time (s)",
+  "ylabel": "surviving fraction",
+  "caption": "Free neutrons decay randomly; on average one in e (about 37%) survives for the mean life of 878.3 s (PDG 2026). The curve is the exponential decay law, exact for a single kind of decay."
+ },
+ "sm_conservation_laws": {
+  "type": "table",
+  "cols": [
+   "Decay",
+   "charge",
+   "lepton number",
+   "baryon number"
+  ],
+  "rows": [
+   [
+    "n → p e⁻ ν̄ₑ",
+    "0 → 0",
+    "0 → 0",
+    "+1 → +1"
+   ],
+   [
+    "μ⁻ → e⁻ ν̄ₑ νμ",
+    "-1 → -1",
+    "+1 → +1",
+    "0 → 0"
+   ],
+   [
+    "τ⁻ → e⁻ ν̄ₑ ντ",
+    "-1 → -1",
+    "+1 → +1",
+    "0 → 0"
+   ],
+   [
+    "Λ → p π⁻",
+    "0 → 0",
+    "0 → 0",
+    "+1 → +1"
+   ],
+   [
+    "π⁰ → γ γ",
+    "0 → 0",
+    "0 → 0",
+    "0 → 0"
+   ]
+  ]
+ },
+ "sm_feynman_diagrams": {
+  "type": "geometry",
+  "range": [
+   0,
+   10,
+   0,
+   6
+  ],
+  "shapes": [
+   {
+    "k": "arrow",
+    "x1": 0.8,
+    "y1": 0.8,
+    "x2": 3.6,
+    "y2": 2.4,
+    "color": "accent",
+    "width": 2.5
+   },
+   {
+    "k": "arrow",
+    "x1": 0.8,
+    "y1": 5.2,
+    "x2": 3.6,
+    "y2": 3.6,
+    "color": "accent",
+    "width": 2.5
+   },
+   {
+    "k": "arrow",
+    "x1": 3.6,
+    "y1": 2.4,
+    "x2": 6.4,
+    "y2": 0.8,
+    "color": "accent",
+    "width": 2.5
+   },
+   {
+    "k": "arrow",
+    "x1": 3.6,
+    "y1": 3.6,
+    "x2": 6.4,
+    "y2": 5.2,
+    "color": "accent",
+    "width": 2.5
+   },
+   {
+    "k": "curve",
+    "x": "3.6+0.15*sin(40*s)",
+    "y": "2.4+(3.6-2.4)*s",
+    "s": [
+     0,
+     1
+    ],
+    "color": "gold",
+    "width": 2.2
+   },
+   {
+    "k": "text",
+    "x": 0.5,
+    "y": 0.4,
+    "text": "e⁻ in",
+    "color": "accent"
+   },
+   {
+    "k": "text",
+    "x": 0.5,
+    "y": 5.6,
+    "text": "e⁻ in",
+    "color": "accent"
+   },
+   {
+    "k": "text",
+    "x": 6.7,
+    "y": 0.4,
+    "text": "e⁻ out",
+    "color": "accent"
+   },
+   {
+    "k": "text",
+    "x": 6.7,
+    "y": 5.6,
+    "text": "e⁻ out",
+    "color": "accent"
+   },
+   {
+    "k": "text",
+    "x": 4.4,
+    "y": 3,
+    "text": "photon (virtual)",
+    "color": "gold"
+   },
+   {
+    "k": "text",
+    "x": 5,
+    "y": -0.5,
+    "text": "time runs left to right",
+    "color": "dim"
+   }
+  ],
+  "caption": "A Feynman diagram for two electrons repelling through one photon exchange. Bookkeeping for a calculation: the lines are not trajectories, and the photon in the middle is \"virtual\", a term in the sum."
+ },
+ "sm_virtual_particles": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "quarks and antiquarks",
+    "value": 49.1,
+    "color": "accent"
+   },
+   {
+    "label": "gluons",
+    "value": 50.9,
+    "color": "gold"
+   }
+  ],
+  "ylabel": "percent of the proton's momentum",
+  "caption": "Lattice-QCD momentum fractions at 2 GeV (G. Wang et al., 2022; ±2 percentage points statistical and ±2 systematic). Global fits to scattering data give a smaller gluon share, about 40% at the same scale. The split changes with the probing energy. This is a measured/calculated property of the whole proton, not a picture of particles flickering."
+ },
+ "sm_proton": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "u (2.16)",
+    "value": 2.16,
+    "color": "accent"
+   },
+   {
+    "label": "u (2.16)",
+    "value": 2.16,
+    "color": "accent"
+   },
+   {
+    "label": "d (4.70)",
+    "value": 4.7,
+    "color": "accent"
+   },
+   {
+    "label": "sum of three",
+    "value": 9.02,
+    "color": "gold"
+   },
+   {
+    "label": "proton",
+    "value": 938.272,
+    "color": "pink"
+   }
+  ],
+  "logy": true,
+  "ylabel": "rest mass, MeV/c² (log scale)",
+  "caption": "The three valence quarks' rest masses (MS-bar, 2 GeV, PDG 2026) add to about 9 MeV; the proton is 938 MeV. The difference is not the Higgs-given quark masses: it is mostly the energy of the quarks and gluons, plus about 9% that scales with the quark masses (strange sea included)."
+ },
+ "sm_neutron": {
+  "type": "plot",
+  "x": [
+   0,
+   3600
+  ],
+  "y": [
+   0,
+   1.05
+  ],
+  "fns": [
+   {
+    "f": "exp(-x/878.3)",
+    "label": "fraction of free neutrons left",
+    "color": "gold",
+    "width": 2.2
+   }
+  ],
+  "xlabel": "time (s)",
+  "ylabel": "surviving fraction",
+  "caption": "Free neutrons decay with a mean life of 878.3 s (PDG 2026): after about 15 minutes about 37% remain."
+ },
+ "sm_hadrons": {
+  "type": "table",
+  "cols": [
+   "Particle",
+   "Quarks",
+   "Charge",
+   "Mass (MeV)"
+  ],
+  "rows": [
+   [
+    "p",
+    "uud",
+    "+1",
+    "938.2721"
+   ],
+   [
+    "n",
+    "udd",
+    "0",
+    "939.5654"
+   ],
+   [
+    "π⁺",
+    "ud̄",
+    "+1",
+    "139.5704"
+   ],
+   [
+    "π⁰",
+    "uū (mixed with d d̄)",
+    "0",
+    "134.9768"
+   ],
+   [
+    "K⁺",
+    "us̄",
+    "+1",
+    "493.6766"
+   ],
+   [
+    "K⁰",
+    "ds̄",
+    "0",
+    "497.6108"
+   ],
+   [
+    "D⁰",
+    "cū",
+    "0",
+    "1864.842"
+   ],
+   [
+    "B⁺",
+    "ub̄",
+    "+1",
+    "5279.406"
+   ],
+   [
+    "J/ψ",
+    "cc̄",
+    "0",
+    "3096.9"
+   ],
+   [
+    "Υ(1S)",
+    "bb̄",
+    "0",
+    "9460.4"
+   ],
+   [
+    "Λ",
+    "uds",
+    "0",
+    "1115.683"
+   ],
+   [
+    "Λc⁺",
+    "udc",
+    "+1",
+    "2286.462"
+   ],
+   [
+    "Δ⁺⁺",
+    "uuu",
+    "+2",
+    "1232"
+   ],
+   [
+    "Ω⁻",
+    "sss",
+    "−1",
+    "1672.452"
+   ]
+  ]
+ },
+ "sm_residual_strong": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "H-2",
+    "value": 1.112,
+    "color": "dim"
+   },
+   {
+    "label": "He-4",
+    "value": 7.074,
+    "color": "dim"
+   },
+   {
+    "label": "C-12",
+    "value": 7.68,
+    "color": "dim"
+   },
+   {
+    "label": "O-16",
+    "value": 7.976,
+    "color": "dim"
+   },
+   {
+    "label": "Ca-40",
+    "value": 8.551,
+    "color": "dim"
+   },
+   {
+    "label": "Fe-56",
+    "value": 8.79,
+    "color": "gold"
+   },
+   {
+    "label": "Ni-62",
+    "value": 8.795,
+    "color": "gold"
+   },
+   {
+    "label": "Sn-120",
+    "value": 8.504,
+    "color": "dim"
+   },
+   {
+    "label": "Pb-208",
+    "value": 7.867,
+    "color": "dim"
+   },
+   {
+    "label": "U-238",
+    "value": 7.57,
+    "color": "dim"
+   }
+  ],
+  "ylabel": "binding energy per nucleon (MeV)",
+  "caption": "Binding energy per nucleon for ten nuclides (AME2020, atomic mass evaluation). Iron and nickel are the most tightly bound per particle."
+ },
+ "sm_how_we_know": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "b",
+    "label": "beams collide",
+    "x": 16.2,
+    "y": 50,
+    "color": "gold"
+   },
+   {
+    "id": "t",
+    "label": "tracker",
+    "x": 34.2,
+    "y": 50
+   },
+   {
+    "id": "e",
+    "label": "calorimeters",
+    "x": 54.3,
+    "y": 50
+   },
+   {
+    "id": "m",
+    "label": "muon chambers",
+    "x": 74.5,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "b",
+    "to": "t",
+    "label": "charged tracks"
+   },
+   {
+    "from": "t",
+    "to": "e",
+    "label": "energy"
+   },
+   {
+    "from": "e",
+    "to": "m",
+    "label": "muons pass"
+   }
+  ],
+  "caption": "The layers of a typical collider detector, from the collision outwards. A generic scheme, not a drawing of a particular experiment."
+ },
+ "sm_deep_inelastic": {
+  "type": "blocks",
+  "flow": true,
+  "nodes": [
+   {
+    "id": "e",
+    "label": "electron in",
+    "x": 16.9,
+    "y": 50
+   },
+   {
+    "id": "q",
+    "label": "quark inside proton",
+    "x": 50.0,
+    "y": 50,
+    "color": "gold"
+   },
+   {
+    "id": "o",
+    "label": "electron out (angle measured)",
+    "x": 83.1,
+    "y": 12
+   },
+   {
+    "id": "h",
+    "label": "spray of hadrons",
+    "x": 83.1,
+    "y": 88
+   }
+  ],
+  "edges": [
+   {
+    "from": "e",
+    "to": "q",
+    "label": "photon exchange"
+   },
+   {
+    "from": "q",
+    "to": "o"
+   },
+   {
+    "from": "q",
+    "to": "h"
+   }
+  ],
+  "caption": "The idea of deep inelastic scattering: an electron strikes a quark inside the proton; the quark cannot escape alone and becomes a spray of hadrons. A schematic, not a drawing of paths."
+ },
+ "sm_higgs_mechanism": {
+  "type": "plot",
+  "x": [
+   -2,
+   2
+  ],
+  "y": [
+   -1.2,
+   2.2
+  ],
+  "fns": [
+   {
+    "f": "m*x^2 + 0.5*x^4",
+    "label": "energy of the Higgs field",
+    "color": "gold",
+    "width": 2.2
+   }
+  ],
+  "params": [
+   {
+    "id": "m",
+    "label": "quadratic term (negative = symmetry broken)",
+    "min": -1.5,
+    "max": 1,
+    "value": -1,
+    "step": 0.05
+   }
+  ],
+  "xlabel": "value of the field (one direction)",
+  "ylabel": "energy (arbitrary units)",
+  "caption": "A SCHEMATIC slice through the Higgs field's energy. With a negative quadratic term the lowest energy is not at zero but at two nonzero values; the real field has a ring of them. The shape away from the minimum has not been measured. Not to scale."
+ },
+ "sm_gravity": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "gravity",
+    "value": 1,
+    "color": "dim"
+   },
+   {
+    "label": "electric force",
+    "value": 1.24e+36,
+    "color": "gold"
+   }
+  ],
+  "logy": true,
+  "ylabel": "strength relative to gravity (log scale)",
+  "caption": "The electric repulsion between two protons compared with their gravitational attraction (a ratio independent of distance); my calculation from G, e, ε₀ and the proton mass. Gravity is not part of the Standard Model."
+ },
+ "sm_beyond": {
+  "type": "table",
+  "cols": [
+   "Gap",
+   "Certainty that it is a real gap"
+  ],
+  "rows": [
+   [
+    "Gravity",
+    "C3"
+   ],
+   [
+    "Dark matter",
+    "C2"
+   ],
+   [
+    "Dark energy",
+    "C3"
+   ],
+   [
+    "Neutrino masses",
+    "C1"
+   ],
+   [
+    "Matter–antimatter imbalance",
+    "C2"
+   ],
+   [
+    "Why three generations",
+    "C3"
+   ],
+   [
+    "Free parameters",
+    "C3"
+   ],
+   [
+    "Why the Higgs is so light",
+    "C3"
+   ],
+   [
+    "The strong CP problem",
+    "C3"
+   ],
+   [
+    "Are quarks and electrons really pointlike?",
+    "C2"
+   ]
+  ]
+ }
+}
