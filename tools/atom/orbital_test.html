@@ -54,7 +54,7 @@
     </select></div>
   </div>
   <div class="row"><label>View</label><button id="cut">Cut away a quarter</button><button id="flow" class="on">Flow: on</button></div>
-  <div class="row"><label>Dots</label><select id="dots"><option value="20000">20 000</option><option value="50000">50 000</option><option value="100000" selected>100 000</option><option value="200000">200 000</option><option value="400000">400 000</option></select>
+  <div class="row"><label>Dots</label><select id="dots"><option value="20000">20 000</option><option value="50000">50 000</option><option value="100000">100 000</option><option value="200000" selected>200 000</option><option value="400000">400 000</option></select>
     <label style="min-width:0">Slow-down</label><select id="slow"><option value="auto" selected>automatic</option><option value="1e14">10^14</option><option value="1e15">10^15</option><option value="1e16">10^16</option><option value="1e17">10^17</option></select></div>
   <div class="tip" id="tip"></div>
 </div>
@@ -69,7 +69,7 @@ const canvas = $('#c'), renderer = new THREE.WebGLRenderer({ canvas, antialias: 
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 const scene = new THREE.Scene(); scene.background = AtomCloud.backdrop();
 const camera = new THREE.PerspectiveCamera(50, 1, 0.01, 1e5);
-const cloud = new AtomCloud({ unit: 1, count: +(url.get('dots') || 100000) }); scene.add(cloud.group);
+const cloud = new AtomCloud({ unit: 1, count: +(url.get('dots') || 200000) }); scene.add(cloud.group);
 const view = { az: 0.0, el: 0.45, dist: 30, target: new THREE.Vector3() };
 let ELJ = {}, ZEFF = {};
 const S = { mode: 'orbital', Z: 1, n: 3, l: 1, m: 1, fam: 'complex', real: 'cos', sup: '1s2p0' };

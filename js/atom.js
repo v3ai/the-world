@@ -347,7 +347,7 @@ var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
     /* o: {unit (scene units per bohr, default 1), count (dots, default 100000), cut, autoQuality} */
     constructor(o) {
       o = o || {};
-      this.unit = o.unit || 1; this.count = o.count || 100000; this.cut = !!o.cut; this.autoQuality = o.autoQuality !== false;
+      this.unit = o.unit || 1; this.count = o.count || 200000; this.cut = !!o.cut; this.autoQuality = o.autoQuality !== false;
       this.group = new THREE.Group(); this.group.rotation.x = -Math.PI / 2;      // model z (the quantisation axis) is scene up
       this.slowAuto = true; this.slow = 1e16; this.flowOn = true; this.T = 0; this.spec = null; this.label = ''; this.extent = 10;
       this.view = { px: 800 * 1.0722, fov: 50 }; this.slowFrames = 0; this.ema = 0.016; this.onQuality = null;
@@ -419,7 +419,7 @@ var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
       this.points = new THREE.Points(geo, this.mat); this.points.frustumCulled = false; this.group.add(this.points);
       this.mat.uniforms.uDyn.value = isDyn ? 1 : 0;
       // dot size: constant coverage, so fewer dots mean bigger dots
-      const dotB = this.extent * 0.0085 * Math.min(2.2, Math.sqrt(1e5 / N));
+      const dotB = this.extent * 0.0108 * Math.min(2.2, Math.pow(2e5 / N, 0.4));
       this.mat.uniforms.uSize.value = dotB * u; this.mat.uniforms.uRad.value = this.extent * u; this.mat.uniforms.uFace.value = dotB * u * 1.4;
       // slow-down: about 1e16, lower for big slow orbitals so the motion stays visible (stated on screen)
       if (this.slowAuto) {
@@ -503,7 +503,10 @@ var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
 function atomShellsFor(sym) {
   const e = (typeof ELJ !== 'undefined' && ELJ[sym]); if (!e || !e.subshells) return null;
   const zf = (ATOM_ZEFF && ATOM_ZEFF.elements && ATOM_ZEFF.elements[sym] && ATOM_ZEFF.elements[sym].zeff) || {};
-  return { e, shells: Object.entries(e.subshells).map(([k, occ]) => ({ n: +k[0], l: 'spdfgh'.indexOf(k[1]), e: occ, zeff: zf[k] || Math.max(1, e.Z - occ), key: k })) };
+  const sr = (ATOM_ZEFF && ATOM_ZEFF.elements && ATOM_ZEFF.elements[sym] && ATOM_ZEFF.elements[sym].src) || {}, NS = [0, 1, 2, 3, 3.7, 4.0, 4.2, 4.2];
+  // Slater's rules give a charge that belongs to a Slater orbital of effective quantum number n* (1, 2, 3, 3.7, 4.0, 4.2 for n = 1..6; n = 7 uses 4.2, an extension),
+  // so for those subshells the hydrogenic cloud is shrunk as if n were n*: <r> = 3 n*^2 / (2 Zeff). Clementi-Raimondi values are used with the true n.
+  return { e, shells: Object.entries(e.subshells).map(([k, occ]) => { const n = +k[0], z0 = zf[k] || Math.max(1, e.Z - occ), z = sr[k] === 'S' ? z0 * Math.pow(n / NS[n], 2) : z0; return { n, l: 'spdfgh'.indexOf(k[1]), e: occ, zeff: z, zeffRaw: z0, key: k }; }) };
 }
 var ATOM_ZEFF = null;
 if (typeof FT !== 'undefined' && AtomCloud) {
@@ -511,7 +514,7 @@ if (typeof FT !== 'undefined' && AtomCloud) {
     build(F, o) {
       F.illo = true; F.env = { opaque: true, bg: 0xe9eaec };
       F.scene.background = AtomCloud.backdrop();
-      const cloud = new AtomCloud({ unit: AQ.A0_PM, count: o.count || (window.ATOM_COUNT || 100000), cut: !!o.cut });
+      const cloud = new AtomCloud({ unit: AQ.A0_PM, count: o.count || (window.ATOM_COUNT || 200000), cut: !!o.cut });
       F.add(cloud.group); F.cloud = cloud;
       const start = () => {
         let spec = o;
@@ -671,11 +674,11 @@ ATM.relabel = function (F) {   // ruler and tour labels of the static oxygen fra
   });
 };
 
-FT.atom = {
+if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
   build(F, o) {
     const sym0 = ELJ[o.el] ? o.el : (console.error('atom frame: unknown element', o.el), 'O');
     const S = F.at = { el: sym0, model: store.get('atomModel', 'quantum'), qmode: 'atom', src: 'sub', sub: null, fam: 'complex', n: 2, l: 1, pick: 0, sup: '1s2p0', cut: false, flow: true,
-      count: store.get('atomCount', 100000), bi: 3, bf: 2, extentPm: 150, spec: null, anim: null, track: [], lbls: [], J: null };
+      count: store.get('atomCount', (window.innerWidth <= 860 || /Mobi|Android/i.test(navigator.userAgent)) ? 100000 : 200000), bi: 3, bf: 2, extentPm: 150, spec: null, anim: null, track: [], lbls: [], J: null };
     if (!ATM.MODELS[S.model]) S.model = 'quantum';
     S.home = sym0; ATM.frames.add(F);
     F.illo = true; F.env = { opaque: true, bg: 0xe9eaec }; F.scene.background = AtomCloud.backdrop();
@@ -706,8 +709,8 @@ FT.atom = {
     const cutBtn = document.createElement('button'); cutBtn.className = 'tog'; cutBtn.onclick = () => { S.cut = !S.cut; cloud.setCut(S.cut); syncToggles(); };
     const flowBtn = document.createElement('button'); flowBtn.className = 'tog'; flowBtn.onclick = () => { S.flow = !S.flow; cloud.setFlow(S.flow); syncToggles(); };
     const dotSel = ATM.selEl('', 'dots', v => { S.count = +v; store.set('atomCount', S.count); cloud.setCount(S.count); });
-    dotSel.set([[25000, '25,000'], [50000, '50,000'], [100000, '100,000'], [200000, '200,000']], S.count);
-    cloud.onQuality = n => { dotSel.set([[25000, '25,000'], [50000, '50,000'], [100000, '100,000'], [200000, '200,000'], [Math.round(n), Math.round(n).toLocaleString() + ' (auto)']], Math.round(n)); };
+    dotSel.set([[25000, '25,000'], [50000, '50,000'], [100000, '100,000'], [200000, '200,000'], [400000, '400,000']], S.count);
+    cloud.onQuality = n => { dotSel.set([[25000, '25,000'], [50000, '50,000'], [100000, '100,000'], [200000, '200,000'], [400000, '400,000'], [Math.round(n), Math.round(n).toLocaleString() + ' (auto)']], Math.round(n)); };
     const isoSel = ATM.selEl('wide', 'isotope', v => { ATM.A[S.el] = +v; ATM.retargetNucleus(F); ATM.relabel(F); updateNote(); });
     const row = cls => { const r = document.createElement('div'); r.className = 'arow ' + cls; panel.appendChild(r); return r; };
     const r1 = row('r1'), r2 = row('r2'), r3 = row('r3'), r4 = row('r4'), r5 = row('r5');
@@ -838,7 +841,7 @@ FT.atom = {
       }
       const key = S.sub, zf = (sf.shells.find(q => q.key === key) || {}).zeff || Z, occ = e.subshells[key] || 0;
       const lab = S.fam === 'complex' ? `m = ${ATM.sgn(pk.m)}` : `${pk.label} (real orbital)`;
-      return { spec: { kind: 'orbital', Z, zeff: zf, n: S.n, l: S.l, m: pk.m, real: pk.real, name: `${nm} ${key}, ${lab}` }, html: `${e.name}, ${key} subshell (${occ} electron${occ > 1 ? 's' : ''}), ${lab}`, kind: 'orbital', pk, key, zf, occ };
+      return { spec: { kind: 'orbital', Z, zeff: zf, n: S.n, l: S.l, m: pk.m, real: pk.real, name: `${nm} ${key}, ${lab}` }, html: `${e.name}, ${key} subshell (${occ} electron${occ > 1 ? 's' : ''}), ${lab}`, kind: 'orbital', pk, key, zf, occ, zfShow: (sf.shells.find(q => q.key === key) || {}).zeffRaw || zf };
     }
     function buildStrip(e) {
       strip.innerHTML = '';
@@ -887,7 +890,7 @@ FT.atom = {
         if (cs.kind === 'shells') { h = ATM.tipShells(e, (ATOM_ZEFF.elements[S.el] || {}).method); links = [['at_orbital', 'Electron cloud and orbitals'], ['at_configuration', 'Electron configuration'], ['at_zeff', 'Effective nuclear charge']]; }
         else if (cs.kind === 'orbital') {
           h = ATM.tipOrbital(sp, cloud); links = [['at_orbital', 'Electron cloud and orbitals'], ['at_quantum_numbers', 'Quantum numbers'], ['at_probability_current', 'The flow of probability']];
-          if (!cs.free) h = `<p>${cs.key} holds ${cs.occ} electron${cs.occ > 1 ? 's' : ''} here (at most ${2 * (2 * sp.l + 1)}: two for each of the ${2 * sp.l + 1} orbitals, with opposite spins). One orbital is shown, as a hydrogen-like cloud shrunk by an effective nuclear charge of ${cs.zf.toFixed(2)}, so its size is approximate. In a many-electron atom the occupied orbitals together make a spherical atom; this is one piece of it.</p>` + h;
+          if (!cs.free) h = `<p>${cs.key} holds ${cs.occ} electron${cs.occ > 1 ? 's' : ''} here (at most ${2 * (2 * sp.l + 1)}: two for each of the ${2 * sp.l + 1} orbitals, with opposite spins). One orbital is shown, as a hydrogen-like cloud shrunk by an effective nuclear charge of ${cs.zfShow.toFixed(2)}${ATOM_ZEFF.elements[S.el].src[cs.key] === 'S' ? ' (from Slater’s rules, which also set the size through an effective quantum number)' : ''}, so its size is approximate. In a many-electron atom the occupied orbitals together make a spherical atom; this is one piece of it.</p>` + h;
           else if (e.Z > 1) h = `<p>This is not the ${ATM.lc(S.el)} atom but a hydrogen-like ion: the ${ATM.lc(S.el)} nucleus with a single electron. For one electron the mathematics is exact (apart from relativity, which matters more as Z grows), so the shapes and sizes are exact, and the cloud is ${e.Z}× tighter than in hydrogen.</p>` + h;
         } else { h = ATM.tipSuper(sp, cloud, S.sup); links = [['at_spectra', 'Atomic spectra'], ['at_wavefunction', 'Wavefunction and probability']]; if (e.Z > 1) h = `<p>A hydrogen-like ion of ${ATM.lc(S.el)} (one electron).</p>` + h; }
       } else {
@@ -986,4 +989,128 @@ FT.atom = {
     ATM.load().then(() => { if (F.built) refresh(); });
     refresh();
   }
+};
+
+/* ===================================================================================================================
+   Part 5: the periodic table as the element picker. 18 columns, 7 periods, lanthanides and actinides below. "Colour by"
+   turns it into a tool for seeing trends; every colouring has a legend, units and a source, and grey means no data.
+   =================================================================================================================== */
+ATM.PT = {
+  metrics: {
+    family: { label: 'Family', cat: true },
+    block: { label: 'Block (which subshell fills last)', cat: true },
+    state: { label: 'State at room temperature', cat: true },
+    en: { label: 'Electronegativity', f: 'electronegativity', unit: 'Pauling scale', dec: 2, src: 'electronegativity' },
+    ie: { label: 'First ionisation energy', f: 'ionization_eV', unit: 'eV', dec: 2, src: 'ionization_eV, ionization_unc_eV, ionization_status' },
+    rad: { label: 'Atomic radius (empirical)', f: 'radius_atomic_pm', unit: 'pm', dec: 0, src: 'radius_atomic_pm' },
+    dens: { label: 'Density', f: 'density', unit: 'g/cm³', log: true, dec: 3, src: 'density', note: 'Gases are at 0 °C and 1 atm; the scale is logarithmic.' },
+    melt: { label: 'Melting point', f: 'melt_K', unit: 'K', dec: 0, src: 'melt_K, boil_K', note: 'Helium and carbon do not melt at normal pressure, so they have no value here.' },
+    year: { label: 'Year discovered', f: 'discovered', unit: '', dec: 0, src: 'discovered', note: 'Discovery is partly a matter of definition: first recognised, first isolated or first confirmed. Elements known since ancient times are shown in grey-brown.' }
+  },
+  BLOCK: { s: ['#e07a5f', 's block'], p: ['#6bb36b', 'p block'], d: ['#6a8fc7', 'd block'], f: ['#b58fc2', 'f block'] },
+  STATE: { solid: ['#8d99a6', 'Solid'], liquid: ['#4da3d9', 'Liquid'], gas: ['#e8b45a', 'Gas'], unknown: ['#dcdfe1', 'Not known (never made in a visible amount)'] },
+  RAMP: [[255, 247, 214], [250, 207, 120], [226, 140, 90], [160, 78, 120], [62, 55, 130], [24, 40, 96]]
+};
+ATM.PT.ramp = t => {
+  const R = ATM.PT.RAMP, x = Math.max(0, Math.min(1, t)) * (R.length - 1), i = Math.min(R.length - 2, Math.floor(x)), f = x - i;
+  return R[i].map((v, k) => Math.round(v + (R[i + 1][k] - v) * f));
+};
+ATM.PT.pos = function (e) {   // [row, column], 1-based; lanthanides and actinides on rows 9 and 10
+  if (e.group == null) return e.Z >= 57 && e.Z <= 70 ? [9, e.Z - 57 + 4] : [10, e.Z - 89 + 4];
+  return [e.period, e.group];
+};
+ATM.PT.value = function (e, key) {
+  const M = ATM.PT.metrics[key]; if (M.cat) return null;
+  let v = e[M.f]; if (key === 'year') return typeof v === 'number' ? v : null;
+  return v == null || !isFinite(v) ? null : +v;
+};
+ATM.PT.fmtVal = (v, M) => M.log ? (+v).toPrecision(3).replace(/\.?0+$/, '') : (+v).toFixed(M.dec).replace(/^-0$/, '0');
+ATM.PT.build = function () {
+  if (ATM.PT.el) return ATM.PT.el;
+  const root = document.createElement('div'); root.id = 'ptable'; root.setAttribute('role', 'dialog'); root.setAttribute('aria-label', 'Periodic table: choose an element');
+  root.innerHTML = '<div class="ptw"><div class="pth"><h2>Choose an element</h2><label>Colour by <select class="ptsel"></select></label><button class="x" type="button">Close</button></div>' +
+    '<div class="ptg" role="grid"></div><div class="ptd" aria-live="polite"></div><div class="ptl"></div></div>';
+  document.body.appendChild(root); ATM.PT.el = root;
+  const grid = root.querySelector('.ptg'), sel = root.querySelector('.ptsel'), M = ATM.PT.metrics;
+  Object.keys(M).forEach(k => { const o = document.createElement('option'); o.value = k; o.textContent = M[k].label; sel.appendChild(o); });
+  const P = ATM.PT; P.cells = {}; P.at = {};
+  Object.values(ELJ).sort((a, b) => a.Z - b.Z).forEach(e => {
+    const [r, c] = P.pos(e), b = document.createElement('button'); b.type = 'button'; b.className = 'pc'; b.dataset.s = e.symbol; b.style.gridRow = r; b.style.gridColumn = c; b.setAttribute('role', 'gridcell');
+    b.innerHTML = `<span class="z">${e.Z}</span><span class="s">${e.symbol}</span><span class="nm">${e.name}</span>`; b.setAttribute('aria-label', `${e.name}, element ${e.Z}`);
+    grid.appendChild(b); P.cells[e.symbol] = b; P.at[r + ',' + c] = e.symbol;
+  });
+  const gap = document.createElement('div'); gap.className = 'gap'; gap.style.gridRow = 8; grid.appendChild(gap);
+  [[9, '57–70'], [10, '89–102']].forEach(([r, t]) => { const m = document.createElement('div'); m.className = 'pc mark'; m.style.gridRow = r; m.style.gridColumn = 3; m.textContent = t; m.setAttribute('aria-hidden', 'true'); grid.appendChild(m); });
+  const coarse = () => window.matchMedia && matchMedia('(pointer: coarse)').matches || window.innerWidth <= 860;
+  const preview = sym => { P.sym = sym; P.detail(sym); };
+  grid.addEventListener('click', ev => { const b = ev.target.closest('.pc[data-s]'); if (!b) return; if (coarse() && P.sym !== b.dataset.s) { preview(b.dataset.s); b.focus(); } else P.choose(b.dataset.s); });
+  grid.addEventListener('mouseover', ev => { const b = ev.target.closest('.pc[data-s]'); if (b && !coarse()) P.detail(b.dataset.s); });
+  grid.addEventListener('focusin', ev => { const b = ev.target.closest('.pc[data-s]'); if (b) P.detail(b.dataset.s); });
+  grid.addEventListener('keydown', ev => {
+    const b = ev.target.closest('.pc[data-s]'); if (!b) return;
+    const dd = { ArrowLeft: [0, -1], ArrowRight: [0, 1], ArrowUp: [-1, 0], ArrowDown: [1, 0] }[ev.key]; if (!dd) return;
+    ev.preventDefault(); const e = ELJ[b.dataset.s]; let [r, c] = P.pos(e);
+    for (let k = 0; k < 12; k++) { r += dd[0]; c += dd[1]; if (r < 1 || r > 10 || c < 1 || c > 18) return; const s = P.at[r + ',' + c]; if (s) { P.cells[s].focus(); return; } }
+  });
+  sel.onchange = () => { store.set('ptColor', sel.value); P.paint(); };
+  root.querySelector('.x').onclick = () => P.close();
+  root.addEventListener('mousedown', ev => { if (ev.target === root) P.close(); });
+  root.addEventListener('keydown', ev => { if (ev.key === 'Escape') { ev.stopPropagation(); P.close(); } });
+  P.sel = sel; P.legend = root.querySelector('.ptl'); P.det = root.querySelector('.ptd');
+  return root;
+};
+ATM.PT.srcText = function (key) {
+  const M = ATM.PT.metrics[key], F = (ATM.data.src && ATM.data.src.fields) || {};
+  const k = M.src || 'category, group, period, block, color_cpk, phase_stp';
+  let t = (F[k] || {}).source || 'data/atomic/sources.json'; if (/^same NIST/.test(t)) t = 'NIST Atomic Spectra Database, ground levels and ionization energies for the neutral atoms (brackets in NIST’s table mark interpolated or theoretical values; none is listed for Z above 108)';
+  return t;
+};
+ATM.PT.paint = function () {
+  const P = ATM.PT, key = P.sel.value, M = P.metrics[key], cur = P.cur;
+  let lo = 0, hi = 1, vals = {};
+  if (!M.cat) {
+    Object.values(ELJ).forEach(e => { const v = P.value(e, key); if (v != null && (!M.log || v > 0)) vals[e.symbol] = v; });
+    const a = Object.values(vals); lo = Math.min(...a); hi = Math.max(...a);
+  }
+  const tf = v => M.log ? (Math.log10(v) - Math.log10(lo)) / (Math.log10(hi) - Math.log10(lo)) : (v - lo) / (hi - lo || 1);
+  Object.values(ELJ).forEach(e => {
+    const b = P.cells[e.symbol]; let rgb = null, css = null, nodata = false;
+    if (key === 'family') css = ATM.famColor(e.category);
+    else if (key === 'block') css = P.BLOCK[e.block][0];
+    else if (key === 'state') css = P.STATE[e.phase_stp || 'unknown'][0];
+    else if (vals[e.symbol] != null) rgb = P.ramp(tf(vals[e.symbol]));
+    else if (key === 'year' && e.discovered === 'antiquity') css = '#bfae98';
+    else nodata = true;
+    b.classList.toggle('nodata', nodata); b.classList.toggle('cur', e.symbol === cur);
+    if (rgb) { b.style.background = `rgb(${rgb})`; b.style.color = (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) < 140 ? '#fff' : '#17202a'; }
+    else if (css) { b.style.background = css; b.style.color = '#17202a'; } else { b.style.background = ''; b.style.color = ''; }
+  });
+  // legend
+  let h = '';
+  if (key === 'family') h = '<div>' + ATM.FAMILY.map(f => `<span class="sw"><i style="background:${f[1]}"></i>${f[2]}</span>`).join('') + '</div><div class="pn">Lutetium and lawrencium are placed in group 3, so the rows below hold lanthanum to ytterbium and actinium to nobelium. Family names follow common textbook use.</div>';
+  else if (key === 'block') h = '<div>' + Object.values(P.BLOCK).map(f => `<span class="sw"><i style="background:${f[0]}"></i>${f[1]}</span>`).join('') + '</div><div class="pn">The block is the type of subshell that holds the highest-energy electron in the ground-state pattern (s, p, d or f).</div>';
+  else if (key === 'state') h = '<div>' + Object.values(P.STATE).map(f => `<span class="sw"><i style="background:${f[0]}"></i>${f[1]}</span>`).join('') + '</div>';
+  else {
+    const stops = Array.from({ length: 7 }, (_, i) => `rgb(${P.ramp(i / 6)})`).join(',');
+    h = `<div class="ramp"><span>${P.fmtVal(lo, M)}</span><span class="bar" style="background:linear-gradient(90deg,${stops})"></span><span>${P.fmtVal(hi, M)} ${M.unit}</span><span class="sw"><i style="background:#dcdfe1"></i>no data</span>${key === 'year' ? '<span class="sw"><i style="background:#bfae98"></i>known since antiquity</span>' : ''}</div>` + (M.note ? `<div class="pn">${M.note}</div>` : '');
+  }
+  P.legend.innerHTML = h + `<div class="pn">Source: ${P.srcText(key)}</div>`;
+  P.detail(P.focusSym || cur);
+};
+ATM.PT.detail = function (sym) {
+  const P = ATM.PT; if (!sym || !ELJ[sym]) return; P.focusSym = sym;
+  const e = ELJ[sym], key = P.sel.value, M = P.metrics[key]; let val = '';
+  if (key === 'family') val = e.category; else if (key === 'block') val = P.BLOCK[e.block][1]; else if (key === 'state') val = P.STATE[e.phase_stp || 'unknown'][1];
+  else { const v = P.value(e, key); val = v != null ? `${M.label}: ${P.fmtVal(v, M)} ${M.unit}` : key === 'year' && e.discovered === 'antiquity' ? 'Known since antiquity' : `${M.label}: no data`; }
+  P.det.innerHTML = `<b>${e.name}</b><span>${e.Z} · ${e.symbol} · ${e.mass != null ? ATM.fmt(e.mass, 5) + ' u' : ''}</span><span>${val}</span><button class="act go" type="button">Show the ${e.name.toLowerCase()} atom</button>`;
+  P.det.querySelector('.go').onclick = () => P.choose(sym);
+};
+ATM.PT.choose = function (sym) { const P = ATM.PT, F = P.F; P.close(); if (F && F.setElement) F.setElement(sym); };
+ATM.PT.close = function () { const P = ATM.PT; if (P.el) P.el.classList.remove('open'); if (P.back) { try { P.back.focus(); } catch (e) {} } };
+ATM.openPicker = function (F, backBtn) {
+  ATM.load().then(() => {
+    const P = ATM.PT, el = P.build(); P.F = F; P.cur = F.at.el; P.sym = null; P.back = document.activeElement;
+    P.sel.value = store.get('ptColor', 'family'); if (!P.metrics[P.sel.value]) P.sel.value = 'family';
+    el.classList.add('open'); P.focusSym = P.cur; P.paint(); P.cells[P.cur].focus();
+  });
 };

@@ -70,3 +70,9 @@ body.cardOpen .atomNote { display: none }
   #ptable .pc .nm { display: none }
   #ptable .ptl .bar { width: 100% }
 }
+#ptable .ptl .pn { margin-top: 5px; line-height: 1.4; max-width: 880px }
+#ptable .ptd span { color: var(--ink-2) }
+#ptable .ptd .go { margin-left: auto; border: 1px solid var(--accent); background: var(--accent); color: #fff; border-radius: 3px; padding: 6px 12px; font: 12.5px var(--sans); cursor: pointer }
+#ptable .ptl .sw { white-space: nowrap }
+@media (max-width: 860px) { #ptable .ptd .go { margin-left: 0 } #ptable .ptd { gap: 4px 10px } #ptable h2 { font-size: 17px } }
+@media (max-width: 860px) { #ptable .pc.mark { font-size: 6px; padding: 0; overflow: hidden } }
