@@ -1,0 +1,242 @@
+{
+ "id": "boulder",
+ "title": "Boulder",
+ "label": "Boulder",
+ "scientific": null,
+ "node": "boulder",
+ "main_part": "rock",
+ "blurb": "A weathered boulder in the park: bare rock with moss and lichen growing on it, and loose stones at its foot. Click any part.",
+ "model_note": "A model built from typical features of a coarse-grained rock, not a scan of one particular boulder. Sizes are about right for a large boulder; the grain pattern shown when cut open is illustrative.",
+ "size_m": {
+  "height": 0.67,
+  "width": 1.53,
+  "depth": 1
+ },
+ "height_m": 0.67,
+ "radius_m": 1.7,
+ "draw_m": 500,
+ "seed": 1701,
+ "systems": [
+  {
+   "id": "rock",
+   "label": "Rock"
+  },
+  {
+   "id": "growth",
+   "label": "Living on it"
+  },
+  {
+   "id": "debris",
+   "label": "Loose stones"
+  }
+ ],
+ "modes": [
+  {
+   "id": "whole",
+   "label": "Whole",
+   "show": {
+    "*": 1
+   }
+  },
+  {
+   "id": "living",
+   "label": "What lives on it",
+   "show": {
+    "growth": 1,
+    "rock": 0.18,
+    "debris": 0.18
+   }
+  },
+  {
+   "id": "rock",
+   "label": "Bare rock",
+   "show": {
+    "rock": 1,
+    "debris": 1,
+    "growth": 0
+   }
+  },
+  {
+   "id": "cut",
+   "label": "Cut open",
+   "cut": true,
+   "show": {
+    "*": 1
+   }
+  }
+ ],
+ "lod": {
+  "near_m": 40
+ },
+ "shadow": {
+  "radius_m": 1.7,
+  "opacity": 0.9
+ },
+ "cut": {
+  "default": "granite",
+  "at": [
+   0,
+   0.3,
+   0
+  ],
+  "faces": {
+   "granite": {
+    "kind": "grains",
+    "cell": 0.03,
+    "edge": 0.5,
+    "palette": [
+     [
+      10133411,
+      0.27
+     ],
+     [
+      14202012,
+      0.3
+     ],
+     [
+      15656662,
+      0.28
+     ],
+     [
+      2763312,
+      0.15
+     ]
+    ],
+    "legend": [
+     {
+      "name": "Quartz (grey, glassy)",
+      "color": "#9a9fa3",
+      "node": "rock_grains"
+     },
+     {
+      "name": "Feldspar (pink or white)",
+      "color": "#d8b49c",
+      "node": "rock_grains"
+     },
+     {
+      "name": "Dark minerals (mica and others)",
+      "color": "#2a2a30",
+      "node": "rock_grains"
+     }
+    ],
+    "note": "Illustrative grain pattern for a coarse-grained rock; the real arrangement in any one rock differs."
+   }
+  }
+ },
+ "hotspots": [
+  {
+   "id": "lichen_contact",
+   "node": "lichen_on_rock",
+   "at": [
+    -0.117,
+    0.663,
+    0.029
+   ],
+   "label": "Where lichen meets rock"
+  }
+ ],
+ "parts": [
+  {
+   "id": "rock",
+   "name": "Rock",
+   "system": "rock",
+   "node": "boulder",
+   "color": "#8d8a83",
+   "mesh": "rock",
+   "lod": "near",
+   "priority": 1.4,
+   "deeper": {
+    "type": "crystal",
+    "id": "quartz",
+    "D": 4e-9,
+    "button": "See a crystal of quartz, one of its minerals"
+   },
+   "center": [
+    -0.0046,
+    0.3122,
+    -0.0021
+   ],
+   "radius": 0.7973,
+   "tris": 27288
+  },
+  {
+   "id": "rock_far",
+   "name": "Rock",
+   "system": "rock",
+   "node": "boulder",
+   "color": "#8d8a83",
+   "mesh": "rock_far",
+   "lod": "far",
+   "solid": true,
+   "priority": 1.4,
+   "far_of": "rock",
+   "center": [
+    0.0004,
+    0.3128,
+    -0.0019
+   ],
+   "radius": 0.7896,
+   "tris": 765
+  },
+  {
+   "id": "moss",
+   "name": "Moss",
+   "system": "growth",
+   "node": "bio_bryophytes_seedless",
+   "color": "#5f8d3a",
+   "mesh": "moss",
+   "priority": 2,
+   "ink_w": 0.0014,
+   "center": [
+    -0.0625,
+    0.6014,
+    -0.0294
+   ],
+   "radius": 0.5036,
+   "tris": 9268
+  },
+  {
+   "id": "lichen",
+   "name": "Lichen",
+   "system": "growth",
+   "node": "bio_lichens_fungal_biotech",
+   "color": "#b2b98f",
+   "instances": "lichen",
+   "tint": 0.25,
+   "priority": 2,
+   "lod": "near",
+   "center": [
+    0.0195,
+    0.4188,
+    0.0219
+   ],
+   "radius": 0.8408,
+   "count": 320,
+   "tris": 87040
+  },
+  {
+   "id": "stones",
+   "name": "Loose stones",
+   "system": "debris",
+   "node": "boulder_debris",
+   "color": "#7d7a73",
+   "instances": "stones",
+   "tint": 0.12,
+   "priority": 1.8,
+   "center": [
+    -0.0766,
+    0.0098,
+    0.0662
+   ],
+   "radius": 1.5097,
+   "count": 46,
+   "tris": 20424
+  }
+ ],
+ "stats": {
+  "parts": 5,
+  "uniqueMeshTris": 37321,
+  "nearTris": 144020,
+  "farTris": 30457
+ }
+}
