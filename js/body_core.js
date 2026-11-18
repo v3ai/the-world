@@ -48,25 +48,35 @@ function boneCloud(F) {
     const a = F.parts[id].g.userData.main.geometry.attributes.position, sg = boneSegment(id); let si = segs.indexOf(sg); if (si < 0) si = segs.push(sg) - 1;
     for (let i = 0; i < a.count; i++) { pos[k * 3] = a.getX(i); pos[k * 3 + 1] = a.getY(i); pos[k * 3 + 2] = a.getZ(i); seg[k++] = si; }
   });
-  // torso bands from the skeleton itself: the chest ends where the ribs end, the abdomen where the hip bones begin
+  // torso bands from the skeleton itself, so they follow the model: the thorax ends at the costal margin (from the tip of the
+  // sternum at the midline, sloping down to the lowest front rib at the side) and at the lower end of the thoracic spine at the back;
+  // the lower back ends at the top of the lumbar spine's base, the abdomen at the top of the hip bone.
   const bb = id => { const g = F.parts[id] && F.parts[id].g.userData.main.geometry; if (!g) return null; if (!g.boundingBox) g.computeBoundingBox(); return g.boundingBox; };
-  const rib = bb('ribs_l'), hip = bb('hip_bone_l');
-  _boneCloud = { n: Object.keys(F.parts).length, pos, seg, segs, ribMinY: rib ? rib.min.y : 1.1, hipMaxY: hip ? hip.max.y : 1.0 };
+  const rib = bb('ribs_l'), hip = bb('hip_bone_l'), st = bb('sternum'), th = bb('thoracic_spine'), lu = bb('lumbar_spine');
+  let lowY = rib ? rib.max.y : 1.1, lowX = .12; // lowest rib in the front half, and where it is
+  if (rib) { const a = F.parts.ribs_l.g.userData.main.geometry.attributes.position; lowY = 9; for (let i = 0; i < a.count; i++) if (a.getZ(i) > .03 && a.getY(i) < lowY) { lowY = a.getY(i); lowX = Math.abs(a.getX(i)); } }
+  _boneCloud = { n: Object.keys(F.parts).length, pos, seg, segs, xiphY: st ? st.min.y : 1.25, lowY, lowX: Math.max(lowX, .05), thMinY: th ? th.min.y : 1.15, luMinY: lu ? lu.min.y : 1.0, hipMinY: hip ? hip.min.y : .85, hipMaxY: hip ? hip.max.y : 1.05 };
   return _boneCloud;
 }
-/* Region of a point on the skin: p in body-local metres (y up, +x is the body's left, +z is its front), normal optional. */
+/* Region of a point on the skin: p in body-local metres (y up, +x is the body's left, +z is its front), normal optional.
+   Names follow surface anatomy: chest above the costal margin, abdomen below it down to the hip bone, lower abdomen and pelvis
+   below that; at the back upper back (thoracic), lower back (lumbar) and buttock. */
 function bodyRegion(F, p, normal) {
   if (!F.parts || !F.parts.femur_l) return null;
   const C = boneCloud(F), P = C.pos; let bd = Infinity, bi = 0;
   for (let i = 0, n = C.seg.length; i < n; i++) { const dx = P[i * 3] - p.x, dy = P[i * 3 + 1] - p.y, dz = P[i * 3 + 2] - p.z, d = dx * dx + dy * dy + dz * dz; if (d < bd) { bd = d; bi = i; } }
   let seg = C.segs[C.seg[bi]];
-  const back = !!normal && normal.z < -.35, side = p.x > .045 ? 'left' : p.x < -.045 ? 'right' : '';
+  let back = false; // is this the back of the body? Face normals are not oriented, so turn the normal to face the viewer first
+  if (normal) { const n = normal.clone(); if (raycaster && raycaster.ray && n.dot(raycaster.ray.direction) > 0) n.negate(); back = n.z < -.35; }
+  const side = p.x > .045 ? 'left' : p.x < -.045 ? 'right' : '', ax = Math.abs(p.x);
   let name;
   if (seg === 'torso') {
-    const band = p.y >= C.ribMinY ? 'chest' : p.y >= C.hipMaxY ? 'abdomen' : 'pelvis';
-    seg = band;
-    const base = back ? { chest: 'upper back', abdomen: 'lower back', pelvis: 'buttock' }[band] : band;
-    name = side ? `${base}, ${side} side` : base;
+    let band;
+    if (p.y > 1.4 && ax > .07) band = 'shoulder';
+    else if (back) band = p.y >= C.thMinY ? 'upper back' : p.y >= C.luMinY ? 'lower back' : 'buttock';
+    else { const costal = C.xiphY - (C.xiphY - C.lowY) * Math.min(ax / C.lowX, 1); band = p.y >= costal + .06 ? 'chest' : p.y >= costal ? 'lower chest' : p.y >= C.hipMaxY ? 'abdomen' : p.y >= C.hipMinY + .08 ? 'lower abdomen' : 'pelvis'; }
+    seg = band === 'lower chest' ? 'chest' : band === 'upper back' ? 'chest' : band === 'lower back' ? 'abdomen' : band === 'buttock' ? 'pelvis' : band === 'lower abdomen' ? 'abdomen' : band;
+    name = side && band !== 'pelvis' ? `${side} ${band}` : band;
   } else if (seg === 'head' || seg === 'neck') name = (back ? 'back of the ' : '') + seg;
   else { const lr = p.x > 0 ? 'left' : 'right'; name = `${lr} ${seg}`; }
   return { seg, name, side };
