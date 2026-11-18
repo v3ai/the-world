@@ -372,6 +372,7 @@ details[open] > summary::before { content: '−' }
 @media (max-width: 860px) {
   #crumbs { margin-bottom: 6px; padding-bottom: 6px }
   #crumbList { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none }
+  #crumbList.clip { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 22px); mask-image: linear-gradient(90deg, transparent 0, #000 22px) }
   #help .card { padding: 20px 18px 18px }
   #help h1 { font-size: 27px }
   #help .grid { grid-template-columns: 96px 1fr }

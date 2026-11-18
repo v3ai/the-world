@@ -78,7 +78,7 @@ function updateCrumbs(cur) {
   ol.innerHTML = items.map(it => it.more !== undefined ? `<li><button class="crumb more" title="Show the whole path">… ${it.more} more</button></li>` : `<li>${it.last ? `<span class="crumb cur" aria-current="location" title="${humanName(it.f)}">${short(it.f)}</span>` : `<button class="crumb" data-i="${chain.indexOf(it.f)}" title="Fly out to ${humanName(it.f)}">${short(it.f)}</button>`}</li>`).join('');
   ol.querySelectorAll('.crumb[data-i]').forEach(b => b.onclick = () => crumbGo(chain[+b.dataset.i]));
   const mo = ol.querySelector('.more'); if (mo) mo.onclick = () => { crumbsAll = true; updateCrumbs(cur); };
-  ol.scrollLeft = ol.scrollWidth;
+  ol.scrollLeft = ol.scrollWidth; ol.classList.toggle("clip", ol.scrollLeft > 2);
 }
 
 /* ================= ONE CARD =================
