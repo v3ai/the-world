@@ -1,1 +1,72 @@
-/* styles for atom.js */
+/* styles for atom.js: the atom view panels and the periodic-table picker */
+.atomOpts { display: flex; flex-direction: column; gap: 6px; padding: 8px 10px; font-size: 12.5px; color: var(--ink-2); max-width: 640px; }
+.atomOpts .arow { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center }
+.atomOpts .seg { box-shadow: none; border-color: var(--rule) }
+.cfgStrip { display: flex; flex-wrap: wrap; gap: 4px; align-items: center }
+.cfgStrip .stl { color: var(--muted); margin-right: 2px }
+.cfgStrip .sub { border: 1px solid var(--rule); border-bottom: 3px solid var(--c, #888); background: #fff; color: var(--ink); border-radius: 3px; padding: 3px 7px 2px; font: 600 12.5px var(--sans); cursor: pointer }
+.cfgStrip .sub:hover { background: var(--paper-2) }
+.cfgStrip .sub.on { background: var(--ink); color: #fff }
+.asel { display: inline-flex; align-items: center; gap: 5px }
+.asel span { color: var(--muted) }
+.asel select { font: 12.5px var(--sans); padding: 3px 4px; border: 1px solid var(--rule); border-radius: 3px; background: #fff; color: var(--ink); max-width: 260px }
+.atomOpts .tog { border: 1px solid var(--rule); background: #fff; border-radius: 3px; padding: 4px 9px; font: 12.5px var(--sans); cursor: pointer; color: var(--ink) }
+.atomOpts .tog.on { border-color: var(--accent); color: var(--accent) }
+.atomOpts .act { padding: 5px 11px }
+.atomSpec { padding: 8px 10px; max-width: 560px; font-size: 12.5px; color: var(--ink-2) }
+.atomSpec .sh { font-weight: 600; color: var(--ink); margin-bottom: 4px }
+.atomSpec p { margin: 6px 0 0; line-height: 1.4 }
+.sbar { position: relative; height: 16px; background: #11151c; border-radius: 3px }
+.sbar i { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px }
+.sbar b { position: absolute; top: -3px; bottom: -3px; width: 2px; margin-left: -1px; border: 1px solid #fff; background: none; box-shadow: 0 0 0 1px #111 }
+.atomNote { position: fixed; right: 76px; bottom: 16px; width: 360px; max-height: calc(100vh - 290px); overflow: auto; z-index: 5; padding: 10px 14px; display: none; font-size: 13px; line-height: 1.45; color: var(--ink-2) }
+.atomNote.on { display: block }
+body.cardOpen .atomNote { display: none }
+.atomNote .noteHead { display: block; width: 100%; text-align: left; background: none; border: 0; padding: 0; cursor: pointer }
+.atomNote .nl { display: block; font: 600 17px/1.25 var(--serif); color: var(--ink) }
+.atomNote .nx { display: block; font-size: 11.5px; color: var(--accent); margin-top: 2px; text-decoration: underline; text-decoration-color: rgba(30,78,143,.3) }
+.atomNote.shut .noteBody { display: none }
+.atomNote p { margin: 7px 0 0 }
+.atomNote .scale, .atomNote .from { font-style: italic; color: var(--muted) }
+.atomNote .ctag { display: inline-block; font: 600 11px var(--sans); background: var(--paper-2); border: 1px solid var(--rule); border-radius: 3px; padding: 0 4px; margin-right: 2px }
+.atomNote .nlinks { margin-top: 8px }
+.atomNote .chip { margin-right: 4px }
+/* periodic table */
+#ptable { position: fixed; inset: 0; z-index: 30; display: none; background: rgba(23,32,42,.35); align-items: center; justify-content: center }
+#ptable.open { display: flex }
+#ptable .ptw { background: var(--paper); border: 1px solid rgba(23,32,42,.2); border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,.25); width: min(1040px, calc(100vw - 24px)); max-height: calc(100vh - 24px); overflow: auto; padding: 14px 16px 12px }
+#ptable h2 { font: 600 20px var(--serif); margin: 0 0 8px; color: var(--ink) }
+#ptable .pth { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px }
+#ptable .pth .x { margin-left: auto; border: 1px solid var(--rule); background: #fff; border-radius: 3px; padding: 5px 12px; cursor: pointer; font: 12.5px var(--sans) }
+#ptable .pth label { font-size: 12.5px; color: var(--muted) }
+#ptable .pth select { font: 13px var(--sans); padding: 4px 6px; border: 1px solid var(--rule); border-radius: 3px; background: #fff; margin-left: 4px }
+#ptable .ptg { display: grid; grid-template-columns: repeat(18, minmax(0, 1fr)); gap: 2px }
+#ptable .ptg .gap { grid-column: 1 / -1; height: 8px }
+#ptable .pc { position: relative; aspect-ratio: 1 / 1.05; border: 1px solid rgba(23,32,42,.18); border-radius: 3px; padding: 2px 3px; text-align: left; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; font-family: var(--sans); background: #cfd5d9; min-width: 0 }
+#ptable .pc:hover { outline: 2px solid var(--accent); z-index: 2 }
+#ptable .pc:focus-visible { outline: 3px solid var(--index); outline-offset: 0; z-index: 3 }
+#ptable .pc.cur { box-shadow: inset 0 0 0 2px var(--ink) }
+#ptable .pc .z { font-size: 10px; line-height: 1; opacity: .85 }
+#ptable .pc .s { font: 700 17px/1 var(--serif); text-align: center }
+#ptable .pc .nm { font-size: 9px; line-height: 1; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: clip }
+#ptable .pc.nodata { background: #dcdfe1 !important; color: #7a858d !important }
+#ptable .pc.mark { background: transparent; border-style: dashed; cursor: default; color: var(--muted); justify-content: center; align-items: center; font-size: 10px }
+#ptable .ptd { margin-top: 8px; min-height: 40px; font-size: 13px; color: var(--ink-2); display: flex; align-items: center; gap: 12px; flex-wrap: wrap }
+#ptable .ptd b { font: 600 16px var(--serif); color: var(--ink) }
+#ptable .ptd .go { margin-left: auto }
+#ptable .ptl { margin-top: 8px; font-size: 12px; color: var(--muted) }
+#ptable .ptl .ramp { display: flex; align-items: stretch; gap: 8px; flex-wrap: wrap }
+#ptable .ptl .bar { height: 12px; width: 260px; border-radius: 2px; border: 1px solid var(--rule) }
+#ptable .ptl .sw { display: inline-flex; align-items: center; gap: 4px; margin-right: 10px }
+#ptable .ptl .sw i { width: 12px; height: 12px; border: 1px solid rgba(0,0,0,.25); border-radius: 2px; display: inline-block }
+@media (max-width: 860px) {
+  .atomOpts { max-width: none; padding: 6px 8px }
+  .atomNote { left: 8px; right: 8px; width: auto; bottom: 120px; max-height: 38vh }
+  .atomNote .nx::after { content: ' (tap)' }
+  #ptable .ptw { padding: 10px 8px }
+  #ptable .pc { padding: 1px 1px; aspect-ratio: 1 / 1.25 }
+  #ptable .pc .z { font-size: 7px }
+  #ptable .pc .s { font-size: 11px }
+  #ptable .pc .nm { display: none }
+  #ptable .ptl .bar { width: 100% }
+}
