@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../../">
+<title>Thing preview</title>
+<style>
+:root { --paper:#f7f6f2; --ink:#17202a; --muted:#6b7480; --rule:#d9d6cc; --accent:#1f4e79; --serif:'Source Serif 4',Georgia,serif; --sans:'IBM Plex Sans',system-ui,sans-serif }
+* { box-sizing: border-box } body { margin:0; font:13px var(--sans); color:var(--ink); background:#dfe7ee; overflow:hidden }
+canvas { position:fixed; inset:0; width:100%; height:100%; display:block; touch-action:none }
+#panel { position:fixed; left:12px; top:12px; bottom:12px; width:300px; background:var(--paper); border:1px solid var(--rule); border-radius:6px; padding:12px; overflow:auto; z-index:2 }
+h1 { font:600 18px var(--serif); margin:0 0 2px } .sub { color:var(--muted); margin-bottom:10px } h2 { font:600 12px var(--sans); margin:14px 0 6px; color:var(--muted) }
+.row { display:flex; flex-wrap:wrap; gap:4px } button { font:inherit; border:1px solid var(--rule); background:#fff; border-radius:4px; padding:5px 9px; cursor:pointer; color:var(--ink) } button.on { background:var(--ink); color:var(--paper) }
+table { width:100%; border-collapse:collapse } td { padding:3px 4px; border-top:1px solid var(--rule); vertical-align:top } td.n { text-align:right; font-variant-numeric:tabular-nums; color:var(--muted) } tr.sel td { background:#e8eef5 } tr { cursor:pointer }
+#sel { margin-top:8px; color:var(--muted) } #note { font:italic 12px var(--serif); color:var(--muted); margin-top:10px }
+@media (max-width: 860px) { #panel { width:auto; right:12px; bottom:auto; max-height:45vh } }
+</style></head><body>
+<canvas id="c"></canvas>
+<div id="panel"><h1 id="title">Loading</h1><div class="sub" id="sub"></div>
+<h2>Layer</h2><div class="row" id="modes"></div>
+<h2>Level of detail</h2><div class="row" id="lod"></div>
+<h2>Parts</h2><table id="parts"></table><div id="sel"></div><div id="tot"></div><div id="note"></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* The preview loads the real runtime (js/nodes.js for the toon/ink helpers, js/things.js for ThingObj) with a few stand-ins for engine.js. */
+const V3 = THREE.Vector3, TAU = Math.PI * 2, clamp = (x, a, b) => Math.max(a, Math.min(b, x)), lerp = (a, b, t) => a + (b - a) * t;
+const smooth = (a, b, x) => { const t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
+const FT = {}, WORLD_EXT = [], EXT_LANDMARKS = [], DATA = {}, store = { get: (k, d) => d, set() { } };
+function getJSON(p) { return DATA[p] || (DATA[p] = fetch(p).then(r => { if (!r.ok) throw new Error(p + ' ' + r.status); return r.json(); })); }
+function LDV(src) { return '#include <common>\n#include <logdepthbuf_pars_vertex>\n' + src.replace(/\}\s*$/, '\n#include <logdepthbuf_vertex>\n}'); }
+function LDF(src) { return '#include <logdepthbuf_pars_fragment>\n' + src.replace(/void main\(\)\s*\{/, 'void main(){\n#include <logdepthbuf_fragment>\n'); }
+</script>
+<script src="js/nodes.js"></script>
+<script src="js/things.js"></script>
+<script>
+const $ = s => document.querySelector(s), id = new URLSearchParams(location.search).get('thing') || 'boulder';
+const canvas = $('#c'), renderer = new THREE.WebGLRenderer({ canvas, antialias: true }); renderer.setPixelRatio(Math.min(2, devicePixelRatio)); renderer.localClippingEnabled = true;
+const scene = new THREE.Scene(); scene.background = new THREE.Color(0xdfe7ee); scene.fog = new THREE.Fog(0xdfe7ee, 30, 200);
+const cam = new THREE.PerspectiveCamera(45, 1, .01, 2000), tgt = new V3(), orb = { th: .6, ph: 1.2, d: 4 };
+const ground = new THREE.Mesh(new THREE.CircleGeometry(60, 48), new THREE.MeshLambertMaterial({ color: 0x7ea65f })); ground.rotation.x = -Math.PI / 2; scene.add(ground);
+const grid = new THREE.GridHelper(20, 20, 0x335522, 0x5d8a44); grid.position.y = .005; grid.material.transparent = true; grid.material.opacity = .35; scene.add(grid);
+let T = null, picked = null;
+Promise.all([thLoadDef(id), thLoadBundle(id), loadNodes()]).then(([def, bundle]) => {
+  T = new ThingObj(def, bundle, {}); window.T = T; scene.add(T.holder, T.lights.hemi, T.lights.sun);
+  $('#title').textContent = def.title; $('#sub').textContent = (def.scientific ? def.scientific + ' · ' : '') + `${def.stats.parts} parts, ${def.stats.uniqueMeshTris.toLocaleString()} unique triangles`;
+  $('#note').textContent = def.model_note || ''; const R = def.radius_m || 1; orb.d = R * 2.2; tgt.set(0, (def.height_m || R) * .45, 0);
+  const modes = (def.auto ? [['auto', 'Auto']] : []).concat(def.modes.map(m => [m.id, m.label])), mb = $('#modes');
+  modes.forEach(([k, l]) => { const b = document.createElement('button'); b.textContent = l; b.dataset.k = k; b.onclick = () => { T.setMode(k); mb.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); }; mb.appendChild(b); }); mb.firstChild.classList.add('on');
+  const lb = $('#lod'); [['auto', 'Automatic'], ['near', 'Near'], ['far', 'Far stand-in']].forEach(([k, l]) => { const b = document.createElement('button'); b.textContent = l; b.onclick = () => { T.lodForce = k === 'auto' ? null : k; lb.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); }; lb.appendChild(b); }); lb.firstChild.classList.add('on');
+  const tb = $('#parts'); def.parts.forEach(p => { const tr = document.createElement('tr'); tr.dataset.id = p.id; tr.innerHTML = `<td>${p.name}<br><span style="color:var(--muted)">${p.id} · ${p.system}${p.lod ? ' · ' + p.lod : ''}${p.parent ? ' · inside ' + p.parent : ''}</span></td><td class="n">${(p.tris || 0).toLocaleString()}${p.count ? '<br>×' + p.count : ''}</td>`; tr.onclick = () => select(p.id); tb.appendChild(tr); });
+  $('#tot').innerHTML = `<h2>Totals</h2>Near view: ${def.stats.nearTris.toLocaleString()} triangles drawn<br>Far stand-in: ${def.stats.farTris.toLocaleString()} triangles drawn`;
+}).catch(e => { $('#title').textContent = 'Could not load ' + id; $('#sub').textContent = String(e); });
+function select(pid) { picked = pid; document.querySelectorAll('#parts tr').forEach(r => r.classList.toggle('sel', r.dataset.id === pid)); const r = T.parts[pid], n = r && NODE[r.pd.node]; $('#sel').textContent = r ? `${r.pd.name}: card ${r.pd.node}${n ? ' (' + n.title + ')' : ' (MISSING)'}` : ''; }
+// orbit controls
+let drag = null, moved = false;
+canvas.onpointerdown = e => { drag = { x: e.clientX, y: e.clientY }; moved = false; canvas.setPointerCapture(e.pointerId); };
+canvas.onpointermove = e => { if (!drag) return; const dx = e.clientX - drag.x, dy = e.clientY - drag.y; if (Math.abs(dx) + Math.abs(dy) > 3) moved = true; orb.th -= dx * .006; orb.ph = clamp(orb.ph - dy * .006, .05, 1.55); drag = { x: e.clientX, y: e.clientY }; };
+canvas.onpointerup = e => { drag = null; if (!moved && T) { const rc = new THREE.Raycaster(); rc.setFromCamera(new THREE.Vector2(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1), cam); const h = rc.intersectObjects(T.list.map(r => r.g).filter(g => g.visible), true)[0]; if (h) { let o = h.object; while (o && !o.userData.partRec) o = o.parent; if (o) select(o.userData.partRec.pd.id); } } };
+canvas.onwheel = e => { e.preventDefault(); orb.d = clamp(orb.d * Math.exp(e.deltaY * .0012), .05, 80); };
+function size() { renderer.setSize(innerWidth, innerHeight, false); cam.aspect = innerWidth / innerHeight; cam.updateProjectionMatrix(); } addEventListener('resize', size); size();
+let last = performance.now(); const ZERO = new V3();
+(function loop(now) {
+  requestAnimationFrame(loop); const dt = Math.min(.05, (now - last) / 1000); last = now;
+  cam.position.set(Math.sin(orb.th) * Math.sin(orb.ph), Math.cos(orb.ph), Math.cos(orb.th) * Math.sin(orb.ph)).multiplyScalar(orb.d).add(tgt); cam.lookAt(tgt);
+  if (T) { T.camW = cam.position; T.update(dt, cam.position, ZERO, 1); }
+  renderer.render(scene, cam);
+})(performance.now());
+</script></body></html>

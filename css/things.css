@@ -6,4 +6,4 @@
 .thLegend .thLg i { width: 11px; height: 11px; border-radius: 2px; border: 1px solid rgba(23,32,42,.35); display: inline-block }
 .thLegend .thLN { flex-basis: 100%; color: var(--muted); font-size: 12px }
 .thNote { margin: 0 0 10px; font-size: 12.5px }
-@media (max-width: 860px) { .thLegend { max-width: none } }
+@media (max-width: 860px) { .thLegend { flex: 0 0 250px; max-width: none } .thLegend .thLN { display: none } }

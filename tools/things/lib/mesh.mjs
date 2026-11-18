@@ -116,3 +116,13 @@ export function stats(m) {
   let degenerate = 0; for (let i = 0; i < m.idx.length; i += 3) if (triArea(m.pos, m.idx[i], m.idx[i + 1], m.idx[i + 2]) < 1e-14) degenerate++;
   return { verts: nv, usedVerts: used, tris: nf, edges: edges.size, euler: used - edges.size + nf, open, nonManifold, inconsistent, degenerate, volume: signedVolume(m), area: area(m), closed: open === 0 && nonManifold === 0 && inconsistent === 0 };
 }
+
+// Area-weighted vertex normals (unit), flat array.
+export function vertexNormals(m) {
+  const n = new Float64Array(m.pos.length), p = m.pos;
+  for (let i = 0; i < m.idx.length; i += 3) { const a = m.idx[i] * 3, b = m.idx[i + 1] * 3, c = m.idx[i + 2] * 3, ux = p[b] - p[a], uy = p[b + 1] - p[a + 1], uz = p[b + 2] - p[a + 2], vx = p[c] - p[a], vy = p[c + 1] - p[a + 1], vz = p[c + 2] - p[a + 2], x = uy * vz - uz * vy, y = uz * vx - ux * vz, z = ux * vy - uy * vx; for (const k of [a, b, c]) { n[k] += x; n[k + 1] += y; n[k + 2] += z; } }
+  for (let i = 0; i < n.length; i += 3) { const l = Math.hypot(n[i], n[i + 1], n[i + 2]) || 1; n[i] /= l; n[i + 1] /= l; n[i + 2] /= l; }
+  return Array.from(n);
+}
+// Bake a per-vertex brightness (0..1) into m.shade: fn(position, normal) -> number. Multiplies the part colour at runtime (ambient occlusion, staining, tone).
+export function bakeShade(m, fn) { const nr = vertexNormals(m); m.shade = []; for (let i = 0; i < m.pos.length; i += 3) m.shade.push(Math.max(0, Math.min(1, fn([m.pos[i], m.pos[i + 1], m.pos[i + 2]], [nr[i], nr[i + 1], nr[i + 2]])))); return m; }

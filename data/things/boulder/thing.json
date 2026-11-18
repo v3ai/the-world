@@ -43,8 +43,8 @@
    "label": "What lives on it",
    "show": {
     "growth": 1,
-    "rock": 0.18,
-    "debris": 0.18
+    "rock": 0.3,
+    "debris": 0.3
    }
   },
   {
@@ -69,8 +69,8 @@
   "near_m": 40
  },
  "shadow": {
-  "radius_m": 1.7,
-  "opacity": 0.9
+  "radius_m": 1.35,
+  "opacity": 0.8
  },
  "cut": {
   "default": "granite",
@@ -80,9 +80,18 @@
    0
   ],
   "faces": {
+   "moss": {
+    "kind": "plain",
+    "palette": [
+     [
+      3958054,
+      1
+     ]
+    ]
+   },
    "granite": {
     "kind": "grains",
-    "cell": 0.03,
+    "cell": 0.04,
     "edge": 0.5,
     "palette": [
      [
@@ -128,9 +137,9 @@
    "id": "lichen_contact",
    "node": "lichen_on_rock",
    "at": [
-    -0.117,
-    0.663,
-    0.029
+    0.134,
+    0.649,
+    0.016
    ],
    "label": "Where lichen meets rock"
   }
@@ -141,9 +150,10 @@
    "name": "Rock",
    "system": "rock",
    "node": "boulder",
-   "color": "#8d8a83",
+   "color": "#7f7c75",
    "mesh": "rock",
    "lod": "near",
+   "ink_w": 0.0012,
    "priority": 1.4,
    "deeper": {
     "type": "crystal",
@@ -153,30 +163,30 @@
    },
    "center": [
     -0.0046,
-    0.3122,
-    -0.0021
+    0.3129,
+    -0.0099
    ],
-   "radius": 0.7973,
-   "tris": 27288
+   "radius": 0.7969,
+   "tris": 27500
   },
   {
    "id": "rock_far",
    "name": "Rock",
    "system": "rock",
    "node": "boulder",
-   "color": "#8d8a83",
+   "color": "#7f7c75",
    "mesh": "rock_far",
    "lod": "far",
    "solid": true,
    "priority": 1.4,
    "far_of": "rock",
    "center": [
-    0.0004,
-    0.3128,
-    -0.0019
+    -0.0028,
+    0.3164,
+    -0.0055
    ],
-   "radius": 0.7896,
-   "tris": 765
+   "radius": 0.788,
+   "tris": 955
   },
   {
    "id": "moss",
@@ -185,34 +195,54 @@
    "node": "bio_bryophytes_seedless",
    "color": "#5f8d3a",
    "mesh": "moss",
+   "cutFace": "moss",
    "priority": 2,
    "ink_w": 0.0014,
    "center": [
-    -0.0625,
-    0.6014,
-    -0.0294
+    -0.0881,
+    0.5664,
+    0.0234
    ],
-   "radius": 0.5036,
-   "tris": 9268
+   "radius": 0.507,
+   "tris": 9104
   },
   {
    "id": "lichen",
    "name": "Lichen",
    "system": "growth",
    "node": "bio_lichens_fungal_biotech",
-   "color": "#b2b98f",
+   "color": "#a9b08c",
    "instances": "lichen",
    "tint": 0.25,
    "priority": 2,
    "lod": "near",
    "center": [
-    0.0195,
-    0.4188,
-    0.0219
+    0.1061,
+    0.4929,
+    -0.0359
    ],
-   "radius": 0.8408,
-   "count": 320,
-   "tris": 87040
+   "radius": 0.8669,
+   "count": 275,
+   "tris": 19800
+  },
+  {
+   "id": "lichen_yellow",
+   "name": "Lichen",
+   "system": "growth",
+   "node": "bio_lichens_fungal_biotech",
+   "color": "#d1a53c",
+   "instances": "lichen_y",
+   "tint": 0.2,
+   "priority": 2,
+   "lod": "near",
+   "center": [
+    -0.3906,
+    0.4593,
+    0.163
+   ],
+   "radius": 0.5704,
+   "count": 66,
+   "tris": 4752
   },
   {
    "id": "stones",
@@ -224,19 +254,19 @@
    "tint": 0.12,
    "priority": 1.8,
    "center": [
-    -0.0766,
-    0.0098,
-    0.0662
+    -0.1931,
+    0.0099,
+    0.0873
    ],
-   "radius": 1.5097,
+   "radius": 1.5081,
    "count": 46,
-   "tris": 20424
+   "tris": 9752
   }
  ],
  "stats": {
-  "parts": 5,
-  "uniqueMeshTris": 37321,
-  "nearTris": 144020,
-  "farTris": 30457
+  "parts": 6,
+  "uniqueMeshTris": 37559,
+  "nearTris": 70908,
+  "farTris": 19811
  }
 }

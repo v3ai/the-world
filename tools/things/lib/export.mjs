@@ -5,7 +5,9 @@ export function quantize(m) {
   const b = bounds(m), off = [0, 1, 2].map(a => (b.min[a] + b.max[a]) / 2), sc = [0, 1, 2].map(a => Math.max((b.max[a] - b.min[a]) / 2, 1e-9) / 32767);
   const pos = new Array(m.pos.length);
   for (let i = 0; i < m.pos.length; i += 3) for (let a = 0; a < 3; a++) pos[i + a] = Math.max(-32767, Math.min(32767, Math.round((m.pos[i + a] - off[a]) / sc[a])));
-  return { scale: sc.map(v => +v.toPrecision(9)), offset: off.map(v => +v.toPrecision(9)), pos, idx: m.idx.slice() };
+  const q = { scale: sc.map(v => +v.toPrecision(9)), offset: off.map(v => +v.toPrecision(9)), pos, idx: m.idx.slice() };
+  if (m.shade) q.shade = m.shade.map(v => Math.round(v * 255));   // per-vertex brightness 0..255
+  return q;
 }
 export function dequantize(q) { const p = new Array(q.pos.length); for (let i = 0; i < p.length; i += 3) for (let a = 0; a < 3; a++) p[i + a] = q.pos[i + a] * q.scale[a] + q.offset[a]; return { pos: p, idx: q.idx.slice() }; }
 export function centerRadius(m) { const b = bounds(m), c = [0, 1, 2].map(a => (b.min[a] + b.max[a]) / 2); let r = 0; for (let i = 0; i < m.pos.length; i += 3) r = Math.max(r, Math.hypot(m.pos[i] - c[0], m.pos[i + 1] - c[1], m.pos[i + 2] - c[2])); return { center: c.map(round3), radius: round3(r) }; }

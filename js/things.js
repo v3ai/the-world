@@ -11,12 +11,15 @@ const TH = { index: null, defs: {}, bundles: {}, geos: {} };
 
 /* ---------- data loading (thing.json is small; mesh.json is loaded once per thing and shared by every placement) ---------- */
 function thLoadIndex() { return TH.index || (TH.index = getJSON('data/things/index.json').catch(() => ({ things: [] }))); }
-function thLoadDef(id) { return TH.defs[id] || (TH.defs[id] = getJSON('data/things/' + id + '/thing.json')); }
+TH.loaded = {};
+function thLoadDef(id) { return TH.defs[id] || (TH.defs[id] = getJSON('data/things/' + id + '/thing.json').then(d => TH.loaded[id] = d)); }
 function thLoadBundle(id) { return TH.bundles[id] || (TH.bundles[id] = getJSON('data/things/' + id + '/mesh.json')); }
 function thGeo(id, bundle, key) {   // one shared BufferGeometry per mesh key
   const k = id + '/' + key; if (TH.geos[k]) return TH.geos[k];
   const q = bundle.meshes[key]; if (!q) return null;
-  return TH.geos[k] = decodePart(q);
+  const g = decodePart(q);
+  if (q.shade) { const c = new Float32Array(q.shade.length * 3); for (let i = 0; i < q.shade.length; i++) c[i * 3] = c[i * 3 + 1] = c[i * 3 + 2] = q.shade[i] / 255; g.setAttribute('color', new THREE.BufferAttribute(c, 3)); }   // baked brightness (occlusion, staining)
+  return TH.geos[k] = g;
 }
 
 /* ---------- materials ---------- */
@@ -69,7 +72,7 @@ void main(){
   });
 }
 function thInked(geo, color, o = {}) {   // like inked(), but the outline respects clipping planes
-  const g = new THREE.Group(), m = new THREE.Mesh(geo, illoMat(color, { double: o.double })); g.add(m);
+  const g = new THREE.Group(), m = new THREE.Mesh(geo, illoMat(color, { double: o.double, extra: o.vc ? { vertexColors: true } : {} })); g.add(m);
   const ol = new THREE.Mesh(geo, thOutlineMat(o.ink, o.w)); ol.userData.outline = true; g.add(ol); g.userData.ol = ol; g.userData.main = m;
   return g;
 }
@@ -108,20 +111,20 @@ class ThingObj {
     let g, geo;
     if (pd.mesh) {
       geo = thGeo(def.id, this.bundle, pd.mesh); if (!geo) { console.warn('thing', def.id, 'part', pd.id, 'missing mesh', pd.mesh); return; }
-      g = thInked(geo, color, { w: pd.ink_w || def.ink_w || .0018, double: !!pd.double });
+      g = thInked(geo, color, { w: pd.ink_w || def.ink_w || .0018, double: !!pd.double, vc: !!geo.attributes.color });
       g.userData.main.material.clippingPlanes = null;
       if (pd.solid !== false) {   // inside faces for the cut-open view, painted with the cut-face pattern
         const fm = thFaceMat(this._faceFor(pd), this.plane); fm.clippingPlanes = this.planes; const cap = new THREE.Mesh(geo, fm); cap.visible = false; cap.userData.cap = true; cap.renderOrder = 0; g.add(cap); g.userData.cap = cap; this.faceMats.push(fm);
       }
     } else if (pd.instances) {
       const inst = this.bundle.instances[pd.instances]; geo = thGeo(def.id, this.bundle, inst.mesh);
-      const mat = illoMat(color, { double: !!pd.double }), im = new THREE.InstancedMesh(geo, mat, inst.n), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), s = new V3(), p = new V3(), col = new THREE.Color(), t = inst.t, st = inst.stride;
+      const mat = illoMat(color, { double: !!pd.double, extra: geo.attributes.color ? { vertexColors: true } : {} }), im = new THREE.InstancedMesh(geo, mat, inst.n), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), s = new V3(), p = new V3(), col = new THREE.Color(), t = inst.t, st = inst.stride;
       const rj = pd.tint || 0; let seed = 12345; const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
       for (let i = 0; i < inst.n; i++) {
         const b = i * st; p.set(t[b], t[b + 1], t[b + 2]); q.set(t[b + 3], t[b + 4], t[b + 5], t[b + 6]);
         if (st === 8) s.setScalar(t[b + 7]); else s.set(t[b + 7], t[b + 8], t[b + 9]);
         m4.compose(p, q, s); im.setMatrixAt(i, m4);
-        if (rj) { col.set(color); col.offsetHSL((rnd() - .5) * rj * .2, 0, (rnd() - .5) * rj); im.setColorAt(i, col); }
+        if (rj) { col.setRGB(1 + (rnd() - .5) * rj, 1 + (rnd() - .5) * rj * .8, 1 + (rnd() - .5) * rj * .8); im.setColorAt(i, col); }   // a multiplier on the part colour
       }
       im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true; im.frustumCulled = false;
       g = im; g.userData.main = im;
@@ -136,8 +139,8 @@ class ThingObj {
     m.rotation.x = -Math.PI / 2; m.position.set(sh.offset ? sh.offset[0] * this.k : 0, .012, sh.offset ? sh.offset[1] * this.k : 0); m.renderOrder = -1; m.userData.shadow = true; this.shadow = m; this.holder.add(m);
   }
   _addHotspot(h) {
-    const R = this.def.radius_m || 1, geo = new THREE.SphereGeometry(Math.max(.012, R * .035), 14, 10), g = inked(geo, 0xffd166, { w: .004 });
-    g.children.forEach(m => { m.material.depthTest = false; m.renderOrder = 10; });
+    const R = this.def.radius_m || 1, geo = new THREE.SphereGeometry(Math.max(.01, R * .02), 14, 10), g = inked(geo, 0xffd166, { w: .004 });
+    g.children.forEach(m => { m.material.depthTest = false; m.renderOrder = m.userData.outline ? 9 : 10; });   // ink first, fill on top
     g.userData.hotspot = h; g.visible = false; g.position.set(...h.at); this.group.add(g); this.hot.push(g);
   }
   modeDef(id) { return this.def.modes.find(m => m.id === id); }
@@ -153,7 +156,7 @@ class ThingObj {
   update(dt, camLocal, off, alpha = 1) {
     const def = this.def, d = camLocal.distanceTo(this.group.position.clone().add(new V3(0, (def.radius_m || 1) * this.k * .5, 0)));
     const md = this.resolveMode(d); this.curMode = md; const cut = md && md.cut;
-    const lod = def.lod; if (lod) { if (this.near && d > lod.near_m * 1.15) this.near = false; else if (!this.near && d < lod.near_m * .9) this.near = true; }
+    const lod = def.lod; if (this.lodForce) this.near = this.lodForce === 'near'; else if (lod) { if (this.near && d > lod.near_m * 1.15) this.near = false; else if (!this.near && d < lod.near_m * .9) this.near = true; }
     // cut plane (thing-local normal -> container coordinates)
     const cutDef = typeof cut === 'object' ? cut : {}, at = new V3(...(cutDef.at || def.cut && def.cut.at || [0, (def.height_m || 1) * .5, 0]));
     if (cut) {
@@ -252,7 +255,8 @@ function thBindFrame(F, T, def) {
   thUpdateControls(F);
 }
 function thUpdateControls(F) {
-  const T = F.T; if (!T) return; const md = T.resolveMode(1e9), real = T.modeId === 'auto' ? null : T.modeDef(T.modeId);
+  const T = F.T; if (!T) return;
+  if (F.uiRow) F.uiRow.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === T.modeId)); const md = T.resolveMode(1e9), real = T.modeId === 'auto' ? null : T.modeDef(T.modeId);
   const cutOn = !!(real && real.cut) || false; F.cutBtn.style.display = cutOn ? '' : 'none';
   const face = T.def.cut && T.def.cut.faces && T.def.cut.faces[T.def.cut.default];
   F.legend.style.display = cutOn && face && face.legend ? '' : 'none';
@@ -269,8 +273,8 @@ function thFrameUpdate(F, dt, t) {
   const P = FR.park;
   if (P && P.scene) {
     if (!_thPark || _thPark.scene !== P.scene) { _thPark = { scene: P.scene, sun: null, hemi: null }; P.scene.traverse(o => { if (o.isDirectionalLight && !_thPark.sun) _thPark.sun = o; if (o.isHemisphereLight && !_thPark.hemi) _thPark.hemi = o; }); }
-    if (_thPark.sun) { T.lights.sun.position.copy(_thPark.sun.position).normalize().multiplyScalar(40); T.lights.sun.intensity = _thPark.sun.intensity; T.lights.sun.color.copy(_thPark.sun.color); }
-    if (_thPark.hemi) { const day = Math.min(1, _thPark.sun ? _thPark.sun.intensity / 1.15 : 1); T.lights.hemi.intensity = _thPark.hemi.intensity * (.18 + .82 * day); }
+    if (_thPark.sun) { T.lights.sun.position.copy(_thPark.sun.position).normalize().multiplyScalar(40); T.lights.sun.intensity = _thPark.sun.intensity * .75; T.lights.sun.color.copy(_thPark.sun.color); }
+    if (_thPark.hemi) { const day = Math.min(1, _thPark.sun ? _thPark.sun.intensity / 1.15 : 1); T.lights.hemi.intensity = _thPark.hemi.intensity * .55 * (.18 + .82 * day); }
     if (P.scene.fog && F.scene.fog !== P.scene.fog) F.scene.fog = P.scene.fog;
   }
   const C = F.C || _thV.set(0, 0, 0);   // camera position in frame coordinates; in the shifted frame root the camera sits at the world origin (T.camW stays 0)
@@ -314,6 +318,25 @@ function thDecorateCard(id, h) {
   row.appendChild(b);
 }
 
+/* "Show me where it is": goToNode() flies to the first placed thing that has a part or marker with this card */
+function thFindNode(id) {
+  for (const f of FR.things || []) {
+    const def = TH.loaded[f.opts.thing]; if (!def) continue; const pl = f.opts.placement || {};
+    const hit = def.parts.find(p => p.node === id && p.lod !== 'far') || def.parts.find(p => p.node === id), hs = (def.hotspots || []).find(h => h.node === id);
+    const at = hit ? hit.center : hs ? hs.at : id === def.node ? (def.parts.find(p => p.id === def.main_part) || {}).center : null;
+    if (!at) continue;
+    const k = pl.scale || 1, p = new V3(...at).multiplyScalar(k).applyAxisAngle(new V3(0, 1, 0), (pl.rot || 0) * Math.PI / 180).add(new V3(0, pl.y || 0, 0));
+    return { f, p, D: Math.max(((hit && hit.radius) || (def.radius_m || 1) * .5) * k * 3.2, .4) };
+  }
+  return null;
+}
+const _thGoToNode = goToNode;
+goToNode = function (id) {
+  const t = thFindNode(id);
+  if (t) { showBodyNode(id, null); flyTo(t.f, t.p, t.D); return; }
+  return _thGoToNode(id);
+};
+
 /* ---------- placing things in the park ---------- */
 WORLD_EXT.push(async FR => {
   const ix = await thLoadIndex(); FR.things = FR.things || [];
@@ -322,7 +345,7 @@ WORLD_EXT.push(async FR => {
     thLoadBundle(e.id);
     (e.placements || []).forEach((pl, i) => {
       const R = (def.radius_m || 1) * (pl.scale || 1) * 1.15;
-      const f = FR.park.addChild(new Frame({ type: 'thing', name: def.title, unit: 1, radius: R, r0: 0, r1: Math.max(R * 40, 30), up: new V3(0, 1, 0), pos: new V3(pl.at[0], 0, pl.at[1]), opts: { thing: e.id, placement: pl, n: i } }));
+      const f = FR.park.addChild(new Frame({ type: 'thing', name: def.title, unit: 1, radius: R, r0: 0, r1: Math.max(R * 12, 8), up: new V3(0, 1, 0), pos: new V3(pl.at[0], 0, pl.at[1]), opts: { thing: e.id, placement: pl, n: i } }));
       f.noFade = true; f.coRender = true; f.coMax = def.draw_m || 400; f.pinned = true; f.isThing = true; f.proxy = null;
       FR.things.push(f); if (i === 0) FR['thing_' + e.id] = f;
     });
