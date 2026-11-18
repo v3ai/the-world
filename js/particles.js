@@ -474,7 +474,7 @@ FT.sm = {
     const gq = new THREE.Sprite(new THREE.SpriteMaterial({ map: PX.glyph('?', { fg: '#c9d3e6' }), transparent: true, depthWrite: false })); gq.scale.set(1.3, 1.3, 1); grav.add(gq);
     grav.add(new THREE.Mesh(new THREE.SphereGeometry(1.1, 10, 8), hitMat())); board.add(grav); hitFor(grav, 'sm_gravity', 'sm_gravity', 'Gravity (not in the Standard Model)', 1.8);
     grav.userData.parts = [{ m: gr.material, base: .8 }, { m: gq.material, base: 1 }]; grav.position.set(14.4, -6.3, 0);
-    const gravLab = F.label(grav, 'gravity: not in the model', { offset: new V3(0, -1.5, 0) });
+    const gravLab = F.label(grav, 'gravity: not in the model', { offset: new V3(0, -2.1, 0) });
     // headers (overview) and the mass axis (mass view)
     const hdr = [];
     const addHdr = (text, x, y, node, w) => { const g = new THREE.Object3D(); g.position.set(x, y, 0); g.userData = { id: node, node, title: text, priority: 1 }; board.add(g); const L = F.label(g, text, { cls: 'pxhd', pick: g, always: false }); hdr.push({ g, L, text }); };
@@ -611,6 +611,7 @@ PX.smPanel = (F, el) => {
     h = `<div class="pxh">Build a hadron</div><p>Quarks never appear alone: they bind in colourless combinations called hadrons. Pick quarks; the table is the PDG's.</p><div class="pxchips">${qs.map(q => `<button class="pxchip" data-px="had:${q}" ${dis ? 'disabled' : ''}>${sym(q)}</button>`).join('')}</div><div class="pxchips">${qs.map(q => `<button class="pxchip" data-px="had:${q}bar" ${dis ? 'disabled' : ''}>${sym(q + 'bar')}</button>`).join('')}</div>
     <p>You chose: ${L.length ? L.map((k, i) => `<button class="pxchip on" data-px="hadx:${i}" title="Remove">${sym(k)} ×</button>`).join(' ') : 'nothing yet'} ${L.length ? '<button class="pxlink" data-px="hadc">Clear</button>' : ''}</p>${res}<p class="pxs">The top quark is left out: it decays (mean life about 5×10⁻²⁵ s, from the PDG width) before it can bind into a hadron.</p>`;
   }
+  h += '<p class="pxs pxperm"><i>This is not a place. It is the list of everything matter and the forces (except gravity) are made of, as far as experiments have reached.</i></p>';
   el.innerHTML = h;
   el.querySelectorAll('[data-px]').forEach(b => b.onclick = () => PX.smAct(F, b.dataset.px));
 };
@@ -666,7 +667,7 @@ PX.smBind = F => {
         const isC = carriers.includes(id), isF = feels.includes(id);
         if (SM.force === 'gravity') td = .3; else if (isC) { ts = 1.18; td = 1; tg = 1; gcol = PX.accent[SM.force]; } else if (isF) { td = 1; tg = .55; gcol = PX.accent[SM.force]; } else td = .16;
       } else if (mode === 'everyday') { if (ev.includes(id)) { tg = .55; gcol = 0xffe9a8; ts = 1.1; } else td = .18; }
-      else if (mode === 'decay' || mode === 'hadron') td = .12;
+      else if (mode === 'decay' || mode === 'hadron') td = .06;
       if (sel === id && showGrid) { ts *= 1.12; if (tg < .8) { tg = .8; gcol = 0xbfd4ff; } }
       const th = SM.anti && !M.self && id !== 'w_boson' ? 1 : 0;
       p.pos.lerp(p.tgt, k); p.scale += (ts - p.scale) * k; p.dim += (td - p.dim) * k; p.glow += (tg - p.glow) * k; p.hol += (th - p.hol) * k; p.gcol.lerp(tc.setHex(gcol), k);
