@@ -1,0 +1,314 @@
+[
+  {
+    "id": "hubble_tension",
+    "topic": "Hubble tension",
+    "claim": "The H0 Distance Network (A&A 708, A166, 2026) reports a local expansion rate of 73.50 ± 0.81 km/s/Mpc (about 1.1%), in strong tension with the early-universe inference from the CMB (Planck 2018: 67.4 ± 0.5). TDCOSMO-2026 strong lensing gives 71.1 (+2.4/-2.3) km/s/Mpc, a preprint.",
+    "status": "partly-verified",
+    "corrected": "H0DN number confirmed (paper quotes 7.1 sigma vs early-universe LCDM). TDCOSMO-2026 value 71.1 +2.4/-2.3 confirmed (arXiv 2610.14881 and 2610.14781, Oct 2026), but the 3.7 sigma figure belongs to its 'no-SN' late-universe combination, not to the 71.1 headline result. Planck 67.4 ± 0.5 was not re-opened in this check (well-known published value). The brief's quote about 'a single overlooked error' was not found in the abstract.",
+    "as_of": "2026-10",
+    "certainty": "C3",
+    "note": "TDCOSMO-2026 is a preprint (arXiv). Tension remains debated; some groups (e.g. CCHP/TRGB) find a smaller discrepancy.",
+    "sources": [
+      {"title": "H0DN: The Local Distance Network, A&A 708, A166 (2026)", "url": "https://www.aanda.org/articles/aa/abs/2026/04/aa57993-25/aa57993-25.html"},
+      {"title": "TDCOSMO 2026: new insights on the Hubble tension from strong lensing time delays (arXiv:2610.14881)", "url": "https://arxiv.org/abs/2610.14881"},
+      {"title": "TDCOSMO 2026: A 3% measurement of the Hubble constant (arXiv:2610.14781)", "url": "https://arxiv.org/abs/2610.14781"}
+    ]
+  },
+  {
+    "id": "desi_dark_energy",
+    "topic": "Evolving dark energy (DESI DR2)",
+    "claim": "DESI's second data release (March 2025) combined with CMB data prefers a time-varying dark energy model over a cosmological constant at 3.1 sigma. Adding supernova samples raises this to between 2.8 and 4.2 sigma depending on which sample is used.",
+    "status": "verified",
+    "as_of": "2025-03",
+    "certainty": "C3",
+    "note": "Below the 5 sigma discovery convention. Independent reanalyses debating which tracers drive the signal were not checked.",
+    "sources": [
+      {"title": "DESI DR2 Results II: BAO measurements and cosmological constraints (arXiv:2503.14738)", "url": "https://arxiv.org/abs/2503.14738"}
+    ]
+  },
+  {
+    "id": "katrin_neutrino",
+    "topic": "Neutrino mass limit (KATRIN)",
+    "claim": "KATRIN's analysis of 259 days of tritium beta-decay data sets an upper limit on the effective electron-antineutrino mass of 0.45 eV at 90% confidence, roughly halving its previous bound (Science, April 2025).",
+    "status": "verified",
+    "as_of": "2025-04",
+    "certainty": "C2",
+    "sources": [
+      {"title": "Direct neutrino-mass measurement based on 259 days of KATRIN data (Science 388, 180)", "url": "https://pubmed.ncbi.nlm.nih.gov/40208982/"},
+      {"title": "KIT press release: Neutrinos weigh less than 0.45 electronvolts", "url": "https://www.kit.edu/kit/english/pi_2025_029_astroparticle-physics-neutrinos-weigh-less-than-0-45-electronvolts.php"}
+    ]
+  },
+  {
+    "id": "juno_oscillation",
+    "topic": "JUNO first reactor-neutrino results",
+    "claim": "JUNO's first 59.1 days of data (detector complete August 2025) give sin^2(theta12) = 0.3092 ± 0.0087 and Delta m^2_21 = (7.50 ± 0.12) x 10^-5 eV^2 (normal ordering), improving precision by about 1.6x over all earlier measurements combined.",
+    "status": "verified",
+    "as_of": "2025-11",
+    "certainty": "C2",
+    "note": "Early-data result released as a preprint (arXiv:2511.14593). Mass-ordering determination is a later goal.",
+    "sources": [
+      {"title": "Measurement of reactor neutrino oscillation with the first JUNO data (arXiv:2511.14593)", "url": "https://www.emergentmind.com/papers/2511.14593"}
+    ]
+  },
+  {
+    "id": "lz_dark_matter",
+    "topic": "LZ dark-matter limits and boron-8 neutrinos",
+    "claim": "LZ's 4.2 tonne-year analysis (PRL 135, 011802, 2025) excludes spin-independent WIMP cross sections above 2.2e-48 cm^2 at 40 GeV (90% CL). In December 2025 LZ reported 4.5 sigma evidence for boron-8 solar neutrinos via coherent scattering, the start of the 'neutrino fog'.",
+    "status": "partly-verified",
+    "corrected": "2.2e-48 cm^2 at 40 GeV and 4.5 sigma boron-8 confirmed. The 'about 5x stricter' phrasing was not supported: the paper's median sensitivity is 5.1e-48 cm^2, and no improvement factor was found. Boron-8 is 'evidence' (4.5 sigma), not a discovery (5 sigma).",
+    "as_of": "2025-12",
+    "certainty": "C2",
+    "sources": [
+      {"title": "Dark Matter Search Results from 4.2 Tonne-Years of Exposure of LZ (arXiv:2410.17036)", "url": "https://www.arxiv.org/abs/2410.17036"},
+      {"title": "Berkeley Lab: LZ sets a world's best in the hunt for galactic dark matter", "url": "https://newscenter.lbl.gov/2025/12/08/lz-sets-a-worlds-best-in-the-hunt-for-galactic-dark-matter/"}
+    ]
+  },
+  {
+    "id": "lz_248kev",
+    "topic": "LZ 248 keV candidate event",
+    "claim": "In September 2026 the LZ collaboration (arXiv:2609.02823, 2.84 tonne-years, window extended to about 270 keV) reported a single nuclear-recoil-like event at 248 ± 23 (stat) ± 23 (sys) keV in a low-background region, with 2.6 sigma global and up to 3.4 sigma maximum local tension with background-only. The paper does not claim a discovery.",
+    "status": "verified",
+    "as_of": "2026-09",
+    "certainty": "C4",
+    "note": "Single event, preprint, below discovery significance. Follow-up theory papers exist (arXiv 2609.09230 etc.) but the specific ~1 TeV higgsino example was not checked.",
+    "sources": [
+      {"title": "LZ: Search for dark matter in an extended nuclear recoil energy window (arXiv:2609.02823)", "url": "https://arxiv.org/abs/2609.02823"},
+      {"title": "Nuclear interference versus dark sector excitation in the 248 keV LZ recoil candidate (arXiv:2609.09230)", "url": "https://arxiv.org/pdf/2609.09230"}
+    ]
+  },
+  {
+    "id": "muon_g2",
+    "topic": "Muon g-2 final result",
+    "claim": "Fermilab's final muon g-2 result (2025) has 127 ppb precision and agrees with the 2025 Theory Initiative lattice-based Standard Model prediction, so the earlier anomaly against the 2020 data-driven prediction is largely gone.",
+    "status": "verified",
+    "as_of": "2025-06",
+    "certainty": "C2",
+    "note": "Data-driven (e+e-) and lattice evaluations of hadronic vacuum polarisation are still not fully reconciled, so the anomaly is undermined rather than formally closed.",
+    "sources": [
+      {"title": "CERN Courier: Fermilab's final word on muon g-2", "url": "https://cerncourier.com/fermilabs-final-word-on-muon-g-2/"}
+    ]
+  },
+  {
+    "id": "gw250114",
+    "topic": "GW250114 and Hawking's area theorem",
+    "claim": "GW250114, a binary black-hole merger announced 10 September 2025, was the loudest gravitational-wave signal so far (signal-to-noise about 80). The LIGO-Virgo-KAGRA analysis (PRL) found the final horizon area exceeds the initial total, consistent with Hawking's area theorem, and identified two ringdown tones matching a Kerr black hole.",
+    "status": "verified",
+    "as_of": "2025-09",
+    "certainty": "C1",
+    "note": "The exact statistical confidence for the area-theorem test was not retrieved in this check.",
+    "sources": [
+      {"title": "University of Birmingham: Hawking and Kerr black hole theories confirmed by gravitational wave", "url": "https://www.birmingham.ac.uk/news/2025/hawking-and-kerr-black-hole-theories-confirmed-by-gravitational-wave"},
+      {"title": "GW250114: testing Hawking's area law and the Kerr nature of black holes (PRL)", "url": "https://strathprints.strath.ac.uk/94252/"}
+    ]
+  },
+  {
+    "id": "willow_qec",
+    "topic": "Google Willow error correction below threshold",
+    "claim": "On Google's Willow chip, each increase of surface-code distance by two (3 to 5 to 7) cut the logical error rate by a factor Lambda = 2.14 ± 0.02. The 101-qubit distance-7 memory reached 0.143% ± 0.003% logical error per cycle and outlived its best physical qubit by 2.4x.",
+    "status": "partly-verified",
+    "corrected": "Numbers confirmed. Publication timing differs from the brief: the paper appeared in Nature online in December 2024 (arXiv August 2024), not 2025. The ~1e-6 requirement for large algorithms was not checked.",
+    "as_of": "2024-12",
+    "certainty": "C2",
+    "sources": [
+      {"title": "Quantum error correction below the surface code threshold (arXiv:2408.13687)", "url": "https://arxiv.org/abs/2408.13687"},
+      {"title": "Google Research blog: Making quantum error correction work", "url": "https://research.google/blog/making-quantum-error-correction-work/"}
+    ]
+  },
+  {
+    "id": "bennu_samples",
+    "topic": "Organic molecules in Bennu samples",
+    "claim": "Returned Bennu samples contain 14 of the 20 protein amino acids and all five nucleobases (Nature Astronomy, January 2025). A December 2025 Nature Geoscience study also found ribose and glucose, but no deoxyribose.",
+    "status": "verified",
+    "as_of": "2025-12",
+    "certainty": "C2",
+    "note": "These are prebiotic ingredients, not evidence of life. Ribose had been seen in two meteorites before; glucose is a first in an extraterrestrial sample. The 'RNA-first' reading is an inference.",
+    "sources": [
+      {"title": "NASA: Sugars, gum, stardust found in Bennu samples", "url": "https://www.nasa.gov/missions/osiris-rex/sugars-gum-stardust-found-in-nasas-asteroid-bennu-samples/"},
+      {"title": "Sci.News: Amino acids, salts and other compounds in Bennu samples (Glavin et al., Nat. Astron.)", "url": "https://www.sci.news/space/amino-acids-salts-asteroid-bennu-samples-13624.html"}
+    ]
+  },
+  {
+    "id": "luca_age",
+    "topic": "Age and nature of LUCA",
+    "claim": "Moody et al. (Nature Ecology & Evolution, 2024) estimate the last universal common ancestor lived about 4.2 billion years ago (range 4.09-4.33 Ga) and reconstruct it as an anaerobic acetogen with a prokaryote-like genome and an early immune system, living within an ecosystem.",
+    "status": "partly-verified",
+    "corrected": "Genome size reported as at least 2.5 Mb encoding about 2,600 proteins (not '~2,500 genes'). The CRISPR-like detail is described only as an early immune system in the source abstract.",
+    "as_of": "2024-09",
+    "certainty": "C3",
+    "note": "A single phylogenomic dating study; the date depends on calibrations and is debated.",
+    "sources": [
+      {"title": "The nature of the last universal common ancestor and its impact on the early Earth system (NASA ADS)", "url": "https://ui.adsabs.harvard.edu/abs/2024NatEE...8.1654M"}
+    ]
+  },
+  {
+    "id": "cogitate",
+    "topic": "Adversarial test of consciousness theories",
+    "claim": "The Cogitate adversarial collaboration (Nature 642, 133-142, 2025; 256 participants; fMRI, MEG, iEEG; preregistered) found results that only partly matched integrated information theory and global neuronal workspace theory. IIT's predicted sustained posterior synchronization was absent, and GNWT's predicted 'ignition' at stimulus offset was generally absent.",
+    "status": "verified",
+    "as_of": "2025-04",
+    "certainty": "C3",
+    "note": "Does not establish a winning theory; the authors say the challenges extend to other theories sharing these predictions.",
+    "sources": [
+      {"title": "Adversarial testing of GNW and IIT theories of consciousness (Nature, Cogitate Consortium)", "url": "https://research.birmingham.ac.uk/en/publications/adversarial-testing-of-global-neuronal-workspace-and-integrated-i/"},
+      {"title": "Bernstein Network: Rethinking consciousness", "url": "https://bernstein-network.de/en/newsroom/news/rethinking-conciousness-when-science-puts-itself-to-the-test/"}
+    ]
+  },
+  {
+    "id": "navier_stokes_ai",
+    "topic": "AI-produced claim on Navier-Stokes blowup",
+    "claim": "On 8 September 2026 OpenAI announced a 166-page, Lean-formalized preprint claiming finite-time blowup for the 3D Navier-Stokes equations with a smooth external force (Clay alternatives C/D), produced by an unreleased model run as about 10,000 agents over 88 hours. It does not address the unforced problem (A/B), and it has not been independently validated or refereed.",
+    "status": "partly-verified",
+    "corrected": "Date, length, agent count, hours, forced-only scope and unvalidated status are confirmed by secondary reporting. The brief's Tao quote ('formally verified proposed solution awaiting expert digestion') was not found: reported Tao comments concern the broader split between answers and understanding in AI mathematics. Clay is reported to have said review will be deliberately unhurried and requires refereed publication. Constantin-Ignatova-Vicol (arXiv:2609.20803) prove a conditional result: if the construction has two stated properties, its force cannot be real analytic or vanish near the singularity; they say they have not verified the construction.",
+    "as_of": "2026-09",
+    "certainty": "C4",
+    "note": "AI-produced, preprint, unconfirmed. The Lean check only guarantees the formal statement follows from its axioms, not that it matches Clay's problem. Credit disputes with human mathematicians were reported. Primary OpenAI page could not be opened in this check.",
+    "sources": [
+      {"title": "Lilting: OpenAI Navier-Stokes proof dispute (secondary report)", "url": "https://lilting.ch/en/articles/navier-stokes-openai-blowup-dispute"},
+      {"title": "Smithsonian: AI may have solved a longstanding math problem", "url": "https://www.smithsonianmag.com/smart-news/ai-may-have-solved-a-longstanding-math-problem-with-a-million-dollar-prize-it-ignited-a-controversy-over-who-gets-credit-180989472/"},
+      {"title": "Constantin, Ignatova, Vicol (arXiv:2609.20803)", "url": "https://arxiv.org/pdf/2609.20803"}
+    ]
+  },
+  {
+    "id": "little_red_dots",
+    "topic": "JWST little red dots",
+    "claim": "Rusakov et al. (Nature 649, 574; published 14 January 2026) argue little red dots are young black holes wrapped in dense ionized gas cocoons, with masses about 100 times lower than earlier estimates (up to roughly 10 million solar masses).",
+    "status": "verified",
+    "as_of": "2026-01",
+    "certainty": "C3",
+    "note": "One interpretation among several (e.g. 'black hole star' models, dense star clusters); still debated.",
+    "sources": [
+      {"title": "ScienceDaily: Little red dots as young supermassive black holes in dense ionized cocoons", "url": "https://sciencedaily.com/releases/2026/01/260115022801.htm"}
+    ]
+  },
+  {
+    "id": "exoplanet_count",
+    "topic": "Confirmed exoplanet count",
+    "claim": "NASA's confirmed exoplanet tally passed 6,000 in an announcement dated 17 September 2025, with more than 8,000 further candidates awaiting confirmation.",
+    "status": "partly-verified",
+    "corrected": "The milestone and >8,000 candidates are confirmed. The specific '6,007 as of 17 September' figure was not found; sources only say the count reached 6,000 (added on a rolling basis, so no single 6,000th planet).",
+    "as_of": "2025-09",
+    "certainty": "C1",
+    "note": "The count grows continuously; check the live archive for the present total.",
+    "sources": [
+      {"title": "IPAC: The NASA Exoplanet Archive hits 6,000 planets", "url": "https://www.ipac.caltech.edu/news/the-nasa-exoplanet-archive-hits-6-000-planets"},
+      {"title": "EarthSky: 6,000 exoplanets confirmed", "url": "https://earthsky.org/space/6000-exoplanets-confirmed-worlds-outside-solar-system/"}
+    ]
+  },
+  {
+    "id": "co2_ppm",
+    "topic": "Atmospheric CO2 at Mauna Loa",
+    "claim": "The 2025 Mauna Loa annual mean CO2 was about 427 ppm, and the May 2026 monthly mean was a record of about 432 ppm (NOAA about 432.3, Scripps 432.0). This is roughly 50% above the preindustrial level near 280 ppm.",
+    "status": "partly-verified",
+    "corrected": "Met Office lists 427.0 ppm for the 2025 Mauna Loa annual mean; the brief's 427.35 could not be confirmed from NOAA's tables. WMO reports 426.8 ppm as the 2025 global mean (different dataset from the brief's 425.62). May 2026: NOAA 432.3 and Scripps 432.00 reported; brief's 432.34 not confirmed to the second decimal.",
+    "as_of": "2026-05",
+    "certainty": "C1",
+    "note": "Use rounded values; annual and monthly figures differ slightly between NOAA, Scripps and WMO.",
+    "sources": [
+      {"title": "UC San Diego: Annual carbon dioxide peak reaches 432 parts per million", "url": "https://today.ucsd.edu/story/annual-carbon-dioxide-peak-reaches-432-parts-per-million"},
+      {"title": "Met Office: Mauna Loa CO2 forecast for 2026 (lists 2025 observed mean)", "url": "https://www.metoffice.gov.uk/research/climate/seasonal-to-decadal/long-range/forecasts/co2-forecast"},
+      {"title": "WMO greenhouse gas bulletin coverage (global 2025 mean)", "url": "https://hydrocarbonprocessing.com/news/2026/10/greenhouse-gases-hit-record-highs-further-rise-expected-with-el-nino/"}
+    ]
+  },
+  {
+    "id": "amoc",
+    "topic": "AMOC stability",
+    "claim": "IPCC AR6 judged with medium confidence that the AMOC will not undergo an abrupt collapse before 2100, while being very likely to weaken. Some newer modelling (van Westen, Dijkstra and colleagues) argues a tipping risk this century is larger, while a January 2025 GRL study (Zimmerman et al.) cautions that critical-slowing-down warning signals can mislead.",
+    "status": "partly-verified",
+    "corrected": "AR6 and the UW-Madison study are confirmed. The specific claim 'a 2025 JGR Oceans study by van Westen, Vanderborght and Dijkstra found 16 of 25 CMIP6 models (64%) show a tipping-indicator sign change before 2100' could not be found and is unverified. The van Westen group's 2024 arXiv preprint (2407.19909) reports AMOC more likely than not to tip within the 21st century under an intermediate scenario.",
+    "as_of": "2025-01",
+    "certainty": "C3",
+    "note": "Timing and reversibility are actively debated; model-based tipping estimates are not observations.",
+    "sources": [
+      {"title": "IPCC AR6 WGI Summary for Policymakers", "url": "https://www.ipcc.ch/report/ar6/wg1/chapter/summary-for-policymakers/"},
+      {"title": "UW-Madison AOS: Chance of AMOC collapse difficult to assess (GRL, Jan 2025)", "url": "https://aos.wisc.edu/news/AMOC_Press-Release/"},
+      {"title": "van Westen et al. preprint on AMOC tipping (arXiv:2407.19909)", "url": "https://arxiv.org/abs/2407.19909"}
+    ]
+  },
+  {
+    "id": "climate_sensitivity",
+    "topic": "Equilibrium climate sensitivity (AR6)",
+    "claim": "IPCC AR6 gives an equilibrium climate sensitivity best estimate of 3 C per CO2 doubling, a likely range of 2.5-4 C and a very likely range of 2-5 C (down from AR5's 1.5-4.5 C likely range with no best estimate).",
+    "status": "verified",
+    "as_of": "2021-08",
+    "certainty": "C2",
+    "sources": [
+      {"title": "IPCC AR6 WGI Summary for Policymakers", "url": "https://www.ipcc.ch/report/ar6/wg1/chapter/summary-for-policymakers/"}
+    ]
+  },
+  {
+    "id": "lhcb_baryon_cp",
+    "topic": "CP violation in baryons (LHCb)",
+    "claim": "LHCb (Nature, 2025) observed CP violation in baryon decays for the first time: the beauty-lambda baryon decaying to a proton, kaon and two pions shows an asymmetry of 2.45% ± 0.47%, a 5.2 sigma observation (announced 25 March 2025).",
+    "status": "verified",
+    "as_of": "2025-03",
+    "certainty": "C2",
+    "note": "This size of CP violation is within Standard Model expectations and does not by itself explain the matter-antimatter asymmetry of the universe.",
+    "sources": [
+      {"title": "CERN: A new piece in the matter-antimatter puzzle", "url": "https://home.cern/news/news/physics/new-piece-matter-antimatter-puzzle"}
+    ]
+  },
+  {
+    "id": "flywire_connectome",
+    "topic": "Whole fruit-fly brain connectome",
+    "claim": "The FlyWire consortium (Dorkenwald et al., Nature, October 2024) published the wiring diagram of an adult female Drosophila brain: 139,255 neurons and about 54.5 million chemical synapses between proofread neurons.",
+    "status": "verified",
+    "as_of": "2024-10",
+    "certainty": "C1",
+    "note": "A companion paper (Schlegel et al.) annotates cell types. Volume/page number not independently checked.",
+    "sources": [
+      {"title": "Neuronal wiring diagram of an adult brain (Dorkenwald et al., Nature)", "url": "https://link.springer.com/10.1038/s41586-024-07558-y"},
+      {"title": "University of Cambridge: First map of every neuron in an adult fly brain complete", "url": "https://www.cam.ac.uk/research/news/first-map-of-every-neuron-in-an-adult-fly-brain-complete"}
+    ]
+  },
+  {
+    "id": "microns_mm3",
+    "topic": "Cubic millimeter of mouse cortex (MICrONS)",
+    "claim": "In April 2025 the MICrONS project published a cubic millimeter of mouse visual cortex reconstructed from electron microscopy, with about 200,000 cells, about 4 km of axon and roughly 523 million synapses, paired with functional recordings.",
+    "status": "verified",
+    "as_of": "2025-04",
+    "certainty": "C1",
+    "note": "Extra entry: the brief mentions this as '(2025)' without numbers.",
+    "sources": [
+      {"title": "Allen Institute: Largest wiring diagram and functional map of the brain to date", "url": "https://alleninstitute.org/news/scientists-complete-largest-wiring-diagram-and-functional-map-of-the-brain-to-date"}
+    ]
+  },
+  {
+    "id": "alphafold_limits",
+    "topic": "AlphaFold limitations",
+    "claim": "AlphaFold 2/3 predict static protein structures well, but documented weaknesses include conformational dynamics, disordered regions, ligands and cofactors, nucleic acids, point mutations, antibodies and orphan proteins. The 2024 Chemistry Nobel recognised protein structure prediction (Hassabis, Jumper) and computational protein design (Baker).",
+    "status": "partly-verified",
+    "corrected": "Limitations on dynamics, disorder and ligands are confirmed by EMBL-EBI guidance. The specific '>5 A ligand-complex conformational change', binding-affinity and 'partial memorization on post-cutoff structures' points were not verified. Nobel details were seen in search results only (page not opened).",
+    "as_of": "2025-01",
+    "certainty": "C2",
+    "sources": [
+      {"title": "EMBL-EBI: Strengths and limitations of AlphaFold", "url": "https://www.ebi.ac.uk/training/online/courses/alphafold/an-introductory-guide-to-its-strengths-and-limitations/strengths-and-limitations-of-alphafold"},
+      {"title": "NobelPrize.org: Chemistry 2024 press release", "url": "https://www.nobelprize.org/prizes/chemistry/2024/press-release/"}
+    ]
+  },
+  {
+    "id": "moon_origin",
+    "topic": "Origin of the Moon",
+    "claim": "A giant impact by a Mars-sized body (Theia) remains the leading outline, but Earth and Moon share near-identical isotopes. Alternatives include a synestia, an Earth-like impactor and post-impact mixing. Apollo-sample oxygen-isotope work (Cano et al., Nature Geoscience) suggests Theia remnants in the deep lunar mantle, which some say disfavors the synestia model.",
+    "status": "partly-verified",
+    "corrected": "Open debate confirmed. The brief's statement that the synestia is 'favored by recent Ca/Mg isotope work' was not found; the recent work located is oxygen-isotope based and was described as weakening the synestia idea (its proponent disputes this).",
+    "as_of": "2025-01",
+    "certainty": "C3",
+    "note": "No consensus on the Moon's formation. Publication year of Cano et al. not confirmed in the source fetched.",
+    "sources": [
+      {"title": "Scientific American: Apollo rock samples heat up Moon formation debate", "url": "https://www.scientificamerican.com/article/apollo-rock-samples-heat-up-moon-formation-debate/"},
+      {"title": "The origin of the Moon within a terrestrial synestia (arXiv:1802.10223)", "url": "https://arxiv.org/pdf/1802.10223"}
+    ]
+  },
+  {
+    "id": "earth_water",
+    "topic": "Origin of Earth's water",
+    "claim": "Earth's water may come from a mix of sources. Piani et al. (Science, 2020) found enstatite chondrites hold enough hydrogen to supply several oceans, supporting an indigenous contribution alongside carbonaceous-chondrite delivery.",
+    "status": "partly-verified",
+    "corrected": "Enstatite-chondrite hydrogen result confirmed (at least three ocean masses of water equivalent). The carbonaceous-chondrite D/H match and the claim that comet 67P's D/H is about 3x Earth's were not re-checked here.",
+    "as_of": "2020-08",
+    "certainty": "C3",
+    "sources": [
+      {"title": "EurekAlert: Piani et al. 2020, Science (enstatite chondrites and Earth's water)", "url": "https://www.eurekalert.org/news-releases/716256"}
+    ]
+  }
+]

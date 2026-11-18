@@ -1,0 +1,2234 @@
+FJ1252	Gingiva of upper jaw	FMA59763	skeletal	1424	-0.001	1.549	0.055
+FJ1253	Gingiva of lower jaw	FMA59764	skeletal	1328	-0.001	1.530	0.048
+FJ1254	Left lower first secondary molar tooth	FMA55704	skeletal	1606	0.023	1.527	0.047
+FJ1255	Left lower first secondary premolar tooth	FMA55693	skeletal	900	0.017	1.521	0.060
+FJ1256	Left lower second secondary molar tooth	FMA55703	skeletal	1492	0.026	1.532	0.035
+FJ1257	Left lower second secondary premolar tooth	FMA55692	skeletal	890	0.020	1.522	0.054
+FJ1258	Left lower central secondary incisor tooth	FMA57143	skeletal	642	0.002	1.519	0.069
+FJ1259	Left lower lateral secondary incisor tooth	FMA57141	skeletal	640	0.007	1.519	0.069
+FJ1260	Left lower secondary canine tooth	FMA55687	skeletal	720	0.012	1.519	0.066
+FJ1261	Left upper first secondary molar tooth	FMA55699	skeletal	1812	0.024	1.548	0.048
+FJ1262	Left upper first secondary premolar tooth	FMA55690	skeletal	1098	0.020	1.547	0.063
+FJ1263	Left upper second secondary molar tooth	FMA55700	skeletal	1598	0.024	1.551	0.040
+FJ1264	Left upper second secondary premolar tooth	FMA55691	skeletal	1114	0.023	1.547	0.057
+FJ1265	Left upper central secondary incisor tooth	FMA55682	skeletal	792	0.004	1.544	0.077
+FJ1266	Left upper lateral secondary incisor tooth	FMA55683	skeletal	728	0.011	1.544	0.075
+FJ1267	Left upper secondary canine tooth	FMA55799	skeletal	770	0.017	1.547	0.071
+FJ1268	Right lower first secondary molar tooth	FMA55705	skeletal	1594	-0.024	1.527	0.047
+FJ1269	Right lower first secondary premolar tooth	FMA55694	skeletal	920	-0.018	1.521	0.060
+FJ1270	Right lower second secondary molar tooth	FMA55706	skeletal	1454	-0.027	1.532	0.035
+FJ1271	Right lower second secondary premolar tooth	FMA55695	skeletal	908	-0.021	1.522	0.054
+FJ1272	Right lower central secondary incisor tooth	FMA57142	skeletal	648	-0.004	1.519	0.069
+FJ1273	Right lower lateral secondary incisor tooth	FMA57140	skeletal	614	-0.009	1.519	0.069
+FJ1274	Right lower secondary canine tooth	FMA55686	skeletal	722	-0.013	1.519	0.066
+FJ1275	Right upper second secondary molar tooth	FMA55697	skeletal	1628	-0.025	1.551	0.040
+FJ1276	Right upper first secondary molar tooth	FMA55698	skeletal	1792	-0.025	1.548	0.048
+FJ1277	Right upper first secondary premolar tooth	FMA55689	skeletal	1096	-0.021	1.547	0.064
+FJ1278	Right upper second secondary premolar tooth	FMA55688	skeletal	1122	-0.024	1.547	0.057
+FJ1279	Right upper central secondary incisor tooth	FMA55681	skeletal	792	-0.005	1.544	0.077
+FJ1280	Right upper lateral secondary incisor tooth	FMA55680	skeletal	706	-0.012	1.544	0.075
+FJ1281	Right upper secondary canine tooth	FMA55798	skeletal	760	-0.018	1.547	0.071
+FJ1282	Anterior chamber of left eyeball	FMA58082	sensory	816	0.030	1.596	0.063
+FJ1283	Left anterior ethmoidal nerve	FMA52677	nervous	286	0.012	1.606	0.042
+FJ1284	Check ligament of left lateral rectus	FMA49145	connective	1716	0.044	1.599	0.049
+FJ1285	Left choroid	FMA58300	sensory	6360	0.029	1.596	0.050
+FJ1286	Left choroid	FMA58300	sensory	2244	0.029	1.596	0.059
+FJ1287	Left corona ciliaris	FMA58484	sensory	10150	0.030	1.596	0.060
+FJ1288	Left ciliary ganglion	FMA53550	nervous	180	0.024	1.603	0.032
+FJ1289	Left cornea	FMA58240	sensory	1576	0.030	1.596	0.064
+FJ1290	Left frontal nerve	FMA52640	nervous	316	0.022	1.612	0.031
+FJ1291	Left common tendinous ring	FMA49073	sensory	734	0.015	1.606	0.022
+FJ1292	Check ligament of left medial rectus	FMA49148	connective	2024	0.015	1.596	0.054
+FJ1293	Inferior branch of left oculomotor nerve	FMA52577	nervous	932	0.025	1.597	0.032
+FJ1294	Left inferior oblique	FMA49051	muscular	890	0.027	1.589	0.053
+FJ1295	Left inferior rectus	FMA49047	muscular	782	0.023	1.594	0.040
+FJ1296	Left infratrochlear nerve	FMA52699	nervous	248	0.009	1.604	0.071
+FJ1297	Left iris	FMA58237	sensory	1754	0.030	1.596	0.061
+FJ1298	Left lacrimal canaliculus	FMA59583	sensory	590	0.016	1.593	0.064
+FJ1299	Left lacrimal gland	FMA59103	sensory	1444	0.039	1.606	0.055
+FJ1300	Left lacrimal nerve	FMA52630	nervous	464	0.031	1.609	0.038
+FJ1301	Left lacrimal lake	FMA59542	sensory	248	0.018	1.593	0.064
+FJ1302	Left nasolacrimal duct	FMA59556	sensory	424	0.013	1.574	0.057
+FJ1304	Left lateral rectus	FMA49055	muscular	728	0.030	1.600	0.039
+FJ1305	Left lens	FMA58243	sensory	1502	0.030	1.596	0.059
+FJ1306	Left levator palpebrae superioris	FMA49049	muscular	1096	0.027	1.607	0.042
+FJ1308	Left medial rectus	FMA49057	muscular	566	0.016	1.599	0.041
+FJ1309	Left lacrimal sac	FMA59546	sensory	372	0.014	1.589	0.062
+FJ1310	Left nasociliary nerve	FMA52670	nervous	236	0.011	1.601	0.048
+FJ1311	Communicating branch of left nasociliary nerve with left ciliary ganglion	FMA52674	nervous	228	0.021	1.605	0.029
+FJ1312	Left ophthalmic nerve	FMA52623	nervous	390	0.019	1.604	0.008
+FJ1313	Left optic nerve	FMA50878	nervous	446	0.015	1.608	0.022
+FJ1315	Left posterior ethmoidal nerve	FMA52716	nervous	212	0.012	1.606	0.034
+FJ1316	Optic part of left retina	FMA58608	sensory	5150	0.029	1.596	0.050
+FJ1317	Left sclera	FMA58272	sensory	8690	0.029	1.596	0.051
+FJ1318	Left long ciliary nerve	FMA82735	nervous	248	0.022	1.603	0.040
+FJ1319	Short ciliary nerve	FMA7041	nervous	510	0.028	1.602	0.039
+FJ1320	Suspensory ligament of left lens	FMA58840	sensory	3854	0.030	1.596	0.060
+FJ1321	Superior branch of left oculomotor nerve	FMA52575	nervous	550	0.022	1.609	0.033
+FJ1322	Left superior oblique	FMA49053	muscular	792	0.025	1.607	0.044
+FJ1323	Left superior rectus	FMA49045	muscular	622	0.024	1.607	0.041
+FJ1324	Tarsal plate of left upper eyelid	FMA59092	sensory	526	0.030	1.601	0.061
+FJ1325	Left supra-orbital nerve	FMA52657	nervous	646	0.026	1.628	0.058
+FJ1326	Left supratrochlear nerve	FMA52644	nervous	698	0.013	1.619	0.059
+FJ1328	Tarsal plate of left lower eyelid	FMA59090	sensory	450	0.030	1.589	0.061
+FJ1329	Trochlea of left superior oblique	FMA49068	connective	422	0.013	1.612	0.064
+FJ1330	Left trochlear nerve	FMA50882	nervous	598	0.015	1.606	0.011
+FJ1331	Left vitreous body	FMA58829	sensory	2602	0.029	1.596	0.051
+FJ1332	Anterior chamber of right eyeball	FMA58081	sensory	828	-0.031	1.596	0.063
+FJ1333	Right anterior ethmoidal nerve	FMA52676	nervous	234	-0.013	1.606	0.042
+FJ1334	Check ligament of right lateral rectus	FMA49144	connective	1726	-0.045	1.599	0.049
+FJ1335	Check ligament of right medial rectus	FMA49147	connective	2114	-0.016	1.596	0.054
+FJ1336	Right choroid	FMA58299	sensory	2318	-0.031	1.596	0.059
+FJ1337	Right choroid	FMA58299	sensory	6350	-0.006	1.596	0.050
+FJ1338	Right corona ciliaris	FMA58483	sensory	11788	-0.031	1.596	0.060
+FJ1339	Right ciliary ganglion	FMA53549	nervous	246	-0.025	1.603	0.032
+FJ1340	Right cornea	FMA58239	sensory	1012	-0.004	1.596	0.064
+FJ1341	Right frontal nerve	FMA52639	nervous	294	-0.023	1.612	0.031
+FJ1342	Right common tendinous ring	FMA49072	sensory	736	-0.016	1.606	0.022
+FJ1343	Tendon of right levator palpebrae superioris	FMA54159	connective	1674	-0.032	1.607	0.058
+FJ1344	Inferior branch of right oculomotor nerve	FMA52576	nervous	870	-0.027	1.597	0.032
+FJ1345	Right inferior oblique	FMA49050	muscular	922	-0.029	1.589	0.053
+FJ1346	Right inferior rectus	FMA49046	muscular	778	-0.024	1.594	0.040
+FJ1347	Right infratrochlear nerve	FMA52698	nervous	248	-0.010	1.604	0.071
+FJ1348	Right iris	FMA58236	sensory	1796	-0.031	1.596	0.061
+FJ1349	Right lacrimal canaliculus	FMA59582	sensory	516	-0.017	1.593	0.064
+FJ1350	Right lacrimal gland	FMA59102	sensory	1496	-0.040	1.606	0.055
+FJ1351	Right lacrimal nerve	FMA52629	nervous	470	-0.032	1.609	0.038
+FJ1352	Right lacrimal lake	FMA59541	sensory	248	-0.019	1.593	0.064
+FJ1353	Right nasolacrimal duct	FMA59555	sensory	432	-0.015	1.574	0.057
+FJ1355	Right lateral rectus	FMA49054	muscular	720	-0.031	1.600	0.039
+FJ1356	Right lens	FMA58242	sensory	1522	-0.031	1.596	0.059
+FJ1357	Right levator palpebrae superioris	FMA49048	muscular	1206	-0.028	1.607	0.042
+FJ1359	Right medial rectus	FMA49056	muscular	560	-0.018	1.599	0.041
+FJ1360	Right lacrimal sac	FMA59545	sensory	382	-0.015	1.589	0.062
+FJ1361	Right nasociliary nerve	FMA52669	nervous	238	-0.012	1.601	0.048
+FJ1362	Communicating branch of right nasociliary nerve with right ciliary ganglion	FMA52673	nervous	236	-0.022	1.605	0.029
+FJ1363	Right ophthalmic nerve	FMA52622	nervous	390	-0.020	1.604	0.008
+FJ1364	Right optic nerve	FMA50875	nervous	452	-0.016	1.608	0.022
+FJ1366	Right posterior ethmoidal nerve	FMA52715	nervous	194	-0.013	1.606	0.034
+FJ1367	Optic part of right retina	FMA58607	sensory	5146	-0.030	1.596	0.050
+FJ1368	Right sclera	FMA58271	sensory	8690	-0.030	1.596	0.051
+FJ1369	Right long ciliary nerve	FMA82734	nervous	296	-0.023	1.603	0.040
+FJ1370	Short ciliary nerve	FMA7041	nervous	540	-0.029	1.602	0.039
+FJ1371	Suspensory ligament of right lens	FMA58839	sensory	2484	-0.031	1.596	0.060
+FJ1372	Superior branch of right oculomotor nerve	FMA52574	nervous	558	-0.023	1.609	0.033
+FJ1373	Right superior oblique	FMA49052	muscular	812	-0.027	1.607	0.044
+FJ1374	Right superior rectus	FMA49044	muscular	618	-0.025	1.607	0.041
+FJ1375	Tarsal plate of right upper eyelid	FMA59091	sensory	526	-0.031	1.601	0.061
+FJ1376	Right supra-orbital nerve	FMA52656	nervous	640	-0.027	1.628	0.058
+FJ1377	Right supratrochlear nerve	FMA52643	nervous	678	-0.014	1.619	0.059
+FJ1379	Tarsal plate of right lower eyelid	FMA59089	sensory	426	-0.031	1.589	0.061
+FJ1380	Trochlea of right superior oblique	FMA49067	connective	398	-0.015	1.612	0.064
+FJ1381	Right trochlear nerve	FMA50881	nervous	606	-0.016	1.606	0.011
+FJ1382	Right vitreous body	FMA58828	sensory	2564	-0.030	1.596	0.051
+FJ1383	First lumbrical of right foot	FMA37717	muscular	474	-0.095	0.021	0.049
+FJ1383M	First lumbrical of left foot	FMA37718	muscular	474	0.095	0.021	0.049
+FJ1384	First plantar interosseous of right foot	FMA37745	muscular	410	-0.118	0.027	0.058
+FJ1384M	First plantar interosseous of left foot	FMA37746	muscular	416	0.118	0.027	0.058
+FJ1385	Second lumbrical of right foot	FMA37719	muscular	194	-0.109	0.018	0.053
+FJ1385M	Second lumbrical of left foot	FMA37720	muscular	194	0.109	0.018	0.053
+FJ1386	Second plantar interosseous of right foot	FMA37743	muscular	380	-0.125	0.026	0.050
+FJ1386M	Second plantar interosseous of left foot	FMA37744	muscular	386	0.125	0.026	0.050
+FJ1387	Third lumbrical of right foot	FMA37485	muscular	304	-0.116	0.017	0.046
+FJ1387M	Third lumbrical of left foot	FMA37486	muscular	306	0.116	0.017	0.046
+FJ1388	Third plantar interosseous of right foot	FMA37741	muscular	584	-0.134	0.021	0.037
+FJ1388M	Third plantar interosseous of left foot	FMA37742	muscular	586	0.134	0.021	0.037
+FJ1389	Fourth lumbrical of right foot	FMA37483	muscular	276	-0.123	0.017	0.038
+FJ1389M	Fourth lumbrical of left foot	FMA37484	muscular	276	0.123	0.017	0.038
+FJ1390	Abductor digiti minimi of right foot	FMA37463	muscular	796	-0.108	0.016	-0.002
+FJ1390M	Abductor digiti minimi of left foot	FMA37464	muscular	790	0.108	0.016	-0.002
+FJ1391	Flexor digiti minimi brevis of right foot	FMA37471	muscular	572	-0.132	0.016	0.029
+FJ1391M	Flexor digiti minimi brevis of left foot	FMA37472	muscular	568	0.132	0.016	0.029
+FJ1392	Interosseous membrane of right leg	FMA35192	connective	1240	-0.094	0.255	-0.025
+FJ1392M	Interosseous membrane of left leg	FMA35193	connective	1240	0.094	0.255	-0.025
+FJ1393	Lateral head of right flexor hallucis brevis	FMA45973	muscular	1180	-0.087	0.026	0.057
+FJ1393M	Lateral head of left flexor hallucis brevis	FMA45974	muscular	1182	0.087	0.026	0.057
+FJ1394	Lateral head of right gastrocnemius	FMA45960	muscular	738	-0.089	0.356	-0.057
+FJ1394M	Lateral head of left gastrocnemius	FMA45961	muscular	748	0.089	0.356	-0.057
+FJ1395	Long head of right biceps femoris	FMA45888	muscular	1124	-0.088	0.624	-0.055
+FJ1395M	Long head of left biceps femoris	FMA45889	muscular	1124	0.088	0.624	-0.055
+FJ1396	Medial head of right flexor hallucis brevis	FMA45971	muscular	700	-0.082	0.028	0.057
+FJ1396M	Medial head of left flexor hallucis brevis	FMA45972	muscular	700	0.082	0.028	0.057
+FJ1397	Medial head of right gastrocnemius	FMA45957	muscular	882	-0.048	0.356	-0.047
+FJ1397M	Medial head of left gastrocnemius	FMA45958	muscular	892	0.048	0.356	-0.047
+FJ1398	Oblique head of right adductor hallucis	FMA46018	muscular	762	-0.104	0.027	0.040
+FJ1398M	Oblique head of left adductor hallucis	FMA46019	muscular	760	0.104	0.027	0.040
+FJ1399	Opponens digiti minimi of right foot	FMA86034	muscular	182	-0.124	0.019	0.017
+FJ1399M	Opponens digiti minimi of left foot	FMA86035	muscular	182	0.124	0.019	0.017
+FJ1400	Right abductor hallucis	FMA37459	muscular	554	-0.072	0.025	0.025
+FJ1400M	Left abductor hallucis	FMA37460	muscular	552	0.072	0.025	0.025
+FJ1401	Right adductor brevis	FMA22452	muscular	528	-0.061	0.778	0.003
+FJ1401M	Left adductor brevis	FMA22454	muscular	522	0.061	0.778	0.003
+FJ1402	Right adductor longus	FMA22456	muscular	574	-0.056	0.733	0.013
+FJ1402M	Left adductor longus	FMA22457	muscular	574	0.056	0.733	0.013
+FJ1403	Right adductor magnus	FMA22459	muscular	1648	-0.063	0.657	-0.016
+FJ1403M	Left adductor magnus	FMA22460	muscular	1658	0.063	0.657	-0.016
+FJ1404	Right adductor minimus	FMA43886	muscular	794	-0.059	0.803	-0.007
+FJ1404M	Left adductor minimus	FMA43887	muscular	798	0.059	0.803	-0.007
+FJ1405	Right calcaneal tendon	FMA258847	connective	1442	-0.069	0.129	-0.060
+FJ1405M	Left calcaneal tendon	FMA264844	connective	1430	0.069	0.129	-0.060
+FJ1406	Right extensor digitorum longus	FMA22548	muscular	1326	-0.128	0.224	0.041
+FJ1406M	Left extensor digitorum longus	FMA22549	muscular	1326	0.128	0.224	0.041
+FJ1407	Right extensor hallucis brevis	FMA51144	muscular	662	-0.097	0.048	0.038
+FJ1407M	Left extensor hallucis brevis	FMA51145	muscular	664	0.097	0.048	0.038
+FJ1408	Right extensor hallucis longus	FMA22546	muscular	526	-0.094	0.158	0.038
+FJ1408M	Left extensor hallucis longus	FMA22547	muscular	548	0.094	0.158	0.038
+FJ1409	Right fibularis brevis	FMA22554	skeletal	632	-0.100	0.145	-0.031
+FJ1409M	Left fibularis brevis	FMA22555	skeletal	624	0.100	0.145	-0.031
+FJ1410	Right fibularis longus	FMA22552	skeletal	892	-0.104	0.228	-0.011
+FJ1410M	Left fibularis longus	FMA22553	skeletal	890	0.104	0.228	-0.011
+FJ1411	Right fibularis tertius	FMA22550	skeletal	716	-0.105	0.091	-0.017
+FJ1411M	Left fibularis tertius	FMA22551	skeletal	716	0.105	0.091	-0.017
+FJ1412	Right flexor accessorius	FMA37465	muscular	576	-0.085	0.024	-0.015
+FJ1412M	Left flexor accessorius	FMA37466	muscular	576	0.085	0.024	-0.015
+FJ1413	Right flexor digitorum brevis	FMA37461	muscular	1254	-0.111	0.015	0.032
+FJ1413M	Left flexor digitorum brevis	FMA37462	muscular	1272	0.111	0.015	0.032
+FJ1414	Right flexor digitorum longus	FMA65016	muscular	1006	-0.103	0.188	0.041
+FJ1414M	Left flexor digitorum longus	FMA65017	muscular	1024	0.103	0.188	0.041
+FJ1415	Right flexor hallucis longus	FMA65014	muscular	660	-0.085	0.168	0.034
+FJ1415M	Left flexor hallucis longus	FMA65015	muscular	664	0.085	0.168	0.034
+FJ1416	Right gemellus inferior	FMA22336	muscular	460	-0.091	0.870	-0.049
+FJ1416M	Left gemellus inferior	FMA22337	muscular	456	0.091	0.870	-0.049
+FJ1417	Right gemellus superior	FMA22334	muscular	306	-0.085	0.890	-0.044
+FJ1417M	Left gemellus superior	FMA22335	muscular	306	0.085	0.890	-0.044
+FJ1418	Right gluteus maximus	FMA22328	muscular	1236	-0.072	0.878	-0.071
+FJ1418M	Left gluteus maximus	FMA22329	muscular	1240	0.072	0.878	-0.071
+FJ1419	Right gluteus medius	FMA22330	muscular	1370	-0.105	0.948	-0.041
+FJ1419M	Left gluteus medius	FMA22331	muscular	1378	0.105	0.948	-0.041
+FJ1420	Right gluteus minimus	FMA22332	muscular	1432	-0.106	0.931	-0.026
+FJ1420M	Left gluteus minimus	FMA22333	muscular	1436	0.106	0.931	-0.026
+FJ1421	Right gracilis	FMA43883	muscular	696	-0.041	0.618	-0.001
+FJ1421M	Left gracilis	FMA43884	muscular	696	0.041	0.618	-0.001
+FJ1422	Right iliacus	FMA22322	muscular	1322	-0.100	0.924	-0.012
+FJ1422M	Left iliacus	FMA22323	muscular	1334	0.100	0.924	-0.012
+FJ1423	Right iliotibial tract	FMA58776	skeletal	3776	-0.127	0.708	-0.027
+FJ1423M	Left iliotibial tract	FMA58777	skeletal	3776	0.127	0.708	-0.027
+FJ1424	Right long plantar ligament	FMA44249	connective	1260	-0.089	0.029	-0.006
+FJ1424M	Left long plantar ligament	FMA44250	connective	1266	0.089	0.029	-0.006
+FJ1425	Right obturator externus	FMA22326	muscular	562	-0.076	0.860	-0.018
+FJ1425M	Left obturator externus	FMA22327	muscular	564	0.076	0.860	-0.018
+FJ1426	Right obturator internus	FMA22324	muscular	1250	-0.070	0.877	-0.032
+FJ1426M	Left obturator internus	FMA22325	muscular	1258	0.070	0.877	-0.032
+FJ1427	Right pectineus	FMA22450	muscular	678	-0.061	0.824	0.008
+FJ1427M	Left pectineus	FMA22451	muscular	682	0.061	0.824	0.008
+FJ1428	Right piriformis	FMA22340	muscular	614	-0.081	0.917	-0.058
+FJ1428M	Left piriformis	FMA22341	muscular	610	0.081	0.917	-0.058
+FJ1429	Right plantaris	FMA22560	muscular	552	-0.070	0.279	-0.033
+FJ1429M	Left plantaris	FMA22561	muscular	552	0.070	0.279	-0.033
+FJ1430	Right popliteus	FMA22591	muscular	468	-0.083	0.412	-0.030
+FJ1430M	Left popliteus	FMA22592	muscular	462	0.083	0.412	-0.030
+FJ1431	Right psoas major	FMA22342	muscular	1408	-0.061	0.995	-0.014
+FJ1431M	Left psoas major	FMA22343	muscular	1402	0.061	0.995	-0.014
+FJ1432	Right quadratus femoris	FMA22338	muscular	780	-0.092	0.845	-0.050
+FJ1432M	Left quadratus femoris	FMA22339	muscular	782	0.092	0.845	-0.050
+FJ1433	Right rectus femoris	FMA38928	muscular	1250	-0.109	0.671	0.018
+FJ1433M	Left rectus femoris	FMA38929	muscular	1250	0.109	0.671	0.018
+FJ1434	Right sartorius	FMA22354	muscular	756	-0.076	0.666	0.012
+FJ1434M	Left sartorius	FMA22355	muscular	756	0.076	0.666	0.012
+FJ1435	Right semimembranosus	FMA22448	muscular	1014	-0.042	0.613	-0.030
+FJ1435M	Left semimembranosus	FMA22449	muscular	1014	0.042	0.613	-0.030
+FJ1436	Right semitendinosus	FMA22358	muscular	596	-0.048	0.602	-0.038
+FJ1436M	Left semitendinosus	FMA22359	muscular	596	0.048	0.602	-0.038
+FJ1437	Right soleus	FMA22558	muscular	1004	-0.076	0.274	-0.038
+FJ1437M	Left soleus	FMA22559	muscular	976	0.076	0.274	-0.038
+FJ1438	Right tensor fasciae latae	FMA22425	connective	626	-0.144	0.917	0.014
+FJ1438M	Left tensor fasciae latae	FMA22426	connective	626	0.144	0.917	0.014
+FJ1439	Right tibialis anterior	FMA22544	skeletal	766	-0.092	0.237	0.011
+FJ1439M	Left tibialis anterior	FMA22545	skeletal	756	0.092	0.237	0.011
+FJ1440	Right tibialis posterior	FMA65018	skeletal	1944	-0.074	0.225	-0.004
+FJ1440M	Left tibialis posterior	FMA65019	skeletal	1934	0.074	0.225	-0.004
+FJ1441	Right vastus intermedius	FMA38934	muscular	936	-0.105	0.634	0.006
+FJ1441M	Left vastus intermedius	FMA38935	muscular	936	0.105	0.634	0.006
+FJ1442	Right vastus lateralis	FMA38930	muscular	1470	-0.122	0.631	-0.003
+FJ1442M	Left vastus lateralis	FMA38931	muscular	1470	0.122	0.631	-0.003
+FJ1443	Right vastus medialis	FMA38932	muscular	1000	-0.070	0.617	0.018
+FJ1443M	Left vastus medialis	FMA38933	muscular	1000	0.070	0.617	0.018
+FJ1444	Short head of right biceps femoris	FMA45891	muscular	492	-0.099	0.566	-0.031
+FJ1444M	Short head of left biceps femoris	FMA45892	muscular	480	0.099	0.566	-0.031
+FJ1445	Transverse head of right adductor hallucis	FMA46020	muscular	654	-0.119	0.016	0.063
+FJ1445M	Transverse head of left adductor hallucis	FMA46021	muscular	656	0.119	0.016	0.063
+FJ1446	Abdominal part of right pectoralis major	FMA45874	muscular	726	-0.114	1.269	0.048
+FJ1446M	Abdominal part of left pectoralis major	FMA45875	muscular	722	0.114	1.269	0.048
+FJ1447	Clavicular part of right pectoralis major	FMA34690	muscular	998	-0.110	1.363	0.014
+FJ1447M	Clavicular part of left pectoralis major	FMA34691	muscular	998	0.110	1.363	0.014
+FJ1448	Linea alba	FMA11336	connective	436	-0.000	1.061	0.062
+FJ1449M	Left coccygeus	FMA46444	muscular	1392	0.026	0.886	-0.077
+FJ1450	superficial perineal muscle	FMA19728	muscular	350	-0.009	0.842	-0.072
+FJ1450M	External anal sphincter	FMA21930	muscular	350	0.009	0.842	-0.072
+FJ1451	external intercostal muscle	FMA9756	muscular	26416	-0.080	1.267	-0.003
+FJ1451M	External intercostal muscle	FMA9756	muscular	26534	0.080	1.267	-0.003
+FJ1452	Right external oblique	FMA13336	muscular	24600	-0.072	1.081	0.028
+FJ1452M	Left external oblique	FMA13337	muscular	24600	0.072	1.081	0.028
+FJ1453M	Left iliococcygeus	FMA45859	muscular	2116	0.025	0.877	-0.048
+FJ1454	innermost intercostal muscle	FMA9758	muscular	21278	-0.093	1.245	-0.000
+FJ1454M	Innermost intercostal muscle	FMA9758	muscular	21206	0.093	1.245	-0.000
+FJ1455	internal intercostal muscle	FMA9757	muscular	19942	-0.075	1.244	0.007
+FJ1455M	Internal intercostal muscle	FMA9757	muscular	19898	0.075	1.244	0.007
+FJ1456	Right pectoralis minor	FMA13375	muscular	2612	-0.100	1.332	0.027
+FJ1456M	Left pectoralis minor	FMA13376	muscular	2590	0.100	1.332	0.027
+FJ1457M	Left pubococcygeus	FMA45855	muscular	1866	0.019	0.869	-0.044
+FJ1458M	Left puborectalis	FMA45857	muscular	2058	0.018	0.856	-0.038
+FJ1459	Right serratus anterior	FMA13398	muscular	10826	-0.101	1.291	-0.024
+FJ1459M	Left serratus anterior	FMA13399	muscular	10826	0.101	1.291	-0.024
+FJ1460	Right subclavius	FMA13412	muscular	824	-0.069	1.405	0.004
+FJ1460M	Left subclavius	FMA13411	muscular	818	0.069	1.405	0.004
+FJ1461	Right transversus thoracis	FMA9761	muscular	2458	-0.046	1.294	0.083
+FJ1461M	Left transversus thoracis	FMA9762	muscular	2448	0.046	1.294	0.083
+FJ1462	Set of right levatores costarum breves	FMA74077	muscular	1872	-0.046	1.300	-0.060
+FJ1462M	Set of left levatores costarum breves	FMA74078	muscular	1882	0.046	1.300	-0.060
+FJ1463	Set of right levatores costarum longi	FMA74075	muscular	2686	-0.052	1.299	-0.062
+FJ1463M	Set of left levatores costarum longi	FMA74076	muscular	2686	0.052	1.299	-0.062
+FJ1464	Sternocostal part of right pectoralis major	FMA79979	muscular	3480	-0.096	1.305	0.050
+FJ1464M	Sternocostal part of left pectoralis major	FMA79980	muscular	3490	0.096	1.305	0.050
+FJ1465	tendinous arch of levator ani	FMA46442	connective	368	-0.036	0.882	-0.031
+FJ1465M	Tendinous arch of levator ani	FMA46442	connective	362	0.036	0.882	-0.031
+FJ1466	Abductor digiti minimi of right hand	FMA37396	muscular	380	-0.229	0.840	0.040
+FJ1466M	Abductor digiti minimi of left hand	FMA37397	muscular	380	0.229	0.840	0.040
+FJ1467	Acromial part of right deltoid	FMA34682	muscular	686	-0.187	1.355	-0.028
+FJ1467M	Acromial part of left deltoid	FMA34683	muscular	686	0.187	1.355	-0.028
+FJ1468	Clavicular part of right deltoid	FMA34680	muscular	1486	-0.146	1.358	-0.002
+FJ1468M	Clavicular part of left deltoid	FMA34681	muscular	1500	0.146	1.358	-0.002
+FJ1469	Left flexor pollicis brevis	FMA37389	muscular	490	-0.279	0.858	0.039
+FJ1469M	Right flexor pollicis brevis	FMA37388	muscular	492	0.279	0.858	0.039
+FJ1470	Flexor digiti minimi brevis of right hand	FMA37398	muscular	216	-0.235	0.840	0.039
+FJ1470M	Flexor digiti minimi brevis of left hand	FMA37399	muscular	216	0.235	0.840	0.039
+FJ1471	Flexor retinaculum of right wrist	FMA40120	sensory	1414	-0.252	0.871	0.034
+FJ1471M	Flexor retinaculum of left wrist	FMA40121	sensory	1412	0.252	0.871	0.034
+FJ1472	Right extensor carpi ulnaris	FMA38507	muscular	1136	-0.228	0.993	-0.012
+FJ1472M	Left extensor carpi ulnaris	FMA38508	muscular	1152	0.228	0.993	-0.012
+FJ1473	Humeral head of right flexor carpi ulnaris	FMA38617	muscular	680	-0.212	0.993	-0.001
+FJ1473M	Humeral head of left flexor carpi ulnaris	FMA38618	muscular	674	0.212	0.993	-0.001
+FJ1474	Humeral head of right pronator teres	FMA38560	muscular	856	-0.222	1.069	-0.015
+FJ1474M	Humeral head of left pronator teres	FMA38561	muscular	860	0.222	1.069	-0.015
+FJ1475	Right flexor digitorum superficialis	FMA38470	muscular	1912	-0.242	0.943	0.018
+FJ1475M	Left flexor digitorum superficialis	FMA38471	muscular	1912	0.242	0.943	0.018
+FJ1476	Interosseous membrane of right forearm	FMA23707	connective	692	-0.240	0.978	-0.006
+FJ1476M	Interosseous membrane of left forearm	FMA23708	connective	696	0.240	0.978	-0.006
+FJ1477	Lateral head of right triceps brachii	FMA37697	muscular	838	-0.201	1.242	-0.055
+FJ1477M	Lateral head of left triceps brachii	FMA37698	muscular	830	0.201	1.242	-0.055
+FJ1478	Long head of right biceps brachii	FMA37686	muscular	492	-0.183	1.245	-0.011
+FJ1478M	Long head of left biceps brachii	FMA37687	muscular	492	0.183	1.245	-0.011
+FJ1479	Long head of right triceps brachii	FMA37699	muscular	560	-0.176	1.246	-0.059
+FJ1479M	Long head of left triceps brachii	FMA37700	muscular	562	0.176	1.246	-0.059
+FJ1480	Medial head of right triceps brachii	FMA37695	muscular	372	-0.197	1.221	-0.041
+FJ1480M	Medial head of left triceps brachii	FMA37696	muscular	374	0.197	1.221	-0.041
+FJ1481	Oblique head of right adductor pollicis	FMA46121	muscular	534	-0.278	0.853	0.035
+FJ1481M	Oblique head of left adductor pollicis	FMA46122	muscular	528	0.278	0.853	0.035
+FJ1482	Opponens digiti minimi of right hand	FMA37400	muscular	382	-0.236	0.845	0.035
+FJ1482M	Opponens digiti minimi of left hand	FMA37401	muscular	382	0.236	0.845	0.035
+FJ1483	Right abductor pollicis brevis	FMA37386	muscular	576	-0.283	0.867	0.038
+FJ1483M	Left abductor pollicis brevis	FMA37387	muscular	578	0.283	0.867	0.038
+FJ1484	Right abductor pollicis longus	FMA38516	muscular	592	-0.258	0.958	0.001
+FJ1484M	Left abductor pollicis longus	FMA38517	muscular	600	0.258	0.958	0.001
+FJ1485	Right anconeus	FMA37705	muscular	654	-0.218	1.088	-0.046
+FJ1485M	Left anconeus	FMA37706	muscular	640	0.218	1.088	-0.046
+FJ1486	Right brachialis	FMA37668	muscular	712	-0.206	1.186	-0.027
+FJ1486M	Left brachialis	FMA37669	muscular	702	0.206	1.186	-0.027
+FJ1487	Right brachioradialis	FMA38486	muscular	1072	-0.244	1.057	-0.011
+FJ1487M	Left brachioradialis	FMA38487	muscular	1070	0.244	1.057	-0.011
+FJ1488	Right coracobrachialis	FMA37665	muscular	280	-0.160	1.327	-0.013
+FJ1488M	Left coracobrachialis	FMA37666	muscular	276	0.160	1.327	-0.013
+FJ1489	Right extensor carpi radialis brevis	FMA38498	muscular	522	-0.250	1.006	-0.017
+FJ1489M	Left extensor carpi radialis brevis	FMA38499	muscular	508	0.250	1.006	-0.017
+FJ1490	Right extensor carpi radialis longus	FMA38495	muscular	544	-0.249	1.018	-0.013
+FJ1490M	Left extensor carpi radialis longus	FMA38496	muscular	544	0.249	1.018	-0.013
+FJ1491	Right extensor digiti minimi	FMA38504	muscular	314	-0.235	0.965	-0.001
+FJ1491M	Left extensor digiti minimi	FMA38505	muscular	314	0.235	0.965	-0.001
+FJ1492	Right extensor digitorum	FMA38501	muscular	1054	-0.264	0.947	0.004
+FJ1492M	Left extensor digitorum	FMA38502	muscular	1062	0.264	0.947	0.004
+FJ1493	Right extensor indicis	FMA38525	muscular	340	-0.269	0.847	0.034
+FJ1493M	Left extensor indicis	FMA38526	muscular	342	0.269	0.847	0.034
+FJ1494	Right extensor pollicis brevis	FMA38519	muscular	438	-0.273	0.904	0.019
+FJ1494M	Left extensor pollicis brevis	FMA38520	muscular	434	0.273	0.904	0.019
+FJ1495	Right extensor pollicis longus	FMA38522	muscular	488	-0.272	0.912	0.020
+FJ1495M	Left extensor pollicis longus	FMA38523	muscular	490	0.272	0.912	0.020
+FJ1496	Right flexor carpi radialis	FMA38460	muscular	310	-0.228	0.997	0.004
+FJ1496M	Left flexor carpi radialis	FMA38461	muscular	312	0.228	0.997	0.004
+FJ1497	Right flexor digitorum profundus	FMA38479	muscular	1304	-0.255	0.920	0.028
+FJ1497M	Left flexor digitorum profundus	FMA38480	muscular	1296	0.255	0.920	0.028
+FJ1498	Right flexor pollicis longus	FMA38482	muscular	824	-0.276	0.929	0.027
+FJ1498M	Left flexor pollicis longus	FMA38484	muscular	834	0.276	0.929	0.027
+FJ1499	Right flexor digitorum superficialis	FMA38470	muscular	368	-0.240	0.981	0.007
+FJ1499M	Left flexor digitorum superficialis	FMA38471	muscular	366	0.240	0.981	0.007
+FJ1500	Right infraspinatus muscle	FMA32547	muscular	536	-0.125	1.347	-0.063
+FJ1500M	Left infraspinatus muscle	FMA32548	muscular	530	0.125	1.347	-0.063
+FJ1501	Right opponens pollicis	FMA37390	muscular	680	-0.282	0.868	0.040
+FJ1501M	Left opponens pollicis	FMA37391	muscular	680	0.282	0.868	0.040
+FJ1502	Right palmaris longus	FMA38463	muscular	1500	-0.235	0.972	0.011
+FJ1502M	Left palmaris longus	FMA38464	muscular	1506	0.235	0.972	0.011
+FJ1503	Right pronator quadratus	FMA38454	muscular	1284	-0.249	0.924	0.014
+FJ1503M	Left pronator quadratus	FMA38455	muscular	1292	0.249	0.924	0.014
+FJ1504	Right subscapularis	FMA13414	skeletal	1524	-0.115	1.338	-0.049
+FJ1504M	Left subscapularis	FMA13415	skeletal	1512	0.115	1.338	-0.049
+FJ1505	Right supinator	FMA38513	muscular	1266	-0.238	1.073	-0.027
+FJ1505M	Left supinator	FMA38514	muscular	1282	0.238	1.073	-0.027
+FJ1506	Right supraspinatus	FMA32544	muscular	564	-0.126	1.403	-0.048
+FJ1506M	Left supraspinatus	FMA32545	muscular	564	0.126	1.403	-0.048
+FJ1507	Right teres major	FMA32551	muscular	700	-0.129	1.316	-0.061
+FJ1507M	Left teres major	FMA32552	muscular	702	0.129	1.316	-0.061
+FJ1508	Right teres minor	FMA32553	muscular	372	-0.148	1.347	-0.054
+FJ1508M	Left teres minor	FMA32554	muscular	364	0.148	1.347	-0.054
+FJ1509	Set of dorsal interossei of right hand	FMA42404	muscular	1792	-0.266	0.829	0.032
+FJ1509M	Set of dorsal interossei of left hand	FMA42405	muscular	1788	0.266	0.829	0.032
+FJ1510	Set of lumbricals of right hand	FMA42398	muscular	1640	-0.262	0.808	0.043
+FJ1510M	Set of lumbricals of left hand	FMA42399	muscular	1640	0.262	0.808	0.043
+FJ1511	Set of palmar interossei of right hand	FMA42402	muscular	738	-0.258	0.820	0.035
+FJ1511M	Set of palmar interossei of left hand	FMA42403	muscular	740	0.258	0.820	0.035
+FJ1512	Short head of right biceps brachii	FMA37684	muscular	804	-0.174	1.275	-0.007
+FJ1512M	Short head of left biceps brachii	FMA37685	muscular	816	0.174	1.275	-0.007
+FJ1513	Spinal part of right deltoid	FMA34684	muscular	1028	-0.151	1.342	-0.059
+FJ1513M	Spinal part of left deltoid	FMA34685	muscular	1046	0.151	1.342	-0.059
+FJ1514	Superficial head of right flexor pollicis brevis	FMA65198	muscular	540	-0.281	0.860	0.045
+FJ1514M	Superficial head of left flexor pollicis brevis	FMA65199	muscular	540	0.281	0.860	0.045
+FJ1515	Transverse head of right adductor pollicis	FMA46123	muscular	582	-0.279	0.836	0.035
+FJ1515M	Transverse head of left adductor pollicis	FMA46124	muscular	582	0.279	0.836	0.035
+FJ1516	Ulnar head of right pronator teres	FMA38562	muscular	542	-0.230	1.054	-0.014
+FJ1516M	Ulnar head of left pronator teres	FMA38563	muscular	548	0.230	1.054	-0.014
+FJ1517	Right extensor carpi ulnaris	FMA38507	muscular	504	-0.229	0.946	-0.005
+FJ1517M	Left extensor carpi ulnaris	FMA38508	muscular	508	0.229	0.946	-0.005
+FJ1518	Ulnar head of right flexor carpi ulnaris	FMA38619	muscular	868	-0.209	1.015	-0.018
+FJ1518M	Ulnar head of left flexor carpi ulnaris	FMA38620	muscular	868	0.209	1.015	-0.018
+FJ1520	Ascending part of right trapezius	FMA33581	muscular	2654	-0.073	1.277	-0.089
+FJ1520M	Ascending part of left trapezius	FMA33583	muscular	2640	0.073	1.277	-0.089
+FJ1521	Descending part of right trapezius	FMA33586	muscular	2618	-0.064	1.502	-0.046
+FJ1521M	Descending part of left trapezius	FMA33587	muscular	2622	0.064	1.502	-0.046
+FJ1522	Right lumbar rotator	FMA23089	muscular	2174	-0.019	1.096	-0.047
+FJ1522M	Left lumbar rotator	FMA23090	muscular	2174	0.019	1.096	-0.047
+FJ1524	Right cervical rotator	FMA81752	muscular	2252	-0.014	1.493	-0.045
+FJ1524M	Left cervical rotator	FMA81753	muscular	2246	0.014	1.493	-0.045
+FJ1525	thoracic rotator	FMA23083	muscular	3978	-0.014	1.307	-0.064
+FJ1525M	Thoracic rotator	FMA23083	muscular	3966	0.014	1.307	-0.064
+FJ1526	Right iliocostalis cervicis	FMA22744	muscular	902	-0.048	1.408	-0.057
+FJ1526M	Left iliocostalis cervicis	FMA22745	muscular	898	0.048	1.408	-0.057
+FJ1527	Right iliocostalis lumborum	FMA22740	muscular	3490	-0.054	1.113	-0.087
+FJ1527M	Left iliocostalis lumborum	FMA22741	muscular	3490	0.054	1.113	-0.087
+FJ1528	Right iliocostalis thoracis	FMA22742	muscular	1844	-0.067	1.287	-0.063
+FJ1528M	Left iliocostalis thoracis	FMA22743	muscular	1844	0.067	1.287	-0.063
+FJ1532	Right levator scapulae	FMA32540	skeletal	1314	-0.051	1.467	-0.053
+FJ1532M	Left levator scapulae	FMA32541	skeletal	1316	0.051	1.467	-0.053
+FJ1533	Right longissimus capitis	FMA22754	muscular	780	-0.042	1.495	-0.043
+FJ1533M	Left longissimus capitis	FMA22756	muscular	792	0.042	1.495	-0.043
+FJ1534	Right longissimus cervicis	FMA22757	muscular	916	-0.030	1.428	-0.054
+FJ1534M	Left longissimus cervicis	FMA22758	muscular	912	0.030	1.428	-0.054
+FJ1535	Right longissimus thoracis	FMA22751	muscular	4136	-0.034	1.188	-0.066
+FJ1535M	Left longissimus thoracis	FMA22753	muscular	4176	0.034	1.188	-0.066
+FJ1536	Right rhomboid major	FMA13381	muscular	1860	-0.044	1.353	-0.092
+FJ1536M	Left rhomboid major	FMA13382	muscular	1852	0.044	1.353	-0.092
+FJ1537	Right rhomboid minor	FMA13383	muscular	746	-0.030	1.412	-0.080
+FJ1537M	Left rhomboid minor	FMA13384	muscular	742	0.030	1.412	-0.080
+FJ1538	Right semispinalis capitis	FMA22876	muscular	1336	-0.023	1.513	-0.058
+FJ1538M	Left semispinalis capitis	FMA22877	muscular	1340	0.023	1.513	-0.058
+FJ1539	Right semispinalis cervicis	FMA22874	muscular	1402	-0.014	1.434	-0.058
+FJ1539M	Left semispinalis cervicis	FMA22875	muscular	1390	0.014	1.434	-0.058
+FJ1540	Right semispinalis thoracis	FMA22872	muscular	1690	-0.016	1.298	-0.077
+FJ1540M	Left semispinalis thoracis	FMA22873	muscular	1718	0.016	1.298	-0.077
+FJ1541	Right serratus posterior inferior	FMA13405	muscular	3832	-0.052	1.129	-0.078
+FJ1541M	Left serratus posterior inferior	FMA13406	muscular	3830	0.052	1.129	-0.078
+FJ1542	Right serratus posterior superior	FMA13403	muscular	3042	-0.051	1.398	-0.059
+FJ1542M	Left serratus posterior superior	FMA13404	muscular	3066	0.051	1.398	-0.059
+FJ1543	spinalis	FMA77179	muscular	672	-0.004	1.460	-0.072
+FJ1543M	Spinalis	FMA77179	muscular	680	0.004	1.460	-0.072
+FJ1544	Right spinalis thoracis	FMA22779	muscular	1632	-0.005	1.232	-0.079
+FJ1544M	Left spinalis thoracis	FMA22780	muscular	1632	0.005	1.232	-0.079
+FJ1545	Right splenius capitis	FMA22728	muscular	1716	-0.029	1.470	-0.065
+FJ1545M	Left splenius capitis	FMA22729	muscular	1716	0.029	1.470	-0.065
+FJ1546	Right splenius cervicis	FMA22726	muscular	1376	-0.020	1.422	-0.064
+FJ1546M	Left splenius cervicis	FMA22727	muscular	1376	0.020	1.422	-0.064
+FJ1547	lateral lumbar intertransversarius	FMA22850	muscular	762	-0.033	1.091	-0.044
+FJ1547M	Lateral lumbar intertransversarius	FMA22850	muscular	762	0.033	1.091	-0.044
+FJ1548	medial lumbar intertransversarius	FMA22851	muscular	736	-0.034	1.073	-0.035
+FJ1548M	Medial lumbar intertransversarius	FMA22851	muscular	734	0.034	1.073	-0.035
+FJ1549	set of anterior cervical intertransversarii	FMA71442	muscular	620	-0.027	1.501	-0.020
+FJ1549M	Set of anterior cervical intertransversarii	FMA71442	muscular	626	0.027	1.501	-0.020
+FJ1550	set of interspinales lumborum	FMA71307	muscular	464	-0.002	1.059	-0.062
+FJ1550M	Set of interspinales lumborum	FMA71307	muscular	464	0.002	1.059	-0.062
+FJ1551	Right interspinalis thoracis	FMA22890	muscular	312	-0.003	1.406	-0.086
+FJ1551M	Left interspinalis thoracis	FMA22891	muscular	312	0.003	1.406	-0.086
+FJ1552	set of interspinales cervicis	FMA71309	muscular	626	-0.003	1.498	-0.062
+FJ1552M	Set of interspinales cervicis	FMA71309	muscular	640	0.003	1.498	-0.062
+FJ1553	set of posterior cervical intertransversarii	FMA71443	muscular	654	-0.031	1.503	-0.026
+FJ1553M	Set of posterior cervical intertransversarii	FMA71443	muscular	664	0.031	1.503	-0.026
+FJ1554	Transverse part of right trapezius	FMA33584	muscular	1960	-0.080	1.421	-0.070
+FJ1554M	Transverse part of left trapezius	FMA33585	muscular	1962	0.080	1.421	-0.070
+FJ1555	Left digastric	FMA46293	muscular	436	0.007	1.510	0.041
+FJ1556	Right digastric	FMA46292	muscular	464	-0.010	1.511	0.041
+FJ1557	Inferior oblique part of left longus colli	FMA46288	muscular	498	0.013	1.430	-0.020
+FJ1558	Left platysma	FMA45740	muscular	3500	0.073	1.472	0.012
+FJ1559	Left geniohyoid	FMA46327	muscular	470	0.003	1.508	0.041
+FJ1560	Left digastric	FMA46293	muscular	380	0.011	1.511	0.024
+FJ1561	Left longus capitis	FMA46310	muscular	856	0.013	1.519	-0.014
+FJ1562	Left mylohyoid	FMA46322	muscular	1278	0.012	1.522	0.041
+FJ1563	Left obliquus capitis inferior	FMA32537	muscular	684	0.022	1.530	-0.045
+FJ1564	Left obliquus capitis superior	FMA32535	muscular	948	0.036	1.557	-0.054
+FJ1565	Left omohyoid	FMA13349	muscular	1178	0.058	1.451	-0.026
+FJ1566	Left rectus capitis anterior	FMA46314	muscular	644	0.015	1.561	-0.017
+FJ1567	Left rectus capitis posterior major	FMA32531	muscular	926	0.018	1.543	-0.062
+FJ1568	Left rectus capitis posterior minor	FMA32533	muscular	710	0.012	1.557	-0.070
+FJ1569	Left rectus capitis lateralis	FMA46318	muscular	622	0.033	1.556	-0.030
+FJ1570	Left scalenus anterior	FMA13393	muscular	784	0.038	1.456	-0.012
+FJ1571	Left scalenus medius	FMA13391	muscular	1266	0.038	1.474	-0.021
+FJ1572	Left scalenus posterior	FMA13389	muscular	1170	0.048	1.450	-0.031
+FJ1573	Left sternocleidomastoid	FMA13409	muscular	2248	0.031	1.481	-0.003
+FJ1574	Left sternohyoid	FMA13347	muscular	804	0.014	1.449	0.023
+FJ1575	Left sternothyroid	FMA13351	muscular	574	0.012	1.437	0.019
+FJ1576	Left stylohyoid	FMA45827	muscular	596	0.024	1.538	0.005
+FJ1577	Left thyrohyoid	FMA13353	muscular	904	0.013	1.492	0.010
+FJ1578	Left digastric	FMA46293	muscular	762	0.034	1.542	-0.004
+FJ1579	Right digastric	FMA46292	muscular	886	-0.035	1.542	-0.003
+FJ1580	Right geniohyoid	FMA46326	muscular	452	-0.005	1.508	0.041
+FJ1581	Right intermediate tendon	FMA258850	connective	448	-0.012	1.511	0.024
+FJ1582	Right longus capitis	FMA46309	muscular	938	-0.015	1.519	-0.014
+FJ1583	Right mylohyoid	FMA46321	muscular	1334	-0.014	1.522	0.040
+FJ1584	Right obliquus capitis inferior	FMA32536	muscular	710	-0.021	1.531	-0.044
+FJ1585	Right obliquus capitis superior	FMA32534	muscular	958	-0.036	1.558	-0.054
+FJ1586	Right omohyoid	FMA13348	muscular	1270	-0.059	1.451	-0.026
+FJ1587	Right platysma	FMA45739	muscular	3914	-0.072	1.472	0.012
+FJ1588	Right rectus capitis anterior	FMA46313	muscular	506	-0.004	1.561	-0.017
+FJ1589	Right rectus capitis posterior major	FMA32530	muscular	1002	-0.018	1.543	-0.062
+FJ1590	Right rectus capitis posterior minor	FMA32532	muscular	770	-0.012	1.557	-0.069
+FJ1591	Right rectus capitis lateralis	FMA46317	muscular	552	-0.035	1.557	-0.030
+FJ1592	Right scalenus anterior	FMA13392	muscular	792	-0.039	1.456	-0.012
+FJ1593	Right scalenus medius	FMA13390	muscular	1332	-0.039	1.474	-0.021
+FJ1594	Right scalenus posterior	FMA13388	muscular	1204	-0.049	1.450	-0.031
+FJ1595	Right sternocleidomastoid	FMA13408	muscular	2274	-0.001	1.481	-0.003
+FJ1596	Right sternohyoid	FMA13346	muscular	918	-0.015	1.449	0.023
+FJ1597	Right sternothyroid	FMA13350	muscular	620	-0.013	1.437	0.019
+FJ1598	Right stylohyoid	FMA45826	muscular	576	-0.026	1.538	0.005
+FJ1599	Right thyrohyoid	FMA13352	muscular	886	-0.001	1.491	0.010
+FJ1600	Superior oblique part of left longus colli	FMA46284	muscular	950	0.012	1.517	-0.018
+FJ1601	Vertical intermediate part of left longus colli	FMA46286	muscular	660	0.007	1.481	-0.016
+FJ1654	Right anterior cerebral artery	FMA50029	arterial	400	-0.008	1.620	0.015
+FJ1654M	Left anterior cerebral artery	FMA50030	arterial	400	0.008	1.620	0.015
+FJ1655	Anterior communicating artery	FMA50169	arterial	80	-0.001	1.616	0.012
+FJ1656	anterior inferior cerebellar artery	FMA50544	arterial	610	-0.018	1.585	-0.025
+FJ1656M	Anterior inferior cerebellar artery	FMA50544	arterial	604	0.018	1.585	-0.025
+FJ1657	Right anterior spinal artery	FMA50532	arterial	294	-0.007	1.557	-0.031
+FJ1657M	Left anterior spinal artery	FMA50533	arterial	294	0.007	1.557	-0.031
+FJ1658	Right anterior choroidal artery	FMA50088	arterial	288	-0.023	1.618	-0.015
+FJ1658M	Left anterior choroidal artery	FMA50089	arterial	296	0.023	1.618	-0.015
+FJ1659	Right anterior temporal artery	FMA50383	arterial	990	-0.058	1.618	-0.005
+FJ1659M	Left anterior temporal artery	FMA50384	arterial	1000	0.058	1.618	-0.005
+FJ1660	Insular part of right middle cerebral artery	FMA50369	arterial	834	-0.040	1.628	0.009
+FJ1660M	Insular part of left middle cerebral artery	FMA50370	arterial	820	0.040	1.628	0.009
+FJ1661	Anterior temporal branch of right lateral occipital artery	FMA50678	arterial	846	-0.037	1.604	-0.026
+FJ1661M	Anterior temporal branch of left lateral occipital artery	FMA50679	arterial	852	0.037	1.604	-0.026
+FJ1662	Anterolateral central branch of right middle cerebral artery	FMA50377	arterial	968	-0.021	1.632	-0.002
+FJ1662M	Anterolateral central branch of left middle cerebral artery	FMA50378	arterial	972	0.021	1.632	-0.002
+FJ1663	Anterolateral central branch of right middle cerebral artery	FMA50377	arterial	304	-0.017	1.623	-0.004
+FJ1663M	Anterolateral central branch of left middle cerebral artery	FMA50378	arterial	302	0.017	1.623	-0.004
+FJ1664	artery of central sulcus	FMA77439	arterial	854	-0.056	1.656	-0.015
+FJ1664M	Artery of central sulcus	FMA77439	arterial	854	0.056	1.656	-0.015
+FJ1665	artery of central sulcus	FMA77439	arterial	772	-0.054	1.668	-0.034
+FJ1665M	Artery of central sulcus	FMA77439	arterial	772	0.054	1.668	-0.034
+FJ1666	Artery of right postcentral sulcus	FMA50483	arterial	644	-0.062	1.663	-0.041
+FJ1666M	Artery of left postcentral sulcus	FMA50484	arterial	636	0.062	1.663	-0.041
+FJ1667	Right anterior parietal artery	FMA50486	arterial	472	-0.054	1.667	-0.052
+FJ1667M	Left anterior parietal artery	FMA50487	arterial	468	0.054	1.667	-0.052
+FJ1668	Artery of right precentral sulcus	FMA50480	arterial	766	-0.047	1.667	-0.008
+FJ1668M	Artery of left precentral sulcus	FMA50481	arterial	766	0.047	1.667	-0.008
+FJ1669	Artery of right precentral sulcus	FMA50480	arterial	652	-0.053	1.651	0.013
+FJ1669M	Artery of left precentral sulcus	FMA50481	arterial	666	0.053	1.651	0.013
+FJ1670	Artery of right precentral sulcus	FMA50480	arterial	430	-0.055	1.669	0.001
+FJ1670M	Artery of left precentral sulcus	FMA50481	arterial	432	0.055	1.669	0.001
+FJ1671	Precuneal branch of right pericallosal artery	FMA50361	arterial	338	-0.004	1.668	-0.018
+FJ1671M	Precuneal branch of left pericallosal artery	FMA50362	arterial	334	0.004	1.668	-0.018
+FJ1672	Basilar artery	FMA50542	arterial	260	-0.000	1.596	-0.009
+FJ1673	Branch of right middle cerebral artery to right angular gyrus	FMA50476	arterial	778	-0.052	1.660	-0.073
+FJ1673M	Branch of left middle cerebral artery to left angular gyrus	FMA50477	arterial	752	0.052	1.660	-0.073
+FJ1674	Branch of right anterior choroidal artery to posterior limb of right internal capsule	FMA50146	arterial	282	-0.025	1.633	-0.018
+FJ1674M	Branch of left anterior choroidal artery to posterior limb of left internal capsule	FMA50147	arterial	282	0.025	1.633	-0.018
+FJ1675	Right thalamogeniculate artery	FMA50670	arterial	678	-0.013	1.623	-0.021
+FJ1675M	Left thalamogeniculate artery	FMA50671	arterial	672	0.013	1.623	-0.021
+FJ1676	Right callosomarginal artery	FMA50347	arterial	522	-0.003	1.646	0.031
+FJ1676M	Left callosomarginal artery	FMA50348	arterial	520	0.003	1.646	0.031
+FJ1677	Right splenial artery	FMA50684	arterial	262	-0.009	1.620	-0.039
+FJ1677M	Left splenial artery	FMA50685	arterial	262	0.009	1.620	-0.039
+FJ1678	Right splenial artery	FMA50684	arterial	570	-0.004	1.637	-0.050
+FJ1678M	Left splenial artery	FMA50685	arterial	590	0.004	1.637	-0.050
+FJ1679	Hypothalamic branch of right posterior communicating artery	FMA50428	arterial	156	-0.006	1.613	0.006
+FJ1679M	Hypothalamic branch of left posterior communicating artery	FMA50429	arterial	156	0.006	1.613	0.006
+FJ1680	Middle temporal branch of right lateral occipital artery	FMA50680	arterial	516	-0.019	1.609	-0.060
+FJ1680M	Middle temporal branch of left lateral occipital artery	FMA50681	arterial	528	0.019	1.609	-0.060
+FJ1681	Intermediomedial branch of right callosomarginal artery	FMA50351	arterial	562	-0.008	1.678	0.040
+FJ1681M	Intermediomedial branch of left callosomarginal artery	FMA50352	arterial	552	0.008	1.678	0.040
+FJ1682	Right internal carotid artery	FMA3949	arterial	418	-0.024	1.564	0.004
+FJ1682M	Left internal carotid artery	FMA4062	arterial	422	0.024	1.564	0.004
+FJ1683	Lateral branch of right superior cerebellar artery	FMA50578	arterial	544	-0.031	1.597	-0.052
+FJ1683M	Lateral branch of left superior cerebellar artery	FMA50579	arterial	550	0.031	1.597	-0.052
+FJ1684	Lateral branch of right pontine artery	FMA50568	arterial	498	-0.012	1.591	-0.016
+FJ1684M	Lateral branch of left pontine artery	FMA50569	arterial	500	0.012	1.591	-0.016
+FJ1685	Right lateral frontobasal artery	FMA50443	arterial	786	-0.038	1.636	0.037
+FJ1685M	Left lateral frontobasal artery	FMA50444	arterial	786	0.038	1.636	0.037
+FJ1686	Right lateral frontobasal artery	FMA50443	arterial	302	-0.051	1.637	0.033
+FJ1686M	Left lateral frontobasal artery	FMA50444	arterial	302	0.051	1.637	0.033
+FJ1687	Right lateral occipital artery	FMA50643	arterial	484	-0.006	1.619	-0.073
+FJ1687M	Left lateral occipital artery	FMA50644	arterial	484	0.006	1.619	-0.073
+FJ1688	Medial branch of right superior cerebellar artery	FMA50581	arterial	290	-0.016	1.609	-0.047
+FJ1688M	Medial branch of left superior cerebellar artery	FMA50582	arterial	292	0.016	1.609	-0.047
+FJ1689	Medial branch of right pontine artery	FMA50566	arterial	292	-0.005	1.597	-0.007
+FJ1689M	Medial branch of left pontine artery	FMA50567	arterial	292	0.005	1.597	-0.007
+FJ1690	Right medial frontobasal artery	FMA50343	arterial	486	-0.008	1.624	0.039
+FJ1690M	Left medial frontobasal artery	FMA50344	arterial	484	0.008	1.624	0.039
+FJ1691	Right medial occipital artery	FMA50645	arterial	662	-0.009	1.640	-0.069
+FJ1691M	Left medial occipital artery	FMA50646	arterial	660	0.009	1.640	-0.069
+FJ1692	Sphenoid part of right middle cerebral artery	FMA50366	arterial	686	-0.029	1.620	0.009
+FJ1692M	Sphenoid part of left middle cerebral artery	FMA50367	arterial	682	0.029	1.620	0.009
+FJ1693	Middle temporal branch of right middle cerebral artery	FMA50467	arterial	608	-0.058	1.622	-0.034
+FJ1693M	Middle temporal branch of left middle cerebral artery	FMA50468	arterial	618	0.058	1.622	-0.034
+FJ1694	Insular part of right middle cerebral artery	FMA50369	arterial	1064	-0.045	1.637	-0.012
+FJ1694M	Insular part of left middle cerebral artery	FMA50370	arterial	1084	0.045	1.637	-0.012
+FJ1695	Right ophthalmic artery	FMA49869	arterial	530	-0.012	1.615	0.038
+FJ1695M	Left ophthalmic artery	FMA49870	arterial	530	0.012	1.615	0.038
+FJ1696	Paracentral branch of right callosomarginal artery	FMA50357	arterial	476	-0.012	1.680	-0.000
+FJ1696M	Paracentral branch of left callosomarginal artery	FMA50358	arterial	484	0.012	1.680	-0.000
+FJ1697	Paracentral branch of right callosomarginal artery	FMA50357	arterial	354	-0.018	1.706	-0.021
+FJ1697M	Paracentral branch of left callosomarginal artery	FMA50358	arterial	368	0.018	1.706	-0.021
+FJ1698	Paracentral branch of right callosomarginal artery	FMA50357	arterial	336	-0.004	1.693	-0.019
+FJ1698M	Paracentral branch of left callosomarginal artery	FMA50358	arterial	346	0.004	1.693	-0.019
+FJ1699	Right pericallosal artery	FMA50359	arterial	576	-0.003	1.646	-0.006
+FJ1699M	Left pericallosal artery	FMA50360	arterial	578	0.003	1.646	-0.006
+FJ1700	Right posterior inferior cerebellar artery	FMA50519	arterial	322	-0.017	1.568	-0.055
+FJ1700M	Left posterior inferior cerebellar artery	FMA50520	arterial	324	0.017	1.568	-0.055
+FJ1701	Right posterior inferior cerebellar artery	FMA50519	arterial	282	-0.020	1.578	-0.075
+FJ1701M	Left posterior inferior cerebellar artery	FMA50520	arterial	282	0.020	1.578	-0.075
+FJ1702	Right posterior inferior cerebellar artery	FMA50519	arterial	226	-0.016	1.582	-0.075
+FJ1702M	Left posterior inferior cerebellar artery	FMA50520	arterial	226	0.016	1.582	-0.075
+FJ1703	Right posterior inferior cerebellar artery	FMA50519	arterial	212	-0.011	1.585	-0.082
+FJ1703M	Left posterior inferior cerebellar artery	FMA50520	arterial	212	0.011	1.585	-0.082
+FJ1704	Right posterior inferior cerebellar artery	FMA50519	arterial	284	-0.029	1.573	-0.046
+FJ1704M	Left posterior inferior cerebellar artery	FMA50520	arterial	284	0.029	1.573	-0.046
+FJ1705	Right posterior inferior cerebellar artery	FMA50519	arterial	312	-0.030	1.577	-0.066
+FJ1705M	Left posterior inferior cerebellar artery	FMA50520	arterial	314	0.030	1.577	-0.066
+FJ1706	Right posterior inferior cerebellar artery	FMA50519	arterial	278	-0.044	1.581	-0.055
+FJ1706M	Left posterior inferior cerebellar artery	FMA50520	arterial	278	0.044	1.581	-0.055
+FJ1707	Right posterior inferior cerebellar artery	FMA50519	arterial	84	-0.013	1.572	-0.063
+FJ1707M	Left posterior inferior cerebellar artery	FMA50520	arterial	84	0.013	1.572	-0.063
+FJ1708	Right posterior inferior cerebellar artery	FMA50519	arterial	86	-0.029	1.576	-0.041
+FJ1708M	Left posterior inferior cerebellar artery	FMA50520	arterial	86	0.029	1.576	-0.041
+FJ1709	Right posterior inferior cerebellar artery	FMA50519	arterial	172	-0.049	1.585	-0.046
+FJ1709M	Left posterior inferior cerebellar artery	FMA50520	arterial	172	0.049	1.585	-0.046
+FJ1710	Right posterior inferior cerebellar artery	FMA50519	arterial	162	-0.049	1.588	-0.066
+FJ1710M	Left posterior inferior cerebellar artery	FMA50520	arterial	162	0.049	1.588	-0.066
+FJ1711	Right posterior inferior cerebellar artery	FMA50519	arterial	656	-0.019	1.572	-0.053
+FJ1711M	Left posterior inferior cerebellar artery	FMA50520	arterial	654	0.019	1.572	-0.053
+FJ1712	Right polar temporal artery	FMA50380	arterial	348	-0.041	1.619	0.017
+FJ1712M	Left polar temporal artery	FMA50381	arterial	346	0.041	1.619	0.017
+FJ1713	Right posterior communicating artery	FMA50085	arterial	204	-0.009	1.610	0.004
+FJ1713M	Left posterior communicating artery	FMA50086	arterial	204	0.009	1.610	0.004
+FJ1714	Postcommunicating part of right posterior cerebral artery	FMA50641	arterial	450	-0.012	1.613	-0.020
+FJ1714M	Postcommunicating part of left posterior cerebral artery	FMA50642	arterial	446	0.012	1.613	-0.020
+FJ1715	Right posterior inferior cerebellar artery	FMA50519	arterial	612	-0.033	1.581	-0.046
+FJ1715M	Left posterior inferior cerebellar artery	FMA50520	arterial	618	0.033	1.581	-0.046
+FJ1716	Right posterior parietal artery	FMA50489	arterial	1498	-0.047	1.657	-0.049
+FJ1716M	Left posterior parietal artery	FMA50490	arterial	1498	0.047	1.657	-0.049
+FJ1717	Posterior temporal branch of right middle cerebral artery	FMA50470	arterial	732	-0.059	1.623	-0.056
+FJ1717M	Posterior temporal branch of left middle cerebral artery	FMA50471	arterial	732	0.059	1.623	-0.056
+FJ1718	Trunk of inferior terminal branch of right middle cerebral artery	FMA76128	arterial	368	-0.049	1.632	0.007
+FJ1718M	Trunk of inferior terminal branch of left middle cerebral artery	FMA76129	arterial	368	0.049	1.632	0.007
+FJ1719	set of posterior temporal branches of lateral occipital artery	FMA71502	arterial	458	-0.031	1.612	-0.072
+FJ1719M	Set of posterior temporal branches of lateral occipital artery	FMA71502	arterial	436	0.031	1.612	-0.072
+FJ1720	Right thalamoperforating artery	FMA50664	arterial	420	-0.009	1.627	-0.030
+FJ1720M	Left thalamoperforating artery	FMA50665	arterial	436	0.009	1.627	-0.030
+FJ1721	Posteromedial central branch of right posterior cerebral artery	FMA50660	arterial	240	-0.019	1.612	-0.010
+FJ1721M	Posteromedial central branch of left posterior cerebral artery	FMA50661	arterial	238	0.019	1.612	-0.010
+FJ1722	Posteromedial branch of right callosomarginal artery	FMA50353	arterial	476	-0.011	1.685	0.019
+FJ1722M	Posteromedial branch of left callosomarginal artery	FMA50354	arterial	476	0.011	1.685	0.019
+FJ1723	Precommunicating part of right posterior cerebral artery	FMA50639	arterial	282	-0.004	1.610	-0.003
+FJ1723M	Precommunicating part of left posterior cerebral artery	FMA50640	arterial	282	0.004	1.610	-0.003
+FJ1724	Right prefrontal artery	FMA50445	arterial	1192	-0.045	1.660	0.024
+FJ1724M	Left prefrontal artery	FMA50478	arterial	1192	0.045	1.660	0.024
+FJ1725	Right vertebral artery	FMA3958	arterial	492	-0.017	1.530	-0.027
+FJ1725M	Left vertebral artery	FMA4066	arterial	494	0.017	1.530	-0.027
+FJ1726	Right superior cerebellar artery	FMA50574	arterial	394	-0.010	1.602	-0.014
+FJ1726M	Left superior cerebellar artery	FMA50575	arterial	398	0.010	1.602	-0.014
+FJ1727	Right posterior medial choroidal artery	FMA50672	arterial	260	-0.005	1.634	-0.020
+FJ1727M	Left posterior medial choroidal artery	FMA50673	arterial	266	0.005	1.634	-0.020
+FJ1728	Superior vermian branch of medial branch of right superior cerebellar artery	FMA50696	arterial	320	-0.008	1.612	-0.053
+FJ1728M	Superior vermian branch of medial branch of left superior cerebellar artery	FMA50697	arterial	322	0.008	1.612	-0.053
+FJ1729	Temporo-occipital branch of right middle cerebral artery	FMA50473	arterial	616	-0.039	1.624	-0.052
+FJ1729M	Temporo-occipital branch of left middle cerebral artery	FMA50474	arterial	616	0.039	1.624	-0.052
+FJ1730	Third ventricle	FMA78454	cardiac	1130	-0.001	1.627	-0.015
+FJ1731	Fourth ventricle	FMA78469	cardiac	2150	-0.001	1.588	-0.037
+FJ1732	Left angular gyrus	FMA72670	nervous	2874	0.043	1.649	-0.078
+FJ1733	Right angular gyrus	FMA72669	nervous	2886	-0.045	1.649	-0.078
+FJ1734	Anterior commissure	FMA61961	nervous	652	-0.001	1.631	0.003
+FJ1735	Brachium of left superior colliculus	FMA73462	nervous	280	-0.011	1.618	-0.029
+FJ1736	Brachium of right superior colliculus	FMA73461	nervous	266	0.010	1.619	-0.029
+FJ1737	Central canal of spinal cord	FMA78497	nervous	160	-0.001	1.555	-0.042
+FJ1738	Cerebral aqueduct	FMA78467	nervous	352	-0.001	1.616	-0.024
+FJ1739	Left cingulate gyrus	FMA72718	nervous	1480	0.014	1.642	-0.014
+FJ1740	Right cingulate gyrus	FMA72717	nervous	1538	-0.015	1.642	-0.014
+FJ1741	Commissure of fornix of forebrain	FMA61970	nervous	2338	-0.001	1.635	-0.027
+FJ1742	Corpus callosum	FMA86464	nervous	6650	-0.001	1.642	-0.015
+FJ1743	Habenula	FMA62032	nervous	384	-0.001	1.625	-0.030
+FJ1744	Left inferior frontal gyrus	FMA72658	nervous	2702	0.043	1.655	0.021
+FJ1745	Right inferior frontal gyrus	FMA72657	nervous	2644	-0.045	1.655	0.021
+FJ1746	Left inferior temporal gyrus	FMA72688	nervous	1828	0.039	1.606	-0.026
+FJ1747	Right inferior temporal gyrus	FMA72687	nervous	1838	-0.040	1.606	-0.026
+FJ1748	Left insula	FMA72978	nervous	1962	0.035	1.641	-0.004
+FJ1749	Right insula	FMA72977	nervous	1928	-0.036	1.641	-0.003
+FJ1750	Left internal capsule	FMA72907	nervous	2362	0.018	1.639	-0.008
+FJ1751	Right internal capsule	FMA72906	nervous	2362	-0.020	1.639	-0.008
+FJ1752	Interventricular foramen	FMA75351	cardiac	1016	-0.001	1.639	-0.005
+FJ1753	Left amygdala	FMA72833	nervous	380	0.025	1.617	-0.002
+FJ1754	Left caudate nucleus	FMA72827	nervous	1320	0.018	1.637	-0.008
+FJ1755	Choroid plexus of cerebral hemisphere	FMA61934	sensory	2594	0.018	1.630	-0.022
+FJ1756	Left fornix of forebrain	FMA72925	nervous	1488	0.015	1.629	-0.020
+FJ1757	Left globus pallidus	FMA72831	nervous	1556	0.021	1.633	-0.005
+FJ1758	White matter of left cerebral hemisphere	FMA260794	nervous	10580	0.033	1.651	-0.019
+FJ1759	Left hippocampus	FMA72714	nervous	784	0.027	1.618	-0.019
+FJ1760	Hypothalamus	FMA62008	nervous	1306	0.003	1.620	0.001
+FJ1761	Brachium of left inferior colliculus	FMA73464	nervous	308	0.008	1.616	-0.028
+FJ1762	Left inferior colliculus	FMA73435	nervous	156	0.004	1.611	-0.029
+FJ1763	Interpeduncular fossa	FMA83740	nervous	58	0.001	1.621	-0.007
+FJ1764	Lamina terminalis	FMA61975	nervous	232	0.000	1.624	0.006
+FJ1766	Left lateral geniculate body	FMA73304	nervous	196	0.021	1.618	-0.024
+FJ1767	Left lateral ventricle	FMA78450	cardiac	3952	0.019	1.633	-0.028
+FJ1768	Mammillary body	FMA74877	nervous	204	0.001	1.619	-0.006
+FJ1769	Medulla oblongata	FMA62004	nervous	1326	0.006	1.563	-0.032
+FJ1770	Midbrain	FMA61993	nervous	1532	0.007	1.615	-0.019
+FJ1771	Optic chiasm	FMA62045	nervous	866	0.003	1.618	0.005
+FJ1772	Left optic nerve	FMA50878	nervous	538	0.016	1.609	0.027
+FJ1773	Left optic tract	FMA67936	nervous	1090	0.012	1.618	-0.011
+FJ1774	Peduncle of midbrain	FMA62394	nervous	1796	0.011	1.616	-0.012
+FJ1775	Pons	FMA67943	nervous	2818	0.010	1.595	-0.020
+FJ1776	Left putamen	FMA72829	nervous	1552	0.025	1.637	-0.003
+FJ1777	Left stria medullaris of thalamus	FMA73414	nervous	584	0.001	1.631	-0.015
+FJ1778	Left stria terminalis	FMA72940	nervous	648	0.015	1.630	-0.017
+FJ1779	Left superior colliculus	FMA73423	nervous	180	0.003	1.618	-0.029
+FJ1780	Tuber cinereum	FMA62327	nervous	584	0.004	1.616	-0.001
+FJ1781	Cerebellum	FMA67944	nervous	5238	0.026	1.592	-0.060
+FJ1782	Left thalamus	FMA258716	nervous	1388	0.012	1.632	-0.020
+FJ1783	Left fusiform gyrus	FMA72690	nervous	1332	0.026	1.607	-0.020
+FJ1784	Right fusiform gyrus	FMA72689	nervous	1310	-0.028	1.607	-0.020
+FJ1785	Left parahippocampal gyrus	FMA72706	nervous	652	0.019	1.611	-0.024
+FJ1786	Right parahippocampal gyrus	FMA72705	nervous	760	-0.021	1.611	-0.024
+FJ1787	Left middle frontal gyrus	FMA72656	nervous	2506	0.032	1.670	0.017
+FJ1788	Right middle frontal gyrus	FMA72655	nervous	2478	-0.033	1.669	0.017
+FJ1789	Left middle temporal gyrus	FMA72686	nervous	1748	0.051	1.617	-0.031
+FJ1790	Right middle temporal gyrus	FMA72685	nervous	1632	-0.052	1.617	-0.030
+FJ1791	Left occipital lobe	FMA72976	nervous	3484	0.022	1.623	-0.079
+FJ1792	Right occipital lobe	FMA72975	nervous	3554	-0.023	1.623	-0.079
+FJ1793	Orbital gyrus	FMA256194	nervous	2058	0.021	1.627	0.032
+FJ1794	Orbital gyrus	FMA256194	nervous	1968	-0.022	1.627	0.032
+FJ1795	Pineal body	FMA62033	endocrine	580	-0.001	1.622	-0.035
+FJ1796	Pituitary gland	FMA13889	endocrine	1134	-0.001	1.607	0.006
+FJ1797	Left postcentral gyrus	FMA72666	nervous	2972	0.034	1.672	-0.044
+FJ1798	Right postcentral gyrus	FMA72665	nervous	3012	-0.035	1.672	-0.044
+FJ1799	Posterior commissure	FMA62072	nervous	646	-0.001	1.623	-0.026
+FJ1800	Left precentral gyrus	FMA72662	nervous	3340	0.032	1.672	-0.028
+FJ1801	Right precentral gyrus	FMA72661	nervous	3386	-0.033	1.672	-0.028
+FJ1802	Right caudate nucleus	FMA72826	nervous	1278	-0.019	1.637	-0.008
+FJ1803	Choroid plexus of cerebral hemisphere	FMA61934	sensory	2570	-0.019	1.630	-0.022
+FJ1804	Right fornix of forebrain	FMA72924	nervous	1484	-0.016	1.629	-0.019
+FJ1805	Right globus pallidus	FMA72830	nervous	1174	-0.022	1.633	-0.005
+FJ1806	White matter of right cerebral hemisphere	FMA260791	nervous	10754	-0.034	1.651	-0.019
+FJ1807	Right hippocampus	FMA72713	nervous	812	-0.028	1.618	-0.019
+FJ1808	Hypothalamus	FMA62008	nervous	1270	-0.004	1.620	0.001
+FJ1809	Brachium of right inferior colliculus	FMA73463	nervous	260	-0.010	1.616	-0.028
+FJ1810	Right inferior colliculus	FMA73434	nervous	204	-0.005	1.611	-0.029
+FJ1811	Interpeduncular fossa	FMA83740	nervous	76	-0.002	1.621	-0.007
+FJ1812	Lamina terminalis	FMA61975	nervous	226	-0.001	1.624	0.006
+FJ1813	Right lateral geniculate body	FMA73303	nervous	604	-0.020	1.618	-0.025
+FJ1814	Right lateral ventricle	FMA78449	cardiac	3962	-0.020	1.633	-0.028
+FJ1815	Mammillary body	FMA74877	nervous	220	-0.003	1.619	-0.006
+FJ1816	Right medial geniculate body	FMA73309	nervous	198	-0.015	1.618	-0.025
+FJ1816M	Left medial geniculate body	FMA73310	nervous	198	0.015	1.618	-0.025
+FJ1817	Midbrain	FMA61993	nervous	1428	-0.008	1.615	-0.019
+FJ1818	Optic chiasm	FMA62045	nervous	846	-0.004	1.618	0.005
+FJ1819	Right optic nerve	FMA50875	nervous	544	-0.017	1.609	0.027
+FJ1820	Right optic tract	FMA62382	nervous	1068	-0.014	1.618	-0.011
+FJ1821	Peduncle of midbrain	FMA62394	nervous	1834	-0.012	1.616	-0.012
+FJ1822	Pons	FMA67943	nervous	3038	-0.011	1.594	-0.020
+FJ1823	Right putamen	FMA72828	nervous	1554	-0.027	1.637	-0.003
+FJ1824	Right stria medullaris of thalamus	FMA73413	nervous	576	-0.003	1.631	-0.015
+FJ1825	Stria terminalis	FMA61974	nervous	648	-0.003	1.630	-0.016
+FJ1826	Right superior colliculus	FMA73422	nervous	176	-0.005	1.618	-0.029
+FJ1827	Right thalamus	FMA258714	nervous	758	-0.013	1.632	-0.020
+FJ1828	Tuber cinereum	FMA62327	nervous	588	-0.005	1.616	-0.001
+FJ1829	Right amygdala	FMA72832	nervous	382	-0.026	1.616	-0.002
+FJ1830	Cerebellum	FMA67944	nervous	5254	-0.027	1.592	-0.060
+FJ1831	Medulla oblongata	FMA62004	nervous	1392	-0.007	1.563	-0.032
+FJ1832	Septum of telencephalon	FMA61842	nervous	2624	-0.001	1.641	-0.009
+FJ1833	Left superior frontal gyrus	FMA72654	nervous	4042	0.016	1.669	0.012
+FJ1834	Right superior frontal gyrus	FMA72653	nervous	4112	-0.017	1.669	0.012
+FJ1835	Left superior parietal lobule	FMA72672	nervous	4216	0.018	1.661	-0.078
+FJ1836	Right superior parietal lobule	FMA72671	nervous	4394	-0.020	1.661	-0.078
+FJ1837	Anterior part of left superior temporal gyrus	FMA72801	nervous	1486	0.045	1.626	-0.009
+FJ1838	Anterior part of right superior temporal gyrus	FMA72800	nervous	1436	-0.046	1.626	-0.009
+FJ1839	Posterior part of left superior temporal gyrus	FMA72805	nervous	1806	0.054	1.632	-0.041
+FJ1840	Posterior part of right superior temporal gyrus	FMA72804	nervous	1840	-0.055	1.632	-0.041
+FJ1841	Left supramarginal gyrus	FMA72668	nervous	2104	0.046	1.660	-0.046
+FJ1842	Right supramarginal gyrus	FMA72667	nervous	2090	-0.047	1.660	-0.046
+FJ1843	Tentorium cerebelli	FMA83966	nervous	4822	-0.033	1.603	-0.050
+FJ1844	Basilar artery	FMA50542	arterial	238	-0.001	1.596	-0.009
+FJ1846	Celiac artery	FMA50737	arterial	238	0.007	1.162	0.019
+FJ1853	Hepatic portal vein	FMA50735	venous	788	-0.014	1.165	0.034
+FJ1858	Hepatovenous segment IX	FMA15747	venous	2100	-0.068	1.211	-0.002
+FJ1867	Tributary of middle hepatic vein	FMA15793	venous	456	-0.063	1.222	0.060
+FJ1874	Left lobe branch of left hepatic artery	FMA71710	arterial	482	-0.022	1.220	0.073
+FJ1883	Caudate lobe tributary of left hepatic biliary tree	FMA71889	digestive	348	-0.008	1.199	0.036
+FJ1893	Left portal vein	FMA15415	venous	470	0.016	1.211	0.075
+FJ1895	Pancreas	FMA7198	digestive	2534	0.012	1.119	0.021
+FJ1896	Pancreatic duct	FMA10419	digestive	1816	0.006	1.122	0.020
+FJ1913	Right portal vein	FMA15414	venous	820	-0.074	1.193	0.021
+FJ1914	Caudate lobe branch of right portal vein	FMA82706	venous	310	-0.023	1.193	0.034
+FJ1916	Caudate lobe branch of right hepatic artery	FMA70447	arterial	352	-0.025	1.191	0.035
+FJ1924	Right lobe branch of right hepatic artery	FMA71708	arterial	450	-0.069	1.206	0.010
+FJ1928	Superior mesenteric artery	FMA14749	arterial	580	-0.026	1.060	0.032
+FJ1931	Descending thoracic aorta	FMA87217	arterial	502	0.016	1.292	-0.023
+FJ1932	Abdominal aorta	FMA3789	arterial	498	0.010	1.120	0.008
+FJ1933	Bronchial artery	FMA68109	arterial	548	-0.018	1.379	-0.016
+FJ1934	Esophageal artery	FMA4149	arterial	438	-0.009	1.301	-0.026
+FJ1935	Right superior intercostal artery	FMA5042	arterial	184	-0.049	1.425	-0.008
+FJ1936	Right superior epigastric artery	FMA3988	arterial	494	-0.011	1.170	0.092
+FJ1937	Right internal thoracic artery	FMA3969	arterial	780	-0.026	1.339	0.051
+FJ1938	Right lateral thoracic artery	FMA22675	arterial	516	-0.118	1.294	0.029
+FJ1939	Right first posterior intercostal artery	FMA66242	arterial	520	-0.044	1.397	0.013
+FJ1950	Right second posterior intercostal artery	FMA5041	arterial	584	-0.055	1.387	0.012
+FJ1961	Posterior intercostal arteries	FMA63822	arterial	8352	-0.056	1.245	0.004
+FJ1967	Right subcostal artery	FMA4634	arterial	430	-0.040	1.122	-0.030
+FJ1969	Right musculophrenic artery	FMA10692	arterial	556	-0.063	1.164	0.049
+FJ1970	Left superior intercostal artery	FMA4088	arterial	206	0.049	1.425	-0.008
+FJ1971	Left superior epigastric artery	FMA4083	arterial	498	0.011	1.170	0.092
+FJ1972	Left internal thoracic artery	FMA4068	arterial	800	0.027	1.340	0.051
+FJ1973	Left first posterior intercostal artery	FMA66243	arterial	502	0.044	1.397	0.013
+FJ1974	Left second posterior intercostal artery	FMA4112	arterial	598	0.055	1.387	0.012
+FJ1975	Posterior intercostal arteries	FMA63822	arterial	7710	0.066	1.245	0.004
+FJ1976	Left lateral thoracic artery	FMA22676	arterial	516	0.118	1.294	0.029
+FJ1977	Left subcostal artery	FMA4654	arterial	416	0.047	1.122	-0.032
+FJ1979	Left musculophrenic artery	FMA4077	arterial	564	0.063	1.163	0.049
+FJ1981	Accessory hemiazygos vein	FMA5011	venous	996	0.008	1.342	-0.013
+FJ1985	Set of anterior intercostal veins	FMA70839	venous	8332	0.071	1.258	0.005
+FJ1986	Left superior intercostal vein	FMA4797	venous	292	0.028	1.403	-0.047
+FJ1987	Left subcostal vein	FMA4951	venous	322	0.052	1.123	-0.047
+FJ1988	Left musculophrenic vein	FMA4786	venous	710	0.059	1.182	0.076
+FJ1991	Right superior intercostal vein	FMA4877	venous	274	-0.023	1.392	-0.042
+FJ1993	Right internal thoracic vein	FMA4758	venous	668	-0.018	1.335	0.059
+FJ1994	Set of anterior intercostal veins	FMA70839	venous	8538	-0.071	1.258	0.005
+FJ1995	Right subcostal vein	FMA4844	venous	366	-0.047	1.124	-0.034
+FJ1996	Right musculophrenic vein	FMA4772	venous	712	-0.059	1.182	0.076
+FJ2011	Superior mesenteric artery	FMA14749	arterial	564	-0.026	1.060	0.032
+FJ2013	Celiac artery	FMA50737	arterial	238	0.007	1.162	0.019
+FJ2025	Marginal colic artery	FMA14824	arterial	788	-0.001	1.076	0.036
+FJ2034	Ileal branch of inferior branch of ileocolic artery	FMA14819	arterial	100	-0.041	1.025	0.027
+FJ2038	Right renal artery	FMA14752	arterial	196	-0.015	1.115	0.008
+FJ2041	Right anterior segmental artery	FMA8620	arterial	290	-0.071	1.118	-0.020
+FJ2042	Superior segmental branch of right renal artery	FMA86340	arterial	288	-0.063	1.130	-0.023
+FJ2043	Inferior segmental branch of right renal artery	FMA86346	arterial	260	-0.072	1.095	-0.012
+FJ2044	Right anterior segmental artery	FMA8620	arterial	274	-0.078	1.103	-0.016
+FJ2045	Posterior segmental branch of right renal artery	FMA86348	arterial	474	-0.086	1.084	-0.029
+FJ2046	Left renal artery	FMA14753	arterial	286	0.022	1.121	0.009
+FJ2049	Inferior segmental branch of left renal artery	FMA86347	arterial	300	0.065	1.111	-0.014
+FJ2052	Superior segmental branch of left renal artery	FMA86341	arterial	262	0.049	1.143	-0.020
+FJ2053	Posterior segmental branch of left renal artery	FMA86349	arterial	274	0.061	1.134	-0.034
+FJ2054	Posterior segmental branch of left renal artery	FMA86349	arterial	492	0.068	1.115	-0.027
+FJ2055	Right dorsalis pedis artery	FMA43916	arterial	374	-0.080	0.070	0.018
+FJ2056	Deep dorsal vein of penis	FMA21354	venous	518	0.000	0.832	0.041
+FJ2057	Descending branch of right lateral circumflex femoral artery	FMA21422	arterial	1150	-0.098	0.670	0.007
+FJ2058	Distal perforating artery	FMA69517	arterial	412	-0.119	0.022	0.063
+FJ2059	Dorsal venous arch of left foot	FMA44882	venous	414	0.108	0.049	0.022
+FJ2060	Dorsal venous arch of left foot	FMA44882	venous	548	0.097	0.044	0.042
+FJ2061	Dorsal venous arch of right foot	FMA44881	venous	414	-0.108	0.049	0.021
+FJ2062	Dorsal venous arch of right foot	FMA44881	venous	546	-0.097	0.044	0.042
+FJ2063	Descending branch of left lateral circumflex femoral artery	FMA21423	arterial	1150	0.098	0.670	0.007
+FJ2064	Distal perforating artery	FMA69517	arterial	406	0.119	0.022	0.063
+FJ2065	Left anterior tibial artery	FMA43897	arterial	3830	0.087	0.241	-0.016
+FJ2066	Left anterior tibial recurrent artery	FMA43908	arterial	1328	0.081	0.432	-0.001
+FJ2067	Left arcuate artery	FMA69495	arterial	494	0.102	0.049	0.018
+FJ2068	Left deep plantar artery	FMA69515	arterial	442	0.094	0.047	0.040
+FJ2069	Left descending genicular artery	FMA22508	arterial	1436	0.048	0.500	0.001
+FJ2072	Dorsal digital artery of foot	FMA44660	arterial	1204	0.137	0.023	0.064
+FJ2073	Left dorsalis pedis artery	FMA43917	arterial	374	0.080	0.070	0.018
+FJ2074	Left femoral artery	FMA70250	arterial	208	0.052	0.729	0.014
+FJ2076	Left inferior lateral genicular artery	FMA43893	arterial	770	0.098	0.439	-0.022
+FJ2077	Left inferior medial genicular artery	FMA43891	arterial	810	0.063	0.421	-0.017
+FJ2078	Left lateral circumflex femoral artery	FMA20802	arterial	284	0.098	0.860	-0.007
+FJ2079	Left lateral plantar artery	FMA43932	arterial	278	0.090	0.029	-0.006
+FJ2080	Left lateral superior genicular artery	FMA22589	arterial	566	0.091	0.488	-0.016
+FJ2081	Left lateral tarsal artery	FMA69491	arterial	428	0.094	0.058	-0.003
+FJ2082	Left medial plantar artery	FMA43930	arterial	376	0.071	0.038	0.006
+FJ2083	Left medial superior genicular artery	FMA22587	arterial	504	0.053	0.481	-0.013
+FJ2084	Left middle genicular artery	FMA22563	arterial	762	0.076	0.466	-0.042
+FJ2085	Left plantar arch	FMA43944	arterial	408	0.091	0.030	0.016
+FJ2086	Left popliteal artery	FMA77381	arterial	3680	0.076	0.460	-0.026
+FJ2087	Left posterior tibial artery	FMA43899	arterial	2906	0.068	0.202	-0.031
+FJ2089	Left superficial medial plantar artery	FMA43938	arterial	220	0.076	0.026	0.052
+FJ2090	Set of perforating arteries	FMA70815	arterial	270	0.081	0.709	0.007
+FJ2091	Set of calcaneal branches of posterior tibial artery	FMA71562	arterial	810	0.111	0.877	-0.013
+FJ2092	Set of common plantar digital arteries	FMA70821	arterial	684	0.123	0.016	0.067
+FJ2093	Set of dorsal digital arteries	FMA70801	arterial	2662	0.085	0.204	-0.046
+FJ2094	Set of perforating arteries	FMA70815	arterial	1350	0.066	0.745	0.013
+FJ2095	Set of plantar digital arteries proper	FMA71564	arterial	398	0.112	0.032	0.041
+FJ2096	Plantar metatarsal artery	FMA43956	arterial	598	0.115	0.028	0.041
+FJ2097	Left anterior tibial vein	FMA44337	venous	624	0.080	0.427	-0.007
+FJ2099	Left deep femoral vein	FMA51043	venous	1394	0.056	0.742	0.024
+FJ2100	Set of perforating veins	FMA70922	venous	666	0.121	0.025	0.061
+FJ2102	Left femoral vein	FMA21189	venous	228	0.053	0.723	0.019
+FJ2103	Left great saphenous vein	FMA21380	venous	6608	0.054	0.463	0.001
+FJ2107	Left genicular vein	FMA44888	venous	426	0.101	0.440	-0.018
+FJ2108	Left genicular vein	FMA44888	venous	490	0.069	0.415	-0.015
+FJ2113	Tributary of plantar venous arch	FMA44499	venous	274	0.090	0.024	-0.006
+FJ2115	Tributary of plantar venous arch	FMA44499	venous	370	0.071	0.033	0.006
+FJ2117	Left popliteal vein	FMA44329	venous	3650	0.083	0.486	-0.025
+FJ2118	Left posterior tibial vein	FMA44339	venous	3040	0.071	0.197	-0.031
+FJ2119	Set of perforating veins	FMA70922	venous	642	0.115	0.032	0.044
+FJ2120	Set of plantar digital veins	FMA70919	venous	1696	0.119	0.016	0.068
+FJ2121	Left small saphenous vein	FMA44335	venous	3592	0.087	0.261	-0.051
+FJ2122	Left superficial epigastric vein	FMA44341	venous	466	0.029	0.947	0.067
+FJ2124	Left genicular vein	FMA44888	venous	666	0.095	0.485	-0.014
+FJ2125	Left genicular vein	FMA44888	venous	528	0.059	0.496	-0.011
+FJ2127	Set of perforating arteries	FMA70815	arterial	272	-0.081	0.709	0.007
+FJ2128	Plantar venous arch of left foot	FMA44884	venous	406	0.091	0.026	0.016
+FJ2129	Plantar venous arch of right foot	FMA44883	venous	428	-0.091	0.026	0.016
+FJ2130	Right anterior tibial artery	FMA43896	arterial	3812	-0.087	0.241	-0.016
+FJ2131	Right anterior tibial recurrent artery	FMA43907	arterial	1332	-0.081	0.432	-0.001
+FJ2132	Right anterior tibial vein	FMA44336	venous	624	-0.080	0.427	-0.007
+FJ2133	Right arcuate artery	FMA69494	arterial	516	-0.102	0.049	0.018
+FJ2135	Right deep femoral vein	FMA51042	venous	1396	-0.056	0.742	0.024
+FJ2136	Right deep plantar artery	FMA69514	arterial	440	-0.094	0.047	0.040
+FJ2137	Right descending genicular artery	FMA22507	arterial	1436	-0.048	0.500	0.001
+FJ2138	Set of perforating veins	FMA70922	venous	702	-0.121	0.025	0.061
+FJ2141	Dorsal digital artery of foot	FMA44660	arterial	1094	-0.137	0.023	0.064
+FJ2143	Right femoral artery	FMA70249	arterial	230	-0.052	0.728	0.014
+FJ2144	Right femoral vein	FMA21188	venous	212	-0.053	0.723	0.019
+FJ2145	Right great saphenous vein	FMA21379	venous	6606	-0.054	0.463	0.001
+FJ2150	Right inferior lateral genicular artery	FMA43892	arterial	776	-0.098	0.439	-0.022
+FJ2151	Right genicular vein	FMA44887	venous	470	-0.101	0.440	-0.018
+FJ2152	Right inferior medial genicular artery	FMA43890	arterial	784	-0.063	0.421	-0.017
+FJ2153	Right genicular vein	FMA44887	venous	490	-0.069	0.415	-0.015
+FJ2158	Right lateral circumflex femoral artery	FMA20801	arterial	292	-0.098	0.860	-0.007
+FJ2159	Right lateral plantar artery	FMA43931	arterial	282	-0.090	0.029	-0.006
+FJ2160	Tributary of plantar venous arch	FMA44499	venous	268	-0.090	0.024	-0.006
+FJ2162	Right lateral superior genicular artery	FMA22588	arterial	554	-0.091	0.488	-0.016
+FJ2163	Right lateral tarsal artery	FMA69490	arterial	424	-0.094	0.058	-0.003
+FJ2164	Right medial plantar artery	FMA43929	arterial	376	-0.071	0.038	0.006
+FJ2165	Tributary of plantar venous arch	FMA44499	venous	380	-0.071	0.033	0.006
+FJ2166	Right medial superior genicular artery	FMA22586	arterial	506	-0.053	0.481	-0.013
+FJ2167	Right middle genicular artery	FMA22562	arterial	754	-0.076	0.466	-0.042
+FJ2169	Right plantar arch	FMA43943	arterial	412	-0.091	0.030	0.016
+FJ2170	Right popliteal artery	FMA77380	arterial	3690	-0.076	0.460	-0.026
+FJ2171	Right popliteal vein	FMA44328	venous	3664	-0.083	0.486	-0.025
+FJ2172	Right posterior tibial artery	FMA43898	arterial	2888	-0.068	0.202	-0.031
+FJ2173	Right posterior tibial vein	FMA44338	venous	3032	-0.071	0.197	-0.031
+FJ2174	Set of perforating veins	FMA70922	venous	642	-0.115	0.032	0.044
+FJ2175	Set of plantar digital veins	FMA70919	venous	1632	-0.119	0.016	0.068
+FJ2176	Right small saphenous vein	FMA44334	venous	3592	-0.087	0.261	-0.051
+FJ2178	Right superficial epigastric vein	FMA44340	venous	426	-0.029	0.947	0.067
+FJ2179	Right superficial medial plantar artery	FMA43937	arterial	204	-0.076	0.026	0.052
+FJ2181	Right genicular vein	FMA44887	venous	686	-0.095	0.485	-0.014
+FJ2182	Right genicular vein	FMA44887	venous	548	-0.059	0.496	-0.011
+FJ2183	Left anterior tibial vein	FMA44337	venous	2814	0.095	0.260	-0.019
+FJ2184	Left fibular vein	FMA44886	venous	314	0.058	0.048	-0.051
+FJ2185	Set of dorsal digital veins	FMA70917	venous	1100	0.128	0.023	0.095
+FJ2186	Dorsal metacarpal vein	FMA22954	venous	944	0.123	0.038	0.056
+FJ2187	Left fibular vein	FMA44886	venous	2334	0.079	0.188	-0.044
+FJ2188	Left lateral circumflex femoral vein	FMA44922	venous	794	0.098	0.864	-0.009
+FJ2189	Left medial circumflex femoral vein	FMA44919	venous	292	0.082	0.855	-0.007
+FJ2190	Right fibular vein	FMA44885	venous	272	0.077	0.707	0.021
+FJ2191	Plantar metatarsal vein	FMA44504	venous	814	0.120	0.021	0.049
+FJ2192	Set of perforating veins	FMA70922	venous	272	-0.077	0.707	0.021
+FJ2193	Right anterior tibial vein	FMA44336	venous	2806	-0.095	0.260	-0.019
+FJ2194	Right fibular vein	FMA44885	venous	364	-0.058	0.048	-0.051
+FJ2195	Set of calcaneal branches of posterior tibial artery	FMA71562	arterial	856	-0.111	0.877	-0.013
+FJ2196	Set of common plantar digital arteries	FMA70821	arterial	656	-0.123	0.016	0.067
+FJ2197	Set of dorsal digital arteries	FMA70801	arterial	2658	-0.085	0.204	-0.046
+FJ2198	Set of dorsal digital veins	FMA70917	venous	1108	-0.128	0.023	0.095
+FJ2199	Dorsal metacarpal vein	FMA22954	venous	942	-0.123	0.037	0.056
+FJ2200	Right fibular vein	FMA44885	venous	2324	-0.079	0.188	-0.044
+FJ2201	Right lateral circumflex femoral vein	FMA44920	venous	810	-0.098	0.864	-0.009
+FJ2202	Right medial circumflex femoral vein	FMA44918	venous	298	-0.082	0.855	-0.007
+FJ2203	Set of perforating arteries	FMA70815	arterial	1348	-0.066	0.745	0.013
+FJ2204	Set of plantar digital arteries proper	FMA71564	arterial	434	-0.112	0.032	0.041
+FJ2205	Set of plantar digital arteries proper	FMA71564	arterial	1440	-0.125	0.013	0.068
+FJ2206	Plantar metatarsal artery	FMA43956	arterial	596	-0.115	0.028	0.041
+FJ2207	Plantar metatarsal vein	FMA44504	venous	792	-0.120	0.021	0.049
+FJ2208	Superficial dorsal vein of penis	FMA21384	venous	324	0.000	0.832	0.065
+FJ2209	Right inferior thyroid artery	FMA10697	arterial	296	-0.036	1.452	0.002
+FJ2210	Left inferior thyroid artery	FMA10680	arterial	286	0.036	1.452	0.002
+FJ2211	Acromial branch of left thoraco-acromial artery	FMA23069	arterial	412	0.116	1.404	-0.000
+FJ2212	Left anterior circumflex humeral artery	FMA22683	arterial	718	0.167	1.377	-0.011
+FJ2213	Left anterior circumflex humeral vein	FMA77955	venous	722	0.169	1.377	-0.009
+FJ2214	Left anterior interosseous artery	FMA22813	arterial	432	0.232	1.000	-0.009
+FJ2215	Left inferior ulnar collateral artery	FMA22713	arterial	260	0.191	1.133	-0.022
+FJ2216	Left axillary artery	FMA22656	arterial	614	0.114	1.377	-0.007
+FJ2217	Left axillary vein	FMA13331	venous	464	0.116	1.362	0.003
+FJ2218	Left basilic vein	FMA22910	venous	4034	0.193	1.091	-0.011
+FJ2219	Left brachial artery	FMA22692	arterial	762	0.180	1.226	-0.019
+FJ2220	Left cephalic vein	FMA13326	venous	5032	0.193	1.129	0.005
+FJ2221	Left circumflex scapular artery	FMA23181	arterial	428	0.139	1.365	-0.031
+FJ2222	Left circumflex scapular vein	FMA77950	venous	330	0.140	1.367	-0.022
+FJ2223	Left common interosseous artery	FMA22808	arterial	436	0.217	1.074	-0.024
+FJ2224	Left costocervical trunk	FMA4086	arterial	232	0.049	1.430	-0.004
+FJ2225	Left deep brachial artery	FMA22697	arterial	550	0.190	1.228	-0.036
+FJ2226	Left deep cervical artery	FMA4134	arterial	330	0.041	1.468	-0.029
+FJ2227	Left deep palmar arch	FMA22840	arterial	762	0.259	0.864	0.026
+FJ2228	Dorsal venous network of left hand	FMA62507	venous	946	0.260	0.835	0.022
+FJ2229	Left deep palmar venous arch	FMA22913	venous	972	0.260	0.873	0.030
+FJ2230	Deltoid branch of left thoraco-acromial artery	FMA23073	arterial	294	0.137	1.394	0.001
+FJ2231	Dorsal carpal branch of left radial artery	FMA22773	arterial	298	0.269	0.867	0.015
+FJ2232	Left dorsal scapular artery	FMA10552	arterial	996	0.081	1.350	-0.053
+FJ2233	Left lateral thoracic vein	FMA71212	venous	800	0.130	1.284	0.029
+FJ2234	Left median antebrachial vein	FMA22969	venous	1168	0.219	0.992	0.004
+FJ2235	Left median cubital vein	FMA22965	venous	550	0.209	1.122	-0.016
+FJ2236	Left dorsal carpal branch of ulnar artery	FMA22822	arterial	542	0.245	0.873	0.021
+FJ2237	Left palmar metacarpal artery	FMA22865	arterial	958	0.262	0.841	0.030
+FJ2238	Left palmar metacarpal vein	FMA22921	venous	372	0.282	0.838	0.034
+FJ2239	Left posterior circumflex humeral artery	FMA22687	arterial	274	0.166	1.370	-0.024
+FJ2240	Left posterior circumflex humeral artery	FMA22687	arterial	404	0.168	1.370	-0.020
+FJ2241	Left posterior ulnar recurrent artery	FMA22805	arterial	328	0.191	1.109	-0.038
+FJ2242	Left radial artery	FMA22734	arterial	1708	0.247	0.986	0.005
+FJ2243	Left radial recurrent artery	FMA22766	arterial	572	0.235	1.116	-0.027
+FJ2244	Left radial vein	FMA22949	venous	1084	0.240	1.001	0.006
+FJ2245	Left recurrent interosseous artery	FMA268669	arterial	286	0.224	1.098	-0.036
+FJ2246	Left subscapular artery	FMA22679	arterial	772	0.135	1.365	-0.012
+FJ2247	Left subscapular vein	FMA23115	venous	436	0.128	1.380	0.004
+FJ2248	Left superficial palmar arterial arch	FMA22837	arterial	650	0.253	0.870	0.031
+FJ2249	Left superficial palmar venous arch	FMA22916	venous	820	0.254	0.865	0.031
+FJ2250	Left suprascapular vein	FMA50860	venous	434	0.102	1.392	-0.017
+FJ2251	Left suprascapular artery	FMA10681	arterial	424	0.090	1.401	-0.030
+FJ2252	Trunk of left thoraco-acromial artery	FMA66564	arterial	466	0.094	1.403	0.000
+FJ2253	Left thoracodorsal artery	FMA66322	arterial	462	0.134	1.319	-0.022
+FJ2254	Left thoracodorsal vein	FMA71215	venous	370	0.130	1.323	0.010
+FJ2255	Left thyrocervical trunk	FMA4084	arterial	122	0.041	1.433	-0.002
+FJ2256	Left superficial cervical artery	FMA10683	arterial	368	0.054	1.460	-0.008
+FJ2257	Left transverse cervical artery	FMA10682	arterial	348	0.051	1.436	-0.002
+FJ2258	Left ulnar artery	FMA22798	arterial	1564	0.227	0.988	0.004
+FJ2259	Left anterior ulnar recurrent artery	FMA22802	arterial	180	0.204	1.091	-0.025
+FJ2260	Left ulnar vein	FMA22952	venous	1300	0.230	0.997	0.009
+FJ2261	Radial collateral branch of left deep brachial artery	FMA23127	arterial	318	0.217	1.173	-0.047
+FJ2262	Radial collateral branch of right deep brachial artery	FMA23126	arterial	294	-0.217	1.173	-0.047
+FJ2263	Acromial branch of right thoraco-acromial artery	FMA23068	arterial	412	-0.116	1.404	-0.000
+FJ2264	Right anterior circumflex humeral artery	FMA22682	arterial	712	-0.167	1.377	-0.011
+FJ2265	Right anterior circumflex humeral vein	FMA77954	venous	754	-0.169	1.377	-0.010
+FJ2266	Right anterior interosseous artery	FMA22812	arterial	438	-0.232	1.000	-0.009
+FJ2267	Right inferior ulnar collateral artery	FMA22712	arterial	264	-0.191	1.132	-0.022
+FJ2268	Right axillary artery	FMA22655	arterial	582	-0.114	1.377	-0.007
+FJ2269	Right axillary vein	FMA13330	venous	472	-0.116	1.362	0.003
+FJ2270	Right basilic vein	FMA22909	venous	3992	-0.193	1.091	-0.011
+FJ2271	Right brachial artery	FMA22691	arterial	684	-0.180	1.226	-0.019
+FJ2272	Right cephalic vein	FMA13325	venous	4976	-0.193	1.129	0.005
+FJ2273	Right circumflex scapular artery	FMA23180	arterial	430	-0.139	1.365	-0.031
+FJ2274	Right circumflex scapular vein	FMA77949	venous	336	-0.140	1.367	-0.022
+FJ2275	Right common interosseous artery	FMA22807	arterial	430	-0.217	1.074	-0.024
+FJ2276	Right costocervical trunk	FMA5039	arterial	240	-0.049	1.430	-0.004
+FJ2277	Right deep brachial artery	FMA22696	arterial	516	-0.190	1.228	-0.036
+FJ2278	Right deep cervical artery	FMA10660	arterial	348	-0.041	1.468	-0.029
+FJ2279	Right deep palmar arch	FMA22839	arterial	760	-0.259	0.864	0.026
+FJ2280	Dorsal venous network of right hand	FMA62506	venous	952	-0.260	0.835	0.022
+FJ2281	Right deep palmar venous arch	FMA22912	venous	966	-0.260	0.873	0.030
+FJ2282	Deltoid branch of right thoraco-acromial artery	FMA23072	arterial	286	-0.137	1.394	0.001
+FJ2283	Dorsal carpal branch of right radial artery	FMA22772	arterial	294	-0.269	0.867	0.015
+FJ2284	Right dorsal scapular artery	FMA4057	arterial	978	-0.081	1.350	-0.053
+FJ2285	Right lateral thoracic vein	FMA71211	venous	802	-0.130	1.284	0.029
+FJ2286	Right median antebrachial vein	FMA22968	venous	1184	-0.219	0.992	0.004
+FJ2287	Right median cubital vein	FMA22964	venous	550	-0.209	1.122	-0.016
+FJ2288	Right dorsal carpal branch of ulnar artery	FMA22821	arterial	562	-0.245	0.873	0.021
+FJ2289	Right palmar metacarpal artery	FMA22864	arterial	936	-0.262	0.841	0.030
+FJ2290	Right palmar metacarpal vein	FMA22920	venous	346	-0.282	0.838	0.034
+FJ2291	Right posterior circumflex humeral artery	FMA22685	arterial	306	-0.166	1.370	-0.024
+FJ2292	Right posterior circumflex humeral artery	FMA22685	arterial	384	-0.168	1.370	-0.020
+FJ2293	Right posterior ulnar recurrent artery	FMA22804	arterial	320	-0.191	1.109	-0.038
+FJ2294	Right radial artery	FMA22733	arterial	1642	-0.247	0.986	0.005
+FJ2295	Right radial recurrent artery	FMA22764	arterial	572	-0.235	1.116	-0.027
+FJ2296	Right radial vein	FMA22948	venous	1162	-0.240	1.001	0.006
+FJ2297	Right recurrent interosseous artery	FMA268667	arterial	278	-0.224	1.098	-0.035
+FJ2298	Right subscapular artery	FMA22678	arterial	756	-0.135	1.365	-0.012
+FJ2299	Right subscapular vein	FMA23114	venous	458	-0.128	1.380	0.004
+FJ2300	Right superficial palmar arterial arch	FMA22835	arterial	660	-0.253	0.870	0.031
+FJ2301	Right superficial palmar venous arch	FMA22915	venous	852	-0.254	0.866	0.031
+FJ2302	Right suprascapular vein	FMA50859	venous	436	-0.102	1.392	-0.017
+FJ2303	Right suprascapular artery	FMA10698	arterial	420	-0.090	1.401	-0.030
+FJ2304	Trunk of right thoraco-acromial artery	FMA66563	arterial	472	-0.094	1.403	0.000
+FJ2305	Right thoracodorsal artery	FMA66321	arterial	462	-0.134	1.319	-0.022
+FJ2306	Right thoracodorsal vein	FMA71214	venous	372	-0.130	1.323	0.010
+FJ2307	Right thyrocervical trunk	FMA3992	arterial	106	-0.041	1.433	-0.001
+FJ2308	Right superficial cervical artery	FMA10700	arterial	376	-0.054	1.460	-0.008
+FJ2309	Right transverse cervical artery	FMA10699	arterial	324	-0.051	1.436	-0.002
+FJ2310	Right ulnar artery	FMA22797	arterial	1512	-0.227	0.988	0.004
+FJ2311	Right anterior ulnar recurrent artery	FMA22801	arterial	186	-0.204	1.091	-0.025
+FJ2312	Right ulnar vein	FMA22951	venous	1336	-0.230	0.997	0.009
+FJ2313	Left medial brachial vein	FMA22936	venous	626	0.184	1.205	-0.010
+FJ2314	Left arteria radialis indicis	FMA22778	arterial	270	0.283	0.826	0.040
+FJ2315	Left first common palmar digital artery	FMA85118	arterial	244	0.271	0.822	0.039
+FJ2316	Left second common palmar digital artery	FMA85120	arterial	302	0.256	0.821	0.039
+FJ2317	Left third common palmar digital artery	FMA85122	arterial	306	0.242	0.826	0.040
+FJ2318	Set of dorsal digital arteries	FMA70801	arterial	1688	0.269	0.789	0.057
+FJ2319	Proper palmar digital vein of left little finger	FMA85103	venous	598	0.267	0.823	0.039
+FJ2320	Left palmar metacarpal vein	FMA22921	venous	266	0.295	0.850	0.050
+FJ2321	Proper palmar digital vein of left little finger	FMA85103	venous	192	0.229	0.800	0.052
+FJ2322	Common palmar digital vein	FMA22923	venous	274	0.257	0.804	0.043
+FJ2323	Left palmar metacarpal vein	FMA22921	venous	202	0.300	0.825	0.053
+FJ2324	Proper palmar digital vein of left index finger	FMA85097	venous	126	0.304	0.771	0.060
+FJ2325	Proper palmar digital vein of left index finger	FMA85097	venous	198	0.290	0.772	0.063
+FJ2326	Proper palmar digital vein of left middle finger	FMA85099	venous	166	0.278	0.768	0.068
+FJ2327	Proper palmar digital vein of left ring finger	FMA85101	venous	228	0.256	0.771	0.065
+FJ2328	Proper palmar digital vein of left ring finger	FMA85101	venous	206	0.242	0.776	0.066
+FJ2329	Proper palmar digital vein of left little finger	FMA85103	venous	240	0.231	0.783	0.062
+FJ2330	Pectoral branch of left thoraco-acromial artery	FMA23064	arterial	742	0.110	1.340	0.024
+FJ2331	Middle collateral branch of left deep brachial artery	FMA23125	arterial	416	0.213	1.160	-0.047
+FJ2332	Left arteria radialis indicis	FMA22778	arterial	182	0.303	0.774	0.062
+FJ2333	Medial proper palmar digital artery of left index finger	FMA23051	arterial	176	0.289	0.775	0.061
+FJ2334	Lateral proper palmar digital artery of left middle finger	FMA22860	arterial	176	0.279	0.771	0.068
+FJ2335	Lateral proper palmar digital artery of left ring finger	FMA85116	arterial	162	0.255	0.777	0.068
+FJ2336	Lateral proper palmar digital artery of left little finger	FMA23055	arterial	132	0.233	0.786	0.064
+FJ2337	Left fourth common palmar digital artery	FMA85124	arterial	202	0.227	0.802	0.058
+FJ2338	Left arteria princeps pollicis	FMA22907	arterial	236	0.299	0.848	0.050
+FJ2339	Left arteria princeps pollicis	FMA22907	arterial	186	0.299	0.827	0.052
+FJ2340	Proper palmar digital vein of left middle finger	FMA85099	venous	192	0.267	0.765	0.066
+FJ2341	Right medial brachial vein	FMA22935	venous	564	-0.184	1.205	-0.010
+FJ2342	Right arteria radialis indicis	FMA22777	arterial	282	-0.282	0.826	0.040
+FJ2343	Right first common palmar digital artery	FMA22856	arterial	254	-0.271	0.822	0.039
+FJ2344	Right second common palmar digital artery	FMA85119	arterial	304	-0.256	0.821	0.039
+FJ2345	Right third common palmar digital artery	FMA85121	arterial	318	-0.242	0.826	0.040
+FJ2346	Set of dorsal digital arteries	FMA70801	arterial	1698	-0.269	0.789	0.057
+FJ2347	Set of dorsal metacarpal arteries	FMA70800	arterial	948	-0.257	0.838	0.025
+FJ2348	Set of dorsal metacarpal arteries	FMA70800	arterial	948	0.257	0.838	0.025
+FJ2349	Proper palmar digital vein of right little finger	FMA85102	venous	608	-0.267	0.823	0.038
+FJ2350	Right palmar metacarpal vein	FMA22920	venous	264	-0.295	0.850	0.050
+FJ2351	Proper palmar digital vein of right little finger	FMA85102	venous	194	-0.229	0.800	0.052
+FJ2352	Common palmar digital vein	FMA22923	venous	260	-0.257	0.804	0.043
+FJ2353	Right palmar metacarpal vein	FMA22920	venous	208	-0.300	0.825	0.053
+FJ2354	Proper palmar digital vein of right index finger	FMA85096	venous	146	-0.304	0.771	0.060
+FJ2355	Proper palmar digital vein of right index finger	FMA85096	venous	198	-0.290	0.772	0.063
+FJ2356	Proper palmar digital vein of right middle finger	FMA85098	venous	166	-0.278	0.768	0.068
+FJ2357	Proper palmar digital vein of right middle finger	FMA85098	venous	192	-0.267	0.765	0.066
+FJ2358	Proper palmar digital vein of right ring finger	FMA85100	venous	214	-0.255	0.771	0.065
+FJ2359	Proper palmar digital vein of right ring finger	FMA85100	venous	204	-0.242	0.776	0.066
+FJ2360	Proper palmar digital vein of right little finger	FMA85102	venous	246	-0.231	0.783	0.062
+FJ2361	Pectoral branch of right thoraco-acromial artery	FMA23063	arterial	748	-0.110	1.340	0.024
+FJ2362	Middle collateral branch of right deep brachial artery	FMA23124	arterial	370	-0.213	1.160	-0.047
+FJ2363	Right arteria radialis indicis	FMA22777	arterial	176	-0.303	0.774	0.062
+FJ2364	Medial proper palmar digital artery of right index finger	FMA23050	arterial	176	-0.289	0.775	0.061
+FJ2365	Lateral proper palmar digital artery of right middle finger	FMA22858	arterial	176	-0.279	0.771	0.068
+FJ2366	Lateral proper palmar digital artery of right ring finger	FMA85115	arterial	158	-0.255	0.777	0.068
+FJ2367	Medial proper palmar digital artery of right middle finger	FMA85112	arterial	180	-0.265	0.772	0.069
+FJ2368	Lateral proper palmar digital artery of right little finger	FMA23054	arterial	134	-0.233	0.786	0.064
+FJ2369	Medial proper palmar digital artery of right ring finger	FMA23052	arterial	158	-0.243	0.780	0.070
+FJ2370	Right fourth common palmar digital artery	FMA85123	arterial	204	-0.227	0.802	0.058
+FJ2371	Right arteria princeps pollicis	FMA22905	arterial	234	-0.299	0.848	0.050
+FJ2372	Right arteria princeps pollicis	FMA22905	arterial	194	-0.299	0.827	0.052
+FJ2373	Right superior ulnar collateral artery	FMA22707	arterial	324	-0.185	1.160	-0.031
+FJ2374	Left superior ulnar collateral artery	FMA22708	arterial	324	0.185	1.160	-0.031
+FJ2386	Caudate lobe branch of right hepatic artery	FMA70447	arterial	352	-0.025	1.191	0.035
+FJ2394	Right lobe branch of right hepatic artery	FMA71708	arterial	450	-0.069	1.206	0.010
+FJ2404	Left portal vein	FMA15415	venous	2662	-0.018	1.197	0.057
+FJ2405	Right portal vein	FMA15414	venous	1458	-0.060	1.188	0.001
+FJ2409	Hepatovenous segment VII	FMA15745	venous	1876	-0.068	1.147	0.005
+FJ2414	Middle hepatic vein	FMA14340	venous	1178	-0.033	1.212	0.054
+FJ2415	Left hepatic vein	FMA14339	venous	884	0.020	1.223	0.045
+FJ2416	Right hepatic vein	FMA14338	venous	1936	-0.064	1.209	0.017
+FJ2417	Left anterior cusp of pulmonary valve	FMA7247	cardiac	1256	0.032	1.331	0.050
+FJ2418	Anterolateral head of lateral papillary muscle of left ventricle	FMA7265	muscular	776	0.044	1.286	0.042
+FJ2419	Anterior papillary muscle of right ventricle	FMA7260	muscular	820	0.030	1.273	0.062
+FJ2420	Anterior leaflet of mitral valve	FMA7242	cardiac	2322	0.029	1.298	0.017
+FJ2421	Anterior leaflet of tricuspid valve	FMA7238	cardiac	2230	0.001	1.295	0.043
+FJ2422	Cavity of left ventricle	FMA9466	cardiac	1468	0.038	1.296	0.022
+FJ2423	Cavity of right ventricle	FMA9291	cardiac	1610	0.017	1.298	0.044
+FJ2424	Cavity of right atrium	FMA11359	cardiac	1286	-0.015	1.309	0.023
+FJ2425	Cavity of left atrium	FMA9465	cardiac	992	0.014	1.315	-0.001
+FJ2426	Left posterior cusp of aortic valve	FMA7254	cardiac	906	0.024	1.326	0.017
+FJ2427	Posterior cusp of pulmonary valve	FMA7250	cardiac	992	0.032	1.332	0.035
+FJ2428	Wall of ventricle	FMA13884	cardiac	8236	0.028	1.298	0.030
+FJ2429	Lateral papillary muscle of left ventricle	FMA7264	muscular	722	0.061	1.281	0.026
+FJ2430	Posterior papillary muscle of right ventricle	FMA7261	muscular	654	0.022	1.264	0.046
+FJ2431	Right posterior cusp of aortic valve	FMA7252	cardiac	314	0.014	1.320	0.014
+FJ2432	Posterior leaflet of mitral valve	FMA7243	cardiac	2402	0.038	1.294	0.004
+FJ2433	Posterior leaflet of tricuspid valve	FMA7239	cardiac	2352	-0.001	1.281	0.029
+FJ2434	Right anterior cusp of pulmonary valve	FMA7249	cardiac	1354	0.018	1.335	0.045
+FJ2435	Anterior cusp of aortic valve	FMA7253	cardiac	912	0.017	1.322	0.026
+FJ2436	Septal leaflet of tricuspid valve	FMA7240	cardiac	2144	0.012	1.303	0.026
+FJ2437	Septal papillary muscle of right ventricle	FMA7262	muscular	790	0.023	1.305	0.036
+FJ2438	Wall of left atrium	FMA9531	cardiac	4090	0.020	1.314	0.011
+FJ2439	Wall of right atrium	FMA9457	cardiac	3912	-0.015	1.309	0.029
+FJ2440	Cricoid cartilage	FMA9615	skeletal	1514	-0.001	1.474	0.002
+FJ2441	Inferior lingular bronchial tree	FMA68227	respiratory	446	0.071	1.297	0.026
+FJ2442	Left medial basal segmental bronchial tree	FMA68230	respiratory	342	0.092	1.267	-0.003
+FJ2443	Left anterior segmental bronchial tree	FMA68222	respiratory	406	0.051	1.361	0.009
+FJ2444	Left apical segmental bronchial tree	FMA68223	respiratory	362	0.048	1.391	-0.010
+FJ2445	Left lateral basal segmental bronchial tree	FMA68232	respiratory	278	0.094	1.255	-0.024
+FJ2446	Left posterior basal segmental bronchial tree	FMA68233	respiratory	254	0.070	1.259	-0.049
+FJ2447	Left posterior segmental bronchial tree	FMA68225	respiratory	266	0.070	1.383	-0.027
+FJ2448	Left superior segmental bronchial tree	FMA68228	respiratory	404	0.046	1.346	-0.047
+FJ2449	Lateral segmental bronchial tree	FMA68215	respiratory	356	-0.069	1.300	0.005
+FJ2450	Left main bronchus	FMA7396	respiratory	2594	0.036	1.337	-0.023
+FJ2451	Medial segmental bronchial tree	FMA68214	respiratory	422	-0.045	1.286	0.027
+FJ2452	Right anterior basal segmental bronchial tree	FMA68321	respiratory	362	-0.070	1.297	-0.032
+FJ2453	Right anterior segmental bronchial tree	FMA68212	respiratory	330	-0.060	1.363	-0.009
+FJ2454	Right apical segmental bronchial tree	FMA68211	respiratory	324	-0.037	1.388	-0.010
+FJ2455	Right lateral basal segmental bronchial tree	FMA68220	respiratory	298	-0.076	1.265	-0.031
+FJ2456	Right medial basal segmental bronchial tree	FMA68218	respiratory	140	-0.023	1.307	-0.015
+FJ2457	Right posterior basal segmental bronchial tree	FMA68221	respiratory	290	-0.047	1.262	-0.042
+FJ2458	Right posterior segmental bronchial tree	FMA68213	respiratory	474	-0.050	1.377	-0.034
+FJ2459	Right superior segmental bronchial tree	FMA68216	respiratory	238	-0.055	1.327	-0.047
+FJ2460	Left apical segmental bronchial tree	FMA68223	respiratory	198	0.056	1.402	-0.020
+FJ2461	Left apical segmental bronchial tree	FMA68223	respiratory	128	0.038	1.413	-0.013
+FJ2462	Left apical segmental bronchial tree	FMA68223	respiratory	124	0.061	1.408	-0.020
+FJ2463	Left apical segmental bronchial tree	FMA68223	respiratory	114	0.038	1.425	-0.012
+FJ2464	Left apical segmental bronchial tree	FMA68223	respiratory	64	0.053	1.418	-0.030
+FJ2465	Left posterior segmental bronchial tree	FMA68225	respiratory	86	0.077	1.374	-0.027
+FJ2466	Left posterior segmental bronchial tree	FMA68225	respiratory	64	0.079	1.386	-0.036
+FJ2467	Left anterior segmental bronchial tree	FMA68222	respiratory	336	0.063	1.341	0.026
+FJ2468	Left anterior segmental bronchial tree	FMA68222	respiratory	188	0.075	1.358	0.006
+FJ2469	Left anterior segmental bronchial tree	FMA68222	respiratory	82	0.084	1.349	0.018
+FJ2470	Right posterior basal segmental bronchial tree	FMA68221	respiratory	312	-0.042	1.262	-0.049
+FJ2471	Left anterior segmental bronchial tree	FMA68222	respiratory	106	0.083	1.359	0.022
+FJ2472	Left anterior segmental bronchial tree	FMA68222	respiratory	114	0.052	1.366	0.026
+FJ2473	Left anterior segmental bronchial tree	FMA68222	respiratory	116	0.052	1.350	0.036
+FJ2474	Left anterior segmental bronchial tree	FMA68222	respiratory	126	0.065	1.361	0.022
+FJ2475	Inferior lingular bronchial tree	FMA68227	respiratory	198	0.093	1.280	0.036
+FJ2476	Superior lingular bronchial tree	FMA68226	respiratory	134	0.097	1.329	-0.010
+FJ2477	Superior lingular bronchial tree	FMA68226	respiratory	70	0.108	1.308	0.013
+FJ2478	Superior lingular bronchial tree	FMA68226	respiratory	88	0.107	1.327	-0.015
+FJ2479	Left superior segmental bronchial tree	FMA68228	respiratory	190	0.066	1.334	-0.054
+FJ2480	Left superior segmental bronchial tree	FMA68228	respiratory	106	0.061	1.353	-0.061
+FJ2481	Right posterior basal segmental bronchial tree	FMA68221	respiratory	216	-0.047	1.219	-0.060
+FJ2482	Left superior segmental bronchial tree	FMA68228	respiratory	98	0.080	1.326	-0.057
+FJ2483	Left superior segmental bronchial tree	FMA68228	respiratory	90	0.058	1.315	-0.048
+FJ2484	Left superior segmental bronchial tree	FMA68228	respiratory	120	0.052	1.317	-0.048
+FJ2485	Left superior segmental bronchial tree	FMA68228	respiratory	58	0.051	1.363	-0.063
+FJ2486	Right posterior basal segmental bronchial tree	FMA68221	respiratory	204	-0.042	1.253	-0.056
+FJ2487	Right posterior basal segmental bronchial tree	FMA68221	respiratory	426	-0.068	1.241	-0.061
+FJ2488	Right medial basal segmental bronchial tree	FMA68218	respiratory	160	-0.018	1.291	-0.007
+FJ2489	Right posterior basal segmental bronchial tree	FMA68221	respiratory	344	-0.066	1.232	-0.064
+FJ2490	Right lateral basal segmental bronchial tree	FMA68220	respiratory	334	-0.099	1.229	-0.033
+FJ2491	Right lateral basal segmental bronchial tree	FMA68220	respiratory	316	-0.084	1.266	-0.036
+FJ2492	Right lateral basal segmental bronchial tree	FMA68220	respiratory	234	-0.093	1.261	-0.033
+FJ2493	Right anterior basal segmental bronchial tree	FMA68321	respiratory	314	-0.098	1.275	-0.020
+FJ2494	Right anterior basal segmental bronchial tree	FMA68321	respiratory	246	-0.108	1.265	-0.011
+FJ2495	Right superior segmental bronchial tree	FMA68216	respiratory	450	-0.038	1.350	-0.057
+FJ2496	Right superior segmental bronchial tree	FMA68216	respiratory	604	-0.050	1.349	-0.052
+FJ2497	Right superior segmental bronchial tree	FMA68216	respiratory	256	-0.058	1.361	-0.064
+FJ2498	Right superior segmental bronchial tree	FMA68216	respiratory	508	-0.073	1.331	-0.060
+FJ2499	Right superior segmental bronchial tree	FMA68216	respiratory	388	-0.039	1.319	-0.059
+FJ2500	Right superior segmental bronchial tree	FMA68216	respiratory	250	-0.079	1.331	-0.061
+FJ2501	Right superior segmental bronchial tree	FMA68216	respiratory	426	-0.049	1.314	-0.067
+FJ2502	Right superior segmental bronchial tree	FMA68216	respiratory	290	-0.037	1.325	-0.064
+FJ2503	Lateral segmental bronchial tree	FMA68215	respiratory	320	-0.091	1.275	0.035
+FJ2504	Lateral segmental bronchial tree	FMA68215	respiratory	540	-0.087	1.301	0.008
+FJ2505	Lateral segmental bronchial tree	FMA68215	respiratory	398	-0.101	1.309	0.001
+FJ2506	Medial segmental bronchial tree	FMA68214	respiratory	546	-0.063	1.289	0.044
+FJ2507	Medial segmental bronchial tree	FMA68214	respiratory	474	-0.047	1.290	0.049
+FJ2508	Medial segmental bronchial tree	FMA68214	respiratory	256	-0.058	1.280	0.062
+FJ2509	Right anterior segmental bronchial tree	FMA68212	respiratory	516	-0.040	1.348	0.022
+FJ2510	Right anterior segmental bronchial tree	FMA68212	respiratory	386	-0.079	1.356	-0.002
+FJ2511	Right anterior segmental bronchial tree	FMA68212	respiratory	250	-0.079	1.354	0.002
+FJ2512	Right anterior segmental bronchial tree	FMA68212	respiratory	288	-0.028	1.344	0.040
+FJ2513	Right anterior segmental bronchial tree	FMA68212	respiratory	494	-0.048	1.346	0.035
+FJ2514	Right anterior segmental bronchial tree	FMA68212	respiratory	422	-0.045	1.357	0.032
+FJ2515	Right posterior segmental bronchial tree	FMA68213	respiratory	484	-0.066	1.362	-0.040
+FJ2516	Right posterior segmental bronchial tree	FMA68213	respiratory	376	-0.088	1.362	-0.039
+FJ2517	Right posterior segmental bronchial tree	FMA68213	respiratory	264	-0.073	1.393	-0.052
+FJ2518	Right posterior segmental bronchial tree	FMA68213	respiratory	192	-0.066	1.384	-0.056
+FJ2519	Right posterior segmental bronchial tree	FMA68213	respiratory	190	-0.079	1.363	-0.053
+FJ2520	Right apical segmental bronchial tree	FMA68211	respiratory	408	-0.032	1.398	-0.027
+FJ2521	Right apical segmental bronchial tree	FMA68211	respiratory	328	-0.037	1.412	-0.023
+FJ2522	Right apical segmental bronchial tree	FMA68211	respiratory	292	-0.040	1.398	0.003
+FJ2523	Right apical segmental bronchial tree	FMA68211	respiratory	192	-0.044	1.402	0.008
+FJ2524	Right apical segmental bronchial tree	FMA68211	respiratory	248	-0.044	1.415	-0.008
+FJ2525	Right apical segmental bronchial tree	FMA68211	respiratory	164	-0.031	1.417	-0.031
+FJ2526	Right apical segmental bronchial tree	FMA68211	respiratory	156	-0.034	1.421	-0.021
+FJ2527	Left posterior basal segmental bronchial tree	FMA68233	respiratory	182	0.058	1.243	-0.056
+FJ2528	Left posterior basal segmental bronchial tree	FMA68233	respiratory	228	0.070	1.277	-0.058
+FJ2529	Left posterior basal segmental bronchial tree	FMA68233	respiratory	106	0.077	1.222	-0.065
+FJ2530	Left posterior basal segmental bronchial tree	FMA68233	respiratory	100	0.063	1.254	-0.064
+FJ2531	Left posterior basal segmental bronchial tree	FMA68233	respiratory	58	0.050	1.228	-0.064
+FJ2532	Left lateral basal segmental bronchial tree	FMA68232	respiratory	216	0.098	1.235	-0.042
+FJ2533	Left lateral basal segmental bronchial tree	FMA68232	respiratory	136	0.111	1.220	-0.029
+FJ2534	Left lateral basal segmental bronchial tree	FMA68232	respiratory	64	0.102	1.227	-0.050
+FJ2535	Left anterior basal segmental bronchial tree	FMA68231	respiratory	260	0.097	1.284	-0.010
+FJ2536	Left anterior basal segmental bronchial tree	FMA68231	respiratory	268	0.103	1.260	0.016
+FJ2537	Left medial basal segmental bronchial tree	FMA68230	respiratory	88	0.115	1.243	0.010
+FJ2538	Left anterior basal segmental bronchial tree	FMA68231	respiratory	122	0.112	1.234	-0.000
+FJ2539	Right main bronchus proper	FMA68418	respiratory	2346	-0.025	1.329	-0.020
+FJ2540	Superior lingular bronchial tree	FMA68226	respiratory	338	0.091	1.317	0.010
+FJ2541	Trachea	FMA7394	respiratory	2196	-0.000	1.418	-0.006
+FJ2542	Left coccygeus	FMA46444	muscular	1380	0.026	0.886	-0.077
+FJ2543	External anal sphincter	FMA21930	muscular	344	0.009	0.842	-0.072
+FJ2544	Left iliococcygeus	FMA45859	muscular	1982	0.025	0.877	-0.048
+FJ2545	Left pubococcygeus	FMA45855	muscular	1592	0.019	0.869	-0.045
+FJ2546	Left puborectalis	FMA45857	muscular	1796	0.018	0.856	-0.038
+FJ2547	Right coccygeus	FMA46443	muscular	1396	-0.026	0.886	-0.077
+FJ2548	External anal sphincter	FMA21930	muscular	350	-0.009	0.842	-0.072
+FJ2549	Right iliococcygeus	FMA45858	muscular	1812	-0.003	0.877	-0.048
+FJ2550	Right pubococcygeus	FMA45854	muscular	1906	-0.004	0.869	-0.044
+FJ2551	Right puborectalis	FMA45856	muscular	2172	-0.004	0.856	-0.038
+FJ2552	Tendinous arch of levator ani	FMA46442	connective	310	0.036	0.882	-0.031
+FJ2553	Tendinous arch of levator ani	FMA46442	connective	344	-0.036	0.882	-0.031
+FJ2554	Right major alar cartilage	FMA59505	skeletal	350	-0.008	1.561	0.090
+FJ2555	Left major alar cartilage	FMA59506	skeletal	388	0.007	1.561	0.090
+FJ2556	Left lateral nasal cartilage	FMA59513	respiratory	380	0.007	1.575	0.090
+FJ2557	Septal nasal cartilage	FMA59503	respiratory	342	-0.001	1.574	0.087
+FJ2558	Right lateral nasal cartilage	FMA59512	respiratory	408	-0.008	1.575	0.090
+FJ2561	Spleen	FMA7196	lymphatic	1206	0.085	1.165	-0.006
+FJ2562	Splenic artery	FMA14773	arterial	900	0.051	1.160	0.013
+FJ2563	Esophagus	FMA7131	digestive	296	0.007	1.331	-0.005
+FJ2564	Stomach	FMA7148	digestive	1686	0.038	1.176	0.038
+FJ2565	Appendix	FMA14542	digestive	436	-0.054	0.953	0.001
+FJ2566	Ascending colon	FMA14545	digestive	2112	-0.095	1.039	0.018
+FJ2567	Descending colon	FMA14547	digestive	2844	0.050	1.020	-0.004
+FJ2568	Taenia libera	FMA15044	digestive	4974	-0.002	1.006	0.018
+FJ2569	Taenia mesocolica	FMA15042	digestive	5260	0.001	1.036	0.013
+FJ2570	Taenia omentalis	FMA15043	digestive	3502	-0.004	1.023	0.023
+FJ2571	Rectum	FMA14544	digestive	1538	0.005	0.894	-0.058
+FJ2572	Transverse colon	FMA14546	digestive	2416	0.004	1.107	0.052
+FJ2573	Duodenum	FMA7206	digestive	1678	-0.017	1.109	0.030
+FJ2574	Proximal part of ileum	FMA14964	digestive	378	-0.054	1.011	0.048
+FJ2575	Proximal part of ileum	FMA14964	digestive	276	0.081	0.962	0.045
+FJ2576	Middle part of ileum	FMA14965	digestive	172	0.066	0.943	0.048
+FJ2577	Middle part of ileum	FMA14965	digestive	312	0.049	0.949	0.054
+FJ2578	Middle part of ileum	FMA14965	digestive	286	0.018	0.958	0.063
+FJ2579	Middle part of ileum	FMA14965	digestive	278	-0.009	0.965	0.060
+FJ2580	Middle part of ileum	FMA14965	digestive	344	-0.036	0.961	0.054
+FJ2581	Middle part of ileum	FMA14965	digestive	198	-0.039	0.948	0.048
+FJ2582	Middle part of ileum	FMA14965	digestive	212	-0.028	0.939	0.049
+FJ2583	Middle part of ileum	FMA14965	digestive	196	-0.017	0.934	0.048
+FJ2584	Middle part of ileum	FMA14965	digestive	228	-0.008	0.933	0.048
+FJ2585	Proximal part of ileum	FMA14964	digestive	286	-0.056	1.004	0.042
+FJ2586	Middle part of ileum	FMA14965	digestive	260	0.001	0.937	0.046
+FJ2587	Distal part of ileum	FMA14966	digestive	228	0.015	0.938	0.048
+FJ2588	Distal part of ileum	FMA14966	digestive	264	0.031	0.928	0.050
+FJ2589	Distal part of ileum	FMA14966	digestive	326	0.028	0.911	0.039
+FJ2590	Distal part of ileum	FMA14966	digestive	184	0.004	0.902	0.032
+FJ2591	Distal part of ileum	FMA14966	digestive	226	-0.005	0.905	0.033
+FJ2592	Distal part of ileum	FMA14966	digestive	236	-0.023	0.907	0.034
+FJ2593	Distal part of ileum	FMA14966	digestive	262	-0.034	0.908	0.034
+FJ2594	Distal part of ileum	FMA14966	digestive	220	-0.037	0.923	0.032
+FJ2595	Distal part of ileum	FMA14966	digestive	258	-0.044	0.921	0.033
+FJ2596	Proximal part of ileum	FMA14964	digestive	226	-0.043	0.992	0.053
+FJ2597	Distal part of ileum	FMA14966	digestive	202	-0.060	0.921	0.032
+FJ2598	Distal part of ileum	FMA14966	digestive	246	-0.069	0.943	0.032
+FJ2599	Ileocecal junction	FMA11338	digestive	286	-0.066	0.975	0.024
+FJ2600	Proximal part of ileum	FMA14964	digestive	256	-0.028	0.992	0.063
+FJ2601	Proximal part of ileum	FMA14964	digestive	208	-0.003	0.988	0.067
+FJ2602	Proximal part of ileum	FMA14964	digestive	266	0.017	0.985	0.068
+FJ2603	Proximal part of ileum	FMA14964	digestive	294	0.038	0.984	0.063
+FJ2604	Proximal part of ileum	FMA14964	digestive	198	0.052	0.980	0.059
+FJ2605	Proximal part of ileum	FMA14964	digestive	328	0.070	0.977	0.051
+FJ2606	Proximal part of jejunum	FMA16981	digestive	308	0.056	1.086	0.036
+FJ2607	Middle part of jejunum	FMA16982	digestive	240	0.083	1.031	0.047
+FJ2608	Middle part of jejunum	FMA16982	digestive	262	0.090	1.021	0.042
+FJ2609	Middle part of jejunum	FMA16982	digestive	192	0.074	1.001	0.051
+FJ2610	Middle part of jejunum	FMA16982	digestive	294	0.047	1.005	0.062
+FJ2611	Distal part of jejunum	FMA16983	digestive	226	0.022	1.007	0.071
+FJ2612	Distal part of jejunum	FMA16983	digestive	240	-0.005	1.018	0.071
+FJ2613	Distal part of jejunum	FMA16983	digestive	176	0.007	1.012	0.072
+FJ2614	Distal part of jejunum	FMA16983	digestive	230	-0.011	1.026	0.070
+FJ2615	Distal part of jejunum	FMA16983	digestive	264	-0.001	1.043	0.070
+FJ2616	Distal part of jejunum	FMA16983	digestive	432	-0.019	1.068	0.065
+FJ2617	Proximal part of jejunum	FMA16981	digestive	234	0.074	1.081	0.050
+FJ2618	Distal part of jejunum	FMA16983	digestive	222	-0.030	1.059	0.066
+FJ2619	Distal part of jejunum	FMA16983	digestive	258	-0.041	1.051	0.065
+FJ2620	Distal part of jejunum	FMA16983	digestive	284	-0.064	1.070	0.049
+FJ2621	Distal part of jejunum	FMA16983	digestive	494	-0.058	1.050	0.046
+FJ2622	Proximal part of jejunum	FMA16981	digestive	160	0.077	1.071	0.050
+FJ2623	Proximal part of jejunum	FMA16981	digestive	378	0.060	1.062	0.057
+FJ2624	Proximal part of jejunum	FMA16981	digestive	172	0.029	1.057	0.069
+FJ2625	Proximal part of jejunum	FMA16981	digestive	152	0.029	1.060	0.069
+FJ2626	Proximal part of jejunum	FMA16981	digestive	330	0.030	1.041	0.066
+FJ2627	Proximal part of jejunum	FMA16981	digestive	190	0.048	1.040	0.062
+FJ2628	Middle part of jejunum	FMA16982	digestive	236	0.061	1.036	0.056
+FJ2629	Parenchyma of pancreas	FMA63120	digestive	2258	0.012	1.119	0.021
+FJ2630	Pancreatic duct tree	FMA63103	digestive	1956	0.001	1.122	0.021
+FJ2631	Trunk of anterior interventricular branch of left coronary artery	FMA74912	arterial	666	0.049	1.297	0.044
+FJ2632	First right anterior branch of anterior interventricular branch of left coronary artery	FMA3872	arterial	108	0.047	1.308	0.066
+FJ2633	Diagonal branch of anterior descending branch of left coronary artery	FMA3860	arterial	424	0.072	1.302	0.031
+FJ2634	Diagonal branch of anterior descending branch of left coronary artery	FMA3860	arterial	192	0.072	1.309	0.025
+FJ2635	Diagonal branch of anterior descending branch of left coronary artery	FMA3860	arterial	526	0.060	1.283	0.062
+FJ2636	Diagonal branch of anterior descending branch of left coronary artery	FMA3860	arterial	408	0.061	1.290	0.065
+FJ2637	Diagonal branch of anterior descending branch of left coronary artery	FMA3860	arterial	158	0.066	1.262	0.057
+FJ2638	Diagonal branch of anterior descending branch of left coronary artery	FMA3860	arterial	286	0.073	1.274	0.056
+FJ2639	Diagonal branch of anterior descending branch of left coronary artery	FMA3860	arterial	150	0.072	1.264	0.049
+FJ2640	Diagonal branch of anterior descending branch of left coronary artery	FMA3860	arterial	254	0.070	1.262	0.050
+FJ2641	Third right anterior branch of anterior interventricular branch of left coronary artery	FMA3876	arterial	408	0.050	1.272	0.064
+FJ2642	Diagonal branch of anterior descending branch of left coronary artery	FMA3860	arterial	580	0.065	1.297	0.040
+FJ2643	Conus branch of anterior interventricular branch of left coronary artery	FMA3868	arterial	414	0.042	1.321	0.057
+FJ2644	Conus branch of anterior interventricular branch of left coronary artery	FMA3868	arterial	302	0.036	1.323	0.067
+FJ2645	First right anterior branch of anterior interventricular branch of left coronary artery	FMA3872	arterial	314	0.048	1.308	0.062
+FJ2646	Second right anterior branch of anterior interventricular branch of left coronary artery	FMA3874	arterial	446	0.046	1.288	0.067
+FJ2647	Third right anterior branch of anterior interventricular branch of left coronary artery	FMA3876	arterial	302	0.044	1.266	0.064
+FJ2648	Diagonal branch of anterior descending branch of left coronary artery	FMA3860	arterial	286	0.076	1.295	0.045
+FJ2649	Circumflex branch of left coronary artery	FMA3895	arterial	646	0.042	1.317	0.004
+FJ2650	Circumflex branch of left coronary artery	FMA3895	arterial	374	0.058	1.286	-0.007
+FJ2651	Circumflex branch of left coronary artery	FMA3895	arterial	448	0.067	1.293	0.004
+FJ2652	Circumflex branch of left coronary artery	FMA3895	arterial	298	0.066	1.280	0.002
+FJ2653	Circumflex branch of left coronary artery	FMA3895	arterial	248	0.075	1.272	0.024
+FJ2654	Circumflex branch of left coronary artery	FMA3895	arterial	166	0.075	1.268	0.037
+FJ2655	Coronary sinus	FMA4706	venous	602	0.019	1.285	-0.002
+FJ2656	Great cardiac vein	FMA4707	venous	608	0.044	1.312	0.004
+FJ2657	Anterior interventricular vein	FMA66403	venous	318	0.058	1.272	0.062
+FJ2658	Anterior interventricular vein	FMA66403	venous	404	0.047	1.292	0.067
+FJ2659	Anterior interventricular vein	FMA66403	venous	420	0.061	1.285	0.063
+FJ2660	Anterior interventricular vein	FMA66403	venous	232	0.069	1.273	0.061
+FJ2661	Anterior interventricular vein	FMA66403	venous	412	0.048	1.312	0.060
+FJ2662	Anterior interventricular vein	FMA66403	venous	236	0.059	1.319	0.040
+FJ2663	Anterior interventricular vein	FMA66403	venous	258	0.070	1.308	0.042
+FJ2664	Anterior interventricular vein	FMA66403	venous	208	0.068	1.314	0.034
+FJ2665	Anterior interventricular vein	FMA66403	venous	430	0.053	1.295	0.046
+FJ2667	Marginal branch of right coronary artery	FMA3818	arterial	334	0.024	1.278	0.072
+FJ2668	Marginal branch of right coronary artery	FMA3818	arterial	216	0.030	1.282	0.073
+FJ2670	Right conus artery	FMA3807	arterial	426	0.017	1.331	0.061
+FJ2671	First anterior ventricular branch of right coronary artery	FMA3815	arterial	442	0.012	1.312	0.068
+FJ2672	Marginal branch of right coronary artery	FMA3818	arterial	558	0.006	1.285	0.066
+FJ2673	First anterior ventricular branch of right coronary artery	FMA3815	arterial	318	0.022	1.306	0.074
+FJ2674	Marginal branch of right coronary artery	FMA3818	arterial	284	0.010	1.280	0.069
+FJ2675	Marginal branch of right coronary artery	FMA3818	arterial	200	-0.003	1.286	0.065
+FJ2676	Right conus artery	FMA3807	arterial	292	0.026	1.334	0.064
+FJ2677	First anterior ventricular branch of right coronary artery	FMA3815	arterial	248	0.028	1.307	0.075
+FJ2678	Middle cardiac vein	FMA4713	venous	462	0.036	1.270	0.030
+FJ2679	Middle cardiac vein	FMA4713	venous	252	0.040	1.255	0.046
+FJ2680	Middle cardiac vein	FMA4713	venous	362	0.057	1.255	0.038
+FJ2681	Middle cardiac vein	FMA4713	venous	200	0.058	1.258	0.051
+FJ2682	Middle cardiac vein	FMA4713	venous	360	0.063	1.257	0.046
+FJ2683	Middle cardiac vein	FMA4713	venous	168	0.067	1.260	0.053
+FJ2684	Middle cardiac vein	FMA4713	venous	258	0.020	1.259	0.033
+FJ2685	Middle cardiac vein	FMA4713	venous	234	0.028	1.256	0.046
+FJ2686	Middle cardiac vein	FMA4713	venous	274	0.024	1.258	0.047
+FJ2687	Middle cardiac vein	FMA4713	venous	542	0.017	1.264	0.020
+FJ2688	Middle cardiac vein	FMA4713	venous	298	0.026	1.259	0.015
+FJ2689	Middle cardiac vein	FMA4713	venous	268	0.047	1.255	0.035
+FJ2690	Middle cardiac vein	FMA4713	venous	354	0.043	1.256	0.045
+FJ2691	Middle cardiac vein	FMA4713	venous	156	0.045	1.254	0.032
+FJ2692	Posterior interventricular branch of right coronary artery	FMA3840	arterial	466	0.032	1.261	0.035
+FJ2693	Posterior interventricular branch of right coronary artery	FMA3840	arterial	408	0.028	1.261	0.028
+FJ2694	Posterior interventricular branch of right coronary artery	FMA3840	arterial	392	0.026	1.258	0.020
+FJ2695	Posterior interventricular branch of right coronary artery	FMA3840	arterial	236	0.042	1.255	0.032
+FJ2696	Posterior interventricular branch of right coronary artery	FMA3840	arterial	304	0.025	1.258	0.041
+FJ2697	Posterior interventricular branch of right coronary artery	FMA3840	arterial	218	0.040	1.255	0.047
+FJ2698	Posterior interventricular branch of right coronary artery	FMA3840	arterial	198	0.042	1.256	0.050
+FJ2699	Posterior interventricular branch of right coronary artery	FMA3840	arterial	126	0.064	1.258	0.052
+FJ2700	Posterior interventricular branch of right coronary artery	FMA3840	arterial	280	0.060	1.258	0.052
+FJ2701	Posterior vein of left ventricle	FMA4712	venous	490	0.044	1.268	0.012
+FJ2702	Posterior vein of left ventricle	FMA4712	venous	252	0.072	1.263	0.039
+FJ2703	Left marginal vein	FMA4708	venous	416	0.059	1.283	0.011
+FJ2704	Left marginal vein	FMA4708	venous	274	0.075	1.272	0.025
+FJ2705	Left marginal vein	FMA4708	venous	236	0.059	1.284	-0.006
+FJ2706	Posterior vein of left ventricle	FMA4712	venous	344	0.039	1.268	-0.006
+FJ2707	Posterior vein of left ventricle	FMA4712	venous	496	0.045	1.257	0.012
+FJ2708	Posterior vein of left ventricle	FMA4712	venous	434	0.059	1.264	0.007
+FJ2709	Posterior vein of left ventricle	FMA4712	venous	422	0.062	1.256	0.024
+FJ2710	Posterior vein of left ventricle	FMA4712	venous	224	0.042	1.272	-0.010
+FJ2711	Posterior vein of left ventricle	FMA4712	venous	182	0.045	1.254	0.020
+FJ2712	Posterior vein of left ventricle	FMA4712	venous	126	0.068	1.260	0.023
+FJ2713	Posterior vein of left ventricle	FMA4712	venous	300	0.073	1.265	0.037
+FJ2714	First posterior ventricular branch of right coronary artery	FMA3837	arterial	488	0.044	1.264	0.012
+FJ2715	First posterior ventricular branch of right coronary artery	FMA3837	arterial	218	0.071	1.261	0.032
+FJ2716	First posterior ventricular branch of right coronary artery	FMA3837	arterial	232	0.070	1.260	0.034
+FJ2717	First posterior ventricular branch of right coronary artery	FMA3837	arterial	332	0.034	1.270	-0.008
+FJ2718	First posterior ventricular branch of right coronary artery	FMA3837	arterial	186	0.042	1.264	-0.003
+FJ2719	First posterior ventricular branch of right coronary artery	FMA3837	arterial	376	0.045	1.257	0.011
+FJ2720	First posterior ventricular branch of right coronary artery	FMA3837	arterial	318	0.059	1.263	0.008
+FJ2721	First posterior ventricular branch of right coronary artery	FMA3837	arterial	254	0.067	1.262	0.018
+FJ2722	First posterior ventricular branch of right coronary artery	FMA3837	arterial	308	0.062	1.255	0.026
+FJ2723	Trunk of right coronary artery	FMA3802	arterial	990	-0.001	1.303	0.028
+FJ2724	Small cardiac vein	FMA4714	venous	402	-0.011	1.300	0.054
+FJ2725	Anterior cardiac vein	FMA76767	venous	392	0.013	1.314	0.067
+FJ2727	Right marginal vein	FMA4716	venous	518	0.017	1.271	0.053
+FJ2728	Right marginal vein	FMA4716	venous	274	-0.001	1.286	0.066
+FJ2729	Right marginal vein	FMA4716	venous	216	0.020	1.276	0.070
+FJ2730	Anterior cardiac vein	FMA76767	venous	270	0.021	1.306	0.075
+FJ2731	Small cardiac vein	FMA4714	venous	750	-0.007	1.273	0.032
+FJ2732	Septal branch of anterior interventricular artery	FMA3892	arterial	466	0.051	1.287	0.059
+FJ2733	Septal branch of anterior interventricular artery	FMA3892	arterial	328	0.048	1.302	0.057
+FJ2734	Septal branch of anterior interventricular artery	FMA3892	arterial	332	0.048	1.318	0.046
+FJ2735	First septal branch of right posterior interventricular artery	FMA3847	arterial	324	0.012	1.270	0.023
+FJ2736	Second septal branch of right posterior interventricular artery	FMA3848	arterial	318	0.026	1.266	0.030
+FJ2737	Trunk of left coronary artery	FMA3855	arterial	204	0.029	1.335	0.020
+FJ2738	Left genioglossus	FMA46702	muscular	2542	0.003	1.520	0.041
+FJ2739	Left hyoglossus	FMA46704	muscular	1392	0.008	1.515	0.037
+FJ2740	Left inferior pharyngeal constrictor	FMA46636	respiratory	2178	0.009	1.496	-0.006
+FJ2741	Left levator veli palatini	FMA46729	muscular	2708	0.016	1.558	-0.001
+FJ2742	Right middle pharyngeal constrictor	FMA46633	respiratory	2536	0.008	1.528	0.007
+FJ2743	Left palatopharyngeus	FMA46672	respiratory	9108	0.008	1.510	-0.003
+FJ2744	Left pterygomandibular raphe	FMA55620	connective	570	0.030	1.550	0.024
+FJ2745	Left salpingopharyngeus	FMA46670	respiratory	2012	0.014	1.556	-0.004
+FJ2746	Left stylopharyngeus	FMA46668	respiratory	978	0.025	1.534	-0.004
+FJ2747	Left superior pharyngeal constrictor	FMA46632	respiratory	3378	0.016	1.551	0.011
+FJ2748	Left tensor veli palatini	FMA46732	muscular	3050	0.009	1.560	0.010
+FJ2749	Pharyngeal raphe	FMA55077	connective	4006	-0.001	1.521	-0.008
+FJ2750	Right genioglossus	FMA46698	muscular	2080	-0.005	1.520	0.041
+FJ2751	Right hyoglossus	FMA46703	muscular	1352	-0.009	1.515	0.037
+FJ2752	Right inferior pharyngeal constrictor	FMA46635	respiratory	2216	-0.010	1.496	-0.006
+FJ2753	Right levator veli palatini	FMA46728	muscular	2708	-0.018	1.558	-0.001
+FJ2754	Left middle pharyngeal constrictor	FMA46634	respiratory	2508	-0.010	1.528	0.007
+FJ2755	Right palatopharyngeus	FMA46671	respiratory	9108	-0.010	1.510	-0.003
+FJ2756	Right pterygomandibular raphe	FMA55619	connective	544	-0.031	1.550	0.024
+FJ2757	Right salpingopharyngeus	FMA46669	respiratory	2012	-0.015	1.556	-0.004
+FJ2758	Right stylopharyngeus	FMA46667	respiratory	5664	-0.027	1.527	-0.004
+FJ2759	Right superior pharyngeal constrictor	FMA46631	respiratory	3418	-0.017	1.551	0.011
+FJ2760	Right tensor veli palatini	FMA46731	muscular	3050	-0.010	1.560	0.010
+FJ2761	Tongue	FMA54640	digestive	502	-0.001	1.527	0.040
+FJ2762	Uvular muscle	FMA46733	muscular	1254	-0.001	1.551	0.000
+FJ2763	Left stylohyoid ligament	FMA72311	connective	1266	0.026	1.534	0.005
+FJ2764	Right stylohyoid ligament	FMA72309	connective	1266	-0.028	1.534	0.005
+FJ2765	Left sublingual gland	FMA59805	digestive	230	0.014	1.526	0.052
+FJ2766	Left submandibular gland	FMA59803	digestive	228	0.022	1.528	0.030
+FJ2767	Right sublingual gland	FMA59804	digestive	240	-0.015	1.526	0.052
+FJ2768	Right submandibular gland	FMA59802	digestive	226	-0.024	1.528	0.030
+FJ2769	Cricoid cartilage	FMA9615	skeletal	1514	-0.001	1.474	0.002
+FJ2770	Epiglottis	FMA55130	respiratory	1780	-0.001	1.502	0.012
+FJ2771	Hyo-epiglottic ligament	FMA55227	connective	1028	-0.001	1.502	0.018
+FJ2772	Hyoid bone	FMA52749	skeletal	1036	-0.001	1.510	0.012
+FJ2773	Left cuneiform cartilage	FMA55118	skeletal	174	0.004	1.494	0.002
+FJ2774	Left aryepiglotticus	FMA46605	muscular	2602	0.006	1.499	0.003
+FJ2775	Left arytenoid cartilage	FMA55114	skeletal	528	0.004	1.486	-0.001
+FJ2776	Left corniculate cartilage	FMA55116	skeletal	134	0.002	1.490	-0.004
+FJ2777	Left conus elasticus	FMA55252	connective	1626	0.002	1.476	0.007
+FJ2778	Left lateral crico-arytenoid	FMA46581	muscular	2266	0.008	1.478	0.002
+FJ2779	Left lateral thyrohyoid ligament	FMA55141	connective	694	0.017	1.512	-0.005
+FJ2780	Left oblique arytenoid	FMA46585	muscular	2008	-0.001	1.485	-0.005
+FJ2781	Oblique part of left cricothyroid	FMA46614	muscular	2498	0.008	1.473	0.002
+FJ2782	Left posterior crico-arytenoid	FMA46578	muscular	2098	0.006	1.476	-0.004
+FJ2783	Straight part of left cricothyroid	FMA46612	muscular	2096	0.006	1.472	0.008
+FJ2784	Left thyro-arytenoid	FMA46590	muscular	1928	0.004	1.485	0.006
+FJ2785	Left thyro-arytenoid	FMA46590	muscular	2636	0.003	1.496	0.008
+FJ2786	Left thyrohyoid membrane	FMA55134	connective	1612	0.011	1.505	0.008
+FJ2787	Left vocal ligament	FMA55246	connective	1116	0.001	1.482	0.008
+FJ2788	Left vocalis	FMA46593	muscular	252	0.002	1.483	0.008
+FJ2789	Median cricothyroid ligament	FMA55237	connective	1236	-0.001	1.476	0.013
+FJ2790	Median thyrohyoid ligament	FMA55138	connective	1598	-0.001	1.493	0.022
+FJ2791	Right aryepiglotticus	FMA46604	muscular	2066	-0.002	1.499	0.003
+FJ2792	Right arytenoid cartilage	FMA55113	skeletal	534	-0.005	1.486	-0.001
+FJ2793	Right corniculate cartilage	FMA55115	skeletal	172	-0.004	1.490	-0.004
+FJ2794	Right conus elasticus	FMA55251	connective	2412	-0.006	1.476	0.007
+FJ2795	Right cuneiform cartilage	FMA55117	skeletal	170	-0.005	1.494	0.001
+FJ2796	Right lateral crico-arytenoid	FMA46580	muscular	2206	-0.010	1.478	0.002
+FJ2797	Right lateral thyrohyoid ligament	FMA55140	connective	716	-0.018	1.512	-0.005
+FJ2798	Right oblique arytenoid	FMA46584	muscular	1966	-0.000	1.485	-0.005
+FJ2799	Oblique part of right cricothyroid	FMA46613	muscular	2460	-0.009	1.473	0.002
+FJ2800	Right posterior crico-arytenoid	FMA46577	muscular	2094	-0.007	1.476	-0.004
+FJ2801	Straight part of right cricothyroid	FMA46611	muscular	1160	-0.007	1.472	0.008
+FJ2802	Right thyro-arytenoid	FMA46589	muscular	1970	-0.005	1.485	0.006
+FJ2803	Right thyro-arytenoid	FMA46589	muscular	2870	-0.005	1.496	0.008
+FJ2804	Right thyrohyoid membrane	FMA55133	connective	1496	-0.012	1.505	0.008
+FJ2805	Right vocal ligament	FMA55245	connective	600	-0.003	1.482	0.008
+FJ2806	Right vocalis	FMA46592	muscular	252	-0.003	1.483	0.008
+FJ2807	Thyro-epiglottic ligament	FMA55230	connective	878	-0.001	1.486	0.016
+FJ2808	Thyroid cartilage	FMA55099	skeletal	2058	-0.001	1.489	0.007
+FJ2809	Transverse arytenoid	FMA46582	muscular	2914	-0.001	1.485	-0.004
+FJ2810	Skin	FMA7163	integumentary	44744	-0.001	0.860	0.001
+FJ2811	External ear	FMA52781	sensory	1350	-0.001	1.586	-0.015
+FJ2812	Eyebrow	FMA54237	integumentary	6174	-0.001	1.618	0.069
+FJ2813	Hair of head	FMA54241	integumentary	5592	-0.001	1.627	-0.029
+FJ2814	Lip	FMA59816	integumentary	1134	-0.001	1.535	0.083
+FJ2815	Pubic hair	FMA54319	integumentary	2718	-0.001	0.875	0.069
+FJ2816	Caudate lobe of liver	FMA13365	digestive	1176	-0.011	1.209	0.022
+FJ2817	Gallbladder	FMA7202	digestive	1292	-0.045	1.149	0.054
+FJ2818	Hepatovenous segment II	FMA15739	venous	3150	0.048	1.224	0.046
+FJ2819	Hepatovenous segment III	FMA15741	venous	2270	0.036	1.198	0.061
+FJ2820	Hepatovenous segment IV	FMA15742	venous	3946	-0.017	1.198	0.061
+FJ2821	Hepatovenous segment V	FMA15743	venous	2516	-0.065	1.159	0.053
+FJ2822	Hepatovenous segment VI	FMA15744	venous	4278	-0.068	1.147	0.005
+FJ2823	Hepatovenous segment VIII	FMA15746	venous	4214	-0.068	1.211	-0.002
+FJ2824	Hepatovenous segment VIII	FMA15746	venous	4750	-0.063	1.224	0.035
+FJ2881	Left posterior basal segmental artery	FMA8647	arterial	384	0.073	1.268	-0.051
+FJ2882	Left lateral basal segmental artery	FMA8646	arterial	58	0.106	1.231	-0.047
+FJ2883	Left anterior basal segmental artery	FMA8645	arterial	528	0.091	1.280	-0.006
+FJ2884	Left medial basal segmental artery	FMA8644	arterial	330	0.093	1.278	0.002
+FJ2885	Left medial basal segmental artery	FMA8644	arterial	320	0.100	1.290	-0.014
+FJ2886	Left anterior basal segmental artery	FMA8645	arterial	122	0.117	1.234	-0.003
+FJ2887	Left anterior basal segmental artery	FMA8645	arterial	102	0.117	1.248	0.005
+FJ2888	Left superior segmental artery	FMA8642	arterial	552	0.047	1.353	-0.046
+FJ2889	Left superior segmental artery	FMA8642	arterial	94	0.050	1.363	-0.059
+FJ2890	Left superior segmental artery	FMA8642	arterial	110	0.061	1.354	-0.055
+FJ2891	Left superior segmental artery	FMA8642	arterial	356	0.048	1.325	-0.040
+FJ2892	Left posterior basal segmental artery	FMA8647	arterial	140	0.078	1.225	-0.067
+FJ2893	Left superior segmental artery	FMA8642	arterial	122	0.046	1.315	-0.046
+FJ2894	Left superior segmental artery	FMA8642	arterial	380	0.066	1.337	-0.050
+FJ2895	Left superior segmental artery	FMA8642	arterial	130	0.081	1.328	-0.053
+FJ2896	Inferior lingular artery	FMA8640	arterial	464	0.073	1.302	0.018
+FJ2897	Inferior lingular artery	FMA8640	arterial	348	0.097	1.287	0.034
+FJ2898	Superior lingular artery	FMA8639	arterial	460	0.078	1.327	-0.004
+FJ2899	Superior lingular artery	FMA8639	arterial	84	0.106	1.315	0.013
+FJ2900	Superior lingular artery	FMA8639	arterial	208	0.096	1.334	-0.012
+FJ2901	Superior lingular artery	FMA8639	arterial	200	0.102	1.329	-0.016
+FJ2902	Left anterior segmental artery	FMA13279	arterial	526	0.067	1.355	-0.008
+FJ2903	Left posterior basal segmental artery	FMA8647	arterial	360	0.061	1.254	-0.056
+FJ2904	Left anterior segmental artery	FMA13279	arterial	210	0.086	1.350	0.017
+FJ2905	Left anterior segmental artery	FMA13279	arterial	278	0.081	1.360	0.020
+FJ2906	Left anterior segmental artery	FMA13279	arterial	382	0.052	1.342	0.019
+FJ2907	Left anterior segmental artery	FMA13279	arterial	150	0.049	1.349	0.035
+FJ2908	Left anterior segmental artery	FMA13279	arterial	544	0.047	1.360	0.004
+FJ2909	Left anterior segmental artery	FMA13279	arterial	120	0.053	1.363	0.026
+FJ2910	Left anterior segmental artery	FMA13279	arterial	190	0.063	1.359	0.023
+FJ2911	Left posterior segmental artery	FMA8635	arterial	298	0.056	1.374	-0.030
+FJ2912	Left posterior segmental artery	FMA8635	arterial	148	0.075	1.383	-0.034
+FJ2913	Left posterior segmental artery	FMA8635	arterial	192	0.072	1.373	-0.028
+FJ2914	Left posterior basal segmental artery	FMA8647	arterial	90	0.053	1.231	-0.066
+FJ2915	Left apical segmental artery	FMA8634	arterial	356	0.040	1.390	-0.012
+FJ2916	Left apical segmental artery	FMA8634	arterial	170	0.049	1.401	-0.021
+FJ2917	Left apical segmental artery	FMA8634	arterial	194	0.032	1.415	-0.009
+FJ2918	Left apical segmental artery	FMA8634	arterial	186	0.052	1.400	-0.017
+FJ2919	Left posterior basal segmental artery	FMA8647	arterial	400	0.070	1.286	-0.057
+FJ2920	Left posterior basal segmental artery	FMA8647	arterial	216	0.062	1.259	-0.063
+FJ2921	Left lateral basal segmental artery	FMA8646	arterial	376	0.093	1.269	-0.026
+FJ2922	Left lateral basal segmental artery	FMA8646	arterial	206	0.101	1.239	-0.042
+FJ2923	Left lateral basal segmental artery	FMA8646	arterial	220	0.115	1.219	-0.026
+FJ2924	Left pulmonary artery	FMA50873	arterial	1198	0.047	1.338	-0.003
+FJ2925	Left superior pulmonary vein	FMA49916	venous	414	0.045	1.340	-0.009
+FJ2926	Left posterior segmental vein	FMA9438	venous	224	0.063	1.375	-0.008
+FJ2927	Left posterior segmental vein	FMA9438	venous	316	0.047	1.379	-0.019
+FJ2928	Left posterior segmental vein	FMA9438	venous	304	0.063	1.382	-0.020
+FJ2929	Left posterior segmental vein	FMA9438	venous	148	0.083	1.386	-0.024
+FJ2930	Left anterior segmental vein	FMA8667	venous	378	0.067	1.337	0.005
+FJ2931	Left anterior segmental vein	FMA8667	venous	224	0.079	1.335	0.015
+FJ2932	Left anterior segmental vein	FMA8667	venous	126	0.082	1.331	0.020
+FJ2933	Left superior pulmonary vein	FMA49916	venous	448	0.058	1.317	-0.004
+FJ2934	Inferior lingular vein	FMA8669	venous	252	0.084	1.279	0.032
+FJ2935	Inferior lingular vein	FMA8669	venous	134	0.091	1.266	0.040
+FJ2936	Left apical segmental vein	FMA9437	venous	204	0.041	1.389	-0.006
+FJ2937	Superior lingular vein	FMA8668	venous	316	0.069	1.318	0.017
+FJ2938	Superior lingular vein	FMA8668	venous	170	0.071	1.311	0.029
+FJ2939	Left posterior segmental vein	FMA9438	venous	462	0.059	1.318	-0.045
+FJ2940	Left posterior segmental vein	FMA9438	venous	112	0.073	1.326	-0.060
+FJ2941	Left posterior segmental vein	FMA9438	venous	190	0.066	1.313	-0.067
+FJ2942	Left posterior segmental vein	FMA9438	venous	168	0.065	1.312	-0.069
+FJ2943	Left posterior segmental vein	FMA9438	venous	174	0.075	1.311	-0.063
+FJ2944	Left inferior pulmonary vein	FMA49913	venous	310	0.049	1.294	-0.034
+FJ2945	Left posterior basal segmental vein	FMA9451	venous	298	0.056	1.253	-0.047
+FJ2946	Left posterior basal segmental vein	FMA9451	venous	194	0.057	1.232	-0.053
+FJ2947	Left apical segmental vein	FMA9437	venous	174	0.033	1.410	-0.004
+FJ2948	Left posterior basal segmental vein	FMA9451	venous	102	0.062	1.228	-0.066
+FJ2949	Left posterior basal segmental vein	FMA9451	venous	182	0.063	1.236	-0.062
+FJ2950	Left inferior pulmonary vein	FMA49913	venous	324	0.052	1.298	-0.022
+FJ2951	Left lateral basal segmental vein	FMA9450	venous	264	0.085	1.249	-0.029
+FJ2952	Left lateral basal segmental vein	FMA9450	venous	142	0.106	1.224	-0.029
+FJ2953	Left lateral basal segmental vein	FMA9450	venous	158	0.097	1.263	-0.020
+FJ2954	Left lateral basal segmental vein	FMA9450	venous	108	0.105	1.248	-0.016
+FJ2955	Left inferior pulmonary vein	FMA49913	venous	522	0.053	1.303	-0.019
+FJ2956	Left anterior basal segmental vein	FMA8678	venous	224	0.093	1.258	0.003
+FJ2957	Left anterior basal segmental vein	FMA8678	venous	134	0.110	1.250	0.021
+FJ2958	Left apical segmental vein	FMA9437	venous	294	0.051	1.396	-0.005
+FJ2959	Left anterior basal segmental vein	FMA8678	venous	374	0.089	1.272	0.009
+FJ2960	Left anterior basal segmental vein	FMA8678	venous	150	0.093	1.282	0.000
+FJ2961	Left apical segmental vein	FMA9437	venous	188	0.043	1.380	0.010
+FJ2962	Left apical segmental vein	FMA9437	venous	198	0.050	1.379	0.016
+FJ2963	Left apical segmental vein	FMA9437	venous	112	0.063	1.397	-0.003
+FJ2964	Left apical segmental vein	FMA9437	venous	174	0.056	1.405	-0.003
+FJ2965	Left posterior segmental vein	FMA9438	venous	142	0.074	1.377	-0.014
+FJ2966	Pulmonary trunk	FMA8612	arterial	958	0.027	1.353	0.038
+FJ2967	Apical part of right apical segmental artery	FMA68662	arterial	320	-0.033	1.388	-0.006
+FJ2968	Apical part of right posterior segmental artery	FMA68670	arterial	90	-0.067	1.392	-0.050
+FJ2969	Apical part of right posterior segmental artery	FMA68670	arterial	120	-0.063	1.382	-0.054
+FJ2970	Posterior part of right posterior segmental artery	FMA68673	arterial	438	-0.059	1.352	-0.032
+FJ2971	Posterior part of right posterior segmental artery	FMA68673	arterial	124	-0.089	1.359	-0.040
+FJ2972	Posterior part of right posterior segmental artery	FMA68673	arterial	196	-0.081	1.360	-0.053
+FJ2973	Right upper lobar artery	FMA68197	arterial	400	-0.020	1.357	-0.004
+FJ2974	Posterior branch of right anterior segmental artery	FMA68677	arterial	288	-0.065	1.363	-0.004
+FJ2975	Anterior branch of right anterior segmental artery	FMA68683	arterial	216	-0.036	1.354	0.022
+FJ2976	Anterior branch of right anterior segmental artery	FMA68683	arterial	96	-0.027	1.348	0.040
+FJ2977	Anterior branch of right anterior segmental artery	FMA68683	arterial	160	-0.047	1.349	0.037
+FJ2978	Anterior part of right apical segmental artery	FMA68665	arterial	200	-0.033	1.398	-0.017
+FJ2979	Anterior branch of right anterior segmental artery	FMA68683	arterial	124	-0.043	1.360	0.031
+FJ2980	Posterior branch of right anterior segmental artery	FMA68677	arterial	110	-0.085	1.365	-0.004
+FJ2981	Posterior branch of right anterior segmental artery	FMA68677	arterial	318	-0.077	1.357	0.003
+FJ2982	Anterior branch of lateral segmental artery	FMA68691	arterial	308	-0.080	1.295	0.021
+FJ2983	Posterior branch of lateral segmental artery	FMA68690	arterial	182	-0.087	1.306	0.010
+FJ2984	Posterior branch of lateral segmental artery	FMA68690	arterial	66	-0.098	1.311	0.004
+FJ2985	Anterior branch of lateral segmental artery	FMA68691	arterial	74	-0.089	1.279	0.036
+FJ2986	Superior branch of medial segmental artery	FMA68693	arterial	64	-0.058	1.285	0.060
+FJ2987	Inferior branch of medial segmental artery	FMA68694	arterial	100	-0.040	1.282	0.045
+FJ2988	Inferior branch of medial segmental artery	FMA68694	arterial	170	-0.048	1.299	0.040
+FJ2989	Anterior part of right apical segmental artery	FMA68665	arterial	430	-0.029	1.412	-0.030
+FJ2990	Superior branch of medial segmental artery	FMA68693	arterial	448	-0.057	1.312	0.022
+FJ2991	Lateral branch of right superior segmental artery	FMA68712	arterial	302	-0.060	1.328	-0.046
+FJ2992	Lateral branch of right superior segmental artery	FMA68712	arterial	166	-0.067	1.334	-0.057
+FJ2993	Lateral branch of right superior segmental artery	FMA68712	arterial	52	-0.077	1.331	-0.058
+FJ2994	Medial branch of right superior segmental artery	FMA68706	arterial	226	-0.038	1.319	-0.051
+FJ2995	Medial branch of right superior segmental artery	FMA68706	arterial	422	-0.047	1.315	-0.071
+FJ2996	Medial branch of right superior segmental artery	FMA68706	arterial	266	-0.037	1.324	-0.065
+FJ2997	Superior branch of right superior segmental artery	FMA68709	arterial	278	-0.049	1.352	-0.042
+FJ2998	Superior branch of right superior segmental artery	FMA68709	arterial	230	-0.058	1.361	-0.058
+FJ2999	Superior branch of right superior segmental artery	FMA68709	arterial	468	-0.041	1.352	-0.053
+FJ3000	Anterior part of right apical segmental artery	FMA68665	arterial	192	-0.029	1.417	-0.028
+FJ3001	Lateral branch of right anterior basal segmental artery	FMA68725	arterial	382	-0.077	1.301	-0.029
+FJ3002	Basal branch of right anterior basal segmental artery	FMA68723	arterial	130	-0.096	1.280	-0.018
+FJ3003	Basal branch of right anterior basal segmental artery	FMA68723	arterial	254	-0.106	1.270	-0.011
+FJ3004	Lateral branch of right lateral basal segmental artery	FMA68728	arterial	190	-0.101	1.231	-0.050
+FJ3005	Lateral branch of right lateral basal segmental artery	FMA68728	arterial	294	-0.080	1.258	-0.044
+FJ3006	Lateral branch of right lateral basal segmental artery	FMA68728	arterial	360	-0.085	1.264	-0.048
+FJ3007	Lateral branch of right lateral basal segmental artery	FMA68728	arterial	254	-0.086	1.260	-0.044
+FJ3008	Mediobasal branch of right posterior basal segmental artery	FMA68741	arterial	252	-0.053	1.264	-0.044
+FJ3009	Accessory subsuperior branch of right posterior basal segmental artery	FMA68735	arterial	138	-0.047	1.270	-0.051
+FJ3010	Accessory subsuperior branch of right posterior basal segmental artery	FMA68735	arterial	68	-0.045	1.257	-0.059
+FJ3011	Anterior part of right apical segmental artery	FMA68665	arterial	152	-0.033	1.422	-0.023
+FJ3012	Mediobasal branch of right posterior basal segmental artery	FMA68741	arterial	70	-0.052	1.221	-0.063
+FJ3013	Laterobasal branch of right posterior basal segmental artery	FMA68738	arterial	408	-0.066	1.244	-0.064
+FJ3014	Laterobasal branch of right posterior basal segmental artery	FMA68738	arterial	336	-0.064	1.236	-0.068
+FJ3015	Apical part of right apical segmental artery	FMA68662	arterial	110	-0.039	1.413	-0.009
+FJ3016	Apical part of right apical segmental artery	FMA68662	arterial	324	-0.036	1.399	0.003
+FJ3017	Apical part of right apical segmental artery	FMA68662	arterial	202	-0.039	1.403	0.007
+FJ3018	Apical part of right posterior segmental artery	FMA68670	arterial	804	-0.045	1.381	-0.030
+FJ3019	Right pulmonary artery	FMA50872	arterial	668	-0.011	1.337	-0.003
+FJ3020	Right superior pulmonary vein	FMA49914	venous	324	-0.026	1.326	-0.003
+FJ3021	Inferior part of right anterior segmental vein	FMA68928	venous	252	-0.036	1.339	0.021
+FJ3022	Right posterior segmental vein	FMA8663	venous	218	-0.051	1.341	-0.017
+FJ3023	Right posterior segmental vein	FMA8663	venous	166	-0.068	1.371	-0.030
+FJ3024	Right posterior segmental vein	FMA8663	venous	110	-0.074	1.373	-0.044
+FJ3025	Right posterior segmental vein	FMA8663	venous	164	-0.050	1.402	-0.022
+FJ3026	Right posterior segmental vein	FMA8663	venous	188	-0.051	1.404	-0.033
+FJ3027	Superior part of right anterior segmental vein	FMA68926	venous	298	-0.046	1.354	0.017
+FJ3028	Right anterior segmental vein	FMA8662	venous	194	-0.064	1.344	0.003
+FJ3029	Right anterior segmental vein	FMA8662	venous	124	-0.078	1.347	0.004
+FJ3030	Superior part of medial segmental vein	FMA68982	venous	420	-0.034	1.301	0.028
+FJ3031	Trunk of right apical segmental vein	FMA68880	venous	264	-0.031	1.353	0.005
+FJ3032	Inferior part of medial segmental vein	FMA68983	venous	448	-0.033	1.298	0.019
+FJ3033	Inferior part of medial segmental vein	FMA68983	venous	100	-0.049	1.279	0.036
+FJ3034	Anterior part of lateral segmental vein	FMA68945	venous	382	-0.046	1.305	0.002
+FJ3035	Anterior part of lateral segmental vein	FMA68945	venous	204	-0.088	1.291	0.017
+FJ3036	Anterior part of lateral segmental vein	FMA68945	venous	302	-0.081	1.303	0.003
+FJ3037	Posterior part of lateral segmental vein	FMA68944	venous	334	-0.064	1.293	0.029
+FJ3038	Posterior part of lateral segmental vein	FMA68944	venous	232	-0.083	1.286	0.037
+FJ3039	Posterior part of lateral segmental vein	FMA68944	venous	206	-0.068	1.282	0.046
+FJ3040	Right inferior pulmonary vein	FMA49911	venous	196	-0.020	1.298	-0.017
+FJ3041	Right posterior basal segmental vein	FMA9428	venous	302	-0.058	1.254	-0.040
+FJ3042	Anterior part of right apical segmental vein	FMA68921	venous	188	-0.030	1.384	0.014
+FJ3043	Right posterior basal segmental vein	FMA9428	venous	234	-0.042	1.246	-0.039
+FJ3044	Right posterior basal segmental vein	FMA9428	venous	120	-0.040	1.237	-0.051
+FJ3045	Right posterior basal segmental vein	FMA9428	venous	204	-0.059	1.247	-0.051
+FJ3046	Right posterior basal segmental vein	FMA9428	venous	172	-0.062	1.251	-0.044
+FJ3047	Right posterior basal segmental vein	FMA9428	venous	218	-0.088	1.234	-0.052
+FJ3048	Right posterior basal segmental vein	FMA9428	venous	170	-0.091	1.227	-0.058
+FJ3049	Right anterior basal segmental vein	FMA8673	venous	304	-0.046	1.285	-0.040
+FJ3050	Right superior segmental vein	FMA8670	venous	342	-0.062	1.299	-0.027
+FJ3051	Right superior segmental vein	FMA8670	venous	308	-0.054	1.317	-0.039
+FJ3052	Right superior segmental vein	FMA8670	venous	100	-0.073	1.325	-0.061
+FJ3053	Anterior part of right apical segmental vein	FMA68921	venous	178	-0.039	1.391	0.014
+FJ3054	Right medial basal segmental vein	FMA9422	venous	206	-0.060	1.318	-0.062
+FJ3055	Right medial basal segmental vein	FMA9422	venous	80	-0.050	1.319	-0.063
+FJ3056	Right anterior basal segmental vein	FMA8673	venous	250	-0.043	1.275	-0.046
+FJ3057	Right posterior basal segmental vein	FMA9428	venous	122	-0.038	1.271	-0.028
+FJ3058	Right posterior basal segmental vein	FMA9428	venous	170	-0.033	1.266	-0.027
+FJ3059	Right lateral basal segmental vein	FMA9425	venous	258	-0.071	1.268	-0.029
+FJ3060	Right lateral basal segmental vein	FMA9425	venous	150	-0.074	1.279	-0.019
+FJ3061	Right lateral basal segmental vein	FMA9425	venous	152	-0.105	1.267	-0.024
+FJ3062	Right lateral basal segmental vein	FMA9425	venous	190	-0.096	1.265	-0.025
+FJ3063	Right superior segmental vein	FMA8670	venous	134	-0.030	1.297	-0.033
+FJ3064	Apical part of right apical segmental vein	FMA8681	venous	226	-0.028	1.397	0.001
+FJ3065	Right superior segmental vein	FMA8670	venous	146	-0.036	1.297	-0.035
+FJ3066	Right superior segmental vein	FMA8670	venous	134	-0.059	1.291	-0.041
+FJ3067	Apical part of right apical segmental vein	FMA8681	venous	204	-0.029	1.404	-0.001
+FJ3068	Apical part of right apical segmental vein	FMA8681	venous	102	-0.023	1.410	0.000
+FJ3069	Right posterior segmental vein	FMA8663	venous	356	-0.043	1.341	-0.002
+FJ3070	Right posterior segmental vein	FMA8663	venous	216	-0.054	1.381	-0.022
+FJ3071	Anterior superior tributary of right hepatic biliary tree	FMA71867	digestive	466	-0.054	1.206	0.041
+FJ3072	Anterior inferior tributary of right hepatic biliary tree	FMA71868	digestive	846	-0.064	1.195	0.053
+FJ3073	Anterior superior segmental branch of right portal vein	FMA15420	venous	492	-0.048	1.206	0.040
+FJ3074	Anterior inferior segmental branch of right portal vein	FMA15421	venous	800	-0.065	1.196	0.030
+FJ3075	Anterior inferior segmental hepatic artery	FMA70443	arterial	814	-0.064	1.196	0.054
+FJ3076	Anterior superior segmental hepatic artery	FMA70442	arterial	476	-0.049	1.208	0.041
+FJ3077	Caudate lobe branch of left hepatic artery	FMA70455	arterial	344	-0.008	1.200	0.035
+FJ3078	Common hepatic artery	FMA14771	arterial	348	-0.005	1.158	0.035
+FJ3079	Common hepatic duct	FMA14668	digestive	626	-0.031	1.140	0.026
+FJ3080	Cystic duct	FMA14539	digestive	276	-0.025	1.163	0.033
+FJ3081	Hepatic artery proper	FMA14772	arterial	348	-0.017	1.175	0.045
+FJ3082	Pre-hepatic portal vein	FMA71904	venous	788	-0.014	1.165	0.034
+FJ3083	Anterior inferior segmental tributary of middle hepatic vein	FMA15800	venous	616	-0.044	1.203	0.045
+FJ3084	Medial inferior segmental tributary of middle hepatic vein	FMA15801	venous	664	-0.019	1.226	0.061
+FJ3085	Medial inferior segmental tributary of middle hepatic vein	FMA15801	venous	306	-0.028	1.210	0.078
+FJ3086	Anterior inferior segmental tributary of middle hepatic vein	FMA15800	venous	288	-0.062	1.175	0.073
+FJ3088	Lateral superior tributary of left hepatic biliary tree	FMA71887	digestive	408	0.031	1.222	0.043
+FJ3089	Lateral inferior tributary of left hepatic biliary tree	FMA71888	digestive	520	0.030	1.208	0.073
+FJ3090	Lateral superior tributary of left hepatic biliary tree	FMA71887	digestive	462	0.041	1.211	0.074
+FJ3091	Lateral superior segmental hepatic artery	FMA70452	arterial	370	0.030	1.224	0.044
+FJ3092	Lateral inferior segmental hepatic artery	FMA70453	arterial	442	0.029	1.207	0.074
+FJ3093	Lateral superior segmental hepatic artery	FMA70452	arterial	368	0.041	1.211	0.075
+FJ3094	Left duct of caudate lobe of liver	FMA76903	digestive	342	-0.008	1.199	0.036
+FJ3095	Trunk of left hepatic artery	FMA70457	arterial	698	-0.008	1.197	0.053
+FJ3096	Left hepatic duct	FMA14670	digestive	736	-0.009	1.193	0.049
+FJ3097	Lateral inferior segmental tributary of left hepatic vein	FMA15804	venous	654	-0.005	1.225	0.041
+FJ3098	Lateral superior segmental tributary of left hepatic vein	FMA15803	venous	566	0.020	1.217	0.051
+FJ3099	Lateral inferior segmental tributary of left hepatic vein	FMA15804	venous	366	0.023	1.206	0.065
+FJ3100	Lateral inferior segmental tributary of left hepatic vein	FMA15804	venous	348	0.033	1.205	0.072
+FJ3101	Medial superior segmental tributary of left hepatic vein	FMA15802	venous	554	-0.001	1.228	0.046
+FJ3102	Trunk of left portal vein	FMA82697	venous	704	-0.006	1.199	0.048
+FJ3103	Medial inferior tributary of left hepatic biliary tree	FMA71886	digestive	592	-0.007	1.195	0.075
+FJ3104	Medial superior tributary of left hepatic biliary tree	FMA71885	digestive	488	-0.016	1.217	0.060
+FJ3105	Medial superior tributary of left hepatic biliary tree	FMA71885	digestive	466	-0.021	1.219	0.072
+FJ3106	Medial inferior segmental hepatic artery	FMA70450	arterial	622	-0.009	1.199	0.076
+FJ3107	Medial superior segmental hepatic artery	FMA70449	arterial	530	-0.020	1.219	0.065
+FJ3108	Posterior inferior tributary of right hepatic biliary tree	FMA71870	digestive	618	-0.055	1.169	0.029
+FJ3109	Posterior superior tributary of right hepatic biliary tree	FMA71869	digestive	294	-0.059	1.199	-0.013
+FJ3110	Posterior superior tributary of right hepatic biliary tree	FMA71869	digestive	496	-0.069	1.194	-0.004
+FJ3111	Posterior inferior segmental branch of right portal vein	FMA15424	venous	646	-0.054	1.171	0.027
+FJ3112	Posterior superior segmental branch of right portal vein	FMA15423	venous	322	-0.061	1.201	-0.014
+FJ3113	Posterior superior segmental branch of right portal vein	FMA15423	venous	500	-0.059	1.186	0.003
+FJ3114	Posterior inferior segmental hepatic artery	FMA70446	arterial	520	-0.055	1.170	0.031
+FJ3115	Posterior superior segmental hepatic artery	FMA70445	arterial	522	-0.059	1.184	-0.002
+FJ3116	Posterior superior segmental hepatic artery	FMA70445	arterial	442	-0.069	1.204	-0.015
+FJ3117	Trunk of right hepatic artery	FMA70456	arterial	442	-0.024	1.188	0.048
+FJ3118	Posterior inferior segmental tributary of right hepatic vein	FMA15797	venous	546	-0.057	1.199	0.003
+FJ3119	Posterior superior segmental tributary of right hepatic vein	FMA15796	venous	558	-0.066	1.208	-0.021
+FJ3120	Posterior inferior segmental tributary of right hepatic vein	FMA15797	venous	478	-0.056	1.202	-0.017
+FJ3121	Anterior superior segmental tributary of right hepatic vein	FMA15798	venous	818	-0.070	1.197	0.007
+FJ3122	Trunk of right portal vein	FMA82695	venous	206	-0.022	1.187	0.041
+FJ3123	Right hepatic duct	FMA14669	digestive	226	-0.027	1.182	0.044
+FJ3124	Caudate lobe branch of left portal vein	FMA15425	venous	384	-0.002	1.204	0.033
+FJ3125	Lateral inferior segmental branch of left portal vein	FMA15432	venous	850	0.028	1.201	0.076
+FJ3126	Lateral superior segmental branch of left portal vein	FMA15431	venous	716	0.030	1.226	0.051
+FJ3127	Medial superior segmental branch of left portal vein	FMA15428	venous	950	-0.018	1.217	0.065
+FJ3128	Medial inferior segmental branch of left portal vein	FMA15429	venous	844	-0.007	1.197	0.077
+FJ3129	Left adrenal gland	FMA15630	endocrine	1578	0.051	1.164	-0.027
+FJ3130	Right adrenal gland	FMA15629	endocrine	1464	-0.047	1.145	-0.011
+FJ3131	Diaphragm	FMA13295	muscular	15074	-0.001	1.167	0.016
+FJ3132	Corpus cavernosum of penis	FMA19618	reproductive	1070	-0.001	0.827	0.030
+FJ3133	Corpus spongiosum of penis	FMA19617	reproductive	544	-0.001	0.823	0.031
+FJ3134	Glans penis	FMA18247	reproductive	1328	-0.001	0.801	0.088
+FJ3135	Left deferent duct	FMA19236	reproductive	822	0.053	0.854	0.004
+FJ3136	Left epididymis	FMA18257	reproductive	230	0.018	0.790	0.049
+FJ3137	Left seminal vesicle	FMA19388	reproductive	362	0.018	0.882	-0.035
+FJ3138	Left testis	FMA7212	reproductive	210	0.018	0.782	0.052
+FJ3139	Prostate	FMA9600	reproductive	442	-0.001	0.860	-0.020
+FJ3140	Right deferent duct	FMA19235	reproductive	736	-0.044	0.856	0.004
+FJ3141	Right epididymis	FMA18256	reproductive	76	-0.021	0.791	0.050
+FJ3142	Right testis	FMA7211	reproductive	212	-0.021	0.783	0.052
+FJ3143	Right seminal vesicle	FMA19387	reproductive	354	-0.019	0.882	-0.035
+FJ3144	Left ureter	FMA15572	urinary	760	0.051	1.023	-0.009
+FJ3145	Left kidney	FMA7205	urinary	1512	0.062	1.116	-0.020
+FJ3146	Right ureter	FMA15571	urinary	818	-0.041	1.012	-0.010
+FJ3147	Right kidney	FMA7204	urinary	1480	-0.059	1.097	-0.012
+FJ3148	Urethra	FMA19667	urinary	306	-0.001	0.829	0.032
+FJ3149	Urinary bladder	FMA15900	urinary	224	-0.001	0.888	-0.008
+FJ3150	Left lobe of thymus	FMA71195	lymphatic	824	0.009	1.365	0.040
+FJ3151	Right lobe of thymus	FMA71194	lymphatic	764	-0.011	1.374	0.033
+FJ3152	Right hip bone	FMA16586	skeletal	1898	-0.074	0.933	-0.030
+FJ3153	Xiphoid process	FMA7488	skeletal	864	0.000	1.252	0.106
+FJ3154	Tenth thoracic vertebra	FMA10037	skeletal	2160	-0.001	1.207	-0.054
+FJ3155	Eleventh thoracic vertebra	FMA10059	skeletal	2006	-0.001	1.181	-0.047
+FJ3156	Twelfth thoracic vertebra	FMA10081	skeletal	2062	-0.001	1.154	-0.038
+FJ3157	First lumbar vertebra	FMA13072	skeletal	2404	-0.001	1.122	-0.031
+FJ3158	First thoracic vertebra	FMA9165	skeletal	1398	-0.001	1.440	-0.048
+FJ3159	Second lumbar vertebra	FMA13073	skeletal	2492	-0.001	1.094	-0.025
+FJ3160	Second thoracic vertebra	FMA9187	skeletal	1570	-0.001	1.422	-0.053
+FJ3161	Third cervical vertebra	FMA12521	skeletal	1766	-0.001	1.509	-0.037
+FJ3162	Third lumbar vertebra	FMA13074	skeletal	2454	-0.001	1.067	-0.028
+FJ3163	Third thoracic vertebra	FMA9209	skeletal	1696	-0.001	1.400	-0.061
+FJ3164	Fourth cervical vertebra	FMA12522	skeletal	2062	-0.001	1.496	-0.035
+FJ3165	Fourth lumbar vertebra	FMA13075	skeletal	2630	-0.001	1.039	-0.032
+FJ3166	Fourth thoracic vertebra	FMA9248	skeletal	1684	-0.001	1.378	-0.065
+FJ3167	Fifth cervical vertebra	FMA12523	skeletal	1934	-0.001	1.484	-0.037
+FJ3168	Fifth lumbar vertebra	FMA13076	skeletal	2640	-0.001	1.008	-0.041
+FJ3169	Fifth thoracic vertebra	FMA9922	skeletal	1832	-0.001	1.347	-0.067
+FJ3170	Sixth cervical vertebra	FMA12524	skeletal	1928	-0.001	1.471	-0.040
+FJ3171	Sixth thoracic vertebra	FMA9945	skeletal	1830	-0.001	1.317	-0.067
+FJ3172	Seventh cervical vertebra	FMA12525	skeletal	1520	-0.001	1.456	-0.044
+FJ3173	Seventh thoracic vertebra	FMA9968	skeletal	2094	-0.000	1.289	-0.066
+FJ3174	Eighth thoracic vertebra	FMA9991	skeletal	2048	-0.001	1.262	-0.064
+FJ3175	Ninth thoracic vertebra	FMA10014	skeletal	2040	-0.001	1.234	-0.058
+FJ3176	Atlas	FMA12519	skeletal	1514	-0.001	1.550	-0.036
+FJ3177	Axis	FMA12520	skeletal	2028	-0.001	1.534	-0.038
+FJ3178	Body of sternum	FMA7487	skeletal	2810	0.000	1.313	0.090
+FJ3179	Distal phalanx of left second toe	FMA32653	skeletal	238	0.138	0.011	0.127
+FJ3180	Distal phalanx of left third toe	FMA32655	skeletal	336	0.150	0.011	0.118
+FJ3181	Distal phalanx of left fourth toe	FMA32657	skeletal	226	0.160	0.011	0.101
+FJ3182	Distal phalanx of left big toe	FMA32651	skeletal	366	0.114	0.014	0.123
+FJ3183	Distal phalanx of left index finger	FMA23953	skeletal	318	0.306	0.747	0.078
+FJ3184	Distal phalanx of left little finger	FMA23959	skeletal	198	0.223	0.761	0.075
+FJ3185	Distal phalanx of left little toe	FMA32659	skeletal	220	0.165	0.010	0.081
+FJ3186	Distal phalanx of left middle finger	FMA23955	skeletal	260	0.276	0.738	0.087
+FJ3187	Distal phalanx of left ring finger	FMA23957	skeletal	192	0.249	0.747	0.087
+FJ3188	Distal phalanx of left thumb	FMA23951	skeletal	262	0.317	0.809	0.065
+FJ3189	Distal phalanx of right second toe	FMA32652	skeletal	196	-0.138	0.011	0.128
+FJ3190	Distal phalanx of right third toe	FMA32654	skeletal	258	-0.150	0.011	0.118
+FJ3191	Distal phalanx of right fourth toe	FMA32656	skeletal	240	-0.160	0.011	0.101
+FJ3192	Distal phalanx of right big toe	FMA32650	skeletal	404	-0.114	0.014	0.123
+FJ3193	Distal phalanx of right index finger	FMA24460	skeletal	208	-0.306	0.747	0.078
+FJ3194	Distal phalanx of right little finger	FMA24463	skeletal	184	-0.223	0.761	0.075
+FJ3195	Distal phalanx of right little toe	FMA32658	skeletal	210	-0.165	0.010	0.081
+FJ3196	Distal phalanx of right middle finger	FMA24461	skeletal	170	-0.276	0.738	0.087
+FJ3197	Distal phalanx of right ring finger	FMA24462	skeletal	112	-0.249	0.748	0.087
+FJ3198	Distal phalanx of right thumb	FMA24459	skeletal	228	-0.317	0.809	0.065
+FJ3199	Ethmoid	FMA52740	skeletal	8618	-0.001	1.593	0.044
+FJ3200	Frontal bone	FMA52734	skeletal	5112	-0.001	1.654	0.042
+FJ3201	Hyoid bone	FMA52749	skeletal	1036	-0.001	1.510	0.012
+FJ3202	Intervertebral disk of axis	FMA25058	skeletal	1872	-0.001	1.524	-0.022
+FJ3203	Intervertebral disk of fourth thoracic vertebra	FMA13501	skeletal	1310	-0.001	1.363	-0.048
+FJ3204	Intervertebral disk of fifth thoracic vertebra	FMA13502	skeletal	1530	-0.001	1.338	-0.051
+FJ3205	Intervertebral disk of sixth thoracic vertebra	FMA13503	skeletal	2104	-0.001	1.311	-0.052
+FJ3206	Intervertebral disk of seventh thoracic vertebra	FMA13504	skeletal	2146	-0.001	1.285	-0.049
+FJ3207	Intervertebral disk of eighth thoracic vertebra	FMA13505	skeletal	2548	-0.001	1.260	-0.044
+FJ3208	Intervertebral disk of ninth thoracic vertebra	FMA13506	skeletal	2420	-0.001	1.233	-0.038
+FJ3209	Intervertebral disk of tenth thoracic vertebra	FMA13507	skeletal	2456	-0.001	1.206	-0.031
+FJ3210	Intervertebral disk of eleventh thoracic vertebra	FMA13508	skeletal	2648	-0.001	1.178	-0.023
+FJ3211	Intervertebral disk	FMA10446	skeletal	2852	-0.001	1.148	-0.015
+FJ3212	Intervertebral disk of first lumbar vertebra	FMA16033	skeletal	2882	-0.001	1.119	-0.007
+FJ3213	Intervertebral disk of third cervical vertebra	FMA13896	skeletal	728	-0.001	1.508	-0.019
+FJ3214	Intervertebral disk of second lumbar vertebra	FMA16034	skeletal	2604	-0.001	1.085	-0.003
+FJ3215	Intervertebral disk of third lumbar vertebra	FMA16035	skeletal	2922	-0.001	1.050	-0.006
+FJ3216	Intervertebral disk of fourth lumbar vertebra	FMA16036	skeletal	2710	-0.001	1.020	-0.016
+FJ3217	Intervertebral disk of fifth lumbar vertebra	FMA16037	skeletal	2048	-0.001	0.987	-0.027
+FJ3218	Intervertebral disk of fourth cervical vertebra	FMA13897	skeletal	840	-0.001	1.492	-0.017
+FJ3219	Intervertebral disk of fifth cervical vertebra	FMA13898	skeletal	864	-0.001	1.476	-0.016
+FJ3220	Intervertebral disk of sixth cervical vertebra	FMA13899	skeletal	834	-0.001	1.460	-0.018
+FJ3221	Intervertebral disk of seventh cervical vertebra	FMA13900	skeletal	956	-0.001	1.444	-0.021
+FJ3222	Intervertebral disk of first thoracic vertebra	FMA10458	skeletal	1062	-0.001	1.426	-0.026
+FJ3223	Intervertebral disk of second thoracic vertebra	FMA13495	skeletal	1230	-0.001	1.406	-0.033
+FJ3224	Intervertebral disk of third thoracic vertebra	FMA13500	skeletal	1388	-0.001	1.385	-0.041
+FJ3225	Left tenth rib	FMA8472	skeletal	1500	0.069	1.169	-0.035
+FJ3226	Left eleventh rib	FMA8532	skeletal	1070	0.063	1.143	-0.043
+FJ3227	Left twelfth rib	FMA8534	skeletal	730	0.051	1.128	-0.053
+FJ3228	Left first rib	FMA7987	skeletal	1010	0.041	1.418	-0.003
+FJ3229	Left second rib	FMA8012	skeletal	1230	0.055	1.394	0.009
+FJ3230	Left third rib	FMA8039	skeletal	1594	0.060	1.368	0.008
+FJ3231	Left fourth rib	FMA8148	skeletal	1946	0.065	1.341	0.008
+FJ3232	Left fifth rib	FMA8093	skeletal	2136	0.070	1.310	0.005
+FJ3233	Left sixth rib	FMA8202	skeletal	2258	0.073	1.281	-0.001
+FJ3234	Left seventh rib	FMA8256	skeletal	2206	0.074	1.251	-0.008
+FJ3235	Left eighth rib	FMA8310	skeletal	1832	0.072	1.221	-0.016
+FJ3236	Left ninth rib	FMA8391	skeletal	1666	0.071	1.196	-0.028
+FJ3237	Left clavicle	FMA13323	skeletal	826	0.076	1.410	0.001
+FJ3239	Left first costal cartilage	FMA8005	skeletal	594	0.038	1.387	0.037
+FJ3240	Left first metacarpal bone	FMA24465	skeletal	556	0.291	0.857	0.039
+FJ3241	Left first metatarsal bone	FMA24508	skeletal	944	0.090	0.034	0.061
+FJ3242	Left second costal cartilage	FMA8031	skeletal	546	0.029	1.357	0.068
+FJ3243	Left second metacarpal bone	FMA24467	skeletal	592	0.277	0.831	0.030
+FJ3244	Left second metatarsal bone	FMA24510	skeletal	618	0.106	0.036	0.055
+FJ3245	Left third costal cartilage	FMA8058	skeletal	560	0.032	1.329	0.081
+FJ3246	Left third metacarpal bone	FMA24469	skeletal	586	0.262	0.831	0.028
+FJ3247	Left third metatarsal bone	FMA24512	skeletal	628	0.116	0.033	0.049
+FJ3248	Left fourth costal cartilage	FMA8167	skeletal	564	0.037	1.301	0.091
+FJ3249	Left fourth metacarpal bone	FMA24471	skeletal	432	0.248	0.833	0.029
+FJ3250	Left fourth metatarsal bone	FMA24514	skeletal	610	0.122	0.028	0.038
+FJ3251	Left fifth costal cartilage	FMA8112	skeletal	642	0.050	1.272	0.099
+FJ3252	Left fifth metacarpal bone	FMA24473	skeletal	468	0.235	0.838	0.032
+FJ3253	Left fifth metatarsal bone	FMA24516	skeletal	702	0.129	0.023	0.022
+FJ3254	Left sixth costal cartilage	FMA8221	skeletal	616	0.053	1.246	0.099
+FJ3255	Left seventh costal cartilage	FMA8275	skeletal	768	0.056	1.223	0.092
+FJ3256	Left calcaneus	FMA24498	skeletal	1122	0.073	0.034	-0.041
+FJ3257	Left capitate	FMA24447	skeletal	388	0.256	0.871	0.019
+FJ3258	Left cuboid bone	FMA24529	skeletal	806	0.099	0.041	-0.000
+FJ3259	Left femur	FMA24475	skeletal	884	0.091	0.679	-0.019
+FJ3260	Left fibula	FMA24481	skeletal	278	0.102	0.245	-0.037
+FJ3261	Left hamate	FMA24449	skeletal	440	0.244	0.869	0.023
+FJ3262	Left humerus	FMA23131	skeletal	962	0.190	1.261	-0.024
+FJ3263	Left inferior nasal concha	FMA54738	respiratory	662	0.010	1.568	0.052
+FJ3264	Left intermediate cuneiform bone	FMA24524	skeletal	440	0.092	0.055	0.020
+FJ3265	Left lacrimal bone	FMA53646	sensory	604	0.013	1.590	0.058
+FJ3266	Sesamoid bone of left foot	FMA45098	skeletal	100	0.091	0.013	0.080
+FJ3267	Left lateral cuneiform bone	FMA24526	skeletal	648	0.100	0.050	0.013
+FJ3268	Left lunate	FMA24438	skeletal	308	0.245	0.882	0.019
+FJ3269	Left maxilla	FMA53650	skeletal	3598	0.021	1.577	0.055
+FJ3270	Sesamoid bone of left foot	FMA45098	skeletal	142	0.099	0.013	0.077
+FJ3271	Left medial cuneiform bone	FMA24522	skeletal	872	0.080	0.048	0.026
+FJ3272	Left nasal bone	FMA53648	skeletal	388	0.002	1.596	0.079
+FJ3273	Left palatine bone	FMA53656	skeletal	1606	0.013	1.570	0.027
+FJ3274	Left parietal bone	FMA52789	skeletal	3732	0.033	1.655	-0.042
+FJ3275	Left patella	FMA24487	skeletal	304	0.081	0.459	0.012
+FJ3276	Left pisiform	FMA24442	skeletal	210	0.236	0.874	0.032
+FJ3277	Left radius	FMA23465	skeletal	406	0.249	0.999	-0.006
+FJ3278	Left scaphoid	FMA24436	skeletal	304	0.261	0.882	0.019
+FJ3279	Left scapula	FMA13396	skeletal	6180	0.112	1.345	-0.051
+FJ3280	Left talus	FMA24483	skeletal	1144	0.070	0.064	-0.023
+FJ3281	Left temporal bone	FMA52739	skeletal	2828	0.042	1.592	-0.016
+FJ3282	Left tibia	FMA24478	skeletal	620	0.072	0.262	-0.017
+FJ3283	Left trapezium	FMA24444	skeletal	348	0.273	0.874	0.026
+FJ3284	Left trapezoid	FMA24445	skeletal	396	0.268	0.867	0.021
+FJ3285	Left triquetral	FMA24440	skeletal	300	0.237	0.874	0.022
+FJ3286	Left ulna	FMA23468	skeletal	434	0.222	1.007	-0.016
+FJ3287	Left zygomatic bone	FMA52893	skeletal	1056	0.048	1.587	0.042
+FJ3288	Left hip bone	FMA16587	skeletal	1808	0.074	0.933	-0.030
+FJ3289	Mandible	FMA52748	skeletal	2348	-0.001	1.542	0.032
+FJ3290	Manubrium	FMA7486	skeletal	1892	0.000	1.381	0.055
+FJ3291	Middle phalanx of left ring finger	FMA23942	skeletal	326	0.249	0.760	0.069
+FJ3292	Middle phalanx of right ring finger	FMA24457	skeletal	306	-0.249	0.760	0.069
+FJ3293	Middle phalanx of left second toe	FMA32643	skeletal	322	0.132	0.014	0.116
+FJ3294	Middle phalanx of left third toe	FMA32645	skeletal	288	0.145	0.013	0.107
+FJ3295	Middle phalanx of left fourth toe	FMA32647	skeletal	280	0.155	0.012	0.092
+FJ3296	Middle phalanx of left index finger	FMA23938	skeletal	300	0.302	0.759	0.062
+FJ3297	Middle phalanx of left little finger	FMA23944	skeletal	252	0.225	0.775	0.063
+FJ3298	Middle phalanx of left little toe	FMA230988	skeletal	224	0.162	0.011	0.075
+FJ3299	Middle phalanx of left middle finger	FMA23940	skeletal	366	0.273	0.753	0.069
+FJ3300	Middle phalanx of right second toe	FMA32642	skeletal	258	-0.132	0.014	0.116
+FJ3301	Middle phalanx of right third toe	FMA32644	skeletal	292	-0.145	0.013	0.107
+FJ3302	Middle phalanx of right fourth toe	FMA32646	skeletal	342	-0.155	0.012	0.092
+FJ3303	Middle phalanx of right index finger	FMA24455	skeletal	256	-0.302	0.759	0.062
+FJ3304	Middle phalanx of right little finger	FMA24458	skeletal	206	-0.225	0.775	0.063
+FJ3305	Middle phalanx of right little toe	FMA230986	skeletal	136	-0.162	0.011	0.075
+FJ3306	Middle phalanx of right middle finger	FMA24456	skeletal	330	-0.273	0.753	0.069
+FJ3307	Navicular bone of left foot	FMA24501	skeletal	624	0.077	0.059	0.008
+FJ3308	Navicular bone of right foot	FMA24500	skeletal	618	-0.077	0.060	0.008
+FJ3309	Occipital bone	FMA52735	skeletal	4912	-0.001	1.609	-0.059
+FJ3310	Proximal phalanx of right big toe	FMA43253	skeletal	468	-0.102	0.018	0.103
+FJ3311	Proximal phalanx of left third toe	FMA32637	skeletal	388	0.135	0.016	0.089
+FJ3312	Proximal phalanx of left fourth toe	FMA32639	skeletal	418	0.145	0.015	0.076
+FJ3313	Proximal phalanx of left index finger	FMA71915	skeletal	384	0.292	0.783	0.046
+FJ3314	Proximal phalanx of left little finger	FMA66791	skeletal	270	0.229	0.798	0.049
+FJ3315	Proximal phalanx of left little toe	FMA32641	skeletal	386	0.154	0.013	0.061
+FJ3316	Proximal phalanx of left middle finger	FMA71908	skeletal	440	0.268	0.783	0.050
+FJ3317	Proximal phalanx of left ring finger	FMA71916	skeletal	366	0.247	0.788	0.049
+FJ3318	Proximal phalanx of left thumb	FMA65470	skeletal	336	0.309	0.829	0.054
+FJ3319	Proximal phalanx of right second toe	FMA32634	skeletal	392	-0.122	0.017	0.098
+FJ3320	Proximal phalanx of right third toe	FMA32636	skeletal	398	-0.135	0.016	0.089
+FJ3321	Proximal phalanx of right fourth toe	FMA32638	skeletal	418	-0.145	0.015	0.076
+FJ3322	Proximal phalanx of right index finger	FMA24451	skeletal	360	-0.292	0.783	0.045
+FJ3323	Proximal phalanx of right little finger	FMA24454	skeletal	312	-0.229	0.798	0.049
+FJ3324	Proximal phalanx of right little toe	FMA32640	skeletal	386	-0.154	0.013	0.061
+FJ3325	Proximal phalanx of right middle finger	FMA24452	skeletal	448	-0.268	0.783	0.050
+FJ3326	Proximal phalanx of right ring finger	FMA24453	skeletal	364	-0.247	0.788	0.049
+FJ3327	Proximal phalanx of right thumb	FMA24450	skeletal	316	-0.309	0.830	0.054
+FJ3328	Proximal phalanx of left second toe	FMA32635	skeletal	374	0.122	0.017	0.098
+FJ3329	Proximal phalanx of left big toe	FMA43254	skeletal	502	0.102	0.018	0.103
+FJ3330	Right tenth rib	FMA8445	skeletal	1500	-0.070	1.169	-0.035
+FJ3331	Right eleventh rib	FMA8531	skeletal	1070	-0.065	1.143	-0.043
+FJ3332	Right twelfth rib	FMA8533	skeletal	740	-0.052	1.128	-0.053
+FJ3333	Right first costal cartilage	FMA7875	skeletal	616	-0.038	1.387	0.036
+FJ3334	Right first rib	FMA7857	skeletal	1032	-0.042	1.418	-0.003
+FJ3335	Right second costal cartilage	FMA7886	skeletal	596	-0.029	1.357	0.068
+FJ3336	Right second rib	FMA7882	skeletal	1230	-0.056	1.394	0.009
+FJ3337	Right third costal cartilage	FMA7913	skeletal	590	-0.032	1.329	0.081
+FJ3338	Right third rib	FMA7909	skeletal	1594	-0.062	1.368	0.008
+FJ3339	Right fourth costal cartilage	FMA7976	skeletal	580	-0.037	1.301	0.091
+FJ3340	Right fourth rib	FMA7957	skeletal	1942	-0.066	1.341	0.008
+FJ3341	Right fifth costal cartilage	FMA8070	skeletal	596	-0.050	1.272	0.099
+FJ3342	Right fifth rib	FMA8066	skeletal	2136	-0.071	1.310	0.005
+FJ3343	Right sixth costal cartilage	FMA8194	skeletal	642	-0.054	1.245	0.099
+FJ3344	Right sixth rib	FMA8175	skeletal	2254	-0.075	1.280	-0.001
+FJ3345	Right seventh costal cartilage	FMA8248	skeletal	618	-0.057	1.223	0.092
+FJ3346	Right seventh rib	FMA8229	skeletal	2206	-0.075	1.251	-0.008
+FJ3347	Right eighth rib	FMA8283	skeletal	1832	-0.073	1.221	-0.016
+FJ3348	Right ninth rib	FMA8364	skeletal	1666	-0.072	1.196	-0.028
+FJ3349	Right radius	FMA23464	skeletal	408	-0.250	0.998	-0.006
+FJ3350	Right first metacarpal bone	FMA24464	skeletal	526	-0.291	0.857	0.039
+FJ3351	Right first metatarsal bone	FMA24507	skeletal	908	-0.090	0.034	0.061
+FJ3352	Right second metacarpal bone	FMA24466	skeletal	610	-0.277	0.831	0.030
+FJ3353	Right second metatarsal bone	FMA24509	skeletal	612	-0.106	0.036	0.055
+FJ3354	Right third metacarpal bone	FMA24468	skeletal	586	-0.262	0.831	0.028
+FJ3355	Right third metatarsal bone	FMA24511	skeletal	620	-0.116	0.033	0.050
+FJ3356	Right fourth metacarpal bone	FMA24470	skeletal	422	-0.248	0.833	0.029
+FJ3357	Right fourth metatarsal bone	FMA24513	skeletal	554	-0.122	0.028	0.038
+FJ3358	Right fifth metacarpal bone	FMA24472	skeletal	428	-0.235	0.838	0.032
+FJ3359	Right fifth metatarsal bone	FMA24515	skeletal	670	-0.129	0.023	0.022
+FJ3360	Right calcaneus	FMA24497	skeletal	1076	-0.073	0.034	-0.041
+FJ3361	Right capitate	FMA24446	skeletal	406	-0.256	0.872	0.019
+FJ3362	Right clavicle	FMA13322	skeletal	820	-0.078	1.410	0.001
+FJ3364	Right cuboid bone	FMA24528	skeletal	822	-0.099	0.042	0.000
+FJ3365	Right femur	FMA24474	skeletal	930	-0.091	0.679	-0.019
+FJ3366	Right fibula	FMA24480	skeletal	298	-0.102	0.245	-0.037
+FJ3367	Right hamate	FMA24448	skeletal	490	-0.244	0.869	0.023
+FJ3368	Right humerus	FMA23130	skeletal	1070	-0.190	1.261	-0.024
+FJ3369	Right inferior nasal concha	FMA54737	respiratory	636	-0.012	1.567	0.048
+FJ3370	Right intermediate cuneiform bone	FMA24523	skeletal	430	-0.092	0.055	0.020
+FJ3371	Right lacrimal bone	FMA53645	sensory	658	-0.013	1.593	0.058
+FJ3372	Sesamoid bone of right foot	FMA45097	skeletal	80	-0.091	0.013	0.080
+FJ3373	Right lateral cuneiform bone	FMA24525	skeletal	600	-0.100	0.050	0.013
+FJ3374	Right lunate	FMA24437	skeletal	324	-0.244	0.882	0.019
+FJ3375	Right maxilla	FMA53649	skeletal	3660	-0.024	1.577	0.057
+FJ3376	Sesamoid bone of right foot	FMA45097	skeletal	156	-0.099	0.013	0.077
+FJ3377	Right medial cuneiform bone	FMA24521	skeletal	838	-0.080	0.048	0.026
+FJ3378	Right nasal bone	FMA53647	skeletal	392	-0.005	1.595	0.080
+FJ3379	Right palatine bone	FMA53655	skeletal	1486	-0.014	1.570	0.027
+FJ3380	Right parietal bone	FMA52788	skeletal	3694	-0.036	1.655	-0.043
+FJ3381	Right patella	FMA24486	skeletal	304	-0.081	0.459	0.012
+FJ3382	Right pisiform	FMA24441	skeletal	190	-0.236	0.874	0.032
+FJ3383	Right scaphoid	FMA24435	skeletal	302	-0.261	0.882	0.019
+FJ3384	Right scapula	FMA13395	skeletal	5756	-0.112	1.345	-0.051
+FJ3385	Right talus	FMA24482	skeletal	1184	-0.070	0.064	-0.023
+FJ3386	Right temporal bone	FMA52738	skeletal	2906	-0.043	1.592	-0.016
+FJ3387	Right tibia	FMA24477	skeletal	634	-0.072	0.262	-0.017
+FJ3388	Right trapezium	FMA24443	skeletal	424	-0.273	0.874	0.026
+FJ3389	Right trapezoid	FMA23725	skeletal	354	-0.268	0.867	0.021
+FJ3390	Right triquetral	FMA24439	skeletal	170	-0.237	0.874	0.022
+FJ3391	Right ulna	FMA23467	skeletal	482	-0.222	1.007	-0.016
+FJ3392	Right zygomatic bone	FMA52892	skeletal	1146	-0.049	1.587	0.042
+FJ3393	Sacrum	FMA16202	skeletal	5058	-0.001	0.933	-0.063
+FJ3394	Sphenoid bone	FMA52736	skeletal	4238	-0.001	1.592	0.018
+FJ3395	Vomer	FMA9710	skeletal	1586	-0.001	1.574	0.038
+FJ3396	Mesentery of small intestine	FMA14643	digestive	25172	0.006	1.003	0.045
+FJ3397	Mesoappendix	FMA16549	digestive	814	-0.051	0.971	0.006
+FJ3398	Transverse mesocolon	FMA14647	digestive	872	0.005	1.040	0.016
+FJ3399	Ascending branch of left colic artery	FMA14828	arterial	320	0.047	1.100	0.016
+FJ3400	Left colic vein	FMA15394	venous	306	0.044	1.098	0.013
+FJ3401	Anterior inferior pancreaticoduodenal artery	FMA70479	arterial	342	-0.030	1.095	0.038
+FJ3406	Anterior cecal artery	FMA14816	arterial	118	-0.066	1.004	0.021
+FJ3409	Anterior superior pancreaticoduodenal artery	FMA14782	arterial	422	-0.028	1.123	0.034
+FJ3410	Appendicular artery	FMA14818	arterial	622	-0.040	0.984	0.006
+FJ3411	Arch of aorta	FMA3768	arterial	596	0.014	1.378	-0.006
+FJ3413	Ascending aorta	FMA3736	arterial	388	0.011	1.336	0.022
+FJ3414	Ascending branch of inferior branch of ileocolic artery	FMA14820	arterial	348	-0.049	1.052	0.025
+FJ3415	Ileocolic vein	FMA15408	venous	428	-0.051	1.052	0.021
+FJ3416	Azygos vein	FMA4838	venous	4016	-0.012	1.261	-0.014
+FJ3417	Brachiocephalic artery	FMA3932	arterial	258	-0.001	1.401	0.011
+FJ3418	Bronchial branch of arch of aorta	FMA14177	arterial	624	-0.006	1.361	-0.025
+FJ3419	Caudal pancreatic artery	FMA14793	arterial	418	0.044	1.145	0.000
+FJ3420	Splenic artery	FMA14773	arterial	426	0.047	1.149	0.006
+FJ3421	Celiac trunk	FMA14812	arterial	238	0.007	1.162	0.019
+FJ3426	Left superficial dorsal vein of penis	FMA21386	venous	1072	0.000	0.831	0.046
+FJ3427	Descending aorta	FMA3784	arterial	1002	0.016	1.192	-0.012
+FJ3428	Descending branch of left colic artery	FMA14829	arterial	464	0.047	1.040	0.020
+FJ3429	Left colic vein	FMA15394	venous	436	0.050	1.040	0.015
+FJ3430	Dorsal pancreatic artery	FMA14787	arterial	456	0.007	1.140	0.027
+FJ3431	Set of oesophageal branches of thoracic aorta	FMA71537	arterial	686	0.004	1.307	-0.030
+FJ3432	Trunk of gastroduodenal artery	FMA76574	arterial	200	-0.009	1.150	0.039
+FJ3433	Great pancreatic artery	FMA14792	arterial	264	0.043	1.149	0.004
+FJ3434	Hemiazygos vein	FMA4944	venous	938	0.004	1.200	-0.035
+FJ3437	Ileal artery	FMA14809	arterial	168	-0.041	1.025	0.027
+FJ3438	Ileal vein	FMA15405	venous	184	-0.043	1.025	0.024
+FJ3439	Ileocolic artery	FMA14815	arterial	234	-0.018	1.047	0.037
+FJ3440	Ileocolic vein	FMA15408	venous	222	-0.022	1.045	0.032
+FJ3441	Inferior vena cava	FMA10951	venous	324	-0.015	1.221	0.015
+FJ3442	Inferior mesenteric artery	FMA14750	arterial	368	0.011	1.021	0.025
+FJ3443	Inferior mesenteric vein	FMA15391	venous	242	0.016	1.063	0.021
+FJ3444	Inferior pancreatic artery	FMA14790	arterial	400	0.020	1.132	0.015
+FJ3446	Inferior pancreaticoduodenal artery	FMA14805	arterial	260	-0.008	1.105	0.039
+FJ3447	Inferior phrenic vein	FMA68068	venous	430	0.013	1.185	0.017
+FJ3448	Inferior phrenic vein	FMA68068	venous	420	0.069	1.209	0.018
+FJ3449	Inferior phrenic vein	FMA68068	venous	320	0.069	1.226	0.037
+FJ3450	Inferior phrenic vein	FMA68068	venous	252	0.018	1.250	0.068
+FJ3451	Inferior phrenic vein	FMA68068	venous	280	0.102	1.181	0.010
+FJ3452	Inferior phrenic vein	FMA68068	venous	218	0.105	1.143	-0.022
+FJ3458	Anterior division of left renal artery	FMA70487	arterial	410	0.045	1.124	-0.004
+FJ3459	Anterior division of left renal artery	FMA70487	arterial	410	0.052	1.095	-0.012
+FJ3460	Anterior division of left renal artery	FMA70487	arterial	278	0.065	1.111	-0.019
+FJ3461	Anterior division of left renal artery	FMA70487	arterial	1260	0.062	1.114	-0.020
+FJ3462	Anterior division of left renal artery	FMA70487	arterial	668	0.044	1.131	-0.008
+FJ3463	Anterior division of left renal artery	FMA70487	arterial	748	0.048	1.106	-0.005
+FJ3464	Left common iliac artery	FMA14766	arterial	246	0.018	1.011	0.010
+FJ3465	Left common iliac vein	FMA21388	venous	398	0.006	1.011	0.000
+FJ3466	Left external iliac artery	FMA18807	arterial	442	0.046	0.939	0.016
+FJ3467	Left inferior suprarenal artery	FMA69266	arterial	742	0.049	1.142	-0.013
+FJ3468	Left internal iliac artery	FMA18810	arterial	262	0.028	0.956	-0.043
+FJ3469	Left internal iliac vein	FMA18888	venous	202	0.018	0.963	-0.040
+FJ3470	Left internal iliac vein	FMA18888	venous	172	0.020	0.929	-0.078
+FJ3471	Left internal iliac vein	FMA18888	venous	172	0.019	0.902	-0.089
+FJ3472	Left middle suprarenal artery	FMA14756	arterial	490	0.034	1.155	-0.011
+FJ3473	Posterior division of left renal artery	FMA70490	arterial	264	0.037	1.119	-0.009
+FJ3474	Posterior division of left renal artery	FMA70490	arterial	252	0.045	1.112	-0.026
+FJ3475	Posterior division of left renal artery	FMA70490	arterial	234	0.047	1.121	-0.015
+FJ3476	Trunk of left renal artery	FMA66364	arterial	258	0.021	1.121	0.009
+FJ3477	Left renal vein	FMA14336	venous	638	0.008	1.110	0.011
+FJ3478	Left renal vein	FMA14336	venous	2280	0.053	1.114	-0.017
+FJ3479	Left subclavian artery	FMA4694	arterial	558	0.052	1.410	-0.004
+FJ3480	Left suprarenal vein	FMA14349	venous	374	0.035	1.148	-0.020
+FJ3481	Ureteric segment of left renal artery	FMA70493	arterial	514	0.032	1.082	0.001
+FJ3482	Left brachiocephalic vein	FMA4761	venous	744	0.002	1.400	0.021
+FJ3483	Left common carotid artery	FMA4058	arterial	164	0.017	1.419	0.004
+FJ3484	Left external iliac vein	FMA18886	venous	580	0.035	0.933	0.009
+FJ3485	Left internal jugular vein	FMA4762	venous	272	0.025	1.437	0.017
+FJ3486	Left subclavian vein	FMA4763	venous	402	0.057	1.417	0.013
+FJ3493	Left ascending lumbar vein	FMA4950	venous	388	-0.017	1.083	0.004
+FJ3494	Left colic artery	FMA14826	arterial	180	0.022	1.054	0.032
+FJ3495	Left colic vein	FMA15394	venous	102	0.028	1.054	0.024
+FJ3496	Left dorsal artery of penis	FMA20819	arterial	1116	0.015	0.842	0.030
+FJ3497	Left dorsal artery of penis	FMA20819	arterial	320	0.006	0.839	0.062
+FJ3499	Left gastric artery	FMA14768	arterial	904	0.016	1.182	0.046
+FJ3500	Left gastric vein	FMA15399	venous	986	0.005	1.185	0.047
+FJ3501	Left gastro-epiploic artery	FMA14796	arterial	532	0.075	1.144	0.034
+FJ3502	Left gastroepiploic vein	FMA15390	venous	300	0.077	1.143	0.037
+FJ3510	Left iliolumbar vein	FMA18904	venous	2352	0.071	1.000	-0.010
+FJ3511	Left inferior epigastric artery	FMA20689	arterial	1500	0.035	1.009	0.047
+FJ3512	Left inferior epigastric vein	FMA21164	venous	1642	0.030	1.009	0.049
+FJ3513	Left inferior gluteal vein	FMA18913	venous	2496	0.033	0.892	-0.076
+FJ3514	Left inferior phrenic artery	FMA14747	arterial	544	0.022	1.210	0.039
+FJ3515	Left inferior phrenic artery	FMA14747	arterial	486	0.074	1.179	-0.024
+FJ3516	Left inferior phrenic artery	FMA14747	arterial	290	0.066	1.237	0.040
+FJ3517	Left inferior phrenic artery	FMA14747	arterial	298	0.103	1.190	0.031
+FJ3518	Left inferior phrenic artery	FMA14747	arterial	416	0.067	1.214	0.062
+FJ3519	Left inferior phrenic artery	FMA14747	arterial	202	0.115	1.141	-0.001
+FJ3520	Left inferior phrenic artery	FMA14747	arterial	176	0.062	1.208	0.089
+FJ3522	Left external iliac vein	FMA18886	venous	166	0.013	0.979	-0.019
+FJ3523	Left external iliac vein	FMA18886	venous	186	0.014	0.958	-0.033
+FJ3524	Left external iliac vein	FMA18886	venous	112	0.016	0.961	-0.038
+FJ3525	Left internal pudendal vein	FMA18919	venous	1638	0.013	0.888	-0.048
+FJ3526	Left lateral sacral vein	FMA18907	venous	670	0.007	0.923	-0.080
+FJ3527	Left obturator vein	FMA18916	venous	1088	0.032	0.918	-0.028
+FJ3529	Left superficial epigastric artery	FMA20736	arterial	576	0.050	0.962	0.074
+FJ3530	Left superior epigastric vein	FMA4785	venous	646	0.029	0.948	0.070
+FJ3531	Left superior gluteal vein	FMA18910	venous	310	0.035	0.951	-0.054
+FJ3532	Left testicular artery	FMA14760	arterial	2732	0.039	0.935	0.017
+FJ3533	Left testicular vein	FMA14345	venous	3186	0.043	0.941	0.017
+FJ3534	Marginal artery of colon	FMA14831	arterial	786	-0.001	1.076	0.036
+FJ3541	Median sacral vein	FMA77168	venous	1026	-0.002	0.942	-0.040
+FJ3542	Middle colic artery	FMA14810	arterial	702	-0.003	1.117	0.049
+FJ3543	Middle colic vein	FMA15406	venous	716	-0.003	1.117	0.047
+FJ3544	Splenic artery	FMA14773	arterial	1100	0.044	1.147	0.012
+FJ3545	Pancreaticoduodenal vein	FMA15398	venous	540	-0.030	1.109	0.035
+FJ3546	Posterior inferior pancreaticoduodenal artery	FMA70480	arterial	372	-0.023	1.103	0.027
+FJ3553	Posterior cecal artery	FMA14817	arterial	74	-0.064	0.998	0.019
+FJ3557	Posterior superior pancreaticoduodenal artery	FMA14784	arterial	380	-0.025	1.127	0.024
+FJ3558	Anterior division of right renal artery	FMA70486	arterial	386	-0.049	1.092	-0.002
+FJ3559	Anterior division of right renal artery	FMA70486	arterial	604	-0.044	1.110	-0.002
+FJ3560	Anterior division of right renal artery	FMA70486	arterial	604	-0.043	1.118	-0.004
+FJ3561	Anterior division of right renal artery	FMA70486	arterial	454	-0.050	1.098	-0.004
+FJ3562	Anterior division of right renal artery	FMA70486	arterial	492	-0.053	1.092	-0.008
+FJ3563	Anterior division of right renal artery	FMA70486	arterial	1212	-0.053	1.098	-0.012
+FJ3564	Right common carotid artery	FMA3941	arterial	688	-0.015	1.430	0.011
+FJ3565	Right common iliac artery	FMA14765	arterial	218	-0.014	1.012	0.018
+FJ3566	Right common iliac vein	FMA21387	venous	344	-0.020	1.011	0.006
+FJ3567	Right external iliac artery	FMA18806	arterial	376	-0.044	0.937	0.011
+FJ3568	Right external iliac vein	FMA18885	venous	594	-0.038	0.929	0.007
+FJ3569	Right internal iliac artery	FMA18809	arterial	240	-0.032	0.959	-0.030
+FJ3570	Right internal iliac vein	FMA18887	venous	200	-0.028	0.961	-0.032
+FJ3571	Right internal iliac vein	FMA18887	venous	196	-0.027	0.923	-0.072
+FJ3572	Right internal iliac vein	FMA18887	venous	184	-0.028	0.900	-0.080
+FJ3573	Posterior division of right renal artery	FMA70489	arterial	460	-0.068	1.095	-0.020
+FJ3574	Posterior division of right renal artery	FMA70489	arterial	350	-0.057	1.094	-0.020
+FJ3575	Posterior division of right renal artery	FMA70489	arterial	486	-0.050	1.106	-0.008
+FJ3576	Trunk of right renal artery	FMA66363	arterial	282	-0.014	1.116	0.009
+FJ3577	Right renal vein	FMA14335	venous	328	-0.020	1.105	0.005
+FJ3578	Right renal vein	FMA14335	venous	2386	-0.049	1.098	-0.010
+FJ3579	Right subclavian artery	FMA3953	arterial	398	-0.046	1.420	0.003
+FJ3580	Right suprarenal vein	FMA14343	venous	452	-0.032	1.140	0.002
+FJ3581	Ureteric segment of right renal artery	FMA70492	arterial	268	-0.031	1.087	0.000
+FJ3582	Ureteric segment of right renal artery	FMA70492	arterial	314	-0.028	1.078	-0.001
+FJ3583	Right brachiocephalic vein	FMA4751	venous	544	-0.021	1.402	0.020
+FJ3584	Right inferior suprarenal artery	FMA69265	arterial	634	-0.050	1.129	-0.010
+FJ3585	Right internal jugular vein	FMA4754	venous	226	-0.026	1.439	0.017
+FJ3586	Right middle suprarenal artery	FMA14755	arterial	514	-0.024	1.145	-0.004
+FJ3587	Right subclavian vein	FMA4755	venous	350	-0.055	1.418	0.015
+FJ3589	Right ascending lumbar vein	FMA4843	venous	1734	0.019	1.071	-0.012
+FJ3590	Right colic artery	FMA14811	arterial	854	-0.037	1.091	0.034
+FJ3591	Right colic vein	FMA15407	venous	992	-0.039	1.090	0.030
+FJ3592	Right dorsal artery of penis	FMA20818	arterial	1122	-0.015	0.842	0.030
+FJ3593	Right dorsal artery of penis	FMA20818	arterial	338	-0.006	0.839	0.062
+FJ3594	Right gastric artery	FMA14776	arterial	448	0.005	1.161	0.054
+FJ3595	Right gastric vein	FMA15400	venous	456	-0.011	1.164	0.051
+FJ3596	Right gastro-epiploic artery	FMA14781	arterial	812	0.020	1.131	0.057
+FJ3597	Right gastroepiploic vein	FMA15397	venous	452	0.022	1.118	0.059
+FJ3603	Right iliolumbar vein	FMA18903	venous	2334	-0.076	0.999	-0.010
+FJ3604	Right inferior epigastric artery	FMA20688	arterial	1514	-0.039	1.009	0.047
+FJ3605	Right inferior epigastric vein	FMA21163	venous	1712	-0.030	1.007	0.048
+FJ3606	Right inferior gluteal vein	FMA18912	venous	2530	-0.042	0.893	-0.061
+FJ3607	Right internal iliac vein	FMA18887	venous	94	-0.024	0.979	-0.006
+FJ3608	Right internal iliac vein	FMA18887	venous	202	-0.024	0.959	-0.019
+FJ3609	Right internal iliac vein	FMA18887	venous	74	-0.026	0.962	-0.024
+FJ3610	Right internal pudendal vein	FMA18918	venous	1618	-0.024	0.888	-0.034
+FJ3611	Right lateral sacral vein	FMA18906	venous	682	-0.018	0.924	-0.066
+FJ3612	Right obturator vein	FMA18915	venous	1056	-0.044	0.913	-0.018
+FJ3614	Right superficial epigastric artery	FMA20735	arterial	642	-0.050	0.960	0.068
+FJ3615	Right superior epigastric vein	FMA4771	venous	690	-0.029	0.947	0.067
+FJ3616	Right superior gluteal vein	FMA18909	venous	328	-0.046	0.952	-0.040
+FJ3617	Right testicular artery	FMA14759	arterial	2846	-0.031	0.936	0.015
+FJ3618	Right testicular vein	FMA14341	venous	3000	-0.041	0.934	0.014
+FJ3619	Right inferior phrenic artery	FMA14746	arterial	598	-0.041	1.213	0.025
+FJ3620	Right inferior phrenic artery	FMA14746	arterial	436	-0.082	1.214	-0.007
+FJ3621	Right inferior phrenic artery	FMA14746	arterial	304	-0.043	1.258	0.054
+FJ3622	Right inferior phrenic artery	FMA14746	arterial	356	-0.096	1.250	0.010
+FJ3623	Right inferior phrenic artery	FMA14746	arterial	218	-0.022	1.256	0.076
+FJ3624	Right inferior phrenic artery	FMA14746	arterial	234	-0.115	1.175	0.009
+FJ3625	Right inferior phrenic artery	FMA14746	arterial	282	-0.104	1.173	-0.031
+FJ3626	Right inferior phrenic artery	FMA14746	arterial	196	-0.109	1.144	0.033
+FJ3631	Lumbar vein	FMA15370	venous	1942	0.056	1.073	-0.027
+FJ3632	Lumbar artery	FMA14735	arterial	2652	0.047	1.075	-0.015
+FJ3635	Lumbar vein	FMA15370	venous	1962	-0.052	1.078	-0.022
+FJ3636	Lumbar artery	FMA14735	arterial	2748	-0.043	1.076	-0.017
+FJ3637	Right superficial dorsal vein of penis	FMA21385	venous	612	0.000	0.831	0.069
+FJ3638	Sigmoid artery	FMA14830	arterial	1068	0.037	0.999	0.024
+FJ3639	Sigmoid vein	FMA15395	venous	962	0.038	0.998	0.020
+FJ3640	Splenic artery	FMA14773	arterial	930	0.052	1.160	0.007
+FJ3641	Splenic vein	FMA14331	venous	724	0.044	1.150	0.004
+FJ3644	Trunk of superior mesenteric artery	FMA66358	arterial	516	-0.026	1.060	0.032
+FJ3645	Superior vena cava	FMA4720	venous	554	-0.015	1.370	0.015
+FJ3646	Pancreaticoduodenal vein	FMA15398	venous	376	-0.021	1.105	0.025
+FJ3647	Superior mesenteric vein	FMA14332	venous	478	-0.034	1.067	0.029
+FJ3648	Superior phrenic vein	FMA78121	venous	394	-0.067	1.250	0.025
+FJ3649	Superior phrenic vein	FMA78121	venous	270	-0.067	1.265	0.020
+FJ3650	Superior phrenic vein	FMA78121	venous	302	-0.025	1.259	0.055
+FJ3651	Superior phrenic vein	FMA78121	venous	270	-0.057	1.258	0.050
+FJ3652	Superior phrenic vein	FMA78121	venous	296	-0.098	1.205	0.016
+FJ3653	Superior phrenic vein	FMA78121	venous	394	-0.098	1.194	-0.010
+FJ3654	Superior phrenic vein	FMA78121	venous	198	-0.114	1.203	-0.006
+FJ3655	Pancreaticoduodenal vein	FMA15398	venous	354	-0.023	1.138	0.022
+FJ3656	Superior rectal artery	FMA14832	arterial	242	-0.006	0.953	-0.031
+FJ3657	Superior rectal vein	FMA15393	venous	262	-0.004	0.955	-0.032
+FJ3658	Ascending lumbar vein	FMA12858	venous	1304	0.001	1.064	0.005
+FJ3659	Inferior vena cava	FMA10951	venous	422	-0.013	1.101	0.017

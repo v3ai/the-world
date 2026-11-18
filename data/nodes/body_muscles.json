@@ -1,0 +1,626 @@
+[
+ {
+  "id": "pectoralis_major",
+  "title": "Pectoralis major",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.3,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": "pectoralis_major",
+  "summary": "The large fan-shaped chest muscle that pulls the arm across the body.",
+  "layers": {
+   "basics": "This chest muscle swings your arm forward and inward, as when you push or hug.",
+   "deeper": "It runs from the collarbone, sternum and rib cartilages to the upper humerus. It adducts and medially rotates the arm and helps in pushing.",
+   "expert": "Innervated by the medial and lateral pectoral nerves (C5-T1); clavicular head flexes the shoulder, sternocostal head extends it from a flexed position."
+  },
+  "facts": [
+   [
+    "Action",
+    "Adduct, flex, medially rotate arm"
+   ],
+   [
+    "Nerve",
+    "Pectoral nerves C5-T1"
+   ]
+  ],
+  "did_you_know": "In women the breast sits on top of this muscle; it is not itself breast tissue.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.5",
+    "11-5-muscles-of-the-pectoral-girdle-and-upper-limbs"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction",
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "deltoid",
+  "title": "Deltoid",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.15,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": "deltoid",
+  "summary": "The rounded shoulder muscle that lifts the arm.",
+  "layers": {
+   "basics": "The cap of your shoulder; it raises your arm out to the side, forward and back.",
+   "deeper": "Three parts (anterior, middle, posterior) act together to abduct the arm and individually to flex or extend it.",
+   "expert": "Axillary nerve (C5-C6). Middle fibers are multipennate, giving force for abduction beyond the first ~15° initiated by supraspinatus."
+  },
+  "facts": [
+   [
+    "Parts",
+    "3"
+   ],
+   [
+    "Nerve",
+    "Axillary C5-C6"
+   ]
+  ],
+  "did_you_know": "Deltoid injections are common because the muscle is thick and accessible.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.5",
+    "11-5-muscles-of-the-pectoral-girdle-and-upper-limbs"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction",
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "biceps_brachii",
+  "title": "Biceps brachii",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.28,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": "biceps_brachii",
+  "summary": "The two-headed front-of-arm muscle that bends the elbow and turns the forearm.",
+  "layers": {
+   "basics": "Your biceps bends the elbow and also twists the palm up, as when you turn a screwdriver.",
+   "deeper": "It attaches to the shoulder blade and the radius. It is a strong supinator when the elbow is bent.",
+   "expert": "Musculocutaneous nerve (C5-C6); crosses both shoulder and elbow, so it is biarticular. Distal biceps tendon rupture causes a 'Popeye' bulge."
+  },
+  "facts": [
+   [
+    "Heads",
+    "2 (long, short)"
+   ],
+   [
+    "Nerve",
+    "Musculocutaneous C5-C6"
+   ]
+  ],
+  "did_you_know": "Its main job is actually turning the forearm, not just bending the elbow.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.5",
+    "11-5-muscles-of-the-pectoral-girdle-and-upper-limbs"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction",
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "triceps_brachii",
+  "title": "Triceps brachii",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.3,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": "triceps_brachii",
+  "summary": "The three-headed muscle at the back of the arm that straightens the elbow.",
+  "layers": {
+   "basics": "The triceps pushes your arm straight. It is the opposing partner of the biceps.",
+   "deeper": "Its long head also helps extend the shoulder.",
+   "expert": "Radial nerve (C6-C8); the long head originates on the infraglenoid tubercle, lateral and medial heads from the humeral shaft."
+  },
+  "facts": [
+   [
+    "Heads",
+    "3"
+   ],
+   [
+    "Nerve",
+    "Radial C6-C8"
+   ]
+  ],
+  "did_you_know": "Triceps means 'three heads'.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.5",
+    "11-5-muscles-of-the-pectoral-girdle-and-upper-limbs"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction",
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "rectus_abdominis",
+  "title": "Rectus abdominis",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.35,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": "rectus_abdominis",
+  "summary": "The paired strap muscles at the front of the abdomen that bend the trunk.",
+  "layers": {
+   "basics": "These are the 'six-pack' muscles; they curl your trunk forward and brace the belly.",
+   "deeper": "Tendinous intersections divide each muscle into segments inside the rectus sheath.",
+   "expert": "Innervated by thoracoabdominal nerves (T7-T12); critical for intra-abdominal pressure and trunk flexion."
+  },
+  "facts": [
+   [
+    "Segments",
+    "≈ 3-4 per side"
+   ],
+   [
+    "Nerve",
+    "T7-T12"
+   ]
+  ],
+  "did_you_know": "The 'six-pack' is just these muscles divided by bands of tissue and shown when body fat is low.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.4",
+    "11-4-axial-muscles-of-the-abdominal-wall-and-thorax"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction",
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "external_obliques",
+  "title": "External obliques",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.3,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": "external_obliques",
+  "summary": "The outermost side muscles of the abdomen that twist and bend the trunk.",
+  "layers": {
+   "basics": "They run diagonally along your sides and help you twist and lean.",
+   "deeper": "Working on one side bends and rotates to the opposite side. Both sides together flex the trunk and compress the abdomen.",
+   "expert": "Fibers run in a 'hands in pockets' direction; form inguinal ligament by aponeurosis. Innervated T7-T12."
+  },
+  "facts": [
+   [
+    "Layer",
+    "Outermost of 3 flat muscles"
+   ],
+   [
+    "Nerve",
+    "T7-T12"
+   ]
+  ],
+  "did_you_know": "The three layers of flat abdominal muscles run in crossing directions like plywood for strength.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.4",
+    "11-4-axial-muscles-of-the-abdominal-wall-and-thorax"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction",
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "quadriceps",
+  "title": "Quadriceps femoris",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.45,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": "quadriceps",
+  "summary": "The four-part front thigh muscle that straightens the knee.",
+  "layers": {
+   "basics": "The biggest muscle on the front of your thigh, used to stand up, climb stairs and kick.",
+   "deeper": "Rectus femoris, vastus lateralis, medialis and intermedius share one tendon around the patella.",
+   "expert": "Femoral nerve (L2-L4); rectus femoris also flexes the hip. It is the largest muscle mass in the body by volume group."
+  },
+  "facts": [
+   [
+    "Parts",
+    "4"
+   ],
+   [
+    "Nerve",
+    "Femoral L2-L4"
+   ]
+  ],
+  "did_you_know": "The quadriceps tendon hosts the kneecap, the body's biggest sesamoid bone.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.6",
+    "11-6-appendicular-muscles-of-the-pelvic-girdle-and-lower-limbs"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction",
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "hamstrings",
+  "title": "Hamstrings",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.45,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": "hamstrings",
+  "summary": "The three muscles at the back of the thigh that bend the knee and extend the hip.",
+  "layers": {
+   "basics": "These muscles pull your heel toward your buttock and help you run.",
+   "deeper": "Biceps femoris, semitendinosus and semimembranosus cross both hip and knee.",
+   "expert": "Tibial and common fibular divisions of the sciatic nerve (L5-S2); injury is common during sprinting in late swing phase."
+  },
+  "facts": [
+   [
+    "Muscles",
+    "3"
+   ],
+   [
+    "Nerve",
+    "Sciatic L5-S2"
+   ]
+  ],
+  "did_you_know": "The name comes from butchers hanging hams by these tendons.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.6",
+    "11-6-appendicular-muscles-of-the-pelvic-girdle-and-lower-limbs"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction",
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "gastrocnemius",
+  "title": "Gastrocnemius",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.4,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": "gastrocnemius",
+  "summary": "The main calf muscle that lifts the heel.",
+  "layers": {
+   "basics": "The bulge of your calf; it pushes you up on tiptoe and propels each step.",
+   "deeper": "Its two heads join the Achilles tendon with the soleus.",
+   "expert": "Tibial nerve (S1-S2). The Achilles tendon stores and returns elastic energy, ~35% of running work comes from tendon recoil."
+  },
+  "facts": [
+   [
+    "Heads",
+    "2"
+   ],
+   [
+    "Tendon",
+    "Achilles"
+   ]
+  ],
+  "did_you_know": "The Achilles tendon is the thickest and strongest tendon in the body.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.6",
+    "11-6-appendicular-muscles-of-the-pelvic-girdle-and-lower-limbs"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction",
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "gluteus_maximus",
+  "title": "Gluteus maximus",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.3,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": "gluteus_maximus",
+  "summary": "The big buttock muscle that extends the hip.",
+  "layers": {
+   "basics": "The largest muscle in the body; it powers climbing, standing up and running.",
+   "deeper": "It extends and rotates the thigh outward and steadies the pelvis.",
+   "expert": "Inferior gluteal nerve (L5-S2). Insertion into the iliotibial tract and gluteal tuberosity. Its size is linked to human bipedal running."
+  },
+  "facts": [
+   [
+    "Nerve",
+    "Inferior gluteal L5-S2"
+   ],
+   [
+    "Rank",
+    "Largest muscle (by mass)"
+   ]
+  ],
+  "did_you_know": "Its large size is an evolutionary signature of upright walking and running.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.6",
+    "11-6-appendicular-muscles-of-the-pelvic-girdle-and-lower-limbs"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction",
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "trapezius",
+  "title": "Trapezius",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.4,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": "trapezius",
+  "summary": "A diamond-shaped muscle across the upper back and neck that moves the shoulder blade.",
+  "layers": {
+   "basics": "It lets you shrug and pull your shoulder blades together.",
+   "deeper": "Upper, middle and lower fibers move the scapula up, back and down.",
+   "expert": "Spinal accessory nerve (CN XI) plus C3-C4. Part of the trapezius derived from branchial arch mesoderm."
+  },
+  "facts": [
+   [
+    "Nerve",
+    "CN XI + C3-C4"
+   ],
+   [
+    "Fibers",
+    "upper, middle, lower"
+   ]
+  ],
+  "did_you_know": "Trapezius is named for the trapezoid shape formed by its two halves.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.5",
+    "11-5-muscles-of-the-pectoral-girdle-and-upper-limbs"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction",
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "latissimus_dorsi",
+  "title": "Latissimus dorsi",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.4,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": "latissimus_dorsi",
+  "summary": "The broad back muscle that pulls the arm down and back.",
+  "layers": {
+   "basics": "The widest muscle of the back, used for pulling and climbing.",
+   "deeper": "It runs from the lower spine and pelvis to the upper humerus, powering swimming and rowing.",
+   "expert": "Thoracodorsal nerve (C6-C8); also used in reconstructive flap surgery."
+  },
+  "facts": [
+   [
+    "Nerve",
+    "Thoracodorsal C6-C8"
+   ],
+   [
+    "Span",
+    "≈ 25-40 cm wide"
+   ]
+  ],
+  "did_you_know": "Because of its size, surgeons sometimes borrow it to rebuild other body parts.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.5",
+    "11-5-muscles-of-the-pectoral-girdle-and-upper-limbs"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction",
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "sternocleidomastoid",
+  "title": "Sternocleidomastoid",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.15,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": "sternocleidomastoid",
+  "summary": "The thick neck muscle that turns and tilts the head.",
+  "layers": {
+   "basics": "Look at the cords running diagonally down your neck when you turn your head; those are sternocleidomastoids.",
+   "deeper": "Acting on one side it tilts the head to that side and rotates the face to the other; together they flex the neck.",
+   "expert": "Accessory nerve (CN XI) motor, proprioception from C2-C3; congenital torticollis can result from fibrosis."
+  },
+  "facts": [
+   [
+    "Nerve",
+    "CN XI"
+   ],
+   [
+    "Attachments",
+    "sternum, clavicle, mastoid process"
+   ]
+  ],
+  "did_you_know": "It also acts as a respiratory accessory muscle during heavy breathing.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.3",
+    "11-3-axial-muscles-of-the-head-neck-and-back"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction",
+   "musculoskeletal"
+  ]
+ }
+]

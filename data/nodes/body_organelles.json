@@ -1,0 +1,535 @@
+[
+ {
+  "id": "nucleus",
+  "title": "Nucleus",
+  "kind": "organelle",
+  "template": "cell",
+  "scale_m": 6e-06,
+  "parents": [],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The membrane-bound compartment that holds the cell's DNA.",
+  "layers": {
+   "basics": "The nucleus is the cell's control room: it stores DNA and decides which genes are read.",
+   "deeper": "DNA is wrapped around histone proteins to form chromatin; pores in the double membrane control traffic.",
+   "expert": "≈ 2 m of DNA (≈ 6.4×10^9 bp diploid) packed in a ≈ 6 µm nucleus; ≈ 2,000-5,000 nuclear pores; nuclear lamina; nucleolus makes ribosomal RNA."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 6 µm"
+   ],
+   [
+    "DNA per cell",
+    "≈ 2 m"
+   ],
+   [
+    "Base pairs (diploid)",
+    "≈ 6.4×10^9"
+   ]
+  ],
+  "did_you_know": "If you unwound the DNA from one cell it would be about two meters long.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "3.3",
+    "3-3-the-nucleus-and-dna-replication"
+   ],
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ]
+  ],
+  "kn": [
+   "dna_structure",
+   "chromatin_genome"
+  ],
+  "molecules": [
+   "1bna",
+   "dgmp",
+   "dcmp",
+   "damp",
+   "dtmp"
+  ]
+ },
+ {
+  "id": "mitochondrion",
+  "title": "Mitochondrion",
+  "kind": "organelle",
+  "template": "cell",
+  "scale_m": 1.5e-06,
+  "parents": [],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "cellular_respiration"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "The organelle that makes most of the cell's ATP.",
+  "layers": {
+   "basics": "Mitochondria burn fuel with oxygen to make ATP, the cell's energy currency.",
+   "deeper": "They have two membranes, and an inner membrane folded into cristae. They have their own small circular DNA.",
+   "expert": "Electron transport complexes I-IV pump protons; ATP synthase uses the proton gradient (≈ 150-180 mV); ≈ 16.6 kb mtDNA encoding 13 proteins; inherited maternally."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 1-2 µm"
+   ],
+   [
+    "mtDNA",
+    "≈ 16.6 kb, 37 genes"
+   ],
+   [
+    "ATP yield",
+    "≈ 30 per glucose"
+   ]
+  ],
+  "did_you_know": "Mitochondria likely descend from bacteria that moved into ancestral cells about 2 billion years ago.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "3.2",
+    "3-2-the-cytoplasm-and-cellular-organelles"
+   ],
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ]
+  ],
+  "kn": [
+   "mitochondria_org",
+   "oxidative_phosphorylation"
+  ],
+  "molecules": [
+   "atp",
+   "adp",
+   "nadh",
+   "nad_plus",
+   "fad",
+   "ubiquinone_q1",
+   "pyruvate",
+   "citrate"
+  ]
+ },
+ {
+  "id": "ribosome",
+  "title": "Ribosome",
+  "kind": "organelle",
+  "template": "cell",
+  "scale_m": 2.5e-08,
+  "parents": [],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "protein_synthesis"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A molecular machine that builds proteins from instructions in mRNA.",
+  "layers": {
+   "basics": "Ribosomes read genetic messages and string amino acids together into proteins.",
+   "deeper": "They are made of RNA and protein and exist free or attached to the rough ER.",
+   "expert": "80S eukaryotic ribosome (60S + 40S) ≈ 4.3 MDa; the peptidyl transferase center is RNA-catalyzed (a ribozyme); ≈ 3-6 amino acids added per second in eukaryotes."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 25 nm"
+   ],
+   [
+    "Mass",
+    "≈ 4.3 MDa"
+   ],
+   [
+    "Speed",
+    "≈ 3-6 aa/s"
+   ]
+  ],
+  "did_you_know": "The catalytic core of the ribosome is RNA, not protein.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "3.4",
+    "3-4-protein-synthesis"
+   ],
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ]
+  ],
+  "kn": [
+   "central_dogma"
+  ],
+  "molecules": [
+   "aa_gly",
+   "aa_ala",
+   "aa_leu",
+   "aa_met",
+   "aa_trp"
+  ]
+ },
+ {
+  "id": "endoplasmic_reticulum",
+  "title": "Endoplasmic reticulum",
+  "kind": "organelle",
+  "template": "cell",
+  "scale_m": 1e-06,
+  "parents": [],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "protein_synthesis"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A network of membranes that makes proteins and lipids.",
+  "layers": {
+   "basics": "The ER is the cell's workshop: rough ER (with ribosomes) makes proteins; smooth ER makes fats and handles calcium.",
+   "deeper": "It can make up over half of a cell's membrane.",
+   "expert": "Co-translational translocation via Sec61; N-glycosylation, disulfide formation, unfolded protein response; SR in muscle stores Ca2+."
+  },
+  "facts": [
+   [
+    "Membrane share",
+    "≈ 50%+ of cell membrane"
+   ],
+   [
+    "Lumen Ca2+",
+    "≈ 0.1-0.5 mM"
+   ]
+  ],
+  "did_you_know": "In muscle cells a specialized ER called the sarcoplasmic reticulum stores the calcium that triggers contraction.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "3.2",
+    "3-2-the-cytoplasm-and-cellular-organelles"
+   ],
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ]
+  ],
+  "kn": [
+   "organelles_overview"
+  ],
+  "molecules": [
+   "popc",
+   "cholesterol",
+   "calcium_carbonate_unit"
+  ]
+ },
+ {
+  "id": "golgi_apparatus",
+  "title": "Golgi apparatus",
+  "kind": "organelle",
+  "template": "cell",
+  "scale_m": 1e-06,
+  "parents": [],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "protein_synthesis"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A stack of membrane sacs that sorts and ships proteins.",
+  "layers": {
+   "basics": "The Golgi puts final touches on proteins and packages them for delivery.",
+   "deeper": "Vesicles bud off carrying cargo to the cell surface or other organelles.",
+   "expert": "cis, medial, trans cisternae; glycan processing; sorting via mannose-6-phosphate for lysosomal enzymes; cargo exit in carriers."
+  },
+  "facts": [
+   [
+    "Cisternae",
+    "≈ 4-8 per stack"
+   ],
+   [
+    "Role",
+    "modify, sort"
+   ]
+  ],
+  "did_you_know": "It was discovered by Camillo Golgi in 1898 using a silver stain.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "3.2",
+    "3-2-the-cytoplasm-and-cellular-organelles"
+   ],
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ]
+  ],
+  "kn": [
+   "organelles_overview"
+  ],
+  "molecules": [
+   "n_acetylglucosamine",
+   "galactose"
+  ]
+ },
+ {
+  "id": "lysosome",
+  "title": "Lysosome",
+  "kind": "organelle",
+  "template": "cell",
+  "scale_m": 5e-07,
+  "parents": [],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "An acidic recycling compartment containing digestive enzymes.",
+  "layers": {
+   "basics": "Lysosomes break down worn-out parts and swallowed germs.",
+   "deeper": "Their inside is acidic (pH ≈ 4.5-5).",
+   "expert": "Contain ≈ 50 hydrolases; V-ATPase acidifies; autophagy delivers cargo; lysosomal storage diseases arise from enzyme deficiencies."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 0.1-1 µm"
+   ],
+   [
+    "Internal pH",
+    "≈ 4.5-5"
+   ]
+  ],
+  "did_you_know": "Lysosomal storage diseases such as Tay-Sachs result from one missing enzyme.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "3.2",
+    "3-2-the-cytoplasm-and-cellular-organelles"
+   ],
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ]
+  ],
+  "kn": [
+   "organelles_overview"
+  ],
+  "molecules": [
+   "hydrogen_peroxide"
+  ]
+ },
+ {
+  "id": "peroxisome",
+  "title": "Peroxisome",
+  "kind": "organelle",
+  "template": "cell",
+  "scale_m": 5e-07,
+  "parents": [],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A small compartment that handles fatty-acid oxidation and neutralizes peroxides.",
+  "layers": {
+   "basics": "Peroxisomes break down certain fats and detoxify harmful by-products.",
+   "deeper": "They hold catalase to convert hydrogen peroxide to water.",
+   "expert": "β-oxidation of very-long-chain fatty acids; plasmalogen synthesis; Zellweger spectrum disorders."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 0.5 µm"
+   ]
+  ],
+  "did_you_know": "Peroxisomes in liver cells help detoxify a portion of the alcohol you drink.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "3.2",
+    "3-2-the-cytoplasm-and-cellular-organelles"
+   ],
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ]
+  ],
+  "kn": [
+   "organelles_overview"
+  ],
+  "molecules": [
+   "hydrogen_peroxide",
+   "stearic_acid"
+  ]
+ },
+ {
+  "id": "cell_membrane",
+  "title": "Cell membrane",
+  "kind": "organelle",
+  "template": "cell",
+  "scale_m": 7.5e-09,
+  "parents": [],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A flexible oily barrier that surrounds every cell.",
+  "layers": {
+   "basics": "The membrane is a double layer of fat-like molecules that controls what enters and leaves.",
+   "deeper": "Proteins in it act as gates, pumps and receptors.",
+   "expert": "Fluid mosaic bilayer ≈ 5-7 nm thick; phospholipids, cholesterol (up to ≈ 40 mol% in some), lipid rafts; Na+/K+-ATPase uses ≈ 20-30% of cell ATP in many cells."
+  },
+  "facts": [
+   [
+    "Thickness",
+    "≈ 7.5 nm"
+   ],
+   [
+    "Resting voltage",
+    "≈ -70 mV (neurons)"
+   ]
+  ],
+  "did_you_know": "If a cell were scaled up to a 10 m wide room, its membrane would be only about 7 mm thick.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "3.1",
+    "3-1-the-cell-membrane"
+   ],
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ]
+  ],
+  "kn": [
+   "membrane_structure",
+   "membrane_transport"
+  ],
+  "molecules": [
+   "popc",
+   "cholesterol",
+   "sphingosine"
+  ]
+ },
+ {
+  "id": "cytoskeleton",
+  "title": "Cytoskeleton",
+  "kind": "organelle",
+  "template": "cell",
+  "scale_m": 1e-08,
+  "parents": [],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A scaffold of protein filaments giving cells shape and movement.",
+  "layers": {
+   "basics": "Fibers inside the cell hold its shape and act as tracks for moving cargo.",
+   "deeper": "Three types: actin filaments, intermediate filaments, microtubules.",
+   "expert": "Actin ≈ 7 nm, intermediate ≈ 10 nm, microtubule ≈ 25 nm; motors kinesin and dynein walk on microtubules; myosin on actin."
+  },
+  "facts": [
+   [
+    "Microtubule diameter",
+    "≈ 25 nm"
+   ],
+   [
+    "Actin diameter",
+    "≈ 7 nm"
+   ]
+  ],
+  "did_you_know": "Kinesin walks along microtubules with ≈ 8 nm steps, like a tiny two-legged robot.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "3.2",
+    "3-2-the-cytoplasm-and-cellular-organelles"
+   ],
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ]
+  ],
+  "kn": [
+   "cytoskeleton_motors"
+  ],
+  "molecules": [
+   "atp"
+  ]
+ },
+ {
+  "id": "sarcomere",
+  "title": "Sarcomere",
+  "kind": "structure",
+  "template": "cell",
+  "scale_m": 2.5e-06,
+  "parents": [],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "The repeating contractile unit of striated muscle.",
+  "layers": {
+   "basics": "A sarcomere is a tiny stack of sliding filaments that shortens to generate force.",
+   "deeper": "Thin actin filaments slide past thick myosin filaments, pulling Z-discs together.",
+   "expert": "≈ 2.2 µm at rest; thick filament ≈ 1.6 µm, thin ≈ 1 µm; titin spans Z-disc to M-line; force-length relation peaks at ≈ 2.0-2.2 µm."
+  },
+  "facts": [
+   [
+    "Resting length",
+    "≈ 2.2-2.5 µm"
+   ],
+   [
+    "Shortening",
+    "≈ 70% of rest"
+   ]
+  ],
+  "did_you_know": "A single muscle fiber contains thousands of sarcomeres lined up end to end.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "10.2",
+    "10-2-skeletal-muscle"
+   ],
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction"
+  ],
+  "molecules": [
+   "atp",
+   "creatine"
+  ]
+ }
+]

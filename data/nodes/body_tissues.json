@@ -1,0 +1,674 @@
+[
+ {
+  "id": "epithelial_tissue",
+  "title": "Epithelial tissue",
+  "kind": "tissue",
+  "template": "micro",
+  "scale_m": 0.0001,
+  "parents": [],
+  "parts": [
+   "simple_squamous_epithelium",
+   "simple_columnar_epithelium",
+   "stratified_squamous_epithelium",
+   "transitional_epithelium"
+  ],
+  "made_of": [
+   "keratinocyte",
+   "enterocyte"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Sheets of tightly joined cells that line surfaces and form glands.",
+  "layers": {
+   "basics": "Epithelia cover your skin and line your gut, lungs and vessels. They are barriers that also absorb and secrete.",
+   "deeper": "Classified by cell layers (simple vs stratified) and shapes (squamous, cuboidal, columnar). They sit on a basement membrane and have no blood vessels.",
+   "expert": "Polarized cells joined by tight junctions, adherens junctions, desmosomes; apical and basolateral domains with distinct transporters; high turnover and stem-cell renewal."
+  },
+  "facts": [
+   [
+    "Thickness",
+    "≈ 10-100 µm"
+   ],
+   [
+    "Types",
+    "≈ 8 common"
+   ],
+   [
+    "Blood vessels",
+    "none"
+   ]
+  ],
+  "did_you_know": "Epithelial cells are the origin of about 85-90% of cancers (carcinomas).",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ],
+  "kn": [
+   "cell_types"
+  ]
+ },
+ {
+  "id": "connective_tissue_loose",
+  "title": "Loose connective tissue",
+  "kind": "tissue",
+  "template": "micro",
+  "scale_m": 0.0001,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "fibroblast"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A flexible packing tissue with fibers and cells in a gel-like matrix.",
+  "layers": {
+   "basics": "It fills spaces between organs and holds structures in place.",
+   "deeper": "Fibroblasts make collagen and elastin fibers in a ground substance of hydrated proteoglycans.",
+   "expert": "Areolar tissue is rich in fibroblasts, mast cells and macrophages; extracellular matrix composition determines mechanics."
+  },
+  "facts": [
+   [
+    "Main cell",
+    "fibroblast"
+   ],
+   [
+    "Main fiber",
+    "collagen"
+   ]
+  ],
+  "did_you_know": "Collagen is the most abundant protein in the human body.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "kn": [
+   "cell_types"
+  ],
+  "molecules": [
+   "aa_gly",
+   "aa_pro"
+  ]
+ },
+ {
+  "id": "dense_connective_tissue",
+  "title": "Dense connective tissue",
+  "kind": "tissue",
+  "template": "micro",
+  "scale_m": 0.001,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "fibroblast"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Tough, fiber-packed tissue forming tendons, ligaments and capsules.",
+  "layers": {
+   "basics": "Very strong and rope-like tissue that links muscle to bone and bone to bone.",
+   "deeper": "Dense regular tissue has parallel collagen fibers (tendon); dense irregular has woven fibers (dermis).",
+   "expert": "Type I collagen fibrils bundled into fascicles; sparse fibroblasts (tenocytes); poor blood supply slows healing."
+  },
+  "facts": [
+   [
+    "Tensile strength",
+    "≈ 50-100 MPa (tendon)"
+   ],
+   [
+    "Collagen content",
+    "≈ 70-80% dry mass"
+   ]
+  ],
+  "did_you_know": "Tendons can store and return a significant part of the energy of a running stride.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "kn": [
+   "cell_types"
+  ]
+ },
+ {
+  "id": "adipose_tissue",
+  "title": "Adipose tissue",
+  "kind": "tissue",
+  "template": "micro",
+  "scale_m": 0.001,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "adipocyte"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Fat tissue that stores energy and insulates.",
+  "layers": {
+   "basics": "Fat cells store extra energy as oil droplets and also cushion organs.",
+   "deeper": "White fat stores energy, brown fat makes heat, and fat also releases hormones such as leptin.",
+   "expert": "Adipocytes ≈ 70-120 µm; adipokines (leptin, adiponectin); beige adipocytes can express UCP1; typical body fat ≈ 15-30% in adults."
+  },
+  "facts": [
+   [
+    "Fat share of body",
+    "≈ 15-30%"
+   ],
+   [
+    "Energy density",
+    "≈ 37 kJ/g"
+   ]
+  ],
+  "did_you_know": "Brown fat, once thought only in infants, is also found in adults.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "kn": [
+   "metabolism_overview"
+  ]
+ },
+ {
+  "id": "cartilage_tissue",
+  "title": "Cartilage",
+  "kind": "tissue",
+  "template": "micro",
+  "scale_m": 0.001,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "chondrocyte"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Firm, flexible tissue found in joints, nose, ears and airways.",
+  "layers": {
+   "basics": "Cartilage is smoother and bendier than bone, and cushions joints.",
+   "deeper": "Chondrocytes in lacunae make a matrix rich in collagen II and proteoglycans, without blood vessels.",
+   "expert": "Hyaline, elastic and fibrocartilage types; avascular so repair is slow; aggrecan holds water giving compressive stiffness."
+  },
+  "facts": [
+   [
+    "Water content",
+    "≈ 70-80%"
+   ],
+   [
+    "Blood vessels",
+    "none"
+   ]
+  ],
+  "did_you_know": "Your nose and ears are mostly cartilage and keep growing slightly through life.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "kn": [
+   "cell_types"
+  ]
+ },
+ {
+  "id": "bone_tissue",
+  "title": "Bone tissue",
+  "kind": "tissue",
+  "template": "micro",
+  "scale_m": 0.001,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "osteocyte",
+   "osteoblast",
+   "osteoclast"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Mineralized connective tissue that is hard yet living.",
+  "layers": {
+   "basics": "Bone is a living material, mostly collagen strengthened with calcium phosphate crystals.",
+   "deeper": "Cells within bone sense strain and direct remodeling, and blood vessels run through it.",
+   "expert": "About 65% mineral (hydroxyapatite), ≈ 25% organic (mostly collagen I) and ≈ 10% water by weight; osteon structure; turnover of ≈ 10% of the skeleton per year."
+  },
+  "facts": [
+   [
+    "Mineral",
+    "≈ 65% by mass"
+   ],
+   [
+    "Turnover",
+    "≈ 10%/yr"
+   ]
+  ],
+  "did_you_know": "Most of your adult skeleton is replaced over about a decade.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "6.3",
+    "6-3-bone-structure"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ],
+  "molecules": [
+   "phosphate"
+  ]
+ },
+ {
+  "id": "blood_tissue",
+  "title": "Blood tissue",
+  "kind": "tissue",
+  "template": "micro",
+  "scale_m": 1e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "red_blood_cell",
+   "neutrophil",
+   "lymphocyte_t",
+   "lymphocyte_b",
+   "macrophage",
+   "platelet"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A fluid connective tissue: cells suspended in plasma.",
+  "layers": {
+   "basics": "Blood is a tissue with floating cells in liquid.",
+   "deeper": "Cells include red cells, white cells and platelets; plasma carries proteins and solutes.",
+   "expert": "Hematopoiesis from HSCs; erythrocytes ≈ 4.5-5.5×10^12/L, leukocytes ≈ 4-11×10^9/L, platelets ≈ 150-400×10^9/L."
+  },
+  "facts": [
+   [
+    "Red cells",
+    "≈ 5×10^12/L"
+   ],
+   [
+    "White cells",
+    "≈ 7×10^9/L"
+   ],
+   [
+    "Platelets",
+    "≈ 2.5×10^11/L"
+   ]
+  ],
+  "did_you_know": "Red blood cells outnumber white cells about 700 to 1.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "18.1",
+    "18-1-an-overview-of-blood"
+   ]
+  ],
+  "kn": [
+   "blood_circulation"
+  ],
+  "molecules": [
+   "heme_b"
+  ]
+ },
+ {
+  "id": "skeletal_muscle_tissue",
+  "title": "Skeletal muscle tissue",
+  "kind": "tissue",
+  "template": "micro",
+  "scale_m": 0.01,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_fiber"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Striped muscle tissue under voluntary control.",
+  "layers": {
+   "basics": "Muscles are bundles of long fibers that shorten when told to.",
+   "deeper": "Each muscle fiber is a giant multinucleated cell packed with striped contractile units.",
+   "expert": "Fibers bundled into fascicles with endomysium, perimysium, epimysium; satellite cells repair; motor-unit organization."
+  },
+  "facts": [
+   [
+    "Fiber length",
+    "≈ up to cm"
+   ],
+   [
+    "Fiber diameter",
+    "≈ 50-100 µm"
+   ]
+  ],
+  "did_you_know": "A muscle fiber can have hundreds of nuclei in one cell.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "10.2",
+    "10-2-skeletal-muscle"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction"
+  ]
+ },
+ {
+  "id": "cardiac_muscle_tissue",
+  "title": "Cardiac muscle tissue",
+  "kind": "tissue",
+  "template": "micro",
+  "scale_m": 0.0001,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cardiomyocyte"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Striated, involuntary muscle of the heart with branching cells.",
+  "layers": {
+   "basics": "The heart muscle never rests and cannot tire.",
+   "deeper": "Cells are joined end to end at intercalated discs, so electrical signals spread.",
+   "expert": "Gap junctions (connexin 43) enable syncytium-like conduction; desmosomes bear force; ≈ 25-35% of volume is mitochondria."
+  },
+  "facts": [
+   [
+    "Cell length",
+    "≈ 100 µm"
+   ],
+   [
+    "Mitochondria",
+    "≈ 30% of volume"
+   ]
+  ],
+  "did_you_know": "Heart muscle cells turn over very slowly, around 1% per year in young adults.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "10.7",
+    "10-7-cardiac-muscle-tissue"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction"
+  ],
+  "molecules": [
+   "atp"
+  ]
+ },
+ {
+  "id": "smooth_muscle_tissue",
+  "title": "Smooth muscle tissue",
+  "kind": "tissue",
+  "template": "micro",
+  "scale_m": 0.0001,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "smooth_muscle_cell"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Unstriped involuntary muscle in vessel walls and organs.",
+  "layers": {
+   "basics": "Smooth muscle squeezes slowly without conscious control in the gut, vessels and bladder.",
+   "deeper": "Spindle-shaped cells with one nucleus; contractions are slow and sustained.",
+   "expert": "Contraction via Ca2+-calmodulin-MLCK phosphorylation of myosin light chain; latch state conserves ATP."
+  },
+  "facts": [
+   [
+    "Cell length",
+    "≈ 30-200 µm"
+   ],
+   [
+    "Nuclei per cell",
+    "1"
+   ]
+  ],
+  "did_you_know": "Uterine smooth muscle cells grow in length about tenfold during pregnancy.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "10.8",
+    "10-8-smooth-muscle"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction"
+  ]
+ },
+ {
+  "id": "nervous_tissue",
+  "title": "Nervous tissue",
+  "kind": "tissue",
+  "template": "micro",
+  "scale_m": 0.0001,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "neuron",
+   "astrocyte"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Tissue of neurons and supporting glial cells.",
+  "layers": {
+   "basics": "Neurons send signals; glial cells feed, insulate and protect them.",
+   "deeper": "Gray matter is cell-body rich and white matter holds myelinated fibers.",
+   "expert": "Neurons, astrocytes, oligodendrocytes, microglia (CNS); Schwann cells (PNS); glia:neuron ratio is ≈ 1:1 overall in the human brain."
+  },
+  "facts": [
+   [
+    "Glia:neuron",
+    "≈ 1:1"
+   ],
+   [
+    "Brain water",
+    "≈ 75-80%"
+   ]
+  ],
+  "did_you_know": "The old '10 glia for each neuron' idea has been revised to roughly one to one.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "4.5",
+    "4-5-nervous-tissue-mediates-perception-and-response"
+   ]
+  ],
+  "kn": [
+   "brain_organization"
+  ]
+ },
+ {
+  "id": "simple_squamous_epithelium",
+  "title": "Simple squamous epithelium",
+  "kind": "tissue",
+  "template": "micro",
+  "scale_m": 0.0001,
+  "parents": [
+   "epithelial_tissue"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A single layer of flat cells for fast exchange.",
+  "layers": {
+   "basics": "One thin layer of flat cells lines air sacs and blood vessels, letting gases pass easily.",
+   "deeper": "Found in alveoli (type I cells), capillary endothelium and mesothelium.",
+   "expert": "Thickness ≈ 0.1-0.5 µm in the alveolar wall; allows passive diffusion."
+  },
+  "facts": [
+   [
+    "Thickness",
+    "≈ 0.2-2 µm"
+   ]
+  ],
+  "did_you_know": "The alveolar wall that gases cross is far thinner than a human hair, about 1/100 the width.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ],
+  "kn": [
+   "cell_types"
+  ]
+ },
+ {
+  "id": "simple_columnar_epithelium",
+  "title": "Simple columnar epithelium",
+  "kind": "tissue",
+  "template": "micro",
+  "scale_m": 0.0001,
+  "parents": [
+   "epithelial_tissue"
+  ],
+  "parts": [],
+  "made_of": [
+   "enterocyte"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A single layer of tall cells for absorption and secretion.",
+  "layers": {
+   "basics": "Tall cells line your intestines and absorb nutrients.",
+   "deeper": "Often has microvilli and goblet cells that secrete mucus.",
+   "expert": "Tight junctions between enterocytes separate lumen from internal milieu; brush border enzymes."
+  },
+  "facts": [
+   [
+    "Cell height",
+    "≈ 20-30 µm"
+   ]
+  ],
+  "did_you_know": "Goblet cells produce about a liter of mucus a day in the gut.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ],
+  "kn": [
+   "cell_types"
+  ]
+ },
+ {
+  "id": "stratified_squamous_epithelium",
+  "title": "Stratified squamous epithelium",
+  "kind": "tissue",
+  "template": "micro",
+  "scale_m": 0.0001,
+  "parents": [
+   "epithelial_tissue"
+  ],
+  "parts": [],
+  "made_of": [
+   "keratinocyte"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Many layers of cells that resist wear, like skin.",
+  "layers": {
+   "basics": "Layered flat cells tough enough for the skin, mouth and esophagus.",
+   "deeper": "Keratinized in skin, non-keratinized in mouth and esophagus.",
+   "expert": "Basal stem cells renew the layers; differentiation moves cells to the surface."
+  },
+  "facts": [
+   [
+    "Layers",
+    "≈ 5-30 cells"
+   ],
+   [
+    "Turnover (skin)",
+    "≈ 28-40 days"
+   ]
+  ],
+  "did_you_know": "The inside of your cheek replaces itself in about a week.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ],
+  "kn": [
+   "cell_types"
+  ]
+ },
+ {
+  "id": "transitional_epithelium",
+  "title": "Transitional epithelium (urothelium)",
+  "kind": "tissue",
+  "template": "micro",
+  "scale_m": 0.0001,
+  "parents": [
+   "epithelial_tissue"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A stretchy multi-layer lining of the bladder and ureters.",
+  "layers": {
+   "basics": "This lining can stretch when the bladder fills.",
+   "deeper": "Umbrella cells flatten as the bladder expands.",
+   "expert": "Uroplakin plaques and tight junctions form a highly impermeable barrier to urine."
+  },
+  "facts": [
+   [
+    "Barrier",
+    "one of the tightest in the body"
+   ]
+  ],
+  "did_you_know": "It is among the least permeable epithelia in the body.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ],
+  "kn": [
+   "cell_types"
+  ]
+ }
+]

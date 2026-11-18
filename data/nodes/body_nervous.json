@@ -1,0 +1,1336 @@
+[
+ {
+  "id": "brain",
+  "title": "Brain",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.17,
+  "parents": [
+   "nervous_system"
+  ],
+  "parts": [
+   "frontal_lobe",
+   "parietal_lobe",
+   "temporal_lobe",
+   "occipital_lobe",
+   "cerebral_cortex",
+   "hippocampus",
+   "hypothalamus",
+   "corpus_callosum",
+   "thalamus",
+   "amygdala",
+   "basal_ganglia",
+   "pituitary_gland",
+   "pineal_gland"
+  ],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [
+   "action_potential",
+   "synaptic_transmission"
+  ],
+  "related": [
+   "cerebellum",
+   "brainstem"
+  ],
+  "mesh": "brain",
+  "summary": "The brain is the body's control center, a 1.3-1.4 kg organ of about 86 billion neurons.",
+  "layers": {
+   "basics": "Your brain handles everything you sense, think, feel and do. It is soft, wrinkled and floats in protective fluid inside the skull.",
+   "deeper": "It has a cerebrum (two hemispheres joined by the corpus callosum), cerebellum and brainstem. The outer folded layer, the cortex, handles complex functions; deeper structures regulate emotion, memory and body state.",
+   "expert": "Gray matter holds neuronal cell bodies and synapses; white matter is myelinated tracts. The cortex has six layers in most regions and is organized into functionally specialized but interconnected networks. Cerebrospinal fluid, the blood-brain barrier and the glymphatic system protect and clear it."
+  },
+  "facts": [
+   [
+    "Mass",
+    "≈ 1.3-1.4 kg"
+   ],
+   [
+    "Neurons",
+    "≈ 8.6×10^10"
+   ],
+   [
+    "Power use",
+    "≈ 20 W"
+   ],
+   [
+    "Cortex thickness",
+    "≈ 2-4 mm"
+   ]
+  ],
+  "did_you_know": "The brain's power draw is about that of a dim light bulb.",
+  "certainty": "C1",
+  "open_questions": [
+   "How do patterns of neural activity give rise to subjective experience (the 'hard problem')?",
+   "How does the brain represent and store memories at the level of circuits and synapses?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "13.2",
+    "13-2-the-central-nervous-system"
+   ]
+  ],
+  "kn": [
+   "brain_organization",
+   "connectome"
+  ]
+ },
+ {
+  "id": "frontal_lobe",
+  "title": "Frontal lobe",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.08,
+  "parents": [
+   "brain"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "brain",
+   "at": [
+    0.0,
+    0.02,
+    0.055
+   ],
+   "label": "Frontal lobe"
+  },
+  "summary": "The front part of the cortex for planning, decisions and voluntary movement.",
+  "layers": {
+   "basics": "The frontal lobe helps you plan, make choices, control impulses and start movements. Speech production relies on regions here (usually left).",
+   "deeper": "Contains the primary motor cortex, premotor areas and the prefrontal cortex. Broca's area supports speech production.",
+   "expert": "Prefrontal cortex matures into the mid-twenties; dorsolateral PFC supports working memory and executive control, orbitofrontal PFC value computation. Motor homunculus is a somatotopic map along the precentral gyrus."
+  },
+  "facts": [
+   [
+    "Share of cortex",
+    "≈ 1/3 of cortical surface"
+   ],
+   [
+    "Key areas",
+    "motor, prefrontal, Broca"
+   ]
+  ],
+  "did_you_know": "Frontal lobes are among the last brain regions to finish maturing.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "13.2",
+    "13-2-the-central-nervous-system"
+   ]
+  ],
+  "kn": [
+   "brain_organization"
+  ]
+ },
+ {
+  "id": "parietal_lobe",
+  "title": "Parietal lobe",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.07,
+  "parents": [
+   "brain"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [
+   "vision"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "brain",
+   "at": [
+    0.0,
+    0.05,
+    -0.02
+   ],
+   "label": "Parietal lobe"
+  },
+  "summary": "The upper-middle cortex that processes touch and body position and builds spatial awareness.",
+  "layers": {
+   "basics": "This lobe integrates touch, pressure and spatial information so you know where your body and objects are.",
+   "deeper": "The somatosensory cortex lies in the postcentral gyrus; posterior parietal areas guide reaching and attention.",
+   "expert": "Dorsal visual stream ('where/how') runs through the posterior parietal cortex; lesions can cause neglect or apraxia."
+  },
+  "facts": [
+   [
+    "Key areas",
+    "somatosensory cortex, posterior parietal"
+   ]
+  ],
+  "did_you_know": "Damage to the right parietal lobe can make a person ignore the left half of the world.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "13.2",
+    "13-2-the-central-nervous-system"
+   ]
+  ],
+  "kn": [
+   "brain_organization"
+  ]
+ },
+ {
+  "id": "temporal_lobe",
+  "title": "Temporal lobe",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.07,
+  "parents": [
+   "brain"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [
+   "vision"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "brain",
+   "at": [
+    0.05,
+    -0.02,
+    0.0
+   ],
+   "label": "Temporal lobe"
+  },
+  "summary": "The side cortex for hearing, language comprehension and memory.",
+  "layers": {
+   "basics": "Sounds, spoken words and faces are processed on the sides of the brain, near the ears.",
+   "deeper": "Contains the auditory cortex, Wernicke's area and the hippocampus deep inside.",
+   "expert": "Ventral visual stream (object, face recognition) in inferotemporal cortex; medial temporal structures are essential for declarative memory."
+  },
+  "facts": [
+   [
+    "Key areas",
+    "auditory cortex, hippocampus"
+   ]
+  ],
+  "did_you_know": "Temporal lobe damage can leave people unable to recognize faces.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "13.2",
+    "13-2-the-central-nervous-system"
+   ]
+  ],
+  "kn": [
+   "brain_organization"
+  ]
+ },
+ {
+  "id": "occipital_lobe",
+  "title": "Occipital lobe",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.06,
+  "parents": [
+   "brain"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [
+   "vision"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "brain",
+   "at": [
+    0.0,
+    0.0,
+    -0.07
+   ],
+   "label": "Occipital lobe"
+  },
+  "summary": "The rear cortex dedicated mostly to vision.",
+  "layers": {
+   "basics": "The back of your brain is wired to turn signals from your eyes into what you see.",
+   "deeper": "Primary visual cortex (V1) receives input from the thalamus and maps the visual field.",
+   "expert": "V1 is retinotopic with cortical magnification of the fovea; later areas V2-V5 handle orientation, color, motion."
+  },
+  "facts": [
+   [
+    "Key areas",
+    "V1-V5"
+   ]
+  ],
+  "did_you_know": "A blow to the back of the head can make people 'see stars' because it stimulates this region.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "13.2",
+    "13-2-the-central-nervous-system"
+   ]
+  ],
+  "kn": [
+   "brain_organization"
+  ]
+ },
+ {
+  "id": "cerebral_cortex",
+  "title": "Cerebral cortex",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.004,
+  "parents": [
+   "brain"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "brain",
+   "at": [
+    0.0,
+    0.06,
+    0.0
+   ],
+   "label": "Cerebral cortex"
+  },
+  "summary": "The wrinkled outer sheet of the brain where much of perception, thought and voluntary action is computed.",
+  "layers": {
+   "basics": "The thin, folded outer layer of your brain. The folds let a large sheet fit inside the skull.",
+   "deeper": "About 16 billion neurons sit in a sheet 2-4 mm thick; folds (gyri and sulci) give it an area of roughly 2,000 cm².",
+   "expert": "Six-layer neocortical architecture with canonical microcircuits; layer 5 pyramidal neurons project subcortically; cortical areas defined by cytoarchitecture (Brodmann) and multimodal parcellations."
+  },
+  "facts": [
+   [
+    "Neurons",
+    "≈ 1.6×10^10"
+   ],
+   [
+    "Area (unfolded)",
+    "≈ 0.2 m²"
+   ]
+  ],
+  "did_you_know": "If you unfolded the cortex it would be about the size of a pillowcase.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "13.2",
+    "13-2-the-central-nervous-system"
+   ]
+  ],
+  "kn": [
+   "brain_organization"
+  ]
+ },
+ {
+  "id": "hippocampus",
+  "title": "Hippocampus",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.05,
+  "parents": [
+   "brain"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "brain",
+   "at": [
+    0.025,
+    -0.02,
+    -0.01
+   ],
+   "label": "Hippocampus"
+  },
+  "summary": "A seahorse-shaped structure needed to form new long-term memories.",
+  "layers": {
+   "basics": "The hippocampus helps turn experiences into lasting memories and helps you find your way.",
+   "deeper": "Part of the limbic system, it contains place cells and is central to forming episodic memories.",
+   "expert": "Trisynaptic circuit (EC-DG-CA3-CA1); LTP at Schaffer collaterals; one of few sites of adult neurogenesis (extent in adult humans is debated)."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 4-5 cm"
+   ],
+   [
+    "Shape",
+    "Seahorse-like"
+   ]
+  ],
+  "did_you_know": "London taxi drivers' studies found enlarged posterior hippocampi, linked to navigation experience.",
+  "certainty": "C2",
+  "open_questions": [
+   "Does substantial adult hippocampal neurogenesis occur in humans?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "13.2",
+    "13-2-the-central-nervous-system"
+   ]
+  ],
+  "kn": [
+   "memory_learning"
+  ]
+ },
+ {
+  "id": "hypothalamus",
+  "title": "Hypothalamus",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.015,
+  "parents": [
+   "brain",
+   "endocrine_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [
+   "hormone_signaling",
+   "thermoregulation"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "brain",
+   "at": [
+    0.0,
+    -0.02,
+    0.01
+   ],
+   "label": "Hypothalamus"
+  },
+  "summary": "A small brain region that regulates temperature, hunger, thirst, sleep and hormones.",
+  "layers": {
+   "basics": "This almond-sized region keeps your body's internal settings steady and controls the pituitary gland.",
+   "deeper": "It links the nervous system to the endocrine system via the pituitary stalk.",
+   "expert": "Contains nuclei such as the suprachiasmatic (circadian clock), paraventricular and supraoptic (oxytocin/vasopressin) and arcuate (feeding, leptin)."
+  },
+  "facts": [
+   [
+    "Mass",
+    "≈ 4 g"
+   ],
+   [
+    "Roles",
+    "thermostat, thirst, hunger, sleep"
+   ]
+  ],
+  "did_you_know": "It weighs about as much as a grape yet coordinates much of homeostasis.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "17.3",
+    "17-3-the-pituitary-gland-and-hypothalamus"
+   ]
+  ],
+  "kn": [
+   "endocrine_physiology",
+   "sleep_circadian"
+  ]
+ },
+ {
+  "id": "corpus_callosum",
+  "title": "Corpus callosum",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.1,
+  "parents": [
+   "brain"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "brain",
+   "at": [
+    0.0,
+    0.015,
+    0.0
+   ],
+   "label": "Corpus callosum"
+  },
+  "summary": "The thick band of nerve fibers that connects the brain's two hemispheres.",
+  "layers": {
+   "basics": "This bridge lets your left and right brain share information.",
+   "deeper": "About 200 million axons cross here.",
+   "expert": "Callosotomy for epilepsy produces 'split-brain' effects in specific tasks. Callosal fibers are mainly homotopic."
+  },
+  "facts": [
+   [
+    "Axons",
+    "≈ 2×10^8"
+   ],
+   [
+    "Length",
+    "≈ 10 cm"
+   ]
+  ],
+  "did_you_know": "Some people are born without it and live nearly normal lives.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "13.2",
+    "13-2-the-central-nervous-system"
+   ]
+  ],
+  "kn": [
+   "brain_organization"
+  ]
+ },
+ {
+  "id": "thalamus",
+  "title": "Thalamus",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.03,
+  "parents": [
+   "brain"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [
+   "vision"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "brain",
+   "at": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "label": "Thalamus"
+  },
+  "summary": "A relay hub that routes sensory signals to the cortex.",
+  "layers": {
+   "basics": "Nearly all senses except smell pass through the thalamus on the way to the cortex.",
+   "deeper": "It also takes part in sleep, attention and consciousness.",
+   "expert": "Thalamic nuclei (LGN, MGN, VPL/VPM) relay and gate sensory information; thalamocortical loops with reticular nucleus generate sleep spindles."
+  },
+  "facts": [
+   [
+    "Size",
+    "≈ 3 cm per side"
+   ]
+  ],
+  "did_you_know": "Smell is the only major sense that skips the thalamus's usual relay.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "13.2",
+    "13-2-the-central-nervous-system"
+   ]
+  ],
+  "kn": [
+   "brain_organization"
+  ]
+ },
+ {
+  "id": "amygdala",
+  "title": "Amygdala",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.02,
+  "parents": [
+   "brain"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "brain",
+   "at": [
+    0.025,
+    -0.03,
+    0.015
+   ],
+   "label": "Amygdala"
+  },
+  "summary": "An almond-shaped cluster of nuclei that helps detect threats and tag memories with emotion.",
+  "layers": {
+   "basics": "This small region reacts fast to frightening or emotionally important things.",
+   "deeper": "It links with the hypothalamus and brainstem to produce fear responses.",
+   "expert": "Basolateral and central nuclei mediate fear conditioning; roles in emotion are broader than 'fear center'."
+  },
+  "facts": [
+   [
+    "Size",
+    "≈ 2 cm"
+   ]
+  ],
+  "did_you_know": "The name is Greek for almond.",
+  "certainty": "C2",
+  "refs": [
+   [
+    "ANP",
+    "13.2",
+    "13-2-the-central-nervous-system"
+   ]
+  ],
+  "kn": [
+   "brain_organization"
+  ]
+ },
+ {
+  "id": "basal_ganglia",
+  "title": "Basal ganglia",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.05,
+  "parents": [
+   "brain"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "brain",
+   "at": [
+    0.025,
+    0.0,
+    0.01
+   ],
+   "label": "Basal ganglia"
+  },
+  "summary": "Deep brain nuclei that help select and start movements and habits.",
+  "layers": {
+   "basics": "These deep structures help you start and smooth out movement and learn routines.",
+   "deeper": "Loss of dopamine neurons in this system leads to Parkinson's disease.",
+   "expert": "Cortico-basal ganglia-thalamic loops with direct/indirect pathways; dopamine from the substantia nigra modulates them."
+  },
+  "facts": [
+   [
+    "Parts",
+    "caudate, putamen, globus pallidus"
+   ]
+  ],
+  "did_you_know": "The disease-causing loss in Parkinson's affects the substantia nigra.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "13.2",
+    "13-2-the-central-nervous-system"
+   ]
+  ],
+  "kn": [
+   "brain_organization"
+  ]
+ },
+ {
+  "id": "cerebellum",
+  "title": "Cerebellum",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.1,
+  "parents": [
+   "nervous_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [
+   "action_potential"
+  ],
+  "related": [],
+  "mesh": "cerebellum",
+  "summary": "The 'little brain' at the back that coordinates movement and balance.",
+  "layers": {
+   "basics": "The cerebellum fine-tunes your movements so they are smooth and accurate.",
+   "deeper": "It contains about 80% of the brain's neurons, most of them tiny granule cells.",
+   "expert": "Compares intended and actual movement via forward models; Purkinje cells are inhibitory output of the cortex; roles in cognition and timing."
+  },
+  "facts": [
+   [
+    "Mass",
+    "≈ 150 g (10% of brain)"
+   ],
+   [
+    "Neurons",
+    "≈ 6.9×10^10"
+   ]
+  ],
+  "did_you_know": "It holds around 80% of all neurons in the brain though it is a tenth of the mass.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "13.2",
+    "13-2-the-central-nervous-system"
+   ]
+  ],
+  "kn": [
+   "brain_organization"
+  ]
+ },
+ {
+  "id": "brainstem",
+  "title": "Brainstem",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.1,
+  "parents": [
+   "nervous_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [
+   "breathing"
+  ],
+  "related": [],
+  "mesh": "brainstem",
+  "summary": "The stalk connecting brain to spinal cord that controls breathing, heartbeat and wakefulness.",
+  "layers": {
+   "basics": "The brainstem runs the basic life functions you never think about.",
+   "deeper": "It includes midbrain, pons and medulla and most cranial nerves.",
+   "expert": "Reticular formation regulates arousal; medullary respiratory groups (preBötzinger complex) generate rhythm; cardiovascular centers regulate pressure."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 7-10 cm"
+   ],
+   [
+    "Parts",
+    "midbrain, pons, medulla"
+   ]
+  ],
+  "did_you_know": "Brainstem death is the legal criterion of death in some countries.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "13.2",
+    "13-2-the-central-nervous-system"
+   ]
+  ],
+  "kn": [
+   "brain_organization"
+  ]
+ },
+ {
+  "id": "spinal_cord",
+  "title": "Spinal cord",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.45,
+  "parents": [
+   "nervous_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [
+   "action_potential"
+  ],
+  "related": [],
+  "mesh": "spinal_cord",
+  "summary": "A cable of nerve tissue running down the spine, carrying signals between brain and body.",
+  "layers": {
+   "basics": "The spinal cord is the main data highway between the brain and the body and runs simple reflexes itself.",
+   "deeper": "Dorsal roots carry sensory input, ventral roots carry motor output, with 31 pairs of spinal nerves.",
+   "expert": "Butterfly-shaped gray matter with dorsal, intermediate, ventral horns; ascending (dorsal column, spinothalamic) and descending (corticospinal) tracts."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 42-45 cm"
+   ],
+   [
+    "Nerve pairs",
+    "31"
+   ],
+   [
+    "Diameter",
+    "≈ 1-1.5 cm"
+   ]
+  ],
+  "did_you_know": "The spinal cord is only as thick as a finger.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "13.2",
+    "13-2-the-central-nervous-system"
+   ]
+  ],
+  "kn": [
+   "brain_organization"
+  ]
+ },
+ {
+  "id": "peripheral_nerves",
+  "title": "Peripheral nerves",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 1.0,
+  "parents": [
+   "nervous_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [
+   "action_potential"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "Cables of axons that connect the CNS to every part of the body.",
+  "layers": {
+   "basics": "Nerves are bundles of long nerve fibers that carry commands out and sensations in.",
+   "deeper": "12 cranial and 31 spinal nerve pairs, with myelin sheaths made by Schwann cells for speed.",
+   "expert": "Fibers classified A-alpha to C by diameter and myelination; conduction velocities from 0.5 to 120 m/s; regeneration is possible in the PNS but not the CNS."
+  },
+  "facts": [
+   [
+    "Longest nerve (sciatic)",
+    "≈ up to 1 m"
+   ],
+   [
+    "Speed range",
+    "≈ 0.5-120 m/s"
+   ]
+  ],
+  "did_you_know": "The longest single nerve cells can have axons about a meter long.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "13.4",
+    "13-4-the-peripheral-nervous-system"
+   ]
+  ],
+  "kn": [
+   "brain_organization"
+  ]
+ },
+ {
+  "id": "eye_l",
+  "title": "Left eye",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.024,
+  "parents": [
+   "nervous_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue",
+   "dense_connective_tissue"
+  ],
+  "processes": [
+   "vision"
+  ],
+  "related": [],
+  "mesh": "eye_l",
+  "summary": "The left eye focuses light onto the retina, where it becomes nerve signals.",
+  "layers": {
+   "basics": "The eye is a living camera: light enters through the clear front, is focused, and strikes light-sensing cells at the back.",
+   "deeper": "The cornea does most of the focusing and the lens fine-tunes it. The retina contains rods and cones.",
+   "expert": "The eye's optical power is ≈ 60 D (cornea ≈ 43 D, lens ≈ 17-20 D at rest); photoreceptors transduce light via the rhodopsin-transducin-PDE cascade, and retinal ganglion cells project to the LGN and superior colliculus."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 24 mm"
+   ],
+   [
+    "Rods",
+    "≈ 1.2×10^8"
+   ],
+   [
+    "Cones",
+    "≈ 6×10^6"
+   ]
+  ],
+  "did_you_know": "The eye's retina is technically part of the brain, grown out from the embryonic forebrain.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "14.1",
+    "14-1-sensory-perception"
+   ]
+  ],
+  "kn": [
+   "vision_eye"
+  ]
+ },
+ {
+  "id": "eye_r",
+  "title": "Right eye",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.024,
+  "parents": [
+   "nervous_system"
+  ],
+  "parts": [
+   "cornea",
+   "iris",
+   "lens",
+   "vitreous_humor",
+   "retina",
+   "fovea",
+   "optic_nerve"
+  ],
+  "made_of": [
+   "nervous_tissue",
+   "dense_connective_tissue"
+  ],
+  "processes": [
+   "vision"
+  ],
+  "related": [],
+  "mesh": "eye_r",
+  "summary": "The right eye focuses light onto the retina, where it becomes nerve signals.",
+  "layers": {
+   "basics": "The eye is a living camera: light enters through the clear front, is focused, and strikes light-sensing cells at the back.",
+   "deeper": "The cornea does most of the focusing and the lens fine-tunes it. The retina contains rods and cones.",
+   "expert": "The eye's optical power is ≈ 60 D (cornea ≈ 43 D, lens ≈ 17-20 D at rest); photoreceptors transduce light via the rhodopsin-transducin-PDE cascade, and retinal ganglion cells project to the LGN and superior colliculus."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 24 mm"
+   ],
+   [
+    "Rods",
+    "≈ 1.2×10^8"
+   ],
+   [
+    "Cones",
+    "≈ 6×10^6"
+   ]
+  ],
+  "did_you_know": "The eye's retina is technically part of the brain, grown out from the embryonic forebrain.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "14.1",
+    "14-1-sensory-perception"
+   ]
+  ],
+  "kn": [
+   "vision_eye"
+  ]
+ },
+ {
+  "id": "cornea",
+  "title": "Cornea",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.012,
+  "parents": [
+   "eye_r"
+  ],
+  "parts": [],
+  "made_of": [
+   "dense_connective_tissue"
+  ],
+  "processes": [
+   "vision"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "eye_r",
+   "at": [
+    0.0,
+    0.0,
+    0.012
+   ],
+   "label": "Cornea"
+  },
+  "summary": "The clear dome at the front of the eye that does most of its focusing.",
+  "layers": {
+   "basics": "The transparent window of the eye. It bends light the most, about two-thirds of the eye's focusing power.",
+   "deeper": "It has no blood vessels, so it gets oxygen straight from the air and tears, and it is very sensitive to touch.",
+   "expert": "Five layers (epithelium, Bowman's layer, stroma, Descemet's membrane, endothelium); stromal transparency relies on regular collagen fibril spacing (<λ/2)."
+  },
+  "facts": [
+   [
+    "Role",
+    "The clear dome at the front of the eye that does most of its focusing"
+   ]
+  ],
+  "did_you_know": "Corneas can be transplanted with minimal rejection because they have no blood vessels.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "14.1",
+    "14-1-sensory-perception"
+   ]
+  ],
+  "kn": [
+   "vision_eye"
+  ]
+ },
+ {
+  "id": "iris",
+  "title": "Iris",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.012,
+  "parents": [
+   "eye_r"
+  ],
+  "parts": [],
+  "made_of": [
+   "smooth_muscle_tissue"
+  ],
+  "processes": [
+   "vision"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "eye_r",
+   "at": [
+    0.0,
+    0.0,
+    0.0105
+   ],
+   "label": "Iris"
+  },
+  "summary": "The colored ring that controls pupil size.",
+  "layers": {
+   "basics": "The iris opens and closes the pupil to adjust how much light enters.",
+   "deeper": "Smooth muscles contract the pupil in bright light (sphincter) or enlarge it in dark (dilator).",
+   "expert": "Eye color arises from melanin in the anterior stroma; parasympathetic via CN III, sympathetic via the superior cervical ganglion."
+  },
+  "facts": [
+   [
+    "Role",
+    "The colored ring that controls pupil size"
+   ]
+  ],
+  "did_you_know": "Iris patterns are as unique as fingerprints and used in biometric ID.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "14.1",
+    "14-1-sensory-perception"
+   ]
+  ],
+  "kn": [
+   "vision_eye"
+  ]
+ },
+ {
+  "id": "lens",
+  "title": "Lens",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.01,
+  "parents": [
+   "eye_r"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "vision"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "eye_r",
+   "at": [
+    0.0,
+    0.0,
+    0.005
+   ],
+   "label": "Lens"
+  },
+  "summary": "A clear flexible disc that fine-tunes focus.",
+  "layers": {
+   "basics": "The lens changes shape so you can switch between near and far objects.",
+   "deeper": "Ciliary muscles relax or tighten the zonules, making the lens thinner or rounder (accommodation).",
+   "expert": "Lens fibers lose organelles and contain crystallins at ≈ 35% by weight; presbyopia arises from stiffening and loss of accommodation after ≈ 45."
+  },
+  "facts": [
+   [
+    "Role",
+    "A clear flexible disc that fine-tunes focus"
+   ]
+  ],
+  "did_you_know": "Lens crystallin proteins last a lifetime without replacement.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "14.1",
+    "14-1-sensory-perception"
+   ]
+  ],
+  "kn": [
+   "vision_eye"
+  ]
+ },
+ {
+  "id": "vitreous_humor",
+  "title": "Vitreous humor",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.016,
+  "parents": [
+   "eye_r"
+  ],
+  "parts": [],
+  "made_of": [
+   "dense_connective_tissue"
+  ],
+  "processes": [
+   "vision"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "eye_r",
+   "at": [
+    0.0,
+    0.0,
+    -0.002
+   ],
+   "label": "Vitreous humor"
+  },
+  "summary": "A clear gel filling the main chamber of the eye.",
+  "layers": {
+   "basics": "A jelly that keeps the eyeball round.",
+   "deeper": "About 99% water with collagen and hyaluronan.",
+   "expert": "Age-related syneresis leads to 'floaters' and posterior vitreous detachment."
+  },
+  "facts": [
+   [
+    "Role",
+    "A clear gel filling the main chamber of the eye"
+   ]
+  ],
+  "did_you_know": "Floaters are shadows of vitreous fibers on your retina.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "14.1",
+    "14-1-sensory-perception"
+   ]
+  ],
+  "kn": [
+   "vision_eye"
+  ]
+ },
+ {
+  "id": "retina",
+  "title": "Retina",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.0003,
+  "parents": [
+   "eye_r"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue",
+   "rod_cell",
+   "cone_cell"
+  ],
+  "processes": [
+   "vision"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "eye_r",
+   "at": [
+    0.0,
+    0.0,
+    -0.011
+   ],
+   "label": "Retina"
+  },
+  "summary": "The light-sensitive layer at the back of the eye.",
+  "layers": {
+   "basics": "The retina turns images into nerve signals using millions of light-sensing cells.",
+   "deeper": "Contains rods, cones, and neurons that begin image processing before the signal leaves the eye.",
+   "expert": "Layers: photoreceptors, bipolar, horizontal, amacrine and ganglion cells; image is inverted; thickness ≈ 0.2-0.5 mm."
+  },
+  "facts": [
+   [
+    "Role",
+    "The light-sensitive layer at the back of the eye"
+   ]
+  ],
+  "did_you_know": "The retina processes information before sending it to the brain.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "14.1",
+    "14-1-sensory-perception"
+   ]
+  ],
+  "kn": [
+   "vision_eye"
+  ]
+ },
+ {
+  "id": "fovea",
+  "title": "Fovea",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.0015,
+  "parents": [
+   "eye_r"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [
+   "vision"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "eye_r",
+   "at": [
+    0.0,
+    0.0,
+    -0.0115
+   ],
+   "label": "Fovea"
+  },
+  "summary": "The tiny pit in the retina with the sharpest vision.",
+  "layers": {
+   "basics": "Where you look directly, light lands on the fovea, packed with cones.",
+   "deeper": "It supplies the high-resolution color vision you use for reading.",
+   "expert": "Foveola has ≈ 150,000-200,000 cones/mm² with no rods; one-to-one connections to ganglion cells."
+  },
+  "facts": [
+   [
+    "Role",
+    "The tiny pit in the retina with the sharpest vision"
+   ]
+  ],
+  "did_you_know": "Only about 1-2 degrees of your visual field is truly sharp.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "14.1",
+    "14-1-sensory-perception"
+   ]
+  ],
+  "kn": [
+   "vision_eye"
+  ]
+ },
+ {
+  "id": "optic_nerve",
+  "title": "Optic nerve",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.05,
+  "parents": [
+   "eye_r"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [
+   "vision"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "eye_r",
+   "at": [
+    0.004,
+    0.0,
+    -0.0135
+   ],
+   "label": "Optic nerve"
+  },
+  "summary": "The bundle of about a million fibers carrying visual signals to the brain.",
+  "layers": {
+   "basics": "The cable from the eye to the brain.",
+   "deeper": "It leaves at the optic disc, which has no photoreceptors, creating the blind spot.",
+   "expert": "Myelinated by oligodendrocytes (CNS tract); ≈ 1.2×10^6 axons; partial decussation at the optic chiasm."
+  },
+  "facts": [
+   [
+    "Role",
+    "The bundle of about a million fibers carrying visual signals to the brain"
+   ]
+  ],
+  "did_you_know": "Each of your eyes has a blind spot your brain fills in.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "14.1",
+    "14-1-sensory-perception"
+   ]
+  ],
+  "kn": [
+   "vision_eye"
+  ]
+ }
+]

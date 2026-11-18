@@ -1,0 +1,1558 @@
+[
+ {
+  "id": "skull",
+  "title": "Skull",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.2,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [
+   "mandible"
+  ],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [
+   "brain"
+  ],
+  "mesh": "skull",
+  "summary": "The skull is the bony case of 22 fused and joined bones that houses the brain and shapes the face.",
+  "layers": {
+   "basics": "The skull protects your brain and holds your eyes, ears, nose and teeth. Most of its bones are locked together by zig-zag seams.",
+   "deeper": "Eight cranial bones form the braincase and fourteen facial bones form the face; sutures are fibrous joints that allow growth in childhood. Holes (foramina) pass nerves and vessels, such as the foramen magnum for the spinal cord.",
+   "expert": "Cranial vault bones are intramembranous (dermal) while the base is largely endochondral. Sutures close variably in adulthood. Paranasal sinuses lighten the skull and the sphenoid, temporal and ethmoid bones form a complex skull base."
+  },
+  "facts": [
+   [
+    "Bones",
+    "22 (8 cranial + 14 facial)"
+   ],
+   [
+    "Foramen magnum",
+    "≈ 3.5 cm long"
+   ],
+   [
+    "Adult skull mass",
+    "≈ 0.7-1 kg"
+   ]
+  ],
+  "did_you_know": "A newborn's skull has soft gaps (fontanelles) so the head can squeeze through the birth canal.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "7.2",
+    "7-2-the-skull"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "mandible",
+  "title": "Mandible (jaw bone)",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.12,
+  "parents": [
+   "skeletal_system",
+   "skull"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "mandible",
+  "summary": "The mandible is the only movable bone of the skull and holds the lower teeth.",
+  "layers": {
+   "basics": "Your lower jaw swings open and shut on hinge-like joints in front of the ears, letting you bite, chew and speak.",
+   "deeper": "It articulates with the temporal bone at the temporomandibular joint. Chewing muscles (masseter, temporalis) attach to it.",
+   "expert": "The condylar process forms a synovial joint with a fibrocartilaginous disc that permits hinge and glide movement. The inferior alveolar nerve runs within the mandibular canal."
+  },
+  "facts": [
+   [
+    "Teeth held",
+    "16 (adult lower)"
+   ],
+   [
+    "Bite force (molars)",
+    "≈ 500-700 N"
+   ]
+  ],
+  "did_you_know": "The mandible is the strongest and densest bone of the face.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "7.2",
+    "7-2-the-skull"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "cervical_spine",
+  "title": "Cervical spine",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.12,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "cervical_spine",
+  "summary": "Seven neck vertebrae that carry the head and allow it to nod and turn.",
+  "layers": {
+   "basics": "The neck's seven small bones, C1 to C7, hold the head up. The top two, atlas and axis, are specially shaped so you can nod yes and shake no.",
+   "deeper": "Each vertebra has a body, arch and processes and the stack encloses the spinal cord. Intervertebral discs cushion the joints, and transverse foramina carry the vertebral arteries.",
+   "expert": "Atlanto-occipital joint supports flexion-extension, atlanto-axial joint (dens of C2) supports ~50% of cervical rotation. Cervical lordosis is a secondary curve developing as infants lift their heads."
+  },
+  "facts": [
+   [
+    "Vertebrae",
+    "7 (C1-C7)"
+   ],
+   [
+    "Head mass carried",
+    "≈ 4.5-5 kg"
+   ]
+  ],
+  "did_you_know": "Giraffes and humans both have exactly seven neck vertebrae.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "7.3",
+    "7-3-the-vertebral-column"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "thoracic_spine",
+  "title": "Thoracic spine",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.28,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "thoracic_spine",
+  "summary": "Twelve mid-back vertebrae that anchor the ribs.",
+  "layers": {
+   "basics": "These 12 vertebrae each hold a pair of ribs, making the upper back more rigid but giving the chest its protective cage.",
+   "deeper": "Facets on the vertebral bodies and transverse processes form joints with ribs. The thoracic spine has a gentle outward curve (kyphosis).",
+   "expert": "Rib articulations (costovertebral and costotransverse) limit motion; spinous processes slope downward and overlap. Disc height is smaller than in lumbar vertebrae."
+  },
+  "facts": [
+   [
+    "Vertebrae",
+    "12 (T1-T12)"
+   ],
+   [
+    "Length",
+    "≈ 28 cm"
+   ]
+  ],
+  "did_you_know": "Thoracic vertebrae change shape gradually, with the lower ones looking more like lumbar vertebrae.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "7.3",
+    "7-3-the-vertebral-column"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "lumbar_spine",
+  "title": "Lumbar spine",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.18,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "lumbar_spine",
+  "summary": "Five large lower-back vertebrae that bear most of the upper body's weight.",
+  "layers": {
+   "basics": "Your lower back has five thick vertebrae built to carry weight and bend. This area takes the strain when you lift.",
+   "deeper": "Large vertebral bodies and thick discs support compressive load; the inward curve (lordosis) helps balance the trunk over the pelvis.",
+   "expert": "Lumbar discs transmit load via nucleus pulposus hydrostatics and annulus fibrosus collagen lamellae. Spinal cord ends near L1-L2 (conus medullaris); below is the cauda equina."
+  },
+  "facts": [
+   [
+    "Vertebrae",
+    "5 (L1-L5)"
+   ],
+   [
+    "Typical disc height",
+    "≈ 9-10 mm"
+   ]
+  ],
+  "did_you_know": "The spinal cord ends higher than the spine does, so lumbar punctures are made below it where only nerve roots float.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "7.3",
+    "7-3-the-vertebral-column"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "sacrum",
+  "title": "Sacrum",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.12,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "sacrum",
+  "summary": "A wedge of five fused vertebrae that links the spine to the pelvis.",
+  "layers": {
+   "basics": "The sacrum is a triangle-shaped bone at the base of the spine that locks into the pelvis like a keystone.",
+   "deeper": "It forms joints with the two hip bones (sacroiliac joints) and has holes through which sacral nerves pass.",
+   "expert": "Sacral fusion completes through the late teens to the twenties; the sacral promontory is an obstetric landmark. S2-S4 supply parasympathetic outflow to pelvic organs."
+  },
+  "facts": [
+   [
+    "Fused vertebrae",
+    "5"
+   ],
+   [
+    "Width",
+    "≈ 10-12 cm"
+   ]
+  ],
+  "did_you_know": "The name 'sacrum' comes from Latin for 'sacred bone'.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "7.3",
+    "7-3-the-vertebral-column"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "ribcage",
+  "title": "Rib cage",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.3,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [
+   "breathing"
+  ],
+  "related": [],
+  "mesh": "ribcage",
+  "summary": "Twelve pairs of ribs enclose the heart and lungs and move during breathing.",
+  "layers": {
+   "basics": "Your ribs form a flexible cage around the heart and lungs. They swing up and out when you breathe in.",
+   "deeper": "The first seven pairs attach to the sternum directly via costal cartilage, pairs 8 to 10 attach indirectly, and the last two are floating.",
+   "expert": "'Pump-handle' and 'bucket-handle' rib motions increase the anteroposterior and transverse diameters. Intercostal muscles stabilize and move the ribs."
+  },
+  "facts": [
+   [
+    "Rib pairs",
+    "12"
+   ],
+   [
+    "Longest rib",
+    "≈ 24 cm (7th-8th)"
+   ]
+  ],
+  "did_you_know": "About 1 in 200 people has an extra (cervical) rib.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "7.4",
+    "7-4-the-thoracic-cage"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "sternum",
+  "title": "Sternum",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.17,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "sternum",
+  "summary": "The breastbone, a flat bone at the center of the chest.",
+  "layers": {
+   "basics": "The sternum is the flat bone in the middle of your chest that most of your ribs attach to.",
+   "deeper": "It has three parts: the manubrium, body, and the xiphoid process. It protects the heart and holds bone marrow suitable for sampling.",
+   "expert": "The manubriosternal joint (sternal angle) is a landmark at the level of the 2nd rib and T4/T5, where the trachea bifurcates and the aortic arch begins/ends."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 17 cm"
+   ],
+   [
+    "Parts",
+    "3"
+   ]
+  ],
+  "did_you_know": "The sternal angle is used by doctors to count ribs.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "7.4",
+    "7-4-the-thoracic-cage"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "pelvis",
+  "title": "Pelvis",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.3,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "pelvis",
+  "summary": "A bowl of bone formed by two hip bones, the sacrum and the coccyx.",
+  "layers": {
+   "basics": "The pelvis carries your upper-body weight to your legs and cradles the organs of the lower abdomen.",
+   "deeper": "Each hip bone is made of three fused bones (ilium, ischium, pubis). The hip sockets (acetabula) hold the heads of the femurs.",
+   "expert": "Sex differences in pelvic inlet shape reflect obstetric adaptation; the pelvis is a compromise between bipedal locomotion and childbirth ('obstetric dilemma', debated)."
+  },
+  "facts": [
+   [
+    "Width",
+    "≈ 28-30 cm"
+   ],
+   [
+    "Joints",
+    "2 sacroiliac + pubic symphysis"
+   ]
+  ],
+  "did_you_know": "The pelvis' shape is among the best clues to a skeleton's sex.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.3",
+    "8-3-the-pelvic-girdle-and-pelvis"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "clavicle_l",
+  "title": "Left clavicle (collarbone)",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.15,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "clavicle_l",
+  "summary": "The left collarbone braces the shoulder away from the chest.",
+  "layers": {
+   "basics": "A slender S-shaped bone that holds your shoulder out to the side and is the one most often broken in a fall.",
+   "deeper": "It connects the sternum to the scapula and transmits forces from the arm to the trunk.",
+   "expert": "Intramembranous ossification begins here earliest, and it is the last to fuse its medial growth plate (around age 25)."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 15 cm"
+   ]
+  ],
+  "did_you_know": "It is one of the first bones to start ossifying in the embryo and one of the last to finish.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.1",
+    "8-1-the-pectoral-girdle"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "scapula_l",
+  "title": "Left scapula (shoulder blade)",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.15,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "scapula_l",
+  "summary": "The left shoulder blade is a flat triangle sliding over the back of the ribs.",
+  "layers": {
+   "basics": "A flat bone on the upper back that forms the socket of the shoulder and anchors many muscles.",
+   "deeper": "The glenoid cavity forms the shoulder socket; spine and acromion provide leverage for deltoid and trapezius.",
+   "expert": "Scapulothoracic motion contributes about one third of arm elevation (scapulohumeral rhythm ~2:1)."
+  },
+  "facts": [
+   [
+    "Width",
+    "≈ 10 cm"
+   ],
+   [
+    "Length",
+    "≈ 15 cm"
+   ]
+  ],
+  "did_you_know": "The scapula is connected to the trunk by muscles only, with no true joint to the ribs.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.1",
+    "8-1-the-pectoral-girdle"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "humerus_l",
+  "title": "Left humerus (upper arm bone)",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.32,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [
+   "long_bone"
+  ],
+  "mesh": "humerus_l",
+  "summary": "The left humerus is the long bone of the upper arm.",
+  "layers": {
+   "basics": "The bone between your shoulder and elbow; its rounded top fits into the shoulder socket.",
+   "deeper": "The humeral head articulates with the scapula, and the distal end forms the elbow with the radius and ulna.",
+   "expert": "The radial nerve winds in the spiral groove of the shaft, so mid-shaft fractures may injure it."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 30-35 cm"
+   ]
+  ],
+  "did_you_know": "The 'funny bone' is the ulnar nerve running behind the humerus, not a bone.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.2",
+    "8-2-bones-of-the-upper-limb"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "radius_ulna_l",
+  "title": "Left radius and ulna (forearm)",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.27,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "radius_ulna_l",
+  "summary": "The left forearm's two long bones allow the hand to rotate.",
+  "layers": {
+   "basics": "Two parallel bones between elbow and wrist. The radius crosses over the ulna when you turn your palm down.",
+   "deeper": "The ulna forms the main elbow hinge; the radius forms the main wrist joint. An interosseous membrane links them.",
+   "expert": "Pronation-supination occurs at proximal and distal radioulnar joints with the radius rotating around a fixed ulna."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 24-28 cm"
+   ]
+  ],
+  "did_you_know": "Your forearm can turn about 180 degrees.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.2",
+    "8-2-bones-of-the-upper-limb"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "hand_bones_l",
+  "title": "Left hand bones",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.19,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "hand_bones_l",
+  "summary": "The left hand has 27 bones in wrist, palm and fingers.",
+  "layers": {
+   "basics": "Eight small wrist bones, five palm bones and fourteen finger bones give your hand fine control.",
+   "deeper": "Opposable thumb saddle joint allows pinch and grip.",
+   "expert": "Carpal arrangement in two rows; scaphoid is the most commonly fractured carpal and has retrograde blood supply, risking avascular necrosis."
+  },
+  "facts": [
+   [
+    "Bones",
+    "27"
+   ],
+   [
+    "Share of body's bones",
+    "≈ 13%"
+   ]
+  ],
+  "did_you_know": "Each hand holds roughly a quarter of all the body's bones.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.2",
+    "8-2-bones-of-the-upper-limb"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "femur_l",
+  "title": "Left femur (thigh bone)",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.45,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [
+   "long_bone"
+  ],
+  "mesh": "femur_l",
+  "summary": "The left femur is the longest, strongest bone in the body.",
+  "layers": {
+   "basics": "The femur is your thigh bone. It must carry several times your body weight when you run or jump.",
+   "deeper": "Its ball-shaped head fits the hip socket; the lower end forms the knee. The neck angle is about 125 degrees.",
+   "expert": "Trabecular architecture aligns with principal stress trajectories; femoral neck fractures are a major osteoporosis outcome."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 45 cm"
+   ],
+   [
+    "Typical load while running",
+    "≈ 3-5× body weight"
+   ]
+  ],
+  "did_you_know": "The femur's length is about a quarter of a person's height.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.4",
+    "8-4-bones-of-the-lower-limb"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "patella_l",
+  "title": "Left patella (kneecap)",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.05,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "patella_l",
+  "summary": "The left kneecap is a sesamoid bone in the quadriceps tendon.",
+  "layers": {
+   "basics": "A small bone in front of the knee that works as a pulley to boost the thigh muscle's pull.",
+   "deeper": "It increases the lever arm of the quadriceps and protects the joint.",
+   "expert": "The largest sesamoid bone; cartilage on its back is the thickest in the body (~5 mm)."
+  },
+  "facts": [
+   [
+    "Width",
+    "≈ 5 cm"
+   ],
+   [
+    "Cartilage thickness",
+    "≈ 4-5 mm"
+   ]
+  ],
+  "did_you_know": "Babies are born with only a cartilage kneecap that ossifies around age 3-5.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.4",
+    "8-4-bones-of-the-lower-limb"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "tibia_fibula_l",
+  "title": "Left tibia and fibula (shin)",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.4,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "tibia_fibula_l",
+  "summary": "The left lower-leg bones: weight-bearing tibia and slender fibula.",
+  "layers": {
+   "basics": "The big shin bone carries your weight and the thin outer bone mostly anchors muscles.",
+   "deeper": "The tibia supports about 85-90% of load while the fibula forms the outer ankle.",
+   "expert": "Interosseous membrane transfers load; the tibial plateau articulates with femoral condyles via menisci."
+  },
+  "facts": [
+   [
+    "Tibia length",
+    "≈ 36-40 cm"
+   ]
+  ],
+  "did_you_know": "The fibula can be removed for bone grafts with little effect on walking.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.4",
+    "8-4-bones-of-the-lower-limb"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "foot_bones_l",
+  "title": "Left foot bones",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.26,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "foot_bones_l",
+  "summary": "The left foot has 26 bones forming arches.",
+  "layers": {
+   "basics": "Your foot's arches work like springs: they absorb landing and push you forward.",
+   "deeper": "7 tarsals, 5 metatarsals, 14 phalanges form medial longitudinal, lateral and transverse arches.",
+   "expert": "The plantar fascia and 'windlass mechanism' stiffen the foot during push-off; the calcaneus is the largest tarsal."
+  },
+  "facts": [
+   [
+    "Bones",
+    "26"
+   ],
+   [
+    "Foot length",
+    "≈ 25 cm"
+   ]
+  ],
+  "did_you_know": "Humans have arched feet unlike any other ape.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.4",
+    "8-4-bones-of-the-lower-limb"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "clavicle_r",
+  "title": "Right clavicle (collarbone)",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.15,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "clavicle_r",
+  "summary": "The right collarbone braces the shoulder away from the chest.",
+  "layers": {
+   "basics": "A slender S-shaped bone that holds your shoulder out to the side and is the one most often broken in a fall.",
+   "deeper": "It connects the sternum to the scapula and transmits forces from the arm to the trunk.",
+   "expert": "Intramembranous ossification begins here earliest, and it is the last to fuse its medial growth plate (around age 25)."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 15 cm"
+   ]
+  ],
+  "did_you_know": "It is one of the first bones to start ossifying in the embryo and one of the last to finish.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.1",
+    "8-1-the-pectoral-girdle"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "scapula_r",
+  "title": "Right scapula (shoulder blade)",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.15,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "scapula_r",
+  "summary": "The right shoulder blade is a flat triangle sliding over the back of the ribs.",
+  "layers": {
+   "basics": "A flat bone on the upper back that forms the socket of the shoulder and anchors many muscles.",
+   "deeper": "The glenoid cavity forms the shoulder socket; spine and acromion provide leverage for deltoid and trapezius.",
+   "expert": "Scapulothoracic motion contributes about one third of arm elevation (scapulohumeral rhythm ~2:1)."
+  },
+  "facts": [
+   [
+    "Width",
+    "≈ 10 cm"
+   ],
+   [
+    "Length",
+    "≈ 15 cm"
+   ]
+  ],
+  "did_you_know": "The scapula is connected to the trunk by muscles only, with no true joint to the ribs.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.1",
+    "8-1-the-pectoral-girdle"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "humerus_r",
+  "title": "Right humerus (upper arm bone)",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.32,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [
+   "long_bone"
+  ],
+  "mesh": "humerus_r",
+  "summary": "The right humerus is the long bone of the upper arm.",
+  "layers": {
+   "basics": "The bone between your shoulder and elbow; its rounded top fits into the shoulder socket.",
+   "deeper": "The humeral head articulates with the scapula, and the distal end forms the elbow with the radius and ulna.",
+   "expert": "The radial nerve winds in the spiral groove of the shaft, so mid-shaft fractures may injure it."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 30-35 cm"
+   ]
+  ],
+  "did_you_know": "The 'funny bone' is the ulnar nerve running behind the humerus, not a bone.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.2",
+    "8-2-bones-of-the-upper-limb"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "radius_ulna_r",
+  "title": "Right radius and ulna (forearm)",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.27,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "radius_ulna_r",
+  "summary": "The right forearm's two long bones allow the hand to rotate.",
+  "layers": {
+   "basics": "Two parallel bones between elbow and wrist. The radius crosses over the ulna when you turn your palm down.",
+   "deeper": "The ulna forms the main elbow hinge; the radius forms the main wrist joint. An interosseous membrane links them.",
+   "expert": "Pronation-supination occurs at proximal and distal radioulnar joints with the radius rotating around a fixed ulna."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 24-28 cm"
+   ]
+  ],
+  "did_you_know": "Your forearm can turn about 180 degrees.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.2",
+    "8-2-bones-of-the-upper-limb"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "hand_bones_r",
+  "title": "Right hand bones",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.19,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "hand_bones_r",
+  "summary": "The right hand has 27 bones in wrist, palm and fingers.",
+  "layers": {
+   "basics": "Eight small wrist bones, five palm bones and fourteen finger bones give your hand fine control.",
+   "deeper": "Opposable thumb saddle joint allows pinch and grip.",
+   "expert": "Carpal arrangement in two rows; scaphoid is the most commonly fractured carpal and has retrograde blood supply, risking avascular necrosis."
+  },
+  "facts": [
+   [
+    "Bones",
+    "27"
+   ],
+   [
+    "Share of body's bones",
+    "≈ 13%"
+   ]
+  ],
+  "did_you_know": "Each hand holds roughly a quarter of all the body's bones.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.2",
+    "8-2-bones-of-the-upper-limb"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "femur_r",
+  "title": "Right femur (thigh bone)",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.45,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [
+   "long_bone"
+  ],
+  "mesh": "femur_r",
+  "summary": "The right femur is the longest, strongest bone in the body.",
+  "layers": {
+   "basics": "The femur is your thigh bone. It must carry several times your body weight when you run or jump.",
+   "deeper": "Its ball-shaped head fits the hip socket; the lower end forms the knee. The neck angle is about 125 degrees.",
+   "expert": "Trabecular architecture aligns with principal stress trajectories; femoral neck fractures are a major osteoporosis outcome."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 45 cm"
+   ],
+   [
+    "Typical load while running",
+    "≈ 3-5× body weight"
+   ]
+  ],
+  "did_you_know": "The femur's length is about a quarter of a person's height.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.4",
+    "8-4-bones-of-the-lower-limb"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "patella_r",
+  "title": "Right patella (kneecap)",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.05,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "patella_r",
+  "summary": "The right kneecap is a sesamoid bone in the quadriceps tendon.",
+  "layers": {
+   "basics": "A small bone in front of the knee that works as a pulley to boost the thigh muscle's pull.",
+   "deeper": "It increases the lever arm of the quadriceps and protects the joint.",
+   "expert": "The largest sesamoid bone; cartilage on its back is the thickest in the body (~5 mm)."
+  },
+  "facts": [
+   [
+    "Width",
+    "≈ 5 cm"
+   ],
+   [
+    "Cartilage thickness",
+    "≈ 4-5 mm"
+   ]
+  ],
+  "did_you_know": "Babies are born with only a cartilage kneecap that ossifies around age 3-5.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.4",
+    "8-4-bones-of-the-lower-limb"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "tibia_fibula_r",
+  "title": "Right tibia and fibula (shin)",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.4,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "tibia_fibula_r",
+  "summary": "The right lower-leg bones: weight-bearing tibia and slender fibula.",
+  "layers": {
+   "basics": "The big shin bone carries your weight and the thin outer bone mostly anchors muscles.",
+   "deeper": "The tibia supports about 85-90% of load while the fibula forms the outer ankle.",
+   "expert": "Interosseous membrane transfers load; the tibial plateau articulates with femoral condyles via menisci."
+  },
+  "facts": [
+   [
+    "Tibia length",
+    "≈ 36-40 cm"
+   ]
+  ],
+  "did_you_know": "The fibula can be removed for bone grafts with little effect on walking.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.4",
+    "8-4-bones-of-the-lower-limb"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "foot_bones_r",
+  "title": "Right foot bones",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.26,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "foot_bones_r",
+  "summary": "The right foot has 26 bones forming arches.",
+  "layers": {
+   "basics": "Your foot's arches work like springs: they absorb landing and push you forward.",
+   "deeper": "7 tarsals, 5 metatarsals, 14 phalanges form medial longitudinal, lateral and transverse arches.",
+   "expert": "The plantar fascia and 'windlass mechanism' stiffen the foot during push-off; the calcaneus is the largest tarsal."
+  },
+  "facts": [
+   [
+    "Bones",
+    "26"
+   ],
+   [
+    "Foot length",
+    "≈ 25 cm"
+   ]
+  ],
+  "did_you_know": "Humans have arched feet unlike any other ape.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "8.4",
+    "8-4-bones-of-the-lower-limb"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "long_bone",
+  "title": "Long bone (structure)",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.3,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [
+   "compact_bone",
+   "spongy_bone",
+   "bone_marrow",
+   "periosteum",
+   "growth_plate"
+  ],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [
+   "femur_r",
+   "humerus_r"
+  ],
+  "mesh": null,
+  "summary": "A long bone has a hard outer shell, a spongy interior and a marrow cavity.",
+  "layers": {
+   "basics": "A long bone is hard on the outside, like a tube, and honeycombed at the ends, which keeps it strong yet light.",
+   "deeper": "The shaft (diaphysis) is mostly compact bone around a marrow cavity; the ends (epiphyses) hold spongy bone and are capped with cartilage.",
+   "expert": "Compact bone is organized into osteons (Haversian systems); spongy bone is a lattice of trabeculae oriented along stress lines; the periosteum supplies osteoprogenitors; growth plates add length until closure."
+  },
+  "facts": [
+   [
+    "Compact bone",
+    "≈ 80% of skeleton mass"
+   ],
+   [
+    "Osteon diameter",
+    "≈ 0.2-0.3 mm"
+   ]
+  ],
+  "did_you_know": "Bone is about as strong as cast iron for its weight in compression but much lighter.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "6.3",
+    "6-3-bone-structure"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "compact_bone",
+  "title": "Compact bone",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.005,
+  "parents": [
+   "long_bone"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [
+   "bone_remodeling"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "long_bone",
+   "at": [
+    0.012,
+    0.0,
+    0.0
+   ],
+   "label": "Compact bone"
+  },
+  "summary": "Dense bone forming the outer shell.",
+  "layers": {
+   "basics": "The hard, smooth outer layer that gives bone its strength.",
+   "deeper": "Built from cylinders called osteons with a central canal carrying vessels.",
+   "expert": "Lamellae of mineralized collagen surround Haversian canals, linked by Volkmann's canals; osteocytes in lacunae communicate via canaliculi."
+  },
+  "facts": [
+   [
+    "Role",
+    "Dense bone forming the outer shell"
+   ]
+  ],
+  "did_you_know": "Osteons are tiny: dozens fit in a pinhead cross-section.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "6.3",
+    "6-3-bone-structure"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "spongy_bone",
+  "title": "Spongy (cancellous) bone",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.02,
+  "parents": [
+   "long_bone"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "long_bone",
+   "at": [
+    0.0,
+    0.13,
+    0.0
+   ],
+   "label": "Spongy bone"
+  },
+  "summary": "A lattice of thin struts at the bone ends.",
+  "layers": {
+   "basics": "A honeycomb inside the ends of bones that makes them light and shock-absorbing.",
+   "deeper": "Trabeculae align along stress; marrow fills the gaps.",
+   "expert": "Higher surface-to-volume ratio gives it ~8× the remodeling turnover of cortical bone."
+  },
+  "facts": [
+   [
+    "Role",
+    "A lattice of thin struts at the bone ends"
+   ]
+  ],
+  "did_you_know": "Spongy bone is renewed far faster than compact bone.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "6.3",
+    "6-3-bone-structure"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "bone_marrow",
+  "title": "Bone marrow",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.03,
+  "parents": [
+   "long_bone",
+   "lymphatic_immune_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue",
+   "stem_cell"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "long_bone",
+   "at": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "label": "Bone marrow"
+  },
+  "summary": "Soft tissue inside bones that makes blood cells.",
+  "layers": {
+   "basics": "Red marrow produces blood cells; yellow marrow stores fat.",
+   "deeper": "Hematopoietic stem cells in marrow niches give rise to red cells, white cells and platelets.",
+   "expert": "Adults produce ≈ 2×10^11 red cells and ≈ 10^11 platelets and neutrophils daily; niches involve CXCL12-abundant reticular cells and osteoblasts."
+  },
+  "facts": [
+   [
+    "Role",
+    "Soft tissue inside bones that makes blood cells"
+   ]
+  ],
+  "did_you_know": "Your marrow makes about 2 million red blood cells every second.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "6.3",
+    "6-3-bone-structure"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "periosteum",
+  "title": "Periosteum",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.001,
+  "parents": [
+   "long_bone"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "long_bone",
+   "at": [
+    0.0,
+    -0.05,
+    0.0135
+   ],
+   "label": "Periosteum"
+  },
+  "summary": "A tough membrane covering the outer bone.",
+  "layers": {
+   "basics": "The skin of the bone: tough, full of nerves and blood vessels, and key to bone healing.",
+   "deeper": "It supplies cells and blood to the bone and anchors tendons.",
+   "expert": "Inner cambium layer contains osteoprogenitors; Sharpey's fibres anchor tendons to bone; richly innervated, hence the pain of fractures."
+  },
+  "facts": [
+   [
+    "Role",
+    "A tough membrane covering the outer bone"
+   ]
+  ],
+  "did_you_know": "Bone breaks hurt largely because the periosteum is packed with nerves.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "6.3",
+    "6-3-bone-structure"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "growth_plate",
+  "title": "Growth plate (epiphyseal plate)",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.01,
+  "parents": [
+   "long_bone"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "long_bone",
+   "at": [
+    0.0,
+    0.1,
+    0.0
+   ],
+   "label": "Growth plate"
+  },
+  "summary": "A cartilage disc that lets a growing bone lengthen.",
+  "layers": {
+   "basics": "Children grow taller because cartilage here keeps being made and then turned into bone.",
+   "deeper": "Cells stack in columns, enlarge, die and are replaced by bone. It closes after puberty.",
+   "expert": "Zones: resting, proliferative, hypertrophic and calcification; regulated by GH/IGF-1, sex steroids, thyroid hormone, and Ihh/PTHrP."
+  },
+  "facts": [
+   [
+    "Role",
+    "A cartilage disc that lets a growing bone lengthen"
+   ]
+  ],
+  "did_you_know": "Growth plates are the weakest part of a child's skeleton.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "6.3",
+    "6-3-bone-structure"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "synovial_joint",
+  "title": "Synovial joint",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.05,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "cartilage_tissue",
+   "dense_connective_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A joint with a fluid-filled capsule that lets bones slide smoothly.",
+  "layers": {
+   "basics": "A freely movable joint, like your knee or shoulder, where slippery cartilage and fluid cut friction to almost nothing.",
+   "deeper": "Cartilage caps the bones, a capsule makes lubricating synovial fluid, and ligaments stabilize the joint. Types include hinge, ball-and-socket, pivot and saddle.",
+   "expert": "Friction coefficients of about 0.001-0.01 arise from boundary lubrication (lubricin, hyaluronan) and fluid-film mechanisms. Cartilage lacks blood vessels and is nourished by loading-driven diffusion."
+  },
+  "facts": [
+   [
+    "Friction coefficient",
+    "≈ 0.001-0.01"
+   ],
+   [
+    "Synovial fluid in knee",
+    "≈ 1-3 mL"
+   ]
+  ],
+  "did_you_know": "Joint cartilage can be slipperier than ice on ice.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "9.4",
+    "9-4-synovial-joints"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ }
+]

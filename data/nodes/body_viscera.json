@@ -1,0 +1,2366 @@
+[
+ {
+  "id": "mouth_pharynx",
+  "title": "Mouth, teeth and pharynx",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.15,
+  "parents": [
+   "digestive_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue",
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [
+   "digestion"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "Where digestion starts: chewing, saliva and swallowing.",
+  "layers": {
+   "basics": "Teeth grind food and saliva begins breaking down starch. Your tongue pushes the food to the throat to swallow.",
+   "deeper": "Salivary glands release about 1-1.5 L of saliva daily containing amylase and lipase. Swallowing is a reflex coordinated by the brainstem.",
+   "expert": "Swallowing has oral, pharyngeal and esophageal phases; the epiglottis diverts food from the airway; adults have 32 teeth, and enamel is ≈ 96% mineral (hydroxyapatite)."
+  },
+  "facts": [
+   [
+    "Adult teeth",
+    "32"
+   ],
+   [
+    "Saliva per day",
+    "≈ 1-1.5 L"
+   ],
+   [
+    "Enamel mineral",
+    "≈ 96%"
+   ]
+  ],
+  "did_you_know": "Tooth enamel is the hardest substance in the human body.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.3",
+    "23-3-the-mouth-pharynx-and-esophagus"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "esophagus",
+  "title": "Esophagus",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.25,
+  "parents": [
+   "digestive_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue",
+   "smooth_muscle_tissue",
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [
+   "digestion"
+  ],
+  "related": [],
+  "mesh": "esophagus",
+  "summary": "A muscular tube that carries swallowed food to the stomach.",
+  "layers": {
+   "basics": "The food pipe pushes your food down by waves of squeezing, so you can even swallow upside down.",
+   "deeper": "Upper third is skeletal muscle, lower third smooth muscle, with sphincters at both ends.",
+   "expert": "Peristalsis driven by the vagus and enteric plexuses; lower esophageal sphincter prevents reflux; stratified squamous epithelium."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 25 cm"
+   ],
+   [
+    "Transit time",
+    "≈ 5-10 s"
+   ]
+  ],
+  "did_you_know": "Astronauts can swallow in zero gravity because muscles, not gravity, move food.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.3",
+    "23-3-the-mouth-pharynx-and-esophagus"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "stomach",
+  "title": "Stomach",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.25,
+  "parents": [
+   "digestive_system"
+  ],
+  "parts": [
+   "gastric_pits"
+  ],
+  "made_of": [
+   "epithelial_tissue",
+   "smooth_muscle_tissue",
+   "connective_tissue_loose"
+  ],
+  "processes": [
+   "digestion"
+  ],
+  "related": [],
+  "mesh": "stomach",
+  "summary": "A stretchy muscular sac that churns food with acid and enzymes.",
+  "layers": {
+   "basics": "The stomach mixes food into a thick soup called chyme and starts breaking down protein.",
+   "deeper": "It can hold about 1-1.5 L; gastric juice has a pH around 1.5-3.5, strong enough to kill most microbes.",
+   "expert": "Parietal cells secrete HCl and intrinsic factor, chief cells release pepsinogen, G cells secrete gastrin; mucus-bicarbonate layer protects the wall; emptying ≈ 2-4 h."
+  },
+  "facts": [
+   [
+    "Capacity",
+    "≈ 1-1.5 L (can expand)"
+   ],
+   [
+    "Acid pH",
+    "≈ 1.5-3.5"
+   ],
+   [
+    "Emptying",
+    "≈ 2-4 h"
+   ]
+  ],
+  "did_you_know": "The stomach lining replaces itself every few days, and the lining cells are renewed so fast it avoids digesting itself.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.4",
+    "23-4-the-stomach"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "gastric_pits",
+  "title": "Gastric pits and glands",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.0003,
+  "parents": [
+   "stomach"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "digestion"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "stomach",
+   "at": [
+    0.04,
+    0.0,
+    0.03
+   ],
+   "label": "Gastric pits"
+  },
+  "summary": "Tiny pits in the stomach lining that release acid, enzymes and mucus.",
+  "layers": {
+   "basics": "The stomach wall is dotted with millions of little pits that pour out digestive juices.",
+   "deeper": "Different cells in each gland make acid, enzymes, mucus and hormones.",
+   "expert": "Parietal cells (H+/K+ ATPase), chief cells (pepsinogen), mucous neck cells, enteroendocrine G cells; stem cells at the isthmus."
+  },
+  "facts": [
+   [
+    "Pits",
+    "≈ 3-4 million"
+   ],
+   [
+    "Pit depth",
+    "≈ 0.3 mm"
+   ]
+  ],
+  "did_you_know": "The proton pump in these cells can create a 1,000,000-fold H+ gradient.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.4",
+    "23-4-the-stomach"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "small_intestine",
+  "title": "Small intestine",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 6.0,
+  "parents": [
+   "digestive_system"
+  ],
+  "parts": [
+   "villi"
+  ],
+  "made_of": [
+   "epithelial_tissue",
+   "smooth_muscle_tissue"
+  ],
+  "processes": [
+   "digestion",
+   "hormone_signaling"
+  ],
+  "related": [],
+  "mesh": "small_intestine",
+  "summary": "A long coiled tube where most digestion and absorption of nutrients happen.",
+  "layers": {
+   "basics": "This is where most food becomes usable nutrients, absorbed through a huge folded lining.",
+   "deeper": "It has three parts: duodenum, jejunum and ileum. Bile and pancreatic enzymes enter the duodenum.",
+   "expert": "Circular folds, villi and microvilli amplify surface ≈ 600-fold; brush border enzymes finish digestion; segmentation and migrating motor complexes mix and move contents."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 3-6 m"
+   ],
+   [
+    "Diameter",
+    "≈ 2.5-3 cm"
+   ],
+   [
+    "Effective area",
+    "≈ 30-40 m²"
+   ]
+  ],
+  "did_you_know": "Despite the name 'small', it is the longest part of your digestive tube.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.5",
+    "23-5-the-small-and-large-intestines"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "villi",
+  "title": "Intestinal villi",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.001,
+  "parents": [
+   "small_intestine"
+  ],
+  "parts": [],
+  "made_of": [
+   "enterocyte",
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "digestion"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "small_intestine",
+   "at": [
+    0.0,
+    0.0,
+    0.01
+   ],
+   "label": "Villi"
+  },
+  "summary": "Finger-like projections that greatly increase the intestine's absorption area.",
+  "layers": {
+   "basics": "Villi are tiny fingers covering the inner wall, soaking up nutrients.",
+   "deeper": "Each villus has capillaries for sugars and amino acids and a lymph vessel (lacteal) for fats.",
+   "expert": "Enterocytes carry microvilli (brush border) ≈ 1 µm tall; crypts of Lieberkühn house stem cells; epithelial turnover ≈ 3-5 days."
+  },
+  "facts": [
+   [
+    "Height",
+    "≈ 0.5-1 mm"
+   ],
+   [
+    "Density",
+    "≈ 10-40 per mm²"
+   ]
+  ],
+  "did_you_know": "The intestinal lining is replaced every 3 to 5 days, one of the fastest turnover rates in the body.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.5",
+    "23-5-the-small-and-large-intestines"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "large_intestine",
+  "title": "Large intestine (colon)",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 1.5,
+  "parents": [
+   "digestive_system"
+  ],
+  "parts": [
+   "microbiome"
+  ],
+  "made_of": [
+   "epithelial_tissue",
+   "smooth_muscle_tissue"
+  ],
+  "processes": [
+   "digestion"
+  ],
+  "related": [],
+  "mesh": "large_intestine",
+  "summary": "The wide tube that absorbs water and salts and houses most gut microbes.",
+  "layers": {
+   "basics": "The large intestine turns leftovers into stool and hosts trillions of helpful bacteria.",
+   "deeper": "It includes cecum, colon and rectum. Gut microbes ferment fiber into useful fatty acids.",
+   "expert": "Colonic transit ≈ 20-50 h; microbial fermentation gives short-chain fatty acids (acetate, propionate, butyrate) used by colonocytes; microbial density ≈ 10^11-10^12 per gram."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 1.5 m"
+   ],
+   [
+    "Water absorbed",
+    "≈ 1-1.5 L/day"
+   ],
+   [
+    "Microbes",
+    "≈ 4×10^13 (whole body)"
+   ]
+  ],
+  "did_you_know": "About half of stool dry weight is bacterial biomass.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.5",
+    "23-5-the-small-and-large-intestines"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "microbiome",
+  "title": "Gut microbiome",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 1.5,
+  "parents": [
+   "large_intestine"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "digestion"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "The community of trillions of microbes living mainly in the large intestine.",
+  "layers": {
+   "basics": "Your gut hosts bacteria, archaea, fungi and viruses that help digest fiber, train the immune system and make vitamins.",
+   "deeper": "Their composition varies between people and over time, shaped by diet, age and environment.",
+   "expert": "Metagenomic sequencing reveals ≈ 10^3 species per person; causal links to obesity, mood or disease are actively researched, and many associations remain correlational."
+  },
+  "facts": [
+   [
+    "Microbial cells",
+    "≈ 3.8×10^13"
+   ],
+   [
+    "Genes (microbial)",
+    "≈ 10^6-10^7"
+   ]
+  ],
+  "did_you_know": "The ratio of microbial to human cells is closer to 1:1 than the older 10:1 estimate.",
+  "certainty": "C3",
+  "open_questions": [
+   "Which microbiome features cause (rather than merely correlate with) health effects?",
+   "How reliably can microbiome interventions treat disease?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "23.5",
+    "23-5-the-small-and-large-intestines"
+   ]
+  ],
+  "kn": [
+   "bacteria_archaea"
+  ]
+ },
+ {
+  "id": "liver",
+  "title": "Liver",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.2,
+  "parents": [
+   "digestive_system"
+  ],
+  "parts": [
+   "liver_lobule"
+  ],
+  "made_of": [
+   "hepatocyte",
+   "connective_tissue_loose"
+  ],
+  "processes": [
+   "digestion",
+   "hormone_signaling"
+  ],
+  "related": [],
+  "mesh": "liver",
+  "summary": "The largest internal organ, which processes nutrients, makes bile and detoxifies the blood.",
+  "layers": {
+   "basics": "The liver is a chemical factory that cleans blood, stores energy and makes bile to digest fats.",
+   "deeper": "It receives blood both from the gut (portal vein) and from the heart (hepatic artery), and can regrow after partial removal.",
+   "expert": "Performs >500 functions: glycogen storage, gluconeogenesis, albumin and clotting factor synthesis, urea cycle, cytochrome P450 drug metabolism and bile acid production."
+  },
+  "facts": [
+   [
+    "Mass",
+    "≈ 1.4-1.8 kg"
+   ],
+   [
+    "Blood flow",
+    "≈ 1.5 L/min"
+   ],
+   [
+    "Hepatocytes",
+    "≈ 2×10^11"
+   ]
+  ],
+  "did_you_know": "The liver can regenerate to full size from as little as a quarter of its mass.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.6",
+    "23-6-accessory-organs-in-digestion-the-liver-pancreas-and-gallbladder"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "liver_lobule",
+  "title": "Liver lobule",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.001,
+  "parents": [
+   "liver"
+  ],
+  "parts": [],
+  "made_of": [
+   "hepatocyte"
+  ],
+  "processes": [
+   "digestion"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "liver",
+   "at": [
+    0.02,
+    0.0,
+    0.02
+   ],
+   "label": "Liver lobule"
+  },
+  "summary": "A hexagonal unit of liver tissue where blood is processed.",
+  "layers": {
+   "basics": "Blood flows through each lobule, passing liver cells that clean it.",
+   "deeper": "Blood flows from the corners (portal triads) toward a central vein.",
+   "expert": "Sinusoids, Kupffer cells, stellate cells; zonation (periportal to pericentral) specializes metabolism."
+  },
+  "facts": [
+   [
+    "Width",
+    "≈ 1-2 mm"
+   ],
+   [
+    "Number",
+    "≈ 10^5"
+   ]
+  ],
+  "did_you_know": "Each lobule is about as wide as a grain of sand.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.6",
+    "23-6-accessory-organs-in-digestion-the-liver-pancreas-and-gallbladder"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "gallbladder",
+  "title": "Gallbladder",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.08,
+  "parents": [
+   "digestive_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue",
+   "smooth_muscle_tissue"
+  ],
+  "processes": [
+   "digestion"
+  ],
+  "related": [],
+  "mesh": "gallbladder",
+  "summary": "A small sac that stores and concentrates bile.",
+  "layers": {
+   "basics": "The gallbladder holds bile until fatty food arrives, then squeezes it into the intestine.",
+   "deeper": "Bile helps break fats into tiny droplets.",
+   "expert": "CCK triggers gallbladder contraction and sphincter of Oddi relaxation; bile concentrates 5-10×; cholesterol stones are common."
+  },
+  "facts": [
+   [
+    "Capacity",
+    "≈ 30-50 mL"
+   ],
+   [
+    "Bile stored",
+    "≈ 50 mL"
+   ]
+  ],
+  "did_you_know": "People can live normally without a gallbladder.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.6",
+    "23-6-accessory-organs-in-digestion-the-liver-pancreas-and-gallbladder"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "pancreas",
+  "title": "Pancreas",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.15,
+  "parents": [
+   "digestive_system",
+   "endocrine_system"
+  ],
+  "parts": [
+   "pancreatic_islets"
+  ],
+  "made_of": [
+   "epithelial_tissue",
+   "connective_tissue_loose"
+  ],
+  "processes": [
+   "digestion",
+   "hormone_signaling"
+  ],
+  "related": [],
+  "mesh": "pancreas",
+  "summary": "A gland that makes digestive enzymes and the hormones insulin and glucagon.",
+  "layers": {
+   "basics": "The pancreas does two jobs: it sends enzymes to the intestine and hormones to the blood.",
+   "deeper": "Most of it (acinar tissue) makes enzymes; small clusters of cells called islets make hormones.",
+   "expert": "Exocrine secretion (≈ 1-1.5 L/day) includes trypsinogen, amylase, lipase and bicarbonate; endocrine islets contain alpha, beta, delta cells."
+  },
+  "facts": [
+   [
+    "Mass",
+    "≈ 80-100 g"
+   ],
+   [
+    "Enzyme juice",
+    "≈ 1-1.5 L/day"
+   ]
+  ],
+  "did_you_know": "The name pancreas comes from Greek for 'all flesh'.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.6",
+    "23-6-accessory-organs-in-digestion-the-liver-pancreas-and-gallbladder"
+   ]
+  ],
+  "kn": [
+   "endocrine_physiology"
+  ]
+ },
+ {
+  "id": "pancreatic_islets",
+  "title": "Pancreatic islets",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.0002,
+  "parents": [
+   "pancreas"
+  ],
+  "parts": [],
+  "made_of": [
+   "beta_cell"
+  ],
+  "processes": [
+   "hormone_signaling"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "pancreas",
+   "at": [
+    0.03,
+    0.0,
+    0.0
+   ],
+   "label": "Islets of Langerhans"
+  },
+  "summary": "Clusters of cells in the pancreas that make insulin and glucagon.",
+  "layers": {
+   "basics": "About a million tiny islands of cells that monitor your blood sugar.",
+   "deeper": "Beta cells release insulin to lower blood sugar; alpha cells release glucagon to raise it.",
+   "expert": "≈ 1-2% of pancreatic mass; beta cells ≈ 50-70% of islet; glucose sensing via GLUT/glucokinase and K-ATP channels triggers insulin exocytosis."
+  },
+  "facts": [
+   [
+    "Islets",
+    "≈ 10^6"
+   ],
+   [
+    "Diameter",
+    "≈ 0.1-0.3 mm"
+   ]
+  ],
+  "did_you_know": "Islets make up only about 1-2% of the pancreas.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "17.9",
+    "17-9-the-endocrine-pancreas"
+   ]
+  ],
+  "kn": [
+   "endocrine_physiology"
+  ],
+  "molecules": [
+   "glucose_beta"
+  ]
+ },
+ {
+  "id": "kidney_l",
+  "title": "Left kidney",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.11,
+  "parents": [
+   "urinary_system"
+  ],
+  "parts": [
+   "nephron"
+  ],
+  "made_of": [
+   "epithelial_tissue",
+   "smooth_muscle_tissue",
+   "connective_tissue_loose"
+  ],
+  "processes": [
+   "urine_formation"
+  ],
+  "related": [],
+  "mesh": "kidney_l",
+  "summary": "The left kidney filters blood and makes urine.",
+  "layers": {
+   "basics": "Kidneys are bean-shaped organs that clean your blood and control water, salt and acid levels.",
+   "deeper": "Each has about a million nephrons. Blood enters via the renal artery, filtered fluid becomes urine collected in the renal pelvis.",
+   "expert": "Receives ≈ 20-25% of cardiac output; GFR ≈ 120 mL/min; also secretes renin, erythropoietin and activates vitamin D (calcitriol)."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 11 cm"
+   ],
+   [
+    "Mass",
+    "≈ 150 g"
+   ],
+   [
+    "Nephrons",
+    "≈ 10^6"
+   ]
+  ],
+  "did_you_know": "Each kidney is only about the size of a fist, but together they handle a fifth of your blood flow.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "25.3",
+    "25-3-gross-anatomy-of-the-kidney"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "kidney_r",
+  "title": "Right kidney",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.11,
+  "parents": [
+   "urinary_system"
+  ],
+  "parts": [
+   "renal_cortex",
+   "renal_medulla",
+   "renal_pelvis",
+   "nephron"
+  ],
+  "made_of": [
+   "epithelial_tissue",
+   "smooth_muscle_tissue",
+   "connective_tissue_loose"
+  ],
+  "processes": [
+   "urine_formation"
+  ],
+  "related": [],
+  "mesh": "kidney_r",
+  "summary": "The right kidney filters blood and makes urine.",
+  "layers": {
+   "basics": "Kidneys are bean-shaped organs that clean your blood and control water, salt and acid levels.",
+   "deeper": "Each has about a million nephrons. Blood enters via the renal artery, filtered fluid becomes urine collected in the renal pelvis.",
+   "expert": "Receives ≈ 20-25% of cardiac output; GFR ≈ 120 mL/min; also secretes renin, erythropoietin and activates vitamin D (calcitriol)."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 11 cm"
+   ],
+   [
+    "Mass",
+    "≈ 150 g"
+   ],
+   [
+    "Nephrons",
+    "≈ 10^6"
+   ]
+  ],
+  "did_you_know": "Each kidney is only about the size of a fist, but together they handle a fifth of your blood flow.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "25.3",
+    "25-3-gross-anatomy-of-the-kidney"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "renal_cortex",
+  "title": "Renal cortex",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.01,
+  "parents": [
+   "kidney_r"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "urine_formation"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "kidney_r",
+   "at": [
+    -0.025,
+    0.0,
+    0.0
+   ],
+   "label": "Cortex"
+  },
+  "summary": "The outer layer of the kidney holding the filters.",
+  "layers": {
+   "basics": "The outer shell where blood is first filtered.",
+   "deeper": "It contains glomeruli and most of the tubules.",
+   "expert": "Cortical labyrinth and medullary rays; ≈ 85% of nephrons are cortical."
+  },
+  "facts": [
+   [
+    "Role",
+    "The outer layer of the kidney holding the filters"
+   ]
+  ],
+  "did_you_know": "Only about a fifth of the kidney's blood flow ends up as filtrate.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "25.3",
+    "25-3-gross-anatomy-of-the-kidney"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "renal_medulla",
+  "title": "Renal medulla",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.03,
+  "parents": [
+   "kidney_r"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "urine_formation"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "kidney_r",
+   "at": [
+    -0.01,
+    0.0,
+    0.0
+   ],
+   "label": "Medulla"
+  },
+  "summary": "Inner region with cone-shaped pyramids that concentrate urine.",
+  "layers": {
+   "basics": "The inner part drains urine and concentrates it.",
+   "deeper": "Pyramids of collecting ducts and loops of Henle.",
+   "expert": "Osmotic gradient from ≈ 300 to ≈ 1200 mOsm/kg establishes countercurrent multiplication."
+  },
+  "facts": [
+   [
+    "Role",
+    "Inner region with cone-shaped pyramids that concentrate urine"
+   ]
+  ],
+  "did_you_know": "Only about a fifth of the kidney's blood flow ends up as filtrate.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "25.3",
+    "25-3-gross-anatomy-of-the-kidney"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "renal_pelvis",
+  "title": "Renal pelvis",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.02,
+  "parents": [
+   "kidney_r"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "urine_formation"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "kidney_r",
+   "at": [
+    0.015,
+    0.0,
+    0.0
+   ],
+   "label": "Renal pelvis"
+  },
+  "summary": "The funnel where urine collects before flowing to the ureter.",
+  "layers": {
+   "basics": "Urine collects here and then flows down the ureter.",
+   "deeper": "Minor and major calyces feed into it.",
+   "expert": "Peristalsis of calyces and pelvis propels urine; urothelium resists toxicity of urine."
+  },
+  "facts": [
+   [
+    "Role",
+    "The funnel where urine collects before flowing to the ureter"
+   ]
+  ],
+  "did_you_know": "A kidney stone often gets stuck where the pelvis meets the ureter.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "25.3",
+    "25-3-gross-anatomy-of-the-kidney"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "nephron",
+  "title": "Nephron",
+  "kind": "structure",
+  "template": "micro",
+  "scale_m": 0.05,
+  "parents": [
+   "kidney_l",
+   "kidney_r"
+  ],
+  "parts": [
+   "glomerulus",
+   "proximal_tubule",
+   "loop_of_henle",
+   "distal_tubule",
+   "collecting_duct"
+  ],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "urine_formation"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "kidney_r",
+   "at": [
+    -0.02,
+    0.01,
+    0.0
+   ],
+   "label": "Nephron"
+  },
+  "summary": "The kidney's microscopic filtering and processing unit.",
+  "layers": {
+   "basics": "Each nephron filters blood and then takes back the water and nutrients your body wants to keep.",
+   "deeper": "It consists of a glomerulus, a long tubule with several regions, and drains into a collecting duct.",
+   "expert": "Segments: Bowman's capsule, proximal convoluted tubule (≈ 65% reabsorption), loop of Henle, distal tubule, connecting tubule; juxtaglomerular apparatus regulates GFR via tubuloglomerular feedback."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 3-5 cm tubule (up to ~5)"
+   ],
+   [
+    "Per kidney",
+    "≈ 10^6"
+   ]
+  ],
+  "did_you_know": "If all the kidney tubules were stretched out, they would be roughly 80 km long.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "25.4",
+    "25-4-microscopic-anatomy-of-the-kidney"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "glomerulus",
+  "title": "Glomerulus",
+  "kind": "structure",
+  "template": "micro",
+  "scale_m": 0.01,
+  "parents": [
+   "nephron"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "urine_formation"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "nephron",
+   "at": [
+    0.0,
+    0.015,
+    0.0
+   ],
+   "label": "Glomerulus"
+  },
+  "summary": "A tuft of capillaries where blood plasma is filtered.",
+  "layers": {
+   "basics": "Blood is pushed against a super-fine sieve; water and small molecules pass, cells and big proteins stay.",
+   "deeper": "Three layers: fenestrated endothelium, basement membrane, podocyte slit diaphragms.",
+   "expert": "Filtration fraction ≈ 20%; filtration pressure ≈ 10 mmHg net; podocytes' nephrin slit-diaphragm restricts albumin."
+  },
+  "facts": [
+   [
+    "Role",
+    "A tuft of capillaries where blood plasma is filtered"
+   ]
+  ],
+  "did_you_know": "Urine concentration can swing about 24-fold, from roughly 50 to 1200 mOsm/kg.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "25.4",
+    "25-4-microscopic-anatomy-of-the-kidney"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "proximal_tubule",
+  "title": "Proximal convoluted tubule",
+  "kind": "structure",
+  "template": "micro",
+  "scale_m": 0.01,
+  "parents": [
+   "nephron"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "urine_formation"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "nephron",
+   "at": [
+    0.003,
+    0.01,
+    0.0
+   ],
+   "label": "Proximal tubule"
+  },
+  "summary": "The first long tube segment that reclaims most water, salt and all glucose.",
+  "layers": {
+   "basics": "Most of what you need (sugar, water, salts) is taken back here.",
+   "deeper": "Brush border and abundant mitochondria support active transport.",
+   "expert": "Na+-coupled transport (SGLT2 takes up glucose); ≈ 65% of Na+ and water reabsorbed; secretion of organic acids and bases."
+  },
+  "facts": [
+   [
+    "Role",
+    "The first long tube segment that reclaims most water, salt and all glucose"
+   ]
+  ],
+  "did_you_know": "Urine concentration can swing about 24-fold, from roughly 50 to 1200 mOsm/kg.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "25.6",
+    "25-6-tubular-reabsorption"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "loop_of_henle",
+  "title": "Loop of Henle",
+  "kind": "structure",
+  "template": "micro",
+  "scale_m": 0.01,
+  "parents": [
+   "nephron"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "urine_formation"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "nephron",
+   "at": [
+    0.0,
+    -0.012,
+    0.0
+   ],
+   "label": "Loop of Henle"
+  },
+  "summary": "A hairpin that builds the salt gradient used to concentrate urine.",
+  "layers": {
+   "basics": "The loop of Henle dips into the kidney's inner zone, building a salty gradient so the body can make concentrated urine.",
+   "deeper": "Descending limb is water-permeable, ascending thick limb pumps out salt (NKCC2).",
+   "expert": "Countercurrent multiplier; loop diuretics block NKCC2; vasa recta maintain gradient."
+  },
+  "facts": [
+   [
+    "Role",
+    "A hairpin that builds the salt gradient used to concentrate urine"
+   ]
+  ],
+  "did_you_know": "Urine concentration can swing about 24-fold, from roughly 50 to 1200 mOsm/kg.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "25.4",
+    "25-4-microscopic-anatomy-of-the-kidney"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "distal_tubule",
+  "title": "Distal convoluted tubule",
+  "kind": "structure",
+  "template": "micro",
+  "scale_m": 0.01,
+  "parents": [
+   "nephron"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "urine_formation"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "nephron",
+   "at": [
+    -0.003,
+    0.01,
+    0.0
+   ],
+   "label": "Distal tubule"
+  },
+  "summary": "The fine-tuning segment that adjusts salt and calcium.",
+  "layers": {
+   "basics": "Hormones adjust the final salt and calcium balance here.",
+   "deeper": "Aldosterone and PTH act on segments here.",
+   "expert": "NCC transporter (thiazide target); regulated by aldosterone and PTH; macula densa sensor."
+  },
+  "facts": [
+   [
+    "Role",
+    "The fine-tuning segment that adjusts salt and calcium"
+   ]
+  ],
+  "did_you_know": "Urine concentration can swing about 24-fold, from roughly 50 to 1200 mOsm/kg.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "25.4",
+    "25-4-microscopic-anatomy-of-the-kidney"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "collecting_duct",
+  "title": "Collecting duct",
+  "kind": "structure",
+  "template": "micro",
+  "scale_m": 0.01,
+  "parents": [
+   "nephron"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "urine_formation"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "nephron",
+   "at": [
+    0.006,
+    0.0,
+    0.0
+   ],
+   "label": "Collecting duct"
+  },
+  "summary": "The final tube that gathers urine and sets its water content.",
+  "layers": {
+   "basics": "The last stop for adjusting urine's water content, controlled by the hormone ADH.",
+   "deeper": "Water channels (aquaporin-2) are inserted when ADH is high, making urine concentrated.",
+   "expert": "Principal cells (ENaC, AQP2) and intercalated cells (acid-base); urea recycling in the inner medulla."
+  },
+  "facts": [
+   [
+    "Role",
+    "The final tube that gathers urine and sets its water content"
+   ]
+  ],
+  "did_you_know": "Urine concentration can swing about 24-fold, from roughly 50 to 1200 mOsm/kg.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "25.4",
+    "25-4-microscopic-anatomy-of-the-kidney"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "ureters",
+  "title": "Ureters",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.28,
+  "parents": [
+   "urinary_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "smooth_muscle_tissue",
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "urine_formation"
+  ],
+  "related": [],
+  "mesh": "ureters",
+  "summary": "Two muscular tubes carrying urine from the kidneys to the bladder.",
+  "layers": {
+   "basics": "Waves of muscle squeeze urine down these thin tubes, even if you're lying down.",
+   "deeper": "Peristalsis every 10 to 60 seconds pushes urine along.",
+   "expert": "Urothelium; three constrictions (pelviureteric junction, pelvic brim, vesicoureteric junction) are common stone-lodging sites."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 25-30 cm"
+   ],
+   [
+    "Diameter",
+    "≈ 3-4 mm"
+   ]
+  ],
+  "did_you_know": "They enter the bladder at an angle, forming a one-way valve.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "25.2",
+    "25-2-gross-anatomy-of-urine-transport"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "bladder",
+  "title": "Urinary bladder",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.12,
+  "parents": [
+   "urinary_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "smooth_muscle_tissue",
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "urine_formation"
+  ],
+  "related": [],
+  "mesh": "bladder",
+  "summary": "A stretchy muscular bag that stores urine.",
+  "layers": {
+   "basics": "The bladder fills like a balloon and signals when it's time to go.",
+   "deeper": "It typically holds 400-600 mL, with the urge starting at about 200-300 mL.",
+   "expert": "Detrusor smooth muscle and transitional epithelium (urothelium); micturition reflex coordinated by sacral cord (S2-S4) and pontine micturition center; internal and external sphincters."
+  },
+  "facts": [
+   [
+    "Capacity",
+    "≈ 400-600 mL"
+   ],
+   [
+    "Urge threshold",
+    "≈ 200-300 mL"
+   ]
+  ],
+  "did_you_know": "The bladder wall can stretch to many times its relaxed size without pressure rising much.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "25.2",
+    "25-2-gross-anatomy-of-urine-transport"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "urethra",
+  "title": "Urethra",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.2,
+  "parents": [
+   "urinary_system",
+   "reproductive_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "smooth_muscle_tissue",
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "urine_formation"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "The tube that carries urine out of the body.",
+  "layers": {
+   "basics": "The final tube for urine. It is longer in males than in females.",
+   "deeper": "Sphincters control release.",
+   "expert": "Female ≈ 4 cm, male ≈ 20 cm; the male urethra also carries semen."
+  },
+  "facts": [
+   [
+    "Female length",
+    "≈ 4 cm"
+   ],
+   [
+    "Male length",
+    "≈ 20 cm"
+   ]
+  ],
+  "did_you_know": "Its length difference explains why urinary infections are more common in females.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "25.2",
+    "25-2-gross-anatomy-of-urine-transport"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "pituitary_gland",
+  "title": "Pituitary gland",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.012,
+  "parents": [
+   "endocrine_system",
+   "brain"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue",
+   "nervous_tissue"
+  ],
+  "processes": [
+   "hormone_signaling"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "brain",
+   "at": [
+    0.0,
+    -0.035,
+    0.015
+   ],
+   "label": "Pituitary"
+  },
+  "summary": "A pea-sized gland that controls many other hormone glands.",
+  "layers": {
+   "basics": "Called the master gland, it releases hormones controlling growth, stress, thyroid and reproduction.",
+   "deeper": "The anterior lobe makes hormones like growth hormone and TSH; the posterior lobe releases oxytocin and ADH made in the hypothalamus.",
+   "expert": "Anterior lobe receives hypophyseal portal blood carrying releasing hormones; posterior is neural tissue releasing OT and AVP."
+  },
+  "facts": [
+   [
+    "Mass",
+    "≈ 0.5 g"
+   ],
+   [
+    "Hormones",
+    "≈ 8 major"
+   ]
+  ],
+  "did_you_know": "It sits in a small bony pocket of the skull called the sella turcica.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "17.3",
+    "17-3-the-pituitary-gland-and-hypothalamus"
+   ]
+  ],
+  "kn": [
+   "endocrine_physiology"
+  ]
+ },
+ {
+  "id": "thyroid",
+  "title": "Thyroid",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.05,
+  "parents": [
+   "endocrine_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue",
+   "connective_tissue_loose"
+  ],
+  "processes": [
+   "hormone_signaling"
+  ],
+  "related": [],
+  "mesh": "thyroid",
+  "summary": "A butterfly-shaped gland in the neck that sets the body's metabolic pace.",
+  "layers": {
+   "basics": "The thyroid releases hormones that control how fast your cells use energy.",
+   "deeper": "It needs iodine to make thyroxine (T4) and triiodothyronine (T3).",
+   "expert": "TSH stimulates thyroglobulin iodination; T3 acts via nuclear thyroid hormone receptors; C cells secrete calcitonin."
+  },
+  "facts": [
+   [
+    "Mass",
+    "≈ 20 g"
+   ],
+   [
+    "Iodine content",
+    "≈ 10-15 mg"
+   ]
+  ],
+  "did_you_know": "Iodine-deficiency can cause a swollen thyroid (goiter).",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "17.4",
+    "17-4-the-thyroid-gland"
+   ]
+  ],
+  "kn": [
+   "endocrine_physiology"
+  ],
+  "molecules": [
+   "thyroxine"
+  ]
+ },
+ {
+  "id": "parathyroid_glands",
+  "title": "Parathyroid glands",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.006,
+  "parents": [
+   "endocrine_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "hormone_signaling",
+   "bone_remodeling"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "Four tiny glands behind the thyroid that control blood calcium.",
+  "layers": {
+   "basics": "They monitor calcium in your blood and release a hormone to raise it when low.",
+   "deeper": "Parathyroid hormone acts on bone, kidney and gut.",
+   "expert": "PTH release is controlled by the calcium-sensing receptor; PTH increases bone resorption, renal Ca2+ reabsorption and calcitriol synthesis."
+  },
+  "facts": [
+   [
+    "Number",
+    "usually 4"
+   ],
+   [
+    "Size",
+    "≈ 6 mm each"
+   ]
+  ],
+  "did_you_know": "They were the last major organs identified in humans.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "17.5",
+    "17-5-the-parathyroid-glands"
+   ]
+  ],
+  "kn": [
+   "endocrine_physiology"
+  ]
+ },
+ {
+  "id": "adrenal_glands",
+  "title": "Adrenal glands",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.05,
+  "parents": [
+   "endocrine_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue",
+   "nervous_tissue"
+  ],
+  "processes": [
+   "hormone_signaling"
+  ],
+  "related": [],
+  "mesh": "adrenal_glands",
+  "summary": "Two glands atop the kidneys that release stress hormones.",
+  "layers": {
+   "basics": "They make adrenaline and cortisol, which help you respond to stress.",
+   "deeper": "The outer cortex makes steroid hormones; the inner medulla makes adrenaline.",
+   "expert": "Zones: glomerulosa (aldosterone), fasciculata (cortisol), reticularis (androgens); medulla chromaffin cells secrete epinephrine in response to sympathetic input."
+  },
+  "facts": [
+   [
+    "Mass (each)",
+    "≈ 4-5 g"
+   ],
+   [
+    "Parts",
+    "cortex + medulla"
+   ]
+  ],
+  "did_you_know": "Each adrenal gland weighs about as much as a grape.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "17.6",
+    "17-6-the-adrenal-glands"
+   ]
+  ],
+  "kn": [
+   "endocrine_physiology"
+  ],
+  "molecules": [
+   "adrenaline",
+   "cortisol"
+  ]
+ },
+ {
+  "id": "pineal_gland",
+  "title": "Pineal gland",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.008,
+  "parents": [
+   "endocrine_system",
+   "brain"
+  ],
+  "parts": [],
+  "made_of": [
+   "nervous_tissue"
+  ],
+  "processes": [
+   "hormone_signaling"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "brain",
+   "at": [
+    0.0,
+    0.0,
+    -0.03
+   ],
+   "label": "Pineal gland"
+  },
+  "summary": "A tiny pinecone-shaped gland that releases melatonin in the dark.",
+  "layers": {
+   "basics": "It helps tell your body when it's night.",
+   "deeper": "It is regulated by light signals through the suprachiasmatic nucleus.",
+   "expert": "Melatonin synthesis from serotonin by AANAT, peaking at night; calcifies with age."
+  },
+  "facts": [
+   [
+    "Size",
+    "≈ 5-8 mm"
+   ],
+   [
+    "Hormone",
+    "melatonin"
+   ]
+  ],
+  "did_you_know": "Descartes proposed it as the seat of the soul.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "17.7",
+    "17-7-the-pineal-gland"
+   ]
+  ],
+  "kn": [
+   "sleep_circadian"
+  ],
+  "molecules": [
+   "melatonin"
+  ]
+ },
+ {
+  "id": "spleen",
+  "title": "Spleen",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.12,
+  "parents": [
+   "lymphatic_immune_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "lymphocyte_b",
+   "macrophage",
+   "connective_tissue_loose"
+  ],
+  "processes": [
+   "immune_response"
+  ],
+  "related": [],
+  "mesh": "spleen",
+  "summary": "An organ that filters blood and stores immune cells.",
+  "layers": {
+   "basics": "The spleen removes old red blood cells and helps fight infections.",
+   "deeper": "It has red pulp (filtering) and white pulp (immune cells).",
+   "expert": "Marginal zone B cells respond to blood-borne encapsulated bacteria; red pulp macrophages recycle iron; stores ≈ 200 mL blood."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 12 cm"
+   ],
+   [
+    "Mass",
+    "≈ 150 g"
+   ]
+  ],
+  "did_you_know": "A person can live without a spleen but is more vulnerable to some infections.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "21.1",
+    "21-1-anatomy-of-the-lymphatic-and-immune-systems"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ]
+ },
+ {
+  "id": "thymus",
+  "title": "Thymus",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.06,
+  "parents": [
+   "lymphatic_immune_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "lymphocyte_t",
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "immune_response"
+  ],
+  "related": [],
+  "mesh": "thymus",
+  "summary": "Where T cells mature; largest in children.",
+  "layers": {
+   "basics": "T cells go to school in the thymus, learning to ignore your own body.",
+   "deeper": "It is most active in childhood and shrinks with age.",
+   "expert": "Positive and negative selection of thymocytes; thymic involution begins in adolescence; AIRE expression enables central tolerance."
+  },
+  "facts": [
+   [
+    "Peak mass",
+    "≈ 30-40 g (puberty)"
+   ],
+   [
+    "Adult",
+    "largely replaced by fat"
+   ]
+  ],
+  "did_you_know": "Mostly fat by old age, yet T cells made earlier persist for decades.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "21.1",
+    "21-1-anatomy-of-the-lymphatic-and-immune-systems"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ]
+ },
+ {
+  "id": "lymph_nodes",
+  "title": "Lymph nodes",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.01,
+  "parents": [
+   "lymphatic_immune_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "lymphocyte_b",
+   "lymphocyte_t",
+   "macrophage"
+  ],
+  "processes": [
+   "immune_response"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "Bean-shaped filters where immune cells meet germs in the fluid.",
+  "layers": {
+   "basics": "Lymph nodes swell when you're sick because defender cells multiply there.",
+   "deeper": "Lymph drains through them on its way back to the blood.",
+   "expert": "Afferent lymph enters via the subcapsular sinus; B-cell follicles and T-cell paracortex organize germinal centers."
+  },
+  "facts": [
+   [
+    "Number",
+    "≈ 600-700"
+   ],
+   [
+    "Size",
+    "≈ 1 cm"
+   ]
+  ],
+  "did_you_know": "Swollen glands are usually lymph nodes working.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "21.1",
+    "21-1-anatomy-of-the-lymphatic-and-immune-systems"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ]
+ },
+ {
+  "id": "lymphatic_vessels",
+  "title": "Lymphatic vessels",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 1.0,
+  "parents": [
+   "lymphatic_immune_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue",
+   "smooth_muscle_tissue"
+  ],
+  "processes": [
+   "immune_response"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "Thin vessels that collect leaked fluid and return it to the blood.",
+  "layers": {
+   "basics": "They drain extra fluid from tissues and carry it back toward the heart.",
+   "deeper": "Valves keep lymph flowing one way.",
+   "expert": "Initial lymphatics (lymphatic capillaries) with overlapping endothelial flaps; ≈ 2-4 L/day returned; thoracic duct drains most of the body."
+  },
+  "facts": [
+   [
+    "Fluid returned/day",
+    "≈ 2-4 L"
+   ]
+  ],
+  "did_you_know": "Lymph is also how dietary fats reach the blood after a meal.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "21.1",
+    "21-1-anatomy-of-the-lymphatic-and-immune-systems"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ]
+ },
+ {
+  "id": "skin",
+  "title": "Skin",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.003,
+  "parents": [
+   "integumentary_system"
+  ],
+  "parts": [
+   "epidermis",
+   "dermis",
+   "hair_follicle",
+   "sweat_gland",
+   "hypodermis"
+  ],
+  "made_of": [
+   "keratinocyte",
+   "epithelial_tissue",
+   "connective_tissue_loose",
+   "adipocyte"
+  ],
+  "processes": [
+   "immune_response",
+   "thermoregulation"
+  ],
+  "related": [],
+  "mesh": "skin",
+  "summary": "The body's largest organ: a waterproof, sensitive, self-renewing covering.",
+  "layers": {
+   "basics": "Skin protects you from germs, UV light and water loss, helps control body temperature and lets you feel.",
+   "deeper": "Three layers: epidermis (outer), dermis (middle), hypodermis (fat).",
+   "expert": "Keratinocyte differentiation produces the stratum corneum; epidermal turnover ≈ 28-40 days; melanocytes, Langerhans cells and Merkel cells reside in the epidermis."
+  },
+  "facts": [
+   [
+    "Area",
+    "≈ 1.7-2 m²"
+   ],
+   [
+    "Thickness",
+    "≈ 0.5-4 mm"
+   ],
+   [
+    "Mass",
+    "≈ 4-5 kg"
+   ]
+  ],
+  "did_you_know": "Skin is the heaviest organ of the body, around 15% of body weight.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "5.1",
+    "5-1-layers-of-the-skin"
+   ]
+  ],
+  "kn": [
+   "skin_integument"
+  ]
+ },
+ {
+  "id": "epidermis",
+  "title": "Epidermis",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.0001,
+  "parents": [
+   "skin"
+  ],
+  "parts": [],
+  "made_of": [
+   "keratinocyte",
+   "epithelial_tissue",
+   "melanocyte"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "skin",
+   "at": [
+    0.0,
+    0.0005,
+    0.0
+   ],
+   "label": "Epidermis"
+  },
+  "summary": "The thin, outer, waterproof layer of skin.",
+  "layers": {
+   "basics": "The outer layer is made of flat dead cells, constantly replaced from below.",
+   "deeper": "Cells are made at the bottom and move upward, flatten, and fill with keratin.",
+   "expert": "Five layers in thick skin: basale, spinosum, granulosum, lucidum, corneum; no blood vessels."
+  },
+  "facts": [
+   [
+    "Role",
+    "The thin, outer, waterproof layer of skin"
+   ]
+  ],
+  "did_you_know": "The surface layer you see is dead cells.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "5.1",
+    "5-1-layers-of-the-skin"
+   ]
+  ],
+  "kn": [
+   "skin_integument"
+  ]
+ },
+ {
+  "id": "dermis",
+  "title": "Dermis",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.0015,
+  "parents": [
+   "skin"
+  ],
+  "parts": [],
+  "made_of": [
+   "connective_tissue_loose",
+   "dense_connective_tissue"
+  ],
+  "processes": [
+   "thermoregulation"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "skin",
+   "at": [
+    0.0,
+    -0.0012,
+    0.0
+   ],
+   "label": "Dermis"
+  },
+  "summary": "The thick middle layer with fibers, vessels and nerves.",
+  "layers": {
+   "basics": "It gives skin its strength and stretch.",
+   "deeper": "Contains collagen, elastin, blood vessels, nerve endings and glands.",
+   "expert": "Papillary and reticular layers; fibroblasts produce collagen type I and III."
+  },
+  "facts": [
+   [
+    "Role",
+    "The thick middle layer with fibers, vessels and nerves"
+   ]
+  ],
+  "did_you_know": "Tattoo ink sits in the dermis, which is why it doesn't wash away.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "5.1",
+    "5-1-layers-of-the-skin"
+   ]
+  ],
+  "kn": [
+   "skin_integument"
+  ]
+ },
+ {
+  "id": "hair_follicle",
+  "title": "Hair follicle",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.003,
+  "parents": [
+   "skin"
+  ],
+  "parts": [],
+  "made_of": [
+   "keratinocyte"
+  ],
+  "processes": [
+   "thermoregulation"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "skin",
+   "at": [
+    0.001,
+    -0.001,
+    0.0
+   ],
+   "label": "Hair follicle"
+  },
+  "summary": "A pocket in the skin that grows a hair.",
+  "layers": {
+   "basics": "Each hair grows from a root in a follicle.",
+   "deeper": "A hair has a living bulb at the base and a dead keratin shaft.",
+   "expert": "Growth cycle: anagen, catagen, telogen; dermal papilla signaling; ≈ 5 million follicles, ≈ 100,000 on scalp."
+  },
+  "facts": [
+   [
+    "Role",
+    "A pocket in the skin that grows a hair"
+   ]
+  ],
+  "did_you_know": "Humans have about as many hair follicles as chimpanzees, but most hairs are fine and short.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "5.2",
+    "5-2-accessory-structures-of-the-skin"
+   ]
+  ],
+  "kn": [
+   "skin_integument"
+  ]
+ },
+ {
+  "id": "sweat_gland",
+  "title": "Sweat gland",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.004,
+  "parents": [
+   "skin"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [
+   "thermoregulation"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "skin",
+   "at": [
+    -0.001,
+    -0.0025,
+    0.0
+   ],
+   "label": "Sweat gland"
+  },
+  "summary": "A coiled tube that releases sweat to cool the body.",
+  "layers": {
+   "basics": "Sweat evaporates and cools you down.",
+   "deeper": "Eccrine glands cover most of the body; apocrine glands are in armpits.",
+   "expert": "≈ 2-4 million eccrine glands; sweat is ≈ 99% water with Na+, Cl-; cholinergic sympathetic control."
+  },
+  "facts": [
+   [
+    "Role",
+    "A coiled tube that releases sweat to cool the body"
+   ]
+  ],
+  "did_you_know": "Humans have more sweat glands than any other primate, helping cooling.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "5.2",
+    "5-2-accessory-structures-of-the-skin"
+   ]
+  ],
+  "kn": [
+   "skin_integument"
+  ]
+ },
+ {
+  "id": "hypodermis",
+  "title": "Hypodermis",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.003,
+  "parents": [
+   "skin"
+  ],
+  "parts": [],
+  "made_of": [
+   "adipocyte",
+   "connective_tissue_loose",
+   "adipose_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "skin",
+   "at": [
+    0.0,
+    -0.004,
+    0.0
+   ],
+   "label": "Hypodermis"
+  },
+  "summary": "The fatty layer under the skin.",
+  "layers": {
+   "basics": "It cushions and insulates.",
+   "deeper": "Made of fat cells and loose tissue.",
+   "expert": "Subcutaneous adipose tissue stores energy."
+  },
+  "facts": [
+   [
+    "Role",
+    "The fatty layer under the skin"
+   ]
+  ],
+  "did_you_know": "This layer insulates and stores energy.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "5.1",
+    "5-1-layers-of-the-skin"
+   ]
+  ],
+  "kn": [
+   "skin_integument"
+  ]
+ },
+ {
+  "id": "testes",
+  "title": "Testes",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.045,
+  "parents": [
+   "reproductive_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue",
+   "connective_tissue_loose",
+   "sperm"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The male gonads, making sperm and testosterone.",
+  "layers": {
+   "basics": "Testes produce sperm and the hormone testosterone.",
+   "deeper": "They hang outside the body where it is slightly cooler.",
+   "expert": "Spermatogenesis in seminiferous tubules takes ≈ 64-74 days; Leydig cells produce testosterone under LH."
+  },
+  "facts": [
+   [
+    "Size",
+    "≈ 4.5 cm"
+   ],
+   [
+    "Sperm made",
+    "≈ 10^7-10^8/day"
+   ]
+  ],
+  "did_you_know": "Sperm production works best a few degrees below core body temperature.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.1",
+    "27-1-anatomy-and-physiology-of-the-testicular-reproductive-system"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ],
+  "molecules": [
+   "testosterone"
+  ]
+ },
+ {
+  "id": "ovaries",
+  "title": "Ovaries",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.035,
+  "parents": [
+   "reproductive_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue",
+   "connective_tissue_loose",
+   "egg_cell"
+  ],
+  "processes": [
+   "hormone_signaling"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "The female gonads, releasing eggs and hormones.",
+  "layers": {
+   "basics": "The ovaries store eggs and make estrogen and progesterone.",
+   "deeper": "Each cycle, one follicle usually matures and releases an egg.",
+   "expert": "Follicular development driven by FSH, ovulation triggered by LH surge; ≈ 1-2 million oocytes at birth, ≈ 300-400 ovulated."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 3-4 cm"
+   ],
+   [
+    "Eggs at birth",
+    "≈ 1-2 million"
+   ]
+  ],
+  "did_you_know": "Egg cells are present from before birth.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ],
+  "molecules": [
+   "estradiol",
+   "progesterone"
+  ]
+ },
+ {
+  "id": "uterus",
+  "title": "Uterus",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.075,
+  "parents": [
+   "reproductive_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "smooth_muscle_tissue",
+   "epithelial_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The muscular organ in which an embryo grows.",
+  "layers": {
+   "basics": "The uterus can stretch to hold a growing baby.",
+   "deeper": "Its inner lining thickens each cycle and is shed if no pregnancy occurs.",
+   "expert": "Myometrium (smooth muscle) and endometrium; oxytocin drives labor contractions; uterine weight rises from ≈ 70 g to ≈ 1 kg in pregnancy."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 7.5 cm (non-pregnant)"
+   ],
+   [
+    "Growth",
+    "≈ 10-15× in pregnancy"
+   ]
+  ],
+  "did_you_know": "It is one of the strongest muscular organs relative to size during labor.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ]
+ }
+]

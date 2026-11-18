@@ -1,0 +1,197 @@
+[
+ {
+  "id": "blood_vessels",
+  "title": "Blood vessels",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 1.0,
+  "parents": [
+   "cardiovascular_system"
+  ],
+  "parts": [
+   "artery",
+   "vein",
+   "capillary"
+  ],
+  "made_of": [
+   "smooth_muscle_tissue",
+   "epithelial_tissue",
+   "dense_connective_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The network of arteries, veins and capillaries that carries blood everywhere.",
+  "layers": {
+   "basics": "Blood vessels are the body's plumbing: arteries carry blood out, capillaries exchange materials, and veins bring blood back.",
+   "deeper": "Arteries have thick muscular walls, veins have valves and thin walls, and capillaries are one cell thick.",
+   "expert": "Total resistance is set mainly by arterioles; vessel tone is regulated by endothelial NO, sympathetic nerves, and angiotensin II; angiogenesis is driven by VEGF."
+  },
+  "facts": [
+   [
+    "Total length",
+    "≈ 100,000 km (often quoted)"
+   ],
+   [
+    "Capillaries",
+    "≈ 10^10"
+   ]
+  ],
+  "did_you_know": "If all your capillaries were laid end to end they would circle Earth more than once by the usual estimate, though that figure is approximate.",
+  "certainty": "C2",
+  "refs": [
+   [
+    "ANP",
+    "20.1",
+    "20-1-structure-and-function-of-blood-vessels"
+   ]
+  ],
+  "kn": [
+   "blood_circulation"
+  ]
+ },
+ {
+  "id": "synapse",
+  "title": "Synapse",
+  "kind": "structure",
+  "template": "micro",
+  "scale_m": 2e-08,
+  "parents": [
+   "nervous_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "neuron"
+  ],
+  "processes": [
+   "synaptic_transmission"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "The tiny junction where one neuron signals to the next.",
+  "layers": {
+   "basics": "A synapse is a microscopic gap across which chemical messengers pass.",
+   "deeper": "The gap (cleft) is about 20 nanometers wide; vesicles on one side release neurotransmitter onto receptors on the other.",
+   "expert": "Active zone with Ca2+ channels and docked vesicles; postsynaptic density with scaffold PSD-95; AMPA/NMDA receptor trafficking underlies LTP; ≈ 10^14-10^15 synapses in the human brain."
+  },
+  "facts": [
+   [
+    "Cleft",
+    "≈ 20 nm"
+   ],
+   [
+    "Synapses in brain",
+    "≈ 10^14-10^15"
+   ]
+  ],
+  "did_you_know": "The brain's synapse count is in the hundreds of trillions.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "12.5",
+    "12-5-communication-between-neurons"
+   ]
+  ],
+  "kn": [
+   "synapse_plasticity"
+  ],
+  "molecules": [
+   "acetylcholine",
+   "dopamine",
+   "gaba"
+  ]
+ },
+ {
+  "id": "neuromuscular_junction",
+  "title": "Neuromuscular junction",
+  "kind": "structure",
+  "template": "micro",
+  "scale_m": 5e-05,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "neuron",
+   "skeletal_muscle_fiber"
+  ],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "The synapse where a motor neuron commands a muscle fiber.",
+  "layers": {
+   "basics": "This is where nerve meets muscle, using the chemical acetylcholine.",
+   "deeper": "One motor neuron's terminal releases acetylcholine onto receptors on the muscle fiber.",
+   "expert": "Nicotinic ACh receptors (≈ 10^4 µm⁻²) produce end-plate potentials, with a high safety factor; acetylcholinesterase ends the signal; targeted by curare and botulinum toxin."
+  },
+  "facts": [
+   [
+    "Safety factor",
+    "≈ 3-5×"
+   ],
+   [
+    "Cleft",
+    "≈ 50 nm"
+   ]
+  ],
+  "did_you_know": "Botulinum toxin paralyzes muscle by blocking acetylcholine release here.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "10.3",
+    "10-3-muscle-fiber-contraction-and-relaxation"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction"
+  ],
+  "molecules": [
+   "acetylcholine"
+  ]
+ },
+ {
+  "id": "tendon",
+  "title": "Tendon",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.2,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "dense_connective_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A tough cord of collagen joining muscle to bone.",
+  "layers": {
+   "basics": "Tendons transmit the pull of muscles to bones.",
+   "deeper": "They are strong but poorly supplied with blood, so heal slowly.",
+   "expert": "Parallel type I collagen with tenocytes; stores elastic energy (Achilles ≈ 35% of running work); tensile strength ≈ 50-100 MPa."
+  },
+  "facts": [
+   [
+    "Strength",
+    "≈ 50-100 MPa"
+   ]
+  ],
+  "did_you_know": "The Achilles tendon can handle loads of several times body weight.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.1",
+    "11-1-interactions-of-skeletal-muscles-their-fascicle-arrangement-and-their-lever-systems"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ }
+]

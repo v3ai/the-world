@@ -1,0 +1,1610 @@
+[
+ {
+  "id": "cardiac_cycle",
+  "title": "Cardiac cycle",
+  "kind": "process",
+  "template": "process",
+  "scale_m": 0.12,
+  "parents": [
+   "cardiovascular_system"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "One heartbeat: relax and fill, then squeeze and eject.",
+  "layers": {
+   "basics": "Each heartbeat has two phases: the heart relaxes and fills with blood, then it squeezes to push blood out. This takes under a second.",
+   "deeper": "The beat begins in the SA node. Pressure differences open and close the valves, creating the 'lub-dub' sounds.",
+   "expert": "Phases: atrial systole, isovolumetric contraction, ejection, isovolumetric relaxation, rapid and reduced filling. LV pressure peaks ≈ 120 mmHg; end-diastolic volume ≈ 120 mL, end-systolic ≈ 50 mL; Wiggers diagram links ECG, pressures and volumes."
+  },
+  "facts": [
+   [
+    "Cycle length",
+    "≈ 0.8 s at 75 bpm"
+   ],
+   [
+    "EDV / ESV",
+    "≈ 120 / 50 mL"
+   ],
+   [
+    "Ejection fraction",
+    "≈ 55-70%"
+   ]
+  ],
+  "did_you_know": "The heart's four phases occur in under one second, and its valves open and close about 100,000 times daily.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "19.3",
+    "19-3-cardiac-cycle"
+   ]
+  ],
+  "kn": [
+   "blood_circulation"
+  ],
+  "molecules": [
+   "atp"
+  ],
+  "steps": [
+   {
+    "title": "Electrical start",
+    "text": "The SA node in the right atrium fires, and the wave of excitation spreads across both atria.",
+    "focus": [
+     "sa_node",
+     "right_atrium",
+     "left_atrium"
+    ]
+   },
+   {
+    "title": "Atria squeeze",
+    "text": "The atria contract and top up the ventricles with the last 20-30% of their filling.",
+    "focus": [
+     "right_atrium",
+     "left_atrium",
+     "tricuspid_valve",
+     "mitral_valve"
+    ]
+   },
+   {
+    "title": "Pause at the AV node",
+    "text": "The impulse is delayed about 0.1 s at the AV node so the ventricles can fill, then races down the septum and Purkinje fibers.",
+    "focus": [
+     "av_node",
+     "interventricular_septum"
+    ]
+   },
+   {
+    "title": "Ventricles tense",
+    "text": "Ventricular contraction raises pressure; the AV valves slam shut ('lub') while all valves are briefly closed.",
+    "focus": [
+     "tricuspid_valve",
+     "mitral_valve",
+     "left_ventricle",
+     "right_ventricle"
+    ]
+   },
+   {
+    "title": "Ejection",
+    "text": "When ventricular pressure exceeds arterial pressure, the aortic and pulmonary valves open and blood is ejected.",
+    "focus": [
+     "aortic_valve",
+     "pulmonary_valve",
+     "aorta",
+     "left_ventricle"
+    ]
+   },
+   {
+    "title": "Relaxation",
+    "text": "The ventricles relax, the semilunar valves close ('dub'), and pressure falls.",
+    "focus": [
+     "aortic_valve",
+     "pulmonary_valve"
+    ]
+   },
+   {
+    "title": "Filling and coronary flow",
+    "text": "The AV valves open and blood flows in; the coronary arteries fill mainly now.",
+    "focus": [
+     "tricuspid_valve",
+     "mitral_valve",
+     "coronary_arteries"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "breathing",
+  "title": "Breathing and gas exchange",
+  "kind": "process",
+  "template": "process",
+  "scale_m": 0.25,
+  "parents": [
+   "respiratory_system"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Muscles move air in and out; oxygen and carbon dioxide swap with the blood in the alveoli.",
+  "layers": {
+   "basics": "To breathe in, the diaphragm contracts and the chest expands, drawing air into the lungs. Oxygen crosses into the blood and carbon dioxide leaves, then you breathe out.",
+   "deeper": "Pressure inside the lungs falls below atmospheric pressure when the chest expands, so air flows in. Exhalation at rest is passive recoil.",
+   "expert": "Boyle's law drives ventilation. Alveolar PO2 ≈ 100 mmHg and PCO2 ≈ 40 mmHg; venous blood arrives at PO2 ≈ 40 and equilibrates in ≈ 0.25 s. Hemoglobin carries ≈ 98% of O2; CO2 travels mostly as bicarbonate. Brainstem chemoreceptors respond mainly to CO2/pH."
+  },
+  "facts": [
+   [
+    "Tidal volume",
+    "≈ 0.5 L"
+   ],
+   [
+    "Alveolar PO2",
+    "≈ 100 mmHg"
+   ],
+   [
+    "Rate",
+    "≈ 12-16/min"
+   ]
+  ],
+  "did_you_know": "Red blood cells spend less than a second in a pulmonary capillary, yet that's enough to fully load oxygen.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "22.3",
+    "22-3-the-process-of-breathing"
+   ]
+  ],
+  "kn": [
+   "respiratory_physiology",
+   "heme_oxygen"
+  ],
+  "molecules": [
+   "oxygen",
+   "carbon_dioxide",
+   "4hhb",
+   "heme_b",
+   "bicarbonate"
+  ],
+  "steps": [
+   {
+    "title": "Inspiration",
+    "text": "The diaphragm contracts and flattens, and external intercostals lift the ribs; lung volume grows and pressure drops.",
+    "focus": [
+     "diaphragm",
+     "ribcage",
+     "lung_r",
+     "lung_l"
+    ]
+   },
+   {
+    "title": "Air travels down",
+    "text": "Air is warmed and filtered through the nose, then passes through larynx, trachea and bronchi.",
+    "focus": [
+     "nose_airway",
+     "larynx",
+     "trachea",
+     "bronchi"
+    ]
+   },
+   {
+    "title": "Reaching the alveoli",
+    "text": "Branching bronchioles deliver fresh air to millions of alveoli.",
+    "focus": [
+     "bronchioles",
+     "alveoli"
+    ]
+   },
+   {
+    "title": "Diffusion across the barrier",
+    "text": "O2 diffuses into capillary blood and CO2 diffuses out, across a barrier thinner than a micrometer.",
+    "focus": [
+     "alveoli",
+     "capillary",
+     "red_blood_cell"
+    ]
+   },
+   {
+    "title": "Oxygen transport",
+    "text": "Oxygen binds to hemoglobin in red cells and is carried to tissues, which release it where CO2 and acidity are higher.",
+    "focus": [
+     "red_blood_cell",
+     "blood"
+    ]
+   },
+   {
+    "title": "Expiration",
+    "text": "Muscles relax, elastic recoil of lungs pushes air out carrying CO2.",
+    "focus": [
+     "diaphragm",
+     "lung_r",
+     "lung_l"
+    ]
+   },
+   {
+    "title": "Brain control",
+    "text": "The brainstem measures blood CO2 and pH and adjusts breathing rate and depth.",
+    "focus": [
+     "brainstem"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "action_potential",
+  "title": "Action potential (nerve impulse)",
+  "kind": "process",
+  "template": "process",
+  "scale_m": 0.0001,
+  "parents": [
+   "nervous_system"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A brief, self-propagating electrical pulse that carries signals along a neuron.",
+  "layers": {
+   "basics": "A neuron at rest is electrically charged. When stimulated enough, a spike of voltage races down its axon like a wave.",
+   "deeper": "Sodium channels open, sodium rushes in and flips the voltage; then potassium channels open and restore it. Myelin makes the signal jump quickly.",
+   "expert": "Threshold ≈ -55 mV, peak ≈ +30 mV, resting ≈ -70 mV; Hodgkin-Huxley kinetics; Na+ channel inactivation gives refractory period; saltatory conduction at nodes of Ranvier reaches ≈ 100 m/s in large myelinated axons."
+  },
+  "facts": [
+   [
+    "Resting",
+    "≈ -70 mV"
+   ],
+   [
+    "Peak",
+    "≈ +30 mV"
+   ],
+   [
+    "Duration",
+    "≈ 1-2 ms"
+   ],
+   [
+    "Speed",
+    "≈ 0.5-120 m/s"
+   ]
+  ],
+  "did_you_know": "Despite the electrical name, the 'wire' is salty water, and ions, not electrons, carry the signal.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "12.4",
+    "12-4-the-action-potential"
+   ]
+  ],
+  "kn": [
+   "action_potential"
+  ],
+  "molecules": [
+   "acetylcholine"
+  ],
+  "steps": [
+   {
+    "title": "Resting state",
+    "text": "Na+/K+ pumps and leak channels hold the inside about 70 mV negative.",
+    "focus": [
+     "neuron",
+     "cell_membrane"
+    ]
+   },
+   {
+    "title": "Reaching threshold",
+    "text": "Incoming inputs depolarize the axon hillock; at about -55 mV voltage-gated Na+ channels open.",
+    "focus": [
+     "neuron"
+    ]
+   },
+   {
+    "title": "Rising phase",
+    "text": "Na+ floods in, reversing the voltage to about +30 mV.",
+    "focus": [
+     "neuron",
+     "cell_membrane"
+    ]
+   },
+   {
+    "title": "Falling phase",
+    "text": "Na+ channels inactivate and K+ channels open; K+ leaves and the membrane repolarizes.",
+    "focus": [
+     "neuron"
+    ]
+   },
+   {
+    "title": "Refractory period",
+    "text": "Overshoot below rest briefly prevents another spike so the impulse travels one way.",
+    "focus": [
+     "neuron"
+    ]
+   },
+   {
+    "title": "Propagation",
+    "text": "Local currents depolarize the next patch; myelinated axons jump between nodes of Ranvier.",
+    "focus": [
+     "neuron",
+     "peripheral_nerves"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "synaptic_transmission",
+  "title": "Synaptic transmission",
+  "kind": "process",
+  "template": "process",
+  "scale_m": 1e-06,
+  "parents": [
+   "nervous_system"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "How one neuron passes a message to the next using chemicals.",
+  "layers": {
+   "basics": "An electrical pulse reaching a nerve ending triggers release of chemical messengers that cross a tiny gap and excite or inhibit the next cell.",
+   "deeper": "Calcium entering the terminal makes vesicles fuse and release neurotransmitter, which binds receptors on the target cell. Chemical synapses can strengthen or weaken with use.",
+   "expert": "Vesicle fusion via SNARE complexes and synaptotagmin (Ca2+ sensor) takes ≈ 0.2-0.5 ms; ionotropic (AMPA, NMDA, GABA-A) versus metabotropic receptors; reuptake and enzymatic degradation terminate signals; LTP/LTD underlie plasticity."
+  },
+  "facts": [
+   [
+    "Synaptic cleft",
+    "≈ 20 nm"
+   ],
+   [
+    "Delay",
+    "≈ 0.5 ms"
+   ],
+   [
+    "Vesicle",
+    "≈ 40 nm"
+   ]
+  ],
+  "did_you_know": "A single cortical neuron can receive thousands of synaptic inputs.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "12.5",
+    "12-5-communication-between-neurons"
+   ]
+  ],
+  "kn": [
+   "synapse_plasticity"
+  ],
+  "molecules": [
+   "acetylcholine",
+   "dopamine",
+   "gaba",
+   "serotonin"
+  ],
+  "steps": [
+   {
+    "title": "Arrival",
+    "text": "An action potential reaches the axon terminal.",
+    "focus": [
+     "neuron"
+    ]
+   },
+   {
+    "title": "Calcium entry",
+    "text": "Voltage-gated Ca2+ channels open and Ca2+ rushes in.",
+    "focus": [
+     "neuron",
+     "cell_membrane"
+    ]
+   },
+   {
+    "title": "Release",
+    "text": "Vesicles fuse with the membrane and spill neurotransmitter into the cleft.",
+    "focus": [
+     "neuron"
+    ]
+   },
+   {
+    "title": "Binding",
+    "text": "Neurotransmitter molecules bind receptors on the next cell, opening ion channels.",
+    "focus": [
+     "neuron",
+     "cell_membrane"
+    ]
+   },
+   {
+    "title": "Response",
+    "text": "Excitatory inputs depolarize, inhibitory ones hyperpolarize the receiving cell.",
+    "focus": [
+     "neuron"
+    ]
+   },
+   {
+    "title": "Cleanup",
+    "text": "Neurotransmitter is taken back up or broken down; astrocytes help clear excess.",
+    "focus": [
+     "astrocyte"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "muscle_contraction",
+  "title": "Muscle contraction (sliding filament)",
+  "kind": "process",
+  "template": "process",
+  "scale_m": 2.5e-06,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Muscle shortens when myosin heads pull actin filaments past them, powered by ATP.",
+  "layers": {
+   "basics": "A nerve signal causes calcium to flood the muscle fiber, letting tiny protein motors pull and the muscle tighten.",
+   "deeper": "Calcium binds troponin, uncovering binding sites on actin; myosin heads attach, pivot and release, powered by ATP.",
+   "expert": "Excitation-contraction coupling: ACh at the neuromuscular junction → sarcolemma AP → T-tubules → DHPR/RyR1 → Ca2+ release from SR; cross-bridge cycle with ≈ 5-10 nm power stroke; ATP binding detaches heads (rigor mortis lacks ATP)."
+  },
+  "facts": [
+   [
+    "Power stroke",
+    "≈ 5-10 nm"
+   ],
+   [
+    "Ca2+ rise",
+    "≈ 0.1 to 10 µM"
+   ],
+   [
+    "Force per head",
+    "≈ 3-5 pN"
+   ]
+  ],
+  "did_you_know": "Rigor mortis happens because dead muscle cannot make ATP to release myosin heads.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "10.3",
+    "10-3-muscle-fiber-contraction-and-relaxation"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction"
+  ],
+  "molecules": [
+   "atp",
+   "acetylcholine",
+   "creatine"
+  ],
+  "steps": [
+   {
+    "title": "Nerve signal",
+    "text": "A motor neuron releases acetylcholine at the neuromuscular junction.",
+    "focus": [
+     "neuron",
+     "skeletal_muscle_fiber"
+    ]
+   },
+   {
+    "title": "Muscle action potential",
+    "text": "The signal spreads along the membrane and down T-tubules.",
+    "focus": [
+     "skeletal_muscle_fiber"
+    ]
+   },
+   {
+    "title": "Calcium release",
+    "text": "The sarcoplasmic reticulum releases Ca2+ into the cell.",
+    "focus": [
+     "skeletal_muscle_fiber",
+     "sarcomere"
+    ]
+   },
+   {
+    "title": "Unlocking actin",
+    "text": "Ca2+ binds troponin, moving tropomyosin to expose myosin-binding sites.",
+    "focus": [
+     "sarcomere"
+    ]
+   },
+   {
+    "title": "Cross-bridge cycling",
+    "text": "Myosin heads attach, swing (power stroke) and detach with ATP; the cycle repeats.",
+    "focus": [
+     "sarcomere"
+    ]
+   },
+   {
+    "title": "Shortening",
+    "text": "Thin filaments slide inward and sarcomeres shorten, adding up to muscle force.",
+    "focus": [
+     "sarcomere",
+     "biceps_brachii"
+    ]
+   },
+   {
+    "title": "Relaxation",
+    "text": "Ca2+ is pumped back by SERCA; sites are covered; the muscle relaxes.",
+    "focus": [
+     "skeletal_muscle_fiber",
+     "sarcomere"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "digestion",
+  "title": "Digestion and absorption",
+  "kind": "process",
+  "template": "process",
+  "scale_m": 7.0,
+  "parents": [
+   "digestive_system"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Food is mechanically and chemically broken into nutrients that cross the gut lining into the body.",
+  "layers": {
+   "basics": "Chewing, stomach acid and enzymes break food into tiny molecules, which the small intestine absorbs into the blood.",
+   "deeper": "Digestion begins in the mouth with amylase, continues in the stomach with acid and pepsin, and finishes in the small intestine with pancreatic enzymes and bile.",
+   "expert": "Carbohydrates become monosaccharides (SGLT1, GLUT5), proteins become amino acids and di/tripeptides, fats are emulsified by bile, hydrolyzed by lipase into monoglycerides and fatty acids, then repackaged as chylomicrons into lacteals. Hormonal regulation via gastrin, secretin, CCK."
+  },
+  "facts": [
+   [
+    "Transit",
+    "≈ 1-3 days"
+   ],
+   [
+    "Absorbed in small intestine",
+    "≈ 90% of nutrients"
+   ],
+   [
+    "Chyme pH (stomach)",
+    "≈ 2"
+   ]
+  ],
+  "did_you_know": "Most of the water your gut handles is actually secretions: about 8-9 L a day, nearly all reabsorbed.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.2",
+    "23-2-digestive-system-processes-and-regulation"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ],
+  "molecules": [
+   "glucose_alpha",
+   "aa_gly",
+   "oleic_acid",
+   "tripalmitin"
+  ],
+  "steps": [
+   {
+    "title": "Chewing and saliva",
+    "text": "Teeth grind food while salivary amylase starts splitting starch.",
+    "focus": [
+     "mouth_pharynx"
+    ]
+   },
+   {
+    "title": "Swallowing",
+    "text": "The tongue pushes food back and peristalsis carries it down the esophagus.",
+    "focus": [
+     "esophagus"
+    ]
+   },
+   {
+    "title": "Stomach",
+    "text": "Acid and pepsin break down proteins and the wall churns food into chyme.",
+    "focus": [
+     "stomach",
+     "gastric_pits"
+    ]
+   },
+   {
+    "title": "Bile and enzymes",
+    "text": "In the duodenum, bile from the liver/gallbladder emulsifies fat and pancreatic enzymes digest all food types.",
+    "focus": [
+     "liver",
+     "gallbladder",
+     "pancreas"
+    ]
+   },
+   {
+    "title": "Absorption",
+    "text": "Villi absorb sugars and amino acids into blood and fats into lymph.",
+    "focus": [
+     "small_intestine",
+     "villi",
+     "enterocyte"
+    ]
+   },
+   {
+    "title": "Liver processing",
+    "text": "Portal blood brings nutrients to the liver for storage and processing.",
+    "focus": [
+     "liver",
+     "hepatocyte"
+    ]
+   },
+   {
+    "title": "Water and microbes",
+    "text": "The large intestine absorbs water and ferments fiber with the help of microbes.",
+    "focus": [
+     "large_intestine",
+     "microbiome"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "urine_formation",
+  "title": "Urine formation in the nephron",
+  "kind": "process",
+  "template": "process",
+  "scale_m": 0.05,
+  "parents": [
+   "urinary_system"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The kidney filters blood, reclaims what the body needs, and sends the rest out as urine.",
+  "layers": {
+   "basics": "Blood is filtered into the nephron, then useful water and nutrients are taken back and wastes stay in.",
+   "deeper": "Three steps: filtration at the glomerulus, reabsorption along the tubule, and secretion of extra wastes.",
+   "expert": "GFR ≈ 120 mL/min; PCT reabsorbs ≈ 65%; loop of Henle builds the medullary gradient; distal tubule and collecting duct fine-tune under aldosterone and ADH; final urine ≈ 1 mL/min."
+  },
+  "facts": [
+   [
+    "Filtered/day",
+    "≈ 180 L"
+   ],
+   [
+    "Excreted/day",
+    "≈ 1.5 L"
+   ],
+   [
+    "Reabsorbed",
+    "> 99%"
+   ]
+  ],
+  "did_you_know": "You filter the equivalent of your whole blood plasma about 60 times a day.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "25.5",
+    "25-5-physiology-of-urine-formation"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ],
+  "molecules": [
+   "urea",
+   "water",
+   "uric_acid",
+   "ammonium"
+  ],
+  "steps": [
+   {
+    "title": "Filtration",
+    "text": "Pressure pushes plasma through the glomerular filter into Bowman's capsule; cells and large proteins stay in blood.",
+    "focus": [
+     "glomerulus",
+     "nephron"
+    ]
+   },
+   {
+    "title": "Bulk reclaim",
+    "text": "The proximal tubule takes back ≈ 65% of water and salts and nearly all glucose and amino acids.",
+    "focus": [
+     "proximal_tubule"
+    ]
+   },
+   {
+    "title": "Building a gradient",
+    "text": "The loop of Henle pumps salt to make the inner kidney very salty.",
+    "focus": [
+     "loop_of_henle",
+     "renal_medulla"
+    ]
+   },
+   {
+    "title": "Fine adjustment",
+    "text": "The distal tubule adjusts Na+, K+, Ca2+ and acid under hormonal control.",
+    "focus": [
+     "distal_tubule"
+    ]
+   },
+   {
+    "title": "Water control",
+    "text": "In the collecting duct, ADH decides how much water leaves, concentrating the urine.",
+    "focus": [
+     "collecting_duct"
+    ]
+   },
+   {
+    "title": "Drainage",
+    "text": "Urine flows through the renal pelvis, ureters, to the bladder and out.",
+    "focus": [
+     "renal_pelvis",
+     "ureters",
+     "bladder"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "blood_clotting",
+  "title": "Blood clotting (hemostasis)",
+  "kind": "process",
+  "template": "process",
+  "scale_m": 0.0001,
+  "parents": [
+   "cardiovascular_system"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A cascade that plugs a damaged vessel with platelets and a fibrin mesh.",
+  "layers": {
+   "basics": "When a vessel is cut, platelets clump to plug it and proteins build a mesh that seals the wound.",
+   "deeper": "Hemostasis has three stages: vessel constriction, platelet plug, and coagulation producing fibrin.",
+   "expert": "Collagen exposure activates platelets (GPVI, α2β1); tissue factor-FVIIa initiates the cascade, thrombin amplifies it via FV, FVIII, FXI, and converts fibrinogen to fibrin; FXIII cross-links; antithrombin and protein C limit the clot; plasmin lyses it."
+  },
+  "facts": [
+   [
+    "Bleeding time",
+    "≈ 2-9 min"
+   ],
+   [
+    "Platelets",
+    "≈ 150-400×10^9/L"
+   ]
+  ],
+  "did_you_know": "Hemophilia results from deficiency of a single clotting factor such as factor VIII or IX.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "18.5",
+    "18-5-hemostasis"
+   ]
+  ],
+  "kn": [
+   "blood_circulation"
+  ],
+  "steps": [
+   {
+    "title": "Vessel spasm",
+    "text": "Smooth muscle in the damaged vessel constricts to slow blood loss.",
+    "focus": [
+     "blood",
+     "smooth_muscle_cell"
+    ]
+   },
+   {
+    "title": "Platelets stick",
+    "text": "Platelets adhere to exposed collagen and become activated.",
+    "focus": [
+     "platelet"
+    ]
+   },
+   {
+    "title": "Platelet plug",
+    "text": "Activated platelets recruit more platelets, forming a loose plug.",
+    "focus": [
+     "platelet"
+    ]
+   },
+   {
+    "title": "Cascade",
+    "text": "Clotting factors trigger a cascade culminating in thrombin.",
+    "focus": [
+     "blood"
+    ]
+   },
+   {
+    "title": "Fibrin mesh",
+    "text": "Thrombin converts soluble fibrinogen into fibrin threads that trap cells.",
+    "focus": [
+     "blood",
+     "red_blood_cell",
+     "platelet"
+    ]
+   },
+   {
+    "title": "Dissolving the clot",
+    "text": "After healing, plasmin breaks down the clot.",
+    "focus": [
+     "blood"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "immune_response",
+  "title": "Immune response",
+  "kind": "process",
+  "template": "process",
+  "scale_m": 1e-05,
+  "parents": [
+   "lymphatic_immune_system"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Layered defenses: barriers, rapid innate cells, and slower adaptive memory cells.",
+  "layers": {
+   "basics": "First your skin blocks germs; if they get in, fast cells attack; and specialized cells learn the invader so next time you respond faster.",
+   "deeper": "The innate response (inflammation, phagocytes, complement) is immediate and generic. The adaptive response (T and B cells) takes days but is specific and creates memory, which is the basis of vaccines.",
+   "expert": "PRR recognition (TLRs) triggers cytokine release; dendritic cells present antigen on MHC to naive T cells in lymph nodes; clonal expansion; Th1/Th2/Th17 subsets; B cells undergo affinity maturation; primary response peaks ≈ 7-14 d, secondary within days."
+  },
+  "facts": [
+   [
+    "Primary response",
+    "≈ 1-2 weeks"
+   ],
+   [
+    "Secondary response",
+    "≈ 2-3 days"
+   ],
+   [
+    "Antibody classes",
+    "5 (IgM, IgG, IgA, IgE, IgD)"
+   ]
+  ],
+  "did_you_know": "Vaccines work by giving your adaptive immune system a safe preview.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "21.2",
+    "21-2-barrier-defenses-and-the-innate-immune-response"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ],
+  "steps": [
+   {
+    "title": "Barriers",
+    "text": "Skin, mucus and stomach acid block most microbes.",
+    "focus": [
+     "skin",
+     "epithelial_tissue"
+    ]
+   },
+   {
+    "title": "Innate alarm",
+    "text": "Macrophages and neutrophils sense microbes, engulf them and release signals that cause inflammation.",
+    "focus": [
+     "macrophage",
+     "neutrophil"
+    ]
+   },
+   {
+    "title": "Antigen presentation",
+    "text": "Dendritic cells and macrophages carry fragments to lymph nodes.",
+    "focus": [
+     "macrophage",
+     "lymph_nodes"
+    ]
+   },
+   {
+    "title": "T-cell activation",
+    "text": "Matching T cells multiply; helper T cells coordinate, killer T cells destroy infected cells.",
+    "focus": [
+     "lymphocyte_t",
+     "thymus"
+    ]
+   },
+   {
+    "title": "Antibody production",
+    "text": "B cells, aided by helper T cells, become plasma cells that secrete antibodies.",
+    "focus": [
+     "lymphocyte_b",
+     "spleen"
+    ]
+   },
+   {
+    "title": "Clearing and memory",
+    "text": "Pathogens are cleared; memory T and B cells remain for faster future response.",
+    "focus": [
+     "lymphocyte_t",
+     "lymphocyte_b"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "hormone_signaling",
+  "title": "Hormone signaling and negative feedback (blood glucose)",
+  "kind": "process",
+  "template": "process",
+  "scale_m": 1e-05,
+  "parents": [
+   "endocrine_system"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Glands release hormones that change body conditions; the change then switches the release off.",
+  "layers": {
+   "basics": "After a meal, blood sugar rises, and the pancreas releases insulin to lower it. If sugar falls, glucagon raises it. This keeps sugar steady.",
+   "deeper": "Insulin helps cells (muscle, fat, liver) take up glucose and store it. Glucagon makes the liver release glucose.",
+   "expert": "Beta cell glucose sensing triggers insulin exocytosis; insulin binds RTK, activating PI3K-Akt and GLUT4 translocation; glucagon via GPCR-cAMP-PKA stimulates glycogenolysis and gluconeogenesis; fasting glucose ≈ 4-5.5 mmol/L."
+  },
+  "facts": [
+   [
+    "Fasting glucose",
+    "≈ 4-5.5 mmol/L"
+   ],
+   [
+    "Insulin half-life",
+    "≈ 5 min"
+   ]
+  ],
+  "did_you_know": "The same loop design (sensor, controller, effector) is used for body temperature, calcium and blood pressure.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "17.9",
+    "17-9-the-endocrine-pancreas"
+   ]
+  ],
+  "kn": [
+   "endocrine_physiology",
+   "homeostasis"
+  ],
+  "molecules": [
+   "glucose_beta",
+   "cortisol",
+   "adrenaline"
+  ],
+  "steps": [
+   {
+    "title": "Blood sugar rises",
+    "text": "Digestion of a meal releases glucose into the blood.",
+    "focus": [
+     "blood",
+     "small_intestine"
+    ]
+   },
+   {
+    "title": "Sensing",
+    "text": "Pancreatic beta cells detect higher glucose.",
+    "focus": [
+     "pancreatic_islets",
+     "beta_cell"
+    ]
+   },
+   {
+    "title": "Insulin release",
+    "text": "Beta cells secrete insulin into the blood.",
+    "focus": [
+     "beta_cell",
+     "pancreas"
+    ]
+   },
+   {
+    "title": "Uptake and storage",
+    "text": "Muscle and fat take up glucose, the liver stores glycogen.",
+    "focus": [
+     "liver",
+     "skeletal_muscle_fiber",
+     "adipocyte"
+    ]
+   },
+   {
+    "title": "Feedback",
+    "text": "Glucose falls, switching insulin release off.",
+    "focus": [
+     "pancreatic_islets"
+    ]
+   },
+   {
+    "title": "Counter-regulation",
+    "text": "If glucose gets too low, alpha cells release glucagon and the liver releases glucose.",
+    "focus": [
+     "pancreatic_islets",
+     "liver",
+     "hepatocyte"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cellular_respiration",
+  "title": "Cellular respiration",
+  "kind": "process",
+  "template": "process",
+  "scale_m": 1e-06,
+  "parents": [
+   "human_body"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Cells extract energy from glucose using oxygen to make ATP.",
+  "layers": {
+   "basics": "Your cells burn sugar with oxygen, but in slow controlled steps that capture energy as ATP.",
+   "deeper": "Glycolysis in the cytosol splits glucose; the citric acid cycle and the electron transport chain in mitochondria produce most ATP.",
+   "expert": "Glucose + 6 O2 → 6 CO2 + 6 H2O; net ≈ 30-32 ATP per glucose (modern estimates); glycolysis yields 2 ATP + 2 NADH; TCA cycle yields NADH/FADH2; electron transport pumps protons, ATP synthase makes ATP."
+  },
+  "facts": [
+   [
+    "ATP per glucose",
+    "≈ 30-32"
+   ],
+   [
+    "ATP turnover",
+    "≈ body weight per day"
+   ]
+  ],
+  "did_you_know": "You make and use roughly your body weight in ATP each day.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "24.2",
+    "24-2-carbohydrate-metabolism"
+   ]
+  ],
+  "kn": [
+   "metabolism_overview",
+   "oxidative_phosphorylation"
+  ],
+  "molecules": [
+   "glucose_beta",
+   "pyruvate",
+   "atp",
+   "adp",
+   "nadh",
+   "nad_plus",
+   "fad",
+   "oxygen",
+   "carbon_dioxide",
+   "lactate"
+  ],
+  "steps": [
+   {
+    "title": "Glycolysis",
+    "text": "Glucose is split into two pyruvate molecules in the cytosol, producing a little ATP and NADH.",
+    "focus": [
+     "cell_membrane"
+    ]
+   },
+   {
+    "title": "Entering the mitochondrion",
+    "text": "Pyruvate enters mitochondria and becomes acetyl-CoA.",
+    "focus": [
+     "mitochondrion"
+    ]
+   },
+   {
+    "title": "Citric acid cycle",
+    "text": "The cycle strips electrons from acetyl-CoA into NADH and FADH2 and releases CO2.",
+    "focus": [
+     "mitochondrion"
+    ]
+   },
+   {
+    "title": "Electron transport",
+    "text": "Electrons flow through membrane complexes, pumping protons out.",
+    "focus": [
+     "mitochondrion"
+    ]
+   },
+   {
+    "title": "ATP synthase",
+    "text": "Protons flow back through ATP synthase, a spinning turbine making ATP.",
+    "focus": [
+     "mitochondrion"
+    ]
+   },
+   {
+    "title": "Without oxygen",
+    "text": "When oxygen is short, cells use fermentation to lactate for quick but lower ATP yields.",
+    "focus": [
+     "skeletal_muscle_fiber"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "protein_synthesis",
+  "title": "Protein synthesis (transcription and translation)",
+  "kind": "process",
+  "template": "process",
+  "scale_m": 1e-06,
+  "parents": [
+   "human_body"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "DNA is copied into mRNA, which ribosomes read to build a protein.",
+  "layers": {
+   "basics": "The cell copies a gene into a messenger molecule, then ribosomes read the message three letters at a time and link amino acids into a protein.",
+   "deeper": "Transcription happens in the nucleus; mRNA is processed (cap, splice, tail) and exported; translation happens at ribosomes with tRNAs delivering amino acids.",
+   "expert": "RNA polymerase II transcribes; spliceosome removes introns (≈ 90% of a gene's length); ribosome decodes 64 codons (61 sense) via tRNA anticodon pairing; start AUG; peptide ≈ 3-6 aa/s; chaperones fold proteins."
+  },
+  "facts": [
+   [
+    "Codons",
+    "64 (61 amino acid + 3 stop)"
+   ],
+   [
+    "Amino acids",
+    "20 standard"
+   ],
+   [
+    "RNA pol II speed",
+    "≈ 20-70 nt/s"
+   ]
+  ],
+  "did_you_know": "Almost all life uses essentially the same genetic code.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "3.4",
+    "3-4-protein-synthesis"
+   ]
+  ],
+  "kn": [
+   "central_dogma"
+  ],
+  "molecules": [
+   "1bna",
+   "aa_met",
+   "aa_gly",
+   "aa_trp",
+   "1ubq"
+  ],
+  "steps": [
+   {
+    "title": "Unzip a gene",
+    "text": "RNA polymerase binds a gene's promoter and separates the DNA strands.",
+    "focus": [
+     "nucleus"
+    ]
+   },
+   {
+    "title": "Transcription",
+    "text": "It builds a complementary mRNA strand from the template.",
+    "focus": [
+     "nucleus"
+    ]
+   },
+   {
+    "title": "Processing",
+    "text": "The mRNA is capped, spliced and tailed, then exported through a nuclear pore.",
+    "focus": [
+     "nucleus"
+    ]
+   },
+   {
+    "title": "Translation start",
+    "text": "A ribosome binds mRNA and finds the start codon AUG.",
+    "focus": [
+     "ribosome"
+    ]
+   },
+   {
+    "title": "Elongation",
+    "text": "tRNAs bring amino acids matching each codon and the ribosome links them.",
+    "focus": [
+     "ribosome"
+    ]
+   },
+   {
+    "title": "Folding and delivery",
+    "text": "The new protein folds, may enter the ER, be modified in the Golgi and shipped.",
+    "focus": [
+     "endoplasmic_reticulum",
+     "golgi_apparatus"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "mitosis",
+  "title": "Mitosis (cell division)",
+  "kind": "process",
+  "template": "process",
+  "scale_m": 2e-05,
+  "parents": [
+   "human_body"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A cell copies its chromosomes and splits into two identical daughter cells.",
+  "layers": {
+   "basics": "Before dividing a cell copies its DNA. Mitosis then sorts the copies equally into two new cells.",
+   "deeper": "Phases: prophase, metaphase, anaphase, telophase, followed by cytokinesis.",
+   "expert": "Cyclin-CDK control; spindle assembly checkpoint; cohesin cleavage by separase triggers anaphase; centrosomes and microtubules segregate 46 chromosomes; M-phase ≈ 1 h in a ≈ 24 h cycle."
+  },
+  "facts": [
+   [
+    "Chromosomes",
+    "46 → 2 × 46"
+   ],
+   [
+    "M-phase",
+    "≈ 1 h"
+   ],
+   [
+    "Cell cycle",
+    "≈ 24 h (varies)"
+   ]
+  ],
+  "did_you_know": "Your body makes millions of new cells every second by cell division.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "3.5",
+    "3-5-cell-growth-and-division"
+   ]
+  ],
+  "kn": [
+   "cell_cycle"
+  ],
+  "molecules": [
+   "1bna"
+  ],
+  "steps": [
+   {
+    "title": "Prophase",
+    "text": "Chromosomes condense and the spindle forms.",
+    "focus": [
+     "nucleus",
+     "cytoskeleton"
+    ]
+   },
+   {
+    "title": "Metaphase",
+    "text": "Chromosomes line up at the cell's equator.",
+    "focus": [
+     "cytoskeleton"
+    ]
+   },
+   {
+    "title": "Anaphase",
+    "text": "Sister chromatids are pulled apart toward opposite poles.",
+    "focus": [
+     "cytoskeleton"
+    ]
+   },
+   {
+    "title": "Telophase",
+    "text": "New nuclear envelopes form around each set.",
+    "focus": [
+     "nucleus"
+    ]
+   },
+   {
+    "title": "Cytokinesis",
+    "text": "An actin ring pinches the cell into two.",
+    "focus": [
+     "cytoskeleton",
+     "cell_membrane"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "bone_remodeling",
+  "title": "Bone remodeling",
+  "kind": "process",
+  "template": "process",
+  "scale_m": 0.001,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Old bone is steadily dissolved and replaced with new bone.",
+  "layers": {
+   "basics": "Your bones are constantly renewed: some cells remove old bone and others lay down new bone.",
+   "deeper": "Osteoclasts resorb bone; osteoblasts then fill the cavity with new matrix. Exercise and hormones regulate the balance.",
+   "expert": "Basic multicellular unit: activation, resorption (≈ 2-4 weeks), reversal, formation (≈ 3-4 months); RANKL/OPG, PTH, calcitriol, estrogens, sclerostin; osteoporosis arises from resorption exceeding formation."
+  },
+  "facts": [
+   [
+    "Cycle",
+    "≈ 4-6 months per site"
+   ],
+   [
+    "Turnover",
+    "≈ 10%/yr"
+   ]
+  ],
+  "did_you_know": "Astronauts lose bone mass fast in microgravity because bone remodels in response to load.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "6.4",
+    "6-4-bone-formation-and-development"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ],
+  "molecules": [
+   "calcium_carbonate_unit",
+   "phosphate",
+   "vitamin_d3"
+  ],
+  "steps": [
+   {
+    "title": "Sensing",
+    "text": "Osteocytes detect strain and microdamage.",
+    "focus": [
+     "osteocyte",
+     "bone_tissue"
+    ]
+   },
+   {
+    "title": "Activation",
+    "text": "Signals recruit osteoclast precursors.",
+    "focus": [
+     "osteoclast"
+    ]
+   },
+   {
+    "title": "Resorption",
+    "text": "Osteoclasts dissolve mineral and matrix.",
+    "focus": [
+     "osteoclast",
+     "compact_bone"
+    ]
+   },
+   {
+    "title": "Formation",
+    "text": "Osteoblasts lay down osteoid and mineralize it.",
+    "focus": [
+     "osteoblast"
+    ]
+   },
+   {
+    "title": "Maturation",
+    "text": "Some osteoblasts become osteocytes; surface cells rest.",
+    "focus": [
+     "osteocyte",
+     "bone_tissue"
+    ]
+   },
+   {
+    "title": "Hormonal control",
+    "text": "PTH raises blood calcium by increasing resorption; calcitonin and estrogens oppose it.",
+    "focus": [
+     "parathyroid_glands",
+     "bone_tissue"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "vision",
+  "title": "Vision (phototransduction)",
+  "kind": "process",
+  "template": "process",
+  "scale_m": 0.024,
+  "parents": [
+   "nervous_system"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Light is focused onto the retina and turned into nerve signals.",
+  "layers": {
+   "basics": "The cornea and lens focus light onto the retina, whose cells convert it into electrical signals sent to the brain.",
+   "deeper": "Rods and cones contain a pigment which changes shape when hit by a photon, setting off a chemical cascade.",
+   "expert": "In darkness photoreceptors are depolarized and release glutamate; a photon isomerizes 11-cis to all-trans retinal, activating transducin and PDE6, reducing cGMP, closing CNG channels and hyperpolarizing the cell; ganglion cells fire to the LGN and V1."
+  },
+  "facts": [
+   [
+    "Photon response (rod)",
+    "≈ 1 photon"
+   ],
+   [
+    "Signal to brain",
+    "≈ 1.2×10^6 optic-nerve fibers"
+   ]
+  ],
+  "did_you_know": "Vision begins with a single molecule flipping shape in about 200 femtoseconds.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "14.1",
+    "14-1-sensory-perception"
+   ]
+  ],
+  "kn": [
+   "vision_eye"
+  ],
+  "molecules": [
+   "retinal",
+   "beta_carotene"
+  ],
+  "steps": [
+   {
+    "title": "Focusing",
+    "text": "The cornea bends most light and the lens fine-tunes focus.",
+    "focus": [
+     "cornea",
+     "lens",
+     "iris"
+    ]
+   },
+   {
+    "title": "Image on the retina",
+    "text": "An inverted image forms across the retina; the fovea captures fine detail.",
+    "focus": [
+     "retina",
+     "fovea"
+    ]
+   },
+   {
+    "title": "Phototransduction",
+    "text": "A photon flips retinal in rod or cone pigment, starting an enzyme cascade.",
+    "focus": [
+     "rod_cell",
+     "cone_cell"
+    ]
+   },
+   {
+    "title": "Signal processing",
+    "text": "Bipolar and ganglion cells compare and compress signals.",
+    "focus": [
+     "retina"
+    ]
+   },
+   {
+    "title": "To the brain",
+    "text": "Optic nerve fibers carry spikes to the thalamus and occipital cortex.",
+    "focus": [
+     "optic_nerve",
+     "thalamus",
+     "occipital_lobe"
+    ]
+   },
+   {
+    "title": "Interpretation",
+    "text": "Visual cortex builds edges, color, motion and objects.",
+    "focus": [
+     "occipital_lobe",
+     "parietal_lobe",
+     "temporal_lobe"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "thermoregulation",
+  "title": "Thermoregulation",
+  "kind": "process",
+  "template": "process",
+  "scale_m": 1.0,
+  "parents": [
+   "integumentary_system"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Body temperature is held near 37 C by balancing heat production and loss.",
+  "layers": {
+   "basics": "When you get hot you sweat and your skin flushes; when cold, you shiver and your skin vessels narrow.",
+   "deeper": "The hypothalamus acts as a thermostat, comparing set point with inputs from skin and core temperature sensors.",
+   "expert": "Heat loss via radiation, conduction, convection, evaporation; vasomotor control through sympathetic tone; shivering and non-shivering thermogenesis (UCP1); fever is a raised set point mediated by prostaglandin E2."
+  },
+  "facts": [
+   [
+    "Core temperature",
+    "≈ 37 C (36.1-37.2)"
+   ],
+   [
+    "Sweat evaporation",
+    "≈ 2.4 kJ/mL"
+   ]
+  ],
+  "did_you_know": "Evaporating one liter of sweat removes about 2,400 kJ of heat.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "24.6",
+    "24-6-energy-and-heat-balance"
+   ]
+  ],
+  "kn": [
+   "homeostasis"
+  ],
+  "steps": [
+   {
+    "title": "Sensing",
+    "text": "Thermoreceptors in skin and the hypothalamus detect temperature.",
+    "focus": [
+     "skin",
+     "hypothalamus"
+    ]
+   },
+   {
+    "title": "Comparison",
+    "text": "The hypothalamus compares to its set point.",
+    "focus": [
+     "hypothalamus"
+    ]
+   },
+   {
+    "title": "If too hot",
+    "text": "Skin vessels dilate and sweat glands release sweat.",
+    "focus": [
+     "sweat_gland",
+     "dermis",
+     "capillary"
+    ]
+   },
+   {
+    "title": "If too cold",
+    "text": "Skin vessels constrict, hair stands up, muscles shiver.",
+    "focus": [
+     "dermis",
+     "skeletal_muscle_fiber",
+     "hair_follicle"
+    ]
+   },
+   {
+    "title": "Fever",
+    "text": "Pyrogens raise the set point so the body feels cold until it reaches a higher temperature.",
+    "focus": [
+     "hypothalamus"
+    ]
+   }
+  ]
+ }
+]

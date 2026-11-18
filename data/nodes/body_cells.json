@@ -1,0 +1,1356 @@
+[
+ {
+  "id": "neuron",
+  "title": "Neuron",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 0.0001,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "endoplasmic_reticulum",
+   "golgi_apparatus",
+   "ribosome",
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [
+   "action_potential",
+   "synaptic_transmission"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A nerve cell that sends electrical and chemical signals.",
+  "layers": {
+   "basics": "Neurons collect signals with branches (dendrites), decide whether to fire, and send pulses along a long fiber (axon).",
+   "deeper": "The soma holds the nucleus; the axon may be wrapped in insulating myelin; synapses at the tips release neurotransmitters.",
+   "expert": "Resting potential ≈ -70 mV; action potential via voltage-gated Na+/K+ channels; axon lengths up to ≈ 1 m; ≈ 10^3-10^4 synapses per cortical neuron."
+  },
+  "facts": [
+   [
+    "Soma",
+    "≈ 4-100 µm"
+   ],
+   [
+    "Resting potential",
+    "≈ -70 mV"
+   ],
+   [
+    "Synapses",
+    "≈ 10^3-10^4"
+   ]
+  ],
+  "did_you_know": "Some neurons in your leg are about a meter long, the longest cells in the body.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "12.2",
+    "12-2-nervous-tissue"
+   ]
+  ],
+  "kn": [
+   "action_potential",
+   "synapse_plasticity"
+  ],
+  "molecules": [
+   "acetylcholine",
+   "dopamine",
+   "gaba",
+   "serotonin"
+  ]
+ },
+ {
+  "id": "astrocyte",
+  "title": "Astrocyte",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 5e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "ribosome",
+   "endoplasmic_reticulum",
+   "golgi_apparatus",
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [
+   "synaptic_transmission"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A star-shaped glial cell that supports neurons.",
+  "layers": {
+   "basics": "Astrocytes feed neurons, tidy up chemicals, and help form the blood-brain barrier.",
+   "deeper": "They wrap synapses and regulate extracellular K+ and glutamate.",
+   "expert": "Express GFAP, AQP4 at endfeet; take up glutamate via EAAT1/2; contribute to the glymphatic system; ≈ 1:1 with neurons overall."
+  },
+  "facts": [
+   [
+    "Size",
+    "≈ 50 µm"
+   ],
+   [
+    "Synapses contacted",
+    "up to ≈ 2×10^6 (human)"
+   ]
+  ],
+  "did_you_know": "A single human astrocyte can touch around two million synapses.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "12.2",
+    "12-2-nervous-tissue"
+   ]
+  ],
+  "kn": [
+   "brain_organization"
+  ]
+ },
+ {
+  "id": "red_blood_cell",
+  "title": "Red blood cell (erythrocyte)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 7.5e-06,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [
+   "breathing"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A disc-shaped cell packed with hemoglobin to carry oxygen.",
+  "layers": {
+   "basics": "Red blood cells carry oxygen from lungs to tissues. They have no nucleus, so there's more room for hemoglobin.",
+   "deeper": "Their biconcave shape gives a large surface and flexibility to squeeze through capillaries. They live ≈ 120 days.",
+   "expert": "≈ 270 million hemoglobin molecules per cell; glycolysis only (no mitochondria); spectrin-actin skeleton; removed by splenic macrophages; ≈ 2×10^6 made per second."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 7.5 µm"
+   ],
+   [
+    "Lifespan",
+    "≈ 120 days"
+   ],
+   [
+    "Hemoglobin per cell",
+    "≈ 2.7×10^8 molecules"
+   ]
+  ],
+  "did_you_know": "Each second your marrow releases about two million new red blood cells.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "18.3",
+    "18-3-erythrocytes"
+   ]
+  ],
+  "kn": [
+   "heme_oxygen",
+   "blood_circulation"
+  ],
+  "molecules": [
+   "4hhb",
+   "heme_b",
+   "oxygen",
+   "carbon_dioxide"
+  ]
+ },
+ {
+  "id": "neutrophil",
+  "title": "Neutrophil",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1.2e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "ribosome",
+   "endoplasmic_reticulum",
+   "golgi_apparatus",
+   "lysosome",
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [
+   "immune_response"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "The most common white blood cell and a first responder to bacteria.",
+  "layers": {
+   "basics": "Neutrophils race to infections and engulf germs.",
+   "deeper": "They live only hours to days. Pus is largely dead neutrophils.",
+   "expert": "Multilobed nucleus; granules with myeloperoxidase; NETosis; chemotaxis toward IL-8 and fMLP; ≈ 50-70% of leukocytes."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 12 µm"
+   ],
+   [
+    "Share of WBC",
+    "≈ 50-70%"
+   ],
+   [
+    "Lifespan",
+    "≈ hours-days"
+   ]
+  ],
+  "did_you_know": "You make about 100 billion neutrophils each day.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "18.4",
+    "18-4-leukocytes-and-platelets"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ]
+ },
+ {
+  "id": "macrophage",
+  "title": "Macrophage",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "ribosome",
+   "endoplasmic_reticulum",
+   "golgi_apparatus",
+   "cell_membrane",
+   "cytoskeleton",
+   "lysosome"
+  ],
+  "processes": [
+   "immune_response"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A large cell that swallows microbes and debris and alerts other immune cells.",
+  "layers": {
+   "basics": "Macrophages are the clean-up crew and sentries of the immune system.",
+   "deeper": "They engulf (phagocytose) germs and display fragments to T cells.",
+   "expert": "Differentiate from monocytes or arise from embryonic precursors (tissue-resident); polarization states (M1/M2 simplification); express TLRs and scavenger receptors."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 20 µm"
+   ],
+   [
+    "Lifespan",
+    "≈ months"
+   ]
+  ],
+  "did_you_know": "Specialized macrophages exist in many organs: Kupffer cells in the liver, microglia in the brain.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "21.2",
+    "21-2-barrier-defenses-and-the-innate-immune-response"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ]
+ },
+ {
+  "id": "lymphocyte_t",
+  "title": "T lymphocyte (T cell)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 8e-06,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "ribosome",
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [
+   "immune_response"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A white cell that coordinates or carries out targeted attacks.",
+  "layers": {
+   "basics": "T cells recognize specific invaders, and some kill infected cells directly.",
+   "deeper": "They mature in the thymus. Helper T cells coordinate; cytotoxic T cells kill; memory T cells remember.",
+   "expert": "TCR recognizes peptide-MHC; CD4+ helper vs CD8+ cytotoxic; costimulation via CD28; regulatory T cells maintain tolerance; repertoire ≈ 10^15-10^18 potential TCRs."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 8 µm"
+   ],
+   [
+    "Potential receptor types",
+    "≈ 10^15+"
+   ]
+  ],
+  "did_you_know": "The potential diversity of T-cell receptors exceeds the number of cells you own by far.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "21.3",
+    "21-3-the-adaptive-immune-response-t-lymphocytes-and-their-functional-types"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ]
+ },
+ {
+  "id": "lymphocyte_b",
+  "title": "B lymphocyte (B cell)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 8e-06,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "ribosome",
+   "endoplasmic_reticulum",
+   "golgi_apparatus",
+   "cell_membrane"
+  ],
+  "processes": [
+   "immune_response"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A white cell that becomes an antibody-producing factory.",
+  "layers": {
+   "basics": "When a B cell recognizes a germ, it multiplies and its descendants release antibodies.",
+   "deeper": "Memory B cells make later responses faster and stronger.",
+   "expert": "BCR diversity from V(D)J recombination; somatic hypermutation and class switching in germinal centers; plasma cells secrete ≈ 2,000 antibodies per second."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 8 µm"
+   ],
+   [
+    "Antibody secretion",
+    "≈ 2,000/s per plasma cell"
+   ]
+  ],
+  "did_you_know": "A single plasma cell is one of the most prolific protein-secreting cells in the body.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "21.4",
+    "21-4-the-adaptive-immune-response-b-lymphocytes-and-antibodies"
+   ]
+  ],
+  "kn": [
+   "immune_system"
+  ]
+ },
+ {
+  "id": "platelet",
+  "title": "Platelet (thrombocyte)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 3e-06,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cell_membrane",
+   "cytoskeleton",
+   "mitochondrion"
+  ],
+  "processes": [
+   "blood_clotting"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A cell fragment that plugs breaks in blood vessels.",
+  "layers": {
+   "basics": "Platelets stick to wounds and to each other to form a plug and start a clot.",
+   "deeper": "They are pieces of giant marrow cells (megakaryocytes) and last about a week.",
+   "expert": "Activated via collagen/GPVI and thrombin; α- and dense granules; integrin αIIbβ3 binds fibrinogen; ≈ 150-400×10^9/L."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 2-3 µm"
+   ],
+   [
+    "Lifespan",
+    "≈ 7-10 days"
+   ]
+  ],
+  "did_you_know": "Platelets have no nucleus, they are fragments of larger cells.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "18.4",
+    "18-4-leukocytes-and-platelets"
+   ]
+  ],
+  "kn": [
+   "blood_circulation"
+  ]
+ },
+ {
+  "id": "cardiomyocyte",
+  "title": "Cardiomyocyte (heart muscle cell)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 0.0001,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "sarcomere",
+   "cell_membrane",
+   "endoplasmic_reticulum"
+  ],
+  "processes": [
+   "cardiac_cycle",
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "The striated, branching muscle cell of the heart.",
+  "layers": {
+   "basics": "Heart cells contract in unison to pump blood.",
+   "deeper": "They are rich in mitochondria and linked end to end by intercalated discs.",
+   "expert": "Ca2+-induced Ca2+ release via L-type channels and ryanodine receptors; T-tubules; one or two nuclei; limited regeneration (≈ 0.5-1%/yr)."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 100 µm"
+   ],
+   [
+    "Mitochondria",
+    "≈ 30-35% of volume"
+   ]
+  ],
+  "did_you_know": "Your heart muscle cells are mostly the ones you were born with.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "19.2",
+    "19-2-cardiac-muscle-and-electrical-activity"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction"
+  ],
+  "molecules": [
+   "atp",
+   "creatine"
+  ]
+ },
+ {
+  "id": "skeletal_muscle_fiber",
+  "title": "Skeletal muscle fiber",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 5e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "sarcomere",
+   "cell_membrane",
+   "endoplasmic_reticulum"
+  ],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A long multi-nucleated cell packed with contractile units.",
+  "layers": {
+   "basics": "A muscle fiber is a single giant cell that shortens when stimulated.",
+   "deeper": "Formed by fusion of many precursor cells, it has hundreds of nuclei lined along the edge.",
+   "expert": "Contains myofibrils of repeating sarcomeres; T-tubule/SR triads; fiber types I, IIa, IIx; satellite cells enable regeneration."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 50-100 µm"
+   ],
+   [
+    "Length",
+    "up to ≈ 30 cm"
+   ]
+  ],
+  "did_you_know": "A single muscle fiber can be as long as a ruler.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "10.2",
+    "10-2-skeletal-muscle"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction"
+  ],
+  "molecules": [
+   "atp",
+   "creatine"
+  ]
+ },
+ {
+  "id": "smooth_muscle_cell",
+  "title": "Smooth muscle cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 0.0001,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "cytoskeleton",
+   "cell_membrane"
+  ],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A spindle-shaped cell that contracts slowly and steadily.",
+  "layers": {
+   "basics": "These cells squeeze vessels and organs without conscious control.",
+   "deeper": "They are not striped and use actin and myosin arranged more loosely.",
+   "expert": "Ca2+-calmodulin MLCK phosphorylates myosin light chain; caveolae; dense bodies anchor filaments; capable of proliferation and phenotypic switching."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 30-200 µm"
+   ]
+  ],
+  "did_you_know": "They can maintain tension for hours at very low energy cost.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "10.8",
+    "10-8-smooth-muscle"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction"
+  ]
+ },
+ {
+  "id": "hepatocyte",
+  "title": "Hepatocyte (liver cell)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 3e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "ribosome",
+   "endoplasmic_reticulum",
+   "golgi_apparatus",
+   "cell_membrane",
+   "cytoskeleton",
+   "lysosome",
+   "peroxisome"
+  ],
+  "processes": [
+   "digestion"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "The main liver cell, a versatile chemical worker.",
+  "layers": {
+   "basics": "Hepatocytes process nutrients, make proteins and bile, and neutralize toxins.",
+   "deeper": "They make up about 80% of liver cells and have lots of mitochondria and smooth ER.",
+   "expert": "Express CYP450 enzymes, albumin, clotting factors; glycogen storage; polyploid (often tetraploid); can re-enter the cell cycle after injury."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 25-30 µm"
+   ],
+   [
+    "Mitochondria",
+    "≈ 1,000-2,000 per cell"
+   ]
+  ],
+  "did_you_know": "Hepatocytes live about 200-300 days and are among the few cells in adults that can regrow organs.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.6",
+    "23-6-accessory-organs-in-digestion-the-liver-pancreas-and-gallbladder"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ],
+  "molecules": [
+   "glucose_alpha",
+   "urea"
+  ]
+ },
+ {
+  "id": "enterocyte",
+  "title": "Enterocyte (intestinal absorptive cell)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "ribosome",
+   "endoplasmic_reticulum",
+   "golgi_apparatus",
+   "cell_membrane",
+   "cytoskeleton",
+   "lysosome"
+  ],
+  "processes": [
+   "digestion"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A tall absorbing cell lining the intestine.",
+  "layers": {
+   "basics": "Enterocytes pick up nutrients from digested food.",
+   "deeper": "Their top surface bristles with microvilli, forming the brush border.",
+   "expert": "Express SGLT1, GLUT5, peptide transporters; tight junctions; renewed every ≈ 3-5 days from crypt stem cells."
+  },
+  "facts": [
+   [
+    "Height",
+    "≈ 20-25 µm"
+   ],
+   [
+    "Microvilli per cell",
+    "≈ 3,000"
+   ]
+  ],
+  "did_you_know": "Each enterocyte has about 3,000 microvilli.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.5",
+    "23-5-the-small-and-large-intestines"
+   ]
+  ],
+  "kn": [
+   "digestion_renal"
+  ]
+ },
+ {
+  "id": "osteocyte",
+  "title": "Osteocyte",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [
+   "bone_remodeling"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A mature bone cell living inside the bone it built.",
+  "layers": {
+   "basics": "Osteocytes are trapped in tiny pockets inside bone and sense strain.",
+   "deeper": "They talk to each other through thin channels.",
+   "expert": "Dendritic network in canaliculi; secrete sclerostin and FGF23; ≈ 90-95% of bone cells; lifespan of decades."
+  },
+  "facts": [
+   [
+    "Share of bone cells",
+    "≈ 90-95%"
+   ],
+   [
+    "Lifespan",
+    "up to decades"
+   ]
+  ],
+  "did_you_know": "Osteocytes are the longest-lived bone cells, living for decades.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "6.3",
+    "6-3-bone-structure"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "osteoblast",
+  "title": "Osteoblast",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "ribosome",
+   "endoplasmic_reticulum",
+   "golgi_apparatus",
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [
+   "bone_remodeling"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A cell that builds new bone.",
+  "layers": {
+   "basics": "Osteoblasts lay down the collagen frame of bone and then mineralize it.",
+   "deeper": "They come from stem cells in marrow and periosteum.",
+   "expert": "Secrete osteoid (type I collagen), alkaline phosphatase; signal to osteoclasts through RANKL/OPG; some become osteocytes."
+  },
+  "facts": [
+   [
+    "Size",
+    "≈ 20-30 µm"
+   ]
+  ],
+  "did_you_know": "Many osteoblasts end up buried in the bone they make and become osteocytes.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "6.3",
+    "6-3-bone-structure"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "osteoclast",
+  "title": "Osteoclast",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 0.0001,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "lysosome",
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [
+   "bone_remodeling"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A large cell that dissolves old bone.",
+  "layers": {
+   "basics": "Osteoclasts break down bone so it can be renewed and calcium released.",
+   "deeper": "They form from fused blood-cell precursors.",
+   "expert": "Multinucleated; ruffled border; secrete H+ and cathepsin K; RANKL-dependent differentiation."
+  },
+  "facts": [
+   [
+    "Nuclei",
+    "≈ 3-20"
+   ],
+   [
+    "Size",
+    "≈ 100 µm"
+   ]
+  ],
+  "did_you_know": "Together with osteoblasts they renew the whole skeleton about every ten years.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "6.4",
+    "6-4-bone-formation-and-development"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "chondrocyte",
+  "title": "Chondrocyte",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1.5e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "ribosome",
+   "endoplasmic_reticulum",
+   "golgi_apparatus",
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The cartilage cell, living in tiny cavities of its own matrix.",
+  "layers": {
+   "basics": "Chondrocytes make and maintain cartilage.",
+   "deeper": "They live in lacunae and get nutrients by diffusion because cartilage has no vessels.",
+   "expert": "Produce collagen II and aggrecan; hypoxic metabolism; hypertrophy in growth plates leading to ossification."
+  },
+  "facts": [
+   [
+    "Size",
+    "≈ 10-30 µm"
+   ]
+  ],
+  "did_you_know": "Cartilage heals poorly partly because chondrocytes are few and isolated.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "keratinocyte",
+  "title": "Keratinocyte",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "cytoskeleton",
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The main skin cell, which fills with tough keratin protein.",
+  "layers": {
+   "basics": "Keratinocytes are made deep in the epidermis, rise to the surface, flatten and die as a waterproof shield.",
+   "deeper": "They take about 4 weeks to travel from bottom to top.",
+   "expert": "Differentiation: basal (K5/K14) to spinous (K1/K10) to granular (filaggrin, loricrin) to cornified envelope; desmosomal adhesion."
+  },
+  "facts": [
+   [
+    "Share of epidermal cells",
+    "≈ 90%"
+   ],
+   [
+    "Travel time",
+    "≈ 28-40 days"
+   ]
+  ],
+  "did_you_know": "Your outermost skin cells are dead keratin-filled flakes.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "5.1",
+    "5-1-layers-of-the-skin"
+   ]
+  ],
+  "kn": [
+   "skin_integument"
+  ]
+ },
+ {
+  "id": "adipocyte",
+  "title": "Adipocyte (fat cell)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 0.0001,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "cell_membrane",
+   "endoplasmic_reticulum"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A cell storing energy as a large fat droplet.",
+  "layers": {
+   "basics": "Fat cells are mostly one huge oil droplet that pushes everything else to the edge.",
+   "deeper": "They also release hormones like leptin.",
+   "expert": "Unilocular lipid droplet ≈ 90% of volume; lipolysis via HSL/ATGL; number set largely by adolescence, with ≈ 10%/yr turnover."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 70-120 µm"
+   ],
+   [
+    "Turnover",
+    "≈ 10%/yr"
+   ]
+  ],
+  "did_you_know": "The number of fat cells is largely fixed by adulthood; cells change size more than number.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "kn": [
+   "metabolism_overview"
+  ],
+  "molecules": [
+   "tripalmitin",
+   "oleic_acid"
+  ]
+ },
+ {
+  "id": "fibroblast",
+  "title": "Fibroblast",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 3e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "ribosome",
+   "endoplasmic_reticulum",
+   "golgi_apparatus",
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The cell that builds the connective-tissue fibers.",
+  "layers": {
+   "basics": "Fibroblasts make collagen and repair wounds.",
+   "deeper": "They help form scars.",
+   "expert": "Activated to myofibroblasts in wound healing; collagen I/III synthesis; ECM remodeling by MMPs."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 30-100 µm"
+   ]
+  ],
+  "did_you_know": "Scars are essentially dense collagen made by fibroblasts.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "kn": [
+   "cell_types"
+  ]
+ },
+ {
+  "id": "rod_cell",
+  "title": "Rod photoreceptor",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 5e-06,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "cell_membrane",
+   "ribosome"
+  ],
+  "processes": [
+   "vision"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A retinal cell specialized for dim light.",
+  "layers": {
+   "basics": "Rods let you see at night, but only in shades of gray.",
+   "deeper": "They contain a light-catching pigment (rhodopsin) stacked in discs.",
+   "expert": "≈ 1.2×10^8 per eye; single-photon sensitivity; rhodopsin with 11-cis-retinal; phototransduction via transducin-PDE6 cascade; hyperpolarizes in light."
+  },
+  "facts": [
+   [
+    "Number",
+    "≈ 1.2×10^8 per eye"
+   ],
+   [
+    "Length",
+    "≈ 50-60 µm"
+   ]
+  ],
+  "did_you_know": "A dark-adapted rod can respond to a single photon.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "14.1",
+    "14-1-sensory-perception"
+   ]
+  ],
+  "kn": [
+   "vision_eye"
+  ],
+  "molecules": [
+   "retinal"
+  ]
+ },
+ {
+  "id": "cone_cell",
+  "title": "Cone photoreceptor",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 5e-06,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "cell_membrane",
+   "ribosome"
+  ],
+  "processes": [
+   "vision"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "A retinal cell for color and sharp daylight vision.",
+  "layers": {
+   "basics": "Cones detect color and fine detail in bright light.",
+   "deeper": "Three kinds respond best to short, medium or long (blue, green, red) wavelengths.",
+   "expert": "≈ 6×10^6 per eye, concentrated at the fovea; S, M, L opsins; faster, less sensitive than rods."
+  },
+  "facts": [
+   [
+    "Number",
+    "≈ 6×10^6 per eye"
+   ],
+   [
+    "Types",
+    "3 (S, M, L)"
+   ]
+  ],
+  "did_you_know": "Many people with color-vision deficiency lack one of the three cone pigments or have a shifted one.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "14.1",
+    "14-1-sensory-perception"
+   ]
+  ],
+  "kn": [
+   "vision_eye"
+  ],
+  "molecules": [
+   "retinal"
+  ]
+ },
+ {
+  "id": "sperm",
+  "title": "Sperm cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 5e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The male gamete, a tiny swimming cell carrying half a set of chromosomes.",
+  "layers": {
+   "basics": "A sperm swims with a whip-like tail to reach an egg.",
+   "deeper": "It carries 23 chromosomes and little else beyond energy machinery.",
+   "expert": "Head with nucleus and acrosome, midpiece packed with mitochondria, flagellum; ≈ 45-60 µm long; ≈ 15-200×10^6 per mL."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 50 µm"
+   ],
+   [
+    "Chromosomes",
+    "23"
+   ]
+  ],
+  "did_you_know": "Sperm cells are among the smallest human cells but must travel a long way relative to their size.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.1",
+    "27-1-anatomy-and-physiology-of-the-testicular-reproductive-system"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ]
+ },
+ {
+  "id": "egg_cell",
+  "title": "Egg cell (oocyte)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 0.00012,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "cell_membrane",
+   "endoplasmic_reticulum",
+   "golgi_apparatus"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The female gamete, the largest human cell.",
+  "layers": {
+   "basics": "The egg carries half the genetic instructions and nutrients that start a new person.",
+   "deeper": "It is surrounded by a protective coat and cells.",
+   "expert": "Arrested in prophase I (primary oocyte) until ovulation and in metaphase II until fertilization; zona pellucida; ≈ 120 µm."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 0.1-0.12 mm"
+   ],
+   [
+    "Chromosomes",
+    "23 after meiosis"
+   ]
+  ],
+  "did_you_know": "It is just visible to the naked eye.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ]
+  ],
+  "kn": [
+   "development_biology"
+  ]
+ },
+ {
+  "id": "stem_cell",
+  "title": "Hematopoietic stem cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A cell that can renew itself and produce all blood cell types.",
+  "layers": {
+   "basics": "Stem cells in your marrow are the source of every blood cell.",
+   "deeper": "They divide rarely to protect their DNA.",
+   "expert": "Defined by CD34+ CD38- markers; niches in marrow; transplant therapy; clonal hematopoiesis rises with age."
+  },
+  "facts": [
+   [
+    "Frequency",
+    "≈ 1 in 10^4-10^5 marrow cells"
+   ],
+   [
+    "Divisions",
+    "few per year"
+   ]
+  ],
+  "did_you_know": "Your blood system descends from only a few tens of thousands of active stem cells.",
+  "certainty": "C2",
+  "open_questions": [
+   "How do stem-cell niches regulate self-renewal versus differentiation in aging?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "18.2",
+    "18-2-production-of-the-formed-elements"
+   ]
+  ],
+  "kn": [
+   "cell_types",
+   "development_biology"
+  ]
+ },
+ {
+  "id": "melanocyte",
+  "title": "Melanocyte",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1.5e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "ribosome",
+   "endoplasmic_reticulum",
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A skin cell making the pigment melanin.",
+  "layers": {
+   "basics": "Melanocytes shade your skin against UV light.",
+   "deeper": "They pass pigment packages to neighbouring cells.",
+   "expert": "Melanosomes with eumelanin/pheomelanin transferred to ≈ 36 keratinocytes each; density roughly similar across skin tones."
+  },
+  "facts": [
+   [
+    "Pigment",
+    "melanin"
+   ]
+  ],
+  "did_you_know": "People of all skin tones have roughly the same number of melanocytes; they differ in how much pigment is made.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "5.1",
+    "5-1-layers-of-the-skin"
+   ]
+  ],
+  "kn": [
+   "skin_integument"
+  ]
+ },
+ {
+  "id": "beta_cell",
+  "title": "Pancreatic beta cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1.5e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "ribosome",
+   "endoplasmic_reticulum",
+   "golgi_apparatus",
+   "cell_membrane",
+   "cytoskeleton",
+   "golgi_apparatus"
+  ],
+  "processes": [
+   "hormone_signaling"
+  ],
+  "related": [],
+  "mesh": null,
+  "summary": "The insulin-secreting cell of the pancreas.",
+  "layers": {
+   "basics": "Beta cells sense blood sugar and release insulin.",
+   "deeper": "They store insulin in granules ready to release.",
+   "expert": "Glucose uptake via GLUT, glucokinase, ATP-sensitive K+ channels close, depolarization, Ca2+ influx, insulin exocytosis (biphasic)."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 15 µm"
+   ],
+   [
+    "Product",
+    "insulin"
+   ]
+  ],
+  "did_you_know": "Beta cells sit in islets and work like glucose sensors.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "17.9",
+    "17-9-the-endocrine-pancreas"
+   ]
+  ],
+  "kn": [
+   "endocrine_physiology"
+  ]
+ }
+]

@@ -1,0 +1,30 @@
+# REPORT: chem workstream (molecules, materials, elements)
+
+Scripts: work/scripts_chem/ (run order: elements.py, build_mols.py, fix_mols.py, basepairs.py, index_mols.py, crystals.py, proteins.py; check_mols.py is the bond/clash checker).
+Attribution appended to assets/ATTRIBUTION.md. mendeleev 1.3.0 is MIT-licensed (RDKit BSD, ASE LGPL used as a tool only).
+
+## Files
+- data/elements.json (69 KB): 118 elements, all spec fields. Summaries are original. `category` = mendeleev series names ("Transition metals", "Alkali metals", ...); lanthanides/actinides have group null (La-Lu, Ac-Lr). Density in g/cm3 (gases at roughly 0-25 C in g/cm3, e.g. 8.2e-5 for H). radius_covalent_pm = Cordero 2008. phase_stp for Z=112-118 is "unknown". Elements with no natural isotopes have isotopes [] and mostAbundantA = longest-lived isotope from mendeleev (approximate). `discovered` is a year, or "antiquity". Nulls: electronegativity for noble gases/some synthetic elements, melt/boil for He/C (sublimes)/Z>=104, vdW radius for Z>=104, etc. I patched melt/boil for P (white), S, Se, Sn which mendeleev left empty.
+- data/molecules/index.json + 250 molecule files (1.1 MB total): 88 organic, 21 amino_acid (20 + selenocysteine), 20 gas, 17 nucleotide, 15 cofactor, 15 drug, 14 hormone_neuro, 12 inorganic, 12 sugar, 11 polymer, 9 pigment, 8 lipid, 8 mineral_unit. Format as in SPEC, plus extra fields `method` (ETKDGv3+MMFF94 / UFF / experimental geometry) and for base pairs `hbonds` (atom index pairs). Coordinates centered at centroid, 3 decimals; explicit H; Gasteiger charges (formal charges set in SMILES for zwitterions/anions).
+  - Amino acids: zwitterions (NH3+, COO-, Lys NH3+, Arg guanidinium+, Asp/Glu carboxylate-, His neutral), L-configuration.
+  - Included as requested: 5 nucleobases, deoxyribose, ribose, dAMP/dGMP/dCMP/dTMP, AMP/UMP/cAMP/ADP/ATP/GTP, NAD+/NADH/FAD, glucose (beta and alpha), fructose, galactose, sucrose, cellobiose, cellotriose, maltose, lactose, GlcNAc, chlorophyll_a (C55H72MgN4O5), heme_b (C34H32FeN4O4, propionic acids protonated), retinal, cholesterol, POPC, palmitic/oleic/stearic/linoleic, caffeine, dopamine, serotonin, adrenaline, acetylcholine, aspirin, penicillin G, ibuprofen, capsaicin, beta-carotene, silicate units, polyethylene/nylon/PET/PS/PVC/PTFE/PLA/rubber/aramid fragments, pentaglycine. DNA dinucleotide skipped (optional).
+  - bp_AT, bp_GC: ids kept in the exact case the spec asked for (not lowercase).
+- data/crystals.json (12 KB): 17 structures: halite, quartz, iron_bcc, copper_fcc, gold_fcc, diamond, silicon, aluminium_fcc, graphite, calcite, hematite, pyrite, rutile, fluorite, magnetite, forsterite, ice_ih. Conventional cells (ASE `crystal`), lattice in Angstrom, fractional basis. Skipped (optional): albite, kaolinite (no reliable coordinates to hand).
+- data/proteins/ (360 KB): 1ubq, 1crn, 1bna, 1ema (GFP), 4hhb (hemoglobin), real wwPDB coordinates (CC0) from GitHub test data (NGL, 3Dmol.js, Mol*). Waters and H dropped; non-water HETATM kept (HEM, PO4, CRO, MSE). Atom array = [elem,x,y,z,chain,resName,resSeq,isCA]. Insulin not found in usable form (only a 2.5 KB stub), so omitted. Extra fields: title, notes, source. For 1bna, isCA is true for the phosphorus atoms (backbone trace for nucleic acid). 4HHB came from a binary CIF I decoded myself (bcif.py); sanity: 4 chains, 574 CA = 141*2+146*2.
+
+## Sanity checks
+- Base pairs (basepairs.py; bases built with RDKit, rigidly docked in-plane by least-squares on H-bond distances):
+  - A-T: N6(A)...O4(T) 2.95 A, N1(A)...N3(T) 2.82 A; H...acceptor 1.89-2.07 A.
+  - G-C: O6(G)...N4(C) 2.919, N1(G)...N3(C) 2.931, N2(G)...O2(C) 2.87 A; H...acceptor 1.99-2.10 A.
+  - Glycosidic N9...N1 separation 8.67 (A-T) and 9.03 A (G-C), consistent with ~9 A in B-DNA. Planarity RMS z 0.24 / 0.12 A (methyl and amino H atoms). D-H...A angles 130-154 deg (distance-driven fit, not perfectly linear).
+- Crystal nearest-neighbor distances (ASE neighbor list): NaCl Na-Cl 2.820; quartz Si-O 1.604-1.609 (9 atoms, 3 SiO2); bcc Fe 2.482; Cu 2.556; Au 2.884; Al 2.864; diamond C-C 1.54 and Si 2.35 (after fixing a setting-2 origin error); graphite C-C 1.42 / layers 3.36; calcite C-O 1.286, Ca-O 2.357; hematite Fe-O 1.946-2.03; pyrite S-S 2.158, Fe-S 2.264; rutile Ti-O 1.947/1.959; fluorite Ca-F 2.366; magnetite Fe-O 1.889 (tet)/2.017 mean; forsterite Si-O 1.615-1.635, Mg-O 2.05-2.11; ice Ih O-O 2.758-2.767, O-H 0.98 (H...O 1.78).
+- Ice Ih: 8-molecule orthohexagonal cell; proton arrangement chosen by exhaustive search over the 16 O-O edges to obey ice rules (each O has 2 H, each bond 1 H) with zero net dipole. Real ice is proton-disordered; bond_cutoff 1.2 shows covalent O-H only.
+- Molecule checks (check_mols.py): no non-bonded clashes < 1.2 A, no covalent bond outside 0.85-2.3 A except legit M-L bonds. MMFF/UFF gave poor geometry for some small inorganics, so these were replaced with experimental geometry: H2, O2, N2, CO, HCl, HF, Cl2, F2, Br2, NO, CO2, N2O, H2O, O3, NO2, SO2, H2S, HCN, NH3 (marked method "experimental geometry"). Silicate/aluminate tetrahedra rescaled to Si-O 1.625-1.63 / Al-O 1.75 A (force field gave 1.72/1.83). NaCl pair uses experimental 2.361 A. Cisplatin, Mg(OH)2 and CaCO3 units are idealized hand-built geometries.
+- Heme/chlorophyll: ring built as free base then metal placed at the N4 centroid (Fe-N 2.11-2.19 A vs ~2.0 real; Mg-N 2.01-2.23). Formulas verified (exact). Metal-N bonds listed as single bonds; N atoms carry formal charges to balance (Fe/Mg -2).
+
+## Caveats
+- Conformers are lowest-MMFF-energy from a small ETKDG ensemble (gas-phase, not solution/crystal); flexible molecules (POPC, ATP, FAD, carotenoids) are one plausible conformer only.
+- Molecule `formula` strings include RDKit charge suffix for ions (e.g. "C10H12N5O13P3-4").
+- Charges are Gasteiger (qualitative); metals/ion pairs use formal-charge-based values.
+- Stereo of the larger sugars/nucleotides was written from standard SMILES; glucose CIP labels were checked, cellotriose/maltose/lactose/FAD/etc. were not independently verified beyond formula.
+- Count is 250 molecules (upper end of the 150-250 request).

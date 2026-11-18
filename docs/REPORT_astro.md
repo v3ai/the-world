@@ -1,0 +1,8 @@
+# astro report
+Files: data/stars/stars.bin (109400 stars, 24 B each, 2.6 MB), stars_meta.json (491 named: proper names + Bayer/Flamsteed with mag<3; format [index,name,spect,dist_ly]), constellations.json (88 constellations, 679 of 695 segments mapped; 16 skipped because a HIP id is absent from HYG).
+data/galaxies.json (69 entries, 41 Local Group), data/solar.json (27 bodies, plain array; planet+moon fields per SPEC, plus albedo_type, approx, Earth "textures" dict, Venus texture_atmosphere).
+assets/textures/ (19 files, ~14 MB): earth_day/night/clouds(png alpha 2048)/water_mask/bump, moon, mercury, venus_surface, venus_atmosphere, mars, jupiter, saturn, saturn_ring(png alpha 8192x500), uranus, neptune, pluto, charon, sun, milkyway.
+Licenses: HYG + Stellarium = CC BY-SA 4.0; SSS textures CC BY 4.0 (credit "Solar System Scope / INOVE"); three-globe images MIT package (NASA-derived); pluto/charon NASA/Steve Albers (flag). All in assets/ATTRIBUTION.md.
+Verified: Sirius 2.637 pc, Betelgeuse 152.7 pc, Polaris 132.6 pc (RA 2.53h Dec 89.26), Proxima 1.296 pc.
+astronomy-engine browser build: https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js (global `Astronomy`; also astronomy.browser.js unminified).
+Caveats: stars.bin bv missing -> 0.65; HYG dist is in pc (parallax-based, some far stars rough). Galaxy diam_kpc approximate; group/cluster entries use rough extents; most galaxy entries approx:true. Uranus/Neptune/Jupiter rings have no texture. Mars/Mercury/Moon textures are 4096 downsamples of SSS 8k. Pluto elements are osculating approximations. Iapetus albedo null (two-tone).
