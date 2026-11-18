@@ -10,6 +10,7 @@
   html,body { margin:0; height:100%; background:#e8e9ea; color:var(--ink); font:14px/1.45 var(--sans); overflow:hidden; }
   #c { position:fixed; inset:0; width:100%; height:100%; display:block; touch-action:none; cursor:grab; }
   #panel { position:fixed; left:12px; top:12px; width:340px; max-height:calc(100% - 24px); overflow:auto; background:var(--paper); border:1px solid var(--rule); border-radius:6px; padding:12px 14px 14px; box-shadow:0 1px 8px rgba(20,30,50,.12); }
+  details { font:13px/1.45 var(--serif); margin:6px 0; } summary { cursor:pointer; color:var(--accent); font:13px var(--sans); }
   #panel h1 { font:600 17px var(--serif); margin:0 0 2px; }
   #panel .sub { color:var(--muted); font-size:12.5px; margin-bottom:8px; }
   .row { display:flex; flex-wrap:wrap; gap:6px 10px; align-items:center; margin:7px 0; }
@@ -33,7 +34,7 @@
 </head>
 <body>
 <canvas id="c"></canvas>
-<div id="state"></div><div id="nuc">nucleus (true size: far too small to see here)</div><div id="stats"></div>
+<div id="state"></div><div id="nuc">nucleus (true size, too small to see)</div><div id="stats"></div>
 <div id="panel">
   <h1>Orbital engine</h1>
   <div class="sub">Any hydrogen-like state, a whole atom, or a superposition. Drag to turn, scroll to zoom.</div>
@@ -135,7 +136,7 @@ function apply() {
   const sl = $('#slow').value; if (sl !== 'auto') cloud.setSlow(+sl);
   frame(); $('#state').textContent = cloud.label; $('#tip').innerHTML = tip();
 }
-function frame() { view.dist = cloud.extent * 2.6; }
+function frame() { const a = innerWidth / innerHeight; view.dist = cloud.extent * 2.6 * (a < 1 ? 1.15 / a : 1) * (innerWidth <= 860 ? 1.1 : 1); }
 const MEANS = '<p>Every dot is one place this single electron could be found. Dots are crowded where it is likely to be. They are not many electrons, and the dot size is not the electron’s size.</p>';
 const CERT = '<p><span class="tag">C1</span>The wavefunction and every number it predicts are settled. <span class="tag">C4</span>What the wavefunction <em>is</em> (a real wave, knowledge, many worlds, a pilot wave) is an open question.</p>';
 function slowTxt() { const k = cloud.slowText().replace('^', ''); return `10<sup>${k.slice(2)}</sup>`; }
@@ -144,6 +145,7 @@ function orbitalTip(spec) {
   if (spec.real) t += `<p>This is a chemist’s orbital: an equal mixture of m = +${spec.m} and m = −${spec.m}. The two circulations cancel, so the dots have no net flow and sit still. Adding the two rotating states gives this shape, and subtracting them gives its twin turned a quarter of a turn.</p>`;
   else if (spec.m === 0) t += '<p>The dots are still because this state has no circulation about the vertical axis. That does not mean the electron is at rest: its kinetic energy is not zero.</p>';
   else t += `<p>The dots drift along the flow of probability, circling the vertical axis ${spec.m > 0 ? 'anticlockwise' : 'clockwise'} as seen from above, faster near the axis. In standard quantum mechanics only the probabilities are defined; in the pilot-wave (de Broglie–Bohm) reading these would be the electron’s actual paths. Both readings predict exactly the same measurements. The motion is slowed about ${slowTxt()} times.</p>`;
+  if (!spec.real && spec.m !== 0) t += `<details><summary>Expert: how the flow is computed</summary><p>The wavefunction is \u03c8 = R(r) P(cos \u03b8) e<sup>im\u03c6</sup>, so the probability current divided by the density is v = (\u0127/m<sub>e</sub>) Im(\u2207\u03c8/\u03c8) = m\u0127 / (m<sub>e</sub> r sin \u03b8) \u03c6-hat. Each dot therefore circles the vertical axis at constant height and constant distance s = r sin \u03b8 from it, with angular speed \u03c9 = m/s\u00b2 in atomic units (one unit of time is 2.4189\u00d710<sup>\u221217</sup> s). The shader computes the angle as \u03c6\u2080 + \u03c9t, so the flow costs the processor nothing. Near the axis \u03c9 grows without limit; for display it is capped at the value it has at s = 0.12 \u27e8r\u27e9 (\u03c9 \u2248 ${cloud.omegaCap.toFixed(3)} per atomic unit here), which affects only the few dots very close to the axis. Dots are drawn from |\u03c8|\u00b2 by tabulated inverse cumulative distributions: r from r\u00b2R\u00b2, cos \u03b8 from P\u00b2, \u03c6 uniform.</p></details>`;
   return t + CERT;
 }
 function shellsTip(sf) {

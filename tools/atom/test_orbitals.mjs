@@ -21,7 +21,7 @@ const radInt = (n, l, Z, g) => simpson(r => r * r * g(r), 0, AQ.rMaxFor(n, Z) * 
 const Zs = [1, 2.5, 8];
 // ---------- 1. radial normalisation, <r>, node count, orthogonality ----------
 let nStates = 0;
-for (const Z of Zs) for (let n = 1; n <= 7; n++) for (let l = 0; l <= Math.min(n - 1, 4); l++) {
+for (const Z of Zs) for (let n = 1; n <= 7; n++) for (let l = 0; l <= Math.min(n - 1, 6); l++) {   // the brief asks for l <= 4; the interface also offers l = 5, 6 for n = 6, 7
   nStates++;
   const norm = radInt(n, l, Z, r => { const R = AQ.radial(n, l, Z, r); return R * R; });
   check(`norm n=${n} l=${l} Z=${Z}`, near(norm, 1, 1e-7), norm);
@@ -89,14 +89,14 @@ function ksD(samples, cdfAt) { const s = Float64Array.from(samples).sort(); cons
 function exactCdf(f, a, b, N = 20000) { const xs = new Float64Array(N + 1), cs = new Float64Array(N + 1), h = (b - a) / N; let acc = 0, prev = f(a); for (let i = 1; i <= N; i++) { const cur = f(a + i * h); acc += 0.5 * (prev + cur) * h; cs[i] = acc; prev = cur; } for (let i = 0; i <= N; i++) { xs[i] = a + i * h; cs[i] /= acc; } return x => { const i = Math.min(N - 1, Math.max(0, Math.floor((x - a) / h))); return cs[i] + (cs[i + 1] - cs[i]) * ((x - xs[i]) / h); }; }
 const NS = 30000, crit = 1.95 / Math.sqrt(NS);   // KS critical value at alpha = 0.001
 let ksCount = 0, ksWorst = 0;
-for (let n = 1; n <= 7; n++) for (let l = 0; l <= Math.min(n - 1, 4); l++) {
+for (let n = 1; n <= 7; n++) for (let l = 0; l <= Math.min(n - 1, 6); l++) {
   const Z = n % 2 ? 1 : 3.7, d = AQ.sampleOrbital(n, l, 0, Z, NS, { seed: 100 + n * 10 + l });
   const F = exactCdf(r => { const R = AQ.radial(n, l, Z, r); return r * r * R * R; }, 0, AQ.rMaxFor(n, Z));
   const D = ksD(d.r, F); ksCount++; ksWorst = Math.max(ksWorst, D); check(`KS r n=${n} l=${l}`, D < crit, `D=${D} crit=${crit}`);
   // the dots really are at (s, z, phi): s^2 + z^2 = r^2
   let bad = 0; for (let i = 0; i < 2000; i++) if (Math.abs(Math.hypot(d.s[i], d.z[i]) - d.r[i]) > 1e-3 * Math.max(1, d.r[i])) bad++; check(`s,z consistent n=${n} l=${l}`, bad === 0, bad);
 }
-for (let l = 0; l <= 4; l++) for (let m = -l; m <= l; m++) {
+for (let l = 0; l <= 6; l++) for (let m = -l; m <= l; m++) {
   const d = AQ.sampleOrbital(l + 1, l, m, 1, NS, { seed: 5000 + 20 * l + m + 10 });
   const F = exactCdf(x => AQ.ang2(l, m, x), -1, 1);
   const D = ksD(Array.from(d.z, (z, i) => z / d.r[i]), F); ksCount++; ksWorst = Math.max(ksWorst, D); check(`KS cos(theta) l=${l} m=${m}`, D < crit, `D=${D} crit=${crit}`);

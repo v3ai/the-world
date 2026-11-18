@@ -27,3 +27,14 @@ that break the filling order against a hand-typed NIST reference, isotope abunda
 agrees with the atomic weight, Slater's rules reproduce the textbook Fe values, computed hydrogen lines agree with NIST,
 a hand-typed table of NIST ionisation energies and CIAAW weights, and (with the cache) every ionisation energy against
 the downloaded NIST table.
+
+## Orbital engine (stage A2)
+
+- `js/atom.js` part 1 (`AQ`): hydrogen-like wavefunctions, tabulated inverse-CDF samplers, the probability current,
+  superpositions. Part 2 (`AtomCloud`): the three.js dot-cloud renderer. Part 3: `FT.atomq`, a test frame for the engine.
+- `node tools/atom/test_orbitals.mjs` (use the venv node, `/home/rhett/projects/how/.devtools/venv/bin/node`): about
+  1000 numerical checks (normalisation, <r>, nodes, orthogonality, spherical harmonics, KS tests of the samplers, the
+  current, equivariance of the superposition). Takes about 40 s. Must print "all N checks passed".
+- `tools/atom/orbital_test.html` (serve the repo root, open `/tools/atom/orbital_test.html`): any Z, n, l, m, real or
+  complex, whole atom, superposition, cutaway, dot count. URL parameters: `mode=orbital|shells|super`, `z`, `n`, `l`,
+  `m`, `fam=cos`, `sup=1s2p0|1s2p1|1s2s`, `dots`, `cut=1`, `clean=1` (hide the panel), `az`, `el`.
