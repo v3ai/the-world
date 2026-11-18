@@ -89,10 +89,10 @@ export default function build() {
   const inst = (key, meshKey) => instances[key] = new L.Instances(meshKey);
 
   // ================= trunk (whole tree view) =================
-  const trunk = barkGrid(-.35, 3.7, 0, TAU, 220, .03);
+  const trunk = barkGrid(-.35, 3.7, 0, TAU, 150, .045);
   { // close the top with a fan to an apex that sits inside the limbs
-    const apex = trunk.pos.length / 3, base = apex - 221; trunk.pos.push(0, 3.95, 0); trunk.shade.push(.5);
-    for (let i = 0; i < 220; i++) trunk.idx.push(base + i + 1, base + i, apex);
+    const apex = trunk.pos.length / 3, base = apex - 151; trunk.pos.push(0, 3.95, 0); trunk.shade.push(.5);
+    for (let i = 0; i < 150; i++) trunk.idx.push(base + i + 1, base + i, apex);
   }
   meshes.trunk = trunk;
 
@@ -116,18 +116,18 @@ export default function build() {
 
   // ================= twigs, buds, leaves, acorns =================
   // leaf: obovate outline with four pairs of rounded lobes cut no deeper than halfway to the midrib, a pair of small basal lobes, short stalk
-  const LEAF_LEN = .105, LEAF_W = .037, NSEG = 7;
-  const lobeW = t => { const env = Math.pow(Math.max(t, 0), .85) * Math.pow(1 - t, .55) / (Math.pow(.85 / 1.4, .85) * Math.pow(.55 / 1.4, .55)); const lobes = .5 + .5 * (.5 + .5 * Math.cos(TAU * 4 * (t - .02))); const aur = .22 * Math.exp(-Math.pow((t - .06) / .05, 2)); return LEAF_W * (env * lobes * (t < .04 ? t / .04 : 1) + aur); };
+  const LEAF_LEN = .105, LEAF_W = .037;
+  // the leaf is a folded, drooping card (16 triangles) carrying an alpha-cut picture of the lobed outline, drawn by the runtime from `card` in thing.json
   const leaf = L.newMesh();
-  for (let i = 0; i <= NSEG; i++) { const t = i / NSEG, y = .004 + t * LEAF_LEN, w = lobeW(t), droop = -.018 * t * t, ridge = .006 * w / LEAF_W; leaf.pos.push(0, y, droop + ridge * .3, -w, y, droop + ridge, w, y, droop + ridge); }
-  for (let i = 0; i < NSEG; i++) { const a = i * 3, b = a + 3; leaf.idx.push(a, a + 1, b + 1, a, b + 1, b, a, b + 2, a + 2, a, b, b + 2); }
+  for (let i = 0; i <= 1; i++) { const t = i, y = .004 + t * LEAF_LEN, droop = -.014 * t; for (const x of [-LEAF_W, 0, LEAF_W]) leaf.pos.push(x, y, droop + (x === 0 ? .005 : 0)); }
+  leaf.idx.push(0, 1, 4, 0, 4, 3, 1, 2, 5, 1, 5, 4);
   meshes.leaf = leaf;
   // acorn nut and cup
-  meshes.nut = L.lathe([[0, 0], [.0035, .0012], [.0075, .005], [.0088, .011], [.0075, .018], [.004, .0225], [0, .0245]], { segments: 9, caps: false });
-  meshes.cup = L.lathe([[.0052, .0125], [.0096, .0135], [.0105, .017], [.0098, .0215], [.0075, .0228], [.0062, .0216], [.0058, .0145]], { segments: 9, caps: false });
-  meshes.bud = L.lathe([[0, 0], [.0026, .0035], [0, .0098]], { segments: 4, caps: false });
+  meshes.nut = L.lathe([[0, 0], [.0075, .005], [.0088, .012], [.0065, .02], [0, .0245]], { segments: 6, caps: false });
+  meshes.cup = L.lathe([[.0052, .0125], [.0102, .0145], [.0102, .0215], [.0062, .0228], [.0058, .0145]], { segments: 6, caps: false });
+  meshes.bud = L.lathe([[.0027, 0], [0, .0098]], { segments: 3, caps: false });
 
-  const twigMeshes = [], leaves = inst('leaves', 'leaf'), nuts = inst('nuts', 'nut'), cups = inst('cups', 'cup'), buds = inst('buds', 'bud');
+  const twigMeshes = [], leaves = inst('leaves', 'leaf'), nuts = inst('nuts', 'nut'), cups = inst('cups', 'cup'), buds = inst('buds', 'bud'), leavesMid = inst('leaves_mid', 'leaf'); let leafCount = 0;
   const sprigPts = [], upV = [0, 1, 0], clumpPts = [];
   const place = (list, p, X, Y, Z, s = 1) => list.add(p, basisQuat(X, Y, Z), s);
   const cand = sk.map((n, i) => i).filter(i => sk[i].radius < .1 && sk[i].p[1] > 4.2);
@@ -139,20 +139,20 @@ export default function build() {
       let d = L.norm(L.add(L.add(L.mul(dir0, .8), L.mul(R.unitVec(), .9)), [n.p[0] * .02, .15, n.p[2] * .02]));
       const len = R.range(.3, .5), pts = [n.p], seg = 4;
       for (let q = 1; q <= seg; q++) { d = L.norm(L.add(d, L.mul(R.unitVec(), .2))); d[1] += .05; d = L.norm(d); pts.push(L.add(pts[q - 1], L.mul(d, len / seg))); }
-      const sp = L.spline(pts); twigMeshes.push(L.tube(sp.sample(8), t => .0045 * (1 - .6 * t) + .0015, { sides: 4, caps: false }));
+      const sp = L.spline(pts); twigMeshes.push(L.tube(sp.sample(4), t => .0045 * (1 - .6 * t) + .0015, { sides: 3, caps: false }));
       const tipP = pts[seg]; sprigPts.push(tipP); clumpPts.push(tipP);
       // buds: a terminal bud with a few clustered round it (oak buds sit in clusters at the shoot tip)
       const dEnd = L.norm(L.sub(pts[seg], pts[seg - 1])), px = L.perp(dEnd), py = L.cross(dEnd, px);
       place(buds, tipP, px, dEnd, py, 1.3);
       for (let b = 0; b < 1; b++) { const a = b / 2 * TAU + R(); const dd = L.norm(L.add(dEnd, L.add(L.mul(px, Math.cos(a) * .7), L.mul(py, Math.sin(a) * .7)))); const X = L.perp(dd), Z = L.cross(dd, X); place(buds, L.add(tipP, L.mul(dEnd, -.004)), X, dd, Z, .9); }
       // leaves: a spiral of about 7 round the last 60% of the sprig, the outer ones largest
-      const nl = R.int(4, 6);
+      const nl = R.int(9, 12);
       for (let q = 0; q < nl; q++) {
         const t = .4 + .6 * q / nl, at = sp(Math.min(.999, t)), ang = q * GA + R(), pn = L.perp(dEnd), pb = L.cross(dEnd, pn);
         const out = L.add(L.mul(pn, Math.cos(ang)), L.mul(pb, Math.sin(ang)));
         let ld = L.norm(L.add(L.add(L.mul(out, 1), L.mul(dEnd, .75)), [0, -.25, 0]));
         const Z0 = L.norm(L.sub(upV, L.mul(ld, L.dot(upV, ld)))); const X = L.norm(L.cross(ld, Z0)), Z = L.cross(X, ld);
-        place(leaves, at, X, ld, Z, R.range(.85, 1.12));
+        const sc = R.range(.85, 1.12); place(leaves, at, X, ld, Z, sc); if (leafCount++ % 5 === 0) place(leavesMid, at, X, ld, Z, sc * 2.25);
       }
       if (R() < .09) { // acorns: 1-3 on a short stalk, hanging
         const na = R.int(1, 3); for (let q = 0; q < na; q++) {
@@ -166,11 +166,13 @@ export default function build() {
 
   // ================= far stand-in: simplified trunk, main limbs, clumps of foliage =================
   const farTrunk = barkGrid(-.2, 3.4, 0, TAU, 16, .6, { bark: false, shade: false }); L.bakeShade(farTrunk, (p, n) => .75 + .2 * n[1]);
-  { const keep = new Map(), sub = []; sk.forEach((n, i) => { if (n.radius >= .075 || i === 0) { keep.set(i, sub.length); sub.push({ p: n.p, parent: -1, children: [], radius: n.radius }); } }); sk.forEach((n, i) => { if (!keep.has(i)) return; let pa = n.parent; while (pa >= 0 && !keep.has(pa)) pa = sk[pa].parent; if (pa >= 0) { sub[keep.get(i)].parent = keep.get(pa); sub[keep.get(pa)].children.push(keep.get(i)); } }); meshes.far_limbs = L.bakeShade(L.treeToMesh(sub, { sides: 5, smoothSteps: 0 }), (p, n) => .8 + .2 * n[1]); }
+  const midTrunk = barkGrid(-.3, 3.7, 0, TAU, 72, .12); { const apex = midTrunk.pos.length / 3, base = apex - 73; midTrunk.pos.push(0, 3.95, 0); midTrunk.shade.push(.5); for (let i = 0; i < 72; i++) midTrunk.idx.push(base + i + 1, base + i, apex); }
+  const subTree = (minR, sides) => { const keep = new Map(), sub = []; sk.forEach((n, i) => { if (n.radius >= minR || i === 0) { keep.set(i, sub.length); sub.push({ p: n.p, parent: -1, children: [], radius: n.radius }); } }); sk.forEach((n, i) => { if (!keep.has(i)) return; let pa = n.parent; while (pa >= 0 && !keep.has(pa)) pa = sk[pa].parent; if (pa >= 0) { sub[keep.get(i)].parent = keep.get(pa); sub[keep.get(pa)].children.push(keep.get(i)); } }); return L.bakeShade(L.treeToMesh(sub, { sides, smoothSteps: 0 }), (p, n) => .8 + .2 * n[1]); };
+  meshes.far_limbs = subTree(.075, 5); meshes.mid_limbs = subTree(.028, 5);
   // clumps: grid the sprig tips and put a lumpy blob where leaves are dense
   const cell = 1.45, grid = new Map();
   for (const p of clumpPts) { const k = [Math.floor(p[0] / cell), Math.floor(p[1] / cell), Math.floor(p[2] / cell)].join(','); const g = grid.get(k) || { s: [0, 0, 0], n: 0 }; g.s = L.add(g.s, p); g.n++; grid.set(k, g); }
-  const blob = L.bakeShade(L.transform(L.lathe(Array.from({ length: 5 }, (_, i) => { const a = -Math.PI / 2 + Math.PI * i / 4; return [Math.max(0, Math.cos(a)), Math.sin(a)]; }), { segments: 7, caps: false }), p => { const j = 1 + .22 * L.noise3(p[0] * 2.1, p[1] * 2.1, p[2] * 2.1, 4); return [p[0] * j, p[1] * j * .75, p[2] * j]; }), (p, n) => .62 + .38 * (.5 + .5 * n[1]));
+  const blob = L.bakeShade(L.transform(L.lathe(Array.from({ length: 4 }, (_, i) => { const a = -Math.PI / 2 + Math.PI * i / 3; return [Math.max(0, Math.cos(a)), Math.sin(a)]; }), { segments: 6, caps: false }), p => { const j = 1 + .22 * L.noise3(p[0] * 2.1, p[1] * 2.1, p[2] * 2.1, 4); return [p[0] * j, p[1] * j * .75, p[2] * j]; }), (p, n) => .62 + .38 * (.5 + .5 * n[1]));
   meshes.blob = blob;
   const clumps = inst('clumps', 'blob'); let nCl = 0;
   for (const [, g] of grid) { if (g.n < 2) continue; const c = L.mul(g.s, 1 / g.n); clumps.add([c[0], c[1] + .15, c[2]], L.quatAxisAngle([0, 1, 0], R.range(0, TAU)), R.range(1.1, 1.4) * Math.min(1.7, .75 + g.n * .04)); nCl++; }
@@ -186,7 +188,7 @@ export default function build() {
   // fine roots and mycorrhizal threads grow from the tips and along thin roots
   const fine = [], myc = [], mycTip = [];
   for (const i of rs.map((n, j) => j).filter(j => rs[j].radius < .04)) {
-    const n = rs[i], isTip = !n.children.length, k = isTip ? 4 : (R() < .5 ? 1 : 0);
+    const n = rs[i], isTip = !n.children.length, k = isTip ? 4 : (R() < .85 ? 3 : 2);
     for (let q = 0; q < k && fine.length < 1100; q++) {
       let d = L.norm(L.add(R.unitVec(), [0, -.2, 0])), p = n.p; const pts = [p];
       for (let s = 0; s < 4; s++) { d = L.norm(L.add(d, L.mul(R.unitVec(), .35))); p = L.add(p, L.mul(d, R.range(.04, .08))); pts.push(p); }
@@ -266,7 +268,7 @@ export default function build() {
     seed: 2026,
     systems: [{ id: 'trunk', label: 'Trunk' }, { id: 'branches', label: 'Branches' }, { id: 'twigs', label: 'Twigs' }, { id: 'leaves', label: 'Leaves' }, { id: 'acorns', label: 'Acorns' }, { id: 'roots', label: 'Roots' }, { id: 'soil', label: 'Soil' }, { id: 'wood', label: 'Wood' }, { id: 'flow', label: 'Flow' }, { id: 'crown_far', label: 'Distant crown' }],
     auto: { label: 'Auto', near_m: 40, near: 'whole', far: 'whole' },
-    lod: { near_m: 32 },
+    lod: { near_m: 22, far_m: 75 },
     shadow: { radius_m: 12, opacity: .9 },
     modes: [
       { id: 'whole', label: 'Whole tree', show: { trunk: 1, branches: 1, twigs: 1, leaves: 1, acorns: 1, crown_far: 1 } },
@@ -285,9 +287,12 @@ export default function build() {
       { id: 'branches', name: 'Branches', system: 'branches', node: 'oak_branches', color: '#6a5d4f', mesh: 'branches', lod: 'near', ink_w: .0014, priority: 1.5, solid: false },
       { id: 'twigs', name: 'Twigs', system: 'twigs', node: 'oak_twigs_buds', color: '#6e5d49', mesh: 'twigs', lod: 'near', noink: true, priority: 1.6, solid: false },
       { id: 'buds', name: 'Buds', system: 'twigs', node: 'oak_twigs_buds', color: '#8a6a3c', instances: 'buds', lod: 'near', priority: 1.7 },
-      { id: 'leaves', name: 'Leaves', system: 'leaves', node: 'oak_leaf', color: '#4f8a2e', instances: 'leaves', tint: .34, double: true, lod: 'near', priority: 1.9, deeper: { type: 'tissue2', id: 'leaf_section', D: 2.6e-4, button: 'Look inside the leaf' } },
+      { id: 'leaves', name: 'Leaves', system: 'leaves', node: 'oak_leaf', color: '#4f8a2e', instances: 'leaves', tint: .34, double: true, card: { kind: 'lobed_leaf', lobes: 4, depth: .5, aspect: 2 * LEAF_W / LEAF_LEN, base_lobes: true, veins: true }, lod: 'near', priority: 1.9, deeper: { type: 'tissue2', id: 'leaf_section', D: 2.6e-4, button: 'Look inside the leaf' } },
       { id: 'acorn_nuts', name: 'Acorn', system: 'acorns', node: 'oak_acorn', color: '#a98a4a', instances: 'nuts', tint: .2, double: true, lod: 'near', priority: 1.9 },
       { id: 'acorn_cups', name: 'Acorn cup', system: 'acorns', node: 'oak_acorn', color: '#6f5a35', instances: 'cups', tint: .2, double: true, lod: 'near', priority: 1.9 },
+      { id: 'trunk_mid', name: 'Trunk', system: 'trunk', node: 'oak_trunk', color: '#7a6d5e', mesh: 'mid_trunk', lod: 'mid', ink_w: .0022, priority: 1.4, solid: false },
+      { id: 'limbs_mid', name: 'Branches', system: 'branches', node: 'oak_branches', color: '#6a5d4f', mesh: 'mid_limbs', lod: 'mid', ink_w: .0016, priority: 1.5, solid: false },
+      { id: 'leaves_mid', name: 'Leaves', system: 'leaves', node: 'oak_leaf', color: '#4f8a2e', instances: 'leaves_mid', tint: .34, double: true, card: { kind: 'lobed_leaf', lobes: 4, depth: .5, aspect: 2 * LEAF_W / LEAF_LEN, base_lobes: true, veins: true }, lod: 'mid', priority: 1.9 },
       { id: 'crown_far', name: 'Crown', system: 'crown_far', node: 'oak_english', color: '#4a8530', instances: 'clumps', tint: .3, lod: 'far', priority: 1.2, far_of: 'leaves' },
       { id: 'trunk_far', name: 'Trunk', system: 'trunk', node: 'oak_trunk', color: '#7a6d5e', mesh: 'far_trunk', lod: 'far', priority: 1.4, solid: false, far_of: 'trunk' },
       { id: 'limbs_far', name: 'Branches', system: 'branches', node: 'oak_branches', color: '#6a5d4f', mesh: 'far_limbs', lod: 'far', priority: 1.5, solid: false, far_of: 'branches' },
@@ -308,5 +313,5 @@ export default function build() {
   };
   const stats = { leaves: leaves.count, acorns: nuts.count, buds: buds.count, skeletonNodes: sk.length, tips: tips.length, rootNodes: rs.length, fineRoots: fine.length, clumps: nCl, ringBoundaries: eb.length - 1, sapwoodWidthCm: +(sapW * 100).toFixed(1), heartwoodRadiusCm: +(heartOuter * 100).toFixed(1) };
   console.log('oak model:', JSON.stringify(stats));
-  return { thing, meshes: { ...meshes, far_trunk: farTrunk }, instances, flows };
+  return { thing, meshes: { ...meshes, far_trunk: farTrunk, mid_trunk: midTrunk }, instances, flows };
 }

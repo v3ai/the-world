@@ -7,7 +7,7 @@
                 Needs only THREE and the helpers of nodes.js (illoMat, toonGrad, decodePart, LDV, LDF). Used by tools/things/preview.html.
      FT.thing   the frame wrapper: a co-rendered child of the park, picked part by part, with controls and cards.
    ===================================================================== */
-const TH = { index: null, defs: {}, bundles: {}, geos: {} };
+const TH = { index: null, defs: {}, bundles: {}, geos: {}, inst: {} };
 
 /* ---------- data loading (thing.json is small; mesh.json is loaded once per thing and shared by every placement) ---------- */
 function thLoadIndex() { return TH.index || (TH.index = getJSON('data/things/index.json').catch(() => ({ things: [] }))); }
@@ -20,6 +20,26 @@ function thGeo(id, bundle, key) {   // one shared BufferGeometry per mesh key
   const g = decodePart(q);
   if (q.shade) { const c = new Float32Array(q.shade.length * 3); for (let i = 0; i < q.shade.length; i++) c[i * 3] = c[i * 3 + 1] = c[i * 3 + 2] = q.shade[i] / 255; g.setAttribute('color', new THREE.BufferAttribute(c, 3)); }   // baked brightness (occlusion, staining)
   return TH.geos[k] = g;
+}
+
+/* ---------- alpha-cut cards: a flat quad with a picture of an outline (leaves, petals): cheap enough for tens of thousands of instances ---------- */
+const TH_CARDS = {};
+function thCardTexture(c) {
+  const key = JSON.stringify(c); if (TH_CARDS[key]) return TH_CARDS[key];
+  const W = 128, H = Math.round(W / (c.aspect || .7)), cv = document.createElement('canvas'); cv.width = W; cv.height = H; const g = cv.getContext('2d');
+  // outline: half-width as a function of t along the length (0 = base, 1 = tip); lobes rounded, cut no deeper than `depth` of the half-width
+  const hw = t => { const env = Math.pow(Math.max(t, 0), .85) * Math.pow(1 - t, .55) / (Math.pow(.85 / 1.4, .85) * Math.pow(.55 / 1.4, .55)), lob = 1 - (c.depth ?? .5) * (.5 - .5 * Math.cos(Math.PI * 2 * (c.lobes || 4) * (t - .02) )), aur = c.base_lobes ? .22 * Math.exp(-Math.pow((t - .06) / .05, 2)) : 0; return Math.min(1, env * lob * (t < .04 ? t / .04 : 1) + aur); };
+  g.clearRect(0, 0, W, H); g.fillStyle = '#fff'; g.beginPath(); const N = 90;
+  for (let i = 0; i <= N; i++) { const t = i / N, x = W / 2 + hw(t) * W / 2 * .98, y = H * (1 - t); i ? g.lineTo(x, y) : g.moveTo(x, y); }
+  for (let i = N; i >= 0; i--) { const t = i / N, x = W / 2 - hw(t) * W / 2 * .98, y = H * (1 - t); g.lineTo(x, y); }
+  g.closePath(); g.fill();
+  if (c.veins) { g.strokeStyle = 'rgba(40,60,30,.42)'; g.lineWidth = 2.2; g.beginPath(); g.moveTo(W / 2, H); g.lineTo(W / 2, H * .02); for (let k = 1; k <= (c.lobes || 4) + 1; k++) { const t = .08 + k * (.84 / ((c.lobes || 4) + 1)), w = hw(t) * W / 2 * .85; g.moveTo(W / 2, H * (1 - t + .03)); g.lineTo(W / 2 - w, H * (1 - t - .03)); g.moveTo(W / 2, H * (1 - t + .03)); g.lineTo(W / 2 + w, H * (1 - t - .03)); } g.stroke(); }
+  const tx = new THREE.CanvasTexture(cv); tx.anisotropy = 4; return TH_CARDS[key] = tx;
+}
+function thCardUV(geo) {   // uv from the xy bounding box of a card mesh (x across, y along)
+  if (geo.attributes.uv) return geo; geo.computeBoundingBox(); const b = geo.boundingBox, p = geo.attributes.position, uv = new Float32Array(p.count * 2);
+  for (let i = 0; i < p.count; i++) { uv[i * 2] = (p.getX(i) - b.min.x) / ((b.max.x - b.min.x) || 1); uv[i * 2 + 1] = (p.getY(i) - b.min.y) / ((b.max.y - b.min.y) || 1); }
+  geo.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); return geo;
 }
 
 /* ---------- materials ---------- */
@@ -117,7 +137,7 @@ class ThingObj {
     this.holder = new THREE.Group();             // what the frame adds to its scene: group + shadow + hotspots (not scaled)
     this.parts = {}; this.list = []; this.hot = [];
     this.plane = new THREE.Plane(new V3(0, 0, 1), 0); this.planes = [this.plane];
-    this.faceMats = []; this.mode = null; this.near = true; this.cutN = new V3(0, 0, 1);
+    this.faceMats = []; this.mode = null; this.near = true; this.tier = 0; this.cutN = new V3(0, 0, 1);
     this.lights = { hemi: new THREE.HemisphereLight(0xcfe6ff, 0x4a6a2a, .75), sun: new THREE.DirectionalLight(0xfff1d6, 1.0) };
     this.lights.sun.position.set(.4, 1, .5).multiplyScalar(40);
     this.holder.add(this.group);
@@ -143,15 +163,21 @@ class ThingObj {
       }
     } else if (pd.instances) {
       const inst = this.bundle.instances[pd.instances]; geo = thGeo(def.id, this.bundle, inst.mesh);
-      const mat = illoMat(color, { double: !!pd.double, extra: geo.attributes.color ? { vertexColors: true } : {} }), im = new THREE.InstancedMesh(geo, mat, inst.n), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), s = new V3(), p = new V3(), col = new THREE.Color(), t = inst.t, st = inst.stride;
-      const rj = pd.tint || 0; let seed = 12345; const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
-      for (let i = 0; i < inst.n; i++) {
-        const b = i * st; p.set(t[b], t[b + 1], t[b + 2]); q.set(t[b + 3], t[b + 4], t[b + 5], t[b + 6]);
-        if (st === 8) s.setScalar(t[b + 7]); else s.set(t[b + 7], t[b + 8], t[b + 9]);
-        m4.compose(p, q, s); im.setMatrixAt(i, m4);
-        if (rj) { col.setRGB(1 + (rnd() - .5) * rj, 1 + (rnd() - .5) * rj * .8, 1 + (rnd() - .5) * rj * .8); im.setColorAt(i, col); }   // a multiplier on the part colour
+      const ex = geo.attributes.color ? { vertexColors: true } : {}; if (pd.card) { thCardUV(geo); ex.map = thCardTexture(pd.card); ex.alphaTest = .5; }
+      const mat = illoMat(color, { double: !!pd.double, extra: ex }), im = new THREE.InstancedMesh(geo, mat, inst.n), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), s = new V3(), p = new V3(), col = new THREE.Color(), t = inst.t, st = inst.stride;
+      const rj = pd.tint || 0, ck = def.id + ':' + pd.instances + ':' + rj, sh = TH.inst[ck];
+      if (sh) { im.instanceMatrix = sh.m; if (sh.c) im.instanceColor = sh.c; }   // the instance buffers are shared by every placement of the thing
+      else {
+        let seed = 12345; const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
+        for (let i = 0; i < inst.n; i++) {
+          const b = i * st; p.set(t[b], t[b + 1], t[b + 2]); q.set(t[b + 3], t[b + 4], t[b + 5], t[b + 6]);
+          if (st === 8) s.setScalar(t[b + 7]); else s.set(t[b + 7], t[b + 8], t[b + 9]);
+          m4.compose(p, q, s); im.setMatrixAt(i, m4);
+          if (rj) { col.setRGB(1 + (rnd() - .5) * rj, 1 + (rnd() - .5) * rj * .8, 1 + (rnd() - .5) * rj * .8); im.setColorAt(i, col); }   // a multiplier on the part colour
+        }
+        im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true; TH.inst[ck] = { m: im.instanceMatrix, c: im.instanceColor };
       }
-      im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true; im.frustumCulled = false;
+      im.frustumCulled = false;
       g = im; g.userData.main = im;
     } else if (pd.flow) {
       g = thFlowMesh(def.id, this.bundle, pd, color);
@@ -183,7 +209,10 @@ class ThingObj {
   update(dt, camLocal, off, alpha = 1) {
     const def = this.def, d = camLocal.distanceTo(this.group.position.clone().add(new V3(0, (def.radius_m || 1) * this.k * .5, 0)));
     const md = this.resolveMode(d); this.curMode = md; const cut = md && md.cut;
-    const lod = def.lod; if (this.lodForce) this.near = this.lodForce === 'near'; else if (lod) { if (this.near && d > lod.near_m * 1.15) this.near = false; else if (!this.near && d < lod.near_m * .9) this.near = true; }
+    const lod = def.lod, t0 = this.tier;   // three tiers: 0 near (full detail), 1 mid, 2 far; without lod.far_m the mid tier is the far one
+    if (this.lodForce) this.tier = this.lodForce === 'near' ? 0 : this.lodForce === 'mid' ? 1 : 2;
+    else if (lod) { const nm = lod.near_m, fm = lod.far_m || 1e9, T = this.tier, h = T === 0 ? 1.12 : .9; this.tier = d > fm * (T === 2 ? .9 : 1.12) ? 2 : d > nm * (T === 0 ? 1.12 : .9) ? 1 : 0; }
+    this.near = this.tier === 0; const tierNames = this.tier === 0 ? ['near'] : this.tier === 2 ? ['far'] : (lod && lod.far_m ? ['mid'] : ['far', 'mid']), lodSnap = t0 !== this.tier;
     // cut plane (thing-local normal -> container coordinates)
     const cutDef = typeof cut === 'object' ? cut : {}, at = new V3(...(cutDef.at || def.cut && def.cut.at || [0, (def.height_m || 1) * .5, 0]));
     if (cut) {
@@ -204,8 +233,8 @@ class ThingObj {
       let tgt = sh[sys] !== undefined ? sh[sys] : (sh['*'] !== undefined ? sh['*'] : 0);
       if (pd.opacity_max !== undefined) tgt = Math.min(tgt, pd.opacity_max);
       if (pd.parent && !cut) tgt = 0;
-      if (pd.lod === 'far' && this.near) tgt = 0; if (pd.lod === 'near' && !this.near) tgt = 0;
-      r.tgt = tgt; r.op += (tgt - r.op) * (1 - Math.exp(-dt * 9)); if (Math.abs(r.op - tgt) < .01) r.op = tgt;
+      let lodPart = false; if (pd.lod) { lodPart = true; if (!pd.lod.split('+').some(n => tierNames.includes(n))) tgt = 0; }
+      r.tgt = tgt; if (lodPart && (lodSnap || tgt === 0)) r.op = tgt; else { r.op += (tgt - r.op) * (1 - Math.exp(-dt * 9)); if (Math.abs(r.op - tgt) < .01) r.op = tgt; }   // detail tiers swap at once, never both drawn
       const op = r.op * alpha, g = r.g, main = g.userData.main, mat = main.material;
       g.visible = op > .01;
       if (g.visible && r.flow) { thFlowUpdate(r.flow, this.clock); mat.opacity = op; continue; }

@@ -36,7 +36,9 @@ export function assemble(model) {
     else if (p.flow) { if (!flows[p.flow]) problems.push(`part ${p.id}: unknown flow ${p.flow}`); p.center = [0, 8, 0]; p.radius = 10; p.tris = 0; }
     else problems.push(`part ${p.id}: needs mesh or instances`);
   }
-  out.stats = { parts: out.parts.length, uniqueMeshTris: tris, nearTris: out.parts.filter(p => p.lod !== 'far').reduce((s, p) => s + (p.tris || 0), 0), farTris: out.parts.filter(p => p.lod === 'far' || !p.lod).reduce((s, p) => s + (p.tris || 0), 0) };
+  const m0 = ((out.modes || [])[0] || {}).show || {}, inTier = (p, n) => (m0[p.system] > 0 || m0['*'] > 0) && (!p.lod || p.lod.split('+').includes(n) || (n === 'mid' && !out.parts.some(q => q.lod && q.lod.includes('mid')) && p.lod.split('+').includes('far')));
+  const sumTier = n => out.parts.filter(p => inTier(p, n)).reduce((s, p) => s + (p.tris || 0), 0);
+  out.stats = { parts: out.parts.length, uniqueMeshTris: tris, nearTris: sumTier('near'), midTris: sumTier('mid'), farTris: sumTier('far') };
   const syss = new Set(out.systems.map(s => s.id));
   for (const p of out.parts) { if (!syss.has(p.system)) problems.push(`part ${p.id}: system ${p.system} not declared`); if (!p.node) problems.push(`part ${p.id}: no node`); if (!p.name) problems.push(`part ${p.id}: no name`); }
   for (const md of out.modes || []) for (const s of Object.keys(md.show || {})) if (s !== '*' && !syss.has(s)) problems.push(`mode ${md.id}: unknown system ${s}`);

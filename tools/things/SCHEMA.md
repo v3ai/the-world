@@ -136,3 +136,33 @@ Meshes are procedural reconstructions, not scans: say so in `model_note`.
 
 Runtime pieces you can call: `thLoadDef(id)`, `thLoadBundle(id)`, `new ThingObj(def, bundle, {scale, rotY})` (pure three.js; used by the preview),
 `FR.things` (all placement frames), `FR.thing_<id>` (the first placement), `FR.thing_<id>.T` (its ThingObj: `setMode(id)`, `parts`, `near`).
+
+## 5. Added with the oak (T1d)
+
+**Mode extras** (`modes[]`): `legend: {title, items:[{name,color,node}], note}` (the swatch row under the layer buttons; each swatch opens a card; a mode without
+`legend` and without `cut` shows none); `pivot: 'wood'` (parts with `"pivot":"wood"` live in a sub-group that turns, once per mode choice, so its opening faces the
+camera; the "Turn the cut to face me" button repeats it); `groundSeeThrough: true` (the park ground fades to 16 % and the grass hides while this mode is on:
+the Roots view); `hotspots: true` (show the yellow markers); `flowOn` is informational. A mode's `show` map may name a system with opacity 0..1.
+**Hotspots**: `{id, node, at, label, r?, modes?}`: `r` is the marker radius in metres, `modes` limits it to those mode ids (a hotspot whose first mode is `wood` rides on the pivot).
+**Part extras**: `opacity_max` (cap the opacity in any mode: translucent soil), `pivot`, `card: {kind:'lobed_leaf', lobes, depth, aspect, base_lobes, veins}`
+(an alpha-cut picture on a flat quad, for leaves: 16 triangles each; the runtime draws the outline into a canvas texture and derives UVs from the mesh's
+xy box; x across, y along), `flow: '<key>'` (a flow part, below), `label_first_only` on the thing (only the first placement carries the floating name).
+**Flows** (`mesh.json.flows`, written by passing `flows` from `build()`): `{key: {mesh, dir: 1|-1, speed, ring, paths:[{p:[x,y,z,...], r:[radius per point]}], markers:[[pathIndex, u0 (0..1), angle]]}}`.
+Instanced markers of `mesh` travel along the polylines at `speed` (visual metres/second, not real speed), offset from the axis by `ring` x the local radius
+at the given angle; `dir -1` runs against the path. Use it for sap, blood, nerve impulses. A diagram of flow: the model note and the legend must say it is not to scale in speed.
+**Tissue scenes** (`data/things/tissues/<id>.json`, drawn by `FT.tissue2`; reached with a part's `deeper: {type:'tissue2', id, D (metres), button}`):
+`{id, title, node, blurb, note, bg, center:[x,y,z] (µm, the point the camera looks at), labels:[{text, at, pop}], populations:[...]}`. All lengths are micrometres.
+A population: `{id, name, node (card), shape: rbox|ellipsoid|lens|tube_z|cylinder|bean, size:[sx,sy,sz], color, opacity, ink:1, priority, deeper, arrange}`
+with `arrange` one of `{kind:'list', items:[{at, rotY}]}`, `{kind:'grid', origin, n:[nx,ny,nz], step, jitter, stagger, skip:[{x:[a,b]}]}`,
+`{kind:'random', n, min, max, gap, seed, exclude:[{min,max}]}`, `{kind:'inside', of:<population id>, per, margin, seed}` (children scattered inside each parent cell).
+A population's `deeper` is `{type:'cell'}` (the plant cell frame) or `{type:'mol', mol:<id in molecules_all.json>, name}`. Clicking a population opens its `node` card.
+Every tissue scene must say in `note` which sizes are real and which are illustrative.
+
+## 6. Adding a thing: what the oak taught (read with section 4)
+* Put the numbers you chose at the top of the model script as one object (`M`), say them on the cards, and print counts (leaves, triangles) from the script.
+* Content as data: cards and figures are written by a script in `tools/things/content/` (the oak's is `oak_nodes.py`, which writes `data/nodes/park_<name>.json` and merges the figures into `data/viz/park.json`). Run `node tools/viz/validate.mjs data/viz/park.json`.
+* Make parts that are cut open (a log, an organ) from analytic geometry rather than from a signed-distance mesh, so the layer plates meet the outer surface exactly.
+* Keep per-placement variation in `data/things/index.json` (`rot`, `scale`, `seed`), not in the model.
+* Instanced parts cost triangles x count: a 16-triangle card with an alpha-cut texture beats a 48-triangle modelled leaf for foliage.
+* Every part needs a `node`; reuse existing `bio_*` or body cards where one fits and list them in the parent card's `parts`.
+

@@ -7,7 +7,7 @@
  "node": "oak_english",
  "main_part": "trunk",
  "blurb": "A mature English oak. Click the trunk, a branch, a leaf or an acorn. Use the layer buttons for the wood, the roots, and the water and sugar flow.",
- "model_note": "A model built from typical measurements of the species, not a scan of one individual. It has about 9,500 leaves; a real oak this size carries many times more.",
+ "model_note": "A model built from typical measurements of the species, not a scan of one individual. It has about 19,500 leaves; a real oak this size carries many times more.",
  "size_m": {
   "height": 20,
   "crown_width": 19,
@@ -66,7 +66,8 @@
   "far": "whole"
  },
  "lod": {
-  "near_m": 32
+  "near_m": 22,
+  "far_m": 75
  },
  "shadow": {
   "radius_m": 12,
@@ -229,9 +230,9 @@
    "id": "hs_roottip",
    "node": "oak_root_hairs",
    "at": [
-    -0.03,
-    -1.88,
-    -1.32
+    0.06,
+    -1.78,
+    -1.21
    ],
    "label": "Root tip with root hairs",
    "r": 0.12,
@@ -243,9 +244,9 @@
    "id": "hs_myc",
    "node": "oak_mycorrhiza",
    "at": [
-    0.06,
-    -2.21,
-    1.76
+    0.75,
+    -0.38,
+    1.85
    ],
    "label": "Fungal partner",
    "r": 0.12,
@@ -267,12 +268,12 @@
    "priority": 1.4,
    "solid": false,
    "center": [
-    0.0809,
+    0.0805,
     1.8,
-    -0.0291
+    -0.0266
    ],
-   "radius": 2.3915,
-   "tris": 59620
+   "radius": 2.3901,
+   "tris": 27150
   },
   {
    "id": "branches",
@@ -305,12 +306,12 @@
    "priority": 1.6,
    "solid": false,
    "center": [
-    0.2439,
-    12.0927,
-    0.0197
+    0.162,
+    12.158,
+    0.0783
    ],
-   "radius": 9.9102,
-   "tris": 121024
+   "radius": 9.7776,
+   "tris": 45240
   },
   {
    "id": "buds",
@@ -322,13 +323,13 @@
    "lod": "near",
    "priority": 1.7,
    "center": [
-    0.5264,
-    13.3697,
-    -0.5196
+    0.5652,
+    13.3589,
+    -0.5528
    ],
-   "radius": 10.3707,
-   "count": 3782,
-   "tris": 60512
+   "radius": 10.3902,
+   "count": 3770,
+   "tris": 22620
   },
   {
    "id": "leaves",
@@ -339,6 +340,14 @@
    "instances": "leaves",
    "tint": 0.34,
    "double": true,
+   "card": {
+    "kind": "lobed_leaf",
+    "lobes": 4,
+    "depth": 0.5,
+    "aspect": 0.7047619047619047,
+    "base_lobes": true,
+    "veins": true
+   },
    "lod": "near",
    "priority": 1.9,
    "deeper": {
@@ -348,13 +357,13 @@
     "button": "Look inside the leaf"
    },
    "center": [
-    0.5189,
-    13.3478,
-    -0.5269
+    0.5796,
+    13.3204,
+    -0.5383
    ],
-   "radius": 10.3513,
-   "count": 9413,
-   "tris": 263564
+   "radius": 10.4133,
+   "count": 19741,
+   "tris": 78964
   },
   {
    "id": "acorn_nuts",
@@ -368,13 +377,13 @@
    "lod": "near",
    "priority": 1.9,
    "center": [
-    0.444,
-    12.8682,
-    0.6974
+    0.9119,
+    13.2134,
+    -0.3664
    ],
-   "radius": 9.8194,
-   "count": 285,
-   "tris": 30780
+   "radius": 9.8744,
+   "count": 286,
+   "tris": 13728
   },
   {
    "id": "acorn_cups",
@@ -388,13 +397,79 @@
    "lod": "near",
    "priority": 1.9,
    "center": [
-    0.444,
-    12.8682,
-    0.6974
+    0.9119,
+    13.2134,
+    -0.3664
    ],
-   "radius": 9.8179,
-   "count": 285,
-   "tris": 30780
+   "radius": 9.873,
+   "count": 286,
+   "tris": 13728
+  },
+  {
+   "id": "trunk_mid",
+   "name": "Trunk",
+   "system": "trunk",
+   "node": "oak_trunk",
+   "color": "#7a6d5e",
+   "mesh": "mid_trunk",
+   "lod": "mid",
+   "ink_w": 0.0022,
+   "priority": 1.4,
+   "solid": false,
+   "center": [
+    0.0788,
+    1.825,
+    -0.0287
+   ],
+   "radius": 2.3684,
+   "tris": 4824
+  },
+  {
+   "id": "limbs_mid",
+   "name": "Branches",
+   "system": "branches",
+   "node": "oak_branches",
+   "color": "#6a5d4f",
+   "mesh": "mid_limbs",
+   "lod": "mid",
+   "ink_w": 0.0016,
+   "priority": 1.5,
+   "solid": false,
+   "center": [
+    0.1319,
+    10.3986,
+    -0.0503
+   ],
+   "radius": 9.4256,
+   "tris": 2610
+  },
+  {
+   "id": "leaves_mid",
+   "name": "Leaves",
+   "system": "leaves",
+   "node": "oak_leaf",
+   "color": "#4f8a2e",
+   "instances": "leaves_mid",
+   "tint": 0.34,
+   "double": true,
+   "card": {
+    "kind": "lobed_leaf",
+    "lobes": 4,
+    "depth": 0.5,
+    "aspect": 0.7047619047619047,
+    "base_lobes": true,
+    "veins": true
+   },
+   "lod": "mid",
+   "priority": 1.9,
+   "center": [
+    0.5926,
+    13.316,
+    -0.5282
+   ],
+   "radius": 10.4203,
+   "count": 3949,
+   "tris": 15796
   },
   {
    "id": "crown_far",
@@ -408,13 +483,13 @@
    "priority": 1.2,
    "far_of": "leaves",
    "center": [
-    -0.2506,
-    12.6946,
-    -0.0745
+    0.0046,
+    12.673,
+    0.1277
    ],
-   "radius": 11.4102,
-   "count": 238,
-   "tris": 13328
+   "radius": 11.3174,
+   "count": 237,
+   "tris": 8532
   },
   {
    "id": "trunk_far",
@@ -465,12 +540,12 @@
    "solid": false,
    "ink_w": 0.0014,
    "center": [
-    0.213,
-    -1.083,
-    -0.0232
+    0.1522,
+    -1.1083,
+    0.0217
    ],
-   "radius": 8.9666,
-   "tris": 31704
+   "radius": 9.0184,
+   "tris": 33264
   },
   {
    "id": "fine_roots",
@@ -483,11 +558,11 @@
    "solid": false,
    "noink": true,
    "center": [
-    0.2226,
-    -1.4173,
-    -0.1827
+    -0.0935,
+    -1.3435,
+    -0.4254
    ],
-   "radius": 9.226,
+   "radius": 8.4793,
    "tris": 35200
   },
   {
@@ -501,11 +576,11 @@
    "solid": false,
    "noink": true,
    "center": [
-    -0.2334,
-    -1.4368,
-    0.0897
+    -0.4777,
+    -1.3421,
+    -0.0599
    ],
-   "radius": 8.32,
+   "radius": 7.4595,
    "tris": 16800
   },
   {
@@ -694,9 +769,10 @@
   }
  ],
  "stats": {
-  "parts": 23,
-  "uniqueMeshTris": 411448,
-  "nearTris": 796112,
-  "farTris": 213304
+  "parts": 26,
+  "uniqueMeshTris": 312188,
+  "nearTris": 232258,
+  "midTris": 23230,
+  "farTris": 9504
  }
 }
