@@ -192,7 +192,7 @@ FT.proton = {
     labs.push({ L: F.label(edge, 'Edge', { offset: new V3(0, 0, 0) }), text: () => S.kind === 'proton' ? 'Proton edge ≈ 0.84 fm (charge radius)' : 'Edge: drawn as for the proton (not measured the same way)', pri: 3 });
     F.name = kind === 'proton' ? 'Proton' : 'Neutron';
     F.blurb = kind === 'proton' ? 'Inside a proton: two up quarks and a down quark, trading gluons, in a sea of quark–antiquark pairs.' : 'Inside a neutron: one up quark and two down quarks, trading gluons, in a sea of quark–antiquark pairs.';
-    F.note = 'A cartoon, not a photograph. Quarks have no measured size (no structure found down to about 10⁻¹⁹ m), nothing here has a definite position, and the sizes are not to scale. In a real proton, gluons carry about half of the momentum (the neutron is expected to match, by symmetry).';
+    F.note = 'A cartoon, not a photograph. Quarks have no measured size (no structure found down to about 10⁻¹⁹ m), nothing here has a definite position, and the sizes are not to scale. The share of momentum carried by gluons depends on the energy scale: at 2 GeV one lattice calculation gives 51 ± 3%, while global fits to scattering data give about 40% (the neutron should match, by symmetry).';
     F.spawnD = 2.4e-16;
     F.spawn = (T, hint) => PX.smFrame(F, T, hint, S);
     F.proto = S;
@@ -386,9 +386,10 @@ PX.gridPos = (id, out) => { const M = PX.META[id]; return out.set(M.x, M.y, id =
 PX.my = ev => (Math.log10(ev) - 5) * 1.5;
 PX.MASSX = { up: -7.6, down: -5.4, strange: -7.6, charm: -5.4, bottom: -7.6, top: -5.4, electron: -1.8, muon: -1.8, tau: -1.8, nu_e: 1.9, nu_mu: 3.3, nu_tau: 4.7, w_boson: 4.6, z_boson: 8.0, higgs: 11.4, gluon: 6.6, photon: 10.0 };
 PX.MASSLESS_Y = -12.8;
+PX.NUY = PX.my(.45) + 3.6;
 PX.massPos = (id, out) => {
   const d = PX.P[id], x = PX.MASSX[id];
-  if (id.startsWith('nu_')) return out.set(x, (PX.my(.05) + PX.my(.45)) / 2, 0);
+  if (id.startsWith('nu_')) return out.set(x, PX.NUY, 0);   // flavour states have no single mass: parked above the band, height means nothing
   if (d.mass && d.mass.eV) return out.set(x, PX.my(d.mass.eV), 0);
   return out.set(x, PX.MASSLESS_Y, 0);
 };
@@ -492,8 +493,11 @@ FT.sm = {
     [[0, '1 eV'], [3, '1 keV'], [6, '1 MeV'], [9, '1 GeV'], [12, '1 TeV']].forEach(([e, t]) => { const a = new THREE.Object3D(); a.position.set(-11.2, PX.my(Math.pow(10, e)), 0); axisG.add(a); decades.push(F.label(a, t, { cls: 'pxhd', offset: new V3(-.3, .55, 0) })); });
     const zeroA = new THREE.Object3D(); zeroA.position.set(-11.2, PX.MASSLESS_Y, 0); axisG.add(zeroA); decades.push(F.label(zeroA, 'zero', { cls: 'pxhd', offset: new V3(-.3, .55, 0) }));
     const zeroB = new THREE.Object3D(); zeroB.position.set(8.4, PX.MASSLESS_Y - 1.0, 0); axisG.add(zeroB); const zeroLab = F.label(zeroB, 'massless in the model: gluon, photon', { cls: 'pxhd', offset: new V3(0, 0, 0) });
-    const band = new THREE.Mesh(new THREE.PlaneGeometry(5.6, PX.my(.45) - PX.my(.05)), new THREE.MeshBasicMaterial({ color: PX.COL.neutrino, transparent: true, opacity: .22, depthWrite: false, side: THREE.DoubleSide })); band.position.set(3.3, (PX.my(.05) + PX.my(.45)) / 2, -.4); axisG.add(band);
-    const bandA = new THREE.Object3D(); bandA.position.set(3.3, PX.my(.45) + .1, 0); axisG.add(bandA); const bandLab = F.label(bandA, 'neutrino masses: only a range is known', { cls: 'pxhd', offset: new V3(0, .6, 0) });
+    const band = new THREE.Mesh(new THREE.PlaneGeometry(5.6, PX.my(.45) - PX.my(.05)), new THREE.MeshBasicMaterial({ color: PX.COL.neutrino, transparent: true, opacity: .4, depthWrite: false, side: THREE.DoubleSide })); band.position.set(3.3, (PX.my(.05) + PX.my(.45)) / 2, -.4); axisG.add(band);
+    const bandA = new THREE.Object3D(); bandA.position.set(3.3, PX.my(.45) + .1, 0); axisG.add(bandA); const bandLab = F.label(bandA, 'heaviest mass state at least 0.05 eV; every mass below 0.45 eV', { cls: 'pxhd', offset: new V3(0, .6, 0) });
+    const cosG = new THREE.BufferGeometry(); cosG.setAttribute('position', new THREE.Float32BufferAttribute([.5, PX.my(.064), .1, 6.1, PX.my(.064), .1], 3)); axisG.add(new THREE.LineSegments(cosG, new THREE.LineBasicMaterial({ color: 0x2a7f8f, transparent: true, opacity: .8 })));
+    const cosA = new THREE.Object3D(); cosA.position.set(3.3, PX.my(.064) - .75, 0); axisG.add(cosA); const cosLab = F.label(cosA, 'line: all three added, below 0.064 eV (cosmology, model dependent)', { cls: 'pxhd', offset: new V3(0, 0, 0) });
+    const flvA = new THREE.Object3D(); flvA.position.set(3.3, PX.NUY + 1.5, 0); axisG.add(flvA); const flvLab = F.label(flvA, 'neutrino flavours: no single mass (height here means nothing)', { cls: 'pxhd', offset: new V3(0, 0, 0) });
     // error bars (mass view): one line segment set, rebuilt each frame while the mass view is showing
     const MASSIVE = PX.ORDER.filter(id => PX.P[id].mass && PX.P[id].mass.eV && PX.P[id].mass.err_plus !== undefined);
     const ebGeo = new THREE.BufferGeometry(), ebPos = new Float32Array(MASSIVE.length * 18); ebGeo.setAttribute('position', new THREE.BufferAttribute(ebPos, 3));
@@ -514,7 +518,7 @@ FT.sm = {
     const hRing = new THREE.Sprite(new THREE.SpriteMaterial({ map: PX.dashRing('hadron', 'rgba(210,220,240,.9)', 8), transparent: true, depthWrite: false, opacity: .7 })); hstage.add(hRing);
     const hAnc = new THREE.Object3D(); hstage.add(hAnc); const hLab = F.label(hAnc, 'hadron', { cls: 'pxhd big', offset: new V3(0, 0, 0) });
     hstage.userData.parts = [{ m: hRing.material, base: .7 }];
-    const axLabs = decades.concat([zeroLab, bandLab]); axLabs.forEach(L => { L.txt = L.el.textContent; });
+    const axLabs = decades.concat([zeroLab, bandLab, cosLab, flvLab]); axLabs.forEach(L => { L.txt = L.el.textContent; });
     F.sm = { t: 0, ht: 0, shift: new V3(), P, twin, grav, hdr, axisG, band, stage, hstage, board, MASSIVE, axLabs, dParent, dKids, dLabs, flash, decLine, hQ, hRing, hLab, hAnc, vtx };
 
     // ---- panel and controls ----
@@ -561,12 +565,12 @@ PX.nm = id => PX.META[id] ? PX.META[id].short : id;
 PX.smPanel = (F, el) => {
   const SM = PX.SM, D = PX.D;
   const sg = (items, cur, key) => `<div class="seg pxseg">${items.map(([k, t]) => `<button data-px="${key}:${k}" class="${k === cur ? 'on' : ''}">${t}</button>`).join('')}</div>`;
-  const fam = [['quark', 'quarks: feel the strong force'], ['lepton', 'charged leptons'], ['neutrino', 'neutrinos: only the weak force'], ['boson', 'force carriers'], ['higgs', 'the Higgs boson']];
+  const fam = [['quark', 'quarks: feel the strong force'], ['lepton', 'charged leptons'], ['neutrino', 'neutrinos: the weak force only (in the minimal model)'], ['boson', 'force carriers'], ['higgs', 'the Higgs boson']];
   let h = '';
   const sel = SM.sel && PX.P[SM.sel];
   const selTxt = sel ? `<p class="pxsel"><b>${sel.name}</b> is selected. ${PX.META[sel.id].self ? 'It is its own antiparticle.' : SM.anti ? `Its matter partner, the ${PX.META[sel.id].short}, is drawn beside it.` : `Its antiparticle, the ${PX.META[sel.id].aname}, is drawn beside it.`} <button class="pxlink" data-px="sel:clear">Clear</button></p>` : '';
   if (SM.mode === 'overview') {
-    h = `<div class="pxh">The seventeen</div><p>Rows and columns are the lesson. Matter particles come in three generations (the columns): each is a heavier copy of the first. Only the first generation is found in ordinary atoms. The force carriers stand apart on the right, and the Higgs boson is at the far end.</p>${sg([['m', 'Matter'], ['a', 'Antimatter']], SM.anti ? 'a' : 'm', 'anti')}${selTxt}
+    h = `<div class="pxh">The seventeen</div><p>Seventeen is a counting convention: the W⁺ and W⁻ count as one, the eight gluons as one, and antiparticles and colour states are not counted. Rows and columns are the lesson. Matter particles come in three generations (the columns): each is a heavier copy of the first. Only the first generation is found in ordinary atoms. The force carriers stand apart on the right, and the Higgs boson is at the far end.</p>${sg([['m', 'Matter'], ['a', 'Antimatter']], SM.anti ? 'a' : 'm', 'anti')}${selTxt}
     <div class="pxkeys">${fam.map(([f, t]) => `<div class="pxk"><i class="b" style="background:${PX.CSS(PX.COL[f])}"></i> ${t}</div>`).join('')}</div><p class="pxs">Click any ball for its card. All the balls are the same size on purpose: size means nothing here, because no structure has been found inside any of them.</p>`;
   } else if (SM.mode === 'forces') {
     const ints = D.interactions, cur = ints.find(i => i.id === SM.force) || ints[0];
@@ -579,7 +583,7 @@ PX.smPanel = (F, el) => {
   } else if (SM.mode === 'mass') {
     const ma = D.mass_axis, rows = F.sm.MASSIVE.map(id => { const d = PX.P[id], rel = d.mass.err_plus / d.mass.value * 100; return `<tr><td>${PX.nm(id)}</td><td>${d.mass.display}</td><td>${rel >= 0.01 ? rel.toPrecision(2) : (m => m[0] + '×10' + sup(+m[1]))(rel.toExponential(1).split('e'))} %</td></tr>`; }).join('');
     const topx = Math.round(ma.top_over_electron).toLocaleString('en-GB');
-    h = `<div class="pxh">Mass, on a logarithmic axis</div><p>Each step up the axis is a factor of ten. The top quark is about ${topx} times the electron. The neutrinos are not placed: only a range is known, and the electron is more than ${(ma.electron_over_neutrino_at_least / 1e6).toFixed(1)} million times heavier than the direct upper limit on a neutrino mass (0.45 eV).</p>
+    h = `<div class="pxh">Mass, on a logarithmic axis</div><p>Each step up the axis is a factor of ten. The top quark is about ${topx} times the electron. The neutrinos are not placed on the axis, because the three flavours have no single mass (each is a mixture of three mass states). What is known: oscillations show the heaviest mass state is at least about 0.05 eV; the direct KATRIN bound is that every mass is below 0.45 eV; and cosmology, if the standard cosmological model holds, puts the sum of all three below 0.064 eV. The electron is more than ${(ma.electron_over_neutrino_at_least / 1e6).toFixed(1)} million times heavier than the direct upper limit of 0.45 eV.</p>
     <p class="pxs">A quark's mass is not a weight on a scale: free quarks are never seen, so each number depends on a stated scheme (see the card). The gluon and photon are massless in the theory.</p>${sg([['mag', 'Error bars ×100'], ['true', 'Error bars to scale']], SM.errs, 'errs')}<table class="pxt"><tr><th>Particle</th><th>Mass (PDG 2026)</th><th>±</th></tr>${rows}</table>`;
   } else if (SM.mode === 'decay') {
     const L = PX.decayList(); if (SM.decay.i >= L.length || SM.decay.i < 0) SM.decay.i = 0; const cur = L[SM.decay.i];
@@ -601,13 +605,13 @@ PX.smPanel = (F, el) => {
     let res = '';
     if (!L.length) res = '<p>Choose up to three: three quarks, or a quark and an antiquark.</p>';
     else if (!r.ok) {
-      const why = r.n === 1 ? 'A lone quark carries colour charge. Colour charge always has to cancel out, so it cannot exist by itself.' : r.n === 2 ? 'Two quarks (or two antiquarks, or two of anything else) always leave some net colour. A particle you can observe has no net colour, so this one does not exist alone.' : 'Three things only cancel their colour as three quarks (red, green, blue), three antiquarks, or when two are a quark and an antiquark. This mix leaves some colour over.';
+      const why = r.n === 1 ? 'A lone quark carries colour charge. Colour charge always has to cancel out, so it cannot exist by itself.' : r.n === 2 ? 'Two quarks (or two antiquarks, or two of anything else) always leave some net colour. A particle you can observe has no net colour, so this one does not exist alone.' : 'Three things only cancel their colour as three quarks (red, green, blue) or three antiquarks. This mix leaves some colour over.';
       res = `<p class="bad"><b>Not allowed.</b> ${why}</p>`;
     } else if (r.h) {
       const h = r.h, nm = r.anti ? 'anti-' + h.name.replace(/ \(charged\)$/, '').toLowerCase() : h.name;
-      const spin = h.spin, lt = h.lifetime && (h.lifetime.display || (h.lifetime.bound && h.lifetime.bound.display) || (h.lifetime.ref && h.lifetime.ref.display));
-      res = `<p class="ok"><b>Allowed: ${r.anti ? 'the antiparticle of the ' : 'the '}${h.name}, ${h.symbol}${r.anti ? '' : ''}.</b></p><dl class="pxd"><dt>Charge</dt><dd>${(r.anti ? PX.chgFlip(h.charge) : String(h.charge)).replace('-', '−')}</dd><dt>Spin</dt><dd>${spin}</dd><dt>Mass</dt><dd>${h.mass.display}</dd>${lt ? `<dt>Mean life</dt><dd>${typeof lt === 'string' ? lt : ''}</dd>` : ''}</dl><p class="pxs">${h.note || ''}${h.quark_content_mixed ? ' Its real quark content is a quantum mixture.' : ''}</p>`;
-    } else res = `<p class="ok"><b>Colourless, so allowed.</b> Charge ${PX.chgNum(r.charge)}, baryon number ${PX.fr3(r.B)}. This short table of twelve hadrons does not list it; it might be a heavier particle, or one that has never been seen.</p>`;
+      const spin = h.spin, lt = h.lifetime && (h.lifetime.display || h.lifetime.short || (h.lifetime.bound && h.lifetime.bound.display) || (h.lifetime.ref && h.lifetime.ref.display));
+      res = `<p class="ok"><b>Allowed. The table's particle with this quark content: ${r.anti ? 'the antiparticle of the ' : 'the '}${h.name}, ${h.symbol}.</b></p><dl class="pxd"><dt>Charge</dt><dd>${(r.anti ? PX.chgFlip(h.charge) : String(h.charge)).replace('-', '−')}</dd><dt>Spin</dt><dd>${spin}</dd><dt>Mass</dt><dd>${h.mass.display}</dd>${lt ? `<dt>Mean life</dt><dd>${typeof lt === 'string' ? lt : ''}</dd>` : ''}</dl><p class="pxs">${h.note || ''}${h.quark_content_mixed ? ' Its real quark content is a quantum mixture.' : ''}</p><p class="pxs">Quark content does not fix the particle: the same quarks with different spin or internal energy are other particles (uud is the proton, but also the Δ⁺; uds is the Λ, but also the Σ⁰). The table lists one particle for each quark content.</p>`;
+    } else res = `<p class="ok"><b>Colourless, so allowed.</b> Charge ${PX.chgNum(r.charge)}, baryon number ${PX.fr3(r.B)}. This short table of ${Object.keys(PX.H).length} hadrons (the proton and neutron included) does not list it. That says nothing about whether it exists: many such combinations are known particles, for example the φ meson is mostly s s̄. Quark content does not fix the particle: the same quarks with other spin or energy are different particles.</p>`;
     h = `<div class="pxh">Build a hadron</div><p>Quarks never appear alone: they bind in colourless combinations called hadrons. Pick quarks; the table is the PDG's.</p><div class="pxchips">${qs.map(q => `<button class="pxchip" data-px="had:${q}" ${dis ? 'disabled' : ''}>${sym(q)}</button>`).join('')}</div><div class="pxchips">${qs.map(q => `<button class="pxchip" data-px="had:${q}bar" ${dis ? 'disabled' : ''}>${sym(q + 'bar')}</button>`).join('')}</div>
     <p>You chose: ${L.length ? L.map((k, i) => `<button class="pxchip on" data-px="hadx:${i}" title="Remove">${sym(k)} ×</button>`).join(' ') : 'nothing yet'} ${L.length ? '<button class="pxlink" data-px="hadc">Clear</button>' : ''}</p>${res}<p class="pxs">The top quark is left out: it decays (mean life about 5×10⁻²⁵ s, from the PDG width) before it can bind into a hadron.</p>`;
   }
@@ -701,7 +705,7 @@ PX.smBind = F => {
     S.hdr.forEach(h => { h.g.visible = showGrid; });
     // mass axis
     const mass = mode === 'mass'; S.axisG.visible = mass || A.mass > .02; A.mass += ((mass ? 1 : 0) - A.mass) * k;
-    S.axisG.children.forEach(c => { if (c.material) { c.material.userData.baseOp = (c === S.band ? .22 : c.material === eb.material ? .95 : .8) * A.mass; c.material.opacity = c.material.userData.baseOp * fa; } });
+    S.axisG.children.forEach(c => { if (c.material) { c.material.userData.baseOp = (c === S.band ? .4 : c.material === eb.material ? .95 : .8) * A.mass; c.material.opacity = c.material.userData.baseOp * fa; } });
     if (A.mass > .02) {
       const arr = eb.geometry.attributes.position.array, mag = SM.errs === 'mag' ? 100 : 1; let kk = 0;
       S.MASSIVE.forEach(id => { const d = PX.P[id], p = P[id], ev = d.mass.eV, f = ev / d.mass.value, e = Math.min(d.mass.err_plus * f * mag, ev * .95); kk = bar(arr, kk, p.pos.x + .0, PX.my(ev - e), PX.my(ev + e)); });

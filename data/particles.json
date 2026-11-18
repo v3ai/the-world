@@ -9,6 +9,7 @@
   "note": "Every measured value carries a PDG identifier (pdgid) and the text PDG prints. Calculated values are marked \"calc\". See tools/particles/SOURCES.md.",
   "masses_note": "Masses are given in eV in the field \"eV\" for plotting; use \"text\" and \"unit\" to show the PDG value."
  },
+ "particle_count_note": "The count of seventeen is a convention: W⁺ and W⁻ are counted as one particle, the eight gluons as one, and antiparticles, colour states and spin or handedness states are not counted separately.",
  "particles": [
   {
    "id": "up",
@@ -94,7 +95,7 @@
    "weak_isospin": {
     "T": "1/2",
     "T3": "-1/2",
-    "note": "The left-handed version sits in a doublet with a up-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review)."
+    "note": "The left-handed version sits in a doublet with an up-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review)."
    },
    "feels": [
     "strong",
@@ -114,7 +115,7 @@
     "scheme": "MS-bar scheme at a scale of 2 GeV",
     "eV": 4700000.0,
     "err_eV": 70000.0,
-    "note": "A \"current-quark mass\": the parameter in the theory's equations at that energy scale. A free quark is never seen, so there is no scale to put it on; the number depends on the scheme and the energy scale used to define it. It is a little heavier than the up quark, which is why a neutron is slightly heavier than a proton."
+    "note": "A \"current-quark mass\": the parameter in the theory's equations at that energy scale. A free quark is never seen, so there is no scale to put it on; the number depends on the scheme and the energy scale used to define it. It is a little heavier than the up quark; that mass difference is the main reason a neutron is slightly heavier than a proton (the electromagnetic energy works the other way, so the neutron-proton gap, 1.29 MeV, is smaller than the quark mass gap)."
    },
    "lifetime": {
     "kind": "stable-in-matter",
@@ -163,7 +164,7 @@
    "weak_isospin": {
     "T": "1/2",
     "T3": "-1/2",
-    "note": "The left-handed version sits in a doublet with a up-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review)."
+    "note": "The left-handed version sits in a doublet with an up-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review)."
    },
    "feels": [
     "strong",
@@ -336,7 +337,7 @@
     "note": "Same mass and spin, opposite electric charge and opposite colour (an \"anticolour\")."
    },
    "discovery": "Seen as the J/ψ meson (a charm–anticharm pair) in November 1974 by two groups at once: one led by Burton Richter at SLAC and one led by Samuel Ting at Brookhaven.",
-   "everyday": "Not in everyday matter. Made in particle accelerators and in cosmic-ray collisions; a very small charm component exists inside the proton.",
+   "everyday": "Not in everyday matter. Made in particle accelerators and in cosmic-ray collisions; charm quarks also appear in the proton briefly through gluon splitting; whether the proton has an intrinsic (non-perturbative) charm component is still debated.",
    "sources": [
     "Q004M"
    ]
@@ -359,7 +360,7 @@
    "weak_isospin": {
     "T": "1/2",
     "T3": "-1/2",
-    "note": "The left-handed version sits in a doublet with a up-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review)."
+    "note": "The left-handed version sits in a doublet with an up-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review)."
    },
    "feels": [
     "strong",
@@ -876,7 +877,7 @@
    "feels": [
     "weak"
    ],
-   "feels_note": "In the original Standard Model a neutrino has no right-handed partner and no coupling to the Higgs field; its tiny mass needs something beyond that (open question).",
+   "feels_note": "In the minimal Standard Model a neutrino feels only the weak force (and gravity), has no right-handed partner and no coupling to the Higgs field. Neutrinos do have mass, so the minimal model is incomplete: how they get their mass, and so whether they couple to the Higgs field the way other fermions do, is not known (open question).",
    "mass": {
     "known": false,
     "text": "Not known. Neutrinos have a tiny mass (oscillation proves it is not zero) but only differences between their squared masses are measured, plus upper bounds on the size. See the neutrino numbers below.",
@@ -931,7 +932,7 @@
    "feels": [
     "weak"
    ],
-   "feels_note": "In the original Standard Model a neutrino has no right-handed partner and no coupling to the Higgs field; its tiny mass needs something beyond that (open question).",
+   "feels_note": "In the minimal Standard Model a neutrino feels only the weak force (and gravity), has no right-handed partner and no coupling to the Higgs field. Neutrinos do have mass, so the minimal model is incomplete: how they get their mass, and so whether they couple to the Higgs field the way other fermions do, is not known (open question).",
    "mass": {
     "known": false,
     "text": "Not known. Neutrinos have a tiny mass (oscillation proves it is not zero) but only differences between their squared masses are measured, plus upper bounds on the size. See the neutrino numbers below.",
@@ -986,7 +987,7 @@
    "feels": [
     "weak"
    ],
-   "feels_note": "In the original Standard Model a neutrino has no right-handed partner and no coupling to the Higgs field; its tiny mass needs something beyond that (open question).",
+   "feels_note": "In the minimal Standard Model a neutrino feels only the weak force (and gravity), has no right-handed partner and no coupling to the Higgs field. Neutrinos do have mass, so the minimal model is incomplete: how they get their mass, and so whether they couple to the Higgs field the way other fermions do, is not known (open question).",
    "mass": {
     "known": false,
     "text": "Not known. Neutrinos have a tiny mass (oscillation proves it is not zero) but only differences between their squared masses are measured, plus upper bounds on the size. See the neutrino numbers below.",
@@ -1012,7 +1013,7 @@
     "self_conjugate": null,
     "note": "OPEN QUESTION: is the antineutrino a different particle (Dirac neutrino) or the same particle as the neutrino (Majorana)? Not yet known; experiments searching for neutrinoless double-beta decay test this."
    },
-   "discovery": "Directly observed by the DONUT experiment at Fermilab in 2000; the last of the Standard Model's fermions to be seen directly (before the Higgs boson).",
+   "discovery": "Directly observed by the DONUT experiment at Fermilab in 2000; the last of the Standard Model's fermions to be seen directly (the Higgs boson, which is not a fermion, came later, in 2012).",
    "everyday": "Rare. Appears when other neutrinos oscillate into this flavour on their way from the Sun or atmosphere.",
    "sources": [
     "S066MNT"
@@ -1046,11 +1047,11 @@
     "eV": 0.0,
     "text": "0 in the Standard Model (the theory's symmetry requires it); a single gluon is never seen alone, so no direct limit can be measured the way it is for the photon.",
     "scheme": "Theoretical",
-    "note": "Gluons are massless in the theory, yet they supply most of the mass of the proton through the energy of the strong field they carry."
+    "note": "Gluons are massless in the theory, yet the energy of the gluon field is a large part of the proton's mass: a lattice calculation gives glue field energy 37(5)(4)% (MS-bar scheme, 2 GeV; the split depends on scheme and scale), alongside quark energy, the trace anomaly and quark-mass terms."
    },
    "lifetime": {
     "kind": "confined",
-    "text": "Not defined: gluons are never free. They exist only inside hadrons and in short-lived jets."
+    "text": "Not defined: gluons are never free. They exist only inside hadrons; a high-energy gluon shows up in a detector as a jet, a spray of hadrons."
    },
    "decays": [
     {
@@ -1069,7 +1070,7 @@
     "note": "Each of the 8 gluons' antiparticles is again one of the 8 gluon states (a colour–anticolour mixture), so the set is its own antiparticle."
    },
    "discovery": "Seen as a third \"jet\" in electron–positron collisions at the PETRA collider at DESY, Hamburg, in 1979 (TASSO first, then JADE, PLUTO and Mark J).",
-   "everyday": "Inside every proton and neutron, in all matter, holding quarks together. Gluon energy is most of the mass you weigh.",
+   "everyday": "Inside every proton and neutron, in all matter, holding quarks together. The energy of the quark and gluon fields makes up nearly all of the mass you weigh (see the proton mass card for the lattice split).",
    "sources": [
     "G021"
    ]
@@ -1143,7 +1144,7 @@
     "self_conjugate": true,
     "note": "The photon is its own antiparticle."
    },
-   "discovery": "The idea of light as quanta is Planck (1900) and Einstein (1905); Arthur Compton's 1923 X-ray scattering experiments showed light carries momentum like a particle.",
+   "discovery": "Planck (1900) introduced energy quanta for the exchange of energy between matter and radiation; Einstein (1905) proposed that light itself comes in quanta; Arthur Compton's 1923 X-ray scattering experiments showed light carries momentum like a particle.",
    "everyday": "All light, radio, X-rays, and every electric and magnetic force between charges. Sunlight on the park is a stream of photons.",
    "sources": [
     "S000M",
@@ -1607,7 +1608,18 @@
     "scale_factor": 1.0
    },
    "lifetime": {
-    "text": "No decay has ever been seen. PDG: mean life > 9×10²⁹ years (90% confidence) for the best-measured modes (a bound, not a prediction of decay).",
+    "text": "No decay has ever been seen. PDG 2026, 90% confidence: the mean life is more than 9×10²⁹ years for decay into anything (a mode-independent limit, which is weak), and much more for particular modes: for p → e⁺π⁰ the partial mean life is more than 2.4×10³⁴ years (Super-Kamiokande). These are bounds, not predictions of decay.",
+    "short": "no decay seen; more than 9×10²⁹ years for any mode, more than 2.4×10³⁴ years for p → e⁺π⁰ (PDG 2026, 90% CL)",
+    "partial_e_pi0": {
+     "pdgid": "S016T06P",
+     "edition": 2026,
+     "text": "> 24000×10³⁰",
+     "unit": "years",
+     "value": 2.4e+34,
+     "display": "> 24000×10³⁰ years",
+     "limit": "L",
+     "cl": 90.0
+    },
     "bound": {
      "pdgid": "S016T",
      "edition": 2026,
@@ -2415,7 +2427,7 @@
     "top",
     "gluon"
    ],
-   "text": "Binds quarks into protons, neutrons and other hadrons, and (as a leftover) binds protons and neutrons into nuclei. Carried by 8 kinds of gluon. It does not weaken with distance the way electromagnetism does."
+   "text": "Binds quarks into protons, neutrons and other hadrons, and (as a leftover) binds protons and neutrons into nuclei. Carried by 8 kinds of gluon. Between coloured objects (quarks and gluons) the energy keeps rising as they are pulled apart (confinement); the leftover force between hadrons is short-ranged, about 1.4×10⁻¹⁵ m."
   },
   {
    "id": "em",
@@ -2445,7 +2457,7 @@
     "w_boson",
     "z_boson"
    ],
-   "couples_to": "weak isospin (and, with the Higgs, mass)",
+   "couples_to": "weak isospin (the W) and a mix of weak isospin and electric charge (the Z); mass comes from the Higgs field, not from the weak coupling",
    "feels": [
     "up",
     "down",
@@ -2463,7 +2475,7 @@
     "z_boson",
     "higgs"
    ],
-   "text": "Changes one flavour of quark or lepton into another (beta decay) and acts on neutrinos. Carried by the heavy W and Z bosons, which is why it has such a short range, about 2×10⁻¹⁸ m (ħc divided by the W mass; my calculation)."
+   "text": "Changes one flavour of quark or lepton into another (beta decay) and acts on neutrinos. Carried by the heavy W and Z bosons, which is why it has such a short range, about 2.5×10⁻¹⁸ m (ħc divided by the W mass: 197.327 MeV fm / 80,362 MeV = 2.46×10⁻¹⁸ m; my calculation)."
   },
   {
    "id": "higgs",
@@ -2622,6 +2634,14 @@
    "Whether neutrinos are their own antiparticles (Majorana) or not (Dirac).",
    "Whether the CP-violating phase is nonzero."
   ],
+  "mass_state_bounds_eV": {
+   "heaviest_at_least_normal": 0.049444893198711044,
+   "heaviest_at_least_inverted": 0.05016482347692855,
+   "second_at_least": 0.008715705256251281,
+   "each_below_direct": 0.45,
+   "sum_below_cosmology": 0.064,
+   "text": "Oscillations show the heaviest of the three mass states is at least about 0.05 eV (square root of the atmospheric Δm²; my arithmetic) and the second at least about 0.009 eV (square root of the solar Δm²); the lightest could be anywhere down to zero. The direct KATRIN bound applies to an effective electron-neutrino mass, below 0.45 eV (90% CL). The cosmological bound on the sum, below 0.064 eV (95% CL), assumes the standard ΛCDM model. A flavour neutrino (νₑ, ν_μ, ν_τ) is a mixture of mass states and has no single mass."
+  },
   "minimum_mass_sum_eV_calc": {
    "normal": 0.058160598454962326,
    "inverted": 0.09956670599528564,
@@ -2741,23 +2761,52 @@
   "note": "ħc/Λ gives about 5×10⁻²¹ m to 2×10⁻²⁰ m (my calculation). These limits are model dependent, so the safe statement is \"no structure found down to roughly 10⁻¹⁹ m\"."
  },
  "proton_momentum": {
-  "text": "Lattice QCD (chiQCD collaboration, 2022, MS-bar scheme at 2 GeV): quarks and antiquarks together carry about 49% of the proton's momentum and gluons about 51% (⟨x⟩q = 0.491(20)(23), ⟨x⟩g = 0.509(20)(23)). The split depends on the energy scale at which the proton is probed.",
+  "text": "Lattice QCD (chiQCD collaboration, 2022, MS-bar scheme at 2 GeV): quarks and antiquarks together carry about 49% of the proton's momentum and gluons about 51% (⟨x⟩q = 0.491(20)(23), ⟨x⟩g = 0.509(20)(23)). The split depends on the energy scale at which the proton is probed. Global fits to scattering data at the same scale give a smaller gluon share, about 0.40 to 0.41 (CT18: 0.413(8); JAM19: 0.403(2); as quoted by Fan, Lin and Zeilbeck 2022, arXiv:2208.00980); lattice results sit higher, and the difference is not yet understood.",
   "quarks": 0.491,
   "gluons": 0.509,
+  "gluons_uncertainty": [
+   0.02,
+   0.023
+  ],
+  "scale_GeV": 2,
+  "global_fits": {
+   "CT18": 0.413,
+   "JAM19": 0.403,
+   "source": "arXiv:2208.00980, quoting CT18 and JAM19, MS-bar 2 GeV"
+  },
   "ref": "G. Wang et al., Phys. Rev. D 106, 014512 (2022), arXiv:2111.09329"
  },
  "proton_mass_origin": {
-  "text": "Lattice-QCD decomposition of the proton mass (Yang et al., Phys. Rev. Lett. 121, 212001 (2018), MS-bar scheme at 2 GeV): quark energy 33(4)(4)%, glue field energy 37(5)(4)%, trace anomaly 23(1)(1)%, quark sigma terms (the part that does come from quark masses) 9(2)(1)%.",
+  "text": "Lattice-QCD decomposition of the proton mass (Yang et al., Phys. Rev. Lett. 121, 212001 (2018), MS-bar scheme at 2 GeV; two uncertainties are quoted for each number): quark energy 33(4)(4)%, glue field energy 37(5)(4)%, trace anomaly 23(1)(1)%, and quark scalar-condensate (sigma-term) contributions 9(2)(1)%. The sigma terms are the part that scales with the quark masses (u, d and the strange sea). The four add to 102%, within the uncertainties. The split depends on the scheme and the scale; only the total is fixed.",
   "parts": {
    "quark_energy": 33,
    "glue_energy": 37,
    "trace_anomaly": 23,
    "sigma_terms": 9
   },
+  "uncertainties": {
+   "quark_energy": [
+    4,
+    4
+   ],
+   "glue_energy": [
+    5,
+    4
+   ],
+   "trace_anomaly": [
+    1,
+    1
+   ],
+   "sigma_terms": [
+    2,
+    1
+   ]
+  },
+  "scheme": "MS-bar, 2 GeV",
   "ref": "Y.-B. Yang et al. (chiQCD), arXiv:1808.08677",
   "rest_mass_sum_MeV": 9.02,
   "rest_mass_fraction": 0.009613416088588594,
-  "note": "Adding the rest masses of the two up quarks and one down quark (PDG, MS-bar 2 GeV) gives about 9 MeV, roughly 1% of the proton mass of 938.27 MeV (my calculation)."
+  "note": "Adding the rest masses of the two up quarks and one down quark (PDG, MS-bar 2 GeV) gives about 9 MeV, roughly 1% of the proton mass of 938.27 MeV (my calculation). That is only the valence quarks: the lattice sigma terms (about 9%, including the strange sea) are the part of the mass that responds to the quark masses. The other terms are energies of the quark-gluon system; how the total is divided depends on scheme and scale."
  },
  "everyday_matter": {
   "ids": [
@@ -2784,7 +2833,7 @@
   ]
  },
  "mass_axis": {
-  "note": "Masses on a logarithmic axis in eV. Neutrinos have no known mass: they are drawn as a band between the lower bound from oscillation (the heaviest neutrino is at least ≈0.05 eV, my calculation from PDG Δm²) and the cosmological bound (the sum is below 0.064 eV under the standard cosmological model, which leaves little room above the oscillation minimum).",
+  "note": "Masses on a logarithmic axis in eV. Neutrinos have no measured mass and the flavour states have no single mass, so they are not placed on the axis. What is known is drawn as a band: the heaviest mass state is at least ≈0.05 eV (oscillations; my calculation from PDG Δm²) and every mass is below 0.45 eV (KATRIN, direct, 90% CL); a line marks the cosmological bound on the sum of all three, 0.064 eV, which holds only in the standard cosmological model.",
   "top_over_electron": 337776.7397651372,
   "electron_over_neutrino_at_least": 1135553.2237555557
  }

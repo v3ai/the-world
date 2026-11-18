@@ -144,6 +144,100 @@ for k in ('katrin_neutrino', 'muon_g2', 'juno_oscillation'): check(k in frontier
 # nodes that carry quantitative statements about neutrinos must point to the frontier note rather than restate 2025 numbers
 check('katrin_neutrino' in json.dumps(nodes), 'nodes should mention the frontier entry katrin_neutrino')
 
+
+# 8. prose checks (added after the science referee review): statements in the cards must agree with the data
+import re
+JS = open(os.path.join(ROOT, 'js', 'particles.js'), encoding='utf-8').read()
+def texts():
+    """every human-readable string in the data files and the on-screen strings: (where, text)"""
+    def walk_s(o, path):
+        if isinstance(o, str): yield path, o
+        elif isinstance(o, dict):
+            for k, v in o.items(): yield from walk_s(v, path + '/' + str(k))
+        elif isinstance(o, list):
+            for i, v in enumerate(o): yield from walk_s(v, path + '/%d' % i)
+    yield from walk_s(D, 'particles.json'); yield from walk_s(nodes, 'nodes'); yield from walk_s(viz, 'viz'); yield 'particles.js', JS
+plain = lambda t: re.sub(r'<[^>]+>', ' ', t)
+ALLTXT = [(w, plain(t)) for w, t in texts()]
+
+# 8a. any stated mass ratio ("about N times ...", "twice") between two named particles agrees with the data within 10%
+MG = {}   # mass in MeV
+for pid, nm in (('up', 'up'), ('down', 'down'), ('strange', 'strange'), ('charm', 'charm'), ('bottom', 'bottom'), ('top', 'top'), ('electron', 'electron'), ('muon', 'muon'),
+                ('tau', 'tau'), ('w_boson', 'W'), ('z_boson', 'Z'), ('higgs', 'Higgs')):
+    MG[nm] = PB[pid]['mass']['eV'] / 1e6
+MG['proton'] = PRO['mass']['value']; MG['neutron'] = NEU['mass']['value']
+NAMEPAT = {'up': r'\bup(?: quark)?\b(?! to)', 'down': r'\bdown(?: quark)?\b', 'strange': r'\bstrange\b', 'charm': r'\bcharm\b', 'bottom': r'\bbottom\b', 'top': r'\btop\b', 'electron': r'\belectrons?\b',
+           'muon': r'\bmuons?\b', 'tau': r'\btau\b', 'proton': r'\bprotons?\b', 'neutron': r'\bneutrons?\b', 'W': r'\bW\b', 'Z': r'\bZ\b', 'Higgs': r'\bHiggs\b'}
+NUMW = {'twice': 2, 'twenty': 20}
+RATIO = re.compile(r'(?:about|roughly|around)\s+([\d,]+(?:\.\d+)?|twice|twenty)', re.I)
+nratio = 0
+for where, t in ALLTXT:
+    if where == 'particles.js': continue
+    for sent in re.split(r'(?<=[.;:])\s+', t):
+        if not re.search(r'times (?:as )?(?:heavy|heavier|the|a |an |its|as much)|twice-as-heavy|times as heavy|times heavier', sent): continue
+        names = [n for n, pat in NAMEPAT.items() if re.search(pat, sent)]
+        if len(names) < 2: continue
+        for m in RATIO.finditer(sent):
+            raw = m.group(1).lower(); val = NUMW.get(raw) or float(raw.replace(',', ''))
+            rs = [MG[a] / MG[b] for a in names for b in names if a != b]
+            nratio += 1
+            check(any(abs(val / r - 1) <= 0.10 for r in rs), 'stated mass ratio "%s" (%s) matches no pair of %s within 10%%: %s... [%s]' % (m.group(0), val, names, sent[:90], where))
+check(nratio >= 3, 'ratio checker found too few ratio statements (%d); is the pattern broken?' % nratio)
+
+# 8b. proton lifetime: the 9e29 yr limit is the mode-independent one; the e+ pi0 partial limit is far larger, and any text quoting 9e29 must say so
+pl = PRO['lifetime']
+check(pl['bound']['value'] == 9e29 and pl['partial_e_pi0']['value'] >= 2.4e34 and pl['partial_e_pi0']['value'] > 1e4 * pl['bound']['value'], 'proton lifetime limits')
+for where, t in ALLTXT:
+    if where != 'particles.js' and len(t) > 40 and '9×10²⁹' in t: check('2.4×10³⁴' in t, 'text quotes the 9×10²⁹ yr proton limit without the p → e⁺π⁰ limit: ' + t[:80])
+
+# 8c. proton mass: never "99%" / "most of the mass is gluon energy" / "few percent at most"; the 9% sigma-term share must accompany the 1% valence figure
+MO = D['proton_mass_origin']['parts']
+check(MO == {'quark_energy': 33, 'glue_energy': 37, 'trace_anomaly': 23, 'sigma_terms': 9}, 'lattice decomposition numbers (Yang et al. 2018)')
+for where, t in ALLTXT:
+    for bad in ('99%', 'few percent at most', 'Gluon energy is most', 'supply most of the mass', 'is the energy of the gluon field holding them', 'is the energy of the strong field'):
+        check(bad not in t, 'banned proton-mass wording %r in %s: %s' % (bad, where, t[:80]))
+for n in nodes:
+    t = plain(json.dumps(n, ensure_ascii=False))
+    if re.search(r'about 1% of (?:a |the )?proton|only about 1%', t) and n['id'] in ('sm_proton_mass_origin', 'sm_proton', 'sm_higgs', 'sm_up'):
+        check('9%' in t, n['id'] + ' states the 1% valence mass without the 9% quark-mass-dependent (sigma-term) share')
+
+# 8d. weak range from hbar c / m_W c^2, and the Z couplings
+rng = 197.3269804 / (PB['w_boson']['mass']['eV'] / 1e6) * 1e-15   # metres (MeV fm / MeV)
+for where, t in ALLTXT:
+    if where == 'particles.js': continue
+    for m in re.finditer(r'(\d(?:\.\d)?)×10⁻¹⁸ m', t):
+        ctx = t[max(0, m.start() - 160): m.start()]
+        if re.search(r'weak|W boson|reaches', ctx): check(abs(float(m.group(1)) * 1e-18 / rng - 1) < 0.10, 'weak range %s in %s differs from hbar c / m_W = %.3g m' % (m.group(0), where, rng))
+for where, t in ALLTXT:
+    if 'T₃ − Q sin²θ' in t: fails.append('wrong Z vector coupling (missing factor 2) in ' + where)
+check(any('g_V = T₃ − 2Q sin²θ_W' in plain(n['layers']['expert']) for n in nodes if n['id'] == 'sm_z_boson'), 'Z coupling formula g_V = T3 - 2 Q sin^2 theta_W on the Z card')
+
+# 8e. neutrinos: bounds on mass states, not flavour positions; cosmology flagged model dependent
+nb = D['neutrinos']['mass_state_bounds_eV']
+check(0.04 < nb['heaviest_at_least_normal'] < 0.06 and 0.008 < nb['second_at_least'] < 0.01 and nb['each_below_direct'] == 0.45 and nb['sum_below_cosmology'] == 0.064, 'neutrino mass-state bounds')
+check('standard cosmological model' in JS and 'no single mass' in JS and 'KATRIN' in JS, 'mass view must explain the neutrino bounds (cosmology model dependent, flavours have no single mass)')
+check('PX.NUY' in JS and '(PX.my(.05) + PX.my(.45)) / 2, 0)' not in JS, 'neutrino flavour balls must not sit inside the mass band')
+
+# 8f. hadron builder wording
+check('or when two are a quark and an antiquark' not in JS, 'builder colour message must not say that mixed triples cancel colour')
+check('Quark content does not fix the particle' in JS and 'twelve hadrons' not in JS, 'builder must say quark content does not fix the particle and not mis-count the table')
+check(len(D['hadrons']) + len(D['composites']) == 14 and 'Object.keys(PX.H).length' in JS, 'hadron table size is computed (p, n + 12 hadrons = 14)')
+
+# 8g. gluon momentum fraction carries scale, uncertainty and the global-fit comparison
+pm = D['proton_momentum']
+check(pm['scale_GeV'] == 2 and 0.39 < pm['global_fits']['JAM19'] < 0.42 and pm['gluons_uncertainty'] and pm['gluons'] > pm['global_fits']['CT18'], 'momentum fraction needs scale, uncertainty and global fits')
+for where, t in ALLTXT:
+    if re.search(r'about half of the (?:proton.s )?momentum|carry about half', t): fails.append('unqualified "about half" gluon momentum in ' + where)
+
+# 8h. grammar slips, doubled periods, counting convention, photon credit
+ART = re.compile(r'\b[Aa] ((?:[aeiAEI]|[oO](?!ne\b|nce\b)|[uU](?!ni|se|ra|nit|ltra|\())\w*)')
+for where, t in ALLTXT:
+    for m in ART.finditer(t):
+        fails.append('"a %s" should be "an": %s [%s]' % (m.group(1), t[max(0, m.start() - 30): m.end() + 30], where))
+    if where != 'particles.js': check('..' not in t.replace('...', '').replace('…', ''), 'doubled period in %s: %s' % (where, t[:60]))
+check('Einstein (1905) proposed that light itself' in PB['photon']['discovery'], 'photon discovery sentence must credit Einstein 1905 for light quanta')
+check('convention' in D['particle_count_note'] and any('convention' in plain(n['layers']['basics']) for n in nodes if n['id'] == 'sm_overview'), 'overview must say that seventeen is a counting convention')
+
 if fails:
     print('FAILED (%d):' % len(fails)); [print(' -', f) for f in fails]; sys.exit(1)
 print('OK: 17 particles, %d hadrons, %d decays balanced, %d nodes, %d figures, all references resolve' % (len(D['hadrons']), nbal, len(nodes), len(viz)))

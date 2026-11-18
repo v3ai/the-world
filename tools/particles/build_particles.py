@@ -22,7 +22,7 @@ colour_q = {'has': True, 'text': 'Yes. Quarks carry colour charge, the charge of
 def quark(id_, sym, name, gen, charge, T3, massrec, mass_note, scale, life, decays, anti, disc, everyday, sources, mass_scheme=None, extra=None):
     d = dict(id=id_, node='sm_' + id_, symbol=sym, name=name, family='quark', kind='fermion', generation=gen, charge=charge,
              charge_text={'2/3': '+2/3 e', '-1/3': '−1/3 e'}[charge], spin='1/2', colour=colour_q,
-             weak_isospin={'T': '1/2', 'T3': T3, 'note': 'The left-handed version sits in a doublet with a ' + ('down-type' if T3 == '+1/2' else 'up-type') + ' quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review).'},
+             weak_isospin={'T': '1/2', 'T3': T3, 'note': 'The left-handed version sits in a doublet with ' + ('a down-type' if T3 == '+1/2' else 'an up-type') + ' quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review).'},
              feels=['strong', 'em', 'weak', 'higgs'], mass=massrec, lifetime=life, decays=decays, antiparticle=anti,
              discovery=disc, everyday=everyday, sources=sources)
     d['mass']['note'] = mass_note
@@ -41,7 +41,7 @@ quark('up', 'u', 'Up quark', 1, '2/3', '+1/2', mass('Q002M', QSCHEME_LIGHT),
       'Everywhere. Every proton has two up quarks and every neutron has one; together with down quarks they are the only quarks in ordinary stable matter (apart from short-lived quark–antiquark pairs).',
       ['Q002M'])
 quark('down', 'd', 'Down quark', 1, '-1/3', '-1/2', mass('Q001M', QSCHEME_LIGHT),
-      Q_NOTE_LIGHT + ' It is a little heavier than the up quark, which is why a neutron is slightly heavier than a proton.', None,
+      Q_NOTE_LIGHT + ' It is a little heavier than the up quark; that mass difference is the main reason a neutron is slightly heavier than a proton (the electromagnetic energy works the other way, so the neutron-proton gap, 1.29 MeV, is smaller than the quark mass gap).', None,
       {'kind': 'stable-in-matter', 'text': 'Down quarks in stable nuclei are stable; in a free neutron one turns into an up quark by the weak force (see the neutron entry).'},
       [dec('d → u + W⁻ (virtual), as in neutron decay', ['d'], ['u', 'W-'], None, 'Possible only when there is energy to spare, as when a neutron becomes a proton.')],
       anti_q('d̄', 'Anti-down quark'),
@@ -62,7 +62,7 @@ quark('charm', 'c', 'Charm quark', 2, '2/3', '+1/2', mass('Q004M', 'MS-bar schem
       [dec('c → s + W⁺ (virtual)', ['c'], ['s', 'W+'])],
       anti_q('c̄', 'Anti-charm quark'),
       'Seen as the J/ψ meson (a charm–anticharm pair) in November 1974 by two groups at once: one led by Burton Richter at SLAC and one led by Samuel Ting at Brookhaven.',
-      'Not in everyday matter. Made in particle accelerators and in cosmic-ray collisions; a very small charm component exists inside the proton.',
+      'Not in everyday matter. Made in particle accelerators and in cosmic-ray collisions; charm quarks also appear in the proton briefly through gluon splitting; whether the proton has an intrinsic (non-perturbative) charm component is still debated.',
       ['Q004M'])
 quark('bottom', 'b', 'Bottom quark', 3, '-1/3', '-1/2', mass('Q005M', 'MS-bar scheme, at the scale of the bottom-quark mass itself'),
       'The "running" mass in the MS-bar scheme at its own scale; other definitions (pole mass) give a larger number, because the quark mass depends on how and at what energy you define it.', None,
@@ -131,7 +131,7 @@ def neutrino(id_, sym, name, gen, partner, disc, everyday, sources, anti_sym):
     add(dict(id=id_, node='sm_' + id_, symbol=sym, name=name, family='lepton', kind='fermion', generation=gen, charge='0', charge_text='0',
              spin='1/2', colour=colour_none,
              weak_isospin={'T': '1/2', 'T3': '+1/2', 'note': 'Only the left-handed neutrino has been observed; it forms a doublet with the ' + partner + '.'},
-             feels=['weak'], feels_note='In the original Standard Model a neutrino has no right-handed partner and no coupling to the Higgs field; its tiny mass needs something beyond that (open question).',
+             feels=['weak'], feels_note='In the minimal Standard Model a neutrino feels only the weak force (and gravity), has no right-handed partner and no coupling to the Higgs field. Neutrinos do have mass, so the minimal model is incomplete: how they get their mass, and so whether they couple to the Higgs field the way other fermions do, is not known (open question).',
              mass=dict(nu_mass), lifetime={'kind': 'stable-assumed', 'text': 'No decay has been observed. Heavier neutrino mass states could in principle decay into lighter ones; the PDG gives limits on the lifetime-to-mass ratio.'},
              decays=[dec('None observed', [id_], [], None, 'Stable on all observed timescales.')],
              antiparticle={'name': 'Antineutrino', 'symbol': anti_sym, 'self_conjugate': None,
@@ -144,19 +144,19 @@ neutrino('nu_mu', 'ν_μ', 'Muon neutrino', 2, 'muon',
          'Leon Lederman, Melvin Schwartz and Jack Steinberger at Brookhaven\'s Alternating Gradient Synchrotron in 1962 showed that the neutrino made with a muon is a different kind from the one made with an electron.',
          'Made when cosmic rays hit the upper atmosphere (pions decay to muons and muon neutrinos); studied by the Super-Kamiokande detector.', ['S066MNM'], 'ν̄_μ')
 neutrino('nu_tau', 'ν_τ', 'Tau neutrino', 3, 'tau lepton',
-         'Directly observed by the DONUT experiment at Fermilab in 2000; the last of the Standard Model\'s fermions to be seen directly (before the Higgs boson).',
+         'Directly observed by the DONUT experiment at Fermilab in 2000; the last of the Standard Model\'s fermions to be seen directly (the Higgs boson, which is not a fermion, came later, in 2012).',
          'Rare. Appears when other neutrinos oscillate into this flavour on their way from the Sun or atmosphere.', ['S066MNT'], 'ν̄_τ')
 
 # --- gauge bosons and Higgs
 add(dict(id='gluon', node='sm_gluon', symbol='g', name='Gluon', family='boson', kind='gauge boson', generation=None, charge='0', charge_text='0',
          spin='1', colour={'has': True, 'text': 'Yes, unlike the photon. A gluon carries a colour and an anticolour at once; there are eight kinds. Because gluons carry colour, they attract each other, which is why the strong force behaves so differently from electromagnetism.'},
          weak_isospin={'T': '0', 'T3': '0', 'note': 'A gluon has no weak isospin.'}, feels=['strong'],
-         mass={'known': True, 'eV': 0.0, 'text': '0 in the Standard Model (the theory\'s symmetry requires it); a single gluon is never seen alone, so no direct limit can be measured the way it is for the photon.', 'scheme': 'Theoretical', 'note': 'Gluons are massless in the theory, yet they supply most of the mass of the proton through the energy of the strong field they carry.'},
-         lifetime={'kind': 'confined', 'text': 'Not defined: gluons are never free. They exist only inside hadrons and in short-lived jets.'},
+         mass={'known': True, 'eV': 0.0, 'text': '0 in the Standard Model (the theory\'s symmetry requires it); a single gluon is never seen alone, so no direct limit can be measured the way it is for the photon.', 'scheme': 'Theoretical', 'note': 'Gluons are massless in the theory, yet the energy of the gluon field is a large part of the proton\'s mass: a lattice calculation gives glue field energy 37(5)(4)% (MS-bar scheme, 2 GeV; the split depends on scheme and scale), alongside quark energy, the trace anomaly and quark-mass terms.'},
+         lifetime={'kind': 'confined', 'text': 'Not defined: gluons are never free. They exist only inside hadrons; a high-energy gluon shows up in a detector as a jet, a spray of hadrons.'},
          decays=[dec('None (confined)', ['g'], [], None, 'No lifetime applies to a particle that is never free.')],
          antiparticle={'name': 'Gluon', 'symbol': 'g', 'self_conjugate': True, 'note': 'Each of the 8 gluons\' antiparticles is again one of the 8 gluon states (a colour–anticolour mixture), so the set is its own antiparticle.'},
          discovery='Seen as a third "jet" in electron–positron collisions at the PETRA collider at DESY, Hamburg, in 1979 (TASSO first, then JADE, PLUTO and Mark J).',
-         everyday='Inside every proton and neutron, in all matter, holding quarks together. Gluon energy is most of the mass you weigh.', sources=['G021']))
+         everyday='Inside every proton and neutron, in all matter, holding quarks together. The energy of the quark and gluon fields makes up nearly all of the mass you weigh (see the proton mass card for the lattice split).', sources=['G021']))
 add(dict(id='photon', node='sm_photon', symbol='γ', name='Photon', family='boson', kind='gauge boson', generation=None, charge='0', charge_text='0',
          spin='1', colour={'has': False, 'text': 'No. Photons carry no colour and do not feel the strong force.'},
          weak_isospin={'T': '0', 'T3': '0', 'note': 'After electroweak mixing the photon is a combination of the weak-isospin boson W³ and the hypercharge boson B; it has no definite weak isospin.'}, feels=[],
@@ -165,7 +165,7 @@ add(dict(id='photon', node='sm_photon', symbol='γ', name='Photon', family='boso
          lifetime={'kind': 'stable', 'text': 'Stable. PDG also gives a photon charge limit of < 1×10⁻⁴⁶ e.', 'charge_limit': pdg('S000Q')},
          decays=[dec('None (stable)', ['gamma'], [], None, 'A massless particle has nothing lighter to decay to.')],
          antiparticle={'name': 'Photon', 'symbol': 'γ', 'self_conjugate': True, 'note': 'The photon is its own antiparticle.'},
-         discovery='The idea of light as quanta is Planck (1900) and Einstein (1905); Arthur Compton\'s 1923 X-ray scattering experiments showed light carries momentum like a particle.',
+         discovery='Planck (1900) introduced energy quanta for the exchange of energy between matter and radiation; Einstein (1905) proposed that light itself comes in quanta; Arthur Compton\'s 1923 X-ray scattering experiments showed light carries momentum like a particle.',
          everyday='All light, radio, X-rays, and every electric and magnetic force between charges. Sunlight on the park is a stream of photons.', sources=['S000M', 'S000Q']))
 wm = mass('S043M', 'Direct measurements at colliders (LHC–Tevatron average)'); wm['note'] = 'About 86 times a proton\'s mass. The W is heavy because the Higgs field gives it mass; that makes the weak force short-ranged.'
 add(dict(id='w_boson', node='sm_w_boson', symbol='W±', name='W boson', family='boson', kind='gauge boson', generation=None, charge='±1', charge_text='±1 e (W⁺: +1, W⁻: −1)',
@@ -208,7 +208,7 @@ add(dict(id='higgs', node='sm_higgs', symbol='H', name='Higgs boson', family='bo
 # ---- composites ---------------------------------------------------------------------------------
 proton = dict(id='proton', node='sm_proton', symbol='p', name='Proton', quarks=['u', 'u', 'd'], charge='+1', spin='1/2',
   mass=pdg('S016M'), mass_u=pdg('S016AMU'), charge_radius=pdg('S016CR'), magnetic_radius=pdg('S016MCR'), magnetic_moment=pdg('S016MM'),
-  lifetime={'text': 'No decay has ever been seen. PDG: mean life > 9×10²⁹ years (90% confidence) for the best-measured modes (a bound, not a prediction of decay).', 'bound': pdg('S016T')},
+  lifetime={'text': 'No decay has ever been seen. PDG 2026, 90% confidence: the mean life is more than 9×10²⁹ years for decay into anything (a mode-independent limit, which is weak), and much more for particular modes: for p → e⁺π⁰ the partial mean life is more than 2.4×10³⁴ years (Super-Kamiokande). These are bounds, not predictions of decay.', 'short': 'no decay seen; more than 9×10²⁹ years for any mode, more than 2.4×10³⁴ years for p → e⁺π⁰ (PDG 2026, 90% CL)', 'partial_e_pi0': pdg('S016T06P'), 'bound': pdg('S016T')},
   charge_neutrality={'bound': pdg('S016DQ'), 'text': 'The proton and electron charges are equal and opposite to better than 1 part in 10²¹ (PDG).'},
   note='The proton mass listed by PDG is the CODATA 2022 value.')
 neutron = dict(id='neutron', node='sm_neutron', symbol='n', name='Neutron', quarks=['u', 'd', 'd'], charge='0', spin='1/2',
@@ -244,11 +244,11 @@ had('omega_minus', 'Ω⁻', 'Omega baryon', ['s', 's', 's'], 'S024M', '-1', '3/2
 # ---- interactions -----------------------------------------------------------------------------
 interactions = [
  dict(id='strong', name='Strong force', carriers=['gluon'], couples_to='colour charge', feels=['up', 'down', 'strange', 'charm', 'bottom', 'top', 'gluon'],
-      text='Binds quarks into protons, neutrons and other hadrons, and (as a leftover) binds protons and neutrons into nuclei. Carried by 8 kinds of gluon. It does not weaken with distance the way electromagnetism does.'),
+      text='Binds quarks into protons, neutrons and other hadrons, and (as a leftover) binds protons and neutrons into nuclei. Carried by 8 kinds of gluon. Between coloured objects (quarks and gluons) the energy keeps rising as they are pulled apart (confinement); the leftover force between hadrons is short-ranged, about 1.4×10⁻¹⁵ m.'),
  dict(id='em', name='Electromagnetic force', carriers=['photon'], couples_to='electric charge', feels=['up', 'down', 'strange', 'charm', 'bottom', 'top', 'electron', 'muon', 'tau', 'w_boson'],
       text='Acts on everything with electric charge; carried by the photon. Holds electrons around nuclei and shapes all of chemistry.'),
- dict(id='weak', name='Weak force', carriers=['w_boson', 'z_boson'], couples_to='weak isospin (and, with the Higgs, mass)', feels=['up', 'down', 'strange', 'charm', 'bottom', 'top', 'electron', 'muon', 'tau', 'nu_e', 'nu_mu', 'nu_tau', 'w_boson', 'z_boson', 'higgs'],
-      text='Changes one flavour of quark or lepton into another (beta decay) and acts on neutrinos. Carried by the heavy W and Z bosons, which is why it has such a short range, about 2×10⁻¹⁸ m (ħc divided by the W mass; my calculation).'),
+ dict(id='weak', name='Weak force', carriers=['w_boson', 'z_boson'], couples_to='weak isospin (the W) and a mix of weak isospin and electric charge (the Z); mass comes from the Higgs field, not from the weak coupling', feels=['up', 'down', 'strange', 'charm', 'bottom', 'top', 'electron', 'muon', 'tau', 'nu_e', 'nu_mu', 'nu_tau', 'w_boson', 'z_boson', 'higgs'],
+      text='Changes one flavour of quark or lepton into another (beta decay) and acts on neutrinos. Carried by the heavy W and Z bosons, which is why it has such a short range, about 2.5×10⁻¹⁸ m (ħc divided by the W mass: 197.327 MeV fm / 80,362 MeV = 2.46×10⁻¹⁸ m; my calculation).'),
  dict(id='higgs', name='Higgs field', carriers=['higgs'], couples_to='mass (the Yukawa couplings)', feels=['up', 'down', 'strange', 'charm', 'bottom', 'top', 'electron', 'muon', 'tau', 'w_boson', 'z_boson', 'higgs'],
       text='Not a force in the usual sense. The Higgs field has a nonzero value everywhere; particles that interact with it get a rest mass. The Higgs boson is a ripple in that field.'),
  dict(id='gravity', name='Gravity', carriers=[], couples_to='energy and momentum', feels=[], in_standard_model=False,
@@ -267,6 +267,8 @@ neutrinos = dict(
   open=['The absolute mass scale (only bounds exist).', 'Normal or inverted mass ordering.', 'Whether neutrinos are their own antiparticles (Majorana) or not (Dirac).', 'Whether the CP-violating phase is nonzero.'])
 import math
 dm21 = neutrinos['mass_squared']['dm21']['value']; dm32n = neutrinos['mass_squared']['dm32_normal']['value']; dm32i = abs(neutrinos['mass_squared']['dm32_inverted']['value'])
+neutrinos['mass_state_bounds_eV'] = {'heaviest_at_least_normal': math.sqrt(dm32n), 'heaviest_at_least_inverted': math.sqrt(dm32i), 'second_at_least': math.sqrt(dm21), 'each_below_direct': 0.45, 'sum_below_cosmology': 0.064,
+   'text': 'Oscillations show the heaviest of the three mass states is at least about 0.05 eV (square root of the atmospheric Δm²; my arithmetic) and the second at least about 0.009 eV (square root of the solar Δm²); the lightest could be anywhere down to zero. The direct KATRIN bound applies to an effective electron-neutrino mass, below 0.45 eV (90% CL). The cosmological bound on the sum, below 0.064 eV (95% CL), assumes the standard ΛCDM model. A flavour neutrino (νₑ, ν_μ, ν_τ) is a mixture of mass states and has no single mass.'}
 neutrinos['minimum_mass_sum_eV_calc'] = {'normal': math.sqrt(dm21) + math.sqrt(dm32n), 'inverted': math.sqrt(dm32i) + math.sqrt(dm32i - dm21),
    'text': 'The oscillation data alone force the sum of masses to be at least about 0.058 eV if the ordering is normal and about 0.10 eV if inverted (my arithmetic from the PDG Δm² values, taking the lightest neutrino to be massless).'}
 
@@ -283,6 +285,7 @@ open_questions = [
  dict(id='strong_cp', title='The strong CP problem', cert='C3', text='The strong force could violate the matter–antimatter mirror symmetry (the parameter θ), but measurements of the neutron\'s electric dipole moment find it indistinguishable from zero. Why it is so small is unexplained.'),
  dict(id='compositeness', title='Are quarks and electrons really pointlike?', cert='C2', text='No internal structure has been found. PDG 2026 reports limits on a compositeness scale of roughly 10 to 35 TeV, which corresponds to sizes below about 10⁻²⁰ m. That is a limit of measurement, not a proof that there is nothing inside.'),
 ]
+particle_count_note = 'The count of seventeen is a convention: W⁺ and W⁻ are counted as one particle, the eight gluons as one, and antiparticles, colour states and spin or handedness states are not counted separately.'
 free_parameters = dict(count=19, convention='19 free parameters in the Standard Model with massless neutrinos (a common counting)',
   list=[('quark masses', 6), ('charged-lepton masses', 3), ('quark mixing angles (CKM)', 3), ('quark CP-violating phase (CKM)', 1), ('gauge couplings (strong, weak, hypercharge)', 3),
         ('Higgs vacuum value and Higgs mass', 2), ('strong CP angle θ', 1)],
@@ -295,27 +298,29 @@ compositeness = dict(
   note='ħc/Λ gives about 5×10⁻²¹ m to 2×10⁻²⁰ m (my calculation). These limits are model dependent, so the safe statement is "no structure found down to roughly 10⁻¹⁹ m".')
 
 momentum = dict(
-  text='Lattice QCD (chiQCD collaboration, 2022, MS-bar scheme at 2 GeV): quarks and antiquarks together carry about 49% of the proton\'s momentum and gluons about 51% (⟨x⟩q = 0.491(20)(23), ⟨x⟩g = 0.509(20)(23)). The split depends on the energy scale at which the proton is probed.',
-  quarks=0.491, gluons=0.509, ref='G. Wang et al., Phys. Rev. D 106, 014512 (2022), arXiv:2111.09329')
+  text='Lattice QCD (chiQCD collaboration, 2022, MS-bar scheme at 2 GeV): quarks and antiquarks together carry about 49% of the proton\'s momentum and gluons about 51% (⟨x⟩q = 0.491(20)(23), ⟨x⟩g = 0.509(20)(23)). The split depends on the energy scale at which the proton is probed. Global fits to scattering data at the same scale give a smaller gluon share, about 0.40 to 0.41 (CT18: 0.413(8); JAM19: 0.403(2); as quoted by Fan, Lin and Zeilbeck 2022, arXiv:2208.00980); lattice results sit higher, and the difference is not yet understood.',
+  quarks=0.491, gluons=0.509, gluons_uncertainty=[0.020, 0.023], scale_GeV=2, global_fits={'CT18': 0.413, 'JAM19': 0.403, 'source': 'arXiv:2208.00980, quoting CT18 and JAM19, MS-bar 2 GeV'}, ref='G. Wang et al., Phys. Rev. D 106, 014512 (2022), arXiv:2111.09329')
 mass_origin = dict(
-  text='Lattice-QCD decomposition of the proton mass (Yang et al., Phys. Rev. Lett. 121, 212001 (2018), MS-bar scheme at 2 GeV): quark energy 33(4)(4)%, glue field energy 37(5)(4)%, trace anomaly 23(1)(1)%, quark sigma terms (the part that does come from quark masses) 9(2)(1)%.',
+  text='Lattice-QCD decomposition of the proton mass (Yang et al., Phys. Rev. Lett. 121, 212001 (2018), MS-bar scheme at 2 GeV; two uncertainties are quoted for each number): quark energy 33(4)(4)%, glue field energy 37(5)(4)%, trace anomaly 23(1)(1)%, and quark scalar-condensate (sigma-term) contributions 9(2)(1)%. The sigma terms are the part that scales with the quark masses (u, d and the strange sea). The four add to 102%, within the uncertainties. The split depends on the scheme and the scale; only the total is fixed.',
   parts={'quark_energy': 33, 'glue_energy': 37, 'trace_anomaly': 23, 'sigma_terms': 9},
+  uncertainties={'quark_energy': [4, 4], 'glue_energy': [5, 4], 'trace_anomaly': [1, 1], 'sigma_terms': [2, 1]},
+  scheme='MS-bar, 2 GeV',
   ref='Y.-B. Yang et al. (chiQCD), arXiv:1808.08677',
   rest_mass_sum_MeV=2 * pdg('Q002M')['value'] + pdg('Q001M')['value'],
   rest_mass_fraction=(2 * pdg('Q002M')['value'] + pdg('Q001M')['value']) / pdg('S016M')['value'],
-  note='Adding the rest masses of the two up quarks and one down quark (PDG, MS-bar 2 GeV) gives about 9 MeV, roughly 1% of the proton mass of 938.27 MeV (my calculation).')
+  note='Adding the rest masses of the two up quarks and one down quark (PDG, MS-bar 2 GeV) gives about 9 MeV, roughly 1% of the proton mass of 938.27 MeV (my calculation). That is only the valence quarks: the lattice sigma terms (about 9%, including the strange sea) are the part of the mass that responds to the quark masses. The other terms are energies of the quark-gluon system; how the total is divided depends on scheme and scale.')
 
 out = dict(
   meta=dict(title='Standard Model particle data', pdg_edition='2026', pdg_citation=EX['_meta']['citation'], pdg_release=EX['_meta']['release'], licence_of_source=EX['_meta']['licence'],
             built_by='tools/particles/build_particles.py', note='Every measured value carries a PDG identifier (pdgid) and the text PDG prints. Calculated values are marked "calc". See tools/particles/SOURCES.md.',
             masses_note='Masses are given in eV in the field "eV" for plotting; use "text" and "unit" to show the PDG value.'),
-  particles=parts, composites=[proton, neutron], hadrons=H, interactions=interactions, neutrinos=neutrinos,
+  particle_count_note=particle_count_note, particles=parts, composites=[proton, neutron], hadrons=H, interactions=interactions, neutrinos=neutrinos,
   open_questions=open_questions, free_parameters=free_parameters, compositeness=compositeness, proton_momentum=momentum, proton_mass_origin=mass_origin,
   everyday_matter=dict(ids=['up', 'down', 'electron', 'gluon', 'photon'], note='Everything in the park is built from up quarks, down quarks and electrons, bound by gluons and photons.',
      others=[dict(id='muon', text='Cosmic-ray muons: roughly one per square centimetre of horizontal surface per minute at sea level (PDG cosmic-ray review, 2000 edition; this is the figure for muons above 1 GeV/c).'),
              dict(id='nu_e', text='Solar neutrinos: about 6×10¹⁰ per square centimetre per second of the pp kind (PDG neutrino-mixing review, 2026).'),
              dict(id='others', text='Strange, charm, bottom and top quarks, the tau, the W, Z and Higgs bosons: made in accelerators and cosmic-ray collisions, and abundant in the early universe.')]),
-  mass_axis=dict(note='Masses on a logarithmic axis in eV. Neutrinos have no known mass: they are drawn as a band between the lower bound from oscillation (the heaviest neutrino is at least ≈0.05 eV, my calculation from PDG Δm²) and the cosmological bound (the sum is below 0.064 eV under the standard cosmological model, which leaves little room above the oscillation minimum).',
+  mass_axis=dict(note='Masses on a logarithmic axis in eV. Neutrinos have no measured mass and the flavour states have no single mass, so they are not placed on the axis. What is known is drawn as a band: the heaviest mass state is at least ≈0.05 eV (oscillations; my calculation from PDG Δm²) and every mass is below 0.45 eV (KATRIN, direct, 90% CL); a line marks the cosmological bound on the sum of all three, 0.064 eV, which holds only in the standard cosmological model.',
      top_over_electron=pdg('Q007TP')['value'] * 1e9 / mass('S003M', '')['eV'], electron_over_neutrino_at_least=mass('S003M', '')['eV'] / 0.45),
 )
 dst = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'data', 'particles.json')

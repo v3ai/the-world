@@ -65,7 +65,7 @@
   ],
   "logy": true,
   "ylabel": "rest mass, GeV/c² (log scale)",
-  "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_down": {
   "type": "bars",
@@ -133,7 +133,7 @@
   ],
   "logy": true,
   "ylabel": "rest mass, GeV/c² (log scale)",
-  "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_strange": {
   "type": "bars",
@@ -201,7 +201,7 @@
   ],
   "logy": true,
   "ylabel": "rest mass, GeV/c² (log scale)",
-  "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_charm": {
   "type": "bars",
@@ -269,7 +269,7 @@
   ],
   "logy": true,
   "ylabel": "rest mass, GeV/c² (log scale)",
-  "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_bottom": {
   "type": "bars",
@@ -337,7 +337,7 @@
   ],
   "logy": true,
   "ylabel": "rest mass, GeV/c² (log scale)",
-  "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_top": {
   "type": "bars",
@@ -405,7 +405,7 @@
   ],
   "logy": true,
   "ylabel": "rest mass, GeV/c² (log scale)",
-  "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_electron": {
   "type": "bars",
@@ -473,7 +473,7 @@
   ],
   "logy": true,
   "ylabel": "rest mass, GeV/c² (log scale)",
-  "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_muon": {
   "type": "bars",
@@ -541,7 +541,7 @@
   ],
   "logy": true,
   "ylabel": "rest mass, GeV/c² (log scale)",
-  "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_tau": {
   "type": "bars",
@@ -609,7 +609,7 @@
   ],
   "logy": true,
   "ylabel": "rest mass, GeV/c² (log scale)",
-  "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_nu_e": {
   "type": "bars",
@@ -833,7 +833,7 @@
   ],
   "logy": true,
   "ylabel": "rest mass, GeV/c² (log scale)",
-  "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_z_boson": {
   "type": "bars",
@@ -901,7 +901,7 @@
   ],
   "logy": true,
   "ylabel": "rest mass, GeV/c² (log scale)",
-  "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_higgs": {
   "type": "bars",
@@ -969,7 +969,7 @@
   ],
   "logy": true,
   "ylabel": "rest mass, GeV/c² (log scale)",
-  "caption": "Rest masses of the twelve massive particles on a logarithmic scale; the one you are reading about is highlighted. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
+  "caption": "Rest masses of the twelve particles with measured masses (the neutrinos have mass but no measured value, so they are not shown), on a logarithmic scale; the one you are reading about is highlighted. Values are rounded to four significant figures. The top quark is about 340,000 times heavier than the electron. Quark masses depend on the scheme used to define them (see the card)."
  },
  "sm_overview": {
   "type": "blocks",
@@ -1079,7 +1079,7 @@
     "Strong",
     "gluon (8)",
     "quarks, gluons",
-    "confined: about 10⁻¹⁵ m"
+    "quarks and gluons are confined; leftover force between hadrons about 1.4×10⁻¹⁵ m"
    ],
    [
     "Electromagnetic",
@@ -1091,7 +1091,7 @@
     "Weak",
     "W⁺, W⁻, Z",
     "all quarks and leptons",
-    "about 2×10⁻¹⁸ m"
+    "about 2.5×10⁻¹⁸ m"
    ],
    [
     "Gravity",
@@ -1247,7 +1247,7 @@
    }
   ],
   "ylabel": "percent of the proton mass",
-  "caption": "Lattice-QCD decomposition of the proton mass (Yang et al., 2018, MS-bar at 2 GeV). These percentages depend on how the mass is divided; the robust message is that the rest masses of the quarks supply only a small part. Uncertainties are 4–5 percentage points on the larger bars."
+  "caption": "Lattice-QCD decomposition of the proton mass (Yang et al., 2018, MS-bar at 2 GeV). The sigma terms (about 9%) are the part that scales with the quark masses; the valence quark masses alone are about 1%. The percentages depend on the scheme and scale and add to 102% within the uncertainties, which are 4–5 percentage points on the larger bars."
  },
  "sm_antimatter": {
   "type": "blocks",
@@ -1609,7 +1609,7 @@
    }
   ],
   "ylabel": "percent of the proton's momentum",
-  "caption": "Lattice-QCD momentum fractions at 2 GeV (G. Wang et al., 2022; ±2 percentage points statistical and ±2 systematic). The split changes with the probing energy. This is a measured/calculated property of the whole proton, not a picture of particles flickering."
+  "caption": "Lattice-QCD momentum fractions at 2 GeV (G. Wang et al., 2022; ±2 percentage points statistical and ±2 systematic). Global fits to scattering data give a smaller gluon share, about 40% at the same scale. The split changes with the probing energy. This is a measured/calculated property of the whole proton, not a picture of particles flickering."
  },
  "sm_proton": {
   "type": "bars",
@@ -1642,7 +1642,7 @@
   ],
   "logy": true,
   "ylabel": "rest mass, MeV/c² (log scale)",
-  "caption": "The three valence quarks' rest masses (MS-bar, 2 GeV, PDG 2026) add to about 9 MeV; the proton is 938 MeV. The difference is mostly strong-field energy."
+  "caption": "The three valence quarks' rest masses (MS-bar, 2 GeV, PDG 2026) add to about 9 MeV; the proton is 938 MeV. The difference is not the Higgs-given quark masses: it is mostly the energy of the quarks and gluons, plus about 9% that scales with the quark masses (strange sea included)."
  },
  "sm_neutron": {
   "type": "plot",
@@ -1695,7 +1695,7 @@
    ],
    [
     "π⁰",
-    "uū",
+    "uū (mixed with d d̄)",
     "0",
     "134.9768"
    ],

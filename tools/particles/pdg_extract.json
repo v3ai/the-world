@@ -2917,6 +2917,25 @@
      "unit": ""
     }
    ]
+  },
+  "S016T06P": {
+   "pdgid": "S016T06",
+   "description": "tau(N --> e+ pi), limit for the proton (SKAM), 90% CL",
+   "values": [
+    {
+     "type": "L",
+     "in_summary": 1,
+     "cl": 90.0,
+     "limit": "L",
+     "comment": null,
+     "value": 2.4e+34,
+     "text": ">24000 E30",
+     "err_plus": 0.0,
+     "err_minus": 0.0,
+     "scale": null,
+     "unit": "years"
+    }
+   ]
   }
  },
  "particles": {

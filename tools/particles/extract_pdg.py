@@ -45,6 +45,14 @@ def rec(pid):
 res = {"_meta": {"edition": info.get("edition"), "citation": info.get("citation"), "licence": info.get("license"),
                  "release": info.get("data_release_timestamp"), "source": "https://pdg.lbl.gov/2026/api/pdg-2026.0.sqlite"},
        "records": {p: rec(p) for p in IDS}}
+# the proton limit on N -> e+ pi sits in the measurement table (one row per particle), not in the summary value: pick the p row marked "used in average"
+r = db.execute("select id from pdgid where pdgid='S016T06'").fetchone()
+for m in db.execute("select id,technique from pdgmeasurement where pdgid_id=? order by sort", (r[0],)).fetchall():
+    vals = {c: (vt, v, cl) for c, vt, v, cl in db.execute("select column_name,value_text,value,used_in_average from pdgmeasurement_values where pdgmeasurement_id=?", (m[0],))}
+    if vals['PARTICLE'][0] == 'p' and vals['LIMIT'][2] == 1:
+        res["records"]["S016T06P"] = {"pdgid": "S016T06", "description": "tau(N --> e+ pi), limit for the proton (" + m[1] + "), 90% CL",
+            "values": [dict(type="L", in_summary=1, cl=float(vals['CL%'][0]), limit="L", comment=None, value=vals['LIMIT'][1], text=vals['LIMIT'][0], err_plus=0.0, err_minus=0.0, scale=None, unit="years")]}
+        break
 # quantum numbers from the particle table
 q = {}
 for mc in (1,2,3,4,5,6,11,12,13,14,15,16,21,22,23,24,25,211,111,321,310,130,443,553,2212,2112,3122,2224,3334,-11,-1,-2,-3,-4,-5,-6):
