@@ -308,7 +308,7 @@ details[open] > summary::before { content: '−' }
   #controls { left: calc(var(--ruler-w) + 8px); right: 8px; top: 52px; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap }
   #tourbtns { display: none }
   #zoombtns { right: 8px; bottom: 10px }
-  #info { left: 8px; right: 8px; top: auto; bottom: 8px; width: auto; max-height: 72vh; transform: translateY(calc(100% + 40px)) }
+  #info { left: 8px; right: 8px; top: auto; bottom: 8px; width: auto; max-width: none; max-height: 72vh; transform: translateY(calc(100% + 40px)) }
   #topright { right: 8px; top: 8px }
   .tb { padding: 7px 10px; font-size: 12.5px }
   .pop { left: calc(var(--ruler-w) + 8px); right: 8px; width: auto }

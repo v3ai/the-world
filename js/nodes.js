@@ -313,7 +313,7 @@ function chipList(ids, label) {
   const ok = (ids || []).filter(Boolean); if (!ok.length) return '';
   return `<div class="refs"><div class="rh">${label}</div><div class="chips">${ok.map(i => `<button class="chip nd" data-n="${i}">${nodeTitle(i)}</button>`).join('')}</div></div>`;
 }
-function kindLine(n) { const k = (n.kind || '').replace(/_/g, ' '); const K = k ? k[0].toUpperCase() + k.slice(1) : ''; return n.scale_m ? `${K}${K ? ', ' : ''}about ${roughLen(n.scale_m)} across` : K; }
+function kindLine(n) { const k = (n.kind || '').replace(/_/g, ' '); const K = k ? k[0].toUpperCase() + k.slice(1) : ''; return n.scale_m && n.id !== 'skin' ? `${K}${K ? ', ' : ''}about ${roughLen(n.scale_m)} across` : K; }
 function roughLen(m) { return fmtLen(m).replace(/^(\d+)\.\d+ /, '$1 ').replace(/^(\d)\.(\d)\d /, '$1.$2 '); }
 function showBodyNode(id, h) {
   const n = NODE[id]; if (!n) return false;

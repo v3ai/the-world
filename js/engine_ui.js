@@ -292,6 +292,13 @@ function buildRuler() {
   svg += '</svg>'; box.insertAdjacentHTML('beforeend', svg);
   items.forEach(it => { const b = document.createElement('button'); b.className = 'lm'; b.style.top = it.p + 'px'; b.textContent = it.L.label; b.title = `Fly to ${it.L.label} (${fmtLen(it.L.D)} across)`; b.onclick = () => { cancelTour(); it.L.go(); }; it.L._el = b; box.appendChild(b); });
   const m = document.createElement('i'); m.id = 'rulerMark'; m.innerHTML = '<span class="ro" id="rulerRO"></span>'; box.appendChild(m);
+  // on a phone the strip has no room for names: tapping it flies to the nearest place on the scale and says which
+  if (!box._tap) { box._tap = 1; box.addEventListener('click', e => {
+    if (e.target.closest('.lm') || !LANDMARKS.length || getComputedStyle($('#ruler .lm') || box).display !== 'none') return;
+    const r = box.getBoundingClientRect(), y = e.clientY - r.top, hh = box.clientHeight || 600;
+    let best = null, bd = 1e9; LANDMARKS.forEach(L => { const d = Math.abs(rulerY(Math.log10(L.D), hh) - y); if (d < bd) { bd = d; best = L; } });
+    if (best) { cancelTour(); toast(`Flying to ${best.label}`); best.go(); }
+  }); }
   if (!buildRuler._ro) { buildRuler._ro = new ResizeObserver(() => buildRuler()); buildRuler._ro.observe(box); }
 }
 function updateRuler() {
@@ -419,6 +426,8 @@ async function startApp() {
    auditPickables() lists, for every frame drawn now, the pickable ids that have no card data (no INFO entry, no NODE,
    no userData.info or infoFn). Clicking one still opens a minimal card and logs a console warning; this finds them before
    a user does. Ids resolved at pick time (userData.resolve) cannot be listed in advance and are counted as `dynamic`. */
+// a hit-sphere child of a group that carries the card shows that card when picked
+function cardOnAncestor(o) { for (let a = o.parent; a; a = a.parent) { const u = a.userData || {}; if (u.infoFn || u.info) return true; } return false; }
 function auditPickables(quiet) {
   const out = [];
   for (const f of drawn) {
@@ -429,7 +438,7 @@ function auditPickables(quiet) {
       if (seenObj.has(o)) return; seenObj.add(o);
       const ud = o.userData || {};
       if (ud.resolve) { dyn++; return; }
-      if (ud.id !== undefined) { total++; if (!hasCard(o, ud.id)) missing.set(ud.id, (missing.get(ud.id) || 0) + 1); }
+      if (ud.id !== undefined) { total++; if (!hasCard(o, ud.id) && !cardOnAncestor(o)) missing.set(ud.id, (missing.get(ud.id) || 0) + 1); }
     };
     f.pickables.forEach(p => { visit(p); p.traverse && p.traverse(visit); });
     out.push({ frame: humanName(f), type: f.type, pickables: total, dynamic: dyn, missing: [...missing.keys()] });
