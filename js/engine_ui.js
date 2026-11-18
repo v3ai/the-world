@@ -69,7 +69,7 @@ function scienceSection(simIds) {
 function wireKn() { infoEl.querySelectorAll('.kn').forEach(b => b.onclick = () => showNode(b.dataset.k)); }
 // info for a picked object
 function showInfoFor(h) {
-  if (h.obj.userData.node && window.NODE && NODE[h.obj.userData.node]) { showBodyNode(h.obj.userData.node, h); return; }
+  if (h.obj.userData.node && typeof NODE !== 'undefined' && NODE[h.obj.userData.node]) { showBodyNode(h.obj.userData.node, h); return; }
   const id = h.id, d = (h.obj.userData.infoFn && h.obj.userData.infoFn(h)) || h.obj.userData.info || INFO[id];
   if (!d) return;
   infoState = { h };
@@ -121,7 +121,7 @@ function libSearch(q) {
     box.innerHTML = h || '<div class="sub">Loading…</div>'; wireLib(); return;
   }
   let h = '';
-  if (window.NODE) { const ns = Object.values(NODE).filter(n => n.title.toLowerCase().includes(q)).slice(0, 10); if (ns.length) h += '<div class="jl">Explore</div>' + ns.map(n => `<button class="kn bn" data-n="${n.id}"><b>${n.title}</b><span>${n.kind} · ${n.summary || ''}</span></button>`).join(''); }
+  if (typeof NODE !== 'undefined') { const ns = Object.values(NODE).filter(n => n.title.toLowerCase().includes(q)).slice(0, 10); if (ns.length) h += '<div class="jl">Explore</div>' + ns.map(n => `<button class="kn bn" data-n="${n.id}"><b>${n.title}</b><span>${n.kind} · ${n.summary || ''}</span></button>`).join(''); }
   if (KN) { const ks = KN.filter(n => n.title.toLowerCase().includes(q) || (n.basics || '').toLowerCase().includes(q)).slice(0, 8); if (ks.length) h += '<div class="jl">Knowledge map</div>' + ks.map(n => `<button class="kn simhit" data-k="${n.id}"><b>${n.title}</b><span>${n.certainty} · level ${n.level}</span></button>`).join(''); }
   const L = /[a-z]/.test(q[0]) ? q[0] : '0';
   const sh = termShards[L];
@@ -170,7 +170,8 @@ function updateRuler() {
 /* ================= TOUR (continuous Powers-of-Ten flight) ================= */
 let tour = null;
 function startTour(dirIn) {
-  const list = dirIn ? LANDMARKS.slice().sort((a, b) => b.D - a.D) : LANDMARKS.slice().sort((a, b) => a.D - b.D);
+  const spine = LANDMARKS.filter(L => !L.side); // side branches (organs, the phone, the black hole) are ruler stops, not tour stops
+  const list = dirIn ? spine.sort((a, b) => b.D - a.D) : spine.sort((a, b) => a.D - b.D);
   const view = cam.D * 2 * Math.tan(25 * Math.PI / 180);
   const rest = list.filter(L => dirIn ? L.D < view * .9 : L.D > view * 1.1);
   if (!rest.length) { message('Nothing further in that direction.'); return; }
@@ -212,9 +213,9 @@ function loop(now) {
   orthoUp();
   reanchor();
   computeActive();
-  for (const f of active) { f.ensure(); if (f.place) f.place(); }
-  if (typeof bloom !== 'undefined' && bloom) bloom.strength = active.some(f => f.illo && f.alpha > .3 && cam.D < 6) ? .03 : .55;
-  for (const f of active) { placeFrameCam(f); applyFade(f); if (f.update) f.update(dt, clock, f); }
+  for (const f of drawn) { f.ensure(); if (f.place) f.place(); }
+  if (typeof bloom !== 'undefined' && bloom) bloom.strength = drawn.some(f => f.illo && f.alpha > .3 && cam.D < 6) ? .03 : .55;
+  for (const f of drawn) { placeFrameCam(f); applyFade(f); if (f.update) f.update(dt, clock, f); }
   if (composer) composer.render(); else renderFrames(renderer);
   updateLabels(); updateCaption(); updateRuler();
   if ((hoverTick += dt) > .12 || mouse.dirty) { hoverTick = 0; doHover(); }

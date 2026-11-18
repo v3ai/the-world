@@ -1,6 +1,10 @@
 'use strict';
 /* ===== adapter: run a v2 builder inside a v3 frame, scaled to real size ===== */
 const BUILD = {};
+/* Extension points for feature modules (js/atom.js, js/particles.js, js/things.js ...), so they never edit world_build.js:
+   WORLD_EXT.push(async FR => {...})   runs once inside buildWorld(), after the fixed frames exist and before the ruler is built;
+   EXT_LANDMARKS.push({label, D, go})  adds a stop to the scale ruler and the tours (go receives the tour's `then` callback). */
+const WORLD_EXT = [], EXT_LANDMARKS = [];
 function v2frame(type, v2key, scaleFn, extra) {
   FT[type] = {
     build(F, opts) {

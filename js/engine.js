@@ -129,7 +129,7 @@ function reanchor() {
   for (let g = 0; g < 60; g++) {
     const A = cam.A; A.ensure(); let next = null;
     for (const c of A.children) { if (c.place) c.place(); if (cam.D <= c.r1 && c.containsP(cam.T)) { next = c; break; } }
-    if (!next && A.spawn && cam.D < (A.spawnD || A.r0 * 1.6)) next = trySpawn(A);
+    if (!next && A.spawn && !fly && cam.D < (A.spawnD || A.r0 * 1.6)) next = trySpawn(A); // a flight heads for a frame that already exists: never spawn stand-ins on the way
     if (!next) break;
     descend(next);
   }
@@ -157,7 +157,8 @@ function trySpawn(A) {
 function camPosIn(f, out) { out.copy(cam.dir).multiplyScalar(cam.D / cam.A.unit).add(cam.T); return convertP(out, cam.A, f); }
 
 /* ================= ACTIVE FRAMES & RENDER ================= */
-let active = [];  // frames rendered this tick, outermost first
+let active = [];  // frames on the camera's chain this tick, outermost first
+let drawn = [];   // everything rendered this tick, in draw order: the chain plus co-rendered neighbours (see computeActive)
 function frameAlpha(f) {
   let a = 1;
   if (f !== cam.A || true) {
@@ -169,13 +170,41 @@ function frameAlpha(f) {
 function computeActive() {
   const ch = chainOf(cam.A).reverse(); // root ... A
   const list = [];
-  for (const f of ch) { const a = f === cam.A ? Math.max(frameAlpha(f), cam.D < f.r0 ? 1 : 0) : frameAlpha(f); f.alpha = a; if (a > .004) list.push(f); }
+  for (const f of ch) {
+    let a = f === cam.A ? Math.max(frameAlpha(f), cam.D < f.r0 ? 1 : 0) : frameAlpha(f);
+    if (f.coRender && f.parent && f.parent.unit === f.unit) a = coAlpha(f); // a neighbour looks the same whether or not the camera is anchored in it
+    f.alpha = a; if (a > .004) list.push(f);
+  }
   if (!list.includes(cam.A)) list.push(cam.A);
   // an inner frame with an opaque environment hides everything behind it
   let start = 0; for (let i = list.length - 1; i >= 0; i--) if (list[i].env && list[i].env.opaque && list[i].alpha > .995) { start = i; break; }
   active = list.slice(start);
   // proxies: hide the parent's stand-in when its child frame is fully shown
   for (const f of ch) if (f.proxy) f.proxy.visible = !(f.alpha > .98 && active.includes(f));
+  // Neighbours. A child marked coRender (same unit as its parent) is drawn whenever its parent is, even when the camera
+  // is not anchored inside it, and shares the parent's depth buffer so near things hide far things across frames.
+  drawn = [];
+  for (const f of active) {
+    f._share = !!(f.coRender && f.parent && f.parent.unit === f.unit && drawn.includes(f.parent));
+    drawn.push(f);
+    for (const c of f.children) {
+      if (!c.coRender || c.unit !== f.unit || active.includes(c)) continue;
+      if (c.place) c.place();
+      const a = coAlpha(c);
+      c.alpha = a; c._share = true;
+      if (c.proxy) c.proxy.visible = !(a > .98);
+      if (a > .004) drawn.push(c);
+    }
+  }
+}
+const _cv = new V3();
+// visibility of a co-rendered child: its parent's, fading out with the camera's distance from it (coMax metres, default r1)
+function coAlpha(c) {
+  const p = c.parent, lim = c.coMax || c.r1;
+  const pa = p === cam.A ? 1 : (p.alpha ?? 1);
+  if (lim === Infinity) return pa;
+  const dist = camPosIn(p, _cv).distanceTo(c.pos) * p.unit;
+  return Math.min(pa, 1 - smooth(lim * .7, lim, dist));
 }
 function applyFade(f) {
   const a = f.alpha;
@@ -198,17 +227,19 @@ function placeFrameCam(f) {
   const c = f.cam, dl = cam.D / f.unit;
   c.position.set(0, 0, 0); c.up.copy(_uv); c.lookAt(_dv.negate());
   c.near = Math.max(dl * 2e-4, 1e-9); c.far = Math.max(dl * 1e7, f.radius * 8 + _cp.length() * 4);
+  if (f._share) { c.near = f.parent.cam.near; c.far = f.parent.cam.far; } // same projection as the parent, so depths compare
   c.aspect = W / H; c.updateProjectionMatrix();
   f.dLoc = dl;
 }
 let simTime = Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate(), 12, 0, 0), timeSpeed = 1, clock = 0;
 function renderFrames(r) {
   r.setClearColor(0x000000, 1); r.clear(true, true, true);
-  active.forEach((f, i) => {
+  drawn.forEach((f, i) => {
+    if (!f.scene) return;
     const bg = f.scene.background;
     if (i > 0) f.scene.background = null;
     else if (f.env && f.env.bg !== undefined && !bg) { r.setClearColor(f.env.bg, 1); r.clear(true, true, true); }
-    r.clearDepth();
+    if (!f._share) r.clearDepth();
     r.render(f.scene, f.cam);
     f.scene.background = bg;
   });
@@ -273,21 +304,21 @@ function orthoUp() { cam.dir.normalize(); cam.up.sub(cam.dir.clone().multiplySca
 // fly to a point in a frame, ending at distance Dgoal (meters). Zooms out, travels, zooms in as needed.
 function flyTo(frame, pointLocal, Dgoal, then) {
   zoom.pending = 0; zoom.pivot = null; anchored.length = 0;
-  frame.ensure && frame.parent && frame.parent.ensure();
+  chainOf(frame).reverse().forEach(f => { f.ensure(); if (f.place) f.place(); }); // the whole path must exist and be in position
   fly = { frame, p: pointLocal.clone(), Dg: Dgoal, then, t: 0 };
 }
 function stepFly(dt) {
   const F = fly; F.t += dt;
   const g = F.p.clone(); convertP(g, F.frame, cam.A);
   const distM = g.distanceTo(cam.T) * cam.A.unit;
-  const wantD = distM > cam.D * .6 ? Math.max(F.Dg, distM * 2.2) : F.Dg;
+  const wantD = Math.max(F.Dg, distM * (distM > cam.D * .6 ? 2.2 : 3)); // never zoom in faster than the target is being centred
   const lnD = Math.log(cam.D), lnW = Math.log(wantD);
   let dl = (lnW - lnD) * (1 - Math.exp(-dt * 2.6)); dl = clamp(dl, -dt * 4.2, dt * 4.2);
   cam.D = Math.exp(lnD + dl);
   if (distM > cam.D * .6) { const stepM = Math.min(distM, cam.D * dt * 1.6); cam.T.add(g.sub(cam.T).multiplyScalar(stepM / distM)); }
   else cam.T.lerp(g, 1 - Math.exp(-dt * 4));
   if (distM < cam.D * .02 && Math.abs(lnW - Math.log(cam.D)) < .03) { const t = F.then; fly = null; if (t) t(); }
-  if (F.t > 40) fly = null;
+  if (fly === F && F.t > 60) { const t = F.then; jumpTo(F.frame, F.p, F.Dg); if (t) t(); } // never strand a tour: finish the trip
 }
 // pointer handlers
 const pointers = new Map(); let dragMoved = false, downPos = null, pinchD = 0;
@@ -338,30 +369,35 @@ addEventListener('keydown', e => {
 /* ================= PICKING / HOVER ================= */
 const raycaster = new THREE.Raycaster(), ndc = new THREE.Vector2();
 raycaster.params.Points = { threshold: 1 }; raycaster.params.Line = { threshold: 1 };
+function pickFrame(f, forZoom) { // best candidate inside one frame: highest priority, then nearest
+  if (f.alpha < .5 || !f.pickables || !f.cam) return null;
+  raycaster.setFromCamera(ndc, f.cam);
+  raycaster.params.Points.threshold = f.dLoc * .012; raycaster.params.Line.threshold = f.dLoc * .01;
+  const hits = raycaster.intersectObjects(f.pickables, true);
+  let fb = null, bp = -Infinity;
+  for (const h of hits) {
+    if (!visibleChain(h.object)) continue;
+    let o = h.object; while (o && !o.userData.id && !o.userData.resolve) o = o.parent;
+    if (!o) continue;
+    const p = o.userData.priority ?? 1;
+    if (forZoom && o.userData.noZoom && hits.length > 1) continue;
+    if (p > bp) { fb = { frame: f, obj: o, hit: h }; bp = p; }
+  }
+  if (fb) { fb.meters = fb.hit.distance * f.unit; fb.pri = bp; }
+  return fb;
+}
 function pickAt(x, y, forZoom) {
   ndc.set(x / W * 2 - 1, -(y / H) * 2 + 1);
   let best = null;
-  for (let i = active.length - 1; i >= 0; i--) {
-    const f = active[i]; if (f.alpha < .5 || !f.pickables) continue;
-    raycaster.setFromCamera(ndc, f.cam);
-    raycaster.params.Points.threshold = f.dLoc * .012; raycaster.params.Line.threshold = f.dLoc * .01;
-    const hits = raycaster.intersectObjects(f.pickables, true);
-    let fb = null, bp = -Infinity;
-    for (const h of hits) {
-      if (!visibleChain(h.object)) continue;
-      let o = h.object; while (o && !o.userData.id && !o.userData.resolve) o = o.parent;
-      if (!o) continue;
-      const p = o.userData.priority ?? 1;
-      if (forZoom && o.userData.noZoom && hits.length > 1) continue;
-      if (p > bp) { fb = { frame: f, obj: o, hit: h }; bp = p; }
+  // Walk inward to outward. Frames that share a depth buffer (a parent and its co-rendered children) form one group and
+  // the nearest surface in the group wins; otherwise the innermost frame with a hit wins, since it is drawn on top.
+  for (let i = drawn.length - 1; i >= 0 && !best;) {
+    let j = i; while (j > 0 && drawn[j]._share) j--;
+    for (let k = j; k <= i; k++) {
+      const c = pickFrame(drawn[k], forZoom); if (!c) continue;
+      if (!best || c.meters < best.meters) best = c;
     }
-    if (fb) {
-      const meters = fb.hit.distance * f.unit;
-      if (!best || meters < best.meters * .999 || (fb.obj.userData.priority ?? 1) > (best.obj.userData.priority ?? 1) + 1) {
-        best = Object.assign(fb, { meters });
-      }
-      break; // innermost frame with a hit wins: it holds the nearest, smallest-scale content
-    }
+    i = j - 1;
   }
   if (!best) return null;
   const f = best.frame;
@@ -429,7 +465,7 @@ function addLabelTo(f, obj, text, o = {}) {
 const _lv = new V3(), _lo = new V3();
 function updateLabels() {
   const shown = new Set();
-  for (const f of active) {
+  for (const f of drawn) {
     if (f.alpha < .6 || !f.labels) continue;
     if (f !== cam.A && f.dLoc < f.radius * 1e-3) continue; // outer frames: only when their structure is in view
     for (const L of f.labels) {

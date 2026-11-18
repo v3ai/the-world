@@ -246,10 +246,10 @@ function buildTeardown(body) {
   tearReg('finfet_transistor', fin, new V3(0, 0, 23), 1.6e-7); tearReg('silicon_channel', si, new V3(), 3e-9);
   Object.assign(FR, { phone, die, core, cells, inv, fin, si });
   return [
-    { label: 'Your phone', D: .3, go: () => flyTo(phone, new V3(), .3) },
-    { label: 'Phone processor', D: .018, go: () => flyTo(die, new V3(), .018) },
-    { label: 'CPU core', D: 3e-3, go: () => flyTo(core, new V3(), 3e-3) },
-    { label: 'Logic gates', D: 6e-6, go: () => flyTo(cells, new V3(), 6e-6) },
-    { label: 'Transistor', D: 2.4e-7, go: () => flyTo(fin, new V3(0, 0, 23), 2.4e-7) },
+    { label: 'Your phone', D: .3, side: true, go: then => flyTo(phone, new V3(), .3, then) },
+    { label: 'Phone processor', D: .018, side: true, go: then => flyTo(die, new V3(), .018, then) },
+    { label: 'CPU core', D: 3e-3, side: true, go: then => flyTo(core, new V3(), 3e-3, then) },
+    { label: 'Logic gates', D: 6e-6, side: true, go: then => flyTo(cells, new V3(), 6e-6, then) },
+    { label: 'Transistor', D: 2.4e-7, side: true, go: then => flyTo(fin, new V3(0, 0, 23), 2.4e-7, then) },
   ];
 }

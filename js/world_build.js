@@ -33,10 +33,10 @@ async function buildWorld() {
   const park = region.addChild(new Frame({ type: 'park', name: 'Greenwich Park', unit: 1, radius: 500, r0: 2e-4, r1: 3500, up: new V3(0, 1, 0), maxPolar: Math.PI / 2 - .03 }));
   FR.park = park;
   const body = park.addChild(new Frame({ type: 'body', name: 'Human body', unit: 1, radius: 1.3, r0: 0, r1: 90, up: new V3(0, 1, 0), pos: new V3(0, 0, 0) }));
-  body.noFade = true; FR.body = body;
+  body.noFade = true; body.coRender = true; body.coMax = 400; FR.body = body;
   const devLM = buildTeardown(body);
   const AN = await loadAnatomyIndex(); loadNodes();
-  const bodyLM = (id, label, D) => { const p = AN && AN.byId[id]; return p ? { label, D, go: () => flyTo(body, new V3(...p.center), D) } : null; };
+  const bodyLM = (id, label, D) => { const p = AN && AN.byId[id]; return p ? { label, D, side: true, go: then => flyTo(body, new V3(...p.center), D, then) } : null; };
   const skin = park.addChild(microFrame('skin', new V3(0, 1.2, .2)));
   skin.place = () => {
     if (skin._placed || !park.built || !park.v2) return; skin._placed = true;
@@ -61,15 +61,16 @@ async function buildWorld() {
   pr.place = () => { if (nuc.nucleons) { const m = nuc.nucleons.find(m => m.userData.id === 'proton'); pr.pos.copy(m.position); } };
   FR.proton = pr;
 
-  const go = (f, p, D) => () => flyTo(f, p || new V3(), D);
+  for (const ext of WORLD_EXT) { try { await ext(FR); } catch (e) { console.error('world extension failed', e); } }
+  const go = (f, p, D) => then => flyTo(f, p || new V3(), D, then);
   LANDMARKS = [
-    { label: 'Proton', D: 3e-15, go: () => { FR.nuc.ensure(); pr.place(); flyTo(pr, new V3(), 3e-15); } },
+    { label: 'Proton', D: 3e-15, go: then => { FR.nuc.ensure(); pr.place(); flyTo(pr, new V3(), 3e-15, then); } },
     { label: 'Oxygen nucleus', D: 2.2e-14, go: go(nuc, null, 2.2e-14) },
-    { label: 'Oxygen atom', D: 3.2e-10, go: () => { atom.place(); flyTo(atom, new V3(), 3.2e-10); } },
+    { label: 'Oxygen atom', D: 3.2e-10, go: then => { atom.place(); flyTo(atom, new V3(), 3.2e-10, then); } },
     { label: 'Base pair (molecule)', D: 3e-9, go: go(bp, null, 3e-9) },
     { label: 'DNA', D: 2e-8, go: go(dna, null, 2e-8) },
     { label: 'Skin cell', D: 4e-5, go: go(cell, null, 4e-5) },
-    { label: 'Your skin', D: 1.5e-3, go: () => { skin.place(); flyTo(skin, new V3(), 1.5e-3); } },
+    { label: 'Your skin', D: 1.5e-3, go: then => { skin.place(); flyTo(skin, new V3(), 1.5e-3, then); } },
     ...devLM, bodyLM('cerebrum_r', 'Your brain', .5), bodyLM('heart', 'Your heart', .4),
     { label: 'You', D: 6, go: go(park, new V3(0, 1, 0), 6) },
     { label: 'Greenwich Park', D: 700, go: go(park, new V3(0, 0, 0), 700) },
@@ -81,12 +82,12 @@ async function buildWorld() {
     { label: 'Oort cloud', D: 5e16, go: go(ss, null, 5e16) },
     { label: 'Nearest stars', D: 5e17, go: go(nb, null, 5e17) },
     { label: 'Local stars', D: 6e18, go: go(nb, null, 6e18) },
-    { label: 'Black hole Sgr A*', D: 3e11, go: go(FR.sgr, null, 3e11) },
+    { label: 'Black hole Sgr A*', D: 3e11, side: true, go: go(FR.sgr, null, 3e11) },
     { label: 'Milky Way', D: 2e21, go: go(mw, null, 2e21) },
     { label: 'Local Group', D: 2e23, go: go(lg, null, 2e23) },
     { label: 'Cosmic web', D: 4e24, go: go(root, null, 4e24) },
     { label: 'Observable universe', D: 2e27, go: go(root, null, 2e27) },
-  ].filter(Boolean);
+  ].filter(Boolean).concat(EXT_LANDMARKS);
   return root;
 }
 function startView() {

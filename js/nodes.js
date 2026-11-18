@@ -242,7 +242,7 @@ FT.tissue = {
         g.position.set((i % 3 - 1) * 200, (Math.floor(i / 3) - .5) * 180, (r() - .5) * 60); F.add(pick(g, 'neuron')); }
       for (let i = 0; i < 14; i++) { const g = inked(new THREE.IcosahedronGeometry(7, 1), 0x8fc0e8); g.position.set((r() - .5) * 600, (r() - .5) * 400, (r() - .5) * 80); F.add(pick(g, 'astrocyte')); }
     } else if (K === 'villi') {
-      for (let i = 0; i < 25; i++) { const h = 500 + r() * 200; const g = inked(new THREE.CapsuleGeometry ? new THREE.CylinderGeometry(55, 70, h, 32) : new THREE.CylinderGeometry(55, 70, h, 32), pal[0]); g.position.set((i % 5 - 2) * 170, h / 2 - 300, (Math.floor(i / 5) - 2) * 170); F.add(pick(g, NODE.villi ? 'villi' : 'enterocyte')); }
+      for (let i = 0; i < 25; i++) { const h = 500 + r() * 200; const g = inked(new THREE.CylinderGeometry(55, 70, h, 32), pal[0]); g.position.set((i % 5 - 2) * 170, h / 2 - 300, (Math.floor(i / 5) - 2) * 170); F.add(pick(g, NODE.villi ? 'villi' : 'enterocyte')); }
     } else if (K === 'liver') {
       for (let i = 0; i < 60; i++) { const g = inked(new THREE.BoxGeometry(24, 24, 24), pal[0]); const a = i / 60 * TAU * 3, d = 60 + (i % 20) * 12; g.position.set(Math.cos(a) * d, (r() - .5) * 20, Math.sin(a) * d); g.rotation.y = -a; const nu = inked(new THREE.SphereGeometry(5, 10, 8), nucMat); g.add(nu); F.add(pick(g, 'hepatocyte')); }
       const cv = inked(new THREE.CylinderGeometry(25, 25, 80, 24), 0x3b6fd6); F.add(pick(cv, NODE.liver_lobule ? 'liver_lobule' : 'hepatocyte'));
@@ -304,7 +304,7 @@ function showBodyNode(id, h) {
 function focusNode(id) { // fly to a node if it is drawn somewhere nearby, else just show its info
   const ms = (PARTMESH[id] || []).filter(m => m.parent && m.visible !== false);
   const m = ms.find(x => { let o = x; while (o && o.parent) o = o.parent; return true; });
-  const F = m && active.find(f => f.root && isUnder(m, f.root));
+  const F = m && drawn.find(f => f.root && isUnder(m, f.root));
   if (m && F) {
     const c = m.userData.center ? m.userData.center() : m.getWorldPosition(new V3()).add(F.C), r = m.userData.radius ? m.userData.radius() : .05;
     const h = { frame: F, obj: m, id, pointLocal: c.clone() }; showBodyNode(id, h); flyTo(F, c, Math.max(r * 4, F.unit * 1e-3));
