@@ -26,6 +26,12 @@ function thGeo(id, bundle, key) {   // one shared BufferGeometry per mesh key
 const TH_CARDS = {};
 function thCardTexture(c) {
   const key = JSON.stringify(c); if (TH_CARDS[key]) return TH_CARDS[key];
+  if (c.kind === 'leaf_cluster') {   // a rosette of lobed leaves, for the middle distance
+    const S = 192, cv = document.createElement('canvas'); cv.width = S; cv.height = S; const g = cv.getContext('2d'); let sd = 7; const rn = () => (sd = (sd * 1664525 + 1013904223) >>> 0) / 4294967296;
+    const leaf = (x, y, ang, len, shade) => { g.save(); g.translate(x, y); g.rotate(ang); const wd = len * .36, N = 28; g.beginPath(); for (let i = 0; i <= N; i++) { const t = i / N, e = Math.pow(t, .85) * Math.pow(1 - t, .55) * 2.9, lob = 1 - .5 * (.5 - .5 * Math.cos(Math.PI * 8 * (t - .02))); g.lineTo(e * lob * wd, -t * len); } for (let i = N; i >= 0; i--) { const t = i / N, e = Math.pow(t, .85) * Math.pow(1 - t, .55) * 2.9, lob = 1 - .5 * (.5 - .5 * Math.cos(Math.PI * 8 * (t - .02))); g.lineTo(-e * lob * wd, -t * len); } g.closePath(); const v = Math.round(255 * shade); g.fillStyle = `rgb(${v},${v},${v})`; g.fill(); g.restore(); };
+    for (let k = 0; k < 15; k++) { const a = (k / 15 - .5) * 3.1 + (rn() - .5) * .4, ring = k % 2 ? .0 : .1; leaf(S * (.5 + (rn() - .5) * .18), S * (.62 + ring + (rn() - .5) * .1), a, S * (.34 + .12 * rn()), .72 + .28 * rn()); }
+    const tx = new THREE.CanvasTexture(cv); tx.anisotropy = 4; return TH_CARDS[key] = tx;
+  }
   const W = 128, H = Math.round(W / (c.aspect || .7)), cv = document.createElement('canvas'); cv.width = W; cv.height = H; const g = cv.getContext('2d');
   // outline: half-width as a function of t along the length (0 = base, 1 = tip); lobes rounded, cut no deeper than `depth` of the half-width
   const hw = t => { const env = Math.pow(Math.max(t, 0), .85) * Math.pow(1 - t, .55) / (Math.pow(.85 / 1.4, .85) * Math.pow(.55 / 1.4, .55)), lob = 1 - (c.depth ?? .5) * (.5 - .5 * Math.cos(Math.PI * 2 * (c.lobes || 4) * (t - .02) )), aur = c.base_lobes ? .22 * Math.exp(-Math.pow((t - .06) / .05, 2)) : 0; return Math.min(1, env * lob * (t < .04 ? t / .04 : 1) + aur); };
