@@ -38,3 +38,9 @@ the downloaded NIST table.
 - `tools/atom/orbital_test.html` (serve the repo root, open `/tools/atom/orbital_test.html`): any Z, n, l, m, real or
   complex, whole atom, superposition, cutaway, dot count. URL parameters: `mode=orbital|shells|super`, `z`, `n`, `l`,
   `m`, `fam=cos`, `sup=1s2p0|1s2p1|1s2s`, `dots`, `cut=1`, `clean=1` (hide the panel), `az`, `el`.
+
+## Stage A3: topic and element cards
+
+`python3 tools/atom/build_nodes.py` writes `data/nodes/phys_atom.json` (19 topic cards with ids `at_*` and one card `at_el_<Symbol>` per element,
+generated from `data/elements.json` and `data/atomic/*.json`) and `data/viz/atom.json` (one figure per topic card). Validate the figures with
+`node tools/viz/validate.mjs data/viz/atom.json`.
