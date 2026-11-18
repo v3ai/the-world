@@ -127,8 +127,8 @@ PX.btn = (id, text, alt = true) => `<button class="zoom${alt ? ' alt' : ''}" dat
 PX.FLAV = { u: { node: 'sm_up', name: 'Up quark', q: '+⅔' }, d: { node: 'sm_down', name: 'Down quark', q: '−⅓' }, s: { node: 'sm_strange', name: 'Strange quark', q: '−⅓' } };
 PX.quarksOf = kind => kind === 'neutron' ? ['u', 'd', 'd'] : ['u', 'u', 'd'];
 PX.PR = 0.84;      // fm: the measured charge radius of the proton (PDG 2026: 0.8407 ± 0.0006 fm); the neutron's is smaller and not a plain radius
-PX.dashRing = (key, col) => canvasTex('px|ring|' + key, 512, 512, g => {
-  g.clearRect(0, 0, 512, 512); g.strokeStyle = col; g.lineWidth = 3; g.setLineDash([10, 9]); g.beginPath(); g.arc(256, 256, 250, 0, TAU); g.stroke();
+PX.dashRing = (key, col, lw) => canvasTex('px|ring|' + key, 512, 512, g => {
+  g.clearRect(0, 0, 512, 512); g.strokeStyle = col; g.lineWidth = lw || 3; g.setLineDash([10, 9]); g.beginPath(); g.arc(256, 256, 250, 0, TAU); g.stroke();
 });
 FT.proton = {
   build(F, o) {
@@ -354,3 +354,543 @@ FT.nucleus = {
 };
 /* a frame for the standard-model view, entered from a proton frame by zooming into it (stub until the view is built below) */
 PX.smFrame = () => null;
+
+/* =====================================================================
+   THE STANDARD MODEL VIEW (FT.sm, unit 1e-18 m)
+   Not a place: the list of what matter and the forces (except gravity) are made of, as far as experiments have reached.
+   ===================================================================== */
+PX.SM = { mode: 'overview', anti: false, force: 'strong', sel: null, decay: { i: 0 }, had: [], errs: 'mag' };
+/* how each particle is drawn: symbol pieces, short label, overview grid position (x, y, z; units of 1e-18 m, arbitrary) */
+PX.META = {
+  up: { m: { main: 'u' }, a: { main: 'u', anti: true }, short: 'up', aname: 'anti-up', x: -5, y: 6.3 },
+  charm: { m: { main: 'c' }, a: { main: 'c', anti: true }, short: 'charm', aname: 'anti-charm', x: 0, y: 6.3 },
+  top: { m: { main: 't' }, a: { main: 't', anti: true }, short: 'top', aname: 'anti-top', x: 5, y: 6.3 },
+  down: { m: { main: 'd' }, a: { main: 'd', anti: true }, short: 'down', aname: 'anti-down', x: -5, y: 2.1 },
+  strange: { m: { main: 's' }, a: { main: 's', anti: true }, short: 'strange', aname: 'anti-strange', x: 0, y: 2.1 },
+  bottom: { m: { main: 'b' }, a: { main: 'b', anti: true }, short: 'bottom', aname: 'anti-bottom', x: 5, y: 2.1 },
+  electron: { m: { main: 'e', sup: '−' }, a: { main: 'e', sup: '+' }, short: 'electron', aname: 'positron', x: -5, y: -2.1 },
+  muon: { m: { main: 'μ', sup: '−' }, a: { main: 'μ', sup: '+' }, short: 'muon', aname: 'antimuon', x: 0, y: -2.1 },
+  tau: { m: { main: 'τ', sup: '−' }, a: { main: 'τ', sup: '+' }, short: 'tau', aname: 'antitau', x: 5, y: -2.1 },
+  nu_e: { m: { main: 'ν', sub: 'e' }, a: { main: 'ν', sub: 'e', anti: true }, short: 'e neutrino', aname: 'anti-e-neutrino', x: -5, y: -6.3 },
+  nu_mu: { m: { main: 'ν', sub: 'μ' }, a: { main: 'ν', sub: 'μ', anti: true }, short: 'μ neutrino', aname: 'anti-μ-neutrino', x: 0, y: -6.3 },
+  nu_tau: { m: { main: 'ν', sub: 'τ' }, a: { main: 'ν', sub: 'τ', anti: true }, short: 'τ neutrino', aname: 'anti-τ-neutrino', x: 5, y: -6.3 },
+  gluon: { m: { main: 'g' }, a: { main: 'g' }, short: 'gluon', self: true, x: 9.8, y: 6.3 },
+  photon: { m: { main: 'γ' }, a: { main: 'γ' }, short: 'photon', self: true, x: 9.8, y: 2.1 },
+  z_boson: { m: { main: 'Z', sup: '0' }, a: { main: 'Z', sup: '0' }, short: 'Z boson', self: true, x: 9.8, y: -2.1 },
+  w_boson: { m: { main: 'W', sup: '±' }, a: { main: 'W', sup: '±' }, short: 'W boson', aname: 'W⁻ (the W⁺ and W⁻ are each other\'s antiparticle)', x: 9.8, y: -6.3 },
+  higgs: { m: { main: 'H' }, a: { main: 'H' }, short: 'Higgs', self: true, x: 14.4, y: 0 },
+};
+PX.ORDER = ['up', 'charm', 'top', 'down', 'strange', 'bottom', 'electron', 'muon', 'tau', 'nu_e', 'nu_mu', 'nu_tau', 'gluon', 'photon', 'z_boson', 'w_boson', 'higgs'];
+PX.gridPos = (id, out) => { const M = PX.META[id]; return out.set(M.x, M.y, id === 'higgs' ? -.5 : M.x > 8 ? 2.2 : .06 * M.x * M.x); };
+/* mass axis: y = (log10(mass in eV) - 5) * 1.5 */
+PX.my = ev => (Math.log10(ev) - 5) * 1.5;
+PX.MASSX = { up: -7.6, down: -5.4, strange: -7.6, charm: -5.4, bottom: -7.6, top: -5.4, electron: -1.8, muon: -1.8, tau: -1.8, nu_e: 1.9, nu_mu: 3.3, nu_tau: 4.7, w_boson: 4.6, z_boson: 8.0, higgs: 11.4, gluon: 6.6, photon: 10.0 };
+PX.MASSLESS_Y = -12.8;
+PX.massPos = (id, out) => {
+  const d = PX.P[id], x = PX.MASSX[id];
+  if (id.startsWith('nu_')) return out.set(x, (PX.my(.05) + PX.my(.45)) / 2, 0);
+  if (d.mass && d.mass.eV) return out.set(x, PX.my(d.mass.eV), 0);
+  return out.set(x, PX.MASSLESS_Y, 0);
+};
+/* quantum numbers for the decay bookkeeping (charge, lepton number, baryon number); the same table the checker uses */
+PX.QN = (() => {
+  const Q = {}, a = (n, q, L, B) => { Q[n] = [q, L, B]; };
+  ['e', 'mu', 'tau'].forEach(f => { a(f + '-', -1, 1, 0); a(f + '+', 1, -1, 0); a('nu_' + f, 0, 1, 0); a('nubar_' + f, 0, -1, 0); });
+  [['u', 2], ['c', 2], ['t', 2], ['d', -1], ['s', -1], ['b', -1]].forEach(([n, q3]) => { a(n, q3 / 3, 0, 1 / 3); a(n + 'bar', -q3 / 3, 0, -1 / 3); });
+  ['gamma', 'g', 'Z', 'H', 'pi0'].forEach(n => a(n, 0, 0, 0)); a('W+', 1, 0, 0); a('W-', -1, 0, 0); a('pi+', 1, 0, 0); a('pi-', -1, 0, 0); a('p', 1, 0, 1); a('n', 0, 0, 1);
+  return Q;
+})();
+/* how to write each decay product, and which of the data's generic products stands for which real one in the examples */
+PX.KEY = {
+  'e-': ['e⁻', 'electron'], 'e+': ['e⁺', 'positron'], 'mu-': ['μ⁻', 'muon'], 'mu+': ['μ⁺', 'antimuon'], 'tau-': ['τ⁻', 'tau'], 'tau+': ['τ⁺', 'antitau'],
+  nu_e: ['νₑ', 'e neutrino'], nu_mu: ['ν_μ', 'μ neutrino'], nu_tau: ['ν_τ', 'τ neutrino'], nubar_e: ['ν̄ₑ', 'anti-e-neutrino'], nubar_mu: ['ν̄_μ', 'anti-μ-neutrino'], nubar_tau: ['ν̄_τ', 'anti-τ-neutrino'],
+  u: ['u', 'up'], d: ['d', 'down'], s: ['s', 'strange'], c: ['c', 'charm'], b: ['b', 'bottom'], t: ['t', 'top'], ubar: ['ū', 'anti-up'], dbar: ['d̄', 'anti-down'], sbar: ['s̄', 'anti-strange'], cbar: ['c̄', 'anti-charm'], bbar: ['b̄', 'anti-bottom'],
+  gamma: ['γ', 'photon'], g: ['g', 'gluon'], Z: ['Z⁰', 'Z boson'], H: ['H', 'Higgs'], 'W+': ['W⁺', 'W boson'], 'W-': ['W⁻', 'W boson'], 'pi+': ['π⁺', 'pion'], 'pi-': ['π⁻', 'pion'], pi0: ['π⁰', 'pion'], p: ['p', 'proton'], n: ['n', 'neutron'],
+};
+PX.EXAMPLE = { 'W+|hadrons': ['u', 'dbar'], 'Z|hadrons': ['b', 'bbar'], 'W+|lepton+,nu': ['e+', 'nu_e'], 'Z|lepton+,lepton-': ['e+', 'e-'], 'Z|nu,nubar': ['nu_e', 'nubar_e'] };
+PX.KEYMASS = { 'e-': 'electron', 'e+': 'electron', 'mu-': 'muon', 'mu+': 'muon', 'tau-': 'tau', 'tau+': 'tau', 'W+': 'w_boson', 'W-': 'w_boson', Z: 'z_boson', H: 'higgs' };
+/* every decay we can show: [{parent, label, in, out, note, br, virtualW}] */
+PX.decayList = () => {
+  const out = [];
+  ['muon', 'tau', 'top', 'w_boson', 'z_boson', 'higgs', 'strange', 'charm', 'bottom', 'down'].forEach(id => {
+    const d = PX.P[id];
+    (d.decays || []).forEach(dc => {
+      if (!dc.out || !dc.out.length) return;
+      let o = dc.out, ex = null; const k = dc.in.join(',') + '|' + o.join(','); if (PX.EXAMPLE[k]) { o = PX.EXAMPLE[k]; ex = true; }
+      if (!o.every(x => PX.QN[x] && PX.KEY[x])) return;
+      const parent = dc.in[0];
+      out.push({ pid: id, parent, in: dc.in, out: o, label: dc.label, note: dc.note || '', br: dc.br && dc.br.value, example: ex, virtualW: ['s', 'c', 'b', 'd'].includes(parent) && o.includes('W+') || o.includes('W-') && ['s', 'c', 'b', 'd'].includes(parent) });
+    });
+  });
+  const n = PX.H.neutron;
+  out.splice(out.findIndex(x => x.pid === 'tau') + 4, 0, { pid: 'neutron', parent: 'n', in: ['n'], out: ['p', 'e-', 'nubar_e'], label: 'n → p + e⁻ + ν̄ₑ', note: 'Beta decay: inside the neutron a down quark turns into an up quark by emitting a (virtual) W⁻, which becomes the electron and the antineutrino. A free neutron lasts about 15 minutes; PDG mean life ' + (n && n.lifetime && n.lifetime.ref ? n.lifetime.ref.display : '878 s') + '.', br: null, example: false });
+  return out;
+};
+PX.massEV = key => { // rest energy in eV of a decay product, or null when it is not a single well-defined number
+  if (key === 'p') return PX.H.proton.mass.value * 1e6; if (key === 'n') return PX.H.neutron.mass.value * 1e6;
+  if (key === 'pi+' || key === 'pi-') return PX.H.pi_plus.mass.value * 1e6; if (key === 'pi0') return PX.H.pi_zero.mass.value * 1e6;
+  if (key === 'gamma') return 0; if (/^nu/.test(key)) return 0;
+  const id = PX.KEYMASS[key]; if (id && PX.P[id].mass && PX.P[id].mass.eV) return PX.P[id].mass.eV; return null;
+};
+PX.tot = names => { let q = 0, L = 0, B = 0; names.forEach(n => { const v = PX.QN[n]; q += v[0]; L += v[1]; B += v[2]; }); const r = x => Math.round(x * 3) / 3; return [r(q), Math.round(L), r(B)]; };
+PX.fr3 = x => { const t = Math.round(x * 3); if (t % 3 === 0) return String(t / 3); const s = t < 0 ? '−' : ''; const a = Math.abs(t); return s + (a >= 3 ? Math.floor(a / 3) + ' ' : '') + (a % 3) + '/3'; };
+PX.eVtext = ev => ev >= 1e9 ? (ev / 1e9).toPrecision(4).replace(/\.?0+$/, '') + ' GeV' : ev >= 1e6 ? (ev / 1e6).toPrecision(4).replace(/\.?0+$/, '') + ' MeV' : ev >= 1e3 ? (ev / 1e3).toPrecision(4) + ' keV' : ev.toPrecision(3) + ' eV';
+
+PX.famColor = d => d.id.startsWith('nu_') ? PX.COL.neutrino : d.family === 'quark' ? PX.COL.quark : d.family === 'lepton' ? PX.COL.lepton : d.id === 'higgs' ? PX.COL.higgs : PX.COL.boson;
+PX.glyphSpec = (id, anti) => { const M = PX.META[id], d = PX.P[id], g = Object.assign({}, anti ? M.a : M.m); let c = d.charge; g.line = anti && !M.self ? PX.chgText(c, true) : PX.chgText(c); return g; };
+PX.accent = { strong: 0xe2533f, em: 0xf0c330, weak: 0x4aa3df, higgs: 0xe9c94f, gravity: 0xb9c2d3 };
+PX.ringTex = () => canvasTex('px|ring2', 256, 256, g => { g.clearRect(0, 0, 256, 256); g.strokeStyle = '#fff'; g.lineWidth = 7; g.beginPath(); g.arc(128, 128, 100, 0, TAU); g.stroke(); const gr = g.createRadialGradient(128, 128, 90, 128, 128, 128); gr.addColorStop(0, 'rgba(255,255,255,.45)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, 256, 256); });
+PX.hollow = (orb, h) => { // 0 = solid toon ball, 1 = hollow (antimatter) ball with a coloured ink edge
+  const u = orb.userData; if (u.hol === h) return; u.hol = h;
+  u.parts[0].base = 1 - .78 * h; if (u.ol) { u.parts[1].base = .9 + .08 * h; const c = u.ol.material.uniforms.uColor.value; c.setHex(0x0a1020).lerp(u.body.material.color, h); u.ol.material.uniforms.uW.value = .0042 + .0035 * h; }
+};
+
+FT.sm = {
+  build(F, o) {
+    const D = PX.D; F.illo = true; F.env = { bg: 0x0a1120, opaque: true };
+    F.add(new THREE.HemisphereLight(0xe3ebff, 0x40486e, .8)); const dl = new THREE.DirectionalLight(0xffffff, .85); dl.position.set(3, 5, 6); F.add(dl);
+    F.name = 'The Standard Model';
+    F.blurb = 'The seventeen kinds of particle that, as far as experiments have reached, everything else is made of. Click any one.';
+    F.note = 'This is not a place. It is the list of everything matter and the forces (except gravity) are made of, as far as experiments have reached.';
+    F.r1 = F.r1 || 3e-16;
+    if (!D) { F.blurb = 'The particle data did not load.'; return; }
+    const SM = PX.SM, board = new THREE.Group(); F.add(board); F.board = board;
+    const P = {}; F.parts = P;
+    const hitFor = (g, id, node, title, pri) => { Object.assign(g.userData, { id, node, title, priority: pri }); F.pickables.push(g); };
+    PX.ORDER.forEach(id => {
+      const d = PX.P[id], M = PX.META[id];
+      const orb = PX.orb(1, PX.famColor(d), { glyph: PX.glyphSpec(id, false), halo: 3.7, haloA: 0, hitK: 1.05 });
+      hitFor(orb, d.node, d.node, d.name, 2); orb.userData.sm = id;
+      board.add(orb);
+      P[id] = { id, d, M, orb, pos: PX.gridPos(id, new V3()), tgt: new V3(), scale: 1, ts: 1, dim: 1, td: 1, hol: 0, th: 0, glow: 0, tg: 0, gcol: new THREE.Color(1, 1, 1), anti: false, ghost: false };
+      orb.position.copy(P[id].pos);
+      P[id].lab = F.label(orb, M.short, { offset: new V3(0, -1.55, 0) });
+    });
+    // the antiparticle shown beside a selected particle
+    const twin = PX.orb(.8, 0xffffff, { glyph: { main: 'u' }, hollow: true, hitK: 1.1 }); twin.visible = false; board.add(twin); twin.userData.id = 'sm_up'; twin.userData.priority = 1.9; twin.userData.node = 'sm_up'; F.pickables.push(twin);
+    const twinLab = F.label(twin, 'anti', { offset: new V3(0, -1.25, 0) });
+    // gravity: the missing one
+    const grav = new THREE.Group(); const gr = new THREE.Sprite(new THREE.SpriteMaterial({ map: PX.dashRing('grav', 'rgba(210,220,240,.9)', 12), transparent: true, depthWrite: false, opacity: .8 })); gr.scale.set(2.2, 2.2, 1); grav.add(gr);
+    const gq = new THREE.Sprite(new THREE.SpriteMaterial({ map: PX.glyph('?', { fg: '#c9d3e6' }), transparent: true, depthWrite: false })); gq.scale.set(1.3, 1.3, 1); grav.add(gq);
+    grav.add(new THREE.Mesh(new THREE.SphereGeometry(1.1, 10, 8), hitMat())); board.add(grav); hitFor(grav, 'sm_gravity', 'sm_gravity', 'Gravity (not in the Standard Model)', 1.8);
+    grav.userData.parts = [{ m: gr.material, base: .8 }, { m: gq.material, base: 1 }]; grav.position.set(14.4, -6.3, 0);
+    const gravLab = F.label(grav, 'gravity: not in the model', { offset: new V3(0, -1.5, 0) });
+    // headers (overview) and the mass axis (mass view)
+    const hdr = [];
+    const addHdr = (text, x, y, node, w) => { const g = new THREE.Object3D(); g.position.set(x, y, 0); g.userData = { id: node, node, title: text, priority: 1 }; board.add(g); const L = F.label(g, text, { cls: 'pxhd', pick: g, always: false }); hdr.push({ g, L, text }); };
+    ['Generation 1', 'Generation 2', 'Generation 3'].forEach((t, i) => addHdr(t, -5 + i * 5, 9.4, 'sm_generations'));
+    addHdr('Up-type quarks', -9.6, 6.3, 'sm_strong_force'); addHdr('Down-type quarks', -9.6, 2.1, 'sm_strong_force'); addHdr('Charged leptons', -9.6, -2.1, 'sm_generations'); addHdr('Neutrinos', -9.6, -6.3, 'sm_neutrino_oscillation');
+    addHdr('Force carriers', 9.8, 9.4, 'sm_interactions');
+    // mass-axis geometry
+    const axisG = new THREE.Group(); axisG.visible = false; board.add(axisG);
+    const ax = [], decades = [];
+    const yA = PX.my(1e-1), yB = PX.my(2e12); ax.push(-11, yA, 0, -11, yB, 0);
+    for (let e = 0; e <= 12; e++) { const y = PX.my(Math.pow(10, e)), L = e % 3 === 0 ? .6 : .3; ax.push(-11, y, 0, -11 + L, y, 0); }
+    ax.push(-11, PX.MASSLESS_Y, 0, 13.6, PX.MASSLESS_Y, 0);
+    const axGeo = new THREE.BufferGeometry(); axGeo.setAttribute('position', new THREE.Float32BufferAttribute(ax, 3));
+    const axMat = new THREE.LineBasicMaterial({ color: 0xaab6cc, transparent: true, opacity: .8 }); const axis = new THREE.LineSegments(axGeo, axMat); axisG.add(axis);
+    [[0, '1 eV'], [3, '1 keV'], [6, '1 MeV'], [9, '1 GeV'], [12, '1 TeV']].forEach(([e, t]) => { const a = new THREE.Object3D(); a.position.set(-11.2, PX.my(Math.pow(10, e)), 0); axisG.add(a); decades.push(F.label(a, t, { cls: 'pxhd', offset: new V3(-.3, .55, 0) })); });
+    const zeroA = new THREE.Object3D(); zeroA.position.set(-11.2, PX.MASSLESS_Y, 0); axisG.add(zeroA); decades.push(F.label(zeroA, 'zero', { cls: 'pxhd', offset: new V3(-.3, .55, 0) }));
+    const zeroB = new THREE.Object3D(); zeroB.position.set(8.4, PX.MASSLESS_Y - 1.0, 0); axisG.add(zeroB); const zeroLab = F.label(zeroB, 'massless in the model: gluon, photon', { cls: 'pxhd', offset: new V3(0, 0, 0) });
+    const band = new THREE.Mesh(new THREE.PlaneGeometry(5.6, PX.my(.45) - PX.my(.05)), new THREE.MeshBasicMaterial({ color: PX.COL.neutrino, transparent: true, opacity: .22, depthWrite: false, side: THREE.DoubleSide })); band.position.set(3.3, (PX.my(.05) + PX.my(.45)) / 2, -.4); axisG.add(band);
+    const bandA = new THREE.Object3D(); bandA.position.set(3.3, PX.my(.45) + .1, 0); axisG.add(bandA); const bandLab = F.label(bandA, 'neutrino masses: only a range is known', { cls: 'pxhd', offset: new V3(0, .6, 0) });
+    // error bars (mass view): one line segment set, rebuilt each frame while the mass view is showing
+    const MASSIVE = PX.ORDER.filter(id => PX.P[id].mass && PX.P[id].mass.eV && PX.P[id].mass.err_plus !== undefined);
+    const ebGeo = new THREE.BufferGeometry(), ebPos = new Float32Array(MASSIVE.length * 18); ebGeo.setAttribute('position', new THREE.BufferAttribute(ebPos, 3));
+    const ebMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: .95 }); const eb = new THREE.LineSegments(ebGeo, ebMat); eb.frustumCulled = false; axisG.add(eb);
+    // coupling lines (forces view)
+    const NL = 20, lnPos = new Float32Array(NL * 6), lnGeo = new THREE.BufferGeometry(); lnGeo.setAttribute('position', new THREE.BufferAttribute(lnPos, 3));
+    const lnMat = new THREE.LineBasicMaterial({ color: 0xf0c330, transparent: true, opacity: .45 }); const lines = new THREE.LineSegments(lnGeo, lnMat); lines.frustumCulled = false; board.add(lines);
+    // decay stage
+    const stage = new THREE.Group(); stage.visible = false; board.add(stage);
+    const dParent = PX.orb(1.1, 0xffffff, { glyph: { main: 'μ' }, hit: false }), dKids = [0, 1, 2, 3].map(() => PX.orb(.8, 0xffffff, { glyph: { main: 'e' }, hit: false })), flash = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex(), color: 0xfff1b0, transparent: true, depthWrite: false })); flash.scale.set(1, 1, 1);
+    const vtx = new THREE.Object3D(); stage.add(vtx);
+    stage.add(dParent, flash); dKids.forEach(k => stage.add(k));
+    const dLabs = [F.label(dParent, 'parent', { offset: new V3(0, -1.5, 0) })].concat(dKids.map((k, i) => F.label(k, 'k' + i, { offset: new V3(0, -1.2, 0) })));
+    const decLine = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(new Float32Array(5 * 6), 3)), new THREE.LineBasicMaterial({ color: 0xdfe6f5, transparent: true, opacity: .7 })); decLine.frustumCulled = false; stage.add(decLine);
+    // hadron stage
+    const hstage = new THREE.Group(); hstage.visible = false; board.add(hstage);
+    const hQ = [0, 1, 2].map(() => PX.orb(.85, 0xffffff, { glyph: { main: 'u' }, hit: false })); hQ.forEach(q => hstage.add(q));
+    const hRing = new THREE.Sprite(new THREE.SpriteMaterial({ map: PX.dashRing('hadron', 'rgba(210,220,240,.9)', 8), transparent: true, depthWrite: false, opacity: .7 })); hstage.add(hRing);
+    const hAnc = new THREE.Object3D(); hstage.add(hAnc); const hLab = F.label(hAnc, 'hadron', { cls: 'pxhd big', offset: new V3(0, 0, 0) });
+    hstage.userData.parts = [{ m: hRing.material, base: .7 }];
+    const axLabs = decades.concat([zeroLab, bandLab]); axLabs.forEach(L => { L.txt = L.el.textContent; });
+    F.sm = { t: 0, ht: 0, shift: new V3(), P, twin, grav, hdr, axisG, band, stage, hstage, board, MASSIVE, axLabs, dParent, dKids, dLabs, flash, decLine, hQ, hRing, hLab, hAnc, vtx };
+
+    // ---- panel and controls ----
+    const panel = PX.el('', 'pxp pxsm'); uiEl(panel);
+    const modes = [['overview', 'Overview'], ['forces', 'Forces'], ['everyday', 'Everyday matter'], ['mass', 'Mass'], ['decay', 'Decays'], ['hadron', 'Build a hadron']];
+    const modeSeg = seg(modes, SM.mode, k => { SM.mode = k; if (k !== 'overview') SM.sel = SM.sel; refresh(); });
+    F.modeSeg = modeSeg;
+    const about = actBtn('What is this view?', () => showBodyNode('sm_overview', null));
+    const refresh = () => { PX.smPanel(F, panel); modeSeg.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === SM.mode)); F.stage_t = 0; };
+    F.refresh = refresh; refresh();
+    PX.smFocus(F, o.focus || null);
+    PX.smBind(F);
+  }
+};
+
+/* ---------- decay-stage and hadron-stage helpers ---------- */
+PX.keyGlyph = k => {
+  const m = /^(e|mu|tau)([+-])$/.exec(k); if (m) return { main: { e: 'e', mu: 'μ', tau: 'τ' }[m[1]], sup: m[2] === '+' ? '+' : '−' };
+  const n = /^(nu|nubar)_(e|mu|tau)$/.exec(k); if (n) return { main: 'ν', sub: { e: 'e', mu: 'μ', tau: 'τ' }[n[2]], anti: n[1] === 'nubar' };
+  const q = /^([udscbt])(bar)?$/.exec(k); if (q) return { main: q[1], anti: !!q[2] };
+  return { gamma: { main: 'γ' }, g: { main: 'g' }, Z: { main: 'Z', sup: '0' }, H: { main: 'H' }, 'W+': { main: 'W', sup: '+' }, 'W-': { main: 'W', sup: '−' }, 'pi+': { main: 'π', sup: '+' }, 'pi-': { main: 'π', sup: '−' }, pi0: { main: 'π', sup: '0' }, p: { main: 'p' }, n: { main: 'n' } }[k] || { main: '?' };
+};
+PX.keyColor = k => /^nu/.test(k) ? PX.COL.neutrino : /^(e|mu|tau)[+-]$/.test(k) ? PX.COL.lepton : /^[udscbt](bar)?$/.test(k) ? PX.COL.quark : k === 'H' ? PX.COL.higgs : k === 'p' ? PX.COL.proton : k === 'n' ? PX.COL.neutron : /^pi/.test(k) ? PX.COL.quark : PX.COL.boson;
+PX.hadronTable = () => {
+  if (PX.HT) return PX.HT; const T = {}; const key = a => a.slice().sort().join(',');
+  Object.values(PX.H).forEach(h => { if (h.quarks) T[key(h.quarks)] = T[key(h.quarks)] || h; });
+  T[key(['d', 'dbar'])] = PX.H.pi_zero;
+  return PX.HT = { T, key };
+};
+const _flip = k => k.endsWith('bar') ? k.slice(0, -3) : k + 'bar';
+PX.hadronEval = list => {
+  const n = list.length, nq = list.filter(x => !x.endsWith('bar')).length, na = n - nq;
+  const r = { n, nq, na, ok: false, charge: PX.tot(list)[0], B: PX.tot(list)[2] };
+  r.ok = (n === 3 && (nq === 3 || na === 3)) || (n === 2 && nq === 1 && na === 1);
+  if (!r.ok) return r;
+  const { T, key } = PX.hadronTable();
+  let h = T[key(list)]; if (h) { r.h = h; r.anti = false; }
+  else { h = T[key(list.map(_flip))]; if (h) { r.h = h; r.anti = true; } }
+  return r;
+};
+
+/* ---------- panel text (HTML) for each mode ---------- */
+PX.nm = id => PX.META[id] ? PX.META[id].short : id;
+PX.smPanel = (F, el) => {
+  const SM = PX.SM, D = PX.D;
+  const sg = (items, cur, key) => `<div class="seg pxseg">${items.map(([k, t]) => `<button data-px="${key}:${k}" class="${k === cur ? 'on' : ''}">${t}</button>`).join('')}</div>`;
+  const fam = [['quark', 'quarks: feel the strong force'], ['lepton', 'charged leptons'], ['neutrino', 'neutrinos: only the weak force'], ['boson', 'force carriers'], ['higgs', 'the Higgs boson']];
+  let h = '';
+  const sel = SM.sel && PX.P[SM.sel];
+  const selTxt = sel ? `<p class="pxsel"><b>${sel.name}</b> is selected. ${PX.META[sel.id].self ? 'It is its own antiparticle.' : SM.anti ? `Its matter partner, the ${PX.META[sel.id].short}, is drawn beside it.` : `Its antiparticle, the ${PX.META[sel.id].aname}, is drawn beside it.`} <button class="pxlink" data-px="sel:clear">Clear</button></p>` : '';
+  if (SM.mode === 'overview') {
+    h = `<div class="pxh">The seventeen</div><p>Rows and columns are the lesson. Matter particles come in three generations (the columns): each is a heavier copy of the first. Only the first generation is found in ordinary atoms. The force carriers stand apart on the right, and the Higgs boson is at the far end.</p>${sg([['m', 'Matter'], ['a', 'Antimatter']], SM.anti ? 'a' : 'm', 'anti')}${selTxt}
+    <div class="pxkeys">${fam.map(([f, t]) => `<div class="pxk"><i class="b" style="background:${PX.CSS(PX.COL[f])}"></i> ${t}</div>`).join('')}</div><p class="pxs">Click any ball for its card. All the balls are the same size on purpose: size means nothing here, because no structure has been found inside any of them.</p>`;
+  } else if (SM.mode === 'forces') {
+    const ints = D.interactions, cur = ints.find(i => i.id === SM.force) || ints[0];
+    const names = ids => ids.map(PX.nm).join(', ');
+    h = `<div class="pxh">Which particles feel this?</div>${sg(ints.map(i => [i.id, { strong: 'Strong', em: 'Electromagnetic', weak: 'Weak', higgs: 'Higgs', gravity: 'Gravity' }[i.id]]), cur.id, 'force')}
+    <p>${cur.text}</p>${cur.id === 'gravity' ? `<p class="pxs">That is why gravity has no carrier here. The only particle usually proposed for it, the graviton, has never been seen and is not part of the Standard Model.</p>` : `<p><b>Carried by:</b> ${names(cur.carriers)}.<br><b>Felt by:</b> ${names(cur.feels)}.</p><p class="pxs">The carrier is ringed in colour; the lines run to everything it couples to. Coupling to: ${cur.couples_to}.</p>`}`;
+  } else if (SM.mode === 'everyday') {
+    const em = D.everyday_matter;
+    h = `<div class="pxh">What everyday matter is made of</div><p>${em.note} A proton is two up quarks and a down quark, a neutron is one up and two down, and electrons surround them: that is every ordinary atom, in the park, in you, in the air.</p><p>The other twelve are real, but nothing you touch is built from them:</p><ul class="pxl">${em.others.map(o => `<li>${o.text}</li>`).join('')}</ul>`;
+  } else if (SM.mode === 'mass') {
+    const ma = D.mass_axis, rows = F.sm.MASSIVE.map(id => { const d = PX.P[id], rel = d.mass.err_plus / d.mass.value * 100; return `<tr><td>${PX.nm(id)}</td><td>${d.mass.display}</td><td>${rel >= 0.01 ? rel.toPrecision(2) : (m => m[0] + '×10' + sup(+m[1]))(rel.toExponential(1).split('e'))} %</td></tr>`; }).join('');
+    const topx = Math.round(ma.top_over_electron).toLocaleString('en-GB');
+    h = `<div class="pxh">Mass, on a logarithmic axis</div><p>Each step up the axis is a factor of ten. The top quark is about ${topx} times the electron. The neutrinos are not placed: only a range is known, and the electron is more than ${(ma.electron_over_neutrino_at_least / 1e6).toFixed(1)} million times heavier than the direct upper limit on a neutrino mass (0.45 eV).</p>
+    <p class="pxs">A quark's mass is not a weight on a scale: free quarks are never seen, so each number depends on a stated scheme (see the card). The gluon and photon are massless in the theory.</p>${sg([['mag', 'Error bars ×100'], ['true', 'Error bars to scale']], SM.errs, 'errs')}<table class="pxt"><tr><th>Particle</th><th>Mass (PDG 2026)</th><th>±</th></tr>${rows}</table>`;
+  } else if (SM.mode === 'decay') {
+    const L = PX.decayList(); if (SM.decay.i >= L.length || SM.decay.i < 0) SM.decay.i = 0; const cur = L[SM.decay.i];
+    const pids = []; L.forEach((x, i) => { if (!pids.includes(x.pid)) pids.push(x.pid); });
+    const pn = id => id === 'neutron' ? 'Neutron' : PX.P[id].name;
+    const before = PX.tot(cur.in), after = PX.tot(cur.out), row = (name, i) => { const ok = before[i] === after[i]; return `<tr><td>${name}</td><td>${PX.fr3(before[i])}</td><td>${PX.fr3(after[i])}</td><td class="${ok ? 'ok' : 'bad'}">${ok ? 'balanced' : 'NOT balanced'}</td></tr>`; };
+    const m0 = PX.massEV(cur.in[0]), ms = cur.out.map(PX.massEV), eok = !cur.example || true;
+    let en = ''; const virt = cur.virtualW || cur.out.some(x => /^[udscbt](bar)?$/.test(x)) || cur.in.some(x => /^[udscbt]$/.test(x)) || (cur.pid === 'higgs' && cur.out.length === 2 && (cur.out[0] === 'Z' || cur.out[0] === 'W+'));
+    if (!virt && m0 && ms.every(x => x !== null) && m0 >= ms.reduce((a, b) => a + b, 0)) { const sum = ms.reduce((a, b) => a + b, 0); en = `<p><b>Energy:</b> the parent's rest energy is ${PX.eVtext(m0)}; the products' rest energies add up to ${sum < 1 ? '≈ 0' : PX.eVtext(sum)} (neutrino masses are below 0.45 eV, negligible here). The difference, ${PX.eVtext(m0 - sum)}, becomes motion of the products. Momentum is conserved too.</p>`; }
+    else en = `<p class="pxs">Energy and momentum balance too. Here the numbers are not a simple sum, because ${cur.virtualW ? 'the W is virtual (a term in the calculation, not a real particle)' : 'a quark mass depends on a scheme, or a product is off-shell'}.</p>`;
+    h = `<div class="pxh">Decays</div><p>Pick an unstable particle. The picture is bookkeeping: lines are not paths a particle follows.</p><div class="pxchips">${pids.map(id => `<button class="pxchip ${id === cur.pid ? 'on' : ''}" data-px="dec:${L.findIndex(x => x.pid === id)}">${pn(id)}</button>`).join('')}</div>
+    ${L.filter(x => x.pid === cur.pid).length > 1 ? `<div class="pxchips">${L.map((x, i) => x.pid === cur.pid ? `<button class="pxchip ${i === SM.decay.i ? 'on' : ''}" data-px="dec:${i}">${x.label.replace(/^.*?→ /, '→ ')}${x.br ? ` (${(x.br * 100).toPrecision(2)}%)` : ''}</button>` : '').join('')}</div>` : ''}
+    <p><b>${cur.label}</b>${cur.br ? ` &nbsp;branching fraction ${(cur.br * 100).toPrecision(3)}% (PDG 2026)` : ''}</p>${cur.example ? `<p class="pxs">One example of several ways this particle can decay into quarks or leptons; the quarks then turn into sprays of hadrons.</p>` : ''}
+    <table class="pxt"><tr><th>Conserved</th><th>Before</th><th>After</th><th></th></tr>${row('Electric charge', 0)}${row('Lepton number', 1)}${row('Baryon number', 2)}</table>${en}<p class="pxs">${cur.note}</p><button class="pxlink" data-px="decplay">Play it again</button>`;
+  } else if (SM.mode === 'hadron') {
+    const L = SM.had, r = PX.hadronEval(L), qs = ['u', 'd', 's', 'c', 'b'], dis = L.length >= 3;
+    const keyTxt = k => PX.KEY[k][0];
+    const sym = k => PX.KEY[k][0];
+    let res = '';
+    if (!L.length) res = '<p>Choose up to three: three quarks, or a quark and an antiquark.</p>';
+    else if (!r.ok) {
+      const why = r.n === 1 ? 'A lone quark carries colour charge. Colour charge always has to cancel out, so it cannot exist by itself.' : r.n === 2 ? 'Two quarks (or two antiquarks, or two of anything else) always leave some net colour. A particle you can observe has no net colour, so this one does not exist alone.' : 'Three things only cancel their colour as three quarks (red, green, blue), three antiquarks, or when two are a quark and an antiquark. This mix leaves some colour over.';
+      res = `<p class="bad"><b>Not allowed.</b> ${why}</p>`;
+    } else if (r.h) {
+      const h = r.h, nm = r.anti ? 'anti-' + h.name.replace(/ \(charged\)$/, '').toLowerCase() : h.name;
+      const spin = h.spin, lt = h.lifetime && (h.lifetime.display || (h.lifetime.bound && h.lifetime.bound.display) || (h.lifetime.ref && h.lifetime.ref.display));
+      res = `<p class="ok"><b>Allowed: ${r.anti ? 'the antiparticle of the ' : 'the '}${h.name}, ${h.symbol}${r.anti ? '' : ''}.</b></p><dl class="pxd"><dt>Charge</dt><dd>${(r.anti ? PX.chgFlip(h.charge) : String(h.charge)).replace('-', '−')}</dd><dt>Spin</dt><dd>${spin}</dd><dt>Mass</dt><dd>${h.mass.display}</dd>${lt ? `<dt>Mean life</dt><dd>${typeof lt === 'string' ? lt : ''}</dd>` : ''}</dl><p class="pxs">${h.note || ''}${h.quark_content_mixed ? ' Its real quark content is a quantum mixture.' : ''}</p>`;
+    } else res = `<p class="ok"><b>Colourless, so allowed.</b> Charge ${PX.chgNum(r.charge)}, baryon number ${PX.fr3(r.B)}. This short table of twelve hadrons does not list it; it might be a heavier particle, or one that has never been seen.</p>`;
+    h = `<div class="pxh">Build a hadron</div><p>Quarks never appear alone: they bind in colourless combinations called hadrons. Pick quarks; the table is the PDG's.</p><div class="pxchips">${qs.map(q => `<button class="pxchip" data-px="had:${q}" ${dis ? 'disabled' : ''}>${sym(q)}</button>`).join('')}</div><div class="pxchips">${qs.map(q => `<button class="pxchip" data-px="had:${q}bar" ${dis ? 'disabled' : ''}>${sym(q + 'bar')}</button>`).join('')}</div>
+    <p>You chose: ${L.length ? L.map((k, i) => `<button class="pxchip on" data-px="hadx:${i}" title="Remove">${sym(k)} ×</button>`).join(' ') : 'nothing yet'} ${L.length ? '<button class="pxlink" data-px="hadc">Clear</button>' : ''}</p>${res}<p class="pxs">The top quark is left out: it decays (mean life about 5×10⁻²⁵ s, from the PDG width) before it can bind into a hadron.</p>`;
+  }
+  el.innerHTML = h;
+  el.querySelectorAll('[data-px]').forEach(b => b.onclick = () => PX.smAct(F, b.dataset.px));
+};
+PX.chgNum = q => { const t = Math.round(q * 3); return t === 0 ? '0' : (t > 0 ? '+' : '−') + (Math.abs(t) % 3 === 0 ? Math.abs(t) / 3 : PX.fr3(Math.abs(t) / 3)); };
+PX.chgFlip = s => { s = String(s); if (s === '0') return '0'; return s[0] === '+' ? '−' + s.slice(1) : '+' + s.slice(1).replace('-', ''); };
+PX.smFrames = [];
+PX.smAct = (F, a) => {
+  const SM = PX.SM, [k, v, w] = a.split(':');
+  if (k === 'anti') SM.anti = v === 'a'; else if (k === 'force') SM.force = v; else if (k === 'errs') SM.errs = v;
+  else if (k === 'sel') SM.sel = null;
+  else if (k === 'dec') { SM.decay.i = +v; } else if (k === 'decplay') { }
+  else if (k === 'had') { if (SM.had.length < 3) SM.had.push(v); } else if (k === 'hadx') SM.had.splice(+v, 1); else if (k === 'hadc') SM.had = [];
+  PX.smFrames.forEach(f => { if (f.built && f.refresh) f.refresh(); });
+};
+PX.smSet = (mode, extra) => { Object.assign(PX.SM, extra || {}); PX.SM.mode = mode; PX.smFrames.forEach(f => { if (f.built && f.refresh) f.refresh(); }); };
+
+/* ---------- the live part of the Standard Model view ---------- */
+PX.smBind = F => {
+  const SM = PX.SM, S = F.sm, P = S.P, D = PX.D;
+  PX.smFrames.push(F); F.onDispose = () => { const i = PX.smFrames.indexOf(F); if (i >= 0) PX.smFrames.splice(i, 1); };
+  Object.values(P).forEach(p => { p.orb.userData.onPick = () => { SM.sel = p.id; PX.smFrames.forEach(f => f.built && f.refresh && f.refresh()); }; });
+  const tmp = new V3(), tc = new THREE.Color(), up = new V3(0, 1, 0);
+  const FEEL = id => { const ints = D.interactions, i = ints.find(x => x.id === SM.force); return i ? i : null; };
+  const labs = []; Object.values(P).forEach(p => labs.push({ L: p.lab, pri: 8, text: () => SM.mode === 'decay' || SM.mode === 'hadron' ? '' : SM.anti && !p.M.self ? p.M.aname : p.M.short }));
+  const twinLab = F.labels.find(l => l.obj === S.twin);
+  const gravLab = F.labels.find(l => l.obj === S.grav);
+  let stageSig = '', tStage = 0, lastNote = '';
+  const eb = S.axisG.children.find(c => c.isLineSegments && c.geometry.attributes.position.count === S.MASSIVE.length * 6);
+  const bar = (arr, k, x, y0, y1) => { // an error bar with end caps, as 3 segments
+    arr[k++] = x; arr[k++] = y0; arr[k++] = 0; arr[k++] = x; arr[k++] = y1; arr[k++] = 0;
+    arr[k++] = x - .22; arr[k++] = y0; arr[k++] = 0; arr[k++] = x + .22; arr[k++] = y0; arr[k++] = 0;
+    arr[k++] = x - .22; arr[k++] = y1; arr[k++] = 0; arr[k++] = x + .22; arr[k++] = y1; arr[k++] = 0; return k;
+  };
+  const lines = S.board.children.find(c => c.isLineSegments);
+  const A = { mass: 0, grid: 1, stage: 0, hstage: 0, hdr: 1, grav: 1 };
+  let lastMode = '';
+  F.update = (dt, t) => {
+    const fa = PX.fa(F), k = 1 - Math.exp(-dt * 6), mode = SM.mode, sel = SM.sel;
+    if (mode !== lastMode) { lastMode = mode; F.lvl = 3; }          // after a change of view, turn the camera square-on again (unless you are dragging)
+    if (cam.A === F && F.lvl > 0 && !pointers.size) { F.lvl -= dt; const kk = 1 - Math.exp(-dt * 2.2); cam.dir.lerp(tmp.set(0, .06, 1), kk).normalize(); }
+    const showGrid = mode === 'overview' || mode === 'forces' || mode === 'everyday';
+    { const st = F._focus ? tmp.set(0, 0, 0) : mode === 'mass' ? tmp.set(0, 3, 0) : showGrid ? tmp.set(0, 2, 0) : tmp.set(0, 1, 0); S.shift.lerp(st, k); S.board.position.copy(F.boardBase).add(S.shift); }
+    const fint = mode === 'forces' ? FEEL() : null, carriers = fint ? fint.carriers : [], feels = fint ? fint.feels : [], ev = D.everyday_matter.ids;
+    let nl = 0; const lp = lines.geometry.attributes.position.array;
+    const backDir = tmp.set(0, 0, 1).applyQuaternion(F.cam.quaternion);
+    for (const id of PX.ORDER) {
+      const p = P[id], M = p.M;
+      // target position
+      if (mode === 'mass') PX.massPos(id, p.tgt); else { PX.gridPos(id, p.tgt); if (!showGrid) p.tgt.z -= 6; }
+      let ts = mode === 'mass' ? .5 : 1, td = 1, tg = 0, gcol = 0xffffff;
+      if (mode === 'forces') {
+        const isC = carriers.includes(id), isF = feels.includes(id);
+        if (SM.force === 'gravity') td = .3; else if (isC) { ts = 1.18; td = 1; tg = 1; gcol = PX.accent[SM.force]; } else if (isF) { td = 1; tg = .55; gcol = PX.accent[SM.force]; } else td = .16;
+      } else if (mode === 'everyday') { if (ev.includes(id)) { tg = .55; gcol = 0xffe9a8; ts = 1.1; } else td = .18; }
+      else if (mode === 'decay' || mode === 'hadron') td = .12;
+      if (sel === id && showGrid) { ts *= 1.12; if (tg < .8) { tg = .8; gcol = 0xbfd4ff; } }
+      const th = SM.anti && !M.self && id !== 'w_boson' ? 1 : 0;
+      p.pos.lerp(p.tgt, k); p.scale += (ts - p.scale) * k; p.dim += (td - p.dim) * k; p.glow += (tg - p.glow) * k; p.hol += (th - p.hol) * k; p.gcol.lerp(tc.setHex(gcol), k);
+      const o = p.orb; o.position.copy(p.pos); o.scale.setScalar(p.scale);
+      const anti = p.hol > .5; if (anti !== p.anti) { p.anti = anti; PX.setGlyph(o, PX.glyphSpec(id, anti).main, PX.glyphSpec(id, anti)); }
+      PX.hollow(o, Math.round(p.hol * 20) / 20);
+      const hp = o.userData.haloPart; if (hp) { hp.base = p.glow * .75; o.userData.halo.material.color.copy(p.gcol); }
+      PX.setA(o, p.dim, fa);
+      p.lab.off.set(0, -(1.25 * p.scale + .3), 0);
+      // coupling lines
+      if (mode === 'forces' && SM.force !== 'gravity' && nl < 19 && !carriers.includes(id) && feels.includes(id)) {
+        const c = P[carriers[0]]; if (c) { const b = nl * 6; lp[b] = c.pos.x; lp[b + 1] = c.pos.y; lp[b + 2] = c.pos.z - 1.6; lp[b + 3] = p.pos.x; lp[b + 4] = p.pos.y; lp[b + 5] = p.pos.z - 1.6; nl++; }
+      }
+    }
+    // second carrier of the weak force (W and Z): lines from Z too
+    if (mode === 'forces' && carriers.length > 1 && SM.force !== 'gravity') { const c = P[carriers[1]]; feels.forEach(id => { if (carriers.includes(id) || nl >= 19 || !c) return; const p = P[id], b = nl * 6; lp[b] = c.pos.x; lp[b + 1] = c.pos.y; lp[b + 2] = c.pos.z - 1.6; lp[b + 3] = p.pos.x; lp[b + 4] = p.pos.y; lp[b + 5] = p.pos.z - 1.6; nl++; }); }
+    lines.geometry.attributes.position.needsUpdate = true; lines.geometry.setDrawRange(0, nl * 2);
+    lines.material.color.setHex(PX.accent[SM.force] || 0xf0c330); lines.material.opacity = (mode === 'forces' ? .5 : 0) * fa; lines.visible = mode === 'forces' && nl > 0;
+    PX.face(F, PX.ORDER.map(id => P[id].orb));
+    // the antiparticle beside the selected one
+    const tw = S.twin, tp = sel && P[sel], showTw = !!(tp && showGrid && !tp.M.self && sel !== 'w_boson');
+    if (showTw) {
+      tw.position.copy(tp.pos).add(tmp.set(1.9, 1.6, .5)); tw.scale.setScalar(.85); const u = tw.userData; u.node = tp.d.node; u.id = tp.d.node; u.title = SM.anti ? PX.META[sel].short : PX.META[sel].aname;
+      PX.setColor(tw, tc.setHex(PX.famColor(tp.d))); PX.hollow(tw, SM.anti ? 0 : 1); const gs = PX.glyphSpec(sel, !SM.anti); PX.setGlyph(tw, gs.main, gs); PX.setA(tw, .95, fa);
+      twinLab.off.set(0, -1.3, 0);
+    } else PX.setA(tw, 0, fa);
+    if (twinLab) twinLab.el.dataset.t = '';
+    // gravity ghost, headers
+    const grav = S.grav; grav.visible = showGrid && fa > .02; grav.userData.parts.forEach(pp => { pp.m.userData.baseOp = pp.base * (mode === 'forces' && SM.force === 'gravity' ? 1 : .65); pp.m.opacity = pp.m.userData.baseOp * fa; });
+    S.hdr.forEach(h => { h.g.visible = showGrid; });
+    // mass axis
+    const mass = mode === 'mass'; S.axisG.visible = mass || A.mass > .02; A.mass += ((mass ? 1 : 0) - A.mass) * k;
+    S.axisG.children.forEach(c => { if (c.material) { c.material.userData.baseOp = (c === S.band ? .22 : c.material === eb.material ? .95 : .8) * A.mass; c.material.opacity = c.material.userData.baseOp * fa; } });
+    if (A.mass > .02) {
+      const arr = eb.geometry.attributes.position.array, mag = SM.errs === 'mag' ? 100 : 1; let kk = 0;
+      S.MASSIVE.forEach(id => { const d = PX.P[id], p = P[id], ev = d.mass.eV, f = ev / d.mass.value, e = Math.min(d.mass.err_plus * f * mag, ev * .95); kk = bar(arr, kk, p.pos.x + .0, PX.my(ev - e), PX.my(ev + e)); });
+      eb.geometry.attributes.position.needsUpdate = true;
+    }
+    // decays
+    const dec = mode === 'decay', hs = mode === 'hadron'; A.stage += ((dec ? 1 : 0) - A.stage) * k; A.hstage += ((hs ? 1 : 0) - A.hstage) * k;
+    S.stage.visible = dec || A.stage > .02; S.hstage.visible = hs || A.hstage > .02;
+    if (S.stage.visible) PX.smDecay(F, S, dt, fa, A.stage);
+    if (S.hstage.visible) PX.smHadron(F, S, dt, fa, A.hstage);
+    // labels
+    const hdrTxt = []; S.hdr.forEach(h => hdrTxt.push({ L: h.L, text: h.text, pri: 2 }));
+    const extra = [{ L: gravLab, text: 'gravity: not in the model', pri: 3 }, { L: twinLab, text: () => sel && PX.META[sel] ? (SM.anti ? PX.META[sel].short : PX.META[sel].aname) : '', pri: 6 }];
+    const axL = S.axLabs.map(L => ({ L, text: L.txt, pri: 1, on: mass }));
+    PX.declutter(F, labs.concat(hdrTxt, extra, axL.filter(a => { if (!a.on && a.L.el.textContent) a.L.el.textContent = ''; return a.on; }), PX.smStageLabels(F, S)));
+    // the deepest zoom: nothing to find inside
+    const deep = F.dLoc < 1.1, nt = deep ? 'Nothing is drawn inside the balls because nothing has been found there. These balls are for the eye: no structure has been seen in any of these particles, down to about 10⁻¹⁹ m, and below that nobody has looked.' : 'This is not a place. It is the list of everything matter and the forces (except gravity) are made of, as far as experiments have reached.';
+    if (nt !== lastNote) { lastNote = nt; F.note = nt; capFrame = null; }
+  };
+};
+
+PX.smStageLabels = (F, S) => {
+  const SM = PX.SM, out = [];
+  if (SM.mode === 'decay' && S.cur) { out.push({ L: S.dLabs[0], text: S.cur.ptxt, pri: 9 }); S.cur.kids.forEach((k, i) => out.push({ L: S.dLabs[i + 1], text: S.t > 2.1 ? k.txt : '', pri: 9 - i * .1 })); }
+  else S.dLabs.forEach(L => { if (L.el.textContent) L.el.textContent = ''; });
+  if (SM.mode === 'hadron') out.push({ L: S.hLab, text: S.hText || '', pri: 9 }); else if (S.hLab.el.textContent) S.hLab.el.textContent = '';
+  return out;
+};
+PX.smDecay = (F, S, dt, fa, a) => {
+  const SM = PX.SM, L = PX.decayList(); if (SM.decay.i >= L.length) SM.decay.i = 0; const cur = L[SM.decay.i];
+  const sig = SM.decay.i + '|' + (F.stage_t === 0 ? 'r' : '');
+  if (S.sig !== SM.decay.i || F.stage_t === 0) { S.sig = SM.decay.i; S.t = 0; F.stage_t = 1; }
+  S.t += dt; const T = S.t % 7.2, n = cur.out.length;
+  const ptxt = `${PX.KEY[cur.parent][0]} ${PX.KEY[cur.parent][1]}`;
+  S.cur = { ptxt, kids: cur.out.map((k, i) => ({ txt: `${PX.KEY[k][0]} ${PX.KEY[k][1]}${cur.virtualW && /^W/.test(k) ? ' (virtual)' : ''}` })) };
+  const z = 3.4, vx = -2.2, ease = u => { u = Math.min(1, Math.max(0, u)); return u * u * (3 - 2 * u); };
+  const P0 = S.dParent; PX.setGlyphKey = PX.setGlyphKey || ((orb, key) => { const g = PX.keyGlyph(key); PX.setGlyph(orb, g.main, g); PX.setColor(orb, new THREE.Color(PX.keyColor(key))); PX.hollow(orb, g.anti ? 1 : 0); });
+  if (P0.userData.key !== cur.parent) { P0.userData.key = cur.parent; PX.setGlyphKey(P0, cur.parent); }
+  const px = -9.5 + (vx + 9.5) * ease(T / 1.6); P0.position.set(px, 0, z); const pa = T < 1.55 ? 1 : Math.max(0, 1 - (T - 1.55) / .25);
+  PX.setA(P0, pa * a, fa);
+  S.flash.position.set(vx, 0, z); const fl = Math.max(0, 1 - Math.abs(T - 1.75) / .35); S.flash.scale.setScalar(.01 + fl * 4); S.flash.material.opacity = fl * a * fa; S.flash.material.userData.baseOp = fl * a; S.flash.visible = fl > .01;
+  const lp = S.decLine.geometry.attributes.position.array; let q = 0; lp[q++] = px; lp[q++] = 0; lp[q++] = z; lp[q++] = Math.min(px + .0, vx); lp[q++] = 0; lp[q++] = z;
+  S.dKids.forEach((kid, i) => {
+    if (i >= n) { PX.setA(kid, 0, fa); return; }
+    const key = cur.out[i]; if (kid.userData.key !== key) { kid.userData.key = key; PX.setGlyphKey(kid, key); }
+    const ty = ((n - 1) / 2 - i) * 3.1, e = ease((T - 1.75) / 2.3), x = vx + (7.4 - vx) * e, y = ty * e;
+    kid.position.set(x, y, z); PX.setA(kid, T > 1.7 ? a : 0, fa);
+    lp[q++] = vx; lp[q++] = 0; lp[q++] = z; lp[q++] = x; lp[q++] = y; lp[q++] = z;
+  });
+  S.decLine.geometry.setDrawRange(0, 2 + 2 * n); S.decLine.geometry.attributes.position.needsUpdate = true; S.decLine.material.opacity = .7 * a * fa; S.decLine.material.userData.baseOp = .7 * a;
+  PX.face(F, [P0].concat(S.dKids));
+};
+PX.smHadron = (F, S, dt, fa, a) => {
+  const SM = PX.SM, L = SM.had, r = PX.hadronEval(L), n = L.length, z = 3.4;
+  S.hText = !n ? '' : !r.ok ? 'not a colourless combination' : r.h ? (r.anti ? 'anti-' : '') + r.h.name.replace(/ \(charged\)| \(neutral\)/, '') + '  ' + r.h.symbol : 'allowed, not in this table';
+  S.hAnc.position.set(0, -3.9, z);
+  let ci = 0;
+  S.hQ.forEach((q, i) => {
+    if (i >= n) { PX.setA(q, 0, fa); return; }
+    const key = L[i], anti = key.endsWith('bar'), idx = (n === 2 && r.ok) ? 0 : ci % 3; ci++;
+    const g = PX.keyGlyph(key); const gs = Object.assign({}, g, { line: anti ? PX.ACL[idx] : PX.CL[idx] }); PX.setGlyph(q, gs.main, gs);
+    PX.setColor(q, tc0.setHex(anti ? PX.ACC[idx] : PX.CC[idx])); PX.hollow(q, anti ? 1 : 0);
+    const ang = Math.PI / 2 + i * TAU / n + S.ht * .35, R = n === 1 ? 0 : n === 2 ? 1.5 : 1.7;
+    q.position.set(Math.cos(ang) * R, Math.sin(ang) * R, z + Math.sin(S.ht * .9 + i) * .3);
+    PX.setA(q, a, fa);
+  });
+  S.ht = (S.ht || 0) + dt;
+  S.hRing.position.set(0, 0, z - .2); S.hRing.scale.set(5.4, 5.4, 1); S.hRing.material.opacity = (r.ok || !n ? .6 : .0) * a * fa; S.hRing.material.userData.baseOp = (r.ok || !n ? .6 : 0) * a;
+  PX.face(F, S.hQ);
+};
+const tc0 = new THREE.Color();
+
+/* =====================================================================
+   Getting there: frames, flights, links back up into the world, and the extra buttons on cards
+   ===================================================================== */
+PX.SMC = new V3(4.4, 0, 0);                      // the centre of the overview layout (units of 1e-18 m)
+PX.smFocus = (f, id) => {                       // put particle `id` at the frame origin (or the layout centre when null)
+  f.opts = f.opts || {}; f.opts.focus = id || null;
+  if (f.board && f._focus !== (id || null)) { f._focus = id || null; f.boardBase = f.boardBase || new V3(); if (id) PX.gridPos(id, f.boardBase).negate(); else f.boardBase.copy(PX.SMC).negate(); f.board.position.copy(f.boardBase); if (f.sm && f.sm.shift) f.sm.shift.set(0, 0, 0); }
+};
+PX.smPos = (f, id, out) => { out = out || new V3(); if (!f.built || !f.sm) return out.set(0, 0, 0); const p = id && f.sm.P[id]; if (p) return out.copy(p.pos).add(f.board.position); return out.set(0, 0, 0); };
+PX.smFrame = (host, T, hint) => {
+  if (!PX.D) return null;
+  const sm = hint && hint.obj && hint.obj.userData && hint.obj.userData.sm;
+  const f = new Frame({ type: 'sm', name: 'The Standard Model', unit: 1e-18, radius: 1e5, r1: 3e-16, pos: T.clone(), pinned: true, opts: { focus: PX.META[sm] ? sm : null } });
+  return f;
+};
+PX.nearestQuark = (pf, T) => { const S = pf && pf.proto; if (!S) return null; let best = null, bd = .3; S.Q.forEach(q => { const d = q.p.distanceTo(T); if (d < bd) { bd = d; best = q; } }); return best ? best.orb.userData.sm : null; };
+/* the camera is anywhere under a Standard Model frame? */
+PX.inSM = () => chainOf(cam.A).find(f => f.type === 'sm') || null;
+/* fly into the Standard Model view. focus: a particle id to arrive at, or null for the whole picture. host: a proton frame to dive from */
+PX.goSM = (focus, host, then) => {
+  const f0 = PX.inSM();
+  if (f0) { f0.ensure(); const p = PX.smPos(f0, focus); flyTo(f0, p, focus ? 1.0e-17 : 3.8e-17, then); return f0; }
+  if (host && host.type !== 'proton') host = null;
+  if (!host) host = FR.proton; // the oxygen nucleus's first proton: the one the ruler goes to
+  let f = host.children.find(c => c.type === 'sm');
+  if (!f) { const q = host.proto && focus && host.proto.Q.find(q => q.orb.userData.sm === focus); f = PX.smFrame(host, q ? q.p : new V3(), null); f.dynamic = true; host.addChild(f); }
+  if (host === FR.proton) { FR.nuc.ensure(); FR.proton.place && FR.proton.place(); }
+  if (f.dynamic) f.keep = performance.now() + 120000;
+  f.ensure(); if (!f.dynamic) f.pos.set(0, 0, 0); PX.smFocus(f, focus || null);
+  flyTo(f, PX.smPos(f, focus), focus ? 1.0e-17 : 3.8e-17, then); return f;
+};
+PX.goProton = then => { FR.nuc.ensure(); if (FR.proton.place) FR.proton.place(); flyTo(FR.proton, new V3(), 3e-15, then); };
+/* "Where do I find this?": only destinations that exist in the world today */
+PX.FIND = {
+  electron: { label: 'In every atom: the electron cloud', go: () => placeGo('place:atom') },
+  up: { label: 'In every proton and neutron', go: () => PX.goProton() }, down: { label: 'In every proton and neutron', go: () => PX.goProton() },
+  gluon: { label: 'Inside every proton and neutron', go: () => PX.goProton() },
+  photon: { label: 'In the sunlight on the park', go: () => placeGo('place:park') },
+  muon: { label: 'Passing through the park, and through you (cosmic-ray muons)', go: () => placeGo('place:human') },
+  nu_e: { label: 'From the Sun\'s core, where fusion makes them', go: () => PX.goSunCore() },
+  w_boson: { label: 'In the Sun\'s core, where it turns protons into neutrons', go: () => PX.goSunCore() },
+};
+PX.goSunCore = () => {
+  if (!FR.solar) return; const f = new Frame({ type: 'plasma', name: 'Plasma at the Sun\'s centre', unit: 1e-9, radius: 40, r1: 3e-7, pos: new V3(0, 0, 0) });
+  f.blurb = 'The Sun\'s centre at the scale of nanometres: bare nuclei and free electrons. Here the weak force, carried by the W boson, turns protons into neutrons, and each such change makes a neutrino.'; f.note = 'Schematic: a patch of plasma drawn at random, not a simulation of the Sun\'s core.';
+  placeChild(FR.solar, f, 6e-8);
+};
+/* run something once the camera is in the Standard Model view */
+PX.inSMdo = fn => { if (PX.inSM()) { fn(); return; } PX.goSM(null, null, () => setTimeout(fn, 0)); };
+PX.cardExtras = (id, h) => {
+  const p = PX.byNode[id], inSMv = h && h.frame && h.frame.type === 'sm', infoEl2 = infoEl;
+  if (p) {
+    const find = PX.FIND[p.id], dec = PX.decayList().findIndex(x => x.pid === p.id), isQ = p.family === 'quark';
+    const forceOf = { gluon: 'strong', photon: 'em', w_boson: 'weak', z_boson: 'weak', higgs: 'higgs' }[p.id];
+    let b = '';
+    if (isQ) b += PX.btn('made', 'What is a quark made of?', false);
+    if (!inSMv) b += PX.btn('showsm', 'See it in the Standard Model view');
+    if (dec >= 0) b += PX.btn('decay', 'Play how it decays');
+    if (forceOf) b += PX.btn('feel', 'Which particles feel this?');
+    if (find) b += PX.btn('find', 'Where do I find this?');
+    if (!b) return;
+    PX.addRow(b + (find ? `<div class="pxwhere">${find.label}</div>` : ''), row => {
+      const on = (k, fn) => { const e = row.querySelector(`[data-px="${k}"]`); if (e) e.onclick = fn; };
+      on('made', () => { closeInfo(); PX.goSM(p.id, h && h.frame && h.frame.type === 'proton' ? h.frame : null); });
+      on('showsm', () => { PX.smSet('overview', { sel: p.id }); PX.goSM(p.id, null); });
+      on('decay', () => { PX.smSet('decay', { decay: { i: dec } }); PX.inSMdo(() => { closeInfo(); }); });
+      on('feel', () => { PX.smSet('forces', { force: forceOf }); PX.inSMdo(() => { closeInfo(); }); });
+      on('find', () => { closeInfo(); find.go(); });
+    });
+    const wb = infoEl2.querySelector('#whereBtn'); if (wb) wb.textContent = 'Show it in the Standard Model view';
+    return;
+  }
+  if (id === 'sm_proton' || id === 'sm_neutron') {
+    PX.addRow(PX.btn('into', 'See what it is made of', false), row => {
+      row.querySelector('[data-px="into"]').onclick = () => { closeInfo(); if (h && h.frame && h.frame.type === 'nucleus' && h.obj && h.obj.userData.kind) PX.diveNucleon(h); else if (h && h.frame && h.frame.type === 'proton') { zoomIntoHit(h); } else PX.goProton(); };
+    });
+  } else if (id === 'sm_overview') {
+    PX.addRow(PX.btn('open', 'Open the Standard Model view', false), row => { row.querySelector('[data-px="open"]').onclick = () => { closeInfo(); PX.smSet('overview'); PX.goSM(null, null); }; });
+  } else if (id === 'sm_hadrons') {
+    PX.addRow(PX.btn('build', 'Build a hadron from quarks', false), row => { row.querySelector('[data-px="build"]').onclick = () => { PX.smSet('hadron', { had: [] }); PX.inSMdo(() => closeInfo()); }; });
+  } else if (id === 'sm_antimatter') {
+    PX.addRow(PX.btn('anti', 'Show the antimatter version', false), row => { row.querySelector('[data-px="anti"]').onclick = () => { PX.smSet('overview', { anti: true }); PX.inSMdo(() => closeInfo()); }; });
+  } else if (id === 'sm_higgs_mechanism' || id === 'sm_interactions' || id === 'sm_strong_force') {
+    const f = id === 'sm_higgs_mechanism' ? 'higgs' : 'strong';
+    PX.addRow(PX.btn('feel', id === 'sm_interactions' ? 'Which particles feel each force?' : 'Which particles feel this?', false), row => { row.querySelector('[data-px="feel"]').onclick = () => { PX.smSet('forces', { force: f }); PX.inSMdo(() => closeInfo()); }; });
+  } else if (id === 'sm_residual_strong' && h && h.frame && h.frame.type === 'nucleus') {
+    const o = h.frame.opts || {}, Z = o.Z | 0, N = o.N | 0, A = Z + N;
+    const row = document.createElement('div'); row.className = 'pxrow'; row.innerHTML = `<div class="rh">This nucleus</div><p class="pxnuc">${Z} protons, ${N} neutrons (A = ${A}). Radius by the rule of thumb 1.2·A^⅓ ≈ ${PX.nuclearR(A).toFixed(1)} fm. <span class="pxbe">Loading binding energy…</span></p>`;
+    const first = infoEl.querySelector('.btnrow'), refs = infoEl.querySelector('.refs'); if (first && first.parentNode === infoEl) first.after(row); else if (refs) refs.before(row); else infoEl.appendChild(row);
+    getJSON('data/particles_binding.json').then(B => {
+      const e = B.be[String(Z)] && B.be[String(Z)][String(N)], sp = row.querySelector('.pxbe'); if (!sp) return;
+      sp.textContent = e ? `Binding energy ${(e[0] / 1000).toFixed(3)} MeV per nucleon${e[2] ? ' (estimated, not measured)' : ''} (AME2020): the energy per nucleon that it would take to pull the nucleus completely apart.` : 'No binding energy is tabulated for this combination.';
+    }).catch(() => { const sp = row.querySelector('.pxbe'); if (sp) sp.textContent = ''; });
+  }
+};
+/* open a nucleon of a nucleus frame: a proton frame at its position */
+PX.diveNucleon = h => {
+  const F = h.frame, m = h.obj, f = new Frame({ type: 'proton', name: m.userData.kind === 'proton' ? 'Proton' : 'Neutron', unit: 1e-15, radius: 4, r1: 1.2e-14, pos: m.position.clone(), pinned: true, opts: { kind: m.userData.kind } });
+  f.dynamic = true; f.keep = performance.now() + 90000; F.addChild(f); f.ensure(); flyTo(f, new V3(), 3e-15);
+};
+
+/* ---------- wire everything into the world ---------- */
+WORLD_EXT.push(async FRx => {
+  await PX.load();
+  if (!PX.D || !FRx.proton) return;
+  const sm = FRx.proton.addChild(new Frame({ type: 'sm', name: 'The Standard Model', unit: 1e-18, radius: 1e5, r1: 3e-16, pinned: true, opts: {} }));
+  FRx.sm = sm;
+  // while you zoom inside the proton, the Standard Model frame sits where you are looking (and at the quark, if you are on one)
+  sm.place = () => {
+    const A = cam.A; if (A !== FRx.proton || fly) return;
+    sm.pos.copy(cam.T); if (cam.D > 1.8e-16) PX.smFocus(sm, PX.nearestQuark(FRx.proton, cam.T));
+  };
+  EXT_LANDMARKS.push({ label: 'Standard Model', D: 3.8e-17, go: then => { FRx.nuc.ensure(); FRx.proton.place && FRx.proton.place(); sm.ensure(); sm.pos.set(0, 0, 0); PX.smFocus(sm, null); flyTo(sm, PX.smPos(sm, null), 3.8e-17, then); } });
+  // search and topic links: a particle's topic card flies to it in the Standard Model view
+  const reg = (id, fn) => { if (typeof tearReg === 'function' && typeof TEAR !== 'undefined') TEAR[id] = fn; };
+  const mk = (id, D) => ({ frame: sm, D, get pos() { sm.ensure(); sm.pos.set(0, 0, 0); PX.smFocus(sm, null); return PX.smPos(sm, id); } });
+  PX.ORDER.forEach(id => reg(PX.P[id].node, mk(id, 1.1e-17)));
+  reg('sm_overview', mk(null, 3.8e-17));
+  if (typeof TEAR !== 'undefined') { TEAR.sm_proton = { frame: FRx.proton, pos: new V3(), D: 3e-15 }; }
+  if (typeof SEARCH_SOURCES !== 'undefined' && SEARCH_SOURCES && typeof SEARCH_SOURCES.push === 'function') {
+    try { SEARCH_SOURCES.push({ id: 'particles', label: 'Particles', search: q => { q = (q || '').toLowerCase(); return Object.keys(NODE).filter(k => k.startsWith('sm_') && NODE[k].title.toLowerCase().includes(q)).slice(0, 8).map(k => ({ id: k, title: NODE[k].title, sub: NODE[k].summary || '', go: () => goToNode(k) })); } }); } catch (e) { console.error(e); }
+  }
+});
