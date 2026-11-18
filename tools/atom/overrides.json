@@ -1,0 +1,183 @@
+{
+ "_comment": "Hand-checked corrections applied on top of the mendeleev package values. Each entry names the source consulted on 2026-11-18. null means: no reliable measured value, so none is shown.",
+ "electronegativity": {
+  "_source": "Pauling scale as tabulated in the CRC Handbook / WebElements (read via Wikipedia 'Electronegativities of the elements (data page)'). Values for Am-No (1.3) are estimates carried in that table.",
+  "36": 3.0,
+  "43": 1.9,
+  "71": 1.27,
+  "74": 2.36,
+  "78": 2.28,
+  "79": 2.54,
+  "80": 2.0,
+  "81": 1.62,
+  "82": 2.33,
+  "83": 2.02,
+  "92": 1.38,
+  "93": 1.36,
+  "94": 1.28,
+  "95": 1.3,
+  "96": 1.3,
+  "97": 1.3,
+  "98": 1.3,
+  "99": 1.3,
+  "100": 1.3,
+  "101": 1.3,
+  "102": 1.3,
+  "103": null
+ },
+ "density": {
+  "_source": "Gases: g/cm3 at 0 C and 101.325 kPa (PubChem periodic table, cross-read with Wikipedia 'Densities of the elements (data page)': values agree to about 0.5%). Solids: mendeleev package, checked against the same page for Am, Bk, Cf, Es. No source was found for Fr and Z>=100: left empty.",
+  "1": 8.988e-05,
+  "2": 0.0001785,
+  "7": 0.0012506,
+  "8": 0.001429,
+  "9": 0.001696,
+  "10": 0.0009,
+  "17": 0.003214,
+  "18": 0.001784,
+  "36": 0.003733,
+  "54": 0.005887,
+  "86": 0.00973,
+  "87": null,
+  "100": null,
+  "101": null,
+  "102": null,
+  "103": null,
+  "104": null,
+  "105": null,
+  "106": null,
+  "107": null,
+  "108": null,
+  "109": null,
+  "110": null,
+  "111": null,
+  "112": null,
+  "113": null,
+  "114": null,
+  "115": null,
+  "116": null,
+  "117": null,
+  "118": null
+ },
+ "melt_K": {
+  "_source": "CRC Handbook / Lange values as listed on Wikipedia 'Melting points of the elements (data page)'. Helium does not freeze at atmospheric pressure; carbon sublimes at atmospheric pressure; the transfermium and Fr/At values are estimates, so they are left empty.",
+  "2": null,
+  "6": null,
+  "61": 1315,
+  "97": 1323,
+  "87": null,
+  "85": null,
+  "100": null,
+  "101": null,
+  "102": null,
+  "103": null,
+  "15": 317.3,
+  "16": 388.36,
+  "34": 494,
+  "50": 505.08,
+  "1": 13.81
+ },
+ "boil_K": {
+  "_source": "CRC Handbook / Lange values as listed on Wikipedia 'Boiling points of the elements (data page)'. Estimates and lower bounds are left empty.",
+  "56": 2118,
+  "61": 3273,
+  "88": 2010,
+  "93": null,
+  "95": 2284,
+  "96": 3383,
+  "97": null,
+  "98": null,
+  "99": null,
+  "87": null,
+  "85": null,
+  "91": null,
+  "15": 553.7,
+  "16": 717.75,
+  "34": 958.15,
+  "50": 2875.15,
+  "31": 2477,
+  "49": 2345
+ },
+ "discovered": {
+  "_source": "Wikipedia 'Timeline of chemical element discoveries' (first reported year); mendeleev package value where not listed here. Dates of discovery are partly a matter of definition: see discovered_note.",
+  "27": [
+   1735,
+   "Georg Brandt showed the blue colour of cobalt glass came from a new metal."
+  ],
+  "34": [
+   1817,
+   "Berzelius and Gahn."
+  ],
+  "39": [
+   1794,
+   "Johan Gadolin found yttrium oxide in a mineral; the metal was isolated later."
+  ],
+  "60": [
+   1841,
+   "Mosander found 'didymium'; Auer von Welsbach split it into neodymium and praseodymium later."
+  ],
+  "76": [
+   1803,
+   "Smithson Tennant."
+  ],
+  "77": [
+   1803,
+   "Tennant and Collet-Descotils."
+  ],
+  "86": [
+   1899,
+   "Rutherford and Owens found the gas; Dorn's isotope gave radon its name."
+  ],
+  "91": [
+   1913,
+   "Fajans and Goehring found a short-lived isotope; Hahn and Meitner found the longer-lived Pa-231 in 1918."
+  ],
+  "95": [
+   1944,
+   "Seaborg and colleagues."
+  ],
+  "113": [
+   2004,
+   "Detected in Russia in 2003 and at RIKEN (Japan) in 2004; recognised in 2015."
+  ],
+  "104": [
+   1969,
+   "Claimed in Russia in 1964 and at Berkeley in 1969."
+  ],
+  "105": [
+   1970,
+   "Claimed in Russia in 1968 and at Berkeley in 1970."
+  ],
+  "2": [
+   1868,
+   "Seen in the Sun's spectrum in 1868 (Janssen, Lockyer); isolated on Earth in 1895 (Ramsay)."
+  ],
+  "9": [
+   1886,
+   "Isolated by Moissan in 1886; fluorspar and its acid were known earlier."
+  ]
+ },
+ "phase_stp_unknown": [
+  85,
+  87,
+  100,
+  101,
+  102,
+  103,
+  104,
+  105,
+  106,
+  107,
+  108,
+  109,
+  110,
+  111,
+  112,
+  113,
+  114,
+  115,
+  116,
+  117,
+  118
+ ]
+}

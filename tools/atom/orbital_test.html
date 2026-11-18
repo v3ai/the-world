@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbital engine test page</title>
+<style>
+  :root { --paper:#fbfaf7; --ink:#1d232e; --muted:#5d6675; --rule:#d9dde3; --accent:#1f4e79; --serif:Georgia,'Times New Roman',serif; --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:#e8e9ea; color:var(--ink); font:14px/1.45 var(--sans); overflow:hidden; }
+  #c { position:fixed; inset:0; width:100%; height:100%; display:block; touch-action:none; cursor:grab; }
+  #panel { position:fixed; left:12px; top:12px; width:340px; max-height:calc(100% - 24px); overflow:auto; background:var(--paper); border:1px solid var(--rule); border-radius:6px; padding:12px 14px 14px; box-shadow:0 1px 8px rgba(20,30,50,.12); }
+  details { font:13px/1.45 var(--serif); margin:6px 0; } summary { cursor:pointer; color:var(--accent); font:13px var(--sans); }
+  #panel h1 { font:600 17px var(--serif); margin:0 0 2px; }
+  #panel .sub { color:var(--muted); font-size:12.5px; margin-bottom:8px; }
+  .row { display:flex; flex-wrap:wrap; gap:6px 10px; align-items:center; margin:7px 0; }
+  .row > label { color:var(--muted); font-size:12.5px; min-width:56px; }
+  select, input[type=number], button { font:13px var(--sans); color:var(--ink); background:#fff; border:1px solid #c5cad2; border-radius:4px; padding:4px 7px; }
+  button { cursor:pointer; } button.on { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .seg { display:inline-flex; } .seg button { border-radius:0; margin-left:-1px; } .seg button:first-child { border-radius:4px 0 0 4px; margin-left:0; } .seg button:last-child { border-radius:0 4px 4px 0; }
+  input[type=number] { width:62px; }
+  .tip { font:13.5px/1.5 var(--serif); margin:8px 0 0; } .tip p { margin:6px 0; }
+  .tag { display:inline-block; font:11.5px var(--sans); border:1px solid var(--rule); border-radius:3px; padding:0 5px; color:var(--muted); margin-right:3px; }
+  .num { font-variant-numeric:tabular-nums; }
+  #state { position:fixed; right:18px; top:12px; font:22px var(--serif); color:#6d7480; text-align:right; max-width:50vw; pointer-events:none; }
+  #nuc { position:fixed; font:11.5px var(--sans); color:#2a3140; pointer-events:none; transform:translate(14px,-50%); white-space:nowrap; background:rgba(255,255,255,.6); padding:0 4px; border-radius:3px; }
+  #stats { position:fixed; right:14px; bottom:10px; font:12px var(--sans); color:#6d7480; }
+  #sw { display:none; }
+  @media (max-width:860px) {
+    #panel { left:0; right:0; top:auto; bottom:0; width:auto; max-height:46vh; border-radius:8px 8px 0 0; }
+    #state { font-size:17px; } #stats { display:none; }
+  }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="state"></div><div id="nuc">nucleus (true size, too small to see)</div><div id="stats"></div>
+<div id="panel">
+  <h1>Orbital engine</h1>
+  <div class="sub">Any hydrogen-like state, a whole atom, or a superposition. Drag to turn, scroll to zoom.</div>
+  <div class="row"><label>Show</label><span class="seg" id="mode"><button data-k="orbital" class="on">One orbital</button><button data-k="shells">Whole atom</button><button data-k="super">Superposition</button></span></div>
+  <div class="row"><label id="zl">Nuclear charge Z</label><input type="number" id="Z" min="1" max="118" value="1"><span id="zname" class="sub" style="margin:0"></span></div>
+  <div id="orbRow">
+    <div class="row"><label>n, l, m</label>
+      <select id="n"></select><select id="l"></select><select id="m"></select></div>
+    <div class="row"><label>Family</label><span class="seg" id="fam"><button data-k="complex" class="on">Definite rotation (m)</button><button data-k="cos">Chemist's shapes</button></span></div>
+    <div class="row" id="realRow" style="display:none"><label>Which</label><select id="real"></select></div>
+  </div>
+  <div id="supRow" style="display:none">
+    <div class="row"><label>Mix</label><select id="sup">
+      <option value="1s2p0">1s + 2p (m = 0): sloshes up and down</option>
+      <option value="1s2p1">1s + 2p (m = +1): circles the axis</option>
+      <option value="1s2s">1s + 2s: breathes in and out</option>
+    </select></div>
+  </div>
+  <div class="row"><label>View</label><button id="cut">Cut away a quarter</button><button id="flow" class="on">Flow: on</button></div>
+  <div class="row"><label>Dots</label><select id="dots"><option value="20000">20 000</option><option value="50000">50 000</option><option value="100000">100 000</option><option value="200000" selected>200 000</option><option value="400000">400 000</option></select>
+    <label style="min-width:0">Slow-down</label><select id="slow"><option value="auto" selected>automatic</option><option value="1e14">10^14</option><option value="1e15">10^15</option><option value="1e16">10^16</option><option value="1e17">10^17</option></select></div>
+  <div class="tip" id="tip"></div>
+</div>
+<script>if (new URLSearchParams(location.search).get('clean')) document.write('<style>#panel,#stats{display:none}</style>');</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="../../js/atom.js"></script>
+<script>
+'use strict';
+const $ = s => document.querySelector(s), SUP = ['⁰','¹','²','³','⁴','⁵','⁶','⁷'];
+const url = new URLSearchParams(location.search);
+const canvas = $('#c'), renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+const scene = new THREE.Scene(); scene.background = AtomCloud.backdrop();
+const camera = new THREE.PerspectiveCamera(50, 1, 0.01, 1e5);
+const cloud = new AtomCloud({ unit: 1, count: +(url.get('dots') || 200000) }); scene.add(cloud.group);
+const view = { az: 0.0, el: 0.45, dist: 30, target: new THREE.Vector3() };
+let ELJ = {}, ZEFF = {};
+const S = { mode: 'orbital', Z: 1, n: 3, l: 1, m: 1, fam: 'complex', real: 'cos', sup: '1s2p0' };
+
+function resize() { const w = innerWidth, h = innerHeight; renderer.setSize(w, h, false); camera.aspect = w / h; if (url.get('clean')) camera.clearViewOffset(); else if (w > 860) camera.setViewOffset(w, h, -176, 0, w, h); else camera.setViewOffset(w, h, 0, 70, w, h); camera.updateProjectionMatrix(); cloud.setView(h * renderer.getPixelRatio(), 50); }
+addEventListener('resize', resize); resize();
+
+/* ---- minimal orbit control ---- */
+const ptr = new Map(); let pinch = 0;
+canvas.addEventListener('pointerdown', e => { canvas.setPointerCapture(e.pointerId); ptr.set(e.pointerId, [e.clientX, e.clientY]); if (ptr.size === 2) pinch = dist2(); });
+canvas.addEventListener('pointermove', e => {
+  if (!ptr.has(e.pointerId)) return; const p = ptr.get(e.pointerId);
+  if (ptr.size === 1) { view.az -= (e.clientX - p[0]) * 0.006; view.el = Math.max(-1.5, Math.min(1.5, view.el + (e.clientY - p[1]) * 0.006)); }
+  ptr.set(e.pointerId, [e.clientX, e.clientY]);
+  if (ptr.size === 2) { const d = dist2(); view.dist *= pinch / d; pinch = d; }
+});
+const up = e => ptr.delete(e.pointerId); canvas.addEventListener('pointerup', up); canvas.addEventListener('pointercancel', up);
+canvas.addEventListener('wheel', e => { e.preventDefault(); view.dist *= Math.exp(e.deltaY * 0.0012); }, { passive: false });
+function dist2() { const a = [...ptr.values()]; return Math.hypot(a[0][0] - a[1][0], a[0][1] - a[1][1]) || 1; }
+
+/* ---- state -> spec ---- */
+const REAL_NAMES = { '1_0': ['pₓ'], };
+function realName(l, m, kind) {
+  const a = Math.abs(m);
+  if (l === 0) return 's';
+  if (l === 1) return m === 0 ? 'pz' : kind === 'cos' ? 'px' : 'py';
+  if (l === 2) return m === 0 ? 'dz²' : a === 1 ? (kind === 'cos' ? 'dxz' : 'dyz') : (kind === 'cos' ? 'dx²−y²' : 'dxy');
+  return 'f/g/h type, ' + (m === 0 ? 'axial' : kind === 'cos' ? `cos(${a}φ)` : `sin(${a}φ)`);
+}
+function hname(Z) { if (Z === 1) return 'hydrogen'; const e = Object.values(ELJ).find(x => x.Z === Z); return e ? `${e.name.toLowerCase()} with one electron (${e.symbol}${Z > 2 ? SUP[Z - 1] ? '' : '' : ''}, Z = ${Z})` : `hydrogen-like, Z = ${Z}`; }
+function fillSel(sel, vals, cur, fmt) { sel.innerHTML = ''; vals.forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = fmt ? fmt(v) : v; sel.appendChild(o); }); sel.value = cur; }
+const LTR = 'spdfghi', sgn = m => (m > 0 ? '+' : m < 0 ? '−' : '') + Math.abs(m);
+
+function shellsFor(Z) {
+  const e = Object.values(ELJ).find(x => x.Z === Z); if (!e) return null;
+  const z = (ZEFF.elements[e.symbol] || {}).zeff || {};
+  return { e, shells: Object.entries(e.subshells).map(([k, occ]) => ({ n: +k[0], l: 'spdfgh'.indexOf(k[1]), e: occ, zeff: z[k] || Math.max(1, Z - 0), key: k })) };
+}
+function apply() {
+  const Z = S.Z; let spec, tip = null;
+  $('#zname').textContent = hname(Z) !== 'hydrogen' ? '' : '';
+  $('#orbRow').style.display = S.mode === 'orbital' ? '' : 'none'; $('#supRow').style.display = S.mode === 'super' ? '' : 'none';
+  $('#zl').textContent = S.mode === 'shells' ? 'Element (Z)' : 'Nuclear charge Z';
+  document.querySelectorAll('#mode button').forEach(b => b.classList.toggle('on', b.dataset.k === S.mode));
+  if (S.mode === 'orbital') {
+    const real = S.fam === 'complex' ? null : S.real, m = S.fam === 'complex' ? S.m : Math.abs(S.m);
+    const name = S.fam === 'complex' ? `${hname(Z)} n = ${S.n}, l = ${S.l}, m = ${sgn(S.m)}` : `${hname(Z)} n = ${S.n}, l = ${S.l}, ${realName(S.l, m, S.real)} (real orbital)`;
+    spec = { kind: 'orbital', Z, n: S.n, l: S.l, m, real, name };
+    tip = () => orbitalTip(spec);
+  } else if (S.mode === 'shells') {
+    const sf = shellsFor(Z); if (!sf) return;
+    spec = { kind: 'shells', shells: sf.shells, name: `${sf.e.name}, Z = ${Z}: every occupied subshell` };
+    tip = () => shellsTip(sf);
+  } else {
+    const c = 1 / Math.SQRT2, P = {
+      '1s2p0': [{ n: 1, l: 0, m: 0, re: c, im: 0 }, { n: 2, l: 1, m: 0, re: c, im: 0 }],
+      '1s2p1': [{ n: 1, l: 0, m: 0, re: c, im: 0 }, { n: 2, l: 1, m: 1, re: c, im: 0 }],
+      '1s2s': [{ n: 1, l: 0, m: 0, re: c, im: 0 }, { n: 2, l: 0, m: 0, re: c, im: 0 }] }[S.sup];
+    const nm = { '1s2p0': '1s + 2p (m = 0)', '1s2p1': '1s + 2p (m = +1)', '1s2s': '1s + 2s' }[S.sup];
+    spec = { kind: 'super', Z, comps: P, name: `${hname(Z)}: ${nm}` };
+    tip = () => superTip(spec);
+  }
+  cloud.setState(spec);
+  const sl = $('#slow').value; if (sl !== 'auto') cloud.setSlow(+sl);
+  frame(); $('#state').textContent = cloud.label; $('#tip').innerHTML = tip();
+}
+function frame() { const a = innerWidth / innerHeight; view.dist = cloud.extent * 2.6 * (a < 1 ? 1.15 / a : 1) * (innerWidth <= 860 ? 1.1 : 1); }
+const MEANS = '<p>Every dot is one place this single electron could be found. Dots are crowded where it is likely to be. They are not many electrons, and the dot size is not the electron’s size.</p>';
+const CERT = '<p><span class="tag">C1</span>The wavefunction and every number it predicts are settled. <span class="tag">C4</span>What the wavefunction <em>is</em> (a real wave, knowledge, many worlds, a pilot wave) is an open question.</p>';
+function slowTxt() { const k = cloud.slowText().replace('^', ''); return `10<sup>${k.slice(2)}</sup>`; }
+function orbitalTip(spec) {
+  let t = MEANS;
+  if (spec.real) t += `<p>This is a chemist’s orbital: an equal mixture of m = +${spec.m} and m = −${spec.m}. The two circulations cancel, so the dots have no net flow and sit still. Adding the two rotating states gives this shape, and subtracting them gives its twin turned a quarter of a turn.</p>`;
+  else if (spec.m === 0) t += '<p>The dots are still because this state has no circulation about the vertical axis. That does not mean the electron is at rest: its kinetic energy is not zero.</p>';
+  else t += `<p>The dots drift along the flow of probability, circling the vertical axis ${spec.m > 0 ? 'anticlockwise' : 'clockwise'} as seen from above, faster near the axis. In standard quantum mechanics only the probabilities are defined; in the pilot-wave (de Broglie–Bohm) reading these would be the electron’s actual paths. Both readings predict exactly the same measurements. The motion is slowed about ${slowTxt()} times.</p>`;
+  if (!spec.real && spec.m !== 0) t += `<details><summary>Expert: how the flow is computed</summary><p>The wavefunction is \u03c8 = R(r) P(cos \u03b8) e<sup>im\u03c6</sup>, so the probability current divided by the density is v = (\u0127/m<sub>e</sub>) Im(\u2207\u03c8/\u03c8) = m\u0127 / (m<sub>e</sub> r sin \u03b8) \u03c6-hat. Each dot therefore circles the vertical axis at constant height and constant distance s = r sin \u03b8 from it, with angular speed \u03c9 = m/s\u00b2 in atomic units (one unit of time is 2.4189\u00d710<sup>\u221217</sup> s). The shader computes the angle as \u03c6\u2080 + \u03c9t, so the flow costs the processor nothing. Near the axis \u03c9 grows without limit; for display it is capped at the value it has at s = 0.12 \u27e8r\u27e9 (\u03c9 \u2248 ${cloud.omegaCap.toFixed(3)} per atomic unit here), which affects only the few dots very close to the axis. Dots are drawn from |\u03c8|\u00b2 by tabulated inverse cumulative distributions: r from r\u00b2R\u00b2, cos \u03b8 from P\u00b2, \u03c6 uniform.</p></details>`;
+  return t + CERT;
+}
+function shellsTip(sf) {
+  return `<p>Dots are coloured by shell (one hue for each principal quantum number n). Filled subshells are exactly spherical and a free atom has no preferred direction, so each subshell is shown averaged over orientation, with no flow.</p>` +
+    `<p><b>This is the orbital approximation.</b> Each subshell is a hydrogen-like cloud shrunk by an effective nuclear charge (${sf.e.symbol}: ${(ZEFF.elements[sf.e.symbol] || {}).method || 'Slater'}), so sizes are approximate. Real electrons avoid each other in ways this picture leaves out, and in heavy atoms relativity changes the inner shells. Each shell is given a minimum number of dots so tiny inner shells stay visible, so dot counts are not to scale between shells.</p>` + CERT;
+}
+function superTip(spec) {
+  const Z = spec.Z, n1 = 1, n2 = 2, dE = 0.375 * Z * Z, f = dE * AQ.HARTREE_HZ / (Z === 1 ? 1 + AQ.ME_OVER_MP : 1), lam = 299792458 / f * 1e9;
+  const ex = n => { const e = n.toExponential(3).split('e+'); return `${e[0]}×10<sup>${e[1]}</sup>`; };
+  let t = MEANS;
+  if (S.sup === '1s2s') t += '<p>This mixture breathes: the cloud swells and shrinks, but its centre does not move, so it makes no oscillating dipole and cannot emit a single photon this way. The beat still has frequency (E₂ − E₁)/h.</p>';
+  else if (S.sup === '1s2p0') t += `<p>Mix the 1s and 2p states and the cloud stops being still: its density sloshes up and down at (E₂ − E₁)/h ≈ ${ex(f)} Hz. That is the frequency of the ${lam.toFixed(1)} nm ultraviolet light the atom emits when it drops from 2p to 1s${Z === 1 ? ' (the Lyman-α line, observed at 121.567 nm)' : ''}. This is the link between orbitals and spectral lines.</p>`;
+  else t += `<p>Mixing 1s with 2p (m = +1) makes the whole cloud circle the axis at (E₂ − E₁)/h ≈ ${ex(f)} Hz, the Lyman-α frequency again.</p>`;
+  t += `<p>The dots move along the probability current. In standard quantum mechanics only the probabilities are defined; in the pilot-wave reading these would be the electron’s actual paths. Both predict the same measurements. The motion is slowed about ${slowTxt()} times. Only hydrogen-like atoms have exactly known energies, so only they are offered here.</p>`;
+  return t + CERT;
+}
+
+/* ---- controls ---- */
+function syncNLM() {
+  fillSel($('#n'), [1,2,3,4,5,6,7], S.n, v => 'n = ' + v);
+  S.l = Math.min(S.l, S.n - 1); fillSel($('#l'), [...Array(S.n).keys()], S.l, v => `l = ${v} (${LTR[v]})`);
+  S.m = Math.max(-S.l, Math.min(S.l, S.m));
+  const ms = S.fam === 'complex' ? [...Array(2 * S.l + 1).keys()].map(i => i - S.l) : [...Array(S.l + 1).keys()];
+  if (S.fam !== 'complex') S.m = Math.abs(S.m);
+  fillSel($('#m'), ms, S.m, v => (S.fam === 'complex' ? 'm = ' + sgn(v) : '|m| = ' + v));
+  const rr = $('#realRow'); rr.style.display = S.fam !== 'complex' && S.m !== 0 ? '' : 'none';
+  fillSel($('#real'), ['cos', 'sin'], S.real, k => realName(S.l, S.m, k));
+}
+$('#mode').onclick = e => { const k = e.target.dataset.k; if (!k) return; S.mode = k; if (k === 'shells' && S.Z === 1) { S.Z = 8; $('#Z').value = 8; } if (k !== 'shells' && S.Z > 8 && false) {} apply(); };
+$('#Z').onchange = () => { S.Z = Math.max(1, Math.min(118, +$('#Z').value | 0)); $('#Z').value = S.Z; apply(); };
+$('#n').onchange = () => { S.n = +$('#n').value; syncNLM(); apply(); };
+$('#l').onchange = () => { S.l = +$('#l').value; syncNLM(); apply(); };
+$('#m').onchange = () => { S.m = +$('#m').value; syncNLM(); apply(); };
+$('#real').onchange = () => { S.real = $('#real').value; apply(); };
+$('#fam').onclick = e => { const k = e.target.dataset.k; if (!k) return; S.fam = k === 'complex' ? 'complex' : 'cos'; document.querySelectorAll('#fam button').forEach(b => b.classList.toggle('on', b.dataset.k === k)); syncNLM(); apply(); };
+$('#sup').onchange = () => { S.sup = $('#sup').value; apply(); };
+$('#cut').onclick = () => { cloud.setCut(!cloud.cut); $('#cut').classList.toggle('on', cloud.cut); $('#cut').textContent = cloud.cut ? 'Put the quarter back' : 'Cut away a quarter'; };
+$('#flow').onclick = () => { cloud.setFlow(!cloud.flowOn); $('#flow').classList.toggle('on', cloud.flowOn); $('#flow').textContent = 'Flow: ' + (cloud.flowOn ? 'on' : 'off'); };
+$('#dots').onchange = () => { cloud.setCount(+$('#dots').value); $('#tip').innerHTML = $('#tip').innerHTML; };
+$('#slow').onchange = () => { const v = $('#slow').value; if (v === 'auto') { cloud.slowAuto = true; apply(); } else { cloud.setSlow(+v); apply(); } };
+
+/* ---- loop ---- */
+const nucEl = $('#nuc'), statsEl = $('#stats'); let last = performance.now(), fpsE = 60, frames = 0;
+function tick(now) {
+  const dt = Math.min(0.1, (now - last) / 1000); last = now; fpsE = fpsE * 0.95 + (1 / Math.max(dt, 1e-3)) * 0.05; frames++;
+  cloud.update(dt);
+  const d = view.dist, ce = Math.cos(view.el);
+  camera.position.set(Math.sin(view.az) * ce * d, Math.sin(view.el) * d, Math.cos(view.az) * ce * d); camera.lookAt(view.target);
+  camera.near = d * 0.01; camera.far = d * 50; camera.updateProjectionMatrix();
+  renderer.render(scene, camera);
+  const v = new THREE.Vector3(0, 0, 0).project(camera); nucEl.style.left = (v.x * 0.5 + 0.5) * innerWidth + 'px'; nucEl.style.top = (-v.y * 0.5 + 0.5) * innerHeight + 'px';
+  if (frames % 20 === 0) statsEl.textContent = `${cloud.N.toLocaleString()} dots, ${fpsE.toFixed(0)} fps, slow-down ${cloud.slowText()}${cloud.isDyn ? ', integrator ' + cloud.simMs.toFixed(0) + ' ms' : ''}`;
+  requestAnimationFrame(tick);
+}
+window.AT = { S, cloud, view, apply, syncNLM, renderer, camera, scene, set(o) { Object.assign(S, o); if (o.Z) $('#Z').value = o.Z; syncNLM(); apply(); }, cut(b) { if (cloud.cut !== b) $('#cut').click(); } };
+Promise.all([fetch('../../data/elements.json').then(r => r.json()), fetch('../../data/atomic/zeff.json').then(r => r.json())]).then(([e, z]) => {
+  e.forEach(x => ELJ[x.symbol] = x); ZEFF = z;
+  const q = k => url.get(k);
+  if (q('mode')) S.mode = q('mode'); if (q('z')) S.Z = +q('z'); if (q('n')) S.n = +q('n'); if (q('l')) S.l = +q('l'); if (q('m')) S.m = +q('m'); if (q('fam')) S.fam = q('fam'); if (q('sup')) S.sup = q('sup');
+  $('#Z').value = S.Z; if (S.fam !== 'complex') { document.querySelectorAll('#fam button').forEach(b => b.classList.toggle('on', b.dataset.k === 'cos')); }
+  syncNLM(); apply(); if (q('cut')) $('#cut').click(); if (q('az')) view.az = +q('az'); if (q('el')) view.el = +q('el');
+  window.AT.ready = true; requestAnimationFrame(tick);
+});
+</script>
+</body>
+</html>
