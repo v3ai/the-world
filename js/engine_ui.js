@@ -74,7 +74,7 @@ function updateCrumbs(cur) {
   const chain = chainOf(cur).reverse(); // root ... current
   const short = f => { const n = CRUMB_NAME[humanName(f)] || humanName(f); return n.length > 26 ? n.slice(0, 25) + '…' : n; };
   let items = chain.map((f, i) => ({ f, last: i === chain.length - 1 }));
-  let cut = 0; if (chain.length > 9 && !crumbsAll) { cut = chain.length - 7; items = [items[0], { more: cut - 1 }].concat(items.slice(cut)); }
+  let cut = 0; if (chain.length > 11 && !crumbsAll) { cut = chain.length - 7; items = [items[0], { more: cut - 1 }].concat(items.slice(cut)); }
   ol.innerHTML = items.map(it => it.more !== undefined ? `<li><button class="crumb more" title="Show the whole path">… ${it.more} more</button></li>` : `<li>${it.last ? `<span class="crumb cur" aria-current="location" title="${humanName(it.f)}">${short(it.f)}</span>` : `<button class="crumb" data-i="${chain.indexOf(it.f)}" title="Fly out to ${humanName(it.f)}">${short(it.f)}</button>`}</li>`).join('');
   ol.querySelectorAll('.crumb[data-i]').forEach(b => b.onclick = () => crumbGo(chain[+b.dataset.i]));
   const mo = ol.querySelector('.more'); if (mo) mo.onclick = () => { crumbsAll = true; updateCrumbs(cur); };
