@@ -1,1 +1,925 @@
-{}
+{
+ "at_atom": {
+  "type": "bars",
+  "ylabel": "radius, pm (logarithmic)",
+  "logy": true,
+  "caption": "An iron atom against its nucleus, on a logarithmic scale. The nucleus radius uses the empirical rule R = 1.2 A^(1/3) fm with A = 56; the atom value is the empirical atomic radius.",
+  "bars": [
+   {
+    "label": "Fe atom (empirical radius)",
+    "value": 140
+   },
+   {
+    "label": "H atom: Bohr radius a0",
+    "value": 52.9177210544
+   },
+   {
+    "label": "Fe-56 nucleus (rule)",
+    "value": 0.00459
+   }
+  ]
+ },
+ "at_orbital": {
+  "type": "heatmap",
+  "x": [
+   -14.4,
+   14.4
+  ],
+  "y": [
+   -14.4,
+   14.4
+  ],
+  "equal": true,
+  "colormap": "heat",
+  "f": "if(state==1, y*y*exp(-hypot(x,y)), if(state==2, (6-hypot(x,y))^2*y*y*exp(-2*hypot(x,y)/3), (3*y*y-x*x-y*y)^2*exp(-2*hypot(x,y)/3)/9))",
+  "params": [
+   {
+    "id": "state",
+    "label": "state: 1 = 2p, 2 = 3p, 3 = 3d (m = 0)",
+    "min": 1,
+    "max": 3,
+    "value": 1,
+    "step": 1
+   }
+  ],
+  "caption": "A slice through the vertical axis of a hydrogen state: bright where the electron is more likely to be found. Distances are in Bohr radii; each state is drawn at its own brightness scale. Look for the dark nodes: a plane for 2p, an extra ring for 3p."
+ },
+ "at_wavefunction": {
+  "type": "plot",
+  "x": [
+   0,
+   14
+  ],
+  "y": [
+   0,
+   0.8
+  ],
+  "xlabel": "distance r from the nucleus (Bohr radii)",
+  "ylabel": "probability per Bohr radius",
+  "fns": [
+   {
+    "f": "Z*4*(Z*x)^2*exp(-2*Z*x)",
+    "label": "1s"
+   },
+   {
+    "f": "Z*(Z*x)^2*(2-Z*x)^2*exp(-Z*x)/8",
+    "label": "2s"
+   },
+   {
+    "f": "Z*(Z*x)^4*exp(-Z*x)/24",
+    "label": "2p"
+   }
+  ],
+  "params": [
+   {
+    "id": "Z",
+    "label": "nuclear charge Z (hydrogen-like ion)",
+    "min": 1,
+    "max": 4,
+    "value": 1,
+    "step": 1
+   }
+  ],
+  "caption": "Radial probability for hydrogen-like states. Each curve has area 1. The 1s peak sits at r = 1/Z; raise Z and the cloud shrinks."
+ },
+ "at_quantum_numbers": {
+  "type": "table",
+  "cols": [
+   "shell n",
+   "subshells",
+   "orbitals",
+   "electrons (max)"
+  ],
+  "rows": [
+   [
+    "1",
+    "1s",
+    "1",
+    "2"
+   ],
+   [
+    "2",
+    "2s 2p",
+    "4",
+    "8"
+   ],
+   [
+    "3",
+    "3s 3p 3d",
+    "9",
+    "18"
+   ],
+   [
+    "4",
+    "4s 4p 4d 4f",
+    "16",
+    "32"
+   ]
+  ],
+  "caption": "How the quantum numbers add up: shell n has n² orbitals, each holding two electrons of opposite spin."
+ },
+ "at_spin_pauli": {
+  "type": "geometry",
+  "range": [
+   0,
+   10,
+   0,
+   4
+  ],
+  "equal": true,
+  "params": [
+   {
+    "id": "e",
+    "label": "electrons in a p subshell",
+    "min": 0,
+    "max": 6,
+    "value": 4,
+    "step": 1
+   }
+  ],
+  "shapes": [
+   {
+    "k": "rect",
+    "x": 1,
+    "y": 1,
+    "w": 2,
+    "h": 1.6,
+    "stroke": "dim"
+   },
+   {
+    "k": "rect",
+    "x": 4,
+    "y": 1,
+    "w": 2,
+    "h": 1.6,
+    "stroke": "dim"
+   },
+   {
+    "k": "rect",
+    "x": 7,
+    "y": 1,
+    "w": 2,
+    "h": 1.6,
+    "stroke": "dim"
+   },
+   {
+    "k": "arrow",
+    "x1": 1.7,
+    "y1": 1.2,
+    "x2": 1.7,
+    "y2": 2.4,
+    "color": "accent",
+    "when": "e>=1"
+   },
+   {
+    "k": "arrow",
+    "x1": 4.7,
+    "y1": 1.2,
+    "x2": 4.7,
+    "y2": 2.4,
+    "color": "accent",
+    "when": "e>=2"
+   },
+   {
+    "k": "arrow",
+    "x1": 7.7,
+    "y1": 1.2,
+    "x2": 7.7,
+    "y2": 2.4,
+    "color": "accent",
+    "when": "e>=3"
+   },
+   {
+    "k": "arrow",
+    "x1": 2.3,
+    "y1": 2.4,
+    "x2": 2.3,
+    "y2": 1.2,
+    "color": "gold",
+    "when": "e>=4"
+   },
+   {
+    "k": "arrow",
+    "x1": 5.3,
+    "y1": 2.4,
+    "x2": 5.3,
+    "y2": 1.2,
+    "color": "gold",
+    "when": "e>=5"
+   },
+   {
+    "k": "arrow",
+    "x1": 8.3,
+    "y1": 2.4,
+    "x2": 8.3,
+    "y2": 1.2,
+    "color": "gold",
+    "when": "e>=6"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 0.5,
+    "text": "px",
+    "align": "center"
+   },
+   {
+    "k": "text",
+    "x": 5,
+    "y": 0.5,
+    "text": "py",
+    "align": "center"
+   },
+   {
+    "k": "text",
+    "x": 8,
+    "y": 0.5,
+    "text": "pz",
+    "align": "center"
+   }
+  ],
+  "caption": "Three p orbitals are three boxes; each holds up to two electrons with opposite spins (arrows up and down). Add electrons: the first three go into separate boxes, then they pair up. Four electrons is oxygen’s 2p."
+ },
+ "at_configuration": {
+  "type": "table",
+  "cols": [
+   "row",
+   "subshells filled in this row, in order",
+   "electrons added"
+  ],
+  "rows": [
+   [
+    "1",
+    "1s",
+    "2"
+   ],
+   [
+    "2",
+    "2s 2p",
+    "8"
+   ],
+   [
+    "3",
+    "3s 3p",
+    "8"
+   ],
+   [
+    "4",
+    "4s 3d 4p",
+    "18"
+   ],
+   [
+    "5",
+    "5s 4d 5p",
+    "18"
+   ],
+   [
+    "6",
+    "6s 4f 5d 6p",
+    "32"
+   ],
+   [
+    "7",
+    "7s 5f 6d 7p",
+    "32"
+   ]
+  ],
+  "caption": "The order of filling that builds the rows of the periodic table (the Madelung order). It is a rule of thumb with about twenty exceptions, which the configuration strip shows."
+ },
+ "at_trends": {
+  "type": "bars",
+  "ylabel": "first ionisation energy, eV",
+  "caption": "First ionisation energy across period 2 (lithium to neon), from the NIST Atomic Spectra Database. It rises across the row, with small dips at boron and oxygen.",
+  "bars": [
+   {
+    "label": "Li",
+    "value": 5.39
+   },
+   {
+    "label": "Be",
+    "value": 9.32
+   },
+   {
+    "label": "B",
+    "value": 8.3
+   },
+   {
+    "label": "C",
+    "value": 11.26
+   },
+   {
+    "label": "N",
+    "value": 14.53
+   },
+   {
+    "label": "O",
+    "value": 13.62
+   },
+   {
+    "label": "F",
+    "value": 17.42
+   },
+   {
+    "label": "Ne",
+    "value": 21.56
+   }
+  ]
+ },
+ "at_zeff": {
+  "type": "bars",
+  "ylabel": "Z_eff of the outermost subshell",
+  "caption": "Effective nuclear charge felt by the outermost electrons across period 2, from Clementi and Raimondi’s calculation. The actual nuclear charge grows from 3 to 10; the electrons feel a smaller, slower-growing pull.",
+  "bars": [
+   {
+    "label": "Li",
+    "value": 1.28
+   },
+   {
+    "label": "Be",
+    "value": 1.91
+   },
+   {
+    "label": "B",
+    "value": 2.42
+   },
+   {
+    "label": "C",
+    "value": 3.14
+   },
+   {
+    "label": "N",
+    "value": 3.83
+   },
+   {
+    "label": "O",
+    "value": 4.45
+   },
+   {
+    "label": "F",
+    "value": 5.1
+   },
+   {
+    "label": "Ne",
+    "value": 5.76
+   }
+  ]
+ },
+ "at_isotopes": {
+  "type": "bars",
+  "ylabel": "natural abundance, %",
+  "caption": "The natural isotopes of tin, by mass number (NUBASE2020 and CIAAW abundances). Different isotopes of one element have the same chemistry.",
+  "bars": [
+   {
+    "label": "Sn-112",
+    "value": 0.97
+   },
+   {
+    "label": "Sn-114",
+    "value": 0.66
+   },
+   {
+    "label": "Sn-115",
+    "value": 0.34
+   },
+   {
+    "label": "Sn-116",
+    "value": 14.54
+   },
+   {
+    "label": "Sn-117",
+    "value": 7.68
+   },
+   {
+    "label": "Sn-118",
+    "value": 24.22
+   },
+   {
+    "label": "Sn-119",
+    "value": 8.59
+   },
+   {
+    "label": "Sn-120",
+    "value": 32.58
+   },
+   {
+    "label": "Sn-122",
+    "value": 4.63
+   },
+   {
+    "label": "Sn-124",
+    "value": 5.79
+   }
+  ]
+ },
+ "at_ions": {
+  "type": "table",
+  "cols": [
+   "",
+   "protons",
+   "electrons",
+   "charge",
+   "configuration"
+  ],
+  "rows": [
+   [
+    "Na",
+    "11",
+    "11",
+    "0",
+    "1s² 2s² 2p⁶ 3s¹"
+   ],
+   [
+    "Na⁺",
+    "11",
+    "10",
+    "+1",
+    "1s² 2s² 2p⁶"
+   ],
+   [
+    "Cl",
+    "17",
+    "17",
+    "0",
+    "1s² 2s² 2p⁶ 3s² 3p⁵"
+   ],
+   [
+    "Cl⁻",
+    "17",
+    "18",
+    "−1",
+    "1s² 2s² 2p⁶ 3s² 3p⁶"
+   ]
+  ],
+  "caption": "Ions keep the nucleus and change the number of electrons. Both ions here have the full outer shell of a noble gas."
+ },
+ "at_spectra": {
+  "type": "geometry",
+  "range": [
+   0,
+   12,
+   -15,
+   1
+  ],
+  "params": [
+   {
+    "id": "nu",
+    "label": "upper level n",
+    "min": 2,
+    "max": 7,
+    "value": 3,
+    "step": 1
+   },
+   {
+    "id": "nl",
+    "label": "lower level n",
+    "min": 1,
+    "max": 2,
+    "value": 2,
+    "step": 1
+   }
+  ],
+  "readouts": [
+   {
+    "label": "wavelength",
+    "value": "if(nu>nl, 91.1763/(1/nl^2-1/nu^2), 0)",
+    "unit": "nm (vacuum)"
+   },
+   {
+    "label": "photon energy",
+    "value": "if(nu>nl, 13.605693123*(1/nl^2-1/nu^2), 0)",
+    "unit": "eV"
+   }
+  ],
+  "shapes": [
+   {
+    "k": "line",
+    "x1": 2,
+    "y1": "-13.605693123/1",
+    "x2": 10,
+    "y2": "-13.605693123/1",
+    "color": "dim"
+   },
+   {
+    "k": "line",
+    "x1": 2,
+    "y1": "-13.605693123/4",
+    "x2": 10,
+    "y2": "-13.605693123/4",
+    "color": "dim"
+   },
+   {
+    "k": "line",
+    "x1": 2,
+    "y1": "-13.605693123/9",
+    "x2": 10,
+    "y2": "-13.605693123/9",
+    "color": "dim"
+   },
+   {
+    "k": "line",
+    "x1": 2,
+    "y1": "-13.605693123/16",
+    "x2": 10,
+    "y2": "-13.605693123/16",
+    "color": "dim"
+   },
+   {
+    "k": "line",
+    "x1": 2,
+    "y1": "-13.605693123/25",
+    "x2": 10,
+    "y2": "-13.605693123/25",
+    "color": "dim"
+   },
+   {
+    "k": "line",
+    "x1": 2,
+    "y1": "-13.605693123/36",
+    "x2": 10,
+    "y2": "-13.605693123/36",
+    "color": "dim"
+   },
+   {
+    "k": "line",
+    "x1": 2,
+    "y1": "-13.605693123/49",
+    "x2": 10,
+    "y2": "-13.605693123/49",
+    "color": "dim"
+   },
+   {
+    "k": "arrow",
+    "x1": 6,
+    "y1": "-13.605693123/(nu*nu)",
+    "x2": 6,
+    "y2": "-13.605693123/(nl*nl)",
+    "color": "accent",
+    "when": "nu>nl"
+   },
+   {
+    "k": "text",
+    "x": 1.9,
+    "y": "-13.605693123/(nl*nl)",
+    "text": "n = {nl}",
+    "align": "right"
+   },
+   {
+    "k": "text",
+    "x": 1.9,
+    "y": "-13.605693123/(nu*nu)",
+    "text": "n = {nu}",
+    "align": "right"
+   }
+  ],
+  "caption": "Energy levels of hydrogen (eV, zero is a free electron). Pick two levels: the arrow is the jump and the readout is the light it gives out, from the Rydberg formula."
+ },
+ "at_models": {
+  "type": "blocks",
+  "flow": true,
+  "caption": "Five models and what forced each change.",
+  "nodes": [
+   {
+    "id": "d",
+    "label": "Dalton 1803: solid ball",
+    "x": 10,
+    "y": 50,
+    "shape": "box"
+   },
+   {
+    "id": "t",
+    "label": "Thomson 1904: pudding",
+    "x": 30,
+    "y": 50,
+    "shape": "box"
+   },
+   {
+    "id": "r",
+    "label": "Rutherford 1911: nucleus",
+    "x": 50,
+    "y": 50,
+    "shape": "box"
+   },
+   {
+    "id": "b",
+    "label": "Bohr 1913: levels",
+    "x": 70,
+    "y": 50,
+    "shape": "box"
+   },
+   {
+    "id": "q",
+    "label": "Quantum 1926: wavefunction",
+    "x": 90,
+    "y": 50,
+    "shape": "box"
+   }
+  ],
+  "edges": [
+   {
+    "from": "d",
+    "to": "t",
+    "label": "electrons found"
+   },
+   {
+    "from": "t",
+    "to": "r",
+    "label": "alpha bounce-back"
+   },
+   {
+    "from": "r",
+    "to": "b",
+    "label": "stability, spectra"
+   },
+   {
+    "from": "b",
+    "to": "q",
+    "label": "multi-electron atoms"
+   }
+  ]
+ },
+ "at_model_dalton": {
+  "type": "geometry",
+  "range": [
+   -4,
+   4,
+   -3,
+   3
+  ],
+  "equal": true,
+  "shapes": [
+   {
+    "k": "circle",
+    "x": 0,
+    "y": 0,
+    "r": 2,
+    "fill": "#6a8fc7"
+   },
+   {
+    "k": "text",
+    "x": 0,
+    "y": -2.7,
+    "text": "a solid ball, no inside",
+    "align": "center"
+   }
+  ],
+  "caption": "Dalton’s atom: a ball with nothing inside. The size is not part of the model."
+ },
+ "at_model_thomson": {
+  "type": "geometry",
+  "range": [
+   -4,
+   4,
+   -3,
+   3
+  ],
+  "equal": true,
+  "shapes": [
+   {
+    "k": "circle",
+    "x": 0,
+    "y": 0,
+    "r": 2.4,
+    "fill": "#e59a9a",
+    "alpha": 0.5
+   },
+   {
+    "k": "point",
+    "x": 1.4,
+    "y": 0.0,
+    "size": 6,
+    "color": "blue"
+   },
+   {
+    "k": "point",
+    "x": 0.87,
+    "y": 1.09,
+    "size": 6,
+    "color": "blue"
+   },
+   {
+    "k": "point",
+    "x": -0.31,
+    "y": 1.36,
+    "size": 6,
+    "color": "blue"
+   },
+   {
+    "k": "point",
+    "x": -1.26,
+    "y": 0.61,
+    "size": 6,
+    "color": "blue"
+   },
+   {
+    "k": "point",
+    "x": -1.26,
+    "y": -0.61,
+    "size": 6,
+    "color": "blue"
+   },
+   {
+    "k": "point",
+    "x": -0.31,
+    "y": -1.36,
+    "size": 6,
+    "color": "blue"
+   },
+   {
+    "k": "point",
+    "x": 0.87,
+    "y": -1.09,
+    "size": 6,
+    "color": "blue"
+   },
+   {
+    "k": "text",
+    "x": 0,
+    "y": -2.8,
+    "text": "electrons (blue) in a positive ball",
+    "align": "center"
+   }
+  ],
+  "caption": "The plum-pudding atom. The electron positions are drawn for illustration."
+ },
+ "at_model_rutherford": {
+  "type": "plot",
+  "x": [
+   1,
+   100
+  ],
+  "y": [
+   0,
+   180
+  ],
+  "xlabel": "impact parameter b (fm)",
+  "ylabel": "deflection angle θ (degrees)",
+  "fns": [
+   {
+    "f": "deg(2*atan(2*Z*1.43996454/E/(2*x)))",
+    "label": "θ"
+   }
+  ],
+  "params": [
+   {
+    "id": "Z",
+    "label": "nucleus charge Z (gold is 79)",
+    "min": 2,
+    "max": 92,
+    "value": 79,
+    "step": 1
+   },
+   {
+    "id": "E",
+    "label": "alpha energy (MeV)",
+    "min": 1,
+    "max": 10,
+    "value": 5,
+    "step": 0.5
+   }
+  ],
+  "readouts": [
+   {
+    "label": "closest approach, head-on",
+    "value": "2*Z*1.43996454/E",
+    "unit": "fm"
+   }
+  ],
+  "caption": "Point-charge scattering: how far an alpha particle is turned by a bare nucleus, as a function of how close it passes. Raise Z or lower the energy and the turns get larger."
+ },
+ "at_model_bohr": {
+  "type": "bars",
+  "ylabel": "radius of Bohr circle, pm",
+  "caption": "Radius of Bohr’s circles for hydrogen: n² times the Bohr radius, 52.9 pm. In the real atom the electron has no such orbit, but its most probable distance in the 1s state is the same 52.9 pm.",
+  "bars": [
+   {
+    "label": "n = 1",
+    "value": 52.9
+   },
+   {
+    "label": "n = 2",
+    "value": 211.7
+   },
+   {
+    "label": "n = 3",
+    "value": 476.3
+   },
+   {
+    "label": "n = 4",
+    "value": 846.7
+   },
+   {
+    "label": "n = 5",
+    "value": 1322.9
+   },
+   {
+    "label": "n = 6",
+    "value": 1905.0
+   }
+  ]
+ },
+ "at_probability_current": {
+  "type": "field",
+  "range": [
+   -3,
+   3,
+   -3,
+   3
+  ],
+  "streamlines": true,
+  "vx": "-m*y/(x*x+y*y+0.05)",
+  "vy": "m*x/(x*x+y*y+0.05)",
+  "params": [
+   {
+    "id": "m",
+    "label": "quantum number m",
+    "min": -2,
+    "max": 2,
+    "value": 1,
+    "step": 1
+   }
+  ],
+  "caption": "Probability flow seen from above the axis, for a state with rotation number m. Speed is proportional to m and fastest near the axis (a small constant keeps the centre finite). m = 0 means no flow."
+ },
+ "at_superposition": {
+  "type": "plot",
+  "x": [
+   -9,
+   9
+  ],
+  "y": [
+   0,
+   0.5
+  ],
+  "xlabel": "position along the axis, z (Bohr radii)",
+  "ylabel": "|ψ|²",
+  "fns": [
+   {
+    "f": "0.5*(exp(-2*abs(x))/pi + x*x*exp(-abs(x))/(32*pi)) + exp(-abs(x))/sqrt(pi)*x*exp(-abs(x)/2)/(4*sqrt(2*pi))*cos(2*pi*t/4)",
+    "label": "1s + 2p(m = 0), density along the axis"
+   }
+  ],
+  "caption": "The density of an equal mix of 1s and 2p (m = 0) along the vertical axis. The cloud sloshes from one side to the other; the real period is 4.05 × 10⁻¹⁶ s, slowed here to 4 s."
+ },
+ "at_interpretations": {
+  "type": "blocks",
+  "caption": "The same measurements follow from every reading.",
+  "nodes": [
+   {
+    "id": "w",
+    "label": "Wavefunction ψ and its equation (C1)",
+    "x": 50,
+    "y": 20,
+    "shape": "box"
+   },
+   {
+    "id": "p",
+    "label": "Predicted measurements: the same for all",
+    "x": 50,
+    "y": 55,
+    "shape": "box"
+   },
+   {
+    "id": "c",
+    "label": "Probabilities only",
+    "x": 17,
+    "y": 85,
+    "shape": "box"
+   },
+   {
+    "id": "b",
+    "label": "Pilot wave: real paths",
+    "x": 50,
+    "y": 85,
+    "shape": "box"
+   },
+   {
+    "id": "m",
+    "label": "Many worlds",
+    "x": 83,
+    "y": 85,
+    "shape": "box"
+   }
+  ],
+  "edges": [
+   {
+    "from": "w",
+    "to": "p"
+   },
+   {
+    "from": "p",
+    "to": "c",
+    "dashed": true
+   },
+   {
+    "from": "p",
+    "to": "b",
+    "dashed": true
+   },
+   {
+    "from": "p",
+    "to": "m",
+    "dashed": true
+   }
+  ]
+ }
+}
