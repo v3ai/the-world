@@ -6,7 +6,7 @@
    Sizes follow a current flagship phone and a ~3 nm-class process.
    ===================================================================== */
 const TEAR = {}; // node id → {frame, pos (frame-local), D (m)} for flying to parts
-function tearReg(id, frame, pos, D) { if (!TEAR[id]) TEAR[id] = { frame, pos: pos.clone(), D }; }
+function tearReg(id, frame, pos, D) { TEAR[id] = { frame, pos: pos.clone(), D }; } // the last registration wins: the most specific (die, core) comes after the coarse phone-level one
 function tearLights(F, k = 1) { F.add(new THREE.HemisphereLight(0xffffff, 0x8899aa, .6 * k)); const d = new THREE.DirectionalLight(0xffffff, .8 * k); d.position.set(1, 2, 3); F.add(d); }
 function partInfo(id, name, text) { return NODE[id] ? null : { title: name, tag: 'Part', body: `<p>${text || ''}</p>` }; }
 function tearPart(F, geo, color, id, name, pos, o = {}) {

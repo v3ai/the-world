@@ -99,7 +99,7 @@ function showNode(id) {
   const link = (ids, label) => ids && ids.length ? `<div class="rh">${label}</div><div class="chips">${ids.filter(i => KN_BY_ID[i]).map(i => `<button class="kn chip" data-k="${i}">${KN_BY_ID[i].title}</button>`).join('')}</div>` : '';
   h += `<div class="refs">${link(n.emerges_from, 'Emerges from')}${link(n.explains, 'Explains')}</div>`;
   const fr = (n.frontier || []).map(f => `<li><b>${f.status || 'open'}</b> ${f.text}${f.as_of ? ` <i>(${f.as_of})</i>` : ''}</li>`).join('');
-  const fr2 = (n.frontier_ref || []).map(k => FRONT[k]).filter(Boolean).map(f => `<li>${certBadge(f.certainty)} <b>${f.topic}</b>: ${f.corrected || f.claim} <i>(${f.status}, ${f.as_of})</i>${f.note ? ` — ${f.note}` : ''} ${(f.sources || []).slice(0, 2).map(s => `<a href="${s.url}" target="_blank" rel="noopener">source ↗</a>`).join(' ')}</li>`).join('');
+  const fr2 = (n.frontier_ref || []).map(k => FRONT[k]).filter(Boolean).map(f => `<li>${certBadge(f.certainty)} <b>${f.topic}</b>: ${f.claim} <i>(${f.status}, ${f.as_of})</i>${f.note ? ` — ${f.note}` : ''} ${(f.sources || []).slice(0, 2).map(s => `<a href="${s.url}" target="_blank" rel="noopener">source ↗</a>`).join(' ')}</li>`).join('');
   if (fr || fr2) h += `<div class="refs"><div class="rh">Open questions</div><ul class="ev">${fr}${fr2}</ul></div>`;
   if (n.refs && n.refs.length) h += `<div class="refs"><div class="rh">Read more</div>${n.refs.slice(0, 6).map(r => bookRef(r[0], r[1])).join('')}</div>`;
   openPanel(h); if (window.mountViz) mountViz($('#vizHost'), id); wireKn();
