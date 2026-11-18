@@ -322,38 +322,37 @@ function showBodyNode(id, h) {
   else if (FR.body) FR.body.sel = null;
   infoState = { h, node: id };
   const L = n.layers || {};
-  let basics = `<div class="body"><p><b>${n.summary || ''}</b></p>${L.basics ? `<p>${L.basics}</p>` : ''}</div>`;
-  if (n.facts && n.facts.length) basics += '<dl>' + n.facts.map(f => `<dt>${f[0]}</dt><dd>${f[1]}</dd>`).join('') + '</dl>';
+  let basics = `<p><b>${n.summary || ''}</b></p>${L.basics ? `<p>${L.basics}</p>` : ''}`;
   if (n.did_you_know) basics += `<div class="fun"><b>Did you know?</b>${n.did_you_know}</div>`;
-  let html = `<div class="tag">${kindLine(n)}</div><h2>${n.title}</h2>${certBadge(n.certainty)}${BF && h.stack ? coreHtml(BF, h) : ''}<div class="vzh" id="vizHost"></div>`;
-  html += trackNav(id);
   if (n.formula) basics += `<div class="formula">${n.formula}</div>`;
-  html += layered([['Basics', basics], ['Deeper', L.deeper ? `<div class="body"><p>${L.deeper}</p></div>` : ''], ['Expert', L.expert ? `<div class="body expert"><p>${L.expert}</p></div>` : '']]);
   const canLook = h && h.frame && h.frame.children && h.frame.children.some(c => c.type === 'organ' && c.opts.organ === id);
   const hideable = BF && h.obj && h.obj.userData.part;
-  html += `<div class="btnrow">${h ? `<button class="zoom" id="zoomBtn">${canLook ? 'Look inside' : 'Zoom in'}</button>` : ''}${h && n.made_of && n.made_of.length ? `<button class="zoom alt" id="madeBtn"><span>${BF ? 'Look at its tissue' : 'See what it is made of'}</span><span>▾</span></button>` : ''}${hideable ? `<button class="zoom alt" id="hideBtn">Hide this</button>` : ''}</div>`;
-  if (BF && n.made_of && n.made_of.length && !canLook) html += `<p class="cnote">There is no cut-open view of this part yet. "Look at its tissue" shows an illustration of the kind of tissue it is made of, not a microscope image.</p>`;
+  const chips = (ids, cls = 'chip nd', attr = 'data-n') => chipsHtml((ids || []).filter(Boolean).map(i => `<button class="${cls}" ${attr}="${i}">${nodeTitle(i)}</button>`));
   const tw = (typeof TEAR !== 'undefined' && (TEAR[id] || (n.where && TEAR[n.where]))) || (n.where && /^(place|mol|crystal):/.test(n.where));
-  if (n.lab || (tw && !h)) html += `<div class="btnrow">${n.lab ? `<button class="zoom lab" id="labBtn">${labAvailable(n.lab.id) ? 'Open in the ' : 'Planned: '}${LAB_NAMES[n.lab.id] || n.lab.id}</button>` : ''}${tw && !h ? `<button class="zoom alt" id="whereBtn">Show where it is</button>` : ''}</div>`;
-  if (n.processes && n.processes.length) html += `<div class="refs"><div class="rh">How it works</div><div class="chips">${n.processes.map(p => `<button class="chip pr" data-p="${p}">${nodeTitle(p)}</button>`).join('')}</div></div>`;
-  html += chipList(n.parts, 'Parts');
-  html += chipList(n.made_of, 'Made of');
-  html += chipList(n.parents, 'Part of');
-  html += chipList(n.needs, 'Builds on');
-  if (n.ext && n.ext.length) html += `<div class="refs"><div class="rh">Further reading</div>${n.ext.map(e => `<a class="ref" href="${e.url}" target="_blank" rel="noopener"><b>${e.title}</b></a>`).join('')}</div>`;
-  if (n.molecules && n.molecules.length) html += chipList(n.molecules.map(m => NODE[m] ? m : null), 'Key molecules');
-  if (n.open_questions && n.open_questions.length) html += `<div class="refs"><div class="rh">Open questions</div><ul class="ev">${n.open_questions.map(q => `<li>${q}</li>`).join('')}</ul></div>`;
-  if (n.refs && n.refs.length) html += `<div class="refs"><div class="rh">Textbook sections</div>${n.refs.map(r => bookRef(r[0], r[1])).join('')}</div>`;
-  openPanel(html);
+  const spec = {
+    tag: kindLine(n), title: n.title, figure: '<div class="vzh" id="vizHost"></div>', core: BF && h.stack ? coreHtml(BF, h) : '', track: trackNav(id),
+    basics, deeper: L.deeper, expert: L.expert, facts: n.facts,
+    buttons: (h ? `<button class="zoom" id="zoomBtn">${canLook ? 'Look inside' : 'Zoom in'}</button>` : '') + (h && n.made_of && n.made_of.length ? `<button class="zoom alt" id="madeBtn"><span>${BF ? 'Look at its tissue' : 'See what it is made of'}</span><span>▾</span></button>` : '') + (hideable ? `<button class="zoom alt" id="hideBtn">Hide this</button>` : '')
+      + (n.lab ? `<button class="zoom lab" id="labBtn">${labAvailable(n.lab.id) ? 'Open in the ' : 'Planned: '}${LAB_NAMES[n.lab.id] || n.lab.id}</button>` : '') + (tw && !h ? `<button class="zoom alt" id="whereBtn">Show where it is</button>` : ''),
+    after: BF && n.made_of && n.made_of.length && !canLook ? `<p class="cnote">There is no cut-open view of this part yet. "Look at its tissue" shows an illustration of the kind of tissue it is made of, not a microscope image.</p>` : '',
+    made: (n.parts && n.parts.length ? '<div class="rs">Parts</div>' + chips(n.parts) : '') + (n.made_of && n.made_of.length ? (n.parts && n.parts.length ? '<div class="rs">Made of</div>' : '') + chips(n.made_of) : ''),
+    part: chips(n.parents),
+    how: n.processes && n.processes.length ? chips(n.processes, 'chip pr', 'data-p') : '',
+    more: (n.needs && n.needs.length ? `<div class="refs"><div class="rh">Builds on</div>${chips(n.needs)}</div>` : '')
+      + (n.molecules && n.molecules.length ? `<div class="refs"><div class="rh">Key molecules</div>${chips(n.molecules.map(m => NODE[m] ? m : null))}</div>` : '')
+      + (n.ext && n.ext.length ? `<div class="refs"><div class="rh">Further reading</div>${n.ext.map(e => `<a class="ref" href="${e.url}" target="_blank" rel="noopener"><b>${e.title}</b></a>`).join('')}</div>` : ''),
+    books: n.refs && n.refs.length ? n.refs.map(r => bookRef(r[0], r[1])).join('') : '',
+    open: n.open_questions && n.open_questions.length ? `<ul class="ev">${n.open_questions.map(q => `<li>${q}</li>`).join('')}</ul>` : '',
+    cert: n.certainty,
+  };
+  openPanel(cardHtml(spec), { key: 'node:' + id, reopen: () => showBodyNode(id, h) });
   mountViz($('#vizHost'), id); wireTrackNav();
   const zb = $('#zoomBtn'); if (zb) zb.onclick = () => { const ch = h.frame.children.find(c => c.type === 'organ' && c.opts.organ === id); if (ch) flyTo(ch, new V3(), ch.opts.R * 2.2); else zoomIntoHit(h); };
   const mb = $('#madeBtn'); if (mb) mb.onclick = () => { closeInfo(); const f = tissueFrame(n.made_of[0], h.pointLocal || h.frame.C, id); f.dynamic = true; f.keep = performance.now() + 60000; h.frame.addChild(f); f.ensure(); flyTo(f, new V3(), 4e-4); };
   if (BF && h.stack) wireCore(BF, h);
   const hb = $('#hideBtn'); if (hb) hb.onclick = () => bodyHide(BF, h.obj.userData.id);
-  infoEl.querySelectorAll('.nd').forEach(b => b.onclick = () => (TEAR[b.dataset.n] ? goToNode(b.dataset.n) : focusNode(b.dataset.n)));
   const lb = $('#labBtn'); if (lb) lb.onclick = () => openLab(n.lab.id, n.lab.preset, n.title);
   const wb = $('#whereBtn'); if (wb) wb.onclick = () => goToNode(id);
-  infoEl.querySelectorAll('.pr').forEach(b => b.onclick = () => startProcess(b.dataset.p));
   markSeen(id);
   return true;
 }

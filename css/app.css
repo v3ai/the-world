@@ -339,3 +339,40 @@ details[open] > summary::before { content: '−' }
 .core li.more { color: var(--muted); }
 .cnote { margin: 6px 0 0; color: var(--muted); font: 12px/1.4 var(--sans); }
 @media (max-width: 860px) { #tourBar { top: 52px; font-size: 12px; } }
+
+/* ---- one card: header, back, certainty row ---- */
+#info .cardhead { display: flex; align-items: baseline; gap: 10px; padding-right: 36px; min-height: 18px }
+#info .cardhead .tag { padding-right: 0 }
+.back { border: 1px solid var(--rule); background: #fff; border-radius: var(--r-ctl); padding: 2px 9px; font-size: 12px; cursor: pointer; color: var(--accent); flex: none }
+.back:hover:not(:disabled) { border-color: var(--accent) }
+.back:disabled { color: var(--muted); opacity: .55; cursor: default }
+.back[hidden] { display: none }
+#info .certrow { display: flex; flex-direction: column; gap: 2px; font-size: 13px; color: var(--ink-2) }
+#info .rs { font-size: 12px; color: var(--muted); margin: 6px 0 2px }
+#info .rs:first-child { margin-top: 0 }
+.gohit b { font-weight: 500; color: var(--accent) }
+
+/* ---- breadcrumb trail inside the caption ---- */
+#crumbs { display: flex; align-items: flex-start; gap: 8px; margin: 0 0 8px; padding-bottom: 8px; border-bottom: 1px solid var(--rule) }
+#crumbList { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 2px; font-size: 12px; line-height: 22px; min-width: 0; flex: 1 }
+#crumbList li + li::before { content: '\203A'; color: var(--muted); margin-right: 2px }
+.crumb { border: 0; background: none; padding: 0 3px; font: inherit; color: var(--accent); cursor: pointer; border-radius: 3px; white-space: nowrap }
+.crumb:hover { background: var(--paper-2); text-decoration: underline }
+.crumb.cur { color: var(--ink); font-weight: 600; cursor: default }
+.crumb.more { color: var(--muted) }
+
+/* ---- welcome, first minute ---- */
+#help .lead { font: 17px/1.5 var(--serif); color: var(--ink); margin: 0 0 14px }
+#help .steps { list-style: none; counter-reset: s; margin: 0 0 16px; padding: 0 }
+#help .steps li { counter-increment: s; display: grid; grid-template-columns: 30px 1fr; column-gap: 8px; padding: 10px 0; border-top: 1px solid var(--rule) }
+#help .steps li::before { content: counter(s); grid-row: span 2; width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font: 600 13px/24px var(--sans); text-align: center; margin-top: 1px }
+#help .steps b { font: 600 18px/1.25 var(--serif); color: var(--ink) }
+#help .steps span { font: 14px/1.5 var(--sans); color: var(--ink-2) }
+#help .fine { margin-top: 12px; font-size: 12px; color: var(--muted) }
+@media (max-width: 860px) {
+  #crumbs { margin-bottom: 6px; padding-bottom: 6px }
+  #crumbList { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none }
+  #help .card { padding: 20px 18px 18px }
+  #help h1 { font-size: 27px }
+  #help .grid { grid-template-columns: 96px 1fr }
+}

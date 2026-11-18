@@ -144,7 +144,7 @@ function reanchor() {
   }
   // dispose dynamic frames we've left far behind
   forEachFrame(f => {
-    if (f.dynamic && f.parent && !chainOf(cam.A).includes(f) && cam.D > f.r1 * 3 && !(f.keep > performance.now()) && !(fly && fly.frame === f)
+    if (f.dynamic && f.parent && !drawn.includes(f) && !chainOf(cam.A).includes(f) && cam.D > f.r1 * 3 && !(f.keep > performance.now()) && !(fly && fly.frame === f)
       && (f.entered || !chainOf(cam.A).includes(f.parent) || cam.D > (f.parent.spawnD || f.parent.r0 * 1.6) * 3)) {
       f.dispose(); f.parent.children.splice(f.parent.children.indexOf(f), 1); if (f.proxy) f.proxy.visible = true;
     }
@@ -153,11 +153,13 @@ function reanchor() {
 // Which child frame to enter when several overlap the camera target. Prefer the one on the path of the current flight.
 // Otherwise prefer a frame whose core (`core`, default `radius`, in its own units) holds the target, the smallest such core first
 // (a heart sits inside the chest volume of a lung); failing that, the best fit: smallest distance from its centre relative to its radius.
+// place() of a frame that is not built yet may depend on things that do not exist: a failure leaves it where it was and is reported once
+function safePlace(c) { if (!c.place) return; try { c.place(); } catch (e) { if (!c._placeErr) { c._placeErr = 1; console.warn('place() failed before the frame was built:', c.name, e.message); } } }
 function pickChild(A) {
   const path = fly && fly.frame ? chainOf(fly.frame) : null;
   let best = null, bs = Infinity;
   for (const c of A.children) {
-    if (c.place) c.place();
+    safePlace(c);
     if (cam.D > c.r1 || !c.containsP(cam.T)) continue;
     if (path && path.includes(c)) return c;
     const k = c.unit / A.unit, dist = cam.T.distanceTo(c.pos), rad = c.radius === Infinity ? Infinity : c.radius * k;
@@ -198,7 +200,8 @@ function computeActive() {
   const list = [];
   for (const f of ch) {
     let a = f === cam.A ? Math.max(frameAlpha(f), cam.D < f.r0 ? 1 : 0) : frameAlpha(f);
-    if (f.coRender && f.parent && f.parent.unit === f.unit) a = coAlpha(f); // a neighbour looks the same whether or not the camera is anchored in it
+    if (f.coRender && f.parent && f.parent.unit === f.unit) a = coAlpha(f, true); // in the chain: only the distance fade, never the parent's r0 fade
+    // a neighbour looks the same whether or not the camera is anchored in it
     f.alpha = a; if (a > .004) list.push(f);
   }
   if (!list.includes(cam.A)) list.push(cam.A);
@@ -215,7 +218,7 @@ function computeActive() {
     drawn.push(f);
     for (const c of f.children) {
       if (!c.coRender || c.unit !== f.unit || active.includes(c)) continue;
-      if (c.place) c.place();
+      safePlace(c);
       const a = coAlpha(c);
       c.alpha = a; c._share = true;
       if (c.proxy) c.proxy.visible = !(a > .98);
@@ -225,9 +228,9 @@ function computeActive() {
 }
 const _cv = new V3();
 // visibility of a co-rendered child: its parent's, fading out with the camera's distance from it (coMax metres, default r1)
-function coAlpha(c) {
+function coAlpha(c, inChain) {
   const p = c.parent, lim = c.coMax || c.r1;
-  const pa = p === cam.A ? 1 : (p.alpha ?? 1);
+  const pa = inChain || p === cam.A ? 1 : (p.alpha ?? 1);
   if (lim === Infinity) return pa;
   const dist = camPosIn(p, _cv).distanceTo(c.pos) * p.unit;
   return Math.min(pa, 1 - smooth(lim * .7, lim, dist));
@@ -329,10 +332,12 @@ function levelUp(dt) {
 function orthoUp() { cam.dir.normalize(); cam.up.sub(cam.dir.clone().multiplyScalar(cam.up.dot(cam.dir))).normalize(); }
 // fly to a point in a frame, ending at distance Dgoal (meters). Zooms out, travels, zooms in as needed.
 function flyTo(frame, pointLocal, Dgoal, then) {
+  if (typeof navFlyHook === 'function') navFlyHook(); // remember where we were, for Back
   zoom.pending = 0; zoom.pivot = null; anchored.length = 0;
   chainOf(frame).reverse().forEach(f => { f.ensure(); if (f.place) f.place(); }); // the whole path must exist and be in position
   fly = { frame, p: pointLocal.clone(), Dg: Dgoal, then, t: 0 };
 }
+function safeThen(t) { if (t) try { t(); } catch (e) { console.error('flight callback failed', e); } } // a throwing callback must not abort the frame
 function stepFly(dt) {
   const F = fly; F.t += dt;
   const g = F.p.clone(); convertP(g, F.frame, cam.A);
@@ -343,8 +348,8 @@ function stepFly(dt) {
   cam.D = Math.exp(lnD + dl);
   if (distM > cam.D * .6) { const stepM = Math.min(distM, cam.D * dt * 1.6); cam.T.add(g.sub(cam.T).multiplyScalar(stepM / distM)); }
   else cam.T.lerp(g, 1 - Math.exp(-dt * 4));
-  if (distM < cam.D * .02 && Math.abs(lnW - Math.log(cam.D)) < .03) { const t = F.then; fly = null; if (t) t(); }
-  if (fly === F && F.t > 60) { const t = F.then; jumpTo(F.frame, F.p, F.Dg); if (t) t(); } // never strand a tour: finish the trip
+  if (distM < cam.D * .02 && Math.abs(lnW - Math.log(cam.D)) < .03) { const t = F.then; fly = null; safeThen(t); }
+  if (fly === F && F.t > 60) { const t = F.then; jumpTo(F.frame, F.p, F.Dg); safeThen(t); } // never strand a tour: finish the trip
 }
 // pointer handlers
 const pointers = new Map(); let dragMoved = false, downPos = null, pinchD = 0;
@@ -381,8 +386,9 @@ function bindHold(el, dir) {
   el.addEventListener('pointerdown', start); el.addEventListener('pointerup', stop); el.addEventListener('pointerleave', stop); el.addEventListener('pointercancel', stop);
 }
 addEventListener('keydown', e => {
-  if (e.target.tagName === 'INPUT') return;
+  if (/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName) || e.ctrlKey || e.metaKey || e.altKey) return;
   const k = e.key;
+  if (k === '/') { e.preventDefault(); openLibrary(true); return; }
   if (k === '+' || k === '=') zoomBy(-.25, W / 2, H / 2);
   else if (k === '-' || k === '_') zoomBy(.25);
   else if (k === 'Escape') { closeInfo(); closePops(); fly = null; cancelTour(); $('#help').classList.add('hide'); }
