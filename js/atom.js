@@ -862,7 +862,7 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
     }
     nucHit.userData.infoFn = nucleusInfo;
 
-    function fit(tries) { if (cam.A !== F) return; if (fly) { if ((tries || 0) < 30) setTimeout(() => fit((tries || 0) + 1), 300); return; } flyTo(F, new V3(), Math.max(S.extentPm * 3.6e-12, 3e-13)); }
+    function fit(tries) { if (cam.A !== F) return; if (fly) { if ((tries || 0) < 30) setTimeout(() => fit((tries || 0) + 1), 300); return; } S.fitExt = S.extentPm; flyTo(F, new V3(), Math.max(S.extentPm * 3.6e-12, 3e-13)); }
     F.fit = fit;
     function updateProxies() {
       const e = ELJ[S.el], A = ATM.curA(S.el), rn = ATM.nucleusRadiusFm(A) * 1e-3;
@@ -961,7 +961,8 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
         if (S.model === 'bohr' && e.Z === 1) syncBohr();
       }
       updateProxies(); updateNote(); updateUI();
-      if (fitAfter) fit();
+      // the picture changed size a lot (another subshell, a mixture, another element): bring it back into view
+      if (fitAfter || (S.fitExt && (S.extentPm > S.fitExt * 1.25 || S.extentPm < S.fitExt / 1.8))) fit();
     }
     F.refreshAtom = refresh;
     F.setElement = (sym, o2) => {
