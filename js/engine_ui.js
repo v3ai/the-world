@@ -137,7 +137,7 @@ function wireLib() { $('#libRes').querySelectorAll('.kn').forEach(b => b.onclick
 function openLibrary() { const p = $('#library'); const o = !p.classList.contains('open'); closePops(); if (!o) return; p.classList.add('open'); $('#libQ').focus(); loadKnowledge().then(() => libSearch($('#libQ').value)); libSearch($('#libQ').value); }
 
 /* ================= SCALE RULER ================= */
-const RULER_MIN = -16, RULER_MAX = 27;
+const RULER_MIN = -19, RULER_MAX = 27;
 let LANDMARKS = []; // filled by world: {label, D, go()}
 function rulerY(e, h) { return (1 - (e - RULER_MIN) / (RULER_MAX - RULER_MIN)) * h; }
 function buildRuler() {

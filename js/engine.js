@@ -24,7 +24,7 @@ const store = {
 const U = { fm: 1e-15, pm: 1e-12, A: 1e-10, nm: 1e-9, um: 1e-6, mm: 1e-3, m: 1, km: 1e3, Mm: 1e6, AU: 1.495978707e11, ly: 9.4607e15, pc: 3.0857e16, kpc: 3.0857e19, Mpc: 3.0857e22 };
 function fmtLen(m) {
   const a = Math.abs(m);
-  const pick = [[U.Mpc * 1000, 'billion light-years', 9.4607e24], [U.ly * 1e6, 'million light-years', 9.4607e21], [U.ly * 1000, 'thousand light-years', 9.4607e18], [U.ly * .5, 'light-years', U.ly], [U.AU * .5, 'AU', U.AU], [1e9, 'million km', 1e9], [1e3, 'km', 1e3], [1, 'm', 1], [1e-2, 'cm', 1e-2], [1e-3, 'mm', 1e-3], [1e-6, 'µm', 1e-6], [1e-9, 'nm', 1e-9], [1e-12, 'pm', 1e-12], [0, 'fm', 1e-15]];
+  const pick = [[U.Mpc * 1000, 'billion light-years', 9.4607e24], [U.ly * 1e6, 'million light-years', 9.4607e21], [U.ly * 1000, 'thousand light-years', 9.4607e18], [U.ly * .5, 'light-years', U.ly], [U.AU * .5, 'AU', U.AU], [1e9, 'million km', 1e9], [1e3, 'km', 1e3], [1, 'm', 1], [1e-2, 'cm', 1e-2], [1e-3, 'mm', 1e-3], [1e-6, 'µm', 1e-6], [1e-9, 'nm', 1e-9], [1e-12, 'pm', 1e-12], [1e-15, 'fm', 1e-15], [1e-18, 'am', 1e-18], [0, 'zm', 1e-21]];
   for (const [th, name, f] of pick) if (a >= th) { const v = a / f; return (v >= 1000 ? Math.round(v).toLocaleString('en-US') : v >= 100 ? v.toFixed(0) : v >= 10 ? v.toFixed(1) : v.toFixed(2)) + ' ' + name; }
 }
 /* ---- logarithmic depth support for custom shaders ---- */
@@ -248,7 +248,7 @@ function renderFrames(r) {
 /* ================= INPUT: zoom-to-cursor, orbit, fly ================= */
 const zoom = { pending: 0, pivot: null }; // pending = remaining ln(D) change
 let lastInput = performance.now(), fly = null;
-const MIN_D = 1e-17, MAX_D = 3e27;
+const MIN_D = 1e-20, MAX_D = 3e27; // 1e-20 m: below every length that has been probed; nothing is known to have structure there
 function pivotAt(x, y) {
   const h = pickAt(x, y, true);
   if (h && !h.obj.userData.noZoom && h.meters < cam.D * 40 && (!h.obj.isSprite || h.frame === cam.A)) {
