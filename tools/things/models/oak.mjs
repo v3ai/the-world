@@ -219,8 +219,8 @@ export default function build() {
   const sapW = w.slice(-M.sapRings).reduce((a, b) => a + b, 0), heartOuter = wTotal - sapW;
   const eb = edges.map(v => v);   // ring boundaries measured from the pith, absolute radius = boundary (edges already start at the pith)
   const merged = list => { const m = L.merge(...list); m.shade = [].concat(...list.map(x => x.shade)); return m; };
-  const ringStripsSector = (y, a, b, rIn, rOut, up) => { const n = Math.max(3, Math.round((b - a) / TAU * 48)), list = []; for (let i = 0; i < M.rings; i++) { const e0 = eb[i], e1 = eb[i + 1], mid = e0 + (e1 - e0) * .58; for (const [r0, r1, s] of [[e0, mid, 1], [mid, e1, .66]]) { const lo = Math.max(r0, rIn), hi = Math.min(r1, rOut); if (hi - lo < 1e-6) continue; list.push(sectorBand(y, a, b, () => lo, () => hi, n, () => s, up)); } } return merged(list); };
-  const ringStripsWall = (th, y0, y1, rIn, rOut, normal) => { const list = []; for (let i = 0; i < M.rings; i++) { const e0 = eb[i], e1 = eb[i + 1], mid = e0 + (e1 - e0) * .58; for (const [r0, r1, s] of [[e0, mid, 1], [mid, e1, .66]]) { const lo = Math.max(r0, rIn), hi = Math.min(r1, rOut); if (hi - lo < 1e-6) continue; list.push(wallBand(th, y0, y1, () => lo, () => hi, normal, () => s)); } } return merged(list); };
+  const ringStripsSector = (y, a, b, rIn, rOut, up) => { const n = Math.max(3, Math.round((b - a) / TAU * 48)), list = []; for (let i = 0; i < M.rings; i++) { const e0 = eb[i], e1 = eb[i + 1], mid = e0 + (e1 - e0) * .58; for (const [r0, r1, s] of [[e0, mid, 1], [mid, e1, .5]]) { const lo = Math.max(r0, rIn), hi = Math.min(r1, rOut); if (hi - lo < 1e-6) continue; list.push(sectorBand(y, a, b, () => lo, () => hi, n, () => s, up)); } } return merged(list); };
+  const ringStripsWall = (th, y0, y1, rIn, rOut, normal) => { const list = []; for (let i = 0; i < M.rings; i++) { const e0 = eb[i], e1 = eb[i + 1], mid = e0 + (e1 - e0) * .58; for (const [r0, r1, s] of [[e0, mid, 1], [mid, e1, .5]]) { const lo = Math.max(r0, rIn), hi = Math.min(r1, rOut); if (hi - lo < 1e-6) continue; list.push(wallBand(th, y0, y1, () => lo, () => hi, normal, () => s)); } } return merged(list); };
   const wallNormA = [-Math.sin(th0), 0, Math.cos(th0)], wallNormB = [Math.sin(thN0), 0, -Math.cos(thN0)];
   const layerFaces = (rIn, rOut, shaded) => {   // fixed-radius layers (wood, pith)
     const list = [];
@@ -304,7 +304,7 @@ export default function build() {
       { id: 'limbs_mid', name: 'Branches', system: 'branches', node: 'oak_branches', color: '#6a5d4f', mesh: 'mid_limbs', lod: 'mid', ink_w: .0016, priority: 1.5, solid: false },
       { id: 'leaves_mid', name: 'Leaves', system: 'leaves', node: 'oak_leaf', color: '#4f8a2e', instances: 'tufts', tint: .34, double: true, card: { kind: 'leaf_cluster' }, lod: 'mid', priority: 1.9 },
       { id: 'crown_far', name: 'Crown', system: 'crown_far', node: 'oak_english', color: '#4a8530', instances: 'clumps', tint: .3, lod: 'far', priority: 1.2, far_of: 'leaves' },
-      { id: 'trunk_far', name: 'Trunk', system: 'trunk', node: 'oak_trunk', color: '#7a6d5e', mesh: 'far_trunk', lod: 'far', priority: 1.4, solid: false, far_of: 'trunk' },
+      { id: 'trunk_far', name: 'Trunk', system: 'trunk', node: 'oak_trunk', color: '#6a6054', mesh: 'far_trunk', lod: 'far', priority: 1.4, solid: false, far_of: 'trunk' },
       { id: 'limbs_far', name: 'Branches', system: 'branches', node: 'oak_branches', color: '#6a5d4f', mesh: 'far_limbs', lod: 'far', priority: 1.5, solid: false, far_of: 'branches' },
       { id: 'roots', name: 'Roots', system: 'roots', node: 'oak_roots', color: '#8a6a44', mesh: 'roots', priority: 1.5, solid: false, ink_w: .0014 },
       { id: 'fine_roots', name: 'Fine roots', system: 'roots', node: 'oak_root_hairs', color: '#d7c294', mesh: 'fine_roots', priority: 1.8, solid: false, noink: true },

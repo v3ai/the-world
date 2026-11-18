@@ -491,7 +491,7 @@
    "name": "Trunk",
    "system": "trunk",
    "node": "oak_trunk",
-   "color": "#7a6d5e",
+   "color": "#6a6054",
    "mesh": "far_trunk",
    "lod": "far",
    "priority": 1.4,

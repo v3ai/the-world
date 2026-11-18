@@ -380,7 +380,8 @@ function thDeepFrame(d, T0) {
 const _thShowBodyNode = showBodyNode;
 showBodyNode = function (id, h) {
   const r = _thShowBodyNode(id, h);
-  if (r && h && h.obj && h.obj.userData && h.obj.userData.thing) thDecorateCard(id, h);
+  if (r && h && h.obj && h.obj.userData && h.obj.userData.thing === 'tissue2') thDecorateTissueCard(id, h);
+  else if (r && h && h.obj && h.obj.userData && h.obj.userData.thing) thDecorateCard(id, h);
   return r;
 };
 function thDecorateCard(id, h) {
@@ -396,6 +397,21 @@ function thDecorateCard(id, h) {
   b.onclick = () => {
     closeInfo(); const p = h.pointLocal ? h.pointLocal.clone() : new V3(...(pd.center || [0, 0, 0])); const f = thDeepFrame(pd.deeper, p); if (!f) return;
     f.dynamic = true; f.keep = performance.now() + 60000; F.addChild(f); f.ensure(); flyTo(f, new V3(), pd.deeper.D || 4e-9);
+  };
+  row.appendChild(b);
+}
+
+/* a cell or structure in a tissue scene: the button for the next level down (a plant cell, or a molecule) */
+function thDecorateTissueCard(id, h) {
+  const d = h.obj.userData.deeper, F = h.frame || h.obj.userData.frame || cam.A; const old = document.getElementById('madeBtn'); if (old) old.remove();
+  const row = infoEl.querySelector('.btnrow'); if (!d || !row || !F) return;
+  const b = document.createElement('button'); b.className = 'zoom alt'; b.id = 'madeBtn';
+  b.innerHTML = `<span>${d.button || (d.type === 'mol' ? 'See the molecule: ' + (d.name || d.mol) : 'Look inside this cell')}</span><span>▾</span>`;
+  b.onclick = () => {
+    closeInfo(); const p = h.pointLocal ? h.pointLocal.clone() : new V3();
+    const f = d.type === 'mol' ? new Frame({ type: 'mol', name: d.name || d.mol, unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: p, opts: { mol: d.mol, fixed: false } })
+      : new Frame({ type: 'cell', name: 'Plant cell', unit: 1e-6, radius: 16, r1: 2.5e-4, pos: p.clone().add(new V3(0, -10, 0)), opts: { type: 'plant' } });
+    f.dynamic = true; f.keep = performance.now() + 60000; F.addChild(f); f.ensure(); flyTo(f, new V3(), d.type === 'mol' ? 2.5e-9 : 4e-5);
   };
   row.appendChild(b);
 }
