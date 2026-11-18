@@ -271,7 +271,8 @@ function showBodyNode(id, h) {
   let basics = `<div class="body"><p><b>${n.summary || ''}</b></p>${L.basics ? `<p>${L.basics}</p>` : ''}</div>`;
   if (n.facts && n.facts.length) basics += '<dl>' + n.facts.map(f => `<dt>${f[0]}</dt><dd>${f[1]}</dd>`).join('') + '</dl>';
   if (n.did_you_know) basics += `<div class="fun"><b>Did you know?</b>${n.did_you_know}</div>`;
-  let html = `<div class="tag">${n.kind || ''}${n.scale_m ? ' · ~' + fmtLen(n.scale_m) : ''}</div><h2>${n.title}</h2>${certBadge(n.certainty)}`;
+  let html = `<div class="tag">${n.kind || ''}${n.scale_m ? ' · ~' + fmtLen(n.scale_m) : ''}</div><h2>${n.title}</h2>${certBadge(n.certainty)}<div class="vzh" id="vizHost"></div>`;
+  html += trackNav(id);
   if (n.formula) basics += `<div class="formula">${n.formula}</div>`;
   html += layered([['Basics', basics], ['Deeper', L.deeper ? `<div class="body"><p>${L.deeper}</p></div>` : ''], ['Expert', L.expert ? `<div class="body expert"><p>${L.expert}</p></div>` : '']]);
   const canLook = h && h.frame && h.frame.children && h.frame.children.some(c => c.type === 'organ' && c.opts.organ === id);
@@ -288,6 +289,7 @@ function showBodyNode(id, h) {
   if (n.open_questions && n.open_questions.length) html += `<div class="refs"><div class="rh">🔭 Still open</div><ul class="ev">${n.open_questions.map(q => `<li>${q}</li>`).join('')}</ul></div>`;
   if (n.refs && n.refs.length) html += `<div class="refs"><div class="rh">📚 Textbook sections</div>${n.refs.map(r => bookRef(r[0], r[1])).join('')}</div>`;
   openPanel(html);
+  mountViz($('#vizHost'), id); wireTrackNav();
   const zb = $('#zoomBtn'); if (zb) zb.onclick = () => { const ch = h.frame.children.find(c => c.type === 'organ' && c.opts.organ === id); if (ch) flyTo(ch, new V3(), ch.opts.R * 2.2); else zoomIntoHit(h); };
   const mb = $('#madeBtn'); if (mb) mb.onclick = () => { closeInfo(); const f = tissueFrame(n.made_of[0], h.pointLocal || h.frame.C, id); f.dynamic = true; f.keep = performance.now() + 60000; h.frame.addChild(f); f.ensure(); flyTo(f, new V3(), 4e-4); };
   infoEl.querySelectorAll('.nd').forEach(b => b.onclick = () => (TEAR[b.dataset.n] ? goToNode(b.dataset.n) : focusNode(b.dataset.n)));

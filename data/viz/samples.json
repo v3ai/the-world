@@ -1,0 +1,916 @@
+{
+ "derivative": {
+  "type": "plot",
+  "x": [
+   -3,
+   3
+  ],
+  "y": [
+   -2,
+   6
+  ],
+  "fns": [
+   {
+    "f": "x^2/2+sin(2*x)/2",
+    "label": "f(x)"
+   }
+  ],
+  "tangent": {
+   "at": "x0"
+  },
+  "params": [
+   {
+    "id": "x0",
+    "label": "point x₀",
+    "min": -2.5,
+    "max": 2.5,
+    "value": 1
+   }
+  ],
+  "readouts": [
+   {
+    "label": "f′(x₀)",
+    "value": "x0+cos(2*x0)"
+   }
+  ],
+  "caption": "The derivative is the slope of the tangent line. Slide the point and watch the slope change."
+ },
+ "integral_ftc": {
+  "type": "plot",
+  "x": [
+   0,
+   4
+  ],
+  "y": [
+   -0.2,
+   2.2
+  ],
+  "fns": [
+   {
+    "f": "1+sin(x)*0.8",
+    "label": "f(x)"
+   }
+  ],
+  "shade": {
+   "f": "1+sin(x)*0.8",
+   "from": 0.5,
+   "to": "b"
+  },
+  "params": [
+   {
+    "id": "b",
+    "label": "upper limit b",
+    "min": 0.6,
+    "max": 4,
+    "value": 2.5
+   }
+  ],
+  "readouts": [
+   {
+    "label": "area ∫ f dx",
+    "value": "(b-0.5)-0.8*(cos(b)-cos(0.5))"
+   }
+  ],
+  "caption": "An integral adds up area under a curve. The rate the area grows as b moves is f(b) — the fundamental theorem of calculus."
+ },
+ "taylor_series": {
+  "type": "plot",
+  "x": [
+   -6,
+   6
+  ],
+  "y": [
+   -2,
+   2
+  ],
+  "fns": [
+   {
+    "f": "sin(x)",
+    "label": "sin x",
+    "color": "white"
+   },
+   {
+    "f": "x - if(N>=3,x^3/6,0) + if(N>=5,x^5/120,0) - if(N>=7,x^7/5040,0) + if(N>=9,x^9/362880,0)",
+    "label": "Taylor polynomial",
+    "color": "gold"
+   }
+  ],
+  "params": [
+   {
+    "id": "N",
+    "label": "degree",
+    "min": 1,
+    "max": 9,
+    "step": 2,
+    "value": 3
+   }
+  ],
+  "caption": "Adding more terms makes the polynomial hug sin x over a wider range."
+ },
+ "eigen": {
+  "type": "vectors",
+  "range": 3,
+  "matrix": [
+   [
+    "a",
+    "b"
+   ],
+   [
+    "c",
+    "d"
+   ]
+  ],
+  "eigen": true,
+  "vectors": [
+   {
+    "x": 1,
+    "y": 0.5,
+    "transform": true,
+    "label": "Av",
+    "color": "gold"
+   }
+  ],
+  "params": [
+   {
+    "id": "a",
+    "min": -2,
+    "max": 2,
+    "value": 1.5
+   },
+   {
+    "id": "b",
+    "min": -2,
+    "max": 2,
+    "value": 0.5
+   },
+   {
+    "id": "c",
+    "min": -2,
+    "max": 2,
+    "value": 0.5
+   },
+   {
+    "id": "d",
+    "min": -2,
+    "max": 2,
+    "value": 1
+   }
+  ],
+  "caption": "A matrix stretches the whole plane. Eigenvectors (dashed) only get scaled, never turned; the yellow square's area is the determinant."
+ },
+ "coulombs_law_ee": {
+  "type": "field",
+  "range": [
+   -3,
+   3,
+   -2,
+   2
+  ],
+  "charges": [
+   {
+    "x": -1,
+    "y": 0,
+    "q": "q1"
+   },
+   {
+    "x": 1,
+    "y": 0,
+    "q": "q2"
+   }
+  ],
+  "streamlines": true,
+  "potential": true,
+  "params": [
+   {
+    "id": "q1",
+    "label": "charge 1",
+    "min": -2,
+    "max": 2,
+    "value": 1
+   },
+   {
+    "id": "q2",
+    "label": "charge 2",
+    "min": -2,
+    "max": 2,
+    "value": -1
+   }
+  ],
+  "caption": "Field lines leave positive charges and end on negative ones. The background shows the electric potential."
+ },
+ "phasors_math": {
+  "type": "phasor",
+  "phasors": [
+   {
+    "mag": "1",
+    "deg": 0,
+    "label": "V"
+   },
+   {
+    "mag": "Im",
+    "deg": "-phi",
+    "label": "I",
+    "color": "pink"
+   }
+  ],
+  "omega": 1.2,
+  "params": [
+   {
+    "id": "Im",
+    "label": "current size",
+    "min": 0.2,
+    "max": 1.5,
+    "value": 0.8
+   },
+   {
+    "id": "phi",
+    "label": "lag φ (°)",
+    "min": -90,
+    "max": 90,
+    "value": 40
+   }
+  ],
+  "caption": "A phasor is a rotating arrow; its shadow on the vertical axis traces the sine wave. The angle between them is the phase."
+ },
+ "sampling_theorem": {
+  "type": "signal",
+  "x": [
+   0,
+   1
+  ],
+  "f": "sin(2*pi*f0*x)",
+  "sample": "fs",
+  "y": [
+   -1.3,
+   1.3
+  ],
+  "params": [
+   {
+    "id": "f0",
+    "label": "signal frequency",
+    "min": 1,
+    "max": 12,
+    "value": 3,
+    "unit": "Hz"
+   },
+   {
+    "id": "fs",
+    "label": "sample rate",
+    "min": 4,
+    "max": 40,
+    "value": 20,
+    "unit": "Hz"
+   }
+  ],
+  "readouts": [
+   {
+    "label": "Nyquist limit fs/2",
+    "value": "fs/2",
+    "unit": "Hz"
+   }
+  ],
+  "caption": "Sample faster than twice the signal frequency and the dashed reconstruction matches. Go below it and you get a slower, wrong wave: aliasing."
+ },
+ "fourier_series_ee": {
+  "type": "signal",
+  "x": [
+   0,
+   2
+  ],
+  "f": "4/pi*(sin(2*pi*x) + if(N>=3,sin(3*2*pi*x)/3,0) + if(N>=5,sin(5*2*pi*x)/5,0) + if(N>=7,sin(7*2*pi*x)/7,0) + if(N>=9,sin(9*2*pi*x)/9,0) + if(N>=11,sin(11*2*pi*x)/11,0))",
+  "spectrum": true,
+  "fmax": 14,
+  "params": [
+   {
+    "id": "N",
+    "label": "harmonics up to",
+    "min": 1,
+    "max": 11,
+    "step": 2,
+    "value": 5
+   }
+  ],
+  "caption": "A square wave is a sum of odd sine harmonics. The bars below show how strong each frequency is."
+ },
+ "low_pass_filter": {
+  "type": "bode",
+  "k": "1",
+  "poles": [
+   [
+    "-1/(R*Cu*1e-6)",
+    0
+   ]
+  ],
+  "w": [
+   10,
+   1000000
+  ],
+  "unit": "rad/s",
+  "params": [
+   {
+    "id": "R",
+    "label": "R (Ω)",
+    "min": 100,
+    "max": 10000,
+    "value": 1000
+   },
+   {
+    "id": "Cu",
+    "label": "C (µF)",
+    "min": 0.01,
+    "max": 1,
+    "value": 0.1
+   }
+  ],
+  "readouts": [
+   {
+    "label": "corner ω = 1/RC",
+    "value": "1/(R*Cu*1e-6)",
+    "unit": "rad/s"
+   }
+  ],
+  "caption": "Low frequencies pass; above the corner the output falls by 20 dB per decade and lags by up to 90°."
+ },
+ "root_locus": {
+  "type": "pz",
+  "range": 4,
+  "rootlocus": {
+   "num": [
+    1
+   ],
+   "den": [
+    1,
+    3,
+    2,
+    0
+   ],
+   "K": "K"
+  },
+  "poles": [
+   [
+    0,
+    0
+   ],
+   [
+    -1,
+    0
+   ],
+   [
+    -2,
+    0
+   ]
+  ],
+  "params": [
+   {
+    "id": "K",
+    "label": "gain K",
+    "min": 0.1,
+    "max": 20,
+    "value": 1
+   }
+  ],
+  "caption": "As gain rises, the closed-loop poles (gold) slide along the locus; once they cross into the right half-plane the system goes unstable."
+ },
+ "pid_controller": {
+  "type": "blocks",
+  "flow": true,
+  "nodes": [
+   {
+    "id": "r",
+    "label": "setpoint",
+    "x": 0,
+    "y": 50
+   },
+   {
+    "id": "e",
+    "shape": "sum",
+    "x": 22,
+    "y": 50
+   },
+   {
+    "id": "c",
+    "label": "PID",
+    "x": 45,
+    "y": 50,
+    "color": "gold"
+   },
+   {
+    "id": "p",
+    "label": "plant",
+    "x": 72,
+    "y": 50
+   },
+   {
+    "id": "y",
+    "label": "output",
+    "x": 100,
+    "y": 50
+   },
+   {
+    "id": "s",
+    "label": "sensor",
+    "x": 60,
+    "y": 92
+   }
+  ],
+  "edges": [
+   {
+    "from": "r",
+    "to": "e"
+   },
+   {
+    "from": "e",
+    "to": "c",
+    "label": "error"
+   },
+   {
+    "from": "c",
+    "to": "p",
+    "label": "u"
+   },
+   {
+    "from": "p",
+    "to": "y"
+   },
+   {
+    "from": "y",
+    "to": "s"
+   },
+   {
+    "from": "s",
+    "to": "e",
+    "label": "−"
+   }
+  ],
+  "caption": "Feedback: the controller acts on the error between what you want and what you measure."
+ },
+ "logic_gates": {
+  "type": "logic",
+  "inputs": [
+   "A",
+   "B",
+   "C"
+  ],
+  "expr": "(A & B) | !C",
+  "output": "Y",
+  "caption": "Flip the inputs and follow the signal through each gate; the matching truth-table row lights up."
+ },
+ "karnaugh_maps": {
+  "type": "kmap",
+  "vars": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "minterms": [
+   0,
+   2,
+   5,
+   7,
+   8,
+   10,
+   13,
+   15
+  ],
+  "groups": [
+   [
+    5,
+    7,
+    13,
+    15
+   ],
+   [
+    0,
+    2,
+    8,
+    10
+   ]
+  ],
+  "caption": "Neighbouring 1s (including wrap-around) group into simpler terms: here Y = BD + B′D′."
+ },
+ "finite_state_machines": {
+  "type": "fsm",
+  "states": [
+   {
+    "id": "S0"
+   },
+   {
+    "id": "S1"
+   },
+   {
+    "id": "S2",
+    "accept": true
+   }
+  ],
+  "start": "S0",
+  "transitions": [
+   [
+    "S0",
+    "S1",
+    "1"
+   ],
+   [
+    "S0",
+    "S0",
+    "0"
+   ],
+   [
+    "S1",
+    "S2",
+    "1"
+   ],
+   [
+    "S1",
+    "S0",
+    "0"
+   ],
+   [
+    "S2",
+    "S2",
+    "1"
+   ],
+   [
+    "S2",
+    "S0",
+    "0"
+   ]
+  ],
+  "input": "0110111",
+  "caption": "This machine detects two 1s in a row. Watch it read the input one symbol at a time."
+ },
+ "random_variables": {
+  "type": "dist",
+  "kind": "normal",
+  "mu": "m",
+  "sigma": "sd",
+  "sample": true,
+  "shade": [
+   "m-sd",
+   "m+sd"
+  ],
+  "params": [
+   {
+    "id": "m",
+    "label": "mean μ",
+    "min": -2,
+    "max": 2,
+    "value": 0
+   },
+   {
+    "id": "sd",
+    "label": "spread σ",
+    "min": 0.3,
+    "max": 2,
+    "value": 1
+   }
+  ],
+  "caption": "Random samples (pink) pile up into the bell curve. About 68% land within one σ of the mean."
+ },
+ "number_systems": {
+  "type": "bits",
+  "bits": 8,
+  "value": -37,
+  "mode": "twos",
+  "caption": "Each box is a bit; its weight is a power of two. In two's complement the top bit counts as −128."
+ },
+ "graph_theory_ee": {
+  "type": "graph",
+  "layout": "circle",
+  "nodes": [
+   {
+    "id": "A"
+   },
+   {
+    "id": "B"
+   },
+   {
+    "id": "C"
+   },
+   {
+    "id": "D"
+   },
+   {
+    "id": "E"
+   },
+   {
+    "id": "F"
+   }
+  ],
+  "edges": [
+   [
+    "A",
+    "B"
+   ],
+   [
+    "A",
+    "C"
+   ],
+   [
+    "B",
+    "D"
+   ],
+   [
+    "C",
+    "D"
+   ],
+   [
+    "D",
+    "E"
+   ],
+   [
+    "E",
+    "F"
+   ],
+   [
+    "C",
+    "F"
+   ]
+  ],
+  "steps": [
+   [
+    "A"
+   ],
+   [
+    "B",
+    "C"
+   ],
+   [
+    "D",
+    "F"
+   ],
+   [
+    "E"
+   ]
+  ],
+  "caption": "Breadth-first search visits the graph in rings: everything 1 step away, then 2 steps, and so on."
+ },
+ "gradient_directional": {
+  "type": "surface",
+  "f": "exp(-(x^2+y^2)/3)*cos(x)+0.15*y",
+  "x": [
+   -3,
+   3
+  ],
+  "y": [
+   -3,
+   3
+  ],
+  "caption": "A function of two variables is a landscape; the gradient points straight uphill."
+ },
+ "quantum_intro": {
+  "type": "heatmap",
+  "f": "(sin(nx*pi*(x+1)/2)*sin(ny*pi*(y+1)/2))^2",
+  "x": [
+   -1,
+   1
+  ],
+  "y": [
+   -1,
+   1
+  ],
+  "equal": true,
+  "params": [
+   {
+    "id": "nx",
+    "label": "n_x",
+    "min": 1,
+    "max": 5,
+    "step": 1,
+    "value": 2
+   },
+   {
+    "id": "ny",
+    "label": "n_y",
+    "min": 1,
+    "max": 5,
+    "step": 1,
+    "value": 1
+   }
+  ],
+  "caption": "Where a particle trapped in a box is likely to be found (|ψ|²). Higher quantum numbers mean more nodes."
+ },
+ "electric_potential_ee": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "AA cell",
+    "value": 1.5
+   },
+   {
+    "label": "USB",
+    "value": 5
+   },
+   {
+    "label": "car",
+    "value": 12
+   },
+   {
+    "label": "outlet",
+    "value": 230
+   },
+   {
+    "label": "grid",
+    "value": 400000,
+    "color": "pink"
+   }
+  ],
+  "logy": true,
+  "ylabel": "volts (log scale)",
+  "caption": "Voltages you meet, from a battery to a transmission line."
+ },
+ "waves_interference": {
+  "type": "plot",
+  "x": [
+   0,
+   10
+  ],
+  "y": [
+   -2.2,
+   2.2
+  ],
+  "fns": [
+   {
+    "f": "sin(x-2*t)",
+    "label": "wave 1",
+    "color": "accent",
+    "width": 1.4
+   },
+   {
+    "f": "sin(x+phi-2*t)",
+    "label": "wave 2",
+    "color": "pink",
+    "width": 1.4
+   },
+   {
+    "f": "sin(x-2*t)+sin(x+phi-2*t)",
+    "label": "sum",
+    "color": "gold",
+    "width": 2.6
+   }
+  ],
+  "params": [
+   {
+    "id": "phi",
+    "label": "phase difference",
+    "min": 0,
+    "max": 6.283,
+    "value": 0
+   }
+  ],
+  "caption": "Two waves in step add up (constructive); half a cycle apart they cancel (destructive)."
+ },
+ "rotation_torque": {
+  "type": "geometry",
+  "range": [
+   -3,
+   3,
+   -2,
+   2
+  ],
+  "shapes": [
+   {
+    "k": "circle",
+    "x": 0,
+    "y": 0,
+    "r": 0.08,
+    "fill": "white"
+   },
+   {
+    "k": "line",
+    "x1": 0,
+    "y1": 0,
+    "x2": "L*cos(th)",
+    "y2": "L*sin(th)",
+    "color": "dim",
+    "width": 3
+   },
+   {
+    "k": "arrow",
+    "x1": "L*cos(th)",
+    "y1": "L*sin(th)",
+    "x2": "L*cos(th)",
+    "y2": "L*sin(th)-F/2",
+    "color": "gold"
+   },
+   {
+    "k": "text",
+    "x": "L*cos(th)+0.3",
+    "y": "L*sin(th)-F/4",
+    "text": "F",
+    "color": "gold"
+   },
+   {
+    "k": "text",
+    "x": 0,
+    "y": -1.6,
+    "text": "τ = r F sinθ = {L*F*abs(cos(th))} N·m",
+    "color": "accent"
+   }
+  ],
+  "params": [
+   {
+    "id": "L",
+    "label": "lever length r",
+    "min": 0.5,
+    "max": 2.5,
+    "value": 2
+   },
+   {
+    "id": "F",
+    "label": "force F",
+    "min": 0.5,
+    "max": 3,
+    "value": 2
+   },
+   {
+    "id": "th",
+    "label": "lever angle",
+    "min": -1.5,
+    "max": 1.5,
+    "value": 0.3
+   }
+  ],
+  "caption": "Torque is how strongly a force twists: longer levers and perpendicular pushes give more."
+ },
+ "ohms_law_node": {
+  "type": "plot",
+  "x": [
+   0,
+   12
+  ],
+  "y": [
+   0,
+   0.13
+  ],
+  "fns": [
+   {
+    "f": "x/R",
+    "label": "I = V/R"
+   }
+  ],
+  "points": [
+   {
+    "x": "V",
+    "y": "V/R",
+    "label": "{V} V → {1000*V/R} mA"
+   }
+  ],
+  "xlabel": "voltage (V)",
+  "ylabel": "current (A)",
+  "params": [
+   {
+    "id": "R",
+    "label": "resistance",
+    "min": 50,
+    "max": 1000,
+    "value": 220,
+    "unit": "Ω"
+   },
+   {
+    "id": "V",
+    "label": "voltage",
+    "min": 0,
+    "max": 12,
+    "value": 5,
+    "unit": "V"
+   }
+  ],
+  "caption": "Current rises in proportion to voltage; a bigger resistance makes the line flatter."
+ },
+ "si_units_ee": {
+  "type": "table",
+  "cols": [
+   "Quantity",
+   "Unit",
+   "Symbol"
+  ],
+  "rows": [
+   [
+    "Current",
+    "ampere",
+    "A"
+   ],
+   [
+    "Voltage",
+    "volt",
+    "V"
+   ],
+   [
+    "Resistance",
+    "ohm",
+    "Ω"
+   ],
+   [
+    "Charge",
+    "coulomb",
+    "C"
+   ],
+   [
+    "Power",
+    "watt",
+    "W"
+   ]
+  ]
+ }
+}

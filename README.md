@@ -8,6 +8,7 @@ An explorable, true-scale model of everything science knows — from quarks insi
 - **Explorable nodes** — things you can click, open and drill into. The first domain is the human body: 114 anatomical structures (BodyParts3D), cut-away organs with labeled inner parts, tissues, cells and step-by-step processes.
 - **Electrical engineering** — the phone in your hand opens up (phone → processor die → CPU core → logic gates → CMOS inverter → FinFET → silicon crystal), 399 EE concepts covering a full undergraduate curriculum, and an **EE track** that walks them in prerequisite order.
 - **Labs** — interactive simulations that open over the world: a **Circuit Lab** (schematic editor, DC/transient/AC solver, oscilloscope, Bode plotter, Thévenin calculator, 37 presets) and a **Semiconductor Device Lab** (bands, doping, PN junctions, diodes, BJTs, MOSFETs, CMOS, fabrication). More labs (signals, logic/CPU, control, fields, math, probability, code, networks) are planned — see `docs/REPORT_ee_nodes.md` for their preset specs.
+- **A figure for every concept** — all 936 concepts have a live, interactive figure (plots, fields, phasors, Bode plots, logic circuits, state machines, distributions, diagrams…) defined as data in `data/viz/` and drawn by `js/viz.js`; see `docs/VIZ_SPEC.md` to add or edit one.
 - **Matter at every scale** — 250 molecules, 17 crystal lattices, liquid water and air at molecular scale, atoms with quantum orbitals and true-size nuclei, protons with quarks and gluons.
 - **A knowledge map** (309 topics with certainty levels and open questions) and a **library** indexing 51 OpenStax textbooks; every explanation links to the relevant textbook section.
 
@@ -30,6 +31,7 @@ js/engine.js        nested real-scale frames, camera, zoom-to-cursor, picking, l
 js/engine_ui.js     info panel, library, scale ruler, tours, main loop
 js/world_space.js   cosmos, galaxies, stars, solar system, planets, Earth
 js/world_matter.js  molecules, crystals, liquids, gases, atoms, nuclei, micro-scale scenes, landscapes
+js/viz.js           figure language + renderer for concept cards
 js/nodes.js         explorable node system: anatomy, organs, tissues, processes
 js/teardown.js      the phone teardown chain down to a single transistor
 js/labs/            lab host + Circuit Lab + Device Lab (tools/labtest/ has standalone test pages)

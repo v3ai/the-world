@@ -60,7 +60,7 @@ function wireTabs() {
 }
 function openPanel(h) { infoEl.innerHTML = `<button class="x" aria-label="Close">✕</button>` + h; infoEl.classList.add('open'); infoEl.scrollTop = 0; infoEl.querySelector('.x').onclick = closeInfo; wireTabs(); }
 function closeInfo() { infoEl.classList.remove('open'); infoState = null; }
-function closePops() { ['#library', '#tourPop', '#tracks'].forEach(s => { const e = $(s); if (e) e.classList.remove('open'); }); }
+function closePops() { ['#library', '#tourPop', '#tracks'].forEach(s => { const e = $(s); if (e) e.classList.remove('open'); }); document.body.classList.remove('trackOpen'); }
 function scienceSection(simIds) {
   const nodes = []; simIds.forEach(s => (KN_BY_SIM[s] || []).forEach(n => { if (!nodes.includes(n)) nodes.push(n); }));
   if (!nodes.length) return '';
@@ -94,7 +94,7 @@ function showNode(id) {
   let basics = `<div class="body"><p>${n.basics || ''}</p></div>`;
   if (n.regime) basics += `<div class="regime"><b>Where it applies:</b> ${n.regime}</div>`;
   if (n.evidence && n.evidence.length) basics += `<div class="rh" style="margin-top:10px">Evidence</div><ul class="ev">${n.evidence.map(e => `<li>${e}</li>`).join('')}</ul>`;
-  let h = `<div class="tag">Level ${n.level} · ${n.domain || ''} ${n.scale_m ? '· ' + fmtLen(n.scale_m[0]) + ' – ' + fmtLen(n.scale_m[1]) : ''}</div><h2>${n.title}</h2><div style="margin:-4px 0 10px">${certBadge(n.certainty)}</div>`;
+  let h = `<div class="tag">Level ${n.level} · ${n.domain || ''} ${n.scale_m ? '· ' + fmtLen(n.scale_m[0]) + ' – ' + fmtLen(n.scale_m[1]) : ''}</div><h2>${n.title}</h2><div style="margin:-4px 0 10px">${certBadge(n.certainty)}</div><div class="vzh" id="vizHost"></div>`;
   h += layered([['Basics', basics], ['Deeper', n.deeper ? `<div class="body"><p>${n.deeper}</p></div>` : ''], ['Expert', n.expert ? `<div class="body expert"><p>${n.expert}</p></div>` : '']]);
   const link = (ids, label) => ids && ids.length ? `<div class="rh">${label}</div><div class="chips">${ids.filter(i => KN_BY_ID[i]).map(i => `<button class="kn chip" data-k="${i}">${KN_BY_ID[i].title}</button>`).join('')}</div>` : '';
   h += `<div class="refs">${link(n.emerges_from, '⬇ Emerges from (deeper layer)')}${link(n.explains, '⬆ Explains')}</div>`;
@@ -102,7 +102,7 @@ function showNode(id) {
   const fr2 = (n.frontier_ref || []).map(k => FRONT[k]).filter(Boolean).map(f => `<li>${certBadge(f.certainty)} <b>${f.topic}</b>: ${f.corrected || f.claim} <i>(${f.status}, ${f.as_of})</i>${f.note ? ` — ${f.note}` : ''} ${(f.sources || []).slice(0, 2).map(s => `<a href="${s.url}" target="_blank" rel="noopener">source ↗</a>`).join(' ')}</li>`).join('');
   if (fr || fr2) h += `<div class="refs"><div class="rh">🔭 Frontier — what's still open</div><ul class="ev">${fr}${fr2}</ul></div>`;
   if (n.refs && n.refs.length) h += `<div class="refs"><div class="rh">📚 Read more</div>${n.refs.slice(0, 6).map(r => bookRef(r[0], r[1])).join('')}</div>`;
-  openPanel(h); wireKn();
+  openPanel(h); if (window.mountViz) mountViz($('#vizHost'), id); wireKn();
 }
 const seen = new Set(store.get('seen', []));
 function markSeen(id) { if (!seen.has(id)) { seen.add(id); store.set('seen', [...seen]); } }
