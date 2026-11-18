@@ -1,0 +1,2791 @@
+{
+ "meta": {
+  "title": "Standard Model particle data",
+  "pdg_edition": "2026",
+  "pdg_citation": "F. Takahashi <i>et al.</i> (Particle Data Group), Int. J. Mod. Phys. A 41, 2630011 (2026)",
+  "pdg_release": "2026-05-30 13:41:24 PDT",
+  "licence_of_source": "CC BY 4.0",
+  "built_by": "tools/particles/build_particles.py",
+  "note": "Every measured value carries a PDG identifier (pdgid) and the text PDG prints. Calculated values are marked \"calc\". See tools/particles/SOURCES.md.",
+  "masses_note": "Masses are given in eV in the field \"eV\" for plotting; use \"text\" and \"unit\" to show the PDG value."
+ },
+ "particles": [
+  {
+   "id": "up",
+   "node": "sm_up",
+   "symbol": "u",
+   "name": "Up quark",
+   "family": "quark",
+   "kind": "fermion",
+   "generation": 1,
+   "charge": "2/3",
+   "charge_text": "+2/3 e",
+   "spin": "1/2",
+   "colour": {
+    "has": true,
+    "text": "Yes. Quarks carry colour charge, the charge of the strong force. It comes in three kinds, called red, green and blue after a loose analogy; there is no real colour involved. Only combinations with no net colour are ever seen, so a lone quark is never observed."
+   },
+   "weak_isospin": {
+    "T": "1/2",
+    "T3": "+1/2",
+    "note": "The left-handed version sits in a doublet with a down-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review)."
+   },
+   "feels": [
+    "strong",
+    "em",
+    "weak",
+    "higgs"
+   ],
+   "mass": {
+    "pdgid": "Q002M",
+    "edition": 2026,
+    "text": "2.16 ± 0.07",
+    "unit": "MeV",
+    "value": 2.16,
+    "display": "2.16 ± 0.07 MeV",
+    "err_plus": 0.07,
+    "err_minus": 0.07,
+    "scheme": "MS-bar scheme at a scale of 2 GeV",
+    "eV": 2160000.0,
+    "err_eV": 70000.0,
+    "note": "A \"current-quark mass\": the parameter in the theory's equations at that energy scale. A free quark is never seen, so there is no scale to put it on; the number depends on the scheme and the energy scale used to define it. Two up quarks and one down quark make a proton."
+   },
+   "lifetime": {
+    "kind": "stable-in-matter",
+    "text": "Up quarks inside protons are as stable as the proton itself (no proton decay has ever been seen; see the proton entry)."
+   },
+   "decays": [
+    {
+     "label": "Nothing: the lightest charged-up-type quark",
+     "in": [
+      "u"
+     ],
+     "out": [],
+     "note": "It cannot decay by the weak force because no lighter quark with the right charge exists."
+    }
+   ],
+   "antiparticle": {
+    "name": "Anti-up quark",
+    "symbol": "ū",
+    "self_conjugate": false,
+    "note": "Same mass and spin, opposite electric charge and opposite colour (an \"anticolour\")."
+   },
+   "discovery": "Evidence for pointlike quark-like constituents inside the proton came from electron scattering at SLAC in 1968–69 (deep inelastic scattering); the up quark was proposed in the quark model of Gell-Mann and of Zweig in 1964.",
+   "everyday": "Everywhere. Every proton has two up quarks and every neutron has one; together with down quarks they are the only quarks in ordinary stable matter (apart from short-lived quark–antiquark pairs).",
+   "sources": [
+    "Q002M"
+   ]
+  },
+  {
+   "id": "down",
+   "node": "sm_down",
+   "symbol": "d",
+   "name": "Down quark",
+   "family": "quark",
+   "kind": "fermion",
+   "generation": 1,
+   "charge": "-1/3",
+   "charge_text": "−1/3 e",
+   "spin": "1/2",
+   "colour": {
+    "has": true,
+    "text": "Yes. Quarks carry colour charge, the charge of the strong force. It comes in three kinds, called red, green and blue after a loose analogy; there is no real colour involved. Only combinations with no net colour are ever seen, so a lone quark is never observed."
+   },
+   "weak_isospin": {
+    "T": "1/2",
+    "T3": "-1/2",
+    "note": "The left-handed version sits in a doublet with a up-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review)."
+   },
+   "feels": [
+    "strong",
+    "em",
+    "weak",
+    "higgs"
+   ],
+   "mass": {
+    "pdgid": "Q001M",
+    "edition": 2026,
+    "text": "4.70 ± 0.07",
+    "unit": "MeV",
+    "value": 4.7,
+    "display": "4.70 ± 0.07 MeV",
+    "err_plus": 0.07,
+    "err_minus": 0.07,
+    "scheme": "MS-bar scheme at a scale of 2 GeV",
+    "eV": 4700000.0,
+    "err_eV": 70000.0,
+    "note": "A \"current-quark mass\": the parameter in the theory's equations at that energy scale. A free quark is never seen, so there is no scale to put it on; the number depends on the scheme and the energy scale used to define it. It is a little heavier than the up quark, which is why a neutron is slightly heavier than a proton."
+   },
+   "lifetime": {
+    "kind": "stable-in-matter",
+    "text": "Down quarks in stable nuclei are stable; in a free neutron one turns into an up quark by the weak force (see the neutron entry)."
+   },
+   "decays": [
+    {
+     "label": "d → u + W⁻ (virtual), as in neutron decay",
+     "in": [
+      "d"
+     ],
+     "out": [
+      "u",
+      "W-"
+     ],
+     "note": "Possible only when there is energy to spare, as when a neutron becomes a proton."
+    }
+   ],
+   "antiparticle": {
+    "name": "Anti-down quark",
+    "symbol": "d̄",
+    "self_conjugate": false,
+    "note": "Same mass and spin, opposite electric charge and opposite colour (an \"anticolour\")."
+   },
+   "discovery": "Seen indirectly in the same SLAC electron-scattering experiments as the up quark (1968–69); proposed in the 1964 quark model.",
+   "everyday": "In every proton (one) and every neutron (two). Together with up quarks, the only quarks in ordinary matter.",
+   "sources": [
+    "Q001M"
+   ]
+  },
+  {
+   "id": "strange",
+   "node": "sm_strange",
+   "symbol": "s",
+   "name": "Strange quark",
+   "family": "quark",
+   "kind": "fermion",
+   "generation": 2,
+   "charge": "-1/3",
+   "charge_text": "−1/3 e",
+   "spin": "1/2",
+   "colour": {
+    "has": true,
+    "text": "Yes. Quarks carry colour charge, the charge of the strong force. It comes in three kinds, called red, green and blue after a loose analogy; there is no real colour involved. Only combinations with no net colour are ever seen, so a lone quark is never observed."
+   },
+   "weak_isospin": {
+    "T": "1/2",
+    "T3": "-1/2",
+    "note": "The left-handed version sits in a doublet with a up-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review)."
+   },
+   "feels": [
+    "strong",
+    "em",
+    "weak",
+    "higgs"
+   ],
+   "mass": {
+    "pdgid": "Q003M",
+    "edition": 2026,
+    "text": "92.9 ± 0.7",
+    "unit": "MeV",
+    "value": 92.9,
+    "display": "92.9 ± 0.7 MeV",
+    "err_plus": 0.7,
+    "err_minus": 0.7,
+    "scheme": "MS-bar scheme at a scale of 2 GeV",
+    "eV": 92900000.0,
+    "err_eV": 700000.0,
+    "note": "A \"current-quark mass\": the parameter in the theory's equations at that energy scale. A free quark is never seen, so there is no scale to put it on; the number depends on the scheme and the energy scale used to define it. Roughly 20 times the down-quark mass."
+   },
+   "lifetime": {
+    "kind": "via-hadrons",
+    "text": "Strange hadrons decay by the weak force: the charged kaon lasts about 1.24×10⁻⁸ s and the Λ about 2.6×10⁻¹⁰ s (PDG).",
+    "hadrons": [
+     {
+      "name": "K⁺",
+      "ref": {
+       "pdgid": "S010T",
+       "edition": 2026,
+       "text": "(1.2380 ± 0.0020)×10⁻⁸",
+       "unit": "s",
+       "value": 1.237976028279926e-08,
+       "display": "(1.2380 ± 0.0020)×10⁻⁸ s",
+       "err_plus": 2.022692731624734e-11,
+       "err_minus": 2.022692731624734e-11,
+       "scale_factor": 1.839949
+      }
+     },
+     {
+      "name": "Λ",
+      "ref": {
+       "pdgid": "S018T",
+       "edition": 2026,
+       "text": "(2.617 ± 0.010)×10⁻¹⁰",
+       "unit": "s",
+       "value": 2.616647748955701e-10,
+       "display": "(2.617 ± 0.010)×10⁻¹⁰ s",
+       "err_plus": 1.031119479293961e-12,
+       "err_minus": 1.031119479293961e-12,
+       "scale_factor": 1.507386
+      }
+     }
+    ]
+   },
+   "decays": [
+    {
+     "label": "s → u + W⁻ (virtual): how a kaon or Λ decays",
+     "in": [
+      "s"
+     ],
+     "out": [
+      "u",
+      "W-"
+     ]
+    }
+   ],
+   "antiparticle": {
+    "name": "Anti-strange quark",
+    "symbol": "s̄",
+    "self_conjugate": false,
+    "note": "Same mass and spin, opposite electric charge and opposite colour (an \"anticolour\")."
+   },
+   "discovery": "The first \"strange\" particles (kaons) were seen in cosmic-ray cloud-chamber photographs by Rochester and Butler in 1947; the quark picture that explains them came in 1964.",
+   "everyday": "Made constantly in the debris of cosmic rays hitting the air, and present as short-lived pairs inside every proton, but not part of ordinary stable matter.",
+   "sources": [
+    "Q003M"
+   ]
+  },
+  {
+   "id": "charm",
+   "node": "sm_charm",
+   "symbol": "c",
+   "name": "Charm quark",
+   "family": "quark",
+   "kind": "fermion",
+   "generation": 2,
+   "charge": "2/3",
+   "charge_text": "+2/3 e",
+   "spin": "1/2",
+   "colour": {
+    "has": true,
+    "text": "Yes. Quarks carry colour charge, the charge of the strong force. It comes in three kinds, called red, green and blue after a loose analogy; there is no real colour involved. Only combinations with no net colour are ever seen, so a lone quark is never observed."
+   },
+   "weak_isospin": {
+    "T": "1/2",
+    "T3": "+1/2",
+    "note": "The left-handed version sits in a doublet with a down-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review)."
+   },
+   "feels": [
+    "strong",
+    "em",
+    "weak",
+    "higgs"
+   ],
+   "mass": {
+    "pdgid": "Q004M",
+    "edition": 2026,
+    "text": "1.2729 ± 0.0045",
+    "unit": "GeV",
+    "value": 1.2729,
+    "display": "1.2729 ± 0.0045 GeV",
+    "err_plus": 0.0045,
+    "err_minus": 0.0045,
+    "scheme": "MS-bar scheme, at the scale of the charm-quark mass itself",
+    "eV": 1272900000.0,
+    "err_eV": 4500000.0,
+    "note": "The \"running\" mass in the MS-bar scheme evaluated at its own value. The PDG notes the same quark corresponds to a pole mass of about 1.65 GeV in another scheme: the same quark, a different definition."
+   },
+   "lifetime": {
+    "kind": "via-hadrons",
+    "text": "Charm hadrons decay by the weak force: the D⁰ lasts about 4.1×10⁻¹³ s and the D⁺ about 1.0×10⁻¹² s (PDG).",
+    "hadrons": [
+     {
+      "name": "D⁰",
+      "ref": {
+       "pdgid": "S032T",
+       "edition": 2026,
+       "text": "(4.103 ± 0.010)×10⁻¹³",
+       "unit": "s",
+       "value": 4.103159088861596e-13,
+       "display": "(4.103 ± 0.010)×10⁻¹³ s",
+       "err_plus": 1.019388946809018e-15,
+       "err_minus": 1.018945949854559e-15,
+       "scale_factor": 1.0
+      }
+     },
+     {
+      "name": "D⁺",
+      "ref": {
+       "pdgid": "S031T",
+       "edition": 2026,
+       "text": "(1.033 ± 0.005)×10⁻¹²",
+       "unit": "s",
+       "value": 1.033276298013913e-12,
+       "display": "(1.033 ± 0.005)×10⁻¹² s",
+       "err_plus": 4.644247971164231e-15,
+       "err_minus": 4.644247971164231e-15,
+       "scale_factor": 1.0
+      }
+     }
+    ]
+   },
+   "decays": [
+    {
+     "label": "c → s + W⁺ (virtual)",
+     "in": [
+      "c"
+     ],
+     "out": [
+      "s",
+      "W+"
+     ]
+    }
+   ],
+   "antiparticle": {
+    "name": "Anti-charm quark",
+    "symbol": "c̄",
+    "self_conjugate": false,
+    "note": "Same mass and spin, opposite electric charge and opposite colour (an \"anticolour\")."
+   },
+   "discovery": "Seen as the J/ψ meson (a charm–anticharm pair) in November 1974 by two groups at once: one led by Burton Richter at SLAC and one led by Samuel Ting at Brookhaven.",
+   "everyday": "Not in everyday matter. Made in particle accelerators and in cosmic-ray collisions; a very small charm component exists inside the proton.",
+   "sources": [
+    "Q004M"
+   ]
+  },
+  {
+   "id": "bottom",
+   "node": "sm_bottom",
+   "symbol": "b",
+   "name": "Bottom quark",
+   "family": "quark",
+   "kind": "fermion",
+   "generation": 3,
+   "charge": "-1/3",
+   "charge_text": "−1/3 e",
+   "spin": "1/2",
+   "colour": {
+    "has": true,
+    "text": "Yes. Quarks carry colour charge, the charge of the strong force. It comes in three kinds, called red, green and blue after a loose analogy; there is no real colour involved. Only combinations with no net colour are ever seen, so a lone quark is never observed."
+   },
+   "weak_isospin": {
+    "T": "1/2",
+    "T3": "-1/2",
+    "note": "The left-handed version sits in a doublet with a up-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review)."
+   },
+   "feels": [
+    "strong",
+    "em",
+    "weak",
+    "higgs"
+   ],
+   "mass": {
+    "pdgid": "Q005M",
+    "edition": 2026,
+    "text": "4.186 ± 0.006",
+    "unit": "GeV",
+    "value": 4.186,
+    "display": "4.186 ± 0.006 GeV",
+    "err_plus": 0.006,
+    "err_minus": 0.006,
+    "scheme": "MS-bar scheme, at the scale of the bottom-quark mass itself",
+    "eV": 4186000000.0,
+    "err_eV": 6000000.0,
+    "note": "The \"running\" mass in the MS-bar scheme at its own scale; other definitions (pole mass) give a larger number, because the quark mass depends on how and at what energy you define it."
+   },
+   "lifetime": {
+    "kind": "via-hadrons",
+    "text": "B mesons decay by the weak force: the B⁺ lasts about 1.64×10⁻¹² s and the B⁰ about 1.51×10⁻¹² s (PDG).",
+    "hadrons": [
+     {
+      "name": "B⁺",
+      "ref": {
+       "pdgid": "S041T",
+       "edition": 2026,
+       "text": "1637 ± 4×10⁻¹⁵",
+       "unit": "s",
+       "value": 1.637e-12,
+       "display": "1637 ± 4×10⁻¹⁵ s",
+       "err_plus": 4e-15,
+       "err_minus": 4e-15,
+       "pdg_comment": "(Produced by HFLAV)"
+      }
+     },
+     {
+      "name": "B⁰",
+      "ref": {
+       "pdgid": "S042T",
+       "edition": 2026,
+       "text": "1511.3 ± 2.7×10⁻¹⁵",
+       "unit": "s",
+       "value": 1.5113e-12,
+       "display": "1511.3 ± 2.7×10⁻¹⁵ s",
+       "err_plus": 2.7e-15,
+       "err_minus": 2.7e-15,
+       "pdg_comment": "(Produced by HFLAV)"
+      }
+     }
+    ]
+   },
+   "decays": [
+    {
+     "label": "b → c + W⁻ (virtual)",
+     "in": [
+      "b"
+     ],
+     "out": [
+      "c",
+      "W-"
+     ]
+    }
+   ],
+   "antiparticle": {
+    "name": "Anti-bottom quark",
+    "symbol": "b̄",
+    "self_conjugate": false,
+    "note": "Same mass and spin, opposite electric charge and opposite colour (an \"anticolour\")."
+   },
+   "discovery": "Seen as the Υ (upsilon) meson, a bottom–antibottom pair, in 1977 by an experiment led by Leon Lederman at Fermilab.",
+   "everyday": "Only in accelerators and rare cosmic-ray collisions. B mesons are made by the billion in dedicated \"B factory\" colliders to study matter–antimatter differences.",
+   "sources": [
+    "Q005M"
+   ]
+  },
+  {
+   "id": "top",
+   "node": "sm_top",
+   "symbol": "t",
+   "name": "Top quark",
+   "family": "quark",
+   "kind": "fermion",
+   "generation": 3,
+   "charge": "2/3",
+   "charge_text": "+2/3 e",
+   "spin": "1/2",
+   "colour": {
+    "has": true,
+    "text": "Yes. Quarks carry colour charge, the charge of the strong force. It comes in three kinds, called red, green and blue after a loose analogy; there is no real colour involved. Only combinations with no net colour are ever seen, so a lone quark is never observed."
+   },
+   "weak_isospin": {
+    "T": "1/2",
+    "T3": "+1/2",
+    "note": "The left-handed version sits in a doublet with a down-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review)."
+   },
+   "feels": [
+    "strong",
+    "em",
+    "weak",
+    "higgs"
+   ],
+   "mass": {
+    "pdgid": "Q007TP",
+    "edition": 2026,
+    "text": "172.60 ± 0.27",
+    "unit": "GeV",
+    "value": 172.6035595874743,
+    "display": "172.60 ± 0.27 GeV",
+    "err_plus": 0.2713750020275726,
+    "err_minus": 0.273047806741856,
+    "scale_factor": 1.519116,
+    "scheme": "Direct measurements: reconstructed from the decay products of top–antitop pairs (Tevatron and LHC average)",
+    "eV": 172603559587.4743,
+    "err_eV": 271375002.0275726,
+    "note": "This is the one quark mass measured directly from the energies of the particles it decays into. Because the top decays before it can bind into a hadron, it is the only quark we can study \"almost bare\". The PDG notes that turning this number into a precise theoretical mass (pole or MS-bar) carries a theory uncertainty that is hard to quantify.",
+    "other": [
+     {
+      "pdgid": "Q007TP2",
+      "edition": 2026,
+      "text": "162.5 +2.1 −1.5",
+      "unit": "GeV",
+      "value": 162.5002846980492,
+      "display": "162.5 +2.1 −1.5 GeV",
+      "err_plus": 2.13161370878598,
+      "err_minus": 1.5324334305524,
+      "scale_factor": 1.0
+     },
+     {
+      "pdgid": "Q007TP4",
+      "edition": 2026,
+      "text": "172.1 ± 0.6",
+      "unit": "GeV",
+      "value": 172.054218792374,
+      "display": "172.1 ± 0.6 GeV",
+      "err_plus": 0.6140864470014742,
+      "err_minus": 0.5896776206425237,
+      "scale_factor": 1.0
+     }
+    ]
+   },
+   "lifetime": {
+    "kind": "width",
+    "text": "About 5×10⁻²⁵ s, from the measured decay width of 1.42 GeV (lifetime = ħ / width; my calculation). It decays before it can form a hadron.",
+    "width": {
+     "pdgid": "Q007W",
+     "edition": 2026,
+     "text": "1.42 +0.19 −0.15",
+     "unit": "GeV",
+     "value": 1.424101758196898,
+     "display": "1.42 +0.19 −0.15 GeV",
+     "err_plus": 0.1905134297354235,
+     "err_minus": 0.1525604117117907,
+     "scale_factor": 1.424286
+    },
+    "lifetime_s_calc": 4.6219446967988e-25
+   },
+   "decays": [
+    {
+     "label": "t → W⁺ + b",
+     "in": [
+      "t"
+     ],
+     "out": [
+      "W+",
+      "b"
+     ],
+     "br": {
+      "pdgid": "Q007R6",
+      "text": "0.957 ± 0.034",
+      "value": 0.9568439140926629,
+      "mode": "G(t --> W b)/G(t --> W q (q = b , s , d))"
+     },
+     "note": "PDG gives the ratio Γ(Wb)/Γ(Wq) = 0.957 ± 0.034, consistent with 1: essentially every top decays to a W and a bottom quark; no other decay has been seen."
+    }
+   ],
+   "antiparticle": {
+    "name": "Anti-top quark",
+    "symbol": "t̄",
+    "self_conjugate": false,
+    "note": "Same mass and spin, opposite electric charge and opposite colour (an \"anticolour\")."
+   },
+   "discovery": "Announced on 2 March 1995 by the CDF and DØ collaborations at Fermilab's Tevatron proton–antiproton collider.",
+   "everyday": "Not in everyday matter and gone within 10⁻²⁴ s of being made. Made by the million at the LHC. It is the heaviest known elementary particle.",
+   "sources": [
+    "Q007TP",
+    "Q007W",
+    "Q007R6"
+   ]
+  },
+  {
+   "id": "electron",
+   "node": "sm_electron",
+   "symbol": "e⁻",
+   "name": "Electron",
+   "family": "lepton",
+   "kind": "fermion",
+   "generation": 1,
+   "charge": "-1",
+   "charge_text": "−1 e",
+   "spin": "1/2",
+   "colour": {
+    "has": false,
+    "text": "No. Leptons carry no colour charge, so they do not feel the strong force at all."
+   },
+   "weak_isospin": {
+    "T": "1/2",
+    "T3": "-1/2",
+    "note": "The left-handed version is the lower member of a doublet with the matching neutrino; the right-handed version has weak isospin 0 (PDG Electroweak Model review)."
+   },
+   "feels": [
+    "em",
+    "weak",
+    "higgs"
+   ],
+   "mass": {
+    "pdgid": "S003M",
+    "edition": 2026,
+    "text": "0.51099895069 ± 0.00000000016",
+    "unit": "MeV",
+    "value": 0.51099895069,
+    "display": "0.51099895069 ± 0.00000000016 MeV",
+    "err_plus": 1.6e-10,
+    "err_minus": 1.6e-10,
+    "scale_factor": 1.0,
+    "scheme": "Measured directly (Penning-trap and atomic-physics experiments); no scheme needed because the electron is not confined",
+    "eV": 510998.95069,
+    "err_eV": 0.00015999999999999999,
+    "note": "A directly measured rest mass, known to better than a part in 10⁹. Unlike a quark mass it has an ordinary meaning, though the Higgs field is what gives it a mass at all."
+   },
+   "lifetime": {
+    "kind": "stable",
+    "text": "Stable as far as anyone can tell. PDG: mean life > 6.6×10²⁸ years (90% confidence) for decay into a neutrino and photon.",
+    "bound": {
+     "pdgid": "S003T",
+     "edition": 2026,
+     "text": "> 6.6×10²⁸",
+     "unit": "yr",
+     "value": 6.599999999999999e+28,
+     "display": "> 6.6×10²⁸ yr",
+     "limit": "L",
+     "cl": 90.0
+    }
+   },
+   "decays": [
+    {
+     "label": "None (stable)",
+     "in": [
+      "e-"
+     ],
+     "out": [],
+     "note": "Lightest charged particle: electric charge conservation forbids any decay."
+    }
+   ],
+   "antiparticle": {
+    "name": "Positron",
+    "symbol": "e⁺",
+    "self_conjugate": false,
+    "note": "Proposed from Dirac's relativistic theory of the electron and found in cosmic rays by Carl Anderson in 1932. Same mass, charge +1."
+   },
+   "discovery": "J. J. Thomson at the Cavendish Laboratory in 1897, measuring the charge-to-mass ratio of cathode rays and showing they were far lighter than any atom.",
+   "everyday": "The cloud around every atom: all of chemistry, the current in a wire and the light from a screen. About as many as there are protons in everything you touch.",
+   "sources": [
+    "S003M",
+    "S003T"
+   ]
+  },
+  {
+   "id": "muon",
+   "node": "sm_muon",
+   "symbol": "μ⁻",
+   "name": "Muon",
+   "family": "lepton",
+   "kind": "fermion",
+   "generation": 2,
+   "charge": "-1",
+   "charge_text": "−1 e",
+   "spin": "1/2",
+   "colour": {
+    "has": false,
+    "text": "No. Leptons carry no colour charge, so they do not feel the strong force at all."
+   },
+   "weak_isospin": {
+    "T": "1/2",
+    "T3": "-1/2",
+    "note": "The left-handed version is the lower member of a doublet with the matching neutrino; the right-handed version has weak isospin 0 (PDG Electroweak Model review)."
+   },
+   "feels": [
+    "em",
+    "weak",
+    "higgs"
+   ],
+   "mass": {
+    "pdgid": "S004M",
+    "edition": 2026,
+    "text": "105.6583755 ± 0.0000023",
+    "unit": "MeV",
+    "value": 105.6583755,
+    "display": "105.6583755 ± 0.0000023 MeV",
+    "err_plus": 2.3e-06,
+    "err_minus": 2.3e-06,
+    "scale_factor": 1.0,
+    "scheme": "Measured directly",
+    "eV": 105658375.5,
+    "err_eV": 2.3,
+    "note": "A directly measured rest mass, about 207 times the electron's. The reason there is a second, heavier copy of the electron is not known."
+   },
+   "lifetime": {
+    "kind": "unstable",
+    "text": "Mean life 2.1969811×10⁻⁶ s (PDG).",
+    "ref": {
+     "pdgid": "S004T",
+     "edition": 2026,
+     "text": "(2.1969811 ± 0.0000022)×10⁻⁶",
+     "unit": "s",
+     "value": 2.196981148893498e-06,
+     "display": "(2.1969811 ± 0.0000022)×10⁻⁶ s",
+     "err_plus": 2.196152998470871e-12,
+     "err_minus": 2.196152998470871e-12,
+     "scale_factor": 1.0
+    }
+   },
+   "decays": [
+    {
+     "label": "μ⁻ → e⁻ + ν̄ₑ + ν_μ",
+     "in": [
+      "mu-"
+     ],
+     "out": [
+      "e-",
+      "nubar_e",
+      "nu_mu"
+     ],
+     "note": "Essentially 100% of muon decays (PDG listing); the rare radiative and e⁺e⁻ variants are small. The rate follows the weak force through a virtual W."
+    }
+   ],
+   "antiparticle": {
+    "name": "Antimuon",
+    "symbol": "μ⁺",
+    "self_conjugate": false,
+    "note": "Same mass and lifetime, charge +1."
+   },
+   "discovery": "Seth Neddermeyer and Carl Anderson (and, independently, Jabez Street and Edward Stevenson) in cosmic-ray cloud-chamber tracks in 1936–37. Nobody had predicted it.",
+   "everyday": "Cosmic-ray muons pass through you all the time: roughly one per square centimetre of horizontal surface per minute at sea level (PDG cosmic-ray review, 2000 edition).",
+   "sources": [
+    "S004M",
+    "S004T"
+   ]
+  },
+  {
+   "id": "tau",
+   "node": "sm_tau",
+   "symbol": "τ⁻",
+   "name": "Tau lepton",
+   "family": "lepton",
+   "kind": "fermion",
+   "generation": 3,
+   "charge": "-1",
+   "charge_text": "−1 e",
+   "spin": "1/2",
+   "colour": {
+    "has": false,
+    "text": "No. Leptons carry no colour charge, so they do not feel the strong force at all."
+   },
+   "weak_isospin": {
+    "T": "1/2",
+    "T3": "-1/2",
+    "note": "The left-handed version is the lower member of a doublet with the matching neutrino; the right-handed version has weak isospin 0 (PDG Electroweak Model review)."
+   },
+   "feels": [
+    "em",
+    "weak",
+    "higgs"
+   ],
+   "mass": {
+    "pdgid": "S035M",
+    "edition": 2026,
+    "text": "1776.93 ± 0.09",
+    "unit": "MeV",
+    "value": 1776.93246513409,
+    "display": "1776.93 ± 0.09 MeV",
+    "err_plus": 0.08491495391323055,
+    "err_minus": 0.08758019173411406,
+    "scale_factor": 1.0,
+    "scheme": "Measured directly",
+    "eV": 1776932465.1340902,
+    "err_eV": 84914.95391323055,
+    "note": "A directly measured rest mass, about 3,477 times the electron's (a ratio: my calculation). The heaviest charged lepton, heavy enough to decay into hadrons."
+   },
+   "lifetime": {
+    "kind": "unstable",
+    "text": "Mean life 2.903×10⁻¹³ s (PDG).",
+    "ref": {
+     "pdgid": "S035T",
+     "edition": 2026,
+     "text": "(2.903 ± 0.005)×10⁻¹³",
+     "unit": "s",
+     "value": 2.902908481725749e-13,
+     "display": "(2.903 ± 0.005)×10⁻¹³ s",
+     "err_plus": 5.252136673846729e-16,
+     "err_minus": 5.252136673846729e-16,
+     "scale_factor": 1.0
+    }
+   },
+   "decays": [
+    {
+     "label": "τ⁻ → e⁻ + ν̄ₑ + ν_τ",
+     "in": [
+      "tau-"
+     ],
+     "out": [
+      "e-",
+      "nubar_e",
+      "nu_tau"
+     ],
+     "br": {
+      "pdgid": "S035.2",
+      "text": "(17.85 ± 0.04)×10⁻²",
+      "value": 0.1784677289,
+      "mode": "tau- --> e- nubar_e nu_tau"
+     }
+    },
+    {
+     "label": "τ⁻ → μ⁻ + ν̄_μ + ν_τ",
+     "in": [
+      "tau-"
+     ],
+     "out": [
+      "mu-",
+      "nubar_mu",
+      "nu_tau"
+     ],
+     "br": {
+      "pdgid": "S035.1",
+      "text": "(17.37 ± 0.04)×10⁻²",
+      "value": 0.1736568957,
+      "mode": "tau- --> mu- nubar_mu nu_tau"
+     }
+    },
+    {
+     "label": "τ⁻ → π⁻ + ν_τ",
+     "in": [
+      "tau-"
+     ],
+     "out": [
+      "pi-",
+      "nu_tau"
+     ],
+     "br": {
+      "pdgid": "S035.12",
+      "text": "(10.82 ± 0.05)×10⁻²",
+      "value": 0.1081512536,
+      "mode": "tau- --> pi- nu_tau"
+     }
+    },
+    {
+     "label": "τ⁻ → π⁻ + π⁰ + ν_τ",
+     "in": [
+      "tau-"
+     ],
+     "out": [
+      "pi-",
+      "pi0",
+      "nu_tau"
+     ],
+     "br": {
+      "pdgid": "S035.16",
+      "text": "(25.49 ± 0.09)×10⁻²",
+      "value": 0.2549309362,
+      "mode": "tau- --> pi- pi0 nu_tau"
+     }
+    }
+   ],
+   "antiparticle": {
+    "name": "Antitau",
+    "symbol": "τ⁺",
+    "self_conjugate": false,
+    "note": "Same mass and lifetime, charge +1."
+   },
+   "discovery": "Martin Perl and colleagues using the Mark I detector at the SPEAR electron–positron collider at SLAC, 1975, from events containing an electron and a muon with energy missing; he shared the 1995 Nobel Prize in Physics for it.",
+   "everyday": "Not in everyday matter: it lives about 3×10⁻¹³ s. Made in accelerators and by cosmic rays.",
+   "sources": [
+    "S035M",
+    "S035T",
+    "S035.2",
+    "S035.1",
+    "S035.12",
+    "S035.16"
+   ]
+  },
+  {
+   "id": "nu_e",
+   "node": "sm_nu_e",
+   "symbol": "νₑ",
+   "name": "Electron neutrino",
+   "family": "lepton",
+   "kind": "fermion",
+   "generation": 1,
+   "charge": "0",
+   "charge_text": "0",
+   "spin": "1/2",
+   "colour": {
+    "has": false,
+    "text": "No. Leptons carry no colour charge, so they do not feel the strong force at all."
+   },
+   "weak_isospin": {
+    "T": "1/2",
+    "T3": "+1/2",
+    "note": "Only the left-handed neutrino has been observed; it forms a doublet with the electron."
+   },
+   "feels": [
+    "weak"
+   ],
+   "feels_note": "In the original Standard Model a neutrino has no right-handed partner and no coupling to the Higgs field; its tiny mass needs something beyond that (open question).",
+   "mass": {
+    "known": false,
+    "text": "Not known. Neutrinos have a tiny mass (oscillation proves it is not zero) but only differences between their squared masses are measured, plus upper bounds on the size. See the neutrino numbers below.",
+    "note": "Each neutrino of definite flavour is a mix of three mass states (ν₁, ν₂, ν₃); that is what neutrino oscillation shows. The original Standard Model had massless neutrinos, so their mass is the first thing found that goes beyond it."
+   },
+   "lifetime": {
+    "kind": "stable-assumed",
+    "text": "No decay has been observed. Heavier neutrino mass states could in principle decay into lighter ones; the PDG gives limits on the lifetime-to-mass ratio."
+   },
+   "decays": [
+    {
+     "label": "None observed",
+     "in": [
+      "nu_e"
+     ],
+     "out": [],
+     "note": "Stable on all observed timescales."
+    }
+   ],
+   "antiparticle": {
+    "name": "Antineutrino",
+    "symbol": "ν̄ₑ",
+    "self_conjugate": null,
+    "note": "OPEN QUESTION: is the antineutrino a different particle (Dirac neutrino) or the same particle as the neutrino (Majorana)? Not yet known; experiments searching for neutrinoless double-beta decay test this."
+   },
+   "discovery": "Clyde Cowan and Frederick Reines detected (anti)neutrinos from a nuclear reactor at the Savannah River Plant, South Carolina, in 1956, by the flash from inverse beta decay.",
+   "everyday": "The Sun's fusion makes of order 10³⁸ of them every second (my estimate from its luminosity); roughly 6×10¹⁰ of the most common (pp) kind pass through each square centimetre of Earth per second, and you notice none (PDG, solar-neutrino section of the neutrino-mixing review).",
+   "sources": [
+    "S066MAE"
+   ]
+  },
+  {
+   "id": "nu_mu",
+   "node": "sm_nu_mu",
+   "symbol": "ν_μ",
+   "name": "Muon neutrino",
+   "family": "lepton",
+   "kind": "fermion",
+   "generation": 2,
+   "charge": "0",
+   "charge_text": "0",
+   "spin": "1/2",
+   "colour": {
+    "has": false,
+    "text": "No. Leptons carry no colour charge, so they do not feel the strong force at all."
+   },
+   "weak_isospin": {
+    "T": "1/2",
+    "T3": "+1/2",
+    "note": "Only the left-handed neutrino has been observed; it forms a doublet with the muon."
+   },
+   "feels": [
+    "weak"
+   ],
+   "feels_note": "In the original Standard Model a neutrino has no right-handed partner and no coupling to the Higgs field; its tiny mass needs something beyond that (open question).",
+   "mass": {
+    "known": false,
+    "text": "Not known. Neutrinos have a tiny mass (oscillation proves it is not zero) but only differences between their squared masses are measured, plus upper bounds on the size. See the neutrino numbers below.",
+    "note": "Each neutrino of definite flavour is a mix of three mass states (ν₁, ν₂, ν₃); that is what neutrino oscillation shows. The original Standard Model had massless neutrinos, so their mass is the first thing found that goes beyond it."
+   },
+   "lifetime": {
+    "kind": "stable-assumed",
+    "text": "No decay has been observed. Heavier neutrino mass states could in principle decay into lighter ones; the PDG gives limits on the lifetime-to-mass ratio."
+   },
+   "decays": [
+    {
+     "label": "None observed",
+     "in": [
+      "nu_mu"
+     ],
+     "out": [],
+     "note": "Stable on all observed timescales."
+    }
+   ],
+   "antiparticle": {
+    "name": "Antineutrino",
+    "symbol": "ν̄_μ",
+    "self_conjugate": null,
+    "note": "OPEN QUESTION: is the antineutrino a different particle (Dirac neutrino) or the same particle as the neutrino (Majorana)? Not yet known; experiments searching for neutrinoless double-beta decay test this."
+   },
+   "discovery": "Leon Lederman, Melvin Schwartz and Jack Steinberger at Brookhaven's Alternating Gradient Synchrotron in 1962 showed that the neutrino made with a muon is a different kind from the one made with an electron.",
+   "everyday": "Made when cosmic rays hit the upper atmosphere (pions decay to muons and muon neutrinos); studied by the Super-Kamiokande detector.",
+   "sources": [
+    "S066MNM"
+   ]
+  },
+  {
+   "id": "nu_tau",
+   "node": "sm_nu_tau",
+   "symbol": "ν_τ",
+   "name": "Tau neutrino",
+   "family": "lepton",
+   "kind": "fermion",
+   "generation": 3,
+   "charge": "0",
+   "charge_text": "0",
+   "spin": "1/2",
+   "colour": {
+    "has": false,
+    "text": "No. Leptons carry no colour charge, so they do not feel the strong force at all."
+   },
+   "weak_isospin": {
+    "T": "1/2",
+    "T3": "+1/2",
+    "note": "Only the left-handed neutrino has been observed; it forms a doublet with the tau lepton."
+   },
+   "feels": [
+    "weak"
+   ],
+   "feels_note": "In the original Standard Model a neutrino has no right-handed partner and no coupling to the Higgs field; its tiny mass needs something beyond that (open question).",
+   "mass": {
+    "known": false,
+    "text": "Not known. Neutrinos have a tiny mass (oscillation proves it is not zero) but only differences between their squared masses are measured, plus upper bounds on the size. See the neutrino numbers below.",
+    "note": "Each neutrino of definite flavour is a mix of three mass states (ν₁, ν₂, ν₃); that is what neutrino oscillation shows. The original Standard Model had massless neutrinos, so their mass is the first thing found that goes beyond it."
+   },
+   "lifetime": {
+    "kind": "stable-assumed",
+    "text": "No decay has been observed. Heavier neutrino mass states could in principle decay into lighter ones; the PDG gives limits on the lifetime-to-mass ratio."
+   },
+   "decays": [
+    {
+     "label": "None observed",
+     "in": [
+      "nu_tau"
+     ],
+     "out": [],
+     "note": "Stable on all observed timescales."
+    }
+   ],
+   "antiparticle": {
+    "name": "Antineutrino",
+    "symbol": "ν̄_τ",
+    "self_conjugate": null,
+    "note": "OPEN QUESTION: is the antineutrino a different particle (Dirac neutrino) or the same particle as the neutrino (Majorana)? Not yet known; experiments searching for neutrinoless double-beta decay test this."
+   },
+   "discovery": "Directly observed by the DONUT experiment at Fermilab in 2000; the last of the Standard Model's fermions to be seen directly (before the Higgs boson).",
+   "everyday": "Rare. Appears when other neutrinos oscillate into this flavour on their way from the Sun or atmosphere.",
+   "sources": [
+    "S066MNT"
+   ]
+  },
+  {
+   "id": "gluon",
+   "node": "sm_gluon",
+   "symbol": "g",
+   "name": "Gluon",
+   "family": "boson",
+   "kind": "gauge boson",
+   "generation": null,
+   "charge": "0",
+   "charge_text": "0",
+   "spin": "1",
+   "colour": {
+    "has": true,
+    "text": "Yes, unlike the photon. A gluon carries a colour and an anticolour at once; there are eight kinds. Because gluons carry colour, they attract each other, which is why the strong force behaves so differently from electromagnetism."
+   },
+   "weak_isospin": {
+    "T": "0",
+    "T3": "0",
+    "note": "A gluon has no weak isospin."
+   },
+   "feels": [
+    "strong"
+   ],
+   "mass": {
+    "known": true,
+    "eV": 0.0,
+    "text": "0 in the Standard Model (the theory's symmetry requires it); a single gluon is never seen alone, so no direct limit can be measured the way it is for the photon.",
+    "scheme": "Theoretical",
+    "note": "Gluons are massless in the theory, yet they supply most of the mass of the proton through the energy of the strong field they carry."
+   },
+   "lifetime": {
+    "kind": "confined",
+    "text": "Not defined: gluons are never free. They exist only inside hadrons and in short-lived jets."
+   },
+   "decays": [
+    {
+     "label": "None (confined)",
+     "in": [
+      "g"
+     ],
+     "out": [],
+     "note": "No lifetime applies to a particle that is never free."
+    }
+   ],
+   "antiparticle": {
+    "name": "Gluon",
+    "symbol": "g",
+    "self_conjugate": true,
+    "note": "Each of the 8 gluons' antiparticles is again one of the 8 gluon states (a colour–anticolour mixture), so the set is its own antiparticle."
+   },
+   "discovery": "Seen as a third \"jet\" in electron–positron collisions at the PETRA collider at DESY, Hamburg, in 1979 (TASSO first, then JADE, PLUTO and Mark J).",
+   "everyday": "Inside every proton and neutron, in all matter, holding quarks together. Gluon energy is most of the mass you weigh.",
+   "sources": [
+    "G021"
+   ]
+  },
+  {
+   "id": "photon",
+   "node": "sm_photon",
+   "symbol": "γ",
+   "name": "Photon",
+   "family": "boson",
+   "kind": "gauge boson",
+   "generation": null,
+   "charge": "0",
+   "charge_text": "0",
+   "spin": "1",
+   "colour": {
+    "has": false,
+    "text": "No. Photons carry no colour and do not feel the strong force."
+   },
+   "weak_isospin": {
+    "T": "0",
+    "T3": "0",
+    "note": "After electroweak mixing the photon is a combination of the weak-isospin boson W³ and the hypercharge boson B; it has no definite weak isospin."
+   },
+   "feels": [],
+   "feels_note": "A photon has no charge, so it does not feel the electromagnetic force; it is the carrier of it. It couples to every electrically charged particle.",
+   "mass": {
+    "known": true,
+    "eV": 0.0,
+    "limit": {
+     "pdgid": "S000M",
+     "edition": 2026,
+     "text": "< 1×10⁻¹⁸",
+     "unit": "eV",
+     "value": 1e-18,
+     "display": "< 1×10⁻¹⁸ eV",
+     "limit": "U",
+     "cl": null
+    },
+    "text": "Zero in the Standard Model. PDG: experimental upper limit < 1×10⁻¹⁸ eV.",
+    "scheme": "Experimental limit",
+    "note": "An upper limit, not a measurement of a mass."
+   },
+   "lifetime": {
+    "kind": "stable",
+    "text": "Stable. PDG also gives a photon charge limit of < 1×10⁻⁴⁶ e.",
+    "charge_limit": {
+     "pdgid": "S000Q",
+     "edition": 2026,
+     "text": "< 1×10⁻⁴⁶",
+     "unit": "e",
+     "value": 1e-46,
+     "display": "< 1×10⁻⁴⁶ e",
+     "limit": "U",
+     "cl": null
+    }
+   },
+   "decays": [
+    {
+     "label": "None (stable)",
+     "in": [
+      "gamma"
+     ],
+     "out": [],
+     "note": "A massless particle has nothing lighter to decay to."
+    }
+   ],
+   "antiparticle": {
+    "name": "Photon",
+    "symbol": "γ",
+    "self_conjugate": true,
+    "note": "The photon is its own antiparticle."
+   },
+   "discovery": "The idea of light as quanta is Planck (1900) and Einstein (1905); Arthur Compton's 1923 X-ray scattering experiments showed light carries momentum like a particle.",
+   "everyday": "All light, radio, X-rays, and every electric and magnetic force between charges. Sunlight on the park is a stream of photons.",
+   "sources": [
+    "S000M",
+    "S000Q"
+   ]
+  },
+  {
+   "id": "w_boson",
+   "node": "sm_w_boson",
+   "symbol": "W±",
+   "name": "W boson",
+   "family": "boson",
+   "kind": "gauge boson",
+   "generation": null,
+   "charge": "±1",
+   "charge_text": "±1 e (W⁺: +1, W⁻: −1)",
+   "spin": "1",
+   "colour": {
+    "has": false,
+    "text": "No. W bosons carry no colour."
+   },
+   "weak_isospin": {
+    "T": "1",
+    "T3": "±1",
+    "note": "W⁺ has T3 = +1, W⁻ has T3 = −1."
+   },
+   "feels": [
+    "weak",
+    "em",
+    "higgs"
+   ],
+   "mass": {
+    "pdgid": "S043M",
+    "edition": 2026,
+    "text": "80.3625 ± 0.0077",
+    "unit": "GeV",
+    "value": 80.3625,
+    "display": "80.3625 ± 0.0077 GeV",
+    "err_plus": 0.0077,
+    "err_minus": 0.0077,
+    "pdg_comment": "(LHC-TeVatron M_{{W}} Working Group)",
+    "scheme": "Direct measurements at colliders (LHC–Tevatron average)",
+    "eV": 80362500000.0,
+    "err_eV": 7700000.0,
+    "note": "About 86 times a proton's mass. The W is heavy because the Higgs field gives it mass; that makes the weak force short-ranged."
+   },
+   "lifetime": {
+    "kind": "width",
+    "text": "Decay width 2.14 ± 0.05 GeV (PDG), a lifetime of about 3×10⁻²⁵ s (calculation).",
+    "width": {
+     "pdgid": "S043W",
+     "edition": 2026,
+     "text": "2.14 ± 0.05",
+     "unit": "GeV",
+     "value": 2.137328174029357,
+     "display": "2.14 ± 0.05 GeV",
+     "err_plus": 0.05365622500314941,
+     "err_minus": 0.05365622500314941,
+     "scale_factor": 1.713951
+    },
+    "lifetime_s_calc": 3.079601742483554e-25
+   },
+   "decays": [
+    {
+     "label": "W⁺ → hadrons (a quark and an antiquark)",
+     "in": [
+      "W+"
+     ],
+     "out": [
+      "hadrons"
+     ],
+     "br": {
+      "pdgid": "S043.8",
+      "text": "(67.41 ± 0.27)×10⁻²",
+      "value": 0.6741,
+      "mode": "W+ --> hadrons"
+     }
+    },
+    {
+     "label": "W⁺ → ℓ⁺ + ν (each of e, μ, τ about equally)",
+     "in": [
+      "W+"
+     ],
+     "out": [
+      "lepton+",
+      "nu"
+     ],
+     "br": {
+      "pdgid": "S043.7",
+      "text": "(10.86 ± 0.09)×10⁻²",
+      "value": 0.1086,
+      "mode": "W+ --> lepton+ nu"
+     },
+     "note": "The figure is per lepton flavour."
+    }
+   ],
+   "antiparticle": {
+    "name": "W⁻",
+    "symbol": "W⁻",
+    "self_conjugate": false,
+    "note": "W⁺ and W⁻ are each other's antiparticles."
+   },
+   "discovery": "Announced at CERN in January 1983 by the UA1 and UA2 experiments at the Super Proton Synchrotron run as a proton–antiproton collider (UA1 led by Carlo Rubbia, UA2 by Pierre Darriulat).",
+   "everyday": "In the Sun's core, a proton turns into a neutron through a virtual W; that step makes hydrogen fusion slow and the Sun last billions of years. Also in radioactive beta decay.",
+   "sources": [
+    "S043M",
+    "S043W",
+    "S043.7",
+    "S043.8"
+   ]
+  },
+  {
+   "id": "z_boson",
+   "node": "sm_z_boson",
+   "symbol": "Z⁰",
+   "name": "Z boson",
+   "family": "boson",
+   "kind": "gauge boson",
+   "generation": null,
+   "charge": "0",
+   "charge_text": "0",
+   "spin": "1",
+   "colour": {
+    "has": false,
+    "text": "No. The Z carries no colour."
+   },
+   "weak_isospin": {
+    "T": "1",
+    "T3": "0",
+    "note": "The Z is a mixture of W³ and the hypercharge boson B. It couples to a fermion through the fermion's T3 and charge."
+   },
+   "feels": [
+    "weak",
+    "higgs"
+   ],
+   "mass": {
+    "pdgid": "S044M",
+    "edition": 2026,
+    "text": "91.1879 ± 0.0020",
+    "unit": "GeV",
+    "value": 91.18787329722134,
+    "display": "91.1879 ± 0.0020 GeV",
+    "err_plus": 0.00196689903262915,
+    "err_minus": 0.00196689903262915,
+    "scale_factor": 1.0,
+    "scheme": "Direct measurements: the position of the resonance in electron–positron collisions at LEP",
+    "eV": 91187873297.22134,
+    "err_eV": 1966899.03262915,
+    "note": "About 97 times a proton's mass."
+   },
+   "lifetime": {
+    "kind": "width",
+    "text": "Decay width 2.4955 ± 0.0023 GeV (PDG), a lifetime of about 2.6×10⁻²⁵ s (calculation).",
+    "width": {
+     "pdgid": "S044W",
+     "edition": 2026,
+     "text": "2.4955 ± 0.0023",
+     "unit": "GeV",
+     "value": 2.4955,
+     "display": "2.4955 ± 0.0023 GeV",
+     "err_plus": 0.0023,
+     "err_minus": 0.0023
+    },
+    "lifetime_s_calc": 2.6375954994990983e-25
+   },
+   "decays": [
+    {
+     "label": "Z⁰ → hadrons (quark–antiquark)",
+     "in": [
+      "Z"
+     ],
+     "out": [
+      "hadrons"
+     ],
+     "br": {
+      "pdgid": "S044.7",
+      "text": "(69.911 ± 0.056)×10⁻²",
+      "value": 0.69911,
+      "mode": "Z --> hadrons"
+     }
+    },
+    {
+     "label": "Z⁰ → neutrino + antineutrino (unseen)",
+     "in": [
+      "Z"
+     ],
+     "out": [
+      "nu",
+      "nubar"
+     ],
+     "br": {
+      "pdgid": "S044.9",
+      "text": "(20.000 ± 0.055)×10⁻²",
+      "value": 0.2,
+      "mode": "Z --> invisible"
+     },
+     "note": "Invisible: the light neutrino kinds that couple to the Z, added together. The measured width fits three kinds."
+    },
+    {
+     "label": "Z⁰ → ℓ⁺ + ℓ⁻ (each of e, μ, τ)",
+     "in": [
+      "Z"
+     ],
+     "out": [
+      "lepton+",
+      "lepton-"
+     ],
+     "br": {
+      "pdgid": "S044.16",
+      "text": "(3.3658 ± 0.0023)×10⁻²",
+      "value": 0.033658,
+      "mode": "Z --> lepton+ lepton-"
+     },
+     "note": "Each charged-lepton pair is about 3.37% (Z → e⁺e⁻ 3.3632%, μ⁺μ⁻ 3.3662%, τ⁺τ⁻ 3.3696%)."
+    }
+   ],
+   "antiparticle": {
+    "name": "Z⁰",
+    "symbol": "Z⁰",
+    "self_conjugate": true,
+    "note": "The Z is its own antiparticle."
+   },
+   "discovery": "Announced at CERN in 1983 by UA1 and UA2, a few months after the W.",
+   "everyday": "Mediates the weak \"neutral current\": neutrinos scattering off matter without changing into charged leptons. Its decays were measured precisely at LEP in the 1990s.",
+   "sources": [
+    "S044M",
+    "S044W",
+    "S044.7",
+    "S044.9",
+    "S044.16",
+    "S044.1",
+    "S044.2",
+    "S044.8"
+   ]
+  },
+  {
+   "id": "higgs",
+   "node": "sm_higgs",
+   "symbol": "H",
+   "name": "Higgs boson",
+   "family": "boson",
+   "kind": "scalar boson",
+   "generation": null,
+   "charge": "0",
+   "charge_text": "0",
+   "spin": "0",
+   "colour": {
+    "has": false,
+    "text": "No."
+   },
+   "weak_isospin": {
+    "T": "1/2",
+    "T3": "-1/2",
+    "note": "The Higgs field is a doublet of weak isospin 1/2; the Higgs boson is what is left of it after the field takes a value everywhere (PDG Electroweak Model review)."
+   },
+   "feels": [
+    "higgs",
+    "weak"
+   ],
+   "feels_note": "It couples to every massive particle with strength proportional to the particle's mass, and to itself; it does not couple to the photon or gluon directly.",
+   "mass": {
+    "pdgid": "S126M",
+    "edition": 2026,
+    "text": "125.13 ± 0.11",
+    "unit": "GeV",
+    "value": 125.1309438281615,
+    "display": "125.13 ± 0.11 GeV",
+    "err_plus": 0.111721447765488,
+    "err_minus": 0.111721447765488,
+    "scale_factor": 1.518243,
+    "scheme": "Direct measurements: ATLAS and CMS combined",
+    "eV": 125130943828.1615,
+    "err_eV": 111721447.765488,
+    "note": "About 133 times a proton's mass. A direct measurement from the energies of its decay products."
+   },
+   "lifetime": {
+    "kind": "width",
+    "text": "Decay width 3.0 (+1.5, −0.7) MeV (PDG), a lifetime of about 2×10⁻²² s (calculation).",
+    "width": {
+     "pdgid": "S126W",
+     "edition": 2026,
+     "text": "3.0 +1.5 −0.7",
+     "unit": "MeV",
+     "value": 3.035493483037885,
+     "display": "3.0 +1.5 −0.7 MeV",
+     "err_plus": 1.452973690017683,
+     "err_minus": 0.7150119194099107,
+     "scale_factor": 1.0
+    },
+    "lifetime_s_calc": 2.168385340235583e-22
+   },
+   "decays": [
+    {
+     "label": "H → b + b̄",
+     "in": [
+      "H"
+     ],
+     "out": [
+      "b",
+      "bbar"
+     ],
+     "br": {
+      "pdgid": "S126.4",
+      "text": "(53 ± 8)×10⁻²",
+      "value": 0.53,
+      "mode": "H --> b bbar"
+     }
+    },
+    {
+     "label": "H → W + W*",
+     "in": [
+      "H"
+     ],
+     "out": [
+      "W+",
+      "W-"
+     ],
+     "br": {
+      "pdgid": "S126.1",
+      "text": "(25.7 ± 2.5)×10⁻²",
+      "value": 0.257,
+      "mode": "H --> W W^*"
+     },
+     "note": "One W is \"off-shell\": the Higgs is lighter than two real Ws."
+    },
+    {
+     "label": "H → τ⁺ + τ⁻",
+     "in": [
+      "H"
+     ],
+     "out": [
+      "tau+",
+      "tau-"
+     ],
+     "br": {
+      "pdgid": "S126.5",
+      "text": "(6.0 +0.8 −0.7)×10⁻²",
+      "value": 0.06,
+      "mode": "H --> tau+ tau-"
+     }
+    },
+    {
+     "label": "H → Z + Z*",
+     "in": [
+      "H"
+     ],
+     "out": [
+      "Z",
+      "Z"
+     ],
+     "br": {
+      "pdgid": "S126.2",
+      "text": "(2.80 ± 0.30)×10⁻²",
+      "value": 0.028,
+      "mode": "H --> Z Z^*"
+     }
+    },
+    {
+     "label": "H → γ + γ",
+     "in": [
+      "H"
+     ],
+     "out": [
+      "gamma",
+      "gamma"
+     ],
+     "br": {
+      "pdgid": "S126.3",
+      "text": "(2.50 ± 0.20)×10⁻³",
+      "value": 0.0025,
+      "mode": "H --> gamma gamma"
+     },
+     "note": "Rare but clean; this was one of the two channels of the 2012 discovery."
+    }
+   ],
+   "antiparticle": {
+    "name": "Higgs boson",
+    "symbol": "H",
+    "self_conjugate": true,
+    "note": "The Higgs boson is neutral and is its own antiparticle."
+   },
+   "discovery": "Announced on 4 July 2012 at CERN by the ATLAS and CMS experiments at the Large Hadron Collider; Peter Higgs and François Englert shared the 2013 Nobel Prize in Physics for the theory.",
+   "everyday": "Not found alone in ordinary matter: it lives about 10⁻²² s. The Higgs field, which fills space, gives the electron its mass, and therefore sets the size of atoms.",
+   "sources": [
+    "S126M",
+    "S126W",
+    "S126.4",
+    "S126.1",
+    "S126.5",
+    "S126.2",
+    "S126.3"
+   ]
+  }
+ ],
+ "composites": [
+  {
+   "id": "proton",
+   "node": "sm_proton",
+   "symbol": "p",
+   "name": "Proton",
+   "quarks": [
+    "u",
+    "u",
+    "d"
+   ],
+   "charge": "+1",
+   "spin": "1/2",
+   "mass": {
+    "pdgid": "S016M",
+    "edition": 2026,
+    "text": "938.27208943 ± 0.00000029",
+    "unit": "MeV",
+    "value": 938.27208943,
+    "display": "938.27208943 ± 0.00000029 MeV",
+    "err_plus": 2.9e-07,
+    "err_minus": 2.9e-07,
+    "pdg_comment": "2022 CODATA"
+   },
+   "mass_u": {
+    "pdgid": "S016AMU",
+    "edition": 2026,
+    "text": "1.0072764665789 ± 0.0000000000083",
+    "unit": "u",
+    "value": 1.0072764665789,
+    "display": "1.0072764665789 ± 0.0000000000083 u",
+    "err_plus": 8.3e-12,
+    "err_minus": 8.3e-12,
+    "pdg_comment": "2022 CODATA"
+   },
+   "charge_radius": {
+    "pdgid": "S016CR",
+    "edition": 2026,
+    "text": "0.8407 ± 0.0006",
+    "unit": "fm",
+    "value": 0.84075,
+    "display": "0.8407 ± 0.0006 fm",
+    "err_plus": 0.00064,
+    "err_minus": 0.00064,
+    "scale_factor": 1.0
+   },
+   "magnetic_radius": {
+    "pdgid": "S016MCR",
+    "edition": 2026,
+    "text": "0.851 ± 0.026",
+    "unit": "fm",
+    "value": 0.851,
+    "display": "0.851 ± 0.026 fm",
+    "err_plus": 0.026,
+    "err_minus": 0.026,
+    "scale_factor": 1.0
+   },
+   "magnetic_moment": {
+    "pdgid": "S016MM",
+    "edition": 2026,
+    "text": "2.7928473446 ± 0.0000000008",
+    "unit": "mu(N)",
+    "value": 2.79284734463,
+    "display": "2.7928473446 ± 0.0000000008 μN",
+    "err_plus": 8.2e-10,
+    "err_minus": 8.2e-10,
+    "scale_factor": 1.0
+   },
+   "lifetime": {
+    "text": "No decay has ever been seen. PDG: mean life > 9×10²⁹ years (90% confidence) for the best-measured modes (a bound, not a prediction of decay).",
+    "bound": {
+     "pdgid": "S016T",
+     "edition": 2026,
+     "text": "> 9×10²⁹",
+     "unit": "years",
+     "value": 9e+29,
+     "display": "> 9×10²⁹ years",
+     "limit": "L",
+     "cl": 90.0
+    }
+   },
+   "charge_neutrality": {
+    "bound": {
+     "pdgid": "S016DQ",
+     "edition": 2026,
+     "text": "< 1×10⁻²¹",
+     "unit": "",
+     "value": 1e-21,
+     "display": "< 1×10⁻²¹",
+     "limit": "U",
+     "cl": null
+    },
+    "text": "The proton and electron charges are equal and opposite to better than 1 part in 10²¹ (PDG)."
+   },
+   "note": "The proton mass listed by PDG is the CODATA 2022 value."
+  },
+  {
+   "id": "neutron",
+   "node": "sm_neutron",
+   "symbol": "n",
+   "name": "Neutron",
+   "quarks": [
+    "u",
+    "d",
+    "d"
+   ],
+   "charge": "0",
+   "spin": "1/2",
+   "mass": {
+    "pdgid": "S017M",
+    "edition": 2026,
+    "text": "939.5654219 ± 0.0000005",
+    "unit": "MeV",
+    "value": 939.56542194,
+    "display": "939.5654219 ± 0.0000005 MeV",
+    "err_plus": 4.8e-07,
+    "err_minus": 4.8e-07,
+    "scale_factor": 1.0
+   },
+   "mass_u": {
+    "pdgid": "S017AMU",
+    "edition": 2026,
+    "text": "1.0086649161 ± 0.0000000004",
+    "unit": "u",
+    "value": 1.00866491606,
+    "display": "1.0086649161 ± 0.0000000004 u",
+    "err_plus": 4e-10,
+    "err_minus": 4e-10,
+    "scale_factor": 1.0
+   },
+   "mass_minus_proton": {
+    "pdgid": "S017D",
+    "edition": 2026,
+    "text": "1.2933325 ± 0.0000004",
+    "unit": "MeV",
+    "value": 1.29333251,
+    "display": "1.2933325 ± 0.0000004 MeV",
+    "err_plus": 3.8e-07,
+    "err_minus": 3.8e-07,
+    "scale_factor": 1.0
+   },
+   "magnetic_moment": {
+    "pdgid": "S017MM",
+    "edition": 2026,
+    "text": "-1.9130428 ± 0.0000005",
+    "unit": "mu(N)",
+    "value": -1.91304276,
+    "display": "-1.9130428 ± 0.0000005 μN",
+    "err_plus": 4.5e-07,
+    "err_minus": 4.5e-07,
+    "scale_factor": 1.0
+   },
+   "charge_radius_squared": {
+    "pdgid": "S017MCR",
+    "edition": 2026,
+    "text": "-0.1155 ± 0.0017",
+    "unit": "fm**2",
+    "value": -0.1154674827850038,
+    "display": "-0.1155 ± 0.0017 fm²",
+    "err_plus": 0.001744594888116415,
+    "err_minus": 0.001744594888116415,
+    "scale_factor": 1.0
+   },
+   "charge_limit": {
+    "pdgid": "S017Q",
+    "edition": 2026,
+    "text": "(-2 ± 8)×10⁻²²",
+    "unit": "e",
+    "value": -2.5e-22,
+    "display": "(-2 ± 8)×10⁻²² e",
+    "err_plus": 7.778174593052023e-22,
+    "err_minus": 7.778174593052023e-22,
+    "scale_factor": 1.0
+   },
+   "lifetime": {
+    "text": "Free neutron mean life 878.3 ± 0.4 s (PDG average; the scale factor of 1.8 reflects a long-standing disagreement between \"beam\" and \"bottle\" measurements). Inside most stable nuclei neutrons do not decay.",
+    "ref": {
+     "pdgid": "S017T",
+     "edition": 2026,
+     "text": "878.3 ± 0.4",
+     "unit": "s",
+     "value": 878.347449550673,
+     "display": "878.3 ± 0.4 s",
+     "err_plus": 0.4357406107292319,
+     "err_minus": 0.4128178886402047,
+     "scale_factor": 1.811531
+    }
+   },
+   "decay": {
+    "label": "n → p + e⁻ + ν̄ₑ",
+    "in": [
+     "n"
+    ],
+    "out": [
+     "p",
+     "e-",
+     "nubar_e"
+    ],
+    "note": "Essentially 100% (PDG). The quark-level step is d → u + W⁻ with W⁻ → e⁻ + ν̄ₑ."
+   }
+  }
+ ],
+ "hadrons": [
+  {
+   "id": "pi_plus",
+   "symbol": "π⁺",
+   "name": "Pion (charged)",
+   "quarks": [
+    "u",
+    "dbar"
+   ],
+   "kind": "meson",
+   "charge": "+1",
+   "spin": "0",
+   "mass": {
+    "pdgid": "S008M",
+    "edition": 2026,
+    "text": "139.57039 ± 0.00018",
+    "unit": "MeV",
+    "value": 139.5703909836813,
+    "display": "139.57039 ± 0.00018 MeV",
+    "err_plus": 0.0001820071604082601,
+    "err_minus": 0.0001820071604082601,
+    "scale_factor": 1.76094
+   },
+   "note": "The lightest meson with charge. Carries the residual strong force between nucleons.",
+   "quark_content_mixed": false,
+   "lifetime": {
+    "pdgid": "S008T",
+    "edition": 2026,
+    "text": "(2.6033 ± 0.0005)×10⁻⁸",
+    "unit": "s",
+    "value": 2.603313199949126e-08,
+    "display": "(2.6033 ± 0.0005)×10⁻⁸ s",
+    "err_plus": 5.291235720709906e-12,
+    "err_minus": 5.291235720709906e-12,
+    "scale_factor": 1.174286
+   },
+   "decays": [
+    {
+     "label": "π⁺ → μ⁺ + ν_μ",
+     "in": [
+      "pi+"
+     ],
+     "out": [
+      "mu+",
+      "nu_mu"
+     ],
+     "br": {
+      "pdgid": "S008.1",
+      "text": "(99.98770 ± 0.00004)×10⁻²",
+      "value": 0.999877,
+      "mode": "pi+ --> mu+ nu_mu"
+     }
+    }
+   ],
+   "antiparticle": "π⁻ (d ū)"
+  },
+  {
+   "id": "pi_zero",
+   "symbol": "π⁰",
+   "name": "Pion (neutral)",
+   "quarks": [
+    "u",
+    "ubar"
+   ],
+   "kind": "meson",
+   "charge": "0",
+   "spin": "0",
+   "mass": {
+    "pdgid": "S009M",
+    "edition": 2026,
+    "text": "134.9768 ± 0.0005",
+    "unit": "MeV",
+    "value": 134.9768277676847,
+    "display": "134.9768 ± 0.0005 MeV",
+    "err_plus": 0.0004856792822842335,
+    "err_minus": 0.0004856792822842335,
+    "scale_factor": 1.051262
+   },
+   "note": "A quantum mix of u ū and d d̄; lifetime about 8×10⁻¹⁷ s, because it decays by the electromagnetic force.",
+   "quark_content_mixed": true,
+   "lifetime": {
+    "pdgid": "S009T",
+    "edition": 2026,
+    "text": "(8.43 ± 0.13)×10⁻¹⁷",
+    "unit": "s",
+    "value": 8.425512205250367e-17,
+    "display": "(8.43 ± 0.13)×10⁻¹⁷ s",
+    "err_plus": 1.344748885230856e-18,
+    "err_minus": 1.344748885230856e-18,
+    "scale_factor": 1.245535
+   },
+   "decays": [
+    {
+     "label": "π⁰ → γ + γ",
+     "in": [
+      "pi0"
+     ],
+     "out": [
+      "gamma",
+      "gamma"
+     ],
+     "br": {
+      "pdgid": "S009.1",
+      "text": "(98.823 ± 0.034)×10⁻²",
+      "value": 0.9882312200541876,
+      "mode": "pi0 --> 2gamma"
+     }
+    }
+   ]
+  },
+  {
+   "id": "k_plus",
+   "symbol": "K⁺",
+   "name": "Kaon (charged)",
+   "quarks": [
+    "u",
+    "sbar"
+   ],
+   "kind": "meson",
+   "charge": "+1",
+   "spin": "0",
+   "mass": {
+    "pdgid": "S010M",
+    "edition": 2026,
+    "text": "493.677 ± 0.015",
+    "unit": "MeV",
+    "value": 493.6765994580406,
+    "display": "493.677 ± 0.015 MeV",
+    "err_plus": 0.01540566522607151,
+    "err_minus": 0.01540566522607151,
+    "scale_factor": 2.81252
+   },
+   "note": "The first \"strange\" particle family (Rochester and Butler, 1947).",
+   "quark_content_mixed": false,
+   "lifetime": {
+    "pdgid": "S010T",
+    "edition": 2026,
+    "text": "(1.2380 ± 0.0020)×10⁻⁸",
+    "unit": "s",
+    "value": 1.237976028279926e-08,
+    "display": "(1.2380 ± 0.0020)×10⁻⁸ s",
+    "err_plus": 2.022692731624734e-11,
+    "err_minus": 2.022692731624734e-11,
+    "scale_factor": 1.839949
+   },
+   "decays": [
+    {
+     "label": "K⁺ → μ⁺ + ν_μ",
+     "in": [
+      "k+"
+     ],
+     "out": [
+      "mu+",
+      "nu_mu"
+     ],
+     "br": {
+      "pdgid": "S010.1",
+      "text": "(63.56 ± 0.11)×10⁻²",
+      "value": 0.6356026422917163,
+      "mode": "K+ --> mu+ nu_mu"
+     }
+    },
+    {
+     "label": "K⁺ → π⁺ + π⁰",
+     "in": [
+      "k+"
+     ],
+     "out": [
+      "pi+",
+      "pi0"
+     ],
+     "br": {
+      "pdgid": "S010.2",
+      "text": "(20.67 ± 0.08)×10⁻²",
+      "value": 0.2067049769407654,
+      "mode": "K+ --> pi+ pi0"
+     }
+    }
+   ],
+   "antiparticle": "K⁻ (s ū)"
+  },
+  {
+   "id": "k_zero",
+   "symbol": "K⁰",
+   "name": "Kaon (neutral)",
+   "quarks": [
+    "d",
+    "sbar"
+   ],
+   "kind": "meson",
+   "charge": "0",
+   "spin": "0",
+   "mass": {
+    "pdgid": "S011M",
+    "edition": 2026,
+    "text": "497.611 ± 0.013",
+    "unit": "MeV",
+    "value": 497.6107675312575,
+    "display": "497.611 ± 0.013 MeV",
+    "err_plus": 0.0129901997564242,
+    "err_minus": 0.0129901997564242,
+    "scale_factor": 1.169028
+   },
+   "note": "Quantum mixes of K⁰ and K̄⁰ make a short-lived K_S and a long-lived K_L, which are the states that actually travel through a detector.",
+   "quark_content_mixed": false
+  },
+  {
+   "id": "d_zero",
+   "symbol": "D⁰",
+   "name": "D meson (neutral)",
+   "quarks": [
+    "c",
+    "ubar"
+   ],
+   "kind": "meson",
+   "charge": "0",
+   "spin": "0",
+   "mass": {
+    "pdgid": "S032M",
+    "edition": 2026,
+    "text": "1864.84 ± 0.04",
+    "unit": "MeV",
+    "value": 1864.842442150871,
+    "display": "1864.84 ± 0.04 MeV",
+    "err_plus": 0.04445870561980128,
+    "err_minus": 0.04445870561980128,
+    "scale_factor": 1.026043
+   },
+   "note": "A charm quark with an up antiquark.",
+   "quark_content_mixed": false,
+   "lifetime": {
+    "pdgid": "S032T",
+    "edition": 2026,
+    "text": "(4.103 ± 0.010)×10⁻¹³",
+    "unit": "s",
+    "value": 4.103159088861596e-13,
+    "display": "(4.103 ± 0.010)×10⁻¹³ s",
+    "err_plus": 1.019388946809018e-15,
+    "err_minus": 1.018945949854559e-15,
+    "scale_factor": 1.0
+   }
+  },
+  {
+   "id": "b_plus",
+   "symbol": "B⁺",
+   "name": "B meson (charged)",
+   "quarks": [
+    "u",
+    "bbar"
+   ],
+   "kind": "meson",
+   "charge": "+1",
+   "spin": "0",
+   "mass": {
+    "pdgid": "S041M",
+    "edition": 2026,
+    "text": "5279.41 ± 0.07",
+    "unit": "MeV",
+    "value": 5279.405997146907,
+    "display": "5279.41 ± 0.07 MeV",
+    "err_plus": 0.07108797774343734,
+    "err_minus": 0.07108797774343734,
+    "scale_factor": 1.030912
+   },
+   "note": "An up quark with a bottom antiquark; made in huge numbers at \"B factories\".",
+   "quark_content_mixed": false,
+   "lifetime": {
+    "pdgid": "S041T",
+    "edition": 2026,
+    "text": "1637 ± 4×10⁻¹⁵",
+    "unit": "s",
+    "value": 1.637e-12,
+    "display": "1637 ± 4×10⁻¹⁵ s",
+    "err_plus": 4e-15,
+    "err_minus": 4e-15,
+    "pdg_comment": "(Produced by HFLAV)"
+   }
+  },
+  {
+   "id": "jpsi",
+   "symbol": "J/ψ",
+   "name": "J/psi",
+   "quarks": [
+    "c",
+    "cbar"
+   ],
+   "kind": "meson",
+   "charge": "0",
+   "spin": "1",
+   "mass": {
+    "pdgid": "M070M",
+    "edition": 2026,
+    "text": "3096.900 ± 0.006",
+    "unit": "MeV",
+    "value": 3096.900354542921,
+    "display": "3096.900 ± 0.006 MeV",
+    "err_plus": 0.006185881129937449,
+    "err_minus": 0.006185881129937449,
+    "scale_factor": 1.0
+   },
+   "note": "A charm–anticharm pair. Its extraordinarily narrow width (92.6 keV, compared to its 3.097 GeV mass) was the clue that it was a new kind of quark.",
+   "quark_content_mixed": false,
+   "width": {
+    "pdgid": "M070W",
+    "edition": 2026,
+    "text": "92.6 ± 1.7",
+    "unit": "keV",
+    "value": 92.6029482296019,
+    "display": "92.6 ± 1.7 keV",
+    "err_plus": 1.718251160572071,
+    "err_minus": 1.71191328371001,
+    "scale_factor": 1.065406
+   },
+   "decays": [
+    {
+     "label": "J/ψ → hadrons",
+     "in": [
+      "jpsi"
+     ],
+     "out": [
+      "hadrons"
+     ],
+     "br": {
+      "pdgid": "M070.3",
+      "text": "(87.7 ± 0.5)×10⁻²",
+      "value": 0.8769411764705882,
+      "mode": "J/psi(1S) --> hadrons"
+     }
+    },
+    {
+     "label": "J/ψ → e⁺ + e⁻",
+     "in": [
+      "jpsi"
+     ],
+     "out": [
+      "e+",
+      "e-"
+     ],
+     "br": {
+      "pdgid": "M070.1",
+      "text": "(5.971 ± 0.032)×10⁻²",
+      "value": 0.0597104969174883,
+      "mode": "J/psi(1S) --> e+ e-"
+     }
+    },
+    {
+     "label": "J/ψ → μ⁺ + μ⁻",
+     "in": [
+      "jpsi"
+     ],
+     "out": [
+      "mu+",
+      "mu-"
+     ],
+     "br": {
+      "pdgid": "M070.2",
+      "text": "(5.961 ± 0.033)×10⁻²",
+      "value": 0.05961220553898916,
+      "mode": "J/psi(1S) --> mu+ mu-"
+     }
+    }
+   ]
+  },
+  {
+   "id": "upsilon",
+   "symbol": "Υ(1S)",
+   "name": "Upsilon",
+   "quarks": [
+    "b",
+    "bbar"
+   ],
+   "kind": "meson",
+   "charge": "0",
+   "spin": "1",
+   "mass": {
+    "pdgid": "M049M",
+    "edition": 2026,
+    "text": "9460.40 ± 0.10",
+    "unit": "MeV",
+    "value": 9460.399964216766,
+    "display": "9460.40 ± 0.10 MeV",
+    "err_plus": 0.09842982316061093,
+    "err_minus": 0.09842982316061093,
+    "scale_factor": 1.0
+   },
+   "note": "A bottom–antibottom pair (bottomonium).",
+   "quark_content_mixed": false,
+   "width": {
+    "pdgid": "M049W",
+    "edition": 2026,
+    "text": "54.02 ± 1.25",
+    "unit": "keV",
+    "value": 54.02,
+    "display": "54.02 ± 1.25 keV",
+    "err_plus": 1.25,
+    "err_minus": 1.25,
+    "pdg_comment": "See the Note on ``Width Determinations of the Upsilon States''"
+   },
+   "decays": [
+    {
+     "label": "Υ(1S) → hadrons",
+     "in": [
+      "upsilon"
+     ],
+     "out": [
+      "hadrons"
+     ],
+     "br": {
+      "pdgid": "M049.101",
+      "text": "(96 ± 4)×10⁻²",
+      "value": 0.9615996242783357,
+      "mode": "Upsilon(1S) --> hadrons"
+     }
+    },
+    {
+     "label": "Υ(1S) → μ⁺ + μ⁻",
+     "in": [
+      "upsilon"
+     ],
+     "out": [
+      "mu+",
+      "mu-"
+     ],
+     "br": {
+      "pdgid": "M049.1",
+      "text": "(2.48 ± 0.04)×10⁻²",
+      "value": 0.02479893727220494,
+      "mode": "Upsilon(1S) --> mu+ mu-"
+     }
+    }
+   ]
+  },
+  {
+   "id": "lambda",
+   "symbol": "Λ",
+   "name": "Lambda baryon",
+   "quarks": [
+    "u",
+    "d",
+    "s"
+   ],
+   "kind": "baryon",
+   "charge": "0",
+   "spin": "1/2",
+   "mass": {
+    "pdgid": "S018M",
+    "edition": 2026,
+    "text": "1115.683 ± 0.006",
+    "unit": "MeV",
+    "value": 1115.683138712051,
+    "display": "1115.683 ± 0.006 MeV",
+    "err_plus": 0.006437637778621987,
+    "err_minus": 0.006437637778621987,
+    "scale_factor": 1.001364
+   },
+   "note": "Like a neutron with one down quark replaced by a strange quark.",
+   "quark_content_mixed": false,
+   "lifetime": {
+    "pdgid": "S018T",
+    "edition": 2026,
+    "text": "(2.617 ± 0.010)×10⁻¹⁰",
+    "unit": "s",
+    "value": 2.616647748955701e-10,
+    "display": "(2.617 ± 0.010)×10⁻¹⁰ s",
+    "err_plus": 1.031119479293961e-12,
+    "err_minus": 1.031119479293961e-12,
+    "scale_factor": 1.507386
+   },
+   "decays": [
+    {
+     "label": "Λ → p + π⁻",
+     "in": [
+      "lambda"
+     ],
+     "out": [
+      "p",
+      "pi-"
+     ],
+     "br": {
+      "pdgid": "S018.1",
+      "text": "(64.1 ± 0.5)×10⁻²",
+      "value": 0.6410693390722082,
+      "mode": "Lambda --> p pi-"
+     }
+    },
+    {
+     "label": "Λ → n + π⁰",
+     "in": [
+      "lambda"
+     ],
+     "out": [
+      "n",
+      "pi0"
+     ],
+     "br": {
+      "pdgid": "S018.2",
+      "text": "(35.9 ± 0.5)×10⁻²",
+      "value": 0.3587799480245009,
+      "mode": "Lambda --> n pi0"
+     }
+    }
+   ],
+   "antiparticle": "Λ̄ (ū d̄ s̄)"
+  },
+  {
+   "id": "lambda_c",
+   "symbol": "Λc⁺",
+   "name": "Lambda-c baryon",
+   "quarks": [
+    "u",
+    "d",
+    "c"
+   ],
+   "kind": "baryon",
+   "charge": "+1",
+   "spin": "1/2",
+   "mass": {
+    "pdgid": "S033M",
+    "edition": 2026,
+    "text": "2286.46 ± 0.14",
+    "unit": "MeV",
+    "value": 2286.461583065634,
+    "display": "2286.46 ± 0.14 MeV",
+    "err_plus": 0.1399999999999989,
+    "err_minus": 0.1399999999999989,
+    "scale_factor": 1.00199
+   },
+   "note": "Like a proton with one up quark replaced by a charm quark.",
+   "quark_content_mixed": false
+  },
+  {
+   "id": "delta_pp",
+   "symbol": "Δ⁺⁺",
+   "name": "Delta baryon (charge 2)",
+   "quarks": [
+    "u",
+    "u",
+    "u"
+   ],
+   "kind": "baryon",
+   "charge": "+2",
+   "spin": "3/2",
+   "mass": {
+    "pdgid": "B033M",
+    "edition": 2026,
+    "text": "1232 (range 1230 to 1234) MeV",
+    "unit": "MeV",
+    "display": "1232 (range 1230 to 1234) MeV",
+    "limit": "R",
+    "cl": null,
+    "value": 1232.0,
+    "pdg_override": true
+   },
+   "note": "Three up quarks with parallel spins. This particle was one of the clues that quarks carry an extra \"colour\" charge: otherwise three identical fermions in the same state would break the exclusion principle. Mass given is the PDG \"Breit–Wigner\" central value of 1232 MeV with a range of 1230–1234; it is a resonance, with a width of about 117 MeV (PDG range 114–120).",
+   "quark_content_mixed": false,
+   "width": {
+    "pdgid": "B033W",
+    "edition": 2026,
+    "text": "117 (range 114 to 120) MeV",
+    "unit": "MeV",
+    "value": 117.0,
+    "display": "117 (range 114 to 120) MeV",
+    "limit": "R",
+    "cl": null,
+    "pdg_override": true
+   },
+   "decays": [
+    {
+     "label": "Δ⁺⁺ → p + π⁺",
+     "in": [
+      "delta++"
+     ],
+     "out": [
+      "p",
+      "pi+"
+     ],
+     "br": {
+      "pdgid": "B033.1",
+      "text": "(99.4)×10⁻²",
+      "value": 0.994,
+      "mode": "Delta(1232) --> N pi"
+     },
+     "note": "PDG lists Δ(1232) → Nπ at about 99.4%; for the Δ⁺⁺ the only possible Nπ state is pπ⁺."
+    }
+   ]
+  },
+  {
+   "id": "omega_minus",
+   "symbol": "Ω⁻",
+   "name": "Omega baryon",
+   "quarks": [
+    "s",
+    "s",
+    "s"
+   ],
+   "kind": "baryon",
+   "charge": "-1",
+   "spin": "3/2",
+   "mass": {
+    "pdgid": "S024M",
+    "edition": 2026,
+    "text": "1672.45 ± 0.29",
+    "unit": "MeV",
+    "value": 1672.451952857838,
+    "display": "1672.45 ± 0.29 MeV",
+    "err_plus": 0.2931463197665125,
+    "err_minus": 0.2931463197665125,
+    "scale_factor": 1.0
+   },
+   "note": "Three strange quarks. Found at Brookhaven National Laboratory in 1964, as the quark model required.",
+   "quark_content_mixed": false,
+   "lifetime": {
+    "pdgid": "S024T",
+    "edition": 2026,
+    "text": "(8.21 ± 0.11)×10⁻¹¹",
+    "unit": "s",
+    "value": 8.207651819249314e-11,
+    "display": "(8.21 ± 0.11)×10⁻¹¹ s",
+    "err_plus": 1.07359273359023e-12,
+    "err_minus": 1.07359273359023e-12,
+    "scale_factor": 1.039117
+   },
+   "decays": [
+    {
+     "label": "Ω⁻ → Λ + K⁻",
+     "in": [
+      "omega-"
+     ],
+     "out": [
+      "lambda",
+      "k-"
+     ],
+     "br": {
+      "pdgid": "S024.1",
+      "text": "(67.7 ± 0.7)×10⁻²",
+      "value": 0.6765672514619884,
+      "mode": "Omega- --> Lambda K-"
+     }
+    },
+    {
+     "label": "Ω⁻ → Ξ⁰ + π⁻",
+     "in": [
+      "omega-"
+     ],
+     "out": [
+      "xi0",
+      "pi-"
+     ],
+     "br": {
+      "pdgid": "S024.2",
+      "text": "(24.3 ± 0.7)×10⁻²",
+      "value": 0.2432649040953862,
+      "mode": "Omega- --> Xi0 pi-"
+     }
+    }
+   ]
+  }
+ ],
+ "interactions": [
+  {
+   "id": "strong",
+   "name": "Strong force",
+   "carriers": [
+    "gluon"
+   ],
+   "couples_to": "colour charge",
+   "feels": [
+    "up",
+    "down",
+    "strange",
+    "charm",
+    "bottom",
+    "top",
+    "gluon"
+   ],
+   "text": "Binds quarks into protons, neutrons and other hadrons, and (as a leftover) binds protons and neutrons into nuclei. Carried by 8 kinds of gluon. It does not weaken with distance the way electromagnetism does."
+  },
+  {
+   "id": "em",
+   "name": "Electromagnetic force",
+   "carriers": [
+    "photon"
+   ],
+   "couples_to": "electric charge",
+   "feels": [
+    "up",
+    "down",
+    "strange",
+    "charm",
+    "bottom",
+    "top",
+    "electron",
+    "muon",
+    "tau",
+    "w_boson"
+   ],
+   "text": "Acts on everything with electric charge; carried by the photon. Holds electrons around nuclei and shapes all of chemistry."
+  },
+  {
+   "id": "weak",
+   "name": "Weak force",
+   "carriers": [
+    "w_boson",
+    "z_boson"
+   ],
+   "couples_to": "weak isospin (and, with the Higgs, mass)",
+   "feels": [
+    "up",
+    "down",
+    "strange",
+    "charm",
+    "bottom",
+    "top",
+    "electron",
+    "muon",
+    "tau",
+    "nu_e",
+    "nu_mu",
+    "nu_tau",
+    "w_boson",
+    "z_boson",
+    "higgs"
+   ],
+   "text": "Changes one flavour of quark or lepton into another (beta decay) and acts on neutrinos. Carried by the heavy W and Z bosons, which is why it has such a short range, about 2×10⁻¹⁸ m (ħc divided by the W mass; my calculation)."
+  },
+  {
+   "id": "higgs",
+   "name": "Higgs field",
+   "carriers": [
+    "higgs"
+   ],
+   "couples_to": "mass (the Yukawa couplings)",
+   "feels": [
+    "up",
+    "down",
+    "strange",
+    "charm",
+    "bottom",
+    "top",
+    "electron",
+    "muon",
+    "tau",
+    "w_boson",
+    "z_boson",
+    "higgs"
+   ],
+   "text": "Not a force in the usual sense. The Higgs field has a nonzero value everywhere; particles that interact with it get a rest mass. The Higgs boson is a ripple in that field."
+  },
+  {
+   "id": "gravity",
+   "name": "Gravity",
+   "carriers": [],
+   "couples_to": "energy and momentum",
+   "feels": [],
+   "in_standard_model": false,
+   "text": "Not part of the Standard Model. It acts on everything, but no quantum theory of it has been confirmed, and at particle scales it is about 10³⁶ times weaker than electromagnetism (a rough comparison for two protons; my calculation from the constants)."
+  }
+ ],
+ "neutrinos": {
+  "mixing": {
+   "sin2_theta12": {
+    "pdgid": "S067P12",
+    "edition": 2026,
+    "text": "0.307 ± 0.012",
+    "unit": "",
+    "value": 0.307,
+    "display": "0.307 ± 0.012",
+    "err_plus": 0.012,
+    "err_minus": 0.012,
+    "scale_factor": 1.0
+   },
+   "sin2_theta13": {
+    "pdgid": "S067P13",
+    "edition": 2026,
+    "text": "0.0217 ± 0.0007",
+    "unit": "",
+    "value": 0.02171230090328958,
+    "display": "0.0217 ± 0.0007",
+    "err_plus": 0.0007443481550062476,
+    "err_minus": 0.0007512936387519211,
+    "scale_factor": 1.430974
+   },
+   "sin2_theta23_normal": {
+    "pdgid": "S067P23",
+    "edition": 2026,
+    "text": "0.533 ± 0.018",
+    "unit": "",
+    "value": 0.5332766370629638,
+    "display": "0.533 ± 0.018",
+    "err_plus": 0.01760725032280703,
+    "err_minus": 0.01939162075479745,
+    "scale_factor": 1.0,
+    "pdg_comment": "Assuming normal mass ordering"
+   },
+   "sin2_theta23_inverted": {
+    "pdgid": "S067P23",
+    "edition": 2026,
+    "text": "0.523 +0.031 −0.027",
+    "unit": "",
+    "value": 0.5233553166548395,
+    "display": "0.523 +0.031 −0.027",
+    "err_plus": 0.03065884017046941,
+    "err_minus": 0.02748916001038307,
+    "scale_factor": 1.300628,
+    "pdg_comment": "Assuming inverted mass ordering"
+   },
+   "delta_cp_pi": {
+    "pdgid": "S067DEL",
+    "edition": 2026,
+    "text": "1.21 +0.19 −0.17",
+    "unit": "pi rad",
+    "value": 1.207839732594692,
+    "display": "1.21 +0.19 −0.17 π rad",
+    "err_plus": 0.1942577937618826,
+    "err_minus": 0.165276927784777,
+    "scale_factor": 1.192008
+   }
+  },
+  "mass_squared": {
+   "dm21": {
+    "pdgid": "S067DM3",
+    "edition": 2026,
+    "text": "(7.60 ± 0.17)×10⁻⁵",
+    "unit": "eV**2",
+    "value": 7.596351811384622e-05,
+    "display": "(7.60 ± 0.17)×10⁻⁵ eV²",
+    "err_plus": 1.74479690711908e-06,
+    "err_minus": 1.642293112832004e-06,
+    "scale_factor": 1.000296
+   },
+   "dm32_normal": {
+    "pdgid": "S067DM1",
+    "edition": 2026,
+    "text": "0.002445 ± 0.000023",
+    "unit": "eV**2",
+    "value": 0.002444797463431942,
+    "display": "0.002445 ± 0.000023 eV²",
+    "err_plus": 2.290034882622281e-05,
+    "err_minus": 2.371320535729313e-05,
+    "scale_factor": 1.005552,
+    "pdg_comment": "Assuming normal ordering"
+   },
+   "dm32_inverted": {
+    "pdgid": "S067DM1",
+    "edition": 2026,
+    "text": "-0.00252 ± 0.00004",
+    "unit": "eV**2",
+    "value": -0.002516509514471402,
+    "display": "-0.00252 ± 0.00004 eV²",
+    "err_plus": 4.004872544557284e-05,
+    "err_minus": 4.077315199205133e-05,
+    "scale_factor": 1.259586,
+    "pdg_comment": "Assuming inverted ordering"
+   }
+  },
+  "direct_bound": {
+   "text": "KATRIN (2025, 259 days of tritium beta-decay data): the effective electron-antineutrino mass is below 0.45 eV at 90% confidence. PDG 2026 lists the same bound.",
+   "pdg": {
+    "pdgid": "S066MAE",
+    "edition": 2026,
+    "text": "< 0.45",
+    "unit": "eV",
+    "value": 0.45,
+    "display": "< 0.45 eV",
+    "limit": "U",
+    "cl": 90.0
+   },
+   "frontier": "katrin_neutrino"
+  },
+  "cosmology_bound": {
+   "text": "The sum of the three neutrino masses is below 0.064 eV at 95% confidence from DESI DR2 combined with other data (assumes the standard ΛCDM cosmological model; other analyses listed by PDG give 0.08–0.19 eV).",
+   "source_reference": "DESI DR2 Results II, Phys. Rev. D 112, 083515 (2025); listed in PDG 2026 under \"Sum of the neutrino masses\"",
+   "limit_eV": 0.064,
+   "cl": 95
+  },
+  "oscillation_frontier": "juno_oscillation",
+  "open": [
+   "The absolute mass scale (only bounds exist).",
+   "Normal or inverted mass ordering.",
+   "Whether neutrinos are their own antiparticles (Majorana) or not (Dirac).",
+   "Whether the CP-violating phase is nonzero."
+  ],
+  "minimum_mass_sum_eV_calc": {
+   "normal": 0.058160598454962326,
+   "inverted": 0.09956670599528564,
+   "text": "The oscillation data alone force the sum of masses to be at least about 0.058 eV if the ordering is normal and about 0.10 eV if inverted (my arithmetic from the PDG Δm² values, taking the lightest neutrino to be massless)."
+  }
+ },
+ "open_questions": [
+  {
+   "id": "gravity",
+   "title": "Gravity",
+   "cert": "C3",
+   "text": "The Standard Model has no gravity. General relativity describes it very well, but nobody has a tested quantum theory of it; the two descriptions have not been joined."
+  },
+  {
+   "id": "dark_matter",
+   "title": "Dark matter",
+   "cert": "C2",
+   "text": "Motions of stars, galaxies and clusters, and the pattern of the early universe, indicate matter that does not shine; none of the 17 particles fits (neutrinos are too light). What it is remains unknown.",
+   "kn": "dark_matter_evidence"
+  },
+  {
+   "id": "dark_energy",
+   "title": "Dark energy",
+   "cert": "C3",
+   "text": "The expansion of the universe is accelerating. The Standard Model has no explanation, and the vacuum energy it would naturally predict is far larger than what is observed.",
+   "kn": "dark_energy_node"
+  },
+  {
+   "id": "neutrino_mass",
+   "title": "Neutrino masses",
+   "cert": "C1",
+   "text": "The original Standard Model had massless neutrinos. Oscillation proves they have mass, so the model had to be extended; how neutrinos get their mass, and whether they are Majorana particles, is not known.",
+   "kn": "neutrinos"
+  },
+  {
+   "id": "matter_antimatter",
+   "title": "Matter–antimatter imbalance",
+   "cert": "C2",
+   "text": "Matter and antimatter should have been made equally in the Big Bang, yet the universe is made of matter. The known sources of CP violation in the Standard Model are far too small to explain the amount.",
+   "kn": "antimatter_asymmetry"
+  },
+  {
+   "id": "generations",
+   "title": "Why three generations",
+   "cert": "C3",
+   "text": "Why there are three copies of the quark and lepton pattern, and not two or four, is not known. Experiments on Z decay show three light neutrino kinds, but say nothing about heavier ones."
+  },
+  {
+   "id": "parameters",
+   "title": "Free parameters",
+   "cert": "C3",
+   "text": "The model contains about 19 numbers that are not predicted but must be measured (the masses, the mixing angles, the force strengths and so on; see the count below). Why they have the values they have is unexplained."
+  },
+  {
+   "id": "hierarchy",
+   "title": "Why the Higgs is so light",
+   "cert": "C3",
+   "text": "Quantum corrections would naturally push the Higgs mass towards the highest energy scale in the theory. That it stays at 125 GeV is called the hierarchy problem; no accepted solution has been confirmed."
+  },
+  {
+   "id": "strong_cp",
+   "title": "The strong CP problem",
+   "cert": "C3",
+   "text": "The strong force could violate the matter–antimatter mirror symmetry (the parameter θ), but measurements of the neutron's electric dipole moment find it indistinguishable from zero. Why it is so small is unexplained."
+  },
+  {
+   "id": "compositeness",
+   "title": "Are quarks and electrons really pointlike?",
+   "cert": "C2",
+   "text": "No internal structure has been found. PDG 2026 reports limits on a compositeness scale of roughly 10 to 35 TeV, which corresponds to sizes below about 10⁻²⁰ m. That is a limit of measurement, not a proof that there is nothing inside."
+  }
+ ],
+ "free_parameters": {
+  "count": 19,
+  "convention": "19 free parameters in the Standard Model with massless neutrinos (a common counting)",
+  "list": [
+   [
+    "quark masses",
+    6
+   ],
+   [
+    "charged-lepton masses",
+    3
+   ],
+   [
+    "quark mixing angles (CKM)",
+    3
+   ],
+   [
+    "quark CP-violating phase (CKM)",
+    1
+   ],
+   [
+    "gauge couplings (strong, weak, hypercharge)",
+    3
+   ],
+   [
+    "Higgs vacuum value and Higgs mass",
+    2
+   ],
+   [
+    "strong CP angle θ",
+    1
+   ]
+  ],
+  "extra": "Neutrino masses and mixing add more: three masses, three angles and a CP phase (and two more phases if neutrinos are Majorana)."
+ },
+ "compositeness": {
+  "text": "PDG 2026 \"Searches for Quark and Lepton Compositeness\" reports limits on a contact-interaction scale Λ between about 9 and 29.5 TeV for quark models (ATLAS and CMS dijet data) and 24 to 36 TeV for electron- and muon-quark contact interactions. A scale Λ corresponds to a length of ħc/Λ.",
+  "low_TeV": 9.2,
+  "high_TeV": 36.4,
+  "hbar_c_MeV_fm": 197.3269804,
+  "length_m_range": [
+   5.42107089010989e-21,
+   2.1448584826086957e-20
+  ],
+  "note": "ħc/Λ gives about 5×10⁻²¹ m to 2×10⁻²⁰ m (my calculation). These limits are model dependent, so the safe statement is \"no structure found down to roughly 10⁻¹⁹ m\"."
+ },
+ "proton_momentum": {
+  "text": "Lattice QCD (chiQCD collaboration, 2022, MS-bar scheme at 2 GeV): quarks and antiquarks together carry about 49% of the proton's momentum and gluons about 51% (⟨x⟩q = 0.491(20)(23), ⟨x⟩g = 0.509(20)(23)). The split depends on the energy scale at which the proton is probed.",
+  "quarks": 0.491,
+  "gluons": 0.509,
+  "ref": "G. Wang et al., Phys. Rev. D 106, 014512 (2022), arXiv:2111.09329"
+ },
+ "proton_mass_origin": {
+  "text": "Lattice-QCD decomposition of the proton mass (Yang et al., Phys. Rev. Lett. 121, 212001 (2018), MS-bar scheme at 2 GeV): quark energy 33(4)(4)%, glue field energy 37(5)(4)%, trace anomaly 23(1)(1)%, quark sigma terms (the part that does come from quark masses) 9(2)(1)%.",
+  "parts": {
+   "quark_energy": 33,
+   "glue_energy": 37,
+   "trace_anomaly": 23,
+   "sigma_terms": 9
+  },
+  "ref": "Y.-B. Yang et al. (chiQCD), arXiv:1808.08677",
+  "rest_mass_sum_MeV": 9.02,
+  "rest_mass_fraction": 0.009613416088588594,
+  "note": "Adding the rest masses of the two up quarks and one down quark (PDG, MS-bar 2 GeV) gives about 9 MeV, roughly 1% of the proton mass of 938.27 MeV (my calculation)."
+ },
+ "everyday_matter": {
+  "ids": [
+   "up",
+   "down",
+   "electron",
+   "gluon",
+   "photon"
+  ],
+  "note": "Everything in the park is built from up quarks, down quarks and electrons, bound by gluons and photons.",
+  "others": [
+   {
+    "id": "muon",
+    "text": "Cosmic-ray muons: roughly one per square centimetre of horizontal surface per minute at sea level (PDG cosmic-ray review, 2000 edition; this is the figure for muons above 1 GeV/c)."
+   },
+   {
+    "id": "nu_e",
+    "text": "Solar neutrinos: about 6×10¹⁰ per square centimetre per second of the pp kind (PDG neutrino-mixing review, 2026)."
+   },
+   {
+    "id": "others",
+    "text": "Strange, charm, bottom and top quarks, the tau, the W, Z and Higgs bosons: made in accelerators and cosmic-ray collisions, and abundant in the early universe."
+   }
+  ]
+ },
+ "mass_axis": {
+  "note": "Masses on a logarithmic axis in eV. Neutrinos have no known mass: they are drawn as a band between the lower bound from oscillation (the heaviest neutrino is at least ≈0.05 eV, my calculation from PDG Δm²) and the cosmological bound (the sum is below 0.064 eV under the standard cosmological model, which leaves little room above the oscillation minimum).",
+  "top_over_electron": 337776.7397651372,
+  "electron_over_neutrino_at_least": 1135553.2237555557
+ }
+}

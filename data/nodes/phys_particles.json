@@ -1,1 +1,2936 @@
-[]
+[
+ {
+  "id": "sm_up",
+  "title": "Up quark (u)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The lighter of the two quarks that build protons and neutrons: two of them, with one down quark, make a proton.",
+  "layers": {
+   "basics": "<p>Every proton in every atom you have ever touched contains <b>two up quarks</b> and one down quark; every neutron contains one up quark and two down quarks. The up quark has an electric charge of +⅔ (two thirds of a proton's charge, in units where the electron is −1).</p><p>You will never see one on its own: the strong force keeps quarks locked inside bigger particles. Its mass is tiny, about 2 MeV/c², so the two up quarks and the down quark together supply only about 1% of the mass of a proton. Most of the rest is energy in the strong force field.</p><p>As far as anyone has measured, an up quark has no inside: it is a point-like excitation of a quantum field.</p>",
+   "deeper": "<p><b>Mass.</b> 2.16 ± 0.07 MeV. A \"current-quark mass\": the parameter in the theory's equations at that energy scale. A free quark is never seen, so there is no scale to put it on; the number depends on the scheme and the energy scale used to define it. Two up quarks and one down quark make a proton.</p><p><b>Lifetime.</b> Up quarks inside protons are as stable as the proton itself (no proton decay has ever been seen; see the proton entry).</p><p><b>Colour charge.</b> Yes. Quarks carry colour charge, the charge of the strong force. It comes in three kinds, called red, green and blue after a loose analogy; there is no real colour involved. Only combinations with no net colour are ever seen, so a lone quark is never observed.</p><p><b>Antiparticle.</b> Anti-up quark (ū). Same mass and spin, opposite electric charge and opposite colour (an \"anticolour\").</p><p><b>Why one number is not enough.</b> The quoted mass is the \"current-quark mass\" in the MS-bar scheme at 2 GeV. A confined quark has no scale to weigh it on, so the mass is a parameter whose value depends on the energy scale and the way you define it. The PDG notes that the up and down masses \"are not without controversy\".</p><p>Up and down quarks are the first <b>generation</b> of quarks. The up quark has a roughly twice-as-heavy partner, charm, and a far heavier one, top, with the same charge and spin.</p>",
+   "expert": "<p>The up quark is a spin-½ colour triplet. The left-handed field forms a weak-isospin doublet with the down quark (the d′ of the CKM matrix); the right-handed field is a weak-isospin singlet with hypercharge 4/3 (left-handed doublet: 1/3), from Q = T₃ + Y/2 (PDG Electroweak Model review). It couples to gluons, the photon (Q = +2/3), the W (to d, s, b with strengths set by the CKM matrix), the Z and the Higgs field (Yukawa coupling ∝ mass).</p><p><b>Weak isospin.</b> T = 1/2, T₃ = +1/2. The left-handed version sits in a doublet with a down-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review).</p><p><b>Discovery.</b> Evidence for pointlike quark-like constituents inside the proton came from electron scattering at SLAC in 1968–69 (deep inelastic scattering); the up quark was proposed in the quark model of Gell-Mann and of Zweig in 1964.</p><p><b>Where you meet it.</b> Everywhere. Every proton has two up quarks and every neutron has one; together with down quarks they are the only quarks in ordinary stable matter (apart from short-lived quark–antiquark pairs).</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "+2/3 e"
+   ],
+   [
+    "Spin",
+    "1/2 (ħ)"
+   ],
+   [
+    "Mass",
+    "2.16 ± 0.07 MeV"
+   ],
+   [
+    "What the mass means",
+    "MS-bar scheme at a scale of 2 GeV"
+   ],
+   [
+    "Colour charge",
+    "yes"
+   ],
+   [
+    "Feels",
+    "strong, electromagnetic, weak, Higgs field"
+   ],
+   [
+    "Generation",
+    "1"
+   ],
+   [
+    "Antiparticle",
+    "Anti-up quark"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ]
+  ],
+  "kn": [
+   "quarks_leptons",
+   "standard_model",
+   "qcd"
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=Q002&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_down",
+  "title": "Down quark (d)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The slightly heavier of the two lightest quarks: one in a proton, two in a neutron.",
+  "layers": {
+   "basics": "<p>A proton holds one down quark (and two up quarks); a neutron holds two down quarks (and one up quark). A down quark carries an electric charge of −⅓. Add up the charges: proton u+u+d = ⅔+⅔−⅓ = +1; neutron u+d+d = ⅔−⅓−⅓ = 0.</p><p>The down quark is a little heavier than the up quark (about 4.7 MeV/c² against 2.2), which is a large part of why the neutron is slightly heavier than the proton and why a lone neutron decays: one of its down quarks turns into an up quark.</p>",
+   "deeper": "<p><b>Mass.</b> 4.70 ± 0.07 MeV. A \"current-quark mass\": the parameter in the theory's equations at that energy scale. A free quark is never seen, so there is no scale to put it on; the number depends on the scheme and the energy scale used to define it. It is a little heavier than the up quark, which is why a neutron is slightly heavier than a proton.</p><p><b>Lifetime.</b> Down quarks in stable nuclei are stable; in a free neutron one turns into an up quark by the weak force (see the neutron entry).</p><p><b>Main ways it decays</b> (branching fractions from the PDG, 2026):</p><ul><li>d → u + W⁻ (virtual), as in neutron decay</li></ul><p><b>Colour charge.</b> Yes. Quarks carry colour charge, the charge of the strong force. It comes in three kinds, called red, green and blue after a loose analogy; there is no real colour involved. Only combinations with no net colour are ever seen, so a lone quark is never observed.</p><p><b>Antiparticle.</b> Anti-down quark (d̄). Same mass and spin, opposite electric charge and opposite colour (an \"anticolour\").</p><p><b>Beta decay.</b> When a neutron decays into a proton, an electron and an antineutrino, the quark-level event is d → u + W⁻, followed by W⁻ → e⁻ + ν̄ₑ. The W is \"virtual\" here: there is not enough energy to make a real one.</p><p>The quoted mass is the MS-bar \"current-quark mass\" at 2 GeV; there is no such thing as weighing a free down quark.</p>",
+   "expert": "<p>Spin-½ colour triplet with Q = −1/3. The left-handed field is the lower member of the weak-isospin doublet with the up quark; right-handed hypercharge −2/3. The mass difference md − mu is small compared with the strong-interaction scale, so isospin symmetry (swapping u and d) is a good approximation, and the proton and neutron look almost the same to the strong force.</p><p><b>Weak isospin.</b> T = 1/2, T₃ = -1/2. The left-handed version sits in a doublet with a up-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review).</p><p><b>Discovery.</b> Seen indirectly in the same SLAC electron-scattering experiments as the up quark (1968–69); proposed in the 1964 quark model.</p><p><b>Where you meet it.</b> In every proton (one) and every neutron (two). Together with up quarks, the only quarks in ordinary matter.</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "−1/3 e"
+   ],
+   [
+    "Spin",
+    "1/2 (ħ)"
+   ],
+   [
+    "Mass",
+    "4.70 ± 0.07 MeV"
+   ],
+   [
+    "What the mass means",
+    "MS-bar scheme at a scale of 2 GeV"
+   ],
+   [
+    "Colour charge",
+    "yes"
+   ],
+   [
+    "Feels",
+    "strong, electromagnetic, weak, Higgs field"
+   ],
+   [
+    "Generation",
+    "1"
+   ],
+   [
+    "Antiparticle",
+    "Anti-down quark"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ]
+  ],
+  "kn": [
+   "quarks_leptons",
+   "standard_model",
+   "qcd"
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=Q001&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_strange",
+  "title": "Strange quark (s)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "A heavier cousin of the down quark, found in kaons and in the first \"strange\" particles seen in cosmic rays.",
+  "layers": {
+   "basics": "<p>The strange quark is like a down quark (charge −⅓) but about twenty times heavier. It does not appear in ordinary stable matter, but the cosmic rays that hit the atmosphere make strange particles all the time, and a proton contains short-lived strange–antistrange pairs as part of its quark sea.</p><p>It was named \"strange\" because the particles that contain it lived surprisingly long for their mass: they decay by the weak force, not the strong one.</p>",
+   "deeper": "<p><b>Mass.</b> 92.9 ± 0.7 MeV. A \"current-quark mass\": the parameter in the theory's equations at that energy scale. A free quark is never seen, so there is no scale to put it on; the number depends on the scheme and the energy scale used to define it. Roughly 20 times the down-quark mass.</p><p><b>Lifetime.</b> Strange hadrons decay by the weak force: the charged kaon lasts about 1.24×10⁻⁸ s and the Λ about 2.6×10⁻¹⁰ s (PDG).</p><p><b>Main ways it decays</b> (branching fractions from the PDG, 2026):</p><ul><li>s → u + W⁻ (virtual): how a kaon or Λ decays</li></ul><p><b>Colour charge.</b> Yes. Quarks carry colour charge, the charge of the strong force. It comes in three kinds, called red, green and blue after a loose analogy; there is no real colour involved. Only combinations with no net colour are ever seen, so a lone quark is never observed.</p><p><b>Antiparticle.</b> Anti-strange quark (s̄). Same mass and spin, opposite electric charge and opposite colour (an \"anticolour\").</p><p>The quoted mass (92.9 MeV/c²) is MS-bar at 2 GeV. The strange quark is the heaviest quark that is still light compared with the scale of the strong force (about 1 GeV), so it blurs the line between \"light\" and \"heavy\" quarks.</p>",
+   "expert": "<p>Second generation, down-type. It decays (inside hadrons) through s → u + W⁻ with a rate suppressed by the small CKM element Vus. Strangeness is conserved by the strong and electromagnetic forces but not by the weak force, which is why strange particles are produced in pairs but decay one at a time.</p><p><b>Weak isospin.</b> T = 1/2, T₃ = -1/2. The left-handed version sits in a doublet with a up-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review).</p><p><b>Discovery.</b> The first \"strange\" particles (kaons) were seen in cosmic-ray cloud-chamber photographs by Rochester and Butler in 1947; the quark picture that explains them came in 1964.</p><p><b>Where you meet it.</b> Made constantly in the debris of cosmic rays hitting the air, and present as short-lived pairs inside every proton, but not part of ordinary stable matter.</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "−1/3 e"
+   ],
+   [
+    "Spin",
+    "1/2 (ħ)"
+   ],
+   [
+    "Mass",
+    "92.9 ± 0.7 MeV"
+   ],
+   [
+    "What the mass means",
+    "MS-bar scheme at a scale of 2 GeV"
+   ],
+   [
+    "Colour charge",
+    "yes"
+   ],
+   [
+    "Feels",
+    "strong, electromagnetic, weak, Higgs field"
+   ],
+   [
+    "Generation",
+    "2"
+   ],
+   [
+    "Antiparticle",
+    "Anti-strange quark"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ]
+  ],
+  "kn": [
+   "quarks_leptons",
+   "standard_model",
+   "qcd"
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=Q003&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_charm",
+  "title": "Charm quark (c)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The second-generation partner of the up quark: about 600 times as heavy as it, found as the J/ψ in 1974.",
+  "layers": {
+   "basics": "<p>The charm quark has the same electric charge as the up quark (+⅔) and the same spin, but a much larger mass, about 1.27 GeV/c², more than a proton. It does not exist in everyday matter. When two groups found a new particle, the J/ψ, in November 1974, it was a charm quark bound to an anti-charm quark.</p>",
+   "deeper": "<p><b>Mass.</b> 1.2729 ± 0.0045 GeV. The \"running\" mass in the MS-bar scheme evaluated at its own value. The PDG notes the same quark corresponds to a pole mass of about 1.65 GeV in another scheme: the same quark, a different definition.</p><p><b>Lifetime.</b> Charm hadrons decay by the weak force: the D⁰ lasts about 4.1×10⁻¹³ s and the D⁺ about 1.0×10⁻¹² s (PDG).</p><p><b>Main ways it decays</b> (branching fractions from the PDG, 2026):</p><ul><li>c → s + W⁺ (virtual)</li></ul><p><b>Colour charge.</b> Yes. Quarks carry colour charge, the charge of the strong force. It comes in three kinds, called red, green and blue after a loose analogy; there is no real colour involved. Only combinations with no net colour are ever seen, so a lone quark is never observed.</p><p><b>Antiparticle.</b> Anti-charm quark (c̄). Same mass and spin, opposite electric charge and opposite colour (an \"anticolour\").</p><p>The mass is the MS-bar mass at its own scale, 1.2729 ± 0.0045 GeV (PDG 2026). In another scheme the same quark has a \"pole mass\" of about 1.65 GeV. The J/ψ is surprisingly long-lived for a particle of mass 3.097 GeV: its width is only 92.6 keV (PDG). That narrowness was a key clue.</p>",
+   "expert": "<p>Charm decays via c → s + W⁺, dominated by the CKM element Vcs.</p><p><b>Weak isospin.</b> T = 1/2, T₃ = +1/2. The left-handed version sits in a doublet with a down-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review).</p><p><b>Discovery.</b> Seen as the J/ψ meson (a charm–anticharm pair) in November 1974 by two groups at once: one led by Burton Richter at SLAC and one led by Samuel Ting at Brookhaven.</p><p><b>Where you meet it.</b> Not in everyday matter. Made in particle accelerators and in cosmic-ray collisions; a very small charm component exists inside the proton.</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "+2/3 e"
+   ],
+   [
+    "Spin",
+    "1/2 (ħ)"
+   ],
+   [
+    "Mass",
+    "1.2729 ± 0.0045 GeV"
+   ],
+   [
+    "What the mass means",
+    "MS-bar scheme, at the scale of the charm-quark mass itself"
+   ],
+   [
+    "Colour charge",
+    "yes"
+   ],
+   [
+    "Feels",
+    "strong, electromagnetic, weak, Higgs field"
+   ],
+   [
+    "Generation",
+    "2"
+   ],
+   [
+    "Antiparticle",
+    "Anti-charm quark"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ]
+  ],
+  "kn": [
+   "quarks_leptons",
+   "standard_model",
+   "qcd"
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=Q004&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_bottom",
+  "title": "Bottom quark (b)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The heavy cousin of the down and strange quarks, found as the Υ meson in 1977.",
+  "layers": {
+   "basics": "<p>The bottom quark has charge −⅓ and a mass of about 4.2 GeV/c², over four times a proton. It was found as part of the Υ (upsilon) particle, a bottom–antibottom pair, at Fermilab in 1977. Its relatives, the B mesons, are made in huge numbers by \"B factory\" colliders because they decay in ways that differ for matter and antimatter.</p>",
+   "deeper": "<p><b>Mass.</b> 4.186 ± 0.006 GeV. The \"running\" mass in the MS-bar scheme at its own scale; other definitions (pole mass) give a larger number, because the quark mass depends on how and at what energy you define it.</p><p><b>Lifetime.</b> B mesons decay by the weak force: the B⁺ lasts about 1.64×10⁻¹² s and the B⁰ about 1.51×10⁻¹² s (PDG).</p><p><b>Main ways it decays</b> (branching fractions from the PDG, 2026):</p><ul><li>b → c + W⁻ (virtual)</li></ul><p><b>Colour charge.</b> Yes. Quarks carry colour charge, the charge of the strong force. It comes in three kinds, called red, green and blue after a loose analogy; there is no real colour involved. Only combinations with no net colour are ever seen, so a lone quark is never observed.</p><p><b>Antiparticle.</b> Anti-bottom quark (b̄). Same mass and spin, opposite electric charge and opposite colour (an \"anticolour\").</p><p>B mesons live about 1.5 picoseconds (1.5×10⁻¹² s), long enough to travel a fraction of a millimetre before decaying, which lets detectors see the decay point.</p>",
+   "expert": "<p>Third generation, down-type. It decays via b → c + W⁻, suppressed by the small CKM element Vcb, which is why its lifetime is long for a particle of its mass. CP violation (a difference between matter and antimatter) is large in some B decays.</p><p><b>Weak isospin.</b> T = 1/2, T₃ = -1/2. The left-handed version sits in a doublet with a up-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review).</p><p><b>Discovery.</b> Seen as the Υ (upsilon) meson, a bottom–antibottom pair, in 1977 by an experiment led by Leon Lederman at Fermilab.</p><p><b>Where you meet it.</b> Only in accelerators and rare cosmic-ray collisions. B mesons are made by the billion in dedicated \"B factory\" colliders to study matter–antimatter differences.</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "−1/3 e"
+   ],
+   [
+    "Spin",
+    "1/2 (ħ)"
+   ],
+   [
+    "Mass",
+    "4.186 ± 0.006 GeV"
+   ],
+   [
+    "What the mass means",
+    "MS-bar scheme, at the scale of the bottom-quark mass itself"
+   ],
+   [
+    "Colour charge",
+    "yes"
+   ],
+   [
+    "Feels",
+    "strong, electromagnetic, weak, Higgs field"
+   ],
+   [
+    "Generation",
+    "3"
+   ],
+   [
+    "Antiparticle",
+    "Anti-bottom quark"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ]
+  ],
+  "kn": [
+   "quarks_leptons",
+   "standard_model",
+   "qcd"
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=Q005&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_top",
+  "title": "Top quark (t)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The heaviest known elementary particle: about as heavy as a gold atom, but it lasts less than a trillionth of a trillionth of a second.",
+  "layers": {
+   "basics": "<p>The top quark has charge +⅔ and a mass of about 172.6 GeV/c², about 184 times a proton and about 340,000 times an electron. It was found in 1995 at Fermilab. It decays so fast (about 5×10⁻²⁵ s) that it falls apart before it can bind with other quarks, so it is the only quark we study almost bare.</p>",
+   "deeper": "<p><b>Mass.</b> 172.60 ± 0.27 GeV. This is the one quark mass measured directly from the energies of the particles it decays into. Because the top decays before it can bind into a hadron, it is the only quark we can study \"almost bare\". The PDG notes that turning this number into a precise theoretical mass (pole or MS-bar) carries a theory uncertainty that is hard to quantify.</p><p><b>Lifetime.</b> About 5×10⁻²⁵ s, from the measured decay width of 1.42 GeV (lifetime = ħ / width; my calculation). It decays before it can form a hadron.</p><p><b>Main ways it decays</b> (branching fractions from the PDG, 2026):</p><ul><li>t → W⁺ + b &nbsp;(0.957 ± 0.034 of decays)</li></ul><p><b>Colour charge.</b> Yes. Quarks carry colour charge, the charge of the strong force. It comes in three kinds, called red, green and blue after a loose analogy; there is no real colour involved. Only combinations with no net colour are ever seen, so a lone quark is never observed.</p><p><b>Antiparticle.</b> Anti-top quark (t̄). Same mass and spin, opposite electric charge and opposite colour (an \"anticolour\").</p><p><b>Quark mass, three ways.</b> The PDG lists the top mass from direct measurements as 172.60 ± 0.27 GeV. It also lists a value from the cross-section of making top pairs interpreted as an MS-bar mass (162.5 +2.1/−1.5 GeV) and as a pole mass (172.1 ± 0.6 GeV). They are different definitions of the same quark, and the \"direct\" value comes from the kinematics of its decay products, which is as close to a weight as a quark gets.</p><p>The width, 1.42 GeV, is large, so the particle is very short-lived and hardly a \"particle\" in the everyday sense.</p>",
+   "expert": "<p>The top's large mass means its Yukawa coupling to the Higgs field is close to 1, much stronger than any other fermion. Loops with top quarks dominate quantum corrections to the Higgs mass, which is part of the hierarchy problem. Its decay t → W b has a measured ratio Γ(Wb)/Γ(Wq) = 0.957 ± 0.034 (PDG), consistent with 1.</p><p><b>Weak isospin.</b> T = 1/2, T₃ = +1/2. The left-handed version sits in a doublet with a down-type quark; the right-handed version has weak isospin 0 (PDG Electroweak Model review).</p><p><b>Discovery.</b> Announced on 2 March 1995 by the CDF and DØ collaborations at Fermilab's Tevatron proton–antiproton collider.</p><p><b>Where you meet it.</b> Not in everyday matter and gone within 10⁻²⁴ s of being made. Made by the million at the LHC. It is the heaviest known elementary particle.</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "+2/3 e"
+   ],
+   [
+    "Spin",
+    "1/2 (ħ)"
+   ],
+   [
+    "Mass",
+    "172.60 ± 0.27 GeV"
+   ],
+   [
+    "What the mass means",
+    "Direct measurements: reconstructed from the decay products of top–antitop pairs (Tevatron and LHC average)"
+   ],
+   [
+    "Colour charge",
+    "yes"
+   ],
+   [
+    "Feels",
+    "strong, electromagnetic, weak, Higgs field"
+   ],
+   [
+    "Generation",
+    "3"
+   ],
+   [
+    "Antiparticle",
+    "Anti-top quark"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ]
+  ],
+  "kn": [
+   "quarks_leptons",
+   "standard_model",
+   "qcd"
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=Q007&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_electron",
+  "title": "Electron (e⁻)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The light, negatively charged particle that surrounds every atomic nucleus and carries electric current.",
+  "layers": {
+   "basics": "<p>The electron is the particle that makes chemistry: electrons arranged around nuclei decide how atoms bond, and electrons moving through wires are electric current. It has charge −1, a mass of 0.511 MeV/c² (1/1836 of a proton), and no known inside.</p><p>All electrons are exactly alike. In the Standard Model that is because they are all excitations of the same electron field.</p><p>The electron appears in the atom cards of this explorer: its cloud is a probability pattern, not a little ball in orbit.</p>",
+   "deeper": "<p><b>Mass.</b> 0.51099895069 ± 0.00000000016 MeV. A directly measured rest mass, known to better than a part in 10⁹. Unlike a quark mass it has an ordinary meaning, though the Higgs field is what gives it a mass at all.</p><p><b>Lifetime.</b> Stable as far as anyone can tell. PDG: mean life > 6.6×10²⁸ years (90% confidence) for decay into a neutrino and photon.</p><p><b>Colour charge.</b> No. Leptons carry no colour charge, so they do not feel the strong force at all.</p><p><b>Antiparticle.</b> Positron (e⁺). Proposed from Dirac's relativistic theory of the electron and found in cosmic rays by Carl Anderson in 1932. Same mass, charge +1.</p><p>The electron is the lightest charged particle, so it cannot decay: charge conservation would forbid it. The PDG gives a lower bound on its lifetime of 6.6×10²⁸ years (90% confidence) for decay into a neutrino and a photon.</p><p>Its magnetic moment is one of the most precisely measured quantities in physics (see the PDG listing). Its mass comes from its coupling to the Higgs field; without that coupling an electron would have no mass and atoms would not hold together.</p>",
+   "expert": "<p>Spin-½ Dirac fermion, member of the first-generation lepton doublet (νₑ, e)L, with the right-handed electron an SU(2) singlet of hypercharge −2. Couples to the photon (Q = −1), the Z, the W (to νₑ) and the Higgs (Yukawa y_e = √2 mₑ / v, with v ≈ 246 GeV from the PDG).</p><p><b>Weak isospin.</b> T = 1/2, T₃ = -1/2. The left-handed version is the lower member of a doublet with the matching neutrino; the right-handed version has weak isospin 0 (PDG Electroweak Model review).</p><p><b>Discovery.</b> J. J. Thomson at the Cavendish Laboratory in 1897, measuring the charge-to-mass ratio of cathode rays and showing they were far lighter than any atom.</p><p><b>Where you meet it.</b> The cloud around every atom: all of chemistry, the current in a wire and the light from a screen. About as many as there are protons in everything you touch.</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "−1 e"
+   ],
+   [
+    "Spin",
+    "1/2 (ħ)"
+   ],
+   [
+    "Mass",
+    "0.51099895069 ± 0.00000000016 MeV"
+   ],
+   [
+    "What the mass means",
+    "Measured directly (Penning-trap and atomic-physics experiments); no scheme needed because the electron is not confined"
+   ],
+   [
+    "Colour charge",
+    "no"
+   ],
+   [
+    "Feels",
+    "electromagnetic, weak, Higgs field"
+   ],
+   [
+    "Generation",
+    "1"
+   ],
+   [
+    "Antiparticle",
+    "Positron"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.1",
+    "11-1-introduction-to-particle-physics"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ],
+   [
+    "UP3",
+    "8.3",
+    "8-3-electron-spin"
+   ]
+  ],
+  "kn": [
+   "quarks_leptons",
+   "standard_model",
+   "quantum_orbitals"
+  ],
+  "where": "place:atom",
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=S003&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_muon",
+  "title": "Muon (μ⁻)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "A heavier copy of the electron that decays in about two microseconds; cosmic-ray muons pass through you constantly.",
+  "layers": {
+   "basics": "<p>The muon is a heavier twin of the electron: same charge (−1), same kind of behaviour, but about 207 times the mass. It lives for only 2.2 microseconds, yet muons made when cosmic rays hit the upper air arrive at ground level, roughly one per square centimetre per minute on a horizontal surface at sea level.</p>",
+   "deeper": "<p><b>Mass.</b> 105.6583755 ± 0.0000023 MeV. A directly measured rest mass, about 207 times the electron's. The reason there is a second, heavier copy of the electron is not known.</p><p><b>Lifetime.</b> Mean life 2.1969811×10⁻⁶ s (PDG).</p><p><b>Main ways it decays</b> (branching fractions from the PDG, 2026):</p><ul><li>μ⁻ → e⁻ + ν̄ₑ + ν_μ</li></ul><p><b>Colour charge.</b> No. Leptons carry no colour charge, so they do not feel the strong force at all.</p><p><b>Antiparticle.</b> Antimuon (μ⁺). Same mass and lifetime, charge +1.</p><p>They reach the ground because of <b>time dilation</b>: a muon moving at nearly the speed of light has its lifetime stretched in our frame. It decays almost always into an electron and two neutrinos (μ⁻ → e⁻ + ν̄ₑ + ν_μ). The muon is also at the centre of the \"g−2\" experiments: see the frontier note on the muon magnetic moment.</p>",
+   "expert": "<p>Second-generation charged lepton. Its magnetic moment anomaly is measured to 127 parts per billion by Fermilab's final result (2025), and the PDG review has a dedicated section. As recorded in the frontier file, the 2025 Standard Model prediction agrees with the measurement; the earlier discrepancy has largely gone.</p><p><b>Weak isospin.</b> T = 1/2, T₃ = -1/2. The left-handed version is the lower member of a doublet with the matching neutrino; the right-handed version has weak isospin 0 (PDG Electroweak Model review).</p><p><b>Discovery.</b> Seth Neddermeyer and Carl Anderson (and, independently, Jabez Street and Edward Stevenson) in cosmic-ray cloud-chamber tracks in 1936–37. Nobody had predicted it.</p><p><b>Where you meet it.</b> Cosmic-ray muons pass through you all the time: roughly one per square centimetre of horizontal surface per minute at sea level (PDG cosmic-ray review, 2000 edition).</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "−1 e"
+   ],
+   [
+    "Spin",
+    "1/2 (ħ)"
+   ],
+   [
+    "Mass",
+    "105.6583755 ± 0.0000023 MeV"
+   ],
+   [
+    "What the mass means",
+    "Measured directly"
+   ],
+   [
+    "Colour charge",
+    "no"
+   ],
+   [
+    "Feels",
+    "electromagnetic, weak, Higgs field"
+   ],
+   [
+    "Generation",
+    "2"
+   ],
+   [
+    "Antiparticle",
+    "Antimuon"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.1",
+    "11-1-introduction-to-particle-physics"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ]
+  ],
+  "kn": [
+   "quarks_leptons",
+   "standard_model"
+  ],
+  "open_questions": [
+   "Why does a second, heavier copy of the electron exist? The theory does not say."
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=S004&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_tau",
+  "title": "Tau lepton (τ⁻)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The heaviest charged lepton: a copy of the electron about 3,500 times as heavy, living a third of a trillionth of a second.",
+  "layers": {
+   "basics": "<p>The tau has the electron's charge (−1) but weighs about 3,477 times as much (1.777 GeV/c²), more than a proton. Because it is so heavy it can decay into hadrons as well as leptons. It lives about 2.9×10⁻¹³ seconds.</p>",
+   "deeper": "<p><b>Mass.</b> 1776.93 ± 0.09 MeV. A directly measured rest mass, about 3,477 times the electron's (a ratio: my calculation). The heaviest charged lepton, heavy enough to decay into hadrons.</p><p><b>Lifetime.</b> Mean life 2.903×10⁻¹³ s (PDG).</p><p><b>Main ways it decays</b> (branching fractions from the PDG, 2026):</p><ul><li>τ⁻ → e⁻ + ν̄ₑ + ν_τ &nbsp;((17.85 ± 0.04)×10⁻² of decays)</li><li>τ⁻ → μ⁻ + ν̄_μ + ν_τ &nbsp;((17.37 ± 0.04)×10⁻² of decays)</li><li>τ⁻ → π⁻ + ν_τ &nbsp;((10.82 ± 0.05)×10⁻² of decays)</li><li>τ⁻ → π⁻ + π⁰ + ν_τ &nbsp;((25.49 ± 0.09)×10⁻² of decays)</li></ul><p><b>Colour charge.</b> No. Leptons carry no colour charge, so they do not feel the strong force at all.</p><p><b>Antiparticle.</b> Antitau (τ⁺). Same mass and lifetime, charge +1.</p><p>Martin Perl's group found it at SLAC in 1975 by seeing electron–muon pairs with missing energy that no known process could explain. About 17% of tau decays are to an electron and two neutrinos, about 17% to a muon and two neutrinos, and the rest involve pions (PDG 2026).</p>",
+   "expert": "<p>Third-generation charged lepton. Lepton universality is the statement that the electron, muon and tau couple identically to the W and Z apart from their masses. The PDG 2026 W branching fractions are 10.71 ± 0.16% (eν), 10.63 ± 0.15% (μν) and 11.38 ± 0.21% (τν); the tau value sits about 3 combined standard errors above the muon value, a spread the PDG lists and that is still being tested.</p><p><b>Weak isospin.</b> T = 1/2, T₃ = -1/2. The left-handed version is the lower member of a doublet with the matching neutrino; the right-handed version has weak isospin 0 (PDG Electroweak Model review).</p><p><b>Discovery.</b> Martin Perl and colleagues using the Mark I detector at the SPEAR electron–positron collider at SLAC, 1975, from events containing an electron and a muon with energy missing; he shared the 1995 Nobel Prize in Physics for it.</p><p><b>Where you meet it.</b> Not in everyday matter: it lives about 3×10⁻¹³ s. Made in accelerators and by cosmic rays.</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "−1 e"
+   ],
+   [
+    "Spin",
+    "1/2 (ħ)"
+   ],
+   [
+    "Mass",
+    "1776.93 ± 0.09 MeV"
+   ],
+   [
+    "What the mass means",
+    "Measured directly"
+   ],
+   [
+    "Colour charge",
+    "no"
+   ],
+   [
+    "Feels",
+    "electromagnetic, weak, Higgs field"
+   ],
+   [
+    "Generation",
+    "3"
+   ],
+   [
+    "Antiparticle",
+    "Antitau"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.1",
+    "11-1-introduction-to-particle-physics"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ]
+  ],
+  "kn": [
+   "quarks_leptons",
+   "standard_model"
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=S035&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_nu_e",
+  "title": "Electron neutrino (νₑ)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "A nearly massless, uncharged particle that passes through the Earth almost untouched; its mass is still unknown.",
+  "layers": {
+   "basics": "<p>The electron neutrino is made alongside a electron in weak decays. It has no electric charge and feels only the weak force (and gravity), so it almost never interacts with matter. About 6×10¹⁰ solar neutrinos of the commonest kind pass through every square centimetre of you each second (PDG), unnoticed.</p><p>Neutrinos have mass, but it is so small that no experiment has yet weighed one: only upper bounds exist.</p>",
+   "deeper": "<p><b>Mass.</b> Not known. Neutrinos have a tiny mass (oscillation proves it is not zero) but only differences between their squared masses are measured, plus upper bounds on the size. See the neutrino numbers below. Each neutrino of definite flavour is a mix of three mass states (ν₁, ν₂, ν₃); that is what neutrino oscillation shows. The original Standard Model had massless neutrinos, so their mass is the first thing found that goes beyond it.</p><p><b>Lifetime.</b> No decay has been observed. Heavier neutrino mass states could in principle decay into lighter ones; the PDG gives limits on the lifetime-to-mass ratio.</p><p><b>Colour charge.</b> No. Leptons carry no colour charge, so they do not feel the strong force at all.</p><p><b>Antiparticle.</b> Antineutrino (ν̄ₑ). OPEN QUESTION: is the antineutrino a different particle (Dirac neutrino) or the same particle as the neutrino (Majorana)? Not yet known; experiments searching for neutrinoless double-beta decay test this.</p><p><b>What is known.</b> Neutrinos change flavour as they travel (oscillation), which proves they have mass and that the flavour states are mixtures of three mass states. Oscillations measure only differences of squared masses: Δm²₂₁ = (7.60 ± 0.17)×10⁻⁵ eV² and |Δm²₃₂| ≈ 2.4–2.5×10⁻³ eV² (PDG 2026; the sign, normal or inverted ordering, is not yet known).</p><p><b>Upper bounds.</b> KATRIN's 2025 result: the effective electron-antineutrino mass is below 0.45 eV at 90% confidence (see frontier note <i>katrin_neutrino</i>). From cosmology, the sum of the three masses is below about 0.064 eV at 95% confidence for the standard cosmological model with DESI DR2 data (listed in the PDG 2026), and the bound depends on the cosmological model assumed. From oscillations alone the sum is at least about 0.058 eV (normal) or 0.10 eV (inverted), by my arithmetic from the PDG numbers.</p><p><b>Open questions.</b> The absolute mass scale, the ordering, whether neutrinos are their own antiparticles, and whether the CP-violating phase is nonzero.</p>",
+   "expert": "<p>Three mass states ν₁, ν₂, ν₃ mix through the PMNS matrix with measured angles sin²θ₁₂ = 0.307 ± 0.012, sin²θ₁₃ = 0.0217 ± 0.0007 and sin²θ₂₃ ≈ 0.53 (PDG 2026, normal ordering). Only left-handed neutrinos (and right-handed antineutrinos) have been seen. A neutrino mass term needs either right-handed partners (Dirac mass) or a lepton-number-violating Majorana term; which is realised is unknown. Neutrinoless double-beta decay is the main test of the second.</p><p><b>Weak isospin.</b> T = 1/2, T₃ = +1/2. Only the left-handed neutrino has been observed; it forms a doublet with the electron.</p><p><b>Discovery.</b> Clyde Cowan and Frederick Reines detected (anti)neutrinos from a nuclear reactor at the Savannah River Plant, South Carolina, in 1956, by the flash from inverse beta decay.</p><p><b>Where you meet it.</b> The Sun's fusion makes of order 10³⁸ of them every second (my estimate from its luminosity); roughly 6×10¹⁰ of the most common (pp) kind pass through each square centimetre of Earth per second, and you notice none (PDG, solar-neutrino section of the neutrino-mixing review).</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "0"
+   ],
+   [
+    "Spin",
+    "1/2 (ħ)"
+   ],
+   [
+    "Mass",
+    "Not known. Neutrinos have a tiny mass (oscillation proves it is not zero) but only differences between their squared masses are measured, plus upper bounds on the size. See the neutrino numbers below."
+   ],
+   [
+    "Colour charge",
+    "no"
+   ],
+   [
+    "Feels",
+    "weak"
+   ],
+   [
+    "Generation",
+    "1"
+   ],
+   [
+    "Antiparticle",
+    "Antineutrino"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "UP3",
+    "11.1",
+    "11-1-introduction-to-particle-physics"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ],
+   [
+    "AST",
+    "16.1",
+    "16-1-sources-of-sunshine-thermal-and-gravitational-energy"
+   ]
+  ],
+  "kn": [
+   "neutrinos",
+   "quarks_leptons",
+   "standard_model"
+  ],
+  "open_questions": [
+   "What are the neutrino masses (only bounds exist)?",
+   "Is the mass ordering normal or inverted?",
+   "Is the neutrino its own antiparticle (Majorana) or not (Dirac)?"
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=S066&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_nu_mu",
+  "title": "Muon neutrino (ν_μ)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "A nearly massless, uncharged particle that passes through the Earth almost untouched; its mass is still unknown.",
+  "layers": {
+   "basics": "<p>The muon neutrino is made alongside a muon in weak decays. It has no electric charge and feels only the weak force (and gravity), so it almost never interacts with matter. About 6×10¹⁰ solar neutrinos of the commonest kind pass through every square centimetre of you each second (PDG), unnoticed.</p><p>Neutrinos have mass, but it is so small that no experiment has yet weighed one: only upper bounds exist.</p>",
+   "deeper": "<p><b>Mass.</b> Not known. Neutrinos have a tiny mass (oscillation proves it is not zero) but only differences between their squared masses are measured, plus upper bounds on the size. See the neutrino numbers below. Each neutrino of definite flavour is a mix of three mass states (ν₁, ν₂, ν₃); that is what neutrino oscillation shows. The original Standard Model had massless neutrinos, so their mass is the first thing found that goes beyond it.</p><p><b>Lifetime.</b> No decay has been observed. Heavier neutrino mass states could in principle decay into lighter ones; the PDG gives limits on the lifetime-to-mass ratio.</p><p><b>Colour charge.</b> No. Leptons carry no colour charge, so they do not feel the strong force at all.</p><p><b>Antiparticle.</b> Antineutrino (ν̄_μ). OPEN QUESTION: is the antineutrino a different particle (Dirac neutrino) or the same particle as the neutrino (Majorana)? Not yet known; experiments searching for neutrinoless double-beta decay test this.</p><p><b>What is known.</b> Neutrinos change flavour as they travel (oscillation), which proves they have mass and that the flavour states are mixtures of three mass states. Oscillations measure only differences of squared masses: Δm²₂₁ = (7.60 ± 0.17)×10⁻⁵ eV² and |Δm²₃₂| ≈ 2.4–2.5×10⁻³ eV² (PDG 2026; the sign, normal or inverted ordering, is not yet known).</p><p><b>Upper bounds.</b> KATRIN's 2025 result: the effective electron-antineutrino mass is below 0.45 eV at 90% confidence (see frontier note <i>katrin_neutrino</i>). From cosmology, the sum of the three masses is below about 0.064 eV at 95% confidence for the standard cosmological model with DESI DR2 data (listed in the PDG 2026), and the bound depends on the cosmological model assumed. From oscillations alone the sum is at least about 0.058 eV (normal) or 0.10 eV (inverted), by my arithmetic from the PDG numbers.</p><p><b>Open questions.</b> The absolute mass scale, the ordering, whether neutrinos are their own antiparticles, and whether the CP-violating phase is nonzero.</p>",
+   "expert": "<p>Three mass states ν₁, ν₂, ν₃ mix through the PMNS matrix with measured angles sin²θ₁₂ = 0.307 ± 0.012, sin²θ₁₃ = 0.0217 ± 0.0007 and sin²θ₂₃ ≈ 0.53 (PDG 2026, normal ordering). Only left-handed neutrinos (and right-handed antineutrinos) have been seen. A neutrino mass term needs either right-handed partners (Dirac mass) or a lepton-number-violating Majorana term; which is realised is unknown. Neutrinoless double-beta decay is the main test of the second.</p><p><b>Weak isospin.</b> T = 1/2, T₃ = +1/2. Only the left-handed neutrino has been observed; it forms a doublet with the muon.</p><p><b>Discovery.</b> Leon Lederman, Melvin Schwartz and Jack Steinberger at Brookhaven's Alternating Gradient Synchrotron in 1962 showed that the neutrino made with a muon is a different kind from the one made with an electron.</p><p><b>Where you meet it.</b> Made when cosmic rays hit the upper atmosphere (pions decay to muons and muon neutrinos); studied by the Super-Kamiokande detector.</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "0"
+   ],
+   [
+    "Spin",
+    "1/2 (ħ)"
+   ],
+   [
+    "Mass",
+    "Not known. Neutrinos have a tiny mass (oscillation proves it is not zero) but only differences between their squared masses are measured, plus upper bounds on the size. See the neutrino numbers below."
+   ],
+   [
+    "Colour charge",
+    "no"
+   ],
+   [
+    "Feels",
+    "weak"
+   ],
+   [
+    "Generation",
+    "2"
+   ],
+   [
+    "Antiparticle",
+    "Antineutrino"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "UP3",
+    "11.1",
+    "11-1-introduction-to-particle-physics"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ],
+   [
+    "AST",
+    "16.1",
+    "16-1-sources-of-sunshine-thermal-and-gravitational-energy"
+   ]
+  ],
+  "kn": [
+   "neutrinos",
+   "quarks_leptons",
+   "standard_model"
+  ],
+  "open_questions": [
+   "What are the neutrino masses (only bounds exist)?",
+   "Is the mass ordering normal or inverted?",
+   "Is the neutrino its own antiparticle (Majorana) or not (Dirac)?"
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=S066&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_nu_tau",
+  "title": "Tau neutrino (ν_τ)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "A nearly massless, uncharged particle that passes through the Earth almost untouched; its mass is still unknown.",
+  "layers": {
+   "basics": "<p>The tau neutrino is made alongside a tau lepton in weak decays. It has no electric charge and feels only the weak force (and gravity), so it almost never interacts with matter. About 6×10¹⁰ solar neutrinos of the commonest kind pass through every square centimetre of you each second (PDG), unnoticed.</p><p>Neutrinos have mass, but it is so small that no experiment has yet weighed one: only upper bounds exist.</p>",
+   "deeper": "<p><b>Mass.</b> Not known. Neutrinos have a tiny mass (oscillation proves it is not zero) but only differences between their squared masses are measured, plus upper bounds on the size. See the neutrino numbers below. Each neutrino of definite flavour is a mix of three mass states (ν₁, ν₂, ν₃); that is what neutrino oscillation shows. The original Standard Model had massless neutrinos, so their mass is the first thing found that goes beyond it.</p><p><b>Lifetime.</b> No decay has been observed. Heavier neutrino mass states could in principle decay into lighter ones; the PDG gives limits on the lifetime-to-mass ratio.</p><p><b>Colour charge.</b> No. Leptons carry no colour charge, so they do not feel the strong force at all.</p><p><b>Antiparticle.</b> Antineutrino (ν̄_τ). OPEN QUESTION: is the antineutrino a different particle (Dirac neutrino) or the same particle as the neutrino (Majorana)? Not yet known; experiments searching for neutrinoless double-beta decay test this.</p><p><b>What is known.</b> Neutrinos change flavour as they travel (oscillation), which proves they have mass and that the flavour states are mixtures of three mass states. Oscillations measure only differences of squared masses: Δm²₂₁ = (7.60 ± 0.17)×10⁻⁵ eV² and |Δm²₃₂| ≈ 2.4–2.5×10⁻³ eV² (PDG 2026; the sign, normal or inverted ordering, is not yet known).</p><p><b>Upper bounds.</b> KATRIN's 2025 result: the effective electron-antineutrino mass is below 0.45 eV at 90% confidence (see frontier note <i>katrin_neutrino</i>). From cosmology, the sum of the three masses is below about 0.064 eV at 95% confidence for the standard cosmological model with DESI DR2 data (listed in the PDG 2026), and the bound depends on the cosmological model assumed. From oscillations alone the sum is at least about 0.058 eV (normal) or 0.10 eV (inverted), by my arithmetic from the PDG numbers.</p><p><b>Open questions.</b> The absolute mass scale, the ordering, whether neutrinos are their own antiparticles, and whether the CP-violating phase is nonzero.</p>",
+   "expert": "<p>Three mass states ν₁, ν₂, ν₃ mix through the PMNS matrix with measured angles sin²θ₁₂ = 0.307 ± 0.012, sin²θ₁₃ = 0.0217 ± 0.0007 and sin²θ₂₃ ≈ 0.53 (PDG 2026, normal ordering). Only left-handed neutrinos (and right-handed antineutrinos) have been seen. A neutrino mass term needs either right-handed partners (Dirac mass) or a lepton-number-violating Majorana term; which is realised is unknown. Neutrinoless double-beta decay is the main test of the second.</p><p><b>Weak isospin.</b> T = 1/2, T₃ = +1/2. Only the left-handed neutrino has been observed; it forms a doublet with the tau lepton.</p><p><b>Discovery.</b> Directly observed by the DONUT experiment at Fermilab in 2000; the last of the Standard Model's fermions to be seen directly (before the Higgs boson).</p><p><b>Where you meet it.</b> Rare. Appears when other neutrinos oscillate into this flavour on their way from the Sun or atmosphere.</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "0"
+   ],
+   [
+    "Spin",
+    "1/2 (ħ)"
+   ],
+   [
+    "Mass",
+    "Not known. Neutrinos have a tiny mass (oscillation proves it is not zero) but only differences between their squared masses are measured, plus upper bounds on the size. See the neutrino numbers below."
+   ],
+   [
+    "Colour charge",
+    "no"
+   ],
+   [
+    "Feels",
+    "weak"
+   ],
+   [
+    "Generation",
+    "3"
+   ],
+   [
+    "Antiparticle",
+    "Antineutrino"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "UP3",
+    "11.1",
+    "11-1-introduction-to-particle-physics"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ],
+   [
+    "AST",
+    "16.1",
+    "16-1-sources-of-sunshine-thermal-and-gravitational-energy"
+   ]
+  ],
+  "kn": [
+   "neutrinos",
+   "quarks_leptons",
+   "standard_model"
+  ],
+  "open_questions": [
+   "What are the neutrino masses (only bounds exist)?",
+   "Is the mass ordering normal or inverted?",
+   "Is the neutrino its own antiparticle (Majorana) or not (Dirac)?"
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=S066&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_gluon",
+  "title": "Gluon (g)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The carrier of the strong force: it glues quarks together, and it carries the colour charge it acts on.",
+  "layers": {
+   "basics": "<p>A gluon is a particle of the strong force, the \"glue\" that binds quarks inside protons and neutrons. It has no mass and no electric charge, but it does carry colour charge (the strong force's kind of charge). Because gluons carry colour themselves, they pull on each other too, which is why the strong force acts very differently from electromagnetism and why quarks can never be pulled apart.</p><p>Most of the proton's mass is not the quarks: it is the energy of the gluon field holding them together.</p>",
+   "deeper": "<p><b>Mass.</b> 0 in the Standard Model (the theory's symmetry requires it); a single gluon is never seen alone, so no direct limit can be measured the way it is for the photon.. Gluons are massless in the theory, yet they supply most of the mass of the proton through the energy of the strong field they carry.</p><p><b>Lifetime.</b> Not defined: gluons are never free. They exist only inside hadrons and in short-lived jets.</p><p><b>Colour charge.</b> Yes, unlike the photon. A gluon carries a colour and an anticolour at once; there are eight kinds. Because gluons carry colour, they attract each other, which is why the strong force behaves so differently from electromagnetism.</p><p><b>Antiparticle.</b> Gluon (g). Each of the 8 gluons' antiparticles is again one of the 8 gluon states (a colour–anticolour mixture), so the set is its own antiparticle.</p><p>There are <b>eight</b> gluons (eight colour–anticolour combinations). A single gluon is never seen on its own; the first evidence came in 1979 from collision events at the PETRA collider in Hamburg in which a quark and antiquark flew out with a third spray (jet) of particles, a gluon, radiated from one of them.</p><p>Lattice calculations indicate gluons carry about half of the proton's momentum (51% in a 2022 calculation at 2 GeV).</p>",
+   "expert": "<p>Massless spin-1 gauge bosons of SU(3) colour. The theory has self-interaction vertices (three and four gluons) with colour factor C_A = 3; the PDG notes a measured world average C_A = 2.89 ± 0.03 (stat) ± 0.21 (syst), consistent with the SU(3) value. Whether the gluon field has a mass gap and confines colour is the subject of a Clay Millennium Prize problem (Yang–Mills existence and mass gap), unsolved in rigorous mathematics even though lattice calculations support it.</p><p><b>Weak isospin.</b> T = 0, T₃ = 0. A gluon has no weak isospin.</p><p><b>Discovery.</b> Seen as a third \"jet\" in electron–positron collisions at the PETRA collider at DESY, Hamburg, in 1979 (TASSO first, then JADE, PLUTO and Mark J).</p><p><b>Where you meet it.</b> Inside every proton and neutron, in all matter, holding quarks together. Gluon energy is most of the mass you weigh.</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "0"
+   ],
+   [
+    "Spin",
+    "1 (ħ)"
+   ],
+   [
+    "Mass",
+    "0 in the Standard Model (the theory's symmetry requires it); a single gluon is never seen alone, so no direct limit can be measured the way it is for the photon."
+   ],
+   [
+    "What the mass means",
+    "Theoretical"
+   ],
+   [
+    "Colour charge",
+    "yes"
+   ],
+   [
+    "Feels",
+    "strong"
+   ],
+   [
+    "Antiparticle",
+    "Gluon (own antiparticle)"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ]
+  ],
+  "kn": [
+   "qcd",
+   "standard_model"
+  ],
+  "open_questions": [
+   "Why does the theory confine colour at all, and can that be proved mathematically?"
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=G021&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_photon",
+  "title": "Photon (γ)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The particle of light, and the carrier of the electromagnetic force.",
+  "layers": {
+   "basics": "<p>A photon is the smallest possible bundle of light, and also of any electric or magnetic force between charged particles. It has no mass, no charge, and always moves at the speed of light. Sunlight on the park is a stream of photons; so are radio waves and X-rays, with different energies.</p>",
+   "deeper": "<p><b>Mass.</b> Zero in the Standard Model. PDG: experimental upper limit < 1×10⁻¹⁸ eV.. An upper limit, not a measurement of a mass.</p><p><b>Lifetime.</b> Stable. PDG also gives a photon charge limit of < 1×10⁻⁴⁶ e.</p><p><b>Colour charge.</b> No. Photons carry no colour and do not feel the strong force.</p><p><b>Antiparticle.</b> Photon (γ). The photon is its own antiparticle.</p><p>The PDG limit on a photon mass is below 10⁻¹⁸ eV, and on its charge below 10⁻⁴⁶ of an electron's. It is its own antiparticle, and it carries spin 1 (two polarisations, because it is massless). A photon's energy is E = hf: radio photons have very little, gamma rays enormous amounts.</p>",
+   "expert": "<p>Gauge boson of the U(1) electromagnetic symmetry that survives after electroweak symmetry breaking; it is a mixture of the SU(2) boson W³ and the hypercharge boson B. Quantum electrodynamics (QED), the quantum theory of photons and charges, predicts the electron magnetic moment to parts per trillion.</p><p><b>Weak isospin.</b> T = 0, T₃ = 0. After electroweak mixing the photon is a combination of the weak-isospin boson W³ and the hypercharge boson B; it has no definite weak isospin.</p><p><b>Discovery.</b> The idea of light as quanta is Planck (1900) and Einstein (1905); Arthur Compton's 1923 X-ray scattering experiments showed light carries momentum like a particle.</p><p><b>Where you meet it.</b> All light, radio, X-rays, and every electric and magnetic force between charges. Sunlight on the park is a stream of photons.</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "0"
+   ],
+   [
+    "Spin",
+    "1 (ħ)"
+   ],
+   [
+    "Mass",
+    "Zero in the Standard Model. PDG: experimental upper limit < 1×10⁻¹⁸ eV."
+   ],
+   [
+    "What the mass means",
+    "Experimental limit"
+   ],
+   [
+    "Colour charge",
+    "no"
+   ],
+   [
+    "Feels",
+    "nothing directly (it carries a force)"
+   ],
+   [
+    "Antiparticle",
+    "Photon (own antiparticle)"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ],
+   [
+    "CPH",
+    "29.4",
+    "29-4-photon-momentum"
+   ]
+  ],
+  "kn": [
+   "standard_model",
+   "photon_node",
+   "electromagnetic_waves"
+  ],
+  "where": "place:park",
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=S000&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_w_boson",
+  "title": "W boson (W±)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "A heavy carrier of the weak force that changes one kind of particle into another; it is why the Sun shines slowly.",
+  "layers": {
+   "basics": "<p>The W boson (W⁺ and W⁻) carries the weak force, the one responsible for radioactive beta decay and for turning protons into neutrons in the Sun's core. It is charged (±1), and heavy: about 86 times a proton. Its heaviness means the weak force reaches only about 2×10⁻¹⁸ m, so it is \"weak\" in the sense of being short-ranged and rare.</p>",
+   "deeper": "<p><b>Mass.</b> 80.3625 ± 0.0077 GeV. About 86 times a proton's mass. The W is heavy because the Higgs field gives it mass; that makes the weak force short-ranged.</p><p><b>Lifetime.</b> Decay width 2.14 ± 0.05 GeV (PDG), a lifetime of about 3×10⁻²⁵ s (calculation).</p><p><b>Main ways it decays</b> (branching fractions from the PDG, 2026):</p><ul><li>W⁺ → hadrons (a quark and an antiquark) &nbsp;((67.41 ± 0.27)×10⁻² of decays)</li><li>W⁺ → ℓ⁺ + ν (each of e, μ, τ about equally) &nbsp;((10.86 ± 0.09)×10⁻² of decays)</li></ul><p><b>Colour charge.</b> No. W bosons carry no colour.</p><p><b>Antiparticle.</b> W⁻ (W⁻). W⁺ and W⁻ are each other's antiparticles.</p><p>The W changes quark flavour (up ↔ down, for example) and turns charged leptons into their neutrinos. Its mass, 80.3625 ± 0.0077 GeV, is the world average of LHC and Tevatron measurements (PDG 2026). It decays within about 3×10⁻²⁵ s: roughly two thirds to quark pairs (67.41%) and the rest to a lepton and its neutrino (10.86% for each of e, μ, τ).</p>",
+   "expert": "<p>Spin-1 gauge boson of the SU(2) weak-isospin symmetry; it acquires mass through the Higgs mechanism with m_W = g v / 2 (tree level). The W couples only to left-handed fermions (and right-handed antifermions): the weak force violates mirror symmetry maximally.</p><p><b>Weak isospin.</b> T = 1, T₃ = ±1. W⁺ has T3 = +1, W⁻ has T3 = −1.</p><p><b>Discovery.</b> Announced at CERN in January 1983 by the UA1 and UA2 experiments at the Super Proton Synchrotron run as a proton–antiproton collider (UA1 led by Carlo Rubbia, UA2 by Pierre Darriulat).</p><p><b>Where you meet it.</b> In the Sun's core, a proton turns into a neutron through a virtual W; that step makes hydrogen fusion slow and the Sun last billions of years. Also in radioactive beta decay.</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "±1 e (W⁺: +1, W⁻: −1)"
+   ],
+   [
+    "Spin",
+    "1 (ħ)"
+   ],
+   [
+    "Mass",
+    "80.3625 ± 0.0077 GeV"
+   ],
+   [
+    "What the mass means",
+    "Direct measurements at colliders (LHC–Tevatron average)"
+   ],
+   [
+    "Colour charge",
+    "no"
+   ],
+   [
+    "Feels",
+    "weak, electromagnetic, Higgs field"
+   ],
+   [
+    "Antiparticle",
+    "W⁻"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ],
+   [
+    "AST",
+    "16.1",
+    "16-1-sources-of-sunshine-thermal-and-gravitational-energy"
+   ]
+  ],
+  "kn": [
+   "weak_force_note",
+   "standard_model"
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=S043&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_z_boson",
+  "title": "Z boson (Z⁰)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The neutral heavy carrier of the weak force; its decays showed that there are three light kinds of neutrino.",
+  "layers": {
+   "basics": "<p>The Z boson is the electrically neutral partner of the W. It makes the weak force act without changing what a particle is: a neutrino bouncing off matter through a Z leaves as the same neutrino. It weighs about 97 protons and lives about 2.6×10⁻²⁵ s.</p>",
+   "deeper": "<p><b>Mass.</b> 91.1879 ± 0.0020 GeV. About 97 times a proton's mass.</p><p><b>Lifetime.</b> Decay width 2.4955 ± 0.0023 GeV (PDG), a lifetime of about 2.6×10⁻²⁵ s (calculation).</p><p><b>Main ways it decays</b> (branching fractions from the PDG, 2026):</p><ul><li>Z⁰ → hadrons (quark–antiquark) &nbsp;((69.911 ± 0.056)×10⁻² of decays)</li><li>Z⁰ → neutrino + antineutrino (unseen) &nbsp;((20.000 ± 0.055)×10⁻² of decays)</li><li>Z⁰ → ℓ⁺ + ℓ⁻ (each of e, μ, τ) &nbsp;((3.3658 ± 0.0023)×10⁻² of decays)</li></ul><p><b>Colour charge.</b> No. The Z carries no colour.</p><p><b>Antiparticle.</b> Z⁰ (Z⁰). The Z is its own antiparticle.</p><p>Mass 91.1879 ± 0.0020 GeV; decay width 2.4955 ± 0.0023 GeV (PDG 2026). About 70% of Z decays are to quarks, about 20% to neutrino pairs you cannot see, and about 10% to charged lepton pairs. The invisible fraction, measured at the LEP collider at CERN, fits three light kinds of neutrino.</p>",
+   "expert": "<p>A mixture of the SU(2) boson W³ and hypercharge boson B, with mixing angle θ_W. Its coupling to a fermion is set by T₃ − Q sin²θ_W (vector) and T₃ (axial) (PDG Electroweak Model review, eq. 10.7).</p><p><b>Weak isospin.</b> T = 1, T₃ = 0. The Z is a mixture of W³ and the hypercharge boson B. It couples to a fermion through the fermion's T3 and charge.</p><p><b>Discovery.</b> Announced at CERN in 1983 by UA1 and UA2, a few months after the W.</p><p><b>Where you meet it.</b> Mediates the weak \"neutral current\": neutrinos scattering off matter without changing into charged leptons. Its decays were measured precisely at LEP in the 1990s.</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "0"
+   ],
+   [
+    "Spin",
+    "1 (ħ)"
+   ],
+   [
+    "Mass",
+    "91.1879 ± 0.0020 GeV"
+   ],
+   [
+    "What the mass means",
+    "Direct measurements: the position of the resonance in electron–positron collisions at LEP"
+   ],
+   [
+    "Colour charge",
+    "no"
+   ],
+   [
+    "Feels",
+    "weak, Higgs field"
+   ],
+   [
+    "Antiparticle",
+    "Z⁰ (own antiparticle)"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ]
+  ],
+  "kn": [
+   "weak_force_note",
+   "standard_model"
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=S044&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_higgs",
+  "title": "Higgs boson (H)",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "A ripple in the Higgs field, the field that gives the other fundamental particles their mass.",
+  "layers": {
+   "basics": "<p>The Higgs boson is the particle you get when you disturb the <b>Higgs field</b>, a field that has a nonzero value everywhere in the universe. Particles that interact with that field acquire a rest mass; the stronger the interaction, the heavier the particle. The Higgs boson itself weighs about 125 GeV/c², about 133 proton masses, and lasts only about 2×10⁻²² s.</p><p>It was announced on 4 July 2012 by the ATLAS and CMS experiments at CERN.</p>",
+   "deeper": "<p><b>Mass.</b> 125.13 ± 0.11 GeV. About 133 times a proton's mass. A direct measurement from the energies of its decay products.</p><p><b>Lifetime.</b> Decay width 3.0 (+1.5, −0.7) MeV (PDG), a lifetime of about 2×10⁻²² s (calculation).</p><p><b>Main ways it decays</b> (branching fractions from the PDG, 2026):</p><ul><li>H → b + b̄ &nbsp;((53 ± 8)×10⁻² of decays)</li><li>H → W + W* &nbsp;((25.7 ± 2.5)×10⁻² of decays)</li><li>H → τ⁺ + τ⁻ &nbsp;((6.0 +0.8 −0.7)×10⁻² of decays)</li><li>H → Z + Z* &nbsp;((2.80 ± 0.30)×10⁻² of decays)</li><li>H → γ + γ &nbsp;((2.50 ± 0.20)×10⁻³ of decays)</li></ul><p><b>Colour charge.</b> No.</p><p><b>Antiparticle.</b> Higgs boson (H). The Higgs boson is neutral and is its own antiparticle.</p><p>The Higgs gives mass to the electron, the quarks, and the W and Z. It does <b>not</b> explain most of the mass you weigh: about 99% of a proton's mass is the energy of the strong field, not Higgs-given quark masses (see the card on where the proton's mass comes from).</p><p>Its decays: to bottom quarks about 53%, W pairs about 26%, tau pairs about 6%, Z pairs about 3%, and two photons about 0.25% (PDG 2026 averages; large uncertainties on the larger rates).</p>",
+   "expert": "<p>A neutral spin-0 scalar: the remnant of the complex SU(2) doublet φ after electroweak symmetry breaking with a vacuum value v ≈ 246 GeV (PDG). The couplings of the Higgs to other particles are proportional to their masses and are being measured at the LHC; so far they agree with the Standard Model within the current precision. The Higgs width, 3.0 (+1.5, −0.7) MeV, is not directly measured; it is inferred from other measurements.</p><p><b>Weak isospin.</b> T = 1/2, T₃ = -1/2. The Higgs field is a doublet of weak isospin 1/2; the Higgs boson is what is left of it after the field takes a value everywhere (PDG Electroweak Model review).</p><p><b>Discovery.</b> Announced on 4 July 2012 at CERN by the ATLAS and CMS experiments at the Large Hadron Collider; Peter Higgs and François Englert shared the 2013 Nobel Prize in Physics for the theory.</p><p><b>Where you meet it.</b> Not found alone in ordinary matter: it lives about 10⁻²² s. The Higgs field, which fills space, gives the electron its mass, and therefore sets the size of atoms.</p>"
+  },
+  "facts": [
+   [
+    "Electric charge",
+    "0"
+   ],
+   [
+    "Spin",
+    "0 (ħ)"
+   ],
+   [
+    "Mass",
+    "125.13 ± 0.11 GeV"
+   ],
+   [
+    "What the mass means",
+    "Direct measurements: ATLAS and CMS combined"
+   ],
+   [
+    "Colour charge",
+    "no"
+   ],
+   [
+    "Feels",
+    "Higgs field, weak"
+   ],
+   [
+    "Antiparticle",
+    "Higgs boson (own antiparticle)"
+   ],
+   [
+    "Data source",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ]
+  ],
+  "kn": [
+   "higgs_mechanism",
+   "standard_model"
+  ],
+  "open_questions": [
+   "Is the Higgs boson elementary, or made of something? (Not known; no sign of structure.)",
+   "Why is its mass so much lighter than quantum corrections would naturally make it (the hierarchy problem)?"
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=S126&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_overview",
+  "title": "The Standard Model",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [],
+  "parts": [
+   "sm_up",
+   "sm_down",
+   "sm_strange",
+   "sm_charm",
+   "sm_bottom",
+   "sm_top",
+   "sm_electron",
+   "sm_muon",
+   "sm_tau",
+   "sm_nu_e",
+   "sm_nu_mu",
+   "sm_nu_tau",
+   "sm_gluon",
+   "sm_photon",
+   "sm_w_boson",
+   "sm_z_boson",
+   "sm_higgs",
+   "sm_proton",
+   "sm_neutron",
+   "sm_hadrons",
+   "sm_interactions",
+   "sm_quantum_fields"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The tested description of every known elementary particle and three of the four forces: seventeen particles, one framework, and a list of what it cannot explain.",
+  "layers": {
+   "basics": "<p>Everything you can touch, and nearly everything experiments have made, is built from a short list of <b>elementary particles</b>: the smallest things we have found, with no measured parts. Twelve of them are matter particles (six quarks and six leptons, in three similar families called generations), four carry the forces (the gluon, the photon, the W and the Z), and one, the Higgs boson, is connected to how the others get their mass.</p><p>Ordinary matter needs only three of them: the up quark, the down quark and the electron. Quarks make protons and neutrons; protons, neutrons and electrons make atoms.</p><p><b>The picture on this level is not a place.</b> It is the list of everything matter and the forces (except gravity) are made of, as far as experiments have reached.</p>",
+   "deeper": "<p>The Standard Model is a quantum field theory built on the symmetry group SU(3) × SU(2) × U(1): SU(3) for the strong force, and SU(2) × U(1) for the electroweak force, which at low energy separates into electromagnetism and the weak force. It makes predictions that have been tested over a huge range of energies.</p><p>It has a known gap: gravity is not in it. And it needs about 19 numbers (masses, mixing angles, the strengths of the forces) that must be measured rather than predicted.</p>",
+   "expert": "<p>The Lagrangian has four parts: gauge-field kinetic terms, fermion kinetic terms with gauge couplings, the Higgs doublet's kinetic and potential terms, and Yukawa couplings of the Higgs to fermions. The Higgs field's nonzero vacuum value v ≈ 246 GeV (PDG) breaks SU(2) × U(1) to U(1)em and gives masses to W, Z and the charged fermions. Neutrino masses and mixing require an extension.</p><p>All values in this explorer come from the Particle Data Group's Review of Particle Physics, 2026 edition (F. Takahashi et al., Int. J. Mod. Phys. A 41, 2630011).</p>"
+  },
+  "facts": [
+   [
+    "Elementary particles",
+    "17: 6 quarks, 6 leptons, 4 gauge bosons (counting the gluon, photon, W and Z), 1 Higgs boson"
+   ],
+   [
+    "Forces included",
+    "strong, electromagnetic, weak (and the Higgs field)"
+   ],
+   [
+    "Not included",
+    "gravity; dark matter; dark energy; a mechanism for neutrino masses"
+   ],
+   [
+    "Free parameters",
+    "about 19 (a counting convention; see \"What the Standard Model leaves out\")"
+   ],
+   [
+    "Data source",
+    "PDG Review of Particle Physics, 2026"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ],
+   [
+    "UP3",
+    "11.1",
+    "11-1-introduction-to-particle-physics"
+   ],
+   [
+    "HSP",
+    "23.1",
+    "23-1-the-four-fundamental-forces"
+   ]
+  ],
+  "kn": [
+   "standard_model",
+   "quarks_leptons"
+  ],
+  "open_questions": [
+   "Gravity, dark matter, dark energy and the matter–antimatter imbalance are not explained by the Standard Model."
+  ]
+ },
+ {
+  "id": "sm_quantum_fields",
+  "title": "Quantum fields: what a particle is",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "In the Standard Model a particle is not a tiny ball: it is the smallest possible ripple in a field that fills all of space.",
+  "layers": {
+   "basics": "<p>It is natural to picture an electron as a tiny ball. The Standard Model describes it differently: there is an <b>electron field</b> everywhere in space, and an electron is a single, indivisible ripple in that field. Every electron in the universe is the same because they are all ripples in one field. The same goes for every other particle: quarks, photons, the Higgs. Each kind has its own field.</p><p>This is why all electrons are identical, and why particles can be created and destroyed (a ripple can start or stop) while the fields stay.</p><p>The \"ball\" picture is a handy approximation when a particle is far from others; the field picture is the one the theory uses.</p>",
+   "deeper": "<p>A field has a value at every point. In quantum theory the ways a field can vibrate come in steps: the smallest step is one particle, the next is two, and so on. That is what \"quantum\" means here: a field cannot hold half a particle.</p><p>Nothing here has a definite position until it is measured, so \"a ripple\" does not mean a hump with edges. It means something that, when probed, shows up as one particle with a certain probability at a certain place.</p>",
+   "expert": "<p>In quantum field theory the state space is a Fock space built from a vacuum by creation operators; particle number is not conserved in general, but charges (like electric charge) are. Interactions appear as terms coupling different fields. Perturbation theory organises calculations by Feynman diagrams (see that card); the diagram's internal lines are terms in the series, not trajectories.</p>"
+  },
+  "facts": [
+   [
+    "Fields in the Standard Model",
+    "12 matter fields (6 quarks, 6 leptons), 4 kinds of force field (gluon, photon, W/Z), 1 Higgs field"
+   ],
+   [
+    "Why all electrons are identical",
+    "each is an excitation of the same electron field"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "7.1",
+    "7-1-wave-functions"
+   ],
+   [
+    "CPH",
+    "29.5",
+    "29-5-the-particle-wave-duality"
+   ]
+  ],
+  "kn": [
+   "standard_model",
+   "wave_particle",
+   "photon_node"
+  ],
+  "open_questions": [
+   "What is the best interpretation of quantum fields? The mathematics is settled and tested; what it says about reality is still argued."
+  ]
+ },
+ {
+  "id": "sm_interactions",
+  "title": "The four interactions",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [
+   "sm_strong_force",
+   "sm_higgs_mechanism",
+   "sm_gravity"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "sm_photon",
+   "sm_w_boson",
+   "sm_z_boson",
+   "sm_gluon"
+  ],
+  "mesh": null,
+  "needs": [],
+  "summary": "Four ways particles act on each other: strong, electromagnetic, weak and gravity; the Standard Model includes the first three.",
+  "layers": {
+   "basics": "<p>Everything that happens, from a falling apple to a star burning, comes from four interactions. The <b>strong</b> force binds quarks into protons and neutrons. The <b>electromagnetic</b> force acts between electric charges and makes light. The <b>weak</b> force changes particles into other particles (it makes radioactive beta decay and powers the Sun's slow fusion). <b>Gravity</b> pulls mass together.</p><p>The first three are carried by particles: gluons, photons, and the W and Z. Gravity is described by Einstein's general relativity, which is not part of the Standard Model.</p>",
+   "deeper": "<p>An interaction can be thought of as a coupling between a kind of \"charge\" and a force-carrying field. For the strong force the charge is colour; for electromagnetism it is electric charge; for the weak force it is weak isospin; the Higgs field couples to mass.</p>",
+   "expert": "<p>The three Standard Model forces are gauge interactions: local symmetries SU(3)c, SU(2)L and U(1)Y whose gauge bosons (8 gluons, W¹,²,³, B) mediate the forces. After the Higgs field acquires a vacuum value, W³ and B mix into the massless photon and the massive Z.</p>"
+  },
+  "facts": [
+   [
+    "Strong",
+    "carrier: gluon · couples to colour charge · acts on quarks and gluons"
+   ],
+   [
+    "Electromagnetic",
+    "carrier: photon · couples to electric charge · long range"
+   ],
+   [
+    "Weak",
+    "carriers: W⁺, W⁻, Z · couples to weak isospin · range about 2×10⁻¹⁸ m"
+   ],
+   [
+    "Gravity",
+    "not in the Standard Model · acts on all energy"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ],
+   [
+    "CPH",
+    "33.2",
+    "33-2-the-four-basic-forces"
+   ],
+   [
+    "HSP",
+    "23.1",
+    "23-1-the-four-fundamental-forces"
+   ]
+  ],
+  "kn": [
+   "standard_model",
+   "weak_force_note"
+  ]
+ },
+ {
+  "id": "sm_strong_force",
+  "title": "The strong force",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [
+   "sm_colour_confinement",
+   "sm_asymptotic_freedom",
+   "sm_residual_strong"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The strongest known force: it holds quarks inside protons and neutrons, and its leftover holds nuclei together.",
+  "layers": {
+   "basics": "<p>The strong force acts on quarks. It is carried by gluons, and the \"charge\" it acts on is called colour, a name that has nothing to do with the colours you see. It is so strong that quarks are never found alone: pulling two apart takes so much energy that the energy turns into a new quark–antiquark pair instead.</p><p>Inside a proton the quarks are held by it. A faint leftover of the strong force (like the leftover attraction between neutral molecules) holds protons and neutrons together in nuclei.</p>",
+   "deeper": "<p>The strong force is described by quantum chromodynamics (QCD). Its strength, written αs, depends on the energy of the process: it is about 0.118 at the energy of the Z boson but grows large below about 1 GeV (PDG QCD review), the scale of the proton. Because the coupling is strong at proton scales, calculations there need supercomputer \"lattice\" methods.</p>",
+   "expert": "<p>QCD is the SU(3) gauge theory of colour with quarks in the triplet representation. Its colour factors are C_F = 4/3 and C_A = 3; the PDG quotes a measured C_A = 2.89 ± 0.03 (stat) ± 0.21 (syst) and C_F = 1.30 ± 0.01 ± 0.09, consistent with SU(3). Confinement is observed in lattice calculations but is not mathematically proved from the equations.</p>"
+  },
+  "facts": [
+   [
+    "Carrier",
+    "8 gluons"
+   ],
+   [
+    "Charge it acts on",
+    "colour"
+   ],
+   [
+    "Coupling at the Z mass",
+    "αs ≈ 0.118 (PDG QCD review, world average 2026)"
+   ],
+   [
+    "Relevant scale",
+    "about 1 GeV (about 10⁻¹⁵ m)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ],
+   [
+    "HSP",
+    "23.1",
+    "23-1-the-four-fundamental-forces"
+   ]
+  ],
+  "kn": [
+   "qcd",
+   "nuclear_force"
+  ]
+ },
+ {
+  "id": "sm_colour_confinement",
+  "title": "Colour charge and confinement",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Quarks carry a kind of charge called colour, and only colourless combinations exist alone, so a quark can never be pulled out of a proton.",
+  "layers": {
+   "basics": "<p>Quarks carry <b>colour charge</b>: one of three kinds, called red, green and blue as a loose analogy (they are not coloured). Just as electric charge can be positive or negative, a colour has a matching anticolour. In nature we only find combinations with no net colour: a baryon is one quark of each colour, a meson is a colour and its anticolour. This is why free quarks are never seen: <b>confinement</b>.</p><p>Try to pull a quark out of a proton and the energy stored in the stretched gluon field becomes enough to create a new quark–antiquark pair, giving a new particle instead of a free quark.</p>",
+   "deeper": "<p>\"Colourless\" means a combination that is unchanged by changing the labels, in the way a mix of red, green and blue light looks white. That is where the combination rules for hadrons (see \"Hadrons\") come from: three quarks, a quark and an antiquark, and (rarer) exotic combinations.</p><p>Colour also resolved a puzzle: the Δ⁺⁺ particle has three identical up quarks with parallel spins, which the exclusion principle forbids unless quarks have another property to tell them apart.</p>",
+   "expert": "<p>Colour confinement follows from the strong coupling at long distances and is seen in lattice QCD as a linearly rising potential between a heavy quark and antiquark, with a \"string\" of colour field between them. It has not been derived analytically from the QCD equations; proving the associated mass gap is a Clay Millennium Prize problem.</p>"
+  },
+  "facts": [
+   [
+    "Colour charges",
+    "three (colour) and three (anticolour)"
+   ],
+   [
+    "Allowed combinations",
+    "colourless: three quarks, three antiquarks, or a quark and an antiquark"
+   ],
+   [
+    "A confined particle?",
+    "yes: no isolated quark or gluon has ever been observed"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ],
+   [
+    "CPH",
+    "33.5",
+    "33-5-quarks-is-that-all-there-is"
+   ]
+  ],
+  "kn": [
+   "qcd",
+   "quarks_leptons"
+  ],
+  "open_questions": [
+   "Confinement is seen in computer calculations of QCD but not proved from the equations (C2)."
+  ]
+ },
+ {
+  "id": "sm_asymptotic_freedom",
+  "title": "Asymptotic freedom",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The strong force gets weaker when quarks are very close or collide at high energy, which is why high-energy experiments can see quarks almost free.",
+  "layers": {
+   "basics": "<p>Unlike electric forces, the strong force grows stronger as particles move apart and weaker as they get very close. At very high collision energies quarks inside a proton hardly feel each other and behave almost as free particles; this property is called <b>asymptotic freedom</b>. It is why scattering experiments at high energy can treat quarks as nearly independent points, and why calculations are possible there.</p>",
+   "deeper": "<p>The strength of the strong force is measured by a number αs that changes with the energy of the process: about 0.118 at the mass of the Z boson, smaller at higher energy, and large (around and above 1) near 1 GeV (PDG QCD review 2026: \"αs ∼ 0.1 in the 0.1–1 TeV range, strongly interacting at and below 1 GeV\"). The PDG notes that measurements of αs at many energies show this running exactly as QCD predicts.</p>",
+   "expert": "<p>At one loop the running is αs(Q) = αs(M_Z) / [1 + (b₀ αs(M_Z) / 2π) ln(Q/M_Z)], with b₀ = 11 − 2n_f/3. With n_f = 5 flavours b₀ = 23/3. The figure uses this one-loop form, which captures the trend but is not precise (PDG results use higher-order calculations). The 2004 Nobel Prize in Physics went to Gross, Politzer and Wilczek for discovering asymptotic freedom.</p>"
+  },
+  "facts": [
+   [
+    "Coupling at the Z mass",
+    "αs(M_Z) ≈ 0.118"
+   ],
+   [
+    "Used in the figure",
+    "one-loop running, n_f = 5, valid roughly for Q from 5 GeV upwards"
+   ],
+   [
+    "Source",
+    "PDG 2026, Quantum Chromodynamics review"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ]
+  ],
+  "kn": [
+   "qcd"
+  ],
+  "formula": "αs(Q) = αs(M_Z) / [1 + (b₀ αs(M_Z) / 2π) ln(Q / M_Z)],  b₀ = 11 − 2n_f/3"
+ },
+ {
+  "id": "sm_proton_mass_origin",
+  "title": "Where the proton's mass comes from",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Only about 1% of a proton's mass is the rest mass of its three quarks: most is the energy of the strong field and of the quarks' motion.",
+  "layers": {
+   "basics": "<p>A proton weighs 938 MeV/c². Its three valence quarks (two up, one down) have rest masses of only about 2, 2 and 5 MeV/c² (MS-bar values at 2 GeV, PDG): together about 9 MeV, roughly <b>1%</b> of the proton. The rest comes from the energy of the quarks moving at high speed in a tiny space and from the energy of the gluon field that binds them: by E = mc², energy has mass.</p><p>So the Higgs boson does <b>not</b> supply most of your mass. It gives the quarks and electrons their small rest masses; the rest of the mass of ordinary matter comes from the strong force.</p>",
+   "deeper": "<p>Lattice QCD calculations decompose the proton mass into parts (a 2018 calculation by the χQCD collaboration, MS-bar scheme at 2 GeV): quark energy 33(4)(4)%, glue field energy 37(5)(4)%, a trace-anomaly part 23(1)(1)% and quark scalar-condensate (sigma) terms 9(2)(1)%. The pieces depend on how the mass is divided, so the exact split is a convention; what is robust is that the quark rest masses contribute only a few percent at most.</p>",
+   "expert": "<p>The decomposition uses the energy–momentum tensor: M = ⟨P|T⁰⁰|P⟩ separated into quark kinetic, gluon, quark mass and anomaly contributions. The sigma terms are the part that responds to changing the quark masses. Alternative decompositions (Ji; Jaffe–Manohar) assign the pieces differently; they are different bookkeeping of the same total.</p>"
+  },
+  "facts": [
+   [
+    "Proton mass",
+    "938.27208943 ± 0.00000029 MeV (PDG 2026, CODATA 2022 value)"
+   ],
+   [
+    "Rest masses of u, u, d",
+    "≈ 9 MeV, about 1% of the proton (sum of PDG MS-bar masses)"
+   ],
+   [
+    "Lattice QCD split (2018)",
+    "quark energy 33%, glue 37%, anomaly 23%, sigma terms 9%"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ],
+   [
+    "AST",
+    "16.2",
+    "16-2-mass-energy-and-the-theory-of-relativity"
+   ]
+  ],
+  "kn": [
+   "qcd",
+   "protons_neutrons",
+   "higgs_mechanism"
+  ],
+  "open_questions": [
+   "The split of the proton mass into parts depends on convention; the total is exact, the parts are not unique (C2)."
+  ]
+ },
+ {
+  "id": "sm_antimatter",
+  "title": "Antimatter",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Every particle has an antiparticle with the same mass and opposite charges; when they meet they can annihilate into energy.",
+  "layers": {
+   "basics": "<p>For every particle there is an <b>antiparticle</b>: same mass and spin, opposite electric charge (and opposite colour, and so on). The antiparticle of the electron is the <b>positron</b>, found in cosmic rays by Carl Anderson in 1932. When a particle meets its antiparticle they can annihilate, turning into other particles such as photons: an electron and positron at rest make two photons of 511 keV each.</p><p>Some particles, like the photon, are their own antiparticles. For the neutrino, nobody knows yet.</p>",
+   "deeper": "<p>Antimatter is not exotic fuel in the world around you: positrons come from some radioactive decays, and PET scanners in hospitals use them. The universe, however, is made almost entirely of matter, not an even mix. The Standard Model has a small difference between matter and antimatter (CP violation) but far too little to explain this imbalance, an open question.</p>",
+   "expert": "<p>In quantum field theory antiparticles follow from combining quantum mechanics with special relativity (CPT symmetry: a particle and its antiparticle have exactly equal masses and lifetimes, and opposite charges). The PDG tests this: for example the proton and antiproton masses agree, and the charge-to-mass ratios agree, to high precision (see its listings).</p>"
+  },
+  "facts": [
+   [
+    "Positron",
+    "found by Carl Anderson, 1932"
+   ],
+   [
+    "Annihilation e⁻ + e⁺",
+    "two photons of 0.511 MeV each when at rest (calculation from the electron mass)"
+   ],
+   [
+    "Open question",
+    "why the universe is matter, not antimatter"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "UP3",
+    "11.2",
+    "11-2-particle-conservation-laws"
+   ],
+   [
+    "CPH",
+    "33.4",
+    "33-4-particles-patterns-and-conservation-laws"
+   ]
+  ],
+  "kn": [
+   "antimatter_asymmetry",
+   "antihydrogen",
+   "quarks_leptons"
+  ],
+  "open_questions": [
+   "Why is there more matter than antimatter in the universe? (C3)"
+  ]
+ },
+ {
+  "id": "sm_spin_statistics",
+  "title": "Spin, fermions and bosons",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Every particle has a built-in angular momentum called spin; whole-number spin particles carry forces and half-number ones make matter.",
+  "layers": {
+   "basics": "<p>Every particle has <b>spin</b>, an inherent amount of angular momentum. It is not a literal spinning ball: nothing is turning. Spin comes in fixed sizes. Quarks and leptons have spin ½ (<b>fermions</b>); the gluon, photon, W and Z have spin 1; the Higgs has spin 0 (<b>bosons</b>).</p><p>The split matters. Two identical fermions cannot occupy the same state (the <b>Pauli exclusion principle</b>), which is why electrons stack in shells in atoms and gives the periodic table its shape. Bosons can crowd into the same state, which is why many photons can make a laser beam.</p>",
+   "deeper": "<p>Spin is measured in units of ħ: ½ means the particle's spin along any chosen axis can only be +½ or −½. The photon, being massless, has two possible polarisations although it has spin 1.</p>",
+   "expert": "<p>The spin–statistics theorem links the two classes: spin-½ fields obey Fermi–Dirac statistics, integer spin fields Bose–Einstein. It follows from relativistic quantum field theory. The proton and neutron, made of three spin-½ quarks, are also fermions with spin ½; a pion, made of a quark and an antiquark, is a boson of spin 0.</p>"
+  },
+  "facts": [
+   [
+    "Fermions (spin ½)",
+    "6 quarks, 6 leptons"
+   ],
+   [
+    "Bosons (spin 1)",
+    "gluon, photon, W, Z"
+   ],
+   [
+    "Boson (spin 0)",
+    "Higgs"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "8.3",
+    "8-3-electron-spin"
+   ],
+   [
+    "UP3",
+    "11.2",
+    "11-2-particle-conservation-laws"
+   ]
+  ],
+  "kn": [
+   "spin_pauli",
+   "standard_model"
+  ]
+ },
+ {
+  "id": "sm_generations",
+  "title": "Three generations",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Quarks and leptons come in three copies that differ only in mass: why three is not known.",
+  "layers": {
+   "basics": "<p>The quarks and leptons come in <b>three generations</b>, each a heavier copy of the one before. The first (up, down, electron, electron neutrino) makes everyday matter. The second (charm, strange, muon, muon neutrino) and the third (top, bottom, tau, tau neutrino) have the same charges and spins but larger masses, and their particles decay quickly into first-generation ones.</p><p>Nobody knows why there are three. Experiments on the Z boson show three light neutrinos, but cannot rule out heavier extra ones.</p>",
+   "deeper": "<p>The generations mix: weak decays can change a quark from one generation to another (described by the CKM matrix for quarks and the PMNS matrix for neutrinos). That mixing allows a difference between matter and antimatter in the Standard Model, which needs at least three generations.</p>",
+   "expert": "<p>The charges in each generation sum to zero when quark colours are counted: 3 × (+2/3) + 3 × (−1/3) + (−1) + 0 = 0. This cancellation (anomaly cancellation) is required for the theory to be consistent, and it is the reason leptons and quarks come together in complete generations.</p>"
+  },
+  "facts": [
+   [
+    "Generation 1",
+    "u, d, e, νₑ"
+   ],
+   [
+    "Generation 2",
+    "c, s, μ, ν_μ"
+   ],
+   [
+    "Generation 3",
+    "t, b, τ, ν_τ"
+   ],
+   [
+    "Charge sum per generation",
+    "3 × 2/3 + 3 × (−1/3) − 1 + 0 = 0 (checked in the data)"
+   ]
+  ],
+  "certainty": "C3",
+  "refs": [
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ],
+   [
+    "CPH",
+    "33.5",
+    "33-5-quarks-is-that-all-there-is"
+   ]
+  ],
+  "kn": [
+   "quarks_leptons",
+   "standard_model"
+  ],
+  "open_questions": [
+   "Why three generations, and why these masses? (C3, unexplained)"
+  ]
+ },
+ {
+  "id": "sm_neutrino_oscillation",
+  "title": "Neutrino oscillation",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "A neutrino made as one kind can be detected later as another: proof that neutrinos have mass.",
+  "layers": {
+   "basics": "<p>A neutrino is created as one of three flavours (electron, muon or tau), but as it travels it can be detected as a different flavour. This <b>oscillation</b> happens because the flavours are mixtures of three states with slightly different masses; as the states travel they fall out of step. It means neutrinos have mass, which the original Standard Model did not allow.</p><p>The effect was shown by the Super-Kamiokande detector in 1998 (atmospheric neutrinos) and the Sudbury Neutrino Observatory in 2001–2002 (solar neutrinos).</p>",
+   "deeper": "<p>Oscillation depends on the ratio of the distance travelled L to the neutrino energy E, and on the difference of the squared masses. The PDG 2026 values: Δm²₂₁ = (7.60 ± 0.17)×10⁻⁵ eV², |Δm²₃₂| ≈ 2.4–2.5×10⁻³ eV², and mixing angles sin²θ₁₂ = 0.307, sin²θ₁₃ = 0.0217, sin²θ₂₃ ≈ 0.53. JUNO, a reactor-neutrino experiment, has begun giving more precise results (see frontier file <i>juno_oscillation</i>).</p>",
+   "expert": "<p>In the two-flavour approximation the probability that a neutrino keeps its flavour after distance L (km) and energy E (GeV) is P = 1 − sin²2θ · sin²(1.267 Δm² L / E), with Δm² in eV². The figure uses this with the PDG atmospheric values as defaults. The full three-flavour formula involves a unitary PMNS matrix with a possible CP-violating phase δ = 1.21 (+0.19, −0.17) π rad (PDG 2026).</p>"
+  },
+  "facts": [
+   [
+    "Δm²₂₁",
+    "(7.60 ± 0.17)×10⁻⁵ eV²"
+   ],
+   [
+    "|Δm²₃₂| (normal ordering)",
+    "0.002445 ± 0.000023 eV²"
+   ],
+   [
+    "Δm²₃₂ (inverted ordering)",
+    "-0.00252 ± 0.00004 eV²"
+   ],
+   [
+    "sin²θ₁₂",
+    "0.307 ± 0.012"
+   ],
+   [
+    "sin²θ₁₃",
+    "0.0217 ± 0.0007"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ],
+   [
+    "AST",
+    "16.1",
+    "16-1-sources-of-sunshine-thermal-and-gravitational-energy"
+   ]
+  ],
+  "kn": [
+   "neutrinos"
+  ],
+  "open_questions": [
+   "Normal or inverted mass ordering? Absolute masses? Dirac or Majorana? (C3)"
+  ],
+  "formula": "P(ν → same flavour) = 1 − sin²2θ · sin²(1.267 Δm² [eV²] L [km] / E [GeV])"
+ },
+ {
+  "id": "sm_beta_decay",
+  "title": "Beta decay",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "A neutron turns into a proton, an electron and an antineutrino: the weak force changing a down quark into an up quark.",
+  "layers": {
+   "basics": "<p>In beta decay a neutron changes into a proton, an electron and an antineutrino. The electron's charge −1 balances the proton's +1, so total charge stays zero. A free neutron lasts about 878 seconds on average (about 14.6 minutes; PDG 2026: 878.3 ± 0.4 s); inside most stable nuclei neutrons are stable.</p><p>At the level of quarks, one of the neutron's two down quarks turns into an up quark by emitting a W⁻ boson, which immediately becomes an electron and an antineutrino. This is the weak force at work.</p>",
+   "deeper": "<p>The PDG average neutron lifetime has a scale factor of 1.8, which flags that the two measurement methods (counting neutrons in a bottle and counting decay protons in a beam) do not agree well: the so-called neutron lifetime puzzle. The neutron is heavier than the proton by 1.2933325 ± 0.0000004 MeV/c² (PDG), more than the electron's rest mass, so the decay is allowed.</p>",
+   "expert": "<p>Neutron decay is a mixed vector and axial-vector weak transition whose rates depend on the ratio of the axial to vector couplings, g_A/g_V, about 1.27. In the Sun's core a proton turns into a neutron in the step p + p → deuteron + e⁺ + νₑ; because it needs the weak force it is extremely slow, which is why the Sun burns for billions of years rather than all at once.</p>"
+  },
+  "facts": [
+   [
+    "Neutron mean life",
+    "878.3 ± 0.4 s (PDG 2026)"
+   ],
+   [
+    "n − p mass difference",
+    "1.2933325 ± 0.0000004 MeV"
+   ],
+   [
+    "Decay",
+    "n → p + e⁻ + ν̄ₑ (≈100%)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "10.3",
+    "10-3-radioactive-decay"
+   ],
+   [
+    "CHE",
+    "21.3",
+    "21-3-radioactive-decay"
+   ],
+   [
+    "AST",
+    "16.1",
+    "16-1-sources-of-sunshine-thermal-and-gravitational-energy"
+   ]
+  ],
+  "kn": [
+   "weak_force_note",
+   "radioactivity"
+  ],
+  "open_questions": [
+   "Why do bottle and beam measurements of the neutron lifetime differ? (C3)"
+  ]
+ },
+ {
+  "id": "sm_conservation_laws",
+  "title": "Conservation laws",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Some quantities (energy, momentum, electric charge, baryon number and lepton number) are the same before and after any reaction we have seen.",
+  "layers": {
+   "basics": "<p>In every decay and collision ever observed, certain totals are unchanged. <b>Energy</b> and <b>momentum</b> are conserved. So is <b>electric charge</b>: a neutron (0) becomes a proton (+1) plus an electron (−1). So is <b>baryon number</b> (quarks count +⅓, antiquarks −⅓), which is why a proton cannot simply vanish, and <b>lepton number</b> (leptons count +1, antileptons −1), which is why the neutron's decay comes with an antineutrino.</p><p>These rules decide which reactions can happen. They are bookkeeping that nature always balances.</p>",
+   "deeper": "<p>The table checks some real decays. Some conservation laws are exact as far as we know (charge, energy, momentum); others, like baryon and lepton number, have never been seen to fail but are not protected by a known deep reason, and proposed extensions of the Standard Model predict that proton decay should eventually be seen. The PDG limit on the proton lifetime is above 9×10²⁹ years.</p>",
+   "expert": "<p>Noether's theorem links each exact conservation law to a symmetry: energy to time translation, momentum to space translation, electric charge to a U(1) phase symmetry. Baryon and lepton number are \"accidental\" symmetries of the Standard Model Lagrangian (not imposed), broken by quantum effects in a way too small to see; B − L is exactly preserved in the model.</p>"
+  },
+  "facts": [
+   [
+    "Exact (as far as known)",
+    "energy, momentum, electric charge, colour"
+   ],
+   [
+    "Never seen to fail, no deep reason known",
+    "baryon number, lepton number"
+   ],
+   [
+    "Proton lifetime",
+    "greater than 9×10²⁹ years (PDG 2026, 90% confidence)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.2",
+    "11-2-particle-conservation-laws"
+   ],
+   [
+    "CPH",
+    "33.4",
+    "33-4-particles-patterns-and-conservation-laws"
+   ]
+  ],
+  "kn": [
+   "symmetry_conservation_summary",
+   "group_symmetry"
+  ]
+ },
+ {
+  "id": "sm_feynman_diagrams",
+  "title": "Feynman diagrams",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "sm_virtual_particles"
+  ],
+  "mesh": null,
+  "needs": [],
+  "summary": "Feynman diagrams are bookkeeping for calculating how likely a reaction is: the lines are not paths that particles follow.",
+  "layers": {
+   "basics": "<p>A Feynman diagram is a picture used to organise a calculation. Lines for particles come in, meet at \"vertices\" where they interact, and lines go out. Each diagram stands for one term in a sum, and the more diagrams you add, the more precise the answer.</p><p><b>The lines are not literal paths.</b> A quantum particle has no single path between start and end. And the particles on the inside of a diagram, called virtual, are not little balls: they are shorthand for terms in the maths.</p>",
+   "deeper": "<p>Time usually runs left to right. A line going backwards in time is the same as an antiparticle going forwards. At each vertex the conservation laws must hold: charge in equals charge out. The picture on this card is the simplest one: two electrons repel by exchanging one photon.</p>",
+   "expert": "<p>Each diagram is a recipe, via the Feynman rules, for a product of propagators and vertex factors. The sum of the diagrams for a process, to a given order in the coupling constant, gives the amplitude; squaring it gives the probability. \"Virtual\" particles are internal lines; they need not satisfy E² = p² + m² and are not directly observable.</p>"
+  },
+  "facts": [
+   [
+    "What a diagram is",
+    "one term in a perturbation series"
+   ],
+   [
+    "Internal lines",
+    "virtual particles: terms in a calculation, not observable balls"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ]
+  ],
+  "kn": [
+   "standard_model",
+   "photon_node"
+  ]
+ },
+ {
+  "id": "sm_virtual_particles",
+  "title": "Virtual particles and the quark sea",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "sm_feynman_diagrams"
+  ],
+  "mesh": null,
+  "needs": [],
+  "summary": "Virtual particles are terms in a calculation, not tiny balls popping in and out of existence; the proton's \"sea\" of quark–antiquark pairs is measured, but the flickering is a metaphor.",
+  "layers": {
+   "basics": "<p>You will see \"virtual particles\" described as little balls that pop into existence and vanish. That is a metaphor for something in the mathematics: the internal lines in a Feynman diagram, which are terms in a calculation that gives the chance of a reaction. You cannot detect one on its own.</p><p>Inside a proton the strong force and the energy of the field make a lively state. Scattering experiments show the proton holds more than its three valence quarks: it also contains extra quarks and antiquarks (the <b>sea</b>) and a great many gluons. The flickering pairs in this explorer's proton scene are a visual metaphor for that measured content: the true proton is one quantum state, not a collection of sparks.</p>",
+   "deeper": "<p>What is measured: in high-energy scattering, the proton shows quarks and antiquarks of several flavours and gluons carrying a large share of its momentum. At what scale and how you divide it matters; lattice QCD gives about half of the proton's momentum to gluons (51% at 2 GeV in a 2022 calculation).</p>",
+   "expert": "<p>The sea is described by parton distribution functions, extracted from fits to data from many experiments (PDG 2026 Structure Functions review). As the energy of the probe rises, more of the proton's momentum is found in gluons and sea quarks. A parton is a way of describing the state at one scale, not a particle with a definite path.</p>"
+  },
+  "facts": [
+   [
+    "Valence quarks",
+    "u u d in the proton (net quantum numbers)"
+   ],
+   [
+    "Sea",
+    "quark–antiquark pairs, with all flavours, in a proton (measured in scattering)"
+   ],
+   [
+    "Momentum",
+    "about 49% quarks and antiquarks, 51% gluons (lattice QCD, 2 GeV; scale dependent)"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ]
+  ],
+  "kn": [
+   "qcd",
+   "protons_neutrons"
+  ]
+ },
+ {
+  "id": "sm_proton",
+  "title": "The proton",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": 1.7e-15,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [
+   "sm_up",
+   "sm_down",
+   "sm_gluon"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "A positively charged particle of two up quarks and one down quark; the nucleus of hydrogen and a building block of every nucleus.",
+  "layers": {
+   "basics": "<p>The proton is a particle of two up quarks and one down quark held by gluons. Its charge is +1 and its mass is 938.27 MeV/c², about 1,836 times the electron. It is about 0.84 femtometres (0.84×10⁻¹⁵ m) in radius: a hundred thousand times smaller than an atom. The nucleus of hydrogen is one proton; the number of protons decides what element an atom is.</p><p>Nobody has seen a proton decay: the PDG bound on its lifetime is more than 9×10²⁹ years.</p>",
+   "deeper": "<p>Only about 1% of its mass is the rest mass of its quarks; the rest is the energy of the strong field and of quark motion (see \"Where the proton's mass comes from\"). Besides the three valence quarks it holds a sea of quark–antiquark pairs and many gluons. The pictures of the proton in this explorer are cartoons: quarks have no measured size, nothing has a definite position and the picture is not to scale.</p>",
+   "expert": "<p>The PDG proton charge radius, 0.8407 ± 0.0006 fm, is a PDG average of measurements. Magnetic moment 2.7928473446(8) nuclear magnetons. In QCD the proton is the lowest-energy state with baryon number 1.</p>"
+  },
+  "facts": [
+   [
+    "Quark content",
+    "two up, one down (uud)"
+   ],
+   [
+    "Electric charge",
+    "+1 e (total: 2/3 + 2/3 − 1/3)"
+   ],
+   [
+    "Mass",
+    "938.27208943 ± 0.00000029 MeV (PDG 2026, CODATA 2022 value)"
+   ],
+   [
+    "Spin",
+    "1/2"
+   ],
+   [
+    "Charge radius",
+    "0.8407 ± 0.0006 fm (PDG 2026)"
+   ],
+   [
+    "Magnetic moment",
+    "2.7928473446 ± 0.0000000008 μN (PDG)"
+   ],
+   [
+    "Lifetime",
+    "no decay ever seen; mean life > 9×10²⁹ years (PDG, 90% CL)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "10.1",
+    "10-1-properties-of-nuclei"
+   ],
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ]
+  ],
+  "kn": [
+   "protons_neutrons",
+   "qcd"
+  ],
+  "open_questions": [
+   "Does the proton ever decay? No decay seen; some extensions of the Standard Model say yes (C3)."
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=S016&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_neutron",
+  "title": "The neutron",
+  "kind": "particle",
+  "template": "concept",
+  "scale_m": 1.7e-15,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [
+   "sm_up",
+   "sm_down",
+   "sm_gluon"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "An electrically neutral particle of one up quark and two down quarks; it lasts about 15 minutes when free.",
+  "layers": {
+   "basics": "<p>The neutron is a particle of one up quark and two down quarks. Its charge is zero (⅔ − ⅓ − ⅓). It is a little heavier than the proton (939.565 against 938.272 MeV/c²), which lets a free neutron decay: in about 878 seconds on average it becomes a proton, an electron and an antineutrino. Inside most nuclei it is stable, and neutrons are what hold nuclei together without adding electric repulsion.</p>",
+   "deeper": "<p>Although neutral, the neutron has a magnetic moment (−1.913 nuclear magnetons), a sign that it holds moving charges: its quarks. The PDG gives a mean square charge radius of −0.1155 ± 0.0017 fm², negative, which is commonly read as the negative charge sitting further out than the positive. The neutron's extra mass comes mainly from the down quark being heavier than the up quark, partly offset by electromagnetic energy.</p>",
+   "expert": "<p>PDG 2026 neutron lifetime: 878.3 ± 0.4 s with a scale factor of 1.8 (the bottle and beam methods differ). The neutron electric dipole moment has not been seen; its tiny upper limit is part of the strong-CP problem.</p>"
+  },
+  "facts": [
+   [
+    "Quark content",
+    "one up, two down (udd)"
+   ],
+   [
+    "Electric charge",
+    "0 (total: 2/3 − 1/3 − 1/3); PDG limit |q| consistent with zero, (−2 ± 8)×10⁻²² e"
+   ],
+   [
+    "Mass",
+    "939.5654219 ± 0.0000005 MeV (PDG 2026)"
+   ],
+   [
+    "Mass above proton",
+    "1.2933325 ± 0.0000004 MeV"
+   ],
+   [
+    "Spin",
+    "1/2"
+   ],
+   [
+    "Magnetic moment",
+    "-1.9130428 ± 0.0000005 μN (PDG)"
+   ],
+   [
+    "Mean life (free)",
+    "878.3 ± 0.4 s (PDG average)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "10.1",
+    "10-1-properties-of-nuclei"
+   ],
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ],
+   [
+    "UP3",
+    "10.3",
+    "10-3-radioactive-decay"
+   ]
+  ],
+  "kn": [
+   "protons_neutrons",
+   "weak_force_note"
+  ],
+  "ext": [
+   {
+    "title": "PDG live listing (Particle Data Group)",
+    "url": "https://pdglive.lbl.gov/Particle.action?node=S017&init=0"
+   }
+  ]
+ },
+ {
+  "id": "sm_hadrons",
+  "title": "Hadrons: what else quarks can make",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [
+   "sm_up",
+   "sm_down",
+   "sm_strange",
+   "sm_charm",
+   "sm_bottom"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Particles built from quarks come in two main kinds: baryons (three quarks, like the proton) and mesons (a quark and an antiquark).",
+  "layers": {
+   "basics": "<p>A <b>hadron</b> is any particle made of quarks held by the strong force. <b>Baryons</b> are three quarks, like the proton (uud) and the neutron (udd). <b>Mesons</b> are a quark with an antiquark, like the pion (up and anti-down) and the J/ψ (charm and anti-charm). The allowed combinations are the colourless ones (see \"Colour charge and confinement\"); more exotic hadrons with four or five quarks have been seen in recent years and are reviewed by the Particle Data Group.</p><p>Hundreds of hadrons are known; almost all decay quickly.</p>",
+   "deeper": "<p>The table lists a selection from the PDG 2026. Heavier hadrons (those with strange, charm or bottom quarks) decay by the weak force, living between about 10⁻¹³ and 10⁻⁸ seconds (for those in the table); some (like the Δ⁺⁺, which decays by the strong force) are \"resonances\" that last only about 6×10⁻²⁴ seconds (from its width of about 117 MeV; my calculation) and show up as bumps in collision data.</p>",
+   "expert": "<p>Hadron masses are mostly strong-field energy, not the sum of the quark masses: the pion (139.57 MeV/c²) is far lighter than a proton, because the pion is a near-massless Goldstone-like boson of chiral symmetry breaking. The charged pion mass is known to ±0.00018 MeV (PDG 2026).</p>"
+  },
+  "facts": [
+   [
+    "Baryon",
+    "three quarks (e.g. uud, udd, uds, uuu, sss)"
+   ],
+   [
+    "Meson",
+    "quark + antiquark (e.g. u d̄, c c̄)"
+   ],
+   [
+    "Exotics",
+    "four- and five-quark states have been reported (PDG pentaquark review)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ],
+   [
+    "CPH",
+    "33.5",
+    "33-5-quarks-is-that-all-there-is"
+   ]
+  ],
+  "kn": [
+   "quarks_leptons",
+   "qcd"
+  ]
+ },
+ {
+  "id": "sm_residual_strong",
+  "title": "The nuclear force and binding energy",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The force that holds protons and neutrons together in a nucleus is a leftover of the strong force, often described as exchange of pions.",
+  "layers": {
+   "basics": "<p>Inside a nucleus the protons repel each other electrically, yet nuclei hold together. What holds them is the <b>residual strong force</b>: a leftover of the force between quarks, like the weak attraction between neutral molecules left over from electric forces. It is often described as protons and neutrons swapping <b>pions</b>, which sets its range to about 1.4 femtometres (ħ divided by the pion mass times c; my calculation from the pion mass in the PDG).</p><p>The energy that would be needed to take a nucleus apart is its <b>binding energy</b>. Per particle it is largest for nuclei near iron and nickel, which is why fusion of light nuclei and fission of heavy ones both release energy.</p>",
+   "deeper": "<p>Binding energy per nucleon from the AME2020 atomic mass evaluation: helium-4 7.07 MeV, carbon-12 7.68, oxygen-16 7.98, iron-56 8.79, nickel-62 8.79, uranium-238 7.57. Nickel-62 has the highest binding energy per nucleon of any nuclide in the table.</p>",
+   "expert": "<p>The pion-exchange picture goes back to Yukawa (1935): a force mediated by a particle of mass m has range about ħ/(mc). It is an effective description; modern chiral effective field theory builds the nuclear force from pion exchange plus short-range terms, derived from QCD's symmetries. In the picture of this explorer, the pion is a quark–antiquark meson and the exchange is a bookkeeping device.</p>"
+  },
+  "facts": [
+   [
+    "Range (my calculation, ħ / m_π c)",
+    "≈ 1.4 fm"
+   ],
+   [
+    "He-4",
+    "7.07 MeV per nucleon"
+   ],
+   [
+    "Fe-56",
+    "8.79 MeV per nucleon"
+   ],
+   [
+    "U-238",
+    "7.57 MeV per nucleon"
+   ],
+   [
+    "Source",
+    "AME2020 (Wang et al., Chinese Physics C 45, 030003)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "10.2",
+    "10-2-nuclear-binding-energy"
+   ],
+   [
+    "CHE",
+    "21.1",
+    "21-1-nuclear-structure-and-stability"
+   ],
+   [
+    "CPH",
+    "33.1",
+    "33-1-the-yukawa-particle-and-the-heisenberg-uncertainty-principle-revisited"
+   ]
+  ],
+  "kn": [
+   "nuclear_force",
+   "nuclear_binding"
+  ]
+ },
+ {
+  "id": "sm_how_we_know",
+  "title": "How we know: colliders and detectors",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Particles are found by smashing beams together and recording what comes out; most of the Standard Model was found that way.",
+  "layers": {
+   "basics": "<p>Most of what we know about particles comes from collisions. A <b>collider</b> accelerates beams of particles (electrons, protons, positrons, antiprotons) to near the speed of light and makes them collide. The energy of the collision turns into new particles (E = mc²). A <b>detector</b> built around the collision point surrounds it in layers: tracking chambers follow charged particles, calorimeters stop them and measure their energy, and outer chambers pick out muons.</p><p>Heavy and short-lived particles like the top quark, W, Z and Higgs are never seen directly: they are reconstructed from the particles they decay into.</p>",
+   "deeper": "<p>Discoveries in this explorer's data came this way: the J/ψ at SLAC and Brookhaven (1974), the gluon at PETRA (1979), the W and Z at CERN's proton–antiproton collider (1983), the top quark at Fermilab (1995) and the Higgs at CERN's Large Hadron Collider (2012). Cosmic rays gave the positron, muon and kaon before accelerators existed.</p>",
+   "expert": "<p>A \"discovery\" in particle physics is a statistical statement: a signal beyond a chosen number of standard deviations over the background (conventionally five). The PDG compiles the combined results of thousands of measurements into the numbers used here.</p>"
+  },
+  "facts": [
+   [
+    "Colliders named here",
+    "SLAC SPEAR, DESY PETRA, CERN SPS, Fermilab Tevatron, CERN LHC"
+   ],
+   [
+    "Data compilation",
+    "Particle Data Group, Review of Particle Physics 2026"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.4",
+    "11-4-particle-accelerators-and-detectors"
+   ],
+   [
+    "CPH",
+    "33.3",
+    "33-3-accelerators-create-matter-from-energy"
+   ]
+  ],
+  "kn": [
+   "standard_model"
+  ]
+ },
+ {
+  "id": "sm_deep_inelastic",
+  "title": "Deep inelastic scattering",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Firing electrons at protons at high energy showed in 1968–69 that protons have small, hard constituents inside them.",
+  "layers": {
+   "basics": "<p>If you fire high-energy electrons at protons and look at how they bounce, you can tell what is inside. At SLAC in 1968–69, electrons scattered off protons much more often at large angles than a smooth blob would allow: the proton had small, hard things inside. These were later identified with quarks. The method is called <b>deep inelastic scattering</b>.</p>",
+   "deeper": "<p>The PDG describes the measurements by two variables: Q², how hard the electron strikes, and x, the fraction of the proton's momentum carried by the struck constituent in the simple \"parton\" picture. Later experiments (such as HERA in Hamburg) mapped the proton's content from large to tiny x, finding rising numbers of gluons and sea quarks.</p>",
+   "expert": "<p>Structure functions F₂(x, Q²) depend only weakly on Q² in a range, \"Bjorken scaling\", as expected for pointlike constituents; the slow violations of scaling are the effect of gluon radiation predicted by QCD (PDG 2026 Structure Functions review).</p>"
+  },
+  "facts": [
+   [
+    "Experiment",
+    "SLAC electron–proton scattering, 1968–69 (timeline source)"
+   ],
+   [
+    "Result",
+    "pointlike constituents (partons), later identified with quarks"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "11.3",
+    "11-3-quarks"
+   ]
+  ],
+  "kn": [
+   "qcd",
+   "quarks_leptons"
+  ]
+ },
+ {
+  "id": "sm_higgs_mechanism",
+  "title": "The Higgs mechanism",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "A field that has a nonzero value everywhere gives the W, Z, quarks and charged leptons their masses.",
+  "layers": {
+   "basics": "<p>The simplest equations for the W and Z bosons and for quarks and electrons have all of them massless. The <b>Higgs field</b> fixes that. It is a field that is not zero even in empty space. The W and Z, and the quarks and charged leptons, interact with it, and the interaction acts like a mass. The stronger a particle's coupling to the Higgs field, the heavier it is.</p><p>Photons and gluons do not interact with it and stay massless. The Higgs boson is a ripple of this field, and it was found in 2012.</p><p>Popular analogies (a crowd, treacle) are misleading: the Higgs field does not slow particles by friction.</p>",
+   "deeper": "<p>The Higgs field's energy is lowest not at zero but at a nonzero value, v ≈ 246 GeV (PDG), a ring of equally good minima (the \"Mexican hat\"). The universe sits in one point on that ring: \"spontaneous symmetry breaking\".</p><p>The Higgs mechanism does not explain neutrino masses in the original model (neutrinos have no coupling to it there), nor most of ordinary mass (that comes from the strong force).</p>",
+   "expert": "<p>The complex SU(2) doublet φ has potential V(φ) = μ²φ†φ + (λ²/2)(φ†φ)² with μ² < 0 (PDG Electroweak Model review, eq. 10.1). The vacuum value breaks SU(2)×U(1) to U(1)em, gives W and Z masses m_W = g v/2 and m_Z = m_W / cos θ_W, and fermion masses via Yukawa couplings m_f = y_f v / √2. The 125 GeV Higgs boson's mass fixes λ, but the shape of the potential away from the minimum has not been measured.</p>"
+  },
+  "facts": [
+   [
+    "Vacuum value",
+    "v ≈ 246 GeV (PDG)"
+   ],
+   [
+    "Higgs boson mass",
+    "125.13 ± 0.11 GeV (PDG 2026)"
+   ],
+   [
+    "Announced",
+    "4 July 2012, CERN (ATLAS and CMS)"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ]
+  ],
+  "kn": [
+   "higgs_mechanism",
+   "symmetry_breaking"
+  ],
+  "open_questions": [
+   "Is the Higgs potential the simple shape drawn here? Its form away from the minimum has not been measured (C3)."
+  ]
+ },
+ {
+  "id": "sm_gravity",
+  "title": "Gravity: the missing force",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Gravity is the one known force that the Standard Model does not include.",
+  "layers": {
+   "basics": "<p>Gravity shapes planets, stars and galaxies, but it plays no part in the Standard Model. Between two particles it is extraordinarily weak: the electric repulsion between two protons is about 10³⁶ times stronger than their gravitational attraction (my calculation from the constants). Gravity matters for big things because there is only one sign of mass, so it always adds up.</p><p>Einstein's general relativity describes gravity very well, but nobody has a quantum theory of it that has been tested. That is why the Standard Model view in this explorer shows gravity as the one missing interaction.</p>",
+   "deeper": "<p>If gravity has a force-carrying particle (a graviton), it has not been seen, and at the energies of any experiment its effects on single particles are far too small to measure. Ideas for combining gravity with quantum theory (string theory, loop quantum gravity and others) are not confirmed by experiment.</p>",
+   "expert": "<p>General relativity treats gravity as the curvature of spacetime. Treated as a quantum field theory like the others it gives infinities that cannot be removed in the usual way, so it works only as an effective theory at low energies. The energy where quantum effects of gravity become strong is far above anything reachable in a laboratory.</p>"
+  },
+  "facts": [
+   [
+    "In the Standard Model?",
+    "no"
+   ],
+   [
+    "Electric repulsion ÷ gravitational attraction, two protons",
+    "≈ 1.2×10³⁶ (calculation)"
+   ],
+   [
+    "Quantum theory of gravity",
+    "not established"
+   ]
+  ],
+  "certainty": "C3",
+  "refs": [
+   [
+    "UP1",
+    "13.1",
+    "13-1-newtons-law-of-universal-gravitation"
+   ],
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ]
+  ],
+  "kn": [
+   "quantum_gravity",
+   "general_relativity"
+  ],
+  "open_questions": [
+   "A tested quantum theory of gravity does not exist (C3)."
+  ]
+ },
+ {
+  "id": "sm_beyond",
+  "title": "What the Standard Model leaves out",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "standard_model",
+  "parents": [
+   "sm_overview"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The Standard Model has known gaps: gravity, dark matter, dark energy, neutrino masses, the matter–antimatter imbalance, and numbers it cannot predict.",
+  "layers": {
+   "basics": "<p>The Standard Model is very successful, and it is incomplete. It leaves out: <b>gravity</b>; <b>dark matter</b> (the extra, invisible mass that holds galaxies together, which none of the 17 particles can be); <b>dark energy</b> (the cause of the universe's accelerating expansion); <b>neutrino masses</b> (zero in the original model, not zero in nature); and why the universe contains matter rather than equal parts matter and antimatter.</p><p>It also has about 19 numbers it cannot predict, and cannot say why there are three generations of particles.</p>",
+   "deeper": "<p>The 19: six quark masses, three charged-lepton masses, three quark-mixing angles and one CP-violating phase, three force strengths, two Higgs parameters and one strong-CP angle. Neutrino masses and mixing add more. The count depends on convention.</p><p>The certainty tag of each item is shown with it on the figure. Most experts expect the model to be an effective description that fails at higher energies; where and how it fails is unknown.</p>",
+   "expert": "<p>The Higgs mass hierarchy problem and the strong CP problem are \"naturalness\" puzzles: parameters that are, in the model, oddly small. The PDG's review of compositeness finds no structure inside quarks or electrons down to roughly 10⁻¹⁹ to 10⁻²⁰ m (contact-interaction scale Λ above about 9–36 TeV; model dependent; length ħc/Λ is about 5×10⁻²¹ to 2×10⁻²⁰ m by my calculation).</p>"
+  },
+  "facts": [
+   [
+    "Gravity",
+    "C3: The Standard Model has no gravity. General relativity describes it very well, bu…"
+   ],
+   [
+    "Dark matter",
+    "C2: Motions of stars, galaxies and clusters, and the pattern of the early universe, …"
+   ],
+   [
+    "Dark energy",
+    "C3: The expansion of the universe is accelerating. The Standard Model has no explana…"
+   ],
+   [
+    "Neutrino masses",
+    "C1: The original Standard Model had massless neutrinos. Oscillation proves they have…"
+   ],
+   [
+    "Matter–antimatter imbalance",
+    "C2: Matter and antimatter should have been made equally in the Big Bang, yet the uni…"
+   ],
+   [
+    "Why three generations",
+    "C3: Why there are three copies of the quark and lepton pattern, and not two or four,…"
+   ]
+  ],
+  "certainty": "C3",
+  "refs": [
+   [
+    "UP3",
+    "11.5",
+    "11-5-the-standard-model"
+   ],
+   [
+    "UP3",
+    "11.6",
+    "11-6-the-big-bang"
+   ]
+  ],
+  "kn": [
+   "dark_matter_evidence",
+   "dark_energy_node",
+   "antimatter_asymmetry",
+   "neutrinos",
+   "quantum_gravity",
+   "standard_model"
+  ],
+  "open_questions": [
+   "Gravity (C3): The Standard Model has no gravity. General relativity describes it very well, but nobody has a tested quantum theory of it; the two descriptions have not been joined.",
+   "Dark matter (C2): Motions of stars, galaxies and clusters, and the pattern of the early universe, indicate matter that does not shine; none of the 17 particles fits (neutrinos are too light). What it is remains unknown.",
+   "Dark energy (C3): The expansion of the universe is accelerating. The Standard Model has no explanation, and the vacuum energy it would naturally predict is far larger than what is observed.",
+   "Neutrino masses (C1): The original Standard Model had massless neutrinos. Oscillation proves they have mass, so the model had to be extended; how neutrinos get their mass, and whether they are Majorana particles, is not known.",
+   "Matter–antimatter imbalance (C2): Matter and antimatter should have been made equally in the Big Bang, yet the universe is made of matter. The known sources of CP violation in the Standard Model are far too small to explain the amount.",
+   "Why three generations (C3): Why there are three copies of the quark and lepton pattern, and not two or four, is not known. Experiments on Z decay show three light neutrino kinds, but say nothing about heavier ones.",
+   "Free parameters (C3): The model contains about 19 numbers that are not predicted but must be measured (the masses, the mixing angles, the force strengths and so on; see the count below). Why they have the values they have is unexplained.",
+   "Why the Higgs is so light (C3): Quantum corrections would naturally push the Higgs mass towards the highest energy scale in the theory. That it stays at 125 GeV is called the hierarchy problem; no accepted solution has been confirmed.",
+   "The strong CP problem (C3): The strong force could violate the matter–antimatter mirror symmetry (the parameter θ), but measurements of the neutron's electric dipole moment find it indistinguishable from zero. Why it is so small is unexplained.",
+   "Are quarks and electrons really pointlike? (C2): No internal structure has been found. PDG 2026 reports limits on a compositeness scale of roughly 10 to 35 TeV, which corresponds to sizes below about 10⁻²⁰ m. That is a limit of measurement, not a proof that there is nothing inside."
+  ]
+ }
+]
