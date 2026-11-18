@@ -1,0 +1,1552 @@
+[
+ {
+  "id": "bio_cell_biology",
+  "title": "Cell biology",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The structure, transport, signalling and life cycle of cells.",
+  "layers": {
+   "basics": "The cell is the smallest unit of life. Cells have membranes, organelles, a skeleton, ways to move materials, ways to talk to each other and a cycle of growth and division.",
+   "deeper": "Prokaryotic cells are simple and small; eukaryotic cells have a nucleus and compartments. Compartments let a cell run incompatible chemistry side by side and target proteins to the right place.",
+   "expert": "Cell behaviour emerges from networks: signalling pathways convert external cues to gene-expression and cytoskeletal changes, while checkpoints tie growth to division and trigger apoptosis when damage is irreparable."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "cell_biology_intro",
+   "organelles_overview"
+  ]
+ },
+ {
+  "id": "bio_prokaryote_eukaryote",
+  "title": "Prokaryotic and eukaryotic cells",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_cell_theory"
+  ],
+  "summary": "Two basic cell plans.",
+  "layers": {
+   "basics": "Prokaryotes (bacteria and archaea) lack a nucleus and membrane-bound organelles. Eukaryotes keep their DNA in a nucleus and have compartments.",
+   "deeper": "Prokaryotes are typically 0.5–5 µm and eukaryotes 10–100 µm. Both have ribosomes, DNA and a plasma membrane.",
+   "expert": "Eukaryotes arose from an archaeal host that acquired bacterial endosymbionts. Eukaryotic cell volume is ≈ 1,000–10,000× that of a bacterium and mitochondria give the energy budget to support large genomes."
+  },
+  "facts": [
+   [
+    "Typical bacterium",
+    "≈ 1–2 µm"
+   ],
+   [
+    "Typical animal cell",
+    "≈ 10–30 µm"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "4.2",
+    "4-2-prokaryotic-cells"
+   ],
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ],
+   [
+    "COB",
+    "3.2",
+    "3-2-comparing-prokaryotic-and-eukaryotic-cells"
+   ]
+  ],
+  "kn": [
+   "cell_types",
+   "cell_biology_intro"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_cell_size_limits",
+  "title": "Cell size and surface-area-to-volume ratio",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_prokaryote_eukaryote"
+  ],
+  "summary": "Why cells are small.",
+  "layers": {
+   "basics": "As a cell grows, volume increases faster than surface area, so it becomes harder to supply and clear the interior.",
+   "deeper": "This is why cells divide, why gut lining and lung surfaces are folded, and why large cells use many small compartments.",
+   "expert": "For a sphere SA/V = 3/r. Diffusion time scales with distance squared (t ≈ x²/2D); in cytoplasm, a small molecule diffuses ≈ 10 µm in ≈ 50 ms but 1 mm in ≈ 10 min."
+  },
+  "facts": [
+   [
+    "SA/V of sphere",
+    "3/r"
+   ],
+   [
+    "Diffusion time for 10 µm",
+    "≈ 50 ms"
+   ]
+  ],
+  "formula": "t ≈ x² / (2D)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "4.1",
+    "4-1-studying-cells"
+   ],
+   [
+    "BIO",
+    "4.2",
+    "4-2-prokaryotic-cells"
+   ]
+  ],
+  "kn": [
+   "dimensional_scaling"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_fluid_mosaic",
+  "title": "Fluid mosaic membrane",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_membrane_lipids"
+  ],
+  "summary": "Proteins floating in a lipid bilayer.",
+  "layers": {
+   "basics": "The plasma membrane is a fluid bilayer of phospholipids with proteins, cholesterol and carbohydrates embedded.",
+   "deeper": "Lipids and many proteins move sideways; cholesterol buffers fluidity. Membrane proteins act as channels, pumps, receptors and anchors.",
+   "expert": "Lipid rafts and cytoskeletal fences create domains; the membrane is asymmetric between leaflets. Membrane composition changes with temperature (homeoviscous adaptation)."
+  },
+  "facts": [
+   [
+    "Membrane thickness",
+    "≈ 5 nm"
+   ],
+   [
+    "Protein share of mass",
+    "≈ 50%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "5.1",
+    "5-1-components-and-structure"
+   ],
+   [
+    "COB",
+    "3.4",
+    "3-4-the-cell-membrane"
+   ]
+  ],
+  "kn": [
+   "membrane_structure"
+  ],
+  "where": "cell_membrane",
+  "molecules": [
+   "popc",
+   "cholesterol"
+  ]
+ },
+ {
+  "id": "bio_diffusion_osmosis",
+  "title": "Diffusion and osmosis",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_fluid_mosaic",
+   "bio_solutions_concentration"
+  ],
+  "summary": "Passive movement down gradients.",
+  "layers": {
+   "basics": "Particles spread from high to low concentration (diffusion). Water follows by osmosis across a semipermeable membrane toward higher solute concentration.",
+   "deeper": "Small nonpolar molecules (O2, CO2) cross membranes directly. Cells in hypotonic solution swell, in hypertonic solution shrink; plant walls prevent bursting.",
+   "expert": "Fick's first law gives flux J = −D dC/dx. Aquaporins increase osmotic water permeability by ≈ 10–100-fold; Peter Agre received the 2003 Nobel for their discovery."
+  },
+  "facts": [
+   [
+    "Diffusion coefficient of glucose in water",
+    "≈ 6×10⁻¹⁰ m²/s"
+   ],
+   [
+    "Aquaporin rate",
+    "≈ 3×10⁹ water/s"
+   ]
+  ],
+  "formula": "J = −D·dC/dx",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "5.2",
+    "5-2-passive-transport"
+   ],
+   [
+    "COB",
+    "3.5",
+    "3-5-passive-transport"
+   ]
+  ],
+  "lab": {
+   "id": "microscope",
+   "preset": "osmosis_cells"
+  },
+  "where": "mol:water"
+ },
+ {
+  "id": "bio_facilitated_transport",
+  "title": "Channels and carriers (facilitated diffusion)",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_diffusion_osmosis"
+  ],
+  "summary": "Proteins that help specific molecules cross.",
+  "layers": {
+   "basics": "Channel and carrier proteins let ions and polar molecules cross membranes without energy, always downhill.",
+   "deeper": "Ion channels can be gated by voltage, ligand or force. GLUT transporters move glucose into cells.",
+   "expert": "Channels conduct up to 10^7–10^8 ions/s while carriers cycle at 10²–10⁴ s⁻¹. Selectivity filters (K+ channel) discriminate by dehydration and coordination geometry."
+  },
+  "facts": [
+   [
+    "K+ channel selectivity",
+    "≈ 1000:1 over Na+"
+   ],
+   [
+    "GLUT1 rate",
+    "≈ 10³ s⁻¹"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "5.2",
+    "5-2-passive-transport"
+   ],
+   [
+    "ANP",
+    "3.1",
+    "3-1-the-cell-membrane"
+   ]
+  ],
+  "where": "cell_membrane"
+ },
+ {
+  "id": "bio_active_transport",
+  "title": "Active transport and the Na⁺/K⁺ pump",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_facilitated_transport",
+   "bio_atp_energy_coupling"
+  ],
+  "summary": "Pumping against gradients with ATP.",
+  "layers": {
+   "basics": "The sodium-potassium pump uses ATP to push 3 Na+ out and 2 K+ in. It builds and maintains the ion gradients.",
+   "deeper": "It consumes about a quarter of resting ATP in the body and up to two-thirds in neurons. Secondary active transport (e.g. SGLT) uses the sodium gradient to import glucose.",
+   "expert": "P-type ATPases phosphorylate an aspartate in the cycle. Digoxin inhibits the pump and raises intracellular Ca2+ in the heart. Co-transport and antiport couple solute movement to ion gradients."
+  },
+  "facts": [
+   [
+    "Stoichiometry",
+    "3 Na⁺ out : 2 K⁺ in per ATP"
+   ],
+   [
+    "Share of resting ATP",
+    "≈ 20–25%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "5.3",
+    "5-3-active-transport"
+   ],
+   [
+    "COB",
+    "3.6",
+    "3-6-active-transport"
+   ],
+   [
+    "ANP",
+    "3.1",
+    "3-1-the-cell-membrane"
+   ]
+  ],
+  "where": "cell_membrane",
+  "molecules": [
+   "atp"
+  ]
+ },
+ {
+  "id": "bio_bulk_transport",
+  "title": "Endocytosis and exocytosis",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "macrophage"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_fluid_mosaic"
+  ],
+  "summary": "Moving large cargo in vesicles.",
+  "layers": {
+   "basics": "Cells engulf material by endocytosis and release it by exocytosis, using membrane vesicles.",
+   "deeper": "Types include phagocytosis (cell eating), pinocytosis (cell drinking) and receptor-mediated endocytosis, which captures cholesterol-carrying LDL.",
+   "expert": "Clathrin coats and dynamin pinch off vesicles; SNARE proteins mediate vesicle fusion. Defective LDL receptor endocytosis causes familial hypercholesterolemia."
+  },
+  "facts": [
+   [
+    "Clathrin vesicle",
+    "≈ 100 nm"
+   ],
+   [
+    "SNARE complex",
+    "4-helix bundle"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "5.4",
+    "5-4-bulk-transport"
+   ],
+   [
+    "COB",
+    "3.6",
+    "3-6-active-transport"
+   ]
+  ],
+  "where": "cell_membrane"
+ },
+ {
+  "id": "bio_membrane_potential",
+  "title": "Membrane potential",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "action_potential"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_electrolytes_ions",
+   "bio_active_transport"
+  ],
+  "summary": "Voltage across cell membranes.",
+  "layers": {
+   "basics": "Cells are electrically polarised, with the inside negative. Ion gradients and selective channels create this resting voltage.",
+   "deeper": "Resting potential is ≈ −70 mV in neurons, set mainly by K+ leak channels. Changes in this voltage are the basis of nerve signals.",
+   "expert": "The Goldman–Hodgkin–Katz equation weights each ion by permeability. Mitochondria also maintain a ≈ −180 mV potential across their inner membrane."
+  },
+  "facts": [
+   [
+    "Neuron resting potential",
+    "≈ −70 mV"
+   ],
+   [
+    "Mitochondrial inner membrane",
+    "≈ −180 mV"
+   ]
+  ],
+  "formula": "Vm = (RT/F)·ln[(ΣPₖ[K]ₒ + …)/(ΣPₖ[K]ᵢ + …)]",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "12.4",
+    "12-4-the-action-potential"
+   ],
+   [
+    "BIO",
+    "35.2",
+    "35-2-how-neurons-communicate"
+   ]
+  ],
+  "kn": [
+   "action_potential"
+  ],
+  "where": "neuron"
+ },
+ {
+  "id": "bio_nuclear_organization",
+  "title": "Nucleus, nuclear pores and nucleolus",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_prokaryote_eukaryote"
+  ],
+  "summary": "The cell's command centre.",
+  "layers": {
+   "basics": "The nucleus holds chromosomes inside a double membrane with pores. The nucleolus inside builds ribosome parts.",
+   "deeper": "Nuclear pore complexes regulate traffic between nucleus and cytoplasm; mRNA exits while transcription factors enter.",
+   "expert": "Each pore is ≈ 120 MDa made of ≈ 30 distinct nucleoporins and passes ≈ 1,000 translocations per second. The lamina gives mechanical support; mutations in lamin A cause progeria."
+  },
+  "facts": [
+   [
+    "Nuclear pore mass",
+    "≈ 120 MDa"
+   ],
+   [
+    "Pores per nucleus",
+    "≈ 2,000–4,000"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ],
+   [
+    "ANP",
+    "3.3",
+    "3-3-the-nucleus-and-dna-replication"
+   ]
+  ],
+  "where": "nucleus"
+ },
+ {
+  "id": "bio_protein_targeting_secretory",
+  "title": "Secretory pathway and protein targeting",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "golgi_apparatus"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_chaperones_proteostasis",
+   "bio_glycoconjugates"
+  ],
+  "summary": "Getting proteins to the right place.",
+  "layers": {
+   "basics": "Proteins destined for secretion or membranes are made on ER-bound ribosomes, folded and glycosylated in the ER, sorted in the Golgi, and shipped in vesicles.",
+   "deeper": "A short signal sequence on the new chain directs it to the ER. Other signals send proteins to the nucleus, mitochondria or lysosomes.",
+   "expert": "The signal recognition particle (SRP) pauses translation and docks the ribosome onto the translocon (Sec61). Mannose-6-phosphate tags direct enzymes to lysosomes; I-cell disease results from loss of the tagging enzyme."
+  },
+  "facts": [
+   [
+    "Signal peptide length",
+    "≈ 15–30 residues"
+   ],
+   [
+    "Golgi cisternae",
+    "3–8"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "4.4",
+    "4-4-the-endomembrane-system-and-proteins"
+   ],
+   [
+    "ANP",
+    "3.2",
+    "3-2-the-cytoplasm-and-cellular-organelles"
+   ]
+  ],
+  "where": "endoplasmic_reticulum"
+ },
+ {
+  "id": "bio_autophagy",
+  "title": "Autophagy",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_protein_targeting_secretory"
+  ],
+  "summary": "Cells recycling their own parts.",
+  "layers": {
+   "basics": "In autophagy a membrane wraps cytoplasm or damaged organelles and delivers them to lysosomes for breakdown and recycling.",
+   "deeper": "It is activated by starvation and stress, and clears damaged mitochondria (mitophagy) and aggregates. Yoshinori Ohsumi won the 2016 Nobel for discovering its mechanisms.",
+   "expert": "The ATG gene family drives phagophore formation; mTOR inhibition triggers it. Impaired autophagy is linked to neurodegeneration and cancer, but tumours can also exploit it."
+  },
+  "facts": [
+   [
+    "Nobel Prize",
+    "2016 (Ohsumi)"
+   ],
+   [
+    "Autophagosome size",
+    "≈ 0.5–1.5 µm"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "4.4",
+    "4-4-the-endomembrane-system-and-proteins"
+   ],
+   [
+    "ANP",
+    "3.2",
+    "3-2-the-cytoplasm-and-cellular-organelles"
+   ]
+  ],
+  "where": "lysosome"
+ },
+ {
+  "id": "bio_endosymbiosis",
+  "title": "Endosymbiotic theory",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_prokaryote_eukaryote",
+   "bio_photosynthesis_overview"
+  ],
+  "summary": "Mitochondria and chloroplasts as ex-bacteria.",
+  "layers": {
+   "basics": "Mitochondria and chloroplasts descend from free-living bacteria engulfed by ancestral cells. They keep their own DNA and ribosomes and divide independently.",
+   "deeper": "Evidence: circular DNA, bacterial-type ribosomes, double membranes, and genes that group with alpha-proteobacteria (mitochondria) and cyanobacteria (chloroplasts). Lynn Margulis championed the idea in 1967.",
+   "expert": "Most endosymbiont genes have moved to the nucleus; the human mtDNA retains only 37 genes (16.6 kb). Secondary endosymbiosis explains algae with 3–4 membranes around plastids. The identity of the archaeal host (Asgard archaea) is still being tested."
+  },
+  "facts": [
+   [
+    "Human mtDNA",
+    "16,569 bp, 37 genes"
+   ],
+   [
+    "Mitochondria per cell",
+    "hundreds to thousands"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "The exact nature of the host cell and the timing of mitochondrial acquisition relative to eukaryotic complexity (mitochondria-early vs late) remain debated."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "23.1",
+    "23-1-eukaryotic-origins"
+   ],
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ],
+   [
+    "COB",
+    "13.2",
+    "13-2-eukaryotic-origins"
+   ]
+  ],
+  "kn": [
+   "common_descent",
+   "mitochondria_org",
+   "chloroplast_org"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_chloroplasts_plastids",
+  "title": "Chloroplasts and plastids",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_endosymbiosis"
+  ],
+  "summary": "Plant organelles for photosynthesis and storage.",
+  "layers": {
+   "basics": "Chloroplasts hold stacks of thylakoid membranes (grana) where light reactions occur, in a fluid called stroma.",
+   "deeper": "Other plastids store starch (amyloplasts) or pigments (chromoplasts). Chloroplast numbers per leaf cell range from ≈ 20 to 100.",
+   "expert": "Chloroplast genomes are ≈ 120–160 kb with ≈ 100–130 genes. Chloroplasts import ≈ 3,000 proteins using TOC/TIC translocons."
+  },
+  "facts": [
+   [
+    "Chloroplasts per leaf cell",
+    "≈ 20–100"
+   ],
+   [
+    "Chloroplast genome",
+    "≈ 120–160 kb"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ],
+   [
+    "COB",
+    "5.1",
+    "5-1-overview-of-photosynthesis"
+   ]
+  ],
+  "kn": [
+   "chloroplast_org"
+  ],
+  "where": "place:leaf",
+  "molecules": [
+   "chlorophyll_a"
+  ]
+ },
+ {
+  "id": "bio_cell_wall_ecm",
+  "title": "Cell walls and extracellular matrix",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_polysaccharides",
+   "bio_prokaryote_eukaryote"
+  ],
+  "summary": "Outer layers that support and connect cells.",
+  "layers": {
+   "basics": "Plant cells have cellulose walls, bacteria have peptidoglycan walls and fungi have chitin. Animal cells are embedded in an extracellular matrix of collagen and other proteins.",
+   "deeper": "Walls resist osmotic bursting; the ECM carries signals and guides cell migration. Collagen is the most abundant protein in the human body.",
+   "expert": "Integrins link the ECM to the actin cytoskeleton and transmit mechanical signals (mechanotransduction). Primary vs secondary plant walls differ in composition; lignin makes wood rigid."
+  },
+  "facts": [
+   [
+    "Collagen share of body protein",
+    "≈ 25–30%"
+   ],
+   [
+    "Bacterial wall",
+    "peptidoglycan"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "4.6",
+    "4-6-connections-between-cells-and-cellular-activities"
+   ],
+   [
+    "COB",
+    "3.3",
+    "3-3-eukaryotic-cells"
+   ]
+  ],
+  "where": "connective_tissue_loose"
+ },
+ {
+  "id": "bio_cell_junctions",
+  "title": "Cell junctions",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_fluid_mosaic"
+  ],
+  "summary": "How neighbouring cells attach and communicate.",
+  "layers": {
+   "basics": "Tight junctions seal gaps between cells, desmosomes act as spot rivets, and gap junctions form channels that let small molecules pass.",
+   "deeper": "Plant cells connect through plasmodesmata. Junctions let tissues act as units, for example synchronising heart cells.",
+   "expert": "Gap junctions are made of connexins and pass molecules < 1 kDa. Tight junctions (claudins, occludin) set epithelial barrier properties and the blood–brain barrier."
+  },
+  "facts": [
+   [
+    "Gap junction cutoff",
+    "≈ 1 kDa"
+   ],
+   [
+    "Plasmodesmata pore",
+    "≈ 3–50 nm"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "4.6",
+    "4-6-connections-between-cells-and-cellular-activities"
+   ],
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ],
+  "where": "epithelial_tissue"
+ },
+ {
+  "id": "bio_microtubules_motors",
+  "title": "Microtubules and motor proteins",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_prokaryote_eukaryote"
+  ],
+  "summary": "Tracks and trucks inside the cell.",
+  "layers": {
+   "basics": "Microtubules are hollow tubes of tubulin that form tracks. Kinesin and dynein motors walk along them carrying cargo.",
+   "deeper": "Microtubules form the mitotic spindle and the core of cilia and flagella. Kinesin steps ≈ 8 nm per ATP.",
+   "expert": "Dynamic instability (growth and catastrophe) lets spindles search and capture chromosomes. Taxol stabilises microtubules and kills dividing cells, and colchicine prevents polymerisation."
+  },
+  "facts": [
+   [
+    "Microtubule diameter",
+    "≈ 25 nm"
+   ],
+   [
+    "Kinesin step",
+    "8 nm per ATP"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "4.5",
+    "4-5-the-cytoskeleton"
+   ],
+   [
+    "COB",
+    "3.3",
+    "3-3-eukaryotic-cells"
+   ]
+  ],
+  "kn": [
+   "cytoskeleton_motors"
+  ],
+  "where": "cytoskeleton"
+ },
+ {
+  "id": "bio_actin_intermediate",
+  "title": "Actin and intermediate filaments",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_prokaryote_eukaryote"
+  ],
+  "summary": "Cell shape, movement and strength.",
+  "layers": {
+   "basics": "Actin filaments drive crawling, pinch cells in two and work with myosin in muscle. Intermediate filaments such as keratin give tensile strength.",
+   "deeper": "Actin polymerises at one end and shrinks at the other (treadmilling), pushing the leading edge of moving cells.",
+   "expert": "Arp2/3 nucleates branched actin networks; formins nucleate straight filaments. Intermediate filament types are tissue-specific and used as diagnostic markers."
+  },
+  "facts": [
+   [
+    "Actin filament diameter",
+    "≈ 7 nm"
+   ],
+   [
+    "Intermediate filament",
+    "≈ 10 nm"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "4.5",
+    "4-5-the-cytoskeleton"
+   ],
+   [
+    "ANP",
+    "3.2",
+    "3-2-the-cytoplasm-and-cellular-organelles"
+   ]
+  ],
+  "kn": [
+   "cytoskeleton_motors"
+  ],
+  "where": "cytoskeleton"
+ },
+ {
+  "id": "bio_signaling_overview",
+  "title": "Cell signaling: ligands, receptors and responses",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_fluid_mosaic"
+  ],
+  "summary": "How cells sense and answer messages.",
+  "layers": {
+   "basics": "A signalling molecule (ligand) binds a receptor, which starts a chain of events inside the cell leading to a response.",
+   "deeper": "Signals can act at a distance (endocrine), nearby (paracrine), on themselves (autocrine) or by direct contact. Receptors are at the surface or inside.",
+   "expert": "Signalling networks add amplification, feedback and crosstalk. Response specificity arises from receptor type, scaffold proteins and cell context; typical receptor K_d ≈ nM."
+  },
+  "facts": [
+   [
+    "Receptor affinity",
+    "K_d ≈ nM"
+   ],
+   [
+    "Signalling classes",
+    "endocrine, paracrine, autocrine, juxtacrine"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "9.1",
+    "9-1-signaling-molecules-and-cellular-receptors"
+   ],
+   [
+    "BIO",
+    "9.2",
+    "9-2-propagation-of-the-signal"
+   ],
+   [
+    "BIO",
+    "9.3",
+    "9-3-response-to-the-signal"
+   ],
+   [
+    "COB",
+    "6.1",
+    "6-1-the-genome"
+   ]
+  ],
+  "kn": [
+   "cell_signaling"
+  ],
+  "where": "cell_membrane"
+ },
+ {
+  "id": "bio_gpcr_signaling",
+  "title": "G-protein-coupled receptors",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "hormone_signaling"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_signaling_overview"
+  ],
+  "summary": "The largest family of receptors.",
+  "layers": {
+   "basics": "A GPCR spans the membrane seven times. When a ligand binds, it activates a G protein that triggers second messengers.",
+   "deeper": "About a third of approved drugs act on GPCRs, including beta blockers and antihistamines. Vision, smell and adrenaline responses use them.",
+   "expert": "Gα exchanges GDP for GTP and dissociates from Gβγ; Gs activates adenylyl cyclase (cAMP), Gq activates PLC (IP3/DAG). β-arrestin terminates and redirects signalling. Lefkowitz and Kobilka won the 2012 Nobel."
+  },
+  "facts": [
+   [
+    "Human GPCRs",
+    "≈ 800"
+   ],
+   [
+    "Drugs targeting GPCRs",
+    "≈ 30–35%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "9.1",
+    "9-1-signaling-molecules-and-cellular-receptors"
+   ],
+   [
+    "BIO",
+    "9.2",
+    "9-2-propagation-of-the-signal"
+   ]
+  ],
+  "kn": [
+   "cell_signaling"
+  ],
+  "where": "cell_membrane",
+  "molecules": [
+   "camp"
+  ]
+ },
+ {
+  "id": "bio_rtk_cascades",
+  "title": "Receptor tyrosine kinases and kinase cascades",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "signal_transduction_process"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_signaling_overview",
+   "bio_covalent_regulation"
+  ],
+  "summary": "Growth-factor signalling by phosphorylation.",
+  "layers": {
+   "basics": "When a growth factor binds an RTK, receptors pair up and phosphorylate each other. This starts cascades such as Ras–MAP kinase.",
+   "deeper": "Cascades amplify the signal and end in changes to transcription factors. Mutations that lock Ras or RTKs \"on\" drive many cancers.",
+   "expert": "SH2 domains dock to phosphotyrosines, Grb2/SOS activates Ras, and the Raf–MEK–ERK module relays the signal. Imatinib and other kinase inhibitors target these pathways."
+  },
+  "facts": [
+   [
+    "Ras mutated in",
+    "≈ 20–30% of human cancers"
+   ],
+   [
+    "MAPK tiers",
+    "3 kinases"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "9.2",
+    "9-2-propagation-of-the-signal"
+   ],
+   [
+    "BIO",
+    "9.3",
+    "9-3-response-to-the-signal"
+   ]
+  ],
+  "kn": [
+   "cell_signaling"
+  ],
+  "where": "cell_membrane"
+ },
+ {
+  "id": "bio_second_messengers",
+  "title": "Second messengers and calcium signalling",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_gpcr_signaling"
+  ],
+  "summary": "Small molecules that spread the message.",
+  "layers": {
+   "basics": "cAMP, IP3, diacylglycerol and Ca2+ are small second messengers that relay and amplify signals.",
+   "deeper": "Cytosolic Ca2+ rises from ≈ 100 nM to ≈ 1 µM when channels open, triggering muscle contraction, secretion and fertilisation responses.",
+   "expert": "Calmodulin decodes Ca2+ oscillations; phosphodiesterases degrade cAMP (caffeine inhibits them). Signal amplification: one activated receptor can generate thousands of second messengers."
+  },
+  "facts": [
+   [
+    "Resting cytosolic Ca²⁺",
+    "≈ 100 nM"
+   ],
+   [
+    "Ca²⁺ during signal",
+    "≈ 1 µM"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "9.2",
+    "9-2-propagation-of-the-signal"
+   ],
+   [
+    "ANP",
+    "17.2",
+    "17-2-hormones"
+   ]
+  ],
+  "where": "mol:camp",
+  "molecules": [
+   "camp"
+  ]
+ },
+ {
+  "id": "bio_nuclear_receptors",
+  "title": "Steroid and nuclear receptors",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "endocrine_system"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_signaling_overview",
+   "bio_steroids_terpenoids"
+  ],
+  "summary": "Hormones that act directly on gene expression.",
+  "layers": {
+   "basics": "Lipid-soluble hormones like cortisol, estrogen and thyroid hormone cross the membrane and bind receptors that act as transcription factors.",
+   "deeper": "The hormone–receptor complex binds hormone response elements in DNA and turns genes on or off. Effects are slower but longer lasting than membrane receptors.",
+   "expert": "The nuclear receptor superfamily has ≈ 48 human members. Many drugs (tamoxifen, glucocorticoids) target them."
+  },
+  "facts": [
+   [
+    "Human nuclear receptors",
+    "≈ 48"
+   ],
+   [
+    "Onset of action",
+    "minutes to hours"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "9.1",
+    "9-1-signaling-molecules-and-cellular-receptors"
+   ],
+   [
+    "ANP",
+    "17.2",
+    "17-2-hormones"
+   ]
+  ],
+  "where": "mol:cortisol",
+  "molecules": [
+   "cortisol",
+   "estradiol",
+   "thyroxine"
+  ]
+ },
+ {
+  "id": "bio_cell_cycle",
+  "title": "The cell cycle",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "mitosis"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_prokaryote_eukaryote"
+  ],
+  "summary": "G1, S, G2 and M.",
+  "layers": {
+   "basics": "Cells grow in G1, copy DNA in S, prepare in G2 and divide in M phase (mitosis and cytokinesis).",
+   "deeper": "Cell cycle lengths vary: ≈ 24 h in typical cultured human cells, ≈ 20 min for E. coli, and G0 for cells that exit the cycle such as neurons.",
+   "expert": "Cyclin-dependent kinases (CDKs) partner with cyclins, whose abundance oscillates. Three main checkpoints: G1/S, G2/M and the spindle checkpoint in metaphase."
+  },
+  "facts": [
+   [
+    "Typical human cell cycle",
+    "≈ 24 h"
+   ],
+   [
+    "S phase",
+    "≈ 8 h"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "10.2",
+    "10-2-the-cell-cycle"
+   ],
+   [
+    "COB",
+    "6.2",
+    "6-2-the-cell-cycle"
+   ]
+  ],
+  "kn": [
+   "cell_cycle"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_cell_cycle_control",
+  "title": "Cell-cycle control, checkpoints and tumour suppressors",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_cell_cycle",
+   "bio_rtk_cascades"
+  ],
+  "summary": "Brakes and accelerators of division.",
+  "layers": {
+   "basics": "Checkpoints stop the cycle if DNA is damaged or chromosomes are not aligned. Proteins like p53 and Rb act as brakes.",
+   "deeper": "Cyclin–CDK complexes push the cycle forward; p21 and p27 inhibit them. Mutated p53 is found in about half of human cancers.",
+   "expert": "Rb holds E2F transcription factors until phosphorylated by CDK4/6. p53 senses DNA damage via ATM/ATR and induces arrest, repair or apoptosis; the anaphase-promoting complex triggers separation of sister chromatids."
+  },
+  "facts": [
+   [
+    "TP53 mutated in",
+    "≈ 50% of cancers"
+   ],
+   [
+    "CDK4/6 inhibitors",
+    "approved for breast cancer"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "10.3",
+    "10-3-control-of-the-cell-cycle"
+   ],
+   [
+    "BIO",
+    "10.4",
+    "10-4-cancer-and-the-cell-cycle"
+   ],
+   [
+    "COB",
+    "6.3",
+    "6-3-cancer-and-the-cell-cycle"
+   ]
+  ],
+  "kn": [
+   "cell_cycle",
+   "cancer_biology"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_cytokinesis_prokaryotic_division",
+  "title": "Cytokinesis and binary fission",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_cell_cycle"
+  ],
+  "summary": "Splitting the cell in two.",
+  "layers": {
+   "basics": "Animal cells pinch in two with a ring of actin and myosin; plant cells build a new wall; bacteria divide by binary fission.",
+   "deeper": "Bacteria use FtsZ, a tubulin relative, to form a ring at mid-cell. Under ideal conditions E. coli can divide every ≈ 20 min.",
+   "expert": "Cytokinesis is positioned by the spindle midzone and regulated by RhoA. Min proteins in bacteria oscillate to keep the division ring at the centre."
+  },
+  "facts": [
+   [
+    "E. coli doubling time",
+    "≈ 20 min"
+   ],
+   [
+    "Bacterial division protein",
+    "FtsZ"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "10.1",
+    "10-1-cell-division"
+   ],
+   [
+    "BIO",
+    "10.5",
+    "10-5-prokaryotic-cell-division"
+   ],
+   [
+    "COB",
+    "6.4",
+    "6-4-prokaryotic-cell-division"
+   ]
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_apoptosis",
+  "title": "Apoptosis and cell death",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_cell_cycle_control"
+  ],
+  "summary": "Programmed cell suicide.",
+  "layers": {
+   "basics": "Apoptosis is an orderly, controlled way for cells to die. It shapes tissues in development and removes damaged cells.",
+   "deeper": "A cascade of caspase enzymes cuts cell components. The cell shrinks, blebs and is eaten by neighbours without causing inflammation, unlike necrosis.",
+   "expert": "Intrinsic pathway: mitochondrial cytochrome c release and apoptosome; extrinsic: death receptors (Fas). BCL-2 family proteins balance survival. In C. elegans exactly 131 of 1,090 somatic cells die by apoptosis."
+  },
+  "facts": [
+   [
+    "C. elegans cells dying",
+    "131"
+   ],
+   [
+    "Adult human cells lost per day",
+    "≈ 50–70 billion"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "10.3",
+    "10-3-control-of-the-cell-cycle"
+   ],
+   [
+    "ANP",
+    "3.5",
+    "3-5-cell-growth-and-division"
+   ]
+  ],
+  "kn": [
+   "cell_cycle"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_stem_cells_differentiation",
+  "title": "Stem cells and differentiation",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "stem_cell"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_nuclear_organization",
+   "bio_cell_cycle"
+  ],
+  "summary": "Cells that can renew and become specialised.",
+  "layers": {
+   "basics": "Stem cells divide to renew themselves and to produce cells that specialise. Embryonic stem cells can give rise to any cell type.",
+   "deeper": "Adult stem cells (bone marrow, gut crypts, skin) maintain tissues. Reprogramming adult cells to induced pluripotent stem cells (iPSC) won Yamanaka the 2012 Nobel.",
+   "expert": "Pluripotency is maintained by OCT4, SOX2 and NANOG; differentiation involves epigenetic restriction. Applications include disease modelling, organoids and cell therapy; safety concerns include tumour formation."
+  },
+  "facts": [
+   [
+    "iPSC factors",
+    "OCT4, SOX2, KLF4, c-MYC"
+   ],
+   [
+    "Gut epithelium turnover",
+    "≈ 3–5 days"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "3.6",
+    "3-6-cellular-differentiation"
+   ],
+   [
+    "BIO",
+    "10.1",
+    "10-1-cell-division"
+   ]
+  ],
+  "kn": [
+   "cell_types",
+   "development_biology"
+  ],
+  "where": "stem_cell"
+ },
+ {
+  "id": "bio_telomeres_senescence",
+  "title": "Telomeres, senescence and ageing",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_cell_biology",
+  "parents": [
+   "bio_cell_biology"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_cell_cycle_control"
+  ],
+  "summary": "The cell's division counter.",
+  "layers": {
+   "basics": "Telomeres are repeated DNA caps at chromosome ends that shorten with each division. When short, cells stop dividing (senescence).",
+   "deeper": "Telomerase rebuilds telomeres in stem and germ cells and is reactivated in most cancers. Hayflick found normal human cells divide ≈ 40–60 times.",
+   "expert": "Human telomere repeat TTAGGG, 5–15 kb long at birth. Senescent cells secrete inflammatory factors (SASP); clearing them extends healthspan in mice. How much telomere loss drives human ageing is still being studied."
+  },
+  "facts": [
+   [
+    "Hayflick limit",
+    "≈ 40–60 divisions"
+   ],
+   [
+    "Telomere repeat",
+    "TTAGGG"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How much replicative senescence and telomere erosion contribute to organismal ageing versus other hallmarks is unresolved."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ],
+   [
+    "ANP",
+    "3.5",
+    "3-5-cell-growth-and-division"
+   ]
+  ],
+  "kn": [
+   "aging_biology"
+  ],
+  "where": "place:dna"
+ }
+]

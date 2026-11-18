@@ -1,0 +1,2594 @@
+[
+ {
+  "id": "bio_biochem",
+  "title": "Biomolecules and biochemistry",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Carbohydrates, lipids, proteins, nucleic acids, enzymes and metabolism.",
+  "layers": {
+   "basics": "Cells are built from four families of large molecules and run on enzymes. Metabolism is the web of reactions that turns food or light into energy and building blocks.",
+   "deeper": "Sugars store energy, lipids make membranes and fuel, proteins do most of the work, and nucleic acids store and read information. Enzymes speed reactions by orders of magnitude and are controlled by feedback.",
+   "expert": "Biochemistry connects structure to function through thermodynamics and kinetics. Metabolic pathways are regulated at a few committed or irreversible steps, and flux is integrated across tissues by hormones."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "biomolecules_overview",
+   "metabolism_overview"
+  ]
+ },
+ {
+  "id": "bio_monosaccharides",
+  "title": "Monosaccharides",
+  "kind": "molecule",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_fischer_cyclic_sugars",
+   "bio_macromolecule_synthesis"
+  ],
+  "summary": "Simple sugars such as glucose, fructose and ribose.",
+  "layers": {
+   "basics": "Monosaccharides are single sugar units with the formula (CH2O)n. Glucose is the main fuel; ribose and deoxyribose are in RNA and DNA.",
+   "deeper": "Sugars are classed as aldoses or ketoses and by chain length (triose to heptose). Blood glucose is held near 5 mM.",
+   "expert": "Glucose is transported by GLUT proteins and trapped in cells by hexokinase phosphorylation to glucose-6-phosphate. Non-enzymatic glycation of proteins (as in HbA1c) is a marker of long-term hyperglycaemia."
+  },
+  "facts": [
+   [
+    "Normal fasting blood glucose",
+    "≈ 4–5.5 mM"
+   ],
+   [
+    "Glucose formula",
+    "C6H12O6"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "3.2",
+    "3-2-carbohydrates"
+   ],
+   [
+    "COB",
+    "2.3",
+    "2-3-biological-molecules"
+   ],
+   [
+    "ORG",
+    "25.1",
+    "25-1-classification-of-carbohydrates"
+   ],
+   [
+    "ORG",
+    "25.7",
+    "25-7-the-eight-essential-monosaccharides"
+   ]
+  ],
+  "kn": [
+   "carbohydrates_energy"
+  ],
+  "where": "mol:glucose_alpha",
+  "molecules": [
+   "glucose_alpha",
+   "glucose_beta",
+   "fructose",
+   "galactose",
+   "ribose",
+   "deoxyribose"
+  ]
+ },
+ {
+  "id": "bio_disaccharides",
+  "title": "Disaccharides and glycosidic bonds",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_monosaccharides"
+  ],
+  "summary": "Two sugars linked by a glycosidic bond.",
+  "layers": {
+   "basics": "Sucrose, lactose and maltose are disaccharides. A glycosidic bond joins two sugars with loss of water.",
+   "deeper": "Lactose intolerance arises when lactase activity declines after weaning, so milk sugar reaches the colon.",
+   "expert": "α(1→4), β(1→4), α(1→2) and other linkages give different shapes and digestibility. Lactase persistence evolved independently several times in pastoral populations."
+  },
+  "facts": [
+   [
+    "Sucrose",
+    "glucose + fructose"
+   ],
+   [
+    "Lactose",
+    "glucose + galactose"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "3.2",
+    "3-2-carbohydrates"
+   ],
+   [
+    "ORG",
+    "25.8",
+    "25-8-disaccharides"
+   ]
+  ],
+  "where": "mol:sucrose",
+  "molecules": [
+   "sucrose",
+   "lactose",
+   "maltose",
+   "cellobiose"
+  ]
+ },
+ {
+  "id": "bio_polysaccharides",
+  "title": "Polysaccharides: starch, glycogen, cellulose, chitin",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_disaccharides"
+  ],
+  "summary": "Sugar polymers for storage and structure.",
+  "layers": {
+   "basics": "Starch (plants) and glycogen (animals) store glucose; cellulose and chitin build cell walls and exoskeletons.",
+   "deeper": "Glycogen is highly branched so many ends can be cleaved at once, giving rapid glucose release. Cellulose chains line up in hydrogen-bonded microfibrils that are very strong.",
+   "expert": "Cellulose is the most abundant biopolymer on Earth, but only microbes (including gut symbionts of ruminants and termites) produce the cellulases to digest it. Chitin contains N-acetylglucosamine."
+  },
+  "facts": [
+   [
+    "Liver glycogen",
+    "≈ 100 g"
+   ],
+   [
+    "Cellulose in wood",
+    "≈ 40–50% dry mass"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "3.2",
+    "3-2-carbohydrates"
+   ],
+   [
+    "ORG",
+    "25.9",
+    "25-9-polysaccharides-and-their-synthesis"
+   ],
+   [
+    "COB",
+    "2.3",
+    "2-3-biological-molecules"
+   ]
+  ],
+  "kn": [
+   "carbohydrates_energy"
+  ],
+  "where": "mol:cellotriose",
+  "molecules": [
+   "cellotriose",
+   "n_acetylglucosamine",
+   "glucose_alpha"
+  ]
+ },
+ {
+  "id": "bio_glycoconjugates",
+  "title": "Glycoproteins, glycolipids and the glycocalyx",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "cell_membrane"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_polysaccharides"
+  ],
+  "summary": "Sugars attached to proteins and lipids.",
+  "layers": {
+   "basics": "Many proteins and lipids on the cell surface carry short sugar chains. These form a coat called the glycocalyx.",
+   "deeper": "ABO blood groups, cell recognition, immune signalling and viral attachment all depend on cell-surface glycans.",
+   "expert": "N-linked glycosylation begins in the ER on a dolichol-linked precursor and is trimmed in the Golgi, serving as a folding-quality-control tag. Aberrant glycosylation is a hallmark of cancer."
+  },
+  "facts": [
+   [
+    "ABO antigen basis",
+    "terminal sugars"
+   ],
+   [
+    "N-glycan precursor",
+    "14 sugar residues"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "4.6",
+    "4-6-connections-between-cells-and-cellular-activities"
+   ],
+   [
+    "ORG",
+    "25.10",
+    "25-10-some-other-important-carbohydrates"
+   ]
+  ],
+  "where": "cell_membrane"
+ },
+ {
+  "id": "bio_fatty_acids_fats",
+  "title": "Fatty acids and triglycerides",
+  "kind": "molecule",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_macromolecule_synthesis"
+  ],
+  "summary": "Hydrocarbon chains that store energy.",
+  "layers": {
+   "basics": "Fatty acids are long carbon chains with a carboxyl end. Three of them on a glycerol make a triglyceride (fat), the main long-term energy store.",
+   "deeper": "Saturated fats have no double bonds and pack tightly (solid at room temperature); unsaturated fats have kinks and stay liquid. Fat stores about twice the energy of carbohydrate per gram.",
+   "expert": "Essential fatty acids (linoleic, α-linolenic) cannot be made by humans. Trans fats raise LDL; cis double bonds impart fluidity to membranes."
+  },
+  "facts": [
+   [
+    "Fat energy density",
+    "≈ 38 kJ/g (9 kcal/g)"
+   ],
+   [
+    "Typical chain length",
+    "16–18 C"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "3.3",
+    "3-3-lipids"
+   ],
+   [
+    "ORG",
+    "27.1",
+    "27-1-waxes-fats-and-oils"
+   ],
+   [
+    "COB",
+    "2.3",
+    "2-3-biological-molecules"
+   ]
+  ],
+  "kn": [
+   "biomolecules_overview"
+  ],
+  "where": "mol:stearic_acid",
+  "molecules": [
+   "palmitic_acid",
+   "stearic_acid",
+   "oleic_acid",
+   "linoleic_acid",
+   "tripalmitin",
+   "glycerol"
+  ]
+ },
+ {
+  "id": "bio_membrane_lipids",
+  "title": "Phospholipids, glycolipids and sphingolipids",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_fatty_acids_fats"
+  ],
+  "summary": "Amphipathic lipids that form membranes.",
+  "layers": {
+   "basics": "Phospholipids have a polar head and two fatty-acid tails. In water they assemble into bilayers with tails hidden inside.",
+   "deeper": "Head groups (choline, ethanolamine, serine) and tail saturation tune membrane charge and fluidity. Sphingolipids are enriched in the outer leaflet and in nerve myelin.",
+   "expert": "The critical micelle concentration of bilayer-forming lipids is extremely low (≈ 10^-10 M), so bilayers are stable. Flip-flop between leaflets is slow without scramblases or flippases."
+  },
+  "facts": [
+   [
+    "Bilayer thickness",
+    "≈ 4–5 nm"
+   ],
+   [
+    "Lateral diffusion of lipids",
+    "≈ 1 µm²/s"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "3.3",
+    "3-3-lipids"
+   ],
+   [
+    "BIO",
+    "5.1",
+    "5-1-components-and-structure"
+   ],
+   [
+    "ORG",
+    "27.3",
+    "27-3-phospholipids"
+   ]
+  ],
+  "kn": [
+   "membrane_structure"
+  ],
+  "where": "mol:popc",
+  "molecules": [
+   "popc",
+   "sphingosine",
+   "choline",
+   "ethanolamine"
+  ]
+ },
+ {
+  "id": "bio_steroids_terpenoids",
+  "title": "Steroids, terpenoids and signalling lipids",
+  "kind": "molecule",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_fatty_acids_fats"
+  ],
+  "summary": "Ring-based and isoprene-derived lipids with signalling roles.",
+  "layers": {
+   "basics": "Cholesterol, sex hormones and cortisol are steroids built from four fused rings. Vitamins A and carotenoids are made from isoprene units.",
+   "deeper": "Cholesterol stiffens membranes and is the precursor of steroid hormones and bile acids. Eicosanoids such as prostaglandins are derived from arachidonic acid.",
+   "expert": "Steroid hormones cross membranes and bind nuclear receptors that regulate transcription. Aspirin and ibuprofen inhibit cyclooxygenase, reducing prostaglandin synthesis."
+  },
+  "facts": [
+   [
+    "Human cholesterol synthesis",
+    "≈ 0.8–1 g/day"
+   ],
+   [
+    "Steroid rings",
+    "4 fused (A–D)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "3.3",
+    "3-3-lipids"
+   ],
+   [
+    "ORG",
+    "27.5",
+    "27-5-terpenoids"
+   ],
+   [
+    "ORG",
+    "27.6",
+    "27-6-steroids"
+   ],
+   [
+    "ORG",
+    "27.4",
+    "27-4-prostaglandins-and-other-eicosanoids"
+   ]
+  ],
+  "where": "mol:cholesterol",
+  "molecules": [
+   "cholesterol",
+   "cortisol",
+   "testosterone",
+   "estradiol",
+   "progesterone",
+   "squalene",
+   "isoprene"
+  ]
+ },
+ {
+  "id": "bio_amino_acids",
+  "title": "Amino acids",
+  "kind": "molecule",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_chirality",
+   "bio_acid_base_organic"
+  ],
+  "summary": "The twenty building blocks of proteins.",
+  "layers": {
+   "basics": "Every amino acid has an amino group, a carboxyl group and a side chain. The side chain makes each of the 20 standard amino acids unique.",
+   "deeper": "Side chains are nonpolar, polar, acidic or basic, and these properties drive folding. Nine are essential to humans.",
+   "expert": "Selenocysteine (the 21st) and pyrrolysine (22nd) are encoded by recoded stop codons. Post-translational modifications (phosphorylation, glycosylation, methylation) greatly expand chemistry."
+  },
+  "facts": [
+   [
+    "Standard amino acids",
+    "20 (+ Sec, Pyl)"
+   ],
+   [
+    "Essential for humans",
+    "9"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "3.4",
+    "3-4-proteins"
+   ],
+   [
+    "ORG",
+    "26.1",
+    "26-1-structures-of-amino-acids"
+   ],
+   [
+    "COB",
+    "2.3",
+    "2-3-biological-molecules"
+   ]
+  ],
+  "kn": [
+   "protein_structure"
+  ],
+  "where": "mol:aa_gly",
+  "molecules": [
+   "aa_gly",
+   "aa_ala",
+   "aa_val",
+   "aa_leu",
+   "aa_ile",
+   "aa_pro",
+   "aa_phe",
+   "aa_trp",
+   "aa_met",
+   "aa_ser",
+   "aa_thr",
+   "aa_cys",
+   "aa_tyr",
+   "aa_asn",
+   "aa_gln",
+   "aa_asp",
+   "aa_glu",
+   "aa_lys",
+   "aa_arg",
+   "aa_his",
+   "aa_selenocysteine"
+  ]
+ },
+ {
+  "id": "bio_peptide_bond",
+  "title": "Peptide bond and polypeptides",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_amino_acids",
+   "bio_acyl_substitution"
+  ],
+  "summary": "Amino acids linked into chains.",
+  "layers": {
+   "basics": "A peptide bond joins the carboxyl of one amino acid to the amino group of the next. A chain has an N-terminus and a C-terminus.",
+   "deeper": "The bond is planar and rigid, so the chain's flexibility comes mainly from rotations about the φ and ψ angles on either side.",
+   "expert": "Ramachandran plots show which (φ, ψ) pairs are sterically allowed, explaining the helix and sheet regions. Peptide bond hydrolysis has t½ ≈ 400 years at neutral pH without catalysts."
+  },
+  "facts": [
+   [
+    "Peptide C–N bond length",
+    "≈ 1.33 Å"
+   ],
+   [
+    "Typical protein length",
+    "≈ 300–400 residues"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "3.4",
+    "3-4-proteins"
+   ],
+   [
+    "ORG",
+    "26.4",
+    "26-4-peptides-and-proteins"
+   ]
+  ],
+  "where": "mol:polyglycine_5",
+  "molecules": [
+   "polyglycine_5"
+  ]
+ },
+ {
+  "id": "bio_protein_structure",
+  "title": "Four levels of protein structure",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "bio_hemoglobin_cooperativity"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_peptide_bond"
+  ],
+  "summary": "Primary to quaternary structure.",
+  "layers": {
+   "basics": "Primary structure is the amino-acid sequence, secondary is local folding (α-helix, β-sheet), tertiary is the full 3D shape and quaternary is how several chains assemble.",
+   "deeper": "Hydrogen bonds stabilise helices and sheets; hydrophobic burial, disulfides, salt bridges and metal ions stabilise tertiary and quaternary structure.",
+   "expert": "Domains are independent folding units; motifs such as the helix–turn–helix recur in DNA-binding proteins. The Protein Data Bank holds > 200,000 experimental structures."
+  },
+  "facts": [
+   [
+    "α-helix",
+    "3.6 residues per turn, 5.4 Å pitch"
+   ],
+   [
+    "Hemoglobin",
+    "4 subunits (α2β2)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "3.4",
+    "3-4-proteins"
+   ],
+   [
+    "ORG",
+    "26.9",
+    "26-9-protein-structure"
+   ],
+   [
+    "COB",
+    "2.3",
+    "2-3-biological-molecules"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "RCSB Protein Data Bank",
+    "url": "https://www.rcsb.org/"
+   }
+  ],
+  "kn": [
+   "protein_structure"
+  ],
+  "where": "mol:aa_gly"
+ },
+ {
+  "id": "bio_protein_folding",
+  "title": "Protein folding",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "bio_chaperones_proteostasis"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_protein_structure",
+   "bio_noncovalent_forces"
+  ],
+  "summary": "How a chain finds its working shape.",
+  "layers": {
+   "basics": "A newly made chain folds into its native shape, often within seconds, guided by the amino-acid sequence.",
+   "deeper": "Anfinsen showed that sequence alone can specify the fold in vitro. Chaperones help prevent aggregation in crowded cells.",
+   "expert": "Levinthal's paradox: random search is impossible, so folding follows a funnel-shaped energy landscape. AlphaFold-class networks now predict many structures from sequence, though kinetics, dynamics and folding pathways remain less well solved."
+  },
+  "facts": [
+   [
+    "Anfinsen experiment",
+    "1960s, ribonuclease A"
+   ],
+   [
+    "AlphaFold database",
+    "> 200 million predicted structures"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Predicting folding pathways and kinetics, not just final structures, remains open.",
+   "How well structure predictors handle disordered regions, mutations and complexes is still being benchmarked."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "3.4",
+    "3-4-proteins"
+   ],
+   [
+    "ORG",
+    "26.9",
+    "26-9-protein-structure"
+   ]
+  ],
+  "kn": [
+   "protein_structure"
+  ],
+  "where": "mol:aa_gly"
+ },
+ {
+  "id": "bio_chaperones_proteostasis",
+  "title": "Chaperones, misfolding and proteostasis",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "endoplasmic_reticulum"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_protein_folding"
+  ],
+  "summary": "Quality control for proteins.",
+  "layers": {
+   "basics": "Chaperones help proteins fold and rescue those that unfold under stress. Heat-shock proteins are a famous family.",
+   "deeper": "Misfolded proteins are tagged by ubiquitin and destroyed by the proteasome, or they aggregate and cause diseases such as Alzheimer's, Parkinson's and prion disease.",
+   "expert": "Hsp70 and Hsp60 (GroEL) bind exposed hydrophobic patches and use ATP cycles to refold. The unfolded protein response in the ER senses misfolded load and retunes translation and chaperone production."
+  },
+  "facts": [
+   [
+    "GroEL cavity",
+    "≈ 8 nm"
+   ],
+   [
+    "Hsp70 ATPase cycle",
+    "ATP-driven binding/release"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "3.4",
+    "3-4-proteins"
+   ],
+   [
+    "BIO",
+    "4.4",
+    "4-4-the-endomembrane-system-and-proteins"
+   ]
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_ubiquitin_proteasome",
+  "title": "Ubiquitin and the proteasome",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "lysosome"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_chaperones_proteostasis"
+  ],
+  "summary": "Tagging proteins for destruction.",
+  "layers": {
+   "basics": "A small protein called ubiquitin is attached in chains to doomed proteins. The proteasome recognises these tags and chops the protein into peptides.",
+   "deeper": "Three enzyme types (E1, E2, E3) attach ubiquitin; humans have ≈ 600 E3 ligases that give specificity. The system controls the cell cycle, signalling and stress responses.",
+   "expert": "A K48-linked chain of ≥ 4 ubiquitins is the canonical proteasome signal, while K63 and mono-ubiquitination mark trafficking and DNA-repair roles. Targeted protein degradation (PROTACs) hijacks this machinery for drug design."
+  },
+  "facts": [
+   [
+    "Ubiquitin",
+    "76 residues, ≈ 8.6 kDa"
+   ],
+   [
+    "Human E3 ligases",
+    "≈ 600"
+   ]
+  ],
+  "did_you_know": "The 2004 Nobel Prize in Chemistry went to Ciechanover, Hershko and Rose for discovering ubiquitin-mediated protein degradation.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "16.6",
+    "16-6-eukaryotic-translational-and-post-translational-gene-regulation"
+   ],
+   [
+    "BIO",
+    "10.3",
+    "10-3-control-of-the-cell-cycle"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "RCSB PDB: 1UBQ ubiquitin",
+    "url": "https://www.rcsb.org/structure/1UBQ"
+   }
+  ],
+  "where": "mol:aa_lys"
+ },
+ {
+  "id": "bio_hemoglobin_cooperativity",
+  "title": "Hemoglobin and cooperative binding",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_protein_structure"
+  ],
+  "summary": "A protein that shows how structure changes with ligand.",
+  "layers": {
+   "basics": "Hemoglobin carries oxygen in red blood cells using four heme groups. Binding of oxygen to one subunit makes it easier for the others to bind.",
+   "deeper": "This cooperativity gives a sigmoidal oxygen-binding curve, so hemoglobin loads in the lungs and unloads in tissues. CO2, H+ and 2,3-BPG shift the curve (Bohr effect).",
+   "expert": "T (tense) to R (relaxed) quaternary transition explains cooperativity in the MWC model; Hill coefficient ≈ 2.8. Fetal hemoglobin has higher affinity thanks to weaker 2,3-BPG binding."
+  },
+  "facts": [
+   [
+    "Hill coefficient",
+    "≈ 2.8"
+   ],
+   [
+    "O2 per Hb",
+    "up to 4"
+   ]
+  ],
+  "formula": "Y = pⁿ/(P₅₀ⁿ + pⁿ)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "22.5",
+    "22-5-transport-of-gases"
+   ],
+   [
+    "BIO",
+    "39.4",
+    "39-4-transport-of-gases-in-human-bodily-fluids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "RCSB PDB: 4HHB hemoglobin",
+    "url": "https://www.rcsb.org/structure/4HHB"
+   }
+  ],
+  "kn": [
+   "heme_oxygen"
+  ],
+  "where": "mol:heme_b",
+  "molecules": [
+   "heme_b"
+  ]
+ },
+ {
+  "id": "bio_protein_analysis",
+  "title": "Protein purification and analysis",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_protein_structure"
+  ],
+  "summary": "Separating and studying proteins.",
+  "layers": {
+   "basics": "Proteins are separated by size (gel electrophoresis), charge or affinity, and measured by antibody-based methods such as Western blots.",
+   "deeper": "SDS-PAGE unfolds proteins and coats them with charge, so migration reflects molecular weight. Chromatography steps (size, ion exchange, affinity tags) purify them.",
+   "expert": "Mass spectrometry identifies proteins and modifications in complex mixtures. X-ray crystallography, NMR and cryo-EM give structures; typical cryo-EM resolutions now reach ≈ 1.2–3 Å."
+  },
+  "facts": [
+   [
+    "SDS-PAGE separates by",
+    "size (kDa)"
+   ],
+   [
+    "Cryo-EM Nobel",
+    "2017"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.1",
+    "17-1-biotechnology"
+   ],
+   [
+    "MIC",
+    "12.2",
+    "12-2-visualizing-and-characterizing-dna-rna-and-protein"
+   ],
+   [
+    "ORG",
+    "26.5",
+    "26-5-amino-acid-analysis-of-peptides"
+   ]
+  ]
+ },
+ {
+  "id": "bio_nucleotides",
+  "title": "Nucleotides and nucleic acids",
+  "kind": "molecule",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_phosphoryl_transfer",
+   "bio_fischer_cyclic_sugars"
+  ],
+  "summary": "Base + sugar + phosphate, and the chains they form.",
+  "layers": {
+   "basics": "A nucleotide has a nitrogenous base, a five-carbon sugar and one or more phosphates. DNA and RNA are chains of nucleotides.",
+   "deeper": "DNA uses deoxyribose and bases A, T, G, C; RNA uses ribose and A, U, G, C. Chains run 5′ to 3′ with a sugar–phosphate backbone.",
+   "expert": "Purines (A, G) and pyrimidines (C, T, U) are synthesised by de novo and salvage pathways. Nucleotides also serve as energy (ATP, GTP), signals (cAMP) and cofactors (NAD, FAD, CoA)."
+  },
+  "facts": [
+   [
+    "Bases in DNA",
+    "A, T, G, C"
+   ],
+   [
+    "Human haploid genome",
+    "≈ 3.1 × 10⁹ bp"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "3.5",
+    "3-5-nucleic-acids"
+   ],
+   [
+    "ORG",
+    "28.1",
+    "28-1-nucleotides-and-nucleic-acids"
+   ],
+   [
+    "COB",
+    "2.3",
+    "2-3-biological-molecules"
+   ]
+  ],
+  "kn": [
+   "dna_structure"
+  ],
+  "where": "mol:adenine",
+  "molecules": [
+   "adenine",
+   "guanine",
+   "cytosine",
+   "thymine",
+   "uracil",
+   "dtmp",
+   "dcmp",
+   "dgmp",
+   "damp",
+   "amp",
+   "ump",
+   "gtp",
+   "camp"
+  ]
+ },
+ {
+  "id": "bio_rna_types",
+  "title": "RNA types and structure",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_nucleotides"
+  ],
+  "summary": "Messenger, transfer, ribosomal and regulatory RNAs.",
+  "layers": {
+   "basics": "RNA is usually single-stranded and can fold into shapes. mRNA carries the message, tRNA brings amino acids, rRNA forms ribosomes.",
+   "deeper": "Ribozymes are RNAs that catalyse reactions, including the ribosome's peptide bond formation. Small RNAs (miRNA, siRNA) silence genes.",
+   "expert": "Only ≈ 1–2% of the human genome codes for protein, yet ≈ 75% is transcribed at some level; the functional share of noncoding transcripts is debated. rRNA makes ≈ 80% of total cellular RNA."
+  },
+  "facts": [
+   [
+    "rRNA share of RNA",
+    "≈ 80%"
+   ],
+   [
+    "mRNA share",
+    "≈ 2–5%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "3.5",
+    "3-5-nucleic-acids"
+   ],
+   [
+    "ORG",
+    "28.1",
+    "28-1-nucleotides-and-nucleic-acids"
+   ]
+  ],
+  "kn": [
+   "rna_world"
+  ],
+  "where": "mol:uracil"
+ },
+ {
+  "id": "bio_enzyme_catalysis",
+  "title": "Enzymes as biological catalysts",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "bio_active_site_induced_fit"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_reaction_kinetics",
+   "bio_protein_structure"
+  ],
+  "summary": "Proteins that speed reactions up to a trillion-fold.",
+  "layers": {
+   "basics": "Enzymes bind a substrate at the active site and turn it into product. They are not used up and make reactions fast enough for life.",
+   "deeper": "They lower activation energy by orienting substrates, straining bonds and providing acid–base or covalent catalysis. Each is highly specific.",
+   "expert": "Rate enhancements range from 10^6 to > 10^17 (orotidine decarboxylase). Catalytic proficiency reflects transition-state binding much tighter than substrate binding."
+  },
+  "facts": [
+   [
+    "Orotidine decarboxylase speed-up",
+    "≈ 10^17"
+   ],
+   [
+    "Carbonic anhydrase kcat",
+    "≈ 10^6 s⁻¹"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "6.5",
+    "6-5-enzymes"
+   ],
+   [
+    "COB",
+    "4.1",
+    "4-1-energy-and-metabolism"
+   ],
+   [
+    "ORG",
+    "26.10",
+    "26-10-enzymes-and-coenzymes"
+   ]
+  ],
+  "kn": [
+   "enzymes"
+  ],
+  "where": "mol:aa_ser"
+ },
+ {
+  "id": "bio_active_site_induced_fit",
+  "title": "Active site and induced fit",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_enzyme_catalysis"
+  ],
+  "summary": "The pocket where chemistry happens.",
+  "layers": {
+   "basics": "The active site is a small pocket whose shape and chemistry fit the substrate. Binding can make it close around the substrate, called induced fit.",
+   "deeper": "Lock-and-key was the older picture; induced fit and conformational selection show enzymes are flexible.",
+   "expert": "Catalytic triads (Ser–His–Asp in chymotrypsin) and metal ions position nucleophiles. Dynamics on µs–ms timescales couple with the catalytic step."
+  },
+  "facts": [
+   [
+    "Chymotrypsin triad",
+    "Ser195, His57, Asp102"
+   ],
+   [
+    "Active site size",
+    "few residues in a large protein"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "6.5",
+    "6-5-enzymes"
+   ],
+   [
+    "ORG",
+    "26.11",
+    "26-11-how-do-enzymes-work-citrate-synthase"
+   ]
+  ],
+  "where": "mol:aa_his"
+ },
+ {
+  "id": "bio_cofactors_coenzymes",
+  "title": "Cofactors, coenzymes and vitamins",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_enzyme_catalysis"
+  ],
+  "summary": "Helpers that enzymes need to work.",
+  "layers": {
+   "basics": "Many enzymes need metal ions or small organic helpers (coenzymes). Many vitamins are the precursors of coenzymes.",
+   "deeper": "NAD+ carries hydride, FAD carries electrons, coenzyme A carries acyl groups, and biotin carries CO2.",
+   "expert": "Examples: thiamine pyrophosphate (decarboxylations), pyridoxal phosphate (amino-acid transformations), folate (one-carbon units), B12 (rearrangements). Deficiencies cause beriberi, pellagra, scurvy and others."
+  },
+  "facts": [
+   [
+    "NAD+ from",
+    "niacin (B3)"
+   ],
+   [
+    "One-carbon carrier",
+    "folate (B9)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "6.5",
+    "6-5-enzymes"
+   ],
+   [
+    "ORG",
+    "26.10",
+    "26-10-enzymes-and-coenzymes"
+   ]
+  ],
+  "where": "mol:nad_plus",
+  "molecules": [
+   "nad_plus",
+   "fad",
+   "thiamine",
+   "pyridoxal_phosphate",
+   "biotin",
+   "folic_acid",
+   "lipoic_acid",
+   "niacin",
+   "riboflavin",
+   "ascorbic_acid"
+  ]
+ },
+ {
+  "id": "bio_michaelis_menten",
+  "title": "Michaelis–Menten kinetics",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "derivative"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_active_site_induced_fit"
+  ],
+  "summary": "How reaction rate depends on substrate concentration.",
+  "layers": {
+   "basics": "At low substrate, rate rises in proportion to substrate; at high substrate the enzyme saturates and the rate levels off at Vmax.",
+   "deeper": "Km is the substrate level giving half-maximal rate; a low Km means tight binding. kcat is the turnover number per enzyme per second.",
+   "expert": "Derived from E + S ⇌ ES → E + P with the steady-state assumption: Km = (k₋₁ + kcat)/k₁. The ratio kcat/Km (≤ 10^8–10^9 M⁻¹s⁻¹, diffusion limit) measures catalytic efficiency."
+  },
+  "facts": [
+   [
+    "Typical Km",
+    "≈ 10⁻⁵–10⁻² M"
+   ],
+   [
+    "Catalase kcat",
+    "≈ 4×10⁷ s⁻¹"
+   ]
+  ],
+  "formula": "v = Vmax·[S]/(Km + [S])",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "6.5",
+    "6-5-enzymes"
+   ],
+   [
+    "CHE",
+    "12.7",
+    "12-7-catalysis"
+   ]
+  ],
+  "kn": [
+   "enzymes",
+   "reaction_kinetics"
+  ],
+  "lab": {
+   "id": "enzyme",
+   "preset": "michaelis_menten"
+  },
+  "where": "mol:aa_ser"
+ },
+ {
+  "id": "bio_lineweaver_burk",
+  "title": "Linearised enzyme plots",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_michaelis_menten"
+  ],
+  "summary": "Straight-line views of enzyme data.",
+  "layers": {
+   "basics": "Plotting 1/v against 1/[S] gives a straight line from which Vmax and Km can be read.",
+   "deeper": "Lineweaver–Burk plots make inhibition types obvious by the pattern of intersecting lines, though they distort error.",
+   "expert": "Because the double-reciprocal plot amplifies noise at low [S], modern practice fits the hyperbola by nonlinear regression. Eadie–Hofstee and Hanes–Woolf plots are alternatives."
+  },
+  "facts": [
+   [
+    "Y-intercept",
+    "1/Vmax"
+   ],
+   [
+    "X-intercept",
+    "−1/Km"
+   ]
+  ],
+  "formula": "1/v = (Km/Vmax)(1/[S]) + 1/Vmax",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "6.5",
+    "6-5-enzymes"
+   ]
+  ],
+  "lab": {
+   "id": "enzyme",
+   "preset": "lineweaver_burk"
+  }
+ },
+ {
+  "id": "bio_enzyme_inhibition",
+  "title": "Enzyme inhibition",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_michaelis_menten"
+  ],
+  "summary": "How drugs and regulators slow enzymes.",
+  "layers": {
+   "basics": "Competitive inhibitors compete with the substrate for the active site; noncompetitive inhibitors bind elsewhere and reduce activity.",
+   "deeper": "Competitive inhibition raises apparent Km but not Vmax; noncompetitive lowers Vmax but not Km; uncompetitive lowers both. Many drugs are enzyme inhibitors (statins, penicillin, aspirin).",
+   "expert": "Ki quantifies inhibitor affinity. Irreversible inhibitors form covalent bonds (aspirin acetylates COX; penicillin acylates transpeptidase). Transition-state analogues bind with Ki orders of magnitude below Km."
+  },
+  "facts": [
+   [
+    "Statins inhibit",
+    "HMG-CoA reductase"
+   ],
+   [
+    "Penicillin targets",
+    "bacterial transpeptidases"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "6.5",
+    "6-5-enzymes"
+   ],
+   [
+    "ORG",
+    "26.10",
+    "26-10-enzymes-and-coenzymes"
+   ]
+  ],
+  "lab": {
+   "id": "enzyme",
+   "preset": "inhibition"
+  },
+  "where": "mol:penicillin_g",
+  "molecules": [
+   "penicillin_g",
+   "aspirin",
+   "ibuprofen",
+   "warfarin"
+  ]
+ },
+ {
+  "id": "bio_allostery",
+  "title": "Allosteric regulation and cooperativity",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_enzyme_inhibition",
+   "bio_hemoglobin_cooperativity"
+  ],
+  "summary": "Binding at one site changes activity at another.",
+  "layers": {
+   "basics": "Allosteric enzymes have regulatory sites away from the active site. Binding of an activator or inhibitor changes the enzyme's shape and activity.",
+   "deeper": "These enzymes show sigmoidal rather than hyperbolic kinetics. Phosphofructokinase is turned down by ATP and citrate and up by AMP.",
+   "expert": "MWC (concerted) and KNF (sequential) models describe T/R state transitions. Allostery underlies feedback inhibition, receptor activation and signalling switches."
+  },
+  "facts": [
+   [
+    "PFK-1 inhibited by",
+    "ATP, citrate"
+   ],
+   [
+    "PFK-1 activated by",
+    "AMP, fructose-2,6-bisphosphate"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "6.5",
+    "6-5-enzymes"
+   ],
+   [
+    "BIO",
+    "7.7",
+    "7-7-regulation-of-cellular-respiration"
+   ]
+  ],
+  "lab": {
+   "id": "enzyme",
+   "preset": "allosteric"
+  },
+  "where": "mol:amp",
+  "molecules": [
+   "amp",
+   "atp"
+  ]
+ },
+ {
+  "id": "bio_enzyme_conditions",
+  "title": "Temperature, pH and enzyme activity",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_enzyme_catalysis",
+   "bio_acids_bases_ph"
+  ],
+  "summary": "Why enzymes have optimal conditions.",
+  "layers": {
+   "basics": "Enzymes work best in a narrow temperature and pH range. Too hot or too far from the optimum and they lose shape and activity (denature).",
+   "deeper": "Human enzymes peak near 37 °C and neutral pH, but pepsin works near pH 2 and Taq polymerase survives 95 °C.",
+   "expert": "Rate rises with temperature until unfolding dominates, giving a bell-shaped curve. Extremophile enzymes underlie PCR (Taq) and laundry detergents (proteases)."
+  },
+  "facts": [
+   [
+    "Pepsin optimum",
+    "pH ≈ 2"
+   ],
+   [
+    "Taq polymerase",
+    "stable at 95 °C"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "6.5",
+    "6-5-enzymes"
+   ]
+  ],
+  "lab": {
+   "id": "enzyme",
+   "preset": "ph_temperature"
+  }
+ },
+ {
+  "id": "bio_covalent_regulation",
+  "title": "Covalent regulation and zymogens",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "blood_clotting"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_enzyme_catalysis"
+  ],
+  "summary": "On/off switching by chemical modification or cleavage.",
+  "layers": {
+   "basics": "Enzymes can be switched on or off by attaching phosphate groups or by cutting an inactive precursor (zymogen).",
+   "deeper": "Digestive proteases and blood clotting factors are made as zymogens to prevent damage. Kinases and phosphatases add and remove phosphate in signalling.",
+   "expert": "Phosphorylation cascades amplify signals; glycogen phosphorylase is activated by phosphorylation and by AMP. Zymogen activation is often a cascade (chymotrypsinogen → chymotrypsin; coagulation)."
+  },
+  "facts": [
+   [
+    "Human kinome",
+    "≈ 500 kinases"
+   ],
+   [
+    "Trypsinogen activator",
+    "enteropeptidase"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "6.5",
+    "6-5-enzymes"
+   ],
+   [
+    "BIO",
+    "9.3",
+    "9-3-response-to-the-signal"
+   ]
+  ],
+  "where": "mol:phosphate"
+ },
+ {
+  "id": "bio_metabolism_overview",
+  "title": "Metabolism: anabolism and catabolism",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "cellular_respiration"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_atp_energy_coupling",
+   "bio_enzyme_catalysis"
+  ],
+  "summary": "The sum of the cell's chemical reactions.",
+  "layers": {
+   "basics": "Catabolic pathways break down fuel and release energy; anabolic pathways build molecules and use energy. ATP links them.",
+   "deeper": "Pathways are sequences of enzyme steps with shared intermediates. Their rates are controlled at a few key steps.",
+   "expert": "Metabolic flux is regulated by substrate availability, allostery, covalent modification and enzyme amount. Flux control analysis shows control is shared among steps."
+  },
+  "facts": [
+   [
+    "Basal metabolic rate (human)",
+    "≈ 1,400–1,800 kcal/day"
+   ],
+   [
+    "ATP yield from glucose",
+    "≈ 30–32"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "6.1",
+    "6-1-energy-and-metabolism"
+   ],
+   [
+    "COB",
+    "4.1",
+    "4-1-energy-and-metabolism"
+   ],
+   [
+    "CHE",
+    "5.1",
+    "5-1-energy-basics"
+   ]
+  ],
+  "kn": [
+   "metabolism_overview"
+  ],
+  "where": "mol:atp"
+ },
+ {
+  "id": "bio_glycolysis",
+  "title": "Glycolysis",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "glycolysis_process"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_metabolism_overview",
+   "bio_monosaccharides"
+  ],
+  "summary": "Splitting glucose into two pyruvates.",
+  "layers": {
+   "basics": "Glycolysis is a ten-step pathway in the cytosol that converts one glucose to two pyruvate, with a small net gain of ATP and NADH.",
+   "deeper": "It uses two ATP early and makes four later (net 2 ATP) plus 2 NADH. It works without oxygen and is common to nearly all life.",
+   "expert": "Regulated at hexokinase, PFK-1 (the committed step) and pyruvate kinase. Tumours often show the Warburg effect: high glycolysis even in the presence of oxygen."
+  },
+  "facts": [
+   [
+    "Net ATP",
+    "2 per glucose"
+   ],
+   [
+    "Location",
+    "cytosol"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "7.2",
+    "7-2-glycolysis"
+   ],
+   [
+    "COB",
+    "4.2",
+    "4-2-glycolysis"
+   ],
+   [
+    "ORG",
+    "29.5",
+    "29-5-catabolism-of-carbohydrates-glycolysis"
+   ],
+   [
+    "MIC",
+    "8.2",
+    "8-2-catabolism-of-carbohydrates"
+   ]
+  ],
+  "kn": [
+   "metabolism_overview"
+  ],
+  "where": "mol:glucose_6_phosphate",
+  "molecules": [
+   "glucose_alpha",
+   "glucose_6_phosphate",
+   "pyruvate",
+   "phosphoenolpyruvate",
+   "nadh",
+   "atp"
+  ]
+ },
+ {
+  "id": "bio_fermentation",
+  "title": "Fermentation",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_glycolysis"
+  ],
+  "summary": "Making ATP without oxygen.",
+  "layers": {
+   "basics": "When oxygen is absent, cells regenerate NAD+ by turning pyruvate into lactate or ethanol so glycolysis can continue.",
+   "deeper": "Muscles make lactate during intense work; yeast makes ethanol and CO2, the basis of bread, wine and beer.",
+   "expert": "Fermentation yields only ≈ 2 ATP per glucose versus ≈ 30 with oxygen. Lactate is recycled by the liver (Cori cycle) and heart."
+  },
+  "facts": [
+   [
+    "ATP per glucose",
+    "2"
+   ],
+   [
+    "Yeast end products",
+    "ethanol + CO2"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "7.5",
+    "7-5-metabolism-without-oxygen"
+   ],
+   [
+    "COB",
+    "4.4",
+    "4-4-fermentation"
+   ],
+   [
+    "MIC",
+    "8.4",
+    "8-4-fermentation"
+   ]
+  ],
+  "where": "mol:lactate",
+  "molecules": [
+   "lactate",
+   "ethanol",
+   "pyruvate"
+  ]
+ },
+ {
+  "id": "bio_pyruvate_oxidation",
+  "title": "Pyruvate oxidation",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_glycolysis"
+  ],
+  "summary": "Preparing fuel for the citric acid cycle.",
+  "layers": {
+   "basics": "In mitochondria, pyruvate loses a carbon as CO2 and the rest is attached to coenzyme A as acetyl-CoA, making NADH.",
+   "deeper": "The pyruvate dehydrogenase complex is a huge enzyme machine with three enzymes and five coenzymes. This step is irreversible.",
+   "expert": "PDH is inhibited by its products and by phosphorylation (PDH kinase), connecting it to energy status. Thiamine deficiency impairs it, causing lactic acidosis."
+  },
+  "facts": [
+   [
+    "Products per pyruvate",
+    "1 CO2, 1 NADH, 1 acetyl-CoA"
+   ],
+   [
+    "Complex size",
+    "≈ 10 MDa"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "7.3",
+    "7-3-oxidation-of-pyruvate-and-the-citric-acid-cycle"
+   ],
+   [
+    "ORG",
+    "29.6",
+    "29-6-conversion-of-pyruvate-to-acetyl-coa"
+   ]
+  ],
+  "where": "mol:pyruvate",
+  "molecules": [
+   "pyruvate",
+   "acetate",
+   "thiamine",
+   "lipoic_acid"
+  ]
+ },
+ {
+  "id": "bio_krebs_cycle",
+  "title": "Citric acid (Krebs) cycle",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "krebs_cycle_process",
+   "mitochondrion"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_pyruvate_oxidation"
+  ],
+  "summary": "Burning acetyl units to CO2 and reduced carriers.",
+  "layers": {
+   "basics": "Acetyl-CoA joins oxaloacetate to form citrate, which is oxidised through eight steps back to oxaloacetate, releasing CO2 and loading NADH and FADH2.",
+   "deeper": "Each acetyl-CoA yields 3 NADH, 1 FADH2, 1 GTP/ATP and 2 CO2. Intermediates feed biosynthesis, so the cycle is also a hub for anabolism.",
+   "expert": "Key regulated enzymes: citrate synthase, isocitrate dehydrogenase, α-ketoglutarate dehydrogenase. Anaplerotic reactions replenish intermediates drained for synthesis."
+  },
+  "facts": [
+   [
+    "Per acetyl-CoA",
+    "3 NADH, 1 FADH2, 1 GTP"
+   ],
+   [
+    "Location",
+    "mitochondrial matrix"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "7.3",
+    "7-3-oxidation-of-pyruvate-and-the-citric-acid-cycle"
+   ],
+   [
+    "COB",
+    "4.3",
+    "4-3-citric-acid-cycle-and-oxidative-phosphorylation"
+   ],
+   [
+    "ORG",
+    "29.7",
+    "29-7-the-citric-acid-cycle"
+   ]
+  ],
+  "where": "mol:citrate",
+  "molecules": [
+   "citrate",
+   "oxaloacetate",
+   "alpha_ketoglutarate",
+   "succinate",
+   "fumarate",
+   "malate",
+   "acetate",
+   "nadh",
+   "fad"
+  ]
+ },
+ {
+  "id": "bio_electron_transport_chain",
+  "title": "Electron transport chain",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "oxidative_phosphorylation_process"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_krebs_cycle",
+   "bio_redox_biology"
+  ],
+  "summary": "Complexes that pass electrons to oxygen and pump protons.",
+  "layers": {
+   "basics": "Electrons from NADH and FADH2 are handed down a chain of protein complexes in the inner mitochondrial membrane. The energy released pumps protons out.",
+   "deeper": "Complexes I, III and IV pump protons; Complex II feeds in from succinate. Oxygen is the final electron acceptor, forming water.",
+   "expert": "Mobile carriers are ubiquinone and cytochrome c. Cyanide blocks Complex IV and uncouplers (DNP) dissipate the gradient; mitochondrial supercomplexes (\"respirasomes\") improve channelling."
+  },
+  "facts": [
+   [
+    "Protons pumped per NADH",
+    "≈ 10"
+   ],
+   [
+    "Gradient",
+    "≈ 150–200 mV"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "7.4",
+    "7-4-oxidative-phosphorylation"
+   ],
+   [
+    "MIC",
+    "8.3",
+    "8-3-cellular-respiration"
+   ]
+  ],
+  "kn": [
+   "oxidative_phosphorylation",
+   "mitochondria_org"
+  ],
+  "where": "mol:ubiquinone_q1",
+  "molecules": [
+   "ubiquinone_q1",
+   "heme_b",
+   "nadh",
+   "oxygen"
+  ]
+ },
+ {
+  "id": "bio_chemiosmosis_atp_synthase",
+  "title": "Chemiosmosis and ATP synthase",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_electron_transport_chain"
+  ],
+  "summary": "A rotary motor that makes ATP from a proton gradient.",
+  "layers": {
+   "basics": "Protons flow back through ATP synthase, spinning a rotor that drives ATP formation. This is chemiosmosis.",
+   "deeper": "The proton-motive force combines a pH difference and a membrane voltage. The same principle works in chloroplasts and in bacteria.",
+   "expert": "ATP synthase has an F₀ rotor (c-ring of 8–15 subunits) and an F₁ head with three catalytic sites cycling through binding-change states. About 3–4 H⁺ are needed per ATP, giving ≈ 2.5 ATP/NADH and 1.5 ATP/FADH2."
+  },
+  "facts": [
+   [
+    "Rotation speed",
+    "≈ 100–150 rev/s"
+   ],
+   [
+    "ATP per NADH",
+    "≈ 2.5"
+   ]
+  ],
+  "formula": "Δp = Δψ − (2.3RT/F)·ΔpH",
+  "did_you_know": "Peter Mitchell proposed chemiosmosis in 1961, was mocked at first, and won the 1978 Nobel Prize in Chemistry.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "7.4",
+    "7-4-oxidative-phosphorylation"
+   ],
+   [
+    "MIC",
+    "8.3",
+    "8-3-cellular-respiration"
+   ]
+  ],
+  "kn": [
+   "oxidative_phosphorylation"
+  ],
+  "where": "mol:adp",
+  "molecules": [
+   "atp",
+   "adp",
+   "phosphate"
+  ]
+ },
+ {
+  "id": "bio_beta_oxidation",
+  "title": "Fatty-acid (β) oxidation",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_krebs_cycle",
+   "bio_fatty_acids_fats"
+  ],
+  "summary": "Turning fats into acetyl-CoA.",
+  "layers": {
+   "basics": "Fatty acids are chopped two carbons at a time into acetyl-CoA, generating NADH and FADH2.",
+   "deeper": "Each round of β-oxidation has four steps: oxidation, hydration, oxidation and thiolysis. A 16-carbon palmitate gives ≈ 106 ATP in total.",
+   "expert": "Carnitine shuttles long-chain fatty acids into mitochondria (the regulated step, inhibited by malonyl-CoA). Very-long-chain fatty acids are first shortened in peroxisomes."
+  },
+  "facts": [
+   [
+    "Palmitate net ATP",
+    "≈ 106"
+   ],
+   [
+    "Rounds for palmitate",
+    "7"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "7.6",
+    "7-6-connections-of-carbohydrate-protein-and-lipid-metabolic-pathways"
+   ],
+   [
+    "ORG",
+    "29.3",
+    "29-3-catabolism-of-triacylglycerols-oxidation"
+   ],
+   [
+    "ANP",
+    "24.3",
+    "24-3-lipid-metabolism"
+   ]
+  ],
+  "where": "mol:palmitic_acid",
+  "molecules": [
+   "palmitic_acid",
+   "carnitine",
+   "acetate",
+   "fad",
+   "nadh"
+  ]
+ },
+ {
+  "id": "bio_gluconeogenesis",
+  "title": "Gluconeogenesis and glycogen metabolism",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "hormone_signaling"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_glycolysis"
+  ],
+  "summary": "Making and breaking glucose stores.",
+  "layers": {
+   "basics": "When fasting, the liver builds glucose from lactate, amino acids and glycerol (gluconeogenesis) and breaks glycogen into glucose.",
+   "deeper": "Gluconeogenesis bypasses the three irreversible glycolytic steps with four distinct enzymes. Insulin and glucagon reciprocally control these pathways.",
+   "expert": "Glycogen phosphorylase and glycogen synthase are reciprocally regulated by phosphorylation cascades (cAMP-PKA). Brain uses ≈ 120 g glucose per day and cannot use fatty acids directly."
+  },
+  "facts": [
+   [
+    "Brain glucose use",
+    "≈ 120 g/day"
+   ],
+   [
+    "Liver glycogen",
+    "≈ 100 g"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "29.8",
+    "29-8-carbohydrate-biosynthesis-gluconeogenesis"
+   ],
+   [
+    "BIO",
+    "7.6",
+    "7-6-connections-of-carbohydrate-protein-and-lipid-metabolic-pathways"
+   ],
+   [
+    "ANP",
+    "24.2",
+    "24-2-carbohydrate-metabolism"
+   ]
+  ],
+  "where": "mol:glucose_6_phosphate",
+  "molecules": [
+   "glucose_6_phosphate",
+   "lactate",
+   "pyruvate",
+   "glycerol"
+  ]
+ },
+ {
+  "id": "bio_pentose_phosphate_pathway",
+  "title": "Pentose phosphate pathway",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_glycolysis"
+  ],
+  "summary": "A branch that makes NADPH and ribose.",
+  "layers": {
+   "basics": "This pathway makes NADPH (for biosynthesis and antioxidant defence) and ribose-5-phosphate (for nucleotides) from glucose-6-phosphate.",
+   "deeper": "It is especially active in liver, fat, adrenal tissue and red blood cells, which need NADPH to keep glutathione reduced.",
+   "expert": "G6PD deficiency (≈ 400 million carriers) makes red cells vulnerable to oxidative stress, causing hemolysis after fava beans or certain drugs, yet protects against malaria."
+  },
+  "facts": [
+   [
+    "G6PD deficiency",
+    "≈ 400 million people"
+   ],
+   [
+    "Main products",
+    "NADPH, ribose-5-P"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "7.6",
+    "7-6-connections-of-carbohydrate-protein-and-lipid-metabolic-pathways"
+   ]
+  ],
+  "where": "mol:ribose",
+  "molecules": [
+   "ribose",
+   "glutathione"
+  ]
+ },
+ {
+  "id": "bio_amino_acid_catabolism",
+  "title": "Amino-acid catabolism and the urea cycle",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_krebs_cycle",
+   "bio_amino_acids"
+  ],
+  "summary": "Disposing of nitrogen.",
+  "layers": {
+   "basics": "Amino groups are removed from amino acids (transamination) and converted to urea in the liver. The carbon skeletons enter energy pathways.",
+   "deeper": "Ammonia is toxic, so it is converted to urea (humans), uric acid (birds, reptiles) or excreted directly as ammonia (fish).",
+   "expert": "Urea cycle: ammonia + CO2 + 3 ATP → urea. Defects cause hyperammonemia. Glucogenic amino acids can make glucose; ketogenic ones make acetyl-CoA."
+  },
+  "facts": [
+   [
+    "Urea cycle cost",
+    "≈ 4 ATP-equivalents per urea"
+   ],
+   [
+    "Daily urea excretion",
+    "≈ 20–35 g"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "29.9",
+    "29-9-catabolism-of-proteins-deamination"
+   ],
+   [
+    "BIO",
+    "7.6",
+    "7-6-connections-of-carbohydrate-protein-and-lipid-metabolic-pathways"
+   ],
+   [
+    "ANP",
+    "24.4",
+    "24-4-protein-metabolism"
+   ]
+  ],
+  "where": "mol:urea",
+  "molecules": [
+   "urea",
+   "ornithine",
+   "citrulline",
+   "ammonia",
+   "pyridoxal_phosphate"
+  ]
+ },
+ {
+  "id": "bio_fatty_acid_synthesis",
+  "title": "Fatty-acid and lipid biosynthesis",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_beta_oxidation"
+  ],
+  "summary": "Building fats from acetyl-CoA.",
+  "layers": {
+   "basics": "When energy is plentiful, cells convert excess acetyl-CoA into fatty acids and store them as fat.",
+   "deeper": "Fatty acid synthase builds chains two carbons at a time using malonyl-CoA and NADPH. Insulin promotes the pathway and glucagon blocks it.",
+   "expert": "Acetyl-CoA carboxylase (ACC) is the regulated step, activated by citrate and inhibited by AMPK phosphorylation. Cholesterol synthesis (HMG-CoA reductase) is another controlled branch."
+  },
+  "facts": [
+   [
+    "Chain built by FAS",
+    "palmitate (C16)"
+   ],
+   [
+    "Regulated enzyme",
+    "ACC (biotin)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "29.4",
+    "29-4-biosynthesis-of-fatty-acids"
+   ],
+   [
+    "ORG",
+    "27.7",
+    "27-7-biosynthesis-of-steroids"
+   ],
+   [
+    "ANP",
+    "24.3",
+    "24-3-lipid-metabolism"
+   ]
+  ],
+  "where": "mol:palmitic_acid",
+  "molecules": [
+   "palmitic_acid",
+   "biotin"
+  ]
+ },
+ {
+  "id": "bio_photosynthesis_overview",
+  "title": "Photosynthesis: overview",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_redox_biology",
+   "bio_atp_energy_coupling"
+  ],
+  "summary": "Turning light, water and CO2 into sugar and oxygen.",
+  "layers": {
+   "basics": "Plants, algae and cyanobacteria capture light energy to make sugars from CO2 and water, releasing oxygen.",
+   "deeper": "Two stages: light reactions in thylakoid membranes make ATP and NADPH; the Calvin cycle in the stroma uses them to fix CO2. Chlorophyll absorbs mainly red and blue light.",
+   "expert": "Net: 6 CO2 + 12 H2O + light → C6H12O6 + 6 O2 + 6 H2O. Global net primary productivity ≈ 100–120 Pg C/yr, split roughly equally between land and ocean."
+  },
+  "facts": [
+   [
+    "Global NPP",
+    "≈ 100–120 Pg C/yr"
+   ],
+   [
+    "Efficiency (leaf, light to biomass)",
+    "≈ 1–2%"
+   ]
+  ],
+  "formula": "6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "8.1",
+    "8-1-overview-of-photosynthesis"
+   ],
+   [
+    "COB",
+    "5.1",
+    "5-1-overview-of-photosynthesis"
+   ],
+   [
+    "MIC",
+    "8.6",
+    "8-6-photosynthesis"
+   ]
+  ],
+  "kn": [
+   "photosynthesis_light"
+  ],
+  "where": "place:leaf",
+  "molecules": [
+   "chlorophyll_a",
+   "glucose_alpha",
+   "oxygen",
+   "carbon_dioxide",
+   "water"
+  ]
+ },
+ {
+  "id": "bio_light_reactions",
+  "title": "Light-dependent reactions",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "photosynthesis_light_process"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_photosynthesis_overview",
+   "bio_electron_transport_chain"
+  ],
+  "summary": "Photosystems that split water and make ATP and NADPH.",
+  "layers": {
+   "basics": "Light excites chlorophyll in photosystem II, which splits water and releases oxygen. Electrons travel down a chain to photosystem I and finally to NADP+.",
+   "deeper": "The chain pumps protons into the thylakoid lumen, and ATP synthase uses that gradient to make ATP. This is photophosphorylation.",
+   "expert": "The Z-scheme describes the energetics of linear electron flow; cyclic flow around PSI makes extra ATP. The oxygen-evolving complex has a Mn4CaO5 cluster that cycles through S0–S4 states."
+  },
+  "facts": [
+   [
+    "PSII reaction center",
+    "P680"
+   ],
+   [
+    "PSI reaction center",
+    "P700"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "8.2",
+    "8-2-the-light-dependent-reactions-of-photosynthesis"
+   ],
+   [
+    "COB",
+    "5.2",
+    "5-2-the-light-dependent-reactions-of-photosynthesis"
+   ]
+  ],
+  "kn": [
+   "photosynthesis_light",
+   "chloroplast_org"
+  ],
+  "where": "mol:chlorophyll_a",
+  "molecules": [
+   "chlorophyll_a",
+   "beta_carotene"
+  ]
+ },
+ {
+  "id": "bio_calvin_cycle",
+  "title": "Calvin cycle (carbon fixation)",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "calvin_cycle_process"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_light_reactions"
+  ],
+  "summary": "Building sugar from CO2.",
+  "layers": {
+   "basics": "In the stroma, the enzyme Rubisco attaches CO2 to a five-carbon sugar. Using ATP and NADPH, the product is turned into G3P, which makes glucose and regenerates the starting sugar.",
+   "deeper": "Three turns fix 3 CO2 and net one G3P at a cost of 9 ATP and 6 NADPH. Rubisco is slow (≈ 3–10 s⁻¹) and also fixes O2, which wastes energy.",
+   "expert": "Rubisco is thought to be the most abundant enzyme on Earth. Its oxygenase activity drives photorespiration, which has motivated C4, CAM, and engineering efforts to improve carbon fixation."
+  },
+  "facts": [
+   [
+    "Cost per G3P",
+    "9 ATP + 6 NADPH"
+   ],
+   [
+    "Rubisco kcat",
+    "≈ 3–10 s⁻¹"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "8.3",
+    "8-3-using-light-energy-to-make-organic-molecules"
+   ],
+   [
+    "COB",
+    "5.3",
+    "5-3-the-calvin-cycle"
+   ]
+  ],
+  "kn": [
+   "photosynthesis_light"
+  ],
+  "where": "mol:carbon_dioxide",
+  "molecules": [
+   "carbon_dioxide"
+  ]
+ },
+ {
+  "id": "bio_metabolic_regulation",
+  "title": "Regulation of metabolism",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "hormone_signaling",
+   "pancreatic_islets"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_allostery",
+   "bio_glycolysis"
+  ],
+  "summary": "Controlling flux with feedback and hormones.",
+  "layers": {
+   "basics": "Cells speed up or slow down pathways with feedback: end products inhibit early steps, and low ATP switches on ATP-making pathways.",
+   "deeper": "Key regulators: AMPK (energy sensor), insulin, glucagon and adrenaline (hormones), and substrate availability.",
+   "expert": "Flux control is distributed; covalent modification and gene expression give slower, longer-lasting control. The Pasteur effect (glycolysis slows in oxygen) and the Crabtree effect (aerobic fermentation at high glucose) are classic examples."
+  },
+  "facts": [
+   [
+    "Fasting insulin",
+    "≈ 3–25 µIU/mL"
+   ],
+   [
+    "AMPK activated by",
+    "high AMP/ATP"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "7.7",
+    "7-7-regulation-of-cellular-respiration"
+   ],
+   [
+    "ANP",
+    "24.5",
+    "24-5-metabolic-states-of-the-body"
+   ]
+  ],
+  "kn": [
+   "metabolism_overview"
+  ],
+  "where": "mol:amp"
+ },
+ {
+  "id": "bio_metabolic_integration",
+  "title": "Metabolic integration and fuel use",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_biochem",
+  "parents": [
+   "bio_biochem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "liver",
+   "pancreas"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_metabolic_regulation",
+   "bio_gluconeogenesis",
+   "bio_beta_oxidation"
+  ],
+  "summary": "How organs share fuel across fed, fasting and exercising states.",
+  "layers": {
+   "basics": "After a meal the body stores glucose as glycogen and fat; between meals, it releases them. In long fasting, the liver makes ketone bodies.",
+   "deeper": "Liver, muscle, fat and brain each have a different fuel profile. Insulin dominates the fed state; glucagon, cortisol and adrenaline dominate fasting.",
+   "expert": "Diabetes mellitus results from insufficient insulin (type 1) or insulin resistance (type 2). During prolonged fasting the brain derives ≈ 60–70% of its energy from ketones."
+  },
+  "facts": [
+   [
+    "Ketone adaptation",
+    "≈ 3 days of fasting"
+   ],
+   [
+    "Type 2 diabetes prevalence",
+    "≈ 10% of adults"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "24.5",
+    "24-5-metabolic-states-of-the-body"
+   ],
+   [
+    "BIO",
+    "7.6",
+    "7-6-connections-of-carbohydrate-protein-and-lipid-metabolic-pathways"
+   ],
+   [
+    "ANP",
+    "17.9",
+    "17-9-the-endocrine-pancreas"
+   ]
+  ],
+  "where": "liver"
+ }
+]

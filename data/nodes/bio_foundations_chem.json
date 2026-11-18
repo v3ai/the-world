@@ -1,0 +1,2512 @@
+[
+ {
+  "id": "bio_foundations",
+  "title": "Foundations of biology",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_foundations",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "What biology is, how it is done, and what counts as alive.",
+  "layers": {
+   "basics": "Biology is the study of living things and the rules they share. It starts with careful questions and tests, and it sorts life into levels from molecules to the whole planet.",
+   "deeper": "A handful of themes keep returning: cells as units, information in DNA, energy flow, structure matching function, evolution, and interaction with the environment. These give you a frame for every later chapter.",
+   "expert": "Biology mixes experiment, observation, comparison and modelling. Because organisms are historical products of evolution, \"why\" questions have both a mechanistic (proximate) and an evolutionary (ultimate) answer."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "scientific_method",
+   "cell_biology_intro"
+  ]
+ },
+ {
+  "id": "bio_scientific_method",
+  "title": "Scientific method in biology",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_foundations",
+  "parents": [
+   "bio_foundations"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Observe, hypothesise, test, revise.",
+  "layers": {
+   "basics": "Scientists notice something, propose an explanation that could be wrong, and test it with an experiment or new observation. Results either support the idea or send it back for revision.",
+   "deeper": "A good hypothesis is falsifiable and makes a prediction. Controls, replication and blinding keep the result from reflecting bias or chance.",
+   "expert": "Biology uses both hypothesis-driven and discovery-driven (data-first) science. Inference runs from experiment through statistics to a model, and strong claims need independent replication."
+  },
+  "facts": [
+   [
+    "Typical cycle",
+    "observe, hypothesise, predict, test, analyse"
+   ],
+   [
+    "Key safeguard",
+    "control group + replication"
+   ]
+  ],
+  "did_you_know": "Louis Pasteur's swan-neck flask experiments (1860s) are a classic example of a clean control: they ended the idea of spontaneous generation.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "1.1",
+    "1-1-the-science-of-biology"
+   ],
+   [
+    "COB",
+    "1.2",
+    "1-2-the-process-of-science"
+   ]
+  ],
+  "kn": [
+   "scientific_method"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_themes_of_life",
+  "title": "Unifying themes of biology",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_foundations",
+  "parents": [
+   "bio_foundations"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_scientific_method"
+  ],
+  "summary": "Six recurring ideas that tie all of biology together.",
+  "layers": {
+   "basics": "Every living thing is made of cells, stores information in DNA, uses energy, responds to its surroundings and evolves. Structure usually fits function.",
+   "deeper": "Themes link scales: a protein's shape sets its job, a cell's membrane controls what enters, an ecosystem's energy flow sets how many organisms it can hold.",
+   "expert": "Evolution by natural selection is the integrating theory (Dobzhansky: nothing in biology makes sense except in the light of evolution). Emergent properties appear at each level of organisation and cannot be read directly from the parts."
+  },
+  "facts": [
+   [
+    "Core themes",
+    "information, energy, structure-function, evolution, interaction"
+   ],
+   [
+    "Proposed in",
+    "textbook syntheses since the 1900s"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "1.2",
+    "1-2-themes-and-concepts-of-biology"
+   ],
+   [
+    "COB",
+    "1.1",
+    "1-1-themes-and-concepts-of-biology"
+   ]
+  ],
+  "kn": [
+   "cell_biology_intro"
+  ]
+ },
+ {
+  "id": "bio_levels_organization",
+  "title": "Levels of biological organization",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_foundations",
+  "parents": [
+   "bio_foundations"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "human_body"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_themes_of_life"
+  ],
+  "summary": "From atoms and molecules up to the biosphere.",
+  "layers": {
+   "basics": "Life is nested: atoms form molecules, molecules form organelles and cells, cells form tissues and organs, organs form organisms, and organisms form populations, communities and ecosystems.",
+   "deeper": "Each level has emergent properties that its parts lack. A heartbeat is not a property of a single cardiomyocyte, and a food web is not a property of one species.",
+   "expert": "Reductionism explains higher levels by lower ones, but explanation often runs both ways: gene expression depends on the cellular and organismal context. Scales span about 20 orders of magnitude, from atoms (0.1 nm) to the biosphere (10^7 m)."
+  },
+  "facts": [
+   [
+    "Scale span",
+    "≈ 10^-10 m to 10^7 m"
+   ],
+   [
+    "Cell",
+    "smallest unit generally called alive"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "1.2",
+    "1-2-themes-and-concepts-of-biology"
+   ],
+   [
+    "COB",
+    "1.1",
+    "1-1-themes-and-concepts-of-biology"
+   ]
+  ],
+  "kn": [
+   "dimensional_scaling"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_characteristics_life",
+  "title": "Characteristics of life",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_foundations",
+  "parents": [
+   "bio_foundations"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_themes_of_life"
+  ],
+  "summary": "The checklist biologists use to call something alive.",
+  "layers": {
+   "basics": "Living things are organised, take in and use energy, grow and develop, reproduce, respond to stimuli, maintain internal balance and evolve across generations.",
+   "deeper": "No single trait is enough: fire grows and uses energy, crystals grow and are ordered. Life is the combination, and each trait has borderline cases such as viruses.",
+   "expert": "A common working definition is a self-sustaining chemical system capable of Darwinian evolution (NASA). Viruses, prions and mules each break one criterion, which shows the list is a convention, not a law."
+  },
+  "facts": [
+   [
+    "Typical list",
+    "7–8 properties"
+   ],
+   [
+    "Borderline cases",
+    "viruses, prions, mules"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "No consensus definition of life exists; astrobiology needs one that works for non-Earth chemistry."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "1.2",
+    "1-2-themes-and-concepts-of-biology"
+   ],
+   [
+    "COB",
+    "1.1",
+    "1-1-themes-and-concepts-of-biology"
+   ]
+  ],
+  "kn": [
+   "origin_of_life"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_cell_theory",
+  "title": "Cell theory",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_foundations",
+  "parents": [
+   "bio_foundations"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "cell_membrane"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_characteristics_life"
+  ],
+  "summary": "All life is made of cells, and cells come from cells.",
+  "layers": {
+   "basics": "Every organism consists of one or more cells, the cell is the basic unit of life, and new cells arise only from existing cells.",
+   "deeper": "The theory grew from microscope work by Hooke, Leeuwenhoek, Schleiden, Schwann and Virchow. Later additions: cells carry DNA and metabolism happens inside them.",
+   "expert": "Endosymbiosis shows eukaryotic cells themselves arose by merging prokaryotes. Exceptions that test the rule: syncytia (muscle fibres), acellular viruses, and anucleate cells such as mature red blood cells."
+  },
+  "facts": [
+   [
+    "Hooke named \"cells\"",
+    "1665"
+   ],
+   [
+    "Virchow: omnis cellula e cellula",
+    "1855"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "4.1",
+    "4-1-studying-cells"
+   ],
+   [
+    "MIC",
+    "3.2",
+    "3-2-foundations-of-modern-cell-theory"
+   ]
+  ],
+  "kn": [
+   "cell_biology_intro"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_homeostasis_concept",
+  "title": "Homeostasis and feedback",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_foundations",
+  "parents": [
+   "bio_foundations"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "thermoregulation",
+   "hormone_signaling"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_characteristics_life"
+  ],
+  "summary": "Keeping the internal state steady against a changing world.",
+  "layers": {
+   "basics": "Organisms hold conditions like temperature, pH and blood sugar near set values. When a variable drifts, a response pushes it back.",
+   "deeper": "Negative feedback reverses a change and stabilises; positive feedback amplifies it, as in childbirth contractions or the rising phase of an action potential.",
+   "expert": "A feedback loop has a sensor, a set point or integrator, and an effector. Gain, delay and oscillation matter, just as in control engineering; many hormonal systems are tuned loops with time lags."
+  },
+  "facts": [
+   [
+    "Core body temperature",
+    "≈ 37 °C"
+   ],
+   [
+    "Blood pH",
+    "≈ 7.35–7.45"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "33.3",
+    "33-3-homeostasis"
+   ],
+   [
+    "ANP",
+    "1.5",
+    "1-5-homeostasis"
+   ]
+  ],
+  "kn": [
+   "homeostasis"
+  ],
+  "where": "human_body"
+ },
+ {
+  "id": "bio_model_organisms",
+  "title": "Model organisms",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_foundations",
+  "parents": [
+   "bio_foundations"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_scientific_method"
+  ],
+  "summary": "A few species studied intensely to learn general rules.",
+  "layers": {
+   "basics": "Scientists often work on organisms that are easy to grow and breed, such as E. coli, yeast, fruit flies, roundworms, zebrafish, mice and Arabidopsis.",
+   "deeper": "Deep conservation of cell biology and genes means findings transfer: yeast revealed the cell-cycle checkpoints, flies revealed Hox genes, worms revealed apoptosis.",
+   "expert": "Choice of model involves generation time, genetic tools and genome size, and brings a bias towards lab-friendly species. Conservation does not guarantee transfer of every trait, especially for complex physiology and immunity."
+  },
+  "facts": [
+   [
+    "E. coli doubling time",
+    "≈ 20 min in rich medium"
+   ],
+   [
+    "C. elegans cells",
+    "959 somatic cells in the adult hermaphrodite"
+   ]
+  ],
+  "did_you_know": "The nematode C. elegans has every one of its cell divisions mapped, one of very few animals where that is true.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "1.2",
+    "1-2-themes-and-concepts-of-biology"
+   ]
+  ],
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_taxonomy_intro",
+  "title": "Classification and the tree of life",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_foundations",
+  "parents": [
+   "bio_foundations"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_levels_organization"
+  ],
+  "summary": "Naming and grouping species in a nested hierarchy.",
+  "layers": {
+   "basics": "Species get two-part Latin names (genus and species), and groups nest: genus, family, order, class, phylum, kingdom, domain.",
+   "deeper": "The three-domain system (Bacteria, Archaea, Eukarya) came from ribosomal RNA comparisons by Woese. Modern classification aims to name monophyletic groups that include all descendants of a common ancestor.",
+   "expert": "Linnaean ranks are conventions, while the phylogeny is the data. Names are governed by codes (ICZN, ICN), and species concepts (biological, phylogenetic, ecological) can disagree on where to draw lines."
+  },
+  "facts": [
+   [
+    "Domains",
+    "Bacteria, Archaea, Eukarya"
+   ],
+   [
+    "Described species",
+    "≈ 2 million"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "20.1",
+    "20-1-organizing-life-on-earth"
+   ],
+   [
+    "COB",
+    "12.1",
+    "12-1-organizing-life-on-earth"
+   ]
+  ],
+  "kn": [
+   "common_descent"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_experimental_basics",
+  "title": "Variables, controls and replicates",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_foundations",
+  "parents": [
+   "bio_foundations"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_scientific_method"
+  ],
+  "summary": "The logic of a fair test.",
+  "layers": {
+   "basics": "An experiment changes one variable (independent), measures another (dependent) and holds the rest fixed. A control group shows what happens without the treatment.",
+   "deeper": "Replicates show how much results vary; randomisation spreads unknown influences evenly; blinding stops expectations from colouring measurements.",
+   "expert": "Pseudoreplication (treating non-independent samples as independent) is a frequent error. Power analysis before the experiment sets the sample size needed to detect an effect of a given size."
+  },
+  "facts": [
+   [
+    "Typical replicates",
+    "≥ 3 biological"
+   ],
+   [
+    "Technical vs biological",
+    "different sources of variation"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "IST",
+    "1.4",
+    "1-4-experimental-design-and-ethics"
+   ]
+  ]
+ },
+ {
+  "id": "bio_history_of_biology",
+  "title": "Milestones in the history of biology",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_foundations",
+  "parents": [
+   "bio_foundations"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_cell_theory"
+  ],
+  "summary": "Key discoveries that built the modern field.",
+  "layers": {
+   "basics": "Landmarks include Hooke's cells (1665), Darwin's natural selection (1859), Mendel's heredity (1866), the DNA double helix (1953) and the human genome (2003).",
+   "deeper": "Each shifted what questions were thinkable: microscopes gave cells, genetics gave inheritance, molecular biology gave mechanism, and sequencing gave whole-genome comparison.",
+   "expert": "The \"modern synthesis\" (1930s–40s) fused Mendelian genetics with Darwinian selection, and the extended synthesis debate now asks how development, epigenetics and niche construction fit in."
+  },
+  "facts": [
+   [
+    "Double helix",
+    "1953 (Watson, Crick, Franklin, Wilkins)"
+   ],
+   [
+    "Human genome draft",
+    "2001, essentially complete 2022"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "1.1",
+    "1-1-the-science-of-biology"
+   ],
+   [
+    "BIO",
+    "14.1",
+    "14-1-historical-basis-of-modern-understanding"
+   ]
+  ],
+  "kn": [
+   "common_descent"
+  ]
+ },
+ {
+  "id": "bio_chem_life",
+  "title": "Chemistry of life",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The atoms, bonds, water and energy rules that all biology runs on.",
+  "layers": {
+   "basics": "Life is chemistry in water. Atoms bond into molecules, water makes them dissolve and fold, and energy rules decide which reactions go.",
+   "deeper": "A few elements (C, H, O, N, P, S) make most of the mass of cells. Weak bonds and the properties of water give biological molecules their flexible, specific shapes.",
+   "expert": "Thermodynamics and kinetics together decide whether and how fast a reaction proceeds. Cells couple unfavourable reactions to favourable ones (mainly ATP hydrolysis) and use catalysts to set the speed."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "chemical_bonding",
+   "thermochemistry"
+  ]
+ },
+ {
+  "id": "bio_atoms_isotopes",
+  "title": "Atoms, elements and isotopes",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The particles that make up all matter and the six elements of life.",
+  "layers": {
+   "basics": "An atom has a nucleus of protons and neutrons with electrons around it. The number of protons sets the element; isotopes differ in neutron number.",
+   "deeper": "About 96% of body mass is carbon, hydrogen, oxygen and nitrogen. Radioactive isotopes such as 14C and 32P serve as tracers and dating tools.",
+   "expert": "Stable isotope ratios (13C/12C, 15N/14N) reveal diet and photosynthetic pathway, while radiocarbon dating works to about 50,000 years given a half-life of ≈ 5,730 years."
+  },
+  "facts": [
+   [
+    "CHON share of body mass",
+    "≈ 96%"
+   ],
+   [
+    "14C half-life",
+    "≈ 5,730 y"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "2.1",
+    "2-1-atoms-isotopes-ions-and-molecules-the-building-blocks"
+   ],
+   [
+    "CHE",
+    "2.3",
+    "2-3-atomic-structure-and-symbolism"
+   ]
+  ],
+  "kn": [
+   "periodic_table",
+   "atomic_spectra"
+  ],
+  "where": "place:atom"
+ },
+ {
+  "id": "bio_electron_shells",
+  "title": "Electron configuration and valence",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_atoms_isotopes"
+  ],
+  "summary": "How electrons set an atom's bonding behaviour.",
+  "layers": {
+   "basics": "Electrons fill energy levels, and the outermost (valence) electrons decide bonding. Carbon has four valence electrons, so it can make four bonds.",
+   "deeper": "Atoms bond to fill their outer shell: sodium gives up an electron, chlorine accepts one, carbon shares. Orbitals are regions where an electron is likely to be found.",
+   "expert": "Quantum mechanics replaces circular orbits with probability orbitals (s, p, d). Hybridisation (sp3, sp2, sp) explains carbon's tetrahedral, planar and linear geometries."
+  },
+  "facts": [
+   [
+    "Carbon valence",
+    "4"
+   ],
+   [
+    "Nitrogen / Oxygen valence",
+    "3 / 2"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "2.1",
+    "2-1-atoms-isotopes-ions-and-molecules-the-building-blocks"
+   ],
+   [
+    "CHE",
+    "6.4",
+    "6-4-electronic-structure-of-atoms-electron-configurations"
+   ]
+  ],
+  "kn": [
+   "quantum_orbitals"
+  ],
+  "where": "place:atom"
+ },
+ {
+  "id": "bio_ionic_covalent",
+  "title": "Ionic and covalent bonds",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_electron_shells"
+  ],
+  "summary": "Transferring versus sharing electrons.",
+  "layers": {
+   "basics": "In an ionic bond one atom hands electrons to another and the resulting charged ions attract. In a covalent bond atoms share electrons.",
+   "deeper": "Covalent bonds hold biomolecules together and are strong (≈ 350 kJ/mol for C–C). In water, salts like NaCl dissociate because ions are stabilised by the solvent.",
+   "expert": "Bond polarity lies on a continuum set by electronegativity difference. Bond energies set the thermodynamics of metabolism: ATP stores energy in strained phosphoanhydride bonds."
+  },
+  "facts": [
+   [
+    "C–C bond energy",
+    "≈ 350 kJ/mol"
+   ],
+   [
+    "Electronegativity (O vs H)",
+    "3.44 vs 2.20"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "2.1",
+    "2-1-atoms-isotopes-ions-and-molecules-the-building-blocks"
+   ],
+   [
+    "CHE",
+    "7.1",
+    "7-1-ionic-bonding"
+   ]
+  ],
+  "kn": [
+   "chemical_bonding"
+  ],
+  "where": "mol:nacl_pair",
+  "molecules": [
+   "nacl_pair",
+   "methane"
+  ]
+ },
+ {
+  "id": "bio_polarity_hbonds",
+  "title": "Polarity and hydrogen bonds",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_ionic_covalent"
+  ],
+  "summary": "Uneven sharing of electrons and the bond that shapes life.",
+  "layers": {
+   "basics": "In a polar bond one atom pulls electrons more, giving partial charges. A hydrogen bond is the attraction between a partly positive H and a partly negative O or N on another molecule.",
+   "deeper": "Each hydrogen bond is weak (≈ 5–30 kJ/mol), but huge numbers add up. They hold DNA strands together and stabilise protein helices and sheets.",
+   "expert": "Hydrogen bonds are mostly electrostatic with some covalent character and strong directionality (≈ 180° donor–H···acceptor). Water molecules form a fluctuating network lasting picoseconds."
+  },
+  "facts": [
+   [
+    "H-bond strength",
+    "≈ 5–30 kJ/mol"
+   ],
+   [
+    "Base pair H-bonds",
+    "2 (A–T), 3 (G–C)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "2.2",
+    "2-2-water"
+   ],
+   [
+    "CHE",
+    "10.1",
+    "10-1-intermolecular-forces"
+   ]
+  ],
+  "kn": [
+   "intermolecular_forces"
+  ],
+  "where": "mol:water",
+  "molecules": [
+   "water",
+   "bp_AT",
+   "bp_GC"
+  ]
+ },
+ {
+  "id": "bio_noncovalent_forces",
+  "title": "Weak interactions: van der Waals and hydrophobic effect",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_polarity_hbonds"
+  ],
+  "summary": "The soft forces that fold and assemble biomolecules.",
+  "layers": {
+   "basics": "Van der Waals forces are brief attractions between any close atoms. The hydrophobic effect pushes oily groups together because water prefers to bond to itself.",
+   "deeper": "Membranes and the cores of folded proteins form because nonpolar parts cluster away from water, not because oily groups attract strongly.",
+   "expert": "The hydrophobic effect is largely entropic: ordered water around a nonpolar surface is released on burial. Combined weak forces give specificity and reversibility to binding, with typical K_d from µM to pM."
+  },
+  "facts": [
+   [
+    "Van der Waals energy",
+    "≈ 0.4–4 kJ/mol"
+   ],
+   [
+    "Typical antibody K_d",
+    "≈ nM"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "2.2",
+    "2-2-water"
+   ],
+   [
+    "ORG",
+    "2.12",
+    "2-12-noncovalent-interactions-between-molecules"
+   ]
+  ],
+  "kn": [
+   "intermolecular_forces"
+  ],
+  "where": "mol:popc",
+  "molecules": [
+   "popc",
+   "hexane"
+  ]
+ },
+ {
+  "id": "bio_water_properties",
+  "title": "Properties of water",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_polarity_hbonds"
+  ],
+  "summary": "Why water is the medium of life.",
+  "layers": {
+   "basics": "Water is a polar solvent with strong cohesion, high heat capacity and a solid form (ice) that floats. These traits stabilise temperature and let life dissolve and move molecules.",
+   "deeper": "Cohesion and adhesion lift water up plants, surface tension supports pond insects, and high heat of vaporisation (≈ 2,260 J/g) makes sweating an effective coolant.",
+   "expert": "Water is densest at ≈ 4 °C, so lakes freeze from the top. Its dielectric constant (≈ 80) screens charges, which is why salts dissolve and why ion-pair interactions behave differently in cells."
+  },
+  "facts": [
+   [
+    "Specific heat",
+    "4.18 J/g·K"
+   ],
+   [
+    "Dielectric constant",
+    "≈ 80"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "2.2",
+    "2-2-water"
+   ],
+   [
+    "COB",
+    "2.2",
+    "2-2-water"
+   ],
+   [
+    "CHE",
+    "10.2",
+    "10-2-properties-of-liquids"
+   ]
+  ],
+  "kn": [
+   "liquid_water_properties"
+  ],
+  "where": "mol:water",
+  "molecules": [
+   "water"
+  ]
+ },
+ {
+  "id": "bio_solutions_concentration",
+  "title": "Solutions, solutes and osmolarity",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_water_properties"
+  ],
+  "summary": "How much dissolved stuff is in a liquid.",
+  "layers": {
+   "basics": "A solution is a solute dissolved in a solvent. Concentration tells how much solute per volume, as mass/volume or moles/litre (molarity).",
+   "deeper": "Osmolarity counts dissolved particles, because osmosis depends on the number of particles. Cells placed in a hypotonic solution swell, in a hypertonic solution shrink.",
+   "expert": "Colligative properties (osmotic pressure Π = iMRT) depend on particle count, not identity. Blood plasma is ≈ 290 mOsm/L, and cells use compatible osmolytes to resist drying."
+  },
+  "facts": [
+   [
+    "Plasma osmolarity",
+    "≈ 290 mOsm/L"
+   ],
+   [
+    "Normal saline",
+    "0.9% NaCl (≈ 154 mM)"
+   ]
+  ],
+  "formula": "Π = iMRT",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CHE",
+    "3.3",
+    "3-3-molarity"
+   ],
+   [
+    "CHE",
+    "11.4",
+    "11-4-colligative-properties"
+   ],
+   [
+    "BIO",
+    "5.2",
+    "5-2-passive-transport"
+   ]
+  ],
+  "kn": [
+   "chemistry_solutions"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_acids_bases_ph",
+  "title": "Acids, bases and pH",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_water_properties"
+  ],
+  "summary": "The scale for hydrogen-ion concentration.",
+  "layers": {
+   "basics": "Acids donate hydrogen ions (H+) and bases accept them. pH is −log10[H+], so each pH unit is a ten-fold change in H+.",
+   "deeper": "Pure water has [H+] = 10^-7 M (pH 7). Stomach acid is near pH 1.5–3.5; blood is held within about 0.05 units of 7.40.",
+   "expert": "Strong acids dissociate fully; weak acids set pKa and equilibrium. Proteins' ionisable groups change charge with pH, shifting shape, binding and enzyme activity."
+  },
+  "facts": [
+   [
+    "Blood pH",
+    "7.35–7.45"
+   ],
+   [
+    "pH of pure water at 25 °C",
+    "7.0"
+   ]
+  ],
+  "formula": "pH = −log₁₀[H⁺]",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "2.2",
+    "2-2-water"
+   ],
+   [
+    "CHE",
+    "14.2",
+    "14-2-ph-and-poh"
+   ],
+   [
+    "ANP",
+    "2.4",
+    "2-4-inorganic-compounds-essential-to-human-functioning"
+   ]
+  ],
+  "kn": [
+   "chemistry_equilibrium"
+  ],
+  "where": "mol:hydroxide",
+  "molecules": [
+   "hydroxide",
+   "ammonium"
+  ]
+ },
+ {
+  "id": "bio_buffers",
+  "title": "Buffers and Henderson–Hasselbalch",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_acids_bases_ph"
+  ],
+  "summary": "Resisting changes in pH.",
+  "layers": {
+   "basics": "A buffer is a weak acid and its conjugate base together. It soaks up added acid or base so pH changes little.",
+   "deeper": "The bicarbonate system (CO2 + H2O ⇌ H2CO3 ⇌ H+ + HCO3−) is the main buffer of blood, with phosphate and proteins as supporting acts.",
+   "expert": "Henderson–Hasselbalch links pH to pKa and the base/acid ratio. Buffers work best within ±1 unit of pKa; blood bicarbonate has pKa ≈ 6.1 but is effective because the lungs control CO2."
+  },
+  "facts": [
+   [
+    "Blood bicarbonate",
+    "≈ 24 mM"
+   ],
+   [
+    "Effective range",
+    "pKa ± 1"
+   ]
+  ],
+  "formula": "pH = pKa + log([A⁻]/[HA])",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CHE",
+    "14.6",
+    "14-6-buffers"
+   ],
+   [
+    "ANP",
+    "26.4",
+    "26-4-acid-base-balance"
+   ],
+   [
+    "ORG",
+    "20.3",
+    "20-3-biological-acids-and-the-henderson-hasselbalch-equation"
+   ]
+  ],
+  "where": "mol:bicarbonate",
+  "molecules": [
+   "bicarbonate",
+   "carbonate",
+   "phosphate"
+  ]
+ },
+ {
+  "id": "bio_mole_molarity",
+  "title": "Moles, molarity and dilutions",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_solutions_concentration"
+  ],
+  "summary": "Bookkeeping for amounts of molecules.",
+  "layers": {
+   "basics": "A mole is 6.022×10^23 particles. Molarity (M) is moles per litre, and you can dilute a stock using C1V1 = C2V2.",
+   "deeper": "Biologists prepare buffers and media from molecular weights: mass = molarity × volume × MW. Serial dilutions (e.g. 1:10) cover many orders of magnitude.",
+   "expert": "Real solutions are not ideal at high ionic strength; activity differs from concentration. In cell culture and enzyme assays, final concentrations after mixing are the numbers that matter."
+  },
+  "facts": [
+   [
+    "Avogadro constant",
+    "6.022×10^23 mol⁻¹"
+   ],
+   [
+    "MW of glucose",
+    "180.16 g/mol"
+   ]
+  ],
+  "formula": "C₁V₁ = C₂V₂",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CHE",
+    "3.1",
+    "3-1-formula-mass-and-the-mole-concept"
+   ],
+   [
+    "CHE",
+    "3.3",
+    "3-3-molarity"
+   ]
+  ],
+  "kn": [
+   "chemistry_solutions"
+  ]
+ },
+ {
+  "id": "bio_reaction_equilibrium",
+  "title": "Chemical reactions and equilibrium",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_acids_bases_ph"
+  ],
+  "summary": "Reactions run both ways until forward and reverse balance.",
+  "layers": {
+   "basics": "A reaction can run forward and backward. At equilibrium the forward and reverse rates are equal and concentrations stop changing.",
+   "deeper": "The equilibrium constant K = [products]/[reactants] says where the balance lies. Le Châtelier's principle: a stress shifts the balance to oppose it.",
+   "expert": "K relates to standard free energy: ΔG° = −RT ln K. Cells are not at equilibrium but in steady state, kept far from it by constant fluxes."
+  },
+  "facts": [
+   [
+    "Relation",
+    "ΔG° = −RT ln K"
+   ],
+   [
+    "RT at 37 °C",
+    "≈ 2.58 kJ/mol"
+   ]
+  ],
+  "formula": "K = [C]ᶜ[D]ᵈ / [A]ᵃ[B]ᵇ",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CHE",
+    "13.1",
+    "13-1-chemical-equilibria"
+   ],
+   [
+    "CHE",
+    "13.2",
+    "13-2-equilibrium-constants"
+   ],
+   [
+    "CHE",
+    "13.3",
+    "13-3-shifting-equilibria-le-ch-teliers-principle"
+   ]
+  ],
+  "kn": [
+   "chemistry_equilibrium"
+  ]
+ },
+ {
+  "id": "bio_reaction_kinetics",
+  "title": "Reaction rates and activation energy",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_reaction_equilibrium"
+  ],
+  "summary": "How fast reactions go, and what catalysts do.",
+  "layers": {
+   "basics": "Reactions must overcome an energy barrier, the activation energy. Heat, concentration and catalysts speed them up.",
+   "deeper": "Rate laws express speed as a function of concentrations. Catalysts, including enzymes, lower the barrier without changing the final balance.",
+   "expert": "Arrhenius: k = A·e^(−Ea/RT), so rates roughly double for a 10 °C rise in many reactions (Q10 ≈ 2–3). Transition-state theory ties catalysis to stabilising the transition state."
+  },
+  "facts": [
+   [
+    "Q10 typical",
+    "≈ 2–3"
+   ],
+   [
+    "Enzymes speed up",
+    "10^6–10^17 fold"
+   ]
+  ],
+  "formula": "k = A·e^(−Ea/RT)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "6.2",
+    "6-2-potential-kinetic-free-and-activation-energy"
+   ],
+   [
+    "CHE",
+    "12.3",
+    "12-3-rate-laws"
+   ],
+   [
+    "CHE",
+    "12.7",
+    "12-7-catalysis"
+   ]
+  ],
+  "kn": [
+   "reaction_kinetics"
+  ]
+ },
+ {
+  "id": "bio_thermo_laws",
+  "title": "Laws of thermodynamics in living systems",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_reaction_kinetics"
+  ],
+  "summary": "Energy is conserved, and disorder tends to increase.",
+  "layers": {
+   "basics": "Energy cannot be created or destroyed, only changed in form. Every conversion loses some energy as heat and increases disorder overall.",
+   "deeper": "Cells are open systems: they stay ordered by taking in energy (light or food) and exporting heat and waste. Life does not violate the second law.",
+   "expert": "Entropy production in the surroundings exceeds local entropy decrease. Efficiency of ATP production from glucose is ≈ 35–40%, with the rest lost as heat that also warms endotherms."
+  },
+  "facts": [
+   [
+    "Glucose oxidation",
+    "≈ −2,870 kJ/mol"
+   ],
+   [
+    "Human power at rest",
+    "≈ 80 W"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "6.3",
+    "6-3-the-laws-of-thermodynamics"
+   ],
+   [
+    "CHE",
+    "16.2",
+    "16-2-entropy"
+   ],
+   [
+    "CHE",
+    "16.3",
+    "16-3-the-second-and-third-laws-of-thermodynamics"
+   ]
+  ],
+  "kn": [
+   "first_law",
+   "second_law"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_gibbs_free_energy",
+  "title": "Free energy and spontaneity",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_thermo_laws"
+  ],
+  "summary": "The energy available to do work.",
+  "layers": {
+   "basics": "Gibbs free energy change ΔG tells whether a reaction can proceed on its own. Negative ΔG releases usable energy; positive ΔG needs an input.",
+   "deeper": "ΔG = ΔH − TΔS balances heat change against disorder. Reactions in cells are often \"coupled\" so that an unfavourable step is driven by a favourable one.",
+   "expert": "Actual ΔG depends on concentrations: ΔG = ΔG°′ + RT ln Q. In cells ATP hydrolysis yields ≈ −50 to −60 kJ/mol because ATP/ADP is kept far from equilibrium."
+  },
+  "facts": [
+   [
+    "ATP hydrolysis ΔG°′",
+    "≈ −30.5 kJ/mol"
+   ],
+   [
+    "Cellular ΔG ATP",
+    "≈ −50 to −60 kJ/mol"
+   ]
+  ],
+  "formula": "ΔG = ΔH − TΔS",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "6.2",
+    "6-2-potential-kinetic-free-and-activation-energy"
+   ],
+   [
+    "CHE",
+    "16.4",
+    "16-4-free-energy"
+   ]
+  ],
+  "kn": [
+   "chemistry_gibbs"
+  ],
+  "where": "mol:atp",
+  "molecules": [
+   "atp",
+   "adp",
+   "phosphate"
+  ]
+ },
+ {
+  "id": "bio_redox_biology",
+  "title": "Oxidation–reduction (redox) in biology",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_gibbs_free_energy"
+  ],
+  "summary": "Electron transfers that carry cellular energy.",
+  "layers": {
+   "basics": "Oxidation is loss of electrons (or hydrogen) and reduction is gain. NAD+ and FAD pick up electrons from food and carry them to the respiratory chain.",
+   "deeper": "In cells, redox pairs have reduction potentials; electrons flow from low to high potential, releasing energy that makes a proton gradient.",
+   "expert": "ΔG°′ = −nFΔE°′. NADH (E°′ ≈ −0.32 V) to O2 (≈ +0.82 V) spans ≈ 1.14 V, about 220 kJ/mol, enough to pump about 10 protons per NADH in the respiratory chain."
+  },
+  "facts": [
+   [
+    "E°′ NAD+/NADH",
+    "≈ −0.32 V"
+   ],
+   [
+    "E°′ O2/H2O",
+    "≈ +0.82 V"
+   ]
+  ],
+  "formula": "ΔG°′ = −nFΔE°′",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "7.1",
+    "7-1-energy-in-living-systems"
+   ],
+   [
+    "CHE",
+    "17.1",
+    "17-1-review-of-redox-chemistry"
+   ],
+   [
+    "CHE",
+    "17.4",
+    "17-4-potential-free-energy-and-equilibrium"
+   ]
+  ],
+  "kn": [
+   "electrochemistry"
+  ],
+  "where": "mol:nadh",
+  "molecules": [
+   "nad_plus",
+   "nadh",
+   "fad"
+  ]
+ },
+ {
+  "id": "bio_atp_energy_coupling",
+  "title": "ATP and energy coupling",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "cellular_respiration"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_gibbs_free_energy"
+  ],
+  "summary": "The cell's universal energy currency.",
+  "layers": {
+   "basics": "ATP carries energy in its phosphate bonds. Cells split off a phosphate to power work, then rebuild ATP from food or light.",
+   "deeper": "Hydrolysis of ATP is coupled to pumps, motors and synthesis by transferring the phosphate to a target molecule, which raises that molecule's energy.",
+   "expert": "A person turns over roughly their own body weight of ATP per day (≈ 50–70 kg), recycling a pool of only ≈ 50 g. ATP synthase makes ≈ 90% of it in aerobic tissues."
+  },
+  "facts": [
+   [
+    "ATP pool in body",
+    "≈ 50 g"
+   ],
+   [
+    "Daily turnover",
+    "≈ 50–70 kg"
+   ]
+  ],
+  "did_you_know": "Your body makes and uses roughly its own weight in ATP every day, yet holds only a few dozen grams at once.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "6.4",
+    "6-4-atp-adenosine-triphosphate"
+   ],
+   [
+    "CHE",
+    "16.4",
+    "16-4-free-energy"
+   ]
+  ],
+  "kn": [
+   "atp_energy"
+  ],
+  "where": "mol:atp",
+  "molecules": [
+   "atp",
+   "adp",
+   "amp"
+  ]
+ },
+ {
+  "id": "bio_electrolytes_ions",
+  "title": "Electrolytes and ion gradients",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_solutions_concentration"
+  ],
+  "summary": "Charged ions that carry signals and set osmotic balance.",
+  "layers": {
+   "basics": "Ions like Na+, K+, Ca2+ and Cl− dissolve in body fluids and carry electric charge. Cells keep different amounts inside and outside.",
+   "deeper": "The gap in K+ and Na+ across the membrane is the source of the resting membrane voltage, and calcium is a ubiquitous signal.",
+   "expert": "Typical mammalian concentrations: [K+] ≈ 140 mM inside vs 5 mM outside; [Na+] ≈ 12 mM inside vs 145 mM outside. The Nernst equation gives the equilibrium potential for each ion."
+  },
+  "facts": [
+   [
+    "K+ in / out",
+    "≈ 140 / 5 mM"
+   ],
+   [
+    "Resting potential",
+    "≈ −70 mV"
+   ]
+  ],
+  "formula": "E_ion = (RT/zF)·ln([out]/[in])",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "26.3",
+    "26-3-electrolyte-balance"
+   ],
+   [
+    "BIO",
+    "5.2",
+    "5-2-passive-transport"
+   ]
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_carbon_chemistry",
+  "title": "Carbon: the backbone of life",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_ionic_covalent"
+  ],
+  "summary": "Why carbon builds the molecules of life.",
+  "layers": {
+   "basics": "Carbon makes four stable bonds, forming chains, rings and branches with itself and with H, O, N, P and S.",
+   "deeper": "These skeletons carry functional groups that give each biomolecule its chemistry. Isomers with the same formula can behave very differently.",
+   "expert": "Carbon–carbon bonds are strong yet reactive enough for metabolism, and carbon's tendency to form stable ring and chain structures underlies the huge variety of organic chemistry (> 10^8 known compounds)."
+  },
+  "facts": [
+   [
+    "Bonds per carbon",
+    "4"
+   ],
+   [
+    "Known organic compounds",
+    "> 10^8"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "2.3",
+    "2-3-carbon"
+   ],
+   [
+    "ORG",
+    "1.6",
+    "1-6-sp3-hybrid-orbitals-and-the-structure-of-methane"
+   ]
+  ],
+  "kn": [
+   "organic_functional_groups"
+  ],
+  "where": "mol:methane",
+  "molecules": [
+   "methane",
+   "benzene",
+   "cyclohexane"
+  ]
+ },
+ {
+  "id": "bio_macromolecule_synthesis",
+  "title": "Dehydration synthesis and hydrolysis",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_chem_life",
+  "parents": [
+   "bio_chem_life"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_carbon_chemistry"
+  ],
+  "summary": "How monomers are joined and split.",
+  "layers": {
+   "basics": "Cells build polymers by joining monomers with the loss of a water molecule (dehydration synthesis) and break them apart by adding water (hydrolysis).",
+   "deeper": "This one idea makes starch, proteins and DNA from sugars, amino acids and nucleotides. Enzymes catalyse both directions.",
+   "expert": "Condensation is thermodynamically uphill in water, so cells couple it to ATP or other activated intermediates; hydrolysis is favourable but kinetically slow without enzymes."
+  },
+  "facts": [
+   [
+    "Polymer examples",
+    "starch, protein, DNA"
+   ],
+   [
+    "Water released per bond",
+    "1 H2O"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "3.1",
+    "3-1-synthesis-of-biological-macromolecules"
+   ],
+   [
+    "COB",
+    "2.3",
+    "2-3-biological-molecules"
+   ]
+  ],
+  "where": "mol:glucose_alpha",
+  "molecules": [
+   "glucose_alpha",
+   "maltose"
+  ]
+ },
+ {
+  "id": "bio_orgchem",
+  "title": "Organic chemistry for biologists",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_orgchem",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The structures and reaction types that explain biochemistry.",
+  "layers": {
+   "basics": "Organic chemistry is the chemistry of carbon compounds. Biologists use it to read molecular structures and to see why enzymes do what they do.",
+   "deeper": "Functional groups, three-dimensional shape (stereochemistry) and a small set of reaction types such as substitution, addition and condensation cover nearly all of metabolism.",
+   "expert": "Enzyme mechanisms are organic mechanisms with a protein for scaffolding: curved-arrow steps through intermediates, with acid–base and covalent catalysis steering outcomes."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "organic_functional_groups",
+   "stereochemistry_chirality"
+  ]
+ },
+ {
+  "id": "bio_functional_groups",
+  "title": "Functional groups",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_orgchem",
+  "parents": [
+   "bio_orgchem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_carbon_chemistry"
+  ],
+  "summary": "The reactive groups that give molecules their behaviour.",
+  "layers": {
+   "basics": "Hydroxyl, carbonyl, carboxyl, amino, phosphate and sulfhydryl groups sit on carbon skeletons and determine polarity, acidity and reactivity.",
+   "deeper": "A hydroxyl makes alcohols (sugars), a carboxyl makes acids (amino acids, fatty acids), and phosphate groups carry charge and energy.",
+   "expert": "Group properties set pKa and nucleophilicity: thiolate (Cys) and imidazole (His) are common catalytic groups, and phosphoanhydrides are high-energy transfer groups."
+  },
+  "facts": [
+   [
+    "Key groups",
+    "–OH, C=O, –COOH, –NH2, –PO4, –SH"
+   ],
+   [
+    "Amide bond",
+    "peptide linkage"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "3.1",
+    "3-1-functional-groups"
+   ],
+   [
+    "CHE",
+    "20.2",
+    "20-2-alcohols-and-ethers"
+   ]
+  ],
+  "kn": [
+   "organic_functional_groups"
+  ],
+  "where": "mol:ethanol",
+  "molecules": [
+   "ethanol",
+   "acetone",
+   "acetic_acid",
+   "methylamine",
+   "phosphoric_acid"
+  ]
+ },
+ {
+  "id": "bio_isomers",
+  "title": "Isomers",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_orgchem",
+  "parents": [
+   "bio_orgchem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_functional_groups"
+  ],
+  "summary": "Same atoms, different arrangement.",
+  "layers": {
+   "basics": "Isomers share a molecular formula but differ in structure. Structural isomers differ in connections, stereoisomers differ only in 3D arrangement.",
+   "deeper": "Glucose and fructose are structural isomers (C6H12O6), while the two mirror-image forms of an amino acid are stereoisomers.",
+   "expert": "Isomer classes: constitutional, cis–trans (geometric) and optical. Biological systems usually treat isomers as entirely different molecules because enzyme active sites are three-dimensional."
+  },
+  "facts": [
+   [
+    "Glucose / fructose",
+    "C6H12O6 both"
+   ],
+   [
+    "Possible stereoisomers",
+    "2^n for n stereocentres"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "5.9",
+    "5-9-a-review-of-isomerism"
+   ],
+   [
+    "ORG",
+    "4.2",
+    "4-2-cis-trans-isomerism-in-cycloalkanes"
+   ]
+  ],
+  "where": "mol:fructose",
+  "molecules": [
+   "glucose_alpha",
+   "fructose"
+  ]
+ },
+ {
+  "id": "bio_chirality",
+  "title": "Chirality and enantiomers",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_orgchem",
+  "parents": [
+   "bio_orgchem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_isomers"
+  ],
+  "summary": "Molecules that are mirror images but not superimposable.",
+  "layers": {
+   "basics": "A carbon with four different groups is a stereocentre. The two mirror-image forms are enantiomers, like left and right hands.",
+   "deeper": "Life uses almost only L-amino acids and D-sugars. Enantiomers can differ in taste, smell or drug effect: thalidomide's isomers are the classic warning.",
+   "expert": "Cahn–Ingold–Prelog priority rules give R/S labels; optical rotation measures enantiomeric excess. The origin of biological homochirality is unsolved (see origin of life)."
+  },
+  "facts": [
+   [
+    "Amino acids in proteins",
+    "L (except achiral glycine)"
+   ],
+   [
+    "Sugars in nature",
+    "mostly D"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "5.1",
+    "5-1-enantiomers-and-the-tetrahedral-carbon"
+   ],
+   [
+    "ORG",
+    "5.5",
+    "5-5-sequence-rules-for-specifying-configuration"
+   ],
+   [
+    "ORG",
+    "5.12",
+    "5-12-chirality-in-nature-and-chiral-environments"
+   ]
+  ],
+  "kn": [
+   "stereochemistry_chirality"
+  ],
+  "where": "mol:aa_ala",
+  "molecules": [
+   "aa_ala",
+   "glyceraldehyde"
+  ]
+ },
+ {
+  "id": "bio_fischer_cyclic_sugars",
+  "title": "Sugar stereochemistry: Fischer and ring forms",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_orgchem",
+  "parents": [
+   "bio_orgchem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_chirality"
+  ],
+  "summary": "How sugars are drawn and how they close into rings.",
+  "layers": {
+   "basics": "Sugars are drawn as chains (Fischer projection) but in water mostly form rings. Ring closure creates a new stereocentre, giving α and β forms.",
+   "deeper": "Glucose in water is ≈ 64% β-pyranose, ≈ 36% α-pyranose, with trace open chain. α versus β linkage separates digestible starch from indigestible cellulose.",
+   "expert": "Anomeric carbon, mutarotation and the anomeric effect govern ring preferences. Haworth and chair representations convey the same molecule in different ways."
+  },
+  "facts": [
+   [
+    "β-glucopyranose in solution",
+    "≈ 64%"
+   ],
+   [
+    "Open-chain form",
+    "≈ 0.002%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "25.2",
+    "25-2-representing-carbohydrate-stereochemistry-fischer-projections"
+   ],
+   [
+    "ORG",
+    "25.5",
+    "25-5-cyclic-structures-of-monosaccharides-anomers"
+   ]
+  ],
+  "where": "mol:glucose_beta",
+  "molecules": [
+   "glucose_alpha",
+   "glucose_beta",
+   "ribose"
+  ]
+ },
+ {
+  "id": "bio_conformations",
+  "title": "Conformation and ring strain",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_orgchem",
+  "parents": [
+   "bio_orgchem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_isomers"
+  ],
+  "summary": "Rotation about single bonds and shapes of rings.",
+  "layers": {
+   "basics": "Single bonds rotate, so molecules wiggle among shapes (conformations). Cyclohexane prefers a chair shape that keeps substituents far apart.",
+   "deeper": "Bulky groups prefer equatorial positions in a chair. Conformational preferences affect how sugars, steroids and lipids pack.",
+   "expert": "Energy differences between staggered and eclipsed ethane ≈ 12 kJ/mol; axial–equatorial preference for a methyl on cyclohexane ≈ 7.6 kJ/mol. Peptide bonds are planar due to partial double-bond character."
+  },
+  "facts": [
+   [
+    "Ethane barrier",
+    "≈ 12 kJ/mol"
+   ],
+   [
+    "Methyl axial penalty",
+    "≈ 7.6 kJ/mol"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "3.6",
+    "3-6-conformations-of-ethane"
+   ],
+   [
+    "ORG",
+    "4.5",
+    "4-5-conformations-of-cyclohexane"
+   ],
+   [
+    "ORG",
+    "4.6",
+    "4-6-axial-and-equatorial-bonds-in-cyclohexane"
+   ]
+  ],
+  "where": "mol:cyclohexane",
+  "molecules": [
+   "cyclohexane"
+  ]
+ },
+ {
+  "id": "bio_acid_base_organic",
+  "title": "Organic acids, bases and pKa",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_orgchem",
+  "parents": [
+   "bio_orgchem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_functional_groups"
+  ],
+  "summary": "Which groups gain or lose protons.",
+  "layers": {
+   "basics": "Carboxylic acids lose H+ (pKa ≈ 4–5) and amines gain it (conjugate acid pKa ≈ 9–10), so at body pH carboxyls are negative and amines positive.",
+   "deeper": "Amino acids carry both, so they are zwitterions. The isoelectric point is the pH at which the net charge is zero.",
+   "expert": "Side-chain pKa values (Asp ≈ 3.9, Glu ≈ 4.1, His ≈ 6.0, Cys ≈ 8.3, Lys ≈ 10.5) shift in the protein environment, which tunes enzyme catalysis."
+  },
+  "facts": [
+   [
+    "Acetic acid pKa",
+    "4.76"
+   ],
+   [
+    "Histidine side chain pKa",
+    "≈ 6.0"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "2.7",
+    "2-7-acids-and-bases-the-br-nsted-lowry-definition"
+   ],
+   [
+    "ORG",
+    "2.8",
+    "2-8-acid-and-base-strength"
+   ],
+   [
+    "ORG",
+    "2.10",
+    "2-10-organic-acids-and-organic-bases"
+   ],
+   [
+    "ORG",
+    "26.2",
+    "26-2-amino-acids-and-the-henderson-hasselbalch-equation-isoelectric-points"
+   ]
+  ],
+  "kn": [
+   "chemistry_equilibrium"
+  ],
+  "where": "mol:aa_his",
+  "molecules": [
+   "aa_his",
+   "aa_lys",
+   "aa_asp",
+   "acetic_acid"
+  ]
+ },
+ {
+  "id": "bio_nucleophile_electrophile",
+  "title": "Nucleophiles, electrophiles and curved arrows",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_orgchem",
+  "parents": [
+   "bio_orgchem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_acid_base_organic"
+  ],
+  "summary": "The language of reaction mechanisms.",
+  "layers": {
+   "basics": "A nucleophile has electrons to give and attacks an electrophile that is short of electrons. Curved arrows track electron movement.",
+   "deeper": "Most biochemical steps are polar reactions: an electron-rich atom (e.g. Ser–OH, Cys–S−, water) attacks a carbon bearing a partial positive charge.",
+   "expert": "Reactivity depends on charge, polarisability, solvent and leaving-group ability. Enzymes enhance rates by orienting reactants and stabilising charged intermediates."
+  },
+  "facts": [
+   [
+    "Common biological nucleophiles",
+    "H2O, –OH, –SH, –NH2"
+   ],
+   [
+    "Common electrophile",
+    "carbonyl C"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "6.3",
+    "6-3-polar-reactions"
+   ],
+   [
+    "ORG",
+    "6.5",
+    "6-5-using-curved-arrows-in-polar-reaction-mechanisms"
+   ],
+   [
+    "ORG",
+    "2.11",
+    "2-11-acids-and-bases-the-lewis-definition"
+   ]
+  ],
+  "where": "mol:formaldehyde",
+  "molecules": [
+   "formaldehyde"
+  ]
+ },
+ {
+  "id": "bio_substitution_elimination",
+  "title": "Substitution and elimination reactions",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_orgchem",
+  "parents": [
+   "bio_orgchem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_nucleophile_electrophile"
+  ],
+  "summary": "Swap one group for another, or remove atoms to make a double bond.",
+  "layers": {
+   "basics": "In substitution a nucleophile replaces a leaving group; in elimination atoms are removed to form a C=C bond.",
+   "deeper": "SN2 is a single-step backside attack with inversion; SN1 passes through a carbocation. Cells use SN2-type steps in methylation reactions with S-adenosylmethionine.",
+   "expert": "Biological eliminations (dehydrations such as enolase) often proceed by E1cB through carbanion intermediates. Rates depend on leaving group, substrate and solvent."
+  },
+  "facts": [
+   [
+    "SN2 stereochemistry",
+    "inversion"
+   ],
+   [
+    "Methyl donor",
+    "S-adenosylmethionine (SAM)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "11.2",
+    "11-2-the-sn2-reaction"
+   ],
+   [
+    "ORG",
+    "11.4",
+    "11-4-the-sn1-reaction"
+   ],
+   [
+    "ORG",
+    "11.6",
+    "11-6-biological-substitution-reactions"
+   ],
+   [
+    "ORG",
+    "11.11",
+    "11-11-biological-elimination-reactions"
+   ]
+  ],
+  "where": "mol:ethanol",
+  "molecules": [
+   "methanol"
+  ]
+ },
+ {
+  "id": "bio_carbonyl_chemistry",
+  "title": "Carbonyl addition and condensation",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_orgchem",
+  "parents": [
+   "bio_orgchem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_nucleophile_electrophile"
+  ],
+  "summary": "Reactions at C=O, the workhorse of metabolism.",
+  "layers": {
+   "basics": "Carbonyl carbons are electrophiles. Nucleophiles add to them to make alcohols, hemiacetals and imines.",
+   "deeper": "Sugar rings are hemiacetals, Schiff bases link retinal to opsin, and the aldol reaction builds carbon–carbon bonds in glycolysis and the Calvin cycle.",
+   "expert": "Aldol and Claisen condensations use enolates (α-carbon nucleophiles). Citrate synthase and fatty-acid synthesis are biological Claisen-type reactions."
+  },
+  "facts": [
+   [
+    "Aldol in glycolysis",
+    "aldolase cleaves FBP"
+   ],
+   [
+    "Claisen in lipid synthesis",
+    "malonyl-ACP + acyl"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "19.4",
+    "19-4-nucleophilic-addition-reactions-of-aldehydes-and-ketones"
+   ],
+   [
+    "ORG",
+    "19.10",
+    "19-10-nucleophilic-addition-of-alcohols-acetal-formation"
+   ],
+   [
+    "ORG",
+    "23.1",
+    "23-1-carbonyl-condensations-the-aldol-reaction"
+   ],
+   [
+    "ORG",
+    "23.7",
+    "23-7-the-claisen-condensation-reaction"
+   ],
+   [
+    "ORG",
+    "23.13",
+    "23-13-some-biological-carbonyl-condensation-reactions"
+   ]
+  ],
+  "where": "mol:acetone",
+  "molecules": [
+   "acetone",
+   "acetaldehyde",
+   "retinal"
+  ]
+ },
+ {
+  "id": "bio_acyl_substitution",
+  "title": "Nucleophilic acyl substitution",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_orgchem",
+  "parents": [
+   "bio_orgchem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_carbonyl_chemistry"
+  ],
+  "summary": "How peptide bonds, esters and thioesters form and break.",
+  "layers": {
+   "basics": "A nucleophile attacks a carboxylic-acid-derived carbonyl and swaps out the leaving group. This forms and cleaves esters, amides and thioesters.",
+   "deeper": "Proteases and the ribosome use acyl substitution; acetyl-CoA is a thioester whose acetyl group is easily transferred.",
+   "expert": "Reactivity order: acid chlorides > anhydrides > thioesters > esters > amides. A tetrahedral intermediate forms and collapses, a pattern seen in serine proteases and in peptidyl transfer."
+  },
+  "facts": [
+   [
+    "Peptide bond",
+    "an amide"
+   ],
+   [
+    "Acetyl-CoA",
+    "thioester, ΔG°′ hydrolysis ≈ −31 kJ/mol"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "21.2",
+    "21-2-nucleophilic-acyl-substitution-reactions"
+   ],
+   [
+    "ORG",
+    "21.7",
+    "21-7-chemistry-of-amides"
+   ],
+   [
+    "ORG",
+    "21.8",
+    "21-8-chemistry-of-thioesters-and-acyl-phosphates-biological-carboxylic-acid-derivatives"
+   ]
+  ],
+  "where": "mol:acetate",
+  "molecules": [
+   "acetate"
+  ]
+ },
+ {
+  "id": "bio_phosphoryl_transfer",
+  "title": "Phosphoryl transfer",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_orgchem",
+  "parents": [
+   "bio_orgchem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_acyl_substitution"
+  ],
+  "summary": "The chemistry behind ATP, kinases and DNA backbones.",
+  "layers": {
+   "basics": "Phosphate groups are moved from one molecule to another, such as from ATP to a protein. Kinases add phosphate; phosphatases remove it.",
+   "deeper": "Phosphoryl transfer drives signalling and energy coupling. DNA and RNA backbones are phosphodiesters, and nucleotide synthesis relies on activated triphosphates.",
+   "expert": "Transfers occur via associative or dissociative transition states, often with Mg2+ stabilising the leaving group. Phosphodiester bonds are remarkably stable (hydrolysis half-life ≈ 10^8 years for DNA at neutral pH in water)."
+  },
+  "facts": [
+   [
+    "Human kinases",
+    "≈ 500"
+   ],
+   [
+    "DNA phosphodiester stability",
+    "half-life ≈ 10^8 y"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "21.8",
+    "21-8-chemistry-of-thioesters-and-acyl-phosphates-biological-carboxylic-acid-derivatives"
+   ],
+   [
+    "ORG",
+    "28.1",
+    "28-1-nucleotides-and-nucleic-acids"
+   ]
+  ],
+  "where": "mol:atp",
+  "molecules": [
+   "atp",
+   "adp",
+   "phosphate"
+  ]
+ },
+ {
+  "id": "bio_redox_organic",
+  "title": "Organic oxidation and reduction",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_orgchem",
+  "parents": [
+   "bio_orgchem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_carbonyl_chemistry"
+  ],
+  "summary": "Moving hydrogen and electrons in carbon compounds.",
+  "layers": {
+   "basics": "Oxidation of an alcohol gives an aldehyde or ketone; reduction reverses it. Cells use NAD+/NADH to carry out these steps by hydride transfer.",
+   "deeper": "Dehydrogenases move a hydride (H−) between substrate and NAD+. Lactate dehydrogenase interconverts pyruvate and lactate this way.",
+   "expert": "Oxidation state of carbon tracks energy content: fats (highly reduced) store ≈ 38 kJ/g versus carbohydrate ≈ 17 kJ/g."
+  },
+  "facts": [
+   [
+    "Fat energy",
+    "≈ 38 kJ/g"
+   ],
+   [
+    "Carbohydrate energy",
+    "≈ 17 kJ/g"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "19.12",
+    "19-12-biological-reductions"
+   ],
+   [
+    "ORG",
+    "17.7",
+    "17-7-oxidation-of-alcohols"
+   ],
+   [
+    "ORG",
+    "10.8",
+    "10-8-oxidation-and-reduction-in-organic-chemistry"
+   ]
+  ],
+  "where": "mol:nadh",
+  "molecules": [
+   "nadh",
+   "nad_plus",
+   "lactate",
+   "pyruvate"
+  ]
+ },
+ {
+  "id": "bio_resonance_aromatic",
+  "title": "Resonance and aromaticity",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_orgchem",
+  "parents": [
+   "bio_orgchem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_functional_groups"
+  ],
+  "summary": "Electron delocalisation that stabilises many biomolecules.",
+  "layers": {
+   "basics": "When electrons spread over several atoms the molecule is more stable. Benzene rings and the peptide bond are examples.",
+   "deeper": "Aromatic rings (Phe, Tyr, Trp, His, nucleobases) absorb UV light near 260–280 nm, which is how DNA and proteins are quantified.",
+   "expert": "Hückel's 4n+2 rule predicts aromatic stability. Delocalisation gives the peptide bond about 40% double-bond character, keeping it planar with a rotation barrier ≈ 80 kJ/mol."
+  },
+  "facts": [
+   [
+    "DNA absorbance max",
+    "≈ 260 nm"
+   ],
+   [
+    "Protein absorbance max",
+    "≈ 280 nm"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "2.4",
+    "2-4-resonance"
+   ],
+   [
+    "ORG",
+    "15.3",
+    "15-3-aromaticity-and-the-h-ckel-4n-2-rule"
+   ],
+   [
+    "ORG",
+    "15.5",
+    "15-5-aromatic-heterocycles-pyridine-and-pyrrole"
+   ]
+  ],
+  "where": "mol:benzene",
+  "molecules": [
+   "benzene",
+   "pyridine",
+   "indole",
+   "purine"
+  ]
+ },
+ {
+  "id": "bio_spectroscopy_structure",
+  "title": "Structure determination: MS, IR, NMR, UV",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_orgchem",
+  "parents": [
+   "bio_orgchem"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_functional_groups"
+  ],
+  "summary": "How chemists read a molecule.",
+  "layers": {
+   "basics": "Mass spectrometry weighs molecules, infrared spectroscopy identifies bond types, NMR maps the carbon–hydrogen framework, and UV–visible spectroscopy detects conjugated systems.",
+   "deeper": "Biologists use MS in proteomics and metabolomics, NMR and X-ray crystallography for protein structure, and UV–vis for nucleic-acid and protein concentration.",
+   "expert": "NMR depends on nuclear spin in a magnetic field (chemical shift, coupling). Cryo-EM and X-ray diffraction give atomic models of large complexes; resolution ≈ 1.5–3 Å is typical."
+  },
+  "facts": [
+   [
+    "Typical protein MS accuracy",
+    "< 5 ppm"
+   ],
+   [
+    "Protein NMR size limit",
+    "traditionally ≈ 30–50 kDa"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ORG",
+    "12.1",
+    "12-1-mass-spectrometry-of-small-molecules-magnetic-sector-instruments"
+   ],
+   [
+    "ORG",
+    "13.1",
+    "13-1-nuclear-magnetic-resonance-spectroscopy"
+   ],
+   [
+    "ORG",
+    "12.6",
+    "12-6-infrared-spectroscopy"
+   ],
+   [
+    "CHE",
+    "6.1",
+    "6-1-electromagnetic-energy"
+   ]
+  ],
+  "kn": [
+   "spectroscopy_methods"
+  ]
+ }
+]

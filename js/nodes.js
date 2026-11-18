@@ -264,6 +264,8 @@ function chipList(ids, label) {
   const ok = (ids || []).filter(Boolean); if (!ok.length) return '';
   return `<div class="refs"><div class="rh">${label}</div><div class="chips">${ok.map(i => `<button class="chip nd" data-n="${i}">${nodeTitle(i)}</button>`).join('')}</div></div>`;
 }
+function kindLine(n) { const k = (n.kind || '').replace(/_/g, ' '); const K = k ? k[0].toUpperCase() + k.slice(1) : ''; return n.scale_m ? `${K}${K ? ', ' : ''}about ${roughLen(n.scale_m)} across` : K; }
+function roughLen(m) { return fmtLen(m).replace(/^(\d+)\.\d+ /, '$1 ').replace(/^(\d)\.(\d)\d /, '$1.$2 '); }
 function showBodyNode(id, h) {
   const n = NODE[id]; if (!n) return false;
   infoState = { h, node: id };
@@ -271,23 +273,23 @@ function showBodyNode(id, h) {
   let basics = `<div class="body"><p><b>${n.summary || ''}</b></p>${L.basics ? `<p>${L.basics}</p>` : ''}</div>`;
   if (n.facts && n.facts.length) basics += '<dl>' + n.facts.map(f => `<dt>${f[0]}</dt><dd>${f[1]}</dd>`).join('') + '</dl>';
   if (n.did_you_know) basics += `<div class="fun"><b>Did you know?</b>${n.did_you_know}</div>`;
-  let html = `<div class="tag">${n.kind || ''}${n.scale_m ? ' · ~' + fmtLen(n.scale_m) : ''}</div><h2>${n.title}</h2>${certBadge(n.certainty)}<div class="vzh" id="vizHost"></div>`;
+  let html = `<div class="tag">${kindLine(n)}</div><h2>${n.title}</h2>${certBadge(n.certainty)}<div class="vzh" id="vizHost"></div>`;
   html += trackNav(id);
   if (n.formula) basics += `<div class="formula">${n.formula}</div>`;
   html += layered([['Basics', basics], ['Deeper', L.deeper ? `<div class="body"><p>${L.deeper}</p></div>` : ''], ['Expert', L.expert ? `<div class="body expert"><p>${L.expert}</p></div>` : '']]);
   const canLook = h && h.frame && h.frame.children && h.frame.children.some(c => c.type === 'organ' && c.opts.organ === id);
-  html += `<div class="btnrow">${h ? `<button class="zoom" id="zoomBtn"><span>🔍 ${canLook ? 'Look inside' : 'Zoom in'}</span><span>▸</span></button>` : ''}${h && n.made_of && n.made_of.length ? `<button class="zoom alt" id="madeBtn"><span>What is it made of? → ${nodeTitle(n.made_of[0])}</span><span>▾</span></button>` : ''}</div>`;
+  html += `<div class="btnrow">${h ? `<button class="zoom" id="zoomBtn">${canLook ? 'Look inside' : 'Zoom in'}</button>` : ''}${h && n.made_of && n.made_of.length ? `<button class="zoom alt" id="madeBtn"><span>See what it is made of</span><span>▾</span></button>` : ''}</div>`;
   const tw = typeof TEAR !== 'undefined' && (TEAR[id] || (n.where && TEAR[n.where]));
-  if (n.lab || (tw && !h)) html += `<div class="btnrow">${n.lab ? `<button class="zoom lab" id="labBtn"><span>🧪 ${labAvailable(n.lab.id) ? 'Try it' : 'Coming soon'} in the ${LAB_NAMES[n.lab.id] || n.lab.id}</span><span>▸</span></button>` : ''}${tw && !h ? `<button class="zoom alt" id="whereBtn"><span>📍 See where it is</span><span>▸</span></button>` : ''}</div>`;
-  if (n.processes && n.processes.length) html += `<div class="refs"><div class="rh">▶ How it works</div><div class="chips">${n.processes.map(p => `<button class="chip pr" data-p="${p}">▶ ${nodeTitle(p)}</button>`).join('')}</div></div>`;
-  html += chipList(n.parts, '🧩 Parts');
-  html += chipList(n.made_of, '🧱 Made of');
-  html += chipList(n.parents, '⬆ Part of');
-  html += chipList(n.needs, '🧭 Builds on');
-  if (n.ext && n.ext.length) html += `<div class="refs"><div class="rh">🔗 Learn more</div>${n.ext.map(e => `<a class="ref" href="${e.url}" target="_blank" rel="noopener"><b>${e.title}</b></a>`).join('')}</div>`;
-  if (n.molecules && n.molecules.length) html += chipList(n.molecules.map(m => NODE[m] ? m : null), '⚛ Key molecules');
-  if (n.open_questions && n.open_questions.length) html += `<div class="refs"><div class="rh">🔭 Still open</div><ul class="ev">${n.open_questions.map(q => `<li>${q}</li>`).join('')}</ul></div>`;
-  if (n.refs && n.refs.length) html += `<div class="refs"><div class="rh">📚 Textbook sections</div>${n.refs.map(r => bookRef(r[0], r[1])).join('')}</div>`;
+  if (n.lab || (tw && !h)) html += `<div class="btnrow">${n.lab ? `<button class="zoom lab" id="labBtn">${labAvailable(n.lab.id) ? 'Open in the ' : 'Planned: '}${LAB_NAMES[n.lab.id] || n.lab.id}</button>` : ''}${tw && !h ? `<button class="zoom alt" id="whereBtn">Show where it is</button>` : ''}</div>`;
+  if (n.processes && n.processes.length) html += `<div class="refs"><div class="rh">How it works</div><div class="chips">${n.processes.map(p => `<button class="chip pr" data-p="${p}">${nodeTitle(p)}</button>`).join('')}</div></div>`;
+  html += chipList(n.parts, 'Parts');
+  html += chipList(n.made_of, 'Made of');
+  html += chipList(n.parents, 'Part of');
+  html += chipList(n.needs, 'Builds on');
+  if (n.ext && n.ext.length) html += `<div class="refs"><div class="rh">Further reading</div>${n.ext.map(e => `<a class="ref" href="${e.url}" target="_blank" rel="noopener"><b>${e.title}</b></a>`).join('')}</div>`;
+  if (n.molecules && n.molecules.length) html += chipList(n.molecules.map(m => NODE[m] ? m : null), 'Key molecules');
+  if (n.open_questions && n.open_questions.length) html += `<div class="refs"><div class="rh">Open questions</div><ul class="ev">${n.open_questions.map(q => `<li>${q}</li>`).join('')}</ul></div>`;
+  if (n.refs && n.refs.length) html += `<div class="refs"><div class="rh">Textbook sections</div>${n.refs.map(r => bookRef(r[0], r[1])).join('')}</div>`;
   openPanel(html);
   mountViz($('#vizHost'), id); wireTrackNav();
   const zb = $('#zoomBtn'); if (zb) zb.onclick = () => { const ch = h.frame.children.find(c => c.type === 'organ' && c.opts.organ === id); if (ch) flyTo(ch, new V3(), ch.opts.R * 2.2); else zoomIntoHit(h); };
@@ -320,7 +322,7 @@ function renderProc() {
   let el = $('#proc'); if (!el) { el = document.createElement('div'); el.id = 'proc'; el.className = 'glass'; document.body.appendChild(el); }
   const n = PROC.active; if (!n) { el.classList.remove('open'); PROC.focus = []; return; }
   const s = n.steps[PROC.i]; PROC.focus = s.focus || [];
-  el.innerHTML = `<div class="ph"><b>▶ ${n.title}</b><span>Step ${PROC.i + 1} of ${n.steps.length}</span><button class="x" id="procX">✕</button></div><h3>${s.title}</h3><p>${s.text}</p><div class="pb"><button id="procP" ${PROC.i ? '' : 'disabled'}>◀ Back</button><div class="dots">${n.steps.map((_, i) => `<i class="${i === PROC.i ? 'on' : ''}"></i>`).join('')}</div><button id="procN">${PROC.i < n.steps.length - 1 ? 'Next ▶' : 'Done ✓'}</button></div>`;
+  el.innerHTML = `<div class="ph"><b>${n.title}</b><span>Step ${PROC.i + 1} of ${n.steps.length}</span><button class="x" id="procX" aria-label="Close">×</button></div><h3>${s.title}</h3><p>${s.text}</p><div class="pb"><button id="procP" ${PROC.i ? '' : 'disabled'}>Back</button><div class="dots">${n.steps.map((_, i) => `<i class="${i === PROC.i ? 'on' : ''}"></i>`).join('')}</div><button id="procN">${PROC.i < n.steps.length - 1 ? 'Next step' : 'Finish'}</button></div>`;
   el.classList.add('open');
   $('#procX').onclick = () => { PROC.active = null; renderProc(); };
   $('#procP').onclick = () => { PROC.i = Math.max(0, PROC.i - 1); renderProc(); };

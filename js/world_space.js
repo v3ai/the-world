@@ -96,7 +96,7 @@ FT.milkyway = {
     const sgr = hitSphere(.5, 'sgrA', 2.5); F.add(sgr); F.pickables.push(sgr); F.label(sgr, 'Sagittarius A* (black hole)', { offset: new V3(0, .6, 0) });
     const sm = new THREE.Group(); sm.position.copy(SUN_GAL); sm.add(markerSprite(0xffd166, 14)); const sh = hitSphere(.4, 'sunMarker', 3); sm.add(sh); F.add(sm); F.pickables.push(sm);
     sm.userData.id = 'sunMarker'; sm.userData.priority = 3; sm.userData.center = () => SUN_GAL.clone(); sm.userData.radius = .01;
-    F.label(sm, '☉ The Sun (you are here)', { cls: 'you', always: true, offset: new V3(0, .5, 0) });
+    F.label(sm, 'The Sun (you are here)', { cls: 'you', always: true, offset: new V3(0, .5, 0) });
     // dark-matter halo (toggle)
     const halo = new THREE.Group(); halo.visible = false; F.add(halo);
     const hP = [], hC = [], hS = []; for (let i = 0; i < 5000; i++) { const v = new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(30); hP.push(v.x, v.y, v.z); hC.push(.3, .12, .55); hS.push(1 + r()); }
@@ -151,7 +151,7 @@ FT.neighborhood = {
         F.conLines = new THREE.LineSegments(lg, new THREE.LineBasicMaterial({ color: 0x5b7bb0, transparent: true, opacity: .35, depthWrite: false })); F.conLines.visible = store.get('const', false); F.add(F.conLines);
       }
     });
-    const sun = markerSprite(0xfff1c8, 10); F.add(sun); F.label(sun, '☉ Sun', { cls: 'you', always: true });
+    const sun = markerSprite(0xfff1c8, 10); F.add(sun); F.label(sun, 'Sun', { cls: 'you', always: true });
     seg([['off', 'No constellations'], ['on', 'Constellation lines']], store.get('const', false) ? 'on' : 'off', k => { store.set('const', k === 'on'); if (F.conLines) F.conLines.visible = k === 'on'; });
     F.blurb = '109,000 real stars at their measured positions (HYG catalog). Brightness changes with your distance from each star.';
     F.spawn = (T, hint) => {
@@ -302,7 +302,7 @@ FT.earth = {
     const clouds = new THREE.Mesh(new THREE.SphereGeometry(R * 1.006, 128, 64), new THREE.MeshStandardMaterial({ map: tex('earth_clouds.png'), transparent: true, depthWrite: false, roughness: 1 })); spin.add(clouds);
     F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.012, 96, 64), fresnelMat(0x6ab8ff, 3.2, 1.3)));
     F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.06, 96, 64), haloMat(0x4aa0ff, 2.4)));
-    const pk = markerSprite(0xffd166, 11); pk.position.copy(latLon3(PARK.lat, PARK.lon, R * 1.001)); spin.add(pk); F.label(pk, '📍 Greenwich Park (the park)', { cls: 'you', always: true });
+    const pk = markerSprite(0xffd166, 11); pk.position.copy(latLon3(PARK.lat, PARK.lon, R * 1.001)); spin.add(pk); F.label(pk, 'Greenwich Park', { cls: 'you', always: true });
     const moon = new THREE.Mesh(new THREE.SphereGeometry(1.7374, 96, 64), new THREE.MeshStandardMaterial({ map: tex('moon.jpg'), roughness: 1 })); F.add(moon);
     moon.userData = { id: 'moon', priority: 2, madeOf: 'regolith', sim: ['moon'] }; F.pickables.push(moon); F.label(moon, 'Moon', { offset: new V3(0, 2.6, 0) }); moon.add(markerSprite(0xffffff, 6));
     F.moon = moon;

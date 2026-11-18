@@ -428,7 +428,7 @@
     (spec.params || []).forEach(p => st.p[p.id] = p.value ?? p.min ?? 0);
     const ctrl = document.createElement('div'); ctrl.className = 'vzc'; wrap.appendChild(ctrl);
     (spec.params || []).forEach(p => { const r = document.createElement('label'); r.innerHTML = `<span>${p.label || p.id}</span><input type="range" min="${p.min}" max="${p.max}" step="${p.step || (p.max - p.min) / 100}" value="${st.p[p.id]}"><b></b>`; const inp = r.querySelector('input'), b = r.querySelector('b'); const upd = () => { st.p[p.id] = +inp.value; b.textContent = fmt(+inp.value) + (p.unit ? ' ' + p.unit : ''); draw(); }; inp.oninput = upd; b.textContent = fmt(st.p[p.id]) + (p.unit ? ' ' + p.unit : ''); ctrl.appendChild(r); });
-    let pb = null; if (animated) { pb = document.createElement('button'); pb.className = 'vzp'; pb.textContent = '❚❚'; pb.onclick = () => { st.playing = !st.playing; pb.textContent = st.playing ? '❚❚' : '▶'; }; ctrl.appendChild(pb); }
+    let pb = null; if (animated) { pb = document.createElement('button'); pb.className = 'vzp'; pb.textContent = 'Pause'; pb.onclick = () => { st.playing = !st.playing; pb.textContent = st.playing ? 'Pause' : 'Play'; }; ctrl.appendChild(pb); }
     const ro = document.createElement('div'); ro.className = 'vzr'; wrap.appendChild(ro);
     if (spec.caption) { const cp = document.createElement('div'); cp.className = 'vzcap'; wrap.appendChild(cp); cp.textContent = spec.caption; }
     const size = () => { const w = Math.max(200, wrap.clientWidth || o.width || 320), h = o.height || spec.height || Math.round(w * (spec.aspect || .62)), dpr = Math.min(2, devicePixelRatio || 1); cv.width = w * dpr; cv.height = h * dpr; cv.style.width = w + 'px'; cv.style.height = h + 'px'; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return [w, h]; };
@@ -460,7 +460,7 @@ function mountViz(el, id) {
   loadViz().then(() => {
     const spec = vizFor(id); if (!spec || !el.isConnected) return;
     el.innerHTML = ''; renderViz(el, spec);
-    const big = document.createElement('button'); big.className = 'vzbig'; big.title = 'Enlarge'; big.textContent = '⤢'; el.appendChild(big);
-    big.onclick = () => { let m = document.getElementById('vizModal'); if (!m) { m = document.createElement('div'); m.id = 'vizModal'; m.innerHTML = '<div class="vm glass"><button class="x">✕</button><h3></h3><div class="vmb"></div></div>'; document.body.appendChild(m); m.onclick = e => { if (e.target === m) m.classList.remove('open'); }; m.querySelector('.x').onclick = () => m.classList.remove('open'); } m.querySelector('h3').textContent = (NODE[id] && NODE[id].title) || ''; const b = m.querySelector('.vmb'); b.innerHTML = ''; m.classList.add('open'); renderViz(b, spec, { height: Math.min(innerHeight * .62, 560) }); };
+    const big = document.createElement('button'); big.className = 'vzbig'; big.title = 'Enlarge'; big.textContent = 'Enlarge'; el.appendChild(big);
+    big.onclick = () => { let m = document.getElementById('vizModal'); if (!m) { m = document.createElement('div'); m.id = 'vizModal'; m.innerHTML = '<div class="vm"><button class="x" aria-label="Close">×</button><h3></h3><div class="vmb"></div></div>'; document.body.appendChild(m); m.onclick = e => { if (e.target === m) m.classList.remove('open'); }; m.querySelector('.x').onclick = () => m.classList.remove('open'); } m.querySelector('h3').textContent = (NODE[id] && NODE[id].title) || ''; const b = m.querySelector('.vmb'); b.innerHTML = ''; m.classList.add('open'); renderViz(b, spec, { height: Math.min(innerHeight * .62, 560) }); };
   });
 }

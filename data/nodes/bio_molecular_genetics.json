@@ -1,0 +1,2284 @@
+[
+ {
+  "id": "bio_molecular",
+  "title": "Molecular biology",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "How genetic information is stored, copied, read and regulated.",
+  "layers": {
+   "basics": "DNA stores instructions, RNA copies them, and ribosomes build proteins from them. Cells also decide which genes to read, when and how much.",
+   "deeper": "Replication copies the genome with high fidelity and repair systems fix damage. Transcription and translation follow the genetic code, and layers of regulation (chromatin, factors, RNAs) control expression.",
+   "expert": "Gene expression is a regulated, noisy, multi-step process with feedback at every level. Chromatin state, noncoding RNAs and post-transcriptional control give eukaryotes a vast regulatory repertoire."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "central_dogma",
+   "dna_structure",
+   "gene_regulation"
+  ]
+ },
+ {
+  "id": "bio_dna_structure",
+  "title": "DNA double helix",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_nucleotides",
+   "bio_polarity_hbonds"
+  ],
+  "summary": "Two antiparallel strands in a helix.",
+  "layers": {
+   "basics": "DNA is two strands twisted into a double helix. A pairs with T and G with C through hydrogen bonds.",
+   "deeper": "The strands run in opposite directions (antiparallel). Chargaff's rules (A = T, G = C) and Franklin's X-ray patterns led Watson and Crick to the model in 1953.",
+   "expert": "B-DNA has ≈ 10.5 bp per turn, a 3.4 Å rise per bp, a 2 nm diameter and major and minor grooves that proteins read. Z-DNA and G-quadruplexes are alternative forms."
+  },
+  "facts": [
+   [
+    "Base pairs per turn",
+    "≈ 10.5"
+   ],
+   [
+    "Helix diameter",
+    "≈ 2 nm"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "14.2",
+    "14-2-dna-structure-and-sequencing"
+   ],
+   [
+    "COB",
+    "9.1",
+    "9-1-the-structure-of-dna"
+   ],
+   [
+    "ORG",
+    "28.2",
+    "28-2-base-pairing-in-dna"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "RCSB PDB: 1BNA B-DNA",
+    "url": "https://www.rcsb.org/structure/1BNA"
+   }
+  ],
+  "kn": [
+   "dna_structure"
+  ],
+  "where": "place:dna",
+  "molecules": [
+   "bp_AT",
+   "bp_GC"
+  ]
+ },
+ {
+  "id": "bio_chromatin_packaging",
+  "title": "Chromatin and chromosome packaging",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_dna_structure"
+  ],
+  "summary": "Fitting two metres of DNA in a nucleus.",
+  "layers": {
+   "basics": "DNA wraps around histone proteins to form nucleosomes, which fold into chromatin and condense into chromosomes.",
+   "deeper": "A human cell has ≈ 2 m of DNA in a nucleus ≈ 6 µm across. Euchromatin is loose and active; heterochromatin is compact and mostly silent.",
+   "expert": "Nucleosome core: 147 bp wrapped around an H2A/H2B/H3/H4 octamer. Higher-order folding involves loops and TADs organised by cohesin and CTCF."
+  },
+  "facts": [
+   [
+    "Nucleosome DNA",
+    "147 bp"
+   ],
+   [
+    "DNA length per diploid cell",
+    "≈ 2 m"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "16.3",
+    "16-3-eukaryotic-epigenetic-gene-regulation"
+   ],
+   [
+    "ANP",
+    "3.3",
+    "3-3-the-nucleus-and-dna-replication"
+   ]
+  ],
+  "kn": [
+   "chromatin_genome"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_central_dogma",
+  "title": "Central dogma and its exceptions",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "protein_synthesis"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_dna_structure",
+   "bio_rna_types"
+  ],
+  "summary": "DNA to RNA to protein.",
+  "layers": {
+   "basics": "Information normally flows from DNA to RNA to protein. DNA is copied (replication), read (transcription) and translated into proteins.",
+   "deeper": "Exceptions: retroviruses copy RNA into DNA with reverse transcriptase, RNA viruses replicate RNA, and prions transmit shape-based information.",
+   "expert": "Crick's 1958 formulation prohibits information flow from protein back to nucleic acid; this still holds. Telomerase and retrotransposons also use reverse transcription."
+  },
+  "facts": [
+   [
+    "Proposed by",
+    "Francis Crick, 1958"
+   ],
+   [
+    "Reverse transcriptase discovered",
+    "1970"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "15.1",
+    "15-1-the-genetic-code"
+   ],
+   [
+    "COB",
+    "9.1",
+    "9-1-the-structure-of-dna"
+   ]
+  ],
+  "kn": [
+   "central_dogma"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_replication_machinery",
+  "title": "DNA replication: enzymes and fork",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "dna_replication_process"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_dna_structure",
+   "bio_enzyme_catalysis"
+  ],
+  "summary": "Copying the genome semiconservatively.",
+  "layers": {
+   "basics": "Each new double helix has one old and one new strand (semiconservative). Helicase unwinds the DNA and DNA polymerase builds new strands from the 5′ to 3′ direction.",
+   "deeper": "The leading strand is made continuously, the lagging strand in short Okazaki fragments joined by ligase. Primase lays RNA primers.",
+   "expert": "E. coli replicates ≈ 1,000 nt/s with an error rate ≈ 10⁻¹⁰ per base after proofreading and mismatch repair; human forks move ≈ 50 nt/s from ≈ 30,000–50,000 origins. Meselson–Stahl confirmed semiconservative replication in 1958."
+  },
+  "facts": [
+   [
+    "E. coli fork speed",
+    "≈ 1,000 nt/s"
+   ],
+   [
+    "Final error rate",
+    "≈ 10⁻¹⁰ per bp"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "14.3",
+    "14-3-basics-of-dna-replication"
+   ],
+   [
+    "BIO",
+    "14.4",
+    "14-4-dna-replication-in-prokaryotes"
+   ],
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ],
+   [
+    "COB",
+    "9.2",
+    "9-2-dna-replication"
+   ]
+  ],
+  "kn": [
+   "dna_structure"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_dna_damage_repair",
+  "title": "DNA damage and repair",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_replication_machinery"
+  ],
+  "summary": "Fixing mistakes and lesions.",
+  "layers": {
+   "basics": "UV light, chemicals and copying errors damage DNA. Cells detect and repair most of it using several pathways.",
+   "deeper": "Mismatch repair fixes copying errors, base- and nucleotide-excision repair fix chemical damage, and double-strand breaks are fixed by end-joining or homologous recombination.",
+   "expert": "Xeroderma pigmentosum arises from defective nucleotide excision repair; BRCA1/2 mutations impair homologous recombination (PARP inhibitors exploit this). A human cell suffers ≈ 10⁴–10⁵ DNA lesions per day."
+  },
+  "facts": [
+   [
+    "Lesions per cell per day",
+    "≈ 10⁴–10⁵"
+   ],
+   [
+    "Repair pathways",
+    "≥ 5 major"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "14.6",
+    "14-6-dna-repair"
+   ],
+   [
+    "MIC",
+    "11.5",
+    "11-5-mutations"
+   ]
+  ],
+  "kn": [
+   "dna_structure"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_recombination_transposons",
+  "title": "Recombination and transposable elements",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_dna_damage_repair"
+  ],
+  "summary": "Shuffling and moving DNA.",
+  "layers": {
+   "basics": "Cells can swap segments between DNA molecules (recombination) and some DNA sequences can move around the genome (transposons).",
+   "deeper": "Crossing over in meiosis is recombination; transposons make up ≈ 45% of the human genome, mostly inactive remnants.",
+   "expert": "Barbara McClintock discovered mobile elements in maize. Retrotransposons (LINEs, Alus) copy via RNA; V(D)J recombination uses recombination to build antibody genes."
+  },
+  "facts": [
+   [
+    "Transposon share of human genome",
+    "≈ 45%"
+   ],
+   [
+    "Alu elements",
+    "≈ 10%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "14.6",
+    "14-6-dna-repair"
+   ],
+   [
+    "MIC",
+    "11.6",
+    "11-6-how-asexual-prokaryotes-achieve-genetic-diversity"
+   ]
+  ],
+  "kn": [
+   "chromatin_genome"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_genetic_code",
+  "title": "The genetic code",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_central_dogma"
+  ],
+  "summary": "Triplets of bases specify amino acids.",
+  "layers": {
+   "basics": "Each group of three bases (codon) in mRNA specifies one amino acid or a stop. There are 64 codons for 20 amino acids.",
+   "deeper": "The code is redundant (\"degenerate\") and almost universal. AUG codes for methionine and starts translation; UAA, UAG, UGA are stop codons.",
+   "expert": "Wobble pairing at the third position lets ≈ 40 tRNAs read 61 sense codons. Codon usage bias affects expression; some organisms recode stop codons (e.g., UGA for selenocysteine)."
+  },
+  "facts": [
+   [
+    "Codons",
+    "64 (61 sense + 3 stop)"
+   ],
+   [
+    "Standard amino acids",
+    "20"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "15.1",
+    "15-1-the-genetic-code"
+   ],
+   [
+    "COB",
+    "9.4",
+    "9-4-translation"
+   ]
+  ],
+  "kn": [
+   "central_dogma"
+  ],
+  "where": "mol:aa_met",
+  "molecules": [
+   "aa_met"
+  ]
+ },
+ {
+  "id": "bio_transcription_prokaryotic",
+  "title": "Transcription in prokaryotes",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "transcription_process"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_central_dogma",
+   "bio_replication_machinery"
+  ],
+  "summary": "RNA polymerase and sigma factors.",
+  "layers": {
+   "basics": "RNA polymerase unwinds DNA at a promoter and builds a complementary RNA. It stops at a terminator.",
+   "deeper": "In bacteria a sigma factor guides the polymerase to the promoter (−10 and −35 boxes). Transcription and translation can occur at the same time.",
+   "expert": "Rho-dependent and intrinsic (hairpin) termination. Rates ≈ 40–80 nt/s. Rifampicin blocks bacterial RNA polymerase."
+  },
+  "facts": [
+   [
+    "Elongation rate",
+    "≈ 40–80 nt/s"
+   ],
+   [
+    "Promoter motifs",
+    "−35 and −10 boxes"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "15.2",
+    "15-2-prokaryotic-transcription"
+   ],
+   [
+    "MIC",
+    "11.3",
+    "11-3-rna-transcription"
+   ]
+  ],
+  "kn": [
+   "central_dogma"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_transcription_eukaryotic",
+  "title": "Transcription in eukaryotes",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_transcription_prokaryotic",
+   "bio_chromatin_packaging"
+  ],
+  "summary": "Three polymerases and general factors.",
+  "layers": {
+   "basics": "Eukaryotes use three RNA polymerases (I, II, III). Pol II makes mRNA and needs many general transcription factors.",
+   "deeper": "The TATA box and the pre-initiation complex position Pol II; enhancers far away boost transcription through looping.",
+   "expert": "Mediator, TFIID and chromatin remodellers integrate signals; transcription is bursty. Pol II CTD phosphorylation coordinates capping, splicing and termination."
+  },
+  "facts": [
+   [
+    "Pol II machinery",
+    "≈ 50 proteins"
+   ],
+   [
+    "Transcription speed",
+    "≈ 1–4 kb/min"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "15.3",
+    "15-3-eukaryotic-transcription"
+   ]
+  ],
+  "kn": [
+   "gene_regulation"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_rna_processing",
+  "title": "RNA processing: capping, polyadenylation, splicing",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_transcription_eukaryotic"
+  ],
+  "summary": "Turning pre-mRNA into mRNA.",
+  "layers": {
+   "basics": "Eukaryotic pre-mRNA gets a 5′ cap and a poly-A tail, and introns are cut out so exons are joined (splicing).",
+   "deeper": "Cap and tail protect mRNA and help translation. The spliceosome, made of snRNAs and proteins, removes introns.",
+   "expert": "Human genes average ≈ 8–9 exons; introns are ≈ 95% of a gene. Alternative splicing lets ≈ 95% of multi-exon genes make more than one mRNA, so ≈ 20,000 genes give ≫ 20,000 proteins."
+  },
+  "facts": [
+   [
+    "Human protein-coding genes",
+    "≈ 20,000"
+   ],
+   [
+    "Multi-exon genes alternatively spliced",
+    "≈ 95%"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "15.4",
+    "15-4-rna-processing-in-eukaryotes"
+   ],
+   [
+    "BIO",
+    "16.5",
+    "16-5-eukaryotic-post-transcriptional-gene-regulation"
+   ]
+  ],
+  "kn": [
+   "central_dogma"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_trna_translation_machinery",
+  "title": "tRNA and the ribosome",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "protein_synthesis",
+   "ribosome"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_rna_processing",
+   "bio_genetic_code"
+  ],
+  "summary": "Adapters and the protein factory.",
+  "layers": {
+   "basics": "tRNAs carry amino acids and read codons through an anticodon. Ribosomes, made of rRNA and proteins, join amino acids into a chain.",
+   "deeper": "Aminoacyl-tRNA synthetases attach the right amino acid, a key accuracy step. The ribosome has A, P and E sites.",
+   "expert": "The ribosome is a ribozyme: peptidyl transfer is catalysed by rRNA. Bacterial ribosomes are 70S (30S + 50S), eukaryotic 80S (40S + 60S); many antibiotics target the 70S ribosome."
+  },
+  "facts": [
+   [
+    "Bacterial ribosome",
+    "70S"
+   ],
+   [
+    "Translation speed in E. coli",
+    "≈ 15–20 aa/s"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "15.5",
+    "15-5-ribosomes-and-protein-synthesis"
+   ],
+   [
+    "COB",
+    "9.4",
+    "9-4-translation"
+   ],
+   [
+    "MIC",
+    "11.4",
+    "11-4-protein-synthesis-translation"
+   ]
+  ],
+  "kn": [
+   "central_dogma"
+  ],
+  "where": "ribosome"
+ },
+ {
+  "id": "bio_translation_regulation_ptm",
+  "title": "Translation control and post-translational modification",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_trna_translation_machinery"
+  ],
+  "summary": "Regulating protein output and modifying proteins.",
+  "layers": {
+   "basics": "Cells control how much protein is made by controlling translation initiation and mRNA lifetime, and modify proteins after synthesis.",
+   "deeper": "Phosphorylation, glycosylation, ubiquitination and cleavage change protein activity, location and lifetime.",
+   "expert": "Initiation is the main control point (eIF2 phosphorylation in stress). Proteome complexity: > 400 types of post-translational modification are known; mRNA half-lives range from minutes to days."
+  },
+  "facts": [
+   [
+    "Types of PTM",
+    "> 400"
+   ],
+   [
+    "mRNA half-life",
+    "minutes to days"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "16.6",
+    "16-6-eukaryotic-translational-and-post-translational-gene-regulation"
+   ],
+   [
+    "BIO",
+    "16.5",
+    "16-5-eukaryotic-post-transcriptional-gene-regulation"
+   ]
+  ],
+  "kn": [
+   "gene_regulation"
+  ],
+  "where": "ribosome"
+ },
+ {
+  "id": "bio_lac_operon",
+  "title": "Operons: lac and trp",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_transcription_prokaryotic"
+  ],
+  "summary": "Gene regulation in bacteria.",
+  "layers": {
+   "basics": "Bacteria group related genes into an operon controlled together. The lac operon is turned on only when lactose is present and glucose is low.",
+   "deeper": "A repressor blocks the lac promoter until lactose (allolactose) releases it; CAP–cAMP boosts transcription when glucose is scarce. The trp operon is switched off when tryptophan is plentiful.",
+   "expert": "Jacob and Monod proposed the operon model in 1961 (Nobel 1965). The lac system shows combinatorial control, and trp adds attenuation. Gene circuits built from these parts are the basis of synthetic biology."
+  },
+  "facts": [
+   [
+    "Nobel Prize",
+    "1965 (Jacob, Monod, Lwoff)"
+   ],
+   [
+    "lac operon genes",
+    "lacZ, lacY, lacA"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "16.2",
+    "16-2-prokaryotic-gene-regulation"
+   ],
+   [
+    "MIC",
+    "11.7",
+    "11-7-gene-regulation-operon-theory"
+   ]
+  ],
+  "kn": [
+   "gene_regulation"
+  ],
+  "lab": {
+   "id": "molecule",
+   "preset": "lac_operon"
+  },
+  "where": "place:pond"
+ },
+ {
+  "id": "bio_eukaryotic_gene_regulation",
+  "title": "Eukaryotic transcriptional regulation",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_transcription_eukaryotic"
+  ],
+  "summary": "Transcription factors, enhancers and combinatorial control.",
+  "layers": {
+   "basics": "Transcription factors bind DNA at specific sites and turn genes on or off. Enhancers can sit far from the genes they control.",
+   "deeper": "Many factors working together give each cell type its pattern. Signalling pathways modify factor activity.",
+   "expert": "About 1,600 human transcription factors; enhancers loop to promoters within TADs. Pioneer factors open closed chromatin. Mutations in enhancers underlie many GWAS hits."
+  },
+  "facts": [
+   [
+    "Human transcription factors",
+    "≈ 1,600"
+   ],
+   [
+    "Enhancer–promoter distance",
+    "up to ≈ 1 Mb"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "16.4",
+    "16-4-eukaryotic-transcription-gene-regulation"
+   ],
+   [
+    "BIO",
+    "16.1",
+    "16-1-regulation-of-gene-expression"
+   ]
+  ],
+  "kn": [
+   "gene_regulation"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_epigenetics",
+  "title": "Epigenetics: DNA methylation and histone marks",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_chromatin_packaging",
+   "bio_eukaryotic_gene_regulation"
+  ],
+  "summary": "Heritable changes in expression without changes in sequence.",
+  "layers": {
+   "basics": "Chemical tags on DNA (methylation) and on histones change how tightly DNA is packed and whether genes are active.",
+   "deeper": "Methylation of CpG sites usually silences genes. X-inactivation and genomic imprinting use epigenetic silencing; marks can be passed through cell divisions.",
+   "expert": "Histone acetylation opens chromatin, H3K27me3 marks repression and H3K4me3 marks active promoters. Transgenerational epigenetic inheritance in humans is debated and evidence is limited."
+  },
+  "facts": [
+   [
+    "CpG methylation in human genome",
+    "≈ 70–80% of CpGs"
+   ],
+   [
+    "Histone marks",
+    "acetylation, methylation, phosphorylation"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How much epigenetic information is inherited across generations in mammals is unresolved.",
+   "Causality of many marks in gene regulation (cause vs consequence) is still being worked out."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "16.3",
+    "16-3-eukaryotic-epigenetic-gene-regulation"
+   ],
+   [
+    "ANP",
+    "3.3",
+    "3-3-the-nucleus-and-dna-replication"
+   ]
+  ],
+  "kn": [
+   "chromatin_genome",
+   "gene_regulation"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_x_inactivation_imprinting",
+  "title": "X-inactivation and genomic imprinting",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_epigenetics"
+  ],
+  "summary": "Parent-of-origin and dosage compensation.",
+  "layers": {
+   "basics": "In female mammals one X chromosome is silenced in each cell. Some genes are expressed only from the maternal or only the paternal copy (imprinting).",
+   "deeper": "Tortoiseshell and calico cats show X-inactivation as a patchwork of coat colours. Imprinting disorders include Prader–Willi and Angelman syndromes.",
+   "expert": "Xist RNA coats the inactive X and recruits silencing complexes. Imprinted genes (~100–200 in humans) are regulated by differentially methylated regions set in the germline."
+  },
+  "facts": [
+   [
+    "Imprinted genes in humans",
+    "≈ 100–200"
+   ],
+   [
+    "Xist RNA length",
+    "≈ 17 kb"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "16.3",
+    "16-3-eukaryotic-epigenetic-gene-regulation"
+   ],
+   [
+    "BIO",
+    "13.2",
+    "13-2-chromosomal-basis-of-inherited-disorders"
+   ]
+  ],
+  "kn": [
+   "chromatin_genome"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_noncoding_rna",
+  "title": "Noncoding RNAs: miRNA, siRNA, lncRNA",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_rna_types",
+   "bio_epigenetics"
+  ],
+  "summary": "RNAs that regulate rather than code.",
+  "layers": {
+   "basics": "Small RNAs (microRNA, siRNA) bind mRNAs and reduce their expression. Long noncoding RNAs act as scaffolds and guides.",
+   "deeper": "RNA interference was discovered in C. elegans (Fire and Mello, Nobel 2006). Over 2,000 human miRNAs regulate a majority of genes.",
+   "expert": "Argonaute proteins load guide RNAs into RISC and cleave or repress targets. piRNAs defend germ cells against transposons. Many lncRNAs have unknown function and their number (≈ 20,000+) is debated."
+  },
+  "facts": [
+   [
+    "miRNA length",
+    "≈ 22 nt"
+   ],
+   [
+    "Human miRNAs",
+    "≈ 2,000"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "16.5",
+    "16-5-eukaryotic-post-transcriptional-gene-regulation"
+   ],
+   [
+    "BIO",
+    "16.3",
+    "16-3-eukaryotic-epigenetic-gene-regulation"
+   ]
+  ],
+  "kn": [
+   "gene_regulation"
+  ],
+  "lab": {
+   "id": "molecule",
+   "preset": "rnai"
+  },
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_post_transcriptional_control",
+  "title": "mRNA stability and localisation",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_noncoding_rna",
+   "bio_rna_processing"
+  ],
+  "summary": "Control after transcription.",
+  "layers": {
+   "basics": "Cells also control genes by regulating how long mRNAs last and where they are used.",
+   "deeper": "RNA-binding proteins and miRNAs target mRNAs for decay; localised mRNAs let proteins be made where needed, as in neuron dendrites.",
+   "expert": "Nonsense-mediated decay removes mRNAs with premature stops. Poly-A tail length and AU-rich elements set half-life; mRNA vaccines use modified nucleosides and optimised UTRs to improve stability."
+  },
+  "facts": [
+   [
+    "Average mammalian mRNA half-life",
+    "≈ 9 h"
+   ],
+   [
+    "Nonsense-mediated decay",
+    "degrades PTC-mRNAs"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "16.5",
+    "16-5-eukaryotic-post-transcriptional-gene-regulation"
+   ],
+   [
+    "BIO",
+    "16.6",
+    "16-6-eukaryotic-translational-and-post-translational-gene-regulation"
+   ]
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_cancer_gene_regulation",
+  "title": "Oncogenes and tumour-suppressor genes",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_molecular",
+  "parents": [
+   "bio_molecular"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_cell_cycle_control",
+   "bio_eukaryotic_gene_regulation"
+  ],
+  "summary": "Genes whose changes drive cancer.",
+  "layers": {
+   "basics": "Oncogenes are \"gas pedals\" stuck on and tumour suppressors are \"brakes\" that fail. Cancer arises when multiple such changes accumulate.",
+   "deeper": "Examples: Ras and Myc (oncogenes), p53 and Rb (suppressors). Most mutations are somatic, not inherited.",
+   "expert": "Knudson's two-hit hypothesis explains inherited retinoblastoma. Tumours typically carry ≈ 2–8 driver mutations; epigenetic silencing can substitute for mutation."
+  },
+  "facts": [
+   [
+    "Typical driver mutations",
+    "≈ 2–8 per tumour"
+   ],
+   [
+    "Retinoblastoma",
+    "two-hit model"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "16.7",
+    "16-7-cancer-and-gene-regulation"
+   ],
+   [
+    "BIO",
+    "10.4",
+    "10-4-cancer-and-the-cell-cycle"
+   ]
+  ],
+  "kn": [
+   "cancer_biology"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_genetics",
+  "title": "Genetics",
+  "kind": "field",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "biology_degree"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Inheritance, linkage, mutation and the genetics of populations.",
+  "layers": {
+   "basics": "Genetics asks how traits pass from parents to offspring. Mendel found that heredity comes in discrete units (genes) that segregate and combine according to probability.",
+   "deeper": "Genes sit on chromosomes, so some travel together (linkage) and can be mapped. Mutations create new alleles, chromosome changes cause syndromes, and complex traits depend on many genes and the environment.",
+   "expert": "Population genetics tracks allele frequencies through time under mutation, selection, drift, migration and non-random mating; the Hardy–Weinberg principle is the null model."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "genetics_inheritance"
+  ]
+ },
+ {
+  "id": "bio_mendel_laws",
+  "title": "Mendel's laws",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_cell_cycle"
+  ],
+  "summary": "Segregation and independent assortment.",
+  "layers": {
+   "basics": "Mendel crossed pea plants and found that each parent passes one of its two copies of a gene to the offspring (segregation) and that different genes are inherited separately (independent assortment).",
+   "deeper": "Dominant alleles mask recessive ones, so a 3:1 ratio appears in the second generation. Mendel published in 1866; the work was rediscovered in 1900.",
+   "expert": "Independent assortment holds only for unlinked genes. Mendel's ratios are a probabilistic expectation; the data were later argued to fit surprisingly well (Fisher), a topic of historical debate."
+  },
+  "facts": [
+   [
+    "Mendel's F2 ratio",
+    "3:1"
+   ],
+   [
+    "Pea plants studied",
+    "≈ 28,000 (1856–63)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "12.1",
+    "12-1-mendels-experiments-and-the-laws-of-probability"
+   ],
+   [
+    "BIO",
+    "12.2",
+    "12-2-characteristics-and-traits"
+   ],
+   [
+    "BIO",
+    "12.3",
+    "12-3-laws-of-inheritance"
+   ],
+   [
+    "COB",
+    "8.1",
+    "8-1-mendels-experiments"
+   ],
+   [
+    "COB",
+    "8.2",
+    "8-2-laws-of-inheritance"
+   ]
+  ],
+  "kn": [
+   "genetics_inheritance"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_alleles_genotype",
+  "title": "Alleles, genotype and phenotype",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_mendel_laws"
+  ],
+  "summary": "The vocabulary of inheritance.",
+  "layers": {
+   "basics": "A gene has versions called alleles. Genotype is the pair of alleles you carry and phenotype is the observable trait.",
+   "deeper": "Homozygous means two identical alleles, heterozygous two different. The same genotype can yield different phenotypes in different environments.",
+   "expert": "Penetrance and expressivity describe how often and how strongly a genotype shows a phenotype. Genotype–phenotype maps are many-to-many for complex traits."
+  },
+  "facts": [
+   [
+    "Diploid human cell",
+    "2 alleles per autosomal gene"
+   ],
+   [
+    "Human chromosomes",
+    "46"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "12.2",
+    "12-2-characteristics-and-traits"
+   ],
+   [
+    "COB",
+    "8.1",
+    "8-1-mendels-experiments"
+   ]
+  ],
+  "kn": [
+   "genetics_inheritance"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_genetics_probability",
+  "title": "Probability rules in genetics",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_alleles_genotype"
+  ],
+  "summary": "Product, sum and conditional rules.",
+  "layers": {
+   "basics": "Probabilities of independent events multiply (\"and\") and probabilities of mutually exclusive outcomes add (\"or\").",
+   "deeper": "The chance that two heterozygous parents have an aa child is 1/4; for three independent children all aa it is (1/4)³. Binomial formulas count outcomes for families.",
+   "expert": "Bayesian reasoning updates carrier risk from pedigree and test information. The binomial probability of k affected among n offspring is C(n,k)p^k(1−p)^(n−k)."
+  },
+  "facts": [
+   [
+    "P(aa) from Aa × Aa",
+    "1/4"
+   ],
+   [
+    "P(carrier) from Aa × Aa unaffected",
+    "2/3"
+   ]
+  ],
+  "formula": "P(A and B) = P(A)·P(B);  P(A or B) = P(A) + P(B)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "IST",
+    "3.2",
+    "3-2-independent-and-mutually-exclusive-events"
+   ],
+   [
+    "IST",
+    "3.3",
+    "3-3-two-basic-rules-of-probability"
+   ],
+   [
+    "IST",
+    "4.3",
+    "4-3-binomial-distribution"
+   ],
+   [
+    "BIO",
+    "12.3",
+    "12-3-laws-of-inheritance"
+   ]
+  ],
+  "kn": [
+   "probability",
+   "bayes_stats"
+  ],
+  "lab": {
+   "id": "genetics",
+   "preset": "probability_rules"
+  }
+ },
+ {
+  "id": "bio_punnett_squares",
+  "title": "Punnett squares and test crosses",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_genetics_probability"
+  ],
+  "summary": "A grid for predicting offspring.",
+  "layers": {
+   "basics": "A Punnett square lists parental gametes on its sides and shows all possible offspring genotypes in the grid.",
+   "deeper": "A test cross (unknown × homozygous recessive) reveals the genotype of an individual showing the dominant trait.",
+   "expert": "For two genes, a 16-cell dihybrid square gives 9:3:3:1; the forked-line (probability) method is faster and scales better for more genes."
+  },
+  "facts": [
+   [
+    "Monohybrid cross ratio",
+    "3:1 (phenotype), 1:2:1 (genotype)"
+   ],
+   [
+    "Dihybrid ratio",
+    "9:3:3:1"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "12.3",
+    "12-3-laws-of-inheritance"
+   ],
+   [
+    "COB",
+    "8.2",
+    "8-2-laws-of-inheritance"
+   ]
+  ],
+  "kn": [
+   "genetics_inheritance"
+  ],
+  "lab": {
+   "id": "genetics",
+   "preset": "punnett"
+  }
+ },
+ {
+  "id": "bio_dihybrid_assortment",
+  "title": "Dihybrid crosses and independent assortment",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_punnett_squares"
+  ],
+  "summary": "Two genes at once.",
+  "layers": {
+   "basics": "When two genes are on different chromosomes they assort independently, giving a 9:3:3:1 ratio in the F2 of a dihybrid cross.",
+   "deeper": "A test cross of a dihybrid gives 1:1:1:1. Deviations from these ratios indicate linkage or interaction.",
+   "expert": "Use χ² goodness-of-fit to test whether observed counts match expectation (df = categories − 1). Independent assortment results from random orientation of homologous pairs at metaphase I (2²³ combinations in humans)."
+  },
+  "facts": [
+   [
+    "Human gamete combinations",
+    "2²³ ≈ 8.4 million"
+   ],
+   [
+    "Dihybrid test cross",
+    "1:1:1:1"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "12.3",
+    "12-3-laws-of-inheritance"
+   ],
+   [
+    "COB",
+    "8.2",
+    "8-2-laws-of-inheritance"
+   ]
+  ],
+  "lab": {
+   "id": "genetics",
+   "preset": "dihybrid_cross"
+  }
+ },
+ {
+  "id": "bio_dominance_extensions",
+  "title": "Incomplete dominance, codominance and multiple alleles",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_alleles_genotype"
+  ],
+  "summary": "Beyond simple dominance.",
+  "layers": {
+   "basics": "In incomplete dominance the heterozygote is intermediate; in codominance both alleles show, as in AB blood. Some genes have more than two alleles.",
+   "deeper": "ABO blood group has three alleles (IA, IB, i). Rh and other factors add further antigens.",
+   "expert": "Dominance is a property of the phenotype and level of observation, not of the molecule: sickle-cell heterozygotes are recessive for anaemia, codominant for haemoglobin, and dominant for malaria resistance."
+  },
+  "facts": [
+   [
+    "ABO alleles",
+    "IA, IB, i"
+   ],
+   [
+    "Sickle heterozygote",
+    "malaria resistance"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "12.2",
+    "12-2-characteristics-and-traits"
+   ],
+   [
+    "BIO",
+    "12.3",
+    "12-3-laws-of-inheritance"
+   ],
+   [
+    "COB",
+    "8.3",
+    "8-3-extensions-of-the-laws-of-inheritance"
+   ],
+   [
+    "ANP",
+    "18.6",
+    "18-6-blood-typing"
+   ]
+  ],
+  "where": "mol:heme_b"
+ },
+ {
+  "id": "bio_epistasis_pleiotropy",
+  "title": "Epistasis, pleiotropy and polygenic effects",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_dominance_extensions"
+  ],
+  "summary": "Genes that interact and genes with many effects.",
+  "layers": {
+   "basics": "In epistasis one gene masks or modifies another, as in coat colour in Labrador retrievers. Pleiotropy means one gene affects several traits.",
+   "deeper": "Many traits depend on several genes (polygenic) and the environment, so they do not fall into neat classes.",
+   "expert": "Modified Mendelian ratios (9:3:4, 12:3:1, 9:7) reveal pathway structure. Marfan syndrome (FBN1) shows pleiotropy affecting eyes, skeleton and aorta."
+  },
+  "facts": [
+   [
+    "Modified ratios",
+    "9:3:4, 12:3:1, 9:7"
+   ],
+   [
+    "Marfan gene",
+    "FBN1"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "12.3",
+    "12-3-laws-of-inheritance"
+   ],
+   [
+    "COB",
+    "8.3",
+    "8-3-extensions-of-the-laws-of-inheritance"
+   ]
+  ],
+  "lab": {
+   "id": "genetics",
+   "preset": "epistasis"
+  },
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_meiosis_variation",
+  "title": "Meiosis, crossing over and genetic variation",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "meiosis_process"
+  ],
+  "mesh": null,
+  "needs": [
+   "bio_cell_cycle",
+   "bio_recombination_transposons"
+  ],
+  "summary": "How gametes get halved chromosome sets and new combinations.",
+  "layers": {
+   "basics": "Meiosis makes four genetically different cells with half the chromosomes. Crossing over and random assortment shuffle alleles.",
+   "deeper": "Crossing over happens between homologous chromosomes in prophase I. Fertilisation restores the diploid number.",
+   "expert": "About 1–2 crossovers per human chromosome arm. Nondisjunction in meiosis I or II causes aneuploidy; the chance rises with maternal age (Down syndrome ≈ 1/1,500 at 20 vs ≈ 1/100 at 40)."
+  },
+  "facts": [
+   [
+    "Human gametes",
+    "n = 23"
+   ],
+   [
+    "Crossovers per human meiosis",
+    "≈ 40–60"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "11.1",
+    "11-1-the-process-of-meiosis"
+   ],
+   [
+    "BIO",
+    "11.2",
+    "11-2-sexual-reproduction"
+   ],
+   [
+    "COB",
+    "7.2",
+    "7-2-meiosis"
+   ],
+   [
+    "COB",
+    "7.3",
+    "7-3-variations-in-meiosis"
+   ]
+  ],
+  "kn": [
+   "genetics_inheritance"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_chromosome_theory",
+  "title": "Chromosome theory of inheritance",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_meiosis_variation",
+   "bio_mendel_laws"
+  ],
+  "summary": "Genes ride on chromosomes.",
+  "layers": {
+   "basics": "Genes are located on chromosomes, and the behaviour of chromosomes in meiosis explains Mendel's laws.",
+   "deeper": "Sutton and Boveri proposed it in 1902; Morgan's fruit-fly work with white-eyed males supported it by showing a sex-linked trait.",
+   "expert": "The theory has been confirmed by cytogenetics and sequencing. Exceptions include extranuclear inheritance (mitochondria, chloroplasts) and epigenetic effects."
+  },
+  "facts": [
+   [
+    "Morgan's fly experiment",
+    "1910"
+   ],
+   [
+    "Drosophila chromosome pairs",
+    "4"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "13.1",
+    "13-1-chromosomal-theory-and-genetic-linkage"
+   ],
+   [
+    "COB",
+    "7.1",
+    "7-1-sexual-reproduction"
+   ]
+  ],
+  "kn": [
+   "genetics_inheritance"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_linkage_mapping",
+  "title": "Linkage and genetic mapping",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_chromosome_theory"
+  ],
+  "summary": "Genes close together travel together.",
+  "layers": {
+   "basics": "Genes near each other on a chromosome tend to be inherited together. Crossing over breaks the link sometimes, and its frequency estimates distance.",
+   "deeper": "One map unit (1 centimorgan) equals 1% recombination. A three-point test cross orders genes along a chromosome.",
+   "expert": "Recombination frequency saturates at 50% for far-apart genes; mapping functions (Haldane, Kosambi) correct for double crossovers. Human genetic map ≈ 3,500 cM; ≈ 1 cM ≈ 1 Mb on average."
+  },
+  "facts": [
+   [
+    "Max recombination frequency",
+    "50%"
+   ],
+   [
+    "Human 1 cM",
+    "≈ 1 Mb"
+   ]
+  ],
+  "formula": "RF = recombinants / total offspring × 100%",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "13.1",
+    "13-1-chromosomal-theory-and-genetic-linkage"
+   ],
+   [
+    "COB",
+    "8.2",
+    "8-2-laws-of-inheritance"
+   ]
+  ],
+  "lab": {
+   "id": "genetics",
+   "preset": "linkage_mapping"
+  },
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_sex_linkage",
+  "title": "Sex determination and sex-linked inheritance",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_chromosome_theory"
+  ],
+  "summary": "X and Y chromosomes and their traits.",
+  "layers": {
+   "basics": "In humans XX is female and XY is male. Genes on the X show different patterns in males and females.",
+   "deeper": "X-linked recessive traits such as red–green colour blindness and haemophilia are more common in males, who have only one X.",
+   "expert": "SRY on the Y triggers male development. Other systems: ZW in birds, haplodiploidy in bees, temperature-dependent sex in many reptiles. Dosage compensation evolves by different mechanisms."
+  },
+  "facts": [
+   [
+    "Red–green colour blindness",
+    "≈ 8% of men, 0.5% of women"
+   ],
+   [
+    "SRY",
+    "testis-determining gene"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "13.2",
+    "13-2-chromosomal-basis-of-inherited-disorders"
+   ],
+   [
+    "COB",
+    "8.3",
+    "8-3-extensions-of-the-laws-of-inheritance"
+   ]
+  ],
+  "kn": [
+   "genetics_inheritance"
+  ],
+  "lab": {
+   "id": "genetics",
+   "preset": "sex_linked"
+  },
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_pedigree_analysis",
+  "title": "Pedigree analysis",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_sex_linkage",
+   "bio_genetics_probability"
+  ],
+  "summary": "Reading family trees.",
+  "layers": {
+   "basics": "A pedigree chart shows who in a family has a trait. Its pattern suggests dominant, recessive or sex-linked inheritance.",
+   "deeper": "Squares are males, circles females, shaded symbols affected individuals. Affected children of unaffected parents imply recessive inheritance.",
+   "expert": "Software computes likelihoods for carrier status using Bayes' theorem and linkage data. Complicating factors: reduced penetrance, new mutations, mosaicism, consanguinity."
+  },
+  "facts": [
+   [
+    "Autosomal recessive carrier frequency (CF, Europeans)",
+    "≈ 1 in 25"
+   ],
+   [
+    "Carrier risk, sibling of affected",
+    "2/3"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "12.2",
+    "12-2-characteristics-and-traits"
+   ],
+   [
+    "ANP",
+    "28.7",
+    "28-7-patterns-of-inheritance"
+   ]
+  ],
+  "lab": {
+   "id": "genetics",
+   "preset": "pedigree_analysis"
+  }
+ },
+ {
+  "id": "bio_mutations",
+  "title": "Mutations",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_dna_damage_repair",
+   "bio_genetic_code"
+  ],
+  "summary": "Heritable changes in DNA sequence.",
+  "layers": {
+   "basics": "A mutation is a change in the DNA sequence. Point mutations swap one base; insertions and deletions can shift the reading frame.",
+   "deeper": "Silent, missense and nonsense mutations differ in effect on the protein. Most mutations are neutral or harmful; a few are beneficial.",
+   "expert": "The human germline mutation rate is ≈ 1.2×10⁻⁸ per base per generation, giving ≈ 70 new mutations per child. Somatic mutations accumulate in tissues and drive cancer."
+  },
+  "facts": [
+   [
+    "Human germline mutation rate",
+    "≈ 1.2×10⁻⁸ per bp"
+   ],
+   [
+    "New mutations per child",
+    "≈ 70"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "14.6",
+    "14-6-dna-repair"
+   ],
+   [
+    "MIC",
+    "11.5",
+    "11-5-mutations"
+   ],
+   [
+    "COB",
+    "9.5",
+    "9-5-how-genes-are-regulated"
+   ]
+  ],
+  "kn": [
+   "genetics_inheritance"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_chromosomal_aberrations",
+  "title": "Chromosomal abnormalities",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_meiosis_variation"
+  ],
+  "summary": "Changes in chromosome number and structure.",
+  "layers": {
+   "basics": "Having an extra or missing chromosome (aneuploidy) usually causes disorders, such as Down syndrome (trisomy 21).",
+   "deeper": "Structural changes include deletions, duplications, inversions and translocations. Cytogeneticists identify them by karyotyping.",
+   "expert": "The Philadelphia chromosome (BCR–ABL translocation) causes chronic myeloid leukaemia. Polyploidy is common in plants (wheat is hexaploid) and a source of speciation."
+  },
+  "facts": [
+   [
+    "Down syndrome incidence",
+    "≈ 1 in 700 births"
+   ],
+   [
+    "Bread wheat",
+    "hexaploid (6n = 42)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "13.2",
+    "13-2-chromosomal-basis-of-inherited-disorders"
+   ],
+   [
+    "COB",
+    "7.3",
+    "7-3-variations-in-meiosis"
+   ]
+  ],
+  "kn": [
+   "genetics_inheritance"
+  ],
+  "where": "place:cell"
+ },
+ {
+  "id": "bio_single_gene_disorders",
+  "title": "Single-gene and mitochondrial disorders",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_pedigree_analysis",
+   "bio_mutations"
+  ],
+  "summary": "Mendelian diseases and non-Mendelian inheritance.",
+  "layers": {
+   "basics": "Cystic fibrosis, sickle-cell disease and Huntington's disease are caused by changes in single genes. Mitochondrial DNA is inherited from the mother.",
+   "deeper": "Autosomal recessive diseases need two mutant copies; dominant ones need one. Mitochondrial diseases show maternal inheritance and heteroplasmy.",
+   "expert": "CFTR ΔF508 is the most common cystic fibrosis allele; Huntington's disease is a CAG repeat expansion in HTT. OMIM lists > 7,000 single-gene phenotypes."
+  },
+  "facts": [
+   [
+    "Cystic fibrosis carriers (Europeans)",
+    "≈ 1 in 25"
+   ],
+   [
+    "Known Mendelian phenotypes",
+    "> 7,000"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "13.2",
+    "13-2-chromosomal-basis-of-inherited-disorders"
+   ],
+   [
+    "ANP",
+    "28.7",
+    "28-7-patterns-of-inheritance"
+   ]
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_quantitative_traits",
+  "title": "Quantitative traits and heritability",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_epistasis_pleiotropy"
+  ],
+  "summary": "Continuous traits with many genes.",
+  "layers": {
+   "basics": "Height, weight and yield vary continuously because many genes and the environment contribute.",
+   "deeper": "Heritability is the fraction of variation in a population due to genetic differences; it is not the same as genetic determination and applies to a population, not an individual.",
+   "expert": "Broad-sense H² = VG/VP; narrow-sense h² = VA/VP predicts response to selection (breeder's equation R = h²S). Human height h² ≈ 0.8, but ≈ 12,000 variants explain most of the genetic variance."
+  },
+  "facts": [
+   [
+    "Human height heritability",
+    "≈ 0.8"
+   ],
+   [
+    "Breeder's equation",
+    "R = h²S"
+   ]
+  ],
+  "formula": "R = h²·S",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "19.3",
+    "19-3-adaptive-evolution"
+   ],
+   [
+    "COB",
+    "8.3",
+    "8-3-extensions-of-the-laws-of-inheritance"
+   ]
+  ],
+  "kn": [
+   "genetics_inheritance"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_gwas",
+  "title": "Genome-wide association studies",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_quantitative_traits",
+   "bio_linkage_mapping"
+  ],
+  "summary": "Finding variants linked to traits.",
+  "layers": {
+   "basics": "GWAS compare the genomes of thousands of people with and without a trait to find variants that are more common in one group.",
+   "deeper": "Most hits have small effects. Results are used to build polygenic scores and to find drug targets.",
+   "expert": "Genome-wide significance is p < 5×10⁻⁸ to correct for ≈ 10⁶ independent tests. Confounding by population structure and ancestry bias in reference data are major concerns."
+  },
+  "facts": [
+   [
+    "Significance threshold",
+    "p < 5×10⁻⁸"
+   ],
+   [
+    "Typical single-variant effect",
+    "small (< 1% of variance)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "17.2",
+    "17-2-mapping-genomes"
+   ],
+   [
+    "IST",
+    "9.1",
+    "9-1-null-and-alternative-hypotheses"
+   ]
+  ],
+  "kn": [
+   "bayes_stats"
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "bio_population_genetics",
+  "title": "Population genetics: allele and genotype frequencies",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_alleles_genotype",
+   "bio_genetics_probability"
+  ],
+  "summary": "Genetics of groups.",
+  "layers": {
+   "basics": "A population's gene pool can be described by the frequency of each allele. Evolution is a change in these frequencies over generations.",
+   "deeper": "Frequencies shift through mutation, natural selection, genetic drift, gene flow and nonrandom mating.",
+   "expert": "The infinite-population null model is Hardy–Weinberg equilibrium. Effective population size Ne (often ≪ census N) sets the strength of drift."
+  },
+  "facts": [
+   [
+    "Drift strength",
+    "∝ 1/Ne"
+   ],
+   [
+    "Human Ne (long-term)",
+    "≈ 10⁴"
+   ]
+  ],
+  "formula": "p + q = 1",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "19.2",
+    "19-2-population-genetics"
+   ],
+   [
+    "COB",
+    "11.1",
+    "11-1-discovering-how-populations-change"
+   ]
+  ],
+  "kn": [
+   "natural_selection"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "bio_hardy_weinberg",
+  "title": "Hardy–Weinberg equilibrium",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_population_genetics"
+  ],
+  "summary": "Allele frequencies stay constant without evolutionary forces.",
+  "layers": {
+   "basics": "If mating is random and there is no selection, mutation, migration or drift, allele frequencies stay constant and genotype frequencies follow p², 2pq and q².",
+   "deeper": "It lets you estimate carrier frequency from disease frequency: if q² = 1/2,500 then q = 0.02 and carriers 2pq ≈ 0.04.",
+   "expert": "Deviations signal evolutionary forces or genotyping artefacts. Tests use χ² with 1 degree of freedom (for two alleles). One generation of random mating restores HWE for an autosomal locus."
+  },
+  "facts": [
+   [
+    "Carrier frequency from q²=1/2500",
+    "≈ 3.9%"
+   ],
+   [
+    "df for 2 alleles",
+    "1"
+   ]
+  ],
+  "formula": "p² + 2pq + q² = 1",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "19.2",
+    "19-2-population-genetics"
+   ],
+   [
+    "COB",
+    "11.1",
+    "11-1-discovering-how-populations-change"
+   ]
+  ],
+  "kn": [
+   "natural_selection"
+  ],
+  "lab": {
+   "id": "genetics",
+   "preset": "hardy_weinberg"
+  },
+  "where": "place:park"
+ },
+ {
+  "id": "bio_drift_flow_selection_pop",
+  "title": "Drift, gene flow and selection in populations",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_hardy_weinberg"
+  ],
+  "summary": "Forces that change allele frequencies.",
+  "layers": {
+   "basics": "Genetic drift is random change in small populations; gene flow mixes alleles between populations; selection favours alleles that boost survival and reproduction.",
+   "deeper": "Bottlenecks and founder effects reduce diversity. Heterozygote advantage maintains the sickle-cell allele where malaria is common.",
+   "expert": "Selection coefficient s changes allele frequency by Δp ≈ s·p·q/w̄ for a haploid model. Fixation probability of a neutral allele equals its frequency; for a new beneficial mutation it is ≈ 2s."
+  },
+  "facts": [
+   [
+    "Fixation probability of beneficial mutation",
+    "≈ 2s"
+   ],
+   [
+    "Time to fixation of neutral allele",
+    "≈ 4Ne generations"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "19.1",
+    "19-1-population-evolution"
+   ],
+   [
+    "BIO",
+    "19.3",
+    "19-3-adaptive-evolution"
+   ],
+   [
+    "COB",
+    "11.2",
+    "11-2-mechanisms-of-evolution"
+   ]
+  ],
+  "kn": [
+   "natural_selection"
+  ],
+  "lab": {
+   "id": "genetics",
+   "preset": "drift_selection"
+  },
+  "where": "place:park"
+ },
+ {
+  "id": "bio_inbreeding_conservation_genetics",
+  "title": "Inbreeding and genetic load",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "bio_genetics",
+  "parents": [
+   "bio_genetics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bio_drift_flow_selection_pop"
+  ],
+  "summary": "Mating between relatives.",
+  "layers": {
+   "basics": "Mating between relatives raises homozygosity and exposes harmful recessive alleles, a problem called inbreeding depression.",
+   "deeper": "Small endangered populations, such as Florida panthers and cheetahs, suffer from low diversity; introducing new individuals (genetic rescue) can help.",
+   "expert": "Inbreeding coefficient F is the probability two alleles are identical by descent; offspring of first cousins have F = 1/16. Deleterious load can also be purged in long-inbred populations."
+  },
+  "facts": [
+   [
+    "F of first-cousin offspring",
+    "1/16"
+   ],
+   [
+    "Florida panther rescue",
+    "1995 Texas pumas"
+   ]
+  ],
+  "formula": "F = Σ(½)^(n₁+n₂+1)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "19.2",
+    "19-2-population-genetics"
+   ],
+   [
+    "BIO",
+    "47.4",
+    "47-4-preserving-biodiversity"
+   ]
+  ],
+  "kn": [
+   "biodiversity_conservation"
+  ],
+  "where": "place:park"
+ }
+]

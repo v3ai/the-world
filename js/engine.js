@@ -25,7 +25,7 @@ const U = { fm: 1e-15, pm: 1e-12, A: 1e-10, nm: 1e-9, um: 1e-6, mm: 1e-3, m: 1, 
 function fmtLen(m) {
   const a = Math.abs(m);
   const pick = [[U.Mpc * 1000, 'billion light-years', 9.4607e24], [U.ly * 1e6, 'million light-years', 9.4607e21], [U.ly * 1000, 'thousand light-years', 9.4607e18], [U.ly * .5, 'light-years', U.ly], [U.AU * .5, 'AU', U.AU], [1e9, 'million km', 1e9], [1e3, 'km', 1e3], [1, 'm', 1], [1e-2, 'cm', 1e-2], [1e-3, 'mm', 1e-3], [1e-6, 'µm', 1e-6], [1e-9, 'nm', 1e-9], [1e-12, 'pm', 1e-12], [0, 'fm', 1e-15]];
-  for (const [th, name, f] of pick) if (a >= th) { const v = a / f; return (v >= 100 ? v.toFixed(0) : v >= 10 ? v.toFixed(1) : v.toFixed(2)) + ' ' + name; }
+  for (const [th, name, f] of pick) if (a >= th) { const v = a / f; return (v >= 1000 ? Math.round(v).toLocaleString('en-US') : v >= 100 ? v.toFixed(0) : v >= 10 ? v.toFixed(1) : v.toFixed(2)) + ' ' + name; }
 }
 /* ---- logarithmic depth support for custom shaders ---- */
 function LDV(src) { return '#include <common>\n#include <logdepthbuf_pars_vertex>\n' + src.replace(/\}\s*$/, '\n#include <logdepthbuf_vertex>\n}'); }

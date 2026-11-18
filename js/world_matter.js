@@ -485,7 +485,7 @@ FT.region = {
     mat.onBeforeCompile = sh => { sh.fragmentShader = sh.fragmentShader.replace('#include <dithering_fragment>', '#include <dithering_fragment>\n gl_FragColor.a *= smoothstep(1.0, 0.75, length(vUv-0.5)*2.0);'); };
     const m = new THREE.Mesh(geo, mat); F.add(m); F.pick(m, B.water ? 'ocean' : 'land', 0); m.userData.madeOf = B.micro;
     m.userData.info = { title: o.isPark ? 'Greenwich, London' : 'Earth\'s surface', tag: `${o.lat.toFixed(2)}°, ${o.lon.toFixed(2)}° · ${o.biome}`, body: '<p>A 80-km-wide patch of the surface. Keep zooming to land here.</p>' };
-    if (o.isPark) { const pk = markerSprite(0xffd166, 10); pk.position.y = .01; F.add(pk); F.label(pk, '📍 Greenwich Park', { cls: 'you', always: true }); }
+    if (o.isPark) { const pk = markerSprite(0xffd166, 10); pk.position.y = .01; F.add(pk); F.label(pk, 'Greenwich Park', { cls: 'you', always: true }); }
     F.update = () => { const s = sunDirIn(F); sun.position.copy(s).multiplyScalar(100); };
     F.blurb = o.isPark ? 'London from above. The park is where your journey started.' : `Earth's surface at ${o.lat.toFixed(1)}°, ${o.lon.toFixed(1)}° (${o.biome}). Textures at this scale are illustrative.`;
     F.spawn = (T) => landscapeFrame(o.isPark ? 'grass' : o.biome, T.clone().setY(0), null, 'Earth');

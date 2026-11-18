@@ -1,0 +1,319 @@
+/* =====================================================================
+   The World — interface
+   An instrument and its wall labels: one engraved scale (the ruler) is
+   the memorable thing; every panel is a quiet porcelain label.
+   ===================================================================== */
+:root {
+  --paper: #edf0f0;        /* porcelain panels */
+  --paper-2: #e2e7e8;      /* insets, hover */
+  --ink: #17202a;          /* text */
+  --ink-2: #3a4651;        /* secondary text */
+  --muted: #5b6873;        /* captions, meta */
+  --rule: #c6ced2;         /* hairlines */
+  --accent: #1e4e8f;       /* Prussian blue: the one interactive colour */
+  --index: #f0c330;        /* the ruler's needle — "you are here" only */
+  --screen: #0f1822;       /* figure insets */
+  --serif: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
+  --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --r-panel: 6px; --r-ctl: 3px;
+  --lift: 0 1px 0 rgba(23,32,42,.05), 0 18px 40px -22px rgba(0,0,0,.55);
+  --ruler-w: 184px;
+  /* legacy tokens still read by older scene code */
+  --text: var(--ink); --dim: var(--muted); --line: var(--rule); --gold: var(--index); --panel: var(--paper);
+}
+* { box-sizing: border-box }
+html, body { margin: 0; height: 100%; background: #000; color: var(--ink); font: 400 14px/1.45 var(--sans); overflow: hidden; -webkit-font-smoothing: antialiased; user-select: none; -webkit-user-select: none; font-variant-numeric: tabular-nums }
+button { font: inherit; color: inherit }
+a { color: var(--accent) }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+#c { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; outline: none }
+.glass { background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift) }
+
+/* ---------- the instrument: scale ruler down the left edge ---------- */
+#ruler { position: fixed; left: 0; top: 0; bottom: 0; width: var(--ruler-w); z-index: 6; background: rgba(237,240,240,.94); border-right: 1px solid var(--rule); display: flex; flex-direction: column }
+#ruler .mark { padding: 16px 16px 10px; border-bottom: 1px solid var(--rule) }
+#ruler .mark b { display: block; font: 600 21px/1.05 var(--serif); letter-spacing: -.01em; color: var(--ink) }
+#ruler .mark span { display: block; font-size: 12px; color: var(--muted); margin-top: 3px }
+#ruler .scale { position: relative; flex: 1; margin: 10px 0 10px }
+#ruler svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible }
+#ruler svg .tk { stroke: var(--ink); stroke-width: 1 }
+#ruler svg .tk.mi { stroke: #b2bcc2 }
+#ruler svg .ex { font: 500 10.5px var(--sans); fill: var(--ink) }
+#ruler svg .un { font: 400 9.5px var(--sans); fill: var(--muted) }
+#ruler .lm { position: absolute; left: 62px; right: 6px; transform: translateY(-50%); border: 0; background: none; padding: 1px 4px; text-align: left; font: 400 12px/1.2 var(--sans); color: var(--ink-2); cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-radius: var(--r-ctl) }
+#ruler .lm:hover { color: var(--accent); background: var(--paper-2) }
+#ruler .lm.near { color: var(--ink); font-weight: 600 }
+#ruler svg .lead { stroke: #a9b4ba; stroke-width: 1; fill: none }
+#rulerMark { position: absolute; left: 0; right: -1px; height: 0; border-top: 2px solid var(--index); pointer-events: none; transition: top .08s linear }
+#rulerMark .ro { position: absolute; left: 100%; top: -13px; margin-left: 0; background: var(--index); color: var(--ink); font: 600 13px/24px var(--sans); padding: 0 9px 0 8px; border-radius: 0 var(--r-ctl) var(--r-ctl) 0; white-space: nowrap; box-shadow: 0 6px 16px -8px rgba(0,0,0,.6) }
+#ruler .foot { border-top: 1px solid var(--rule); padding: 8px 12px 10px; display: flex; gap: 6px }
+#ruler .foot button { flex: 1; border: 1px solid var(--rule); background: #fff; border-radius: var(--r-ctl); padding: 6px 4px; font-size: 12px; cursor: pointer; color: var(--ink-2) }
+#ruler .foot button:hover { border-color: var(--accent); color: var(--accent) }
+body.trackOpen #ruler { visibility: hidden }
+
+/* ---------- top-right navigation ---------- */
+#topright { position: fixed; top: 14px; right: 16px; z-index: 7; display: flex; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); overflow: hidden }
+.tb { border: 0; border-left: 1px solid var(--rule); background: none; padding: 8px 14px; font-size: 13px; cursor: pointer; color: var(--ink) }
+.tb:first-child { border-left: 0 }
+.tb:hover { background: var(--paper-2); color: var(--accent) }
+.tb.off { color: var(--muted) }
+.tb.on { box-shadow: inset 0 -2px 0 var(--accent) }
+
+/* ---------- wall label: what you're looking at ---------- */
+#caption { position: fixed; left: calc(var(--ruler-w) + 16px); bottom: 16px; width: 360px; z-index: 5; padding: 14px 16px 12px; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); pointer-events: auto }
+#caption .n { font: 600 22px/1.15 var(--serif); letter-spacing: -.005em; color: var(--ink) }
+#caption .d { font-size: 13.5px; line-height: 1.45; color: var(--ink-2); margin-top: 5px }
+#caption .nt { font: italic 400 12.5px/1.4 var(--serif); color: var(--muted); margin-top: 4px }
+#caption .nt:empty { display: none }
+#caption .meta { display: flex; align-items: center; gap: 10px; margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--rule); font-size: 12px; color: var(--muted) }
+#caption .k { flex: 1 }
+#timebar { display: flex; align-items: center; gap: 6px }
+#timebar button { border: 1px solid var(--rule); background: #fff; border-radius: var(--r-ctl); padding: 2px 7px; font-size: 11.5px; cursor: pointer; color: var(--ink-2) }
+#timebar button:hover { border-color: var(--accent); color: var(--accent) }
+#timeT { color: var(--ink-2) }
+
+/* ---------- scene controls ---------- */
+#controls { position: fixed; left: calc(var(--ruler-w) + 16px); right: 300px; top: 14px; z-index: 6; display: flex; gap: 8px; align-items: flex-start; flex-wrap: wrap; justify-content: center; pointer-events: none }
+body.cardOpen #controls { right: 432px }
+#controls > * { pointer-events: auto }
+.seg { display: flex; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); overflow: hidden }
+.seg button { border: 0; border-left: 1px solid var(--rule); background: none; padding: 7px 12px; font-size: 12.5px; cursor: pointer; color: var(--ink-2); white-space: nowrap }
+.seg button:first-child { border-left: 0 }
+.seg button:hover { background: var(--paper-2); color: var(--ink) }
+.seg button.on { background: var(--ink); color: var(--paper) }
+.act { border: 1px solid var(--accent); background: var(--accent); color: #fff; padding: 7px 13px; border-radius: var(--r-panel); font-size: 12.5px; font-weight: 500; cursor: pointer; white-space: nowrap; box-shadow: var(--lift) }
+.act:hover { background: #173f75 }
+.molsel { max-width: 240px; padding: 7px 10px; border-radius: var(--r-panel); background: var(--paper); color: var(--ink); border: 1px solid rgba(23,32,42,.14); font: 12.5px var(--sans); box-shadow: var(--lift) }
+
+/* ---------- zoom and tour ---------- */
+#zoombtns { position: fixed; right: 16px; bottom: 16px; z-index: 6; display: flex; flex-direction: column; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); overflow: hidden }
+#zoombtns button { width: 38px; height: 36px; border: 0; background: none; font: 400 20px/1 var(--sans); cursor: pointer; color: var(--ink) }
+#zoombtns button + button { border-top: 1px solid var(--rule) }
+#zoombtns button:hover { background: var(--paper-2); color: var(--accent) }
+#tourbtns { position: fixed; right: 66px; bottom: 16px; z-index: 6; display: flex; flex-direction: column; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); overflow: hidden }
+#tourbtns button { border: 0; background: none; padding: 0 12px; height: 36px; font-size: 12.5px; cursor: pointer; color: var(--ink-2); text-align: left }
+#tourbtns button + button { border-top: 1px solid var(--rule) }
+#tourbtns button:hover { background: var(--paper-2); color: var(--accent) }
+
+/* ---------- labels in the 3D world ---------- */
+#labels { position: fixed; inset: 0; pointer-events: none; z-index: 4; overflow: hidden }
+.lbl { position: absolute; left: 0; top: 0; font: 500 12px/1 var(--sans); color: #fff; padding: 2px 4px 2px 11px; white-space: nowrap; pointer-events: auto; cursor: pointer; will-change: transform; text-shadow: 0 0 2px rgba(0,0,0,.95), 0 1px 3px rgba(0,0,0,.8) }
+.lbl::before { content: ''; position: absolute; left: 2px; top: 50%; width: 5px; height: 5px; margin-top: -2.5px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 1.5px rgba(0,0,0,.55) }
+.lbl:hover { color: var(--index) }
+.lbl.you { color: var(--index); font-weight: 600 }
+
+#tip { position: fixed; z-index: 9; pointer-events: none; padding: 5px 9px; font-size: 12.5px; border-radius: var(--r-ctl); background: var(--paper); color: var(--ink); border: 1px solid rgba(23,32,42,.2); box-shadow: var(--lift); opacity: 0; transition: opacity .12s; white-space: nowrap }
+#tip.show { opacity: 1 }
+#tip small { color: var(--muted); margin-left: 6px }
+#toasts { position: fixed; top: 64px; left: calc(50% + var(--ruler-w) / 2); transform: translateX(-50%); z-index: 12; display: flex; flex-direction: column; gap: 6px; align-items: center; pointer-events: none }
+.toast { background: var(--ink); color: var(--paper); padding: 8px 14px; border-radius: var(--r-panel); font-size: 13px; box-shadow: var(--lift); max-width: 440px; text-align: center }
+.toast.m { background: var(--paper); color: var(--ink); border: 1px solid var(--rule) }
+#push { position: fixed; left: calc(50% + var(--ruler-w) / 2); bottom: 76px; transform: translateX(-50%); z-index: 6; padding: 9px 16px 11px; font-size: 13px; text-align: center; opacity: 0; transition: opacity .25s; pointer-events: none; min-width: 250px }
+#push.show { opacity: 1 }
+#push .bar { height: 3px; background: var(--rule); margin-top: 7px; overflow: hidden }
+#push .bar i { display: block; height: 100%; width: 0; background: var(--accent) }
+#fade { position: fixed; inset: 0; background: #000; opacity: 1; pointer-events: none; z-index: 20 }
+
+/* ---------- the card: everything about one thing ---------- */
+#info { position: fixed; right: 16px; top: 62px; bottom: 16px; width: 400px; max-width: calc(100vw - 32px); z-index: 8; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); padding: 20px 24px 24px; overflow-y: auto; user-select: text; -webkit-user-select: text; transform: translateX(calc(100% + 40px)); transition: transform .28s cubic-bezier(.2,.8,.2,1); scrollbar-width: thin; scrollbar-color: var(--rule) transparent }
+#info.open { transform: none }
+@media (prefers-reduced-motion: reduce) { #info { transition: none } }
+#info .x { position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border: 1px solid transparent; background: none; border-radius: var(--r-ctl); font-size: 18px; line-height: 1; cursor: pointer; color: var(--muted) }
+#info .x:hover { border-color: var(--rule); color: var(--ink) }
+#info .tag { font-size: 12.5px; color: var(--muted); padding-right: 36px }
+#info .tag:empty { display: none }
+#info h2 { font: 600 28px/1.12 var(--serif); letter-spacing: -.012em; margin: 4px 36px 8px 0; color: var(--ink) }
+.cert { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-2); margin: 0 0 4px }
+.cert i { width: 8px; height: 8px; background: var(--c) }
+#info .tabs { display: flex; gap: 18px; border-bottom: 1px solid var(--rule); margin: 16px 0 12px }
+#info .tabs button { border: 0; background: none; padding: 6px 0 8px; margin-bottom: -1px; font-size: 13px; cursor: pointer; color: var(--muted); border-bottom: 2px solid transparent }
+#info .tabs button:hover { color: var(--ink) }
+#info .tabs button.on { color: var(--ink); border-bottom-color: var(--ink); font-weight: 500 }
+#info .body { font: 400 15.5px/1.62 var(--serif); color: var(--ink) }
+#info .body p { margin: 0 0 .7em; max-width: 62ch }
+#info .body p b { font-weight: 600 }
+#info .expert { font-size: 15px }
+#info dl { display: grid; grid-template-columns: auto 1fr; margin: 12px 0 4px; border-top: 1px solid var(--rule) }
+#info dt, #info dd { padding: 7px 0; border-bottom: 1px solid var(--rule); margin: 0 }
+#info dt { font-size: 12.5px; color: var(--muted); padding-right: 14px }
+#info dd { font-size: 13.5px; color: var(--ink) }
+#info .fun { margin: 14px 0 4px; padding: 2px 0 2px 12px; border-left: 2px solid var(--accent); font: italic 400 14.5px/1.55 var(--serif); color: var(--ink-2) }
+#info .fun b { display: block; font: 600 12.5px var(--sans); font-style: normal; color: var(--ink); margin-bottom: 2px }
+#info .note { margin-top: 10px; font: italic 13px/1.5 var(--serif); color: var(--muted) }
+.formula { margin: 12px 0 4px; padding: 10px 12px; background: var(--paper-2); border-radius: var(--r-ctl); font: italic 400 16px/1.5 var(--serif); color: var(--ink); overflow-x: auto }
+.regime { margin-top: 10px; font-size: 13px; color: var(--ink-2); padding: 9px 11px; background: var(--paper-2); border-radius: var(--r-ctl) }
+ul.ev { margin: 4px 0 0; padding-left: 18px; font: 14px/1.5 var(--serif); color: var(--ink-2) }
+ul.ev li + li { margin-top: 3px }
+#info .btnrow { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 4px }
+#info .zoom { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--accent); background: var(--accent); color: #fff; padding: 8px 14px; border-radius: var(--r-panel); font-size: 13px; font-weight: 500; cursor: pointer }
+#info .zoom:hover { background: #173f75 }
+#info .zoom.alt, #info .zoom.lab { background: #fff; color: var(--accent) }
+#info .zoom.alt:hover, #info .zoom.lab:hover { background: var(--paper-2) }
+#info .refs { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--rule) }
+#info .rh, .pop .rh { font-size: 12.5px; font-weight: 600; color: var(--ink); margin-bottom: 5px }
+.chips { display: block; font: 14.5px/1.6 var(--serif); color: var(--muted) }
+.chip { display: inline; border: 0; background: none; padding: 0; color: var(--accent); cursor: pointer; font: inherit; text-decoration: underline; text-decoration-color: rgba(30,78,143,.3); text-underline-offset: 3px }
+.chip:hover { text-decoration-color: var(--accent) }
+.chip + .chip::before { content: ', '; color: var(--muted); text-decoration: none; display: inline-block; white-space: pre }
+.chip.pr { font-weight: 600 }
+.chip.lock { color: var(--muted); cursor: default }
+a.ref { display: block; padding: 6px 0; border-bottom: 1px solid var(--rule); text-decoration: none; color: var(--ink-2); font-size: 13px; line-height: 1.35 }
+a.ref:last-child { border-bottom: 0 }
+a.ref b { display: block; font-weight: 500; color: var(--accent) }
+a.ref:hover b { text-decoration: underline }
+.kn { display: block; width: 100%; text-align: left; border: 0; border-bottom: 1px solid var(--rule); background: none; padding: 8px 0; cursor: pointer; font-size: 13.5px; color: var(--ink) }
+.kn:hover { color: var(--accent) }
+.kn span { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.35 }
+.kn.chip { display: inline; width: auto; border: 0; padding: 0; font: inherit }
+.simhit { display: block; width: 100%; text-align: left; padding: 8px 0; border: 0; border-bottom: 1px solid var(--rule); background: none; cursor: pointer; font-size: 13.5px }
+.simhit span { display: block; font-size: 12px; color: var(--muted) }
+#info .mini, .mini { font-size: 12px; color: var(--muted) }
+
+/* figures inside cards: a dark instrument screen on the label */
+.vzh { position: relative; margin: 14px 0 4px }
+.vz { position: relative }
+.vz canvas { display: block; width: 100%; background: var(--screen); border-radius: var(--r-ctl); touch-action: none }
+.vzc { display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 8px 0 2px; align-items: center }
+.vzc label { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); flex: 1 1 150px }
+.vzc input { flex: 1; min-width: 60px; accent-color: var(--accent) }
+.vzc b { color: var(--ink); font-weight: 500; min-width: 40px; font-size: 12px; text-align: right }
+.vzp { border: 1px solid var(--rule); background: #fff; border-radius: var(--r-ctl); padding: 3px 9px; cursor: pointer; font-size: 11.5px; color: var(--ink-2) }
+.vzr { display: flex; flex-wrap: wrap; gap: 2px 16px; font-size: 12.5px; color: var(--muted); padding-top: 2px }
+.vzr b { color: var(--ink); font-weight: 600 }
+.vzcap { font: italic 400 13.5px/1.5 var(--serif); color: var(--ink-2); padding: 6px 0 0 }
+.vzbig { position: absolute; top: 6px; right: 6px; height: 24px; padding: 0 8px; border-radius: var(--r-ctl); border: 0; background: rgba(237,240,240,.14); color: #dfe6ea; cursor: pointer; font-size: 11.5px }
+.vzbig:hover { background: rgba(237,240,240,.28) }
+#vizModal { position: fixed; inset: 0; z-index: 45; background: rgba(10,14,20,.6); display: none; align-items: center; justify-content: center }
+#vizModal.open { display: flex }
+#vizModal .vm { width: min(920px, 94vw); padding: 18px 22px 20px; position: relative; background: var(--paper); border-radius: var(--r-panel); box-shadow: var(--lift) }
+#vizModal h3 { font: 600 22px var(--serif); margin: 0 0 12px }
+#vizModal .x { position: absolute; top: 12px; right: 12px; border: 0; background: none; font-size: 18px; width: 30px; height: 30px; cursor: pointer; color: var(--muted) }
+
+/* track prev / next on the card */
+.trnav { display: flex; align-items: stretch; gap: 0; margin: 12px 0 0; border: 1px solid var(--rule); border-radius: var(--r-panel); overflow: hidden }
+.trnav button { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border: 0; background: #fff; padding: 7px 10px; font-size: 12px; cursor: pointer; color: var(--ink-2); text-align: left }
+.trnav button:last-child { text-align: right }
+.trnav button:hover:not(:disabled) { color: var(--accent); background: var(--paper-2) }
+.trnav button:disabled { color: var(--rule); cursor: default }
+.trnav span { flex: none; display: flex; align-items: center; padding: 0 10px; font-size: 11.5px; color: var(--muted); border-left: 1px solid var(--rule); border-right: 1px solid var(--rule) }
+
+/* ---------- panels: library and tracks ---------- */
+.pop { position: fixed; top: 62px; right: 16px; width: 380px; max-height: calc(100% - 140px); overflow-y: auto; z-index: 9; padding: 18px 20px; display: none; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); user-select: text; scrollbar-width: thin }
+.pop.open { display: block }
+.pop h3 { margin: 0 0 4px; font: 600 22px var(--serif) }
+.pop .sub { font-size: 13px; color: var(--muted); margin-bottom: 12px; line-height: 1.45 }
+#library input { width: 100%; padding: 9px 11px; border-radius: var(--r-ctl); border: 1px solid var(--rule); background: #fff; color: var(--ink); font: 14px var(--sans); outline: none }
+#library input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(30,78,143,.14) }
+#libRes { margin-top: 10px }
+.jl { font-size: 12.5px; font-weight: 600; color: var(--ink); margin: 16px 0 4px }
+.term { padding: 7px 0; border-bottom: 1px solid var(--rule) }
+.term .tt { font: 600 14px var(--serif); margin-bottom: 2px }
+.lic { margin-top: 16px; font-size: 11.5px; color: var(--muted); line-height: 1.45 }
+details summary { cursor: pointer; padding: 6px 0; font-size: 13.5px; list-style: none; color: var(--ink) }
+details summary::-webkit-details-marker { display: none }
+details summary::before { content: '+'; display: inline-block; width: 14px; color: var(--muted) }
+details[open] > summary::before { content: '−' }
+#tracks { position: fixed; left: 0; top: 0; bottom: 0; right: auto; width: 360px; max-height: none; border-radius: 0; border-width: 0 1px 0 0; padding: 18px 18px 24px }
+#tracks > details > summary { font: 600 17px var(--serif) }
+#tracks details details { margin-left: 14px }
+#tracks details details > summary { font-size: 13px; color: var(--ink-2) }
+.meter { height: 3px; background: var(--rule); margin: 6px 0 10px }
+.meter i { display: block; height: 100%; background: var(--accent) }
+.trn { display: flex; flex-direction: column; margin: 2px 0 10px 14px; border-left: 1px solid var(--rule) }
+.trk { text-align: left; border: 0; background: none; padding: 4px 10px; font-size: 13px; cursor: pointer; color: var(--ink-2) }
+.trk:hover { color: var(--accent) }
+.trk.seen { color: var(--muted) }
+.trk.seen::after { content: ' (visited)'; font-size: 11px; color: var(--rule) }
+.trk.cur { color: var(--ink); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent) }
+.trk .lb { font-size: 11px; color: var(--accent); font-weight: 500 }
+
+/* ---------- welcome ---------- */
+#help { position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; background: rgba(8,12,18,.55) }
+#help.hide { display: none }
+#help .card { width: min(600px, 92vw); max-height: 90vh; overflow: auto; padding: 30px 34px 28px; background: var(--paper); border-radius: var(--r-panel); box-shadow: var(--lift) }
+#help h1 { font: 600 34px/1.08 var(--serif); letter-spacing: -.015em; margin: 0 0 12px }
+#help p { font: 16px/1.6 var(--serif); color: var(--ink-2); margin: 0 0 18px; max-width: 60ch }
+#help .grid { display: grid; grid-template-columns: 130px 1fr; border-top: 1px solid var(--rule) }
+#help .grid > * { padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 13.5px }
+#help .key { font-weight: 500; color: var(--ink) }
+#help .grid span:not(.key) { color: var(--ink-2) }
+#help .go { margin-top: 20px; border: 0; background: var(--accent); color: #fff; padding: 11px 20px; border-radius: var(--r-panel); font-size: 14px; font-weight: 500; cursor: pointer }
+#help .go:hover { background: #173f75 }
+
+/* ---------- labs and processes ---------- */
+#lab { position: fixed; inset: 0; z-index: 40; background: #0a0e17; display: none; flex-direction: column }
+#lab.open { display: flex }
+#lab .labbar { height: 48px; flex: none; display: flex; align-items: center; gap: 14px; padding: 0 14px; background: var(--paper); border-bottom: 1px solid var(--rule); color: var(--ink) }
+#lab .labbar button { border: 1px solid var(--rule); background: #fff; border-radius: var(--r-ctl); padding: 6px 12px; cursor: pointer; font-size: 13px; color: var(--ink-2) }
+#lab .labbar button:hover { border-color: var(--accent); color: var(--accent) }
+#lab .labbar b { font: 600 18px var(--serif) }
+#labFrom { color: var(--muted); font-size: 12.5px }
+#labBody { position: relative; flex: 1; overflow: hidden }
+.labload { padding: 40px; color: #9aa6b0 }
+#proc { position: fixed; left: calc(50% + var(--ruler-w) / 2); bottom: 112px; transform: translateX(-50%); width: min(560px, 92vw); padding: 14px 18px 14px; z-index: 8; display: none }
+#proc.open { display: block }
+#proc .ph { display: flex; align-items: baseline; gap: 10px; font-size: 12.5px; color: var(--muted) }
+#proc .ph b { color: var(--ink); font-weight: 600 }
+#proc .ph .x { margin-left: auto; border: 0; background: none; font-size: 16px; cursor: pointer; color: var(--muted) }
+#proc h3 { font: 600 19px var(--serif); margin: 8px 0 4px }
+#proc p { font: 15px/1.55 var(--serif); color: var(--ink-2); margin: 0 0 12px }
+#proc .pb { display: flex; align-items: center; gap: 10px }
+#proc .pb button { border: 1px solid var(--accent); background: #fff; color: var(--accent); padding: 6px 14px; border-radius: var(--r-panel); cursor: pointer; font-size: 12.5px }
+#proc .pb button:last-child { background: var(--accent); color: #fff }
+#proc .pb button:disabled { opacity: .35 }
+#proc .dots { flex: 1; display: flex; gap: 4px; justify-content: center }
+#proc .dots i { width: 18px; height: 3px; background: var(--rule) }
+#proc .dots i.on { background: var(--accent) }
+
+/* ---------- older in-scene widgets (periodic table, orbitals, spectra…) ---------- */
+.wrapRel { position: relative }
+.ptable { position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%); display: none; padding: 10px; z-index: 9; width: max-content }
+.ptable.open { display: block }
+.ptable .grid { display: grid; grid-template-columns: repeat(18, 30px); gap: 3px }
+.ptable button { width: 30px; height: 32px; border-radius: 2px; border: 0; cursor: pointer; font: 600 11px var(--sans); color: #fff; padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1 }
+.ptable button small { font-size: 8px; font-weight: 400; opacity: .75 }
+.ptable button.on { outline: 2px solid var(--ink); outline-offset: 1px }
+.ptable .lg { font-size: 11px; color: var(--muted); margin-top: 6px; text-align: center }
+.cfg { display: flex; gap: 10px; align-items: flex-end; padding: 7px 10px; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); max-width: min(640px, calc(100vw - 40px)); overflow-x: auto }
+.cfg .sh { display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; padding: 2px 3px; border-radius: var(--r-ctl) }
+.cfg .sh:hover { background: var(--paper-2) }
+.cfg .sh.on { box-shadow: inset 0 -2px 0 var(--accent) }
+.cfg .bx { display: flex; gap: 2px }
+.cfg .bx i { width: 15px; height: 17px; border: 1px solid var(--rule); font-style: normal; font-size: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); background: #fff }
+.cfg .nm { font: 600 10.5px var(--sans); color: var(--ink-2) }
+.cfg .lbl0 { font-size: 11px; color: var(--muted); align-self: center; white-space: nowrap }
+#seq { display: flex; gap: 4px; padding: 6px 8px; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); overflow-x: auto; max-width: min(720px, calc(100vw - 40px)) }
+.codon { display: flex; flex-direction: column; align-items: center; padding: 2px 4px; background: #fff; border: 1px solid var(--rule) }
+.codon .l { font: 600 12px var(--sans); letter-spacing: .04em }
+.codon .aa { font-size: 9.5px; color: var(--muted) }
+#seqLbl { font-size: 11px; color: var(--muted); align-self: center; padding: 0 4px; white-space: nowrap }
+.spec { position: relative; width: 240px; height: 18px; background: linear-gradient(90deg,#6a00d8,#0028ff,#00a8ff,#00d860,#d8ef00,#ffb000,#ff2a00,#800000); overflow: hidden }
+.spec i { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff }
+.specw { display: flex; align-items: center; gap: 8px; padding: 6px 10px; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); font-size: 11.5px; color: var(--muted) }
+.q { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 13px; line-height: 1.35 }
+.q .ck { width: 16px; height: 16px; border: 1px solid var(--muted); flex: none; display: flex; align-items: center; justify-content: center; font-size: 10px; margin-top: 1px }
+.q.done { color: var(--muted) }
+.q.done .ck { background: var(--accent); border-color: var(--accent); color: #fff }
+.q .h { font-size: 12px; color: var(--muted); margin-top: 2px }
+
+/* ---------- small screens ---------- */
+@media (max-width: 860px) {
+  :root { --ruler-w: 52px }
+  #ruler .mark span, #ruler .lm { display: none }
+  #ruler .mark { padding: 12px 6px 8px; text-align: center }
+  #ruler .mark b { font-size: 15px }
+  #ruler .foot { display: none }
+  #caption { left: calc(var(--ruler-w) + 8px); right: 8px; width: auto; bottom: 64px; padding: 10px 12px }
+  #caption .d { display: none }
+  #controls { left: calc(var(--ruler-w) + 8px); right: 8px; top: 52px; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap }
+  #tourbtns { display: none }
+  #zoombtns { right: 8px; bottom: 10px }
+  #info { left: 8px; right: 8px; top: auto; bottom: 8px; width: auto; max-height: 72vh; transform: translateY(calc(100% + 40px)) }
+  #topright { right: 8px; top: 8px }
+  .tb { padding: 7px 10px; font-size: 12.5px }
+  .pop { left: calc(var(--ruler-w) + 8px); right: 8px; width: auto }
+  #tracks { width: auto; right: 0 }
+  .ptable .grid { grid-template-columns: repeat(18, 17px); gap: 2px }
+  .ptable button { width: 17px; height: 22px; font-size: 8px }
+  .ptable button small { display: none }
+}

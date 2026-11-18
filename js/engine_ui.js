@@ -28,8 +28,8 @@ const SIM_OF = {
   proton_inside: 'proton', quark_up: 'quark', quark_down: 'quark', gluon: 'gluon', seaquark: 'quark', colorcharge: 'quark', neutron_inside: 'neutron',
   bond_single: 'molecule', bond_double: 'molecule', polarity: 'molecule', delocalized: 'molecule',
 };
-const CERT = { C1: ['Settled', '#3ddc84'], C2: ['Well supported', '#6ee7ff'], C3: ['Debated', '#ffd166'], C4: ['Speculative', '#ff8fb1'] };
-function certBadge(c) { const x = CERT[c]; return x ? `<span class="cert" style="--c:${x[1]}" title="Certainty ${c}">${c} · ${x[0]}</span>` : ''; }
+const CERT = { C1: ['Settled science', '#2f7d4f'], C2: ['Well supported', '#1e4e8f'], C3: ['Debated', '#b7791f'], C4: ['Speculative', '#9b2c4f'] };
+function certBadge(c) { const x = CERT[c]; return x ? `<span class="cert" style="--c:${x[1]}" title="How certain science is (level ${c.slice(1)} of 4)"><i></i>${x[0]}</span>` : ''; }
 function bookRef(code, sec) {
   if (!BOOKS) return '';
   const b = BOOKS.find(x => x.c === code); if (!b) return '';
@@ -58,13 +58,13 @@ function wireTabs() {
     infoEl.querySelectorAll('.lay').forEach(l => l.hidden = +l.dataset.i !== i);
   });
 }
-function openPanel(h) { infoEl.innerHTML = `<button class="x" aria-label="Close">✕</button>` + h; infoEl.classList.add('open'); infoEl.scrollTop = 0; infoEl.querySelector('.x').onclick = closeInfo; wireTabs(); }
-function closeInfo() { infoEl.classList.remove('open'); infoState = null; }
+function openPanel(h) { document.body.classList.add('cardOpen'); infoEl.innerHTML = `<button class="x" aria-label="Close">×</button>` + h; infoEl.classList.add('open'); infoEl.scrollTop = 0; infoEl.querySelector('.x').onclick = closeInfo; wireTabs(); }
+function closeInfo() { infoEl.classList.remove('open'); document.body.classList.remove('cardOpen'); infoState = null; }
 function closePops() { ['#library', '#tourPop', '#tracks'].forEach(s => { const e = $(s); if (e) e.classList.remove('open'); }); document.body.classList.remove('trackOpen'); }
 function scienceSection(simIds) {
   const nodes = []; simIds.forEach(s => (KN_BY_SIM[s] || []).forEach(n => { if (!nodes.includes(n)) nodes.push(n); }));
   if (!nodes.length) return '';
-  return `<div class="refs"><div class="rh">🧭 The science behind this</div>${nodes.slice(0, 8).map(n => `<button class="kn" data-k="${n.id}">${certBadge(n.certainty)} ${n.title}</button>`).join('')}</div>`;
+  return `<div class="refs"><div class="rh">The science behind this</div>${nodes.slice(0, 8).map(n => `<button class="kn" data-k="${n.id}">${certBadge(n.certainty)} ${n.title}</button>`).join('')}</div>`;
 }
 function wireKn() { infoEl.querySelectorAll('.kn').forEach(b => b.onclick = () => showNode(b.dataset.k)); }
 // info for a picked object
@@ -79,10 +79,10 @@ function showInfoFor(h) {
   if (d.fun) basics += `<div class="fun"><b>Did you know?</b>${d.fun}</div>`;
   let html = `<div class="tag">${d.tag || ''}</div><h2>${d.title}</h2>` + layered([['Basics', basics], ['Deeper', dp.d ? `<div class="body"><p>${dp.d}</p></div>` : ''], ['Expert', dp.x ? `<div class="body expert"><p>${dp.x}</p></div>` : '']]);
   if (d.note) html += `<div class="note">${d.note}</div>`;
-  html += `<div class="btnrow"><button class="zoom" id="zoomBtn"><span>🔍 Zoom in</span><span>▸</span></button>${h.obj.userData.madeOf ? `<button class="zoom alt" id="madeBtn"><span>What is it made of?</span><span>▾</span></button>` : ''}</div>`;
+  html += `<div class="btnrow"><button class="zoom" id="zoomBtn">Zoom in</button>${h.obj.userData.madeOf ? `<button class="zoom alt" id="madeBtn">See what it is made of</button>` : ''}</div>`;
   const simIds = [SIM_OF[id] || id].concat(h.obj.userData.sim || []);
   html += '<div id="sci"></div>';
-  if (dp.r && dp.r.length) html += `<div class="refs"><div class="rh">📚 Textbook sections</div>${dp.r.map(refChip).join('')}</div>`;
+  if (dp.r && dp.r.length) html += `<div class="refs"><div class="rh">Textbook sections</div>${dp.r.map(refChip).join('')}</div>`;
   openPanel(html);
   $('#zoomBtn').onclick = () => zoomIntoHit(h);
   const mb = $('#madeBtn'); if (mb) mb.onclick = () => { closeInfo(); diveMaterial(h); };
@@ -94,14 +94,14 @@ function showNode(id) {
   let basics = `<div class="body"><p>${n.basics || ''}</p></div>`;
   if (n.regime) basics += `<div class="regime"><b>Where it applies:</b> ${n.regime}</div>`;
   if (n.evidence && n.evidence.length) basics += `<div class="rh" style="margin-top:10px">Evidence</div><ul class="ev">${n.evidence.map(e => `<li>${e}</li>`).join('')}</ul>`;
-  let h = `<div class="tag">Level ${n.level} · ${n.domain || ''} ${n.scale_m ? '· ' + fmtLen(n.scale_m[0]) + ' – ' + fmtLen(n.scale_m[1]) : ''}</div><h2>${n.title}</h2><div style="margin:-4px 0 10px">${certBadge(n.certainty)}</div><div class="vzh" id="vizHost"></div>`;
+  const dom = (n.domain || '').replace(/_/g, ' '); let h = `<div class="tag">${dom ? dom[0].toUpperCase() + dom.slice(1) : 'Topic'}${n.scale_m ? `, from ${fmtLen(n.scale_m[0])} to ${fmtLen(n.scale_m[1])}` : ''}</div><h2>${n.title}</h2>${certBadge(n.certainty)}<div class="vzh" id="vizHost"></div>`;
   h += layered([['Basics', basics], ['Deeper', n.deeper ? `<div class="body"><p>${n.deeper}</p></div>` : ''], ['Expert', n.expert ? `<div class="body expert"><p>${n.expert}</p></div>` : '']]);
   const link = (ids, label) => ids && ids.length ? `<div class="rh">${label}</div><div class="chips">${ids.filter(i => KN_BY_ID[i]).map(i => `<button class="kn chip" data-k="${i}">${KN_BY_ID[i].title}</button>`).join('')}</div>` : '';
-  h += `<div class="refs">${link(n.emerges_from, '⬇ Emerges from (deeper layer)')}${link(n.explains, '⬆ Explains')}</div>`;
+  h += `<div class="refs">${link(n.emerges_from, 'Emerges from')}${link(n.explains, 'Explains')}</div>`;
   const fr = (n.frontier || []).map(f => `<li><b>${f.status || 'open'}</b> ${f.text}${f.as_of ? ` <i>(${f.as_of})</i>` : ''}</li>`).join('');
   const fr2 = (n.frontier_ref || []).map(k => FRONT[k]).filter(Boolean).map(f => `<li>${certBadge(f.certainty)} <b>${f.topic}</b>: ${f.corrected || f.claim} <i>(${f.status}, ${f.as_of})</i>${f.note ? ` — ${f.note}` : ''} ${(f.sources || []).slice(0, 2).map(s => `<a href="${s.url}" target="_blank" rel="noopener">source ↗</a>`).join(' ')}</li>`).join('');
-  if (fr || fr2) h += `<div class="refs"><div class="rh">🔭 Frontier — what's still open</div><ul class="ev">${fr}${fr2}</ul></div>`;
-  if (n.refs && n.refs.length) h += `<div class="refs"><div class="rh">📚 Read more</div>${n.refs.slice(0, 6).map(r => bookRef(r[0], r[1])).join('')}</div>`;
+  if (fr || fr2) h += `<div class="refs"><div class="rh">Open questions</div><ul class="ev">${fr}${fr2}</ul></div>`;
+  if (n.refs && n.refs.length) h += `<div class="refs"><div class="rh">Read more</div>${n.refs.slice(0, 6).map(r => bookRef(r[0], r[1])).join('')}</div>`;
   openPanel(h); if (window.mountViz) mountViz($('#vizHost'), id); wireKn();
 }
 const seen = new Set(store.get('seen', []));
@@ -139,17 +139,33 @@ function openLibrary() { const p = $('#library'); const o = !p.classList.contain
 /* ================= SCALE RULER ================= */
 const RULER_MIN = -16, RULER_MAX = 27;
 let LANDMARKS = []; // filled by world: {label, D, go()}
+function rulerY(e, h) { return (1 - (e - RULER_MIN) / (RULER_MAX - RULER_MIN)) * h; }
 function buildRuler() {
-  const r = $('#ruler'); r.innerHTML = '<div class="track"><i id="rulerMark"></i></div>';
-  LANDMARKS.forEach(L => {
-    const b = document.createElement('button'); b.className = 'lm';
-    const e = Math.log10(L.D); b.style.top = (100 - (e - RULER_MIN) / (RULER_MAX - RULER_MIN) * 100) + '%';
-    b.innerHTML = `<span class="ex">10${sup(Math.round(e))}</span><span class="nm">${L.label}</span>`; b.title = `Fly to: ${L.label}`;
-    b.onclick = () => { tour = null; L.go(); };
-    r.appendChild(b);
-  });
+  const box = $('#rulerScale'); if (!box) return; const h = box.clientHeight || 600; box.innerHTML = '';
+  let svg = `<svg viewBox="0 0 ${box.clientWidth || 184} ${h}" preserveAspectRatio="none">`;
+  for (let e = RULER_MIN; e <= RULER_MAX; e++) {
+    const y = rulerY(e, h), major = e % 3 === 0;
+    svg += `<line class="tk" x1="0" x2="${major ? 14 : 9}" y1="${y}" y2="${y}"/>`;
+    if (e < RULER_MAX) for (let k = 2; k <= 9; k++) { const yy = rulerY(e + Math.log10(k), h); svg += `<line class="tk mi" x1="0" x2="${k === 5 ? 6 : 4}" y1="${yy}" y2="${yy}"/>`; }
+    if (major) svg += `<text class="ex" x="18" y="${y + 3.5}">10${sup(e)}</text>`;
+  }
+  // landmarks: place names at their true heights, nudged apart so none overlap
+  const items = LANDMARKS.map(L => ({ L, y: rulerY(Math.log10(L.D), h) })).sort((a, b) => a.y - b.y);
+  const gap = 15; for (let k = 1; k < items.length; k++) items[k].p = Math.max(items[k].y, (items[k - 1].p ?? items[k - 1].y) + gap); if (items.length) items[0].p = items[0].p ?? items[0].y;
+  const over = (items.length ? items[items.length - 1].p : 0) - (h - 6); if (over > 0) for (let k = items.length - 1; k >= 0; k--) { items[k].p -= over; if (k && items[k - 1].p > items[k].p - gap) items[k - 1].p = items[k].p - gap; }
+  items.forEach(it => { svg += `<path class="lead" d="M15 ${it.y} L48 ${it.y} L58 ${it.p}"/>`; });
+  svg += '</svg>'; box.insertAdjacentHTML('beforeend', svg);
+  items.forEach(it => { const b = document.createElement('button'); b.className = 'lm'; b.style.top = it.p + 'px'; b.textContent = it.L.label; b.title = `Fly to ${it.L.label} (${fmtLen(it.L.D)} across)`; b.onclick = () => { tour = null; it.L.go(); }; it.L._el = b; box.appendChild(b); });
+  const m = document.createElement('i'); m.id = 'rulerMark'; m.innerHTML = '<span class="ro" id="rulerRO"></span>'; box.appendChild(m);
+  if (!buildRuler._ro) { buildRuler._ro = new ResizeObserver(() => buildRuler()); buildRuler._ro.observe(box); }
 }
-function updateRuler() { const e = Math.log10(cam.D * 2 * Math.tan(25 * Math.PI / 180)); const m = $('#rulerMark'); if (m) m.style.top = clamp(100 - (e - RULER_MIN) / (RULER_MAX - RULER_MIN) * 100, 0, 100) + '%'; }
+function updateRuler() {
+  const box = $('#rulerScale'), m = $('#rulerMark'); if (!box || !m) return;
+  const view = cam.D * 2 * Math.tan(25 * Math.PI / 180), e = Math.log10(view), h = box.clientHeight;
+  m.style.top = clamp(rulerY(e, h), 0, h) + 'px'; const ro = $('#rulerRO'); const t = fmtLen(view); if (ro.textContent !== t) ro.textContent = t;
+  let best = null, bd = .35; LANDMARKS.forEach(L => { const d = Math.abs(Math.log10(L.D) - e); if (d < bd) { bd = d; best = L; } });
+  LANDMARKS.forEach(L => L._el && L._el.classList.toggle('near', L === best));
+}
 
 /* ================= TOUR (continuous Powers-of-Ten flight) ================= */
 let tour = null;
@@ -176,11 +192,11 @@ function updateCaption() {
     $('#capNote').textContent = f.note || '';
     updateControls(f);
   }
-  $('#capK').textContent = `10${sup(e.toFixed(1))} m · view ≈ ${fmtLen(view)}${f.timeNote ? ' · ' + f.timeNote : ''}`;
+  const k = `Field of view ${fmtLen(view)}${f.timeNote ? `, ${f.timeNote}` : ''}`; if ($('#capK').textContent !== k) $('#capK').textContent = k;
 }
 function updateTimeUI() {
   const d = new Date(simTime);
-  $('#timeT').textContent = d.toUTCString().slice(5, 22) + ' UTC';
+  $('#timeT').textContent = `${d.getUTCDate()} ${d.toUTCString().slice(8, 11)} ${d.getUTCFullYear()}, ${String(d.getUTCHours()).padStart(2, '0')}:${String(d.getUTCMinutes()).padStart(2, '0')} UTC`;
 }
 
 /* ================= MAIN LOOP ================= */
