@@ -35,4 +35,5 @@ body.cardOpen .pxp { display: none }
 #info .pxrow .btnrow { margin-top: 4px }
 #info .pxwhere { flex-basis: 100%; font: italic 13px/1.4 var(--serif); color: var(--muted) }
 #info .pxnuc { font: 14.5px/1.5 var(--serif); margin: 4px 0 }
-@media (max-width: 860px) { .pxp.pxsm { left: calc(var(--ruler-w) + 8px); right: 8px; top: 96px; width: auto; max-height: 34vh } }
+@media (max-width: 860px) { .pxp.pxsm { left: calc(var(--ruler-w) + 8px); right: 8px; top: 96px; width: auto; max-height: 24vh; top: 132px } .pxp { max-height: 24vh; top: 132px }
+  #controls:has(.pxmodes) { flex-wrap: wrap; gap: 6px; max-width: calc(100vw - var(--ruler-w) - 16px) } .pxmodes { flex: 1 1 100%; overflow-x: auto; scrollbar-width: none } .pxmodes button { flex: none; white-space: nowrap } }

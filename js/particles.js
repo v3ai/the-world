@@ -521,7 +521,7 @@ FT.sm = {
     const panel = PX.el('', 'pxp pxsm'); uiEl(panel);
     const modes = [['overview', 'Overview'], ['forces', 'Forces'], ['everyday', 'Everyday matter'], ['mass', 'Mass'], ['decay', 'Decays'], ['hadron', 'Build a hadron']];
     const modeSeg = seg(modes, SM.mode, k => { SM.mode = k; if (k !== 'overview') SM.sel = SM.sel; refresh(); });
-    F.modeSeg = modeSeg;
+    F.modeSeg = modeSeg; modeSeg.classList.add('pxmodes');
     const about = actBtn('What is this view?', () => showBodyNode('sm_overview', null));
     const refresh = () => { PX.smPanel(F, panel); modeSeg.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === SM.mode)); F.stage_t = 0; };
     F.refresh = refresh; refresh();
@@ -654,7 +654,7 @@ PX.smBind = F => {
     if (cam.A === F && !fly) { const cx = F._focus ? 0 : -S.board.position.x * 0, d = cam.T.length(); if (d > 40) { const kk = 1 - Math.exp(-dt * 3); cam.T.multiplyScalar(1 - kk * .9); if (zoom.pivot) zoom.pivot.p.set(0, 0, 0); } }   // never lose the board: if the zoom has carried the view far from it, bring it back
     if (cam.A === F && F.lvl > 0 && !pointers.size) { F.lvl -= dt; const kk = 1 - Math.exp(-dt * 2.2); cam.dir.lerp(tmp.set(0, .06, 1), kk).normalize(); }
     const showGrid = mode === 'overview' || mode === 'forces' || mode === 'everyday';
-    { const st = F._focus ? tmp.set(0, 0, 0) : mode === 'mass' ? tmp.set(0, 3, 0) : showGrid ? tmp.set(0, 2, 0) : tmp.set(0, 1, 0); S.shift.lerp(st, k); S.board.position.copy(F.boardBase).add(S.shift); }
+    { const st = F._focus ? tmp.set(0, 0, 0) : mode === 'mass' ? tmp.set(0, 3, 0) : showGrid ? tmp.set(0, 2, 0) : tmp.set(0, 1, 0); S.shift.lerp(st, k); S.board.position.copy(F.boardBase).add(S.shift); if (W / H < 1) S.board.position.y -= 2.6; }
     const fint = mode === 'forces' ? FEEL() : null, carriers = fint ? fint.carriers : [], feels = fint ? fint.feels : [], ev = D.everyday_matter.ids;
     let nl = 0; const lp = lines.geometry.attributes.position.array;
     const backDir = tmp.set(0, 0, 1).applyQuaternion(F.cam.quaternion);
@@ -795,9 +795,10 @@ PX.nearestQuark = (pf, T) => { const S = pf && pf.proto; if (!S) return null; le
 /* the camera is anywhere under a Standard Model frame? */
 PX.inSM = () => chainOf(cam.A).find(f => f.type === 'sm') || null;
 /* fly into the Standard Model view. focus: a particle id to arrive at, or null for the whole picture. host: a proton frame to dive from */
+PX.smD = d => { const a = W / H; return a < 1 ? d * Math.min(2.4, .95 / a) : d; };   // a portrait screen needs to stand further back to fit the whole picture
 PX.goSM = (focus, host, then) => {
   const f0 = PX.inSM();
-  if (f0) { f0.ensure(); const p = PX.smPos(f0, focus); flyTo(f0, p, focus ? 1.0e-17 : 3.8e-17, then); return f0; }
+  if (f0) { f0.ensure(); const p = PX.smPos(f0, focus); flyTo(f0, p, focus ? 1.0e-17 : PX.smD(3.8e-17), then); return f0; }
   if (host && host.type !== 'proton') host = null;
   if (!host) host = FR.proton; // the oxygen nucleus's first proton: the one the ruler goes to
   let f = host.children.find(c => c.type === 'sm');
@@ -805,7 +806,7 @@ PX.goSM = (focus, host, then) => {
   if (host === FR.proton) { FR.nuc.ensure(); FR.proton.place && FR.proton.place(); }
   if (f.dynamic) f.keep = performance.now() + 120000;
   f.ensure(); if (!f.dynamic) f.pos.set(0, 0, 0); PX.smFocus(f, focus || null);
-  flyTo(f, PX.smPos(f, focus), focus ? 1.0e-17 : 3.8e-17, then); return f;
+  flyTo(f, PX.smPos(f, focus), focus ? 1.0e-17 : PX.smD(3.8e-17), then); return f;
 };
 PX.goProton = then => { FR.nuc.ensure(); if (FR.proton.place) FR.proton.place(); flyTo(FR.proton, new V3(), 3e-15, then); };
 /* "Where do I find this?": only destinations that exist in the world today */
@@ -889,12 +890,12 @@ WORLD_EXT.push(async FRx => {
     sm.pos.copy(cam.T); if (cam.D > 1.8e-16) PX.smFocus(sm, PX.nearestQuark(FRx.proton, cam.T));
     if (zoom.pivot && cam.D < 7e-16) zoom.pivot.p.copy(cam.T);   // from here the zoom aims at where the new frame will be centred
   };
-  EXT_LANDMARKS.push({ label: 'Standard Model', D: 3.8e-17, go: then => { FRx.nuc.ensure(); FRx.proton.place && FRx.proton.place(); sm.ensure(); sm.pos.set(0, 0, 0); PX.smFocus(sm, null); flyTo(sm, PX.smPos(sm, null), 3.8e-17, then); } });
+  EXT_LANDMARKS.push({ label: 'Standard Model', D: 3.8e-17, go: then => { FRx.nuc.ensure(); FRx.proton.place && FRx.proton.place(); sm.ensure(); sm.pos.set(0, 0, 0); PX.smFocus(sm, null); flyTo(sm, PX.smPos(sm, null), PX.smD(3.8e-17), then); } });
   // search and topic links: a particle's topic card flies to it in the Standard Model view
   const reg = (id, fn) => { if (typeof tearReg === 'function' && typeof TEAR !== 'undefined') TEAR[id] = fn; };
   const mk = (id, D) => ({ frame: sm, D, get pos() { sm.ensure(); sm.pos.set(0, 0, 0); PX.smFocus(sm, null); return PX.smPos(sm, id); } });
   PX.ORDER.forEach(id => reg(PX.P[id].node, mk(id, 1.1e-17)));
-  reg('sm_overview', mk(null, 3.8e-17));
+  reg('sm_overview', { frame: sm, get D() { return PX.smD(3.8e-17); }, get pos() { sm.ensure(); sm.pos.set(0, 0, 0); PX.smFocus(sm, null); return PX.smPos(sm, null); } });
   if (typeof TEAR !== 'undefined') { TEAR.sm_proton = { frame: FRx.proton, pos: new V3(), D: 3e-15 }; }
   if (typeof SEARCH_SOURCES !== 'undefined' && SEARCH_SOURCES && typeof SEARCH_SOURCES.push === 'function') {
     try { SEARCH_SOURCES.push({ id: 'particles', label: 'Particles', search: q => { q = (q || '').toLowerCase(); return Object.keys(NODE).filter(k => k.startsWith('sm_') && NODE[k].title.toLowerCase().includes(q)).slice(0, 8).map(k => ({ id: k, title: NODE[k].title, sub: NODE[k].summary || '', go: () => goToNode(k) })); } }); } catch (e) { console.error(e); }
