@@ -130,8 +130,8 @@ function reanchor() {
   for (let g = 0; g < 60 && cam.A.parent; g++) {
     const A = cam.A;
     const outside = A.radius !== Infinity && (A.center ? _cc.copy(cam.T).sub(A.center) : cam.T).length() > A.radius * 1.08;
-    // a flight heading for a frame that is not under A, but is under A's parent (a sibling): step back out to get there
-    const offPath = fly && fly.frame && A.parent && (_fp = chainOf(fly.frame), !_fp.includes(A) && _fp.includes(A.parent));
+    // a flight heading for a frame that A is not on the way to (a sibling, or a cousin such as the skin from inside the lung): step back out
+    const offPath = fly && fly.frame && A.parent && (_fp = chainOf(fly.frame), !_fp.includes(A));
     if (cam.D > A.r1 || outside || offPath) { ascend(); continue; }
     break;
   }

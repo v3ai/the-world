@@ -85,7 +85,7 @@ async function buildWorld() {
     LM('Earth & Moon', FR.earth, null, 1.4e9),
     LM('Inner planets', ss, null, 7e11),
     LM('Solar system', ss, null, 1.5e13),
-    LM('Oort cloud', ss, null, 5e16),
+    LM('Oort cloud', nb, null, 5e16),
     LM('Nearest stars', nb, null, 5e17),
     LM('Local stars', nb, null, 6e18),
     LM('Black hole Sgr A*', FR.sgr, null, 3e11, { side: true }),
