@@ -189,10 +189,10 @@ FT.proton = {
     labs.push({ L: F.label(junction, 'Gluon field', { offset: new V3(0, .12, 0) }), text: 'Gluon field', pri: 6 });
     labs.push({ L: F.label(S.pairs[0].grp, 'Sea pair', { offset: new V3(0, -.16, 0) }), text: 'Quark–antiquark pair', pri: 4 });
     labs.push({ L: F.label(S.gluon.g, 'Gluon', { offset: new V3(0, .15, 0) }), text: 'Gluon', pri: 8 });
-    labs.push({ L: F.label(edge, 'Edge', { offset: new V3(0, 0, 0) }), text: () => `${S.kind === 'proton' ? 'Proton' : 'Neutron'} edge ≈ 0.84 fm`, pri: 3 });
+    labs.push({ L: F.label(edge, 'Edge', { offset: new V3(0, 0, 0) }), text: () => S.kind === 'proton' ? 'Proton edge ≈ 0.84 fm (charge radius)' : 'Edge: drawn as for the proton (not measured the same way)', pri: 3 });
     F.name = kind === 'proton' ? 'Proton' : 'Neutron';
     F.blurb = kind === 'proton' ? 'Inside a proton: two up quarks and a down quark, trading gluons, in a sea of quark–antiquark pairs.' : 'Inside a neutron: one up quark and two down quarks, trading gluons, in a sea of quark–antiquark pairs.';
-    F.note = 'A cartoon, not a photograph. Quarks have no measured size (no structure found down to about 10⁻¹⁹ m), nothing here has a definite position, and the sizes are not to scale. In the real proton, gluons carry about half of the momentum.';
+    F.note = 'A cartoon, not a photograph. Quarks have no measured size (no structure found down to about 10⁻¹⁹ m), nothing here has a definite position, and the sizes are not to scale. In a real proton, gluons carry about half of the momentum (the neutron is expected to match, by symmetry).';
     F.spawnD = 2.4e-16;
     F.spawn = (T, hint) => PX.smFrame(F, T, hint, S);
     F.proto = S;
