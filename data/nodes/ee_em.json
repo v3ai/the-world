@@ -1,0 +1,660 @@
+[
+ {
+  "id": "vector_analysis_em",
+  "title": "Vector analysis for fields",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_em",
+  "parents": [
+   "ee_em"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "divergence_curl",
+   "stokes_theorem",
+   "divergence_theorem"
+  ],
+  "summary": "The language of field theory.",
+  "layers": {
+   "basics": "Fields are vectors defined everywhere; gradient, divergence and curl describe how they change.",
+   "deeper": "Choose Cartesian, cylindrical or spherical coordinates to match geometry.",
+   "expert": "Helmholtz theorem: a field is fixed by its divergence and curl plus boundary conditions; Dirac delta for point sources."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "field",
+   "preset": "vector_field_probe"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Vector calculus",
+    "url": "https://en.wikipedia.org/wiki/Vector_calculus"
+   }
+  ]
+ },
+ {
+  "id": "electrostatics_dielectrics",
+  "title": "Electrostatics and dielectrics",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_em",
+  "parents": [
+   "ee_em"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "gauss_law_ee",
+   "electric_potential_ee"
+  ],
+  "summary": "Static electric fields in matter.",
+  "layers": {
+   "basics": "Insulators polarise in a field, reducing it by the relative permittivity εr.",
+   "deeper": "Boundary conditions: tangential E continuous, normal D jumps by surface charge. Method of images and Poisson/Laplace equations solve problems.",
+   "expert": "D=ε₀E+P=εE; bound charge ρ_b=−∇·P; energy density ½E·D; uniqueness theorem."
+  },
+  "facts": [],
+  "formula": "D = εE;  ∇²V = −ρ/ε",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "8.4",
+    "8-4-capacitor-with-a-dielectric"
+   ],
+   [
+    "UP2",
+    "7.4",
+    "7-4-determining-field-from-potential"
+   ]
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "equipotentials"
+  }
+ },
+ {
+  "id": "magnetostatics_materials",
+  "title": "Magnetostatics and magnetic materials",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_em",
+  "parents": [
+   "ee_em"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "magnetic_fields_forces"
+  ],
+  "summary": "Steady magnetic fields and iron.",
+  "layers": {
+   "basics": "Steady currents make magnetic fields; ferromagnetic cores concentrate them.",
+   "deeper": "B=μH with μ=μ₀μr; ferromagnets show hysteresis and saturation; magnetic circuits use reluctance.",
+   "expert": "Boundary: normal B continuous, tangential H jumps by surface current. Hysteresis loop area is energy lost per cycle; soft vs hard magnetic materials."
+  },
+  "facts": [],
+  "formula": "B = μH;  ℜ = ℓ/(μA)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "12.7",
+    "12-7-magnetism-in-matter"
+   ]
+  ],
+  "kn": [
+   "magnetic_materials"
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "magnetic_loops"
+  }
+ },
+ {
+  "id": "maxwell_equations",
+  "title": "Maxwell’s equations",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_em",
+  "parents": [
+   "ee_em"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "electrostatics_dielectrics",
+   "magnetostatics_materials",
+   "faraday_lenz"
+  ],
+  "summary": "Four equations that govern all electromagnetism.",
+  "layers": {
+   "basics": "Gauss’s law for E and B, Faraday’s law and Ampère–Maxwell law describe how charges and currents make fields and how changing fields make each other.",
+   "deeper": "The displacement current term lets the equations predict waves travelling at c=1/√(μ₀ε₀).",
+   "expert": "∇·D=ρ, ∇·B=0, ∇×E=−∂B/∂t, ∇×H=J+∂D/∂t. Boundary conditions and constitutive relations close the system; covariant form F^{μν}."
+  },
+  "facts": [],
+  "formula": "∇×E = −∂B/∂t;  ∇×H = J + ∂D/∂t",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "16.1",
+    "16-1-maxwells-equations-and-electromagnetic-waves"
+   ],
+   [
+    "CPH",
+    "24.1",
+    "24-1-maxwells-equations-electromagnetic-waves-predicted-and-observed"
+   ]
+  ],
+  "kn": [
+   "maxwell"
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "maxwell_waves"
+  }
+ },
+ {
+  "id": "plane_waves",
+  "title": "Plane waves and polarisation",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_em",
+  "parents": [
+   "ee_em"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "maxwell_equations",
+   "waves_interference"
+  ],
+  "summary": "Light and radio in free space.",
+  "layers": {
+   "basics": "In free space, E and B oscillate perpendicular to each other and to the direction of travel at c.",
+   "deeper": "Polarisation describes the E-field’s orientation: linear, circular or elliptical.",
+   "expert": "E=E₀e^{j(ωt−kz)}; η₀=√(μ₀/ε₀)≈377 Ω; Poynting S=E×H; in lossy media, skin depth δ=√(2/ωμσ)."
+  },
+  "facts": [],
+  "formula": "η₀ = √(μ₀/ε₀) ≈ 377 Ω",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "16.2",
+    "16-2-plane-electromagnetic-waves"
+   ],
+   [
+    "UP2",
+    "16.3",
+    "16-3-energy-carried-by-electromagnetic-waves"
+   ]
+  ],
+  "kn": [
+   "electromagnetic_waves"
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "maxwell_waves"
+  }
+ },
+ {
+  "id": "reflection_refraction",
+  "title": "Reflection and refraction",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_em",
+  "parents": [
+   "ee_em"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "plane_waves"
+  ],
+  "summary": "Waves at interfaces.",
+  "layers": {
+   "basics": "When a wave hits a boundary, some reflects and some transmits, with a bend determined by the media’s impedances.",
+   "deeper": "Reflection coefficient Γ=(η₂−η₁)/(η₂+η₁); Brewster angle gives no reflection for one polarisation; total internal reflection traps light in fibre.",
+   "expert": "Fresnel equations for TE/TM; phase shifts on reflection; thin-film anti-reflection coatings with quarter-wave layers."
+  },
+  "facts": [],
+  "formula": "Γ = (η₂−η₁)/(η₂+η₁)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "1.1",
+    "1-1-the-propagation-of-light"
+   ]
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "wave_boundary"
+  }
+ },
+ {
+  "id": "transmission_lines",
+  "title": "Transmission lines",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_em",
+  "parents": [
+   "ee_em"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "plane_waves",
+   "reflection_refraction"
+  ],
+  "summary": "When wires are long compared to wavelength.",
+  "layers": {
+   "basics": "When a signal’s wavelength is comparable to wire length, wires act as waveguides with a characteristic impedance.",
+   "deeper": "Mismatched terminations cause reflections; PCB traces, coax and antennas feeds are transmission lines.",
+   "expert": "Telegrapher’s equations; Z₀=√((R+jωL)/(G+jωC)) ≈√(L/C); velocity 1/√(LC); Γ_L=(Z_L−Z₀)/(Z_L+Z₀)."
+  },
+  "facts": [],
+  "formula": "Z₀ = √(L/C);  Γ = (Z_L−Z₀)/(Z_L+Z₀)",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Transmission line",
+    "url": "https://en.wikipedia.org/wiki/Transmission_line"
+   }
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "tline_reflections"
+  },
+  "where": "phone_pcb"
+ },
+ {
+  "id": "standing_waves_vswr",
+  "title": "Standing waves and VSWR",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_em",
+  "parents": [
+   "ee_em"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "transmission_lines"
+  ],
+  "summary": "Incident and reflected waves interfere.",
+  "layers": {
+   "basics": "Reflections create standing-wave patterns whose ratio of max to min voltage is VSWR; 1:1 means perfect match.",
+   "deeper": "VSWR=(1+|Γ|)/(1−|Γ|); high values waste power and can damage transmitters.",
+   "expert": "Return loss RL=−20log|Γ|; mismatch loss −10log(1−|Γ|²); input impedance of a line Z_in=Z₀(Z_L+jZ₀tanβl)/(Z₀+jZ_L tanβl)."
+  },
+  "facts": [],
+  "formula": "VSWR = (1+|Γ|)/(1−|Γ|)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "field",
+   "preset": "tline_reflections"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Standing wave ratio",
+    "url": "https://en.wikipedia.org/wiki/Standing_wave_ratio"
+   }
+  ]
+ },
+ {
+  "id": "smith_chart",
+  "title": "Smith chart",
+  "kind": "tool",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_em",
+  "parents": [
+   "ee_em"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "standing_waves_vswr",
+   "complex_numbers"
+  ],
+  "summary": "A map of impedances and reflections.",
+  "layers": {
+   "basics": "The Smith chart is a circular graph that maps complex impedance onto reflection coefficient, making matching problems visual.",
+   "deeper": "Moving along a line rotates around the centre; adding series and shunt elements moves along circles.",
+   "expert": "Conformal map Γ=(z−1)/(z+1); admittance chart is a 180° rotation; used for stub and L-network matching and amplifier design."
+  },
+  "facts": [],
+  "formula": "Γ = (z−1)/(z+1)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "field",
+   "preset": "smith_chart"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Smith chart",
+    "url": "https://en.wikipedia.org/wiki/Smith_chart"
+   }
+  ]
+ },
+ {
+  "id": "impedance_matching",
+  "title": "Impedance matching",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_em",
+  "parents": [
+   "ee_em"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "smith_chart",
+   "max_power_transfer"
+  ],
+  "summary": "Make loads look like the line.",
+  "layers": {
+   "basics": "Matching networks (L-networks, stubs, quarter-wave transformers) make a load look like the source impedance so power is transferred without reflection.",
+   "deeper": "Quarter-wave transformer Z_T=√(Z₀Z_L); single-stub tuning; bandwidth shrinks with higher mismatch.",
+   "expert": "Bode–Fano limit bounds broadband matching; lumped LC L-section Q=√(R_h/R_l−1)."
+  },
+  "facts": [],
+  "formula": "Z_T = √(Z₀ Z_L)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "field",
+   "preset": "smith_chart"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Impedance matching",
+    "url": "https://en.wikipedia.org/wiki/Impedance_matching"
+   }
+  ]
+ },
+ {
+  "id": "waveguides",
+  "title": "Waveguides",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_em",
+  "parents": [
+   "ee_em"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "plane_waves"
+  ],
+  "summary": "Hollow metal pipes for microwaves.",
+  "layers": {
+   "basics": "At microwave frequencies, a hollow metal tube guides waves with less loss than coax.",
+   "deeper": "Modes TE/TM have cutoff frequencies; below cutoff nothing propagates.",
+   "expert": "Rectangular TE₁₀ cutoff f_c=c/2a; dispersion v_g=c√(1−(f_c/f)²); optical fibre is a dielectric waveguide."
+  },
+  "facts": [],
+  "formula": "f_c = c/(2a)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "field",
+   "preset": "waveguide_modes"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Waveguide (electromagnetism)",
+    "url": "https://en.wikipedia.org/wiki/Waveguide_(electromagnetism)"
+   }
+  ]
+ },
+ {
+  "id": "skin_effect",
+  "title": "Skin effect",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_em",
+  "parents": [
+   "ee_em"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "plane_waves"
+  ],
+  "summary": "AC current hugs the surface.",
+  "layers": {
+   "basics": "At high frequency, current flows only near the surface of a conductor, raising resistance.",
+   "deeper": "Skin depth δ=√(2/ωμσ): ~66 µm for copper at 1 MHz; Litz wire and plating mitigate.",
+   "expert": "R_ac≈R_dc·a/(2δ) for round wire; proximity effect adds in coils; rough surfaces add further loss at GHz."
+  },
+  "facts": [],
+  "formula": "δ = √(2/(ωμσ))",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "field",
+   "preset": "skin_depth"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Skin effect",
+    "url": "https://en.wikipedia.org/wiki/Skin_effect"
+   }
+  ]
+ },
+ {
+  "id": "antenna_fundamentals",
+  "title": "Antennas: patterns, gain and directivity",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_em",
+  "parents": [
+   "ee_em"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "plane_waves"
+  ],
+  "summary": "Launching and catching waves.",
+  "layers": {
+   "basics": "An antenna turns circuit signals into radiated waves and back; its radiation pattern shows where it sends power.",
+   "deeper": "Gain is directivity times efficiency; dipole 2.15 dBi; effective aperture A_e=λ²G/4π; Friis equation for links.",
+   "expert": "Reciprocity; far-field r>2D²/λ; radiation resistance of a half-wave dipole ≈73 Ω; polarisation mismatch loss."
+  },
+  "facts": [],
+  "formula": "A_e = λ² G/(4π)",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Antenna (radio)",
+    "url": "https://en.wikipedia.org/wiki/Antenna_(radio)"
+   }
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "antenna_pattern"
+  },
+  "where": "phone_antenna"
+ },
+ {
+  "id": "dipole_antennas",
+  "title": "Dipoles and monopoles",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_em",
+  "parents": [
+   "ee_em"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "antenna_fundamentals"
+  ],
+  "summary": "Simplest resonant antennas.",
+  "layers": {
+   "basics": "A half-wave dipole is two quarter-wave rods driven at the centre; a monopole above a ground plane acts like half of one.",
+   "deeper": "Phone antennas are folded and miniaturised variants (PIFA, IFA).",
+   "expert": "Current distribution sinusoidal; pattern ∝cos(π/2 cosθ)/sinθ; bandwidth depends on thickness; small antennas limited by Chu limit."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "field",
+   "preset": "antenna_pattern"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Dipole antenna",
+    "url": "https://en.wikipedia.org/wiki/Dipole_antenna"
+   }
+  ],
+  "where": "phone_antenna"
+ },
+ {
+  "id": "antenna_arrays",
+  "title": "Antenna arrays",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_em",
+  "parents": [
+   "ee_em"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "antenna_fundamentals"
+  ],
+  "summary": "Many antennas steer a beam.",
+  "layers": {
+   "basics": "Combining several antennas with chosen phases forms a narrow, steerable beam.",
+   "deeper": "Array factor AF=Σe^{jnψ}; ψ=kd cosθ+β; phased arrays steer electronically without moving.",
+   "expert": "Grating lobes appear when spacing exceeds λ/2; beamforming weights from DSP; massive MIMO in 5G."
+  },
+  "facts": [],
+  "formula": "AF = Σ aₙ e^{jnψ}",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "field",
+   "preset": "array_factor"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Phased array",
+    "url": "https://en.wikipedia.org/wiki/Phased_array"
+   }
+  ]
+ },
+ {
+  "id": "emi_emc",
+  "title": "EMI/EMC: interference, shielding, grounding",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_em",
+  "parents": [
+   "ee_em"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "plane_waves",
+   "skin_effect"
+  ],
+  "summary": "Keeping devices from disturbing each other.",
+  "layers": {
+   "basics": "Electronics emit and receive unwanted electromagnetic noise; EMC design ensures devices coexist.",
+   "deeper": "Shielding, filtering, careful PCB layout (return paths, ground planes) and cable management.",
+   "expert": "Common-mode vs differential-mode; ferrites; ground loops; ESD (kV transients); FCC/CISPR limits; spread-spectrum clocking."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "field",
+   "preset": "emc_loop"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Electromagnetic compatibility",
+    "url": "https://en.wikipedia.org/wiki/Electromagnetic_compatibility"
+   }
+  ]
+ }
+]

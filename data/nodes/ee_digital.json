@@ -1,0 +1,677 @@
+[
+ {
+  "id": "number_systems",
+  "title": "Number systems: binary, hex, two’s complement",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "logic_boolean_math"
+  ],
+  "summary": "How computers write numbers.",
+  "layers": {
+   "basics": "Computers use binary (0/1); hexadecimal is shorthand grouping four bits. Two’s complement represents negative numbers so addition works the same.",
+   "deeper": "An n-bit two’s-complement word spans −2ⁿ⁻¹…2ⁿ⁻¹−1; overflow is detected when carry into and out of the top bit differ.",
+   "expert": "Also BCD, Gray code (single-bit changes), fixed-point Qm.n, IEEE-754 floating point (sign, exponent, mantissa)."
+  },
+  "facts": [],
+  "formula": "−x = ~x + 1",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CMA",
+    "4.3",
+    "4-3-converting-with-base-systems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "All About Circuits: Digital",
+    "url": "https://www.allaboutcircuits.com/textbook/digital/"
+   }
+  ],
+  "lab": {
+   "id": "logic",
+   "preset": "number_converter"
+  }
+ },
+ {
+  "id": "boolean_algebra_digital",
+  "title": "Boolean algebra for design",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "logic_boolean_math"
+  ],
+  "summary": "Simplifying logic expressions.",
+  "layers": {
+   "basics": "Rules like A+AB=A and De Morgan’s laws shrink a logic expression and thus the circuit.",
+   "deeper": "Sum-of-products and product-of-sums forms; any function is built from AND/OR/NOT.",
+   "expert": "Shannon expansion f=x f_x+x′f_x′; consensus theorem; duality; minimal forms are NP-hard in general."
+  },
+  "facts": [],
+  "formula": "A + AB = A",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "logic",
+   "preset": "boolean_playground"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Boolean algebra",
+    "url": "https://en.wikipedia.org/wiki/Boolean_algebra"
+   }
+  ]
+ },
+ {
+  "id": "logic_gates",
+  "title": "Logic gates",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "boolean_algebra_digital"
+  ],
+  "summary": "AND, OR, NOT, NAND, NOR, XOR.",
+  "layers": {
+   "basics": "Gates are the atoms of digital logic. NAND and NOR are universal: any logic can be built from either.",
+   "deeper": "Truth tables define behaviour; gate symbols (ANSI/IEEE); fan-in and fan-out limit practical use.",
+   "expert": "Propagation delay, noise margin V_IL/V_IH/V_OL/V_OH, logic families (TTL, CMOS, ECL); tristate and open-drain outputs for buses."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "electronics_logic"
+  ],
+  "lab": {
+   "id": "logic",
+   "preset": "gate_sandbox"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Logic gate",
+    "url": "https://en.wikipedia.org/wiki/Logic_gate"
+   }
+  ],
+  "where": "logic_gate_nand"
+ },
+ {
+  "id": "karnaugh_maps",
+  "title": "Karnaugh maps",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "boolean_algebra_digital"
+  ],
+  "summary": "Minimise logic visually.",
+  "layers": {
+   "basics": "A K-map arranges a truth table so neighbours differ by one bit; circle groups of 1s to get simple terms.",
+   "deeper": "Works up to ~4–5 variables; don’t-cares enlarge groups; watch for hazards.",
+   "expert": "Prime implicants and essential prime implicants; static-1 hazards removed by redundant terms."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "logic",
+   "preset": "kmap_minimizer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Karnaugh map",
+    "url": "https://en.wikipedia.org/wiki/Karnaugh_map"
+   }
+  ]
+ },
+ {
+  "id": "quine_mccluskey",
+  "title": "Quine–McCluskey and tool minimisation",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "karnaugh_maps"
+  ],
+  "summary": "Algorithmic logic minimisation.",
+  "layers": {
+   "basics": "A tabular algorithm that finds minimal logic for any number of variables; the idea behind synthesis tools.",
+   "deeper": "Step 1: find prime implicants; step 2: pick minimal cover.",
+   "expert": "Complexity grows exponentially; Espresso heuristic and BDDs are used in practice; ABC for multi-level."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "logic",
+   "preset": "kmap_minimizer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Quine–McCluskey algorithm",
+    "url": "https://en.wikipedia.org/wiki/Quine%E2%80%93McCluskey_algorithm"
+   }
+  ]
+ },
+ {
+  "id": "muxes_decoders",
+  "title": "Multiplexers, decoders and encoders",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "logic_gates"
+  ],
+  "summary": "Selecting and decoding.",
+  "layers": {
+   "basics": "A multiplexer chooses one of many inputs; a decoder turns a binary code into one active line; an encoder does the reverse.",
+   "deeper": "A 2ⁿ:1 mux is a universal logic element; memories use decoders for addresses.",
+   "expert": "Mux-based function realisation (Shannon); priority encoders; one-hot vs binary encoding."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "logic",
+   "preset": "mux_decoder"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Multiplexer",
+    "url": "https://en.wikipedia.org/wiki/Multiplexer"
+   }
+  ]
+ },
+ {
+  "id": "adders_arithmetic",
+  "title": "Adders and arithmetic circuits",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "logic_gates",
+   "number_systems"
+  ],
+  "summary": "Adding binary numbers in hardware.",
+  "layers": {
+   "basics": "A half adder adds two bits; a full adder includes carry in. Chain them for multi-bit addition.",
+   "deeper": "Ripple-carry is simple but slow; carry-lookahead and prefix adders reduce delay to O(log n).",
+   "expert": "Sum=A⊕B⊕C, Cout=AB+C(A⊕B); Kogge–Stone prefix adder; subtraction via two’s complement; multipliers (array, Booth, Wallace)."
+  },
+  "facts": [],
+  "formula": "S = A⊕B⊕Cin;  Cout = AB + Cin(A⊕B)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "logic",
+   "preset": "adder_builder"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Adder (electronics)",
+    "url": "https://en.wikipedia.org/wiki/Adder_(electronics)"
+   }
+  ],
+  "where": "logic_adder"
+ },
+ {
+  "id": "alu_design",
+  "title": "Arithmetic logic unit (ALU)",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "adders_arithmetic",
+   "muxes_decoders"
+  ],
+  "summary": "The calculator at the heart of a CPU.",
+  "layers": {
+   "basics": "An ALU performs add, subtract, AND, OR, shifts and compares on binary words, selected by control bits.",
+   "deeper": "Flags (zero, carry, overflow, negative) report results for branching.",
+   "expert": "Bit-slice design with mux per bit; barrel shifters; overflow V=C_in⊕C_out for two’s complement."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "logic",
+   "preset": "alu_sandbox"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Arithmetic logic unit",
+    "url": "https://en.wikipedia.org/wiki/Arithmetic_logic_unit"
+   }
+  ],
+  "where": "core_alu"
+ },
+ {
+  "id": "latches",
+  "title": "Latches",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "logic_gates"
+  ],
+  "summary": "The simplest memory.",
+  "layers": {
+   "basics": "Two cross-coupled gates hold a bit; that is an SR latch. A gated D-latch stores whatever D was while enabled.",
+   "deeper": "Level sensitivity makes them tricky in clocked systems; used in clock gating and some high-speed design.",
+   "expert": "Metastability when S and R de-assert together; transparent latch timing, time-borrowing."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "logic",
+   "preset": "latch_flipflop"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Flip-flop (electronics)",
+    "url": "https://en.wikipedia.org/wiki/Flip-flop_(electronics)"
+   }
+  ]
+ },
+ {
+  "id": "flip_flops",
+  "title": "Flip-flops (D, JK, T)",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "latches"
+  ],
+  "summary": "Edge-triggered one-bit memory.",
+  "layers": {
+   "basics": "A flip-flop samples its input on a clock edge and holds the value until the next edge.",
+   "deeper": "D stores data; T toggles; JK is a generalised version. Two latches back-to-back (master–slave) make an edge-triggered D FF.",
+   "expert": "Setup/hold constraints; clock-to-Q delay; metastability MTBF=e^{t_r/τ}/(T₀ f_c f_d)."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "logic",
+   "preset": "latch_flipflop"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Flip-flop (electronics)",
+    "url": "https://en.wikipedia.org/wiki/Flip-flop_(electronics)"
+   }
+  ]
+ },
+ {
+  "id": "registers_counters",
+  "title": "Registers and counters",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "flip_flops"
+  ],
+  "summary": "Groups of flip-flops.",
+  "layers": {
+   "basics": "A register stores a multi-bit word; a counter steps through binary values with each clock.",
+   "deeper": "Shift registers move bits sideways (serial/parallel conversion); synchronous counters avoid ripple delays.",
+   "expert": "LFSR counters give pseudo-random sequences for test and CDMA; Johnson and Gray counters limit glitches."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "logic",
+   "preset": "counter_register"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Counter (digital)",
+    "url": "https://en.wikipedia.org/wiki/Counter_(digital)"
+   }
+  ],
+  "where": "core_registers"
+ },
+ {
+  "id": "finite_state_machines",
+  "title": "Finite state machines (Moore and Mealy)",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "registers_counters"
+  ],
+  "summary": "Digital sequences with memory.",
+  "layers": {
+   "basics": "An FSM has a finite set of states and rules for moving between them based on inputs. Moore outputs depend on state only; Mealy on state and input.",
+   "deeper": "Design: state diagram → state table → encode → next-state and output logic.",
+   "expert": "State encoding (binary, one-hot, Gray) trades area and speed; unreachable states and safe recovery; FSMs written in HDL with case statements."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "logic",
+   "preset": "fsm_designer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Finite-state machine",
+    "url": "https://en.wikipedia.org/wiki/Finite-state_machine"
+   }
+  ]
+ },
+ {
+  "id": "timing_analysis",
+  "title": "Timing: setup, hold and clocking",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "flip_flops"
+  ],
+  "summary": "Making sure signals arrive in time.",
+  "layers": {
+   "basics": "A signal must be stable for a short time before (setup) and after (hold) the clock edge; the slowest path sets the maximum clock.",
+   "deeper": "T_clk ≥ t_cq + t_logic + t_setup + t_skew; hold violations are fixed by adding delay, not by slowing the clock.",
+   "expert": "Static timing analysis, clock domain crossing (two-flop synchroniser), clock trees, jitter, on-chip variation; PVT corners."
+  },
+  "facts": [],
+  "formula": "T_clk ≥ t_cq + t_logic + t_setup + t_skew",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "logic",
+   "preset": "timing_diagram"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Static timing analysis",
+    "url": "https://en.wikipedia.org/wiki/Static_timing_analysis"
+   }
+  ]
+ },
+ {
+  "id": "memory_rom_ram",
+  "title": "Memory types: ROM, SRAM, DRAM",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "flip_flops",
+   "muxes_decoders"
+  ],
+  "summary": "Storing many bits.",
+  "layers": {
+   "basics": "ROM keeps data without power; SRAM uses six transistors per bit and is fast; DRAM uses one transistor plus a capacitor, is dense but needs refreshing.",
+   "deeper": "Address decoders select rows/columns; sense amplifiers read tiny charges.",
+   "expert": "SRAM 6T cell stability (SNM); DRAM cell ~6F², refresh every 64 ms; DDR5 transfer rates >6 Gb/s/pin."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "logic",
+   "preset": "memory_array"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Static random-access memory",
+    "url": "https://en.wikipedia.org/wiki/Static_random-access_memory"
+   }
+  ],
+  "where": "phone_ram"
+ },
+ {
+  "id": "flash_memory",
+  "title": "Flash memory",
+  "kind": "device",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "memory_rom_ram",
+   "mosfet_physics_ee"
+  ],
+  "summary": "Charge trapped on a floating gate.",
+  "layers": {
+   "basics": "Flash stores bits as charge trapped in a floating gate or charge-trap layer in a transistor; it remains without power.",
+   "deeper": "Writes use Fowler–Nordheim tunnelling and cause wear; NAND flash is stacked in 3D to hundreds of layers.",
+   "expert": "SLC/MLC/TLC/QLC store 1–4 bits per cell using 2ⁿ threshold levels; endurance falls from 100k to ~1k cycles; wear levelling and ECC in controllers."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "tunneling"
+  ],
+  "lab": {
+   "id": "device",
+   "preset": "flash_cell"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Flash memory",
+    "url": "https://en.wikipedia.org/wiki/Flash_memory"
+   }
+  ],
+  "where": "phone_flash"
+ },
+ {
+  "id": "programmable_logic",
+  "title": "Programmable logic: FPGAs and CPLDs",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "muxes_decoders",
+   "registers_counters"
+  ],
+  "summary": "Reconfigurable hardware.",
+  "layers": {
+   "basics": "An FPGA contains many small lookup tables and flip-flops joined by programmable wiring; you configure it to be any digital circuit.",
+   "deeper": "CPLDs are smaller, simpler and non-volatile; FPGAs add block RAM, DSP slices and transceivers.",
+   "expert": "LUT-4/6 implements any function of its inputs; configuration SRAM bitstream; place-and-route, timing closure."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Field-programmable gate array",
+    "url": "https://en.wikipedia.org/wiki/Field-programmable_gate_array"
+   }
+  ],
+  "lab": {
+   "id": "logic",
+   "preset": "fpga_lut"
+  }
+ },
+ {
+  "id": "hdl_design_flow",
+  "title": "HDL-based design flow",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_digital",
+  "parents": [
+   "ee_digital"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "programmable_logic",
+   "hdl_verilog_vhdl",
+   "finite_state_machines"
+  ],
+  "summary": "From code to gates.",
+  "layers": {
+   "basics": "Write RTL in Verilog/VHDL, simulate it, synthesize it to gates, place and route, then program the chip.",
+   "deeper": "Testbenches and waveforms verify before hardware; constraints supply clocks and pins.",
+   "expert": "Synthesis → mapping → P&R → bitstream; timing closure iterations; formal verification and coverage-driven testbenches for ASICs."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "logic",
+   "preset": "verilog_sim"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Hardware description language",
+    "url": "https://en.wikipedia.org/wiki/Hardware_description_language"
+   }
+  ]
+ }
+]

@@ -1,0 +1,1780 @@
+[
+ {
+  "id": "limits_continuity",
+  "title": "Limits and continuity",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "What a function approaches, and whether it jumps.",
+  "layers": {
+   "basics": "A limit asks what value a function heads toward as its input nears some point. A function is continuous if you can draw it without lifting the pen.",
+   "deeper": "Limits make instantaneous change and infinite sums precise. Circuit voltages across a capacitor are continuous; a switch flipping is modelled as a jump that the capacitor smooths.",
+   "expert": "ε–δ definition: for every ε>0 there is δ>0 with |x−a|<δ ⇒ |f(x)−L|<ε. Piecewise models (ideal switches, step inputs) are discontinuous; physical energy storage keeps state variables continuous."
+  },
+  "facts": [],
+  "formula": "lim x→a f(x) = L",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA1",
+    "2.2",
+    "2-2-the-limit-of-a-function"
+   ],
+   [
+    "CA1",
+    "2.3",
+    "2-3-the-limit-laws"
+   ],
+   [
+    "CA1",
+    "2.4",
+    "2-4-continuity"
+   ]
+  ],
+  "kn": [
+   "calculus"
+  ]
+ },
+ {
+  "id": "derivative",
+  "title": "Derivative",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "limits_continuity"
+  ],
+  "summary": "The instantaneous rate of change of a quantity.",
+  "layers": {
+   "basics": "The derivative tells how fast something is changing right now: speed from position, current from charge.",
+   "deeper": "Rules for sums, products, chains and common functions turn rate-of-change questions into algebra. In circuits, i = C·dv/dt and v = L·di/dt are derivatives.",
+   "expert": "f′(x)=lim h→0 [f(x+h)−f(x)]/h. Linearization f(x+δ)≈f(x)+f′(x)δ underlies small-signal models of every nonlinear device."
+  },
+  "facts": [],
+  "formula": "i = dq/dt;  i_C = C·dv/dt",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA1",
+    "3.1",
+    "3-1-defining-the-derivative"
+   ],
+   [
+    "CA1",
+    "3.3",
+    "3-3-differentiation-rules"
+   ],
+   [
+    "CA1",
+    "3.6",
+    "3-6-the-chain-rule"
+   ]
+  ],
+  "kn": [
+   "calculus"
+  ]
+ },
+ {
+  "id": "integral_ftc",
+  "title": "Integral and the fundamental theorem",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "derivative"
+  ],
+  "summary": "Accumulating a rate over time or space.",
+  "layers": {
+   "basics": "An integral adds up many tiny pieces: total charge from current over time, or total energy from power.",
+   "deeper": "The fundamental theorem links differentiation and integration as inverse operations, so antiderivatives compute areas exactly.",
+   "expert": "∫ₐᵇ f dx = F(b)−F(a). Capacitor voltage v(t)=v(0)+(1/C)∫i dt; energy E=∫p dt. Riemann and Lebesgue definitions agree on well-behaved signals."
+  },
+  "facts": [],
+  "formula": "Q = ∫ i dt;  E = ∫ p dt",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA1",
+    "5.2",
+    "5-2-the-definite-integral"
+   ],
+   [
+    "CA1",
+    "5.3",
+    "5-3-the-fundamental-theorem-of-calculus"
+   ]
+  ],
+  "kn": [
+   "calculus"
+  ]
+ },
+ {
+  "id": "integration_techniques",
+  "title": "Techniques of integration",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "integral_ftc"
+  ],
+  "summary": "Substitution, parts, partial fractions.",
+  "layers": {
+   "basics": "Tricks to evaluate integrals that do not look simple: substitute a new variable, split into pieces, or use parts.",
+   "deeper": "Partial fractions are especially important because they invert Laplace and z transforms of rational functions.",
+   "expert": "Integration by parts ∫u dv=uv−∫v du; improper integrals converge or diverge by comparison tests; numerical quadrature takes over when no closed form exists."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA2",
+    "3.1",
+    "3-1-integration-by-parts"
+   ],
+   [
+    "CA2",
+    "3.4",
+    "3-4-partial-fractions"
+   ],
+   [
+    "CA2",
+    "3.7",
+    "3-7-improper-integrals"
+   ]
+  ],
+  "kn": [
+   "calculus"
+  ]
+ },
+ {
+  "id": "sequences_series",
+  "title": "Sequences and infinite series",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "integral_ftc"
+  ],
+  "summary": "Adding infinitely many terms and when it settles.",
+  "layers": {
+   "basics": "A series adds endless terms; some, like 1+½+¼+…, add up to a finite number.",
+   "deeper": "Convergence tests (ratio, comparison, integral) decide whether the sum exists. Geometric series appear in transmission-line multiple reflections and in the z-transform.",
+   "expert": "Σ rⁿ = 1/(1−r) for |r|<1. Absolute vs conditional convergence matters when rearranging terms; uniform convergence justifies termwise differentiation."
+  },
+  "facts": [],
+  "formula": "Σₙ rⁿ = 1/(1−r)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA2",
+    "5.1",
+    "5-1-sequences"
+   ],
+   [
+    "CA2",
+    "5.2",
+    "5-2-infinite-series"
+   ],
+   [
+    "CA2",
+    "5.6",
+    "5-6-ratio-and-root-tests"
+   ]
+  ],
+  "kn": [
+   "calculus"
+  ]
+ },
+ {
+  "id": "taylor_series",
+  "title": "Taylor and power series",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "sequences_series",
+   "derivative"
+  ],
+  "summary": "Approximating a function by a polynomial.",
+  "layers": {
+   "basics": "Near a point, almost any smooth function looks like a polynomial; more terms give a better match.",
+   "deeper": "Engineers truncate Taylor series to linearize a transistor curve or to derive sin x ≈ x for small angles; e^x and sin/cos are exactly their series.",
+   "expert": "f(x)=Σ f⁽ⁿ⁾(a)(x−a)ⁿ/n!. Remainder bounds quantify truncation error. Radius of convergence is set by the nearest complex singularity."
+  },
+  "facts": [],
+  "formula": "eˣ = Σ xⁿ/n!",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA2",
+    "6.1",
+    "6-1-power-series-and-functions"
+   ],
+   [
+    "CA2",
+    "6.3",
+    "6-3-taylor-and-maclaurin-series"
+   ],
+   [
+    "CA2",
+    "6.4",
+    "6-4-working-with-taylor-series"
+   ]
+  ],
+  "kn": [
+   "calculus"
+  ]
+ },
+ {
+  "id": "vectors_3d",
+  "title": "Vectors, dot and cross product",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Quantities with magnitude and direction.",
+  "layers": {
+   "basics": "Vectors describe forces and fields. The dot product measures alignment; the cross product gives a perpendicular vector.",
+   "deeper": "Components in Cartesian, cylindrical and spherical coordinates let fields be written for the geometry at hand.",
+   "expert": "a·b=|a||b|cosθ, a×b=|a||b|sinθ n̂. Orthogonal curvilinear coordinates carry scale factors that enter gradient, divergence and curl."
+  },
+  "facts": [],
+  "formula": "a·b = |a||b| cosθ",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA3",
+    "2.3",
+    "2-3-the-dot-product"
+   ],
+   [
+    "CA3",
+    "2.4",
+    "2-4-the-cross-product"
+   ],
+   [
+    "CA3",
+    "2.7",
+    "2-7-cylindrical-and-spherical-coordinates"
+   ],
+   [
+    "UP1",
+    "2.4",
+    "2-4-products-of-vectors"
+   ]
+  ]
+ },
+ {
+  "id": "partial_derivatives",
+  "title": "Partial derivatives",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "derivative",
+   "vectors_3d"
+  ],
+  "summary": "Rates of change with several variables.",
+  "layers": {
+   "basics": "When a quantity depends on many inputs, a partial derivative asks how it changes if only one input moves.",
+   "deeper": "Partials give the slope of a transistor current with respect to gate voltage while drain voltage is held fixed: the transconductance.",
+   "expert": "Total differential df=Σ(∂f/∂xᵢ)dxᵢ; the Jacobian generalises the chain rule and drives small-signal linearization and Newton iteration."
+  },
+  "facts": [],
+  "formula": "gm = ∂iD/∂vGS",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA3",
+    "4.3",
+    "4-3-partial-derivatives"
+   ],
+   [
+    "CA3",
+    "4.4",
+    "4-4-tangent-planes-and-linear-approximations"
+   ],
+   [
+    "CA3",
+    "4.5",
+    "4-5-the-chain-rule"
+   ]
+  ]
+ },
+ {
+  "id": "gradient_directional",
+  "title": "Gradient and directional derivative",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "partial_derivatives"
+  ],
+  "summary": "The direction of steepest increase.",
+  "layers": {
+   "basics": "The gradient points uphill. Electric field is the downhill direction of potential: E = −∇V.",
+   "deeper": "It turns a scalar map (potential, temperature) into a vector field and is perpendicular to level surfaces.",
+   "expert": "∇f=(∂f/∂x,∂f/∂y,∂f/∂z); directional derivative D_u f=∇f·u. Gradient descent for optimization and training uses the same object."
+  },
+  "facts": [],
+  "formula": "E = −∇V",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA3",
+    "4.6",
+    "4-6-directional-derivatives-and-the-gradient"
+   ]
+  ],
+  "kn": [
+   "electric_fields"
+  ]
+ },
+ {
+  "id": "multiple_integrals",
+  "title": "Multiple integrals",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "integral_ftc",
+   "partial_derivatives"
+  ],
+  "summary": "Integrating over areas and volumes.",
+  "layers": {
+   "basics": "Double and triple integrals add up a quantity over a surface or a volume, such as total charge from a charge density.",
+   "deeper": "Polar, cylindrical and spherical coordinates make symmetric problems easy, with a Jacobian factor for the volume element.",
+   "expert": "Fubini lets iterated integrals swap order; change of variables multiplies by |det J|. Q=∭ρ dV is the source integral for Gauss’s law."
+  },
+  "facts": [],
+  "formula": "Q = ∭ ρ dV",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA3",
+    "5.1",
+    "5-1-double-integrals-over-rectangular-regions"
+   ],
+   [
+    "CA3",
+    "5.4",
+    "5-4-triple-integrals"
+   ],
+   [
+    "CA3",
+    "5.5",
+    "5-5-triple-integrals-in-cylindrical-and-spherical-coordinates"
+   ],
+   [
+    "CA3",
+    "5.7",
+    "5-7-change-of-variables-in-multiple-integrals"
+   ]
+  ]
+ },
+ {
+  "id": "vector_fields_line_integrals",
+  "title": "Vector fields and line integrals",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "vectors_3d",
+   "multiple_integrals"
+  ],
+  "summary": "Fields and work done along a path.",
+  "layers": {
+   "basics": "A vector field assigns an arrow to every point. A line integral adds the field’s push along a path, like work or voltage.",
+   "deeper": "If the field is conservative the answer depends only on endpoints, which is why voltage between two nodes is well defined in a static circuit.",
+   "expert": "∫C F·dr; F=∇φ iff curl F=0 on simply connected domains. Faraday induction breaks conservativeness, which is why KVL needs care with changing flux."
+  },
+  "facts": [],
+  "formula": "V_ab = −∫ E·dl",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA3",
+    "6.1",
+    "6-1-vector-fields"
+   ],
+   [
+    "CA3",
+    "6.2",
+    "6-2-line-integrals"
+   ],
+   [
+    "CA3",
+    "6.3",
+    "6-3-conservative-vector-fields"
+   ]
+  ]
+ },
+ {
+  "id": "divergence_curl",
+  "title": "Divergence and curl",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "vector_fields_line_integrals",
+   "gradient_directional"
+  ],
+  "summary": "How a field spreads out and how it swirls.",
+  "layers": {
+   "basics": "Divergence is net outflow per unit volume (sources and sinks); curl measures local rotation.",
+   "deeper": "Two of Maxwell’s equations are statements about divergence and two about curl.",
+   "expert": "∇·F=∂Fx/∂x+∂Fy/∂y+∂Fz/∂z; ∇×F is the circulation density. Identities: ∇×∇φ=0, ∇·(∇×F)=0."
+  },
+  "facts": [],
+  "formula": "∇·F,  ∇×F",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA3",
+    "6.5",
+    "6-5-divergence-and-curl"
+   ]
+  ],
+  "kn": [
+   "maxwell"
+  ]
+ },
+ {
+  "id": "greens_theorem",
+  "title": "Green’s theorem",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "divergence_curl"
+  ],
+  "summary": "Circulation around a loop equals curl inside.",
+  "layers": {
+   "basics": "A loop integral around a flat region equals the total swirl inside it.",
+   "deeper": "It is the 2-D case of Stokes’ theorem and the first bridge between local differential and global integral forms.",
+   "expert": "∮(P dx+Q dy)=∬(∂Q/∂x−∂P/∂y)dA for positively oriented piecewise-smooth boundaries."
+  },
+  "facts": [],
+  "formula": "∮(P dx+Q dy) = ∬(Qx−Py) dA",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA3",
+    "6.4",
+    "6-4-greens-theorem"
+   ]
+  ]
+ },
+ {
+  "id": "stokes_theorem",
+  "title": "Stokes’ theorem",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "greens_theorem"
+  ],
+  "summary": "Circulation around an edge equals flux of curl through a surface.",
+  "layers": {
+   "basics": "The line integral of a field around a closed loop equals the flux of its curl through any surface bounded by that loop.",
+   "deeper": "Turns Faraday’s law from differential to integral form: EMF around a loop equals −dΦ/dt.",
+   "expert": "∮∂S F·dr=∬S(∇×F)·dS. Independence of surface follows from ∇·(∇×F)=0."
+  },
+  "facts": [],
+  "formula": "∮ F·dr = ∬ (∇×F)·dS",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA3",
+    "6.7",
+    "6-7-stokes-theorem"
+   ]
+  ]
+ },
+ {
+  "id": "divergence_theorem",
+  "title": "Divergence theorem",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "divergence_curl"
+  ],
+  "summary": "Net outflow through a closed surface equals source inside.",
+  "layers": {
+   "basics": "Add up all the sources inside a volume and you get the total flow leaving through its surface.",
+   "deeper": "It converts Gauss’s law between its integral and point forms and gives charge conservation.",
+   "expert": "∯S F·dS=∭V(∇·F)dV. Applied to J: ∇·J=−∂ρ/∂t."
+  },
+  "facts": [],
+  "formula": "∯ F·dS = ∭ ∇·F dV",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA3",
+    "6.8",
+    "6-8-the-divergence-theorem"
+   ]
+  ]
+ },
+ {
+  "id": "ode_first_order",
+  "title": "First-order ODEs",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "integration_techniques"
+  ],
+  "summary": "Equations linking a quantity to its own rate.",
+  "layers": {
+   "basics": "First-order equations, like dv/dt = −v/RC, describe exponential approach to a final value: charging, cooling, decay.",
+   "deeper": "Separable and linear first-order equations have closed forms; the integrating factor handles driven cases.",
+   "expert": "y′+p(t)y=q(t) has y=e^{−∫p}[∫q e^{∫p}dt+C]. Time constant τ sets 63% rise in 1τ and ~99% in 5τ."
+  },
+  "facts": [],
+  "formula": "y′ + y/τ = u/τ",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA2",
+    "4.1",
+    "4-1-basics-of-differential-equations"
+   ],
+   [
+    "CA2",
+    "4.3",
+    "4-3-separable-equations"
+   ],
+   [
+    "CA2",
+    "4.5",
+    "4-5-first-order-linear-equations"
+   ]
+  ],
+  "kn": [
+   "ode_pde"
+  ]
+ },
+ {
+  "id": "ode_second_order",
+  "title": "Second-order linear ODEs",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "ode_first_order"
+  ],
+  "summary": "Oscillation, damping and resonance.",
+  "layers": {
+   "basics": "Second-order equations govern masses on springs and RLC circuits: they can ring, decay smoothly, or in between.",
+   "deeper": "The characteristic equation s²+2ζω₀s+ω₀²=0 has real, repeated or complex roots giving over-, critical or under-damping.",
+   "expert": "General solution = homogeneous + particular. Undetermined coefficients or variation of parameters handle drives; Q=1/(2ζ)."
+  },
+  "facts": [],
+  "formula": "s² + 2ζω₀s + ω₀² = 0",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA3",
+    "7.1",
+    "7-1-second-order-linear-equations"
+   ],
+   [
+    "CA3",
+    "7.2",
+    "7-2-nonhomogeneous-linear-equations"
+   ],
+   [
+    "CA3",
+    "7.3",
+    "7-3-applications"
+   ]
+  ],
+  "kn": [
+   "ode_pde",
+   "oscillations"
+  ]
+ },
+ {
+  "id": "ode_systems",
+  "title": "Systems of ODEs",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "ode_second_order"
+  ],
+  "summary": "Many coupled quantities evolving together.",
+  "layers": {
+   "basics": "Multi-capacitor and multi-inductor circuits give several linked equations, written as one matrix equation.",
+   "deeper": "Eigenvalues of the system matrix are the circuit’s natural frequencies; eigenvectors are its modes.",
+   "expert": "ẋ=Ax+Bu with x(t)=e^{At}x₀+∫e^{A(t−τ)}Bu dτ. This is state-space form, shared by circuits, mechanics and control."
+  },
+  "facts": [],
+  "formula": "ẋ = A x + B u",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA3",
+    "7.1",
+    "7-1-second-order-linear-equations"
+   ]
+  ],
+  "kn": [
+   "ode_pde"
+  ]
+ },
+ {
+  "id": "laplace_math",
+  "title": "Laplace transform",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "ode_first_order",
+   "integration_techniques"
+  ],
+  "summary": "Turning differential equations into algebra.",
+  "layers": {
+   "basics": "The Laplace transform converts calculus problems about time into algebra in a new variable s, then converts back.",
+   "deeper": "Derivatives become multiplication by s, so a circuit ODE becomes an algebraic equation, with initial conditions built in.",
+   "expert": "F(s)=∫₀^∞ f(t)e^{−st}dt; L{f′}=sF−f(0); final-value and initial-value theorems; inverse via partial fractions or the Bromwich integral."
+  },
+  "facts": [],
+  "formula": "L{f′} = sF(s) − f(0)",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Laplace transform",
+    "url": "https://en.wikipedia.org/wiki/Laplace_transform"
+   }
+  ],
+  "kn": [
+   "ode_pde"
+  ]
+ },
+ {
+  "id": "pde_intro",
+  "title": "Introduction to PDEs",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "ode_second_order",
+   "partial_derivatives"
+  ],
+  "summary": "Heat, wave and Laplace equations.",
+  "layers": {
+   "basics": "Partial differential equations describe fields varying in space and time: heat flow, waves on a line, and voltage on a conductor.",
+   "deeper": "Separation of variables splits a PDE into ODEs. The wave equation underlies transmission lines; Laplace’s equation underlies electrostatics.",
+   "expert": "Heat: u_t=αu_xx; wave: u_tt=c²u_xx; Laplace: ∇²φ=0. Boundary conditions and uniqueness theorems decide which solutions are physical; numerical solvers (FDM, FEM) fill in for awkward geometries."
+  },
+  "facts": [],
+  "formula": "∇²V = 0;  ∂²u/∂t² = c² ∂²u/∂x²",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Partial differential equation",
+    "url": "https://en.wikipedia.org/wiki/Partial_differential_equation"
+   }
+  ],
+  "kn": [
+   "ode_pde",
+   "heat_diffusion"
+  ]
+ },
+ {
+  "id": "matrices_systems",
+  "title": "Matrices and linear systems",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Rectangular arrays that solve many equations at once.",
+  "layers": {
+   "basics": "A matrix stores a list of equations compactly. Gaussian elimination solves them step by step.",
+   "deeper": "Nodal and mesh analysis of any circuit reduces to Ax=b with a conductance or impedance matrix.",
+   "expert": "LU factorization costs ~⅔n³ flops; ill-conditioned A amplifies error by condition number κ(A). Sparse solvers power circuit simulators."
+  },
+  "facts": [],
+  "formula": "A x = b",
+  "certainty": "C1",
+  "refs": [
+   [
+    "PRE",
+    "9.5",
+    "9-5-matrices-and-matrix-operations"
+   ],
+   [
+    "PRE",
+    "9.6",
+    "9-6-solving-systems-with-gaussian-elimination"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "MIT 18.06 Linear Algebra",
+    "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/"
+   }
+  ],
+  "kn": [
+   "linalg_hilbert"
+  ]
+ },
+ {
+  "id": "determinants",
+  "title": "Determinants",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "matrices_systems"
+  ],
+  "summary": "A single number telling if a matrix is invertible.",
+  "layers": {
+   "basics": "The determinant is zero exactly when the equations are dependent, so there is no unique solution.",
+   "deeper": "It measures volume scaling of the transformation and appears in Cramer’s rule and in characteristic polynomials.",
+   "expert": "det(AB)=det A·det B; det A=Πλᵢ. Singular node-admittance matrices flag floating nodes in a circuit."
+  },
+  "facts": [],
+  "formula": "det A = Π λᵢ",
+  "certainty": "C1",
+  "refs": [
+   [
+    "PRE",
+    "9.8",
+    "9-8-solving-systems-with-cramers-rule"
+   ]
+  ]
+ },
+ {
+  "id": "vector_spaces",
+  "title": "Vector spaces and bases",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "determinants"
+  ],
+  "summary": "Sets where you can add and scale; choosing coordinates.",
+  "layers": {
+   "basics": "A vector space is any collection you can add and scale, from arrows to signals. A basis is a set of building blocks.",
+   "deeper": "Fourier series treat signals as vectors in a space whose basis is sines and cosines; inner products give projections.",
+   "expert": "Span, independence, dimension, rank-nullity; orthogonal projection onto a subspace gives least squares; Hilbert spaces extend to infinite dimension."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "linalg_hilbert"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Vector space",
+    "url": "https://en.wikipedia.org/wiki/Vector_space"
+   }
+  ]
+ },
+ {
+  "id": "eigen",
+  "title": "Eigenvalues and eigenvectors",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "vector_spaces"
+  ],
+  "summary": "Directions that a matrix only stretches.",
+  "layers": {
+   "basics": "An eigenvector is not turned by a matrix, only scaled by its eigenvalue.",
+   "deeper": "Eigenvalues are the natural frequencies and decay rates of linear systems and decide stability.",
+   "expert": "Av=λv, det(A−λI)=0. Symmetric matrices have real eigenvalues and orthogonal eigenvectors; the spectrum of A_state places closed-loop poles."
+  },
+  "facts": [],
+  "formula": "A v = λ v",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "linalg_hilbert"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Eigenvalues and eigenvectors",
+    "url": "https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors"
+   }
+  ]
+ },
+ {
+  "id": "matrix_decompositions",
+  "title": "Matrix decompositions (LU, QR, SVD)",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "eigen"
+  ],
+  "summary": "Factoring matrices for stable computation and insight.",
+  "layers": {
+   "basics": "Breaking a matrix into simpler pieces makes solving, compressing and analysing data easier.",
+   "deeper": "SVD finds the dominant patterns in data (principal components, noise removal); QR gives stable least squares; Cholesky speeds symmetric solves.",
+   "expert": "A=UΣVᵀ with singular values σ₁≥σ₂≥…; truncated SVD is the best low-rank approximation (Eckart–Young). Used in MIMO precoding, Kalman filter square-root forms and balanced model reduction."
+  },
+  "facts": [],
+  "formula": "A = U Σ Vᵀ",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Singular value decomposition",
+    "url": "https://en.wikipedia.org/wiki/Singular_value_decomposition"
+   }
+  ]
+ },
+ {
+  "id": "random_variables",
+  "title": "Random variables and distributions",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "integral_ftc"
+  ],
+  "summary": "Numbers whose values come with probabilities.",
+  "layers": {
+   "basics": "A random variable assigns a number to an uncertain outcome. Its distribution says how likely each value is.",
+   "deeper": "Bernoulli, binomial, Poisson, uniform, exponential and Gaussian distributions model bit errors, packet arrivals, component lifetimes and noise.",
+   "expert": "PMF/PDF/CDF; the Gaussian N(μ,σ²) emerges from sums by the central limit theorem, which is why thermal noise is Gaussian."
+  },
+  "facts": [],
+  "formula": "f(x) = e^{−(x−μ)²/2σ²}/(σ√2π)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "IST",
+    "4.1",
+    "4-1-probability-distribution-function-pdf-for-a-discrete-random-variable"
+   ],
+   [
+    "IST",
+    "5.1",
+    "5-1-continuous-probability-functions"
+   ],
+   [
+    "IST",
+    "6.1",
+    "6-1-the-standard-normal-distribution"
+   ],
+   [
+    "IST",
+    "7.1",
+    "7-1-the-central-limit-theorem-for-sample-means-averages"
+   ]
+  ],
+  "kn": [
+   "probability"
+  ]
+ },
+ {
+  "id": "expectation_variance",
+  "title": "Expectation and variance",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "random_variables"
+  ],
+  "summary": "Average value and spread.",
+  "layers": {
+   "basics": "The expected value is the long-run average; variance measures how widely values scatter around it.",
+   "deeper": "Noise power is variance; signal-to-noise ratio is a ratio of expectations.",
+   "expert": "E[X]=∫x f dx; Var X=E[X²]−E[X]²; covariance and correlation generalise to pairs; linearity of expectation holds without independence."
+  },
+  "facts": [],
+  "formula": "Var X = E[X²] − (E[X])²",
+  "certainty": "C1",
+  "refs": [
+   [
+    "IST",
+    "4.2",
+    "4-2-mean-or-expected-value-and-standard-deviation"
+   ]
+  ]
+ },
+ {
+  "id": "random_processes",
+  "title": "Random processes",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "expectation_variance"
+  ],
+  "summary": "Signals that evolve randomly in time.",
+  "layers": {
+   "basics": "A random process is a whole family of possible waveforms, like all the possible noise traces from a resistor.",
+   "deeper": "Stationarity lets us describe a process by its autocorrelation and power spectral density.",
+   "expert": "Wiener–Khinchin: S(f)=F{R(τ)}. White noise has flat PSD; filtering by H(f) multiplies PSD by |H(f)|². Ergodicity lets one long trace stand in for the ensemble."
+  },
+  "facts": [],
+  "formula": "S_y(f) = |H(f)|² S_x(f)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "DSC",
+    "5.1",
+    "5-1-introduction-to-time-series-analysis"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Stochastic process",
+    "url": "https://en.wikipedia.org/wiki/Stochastic_process"
+   }
+  ]
+ },
+ {
+  "id": "noise_modeling",
+  "title": "Noise modelling",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "random_processes"
+  ],
+  "summary": "Thermal, shot and flicker noise.",
+  "layers": {
+   "basics": "Every resistor hisses faintly from random electron motion; every current also carries shot noise from discrete charges.",
+   "deeper": "Thermal noise 4kTRB, shot noise 2qIB and 1/f noise are modelled as random sources added to circuits.",
+   "expert": "v_n²=4kTRΔf (Johnson–Nyquist); noise figure F=SNR_in/SNR_out; Friis cascade sets receiver sensitivity. Quantum limits appear at very low T or high f."
+  },
+  "facts": [],
+  "formula": "v_n² = 4kTRΔf",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "statistical_mechanics"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Johnson–Nyquist noise",
+    "url": "https://en.wikipedia.org/wiki/Johnson%E2%80%93Nyquist_noise"
+   }
+  ]
+ },
+ {
+  "id": "estimation_theory",
+  "title": "Estimation",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "expectation_variance"
+  ],
+  "summary": "Inferring hidden values from noisy data.",
+  "layers": {
+   "basics": "Estimation turns noisy measurements into the best guess of the underlying quantity.",
+   "deeper": "Least squares, maximum likelihood, and Kalman filtering are the working tools of sensors, GPS and radar.",
+   "expert": "Cramér–Rao bound Var(θ̂)≥1/I(θ). Kalman filter is the MMSE estimator for linear-Gaussian state-space models; Bayesian estimation gives the posterior."
+  },
+  "facts": [],
+  "formula": "Var(θ̂) ≥ 1/I(θ)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "IST",
+    "12.3",
+    "12-3-the-regression-equation"
+   ]
+  ],
+  "kn": [
+   "bayes_stats"
+  ]
+ },
+ {
+  "id": "complex_numbers",
+  "title": "Complex numbers",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Numbers with a real and an imaginary part.",
+  "layers": {
+   "basics": "Complex numbers a+jb live on a plane; engineers write j so as not to confuse it with current i.",
+   "deeper": "Multiplying by j rotates by 90°. Magnitude and phase make sinusoids easy to add.",
+   "expert": "Polar form re^{jθ}; conjugate z*; |z|²=zz*; the complex plane is the natural home of impedances, poles and spectra."
+  },
+  "facts": [],
+  "formula": "z = a + jb = r e^{jθ}",
+  "certainty": "C1",
+  "refs": [
+   [
+    "PRE",
+    "3.1",
+    "3-1-complex-numbers"
+   ],
+   [
+    "PRE",
+    "8.5",
+    "8-5-polar-form-of-complex-numbers"
+   ]
+  ]
+ },
+ {
+  "id": "euler_formula",
+  "title": "Euler’s formula",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "complex_numbers",
+   "taylor_series"
+  ],
+  "summary": "e^{jθ} = cosθ + j sinθ.",
+  "layers": {
+   "basics": "Euler’s formula ties exponentials to sines and cosines and turns trigonometry into multiplication.",
+   "deeper": "Proven by comparing Taylor series. cosωt = Re{e^{jωt}} is the basis of phasors.",
+   "expert": "cosθ=(e^{jθ}+e^{−jθ})/2; Euler identity e^{jπ}=−1; generalises to complex exponentials as eigenfunctions of LTI systems."
+  },
+  "facts": [],
+  "formula": "e^{jθ} = cosθ + j sinθ",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Euler's formula",
+    "url": "https://en.wikipedia.org/wiki/Euler's_formula"
+   }
+  ]
+ },
+ {
+  "id": "phasors_math",
+  "title": "Phasors",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "euler_formula"
+  ],
+  "summary": "Rotating arrows that stand in for sinusoids.",
+  "layers": {
+   "basics": "A phasor captures the size and phase of a sinusoid at a known frequency, so adding waves means adding arrows.",
+   "deeper": "Differentiation becomes multiplication by jω, which is why AC circuits behave like algebraic DC ones.",
+   "expert": "v(t)=Re{V e^{jωt}} with V=|V|∠φ. Valid for steady-state linear systems at a single frequency; superpose across frequencies."
+  },
+  "facts": [],
+  "formula": "d/dt → jω",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "circuits_ohm"
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "ac_phasors"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Phasor",
+    "url": "https://en.wikipedia.org/wiki/Phasor"
+   }
+  ]
+ },
+ {
+  "id": "poles_zeros",
+  "title": "Poles, zeros and the s-plane",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "complex_numbers",
+   "laplace_math"
+  ],
+  "summary": "Where a transfer function blows up or vanishes.",
+  "layers": {
+   "basics": "Poles are the complex frequencies where a system’s response is infinite, zeros where it vanishes. Together they sketch the response.",
+   "deeper": "Poles in the left half-plane mean decaying behaviour (stable); on the imaginary axis, oscillation; in the right half, runaway.",
+   "expert": "H(s)=K Π(s−zᵢ)/Π(s−pⱼ). Frequency response is |H(jω)| read off the pole-zero plot by distances to jω."
+  },
+  "facts": [],
+  "formula": "H(s) = K Π(s−zᵢ)/Π(s−pⱼ)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "control",
+   "preset": "pole_zero_map"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Zeros and poles",
+    "url": "https://en.wikipedia.org/wiki/Zeros_and_poles"
+   }
+  ]
+ },
+ {
+  "id": "contour_integration",
+  "title": "Contour integration basics",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "poles_zeros",
+   "integral_ftc"
+  ],
+  "summary": "Integrals in the complex plane via residues.",
+  "layers": {
+   "basics": "Integrals along loops in the complex plane can be computed from the poles inside them.",
+   "deeper": "It gives inverse Laplace transforms and some real integrals that otherwise resist; also the Nyquist stability criterion’s argument principle.",
+   "expert": "∮f dz=2πj Σ Res f(zₖ) (Cauchy). Argument principle: N=Z−P encirclements. Jordan’s lemma handles semicircle arcs."
+  },
+  "facts": [],
+  "formula": "∮ f dz = 2πj ΣRes",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Residue theorem",
+    "url": "https://en.wikipedia.org/wiki/Residue_theorem"
+   }
+  ]
+ },
+ {
+  "id": "logic_boolean_math",
+  "title": "Logic, sets and Boolean algebra",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Reasoning with true/false and collections.",
+  "layers": {
+   "basics": "Logic combines true/false statements with AND, OR and NOT; sets collect things; Boolean algebra is the algebra of both.",
+   "deeper": "Boolean algebra is exactly what logic gates compute; De Morgan’s laws let you swap AND and OR.",
+   "expert": "Boolean lattice axioms; De Morgan: ¬(A∧B)=¬A∨¬B. Shannon (1937) showed relay circuits implement Boolean algebra."
+  },
+  "facts": [],
+  "formula": "¬(A·B) = ¬A + ¬B",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CMA",
+    "2.1",
+    "2-1-statements-and-quantifiers"
+   ],
+   [
+    "CMA",
+    "2.6",
+    "2-6-de-morgans-laws"
+   ],
+   [
+    "CMA",
+    "1.4",
+    "1-4-set-operations-with-two-sets"
+   ]
+  ],
+  "kn": [
+   "logic_sets"
+  ],
+  "lab": {
+   "id": "logic",
+   "preset": "boolean_playground"
+  }
+ },
+ {
+  "id": "graph_theory_ee",
+  "title": "Graphs and trees",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "logic_boolean_math"
+  ],
+  "summary": "Nodes and edges.",
+  "layers": {
+   "basics": "A graph is dots joined by lines. A circuit diagram is a graph, and so is a network of computers.",
+   "deeper": "Trees and cut sets give systematic mesh and node counts; shortest-path algorithms route packets.",
+   "expert": "Kirchhoff’s matrix-tree theorem counts spanning trees from the Laplacian; independent KCL equations = n−1, KVL = b−n+1."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [
+   [
+    "CMA",
+    "12.1",
+    "12-1-graph-basics"
+   ],
+   [
+    "CMA",
+    "12.10",
+    "12-10-trees"
+   ]
+  ],
+  "kn": [
+   "graph_theory"
+  ]
+ },
+ {
+  "id": "combinatorics_ee",
+  "title": "Combinatorics",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "logic_boolean_math"
+  ],
+  "summary": "Counting arrangements.",
+  "layers": {
+   "basics": "Permutations and combinations count the ways things can be ordered or chosen.",
+   "deeper": "Used to count code words, bit patterns and error events, and in probability.",
+   "expert": "C(n,k)=n!/(k!(n−k)!); binomial pmf P(k errors)=C(n,k)pᵏ(1−p)^{n−k}; the number of binary words of length n is 2ⁿ."
+  },
+  "facts": [],
+  "formula": "C(n,k) = n!/(k!(n−k)!)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CMA",
+    "7.2",
+    "7-2-permutations"
+   ],
+   [
+    "CMA",
+    "7.3",
+    "7-3-combinations"
+   ]
+  ]
+ },
+ {
+  "id": "root_finding",
+  "title": "Numerical root finding",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "derivative"
+  ],
+  "summary": "Solving f(x)=0 by iteration.",
+  "layers": {
+   "basics": "When an equation cannot be solved on paper, step toward the answer by repeated guesses (bisection, Newton).",
+   "deeper": "Circuit simulators solve nonlinear diode and transistor equations with Newton–Raphson at every timestep.",
+   "expert": "xₙ₊₁=xₙ−f/f′ converges quadratically near simple roots; bisection is slow but sure; damping and homotopy help SPICE convergence."
+  },
+  "facts": [],
+  "formula": "x₍n+1₎ = xₙ − f(xₙ)/f′(xₙ)",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Newton's method",
+    "url": "https://en.wikipedia.org/wiki/Newton%27s_method"
+   }
+  ],
+  "lab": {
+   "id": "math",
+   "preset": "newton_iteration"
+  }
+ },
+ {
+  "id": "numerical_integration",
+  "title": "Numerical integration",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "integral_ftc"
+  ],
+  "summary": "Approximating areas by sums.",
+  "layers": {
+   "basics": "Trapezoid and Simpson rules estimate integrals from sampled values.",
+   "deeper": "Used inside simulators to step through time and to compute energy and RMS from measured data.",
+   "expert": "Trapezoid error O(h²), Simpson O(h⁴); Gauss quadrature reaches higher order with fewer points."
+  },
+  "facts": [],
+  "formula": "∫f ≈ h/2 [f₀ + 2f₁ + … + fₙ]",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA2",
+    "3.6",
+    "3-6-numerical-integration"
+   ]
+  ]
+ },
+ {
+  "id": "ode_solvers",
+  "title": "Numerical ODE solvers",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "ode_first_order",
+   "numerical_integration"
+  ],
+  "summary": "Stepping differential equations forward in time.",
+  "layers": {
+   "basics": "Euler’s method advances using the slope; better methods (Runge–Kutta, backward Euler) are more accurate or more stable.",
+   "deeper": "SPICE uses implicit trapezoidal or Gear methods so that stiff circuits with fast and slow time constants stay stable.",
+   "expert": "Local error O(hᵖ⁺¹); stiffness requires A-stable implicit methods; adaptive step control keeps error below tolerance."
+  },
+  "facts": [],
+  "formula": "yₙ₊₁ = yₙ + h f(tₙ, yₙ)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CA2",
+    "4.2",
+    "4-2-direction-fields-and-numerical-methods"
+   ]
+  ],
+  "lab": {
+   "id": "math",
+   "preset": "ode_stepper"
+  }
+ },
+ {
+  "id": "error_analysis",
+  "title": "Error analysis",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "numerical_integration"
+  ],
+  "summary": "Rounding, truncation, and conditioning.",
+  "layers": {
+   "basics": "Every computation and measurement has error; knowing how big it is makes results trustworthy.",
+   "deeper": "Truncation error from approximating, round-off from finite digits, and conditioning that amplifies both.",
+   "expert": "Machine epsilon 2⁻⁵² for doubles; catastrophic cancellation; propagation δf≈Σ|∂f/∂xᵢ|δxᵢ; backward stability."
+  },
+  "facts": [],
+  "formula": "δf ≈ Σ |∂f/∂xᵢ| δxᵢ",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP1",
+    "1.6",
+    "1-6-significant-figures"
+   ]
+  ]
+ },
+ {
+  "id": "fourier_math",
+  "title": "Fourier analysis (mathematical view)",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_math",
+  "parents": [
+   "ee_math"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "vector_spaces",
+   "euler_formula",
+   "integral_ftc"
+  ],
+  "summary": "Any signal is a sum of sinusoids.",
+  "layers": {
+   "basics": "Fourier showed that periodic waves are sums of sine waves at multiples of a base frequency.",
+   "deeper": "Orthogonality of sines makes the coefficients easy to compute with an integral; the idea extends to non-repeating signals.",
+   "expert": "Convergence (Dirichlet), Gibbs overshoot ~9% at jumps, Parseval’s theorem equates energy in time and frequency."
+  },
+  "facts": [],
+  "formula": "x(t)=Σ cₖ e^{jkω₀t}",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "fourier"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Fourier analysis",
+    "url": "https://en.wikipedia.org/wiki/Fourier_analysis"
+   }
+  ]
+ }
+]

@@ -1,0 +1,483 @@
+[
+ {
+  "id": "signals_basics",
+  "title": "Continuous- and discrete-time signals",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_signals",
+  "parents": [
+   "ee_signals"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "complex_numbers"
+  ],
+  "summary": "Functions that carry information.",
+  "layers": {
+   "basics": "A signal is a quantity varying with time (or position): a voltage, a sound, a row of pixels. Continuous signals exist at every instant; discrete ones only at samples.",
+   "deeper": "Basic signals: step, ramp, impulse, sinusoid, exponential. Operations: shift, scale, reverse, add.",
+   "expert": "Energy vs power signals; even/odd; periodic; x[n]=x(nT); the complex exponential e^{st} is the universal building block."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "MIT RES.6-007 Signals and Systems",
+    "url": "https://ocw.mit.edu/courses/res-6-007-signals-and-systems-spring-2011/"
+   }
+  ],
+  "lab": {
+   "id": "signal",
+   "preset": "signal_builder"
+  }
+ },
+ {
+  "id": "dirac_delta",
+  "title": "Impulse and step functions",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_signals",
+  "parents": [
+   "ee_signals"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "signals_basics",
+   "integral_ftc"
+  ],
+  "summary": "The idealised spike and switch.",
+  "layers": {
+   "basics": "The impulse is an infinitely narrow spike with unit area; the step switches from 0 to 1. They probe systems.",
+   "deeper": "Any signal is a sum of shifted impulses; the step is the integral of the impulse.",
+   "expert": "∫δ(t)f(t)dt=f(0); δ is a distribution; unit step u(t)=∫δ."
+  },
+  "facts": [],
+  "formula": "∫ δ(t) f(t) dt = f(0)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "signal_builder"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Dirac delta function",
+    "url": "https://en.wikipedia.org/wiki/Dirac_delta_function"
+   }
+  ]
+ },
+ {
+  "id": "lti_properties",
+  "title": "System properties: linearity, time invariance, causality, stability",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_signals",
+  "parents": [
+   "ee_signals"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "signals_basics"
+  ],
+  "summary": "What makes a system tractable.",
+  "layers": {
+   "basics": "Linear: scaling and addition pass through. Time-invariant: delaying the input delays the output. Causal: no response before input. Stable: bounded input gives bounded output.",
+   "deeper": "LTI systems are fully described by their impulse response and respond to sinusoids with sinusoids of the same frequency.",
+   "expert": "BIBO stability ⇔ ∫|h|dt<∞; memoryless vs dynamic; invertibility; non-linear systems (saturation, hysteresis) need other tools."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "system_properties"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Linear time-invariant system",
+    "url": "https://en.wikipedia.org/wiki/Linear_time-invariant_system"
+   }
+  ]
+ },
+ {
+  "id": "convolution",
+  "title": "Convolution and impulse response",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_signals",
+  "parents": [
+   "ee_signals"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "lti_properties",
+   "dirac_delta"
+  ],
+  "summary": "Output = input smeared by the system’s response.",
+  "layers": {
+   "basics": "To get the output of an LTI system, flip the impulse response, slide it across the input and add up overlaps.",
+   "deeper": "Convolution in time = multiplication in frequency, which is why transforms are useful.",
+   "expert": "y(t)=∫x(τ)h(t−τ)dτ; commutative, associative, distributive; discrete y[n]=Σx[k]h[n−k]."
+  },
+  "facts": [],
+  "formula": "y(t) = ∫ x(τ) h(t−τ) dτ",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "convolution_sketch"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Convolution",
+    "url": "https://en.wikipedia.org/wiki/Convolution"
+   }
+  ]
+ },
+ {
+  "id": "fourier_series_ee",
+  "title": "Fourier series",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_signals",
+  "parents": [
+   "ee_signals"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "convolution",
+   "fourier_math"
+  ],
+  "summary": "Periodic signals as sums of harmonics.",
+  "layers": {
+   "basics": "A repeating waveform is a sum of a fundamental and its multiples; square waves need odd harmonics.",
+   "deeper": "The coefficients show how much of each harmonic is present; power splits across them (Parseval).",
+   "expert": "x(t)=Σcₖe^{jkω₀t}, cₖ=(1/T)∫x e^{−jkω₀t}dt; Gibbs phenomenon; square wave cₖ ∝ 1/k for odd k."
+  },
+  "facts": [],
+  "formula": "cₖ = (1/T) ∫ x(t) e^{−jkω₀t} dt",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "fourier"
+  ],
+  "lab": {
+   "id": "signal",
+   "preset": "fourier_synth"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Fourier series",
+    "url": "https://en.wikipedia.org/wiki/Fourier_series"
+   }
+  ]
+ },
+ {
+  "id": "fourier_transform_ee",
+  "title": "Fourier transform",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_signals",
+  "parents": [
+   "ee_signals"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "fourier_series_ee"
+  ],
+  "summary": "Spectra of non-repeating signals.",
+  "layers": {
+   "basics": "The Fourier transform shows which frequencies a signal contains; narrow in time means wide in frequency.",
+   "deeper": "Properties: linearity, shifting, scaling, convolution-multiplication duality, Parseval.",
+   "expert": "X(ω)=∫x(t)e^{−jωt}dt; rect↔sinc; Gaussian↔Gaussian (uncertainty); F{δ}=1."
+  },
+  "facts": [],
+  "formula": "X(ω) = ∫ x(t) e^{−jωt} dt",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "fourier"
+  ],
+  "lab": {
+   "id": "signal",
+   "preset": "spectrum_analyzer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Fourier transform",
+    "url": "https://en.wikipedia.org/wiki/Fourier_transform"
+   }
+  ]
+ },
+ {
+  "id": "laplace_signals",
+  "title": "Laplace transform for systems",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_signals",
+  "parents": [
+   "ee_signals"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "laplace_math",
+   "convolution"
+  ],
+  "summary": "Transfer functions of LTI systems.",
+  "layers": {
+   "basics": "The Laplace transform lets you describe a system by a transfer function H(s) and find its response to anything by multiplication.",
+   "deeper": "Region of convergence decides causality and stability; poles in the left half-plane mean stable.",
+   "expert": "Bilateral vs unilateral; Y(s)=H(s)X(s); relationship to Fourier: s=jω if the imaginary axis lies in the ROC."
+  },
+  "facts": [],
+  "formula": "Y(s) = H(s) X(s)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "control",
+   "preset": "pole_zero_map"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Laplace transform",
+    "url": "https://en.wikipedia.org/wiki/Laplace_transform"
+   }
+  ]
+ },
+ {
+  "id": "z_transform",
+  "title": "z-transform",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_signals",
+  "parents": [
+   "ee_signals"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "laplace_signals",
+   "sequences_series"
+  ],
+  "summary": "Laplace’s discrete-time sibling.",
+  "layers": {
+   "basics": "The z-transform turns difference equations (the discrete cousins of differential equations) into algebra.",
+   "deeper": "The unit circle |z|=1 plays the role of the jω axis; poles inside the circle mean stability.",
+   "expert": "X(z)=Σx[n]z⁻ⁿ; delay ↔ z⁻¹; H(z) from difference equation; mapping z=e^{sT}."
+  },
+  "facts": [],
+  "formula": "X(z) = Σ x[n] z⁻ⁿ",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "z_plane"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Z-transform",
+    "url": "https://en.wikipedia.org/wiki/Z-transform"
+   }
+  ]
+ },
+ {
+  "id": "sampling_theorem",
+  "title": "Sampling theorem (Nyquist)",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_signals",
+  "parents": [
+   "ee_signals"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "fourier_transform_ee"
+  ],
+  "summary": "Sample at least twice the highest frequency.",
+  "layers": {
+   "basics": "To capture a signal perfectly from samples, you must sample at more than twice its highest frequency.",
+   "deeper": "Ideal reconstruction uses sinc interpolation; practical systems oversample and use filters.",
+   "expert": "Sampling multiplies by an impulse train, replicating the spectrum every f_s; bandlimited signals avoid overlap; Nyquist–Shannon."
+  },
+  "facts": [],
+  "formula": "f_s > 2 f_max",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "fourier",
+   "information_theory"
+  ],
+  "lab": {
+   "id": "signal",
+   "preset": "sampling_aliasing"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Nyquist–Shannon sampling theorem",
+    "url": "https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem"
+   }
+  ]
+ },
+ {
+  "id": "aliasing",
+  "title": "Aliasing",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_signals",
+  "parents": [
+   "ee_signals"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "sampling_theorem"
+  ],
+  "summary": "When fast signals masquerade as slow ones.",
+  "layers": {
+   "basics": "If you sample too slowly, high frequencies fold back and look like lower ones, like wagon wheels appearing to spin backwards.",
+   "deeper": "An anti-aliasing low-pass filter before the ADC prevents it; once aliased, it cannot be undone.",
+   "expert": "f_alias=|f−k f_s|; undersampling deliberately mixes a band down in RF receivers."
+  },
+  "facts": [],
+  "formula": "f_alias = |f − k f_s|",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "sampling_aliasing"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Aliasing",
+    "url": "https://en.wikipedia.org/wiki/Aliasing"
+   }
+  ]
+ },
+ {
+  "id": "spectra_filtering",
+  "title": "Spectra and filtering",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_signals",
+  "parents": [
+   "ee_signals"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "fourier_transform_ee"
+  ],
+  "summary": "Keeping some frequencies, dropping others.",
+  "layers": {
+   "basics": "A spectrum plots strength vs frequency. Filtering multiplies the spectrum by the filter’s frequency response.",
+   "deeper": "Ideal filters have brick-wall shape but infinite sinc impulse responses; real ones compromise.",
+   "expert": "Y(f)=H(f)X(f); group delay −dφ/dω; linear-phase FIR; spectral leakage and windows; PSD of random signals."
+  },
+  "facts": [],
+  "formula": "Y(f) = H(f) X(f)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "spectrum_analyzer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Spectral density",
+    "url": "https://en.wikipedia.org/wiki/Spectral_density"
+   }
+  ]
+ },
+ {
+  "id": "modulation_basics",
+  "title": "Modulation basics",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_signals",
+  "parents": [
+   "ee_signals"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "fourier_transform_ee"
+  ],
+  "summary": "Shifting signals to carriers.",
+  "layers": {
+   "basics": "Multiplying a signal by a carrier shifts its spectrum to the carrier frequency, so it can be transmitted by antenna.",
+   "deeper": "AM, FM and PM vary carrier amplitude, frequency or phase; mixers do the multiplication.",
+   "expert": "x(t)cos ω_c t ↔ ½[X(ω−ω_c)+X(ω+ω_c)]; demodulation by product detector + low-pass; bandwidth rules."
+  },
+  "facts": [],
+  "formula": "x(t)cos ω_c t",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "am_fm_demo"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Modulation",
+    "url": "https://en.wikipedia.org/wiki/Modulation"
+   }
+  ]
+ }
+]

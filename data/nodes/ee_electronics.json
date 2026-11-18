@@ -1,0 +1,1705 @@
+[
+ {
+  "id": "energy_bands_ee",
+  "title": "Energy bands and band gap",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "quantum_intro",
+   "bonding_materials"
+  ],
+  "summary": "Why solids split into conductors, semiconductors, insulators.",
+  "layers": {
+   "basics": "In a crystal, allowed electron energies merge into bands separated by gaps. Silicon’s gap is 1.12 eV, small enough to control electrically.",
+   "deeper": "Electrons in the valence band are stuck; those lifted to the conduction band move freely and leave mobile holes behind.",
+   "expert": "E_g(Si)=1.12 eV, Ge 0.66, GaAs 1.42 (direct), SiC ≈3.3, GaN 3.4; intrinsic concentration nᵢ≈10¹⁰ cm⁻³ for Si at 300 K, nᵢ∝T^{3/2}e^{−E_g/2kT}."
+  },
+  "facts": [],
+  "formula": "nᵢ ∝ T^{3/2} e^{−E_g/2kT}",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "9.5",
+    "9-5-band-theory-of-solids"
+   ]
+  ],
+  "kn": [
+   "band_theory"
+  ],
+  "lab": {
+   "id": "device",
+   "preset": "bands_formation"
+  },
+  "where": "silicon_channel"
+ },
+ {
+  "id": "doping_pn_material",
+  "title": "Doping: n-type and p-type material",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "energy_bands_ee"
+  ],
+  "summary": "Adding impurities to set carrier type.",
+  "layers": {
+   "basics": "Adding a few phosphorus atoms gives free electrons (n-type); boron gives holes (p-type). Conductivity can be tuned by a factor of a million.",
+   "deeper": "Dopants of ~10¹⁵–10²⁰ cm⁻³ dominate over intrinsic carriers; mass-action law np=nᵢ² ties electrons and holes.",
+   "expert": "Donor/acceptor levels sit ~45 meV from band edges for P/B in Si, fully ionised at room temperature; compensation and degenerate doping."
+  },
+  "facts": [],
+  "formula": "n·p = nᵢ²",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "9.6",
+    "9-6-semiconductors-and-doping"
+   ]
+  ],
+  "kn": [
+   "semiconductors_pn"
+  ],
+  "lab": {
+   "id": "device",
+   "preset": "n_type"
+  },
+  "where": "silicon_channel"
+ },
+ {
+  "id": "drift_diffusion_ee",
+  "title": "Drift and diffusion currents",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "doping_pn_material"
+  ],
+  "summary": "Two ways carriers move.",
+  "layers": {
+   "basics": "Carriers drift in an electric field and diffuse from high to low concentration.",
+   "deeper": "Total current J=qnμE+qD dn/dx; Einstein relation links mobility and diffusion.",
+   "expert": "D=μkT/q (thermal voltage kT/q≈25.9 mV at 300 K); velocity saturates near 10⁷ cm/s in Si at high fields."
+  },
+  "facts": [],
+  "formula": "J = qμnE + qD ∇n",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "drift_diffusion"
+  }
+ },
+ {
+  "id": "pn_junction_ee",
+  "title": "The PN junction",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "drift_diffusion_ee"
+  ],
+  "summary": "A diode is born where n meets p.",
+  "layers": {
+   "basics": "Where p-type meets n-type, carriers diffuse across, leaving a depletion zone with a built-in field; this lets current pass one way only.",
+   "deeper": "Forward bias shrinks the barrier and current grows exponentially; reverse bias widens it and little current flows.",
+   "expert": "I=I_s(e^{V/nV_T}−1); built-in potential V_bi=V_T ln(N_aN_d/nᵢ²)≈0.7 V for Si; ideality n between 1 and 2."
+  },
+  "facts": [],
+  "formula": "I = I_s (e^{V/nV_T} − 1)",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "semiconductors_pn"
+  ],
+  "lab": {
+   "id": "device",
+   "preset": "pn_forward"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Diode",
+    "url": "https://en.wikipedia.org/wiki/Diode"
+   }
+  ]
+ },
+ {
+  "id": "diode_models",
+  "title": "Diode models",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "pn_junction_ee",
+   "nodal_analysis"
+  ],
+  "summary": "Ideal, constant-drop and exponential.",
+  "layers": {
+   "basics": "Simple models: an ideal one-way switch; or a switch with a 0.7 V drop; or the full exponential curve.",
+   "deeper": "Load-line analysis and iterative solving give operating points; small-signal resistance r_d=nV_T/I.",
+   "expert": "SPICE diode includes series R_s, junction capacitance C_j=C_j0/(1+V_R/V_bi)^m and transit time for charge storage."
+  },
+  "facts": [],
+  "formula": "r_d = nV_T/I_D",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "led_circuit"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Diode modelling",
+    "url": "https://en.wikipedia.org/wiki/Diode_modelling"
+   }
+  ]
+ },
+ {
+  "id": "rectifiers",
+  "title": "Rectifiers",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "diode_models",
+   "rms_average_power"
+  ],
+  "summary": "AC to pulsating DC.",
+  "layers": {
+   "basics": "A diode lets only one half of an AC wave through. A bridge of four diodes uses both halves.",
+   "deeper": "A filter capacitor smooths the ripple; ripple ≈ I/(2fC) for full-wave.",
+   "expert": "Half-wave: V_dc=Vm/π; full-wave: 2Vm/π; diode peak inverse voltage and conduction angle drive transformer sizing and EMI."
+  },
+  "facts": [],
+  "formula": "V_dc = 2Vm/π (full-wave)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "bridge_rectifier"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Rectifier",
+    "url": "https://en.wikipedia.org/wiki/Rectifier"
+   }
+  ],
+  "where": "rectifier_bridge"
+ },
+ {
+  "id": "clippers_clampers",
+  "title": "Clippers and clampers",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "diode_models",
+   "capacitor_ee"
+  ],
+  "summary": "Shape waveform levels with diodes.",
+  "layers": {
+   "basics": "Clippers trim peaks off a signal; clampers shift its DC level.",
+   "deeper": "Input protection and level shifting; a clamper holds a capacitor charged to a peak.",
+   "expert": "Biased clippers use reference voltages; clamper time constant must exceed signal period."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "half_wave_rectifier"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Clipper (electronics)",
+    "url": "https://en.wikipedia.org/wiki/Clipper_(electronics)"
+   }
+  ]
+ },
+ {
+  "id": "zener_regulation",
+  "title": "Zener diodes and regulation",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "diode_models"
+  ],
+  "summary": "A diode that holds a steady reverse voltage.",
+  "layers": {
+   "basics": "In reverse breakdown, a zener holds nearly constant voltage, so it provides a simple voltage reference.",
+   "deeper": "Series resistor limits current; load and line regulation depend on dynamic resistance.",
+   "expert": "Zener (<5.5 V, tunnelling) vs avalanche (>5.5 V); temperature coefficient crosses zero near 5.6 V; bandgap references are better."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "zener_regulator"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Zener diode",
+    "url": "https://en.wikipedia.org/wiki/Zener_diode"
+   }
+  ]
+ },
+ {
+  "id": "led_photodiode",
+  "title": "LEDs and photodiodes",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "pn_junction_ee"
+  ],
+  "summary": "Light out, light in.",
+  "layers": {
+   "basics": "In an LED, electrons and holes recombine and emit light; a photodiode does the reverse, turning light into current.",
+   "deeper": "LED colour is set by band gap: ~1.9 eV red, ~2.7 eV blue; always limit current with a series resistor.",
+   "expert": "Direct band-gap materials (GaAs, GaN) radiate efficiently; photodiode in photoconductive (reverse) mode is fast; I_ph=ηqP/hν."
+  },
+  "facts": [],
+  "formula": "λ(μm) ≈ 1.24/E_g(eV)",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "led_lasers",
+   "solar_cells"
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "led_circuit"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Light-emitting diode",
+    "url": "https://en.wikipedia.org/wiki/Light-emitting_diode"
+   }
+  ],
+  "where": "phone_display"
+ },
+ {
+  "id": "bjt_regions",
+  "title": "BJT operation and regions",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "pn_junction_ee"
+  ],
+  "summary": "A current-controlled transistor.",
+  "layers": {
+   "basics": "A bipolar transistor has three layers (NPN or PNP). A small base current controls a much larger collector current.",
+   "deeper": "Regions: cutoff (off), active (amplifier), saturation (switch on); β=I_C/I_B typically 50–300.",
+   "expert": "I_C=I_s e^{V_BE/V_T}(1+V_CE/V_A); Ebers–Moll model; transconductance g_m=I_C/V_T."
+  },
+  "facts": [],
+  "formula": "I_C = I_s e^{V_BE/V_T}",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "semiconductors_pn"
+  ],
+  "lab": {
+   "id": "device",
+   "preset": "bjt_output"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Bipolar junction transistor",
+    "url": "https://en.wikipedia.org/wiki/Bipolar_junction_transistor"
+   }
+  ]
+ },
+ {
+  "id": "bjt_biasing",
+  "title": "BJT DC biasing",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bjt_regions",
+   "voltage_divider"
+  ],
+  "summary": "Setting a stable operating point.",
+  "layers": {
+   "basics": "Resistors set the transistor’s idle currents so it works as a linear amplifier; the bias must survive temperature and β variation.",
+   "deeper": "Voltage-divider bias with an emitter resistor is the standard stable arrangement.",
+   "expert": "Q-point on the load line; stability factor S=ΔI_C/ΔI_CO; emitter degeneration reduces sensitivity."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "common_emitter"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Bipolar junction transistor",
+    "url": "https://en.wikipedia.org/wiki/Bipolar_junction_transistor"
+   }
+  ]
+ },
+ {
+  "id": "bjt_small_signal",
+  "title": "BJT small-signal model",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bjt_biasing",
+   "dependent_sources"
+  ],
+  "summary": "Linearising around the bias point.",
+  "layers": {
+   "basics": "For small inputs the transistor behaves linearly; its model has r_π, g_m and r_o.",
+   "deeper": "Compute gain from the model by replacing DC sources with zero and capacitors with shorts.",
+   "expert": "Hybrid-π: r_π=β/g_m, r_o=V_A/I_C; T-model is alternative; high-frequency adds C_π and C_μ."
+  },
+  "facts": [],
+  "formula": "A_v = −g_m (r_o ∥ R_C)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "common_emitter"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Hybrid-pi model",
+    "url": "https://en.wikipedia.org/wiki/Hybrid-pi_model"
+   }
+  ]
+ },
+ {
+  "id": "bjt_amplifiers",
+  "title": "BJT amplifier configurations",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bjt_small_signal"
+  ],
+  "summary": "CE, CB and CC stages.",
+  "layers": {
+   "basics": "Common-emitter gives voltage gain and inversion; common-collector (emitter follower) buffers; common-base is fast.",
+   "deeper": "Choose by gain, input and output impedance. Follower: gain ≈1, high Z_in, low Z_out.",
+   "expert": "CE A_v≈−g_mR_C; CC A_v≈g_mR_E/(1+g_mR_E); CB Z_in≈1/g_m; cascode CE+CB improves bandwidth."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "common_emitter"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Common emitter",
+    "url": "https://en.wikipedia.org/wiki/Common_emitter"
+   }
+  ]
+ },
+ {
+  "id": "bjt_switch_node",
+  "title": "BJT as a switch",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bjt_regions"
+  ],
+  "summary": "On/off driving of loads.",
+  "layers": {
+   "basics": "Driving a BJT between cutoff and saturation lets a small control signal switch a larger current.",
+   "deeper": "A base resistor sets drive; V_CE(sat)≈0.2 V; a flyback diode protects against inductive loads.",
+   "expert": "Storage-time delay in saturation limits speed; Baker clamps and Darlington pairs."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "bjt_switch"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Transistor",
+    "url": "https://en.wikipedia.org/wiki/Transistor"
+   }
+  ]
+ },
+ {
+  "id": "mosfet_physics_ee",
+  "title": "MOSFET device physics",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "doping_pn_material",
+   "capacitance_physics"
+  ],
+  "summary": "Voltage-controlled transistor.",
+  "layers": {
+   "basics": "A MOSFET’s gate voltage creates a conducting channel between source and drain; almost no gate current flows.",
+   "deeper": "Above threshold V_T the channel forms; current grows with V_GS and saturates for high V_DS.",
+   "expert": "MOS capacitor regimes: accumulation, depletion, inversion; threshold V_T=V_FB+2φ_F+Q_dep/C_ox; body effect."
+  },
+  "facts": [],
+  "formula": "V_T = V_FB + 2φ_F + Q_dep/C_ox",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "semiconductors_pn"
+  ],
+  "lab": {
+   "id": "device",
+   "preset": "mos_capacitor"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: MOSFET",
+    "url": "https://en.wikipedia.org/wiki/MOSFET"
+   }
+  ],
+  "where": "finfet_transistor"
+ },
+ {
+  "id": "mosfet_iv",
+  "title": "MOSFET I–V characteristics",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mosfet_physics_ee"
+  ],
+  "summary": "Triode, saturation, cutoff.",
+  "layers": {
+   "basics": "At small V_DS the MOSFET acts as a resistor; at large V_DS the current saturates.",
+   "deeper": "Square-law model I_D=½k(V_GS−V_T)² in saturation; g_m=∂I_D/∂V_GS.",
+   "expert": "Channel-length modulation λ; velocity saturation makes current linear in overdrive in short channels; subthreshold current exponential."
+  },
+  "facts": [],
+  "formula": "I_D = ½ μC_ox (W/L)(V_GS−V_T)²",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "mosfet_output"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: MOSFET",
+    "url": "https://en.wikipedia.org/wiki/MOSFET"
+   }
+  ]
+ },
+ {
+  "id": "mosfet_biasing",
+  "title": "MOSFET biasing",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mosfet_iv",
+   "voltage_divider"
+  ],
+  "summary": "Setting the operating point.",
+  "layers": {
+   "basics": "Resistor dividers or a current source set the gate voltage so the MOSFET stays in saturation.",
+   "deeper": "Source degeneration and constant-current biasing improve stability.",
+   "expert": "IC design uses bias currents from mirrors and gm/Id methodology rather than hand-picked resistors."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "mosfet_transfer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: MOSFET",
+    "url": "https://en.wikipedia.org/wiki/MOSFET"
+   }
+  ]
+ },
+ {
+  "id": "mosfet_amplifiers",
+  "title": "MOSFET amplifier configurations",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mosfet_biasing",
+   "dependent_sources"
+  ],
+  "summary": "CS, CG and CD stages.",
+  "layers": {
+   "basics": "Common-source gives gain; common-drain (source follower) buffers; common-gate suits high-frequency.",
+   "deeper": "A_v≈−g_m(r_o∥R_D) for CS; follower gain<1 and no inversion.",
+   "expert": "Cascode, folded cascode, and active loads boost gain g_m r_o; gain per stage in modern CMOS is only ~10–30 due to low r_o."
+  },
+  "facts": [],
+  "formula": "A_v ≈ −g_m (r_o ∥ R_D)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "common_emitter"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Common source",
+    "url": "https://en.wikipedia.org/wiki/Common_source"
+   }
+  ]
+ },
+ {
+  "id": "mosfet_switch_node",
+  "title": "MOSFET as a switch",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mosfet_iv"
+  ],
+  "summary": "Gate drives a low-resistance on-state.",
+  "layers": {
+   "basics": "A MOSFET fully on acts like a small resistor R_DS(on) and off like an open circuit; it is the basis of digital logic and power converters.",
+   "deeper": "Switching loss comes from gate charge and overlapping V and I during transitions.",
+   "expert": "P_cond=I²R_DS(on); P_sw≈½V I (t_r+t_f) f_sw+Q_g V_g f_sw; body-diode recovery matters in bridges."
+  },
+  "facts": [],
+  "formula": "P_cond = I²R_DS(on)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "mosfet_switch"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: MOSFET",
+    "url": "https://en.wikipedia.org/wiki/MOSFET"
+   }
+  ],
+  "where": "switching_mosfet"
+ },
+ {
+  "id": "cmos_logic_gates",
+  "title": "CMOS logic gates",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mosfet_switch_node"
+  ],
+  "summary": "Complementary pull-up and pull-down networks.",
+  "layers": {
+   "basics": "In CMOS each gate has PMOS transistors that pull the output up and NMOS that pull it down; only one network conducts at once so static power is tiny.",
+   "deeper": "NAND = series NMOS + parallel PMOS; NOR the opposite. Dynamic power ≈ αCV²f.",
+   "expert": "Noise margins, propagation delay t_p≈0.69RC, logical effort; leakage now rivals dynamic power in deep-submicron nodes."
+  },
+  "facts": [],
+  "formula": "P_dyn = α C V² f",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "cmos_nand"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: CMOS",
+    "url": "https://en.wikipedia.org/wiki/CMOS"
+   }
+  ],
+  "where": "cmos_inverter"
+ },
+ {
+  "id": "amp_specs",
+  "title": "Gain, impedances and frequency response",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "transfer_function_ee"
+  ],
+  "summary": "Specifying an amplifier.",
+  "layers": {
+   "basics": "Gain says how much bigger the output is; input/output impedance say how it loads and is loaded.",
+   "deeper": "Gain in dB, bandwidth, and gain-bandwidth trade-offs determine suitability.",
+   "expert": "Two-port model with R_in, R_out, A_v; frequency roll-off set by coupling capacitors (low) and parasitics (high)."
+  },
+  "facts": [],
+  "formula": "A_dB = 20 log₁₀|A_v|",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Electronic amplifier",
+    "url": "https://en.wikipedia.org/wiki/Electronic_amplifier"
+   }
+  ]
+ },
+ {
+  "id": "miller_effect",
+  "title": "Miller effect",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "amp_specs",
+   "bjt_small_signal"
+  ],
+  "summary": "Feedback capacitance looks bigger at the input.",
+  "layers": {
+   "basics": "A capacitor bridging an inverting amplifier looks (1+A) times larger from the input, which cuts bandwidth.",
+   "deeper": "Cascodes avoid it by keeping the voltage at the amplifier’s inner node nearly constant.",
+   "expert": "C_M=C_μ(1+|A_v|); dominant pole f_p≈1/(2π R_s C_M); pole splitting also stabilises op-amps."
+  },
+  "facts": [],
+  "formula": "C_M = C_μ (1 + |A_v|)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "common_emitter"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Miller effect",
+    "url": "https://en.wikipedia.org/wiki/Miller_effect"
+   }
+  ]
+ },
+ {
+  "id": "differential_amp",
+  "title": "Differential amplifier",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bjt_amplifiers",
+   "mosfet_amplifiers"
+  ],
+  "summary": "Amplify the difference of two inputs.",
+  "layers": {
+   "basics": "A differential pair amplifies the difference between two inputs and rejects what both share (noise).",
+   "deeper": "Common-mode rejection ratio CMRR measures this; the tail current source sets the gain.",
+   "expert": "A_d=g_m R_D; A_cm≈−R_D/2R_tail; the long-tailed pair is the input stage of nearly every op-amp."
+  },
+  "facts": [],
+  "formula": "CMRR = |A_d/A_cm|",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Differential amplifier",
+    "url": "https://en.wikipedia.org/wiki/Differential_amplifier"
+   }
+  ]
+ },
+ {
+  "id": "current_mirror",
+  "title": "Current mirrors",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mosfet_amplifiers"
+  ],
+  "summary": "Copy a current.",
+  "layers": {
+   "basics": "A pair of matched transistors copies a reference current to another branch.",
+   "deeper": "Used for bias in ICs and as active loads that give large gain.",
+   "expert": "Mirror error from λ and mismatch; Wilson/cascode mirrors raise output resistance."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "common_emitter"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Current mirror",
+    "url": "https://en.wikipedia.org/wiki/Current_mirror"
+   }
+  ]
+ },
+ {
+  "id": "active_load",
+  "title": "Active loads",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "current_mirror",
+   "differential_amp"
+  ],
+  "summary": "Transistors replace resistors as loads.",
+  "layers": {
+   "basics": "A current-mirror load gives high gain in little chip area.",
+   "deeper": "Small-signal gain g_m r_o, single-ended conversion.",
+   "expert": "Output resistance r_o∥r_o; limits of headroom; common-mode feedback required in fully differential stages."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": []
+ },
+ {
+  "id": "multistage_amps",
+  "title": "Multistage amplifiers",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "differential_amp"
+  ],
+  "summary": "Cascading stages.",
+  "layers": {
+   "basics": "Stages are chained for more gain, with input, gain and output stages.",
+   "deeper": "Gain multiplies, bandwidth shrinks, loading between stages matters.",
+   "expert": "Two-stage Miller-compensated op-amp is the textbook design; bandwidth shrinkage factor √(2^{1/n}−1)."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": []
+ },
+ {
+  "id": "output_stages",
+  "title": "Output stages (Class A, B, AB, D)",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bjt_amplifiers"
+  ],
+  "summary": "Delivering power to a load.",
+  "layers": {
+   "basics": "Class A conducts all the time (clean, wasteful); class B splits the wave between two transistors; AB adds bias to avoid crossover distortion; D switches fully on/off.",
+   "deeper": "Efficiencies: A≤25–50%, B≤78.5%, D>90%.",
+   "expert": "Class D PWM + LC filter; switching frequencies 300 kHz–1 MHz; thermal design; crossover distortion cured by Vbe-multiplier bias."
+  },
+  "facts": [],
+  "formula": "η_B max = π/4 ≈ 78.5%",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Power amplifier classes",
+    "url": "https://en.wikipedia.org/wiki/Power_amplifier_classes"
+   }
+  ],
+  "where": "phone_speaker"
+ },
+ {
+  "id": "opamp_ideal",
+  "title": "Ideal op-amp",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "differential_amp"
+  ],
+  "summary": "A high-gain amplifier with two golden rules.",
+  "layers": {
+   "basics": "With negative feedback, an op-amp adjusts its output so its two inputs are at the same voltage and draw no current.",
+   "deeper": "Infinite gain, infinite input resistance, zero output resistance: analysis becomes simple algebra.",
+   "expert": "Virtual short and zero input current; A_OL≈10⁵–10⁶ gives closed-loop gain 1/β."
+  },
+  "facts": [],
+  "formula": "V₊ = V₋;  i₊ = i₋ = 0",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "inverting_amp"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Operational amplifier",
+    "url": "https://en.wikipedia.org/wiki/Operational_amplifier"
+   }
+  ]
+ },
+ {
+  "id": "inverting_amp_node",
+  "title": "Inverting amplifier",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "opamp_ideal"
+  ],
+  "summary": "Gain = −Rf/Rin.",
+  "layers": {
+   "basics": "Feed the input through a resistor to the − terminal and connect Rf from output back; the output is an inverted, scaled copy.",
+   "deeper": "Virtual ground at the − input makes input impedance equal Rin.",
+   "expert": "Closed-loop BW=GBW/(1+Rf/Rin); noise gain 1+Rf/Rin."
+  },
+  "facts": [],
+  "formula": "Vout = −(Rf/Rin) Vin",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "inverting_amp"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Operational amplifier",
+    "url": "https://en.wikipedia.org/wiki/Operational_amplifier"
+   }
+  ]
+ },
+ {
+  "id": "non_inverting_amp_node",
+  "title": "Non-inverting amplifier",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "opamp_ideal"
+  ],
+  "summary": "Gain = 1 + Rf/Rg.",
+  "layers": {
+   "basics": "Input goes to the + terminal and feedback divides output to the − terminal; gain is at least 1, input impedance very high.",
+   "deeper": "The voltage follower (gain 1) buffers a source.",
+   "expert": "BW=GBW/(1+Rf/Rg); input impedance boosted by loop gain."
+  },
+  "facts": [],
+  "formula": "Vout = (1 + Rf/Rg) Vin",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "non_inverting_amp"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Operational amplifier",
+    "url": "https://en.wikipedia.org/wiki/Operational_amplifier"
+   }
+  ]
+ },
+ {
+  "id": "summing_amp_node",
+  "title": "Summing amplifier",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "inverting_amp_node"
+  ],
+  "summary": "Add signals.",
+  "layers": {
+   "basics": "Several inputs through resistors into the inverting node give an output that is their weighted sum, inverted.",
+   "deeper": "Basis of a simple DAC and audio mixer.",
+   "expert": "Vout=−Rf Σ(Vi/Ri); inputs are isolated by virtual ground."
+  },
+  "facts": [],
+  "formula": "Vout = −Rf Σ Vᵢ/Rᵢ",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "summing_amp"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Operational amplifier",
+    "url": "https://en.wikipedia.org/wiki/Operational_amplifier"
+   }
+  ]
+ },
+ {
+  "id": "integrator_node",
+  "title": "Op-amp integrator",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "inverting_amp_node",
+   "rc_transient"
+  ],
+  "summary": "Output is the integral of the input.",
+  "layers": {
+   "basics": "Replacing Rf with a capacitor makes the output the running integral of the input.",
+   "deeper": "Used in analog computing, ramp generators and ADCs; needs a reset or drift resistor.",
+   "expert": "H(s)=−1/(sRC); DC offset leads to saturation without a high-value feedback resistor."
+  },
+  "facts": [],
+  "formula": "Vout = −(1/RC) ∫Vin dt",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "integrator"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Operational amplifier",
+    "url": "https://en.wikipedia.org/wiki/Operational_amplifier"
+   }
+  ]
+ },
+ {
+  "id": "differentiator_node",
+  "title": "Op-amp differentiator",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "inverting_amp_node"
+  ],
+  "summary": "Output is the derivative of the input.",
+  "layers": {
+   "basics": "Swapping R and C yields an output proportional to the input’s slope; amplifies high-frequency noise.",
+   "deeper": "Practical versions add a series resistor to cap the high-frequency gain.",
+   "expert": "H(s)=−sRC; stability needs a pole to limit loop gain."
+  },
+  "facts": [],
+  "formula": "Vout = −RC dVin/dt",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "differentiator"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Operational amplifier",
+    "url": "https://en.wikipedia.org/wiki/Operational_amplifier"
+   }
+  ]
+ },
+ {
+  "id": "instrumentation_amp",
+  "title": "Instrumentation amplifier",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "differential_amp",
+   "opamp_ideal"
+  ],
+  "summary": "Precise amplification of small differential signals.",
+  "layers": {
+   "basics": "Three op-amps and a gain resistor amplify the tiny difference from sensors like bridges and ECG electrodes, with high input impedance and CMRR.",
+   "deeper": "One resistor sets the gain, and matched resistors determine CMRR.",
+   "expert": "G=1+2R/R_G; CMRR >100 dB in modern ICs; chopper stabilisation cancels offset."
+  },
+  "facts": [],
+  "formula": "G = 1 + 2R/R_G",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Instrumentation amplifier",
+    "url": "https://en.wikipedia.org/wiki/Instrumentation_amplifier"
+   }
+  ]
+ },
+ {
+  "id": "comparator_node",
+  "title": "Comparator",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "opamp_ideal"
+  ],
+  "summary": "Decides which input is larger.",
+  "layers": {
+   "basics": "A comparator outputs high or low depending on which input is greater; it is a 1-bit ADC.",
+   "deeper": "It uses no feedback or positive feedback; noise at the threshold causes chatter.",
+   "expert": "Propagation delay, overdrive, input offset, open-collector vs push-pull outputs."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "comparator"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Comparator",
+    "url": "https://en.wikipedia.org/wiki/Comparator"
+   }
+  ]
+ },
+ {
+  "id": "schmitt_trigger_node",
+  "title": "Schmitt trigger",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "comparator_node"
+  ],
+  "summary": "A comparator with hysteresis.",
+  "layers": {
+   "basics": "Positive feedback creates two thresholds so noise does not cause chatter.",
+   "deeper": "Used for debouncing and cleaning slow edges into clean logic.",
+   "expert": "V_T±=±V_sat R₁/(R₁+R₂); hysteresis width = 2V_sat R₁/(R₁+R₂)."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "schmitt_trigger"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Schmitt trigger",
+    "url": "https://en.wikipedia.org/wiki/Schmitt_trigger"
+   }
+  ]
+ },
+ {
+  "id": "opamp_nonideal",
+  "title": "Op-amp non-idealities",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "opamp_ideal"
+  ],
+  "summary": "Offset, slew rate, gain-bandwidth.",
+  "layers": {
+   "basics": "Real op-amps have offset voltage, finite speed and finite gain; these limit accuracy and bandwidth.",
+   "deeper": "Slew rate SR limits large signals: full-power bandwidth f=SR/(2πV_p); GBW fixes small-signal bandwidth.",
+   "expert": "Bias current, offset drift, CMRR, PSRR, input noise density (nV/√Hz), output swing; rule: closed-loop BW=GBW/noise gain."
+  },
+  "facts": [],
+  "formula": "f_FP = SR/(2πV_p);  GBW = A_v·BW",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Operational amplifier",
+    "url": "https://en.wikipedia.org/wiki/Operational_amplifier"
+   }
+  ]
+ },
+ {
+  "id": "negative_feedback_ee",
+  "title": "Negative feedback",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "amp_specs"
+  ],
+  "summary": "Trade gain for accuracy.",
+  "layers": {
+   "basics": "Feeding part of the output back to subtract from the input makes the gain predictable and cuts distortion.",
+   "deeper": "Four topologies (series/shunt, voltage/current) change input and output impedances.",
+   "expert": "A_f=A/(1+Aβ); desensitivity; bandwidth extends by (1+Aβ); improves linearity by the same factor."
+  },
+  "facts": [],
+  "formula": "A_f = A/(1 + Aβ)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "non_inverting_amp"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Negative feedback",
+    "url": "https://en.wikipedia.org/wiki/Negative_feedback"
+   }
+  ]
+ },
+ {
+  "id": "feedback_stability_margins",
+  "title": "Stability, gain and phase margins",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "negative_feedback_ee",
+   "frequency_response_bode"
+  ],
+  "summary": "Will the loop oscillate?",
+  "layers": {
+   "basics": "If the loop gain reaches 1 at a frequency where the phase has swung 180°, a feedback amplifier oscillates; margins measure how far from this we are.",
+   "deeper": "Phase margin >45° (60° preferred) is the rule of thumb for a well-damped step response.",
+   "expert": "PM=180°+∠L(jω_c); GM=−20log|L(jω_180)|; compensation by dominant pole or lead networks."
+  },
+  "facts": [],
+  "formula": "PM = 180° + ∠L(jω_c)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "control",
+   "preset": "bode_margins"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Nyquist stability criterion",
+    "url": "https://en.wikipedia.org/wiki/Nyquist_stability_criterion"
+   }
+  ]
+ },
+ {
+  "id": "oscillators_ee",
+  "title": "Oscillators: Wien, Colpitts, crystal",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "feedback_stability_margins",
+   "resonance_q"
+  ],
+  "summary": "Self-sustaining oscillation.",
+  "layers": {
+   "basics": "An oscillator is an amplifier whose output is fed back with exactly the right phase and gain to sustain a sine wave.",
+   "deeper": "Barkhausen criterion: loop gain 1 and phase 0°. Wien bridge uses RC; Colpitts uses LC; crystals give accurate frequency.",
+   "expert": "Wien: f=1/2πRC with gain 3; Colpitts f=1/2π√(L C₁C₂/(C₁+C₂)); quartz Q~10⁴–10⁶, stability ~ppm; amplitude limited by non-linearity."
+  },
+  "facts": [],
+  "formula": "f_Wien = 1/(2πRC)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "wien_oscillator"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Electronic oscillator",
+    "url": "https://en.wikipedia.org/wiki/Electronic_oscillator"
+   }
+  ],
+  "where": "phone_crystal_osc"
+ },
+ {
+  "id": "active_filters",
+  "title": "Active filters",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "opamp_ideal",
+   "low_pass_filter"
+  ],
+  "summary": "Filters with gain using op-amps.",
+  "layers": {
+   "basics": "Op-amps with RC networks make filters without inductors, with gain and sharp responses.",
+   "deeper": "Sallen–Key and multiple-feedback second-order sections cascade into higher orders.",
+   "expert": "Butterworth maximally flat, Chebyshev ripple for sharper edge, Bessel linear phase; Q set by component ratios and op-amp GBW."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "low_pass"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Active filter",
+    "url": "https://en.wikipedia.org/wiki/Active_filter"
+   }
+  ]
+ },
+ {
+  "id": "adc_basics",
+  "title": "Analog-to-digital converters",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "sampling_theorem"
+  ],
+  "mesh": null,
+  "needs": [
+   "comparator_node"
+  ],
+  "summary": "Measuring a voltage as a number.",
+  "layers": {
+   "basics": "An ADC samples a voltage and turns it into a binary number; more bits, finer steps.",
+   "deeper": "Architectures: flash (fast), SAR (balanced), sigma-delta (precise), pipeline.",
+   "expert": "LSB=V_ref/2ᴺ; ideal SNR=6.02N+1.76 dB; INL/DNL; aperture jitter limits SNR at high input frequency; oversampling gains 3 dB/octave in sigma-delta."
+  },
+  "facts": [],
+  "formula": "SNR = 6.02N + 1.76 dB",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "adc_quantizer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Analog-to-digital converter",
+    "url": "https://en.wikipedia.org/wiki/Analog-to-digital_converter"
+   }
+  ]
+ },
+ {
+  "id": "dac_basics",
+  "title": "Digital-to-analog converters",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "summing_amp_node"
+  ],
+  "summary": "Turning numbers into voltages.",
+  "layers": {
+   "basics": "A DAC converts a binary code into a voltage or current using a weighted network of resistors or capacitors.",
+   "deeper": "R-2R ladders give accurate binary weighting; PWM plus a filter is a cheap DAC.",
+   "expert": "Settling time, glitch energy, DNL; reconstruction filter removes images; sigma-delta DACs use noise shaping."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "dac_ladder"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Digital-to-analog converter",
+    "url": "https://en.wikipedia.org/wiki/Digital-to-analog_converter"
+   }
+  ]
+ },
+ {
+  "id": "linear_regulators",
+  "title": "Linear regulators (LDO)",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electronics",
+  "parents": [
+   "ee_electronics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bjt_regions",
+   "negative_feedback_ee",
+   "zener_regulation"
+  ],
+  "summary": "Steady voltage by burning the excess.",
+  "layers": {
+   "basics": "A linear regulator uses a pass transistor and feedback to hold a fixed output; the excess voltage is dissipated as heat.",
+   "deeper": "Low dropout (LDO) regulators work close to input voltage; low noise makes them good for analog.",
+   "expert": "Dropout, PSRR, quiescent current, stability with output-cap ESR; P_diss=(Vin−Vout)I."
+  },
+  "facts": [],
+  "formula": "P = (V_in − V_out) I",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Low-dropout regulator",
+    "url": "https://en.wikipedia.org/wiki/Low-dropout_regulator"
+   }
+  ],
+  "where": "phone_pmic"
+ }
+]

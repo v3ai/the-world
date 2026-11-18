@@ -1,0 +1,737 @@
+[
+ {
+  "id": "magnetic_circuits",
+  "title": "Magnetic circuits",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "magnetostatics_materials"
+  ],
+  "summary": "Flux through iron paths.",
+  "layers": {
+   "basics": "Iron cores guide magnetic flux like wires guide current, with turns×current acting as the push (mmf).",
+   "deeper": "Reluctance ℜ=ℓ/μA; air gaps dominate reluctance; saturation limits flux density near 1.5–2 T for silicon steel.",
+   "expert": "Core loss = hysteresis + eddy (laminations cut eddy); B–H curves; fringing; inductance L=N²/ℜ."
+  },
+  "facts": [],
+  "formula": "mmf = N I = Φ ℜ",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "magnetic_materials"
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "magnetic_circuit"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Magnetic circuit",
+    "url": "https://en.wikipedia.org/wiki/Magnetic_circuit"
+   }
+  ]
+ },
+ {
+  "id": "power_transformers",
+  "title": "Transformers in power systems",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "transformer_ideal",
+   "magnetic_circuits"
+  ],
+  "summary": "Real transformers at scale.",
+  "layers": {
+   "basics": "Power transformers step voltage up for transmission and down for use; efficiency exceeds 99%.",
+   "deeper": "Equivalent circuit: winding resistance, leakage reactance, magnetising branch; tests: open- and short-circuit.",
+   "expert": "Voltage regulation, per-unit impedance, three-phase connections (Δ–Y); inrush current; cooling classes (ONAN); losses ∝ I² and core loss ∝ B²."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "induction_generators"
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "transformer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Transformer",
+    "url": "https://en.wikipedia.org/wiki/Transformer"
+   }
+  ],
+  "where": "flyback_transformer"
+ },
+ {
+  "id": "dc_machines",
+  "title": "DC machines",
+  "kind": "device",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "faraday_lenz",
+   "magnetic_fields_forces"
+  ],
+  "summary": "Motors and generators with commutators.",
+  "layers": {
+   "basics": "A DC motor’s coil in a magnetic field feels torque; a commutator flips current to keep it turning.",
+   "deeper": "Torque ∝ flux × armature current; speed ∝ V/flux; brushless DC replaces the mechanical commutator with electronics.",
+   "expert": "T=k_tΦI_a, E_b=k_eΦω; speed control by armature voltage or field weakening; separately excited, series and shunt types."
+  },
+  "facts": [],
+  "formula": "T = k_t I,  E_b = k_e ω",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "13.6",
+    "13-6-electric-generators-and-back-emf"
+   ]
+  ],
+  "kn": [
+   "electric_motors"
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "motor_torque"
+  }
+ },
+ {
+  "id": "induction_motor",
+  "title": "Induction motors",
+  "kind": "device",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "three_phase",
+   "magnetic_circuits"
+  ],
+  "summary": "The workhorse motor.",
+  "layers": {
+   "basics": "Three-phase currents create a rotating magnetic field; it drags a rotor around by induced currents.",
+   "deeper": "The rotor lags the field by a slip s of a few percent; no brushes needed.",
+   "expert": "N_s=120f/P; torque–slip curve with peak at s_max; equivalent circuit; V/f control for variable speed."
+  },
+  "facts": [],
+  "formula": "N_s = 120 f/P;  s = (N_s − N)/N_s",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "electric_motors"
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "rotating_field"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Induction motor",
+    "url": "https://en.wikipedia.org/wiki/Induction_motor"
+   }
+  ]
+ },
+ {
+  "id": "synchronous_machines",
+  "title": "Synchronous machines",
+  "kind": "device",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "three_phase",
+   "magnetic_circuits"
+  ],
+  "summary": "Rotor locked to the field.",
+  "layers": {
+   "basics": "A synchronous machine’s rotor turns exactly in step with the grid frequency; most power plants use huge ones as generators.",
+   "deeper": "Excitation current controls reactive power; load angle controls real power.",
+   "expert": "Power–angle P=(E V/X_s)sinδ; stability limit at 90°; permanent-magnet synchronous motors common in EVs."
+  },
+  "facts": [],
+  "formula": "P = (E V / X_s) sin δ",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "induction_generators"
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "rotating_field"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Synchronous motor",
+    "url": "https://en.wikipedia.org/wiki/Synchronous_motor"
+   }
+  ],
+  "where": "generator"
+ },
+ {
+  "id": "power_generation",
+  "title": "Generation of electric power",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "synchronous_machines",
+   "energy_momentum"
+  ],
+  "summary": "Turning fuel into spin into electricity.",
+  "layers": {
+   "basics": "Steam, gas, water or wind turn turbines that spin generators; solar panels make DC directly.",
+   "deeper": "Base-load, peaking and variable plants; efficiency limited by heat-engine (Carnot) theory for thermal plants.",
+   "expert": "Combined-cycle gas ~60% efficient; hydro >90%; capacity factor; inertia from rotating mass stabilises frequency."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "energy_systems",
+   "fission_power"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Electricity generation",
+    "url": "https://en.wikipedia.org/wiki/Electricity_generation"
+   }
+  ],
+  "where": "power_plant"
+ },
+ {
+  "id": "transmission_distribution",
+  "title": "Transmission and distribution",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "power_transformers",
+   "transmission_lines"
+  ],
+  "summary": "Moving power across a continent.",
+  "layers": {
+   "basics": "High voltage cuts current for the same power, so wires lose less as heat; substations step voltage down near users.",
+   "deeper": "Typical levels: 765/345/230 kV transmission, 11–35 kV distribution, 120/230 V utilisation.",
+   "expert": "Line losses I²R; surge-impedance loading; long lines need reactive compensation; HVDC beats AC beyond ~600 km overhead."
+  },
+  "facts": [],
+  "formula": "P_loss = I²R",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "power_grid"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Electric power transmission",
+    "url": "https://en.wikipedia.org/wiki/Electric_power_transmission"
+   }
+  ],
+  "where": "transmission_line"
+ },
+ {
+  "id": "per_unit_system",
+  "title": "Per-unit system",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "power_transformers"
+  ],
+  "summary": "Normalising power system quantities.",
+  "layers": {
+   "basics": "Expressing voltages, currents and impedances as fractions of chosen base values simplifies calculations across transformers.",
+   "deeper": "Choose S_base and V_base; Z_base=V_base²/S_base.",
+   "expert": "Per-unit transformer impedance is the same on both sides; change of base Z_pu,new=Z_pu,old(S_new/S_old)(V_old/V_new)²."
+  },
+  "facts": [],
+  "formula": "Z_base = V_base²/S_base",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Per-unit system",
+    "url": "https://en.wikipedia.org/wiki/Per-unit_system"
+   }
+  ]
+ },
+ {
+  "id": "power_flow_analysis",
+  "title": "Power flow analysis",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "per_unit_system",
+   "matrices_systems"
+  ],
+  "summary": "Solving for voltages and flows in a grid.",
+  "layers": {
+   "basics": "Power-flow studies compute bus voltages and line flows for given generation and load, using iterative solvers.",
+   "deeper": "Gauss–Seidel, Newton–Raphson; bus types: slack, PV, PQ.",
+   "expert": "Y_bus matrix; NR Jacobian; DC power flow approximation P=Bθ; optimal power flow adds cost minimisation."
+  },
+  "facts": [],
+  "formula": "S_i = V_i Σ Y*_ik V*_k",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "network",
+   "preset": "power_flow_grid"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Power-flow study",
+    "url": "https://en.wikipedia.org/wiki/Power-flow_study"
+   }
+  ]
+ },
+ {
+  "id": "fault_analysis",
+  "title": "Fault analysis",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "per_unit_system",
+   "three_phase"
+  ],
+  "summary": "What happens in a short circuit.",
+  "layers": {
+   "basics": "A fault creates huge currents; analysis predicts them so equipment can be sized and protected.",
+   "deeper": "Faults: three-phase, line-to-ground, line-to-line; symmetrical components simplify unbalanced faults.",
+   "expert": "Zero, positive and negative sequence networks; fault current I_f=V/Z_th; breaker interrupting rating and X/R ratio."
+  },
+  "facts": [],
+  "formula": "I_f = V_th / Z_th",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "network",
+   "preset": "power_flow_grid"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Fault (power engineering)",
+    "url": "https://en.wikipedia.org/wiki/Fault_(power_engineering)"
+   }
+  ]
+ },
+ {
+  "id": "protection_relays_breakers",
+  "title": "Protection: relays and circuit breakers",
+  "kind": "device",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "fault_analysis"
+  ],
+  "summary": "Cutting the power safely and fast.",
+  "layers": {
+   "basics": "Relays sense abnormal currents and trip breakers that interrupt them within a few cycles.",
+   "deeper": "Overcurrent, differential and distance relays; breakers quench the arc with SF₆, vacuum, or air.",
+   "expert": "Coordination curves; zones of protection; arc extinction at current zero in AC; DC breakers are harder (no zero crossing)."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "network",
+   "preset": "power_flow_grid"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Circuit breaker",
+    "url": "https://en.wikipedia.org/wiki/Circuit_breaker"
+   }
+  ],
+  "where": "substation"
+ },
+ {
+  "id": "grid_renewables_smart",
+  "title": "Power grid, renewables and smart grid",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "transmission_distribution",
+   "protection_relays_breakers"
+  ],
+  "summary": "Balancing a continent-sized machine.",
+  "layers": {
+   "basics": "Supply and demand must match every instant; wind and solar vary, so storage, flexible demand and communication help.",
+   "deeper": "Inverters feed solar into the grid; grid-forming inverters replace the inertia of spinning generators; smart meters enable demand response.",
+   "expert": "Frequency control (primary, secondary), RoCoF, duck curve; synchrophasor measurement; microgrids; cybersecurity of grid control."
+  },
+  "facts": [],
+  "certainty": "C2",
+  "open_questions": [
+   "How to keep inertia-free grids stable at very high renewable share?",
+   "What storage mix is cheapest for multi-day lulls?"
+  ],
+  "refs": [],
+  "kn": [
+   "power_grid",
+   "energy_systems"
+  ],
+  "lab": {
+   "id": "network",
+   "preset": "power_flow_grid"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Smart grid",
+    "url": "https://en.wikipedia.org/wiki/Smart_grid"
+   }
+  ]
+ },
+ {
+  "id": "rectifiers_inverters",
+  "title": "Power rectifiers and inverters",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "rectifiers",
+   "mosfet_switch_node"
+  ],
+  "summary": "AC↔DC converters.",
+  "layers": {
+   "basics": "Controlled rectifiers convert AC to adjustable DC; inverters create AC from DC using fast switches and PWM.",
+   "deeper": "H-bridge with sine-weighted PWM; three-phase inverters drive motors and feed solar into the grid.",
+   "expert": "SPWM, space-vector modulation, THD; thyristor phase control; active front end and PFC; DC-link capacitors."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "inverter_bridge"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Power inverter",
+    "url": "https://en.wikipedia.org/wiki/Power_inverter"
+   }
+  ]
+ },
+ {
+  "id": "buck_converter_node",
+  "title": "Buck converter",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "inductor_ee",
+   "mosfet_switch_node"
+  ],
+  "summary": "Step down efficiently.",
+  "layers": {
+   "basics": "A switch chops the input and an inductor–capacitor filter averages it, giving a lower output with little loss.",
+   "deeper": "V_out=D·V_in in continuous conduction; ripple from L and C.",
+   "expert": "ΔI_L=(V_in−V_out)D T/L; CCM/DCM boundary; synchronous rectification; control by voltage-mode or current-mode."
+  },
+  "facts": [],
+  "formula": "Vout = D Vin",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "buck_converter"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Buck converter",
+    "url": "https://en.wikipedia.org/wiki/Buck_converter"
+   }
+  ],
+  "where": "phone_pmic"
+ },
+ {
+  "id": "boost_buckboost",
+  "title": "Boost and buck-boost converters",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "buck_converter_node"
+  ],
+  "summary": "Step up, or step up and down.",
+  "layers": {
+   "basics": "Boost: output above input. Buck-boost: output of either size, inverted.",
+   "deeper": "Boost V_out=V_in/(1−D); inductor stores energy while the switch is on and releases it through a diode.",
+   "expert": "RHP zero in boost control loop; flyback derived from buck-boost with a coupled inductor; efficiency 85–98%."
+  },
+  "facts": [],
+  "formula": "Vout = Vin/(1−D)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "boost_converter"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Boost converter",
+    "url": "https://en.wikipedia.org/wiki/Boost_converter"
+   }
+  ]
+ },
+ {
+  "id": "smps_switching_supplies",
+  "title": "Switching power supplies",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "boost_buckboost",
+   "power_transformers"
+  ],
+  "summary": "Compact, efficient power conversion.",
+  "layers": {
+   "basics": "Switch-mode supplies chop DC at 50 kHz–2 MHz through small transformers and inductors, replacing bulky 50/60 Hz parts.",
+   "deeper": "Topologies: flyback, forward, half/full bridge, LLC; isolation via transformer and optocoupler or secondary-side control.",
+   "expert": "Magnetics design (area product); snubbers; EMI filters; soft switching (ZVS) improves efficiency; GaN enables MHz operation."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "flyback_converter"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Switched-mode power supply",
+    "url": "https://en.wikipedia.org/wiki/Switched-mode_power_supply"
+   }
+  ],
+  "where": "usb_c_charger"
+ },
+ {
+  "id": "motor_drives",
+  "title": "Motor drives",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "induction_motor",
+   "rectifiers_inverters"
+  ],
+  "summary": "Controlling speed and torque electronically.",
+  "layers": {
+   "basics": "A drive turns fixed mains into variable-frequency variable-voltage power, so motors run at any speed efficiently.",
+   "deeper": "V/f control for simple loads; field-oriented control for high performance.",
+   "expert": "FOC decouples torque and flux through Clarke/Park transforms; encoders or sensorless estimation; regenerative braking."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "field",
+   "preset": "rotating_field"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Variable-frequency drive",
+    "url": "https://en.wikipedia.org/wiki/Variable-frequency_drive"
+   }
+  ]
+ },
+ {
+  "id": "power_semiconductors",
+  "title": "Power semiconductors: IGBT, SiC, GaN",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_power",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mosfet_switch_node",
+   "pn_junction_physics"
+  ],
+  "summary": "Switches for kilowatts and above.",
+  "layers": {
+   "basics": "Power MOSFETs, IGBTs and wide-band-gap SiC and GaN devices handle high voltage and current with low loss.",
+   "deeper": "IGBT: MOS gate with BJT conduction for 600 V–6.5 kV; SiC MOSFET and GaN HEMT switch faster with lower loss.",
+   "expert": "Wide band gap raises breakdown field (SiC 2.8 MV/cm vs Si 0.3), allowing thinner drift layers; figure of merit R_on·Q_g; thermal limits and packaging."
+  },
+  "facts": [],
+  "formula": "V_BR ∝ E_crit²",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "pn_breakdown"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Insulated-gate bipolar transistor",
+    "url": "https://en.wikipedia.org/wiki/Insulated-gate_bipolar_transistor"
+   }
+  ],
+  "where": "switching_mosfet"
+ }
+]

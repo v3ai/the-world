@@ -34,6 +34,7 @@ async function buildWorld() {
   FR.park = park;
   const body = park.addChild(new Frame({ type: 'body', name: 'Human body', unit: 1, radius: 1.3, r0: 0, r1: 90, up: new V3(0, 1, 0), pos: new V3(0, 0, 0) }));
   body.noFade = true; FR.body = body;
+  const devLM = buildTeardown(body);
   const AN = await loadAnatomyIndex(); loadNodes();
   const bodyLM = (id, label, D) => { const p = AN && AN.byId[id]; return p ? { label, D, go: () => flyTo(body, new V3(...p.center), D) } : null; };
   const skin = park.addChild(microFrame('skin', new V3(0, 1.2, .2)));
@@ -69,7 +70,7 @@ async function buildWorld() {
     { label: 'DNA', D: 2e-8, go: go(dna, null, 2e-8) },
     { label: 'Skin cell', D: 4e-5, go: go(cell, null, 4e-5) },
     { label: 'Your skin', D: 1.5e-3, go: () => { skin.place(); flyTo(skin, new V3(), 1.5e-3); } },
-    bodyLM('cerebrum_r', 'Your brain', .5), bodyLM('heart', 'Your heart', .4),
+    ...devLM, bodyLM('cerebrum_r', 'Your brain', .5), bodyLM('heart', 'Your heart', .4),
     { label: 'You', D: 6, go: go(park, new V3(0, 1, 0), 6) },
     { label: 'Greenwich Park', D: 700, go: go(park, new V3(0, 0, 0), 700) },
     { label: 'London', D: 8e4, go: go(region, null, 8e4) },

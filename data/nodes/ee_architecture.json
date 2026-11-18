@@ -1,0 +1,893 @@
+[
+ {
+  "id": "isa_risc_cisc",
+  "title": "Instruction set architectures: RISC vs CISC",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "alu_design"
+  ],
+  "summary": "The contract between software and hardware.",
+  "layers": {
+   "basics": "An ISA defines the instructions a processor understands. RISC uses simple fixed-size instructions; CISC has complex variable ones.",
+   "deeper": "ARM, RISC-V (RISC) and x86 (CISC outside, RISC-like inside) are the common ISAs.",
+   "expert": "Load/store architecture, register count, addressing modes, endianness; micro-ops decouple CISC from execution; ISA extensions (SIMD, NEON, AVX)."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Instruction set architecture",
+    "url": "https://en.wikipedia.org/wiki/Instruction_set_architecture"
+   },
+   {
+    "title": "Wikipedia: Reduced instruction set computer",
+    "url": "https://en.wikipedia.org/wiki/Reduced_instruction_set_computer"
+   }
+  ],
+  "lab": {
+   "id": "code",
+   "preset": "isa_simulator"
+  },
+  "where": "cpu_core"
+ },
+ {
+  "id": "assembly_language",
+  "title": "Assembly language",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "isa_risc_cisc"
+  ],
+  "summary": "Human-readable machine instructions.",
+  "layers": {
+   "basics": "Assembly writes machine instructions as short mnemonics: ADD, LOAD, JUMP.",
+   "deeper": "Used for boot code, interrupt handlers and tight loops; compilers generate it from C.",
+   "expert": "Calling conventions, stack frames, link register vs push return; reading compiler output reveals optimisation."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "isa_simulator"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Assembly language",
+    "url": "https://en.wikipedia.org/wiki/Assembly_language"
+   }
+  ]
+ },
+ {
+  "id": "datapath_control",
+  "title": "Datapath and control unit",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "alu_design",
+   "registers_counters",
+   "finite_state_machines",
+   "isa_risc_cisc"
+  ],
+  "summary": "The machine that executes instructions.",
+  "layers": {
+   "basics": "A datapath of registers, ALU and buses is steered by a control unit decoding each instruction.",
+   "deeper": "Single-cycle, multi-cycle and pipelined designs trade clock rate and complexity.",
+   "expert": "Hardwired vs microcoded control; critical path through instruction memory, regfile, ALU, data memory."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "datapath_viewer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Datapath",
+    "url": "https://en.wikipedia.org/wiki/Datapath"
+   }
+  ],
+  "where": "core_decode"
+ },
+ {
+  "id": "pipelining_hazards",
+  "title": "Pipelining and hazards",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "datapath_control"
+  ],
+  "summary": "An assembly line for instructions.",
+  "layers": {
+   "basics": "Pipelining overlaps instruction stages (fetch, decode, execute, memory, write-back) so one finishes every cycle.",
+   "deeper": "Hazards: structural, data (forward results), control (branch prediction).",
+   "expert": "Speedup ≈ number of stages minus stalls; forwarding paths; branch predictors reach >95% accuracy; out-of-order and superscalar designs."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "pipeline_sim"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Instruction pipelining",
+    "url": "https://en.wikipedia.org/wiki/Instruction_pipelining"
+   }
+  ],
+  "where": "core_pipeline"
+ },
+ {
+  "id": "cache_memory",
+  "title": "Cache memory",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "memory_rom_ram",
+   "pipelining_hazards"
+  ],
+  "summary": "Small and fast copies of memory.",
+  "layers": {
+   "basics": "A cache keeps recently used data near the CPU because programs reuse data (locality).",
+   "deeper": "Organisation: direct-mapped, set-associative; block size; replacement policy.",
+   "expert": "AMAT=hit time+miss rate×miss penalty; write-through vs write-back; coherence protocols (MESI) in multicores."
+  },
+  "facts": [],
+  "formula": "AMAT = t_hit + m·t_miss",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "cache_sim"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: CPU cache",
+    "url": "https://en.wikipedia.org/wiki/CPU_cache"
+   }
+  ],
+  "where": "core_l1_cache"
+ },
+ {
+  "id": "memory_hierarchy",
+  "title": "Memory hierarchy",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "cache_memory"
+  ],
+  "summary": "Registers → cache → DRAM → flash.",
+  "layers": {
+   "basics": "Fast memory is small and costly; big memory is slow. The hierarchy gives the illusion of fast and large.",
+   "deeper": "Typical: registers <1 ns, L1 ~1 ns, L2 3–5 ns, L3 10–20 ns, DRAM ~80 ns, flash ~50 µs.",
+   "expert": "Bandwidth, latency and the memory wall; prefetching; NUMA."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "cache_sim"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Memory hierarchy",
+    "url": "https://en.wikipedia.org/wiki/Memory_hierarchy"
+   }
+  ],
+  "where": "soc_cache"
+ },
+ {
+  "id": "virtual_memory",
+  "title": "Virtual memory",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "memory_hierarchy"
+  ],
+  "summary": "Each program thinks it owns memory.",
+  "layers": {
+   "basics": "The OS and hardware map each program’s addresses to physical memory, protecting programs from each other.",
+   "deeper": "Page tables, TLB cache translations; page faults load pages from storage.",
+   "expert": "Multi-level page tables, huge pages, MMU/IOMMU, address space layout randomisation."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Virtual memory",
+    "url": "https://en.wikipedia.org/wiki/Virtual_memory"
+   }
+  ]
+ },
+ {
+  "id": "mcu_architecture",
+  "title": "Microcontroller architecture (ARM, AVR, PIC)",
+  "kind": "device",
+  "template": "concept",
+  "scale_m": 0.005,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "datapath_control",
+   "embedded_c"
+  ],
+  "summary": "A computer on a chip.",
+  "layers": {
+   "basics": "A microcontroller bundles a CPU, memory and peripherals (timers, ADC, serial) in one chip for controlling devices.",
+   "deeper": "ARM Cortex-M dominates; AVR (Arduino) and PIC remain common in education and small designs.",
+   "expert": "Harvard vs von Neumann, NVIC interrupt controller, memory map, flash wait states, clock tree, debug via SWD/JTAG."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "mcu_sim"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Microcontroller",
+    "url": "https://en.wikipedia.org/wiki/Microcontroller"
+   }
+  ],
+  "where": "phone_soc"
+ },
+ {
+  "id": "gpio",
+  "title": "GPIO",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mcu_architecture"
+  ],
+  "summary": "Pins that read and write bits.",
+  "layers": {
+   "basics": "General-purpose input/output pins can be configured as inputs or outputs and used to blink an LED or read a button.",
+   "deeper": "Modes: push-pull, open-drain, pull-up/down, analog, alternate function.",
+   "expert": "Slew rate, drive strength, Schmitt-trigger inputs, debouncing in hardware/software."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "mcu_sim"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: General-purpose input/output",
+    "url": "https://en.wikipedia.org/wiki/General-purpose_input/output"
+   }
+  ]
+ },
+ {
+  "id": "interrupts",
+  "title": "Interrupts",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mcu_architecture"
+  ],
+  "summary": "Hardware-initiated attention.",
+  "layers": {
+   "basics": "An interrupt pauses the program when something happens (a pin changes, a timer expires) and runs a handler.",
+   "deeper": "Priorities and nesting; keep handlers short; shared data needs protection.",
+   "expert": "Interrupt latency, vector table, tail-chaining on Cortex-M; priority inversion; volatile and atomic access."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "mcu_sim"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Interrupt",
+    "url": "https://en.wikipedia.org/wiki/Interrupt"
+   }
+  ]
+ },
+ {
+  "id": "timers_pwm",
+  "title": "Timers and PWM",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mcu_architecture"
+  ],
+  "summary": "Counting clocks; fake analog by switching.",
+  "layers": {
+   "basics": "A timer counts clock pulses; pulse-width modulation varies how long a pin is high, controlling brightness or motor speed.",
+   "deeper": "Duty cycle D sets average voltage D·Vcc; filters or inertia smooth it.",
+   "expert": "Input capture, output compare, dead-time insertion for half-bridges; PWM resolution=log₂(f_clk/f_pwm) bits."
+  },
+  "facts": [],
+  "formula": "V_avg = D·V_cc",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "pwm_scope"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Pulse-width modulation",
+    "url": "https://en.wikipedia.org/wiki/Pulse-width_modulation"
+   }
+  ]
+ },
+ {
+  "id": "mcu_adc_dac",
+  "title": "ADC and DAC peripherals",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mcu_architecture",
+   "adc_basics",
+   "dac_basics"
+  ],
+  "summary": "Reading and writing analog on a microcontroller.",
+  "layers": {
+   "basics": "Built-in ADCs read sensor voltages; DACs or PWM output them.",
+   "deeper": "Sample time, reference voltage and source impedance affect accuracy; DMA streams samples.",
+   "expert": "Oversampling+decimation raise effective bits; anti-alias filters; ratiometric measurement cancels reference drift."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "mcu_sim"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Analog-to-digital converter",
+    "url": "https://en.wikipedia.org/wiki/Analog-to-digital_converter"
+   }
+  ]
+ },
+ {
+  "id": "uart_serial",
+  "title": "UART",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mcu_architecture"
+  ],
+  "summary": "Simple asynchronous serial.",
+  "layers": {
+   "basics": "UART sends bytes one bit at a time on a wire with agreed speed (baud), framed by start and stop bits.",
+   "deeper": "Used for consoles, GPS modules and Bluetooth modules; RS-232/RS-485 levels extend range.",
+   "expert": "Baud error tolerance ≈ ±3%; oversampling receiver; flow control RTS/CTS."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "serial_decoder"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Universal asynchronous receiver-transmitter",
+    "url": "https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter"
+   }
+  ]
+ },
+ {
+  "id": "spi_bus",
+  "title": "SPI",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mcu_architecture"
+  ],
+  "summary": "Fast four-wire synchronous bus.",
+  "layers": {
+   "basics": "SPI uses a clock, two data lines and a chip select to move bytes fast between a master and peripherals.",
+   "deeper": "Modes 0–3 define clock polarity and phase; used for flash, displays, ADCs.",
+   "expert": "Full-duplex shift-register exchange; speeds to 50+ MHz; daisy-chain topologies."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "serial_decoder"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Serial Peripheral Interface",
+    "url": "https://en.wikipedia.org/wiki/Serial_Peripheral_Interface"
+   }
+  ]
+ },
+ {
+  "id": "i2c_bus",
+  "title": "I²C",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mcu_architecture"
+  ],
+  "summary": "Two wires, many devices.",
+  "layers": {
+   "basics": "I²C connects many chips on two wires (clock and data), each with its own address.",
+   "deeper": "Open-drain lines with pull-up resistors; speeds 100 kHz–3.4 MHz; ACK bits confirm delivery.",
+   "expert": "Arbitration and clock stretching; bus capacitance limits to 400 pF; rise-time requirement sets pull-up value."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "serial_decoder"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: I²C",
+    "url": "https://en.wikipedia.org/wiki/I%C2%B2C"
+   }
+  ]
+ },
+ {
+  "id": "can_bus",
+  "title": "CAN bus",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mcu_architecture"
+  ],
+  "summary": "Robust differential bus for vehicles and industry.",
+  "layers": {
+   "basics": "CAN is a two-wire differential bus where many nodes share messages; messages carry priority.",
+   "deeper": "Used in cars (engine, brakes, battery); non-destructive arbitration on message ID.",
+   "expert": "Dominant/recessive bits, bit stuffing, CRC-15, error confinement, CAN-FD to 5–8 Mbit/s."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "serial_decoder"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: CAN bus",
+    "url": "https://en.wikipedia.org/wiki/CAN_bus"
+   }
+  ]
+ },
+ {
+  "id": "usb_protocol",
+  "title": "USB",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mcu_architecture"
+  ],
+  "summary": "A universal cable and protocol.",
+  "layers": {
+   "basics": "USB carries data and power over one cable; the host polls devices which present descriptors.",
+   "deeper": "Speeds 480 Mb/s (USB 2) to 40 Gb/s (USB4); USB-C adds orientation-independent connector and Power Delivery.",
+   "expert": "Differential signalling; enumeration; PD negotiates 5–48 V up to 240 W (EPR); CC pins carry configuration."
+  },
+  "facts": [],
+  "formula": "P = V·I (PD up to 240 W)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "serial_decoder"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: USB",
+    "url": "https://en.wikipedia.org/wiki/USB"
+   }
+  ],
+  "where": "phone_charger_port"
+ },
+ {
+  "id": "rtos",
+  "title": "Real-time operating systems",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "interrupts"
+  ],
+  "summary": "Scheduling tasks with deadlines.",
+  "layers": {
+   "basics": "An RTOS switches between tasks predictably so deadlines are met.",
+   "deeper": "Priority-based preemptive scheduling, semaphores, queues; FreeRTOS and Zephyr are common.",
+   "expert": "Rate-monotonic analysis (utilisation bound n(2^{1/n}−1)), priority inheritance, worst-case execution time."
+  },
+  "facts": [],
+  "formula": "U ≤ n(2^{1/n} − 1)",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Real-time operating system",
+    "url": "https://en.wikipedia.org/wiki/Real-time_operating_system"
+   }
+  ]
+ },
+ {
+  "id": "low_power_design",
+  "title": "Low-power design",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mcu_architecture"
+  ],
+  "summary": "Making batteries last.",
+  "layers": {
+   "basics": "Sleep modes, slower clocks and turning off unused parts reduce power by factors of thousands.",
+   "deeper": "Duty-cycled devices spend most time asleep at µA; energy per task matters.",
+   "expert": "Dynamic voltage and frequency scaling P∝CV²f; leakage in deep sleep; energy harvesting; battery life=capacity/average current."
+  },
+  "facts": [],
+  "formula": "P_dyn = C V² f",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "power_profile"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Low-power electronics",
+    "url": "https://en.wikipedia.org/wiki/Low-power_electronics"
+   }
+  ]
+ },
+ {
+  "id": "device_drivers",
+  "title": "Device drivers",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "interrupts",
+   "embedded_c"
+  ],
+  "summary": "Software that talks to hardware.",
+  "layers": {
+   "basics": "A driver hides a peripheral’s registers behind a clean software interface.",
+   "deeper": "Layering: register access → driver → application; DMA and interrupts keep the CPU free.",
+   "expert": "HAL vs LL libraries; kernel-space drivers on Linux; memory barriers; device-tree description."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Device driver",
+    "url": "https://en.wikipedia.org/wiki/Device_driver"
+   }
+  ]
+ },
+ {
+  "id": "interfacing_sensors",
+  "title": "Interfacing sensors",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mcu_adc_dac",
+   "i2c_bus",
+   "spi_bus"
+  ],
+  "summary": "Reading the physical world.",
+  "layers": {
+   "basics": "Sensors give voltages or digital values; conditioning circuits (amplify, filter, level-shift) prepare them for the microcontroller.",
+   "deeper": "Examples: thermistor in divider, Hall sensor, accelerometer over I²C.",
+   "expert": "Bridge circuits and instrumentation amps; calibration and drift; sensor fusion filters."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "mcu_sim"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Sensor",
+    "url": "https://en.wikipedia.org/wiki/Sensor"
+   }
+  ],
+  "where": "phone_sensors"
+ },
+ {
+  "id": "interfacing_motors",
+  "title": "Interfacing motors",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "timers_pwm",
+   "mosfet_switch_node"
+  ],
+  "summary": "Driving actuators.",
+  "layers": {
+   "basics": "Motors need more current than a pin supplies: use a transistor or H-bridge and a flyback diode, with PWM for speed.",
+   "deeper": "DC, stepper and servo motors each need a different driver.",
+   "expert": "H-bridge dead-time to avoid shoot-through; current sensing; back-EMF; encoder feedback closes the loop."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "mosfet_switch"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: H-bridge",
+    "url": "https://en.wikipedia.org/wiki/H-bridge"
+   }
+  ]
+ },
+ {
+  "id": "interfacing_displays",
+  "title": "Interfacing displays",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_architecture",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "spi_bus",
+   "i2c_bus"
+  ],
+  "summary": "Showing information.",
+  "layers": {
+   "basics": "LED, LCD and OLED displays connect over parallel, SPI or I²C buses; a frame buffer holds pixels.",
+   "deeper": "Multiplexing LED matrices cuts pins; OLED pixels emit light, LCDs modulate a backlight.",
+   "expert": "Refresh rate and bandwidth; MIPI DSI for phone displays; display controllers with DMA."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "mcu_sim"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Display device",
+    "url": "https://en.wikipedia.org/wiki/Display_device"
+   }
+  ]
+ }
+]

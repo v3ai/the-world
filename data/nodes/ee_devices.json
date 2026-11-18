@@ -1,0 +1,617 @@
+[
+ {
+  "id": "crystal_structure_ee",
+  "title": "Crystal structure of semiconductors",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_devices",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [
+   "silicon"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bonding_materials"
+  ],
+  "summary": "Atoms in a repeating lattice.",
+  "layers": {
+   "basics": "Silicon forms a diamond-cubic crystal where each atom bonds with four neighbours; lattice order is what creates bands.",
+   "deeper": "Miller indices label planes; wafer orientation (100) affects interface quality; GaAs is zincblende.",
+   "expert": "Lattice constant 5.431 Å for Si; Brillouin zone and Bloch’s theorem; defects (vacancies, dislocations) affect lifetimes."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [
+   [
+    "CHE",
+    "10.6",
+    "10-6-lattice-structures-in-crystalline-solids"
+   ],
+   [
+    "UP3",
+    "9.3",
+    "9-3-bonding-in-crystalline-solids"
+   ]
+  ],
+  "kn": [
+   "crystal_lattices",
+   "band_theory"
+  ],
+  "lab": {
+   "id": "device",
+   "preset": "bands_formation"
+  },
+  "where": "silicon_channel"
+ },
+ {
+  "id": "carrier_statistics",
+  "title": "Carrier statistics and Fermi level",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_devices",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "energy_bands_ee"
+  ],
+  "summary": "How many carriers at what temperature.",
+  "layers": {
+   "basics": "The Fermi–Dirac distribution tells the probability that an energy state is occupied; the Fermi level shows where this drops to ½.",
+   "deeper": "In n-type material E_F moves toward the conduction band; in p-type toward the valence band.",
+   "expert": "f(E)=1/(1+e^{(E−E_F)/kT}); n=N_c e^{−(E_c−E_F)/kT}; N_c≈2.8×10¹⁹ cm⁻³ for Si; non-degenerate approximation."
+  },
+  "facts": [],
+  "formula": "f(E) = 1/(1 + e^{(E−E_F)/kT})",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "band_theory",
+   "statistical_mechanics"
+  ],
+  "lab": {
+   "id": "device",
+   "preset": "fermi_dirac"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Fermi level",
+    "url": "https://en.wikipedia.org/wiki/Fermi_level"
+   }
+  ]
+ },
+ {
+  "id": "pn_junction_physics",
+  "title": "PN junction physics: depletion, capacitance, breakdown",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_devices",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "pn_junction_ee",
+   "carrier_statistics"
+  ],
+  "summary": "Inside the junction.",
+  "layers": {
+   "basics": "The depletion region has no free carriers and acts like a capacitor whose width changes with voltage; at high reverse voltage the junction breaks down.",
+   "deeper": "Depletion width W=√(2ε(V_bi−V)/q·(1/N_a+1/N_d)); junction capacitance basis of varactors.",
+   "expert": "Breakdown by avalanche (impact ionisation) or Zener tunnelling; Shockley equation from minority-carrier diffusion; generation–recombination currents."
+  },
+  "facts": [],
+  "formula": "W = √(2ε(V_bi−V)(1/N_a+1/N_d)/q)",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "semiconductors_pn"
+  ],
+  "lab": {
+   "id": "device",
+   "preset": "pn_reverse"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: P–n junction",
+    "url": "https://en.wikipedia.org/wiki/P%E2%80%93n_junction"
+   }
+  ]
+ },
+ {
+  "id": "bjt_physics_deep",
+  "title": "BJT device physics in depth",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_devices",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "pn_junction_physics"
+  ],
+  "summary": "Why β is large and what limits it.",
+  "layers": {
+   "basics": "Carriers injected from emitter cross a thin base; few recombine, so most reach the collector.",
+   "deeper": "Gain β depends on emitter and base doping; Early effect and high-level injection limit it.",
+   "expert": "β≈D_nW_E N_E/(D_pW_B N_B)-type expressions; base transit time τ_B=W_B²/2D_n sets f_T; heterojunction BJTs (SiGe) reach >300 GHz."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "bjt_active"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Bipolar junction transistor",
+    "url": "https://en.wikipedia.org/wiki/Bipolar_junction_transistor"
+   }
+  ]
+ },
+ {
+  "id": "mosfet_physics_deep",
+  "title": "MOSFET device physics in depth",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_devices",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mosfet_iv",
+   "pn_junction_physics"
+  ],
+  "summary": "Charge control in the channel.",
+  "layers": {
+   "basics": "Gate voltage inverts the surface charge to form a channel; the oxide thickness sets gate control.",
+   "deeper": "Charge-sheet and gradual-channel models yield the I–V; subthreshold swing ≥60 mV/dec at 300 K.",
+   "expert": "S=(kT/q)ln10(1+C_d/C_ox); capacitances C_gs, C_gd; f_T≈g_m/2π(C_gs+C_gd); gate tunnelling and high-k/metal-gate."
+  },
+  "facts": [],
+  "formula": "S ≥ (kT/q) ln10 ≈ 60 mV/dec",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "mosfet_transfer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: MOSFET",
+    "url": "https://en.wikipedia.org/wiki/MOSFET"
+   }
+  ],
+  "where": "finfet_transistor"
+ },
+ {
+  "id": "short_channel_effects",
+  "title": "Short-channel effects",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_devices",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mosfet_physics_deep"
+  ],
+  "summary": "When transistors get tiny.",
+  "layers": {
+   "basics": "As channels shorten, the drain starts to control the barrier: threshold falls, leakage rises, and current saturates through velocity limits.",
+   "deeper": "DIBL, velocity saturation, hot carriers, and gate leakage. FinFETs and nanosheets restore gate control.",
+   "expert": "DIBL (mV/V), V_T roll-off, subthreshold leakage ∝10^{−V_T/S}; scaling rules (Dennard) broke down near 90 nm as voltage stopped scaling."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "short_channel"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Short-channel effect",
+    "url": "https://en.wikipedia.org/wiki/Short-channel_effect"
+   }
+  ],
+  "where": "finfet_transistor"
+ },
+ {
+  "id": "optoelectronic_devices",
+  "title": "Optoelectronic devices",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_devices",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "pn_junction_physics",
+   "photoelectric_effect"
+  ],
+  "summary": "LEDs, lasers, detectors, solar cells.",
+  "layers": {
+   "basics": "Semiconductors can emit light (LED, laser) and detect it (photodiode, solar cell) through band-gap transitions.",
+   "deeper": "Lasers add an optical cavity and population inversion to give coherent light; solar cells are large photodiodes.",
+   "expert": "Radiative efficiency; internal quantum efficiency; threshold current; Shockley–Queisser limit ≈33% for single-junction at 1.34 eV."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "8.6",
+    "8-6-lasers"
+   ]
+  ],
+  "kn": [
+   "led_lasers",
+   "solar_cells"
+  ],
+  "lab": {
+   "id": "device",
+   "preset": "solar_cell"
+  },
+  "where": "phone_display"
+ },
+ {
+  "id": "lasers_semiconductor",
+  "title": "Semiconductor lasers",
+  "kind": "device",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_devices",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "optoelectronic_devices"
+  ],
+  "summary": "Coherent light from a diode.",
+  "layers": {
+   "basics": "A laser diode amplifies light bouncing between mirrored facets through stimulated emission.",
+   "deeper": "Above a threshold current, output becomes coherent; used in fibre links and Lidar.",
+   "expert": "Rate equations; VCSELs emit upward (used in face ID); DFB lasers give single-wavelength telecom light at 1310/1550 nm."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "led_lasers"
+  ],
+  "lab": {
+   "id": "device",
+   "preset": "led_colors"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Laser diode",
+    "url": "https://en.wikipedia.org/wiki/Laser_diode"
+   }
+  ]
+ },
+ {
+  "id": "photodetectors_solar",
+  "title": "Photodetectors and solar cells",
+  "kind": "device",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_devices",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "optoelectronic_devices"
+  ],
+  "summary": "Light to current.",
+  "layers": {
+   "basics": "Photons create electron–hole pairs; a built-in field separates them to produce current.",
+   "deeper": "PIN photodiodes and avalanche photodiodes for speed and sensitivity; solar cells for energy.",
+   "expert": "Responsivity R=ηqλ/hc (A/W); dark current; open-circuit voltage V_oc and fill factor; tandem cells beat single-junction limit."
+  },
+  "facts": [],
+  "formula": "R = ηqλ/(hc)",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "solar_cells"
+  ],
+  "lab": {
+   "id": "device",
+   "preset": "solar_cell"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Photodiode",
+    "url": "https://en.wikipedia.org/wiki/Photodiode"
+   }
+  ],
+  "where": "phone_camera"
+ },
+ {
+  "id": "fabrication_lithography",
+  "title": "Lithography",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_devices",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "fabrication_overview"
+  ],
+  "summary": "Printing circuits with light.",
+  "layers": {
+   "basics": "Light projects a pattern through a mask onto photosensitive resist on the wafer.",
+   "deeper": "Resolution ≈k₁λ/NA; EUV (13.5 nm) reached 3–5 nm-class nodes.",
+   "expert": "Rayleigh resolution; depth of focus; multi-patterning; EUV needs reflective optics and tin-plasma sources; overlay accuracy <2 nm."
+  },
+  "facts": [],
+  "formula": "CD = k₁ λ/NA",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "fab_process"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Photolithography",
+    "url": "https://en.wikipedia.org/wiki/Photolithography"
+   }
+  ]
+ },
+ {
+  "id": "fabrication_overview",
+  "title": "Semiconductor fabrication overview",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_devices",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "crystal_structure_ee"
+  ],
+  "summary": "From sand to chip.",
+  "layers": {
+   "basics": "Chips are made by repeating cycles of depositing, patterning and etching thin layers on a polished silicon wafer.",
+   "deeper": "Steps: crystal growth → wafer → oxidation → lithography → etch → doping → deposition → metallisation → test and packaging.",
+   "expert": "Czochralski growth; cleanroom class ISO 1–5; yield Y=e^{−AD}; hundreds of steps, ~3 months, >1000 individual processes."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "engineering_materials"
+  ],
+  "lab": {
+   "id": "device",
+   "preset": "fab_process"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Semiconductor device fabrication",
+    "url": "https://en.wikipedia.org/wiki/Semiconductor_device_fabrication"
+   }
+  ]
+ },
+ {
+  "id": "doping_implantation",
+  "title": "Doping: ion implantation and diffusion",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_devices",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "fabrication_overview"
+  ],
+  "summary": "Placing dopants.",
+  "layers": {
+   "basics": "Ions fired into the wafer, then annealed, provide precise dopant profiles.",
+   "deeper": "Dose and energy set depth and concentration; annealing repairs damage.",
+   "expert": "Gaussian range profile; channelling; rapid thermal annealing; diffusion D=D₀e^{−E_a/kT}."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "fab_process"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Ion implantation",
+    "url": "https://en.wikipedia.org/wiki/Ion_implantation"
+   }
+  ]
+ },
+ {
+  "id": "oxidation_process",
+  "title": "Oxidation",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_devices",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "fabrication_overview"
+  ],
+  "summary": "Growing silicon dioxide.",
+  "layers": {
+   "basics": "Heating silicon in oxygen or steam grows a high-quality SiO₂ insulating layer.",
+   "deeper": "Thermal oxide forms gate dielectrics and isolation; Deal–Grove model describes growth.",
+   "expert": "x²+Ax=B(t+τ); linear then parabolic regimes; modern gates use high-k HfO₂ rather than SiO₂."
+  },
+  "facts": [],
+  "formula": "x² + A x = B (t + τ)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "fab_process"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Thermal oxidation",
+    "url": "https://en.wikipedia.org/wiki/Thermal_oxidation"
+   }
+  ]
+ },
+ {
+  "id": "etching_process",
+  "title": "Etching",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_devices",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "fabrication_overview"
+  ],
+  "summary": "Removing material selectively.",
+  "layers": {
+   "basics": "Wet chemicals or plasmas remove material where resist leaves it exposed.",
+   "deeper": "Anisotropic plasma etching makes vertical walls; selectivity protects layers underneath.",
+   "expert": "RIE and DRIE (Bosch process); atomic-layer etching; etch rate, selectivity, aspect ratio."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "fab_process"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Etching (microfabrication)",
+    "url": "https://en.wikipedia.org/wiki/Etching_(microfabrication)"
+   }
+  ]
+ },
+ {
+  "id": "deposition_processes",
+  "title": "Deposition",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_devices",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "fabrication_overview"
+  ],
+  "summary": "Adding thin films.",
+  "layers": {
+   "basics": "CVD, PVD and atomic layer deposition lay down films of metals, oxides and silicon.",
+   "deeper": "Copper is deposited electrochemically into etched trenches (damascene).",
+   "expert": "ALD gives monolayer-level control; epitaxy grows crystal layers; stress and step coverage issues."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "fab_process"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Thin-film deposition",
+    "url": "https://en.wikipedia.org/wiki/Thin-film_deposition"
+   }
+  ]
+ }
+]

@@ -1,0 +1,351 @@
+[
+ {
+  "id": "intro_programming",
+  "title": "Introductory programming (C, C++, Python)",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_programming",
+  "parents": [
+   "ee_programming"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "logic_boolean_math"
+  ],
+  "summary": "Variables, control flow, functions, arrays.",
+  "layers": {
+   "basics": "A program stores values in variables, makes decisions with if/else, repeats with loops, and packages steps into functions.",
+   "deeper": "C gives close control of memory and is the language of firmware; Python is fast to write and good for analysis and test automation.",
+   "expert": "Static vs dynamic typing; value vs reference semantics; stack frames; arrays are contiguous memory and indexing is pointer arithmetic."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Python tutorial",
+    "url": "https://docs.python.org/3/tutorial/"
+   }
+  ]
+ },
+ {
+  "id": "c_language",
+  "title": "The C language",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_programming",
+  "parents": [
+   "ee_programming"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "intro_programming"
+  ],
+  "summary": "The lingua franca of hardware-near code.",
+  "layers": {
+   "basics": "C maps almost directly to machine instructions; you manage memory yourself.",
+   "deeper": "Pointers, structs, bit operations and the preprocessor are the everyday tools of firmware developers.",
+   "expert": "Undefined behaviour (signed overflow, out-of-bounds, strict aliasing) is why careful style standards such as MISRA C exist."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: C (programming language)",
+    "url": "https://en.wikipedia.org/wiki/C_(programming_language)"
+   }
+  ]
+ },
+ {
+  "id": "data_structures",
+  "title": "Data structures",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_programming",
+  "parents": [
+   "ee_programming"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "intro_programming"
+  ],
+  "summary": "Lists, stacks, queues, trees, hash tables.",
+  "layers": {
+   "basics": "A data structure organises data so common operations are fast: arrays for indexing, linked lists for insertion, trees for ordered search.",
+   "deeper": "Embedded code favours fixed-size ring buffers and state tables; simulators use sparse matrices.",
+   "expert": "Amortised analysis; balanced trees O(log n); hash tables O(1) average; ring buffer is the standard UART/DMA queue."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [
+   [
+    "CMA",
+    "12.10",
+    "12-10-trees"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Data structure",
+    "url": "https://en.wikipedia.org/wiki/Data_structure"
+   }
+  ]
+ },
+ {
+  "id": "algorithms_complexity",
+  "title": "Algorithms, sorting and complexity",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_programming",
+  "parents": [
+   "ee_programming"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "data_structures"
+  ],
+  "summary": "How work grows with problem size.",
+  "layers": {
+   "basics": "Algorithms are recipes; complexity says how running time grows as inputs grow. Sorting is the classic example.",
+   "deeper": "FFT turns an O(N²) DFT into O(N log N), which is why spectrum analysers and OFDM radios are practical.",
+   "expert": "Big-O/Θ/Ω; comparison sort lower bound Ω(n log n); divide and conquer master theorem; P vs NP."
+  },
+  "facts": [],
+  "formula": "T(n) = 2T(n/2) + O(n) ⇒ O(n log n)",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "computation",
+   "p_vs_np"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Analysis of algorithms",
+    "url": "https://en.wikipedia.org/wiki/Analysis_of_algorithms"
+   }
+  ]
+ },
+ {
+  "id": "matlab_python_sim",
+  "title": "MATLAB and Python for simulation",
+  "kind": "tool",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_programming",
+  "parents": [
+   "ee_programming"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "intro_programming",
+   "matrices_systems"
+  ],
+  "summary": "Numerical computing and plotting.",
+  "layers": {
+   "basics": "Array-based languages make it easy to simulate signals and systems and to plot results.",
+   "deeper": "Scripts compute filter responses, FFTs and Monte Carlo noise studies; NumPy/SciPy and MATLAB cover similar ground.",
+   "expert": "Vectorisation avoids interpreted loops; sparse and BLAS-backed linear algebra; toolboxes for control, signals and communications; reproducible notebooks."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "NumPy documentation",
+    "url": "https://numpy.org/doc/"
+   }
+  ],
+  "lab": {
+   "id": "code",
+   "preset": "python_sandbox"
+  }
+ },
+ {
+  "id": "embedded_c",
+  "title": "Embedded C: pointers, memory, registers",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_programming",
+  "parents": [
+   "ee_programming"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "c_language"
+  ],
+  "summary": "Programming bare metal.",
+  "layers": {
+   "basics": "In embedded C you write directly to hardware registers via pointers and work within a few kilobytes of memory.",
+   "deeper": "Memory-mapped I/O, volatile, bit masks, interrupt service routines and linker scripts define the style.",
+   "expert": "Stack, heap, .data, .bss, .text sections; volatile prevents optimisation of device reads; atomicity of shared variables between ISR and main loop; alignment and endianness."
+  },
+  "facts": [],
+  "formula": "REG |= (1<<n);  REG &= ~(1<<n)",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Memory-mapped I/O and port-mapped I/O",
+    "url": "https://en.wikipedia.org/wiki/Memory-mapped_I/O_and_port-mapped_I/O"
+   }
+  ],
+  "lab": {
+   "id": "code",
+   "preset": "register_bitfiddle"
+  }
+ },
+ {
+  "id": "hdl_verilog_vhdl",
+  "title": "Hardware description languages (Verilog/VHDL)",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_programming",
+  "parents": [
+   "ee_programming"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "logic_boolean_math"
+  ],
+  "summary": "Describing circuits as text.",
+  "layers": {
+   "basics": "An HDL describes digital hardware, not a sequence of steps: everything described runs in parallel.",
+   "deeper": "Synthesis tools turn the description into gates on an FPGA or ASIC; testbenches simulate it first.",
+   "expert": "RTL style: always @(posedge clk) for registers, continuous assignments for logic; blocking vs non-blocking assignments; inferred latches as classic bug; SystemVerilog assertions for verification."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Verilog",
+    "url": "https://en.wikipedia.org/wiki/Verilog"
+   },
+   {
+    "title": "Wikipedia: VHDL",
+    "url": "https://en.wikipedia.org/wiki/VHDL"
+   }
+  ],
+  "lab": {
+   "id": "logic",
+   "preset": "verilog_sim"
+  }
+ },
+ {
+  "id": "simulation_tools",
+  "title": "Simulation tools (SPICE, LTspice, Simulink)",
+  "kind": "tool",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_programming",
+  "parents": [
+   "ee_programming"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "ode_solvers",
+   "hdl_verilog_vhdl"
+  ],
+  "summary": "Virtual lab benches.",
+  "layers": {
+   "basics": "Circuit simulators solve the circuit equations numerically so you can test a design before building it.",
+   "deeper": "SPICE (also LTspice, Multisim) models devices and runs DC, AC, transient and noise analyses; Simulink models block-diagram systems.",
+   "expert": "Modified nodal analysis assembles one matrix of KCL equations; Newton–Raphson per timestep; device models (BSIM, Gummel–Poon) are only as good as their parameters. COMSOL and HFSS solve field problems by finite elements."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: SPICE",
+    "url": "https://en.wikipedia.org/wiki/SPICE"
+   },
+   {
+    "title": "Wikipedia: LTspice",
+    "url": "https://en.wikipedia.org/wiki/LTspice"
+   }
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "ohms_law"
+  }
+ },
+ {
+  "id": "field_solvers",
+  "title": "Field solvers (COMSOL, HFSS)",
+  "kind": "tool",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_programming",
+  "parents": [
+   "ee_programming"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "simulation_tools",
+   "pde_intro"
+  ],
+  "summary": "Finite-element simulation of fields.",
+  "layers": {
+   "basics": "Field solvers divide a physical structure into small elements and solve Maxwell’s or heat equations numerically.",
+   "deeper": "Used for antennas, PCB traces, magnetic cores and thermal design where closed forms do not exist.",
+   "expert": "Mesh refinement and convergence; port definitions; absorbing boundaries (PML); FDTD vs FEM vs method of moments trade-offs."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Finite element method",
+    "url": "https://en.wikipedia.org/wiki/Finite_element_method"
+   }
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "fem_demo"
+  }
+ }
+]

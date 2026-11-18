@@ -1,0 +1,1561 @@
+[
+ {
+  "id": "electrical_basics",
+  "title": "Voltage, current, resistance, power, energy",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "current_resistance_physics",
+   "electric_potential_ee"
+  ],
+  "summary": "The four quantities every circuit is described by.",
+  "layers": {
+   "basics": "Voltage is the push, current is the flow, resistance is the opposition and power is how fast energy is used.",
+   "deeper": "Conventional current flows from + to −; a component absorbs power when current enters its + terminal. Energy bills are watts × time.",
+   "expert": "Passive sign convention; P=VI; units V, A, Ω, W, J (=W·s); a kilowatt-hour is 3.6 MJ. Ideal sources and ground reference define the model world of lumped circuits."
+  },
+  "facts": [],
+  "formula": "P = V·I",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "9.1",
+    "9-1-electrical-current"
+   ],
+   [
+    "UP2",
+    "9.5",
+    "9-5-electrical-energy-and-power"
+   ],
+   [
+    "CPH",
+    "20.4",
+    "20-4-electric-power-and-energy"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "All About Circuits: DC",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/"
+   }
+  ],
+  "kn": [
+   "circuits_ohm"
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "ohms_law"
+  }
+ },
+ {
+  "id": "ohms_law_node",
+  "title": "Ohm’s law",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "electrical_basics"
+  ],
+  "summary": "V = I·R for a resistor.",
+  "layers": {
+   "basics": "The current through a resistor is proportional to the voltage across it.",
+   "deeper": "A resistor’s I–V line is straight; non-ohmic devices (diodes, lamps) curve. Resistors dissipate P=I²R as heat.",
+   "expert": "Ohm’s law is a material property J=σE, valid over a wide but limited range; temperature, high fields and quantum effects bend it."
+  },
+  "facts": [],
+  "formula": "V = I R;  P = I²R = V²/R",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "9.4",
+    "9-4-ohms-law"
+   ],
+   [
+    "CPH",
+    "20.2",
+    "20-2-ohms-law-resistance-and-simple-circuits"
+   ]
+  ],
+  "kn": [
+   "circuits_ohm"
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "ohms_law"
+  }
+ },
+ {
+  "id": "kcl",
+  "title": "Kirchhoff’s current law (KCL)",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "electrical_basics"
+  ],
+  "summary": "Currents into a node sum to zero.",
+  "layers": {
+   "basics": "Charge does not pile up at a junction: what flows in must flow out.",
+   "deeper": "KCL gives one equation per node; it is charge conservation applied to a node.",
+   "expert": "Σiₖ=0 on any closed surface for lumped circuits; displacement current extends it to capacitors in Maxwell’s form."
+  },
+  "facts": [],
+  "formula": "Σ i = 0",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "10.3",
+    "10-3-kirchhoffs-rules"
+   ],
+   [
+    "CPH",
+    "21.3",
+    "21-3-kirchhoffs-rules"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "kvl_kcl"
+  }
+ },
+ {
+  "id": "kvl",
+  "title": "Kirchhoff’s voltage law (KVL)",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "electrical_basics"
+  ],
+  "summary": "Voltage drops around a loop sum to zero.",
+  "layers": {
+   "basics": "Go around any closed loop and the rises and drops in voltage must cancel.",
+   "deeper": "KVL gives one equation per independent loop and is energy conservation per unit charge.",
+   "expert": "Σvₖ=0 around closed paths if no time-varying flux links the loop; otherwise lumped models add an inductor."
+  },
+  "facts": [],
+  "formula": "Σ v = 0",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "10.3",
+    "10-3-kirchhoffs-rules"
+   ],
+   [
+    "CPH",
+    "21.3",
+    "21-3-kirchhoffs-rules"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "kvl_kcl"
+  }
+ },
+ {
+  "id": "series_parallel",
+  "title": "Series and parallel circuits",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "ohms_law_node",
+   "kcl",
+   "kvl"
+  ],
+  "summary": "Two basic ways to connect components.",
+  "layers": {
+   "basics": "Series elements share the same current; parallel elements share the same voltage.",
+   "deeper": "Resistances add in series and conductances add in parallel; capacitors do the opposite of resistors, inductors the same.",
+   "expert": "R_series=ΣRᵢ; 1/R_par=Σ1/Rᵢ; reductions of ladders step by step; Y–Δ conversion for bridge-type networks."
+  },
+  "facts": [],
+  "formula": "R_s = R₁+R₂;  R_p = R₁R₂/(R₁+R₂)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "10.2",
+    "10-2-resistors-in-series-and-parallel"
+   ],
+   [
+    "CPH",
+    "21.1",
+    "21-1-resistors-in-series-and-parallel"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "series_parallel"
+  }
+ },
+ {
+  "id": "voltage_divider",
+  "title": "Voltage divider",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "series_parallel"
+  ],
+  "summary": "Two resistors split a voltage.",
+  "layers": {
+   "basics": "Two series resistors share a voltage in proportion to their sizes, giving a smaller voltage at the middle.",
+   "deeper": "Loading the output changes the ratio; used in sensor interfaces, bias networks and ADC inputs.",
+   "expert": "Vout=Vin R₂/(R₁+R₂) unloaded; with load, replace R₂ by R₂∥R_L; Thévenin equivalent R₁∥R₂."
+  },
+  "facts": [],
+  "formula": "Vout = Vin·R₂/(R₁+R₂)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "voltage_divider"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Voltage divider",
+    "url": "https://en.wikipedia.org/wiki/Voltage_divider"
+   }
+  ]
+ },
+ {
+  "id": "current_divider",
+  "title": "Current divider",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "series_parallel"
+  ],
+  "summary": "Parallel branches split a current.",
+  "layers": {
+   "basics": "Current prefers the easier path: the smaller resistor takes more of it.",
+   "deeper": "Used for shunt-resistor current sensing and in analysing parallel loads.",
+   "expert": "I₁=I_T R₂/(R₁+R₂) for two branches; for n branches I_k=I_T G_k/ΣG."
+  },
+  "facts": [],
+  "formula": "I₁ = I·R₂/(R₁+R₂)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "current_divider"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Current divider",
+    "url": "https://en.wikipedia.org/wiki/Current_divider"
+   }
+  ]
+ },
+ {
+  "id": "nodal_analysis",
+  "title": "Nodal analysis",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "kcl",
+   "series_parallel",
+   "matrices_systems"
+  ],
+  "summary": "Solve for node voltages with KCL.",
+  "layers": {
+   "basics": "Pick a ground, label the other node voltages, and write KCL at each node; then solve the equations.",
+   "deeper": "In matrix form G·v=i with G the conductance matrix; supernodes handle floating voltage sources.",
+   "expert": "Modified nodal analysis (MNA) adds branch currents for voltage sources and inductors; it is the engine of SPICE."
+  },
+  "facts": [],
+  "formula": "G v = i",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "10.3",
+    "10-3-kirchhoffs-rules"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "nodal_analysis"
+  }
+ },
+ {
+  "id": "mesh_analysis",
+  "title": "Mesh analysis",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "kvl",
+   "series_parallel",
+   "matrices_systems"
+  ],
+  "summary": "Solve for loop currents with KVL.",
+  "layers": {
+   "basics": "Assign a current to each window of a planar circuit and write KVL around it.",
+   "deeper": "Meshes sharing a branch couple through that resistor; supermeshes handle current sources.",
+   "expert": "R·i=v for planar circuits with R_ii the mesh resistance and R_ij the shared (negative) one; dual of nodal analysis."
+  },
+  "facts": [],
+  "formula": "R i = v",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "kvl_kcl"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Mesh analysis",
+    "url": "https://en.wikipedia.org/wiki/Mesh_analysis"
+   }
+  ]
+ },
+ {
+  "id": "superposition",
+  "title": "Superposition",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "nodal_analysis"
+  ],
+  "summary": "Linear circuits respond to each source separately.",
+  "layers": {
+   "basics": "Compute the effect of each source alone (others turned off) and add the results.",
+   "deeper": "Turn off voltage sources by shorting them and current sources by opening. It fails for power, which is non-linear.",
+   "expert": "Holds for any linear time-invariant circuit; used to split AC and DC and to superpose different frequencies."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "superposition"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Superposition theorem",
+    "url": "https://en.wikipedia.org/wiki/Superposition_theorem"
+   }
+  ]
+ },
+ {
+  "id": "thevenin_norton",
+  "title": "Thévenin and Norton equivalents",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "superposition"
+  ],
+  "summary": "Any linear one-port is a source plus a resistor.",
+  "layers": {
+   "basics": "Any linear two-terminal circuit can be replaced with a single voltage source in series with a resistor (or a current source in parallel).",
+   "deeper": "Find V_th as the open-circuit voltage and R_th by turning sources off. Great for analysing loads and amplifier outputs.",
+   "expert": "V_th=I_N R_th; extends to impedances Z_th; test-source method works with dependent sources."
+  },
+  "facts": [],
+  "formula": "V_th = I_N·R_th",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "circuits_ohm"
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "thevenin"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Thévenin's theorem",
+    "url": "https://en.wikipedia.org/wiki/Th%C3%A9venin%27s_theorem"
+   }
+  ]
+ },
+ {
+  "id": "max_power_transfer",
+  "title": "Maximum power transfer",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "thevenin_norton"
+  ],
+  "summary": "A load takes most power when matched to the source.",
+  "layers": {
+   "basics": "A load gets the greatest power when its resistance equals the source’s internal resistance.",
+   "deeper": "At matching, only half the total power reaches the load; efficiency is 50%, so power systems avoid matching while RF systems seek it.",
+   "expert": "P_L=V_th²R_L/(R_th+R_L)² peaks at R_L=R_th; for AC, Z_L=Z_th* (conjugate match)."
+  },
+  "facts": [],
+  "formula": "R_L = R_th;  Z_L = Z_th*",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "max_power"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Maximum power transfer theorem",
+    "url": "https://en.wikipedia.org/wiki/Maximum_power_transfer_theorem"
+   }
+  ]
+ },
+ {
+  "id": "source_transformation",
+  "title": "Source transformations",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "thevenin_norton"
+  ],
+  "summary": "Swap a voltage source+R for a current source+R.",
+  "layers": {
+   "basics": "A voltage source in series with a resistor behaves the same as a current source in parallel with it, so you can swap them to simplify.",
+   "deeper": "The transformation is a quick pencil-and-paper way to combine sources; only the outside terminals match.",
+   "expert": "V_s/R_s=I_s; it does not preserve internal dissipation; use with caution around dependent sources."
+  },
+  "facts": [],
+  "formula": "I_s = V_s/R_s",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "thevenin"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Source transformation",
+    "url": "https://en.wikipedia.org/wiki/Source_transformation"
+   }
+  ]
+ },
+ {
+  "id": "dependent_sources",
+  "title": "Dependent (controlled) sources",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "nodal_analysis"
+  ],
+  "summary": "Sources whose value depends on another voltage or current.",
+  "layers": {
+   "basics": "Transistors and op-amps act like sources controlled by an input, so analysing them needs dependent sources in the circuit model.",
+   "deeper": "Four types: VCVS, VCCS, CCVS, CCCS; keep the control variable in the equations, don’t turn the source off in superposition.",
+   "expert": "Small-signal BJT: i_c=β i_b (CCCS) or g_m v_be (VCCS); gains of ideal amplifiers are VCVS parameters."
+  },
+  "facts": [],
+  "formula": "i_c = g_m v_be",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "common_emitter"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Dependent source",
+    "url": "https://en.wikipedia.org/wiki/Dependent_source"
+   }
+  ]
+ },
+ {
+  "id": "capacitor_ee",
+  "title": "Capacitor in circuits",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "capacitance_physics",
+   "derivative"
+  ],
+  "summary": "Stores energy in an electric field.",
+  "layers": {
+   "basics": "A capacitor blocks steady DC but passes changing signals; it holds a charge.",
+   "deeper": "Current is proportional to the rate of change of voltage; the voltage cannot jump. Used for decoupling, filtering, timing.",
+   "expert": "i=C dv/dt; impedance 1/(jωC); real capacitors add ESR, ESL and leakage; dielectrics (C0G, X7R, electrolytic) differ in stability and loss."
+  },
+  "facts": [],
+  "formula": "i = C dv/dt;  U = ½CV²",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "8.1",
+    "8-1-capacitors-and-capacitance"
+   ],
+   [
+    "UP2",
+    "8.3",
+    "8-3-energy-stored-in-a-capacitor"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "rc_charging"
+  },
+  "where": "phone_passives"
+ },
+ {
+  "id": "inductor_ee",
+  "title": "Inductor in circuits",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "inductance_physics",
+   "derivative"
+  ],
+  "summary": "Stores energy in a magnetic field.",
+  "layers": {
+   "basics": "An inductor resists changes in current; it passes steady DC and opposes fast changes.",
+   "deeper": "Voltage is proportional to the rate of change of current; the current cannot jump. Switching an inductor off produces a voltage spike.",
+   "expert": "v=L di/dt; impedance jωL; real inductors saturate and have winding resistance and parasitic capacitance; flyback spikes are tamed with diodes or snubbers."
+  },
+  "facts": [],
+  "formula": "v = L di/dt;  U = ½LI²",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "14.2",
+    "14-2-self-inductance-and-inductors"
+   ],
+   [
+    "UP2",
+    "14.3",
+    "14-3-energy-in-a-magnetic-field"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "rl_transient"
+  },
+  "where": "phone_passives"
+ },
+ {
+  "id": "rc_transient",
+  "title": "RC transient response",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "capacitor_ee",
+   "ode_first_order"
+  ],
+  "summary": "Exponential charging and discharging.",
+  "layers": {
+   "basics": "When a capacitor charges through a resistor, the voltage rises fast then levels off; the time constant is R×C.",
+   "deeper": "After one time constant the capacitor is 63% charged; after five it is effectively full. Used for timers, debouncing and filters.",
+   "expert": "v(t)=V_f+(V_0−V_f)e^{−t/τ}, τ=RC. Energy delivered by the source is CV²: half stored, half dissipated in R regardless of R."
+  },
+  "facts": [],
+  "formula": "v(t) = V_f + (V₀−V_f) e^{−t/RC}",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "10.5",
+    "10-5-rc-circuits"
+   ],
+   [
+    "CPH",
+    "21.6",
+    "21-6-dc-circuits-containing-resistors-and-capacitors"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "rc_charging"
+  }
+ },
+ {
+  "id": "rl_transient_node",
+  "title": "RL transient response",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "inductor_ee",
+   "ode_first_order"
+  ],
+  "summary": "Current builds up gradually in a coil.",
+  "layers": {
+   "basics": "Current in a coil rises over a time L/R after a switch closes.",
+   "deeper": "It mirrors the RC case with current and voltage roles swapped.",
+   "expert": "i(t)=I_f+(I₀−I_f)e^{−tR/L}; opening a switch on an inductive load forces large di/dt unless a path is provided."
+  },
+  "facts": [],
+  "formula": "i(t) = I_f + (I₀−I_f) e^{−tR/L}",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "14.4",
+    "14-4-rl-circuits"
+   ],
+   [
+    "CPH",
+    "23.10",
+    "23-10-rl-circuits"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "rl_transient"
+  }
+ },
+ {
+  "id": "rlc_transient",
+  "title": "RLC natural and step response",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "rc_transient",
+   "rl_transient_node",
+   "ode_second_order"
+  ],
+  "summary": "Ringing circuits.",
+  "layers": {
+   "basics": "A circuit with R, L and C can oscillate as energy sloshes between capacitor and inductor, while R drains it.",
+   "deeper": "Parameters ζ=R/2√(C/L) for series RLC decide whether the response overshoots and rings or creeps to its final value.",
+   "expert": "Characteristic roots s=−α±√(α²−ω₀²); α=R/2L, ω₀=1/√LC. Natural response (no source) and step response (DC drive) share roots, differ by forced term."
+  },
+  "facts": [],
+  "formula": "s = −α ± √(α² − ω₀²)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "14.6",
+    "14-6-rlc-series-circuits"
+   ],
+   [
+    "UP2",
+    "14.5",
+    "14-5-oscillations-in-an-lc-circuit"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "rlc_damping"
+  }
+ },
+ {
+  "id": "damping_regimes",
+  "title": "Overdamped, underdamped and critically damped",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "rlc_transient"
+  ],
+  "summary": "Three flavours of second-order response.",
+  "layers": {
+   "basics": "Overdamped: slow smooth return. Underdamped: oscillating and decaying. Critically damped: the fastest return without ringing.",
+   "deeper": "α>ω₀ gives two real roots, α=ω₀ a double root, α<ω₀ complex roots with damped frequency ω_d.",
+   "expert": "Q=ω₀/2α; underdamped overshoot exp(−πζ/√(1−ζ²)); settling time ≈4/α; critical damping is a design target for sensors and shock absorbers."
+  },
+  "facts": [],
+  "formula": "ζ = α/ω₀;  Q = 1/(2ζ)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP1",
+    "15.5",
+    "15-5-damped-oscillations"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "rlc_damping"
+  }
+ },
+ {
+  "id": "sinusoids_ac",
+  "title": "Sinusoidal AC and phasors",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "phasors_math",
+   "capacitor_ee",
+   "inductor_ee"
+  ],
+  "summary": "Steady alternating signals as complex numbers.",
+  "layers": {
+   "basics": "Mains power is a sine wave. Phasors let you handle amplitude and phase with simple complex arithmetic.",
+   "deeper": "In the phasor domain, inductors and capacitors behave like complex resistors; Kirchhoff and Ohm still apply.",
+   "expert": "v=Vm cos(ωt+φ) ↔ V=Vm∠φ; ω=2πf; phase leads and lags; valid for linear steady-state."
+  },
+  "facts": [],
+  "formula": "v = Vm cos(ωt+φ)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "15.1",
+    "15-1-ac-sources"
+   ],
+   [
+    "UP2",
+    "15.2",
+    "15-2-simple-ac-circuits"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "All About Circuits: AC",
+    "url": "https://www.allaboutcircuits.com/textbook/alternating-current/"
+   }
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "ac_phasors"
+  }
+ },
+ {
+  "id": "impedance_admittance",
+  "title": "Impedance and admittance",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "sinusoids_ac"
+  ],
+  "summary": "Resistance generalised to AC.",
+  "layers": {
+   "basics": "Impedance Z combines resistance and reactance; it says how much a component opposes AC and shifts its phase.",
+   "deeper": "Z_R=R, Z_L=jωL, Z_C=1/(jωC). Admittance Y=1/Z is handy in parallel circuits.",
+   "expert": "Z=R+jX; |Z|=√(R²+X²); series impedances add, parallel admittances add; Kirchhoff’s laws hold unchanged for phasors."
+  },
+  "facts": [],
+  "formula": "Z_L = jωL;  Z_C = 1/(jωC)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "15.3",
+    "15-3-rlc-series-circuits-with-ac"
+   ],
+   [
+    "CPH",
+    "23.11",
+    "23-11-reactance-inductive-and-capacitive"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "ac_phasors"
+  }
+ },
+ {
+  "id": "rms_average_power",
+  "title": "RMS and average power",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "sinusoids_ac",
+   "integral_ftc"
+  ],
+  "summary": "The DC-equivalent of an AC waveform.",
+  "layers": {
+   "basics": "RMS (root-mean-square) tells the DC value that would heat a resistor equally. Mains of 230 V RMS peaks at 325 V.",
+   "deeper": "Average power in a resistor is V_rms·I_rms; reactive elements store and return energy without net consumption.",
+   "expert": "V_rms=√(1/T∫v²dt); for a sine Vm/√2; for non-sinusoids use true-RMS meters."
+  },
+  "facts": [],
+  "formula": "V_rms = Vm/√2",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "15.4",
+    "15-4-power-in-an-ac-circuit"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "power_factor"
+  }
+ },
+ {
+  "id": "complex_power",
+  "title": "Real, reactive and complex power",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "rms_average_power",
+   "impedance_admittance"
+  ],
+  "summary": "P, Q and S: what is used, what sloshes, what is carried.",
+  "layers": {
+   "basics": "Real power P does work; reactive power Q flows back and forth; apparent power S is the product V_rms·I_rms.",
+   "deeper": "S=P+jQ with units W, var and VA; the power triangle relates them; utilities bill and size equipment on VA.",
+   "expert": "S=VI*; P=VI cosφ, Q=VI sinφ; Tellegen’s theorem ensures ΣS=0 over a network."
+  },
+  "facts": [],
+  "formula": "S = P + jQ = V I*",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "power_factor"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: AC power",
+    "url": "https://en.wikipedia.org/wiki/AC_power"
+   }
+  ]
+ },
+ {
+  "id": "power_factor_node",
+  "title": "Power factor and correction",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "complex_power"
+  ],
+  "summary": "How efficiently current is used.",
+  "layers": {
+   "basics": "Power factor is the fraction of apparent power that does real work. Motors lower it; capacitors bring it back.",
+   "deeper": "Low PF means extra current, extra line losses and bigger cables; factories add capacitor banks.",
+   "expert": "pf=cosφ; correction capacitance C=P(tanφ₁−tanφ₂)/(ωV²); non-linear loads add distortion PF, solved by PFC converters."
+  },
+  "facts": [],
+  "formula": "pf = cosφ = P/S",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "power_factor"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Power factor",
+    "url": "https://en.wikipedia.org/wiki/Power_factor"
+   }
+  ]
+ },
+ {
+  "id": "three_phase",
+  "title": "Three-phase circuits (wye and delta)",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "complex_power"
+  ],
+  "summary": "Three sinusoids 120° apart.",
+  "layers": {
+   "basics": "Three-phase power uses three conductors carrying sine waves offset by 120°, giving constant total power and smaller wires.",
+   "deeper": "Wye (star) and delta connections link sources and loads: line voltage is √3 times phase voltage in wye.",
+   "expert": "P_total=√3 V_L I_L cosφ; balanced systems analysed per-phase; unbalanced via symmetrical components; rotating field for motors."
+  },
+  "facts": [],
+  "formula": "P = √3 V_L I_L cosφ",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "power_grid"
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "three_phase"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Three-phase electric power",
+    "url": "https://en.wikipedia.org/wiki/Three-phase_electric_power"
+   }
+  ]
+ },
+ {
+  "id": "transfer_function_ee",
+  "title": "Transfer functions",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "impedance_admittance",
+   "poles_zeros"
+  ],
+  "summary": "Output over input as a function of frequency.",
+  "layers": {
+   "basics": "A transfer function H tells how a circuit scales and shifts each frequency.",
+   "deeper": "It is a ratio of polynomials in s; its poles set natural responses.",
+   "expert": "H(s)=Vout(s)/Vin(s); for impedance-based networks follow from divider formulas with Z(s)."
+  },
+  "facts": [],
+  "formula": "H(s) = Vout/Vin",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "low_pass"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Transfer function",
+    "url": "https://en.wikipedia.org/wiki/Transfer_function"
+   }
+  ]
+ },
+ {
+  "id": "frequency_response_bode",
+  "title": "Frequency response and Bode plots",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "transfer_function_ee"
+  ],
+  "summary": "Gain and phase on log axes.",
+  "layers": {
+   "basics": "A Bode plot shows gain (in dB) and phase against log frequency, revealing a circuit’s character at a glance.",
+   "deeper": "Each pole bends the gain slope by −20 dB/decade and the phase by −90° (over a decade or two).",
+   "expert": "Asymptotic approximation: corner at ω=1/τ, −3 dB there and −45° phase; composite plots by adding contributions of poles and zeros."
+  },
+  "facts": [],
+  "formula": "|H| dB = 20 log₁₀|H(jω)|",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "low_pass"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Bode plot",
+    "url": "https://en.wikipedia.org/wiki/Bode_plot"
+   }
+  ]
+ },
+ {
+  "id": "resonance_q",
+  "title": "Resonance and quality factor",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "impedance_admittance"
+  ],
+  "summary": "Tuning and sharpness.",
+  "layers": {
+   "basics": "An RLC circuit responds strongly near one frequency, its resonance; Q measures how narrow the peak is.",
+   "deeper": "Radio tuners pick one station using this. High Q means narrow bandwidth and long ringing.",
+   "expert": "ω₀=1/√LC; series Q=ω₀L/R; bandwidth B=ω₀/Q; at resonance reactances cancel, series Z=R."
+  },
+  "facts": [],
+  "formula": "ω₀ = 1/√(LC);  Q = ω₀L/R",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "15.5",
+    "15-5-resonance-in-an-ac-circuit"
+   ],
+   [
+    "CPH",
+    "23.12",
+    "23-12-rlc-series-ac-circuits"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "resonance_q"
+  },
+  "where": "phone_vibration_motor"
+ },
+ {
+  "id": "low_pass_filter",
+  "title": "Low-pass filter",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "frequency_response_bode"
+  ],
+  "summary": "Pass slow, block fast.",
+  "layers": {
+   "basics": "A resistor and a capacitor in series, outputting across the capacitor, pass low frequencies and attenuate high ones.",
+   "deeper": "Cutoff f_c=1/(2πRC); used for anti-aliasing and removing noise.",
+   "expert": "First-order −20 dB/dec; higher order by cascading or active designs (Butterworth, Chebyshev)."
+  },
+  "facts": [],
+  "formula": "f_c = 1/(2πRC)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "low_pass"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Low-pass filter",
+    "url": "https://en.wikipedia.org/wiki/Low-pass_filter"
+   }
+  ]
+ },
+ {
+  "id": "high_pass_filter",
+  "title": "High-pass filter",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "frequency_response_bode"
+  ],
+  "summary": "Pass fast, block slow.",
+  "layers": {
+   "basics": "Swapping the R and C passes high frequencies and blocks DC.",
+   "deeper": "Used for AC coupling and removing drift.",
+   "expert": "H(s)=sRC/(1+sRC); phase leads by up to +90° at low frequency."
+  },
+  "facts": [],
+  "formula": "H(s) = sRC/(1+sRC)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "high_pass"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: High-pass filter",
+    "url": "https://en.wikipedia.org/wiki/High-pass_filter"
+   }
+  ]
+ },
+ {
+  "id": "band_pass_filter",
+  "title": "Band-pass filter",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "resonance_q"
+  ],
+  "summary": "Pass one band.",
+  "layers": {
+   "basics": "Combine high- and low-pass sections, or use a resonant circuit, to pass only a band of frequencies.",
+   "deeper": "Centre f₀ and bandwidth set selectivity; radios and EEG front-ends use band-pass stages.",
+   "expert": "Second-order H=(ω₀/Q)s/(s²+(ω₀/Q)s+ω₀²)."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "band_pass"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Band-pass filter",
+    "url": "https://en.wikipedia.org/wiki/Band-pass_filter"
+   }
+  ]
+ },
+ {
+  "id": "notch_filter",
+  "title": "Notch (band-stop) filter",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "resonance_q"
+  ],
+  "summary": "Remove one frequency.",
+  "layers": {
+   "basics": "A notch filter blocks a narrow band, such as 50/60 Hz mains hum, and passes everything else.",
+   "deeper": "Twin-T and bridged networks create the notch; ECG instruments rely on them.",
+   "expert": "Zeros on jω axis at ω₀ with Q controlling width; digital notches use z-plane zeros on the unit circle."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "notch"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Band-stop filter",
+    "url": "https://en.wikipedia.org/wiki/Band-stop_filter"
+   }
+  ]
+ },
+ {
+  "id": "two_port_networks",
+  "title": "Two-port networks",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "transfer_function_ee"
+  ],
+  "summary": "Black-box description of a circuit with input and output.",
+  "layers": {
+   "basics": "A two-port is characterised by a small matrix relating input and output voltages and currents.",
+   "deeper": "Z, Y, h, ABCD and S parameters are different ways to write the same relation; cascaded stages multiply ABCD matrices.",
+   "expert": "Reciprocity (Z12=Z21) holds for passive linear networks; S-parameters are used at RF where open/short measurement is hard."
+  },
+  "facts": [],
+  "formula": "[V₁;V₂]=[Z][I₁;I₂]",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Two-port network",
+    "url": "https://en.wikipedia.org/wiki/Two-port_network"
+   }
+  ]
+ },
+ {
+  "id": "mutual_inductance",
+  "title": "Mutual inductance",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "inductor_ee"
+  ],
+  "summary": "Coupled coils.",
+  "layers": {
+   "basics": "Two coils near each other share magnetic flux, so current in one induces voltage in the other.",
+   "deeper": "The coupling M=k√(L₁L₂); the dot convention gives the sign of the induced voltage.",
+   "expert": "v₁=L₁di₁/dt+M di₂/dt; leakage inductance and magnetising inductance model non-ideal coupling."
+  },
+  "facts": [],
+  "formula": "v₂ = M di₁/dt",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "14.1",
+    "14-1-mutual-inductance"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "transformer"
+  }
+ },
+ {
+  "id": "transformer_ideal",
+  "title": "Ideal transformer",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mutual_inductance"
+  ],
+  "summary": "Changes voltage and current levels.",
+  "layers": {
+   "basics": "A transformer swaps voltage for current using two coils on a shared core; V₂/V₁ equals turns ratio.",
+   "deeper": "Power is preserved; impedances are scaled by the ratio squared; it only works with AC.",
+   "expert": "V₂/V₁=N₂/N₁, I₂/I₁=N₁/N₂, Z_in=(N₁/N₂)²Z_L; real transformers have winding resistance, leakage, core loss, saturation."
+  },
+  "facts": [],
+  "formula": "V₂/V₁ = N₂/N₁",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "15.6",
+    "15-6-transformers"
+   ],
+   [
+    "CPH",
+    "23.7",
+    "23-7-transformers"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "transformer"
+  },
+  "where": "flyback_transformer"
+ },
+ {
+  "id": "laplace_circuit_analysis",
+  "title": "Laplace-domain circuit analysis",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_circuits",
+  "parents": [
+   "ee_circuits"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "laplace_math",
+   "impedance_admittance",
+   "rlc_transient"
+  ],
+  "summary": "Circuits with initial conditions, as algebra.",
+  "layers": {
+   "basics": "Replace each element with its s-domain impedance and add small sources for initial conditions; solve like a resistor network.",
+   "deeper": "It handles transients and non-sinusoidal inputs; inverse transform returns the time response.",
+   "expert": "Z_R=R, Z_L=sL (+L i₀ source), Z_C=1/sC (+v₀/s source); convolution in time ↔ product in s."
+  },
+  "facts": [],
+  "formula": "Z_L = sL;  Z_C = 1/(sC)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "rlc_damping"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Laplace transform",
+    "url": "https://en.wikipedia.org/wiki/Laplace_transform"
+   }
+  ]
+ }
+]

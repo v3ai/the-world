@@ -1,0 +1,995 @@
+[
+ {
+  "id": "si_units_ee",
+  "title": "Units, dimensions and prefixes",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "The shared language of measurement.",
+  "layers": {
+   "basics": "Volts, amps, ohms, farads and henries are units; prefixes like milli- and mega- scale them. Checking units catches many mistakes.",
+   "deeper": "Dimensional analysis shows that RC has units of seconds and that √(L/C) has units of ohms.",
+   "expert": "SI base units include the ampere (defined via the elementary charge e=1.602176634×10⁻¹⁹ C since 2019); decibels express ratios logarithmically: dB=20log₁₀(V₂/V₁)."
+  },
+  "facts": [],
+  "formula": "dB = 20 log₁₀(V₂/V₁)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP1",
+    "1.2",
+    "1-2-units-and-standards"
+   ],
+   [
+    "UP1",
+    "1.4",
+    "1-4-dimensional-analysis"
+   ]
+  ],
+  "kn": [
+   "si_units"
+  ]
+ },
+ {
+  "id": "mechanics_kinematics",
+  "title": "Kinematics and forces",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "derivative"
+  ],
+  "summary": "Describing motion and what causes it.",
+  "layers": {
+   "basics": "Position, velocity and acceleration describe motion; Newton’s laws link acceleration to force.",
+   "deeper": "Mechanical systems (motors, MEMS springs, loudspeaker cones) are modelled with the same equations as circuits.",
+   "expert": "F=ma; the mass–spring–damper mẍ+bẋ+kx=F is the mechanical twin of series RLC (m↔L, b↔R, k↔1/C)."
+  },
+  "facts": [],
+  "formula": "F = m a",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP1",
+    "5.3",
+    "5-3-newtons-second-law"
+   ],
+   [
+    "UP1",
+    "3.4",
+    "3-4-motion-with-constant-acceleration"
+   ]
+  ],
+  "kn": [
+   "newton_laws"
+  ],
+  "lab": {
+   "id": "control",
+   "preset": "mass_spring_damper"
+  }
+ },
+ {
+  "id": "energy_momentum",
+  "title": "Energy, power and momentum",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mechanics_kinematics",
+   "integral_ftc"
+  ],
+  "summary": "Conserved bookkeeping of motion.",
+  "layers": {
+   "basics": "Energy cannot be created or destroyed, only moved; power is energy per time; momentum is conserved in collisions.",
+   "deeper": "Electric power P=VI is the same idea as mechanical power P=Fv, and electromagnetic fields carry energy and momentum too.",
+   "expert": "Work–energy theorem W=ΔKE; potential energy of conservative forces; ∮ Poynting vector gives field energy flow."
+  },
+  "facts": [],
+  "formula": "P = dE/dt",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP1",
+    "7.1",
+    "7-1-work"
+   ],
+   [
+    "UP1",
+    "7.4",
+    "7-4-power"
+   ],
+   [
+    "UP1",
+    "8.3",
+    "8-3-conservation-of-energy"
+   ],
+   [
+    "UP1",
+    "9.1",
+    "9-1-linear-momentum"
+   ]
+  ],
+  "kn": [
+   "conservation_energy"
+  ]
+ },
+ {
+  "id": "rotation_torque",
+  "title": "Rotation and torque",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "energy_momentum"
+  ],
+  "summary": "Spinning motion.",
+  "layers": {
+   "basics": "Torque twists things the way force pushes them; moment of inertia is rotational mass.",
+   "deeper": "Electric motors and generators convert between electrical power and torque×speed.",
+   "expert": "τ=Iα; rotational power P=τω; angular momentum L=Iω conserved without external torque; gyroscopic effects underlie MEMS gyros."
+  },
+  "facts": [],
+  "formula": "P = τ ω",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP1",
+    "10.4",
+    "10-4-moment-of-inertia-and-rotational-kinetic-energy"
+   ],
+   [
+    "UP1",
+    "10.6",
+    "10-6-torque"
+   ],
+   [
+    "UP1",
+    "11.2",
+    "11-2-angular-momentum"
+   ]
+  ],
+  "kn": [
+   "rotational_dynamics"
+  ]
+ },
+ {
+  "id": "coulombs_law_ee",
+  "title": "Charge and Coulomb’s law",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "vectors_3d"
+  ],
+  "summary": "Charges push or pull with an inverse-square force.",
+  "layers": {
+   "basics": "Like charges repel, unlike attract, and the force falls with the square of distance.",
+   "deeper": "Charge is conserved and quantised in units of e. Electric field is force per unit charge.",
+   "expert": "F=kq₁q₂/r², k=1/(4πε₀)≈8.99×10⁹ N·m²/C². Superposition holds, which is why fields of many charges add as vectors."
+  },
+  "facts": [],
+  "formula": "F = q₁q₂ / (4πε₀ r²)",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "5.1",
+    "5-1-electric-charge"
+   ],
+   [
+    "UP2",
+    "5.3",
+    "5-3-coulombs-law"
+   ],
+   [
+    "UP2",
+    "5.4",
+    "5-4-electric-field"
+   ]
+  ],
+  "kn": [
+   "coulomb_law",
+   "electric_fields"
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "point_charges"
+  }
+ },
+ {
+  "id": "gauss_law_ee",
+  "title": "Gauss’s law",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "coulombs_law_ee",
+   "divergence_theorem"
+  ],
+  "summary": "Electric flux out of a closed surface counts the enclosed charge.",
+  "layers": {
+   "basics": "Surround any region with an imaginary surface: the total electric field passing out is proportional to the charge inside.",
+   "deeper": "For symmetric charge shapes it gives fields instantly, and shows why the field inside a conductor is zero.",
+   "expert": "∯E·dA=Q_enc/ε₀ ⇔ ∇·E=ρ/ε₀ (first Maxwell equation)."
+  },
+  "facts": [],
+  "formula": "∯ E·dA = Q/ε₀",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "6.1",
+    "6-1-electric-flux"
+   ],
+   [
+    "UP2",
+    "6.2",
+    "6-2-explaining-gausss-law"
+   ],
+   [
+    "UP2",
+    "6.3",
+    "6-3-applying-gausss-law"
+   ]
+  ],
+  "kn": [
+   "maxwell"
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "gauss_surfaces"
+  }
+ },
+ {
+  "id": "electric_potential_ee",
+  "title": "Electric potential and voltage",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "gauss_law_ee",
+   "gradient_directional"
+  ],
+  "summary": "Energy per charge: what we call voltage.",
+  "layers": {
+   "basics": "Voltage is the energy a unit charge gains moving between two points; a battery maintains a voltage.",
+   "deeper": "Potential is a scalar map of the field; equipotential surfaces are perpendicular to field lines. Ground is a chosen zero.",
+   "expert": "V=−∫E·dl; point charge V=q/4πε₀r; Poisson ∇²V=−ρ/ε₀. In circuits voltage differences are path independent as long as flux is static."
+  },
+  "facts": [],
+  "formula": "V = −∫ E·dl",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "7.2",
+    "7-2-electric-potential-and-potential-difference"
+   ],
+   [
+    "UP2",
+    "7.3",
+    "7-3-calculations-of-electric-potential"
+   ],
+   [
+    "UP2",
+    "7.5",
+    "7-5-equipotential-surfaces-and-conductors"
+   ]
+  ],
+  "kn": [
+   "electric_fields"
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "equipotentials"
+  }
+ },
+ {
+  "id": "capacitance_physics",
+  "title": "Capacitance and dielectrics",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "electric_potential_ee"
+  ],
+  "summary": "Storing charge in an electric field.",
+  "layers": {
+   "basics": "Two conductors separated by an insulator store charge when a voltage is applied; the ratio is capacitance.",
+   "deeper": "A dielectric between the plates increases capacitance by εr; energy is stored in the field.",
+   "expert": "C=εA/d for parallel plates; U=½CV²; series 1/C=Σ1/Cᵢ; parallel C=ΣCᵢ. Molecular polarisation explains εr; dielectric breakdown limits voltage."
+  },
+  "facts": [],
+  "formula": "C = εA/d;  U = ½CV²",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "8.1",
+    "8-1-capacitors-and-capacitance"
+   ],
+   [
+    "UP2",
+    "8.3",
+    "8-3-energy-stored-in-a-capacitor"
+   ],
+   [
+    "UP2",
+    "8.4",
+    "8-4-capacitor-with-a-dielectric"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "rc_charging"
+  }
+ },
+ {
+  "id": "current_resistance_physics",
+  "title": "Current, resistivity and conduction",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "electric_potential_ee"
+  ],
+  "summary": "Moving charge through materials.",
+  "layers": {
+   "basics": "Current is charge flowing per second; resistivity says how much a material opposes it.",
+   "deeper": "In metals electrons collide with the lattice, giving Ohm’s law; semiconductors have far fewer carriers that can be controlled.",
+   "expert": "J=σE microscopic Ohm’s law; Drude model σ=nq²τ/m; R=ρL/A; resistivity rises with T in metals, falls in semiconductors."
+  },
+  "facts": [],
+  "formula": "J = σE;  R = ρL/A",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "9.1",
+    "9-1-electrical-current"
+   ],
+   [
+    "UP2",
+    "9.3",
+    "9-3-resistivity-and-resistance"
+   ],
+   [
+    "UP2",
+    "9.4",
+    "9-4-ohms-law"
+   ],
+   [
+    "UP2",
+    "9.5",
+    "9-5-electrical-energy-and-power"
+   ]
+  ],
+  "kn": [
+   "circuits_ohm"
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "ohms_law"
+  }
+ },
+ {
+  "id": "magnetic_fields_forces",
+  "title": "Magnetic fields and forces",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "vectors_3d",
+   "current_resistance_physics"
+  ],
+  "summary": "Moving charge feels and creates magnetic fields.",
+  "layers": {
+   "basics": "Moving charges and currents create magnetic fields and feel forces in them, which is how motors turn.",
+   "deeper": "Biot–Savart and Ampère’s law give fields of wires and coils; force on a wire is I L × B; Hall effect senses fields.",
+   "expert": "F=q(E+v×B); ∮B·dl=μ₀I_enc; B of a solenoid μ₀nI; ∇·B=0 (no monopoles)."
+  },
+  "facts": [],
+  "formula": "F = q v × B",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "11.2",
+    "11-2-magnetic-fields-and-lines"
+   ],
+   [
+    "UP2",
+    "11.4",
+    "11-4-magnetic-force-on-a-current-carrying-conductor"
+   ],
+   [
+    "UP2",
+    "12.1",
+    "12-1-the-biot-savart-law"
+   ],
+   [
+    "UP2",
+    "12.5",
+    "12-5-amp-res-law"
+   ],
+   [
+    "UP2",
+    "11.6",
+    "11-6-the-hall-effect"
+   ]
+  ],
+  "kn": [
+   "magnetism_force"
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "magnetic_loops"
+  },
+  "where": "phone_speaker"
+ },
+ {
+  "id": "faraday_lenz",
+  "title": "Faraday’s law and Lenz’s law",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "magnetic_fields_forces",
+   "stokes_theorem"
+  ],
+  "summary": "Changing flux induces voltage.",
+  "layers": {
+   "basics": "Changing the magnetic flux through a loop creates an electromotive force; the induced current opposes the change.",
+   "deeper": "This one law explains generators, transformers, inductors and wireless charging.",
+   "expert": "ε=−dΦ_B/dt ⇔ ∇×E=−∂B/∂t; motional EMF ε=Blv; eddy currents arise in solid conductors."
+  },
+  "facts": [],
+  "formula": "ε = −dΦ/dt",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "13.1",
+    "13-1-faradays-law"
+   ],
+   [
+    "UP2",
+    "13.2",
+    "13-2-lenzs-law"
+   ],
+   [
+    "UP2",
+    "13.3",
+    "13-3-motional-emf"
+   ]
+  ],
+  "kn": [
+   "induction_generators"
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "faraday_loop"
+  }
+ },
+ {
+  "id": "inductance_physics",
+  "title": "Inductance",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "faraday_lenz"
+  ],
+  "summary": "Storing energy in a magnetic field.",
+  "layers": {
+   "basics": "A coil resists changes in current because its own changing field induces a counter-voltage.",
+   "deeper": "Self- and mutual inductance quantify this; energy ½LI² is stored in the field.",
+   "expert": "v=L di/dt; L=N²μA/ℓ for a solenoid; M=k√(L₁L₂) with coupling 0≤k≤1."
+  },
+  "facts": [],
+  "formula": "v = L di/dt;  U = ½LI²",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "14.1",
+    "14-1-mutual-inductance"
+   ],
+   [
+    "UP2",
+    "14.2",
+    "14-2-self-inductance-and-inductors"
+   ],
+   [
+    "UP2",
+    "14.3",
+    "14-3-energy-in-a-magnetic-field"
+   ]
+  ],
+  "lab": {
+   "id": "circuit",
+   "preset": "rl_transient"
+  }
+ },
+ {
+  "id": "waves_interference",
+  "title": "Wave behaviour and interference",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "ode_second_order"
+  ],
+  "summary": "Superposition, standing waves, resonance.",
+  "layers": {
+   "basics": "Waves add: peaks meeting peaks reinforce, peaks meeting troughs cancel. Confined waves form standing patterns.",
+   "deeper": "Transmission lines, antennas, optical cavities and acoustic resonators all rely on the same ideas.",
+   "expert": "y=A sin(kx−ωt), v=fλ; standing waves with nodes at fixed ends: fₙ=nv/2L; phase velocity vs group velocity."
+  },
+  "facts": [],
+  "formula": "v = fλ",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP1",
+    "16.1",
+    "16-1-traveling-waves"
+   ],
+   [
+    "UP1",
+    "16.5",
+    "16-5-interference-of-waves"
+   ],
+   [
+    "UP1",
+    "16.6",
+    "16-6-standing-waves-and-resonance"
+   ],
+   [
+    "UP3",
+    "3.1",
+    "3-1-youngs-double-slit-interference"
+   ]
+  ],
+  "kn": [
+   "waves",
+   "oscillations"
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "wave_interference"
+  }
+ },
+ {
+  "id": "optics_basics",
+  "title": "Optics and light",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "waves_interference"
+  ],
+  "summary": "Light as a ray and as a wave.",
+  "layers": {
+   "basics": "Light reflects, refracts and diffracts. Lenses and mirrors focus it.",
+   "deeper": "Snell’s law n₁sinθ₁=n₂sinθ₂ governs fibre guiding; diffraction limits resolution of photolithography.",
+   "expert": "Rayleigh limit θ=1.22λ/D; thin-film interference; Fresnel equations for reflectance; light is EM waves from ~400 to 700 nm."
+  },
+  "facts": [],
+  "formula": "n₁ sinθ₁ = n₂ sinθ₂",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "1.1",
+    "1-1-the-propagation-of-light"
+   ],
+   [
+    "UP3",
+    "3.4",
+    "3-4-interference-in-thin-films"
+   ],
+   [
+    "UP3",
+    "4.5",
+    "4-5-circular-apertures-and-resolution"
+   ]
+  ],
+  "kn": [
+   "optics_geometric",
+   "wave_optics"
+  ]
+ },
+ {
+  "id": "photoelectric_effect",
+  "title": "Photoelectric effect and photons",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "optics_basics"
+  ],
+  "summary": "Light delivers energy in packets.",
+  "layers": {
+   "basics": "Light knocks electrons out of metal only if its frequency is high enough, no matter how bright; this shows light comes in photons.",
+   "deeper": "Photon energy E=hf; the same physics runs solar cells and photodiodes.",
+   "expert": "K_max=hf−φ; h=6.626×10⁻³⁴ J·s; absorption of a photon with E>E_g creates an electron–hole pair."
+  },
+  "facts": [],
+  "formula": "E = h f",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "6.2",
+    "6-2-photoelectric-effect"
+   ],
+   [
+    "CPH",
+    "29.2",
+    "29-2-the-photoelectric-effect"
+   ]
+  ],
+  "kn": [
+   "photon_node",
+   "quantum_discovery"
+  ]
+ },
+ {
+  "id": "quantum_intro",
+  "title": "Quantum mechanics: the basis of semiconductors",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "photoelectric_effect",
+   "integration_techniques"
+  ],
+  "summary": "Matter behaves as waves with discrete energies.",
+  "layers": {
+   "basics": "Electrons confined in atoms or crystals have only certain allowed energies. This explains why materials differ as conductors, insulators and semiconductors.",
+   "deeper": "Wave functions, the uncertainty principle and tunnelling are the intro to band theory and to why tiny transistors leak.",
+   "expert": "Time-independent Schrödinger equation −ħ²/2m ψ″+Vψ=Eψ; particle in a box Eₙ=n²π²ħ²/2mL²; Pauli exclusion fills states two electrons at a time."
+  },
+  "facts": [],
+  "formula": "−(ħ²/2m)ψ″ + Vψ = Eψ",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP3",
+    "7.1",
+    "7-1-wave-functions"
+   ],
+   [
+    "UP3",
+    "7.3",
+    "7-3-the-schr-dinger-equation"
+   ],
+   [
+    "UP3",
+    "7.4",
+    "7-4-the-quantum-particle-in-a-box"
+   ],
+   [
+    "UP3",
+    "7.6",
+    "7-6-the-quantum-tunneling-of-particles-through-potential-barriers"
+   ],
+   [
+    "UP3",
+    "8.4",
+    "8-4-the-exclusion-principle-and-the-periodic-table"
+   ]
+  ],
+  "kn": [
+   "schrodinger",
+   "uncertainty",
+   "tunneling"
+  ],
+  "lab": {
+   "id": "device",
+   "preset": "bands_formation"
+  }
+ },
+ {
+  "id": "atomic_structure_ee",
+  "title": "Atomic structure and the periodic table",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [
+   "silicon"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "quantum_intro"
+  ],
+  "summary": "Electrons arranged in shells.",
+  "layers": {
+   "basics": "Atoms have a nucleus and electron shells. Elements in the same column share valence electron counts and so behave alike.",
+   "deeper": "Silicon (group 14) has four valence electrons, forming a tetrahedral crystal; boron (3) and phosphorus (5) neighbours are the classic dopants.",
+   "expert": "Electron configuration, ionisation energy and electronegativity trends explain which elements make good conductors, dopants and dielectrics. Si: [Ne]3s²3p²."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [
+   [
+    "CHE",
+    "6.4",
+    "6-4-electronic-structure-of-atoms-electron-configurations"
+   ],
+   [
+    "CHE",
+    "6.5",
+    "6-5-periodic-variations-in-element-properties"
+   ],
+   [
+    "CHE",
+    "2.5",
+    "2-5-the-periodic-table"
+   ]
+  ],
+  "kn": [
+   "periodic_table",
+   "quantum_orbitals"
+  ]
+ },
+ {
+  "id": "bonding_materials",
+  "title": "Chemical bonding and material properties",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [
+   "silicon"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "atomic_structure_ee"
+  ],
+  "summary": "Why materials conduct, insulate or flex.",
+  "layers": {
+   "basics": "Metallic bonds leave electrons free to move (conductors); covalent and ionic bonds lock them in place (insulators, semiconductors).",
+   "deeper": "Silicon’s covalent diamond-cubic lattice gives a small band gap; SiO₂ is a strong insulator, which is why MOS gates and chip isolation work.",
+   "expert": "Bond strength and bond angles set band gaps and mechanical behaviour; lattice types (diamond, zincblende) matter for III-V devices; thermal conductivity and expansion drive packaging."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [
+   [
+    "CHE",
+    "7.1",
+    "7-1-ionic-bonding"
+   ],
+   [
+    "CHE",
+    "7.2",
+    "7-2-covalent-bonding"
+   ],
+   [
+    "CHE",
+    "10.5",
+    "10-5-the-solid-state-of-matter"
+   ],
+   [
+    "CHE",
+    "10.6",
+    "10-6-lattice-structures-in-crystalline-solids"
+   ]
+  ],
+  "kn": [
+   "chemical_bonding",
+   "engineering_materials",
+   "crystal_lattices"
+  ]
+ },
+ {
+  "id": "batteries_electrochem",
+  "title": "Electrochemistry basics",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_physics",
+  "parents": [
+   "ee_physics"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "bonding_materials"
+  ],
+  "summary": "Voltage from chemical reactions.",
+  "layers": {
+   "basics": "A battery turns chemical energy into electricity via oxidation at one electrode and reduction at the other.",
+   "deeper": "Cell voltage depends on the electrode materials; lithium-ion cells shuttle Li⁺ ions between graphite and an oxide.",
+   "expert": "Nernst equation E=E°−(RT/nF)ln Q; capacity in Ah, internal resistance and C-rate set practical performance; degradation by SEI growth."
+  },
+  "facts": [],
+  "formula": "E = E° − (RT/nF) ln Q",
+  "certainty": "C1",
+  "refs": [
+   [
+    "CHE",
+    "17.2",
+    "17-2-galvanic-cells"
+   ],
+   [
+    "CHE",
+    "17.3",
+    "17-3-electrode-and-cell-potentials"
+   ],
+   [
+    "CHE",
+    "17.5",
+    "17-5-batteries-and-fuel-cells"
+   ]
+  ],
+  "kn": [
+   "electrochemistry",
+   "batteries_tech"
+  ],
+  "where": "phone_battery"
+ }
+]

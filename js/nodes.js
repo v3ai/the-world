@@ -117,7 +117,7 @@ FT.body = {
 };
 function applyMode(F) {
   let M = MODES[F.mode];
-  if (F.mode === 'auto') { const k = smooth(.35, 1.1, cam.D); M = { skin: lerp(.07, 1, k), skeletal: lerp(.22, 0, k), muscular: 0, '*': lerp(1, 0, k) }; if (cam.A !== F && !chainOf(cam.A).includes(F)) M = { skin: 1 }; }
+  if (F.mode === 'auto') { const k = chainOf(cam.A).some(f => f.device) ? 1 : smooth(.35, 1.1, cam.D); M = { skin: lerp(.07, 1, k), skeletal: lerp(.22, 0, k), muscular: 0, '*': lerp(1, 0, k) }; if (cam.A !== F && !chainOf(cam.A).includes(F)) M = { skin: 1 }; }
   const focus = F.focus && F.focus.alpha > .02 ? F.focus : null;
   for (const id in F.parts) {
     const { g, p } = F.parts[id], s = sysOf(p);
@@ -272,20 +272,27 @@ function showBodyNode(id, h) {
   if (n.facts && n.facts.length) basics += '<dl>' + n.facts.map(f => `<dt>${f[0]}</dt><dd>${f[1]}</dd>`).join('') + '</dl>';
   if (n.did_you_know) basics += `<div class="fun"><b>Did you know?</b>${n.did_you_know}</div>`;
   let html = `<div class="tag">${n.kind || ''}${n.scale_m ? ' · ~' + fmtLen(n.scale_m) : ''}</div><h2>${n.title}</h2>${certBadge(n.certainty)}`;
+  if (n.formula) basics += `<div class="formula">${n.formula}</div>`;
   html += layered([['Basics', basics], ['Deeper', L.deeper ? `<div class="body"><p>${L.deeper}</p></div>` : ''], ['Expert', L.expert ? `<div class="body expert"><p>${L.expert}</p></div>` : '']]);
   const canLook = h && h.frame && h.frame.children && h.frame.children.some(c => c.type === 'organ' && c.opts.organ === id);
   html += `<div class="btnrow">${h ? `<button class="zoom" id="zoomBtn"><span>🔍 ${canLook ? 'Look inside' : 'Zoom in'}</span><span>▸</span></button>` : ''}${h && n.made_of && n.made_of.length ? `<button class="zoom alt" id="madeBtn"><span>What is it made of? → ${nodeTitle(n.made_of[0])}</span><span>▾</span></button>` : ''}</div>`;
+  const tw = typeof TEAR !== 'undefined' && (TEAR[id] || (n.where && TEAR[n.where]));
+  if (n.lab || (tw && !h)) html += `<div class="btnrow">${n.lab ? `<button class="zoom lab" id="labBtn"><span>🧪 ${labAvailable(n.lab.id) ? 'Try it' : 'Coming soon'} in the ${LAB_NAMES[n.lab.id] || n.lab.id}</span><span>▸</span></button>` : ''}${tw && !h ? `<button class="zoom alt" id="whereBtn"><span>📍 See where it is</span><span>▸</span></button>` : ''}</div>`;
   if (n.processes && n.processes.length) html += `<div class="refs"><div class="rh">▶ How it works</div><div class="chips">${n.processes.map(p => `<button class="chip pr" data-p="${p}">▶ ${nodeTitle(p)}</button>`).join('')}</div></div>`;
   html += chipList(n.parts, '🧩 Parts');
   html += chipList(n.made_of, '🧱 Made of');
   html += chipList(n.parents, '⬆ Part of');
+  html += chipList(n.needs, '🧭 Builds on');
+  if (n.ext && n.ext.length) html += `<div class="refs"><div class="rh">🔗 Learn more</div>${n.ext.map(e => `<a class="ref" href="${e.url}" target="_blank" rel="noopener"><b>${e.title}</b></a>`).join('')}</div>`;
   if (n.molecules && n.molecules.length) html += chipList(n.molecules.map(m => NODE[m] ? m : null), '⚛ Key molecules');
   if (n.open_questions && n.open_questions.length) html += `<div class="refs"><div class="rh">🔭 Still open</div><ul class="ev">${n.open_questions.map(q => `<li>${q}</li>`).join('')}</ul></div>`;
   if (n.refs && n.refs.length) html += `<div class="refs"><div class="rh">📚 Textbook sections</div>${n.refs.map(r => bookRef(r[0], r[1])).join('')}</div>`;
   openPanel(html);
   const zb = $('#zoomBtn'); if (zb) zb.onclick = () => { const ch = h.frame.children.find(c => c.type === 'organ' && c.opts.organ === id); if (ch) flyTo(ch, new V3(), ch.opts.R * 2.2); else zoomIntoHit(h); };
   const mb = $('#madeBtn'); if (mb) mb.onclick = () => { closeInfo(); const f = tissueFrame(n.made_of[0], h.pointLocal || h.frame.C, id); f.dynamic = true; f.keep = performance.now() + 60000; h.frame.addChild(f); f.ensure(); flyTo(f, new V3(), 4e-4); };
-  infoEl.querySelectorAll('.nd').forEach(b => b.onclick = () => focusNode(b.dataset.n));
+  infoEl.querySelectorAll('.nd').forEach(b => b.onclick = () => (TEAR[b.dataset.n] ? goToNode(b.dataset.n) : focusNode(b.dataset.n)));
+  const lb = $('#labBtn'); if (lb) lb.onclick = () => openLab(n.lab.id, n.lab.preset, n.title);
+  const wb = $('#whereBtn'); if (wb) wb.onclick = () => goToNode(id);
   infoEl.querySelectorAll('.pr').forEach(b => b.onclick = () => startProcess(b.dataset.p));
   markSeen(id);
   return true;
@@ -321,6 +328,8 @@ function renderProc() {
 /* jump to a node from anywhere (search, chips): fly to the body part if it has a mesh, else show its card */
 function goToNode(id) {
   const n = NODE[id]; if (!n) return;
+  const tw = TEAR[id] || (n.where && TEAR[n.where]) || (n.hotspot && TEAR[n.hotspot.of]);
+  if (tw) { showBodyNode(id, null); flyTo(tw.frame, tw.pos, tw.D); return; }
   const body = FR.body, ix = ANAT_SYNC, find = nid => ix && ix.parts.find(p => !p.parent && nodeForMesh(p.id) === nid);
   const org = n.hotspot && body && body.children.find(c => c.type === 'organ' && c.opts.organ === n.hotspot.of);
   if (org && n.hotspot.at) { showBodyNode(id, null); flyTo(org, new V3(...n.hotspot.at), org.opts.R * 1.2); return; }

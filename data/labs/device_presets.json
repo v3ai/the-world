@@ -1,0 +1,551 @@
+[
+ {
+  "id": "bands_formation",
+  "title": "Bands form as atoms approach",
+  "text": "Drag the spacing slider from 6 Å down to the 2.35 Å silicon bond length: isolated levels broaden into bands and a ~1.1 eV gap opens between the filled valence band and the empty conduction band.",
+  "tab": "bands",
+  "params": {
+   "r": 2.35,
+   "T": 300
+  }
+ },
+ {
+  "id": "fermi_dirac",
+  "title": "Fermi–Dirac smearing with temperature",
+  "text": "At 0 K the occupation is a sharp step at E_F. Raise the temperature and the step smears over a few kT; the tail above E_F is what puts electrons in the conduction band.",
+  "tab": "bands",
+  "params": {
+   "r": 2.35,
+   "T": 900,
+   "probe": 0.15
+  }
+ },
+ {
+  "id": "band_types",
+  "title": "Metal, semiconductor, insulator",
+  "text": "Same electrons, different band fillings: a half-filled band conducts, a full band below a small gap (Si, 1.12 eV) conducts a little when warm, a big gap (SiO₂, 9 eV) does not.",
+  "tab": "bands",
+  "params": {
+   "r": 2.35,
+   "T": 300,
+   "probe": 0.56
+  }
+ },
+ {
+  "id": "intrinsic_si",
+  "title": "Intrinsic silicon",
+  "text": "Pure silicon: n = p = n_i = 1.0×10¹⁰ cm⁻³ at 300 K and E_F sits very near midgap. Only about one atom in 5×10¹² has a free electron.",
+  "tab": "doping",
+  "params": {
+   "lND": 8,
+   "lNA": 8,
+   "T": 300,
+   "Ef": 0,
+   "grad": 0
+  }
+ },
+ {
+  "id": "n_type",
+  "title": "n-type silicon (phosphorus doped)",
+  "text": "N_D = 10¹⁶ cm⁻³ donors: n ≈ N_D, holes drop to n_i²/n ≈ 10⁴ cm⁻³, and E_F moves up toward E_c. Apply a field and the electrons drift.",
+  "tab": "doping",
+  "params": {
+   "lND": 16,
+   "lNA": 8,
+   "T": 300,
+   "Ef": 300,
+   "grad": 0
+  }
+ },
+ {
+  "id": "p_type",
+  "title": "p-type silicon (boron doped)",
+  "text": "N_A = 10¹⁶ cm⁻³ acceptors: holes are the majority carriers, E_F moves down toward E_v, and the current is carried by holes drifting along the field.",
+  "tab": "doping",
+  "params": {
+   "lND": 8,
+   "lNA": 16,
+   "T": 300,
+   "Ef": -300,
+   "grad": 0
+  }
+ },
+ {
+  "id": "carrier_vs_temp",
+  "title": "Carriers vs temperature",
+  "text": "Follow the n(T) curve: at low T dopants freeze out, around room temperature n = N_D (extrinsic), at high T intrinsic pairs overwhelm the doping and n = p = n_i(T).",
+  "tab": "doping",
+  "params": {
+   "lND": 15,
+   "lNA": 8,
+   "T": 450,
+   "Ef": 0,
+   "grad": 0
+  }
+ },
+ {
+  "id": "freeze_out",
+  "title": "Dopant freeze-out",
+  "text": "At 60 K there is too little thermal energy to ionise most donors (45 meV below E_c), so n is far below N_D.",
+  "tab": "doping",
+  "params": {
+   "lND": 16,
+   "lNA": 8,
+   "T": 60,
+   "Ef": 0,
+   "grad": 0
+  }
+ },
+ {
+  "id": "drift_diffusion",
+  "title": "Drift and diffusion currents",
+  "text": "Electrons move opposite to the field (drift) and also flow from high to low concentration (diffusion). Each gives a current; Einstein’s relation D = μkT/q links them.",
+  "tab": "doping",
+  "params": {
+   "lND": 16,
+   "lNA": 8,
+   "T": 300,
+   "Ef": 600,
+   "grad": 1.3
+  }
+ },
+ {
+  "id": "compensated",
+  "title": "Compensated doping",
+  "text": "Both donors and acceptors present: they cancel, leaving net doping N_D − N_A. Mobility is reduced because all ionised impurities scatter carriers.",
+  "tab": "doping",
+  "params": {
+   "lND": 17,
+   "lNA": 16.7,
+   "T": 300,
+   "Ef": 300,
+   "grad": 0
+  }
+ },
+ {
+  "id": "pn_equilibrium",
+  "title": "PN junction at equilibrium",
+  "text": "N_A = N_D = 10¹⁶ cm⁻³: V_bi = 0.714 V and the depletion width is 0.43 µm. Diffusion and drift balance; E_F is flat.",
+  "tab": "pn",
+  "params": {
+   "lNA": 16,
+   "lND": 16,
+   "V": 0,
+   "T": 300,
+   "Rs": 5,
+   "bd": false,
+   "num": false,
+   "logI": false
+  }
+ },
+ {
+  "id": "pn_forward",
+  "title": "Forward bias",
+  "text": "At +0.65 V the barrier shrinks to V_bi − V, the depletion region narrows and the current rises exponentially (use the log-I axis to see the 60 mV/decade slope).",
+  "tab": "pn",
+  "params": {
+   "lNA": 16,
+   "lND": 16,
+   "V": 0.65,
+   "T": 300,
+   "Rs": 5,
+   "logI": true
+  }
+ },
+ {
+  "id": "pn_reverse",
+  "title": "Reverse bias",
+  "text": "At −5 V the depletion region widens to 1.1 µm, the junction capacitance falls and only a tiny leakage current (generation in the depletion region) flows.",
+  "tab": "pn",
+  "params": {
+   "lNA": 16,
+   "lND": 16,
+   "V": -5,
+   "T": 300,
+   "Rs": 5,
+   "logI": true
+  }
+ },
+ {
+  "id": "pn_breakdown",
+  "title": "Reverse breakdown",
+  "text": "With 10¹⁷ cm⁻³ on both sides the peak field reaches the critical value near −11 V and the current shoots up (avalanche). The series resistance finally limits it.",
+  "tab": "pn",
+  "params": {
+   "lNA": 17,
+   "lND": 17,
+   "V": -11.3,
+   "T": 300,
+   "Rs": 50,
+   "bd": true
+  }
+ },
+ {
+  "id": "pn_numeric",
+  "title": "Depletion approximation vs numeric Poisson",
+  "text": "The dashed lines are the depletion approximation; the solid cyan lines solve Poisson’s equation numerically with carrier statistics. They agree well except for the rounded edges.",
+  "tab": "pn",
+  "params": {
+   "lNA": 16,
+   "lND": 16,
+   "V": -2,
+   "T": 300,
+   "Rs": 5,
+   "num": true
+  }
+ },
+ {
+  "id": "pn_one_sided",
+  "title": "One-sided junction (p⁺n)",
+  "text": "N_A = 10¹⁸ ≫ N_D = 10¹⁵: the depletion region sits almost entirely in the lightly doped n side, so its width, capacitance and breakdown are set by N_D. Note how the numeric solution deviates where the heavily doped side is thinner than a Debye length.",
+  "tab": "pn",
+  "params": {
+   "lNA": 18,
+   "lND": 15,
+   "V": -2,
+   "T": 300,
+   "Rs": 5,
+   "num": true
+  }
+ },
+ {
+  "id": "led_colors",
+  "title": "LED colours from bandgaps",
+  "text": "InGaN: more indium means a smaller gap and a longer wavelength — from violet through blue to green. Move the composition slider and watch the photon colour change.",
+  "tab": "diodes",
+  "params": {
+   "mode": "led",
+   "mat": "InGaN",
+   "mx": 0.2,
+   "Vs": 4,
+   "R": 100
+  }
+ },
+ {
+  "id": "led_infrared",
+  "title": "Infrared LED (GaAs)",
+  "text": "GaAs has E_g = 1.42 eV, so its photons (870 nm) are invisible to the eye: the LED in your remote control.",
+  "tab": "diodes",
+  "params": {
+   "mode": "led",
+   "mat": "GaAs",
+   "mx": 0,
+   "Vs": 2,
+   "R": 100
+  }
+ },
+ {
+  "id": "led_silicon",
+  "title": "Why silicon is a poor LED",
+  "text": "Silicon has an indirect bandgap: recombination needs a phonon too, so almost all pairs recombine without light (EQE ~10⁻⁴), and its 1.12 eV photons are infrared anyway.",
+  "tab": "diodes",
+  "params": {
+   "mode": "led",
+   "mat": "Si",
+   "mx": 0,
+   "Vs": 2,
+   "R": 100
+  }
+ },
+ {
+  "id": "solar_cell",
+  "title": "Solar cell I–V",
+  "text": "Under 1 sun the diode curve shifts into the fourth quadrant. Read off V_oc ≈ 0.63 V, I_sc ≈ 40 mA/cm², the max-power point (blue rectangle) and the fill factor.",
+  "tab": "diodes",
+  "params": {
+   "mode": "solar",
+   "suns": 1,
+   "Tc": 300,
+   "Rsc": 0.5,
+   "lRsh": 3.5
+  }
+ },
+ {
+  "id": "solar_dim",
+  "title": "Solar cell under dim light",
+  "text": "At 0.1 sun the current drops tenfold but V_oc only falls by ~60 mV (logarithmic), so efficiency holds up reasonably.",
+  "tab": "diodes",
+  "params": {
+   "mode": "solar",
+   "suns": 0.1,
+   "Tc": 300,
+   "Rsc": 0.5,
+   "lRsh": 3.5
+  }
+ },
+ {
+  "id": "solar_resistive",
+  "title": "Parasitic resistances",
+  "text": "Add series resistance (R_s = 4 Ω·cm²) and the fill factor collapses; lower the shunt resistance to see the slope near I_sc.",
+  "tab": "diodes",
+  "params": {
+   "mode": "solar",
+   "suns": 1,
+   "Tc": 300,
+   "Rsc": 4,
+   "lRsh": 2.5
+  }
+ },
+ {
+  "id": "zener_regulator",
+  "title": "Zener voltage regulator",
+  "text": "A 5.1 V Zener clamps the output at V_Z while the input varies from 6 V upwards: the flat part of the V_out–V_in curve.",
+  "tab": "diodes",
+  "params": {
+   "mode": "zener",
+   "Vz": 5.1,
+   "Vin": 12,
+   "Rz": 330,
+   "RL": 1000
+  }
+ },
+ {
+  "id": "zener_avalanche",
+  "title": "Avalanche Zener (9.1 V)",
+  "text": "Above about 7 V breakdown is by avalanche multiplication, with a sharper knee than a low-voltage tunnelling Zener.",
+  "tab": "diodes",
+  "params": {
+   "mode": "zener",
+   "Vz": 9.1,
+   "Vin": 20,
+   "Rz": 470,
+   "RL": 1000
+  }
+ },
+ {
+  "id": "bjt_output",
+  "title": "BJT output characteristics",
+  "text": "Each curve is a fixed base current; the nearly flat parts are the active region (current source), the steep start is saturation. The dashed load line picks the operating point Q.",
+  "tab": "bjt",
+  "params": {
+   "IB": 40,
+   "step": 20,
+   "VCC": 10,
+   "RC": 1000,
+   "bf": 100,
+   "VA": 75
+  }
+ },
+ {
+  "id": "bjt_active",
+  "title": "BJT in the active region",
+  "text": "I_B = 20 µA, β = 100 → I_C ≈ 2 mA. The base–emitter barrier is lowered; the collector junction is strongly reverse biased and sweeps injected electrons away.",
+  "tab": "bjt",
+  "params": {
+   "IB": 20,
+   "step": 20,
+   "VCC": 10,
+   "RC": 500,
+   "bf": 100,
+   "VA": 75
+  }
+ },
+ {
+  "id": "bjt_saturation",
+  "title": "BJT in saturation",
+  "text": "With a big base current and a large R_C the transistor cannot supply β·I_B: V_CE collapses to ~0.2 V, the collector junction turns on and the gain falls — a closed switch.",
+  "tab": "bjt",
+  "params": {
+   "IB": 100,
+   "step": 20,
+   "VCC": 10,
+   "RC": 1500,
+   "bf": 100,
+   "VA": 75
+  }
+ },
+ {
+  "id": "bjt_cutoff",
+  "title": "BJT in cutoff",
+  "text": "With no base current both junctions are off and (almost) no collector current flows: an open switch with V_CE = V_CC.",
+  "tab": "bjt",
+  "params": {
+   "IB": 0,
+   "step": 20,
+   "VCC": 10,
+   "RC": 1000,
+   "bf": 100,
+   "VA": 75
+  }
+ },
+ {
+  "id": "mos_capacitor",
+  "title": "MOS capacitor: accumulation, depletion, inversion",
+  "text": "Sweep V_GS from −1 V upward and watch the band diagram: holes accumulate, then are depleted, and above V_T the surface inverts (E_c approaches E_F) and an electron layer forms.",
+  "tab": "mos",
+  "params": {
+   "VGS": 1.2,
+   "VDS": 0,
+   "tox": 2,
+   "lNA": 17,
+   "gate": "mid",
+   "lL": 0,
+   "sce": false
+  }
+ },
+ {
+  "id": "mosfet_output",
+  "title": "MOSFET output curves and pinch-off",
+  "text": "Increase V_DS: the channel tapers and pinches off at V_DS = V_GS − V_T; beyond it the current is nearly constant (saturation).",
+  "tab": "mos",
+  "params": {
+   "VGS": 1.4,
+   "VDS": 1.2,
+   "tox": 2,
+   "lNA": 17,
+   "gate": "mid",
+   "lL": 0,
+   "sce": false
+  }
+ },
+ {
+  "id": "mosfet_transfer",
+  "title": "MOSFET transfer curve and subthreshold slope",
+  "text": "Switch on the log axis: below V_T the current falls exponentially, about 60 mV per decade — the physical limit of the turn-off slope at room temperature.",
+  "tab": "mos",
+  "params": {
+   "VGS": 0.8,
+   "VDS": 0.1,
+   "tox": 2,
+   "lNA": 17,
+   "gate": "mid",
+   "lL": 0,
+   "sce": false,
+   "logId": true
+  }
+ },
+ {
+  "id": "short_channel",
+  "title": "Short-channel effects",
+  "text": "At L = 50 nm velocity saturation lowers V_dsat and the current is no longer quadratic; the drain also lowers the barrier (DIBL) and the output curves tilt upward.",
+  "tab": "mos",
+  "params": {
+   "VGS": 1.4,
+   "VDS": 1.5,
+   "tox": 2,
+   "lNA": 17,
+   "gate": "mid",
+   "lL": -1.3,
+   "sce": true
+  }
+ },
+ {
+  "id": "finfet",
+  "title": "FinFET and gate-all-around",
+  "text": "Wrapping the gate around a thin fin or nanosheets shortens the electrostatic scale length λ, so DIBL stays small even at 20 nm gate lengths where the planar device has lost control.",
+  "tab": "mos",
+  "params": {
+   "VGS": 1.0,
+   "VDS": 0.8,
+   "tox": 1.2,
+   "lNA": 17,
+   "gate": "mid",
+   "lL": -1.5,
+   "sce": true,
+   "Tfin": 6
+  }
+ },
+ {
+  "id": "cmos_vtc",
+  "title": "CMOS inverter transfer curve",
+  "text": "The steep transition at V_M gives gain > 1 and defines the noise margins; the load-line panel shows nMOS and pMOS curves intersecting at V_out.",
+  "tab": "cmos",
+  "params": {
+   "VDD": 1.2,
+   "VTn": 0.4,
+   "VTp": 0.4,
+   "Wr": 2.5,
+   "Vin": 0.6,
+   "auto": false
+  }
+ },
+ {
+  "id": "cmos_switching",
+  "title": "Inverter switching",
+  "text": "Watch the input toggle and the output charge or discharge the load capacitor through the on-transistor; only during the transition do both conduct briefly.",
+  "tab": "cmos",
+  "params": {
+   "VDD": 1.2,
+   "VTn": 0.4,
+   "VTp": 0.4,
+   "Wr": 2.5,
+   "auto": true,
+   "C": 10
+  }
+ },
+ {
+  "id": "cmos_nand",
+  "title": "NAND gate",
+  "text": "Series nMOS pull-down, parallel pMOS pull-up: the output is low only when both inputs are high. Toggle A and B.",
+  "tab": "cmos",
+  "params": {
+   "VDD": 1.2,
+   "gate": "nand",
+   "A": true,
+   "B": true,
+   "auto": false,
+   "Vin": 0.6
+  }
+ },
+ {
+  "id": "cmos_nor",
+  "title": "NOR gate",
+  "text": "Parallel nMOS, series pMOS: the output is high only when both inputs are low.",
+  "tab": "cmos",
+  "params": {
+   "VDD": 1.2,
+   "gate": "nor",
+   "A": false,
+   "B": false,
+   "auto": false,
+   "Vin": 0.6
+  }
+ },
+ {
+  "id": "cmos_power",
+  "title": "Dynamic power and voltage scaling",
+  "text": "P = α·C·V²·f: lowering V_DD from 1.2 V to 0.8 V cuts dynamic power by more than half at the same frequency — but delay grows as V_DD approaches V_T.",
+  "tab": "cmos",
+  "params": {
+   "VDD": 0.8,
+   "VTn": 0.3,
+   "VTp": 0.3,
+   "Wr": 2.5,
+   "auto": true,
+   "C": 10,
+   "lf": 3.0,
+   "alpha": 0.1,
+   "lN": 9.5
+  }
+ },
+ {
+  "id": "fab_process",
+  "title": "CMOS fabrication step by step",
+  "text": "Auto-play walks through a simplified process: oxidation, polysilicon, lithography, etch, implant, dielectric, planarisation and copper wiring.",
+  "tab": "fab",
+  "params": {
+   "step": 0,
+   "auto": true
+  }
+ },
+ {
+  "id": "fab_lithography",
+  "title": "Lithography",
+  "text": "UV light through a photomask exposes the resist everywhere except under the chrome; the pattern becomes a 40 nm gate.",
+  "tab": "fab",
+  "params": {
+   "step": 4,
+   "auto": false
+  }
+ },
+ {
+  "id": "fab_implant",
+  "title": "Ion implantation",
+  "text": "The gate blocks the ions, so the source and drain are automatically aligned to the gate (self-alignment).",
+  "tab": "fab",
+  "params": {
+   "step": 8,
+   "auto": false
+  }
+ }
+]

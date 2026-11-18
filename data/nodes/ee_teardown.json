@@ -1,0 +1,3224 @@
+[
+ {
+  "id": "smartphone",
+  "title": "Smartphone",
+  "kind": "device",
+  "template": "teardown",
+  "scale_m": 0.147,
+  "area": "ee_teardown",
+  "parents": [
+   "electrical_engineering"
+  ],
+  "parts": [
+   "phone_display",
+   "phone_touchscreen",
+   "phone_battery",
+   "phone_pcb",
+   "phone_camera",
+   "phone_speaker",
+   "phone_antenna",
+   "phone_charger_port",
+   "phone_vibration_motor"
+  ],
+  "made_of": [],
+  "processes": [
+   "how_a_phone_charges",
+   "how_a_photo_is_taken",
+   "how_wifi_sends_data",
+   "how_touchscreen_senses"
+  ],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "A pocket computer, radio, camera and sensor suite.",
+  "layers": {
+   "basics": "A smartphone packs a screen, battery, a main circuit board with the processor and radios, a camera, speaker, and sensors into a slab 7 mm thick.",
+   "deeper": "Most of the volume is battery and display; the circuit board is only about the size of a few postage stamps, folded into layers to save area.",
+   "expert": "Typical flagship: 6.1-inch OLED, 4,000–5,000 mAh (≈15–19 Wh) Li-ion cell, 3-nm-class SoC with ~15–20 billion transistors, multiple RF bands from 600 MHz to 6 GHz plus mmWave, ~7–8 mm thick, ~170–200 g."
+  },
+  "facts": [
+   [
+    "Size",
+    "≈ 71.5 × 147 × 7.8 mm"
+   ],
+   [
+    "Battery",
+    "≈ 15–19 Wh"
+   ],
+   [
+    "Transistors in SoC",
+    "≈ 10¹⁰ – 2×10¹⁰"
+   ]
+  ],
+  "did_you_know": "A modern phone has more computing power than the computers that guided the Apollo missions, by factors of millions.",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "electronics_logic"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Smartphone",
+    "url": "https://en.wikipedia.org/wiki/Smartphone"
+   }
+  ]
+ },
+ {
+  "id": "phone_display",
+  "title": "Display (OLED)",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.14,
+  "area": "ee_teardown",
+  "parents": [
+   "smartphone"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "smartphone",
+   "at": [
+    0,
+    0.0,
+    0.0033
+   ],
+   "label": "Display panel"
+  },
+  "needs": [
+   "led_photodiode",
+   "optoelectronic_devices"
+  ],
+  "summary": "An array of millions of light-emitting pixels.",
+  "layers": {
+   "basics": "The screen is a grid of tiny coloured light sources, each controlled by its own transistor.",
+   "deeper": "OLED pixels emit light when current flows through organic layers; a thin-film transistor backplane switches each pixel row by row.",
+   "expert": "AMOLED: LTPO TFT backplane, 120 Hz adaptive refresh; PWM dimming at ≥240 Hz; MIPI DSI link at several Gb/s; sub-pixel layouts (PenTile)."
+  },
+  "facts": [
+   [
+    "Pixels",
+    "≈ 2.5–3 million"
+   ],
+   [
+    "Peak brightness",
+    "≈ 1000–2000 nits"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: OLED",
+    "url": "https://en.wikipedia.org/wiki/OLED"
+   }
+  ]
+ },
+ {
+  "id": "phone_touchscreen",
+  "title": "Touchscreen",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.14,
+  "area": "ee_teardown",
+  "parents": [
+   "smartphone"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "how_touchscreen_senses"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "smartphone",
+   "at": [
+    0,
+    0,
+    0.0037
+   ],
+   "label": "Touch sensor layer"
+  },
+  "needs": [
+   "capacitor_ee",
+   "electrostatics_dielectrics"
+  ],
+  "summary": "A transparent grid that senses where fingers are.",
+  "layers": {
+   "basics": "A fine grid of transparent electrodes over the display senses the tiny change in electric field when a finger comes near.",
+   "deeper": "Projected-capacitive sensing: a finger adds capacitance at an electrode crossing; a controller scans the grid hundreds of times per second.",
+   "expert": "Mutual-capacitance Tx/Rx grid ~4–5 mm pitch; ΔC ~ 0.1–1 pF of a ~1–2 pF node; sigma-delta readout, noise rejection near charger frequency; interpolation gives sub-mm position."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "field",
+   "preset": "touch_grid"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Touchscreen",
+    "url": "https://en.wikipedia.org/wiki/Touchscreen"
+   }
+  ]
+ },
+ {
+  "id": "phone_battery",
+  "title": "Battery (Li-ion)",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.07,
+  "area": "ee_teardown",
+  "parents": [
+   "smartphone"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "smartphone",
+   "at": [
+    0,
+    -0.02,
+    -0.0015
+   ],
+   "label": "Battery pack"
+  },
+  "needs": [
+   "battery_storage_systems",
+   "batteries_electrochem"
+  ],
+  "summary": "Stores about 15–19 Wh of energy.",
+  "layers": {
+   "basics": "A lithium-ion pouch cell stores chemical energy that is released as electricity; it takes up half the phone.",
+   "deeper": "Li⁺ ions move between graphite and a lithium-metal-oxide electrode; protection electronics guard against over-charge and heat.",
+   "expert": "Nominal 3.85 V, up to 4.45 V (high-voltage); energy density ≈ 700 Wh/L; ≈ 500–1000 cycles to 80%; BMS handles cell protection, coulomb counting."
+  },
+  "facts": [
+   [
+    "Capacity",
+    "≈ 4000–5000 mAh"
+   ],
+   [
+    "Nominal voltage",
+    "≈ 3.85 V"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "batteries_tech"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Lithium-ion battery",
+    "url": "https://en.wikipedia.org/wiki/Lithium-ion_battery"
+   }
+  ]
+ },
+ {
+  "id": "phone_pcb",
+  "title": "Main circuit board (PCB)",
+  "kind": "structure",
+  "template": "teardown",
+  "scale_m": 0.1,
+  "area": "ee_teardown",
+  "parents": [
+   "smartphone"
+  ],
+  "parts": [
+   "phone_soc",
+   "phone_ram",
+   "phone_flash",
+   "phone_pmic",
+   "phone_rf_frontend",
+   "phone_modem",
+   "phone_wifi_bt",
+   "phone_sensors",
+   "phone_passives",
+   "phone_crystal_osc"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "smartphone",
+   "at": [
+    0,
+    0.045,
+    -0.0005
+   ],
+   "label": "Logic board"
+  },
+  "needs": [
+   "pcb_design",
+   "transmission_lines"
+  ],
+  "summary": "A multilayer board connecting all chips.",
+  "layers": {
+   "basics": "A thin green board whose copper layers connect the processor, memory and radios.",
+   "deeper": "Phone boards have 8–12+ layers with microvias (HDI); stacked boards save area; components are soldered by reflow.",
+   "expert": "Line/space ≈ 30–40 µm; impedance-controlled traces for LPDDR and MIPI; any-layer HDI; EMI shield cans over RF sections."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Printed circuit board",
+    "url": "https://en.wikipedia.org/wiki/Printed_circuit_board"
+   }
+  ]
+ },
+ {
+  "id": "phone_camera",
+  "title": "Camera module",
+  "kind": "device",
+  "template": "teardown",
+  "scale_m": 0.012,
+  "area": "ee_teardown",
+  "parents": [
+   "smartphone"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "how_a_photo_is_taken"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "smartphone",
+   "at": [
+    -0.018,
+    0.065,
+    -0.003
+   ],
+   "label": "Camera module"
+  },
+  "needs": [
+   "photodetectors_solar",
+   "optics_basics"
+  ],
+  "summary": "Lens stack plus image sensor.",
+  "layers": {
+   "basics": "Several small lenses focus light on a chip of millions of light-sensing pixels.",
+   "deeper": "A CMOS image sensor converts photons to charge in each photodiode; colour filters and processing build a full-colour picture.",
+   "expert": "Pixel pitch ≈ 0.6–1.4 µm; stacked back-illuminated BSI sensors with ADC per column; OIS voice-coil actuators; MIPI CSI-2 at multiple Gb/s."
+  },
+  "facts": [
+   [
+    "Sensor",
+    "≈ 12–200 megapixels"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Image sensor",
+    "url": "https://en.wikipedia.org/wiki/Image_sensor"
+   }
+  ]
+ },
+ {
+  "id": "phone_speaker",
+  "title": "Speaker",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.012,
+  "area": "ee_teardown",
+  "parents": [
+   "smartphone"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "smartphone",
+   "at": [
+    0.015,
+    -0.07,
+    0
+   ],
+   "label": "Loudspeaker"
+  },
+  "needs": [
+   "magnetic_fields_forces",
+   "output_stages"
+  ],
+  "summary": "A tiny voice coil moving a membrane.",
+  "layers": {
+   "basics": "A coil in a magnetic field moves a thin diaphragm to push air and make sound.",
+   "deeper": "A class-D amplifier drives the coil; the cavity behind it shapes bass response.",
+   "expert": "Smart-amp with speaker protection (excursion & thermal models); Lorentz force F=B·l·i; MEMS speakers emerging."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Loudspeaker",
+    "url": "https://en.wikipedia.org/wiki/Loudspeaker"
+   }
+  ]
+ },
+ {
+  "id": "phone_antenna",
+  "title": "Antennas",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.05,
+  "area": "ee_teardown",
+  "parents": [
+   "smartphone"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "smartphone",
+   "at": [
+    0.0,
+    -0.0725,
+    -0.002
+   ],
+   "label": "Antenna"
+  },
+  "needs": [
+   "dipole_antennas",
+   "antenna_fundamentals"
+  ],
+  "summary": "Metal parts of the frame act as antennas.",
+  "layers": {
+   "basics": "Radio waves go in and out through thin metal strips and gaps in the phone’s frame.",
+   "deeper": "Multiple antennas cover cellular, Wi-Fi, Bluetooth, GPS; tunable matching networks keep each efficient when a hand touches it.",
+   "expert": "Inverted-F/loop antennas; aperture tuners; MIMO 4×4; mmWave patch arrays in packages with beamforming ICs; SAR limits ≈ 1.6 W/kg (US) / 2.0 W/kg (EU)."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Antenna (radio)",
+    "url": "https://en.wikipedia.org/wiki/Antenna_(radio)"
+   }
+  ]
+ },
+ {
+  "id": "phone_charger_port",
+  "title": "USB-C port",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.009,
+  "area": "ee_teardown",
+  "parents": [
+   "smartphone"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "how_a_phone_charges"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "smartphone",
+   "at": [
+    0,
+    -0.0735,
+    0
+   ],
+   "label": "USB-C connector"
+  },
+  "needs": [
+   "usb_protocol"
+  ],
+  "summary": "Power and data connector.",
+  "layers": {
+   "basics": "A reversible port carries both charging power and data.",
+   "deeper": "CC pins negotiate voltage and current with the charger; high-speed pairs carry data.",
+   "expert": "USB PD up to 20 V/5 A (100 W) or 48 V/5 A EPR; PPS programmable voltage; 24 pins; e-marker cable ID."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: USB-C",
+    "url": "https://en.wikipedia.org/wiki/USB-C"
+   }
+  ]
+ },
+ {
+  "id": "phone_vibration_motor",
+  "title": "Vibration motor (haptics)",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.01,
+  "area": "ee_teardown",
+  "parents": [
+   "smartphone"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "smartphone",
+   "at": [
+    -0.02,
+    -0.06,
+    -0.002
+   ],
+   "label": "Haptic actuator"
+  },
+  "needs": [
+   "resonance_q",
+   "dc_machines"
+  ],
+  "summary": "A moving mass shaken by a coil.",
+  "layers": {
+   "basics": "A small weight oscillates to make the phone buzz.",
+   "deeper": "Linear resonant actuators (LRA) are driven at their resonance (~170–250 Hz) by a haptic driver.",
+   "expert": "Resonance f₀=½π√(k/m); drive waveforms tuned for ‘click’ feel; Q and ring-down braking pulses."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Haptic technology",
+    "url": "https://en.wikipedia.org/wiki/Haptic_technology"
+   }
+  ]
+ },
+ {
+  "id": "phone_soc",
+  "title": "System-on-chip (SoC)",
+  "kind": "device",
+  "template": "teardown",
+  "scale_m": 0.012,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_pcb"
+  ],
+  "parts": [
+   "soc_cpu_cluster",
+   "soc_gpu",
+   "soc_npu",
+   "soc_cache",
+   "soc_memory_controller",
+   "soc_isp",
+   "soc_interconnect"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_pcb",
+   "at": [
+    0,
+    0.015,
+    0.0005
+   ],
+   "label": "Application processor"
+  },
+  "needs": [
+   "vlsi_digital_cmos",
+   "mcu_architecture"
+  ],
+  "summary": "The main chip: CPU, GPU, AI engine and more on one die.",
+  "layers": {
+   "basics": "One chip contains the processor cores, graphics, AI engine, image processor and memory controllers.",
+   "deeper": "A die of ~100 mm² in a 3–5 nm-class process is stacked under the RAM package.",
+   "expert": "~10–20 billion transistors; power budget ≈ 5–10 W peak, ≈ 1–3 W sustained; DVFS and thermal throttling manage heat."
+  },
+  "facts": [
+   [
+    "Die area",
+    "≈ 100 mm²"
+   ],
+   [
+    "Process",
+    "≈ 3–5 nm-class"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: System on a chip",
+    "url": "https://en.wikipedia.org/wiki/System_on_a_chip"
+   }
+  ]
+ },
+ {
+  "id": "phone_ram",
+  "title": "RAM (LPDDR)",
+  "kind": "device",
+  "template": "teardown",
+  "scale_m": 0.012,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_pcb"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_pcb",
+   "at": [
+    0,
+    0.015,
+    0.0012
+   ],
+   "label": "LPDDR DRAM package"
+  },
+  "needs": [
+   "memory_rom_ram"
+  ],
+  "summary": "Fast working memory.",
+  "layers": {
+   "basics": "Short-term memory that holds the apps currently running.",
+   "deeper": "Low-power DRAM stacked on top of the SoC with tiny solder balls to save space.",
+   "expert": "LPDDR5X up to ≈ 8.5 Gb/s/pin; 8–16 GB; 1T1C cells refreshed every ≈ 32–64 ms."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: LPDDR",
+    "url": "https://en.wikipedia.org/wiki/LPDDR"
+   }
+  ]
+ },
+ {
+  "id": "phone_flash",
+  "title": "Flash storage (UFS)",
+  "kind": "device",
+  "template": "teardown",
+  "scale_m": 0.012,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_pcb"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_pcb",
+   "at": [
+    0.015,
+    -0.01,
+    0.0004
+   ],
+   "label": "UFS flash"
+  },
+  "needs": [
+   "flash_memory"
+  ],
+  "summary": "Long-term storage that keeps data without power.",
+  "layers": {
+   "basics": "Holds your photos, apps and files even when the phone is off.",
+   "deeper": "NAND flash in a package with a controller; talks to the SoC over UFS.",
+   "expert": "256 GB–1 TB; 3D NAND ≥200 layers; UFS 4.0 ≈ 4 GB/s; wear levelling and ECC in controller."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Flash memory",
+    "url": "https://en.wikipedia.org/wiki/Flash_memory"
+   }
+  ]
+ },
+ {
+  "id": "phone_pmic",
+  "title": "Power-management IC",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.004,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_pcb"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "how_a_phone_charges"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_pcb",
+   "at": [
+    -0.015,
+    -0.005,
+    0.0004
+   ],
+   "label": "PMIC"
+  },
+  "needs": [
+   "buck_converter_node",
+   "linear_regulators"
+  ],
+  "summary": "Creates every supply voltage the chips need.",
+  "layers": {
+   "basics": "Converts battery voltage into many steady voltages, and manages charging.",
+   "deeper": "Contains buck converters, LDOs and a charger; dynamically adjusts voltage to save energy.",
+   "expert": "Multi-phase buck for SoC core (≈ 0.5–1 V, up to ≈ 10 A), switching 2–5 MHz; separate charger IC (≥ 100 W-class fast charging)."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Power management integrated circuit",
+    "url": "https://en.wikipedia.org/wiki/Power_management_integrated_circuit"
+   }
+  ]
+ },
+ {
+  "id": "phone_rf_frontend",
+  "title": "RF front-end",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.006,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_pcb"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "how_wifi_sends_data"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_pcb",
+   "at": [
+    0.02,
+    -0.03,
+    0.0004
+   ],
+   "label": "RF front-end modules"
+  },
+  "needs": [
+   "rf_amplifiers",
+   "rf_mixers_filters"
+  ],
+  "summary": "Filters, switches and power amplifiers for the radios.",
+  "layers": {
+   "basics": "Takes signals from the modem to the antenna and back, filtering out other bands.",
+   "deeper": "Power amplifiers boost transmit; low-noise amps boost receive; BAW/SAW filters pick bands.",
+   "expert": "PA efficiency ≈ 40–50% at 3 dB back-off; envelope tracking; antenna tuners; dozens of filters for ≥ 30 bands."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: RF front end",
+    "url": "https://en.wikipedia.org/wiki/RF_front_end"
+   }
+  ]
+ },
+ {
+  "id": "phone_modem",
+  "title": "Cellular modem",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.01,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_pcb"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_pcb",
+   "at": [
+    -0.012,
+    0.03,
+    0.0004
+   ],
+   "label": "5G modem"
+  },
+  "needs": [
+   "wireless_5g6g",
+   "mimo_beamforming",
+   "error_correcting_codes"
+  ],
+  "summary": "Turns bits into radio waveforms and back.",
+  "layers": {
+   "basics": "The cellular modem handles the 4G/5G signal, from coding to modulation.",
+   "deeper": "It does OFDM, MIMO processing and error correction using dedicated hardware.",
+   "expert": "Multi-Gb/s peak rates; carrier aggregation; LDPC/polar decoders; beam management for mmWave."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: 5G",
+    "url": "https://en.wikipedia.org/wiki/5G"
+   }
+  ]
+ },
+ {
+  "id": "phone_wifi_bt",
+  "title": "Wi-Fi and Bluetooth chip",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.004,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_pcb"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "how_wifi_sends_data"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_pcb",
+   "at": [
+    0.018,
+    0.03,
+    0.0004
+   ],
+   "label": "Wi-Fi/BT combo"
+  },
+  "needs": [
+   "digital_modulation",
+   "networking_osi_tcpip"
+  ],
+  "summary": "Short-range radios.",
+  "layers": {
+   "basics": "Connects to Wi-Fi routers, headphones and watches.",
+   "deeper": "Wi-Fi uses OFDM in 2.4/5/6 GHz bands; Bluetooth uses frequency-hopping GFSK or π/4-DQPSK.",
+   "expert": "Wi-Fi 6E/7 up to 4096-QAM and 320 MHz channels; BLE LE Audio; coexistence arbitration between radios."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Wi-Fi",
+    "url": "https://en.wikipedia.org/wiki/Wi-Fi"
+   }
+  ]
+ },
+ {
+  "id": "phone_sensors",
+  "title": "Motion sensors (MEMS)",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.003,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_pcb"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_pcb",
+   "at": [
+    -0.02,
+    -0.03,
+    0.0004
+   ],
+   "label": "IMU"
+  },
+  "needs": [
+   "nanotech_mems",
+   "interfacing_sensors"
+  ],
+  "summary": "Accelerometer and gyroscope.",
+  "layers": {
+   "basics": "Tiny silicon structures sense acceleration and rotation, so the screen can rotate and games can use tilt.",
+   "deeper": "A suspended mass changes capacitance when accelerated; gyros use vibrating structures and Coriolis force.",
+   "expert": "Typical noise density ≈ 100 µg/√Hz; ±16 g range; gyro bias stability °/h; fused with magnetometer and barometer by the SoC."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "field",
+   "preset": "mems_accelerometer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Microelectromechanical systems",
+    "url": "https://en.wikipedia.org/wiki/Microelectromechanical_systems"
+   }
+  ]
+ },
+ {
+  "id": "phone_passives",
+  "title": "Passive components",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.0006,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_pcb"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_pcb",
+   "at": [
+    0.0,
+    -0.02,
+    0.0004
+   ],
+   "label": "Capacitors, inductors, resistors"
+  },
+  "needs": [
+   "capacitor_ee",
+   "inductor_ee",
+   "ohms_law_node"
+  ],
+  "summary": "Tens of billions made each year, hundreds per phone.",
+  "layers": {
+   "basics": "Hundreds of tiny capacitors, inductors and resistors smooth power and filter signals.",
+   "deeper": "Most are surface-mount parts as small as 0.4×0.2 mm; ceramic capacitors decouple supply noise near chips.",
+   "expert": "MLCC capacitance falls with DC bias (up to −80%); inductors in DC-DC converters (≈ 0.47 µH); a phone has ~1000 MLCCs."
+  },
+  "facts": [
+   [
+    "Passives per phone",
+    "≈ 800–1000"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Surface-mount technology",
+    "url": "https://en.wikipedia.org/wiki/Surface-mount_technology"
+   }
+  ]
+ },
+ {
+  "id": "phone_crystal_osc",
+  "title": "Crystal oscillator",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.0016,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_pcb"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_pcb",
+   "at": [
+    -0.02,
+    0.01,
+    0.0004
+   ],
+   "label": "Crystal / timing"
+  },
+  "needs": [
+   "oscillators_ee",
+   "resonance_q"
+  ],
+  "summary": "A quartz heartbeat.",
+  "layers": {
+   "basics": "A tiny quartz crystal vibrates at a very precise frequency, giving every chip a reliable time reference.",
+   "deeper": "The SoC’s 38.4/19.2 MHz clock and a 32.768 kHz real-time clock both use crystals.",
+   "expert": "Series-resonant quartz with Q ≈ 10⁴–10⁶; ±10 ppm typical, TCXO ±0.5 ppm; PLLs multiply it to GHz."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Crystal oscillator",
+    "url": "https://en.wikipedia.org/wiki/Crystal_oscillator"
+   }
+  ]
+ },
+ {
+  "id": "soc_cpu_cluster",
+  "title": "CPU cluster",
+  "kind": "structure",
+  "template": "teardown",
+  "scale_m": 0.003,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_soc"
+  ],
+  "parts": [
+   "cpu_core"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_soc",
+   "at": [
+    -0.002,
+    0.002,
+    0
+   ],
+   "label": "CPU cores"
+  },
+  "needs": [
+   "pipelining_hazards",
+   "cache_memory"
+  ],
+  "summary": "A group of processor cores with shared cache.",
+  "layers": {
+   "basics": "The part of the chip that runs your apps, with a few fast cores and some power-saving cores.",
+   "deeper": "Big.LITTLE style: performance and efficiency cores share a cache and swap work to save battery.",
+   "expert": "1+3+4 layouts; shared L3 ≈ 8–12 MB; DVFS per cluster; ≈ 3–4 GHz peak."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Multi-core processor",
+    "url": "https://en.wikipedia.org/wiki/Multi-core_processor"
+   }
+  ]
+ },
+ {
+  "id": "soc_gpu",
+  "title": "GPU",
+  "kind": "structure",
+  "template": "teardown",
+  "scale_m": 0.004,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_soc"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_soc",
+   "at": [
+    0.002,
+    0.002,
+    0
+   ],
+   "label": "Graphics processor"
+  },
+  "needs": [
+   "neural_accelerator_hw",
+   "alu_design"
+  ],
+  "summary": "Thousands of simple units for graphics.",
+  "layers": {
+   "basics": "Draws the pixels of games and the interface by doing many simple calculations in parallel.",
+   "deeper": "Shader cores execute the same program on many pixels; tile-based rendering saves bandwidth.",
+   "expert": "≈ 1–2 TFLOPS FP32; ray-tracing units; shared LPDDR memory."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Graphics processing unit",
+    "url": "https://en.wikipedia.org/wiki/Graphics_processing_unit"
+   }
+  ]
+ },
+ {
+  "id": "soc_npu",
+  "title": "Neural engine (NPU)",
+  "kind": "structure",
+  "template": "teardown",
+  "scale_m": 0.002,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_soc"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_soc",
+   "at": [
+    0.003,
+    -0.002,
+    0
+   ],
+   "label": "NPU"
+  },
+  "needs": [
+   "neural_accelerator_hw",
+   "machine_learning_engineers"
+  ],
+  "summary": "Matrix-multiply hardware for AI.",
+  "layers": {
+   "basics": "Specialised circuits run neural networks for photos, voice and text efficiently.",
+   "deeper": "Arrays of multiply–accumulate units with local SRAM reduce memory traffic.",
+   "expert": "≈ 15–50+ TOPS INT8; ≈ 10 TOPS/W; supports int8/FP16."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: AI accelerator",
+    "url": "https://en.wikipedia.org/wiki/AI_accelerator"
+   }
+  ]
+ },
+ {
+  "id": "soc_cache",
+  "title": "System cache",
+  "kind": "structure",
+  "template": "teardown",
+  "scale_m": 0.002,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_soc"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_soc",
+   "at": [
+    0,
+    -0.001,
+    0
+   ],
+   "label": "SLC cache"
+  },
+  "needs": [
+   "cache_memory",
+   "memory_hierarchy"
+  ],
+  "summary": "Shared SRAM near the cores.",
+  "layers": {
+   "basics": "Fast memory on the chip that keeps recently used data close.",
+   "deeper": "Last-level cache shared by CPU, GPU and NPU cuts expensive trips to DRAM.",
+   "expert": "≈ 8–32 MB SRAM; ≈ 10–30 ns; hit rates determine battery life as DRAM access costs ≈ 100× the energy of a cache hit."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: CPU cache",
+    "url": "https://en.wikipedia.org/wiki/CPU_cache"
+   }
+  ]
+ },
+ {
+  "id": "soc_memory_controller",
+  "title": "Memory controller",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.001,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_soc"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_soc",
+   "at": [
+    -0.003,
+    -0.003,
+    0
+   ],
+   "label": "LPDDR controller"
+  },
+  "needs": [
+   "memory_rom_ram",
+   "memory_hierarchy"
+  ],
+  "summary": "Talks to DRAM.",
+  "layers": {
+   "basics": "Schedules reads and writes to the RAM chip.",
+   "deeper": "Reorders requests to keep DRAM rows open and bus busy.",
+   "expert": "64-bit LPDDR5X interface ≈ 60–100 GB/s; training and calibration of PHY at boot."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Memory controller",
+    "url": "https://en.wikipedia.org/wiki/Memory_controller"
+   }
+  ]
+ },
+ {
+  "id": "soc_isp",
+  "title": "Image signal processor",
+  "kind": "structure",
+  "template": "teardown",
+  "scale_m": 0.002,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_soc"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "how_a_photo_is_taken"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_soc",
+   "at": [
+    0.0035,
+    0.0035,
+    0
+   ],
+   "label": "ISP"
+  },
+  "needs": [
+   "image_video_processing",
+   "dsp_applications"
+  ],
+  "summary": "Turns raw sensor data into photos.",
+  "layers": {
+   "basics": "Hardware that cleans up raw camera data: removes noise, fixes colour, and stitches HDR.",
+   "deeper": "Pipeline: demosaic, denoise, white balance, tone map, sharpen; runs at video rates with low power.",
+   "expert": "≥ 4–6 Gpixel/s; multi-frame fusion with NPU; local tone mapping."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Image processor",
+    "url": "https://en.wikipedia.org/wiki/Image_processor"
+   }
+  ]
+ },
+ {
+  "id": "soc_interconnect",
+  "title": "On-chip interconnect",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.0005,
+  "area": "ee_teardown",
+  "parents": [
+   "phone_soc"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "phone_soc",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "label": "Network-on-chip"
+  },
+  "needs": [
+   "memory_hierarchy"
+  ],
+  "summary": "A tiny network joining the blocks.",
+  "layers": {
+   "basics": "Wires and switches that let the processor, GPU and memory talk to each other.",
+   "deeper": "Packet-switched networks-on-chip with quality-of-service for real-time blocks.",
+   "expert": "AMBA AXI/CHI coherence; ≈ TB/s aggregate; arbitration and power gating of idle blocks."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Network on a chip",
+    "url": "https://en.wikipedia.org/wiki/Network_on_a_chip"
+   }
+  ]
+ },
+ {
+  "id": "cpu_core",
+  "title": "CPU core",
+  "kind": "structure",
+  "template": "teardown",
+  "scale_m": 0.0015,
+  "area": "ee_teardown",
+  "parents": [
+   "soc_cpu_cluster"
+  ],
+  "parts": [
+   "core_fetch",
+   "core_decode",
+   "core_alu",
+   "core_registers",
+   "core_l1_cache",
+   "core_branch_predictor",
+   "core_pipeline"
+  ],
+  "made_of": [],
+  "processes": [
+   "instruction_execution"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "soc_cpu_cluster",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "label": "One core"
+  },
+  "needs": [
+   "pipelining_hazards",
+   "isa_risc_cisc"
+  ],
+  "summary": "One processor core: fetch, decode, execute.",
+  "layers": {
+   "basics": "A single core executes instructions one after another, but many at once inside via pipelining.",
+   "deeper": "Out-of-order superscalar cores decode 6–8 instructions per cycle and track hundreds in flight.",
+   "expert": "ARMv9-A; ROB ≈ 500 entries; ≈ 6–10 execution ports; L1 64 KB; IPC ≈ 4–8 on favourable code."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Central processing unit",
+    "url": "https://en.wikipedia.org/wiki/Central_processing_unit"
+   }
+  ]
+ },
+ {
+  "id": "core_fetch",
+  "title": "Instruction fetch",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.0003,
+  "area": "ee_teardown",
+  "parents": [
+   "cpu_core"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "instruction_execution"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "cpu_core",
+   "at": [
+    -0.0005,
+    0.0005,
+    0
+   ],
+   "label": "Fetch"
+  },
+  "needs": [
+   "datapath_control",
+   "cache_memory"
+  ],
+  "summary": "Reads the next instructions.",
+  "layers": {
+   "basics": "Pulls the next instructions from memory using the program counter.",
+   "deeper": "Fetches several instructions per cycle from the instruction cache.",
+   "expert": "Fetch width 8–16 bytes; uop cache; next-line prefetch; steered by branch predictor."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Instruction cycle",
+    "url": "https://en.wikipedia.org/wiki/Instruction_cycle"
+   }
+  ]
+ },
+ {
+  "id": "core_decode",
+  "title": "Instruction decode",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.0003,
+  "area": "ee_teardown",
+  "parents": [
+   "cpu_core"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "instruction_execution"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "cpu_core",
+   "at": [
+    0,
+    0.0005,
+    0
+   ],
+   "label": "Decode"
+  },
+  "needs": [
+   "datapath_control",
+   "assembly_language"
+  ],
+  "summary": "Understands each instruction.",
+  "layers": {
+   "basics": "Works out what each instruction means: which operation and which registers.",
+   "deeper": "Breaks into micro-operations and renames registers to find parallelism.",
+   "expert": "Register renaming removes WAR/WAW hazards; decode width up to 8; macro-op fusion."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Instruction cycle",
+    "url": "https://en.wikipedia.org/wiki/Instruction_cycle"
+   }
+  ]
+ },
+ {
+  "id": "core_alu",
+  "title": "Arithmetic logic unit",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.0003,
+  "area": "ee_teardown",
+  "parents": [
+   "cpu_core"
+  ],
+  "parts": [
+   "logic_adder"
+  ],
+  "made_of": [],
+  "processes": [
+   "instruction_execution"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "cpu_core",
+   "at": [
+    0.0004,
+    -0.0003,
+    0
+   ],
+   "label": "ALU"
+  },
+  "needs": [
+   "alu_design"
+  ],
+  "summary": "Does the arithmetic and logic.",
+  "layers": {
+   "basics": "Adds, subtracts, compares and shifts numbers.",
+   "deeper": "Several ALUs per core operate in parallel; each is built from adders and multiplexers.",
+   "expert": "64-bit ALU ≈ 1 cycle (≈ 250–300 ps); Kogge–Stone adder in the critical path; separate multiply/divide units."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Arithmetic logic unit",
+    "url": "https://en.wikipedia.org/wiki/Arithmetic_logic_unit"
+   }
+  ]
+ },
+ {
+  "id": "core_registers",
+  "title": "Register file",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.0003,
+  "area": "ee_teardown",
+  "parents": [
+   "cpu_core"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "instruction_execution"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "cpu_core",
+   "at": [
+    -0.0004,
+    -0.0003,
+    0
+   ],
+   "label": "Registers"
+  },
+  "needs": [
+   "registers_counters"
+  ],
+  "summary": "Fastest storage in the machine.",
+  "layers": {
+   "basics": "A few dozen super-fast storage slots that hold the numbers being worked on.",
+   "deeper": "Multi-ported SRAM allowing many reads/writes each cycle.",
+   "expert": "31 architectural 64-bit registers (ARMv8) mapped to ≈ 300+ physical; ≈ 10 read ports."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Register file",
+    "url": "https://en.wikipedia.org/wiki/Register_file"
+   }
+  ]
+ },
+ {
+  "id": "core_l1_cache",
+  "title": "L1 cache",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.0003,
+  "area": "ee_teardown",
+  "parents": [
+   "cpu_core"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "instruction_execution"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "cpu_core",
+   "at": [
+    0,
+    -0.0006,
+    0
+   ],
+   "label": "L1 caches"
+  },
+  "needs": [
+   "cache_memory"
+  ],
+  "summary": "The nearest memory.",
+  "layers": {
+   "basics": "A small, extremely quick memory holding the data and instructions in current use.",
+   "deeper": "Split instruction and data caches; ≈ 3–4 cycle latency.",
+   "expert": "64–192 KB each; 4–12 way set-associative; VIPT; ≈ 95–99% hit rate typically."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: CPU cache",
+    "url": "https://en.wikipedia.org/wiki/CPU_cache"
+   }
+  ]
+ },
+ {
+  "id": "core_branch_predictor",
+  "title": "Branch predictor",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.0002,
+  "area": "ee_teardown",
+  "parents": [
+   "cpu_core"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "instruction_execution"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "cpu_core",
+   "at": [
+    -0.0006,
+    0.0006,
+    0
+   ],
+   "label": "Branch predictor"
+  },
+  "needs": [
+   "pipelining_hazards"
+  ],
+  "summary": "Guesses where the program goes next.",
+  "layers": {
+   "basics": "Guesses which way an if-statement will go so the pipeline stays full.",
+   "deeper": "Uses history of past branches; wrong guesses flush work (≈ 15–20 cycle penalty).",
+   "expert": "TAGE-like predictors with ≥ 95–99% accuracy; BTB, return-address stack; speculation side channels (Spectre)."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Branch predictor",
+    "url": "https://en.wikipedia.org/wiki/Branch_predictor"
+   }
+  ]
+ },
+ {
+  "id": "core_pipeline",
+  "title": "Pipeline",
+  "kind": "structure",
+  "template": "teardown",
+  "scale_m": 0.001,
+  "area": "ee_teardown",
+  "parents": [
+   "cpu_core"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "instruction_execution"
+  ],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "cpu_core",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "label": "Pipeline stages"
+  },
+  "needs": [
+   "pipelining_hazards"
+  ],
+  "summary": "An assembly line for instructions.",
+  "layers": {
+   "basics": "Instructions pass through stages so several are in progress at once.",
+   "deeper": "Fetch, decode, rename, issue, execute, memory, retire; hazards cause stalls.",
+   "expert": "≈ 12–15 stages; out-of-order issue, in-order retire; ROB ensures precise exceptions."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Instruction pipelining",
+    "url": "https://en.wikipedia.org/wiki/Instruction_pipelining"
+   }
+  ]
+ },
+ {
+  "id": "logic_adder",
+  "title": "Full adder",
+  "kind": "structure",
+  "template": "teardown",
+  "scale_m": 1e-05,
+  "area": "ee_digital",
+  "parents": [
+   "core_alu",
+   "ee_digital"
+  ],
+  "parts": [
+   "logic_gate_nand"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "core_alu",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "label": "Full adder cell"
+  },
+  "needs": [
+   "adders_arithmetic"
+  ],
+  "summary": "Adds three bits.",
+  "layers": {
+   "basics": "A full adder adds two bits plus a carry from the previous column; 64 of them (cleverly connected) make a 64-bit adder.",
+   "deeper": "It uses XOR and AND/OR gates: sum = A⊕B⊕Cin, carry = AB+Cin(A⊕B).",
+   "expert": "About 28 transistors in static CMOS (mirror adder); prefix trees hide the carry delay."
+  },
+  "facts": [],
+  "formula": "S = A⊕B⊕Cin;  Cout = AB + Cin(A⊕B)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "logic",
+   "preset": "adder_builder"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Adder (electronics)",
+    "url": "https://en.wikipedia.org/wiki/Adder_(electronics)"
+   }
+  ]
+ },
+ {
+  "id": "logic_gate_nand",
+  "title": "NAND gate",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 1e-06,
+  "area": "ee_digital",
+  "parents": [
+   "logic_adder",
+   "ee_digital"
+  ],
+  "parts": [
+   "cmos_inverter"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "logic_adder",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "label": "NAND gate"
+  },
+  "needs": [
+   "logic_gates",
+   "cmos_logic_gates"
+  ],
+  "summary": "The universal building block.",
+  "layers": {
+   "basics": "A NAND outputs 0 only when both inputs are 1. Every other logic function can be built from NANDs.",
+   "deeper": "In CMOS, two PMOS in parallel on top, two NMOS in series on the bottom.",
+   "expert": "Logical effort of NAND2 = 4/3; delay ≈ 10–20 ps in advanced nodes; layout uses shared diffusion."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "cmos_nand"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: NAND gate",
+    "url": "https://en.wikipedia.org/wiki/NAND_gate"
+   }
+  ]
+ },
+ {
+  "id": "cmos_inverter",
+  "title": "CMOS inverter",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 5e-07,
+  "area": "ee_electronics",
+  "parents": [
+   "logic_gate_nand",
+   "ee_electronics"
+  ],
+  "parts": [
+   "finfet_transistor"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "logic_gate_nand",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "label": "Inverter"
+  },
+  "needs": [
+   "cmos_logic_gates",
+   "mosfet_switch_node"
+  ],
+  "summary": "One PMOS and one NMOS: the heart of digital chips.",
+  "layers": {
+   "basics": "When the input is high the NMOS conducts and pulls the output low; when low the PMOS pulls it high. Hardly any current flows between switches.",
+   "deeper": "Voltage transfer curve is very steep around V_DD/2, giving high gain that restores digital levels.",
+   "expert": "Switching energy ≈ C V_DD²; short-circuit current during transitions; V_M=(V_DD−|V_Tp|+r V_Tn)/(1+r); leakage grows as V_T falls."
+  },
+  "facts": [],
+  "formula": "E_sw ≈ C·V_DD²",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "cmos_inverter"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Inverter (logic gate)",
+    "url": "https://en.wikipedia.org/wiki/Inverter_(logic_gate)"
+   }
+  ]
+ },
+ {
+  "id": "finfet_transistor",
+  "title": "FinFET transistor",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 1e-07,
+  "area": "ee_devices",
+  "parents": [
+   "cmos_inverter",
+   "ee_devices"
+  ],
+  "parts": [
+   "silicon_channel"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "cmos_inverter",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "label": "FinFET"
+  },
+  "needs": [
+   "short_channel_effects",
+   "mosfet_physics_deep"
+  ],
+  "summary": "A transistor shaped like a fin.",
+  "layers": {
+   "basics": "The channel is a thin vertical fin of silicon with the gate wrapping around three sides for better control.",
+   "deeper": "Wrapped gates reduce leakage at short channel lengths; designers pick the number of fins for drive strength.",
+   "expert": "Fin pitch ≈ 25–30 nm, fin width ≈ 5–7 nm, gate pitch ≈ 45–55 nm; successors: gate-all-around nanosheets from the ≈ 3-nm era."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "finfet"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Fin field-effect transistor",
+    "url": "https://en.wikipedia.org/wiki/Fin_field-effect_transistor"
+   }
+  ]
+ },
+ {
+  "id": "silicon_channel",
+  "title": "Silicon channel",
+  "kind": "structure",
+  "template": "teardown",
+  "scale_m": 1e-08,
+  "area": "ee_devices",
+  "parents": [
+   "finfet_transistor",
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [
+   "silicon"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "finfet_transistor",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "label": "Silicon channel"
+  },
+  "needs": [
+   "crystal_structure_ee",
+   "doping_pn_material"
+  ],
+  "summary": "A few nanometres of crystalline silicon.",
+  "layers": {
+   "basics": "The part of the transistor where current actually flows is a sliver of near-perfect silicon crystal.",
+   "deeper": "Doped source and drain on both ends, an undoped channel between; the gate oxide just a few atoms thick.",
+   "expert": "Si diamond lattice a=0.543 nm; channel width ≈ 5–7 nm ≈ 10–13 lattice cells; strain engineering (SiGe) lifts hole mobility."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "crystal_lattices",
+   "band_theory"
+  ],
+  "lab": {
+   "id": "device",
+   "preset": "bands_formation"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Silicon",
+    "url": "https://en.wikipedia.org/wiki/Silicon"
+   }
+  ]
+ },
+ {
+  "id": "usb_c_charger",
+  "title": "USB-C wall charger",
+  "kind": "device",
+  "template": "teardown",
+  "scale_m": 0.04,
+  "area": "ee_teardown",
+  "parents": [
+   "electrical_engineering"
+  ],
+  "parts": [
+   "rectifier_bridge",
+   "flyback_transformer",
+   "switching_mosfet",
+   "feedback_optocoupler",
+   "buck_converter"
+  ],
+  "made_of": [],
+  "processes": [
+   "how_a_phone_charges"
+  ],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "smps_switching_supplies",
+   "usb_protocol"
+  ],
+  "summary": "A mains-to-5–20 V converter in the size of a matchbox.",
+  "layers": {
+   "basics": "The charger turns 120/230 V AC mains into low-voltage DC, using a high-frequency switching converter instead of a heavy transformer.",
+   "deeper": "The chain: mains rectifier → switching MOSFET chopping at 50–150 kHz → small flyback transformer for isolation → optocoupler feedback → output stage.",
+   "expert": "GaN-based chargers reach ≈ 95% efficiency at 65–140 W with power density ≈ 1 W/cm³; USB-PD chip negotiates voltage over CC wire; QR (quasi-resonant) flyback or ACF topologies."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Switched-mode power supply",
+    "url": "https://en.wikipedia.org/wiki/Switched-mode_power_supply"
+   }
+  ]
+ },
+ {
+  "id": "rectifier_bridge",
+  "title": "Bridge rectifier",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.005,
+  "area": "ee_teardown",
+  "parents": [
+   "usb_c_charger"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "usb_c_charger",
+   "at": [
+    -0.008,
+    0.008,
+    0
+   ],
+   "label": "Bridge rectifier"
+  },
+  "needs": [
+   "rectifiers"
+  ],
+  "summary": "Four diodes that flip AC into pulsating DC.",
+  "layers": {
+   "basics": "The bridge makes both halves of the AC wave flow the same way; a big capacitor smooths it into ~325 V DC.",
+   "deeper": "Four diodes conduct in pairs; the bulk capacitor sets ripple.",
+   "expert": "V_pk=√2·V_rms; bulk capacitor ripple ≈ I/(2fC); inrush limiter (NTC)."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "bridge_rectifier"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Diode bridge",
+    "url": "https://en.wikipedia.org/wiki/Diode_bridge"
+   }
+  ]
+ },
+ {
+  "id": "flyback_transformer",
+  "title": "Flyback transformer",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.015,
+  "area": "ee_teardown",
+  "parents": [
+   "usb_c_charger"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "usb_c_charger",
+   "at": [
+    0.004,
+    0,
+    0
+   ],
+   "label": "Flyback transformer"
+  },
+  "needs": [
+   "power_transformers",
+   "smps_switching_supplies"
+  ],
+  "summary": "Stores then releases energy; isolates mains.",
+  "layers": {
+   "basics": "A coupled inductor that stores energy while the switch is on and delivers it to the output when off, keeping the output electrically isolated from the mains.",
+   "deeper": "Primary-to-secondary insulation withstands >3 kV for safety; gapped ferrite core stores the energy.",
+   "expert": "Energy per cycle ½L_pI_pk²; turns ratio sets reflected voltage; leakage inductance spikes need snubbers; triple-insulated wire."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "flyback_converter"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Flyback converter",
+    "url": "https://en.wikipedia.org/wiki/Flyback_converter"
+   }
+  ]
+ },
+ {
+  "id": "switching_mosfet",
+  "title": "Switching MOSFET (primary)",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.008,
+  "area": "ee_teardown",
+  "parents": [
+   "usb_c_charger"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "usb_c_charger",
+   "at": [
+    -0.004,
+    -0.006,
+    0
+   ],
+   "label": "Primary switch"
+  },
+  "needs": [
+   "mosfet_switch_node",
+   "power_semiconductors"
+  ],
+  "summary": "Chops the high-voltage DC.",
+  "layers": {
+   "basics": "A fast transistor turns the high-voltage DC on and off tens of thousands of times a second.",
+   "deeper": "Gate driver from controller IC; GaN HEMTs switch faster with lower losses.",
+   "expert": "650 V rating; R_DS(on) ≈ 100–500 mΩ; switching loss ∝ f; valley switching reduces loss."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "mosfet_switch"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: MOSFET",
+    "url": "https://en.wikipedia.org/wiki/MOSFET"
+   }
+  ]
+ },
+ {
+  "id": "feedback_optocoupler",
+  "title": "Feedback optocoupler",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.004,
+  "area": "ee_teardown",
+  "parents": [
+   "usb_c_charger"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "usb_c_charger",
+   "at": [
+    0.008,
+    -0.008,
+    0
+   ],
+   "label": "Optocoupler"
+  },
+  "needs": [
+   "led_photodiode",
+   "negative_feedback_ee"
+  ],
+  "summary": "Sends feedback across the safety barrier with light.",
+  "layers": {
+   "basics": "An LED and a phototransistor in one package pass the output-voltage error signal without a wire connection.",
+   "deeper": "Isolates mains side from the user side; the controller adjusts switching to hold the output steady.",
+   "expert": "CTR ≈ 50–300% and ages; TL431 shunt reference on secondary; ≈ 5 kV isolation."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "led_circuit"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Opto-isolator",
+    "url": "https://en.wikipedia.org/wiki/Opto-isolator"
+   }
+  ]
+ },
+ {
+  "id": "buck_converter",
+  "title": "Output buck stage",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.008,
+  "area": "ee_teardown",
+  "parents": [
+   "usb_c_charger"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "usb_c_charger",
+   "at": [
+    0.01,
+    0.01,
+    0
+   ],
+   "label": "Buck converter"
+  },
+  "needs": [
+   "buck_converter_node"
+  ],
+  "summary": "Trims the output to the requested voltage.",
+  "layers": {
+   "basics": "A buck stage steps the voltage down efficiently when the phone asks for a lower voltage.",
+   "deeper": "Programmable power supply (PPS) uses buck regulation for fine voltage steps of 20 mV.",
+   "expert": "Synchronous buck with MOSFET bridge, L ≈ 1–4.7 µH, fsw 300 kHz–1 MHz."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "buck_converter"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Buck converter",
+    "url": "https://en.wikipedia.org/wiki/Buck_converter"
+   }
+  ]
+ },
+ {
+  "id": "electric_power_grid",
+  "title": "Electric power grid",
+  "kind": "structure",
+  "template": "teardown",
+  "scale_m": 100000.0,
+  "area": "ee_power",
+  "parents": [
+   "electrical_engineering"
+  ],
+  "parts": [
+   "power_plant",
+   "generator",
+   "step_up_transformer",
+   "transmission_line",
+   "substation",
+   "distribution_transformer",
+   "wall_outlet"
+  ],
+  "made_of": [],
+  "processes": [
+   "power_grid_delivery"
+  ],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "transmission_distribution",
+   "power_generation"
+  ],
+  "summary": "A continent-scale machine from generator to outlet.",
+  "layers": {
+   "basics": "Power plants, wires, transformers and substations deliver electricity to every outlet, with supply matching demand second by second.",
+   "deeper": "Seven stages: power plant → generator → step-up transformer → transmission line → substation → distribution transformer → wall outlet.",
+   "expert": "Synchronous AC grid at 50/60 Hz; frequency is the real-time measure of balance; ≈ 5–8% losses end to end."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "power_grid"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Electrical grid",
+    "url": "https://en.wikipedia.org/wiki/Electrical_grid"
+   }
+  ]
+ },
+ {
+  "id": "power_plant",
+  "title": "Power plant",
+  "kind": "structure",
+  "template": "teardown",
+  "scale_m": 500,
+  "area": "ee_power",
+  "parents": [
+   "electric_power_grid"
+  ],
+  "parts": [
+   "generator"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "electric_power_grid",
+   "at": [
+    -40000,
+    0,
+    0
+   ],
+   "label": "Power plant"
+  },
+  "needs": [
+   "power_generation"
+  ],
+  "summary": "Where fuel, wind, water or sunlight becomes mechanical or electrical power.",
+  "layers": {
+   "basics": "A power plant converts energy from fuel, flowing water, wind or sunlight into electricity.",
+   "deeper": "Thermal plants boil water to drive a steam turbine; hydro and wind turn turbines directly; solar skips the spin.",
+   "expert": "Carnot limit η≤1−T_c/T_h; combined-cycle gas ≈ 60%; nuclear ≈ 33–37%; typical unit ratings 100 MW–1.4 GW."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Power station",
+    "url": "https://en.wikipedia.org/wiki/Power_station"
+   }
+  ]
+ },
+ {
+  "id": "generator",
+  "title": "Generator",
+  "kind": "device",
+  "template": "teardown",
+  "scale_m": 15,
+  "area": "ee_power",
+  "parents": [
+   "power_plant",
+   "electric_power_grid"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "power_plant",
+   "at": [
+    60,
+    0,
+    0
+   ],
+   "label": "Turbo-generator"
+  },
+  "needs": [
+   "synchronous_machines",
+   "faraday_lenz"
+  ],
+  "summary": "A huge synchronous machine turning rotation into AC.",
+  "layers": {
+   "basics": "A rotating magnet inside coils of copper induces a voltage by Faraday’s law; the rotor spins at exactly 3000/3600 rpm for two-pole machines.",
+   "deeper": "The rotor is fed DC to make its magnetic field; three-phase windings in the stator produce the output at ≈ 11–25 kV.",
+   "expert": "Hydrogen-cooled ≈ 98.5–99% efficient; synchronous reactance and excitation; inertia constant H ≈ 3–9 s underpins frequency stability."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Electric generator",
+    "url": "https://en.wikipedia.org/wiki/Electric_generator"
+   }
+  ]
+ },
+ {
+  "id": "step_up_transformer",
+  "title": "Step-up transformer",
+  "kind": "device",
+  "template": "teardown",
+  "scale_m": 8,
+  "area": "ee_power",
+  "parents": [
+   "electric_power_grid"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "electric_power_grid",
+   "at": [
+    -34000,
+    0,
+    0
+   ],
+   "label": "GSU transformer"
+  },
+  "needs": [
+   "power_transformers"
+  ],
+  "summary": "Raises generator voltage to hundreds of kV.",
+  "layers": {
+   "basics": "A large transformer raises the voltage so that long lines carry less current and waste less power.",
+   "deeper": "Oil-immersed, three-phase; 20 kV in, 345–765 kV out; ≈ 99.7% efficient.",
+   "expert": "Mass ≈ 200–400 t for 500 MVA; cooling by oil/forced air; insulation (BIL) rated to lightning impulses of ≈ 1–2 MV."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Transformer",
+    "url": "https://en.wikipedia.org/wiki/Transformer"
+   }
+  ]
+ },
+ {
+  "id": "transmission_line",
+  "title": "Transmission line",
+  "kind": "structure",
+  "template": "teardown",
+  "scale_m": 60000,
+  "area": "ee_power",
+  "parents": [
+   "electric_power_grid"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "electric_power_grid",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "label": "High-voltage line"
+  },
+  "needs": [
+   "transmission_distribution",
+   "transmission_lines"
+  ],
+  "summary": "Wires carrying power across regions.",
+  "layers": {
+   "basics": "High-voltage overhead lines carry power hundreds of kilometres with only a few percent loss.",
+   "deeper": "Bundled conductors reduce corona; towers keep spacing for insulation.",
+   "expert": "Losses I²R; surge impedance ≈ 250–400 Ω; Ferranti rise; HVDC for >600 km or undersea."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Electric power transmission",
+    "url": "https://en.wikipedia.org/wiki/Electric_power_transmission"
+   }
+  ]
+ },
+ {
+  "id": "substation",
+  "title": "Substation",
+  "kind": "structure",
+  "template": "teardown",
+  "scale_m": 100,
+  "area": "ee_power",
+  "parents": [
+   "electric_power_grid"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "electric_power_grid",
+   "at": [
+    35000,
+    0,
+    0
+   ],
+   "label": "Substation"
+  },
+  "needs": [
+   "protection_relays_breakers",
+   "power_transformers"
+  ],
+  "summary": "Switching and transformation yard.",
+  "layers": {
+   "basics": "A substation steps voltage down, routes power between lines and houses protective equipment.",
+   "deeper": "Contains transformers, busbars, circuit breakers, disconnect switches and relays.",
+   "expert": "Gas-insulated (GIS) vs air-insulated; protection zones; SCADA; reactive compensation."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Electrical substation",
+    "url": "https://en.wikipedia.org/wiki/Electrical_substation"
+   }
+  ]
+ },
+ {
+  "id": "distribution_transformer",
+  "title": "Distribution transformer",
+  "kind": "device",
+  "template": "teardown",
+  "scale_m": 1.5,
+  "area": "ee_power",
+  "parents": [
+   "electric_power_grid"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "hotspot": {
+   "of": "electric_power_grid",
+   "at": [
+    42000,
+    0,
+    0
+   ],
+   "label": "Pole/pad transformer"
+  },
+  "needs": [
+   "power_transformers"
+  ],
+  "summary": "The last step down to household voltage.",
+  "layers": {
+   "basics": "The grey cylinder on a pole or the green box on the ground steps medium voltage (≈ 11–35 kV) to 120/240 V or 230/400 V.",
+   "deeper": "A centre-tapped secondary gives 120/240 V in North America.",
+   "expert": "≈ 25–2500 kVA; efficiency ≈ 98–99%; no-load losses run 24/7; overloaded units age by insulation hot-spot temperature."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Distribution transformer",
+    "url": "https://en.wikipedia.org/wiki/Distribution_transformer"
+   }
+  ]
+ },
+ {
+  "id": "wall_outlet",
+  "title": "Wall outlet",
+  "kind": "component",
+  "template": "teardown",
+  "scale_m": 0.08,
+  "area": "ee_power",
+  "parents": [
+   "electric_power_grid"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "lab_electrical_safety"
+  ],
+  "mesh": null,
+  "hotspot": {
+   "of": "electric_power_grid",
+   "at": [
+    46000,
+    0,
+    0
+   ],
+   "label": "Socket"
+  },
+  "needs": [
+   "protection_relays_breakers"
+  ],
+  "summary": "The user’s end of the grid.",
+  "layers": {
+   "basics": "The wall socket delivers 120 V/60 Hz or 230 V/50 Hz AC with a protective earth connection.",
+   "deeper": "Breakers and RCD/GFCI devices protect against overload and shock; plug types vary worldwide.",
+   "expert": "RMS voltage tolerances ±5–10%; circuit breakers trip magnetically at ≈ 5–10×I_rated; GFCI trips at ≈ 5 mA imbalance."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: AC power plugs and sockets",
+    "url": "https://en.wikipedia.org/wiki/AC_power_plugs_and_sockets"
+   }
+  ]
+ },
+ {
+  "id": "how_a_phone_charges",
+  "title": "How a phone charges",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "ee_processes",
+  "parents": [
+   "electrical_engineering"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "smps_switching_supplies",
+   "battery_storage_systems",
+   "usb_protocol"
+  ],
+  "summary": "From the wall socket to lithium ions in the cell.",
+  "layers": {
+   "basics": "Mains AC is converted to DC, stepped down, and pushed into the battery by the phone’s charger chip, which watches current, voltage and temperature.",
+   "deeper": "Constant-current phase until about 4.2–4.45 V, then constant-voltage phase while current tapers; fast charging uses higher voltage to keep current manageable.",
+   "expert": "USB PD negotiation over CC lines sets the voltage (e.g., 9 V/3 A); charge pumps (2:1/3:1) convert at ≈ 97% efficiency; cell protection and temperature limits dominate the final stages."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "steps": [
+   {
+    "title": "Rectify the mains",
+    "text": "The charger’s diode bridge converts the 230 V AC (peak 325 V) into DC held up by a bulk capacitor.",
+    "focus": [
+     "usb_c_charger",
+     "rectifier_bridge"
+    ]
+   },
+   {
+    "title": "Chop and isolate",
+    "text": "A fast switching transistor chops the DC at tens of kHz and a small flyback transformer passes energy to the low-voltage side while isolating the user.",
+    "focus": [
+     "switching_mosfet",
+     "flyback_transformer"
+    ]
+   },
+   {
+    "title": "Regulate by light",
+    "text": "The output voltage is compared to a reference; an optocoupler passes the error across the barrier so the controller adjusts the duty cycle.",
+    "focus": [
+     "feedback_optocoupler"
+    ]
+   },
+   {
+    "title": "Negotiate",
+    "text": "The phone and charger talk over the USB-C CC wire to agree on voltage and current.",
+    "focus": [
+     "phone_charger_port",
+     "usb_c_charger"
+    ]
+   },
+   {
+    "title": "Convert and control",
+    "text": "The phone’s charger IC and PMIC convert to the battery voltage and apply constant current, then constant voltage.",
+    "focus": [
+     "phone_pmic",
+     "buck_converter"
+    ]
+   },
+   {
+    "title": "Ions move",
+    "text": "Lithium ions travel through the electrolyte and insert into the graphite anode; the BMS watches temperature and cell voltage.",
+    "focus": [
+     "phone_battery"
+    ]
+   }
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Battery charger",
+    "url": "https://en.wikipedia.org/wiki/Battery_charger"
+   }
+  ]
+ },
+ {
+  "id": "how_a_transistor_switches",
+  "title": "How a transistor switches",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "ee_processes",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "mosfet_switch_node",
+   "mosfet_physics_ee"
+  ],
+  "summary": "A voltage on the gate turns a channel on or off.",
+  "layers": {
+   "basics": "In an NMOS, raising the gate voltage above threshold attracts electrons to the surface, forming a conducting channel between source and drain.",
+   "deeper": "Below threshold, a depletion region isolates source from drain; above it an inversion layer forms and current flows.",
+   "expert": "Switching delay is limited by charging the gate and load capacitance: t≈0.69RC; subthreshold leakage ∝ 10^{(V_GS−V_T)/S}; short-channel devices need gate-all-around geometry for control."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "mosfet_transfer"
+  },
+  "steps": [
+   {
+    "title": "Gate low",
+    "text": "With V_GS=0 the p-type body has few electrons; source and drain are separated by two back-to-back junctions.",
+    "focus": [
+     "finfet_transistor",
+     "silicon_channel"
+    ]
+   },
+   {
+    "title": "Raise the gate",
+    "text": "Positive gate voltage repels holes and attracts electrons toward the oxide interface.",
+    "focus": [
+     "finfet_transistor"
+    ]
+   },
+   {
+    "title": "Inversion",
+    "text": "Above threshold, enough electrons gather to form an n-type channel linking source and drain.",
+    "focus": [
+     "silicon_channel"
+    ]
+   },
+   {
+    "title": "Current flows",
+    "text": "A drain voltage drives electrons through the channel; the gate barely draws any current.",
+    "focus": [
+     "silicon_channel",
+     "finfet_transistor"
+    ]
+   },
+   {
+    "title": "Complementary pair",
+    "text": "In a CMOS inverter, the PMOS and NMOS take turns so the output swings fully high or low.",
+    "focus": [
+     "cmos_inverter"
+    ]
+   }
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: MOSFET",
+    "url": "https://en.wikipedia.org/wiki/MOSFET"
+   }
+  ]
+ },
+ {
+  "id": "instruction_execution",
+  "title": "Instruction execution: fetch, decode, execute",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "ee_processes",
+  "parents": [
+   "ee_architecture"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "pipelining_hazards",
+   "datapath_control"
+  ],
+  "summary": "How a CPU runs one instruction.",
+  "layers": {
+   "basics": "The CPU repeatedly fetches an instruction, works out what it means, does it, and stores the result; billions of times per second.",
+   "deeper": "Pipelining overlaps these steps; branch prediction guesses the path to keep it full.",
+   "expert": "Superscalar out-of-order cores rename registers, track instructions in a reorder buffer, and retire in program order to give precise exceptions."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "pipeline_sim"
+  },
+  "steps": [
+   {
+    "title": "Fetch",
+    "text": "The program counter addresses the L1 instruction cache; a few instructions are read.",
+    "focus": [
+     "core_fetch",
+     "core_l1_cache",
+     "core_branch_predictor"
+    ]
+   },
+   {
+    "title": "Decode",
+    "text": "Instructions are translated to micro-operations; register names are mapped.",
+    "focus": [
+     "core_decode"
+    ]
+   },
+   {
+    "title": "Read registers",
+    "text": "Operands come from the register file or are forwarded from earlier results.",
+    "focus": [
+     "core_registers"
+    ]
+   },
+   {
+    "title": "Execute",
+    "text": "The ALU computes the result; a memory instruction computes an address instead.",
+    "focus": [
+     "core_alu",
+     "logic_adder"
+    ]
+   },
+   {
+    "title": "Memory access",
+    "text": "Loads and stores go to the L1 data cache, falling through to L2/L3/DRAM on a miss.",
+    "focus": [
+     "core_l1_cache",
+     "soc_cache"
+    ]
+   },
+   {
+    "title": "Write back and retire",
+    "text": "Results are written to registers and the instruction retires; wrong-path work is discarded.",
+    "focus": [
+     "core_registers",
+     "core_pipeline"
+    ]
+   }
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Instruction cycle",
+    "url": "https://en.wikipedia.org/wiki/Instruction_cycle"
+   }
+  ]
+ },
+ {
+  "id": "how_wifi_sends_data",
+  "title": "How Wi-Fi sends data",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "ee_processes",
+  "parents": [
+   "ee_comm"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "digital_modulation",
+   "wireless_channels_fading"
+  ],
+  "summary": "Bits become radio waves, cross the air, and become bits again.",
+  "layers": {
+   "basics": "The phone turns bits into a radio waveform, amplifies it and radiates it; the router reverses the steps.",
+   "deeper": "OFDM spreads bits over many subcarriers; error-correcting codes protect against fades.",
+   "expert": "Pipeline: scrambler → LDPC encoder → QAM mapper → IFFT + cyclic prefix → DAC → mixer to 5 GHz → PA → antenna; receiver does AGC, sync, FFT, equalise, LDPC decode."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "constellation"
+  },
+  "steps": [
+   {
+    "title": "Packetise",
+    "text": "Software splits data into frames and adds headers and a checksum.",
+    "focus": [
+     "phone_soc",
+     "phone_wifi_bt"
+    ]
+   },
+   {
+    "title": "Encode and map",
+    "text": "Error-correcting bits are added; groups of bits map onto QAM constellation points.",
+    "focus": [
+     "phone_wifi_bt"
+    ]
+   },
+   {
+    "title": "OFDM",
+    "text": "An inverse FFT combines many subcarriers into one time-domain waveform.",
+    "focus": [
+     "phone_wifi_bt"
+    ]
+   },
+   {
+    "title": "Up-convert and amplify",
+    "text": "A mixer shifts it to 2.4/5/6 GHz; the power amplifier boosts it.",
+    "focus": [
+     "phone_rf_frontend"
+    ]
+   },
+   {
+    "title": "Radiate",
+    "text": "Currents on the antenna launch a wave that reflects around the room.",
+    "focus": [
+     "phone_antenna"
+    ]
+   },
+   {
+    "title": "Receive",
+    "text": "The router’s antenna, LNA, mixer and ADC capture the signal and the FFT/decoder recover the bits.",
+    "focus": [
+     "phone_rf_frontend",
+     "phone_wifi_bt"
+    ]
+   }
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Orthogonal frequency-division multiplexing",
+    "url": "https://en.wikipedia.org/wiki/Orthogonal_frequency-division_multiplexing"
+   }
+  ]
+ },
+ {
+  "id": "how_a_photo_is_taken",
+  "title": "How a photo is taken",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "ee_processes",
+  "parents": [
+   "electrical_engineering"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "photodetectors_solar",
+   "image_video_processing"
+  ],
+  "summary": "Light to pixels.",
+  "layers": {
+   "basics": "The lens focuses light onto the sensor; each pixel turns light into an electrical charge, which is read out, digitised and processed into a picture.",
+   "deeper": "Colour filters make each pixel see only red, green or blue; the ISP reconstructs full colour.",
+   "expert": "Photon shot noise limits SNR (√N); read noise, full-well capacity and dynamic range; multi-frame HDR fuses exposures; rolling shutter timing."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "steps": [
+   {
+    "title": "Focus",
+    "text": "The voice-coil actuator moves the lens; stabilisation compensates shake.",
+    "focus": [
+     "phone_camera"
+    ]
+   },
+   {
+    "title": "Collect photons",
+    "text": "Photodiodes convert photons into electron–hole pairs and store charge.",
+    "focus": [
+     "phone_camera"
+    ]
+   },
+   {
+    "title": "Read out",
+    "text": "Column ADCs convert each pixel’s voltage into 10–14 bit numbers.",
+    "focus": [
+     "phone_camera"
+    ]
+   },
+   {
+    "title": "Image processing",
+    "text": "The ISP demosaics, denoises, corrects colour and tone-maps.",
+    "focus": [
+     "soc_isp"
+    ]
+   },
+   {
+    "title": "Neural enhancement",
+    "text": "The NPU adds scene detection, HDR fusion and portrait depth.",
+    "focus": [
+     "soc_npu",
+     "soc_isp"
+    ]
+   },
+   {
+    "title": "Store",
+    "text": "The result is compressed and written to flash.",
+    "focus": [
+     "phone_flash",
+     "phone_soc"
+    ]
+   }
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Image sensor",
+    "url": "https://en.wikipedia.org/wiki/Image_sensor"
+   }
+  ]
+ },
+ {
+  "id": "chip_fabrication",
+  "title": "Chip fabrication",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "ee_processes",
+  "parents": [
+   "ee_devices"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "fabrication_overview",
+   "fabrication_lithography"
+  ],
+  "summary": "From sand to a processor.",
+  "layers": {
+   "basics": "A silicon wafer goes through hundreds of cycles of adding a layer, printing a pattern and etching it, building billions of transistors.",
+   "deeper": "Cleanroom steps: grow oxide, coat resist, expose, develop, etch, implant, deposit metal, repeat; then dice and package.",
+   "expert": "Front-end (transistors, ≈ 1000+ steps) and back-end (≈ 10–15 copper metal layers); EUV layers ≈ 20; yield learning; test, binning and packaging with TSVs and hybrid bonding."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "fab_process"
+  },
+  "steps": [
+   {
+    "title": "Wafer",
+    "text": "Sand is purified to 99.9999999% silicon, grown as a single crystal and sliced into wafers.",
+    "focus": [
+     "silicon_channel"
+    ]
+   },
+   {
+    "title": "Oxidise and deposit",
+    "text": "Thin insulating and conducting films are grown or deposited.",
+    "focus": [
+     "finfet_transistor"
+    ]
+   },
+   {
+    "title": "Pattern",
+    "text": "Light through a mask exposes resist; UV or EUV prints features smaller than 20 nm.",
+    "focus": [
+     "finfet_transistor"
+    ]
+   },
+   {
+    "title": "Etch and implant",
+    "text": "Plasma etching carves fins; ion implantation sets n- and p-type regions.",
+    "focus": [
+     "silicon_channel",
+     "finfet_transistor"
+    ]
+   },
+   {
+    "title": "Wire it up",
+    "text": "Copper interconnects are built layer by layer above the transistors.",
+    "focus": [
+     "soc_interconnect",
+     "phone_soc"
+    ]
+   },
+   {
+    "title": "Test and package",
+    "text": "Wafers are tested, diced and packaged into chips like the SoC.",
+    "focus": [
+     "phone_soc"
+    ]
+   }
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Semiconductor device fabrication",
+    "url": "https://en.wikipedia.org/wiki/Semiconductor_device_fabrication"
+   }
+  ]
+ },
+ {
+  "id": "power_grid_delivery",
+  "title": "Power grid delivery",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "ee_processes",
+  "parents": [
+   "ee_power"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "transmission_distribution",
+   "power_generation"
+  ],
+  "summary": "From a power plant to your outlet.",
+  "layers": {
+   "basics": "Electricity is generated, boosted to high voltage, sent over long wires, stepped down at substations and finally lowered to household voltage.",
+   "deeper": "Supply and demand must always balance; frequency tells operators if they do.",
+   "expert": "Steady-state AC grids are synchronised; power flows follow impedance, not contracts; contingency planning (N−1) protects against single failures."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "network",
+   "preset": "power_flow_grid"
+  },
+  "steps": [
+   {
+    "title": "Generate",
+    "text": "Turbines spin generators producing AC at about 20 kV.",
+    "focus": [
+     "power_plant",
+     "generator"
+    ]
+   },
+   {
+    "title": "Step up",
+    "text": "A transformer raises the voltage to hundreds of kV, reducing current.",
+    "focus": [
+     "step_up_transformer"
+    ]
+   },
+   {
+    "title": "Transmit",
+    "text": "Overhead lines carry power across regions.",
+    "focus": [
+     "transmission_line"
+    ]
+   },
+   {
+    "title": "Step down",
+    "text": "Substations reduce the voltage and split power among feeders.",
+    "focus": [
+     "substation"
+    ]
+   },
+   {
+    "title": "Distribute",
+    "text": "Local lines carry 11–35 kV to the street.",
+    "focus": [
+     "distribution_transformer"
+    ]
+   },
+   {
+    "title": "Deliver",
+    "text": "The final transformer provides 120/230 V to the outlet.",
+    "focus": [
+     "wall_outlet"
+    ]
+   }
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Electric power system",
+    "url": "https://en.wikipedia.org/wiki/Electric_power_system"
+   }
+  ]
+ },
+ {
+  "id": "how_touchscreen_senses",
+  "title": "How a touchscreen senses touch",
+  "kind": "process",
+  "template": "process",
+  "scale_m": null,
+  "area": "ee_processes",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "capacitor_ee"
+  ],
+  "summary": "A finger changes capacitance.",
+  "layers": {
+   "basics": "A grid of electrodes lies under the glass; a finger nearby changes the electric field, and the controller finds where.",
+   "deeper": "The controller drives rows and senses columns; a touch reduces the mutual capacitance at the crossing.",
+   "expert": "ΔC/C ≈ 10–30%; noise from display and charger is filtered; palm rejection; hover sensing; stylus uses active signalling."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "field",
+   "preset": "touch_grid"
+  },
+  "steps": [
+   {
+    "title": "Drive",
+    "text": "The controller sends a signal on each row electrode in turn.",
+    "focus": [
+     "phone_touchscreen"
+    ]
+   },
+   {
+    "title": "Couple",
+    "text": "The signal couples capacitively to the column electrodes across each crossing.",
+    "focus": [
+     "phone_touchscreen"
+    ]
+   },
+   {
+    "title": "Finger perturbs",
+    "text": "A finger diverts some field lines to the body, reducing the coupled signal at nearby crossings.",
+    "focus": [
+     "phone_touchscreen"
+    ]
+   },
+   {
+    "title": "Measure",
+    "text": "Sense circuits digitise each node’s change.",
+    "focus": [
+     "phone_touchscreen",
+     "phone_soc"
+    ]
+   },
+   {
+    "title": "Locate",
+    "text": "The controller interpolates between nodes to get sub-millimetre position and reports it.",
+    "focus": [
+     "phone_soc",
+     "phone_touchscreen"
+    ]
+   }
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Touchscreen",
+    "url": "https://en.wikipedia.org/wiki/Touchscreen"
+   }
+  ]
+ }
+]

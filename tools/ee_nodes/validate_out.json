@@ -1,0 +1,1467 @@
+{
+ "stats": {
+  "total": 399,
+  "kinds": {
+   "concept": 163,
+   "technique": 89,
+   "device": 22,
+   "law": 17,
+   "component": 54,
+   "process": 13,
+   "tool": 10,
+   "field": 17,
+   "structure": 14
+  },
+  "templates": {
+   "concept": 337,
+   "teardown": 54,
+   "process": 8
+  },
+  "certainty": {
+   "C1": 394,
+   "C2": 4,
+   "C3": 1
+  },
+  "area": {
+   "ee_architecture": 24,
+   "ee_circuits": 38,
+   "ee_comm": 9,
+   "ee_control": 13,
+   "ee_devices": 18,
+   "ee_digital": 20,
+   "ee_dsp": 10,
+   "ee_electives": 26,
+   "ee_electronics": 46,
+   "ee_em": 17,
+   "electrical_engineering": 1,
+   "ee_math": 44,
+   "ee_physics": 20,
+   "ee_programming": 10,
+   "ee_signals": 13,
+   "ee_power": 27,
+   "ee_labs": 14,
+   "ee_teardown": 41,
+   "ee_processes": 8
+  },
+  "with_refs": 86,
+  "with_ext": 299,
+  "no_refs_no_ext": 20,
+  "with_lab": 259,
+  "with_where": 59,
+  "with_formula": 203,
+  "planned_presets": 92,
+  "syllabus_lines": 146,
+  "edges_needs": 592
+ },
+ "coverage": [
+  [
+   "Limits, derivatives, integrals, and series (Taylor and power series)",
+   [
+    "limits_continuity",
+    "derivative",
+    "integral_ftc",
+    "integration_techniques",
+    "sequences_series",
+    "taylor_series"
+   ]
+  ],
+  [
+   "Multivariable calculus: partial derivatives, multiple integrals, and vector calculus (gradient, divergence, curl, and the Green’s, Stokes’, and divergence theorems)",
+   [
+    "partial_derivatives",
+    "gradient_directional",
+    "multiple_integrals",
+    "vector_fields_line_integrals",
+    "divergence_curl",
+    "greens_theorem",
+    "stokes_theorem",
+    "divergence_theorem"
+   ]
+  ],
+  [
+   "First- and second-order ODEs, and systems of ODEs",
+   [
+    "ode_first_order",
+    "ode_second_order",
+    "ode_systems"
+   ]
+  ],
+  [
+   "Laplace transforms, and an introduction to PDEs",
+   [
+    "laplace_math",
+    "pde_intro"
+   ]
+  ],
+  [
+   "Matrices, determinants, vector spaces, and eigenvalues/eigenvectors",
+   [
+    "matrices_systems",
+    "determinants",
+    "vector_spaces",
+    "eigen"
+   ]
+  ],
+  [
+   "Matrix decompositions, used in controls and signal processing",
+   [
+    "matrix_decompositions"
+   ]
+  ],
+  [
+   "Random variables, distributions, expectation, and variance",
+   [
+    "random_variables",
+    "expectation_variance"
+   ]
+  ],
+  [
+   "Random processes, noise modeling, and estimation",
+   [
+    "random_processes",
+    "noise_modeling",
+    "estimation_theory"
+   ]
+  ],
+  [
+   "Complex analysis (sometimes folded into other courses)",
+   [
+    "complex_numbers"
+   ]
+  ],
+  [
+   "Complex numbers, phasors, and Euler’s formula",
+   [
+    "complex_numbers",
+    "phasors_math",
+    "euler_formula"
+   ]
+  ],
+  [
+   "Poles, zeros, and contour integration basics",
+   [
+    "poles_zeros",
+    "contour_integration"
+   ]
+  ],
+  [
+   "Discrete math (common in computer-focused tracks)",
+   [
+    "logic_boolean_math",
+    "graph_theory_ee",
+    "combinatorics_ee"
+   ]
+  ],
+  [
+   "Logic, sets, Boolean algebra, graphs, and combinatorics",
+   [
+    "logic_boolean_math",
+    "graph_theory_ee",
+    "combinatorics_ee"
+   ]
+  ],
+  [
+   "Root finding, numerical integration, ODE solvers, and error analysis",
+   [
+    "root_finding",
+    "numerical_integration",
+    "ode_solvers",
+    "error_analysis"
+   ]
+  ],
+  [
+   "Mechanics: kinematics, forces, energy, momentum, and rotation",
+   [
+    "mechanics_kinematics",
+    "energy_momentum",
+    "rotation_torque"
+   ]
+  ],
+  [
+   "Electricity and magnetism: Coulomb’s law, Gauss’s law, electric potential, capacitance, current, magnetic fields, Faraday’s law, and inductance",
+   [
+    "coulombs_law_ee",
+    "gauss_law_ee",
+    "electric_potential_ee",
+    "capacitance_physics",
+    "current_resistance_physics",
+    "magnetic_fields_forces",
+    "faraday_lenz",
+    "inductance_physics"
+   ]
+  ],
+  [
+   "Waves, optics, and modern physics: wave behavior, interference, the photoelectric effect, and an introduction to quantum mechanics, which is the basis for semiconductors",
+   [
+    "waves_interference",
+    "optics_basics",
+    "photoelectric_effect",
+    "quantum_intro"
+   ]
+  ],
+  [
+   "General chemistry: atomic structure, bonding, and material properties",
+   [
+    "atomic_structure_ee",
+    "bonding_materials",
+    "batteries_electrochem"
+   ]
+  ],
+  [
+   "Introductory programming, usually in C, C++, or Python: variables, control flow, functions, and arrays",
+   [
+    "intro_programming",
+    "c_language"
+   ]
+  ],
+  [
+   "Data structures and algorithms: lists, trees, sorting, and complexity",
+   [
+    "data_structures",
+    "algorithms_complexity"
+   ]
+  ],
+  [
+   "MATLAB: simulation, signal processing, and plotting",
+   [
+    "matlab_python_sim"
+   ]
+  ],
+  [
+   "Embedded C: pointers, memory, and register-level programming",
+   [
+    "embedded_c"
+   ]
+  ],
+  [
+   "Hardware description languages (Verilog/VHDL): describing digital circuits for FPGAs",
+   [
+    "hdl_verilog_vhdl"
+   ]
+  ],
+  [
+   "Simulation tools: SPICE/LTspice, Multisim, Simulink, and sometimes COMSOL or HFSS",
+   [
+    "simulation_tools",
+    "field_solvers"
+   ]
+  ],
+  [
+   "Voltage, current, resistance, power, and energy",
+   [
+    "electrical_basics"
+   ]
+  ],
+  [
+   "Ohm’s law, and Kirchhoff’s voltage and current laws (KVL, KCL)",
+   [
+    "ohms_law_node",
+    "kcl",
+    "kvl"
+   ]
+  ],
+  [
+   "Series and parallel circuits, and voltage and current dividers",
+   [
+    "series_parallel",
+    "voltage_divider",
+    "current_divider"
+   ]
+  ],
+  [
+   "Nodal analysis and mesh analysis",
+   [
+    "nodal_analysis",
+    "mesh_analysis"
+   ]
+  ],
+  [
+   "Superposition, Thévenin and Norton equivalents, and maximum power transfer",
+   [
+    "superposition",
+    "thevenin_norton",
+    "max_power_transfer"
+   ]
+  ],
+  [
+   "Source transformations, and dependent sources",
+   [
+    "source_transformation",
+    "dependent_sources"
+   ]
+  ],
+  [
+   "Capacitors and inductors, and their energy storage",
+   [
+    "capacitor_ee",
+    "inductor_ee"
+   ]
+  ],
+  [
+   "Transient response of RC, RL, and RLC circuits (first- and second-order)",
+   [
+    "rc_transient",
+    "rl_transient_node",
+    "rlc_transient"
+   ]
+  ],
+  [
+   "Natural and step responses: overdamped, underdamped, and critically damped",
+   [
+    "damping_regimes",
+    "rlc_transient"
+   ]
+  ],
+  [
+   "Sinusoids, phasors, and impedance/admittance",
+   [
+    "sinusoids_ac",
+    "impedance_admittance"
+   ]
+  ],
+  [
+   "Average, reactive, and complex power, power factor, and RMS values",
+   [
+    "rms_average_power",
+    "complex_power",
+    "power_factor_node"
+   ]
+  ],
+  [
+   "Three-phase circuits (wye and delta connections)",
+   [
+    "three_phase"
+   ]
+  ],
+  [
+   "Transfer functions and frequency response",
+   [
+    "transfer_function_ee"
+   ]
+  ],
+  [
+   "Bode plots, resonance, and quality factor (Q)",
+   [
+    "frequency_response_bode",
+    "resonance_q"
+   ]
+  ],
+  [
+   "Passive filters: low-pass, high-pass, band-pass, and notch",
+   [
+    "low_pass_filter",
+    "high_pass_filter",
+    "band_pass_filter",
+    "notch_filter"
+   ]
+  ],
+  [
+   "Two-port networks, mutual inductance, and transformers",
+   [
+    "two_port_networks",
+    "mutual_inductance",
+    "transformer_ideal"
+   ]
+  ],
+  [
+   "Laplace-domain circuit analysis",
+   [
+    "laplace_circuit_analysis"
+   ]
+  ],
+  [
+   "Energy bands, doping, and p-type vs. n-type material",
+   [
+    "energy_bands_ee",
+    "doping_pn_material"
+   ]
+  ],
+  [
+   "Drift and diffusion currents, and the PN junction",
+   [
+    "drift_diffusion_ee",
+    "pn_junction_ee"
+   ]
+  ],
+  [
+   "Diode models, rectifiers (half-wave, full-wave, bridge), and clippers/clampers",
+   [
+    "diode_models",
+    "rectifiers",
+    "clippers_clampers"
+   ]
+  ],
+  [
+   "Zener diodes and voltage regulation, plus LEDs and photodiodes",
+   [
+    "zener_regulation",
+    "led_photodiode"
+   ]
+  ],
+  [
+   "Operating regions, DC biasing, and small-signal models",
+   [
+    "bjt_regions",
+    "bjt_biasing",
+    "bjt_small_signal",
+    "bjt_switch_node"
+   ]
+  ],
+  [
+   "Amplifier configurations: common-emitter, common-base, and common-collector",
+   [
+    "bjt_amplifiers"
+   ]
+  ],
+  [
+   "Device physics, I-V characteristics, and biasing",
+   [
+    "mosfet_physics_ee",
+    "mosfet_iv",
+    "mosfet_biasing"
+   ]
+  ],
+  [
+   "Amplifier configurations: common-source, common-gate, and common-drain",
+   [
+    "mosfet_amplifiers"
+   ]
+  ],
+  [
+   "MOSFETs as switches, and CMOS logic gates",
+   [
+    "mosfet_switch_node",
+    "cmos_logic_gates",
+    "cmos_inverter"
+   ]
+  ],
+  [
+   "Gain, input/output impedance, and frequency response (Miller effect)",
+   [
+    "amp_specs",
+    "miller_effect"
+   ]
+  ],
+  [
+   "Differential amplifiers, current mirrors, and active loads",
+   [
+    "differential_amp",
+    "current_mirror",
+    "active_load"
+   ]
+  ],
+  [
+   "Multistage amplifiers, and output stages (Class A, B, AB, D)",
+   [
+    "multistage_amps",
+    "output_stages"
+   ]
+  ],
+  [
+   "Ideal op-amp rules",
+   [
+    "opamp_ideal"
+   ]
+  ],
+  [
+   "Inverting, non-inverting, summing, differentiator, and integrator circuits",
+   [
+    "inverting_amp_node",
+    "non_inverting_amp_node",
+    "summing_amp_node",
+    "differentiator_node",
+    "integrator_node"
+   ]
+  ],
+  [
+   "Instrumentation amplifiers, comparators, and Schmitt triggers",
+   [
+    "instrumentation_amp",
+    "comparator_node",
+    "schmitt_trigger_node"
+   ]
+  ],
+  [
+   "Non-ideal behavior: offset, slew rate, and gain-bandwidth product",
+   [
+    "opamp_nonideal"
+   ]
+  ],
+  [
+   "Negative feedback topologies, and stability (gain and phase margins)",
+   [
+    "negative_feedback_ee",
+    "feedback_stability_margins"
+   ]
+  ],
+  [
+   "Oscillators: Wien bridge, Colpitts, and crystal oscillators",
+   [
+    "oscillators_ee"
+   ]
+  ],
+  [
+   "Active filters, and data converters (ADC/DAC basics)",
+   [
+    "active_filters",
+    "adc_basics",
+    "dac_basics",
+    "linear_regulators"
+   ]
+  ],
+  [
+   "Number systems (binary, hex, two’s complement) and Boolean algebra",
+   [
+    "number_systems",
+    "boolean_algebra_digital"
+   ]
+  ],
+  [
+   "Logic gates, and minimization with Karnaugh maps and Quine–McCluskey",
+   [
+    "logic_gates",
+    "karnaugh_maps",
+    "quine_mccluskey",
+    "logic_gate_nand"
+   ]
+  ],
+  [
+   "Combinational circuits: multiplexers, decoders, encoders, adders, and ALUs",
+   [
+    "muxes_decoders",
+    "adders_arithmetic",
+    "alu_design",
+    "logic_adder"
+   ]
+  ],
+  [
+   "Sequential circuits: latches, flip-flops (D, JK, T), registers, and counters",
+   [
+    "latches",
+    "flip_flops",
+    "registers_counters"
+   ]
+  ],
+  [
+   "Finite state machines (Moore and Mealy)",
+   [
+    "finite_state_machines"
+   ]
+  ],
+  [
+   "Timing analysis, setup/hold times, and clocking",
+   [
+    "timing_analysis"
+   ]
+  ],
+  [
+   "Memory types: ROM, SRAM, DRAM, and flash",
+   [
+    "memory_rom_ram",
+    "flash_memory"
+   ]
+  ],
+  [
+   "Programmable logic (FPGAs and CPLDs), and HDL-based design",
+   [
+    "programmable_logic",
+    "hdl_design_flow"
+   ]
+  ],
+  [
+   "Instruction set architectures (RISC vs. CISC) and assembly language",
+   [
+    "isa_risc_cisc",
+    "assembly_language"
+   ]
+  ],
+  [
+   "Datapath and control-unit design, and pipelining and hazards",
+   [
+    "datapath_control",
+    "pipelining_hazards"
+   ]
+  ],
+  [
+   "Cache memory, memory hierarchy, and virtual memory",
+   [
+    "cache_memory",
+    "memory_hierarchy",
+    "virtual_memory"
+   ]
+  ],
+  [
+   "Microcontroller architecture (ARM, AVR, PIC), GPIO, and interrupts",
+   [
+    "mcu_architecture",
+    "gpio",
+    "interrupts"
+   ]
+  ],
+  [
+   "Timers, PWM, ADC, and DAC peripherals",
+   [
+    "timers_pwm",
+    "mcu_adc_dac"
+   ]
+  ],
+  [
+   "Communication protocols: UART, SPI, I²C, CAN, and USB",
+   [
+    "uart_serial",
+    "spi_bus",
+    "i2c_bus",
+    "can_bus",
+    "usb_protocol"
+   ]
+  ],
+  [
+   "Real-time operating systems (RTOS), low-power design, and device drivers",
+   [
+    "rtos",
+    "low_power_design",
+    "device_drivers"
+   ]
+  ],
+  [
+   "Interfacing sensors, motors, and displays",
+   [
+    "interfacing_sensors",
+    "interfacing_motors",
+    "interfacing_displays"
+   ]
+  ],
+  [
+   "Continuous- and discrete-time signals, and signal operations",
+   [
+    "signals_basics",
+    "dirac_delta"
+   ]
+  ],
+  [
+   "System properties: linearity, time invariance, causality, and stability (LTI systems)",
+   [
+    "lti_properties"
+   ]
+  ],
+  [
+   "Convolution and impulse response",
+   [
+    "convolution"
+   ]
+  ],
+  [
+   "Fourier series and the Fourier transform",
+   [
+    "fourier_series_ee",
+    "fourier_transform_ee",
+    "fourier_math"
+   ]
+  ],
+  [
+   "Laplace transform and z-transform",
+   [
+    "laplace_signals",
+    "z_transform"
+   ]
+  ],
+  [
+   "Sampling theorem (Nyquist) and aliasing",
+   [
+    "sampling_theorem",
+    "aliasing"
+   ]
+  ],
+  [
+   "Frequency-domain analysis: spectra, filtering, and modulation basics",
+   [
+    "spectra_filtering",
+    "modulation_basics"
+   ]
+  ],
+  [
+   "Discrete-time Fourier transform (DTFT), DFT, and the fast Fourier transform (FFT)",
+   [
+    "dtft_dft",
+    "fft_algorithm"
+   ]
+  ],
+  [
+   "FIR and IIR digital filter design, and windowing methods",
+   [
+    "fir_filters",
+    "iir_filters",
+    "windowing_methods"
+   ]
+  ],
+  [
+   "Multirate processing (decimation and interpolation)",
+   [
+    "multirate_processing"
+   ]
+  ],
+  [
+   "Quantization effects, and fixed- vs. floating-point arithmetic",
+   [
+    "quantization_effects",
+    "fixed_vs_float"
+   ]
+  ],
+  [
+   "Applications in audio, image processing, radar, and communications",
+   [
+    "dsp_applications",
+    "image_video_processing",
+    "radar_systems"
+   ]
+  ],
+  [
+   "Vector analysis",
+   [
+    "vector_analysis_em"
+   ]
+  ],
+  [
+   "Electrostatics: Coulomb’s law, Gauss’s law, potential, and dielectrics",
+   [
+    "electrostatics_dielectrics"
+   ]
+  ],
+  [
+   "Magnetostatics: the Biot–Savart law, Ampère’s law, and magnetic materials",
+   [
+    "magnetostatics_materials"
+   ]
+  ],
+  [
+   "Maxwell’s equations",
+   [
+    "maxwell_equations"
+   ]
+  ],
+  [
+   "Plane waves, polarization, reflection, and refraction",
+   [
+    "plane_waves",
+    "reflection_refraction"
+   ]
+  ],
+  [
+   "Transmission lines: characteristic impedance, reflection coefficient, standing waves (VSWR), and the Smith chart",
+   [
+    "transmission_lines",
+    "standing_waves_vswr",
+    "smith_chart"
+   ]
+  ],
+  [
+   "Impedance matching, waveguides, and the skin effect",
+   [
+    "impedance_matching",
+    "waveguides",
+    "skin_effect"
+   ]
+  ],
+  [
+   "Antennas: radiation patterns, gain, directivity, dipoles, and antenna arrays",
+   [
+    "antenna_fundamentals",
+    "dipole_antennas",
+    "antenna_arrays"
+   ]
+  ],
+  [
+   "EMI/EMC basics: interference, shielding, and grounding",
+   [
+    "emi_emc"
+   ]
+  ],
+  [
+   "Crystal structure, energy bands, carrier statistics, and Fermi levels",
+   [
+    "crystal_structure_ee",
+    "carrier_statistics",
+    "energy_bands_ee"
+   ]
+  ],
+  [
+   "PN junction physics: depletion, capacitance, and breakdown",
+   [
+    "pn_junction_physics"
+   ]
+  ],
+  [
+   "BJT and MOSFET device physics in depth, plus short-channel effects",
+   [
+    "bjt_physics_deep",
+    "mosfet_physics_deep",
+    "short_channel_effects",
+    "finfet_transistor"
+   ]
+  ],
+  [
+   "Optoelectronic devices: LEDs, lasers, photodetectors, and solar cells",
+   [
+    "optoelectronic_devices",
+    "lasers_semiconductor",
+    "photodetectors_solar"
+   ]
+  ],
+  [
+   "Fabrication: lithography, doping, oxidation, etching, and deposition",
+   [
+    "fabrication_overview",
+    "fabrication_lithography",
+    "doping_implantation",
+    "oxidation_process",
+    "etching_process",
+    "deposition_processes",
+    "chip_fabrication"
+   ]
+  ],
+  [
+   "Modeling electrical and mechanical systems",
+   [
+    "system_modeling"
+   ]
+  ],
+  [
+   "Transfer functions and block diagrams, and signal-flow graphs (Mason’s rule)",
+   [
+    "block_diagrams_mason"
+   ]
+  ],
+  [
+   "Time-domain response: rise time, overshoot, settling time, and steady-state error",
+   [
+    "time_domain_specs"
+   ]
+  ],
+  [
+   "Stability: Routh–Hurwitz criterion and root locus",
+   [
+    "routh_hurwitz",
+    "root_locus"
+   ]
+  ],
+  [
+   "Frequency-domain methods: Bode plots, Nyquist plots, and gain/phase margins",
+   [
+    "bode_nyquist_margins"
+   ]
+  ],
+  [
+   "PID controllers, and lead/lag compensators",
+   [
+    "pid_controller",
+    "lead_lag_compensators"
+   ]
+  ],
+  [
+   "State-space methods: controllability, observability, and pole placement",
+   [
+    "state_space",
+    "controllability_observability",
+    "pole_placement"
+   ]
+  ],
+  [
+   "Digital control systems",
+   [
+    "digital_control"
+   ]
+  ],
+  [
+   "Analog modulation: AM, FM, and PM",
+   [
+    "analog_modulation"
+   ]
+  ],
+  [
+   "Digital modulation: ASK, FSK, PSK, QAM, and OFDM",
+   [
+    "digital_modulation"
+   ]
+  ],
+  [
+   "Noise: noise analysis, signal-to-noise ratio (SNR), and bit error rate",
+   [
+    "noise_snr_ber",
+    "noise_modeling"
+   ]
+  ],
+  [
+   "Information theory: entropy and channel capacity (Shannon)",
+   [
+    "information_entropy_capacity"
+   ]
+  ],
+  [
+   "Error-correcting codes: block codes and convolutional codes",
+   [
+    "error_correcting_codes"
+   ]
+  ],
+  [
+   "Systems: multiplexing (TDM, FDM, CDMA), wireless channels, fading, and link budgets",
+   [
+    "multiplexing_access",
+    "wireless_channels_fading"
+   ]
+  ],
+  [
+   "Networking basics: the OSI model and TCP/IP",
+   [
+    "networking_osi_tcpip"
+   ]
+  ],
+  [
+   "Magnetic circuits and transformers",
+   [
+    "magnetic_circuits",
+    "power_transformers"
+   ]
+  ],
+  [
+   "DC machines, induction motors, and synchronous machines",
+   [
+    "dc_machines",
+    "induction_motor",
+    "synchronous_machines"
+   ]
+  ],
+  [
+   "Generation, transmission, and distribution",
+   [
+    "power_generation",
+    "transmission_distribution",
+    "power_grid_delivery"
+   ]
+  ],
+  [
+   "Per-unit system, power flow analysis, and fault analysis",
+   [
+    "per_unit_system",
+    "power_flow_analysis",
+    "fault_analysis"
+   ]
+  ],
+  [
+   "Protection: relays and circuit breakers",
+   [
+    "protection_relays_breakers"
+   ]
+  ],
+  [
+   "The power grid, renewable energy integration, and smart grid concepts",
+   [
+    "grid_renewables_smart",
+    "electric_power_grid"
+   ]
+  ],
+  [
+   "Rectifiers and inverters",
+   [
+    "rectifiers_inverters"
+   ]
+  ],
+  [
+   "DC-DC converters (buck, boost, buck-boost) and switching power supplies",
+   [
+    "buck_converter_node",
+    "boost_buckboost",
+    "smps_switching_supplies"
+   ]
+  ],
+  [
+   "Motor drives, and power semiconductor devices (IGBTs, SiC and GaN transistors)",
+   [
+    "motor_drives",
+    "power_semiconductors"
+   ]
+  ],
+  [
+   "Oscilloscopes, multimeters, function generators, and power supplies",
+   [
+    "oscilloscope",
+    "multimeter",
+    "function_generator",
+    "bench_power_supply"
+   ]
+  ],
+  [
+   "Logic analyzers and spectrum analyzers",
+   [
+    "logic_analyzer",
+    "spectrum_analyzer"
+   ]
+  ],
+  [
+   "Breadboarding, soldering, and troubleshooting",
+   [
+    "breadboarding",
+    "soldering",
+    "troubleshooting"
+   ]
+  ],
+  [
+   "PCB design in KiCad, Altium, or Eagle: schematic capture, layout, and manufacturing files",
+   [
+    "pcb_design"
+   ]
+  ],
+  [
+   "Writing lab reports, and analyzing data and measurement error",
+   [
+    "lab_reports_data",
+    "measurement_error"
+   ]
+  ],
+  [
+   "Lab safety and electrical safety",
+   [
+    "lab_electrical_safety"
+   ]
+  ],
+  [
+   "RF/microwave engineering: amplifiers, mixers, filters, and S-parameters",
+   [
+    "rf_amplifiers",
+    "rf_mixers_filters",
+    "s_parameters_rf"
+   ]
+  ],
+  [
+   "VLSI / IC design: CMOS digital and analog IC design, layout, and verification",
+   [
+    "vlsi_digital_cmos",
+    "vlsi_analog_ic",
+    "ic_layout_verification"
+   ]
+  ],
+  [
+   "Photonics/optics: fiber optics and lasers",
+   [
+    "fiber_optics_photonics",
+    "photonic_integrated_circuits",
+    "lasers_semiconductor"
+   ]
+  ],
+  [
+   "Wireless communications: 5G/6G, MIMO, and radar",
+   [
+    "wireless_5g6g",
+    "mimo_beamforming",
+    "radar_systems"
+   ]
+  ],
+  [
+   "Robotics and mechatronics",
+   [
+    "robotics_mechatronics"
+   ]
+  ],
+  [
+   "Machine learning and AI for engineers",
+   [
+    "machine_learning_engineers",
+    "neural_accelerator_hw"
+   ]
+  ],
+  [
+   "Image and video processing",
+   [
+    "image_video_processing"
+   ]
+  ],
+  [
+   "Biomedical instrumentation: ECG/EEG, sensors, and medical devices",
+   [
+    "biomedical_instrumentation",
+    "medical_devices"
+   ]
+  ],
+  [
+   "Renewable energy systems: solar, wind, and battery storage",
+   [
+    "solar_pv_systems",
+    "wind_energy_systems",
+    "battery_storage_systems"
+   ]
+  ],
+  [
+   "Electric vehicles and motor control",
+   [
+    "ev_motor_control"
+   ]
+  ],
+  [
+   "Nanotechnology and MEMS",
+   [
+    "nanotech_mems"
+   ]
+  ],
+  [
+   "Quantum engineering / quantum computing hardware",
+   [
+    "quantum_computing_hardware"
+   ]
+  ],
+  [
+   "Computer networks and the Internet of Things (IoT)",
+   [
+    "computer_networks_iot"
+   ]
+  ],
+  [
+   "Hardware security",
+   [
+    "hardware_security"
+   ]
+  ]
+ ],
+ "planned": {
+  "code:isa_simulator": [
+   "isa_risc_cisc",
+   "assembly_language"
+  ],
+  "code:datapath_viewer": [
+   "datapath_control"
+  ],
+  "code:pipeline_sim": [
+   "pipelining_hazards",
+   "instruction_execution"
+  ],
+  "code:cache_sim": [
+   "cache_memory",
+   "memory_hierarchy",
+   "neural_accelerator_hw"
+  ],
+  "code:mcu_sim": [
+   "mcu_architecture",
+   "gpio",
+   "interrupts",
+   "mcu_adc_dac",
+   "interfacing_sensors",
+   "interfacing_displays"
+  ],
+  "code:pwm_scope": [
+   "timers_pwm"
+  ],
+  "code:serial_decoder": [
+   "uart_serial",
+   "spi_bus",
+   "i2c_bus",
+   "can_bus",
+   "usb_protocol",
+   "logic_analyzer"
+  ],
+  "code:power_profile": [
+   "low_power_design"
+  ],
+  "circuit:three_phase": [
+   "three_phase"
+  ],
+  "signal:am_fm_demo": [
+   "analog_modulation",
+   "modulation_basics"
+  ],
+  "signal:constellation": [
+   "digital_modulation",
+   "how_wifi_sends_data"
+  ],
+  "signal:ber_curve": [
+   "noise_snr_ber"
+  ],
+  "signal:shannon_capacity": [
+   "information_entropy_capacity"
+  ],
+  "signal:hamming_demo": [
+   "error_correcting_codes"
+  ],
+  "signal:cdma_demo": [
+   "multiplexing_access"
+  ],
+  "signal:link_budget": [
+   "wireless_channels_fading"
+  ],
+  "network:packet_flow": [
+   "networking_osi_tcpip",
+   "computer_networks_iot"
+  ],
+  "control:mass_spring_damper": [
+   "system_modeling",
+   "robotics_mechatronics",
+   "mechanics_kinematics"
+  ],
+  "control:block_diagram": [
+   "block_diagrams_mason"
+  ],
+  "control:step_response": [
+   "time_domain_specs",
+   "digital_control"
+  ],
+  "control:routh_table": [
+   "routh_hurwitz"
+  ],
+  "control:root_locus": [
+   "root_locus"
+  ],
+  "control:bode_margins": [
+   "bode_nyquist_margins",
+   "lead_lag_compensators",
+   "feedback_stability_margins"
+  ],
+  "control:pid_tuner": [
+   "pid_controller"
+  ],
+  "control:state_space": [
+   "state_space",
+   "controllability_observability",
+   "pole_placement"
+  ],
+  "logic:number_converter": [
+   "number_systems"
+  ],
+  "logic:boolean_playground": [
+   "boolean_algebra_digital",
+   "logic_boolean_math"
+  ],
+  "logic:gate_sandbox": [
+   "logic_gates"
+  ],
+  "logic:kmap_minimizer": [
+   "karnaugh_maps",
+   "quine_mccluskey"
+  ],
+  "logic:mux_decoder": [
+   "muxes_decoders"
+  ],
+  "logic:adder_builder": [
+   "adders_arithmetic",
+   "logic_adder"
+  ],
+  "logic:alu_sandbox": [
+   "alu_design"
+  ],
+  "logic:latch_flipflop": [
+   "latches",
+   "flip_flops"
+  ],
+  "logic:counter_register": [
+   "registers_counters"
+  ],
+  "logic:fsm_designer": [
+   "finite_state_machines"
+  ],
+  "logic:timing_diagram": [
+   "timing_analysis"
+  ],
+  "logic:memory_array": [
+   "memory_rom_ram"
+  ],
+  "device:flash_cell": [
+   "flash_memory"
+  ],
+  "logic:fpga_lut": [
+   "programmable_logic"
+  ],
+  "logic:verilog_sim": [
+   "hdl_design_flow",
+   "hdl_verilog_vhdl"
+  ],
+  "signal:dft_explorer": [
+   "dtft_dft",
+   "fft_algorithm"
+  ],
+  "signal:filter_designer": [
+   "fir_filters",
+   "iir_filters",
+   "windowing_methods",
+   "multirate_processing"
+  ],
+  "signal:adc_quantizer": [
+   "quantization_effects",
+   "adc_basics"
+  ],
+  "signal:audio_equalizer": [
+   "dsp_applications"
+  ],
+  "field:smith_chart": [
+   "rf_amplifiers",
+   "s_parameters_rf",
+   "smith_chart",
+   "impedance_matching"
+  ],
+  "signal:mixer_spectrum": [
+   "rf_mixers_filters"
+  ],
+  "field:wave_boundary": [
+   "fiber_optics_photonics",
+   "reflection_refraction"
+  ],
+  "network:mimo_capacity": [
+   "mimo_beamforming"
+  ],
+  "signal:radar_range_doppler": [
+   "radar_systems"
+  ],
+  "code:python_sandbox": [
+   "machine_learning_engineers",
+   "matlab_python_sim"
+  ],
+  "signal:image_filter": [
+   "image_video_processing"
+  ],
+  "field:mems_accelerometer": [
+   "nanotech_mems",
+   "phone_sensors"
+  ],
+  "code:qubit_bloch": [
+   "quantum_computing_hardware"
+  ],
+  "code:timing_leak_demo": [
+   "hardware_security"
+  ],
+  "signal:dac_ladder": [
+   "dac_basics"
+  ],
+  "field:vector_field_probe": [
+   "vector_analysis_em"
+  ],
+  "field:equipotentials": [
+   "electrostatics_dielectrics",
+   "electric_potential_ee"
+  ],
+  "field:magnetic_loops": [
+   "magnetostatics_materials",
+   "magnetic_fields_forces"
+  ],
+  "field:maxwell_waves": [
+   "maxwell_equations",
+   "plane_waves"
+  ],
+  "field:tline_reflections": [
+   "transmission_lines",
+   "standing_waves_vswr"
+  ],
+  "field:waveguide_modes": [
+   "waveguides"
+  ],
+  "field:skin_depth": [
+   "skin_effect"
+  ],
+  "field:antenna_pattern": [
+   "antenna_fundamentals",
+   "dipole_antennas"
+  ],
+  "field:array_factor": [
+   "antenna_arrays"
+  ],
+  "field:emc_loop": [
+   "emi_emc"
+  ],
+  "signal:scope_panel": [
+   "oscilloscope"
+  ],
+  "signal:signal_builder": [
+   "function_generator",
+   "signals_basics",
+   "dirac_delta"
+  ],
+  "signal:spectrum_analyzer": [
+   "spectrum_analyzer",
+   "fourier_transform_ee",
+   "spectra_filtering"
+  ],
+  "field:pcb_traces": [
+   "pcb_design"
+  ],
+  "control:pole_zero_map": [
+   "poles_zeros",
+   "laplace_signals"
+  ],
+  "math:newton_iteration": [
+   "root_finding"
+  ],
+  "math:ode_stepper": [
+   "ode_solvers"
+  ],
+  "field:point_charges": [
+   "coulombs_law_ee"
+  ],
+  "field:gauss_surfaces": [
+   "gauss_law_ee"
+  ],
+  "field:faraday_loop": [
+   "faraday_lenz"
+  ],
+  "field:wave_interference": [
+   "waves_interference"
+  ],
+  "field:magnetic_circuit": [
+   "magnetic_circuits"
+  ],
+  "field:motor_torque": [
+   "dc_machines"
+  ],
+  "field:rotating_field": [
+   "induction_motor",
+   "synchronous_machines",
+   "motor_drives"
+  ],
+  "network:power_flow_grid": [
+   "power_flow_analysis",
+   "fault_analysis",
+   "protection_relays_breakers",
+   "grid_renewables_smart",
+   "power_grid_delivery"
+  ],
+  "circuit:inverter_bridge": [
+   "rectifiers_inverters"
+  ],
+  "circuit:buck_converter": [
+   "buck_converter_node",
+   "buck_converter"
+  ],
+  "circuit:boost_converter": [
+   "boost_buckboost"
+  ],
+  "circuit:flyback_converter": [
+   "smps_switching_supplies",
+   "flyback_transformer"
+  ],
+  "code:register_bitfiddle": [
+   "embedded_c"
+  ],
+  "field:fem_demo": [
+   "field_solvers"
+  ],
+  "signal:system_properties": [
+   "lti_properties"
+  ],
+  "signal:convolution_sketch": [
+   "convolution"
+  ],
+  "signal:fourier_synth": [
+   "fourier_series_ee"
+  ],
+  "signal:z_plane": [
+   "z_transform"
+  ],
+  "signal:sampling_aliasing": [
+   "sampling_theorem",
+   "aliasing"
+  ],
+  "field:touch_grid": [
+   "phone_touchscreen",
+   "how_touchscreen_senses"
+  ]
+ },
+ "warnings": [
+  "lead_lag_compensators: no refs/ext",
+  "drift_diffusion_ee: no refs/ext",
+  "active_load: no refs/ext",
+  "multistage_amps: no refs/ext"
+ ]
+}

@@ -1,0 +1,352 @@
+[
+ {
+  "id": "dtft_dft",
+  "title": "DTFT and DFT",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_dsp",
+  "parents": [
+   "ee_dsp"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "z_transform",
+   "sampling_theorem"
+  ],
+  "summary": "Spectra of sampled signals.",
+  "layers": {
+   "basics": "The DFT turns N samples into N frequency values; it is what computers calculate.",
+   "deeper": "DTFT is continuous in frequency and periodic; DFT samples it at N points. Circular convolution.",
+   "expert": "X[k]=Σx[n]e^{−j2πkn/N}; zero-padding interpolates the spectrum, it does not improve resolution; leakage unless periods fit exactly."
+  },
+  "facts": [],
+  "formula": "X[k] = Σ x[n] e^{−j2πkn/N}",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "dft_explorer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Discrete Fourier transform",
+    "url": "https://en.wikipedia.org/wiki/Discrete_Fourier_transform"
+   }
+  ]
+ },
+ {
+  "id": "fft_algorithm",
+  "title": "Fast Fourier transform",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_dsp",
+  "parents": [
+   "ee_dsp"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "dtft_dft",
+   "algorithms_complexity"
+  ],
+  "summary": "DFT in N log N operations.",
+  "layers": {
+   "basics": "The FFT computes the DFT far faster by reusing partial results.",
+   "deeper": "Radix-2 butterflies halve the problem repeatedly; makes real-time spectrum analysis and OFDM feasible.",
+   "expert": "Cooley–Tukey: O(N log₂N) vs O(N²); N=1024 saves ~100×; real-FFT tricks; Bluestein for prime N."
+  },
+  "facts": [],
+  "formula": "O(N log N)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "dft_explorer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Fast Fourier transform",
+    "url": "https://en.wikipedia.org/wiki/Fast_Fourier_transform"
+   }
+  ]
+ },
+ {
+  "id": "fir_filters",
+  "title": "FIR filter design",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_dsp",
+  "parents": [
+   "ee_dsp"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "dtft_dft",
+   "convolution"
+  ],
+  "summary": "Finite impulse response filters.",
+  "layers": {
+   "basics": "FIR filters average recent samples with chosen weights; always stable and can have perfect linear phase.",
+   "deeper": "Windowing a sinc impulse response, or Parks–McClellan optimisation, designs them.",
+   "expert": "y[n]=Σb_k x[n−k]; linear phase if symmetric; order estimate N≈(−20log√(δ₁δ₂)−13)/(14.6Δf)."
+  },
+  "facts": [],
+  "formula": "y[n] = Σ b_k x[n−k]",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "filter_designer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Finite impulse response",
+    "url": "https://en.wikipedia.org/wiki/Finite_impulse_response"
+   }
+  ]
+ },
+ {
+  "id": "iir_filters",
+  "title": "IIR filter design",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_dsp",
+  "parents": [
+   "ee_dsp"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "z_transform",
+   "lti_properties"
+  ],
+  "summary": "Filters with feedback.",
+  "layers": {
+   "basics": "IIR filters reuse past outputs, giving sharp responses with few coefficients but risking instability.",
+   "deeper": "Design by transforming analog prototypes (bilinear transform) such as Butterworth or Chebyshev.",
+   "expert": "Bilinear s=(2/T)(1−z⁻¹)/(1+z⁻¹) warps frequency; biquad cascades reduce coefficient sensitivity; limit cycles."
+  },
+  "facts": [],
+  "formula": "s = (2/T)(1−z⁻¹)/(1+z⁻¹)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "filter_designer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Infinite impulse response",
+    "url": "https://en.wikipedia.org/wiki/Infinite_impulse_response"
+   }
+  ]
+ },
+ {
+  "id": "windowing_methods",
+  "title": "Windowing",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_dsp",
+  "parents": [
+   "ee_dsp"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "fir_filters"
+  ],
+  "summary": "Taming spectral leakage.",
+  "layers": {
+   "basics": "Cutting a signal abruptly smears its spectrum; tapering with a window reduces the smear.",
+   "deeper": "Hann, Hamming, Blackman trade main-lobe width against side-lobe level.",
+   "expert": "Rectangular −13 dB sidelobes; Hamming −43 dB; Kaiser window β controls the trade-off."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "filter_designer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Window function",
+    "url": "https://en.wikipedia.org/wiki/Window_function"
+   }
+  ]
+ },
+ {
+  "id": "multirate_processing",
+  "title": "Multirate processing",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_dsp",
+  "parents": [
+   "ee_dsp"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "fir_filters"
+  ],
+  "summary": "Changing the sampling rate.",
+  "layers": {
+   "basics": "Decimation lowers the sample rate (after filtering); interpolation raises it (inserting zeros then filtering).",
+   "deeper": "Saves computation when only a narrow band matters; sample-rate converters in audio.",
+   "expert": "Polyphase structures; CIC filters in sigma-delta and digital radios; noble identities."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "filter_designer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Decimation (signal processing)",
+    "url": "https://en.wikipedia.org/wiki/Decimation_(signal_processing)"
+   }
+  ]
+ },
+ {
+  "id": "quantization_effects",
+  "title": "Quantization effects",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_dsp",
+  "parents": [
+   "ee_dsp"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "adc_basics",
+   "dtft_dft"
+  ],
+  "summary": "The cost of finite word length.",
+  "layers": {
+   "basics": "Rounding to a finite number of bits adds noise and, in filters, can produce small oscillations.",
+   "deeper": "Quantisation noise power Δ²/12; coefficient rounding shifts poles.",
+   "expert": "SQNR=6.02B+1.76 dB; dither linearises; noise shaping in sigma-delta; overflow handling (saturate vs wrap)."
+  },
+  "facts": [],
+  "formula": "σ² = Δ²/12",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "adc_quantizer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Quantization (signal processing)",
+    "url": "https://en.wikipedia.org/wiki/Quantization_(signal_processing)"
+   }
+  ]
+ },
+ {
+  "id": "fixed_vs_float",
+  "title": "Fixed- vs floating-point arithmetic",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_dsp",
+  "parents": [
+   "ee_dsp"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "number_systems",
+   "quantization_effects"
+  ],
+  "summary": "Cheap vs flexible number formats.",
+  "layers": {
+   "basics": "Fixed-point is cheaper and faster on small chips; floating-point handles a huge range automatically.",
+   "deeper": "Choose Q-format and scaling to avoid overflow; floats cost more power.",
+   "expert": "IEEE-754 binary32: 24-bit significand, 8-bit exponent; bfloat16 and int8 for ML accelerators."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Fixed-point arithmetic",
+    "url": "https://en.wikipedia.org/wiki/Fixed-point_arithmetic"
+   }
+  ]
+ },
+ {
+  "id": "dsp_applications",
+  "title": "DSP applications: audio, image, radar, communications",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_dsp",
+  "parents": [
+   "ee_dsp"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "fft_algorithm",
+   "fir_filters"
+  ],
+  "summary": "Where DSP is used.",
+  "layers": {
+   "basics": "DSP powers audio equalisers, noise cancelling, camera pipelines, radar signal processing and software radios.",
+   "deeper": "Typical blocks: FIR/IIR filters, FFT, correlators, adaptive filters (LMS).",
+   "expert": "Matched filter maximises SNR; pulse compression; adaptive beamforming; DSP slices in FPGAs, SIMD in CPUs."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "The Scientist and Engineer’s Guide to DSP",
+    "url": "https://www.dspguide.com/"
+   }
+  ],
+  "lab": {
+   "id": "signal",
+   "preset": "audio_equalizer"
+  }
+ }
+]

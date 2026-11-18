@@ -1,0 +1,471 @@
+[
+ {
+  "id": "system_modeling",
+  "title": "Modelling electrical and mechanical systems",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_control",
+  "parents": [
+   "ee_control"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "ode_second_order",
+   "mechanics_kinematics",
+   "rlc_transient"
+  ],
+  "summary": "Equations that describe plants.",
+  "layers": {
+   "basics": "To control something, first write equations for it: a motor, a heater, a circuit. Electrical and mechanical systems have direct analogies.",
+   "deeper": "Mass–spring–damper ↔ series RLC; DC motor couples electrical and mechanical equations through k_t and k_e.",
+   "expert": "Force–voltage analogy; linearisation about operating point; state variables chosen as energy-storage quantities."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Control Tutorials for MATLAB and Simulink",
+    "url": "https://ctms.engin.umich.edu/CTMS/"
+   }
+  ],
+  "lab": {
+   "id": "control",
+   "preset": "mass_spring_damper"
+  }
+ },
+ {
+  "id": "block_diagrams_mason",
+  "title": "Transfer functions, block diagrams and signal-flow graphs",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_control",
+  "parents": [
+   "ee_control"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "system_modeling",
+   "transfer_function_ee"
+  ],
+  "summary": "Wiring diagrams for dynamics.",
+  "layers": {
+   "basics": "Block diagrams show how signals flow through subsystems; transfer functions in blocks multiply along a path.",
+   "deeper": "Closed-loop T=G/(1+GH); signal-flow graphs and Mason’s gain formula handle complex loops.",
+   "expert": "Mason: T=ΣPₖΔₖ/Δ, Δ=1−ΣL+ΣLL−…; block reduction rules; algebra equals Cramer’s rule on the graph."
+  },
+  "facts": [],
+  "formula": "T = G/(1+GH)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "control",
+   "preset": "block_diagram"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Mason's gain formula",
+    "url": "https://en.wikipedia.org/wiki/Mason%27s_gain_formula"
+   }
+  ]
+ },
+ {
+  "id": "time_domain_specs",
+  "title": "Time-domain response: rise time, overshoot, settling time, steady-state error",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_control",
+  "parents": [
+   "ee_control"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "block_diagrams_mason",
+   "damping_regimes"
+  ],
+  "summary": "How a control system’s response is judged.",
+  "layers": {
+   "basics": "We judge a controller by how fast, how smoothly and how accurately the output follows a step command.",
+   "deeper": "Second-order metrics: overshoot %OS=e^{−πζ/√(1−ζ²)}, settling t_s≈4/(ζω_n), rise time ≈1.8/ω_n.",
+   "expert": "Steady-state error from system type: e_ss=1/(1+K_p) for type 0 step; type-1 systems track steps with zero error."
+  },
+  "facts": [],
+  "formula": "%OS = 100·exp(−πζ/√(1−ζ²))",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "control",
+   "preset": "step_response"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Step response",
+    "url": "https://en.wikipedia.org/wiki/Step_response"
+   }
+  ]
+ },
+ {
+  "id": "routh_hurwitz",
+  "title": "Routh–Hurwitz criterion",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_control",
+  "parents": [
+   "ee_control"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "time_domain_specs"
+  ],
+  "summary": "Stability test without finding roots.",
+  "layers": {
+   "basics": "A table built from the characteristic polynomial’s coefficients reveals how many roots lie in the unstable right half-plane.",
+   "deeper": "Sign changes in the first column count unstable poles; handy for finding the gain at which a system goes unstable.",
+   "expert": "Special cases (zero in first column, row of zeros) handled by ε-substitution and auxiliary polynomial; gives critical K for oscillation."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "control",
+   "preset": "routh_table"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Routh–Hurwitz stability criterion",
+    "url": "https://en.wikipedia.org/wiki/Routh%E2%80%93Hurwitz_stability_criterion"
+   }
+  ]
+ },
+ {
+  "id": "root_locus",
+  "title": "Root locus",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_control",
+  "parents": [
+   "ee_control"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "routh_hurwitz",
+   "poles_zeros"
+  ],
+  "summary": "How poles move as gain changes.",
+  "layers": {
+   "basics": "A root locus plots where the closed-loop poles go as the controller gain is turned up.",
+   "deeper": "Rules for sketching: starts at open-loop poles, ends at zeros, asymptotes, breakaway points.",
+   "expert": "Angle condition ∠L(s)=±180°(2k+1), magnitude gives K; design by adding poles/zeros (compensators) to reshape locus."
+  },
+  "facts": [],
+  "formula": "1 + K·G(s)H(s) = 0",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "control",
+   "preset": "root_locus"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Root locus analysis",
+    "url": "https://en.wikipedia.org/wiki/Root_locus_analysis"
+   }
+  ]
+ },
+ {
+  "id": "bode_nyquist_margins",
+  "title": "Frequency-domain control: Bode, Nyquist, margins",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_control",
+  "parents": [
+   "ee_control"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "frequency_response_bode",
+   "feedback_stability_margins",
+   "contour_integration"
+  ],
+  "summary": "Stability from measured frequency response.",
+  "layers": {
+   "basics": "Nyquist plots the open-loop response in the complex plane; encirclements of −1 reveal instability. Gain and phase margins show the safety buffer.",
+   "deeper": "Can be measured on real plants without a model; handles time delay.",
+   "expert": "Nyquist: Z=N+P; sensitivity peak M_s=max|1/(1+L)|; Bode gain–phase relation; delay adds phase −ωτ."
+  },
+  "facts": [],
+  "formula": "Z = N + P",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "control",
+   "preset": "bode_margins"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Nyquist stability criterion",
+    "url": "https://en.wikipedia.org/wiki/Nyquist_stability_criterion"
+   }
+  ]
+ },
+ {
+  "id": "pid_controller",
+  "title": "PID controllers",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_control",
+  "parents": [
+   "ee_control"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "time_domain_specs"
+  ],
+  "summary": "Proportional, integral, derivative control.",
+  "layers": {
+   "basics": "PID looks at the error now (P), its accumulated past (I) and its trend (D) to decide the correction; it runs most industrial loops.",
+   "deeper": "P speeds response, I removes steady error, D adds damping; tuning methods: Ziegler–Nichols, loop-shaping.",
+   "expert": "u=K_p e+K_i∫e+K_d de/dt; anti-windup, derivative filter; digital form with sample time; 2-DOF structures."
+  },
+  "facts": [],
+  "formula": "u = Kp e + Ki ∫e dt + Kd de/dt",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "control",
+   "preset": "pid_tuner"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: PID controller",
+    "url": "https://en.wikipedia.org/wiki/PID_controller"
+   }
+  ]
+ },
+ {
+  "id": "lead_lag_compensators",
+  "title": "Lead and lag compensators",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_control",
+  "parents": [
+   "ee_control"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "root_locus",
+   "bode_nyquist_margins"
+  ],
+  "summary": "Reshape the loop.",
+  "layers": {
+   "basics": "A lead compensator adds phase near crossover for stability and speed; a lag improves low-frequency gain (accuracy).",
+   "deeper": "Lead: C=(1+sαT)/(1+sT), α<1; lag: places a pole–zero pair at low frequency.",
+   "expert": "Max phase lead φ_m=asin((1−α)/(1+α)) at ω=1/(T√α); lead-lag combined = PID-like."
+  },
+  "facts": [],
+  "formula": "φ_max = asin((1−α)/(1+α))",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "control",
+   "preset": "bode_margins"
+  }
+ },
+ {
+  "id": "state_space",
+  "title": "State-space methods",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_control",
+  "parents": [
+   "ee_control"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "ode_systems",
+   "eigen"
+  ],
+  "summary": "Matrices describe dynamics.",
+  "layers": {
+   "basics": "State-space writes a system as first-order equations in a state vector; it handles multi-input multi-output systems naturally.",
+   "deeper": "ẋ=Ax+Bu, y=Cx+Du; eigenvalues of A are the poles; transfer function G=C(sI−A)⁻¹B+D.",
+   "expert": "Realisations (canonical forms); similarity transformations; balanced truncation for model reduction."
+  },
+  "facts": [],
+  "formula": "ẋ = Ax + Bu;  y = Cx + Du",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "control",
+   "preset": "state_space"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: State-space representation",
+    "url": "https://en.wikipedia.org/wiki/State-space_representation"
+   }
+  ]
+ },
+ {
+  "id": "controllability_observability",
+  "title": "Controllability and observability",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_control",
+  "parents": [
+   "ee_control"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "state_space"
+  ],
+  "summary": "Can we steer it? Can we see it?",
+  "layers": {
+   "basics": "Controllable: inputs can drive the state anywhere. Observable: outputs reveal the state.",
+   "deeper": "Rank tests on the controllability matrix [B AB … Aⁿ⁻¹B] and the observability matrix.",
+   "expert": "Kalman decomposition; duality; PBH test; uncontrollable modes cannot be moved by feedback."
+  },
+  "facts": [],
+  "formula": "rank [B AB … Aⁿ⁻¹B] = n",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "control",
+   "preset": "state_space"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Controllability",
+    "url": "https://en.wikipedia.org/wiki/Controllability"
+   }
+  ]
+ },
+ {
+  "id": "pole_placement",
+  "title": "Pole placement and observers",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_control",
+  "parents": [
+   "ee_control"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "controllability_observability"
+  ],
+  "summary": "Choose where closed-loop poles go.",
+  "layers": {
+   "basics": "State feedback u=−Kx can set closed-loop poles anywhere if the system is controllable; observers estimate unmeasured states.",
+   "deeper": "Ackermann’s formula; Luenberger observer; separation principle lets you design them separately.",
+   "expert": "LQR minimises ∫(xᵀQx+uᵀRu), solved via Riccati equation; LQG = LQR + Kalman filter."
+  },
+  "facts": [],
+  "formula": "u = −K x;  eig(A−BK) = desired",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "control",
+   "preset": "state_space"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Pole placement",
+    "url": "https://en.wikipedia.org/wiki/Pole_placement"
+   }
+  ]
+ },
+ {
+  "id": "digital_control",
+  "title": "Digital control systems",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_control",
+  "parents": [
+   "ee_control"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "z_transform",
+   "pid_controller"
+  ],
+  "summary": "Controllers running on a computer.",
+  "layers": {
+   "basics": "Digital controllers sample the plant, compute in software, and output through a DAC with zero-order hold.",
+   "deeper": "Discretise the plant (c2d) or the controller (Tustin); choose sample rate ≥10× bandwidth.",
+   "expert": "z-plane stability inside unit circle; deadbeat; computational delay and jitter; aliasing; dual-rate loops."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "control",
+   "preset": "step_response"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Digital control",
+    "url": "https://en.wikipedia.org/wiki/Digital_control"
+   }
+  ]
+ }
+]

@@ -6,6 +6,8 @@ An explorable, true-scale model of everything science knows — from quarks insi
 
 - **One continuous zoom** across ~42 powers of ten, with real sizes and distances: an oxygen atom in your DNA, your cells and organs, a park in Greenwich, the real Earth turning under the real Sun, the planets where they are today (astronomy-engine), 109,000 real stars (HYG catalog), the Milky Way, the Local Group and the cosmic web.
 - **Explorable nodes** — things you can click, open and drill into. The first domain is the human body: 114 anatomical structures (BodyParts3D), cut-away organs with labeled inner parts, tissues, cells and step-by-step processes.
+- **Electrical engineering** — the phone in your hand opens up (phone → processor die → CPU core → logic gates → CMOS inverter → FinFET → silicon crystal), 399 EE concepts covering a full undergraduate curriculum, and an **EE track** that walks them in prerequisite order.
+- **Labs** — interactive simulations that open over the world: a **Circuit Lab** (schematic editor, DC/transient/AC solver, oscilloscope, Bode plotter, Thévenin calculator, 37 presets) and a **Semiconductor Device Lab** (bands, doping, PN junctions, diodes, BJTs, MOSFETs, CMOS, fabrication). More labs (signals, logic/CPU, control, fields, math, probability, code, networks) are planned — see `docs/REPORT_ee_nodes.md` for their preset specs.
 - **Matter at every scale** — 250 molecules, 17 crystal lattices, liquid water and air at molecular scale, atoms with quantum orbitals and true-size nuclei, protons with quarks and gluons.
 - **A knowledge map** (309 topics with certainty levels and open questions) and a **library** indexing 51 OpenStax textbooks; every explanation links to the relevant textbook section.
 
@@ -29,9 +31,11 @@ js/engine_ui.js     info panel, library, scale ruler, tours, main loop
 js/world_space.js   cosmos, galaxies, stars, solar system, planets, Earth
 js/world_matter.js  molecules, crystals, liquids, gases, atoms, nuclei, micro-scale scenes, landscapes
 js/nodes.js         explorable node system: anatomy, organs, tissues, processes
+js/teardown.js      the phone teardown chain down to a single transistor
+js/labs/            lab host + Circuit Lab + Device Lab (tools/labtest/ has standalone test pages)
 js/world_build.js   assembles the world, landmarks, start view
 js/levels_v2.js     earlier hand-built scenes reused inside the zoom (park, cell, DNA, atom, proton, black hole)
-data/               all content as data (nodes, anatomy meshes, stars, molecules, elements, library index…)
+data/               all content as data (nodes, tracks, lab presets, anatomy meshes, stars, molecules, elements, library index…)
 assets/             textures and ATTRIBUTION.md
 tools/              scripts that generated the data
 docs/               build reports for each data set (sources, checks, known gaps)

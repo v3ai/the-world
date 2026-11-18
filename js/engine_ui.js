@@ -60,7 +60,7 @@ function wireTabs() {
 }
 function openPanel(h) { infoEl.innerHTML = `<button class="x" aria-label="Close">✕</button>` + h; infoEl.classList.add('open'); infoEl.scrollTop = 0; infoEl.querySelector('.x').onclick = closeInfo; wireTabs(); }
 function closeInfo() { infoEl.classList.remove('open'); infoState = null; }
-function closePops() { ['#library', '#tourPop'].forEach(s => { const e = $(s); if (e) e.classList.remove('open'); }); }
+function closePops() { ['#library', '#tourPop', '#tracks'].forEach(s => { const e = $(s); if (e) e.classList.remove('open'); }); }
 function scienceSection(simIds) {
   const nodes = []; simIds.forEach(s => (KN_BY_SIM[s] || []).forEach(n => { if (!nodes.includes(n)) nodes.push(n); }));
   if (!nodes.length) return '';
@@ -211,6 +211,7 @@ async function startApp() {
   buildRuler();
   bindHold($('#zin'), -1); bindHold($('#zout'), 1);
   $('#bLibrary').onclick = e => { e.stopPropagation(); openLibrary(); };
+  $('#bTracks').onclick = e => { e.stopPropagation(); openTracks(); };
   $('#libQ').addEventListener('input', e => libSearch(e.target.value));
   $('#bLabels').classList.toggle('off', !labelsOn);
   $('#bLabels').onclick = () => { labelsOn = !labelsOn; store.set('labels', labelsOn); $('#bLabels').classList.toggle('off', !labelsOn); };

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Semiconductor Device Lab — standalone test page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--panel:rgba(10,14,26,.78);--line:rgba(255,255,255,.12);--text:#e8ecf5;--dim:#98a2b8;--accent:#6ee7ff;--gold:#ffd166}
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:#000;color:var(--text);font-family:Inter,system-ui,sans-serif;overflow:hidden}
+#hdr{height:48px;display:flex;align-items:center;gap:14px;padding:0 16px;background:var(--panel);border-bottom:1px solid var(--line);font:700 15px 'Space Grotesk',sans-serif;letter-spacing:.12em}
+#hdr small{font:12px Inter,sans-serif;color:var(--dim);letter-spacing:0}
+#lab{position:relative;height:calc(100% - 48px)}
+</style>
+</head>
+<body>
+<div id="hdr"><span>LAB HOST</span><small id="ttl"></small><small>test page — use ?preset=pn_forward to open a preset</small></div>
+<div id="lab"></div>
+<script src="../../js/labs/device.js"></script>
+<script>
+const q = new URLSearchParams(location.search);
+document.getElementById('ttl').textContent = LABS.device.title;
+window.inst = LABS.device.open(document.getElementById('lab'), q.get('preset') || undefined);
+</script>
+</body>
+</html>

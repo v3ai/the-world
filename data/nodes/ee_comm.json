@@ -1,0 +1,328 @@
+[
+ {
+  "id": "analog_modulation",
+  "title": "Analog modulation: AM, FM, PM",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_comm",
+  "parents": [
+   "ee_comm"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "modulation_basics"
+  ],
+  "summary": "Encoding signals on a carrier.",
+  "layers": {
+   "basics": "AM varies carrier amplitude, FM varies frequency, PM phase. FM resists amplitude noise.",
+   "deeper": "AM bandwidth 2B; FM Carson’s rule B≈2(Δf+f_m); broadcast radio and TV audio use them.",
+   "expert": "Modulation index β=Δf/f_m; SNR improvement of FM above threshold ∝3β²; envelope and quadrature detectors; SSB and VSB save bandwidth."
+  },
+  "facts": [],
+  "formula": "B_FM ≈ 2(Δf + f_m)",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "radio_comm"
+  ],
+  "lab": {
+   "id": "signal",
+   "preset": "am_fm_demo"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Modulation",
+    "url": "https://en.wikipedia.org/wiki/Modulation"
+   }
+  ]
+ },
+ {
+  "id": "digital_modulation",
+  "title": "Digital modulation: ASK, FSK, PSK, QAM, OFDM",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_comm",
+  "parents": [
+   "ee_comm"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "analog_modulation"
+  ],
+  "summary": "Bits to waveforms.",
+  "layers": {
+   "basics": "Digital modulation switches amplitude, frequency or phase between a few states; QAM mixes amplitude and phase to send many bits per symbol.",
+   "deeper": "Constellation diagrams display the states; OFDM splits the data across many narrow subcarriers to resist multipath.",
+   "expert": "16-QAM carries 4 bits/symbol; OFDM implemented with IFFT, cyclic prefix; peak-to-average power ratio problem; spectral efficiency vs SNR trade-off."
+  },
+  "facts": [],
+  "formula": "bits/symbol = log₂M",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "constellation"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Quadrature amplitude modulation",
+    "url": "https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation"
+   }
+  ],
+  "where": "phone_wifi_bt"
+ },
+ {
+  "id": "noise_snr_ber",
+  "title": "Noise, SNR and bit error rate",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_comm",
+  "parents": [
+   "ee_comm"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "noise_modeling",
+   "digital_modulation"
+  ],
+  "summary": "How noise causes errors.",
+  "layers": {
+   "basics": "Noise blurs received symbols; the bit error rate depends on signal-to-noise ratio and modulation type.",
+   "deeper": "BPSK BER=Q(√(2E_b/N₀)); higher-order modulations need more SNR.",
+   "expert": "E_b/N₀ vs SNR relation SNR=(E_b/N₀)(R_b/B); Q-function tail of Gaussian; waterfall curves."
+  },
+  "facts": [],
+  "formula": "BER_BPSK = Q(√(2Eb/N₀))",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "ber_curve"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Bit error rate",
+    "url": "https://en.wikipedia.org/wiki/Bit_error_rate"
+   }
+  ]
+ },
+ {
+  "id": "information_entropy_capacity",
+  "title": "Information theory: entropy and channel capacity",
+  "kind": "law",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_comm",
+  "parents": [
+   "ee_comm"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "noise_snr_ber",
+   "random_variables"
+  ],
+  "summary": "The ultimate limits of communication.",
+  "layers": {
+   "basics": "Entropy measures information in bits; Shannon showed that every noisy channel has a capacity below which errors can be made arbitrarily small.",
+   "deeper": "C=B log₂(1+SNR); more bandwidth or more power raises capacity, with diminishing returns.",
+   "expert": "H=−Σp log p; channel coding theorem; Shannon limit −1.59 dB on E_b/N₀ as bandwidth → ∞; turbo and LDPC codes approach it."
+  },
+  "facts": [],
+  "formula": "C = B log₂(1 + S/N)",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "information_theory"
+  ],
+  "lab": {
+   "id": "signal",
+   "preset": "shannon_capacity"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Channel capacity",
+    "url": "https://en.wikipedia.org/wiki/Channel_capacity"
+   }
+  ]
+ },
+ {
+  "id": "error_correcting_codes",
+  "title": "Error-correcting codes",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_comm",
+  "parents": [
+   "ee_comm"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "information_entropy_capacity",
+   "combinatorics_ee"
+  ],
+  "summary": "Adding redundancy to fix errors.",
+  "layers": {
+   "basics": "Extra check bits let a receiver detect and fix errors; Hamming codes fix single-bit errors; CRCs detect them.",
+   "deeper": "Block codes work on fixed chunks; convolutional codes work on streams, decoded with the Viterbi algorithm.",
+   "expert": "Minimum distance d_min corrects ⌊(d−1)/2⌋ errors; Reed–Solomon (QR codes, CDs); LDPC and polar codes in 5G; coding gain."
+  },
+  "facts": [],
+  "formula": "t = ⌊(d_min−1)/2⌋",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "hamming_demo"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Error detection and correction",
+    "url": "https://en.wikipedia.org/wiki/Error_detection_and_correction"
+   }
+  ],
+  "where": "phone_modem"
+ },
+ {
+  "id": "multiplexing_access",
+  "title": "Multiplexing: TDM, FDM, CDMA",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_comm",
+  "parents": [
+   "ee_comm"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "digital_modulation"
+  ],
+  "summary": "Sharing a channel.",
+  "layers": {
+   "basics": "FDM gives each user a frequency slot, TDM a time slot, CDMA a code; OFDMA mixes slots in time and frequency.",
+   "deeper": "Cell phones have used all of these across generations.",
+   "expert": "Orthogonal codes (Walsh); processing gain=chip rate/bit rate; near–far problem; OFDMA in 4G/5G."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "cdma_demo"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Multiplexing",
+    "url": "https://en.wikipedia.org/wiki/Multiplexing"
+   }
+  ]
+ },
+ {
+  "id": "wireless_channels_fading",
+  "title": "Wireless channels, fading and link budgets",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_comm",
+  "parents": [
+   "ee_comm"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "antenna_fundamentals",
+   "noise_snr_ber"
+  ],
+  "summary": "What happens between antennas.",
+  "layers": {
+   "basics": "Signals weaken with distance, bounce off buildings (multipath) and fade in and out as you move.",
+   "deeper": "Link budget adds transmit power, antenna gains, losses and noise to find received SNR.",
+   "expert": "Free-space path loss (4πd/λ)²; Rayleigh/Rician fading; delay spread and coherence bandwidth; Doppler; shadowing; Friis & noise figure."
+  },
+  "facts": [],
+  "formula": "FSPL = (4πd/λ)²",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "link_budget"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Fading",
+    "url": "https://en.wikipedia.org/wiki/Fading"
+   }
+  ]
+ },
+ {
+  "id": "networking_osi_tcpip",
+  "title": "Networking basics: OSI model and TCP/IP",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_comm",
+  "parents": [
+   "ee_comm"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "digital_modulation"
+  ],
+  "summary": "Layers that let computers talk.",
+  "layers": {
+   "basics": "Networks are organised in layers: physical, link, network (IP), transport (TCP/UDP), application. Each layer handles one job.",
+   "deeper": "Packets carry addresses; routers forward them; TCP gives reliable delivery, UDP quick delivery.",
+   "expert": "Ethernet/Wi-Fi at layer 2; IPv4/v6; congestion control (AIMD, BBR); NAT; TLS; latency-bandwidth product."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: OSI model",
+    "url": "https://en.wikipedia.org/wiki/OSI_model"
+   },
+   {
+    "title": "Wikipedia: Internet protocol suite",
+    "url": "https://en.wikipedia.org/wiki/Internet_protocol_suite"
+   }
+  ],
+  "lab": {
+   "id": "network",
+   "preset": "packet_flow"
+  }
+ }
+]

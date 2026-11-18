@@ -1,0 +1,1039 @@
+[
+ {
+  "id": "rf_amplifiers",
+  "title": "RF and microwave amplifiers",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "s_parameters_rf",
+   "impedance_matching",
+   "bjt_amplifiers"
+  ],
+  "summary": "Boosting radio signals.",
+  "layers": {
+   "basics": "RF amplifiers boost weak antenna signals (LNAs) or drive antennas (power amplifiers) with matching networks at both ends.",
+   "deeper": "LNAs trade low noise figure for gain; PAs trade efficiency for linearity (Class AB, Doherty).",
+   "expert": "Stability factors K and Δ; noise figure circles; 1-dB compression, IP3; PA efficiency η=P_out/P_DC; envelope tracking."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "field",
+   "preset": "smith_chart"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: RF power amplifier",
+    "url": "https://en.wikipedia.org/wiki/RF_power_amplifier"
+   }
+  ],
+  "where": "phone_rf_frontend"
+ },
+ {
+  "id": "s_parameters_rf",
+  "title": "S-parameters",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "two_port_networks",
+   "transmission_lines"
+  ],
+  "summary": "Reflection and transmission of waves at ports.",
+  "layers": {
+   "basics": "S-parameters describe how much of a wave entering a port reflects or passes through to another, measured with a network analyzer.",
+   "deeper": "S11 is input reflection (match), S21 is gain or insertion loss.",
+   "expert": "b=S a with reference impedance Z₀=50 Ω; cascade via T-parameters; passivity |S|≤1; de-embedding fixtures; Touchstone file format."
+  },
+  "facts": [],
+  "formula": "b = S a",
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Scattering parameters",
+    "url": "https://en.wikipedia.org/wiki/Scattering_parameters"
+   }
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "smith_chart"
+  }
+ },
+ {
+  "id": "rf_mixers_filters",
+  "title": "Mixers and RF filters",
+  "kind": "component",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "s_parameters_rf",
+   "modulation_basics"
+  ],
+  "summary": "Shifting frequency; selecting bands.",
+  "layers": {
+   "basics": "A mixer multiplies two signals, producing sum and difference frequencies that shift a band to a different carrier; filters pick the wanted band.",
+   "deeper": "Superheterodyne receivers mix down to a fixed IF where filtering is easy; image rejection matters.",
+   "expert": "Conversion gain, LO leakage, double-balanced Gilbert cell; SAW/BAW/ceramic filters in phones; direct-conversion and zero-IF issues (DC offset, I/Q mismatch)."
+  },
+  "facts": [],
+  "formula": "f_IF = |f_RF − f_LO|",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "mixer_spectrum"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Frequency mixer",
+    "url": "https://en.wikipedia.org/wiki/Frequency_mixer"
+   }
+  ],
+  "where": "phone_rf_frontend"
+ },
+ {
+  "id": "vlsi_digital_cmos",
+  "title": "VLSI digital CMOS design",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "cmos_logic_gates",
+   "hdl_design_flow",
+   "short_channel_effects"
+  ],
+  "summary": "Billions of gates on one die.",
+  "layers": {
+   "basics": "VLSI design builds chips from standard cells synthesised from HDL, placed and routed by tools.",
+   "deeper": "Flow: RTL → logic synthesis → floorplan → place → clock tree → route → timing signoff → tape-out.",
+   "expert": "Power, performance, area (PPA) trade-offs; clock gating; multi-Vt cells; interconnect RC dominates delay; design-for-test (scan chains)."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "cmos_vtc"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Very-large-scale integration",
+    "url": "https://en.wikipedia.org/wiki/Very-large-scale_integration"
+   }
+  ],
+  "where": "phone_soc"
+ },
+ {
+  "id": "vlsi_analog_ic",
+  "title": "Analog IC design",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "differential_amp",
+   "current_mirror",
+   "active_load",
+   "opamp_nonideal"
+  ],
+  "summary": "Amplifiers, references and converters on silicon.",
+  "layers": {
+   "basics": "Analog ICs use transistor matching and feedback to make precise circuits; layout symmetry is part of the design.",
+   "deeper": "Bandgap references, op-amps, PLLs, ADCs; gm/Id methodology.",
+   "expert": "Bandgap V_BG≈1.2 V = V_BE + k·V_T cancelling temperature; matching σ(ΔV_T)=A_VT/√(WL); noise/power/speed triangle."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "common_emitter"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Integrated circuit design",
+    "url": "https://en.wikipedia.org/wiki/Integrated_circuit_design"
+   }
+  ]
+ },
+ {
+  "id": "ic_layout_verification",
+  "title": "IC layout and verification",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "vlsi_digital_cmos",
+   "fabrication_overview"
+  ],
+  "summary": "Drawing the masks and proving them right.",
+  "layers": {
+   "basics": "Layout draws the polygons of each mask; verification (DRC, LVS) checks rules and that layout matches the schematic.",
+   "deeper": "Parasitic extraction reveals resistances and capacitances that slow real chips.",
+   "expert": "Process design kit (PDK); antenna rule; electromigration and IR drop checks; OPC for lithography; formal equivalence; GDSII."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "device",
+   "preset": "fab_process"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Integrated circuit layout",
+    "url": "https://en.wikipedia.org/wiki/Integrated_circuit_layout"
+   }
+  ]
+ },
+ {
+  "id": "fiber_optics_photonics",
+  "title": "Fibre optics",
+  "kind": "device",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "reflection_refraction",
+   "optoelectronic_devices"
+  ],
+  "summary": "Light in glass threads.",
+  "layers": {
+   "basics": "Light guided by total internal reflection in glass fibre carries most of the world’s long-distance data.",
+   "deeper": "Single-mode fibre has ~0.2 dB/km loss at 1550 nm; erbium amplifiers and wavelength-division multiplexing raise capacity.",
+   "expert": "Core 9 µm; dispersion D≈17 ps/(nm·km); coherent detection and DSP compensate impairments; capacity limits near Shannon (~100 Tb/s per fibre)."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "fiber_optics"
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "wave_boundary"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Optical fiber",
+    "url": "https://en.wikipedia.org/wiki/Optical_fiber"
+   }
+  ]
+ },
+ {
+  "id": "photonic_integrated_circuits",
+  "title": "Photonics and lasers",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "lasers_semiconductor",
+   "fiber_optics_photonics"
+  ],
+  "summary": "Using light for signals and sensing.",
+  "layers": {
+   "basics": "Photonic chips guide light on silicon for data links and sensors; lasers provide coherent sources.",
+   "deeper": "Silicon photonics reuses CMOS fabs; modulators, waveguides, ring resonators, Ge photodetectors.",
+   "expert": "Mach–Zehnder modulator V_π; ring resonator FSR=λ²/(n_g L); co-packaged optics for datacentres; LiDAR with FMCW."
+  },
+  "facts": [],
+  "certainty": "C2",
+  "open_questions": [
+   "Can on-chip lasers be integrated cheaply in silicon at scale?"
+  ],
+  "refs": [],
+  "kn": [
+   "led_lasers"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Photonic integrated circuit",
+    "url": "https://en.wikipedia.org/wiki/Photonic_integrated_circuit"
+   }
+  ]
+ },
+ {
+  "id": "wireless_5g6g",
+  "title": "Wireless communications: 5G and 6G",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "digital_modulation",
+   "wireless_channels_fading",
+   "multiplexing_access"
+  ],
+  "summary": "Mobile networks.",
+  "layers": {
+   "basics": "5G uses wider bandwidths, millimetre waves and massive antenna arrays; 6G research aims at sub-THz bands and AI-native networks.",
+   "deeper": "NR air interface uses OFDM with flexible numerology; slicing and edge computing serve latency-sensitive services.",
+   "expert": "5G NR: 410 MHz–7.125 GHz (FR1) and 24–52 GHz (FR2); 6G targets (≈2030) not yet standardised: THz links, integrated sensing and communication, reconfigurable intelligent surfaces."
+  },
+  "facts": [],
+  "certainty": "C2",
+  "open_questions": [
+   "Which 6G spectrum and architecture will be standardised?",
+   "Are sub-THz links practical outdoors?"
+  ],
+  "refs": [],
+  "kn": [
+   "radio_comm"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: 5G",
+    "url": "https://en.wikipedia.org/wiki/5G"
+   }
+  ],
+  "where": "phone_modem"
+ },
+ {
+  "id": "mimo_beamforming",
+  "title": "MIMO and beamforming",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "antenna_arrays",
+   "wireless_channels_fading",
+   "matrix_decompositions"
+  ],
+  "summary": "Many antennas, more capacity.",
+  "layers": {
+   "basics": "Using several antennas at both ends sends parallel data streams over the same spectrum.",
+   "deeper": "Capacity grows roughly with min(Nt,Nr) in rich scattering; beamforming focuses energy on users.",
+   "expert": "SVD of channel H splits into parallel eigenchannels; C=Σlog₂(1+σᵢ²P/N₀); massive MIMO exploits channel hardening; precoding (ZF, MMSE)."
+  },
+  "facts": [],
+  "formula": "C = Σ log₂(1 + σᵢ² P/N₀)",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "network",
+   "preset": "mimo_capacity"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: MIMO",
+    "url": "https://en.wikipedia.org/wiki/MIMO"
+   }
+  ],
+  "where": "phone_modem"
+ },
+ {
+  "id": "radar_systems",
+  "title": "Radar",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "antenna_fundamentals",
+   "dsp_applications"
+  ],
+  "summary": "Seeing with radio.",
+  "layers": {
+   "basics": "Radar sends a pulse and measures the echo’s delay (range) and Doppler shift (speed).",
+   "deeper": "Radar equation gives detection range; pulse compression improves resolution; automotive radars use FMCW at 77 GHz.",
+   "expert": "R=cτ/2; Doppler f_d=2v/λ; P_r=P_tG²λ²σ/((4π)³R⁴); CFAR detection; synthetic aperture imaging."
+  },
+  "facts": [],
+  "formula": "R = cτ/2;  f_d = 2v/λ",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "radar_range_doppler"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Radar",
+    "url": "https://en.wikipedia.org/wiki/Radar"
+   }
+  ]
+ },
+ {
+  "id": "robotics_mechatronics",
+  "title": "Robotics and mechatronics",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "pid_controller",
+   "interfacing_motors",
+   "state_space"
+  ],
+  "summary": "Machines that sense, think and move.",
+  "layers": {
+   "basics": "Robots combine sensors, actuators, electronics and control software.",
+   "deeper": "Kinematics, motor control, sensor fusion, path planning.",
+   "expert": "Jacobian-based inverse kinematics; SLAM; trajectory optimisation; torque control and impedance control."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "control",
+   "preset": "mass_spring_damper"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Mechatronics",
+    "url": "https://en.wikipedia.org/wiki/Mechatronics"
+   }
+  ]
+ },
+ {
+  "id": "machine_learning_engineers",
+  "title": "Machine learning and AI for engineers",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "estimation_theory",
+   "matrix_decompositions",
+   "algorithms_complexity"
+  ],
+  "summary": "Learning models from data.",
+  "layers": {
+   "basics": "ML fits models to data; engineers use it for signal classification, predictive maintenance and control.",
+   "deeper": "Regression, classification, neural networks, training by gradient descent; careful validation avoids overfitting.",
+   "expert": "Backpropagation; CNNs/transformers; quantisation to int8; edge AI on microcontrollers (TinyML); data-centre accelerators dominated by matrix multiply energy."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [
+   [
+    "DSC",
+    "6.1",
+    "6-1-what-is-machine-learning"
+   ],
+   [
+    "DSC",
+    "7.1",
+    "7-1-introduction-to-neural-networks"
+   ],
+   [
+    "DSC",
+    "7.2",
+    "7-2-backpropagation"
+   ]
+  ],
+  "kn": [
+   "neural_nets"
+  ],
+  "lab": {
+   "id": "code",
+   "preset": "python_sandbox"
+  },
+  "where": "soc_npu"
+ },
+ {
+  "id": "neural_accelerator_hw",
+  "title": "AI accelerators",
+  "kind": "device",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "machine_learning_engineers",
+   "memory_hierarchy"
+  ],
+  "summary": "Hardware for matrix multiplication.",
+  "layers": {
+   "basics": "GPUs, TPUs and NPUs have thousands of multiply–accumulate units and wide memory links to run neural networks efficiently.",
+   "deeper": "Energy is dominated by moving data, not arithmetic; systolic arrays minimise it.",
+   "expert": "Roofline model; int8/FP8 formats; HBM bandwidth ~1–3 TB/s; sparsity; in-memory computing proposals."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "cache_sim"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: AI accelerator",
+    "url": "https://en.wikipedia.org/wiki/AI_accelerator"
+   }
+  ],
+  "where": "soc_npu"
+ },
+ {
+  "id": "image_video_processing",
+  "title": "Image and video processing",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "dtft_dft"
+  ],
+  "summary": "Pixels as 2D signals.",
+  "layers": {
+   "basics": "Images are 2D arrays; filters blur, sharpen and find edges; video exploits similarity between frames.",
+   "deeper": "JPEG uses the DCT; H.264/AV1 add motion compensation.",
+   "expert": "2D convolution and separable kernels; demosaicing; Canny edges; DCT energy compaction; rate–distortion."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "image_filter"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Digital image processing",
+    "url": "https://en.wikipedia.org/wiki/Digital_image_processing"
+   }
+  ],
+  "where": "soc_isp"
+ },
+ {
+  "id": "biomedical_instrumentation",
+  "title": "Biomedical instrumentation: ECG, EEG, sensors",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "instrumentation_amp",
+   "active_filters",
+   "noise_modeling"
+  ],
+  "summary": "Measuring the body.",
+  "layers": {
+   "basics": "Electrodes pick up microvolt-to-millivolt signals from heart and brain; amplifiers must reject mains hum and motion noise.",
+   "deeper": "ECG ~1 mV, EEG ~10–100 µV; differential amplification, filtering 0.05–150 Hz, isolation for safety.",
+   "expert": "Right-leg drive reduces common-mode; electrode half-cell potentials; patient leakage <10 µA; IEC 60601; pulse oximetry uses two wavelengths."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [
+   [
+    "CPH",
+    "20.7",
+    "20-7-nerve-conduction-electrocardiograms"
+   ]
+  ],
+  "kn": [
+   "action_potential",
+   "medical_imaging"
+  ]
+ },
+ {
+  "id": "medical_devices",
+  "title": "Medical devices",
+  "kind": "device",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "biomedical_instrumentation"
+  ],
+  "summary": "Pacemakers, imaging and more.",
+  "layers": {
+   "basics": "Devices like pacemakers, defibrillators, and MRI scanners rely on precise electronics under strict safety rules.",
+   "deeper": "Regulatory classes and risk analysis shape design; MRI uses RF coils and gradient amplifiers.",
+   "expert": "Defibrillator: ~200 J biphasic shock; pacemaker µW-level power for >10 years; MRI RF at 42.58 MHz/T for protons."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "mri_tech",
+   "medical_imaging"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Medical device",
+    "url": "https://en.wikipedia.org/wiki/Medical_device"
+   }
+  ]
+ },
+ {
+  "id": "solar_pv_systems",
+  "title": "Solar photovoltaic systems",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "photodetectors_solar",
+   "rectifiers_inverters"
+  ],
+  "summary": "Sunlight to grid.",
+  "layers": {
+   "basics": "PV panels produce DC; inverters convert it to AC, and MPPT electronics extract the most power.",
+   "deeper": "Panel I–V curve has a knee; maximum power point shifts with light and temperature.",
+   "expert": "MPPT via perturb-and-observe; module efficiency 20–24%; PR (performance ratio); string vs micro-inverters; bypass diodes."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "solar_cells",
+   "energy_systems"
+  ],
+  "lab": {
+   "id": "device",
+   "preset": "solar_cell"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Photovoltaic system",
+    "url": "https://en.wikipedia.org/wiki/Photovoltaic_system"
+   }
+  ]
+ },
+ {
+  "id": "wind_energy_systems",
+  "title": "Wind energy",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "synchronous_machines",
+   "rectifiers_inverters"
+  ],
+  "summary": "Turbines and converters.",
+  "layers": {
+   "basics": "Wind turns blades connected to a generator; power electronics adapt variable speed to a fixed grid frequency.",
+   "deeper": "Power ∝ v³; Betz limit 59% of wind’s kinetic power.",
+   "expert": "P=½ρAv³C_p; DFIG vs full-converter machines; pitch control; capacity factors 30–55% offshore."
+  },
+  "facts": [],
+  "formula": "P = ½ ρ A v³ C_p",
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "energy_systems"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Wind turbine",
+    "url": "https://en.wikipedia.org/wiki/Wind_turbine"
+   }
+  ]
+ },
+ {
+  "id": "battery_storage_systems",
+  "title": "Battery storage",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "batteries_electrochem",
+   "rectifiers_inverters"
+  ],
+  "summary": "Storing electricity.",
+  "layers": {
+   "basics": "Batteries store energy chemically; battery management systems keep cells within safe voltage, current and temperature.",
+   "deeper": "Li-ion energy density ~150–270 Wh/kg; cycle life 1000–5000; state-of-charge estimation by coulomb counting and Kalman filters.",
+   "expert": "Equivalent-circuit (Thevenin) models; thermal runaway; sodium-ion and solid-state developments; grid storage economics."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "batteries_tech"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Energy storage",
+    "url": "https://en.wikipedia.org/wiki/Energy_storage"
+   }
+  ],
+  "where": "phone_battery"
+ },
+ {
+  "id": "ev_motor_control",
+  "title": "Electric vehicles and motor control",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "motor_drives",
+   "battery_storage_systems",
+   "power_semiconductors"
+  ],
+  "summary": "EV powertrains.",
+  "layers": {
+   "basics": "An EV has a battery pack, inverter and motor; the inverter controls torque, and braking recovers energy.",
+   "deeper": "Permanent-magnet synchronous motors with field-oriented control; 400 V or 800 V pack architectures.",
+   "expert": "Efficiency maps; SiC inverters cut losses ~70% vs Si IGBTs; onboard charger and DC fast charging (CCS ≤350 kW); thermal management."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "kn": [
+   "electric_motors",
+   "batteries_tech"
+  ],
+  "ext": [
+   {
+    "title": "Wikipedia: Electric vehicle",
+    "url": "https://en.wikipedia.org/wiki/Electric_vehicle"
+   }
+  ]
+ },
+ {
+  "id": "nanotech_mems",
+  "title": "Nanotechnology and MEMS",
+  "kind": "device",
+  "template": "concept",
+  "scale_m": 0.001,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "crystal_structure_ee",
+   "fabrication_overview"
+  ],
+  "summary": "Machines at micrometre scale.",
+  "layers": {
+   "basics": "MEMS are tiny mechanical structures etched in silicon that sense motion, pressure or sound, such as phone accelerometers and microphones.",
+   "deeper": "A proof mass on springs shifts a capacitance when accelerated; readout electronics convert it to voltage.",
+   "expert": "Capacitive sensing ΔC/C; gyroscopes use Coriolis coupling between vibration modes; scaling laws favour surface forces; nanomaterials (graphene, nanowires, 2D semiconductors)."
+  },
+  "facts": [],
+  "formula": "ΔC ∝ Δd/d",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "field",
+   "preset": "mems_accelerometer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Microelectromechanical systems",
+    "url": "https://en.wikipedia.org/wiki/Microelectromechanical_systems"
+   }
+  ],
+  "where": "phone_sensors"
+ },
+ {
+  "id": "quantum_computing_hardware",
+  "title": "Quantum engineering and quantum computing hardware",
+  "kind": "device",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "quantum_intro",
+   "oscillators_ee",
+   "fabrication_overview"
+  ],
+  "summary": "Engineering qubits.",
+  "layers": {
+   "basics": "Quantum computers use qubits (superconducting circuits, trapped ions, spins in silicon, photons) that can be in superpositions; hardware is cooled and shielded to preserve fragile states.",
+   "deeper": "Superconducting qubits operate at ~10 mK; gate fidelities of 99.5–99.9%; error correction needs thousands of physical qubits per logical qubit.",
+   "expert": "Coherence times T₁,T₂ from µs to ms (superconducting) to seconds (ions); surface codes with threshold ≈1%; scaling bottlenecks: wiring, cryo-electronics, fabrication yield."
+  },
+  "facts": [],
+  "certainty": "C3",
+  "open_questions": [
+   "Which qubit platform will scale to fault-tolerant machines?",
+   "Can error-correction overhead be reduced enough for practical applications?"
+  ],
+  "refs": [],
+  "kn": [
+   "quantum_computing",
+   "entanglement",
+   "decoherence"
+  ],
+  "lab": {
+   "id": "code",
+   "preset": "qubit_bloch"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Quantum computing",
+    "url": "https://en.wikipedia.org/wiki/Quantum_computing"
+   }
+  ]
+ },
+ {
+  "id": "computer_networks_iot",
+  "title": "Computer networks and the Internet of Things",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "networking_osi_tcpip",
+   "low_power_design",
+   "interfacing_sensors"
+  ],
+  "summary": "Billions of connected devices.",
+  "layers": {
+   "basics": "IoT devices sense and communicate over Wi-Fi, Bluetooth Low Energy, LoRa or cellular, usually on batteries.",
+   "deeper": "Protocols such as MQTT, CoAP; trade-off between range, data rate and power.",
+   "expert": "LoRa sensitivity −137 dBm; BLE connection events; over-the-air updates; edge computing; device identity and lifecycle management."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "network",
+   "preset": "packet_flow"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Internet of things",
+    "url": "https://en.wikipedia.org/wiki/Internet_of_things"
+   }
+  ]
+ },
+ {
+  "id": "hardware_security",
+  "title": "Hardware security",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_electives",
+  "parents": [
+   "ee_electives"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "memory_rom_ram",
+   "cache_memory",
+   "number_systems"
+  ],
+  "summary": "Trust in chips.",
+  "layers": {
+   "basics": "Chips can leak secrets through power use, timing or electromagnetic emissions; secure designs protect keys.",
+   "deeper": "Secure boot, hardware roots of trust, physically unclonable functions (PUFs), tamper resistance.",
+   "expert": "Side-channel attacks (DPA, timing), fault injection, Spectre-class microarchitectural leaks, hardware trojans, supply-chain verification."
+  },
+  "facts": [],
+  "certainty": "C2",
+  "open_questions": [
+   "How can speculative-execution leaks be eliminated without large performance losses?"
+  ],
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "timing_leak_demo"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Hardware security",
+    "url": "https://en.wikipedia.org/wiki/Hardware_security"
+   }
+  ]
+ }
+]

@@ -1,0 +1,489 @@
+[
+ {
+  "id": "oscilloscope",
+  "title": "Oscilloscope",
+  "kind": "tool",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_labs",
+  "parents": [
+   "ee_labs"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "sinusoids_ac"
+  ],
+  "summary": "See voltages vs time.",
+  "layers": {
+   "basics": "The oscilloscope plots voltage against time, showing waveform shape, amplitude and frequency.",
+   "deeper": "Key controls: timebase, volts/div, trigger. Use a 10× probe with proper compensation.",
+   "expert": "Bandwidth ≥5× signal; rise time t_r=0.35/BW; sample rate vs memory depth; probe loading C≈10 pF; ground lead inductance causes ringing."
+  },
+  "facts": [],
+  "formula": "t_r ≈ 0.35/BW",
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "scope_panel"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Oscilloscope",
+    "url": "https://en.wikipedia.org/wiki/Oscilloscope"
+   }
+  ]
+ },
+ {
+  "id": "multimeter",
+  "title": "Multimeter",
+  "kind": "tool",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_labs",
+  "parents": [
+   "ee_labs"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "ohms_law_node"
+  ],
+  "summary": "Measure V, I and R.",
+  "layers": {
+   "basics": "A multimeter measures voltage, current and resistance; always connect it correctly (current meters in series, voltmeters in parallel).",
+   "deeper": "Meters have finite input resistance (10 MΩ) that can load high-impedance circuits.",
+   "expert": "True-RMS vs average-responding; CAT safety ratings; accuracy in % of reading + digits; four-wire resistance measurements."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "ohms_law"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Multimeter",
+    "url": "https://en.wikipedia.org/wiki/Multimeter"
+   }
+  ]
+ },
+ {
+  "id": "function_generator",
+  "title": "Function generator",
+  "kind": "tool",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_labs",
+  "parents": [
+   "ee_labs"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "sinusoids_ac"
+  ],
+  "summary": "Create test signals.",
+  "layers": {
+   "basics": "Produces sine, square, triangle and pulse signals at set frequency and amplitude.",
+   "deeper": "Output impedance is usually 50 Ω, which affects the load voltage unless matched.",
+   "expert": "Direct digital synthesis, phase accumulator, frequency resolution f_clk/2ᴺ; arbitrary waveforms."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "signal_builder"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Function generator",
+    "url": "https://en.wikipedia.org/wiki/Function_generator"
+   }
+  ]
+ },
+ {
+  "id": "bench_power_supply",
+  "title": "Bench power supply",
+  "kind": "tool",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_labs",
+  "parents": [
+   "ee_labs"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "ohms_law_node"
+  ],
+  "summary": "Adjustable DC power.",
+  "layers": {
+   "basics": "A bench supply gives adjustable voltage with a current limit to protect circuits.",
+   "deeper": "Set the current limit before connecting; constant-voltage vs constant-current modes.",
+   "expert": "Linear vs switching; remote sense; programmable supplies; ripple and load regulation specs."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "circuit",
+   "preset": "ohms_law"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Power supply",
+    "url": "https://en.wikipedia.org/wiki/Power_supply"
+   }
+  ]
+ },
+ {
+  "id": "logic_analyzer",
+  "title": "Logic analyzer",
+  "kind": "tool",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_labs",
+  "parents": [
+   "ee_labs"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "timing_analysis"
+  ],
+  "summary": "See many digital lines at once.",
+  "layers": {
+   "basics": "Captures dozens of digital channels and shows timing diagrams; decodes buses such as I²C and SPI.",
+   "deeper": "Trigger on patterns; sample rate must exceed the fastest edges.",
+   "expert": "State vs timing mode; setup/hold checks; threshold selection; protocol decoders."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "code",
+   "preset": "serial_decoder"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Logic analyzer",
+    "url": "https://en.wikipedia.org/wiki/Logic_analyzer"
+   }
+  ]
+ },
+ {
+  "id": "spectrum_analyzer",
+  "title": "Spectrum analyzer",
+  "kind": "tool",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_labs",
+  "parents": [
+   "ee_labs"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "fourier_transform_ee"
+  ],
+  "summary": "See signals in frequency.",
+  "layers": {
+   "basics": "Shows signal strength vs frequency, revealing carriers, harmonics and noise.",
+   "deeper": "Resolution bandwidth sets frequency detail and noise floor; swept or FFT-based.",
+   "expert": "Dynamic range, displayed average noise level, phase noise; VNAs measure S-parameters with a source and receivers."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "lab": {
+   "id": "signal",
+   "preset": "spectrum_analyzer"
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: Spectrum analyzer",
+    "url": "https://en.wikipedia.org/wiki/Spectrum_analyzer"
+   }
+  ]
+ },
+ {
+  "id": "breadboarding",
+  "title": "Breadboarding",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_labs",
+  "parents": [
+   "ee_labs"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Building circuits without solder.",
+  "layers": {
+   "basics": "A solderless breadboard connects parts through spring contacts in rows; wires link them.",
+   "deeper": "Good for low-frequency prototypes; avoid for high-speed or RF because of stray capacitance.",
+   "expert": "Contact resistance, ~2–10 pF between rows, power rail splits; ground discipline; modular dev boards."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Breadboard",
+    "url": "https://en.wikipedia.org/wiki/Breadboard"
+   }
+  ]
+ },
+ {
+  "id": "soldering",
+  "title": "Soldering",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_labs",
+  "parents": [
+   "ee_labs"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [],
+  "summary": "Joining parts permanently.",
+  "layers": {
+   "basics": "A hot iron melts solder that wets the pad and lead, forming a metal bond.",
+   "deeper": "Heat both pad and lead; use flux; shiny, concave joint is good. Wear eye protection and ventilate.",
+   "expert": "Leaded (Sn63/Pb37 183 °C) vs lead-free SAC305 (217 °C); reflow profiles, tombstoning, cold joints; ESD-safe handling."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Soldering",
+    "url": "https://en.wikipedia.org/wiki/Soldering"
+   }
+  ]
+ },
+ {
+  "id": "troubleshooting",
+  "title": "Troubleshooting",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_labs",
+  "parents": [
+   "ee_labs"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "multimeter",
+   "oscilloscope"
+  ],
+  "summary": "Finding what is wrong.",
+  "layers": {
+   "basics": "Check power first, then signals stage by stage; compare against expectations; change one thing at a time.",
+   "deeper": "Divide and conquer; look at the simplest causes first; document each test.",
+   "expert": "Half-split method; injecting known signals; thermal imaging; comparing with a known-good board."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Wikipedia: Troubleshooting",
+    "url": "https://en.wikipedia.org/wiki/Troubleshooting"
+   }
+  ]
+ },
+ {
+  "id": "pcb_design",
+  "title": "PCB design: schematic capture, layout, manufacturing files",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_labs",
+  "parents": [
+   "ee_labs"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "breadboarding",
+   "transmission_lines"
+  ],
+  "summary": "From schematic to board.",
+  "layers": {
+   "basics": "Draw the schematic in a tool like KiCad, assign footprints, place parts, route traces, and export Gerber files for the manufacturer.",
+   "deeper": "Design rules (trace width, spacing), ground planes, decoupling close to ICs, controlled impedance for fast signals.",
+   "expert": "Stack-up design; return-path continuity; differential pairs; DFM/DFA; IPC-2221 current capacity; ERC/DRC checks."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "KiCad documentation",
+    "url": "https://docs.kicad.org/"
+   }
+  ],
+  "lab": {
+   "id": "field",
+   "preset": "pcb_traces"
+  },
+  "where": "phone_pcb"
+ },
+ {
+  "id": "lab_reports_data",
+  "title": "Lab reports and data analysis",
+  "kind": "technique",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_labs",
+  "parents": [
+   "ee_labs"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "error_analysis"
+  ],
+  "summary": "Communicating results.",
+  "layers": {
+   "basics": "A good lab report states purpose, method, data, analysis and conclusion so others can reproduce it.",
+   "deeper": "Plot data with error bars; compare measurement with theory and explain differences.",
+   "expert": "Uncertainty budgets per GUM; propagation; fitting with confidence intervals; reproducibility."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [
+   [
+    "IST",
+    "2.8",
+    "2-8-descriptive-statistics"
+   ],
+   [
+    "IST",
+    "8.1",
+    "8-1-a-single-population-mean-using-the-normal-distribution"
+   ]
+  ]
+ },
+ {
+  "id": "measurement_error",
+  "title": "Measurement error and uncertainty",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_labs",
+  "parents": [
+   "ee_labs"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "error_analysis",
+   "expectation_variance"
+  ],
+  "summary": "No measurement is exact.",
+  "layers": {
+   "basics": "Every instrument has accuracy limits; repeated readings reveal random scatter, calibration reveals bias.",
+   "deeper": "Quote results with uncertainty; combine independent errors in quadrature.",
+   "expert": "Type A vs type B uncertainty; u_c=√Σ(∂f/∂xᵢ uᵢ)²; resolution vs accuracy; traceability to SI."
+  },
+  "facts": [],
+  "formula": "u_c = √Σ(∂f/∂xᵢ·uᵢ)²",
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP1",
+    "1.6",
+    "1-6-significant-figures"
+   ]
+  ]
+ },
+ {
+  "id": "lab_electrical_safety",
+  "title": "Lab and electrical safety",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "area": "ee_labs",
+  "parents": [
+   "ee_labs"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "needs": [
+   "electrical_basics"
+  ],
+  "summary": "Respect energy.",
+  "layers": {
+   "basics": "Mains voltage can kill; currents of ~10 mA through the body cause muscle lock and ~100 mA can stop the heart.",
+   "deeper": "Use isolated supplies, GFCI protection, one hand rule for high voltage, and discharge capacitors before touching.",
+   "expert": "Body resistance 1 kΩ–100 kΩ depending on skin; arc-flash energy; lockout–tagout; lithium battery hazards; laser safety classes."
+  },
+  "facts": [],
+  "certainty": "C1",
+  "refs": [
+   [
+    "UP2",
+    "10.6",
+    "10-6-household-wiring-and-electrical-safety"
+   ],
+   [
+    "CPH",
+    "20.6",
+    "20-6-electric-hazards-and-the-human-body"
+   ],
+   [
+    "CPH",
+    "23.8",
+    "23-8-electrical-safety-systems-and-devices"
+   ]
+  ]
+ }
+]
