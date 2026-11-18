@@ -79,12 +79,12 @@ function showInfoFor(h) {
   if (d.fun) basics += `<div class="fun"><b>Did you know?</b>${d.fun}</div>`;
   let html = `<div class="tag">${d.tag || ''}</div><h2>${d.title}</h2>` + layered([['Basics', basics], ['Deeper', dp.d ? `<div class="body"><p>${dp.d}</p></div>` : ''], ['Expert', dp.x ? `<div class="body expert"><p>${dp.x}</p></div>` : '']]);
   if (d.note) html += `<div class="note">${d.note}</div>`;
-  html += `<div class="btnrow"><button class="zoom" id="zoomBtn">Zoom in</button>${h.obj.userData.madeOf ? `<button class="zoom alt" id="madeBtn">See what it is made of</button>` : ''}</div>`;
+  html += `<div class="btnrow">${h.noZoom ? '' : '<button class="zoom" id="zoomBtn">Zoom in</button>'}${h.obj.userData.madeOf ? `<button class="zoom alt" id="madeBtn">See what it is made of</button>` : ''}</div>`;
   const simIds = [SIM_OF[id] || id].concat(h.obj.userData.sim || []);
   html += '<div id="sci"></div>';
   if (dp.r && dp.r.length) html += `<div class="refs"><div class="rh">Textbook sections</div>${dp.r.map(refChip).join('')}</div>`;
   openPanel(html);
-  $('#zoomBtn').onclick = () => zoomIntoHit(h);
+  const zb0 = $('#zoomBtn'); if (zb0) zb0.onclick = () => zoomIntoHit(h);
   const mb = $('#madeBtn'); if (mb) mb.onclick = () => { closeInfo(); diveMaterial(h); };
   loadKnowledge().then(() => { const s = $('#sci'); if (s && infoState && infoState.h === h) { s.innerHTML = scienceSection(simIds); wireKn(); } });
   markSeen(id);

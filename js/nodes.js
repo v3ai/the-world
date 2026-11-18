@@ -15,7 +15,7 @@ function loadNodes() {
 }
 const nodeTitle = id => (NODE[id] && NODE[id].title) || id.replace(/_/g, ' ');
 const PARTMESH = {};    // node id → [meshes] currently in the world (for highlights)
-function regMesh(id, m) { (PARTMESH[id] = PARTMESH[id] || []).push(m); }
+function regMesh(id, m) { (PARTMESH[id] = PARTMESH[id] || []).push(m); const nid = typeof nodeForMesh === 'function' && nodeForMesh(id); if (nid && nid !== id) (PARTMESH[nid] = PARTMESH[nid] || []).push(m); }
 
 /* ---------- clean illustrative look: toon shading + ink outline ---------- */
 let _toonGrad = null;
@@ -69,7 +69,7 @@ const MODES = {
   circulatory: { cardiovascular: 1, skeletal: .2, skin: .06 },
   all: { skin: .1, muscular: .25, '*': 1 },
 };
-const MESH_ALIAS = { cerebrum_l: 'brain', cerebrum_r: 'brain', eyeball_l: 'eye_l', eyeball_r: 'eye_r', ribs_l: 'ribcage', ribs_r: 'ribcage', radius_l: 'radius_ulna_l', ulna_l: 'radius_ulna_l', radius_r: 'radius_ulna_r', ulna_r: 'radius_ulna_r', tibia_l: 'tibia_fibula_l', fibula_l: 'tibia_fibula_l', tibia_r: 'tibia_fibula_r', fibula_r: 'tibia_fibula_r', hip_bone_l: 'pelvis', hip_bone_r: 'pelvis', abdominal_muscles: 'rectus_abdominis', back_muscles_l: 'latissimus_dorsi', back_muscles_r: 'latissimus_dorsi', colon: 'large_intestine', rectum: 'large_intestine', appendix: 'large_intestine', superior_vena_cava: 'vena_cava', inferior_vena_cava: 'vena_cava', carotid_l: 'carotid_arteries', carotid_r: 'carotid_arteries', ureter_l: 'ureters', ureter_r: 'ureters', adrenal_l: 'adrenal_glands', adrenal_r: 'adrenal_glands', lv_cavity: 'left_ventricle', rv_cavity: 'right_ventricle', heart_valves: 'mitral_valve', papillary_muscles: 'left_ventricle', pulmonary_trunk: 'blood_vessels', pulmonary_vessels: 'blood_vessels', teeth: null, tongue: null, hyoid: null };
+const MESH_ALIAS = { cerebrum_l: 'brain', cerebrum_r: 'brain', eyeball_l: 'eye_l', eyeball_r: 'eye_r', ribs_l: 'ribcage', ribs_r: 'ribcage', radius_l: 'radius_ulna_l', ulna_l: 'radius_ulna_l', radius_r: 'radius_ulna_r', ulna_r: 'radius_ulna_r', tibia_l: 'tibia_fibula_l', fibula_l: 'tibia_fibula_l', tibia_r: 'tibia_fibula_r', fibula_r: 'tibia_fibula_r', hip_bone_l: 'pelvis', hip_bone_r: 'pelvis', abdominal_muscles: 'rectus_abdominis', back_muscles_l: 'latissimus_dorsi', back_muscles_r: 'latissimus_dorsi', colon: 'large_intestine', rectum: 'large_intestine', appendix: 'large_intestine', superior_vena_cava: 'vena_cava', inferior_vena_cava: 'vena_cava', carotid_l: 'carotid_arteries', carotid_r: 'carotid_arteries', ureter_l: 'ureters', ureter_r: 'ureters', adrenal_l: 'adrenal_glands', adrenal_r: 'adrenal_glands', lv_cavity: 'left_ventricle', rv_cavity: 'right_ventricle', heart_valves: 'mitral_valve', papillary_muscles: 'left_ventricle', pulmonary_trunk: 'blood_vessels', pulmonary_vessels: 'blood_vessels', pituitary: 'pituitary_gland' };
 function nodeForMesh(id) {
   if (NODE[id]) return id;
   let a = MESH_ALIAS[id]; if (a === undefined) a = id.replace(/_(l|r)$/, '');
@@ -162,7 +162,7 @@ function bodyFocus(F) { const o = F.focus; return o && o.alpha > .02 && chainOf(
 function pulse(F, t) { // emissive: the current process step pulses, the hovered or selected part glows softly
   const hl = PROC.active ? PROC.focus : null, hov = hovered && hovered.userData && hovered.userData.part ? hovered : null;
   for (const id in F.parts) {
-    const { g } = F.parts[id], m = g.userData.main.material, on = hl && hl.includes(id), k = (F.sel === id ? .07 : 0) + (hov === g ? .06 : 0);
+    const { g } = F.parts[id], m = g.userData.main.material, on = hl && (hl.includes(id) || hl.includes(nodeForMesh(id))), k = (F.sel === id ? .07 : 0) + (hov === g ? .06 : 0);
     m.emissive.setRGB(on ? .35 + .25 * Math.sin(t * 5) + k : k, on ? .2 + .15 * Math.sin(t * 5) + k : k * 1.05, k * 1.3);
   }
 }

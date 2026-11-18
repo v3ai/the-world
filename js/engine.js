@@ -60,6 +60,7 @@ addEventListener('resize', resize);
 /* ================= FRAMES ================= */
 const FT = {};           // frame type registry: FT[type] = { build(F, opts) }
 let building = null;     // frame currently being built (for seg/actBtn/labels)
+const _cc = new THREE.Vector3();
 class Frame {
   constructor(o) {
     Object.assign(this, { name: '', unit: 1, radius: 1, r0: 0, r1: Infinity, parent: null, pos: new V3(), quat: new THREE.Quaternion(), children: [], opts: {}, dynamic: false, info: null, up: null, env: null }, o);
@@ -78,7 +79,12 @@ class Frame {
   pick(o, id, priority) { o.userData.id = id; if (priority !== undefined) o.userData.priority = priority; this.pickables.push(o); return o; }
   label(obj, text, o = {}) { return addLabelTo(this, obj, text, o); }
   addChild(c) { c.parent = this; this.children.push(c); return c; }
-  containsP(p) { return this.radius === Infinity || p.distanceTo(this.pos) <= this.radius * this.unit / this.parent.unit * 1.02; }
+  // `center` (optional, own units) is where the content is centred when that is not the frame origin (the body's origin is at its feet)
+  containsP(p) {
+    if (this.radius === Infinity) return true;
+    let c = this.pos; if (this.center) { c = _cc.copy(this.center).multiplyScalar(this.unit / this.parent.unit).applyQuaternion(this.quat).add(this.pos); }
+    return p.distanceTo(c) <= this.radius * this.unit / this.parent.unit * 1.02;
+  }
   dispose() {
     if (!this.built) return;
     this.root.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); });
@@ -122,7 +128,7 @@ let lastZoomHit = null; // {frame, obj, point (frame-local), normal (frame-local
 function reanchor() {
   for (let g = 0; g < 60 && cam.A.parent; g++) {
     const A = cam.A;
-    const outside = A.radius !== Infinity && cam.T.length() > A.radius * 1.08;
+    const outside = A.radius !== Infinity && (A.center ? _cc.copy(cam.T).sub(A.center) : cam.T).length() > A.radius * 1.08;
     if (cam.D > A.r1 || outside) { ascend(); continue; }
     break;
   }

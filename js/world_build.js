@@ -32,7 +32,7 @@ async function buildWorld() {
   const region = FR.earth.addChild(regionFrame(FR.earth, PARK.lat, PARK.lon, 'grass', true)); FR.region = region;
   const park = region.addChild(new Frame({ type: 'park', name: 'Greenwich Park', unit: 1, radius: 500, r0: 2e-4, r1: 3500, up: new V3(0, 1, 0), maxPolar: Math.PI / 2 - .03 }));
   FR.park = park;
-  const body = park.addChild(new Frame({ type: 'body', name: 'Human body', unit: 1, radius: 1.3, r0: 0, r1: 90, up: new V3(0, 1, 0), pos: new V3(0, 0, 0) }));
+  const body = park.addChild(new Frame({ type: 'body', name: 'Human body', unit: 1, radius: 1.0, center: new V3(0, .875, 0), r0: 0, r1: 90, up: new V3(0, 1, 0), pos: new V3(0, 0, 0) }));
   body.noFade = true; body.coRender = true; body.coMax = 400; FR.body = body;
   const devLM = buildTeardown(body);
   const AN = await loadAnatomyIndex(); await loadNodes(); if (AN) makeOrganFrames(body, AN);
