@@ -15,7 +15,7 @@ function loadNodes() {
 }
 const nodeTitle = id => (NODE[id] && NODE[id].title) || id.replace(/_/g, ' ');
 const PARTMESH = {};    // node id → [meshes] currently in the world (for highlights)
-function regMesh(id, m) { (PARTMESH[id] = PARTMESH[id] || []).push(m); }
+function regMesh(id, m) { (PARTMESH[id] = PARTMESH[id] || []).push(m); const nid = typeof nodeForMesh === 'function' && nodeForMesh(id); if (nid && nid !== id) (PARTMESH[nid] = PARTMESH[nid] || []).push(m); }
 
 /* ---------- clean illustrative look: toon shading + ink outline ---------- */
 let _toonGrad = null;
@@ -69,7 +69,7 @@ const MODES = {
   circulatory: { cardiovascular: 1, skeletal: .2, skin: .06 },
   all: { skin: .1, muscular: .25, '*': 1 },
 };
-const MESH_ALIAS = { cerebrum_l: 'brain', cerebrum_r: 'brain', eyeball_l: 'eye_l', eyeball_r: 'eye_r', ribs_l: 'ribcage', ribs_r: 'ribcage', radius_l: 'radius_ulna_l', ulna_l: 'radius_ulna_l', radius_r: 'radius_ulna_r', ulna_r: 'radius_ulna_r', tibia_l: 'tibia_fibula_l', fibula_l: 'tibia_fibula_l', tibia_r: 'tibia_fibula_r', fibula_r: 'tibia_fibula_r', hip_bone_l: 'pelvis', hip_bone_r: 'pelvis', abdominal_muscles: 'rectus_abdominis', back_muscles_l: 'latissimus_dorsi', back_muscles_r: 'latissimus_dorsi', colon: 'large_intestine', rectum: 'large_intestine', appendix: 'large_intestine', superior_vena_cava: 'vena_cava', inferior_vena_cava: 'vena_cava', carotid_l: 'carotid_arteries', carotid_r: 'carotid_arteries', ureter_l: 'ureters', ureter_r: 'ureters', adrenal_l: 'adrenal_glands', adrenal_r: 'adrenal_glands', lv_cavity: 'left_ventricle', rv_cavity: 'right_ventricle', heart_valves: 'mitral_valve', papillary_muscles: 'left_ventricle', pulmonary_trunk: 'blood_vessels', pulmonary_vessels: 'blood_vessels', teeth: null, tongue: null, hyoid: null };
+const MESH_ALIAS = { cerebrum_l: 'brain', cerebrum_r: 'brain', eyeball_l: 'eye_l', eyeball_r: 'eye_r', ribs_l: 'ribcage', ribs_r: 'ribcage', radius_l: 'radius_ulna_l', ulna_l: 'radius_ulna_l', radius_r: 'radius_ulna_r', ulna_r: 'radius_ulna_r', tibia_l: 'tibia_fibula_l', fibula_l: 'tibia_fibula_l', tibia_r: 'tibia_fibula_r', fibula_r: 'tibia_fibula_r', hip_bone_l: 'pelvis', hip_bone_r: 'pelvis', abdominal_muscles: 'rectus_abdominis', back_muscles_l: 'latissimus_dorsi', back_muscles_r: 'latissimus_dorsi', colon: 'large_intestine', rectum: 'large_intestine', appendix: 'large_intestine', superior_vena_cava: 'vena_cava', inferior_vena_cava: 'vena_cava', carotid_l: 'carotid_arteries', carotid_r: 'carotid_arteries', ureter_l: 'ureters', ureter_r: 'ureters', adrenal_l: 'adrenal_glands', adrenal_r: 'adrenal_glands', lv_cavity: 'left_ventricle', rv_cavity: 'right_ventricle', heart_valves: 'mitral_valve', papillary_muscles: 'left_ventricle', pulmonary_trunk: 'blood_vessels', pulmonary_vessels: 'blood_vessels', pituitary: 'pituitary_gland' };
 function nodeForMesh(id) {
   if (NODE[id]) return id;
   let a = MESH_ALIAS[id]; if (a === undefined) a = id.replace(/_(l|r)$/, '');
@@ -81,106 +81,155 @@ function sysOf(p) { return p.system === 'integumentary' || p.id === 'skin' ? 'sk
 FT.body = {
   build(F) {
     F.add(new THREE.HemisphereLight(0xffffff, 0x8899aa, .55)); const kl = new THREE.DirectionalLight(0xffffff, .85); kl.position.set(1.5, 3, 2.5); F.add(kl);
-    F.parts = {}; F.mode = store.get('bodyMode', 'auto'); F.illo = true;
+    F.parts = {}; F.mode = store.get('bodyMode', 'auto'); F.illo = true; F.hidden = new Set(); F.sel = null; F.layerName = '';
+    F.readyP = new Promise(res => { F._ready = res; });
+    F.chooseHit = cands => bodyChooseHit(F, cands);
     const grp = new THREE.Group(); F.add(grp); F.grp = grp;
-    F.blurb = 'You, as an anatomical model at true size. Pick a layer below, or zoom in: the skin turns see-through as you get close. Click any organ.';
+    F.blurb = 'You, as an anatomical model at true size. Click anywhere to see what is under that spot. Zoom in and the skin turns see-through: first muscles, then bones and organs.';
     Promise.all([loadAnatomyIndex(), loadNodes()]).then(([A]) => {
       if (!A || !F.built) return;
       const files = [...new Set(A.parts.map(p => p.file))];
-      files.forEach(file => getJSON('data/anatomy/' + file).then(S => {
+      Promise.all(files.map(file => getJSON('data/anatomy/' + file).then(S => {
         if (!F.built) return;
         S.parts.forEach(p => {
           if (p.parent) { (F.detail = F.detail || {})[p.parent] = (F.detail[p.parent] || []).concat([p]); return; }
           const g = inked(decodePart(p), (p.id === 'skin' ? 0xcf9f82 : 0) || PART_COL[p.id] || (p.color ? new THREE.Color(p.color).getHex() : 0) || SYS_COL[p.system] || 0xcccccc, { w: p.id === 'skin' ? .0012 : .0018, double: p.id === 'skin' });
-          Object.assign(g.userData, { id: p.id, node: nodeForMesh(p.id), part: p, priority: p.id === 'skin' ? 1 : p.system === 'skeletal' ? 1.6 : 2.5, madeOf: 'tissue', center: () => new V3(...p.center), radius: () => p.radius });
-          g.userData.main.userData.pickRoot = g;
+          const big = () => p.radius > .1;
+          Object.assign(g.userData, {
+            id: p.id, node: nodeForMesh(p.id), part: p, priority: 1, madeOf: 'tissue', title: p.name, op: 1, shown: 1,
+            tipFn: h => bodyTip(F, p, h),
+            // a large part (skin, a long muscle) is zoomed at the clicked point; a small one at its centre
+            center: h => (h && h.pointLocal && big() ? h.pointLocal.clone() : new V3(...p.center)), radius: h => (h && h.pointLocal && big() ? .05 : p.radius)
+          });
+          g.userData.main.userData.pickRoot = g; g.userData.main.material.userData.noHL = true;
           grp.add(g); F.pickables.push(g); F.parts[p.id] = { g, p }; regMesh(p.id, g);
-          if (!g.userData.node) g.userData.info = { title: p.name, tag: p.system, body: '' };
         });
+      }))).then(() => {
+        if (!F.built) return;
         F.mats = null; applyMode(F);
         if (FR.park && FR.park.v2 && F.parts.skin) FR.park.v2.parts.human.visible = false;
-        makeOrganFrames(F, A);
-      }));
-      const lab = new THREE.Object3D(); lab.position.set(0, 1.95, 0); F.add(lab); F.label(lab, 'You', { cls: 'you' });
+        F.partsReady = true; F._ready();
+      });
+      const lab = new THREE.Object3D(); lab.position.set(0, 1.95, 0); lab.userData.id = 'skin'; lab.userData.node = 'skin'; lab.userData.title = 'You'; F.add(lab); F.label(lab, 'You', { cls: 'you' });
     });
     const modes = [['auto', 'Auto'], ['skin', 'Skin'], ['muscles', 'Muscles'], ['skeleton', 'Skeleton'], ['organs', 'Organs'], ['nervous', 'Nerves'], ['circulatory', 'Heart & vessels']];
-    seg(modes, F.mode, k => { F.mode = k; store.set('bodyMode', k); applyMode(F); });
+    F.modeSeg = seg(modes, F.mode, k => { F.mode = k; store.set('bodyMode', k); applyMode(F); });
+    F.showAllBtn = actBtn('Show everything', () => { F.hidden.clear(); applyMode(F); toast('Everything is back.'); }); F.showAllBtn.style.display = 'none';
     F.env = { bg: 0x0e1422, opaque: false };
     F.update = (dt, t) => { applyMode(F); pulse(F, t); F.env.opaque = cam.D < .75 && chainOf(cam.A).includes(F) && !chainOf(cam.A).some(f => f.type === 'tissue' || f.type === 'cell'); };
     F.spawn = (T, hint) => {
       if (!hint || !hint.obj || !hint.obj.userData.part) return null;
-      const id = hint.obj.userData.id, n = NODE[id], tis = n && n.made_of && n.made_of[0];
+      const id = hint.obj.userData.id, n = NODE[nodeForMesh(id)], tis = n && n.made_of && n.made_of[0];
       return tissueFrame(tis || id, T, id);
     };
     F.spawnD = .012;
   }
 };
-function applyMode(F) {
-  let M = MODES[F.mode];
-  if (F.mode === 'auto') { const k = chainOf(cam.A).some(f => f.device) ? 1 : smooth(.35, 1.1, cam.D); M = { skin: lerp(.07, 1, k), skeletal: lerp(.22, 0, k), muscular: 0, '*': lerp(1, 0, k) }; if (cam.A !== F && !chainOf(cam.A).includes(F)) M = { skin: 1 }; }
-  const focus = F.focus && F.focus.alpha > .02 ? F.focus : null;
-  for (const id in F.parts) {
-    const { g, p } = F.parts[id], s = sysOf(p);
-    let op = M[s] !== undefined ? M[s] : (M['*'] !== undefined ? M['*'] : 0);
-    if (focus) op = focus.opts.meshes.includes(id) ? (focus.alpha > .9 ? 0 : Math.max(op, .6)) : op * (1 - .93 * focus.alpha);
-    const m = g.userData.main.material; m.opacity = op * F.alpha; m.depthWrite = op > .9; g.visible = op > .01;
-    g.userData.ol.visible = op > .5; g.userData.ol.material.uniforms.uOpacity.value = .85 * op * F.alpha;
-    g.userData.main.renderOrder = s === 'skin' ? 2 : 1;
-  }
+// the layers Auto shows as the camera comes closer: skin, then muscles, then bones and organs
+function autoLayers(D) {
+  const far = smooth(.85, 1.3, D), mid = smooth(.4, .65, D);
+  const muscle = (1 - far) * mid;
+  return { M: { skin: lerp(.06, 1, far), muscular: .95 * muscle + .08 * (1 - muscle) * (1 - far), skeletal: .3 * (1 - mid), '*': 1 - mid }, name: far > .5 ? 'skin' : mid > .5 ? 'muscles' : 'organs and bones' };
 }
-function pulse(F, t) { // highlight parts in the current process step
-  const hl = PROC.active ? PROC.focus : null;
-  for (const id in F.parts) { const m = F.parts[id].g.userData.main.material; const on = hl && hl.includes(id); m.emissive.setRGB(on ? .35 + .25 * Math.sin(t * 5) : 0, on ? .2 + .15 * Math.sin(t * 5) : 0, 0); }
+function applyMode(F) {
+  let M = MODES[F.mode], layer = '';
+  if (F.mode === 'auto') {
+    if (chainOf(cam.A).some(f => f.device)) M = { skin: .07, skeletal: .22, muscular: 0, '*': 1 };
+    else if (cam.A !== F && !chainOf(cam.A).includes(F)) M = { skin: 1, muscular: 0, skeletal: 0, '*': 0 };
+    else { const a = autoLayers(cam.D); M = a.M; layer = a.name; }
+  }
+  if (F.hidden.size) { M = { '*': 1 }; if (F.mode === 'auto') layer = 'peeled'; } // something is peeled away: show what is behind it, all of it solid
+  if (F.modeSeg && F._layer !== layer) { F._layer = layer; const b = F.modeSeg.querySelector('[data-k=auto]'); if (b) b.textContent = layer ? 'Auto: ' + layer : 'Auto'; }
+  const focus = bodyFocus(F), hov = hovered && hovered.userData && hovered.userData.part ? hovered : null;
+  for (const id in F.parts) {
+    const { g, p } = F.parts[id], s = sysOf(p), u = g.userData;
+    let op = M[s] !== undefined ? M[s] : (M['*'] !== undefined ? M['*'] : 0);
+    if (focus) op = focus.opts.meshes.includes(id) ? (focus.alpha > .9 ? 0 : Math.max(op, .6) * (1 - focus.alpha)) : op * (1 - focus.alpha);
+    u.op = op;
+    const isSel = F.sel === id, isHov = hov === g && op > .01, hl = isSel || isHov;
+    let ev = op; if (isSel) ev = Math.max(ev, .6); else if (isHov) ev = Math.max(ev, .5); // a faint part you point at is drawn solid enough to read
+    const m = u.main.material; m.opacity = ev * F.alpha; m.depthWrite = ev > .9;
+    g.visible = ev > .01 && (!F.hidden.has(id) || isSel);
+    u.shown = g.visible ? op : 0;
+    u.ol.visible = ev > .5 || hl; u.ol.material.uniforms.uOpacity.value = .85 * Math.max(ev, hl ? .9 : 0) * F.alpha;
+    u.ol.material.uniforms.uColor.value.setHex(hl ? 0x1e4e8f : 0x1a1f2b);
+    u.main.renderOrder = s === 'skin' ? 2 : 1;
+  }
+  if (F.showAllBtn) { const n = F.hidden.size, d = n ? '' : 'none'; if (F.showAllBtn.style.display !== d) F.showAllBtn.style.display = d; const t = n ? `Show everything (${n} hidden)` : ''; if (n && F.showAllBtn.textContent !== t) F.showAllBtn.textContent = t; }
+}
+// an organ view is open (the camera is inside it): the body behind it gives way
+function bodyFocus(F) { const o = F.focus; return o && o.alpha > .02 && chainOf(cam.A).includes(o) ? o : null; }
+function pulse(F, t) { // emissive: the current process step pulses, the hovered or selected part glows softly
+  const hl = PROC.active ? PROC.focus : null, hov = hovered && hovered.userData && hovered.userData.part ? hovered : null;
+  for (const id in F.parts) {
+    const { g } = F.parts[id], m = g.userData.main.material, on = hl && (hl.includes(id) || hl.includes(nodeForMesh(id))), k = (F.sel === id ? .07 : 0) + (hov === g ? .06 : 0);
+    m.emissive.setRGB(on ? .35 + .25 * Math.sin(t * 5) + k : k, on ? .2 + .15 * Math.sin(t * 5) + k : k * 1.05, k * 1.3);
+  }
 }
 
 /* ---------- organ frame: a cut-open organ with labeled inner parts ---------- */
-function makeOrganFrames(body, A) {
+// The left lung, kidney and eye have no hotspot data of their own: they reuse the right-hand organ's (mirrored), which is anatomically fair.
+const ORGAN_MIRROR = { lung_l: 'lung_r', kidney_l: 'kidney_r', eye_l: 'eye_r' };
+function makeOrganFrames(body, A) { // built from the anatomy index, so the frames exist before any mesh has loaded
   const has = {}; Object.values(NODE).forEach(n => { if (n.hotspot && n.hotspot.of) (has[n.hotspot.of] = has[n.hotspot.of] || []).push(n.id); });
+  for (const m in ORGAN_MIRROR) if (has[ORGAN_MIRROR[m]] && !has[m]) has[m] = has[ORGAN_MIRROR[m]];
   for (const oid in has) {
     if (oid === 'skin' || body.children.some(c => c.opts && c.opts.organ === oid)) continue;
-    const meshes = Object.keys(body.parts).filter(id => nodeForMesh(id) === oid && id !== 'skin'); if (!meshes.length) continue;
-    const c = new V3(); meshes.forEach(id => c.add(new V3(...body.parts[id].p.center))); c.divideScalar(meshes.length);
-    let R = 0; meshes.forEach(id => R = Math.max(R, c.distanceTo(new V3(...body.parts[id].p.center)) + body.parts[id].p.radius));
-    const f = body.addChild(new Frame({ type: 'organ', name: nodeTitle(oid), unit: 1, radius: R * 1.6, r0: 0, r1: Math.max(R * 7, .35), spawnD: R * .15, pos: c, opts: { organ: oid, meshes, R, hotspots: has[oid] } }));
+    const meshes = A.parts.filter(p => !p.parent && p.id !== 'skin' && nodeForMesh(p.id) === oid).map(p => p.id); if (!meshes.length) continue;
+    const c = new V3(); meshes.forEach(id => c.add(new V3(...A.byId[id].center))); c.divideScalar(meshes.length);
+    let R = 0; meshes.forEach(id => R = Math.max(R, c.distanceTo(new V3(...A.byId[id].center)) + A.byId[id].radius));
+    const f = body.addChild(new Frame({ type: 'organ', name: nodeTitle(oid), unit: 1, radius: R * 1.25, core: R, r0: 0, r1: Math.max(R * 5.5, .35), spawnD: R * .15, pos: c, opts: { organ: oid, meshes, R, hotspots: has[oid], mirror: !!ORGAN_MIRROR[oid] } }));
     f.pinned = true;
   }
 }
 FT.organ = {
   build(F, o) {
-    const body = F.parent; if (!body.parts) return; F.illo = true;
-    body.focus = F;
+    const body = F.parent; F.illo = true;
     F.add(new THREE.HemisphereLight(0xffffff, 0x8899aa, .6)); const kl = new THREE.DirectionalLight(0xffffff, .8); kl.position.set(1, 2, 3); F.add(kl);
-    const c = F.pos.clone(), P = { radius: o.R };
     renderer.localClippingEnabled = true;
     const plane = new THREE.Plane(new V3(0, 0, -1), 0); // keep the back half: cut along the frontal plane
-    const cutMats = [];
-    const addMesh = (geo, col, nodeId, pri) => {
-      const outer = new THREE.Mesh(geo, illoMat(col, { extra: { clippingPlanes: [plane] } }));
-      const inner = new THREE.Mesh(geo, new THREE.MeshToonMaterial({ color: new THREE.Color(col).multiplyScalar(.8), gradientMap: toonGrad(), side: THREE.BackSide, clippingPlanes: [plane], transparent: true }));
-      const ol = new THREE.Mesh(geo, outlineMat()); ol.material.clippingPlanes = [plane];
-      const g = new THREE.Group(); g.add(outer, inner, ol); g.userData = { id: nodeId, node: NODE[nodeId] ? nodeId : null, priority: pri, madeOf: 'tissue' }; g.userData.main = outer;
-      F.add(g); F.pickables.push(g); regMesh(nodeId, g); cutMats.push(outer.material, inner.material, ol.material);
-    };
-    const det = [];
-    o.meshes.forEach(mid => (body.detail && body.detail[mid] || []).forEach(p => det.push(p)));
-    if (det.length) det.filter(p => !/cavity/.test(p.id)).forEach(p => { const g = decodePart(p); g.translate(-c.x, -c.y, -c.z); addMesh(g, p.color ? new THREE.Color(p.color).getHex() : 0xc0392b, nodeForMesh(p.id) || o.organ, p.detail ? 2 : 1.5); });
-    else o.meshes.forEach(mid => { const src = body.parts[mid]; const g = src.g.userData.main.geometry.clone(); g.translate(-c.x, -c.y, -c.z); addMesh(g, PART_COL[mid] || (src.p.color ? new THREE.Color(src.p.color).getHex() : 0) || SYS_COL[src.p.system] || 0xcccccc, o.organ, 1); });
-    seg([['cut', 'Cut open'], ['whole', 'Whole']], 'cut', k => { const cp = k === 'cut' ? [plane] : []; cutMats.forEach(m => { m.clippingPlanes = cp; m.needsUpdate = true; }); });
-    const dotG = new THREE.SphereGeometry(P.radius * .045, 16, 12);
+    const cutMats = []; F.cut = true;
+    seg([['cut', 'Cut open'], ['whole', 'Whole']], 'cut', k => { F.cut = k === 'cut'; const cp = F.cut ? [plane] : []; cutMats.forEach(m => { m.clippingPlanes = cp; m.needsUpdate = true; }); });
     F.update = () => { plane.constant = F.root.position.z; }; // clipping planes live in world space; the frame root moves with the camera
-    o.hotspots.forEach((hid, i) => {
-      const n = NODE[hid]; if (!n || !n.hotspot || !n.hotspot.at) return;
-      const at = new V3(...n.hotspot.at); if (at.length() > P.radius * 1.6) at.setLength(P.radius * .8);
-      const g = inked(dotG, 0xffd166, { w: .004 }); g.position.copy(at); F.add(g); g.children.forEach(m => { m.material.depthTest = false; m.renderOrder = 10; });
-      Object.assign(g.userData, { id: hid, node: hid, priority: 4, center: () => at.clone(), radius: () => P.radius * .12, madeOf: 'tissue' }); g.userData.main.userData.pickRoot = g; F.pickables.push(g); regMesh(hid, g);
-      F.label(g, n.hotspot.label || n.title, { offset: new V3(0, P.radius * .07, 0) });
-    });
-    F.blurb = `${nodeTitle(o.organ)}, cut open. Click a yellow marker to learn what each part does.`;
-    F.onDispose = () => { if (body.focus === F) body.focus = null; };
+    // a hit on the half that has been cut away does not count
+    F.chooseHit = cands => { let best = null; for (const c of cands) { if (F.cut && plane.distanceToPoint(c.hit.point) < 0) continue; if (!best || c.pri > best.pri) best = c; } return best; };
+    F.blurb = `${nodeTitle(o.organ)}, cut open. A model of a typical adult, simplified. Click a yellow marker or any part to learn what it does.`;
+    F.onDispose = () => { dead = true; if (body.focus === F) body.focus = null; };
     F.spawn = (T, hint) => {
       const id = hint && hint.obj && hint.obj.userData.node || o.organ, n = NODE[id];
       return tissueFrame((n && n.made_of && n.made_of[0]) || (NODE[o.organ] && NODE[o.organ].made_of && NODE[o.organ].made_of[0]) || o.organ, T, id);
     };
+    body.focus = F;
+    let dead = false;
+    const fill = () => { // needs the body's meshes: if they are still loading, fill in when they arrive
+      if (dead || F.filled) return;
+      const c = F.pos.clone(), P = { radius: o.R }, mir = o.mirror ? -1 : 1;
+      const addMesh = (geo, col, nodeId, pri, title) => {
+        const outer = new THREE.Mesh(geo, illoMat(col, { extra: { clippingPlanes: F.cut ? [plane] : [] } }));
+        // the inside of the cut: lit from within so it reads as a hollow, not a black hole
+        const inner = new THREE.Mesh(geo, new THREE.MeshToonMaterial({ color: new THREE.Color(col).multiplyScalar(.75), emissive: new THREE.Color(col).multiplyScalar(.28), gradientMap: toonGrad(), side: THREE.BackSide, clippingPlanes: F.cut ? [plane] : [], transparent: true }));
+        const ol = new THREE.Mesh(geo, outlineMat()); ol.material.clippingPlanes = F.cut ? [plane] : [];
+        ol.renderOrder = 0; ol.material.depthWrite = false; inner.renderOrder = 1; outer.renderOrder = 2; // the ink never paints over the lit inside of the cut
+        const g = new THREE.Group(); g.add(outer, inner, ol); g.userData = { id: nodeId, node: NODE[nodeId] ? nodeId : null, priority: pri, madeOf: 'tissue', title: title || nodeTitle(nodeId) }; g.userData.main = outer;
+        F.add(g); F.pickables.push(g); regMesh(nodeId, g); cutMats.push(outer.material, inner.material, ol.material);
+      };
+      const det = [];
+      o.meshes.forEach(mid => (body.detail && body.detail[mid] || []).forEach(p => det.push(p)));
+      if (det.length) det.filter(p => !/cavity/.test(p.id)).forEach(p => { const g = decodePart(p); g.translate(-c.x, -c.y, -c.z); addMesh(g, p.color ? new THREE.Color(p.color).getHex() : 0xc0392b, nodeForMesh(p.id) || o.organ, 1, p.name); });
+      else o.meshes.forEach(mid => { const src = body.parts[mid]; if (!src) return; const g = src.g.userData.main.geometry.clone(); g.translate(-c.x, -c.y, -c.z); addMesh(g, PART_COL[mid] || (src.p.color ? new THREE.Color(src.p.color).getHex() : 0) || SYS_COL[src.p.system] || 0xcccccc, o.organ, 1, src.p.name); });
+      const dotG = new THREE.SphereGeometry(P.radius * .045, 16, 12);
+      o.hotspots.forEach(hid => {
+        const n = NODE[hid]; if (!n || !n.hotspot || !n.hotspot.at) return;
+        const at = new V3(...n.hotspot.at); at.x *= mir; if (at.length() > P.radius * 1.6) at.setLength(P.radius * .8);
+        const g = inked(dotG, 0xffd166, { w: .004 }); g.position.copy(at); F.add(g);
+        g.userData.main.renderOrder = 11; g.userData.ol.renderOrder = 10; // marker above its own outline
+        g.children.forEach(m => { m.material.depthTest = false; });
+        Object.assign(g.userData, { id: hid, node: hid, priority: 4, title: n.hotspot.label || n.title, center: () => at.clone(), radius: () => P.radius * .12, madeOf: 'tissue' }); g.userData.main.userData.pickRoot = g; F.pickables.push(g); regMesh(hid, g);
+        F.label(g, n.hotspot.label || n.title, { offset: new V3(0, P.radius * .07, 0) });
+      });
+      F.filled = true;
+    };
+    if (body.partsReady) fill(); else if (body.readyP) body.readyP.then(fill);
   }
 };
 
@@ -264,40 +313,46 @@ function chipList(ids, label) {
   const ok = (ids || []).filter(Boolean); if (!ok.length) return '';
   return `<div class="refs"><div class="rh">${label}</div><div class="chips">${ok.map(i => `<button class="chip nd" data-n="${i}">${nodeTitle(i)}</button>`).join('')}</div></div>`;
 }
-function kindLine(n) { const k = (n.kind || '').replace(/_/g, ' '); const K = k ? k[0].toUpperCase() + k.slice(1) : ''; return n.scale_m ? `${K}${K ? ', ' : ''}about ${roughLen(n.scale_m)} across` : K; }
+function kindLine(n) { const k = (n.kind || '').replace(/_/g, ' '); const K = k ? k[0].toUpperCase() + k.slice(1) : ''; return n.scale_m && n.id !== 'skin' ? `${K}${K ? ', ' : ''}about ${roughLen(n.scale_m)} across` : K; }
 function roughLen(m) { return fmtLen(m).replace(/^(\d+)\.\d+ /, '$1 ').replace(/^(\d)\.(\d)\d /, '$1.$2 '); }
 function showBodyNode(id, h) {
   const n = NODE[id]; if (!n) return false;
+  const BF = h && h.frame && h.frame.type === 'body' && h.frame.parts ? h.frame : null; // a click on the body: answer "what is under here?"
+  if (BF) { if (h.ndc && !h.stack) h.stack = bodyCoreSample(BF, h); BF.sel = h.obj && h.obj.userData.part ? h.obj.userData.id : null; }
+  else if (FR.body) FR.body.sel = null;
   infoState = { h, node: id };
   const L = n.layers || {};
-  let basics = `<div class="body"><p><b>${n.summary || ''}</b></p>${L.basics ? `<p>${L.basics}</p>` : ''}</div>`;
-  if (n.facts && n.facts.length) basics += '<dl>' + n.facts.map(f => `<dt>${f[0]}</dt><dd>${f[1]}</dd>`).join('') + '</dl>';
+  let basics = `<p><b>${n.summary || ''}</b></p>${L.basics ? `<p>${L.basics}</p>` : ''}`;
   if (n.did_you_know) basics += `<div class="fun"><b>Did you know?</b>${n.did_you_know}</div>`;
-  let html = `<div class="tag">${kindLine(n)}</div><h2>${n.title}</h2>${certBadge(n.certainty)}<div class="vzh" id="vizHost"></div>`;
-  html += trackNav(id);
   if (n.formula) basics += `<div class="formula">${n.formula}</div>`;
-  html += layered([['Basics', basics], ['Deeper', L.deeper ? `<div class="body"><p>${L.deeper}</p></div>` : ''], ['Expert', L.expert ? `<div class="body expert"><p>${L.expert}</p></div>` : '']]);
   const canLook = h && h.frame && h.frame.children && h.frame.children.some(c => c.type === 'organ' && c.opts.organ === id);
-  html += `<div class="btnrow">${h ? `<button class="zoom" id="zoomBtn">${canLook ? 'Look inside' : 'Zoom in'}</button>` : ''}${h && n.made_of && n.made_of.length ? `<button class="zoom alt" id="madeBtn"><span>See what it is made of</span><span>▾</span></button>` : ''}</div>`;
+  const hideable = BF && h.obj && h.obj.userData.part;
+  const chips = (ids, cls = 'chip nd', attr = 'data-n') => chipsHtml((ids || []).filter(Boolean).map(i => `<button class="${cls}" ${attr}="${i}">${nodeTitle(i)}</button>`));
   const tw = (typeof TEAR !== 'undefined' && (TEAR[id] || (n.where && TEAR[n.where]))) || (n.where && /^(place|mol|crystal):/.test(n.where));
-  if (n.lab || (tw && !h)) html += `<div class="btnrow">${n.lab ? `<button class="zoom lab" id="labBtn">${labAvailable(n.lab.id) ? 'Open in the ' : 'Planned: '}${LAB_NAMES[n.lab.id] || n.lab.id}</button>` : ''}${tw && !h ? `<button class="zoom alt" id="whereBtn">Show where it is</button>` : ''}</div>`;
-  if (n.processes && n.processes.length) html += `<div class="refs"><div class="rh">How it works</div><div class="chips">${n.processes.map(p => `<button class="chip pr" data-p="${p}">${nodeTitle(p)}</button>`).join('')}</div></div>`;
-  html += chipList(n.parts, 'Parts');
-  html += chipList(n.made_of, 'Made of');
-  html += chipList(n.parents, 'Part of');
-  html += chipList(n.needs, 'Builds on');
-  if (n.ext && n.ext.length) html += `<div class="refs"><div class="rh">Further reading</div>${n.ext.map(e => `<a class="ref" href="${e.url}" target="_blank" rel="noopener"><b>${e.title}</b></a>`).join('')}</div>`;
-  if (n.molecules && n.molecules.length) html += chipList(n.molecules.map(m => NODE[m] ? m : null), 'Key molecules');
-  if (n.open_questions && n.open_questions.length) html += `<div class="refs"><div class="rh">Open questions</div><ul class="ev">${n.open_questions.map(q => `<li>${q}</li>`).join('')}</ul></div>`;
-  if (n.refs && n.refs.length) html += `<div class="refs"><div class="rh">Textbook sections</div>${n.refs.map(r => bookRef(r[0], r[1])).join('')}</div>`;
-  openPanel(html);
+  const spec = {
+    tag: kindLine(n), title: n.title, figure: '<div class="vzh" id="vizHost"></div>', core: BF && h.stack ? coreHtml(BF, h) : '', track: trackNav(id),
+    basics, deeper: L.deeper, expert: L.expert, facts: n.facts,
+    buttons: (h ? `<button class="zoom" id="zoomBtn">${canLook ? 'Look inside' : 'Zoom in'}</button>` : '') + (h && n.made_of && n.made_of.length ? `<button class="zoom alt" id="madeBtn"><span>${BF ? 'Look at its tissue' : 'See what it is made of'}</span><span>▾</span></button>` : '') + (hideable ? `<button class="zoom alt" id="hideBtn">Hide this</button>` : '')
+      + (n.lab ? `<button class="zoom lab" id="labBtn">${labAvailable(n.lab.id) ? 'Open in the ' : 'Planned: '}${LAB_NAMES[n.lab.id] || n.lab.id}</button>` : '') + (tw && !h ? `<button class="zoom alt" id="whereBtn">Show where it is</button>` : ''),
+    after: BF && n.made_of && n.made_of.length && !canLook ? `<p class="cnote">There is no cut-open view of this part yet. "Look at its tissue" shows an illustration of the kind of tissue it is made of, not a microscope image.</p>` : '',
+    made: (n.parts && n.parts.length ? '<div class="rs">Parts</div>' + chips(n.parts) : '') + (n.made_of && n.made_of.length ? (n.parts && n.parts.length ? '<div class="rs">Made of</div>' : '') + chips(n.made_of) : ''),
+    part: chips(n.parents),
+    how: n.processes && n.processes.length ? chips(n.processes, 'chip pr', 'data-p') : '',
+    more: (n.needs && n.needs.length ? `<div class="refs"><div class="rh">Builds on</div>${chips(n.needs)}</div>` : '')
+      + (n.molecules && n.molecules.length ? `<div class="refs"><div class="rh">Key molecules</div>${chips(n.molecules.map(m => NODE[m] ? m : null))}</div>` : '')
+      + (n.ext && n.ext.length ? `<div class="refs"><div class="rh">Further reading</div>${n.ext.map(e => `<a class="ref" href="${e.url}" target="_blank" rel="noopener"><b>${e.title}</b></a>`).join('')}</div>` : ''),
+    books: n.refs && n.refs.length ? n.refs.map(r => bookRef(r[0], r[1])).join('') : '',
+    open: n.open_questions && n.open_questions.length ? `<ul class="ev">${n.open_questions.map(q => `<li>${q}</li>`).join('')}</ul>` : '',
+    cert: n.certainty,
+  };
+  openPanel(cardHtml(spec), { key: 'node:' + id, reopen: () => showBodyNode(id, h) });
   mountViz($('#vizHost'), id); wireTrackNav();
   const zb = $('#zoomBtn'); if (zb) zb.onclick = () => { const ch = h.frame.children.find(c => c.type === 'organ' && c.opts.organ === id); if (ch) flyTo(ch, new V3(), ch.opts.R * 2.2); else zoomIntoHit(h); };
   const mb = $('#madeBtn'); if (mb) mb.onclick = () => { closeInfo(); const f = tissueFrame(n.made_of[0], h.pointLocal || h.frame.C, id); f.dynamic = true; f.keep = performance.now() + 60000; h.frame.addChild(f); f.ensure(); flyTo(f, new V3(), 4e-4); };
-  infoEl.querySelectorAll('.nd').forEach(b => b.onclick = () => (TEAR[b.dataset.n] ? goToNode(b.dataset.n) : focusNode(b.dataset.n)));
+  if (BF && h.stack) wireCore(BF, h);
+  const hb = $('#hideBtn'); if (hb) hb.onclick = () => bodyHide(BF, h.obj.userData.id);
   const lb = $('#labBtn'); if (lb) lb.onclick = () => openLab(n.lab.id, n.lab.preset, n.title);
   const wb = $('#whereBtn'); if (wb) wb.onclick = () => goToNode(id);
-  infoEl.querySelectorAll('.pr').forEach(b => b.onclick = () => startProcess(b.dataset.p));
   markSeen(id);
   return true;
 }

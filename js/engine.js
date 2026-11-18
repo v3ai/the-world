@@ -60,6 +60,7 @@ addEventListener('resize', resize);
 /* ================= FRAMES ================= */
 const FT = {};           // frame type registry: FT[type] = { build(F, opts) }
 let building = null;     // frame currently being built (for seg/actBtn/labels)
+const _cc = new THREE.Vector3();
 class Frame {
   constructor(o) {
     Object.assign(this, { name: '', unit: 1, radius: 1, r0: 0, r1: Infinity, parent: null, pos: new V3(), quat: new THREE.Quaternion(), children: [], opts: {}, dynamic: false, info: null, up: null, env: null }, o);
@@ -78,7 +79,12 @@ class Frame {
   pick(o, id, priority) { o.userData.id = id; if (priority !== undefined) o.userData.priority = priority; this.pickables.push(o); return o; }
   label(obj, text, o = {}) { return addLabelTo(this, obj, text, o); }
   addChild(c) { c.parent = this; this.children.push(c); return c; }
-  containsP(p) { return this.radius === Infinity || p.distanceTo(this.pos) <= this.radius * this.unit / this.parent.unit * 1.02; }
+  // `center` (optional, own units) is where the content is centred when that is not the frame origin (the body's origin is at its feet)
+  containsP(p) {
+    if (this.radius === Infinity) return true;
+    let c = this.pos; if (this.center) { c = _cc.copy(this.center).multiplyScalar(this.unit / this.parent.unit).applyQuaternion(this.quat).add(this.pos); }
+    return p.distanceTo(c) <= this.radius * this.unit / this.parent.unit * 1.02;
+  }
   dispose() {
     if (!this.built) return;
     this.root.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); });
@@ -119,27 +125,49 @@ function rotAnchored(fn) { fn(cam.T, 'p'); fn(cam.dir, 'd'); fn(cam.up, 'd'); an
 function ascend() { const f = cam.A; rotAnchored((v, k) => k === 'p' ? toParentP(f, v) : toParentD(f, v)); cam.A = f.parent; }
 function descend(c) { rotAnchored((v, k) => k === 'p' ? fromParentP(c, v) : fromParentD(c, v)); cam.A = c; c.entered = true; }
 let lastZoomHit = null; // {frame, obj, point (frame-local), normal (frame-local)}
+let _fp = null;
 function reanchor() {
   for (let g = 0; g < 60 && cam.A.parent; g++) {
     const A = cam.A;
-    const outside = A.radius !== Infinity && cam.T.length() > A.radius * 1.08;
-    if (cam.D > A.r1 || outside) { ascend(); continue; }
+    const outside = A.radius !== Infinity && (A.center ? _cc.copy(cam.T).sub(A.center) : cam.T).length() > A.radius * 1.08;
+    // a flight heading for a frame that A is not on the way to (a sibling, or a cousin such as the skin from inside the lung): step back out
+    const offPath = fly && fly.frame && A.parent && (_fp = chainOf(fly.frame), !_fp.includes(A));
+    if (cam.D > A.r1 || outside || offPath) { ascend(); continue; }
     break;
   }
   for (let g = 0; g < 60; g++) {
     const A = cam.A; A.ensure(); let next = null;
-    for (const c of A.children) { if (c.place) c.place(); if (cam.D <= c.r1 && c.containsP(cam.T)) { next = c; break; } }
+    next = pickChild(A);
     if (!next && A.spawn && !fly && cam.D < (A.spawnD || A.r0 * 1.6)) next = trySpawn(A); // a flight heads for a frame that already exists: never spawn stand-ins on the way
     if (!next) break;
     descend(next);
   }
   // dispose dynamic frames we've left far behind
   forEachFrame(f => {
-    if (f.dynamic && f.parent && !chainOf(cam.A).includes(f) && cam.D > f.r1 * 3 && !(f.keep > performance.now()) && !(fly && fly.frame === f)
+    if (f.dynamic && f.parent && !drawn.includes(f) && !chainOf(cam.A).includes(f) && cam.D > f.r1 * 3 && !(f.keep > performance.now()) && !(fly && fly.frame === f)
       && (f.entered || !chainOf(cam.A).includes(f.parent) || cam.D > (f.parent.spawnD || f.parent.r0 * 1.6) * 3)) {
       f.dispose(); f.parent.children.splice(f.parent.children.indexOf(f), 1); if (f.proxy) f.proxy.visible = true;
     }
   });
+}
+// Which child frame to enter when several overlap the camera target. Prefer the one on the path of the current flight.
+// Otherwise prefer a frame whose core (`core`, default `radius`, in its own units) holds the target, the smallest such core first
+// (a heart sits inside the chest volume of a lung); failing that, the best fit: smallest distance from its centre relative to its radius.
+// place() of a frame that is not built yet may depend on things that do not exist: a failure leaves it where it was and is reported once
+function safePlace(c) { if (!c.place) return; try { c.place(); } catch (e) { if (!c._placeErr) { c._placeErr = 1; console.warn('place() failed before the frame was built:', c.name, e.message); } } }
+function pickChild(A) {
+  const path = fly && fly.frame ? chainOf(fly.frame) : null;
+  let best = null, bs = Infinity;
+  for (const c of A.children) {
+    safePlace(c);
+    if (cam.D > c.r1 || !c.containsP(cam.T)) continue;
+    if (path && path.includes(c)) return c;
+    const k = c.unit / A.unit, dist = cam.T.distanceTo(c.pos), rad = c.radius === Infinity ? Infinity : c.radius * k;
+    const core = (c.core ?? c.radius) * k;
+    const s = dist <= core ? core : 1e3 + (rad === Infinity ? 1e9 : dist / rad); // inside a core: ranked by core size, below any fit score
+    if (s < bs) { bs = s; best = c; }
+  }
+  return best;
 }
 function trySpawn(A) {
   let hint = null;
@@ -172,7 +200,8 @@ function computeActive() {
   const list = [];
   for (const f of ch) {
     let a = f === cam.A ? Math.max(frameAlpha(f), cam.D < f.r0 ? 1 : 0) : frameAlpha(f);
-    if (f.coRender && f.parent && f.parent.unit === f.unit) a = coAlpha(f); // a neighbour looks the same whether or not the camera is anchored in it
+    if (f.coRender && f.parent && f.parent.unit === f.unit) a = coAlpha(f, true); // in the chain: only the distance fade, never the parent's r0 fade
+    // a neighbour looks the same whether or not the camera is anchored in it
     f.alpha = a; if (a > .004) list.push(f);
   }
   if (!list.includes(cam.A)) list.push(cam.A);
@@ -189,7 +218,7 @@ function computeActive() {
     drawn.push(f);
     for (const c of f.children) {
       if (!c.coRender || c.unit !== f.unit || active.includes(c)) continue;
-      if (c.place) c.place();
+      safePlace(c);
       const a = coAlpha(c);
       c.alpha = a; c._share = true;
       if (c.proxy) c.proxy.visible = !(a > .98);
@@ -199,9 +228,9 @@ function computeActive() {
 }
 const _cv = new V3();
 // visibility of a co-rendered child: its parent's, fading out with the camera's distance from it (coMax metres, default r1)
-function coAlpha(c) {
+function coAlpha(c, inChain) {
   const p = c.parent, lim = c.coMax || c.r1;
-  const pa = p === cam.A ? 1 : (p.alpha ?? 1);
+  const pa = inChain || p === cam.A ? 1 : (p.alpha ?? 1);
   if (lim === Infinity) return pa;
   const dist = camPosIn(p, _cv).distanceTo(c.pos) * p.unit;
   return Math.min(pa, 1 - smooth(lim * .7, lim, dist));
@@ -264,7 +293,7 @@ function pivotAt(x, y) {
   return p;
 }
 function zoomBy(lnDelta, x, y) {
-  lastInput = performance.now(); fly = null;
+  lastInput = performance.now(); fly = null; cancelTour();
   if (lnDelta < 0 && x !== undefined) { const p = pivotAt(x, y); zoom.pivot = zoom.pivot || { p }; zoom.pivot.p.copy(p); if (!anchored.includes(zoom.pivot)) anchored.push(zoom.pivot); }
   else if (lnDelta > 0) { zoom.pivot = null; anchored.length = 0; }
   zoom.pending += lnDelta;
@@ -303,10 +332,12 @@ function levelUp(dt) {
 function orthoUp() { cam.dir.normalize(); cam.up.sub(cam.dir.clone().multiplyScalar(cam.up.dot(cam.dir))).normalize(); }
 // fly to a point in a frame, ending at distance Dgoal (meters). Zooms out, travels, zooms in as needed.
 function flyTo(frame, pointLocal, Dgoal, then) {
+  if (typeof navFlyHook === 'function') navFlyHook(); // remember where we were, for Back
   zoom.pending = 0; zoom.pivot = null; anchored.length = 0;
   chainOf(frame).reverse().forEach(f => { f.ensure(); if (f.place) f.place(); }); // the whole path must exist and be in position
   fly = { frame, p: pointLocal.clone(), Dg: Dgoal, then, t: 0 };
 }
+function safeThen(t) { if (t) try { t(); } catch (e) { console.error('flight callback failed', e); } } // a throwing callback must not abort the frame
 function stepFly(dt) {
   const F = fly; F.t += dt;
   const g = F.p.clone(); convertP(g, F.frame, cam.A);
@@ -317,8 +348,8 @@ function stepFly(dt) {
   cam.D = Math.exp(lnD + dl);
   if (distM > cam.D * .6) { const stepM = Math.min(distM, cam.D * dt * 1.6); cam.T.add(g.sub(cam.T).multiplyScalar(stepM / distM)); }
   else cam.T.lerp(g, 1 - Math.exp(-dt * 4));
-  if (distM < cam.D * .02 && Math.abs(lnW - Math.log(cam.D)) < .03) { const t = F.then; fly = null; if (t) t(); }
-  if (fly === F && F.t > 60) { const t = F.then; jumpTo(F.frame, F.p, F.Dg); if (t) t(); } // never strand a tour: finish the trip
+  if (distM < cam.D * .02 && Math.abs(lnW - Math.log(cam.D)) < .03) { const t = F.then; fly = null; safeThen(t); }
+  if (fly === F && F.t > 60) { const t = F.then; jumpTo(F.frame, F.p, F.Dg); safeThen(t); } // never strand a tour: finish the trip
 }
 // pointer handlers
 const pointers = new Map(); let dragMoved = false, downPos = null, pinchD = 0;
@@ -335,7 +366,7 @@ canvas.addEventListener('pointermove', e => {
   mouse.x = e.clientX; mouse.y = e.clientY; mouse.has = true; mouse.dirty = true;
   const p = pointers.get(e.pointerId); if (!p) return;
   const dx = e.clientX - p.x, dy = e.clientY - p.y; p.x = e.clientX; p.y = e.clientY;
-  if (pointers.size === 1) { if (Math.hypot(e.clientX - downPos.x, e.clientY - downPos.y) > 6) dragMoved = true; if (dragMoved) { orbit(dx, dy); fly = null; } }
+  if (pointers.size === 1) { if (Math.hypot(e.clientX - downPos.x, e.clientY - downPos.y) > 6) dragMoved = true; if (dragMoved) { orbit(dx, dy); fly = null; cancelTour(); } }
   else if (pointers.size === 2) { const [a, b] = [...pointers.values()]; const d = Math.hypot(a.x - b.x, a.y - b.y); if (pinchD > 0 && d > 0) zoomBy(Math.log(pinchD / d), (a.x + b.x) / 2, (a.y + b.y) / 2); pinchD = d; }
   lastInput = performance.now();
 });
@@ -348,18 +379,19 @@ function endPointer(e, click) {
 canvas.addEventListener('pointerup', e => endPointer(e, true));
 canvas.addEventListener('pointercancel', e => endPointer(e, false));
 canvas.addEventListener('pointerleave', () => { mouse.has = false; setHover(null); });
-canvas.addEventListener('dblclick', e => { const h = pickAt(e.clientX, e.clientY); if (h) zoomIntoHit(h); });
+canvas.addEventListener('dblclick', e => { cancelTour(); const h = pickAt(e.clientX, e.clientY); if (h) zoomIntoHit(h); });
 let holdZoom = 0;
 function bindHold(el, dir) {
   const start = e => { e.preventDefault(); holdZoom = dir; }, stop = () => { holdZoom = 0; };
   el.addEventListener('pointerdown', start); el.addEventListener('pointerup', stop); el.addEventListener('pointerleave', stop); el.addEventListener('pointercancel', stop);
 }
 addEventListener('keydown', e => {
-  if (e.target.tagName === 'INPUT') return;
+  if (/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName) || e.ctrlKey || e.metaKey || e.altKey) return;
   const k = e.key;
+  if (k === '/') { e.preventDefault(); openLibrary(true); return; }
   if (k === '+' || k === '=') zoomBy(-.25, W / 2, H / 2);
   else if (k === '-' || k === '_') zoomBy(.25);
-  else if (k === 'Escape') { closeInfo(); closePops(); fly = null; tour = null; $('#help').classList.add('hide'); }
+  else if (k === 'Escape') { closeInfo(); closePops(); fly = null; cancelTour(); $('#help').classList.add('hide'); }
   else if (k === 'ArrowLeft') orbit(-25, 0); else if (k === 'ArrowRight') orbit(25, 0);
   else if (k === 'ArrowUp') orbit(0, -17); else if (k === 'ArrowDown') orbit(0, 17);
   else return;
@@ -374,16 +406,18 @@ function pickFrame(f, forZoom) { // best candidate inside one frame: highest pri
   raycaster.setFromCamera(ndc, f.cam);
   raycaster.params.Points.threshold = f.dLoc * .012; raycaster.params.Line.threshold = f.dLoc * .01;
   const hits = raycaster.intersectObjects(f.pickables, true);
-  let fb = null, bp = -Infinity;
+  const cands = [];
   for (const h of hits) {
     if (!visibleChain(h.object)) continue;
     let o = h.object; while (o && !o.userData.id && !o.userData.resolve) o = o.parent;
     if (!o) continue;
-    const p = o.userData.priority ?? 1;
     if (forZoom && o.userData.noZoom && hits.length > 1) continue;
-    if (p > bp) { fb = { frame: f, obj: o, hit: h }; bp = p; }
+    cands.push({ frame: f, obj: o, hit: h, pri: o.userData.priority ?? 1 });
   }
-  if (fb) { fb.meters = fb.hit.distance * f.unit; fb.pri = bp; }
+  let fb = null;
+  if (f.chooseHit) fb = f.chooseHit(cands, forZoom); // a frame may apply its own rule (the body: nearest part you can actually see)
+  else { let bp = -Infinity; for (const c of cands) if (c.pri > bp) { fb = c; bp = c.pri; } }
+  if (fb) fb.meters = fb.hit.distance * f.unit;
   return fb;
 }
 function pickAt(x, y, forZoom) {
@@ -400,7 +434,7 @@ function pickAt(x, y, forZoom) {
     i = j - 1;
   }
   if (!best) return null;
-  const f = best.frame;
+  const f = best.frame; best.ndc = ndc.clone();
   best.pointLocal = best.hit.point.clone().add(f.C);
   best.normalLocal = best.hit.face ? best.hit.face.normal.clone().transformDirection(best.hit.object.matrixWorld) : null;
   best.id = best.obj.userData.resolve ? best.obj.userData.resolve(best.hit) : best.obj.userData.id;
@@ -420,7 +454,7 @@ function doHover() {
   if (!mouse.has || mouse.touch || pointers.size) { tipEl.classList.remove('show'); return; }
   const h = pickAt(mouse.x, mouse.y);
   if (h && (h.obj.userData.priority ?? 1) >= 0) {
-    const d = h.obj.userData.info || (h.obj.userData.infoFn && h.obj.userData.infoFn(h)) || INFO[h.id] || (h.obj.userData.title ? { title: h.obj.userData.title } : null);
+    const ud = h.obj.userData, tf = ud.tipFn && ud.tipFn(h), d = tf ? { title: tf } : (ud.infoFn && ud.infoFn(h)) || ud.info || INFO[h.id] || (ud.title ? { title: ud.title } : null);
     setHover(h.obj);
     if (d) { tipEl.textContent = d.title; tipEl.classList.add('show'); tipEl.style.left = (mouse.x + 14) + 'px'; tipEl.style.top = (mouse.y + 14) + 'px'; } else tipEl.classList.remove('show');
   } else { setHover(null); tipEl.classList.remove('show'); }

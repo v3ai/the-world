@@ -193,5 +193,243 @@
   "kn": [
    "musculoskeletal"
   ]
+ },
+ {
+  "id": "teeth",
+  "title": "Teeth",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.1,
+  "parents": [
+   "digestive_system",
+   "skull"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "teeth",
+  "summary": "Your teeth cut, tear and grind food so it can be swallowed and digested.",
+  "layers": {
+   "basics": "Teeth are the hardest parts of your body. You grow 20 baby teeth, which fall out and are replaced by 32 adult teeth. Chewing breaks food into small pieces and mixes it with saliva.",
+   "deeper": "Each tooth has a crown above the gum and a root in the jaw. The crown is covered in enamel, under which lies dentin, a bone-like tissue around a pulp cavity holding nerves and blood vessels. The root is covered in cementum.",
+   "expert": "Adult teeth: 8 incisors, 4 canines (cuspids), 8 premolars and 12 molars. Different shapes do different jobs: incisors shear, canines tear, premolars and molars crush and grind. The model shows the teeth as one merged shape."
+  },
+  "facts": [
+   [
+    "Baby teeth",
+    "20"
+   ],
+   [
+    "Adult teeth",
+    "32 (8 incisors, 4 canines, 8 premolars, 12 molars)"
+   ],
+   [
+    "Hardest layer",
+    "Enamel"
+   ]
+  ],
+  "did_you_know": "Enamel is the hardest substance in the body, yet it cannot regrow once worn away.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.3",
+    "23-3-the-mouth-pharynx-and-esophagus"
+   ]
+  ],
+  "kn": [
+   "digestive_system"
+  ]
+ },
+ {
+  "id": "tongue",
+  "title": "Tongue",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.1,
+  "parents": [
+   "digestive_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "tongue",
+  "summary": "A muscular organ that moves food around the mouth, helps you swallow and speak, and carries your taste buds.",
+  "layers": {
+   "basics": "Your tongue is made almost entirely of muscle. It pushes food between your teeth, shapes the sounds of speech, and its surface holds the taste buds.",
+   "deeper": "Four muscles inside the tongue change its shape; four more start on nearby bones and move it as a whole. Small bumps called papillae cover the top. Taste buds sit in the mushroom-shaped ones; the thin, pointed ones sense touch. A fold called the lingual frenulum ties it to the floor of the mouth.",
+   "expert": "Intrinsic muscles: superior and inferior longitudinal, transverse and vertical. Extrinsic: genioglossus, hyoglossus, styloglossus and palatoglossus. A frenulum that is too short restricts movement (ankyloglossia, 'tongue tie'). The model shows the tongue's outer shape only."
+  },
+  "facts": [
+   [
+    "Muscles inside",
+    "4 intrinsic"
+   ],
+   [
+    "Muscles from outside",
+    "4 extrinsic"
+   ],
+   [
+    "Taste buds in",
+    "Fungiform papillae"
+   ]
+  ],
+  "did_you_know": "If the fold under the tongue is too short, it restricts movement: this is called tongue tie.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.3",
+    "23-3-the-mouth-pharynx-and-esophagus"
+   ]
+  ],
+  "kn": [
+   "digestive_system"
+  ]
+ },
+ {
+  "id": "hyoid",
+  "title": "Hyoid bone",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.04,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "hyoid",
+  "summary": "A small U-shaped bone in the neck that touches no other bone: the base on which the tongue works.",
+  "layers": {
+   "basics": "The hyoid sits high in the front of your neck, near the level of your jaw. It is the only bone that is not joined to another bone. Muscles hold it in place and move it as you swallow and speak.",
+   "deeper": "It anchors the tongue above, the larynx below and the pharynx behind. Small muscles above and below move it up, down, forward and back, in step with the tongue, larynx and pharynx.",
+   "expert": "It is not counted as part of the skull. It is held in place only by muscles and ligaments, and its movements are coordinated with the tongue, larynx and pharynx in swallowing and speech."
+  },
+  "facts": [
+   [
+    "Shape",
+    "U-shaped"
+   ],
+   [
+    "Joints with other bones",
+    "None"
+   ]
+  ],
+  "did_you_know": "It is the one bone in the body that does not connect to any other bone.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "7.2",
+    "7-2-the-skull"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "intervertebral_discs",
+  "title": "Intervertebral discs",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.45,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "cartilage_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "intervertebral_discs",
+  "summary": "Tough, springy pads between the bones of your spine that absorb shock and let it bend.",
+  "layers": {
+   "basics": "Between each pair of spine bones lies a disc, like a jelly-filled cushion with a strong skin. Discs soften the load of walking and jumping and let your back bend and twist.",
+   "deeper": "A disc has a tough fibrous outer ring (the anulus fibrosus) and a softer, gel-like centre (the nucleus pulposus) that resists compression because it holds so much water. Discs make up about a quarter of the height between the pelvis and the base of the skull, and are thinnest in the neck and thickest in the lower back.",
+   "expert": "The anulus is firmly anchored to the rims of the neighbouring vertebral bodies. If the ring tears, the gel can bulge or leak (a herniated disc) and press on a nerve root. The model shows all the discs as one merged shape."
+  },
+  "facts": [
+   [
+    "Share of trunk height",
+    "about 25%"
+   ],
+   [
+    "Thickest in",
+    "Lower back (lumbar)"
+   ],
+   [
+    "Parts",
+    "Anulus fibrosus, nucleus pulposus"
+   ]
+  ],
+  "did_you_know": "They make up roughly a quarter of the height of your spine between the pelvis and the skull.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "7.3",
+    "7-3-the-vertebral-column"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
+ },
+ {
+  "id": "forearm_muscles",
+  "title": "Forearm muscles",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.28,
+  "parents": [
+   "muscular_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": "forearm_muscles",
+  "summary": "The muscles between elbow and wrist that bend and straighten the wrist and fingers and turn the hand.",
+  "layers": {
+   "basics": "Most of the strength in your grip and the fine control of your fingers comes from muscles in your forearm, connected to the fingers by long tendons.",
+   "deeper": "They are grouped in front (flexors, which bend the wrist and fingers) and behind (extensors, which straighten them). Pronator teres turns the palm down; brachioradialis helps bend the elbow; extensor digitorum opens the fingers.",
+   "expert": "Anterior compartment: flexor carpi radialis, palmaris longus, flexor carpi ulnaris, flexor digitorum superficialis (superficial); flexor pollicis longus, flexor digitorum profundus (deep). Posterior compartment: extensor carpi radialis longus and brevis, extensor digitorum, extensor digiti minimi, extensor carpi ulnaris (superficial); abductor pollicis longus, extensor pollicis brevis and longus, extensor indicis (deep). The model merges them into one shape per arm."
+  },
+  "facts": [
+   [
+    "Front group",
+    "Bends wrist and fingers"
+   ],
+   [
+    "Back group",
+    "Straightens wrist and fingers"
+   ]
+  ],
+  "did_you_know": "The muscles that move your fingers are largely up in the forearm, pulling on long tendons.",
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.5",
+    "11-5-muscles-of-the-pectoral-girdle-and-upper-limbs"
+   ]
+  ],
+  "kn": [
+   "musculoskeletal"
+  ]
  }
 ]

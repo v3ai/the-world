@@ -32,11 +32,10 @@ async function buildWorld() {
   const region = FR.earth.addChild(regionFrame(FR.earth, PARK.lat, PARK.lon, 'grass', true)); FR.region = region;
   const park = region.addChild(new Frame({ type: 'park', name: 'Greenwich Park', unit: 1, radius: 500, r0: 2e-4, r1: 3500, up: new V3(0, 1, 0), maxPolar: Math.PI / 2 - .03 }));
   FR.park = park;
-  const body = park.addChild(new Frame({ type: 'body', name: 'Human body', unit: 1, radius: 1.3, r0: 0, r1: 90, up: new V3(0, 1, 0), pos: new V3(0, 0, 0) }));
+  const body = park.addChild(new Frame({ type: 'body', name: 'Human body', unit: 1, radius: 1.0, center: new V3(0, .875, 0), r0: 0, r1: 90, up: new V3(0, 1, 0), pos: new V3(0, 0, 0) }));
   body.noFade = true; body.coRender = true; body.coMax = 400; FR.body = body;
   const devLM = buildTeardown(body);
-  const AN = await loadAnatomyIndex(); loadNodes();
-  const bodyLM = (id, label, D) => { const p = AN && AN.byId[id]; return p ? { label, D, side: true, go: then => flyTo(body, new V3(...p.center), D, then) } : null; };
+  const AN = await loadAnatomyIndex(); await loadNodes(); if (AN) makeOrganFrames(body, AN);
   const skin = park.addChild(microFrame('skin', new V3(0, 1.2, .2)));
   skin.place = () => {
     if (skin._placed || !park.built || !park.v2) return; skin._placed = true;
@@ -62,31 +61,38 @@ async function buildWorld() {
   FR.proton = pr;
 
   for (const ext of WORLD_EXT) { try { await ext(FR); } catch (e) { console.error('world extension failed', e); } }
-  const go = (f, p, D) => then => flyTo(f, p || new V3(), D, then);
+  // A landmark: {label, D, frame, go(then)}. `frame` is where the camera must be anchored (or inside) after the flight.
+  const LM = (label, f, p, D, extra) => Object.assign({ label, D, frame: f, go: then => flyTo(f, p || new V3(), D, then) }, extra || {});
+  const organ = (id, fallback) => body.children.find(c => c.type === 'organ' && c.opts.organ === id) || fallback;
+  const bodyLM = (id, label, D, organId) => {
+    const p = AN && AN.byId[id]; if (!p) return null;
+    const o = organId && organ(organId);
+    return o ? LM(label, o, new V3(), o.opts.R * 2.2, { side: true }) : LM(label, body, new V3(...p.center), D, { side: true });
+  };
   LANDMARKS = [
-    { label: 'Proton', D: 3e-15, go: then => { FR.nuc.ensure(); pr.place(); flyTo(pr, new V3(), 3e-15, then); } },
-    { label: 'Oxygen nucleus', D: 2.2e-14, go: go(nuc, null, 2.2e-14) },
-    { label: 'Oxygen atom', D: 3.2e-10, go: then => { atom.place(); flyTo(atom, new V3(), 3.2e-10, then); } },
-    { label: 'Base pair (molecule)', D: 3e-9, go: go(bp, null, 3e-9) },
-    { label: 'DNA', D: 2e-8, go: go(dna, null, 2e-8) },
-    { label: 'Skin cell', D: 4e-5, go: go(cell, null, 4e-5) },
-    { label: 'Your skin', D: 1.5e-3, go: then => { skin.place(); flyTo(skin, new V3(), 1.5e-3, then); } },
-    ...devLM, bodyLM('cerebrum_r', 'Your brain', .5), bodyLM('heart', 'Your heart', .4),
-    { label: 'You', D: 6, go: go(park, new V3(0, 1, 0), 6) },
-    { label: 'Greenwich Park', D: 700, go: go(park, new V3(0, 0, 0), 700) },
-    { label: 'London', D: 8e4, go: go(region, null, 8e4) },
-    { label: 'Earth', D: 3e7, go: go(FR.earth, null, 3e7) },
-    { label: 'Earth & Moon', D: 1.4e9, go: go(FR.earth, null, 1.4e9) },
-    { label: 'Inner planets', D: 7e11, go: go(ss, null, 7e11) },
-    { label: 'Solar system', D: 1.5e13, go: go(ss, null, 1.5e13) },
-    { label: 'Oort cloud', D: 5e16, go: go(ss, null, 5e16) },
-    { label: 'Nearest stars', D: 5e17, go: go(nb, null, 5e17) },
-    { label: 'Local stars', D: 6e18, go: go(nb, null, 6e18) },
-    { label: 'Black hole Sgr A*', D: 3e11, side: true, go: go(FR.sgr, null, 3e11) },
-    { label: 'Milky Way', D: 2e21, go: go(mw, null, 2e21) },
-    { label: 'Local Group', D: 2e23, go: go(lg, null, 2e23) },
-    { label: 'Cosmic web', D: 4e24, go: go(root, null, 4e24) },
-    { label: 'Observable universe', D: 2e27, go: go(root, null, 2e27) },
+    LM('Proton', pr, null, 3e-15),
+    LM('Oxygen nucleus', nuc, null, 2.2e-14),
+    LM('Oxygen atom', atom, null, 3.2e-10),
+    LM('Base pair (molecule)', bp, null, 3e-9),
+    LM('DNA', dna, null, 2e-8),
+    LM('Skin cell', cell, null, 4e-5),
+    LM('Your skin', skin, null, 1.5e-3),
+    ...devLM, bodyLM('cerebrum_r', 'Your brain', .5, 'brain'), bodyLM('heart', 'Your heart', .4, 'heart'),
+    LM('You', park, new V3(0, 1, 0), 6),
+    LM('Greenwich Park', park, new V3(0, 0, 0), 700),
+    LM('London', region, null, 8e4),
+    LM('Earth', FR.earth, null, 3e7),
+    LM('Earth & Moon', FR.earth, null, 1.4e9),
+    LM('Inner planets', ss, null, 7e11),
+    LM('Solar system', ss, null, 1.5e13),
+    LM('Oort cloud', nb, null, 5e16),
+    LM('Nearest stars', nb, null, 5e17),
+    LM('Local stars', nb, null, 6e18),
+    LM('Black hole Sgr A*', FR.sgr, null, 3e11, { side: true }),
+    LM('Milky Way', mw, null, 2e21),
+    LM('Local Group', lg, null, 2e23),
+    LM('Cosmic web', root, null, 4e24),
+    LM('Observable universe', root, null, 2e27),
   ].filter(Boolean).concat(EXT_LANDMARKS);
   return root;
 }

@@ -36,9 +36,14 @@ function removeLabel(c, L) { L.el.remove(); const i = c.labels.indexOf(L); if (i
 // shared asset loading
 const texLoader = new THREE.TextureLoader();
 const TEX = {};
-function tex(name, cb) { if (!TEX[name]) { TEX[name] = texLoader.load('assets/textures/' + name, t => { if (cb) cb(t); }); TEX[name].anisotropy = 8; } return TEX[name]; }
+const TEXCB = {};
+function tex(name, cb) { // every caller's callback fires, also when the texture is already requested or loaded
+  if (!TEX[name]) { TEXCB[name] = []; TEX[name] = texLoader.load('assets/textures/' + name, t => { TEXCB[name].splice(0).forEach(f => f(t)); TEXCB[name] = null; }); TEX[name].anisotropy = 8; }
+  if (cb) { if (TEXCB[name]) TEXCB[name].push(cb); else cb(TEX[name]); }
+  return TEX[name];
+}
 const DATA = {};
-function getJSON(path) { return DATA[path] || (DATA[path] = fetch(path).then(r => r.json())); }
+function getJSON(path) { return DATA[path] || (DATA[path] = fetch(path).then(r => r.json()).catch(e => { delete DATA[path]; throw e; })); } // a failed fetch is not cached
 // orientation helpers (J2000)
 const EPS = 23.4392911 * Math.PI / 180;
 const eq3 = (x, y, z) => new V3(x, z, -y);                    // equatorial xyz → three (Y = north)

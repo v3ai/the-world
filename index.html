@@ -24,31 +24,34 @@
   <button class="tb" id="bTracks">Tracks</button><button class="tb" id="bLibrary">Library</button><button class="tb" id="bLabels" title="Show or hide labels">Labels</button><button class="tb" id="bHelp">Help</button>
 </nav>
 <section id="caption" aria-live="polite">
+  <nav id="crumbs" aria-label="Where you are" aria-live="off"><button class="back" id="navBack" disabled title="Return to the previous place and card">Back</button><ol id="crumbList"></ol></nav>
   <div class="n" id="capN"></div><div class="d" id="capD"></div><div class="nt" id="capNote"></div>
   <div class="meta"><span class="k" id="capK"></span><span id="timebar"><span id="timeT"></span><button id="timeS" title="Change how fast time runs">1×</button><button id="timeNow" title="Jump to the present moment">Now</button></span></div>
 </section>
 <aside id="info" aria-live="polite"></aside>
-<div id="library" class="pop"><h3>Library</h3><div class="sub">Search every topic in the explorer, the knowledge map, and 51 open textbooks.</div><input id="libQ" type="search" placeholder="Search, for example mitosis, orbital or quasar" autocomplete="off"><div id="libRes"></div><div class="lic">Section titles and key terms are indexed from OpenStax textbooks (CC BY and CC BY-NC-SA 4.0); links open the full text on openstax.org. The explanations in this explorer are original.</div></div>
+<div id="library" class="pop"><h3>Library</h3><div class="sub">Search places, elements, molecules, every topic in the explorer, the knowledge map and 51 open textbooks. Press / from anywhere.</div><input id="libQ" type="search" placeholder="Try heart, gold, caffeine, London or mitosis" autocomplete="off"><div id="libRes"></div><div class="lic">Section titles and key terms are indexed from OpenStax textbooks (CC BY and CC BY-NC-SA 4.0); links open the full text on openstax.org. The explanations in this explorer are original.</div></div>
 <div id="controls"></div>
 <div id="zoombtns"><button id="zin" title="Zoom in (hold)" aria-label="Zoom in">+</button><button id="zout" title="Zoom out (hold)" aria-label="Zoom out">−</button></div>
 <div id="push" class="glass"><span id="pushT"></span></div>
 <div id="tip"></div>
 <div id="toasts"></div>
 <div id="fade"></div>
-<div id="help">
+<div id="help" role="dialog" aria-label="How to use The World">
   <div class="card">
     <h1>Everything, at its true size.</h1>
-    <p>One continuous zoom across 42 powers of ten: from a proton inside an oxygen atom in your own DNA, out through a park in London, the real Earth turning under the real Sun, the planets where they are today, 109,000 real stars, the Milky Way and the cosmic web. Click anything to see what it is, what it is made of, and how it works.</p>
+    <p class="lead">A proton, a cell, a park, the Earth, the Milky Way: one world you can zoom through. Here is all you need.</p>
+    <ol class="steps">
+      <li><b>Scroll to zoom.</b><span>Scroll, or pinch on a phone, to move toward whatever is under the pointer. You can keep going in or out across more than 40 powers of ten. Drag to look around.</span></li>
+      <li><b>Click anything.</b><span>Click or tap an object and a card opens: what it is, what it is made of, how it works. Choose Basics, Deeper or Expert. Double-click to fly to it.</span></li>
+      <li><b>Watch the ruler.</b><span>The scale down the left edge shows how big your view is. Click a place on it, such as Your skin, London or the Milky Way, to fly there.</span></li>
+    </ol>
     <div class="grid">
-      <span class="key">Scroll or pinch</span><span>Zoom toward whatever is under the pointer. You can keep going, all the way down.</span>
-      <span class="key">Drag</span><span>Look around.</span>
-      <span class="key">Click</span><span>Open a card about it: a live figure, explanations at three depths, and how certain science is.</span>
-      <span class="key">Double-click</span><span>Fly to it.</span>
-      <span class="key">The scale</span><span>The ruler on the left shows how big your view is. Click a landmark to fly there.</span>
-      <span class="key">Tracks</span><span>Guided paths through a whole degree, in the order ideas build on each other.</span>
-      <span class="key">Library</span><span>Search every topic and 51 open textbooks.</span>
+      <span class="key">Where am I?</span><span>The path at the bottom left (Universe, Milky Way, Earth and so on) shows where you are. Click a step to fly out to it, or press Back to return.</span>
+      <span class="key">Find anything</span><span>Press / or choose Library to search places, elements, molecules, topics and 51 open textbooks.</span>
+      <span class="key">Tours and tracks</span><span>Tour in or Tour out flies the whole way, one stop at a time. Tracks are guided paths through a subject.</span>
     </div>
     <button class="go" id="goBtn">Start exploring</button>
+    <div class="fine">Illustrations say on screen when they are simplified. Reopen this page any time with Help.</div>
   </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -72,6 +75,7 @@
 <script src="js/world_matter.js"></script>
 <script src="js/viz.js"></script>
 <script src="js/nodes.js"></script>
+<script src="js/body_core.js"></script>
 <script src="js/teardown.js"></script>
 <script src="js/labs/host.js"></script>
 <script src="js/atom.js"></script>
