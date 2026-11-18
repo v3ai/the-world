@@ -1115,3 +1115,40 @@ ATM.openPicker = function (F, backBtn) {
     el.classList.add('open'); P.focusSym = P.cur; P.paint(); P.cells[P.cur].focus();
   });
 };
+
+/* ===================================================================================================================
+   Part 6: wiring into the world. Element cards (data/nodes/phys_atom.json, ids at_el_<Symbol>) are ordinary topic cards, found
+   by the library search by title; opening one from search (goToNode) flies to that element's atom.
+   =================================================================================================================== */
+if (typeof WORLD_EXT !== 'undefined' && typeof FT !== 'undefined' && AtomCloud) WORLD_EXT.push(async FR => {
+  ATM.load();
+  if (typeof goToNode === 'function' && !goToNode._atom) {
+    const orig = goToNode;
+    const wrapped = function (id) {
+      const m = /^at_el_([A-Z][a-z]?)$/.exec(id);
+      if (m && ELJ[m[1]] && FR.atom) {
+        const F = FR.atom;
+        if (F.at) F.setElement(m[1], { noFit: true }); else F.opts.el = m[1];
+        F.name = `${ATM.name(m[1])} atom`; showBodyNode(id, null); flyTo(F, new V3(), 7e-10); return;
+      }
+      return orig.apply(this, arguments);
+    };
+    wrapped._atom = true; goToNode = wrapped;
+  }
+  // A long flight from far away ends while the camera is still anchored in whatever frame it left (the engine does not re-anchor during a
+  // flight), and the final re-anchoring can then land in a stand-in frame next to the target. Make the atom and nucleus landmarks finish in the frame they name.
+  let tries = 0; const hook = setInterval(() => {
+    if (typeof LANDMARKS === 'undefined' || !LANDMARKS.length) { if (++tries > 100) clearInterval(hook); return; }
+    clearInterval(hook);
+    LANDMARKS.forEach(L => {
+      const fr = L._atomRole === 'atom' || L.label === 'Oxygen atom' ? FR.atom : L.label === 'Oxygen nucleus' ? FR.nuc : null; if (!fr || L._wrapped) return;
+      L._wrapped = true; const go = L.go;
+      L.go = then => go(() => { if (cam.A !== fr && !chainOf(cam.A).includes(fr)) jumpTo(fr, new V3(), L.D); if (then) then(); });
+    });
+  }, 200);
+  // search registry added by the core workstream, if present: register the elements (shape not known here, so only if it is an array of plain {id,title} sources)
+  if (typeof SEARCH_SOURCES !== 'undefined' && Array.isArray(SEARCH_SOURCES) && !SEARCH_SOURCES._atom) {
+    SEARCH_SOURCES._atom = true;
+    try { SEARCH_SOURCES.push({ id: 'elements', title: 'Elements', items: () => Object.values(ELJ).map(e => ({ id: 'at_el_' + e.symbol, title: `${e.name} (${e.symbol})`, sub: `Element ${e.Z}` })) }); } catch (e) { }
+  }
+});
