@@ -170,6 +170,16 @@ for (const [n, l, m] of [[2, 1, 1], [2, 1, -1], [3, 2, 2], [3, 2, -1], [4, 3, 3]
   const amp = Math.max(...mz.map(a => Math.abs(a[2])));
   check('1s+2p0: <z> oscillates (amplitude well above noise)', amp > 0.3, amp);
 }
+{ // the cheaper midpoint rule used for the on-screen animation also keeps the dots on |psi(t)|^2 (3000 dots, 2 periods, display step)
+  const Z = 1, comps = [{ n: 1, l: 0, m: 0, re: 1 / Math.SQRT2, im: 0 }, { n: 2, l: 1, m: 0, re: 1 / Math.SQRT2, im: 0 }], N = 3000, Tper = 2 * Math.PI / 0.375;
+  const s0 = AQ.sampleSuper(comps, Z, N, 0, { seed: 31 }), P = new Float64Array(3 * N);
+  for (let i = 0; i < N; i++) { const st = Math.sin(s0.th[i]); P[3 * i] = s0.r[i] * st * Math.cos(s0.ph[i]); P[3 * i + 1] = s0.r[i] * st * Math.sin(s0.ph[i]); P[3 * i + 2] = s0.r[i] * Math.cos(s0.th[i]); }
+  const dt = 0.07; let t = 0; while (t < 2 * Tper) { AQ.advance(P, comps, Z, t, dt, { order: 2 }); t += dt; }
+  const ref = AQ.sampleSuper(comps, Z, N, t, { seed: 32 }), zs = Array.from({ length: N }, (_, i) => P[3 * i + 2]).sort((a, b) => a - b), zr = Array.from(ref.r, (r, i) => r * Math.cos(ref.th[i])).sort((a, b) => a - b);
+  let i = 0, j = 0, D = 0; while (i < N && j < N) { if (zs[i] <= zr[j]) i++; else j++; D = Math.max(D, Math.abs(i / N - j / N)); }
+  const c = 1.95 * Math.sqrt(2 / N); check('display integrator (midpoint, dt = 0.07 au) keeps dots on |psi|^2 after 2 periods', D < c, `D=${D} crit=${c}`);
+  console.log(`display integrator after 2 periods: KS D = ${D.toFixed(4)} (critical ${c.toFixed(4)})`);
+}
 { // 1s+2s breathes: <r> oscillates, <z> stays zero
   const Z = 1, comps = [{ n: 1, l: 0, m: 0, re: 1 / Math.SQRT2, im: 0 }, { n: 2, l: 0, m: 0, re: 1 / Math.SQRT2, im: 0 }], N = 4000;
   const dE = AQ.energy(2, Z) - AQ.energy(1, Z), T = 2 * Math.PI / dE, a = AQ.sampleSuper(comps, Z, N, 0, { seed: 3 }), b = AQ.sampleSuper(comps, Z, N, T / 2, { seed: 4 });
