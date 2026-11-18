@@ -9,7 +9,7 @@
 
    Units: atomic units unless a name says otherwise (lengths in Bohr radii a0, energies in hartree, time in 2.4189e-17 s). */
 var AQ = (function () {
-  const A0_PM = 52.9177210903;          // Bohr radius in pm (CODATA 2018)
+  const A0_PM = 52.9177210544;          // Bohr radius in pm (CODATA 2022, NIST)
   const AU_TIME_S = 2.4188843265857e-17; // atomic unit of time in seconds (CODATA 2018)
   const HARTREE_HZ = 6.579683920502e15;  // hartree / h, in Hz (CODATA 2018)
   const ME_OVER_MP = 1 / 1836.15267343;  // electron-to-proton mass ratio (CODATA 2018)
