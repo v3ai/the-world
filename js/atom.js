@@ -723,7 +723,8 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
     const emitBtn = document.createElement('button'); emitBtn.className = 'act'; emitBtn.textContent = 'Let it jump and emit light'; emitBtn.onclick = () => bohrEmit();
     bohrBar.append(biSel, bfSel, emitBtn);
     const note = document.createElement('div'); note.className = 'atomNote glass'; document.body.appendChild(note);
-    F.onDispose = () => { cloud.dispose(); note.remove(); ATM.frames.delete(F); clearModel(); };
+    const noteTimer = setInterval(() => { note.classList.toggle('on', typeof capFrame !== 'undefined' && capFrame === F); }, 250);   // F.update does not run while the frame is faded out
+    F.onDispose = () => { clearInterval(noteTimer); cloud.dispose(); note.remove(); ATM.frames.delete(F); clearModel(); };
     note.addEventListener('click', ev => { const b = ev.target.closest('[data-n]'); if (b) { showBodyNode(b.dataset.n, null); } const t = ev.target.closest('.noteHead'); if (t) note.classList.toggle('shut'); });
 
     function syncToggles() {
@@ -784,10 +785,10 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
       if (e.Z === 1) {
         const nmax = 6, shown = Math.max(S.bi, 4); S.extentPm = bohrRadiusPm(shown) * 1.2;
         for (let n = 1; n <= nmax; n++) {
-          const R = bohrRadiusPm(n), r = ringMesh(R, Math.max(0.5, bohrRadiusPm(shown) * 0.0035), hue(n).multiplyScalar(0.9)); gModel.add(r);
+          const R = bohrRadiusPm(n), r = ringMesh(R, Math.max(0.5, bohrRadiusPm(shown) * 0.006), hue(n).multiplyScalar(0.9)); gModel.add(r);
           const a = new THREE.Object3D(); a.position.set(R * Math.cos(0.9), R * Math.sin(0.9), 0); gModel.add(a); addLbl(a, `n = ${n}  (${R.toFixed(n === 1 ? 1 : 0)} pm)`, new V3());
         }
-        const eg = keep(new THREE.SphereGeometry(Math.max(2, bohrRadiusPm(shown) * 0.012), 14, 10)), em = new THREE.Mesh(eg, keep(smat(0x1f4e8f, { roughness: 0.35 })));
+        const eg = keep(new THREE.SphereGeometry(Math.max(2, bohrRadiusPm(shown) * 0.022), 14, 10)), em = new THREE.Mesh(eg, keep(smat(0x1f4e8f, { roughness: 0.35 })));
         em.userData = { id: 'at_model_electron', priority: 2, title: 'Electron (drawn as a ball)', onPick: () => { em.userData.node = (typeof NODE !== 'undefined' && NODE.sm_electron) ? 'sm_electron' : 'at_model_bohr'; } }; gModel.add(em); F.pickables.push(em);
         const st = { ph: 0, rad: bohrRadiusPm(S.bi), n: S.bi };
         // photon: a short wave packet that leaves along a fixed direction
@@ -861,7 +862,7 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
     }
     nucHit.userData.infoFn = nucleusInfo;
 
-    function fit() { if (cam.A === F && !fly) flyTo(F, new V3(), Math.max(S.extentPm * 3.6e-12, 3e-13)); }
+    function fit(tries) { if (cam.A !== F) return; if (fly) { if ((tries || 0) < 30) setTimeout(() => fit((tries || 0) + 1), 300); return; } flyTo(F, new V3(), Math.max(S.extentPm * 3.6e-12, 3e-13)); }
     F.fit = fit;
     function updateProxies() {
       const e = ELJ[S.el], A = ATM.curA(S.el), rn = ATM.nucleusRadiusFm(A) * 1e-3;
