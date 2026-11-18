@@ -61,7 +61,7 @@ body.cardOpen .atomNote { display: none }
 #ptable .ptl .sw i { width: 12px; height: 12px; border: 1px solid rgba(0,0,0,.25); border-radius: 2px; display: inline-block }
 @media (max-width: 860px) {
   .atomOpts { max-width: none; padding: 6px 8px }
-  .atomNote { left: 8px; right: 8px; width: auto; bottom: 120px; max-height: 38vh }
+  .atomNote { left: 60px; right: 8px; width: auto; bottom: 168px; max-height: 38vh }
   .atomNote .nx::after { content: ' (tap)' }
   #ptable .ptw { padding: 10px 8px }
   #ptable .pc { padding: 1px 1px; aspect-ratio: 1 / 1.25 }
@@ -76,3 +76,13 @@ body.cardOpen .atomNote { display: none }
 #ptable .ptl .sw { white-space: nowrap }
 @media (max-width: 860px) { #ptable .ptd .go { margin-left: 0 } #ptable .ptd { gap: 4px 10px } #ptable h2 { font-size: 17px } }
 @media (max-width: 860px) { #ptable .pc.mark { font-size: 6px; padding: 0; overflow: hidden } }
+@media (max-width: 860px) {
+  .atomOpts { flex: 0 0 auto; width: calc(100vw - 84px); min-width: 0 }
+  .atomOpts .asel select { max-width: 150px }
+  .atomOpts .seg { flex-wrap: wrap }
+  .atomOpts .seg button { padding: 6px 8px }
+  .atomSpec { max-width: calc(100vw - 84px); flex: 0 0 auto }
+}
+@media (max-width: 860px) {
+  .atomOpts { position: fixed; left: 58px; right: 8px; top: 108px; width: auto; max-height: 36vh; overflow: auto; z-index: 4 }
+}

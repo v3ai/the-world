@@ -722,7 +722,7 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
     const bfSel = ATM.selEl('', 'to n', v => { S.bf = +v; syncBohr(); });
     const emitBtn = document.createElement('button'); emitBtn.className = 'act'; emitBtn.textContent = 'Let it jump and emit light'; emitBtn.onclick = () => bohrEmit();
     bohrBar.append(biSel, bfSel, emitBtn);
-    const note = document.createElement('div'); note.className = 'atomNote glass'; document.body.appendChild(note);
+    const note = document.createElement('div'); note.className = 'atomNote glass'; document.body.appendChild(note); if (window.innerWidth <= 860) note.classList.add('shut');
     const noteTimer = setInterval(() => { note.classList.toggle('on', typeof capFrame !== 'undefined' && capFrame === F); }, 250);   // F.update does not run while the frame is faded out
     F.onDispose = () => { clearInterval(noteTimer); cloud.dispose(); note.remove(); ATM.frames.delete(F); clearModel(); };
     note.addEventListener('click', ev => { const b = ev.target.closest('[data-n]'); if (b) { showBodyNode(b.dataset.n, null); } const t = ev.target.closest('.noteHead'); if (t) note.classList.toggle('shut'); });
@@ -862,13 +862,13 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
     }
     nucHit.userData.infoFn = nucleusInfo;
 
-    function fit(tries) { if (cam.A !== F) return; if (fly) { if ((tries || 0) < 30) setTimeout(() => fit((tries || 0) + 1), 300); return; } S.fitExt = S.extentPm; flyTo(F, new V3(), Math.max(S.extentPm * 3.6e-12, 3e-13)); }
+    function fit(tries) { if (cam.A !== F) return; if (fly) { if ((tries || 0) < 30) setTimeout(() => fit((tries || 0) + 1), 300); return; } S.fitExt = S.extentPm; flyTo(F, new V3(), Math.max(S.extentPm * 3.6e-12 * Math.max(1, innerHeight / innerWidth * 0.9), 3e-13)); }
     F.fit = fit;
     function updateProxies() {
       const e = ELJ[S.el], A = ATM.curA(S.el), rn = ATM.nucleusRadiusFm(A) * 1e-3;
       hitMain.scale.setScalar(S.extentPm / 100); nucTrue.scale.setScalar(rn); nucHit.scale.setScalar(Math.max(1, S.extentPm / 60) / 3 * 3 / 3);
       nucHit.userData.radius = () => Math.max(1, S.extentPm / 60);
-      F.r1 = Math.max(2.5e-9, S.extentPm * 1e-12 * 16); F.radius = Math.max(600, S.extentPm * 1.6);
+      F.r1 = Math.max(6e-9, S.extentPm * 1e-12 * 30); F.radius = Math.max(600, S.extentPm * 1.6);
       hitMain.userData.title = `${e.name} atom`;
       hitMain.userData.node = null; hitMain.userData.infoFn = null;
       if (S.model === 'quantum') {
@@ -984,7 +984,7 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
       const on = typeof capFrame !== 'undefined' && capFrame === F; note.classList.toggle('on', on);
       // arriving by a landmark flight that ends too close for this atom: ease back so the whole atom is in view
       if (cam.A !== F) S.fitDone = false;
-      else if (!S.fitDone && !fly) { S.fitDone = true; if (cam.D < S.extentPm * 2.6e-12) fit(); }
+      else if (!S.fitDone && !fly) { S.fitDone = true; if (cam.D < S.extentPm * 2.6e-12 * Math.max(1, innerHeight / innerWidth * 0.9)) fit(); }
     };
     F.name = F.name || `${ATM.name(S.el)} atom`;
     syncToggles(); syncBohr();
