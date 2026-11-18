@@ -84,6 +84,30 @@ function thShadowTex() {
   _thShadowTex = new THREE.CanvasTexture(c); return _thShadowTex;
 }
 
+/* ---------- flow markers: instanced markers that travel along polylines (sap in the xylem and phloem) ---------- */
+function thFlowMesh(id, bundle, pd, color) {
+  const fl = bundle.flows[pd.flow], geo = thGeo(id, bundle, fl.mesh), n = fl.markers.length;
+  if (!fl._prep) {   // per path: points, radii, cumulative length (computed once per bundle)
+    fl._prep = fl.paths.map(P => { const pts = [], c = [0]; for (let i = 0; i < P.p.length; i += 3) pts.push(new V3(P.p[i], P.p[i + 1], P.p[i + 2])); for (let i = 1; i < pts.length; i++) c.push(c[i - 1] + pts[i].distanceTo(pts[i - 1])); return { pts, r: P.r, c, L: c[c.length - 1] }; });
+  }
+  const im = new THREE.InstancedMesh(geo, new THREE.MeshBasicMaterial({ color, transparent: true }), n); im.frustumCulled = false; im.userData.main = im;
+  im.userData.flow = { im, fl, n, m4: new THREE.Matrix4(), q: new THREE.Quaternion(), p: new V3(), s: new V3(2.2, 2.2, 2.2), T: new V3(), N: new V3(), B: new V3(), up: new V3(0, 1, 0), ax: new V3(1, 0, 0), y: new V3(0, 1, 0) };
+  return im;
+}
+function thFlowUpdate(f, t) {
+  const { fl, im, m4, q, p, s, T, N, B } = f, prep = fl._prep;
+  for (let i = 0; i < f.n; i++) {
+    const mk = fl.markers[i], P = prep[mk[0]]; let u = (mk[1] + fl.dir * fl.speed * t / P.L * 6) % 1; if (u < 0) u += 1;
+    const d = u * P.L; let lo = 0, hi = P.c.length - 1; while (hi - lo > 1) { const mid = (lo + hi) >> 1; if (P.c[mid] <= d) lo = mid; else hi = mid; }
+    const k = (d - P.c[lo]) / ((P.c[hi] - P.c[lo]) || 1), a = P.pts[lo], b = P.pts[hi];
+    T.subVectors(b, a).normalize(); N.crossVectors(T, f.up); if (N.lengthSq() < .05) N.crossVectors(T, f.ax); N.normalize(); B.crossVectors(T, N);
+    const r = (P.r[lo] + (P.r[hi] - P.r[lo]) * k) * fl.ring, c = Math.cos(mk[2]) * r, sn = Math.sin(mk[2]) * r;
+    p.set(a.x + (b.x - a.x) * k + N.x * c + B.x * sn, a.y + (b.y - a.y) * k + N.y * c + B.y * sn, a.z + (b.z - a.z) * k + N.z * c + B.z * sn);
+    if (fl.dir < 0) T.negate(); q.setFromUnitVectors(f.y, T); m4.compose(p, q, s); im.setMatrixAt(i, m4);
+  }
+  im.instanceMatrix.needsUpdate = true;
+}
+
 /* ---------- ThingObj: the meshes of one thing ---------- */
 class ThingObj {
   /* def: thing.json, bundle: mesh.json, o: { scale, rotY (radians), seed } */
@@ -97,6 +121,7 @@ class ThingObj {
     this.lights = { hemi: new THREE.HemisphereLight(0xcfe6ff, 0x4a6a2a, .75), sun: new THREE.DirectionalLight(0xfff1d6, 1.0) };
     this.lights.sun.position.set(.4, 1, .5).multiplyScalar(40);
     this.holder.add(this.group);
+    this.pivots = { wood: new THREE.Group() }; this.group.add(this.pivots.wood); this.clock = 0; this.pivotPending = true; this.pivotAng = 0;
     for (const pd of def.parts) this._addPart(pd);
     if (def.shadow) this._addShadow(def.shadow);
     for (const h of def.hotspots || []) this._addHotspot(h);
@@ -128,25 +153,27 @@ class ThingObj {
       }
       im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true; im.frustumCulled = false;
       g = im; g.userData.main = im;
+    } else if (pd.flow) {
+      g = thFlowMesh(def.id, this.bundle, pd, color);
     } else return;
     const sys = def.systems.find(s => s.id === pd.system);
     const rec = { pd, g, op: 0, tgt: 1, near: true, instanced: !!pd.instances };
-    g.userData.partRec = rec; g.visible = false;
-    this.group.add(g); this.list.push(rec); this.parts[pd.id] = rec;
+    g.userData.partRec = rec; g.visible = false; rec.flow = g.userData.flow || null;
+    (pd.pivot && this.pivots[pd.pivot] || this.group).add(g); this.list.push(rec); this.parts[pd.id] = rec;
   }
   _addShadow(sh) {
     const r = sh.radius_m * this.k, m = new THREE.Mesh(new THREE.PlaneGeometry(2 * r, 2 * r), new THREE.MeshBasicMaterial({ map: thShadowTex(), transparent: true, depthWrite: false, opacity: sh.opacity ?? 1, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }));
     m.rotation.x = -Math.PI / 2; m.position.set(sh.offset ? sh.offset[0] * this.k : 0, .012, sh.offset ? sh.offset[1] * this.k : 0); m.renderOrder = -1; m.userData.shadow = true; this.shadow = m; this.holder.add(m);
   }
   _addHotspot(h) {
-    const R = this.def.radius_m || 1, geo = new THREE.SphereGeometry(Math.max(.01, R * .02), 14, 10), g = inked(geo, 0xffd166, { w: .004 });
+    const R = this.def.radius_m || 1, geo = new THREE.SphereGeometry(h.r || Math.max(.01, R * .02), 14, 10), g = inked(geo, 0xffd166, { w: .004 });
     g.children.forEach(m => { m.material.depthTest = false; m.renderOrder = m.userData.outline ? 9 : 10; });   // ink first, fill on top
-    g.userData.hotspot = h; g.visible = false; g.position.set(...h.at); this.group.add(g); this.hot.push(g);
+    g.userData.hotspot = h; g.visible = false; g.position.set(...h.at); ((h.modes && h.modes[0] === 'wood') ? this.pivots.wood : this.group).add(g); this.hot.push(g);
   }
   modeDef(id) { return this.def.modes.find(m => m.id === id); }
   // resolve 'auto' from how near the camera is (metres from the thing)
   resolveMode(distM) { if (this.modeId !== 'auto') return this.modeDef(this.modeId); const a = this.def.auto || {}, id = distM < (a.near_m || 5) ? (a.near || 'whole') : (a.far || 'whole'); return this.modeDef(id) || this.def.modes[0]; }
-  setMode(id) { this.modeId = id; this.cutPending = true; }
+  setMode(id) { this.modeId = id; this.cutPending = true; this.pivotPending = true; }
   // point the cut at a direction (thing-local, horizontal), through the cut point
   faceCut(dirLocal) {
     const n = dirLocal.clone(); n.y = 0; if (n.lengthSq() < 1e-6) n.set(0, 0, 1); n.normalize(); this.cutN.copy(n);
@@ -167,21 +194,28 @@ class ThingObj {
       for (const fm of this.faceMats) { const u = fm.uniforms; u.uPlane.value.set(nC.x, nC.y, nC.z, this.plane.constant); u.uCam.value.copy(this.camW || new V3()); u.uOff.value.copy(off); u.uInv.value.copy(inv); }
     }
     const planes = cut ? this.planes : [];
+    this.clock += dt; this.seeThrough = !!(md && md.groundSeeThrough);
+    if (md && md.pivot) {   // turn the pivoted parts (the cut log) so that its opening faces the camera, once per mode choice
+      if (this.pivotPending) { this.pivotPending = false; const dl = camLocal.clone().sub(this.group.position).applyAxisAngle(new V3(0, 1, 0), -(this.o.rotY || 0)); this.pivotAng = Math.atan2(dl.x, dl.z); }
+      this.pivots[md.pivot].rotation.y += (((this.pivotAng - this.pivots[md.pivot].rotation.y + Math.PI * 3) % (Math.PI * 2)) - Math.PI) * (1 - Math.exp(-dt * 6));
+    }
     for (const r of this.list) {
       const pd = r.pd, sys = pd.system, sh = (md && md.show) || {};
       let tgt = sh[sys] !== undefined ? sh[sys] : (sh['*'] !== undefined ? sh['*'] : 0);
+      if (pd.opacity_max !== undefined) tgt = Math.min(tgt, pd.opacity_max);
       if (pd.parent && !cut) tgt = 0;
       if (pd.lod === 'far' && this.near) tgt = 0; if (pd.lod === 'near' && !this.near) tgt = 0;
       r.tgt = tgt; r.op += (tgt - r.op) * (1 - Math.exp(-dt * 9)); if (Math.abs(r.op - tgt) < .01) r.op = tgt;
       const op = r.op * alpha, g = r.g, main = g.userData.main, mat = main.material;
       g.visible = op > .01;
+      if (g.visible && r.flow) { thFlowUpdate(r.flow, this.clock); mat.opacity = op; continue; }
       if (g.visible) {
         mat.opacity = op; mat.transparent = op < .99; mat.depthWrite = op > .9; if (mat.clippingPlanes !== planes) { mat.clippingPlanes = planes; mat.needsUpdate = true; }
         const ol = g.userData.ol; if (ol) { ol.visible = op > .5 && !pd.noink; ol.material.uniforms.uOpacity.value = .85 * op; if (ol.material.clippingPlanes !== planes) { ol.material.clippingPlanes = planes; ol.material.needsUpdate = true; } }
         const cap = g.userData.cap; if (cap) { cap.visible = !!cut && op > .5; cap.material.uniforms.uOpacity.value = op; }
       }
     }
-    for (const h of this.hot) { h.visible = !!cut || !!(md && md.hotspots); h.children.forEach(m => { if (m.material.uniforms && m.material.uniforms.uOpacity) m.material.uniforms.uOpacity.value = .85 * alpha; else m.material.opacity = alpha; }); }
+    for (const h of this.hot) { const hs = h.userData.hotspot; h.visible = (!!cut || !!(md && md.hotspots)) && (!hs.modes || (md && hs.modes.includes(md.id))); h.children.forEach(m => { if (m.material.uniforms && m.material.uniforms.uOpacity) m.material.uniforms.uOpacity.value = .85 * alpha; else m.material.opacity = alpha; }); }
     if (this.shadow) this.shadow.material.opacity = (def.shadow.opacity ?? 1) * alpha;
     return md;
   }
@@ -194,7 +228,7 @@ FT.thing = {
   build(F, o) {
     const id = o.thing, pl = o.placement || {}; F.illo = true; F.noFade = true;   // opacity is handled per part, like the body
     renderer.localClippingEnabled = true;
-    F.parts = {}; F.mode = store.get('thing:' + id + ':mode', null);
+    F.parts = {}; F.mode = null;
     F.env = { bg: 0, opaque: false };
     const fogSrc = FR.park && FR.park.scene;
     if (fogSrc && fogSrc.fog) F.scene.fog = fogSrc.fog;
@@ -219,9 +253,9 @@ function thBindFrame(F, T, def) {
   const modes = (def.auto ? [['auto', def.auto.label || 'Auto']] : []).concat(def.modes.map(m => [m.id, m.label]));
   building = F;
   try {
-    const row = seg(modes, T.modeId, m => { T.setMode(m); store.set('thing:' + def.id + ':mode', m); thUpdateControls(F); });
+    const row = seg(modes, T.modeId, m => { T.setMode(m); thUpdateControls(F); });
     F.uiRow = row;
-    F.cutBtn = actBtn('Turn the cut to face me', () => { T.cutPending = true; }); F.cutBtn.style.display = 'none';
+    F.cutBtn = actBtn('Turn the cut to face me', () => { T.cutPending = true; T.pivotPending = true; }); F.cutBtn.style.display = 'none';
     F.legend = uiEl(document.createElement('div')); F.legend.className = 'thLegend'; F.legend.style.display = 'none';
   } finally { building = null; }
   uiFrame = null; capFrame = null;
@@ -251,21 +285,32 @@ function thBindFrame(F, T, def) {
   }
   F.labelObj = new THREE.Object3D(); F.labelObj.position.set(0, ((def.height_m || def.radius_m || 1) * k) + .12, 0).add(new V3(0, 0, 0)); F.add(F.labelObj);
   const mainRec = T.parts[def.main_part || (def.parts[0] || {}).id];
-  const nl = F.label(F.labelObj, def.label || def.title, { cls: 'thName', pick: mainRec && mainRec.g }); nl.minSizeFn = f => f.dLoc < (def.radius_m || 1) * k * 25;
+  if ((F.opts.n || 0) === 0 || !def.label_first_only) { const nl = F.label(F.labelObj, def.label || def.title, { cls: 'thName', pick: mainRec && mainRec.g }); nl.minSizeFn = f => f.dLoc < (def.radius_m || 1) * k * 25; }
   thUpdateControls(F);
 }
 function thUpdateControls(F) {
   const T = F.T; if (!T) return;
-  if (F.uiRow) F.uiRow.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === T.modeId)); const md = T.resolveMode(1e9), real = T.modeId === 'auto' ? null : T.modeDef(T.modeId);
-  const cutOn = !!(real && real.cut) || false; F.cutBtn.style.display = cutOn ? '' : 'none';
-  const face = T.def.cut && T.def.cut.faces && T.def.cut.faces[T.def.cut.default];
-  F.legend.style.display = cutOn && face && face.legend ? '' : 'none';
-  if (cutOn && face && face.legend && !F.legend.childElementCount) {
-    F.legend.innerHTML = '<span class="thLH">On the cut face</span>' + face.legend.map(l => `<button class="thLg" data-n="${l.node}"><i style="background:${l.color}"></i>${l.name}</button>`).join('') + (face.note ? `<span class="thLN">${face.note}</span>` : '');
-    F.legend.querySelectorAll('.thLg').forEach(b => b.onclick = () => showBodyNode(b.dataset.n, null));
+  if (F.uiRow) F.uiRow.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === T.modeId)); const real = T.modeId === 'auto' ? null : T.modeDef(T.modeId);
+  const cutOn = !!(real && (real.cut || real.pivot)) || false; F.cutBtn.style.display = cutOn ? '' : 'none';
+  // the legend: a mode may bring its own (a list of coloured swatches that open cards), else the cut face of the thing
+  const lg = (real && real.legend) || (real && real.cut && T.def.cut && T.def.cut.faces && (T.def.cut.faces[T.def.cut.default] || {}).legend && { title: 'On the cut face', items: T.def.cut.faces[T.def.cut.default].legend, note: T.def.cut.faces[T.def.cut.default].note });
+  const key = lg ? T.modeId : '';
+  if (F._legendKey !== key) {
+    F._legendKey = key; F.legend.innerHTML = '';
+    if (lg) {
+      F.legend.innerHTML = `<span class="thLH">${lg.title || 'Legend'}</span>` + lg.items.map(l => `<button class="thLg" data-n="${l.node}"><i style="background:${l.color}"></i>${l.name}</button>`).join('') + (lg.note ? `<span class="thLN">${lg.note}</span>` : '');
+      F.legend.querySelectorAll('.thLg').forEach(b => b.onclick = () => showBodyNode(b.dataset.n, null));
+    }
   }
+  F.legend.style.display = lg ? '' : 'none';
 }
 const _thV = new V3(), _thOff = new V3();
+// the Roots view makes the park's ground see-through (and hides the grass) so the roots can be seen below it
+let _thGround = null, _thFaded = false;
+function thGroundFade(on) {
+  if (on === _thFaded) return; const P = FR.park && FR.park.v2 && FR.park.v2.parts; if (!P || !P.ground) return;
+  _thFaded = on; const m = P.ground.material; m.transparent = on; m.opacity = on ? .16 : 1; m.depthWrite = !on; m.needsUpdate = true; if (P.grass) P.grass.visible = !on;
+}
 let _thPark = null;
 function thFrameUpdate(F, dt, t) {
   const T = F.T; if (!T) return;
@@ -280,6 +325,7 @@ function thFrameUpdate(F, dt, t) {
   const C = F.C || _thV.set(0, 0, 0);   // camera position in frame coordinates; in the shifted frame root the camera sits at the world origin (T.camW stays 0)
   _thOff.copy(F.root.position);
   T.update(dt, C, _thOff, F.alpha);
+  thGroundFade(FR.things.some(f => f.T && f.T.seeThrough && f.alpha > .5));
   if (F._lastModeId !== T.modeId) { F._lastModeId = T.modeId; thUpdateControls(F); F.mode = T.modeId; }
 }
 /* what each part is made of at the next level down */
@@ -292,6 +338,7 @@ function thDeepFrame(d, T0) {
   if (d.type === 'crystal') return crystalFrame(d.id, T0);
   if (d.type === 'micro') return microFrame(d.kind, T0);
   if (d.type === 'tissue') return tissueFrame(d.id, T0, d.organ);
+  if (d.type === 'tissue2') return tissue2Frame(d.id, T0);
   return null;
 }
 /* the "See what it is made of" button on a thing's card (showBodyNode only knows body tissue, so we take over its button) */
@@ -342,7 +389,7 @@ WORLD_EXT.push(async FR => {
   const ix = await thLoadIndex(); FR.things = FR.things || [];
   for (const e of ix.things || []) {
     let def; try { def = await thLoadDef(e.id); } catch (err) { console.error('thing data missing', e.id, err); continue; }
-    thLoadBundle(e.id);
+    thLoadBundle(e.id); def.parts.forEach(p => { if (p.deeper && p.deeper.type === 'tissue2') thLoadTissue(p.deeper.id); });
     (e.placements || []).forEach((pl, i) => {
       const R = (def.radius_m || 1) * (pl.scale || 1) * 1.15;
       const f = FR.park.addChild(new Frame({ type: 'thing', name: def.title, unit: 1, radius: R, r0: 0, r1: Math.max(R * 12, 8), up: new V3(0, 1, 0), pos: new V3(pl.at[0], 0, pl.at[1]), opts: { thing: e.id, placement: pl, n: i } }));
@@ -351,3 +398,98 @@ WORLD_EXT.push(async FR => {
     });
   }
 });
+
+/* =====================================================================
+   TISSUE SCENES AS DATA (FT.tissue2): populations of cells described in a JSON file (data/things/tissues/<id>.json), one generic renderer.
+   Units: micrometres (the frame's unit is 1e-6 m). A population is one kind of cell or structure: its shape, size, colour, node id (the card it opens),
+   how the instances are arranged, and what it is made of at the next level down (`deeper`). Format: tools/things/SCHEMA.md section 5.
+   ===================================================================== */
+const TH_TIS = {};
+function thLoadTissue(id) { return TH_TIS[id] || (TH_TIS[id] = getJSON('data/things/tissues/' + id + '.json')); }
+function tissue2Frame(id, T0) {
+  thLoadTissue(id);
+  return new Frame({ type: 'tissue2', name: 'Inside the leaf', unit: 1e-6, radius: 400, r0: 1e-6, r1: 2e-3, spawnD: 3e-5, pos: T0.clone(), opts: { id } });
+}
+// an outline for instanced meshes (the engine's outlineMat does not know about instancing)
+function thInstOutline(color = 0x1a1f2b, w = .003) {
+  return new THREE.ShaderMaterial({
+    uniforms: { uW: { value: w }, uColor: { value: new THREE.Color(color) }, uOpacity: { value: .8 } },
+    vertexShader: LDV(`uniform float uW;
+void main(){ vec4 mv=modelViewMatrix*instanceMatrix*vec4(position,1.0); vec3 n=normalize(normalMatrix*(mat3(instanceMatrix)*normal)); mv.xyz+=n*(-mv.z)*uW; gl_Position=projectionMatrix*mv; }`),
+    fragmentShader: LDF(`uniform vec3 uColor; uniform float uOpacity; void main(){ gl_FragColor=vec4(uColor,uOpacity); }`), side: THREE.BackSide, transparent: true, depthWrite: false
+  });
+}
+function thShapeGeo(kind) {
+  let g;
+  if (kind === 'rbox') {   // a box with rounded edges
+    g = new THREE.BoxGeometry(1, 1, 1, 4, 4, 4); const a = g.attributes.position, r = .22, q = new V3(), v = new V3(), n = new V3();
+    for (let i = 0; i < a.count; i++) { v.fromBufferAttribute(a, i); q.copy(v).clampScalar(-.5 + r, .5 - r); n.copy(v).sub(q); if (n.lengthSq() > 0) n.normalize().multiplyScalar(r); a.setXYZ(i, q.x + n.x, q.y + n.y, q.z + n.z); }
+  }
+  else if (kind === 'ellipsoid' || kind === 'lens') g = new THREE.SphereGeometry(.5, 14, 10);
+  else if (kind === 'tube_z') g = new THREE.CylinderGeometry(.5, .5, 1, 12, 1).rotateX(Math.PI / 2);
+  else if (kind === 'cylinder') g = new THREE.CylinderGeometry(.5, .5, 1, 14, 1);
+  else if (kind === 'bean') { g = new THREE.TorusGeometry(.32, .17, 8, 20, Math.PI * 1.0); g.rotateX(0); g.translate(0, -.16, 0); g.rotateZ(Math.PI); g.translate(0, .16, 0); g.scale(1.25, 1, 1); }   // a curved sausage: one guard cell
+  else g = new THREE.BoxGeometry(1, 1, 1);
+  g.computeVertexNormals(); return g;
+}
+// instance transforms of one population: [{p:[x,y,z], rotY, s:[sx,sy,sz]}]
+function thArrange(pop, built, rnd) {
+  const a = pop.arrange || {}, sz = pop.size, out = [];
+  if (a.kind === 'list') for (const it of a.items) out.push({ p: it.at.slice(), rotY: it.rotY || 0, s: sz.slice() });
+  else if (a.kind === 'grid') {
+    const [nx, ny, nz] = a.n, st = a.step, o = a.origin, j = a.jitter || 0;
+    for (let k = 0; k < nz; k++) for (let m = 0; m < ny; m++) for (let i = 0; i < nx; i++) {
+      const x = o[0] + (i + (a.stagger ? (k % 2) * a.stagger : 0)) * st[0] + sz[0] / 2, y = o[1] + m * st[1], z = o[2] + k * st[2] + sz[2] / 2;
+      if ((a.skip || []).some(s => s.x && x > s.x[0] && x < s.x[1])) continue;
+      out.push({ p: [x + (rnd() - .5) * j * st[0], y, z + (rnd() - .5) * j * (st[2] || 1)], rotY: 0, s: [sz[0] * (1 + (rnd() - .5) * j), sz[1] * (1 + (rnd() - .5) * j), sz[2] * (1 + (rnd() - .5) * j)] });
+    }
+  } else if (a.kind === 'random') {
+    let guard = 0; const gap = a.gap || 0;
+    while (out.length < a.n && guard++ < a.n * 80) {
+      const p = [0, 1, 2].map(i => a.min[i] + (a.max[i] - a.min[i]) * rnd()); if ((a.exclude || []).some(e => p.every((v, i) => v > e.min[i] && v < e.max[i]))) continue;
+      const s = sz.map(v => v * (.85 + .3 * rnd()));
+      if (out.some(o => Math.abs(o.p[0] - p[0]) < (o.s[0] + s[0]) / 2 + gap && Math.abs(o.p[1] - p[1]) < (o.s[1] + s[1]) / 2 + gap && Math.abs(o.p[2] - p[2]) < (o.s[2] + s[2]) / 2 + gap)) continue;
+      out.push({ p, rotY: rnd() * 3, s });
+    }
+  } else if (a.kind === 'inside') {
+    const par = built[a.of]; if (!par) return out; const r2 = rng(a.seed || 3);
+    for (const q of par) for (let k = 0; k < a.per; k++) {
+      let v; do { v = [r2() * 2 - 1, r2() * 2 - 1, r2() * 2 - 1]; } while (v[0] * v[0] + v[1] * v[1] + v[2] * v[2] > 1);
+      out.push({ p: [q.p[0] + v[0] * q.s[0] / 2 * a.margin, q.p[1] + v[1] * q.s[1] / 2 * a.margin, q.p[2] + v[2] * q.s[2] / 2 * a.margin], rotY: r2() * 6, s: sz.slice() });
+    }
+  }
+  return out;
+}
+FT.tissue2 = {
+  build(F, o) {
+    F.env = { opaque: true, bg: 0xf3efe6 }; F.illo = true;
+    F.add(new THREE.HemisphereLight(0xffffff, 0x998877, .75)); const kl = new THREE.DirectionalLight(0xffffff, .75); kl.position.set(2, 4, 3); F.add(kl);
+    F.spawnD = 3e-5;
+    F.spawn = (T0, hint) => {
+      const d = hint && hint.obj && hint.obj.userData.deeper; if (!d) return null;
+      if (d.type === 'mol') return new Frame({ type: 'mol', name: d.name || d.mol, unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: T0.clone(), opts: { mol: d.mol, fixed: false } });
+      return new Frame({ type: 'cell', name: 'Plant cell', unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T0.clone().add(new V3(0, -10, 0)), opts: { type: 'plant' } });
+    };
+    Promise.all([thLoadTissue(o.id), loadNodes()]).then(([def]) => {
+      if (!F.built) return;
+      F.info = NODE[def.node] || null; F.blurb = def.blurb || ''; F.note = def.note || ''; F.name = def.title;
+      F.env.bg = new THREE.Color(def.bg || '#f3efe6').getHex();
+      const grp = new THREE.Group(); grp.position.set(-def.center[0], -def.center[1], -def.center[2]); F.add(grp);
+      const built = {}, geos = {};
+      for (const pop of def.populations) {
+        const inst = thArrange(pop, built, rng((pop.arrange && pop.arrange.seed) || pop.id.length * 7 + 1)); built[pop.id] = inst; if (!inst.length) continue;
+        const geo = geos[pop.shape] || (geos[pop.shape] = thShapeGeo(pop.shape)), mat = illoMat(new THREE.Color(pop.color).getHex(), { double: true });
+        mat.opacity = pop.opacity ?? 1; mat.transparent = mat.opacity < .99; mat.depthWrite = mat.opacity > .9;
+        const im = new THREE.InstancedMesh(geo, mat, inst.length), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), col = new THREE.Color(), rr = rng(pop.id.length * 13);
+        inst.forEach((t, i) => { q.setFromAxisAngle(new V3(0, 1, 0), t.rotY); m4.compose(new V3(...t.p), q, new V3(...t.s)); im.setMatrixAt(i, m4); im.setColorAt(i, col.setRGB(1 - rr() * .08, 1 - rr() * .06, 1 - rr() * .08)); });
+        im.instanceMatrix.needsUpdate = true; im.frustumCulled = false; grp.add(im);
+        const nid = NODE[pop.node] ? pop.node : null; if (!nid) console.warn('tissue2', def.id, pop.id, 'has no card', pop.node);
+        im.userData = { id: pop.id, node: nid, priority: pop.priority ?? 3, deeper: pop.deeper, thing: 'tissue2', madeOf: pop.deeper ? 'cell' : undefined, info: { title: pop.name, tag: 'Inside a leaf', body: '' }, main: im };
+        im.userData.resolve = () => pop.id; im.userData.pickRoot = im;
+        F.pickables.push(im); if (nid) regMesh(pop.id, im);
+        if (pop.ink) { const io = new THREE.InstancedMesh(geo, thInstOutline(0x1a2b1a, .0016), inst.length); io.instanceMatrix = im.instanceMatrix; io.frustumCulled = false; io.renderOrder = -1; grp.add(io); }
+      }
+      for (const lb of def.labels || []) { const a = new THREE.Object3D(); a.position.set(...lb.at); grp.add(a); const pm = F.pickables.find(p => p.userData.id === lb.pop); F.label(a, lb.text, { pick: pm, cls: 'thTis' }); }
+    });
+  }
+};

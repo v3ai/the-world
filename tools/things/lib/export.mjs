@@ -23,15 +23,17 @@ export function instancedCenterRadius(mesh, inst) {
 }
 // Assemble the files for one thing. model = { thing, meshes: {key: Mesh}, instances: {key: Instances} }.
 export function assemble(model) {
-  const { thing, meshes = {}, instances = {} } = model, out = JSON.parse(JSON.stringify(thing)), problems = [];
+  const { thing, meshes = {}, instances = {}, flows = {} } = model, out = JSON.parse(JSON.stringify(thing)), problems = [];
   const mj = { format: 1, meshes: {}, instances: {} };
   for (const [k, m] of Object.entries(meshes)) mj.meshes[k] = quantize(m);
   for (const [k, inst] of Object.entries(instances)) { if (!meshes[inst.mesh]) problems.push(`instances ${k} uses unknown mesh ${inst.mesh}`); const f = inst.flat(); mj.instances[k] = { mesh: inst.mesh, stride: f.stride, n: inst.count, t: f.data }; }
+  mj.flows = flows;
   let tris = 0;
   const tc = new Set();
   for (const p of out.parts) {
     if (p.mesh) { const m = meshes[p.mesh]; if (!m) { problems.push(`part ${p.id}: unknown mesh ${p.mesh}`); continue; } Object.assign(p, centerRadius(m)); p.tris = m.idx.length / 3; if (!tc.has(p.mesh)) { tc.add(p.mesh); tris += p.tris; } }
     else if (p.instances) { const inst = instances[p.instances]; if (!inst) { problems.push(`part ${p.id}: unknown instances ${p.instances}`); continue; } Object.assign(p, instancedCenterRadius(meshes[inst.mesh], inst)); p.count = inst.count; p.tris = meshes[inst.mesh].idx.length / 3 * inst.count; }
+    else if (p.flow) { if (!flows[p.flow]) problems.push(`part ${p.id}: unknown flow ${p.flow}`); p.center = [0, 8, 0]; p.radius = 10; p.tris = 0; }
     else problems.push(`part ${p.id}: needs mesh or instances`);
   }
   out.stats = { parts: out.parts.length, uniqueMeshTris: tris, nearTris: out.parts.filter(p => p.lod !== 'far').reduce((s, p) => s + (p.tris || 0), 0), farTris: out.parts.filter(p => p.lod === 'far' || !p.lod).reduce((s, p) => s + (p.tris || 0), 0) };
