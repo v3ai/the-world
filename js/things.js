@@ -753,12 +753,23 @@ function thFlowCentre(def, part) {
   const lo = [1e9, 1e9, 1e9], hi = [-1e9, -1e9, -1e9]; for (const P of fl.paths) for (let i = 0; i < P.p.length; i += 3) for (let a = 0; a < 3; a++) { lo[a] = Math.min(lo[a], P.p[i + a]); hi[a] = Math.max(hi[a], P.p[i + a]); }
   return { c: [0, 1, 2].map(a => (lo[a] + hi[a]) / 2), r: Math.hypot(hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2]) / 2 };
 }
+/* The vertex of a part's mesh nearest to its stored centre. A thin or curved part (a muscle sheet, a bone shaft) has a centre in the air or inside a neighbour; the flight aims at a point that is on the part
+   itself when the centre is more than a fifth of the part's radius from it. Cached per part. */
+const _thSurf = {};
+function thSurfacePoint(def, part) {
+  const b = TH.done && TH.done[def.id]; if (!b || !part.mesh || !part.center) return null;
+  const ck = def.id + ':' + part.id; if (ck in _thSurf) return _thSurf[ck];
+  const g = thGeo(def.id, b, part.mesh), pos = g && g.attributes.position; if (!pos) return _thSurf[ck] = null;
+  const c = part.center; let bd = 1e18, bi = -1; for (let i = 0; i < pos.count; i++) { const dx = pos.getX(i) - c[0], dy = pos.getY(i) - c[1], dz = pos.getZ(i) - c[2], d = dx * dx + dy * dy + dz * dz; if (d < bd) { bd = d; bi = i; } }
+  return _thSurf[ck] = bi >= 0 && Math.sqrt(bd) > .2 * (part.radius || 0) ? [pos.getX(bi), pos.getY(bi), pos.getZ(bi)] : null;
+}
 function thFindNode(id) {
   for (const f of FR.things || []) {
     const def = TH.loaded[f.opts.thing]; if (!def) continue; const pl = f.opts.placement || {}, x = thPlacement(def, pl);
     const hit = def.parts.find(p => p.node === id && p.lod !== 'far') || def.parts.find(p => p.node === id), hs = (def.hotspots || []).find(h => h.node === id);
     const fc = hit && hit.flow ? thFlowCentre(def, hit) : null;
-    const at = fc ? fc.c : hit ? hit.center : hs ? hs.at : id === def.node ? (def.parts.find(p => p.id === def.main_part) || {}).center : null;
+    const sp = hit && !fc && !hit.instances ? thSurfacePoint(def, hit) : null;
+    const at = fc ? fc.c : sp ? sp : hit ? hit.center : hs ? hs.at : id === def.node ? (def.parts.find(p => p.id === def.main_part) || {}).center : null;
     if (!at) continue;
     const u = thUnit(def, x.k), rep = hit && hit.instances && hit.lod !== 'far' ? thRepInstance(def, pl, hit) : null, p = thLocalToFrame(def, pl, rep ? rep.p : at);
     const D = rep ? Math.min(Math.max(rep.size * x.k * 6, .25 * u), (def.radius_m || 1) * x.k * .5) : Math.max((fc ? fc.r : (hit && hit.radius) || (def.radius_m || 1) * .5) * x.k * 3.2, thMinFly(hit, x.k, u));
