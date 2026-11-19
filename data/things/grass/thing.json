@@ -148,7 +148,9 @@
  "auto": {
   "label": "Auto",
   "layers": true,
-  "always": {}
+  "always": {},
+  "scale": 0.3,
+  "active_m": 0.5
  },
  "modes": [
   {
@@ -173,7 +175,6 @@
     "tiller": 1
    },
    "hotspots": true,
-   "groundSeeThrough": true,
    "legend": {
     "title": "One tiller, pulled apart (life size)",
     "items": [
@@ -295,7 +296,6 @@
     "base": 1
    },
    "hotspots": true,
-   "groundSeeThrough": true,
    "legend": {
     "title": "The base of a shoot, cut lengthwise (life size)",
     "items": [
@@ -413,7 +413,7 @@
    "node": "grass_sheath",
    "at": [
     0.33732,
-    0.02,
+    0.1,
     -0.02059
    ],
    "label": "Leaf sheath, opened out",
@@ -428,7 +428,7 @@
    "node": "grass_ligule",
    "at": [
     0.29374,
-    0.043,
+    0.123,
     0.03608
    ],
    "label": "Ligule and auricles: where the blade meets the sheath",
@@ -443,7 +443,7 @@
    "node": "grass_meristem",
    "at": [
     0.32,
-    0.0145,
+    0.0945,
     0
    ],
    "label": "Growing point: where new leaves begin",
@@ -458,7 +458,7 @@
    "node": "grass_node",
    "at": [
     0.3223,
-    0.0055,
+    0.0855,
     0
    ],
    "label": "Nodes, packed close together at the base",
@@ -473,7 +473,7 @@
    "node": "grass_meristem",
    "at": [
     0.32,
-    0.0142,
+    0.0942,
     0.0012
    ],
    "label": "Growing point: the shoot apex sits low, inside the sheaths",
@@ -488,7 +488,7 @@
    "node": "grass_growth_zone",
    "at": [
     0.3208,
-    0.0125,
+    0.0925,
     0.0012
    ],
    "label": "Leaf growth zone: the blade lengthens from its base",
@@ -503,7 +503,7 @@
    "node": "grass_sheath",
    "at": [
     0.3231,
-    0.03,
+    0.11,
     0.0012
    ],
    "label": "Sheaths: tubes of older leaves that enclose the younger ones",
@@ -518,7 +518,7 @@
    "node": "grass_blade",
    "at": [
     0.3213,
-    0.045,
+    0.125,
     0.0012
    ],
    "label": "The youngest blade, still folded inside the tube",
@@ -1281,7 +1281,7 @@
    "pivot": "tiller",
    "center": [
     0.3163,
-    0.025,
+    0.105,
     0.0052
    ],
    "radius": 0.0454,
@@ -1300,7 +1300,7 @@
    "pivot": "tiller",
    "center": [
     0.3154,
-    0.1228,
+    0.2028,
     0.0098
    ],
    "radius": 0.1406,
@@ -1319,7 +1319,7 @@
    "pivot": "tiller",
    "center": [
     0.3154,
-    0.1227,
+    0.2027,
     0.0098
    ],
    "radius": 0.1407,
@@ -1339,7 +1339,7 @@
    "pivot": "tiller",
    "center": [
     0.3162,
-    0.0416,
+    0.1216,
     0.005
    ],
    "radius": 0.039,
@@ -1358,7 +1358,7 @@
    "pivot": "tiller",
    "center": [
     0.3161,
-    0.0417,
+    0.1217,
     0.0051
    ],
    "radius": 0.0404,
@@ -1377,7 +1377,7 @@
    "pivot": "tiller",
    "center": [
     0.32,
-    0.0033,
+    0.0832,
     0
    ],
    "radius": 0.0104,
@@ -1396,7 +1396,7 @@
    "pivot": "tiller",
    "center": [
     0.32,
-    0.014,
+    0.094,
     0
    ],
    "radius": 0.0007,
@@ -1415,7 +1415,7 @@
    "pivot": "tiller",
    "center": [
     0.3198,
-    -0.0365,
+    0.0435,
     -0.0001
    ],
    "radius": 0.0357,
@@ -1434,7 +1434,7 @@
    "pivot": "base",
    "center": [
     0.32,
-    0.0038,
+    0.0837,
     0.0001
    ],
    "radius": 0.0099,
@@ -1453,7 +1453,7 @@
    "pivot": "base",
    "center": [
     0.32,
-    0.0073,
+    0.0872,
     0.0002
    ],
    "radius": 0.006,
@@ -1472,7 +1472,7 @@
    "pivot": "base",
    "center": [
     0.32,
-    0.025,
+    0.105,
     0.0005
    ],
    "radius": 0.0232,
@@ -1491,7 +1491,7 @@
    "pivot": "base",
    "center": [
     0.32,
-    0.0313,
+    0.1113,
     0.0007
    ],
    "radius": 0.0208,
@@ -1510,7 +1510,7 @@
    "pivot": "base",
    "center": [
     0.32,
-    0.0135,
+    0.0935,
     0.0008
    ],
    "radius": 0.0033,
@@ -1535,7 +1535,7 @@
    },
    "center": [
     0.32,
-    0.015,
+    0.095,
     0.0008
    ],
    "radius": 0.0016,
@@ -1554,7 +1554,7 @@
    "pivot": "base",
    "center": [
     0.32,
-    -0.0337,
+    0.0463,
     0.0005
    ],
    "radius": 0.0364,

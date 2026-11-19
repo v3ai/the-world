@@ -745,7 +745,7 @@ function makeLawn(g, c, r) {
     sh.fragmentShader = 'uniform vec2 uCam; varying vec2 vW; varying float vL;\n' + TONE + '\n' + sh.fragmentShader.replace('#include <map_fragment>', `
  float dist = length(vW - uCam), keep = 1. - smoothstep(3., 12., dist);   // fewer, lower strands farther away; none beyond 12 m
  if (vL > 0.001 && vL > keep * .95 + .05) discard;
- if (dist > 12.5) discard;
+ if (dist > 12.5 || length(vec2(vW.x - 5., (vW.y + 4.) * 1.25)) < 3.7) discard;   // none in the pond and its bank
  vec2 pc = vW * 240., ic = floor(pc), fc = fract(pc) - .5;
  float h1 = hsh(ic), h2 = hsh(ic + 17.3), h3 = hsh(ic + 41.7);
  float hgt = .45 + .55 * h1, rad = .46 * (1. - .75 * vL / hgt);
