@@ -28,7 +28,7 @@ export default function build() {
     // ---- horizons ----
     part('hor_o', 'Litter and thatch layer (O horizon)', 'topsoil', 'soil_horizon_o', '#3b2f20', { mesh: 'hor_o', cutFace: 'ho', noink: true, deeper: { type: 'tissue2', id: 'soil_crumb', D: 2.2e-3, button: 'Look inside a soil crumb' } }),
     part('hor_a', 'Topsoil (A horizon)', 'topsoil', 'soil_horizon_a', '#4a3828', { mesh: 'hor_a', cutFace: 'ha', noink: true, deeper: { type: 'tissue2', id: 'soil_crumb', D: 2.2e-3, button: 'Look inside a soil crumb' } }),
-    part('hor_b', 'Subsoil (B horizon)', 'subsoil', 'soil_horizon_b', '#9a7b4e', { mesh: 'hor_b', cutFace: 'hb', noink: true, deeper: { type: 'tissue2', id: 'soil_clay_ions', D: 6e-5, button: 'Look at a clay particle and its ions' } }),
+    part('hor_b', 'Subsoil (B horizon)', 'subsoil', 'soil_horizon_b', '#9a7b4e', { mesh: 'hor_b', cutFace: 'hb', noink: true, deeper: { type: 'tissue2', id: 'soil_clay_ions', D: 8e-6, button: 'Look at a clay particle and its ions' } }),
     part('hor_c', 'Parent material (C horizon)', 'parent', 'soil_horizon_c', '#cdb98c', { mesh: 'hor_c', cutFace: 'hc', noink: true, deeper: { type: 'crystal', id: 'quartz', button: 'See a crystal of quartz, the main grain of sand' } }),
     // ---- turf and the surface ----
     part('grass', 'Lawn grass', 'turf', 'soil_turf', '#4f8a33', { instances: 'grass', tint: .3, double: true, lod: 'near', deeper: { type: 'mol', mol: 'cellotriose', name: 'Cellotriose', button: 'See cellulose, the grass fibre: a piece of its chain' } }),
@@ -46,20 +46,20 @@ export default function build() {
     part('pore_back', 'Pore space between the crumbs', 'topsoil', 'soil_pores', '#1d150e', { mesh: 'pore_back', solid: false, double: true, noink: true, lod: 'near' }),
     part('pore_water', 'Water held in the pores', 'topsoil', 'soil_pore_water', '#6fb3e0', { instances: 'pore_water', lod: 'near', opacity_max: .75, deeper: { type: 'mol', mol: 'water', name: 'Water', button: 'See a water molecule' } }),
     // ---- roots and fungi ----
-    part('roots_coarse', 'Oak roots (coarse)', 'roots', 'soil_coarse_root', ROOT, { mesh: 'roots_coarse', cutFace: 'root', lod: 'near', deeper: { type: 'tissue2', id: 'wood_section', D: 4.2e-3, button: 'Look inside the root wood' } }),
+    part('roots_coarse', 'Oak roots (coarse)', 'roots', 'soil_coarse_root', ROOT, { mesh: 'roots_coarse', cutFace: 'root', lod: 'near', deeper: { type: 'tissue2', id: 'wood_section', D: 4.2e-3, button: 'Look inside oak wood' } }),
     part('froots', 'Oak fine roots', 'roots', 'soil_fine_roots', '#d6b98a', { instances: 'froots', tint: .3, lod: 'near', deeper: { type: 'tissue2', id: 'root_tip', D: 3e-3, button: 'Look at root hairs' } }),
-    part('ecm_tips', 'Fungus-covered root tips (ectomycorrhiza)', 'roots', 'soil_ecm_tips', '#e3d2a8', { instances: 'ecm_tips', tint: .3, lod: 'near', deeper: { type: 'tissue2', id: 'mushroom_ecm', D: 1.5e-3, button: 'Look inside the root-fungus partnership' } }),
+    part('ecm_tips', 'Fungus-covered root tips (ectomycorrhiza)', 'roots', 'soil_ecm_tips', '#e3d2a8', { instances: 'ecm_tips', tint: .3, lod: 'near', deeper: { type: 'tissue2', id: 'mushroom_ecm', D: 1e-3, button: 'Look inside the root-fungus partnership' } }),
     part('root_hairs', 'Root hairs', 'roots', 'oak_root_hairs', '#efe8d6', { instances: 'root_hairs', double: true, lod: 'near', deeper: { type: 'tissue2', id: 'root_tip', D: 3e-3, button: 'Look at root hairs' } }),
-    part('hyphae', 'Fungal threads (hyphae)', 'fungi', 'soil_hyphae', '#f1ebdc', { instances: 'hyphae', tint: .25, lod: 'near', double: true, deeper: { type: 'tissue2', id: 'mushroom_ecm', D: 1.5e-3, button: 'Look inside the root-fungus partnership' } }),
+    part('hyphae', 'Fungal threads (hyphae)', 'fungi', 'soil_hyphae', '#f1ebdc', { instances: 'hyphae', tint: .25, lod: 'near', double: true, deeper: { type: 'tissue2', id: 'mushroom_ecm', D: 1e-3, button: 'Look inside the root-fungus partnership' } }),
     // ---- earthworm: outside ----
     part('burrow', 'Earthworm burrow', 'animals', 'soil_worm_burrow', '#2c211a', { mesh: 'burrow', solid: false, double: true, noink: true, lod: 'near', opacity_max: .35 }),
     part('worm_head', 'Earthworm: head lobe and mouth', 'animals', 'soil_worm_head', '#b87563', { mesh: 'worm_head', lod: 'near', ink_w: .0004 }),
-    part('worm_skin', 'Earthworm: body with its segments', 'animals', 'soil_worm_segments', '#c98672', { mesh: 'worm_skin', cutFace: 'skin', lod: 'near', ink_w: .0004, deeper: { type: 'tissue2', id: 'soil_worm_wall', D: 1.8e-3, button: 'Look inside the body wall' } }),
+    part('worm_skin', 'Earthworm: body with its segments', 'animals', 'soil_worm_segments', '#c98672', { mesh: 'worm_skin', cutFace: 'skin', lod: 'near', ink_w: .0004 }),
     part('worm_clitellum', 'Earthworm: clitellum (the saddle)', 'animals', 'soil_worm_clitellum', '#dca27a', { mesh: 'worm_clitellum', cutFace: 'clit', lod: 'near', ink_w: .0004 }),
-    part('worm_setae', 'Earthworm: bristles (setae)', 'animals', 'soil_worm_setae', '#e8d9a8', { instances: 'worm_setae', lod: 'near', deeper: { type: 'mol', mol: 'n_acetylglucosamine', name: 'N-acetylglucosamine', button: 'See the unit of chitin (an earthworm\'s bristles are made of it)' } }),
+    part('worm_setae', 'Earthworm: bristles (setae)', 'animals', 'soil_worm_setae', '#e8d9a8', { instances: 'worm_setae', lod: 'near' }),
     // ---- earthworm: inside (cut views) ----
     part('worm_circ', 'Earthworm: circular muscle', 'worm_in', 'soil_worm_circular', '#8a3b2b', { mesh: 'worm_circ', cutFace: 'circ', parent: 'worm_skin', lod: 'near', noink: true }),
-    part('worm_long', 'Earthworm: longitudinal muscle', 'worm_in', 'soil_worm_longitudinal', '#ddd2c4', { mesh: 'worm_long', cutFace: 'long', parent: 'worm_skin', lod: 'near', noink: true, deeper: { type: 'tissue2', id: 'soil_worm_wall', D: 1.8e-3, button: 'Look inside the body wall' } }),
+    part('worm_long', 'Earthworm: longitudinal muscle', 'worm_in', 'soil_worm_longitudinal', '#ddd2c4', { mesh: 'worm_long', cutFace: 'long', parent: 'worm_skin', lod: 'near', noink: true }),
     part('worm_coelom', 'Earthworm: coelom (the fluid-filled body cavity)', 'worm_in', 'soil_worm_coelom', '#efdccb', { mesh: 'worm_coelom', cutFace: 'coel', parent: 'worm_skin', lod: 'near', noink: true }),
     part('worm_pharynx', 'Earthworm: pharynx', 'worm_in', 'soil_worm_pharynx', '#c97b6a', { mesh: 'worm_pharynx', cutFace: 'pharynx', parent: 'worm_skin', lod: 'near', ink_w: .0002 }),
     part('worm_oesophagus', 'Earthworm: oesophagus and lime glands', 'worm_in', 'soil_worm_oesophagus', '#e0b58f', { mesh: 'worm_oesophagus', cutFace: 'oes', parent: 'worm_skin', lod: 'near', ink_w: .0002 }),
@@ -135,8 +135,8 @@ export default function build() {
       { id: 'hs_gut', node: 'soil_worm_intestine', at: [BURROW_X, -.156, -.0005], label: 'The gut', r: .0028, modes: ['worm'] },
       { id: 'hs_hearts', node: 'soil_worm_hearts', at: [BURROW_X, -.055, -.001], label: 'The hearts', r: .0028, modes: ['worm'] },
       { id: 'hs_hyphae', node: 'soil_hyphae', at: [.12, -.015, -.1], label: 'Fungal threads in the litter', r: .011, modes: ['topsoil', 'profile'] },
-      { id: 'hs_root', node: 'soil_coarse_root', at: [.4, -.335, -.001], label: 'An oak root cut across', r: .011, modes: ['subsoil', 'profile'], deeper: { type: 'tissue2', id: 'wood_section', D: 4.2e-3, button: 'Look inside the root wood' } },
-      { id: 'hs_clay', node: 'soil_clay', at: [-.5, -.5, -.01], label: 'Clay: the finest particles', r: .014, modes: ['subsoil', 'profile'], deeper: { type: 'tissue2', id: 'soil_clay_ions', D: 6e-5, button: 'Look at a clay particle and its ions' } },
+      { id: 'hs_root', node: 'soil_coarse_root', at: [.4, -.335, -.001], label: 'An oak root cut across', r: .011, modes: ['subsoil', 'profile'], deeper: { type: 'tissue2', id: 'wood_section', D: 4.2e-3, button: 'Look inside oak wood' } },
+      { id: 'hs_clay', node: 'soil_clay', at: [-.5, -.5, -.01], label: 'Clay: the finest particles', r: .014, modes: ['subsoil', 'profile'], deeper: { type: 'tissue2', id: 'soil_clay_ions', D: 8e-6, button: 'Look at a clay particle and its ions' } },
       { id: 'hs_pebbles', node: 'soil_horizon_c', at: [.1, -1.0, -.01], label: 'The pebble bed below', r: .018, modes: ['subsoil', 'profile'] },
     ],
     anim: [

@@ -653,7 +653,7 @@
     "type": "tissue2",
     "id": "wood_section",
     "D": 0.0042,
-    "button": "Look inside the root wood"
+    "button": "Look inside oak wood"
    }
   },
   {
@@ -673,7 +673,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "soil_clay_ions",
-    "D": 0.00006,
+    "D": 0.000008,
     "button": "Look at a clay particle and its ions"
    }
   },
@@ -774,7 +774,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "soil_clay_ions",
-    "D": 0.00006,
+    "D": 0.000008,
     "button": "Look at a clay particle and its ions"
    },
    "center": [
@@ -1086,7 +1086,7 @@
     "type": "tissue2",
     "id": "wood_section",
     "D": 0.0042,
-    "button": "Look inside the root wood"
+    "button": "Look inside oak wood"
    },
    "center": [
     0.0008,
@@ -1132,7 +1132,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "mushroom_ecm",
-    "D": 0.0015,
+    "D": 0.001,
     "button": "Look inside the root-fungus partnership"
    },
    "center": [
@@ -1181,7 +1181,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "mushroom_ecm",
-    "D": 0.0015,
+    "D": 0.001,
     "button": "Look inside the root-fungus partnership"
    },
    "center": [
@@ -1240,12 +1240,6 @@
    "cutFace": "skin",
    "lod": "near",
    "ink_w": 0.0004,
-   "deeper": {
-    "type": "tissue2",
-    "id": "soil_worm_wall",
-    "D": 0.0018,
-    "button": "Look inside the body wall"
-   },
    "center": [
     -0.28,
     -0.1307,
@@ -1280,12 +1274,6 @@
    "color": "#e8d9a8",
    "instances": "worm_setae",
    "lod": "near",
-   "deeper": {
-    "type": "mol",
-    "mol": "n_acetylglucosamine",
-    "name": "N-acetylglucosamine",
-    "button": "See the unit of chitin (an earthworm's bristles are made of it)"
-   },
    "center": [
     -0.2824,
     -0.1289,
@@ -1325,12 +1313,6 @@
    "parent": "worm_skin",
    "lod": "near",
    "noink": true,
-   "deeper": {
-    "type": "tissue2",
-    "id": "soil_worm_wall",
-    "D": 0.0018,
-    "button": "Look inside the body wall"
-   },
    "center": [
     -0.28,
     -0.1305,

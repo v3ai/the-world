@@ -1,0 +1,764 @@
+{
+ "cell": "plant",
+ "id": "soil_clay_ions",
+ "tag": "On clay",
+ "title": "A clay plate and the ions it holds",
+ "node": "soil_cec",
+ "blurb": "Three flat clay plates, each about 2 to 3 micrometres across, in a box of soil water 8 micrometres wide, with the positive nutrient ions held at their surfaces (calcium, magnesium, potassium, ammonium) and nitrate ions drifting free. Click an ion or a plate.",
+ "note": "Not to scale where it matters. The plates are drawn 2.2 to 2.8 micrometres wide and 0.08 micrometres thick; real clay particles are under 2 micrometres on the ISO scale (some systems say 4) and can be much smaller and thinner, and kaolinite plates are pseudohexagonal, drawn here as discs. The ions are drawn about 0.15 micrometres (150 nanometres) across, roughly 200 times larger than a real hydrated ion, which is a fraction of a nanometre, so that they can be seen at all. How many ions there are, and which kind sits where, is illustrative: a real plate holds enormously more ions than this. The nitrate ions (negative) are drawn away from the plates because the plates are negatively charged and repel them. Water molecules are not drawn.",
+ "bg": "#eef2f2",
+ "center": [
+  0,
+  0,
+  0
+ ],
+ "D_um": 8,
+ "labels": [
+  {
+   "text": "1 µm",
+   "at": [
+    -3.2,
+    -3.15,
+    0
+   ],
+   "pop": "scale"
+  },
+  {
+   "text": "Clay plate",
+   "at": [
+    -2.5,
+    2.0,
+    0
+   ],
+   "pop": "plate0"
+  },
+  {
+   "text": "Calcium",
+   "at": [
+    -0.3,
+    1.7,
+    0
+   ],
+   "pop": "ion_Ca"
+  },
+  {
+   "text": "Ammonium",
+   "at": [
+    2.4,
+    0.2,
+    0
+   ],
+   "pop": "ion_NH4"
+  },
+  {
+   "text": "Nitrate (free in the water)",
+   "at": [
+    2.349,
+    2.923,
+    0
+   ],
+   "pop": "nitrate"
+  }
+ ],
+ "populations": [
+  {
+   "id": "scale",
+   "name": "Scale bar: 1 micrometre",
+   "node": "soil_clay",
+   "shape": "tube_x",
+   "size": [
+    1,
+    0.04,
+    0.04
+   ],
+   "color": "#1e2a38",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -3.2,
+       -2.9,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "plate0",
+   "name": "Clay plate",
+   "node": "soil_clay",
+   "shape": "cylinder",
+   "size": [
+    2.8,
+    0.08,
+    2.6
+   ],
+   "color": "#a98462",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -1.4,
+       0.9,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       15
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "silicate_orthosilicate",
+    "name": "Silica tetrahedron",
+    "button": "See the building block of the clay sheets: a silica tetrahedron"
+   }
+  },
+  {
+   "id": "plate1",
+   "name": "Clay plate",
+   "node": "soil_clay",
+   "shape": "cylinder",
+   "size": [
+    2.6,
+    0.08,
+    2.4
+   ],
+   "color": "#a98462",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       1.5,
+       -0.7,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -20
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "silicate_orthosilicate",
+    "name": "Silica tetrahedron",
+    "button": "See the building block of the clay sheets: a silica tetrahedron"
+   }
+  },
+  {
+   "id": "plate2",
+   "name": "Clay plate",
+   "node": "soil_clay",
+   "shape": "cylinder",
+   "size": [
+    2.2,
+    0.08,
+    2.0
+   ],
+   "color": "#a98462",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -0.6,
+       -2.0,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       5
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "silicate_orthosilicate",
+    "name": "Silica tetrahedron",
+    "button": "See the building block of the clay sheets: a silica tetrahedron"
+   }
+  },
+  {
+   "id": "ion_Ca",
+   "name": "Calcium ion (Ca²⁺)",
+   "node": "soil_cations",
+   "shape": "ellipsoid",
+   "size": [
+    0.15,
+    0.15,
+    0.15
+   ],
+   "color": "#4caf50",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 4,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -1.471,
+       0.614,
+       -0.753
+      ]
+     },
+     {
+      "at": [
+       -1.515,
+       0.715,
+       -0.476
+      ]
+     },
+     {
+      "at": [
+       -1.802,
+       0.597,
+       -0.773
+      ]
+     },
+     {
+      "at": [
+       -0.986,
+       0.766,
+       -0.389
+      ]
+     },
+     {
+      "at": [
+       -0.833,
+       0.784,
+       0.398
+      ]
+     },
+     {
+      "at": [
+       2.374,
+       -1.286,
+       -0.452
+      ]
+     },
+     {
+      "at": [
+       0.861,
+       -0.721,
+       0.355
+      ]
+     },
+     {
+      "at": [
+       0.617,
+       -0.202,
+       0.336
+      ]
+     },
+     {
+      "at": [
+       -0.955,
+       -1.852,
+       0.677
+      ]
+     },
+     {
+      "at": [
+       -1.14,
+       -2.296,
+       0.676
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "ion_Mg",
+   "name": "Magnesium ion (Mg²⁺)",
+   "node": "soil_cations",
+   "shape": "ellipsoid",
+   "size": [
+    0.12,
+    0.12,
+    0.12
+   ],
+   "color": "#f09a20",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 4,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -0.926,
+       0.849,
+       1.048
+      ]
+     },
+     {
+      "at": [
+       -1.078,
+       0.787,
+       0.236
+      ]
+     },
+     {
+      "at": [
+       -0.448,
+       0.935,
+       -0.189
+      ]
+     },
+     {
+      "at": [
+       1.123,
+       -0.311,
+       0.801
+      ]
+     },
+     {
+      "at": [
+       1.552,
+       -0.891,
+       -0.577
+      ]
+     },
+     {
+      "at": [
+       0.538,
+       -0.562,
+       -0.53
+      ]
+     },
+     {
+      "at": [
+       1.719,
+       -0.981,
+       0.026
+      ]
+     },
+     {
+      "at": [
+       0.732,
+       -0.242,
+       -0.061
+      ]
+     },
+     {
+      "at": [
+       2.26,
+       -1.189,
+       -0.42
+      ]
+     },
+     {
+      "at": [
+       -0.779,
+       -1.805,
+       -0.002
+      ]
+     },
+     {
+      "at": [
+       -0.829,
+       -1.809,
+       -0.527
+      ]
+     },
+     {
+      "at": [
+       -0.605,
+       -2.164,
+       0.114
+      ]
+     },
+     {
+      "at": [
+       -1.024,
+       -1.895,
+       -0.693
+      ]
+     },
+     {
+      "at": [
+       -1.378,
+       -1.908,
+       -0.217
+      ]
+     },
+     {
+      "at": [
+       0.238,
+       -1.744,
+       -0.377
+      ]
+     },
+     {
+      "at": [
+       -0.152,
+       -1.762,
+       0.626
+      ]
+     },
+     {
+      "at": [
+       0.164,
+       -2.164,
+       -0.427
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "ion_K",
+   "name": "Potassium ion (K⁺)",
+   "node": "soil_cations",
+   "shape": "ellipsoid",
+   "size": [
+    0.16,
+    0.16,
+    0.16
+   ],
+   "color": "#9c4fc0",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 4,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -1.219,
+       0.707,
+       -0.254
+      ]
+     },
+     {
+      "at": [
+       -2.115,
+       0.548,
+       0.338
+      ]
+     },
+     {
+      "at": [
+       -0.832,
+       0.892,
+       -0.819
+      ]
+     },
+     {
+      "at": [
+       -0.93,
+       1.269,
+       0.393
+      ]
+     },
+     {
+      "at": [
+       2.253,
+       -1.146,
+       0.649
+      ]
+     },
+     {
+      "at": [
+       2.143,
+       -1.194,
+       0.226
+      ]
+     },
+     {
+      "at": [
+       1.83,
+       -0.569,
+       -0.168
+      ]
+     },
+     {
+      "at": [
+       -1.307,
+       -2.268,
+       -0.187
+      ]
+     },
+     {
+      "at": [
+       -0.305,
+       -1.772,
+       0.424
+      ]
+     },
+     {
+      "at": [
+       -0.306,
+       -1.765,
+       0.197
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "ion_NH4",
+   "name": "Ammonium ion (NH₄⁺)",
+   "node": "soil_cations",
+   "shape": "ellipsoid",
+   "size": [
+    0.15,
+    0.15,
+    0.15
+   ],
+   "color": "#2a7fd4",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 4,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -1.835,
+       1.0,
+       1.076
+      ]
+     },
+     {
+      "at": [
+       -0.543,
+       0.968,
+       -0.589
+      ]
+     },
+     {
+      "at": [
+       -0.44,
+       1.369,
+       -0.214
+      ]
+     },
+     {
+      "at": [
+       -1.127,
+       0.801,
+       -0.875
+      ]
+     },
+     {
+      "at": [
+       2.168,
+       -0.701,
+       -0.414
+      ]
+     },
+     {
+      "at": [
+       1.767,
+       -0.598,
+       0.43
+      ]
+     },
+     {
+      "at": [
+       2.425,
+       -0.852,
+       0.819
+      ]
+     },
+     {
+      "at": [
+       0.506,
+       -0.584,
+       0.657
+      ]
+     },
+     {
+      "at": [
+       0.063,
+       -1.784,
+       -0.467
+      ]
+     },
+     {
+      "at": [
+       -1.489,
+       -1.862,
+       0.544
+      ]
+     },
+     {
+      "at": [
+       -1.189,
+       -2.2,
+       -0.573
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "ammonium",
+    "name": "Ammonium",
+    "button": "See the ammonium ion"
+   }
+  },
+  {
+   "id": "nitrate",
+   "name": "Nitrate ion (NO₃⁻)",
+   "node": "soil_nitrate",
+   "shape": "ellipsoid",
+   "size": [
+    0.15,
+    0.15,
+    0.15
+   ],
+   "color": "#d6392f",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 4,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       2.349,
+       2.573,
+       -0.234
+      ]
+     },
+     {
+      "at": [
+       0.451,
+       2.407,
+       0.429
+      ]
+     },
+     {
+      "at": [
+       0.829,
+       2.505,
+       0.274
+      ]
+     },
+     {
+      "at": [
+       2.694,
+       1.585,
+       0.227
+      ]
+     },
+     {
+      "at": [
+       2.126,
+       2.385,
+       0.566
+      ]
+     },
+     {
+      "at": [
+       -2.812,
+       2.199,
+       0.484
+      ]
+     },
+     {
+      "at": [
+       2.851,
+       2.072,
+       0.024
+      ]
+     },
+     {
+      "at": [
+       2.045,
+       2.368,
+       -0.391
+      ]
+     },
+     {
+      "at": [
+       3.296,
+       -1.83,
+       -0.179
+      ]
+     },
+     {
+      "at": [
+       -3.35,
+       -0.031,
+       -0.502
+      ]
+     },
+     {
+      "at": [
+       0.378,
+       2.252,
+       0.338
+      ]
+     },
+     {
+      "at": [
+       3.056,
+       -1.842,
+       -0.241
+      ]
+     },
+     {
+      "at": [
+       3.044,
+       1.284,
+       -0.376
+      ]
+     },
+     {
+      "at": [
+       3.034,
+       1.647,
+       0.505
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "nitrate",
+    "name": "Nitrate",
+    "button": "See the nitrate ion"
+   }
+  }
+ ]
+}

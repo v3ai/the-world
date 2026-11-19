@@ -1,0 +1,835 @@
+{
+ "cell": "plant",
+ "id": "soil_crumb",
+ "tag": "Inside a soil crumb",
+ "title": "Inside a soil crumb",
+ "node": "soil_crumb",
+ "blurb": "A window about 2 mm wide into one crumb of topsoil: three sand grains, silt, clay flakes, dark humus coats, a water film, air pores, bacteria, a nematode, a fungal thread and a root hair, at their own sizes. Click anything.",
+ "note": "Drawn to scale: the sand grains (420 to 650 micrometres: medium and coarse sand, ISO 63 micrometres to 2 mm), the silt grains (about 14 to 40 micrometres, ISO 2 to 63), the clay flakes (1.8 micrometres, just under the ISO clay limit of 2), the bacteria (1.6 by 3.5 micrometres; real 0.5 to 5), the fungal thread (5 micrometres wide, real 4 to 6), the root hair (16 micrometres wide, real 15 to 17) and the nematode (800 micrometres long, real often under 2.5 mm). Illustrative: how many of each there are and where they sit (a real crumb holds far more bacteria and far fewer large things), the thickness of the water film and humus coats, the sizes of the pores and the width of the nematode. A real crumb is 4 to 9 mm across in the block; this is a window onto part of it.",
+ "bg": "#efe9de",
+ "center": [
+  0,
+  0,
+  0
+ ],
+ "D_um": 2200,
+ "labels": [
+  {
+   "text": "500 µm",
+   "at": [
+    -760,
+    -640,
+    0
+   ],
+   "pop": "scale"
+  },
+  {
+   "text": "Sand grain",
+   "at": [
+    -480,
+    440,
+    0
+   ],
+   "pop": "sand"
+  },
+  {
+   "text": "Humus coat",
+   "at": [
+    -790,
+    70,
+    0
+   ],
+   "pop": "humus"
+  },
+  {
+   "text": "Water film",
+   "at": [
+    -120,
+    -60,
+    0
+   ],
+   "pop": "film"
+  },
+  {
+   "text": "Silt grains",
+   "at": [
+    -60,
+    480,
+    0
+   ],
+   "pop": "silt"
+  },
+  {
+   "text": "Air pore",
+   "at": [
+    -20,
+    330,
+    0
+   ],
+   "pop": "air"
+  },
+  {
+   "text": "Nematode (a microscopic worm)",
+   "at": [
+    -450,
+    -520,
+    0
+   ],
+   "pop": "nematode"
+  },
+  {
+   "text": "Fungal thread",
+   "at": [
+    630,
+    -120,
+    0
+   ],
+   "pop": "hypha"
+  },
+  {
+   "text": "Root hair",
+   "at": [
+    700,
+    600,
+    0
+   ],
+   "pop": "rhair"
+  }
+ ],
+ "populations": [
+  {
+   "id": "scale",
+   "name": "Scale bar: 500 micrometres",
+   "node": "soil_crumb",
+   "shape": "tube_x",
+   "size": [
+    500,
+    8,
+    8
+   ],
+   "color": "#1e2a38",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -760,
+       -600,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "humus",
+   "name": "Humus coat",
+   "node": "soil_humus",
+   "shape": "ellipsoid",
+   "size": [
+    676,
+    586,
+    626
+   ],
+   "color": "#3b2a1c",
+   "opacity": 0.5,
+   "ink": 0,
+   "priority": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -480,
+       110,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "humus2",
+   "name": "Humus coat",
+   "node": "soil_humus",
+   "shape": "ellipsoid",
+   "size": [
+    446,
+    406,
+    426
+   ],
+   "color": "#3b2a1c",
+   "opacity": 0.5,
+   "ink": 0,
+   "priority": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       230,
+       -260,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "humus3",
+   "name": "Humus coat",
+   "node": "soil_humus",
+   "shape": "ellipsoid",
+   "size": [
+    526,
+    456,
+    476
+   ],
+   "color": "#3b2a1c",
+   "opacity": 0.5,
+   "ink": 0,
+   "priority": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       470,
+       290,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "film",
+   "name": "Water film",
+   "node": "soil_water_film",
+   "shape": "ellipsoid",
+   "size": [
+    740,
+    650,
+    690
+   ],
+   "color": "#74b4de",
+   "opacity": 0.22,
+   "ink": 0,
+   "priority": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -480,
+       110,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "water",
+    "name": "Water",
+    "button": "See a water molecule"
+   }
+  },
+  {
+   "id": "film2",
+   "name": "Water film",
+   "node": "soil_water_film",
+   "shape": "ellipsoid",
+   "size": [
+    500,
+    460,
+    480
+   ],
+   "color": "#74b4de",
+   "opacity": 0.22,
+   "ink": 0,
+   "priority": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       230,
+       -260,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "water",
+    "name": "Water",
+    "button": "See a water molecule"
+   }
+  },
+  {
+   "id": "sand",
+   "name": "Sand grains (quartz)",
+   "node": "soil_sand",
+   "shape": "ellipsoid",
+   "size": [
+    650,
+    560,
+    600
+   ],
+   "color": "#d8c9a3",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -480,
+       110,
+       0
+      ],
+      "rot": [
+       10,
+       20,
+       15
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "sand2",
+   "name": "Sand grains (quartz)",
+   "node": "soil_sand",
+   "shape": "ellipsoid",
+   "size": [
+    420,
+    380,
+    400
+   ],
+   "color": "#cdbb92",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       230,
+       -260,
+       0
+      ],
+      "rot": [
+       0,
+       30,
+       -20
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "sand3",
+   "name": "Sand grains (quartz)",
+   "node": "soil_sand",
+   "shape": "ellipsoid",
+   "size": [
+    500,
+    430,
+    450
+   ],
+   "color": "#dccfab",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       470,
+       290,
+       0
+      ],
+      "rot": [
+       20,
+       0,
+       40
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "silt",
+   "name": "Silt grains",
+   "node": "soil_silt",
+   "shape": "ellipsoid",
+   "size": [
+    30,
+    22,
+    26
+   ],
+   "color": "#a8936e",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 2,
+   "arrange": {
+    "kind": "random",
+    "n": 70,
+    "min": [
+     -1000,
+     -440,
+     -60
+    ],
+    "max": [
+     1000,
+     640,
+     60
+    ],
+    "gap": 3,
+    "seed": 5,
+    "exclude": [
+     {
+      "min": [
+       -811.0,
+       -176.0,
+       -400
+      ],
+      "max": [
+       -149.0,
+       396.0,
+       400
+      ]
+     },
+     {
+      "min": [
+       14.0,
+       -456.0,
+       -400
+      ],
+      "max": [
+       446.0,
+       -64.0,
+       400
+      ]
+     },
+     {
+      "min": [
+       214.0,
+       69.0,
+       -400
+      ],
+      "max": [
+       726.0,
+       511.0,
+       400
+      ]
+     },
+     {
+      "min": [
+       -1000,
+       -500,
+       -400
+      ],
+      "max": [
+       200,
+       -440,
+       400
+      ]
+     }
+    ],
+    "orient": "free"
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "clay",
+   "name": "Clay flakes",
+   "node": "soil_clay",
+   "shape": "cylinder",
+   "size": [
+    1.8,
+    0.25,
+    1.8
+   ],
+   "color": "#8a5a3a",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 2,
+   "arrange": {
+    "kind": "random",
+    "n": 500,
+    "min": [
+     -1000,
+     -440,
+     -60
+    ],
+    "max": [
+     1000,
+     640,
+     60
+    ],
+    "gap": 0.5,
+    "seed": 9,
+    "exclude": [
+     {
+      "min": [
+       -811.0,
+       -176.0,
+       -400
+      ],
+      "max": [
+       -149.0,
+       396.0,
+       400
+      ]
+     },
+     {
+      "min": [
+       14.0,
+       -456.0,
+       -400
+      ],
+      "max": [
+       446.0,
+       -64.0,
+       400
+      ]
+     },
+     {
+      "min": [
+       214.0,
+       69.0,
+       -400
+      ],
+      "max": [
+       726.0,
+       511.0,
+       400
+      ]
+     },
+     {
+      "min": [
+       -1000,
+       -500,
+       -400
+      ],
+      "max": [
+       200,
+       -440,
+       400
+      ]
+     }
+    ],
+    "orient": "free"
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "silicate_orthosilicate",
+    "name": "Silica tetrahedron",
+    "button": "See the building block of the clay sheets: a silica tetrahedron"
+   }
+  },
+  {
+   "id": "air",
+   "name": "Air pore",
+   "node": "soil_air_pore",
+   "shape": "lens",
+   "size": [
+    320,
+    180,
+    200
+   ],
+   "color": "#e9eff3",
+   "opacity": 0.55,
+   "ink": 1,
+   "priority": 2,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -10,
+       330,
+       -30
+      ],
+      "rot": [
+       0,
+       0,
+       10
+      ]
+     },
+     {
+      "at": [
+       -760,
+       -250,
+       -30
+      ],
+      "rot": [
+       0,
+       0,
+       -30
+      ]
+     },
+     {
+      "at": [
+       860,
+       -150,
+       -30
+      ],
+      "rot": [
+       0,
+       0,
+       70
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "carbon_dioxide",
+    "name": "Carbon dioxide",
+    "button": "See a molecule of the gas that soil life breathes out: carbon dioxide"
+   }
+  },
+  {
+   "id": "bacteria",
+   "name": "Bacteria",
+   "node": "soil_bacteria",
+   "shape": "cylinder",
+   "size": [
+    1.6,
+    3.5,
+    1.6
+   ],
+   "color": "#6f7f4c",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 2,
+   "arrange": {
+    "kind": "random",
+    "n": 120,
+    "min": [
+     -1000,
+     -440,
+     -60
+    ],
+    "max": [
+     1000,
+     640,
+     60
+    ],
+    "gap": 1.5,
+    "seed": 11,
+    "exclude": [
+     {
+      "min": [
+       -811.0,
+       -176.0,
+       -400
+      ],
+      "max": [
+       -149.0,
+       396.0,
+       400
+      ]
+     },
+     {
+      "min": [
+       14.0,
+       -456.0,
+       -400
+      ],
+      "max": [
+       446.0,
+       -64.0,
+       400
+      ]
+     },
+     {
+      "min": [
+       214.0,
+       69.0,
+       -400
+      ],
+      "max": [
+       726.0,
+       511.0,
+       400
+      ]
+     },
+     {
+      "min": [
+       -1000,
+       -500,
+       -400
+      ],
+      "max": [
+       200,
+       -440,
+       400
+      ]
+     }
+    ],
+    "orient": "free"
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "ammonium",
+    "name": "Ammonium",
+    "button": "See a molecule bacteria release from dead matter: ammonium"
+   }
+  },
+  {
+   "id": "nematode",
+   "name": "A nematode (roundworm)",
+   "node": "soil_nematode",
+   "shape": "tube_x",
+   "size": [
+    800,
+    25,
+    25
+   ],
+   "color": "#e6d9c4",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -250,
+       -520,
+       20
+      ],
+      "rot": [
+       0,
+       0,
+       6
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "hypha",
+   "name": "A fungal thread (hypha)",
+   "node": "soil_hyphae",
+   "shape": "tube_x",
+   "size": [
+    700,
+    5,
+    5
+   ],
+   "color": "#f4f0e6",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       560,
+       20,
+       10
+      ],
+      "rot": [
+       0,
+       0,
+       62
+      ]
+     },
+     {
+      "at": [
+       -130,
+       10,
+       10
+      ],
+      "rot": [
+       0,
+       0,
+       -10
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "cell",
+    "cell": "fungal"
+   }
+  },
+  {
+   "id": "rhair",
+   "name": "A root hair",
+   "node": "oak_root_hairs",
+   "shape": "tube_x",
+   "size": [
+    900,
+    16,
+    16
+   ],
+   "color": "#d9c9a0",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       650,
+       450,
+       10
+      ],
+      "rot": [
+       0,
+       0,
+       -18
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "cell",
+    "cell": "plant",
+    "button": "Look inside this cell (a root hair is one cell)"
+   }
+  }
+ ]
+}
