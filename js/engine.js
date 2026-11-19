@@ -197,6 +197,7 @@ class Frame {
     this.root.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); });
     (this.labels || []).forEach(l => l.el.remove()); (this.uiEls || []).forEach(e => e.remove());
     if (this.onDispose) this.onDispose();
+    if (this.root.parent) this.root.parent.remove(this.root); mergedSet.delete(this); this._merged = false; // it may be sitting in its parent's scene
     this.built = false; this.scene = null; this.root = null; this._drawnOnce = false; this._pkB = null;
   }
 }
@@ -402,7 +403,7 @@ let simTime = Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), ne
 function renderFrames(r) {
   r.setClearColor(0x000000, 1); r.clear(true, true, true);
   drawn.forEach((f, i) => {
-    if (!f.scene || f._culled) return;
+    if (!f.scene || f._culled || f._merged) return; // a merged frame is drawn inside its parent's scene
     const bg = f.scene.background;
     if (i > 0) f.scene.background = null;
     else if (f.env && f.env.bg !== undefined && !bg) { r.setClearColor(f.env.bg, 1); r.clear(true, true, true); }
@@ -410,6 +411,33 @@ function renderFrames(r) {
     r.render(f.scene, f.cam); PERF._renders++; f._drawnOnce = true;
     f.scene.background = bg;
   });
+  for (const f of mergedSet) if (!f._culled && f.parent._drawnOnce) f._drawnOnce = true; // its matrices were computed with the parent's
+}
+
+/* ---- fewer scenes: co-rendered children inside their parent's scene (merge=1) ----
+   Every scene costs a renderer.render() call: its own traversal, light set-up, state reset and a fresh upload of the camera and
+   light uniforms to every program. The park had one scene per placed thing (38 calls). A frame that sets `mergeable` and is
+   co-rendered with its parent (same unit, same axes, parent drawn: `_share`) is drawn inside the parent's scene instead: its root
+   group becomes a child of the parent's *scene* (not of the parent's root), and keeps the position the engine gives every root, minus
+   the camera's place in the frame's own coordinates, worked out in double precision. So precision, depth, picking (per frame, through
+   f.cam and f.pickables) and labels are exactly as before; only the render call is shared. A frame's own lights must not light the
+   parent's scene: `onMerge(on)` tells the frame, which hides them (things then take the park's lights, scaled in their shader to
+   the same result: js/things.js). A merged frame that is culled is taken out of the scene altogether, so its matrices are not even
+   walked. When the parent is not drawn (the camera is deep inside the child) the root goes back to the frame's own scene. */
+const mergedSet = new Set();
+function setMerged(f, on) {
+  if (!f.root || !f.scene) return;
+  if (on) { if (!mergedSet.has(f)) { mergedSet.add(f); f._merged = true; if (f.onMerge) f.onMerge(true); } }
+  else if (mergedSet.has(f)) { mergedSet.delete(f); f._merged = false; f.root.visible = true; if (f.root.parent !== f.scene) f.scene.add(f.root); if (f.onMerge) f.onMerge(false); }
+}
+function mergeStep() { // after computeActive, once the drawn frames are built
+  const on = PERF.flags.merge;
+  for (const f of mergedSet) if (!on || !f.built || !f._share || !drawn.includes(f) || !f.parent.scene) setMerged(f, false);
+  if (on) for (const f of drawn) if (f.mergeable && f._share && f.built && f.parent.scene && f.quat.w > .999999) setMerged(f, true);
+}
+function mergePlace(f) { // after frameCull: in the parent's scene while it can be seen, in no scene while it cannot
+  const want = f._culled ? null : f.parent.scene, has = f.root.parent;
+  if (has !== want) { if (want) want.add(f.root); else has.remove(f.root); }
 }
 
 /* ---- work that cannot be seen is not done ----
@@ -431,9 +459,21 @@ function frameCull(f) {
 function compileStep() {
   let f = compileQ.shift();
   if (!f) for (const d of drawn) if (d.built && d.pickables && d._cmpK !== d.pickables.length) { f = d; break; }
-  if (!f || !f.built || !f.scene) return;
+  const now = performance.now();
+  if (!f) { // a scene that has taken in merged children: once, when no more have arrived for three seconds and the camera rests (it walks the whole scene)
+    for (const d of drawn) if (d._cmpDirty && now - d._cmpDirty > 3000 && !fly && now - lastInput > 1000) { d._cmpDirty = 0; try { renderer.compile(d.scene, d.cam); } catch (e) { } break; }
+    return;
+  }
+  if (!f.built || !f.scene) return;
   f._cmpK = f.pickables.length;
-  try { renderer.compile(f.scene, f.cam); } catch (e) { }
+  try {
+    if (f._merged) { // drawn inside its parent's scene now; compile the form it takes when drawn alone as well (its own lights), so entering it does not stall
+      f.parent._cmpDirty = now;
+      const back = f.root.parent; f.scene.add(f.root); if (f.onMerge) f.onMerge(false);
+      renderer.compile(f.scene, f.cam);
+      if (back) back.add(f.root); else f.scene.remove(f.root); if (f.onMerge) f.onMerge(true);
+    } else renderer.compile(f.scene, f.cam);
+  } catch (e) { }
 }
 /* Inked outlines (the inverted hull that draws every part a second time; the ink is about 1.5 pixels wide at any distance).
    outline=all: always. outline=0: only the part under the pointer or selected. outline=near (the default): the ink fades out as the

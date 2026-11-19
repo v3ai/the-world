@@ -29,7 +29,7 @@ const PERF = (() => {
     shadows: get('shadows', ['0', '1'], PRESET.shadows) === '1',
     outline: get('outline', ['0', 'near', 'all'], PRESET.outline),
     depth: get('depth', ['log', 'tight', 'vert'], 'log'),
-    merge: get('merge', ['0', '1'], '0') === '1',
+    merge: get('merge', ['0', '1'], '1') === '1',
     idle: get('idle', ['0', '1'], '1') === '1',
     given: {}                                      // which switches the URL set explicitly
   };

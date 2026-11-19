@@ -493,9 +493,10 @@ function loop(now) {
   reanchor();
   computeActive();
   for (const f of drawn) { f.ensure(); if (f.place) f.place(); }
+  mergeStep();
   updateViewOffset();
   for (const f of drawn) {
-    placeFrameCam(f); applyFade(f); frameCull(f); if (f._faded) lastChange = tA;
+    placeFrameCam(f); applyFade(f); frameCull(f); if (f._merged) mergePlace(f); if (f._faded) lastChange = tA;
     if (!f.update) continue;
     if (!f._culled) { f._skipDt = 0; f.update(dt, clock, f); }
     else { f._skipDt = (f._skipDt || 0) + dt; if (((PERF.frame + (f._phase ?? (f._phase = drawn.indexOf(f)))) & 7) === 0) { f.update(Math.min(f._skipDt, .25), clock, f); f._skipDt = 0; } } // out of view: every eighth frame is enough

@@ -209,9 +209,20 @@ function thSwayUniforms(sp) {   // sp = { sway: entry|null, swing: entry|null }
     uWg: { value: new THREE.Vector2(g.shown_hz || g.hz || 1, (g.amp_deg || 0) * Math.PI / 180) }, uWgS: { value: g.sym ? 1 : 0 }, uWgR: { value: new THREE.Vector4(g.from ?? 0, g.to ?? 1, g.lat ? g.lat[0] : 1e3, g.lat ? g.lat[1] : 2e3) },
     uWgP: { value: V(g.pivot, [0, 0, 0]) }, uWgD: { value: V(g.dir, [1, 0, 0]).normalize() }, uWgA: { value: V(g.axis, [0, 1, 0]).normalize() }, uWgL: { value: V(g.lat_axis, [0, 0, 1]).normalize() } };
 }
-function thSwayPatch(mat, sp) {   // MeshToonMaterial: move the thing-space position (after the instance matrix) in the vertex shader
-  const u = thSwayUniforms(sp); mat.userData.sway = u;
+/* Every lit material of a thing goes through thPatch.
+   Light: a thing is lit by the park's sun and sky at reduced strength (sun x 0.75, sky x 0.55 and less at night), so that toon shading
+   reads well at any sun angle. That reduction is done here, in the shader, on the light the scene provides: TH_LIGHT.uThSun and uThSky
+   scale the direct and the ambient light. So a thing looks the same whether it is drawn in its own scene (with copies of the park's
+   two lights) or inside the park's scene (with the park's own lights): see "fewer scenes" in js/engine.js. Outside the park (the
+   preview tool) both factors are 1.
+   Sway (sp, optional): moves the thing-space position, after the instance matrix, in the vertex shader. */
+const TH_LIGHT = { uThSun: { value: 1 }, uThSky: { value: 1 } };
+function thPatch(mat, sp) {
+  const u = sp ? thSwayUniforms(sp) : null; if (u) mat.userData.sway = u;
   mat.onBeforeCompile = sh => {
+    Object.assign(sh.uniforms, TH_LIGHT);
+    sh.fragmentShader = 'uniform float uThSun; uniform float uThSky;\n' + sh.fragmentShader.replace('vec3 outgoingLight =', 'reflectedLight.directDiffuse *= uThSun; reflectedLight.indirectDiffuse *= uThSky;\n\tvec3 outgoingLight =');
+    if (!u) return;
     Object.assign(sh.uniforms, { uTime: TH_SWAY.uTime }, u);
     sh.vertexShader = TH_SWAY_GLSL + '\n' + sh.vertexShader.replace('#include <project_vertex>', `vec4 thP = vec4(transformed, 1.0);
 #ifdef USE_INSTANCING
@@ -220,7 +231,7 @@ function thSwayPatch(mat, sp) {   // MeshToonMaterial: move the thing-space posi
   thP.xyz += thMove(thP.xyz);
   vec4 mvPosition = modelViewMatrix * thP; gl_Position = projectionMatrix * mvPosition;`);
   };
-  mat.customProgramCacheKey = () => 'thsway';
+  mat.customProgramCacheKey = () => u ? 'thlit+sway' : 'thlit';
 }
 
 /* ---------- ThingObj: the meshes of one thing ---------- */
@@ -274,14 +285,14 @@ class ThingObj {
     if (pd.mesh) {
       geo = thGeo(def.id, this.bundle, pd.mesh); if (!geo) { console.warn('thing', def.id, 'part', pd.id, 'missing mesh', pd.mesh); return; }
       g = thInked(geo, color, { w: pd.ink_w || def.ink_w || .0018, double: !!pd.double, vc: !!geo.attributes.color, sway: sw });
-      g.userData.main.material.clippingPlanes = null; if (sw) thSwayPatch(g.userData.main.material, sw);
+      g.userData.main.material.clippingPlanes = null; thPatch(g.userData.main.material, sw);
       if (pd.solid !== false) {   // inside faces for the cut-open view, painted with the cut-face pattern
         const fm = thFaceMat(this._faceFor(pd), this.plane); fm.clippingPlanes = this.planes; const cap = new THREE.Mesh(geo, fm); cap.visible = false; cap.userData.cap = true; cap.renderOrder = 0; cap.matrixAutoUpdate = false; g.add(cap); g.userData.cap = cap; this.faceMats.push(fm);
       }
     } else if (pd.instances) {
       const inst = thInst(this.bundle, pd.instances); geo = thGeo(def.id, this.bundle, inst.mesh);
       const ex = geo.attributes.color ? { vertexColors: true } : {}; if (pd.card) { thCardUV(geo); ex.map = thCardTexture(pd.card); ex.alphaTest = .5; }
-      const mat = illoMat(color, { double: !!pd.double, extra: ex }); if (sw) thSwayPatch(mat, sw);
+      const mat = illoMat(color, { double: !!pd.double, extra: ex }); thPatch(mat, sw);
       const rj = pd.tint || 0, ck = def.id + ':' + pd.instances + ':' + rj;
       let sh = TH.inst[ck];
       if (!sh) {   // one master set of instance matrices per thing, shared by every placement (built once)
@@ -324,6 +335,7 @@ class ThingObj {
   _addHotspot(h) {
     const R = this.def.radius_m || 1, geo = new THREE.SphereGeometry(h.r || Math.max(.01 * this.u, R * .02), 14, 10), g = inked(geo, 0xffd166, { w: .004, extra: { transparent: true } });
     g.children.forEach(m => { m.material.depthTest = false; m.renderOrder = m.userData.outline ? 9 : 10; });   // ink first, fill on top (both in the blended pass, where renderOrder decides)
+    thPatch(g.userData.main.material, null);
     const pv = this._hotPivot(h); g.userData.hotspot = h; g.visible = false; g.position.set(...h.at); (pv ? this._pivot(pv) : this.group).add(g); this.hot.push(g);
   }
   _addAnims() {
@@ -435,6 +447,8 @@ const TH_PEEL = { K: 12, TMIN: .008, TMAX: .045 };   // the human's peel constan
 FT.thing = {
   build(F, o) {
     const id = o.thing, pl = o.placement || {}; F.illo = true; F.noFade = true;   // opacity is handled per part, like the body
+    F.mergeable = true;   // drawn inside the park's scene whenever the park is drawn (js/engine.js, "fewer scenes"); its own two lights are then switched off
+    F.onMerge = on => { if (F.T) F.T.lights.hemi.visible = F.T.lights.sun.visible = !on; };
     renderer.localClippingEnabled = true;
     F.parts = {}; F.mode = null; F.layered = true; F.hidden = new Set(); F.sel = null; F.reveal = null;   // the body's click features (core sample, hide, peel) work on this frame too
     F.env = { bg: 0, opaque: false };
@@ -444,7 +458,7 @@ FT.thing = {
       if (!F.built) return;
       const T = new ThingObj(def, bundle, { placement: pl, hidden: F.hidden });
       F.T = T; T.group.position.set(0, 0, 0); T.group.updateMatrix(); T.holder.position.set(0, 0, 0);
-      F.add(T.holder); F.add(T.lights.hemi); F.add(T.lights.sun); F.add(T.lights.sun.target);
+      F.add(T.holder); F.add(T.lights.hemi); F.add(T.lights.sun); F.add(T.lights.sun.target); F.onMerge(!!F._merged);
       const validModes = ['auto'].concat(def.modes.map(m => m.id)); if (!def.auto) validModes.shift();
       T.setMode(validModes.includes(F.mode) ? F.mode : validModes[0]);
       thBindFrame(F, T, def);
@@ -532,8 +546,9 @@ function thFrameUpdate(F, dt, t) {
   const P = FR.park;
   if (P && P.scene) {
     if (!_thPark || _thPark.scene !== P.scene) { _thPark = { scene: P.scene, sun: null, hemi: null }; P.scene.traverse(o => { if (o.isDirectionalLight && !_thPark.sun) _thPark.sun = o; if (o.isHemisphereLight && !_thPark.hemi) _thPark.hemi = o; }); }
-    if (_thPark.sun) { T.lights.sun.position.copy(_thPark.sun.position).normalize().multiplyScalar(40); T.lights.sun.intensity = _thPark.sun.intensity * .75; T.lights.sun.color.copy(_thPark.sun.color); }
-    if (_thPark.hemi) { const day = Math.min(1, _thPark.sun ? _thPark.sun.intensity / 1.15 : 1); T.lights.hemi.intensity = _thPark.hemi.intensity * .55 * (.18 + .82 * day); }
+    // this frame's own lights are copies of the park's (used when it is drawn alone); the reduction to sun x 0.75 and sky x 0.55 (less at night) is in the shader (thPatch)
+    if (_thPark.sun) { T.lights.sun.position.copy(_thPark.sun.position).normalize().multiplyScalar(40); T.lights.sun.intensity = _thPark.sun.intensity; T.lights.sun.color.copy(_thPark.sun.color); TH_LIGHT.uThSun.value = .75; }
+    if (_thPark.hemi) { const day = Math.min(1, _thPark.sun ? _thPark.sun.intensity / 1.15 : 1); T.lights.hemi.intensity = _thPark.hemi.intensity; T.lights.hemi.color.copy(_thPark.hemi.color); T.lights.hemi.groundColor.copy(_thPark.hemi.groundColor); T.lights.hemi.position.copy(_thPark.hemi.position).sub(F.pos); /* at the park light's own place: three takes a hemisphere light's direction from its position in the scene */ TH_LIGHT.uThSky.value = .55 * (.18 + .82 * day); }
     if (P.scene.fog && F.scene.fog !== P.scene.fog) F.scene.fog = P.scene.fog;
   }
   const C = F.C || _thV.set(0, 0, 0);   // camera position in frame coordinates; in the shifted frame root the camera sits at the world origin (T.camW stays 0)
