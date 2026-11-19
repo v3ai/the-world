@@ -3,8 +3,8 @@ export function buildThing(ctx, M) {
   const P = (id, name, system, node, color, o = {}) => ({ id, name, system, node, color, priority: 1.7, solid: false, noink: true, ...o });
   const parts = [
     // ---- blades: two sheets back to back ----
-    P('blade_up', 'Leaf blade, upper surface', 'blades', 'grass_blade_upper', '#4d8a2e', { mesh: 'blade_up', lod: 'near', deeper: { type: 'tissue2', id: 'grass_leaf_section', D: 6e-4, button: 'Look inside the leaf blade' } }),
-    P('blade_down', 'Leaf blade, underside', 'blades', 'grass_blade_under', '#74b04a', { mesh: 'blade_down', lod: 'near', deeper: { type: 'tissue2', id: 'grass_leaf_section', D: 6e-4, button: 'Look inside the leaf blade' } }),
+    P('blade_up', 'Leaf blade, upper surface', 'blades', 'grass_blade_upper', '#4d8a2e', { mesh: 'blade_up', lod: 'near', deeper: { type: 'tissue2', id: 'grass_leaf_section', D: 5.2e-4, button: 'Look inside the leaf blade' } }),
+    P('blade_down', 'Leaf blade, underside', 'blades', 'grass_blade_under', '#74b04a', { mesh: 'blade_down', lod: 'near', deeper: { type: 'tissue2', id: 'grass_leaf_section', D: 5.2e-4, button: 'Look inside the leaf blade' } }),
     P('far_blades', 'Leaf blades', 'blades', 'grass_blade', '#5c9a3a', { mesh: 'far_blades', lod: 'mid+far', double: true }),
     P('culm_blade_up', 'Stem leaf blade, upper surface', 'blades', 'grass_blade_upper', '#4d8a2e', { mesh: 'culm_blade_up', lod: 'near' }),
     P('culm_blade_down', 'Stem leaf blade, underside', 'blades', 'grass_blade_under', '#74b04a', { mesh: 'culm_blade_down', lod: 'near' }),
@@ -27,12 +27,12 @@ export function buildThing(ctx, M) {
     P('lemmas', 'Lemma', 'flowers', 'grass_lemma', '#b3c46a', { instances: 'lemmas', lod: 'near', double: true, tint: .15, priority: 1.9 }),
     P('spikelet_lens', 'Spikelet', 'flowers', 'grass_spikelet', '#b0c06a', { instances: 'spikelet_lens', lod: 'mid+far', double: true, priority: 1.8 }),
     P('filaments', 'Filament', 'flowers', 'grass_filament', '#f0ecc8', { instances: 'filaments', lod: 'near', double: true, priority: 2.1 }),
-    P('anthers', 'Anther', 'flowers', 'grass_anther', '#e8d35a', { instances: 'anthers', lod: 'near', double: true, tint: .1, priority: 2.2, deeper: { type: 'tissue2', id: 'grass_pollen', D: 2.5e-4, button: 'Look at grass pollen' } }),
+    P('anthers', 'Anther', 'flowers', 'grass_anther', '#e8d35a', { instances: 'anthers', lod: 'near', double: true, tint: .1, priority: 2.2, deeper: { type: 'tissue2', id: 'grass_pollen', D: 4.8e-4, button: 'Look at grass pollen' } }),
     P('stigmas', 'Stigma', 'flowers', 'grass_stigma', '#d9d6e6', { instances: 'stigmas', lod: 'near', double: true, priority: 2.1 }),
     // ---- roots ----
-    P('roots', 'Fibrous roots', 'roots', 'grass_roots', '#d9c796', { mesh: 'roots', lod: 'near', deeper: { type: 'tissue2', id: 'grass_root_tip', D: 4e-4, button: 'Look at a root tip' } }),
+    P('roots', 'Fibrous roots', 'roots', 'grass_roots', '#d9c796', { mesh: 'roots', lod: 'near', deeper: { type: 'tissue2', id: 'grass_root_tip', D: 1.7e-3, button: 'Look at a root tip' } }),
     P('lateral_roots', 'Lateral roots', 'roots', 'grass_roots', '#e6d9b2', { mesh: 'lateral_roots', lod: 'near' }),
-    P('root_tips', 'Root cap', 'roots', 'grass_root_tip', '#f2e8c4', { instances: 'root_tips', lod: 'near', priority: 2.1, deeper: { type: 'tissue2', id: 'grass_root_tip', D: 4e-4, button: 'Look at a root tip' } }),
+    P('root_tips', 'Root cap', 'roots', 'grass_root_tip', '#f2e8c4', { instances: 'root_tips', lod: 'near', priority: 2.1, deeper: { type: 'tissue2', id: 'grass_root_tip', D: 1.7e-3, button: 'Look at a root tip' } }),
     P('root_hairs', 'Root hairs', 'roots', 'grass_root_hairs', '#f6f1dc', { instances: 'root_hairs', lod: 'near', double: true, priority: 2 }),
     P('soil', 'Soil', 'soil', 'grass_soil', '#6b4c32', { mesh: 'soil', opacity_max: .32, priority: .5 }),
     ...(ctx.parts || []),

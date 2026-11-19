@@ -692,7 +692,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "grass_leaf_section",
-    "D": 0.0006,
+    "D": 0.00052,
     "button": "Look inside the leaf blade"
    },
    "center": [
@@ -717,7 +717,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "grass_leaf_section",
-    "D": 0.0006,
+    "D": 0.00052,
     "button": "Look inside the leaf blade"
    },
    "center": [
@@ -1122,7 +1122,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "grass_pollen",
-    "D": 0.00025,
+    "D": 0.00048,
     "button": "Look at grass pollen"
    },
    "center": [
@@ -1169,7 +1169,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "grass_root_tip",
-    "D": 0.0004,
+    "D": 0.0017,
     "button": "Look at a root tip"
    },
    "center": [
@@ -1213,7 +1213,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "grass_root_tip",
-    "D": 0.0004,
+    "D": 0.0017,
     "button": "Look at a root tip"
    },
    "center": [
@@ -1528,7 +1528,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "grass_apex",
-    "D": 0.0005,
+    "D": 0.0008,
     "button": "Look inside the growing point"
    },
    "center": [
@@ -1572,7 +1572,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "grass_leaf_section",
-    "D": 0.0006,
+    "D": 0.00052,
     "button": "Look inside the leaf blade"
    },
    "center": [
@@ -1689,6 +1689,12 @@
    "noink": true,
    "mesh": "l_stomata",
    "pivot": "leafsec",
+   "deeper": {
+    "type": "tissue2",
+    "id": "grass_stoma_scene",
+    "D": 0.00015,
+    "button": "Look at a grass stoma from above"
+   },
    "center": [
     0.3204,
     0.2502,
@@ -1851,7 +1857,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "grass_pollen",
-    "D": 0.00025,
+    "D": 0.00048,
     "button": "Look at grass pollen"
    },
    "center": [

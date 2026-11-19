@@ -63,7 +63,7 @@ export function buildSpecimens(ctx) {
     P('b_sheaths', 'Leaf sheaths (cut)', 'base', 'grass_sheath', '#8fb85a', { mesh: 'b_sheaths', pivot: 'base', priority: 2.2 });
     P('b_leaf_in', 'Youngest leaf, folded inside (cut)', 'base', 'grass_blade', '#6aa83c', { mesh: 'b_leaf_in', pivot: 'base', priority: 2.3 });
     P('b_growth_zone', 'Leaf growth zone (cut)', 'base', 'grass_growth_zone', '#f2b84a', { mesh: 'b_growth_zone', pivot: 'base', priority: 2.4 });
-    P('b_apex', 'Growing point (cut)', 'base', 'grass_meristem', '#f0c94c', { mesh: 'b_apex', pivot: 'base', priority: 2.5, deeper: { type: 'tissue2', id: 'grass_apex', D: 5e-4, button: 'Look inside the growing point' } });
+    P('b_apex', 'Growing point (cut)', 'base', 'grass_meristem', '#f0c94c', { mesh: 'b_apex', pivot: 'base', priority: 2.5, deeper: { type: 'tissue2', id: 'grass_apex', D: 8e-4, button: 'Look inside the growing point' } });
     P('b_roots', 'Roots (cut)', 'base', 'grass_roots', '#d9c796', { mesh: 'b_roots', pivot: 'base' });
     H('h_b_apex', 'grass_meristem', [OX, .0142, .0012], 'Growing point: the shoot apex sits low, inside the sheaths', 'base', .0007);
     H('h_b_gz', 'grass_growth_zone', [OX + .0008, .0125, .0012], 'Leaf growth zone: the blade lengthens from its base', 'base', .0007);
@@ -89,13 +89,13 @@ export function buildSpecimens(ctx) {
       if (i < nb - 1) { const fx = x + (1.8 * hw / (nb - 1)) * .5, fy = yb + th / 2 - th * .02; bul.push(SL(ellipse(fx, fy - th * .09, a * .8, th * .13, 0, 10), 3), SL(ellipse(fx - a * .35, fy - th * .09, a * .4, th * .1, 0, 8), 3)); sto.push(SL(rect(fx - a * .23, yb - th / 2 + th * .01, fx + a * .23, yb - th / 2 + th * .075), 5), SL(rect(fx - a * .23 + a * .35, yb + th / 2 - th * .08, fx + a * .23 + a * .35, yb + th / 2 - th * .01 + ribA * .2), 5)); }
     });
     meshes.l_bundles = L.merge(...xyl); meshes.l_sheaths = L.merge(...sheathR); meshes.l_sclerenchyma = L.merge(...scl); meshes.l_bulliform = L.merge(...bul); meshes.l_stomata = L.merge(...sto); meshes.l_silica = L.merge(...sil);
-    P('l_body', 'Mesophyll (leaf blade, cut)', 'leafsec', 'grass_mesophyll', '#8fc060', { mesh: 'l_body', pivot: 'leafsec', priority: 1.6, deeper: { type: 'tissue2', id: 'grass_leaf_section', D: 6e-4, button: 'Look inside the leaf blade' } });
+    P('l_body', 'Mesophyll (leaf blade, cut)', 'leafsec', 'grass_mesophyll', '#8fc060', { mesh: 'l_body', pivot: 'leafsec', priority: 1.6, deeper: { type: 'tissue2', id: 'grass_leaf_section', D: 5.2e-4, button: 'Look inside the leaf blade' } });
     P('l_epidermis', 'Epidermis (cut)', 'leafsec', 'grass_epidermis', '#cfe6a8', { mesh: 'l_epidermis', pivot: 'leafsec', priority: 1.9 });
     P('l_sheaths', 'Bundle sheath (cut)', 'leafsec', 'grass_bundle_sheath', '#4f9a52', { mesh: 'l_sheaths', pivot: 'leafsec', priority: 2.2 });
     P('l_bundles', 'Vascular bundle: xylem and phloem (cut)', 'leafsec', 'grass_bundle', '#e8e0a0', { mesh: 'l_bundles', pivot: 'leafsec', priority: 2.4 });
     P('l_sclerenchyma', 'Sclerenchyma fibres (cut)', 'leafsec', 'grass_sclerenchyma', '#b79b6a', { mesh: 'l_sclerenchyma', pivot: 'leafsec', priority: 2.3 });
     P('l_bulliform', 'Bulliform cells (cut)', 'leafsec', 'grass_bulliform', '#e9f3c9', { mesh: 'l_bulliform', pivot: 'leafsec', priority: 2.3 });
-    P('l_stomata', 'Stomata (cut)', 'leafsec', 'grass_stoma', '#2f6b3a', { mesh: 'l_stomata', pivot: 'leafsec', priority: 2.5 });
+    P('l_stomata', 'Stomata (cut)', 'leafsec', 'grass_stoma', '#2f6b3a', { mesh: 'l_stomata', pivot: 'leafsec', priority: 2.5, deeper: { type: 'tissue2', id: 'grass_stoma_scene', D: 1.5e-4, button: 'Look at a grass stoma from above' } });
     P('l_silica', 'Silica bodies (cut)', 'leafsec', 'grass_silica_body', '#ffffff', { mesh: 'l_silica', pivot: 'leafsec', priority: 2.6 });
     const bx0 = bundles[3], cy0 = yb;
     H('h_l_bundle', 'grass_bundle', [OX + bx0, cy0, Zs(5)], 'Vascular bundle with its sheath of cells', 'leafsec', .004);
@@ -127,7 +127,7 @@ export function buildSpecimens(ctx) {
     P('f_ovary', 'Ovary', 'floret', 'grass_ovary', '#8cb34a', { mesh: 'f_ovary', pivot: 'floret', double: true, priority: 2.4 });
     P('f_stigmas', 'Feathery stigmas', 'floret', 'grass_stigma', '#d9d6e6', { mesh: 'f_stigmas', pivot: 'floret', double: true, priority: 2.4 });
     P('f_filaments', 'Filaments', 'floret', 'grass_filament', '#f0ecc8', { mesh: 'f_filaments', pivot: 'floret', double: true, priority: 2.3 });
-    P('f_anthers', 'Anthers', 'floret', 'grass_anther', '#e8d35a', { mesh: 'f_anthers', pivot: 'floret', double: true, priority: 2.5, deeper: { type: 'tissue2', id: 'grass_pollen', D: 2.5e-4, button: 'Look at grass pollen' } });
+    P('f_anthers', 'Anthers', 'floret', 'grass_anther', '#e8d35a', { mesh: 'f_anthers', pivot: 'floret', double: true, priority: 2.5, deeper: { type: 'tissue2', id: 'grass_pollen', D: 4.8e-4, button: 'Look at grass pollen' } });
     H('h_f_ovary', 'grass_ovary', [ox, Y0 + .0015, .0007], 'Ovary: one seed develops here', 'floret', .0005);
     H('h_f_stigma', 'grass_stigma', [ox + .0009, Y0 + .0042, 0], 'Feathery stigmas: they catch pollen from the air', 'floret', .0005);
     H('h_f_anther', 'grass_anther', [ox + .0005, Y0 + .001, .0003], 'Anthers: hang out on thread-like filaments', 'floret', .0006);
