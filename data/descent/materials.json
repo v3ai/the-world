@@ -232,7 +232,7 @@
      "name": "cellotriose, a short piece of cellulose",
      "scene": "mol:cellotriose",
      "standIn": true,
-     "note": "{What}: mostly plant cell wall, and cell walls are woven from cellulose, chains of thousands of glucose units. Shown: cellotriose, three units of such a chain. The other wall materials (hemicellulose, pectin and, in wood, lignin) are not built yet.",
+     "note": "{What}: mostly plant cell wall, and cell walls are woven from cellulose, chains of thousands of glucose units. Shown: cellotriose, three units of such a chain. The other materials of the wall (in wood, lignin) are not built yet.",
      "title": "Cellotriose (three units of a cellulose chain)"
     }
    ],
@@ -327,21 +327,6 @@
    ],
    "src": "cards tendon, dense_connective_tissue, cornea; PDB-101 Molecule of the Month: Collagen (triple helix, every third amino acid glycine)"
   },
-  "melanin": {
-   "title": "Melanin",
-   "desc": "The dark pigment of skin, hair, feathers and eyes.",
-   "card": "robin_pigment",
-   "inside": [
-    {
-     "name": "L-DOPA, the molecule melanin is built from",
-     "scene": "mol:l_dopa",
-     "standIn": true,
-     "note": "Melanin is an irregular polymer with no single structure to draw. Shown: L-DOPA, the small molecule that cells link up to make it.",
-     "title": "L-DOPA (a building block of melanin)"
-    }
-   ],
-   "src": "tissue scene robin_feather (granule), card robin_pigment"
-  },
   "animal_cells": {
    "title": "Animal cells",
    "desc": "The living cells an animal tissue is made of.",
@@ -416,7 +401,7 @@
     {
      "name": "haemoglobin",
      "material": "haemoglobin",
-     "note": "A red blood cell has no nucleus and no organelles: it is a bag of haemoglobin."
+     "note": "A red blood cell has no nucleus: it is packed with haemoglobin instead."
     }
    ],
    "src": "card red_blood_cell"
@@ -455,7 +440,7 @@
     {
      "name": "muscle fibres",
      "scene": "tissue:skeletal",
-     "note": "Schematic: fibre widths and lengths are roughly true, the stripes and nuclei are drawn large."
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
     }
    ],
    "src": "card skeletal_muscle_tissue"
@@ -468,7 +453,7 @@
     {
      "name": "heart muscle cells",
      "scene": "tissue:cardiac",
-     "note": "Schematic: cell sizes are roughly true, the arrangement is simplified."
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
     }
    ],
    "src": "card cardiac_muscle_tissue"
@@ -481,7 +466,7 @@
     {
      "name": "smooth muscle cells",
      "scene": "tissue:smooth",
-     "note": "Schematic: cell sizes are roughly true, the arrangement is simplified."
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
     }
    ],
    "src": "card smooth_muscle_tissue"
@@ -532,7 +517,7 @@
     {
      "name": "compact bone (osteons)",
      "scene": "tissue:bone",
-     "note": "Schematic: the cylinders (osteons) are about the true width; the bone cells are drawn large."
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
     }
    ],
    "src": "cards bone_tissue, compact_bone"
@@ -545,7 +530,7 @@
     {
      "name": "the mineral of enamel and dentine",
      "material": "bone_mineral",
-     "note": "A tooth is enamel over dentine. Both are hardened by a calcium phosphate mineral, as bone is; enamel is almost all mineral."
+     "note": "A tooth is enamel over dentine. Both are hardened by the same calcium phosphate mineral as bone."
     }
    ],
    "src": "cards teeth, dog_teeth"
@@ -558,7 +543,7 @@
     {
      "name": "cartilage cells in their matrix",
      "scene": "tissue:cartilage",
-     "note": "Schematic: the cells sit in small spaces in the matrix; sizes are roughly true."
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
     }
    ],
    "src": "card cartilage_tissue"
@@ -584,7 +569,7 @@
     {
      "name": "layered epithelium",
      "scene": "tissue:epithelium",
-     "note": "Schematic: the layers of the outer skin, with cell sizes roughly true."
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
     }
    ],
    "src": "cards skin, epithelial_tissue, stratified_squamous_epithelium"
@@ -611,7 +596,7 @@
     {
      "name": "villi",
      "scene": "tissue:villi",
-     "note": "Schematic: villi about the true size (half a millimetre tall)."
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
     }
    ],
    "src": "card villi, small_intestine"
@@ -624,7 +609,7 @@
     {
      "name": "liver cells around a central vein",
      "scene": "tissue:liver",
-     "note": "Schematic: one lobule, with liver cells drawn as blocks."
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
     }
    ],
    "src": "cards liver, liver_lobule"
@@ -637,7 +622,7 @@
     {
      "name": "air sacs and blood cells",
      "scene": "tissue:alveoli",
-     "note": "Schematic: air sacs about the true size (a fifth of a millimetre), with the blood cells that pass their walls."
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
     }
    ],
    "src": "card alveoli"
@@ -650,7 +635,7 @@
     {
      "name": "nerve cells and glia",
      "scene": "tissue:nervous",
-     "note": "Schematic: cell bodies are roughly true size; real nerve cells are far more densely packed and far more branched."
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
     }
    ],
    "src": "cards nervous_tissue, neuron"
@@ -663,7 +648,7 @@
     {
      "name": "fat cells",
      "scene": "tissue:adipose",
-     "note": "Schematic: fat cells about the true size."
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
     }
    ],
    "src": "card adipose_tissue, adipocyte"
@@ -676,7 +661,7 @@
     {
      "name": "blood cells in plasma",
      "scene": "tissue:blood",
-     "note": "Schematic: the cells are true size but drawn much further apart than in real blood, and the plasma between them is not drawn."
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
     }
    ],
    "src": "cards blood, blood_tissue"
@@ -868,13 +853,13 @@
   },
   "xylem_sap": {
    "title": "Xylem sap",
-   "desc": "The water a plant draws up from its roots, with a little dissolved mineral.",
+   "desc": "The water a plant draws up from its roots.",
    "card": "bio_water_transport",
    "inside": [
     {
      "name": "water",
      "material": "water",
-     "note": "Xylem sap is water with a small amount of dissolved minerals. Shown: the water."
+     "note": "The sap that rises in the wood is water drawn up from the roots, with what is dissolved in it. Shown: the water."
     }
    ],
    "src": "card bio_water_transport; tissue scene grass_leaf_section (xylem > water)"
@@ -984,7 +969,7 @@
      "name": "cuticle",
      "material": "insect_cuticle",
      "standIn": true,
-     "note": "A wing is an outgrowth of the exoskeleton: thin cuticle, stiffened by hollow veins. Shown: a slice of body cuticle; the wing's own is far thinner and has no living cell layer under most of it."
+     "note": "A wing is an outgrowth of the exoskeleton: two thin layers of it pressed together, with hollow veins where they stay apart. Shown: a slice of the body's cuticle; the wing's own is not drawn separately."
     }
    ],
    "src": "card bee_wings (\"Wings are outgrowths of the exoskeleton\")"
@@ -1118,7 +1103,7 @@
     {
      "name": "air",
      "material": "air",
-     "note": "Soil air has more carbon dioxide and less oxygen than the air above, because roots and microbes breathe in it. The picture is ordinary air."
+     "note": "The pores of soil that are not full of water hold air. The picture is ordinary air, as above the ground."
     }
    ],
    "src": "card soil_air_pore; tissue scene soil_crumb (air > carbon_dioxide)"
@@ -1205,7 +1190,7 @@
     {
      "name": "aluminium",
      "material": "aluminium",
-     "note": "The frame is drawn as aluminium, the commonest choice; some phones use steel or titanium instead."
+     "note": "The frame of a phone is metal. It is drawn here as aluminium, one of the metals used for it."
     }
    ],
    "src": "card phone_antenna (\"Metal parts of the frame act as antennas\")"
@@ -1400,7 +1385,7 @@
       "blurb": "A green alga's cell is close kin to a plant cell: nucleus, chloroplast and a wall. The scene is the generic plant cell."
      },
      "standIn": true,
-     "note": "The generic plant cell stands in for a green alga's cell. A real algal cell is rounder and often has one large cup-shaped chloroplast and, in swimmers, two whip-like flagella."
+     "note": "The generic plant cell stands in for a green alga's cell. A real algal cell is often rounder and has one large chloroplast; the swimming kinds have two whip-like flagella, which are not drawn."
     }
    ],
    "src": "the pond micro scene (ALGA); cards pond_volvox, pond_chlamydomonas"
@@ -1441,14 +1426,14 @@
    "title": "Leaf cuticle",
    "desc": "The thin waxy coat that waterproofs a leaf.",
    "card": "oak_leaf_epidermis",
-   "stop": "Not built yet: the leaf's waxy coat. It is a film of waxes on a tough fatty polymer (cutin); neither is in the collection of molecules yet.",
+   "stop": "Not built yet: the leaf's waxy coat. It is made of cutin and wax; neither is in the collection of molecules yet.",
    "src": "card oak_leaf_epidermis"
   },
   "insect_wax": {
    "title": "Outer film of the cuticle",
    "desc": "The thin waxy skin on top of an insect's cuticle, which keeps water in.",
    "card": "bee_cuticle",
-   "stop": "Not built yet: the waxy outer film of the cuticle. It is a thin layer of waxes and proteins, with no chitin; none of its molecules is in the collection yet.",
+   "stop": "Not built yet: the waxy outer film of the cuticle. None of the molecules of its waxes is in the collection yet.",
    "src": "card bee_cuticle (\"with a waxy skin on top\")"
   },
   "debris": {
@@ -1590,7 +1575,7 @@
       "title": "Intergalactic space",
       "blurb": "Between the galaxies there are only a few hydrogen atoms in each cubic metre.",
       "body": "The space between the galaxies holds only a few hydrogen atoms per cubic metre: a million times thinner still than the gas between the stars of a galaxy.",
-      "note": "Not to scale in number: at the true density you would have to search a volume far larger than this view, for longer than you would wish, to meet one atom. One hydrogen atom is drawn so that there is something to go on to."
+      "note": "Not to scale in number: at the true density a view this size would practically never hold an atom. One hydrogen atom is drawn so that there is something to go on to."
      }
     }
    ],
@@ -1755,7 +1740,7 @@
       "blurb": "The ground of an icy world, about 1 mm across: grains of frozen water.",
       "material": "ice"
      },
-     "note": "{What}: mostly water ice, mixed with darker rocky material that is not drawn. The grain picture is the generic snow-and-ice scene, and the crystal below is ordinary ice (ice Ih)."
+     "note": "{What}: mostly water ice, mixed with darker material (rock, salts) that is not drawn. The grain picture is the generic snow-and-ice scene, and the crystal below is ordinary ice (ice Ih)."
     }
    ],
    "src": "NASA Europa Facts; NASA Enceladus; NASA Rhea, Iapetus; NASA Ganymede; NASA Titan Facts; NASA Haumea Facts; Wikipedia \"Callisto\", \"Charon\", \"Moons of Uranus\" (fallback sources)"
