@@ -533,26 +533,15 @@ function frameCull(f) {
   f.cam.updateMatrixWorld(); _fcF.setFromProjectionMatrix(_fcM.multiplyMatrices(f.cam.projectionMatrix, f.cam.matrixWorldInverse));
   if (!_fcF.intersectsSphere(_fcS)) f._culled = true;
 }
-/* Shaders are compiled when a frame is built and again when its content has arrived (a thing's parts load after the frame exists),
-   one frame per tick, so a layer mode or a cut view that has not been shown yet does not stall the frame in which it first appears. */
+/* A frame that is built before it is first drawn (flyTo builds the whole path of a flight when the flight starts) has its shaders
+   compiled then, one frame per tick, so the stall comes at the click and not in the middle of the flight when the frame comes into
+   view. Nothing is compiled ahead for parts that are not shown (other layer modes, cut views): in three r128 compiling blocks until
+   the program has linked, and doing that for every hidden variant was measured to add 42 programs and about 3.5 s of stalls to the
+   first seconds on the software renderer here. Those compile when they are first shown, as they always did. */
 function compileStep() {
-  let f = compileQ.shift();
-  if (!f) for (const d of drawn) if (d.built && d.pickables && d._cmpK !== d.pickables.length) { f = d; break; }
-  const now = performance.now();
-  if (!f) { // a scene that has taken in merged children: once, when no more have arrived for three seconds and the camera rests (it walks the whole scene)
-    for (const d of drawn) if (d._cmpDirty && now - d._cmpDirty > 3000 && !fly && now - lastInput > 1000) { d._cmpDirty = 0; try { renderer.compile(d.scene, d.cam); } catch (e) { } break; }
-    return;
-  }
-  if (!f.built || !f.scene) return;
-  f._cmpK = f.pickables.length;
-  try {
-    if (f._merged) { // drawn inside its parent's scene now; compile the form it takes when drawn alone as well (its own lights), so entering it does not stall
-      f.parent._cmpDirty = now;
-      const back = f.root.parent; f.scene.add(f.root); if (f.onMerge) f.onMerge(false);
-      renderer.compile(f.scene, f.cam);
-      if (back) back.add(f.root); else f.scene.remove(f.root); if (f.onMerge) f.onMerge(true);
-    } else renderer.compile(f.scene, f.cam);
-  } catch (e) { }
+  const f = compileQ.shift();
+  if (!f || !f.built || !f.scene || f._drawnOnce) return;
+  try { renderer.compile(f.scene, f.cam); } catch (e) { }
 }
 /* Inked outlines (the inverted hull that draws every part a second time; the ink is about 1.5 pixels wide at any distance).
    outline=all: always. outline=0: only the part under the pointer or selected. outline=near (the default): the ink fades out as the

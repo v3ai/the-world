@@ -118,7 +118,7 @@ A new scene should fit the "other views" row: one scene, under 200 draw calls, u
 - **Culling:** a co-rendered neighbour whose content is out of view or under about two pixels is not drawn or picked, and its update hook runs every eighth frame.
 - **Render scale:** capped at about 2.8 million pixels and adapted to the frame time (`RENDER SCALE` in js/engine.js). Under browser automation it is fixed unless `dpr=auto` is in the URL.
 - **Resting:** after 1.5 s with nothing moving, every other frame is skipped; hidden tabs and open labs draw nothing.
-- **Shader compile:** `renderer.compile` runs when a frame is built and again when its content arrives.
+- **Shader compile:** a frame built before it is first drawn (the path of a flight) has its shaders compiled then (`compileStep`), so the stall comes at the click, not mid-flight. Hidden variants (other layer modes, cut views) compile when first shown: compiling blocks in three r128, and doing it ahead for everything cost seconds at start-up.
 - **Loading:** anatomy files and thing bundles are fetched and decoded in `js/mesh_worker.js`; `loadNote(label, promise)` names what is still arriving.
 
 ### Performance tests
