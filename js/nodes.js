@@ -148,7 +148,7 @@ function applyMode(F) {
   if (F.modeSeg && F._layer !== layer) { F._layer = layer; const b = F.modeSeg.querySelector('[data-k=auto]'); if (b) b.textContent = layer ? 'Auto: ' + layer : 'Auto'; }
   const focus = bodyFocus(F), hov = hovered && hovered.userData && hovered.userData.part ? hovered : null;
   for (const id in F.parts) {
-    const { g, p } = F.parts[id], s = sysOf(p), u = g.userData;
+    const { g, p } = F.parts[id], u = g.userData, s = M.vessel !== undefined && isVessel(p) ? 'vessel' : sysOf(p);
     let op = M[s] !== undefined ? M[s] : (M['*'] !== undefined ? M['*'] : 0);
     if (F.reveal && F.auto && F.auto.P && !F.hidden.size) { if (F.reveal.id === id) op = 1; else if (F.auto.front && F.auto.front.has(id)) op = Math.min(op, PEEL_GHOST_MUSCLE); }
     if (F.auto && F.auto.P && !focus && !F.hidden.size && (F.mode === 'auto' || F.reveal)) { const c = F.auto.cur, k = F._k || 1; c[id] = c[id] === undefined ? op : c[id] + (op - c[id]) * k; op = c[id]; } // ease, so layers fade rather than pop

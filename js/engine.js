@@ -180,7 +180,7 @@ function trySpawn(A) {
   // a pending (not yet visible) child near the view follows the zoom target until it appears
   const pend = A.children.find(c => c.dynamic && !c.entered && c.pos.distanceTo(cam.T) < cam.D / A.unit * 3);
   if (pend) { if (cam.D > pend.r1 && !pend.pinned) pend.pos.copy(cam.T); return pend.containsP(cam.T) && cam.D <= pend.r1 ? pend : null; }
-  if (A._spawnFail && A._spawnFail.distanceTo(cam.T) < cam.D / A.unit * .5) return null;
+  if (!hint && A._spawnFail && A._spawnFail.distanceTo(cam.T) < cam.D / A.unit * .5) return null; // a failure without a surface under the cursor must not block a spawn that now has one
   const c = A.spawn(cam.T.clone(), hint);
   if (!c) { A._spawnFail = cam.T.clone(); return null; }
   A._spawnFail = null; c.dynamic = true; A.addChild(c);

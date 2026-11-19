@@ -145,7 +145,11 @@ function bodyHide(F, id) { F.hidden.add(id); if (F.sel === id) F.sel = null; clo
    end of the descent: it is never peeled, so you finish on the surface of the thing you were pointing at. */
 const PEEL_K = 12, PEEL_TMIN = .008, PEEL_TMAX = .045, PEEL_GHOST_SKIN = .06, PEEL_GHOST_MUSCLE = .08, PEEL_GHOST_BONE = .12;
 const PEEL_RANK = { skin: 0, muscular: 1, skeletal: 2 };
-function peelRank(p) { const s = sysOf(p); return s in PEEL_RANK ? PEEL_RANK[s] : 3; }
+// vessels (arteries, veins, the big trunks) are a layer of their own between muscle and bone: they run through and over the other parts,
+// so they give way to what they lie in front of (a knee shows the bone, not the artery on top of it)
+const VESSEL_ID = /^(arteries_|veins_|carotid|pulmonary_vessels|pulmonary_trunk|coronary|superior_vena|inferior_vena|aorta)/;
+function isVessel(p) { return VESSEL_ID.test(p.id); }
+function peelRank(p) { if (isVessel(p)) return 1.5; const s = sysOf(p); return s in PEEL_RANK ? PEEL_RANK[s] : 3; }
 const _po = new V3(), _pd = new V3(), _pc = new V3();
 /* Stack of parts along a ray from the camera: [{id, e (metres from the camera), rank}], nearest first. Hidden parts are left out. */
 function bodyRayStack(F, targetLocal) {
@@ -186,19 +190,19 @@ function bodyPeel(F, rows, tgt) {
   let fi = rows.findIndex(r => r.pi < .5); if (fi < 0) fi = n - 1;
   const fr = fi >= 0 ? rows[fi].rank : -1, upto = rk => { const r = rows.find(x => x.rank === rk); return r && rows.indexOf(r) <= fi ? r : null; };
   const near = Math.max(0, 1 - smooth(.85, 1.3, cam.D)); // an empty ray: the camera is inside the skin, or looking past the body
-  const S = upto(0), M = upto(1), B = upto(2), star = rows.some(r => r.rank === 3);
-  let pS, pM, pB;
-  if (tgt) { const Bi = rows.findIndex(r => r.rank === 2); pS = tgt.rank >= 1 ? 1 : 0; pM = tgt.rank >= 2 ? 1 : 0; pB = Bi >= 0 && Bi < tgt.n && tgt.rank >= 3 ? 1 : 0; }
-  else { pS = S ? S.pi : fr > 0 ? 1 : near; pM = M ? M.pi : fr > 1 ? 1 : pS; pB = B ? B.pi : 0; }
+  const S = upto(0), M = upto(1), B = upto(2), V = upto(1.5), star = rows.some(r => r.rank === 3);
+  let pS, pM, pB, pV;
+  if (tgt) { const Bi = rows.findIndex(r => r.rank === 2); pS = tgt.rank > 0 ? 1 : 0; pM = tgt.rank > 1 ? 1 : 0; pB = Bi >= 0 && Bi < tgt.n && tgt.rank >= 3 ? 1 : 0; pV = tgt.rank >= 2 ? 1 : 0; }
+  else { pS = S ? S.pi : fr > 0 ? 1 : near; pM = M ? M.pi : fr > 1 ? 1 : pS; pB = B ? B.pi : 0; pV = V ? V.pi : fr > 1.5 ? 1 : 0; }
   const f = rows[fi];
-  return { rows, pS, pM, pB, star, focus: !f ? 'skin' : ['skin', 'muscles', 'bones', 'organs'][f.rank] };
+  return { rows, pS, pM, pB, pV, star, focus: !f ? 'skin' : f.rank === 1.5 ? 'vessels' : ['skin', 'muscles', 'bones', 'organs'][f.rank] };
 }
 /* class opacities from the peel amounts */
 function peelOpacities(P) {
-  const { pS, pM, pB, star } = P, cap = star ? .3 : 1;
+  const { pS, pM, pB, pV, star } = P, cap = star ? .3 : 1;
   const sk = 1 - (1 - PEEL_GHOST_SKIN) * pS, mu = pS * (.95 * (1 - pM) + PEEL_GHOST_MUSCLE * pM);
   const bo = pS * ((1 - pB) * (cap * pM + .3 * (1 - pM)) + pB * PEEL_GHOST_BONE);
-  return { skin: sk, muscular: mu, skeletal: bo, '*': pS * pM };
+  return { skin: sk, muscular: mu, skeletal: bo, '*': pS * pM, vessel: pS * pM * (1 - .9 * (pV || 0)) };
 }
 /* Called every tick by the body frame: finds what is under the view (throttled) and eases the part opacities toward it. */
 const _pk = new V3(), _rc = new V3();
