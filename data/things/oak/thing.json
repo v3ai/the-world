@@ -59,14 +59,21 @@
    "label": "Distant crown"
   }
  ],
- "auto": {
-  "label": "Auto",
-  "near_m": 40,
-  "near": "whole",
-  "far": "whole"
- },
+ "anim": [
+  {
+   "kind": "sway",
+   "systems": [
+    "leaves"
+   ],
+   "from_y": 4,
+   "to_y": 20,
+   "amp_m": 0.02,
+   "hz": 0.3,
+   "label": "Leaves"
+  }
+ ],
  "lod": {
-  "near_m": 22,
+  "near_m": 17,
   "far_m": 75
  },
  "shadow": {
@@ -208,6 +215,7 @@
    ],
    "label": "Count the rings",
    "r": 0.03,
+   "pivot": "wood",
    "modes": [
     "wood"
    ]
@@ -222,6 +230,7 @@
    ],
    "label": "Cambium: where the tree grows wider",
    "r": 0.025,
+   "pivot": "wood",
    "modes": [
     "wood"
    ]
@@ -235,6 +244,12 @@
     0.78
    ],
    "label": "Root tip with root hairs",
+   "deeper": {
+    "type": "tissue2",
+    "id": "root_tip",
+    "D": 0.003,
+    "button": "Look at root hairs"
+   },
    "r": 0.12,
    "modes": [
     "roots"

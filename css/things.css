@@ -6,4 +6,13 @@
 .thLegend .thLg i { width: 11px; height: 11px; border-radius: 2px; border: 1px solid rgba(23,32,42,.35); display: inline-block }
 .thLegend .thLN { flex-basis: 100%; color: var(--muted); font-size: 12px }
 .thNote { margin: 0 0 10px; font-size: 12.5px }
-@media (max-width: 860px) { .thLegend { flex: 0 1 auto; max-width: calc(100vw - 96px) } .thLegend .thLN { display: none } }
+@media (max-width: 860px) {
+  /* phone: the layer buttons get a whole row of their own (scrolling sideways when there are many) and the legend sits under it in one scrolling line */
+  #controls .thModes { flex: 1 1 100%; max-width: 100%; overflow-x: auto; scrollbar-width: none }
+  #controls .thModes::-webkit-scrollbar { display: none }
+  #controls .thModes button { flex: none }
+  .thLegend { flex: 1 1 100%; max-width: 100%; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none }
+  .thLegend::-webkit-scrollbar { display: none }
+  .thLegend .thLH, .thLegend .thLg { flex: none; white-space: nowrap }
+  .thLegend .thLN { display: none }
+}

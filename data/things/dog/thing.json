@@ -125,6 +125,11 @@
      0,
      0.4,
      0
+    ],
+    "normal": [
+     0,
+     0,
+     1
     ]
    },
    "hotspots": true,
@@ -242,6 +247,11 @@
      0,
      0.4,
      0
+    ],
+    "normal": [
+     0,
+     0,
+     1
     ]
    },
    "hotspots": true,
@@ -308,10 +318,89 @@
  ],
  "auto": {
   "label": "Auto",
-  "near_m": 2.2,
-  "near": "muscles",
-  "far": "coat"
+  "layers": true,
+  "always": {
+   "eyes": 1
+  }
  },
+ "layers": [
+  {
+   "id": "coat",
+   "label": "coat",
+   "systems": [
+    "coat"
+   ],
+   "ghost": 0.06
+  },
+  {
+   "id": "muscles",
+   "label": "muscles",
+   "systems": [
+    "muscles"
+   ],
+   "ghost": 0.08
+  },
+  {
+   "id": "skeleton",
+   "label": "bones",
+   "systems": [
+    "skeleton"
+   ],
+   "ghost": 0.12,
+   "see_through": 0.3
+  },
+  {
+   "id": "inside",
+   "label": "organs",
+   "systems": [
+    "organs",
+    "vessels",
+    "nervous",
+    "cord"
+   ],
+   "ghost": 0.1
+  }
+ ],
+ "anim": [
+  {
+   "kind": "swing",
+   "systems": [
+    "coat",
+    "muscles",
+    "skeleton",
+    "nervous"
+   ],
+   "pivot": [
+    -0.435,
+    0.45,
+    0
+   ],
+   "dir": [
+    -1,
+    0,
+    0
+   ],
+   "from": 0.07,
+   "to": 0.22,
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "amp_deg": 16,
+   "shown_hz": 1.6,
+   "lat_axis": [
+    0,
+    0,
+    1
+   ],
+   "lat": [
+    0.06,
+    0.11
+   ],
+   "label": "Tail wag"
+  }
+ ],
  "lod": {
   "near_m": 14,
   "far_m": 60
@@ -439,7 +528,13 @@
    "modes": [
     "cut_eye"
    ],
-   "r": 0.0018
+   "r": 0.0018,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_retina",
+    "D": 0.00028,
+    "button": "Look inside the retina and tapetum"
+   }
   },
   {
    "id": "hs_lens",
@@ -467,7 +562,13 @@
    "modes": [
     "cut_eye"
    ],
-   "r": 0.0018
+   "r": 0.0018,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_retina",
+    "D": 0.00028,
+    "button": "Look inside the retina and tapetum"
+   }
   },
   {
    "id": "hs_olf",
@@ -481,7 +582,13 @@
    "modes": [
     "cut_nose"
    ],
-   "r": 0.008
+   "r": 0.008,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_olfactory_epithelium",
+    "D": 0.00028,
+    "button": "Look inside the smell lining"
+   }
   },
   {
    "id": "hs_resp",
@@ -590,6 +697,7 @@
    "node": "dog_coat",
    "color": "#d9b36f",
    "mesh": "coat",
+   "lod": "near",
    "priority": 1.2,
    "cutFace": "muscle",
    "deeper": {
@@ -605,6 +713,24 @@
    ],
    "radius": 0.6646,
    "tris": 37304
+  },
+  {
+   "id": "coat_far",
+   "name": "Skin and coat",
+   "system": "coat",
+   "node": "dog_coat",
+   "color": "#d9b36f",
+   "mesh": "coat_far",
+   "lod": "mid+far",
+   "priority": 1.2,
+   "solid": false,
+   "center": [
+    -0.062,
+    0.3511,
+    0
+   ],
+   "radius": 0.6596,
+   "tris": 3714
   },
   {
    "id": "fur",
@@ -667,6 +793,7 @@
    "node": "dog_pads",
    "color": "#2b2220",
    "mesh": "paw_pads",
+   "lod": "near",
    "priority": 1.8,
    "center": [
     -0.1303,
@@ -3147,10 +3274,10 @@
   }
  ],
  "stats": {
-  "parts": 132,
-  "uniqueMeshTris": 373864,
+  "parts": 133,
+  "uniqueMeshTris": 377578,
   "nearTris": 68390,
-  "midTris": 50428,
-  "farTris": 50428
+  "midTris": 9682,
+  "farTris": 9682
  }
 }

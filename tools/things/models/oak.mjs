@@ -277,8 +277,8 @@ export default function build() {
     size_m: { height: M.height, crown_width: M.crownRx * 2, trunk_diameter: M.dbh }, height_m: M.height, radius_m: 12, draw_m: 700,
     seed: 2026,
     systems: [{ id: 'trunk', label: 'Trunk' }, { id: 'branches', label: 'Branches' }, { id: 'twigs', label: 'Twigs' }, { id: 'leaves', label: 'Leaves' }, { id: 'acorns', label: 'Acorns' }, { id: 'roots', label: 'Roots' }, { id: 'soil', label: 'Soil' }, { id: 'wood', label: 'Wood' }, { id: 'flow', label: 'Flow' }, { id: 'crown_far', label: 'Distant crown' }],
-    auto: { label: 'Auto', near_m: 40, near: 'whole', far: 'whole' },
-    lod: { near_m: 22, far_m: 75 },
+    anim: [{ kind: 'sway', systems: ['leaves'], from_y: 4, to_y: 20, amp_m: .02, hz: .3, label: 'Leaves' }],   // a light breeze moves the crown a little (shader only); illustrative
+    lod: { near_m: 17, far_m: 75 },
     shadow: { radius_m: 12, opacity: .9 },
     modes: [
       { id: 'whole', label: 'Whole tree', show: { trunk: 1, branches: 1, twigs: 1, leaves: 1, acorns: 1, crown_far: 1 } },
@@ -287,9 +287,9 @@ export default function build() {
       { id: 'flow', label: 'Water and sugar', show: { trunk: .2, branches: .2, twigs: .2, leaves: .16, roots: .2, flow: 1 }, flowOn: true, legend: { title: 'Two one-way streets', items: [{ name: 'Water and minerals, rising in the xylem', color: '#4aa3df', node: 'bio_water_transport' }, { name: 'Sugar solution, moving through the phloem', color: '#e0a526', node: 'bio_phloem_transport' }], note: 'A diagram of flow, not to scale in speed: the markers move much faster than real sap, and the real flows are carried in cells far too small to see here.' } },
     ],
     hotspots: [
-      { id: 'hs_rings', node: 'oak_growth_rings', at: [.08, M.logTop, -.18], label: 'Count the rings', r: .03, modes: ['wood'] },
-      { id: 'hs_cambium', node: 'oak_cambium', at: [Math.cos(th0 + .12) * (trunkR(th0 + .12, M.logTop) - M.barkT - M.phloemT - .003), M.logTop, Math.sin(th0 + .12) * (trunkR(th0 + .12, M.logTop) - M.barkT - M.phloemT - .003)], label: 'Cambium: where the tree grows wider', r: .025, modes: ['wood'] },
-      { id: 'hs_roottip', node: 'oak_root_hairs', at: rs[rtips[3]].p.map(v => +v.toFixed(2)), label: 'Root tip with root hairs', r: .12, modes: ['roots'] },
+      { id: 'hs_rings', node: 'oak_growth_rings', at: [.08, M.logTop, -.18], label: 'Count the rings', r: .03, pivot: 'wood', modes: ['wood'] },
+      { id: 'hs_cambium', node: 'oak_cambium', at: [Math.cos(th0 + .12) * (trunkR(th0 + .12, M.logTop) - M.barkT - M.phloemT - .003), M.logTop, Math.sin(th0 + .12) * (trunkR(th0 + .12, M.logTop) - M.barkT - M.phloemT - .003)], label: 'Cambium: where the tree grows wider', r: .025, pivot: 'wood', modes: ['wood'] },
+      { id: 'hs_roottip', node: 'oak_root_hairs', at: rs[rtips[3]].p.map(v => +v.toFixed(2)), label: 'Root tip with root hairs', deeper: { type: 'tissue2', id: 'root_tip', D: .003, button: 'Look at root hairs' }, r: .12, modes: ['roots'] },
       { id: 'hs_myc', node: 'oak_mycorrhiza', at: rs[rtips[9]].p.map(v => +v.toFixed(2)), label: 'Fungal partner', r: .12, modes: ['roots'] },
     ],
     parts: [

@@ -67,7 +67,14 @@ files = {
   'The close-up is a simplified view of soil grains and organisms, not a sample of real soil. ' + MODEL,
   [['Shown here', 'grass over soil (simplified model)']], parts=['oak_roots', 'oak_mycorrhiza'])],
 }
-import os
+import os, glob
+# Each thing's own generator (<thing>_nodes.py) owns its nodes file: do not overwrite a file another script in this folder writes
+mine = os.path.abspath(__file__)
+def owned(name):
+    for f in glob.glob(os.path.join(os.path.dirname(mine), '*_nodes.py')):
+        if os.path.abspath(f) != mine and ('data/nodes/' + name + '.json') in open(f).read(): return os.path.basename(f)
 for name, nodes in files.items():
+    o = owned(name)
+    if o: print('skipped', name, '(written by', o + ')'); continue
     json.dump(nodes, open(os.path.join('data/nodes', name + '.json'), 'w'), indent=1, ensure_ascii=False)
 print({k: [n['id'] for n in v] for k, v in files.items()})

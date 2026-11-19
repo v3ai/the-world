@@ -200,6 +200,7 @@
    ],
    "label": "Inside a fly agaric",
    "r": 0.004,
+   "pivot": "wood",
    "modes": [
     "wood"
    ]
@@ -213,7 +214,14 @@
     0.0006
    ],
    "label": "Inside a gill: the spore-making layer",
+   "deeper": {
+    "type": "tissue2",
+    "id": "mushroom_gill",
+    "D": 0.0006,
+    "button": "Look inside a gill"
+   },
    "r": 0.0025,
+   "pivot": "wood",
    "modes": [
     "wood"
    ]
@@ -228,6 +236,7 @@
    ],
    "label": "Flesh of the cap",
    "r": 0.0025,
+   "pivot": "wood",
    "modes": [
     "wood"
    ]
@@ -242,6 +251,7 @@
    ],
    "label": "Red skin of the cap",
    "r": 0.003,
+   "pivot": "wood",
    "modes": [
     "wood"
    ]
@@ -256,6 +266,7 @@
    ],
    "label": "Ring: the torn partial veil",
    "r": 0.0025,
+   "pivot": "wood",
    "modes": [
     "wood"
    ]
@@ -270,6 +281,7 @@
    ],
    "label": "Swollen base with scales",
    "r": 0.0025,
+   "pivot": "wood",
    "modes": [
     "wood"
    ]
@@ -284,6 +296,7 @@
    ],
    "label": "Inside the button",
    "r": 0.0025,
+   "pivot": "wood",
    "modes": [
     "wood"
    ]

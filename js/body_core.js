@@ -20,8 +20,12 @@ function bodyChooseHit(F, cands) {
   for (const c of cands) if (c.pri >= 3 && (!top || c.pri > top.pri)) top = c;
   if (top) return top;
   for (const c of cands) if ((c.obj.userData.shown || 0) >= BODY_VISIBLE_OP) return c;
-  return cands[0];
+  return PICK_HOVER ? null : cands[0];   // a click may still select a see-through layer; a tooltip must not name one (hovering a gap in a peeled chest said "Skin")
 }
+/* true while the hover tooltip is being worked out (set around engine.js doHover) */
+let PICK_HOVER = false;
+const _doHover0 = doHover;
+doHover = function () { PICK_HOVER = true; try { return _doHover0(); } finally { PICK_HOVER = false; } };
 
 /* ---------- regions ---------- */
 // Which segment of the body each bone belongs to; the region of a skin point is the segment of the nearest bone.
@@ -62,7 +66,7 @@ function boneCloud(F) {
    Names follow surface anatomy: chest above the costal margin, abdomen below it down to the hip bone, lower abdomen and pelvis
    below that; at the back upper back (thoracic), lower back (lumbar) and buttock. */
 function bodyRegion(F, p, normal) {
-  if (!F.parts || !F.parts.femur_l) return null;
+  if (F.type !== 'body' || !F.parts || !F.parts.femur_l) return null;
   const C = boneCloud(F), P = C.pos; let bd = Infinity, bi = 0;
   for (let i = 0, n = C.seg.length; i < n; i++) { const dx = P[i * 3] - p.x, dy = P[i * 3 + 1] - p.y, dz = P[i * 3 + 2] - p.z, d = dx * dx + dy * dy + dz * dz; if (d < bd) { bd = d; bi = i; } }
   let seg = C.segs[C.seg[bi]];
@@ -99,12 +103,13 @@ function bodyCoreSample(F, h) {
   if (!h || !h.ndc || !F.cam || !F.parts) return null;
   raycaster.setFromCamera(h.ndc, F.cam);
   const rows = [];
-  for (const id in F.parts) {
+  for (const id of F.coreIds ? F.coreIds() : Object.keys(F.parts)) {   // a frame may list the parts that count (a thing: the ones in its current detail tier)
     const part = F.parts[id], m = part.g.userData.main; m.updateWorldMatrix(true, false);
-    const hit = raycaster.intersectObjects(part.g.userData.shell ? [m, part.g.userData.shell] : [m], false)[0]; if (!hit) continue;
+    const hits = raycaster.intersectObjects(part.g.userData.shell ? [m, part.g.userData.shell] : [m], false), hit = F.coreClip ? hits.find(x => !F.coreClip(x.point)) : hits[0]; if (!hit) continue;   // coreClip: a cut-open view ignores what the cut has removed
     rows.push({ id, name: part.p.name, dist: hit.distance, point: hit.point.clone().add(F.C), normal: hit.face ? hit.face.normal.clone() : null, hit });
   }
   rows.sort((a, b) => a.dist - b.dist);
+  for (let i = rows.length - 1; i > 0; i--) if (rows[i].name === rows[i - 1].name && Math.abs(rows[i].dist - rows[i - 1].dist) < 1e-3) rows.splice(i, 1);   // the same organ listed under two layers (a heart in Organs and in Vessels) is one row
   if (!rows.length) return null;
   const skin = rows.find(r => r.id === 'skin') || rows[0];
   rows.forEach(r => r.depth = Math.max(0, r.dist - skin.dist));
@@ -118,9 +123,9 @@ function coreHtml(F, h) {
   const cm = d => d < .0005 ? 'surface' : d < .1 ? (d * 100).toFixed(1).replace(/\.0$/, '') + ' cm' : (d * 100).toFixed(0) + ' cm';
   const li = rows.slice(0, max).map((r, i) => `<li class="${r.id === cur ? 'cur' : ''}${F.hidden.has(r.id) ? ' off' : ''}"><button class="core-go" data-i="${i}">${r.name}</button><span class="dp">${cm(r.depth)}</span>${i > 0 ? `<button class="core-peel" data-i="${i}" title="Hide everything in front of this part">Peel to here</button>` : ''}</li>`).join('');
   const more = rows.length > max ? `<li class="more">and ${rows.length - max} more, deeper</li>` : '';
-  const cr = rows.find(r => r.id === cur), gap = cr && F.parts[cur] && cr.depth > .12 && peelRank(F.parts[cur].p) <= 2 ? `<p class="gap">Seen through a gap between the parts in front of it: this one is on the far side of the body, ${cm(cr.depth)} behind the skin.</p>` : '';
+  const body = F.type === 'body', T = F.coreText || {}, cr = rows.find(r => r.id === cur), gap = body && cr && F.parts[cur] && cr.depth > .12 && peelRank(F.parts[cur].p) <= 2 ? `<p class="gap">Seen through a gap between the parts in front of it: this one is on the far side of the body, ${cm(cr.depth)} behind the skin.</p>` : '';
   const where = S.region ? `<p class="where">You clicked your <b>${S.region.name}</b>.</p>${gap}` : gap;
-  return `<div class="core">${where}<div class="rh">Under this point, from the skin inward</div><ol>${li}${more}</ol><p class="cnote">Depths are on the model, an average adult: not a scan of you.</p></div>`;
+  return `<div class="core">${where}<div class="rh">${T.head || 'Under this point, from the skin inward'}</div><ol>${li}${more}</ol><p class="cnote">${T.note || 'Depths are on the model, an average adult: not a scan of you.'}</p></div>`;
 }
 function wireCore(F, h) {
   const S = h.stack; if (!S) return;

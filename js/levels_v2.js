@@ -991,8 +991,7 @@ BUILD.life = (c) => {
   pond.rotation.x = -Math.PI / 2; pond.position.set(5, .03, -4); pond.scale.set(3, 2.3, 1); pond.userData = { id: 'pond' }; g.add(pond); c.pickables.push(pond);
   for (let i = 0; i < 22; i++) { const a = i / 22 * TAU; const s = new THREE.Mesh(new THREE.DodecahedronGeometry(.18 + r() * .14, 0), smat(0x8a8a86, { roughness: .9 })); s.position.set(5 + Math.cos(a) * 3.05, .05, -4 + Math.sin(a) * 2.35); s.castShadow = true; g.add(s); }
   c.addLabel(pond, 'Pond', { offset: new V3(0, .5, 0) });
-  // the honey bee is a data thing now (data/things/bee, placed from data/things/index.json); here only its park label and a ruler stop
-  { const beeAt = new THREE.Object3D(); beeAt.position.set(2.7013, .3235, 2.1946); g.add(beeAt); const bl = c.addLabel(beeAt, 'Honey bee, 14 mm', { offset: new V3(0, .5, 0) }); bl.minSizeFn = () => cam.D > 8.5; }   // the thing's own name label takes over when the camera is within about 8 m
+  // the honey bee is a data thing now (data/things/bee, placed on a buttercup flower from data/things/index.json); its label and ruler stop come from its own data (label, label_m, ruler)
   // mushroom: now a data-driven thing (data/things/mushroom, FT.thing); this empty group keeps the old click id 'mushroom' as a place to fly to
   const mush = new THREE.Group(); mush.position.set(-3.4, .1, -1.6); mush.userData = { id: 'mushroom', node: 'park_mushroom' }; g.add(mush);
   // clouds
@@ -1572,5 +1571,4 @@ BUILD.universe = (c) => {
   const cb = actBtn('🌌 Show the oldest light', () => { cmbOn = !cmbOn; cmb.visible = cmbOn; cb.innerHTML = cmbOn ? '🌌 Hide the oldest light' : '🌌 Show the oldest light'; if (cmbOn) showInfo('cmb'); });
 };
 
-// ruler stop and search entry for the honey bee (14 mm, standing on a flower of the patch): a visitor can fly straight to it at true size
-WORLD_EXT.push(async FRb => { EXT_LANDMARKS.push({ label: 'Honey bee (14 mm)', D: .05, side: true, go: then => { FRb.park.ensure && FRb.park.ensure(); flyTo(FRb.thing_bee || FRb.park, new V3(.001, .3285, 0), .05, then); } }); });
+// (the honey bee's ruler stop is declared in its own data: `ruler` in data/things/bee/thing.json, added by js/things.js)

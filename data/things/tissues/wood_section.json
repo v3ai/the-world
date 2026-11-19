@@ -1,4 +1,6 @@
 {
+ "tag": "Inside wood",
+ "cell": "plant",
  "id": "wood_section",
  "title": "Inside oak wood",
  "node": "oak_growth_rings",
