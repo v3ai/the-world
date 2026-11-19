@@ -1,0 +1,4 @@
+# Topic cards that the app places at a part of the phone (or similar) only loosely related to the topic.
+# Search shows them as cards ("No 3D model yet") instead of promising a model; the card itself still opens normally.
+# One node id per line.
+photodetectors_solar

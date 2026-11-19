@@ -1,0 +1,3518 @@
+{
+"anatParts": [
+{
+"id": "skin",
+"name": "Skin",
+"node": "skin"
+},
+{
+"id": "skull",
+"name": "Skull (cranium and face)",
+"node": "skull"
+},
+{
+"id": "mandible",
+"name": "Mandible",
+"node": "mandible"
+},
+{
+"id": "teeth",
+"name": "Teeth",
+"node": "teeth"
+},
+{
+"id": "hyoid",
+"name": "Hyoid bone",
+"node": "hyoid"
+},
+{
+"id": "cervical_spine",
+"name": "Cervical vertebrae (C1-C7)",
+"node": "cervical_spine"
+},
+{
+"id": "thoracic_spine",
+"name": "Thoracic vertebrae (T1-T12)",
+"node": "thoracic_spine"
+},
+{
+"id": "lumbar_spine",
+"name": "Lumbar vertebrae (L1-L5)",
+"node": "lumbar_spine"
+},
+{
+"id": "sacrum",
+"name": "Sacrum",
+"node": "sacrum"
+},
+{
+"id": "intervertebral_discs",
+"name": "Intervertebral discs",
+"node": "intervertebral_discs"
+},
+{
+"id": "sternum",
+"name": "Sternum",
+"node": "sternum"
+},
+{
+"id": "ribs_l",
+"name": "Ribs and costal cartilages (Left)",
+"node": "ribcage"
+},
+{
+"id": "clavicle_l",
+"name": "Clavicle (Left)",
+"node": "clavicle_l"
+},
+{
+"id": "scapula_l",
+"name": "Scapula (Left)",
+"node": "scapula_l"
+},
+{
+"id": "humerus_l",
+"name": "Humerus (Left)",
+"node": "humerus_l"
+},
+{
+"id": "radius_l",
+"name": "Radius (Left)",
+"node": "radius_ulna_l"
+},
+{
+"id": "ulna_l",
+"name": "Ulna (Left)",
+"node": "radius_ulna_l"
+},
+{
+"id": "hand_bones_l",
+"name": "Hand bones (Left)",
+"node": "hand_bones_l"
+},
+{
+"id": "hip_bone_l",
+"name": "Hip bone (Left)",
+"node": "pelvis"
+},
+{
+"id": "femur_l",
+"name": "Femur (Left)",
+"node": "femur_l"
+},
+{
+"id": "patella_l",
+"name": "Patella (Left)",
+"node": "patella_l"
+},
+{
+"id": "tibia_l",
+"name": "Tibia (Left)",
+"node": "tibia_fibula_l"
+},
+{
+"id": "fibula_l",
+"name": "Fibula (Left)",
+"node": "tibia_fibula_l"
+},
+{
+"id": "foot_bones_l",
+"name": "Foot bones (Left)",
+"node": "foot_bones_l"
+},
+{
+"id": "ribs_r",
+"name": "Ribs and costal cartilages (Right)",
+"node": "ribcage"
+},
+{
+"id": "clavicle_r",
+"name": "Clavicle (Right)",
+"node": "clavicle_r"
+},
+{
+"id": "scapula_r",
+"name": "Scapula (Right)",
+"node": "scapula_r"
+},
+{
+"id": "humerus_r",
+"name": "Humerus (Right)",
+"node": "humerus_r"
+},
+{
+"id": "radius_r",
+"name": "Radius (Right)",
+"node": "radius_ulna_r"
+},
+{
+"id": "ulna_r",
+"name": "Ulna (Right)",
+"node": "radius_ulna_r"
+},
+{
+"id": "hand_bones_r",
+"name": "Hand bones (Right)",
+"node": "hand_bones_r"
+},
+{
+"id": "hip_bone_r",
+"name": "Hip bone (Right)",
+"node": "pelvis"
+},
+{
+"id": "femur_r",
+"name": "Femur (Right)",
+"node": "femur_r"
+},
+{
+"id": "patella_r",
+"name": "Patella (Right)",
+"node": "patella_r"
+},
+{
+"id": "tibia_r",
+"name": "Tibia (Right)",
+"node": "tibia_fibula_r"
+},
+{
+"id": "fibula_r",
+"name": "Fibula (Right)",
+"node": "tibia_fibula_r"
+},
+{
+"id": "foot_bones_r",
+"name": "Foot bones (Right)",
+"node": "foot_bones_r"
+},
+{
+"id": "pectoralis_major_l",
+"name": "Pectoralis major (Left)",
+"node": "pectoralis_major"
+},
+{
+"id": "deltoid_l",
+"name": "Deltoid (Left)",
+"node": "deltoid"
+},
+{
+"id": "biceps_brachii_l",
+"name": "Biceps brachii (Left)",
+"node": "biceps_brachii"
+},
+{
+"id": "triceps_brachii_l",
+"name": "Triceps brachii (Left)",
+"node": "triceps_brachii"
+},
+{
+"id": "trapezius_l",
+"name": "Trapezius (Left)",
+"node": "trapezius"
+},
+{
+"id": "sternocleidomastoid_l",
+"name": "Sternocleidomastoid (Left)",
+"node": "sternocleidomastoid"
+},
+{
+"id": "gluteus_maximus_l",
+"name": "Gluteus maximus (Left)",
+"node": "gluteus_maximus"
+},
+{
+"id": "quadriceps_l",
+"name": "Quadriceps femoris (Left)",
+"node": "quadriceps"
+},
+{
+"id": "hamstrings_l",
+"name": "Hamstrings (Left)",
+"node": "hamstrings"
+},
+{
+"id": "gastrocnemius_l",
+"name": "Gastrocnemius (Left)",
+"node": "gastrocnemius"
+},
+{
+"id": "forearm_muscles_l",
+"name": "Forearm muscles (Left)",
+"node": "forearm_muscles"
+},
+{
+"id": "back_muscles_l",
+"name": "Back muscles incl. latissimus dorsi (Left)",
+"node": "latissimus_dorsi"
+},
+{
+"id": "pectoralis_major_r",
+"name": "Pectoralis major (Right)",
+"node": "pectoralis_major"
+},
+{
+"id": "deltoid_r",
+"name": "Deltoid (Right)",
+"node": "deltoid"
+},
+{
+"id": "biceps_brachii_r",
+"name": "Biceps brachii (Right)",
+"node": "biceps_brachii"
+},
+{
+"id": "triceps_brachii_r",
+"name": "Triceps brachii (Right)",
+"node": "triceps_brachii"
+},
+{
+"id": "trapezius_r",
+"name": "Trapezius (Right)",
+"node": "trapezius"
+},
+{
+"id": "sternocleidomastoid_r",
+"name": "Sternocleidomastoid (Right)",
+"node": "sternocleidomastoid"
+},
+{
+"id": "gluteus_maximus_r",
+"name": "Gluteus maximus (Right)",
+"node": "gluteus_maximus"
+},
+{
+"id": "quadriceps_r",
+"name": "Quadriceps femoris (Right)",
+"node": "quadriceps"
+},
+{
+"id": "hamstrings_r",
+"name": "Hamstrings (Right)",
+"node": "hamstrings"
+},
+{
+"id": "gastrocnemius_r",
+"name": "Gastrocnemius (Right)",
+"node": "gastrocnemius"
+},
+{
+"id": "forearm_muscles_r",
+"name": "Forearm muscles (Right)",
+"node": "forearm_muscles"
+},
+{
+"id": "back_muscles_r",
+"name": "Back muscles incl. latissimus dorsi (Right)",
+"node": "latissimus_dorsi"
+},
+{
+"id": "diaphragm",
+"name": "Diaphragm",
+"node": "diaphragm"
+},
+{
+"id": "abdominal_muscles",
+"name": "Abdominal wall muscles (rectus abdominis, obliques)",
+"node": "rectus_abdominis"
+},
+{
+"id": "cerebrum_l",
+"name": "Cerebral hemisphere (Left)",
+"node": "brain"
+},
+{
+"id": "cerebrum_r",
+"name": "Cerebral hemisphere (Right)",
+"node": "brain"
+},
+{
+"id": "cerebellum",
+"name": "Cerebellum",
+"node": "cerebellum"
+},
+{
+"id": "brainstem",
+"name": "Brainstem (midbrain, pons, medulla)",
+"node": "brainstem"
+},
+{
+"id": "heart",
+"name": "Heart",
+"node": "heart"
+},
+{
+"id": "aorta",
+"name": "Aorta",
+"node": "aorta"
+},
+{
+"id": "pulmonary_trunk",
+"name": "Pulmonary trunk",
+"node": "blood_vessels"
+},
+{
+"id": "superior_vena_cava",
+"name": "Superior vena cava",
+"node": "vena_cava"
+},
+{
+"id": "inferior_vena_cava",
+"name": "Inferior vena cava",
+"node": "vena_cava"
+},
+{
+"id": "coronary_arteries",
+"name": "Coronary arteries",
+"node": "coronary_arteries"
+},
+{
+"id": "pulmonary_vessels",
+"name": "Pulmonary vessels",
+"node": "blood_vessels"
+},
+{
+"id": "carotid_l",
+"name": "Common carotid artery (Left)",
+"node": "carotid_arteries"
+},
+{
+"id": "arteries_arm_l",
+"name": "Arm arteries (Left)",
+"node": "blood_vessels"
+},
+{
+"id": "arteries_leg_l",
+"name": "Leg arteries incl. femoral (Left)",
+"node": "blood_vessels"
+},
+{
+"id": "veins_leg_l",
+"name": "Leg veins incl. femoral (Left)",
+"node": "blood_vessels"
+},
+{
+"id": "carotid_r",
+"name": "Common carotid artery (Right)",
+"node": "carotid_arteries"
+},
+{
+"id": "arteries_arm_r",
+"name": "Arm arteries (Right)",
+"node": "blood_vessels"
+},
+{
+"id": "arteries_leg_r",
+"name": "Leg arteries incl. femoral (Right)",
+"node": "blood_vessels"
+},
+{
+"id": "veins_leg_r",
+"name": "Leg veins incl. femoral (Right)",
+"node": "blood_vessels"
+},
+{
+"id": "arteries_head",
+"name": "Arteries of head and neck",
+"node": "blood_vessels"
+},
+{
+"id": "arteries_thorax",
+"name": "Arteries of thorax (subclavian, brachiocephalic...)",
+"node": "blood_vessels"
+},
+{
+"id": "arteries_abdomen",
+"name": "Arteries of abdomen and pelvis",
+"node": "blood_vessels"
+},
+{
+"id": "veins_thorax",
+"name": "Veins of thorax",
+"node": "blood_vessels"
+},
+{
+"id": "veins_abdomen",
+"name": "Veins of abdomen and pelvis (incl. portal system)",
+"node": "blood_vessels"
+},
+{
+"id": "lung_l",
+"name": "Left lung",
+"node": "lung_l"
+},
+{
+"id": "lung_r",
+"name": "Right lung",
+"node": "lung_r"
+},
+{
+"id": "trachea",
+"name": "Trachea",
+"node": "trachea"
+},
+{
+"id": "bronchi",
+"name": "Bronchial tree",
+"node": "bronchi"
+},
+{
+"id": "larynx",
+"name": "Larynx (thyroid, cricoid, epiglottis, arytenoid cartilages)",
+"node": "larynx"
+},
+{
+"id": "esophagus",
+"name": "Esophagus",
+"node": "esophagus"
+},
+{
+"id": "stomach",
+"name": "Stomach",
+"node": "stomach"
+},
+{
+"id": "liver",
+"name": "Liver",
+"node": "liver"
+},
+{
+"id": "gallbladder",
+"name": "Gallbladder",
+"node": "gallbladder"
+},
+{
+"id": "pancreas",
+"name": "Pancreas",
+"node": "pancreas"
+},
+{
+"id": "small_intestine",
+"name": "Small intestine (duodenum, jejunum, ileum)",
+"node": "small_intestine"
+},
+{
+"id": "colon",
+"name": "Colon (ascending, transverse, descending)",
+"node": "large_intestine"
+},
+{
+"id": "rectum",
+"name": "Rectum",
+"node": "large_intestine"
+},
+{
+"id": "appendix",
+"name": "Appendix",
+"node": "large_intestine"
+},
+{
+"id": "tongue",
+"name": "Tongue",
+"node": "tongue"
+},
+{
+"id": "kidney_l",
+"name": "Kidney (Left)",
+"node": "kidney_l"
+},
+{
+"id": "ureter_l",
+"name": "Ureter (Left)",
+"node": "ureters"
+},
+{
+"id": "kidney_r",
+"name": "Kidney (Right)",
+"node": "kidney_r"
+},
+{
+"id": "ureter_r",
+"name": "Ureter (Right)",
+"node": "ureters"
+},
+{
+"id": "bladder",
+"name": "Urinary bladder",
+"node": "bladder"
+},
+{
+"id": "adrenal_l",
+"name": "Adrenal gland (Left)",
+"node": "adrenal_glands"
+},
+{
+"id": "adrenal_r",
+"name": "Adrenal gland (Right)",
+"node": "adrenal_glands"
+},
+{
+"id": "pituitary",
+"name": "Pituitary gland",
+"node": "pituitary_gland"
+},
+{
+"id": "spleen",
+"name": "Spleen",
+"node": "spleen"
+},
+{
+"id": "thymus",
+"name": "Thymus",
+"node": "thymus"
+},
+{
+"id": "eyeball_l",
+"name": "Eyeball (Left)",
+"node": "eye_l"
+},
+{
+"id": "eyeball_r",
+"name": "Eyeball (Right)",
+"node": "eye_r"
+}
+],
+"goto_near": {
+"thyroid": "larynx"
+},
+"landmarks": [
+{
+"D": 3e-15,
+"label": "Proton",
+"side": false
+},
+{
+"D": 2.2e-14,
+"label": "Oxygen nucleus",
+"side": false
+},
+{
+"D": 3.2e-10,
+"label": "Oxygen atom",
+"side": false
+},
+{
+"D": 3e-09,
+"label": "Base pair (molecule)",
+"side": false
+},
+{
+"D": 2e-08,
+"label": "DNA",
+"side": false
+},
+{
+"D": 4e-05,
+"label": "Skin cell",
+"side": false
+},
+{
+"D": 0.0015,
+"label": "Your skin",
+"side": false
+},
+{
+"D": 0.3,
+"label": "Your phone",
+"side": true
+},
+{
+"D": 0.018,
+"label": "Phone processor",
+"side": true
+},
+{
+"D": 0.003,
+"label": "CPU core",
+"side": true
+},
+{
+"D": 6e-06,
+"label": "Logic gates",
+"side": true
+},
+{
+"D": 2.4e-07,
+"label": "Transistor",
+"side": true
+},
+{
+"D": 0.30129199561959036,
+"label": "Your brain",
+"side": true
+},
+{
+"D": 0.16302,
+"label": "Your heart",
+"side": true
+},
+{
+"D": 6,
+"label": "You",
+"side": false
+},
+{
+"D": 700,
+"label": "Greenwich Park",
+"side": false
+},
+{
+"D": 80000,
+"label": "London",
+"side": false
+},
+{
+"D": 30000000,
+"label": "Earth",
+"side": false
+},
+{
+"D": 1400000000,
+"label": "Earth & Moon",
+"side": false
+},
+{
+"D": 700000000000,
+"label": "Inner planets",
+"side": false
+},
+{
+"D": 15000000000000,
+"label": "Solar system (to Neptune)",
+"side": false
+},
+{
+"D": 4000000000000000,
+"label": "Oort cloud",
+"side": false
+},
+{
+"D": 500000000000000000,
+"label": "Nearest stars",
+"side": false
+},
+{
+"D": 6000000000000000000,
+"label": "Local stars",
+"side": false
+},
+{
+"D": 300000000000,
+"label": "Black hole Sgr A*",
+"side": true
+},
+{
+"D": 2e+21,
+"label": "Milky Way",
+"side": false
+},
+{
+"D": 2e+23,
+"label": "Local Group",
+"side": false
+},
+{
+"D": 4e+24,
+"label": "Cosmic web",
+"side": false
+},
+{
+"D": 2e+27,
+"label": "Observable universe",
+"side": false
+},
+{
+"D": 0.05,
+"label": "Honey bee (14 mm)",
+"side": true
+},
+{
+"D": 3000000000,
+"label": "The Sun",
+"side": false
+},
+{
+"D": 1200000000,
+"label": "Inside the Sun (cut-away)",
+"side": true
+},
+{
+"D": 260000000,
+"label": "The Sun's core",
+"side": true
+},
+{
+"D": 3.8e-17,
+"label": "Standard Model",
+"side": false
+}
+],
+"nodes": {
+"adders_arithmetic": "tear",
+"adrenal_glands": "part",
+"alu_design": "tear",
+"alveoli": "hotspot",
+"amygdala": "hotspot",
+"antenna_fundamentals": "tear",
+"aorta": "part",
+"aortic_valve": "hotspot",
+"at_el_Ac": "atom",
+"at_el_Ag": "atom",
+"at_el_Al": "atom",
+"at_el_Am": "atom",
+"at_el_Ar": "atom",
+"at_el_As": "atom",
+"at_el_At": "atom",
+"at_el_Au": "atom",
+"at_el_B": "atom",
+"at_el_Ba": "atom",
+"at_el_Be": "atom",
+"at_el_Bh": "atom",
+"at_el_Bi": "atom",
+"at_el_Bk": "atom",
+"at_el_Br": "atom",
+"at_el_C": "atom",
+"at_el_Ca": "atom",
+"at_el_Cd": "atom",
+"at_el_Ce": "atom",
+"at_el_Cf": "atom",
+"at_el_Cl": "atom",
+"at_el_Cm": "atom",
+"at_el_Cn": "atom",
+"at_el_Co": "atom",
+"at_el_Cr": "atom",
+"at_el_Cs": "atom",
+"at_el_Cu": "atom",
+"at_el_Db": "atom",
+"at_el_Ds": "atom",
+"at_el_Dy": "atom",
+"at_el_Er": "atom",
+"at_el_Es": "atom",
+"at_el_Eu": "atom",
+"at_el_F": "atom",
+"at_el_Fe": "atom",
+"at_el_Fl": "atom",
+"at_el_Fm": "atom",
+"at_el_Fr": "atom",
+"at_el_Ga": "atom",
+"at_el_Gd": "atom",
+"at_el_Ge": "atom",
+"at_el_H": "atom",
+"at_el_He": "atom",
+"at_el_Hf": "atom",
+"at_el_Hg": "atom",
+"at_el_Ho": "atom",
+"at_el_Hs": "atom",
+"at_el_I": "atom",
+"at_el_In": "atom",
+"at_el_Ir": "atom",
+"at_el_K": "atom",
+"at_el_Kr": "atom",
+"at_el_La": "atom",
+"at_el_Li": "atom",
+"at_el_Lr": "atom",
+"at_el_Lu": "atom",
+"at_el_Lv": "atom",
+"at_el_Mc": "atom",
+"at_el_Md": "atom",
+"at_el_Mg": "atom",
+"at_el_Mn": "atom",
+"at_el_Mo": "atom",
+"at_el_Mt": "atom",
+"at_el_N": "atom",
+"at_el_Na": "atom",
+"at_el_Nb": "atom",
+"at_el_Nd": "atom",
+"at_el_Ne": "atom",
+"at_el_Nh": "atom",
+"at_el_Ni": "atom",
+"at_el_No": "atom",
+"at_el_Np": "atom",
+"at_el_O": "atom",
+"at_el_Og": "atom",
+"at_el_Os": "atom",
+"at_el_P": "atom",
+"at_el_Pa": "atom",
+"at_el_Pb": "atom",
+"at_el_Pd": "atom",
+"at_el_Pm": "atom",
+"at_el_Po": "atom",
+"at_el_Pr": "atom",
+"at_el_Pt": "atom",
+"at_el_Pu": "atom",
+"at_el_Ra": "atom",
+"at_el_Rb": "atom",
+"at_el_Re": "atom",
+"at_el_Rf": "atom",
+"at_el_Rg": "atom",
+"at_el_Rh": "atom",
+"at_el_Rn": "atom",
+"at_el_Ru": "atom",
+"at_el_S": "atom",
+"at_el_Sb": "atom",
+"at_el_Sc": "atom",
+"at_el_Se": "atom",
+"at_el_Sg": "atom",
+"at_el_Si": "atom",
+"at_el_Sm": "atom",
+"at_el_Sn": "atom",
+"at_el_Sr": "atom",
+"at_el_Ta": "atom",
+"at_el_Tb": "atom",
+"at_el_Tc": "atom",
+"at_el_Te": "atom",
+"at_el_Th": "atom",
+"at_el_Ti": "atom",
+"at_el_Tl": "atom",
+"at_el_Tm": "atom",
+"at_el_Ts": "atom",
+"at_el_U": "atom",
+"at_el_V": "atom",
+"at_el_W": "atom",
+"at_el_Xe": "atom",
+"at_el_Y": "atom",
+"at_el_Yb": "atom",
+"at_el_Zn": "atom",
+"at_el_Zr": "atom",
+"av_node": "hotspot",
+"basal_ganglia": "hotspot",
+"batteries_electrochem": "tear",
+"battery_storage_systems": "tear",
+"bee_abdomen": "thing",
+"bee_air_sacs": "thing",
+"bee_antenna": "thing",
+"bee_antenna_cleaner": "thing",
+"bee_brain": "thing",
+"bee_compound_eye": "thing",
+"bee_crop": "thing",
+"bee_flight_muscles": "thing",
+"bee_foot": "thing",
+"bee_hairs": "thing",
+"bee_hamuli": "thing",
+"bee_head": "thing",
+"bee_heart": "thing",
+"bee_hindgut": "thing",
+"bee_hypopharyngeal_gland": "thing",
+"bee_leg": "thing",
+"bee_malpighian": "thing",
+"bee_mandibles": "thing",
+"bee_midgut": "thing",
+"bee_mushroom_bodies": "thing",
+"bee_nasonov": "thing",
+"bee_nerve_cord": "thing",
+"bee_ocelli": "thing",
+"bee_oesophagus": "thing",
+"bee_other_muscles": "thing",
+"bee_ovaries": "thing",
+"bee_pollen_basket": "thing",
+"bee_pollen_load": "thing",
+"bee_proboscis": "thing",
+"bee_proventriculus": "thing",
+"bee_spiracles": "thing",
+"bee_sting": "thing",
+"bee_thorax": "thing",
+"bee_tracheae": "thing",
+"bee_venom_sac": "thing",
+"bee_wax_glands": "thing",
+"bee_wing_hinge": "thing",
+"bee_wings": "thing",
+"biceps_brachii": "part",
+"bio_acid_base_organic": "mol",
+"bio_acid_base_physiology": "via:organ",
+"bio_acids_bases_ph": "mol",
+"bio_active_site_induced_fit": "mol",
+"bio_acyl_substitution": "mol",
+"bio_adaptive_radiation": "place",
+"bio_advanced_endocrinology": "via:near",
+"bio_algae_green_origin": "place",
+"bio_alleles_genotype": "place",
+"bio_allostery": "mol",
+"bio_amino_acid_catabolism": "mol",
+"bio_amino_acids": "mol",
+"bio_animal_features": "place",
+"bio_antibiotic_resistance": "place",
+"bio_antibiotics": "mol",
+"bio_apoptosis": "place",
+"bio_arachnids_crustaceans": "place",
+"bio_archaea": "place",
+"bio_astrobiology": "place",
+"bio_atoms_isotopes": "place",
+"bio_atp_energy_coupling": "mol",
+"bio_autonomic_reflexes": "via:part",
+"bio_axis_symmetry_breaking": "place",
+"bio_bacterial_diversity": "place",
+"bio_bacterial_structure": "place",
+"bio_bacteriophages": "place",
+"bio_behavior_proximate_ultimate": "place",
+"bio_beta_oxidation": "mol",
+"bio_biodiversity_crisis": "place",
+"bio_biofilms_quorum": "place",
+"bio_biogeochemical_cycles_concept": "place",
+"bio_biogeography_island": "place",
+"bio_bioinformatics_advanced": "place",
+"bio_biomes": "place",
+"bio_biophysics_elective": "place",
+"bio_blood_pressure_control": "via:organ",
+"bio_brain_organization": "via:organ",
+"bio_bryophytes_seedless": "thing",
+"bio_buffers": "mol",
+"bio_calvin_cycle": "mol",
+"bio_cancer_gene_regulation": "place",
+"bio_cancer_hallmarks": "place",
+"bio_carbon_chemistry": "mol",
+"bio_carbonyl_chemistry": "mol",
+"bio_cell_cycle": "place",
+"bio_cell_cycle_control": "place",
+"bio_cell_size_limits": "place",
+"bio_cell_theory": "place",
+"bio_central_dogma": "place",
+"bio_chaperones_proteostasis": "place",
+"bio_characteristics_life": "place",
+"bio_chemiosmosis_atp_synthase": "mol",
+"bio_chirality": "mol",
+"bio_chloroplasts_plastids": "place",
+"bio_chromatin_packaging": "place",
+"bio_chromatin_remodeling_histone_code": "place",
+"bio_chromosomal_aberrations": "place",
+"bio_chromosome_theory": "place",
+"bio_cleavage_blastula": "place",
+"bio_climate_change_biology": "place",
+"bio_cofactors_coenzymes": "mol",
+"bio_community_structure": "place",
+"bio_comparative_circulation": "via:organ",
+"bio_comparative_human_genomics": "place",
+"bio_competition_predation": "place",
+"bio_conformations": "mol",
+"bio_conservation_genomics": "place",
+"bio_conservation_strategies": "place",
+"bio_countercurrent_exchange": "via:hotspot",
+"bio_covalent_regulation": "mol",
+"bio_crispr_cas9": "place",
+"bio_crop_domestication": "place",
+"bio_cytokinesis_prokaryotic_division": "place",
+"bio_deuterostome_protostome": "place",
+"bio_developmental_signaling": "place",
+"bio_diffusion_osmosis": "mol",
+"bio_disaccharides": "mol",
+"bio_dna_damage_repair": "place",
+"bio_dna_structure": "place",
+"bio_dominance_extensions": "mol",
+"bio_drift_flow_selection_pop": "place",
+"bio_echinoderms_chordates": "place",
+"bio_ecology_scope": "place",
+"bio_ecosystem_services": "place",
+"bio_ecosystem_stability": "place",
+"bio_electrolytes_ions": "place",
+"bio_electron_shells": "place",
+"bio_electron_transport_chain": "mol",
+"bio_emerging_viruses": "place",
+"bio_endosymbiosis": "place",
+"bio_entomology_insects": "place",
+"bio_enzyme_catalysis": "mol",
+"bio_enzyme_inhibition": "mol",
+"bio_epigenetics": "place",
+"bio_epistasis_pleiotropy": "place",
+"bio_eukaryotic_gene_regulation": "place",
+"bio_evidence_for_evolution": "place",
+"bio_evolution_of_flight": "place",
+"bio_excretion_nitrogen": "via:hotspot",
+"bio_experimental_evolution": "place",
+"bio_exponential_logistic_growth": "place",
+"bio_fatty_acid_synthesis": "mol",
+"bio_fatty_acids_fats": "mol",
+"bio_fermentation": "mol",
+"bio_field_methods": "place",
+"bio_fischer_cyclic_sugars": "mol",
+"bio_fishes_amphibians": "place",
+"bio_food_webs_energy_flow": "place",
+"bio_functional_groups": "mol",
+"bio_fungal_ecology": "place",
+"bio_fungi_basics": "place",
+"bio_gastrulation_germ_layers": "place",
+"bio_gel_electrophoresis": "mol",
+"bio_gene_therapy": "place",
+"bio_genetic_code": "mol",
+"bio_genetic_counseling_screening": "place",
+"bio_genetic_screens": "place",
+"bio_genome_assembly": "place",
+"bio_genome_organization": "place",
+"bio_geologic_time": "place",
+"bio_gfp_reporters": "mol",
+"bio_gibbs_free_energy": "mol",
+"bio_gluconeogenesis": "mol",
+"bio_glycolysis": "mol",
+"bio_gmo_transgenics": "place",
+"bio_gwas": "place",
+"bio_hardy_weinberg": "place",
+"bio_hearing_chemosense": "via:hotspot",
+"bio_hematopoiesis": "via:part",
+"bio_hemoglobin_cooperativity": "mol",
+"bio_horizontal_gene_transfer": "place",
+"bio_hox_developmental_genes": "place",
+"bio_human_evolution": "place",
+"bio_inbreeding_conservation_genetics": "place",
+"bio_ionic_covalent": "mol",
+"bio_isomers": "mol",
+"bio_kin_selection_behavior_evo": "place",
+"bio_krebs_cycle": "mol",
+"bio_lac_operon": "place",
+"bio_leaf_structure_gas_exchange": "place",
+"bio_learning_social_behavior": "place",
+"bio_levels_organization": "place",
+"bio_lichens_fungal_biotech": "thing",
+"bio_life_history_regulation": "place",
+"bio_light_reactions": "mol",
+"bio_linkage_mapping": "place",
+"bio_lophotrochozoans": "place",
+"bio_macroevolution_evodevo": "place",
+"bio_macromolecule_synthesis": "mol",
+"bio_mammals_primates": "place",
+"bio_marine_biology": "place",
+"bio_mass_extinctions": "place",
+"bio_meiosis_variation": "place",
+"bio_membrane_lipids": "mol",
+"bio_mendel_laws": "place",
+"bio_metabolic_integration": "via:organ",
+"bio_metabolic_regulation": "mol",
+"bio_metabolism_overview": "mol",
+"bio_metagenomics": "place",
+"bio_metapopulations_human_growth": "place",
+"bio_michaelis_menten": "mol",
+"bio_microbial_ecology_elective": "place",
+"bio_microbial_growth": "place",
+"bio_microbial_metabolism": "place",
+"bio_migration_navigation": "place",
+"bio_model_organisms": "place",
+"bio_molecular_clock": "place",
+"bio_monosaccharides": "mol",
+"bio_morphogens_gradients": "place",
+"bio_mutations": "place",
+"bio_natural_selection": "place",
+"bio_nematodes_arthropods": "place",
+"bio_nervous_disorders": "via:organ",
+"bio_neuro_methods": "via:organ",
+"bio_neurulation_organogenesis": "place",
+"bio_neutral_theory_drift": "place",
+"bio_ngs": "place",
+"bio_noncoding_rna": "place",
+"bio_noncovalent_forces": "mol",
+"bio_nuclear_receptors": "mol",
+"bio_nucleophile_electrophile": "mol",
+"bio_nucleotides": "mol",
+"bio_organoids_regeneration": "place",
+"bio_origin_of_life": "place",
+"bio_osmoregulation": "via:organ",
+"bio_oxygen_transport_diving": "mol",
+"bio_parasites_helminths": "place",
+"bio_pathogenesis": "place",
+"bio_pcr": "mol",
+"bio_pentose_phosphate_pathway": "mol",
+"bio_peptide_bond": "mol",
+"bio_pharmacology_adme": "mol",
+"bio_phloem_transport": "thing",
+"bio_phosphoryl_transfer": "mol",
+"bio_photosynthesis_overview": "place",
+"bio_photosynthetic_adaptations": "place",
+"bio_phylogenetic_methods": "place",
+"bio_phylogeny_cladistics": "place",
+"bio_plant_body_tissues": "place",
+"bio_plant_development_flower": "place",
+"bio_plant_embryogenesis_note": "place",
+"bio_plant_hormones": "place",
+"bio_plant_nutrition_soil": "thing",
+"bio_plant_pathogens_defense": "place",
+"bio_plant_polyploidy": "place",
+"bio_plant_reproduction": "place",
+"bio_plant_responses": "place",
+"bio_plant_secondary_metabolites": "place",
+"bio_plant_stress_drought": "place",
+"bio_polarity_hbonds": "mol",
+"bio_pollination_networks": "place",
+"bio_polysaccharides": "mol",
+"bio_population_genetics": "place",
+"bio_population_structure": "place",
+"bio_post_transcriptional_control": "place",
+"bio_primary_production_decomposition": "place",
+"bio_prokaryote_eukaryote": "place",
+"bio_protein_folding": "mol",
+"bio_protein_structure": "mol",
+"bio_protists": "place",
+"bio_pyruvate_oxidation": "mol",
+"bio_quantitative_traits": "place",
+"bio_recombinant_expression": "mol",
+"bio_recombination_transposons": "place",
+"bio_redox_biology": "mol",
+"bio_redox_organic": "mol",
+"bio_replication_machinery": "place",
+"bio_reptiles_birds": "place",
+"bio_resonance_aromatic": "mol",
+"bio_restriction_cloning": "place",
+"bio_riboswitches_ribozymes": "place",
+"bio_rna_processing": "place",
+"bio_rna_types": "mol",
+"bio_rna_world_luca": "place",
+"bio_roots_mycorrhiza": "place",
+"bio_sanger_sequencing": "place",
+"bio_scientific_method": "place",
+"bio_second_messengers": "mol",
+"bio_seed_plants": "place",
+"bio_selection_modes": "place",
+"bio_sex_determination_development": "place",
+"bio_sex_linkage": "place",
+"bio_sexual_selection": "place",
+"bio_single_gene_disorders": "place",
+"bio_sleep_circadian": "via:hotspot",
+"bio_soil_ecology": "thing",
+"bio_solutions_concentration": "place",
+"bio_speciation_mechanisms": "place",
+"bio_species_concepts": "place",
+"bio_spemann_induction": "place",
+"bio_sponges_cnidarians": "place",
+"bio_steroids_terpenoids": "mol",
+"bio_substitution_elimination": "mol",
+"bio_succession_disturbance": "place",
+"bio_symbiosis": "place",
+"bio_synaptic_plasticity_memory": "via:hotspot",
+"bio_synthetic_biology": "place",
+"bio_taxonomy_intro": "place",
+"bio_telomeres_senescence": "place",
+"bio_thermo_laws": "place",
+"bio_thermoregulation_animals": "via:hotspot",
+"bio_torpor_hibernation": "place",
+"bio_toxicology": "mol",
+"bio_transcription_eukaryotic": "place",
+"bio_transcription_prokaryotic": "place",
+"bio_transcriptomics": "place",
+"bio_twin_family_studies": "place",
+"bio_ubiquitin_proteasome": "mol",
+"bio_viral_life_cycles": "place",
+"bio_viroids_prions": "place",
+"bio_virology_advanced": "place",
+"bio_viruses_structure": "place",
+"bio_vision_photoreception": "via:hotspot",
+"bio_water_properties": "mol",
+"bio_water_transport": "thing",
+"bio_x_inactivation_imprinting": "place",
+"bio_zoology_taxonomy_methods": "place",
+"bladder": "part",
+"blood_vessels": "part",
+"bone_marrow": "part",
+"boulder": "thing",
+"boulder_debris": "thing",
+"brain": "organ",
+"brainstem": "part",
+"bronchi": "hotspot",
+"bronchioles": "hotspot",
+"buck_converter_node": "tear",
+"cache_memory": "tear",
+"calvin_cycle_process": "place",
+"capacitor_ee": "tear",
+"carbon_cycle_process": "place",
+"carotid_arteries": "part",
+"cerebellum": "part",
+"cerebral_cortex": "hotspot",
+"cervical_spine": "part",
+"clavicle_l": "part",
+"clavicle_r": "part",
+"cmos_inverter": "tear",
+"cmos_logic_gates": "tear",
+"collecting_duct": "hotspot",
+"compact_bone": "part",
+"core_alu": "tear",
+"core_branch_predictor": "tear",
+"core_decode": "tear",
+"core_fetch": "tear",
+"core_l1_cache": "tear",
+"core_pipeline": "tear",
+"core_registers": "tear",
+"cornea": "hotspot",
+"coronary_arteries": "hotspot",
+"corpus_callosum": "hotspot",
+"cpu_core": "tear",
+"crispr_editing_process": "place",
+"crystal_structure_ee": "tear",
+"datapath_control": "tear",
+"deltoid": "part",
+"dermis": "part",
+"diaphragm": "part",
+"digital_modulation": "tear",
+"dipole_antennas": "tear",
+"distal_tubule": "hotspot",
+"dna_replication_process": "place",
+"dog": "thing",
+"dog_arteries": "thing",
+"dog_baculum": "thing",
+"dog_bladder": "thing",
+"dog_brain": "thing",
+"dog_bronchi": "thing",
+"dog_bulbs": "thing",
+"dog_bulla": "thing",
+"dog_carpus": "thing",
+"dog_caudal": "thing",
+"dog_cervical": "thing",
+"dog_choroid": "thing",
+"dog_claws": "thing",
+"dog_coat": "thing",
+"dog_cochlea": "thing",
+"dog_cornea": "thing",
+"dog_costal": "thing",
+"dog_dewclaw": "thing",
+"dog_diaphragm": "thing",
+"dog_ear": "thing",
+"dog_ear_canal": "thing",
+"dog_eardrum": "thing",
+"dog_esophagus": "thing",
+"dog_eye": "thing",
+"dog_femur": "thing",
+"dog_fur": "thing",
+"dog_heart": "thing",
+"dog_humerus": "thing",
+"dog_iris": "thing",
+"dog_kidneys": "thing",
+"dog_la": "thing",
+"dog_large_intestine": "thing",
+"dog_larynx": "thing",
+"dog_lens": "thing",
+"dog_liver": "thing",
+"dog_lumbar": "thing",
+"dog_lungs": "thing",
+"dog_lv": "thing",
+"dog_m_adductors": "thing",
+"dog_m_back_extensors": "thing",
+"dog_m_biceps": "thing",
+"dog_m_biceps_femoris": "thing",
+"dog_m_brachiocephalicus": "thing",
+"dog_m_chest_wall": "thing",
+"dog_m_deltoid": "thing",
+"dog_m_external_oblique": "thing",
+"dog_m_face_muscles": "thing",
+"dog_m_fore_extensors": "thing",
+"dog_m_fore_flexors": "thing",
+"dog_m_fore_tendons": "thing",
+"dog_m_gastrocnemius": "thing",
+"dog_m_gluteals": "thing",
+"dog_m_hamstrings": "thing",
+"dog_m_hind_tendons": "thing",
+"dog_m_latissimus": "thing",
+"dog_m_masseter": "thing",
+"dog_m_neck_dorsal": "thing",
+"dog_m_neck_ventral": "thing",
+"dog_m_pectorals": "thing",
+"dog_m_quadriceps": "thing",
+"dog_m_rectus_abdominis": "thing",
+"dog_m_shin_muscles": "thing",
+"dog_m_supraspinatus": "thing",
+"dog_m_tail_muscles": "thing",
+"dog_m_temporalis": "thing",
+"dog_m_tensor": "thing",
+"dog_m_trapezius": "thing",
+"dog_m_triceps": "thing",
+"dog_mandible": "thing",
+"dog_metacarpals": "thing",
+"dog_metatarsals": "thing",
+"dog_nerves_fore": "thing",
+"dog_nerves_hind": "thing",
+"dog_nose": "thing",
+"dog_optic": "thing",
+"dog_pads": "thing",
+"dog_patella": "thing",
+"dog_pelvis": "thing",
+"dog_phalanges": "thing",
+"dog_ra": "thing",
+"dog_radius_ulna": "thing",
+"dog_retina": "thing",
+"dog_ribs": "thing",
+"dog_rv": "thing",
+"dog_sacrum": "thing",
+"dog_scapula": "thing",
+"dog_sclera": "thing",
+"dog_skull": "thing",
+"dog_small_intestine": "thing",
+"dog_spinal_cord": "thing",
+"dog_spleen": "thing",
+"dog_sternum": "thing",
+"dog_stomach": "thing",
+"dog_tapetum": "thing",
+"dog_tarsus": "thing",
+"dog_teeth": "thing",
+"dog_thoracic": "thing",
+"dog_tibia": "thing",
+"dog_tongue": "thing",
+"dog_trachea": "thing",
+"dog_turb_olf": "thing",
+"dog_turb_resp": "thing",
+"dog_vagus": "thing",
+"dog_valves": "thing",
+"dog_veins": "thing",
+"dog_vitreous": "thing",
+"doping_pn_material": "tear",
+"energy_bands_ee": "tear",
+"epidermis": "part",
+"error_correcting_codes": "tear",
+"esophagus": "part",
+"eye_l": "organ",
+"eye_r": "organ",
+"fa_button": "thing",
+"fa_cap": "thing",
+"fa_cap_flesh": "thing",
+"fa_cut_half": "thing",
+"fa_cuticle": "thing",
+"fa_ecm": "thing",
+"fa_expanding": "thing",
+"fa_gill_inside": "thing",
+"fa_gills": "thing",
+"fa_host_root": "thing",
+"fa_mycelium": "thing",
+"fa_ring": "thing",
+"fa_stipe": "thing",
+"fa_trade": "thing",
+"fa_volva": "thing",
+"fa_warts": "thing",
+"femur_l": "part",
+"femur_r": "part",
+"finfet_transistor": "tear",
+"flash_memory": "tear",
+"foot_bones_l": "part",
+"foot_bones_r": "part",
+"forearm_muscles": "part",
+"fovea": "hotspot",
+"frontal_lobe": "hotspot",
+"gallbladder": "part",
+"gastric_pits": "hotspot",
+"gastrocnemius": "part",
+"gastrulation_process": "place",
+"glomerulus": "hotspot",
+"gluteus_maximus": "part",
+"glycolysis_process": "mol",
+"growth_plate": "part",
+"hair_follicle": "part",
+"hamstrings": "part",
+"hand_bones_l": "part",
+"hand_bones_r": "part",
+"heart": "organ",
+"hippocampus": "hotspot",
+"humerus_l": "part",
+"humerus_r": "part",
+"hyoid": "part",
+"hypodermis": "part",
+"hypothalamus": "hotspot",
+"image_video_processing": "tear",
+"inductor_ee": "tear",
+"interfacing_sensors": "tear",
+"interventricular_septum": "hotspot",
+"intervertebral_discs": "part",
+"iris": "hotspot",
+"isa_risc_cisc": "tear",
+"kidney_l": "organ",
+"kidney_r": "organ",
+"krebs_cycle_process": "mol",
+"large_intestine": "part",
+"larynx": "part",
+"latissimus_dorsi": "part",
+"led_photodiode": "tear",
+"left_atrium": "hotspot",
+"left_ventricle": "hotspot",
+"lens": "hotspot",
+"lichen_on_rock": "thing",
+"linear_regulators": "tear",
+"liver": "organ",
+"liver_lobule": "hotspot",
+"logic_adder": "tear",
+"logic_gate_nand": "tear",
+"logic_gates": "tear",
+"loop_of_henle": "hotspot",
+"lumbar_spine": "part",
+"lung_l": "organ",
+"lung_r": "organ",
+"machine_learning_engineers": "tear",
+"magnetic_fields_forces": "tear",
+"mandible": "part",
+"mcu_architecture": "tear",
+"meiosis_process": "place",
+"memory_hierarchy": "tear",
+"memory_rom_ram": "tear",
+"mimo_beamforming": "tear",
+"mitral_valve": "hotspot",
+"mosfet_physics_deep": "tear",
+"mosfet_physics_ee": "tear",
+"nanotech_mems": "tear",
+"natural_selection_process": "place",
+"nephron": "hotspot",
+"neural_accelerator_hw": "tear",
+"nitrogen_cycle_process": "place",
+"oak_acorn": "thing",
+"oak_bark": "thing",
+"oak_branches": "thing",
+"oak_cambium": "thing",
+"oak_english": "thing",
+"oak_growth_rings": "thing",
+"oak_heartwood": "thing",
+"oak_leaf": "thing",
+"oak_mycorrhiza": "thing",
+"oak_phloem": "thing",
+"oak_pith_rays": "thing",
+"oak_root_hairs": "thing",
+"oak_roots": "thing",
+"oak_sapwood": "thing",
+"oak_trunk": "thing",
+"oak_twigs_buds": "thing",
+"occipital_lobe": "hotspot",
+"optic_nerve": "hotspot",
+"optoelectronic_devices": "tear",
+"oscillators_ee": "tear",
+"output_stages": "tear",
+"pancreas": "organ",
+"pancreatic_islets": "hotspot",
+"parietal_lobe": "hotspot",
+"park_bee": "thing",
+"park_flower": "via:thing",
+"park_mushroom": "thing",
+"patella_l": "part",
+"patella_r": "part",
+"pcb_design": "tear",
+"pcr_process": "place",
+"pectoralis_major": "part",
+"pelvis": "part",
+"periosteum": "part",
+"phone_antenna": "tear",
+"phone_battery": "tear",
+"phone_camera": "tear",
+"phone_charger_port": "tear",
+"phone_crystal_osc": "tear",
+"phone_display": "tear",
+"phone_flash": "tear",
+"phone_modem": "tear",
+"phone_passives": "tear",
+"phone_pcb": "tear",
+"phone_pmic": "tear",
+"phone_ram": "tear",
+"phone_rf_frontend": "tear",
+"phone_sensors": "tear",
+"phone_soc": "tear",
+"phone_speaker": "tear",
+"phone_touchscreen": "tear",
+"phone_vibration_motor": "tear",
+"phone_wifi_bt": "tear",
+"photodetectors_solar": "tear",
+"photosynthesis_light_process": "mol",
+"pineal_gland": "hotspot",
+"pipelining_hazards": "tear",
+"pituitary_gland": "hotspot",
+"proximal_tubule": "hotspot",
+"pulmonary_valve": "hotspot",
+"quadriceps": "part",
+"radius_ulna_l": "part",
+"radius_ulna_r": "part",
+"rectus_abdominis": "part",
+"registers_counters": "tear",
+"renal_cortex": "hotspot",
+"renal_medulla": "hotspot",
+"renal_pelvis": "hotspot",
+"resonance_q": "tear",
+"retina": "hotspot",
+"rf_amplifiers": "tear",
+"rf_mixers_filters": "tear",
+"ribcage": "part",
+"right_atrium": "hotspot",
+"right_ventricle": "hotspot",
+"rn_achene": "thing",
+"rn_acris": "thing",
+"rn_anther": "thing",
+"rn_basal_leaf": "thing",
+"rn_bud": "thing",
+"rn_carotenoid": "mol",
+"rn_carpel": "thing",
+"rn_cellulose": "mol",
+"rn_embryo_sac": "thing",
+"rn_filament": "thing",
+"rn_flower": "thing",
+"rn_fruit": "thing",
+"rn_gloss": "thing",
+"rn_hairs": "thing",
+"rn_nectar": "mol",
+"rn_nectary": "thing",
+"rn_ovule": "thing",
+"rn_petal": "thing",
+"rn_pollen_sac": "thing",
+"rn_receptacle": "thing",
+"rn_roots": "thing",
+"rn_sepal": "thing",
+"rn_starch": "mol",
+"rn_stem": "thing",
+"rn_stem_leaf": "thing",
+"rn_stock": "thing",
+"rn_style_stigma": "thing",
+"sa_node": "hotspot",
+"sacrum": "part",
+"sanger_ngs_sequencing_process": "place",
+"scapula_l": "part",
+"scapula_r": "part",
+"short_channel_effects": "tear",
+"silicon_channel": "tear",
+"skin": "part",
+"skull": "part",
+"sm_bottom": "tear",
+"sm_charm": "tear",
+"sm_down": "tear",
+"sm_electron": "tear",
+"sm_gluon": "tear",
+"sm_higgs": "tear",
+"sm_muon": "tear",
+"sm_nu_e": "tear",
+"sm_nu_mu": "tear",
+"sm_nu_tau": "tear",
+"sm_overview": "tear",
+"sm_photon": "tear",
+"sm_proton": "tear",
+"sm_strange": "tear",
+"sm_tau": "tear",
+"sm_top": "tear",
+"sm_up": "tear",
+"sm_w_boson": "tear",
+"sm_z_boson": "tear",
+"small_intestine": "organ",
+"smartphone": "tear",
+"soc_cache": "tear",
+"soc_cpu_cluster": "tear",
+"soc_gpu": "tear",
+"soc_interconnect": "tear",
+"soc_isp": "tear",
+"soc_memory_controller": "tear",
+"soc_npu": "tear",
+"speciation_process": "place",
+"spleen": "part",
+"spongy_bone": "part",
+"sternocleidomastoid": "part",
+"sternum": "part",
+"stomach": "organ",
+"sweat_gland": "part",
+"teeth": "part",
+"temporal_lobe": "hotspot",
+"thalamus": "hotspot",
+"thoracic_spine": "part",
+"thymus": "part",
+"thyroid": "near",
+"tibia_fibula_l": "part",
+"tibia_fibula_r": "part",
+"tongue": "part",
+"trachea": "part",
+"transcription_process": "place",
+"transmission_lines": "tear",
+"trapezius": "part",
+"triceps_brachii": "part",
+"tricuspid_valve": "hotspot",
+"ureters": "part",
+"usb_protocol": "tear",
+"vena_cava": "part",
+"villi": "hotspot",
+"viral_replication_process": "place",
+"vitreous_humor": "hotspot",
+"vlsi_digital_cmos": "tear",
+"wireless_5g6g": "tear"
+},
+"park": [],
+"places": [
+"Mercury",
+"Venus",
+"Mars",
+"Jupiter",
+"Saturn",
+"Uranus",
+"Neptune",
+"Pluto",
+"The Sun",
+"The Moon",
+"International Space Station",
+"Dog",
+"Tree",
+"Pond water",
+"Flowers",
+"Honeybee",
+"Mushroom",
+"Bird",
+"Cloud",
+"Air",
+"Soil and rock"
+],
+"tear": [
+"phone_battery",
+"phone_pcb",
+"phone_soc",
+"phone_ram",
+"phone_flash",
+"phone_pmic",
+"phone_rf_frontend",
+"phone_modem",
+"phone_wifi_bt",
+"phone_sensors",
+"phone_crystal_osc",
+"phone_camera",
+"phone_speaker",
+"phone_charger_port",
+"phone_vibration_motor",
+"smartphone",
+"phone_display",
+"phone_touchscreen",
+"phone_antenna",
+"phone_passives",
+"soc_cpu_cluster",
+"soc_gpu",
+"soc_npu",
+"soc_cache",
+"soc_isp",
+"soc_memory_controller",
+"soc_interconnect",
+"core_fetch",
+"core_branch_predictor",
+"core_decode",
+"core_registers",
+"core_alu",
+"core_l1_cache",
+"cpu_core",
+"core_pipeline",
+"logic_adder",
+"logic_gate_nand",
+"cmos_inverter",
+"finfet_transistor",
+"silicon_channel",
+"sm_up",
+"sm_charm",
+"sm_top",
+"sm_down",
+"sm_strange",
+"sm_bottom",
+"sm_electron",
+"sm_muon",
+"sm_tau",
+"sm_nu_e",
+"sm_nu_mu",
+"sm_nu_tau",
+"sm_gluon",
+"sm_photon",
+"sm_z_boson",
+"sm_w_boson",
+"sm_higgs",
+"sm_overview",
+"sm_proton"
+],
+"thingParts": {
+"bee": [
+{
+"id": "head",
+"name": "Head capsule",
+"node": "bee_head"
+},
+{
+"id": "eye_l",
+"name": "Compound eye (left)",
+"node": "bee_compound_eye"
+},
+{
+"id": "eye_r",
+"name": "Compound eye (right)",
+"node": "bee_compound_eye"
+},
+{
+"id": "ocelli",
+"name": "Ocelli (three simple eyes)",
+"node": "bee_ocelli"
+},
+{
+"id": "ant_scape",
+"name": "Antenna: scape",
+"node": "bee_antenna"
+},
+{
+"id": "ant_pedicel",
+"name": "Antenna: pedicel",
+"node": "bee_antenna"
+},
+{
+"id": "ant_flagellum",
+"name": "Antenna: flagellum",
+"node": "bee_antenna"
+},
+{
+"id": "mandibles",
+"name": "Mandibles",
+"node": "bee_mandibles"
+},
+{
+"id": "glossa",
+"name": "Proboscis: tongue (glossa)",
+"node": "bee_proboscis"
+},
+{
+"id": "sheath",
+"name": "Proboscis: sheath (maxillae and labial palps)",
+"node": "bee_proboscis"
+},
+{
+"id": "prothorax",
+"name": "Thorax: prothorax",
+"node": "bee_thorax"
+},
+{
+"id": "mesothorax",
+"name": "Thorax: mesothorax",
+"node": "bee_thorax"
+},
+{
+"id": "metathorax",
+"name": "Thorax: metathorax and propodeum",
+"node": "bee_thorax"
+},
+{
+"id": "tegulae",
+"name": "Tegulae",
+"node": "bee_wing_hinge"
+},
+{
+"id": "wing_hinge",
+"name": "Wing hinge (sclerites)",
+"node": "bee_wing_hinge"
+},
+{
+"id": "forewings",
+"name": "Forewings",
+"node": "bee_wings"
+},
+{
+"id": "hindwings",
+"name": "Hindwings",
+"node": "bee_wings"
+},
+{
+"id": "veins",
+"name": "Wing veins",
+"node": "bee_wings"
+},
+{
+"id": "hamuli",
+"name": "Hamuli (wing-coupling hooks)",
+"node": "bee_hamuli"
+},
+{
+"id": "coxa",
+"name": "Leg: coxa",
+"node": "bee_leg"
+},
+{
+"id": "trochanter",
+"name": "Leg: trochanter",
+"node": "bee_leg"
+},
+{
+"id": "femur",
+"name": "Leg: femur",
+"node": "bee_leg"
+},
+{
+"id": "tibia",
+"name": "Leg: tibia (front and middle legs)",
+"node": "bee_leg"
+},
+{
+"id": "hind_tibia",
+"name": "Hind leg: tibia",
+"node": "bee_leg"
+},
+{
+"id": "basitarsus",
+"name": "Leg: first tarsal segment (front and middle legs)",
+"node": "bee_leg"
+},
+{
+"id": "hind_basitarsus",
+"name": "Hind leg: first tarsal segment",
+"node": "bee_leg"
+},
+{
+"id": "tarsomeres",
+"name": "Leg: small tarsal segments",
+"node": "bee_foot"
+},
+{
+"id": "claws",
+"name": "Foot: claws and pad (pretarsus)",
+"node": "bee_foot"
+},
+{
+"id": "corbicula",
+"name": "Pollen basket (corbicula)",
+"node": "bee_pollen_basket"
+},
+{
+"id": "fringe",
+"name": "Pollen basket: fringe hairs",
+"node": "bee_pollen_basket"
+},
+{
+"id": "pollen",
+"name": "Pollen load",
+"node": "bee_pollen_load"
+},
+{
+"id": "cleaner",
+"name": "Antenna cleaner (foreleg notch and spur)",
+"node": "bee_antenna_cleaner"
+},
+{
+"id": "abd1",
+"name": "Abdomen: segment 1 of 6 (visible)",
+"node": "bee_abdomen"
+},
+{
+"id": "abd2",
+"name": "Abdomen: segment 2 of 6 (visible)",
+"node": "bee_abdomen"
+},
+{
+"id": "abd3",
+"name": "Abdomen: segment 3 of 6 (visible)",
+"node": "bee_abdomen"
+},
+{
+"id": "abd4",
+"name": "Abdomen: segment 4 of 6 (visible)",
+"node": "bee_abdomen"
+},
+{
+"id": "abd5",
+"name": "Abdomen: segment 5 of 6 (visible)",
+"node": "bee_abdomen"
+},
+{
+"id": "abd6",
+"name": "Abdomen: segment 6 of 6 (visible)",
+"node": "bee_abdomen"
+},
+{
+"id": "hairs",
+"name": "Body hairs (branched)",
+"node": "bee_hairs"
+},
+{
+"id": "hairs_mid",
+"name": "Body hairs (branched)",
+"node": "bee_hairs"
+},
+{
+"id": "body_far",
+"name": "Honey bee",
+"node": "park_bee"
+},
+{
+"id": "dlm",
+"name": "Dorsal longitudinal flight muscles",
+"node": "bee_flight_muscles"
+},
+{
+"id": "dvm",
+"name": "Dorsoventral flight muscles",
+"node": "bee_flight_muscles"
+},
+{
+"id": "leg_muscles",
+"name": "Leg muscles in the thorax",
+"node": "bee_other_muscles"
+},
+{
+"id": "jaw_muscles",
+"name": "Jaw (mandible) muscles",
+"node": "bee_other_muscles"
+},
+{
+"id": "brain",
+"name": "Brain",
+"node": "bee_brain"
+},
+{
+"id": "optic_lobes",
+"name": "Optic lobes",
+"node": "bee_brain"
+},
+{
+"id": "antennal_lobes",
+"name": "Antennal lobes",
+"node": "bee_brain"
+},
+{
+"id": "mushroom_bodies",
+"name": "Mushroom bodies",
+"node": "bee_mushroom_bodies"
+},
+{
+"id": "ganglia",
+"name": "Ganglia of the nerve cord",
+"node": "bee_nerve_cord"
+},
+{
+"id": "nerves",
+"name": "Nerve cord and nerves",
+"node": "bee_nerve_cord"
+},
+{
+"id": "oesophagus",
+"name": "Oesophagus",
+"node": "bee_oesophagus"
+},
+{
+"id": "crop",
+"name": "Crop (honey stomach)",
+"node": "bee_crop"
+},
+{
+"id": "proventriculus",
+"name": "Proventriculus",
+"node": "bee_proventriculus"
+},
+{
+"id": "midgut",
+"name": "Midgut",
+"node": "bee_midgut"
+},
+{
+"id": "malpighian",
+"name": "Malpighian tubules",
+"node": "bee_malpighian"
+},
+{
+"id": "hindgut",
+"name": "Hindgut and rectum",
+"node": "bee_hindgut"
+},
+{
+"id": "heart",
+"name": "Dorsal vessel (heart and aorta)",
+"node": "bee_heart"
+},
+{
+"id": "hpg",
+"name": "Hypopharyngeal glands",
+"node": "bee_hypopharyngeal_gland"
+},
+{
+"id": "ovaries",
+"name": "Ovaries (reduced in a worker)",
+"node": "bee_ovaries"
+},
+{
+"id": "venom_sac",
+"name": "Venom sac",
+"node": "bee_venom_sac"
+},
+{
+"id": "sting",
+"name": "Sting (stylet and lancets)",
+"node": "bee_sting"
+},
+{
+"id": "barbs",
+"name": "Sting barbs",
+"node": "bee_sting"
+},
+{
+"id": "wax",
+"name": "Wax glands (wax mirrors)",
+"node": "bee_wax_glands"
+},
+{
+"id": "nasonov",
+"name": "Nasonov gland",
+"node": "bee_nasonov"
+},
+{
+"id": "trachea",
+"name": "Tracheae (breathing tubes)",
+"node": "bee_tracheae"
+},
+{
+"id": "air_sacs",
+"name": "Air sacs",
+"node": "bee_air_sacs"
+},
+{
+"id": "spiracles",
+"name": "Spiracles (breathing pores)",
+"node": "bee_spiracles"
+}
+],
+"boulder": [
+{
+"id": "rock",
+"name": "Rock",
+"node": "boulder"
+},
+{
+"id": "rock_far",
+"name": "Rock",
+"node": "boulder"
+},
+{
+"id": "moss",
+"name": "Moss",
+"node": "bio_bryophytes_seedless"
+},
+{
+"id": "lichen",
+"name": "Lichen",
+"node": "bio_lichens_fungal_biotech"
+},
+{
+"id": "lichen_yellow",
+"name": "Lichen",
+"node": "bio_lichens_fungal_biotech"
+},
+{
+"id": "stones",
+"name": "Loose stones",
+"node": "boulder_debris"
+}
+],
+"dog": [
+{
+"id": "coat",
+"name": "Skin and coat",
+"node": "dog_coat"
+},
+{
+"id": "fur",
+"name": "Fur",
+"node": "dog_fur"
+},
+{
+"id": "ears",
+"name": "Ears",
+"node": "dog_ear"
+},
+{
+"id": "nose",
+"name": "Nose (rhinarium)",
+"node": "dog_nose"
+},
+{
+"id": "paw_pads",
+"name": "Paw pads",
+"node": "dog_pads"
+},
+{
+"id": "claws",
+"name": "Claws",
+"node": "dog_claws"
+},
+{
+"id": "eyes",
+"name": "Eyes",
+"node": "dog_eye"
+},
+{
+"id": "eye_front",
+"name": "Eyes (front)",
+"node": "dog_eye"
+},
+{
+"id": "skull",
+"name": "Skull",
+"node": "dog_skull"
+},
+{
+"id": "mandible",
+"name": "Lower jaw (mandible)",
+"node": "dog_mandible"
+},
+{
+"id": "teeth",
+"name": "Teeth (42)",
+"node": "dog_teeth"
+},
+{
+"id": "cervical",
+"name": "Neck vertebrae (7)",
+"node": "dog_cervical"
+},
+{
+"id": "thoracic",
+"name": "Chest vertebrae (13)",
+"node": "dog_thoracic"
+},
+{
+"id": "lumbar",
+"name": "Lower-back vertebrae (7)",
+"node": "dog_lumbar"
+},
+{
+"id": "sacrum",
+"name": "Sacrum (3 fused)",
+"node": "dog_sacrum"
+},
+{
+"id": "caudal",
+"name": "Tail vertebrae (about 20)",
+"node": "dog_caudal"
+},
+{
+"id": "ribs",
+"name": "Ribs (13 pairs)",
+"node": "dog_ribs"
+},
+{
+"id": "costal",
+"name": "Costal cartilages",
+"node": "dog_costal"
+},
+{
+"id": "sternum",
+"name": "Breastbone (sternum)",
+"node": "dog_sternum"
+},
+{
+"id": "pelvis",
+"name": "Pelvis",
+"node": "dog_pelvis"
+},
+{
+"id": "baculum",
+"name": "Penis bone (baculum)",
+"node": "dog_baculum"
+},
+{
+"id": "scapula_r",
+"name": "Shoulder blade (scapula) (right)",
+"node": "dog_scapula"
+},
+{
+"id": "humerus_r",
+"name": "Upper arm bone (humerus) (right)",
+"node": "dog_humerus"
+},
+{
+"id": "radius_ulna_r",
+"name": "Forearm bones (radius and ulna) (right)",
+"node": "dog_radius_ulna"
+},
+{
+"id": "carpus_r",
+"name": "Carpus (the dog's wrist) (right)",
+"node": "dog_carpus"
+},
+{
+"id": "metacarpals_r",
+"name": "Metacarpals (palm bones) (right)",
+"node": "dog_metacarpals"
+},
+{
+"id": "phalanges_f_r",
+"name": "Toe bones of the forefoot (right)",
+"node": "dog_phalanges"
+},
+{
+"id": "dewclaw_r",
+"name": "Dewclaw (first toe) (right)",
+"node": "dog_dewclaw"
+},
+{
+"id": "femur_r",
+"name": "Thigh bone (femur) (right)",
+"node": "dog_femur"
+},
+{
+"id": "patella_r",
+"name": "Kneecap (patella) (right)",
+"node": "dog_patella"
+},
+{
+"id": "tibia_fibula_r",
+"name": "Shin bones (tibia and fibula) (right)",
+"node": "dog_tibia"
+},
+{
+"id": "tarsus_r",
+"name": "Tarsus (the hock, with the heel bone) (right)",
+"node": "dog_tarsus"
+},
+{
+"id": "metatarsals_r",
+"name": "Metatarsals (sole bones) (right)",
+"node": "dog_metatarsals"
+},
+{
+"id": "phalanges_h_r",
+"name": "Toe bones of the hind foot (right)",
+"node": "dog_phalanges"
+},
+{
+"id": "scapula_l",
+"name": "Shoulder blade (scapula) (left)",
+"node": "dog_scapula"
+},
+{
+"id": "humerus_l",
+"name": "Upper arm bone (humerus) (left)",
+"node": "dog_humerus"
+},
+{
+"id": "radius_ulna_l",
+"name": "Forearm bones (radius and ulna) (left)",
+"node": "dog_radius_ulna"
+},
+{
+"id": "carpus_l",
+"name": "Carpus (the dog's wrist) (left)",
+"node": "dog_carpus"
+},
+{
+"id": "metacarpals_l",
+"name": "Metacarpals (palm bones) (left)",
+"node": "dog_metacarpals"
+},
+{
+"id": "phalanges_f_l",
+"name": "Toe bones of the forefoot (left)",
+"node": "dog_phalanges"
+},
+{
+"id": "dewclaw_l",
+"name": "Dewclaw (first toe) (left)",
+"node": "dog_dewclaw"
+},
+{
+"id": "femur_l",
+"name": "Thigh bone (femur) (left)",
+"node": "dog_femur"
+},
+{
+"id": "patella_l",
+"name": "Kneecap (patella) (left)",
+"node": "dog_patella"
+},
+{
+"id": "tibia_fibula_l",
+"name": "Shin bones (tibia and fibula) (left)",
+"node": "dog_tibia"
+},
+{
+"id": "tarsus_l",
+"name": "Tarsus (the hock, with the heel bone) (left)",
+"node": "dog_tarsus"
+},
+{
+"id": "metatarsals_l",
+"name": "Metatarsals (sole bones) (left)",
+"node": "dog_metatarsals"
+},
+{
+"id": "phalanges_h_l",
+"name": "Toe bones of the hind foot (left)",
+"node": "dog_phalanges"
+},
+{
+"id": "m_temporalis",
+"name": "Temporalis (chewing)",
+"node": "dog_m_temporalis"
+},
+{
+"id": "m_masseter",
+"name": "Masseter (chewing)",
+"node": "dog_m_masseter"
+},
+{
+"id": "m_face_muscles",
+"name": "Muscles of the muzzle and lips",
+"node": "dog_m_face_muscles"
+},
+{
+"id": "m_neck_dorsal",
+"name": "Splenius and neck extensors",
+"node": "dog_m_neck_dorsal"
+},
+{
+"id": "m_brachiocephalicus",
+"name": "Brachiocephalicus (draws the foreleg forward)",
+"node": "dog_m_brachiocephalicus"
+},
+{
+"id": "m_neck_ventral",
+"name": "Sternocephalicus and neck flexors",
+"node": "dog_m_neck_ventral"
+},
+{
+"id": "m_trapezius",
+"name": "Trapezius",
+"node": "dog_m_trapezius"
+},
+{
+"id": "m_latissimus",
+"name": "Latissimus dorsi",
+"node": "dog_m_latissimus"
+},
+{
+"id": "m_chest_wall",
+"name": "Serratus ventralis and the chest wall (intercostal muscles)",
+"node": "dog_m_chest_wall"
+},
+{
+"id": "m_pectorals",
+"name": "Pectoral muscles",
+"node": "dog_m_pectorals"
+},
+{
+"id": "m_back_extensors",
+"name": "Longissimus and the back extensors",
+"node": "dog_m_back_extensors"
+},
+{
+"id": "m_external_oblique",
+"name": "External oblique (flank)",
+"node": "dog_m_external_oblique"
+},
+{
+"id": "m_rectus_abdominis",
+"name": "Rectus abdominis",
+"node": "dog_m_rectus_abdominis"
+},
+{
+"id": "m_supraspinatus",
+"name": "Supraspinatus and infraspinatus (shoulder)",
+"node": "dog_m_supraspinatus"
+},
+{
+"id": "m_deltoid",
+"name": "Deltoideus",
+"node": "dog_m_deltoid"
+},
+{
+"id": "m_triceps",
+"name": "Triceps brachii",
+"node": "dog_m_triceps"
+},
+{
+"id": "m_biceps",
+"name": "Biceps brachii",
+"node": "dog_m_biceps"
+},
+{
+"id": "m_fore_extensors",
+"name": "Forearm extensors (carpus and toes)",
+"node": "dog_m_fore_extensors"
+},
+{
+"id": "m_fore_flexors",
+"name": "Forearm flexors (carpus and toes)",
+"node": "dog_m_fore_flexors"
+},
+{
+"id": "m_fore_tendons",
+"name": "Tendons of the lower foreleg",
+"node": "dog_m_fore_tendons"
+},
+{
+"id": "m_gluteals",
+"name": "Gluteal muscles (hip extensors)",
+"node": "dog_m_gluteals"
+},
+{
+"id": "m_tensor",
+"name": "Tensor fasciae latae and sartorius",
+"node": "dog_m_tensor"
+},
+{
+"id": "m_biceps_femoris",
+"name": "Biceps femoris",
+"node": "dog_m_biceps_femoris"
+},
+{
+"id": "m_hamstrings",
+"name": "Semitendinosus and semimembranosus (hamstrings)",
+"node": "dog_m_hamstrings"
+},
+{
+"id": "m_quadriceps",
+"name": "Quadriceps femoris",
+"node": "dog_m_quadriceps"
+},
+{
+"id": "m_adductors",
+"name": "Gracilis and adductors (inner thigh)",
+"node": "dog_m_adductors"
+},
+{
+"id": "m_gastrocnemius",
+"name": "Gastrocnemius (calf)",
+"node": "dog_m_gastrocnemius"
+},
+{
+"id": "m_shin_muscles",
+"name": "Cranial tibial and toe extensors (shin)",
+"node": "dog_m_shin_muscles"
+},
+{
+"id": "m_hind_tendons",
+"name": "Calcaneal (Achilles) and lower hindleg tendons",
+"node": "dog_m_hind_tendons"
+},
+{
+"id": "m_tail_muscles",
+"name": "Tail muscles",
+"node": "dog_m_tail_muscles"
+},
+{
+"id": "brain",
+"name": "Brain",
+"node": "dog_brain"
+},
+{
+"id": "bulbs",
+"name": "Olfactory bulbs",
+"node": "dog_bulbs"
+},
+{
+"id": "tongue",
+"name": "Tongue",
+"node": "dog_tongue"
+},
+{
+"id": "larynx",
+"name": "Larynx",
+"node": "dog_larynx"
+},
+{
+"id": "trachea",
+"name": "Windpipe (trachea)",
+"node": "dog_trachea"
+},
+{
+"id": "bronchi",
+"name": "Main bronchi",
+"node": "dog_bronchi"
+},
+{
+"id": "esophagus",
+"name": "Gullet (esophagus)",
+"node": "dog_esophagus"
+},
+{
+"id": "lung_r",
+"name": "Right lung",
+"node": "dog_lungs"
+},
+{
+"id": "lung_l",
+"name": "Left lung",
+"node": "dog_lungs"
+},
+{
+"id": "heart",
+"name": "Heart",
+"node": "dog_heart"
+},
+{
+"id": "diaphragm",
+"name": "Diaphragm",
+"node": "dog_diaphragm"
+},
+{
+"id": "liver",
+"name": "Liver",
+"node": "dog_liver"
+},
+{
+"id": "stomach",
+"name": "Stomach",
+"node": "dog_stomach"
+},
+{
+"id": "spleen",
+"name": "Spleen",
+"node": "dog_spleen"
+},
+{
+"id": "small_intestine",
+"name": "Small intestine",
+"node": "dog_small_intestine"
+},
+{
+"id": "large_intestine",
+"name": "Large intestine and rectum",
+"node": "dog_large_intestine"
+},
+{
+"id": "kidney_r",
+"name": "Right kidney",
+"node": "dog_kidneys"
+},
+{
+"id": "kidney_l",
+"name": "Left kidney",
+"node": "dog_kidneys"
+},
+{
+"id": "bladder",
+"name": "Urinary bladder",
+"node": "dog_bladder"
+},
+{
+"id": "tracheal_rings",
+"name": "Tracheal cartilage rings",
+"node": "dog_trachea"
+},
+{
+"id": "brain_n",
+"name": "Brain",
+"node": "dog_brain"
+},
+{
+"id": "bulbs_n",
+"name": "Olfactory bulbs",
+"node": "dog_bulbs"
+},
+{
+"id": "spinal_cord",
+"name": "Spinal cord",
+"node": "dog_spinal_cord"
+},
+{
+"id": "nerves_fore",
+"name": "Nerves of the foreleg (brachial plexus)",
+"node": "dog_nerves_fore"
+},
+{
+"id": "nerves_hind",
+"name": "Sciatic nerve and nerves of the hindleg",
+"node": "dog_nerves_hind"
+},
+{
+"id": "vagus",
+"name": "Vagus nerves",
+"node": "dog_vagus"
+},
+{
+"id": "optic",
+"name": "Optic nerves",
+"node": "dog_optic"
+},
+{
+"id": "tail_nerves",
+"name": "Tail nerves",
+"node": "dog_nerves_hind"
+},
+{
+"id": "eyes_n",
+"name": "Eyes",
+"node": "dog_eye"
+},
+{
+"id": "arteries",
+"name": "Arteries (carry blood away from the heart)",
+"node": "dog_arteries"
+},
+{
+"id": "veins",
+"name": "Veins (carry blood back to the heart)",
+"node": "dog_veins"
+},
+{
+"id": "heart_v",
+"name": "Heart",
+"node": "dog_heart"
+},
+{
+"id": "lung_r_v",
+"name": "Right lung",
+"node": "dog_lungs"
+},
+{
+"id": "lung_l_v",
+"name": "Left lung",
+"node": "dog_lungs"
+},
+{
+"id": "heart_d",
+"name": "Heart muscle (cut open)",
+"node": "dog_heart"
+},
+{
+"id": "h_lv",
+"name": "Left ventricle (cavity)",
+"node": "dog_lv"
+},
+{
+"id": "h_rv",
+"name": "Right ventricle (cavity)",
+"node": "dog_rv"
+},
+{
+"id": "h_la",
+"name": "Left atrium (cavity)",
+"node": "dog_la"
+},
+{
+"id": "h_ra",
+"name": "Right atrium (cavity)",
+"node": "dog_ra"
+},
+{
+"id": "h_valves",
+"name": "Heart valves",
+"node": "dog_valves"
+},
+{
+"id": "eye_sclera",
+"name": "Sclera (white of the eye)",
+"node": "dog_sclera"
+},
+{
+"id": "eye_choroid",
+"name": "Choroid (dark layer)",
+"node": "dog_choroid"
+},
+{
+"id": "eye_tapetum",
+"name": "Tapetum lucidum",
+"node": "dog_tapetum"
+},
+{
+"id": "eye_retina",
+"name": "Retina",
+"node": "dog_retina"
+},
+{
+"id": "eye_vitreous",
+"name": "Vitreous body",
+"node": "dog_vitreous"
+},
+{
+"id": "eye_lens",
+"name": "Lens",
+"node": "dog_lens"
+},
+{
+"id": "eye_cornea",
+"name": "Cornea",
+"node": "dog_cornea"
+},
+{
+"id": "eye_iris",
+"name": "Iris and pupil",
+"node": "dog_iris"
+},
+{
+"id": "turb_olf",
+"name": "Ethmoturbinates (smell lining)",
+"node": "dog_turb_olf"
+},
+{
+"id": "turb_resp",
+"name": "Maxilloturbinates (airway lining)",
+"node": "dog_turb_resp"
+},
+{
+"id": "ear_canal",
+"name": "Ear canal",
+"node": "dog_ear_canal"
+},
+{
+"id": "ear_drum",
+"name": "Eardrum",
+"node": "dog_eardrum"
+},
+{
+"id": "ear_bulla",
+"name": "Middle ear (bulla)",
+"node": "dog_bulla"
+},
+{
+"id": "ear_cochlea",
+"name": "Cochlea",
+"node": "dog_cochlea"
+},
+{
+"id": "ear_canals",
+"name": "Balance canals",
+"node": "dog_cochlea"
+}
+],
+"flower": [
+{
+"id": "stems",
+"name": "Stem and branches",
+"node": "rn_stem"
+},
+{
+"id": "hairs",
+"name": "Stem hairs",
+"node": "rn_hairs"
+},
+{
+"id": "petioles",
+"name": "Leaf stalks",
+"node": "rn_basal_leaf"
+},
+{
+"id": "basal_leaves",
+"name": "Basal leaf",
+"node": "rn_basal_leaf"
+},
+{
+"id": "basal_leaves_mid",
+"name": "Basal leaf",
+"node": "rn_basal_leaf"
+},
+{
+"id": "stem_leaves",
+"name": "Stem leaf",
+"node": "rn_stem_leaf"
+},
+{
+"id": "stem_leaves_mid",
+"name": "Stem leaf",
+"node": "rn_stem_leaf"
+},
+{
+"id": "sepals",
+"name": "Sepal",
+"node": "rn_sepal"
+},
+{
+"id": "petals",
+"name": "Petal",
+"node": "rn_petal"
+},
+{
+"id": "nectary_scales",
+"name": "Nectary scale",
+"node": "rn_nectary"
+},
+{
+"id": "nectary_pits",
+"name": "Nectary pit",
+"node": "rn_nectary"
+},
+{
+"id": "filaments",
+"name": "Filament",
+"node": "rn_filament"
+},
+{
+"id": "anthers",
+"name": "Anther",
+"node": "rn_anther"
+},
+{
+"id": "ovaries",
+"name": "Carpel (ovary)",
+"node": "rn_carpel"
+},
+{
+"id": "styles",
+"name": "Style and stigma",
+"node": "rn_style_stigma"
+},
+{
+"id": "receptacles",
+"name": "Receptacle",
+"node": "rn_receptacle"
+},
+{
+"id": "flower_discs",
+"name": "Open flower",
+"node": "rn_flower"
+},
+{
+"id": "buds",
+"name": "Flower bud",
+"node": "rn_bud"
+},
+{
+"id": "fruit_recs",
+"name": "Fruiting head (receptacle)",
+"node": "rn_fruit"
+},
+{
+"id": "achenes",
+"name": "Achene",
+"node": "rn_achene"
+},
+{
+"id": "beaks",
+"name": "Achene beak",
+"node": "rn_achene"
+},
+{
+"id": "fruit_balls",
+"name": "Fruiting head",
+"node": "rn_fruit"
+},
+{
+"id": "stock",
+"name": "Stock",
+"node": "rn_stock"
+},
+{
+"id": "fibrous_roots",
+"name": "Fibrous roots",
+"node": "rn_roots"
+},
+{
+"id": "lateral_roots",
+"name": "Fine lateral roots",
+"node": "rn_roots"
+},
+{
+"id": "soil",
+"name": "Soil",
+"node": "bio_plant_nutrition_soil"
+},
+{
+"id": "h_receptacle",
+"name": "Receptacle (back half)",
+"node": "rn_receptacle"
+},
+{
+"id": "s_receptacle",
+"name": "Receptacle (cut face)",
+"node": "rn_receptacle"
+},
+{
+"id": "h_pedicel",
+"name": "Flower stalk (back half)",
+"node": "rn_stem"
+},
+{
+"id": "s_pedicel",
+"name": "Flower stalk (cut face)",
+"node": "rn_stem"
+},
+{
+"id": "h_petal0",
+"name": "Petal (cut along its middle)",
+"node": "rn_petal"
+},
+{
+"id": "h_sepal0",
+"name": "Sepal (cut along its middle)",
+"node": "rn_sepal"
+},
+{
+"id": "h_petals",
+"name": "Petal",
+"node": "rn_petal"
+},
+{
+"id": "h_sepals",
+"name": "Sepal",
+"node": "rn_sepal"
+},
+{
+"id": "h_scales",
+"name": "Nectary scale",
+"node": "rn_nectary"
+},
+{
+"id": "h_pits",
+"name": "Nectary pit",
+"node": "rn_nectary"
+},
+{
+"id": "h_filaments",
+"name": "Filament",
+"node": "rn_filament"
+},
+{
+"id": "h_anthers",
+"name": "Anther",
+"node": "rn_anther"
+},
+{
+"id": "h_ovaries",
+"name": "Carpel (ovary)",
+"node": "rn_carpel"
+},
+{
+"id": "h_styles",
+"name": "Style and stigma",
+"node": "rn_style_stigma"
+},
+{
+"id": "s_filament",
+"name": "Filament (cut)",
+"node": "rn_filament"
+},
+{
+"id": "s_anther_wall",
+"name": "Anther wall (cut)",
+"node": "rn_anther"
+},
+{
+"id": "s_pollen_sacs",
+"name": "Pollen sacs (cut)",
+"node": "rn_pollen_sac"
+},
+{
+"id": "s_carpel_wall",
+"name": "Carpel wall (cut)",
+"node": "rn_carpel"
+},
+{
+"id": "s_carpel_cavity",
+"name": "Ovary cavity (cut)",
+"node": "rn_carpel"
+},
+{
+"id": "s_ovule",
+"name": "Ovule (cut)",
+"node": "rn_ovule"
+},
+{
+"id": "s_embryosac",
+"name": "Embryo sac (cut)",
+"node": "rn_embryo_sac"
+}
+],
+"mushroom": [
+{
+"id": "cap",
+"name": "Cap (pileus)",
+"node": "fa_cap"
+},
+{
+"id": "cap_under",
+"name": "Underside of the cap",
+"node": "fa_gills"
+},
+{
+"id": "warts",
+"name": "Warts (universal veil remnants)",
+"node": "fa_warts"
+},
+{
+"id": "gills",
+"name": "Gills (lamellae)",
+"node": "fa_gills"
+},
+{
+"id": "stipe",
+"name": "Stipe (stem)",
+"node": "fa_stipe"
+},
+{
+"id": "ring",
+"name": "Ring (annulus)",
+"node": "fa_ring"
+},
+{
+"id": "bulb",
+"name": "Swollen base (volva remains)",
+"node": "fa_volva"
+},
+{
+"id": "volva_scales",
+"name": "Rings of scales on the base",
+"node": "fa_volva"
+},
+{
+"id": "cap_far",
+"name": "Cap (pileus)",
+"node": "fa_cap"
+},
+{
+"id": "stipe_far",
+"name": "Stipe (stem)",
+"node": "fa_stipe"
+},
+{
+"id": "h_cap",
+"name": "Cap, half open",
+"node": "fa_expanding"
+},
+{
+"id": "h_warts",
+"name": "Warts",
+"node": "fa_warts"
+},
+{
+"id": "h_veil",
+"name": "Partial veil (still joined)",
+"node": "fa_ring"
+},
+{
+"id": "h_stipe",
+"name": "Stipe, half open",
+"node": "fa_stipe"
+},
+{
+"id": "h_scales",
+"name": "Scales on the base",
+"node": "fa_volva"
+},
+{
+"id": "h_far",
+"name": "Half-open fruit body",
+"node": "fa_expanding"
+},
+{
+"id": "egg",
+"name": "Button (universal veil)",
+"node": "fa_button"
+},
+{
+"id": "egg_flakes",
+"name": "Veil flakes",
+"node": "fa_button"
+},
+{
+"id": "c_cap",
+"name": "Cap (pileus)",
+"node": "fa_cap"
+},
+{
+"id": "c_under",
+"name": "Underside of the cap",
+"node": "fa_gills"
+},
+{
+"id": "c_warts",
+"name": "Warts",
+"node": "fa_warts"
+},
+{
+"id": "c_gills",
+"name": "Gills (lamellae)",
+"node": "fa_gills"
+},
+{
+"id": "c_stipe",
+"name": "Stipe (stem)",
+"node": "fa_stipe"
+},
+{
+"id": "c_bulb",
+"name": "Swollen base",
+"node": "fa_volva"
+},
+{
+"id": "c_scales",
+"name": "Scales on the base",
+"node": "fa_volva"
+},
+{
+"id": "c_ring",
+"name": "Ring (annulus)",
+"node": "fa_ring"
+},
+{
+"id": "c_cuticle",
+"name": "Cuticle (red skin)",
+"node": "fa_cuticle"
+},
+{
+"id": "c_subcuticle",
+"name": "Yellow layer under the skin",
+"node": "fa_cuticle"
+},
+{
+"id": "c_flesh",
+"name": "Flesh of the cap",
+"node": "fa_cap_flesh"
+},
+{
+"id": "c_gill",
+"name": "Gill, cut lengthwise",
+"node": "fa_gill_inside"
+},
+{
+"id": "c_stipe_sec",
+"name": "Stipe, cut",
+"node": "fa_stipe"
+},
+{
+"id": "c_ring_sec",
+"name": "Ring, cut",
+"node": "fa_ring"
+},
+{
+"id": "e_outer",
+"name": "Button (universal veil)",
+"node": "fa_button"
+},
+{
+"id": "e_veil",
+"name": "Universal veil, cut",
+"node": "fa_button"
+},
+{
+"id": "e_roof",
+"name": "Universal veil, cut",
+"node": "fa_button"
+},
+{
+"id": "e_stem",
+"name": "Young stipe",
+"node": "fa_stipe"
+},
+{
+"id": "e_cap_cuticle",
+"name": "Young cap, red skin",
+"node": "fa_cuticle"
+},
+{
+"id": "e_cap_sub",
+"name": "Yellow layer under the skin",
+"node": "fa_cuticle"
+},
+{
+"id": "e_cap_flesh",
+"name": "Young cap, flesh",
+"node": "fa_cap_flesh"
+},
+{
+"id": "e_gills",
+"name": "Young gills",
+"node": "fa_gills"
+},
+{
+"id": "soil",
+"name": "Soil",
+"node": "bio_soil_ecology"
+},
+{
+"id": "mycelium",
+"name": "Mycelium (fungal threads)",
+"node": "fa_mycelium"
+},
+{
+"id": "root",
+"name": "Root of a host tree",
+"node": "fa_host_root"
+},
+{
+"id": "rootlets",
+"name": "Fine roots",
+"node": "fa_host_root"
+},
+{
+"id": "ecm_core",
+"name": "Root tips (inside the sheath)",
+"node": "fa_ecm"
+},
+{
+"id": "ecm_sheath",
+"name": "Fungal sheath (mantle) on a root tip",
+"node": "fa_ecm"
+}
+],
+"oak": [
+{
+"id": "trunk",
+"name": "Trunk",
+"node": "oak_trunk"
+},
+{
+"id": "branches",
+"name": "Branches",
+"node": "oak_branches"
+},
+{
+"id": "twigs",
+"name": "Twigs",
+"node": "oak_twigs_buds"
+},
+{
+"id": "buds",
+"name": "Buds",
+"node": "oak_twigs_buds"
+},
+{
+"id": "leaves",
+"name": "Leaves",
+"node": "oak_leaf"
+},
+{
+"id": "acorn_nuts",
+"name": "Acorn",
+"node": "oak_acorn"
+},
+{
+"id": "acorn_cups",
+"name": "Acorn cup",
+"node": "oak_acorn"
+},
+{
+"id": "trunk_mid",
+"name": "Trunk",
+"node": "oak_trunk"
+},
+{
+"id": "limbs_mid",
+"name": "Branches",
+"node": "oak_branches"
+},
+{
+"id": "leaves_mid",
+"name": "Leaves",
+"node": "oak_leaf"
+},
+{
+"id": "crown_far",
+"name": "Crown",
+"node": "oak_english"
+},
+{
+"id": "trunk_far",
+"name": "Trunk",
+"node": "oak_trunk"
+},
+{
+"id": "limbs_far",
+"name": "Branches",
+"node": "oak_branches"
+},
+{
+"id": "roots",
+"name": "Roots",
+"node": "oak_roots"
+},
+{
+"id": "fine_roots",
+"name": "Fine roots",
+"node": "oak_root_hairs"
+},
+{
+"id": "hyphae",
+"name": "Fungal threads",
+"node": "oak_mycorrhiza"
+},
+{
+"id": "soil",
+"name": "Soil",
+"node": "bio_plant_nutrition_soil"
+},
+{
+"id": "log_bark",
+"name": "Outer bark",
+"node": "oak_bark"
+},
+{
+"id": "log_phloem",
+"name": "Inner bark (phloem)",
+"node": "oak_phloem"
+},
+{
+"id": "log_cambium",
+"name": "Vascular cambium",
+"node": "oak_cambium"
+},
+{
+"id": "log_sapwood",
+"name": "Sapwood",
+"node": "oak_sapwood"
+},
+{
+"id": "log_heartwood",
+"name": "Heartwood",
+"node": "oak_heartwood"
+},
+{
+"id": "log_pith",
+"name": "Pith",
+"node": "oak_pith_rays"
+},
+{
+"id": "log_rays",
+"name": "Wood rays",
+"node": "oak_pith_rays"
+},
+{
+"id": "flow_water",
+"name": "Water rising in the xylem",
+"node": "bio_water_transport"
+},
+{
+"id": "flow_sugar",
+"name": "Sugar moving in the phloem",
+"node": "bio_phloem_transport"
+}
+]
+},
+"things": [
+{
+"id": "boulder",
+"n": 0,
+"title": "Boulder"
+},
+{
+"id": "boulder",
+"n": 1,
+"title": "Boulder"
+},
+{
+"id": "oak",
+"n": 0,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 1,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 2,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 3,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 4,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 5,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 6,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 7,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 8,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 9,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 10,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 11,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 12,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 13,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 14,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 15,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 16,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 17,
+"title": "English oak"
+},
+{
+"id": "oak",
+"n": 18,
+"title": "English oak"
+},
+{
+"id": "mushroom",
+"n": 0,
+"title": "Fly agaric"
+},
+{
+"id": "dog",
+"n": 0,
+"title": "Dog"
+},
+{
+"id": "flower",
+"n": 0,
+"title": "Meadow buttercup"
+},
+{
+"id": "flower",
+"n": 1,
+"title": "Meadow buttercup"
+},
+{
+"id": "flower",
+"n": 2,
+"title": "Meadow buttercup"
+},
+{
+"id": "flower",
+"n": 3,
+"title": "Meadow buttercup"
+},
+{
+"id": "flower",
+"n": 4,
+"title": "Meadow buttercup"
+},
+{
+"id": "flower",
+"n": 5,
+"title": "Meadow buttercup"
+},
+{
+"id": "flower",
+"n": 6,
+"title": "Meadow buttercup"
+},
+{
+"id": "flower",
+"n": 7,
+"title": "Meadow buttercup"
+},
+{
+"id": "flower",
+"n": 8,
+"title": "Meadow buttercup"
+},
+{
+"id": "flower",
+"n": 9,
+"title": "Meadow buttercup"
+},
+{
+"id": "flower",
+"n": 10,
+"title": "Meadow buttercup"
+},
+{
+"id": "flower",
+"n": 11,
+"title": "Meadow buttercup"
+},
+{
+"id": "bee",
+"n": 0,
+"title": "Honey bee worker"
+}
+]
+}

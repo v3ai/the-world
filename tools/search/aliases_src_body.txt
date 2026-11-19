@@ -1,0 +1,201 @@
+# Everyday words for the human body, cells and living things. Format: see aliases_src.txt.
+
+# ---------------- the whole body ----------------
+how do i see, how do eyes see, how do we see => kn:vision_eye, node:retina, node:vision, node:rod_cell, node:cone_cell, trail:what_is_light // src: openstax-ap
+human body, my body, me, myself, person, human, humans, anatomy, body parts, what am i made of => lm:You, node:human_body, trail:what_am_i_made_of, kn:homeostasis // src: openstax-ap app-card
+skeleton, bones, bone, my bones, skeletal system, bone structure => node:skeletal_system, lm:You, node:compact_bone, node:spongy_bone, node:bone_marrow, node:skull, node:ribcage // In the body view choose Skeleton at the top to see every bone. // src: openstax-ap app-card
+spine, backbone, spinal column, vertebrae, back bone => node:cervical_spine, node:thoracic_spine, node:lumbar_spine, node:sacrum, node:intervertebral_discs, node:spinal_cord // src: openstax-ap
+tailbone, coccyx => node:sacrum // The tailbone (coccyx) sits just below the sacrum; the model shows the sacrum. // near: node:sacrum // src: openstax-ap
+ribs, rib cage, chest bones, ribcage => node:ribcage, node:sternum // src: openstax-ap
+breastbone => node:sternum // src: openstax-ap
+jaw, jawbone, chin => node:mandible // src: openstax-ap
+head bone, cranium, skull cap => node:skull // src: openstax-ap
+hip, hips, hip bone, pelvic bone => node:pelvis // src: openstax-ap
+arm bone, upper arm => node:humerus_l, node:humerus_r, node:biceps_brachii // src: openstax-ap
+forearm, lower arm => node:radius_ulna_l, node:radius_ulna_r, node:forearm_muscles // src: openstax-ap
+hand, hands, fingers, wrist => node:hand_bones_l, node:hand_bones_r, node:forearm_muscles // src: openstax-ap
+foot, feet, toes, ankle, heel => node:foot_bones_l, node:foot_bones_r // src: openstax-ap
+leg bone, thigh, thigh bone => node:femur_l, node:femur_r, node:quadriceps // src: openstax-ap
+shin bone, lower leg, calf bone, shinbone => node:tibia_fibula_l, node:tibia_fibula_r // src: openstax-ap
+knee, knees, knee cap => node:patella_l, node:patella_r, node:synovial_joint // src: openstax-ap
+joint, joints, elbow, shoulder joint, hip joint => node:synovial_joint, node:tendon // src: openstax-ap
+shoulder, shoulders => node:scapula_l, node:scapula_r, node:clavicle_l, node:clavicle_r, node:deltoid // src: openstax-ap
+neck, my neck => node:cervical_spine, node:sternocleidomastoid, node:larynx, node:thyroid // src: openstax-ap
+bone marrow, marrow => node:bone_marrow, node:bio_hematopoiesis // src: openstax-ap
+cartilage, gristle => node:cartilage_tissue, node:chondrocyte // src: openstax-ap
+tendon, tendons, achilles, sinew, ligament, ligaments => node:tendon, node:dense_connective_tissue // src: openstax-ap
+growing taller, growth, height, growth plate => node:growth_plate, node:bone_remodeling // src: openstax-ap
+
+# ---------------- muscles ----------------
+muscle, muscles, my muscles, muscular system, muscle tissue, six pack => lm:You, node:muscular_system, node:muscle_contraction, node:skeletal_muscle_fiber, node:rectus_abdominis, node:biceps_brachii // src: openstax-ap
+bicep, biceps, arm muscle => node:biceps_brachii, node:triceps_brachii // src: openstax-ap
+tricep, triceps => node:triceps_brachii // src: openstax-ap
+abs, abdominals, six pack abs, stomach muscles => node:rectus_abdominis, node:external_obliques // src: openstax-ap
+pecs, chest muscle, pectorals, chest muscles => node:pectoralis_major // src: openstax-ap
+glutes, bum, butt, buttocks, backside => node:gluteus_maximus // src: openstax-ap
+quads, quadriceps, front thigh, thigh muscle => node:quadriceps // src: openstax-ap
+hamstring, hamstrings, back of thigh => node:hamstrings // src: openstax-ap
+calf, calves, calf muscle => node:gastrocnemius // src: openstax-ap
+back muscle, back muscles, lats, upper back => node:latissimus_dorsi, node:trapezius // src: openstax-ap
+neck muscle, neck muscles => node:sternocleidomastoid, node:trapezius // src: openstax-ap
+deltoid, shoulder muscle => node:deltoid // src: openstax-ap
+heart muscle => node:cardiomyocyte, node:cardiac_muscle_tissue, node:heart // src: openstax-ap
+cramp, cramps, muscle soreness, muscle burn, lactic acid in muscles, lactic acid => mol:lactic_acid, mol:lactate, node:bio_exercise_physiology, node:muscle_contraction // Lactate builds up in muscles during hard exercise. // src: openstax-ap pubchem
+exercise, workout, fitness, running => node:bio_exercise_physiology, node:muscle_contraction, node:cellular_respiration // src: openstax-ap
+
+# ---------------- the heart, blood and breathing ----------------
+heart, my heart, the heart, human heart, cardiac, cardiology => node:heart, trail:how_does_my_heart_beat, node:cardiac_cycle, node:left_ventricle, node:cardiovascular_system // src: openstax-ap
+heartbeat, heart beat, pulse, my pulse, heart rate, how does my heart beat => trail:how_does_my_heart_beat, node:heart, node:sa_node, node:cardiac_cycle // The heartbeat starts in a small patch of cells called the sinoatrial node. // src: openstax-ap
+heart valve, heart valves, valves => node:mitral_valve, node:aortic_valve, node:tricuspid_valve, node:pulmonary_valve // src: openstax-ap
+pacemaker => node:sa_node, node:av_node, node:heart // The heart's natural pacemaker is the sinoatrial node. // src: openstax-ap
+blood, my blood, bleeding, blood cells => node:blood, node:blood_vessels, node:red_blood_cell, node:platelet, node:blood_tissue, mol:heme_b // There is no 3D model of blood itself; the blood vessels it flows in are here, and the cards describe its cells. // near: node:blood_vessels // src: openstax-ap
+blood vessel, blood vessels, veins, arteries, vein, artery, circulation, circulatory system, bloodstream => node:blood_vessels, node:aorta, node:vena_cava, node:carotid_arteries, node:cardiovascular_system, node:capillary // src: openstax-ap
+blood pressure => node:bio_blood_pressure_control, node:blood_vessels, node:heart // src: openstax-ap
+red blood cell, red blood cells, haemoglobin, hemoglobin, oxygen in blood => node:red_blood_cell, node:bio_hemoglobin_cooperativity, mol:heme_b, kn:heme_oxygen // Haemoglobin carries oxygen on an iron atom held in a heme group. // src: openstax-ap openstax-bio
+white blood cell, white blood cells, immune cell => node:neutrophil, node:macrophage, node:lymphocyte_t, node:lymphocyte_b // src: openstax-ap
+platelets, clotting, scab, blood clot => node:platelet, node:blood_clotting // src: openstax-ap
+lungs, my lungs, lung, breathing, breath, respiration, breathe, respiratory system => node:lung_l, node:lung_r, node:breathing, node:bronchi, node:alveoli, node:respiratory_system // src: openstax-ap
+windpipe, trachea, airway, airways => node:trachea, node:bronchi, node:bronchioles // src: openstax-ap
+voice box, larynx, vocal cords, voice, adams apple => node:larynx // src: openstax-ap
+diaphragm => node:diaphragm, node:breathing // src: openstax-ap
+cough, sneeze, asthma, wheeze => node:bronchi, node:bronchioles, node:alveoli // src: openstax-ap
+oxygen transport, gas exchange => node:breathing, node:alveoli, node:red_blood_cell, kn:respiratory_physiology // src: openstax-ap
+
+# ---------------- digestion and the belly ----------------
+stomach, tummy, belly, my stomach, gut, abdomen => node:stomach, node:digestive_system, node:small_intestine, node:large_intestine // src: openstax-ap
+intestine, intestines, bowel, bowels, guts => node:small_intestine, node:large_intestine, node:villi // src: openstax-ap
+colon, poo, poop, faeces, feces, stool, toilet, constipation => node:large_intestine, node:microbiome // Stool forms in the large intestine, mostly from undigested food, bacteria and water. // src: openstax-ap
+digestion, digest, eating, food, what happens to food, absorption => node:digestion, node:digestive_system, node:stomach, node:small_intestine, node:villi, kn:digestion_renal // src: openstax-ap
+liver => node:liver, node:liver_lobule, node:hepatocyte // src: openstax-ap
+gallbladder, gall bladder, bile => node:gallbladder, node:liver // src: openstax-ap
+pancreas => node:pancreas, node:pancreatic_islets, node:beta_cell // src: openstax-ap
+spleen => node:spleen // src: openstax-ap
+food pipe, gullet, oesophagus, esophagus, swallowing => node:esophagus // src: openstax-ap
+mouth, my mouth, saliva, spit => node:mouth_pharynx, node:tongue, node:teeth // src: openstax-ap
+tooth, teeth, my teeth, dentist teeth, enamel, tooth decay, cavities => node:teeth // src: openstax-ap
+tongue, taste, taste buds, my tongue => node:tongue, node:bio_hearing_chemosense // src: openstax-ap
+gut bacteria, microbiome, gut flora, probiotics, gut microbes, human microbiome => node:microbiome, node:bio_human_microbiome // src: openstax-bio
+kidney, kidneys, my kidneys, renal => node:kidney_l, node:kidney_r, node:nephron, node:urinary_system, node:renal_cortex // src: openstax-ap
+bladder, urinary bladder, wee bladder => node:bladder, node:ureters, node:urethra // src: openstax-ap
+nephron, filtering blood, kidney filter => node:nephron, node:glomerulus, node:proximal_tubule, node:urine_formation // src: openstax-ap
+dehydration, thirst, hydration => node:bio_osmoregulation, node:urine_formation // src: openstax-ap
+
+# ---------------- brain, nerves and senses ----------------
+brain, my brain, the brain, mind, grey matter, gray matter, neuroscience => node:brain, kn:brain_organization, node:cerebral_cortex, node:neuron, node:nervous_system // src: openstax-ap
+thinking, thought, thoughts, intelligence, think => kn:cognition_psychology, node:cerebral_cortex, node:frontal_lobe, kn:brain_organization // src: openstax-ap
+memory, remember, remembering, forgetting, memories => kn:memory_learning, node:hippocampus, node:bio_synaptic_plasticity_memory // src: openstax-ap
+learning, study, studying, how we learn => kn:memory_learning // src: openstax-ap
+emotion, emotions, fear, feelings, anxiety => node:amygdala, kn:cognition_psychology, node:hypothalamus // src: openstax-ap
+sleep, sleeping, dreams, dreaming, insomnia, body clock, circadian, tired => kn:sleep_circadian // src: openstax-ap
+consciousness, awareness, free will, am i conscious => kn:consciousness_theories, kn:predictive_brain // src: app-card
+nerve, nerves, nervous system, my nerves => node:peripheral_nerves, node:nervous_system, node:neuron, node:spinal_cord, node:action_potential // src: openstax-ap
+neuron, neurons, nerve cell, nerve cells, brain cell, brain cells => node:neuron, node:action_potential, node:synapse, kn:action_potential // src: openstax-ap
+synapse, synapses => node:synapse, node:synaptic_transmission // src: openstax-ap
+spinal cord => node:spinal_cord, node:cervical_spine // src: openstax-ap
+reflex, reflexes, knee jerk => node:bio_autonomic_reflexes, node:spinal_cord // src: openstax-ap
+pain, hurt, ouch => node:peripheral_nerves, node:action_potential // src: app-card
+eye, eyes, my eyes, eyeball, sight, seeing, vision, eyesight => node:eye_l, node:eye_r, node:retina, kn:vision_eye, node:vision // src: openstax-ap
+how do we see, how do eyes work, how the eye works => kn:vision_eye, node:retina, node:vision, node:rod_cell, node:cone_cell, trail:what_is_light // src: openstax-ap
+pupil, black of the eye => node:iris, node:eye_l // The pupil is the opening in the iris. // src: openstax-ap
+iris, eye colour, eye color => node:iris, node:eye_l // src: openstax-ap
+lens, eye lens => node:lens, node:eye_l // src: openstax-ap
+retina, rods and cones => node:retina, node:rod_cell, node:cone_cell, node:fovea // src: openstax-ap
+colour blindness, color blindness, colour vision, color vision => node:cone_cell, node:retina // The retina has three kinds of cone cells; colour blindness is usually a missing or altered kind. // src: openstax-ap
+blind spot, optic nerve => node:optic_nerve, node:retina // src: openstax-ap
+ear, ears, my ears, hearing, hear, eardrum, deafness => kn:sound_hearing, node:dog_eardrum, node:dog_cochlea // The human ear has no 3D model yet; the dog's ear (eardrum, cochlea) is modelled and works the same way. // near: node:dog_eardrum, node:dog_cochlea // src: openstax-ap
+nose, my nose, smell, smelling, sense of smell, sniff, scent => node:nose_airway, trail:how_does_a_dog_smell_so_well, node:dog_nose // near: node:dog_nose // src: openstax-ap
+touch, feeling, skin sense, sense of touch => node:skin, kn:sensory_systems, node:peripheral_nerves // src: openstax-ap
+senses, five senses, sense organs => kn:sensory_systems, node:bio_sensory_transduction // src: openstax-ap
+
+# ---------------- skin, hair and hormones ----------------
+skin, my skin, the skin, epidermis, dermis, integumentary => node:skin, lm:Skin cell, node:epidermis, node:dermis, node:integumentary_system, kn:skin_integument // src: openstax-ap
+hair, hairs, my hair, hair follicle, baldness, goosebumps => node:hair_follicle, node:keratinocyte // Hair grows from a follicle in the skin; hair itself is mostly the protein keratin. // src: openstax-ap
+sweat, sweating, sweaty, sweat gland, perspiration => node:sweat_gland, node:thermoregulation // src: openstax-ap
+sunburn, suntan, tan, sun tan, freckles, melanin, skin colour => node:melanocyte, node:epidermis, kn:electromagnetic_waves, kn:ozone_layer // Melanocytes make melanin, the pigment that darkens skin. // src: openstax-ap
+fever, body temperature, temperature of the body, shivering, cold hands => node:thermoregulation, node:hypothalamus // src: openstax-ap
+fingernail, fingernails, nail, nails, claws => node:dog_claws, node:keratinocyte // src: openstax-ap
+thyroid, thyroid gland, goitre => node:thyroid, mol:thyroxine // src: openstax-ap
+pituitary, pituitary gland, master gland => node:pituitary_gland, node:hypothalamus // src: openstax-ap
+adrenal, adrenal gland, adrenal glands => node:adrenal_glands, mol:adrenaline, mol:cortisol // src: openstax-ap
+pineal gland, pineal => node:pineal_gland, mol:melatonin // src: openstax-ap
+endocrine, endocrine system, glands => node:endocrine_system, kn:endocrine_physiology, node:hormone_signaling // src: openstax-ap
+
+# ---------------- immunity, disease, reproduction ----------------
+immune system, immunity, immune, my immune system, antibody, antibodies, lymph => node:lymphatic_immune_system, node:immune_response, node:bio_b_cells_antibodies, kn:immune_system, node:lymph_nodes // src: openstax-ap openstax-bio
+vaccine, vaccines, vaccination, jab, immunisation, immunization, herd immunity => node:bio_vaccines, node:vaccine_immunity_process, kn:vaccines_medicine // src: openstax-bio
+virus, viruses, viral, covid, coronavirus, flu, influenza, cold virus, the common cold, pandemic => node:bio_viruses_structure, kn:viruses, node:bio_viral_life_cycles, node:bio_emerging_viruses // There is no 3D virus model yet; the cards explain how viruses are built and how they replicate. // src: openstax-bio
+hiv, aids, retrovirus => node:bio_retroviruses_hiv, node:lymphocyte_t // src: openstax-bio
+bacteria, bacterium, germ, germs, microbe, microbes, microbiology, infection => node:bio_bacterial_structure, kn:bacteria_archaea, node:bio_bacterial_diversity, node:bio_pathogenesis // There is no 3D bacterium model yet; the cards describe bacterial cells. // src: openstax-bio
+cancer, tumour, tumor, tumours, malignant => kn:cancer_biology, node:bio_cancer_hallmarks, node:bio_cell_cycle_control, node:bio_cancer_gene_regulation // src: openstax-bio
+ageing, aging, getting old, old age, lifespan, longevity, why we age => kn:aging_biology, node:bio_telomeres_senescence // src: openstax-bio
+pregnancy, pregnant, baby, babies, embryo, foetus, fetus, womb => node:bio_human_prenatal_development, node:uterus, kn:development_biology, node:bio_fertilization // src: openstax-ap
+uterus, ovaries, ovary, testes, testicles, reproduction, reproductive system, sex => node:uterus, node:ovaries, node:testes, node:reproductive_system, node:sperm, node:egg_cell // src: openstax-ap
+sperm, egg cell, ovum, fertilisation, fertilization => node:sperm, node:egg_cell, node:bio_fertilization // src: openstax-ap
+egg, eggs, chicken egg, boiled egg, scrambled egg => node:egg_cell, node:bio_fertilization // There is no model of a hen's egg yet; the cards describe the egg cell, the cell that starts a new life. // src: openstax-bio
+twins, identical twins => node:bio_twin_family_studies // src: openstax-bio
+inheritance, heredity, genes, genetics, inherited, gene, mendel, punnett => node:bio_mendel_laws, kn:genetics_inheritance, node:bio_alleles_genotype, node:bio_genetics // src: openstax-bio
+
+# ---------------- cells and DNA ----------------
+dna, my dna, deoxyribonucleic acid, double helix, genetic code => lm:DNA, node:bio_dna_structure, kn:dna_structure, node:bio_genetic_code, node:bio_chromatin_packaging, mol:bp_AT // src: openstax-bio
+genome, genomes, human genome, genomics => node:bio_genome_organization, kn:chromatin_genome, node:bio_comparative_human_genomics // src: openstax-bio
+chromosome, chromosomes => node:bio_chromatin_packaging, kn:chromatin_genome, node:bio_meiosis_variation // src: openstax-bio
+rna, mrna, messenger rna => node:bio_rna_types, node:transcription_process, node:bio_rna_processing // src: openstax-bio
+protein synthesis, translation, ribosomes, make proteins => node:protein_synthesis, node:ribosome, node:bio_trna_translation_machinery // src: openstax-bio
+mutation, mutations, mutate => node:bio_mutations, node:bio_dna_damage_repair // src: openstax-bio
+crispr, gene editing, genetic engineering, gmo, gmos => node:bio_crispr_cas9, kn:crispr_biotech, node:bio_gmo_transgenics, node:crispr_editing_process // src: openstax-bio
+cell, cells, a cell, the cell, living cell, my cells, animal cell => lm:Skin cell, kn:cell_biology_intro, node:bio_prokaryote_eukaryote, node:nucleus, node:mitochondrion // src: openstax-bio
+cell division, mitosis, dividing cells, meiosis => node:mitosis, node:meiosis_process, node:bio_cell_cycle, kn:cell_cycle // src: openstax-bio
+nucleus, the nucleus => lm:Oxygen nucleus, node:nucleus, node:bio_nuclear_organization // hint: Nucleus can mean the centre of a cell or the centre of an atom. // src: openstax-bio openstax-chem
+mitochondria, mitochondrion, powerhouse of the cell, the powerhouse of the cell => node:mitochondrion, kn:mitochondria_org, node:oxidative_phosphorylation_process // Mitochondria make most of a cell's ATP. // src: openstax-bio
+organelle, organelles, golgi, endoplasmic reticulum, lysosome => node:golgi_apparatus, node:endoplasmic_reticulum, node:lysosome, kn:organelles_overview // src: openstax-bio
+cell energy, respiration in cells, cellular respiration, how cells make energy => node:cellular_respiration // src: openstax-bio
+photosynthesis, how plants make food, plants make food, how plants make energy, sunlight into sugar => trail:why_is_a_leaf_green, node:bio_photosynthesis_overview, kn:photosynthesis_light // src: openstax-bio
+stem cell, stem cells => node:stem_cell, node:bio_stem_cells_differentiation // src: openstax-bio
+fat cell, fat tissue, body fat, belly fat, obesity => node:adipocyte, node:adipose_tissue // src: openstax-ap
+tissue, tissues, epithelium => node:epithelial_tissue, node:connective_tissue_loose, node:nervous_tissue, kn:cell_types // src: openstax-ap
+membrane transport, osmosis, diffusion => node:bio_diffusion_osmosis, kn:membrane_transport // src: openstax-bio
+evolution, darwin, natural selection, survival of the fittest, adaptation, evolve => node:bio_natural_selection, kn:natural_selection, node:bio_evidence_for_evolution, kn:common_descent // src: openstax-bio
+species, speciation, biodiversity, diversity of life, tree of life => node:bio_speciation_mechanisms, node:bio_taxonomy_intro, kn:speciation_biodiversity, node:bio_biodiversity_crisis // src: openstax-bio
+extinction, extinct, mass extinction, dinosaurs die, why dinosaurs died => node:bio_mass_extinctions, kn:mass_extinctions, kn:fossils_paleontology // src: openstax-bio
+dinosaur, dinosaurs, fossil, fossils, palaeontology, paleontology => kn:fossils_paleontology, node:bio_geologic_time, node:bio_mass_extinctions, node:bio_reptiles_birds // Birds are living dinosaurs; there is no dinosaur model yet. // src: openstax-bio
+origin of life, how did life begin, first life, abiogenesis, luca => node:bio_origin_of_life, kn:origin_of_life, node:bio_rna_world_luca // src: openstax-bio
+human evolution, early humans, apes, neanderthal, ancestors => node:bio_human_evolution, kn:human_evolution // src: openstax-bio
+life, what is life, alive, living things, living => node:bio_characteristics_life, kn:cell_biology_intro, kn:origin_of_life // src: openstax-bio
+
+# ---------------- animals in the park and beyond ----------------
+dog, dogs, puppy, canine, labrador, pet dog, my dog, hound => pl:Dog, node:dog, trail:how_does_a_dog_smell_so_well, node:dog_skeleton, node:dog_muscles, node:dog_organs // The dog is a full anatomical model in the park: coat, skeleton, muscles, organs. // src: app-card
+bee, bees, honeybee, honey bee, bumblebee, bumble bee, insect, insects => pl:Honeybee, node:park_bee, trail:why_does_a_bee_visit_a_flower, node:bee_flight, node:bee_vision, node:bee_colony // Bees are a full model in the park; other insects are described on the insects card. // src: app-card
+bee sting, sting, stinger => node:bee_sting, node:bee_venom_sac // src: app-card
+bird, birds, pigeon, sparrow, robin, feathers, wings of a bird => pl:Bird, node:park_bird, node:bio_reptiles_birds, node:bio_evolution_of_flight // src: app-card
+tree, trees, oak, oak tree, a tree, forest tree, woods => pl:Tree, node:oak_english, trail:how_does_a_tree_lift_water, node:oak_trunk, node:oak_leaf, node:oak_roots // src: app-card
+leaf, leaves, a leaf, why is a leaf green, green leaf => trail:why_is_a_leaf_green, node:oak_leaf, node:bio_leaf_structure_gas_exchange, mol:chlorophyll_a // src: app-card
+bark, tree bark, tree rings, growth rings, annual rings, how old is a tree => node:oak_bark, node:oak_growth_rings, node:oak_cambium // src: app-card
+root, roots, plant roots, how plants drink => node:oak_roots, node:oak_root_hairs, node:bio_water_transport, node:bio_roots_mycorrhiza // src: app-card
+sap, xylem, phloem, how does water get up a tree, water in plants => trail:how_does_a_tree_lift_water, node:bio_water_transport, node:oak_water_lift, node:bio_phloem_transport // src: openstax-bio app-card
+acorn, acorns, seed, seeds, nut, nuts => node:oak_acorn, node:bio_plant_reproduction, node:bio_seed_plants // src: app-card
+flower, flowers, buttercup, petal, petals, blossom, bloom, daisy, rose, tulip => pl:Flowers, node:rn_acris, node:rn_flower, node:rn_petal, node:bio_plant_reproduction, trail:why_does_a_bee_visit_a_flower // The flower in the park is a meadow buttercup. // src: app-card
+pollen, pollination, pollinator, pollinators, hay fever pollen => node:rn_pollen_grain, node:rn_pollination, node:bio_pollination_networks, node:bee_pollen_basket, trail:why_does_a_bee_visit_a_flower // src: app-card
+nectar => node:rn_nectar, node:bee_nectar, mol:sucrose, node:rn_nectary // src: app-card openstax-bio
+mushroom, mushrooms, toadstool, fungus, fungi, fly agaric, amanita, poisonous mushroom, magic mushroom => pl:Mushroom, node:park_mushroom, trail:what_is_a_mushroom, node:bio_fungi_basics, node:fa_mycelium // src: app-card
+mycelium, mycorrhiza, fungal network, wood wide web => node:fa_mycelium, node:fa_ecm, node:oak_mycorrhiza, node:bio_fungal_ecology // src: app-card
+yeast, mould, mold, mildew, penicillium => node:bio_fungi_basics, node:bio_fungal_ecology // src: openstax-bio
+lichen, lichens => node:lichen_on_rock, node:bio_lichens_fungal_biotech // src: app-card
+moss, mosses, fern, ferns, liverwort => node:bio_bryophytes_seedless // src: openstax-bio
+plant, plants, a plant, botany, houseplant, grass, grasses, vegetation, crops, crop => node:bio_plants, kn:plant_physiology, node:bio_plant_body_tissues, node:bio_seed_plants, node:bio_crop_domestication // src: openstax-bio
+wheat, rice, corn, maize, barley, cereal, farming, agriculture, domestication => node:bio_crop_domestication, kn:demography_agriculture, node:bio_seed_plants // src: openstax-bio
+algae, seaweed, kelp, pond scum, green algae, phytoplankton, plankton => node:bio_algae_green_origin, node:bio_protists, node:bio_marine_biology // src: openstax-bio
+pond, the pond, pond water, a pond, pond life, puddle, lake => pl:Pond, node:park_pond, node:bio_protists, node:bio_biomes // src: app-card
+fish, fishes, shark, sharks, salmon, goldfish, frog, frogs, toad, newt, amphibian, amphibians => node:bio_fishes_amphibians, node:bio_echinoderms_chordates // No fish or frog model yet; this card covers them. // src: openstax-bio
+reptile, reptiles, snake, snakes, lizard, crocodile, turtle, tortoise, chicken, eagle, owl, penguin, duck => node:bio_reptiles_birds, node:bio_evolution_of_flight // src: openstax-bio
+mammal, mammals, cat, cats, horse, cow, pig, sheep, rat, mouse, rabbit, elephant, whale, dolphin, lion, tiger, bear, monkey, ape, chimpanzee, gorilla, primate, primates => node:bio_mammals_primates, pl:Dog, node:dog_skeleton // No cat, horse or whale model yet. The mammals card covers them, and the dog is a full mammal model. // near: pl:Dog // src: openstax-bio
+butterfly, butterflies, moth, ant, ants, fly, flies, mosquito, mosquitoes, beetle, ladybird, ladybug, wasp, grasshopper, cricket, termite, dragonfly, caterpillar => node:bio_entomology_insects, node:bio_nematodes_arthropods, pl:Honeybee // There is no model of these insects yet; the honeybee is a full insect model. // near: pl:Honeybee // src: openstax-bio
+spider, spiders, scorpion, crab, crabs, lobster, shrimp, prawn, tick => node:bio_arachnids_crustaceans, node:bio_nematodes_arthropods // src: openstax-bio
+worm, worms, earthworm, snail, snails, slug, octopus, squid, mussel, oyster, clam => node:bio_lophotrochozoans, node:bio_nematodes_arthropods // src: openstax-bio
+jellyfish, coral, coral reef, sponge, anemone => node:bio_sponges_cnidarians, node:bio_marine_biology // src: openstax-bio
+starfish, sea star, sea urchin => node:bio_echinoderms_chordates // src: openstax-bio
+animal, animals, wildlife, creatures, zoology => node:bio_animal_features, kn:animal_diversity, pl:Dog, pl:Honeybee, pl:Bird // src: openstax-bio
+ecosystem, ecosystems, food chain, food web, habitat, ecology, rainforest, forest, jungle, savanna, desert, tundra, biome => node:bio_ecology, node:bio_food_webs_energy_flow, kn:ecology_energy, node:bio_biomes, kn:biomes_climate // src: openstax-bio
+soil life, worms in soil, decomposition, rot, rotting, compost, decay => node:bio_primary_production_decomposition, node:bio_soil_ecology, kn:soil_biology, node:park_ground // src: openstax-bio
+symbiosis, parasite, parasites, tapeworm, mutualism => node:bio_symbiosis, node:bio_parasites_helminths // src: openstax-bio
+migration, bird migration, navigation, how birds find their way => node:bio_migration_navigation // src: openstax-bio
+hibernation, hibernate, torpor => node:bio_torpor_hibernation // src: openstax-bio
