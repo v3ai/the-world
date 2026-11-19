@@ -923,7 +923,7 @@ var TAB_CMOS = {
     /* F: dynamic power */
     var F = R[5]; card(g, F, 'Dynamic power  P = α·C·V²·f'); var f = Math.pow(10, s.lf) * 1e6, Pg = function (v) { return s.alpha * s.C * 1e-15 * v * v * f; }, ymx = Pg(1.8);
     var PF = plot(g, F, { xmin: 0.4, xmax: 1.8, ymin: 0, ymax: ymx * 1.05, xl: 'V_DD (V)', yl: 'power per gate', fy: function (v) { return eng(v, 'W', 2).replace(' ', ''); }, pl: 52 }); curve(g, PF, Pg, C.gold, 2.2, null, 0.4, 1.8, 80); dot(g, PF.X(VDD), PF.Y(Pg(VDD)), '#fff', 5, true);
-    txt(g, 'P/gate = ' + eng(Pg(VDD), 'W', 3), PF.x + 8, PF.y + 14, { s: 10.5, c: C.gold, w: 600 }); txt(g, 'chip (' + sci(Math.pow(10, s.lN), 1) + ' gates): ' + eng(Pg(VDD) * Math.pow(10, s.lN), 'W', 3), PF.x + 8, PF.y + 28, { s: 10, c: C.text });
+    txt(g, 'P/gate = ' + eng(Pg(VDD), 'W', 3), PF.x + 8, PF.y + 14, { s: 10.5, c: C.gold, w: 600 }); txt(g, 'toy estimate, chip (' + sci(Math.pow(10, s.lN), 1) + ' gates, all switching): ' + eng(Pg(VDD) * Math.pow(10, s.lN), 'W', 3), PF.x + 8, PF.y + 28, { s: 10, c: C.text });
     txt(g, 'E/cycle = C·V² = ' + eng(s.C * 1e-15 * VDD * VDD, 'J', 3) + '  —  halve V, ¼ the power', PF.x + PF.w - 6, PF.y + PF.h - 8, { a: 'right', s: 9.5, c: C.dim });
   }
 };

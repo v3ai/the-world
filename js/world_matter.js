@@ -670,35 +670,3 @@ v2frame('park', 'life', () => 1, (F, c) => {
 });
 /* ---------- black hole at the galactic center (unit 1e10 m) ---------- */
 v2frame('sgrA', 'blackhole', () => .6, (F) => { F.blurb = 'Sagittarius A*: 4.3 million Suns of mass inside an event horizon about 25 million km across (radius 12.7 million km). (Accretion flow shown brighter than reality.)'; });
-/* "See what it is made of" on a cell-bearing thing opens the right kind of cell (plant, bacterium, ...), which world_build's diveMaterial cannot tell apart. */
-WORLD_EXT.push(async () => {
-  const CRY = await getJSON('data/crystals.json').catch(() => []);
-  const dive0 = diveMaterial;
-  diveMaterial = function (h) {
-    const ud = h.obj.userData;
-    if (ud.madeOf === 'cell' && ud.cellOpts) {
-      const co = ud.cellOpts, F = h.frame, P = h.pointLocal.clone();
-      const f = new Frame({ type: 'cell', name: co.cname || (co.type === 'plant' ? 'Plant cell' : co.type === 'bacterium' ? 'Bacterium' : 'Animal cell'), unit: 1e-6, radius: 16, r1: 2.5e-4, pos: P, opts: Object.assign({}, co) });
-      f.dynamic = true; f.keep = performance.now() + 60000; F.addChild(f); f.ensure(); flyTo(f, new V3(), co.type === 'bacterium' ? 6e-6 : 5e-5); return;
-    }
-    if (ud.madeOf === 'gasgiant') {
-      const F = h.frame, P = h.pointLocal.clone(), body = F.opts && F.opts.body || 'the planet';
-      const f = new Frame({ type: 'gas', name: `Hydrogen and helium gas (${body})`, unit: 1e-9, radius: 24, r1: 2e-7, spawnD: 1.2e-9, pos: P, opts: { air: 'giant' } });
-      f.dynamic = true; f.keep = performance.now() + 60000; F.addChild(f); f.ensure(); flyTo(f, new V3(), 5e-8); return;
-    }
-    return dive0(h);
-  };
-  // "Show where it is" for a molecule topic: put the molecule frame in the park, away from the DNA frames that sit in the cell
-  const go0 = placeGo;
-  placeGo = function (w) {
-    if (w && /^mol:/.test(w) && FR.park) { FR.park.ensure(); placeChild(FR.park, new Frame({ type: 'mol', name: w.slice(4), unit: 1e-10, radius: 40, r1: 2.5e-8, spawnD: 1e-9, pos: new V3(1.2, .01, 1.4), opts: { mol: w.slice(4) } }), 3.2e-9); return true; }
-    return go0.apply(this, arguments);
-  };
-  // crystals and molecules by name in search
-  if (typeof SEARCH_SOURCES !== 'undefined') SEARCH_SOURCES.push(q => {
-    const out = [], ALIAS = { halite: 'table salt sodium chloride rock salt', diamond: 'carbon gem', graphite: 'pencil lead carbon', gold_fcc: 'gold', copper_fcc: 'copper', aluminium_fcc: 'aluminum aluminium foil', iron_bcc: 'iron steel', quartz: 'sand silica glass', calcite: 'limestone chalk marble', ice_ih: 'ice snow water frozen', silicon: 'chip semiconductor', hematite: 'rust iron ore', magnetite: 'lodestone', pyrite: 'fool\'s gold', rutile: 'titanium dioxide', fluorite: 'fluorspar calcium fluoride', forsterite: 'olivine peridot' };
-    if (q.length < 3) return out;
-    CRY.forEach(c => { const hay = (c.name + ' ' + c.formula + ' ' + c.id + ' ' + (ALIAS[c.id] || '')).toLowerCase(); if (hay.includes(q)) out.push({ title: c.name, sub: 'Crystal lattice', prio: 0, go: () => { FR.park.ensure(); placeChild(FR.park, crystalFrame(c.id, new V3(1.2, .01, 1.4)), 4e-9); } }); });
-    return out;
-  });
-});

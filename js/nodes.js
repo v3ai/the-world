@@ -465,7 +465,7 @@ function placeGo(w) {
     'place:air': micro('air', () => new V3(0, 2.6, 2.5)),
   };
   if (P[w]) { P[w](); return true; }
-  if (w.startsWith('mol:')) { FR.cell.ensure(); placeChild(FR.cell, new Frame({ type: 'mol', name: w.slice(4), unit: 1e-10, radius: 40, r1: 2.5e-8, spawnD: 1e-9, pos: new V3(3, 2, 0), opts: { mol: w.slice(4) } }), 3.2e-9); return true; }
+  if (w.startsWith('mol:')) { FR.park.ensure(); placeChild(FR.park, new Frame({ type: 'mol', name: w.slice(4), unit: 1e-10, radius: 40, r1: 2.5e-8, spawnD: 1e-9, pos: new V3(1.2, .01, 1.4), opts: { mol: w.slice(4) } }), 3.2e-9); return true; } // a molecule topic: the molecule frame in the park, away from the DNA frames that sit in the cell
   if (w.startsWith('crystal:')) { FR.park.ensure(); placeChild(FR.park, crystalFrame(w.slice(8), new V3(1.2, 0.01, 1.4)), 4e-9); return true; }
   if (NODE[w] && w !== arguments[1]) { goToNode(w); return true; }
   return false;

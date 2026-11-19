@@ -106,15 +106,20 @@ function startView() {
 function diveMaterial(h) {
   const kind = h.obj.userData.madeOf, F = h.frame, P = h.pointLocal.clone();
   let f = null, D = null;
-  const metersPerLocal = F.unit;
-  if (MICRO[kind]) { f = microFrame(kind, P); D = 1.2e-3; }
+  const metersPerLocal = F.unit, ud = h.obj.userData;
+  if (kind === 'cell' && ud.cellOpts) { // a cell-bearing thing opens the right kind of cell (plant, bacterium, ...)
+    const co = ud.cellOpts;
+    f = new Frame({ type: 'cell', name: co.cname || (co.type === 'plant' ? 'Plant cell' : co.type === 'bacterium' ? 'Bacterium' : 'Animal cell'), unit: 1e-6, radius: 16, r1: 2.5e-4, pos: P, opts: Object.assign({}, co) }); D = co.type === 'bacterium' ? 6e-6 : 5e-5;
+  }
+  else if (kind === 'gasgiant') { const body = F.opts && F.opts.body || 'the planet'; f = new Frame({ type: 'gas', name: `Hydrogen and helium gas (${body})`, unit: 1e-9, radius: 24, r1: 2e-7, spawnD: 1.2e-9, pos: P, opts: { air: 'giant' } }); D = 5e-8; }
+  else if (MICRO[kind]) { f = microFrame(kind, P); D = 1.2e-3; }
   else if (kind === 'plasma') { f = new Frame({ type: 'plasma', name: 'Plasma', unit: 1e-9, radius: 40, r1: 3e-7, pos: P }); D = 6e-8; }
-  else if (kind === 'gasgiant' || kind === 'gas') { f = new Frame({ type: 'gas', name: 'Gas molecules', unit: 1e-9, radius: 24, r1: 2e-7, spawnD: 1.2e-9, pos: P }); D = 5e-8; }
+  else if (kind === 'gas') { f = new Frame({ type: 'gas', name: 'Gas molecules', unit: 1e-9, radius: 24, r1: 2e-7, spawnD: 1.2e-9, pos: P }); D = 5e-8; }
   else if (kind === 'water') { f = new Frame({ type: 'liquid', name: 'Liquid water', unit: 1e-10, radius: 18, r1: 2e-8, spawnD: 1e-9, pos: P }); D = 5e-9; }
   else if (kind === 'molecule') { f = /air|gas/.test(h.id) ? new Frame({ type: 'gas', name: 'Air molecules', unit: 1e-9, radius: 24, r1: 2e-7, spawnD: 1.2e-9, pos: P }) : new Frame({ type: 'liquid', name: 'Liquid water', unit: 1e-10, radius: 18, r1: 2e-8, spawnD: 1e-9, pos: P }); D = f.type === 'gas' ? 5e-8 : 5e-9; }
   else if (kind === 'silicon') { f = crystalFrame('silicon', P); D = 4e-9; } // the chips of a phone: a silicon crystal
   else if (kind === 'crystal' || kind === 'rock') { f = crystalFrame(/ice/.test(h.id) ? 'ice_ih' : 'quartz', P); D = 4e-9; }
-  else if (kind === 'cell') { f = new Frame({ type: 'cell', name: 'Cell', unit: 1e-6, radius: 16, r1: 2.5e-4, pos: P, opts: { type: 'animal' } }); D = 5e-5; }
+  else if (kind === 'cell') { f = new Frame({ type: 'cell', name: 'Animal cell', unit: 1e-6, radius: 16, r1: 2.5e-4, pos: P, opts: { type: 'animal' } }); D = 5e-5; }
   else if (kind === 'leaf') { f = microFrame('leaf', P); D = 1.2e-3; }
   else if (kind === 'protein') { f = new Frame({ type: 'mol', name: 'Amino acid', unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: P, opts: { mol: 'aa_cys' } }); D = 3e-9; }
   else if (kind === 'atom') { const c = h.obj.userData.center ? h.obj.userData.center(h) : P; f = atomFrame(h.obj.userData.sym || 'O', c); D = 7e-10; }

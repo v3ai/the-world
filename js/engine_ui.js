@@ -320,6 +320,13 @@ SEARCH_SOURCES.push(q => {
   if (!MOL_INDEX) { if (MOL_INDEX !== 0 && typeof getJSON === 'function') { MOL_INDEX = 0; getJSON('data/molecules_all.json').then(A => { MOL_INDEX = A.index; libSearch($('#libQ').value); }).catch(() => { MOL_INDEX = []; }); } return []; }
   return MOL_INDEX.filter(m => m.name.toLowerCase().includes(q) || m.formula.toLowerCase() === q).map(m => ({ title: m.name, sub: `Molecule, ${m.formula}: fly to it at true size`, rank: m.formula.toLowerCase() === q ? 0 : undefined, go: () => placeGo('mol:' + m.id) }));
 });
+let CRY_INDEX = null; // crystals by name (and everyday names: salt, sand, rust ...)
+const CRY_ALIAS = { halite: 'table salt sodium chloride rock salt', diamond: 'carbon gem', graphite: 'pencil lead carbon', gold_fcc: 'gold', copper_fcc: 'copper', aluminium_fcc: 'aluminum aluminium foil', iron_bcc: 'iron steel', quartz: 'sand silica glass', calcite: 'limestone chalk marble', ice_ih: 'ice snow water frozen', silicon: 'chip semiconductor', hematite: 'rust iron ore', magnetite: 'lodestone', pyrite: 'fool\'s gold', rutile: 'titanium dioxide', fluorite: 'fluorspar calcium fluoride', forsterite: 'olivine peridot' };
+SEARCH_SOURCES.push(q => {
+  if (q.length < 3) return [];
+  if (!CRY_INDEX) { if (CRY_INDEX !== 0 && typeof getJSON === 'function') { CRY_INDEX = 0; getJSON('data/crystals.json').then(A => { CRY_INDEX = A; libSearch($('#libQ').value); }).catch(() => { CRY_INDEX = []; }); } return []; }
+  return CRY_INDEX.filter(c => (c.name + ' ' + c.formula + ' ' + c.id + ' ' + (CRY_ALIAS[c.id] || '')).toLowerCase().includes(q)).map(c => ({ title: c.name, sub: 'Crystal lattice', prio: 0, go: () => { FR.park.ensure(); placeChild(FR.park, crystalFrame(c.id, new V3(1.2, .01, 1.4)), 4e-9); } }));
+});
 SEARCH_SOURCES.push(q => typeof NODE === 'undefined' ? [] : Object.values(NODE).filter(n => n.title.toLowerCase().includes(q)).map(n => ({ title: n.title, sub: `${(n.kind || '').replace(/_/g, ' ')}${n.summary ? ': ' + n.summary : ''}`.slice(0, 110), go: () => goToNode(n.id) })));
 /* The Sun, the planets, the Moon and the things in the park: places you can fly to. Built when first searched, from the frames in FR. */
 let _bodyPlaces = null;
