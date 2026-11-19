@@ -212,12 +212,12 @@ function loadStars() {
 }
 function starMaterial() {
   return new THREE.ShaderMaterial({
-    uniforms: { uScale: { value: renderer.getPixelRatio() }, uOpacity: { value: 1 }, uLim: { value: 6.8 }, uExp: { value: 0 } },
-    vertexShader: LDV(`attribute float aMag; attribute vec3 aColor; uniform float uScale; uniform float uLim; uniform float uExp; varying vec3 vC; varying float vA;
+    uniforms: { uScale: { value: PIXR_BASE }, uPixK: PIXK, uOpacity: { value: 1 }, uLim: { value: 6.8 }, uExp: { value: 0 } }, // uPixK follows the adaptive render scale (engine.js)
+    vertexShader: LDV(`attribute float aMag; attribute vec3 aColor; uniform float uScale; uniform float uPixK; uniform float uLim; uniform float uExp; varying vec3 vC; varying float vA;
       void main(){ vec4 mv=modelViewMatrix*vec4(position,1.0); float d=max(length(mv.xyz),1e-7);
         float m=aMag+5.0*log(d)/2.302585-5.0-uExp; float b=pow(10.0,-0.4*(m-1.0));
         float s=clamp(1.5+2.6*pow(b,0.4),1.2,16.0); vA=clamp(b*2.0,0.0,1.0)*(1.0-smoothstep(uLim-1.0,uLim+1.5,m));
-        vC=aColor; gl_PointSize=s*uScale; gl_Position=projectionMatrix*mv; }`),
+        vC=aColor; gl_PointSize=s*uScale*uPixK; gl_Position=projectionMatrix*mv; }`),
     fragmentShader: LDF(`uniform float uOpacity; varying vec3 vC; varying float vA; void main(){ float d=length(gl_PointCoord-0.5); float a=smoothstep(0.5,0.0,d); a=a*a*0.7+smoothstep(0.18,0.0,d)*0.6; if(vA*a<0.003) discard; gl_FragColor=vec4(vC*a*vA*uOpacity, 1.0); }`),
     transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
   });
@@ -556,7 +556,7 @@ FT.solarsystem = {
       }
       if (!F._sunLbl) { F._sunLbl = 1; F.labels.forEach(L => { if (L.el.textContent === 'Sun') L.minSizeFn = () => !(FR.sun && FR.sun.alpha > .3); else if (/^Heliopause/.test(L.el.textContent)) L.minSizeFn = () => !(FR.sun && FR.sun.alpha > .3) && cam.D < 6e13; }); }
       oortRings.forEach(l => { l.visible = cam.D > 2e13; }); helH.visible = cd0 > 125; // the heliopause can be picked from outside it, never from the inner solar system
-      const sc = avg => Math.min(40, Math.max(1, 1.6 * (cam.D / F.unit) / (300 * avg))); belt.material.uniforms.uScale.value = renderer.getPixelRatio() * sc(.007); kb.material.uniforms.uScale.value = renderer.getPixelRatio() * sc(.075);
+      const sc = avg => Math.min(40, Math.max(1, 1.6 * (cam.D / F.unit) / (300 * avg))); belt.material.uniforms.uScale.value = PIXR_BASE * sc(.007); kb.material.uniforms.uScale.value = PIXR_BASE * sc(.075);
       vgs.forEach(o => { voyagerAt(o.V, simTime, o.g.position); const dd = Math.max(o.g.position.distanceTo(CP), 1e-9); o.hs.scale.setScalar(dd * PXK * 12); if (performance.now() - o.t > 400) { o.t = performance.now(); o.L.el.textContent = `${o.V.name} (${Math.round(o.g.position.length())} AU from the Sun)`; } if (!o.L.hooked) { o.L.hooked = 1; o.L.minSizeFn = () => !(FR.sun && FR.sun.alpha > .3) && o.g.position.length() / Math.max(o.g.position.distanceTo(CP), 1e-9) / PXK > 14; } });
     };
   }

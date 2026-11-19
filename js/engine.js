@@ -34,7 +34,8 @@ function LDF(src) { return '#include <logdepthbuf_pars_fragment>\n' + src.replac
 /* ================= RENDERER ================= */
 const canvas = $('#c');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, logarithmicDepthBuffer: true, powerPreference: 'high-performance' });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+const PIXR_BASE = Math.min(window.devicePixelRatio || 1, 2); // the scale the page was always drawn at: point sizes in the shaders are written for it
+const PIXK = { value: 1 };                                    // current render scale / PIXR_BASE, a uniform shared by the point shaders, so points keep their size on screen at any scale
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.autoClear = false;
 /* Opaque objects: by render order, then nearest first, so that what is in front fills the depth buffer before what it hides is shaded.
@@ -102,9 +103,62 @@ function renderAll(dt) {
   { const ri = renderer.info.render; PERF.calls = ri.calls; PERF.tris = ri.triangles; PERF.points = ri.points; } // the scenes' own numbers, without the full-screen passes
   if (bloom && bloomAmt > .02) { bloom.strength = bloomAmt; bloomRender(); }
 }
+/* ================= RENDER SCALE =================
+   Only the canvas's drawing buffer is scaled; the page and its panels stay at the device's own resolution.
+   - A cap by pixel count: the buffer is never larger than about 2.8 million pixels (a 4K window at ratio 2 would be 33 million),
+     never above the device's ratio (at most 2), never below 0.6 of the window's CSS size.
+   - dpr=auto (the default): a scaler driven by the frame time moves between fixed levels. Quick to drop (about one second below
+     45 frames a second; at once below 30), slow to rise (four seconds at the display's rate), a step up that has to be undone
+     within ten seconds makes the next try wait 30 s longer and the third such reversal ends the tries. Frames over 100 ms (a shader
+     compiling, a mesh arriving) and the slowest tenth of each half-second window are not counted, and neither are resting frames.
+     If two drops in a row do not make frames faster, resolution is not what limits this machine: the scale goes back up and stays.
+   - dpr=<number> fixes the scale. Under browser automation (navigator.webdriver) the scale is fixed at the cap unless dpr=auto is in
+     the URL, so test screenshots do not change resolution with the machine's load. */
+const RS_LEVELS = [.6, .75, 1, 1.25, 1.5, 2], RS_SLOW_MS = 22, RS_FAST_MS = 17.6, RS_MAX_PIXELS = 2.8e6;
+const RS = { auto: !navigator.webdriver || PERF.flags.given.dpr === 'auto', cur: PIXR_BASE, cap: PIXR_BASE, lv: [PIXR_BASE], i: 0, win: [], sum: 0, slow: 0, fast: 0, rev: 0, lock: false, lastDir: 0, lastStep: 0, holdUntil: 0, skip: 0, before: 0, noGain: 0, from: 0, longRun: 0, log: [] };
+function rsApply(s) { RS.cur = s; PIXK.value = s / PIXR_BASE; renderer.setPixelRatio(s); renderer.setSize(W, H, false); bloomResize(); }
+function rsReset() { // on load, on a resize and when the switch changes: start from the cap, or from the fixed value
+  const dev = Math.min(window.devicePixelRatio || 1, PERF.flags.dprMax);
+  RS.cap = Math.max(.6, Math.min(dev, Math.sqrt(RS_MAX_PIXELS / Math.max(1, W * H))));
+  RS.lv = RS_LEVELS.filter(l => l < RS.cap - .01); RS.lv.push(RS.cap); RS.i = RS.lv.length - 1;
+  RS.win.length = 0; RS.sum = RS.slow = RS.fast = RS.rev = RS.lastDir = RS.holdUntil = RS.noGain = RS.before = RS.longRun = 0; RS.lock = false; RS.skip = 5;
+  rsApply(PERF.flags.dpr === 'auto' ? RS.cap : PERF.flags.dpr);
+}
+function rsStep(dir, avg) {
+  const now = performance.now(); RS.slow = RS.fast = 0;
+  if (dir < 0) {
+    if (RS.i === 0) return;
+    if (RS.lastDir > 0 && now - RS.lastStep < 10000) { RS.rev++; RS.holdUntil = now + 30000 * RS.rev; if (RS.rev >= 3) RS.lock = true; } // the step up did not hold
+    if (RS.lastDir >= 0) RS.from = RS.i; // where this run of drops started
+    RS.before = avg; RS.i--;
+  } else {
+    if (RS.lock || RS.i >= RS.lv.length - 1 || now < RS.holdUntil) return;
+    RS.i++; RS.before = 0;
+  }
+  RS.lastDir = dir; RS.lastStep = now; RS.skip = 5; RS.log.push([Math.round(now), dir, RS.lv[RS.i], +avg.toFixed(1)]); if (RS.log.length > 40) RS.log.shift();
+  rsApply(RS.lv[RS.i]);
+}
+/* one frame interval in ms (only frames drawn at full rate are fed) */
+function rsFeed(dtMs) {
+  if (!RS.auto || PERF.flags.dpr !== 'auto' || RS.noGain >= 2) return;
+  if (RS.skip > 0) { RS.skip--; return; }               // the frames just after a change of size include the reallocation
+  if (!(dtMs > 0)) return;
+  if (dtMs > 100) { if (++RS.longRun < 5) return; dtMs = Math.min(dtMs, 2000); } else RS.longRun = 0; // a one-off long frame is not evidence; five in a row are the machine's real rate
+  const w = RS.win; w.push(dtMs); RS.sum += dtMs; if (!((w.length >= 20 && RS.sum >= 400) || RS.sum >= 1500)) return; // judge half a second or more at a time
+  w.sort((a, b) => a - b); const n = w.length - Math.floor(w.length * .1); let t = 0; for (let i = 0; i < n; i++) t += w[i];
+  const avg = t / n; w.length = 0; RS.sum = 0;
+  if (RS.lastDir < 0 && RS.before) { // did the last drop help?
+    if (avg > RS.before * .92) { if (++RS.noGain >= 2) { RS.i = RS.from; RS.lock = true; RS.log.push([Math.round(performance.now()), 0, RS.lv[RS.i], +avg.toFixed(1)]); rsApply(RS.lv[RS.i]); return; } } else RS.noGain = 0;
+    RS.before = 0;
+  }
+  if (avg > RS_SLOW_MS) { RS.fast = 0; if (++RS.slow >= (avg > 33 ? 1 : 2)) rsStep(-1, avg); }
+  else if (avg < RS_FAST_MS) { RS.slow = 0; if (++RS.fast >= 8) rsStep(1, avg); }
+  else RS.slow = RS.fast = 0;
+}
+PERF.on('dpr', () => rsReset());
+PERF.scaleNote = () => PERF.flags.dpr !== 'auto' ? 'fixed' : !RS.auto ? 'fixed at the cap (automation)' : `automatic, level ${RS.i + 1} of ${RS.lv.length}` + (RS.noGain >= 2 ? ', held: a lower resolution did not make frames faster' : RS.lock ? ', held after three reversals' : '');
 function resize() {
-  W = innerWidth; H = innerHeight; renderer.setSize(W, H, false);
-  bloomResize();
+  W = innerWidth; H = innerHeight; rsReset();
   forEachFrame(f => { if (f.cam) { f.cam.aspect = W / H; f.cam.updateProjectionMatrix(); } });
 }
 addEventListener('resize', resize);

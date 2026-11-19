@@ -39,9 +39,9 @@ function cylBetween(a, b, r, mat, seg = 14) {
 }
 function pointsMaterial(o = {}) {
   return new THREE.ShaderMaterial({
-    uniforms: { uScale: { value: renderer.getPixelRatio() * (o.scale || 1) }, uOpacity: { value: o.opacity ?? 1 }, uExpand: { value: 1 }, uMaxPx: { value: 64 } },
-    vertexShader: LDV(`attribute float aSize; attribute vec3 aColor; varying vec3 vColor; uniform float uScale; uniform float uExpand; uniform float uMaxPx;
-      void main(){ vColor=aColor; vec4 mv=modelViewMatrix*vec4(position*uExpand,1.0); gl_PointSize=min(aSize*uScale*(300.0/-mv.z), uMaxPx); gl_Position=projectionMatrix*mv; }`),
+    uniforms: { uScale: { value: PIXR_BASE * (o.scale || 1) }, uPixK: PIXK, uOpacity: { value: o.opacity ?? 1 }, uExpand: { value: 1 }, uMaxPx: { value: 64 } }, // uPixK: the render scale relative to PIXR_BASE (engine.js), so points keep their size on screen when the scale adapts
+    vertexShader: LDV(`attribute float aSize; attribute vec3 aColor; varying vec3 vColor; uniform float uScale; uniform float uPixK; uniform float uExpand; uniform float uMaxPx;
+      void main(){ vColor=aColor; vec4 mv=modelViewMatrix*vec4(position*uExpand,1.0); gl_PointSize=min(aSize*uScale*(300.0/-mv.z), uMaxPx)*uPixK; gl_Position=projectionMatrix*mv; }`),
     fragmentShader: LDF(`varying vec3 vColor; uniform float uOpacity;
       void main(){ float d=length(gl_PointCoord-0.5); float a=smoothstep(0.5,0.0,d); a*=a; gl_FragColor=vec4(vColor, a*uOpacity); }`),
     transparent: true, depthWrite: false, blending: o.blending ?? THREE.AdditiveBlending

@@ -466,7 +466,7 @@ function updateTimeUI() {
 }
 
 /* ================= MAIN LOOP ================= */
-let lastT = performance.now(), pickSig = 0, lastChange = performance.now();
+let lastT = performance.now(), pickSig = 0, lastChange = performance.now(), restedLast = false;
 const REST_AFTER_MS = 1500, REST_FRAME_MS = 31; // nothing has moved for 1.5 s: about 30 frames a second until something does
 function coversCanvas() { const l = document.getElementById('lab'); return !!(l && l.classList.contains('open')); } // a lab is a full-screen, opaque overlay
 document.addEventListener('visibilitychange', () => { lastT = performance.now(); });
@@ -482,6 +482,7 @@ function loop(now) {
   PERF.idle = PERF.flags.idle && !PERF.shown && tA - Math.max(lastChange, lastInput) > REST_AFTER_MS;
   if (PERF.idle && now - lastT < REST_FRAME_MS) return;
   const dtMs = now - lastT, pk0 = PERF.acc.pick;
+  if (!PERF.idle && !restedLast) rsFeed(dtMs); restedLast = PERF.idle; // the render scale follows the frame time (engine.js, RENDER SCALE)
   const dt = Math.min(.05, dtMs / 1000); lastT = now; clock += dt;
   simTime += dt * 1000 * timeSpeed;
   if (holdZoom) zoomBy(holdZoom * dt * 1.6, holdZoom < 0 ? W / 2 : undefined, H / 2);
