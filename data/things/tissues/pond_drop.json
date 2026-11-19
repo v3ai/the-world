@@ -4,15 +4,15 @@
  "tag": "In a drop of pond water",
  "title": "A drop of pond water",
  "node": "pond_drop",
- "blurb": "About a third of a millimetre of pond water under a microscope: green algae, glass-shelled diatoms, a ciliate, a rotifer and bacteria, each drawn at its own size against a 100 micrometre bar. Click anything.",
- "note": "Sizes are those quoted for each group, drawn once at a typical size inside the published range: Chlamydomonas about 10 µm; a Volvox colony (V. carteri) 100 to 500 µm, drawn 250 µm; diatoms 20 to 200 µm for most species, drawn 70 µm and 40 µm; Paramecium species 60 to 300 µm, drawn 200 µm; rotifers mostly 100 to 500 µm, drawn 250 µm; bacteria 0.5 to 5 µm. The numbers of each and where they sit are illustrative: a real drop holds far fewer large organisms than this. A water flea (about 2.5 mm) would be four times wider than this whole view and is not drawn. Shapes are simplified.",
+ "blurb": "A box of pond water about 0.6 mm wide and 0.33 mm tall under a microscope: green algae, glass-shelled diatoms, a ciliate, a rotifer and bacteria, each drawn at its own size against a 100 micrometre bar. Click anything.",
+ "note": "Sizes are typical for each group, drawn once at a size inside the usual range: Chlamydomonas about 10 µm; a Volvox colony (V. carteri) 100 to 500 µm, drawn 250 µm; diatoms 20 to 200 µm for most species, drawn 70 µm and 40 µm; Paramecium species 60 to 300 µm, drawn 200 µm; rotifers mostly 100 to 500 µm, drawn 250 µm; bacteria 0.5 to 5 µm. The numbers of each and where they sit are illustrative: a real drop holds far fewer large organisms than this. The organisms sit in a box about 0.6 mm wide and 0.33 mm tall; a water flea (about 2.5 mm long) would be more than four times as long as the box is wide, and is not drawn. Shapes are simplified.",
  "bg": "#eaf1f2",
  "center": [
   0,
   0,
   0
  ],
- "D_um": 820,
+ "D_um": 600,
  "labels": [
   {
    "text": "100 µm",

@@ -5,7 +5,17 @@ import json, glob, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import robin_lib
 import robin_cards_a, robin_cards_b, robin_cards_c, robin_cards_d, robin_cards_e, robin_figs
+import robin_fix_a, robin_fix_b, robin_fix_c
+import re
 from robin_lib import NODES, FIGS
+TAG = re.compile(r'\s*\((?:WR|WBA|WFE|WFF|WPA|SYR|Wikipedia[^()]*|Bird anatomy|Bird feet and legs|Bird vision|Origin of birds|WFF; Bird flight)\)')
+def _clean(o):
+    if isinstance(o, str): return TAG.sub('', o)
+    if isinstance(o, list): return [_clean(x) for x in o]
+    if isinstance(o, dict): return {k: _clean(v) for k, v in o.items()}
+    return o
+NODES[:] = [_clean(n) for n in NODES]
+for _k in list(FIGS): FIGS[_k] = _clean(FIGS[_k])
 mine = {n['id'] for n in NODES}
 other = set()
 for f in glob.glob('data/nodes/*.json'):

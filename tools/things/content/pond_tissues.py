@@ -17,9 +17,9 @@ def write(d):
 
 # ---------------------------------------------------------------- a drop of pond water
 write({'id': 'pond_drop', 'tag': 'In a drop of pond water', 'title': 'A drop of pond water', 'node': 'pond_drop',
-  'blurb': 'About a third of a millimetre of pond water under a microscope: green algae, glass-shelled diatoms, a ciliate, a rotifer and bacteria, each drawn at its own size against a 100 micrometre bar. Click anything.',
-  'note': 'Sizes are those quoted for each group, drawn once at a typical size inside the published range: Chlamydomonas about 10 µm; a Volvox colony (V. carteri) 100 to 500 µm, drawn 250 µm; diatoms 20 to 200 µm for most species, drawn 70 µm and 40 µm; Paramecium species 60 to 300 µm, drawn 200 µm; rotifers mostly 100 to 500 µm, drawn 250 µm; bacteria 0.5 to 5 µm. The numbers of each and where they sit are illustrative: a real drop holds far fewer large organisms than this. A water flea (about 2.5 mm) would be four times wider than this whole view and is not drawn. Shapes are simplified.',
-  'bg': '#eaf1f2', 'center': [0, 0, 0], 'D_um': 820,
+  'blurb': 'A box of pond water about 0.6 mm wide and 0.33 mm tall under a microscope: green algae, glass-shelled diatoms, a ciliate, a rotifer and bacteria, each drawn at its own size against a 100 micrometre bar. Click anything.',
+  'note': 'Sizes are typical for each group, drawn once at a size inside the usual range: Chlamydomonas about 10 µm; a Volvox colony (V. carteri) 100 to 500 µm, drawn 250 µm; diatoms 20 to 200 µm for most species, drawn 70 µm and 40 µm; Paramecium species 60 to 300 µm, drawn 200 µm; rotifers mostly 100 to 500 µm, drawn 250 µm; bacteria 0.5 to 5 µm. The numbers of each and where they sit are illustrative: a real drop holds far fewer large organisms than this. The organisms sit in a box about 0.6 mm wide and 0.33 mm tall; a water flea (about 2.5 mm long) would be more than four times as long as the box is wide, and is not drawn. Shapes are simplified.',
+  'bg': '#eaf1f2', 'center': [0, 0, 0], 'D_um': 600,
   'labels': [
     {'text': '100 µm', 'at': [-258, -160, 0], 'pop': 'scale'},
     {'text': 'Volvox colony (a hollow ball of cells)', 'at': [-175, 118, 40], 'pop': 'volvox'},
@@ -45,7 +45,7 @@ write({'id': 'pond_drop', 'tag': 'In a drop of pond water', 'title': 'A drop of 
 # ---------------------------------------------------------------- the surface film and a skater's leg
 write({'id': 'pond_film', 'tag': 'At the surface film', 'title': 'The surface film and a skater\'s leg', 'node': 'pond_surface_film',
   'blurb': 'A cut through the water surface where a pond skater\'s leg rests on it: the leg, its water-repelling hairs and the water below. Click each part.',
-  'note': 'Schematic and not to scale in the parts that matter. The leg width, the hair length and thickness and their number are illustrative (the real hairs are needle-like, thousands to each square millimetre, and carry grooves far finer than this scene can draw). The water is a block: its molecules are about 0.3 nm across, ten thousand times smaller than the finest thing here. The surface film is not a skin of different stuff; it is the top few layers of water molecules, held together by hydrogen bonds. Click the water to see one of its molecules.',
+  'note': 'Schematic and not to scale in the parts that matter. The leg width, the hair length and thickness and their number are illustrative (the real hairs are needle-like, about 30 µm long, 12,000 to 16,000 to each square millimetre in the genus Gerris, and carry grooves about 400 nm wide, far finer than this scene can draw; the scene draws them 3 µm thick and 10 µm apart). The water is a block: its molecules are about 0.3 nm across, ten thousand times smaller than the finest thing here. The surface film is not a skin of different stuff; it is the top few layers of water molecules, held together by hydrogen bonds. Click the water to see one of its molecules.',
   'bg': '#eaf1f2', 'center': [0, 5, 0], 'D_um': 300,
   'labels': [
     {'text': 'Leg of a pond skater', 'at': [-120, 75, 40], 'pop': 'leg'},

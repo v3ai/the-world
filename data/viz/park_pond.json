@@ -130,17 +130,13 @@
     "value": 7.6
    },
    {
-    "label": "typical summer surface water (USGS, a floor)",
-    "value": 8
-   },
-   {
     "label": "hypoxic below (USGS)",
     "value": 2
    }
   ],
   "ylabel": "dissolved oxygen, mg per litre",
   "logy": false,
-  "caption": "Fresh water can hold less dissolved oxygen as it warms (Engineering ToolBox), and the USGS puts typical summer surface water above 8 mg/L and hypoxia below 2."
+  "caption": "The most oxygen fresh water can hold at 1 bar falls as it warms (Engineering ToolBox); the USGS calls water below 2 mg/L hypoxic. Real ponds are often below these maxima, especially at night."
  },
  "pond_oxygen": {
   "type": "bars",
@@ -381,7 +377,7 @@
   ],
   "ylabel": "millimetres",
   "logy": false,
-  "caption": "A duckweed frond and its root against the recorded ranges (Wikipedia, Lemna minor): fronds 1 to 8 mm, roots 1 to 2 cm."
+  "caption": "A duckweed frond and its root against the recorded ranges: fronds 1 to 8 mm, roots 1 to 2 cm."
  },
  "pond_hornwort": {
   "type": "bars",
@@ -405,7 +401,7 @@
   ],
   "ylabel": "millimetres",
   "logy": false,
-  "caption": "Hornwort leaf length against the model: leaves are 8 to 40 mm long (Wikipedia, Ceratophyllum demersum)."
+  "caption": "Hornwort leaf length against the model: leaves are 8 to 40 mm long."
  },
  "pond_iris": {
   "type": "bars",
@@ -433,7 +429,7 @@
   ],
   "ylabel": "millimetres",
   "logy": false,
-  "caption": "Leaf length and flower width of yellow flag against the model (Wikipedia, Iris pseudacorus)."
+  "caption": "Leaf length and flower width of yellow flag against the model."
  },
  "pond_skater": {
   "type": "bars",
@@ -443,32 +439,24 @@
     "value": 9
    },
    {
-    "label": "body length: smallest quoted",
+    "label": "body length: smaller figure quoted",
     "value": 8
    },
    {
-    "label": "body length: largest quoted",
-    "value": 10
-   },
-   {
-    "label": "leg span across the water (model, about)",
-    "value": 21
+    "label": "body length: larger figure quoted",
+    "value": 15
    }
   ],
   "ylabel": "millimetres",
   "logy": false,
-  "caption": "The pond skater drawn at its quoted body length (8 to 10 mm); the leg span is the model's and is not a measurement."
+  "caption": "The pond skater drawn at 9 mm; adult body length is quoted as about 8 to 10 mm in a general reference and as up to 15 mm by the Wildlife Trusts and Buglife."
  },
  "pond_daphnia": {
   "type": "bars",
   "bars": [
    {
-    "label": "Daphnia genus: smallest",
-    "value": 0.2
-   },
-   {
     "label": "typical: smallest",
-    "value": 1
+    "value": 2
    },
    {
     "label": "model",
@@ -477,41 +465,17 @@
    {
     "label": "typical: largest",
     "value": 5
-   },
-   {
-    "label": "genus: largest",
-    "value": 6
    }
   ],
   "ylabel": "millimetres",
   "logy": false,
-  "caption": "Size of Daphnia: the model against the recorded ranges (Wikipedia, Daphnia)."
- },
- "pond_daphnia_eggs": {
-  "type": "bars",
-  "bars": [
-   {
-    "label": "small species (e.g. D. cucullata), at most",
-    "value": 2
-   },
-   {
-    "label": "model",
-    "value": 4
-   },
-   {
-    "label": "larger species (e.g. D. magna), more than",
-    "value": 100
-   }
-  ],
-  "ylabel": "eggs in one clutch",
-  "logy": false,
-  "caption": "How many eggs a Daphnia may carry (Wikipedia, Daphnia): a few in small species, over a hundred in large ones; the model shows four."
+  "caption": "Size of Daphnia in teaching sources (Science in School: 2 to 5 mm) against the model."
  },
  "pond_snail": {
   "type": "bars",
   "bars": [
    {
-    "label": "shell height: smallest adult",
+    "label": "shell height: smallest quoted",
     "value": 45
    },
    {
@@ -519,17 +483,13 @@
     "value": 50
    },
    {
-    "label": "shell height: largest typical",
+    "label": "shell height: largest quoted",
     "value": 60
-   },
-   {
-    "label": "shell width (model, about)",
-    "value": 27
    }
   ],
   "ylabel": "millimetres",
   "logy": false,
-  "caption": "Great pond snail shell size: adults are 45 to 60 mm tall and 20 to 30 mm wide (Wikipedia, Lymnaea stagnalis)."
+  "caption": "Great pond snail shell height: about 4.5 to 6 cm (NatureSpot) against the model."
  },
  "pond_dragonfly_larva": {
   "type": "bars",
@@ -597,92 +557,96 @@
    {
     "id": "sun",
     "label": "sunlight",
-    "x": 6,
-    "y": 12
+    "x": 5,
+    "y": 10
    },
    {
-    "id": "prod",
-    "label": "algae, duckweed, hornwort",
+    "id": "alg",
+    "label": "single-celled algae (in the drop)",
     "x": 28,
-    "y": 12
+    "y": 10
+   },
+   {
+    "id": "plant",
+    "label": "duckweed, hornwort (no eater drawn)",
+    "x": 28,
+    "y": 34
    },
    {
     "id": "det",
-    "label": "dead leaves and matter",
-    "x": 20,
-    "y": 52
+    "label": "dead leaves and detritus",
+    "x": 14,
+    "y": 56
    },
    {
     "id": "bac",
     "label": "bacteria (recyclers)",
-    "x": 20,
+    "x": 14,
     "y": 88
    },
    {
     "id": "daph",
     "label": "water flea",
     "x": 50,
-    "y": 28
+    "y": 30
+   },
+   {
+    "id": "rot",
+    "label": "rotifer",
+    "x": 50,
+    "y": 56
+   },
+   {
+    "id": "para",
+    "label": "Paramecium",
+    "x": 50,
+    "y": 84
    },
    {
     "id": "snail",
-    "label": "great pond snail",
-    "x": 50,
-    "y": 62
+    "label": "great pond snail (aquarium diet only)",
+    "x": 74,
+    "y": 56
    },
    {
     "id": "tad",
     "label": "tadpole",
-    "x": 72,
-    "y": 12
+    "x": 74,
+    "y": 20
    },
    {
     "id": "larva",
     "label": "dragonfly larva",
-    "x": 76,
-    "y": 40
-   },
-   {
-    "id": "frog",
-    "label": "frog (adult)",
-    "x": 94,
-    "y": 62
+    "x": 92,
+    "y": 36
    },
    {
     "id": "skater",
     "label": "pond skater",
-    "x": 72,
-    "y": 86
+    "x": 92,
+    "y": 80
    },
    {
     "id": "out",
     "label": "insects that land on the water (not modelled)",
-    "x": 94,
+    "x": 74,
     "y": 92
    }
   ],
   "edges": [
    {
     "from": "sun",
-    "to": "prod",
+    "to": "alg",
     "label": "light"
    },
    {
-    "from": "prod",
+    "from": "sun",
+    "to": "plant",
+    "label": "light"
+   },
+   {
+    "from": "alg",
     "to": "daph"
-   },
-   {
-    "from": "prod",
-    "to": "tad"
-   },
-   {
-    "from": "prod",
-    "to": "snail"
-   },
-   {
-    "from": "det",
-    "to": "bac",
-    "label": "broken down by"
    },
    {
     "from": "bac",
@@ -693,23 +657,53 @@
     "to": "daph"
    },
    {
+    "from": "alg",
+    "to": "rot"
+   },
+   {
+    "from": "bac",
+    "to": "rot"
+   },
+   {
+    "from": "det",
+    "to": "rot"
+   },
+   {
+    "from": "alg",
+    "to": "para"
+   },
+   {
+    "from": "bac",
+    "to": "para"
+   },
+   {
+    "from": "det",
+    "to": "bac",
+    "label": "broken down by"
+   },
+   {
+    "from": "alg",
+    "to": "snail",
+    "label": "in aquaria"
+   },
+   {
+    "from": "alg",
+    "to": "tad"
+   },
+   {
     "from": "daph",
-    "to": "larva"
+    "to": "tad"
    },
    {
     "from": "tad",
     "to": "larva"
    },
    {
-    "from": "snail",
-    "to": "frog"
-   },
-   {
     "from": "out",
     "to": "skater"
    }
   ],
-  "caption": "Who eats whom among the organisms in this pond. An arrow points from the food to the animal that eats it. Each link is from the source on that organism's card; it is a small sample, not the whole food web."
+  "caption": "Who eats whom among the organisms in this pond. An arrow points from the food to the animal that eats it. Every link is from a source on that organism's card; it is a small sample, not the whole food web."
  },
  "pond_life_cycles": {
   "type": "blocks",
@@ -722,19 +716,19 @@
    },
    {
     "id": "f2",
-    "label": "tadpoles: gills, tail, eat algae",
+    "label": "tadpoles hatch 2 to 4 weeks later: gills, tail, eat algae",
     "x": 38,
     "y": 14
    },
    {
     "id": "f3",
-    "label": "hind legs, then front legs (about 16 weeks)",
+    "label": "hind legs begin about 16 weeks after hatching, then front legs",
     "x": 64,
     "y": 14
    },
    {
     "id": "f4",
-    "label": "froglet leaves the pond (early summer to September)",
+    "label": "froglet leaves the pond (usually early summer, up to September)",
     "x": 90,
     "y": 14
    },
@@ -752,13 +746,13 @@
    },
    {
     "id": "d2",
-    "label": "larva in the pond: 2 to 3 years, 6 to 15 moults",
+    "label": "larva in the pond: about 3 years, many moults",
     "x": 38,
     "y": 66
    },
    {
     "id": "d3",
-    "label": "climbs a plant at night, adult emerges (July and August)",
+    "label": "climbs a plant at night, adult emerges (summer)",
     "x": 64,
     "y": 66
    },
@@ -799,7 +793,7 @@
     "to": "d4"
    }
   ],
-  "caption": "Two life cycles that link pond and land. Timings are from Froglife, Wikipedia and the British Dragonfly Society; they vary with weather and place."
+  "caption": "Two life cycles that link pond and land. Each frog interval is measured from the previous step. Timings are from Froglife, the Natural History Museum, First Nature and the British Dragonfly Society; they vary with weather and place."
  },
  "pond_drop": {
   "type": "bars",
