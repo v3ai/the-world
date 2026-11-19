@@ -781,7 +781,7 @@ function thClearView(F, id, own) {
   const blocked = h => !!(h && h.frame && h.meters < cam.D * .97 && (h.frame !== F || (own && h.obj.userData.node !== id && !h.obj.userData.resolve && (h.obj.userData.shown || 0) >= .35)));   // something nearer than the target: another frame's, or (a second look, once the layers have settled) a solid part of this thing's own that is not it
   if (!blocked(at())) return;
   const az0 = Math.atan2(d0.z, d0.x);
-  for (const el of [.45, .9, .1, -.3]) for (let k = 0; k < 8; k++) {
+  for (const el of [.45, .9, .1, -.3, -.7, -.95]) for (let k = 0; k < 8; k++) {
     const az = az0 + k * Math.PI / 4;
     cam.dir.set(Math.cos(az) * Math.sqrt(Math.max(0, 1 - el * el)), el, Math.sin(az) * Math.sqrt(Math.max(0, 1 - el * el)));
     setCamDir(cam.dir, up); if (!blocked(at())) return;
