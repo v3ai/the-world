@@ -8,7 +8,7 @@ const M = {
   frond: { len: 3.0, wid: 2.4 },    // Lemna minor fronds are 1-8 mm long and 0.6-5 mm broad (Wikipedia, Lemna minor); the model draws a typical 3 x 2.4 mm frond
   root: 12,                         // each frond has one root, 1-2 cm long (same page); 12 mm drawn
   hornwort: { whorl: 8, leaf: [8, 40], stemLen: .5 },   // leaves in whorls of 6-12, each 8-40 mm and forked once or twice into thread-like segments (Wikipedia, Ceratophyllum demersum); stems reach 1-3 m (the model stem is 0.5 m: the pond is 0.6 m deep)
-  iris: { leafLen: .8, leafWid: .022, flower: .085, rhizomeR: .014 },   // leaves up to 90 cm long and 3 cm wide, flowers 7-10 cm across, 100-150 cm tall (Wikipedia, Iris pseudacorus); drawn: 80 cm x 2.2 cm leaves, 8.5 cm flowers
+  iris: { leafLen: .8, leafWid: .026, flower: .085, rhizomeR: .014 },   // leaves up to 90 cm long and 3 cm wide, flowers 7-10 cm across, 100-150 cm tall (Wikipedia, Iris pseudacorus); drawn: 80 cm x 2.2 cm leaves, 8.5 cm flowers
 };
 export { M as PLANT_M };
 
@@ -84,12 +84,12 @@ export default function plants(R) {
   // ================= yellow flag iris: three clumps standing on the marginal shelf, roots and rhizome in the mud =================
   { const clumpsAt = [[2.62, -.5], [2.15, -1.2], [-2.62, .7]];   // on the shelf (about 0.2 m deep), 0.9 of the way to the edge
     const leaves = [], flowers = [], stems = [], rhz = [], roots = new L.Instances('iris_root');
-    const leafMesh = (len, wid, curl, seed) => L.blade({ length: len, halfWidth: t => wid / 2 * (1 - .75 * Math.pow(t, 3)) * Math.min(1, t * 9 + .45) * Math.pow(Math.max(0, 1 - Math.pow(t, 6)), .5), thickness: .003, nAlong: 9, nAcross: 1, fold: .12, curlAlong: curl });
+    const leafMesh = (len, wid, curl, seed) => L.blade({ length: len, halfWidth: t => wid / 2 * Math.min(1, .3 + t * 7) * Math.pow(Math.max(0, 1 - Math.pow(t, 3.2)), .55), thickness: .003, nAlong: 9, nAcross: 1, fold: .14, curlAlong: curl });
     // leaf: a sword blade folded along its midrib. The blade grows in +y (length), faces +z; stand it up and spread the fan.
     const leaf1 = L.bakeShade(leafMesh(M.iris.leafLen, M.iris.leafWid, .42), (p, n) => .6 + .4 * Math.min(1, p[1] / .5));
     meshes.iris_leaf = leaf1;
     clumpsAt.forEach(([cx, cz], ci) => {
-      const by = bedY(cx, cz), nL = 7, fan = [];
+      const by = bedY(cx, cz), nL = 9, fan = [];
       for (let i = 0; i < nL; i++) {
         const yaw = i / nL * 6.28 + R.range(-.3, .3) + ci, lean = R.range(.05, .38), len = R.range(.55, 1) , s = len;
         // blade in the xy plane -> stand it: it already grows along +y; lean it away from the clump centre about z, then yaw

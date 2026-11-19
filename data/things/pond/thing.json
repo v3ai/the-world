@@ -61,6 +61,7 @@
    "id": "water",
    "label": "Open water",
    "groundSeeThrough": true,
+   "hotspots": true,
    "show": {
     "surface": 0.2,
     "floating": 1,
@@ -232,6 +233,27 @@
   }
  },
  "hotspots": [
+  {
+   "id": "hs_drop",
+   "node": "pond_water",
+   "at": [
+    0.7,
+    -0.2,
+    0.55
+   ],
+   "label": "A drop of pond water",
+   "r": 0.05,
+   "modes": [
+    "water",
+    "slice"
+   ],
+   "deeper": {
+    "type": "tissue2",
+    "id": "pond_drop",
+    "D": 0.0006,
+    "button": "Look at a drop of pond water"
+   }
+  },
   {
    "id": "hs_mud_oxygen",
    "node": "pond_mud_oxygen",
@@ -767,13 +789,13 @@
    "tint": 0.15,
    "lod": "near+mid",
    "center": [
-    0.7177,
+    0.7162,
     0,
-    -0.3328
+    -0.333
    ],
-   "radius": 3.8711,
-   "count": 21,
-   "tris": 1428
+   "radius": 3.8894,
+   "count": 27,
+   "tris": 1836
   },
   {
    "id": "iris_flowers",
@@ -786,11 +808,11 @@
    "lod": "near+mid",
    "solid": false,
    "center": [
-    2.4043,
+    2.4296,
     0.9935,
-    -0.8236
+    -0.834
    ],
-   "radius": 0.4953,
+   "radius": 0.4842,
    "tris": 1728
   },
   {
@@ -802,11 +824,11 @@
    "mesh": "iris_stalks",
    "lod": "near+mid",
    "center": [
-    2.3939,
+    2.4203,
     0.4076,
-    -0.8342
+    -0.8426
    ],
-   "radius": 0.7521,
+   "radius": 0.7443,
    "tris": 404
   },
   {
@@ -852,11 +874,11 @@
    "lod": "near",
    "double": true,
    "center": [
-    0.7428,
+    0.7308,
     -0.1961,
-    -0.3173
+    -0.3236
    ],
-   "radius": 3.725,
+   "radius": 3.7088,
    "count": 78,
    "tris": 1872
   },
@@ -911,9 +933,9 @@
    "lod": "near",
    "noink": true,
    "center": [
-    0.2815,
+    0.2818,
     -0.2196,
-    -0.4006
+    -0.4007
    ],
    "radius": 0.0002,
    "tris": 100
@@ -929,11 +951,11 @@
    "ink_w": 0.0002,
    "solid": false,
    "center": [
-    0.28,
-    -0.2211,
-    -0.4
+    0.2802,
+    -0.2209,
+    -0.4001
    ],
-   "radius": 0.0016,
+   "radius": 0.0013,
    "tris": 656
   },
   {
@@ -1018,11 +1040,11 @@
    "instances": "daphnia_swarm",
    "lod": "near",
    "center": [
-    0.2212,
-    -0.2375,
-    -0.3018
+    0.2376,
+    -0.2402,
+    -0.326
    ],
-   "radius": 1.1492,
+   "radius": 1.275,
    "count": 20,
    "tris": 4440
   },
@@ -1312,10 +1334,10 @@
    "lod": "near",
    "center": [
     -2.29,
-    -0.133,
+    -0.1081,
     -0.47
    ],
-   "radius": 0.5005,
+   "radius": 0.5039,
    "count": 5,
    "tris": 820
   }
@@ -1323,8 +1345,8 @@
  "stats": {
   "parts": 51,
   "uniqueMeshTris": 64228,
-  "nearTris": 48332,
-  "midTris": 14300,
+  "nearTris": 48740,
+  "midTris": 14708,
   "farTris": 10866
  }
 }

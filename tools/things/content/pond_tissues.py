@@ -44,7 +44,7 @@ write({'id': 'pond_drop', 'tag': 'In a drop of pond water', 'title': 'A drop of 
 
 # ---------------------------------------------------------------- the surface film and a skater's leg
 write({'id': 'pond_film', 'tag': 'At the surface film', 'title': 'The surface film and a skater\'s leg', 'node': 'pond_surface_film',
-  'blurb': 'A cut through the water surface where a pond skater\'s leg rests on it: the leg, its water-repelling hairs, the air trapped between them, and the water below. Click each part.',
+  'blurb': 'A cut through the water surface where a pond skater\'s leg rests on it: the leg, its water-repelling hairs and the water below. Click each part.',
   'note': 'Schematic and not to scale in the parts that matter. The leg width, the hair length and thickness and their number are illustrative (the real hairs are needle-like, thousands to each square millimetre, and carry grooves far finer than this scene can draw). The water is a block: its molecules are about 0.3 nm across, ten thousand times smaller than the finest thing here. The surface film is not a skin of different stuff; it is the top few layers of water molecules, held together by hydrogen bonds. Click the water to see one of its molecules.',
   'bg': '#eaf1f2', 'center': [0, 5, 0], 'D_um': 300,
   'labels': [

@@ -88,7 +88,7 @@ export default function build() {
     ],
     modes: [
       { id: 'surface', label: 'Surface', show: { surface: .9, floating: 1, bank: 1 } },
-      { id: 'water', label: 'Open water', groundSeeThrough: true, show: { surface: .2, floating: 1, bank: 1, water: .18, plants: 1, animals: 1, bed: .5 } },
+      { id: 'water', label: 'Open water', groundSeeThrough: true, hotspots: true, show: { surface: .2, floating: 1, bank: 1, water: .18, plants: 1, animals: 1, bed: .5 } },
       { id: 'bed', label: 'Bottom and mud', groundSeeThrough: true, show: { surface: .1, floating: .4, bank: .8, water: .06, plants: .75, animals: 1, bed: 1 } },
       { id: 'slice', label: 'Cut-away slice', groundSeeThrough: true, cut: { at: [0, -.15, 0], normal: [0, 0, 1] }, hotspots: false, show: { surface: .3, floating: 1, bank: 1, water: .32, plants: 1, animals: 1, bed: 1 },
         legend: { title: 'A slice through the pond', items: [{ name: 'Water', color: '#6fa8b8', node: 'pond_water' }, { name: 'Mud (silt, clay and rotting plant matter)', color: '#5c4630', node: 'pond_mud' }, { name: 'Roots and rhizome', color: '#b79b6b', node: 'pond_iris_rhizome' }], note: 'The colours on the cut face are a code, not what the cut would look like in a real pond.' } },
@@ -106,6 +106,7 @@ export default function build() {
       mud: { kind: 'grains', cell: .05, edge: .35, palette: [[0x5c4630, .4], [0x4a3826, .3], [0x6b5a42, .2], [0x2d261e, .1]] },
     } },
     hotspots: [
+      { id: 'hs_drop', node: 'pond_water', at: [.7, -.2, .55], label: 'A drop of pond water', r: .05, modes: ['water', 'slice'], deeper: { type: 'tissue2', id: 'pond_drop', D: 6e-4, button: 'Look at a drop of pond water' } },
       { id: 'hs_mud_oxygen', node: 'pond_mud_oxygen', at: [.5, bedY(.5, 0) - .004, .02], label: 'Where the oxygen runs out', r: .035, modes: ['slice'] },
       { id: 'hs_rhizome', node: 'pond_iris_rhizome', at: [2.62, bedY(2.62, -.5) - .03, -.5], label: 'Roots in the mud', r: .035, modes: ['slice'] },
       { id: 'hs_warm_top', node: 'pond_stratification', at: [-.4, -.04, .03], label: 'Warmer water at the top?', r: .035, modes: ['slice'] },

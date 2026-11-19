@@ -45,12 +45,12 @@ function daphnia() {
   m.carapace = L.merge(cp, spine);
   const headS = L.smoothUnion(.2, E([1.4, .25, 0], [.62, .55, .45]), E([1.78, -.15, 0], [.28, .22, .2]));
   m.head = L.bakeShade(bnd(headS, [.6, -.5, -.6], [2.2, .9, .6], .09, 1), aoShade(headS, .95, .1));
-  m.eye = L.translateMesh(uvSphere(.17, 10, 6), [1.62, .35, 0]);
+  m.eye = L.translateMesh(uvSphere(.22, 10, 6), [1.95, .38, 0]);
   // second antennae: two large branched swimming limbs from the head's lower back, each with a stalk and two branches carrying setae
   const ant = [];
   for (const s of S) { const z = v => [v[0], v[1], v[2] * s];
-    ant.push(tubeM([[1.05, -.05, .4], [.85, -.5, .55], [.55, -.95, .6]].map(z), t => .075 * (1 - .4 * t), 6, 8, true));
-    for (const br of [[[.55, -.95, .6], [.1, -1.3, .75], [-.45, -1.45, .8], [-.95, -1.5, .8]], [[.55, -.95, .6], [.7, -1.45, .8], [.55, -1.85, .85], [.2, -2.15, .85]]]) ant.push(tubeM(br.map(z), t => .05 * (1 - .6 * t), 5, 10, true)); }
+    ant.push(tubeM([[1.05, -.05, .4], [.9, -.4, .55], [.7, -.7, .6]].map(z), t => .075 * (1 - .4 * t), 6, 8, true));
+    for (const br of [[[.7, -.7, .6], [.3, -1.0, .75], [-.15, -1.1, .8], [-.55, -1.15, .8]], [[.7, -.7, .6], [.8, -1.15, .8], [.7, -1.5, .85], [.45, -1.75, .85]]]) ant.push(tubeM(br.map(z), t => .05 * (1 - .6 * t), 5, 10, true)); }
   m.antennae = L.merge(...ant);
   m.heart = L.translateMesh(L.scaleMesh(uvSphere(1, 12, 7), [.2, .14, .13]), [.4, .58, 0]);
   const gut = tubeM([[.95, -.1, 0], [.4, .05, 0], [-.2, .12, 0], [-.7, 0, 0], [-1.0, -.35, 0]], t => .095 * (1 - .25 * t) + .02, 7, 14, true);
