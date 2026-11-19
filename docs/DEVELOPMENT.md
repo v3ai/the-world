@@ -92,11 +92,23 @@ The target is 60 frames a second on a mid-range laptop GPU and a usable frame ra
 
 ### Budgets
 
-Measured at 1280 × 800, device pixel ratio 1, by `t_perf_budget.py` (limits are about a quarter above what the views cost today):
+Limits per view at 1280 × 800, device pixel ratio 1, enforced by `t_perf_budget.py` (counts are about a quarter above what the views cost today):
 
-BUDGET_TABLE
+| view | scenes | full-screen passes | draw calls | triangles | points | CPU drawing ms | CPU update ms |
+|---|---|---|---|---|---|---|---|
+| start (the park, 7 m) | 3 | 0 | 260 | 760 thousand | 0 | 9 | 4 |
+| park at 30 m | 3 | 0 | 330 | 860 thousand | 0 | 9 | 4 |
+| body at 1 m | 3 | 0 | 130 | 420 thousand | 0 | 6 | 4 |
+| at an oak, 12 m | 2 | 0 | 70 | 800 thousand | 0 | 4 | 4 |
+| atom | 1 | 0 | 10 | 2 thousand | 260 thousand | 2 | 2 |
+| Standard Model | 1 | 0 | 90 | 92 thousand | 0 | 3 | 2 |
+| cell | 1 | 11 | 225 | 160 thousand | 0 | 4 | 2 |
+| Earth | 6 | 11 | 60 | 101 thousand | 270 thousand | 3 | 2 |
+| inner planets | 5 | 11 | 65 | 53 thousand | 270 thousand | 3 | 2 |
 
-A new scene should fit the "other views" row: one scene, under 200 draw calls, under 150 thousand triangles, under 3 ms of CPU.
+Today's figures for the start view: 2 scenes, 0 passes, 205 draw calls, 608 thousand triangles; a pick takes 0.1 to 0.2 ms. The counts are exact. The CPU limits are about three times what a quiet run shows, because the test machine is shared: they catch gross regressions only. The view at the dog (318 draw calls, 884 thousand triangles, most of them fur) is the heaviest in the park and is not in the test only because one frame of it takes many seconds on the test machine's software renderer.
+
+A new scene should cost no more than the cell does: one scene, under 225 draw calls, under 160 thousand triangles, under 4 ms of CPU for drawing. If it needs more, give it detail tiers.
 
 ### Rules
 
@@ -128,6 +140,7 @@ Run with the venv Python from `harness/core/`:
 - `t_perf_budget.py`: the budgets above; fails if the start view (or another listed view) exceeds them.
 - `t_perf_pick.py`: the pointer moving for five seconds while zooming, in three places; worst single pick, most picking in one frame, and that the zoom pivot is re-used.
 - `t_perf_scale.py`: the render-scale rules with made-up frame times, then the real page with `?dpr=auto`.
+- `t_perf_rest.py`: the resting frame rate, input ending it at once, and no drawing while a lab covers the canvas.
 - `t_prof.py start body1m park30 oak atom sm earth solar cell`: ms per frame by function, draw calls, triangles and scenes for named views.
 
 ## Content is data
