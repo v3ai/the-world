@@ -50,7 +50,7 @@ export function buildThing(ctx, M) {
   ];
   const thing = {
     id: 'grass', title: 'A grass plant', label: 'Perennial ryegrass', scientific: 'Lolium perenne', node: 'grass_plant', main_part: 'blade_up', label_first_only: true,
-    blurb: 'A tussock of perennial ryegrass, the commonest park lawn grass, at true size. Click a blade, a sheath, the base of a stem, a flower or a root. The layers pull one shoot apart, open the flowers, and show the roots.',
+    blurb: 'A tussock of perennial ryegrass, a grass of many British lawns and pastures, at true size. Click a blade, a sheath, the base of a stem, a flower or a root. The layers pull one shoot apart, open the flowers, and show the roots.',
     model_note: 'A procedural model built from typical measurements of the species, not a scan of one plant. Counts of tillers, leaves and spikelets are choices within the ranges on the cards; real tussocks are larger and untidier.',
     size_m: { height: M.culmH, leaf_blade: M.bladeLen[1] }, height_m: M.culmH + .16, radius_m: .8, draw_m: 90, seed: 7771,
     systems, lod: { near_m: 2.5, far_m: 6 },

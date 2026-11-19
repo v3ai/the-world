@@ -5,7 +5,7 @@
  "title": "Inside a ryegrass leaf blade",
  "node": "grass_blade_upper",
  "blurb": "A slice 700 micrometres wide through a grass blade, showing three of its parallel veins. The upper surface is at the top. Click a cell or a layer.",
- "note": "An illustration of the layers of a temperate grass leaf, not a micrograph of ryegrass. The order of the layers and which cell types are present follow published descriptions of the genus (ribbed upper surface; bulliform cells in fans on the upper side; every vascular bundle accompanied by sclerenchyma; bundle sheaths; silica bodies; stomata). The blade thickness (150 µm here), cell sizes, cell counts and the number of chloroplasts per cell are not measured values: they are illustrative. The ribs over the veins are not drawn.",
+ "note": "An illustration of the layers of a temperate grass leaf, not a micrograph of ryegrass. The order of the layers and which cell types are present follow published descriptions of the genus (ribbed upper surface; bulliform cells in fans on the upper side; every vascular bundle accompanied by sclerenchyma; bundle sheaths; silica bodies; stomata). The blade thickness (150 µm here), cell sizes, cell counts and the number of chloroplasts per cell are not measured values: they are illustrative. The ribs over the veins are not drawn. Guard cells are shown in cross-section, where they look rounded and bean-like; seen from above (the stoma scene) they are dumbbell-shaped. Stomata are drawn on the lower face only.",
  "bg": "#f3efe6",
  "center": [
   0,

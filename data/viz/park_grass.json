@@ -1,163 +1,681 @@
 {
  "grass_plant": {
-  "type": "bars",
-  "bars": [
+  "type": "geometry",
+  "range": [
+   0,
+   100,
+   0,
+   64
+  ],
+  "shapes": [
    {
-    "label": "youngest leaf of a daughter tiller (model, 3 cm)",
-    "value": 3
+    "k": "line",
+    "x1": 36.0,
+    "y1": 8,
+    "x2": 36.0,
+    "y2": 60,
+    "color": "dim",
+    "width": 0.5
    },
    {
-    "label": "shortest mature blade (model, 7 cm)",
-    "value": 7
+    "k": "text",
+    "x": 36.0,
+    "y": 3,
+    "text": "0 cm",
+    "size": 10,
+    "align": "center"
    },
    {
-    "label": "longest blade (model, 21 cm)",
-    "value": 21
+    "k": "line",
+    "x1": 48.0,
+    "y1": 8,
+    "x2": 48.0,
+    "y2": 60,
+    "color": "dim",
+    "width": 0.5
    },
    {
-    "label": "tallest flowering stem (model, 50 cm)",
-    "value": 50
+    "k": "text",
+    "x": 48.0,
+    "y": 3,
+    "text": "20 cm",
+    "size": 10,
+    "align": "center"
    },
    {
-    "label": "flowering stem, upper end of floras (90 cm)",
-    "value": 90
+    "k": "line",
+    "x1": 60.0,
+    "y1": 8,
+    "x2": 60.0,
+    "y2": 60,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 60.0,
+    "y": 3,
+    "text": "40 cm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 72.0,
+    "y1": 8,
+    "x2": 72.0,
+    "y2": 60,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 72.0,
+    "y": 3,
+    "text": "60 cm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 84.0,
+    "y1": 8,
+    "x2": 84.0,
+    "y2": 60,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 84.0,
+    "y": 3,
+    "text": "80 cm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 96.0,
+    "y1": 8,
+    "x2": 96.0,
+    "y2": 60,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 96.0,
+    "y": 3,
+    "text": "100 cm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 52,
+    "text": "leaf blade, floras",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 39.0,
+    "y": 51.5,
+    "w": 12.0,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 40,
+    "text": "leaf blade, model",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 39.0,
+    "y": 39.5,
+    "w": 9.6,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 28,
+    "text": "flowering stem, floras",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 42.0,
+    "y": 27.5,
+    "w": 48.0,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 16,
+    "text": "flowering stem, model",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 60.6,
+    "y": 15.5,
+    "w": 6.6,
+    "h": 4,
+    "fill": "accent"
    }
   ],
-  "ylabel": "length in centimetres",
-  "logy": false,
-  "caption": "Sizes in the model against the ranges in floras. Blade length range in floras: 5-25 cm; flowering stem: 30-90 cm. Typical measurements, not one plant."
+  "caption": "Sizes in the model against the ranges given in floras, in centimetres. A bar spans the range between plants. The model sits inside the ranges; the floras disagree about stem height (10-50 cm in one, 30-90 cm in another)."
  },
  "grass_lawn": {
-  "type": "bars",
-  "bars": [
+  "type": "geometry",
+  "range": [
+   0,
+   100,
+   0,
+   64
+  ],
+  "shapes": [
    {
-    "label": "fine lawn, top of range (13 mm)",
-    "value": 13
+    "k": "line",
+    "x1": 36.0,
+    "y1": 8,
+    "x2": 36.0,
+    "y2": 60,
+    "color": "dim",
+    "width": 0.5
    },
    {
-    "label": "domestic lawn, summer, top (25 mm)",
-    "value": 25
+    "k": "text",
+    "x": 36.0,
+    "y": 3,
+    "text": "0 mm",
+    "size": 10,
+    "align": "center"
    },
    {
-    "label": "domestic lawn, spring and autumn (40 mm)",
-    "value": 40
+    "k": "line",
+    "x1": 48.0,
+    "y1": 8,
+    "x2": 48.0,
+    "y2": 60,
+    "color": "dim",
+    "width": 0.5
    },
    {
-    "label": "new lawn: first cut when at least (50 mm)",
-    "value": 50
+    "k": "text",
+    "x": 48.0,
+    "y": 3,
+    "text": "12 mm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 60.0,
+    "y1": 8,
+    "x2": 60.0,
+    "y2": 60,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 60.0,
+    "y": 3,
+    "text": "24 mm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 72.0,
+    "y1": 8,
+    "x2": 72.0,
+    "y2": 60,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 72.0,
+    "y": 3,
+    "text": "36 mm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 84.0,
+    "y1": 8,
+    "x2": 84.0,
+    "y2": 60,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 84.0,
+    "y": 3,
+    "text": "48 mm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 96.0,
+    "y1": 8,
+    "x2": 96.0,
+    "y2": 60,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 96.0,
+    "y": 3,
+    "text": "60 mm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 52,
+    "text": "fine lawn",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 42.0,
+    "y": 51.5,
+    "w": 7.0,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 40,
+    "text": "domestic lawn, summer",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 49.0,
+    "y": 39.5,
+    "w": 12.0,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 28,
+    "text": "domestic lawn, spring/autumn: up to",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "circle",
+    "x": 76.0,
+    "y": 29.5,
+    "r": 1.1,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 16,
+    "text": "new lawn: first cut at",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "circle",
+    "x": 86.0,
+    "y": 17.5,
+    "r": 1.1,
+    "fill": "accent"
    }
   ],
-  "ylabel": "height in millimetres",
-  "logy": false,
-  "caption": "RHS mowing heights for lawns: the upper end of each recommended range, and the height a new lawn should reach before its first cut."
+  "caption": "Recommended mowing heights in millimetres: a bar is a recommended range, a dot is a single recommended value (the most the grass should be left to in spring and autumn, and the height a new lawn should reach before its first cut)."
  },
  "grass_base_growth": {
-  "type": "bars",
-  "bars": [
+  "type": "geometry",
+  "range": [
+   0,
+   100,
+   0,
+   40
+  ],
+  "shapes": [
    {
-    "label": "cells divide (basal 0.9 mm, low P)",
-    "value": 0.9
+    "k": "line",
+    "x1": 36.0,
+    "y1": 8,
+    "x2": 36.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
    },
    {
-    "label": "cells divide (basal 0.6 mm, high P)",
-    "value": 0.6
+    "k": "text",
+    "x": 36.0,
+    "y": 3,
+    "text": "0.1 mm",
+    "size": 10,
+    "align": "center"
    },
    {
-    "label": "cells lengthen (basal 31 mm, low P)",
-    "value": 31
+    "k": "line",
+    "x1": 56.0,
+    "y1": 8,
+    "x2": 56.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
    },
    {
-    "label": "cells lengthen (basal 36 mm, high P)",
-    "value": 36
+    "k": "text",
+    "x": 56.0,
+    "y": 3,
+    "text": "1 mm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 76.0,
+    "y1": 8,
+    "x2": 76.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 76.0,
+    "y": 3,
+    "text": "10 mm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 96.0,
+    "y1": 8,
+    "x2": 96.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 96.0,
+    "y": 3,
+    "text": "100 mm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 28,
+    "text": "cells divide (basal part)",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 51.56,
+    "y": 27.5,
+    "w": 3.52,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 16,
+    "text": "cells lengthen (basal part)",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 85.83,
+    "y": 15.5,
+    "w": 1.3,
+    "h": 4,
+    "fill": "accent"
    }
   ],
-  "ylabel": "length of zone in millimetres",
-  "logy": false,
-  "caption": "Lolium perenne, a growing leaf: the zone where cells divide is under 1 mm long; the zone where they go on lengthening is 31-36 mm (cv. Condesa; the two values in each pair are the two phosphorus treatments)."
+  "caption": "How far up a growing ryegrass leaf each process reaches, measured from its base, on a log scale (0.1 to 100 millimetres): cells divide only in the lowest 0.6-0.9 mm but keep lengthening over the lowest 31-36 mm. A bar spans the two phosphorus treatments of one cultivar (Condesa)."
  },
  "grass_tillering": {
-  "type": "bars",
-  "bars": [
+  "type": "plot",
+  "x": [
+   4000,
+   8000
+  ],
+  "y": [
+   0,
+   3
+  ],
+  "xlabel": "tillers per square metre",
+  "ylabel": "ground per tiller (cm²)",
+  "fns": [
    {
-    "label": "tillers per m² (low end)",
-    "value": 5000
-   },
-   {
-    "label": "tillers per m² (high end)",
-    "value": 7000
+    "f": "10000/x",
+    "label": "ground per tiller"
    }
   ],
-  "ylabel": "tillers per square metre",
-  "logy": false,
-  "caption": "Tiller density in an established perennial ryegrass sward: 5,000 to 7,000 per square metre (AHDB)."
+  "vlines": [
+   {
+    "x": 5000,
+    "label": "5,000"
+   },
+   {
+    "x": 7000,
+    "label": "7,000"
+   }
+  ],
+  "params": [
+   {
+    "id": "n",
+    "label": "Tillers per square metre",
+    "min": 4000,
+    "max": 8000,
+    "value": 6000,
+    "step": 100
+   }
+  ],
+  "readouts": [
+   {
+    "label": "Ground per tiller",
+    "value": "10000/n",
+    "unit": "cm²"
+   },
+   {
+    "label": "Side of that square",
+    "value": "sqrt(10000/n)*10",
+    "unit": "mm"
+   }
+  ],
+  "caption": "An established ryegrass sward holds 5,000 to 7,000 tillers in each square metre (10,000 cm²), so each tiller has only 1.4 to 2 cm² of ground, a square about 12 to 14 mm on a side. Slide the density and watch the room per shoot."
  },
  "grass_blade": {
-  "type": "bars",
-  "bars": [
-   {
-    "label": "blade width, narrow end (2 mm)",
-    "value": 2
-   },
-   {
-    "label": "blade width, broad end (4 mm)",
-    "value": 4
-   },
-   {
-    "label": "ligule (1-2 mm)",
-    "value": 1.5
-   },
-   {
-    "label": "ryegrass pollen grain (0.04 mm, 40 µm)",
-    "value": 0.04
-   }
+  "type": "table",
+  "cols": [
+   "Part of the leaf",
+   "Size or number in floras",
+   "In the model"
   ],
-  "ylabel": "millimetres",
-  "logy": false,
-  "caption": "A few sizes on a ryegrass leaf: blade width 2-4 mm (DELTA), ligule 1-2 mm (DELTA, Minnesota Wildflowers), and a pollen grain 26-50 µm (PalDat) for comparison."
+  "rows": [
+   [
+    "Blade length",
+    "(5-)15-25 cm; other floras 6-25 cm",
+    "5-21 cm"
+   ],
+   [
+    "Blade width",
+    "2-4 mm; other floras 2-5 mm",
+    "3.0-3.8 mm"
+   ],
+   [
+    "Veins",
+    "10-20, parallel",
+    "9 ribs drawn on the upper face"
+   ],
+   [
+    "Sheath",
+    "open for over half its length",
+    "3.4-4.8 cm long"
+   ],
+   [
+    "Ligule",
+    "1-2 mm, no hairs",
+    "1.5 mm"
+   ],
+   [
+    "Auricles",
+    "small, variable",
+    "two 2 mm claws"
+   ]
+  ],
+  "caption": "The parts of a ryegrass leaf: what floras give, and what the model draws. Floras differ from one another, so the ranges are wide."
  },
  "grass_stoma": {
-  "type": "bars",
-  "bars": [
+  "type": "geometry",
+  "range": [
+   0,
+   100,
+   0,
+   40
+  ],
+  "shapes": [
    {
-    "label": "stoma length, lower end (10 µm)",
-    "value": 10
+    "k": "line",
+    "x1": 36.0,
+    "y1": 8,
+    "x2": 36.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
    },
    {
-    "label": "ryegrass pollen grain, lower end (26 µm)",
-    "value": 26
+    "k": "text",
+    "x": 36.0,
+    "y": 3,
+    "text": "1 µm",
+    "size": 10,
+    "align": "center"
    },
    {
-    "label": "stoma length, upper end (80 µm)",
-    "value": 80
+    "k": "line",
+    "x1": 66.0,
+    "y1": 8,
+    "x2": 66.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 66.0,
+    "y": 3,
+    "text": "10 µm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 96.0,
+    "y1": 8,
+    "x2": 96.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 96.0,
+    "y": 3,
+    "text": "100 µm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 28,
+    "text": "stoma length, across plant species",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 66.0,
+    "y": 27.5,
+    "w": 27.09,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 16,
+    "text": "ryegrass pollen grain, for scale",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 78.45,
+    "y": 15.5,
+    "w": 8.52,
+    "h": 4,
+    "fill": "accent"
    }
   ],
-  "ylabel": "micrometres",
-  "logy": false,
-  "caption": "Stomata are 10 to 80 micrometres long across species (Wikipedia: Stoma); a ryegrass pollen grain is 26-50 µm (PalDat). Neither is a measurement of ryegrass stomata."
+  "caption": "How big a stoma is, in micrometres (log scale): 10 to 80 across plant species, compared with a ryegrass pollen grain of 26 to 50. The first bar is the spread between species, not a measurement of ryegrass stomata."
  },
  "grass_silica_defence": {
   "type": "bars",
   "bars": [
    {
-    "label": "L. perenne leaf silica, low treatment (%)",
+    "label": "ryegrass, low-silica treatment",
     "value": 0.54
    },
    {
-    "label": "L. perenne leaf silica, high treatment (%)",
+    "label": "ryegrass, high-silica treatment",
     "value": 4.68
    },
    {
-    "label": "Festuca ovina, low (%)",
+    "label": "sheep's fescue, low treatment",
     "value": 0.52
    },
    {
-    "label": "Festuca ovina, high (%)",
+    "label": "sheep's fescue, high treatment",
     "value": 2.44
    }
   ],
   "ylabel": "silica, per cent of dry mass",
   "logy": false,
-  "caption": "Leaf silica in two grasses grown with low and high silicon supply (Massey and Hartley 2006, Table 1)."
+  "caption": "Leaf silica in two grasses grown with a low or a high supply of silicon in a glasshouse. Field-grown ryegrass ranged from 0.58 to 4.52 per cent. Each bar is a treatment mean."
  },
  "grass_c3_c4": {
   "type": "bars",
@@ -181,7 +699,7 @@
   ],
   "ylabel": "per cent",
   "logy": false,
-  "caption": "C4 photosynthesis: rare among plant species but common among grasses and responsible for about a quarter of land photosynthesis (Wikipedia, C4 carbon fixation)."
+  "caption": "C4 photosynthesis: rare among plant species but common among grasses and responsible for about a quarter of land photosynthesis."
  },
  "grass_spikelet": {
   "type": "bars",
@@ -209,54 +727,383 @@
   ],
   "ylabel": "millimetres",
   "logy": false,
-  "caption": "Sizes in a ryegrass spikelet from floras: lemma 4-8.5 mm, spikelet 7-15 mm (typical range), anther 2.9-3.4 mm (DELTA)."
+  "caption": "Sizes in a ryegrass spikelet from floras: lemma 4-8.5 mm, spikelet 7-15 mm (typical range), anther 2.9-3.4 mm."
  },
  "grass_pollen": {
-  "type": "bars",
-  "bars": [
+  "type": "geometry",
+  "range": [
+   0,
+   100,
+   0,
+   40
+  ],
+  "shapes": [
    {
-    "label": "sub-pollen particle (0.1 µm)",
-    "value": 0.1
+    "k": "line",
+    "x1": 36.0,
+    "y1": 8,
+    "x2": 36.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
    },
    {
-    "label": "ryegrass pollen, lower (26 µm)",
-    "value": 26
+    "k": "text",
+    "x": 36.0,
+    "y": 3,
+    "text": "0.01 µm",
+    "size": 10,
+    "align": "center"
    },
    {
-    "label": "ryegrass pollen, upper (50 µm)",
-    "value": 50
+    "k": "line",
+    "x1": 51.0,
+    "y1": 8,
+    "x2": 51.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
    },
    {
-    "label": "human hair, lower (50 µm)",
-    "value": 50
+    "k": "text",
+    "x": 51.0,
+    "y": 3,
+    "text": "0.1 µm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 66.0,
+    "y1": 8,
+    "x2": 66.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 66.0,
+    "y": 3,
+    "text": "1 µm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 81.0,
+    "y1": 8,
+    "x2": 81.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 81.0,
+    "y": 3,
+    "text": "10 µm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 96.0,
+    "y1": 8,
+    "x2": 96.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 96.0,
+    "y": 3,
+    "text": "100 µm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 28,
+    "text": "sub-pollen particles from bursting grains",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 47.67,
+    "y": 27.5,
+    "w": 7.84,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 16,
+    "text": "ryegrass pollen grain",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 87.22,
+    "y": 15.5,
+    "w": 4.26,
+    "h": 4,
+    "fill": "accent"
    }
   ],
-  "ylabel": "micrometres",
-  "logy": true,
-  "caption": "Pollen grain size: 26-50 µm (PalDat); the sub-pollen particles released in rain are about 60-200 nm (0.06-0.2 µm); a human hair is 50-100 µm (Skin card)."
+  "caption": "Size in micrometres on a log scale (0.01 to 100): a ryegrass pollen grain is 26 to 50 micrometres across; the fine particles that a burst grain releases in rain, in laboratory work, are 0.06 to 0.2 micrometres, a few hundred times smaller."
  },
  "grass_hay_fever": {
-  "type": "bars",
-  "bars": [
+  "type": "geometry",
+  "range": [
+   0,
+   100,
+   0,
+   40
+  ],
+  "shapes": [
    {
-    "label": "Met Office: peak, month 6 (June)",
-    "value": 6
+    "k": "line",
+    "x1": 36.0,
+    "y1": 8,
+    "x2": 36.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
    },
    {
-    "label": "Met Office: peak, month 7 (July)",
-    "value": 7
+    "k": "text",
+    "x": 36.0,
+    "y": 3,
+    "text": "J",
+    "size": 10,
+    "align": "center"
    },
    {
-    "label": "Asthma + Lung UK: levels often highest from month 5 (mid-May)",
-    "value": 5
+    "k": "line",
+    "x1": 41.0,
+    "y1": 8,
+    "x2": 41.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
    },
    {
-    "label": "and until month 7 (July)",
-    "value": 7
+    "k": "text",
+    "x": 41.0,
+    "y": 3,
+    "text": "F",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 46.0,
+    "y1": 8,
+    "x2": 46.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 46.0,
+    "y": 3,
+    "text": "M",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 51.0,
+    "y1": 8,
+    "x2": 51.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 51.0,
+    "y": 3,
+    "text": "A",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 56.0,
+    "y1": 8,
+    "x2": 56.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 56.0,
+    "y": 3,
+    "text": "M",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 61.0,
+    "y1": 8,
+    "x2": 61.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 61.0,
+    "y": 3,
+    "text": "J",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 66.0,
+    "y1": 8,
+    "x2": 66.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 66.0,
+    "y": 3,
+    "text": "J",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 71.0,
+    "y1": 8,
+    "x2": 71.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 71.0,
+    "y": 3,
+    "text": "A",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 76.0,
+    "y1": 8,
+    "x2": 76.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 76.0,
+    "y": 3,
+    "text": "S",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 81.0,
+    "y1": 8,
+    "x2": 81.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 81.0,
+    "y": 3,
+    "text": "O",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 86.0,
+    "y1": 8,
+    "x2": 86.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 86.0,
+    "y": 3,
+    "text": "N",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 91.0,
+    "y1": 8,
+    "x2": 91.0,
+    "y2": 36,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 91.0,
+    "y": 3,
+    "text": "D",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 28,
+    "text": "grass pollen season (can start in May)",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 56.0,
+    "y": 27.5,
+    "w": 15.0,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 16,
+    "text": "usual peak (June and July)",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 61.0,
+    "y": 15.5,
+    "w": 10.0,
+    "h": 4,
+    "fill": "accent"
    }
   ],
-  "ylabel": "month of the year (5 = May)",
-  "logy": false,
-  "caption": "Grass pollen season in Britain: it can start as early as May and generally peaks in June and July (Met Office); levels are often highest between mid-May and July (Asthma + Lung UK)."
+  "caption": "When grass pollen is in the air in Britain: it can start as early as May and generally peaks in June and July. Each bar runs from the start of its first month to the end of its last. The exact dates change from year to year with the weather."
  }
 }

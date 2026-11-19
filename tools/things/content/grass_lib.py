@@ -49,9 +49,55 @@ PMC_POOID = X('Pooideae are exclusively C3 (PMC10184452)', 'https://pmc.ncbi.nlm
 LEHMANN = X('Functional diversification enabled grassy biomes to fill global climate space (bioRxiv preprint, not peer reviewed)', 'https://eprints.whiterose.ac.uk/184960/1/583625v1.full.pdf')
 W_POACEAE = X('Poaceae, the grass family (Wikipedia)', 'https://en.wikipedia.org/wiki/Poaceae')
 
+SANSON = X('Sanson 2023: Reassessing assumptions about the evolution of herbivore teeth (PNAS)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9926241/')
+LAKHAL = X('Lakhal et al. 2025: Novel experimental methods to investigate the effects of plant phytoliths on tooth enamel wear (J R Soc Interface)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12212993/')
+MARTIN22 = X('Martin et al. 2022: Macrowear effects of external quartz abrasives of different size and concentration in rabbits (J Exp Zool B)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9787991/')
+AMBROSE = X('Ambrose et al. 2000: Molecular and genetic analyses of the silky1 gene reveal conservation in floral organ specification between eudicots and monocots (Molecular Cell)', 'https://doi.org/10.1016/S1097-2765(00)80450-5')
+PARKSGARD = X('Greenwich Park (Parks & Gardens UK, from the Register of Parks and Gardens of Special Historic Interest)', 'https://parksandgardens.org/places/greenwich-park')
+MALYS = X('Malys et al. 2015: Why the Greenwich meridian moved (Journal of Geodesy)', 'https://link.springer.com/article/10.1007/s00190-015-0844-y')
+COLINHERB = X('Lolium perenne (Colin Herb, Poaceae key)', 'https://colinherb.com/Poaceae/Lolium/Perenne/Lolium_perenne_2184_048.htm')
 R_PLANT = R('30.1', '30-1-the-plant-body'); R_STEM = R('30.2', '30-2-stems'); R_ROOT = R('30.3', '30-3-roots'); R_LEAF = R('30.4', '30-4-leaves'); R_TRANS = R('30.5', '30-5-transport-of-water-and-solutes-in-plants')
 R_ANGIO = R('26.3', '26-3-angiosperms'); R_POLL = R('32.2', '32-2-pollination-and-fertilization'); R_PHOTO = R('8.1', '8-1-overview-of-photosynthesis'); R_NUT = R('31.1', '31-1-nutritional-requirements-of-plants')
 R_ECO = R('46.2', '46-2-energy-flow-through-ecosystems'); R_HYP = R('19.1', '19-1-hypersensitivities', 'MIC'); R_SEEDROLE = R('26.4', '26-4-the-role-of-seed-plants')
+
+
+# ---- clean-up applied to every card and figure before it is written (attribution lives in `ext`, not in the prose) ----
+import re as _re
+_ATTR = ('Wikipedia', 'DELTA', 'GGW', 'Grass Genera', 'NZ Flora', 'Cornell', 'Virginia Tech', 'Minnesota', 'Missouri', 'Oregon State', 'AHDB', 'RHS', 'PMC', 'Troughton', 'Frontiers',
+         'Plant Physiol', 'Franks', 'Met Office', 'RMetS', 'Royal Met', 'Asthma', 'Allergy UK', 'PalDat', 'OpenStax', 'Massey', 'Anthony', 'Donahue', 'Bridge and Spooner', 'Hoorman', 'via ', 'Grasses of North America')
+def _scrub_str(s):
+    def f(m):
+        toks = [t.strip() for t in _re.split(r'[;,]', m.group(1))]
+        if any(any(a in t for a in _ATTR) for t in toks) and all(len(t.split()) <= 6 and not _re.search(r'\d{2,}', t.replace('PMC', '')) or any(a in t for a in _ATTR) for t in toks): return ''
+        return m.group(0)
+    prev = None
+    while prev != s:
+        prev = s; s = _re.sub(r'\s*\(([^()]*)\)', f, s)
+    return s.replace(' ,', ',').replace(' .', '.').replace(' ;', ';')
+def scrub(o):
+    if isinstance(o, str): return _scrub_str(o)
+    if isinstance(o, list): return [scrub(x) for x in o]
+    if isinstance(o, dict): return {k: (v if k in ('url', 'id', 'from', 'to', 'k', 'type', 'ext', 'refs', 'parents', 'parts', 'related', 'where') else scrub(v)) for k, v in o.items()}
+    return o
+def spans(rows, xlabel, caption, lo, hi, unit='', log=False, tick_labels=None):
+    """Horizontal range chart as a geometry figure: each row is (label, low, high); a span is drawn from low to high on a (log) axis."""
+    import math
+    f = (lambda v: math.log10(v)) if log else (lambda v: v)
+    a, b = f(lo), f(hi); X0, X1 = 36, 96
+    px = lambda v: X0 + (f(v) - a) / (b - a) * (X1 - X0)
+    n = len(rows); H = 12 * n + 16; sh = []
+    ticks = [10 ** k for k in range(math.ceil(a), math.floor(b) + 1)] if log else [lo + (hi - lo) * i / 5 for i in range(6)]
+    if tick_labels: ticks = [v for v, _ in tick_labels]
+    for t in ticks:
+        sh.append({'k': 'line', 'x1': round(px(t), 2), 'y1': 8, 'x2': round(px(t), 2), 'y2': H - 4, 'color': 'dim', 'width': 0.5})
+        sh.append({'k': 'text', 'x': round(px(t), 2), 'y': 3, 'text': (dict(tick_labels)[t] if tick_labels else ('%g' % t) + unit), 'size': 10, 'align': 'center'})
+    for i, (lab, l, h) in enumerate(rows):
+        y = H - 12 - 12 * i
+        sh.append({'k': 'text', 'x': 2, 'y': y, 'text': lab, 'size': 10, 'align': 'left'})
+        x1, x2 = px(l), px(h)
+        if h == l: sh.append({'k': 'circle', 'x': round(x1, 2), 'y': y + 1.5, 'r': 1.1, 'fill': 'accent'})
+        else: sh.append({'k': 'rect', 'x': round(x1, 2), 'y': y - 0.5, 'w': round(max(x2 - x1, 0.8), 2), 'h': 4, 'fill': 'accent'})
+    return {'type': 'geometry', 'range': [0, 100, 0, H], 'shapes': sh, 'caption': caption}
 
 NODES = []; FIGS = {}
 def N(id, title, kind, scale, parents, summary, basics, deeper, expert, facts, cert='C1', refs=None, ext=None, dyk=None, openq=None, parts=None, related=None, where=None, fig=None, tag=None):
@@ -68,3 +114,4 @@ def blocks(nodes, edges, caption, flow=False):
     d = {'type': 'blocks', 'nodes': [{'id': i, 'label': l, 'x': x, 'y': y, **({'shape': s} if s else {})} for i, l, x, y, s in nodes], 'edges': [{'from': a, 'to': b, **({'label': lab} if lab else {})} for a, b, lab in edges], 'caption': caption}
     if flow: d['flow'] = True
     return d
+def table(cols, rows, caption): return {'type': 'table', 'cols': cols, 'rows': rows, 'caption': caption}

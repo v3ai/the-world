@@ -6,7 +6,7 @@
  "node": "grass_plant",
  "main_part": "blade_up",
  "label_first_only": true,
- "blurb": "A tussock of perennial ryegrass, the commonest park lawn grass, at true size. Click a blade, a sheath, the base of a stem, a flower or a root. The layers pull one shoot apart, open the flowers, and show the roots.",
+ "blurb": "A tussock of perennial ryegrass, a grass of many British lawns and pastures, at true size. Click a blade, a sheath, the base of a stem, a flower or a root. The layers pull one shoot apart, open the flowers, and show the roots.",
  "model_note": "A procedural model built from typical measurements of the species, not a scan of one plant. Counts of tillers, leaves and spikelets are choices within the ranges on the cards; real tussocks are larger and untidier.",
  "size_m": {
   "height": 0.5,
@@ -297,7 +297,7 @@
    },
    "hotspots": true,
    "legend": {
-    "title": "The base of a shoot, cut lengthwise (life size)",
+    "title": "The base of a shoot, cut lengthwise (about life size)",
     "items": [
      {
       "name": "Growing point",
@@ -320,7 +320,7 @@
       "node": "grass_crown"
      }
     ],
-    "note": "The stem base is about 3 mm wide. Flat coloured faces show the cut. Positions are drawn from the general layout of a vegetative grass shoot; the exact sizes of the zones are illustrative. Look to the right of the plant."
+    "note": "The stem base is about 3 mm wide. Flat coloured faces show the cut. This is a schematic of the general layout of a vegetative grass shoot: only the overall width is true to life, and the sizes of the zones, including the growing point and the leaf growth zone, are illustrative (the real growth zone is 31-36 mm long). Look to the right of the plant."
    }
   },
   {

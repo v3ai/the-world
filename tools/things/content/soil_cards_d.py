@@ -12,9 +12,9 @@ N('soil_woodlouse', 'Woodlouse (Oniscus asellus)', 'organism', 0.015, ['soil_blo
 
 N('soil_springtail', 'Springtails (Collembola)', 'organism', 0.0018, ['soil_block', 'bio_entomology_insects'],
   "Springtails are wingless, six-legged animals 1 to 2 millimetres long that live in huge numbers in leaf litter and soil, eating fungal threads and dead plant matter.",
-  "On the litter on the lawn, and in the crumbs of the topsoil, are specks the size of a full stop that jump when disturbed. They are springtails. A soil-living springtail is 1 to 2 millimetres long. Estimates of their numbers reach 100,000 in a square metre of ground. They live in leaf litter and rotting material and most eat fungal threads and spores as well as dead plant matter; a few eat other tiny animals. They are not insects in the strict sense but a related group, and there are more than 9,000 species. In the block there are about 16 of them in the litter and on the crumbs.",
-  "Most springtails have a forked 'spring' (furcula) folded under the body and held under tension by a small catch (the retinaculum). When the catch lets go, the furcula snaps against the ground and flings the animal into the air; the whole action takes a few milliseconds. Many have a number of ocelli (simple eyes) from one to eight on each side of the head; blind species, mostly subterranean, lack them. They are free-living and moisture-loving. Atmobiotic (surface-dwelling) species are generally 8 to 10 mm long, hemiedaphic (soil-dwelling) species 1 to 2 mm.",
-  "The model springtail is 1.8 mm long, a drawing of an elongated soil species: body in 10 parts, four-segmented antennae drawn as bent tubes, six legs, and a folded spring. Eyes and the other details are not drawn. The spring is a separate part. The positions and the number (16) are illustrative.",
+  "On the litter on the lawn, and in the crumbs of the topsoil, are specks the size of a full stop that jump when disturbed. They are springtails. A soil-living springtail is 1 to 2 millimetres long. Estimates of their numbers reach 100,000 in a square metre of ground. They live in leaf litter and rotting material and most eat fungal threads and spores as well as dead plant matter; a few eat other tiny animals. They are not insects: they belong to a separate group of six-legged animals, and there are more than 9,000 species. In the block there are about 16 of them in the litter and on the crumbs.",
+  "Most springtails have a forked 'spring' (furcula) folded under the body and held under tension by a small catch (the retinaculum). When the catch lets go, the furcula snaps against the ground and flings the animal into the air; the whole action takes a few milliseconds. Many have a number of ocelli (simple eyes) from one to eight on each side of the head; blind species, mostly subterranean, lack them. They are free-living and moisture-loving. Springtails are normally under 6 mm long, and the species that live in the litter and the top of the soil are about 1 to 2 mm. Species that live deeper in the soil are often pale and blind and have a reduced or missing spring.",
+  "The model springtail is 1.8 mm long, a drawing of an elongated litter-dwelling species: body in 10 parts, four-segmented antennae drawn as bent tubes, six legs, and a folded spring. Many springtails that live deeper in the soil have a small spring or none, so the spring drawn here is typical of litter species. Eyes and the other details are not drawn. The spring is a separate part. The positions and the number (16) are illustrative.",
   [('Length', '1 to 2 mm for soil species (model: 1.8 mm)'), ('Legs', '6'), ('Spring', 'furcula held by a catch; a jump takes a few milliseconds'), ('Density (estimate)', 'up to ≈ 100,000 per m²'), ('Species', 'more than 9,000')],
   'C1', [R_ART], [W_SPRING], parts=['soil_springtail_furca'], related=['soil_decomposition', 'soil_hyphae', 'bio_entomology_insects'])
 
@@ -28,7 +28,7 @@ N('soil_springtail_furca', 'Springtail: the spring (furcula)', 'structure', 0.00
 
 N('soil_mite', 'Oribatid mites (moss mites)', 'organism', 0.0007, ['soil_block', 'bio_arachnids_crustaceans'],
   "Oribatid mites are tiny, hard-shelled, eight-legged soil animals, 0.2 to 1.4 millimetres long, that eat dead plant matter and fungi and help spread fungi through the soil.",
-  "On the leaf litter and between the crumbs live mites, relatives of spiders. The oribatid mites are the shiny, brown, dome-shaped ones, 0.2 to 1.4 millimetres long. Many of them have a hard, mineral-strengthened shell, like a tiny armoured beetle. They eat a wide variety of dead plant and fungal material, and are essential for breaking down dead matter and spreading fungi. They develop slowly: from egg to adult may take from several months to two years in forest soil, and the adults live a relatively long time.",
+  "On the leaf litter and between the crumbs live mites, relatives of spiders. The oribatid mites are the shiny, brown, dome-shaped ones, 0.2 to 1.4 millimetres long. Many of them have a hard, mineral-strengthened shell, like a tiny armoured beetle. They eat a wide variety of dead plant and fungal material, and help to break down dead matter and spread fungi. They develop slowly: from egg to adult may take from several months to two years in forest soil, and the adults live a relatively long time.",
   "Oribatida range from 0.2 to 1.4 mm. Many have a mineralised exoskeleton as adults, some with wing-like flaps (pteromorphae) over the legs, and some can tuck in their legs. They feed on living and dead plant and fungal material (non-parasitic ones; a few are predatory). Density is highest in forests with thick organic layers.",
   "The model mite is 0.7 mm long, a dome with a small head and eight legs, with no further detail; 10 of them are placed on the litter and the crumbs, which is illustrative. Adult mites have eight legs, as arachnids do.",
   [('Length', '0.2 to 1.4 mm (model: 0.7 mm)'), ('Legs (adult)', '8'), ('Shell', 'mineral-strengthened in many'), ('Egg to adult', 'several months to two years (forest soil)'), ('Eats', 'dead plants, fungi')],
@@ -36,11 +36,11 @@ N('soil_mite', 'Oribatid mites (moss mites)', 'organism', 0.0007, ['soil_block',
 
 N('soil_beetle', 'Ground beetle (Pterostichus madidus)', 'organism', 0.016, ['soil_block', 'bio_entomology_insects'],
   "A black ground beetle 14 to 20 millimetres long, common in gardens and grassland, which hides under stones and in grass and is most often seen in summer.",
-  "This glossy black beetle is a common ground beetle of British gardens and grassland. It is usually 14 to 20 millimetres long, black with reddish-brown to black legs, and you will find it under stones, in grass or in loose bark. It is most abundant in summer and breeds in autumn. In Britain it is also called the rain beetle, because it tends to appear when rain is coming. Click its head, its wing cases or its legs for the parts.",
+  "This glossy black beetle is a common ground beetle of British gardens and grassland. It is usually 14 to 20 millimetres long, black with reddish-brown to black legs, and you will find it under stones, in grass or in loose bark. It is most abundant in summer and breeds in autumn. In Britain it is also called the rain beetle, because it tends to appear when rain is coming. It is mostly a predator of small animals on the ground, such as caterpillars and slugs, and also eats some plant matter. Click its head, its wing cases or its legs for the parts.",
   "The beetle's front wings are hardened into wing cases (elytra) that cover the folded flight wings and the abdomen; here the wing cases carry grooves running lengthwise. The skeleton is on the outside, made of chitin, which can be viewed as a molecule unit. The species is native to Europe.",
-  "The model beetle is 16 mm long, drawn from the general form of a ground beetle: head with large eyes, jaws and antennae, a pronotum (the shield over the thorax), wing cases with lengthwise grooves (nine are drawn on each side as a simplification) and three pairs of legs. Details such as the antennal joints and the leg spines are not drawn.",
-  [('Length', '14 to 20 mm (model: 16 mm)'), ('Colour', 'black; legs red-brown to black'), ('Habitat', 'gardens, grassland, dry woodland'), ('Season', 'most abundant in summer; breeds in autumn')],
-  'C1', [R_ART], [W_PTERO], parts=['soil_beetle_head', 'soil_beetle_legs'], related=['bee_chitin', 'bio_entomology_insects'])
+  "The model beetle is 16 mm long, drawn from the general form of a ground beetle: head with eyes, jaws and antennae, a pronotum (the shield over the thorax), wing cases with lengthwise grooves (nine are drawn on each side as a simplification) and three pairs of legs. Details such as the antennal joints and the leg spines are not drawn.",
+  [('Length', '14 to 20 mm (model: 16 mm)'), ('Colour', 'black; legs red-brown to black'), ('Eats', 'mostly small ground animals (caterpillars, slugs), some plant matter'), ('Habitat', 'gardens, grassland, dry woodland'), ('Season', 'most abundant in summer; breeds in autumn')],
+  'C1', [R_ART], [W_PTERO, WBRISTOL], parts=['soil_beetle_head', 'soil_beetle_legs'], related=['bee_chitin', 'bio_entomology_insects'])
 
 N('soil_beetle_head', 'Ground beetle: head, jaws and antennae', 'structure', 0.004, ['soil_beetle'],
   "The beetle's head has two large eyes, a pair of jaws that bite sideways, and two antennae for smell and touch.",
@@ -51,8 +51,8 @@ N('soil_beetle_head', 'Ground beetle: head, jaws and antennae', 'structure', 0.0
   'C1', [R_ART], [W_PTERO], related=['bee_compound_eye', 'bee_chitin'])
 
 N('soil_beetle_legs', 'Ground beetle: legs', 'structure', 0.01, ['soil_beetle'],
-  "A ground beetle has three pairs of long legs and runs fast over the ground.",
-  "The beetle has six legs, three on each side, long and slender, with reddish-brown to black colour. It is found on the ground, under stones and in grass.",
+  "A ground beetle has three pairs of jointed legs, built for walking over the ground.",
+  "The beetle has six legs, three on each side, reddish-brown to black. It is found on the ground, under stones and in grass.",
   "Insects and other arthropods have jointed legs: the segments are joined by hinge joints and moved by muscles inside the hard skeleton.",
   "The legs are drawn as one tapered tube each, without the joints.",
   [('Legs', '6 (3 pairs)'), ('Colour', 'reddish-brown to black')],
@@ -84,12 +84,13 @@ N('soil_silt', 'Silt grains', 'structure', 0.00003, ['soil_crumb'],
   'C1', [R_SOIL], [W_GRAIN], related=['soil_sand', 'soil_clay'])
 
 N('soil_humus', 'Humus coats', 'structure', 0.00001, ['soil_crumb'],
-  "Humus is the dark, sticky, decayed remains of plants and animals that coats the grains and glues crumbs together.",
-  "The dark film on the grains in the crumb is humus. It is what is left of dead matter when the decomposers have taken what they can: a complex mixture, not a single substance. It sticks the mineral grains together, holds water and nutrient ions, and gives topsoil its dark colour.",
-  "Most soil organic matter is a complex assemblage of small organic molecules collectively called humus. It holds more nutrients and water per gram than clay minerals, and most soil cation-exchange capacity comes from carboxylic groups on organic matter (100 to 300 meq per 100 g for humus). Organic matter favours aggregation by forming stable bridges between mineral particles.",
-  "The coats are drawn as thin dark shells; their thickness is illustrative. Humus is a mixture with no single molecule, so no molecule button is offered.",
-  [('Is', 'a complex mixture of decayed organic matter'), ('Does', 'binds grains, holds water and nutrients'), ('CEC', '≈ 100 to 300 meq per 100 g')],
-  'C1', [R_SOIL], [W_SOIL, W_STRUCT], related=['soil_cec', 'soil_decomposition'])
+  "Humus is the dark, sticky, decayed organic matter that coats grains and helps glue crumbs together. Its molecular nature is debated.",
+  "The dark film on the grains in the crumb stands for humus. It is what is left of dead matter when the decomposers have taken what they can: a complex mixture, not a single substance. It helps stick the mineral grains together, holds water and nutrient ions, and gives topsoil its dark colour.",
+  "The traditional view was that soil organic matter contains large, stable 'humic' molecules made in the soil. Lehmann and Kleber argued in Nature in 2015 that the evidence does not support this: they see soil organic matter as a continuum of progressively decomposing compounds, whose persistence depends largely on the soil environment. That view is itself contested, and the older textbook picture still appears in many sources. Whatever its structure, organic matter holds a great deal of nutrient charge per gram; textbook tables give a cation-exchange capacity of the order of 100 to 300 meq per 100 g for humus, usually more per gram than clay minerals. In clay-rich soils the clay supplies most of the soil's total capacity; in sandy soils the organic matter can supply most of it. Organic matter also favours aggregation by forming bridges between mineral particles.",
+  "The coats are drawn as thin dark shells; their thickness is illustrative. Humus is not a single molecule, so no molecule button is offered.",
+  [('Is', 'decayed organic matter, a mixture whose molecular nature is debated'), ('Does', 'binds grains, holds water and nutrients'), ('CEC', 'high per gram; textbook values ≈ 100 to 300 meq per 100 g')],
+  'C2', [R_SOIL], [W_SOIL, W_STRUCT, LEHMANN_K], related=['soil_cec', 'soil_decomposition'],
+  openq=['What soil organic matter is at the molecular scale, and why some of it persists for centuries, is debated; Lehmann and Kleber (2015) argue against the long-standing idea of large stable humic molecules.'])
 
 N('soil_water_film', 'The water film', 'structure', 0.00001, ['soil_crumb', 'soil_pores'],
   "A thin film of water coats the grains; the dissolved nutrients in it are what roots take up.",
@@ -110,17 +111,17 @@ N('soil_air_pore', 'An air pore', 'structure', 0.0001, ['soil_crumb', 'soil_pore
 N('soil_bacteria', 'Soil bacteria', 'organism', 0.000002, ['soil_crumb', 'soil_handful'],
   "Bacteria are single-celled organisms 0.5 to 5 micrometres long; they do most of the chemical work of the soil and there are about a hundred million in a gram.",
   "The tiny rods and dots on the grain surfaces are bacteria. They are the most numerous living things in soil: about a hundred million in a gram on average. They live in the film of water, feed on dead matter, and break it down: they are the chief recyclers, along with fungi. Some change nitrogen into forms plants can use. When they break down proteins they release ammonium; click one to see that molecule.",
-  "Mean prokaryote density is roughly 10^8 per gram of soil, and a teaspoon of productive soil may hold 100 million to 3 billion. Bacteria carry out the steps of the nitrogen cycle in soil: some fix nitrogen gas, some release ammonium from dead matter (ammonification), Nitrosomonas and Nitrobacter oxidise ammonium to nitrate, and others turn nitrate back to nitrogen gas without oxygen. Nematodes can eat up to 5,000 bacteria a minute.",
+  "Mean prokaryote density is roughly 10^8 per gram of soil, and a teaspoon of productive soil may hold 100 million to 3 billion. Microbes carry out the steps of the nitrogen cycle in soil: some bacteria fix nitrogen gas, some release ammonium from dead matter (ammonification), ammonia-oxidising archaea and bacteria and nitrite-oxidising bacteria (for example Nitrosomonas and Nitrobacter) turn ammonium into nitrate, and others turn nitrate back to nitrogen gas without oxygen.",
   "The scene draws about 120 rods 1.6 by 3.5 micrometres; the number is far smaller than in real soil and their positions are illustrative. The bacteria are not identified by species.",
   [('Size', '0.5 to 5 µm'), ('Number', '≈ 10⁸ per gram (mean)'), ('Does', 'decomposes; nitrogen steps')],
-  'C1', [R_PROK, R_PMET], [W_SOIL, W_BIO, W_NCYC, W_NEM], related=['bio_bacterial_structure', 'bio_bacterial_diversity', 'nitrogen_cycle_process', 'soil_nitrogen'])
+  'C1', [R_PROK, R_PMET], [W_SOIL, W_BIO, W_NCYC, LEININGER], related=['bio_bacterial_structure', 'bio_bacterial_diversity', 'nitrogen_cycle_process', 'soil_nitrogen'])
 
 N('soil_nematode', 'A nematode', 'organism', 0.0008, ['soil_crumb', 'soil_handful'],
   "Nematodes are microscopic roundworms, often less than 2.5 millimetres long, that graze on bacteria, fungi and other small things in the water film of the soil.",
-  "The long thin worm in the crumb is a nematode, a roundworm. It is not an earthworm, and it is far smaller: most free-living nematodes are less than 2.5 millimetres long and some only about a millimetre. They are very common in soil: often more than a million in a square metre, mostly in the top 15 centimetres. They swim in the film of water around the grains and eat bacteria, fungi, algae and other small things; one can eat up to 5,000 bacteria a minute.",
+  "The long thin worm in the crumb is a nematode, a roundworm. It is not an earthworm, and it is far smaller: most free-living nematodes are less than 2.5 millimetres long and some only about a millimetre. They are very common in soil: often more than a million in a square metre, mostly in the top 15 centimetres. They swim in the film of water around the grains and eat bacteria, fungi, algae and other small things.",
   "Nematodes are very small, slender worms, bilaterally symmetrical, and often with ridges, rings or bristles on the body. The topsoil of the world holds about 4.4 × 10^20 nematodes. Some soil nematodes reach up to 7 mm.",
   "The nematode is drawn 800 micrometres long and 25 micrometres wide, as a plain tube; its width and shape are illustrative.",
-  [('Length', 'often under 2.5 mm; some ≈ 1 mm; some up to 7 mm'), ('Number', 'often over 10⁶ per m²'), ('Where', '≈ 90 % in the top 15 cm'), ('Rate of eating', 'up to 5,000 bacteria a minute')],
+  [('Length', 'often under 2.5 mm; some ≈ 1 mm; some up to 7 mm'), ('Number', 'often over 10⁶ per m²'), ('Where', '≈ 90 % in the top 15 cm')],
   'C1', [R_NEM], [W_NEM], related=['bio_nematodes_arthropods', 'soil_decomposition'])
 
 # ================= the clay and cation-exchange scene =================
@@ -135,7 +136,7 @@ N('soil_cations', 'Positive ions held on clay', 'structure', 1e-7, ['soil_cec'],
 N('soil_nitrate', 'Nitrate in the soil water', 'structure', 1e-7, ['soil_cec', 'soil_nitrogen'],
   "Nitrate carries a negative charge, so clay does not hold it; it stays in the water, where roots take it up and where rain can wash it away.",
   "The red balls drifting away from the plates are nitrate ions, the form of nitrogen that roots take up most easily. Their charge is negative, like the clay's, so the clay pushes them away instead of holding them. This is why nitrate is easily washed out of the soil by heavy rain into streams and groundwater. Click one to see the nitrate molecule.",
-  "Nitrate is highly soluble and soils are highly unable to retain anions, so it can leach to groundwater. It is made by nitrifying bacteria from ammonium and can be turned back to nitrogen gas by denitrifying bacteria in oxygen-poor soil.",
+  "Nitrate is highly soluble and soils are highly unable to retain anions, so it can leach to groundwater. It is made by nitrifying microbes from ammonium and can be turned back to nitrogen gas by denitrifying bacteria in oxygen-poor soil.",
   "Ion sizes are exaggerated as on the card of the positive ions; the number and places of the nitrate ions are illustrative.",
   [('Charge', 'negative (NO₃⁻)'), ('Held by clay', 'no (repelled)'), ('Fate', 'taken up by roots, leached, or denitrified')],
   'C1', [R_CYC], [W_NCYC, W_CEC], related=['soil_nitrogen', 'nitrogen_cycle_process'])

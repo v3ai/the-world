@@ -60,7 +60,7 @@ def ions_on(c, rot, size, n, kinds):
         x, y = u, side * off
         out[k].append([round(c[0] + x * math.cos(th) - y * math.sin(th), 3), round(c[1] + x * math.sin(th) + y * math.cos(th), 3), round(v, 3)])
     return out
-P = [((-1.4, 0.9, 0), 15, (2.8, .08, 2.6)), ((1.5, -0.7, 0), -20, (2.6, .08, 2.4)), ((-0.6, -2.0, 0), 5, (2.2, .08, 2.0))]
+P = [((-1.4, 0.9, 0), 15, (1.8, .08, 1.7)), ((1.5, -0.7, 0), -20, (1.6, .08, 1.5)), ((-0.6, -2.0, 0), 5, (1.4, .08, 1.3))]
 kinds = ['Ca', 'Mg', 'K', 'NH4']; ions = {k: [] for k in kinds}
 for c, r, s in P:
     d = ions_on(c, r, s, 16, kinds)
@@ -69,7 +69,7 @@ nitrate = []
 for i in range(14):
     for _ in range(100):
         x, y = rr.uniform(-3.4, 3.4), rr.uniform(-2.6, 2.6)
-        if all(math.hypot(x - c[0], y - c[1]) > 1.9 for c, r, s in P): nitrate.append([round(x, 3), round(y, 3), round(rr.uniform(-.6, .6), 3)]); break
+        if all(math.hypot(x - c[0], y - c[1]) > 1.5 for c, r, s in P): nitrate.append([round(x, 3), round(y, 3), round(rr.uniform(-.6, .6), 3)]); break
 col = {'Ca': '#4caf50', 'Mg': '#f09a20', 'K': '#9c4fc0', 'NH4': '#2a7fd4'}; nm = {'Ca': 'Calcium ion (Ca²⁺)', 'Mg': 'Magnesium ion (Mg²⁺)', 'K': 'Potassium ion (K⁺)', 'NH4': 'Ammonium ion (NH₄⁺)'}
 sz = {'Ca': [.15] * 3, 'Mg': [.12] * 3, 'K': [.16] * 3, 'NH4': [.15] * 3}
 pops = [pop('scale', 'Scale bar: 1 micrometre', 'soil_clay', 'tube_x', [1, .04, .04], '#1e2a38', lst([-3.2, -2.9, 0]), 1, ink=0, deeper={'type': 'none'})]
@@ -79,8 +79,8 @@ for k in kinds:
     pops.append(pop('ion_' + k, nm[k], 'soil_cations', 'ellipsoid', sz[k], col[k], lst(*ions[k]), 1, ink=0, deeper=mol('ammonium', 'Ammonium', 'See the ammonium ion') if k == 'NH4' else {'type': 'none'}, priority=4))
 pops.append(pop('nitrate', 'Nitrate ion (NO₃⁻)', 'soil_nitrate', 'ellipsoid', [.15, .15, .15], '#d6392f', lst(*nitrate), 1, ink=0, deeper=mol('nitrate', 'Nitrate', 'See the nitrate ion'), priority=4))
 write({'id': 'soil_clay_ions', 'tag': 'On clay', 'title': 'A clay plate and the ions it holds', 'node': 'soil_cec',
-  'blurb': 'Three flat clay plates, each about 2 to 3 micrometres across, in a box of soil water 8 micrometres wide, with the positive nutrient ions held at their surfaces (calcium, magnesium, potassium, ammonium) and nitrate ions drifting free. Click an ion or a plate.',
-  'note': 'Not to scale where it matters. The plates are drawn 2.2 to 2.8 micrometres wide and 0.08 micrometres thick; real clay particles are under 2 micrometres on the ISO scale (some systems say 4) and can be much smaller and thinner, and kaolinite plates are pseudohexagonal, drawn here as discs. The ions are drawn about 0.15 micrometres (150 nanometres) across, roughly 200 times larger than a real hydrated ion, which is a fraction of a nanometre, so that they can be seen at all. How many ions there are, and which kind sits where, is illustrative: a real plate holds enormously more ions than this. The nitrate ions (negative) are drawn away from the plates because the plates are negatively charged and repel them. Water molecules are not drawn.',
+  'blurb': 'Three flat clay plates, 1.4 to 1.8 micrometres across (inside the clay size range), in a box of soil water about 7 micrometres wide, with the positive nutrient ions held at their surfaces (calcium, magnesium, potassium, ammonium) and nitrate ions drifting free. Click an ion or a plate.',
+  'note': 'Not to scale where it matters. The plates are drawn 1.4 to 1.8 micrometres wide, inside the ISO clay range of under 2 micrometres (some systems put the limit at 4), and 0.08 micrometres thick; real clay particles can be much smaller and thinner, and kaolinite plates are pseudohexagonal, drawn here as discs. The ions are drawn about 0.15 micrometres (150 nanometres) across, roughly 200 times larger than a real hydrated ion, which is a fraction of a nanometre, so that they can be seen at all. How many ions there are, and which kind sits where, is illustrative: a real plate holds enormously more ions than this. The nitrate ions (negative) are drawn away from the plates because the plates are negatively charged and repel them. Water molecules are not drawn.',
   'bg': '#eef2f2', 'center': [0, 0, 0], 'D_um': 8,
   'labels': [{'text': '1 µm', 'at': [-3.2, -3.15, 0], 'pop': 'scale'}, {'text': 'Clay plate', 'at': [-2.5, 2.0, 0], 'pop': 'plate0'}, {'text': 'Calcium', 'at': [-0.3, 1.7, 0], 'pop': 'ion_Ca'}, {'text': 'Ammonium', 'at': [2.4, 0.2, 0], 'pop': 'ion_NH4'}, {'text': 'Nitrate (free in the water)', 'at': [nitrate[0][0], nitrate[0][1] + .35, 0], 'pop': 'nitrate'}],
   'populations': pops})

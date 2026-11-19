@@ -4,8 +4,8 @@
  "tag": "In a grass root",
  "title": "The tip of a grass root",
  "node": "grass_root_tip",
- "blurb": "The last 1.5 mm of a fibrous root, with the tip at the left: root cap, dividing cells, cells that are lengthening, and root hairs further back. Click a part.",
- "note": "Schematic. The order of the zones (root cap, cell division, elongation, maturation with root hairs) is as in textbook descriptions of roots. The length of each zone and the cell sizes are illustrative. Root hairs are drawn 16 µm wide, as in the published range of 15 to 17 µm, and 500 µm long (published range for root hair cells in general: 80 to 1,500 µm; I have no measured ryegrass value).",
+ "blurb": "The last 1.7 mm of a fibrous root, with the tip at the left: root cap, dividing cells, cells that are lengthening, and root hairs further back. Click a part.",
+ "note": "Schematic. The order of the zones (root cap, cell division, elongation, maturation with root hairs) is as in textbook descriptions of roots. The length of each zone and the cell sizes are illustrative. Root hairs are drawn 16 µm wide, as in the published range of 15 to 17 µm, and 500 µm long (published range for root hair cells in general: 80 to 1,500 µm; not measured on ryegrass).",
  "bg": "#efe9dc",
  "center": [
   700,

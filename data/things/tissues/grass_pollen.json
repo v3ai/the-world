@@ -4,7 +4,7 @@
  "tag": "On the wind",
  "title": "Grass pollen caught by a feathery stigma",
  "node": "grass_pollen",
- "blurb": "A box 450 micrometres wide: pollen grains of the size of ryegrass pollen, and the branched hairs of a feathery stigma that catch them. Click a grain or a hair.",
+ "blurb": "A box about 400 micrometres wide: pollen grains of the size of ryegrass pollen, and the branched hairs of a feathery stigma that catch them. Click a grain or a hair.",
  "note": "Schematic. Ryegrass pollen grains are 26 to 50 µm across, roughly spherical, each with one pore closed by a lid (PalDat, Lolium perenne): the scene draws them 35 to 40 µm. The stigma branch width, hair spacing and the number of grains are illustrative. The tiny particles that burst pollen releases in rain (about 60 to 200 nm, from laboratory work on ryegrass pollen) are far too small to draw at this scale. The allergen proteins (for example Lol p 1) are not in this explorer's molecule set.",
  "bg": "#f4f1e6",
  "center": [
