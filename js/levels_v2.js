@@ -638,21 +638,23 @@ BUILD.life = (c) => {
   const sunHit = hitSphere(18, 'sunSky', 2); sunHit.position.copy(sunDir).multiplyScalar(330); g.add(sunHit); c.pickables.push(sunHit);
   const sg = glowSprite(0xfff6dd, 70, .9); sg.position.copy(sunHit.position); g.add(sg);
   c.setSun = d => { sky.material.uniforms.uSun.value.copy(d); sun.position.copy(d).multiplyScalar(40); sunHit.position.copy(d).multiplyScalar(330); sg.position.copy(sunHit.position); const day = smooth(-.12, .12, d.y); sun.intensity = 1.15 * day; sg.visible = d.y > -.05; c.scene.fog && c.scene.fog.color.setRGB(.79 * (.08 + .92 * day), .89 * (.08 + .92 * day), .97 * (.1 + .9 * day)); sky.material.uniforms.uDay.value = day; };
-  const grassTex = canvasTex('grass', 256, 256, (gg, w, h) => { gg.fillStyle = '#5d9a3e'; gg.fillRect(0, 0, w, h); const rr = rng(4); for (let i = 0; i < 2600; i++) { gg.fillStyle = ['#4f8a33', '#6aa848', '#7cb655', '#558f39', '#8a9a4a'][i % 5]; gg.globalAlpha = .5; gg.fillRect(rr() * w, rr() * h, 2 + rr() * 3, 2 + rr() * 3); } gg.globalAlpha = 1; }, { wrap: true });
-  grassTex.repeat.set(40, 40);
-  const ground = new THREE.Mesh(new THREE.CircleGeometry(170, 64), smat(0xffffff, { map: grassTex, roughness: 1 }));
+  // the ground: fine painted blades (one tile = 1 m), a slow colour variation in the vertices that the lawn tufts share (lawnTone), so that tufts and ground read as one surface
+  const grassTex = canvasTex('grass', 512, 512, (gg, w, h) => {
+    gg.fillStyle = '#4f8b34'; gg.fillRect(0, 0, w, h); const rr = rng(4);
+    const cols = ['#3f7a2a', '#4f8a33', '#5d9a3e', '#6aa848', '#477f2d', '#7bb552', '#86a944', '#356d26'];
+    for (let i = 0; i < 9000; i++) { const x = rr() * w, y = rr() * h, a = (rr() - .5) * 2.6 + 1.57, l = 5 + rr() * 11; gg.strokeStyle = cols[(rr() * cols.length) | 0]; gg.globalAlpha = .55 + rr() * .4; gg.lineWidth = .8 + rr() * 1.1; gg.beginPath(); gg.moveTo(x, y); gg.lineTo(x + Math.cos(a) * l, y + Math.sin(a) * l); gg.stroke(); }
+    for (let i = 0; i < 400; i++) { gg.fillStyle = 'rgba(30,60,20,.25)'; gg.fillRect(rr() * w, rr() * h, 3 + rr() * 5, 3 + rr() * 5); }
+    gg.globalAlpha = 1;
+  }, { wrap: true });
+  grassTex.repeat.set(340, 340); grassTex.anisotropy = 8;
+  const gGeo = new THREE.RingGeometry(.01, 170, 96, 36), gp = gGeo.attributes.position, gcol = new Float32Array(gp.count * 3), tone = new THREE.Color();
+  for (let i = 0; i < gp.count; i++) { lawnTone(gp.getX(i), -gp.getY(i), tone); gcol[i * 3] = tone.r; gcol[i * 3 + 1] = tone.g; gcol[i * 3 + 2] = tone.b; }
+  gGeo.setAttribute('color', new THREE.BufferAttribute(gcol, 3));
+  const ground = new THREE.Mesh(gGeo, smat(0xffffff, { map: grassTex, roughness: 1, vertexColors: true }));
   ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; ground.userData = { id: 'ground', priority: 0 }; g.add(ground); c.pickables.push(ground);
   for (let i = 0; i < 9; i++) { const a = i / 9 * TAU + r(), d = 95 + r() * 35; const hl = new THREE.Mesh(new THREE.SphereGeometry(30 + r() * 25, 24, 12), smat(0x5b8f45, { roughness: 1 })); hl.position.set(Math.cos(a) * d, -18, Math.sin(a) * d); hl.scale.y = .6; g.add(hl); }
-  // grass tufts
-  const gm = new THREE.InstancedMesh(new THREE.ConeGeometry(.035, .32, 4), smat(0xffffff, { roughness: .9 }), 2600);
-  const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), col = new THREE.Color();
-  for (let i = 0; i < 2600; i++) {
-    const a = r() * TAU, d = Math.sqrt(r()) * 16; const x = Math.cos(a) * d, z = Math.sin(a) * d;
-    if (Math.hypot(x - 5, (z + 4) * 1.25) < 3.3) { m4.makeScale(0, 0, 0); gm.setMatrixAt(i, m4); continue; }
-    q.setFromEuler(new THREE.Euler((r() - .5) * .5, r() * 6, (r() - .5) * .5)); m4.compose(new V3(x, .14, z), q, new V3(1, .6 + r() * .9, 1)); gm.setMatrixAt(i, m4);
-    gm.setColorAt(i, col.setHSL(.26 + r() * .06, .5, .3 + r() * .15));
-  }
-  g.add(gm);
+  // the lawn: mown perennial ryegrass in three tiers by distance from the camera (see makeLawn); the real plants are the data thing `grass`
+  const gm = makeLawn(g, c, r); g.add(gm);
   // human
   const { h: human, arms } = makeHuman(); human.userData = { id: 'human' }; g.add(human); c.pickables.push(human);
   c.addLabel(human, 'You', { offset: new V3(0, 2.05, 0), cls: 'you' });
@@ -684,12 +686,98 @@ BUILD.life = (c) => {
     arms[1].fore.rotation.z = wave ? Math.sin(t * 9) * .35 : lerp(arms[1].fore.rotation.z, 0, dt * 5);
     arms[0].piv.rotation.z = -.12 - Math.sin(t * 1.3) * .02;
     human.scale.y = 1 + Math.sin(t * 2) * .006;
+    if (c.lawnUpdate) c.lawnUpdate(t);
     clouds.forEach((cg, i) => { cg.position.x += dt * .6; if (cg.position.x > 120) cg.position.x = -120; });
   };
   c.focusIn = () => new V3(0, 1.2, 0);
   c.focusFor = (k, o) => (o && o.type === 'plant') ? { pos: new V3(-13, 4.2, -9), r: 1.4 } : { pos: new V3(0, 1.2, 0), r: .45 };
   c.zoomInTarget = () => ({ key: 'cell', opts: { type: 'animal' } });
 };
+
+
+/* ================= THE LAWN (perennial ryegrass turf, three detail tiers) =================
+   Tier 0 (camera within 2.2 m): tufts of real blade geometry (36 thin, blunt-cut, curved ribbons each, 144 triangles).
+   Tier 1 (2.2 to 13 m): the same tufts as two crossed alpha-cut cards painted with blades (4 triangles each).
+   Tier 2 (beyond, and from high above): the ground disc, painted with fine blades and tinted by the same slow colour variation (lawnTone) as the tufts.
+   The instanced tufts follow the camera: only the sites near it are drawn, rebuilt when it has moved half a metre. Sway runs in the vertex shader.
+   It is a stand-in for turf: a real lawn holds thousands of tillers per square metre; the tufts here are far sparser (see the card `grass_lawn`). */
+function lawnTone(x, z, out) {   // a slow, shared colour variation: 0.88 to 1.1 of the base, a little warmer where it is lighter
+  const n = (Math.sin(x * .11 + 1.3) * Math.sin(z * .09 + .4) + .6 * Math.sin(x * .31 + z * .23) + .4 * Math.sin(x * .05 - z * .07)) / 2;
+  return out.setRGB(1 + .15 * n, 1 + .12 * n, 1 - .08 * n);
+}
+function makeLawn(g, c, r) {
+  const R0 = 2.2, MAXN = 520, SP = .27, SPN = .2, RAD = 24, m4 = new THREE.Matrix4();
+  const plants = [[1.2, -2.6], [-6.4, .3], [.9, -3.6], [4.6, 5.6], [-2.4, 4.8], [7.5, -.6]];
+  const holes = [[0, 0, .4], [-4.6, 3.4, 1.4], [9.5, 7.5, .8], [-3.4, -1.6, .3], [1.6, 1.2, .55], [-4.3, 3.2, .3]];   // the person, the boulders, the mushroom, the dog: no tufts through them
+  const rr = rng(77), sites = [];
+  for (let x = -RAD; x < RAD; x += SPN) for (let z = -RAD; z < RAD; z += SPN) {
+    const px = x + (rr() - .5) * SPN * .95, pz = z + (rr() - .5) * SPN * .95, d2 = px * px + pz * pz, near = true;
+    if (d2 > RAD * RAD || Math.hypot(px - 5, (pz + 4) * 1.25) < 3.4 || plants.some(q => Math.hypot(px - q[0], pz - q[1]) < .7) || holes.some(q => Math.hypot(px - q[0], pz - q[1]) < q[2])) continue;
+    // thin out with distance so that the sites are about SPN apart within 3 m and about SP apart beyond
+    if (!near && rr() > (SPN * SPN) / (SP * SP)) continue;
+    sites.push(px, pz, rr() * 6.283, .8 + rr() * .5, rr());
+  }
+  const NS = sites.length / 5;
+  // tier 0: a tuft of 36 curved, blunt-cut ribbons, darker at the base and paler (a little yellow) at the tip
+  const pos = [], idx = [], colr = [], tr = rng(5);
+  for (let b = 0; b < 36; b++) {
+    const a = tr() * 6.283, rho = Math.sqrt(tr()) * .095, h = .022 + tr() * .03, lean = .2 + tr() * .8, w = .0009 + tr() * .0008, ca = Math.cos(a), sa = Math.sin(a), px = Math.cos(a + 1.57), pz = Math.sin(a + 1.57), yel = tr() < .3 ? .5 : .15;
+    const o = pos.length / 3, tw = (tr() - .5) * .5;
+    for (let k = 0; k <= 2; k++) { const t = k / 2, off = lean * h * t * t, y = h * t - .002;
+      for (const sg of [-1, 1]) { pos.push(ca * rho + ca * off + px * (sg * w + tw * w * t), y, sa * rho + sa * off + pz * (sg * w + tw * w * t)); const m = .55 + .55 * t; colr.push(.34 * m + yel * t * .35, .56 * m + yel * t * .15, .2 * m); } }
+    for (let k = 0; k < 2; k++) { const i = o + k * 2; idx.push(i, i + 1, i + 3, i, i + 3, i + 2); }
+  }
+  const geo0 = new THREE.BufferGeometry(); geo0.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo0.setAttribute('color', new THREE.Float32BufferAttribute(colr, 3)); geo0.setIndex(idx); geo0.computeVertexNormals();
+  // tier 1: shells. Ten thin rings of ground, one above another up to 4 cm, each drawn only where a strand of grass reaches that height (a per-pixel hash of the position on the ground):
+  // a dense, even, short turf without any per-blade geometry. The rings follow the camera, thin out with distance and are gone beyond 13 m, where the painted ground takes over.
+  const uT = { value: 0 }, uOff = { value: new THREE.Vector2() }, uCam = { value: new THREE.Vector2() }, SH = 10, SHH = .04;
+  const TONE = `vec3 lawnTone(vec2 p){ float n = (sin(p.x*.11+1.3)*sin(p.y*.09+.4) + .6*sin(p.x*.31+p.y*.23) + .4*sin(p.x*.05-p.y*.07))/2.; return vec3(1.+.15*n, 1.+.12*n, 1.-.08*n); }
+ float hsh(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }`;
+  const sway = m => { m.onBeforeCompile = sh => { sh.uniforms.uT = uT; sh.vertexShader = 'uniform float uT;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n float hh = clamp(position.y / .05, 0., 1.); vec2 ip = vec2(0.);\n #ifdef USE_INSTANCING\n ip = instanceMatrix[3].xz;\n #endif\n float ph = uT * 1.5 + ip.x * 1.7 + ip.y * 1.3;\n transformed.x += (sin(ph) * .0035 + sin(ph * 2.3 + ip.y) * .0012) * hh * hh;\n transformed.z += cos(ph * .9 + ip.x) * .003 * hh * hh;'); }; return m; };
+  const mS = smat(0xffffff, { roughness: 1 });
+  mS.onBeforeCompile = sh => {
+    sh.uniforms.uT = uT; sh.uniforms.uOff = uOff; sh.uniforms.uCam = uCam;
+    sh.vertexShader = 'uniform float uT; uniform vec2 uOff; varying vec2 vW; varying float vL;\n' + sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>
+ vL = clamp(instanceMatrix[3].y / ${SHH.toFixed(3)}, 0., 1.);
+ vW = position.xz + uOff;
+ float ph = uT * 1.4 + vW.x * .9 + vW.y * .7;
+ vW += vec2(sin(ph) * .0045 + sin(ph * 2.3 + vW.y) * .0015, cos(ph * .9 + vW.x) * .0035) * vL * vL;`);
+    sh.fragmentShader = 'uniform vec2 uCam; varying vec2 vW; varying float vL;\n' + TONE + '\n' + sh.fragmentShader.replace('#include <map_fragment>', `
+ float dist = length(vW - uCam), keep = 1. - smoothstep(3., 12., dist);   // fewer, lower strands farther away; none beyond 12 m
+ if (vL > 0.001 && vL > keep * .95 + .05) discard;
+ if (dist > 12.5 || length(vec2(vW.x - 5., (vW.y + 4.) * 1.25)) < 3.7) discard;   // none in the pond and its bank
+ vec2 pc = vW * 240., ic = floor(pc), fc = fract(pc) - .5;
+ float h1 = hsh(ic), h2 = hsh(ic + 17.3), h3 = hsh(ic + 41.7);
+ float hgt = .45 + .55 * h1, rad = .46 * (1. - .75 * vL / hgt);
+ vec2 o = (vec2(h2, h3) - .5) * .45;
+ if (vL > hgt || length(fc - o) > rad) discard;
+ vec3 base = vec3(.17, .36, .11), tip = mix(vec3(.38, .62, .2), vec3(.58, .62, .27), step(.78, h2));
+ diffuseColor.rgb = mix(mix(base, tip, vL) * (.82 + .3 * h3), vec3(.33, .55, .2), smoothstep(5., 12., dist)) * lawnTone(vW);`);
+  };
+  const ringGeo = new THREE.RingGeometry(.15, 14, 64, 12); ringGeo.rotateX(-Math.PI / 2);
+  const shells = new THREE.InstancedMesh(ringGeo, mS, SH); shells.frustumCulled = false;
+  for (let i = 0; i < SH; i++) { m4.makeTranslation(0, .0008 + i * SHH / (SH - 1), 0); shells.setMatrixAt(i, m4); }
+  const m0 = sway(smat(0xffffff, { roughness: .95, side: THREE.DoubleSide, vertexColors: true }));
+  const t0 = new THREE.InstancedMesh(geo0, m0, MAXN), white = new THREE.Color(1, 1, 1);
+  t0.setColorAt(0, white); t0.userData = { id: 'grass', node: 'grass_lawn', priority: .4 }; t0.count = 0; t0.frustumCulled = false;   // the colour buffer is made while count is still the maximum
+  const grp = new THREE.Group(); grp.add(t0, shells); c.pickables.push(t0);
+  const q = new THREE.Quaternion(), col = new THREE.Color(), pv = new V3(), sv = new V3(), up = new V3(0, 1, 0), tn = new THREE.Color();
+  let lx = 1e9, lz = 1e9, lh = -1;
+  c.lawn = { t0, shells, NS };
+  c.lawnUpdate = (t) => {
+    uT.value = t;
+    const cpos = c.frame.C || c.camera.position, h = cpos.y; if (Math.abs(cpos.x - lx) < .5 && Math.abs(cpos.z - lz) < .5 && Math.abs(h - lh) < .4 && lh >= 0) return;
+    lx = cpos.x; lz = cpos.z; lh = h; let n0 = 0;
+    shells.position.set(Math.round(lx), 0, Math.round(lz)); uOff.value.set(shells.position.x, shells.position.z); uCam.value.set(lx, lz);
+    const r0 = h < R0 ? Math.sqrt(R0 * R0 - h * h) : -1;
+    if (r0 > 0) for (let i = 0; i < NS && n0 < MAXN; i++) {
+      const x = sites[i * 5], z = sites[i * 5 + 1], d2 = (x - lx) * (x - lx) + (z - lz) * (z - lz), rn = sites[i * 5 + 4];
+      if (d2 < r0 * r0) { lawnTone(x, z, tn); q.setFromAxisAngle(up, sites[i * 5 + 2]); sv.set(sites[i * 5 + 3], .75 + rn * .5, sites[i * 5 + 3]); m4.compose(pv.set(x, 0, z), q, sv); t0.setMatrixAt(n0, m4); t0.setColorAt(n0++, col.setRGB(tn.r * (.9 + rn * .15), tn.g * (.9 + rn * .15), tn.b * (.9 + rn * .1))); }
+    }
+    t0.count = n0; t0.instanceMatrix.needsUpdate = true; t0.instanceColor.needsUpdate = true;
+  };
+  grp.userData.lawn = true; return grp;
+}
 
 /* ================= EARTH TEXTURES ================= */
 const LAND = [

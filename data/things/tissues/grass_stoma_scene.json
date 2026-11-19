@@ -1,0 +1,307 @@
+{
+ "cell": "plant",
+ "id": "grass_stoma_scene",
+ "tag": "On a grass leaf surface",
+ "title": "A grass stoma (leaf pore), seen from above",
+ "node": "grass_stoma",
+ "blurb": "A patch of grass leaf surface about 220 micrometres wide: a pore between two dumbbell-shaped guard cells, with a lens-shaped subsidiary cell on each side. Compare the oak leaf stoma, with its two bean-shaped guard cells and no subsidiary cells. Click a cell.",
+ "note": "Schematic. The dumbbell guard cells (bulbous ends, narrow middle) and the two flanking subsidiary cells follow published descriptions of the grass type of stoma; the lengths and widths drawn (a pore about 30 µm long) are illustrative, within the 10 to 80 µm that stomata span across species (Wikipedia: Stoma), and not measured on ryegrass. The elongated epidermal cells and the line of stomata are simplified. In a real leaf the guard cells swell and shrink to open and close the pore; nothing moves here.",
+ "bg": "#eef3e6",
+ "center": [
+  0,
+  0,
+  0
+ ],
+ "D_um": 150,
+ "labels": [
+  {
+   "text": "Pore (stoma)",
+   "at": [
+    -28,
+    0,
+    30
+   ],
+   "pop": "pore"
+  },
+  {
+   "text": "Guard cell (dumbbell-shaped)",
+   "at": [
+    -70,
+    22,
+    30
+   ],
+   "pop": "gc_end"
+  },
+  {
+   "text": "Subsidiary cell",
+   "at": [
+    -76,
+    40,
+    30
+   ],
+   "pop": "sub"
+  },
+  {
+   "text": "Epidermal cell",
+   "at": [
+    -100,
+    -62,
+    30
+   ],
+   "pop": "epi"
+  }
+ ],
+ "populations": [
+  {
+   "id": "gc_end",
+   "name": "Guard cell (bulbous end)",
+   "node": "grass_guard_cell",
+   "shape": "ellipsoid",
+   "size": [
+    11,
+    11,
+    9
+   ],
+   "color": "#7cc36a",
+   "opacity": 0.95,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -9,
+       4,
+       0
+      ]
+     },
+     {
+      "at": [
+       9,
+       4,
+       0
+      ]
+     },
+     {
+      "at": [
+       -9,
+       -4,
+       0
+      ]
+     },
+     {
+      "at": [
+       9,
+       -4,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "gc_mid",
+   "name": "Guard cell (narrow middle)",
+   "node": "grass_guard_cell",
+   "shape": "tube_x",
+   "size": [
+    14,
+    3.4,
+    3.4
+   ],
+   "color": "#7cc36a",
+   "opacity": 0.95,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       3,
+       0
+      ]
+     },
+     {
+      "at": [
+       0,
+       -3,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "pore",
+   "name": "The pore: gas passes through here",
+   "node": "grass_stoma",
+   "shape": "ellipsoid",
+   "size": [
+    26,
+    2.4,
+    6
+   ],
+   "color": "#bcd6e8",
+   "opacity": 0.8,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       0,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "carbon_dioxide",
+    "name": "Carbon dioxide",
+    "button": "See the molecule: carbon dioxide, the gas the leaf takes in"
+   }
+  },
+  {
+   "id": "sub",
+   "name": "Subsidiary cell",
+   "node": "grass_subsidiary_cell",
+   "shape": "lens",
+   "size": [
+    38,
+    8,
+    10
+   ],
+   "color": "#b8dca0",
+   "opacity": 0.6,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       12,
+       0
+      ]
+     },
+     {
+      "at": [
+       0,
+       -12,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "epi",
+   "name": "Epidermal cell",
+   "node": "grass_epidermis",
+   "shape": "rbox",
+   "size": [
+    58,
+    22,
+    14
+   ],
+   "color": "#d6ebc4",
+   "opacity": 0.55,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -110,
+       4,
+       -4
+      ]
+     },
+     {
+      "at": [
+       110,
+       4,
+       -4
+      ]
+     },
+     {
+      "at": [
+       -72,
+       -40,
+       -4
+      ]
+     },
+     {
+      "at": [
+       -72,
+       40,
+       -4
+      ]
+     },
+     {
+      "at": [
+       0,
+       -40,
+       -4
+      ]
+     },
+     {
+      "at": [
+       0,
+       40,
+       -4
+      ]
+     },
+     {
+      "at": [
+       72,
+       -40,
+       -4
+      ]
+     },
+     {
+      "at": [
+       72,
+       40,
+       -4
+      ]
+     },
+     {
+      "at": [
+       -110,
+       -40,
+       -4
+      ]
+     },
+     {
+      "at": [
+       110,
+       40,
+       -4
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  }
+ ]
+}

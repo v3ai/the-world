@@ -1,0 +1,392 @@
+{
+ "cell": "plant",
+ "id": "grass_root_tip",
+ "tag": "In a grass root",
+ "title": "The tip of a grass root",
+ "node": "grass_root_tip",
+ "blurb": "The last 1.5 mm of a fibrous root, with the tip at the left: root cap, dividing cells, cells that are lengthening, and root hairs further back. Click a part.",
+ "note": "Schematic. The order of the zones (root cap, cell division, elongation, maturation with root hairs) is as in textbook descriptions of roots. The length of each zone and the cell sizes are illustrative. Root hairs are drawn 16 µm wide, as in the published range of 15 to 17 µm, and 500 µm long (published range for root hair cells in general: 80 to 1,500 µm; I have no measured ryegrass value).",
+ "bg": "#efe9dc",
+ "center": [
+  700,
+  0,
+  0
+ ],
+ "D_um": 1700,
+ "labels": [
+  {
+   "text": "Root cap",
+   "at": [
+    20,
+    105,
+    30
+   ],
+   "pop": "cap"
+  },
+  {
+   "text": "Dividing cells",
+   "at": [
+    240,
+    105,
+    30
+   ],
+   "pop": "meri"
+  },
+  {
+   "text": "Cells lengthening",
+   "at": [
+    560,
+    105,
+    30
+   ],
+   "pop": "elong"
+  },
+  {
+   "text": "Root hairs",
+   "at": [
+    1000,
+    280,
+    30
+   ],
+   "pop": "hair"
+  },
+  {
+   "text": "Xylem (water pipes)",
+   "at": [
+    1050,
+    -10,
+    30
+   ],
+   "pop": "xylem"
+  }
+ ],
+ "populations": [
+  {
+   "id": "cap",
+   "name": "Root cap cell",
+   "node": "grass_root_cap",
+   "shape": "ellipsoid",
+   "size": [
+    22,
+    24,
+    24
+   ],
+   "color": "#e9dcb8",
+   "opacity": 0.8,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     0,
+     -48,
+     -12
+    ],
+    "n": [
+     3,
+     5,
+     1
+    ],
+    "step": [
+     22,
+     24,
+     24
+    ],
+    "jitter": 0.1
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "meri",
+   "name": "Dividing root cell",
+   "node": "grass_root_tip",
+   "shape": "rbox",
+   "size": [
+    14,
+    14,
+    14
+   ],
+   "color": "#f2d98a",
+   "opacity": 0.9,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     80,
+     -49,
+     -14
+    ],
+    "n": [
+     24,
+     7,
+     2
+    ],
+    "step": [
+     14,
+     14,
+     14
+    ],
+    "jitter": 0.05
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "elong",
+   "name": "Lengthening root cell",
+   "node": "grass_root_tip",
+   "shape": "rbox",
+   "size": [
+    38,
+    16,
+    16
+   ],
+   "color": "#e6dcae",
+   "opacity": 0.8,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     440,
+     -48,
+     -16
+    ],
+    "n": [
+     8,
+     6,
+     2
+    ],
+    "step": [
+     40,
+     16,
+     16
+    ],
+    "jitter": 0.05
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "mature",
+   "name": "Root epidermal cell",
+   "node": "grass_root_hairs",
+   "shape": "rbox",
+   "size": [
+    90,
+    16,
+    16
+   ],
+   "color": "#dccfa0",
+   "opacity": 0.5,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     850,
+     -48,
+     -16
+    ],
+    "n": [
+     8,
+     6,
+     2
+    ],
+    "step": [
+     92,
+     16,
+     16
+    ],
+    "jitter": 0.04
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "xylem",
+   "name": "Xylem vessel",
+   "node": "bio_water_transport",
+   "shape": "tube_x",
+   "size": [
+    900,
+    8,
+    8
+   ],
+   "color": "#4aa3df",
+   "opacity": 0.85,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       1300,
+       0,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "water",
+    "name": "Water",
+    "button": "See a water molecule"
+   }
+  },
+  {
+   "id": "hair",
+   "name": "Root hair",
+   "node": "grass_root_hairs",
+   "shape": "cylinder",
+   "size": [
+    16,
+    500,
+    16
+   ],
+   "color": "#f1e9cf",
+   "opacity": 0.9,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       900,
+       250,
+       -20
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       975,
+       -250,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       1050,
+       250,
+       20
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       1125,
+       -250,
+       -20
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       1200,
+       250,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       1275,
+       -250,
+       20
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       1350,
+       250,
+       -20
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       1425,
+       -250,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       1500,
+       250,
+       20
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       1575,
+       -250,
+       -20
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "cellotriose",
+    "name": "Cellulose",
+    "button": "See the molecule: cellulose, the material of the cell wall"
+   }
+  }
+ ]
+}
