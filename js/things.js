@@ -753,16 +753,27 @@ function thFlowCentre(def, part) {
   const lo = [1e9, 1e9, 1e9], hi = [-1e9, -1e9, -1e9]; for (const P of fl.paths) for (let i = 0; i < P.p.length; i += 3) for (let a = 0; a < 3; a++) { lo[a] = Math.min(lo[a], P.p[i + a]); hi[a] = Math.max(hi[a], P.p[i + a]); }
   return { c: [0, 1, 2].map(a => (lo[a] + hi[a]) / 2), r: Math.hypot(hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2]) / 2 };
 }
+/* The vertex of a part's mesh nearest to its stored centre. A thin or curved part (a muscle sheet, a bone shaft) has a centre in the air or inside a neighbour; the flight aims at a point that is on the part
+   itself when the centre is more than a fifth of the part's radius from it. Cached per part. */
+const _thSurf = {};
+function thSurfacePoint(def, part) {
+  const b = TH.done && TH.done[def.id]; if (!b || !part.mesh || !part.center) return null;
+  const ck = def.id + ':' + part.id; if (ck in _thSurf) return _thSurf[ck];
+  const g = thGeo(def.id, b, part.mesh), pos = g && g.attributes.position; if (!pos) return _thSurf[ck] = null;
+  const c = part.center; let bd = 1e18, bi = -1; for (let i = 0; i < pos.count; i++) { const dx = pos.getX(i) - c[0], dy = pos.getY(i) - c[1], dz = pos.getZ(i) - c[2], d = dx * dx + dy * dy + dz * dz; if (d < bd) { bd = d; bi = i; } }
+  return _thSurf[ck] = bi >= 0 && Math.sqrt(bd) > .2 * (part.radius || 0) ? [pos.getX(bi), pos.getY(bi), pos.getZ(bi)] : null;
+}
 function thFindNode(id) {
   for (const f of FR.things || []) {
     const def = TH.loaded[f.opts.thing]; if (!def) continue; const pl = f.opts.placement || {}, x = thPlacement(def, pl);
     const hit = def.parts.find(p => p.node === id && p.lod !== 'far') || def.parts.find(p => p.node === id), hs = (def.hotspots || []).find(h => h.node === id);
     const fc = hit && hit.flow ? thFlowCentre(def, hit) : null;
-    const at = fc ? fc.c : hit ? hit.center : hs ? hs.at : id === def.node ? (def.parts.find(p => p.id === def.main_part) || {}).center : null;
+    const sp = hit && !fc && !hit.instances ? thSurfacePoint(def, hit) : null;
+    const at = fc ? fc.c : sp ? sp : hit ? hit.center : hs ? hs.at : id === def.node ? (def.parts.find(p => p.id === def.main_part) || {}).center : null;
     if (!at) continue;
     const u = thUnit(def, x.k), rep = hit && hit.instances && hit.lod !== 'far' ? thRepInstance(def, pl, hit) : null, p = thLocalToFrame(def, pl, rep ? rep.p : at);
     const D = rep ? Math.min(Math.max(rep.size * x.k * 6, .25 * u), (def.radius_m || 1) * x.k * .5) : Math.max((fc ? fc.r : (hit && hit.radius) || (def.radius_m || 1) * .5) * x.k * 3.2, thMinFly(hit, x.k, u));
-    return { f, p, D, part: hit || null, hs: hs && !hit ? hs : null, def, pl, inst: !!(hit && hit.instances && hit.lod !== 'far'), rep };
+    return { f, p, pc: hit && !hit.instances ? thLocalToFrame(def, pl, hit.center) : null, D, part: hit || null, hs: hs && !hit ? hs : null, def, pl, inst: !!(hit && hit.instances && hit.lod !== 'far'), rep };
   }
   return null;
 }
@@ -775,18 +786,19 @@ function thModeFor(T, pd) {   // a layered part is revealed in place; otherwise 
 /* A part can be hidden by another thing standing in front of it (the bee sits on the buttercup: its petals block the view of a leg from one side). Once the flight
    has landed, if what is at the target's pixel belongs to another frame, look from another side (same distance, a few directions: current heading first, then the
    others round the target, higher first) until the target is in the clear. One pick per direction, once per jump. */
-function thClearView(F, id, own) {
+function thClearView(F, id, own, pc) {
   if (cam.A !== F || !F.C || fly) return true;
   if (own && F.T && (F.T.cutActive || (F.T.curMode && F.T.curMode.pivot))) own = false;   // in a cut or pivoted view what is in front is the cut's business
-  const P = new V3().copy(cam.T), d0 = cam.dir.clone(), up = F.up || new V3(0, 1, 0), at = () => { for (const f of drawn) placeFrameCam(f); const v = P.clone().sub(F.C).project(F.cam); return pickAt((v.x + 1) / 2 * W, (1 - v.y) / 2 * H); };
-  const blocked = h => !!(h && h.frame && h.meters < cam.D * .97 && (h.frame !== F || (own && h.obj.userData.node !== id && !h.obj.userData.resolve && (h.obj.userData.shown || 0) >= .35)));   // something nearer than the target: another frame's, or (a second look, once the layers have settled) a solid part of this thing's own that is not it
+  const P = new V3().copy(cam.T), d0 = cam.dir.clone(), up = F.up || new V3(0, 1, 0), at1 = P => { const v = P.clone().sub(F.C).project(F.cam); return pickAt((v.x + 1) / 2 * W, (1 - v.y) / 2 * H); };
+  const blockedH = h => !!(h && h.frame && h.meters < cam.D * .97 && (h.frame !== F || (own && h.obj.userData.node !== id && !h.obj.userData.resolve && (h.obj.userData.shown || 0) >= .35)));   // something nearer than the target: another frame's, or (a second look, once the layers have settled) a solid part of this thing's own that is not it
+  const blocked = () => { for (const f of drawn) placeFrameCam(f); return blockedH(at1(P)) || (pc && blockedH(at1(pc))); };   // the aim point and (for a part) its centre must both be in the clear
   const turned = () => { const T = F.T; if (T && (T.cutActive || (T.curMode && T.curMode.pivot))) T.faceCut(); };   // a cut or pivoted view faces the camera: aim it again after the camera has moved
-  if (!blocked(at())) return true;
+  if (!blocked()) return true;
   const az0 = Math.atan2(d0.z, d0.x);
   for (const el of [.45, .9, .1, -.3, -.7, -.95]) for (let k = 0; k < 8; k++) {
     const az = az0 + k * Math.PI / 4;
     cam.dir.set(Math.cos(az) * Math.sqrt(Math.max(0, 1 - el * el)), el, Math.sin(az) * Math.sqrt(Math.max(0, 1 - el * el)));
-    setCamDir(cam.dir, up); if (!blocked(at())) { turned(); return true; }
+    setCamDir(cam.dir, up); if (!blocked()) { turned(); return true; }
   }
   setCamDir(d0, up); return false;
 }
@@ -794,7 +806,7 @@ function thFlyToNode(id, t) {
   const F = t.f; showBodyNode(id, null); F.selNode = id; F.ensure(); F.spawnHold = t.D;
   const R = (t.def.radius_m || 1) * (F.T ? F.T.k : 1), d = new V3(t.p.x, 0, t.p.z);
   if (d.length() > R * .06) { d.y = d.length() * .12; d.normalize(); const u = new V3(0, 1, 0); convertD(d, F, cam.A); convertD(u, F, cam.A); cam.dir.copy(d); cam.up.copy(u); }   // look at it from the side it is on
-  flyTo(F, t.p, t.D, () => { if (F.T && (F.T.cutActive || (F.T.curMode && F.T.curMode.pivot))) F.T.faceCut(); /* the cut was aimed when the flight began, from far away: aim it again from where the camera has landed */ const t0 = performance.now(), tries = [350, 1100, 2000, 3000]; let k = 0; const again = () => { if (cam.A !== F || fly || lastInput > t0 + 200 || !(infoState && infoState.node === id)) return; const clear = thClearView(F, id, k >= 1); if (!clear && ++k < tries.length) setTimeout(again, tries[k] - tries[k - 1]); }; setTimeout(again, tries[0]); }); camHold = F;
+  flyTo(F, t.p, t.D, () => { if (F.T && (F.T.cutActive || (F.T.curMode && F.T.curMode.pivot))) F.T.faceCut(); /* the cut was aimed when the flight began, from far away: aim it again from where the camera has landed */ const t0 = performance.now(), tries = [350, 1100, 2000, 3000]; let k = 0; const again = () => { if (cam.A !== F || fly || lastInput > t0 + 200 || !(infoState && infoState.node === id)) return; const clear = thClearView(F, id, k >= 1, t.pc); if (!clear && ++k < tries.length) setTimeout(again, tries[k] - tries[k - 1]); }; setTimeout(again, tries[0]); }); camHold = F;
   F.ready.then(() => {
     const T = F.T; if (!T) return;
     if (t.inst && !t.rep) { const r = thRepInstance(t.def, t.pl, t.part); if (r && fly && fly.frame === F) { const x = thPlacement(t.def, t.pl), u = thUnit(t.def, x.k); fly.p.copy(thLocalToFrame(t.def, t.pl, r.p)); fly.Dg = Math.min(Math.max(r.size * x.k * 6, .25 * u), (t.def.radius_m || 1) * x.k * .5); } }
