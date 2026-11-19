@@ -161,6 +161,8 @@ function pickChild(A) {
   for (const c of A.children) {
     safePlace(c);
     if (cam.D > c.r1 || !c.containsP(cam.T)) continue;
+    if (c.enterOnly && !(path && path.includes(c))) continue; // entered on purpose only (a flight to it), never by scroll-zoom
+    if (path && !path.includes(c) && path.includes(A) && chainOf(c).includes(fly.frame)) continue; // flying out to a frame: do not dive back into one of its children on the way
     if (path && path.includes(c)) return c;
     const k = c.unit / A.unit, dist = cam.T.distanceTo(c.pos), rad = c.radius === Infinity ? Infinity : c.radius * k;
     const core = (c.core ?? c.radius) * k;
@@ -303,7 +305,9 @@ function applyZoom(dt) {
   const step = zoom.pending * (1 - Math.exp(-dt * 12));
   zoom.pending -= step;
   let lam = Math.exp(step);
-  const nd = clamp(cam.D * lam, MIN_D, MAX_D); lam = nd / cam.D;
+  let nd = clamp(cam.D * lam, MIN_D, MAX_D);
+  if (lam < 1 && cam.A.floorD) nd = Math.max(nd, Math.min(cam.D, cam.A.floorD)); // a floor, so the camera cannot sink into an empty region
+  lam = nd / cam.D;
   if (zoom.pivot && lam < 1) { // scale camera rig about the pivot: keeps the point under the cursor fixed
     const P = zoom.pivot.p;
     cam.T.sub(P).multiplyScalar(lam).add(P);
@@ -475,6 +479,9 @@ function objRadiusLocal(obj) {
 }
 function zoomIntoHit(h) {
   const f = h.frame; let p, r;
+  if (h.obj.userData.id === 'air' && f === FR.park && typeof placeGo === 'function') { placeGo('place:air'); return; } // the sky is not a place to fly to: go into the air itself
+  const og = f.children && h.obj.userData.node && f.children.find(c => c.enterOnly && c.opts && c.opts.organ === h.obj.userData.node); // an organ you can see has a cut-open view: double-click goes inside, on purpose
+  if (og) { flyTo(og, new V3(), og.opts.R * 2.2); return; }
   if (h.obj.userData.center) { p = h.obj.userData.center(h); r = (typeof h.obj.userData.radius === 'function' ? h.obj.userData.radius(h) : h.obj.userData.radius) || 1; }
   else {
     const rr = objRadiusLocal(h.obj);

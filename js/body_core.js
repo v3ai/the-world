@@ -101,7 +101,7 @@ function bodyCoreSample(F, h) {
   const rows = [];
   for (const id in F.parts) {
     const part = F.parts[id], m = part.g.userData.main; m.updateWorldMatrix(true, false);
-    const hit = raycaster.intersectObject(m, false)[0]; if (!hit) continue;
+    const hit = raycaster.intersectObjects(part.g.userData.shell ? [m, part.g.userData.shell] : [m], false)[0]; if (!hit) continue;
     rows.push({ id, name: part.p.name, dist: hit.distance, point: hit.point.clone().add(F.C), normal: hit.face ? hit.face.normal.clone() : null, hit });
   }
   rows.sort((a, b) => a.dist - b.dist);
@@ -118,7 +118,8 @@ function coreHtml(F, h) {
   const cm = d => d < .0005 ? 'surface' : d < .1 ? (d * 100).toFixed(1).replace(/\.0$/, '') + ' cm' : (d * 100).toFixed(0) + ' cm';
   const li = rows.slice(0, max).map((r, i) => `<li class="${r.id === cur ? 'cur' : ''}${F.hidden.has(r.id) ? ' off' : ''}"><button class="core-go" data-i="${i}">${r.name}</button><span class="dp">${cm(r.depth)}</span>${i > 0 ? `<button class="core-peel" data-i="${i}" title="Hide everything in front of this part">Peel to here</button>` : ''}</li>`).join('');
   const more = rows.length > max ? `<li class="more">and ${rows.length - max} more, deeper</li>` : '';
-  const where = S.region ? `<p class="where">You clicked your <b>${S.region.name}</b>.</p>` : '';
+  const cr = rows.find(r => r.id === cur), gap = cr && F.parts[cur] && cr.depth > .12 && peelRank(F.parts[cur].p) <= 2 ? `<p class="gap">Seen through a gap between the parts in front of it: this one is on the far side of the body, ${cm(cr.depth)} behind the skin.</p>` : '';
+  const where = S.region ? `<p class="where">You clicked your <b>${S.region.name}</b>.</p>${gap}` : gap;
   return `<div class="core">${where}<div class="rh">Under this point, from the skin inward</div><ol>${li}${more}</ol><p class="cnote">Depths are on the model, an average adult: not a scan of you.</p></div>`;
 }
 function wireCore(F, h) {
@@ -134,3 +135,119 @@ function wireCore(F, h) {
 }
 /* "Hide this" / "Show everything" */
 function bodyHide(F, id) { F.hidden.add(id); if (F.sel === id) F.sel = null; closeInfo(); toast('Hidden. Click again to reach what is behind it. "Show everything" brings it back.'); }
+
+/* ---------- Auto layers: a peel that follows what is under the view ----------
+   The old Auto mode faded layers by the camera's distance to the body, tuned for the torso. Now the camera looks along a ray (through
+   the zoom target, which is the point under the cursor while you zoom) and the stack of body parts on that ray decides what peels:
+   a layer (skin, then muscle, then bone) turns see-through when the camera is closer to its surface than about PEEL_K times the
+   gap to the next deeper kind of layer behind it, and each deeper layer waits until the one in front is mostly gone. So the same
+   rule gives a hand, a forearm, the head and the abdomen their own distances. The first organ (or vessel, or nerve) on the ray is the
+   end of the descent: it is never peeled, so you finish on the surface of the thing you were pointing at. */
+const PEEL_K = 12, PEEL_TMIN = .008, PEEL_GHOST_SKIN = .06, PEEL_GHOST_MUSCLE = .08, PEEL_GHOST_BONE = .12;
+const PEEL_RANK = { skin: 0, muscular: 1, skeletal: 2 };
+function peelRank(p) { const s = sysOf(p); return s in PEEL_RANK ? PEEL_RANK[s] : 3; }
+const _po = new V3(), _pd = new V3(), _pc = new V3();
+/* Stack of parts along a ray from the camera: [{id, e (metres from the camera), rank}], nearest first. Hidden parts are left out. */
+function bodyRayStack(F, targetLocal) {
+  camPosIn(F, _po); // camera, body-local metres
+  if (targetLocal) _pd.copy(targetLocal).sub(_po); else { _pc.copy(cam.T); convertP(_pc, cam.A, F); _pd.copy(_pc).sub(_po); }
+  if (_pd.lengthSq() < 1e-12) _pd.copy(cam.dir).negate();
+  _pd.normalize();
+  raycaster.ray.origin.copy(_po).sub(F.C); raycaster.ray.direction.copy(_pd); raycaster.near = 0; raycaster.far = Infinity;
+  const rows = [];
+  for (const id in F.parts) {
+    if (F.hidden.has(id)) continue;
+    const part = F.parts[id], m = part.g.userData.main; m.updateWorldMatrix(true, false);
+    const hits = raycaster.intersectObjects(part.g.userData.shell ? [m, part.g.userData.shell] : [m], false); if (!hits.length) continue;
+    const rank = peelRank(part.p);
+    // the skin is a thin double-sided shell (two crossings per pass): an odd number of passes means the camera is inside it,
+    // and the first pass is the way out, not something in front of the camera
+    const inside = rank === 0 && (hits.length >> 1) % 2 === 1;
+    const hit = hits[inside ? 2 : 0]; if (!hit) continue;
+    rows.push({ id, e: hit.distance, rank });
+  }
+  rows.sort((a, b) => a.e - b.e);
+  return rows;
+}
+/* Peel amounts (0 solid .. 1 see-through) of the rows. `tgt` ({n: rows in front of the part, rank}) forces the descent to end at a
+   given part: everything in front of it is peeled. Returns {rows, pS, pM, pB, star, focus (name of the layer you are looking at)}. */
+function bodyPeel(F, rows, tgt) {
+  const n = rows.length; let prevT = Infinity, prevRank = -1, prevPi = 1;
+  for (let i = 0; i < n; i++) {
+    const r = rows[i]; let j = i + 1; while (j < n && rows[j].rank <= r.rank) j++;
+    if (tgt) { r.pi = i < tgt.n ? 1 : 0; continue; }
+    if (j >= n) { r.pi = 0; continue; } // nothing deeper behind it: the end of the descent
+    if (r.rank !== prevRank) { r.T = Math.min(PEEL_K * Math.max(rows[j].e - r.e, PEEL_TMIN), prevT * .5); prevT = r.T; prevRank = r.rank; r.pi = Math.min(prevPi, 1 - smooth(r.T, r.T * 1.6, r.e)); prevPi = r.pi; }
+    else { const p0 = rows[i - 1]; r.T = p0.T; r.pi = p0.pi; }
+  }
+  // only the layers down to the one you are looking at (the focus) count; deeper ones, and ones the camera has already passed, do not
+  let fi = rows.findIndex(r => r.pi < .5); if (fi < 0) fi = n - 1;
+  const fr = fi >= 0 ? rows[fi].rank : -1, upto = rk => { const r = rows.find(x => x.rank === rk); return r && rows.indexOf(r) <= fi ? r : null; };
+  const near = Math.max(0, 1 - smooth(.85, 1.3, cam.D)); // an empty ray: the camera is inside the skin, or looking past the body
+  const S = upto(0), M = upto(1), B = upto(2), star = rows.some(r => r.rank === 3);
+  let pS, pM, pB;
+  if (tgt) { const Bi = rows.findIndex(r => r.rank === 2); pS = tgt.rank >= 1 ? 1 : 0; pM = tgt.rank >= 2 ? 1 : 0; pB = Bi >= 0 && Bi < tgt.n && tgt.rank >= 3 ? 1 : 0; }
+  else { pS = S ? S.pi : fr > 0 ? 1 : near; pM = M ? M.pi : fr > 1 ? 1 : pS; pB = B ? B.pi : 0; }
+  const f = rows[fi];
+  return { rows, pS, pM, pB, star, focus: !f ? 'skin' : ['skin', 'muscles', 'bones', 'organs'][f.rank] };
+}
+/* class opacities from the peel amounts */
+function peelOpacities(P) {
+  const { pS, pM, pB, star } = P, cap = star ? .3 : 1;
+  const sk = 1 - (1 - PEEL_GHOST_SKIN) * pS, mu = pS * (.95 * (1 - pM) + PEEL_GHOST_MUSCLE * pM);
+  const bo = pS * ((1 - pB) * (cap * pM + .3 * (1 - pM)) + pB * PEEL_GHOST_BONE);
+  return { skin: sk, muscular: mu, skeletal: bo, '*': pS * pM };
+}
+/* Called every tick by the body frame: finds what is under the view (throttled) and eases the part opacities toward it. */
+const _pk = new V3(), _rc = new V3();
+function bodyAutoUpdate(F, dt) {
+  const A = F.auto = F.auto || { t: -1, key: '', P: null, cur: {} };
+  const now = performance.now();
+  camPosIn(F, _pk); const dist = _pk.distanceTo(F.center || V3Z);
+  const reveal = F.reveal && F.parts[F.reveal.id] ? F.reveal : null;
+  if (dist > 4 && !reveal) { A.P = null; A.far = true; return; }
+  A.far = false;
+  const key = [_pk.x, _pk.y, _pk.z, cam.T.x, cam.T.y, cam.T.z, F.hidden.size, reveal ? reveal.id : ''].map(v => typeof v === 'number' ? v.toFixed(4) : v).join();
+  if (key !== A.key && now - A.t > 110 && F.partsReady) {
+    A.key = key; A.t = now;
+    let tl = null, tgt = null; if (reveal) tl = _rc.set(...F.parts[reveal.id].p.center);
+    const rows = bodyRayStack(F, tl);
+    if (reveal) { let k = rows.findIndex(r => r.id === reveal.id); if (k < 0) { const dc = _po.distanceTo(tl); k = rows.filter(r => r.e < dc * .97).length; } tgt = { n: k, rank: peelRank(F.parts[reveal.id].p) }; }
+    A.P = bodyPeel(F, rows, tgt); A.P.op = peelOpacities(A.P);
+    A.front = tgt ? new Set(rows.slice(0, tgt.n).filter(r => r.rank === 3).map(r => r.id)) : null; // organs in front of the part you asked for
+  }
+}
+const V3Z = new V3();
+
+/* ---------- lung outline ----------
+   The anatomy data holds each lung as its airway tree only (branches, no lung tissue). A lung that is only branches reads as a
+   floating bush and has nothing to click, so the lung is drawn as a smooth outline wrapped around the tree. This is a schematic
+   envelope made from the tree's reach (a star-shaped hull, pushed out of the heart so the left lung gets its notch): it is not
+   measured lung anatomy, and the card and the view say so. `tree` is the tree's geometry in body metres; `heart` = {center, radius}. */
+function lungShellGeo(tree, heart) {
+  const a = tree.attributes.position, n = a.count, c = new V3();
+  for (let i = 0; i < n; i++) c.add(new V3(a.getX(i), a.getY(i), a.getZ(i))); c.divideScalar(n);
+  const U = [], R = []; for (let i = 0; i < n; i++) { const u = new V3(a.getX(i) - c.x, a.getY(i) - c.y, a.getZ(i) - c.z), l = u.length(); if (l > 1e-4) { U.push(u.divideScalar(l)); R.push(l); } }
+  const sph = new THREE.SphereGeometry(1, 44, 30), P = sph.attributes.position, m = P.count, d = new V3(), r = new Float32Array(m);
+  for (let i = 0; i < m; i++) { d.set(P.getX(i), P.getY(i), P.getZ(i)); let best = 0; for (let k = 0; k < U.length; k++) { const w = d.dot(U[k]); if (w > 0) { const v = R[k] * w * w * w * w; if (v > best) best = v; } } r[i] = best; }
+  // the sphere repeats its seam vertices: smooth by position so the seam closes, a few rounds
+  const key = i => Math.round(P.getX(i) * 1e4) + ',' + Math.round(P.getY(i) * 1e4) + ',' + Math.round(P.getZ(i) * 1e4), grp = new Map();
+  for (let i = 0; i < m; i++) { const k = key(i); (grp.get(k) || grp.set(k, []).get(k)).push(i); }
+  const nb = Array.from({ length: m }, () => new Set()), idx = sph.index.array;
+  for (let t = 0; t < idx.length; t += 3) for (let e = 0; e < 3; e++) { const i = idx[t + e], j = idx[t + (e + 1) % 3]; nb[i].add(j); nb[j].add(i); }
+  for (let it = 0; it < 6; it++) {
+    const nr = new Float32Array(m);
+    for (let i = 0; i < m; i++) { let s = r[i], cnt = 1; nb[i].forEach(j => { s += r[j]; cnt++; }); nr[i] = s / cnt; }
+    for (const ids of grp.values()) { let s = 0; ids.forEach(i => s += nr[i]); s /= ids.length; ids.forEach(i => nr[i] = s); }
+    r.set(nr);
+  }
+  const hc = heart ? new V3(...heart.center) : null, hr = heart ? heart.radius * 1.12 : 0, q = new V3();
+  for (let i = 0; i < m; i++) {
+    d.set(P.getX(i), P.getY(i), P.getZ(i)); const L = r[i] * 1.1 + .008; q.copy(d).multiplyScalar(L).add(c);
+    if (hc && q.distanceTo(hc) < hr) q.sub(hc).setLength(hr).add(hc); // the heart is not inside the lung
+    P.setXYZ(i, q.x, q.y, q.z);
+  }
+  sph.computeVertexNormals(); sph.computeBoundingSphere(); sph.computeBoundingBox();
+  return sph;
+}
+const LUNG_NOTE = 'The lung outline is drawn schematically around the airway tree, because the model data holds only the airways. Its size and shape are approximate.';
