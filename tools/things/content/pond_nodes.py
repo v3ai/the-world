@@ -3,7 +3,7 @@
 import json, os, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from pond_lib import NODES, FIGS
-import pond_cards_a, pond_cards_b, pond_cards_c, pond_cards_d
+import pond_cards_a, pond_cards_b, pond_cards_c, pond_cards_d, pond_fix
 ids = [n['id'] for n in NODES]; assert len(ids) == len(set(ids)), [i for i in ids if ids.count(i) > 1]
 for n in NODES:
     for k in ('parents', 'parts'):

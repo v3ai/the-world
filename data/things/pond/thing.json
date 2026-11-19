@@ -5,8 +5,8 @@
  "scientific": null,
  "node": "park_pond",
  "main_part": "surface",
- "blurb": "A small pond in the park: a slice through the water, the mud and the bank, with the plants and animals of a British garden pond at their true sizes. Click anything, or choose a layer.",
- "model_note": "A model built from typical measurements of each species, not a scan of a real pond. The pond's outline and depth are choices (about 6 m by 4.6 m, 0.6 m deep); the animals and plants are at true size, and how many there are and where they sit is illustrative.",
+ "blurb": "A small pond in the park: a slice through the water, the mud and the bank, with the plants and animals of a British garden pond at typical sizes. Click anything, or choose a layer.",
+ "model_note": "A model built from typical measurements of each species, not a scan of a real pond. The pond's outline and depth are choices (about 6 m by 4.6 m, 0.6 m deep); the animals and plants are drawn at typical sizes for their kind (hornwort stems are shortened to fit the pond), and how many there are and where they sit is illustrative.",
  "size_m": {
   "width": 6,
   "depth": 4.6,
@@ -343,7 +343,7 @@
     -0.40014
    ],
    "amp": 0.22,
-   "hz": 3,
+   "hz": 4,
    "shown_hz": 1.5,
    "label": "Water flea heart"
   },

@@ -5,7 +5,7 @@
  "scientific": "Erithacus rubecula",
  "node": "robin",
  "main_part": "r_breast",
- "blurb": "A European robin, about 14 cm long, standing alert on a boulder. Zoom right in: it is built to true size. Click any part, or use the layer buttons.",
+ "blurb": "A European robin, about 14 cm long, standing alert on a boulder. Zoom right in: it is built at the size of a typical adult. Click any part, or use the layer buttons.",
  "model_note": "A model built from typical proportions of an adult robin (about 14 cm long, 16 to 22 g), not a scan of one bird. The overall size and the feather counts that are published (10 primaries, 9 secondaries, 12 tail feathers) are used; every other proportion, and the size and place of every organ, is drawn by eye from photographs and anatomical drawings and is approximate. The bird stands still; the feathers are drawn as simple blades.",
  "size_m": {
   "length": 0.14,
@@ -253,12 +253,12 @@
       "node": "robin_syrinx"
      },
      {
-      "name": "Pessulus (bony wedge)",
+      "name": "Pessulus (bony wedge: a support)",
       "color": "#eadfc8",
       "node": "robin_pessulus"
      },
      {
-      "name": "Vibrating membranes",
+      "name": "Tympaniform membranes",
       "color": "#f2c9b8",
       "node": "robin_tympaniform"
      },
@@ -268,7 +268,7 @@
       "node": "robin_syr_muscles"
      }
     ],
-    "note": "Drawn at true size (the windpipe is a few millimetres wide), simplified: the real membranes, rings and muscles are more complex. Look at the bird from the front, then press the button."
+    "note": "Drawn at the size of an adult (the windpipe is a few millimetres wide), simplified: the real membranes, rings and muscles are more complex, and the soft lips (labia) that are the likely sound source are not drawn. Look at the bird from the front, then press the button."
    }
   },
   {
@@ -884,7 +884,7 @@
     0.069504,
     0.0005
    ],
-   "label": "Vibrating membranes",
+   "label": "Tympaniform membranes",
    "modes": [
     "cut_syrinx"
    ],
