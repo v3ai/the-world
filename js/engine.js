@@ -133,7 +133,13 @@ function renderAll(dt) {
      the URL, so test screenshots do not change resolution with the machine's load. */
 const RS_LEVELS = [.6, .75, 1, 1.25, 1.5, 2], RS_SLOW_MS = 22, RS_FAST_MS = 17.6, RS_MAX_PIXELS = 2.8e6;
 const RS = { auto: !navigator.webdriver || PERF.flags.given.dpr === 'auto', cur: PIXR_BASE, cap: PIXR_BASE, lv: [PIXR_BASE], i: 0, win: [], sum: 0, slow: 0, fast: 0, rev: 0, lock: false, lastDir: 0, lastStep: 0, holdUntil: 0, skip: 0, before: 0, noGain: 0, from: 0, longRun: 0, log: [] };
-function rsApply(s) { RS.cur = s; PIXK.value = s / PIXR_BASE; renderer.setPixelRatio(s); renderer.setSize(W, H, false); bloomResize(); }
+function rsApply(s) {
+  RS.cur = s; PIXK.value = s / PIXR_BASE;
+  // Setting a canvas's size clears it, even to the size it already has. A resize event that changes nothing (browsers send them) must not blank the picture.
+  if (renderer.getPixelRatio() === s && canvas.width === Math.floor(W * s) && canvas.height === Math.floor(H * s)) return;
+  renderer.setPixelRatio(s); renderer.setSize(W, H, false); bloomResize();
+  if (drawn.length && drawn.every(f => f.cam && f.root)) { for (const f of drawn) placeFrameCam(f); renderAll(0); } // and after a real change the picture is drawn again at once, not a frame later
+}
 function rsReset() { // on load, on a resize and when the switch changes: start from the cap, or from the fixed value
   const dev = Math.min(window.devicePixelRatio || 1, PERF.flags.dprMax);
   RS.cap = Math.max(.6, Math.min(dev, Math.sqrt(RS_MAX_PIXELS / Math.max(1, W * H))));
@@ -175,7 +181,8 @@ function rsFeed(dtMs) {
 PERF.on('dpr', () => rsReset());
 PERF.scaleNote = () => PERF.flags.dpr !== 'auto' ? 'fixed' : !RS.auto ? 'fixed at the cap (automation)' : `automatic, level ${RS.i + 1} of ${RS.lv.length}` + (RS.noGain >= 2 ? ', held: a lower resolution did not make frames faster' : RS.lock ? ', held after three reversals' : '');
 function resize() {
-  W = innerWidth; H = innerHeight; rsReset();
+  if (resize.done && innerWidth === W && innerHeight === H) return; // a resize event that changes nothing: keep the picture and the scale the scaler has settled on
+  resize.done = true; W = innerWidth; H = innerHeight; rsReset();
   forEachFrame(f => { if (f.cam) { f.cam.aspect = W / H; f.cam.updateProjectionMatrix(); } });
 }
 addEventListener('resize', resize);
