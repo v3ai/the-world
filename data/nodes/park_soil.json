@@ -81,7 +81,7 @@
   "facts": [
    [
     "Block",
-    "1.5 m across, 0.8 m deep, 1.2 m high"
+    "1.5 m across and 1.2 m deep; a slab 0.4 m thick behind the cut face"
    ],
    [
     "Horizons drawn",
@@ -666,7 +666,7 @@
   "layers": {
    "basics": "The stones in this block are flints. Flint is a very hard stone made of quartz (silica) in crystals so small you cannot see them, which formed as lumps inside the Chalk, long before the sand above it. When the Chalk wore away, the flints were washed out and tumbled until they were rounded, and were laid down again in the Blackheath pebble bed. Break one and the edge is sharp, which is why flint was used for tools. In the block they are thickest in the bottom layer; a few have worked up into the soil and one or two lie on the lawn.",
    "deeper": "Flint is a cryptocrystalline form of quartz (silicon dioxide, SiO2), found chiefly as nodules in chalk and limestone, with a dark grey or black interior and usually a white rough rind. The geotrail says the Blackheath pebbles are all flint that originated as layers within the White Chalk, that they were rounded by long transport, probably by the sea, and that the size of the pebbles implies deposition by high-energy currents. Because flint is so resistant to weathering, it stays as the softer minerals around it break down. Quartz can be viewed as a crystal.",
-   "expert": "Pebble sizes in the block (2.4 to 7 cm) and their number are model choices; the sources say the pebbles are rounded flint but give no size. In the cut, each pebble shows a dark cross-section. A quartz crystal frame is available from this card to look at the mineral flint is made of; the framework's crystal is a lattice of alpha quartz, not the microcrystalline texture of flint."
+   "expert": "Pebble sizes in the block (2.4 to 7 cm) and their number are model choices; the sources say the pebbles are rounded flint but give no size. In the cut, each pebble shows a dark cross-section. The quartz crystal you can open from this card is a lattice of alpha quartz, the mineral flint is made of, not the microcrystalline texture of flint itself."
   },
   "facts": [
    [
@@ -1043,9 +1043,9 @@
   "processes": [],
   "summary": "Fine roots, less than a millimetre or two across, are the oak's working surface: they take up water and minerals and are replaced all the time.",
   "layers": {
-   "basics": "Most of what the oak drinks comes through roots as fine as thread. They are short-lived and are replaced all the time. In this block hundreds of them run through the topsoil, thickest near the surface and thinning with depth. Many of their tips are covered by a fungus that works with the tree (the pale sleeves); others carry a fuzz of root hairs. Look at one fine root and its hairs close up.",
+   "basics": "Most of what the oak drinks comes through roots as fine as thread. They are short-lived and are replaced all the time. In this block hundreds of them run through the topsoil, thickest near the surface and thinning with depth. Many of their tips are covered by a fungus that works with the tree (the pale sleeves). Bare tips carry root hairs, which are too small to draw in the block; look at one fine root and its hairs close up in the scene.",
    "deeper": "Roots take up water by osmosis and ions by transporters, mostly near the tips where root hairs form. Root hairs are outgrowths of single epidermal cells, 15 to 17 micrometres wide and 80 to 1,500 micrometres long in published values for root hairs in general. Oak's fine root tips are usually covered by fungus and so have few or no root hairs, which is why the model shows both kinds of tip separately.",
-   "expert": "In the block the fine roots are drawn 0.9 mm across and 4 cm long; the 640 roots and about 640 root hairs are illustrative and far fewer than real topsoil holds. Root hairs are drawn about 1 mm long; the scene of one root (3 mm field of view) draws them to true scale against a root."
+   "expert": "In the block the fine roots are drawn 0.9 mm across and 4 cm long; the 640 roots are illustrative and far fewer than real topsoil holds. Root hairs are not drawn in the block, because at 15 to 17 micrometres wide they are far thinner than anything at this scale; the scene of one root (3 mm field of view) draws them at true width against a root."
   },
   "facts": [
    [
@@ -1586,7 +1586,7 @@
   "layers": {
    "basics": "Soil grains come in three size groups. Sand is the biggest, silt is in between, and clay is the smallest: under 2 micrometres, too small to see even with a good lens. Clay particles are not tiny bits of ordinary rock: they are flat plates made of layers of silicon, aluminium and oxygen. Their flat surfaces carry electric charge, which lets them hold on to nutrient ions such as potassium and ammonium. Look at a clay particle, drawn inside the clay size range, with the ions it holds.",
    "deeper": "On the ISO scale used here, sand is 63 micrometres to 2 mm, silt 2 to 63 micrometres, and clay below 2 micrometres (some classification systems put the clay limit at 4 micrometres). Clay minerals are layered phyllosilicates built of sheets of silica tetrahedra and alumina octahedra; kaolinite, a 1:1 clay, forms pseudohexagonal plates, and its layers are uncharged and held together by hydrogen bonds. 2:1 clays carry a net negative charge on their layers, which attracts cations; the interlayer space of smectite can also hold water.",
-   "expert": "How much clay the soil of the Greenwich plateau has at any particular place is not given by the geological sources used here; the clay in the B horizon is drawn as a generic presence. The framework's crystal list has no kaolinite; it has quartz, which is a different mineral."
+   "expert": "How much clay the soil of the Greenwich plateau has at any particular place is not given by the geological sources used here; the clay in the B horizon is drawn as a generic presence."
   },
   "facts": [
    [
@@ -2759,7 +2759,7 @@
   "layers": {
    "basics": "An earthworm has ten hearts: five pairs, in a row just behind the head. Each is a muscular loop that goes around the gullet and joins the vessel above the gut to the vessel below. Together they pump the blood. They are not like our heart: they are simple muscular tubes that squeeze.",
    "deeper": "The hearts are a pair of aortic arches in segments seven through eleven, which ring the coelom and act as hearts; they are large, contractile, segmental blood vessels encircling the oesophagus. Blood is moved forward in the dorsal vessel and backward in the ventral.",
-   "expert": "The hearts are drawn as ten loops 0.5 mm thick around the oesophagus at segments 7 to 11. They are not animated, because the sources opened for this block give no beat rate for earthworm hearts. The ATP button leads to the molecule that muscle cells use as fuel."
+   "expert": "The hearts are drawn as ten loops 0.5 mm thick around the oesophagus at segments 7 to 11. They are drawn at rest. The ATP button leads to the molecule that muscle cells use as fuel."
   },
   "facts": [
    [

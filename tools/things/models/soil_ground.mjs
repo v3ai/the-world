@@ -94,7 +94,7 @@ export default function ground(R) {
       const end = L.add([x, y, z], L.quatRot(q, [.006 * s, -.002 * s, .04 * s]));
       if (R() < .5 && end[2] < -.003) TI.add(end, L.quatMul(q, L.quatAxisAngle([0, 1, 0], 0)), 1);
       else if (R() < .3) for (let k = 0; k < 6; k++) { const t = R.range(.2, .9); RH.add(L.add([x, y, z], L.quatRot(q, [.006 * s * t, -.002 * s * t, .04 * s * t])), L.quatMul(q, L.quatAxisAngle([0, 0, 1], R.range(0, 6.28))), s); } }
-    instances.froots = FI; instances.ecm_tips = TI; instances.root_hairs = RH;
+    instances.froots = FI; instances.ecm_tips = TI;
     // fungal threads (hyphae) through the litter and the upper topsoil; real hyphae are 4 to 6 micrometres thick, drawn about 0.2 mm
     meshes.hypha = L.bakeShade(L.tube(spl([[0, 0, 0], [.008, .004, .01], [.02, -.002, .02], [.034, .004, .03], [.05, 0, .036]], 6), .0001, { sides: 3, caps: false }), () => 1);
     const HI = new L.Instances('hypha');

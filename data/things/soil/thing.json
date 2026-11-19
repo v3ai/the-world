@@ -9,11 +9,11 @@
  "model_note": "A model built from typical measurements, not a scan or a core from a real place. The rock below (flint pebbles in sand) is what the geological survey says lies under Greenwich Park; the depths of the soil layers are typical values for such a soil, not measured here. Animals are drawn at typical sizes for their kind and their places are illustrative. Fungal threads are drawn about 40 times thicker than real ones so that you can see them.",
  "size_m": {
   "width": 1.5,
-  "depth": 0.8,
+  "thickness": 0.42000000000000004,
   "deep": 1.2
  },
  "height_m": 1.2,
- "radius_m": 1.5,
+ "radius_m": 1.45,
  "draw_m": 120,
  "seed": 5150,
  "label_m": 25,
@@ -734,9 +734,9 @@
    "center": [
     0,
     -0.017,
-    0
+    -0.19
    ],
-   "radius": 0.8501,
+   "radius": 0.779,
    "tris": 1360
   },
   {
@@ -756,10 +756,10 @@
    },
    "center": [
     0,
-    -0.1466,
-    0
+    -0.1467,
+    -0.19
    ],
-   "radius": 0.8583,
+   "radius": 0.7879,
    "tris": 1360
   },
   {
@@ -779,10 +779,10 @@
    },
    "center": [
     0,
-    -0.5246,
-    0
+    -0.5233,
+    -0.19
    ],
-   "radius": 0.8973,
+   "radius": 0.8302,
    "tris": 1360
   },
   {
@@ -802,9 +802,9 @@
    "center": [
     0,
     -0.9859,
-    0
+    -0.19
    ],
-   "radius": 0.8765,
+   "radius": 0.8077,
    "tris": 1360
   },
   {
@@ -1143,30 +1143,6 @@
    "radius": 0.7317,
    "count": 304,
    "tris": 13376
-  },
-  {
-   "id": "root_hairs",
-   "name": "Root hairs",
-   "system": "roots",
-   "node": "oak_root_hairs",
-   "color": "#efe8d6",
-   "instances": "root_hairs",
-   "double": true,
-   "lod": "near",
-   "deeper": {
-    "type": "tissue2",
-    "id": "root_tip",
-    "D": 0.003,
-    "button": "Look at root hairs"
-   },
-   "center": [
-    -0.0631,
-    -0.1426,
-    -0.1351
-   ],
-   "radius": 0.7728,
-   "count": 636,
-   "tris": 1272
   },
   {
    "id": "hyphae",
@@ -1841,7 +1817,7 @@
   }
  ],
  "stats": {
-  "parts": 56,
+  "parts": 55,
   "uniqueMeshTris": 104754,
   "nearTris": 121976,
   "midTris": 6196,

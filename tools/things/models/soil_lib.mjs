@@ -2,7 +2,7 @@
 import * as L from '../lib/index.mjs';
 
 // The block: a cut block of park soil, x across (1.5 m), z deep (0.8 m), y from the surface (0) down to -1.2 m.
-export const BLK = { w: 1.5, d: 0.8, h: 1.2 };
+export const BLK = { w: 1.5, d: 0.8, h: 1.2, z0: -0.4, z1: 0.02 };   // the soil is a slab behind the cut face: z from -0.4 to just past the cut plane (z = 0)
 // Horizon boundaries (m below the surface, mean depth). TYPICAL values for a temperate loamy or sandy park soil, not from a local survey (the cards say so).
 export const HOR = { o: [0, -.03], a: [-.03, -.25], b: [-.25, -.80], c: [-.80, -1.2] };
 export const wob = (x, z, k, amp = .012) => amp * L.fbm(x * 2.2 + k * 7, k, z * 2.2, { seed: 40 + k, octaves: 2 });   // boundary undulation, same function on both sides of a boundary
@@ -13,9 +13,9 @@ const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]], cr = (a, b) => [a
 // add a triangle, wound so its normal agrees with the expected outward direction
 function tri(m, a, b, c, n) { const p = m.pos, A = [p[a * 3], p[a * 3 + 1], p[a * 3 + 2]], B = [p[b * 3], p[b * 3 + 1], p[b * 3 + 2]], C = [p[c * 3], p[c * 3 + 1], p[c * 3 + 2]]; const g = cr(sub(B, A), sub(C, A)); if (g[0] * n[0] + g[1] * n[1] + g[2] * n[2] >= 0) m.idx.push(a, b, c); else m.idx.push(a, c, b); }
 // a closed slab of the block between two undulating surfaces y = f0(x,z) (top) and y = f1(x,z) (bottom)
-export function slab(f0, f1, { nx = 30, nz = 12, w = BLK.w, d = BLK.d } = {}) {
+export function slab(f0, f1, { nx = 30, nz = 8, w = BLK.w, za = BLK.z0, zb = BLK.z1 } = {}) {
   const m = L.newMesh(), id = (kind, i, j) => (kind * (nx + 1) * (nz + 1)) + j * (nx + 1) + i;
-  for (let kind = 0; kind < 2; kind++) for (let j = 0; j <= nz; j++) for (let i = 0; i <= nx; i++) { const x = -w / 2 + w * i / nx, z = -d / 2 + d * j / nz; m.pos.push(x, (kind ? f1 : f0)(x, z), z); }
+  for (let kind = 0; kind < 2; kind++) for (let j = 0; j <= nz; j++) for (let i = 0; i <= nx; i++) { const x = -w / 2 + w * i / nx, z = za + (zb - za) * j / nz; m.pos.push(x, (kind ? f1 : f0)(x, z), z); }
   for (let j = 0; j < nz; j++) for (let i = 0; i < nx; i++) {
     tri(m, id(0, i, j), id(0, i + 1, j), id(0, i + 1, j + 1), [0, 1, 0]); tri(m, id(0, i, j), id(0, i + 1, j + 1), id(0, i, j + 1), [0, 1, 0]);
     tri(m, id(1, i, j), id(1, i + 1, j), id(1, i + 1, j + 1), [0, -1, 0]); tri(m, id(1, i, j), id(1, i + 1, j + 1), id(1, i, j + 1), [0, -1, 0]);

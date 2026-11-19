@@ -139,7 +139,7 @@ N('soil_worm_hearts', 'Earthworm: five pairs of hearts', 'structure', 0.003, ['s
   "Five pairs of muscular loops, one pair in each of five segments just behind the head, ring the oesophagus and pump blood from the top vessel to the bottom one.",
   "An earthworm has ten hearts: five pairs, in a row just behind the head. Each is a muscular loop that goes around the gullet and joins the vessel above the gut to the vessel below. Together they pump the blood. They are not like our heart: they are simple muscular tubes that squeeze.",
   "The hearts are a pair of aortic arches in segments seven through eleven, which ring the coelom and act as hearts; they are large, contractile, segmental blood vessels encircling the oesophagus. Blood is moved forward in the dorsal vessel and backward in the ventral.",
-  "The hearts are drawn as ten loops 0.5 mm thick around the oesophagus at segments 7 to 11. They are not animated, because the sources opened for this block give no beat rate for earthworm hearts. The ATP button leads to the molecule that muscle cells use as fuel.",
+  "The hearts are drawn as ten loops 0.5 mm thick around the oesophagus at segments 7 to 11. They are drawn at rest. The ATP button leads to the molecule that muscle cells use as fuel.",
   [('Hearts', '5 pairs'), ('Segments', '7 to 11'), ('Shape', 'loops around the oesophagus'), ('Joins', 'dorsal vessel to ventral vessel')],
   'C1', [R_ANN], [W_EW, LANDER], related=['heart', 'bee_heart', 'pond_daphnia_heart', 'bio_comparative_circulation'])
 

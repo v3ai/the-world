@@ -49,7 +49,6 @@ export default function build() {
     part('roots_coarse', 'Oak roots (coarse)', 'roots', 'soil_coarse_root', ROOT, { mesh: 'roots_coarse', cutFace: 'root', lod: 'near', deeper: { type: 'tissue2', id: 'wood_section', D: 4.2e-3, button: 'Look inside oak wood' } }),
     part('froots', 'Oak fine roots', 'roots', 'soil_fine_roots', '#d6b98a', { instances: 'froots', tint: .3, lod: 'near', deeper: { type: 'tissue2', id: 'root_tip', D: 3e-3, button: 'Look at root hairs' } }),
     part('ecm_tips', 'Fungus-covered root tips (ectomycorrhiza)', 'roots', 'soil_ecm_tips', '#e3d2a8', { instances: 'ecm_tips', tint: .3, lod: 'near', deeper: { type: 'tissue2', id: 'mushroom_ecm', D: 1e-3, button: 'Look inside the root-fungus partnership' } }),
-    part('root_hairs', 'Root hairs', 'roots', 'oak_root_hairs', '#efe8d6', { instances: 'root_hairs', double: true, lod: 'near', deeper: { type: 'tissue2', id: 'root_tip', D: 3e-3, button: 'Look at root hairs' } }),
     part('hyphae', 'Fungal threads (hyphae)', 'fungi', 'soil_hyphae', '#f1ebdc', { instances: 'hyphae', tint: .25, lod: 'near', double: true, deeper: { type: 'tissue2', id: 'mushroom_ecm', D: 1e-3, button: 'Look inside the root-fungus partnership' } }),
     // ---- earthworm: outside ----
     part('burrow', 'Earthworm burrow', 'animals', 'soil_worm_burrow', '#2c211a', { mesh: 'burrow', solid: false, double: true, noink: true, lod: 'near', opacity_max: .35 }),
@@ -97,7 +96,7 @@ export default function build() {
     id: 'soil', title: 'The soil under your feet', label: 'Soil', scientific: null, node: 'soil_block', main_part: 'hor_a',
     blurb: 'A cut block of park soil, 1.5 m across and 1.2 m deep, where the lawn meets an oak\'s roots: its layers, stones, roots, fungal threads, crumbs and pores, and the animals that live in it at true size. Click anything, or choose a layer.',
     model_note: 'A model built from typical measurements, not a scan or a core from a real place. The rock below (flint pebbles in sand) is what the geological survey says lies under Greenwich Park; the depths of the soil layers are typical values for such a soil, not measured here. Animals are drawn at typical sizes for their kind and their places are illustrative. Fungal threads are drawn about 40 times thicker than real ones so that you can see them.',
-    size_m: { width: BLK.w, depth: BLK.d, deep: BLK.h }, height_m: 1.2, radius_m: 1.5, draw_m: 120, seed: 5150, label_m: 25,
+    size_m: { width: BLK.w, thickness: BLK.z1 - BLK.z0, deep: BLK.h }, height_m: 1.2, radius_m: 1.45, draw_m: 120, seed: 5150, label_m: 25,
     systems: [
       { id: 'turf', label: 'Turf and surface' }, { id: 'topsoil', label: 'Topsoil and crumbs' }, { id: 'subsoil', label: 'Subsoil' }, { id: 'parent', label: 'Parent material' },
       { id: 'roots', label: 'Oak roots' }, { id: 'fungi', label: 'Fungal threads' }, { id: 'animals', label: 'Animals' }, { id: 'worm_in', label: 'Inside the earthworm' },
