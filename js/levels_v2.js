@@ -497,111 +497,169 @@ BUILD.molecule = (c, opts) => {
 };
 
 /* ================= LEVEL: DNA ================= */
+/* A one-line statement of what the picture is, shown in the caption's note slot. The builders set it; world_matter's wrappers set the blurb. */
+function sceneNote(c, note, blurb) {
+  const F = c.frame; if (!F) return;
+  F.note = note || ''; if (blurb != null) F.blurb = blurb;
+  if (typeof capFrame !== 'undefined' && capFrame === F) { const a = document.getElementById('capNote'), b = document.getElementById('capD'); if (a) a.textContent = F.note; if (b && blurb != null) b.textContent = F.blurb; }
+}
 BUILD.dna = (c) => {
-  c.scene.background = new THREE.Color(0x040b14); c.scene.fog = new THREE.Fog(0x040b14, 34, 90);
+  // No fog: the helix is only 13 nm long, so a fog tied to the camera distance hid it from the moment you arrived.
+  c.scene.background = new THREE.Color(0x040b14);
   const g = c.group;
-  g.add(new THREE.HemisphereLight(0xcfe0ff, 0x221133, .6));
+  g.add(new THREE.HemisphereLight(0xcfe0ff, 0x221133, .75));
   const dl = new THREE.DirectionalLight(0xffffff, 1.0); dl.position.set(8, 10, 10); g.add(dl);
   const dl2 = new THREE.DirectionalLight(0x7799ff, .45); dl2.position.set(-8, -4, -6); g.add(dl2);
-  // floating particles
+  const NM = 2.4;                                   // builder units per nanometre (this frame draws 1 unit = 1/2.4 nm)
+  // floating particles (water and ions around the DNA; decoration only)
   const r = rng(5), pp = [], pc = [], ps = [];
   for (let i = 0; i < 900; i++) { pp.push(gauss(r) * 25, gauss(r) * 25, gauss(r) * 25); pc.push(.3, .5, .8); ps.push(.25 + r() * .3); }
   g.add(makePoints(pp, pc, ps, { opacity: .5 }));
+  // ---- B-DNA geometry: 0.34 nm rise, 10.5 base pairs per turn, right-handed, backbone 2.0 nm across
   const SEQ = 'ATGGCTAGCTTACGGATCCGTAAGCTTGCATGCCTGTAA', COMP = { A: 'T', T: 'A', G: 'C', C: 'G' };
-  const n = SEQ.length, rise = .64, R = 2.4, twist = TAU / 10.5, off = Math.PI * .78;
+  const n = SEQ.length, rise = .34 * NM, twist = TAU / 10.5, off = 125 * Math.PI / 180;   // off: angle from strand 1's sugar to strand 2's at the same level (the minor-groove side)
+  const Rs = .6 * NM, Rp = .87 * NM;                // sugar ring centres 0.6 nm from the axis, phosphorus 0.87 nm (outer edge of the phosphate group 1.0 nm: the 2 nm width)
+  const spos = (a, rad, y, out) => out.set(rad * Math.cos(a), y, -rad * Math.sin(a));   // a grows with height and the point turns x towards -z: a right-handed screw
   const tilt = new THREE.Group(); tilt.rotation.z = .42; g.add(tilt);
   const helix = new THREE.Group(); tilt.add(helix);
   const BC = { A: 0x4ade80, T: 0xf87171, G: 0xfacc15, C: 0x60a5fa };
-  const bMat = {}; for (const k in BC) bMat[k] = smat(BC[k], { roughness: .35, emissive: new THREE.Color(BC[k]).multiplyScalar(.12) });
-  const sugarMat = smat(0xe9e2c6, { roughness: .5 }), phosMat = smat(0xff9f43, { emissive: 0x2a1400, roughness: .35 }), hbMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .85 });
-  const sG = new THREE.SphereGeometry(.36, 20, 14), pG = new THREE.SphereGeometry(.31, 18, 12), bG = new THREE.CylinderGeometry(.22, .22, 1, 14), hG = new THREE.SphereGeometry(.075, 8, 6);
+  const bMat = {}; for (const k in BC) bMat[k] = smat(BC[k], { roughness: .35, emissive: new THREE.Color(BC[k]).multiplyScalar(.14) });
+  const sugarMat = smat(0xe9e2c6, { roughness: .5, emissive: 0x1c1a10 }), phosMat = smat(0xff9f43, { emissive: 0x2a1400, roughness: .35 });
+  const sugarNew = smat(0xbfe6ff, { roughness: .5, emissive: 0x0c1c28 }), phosNew = smat(0x38bdf8, { emissive: 0x04202e, roughness: .35 });
+  const hbMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .85 });
+  const sG = new THREE.SphereGeometry(.5, 20, 14), pG = new THREE.SphereGeometry(.38, 18, 12), bG = new THREE.CylinderGeometry(.24, .24, 1, 14), hG = new THREE.SphereGeometry(.08, 8, 6);
+  const mkNuc = (letter, sm, pm, withPhos) => {
+    const sugar = new THREE.Mesh(sG, sm); sugar.userData = { id: 'sugar' };
+    const base = new THREE.Mesh(bG, bMat[letter]); base.userData = { id: 'base_' + letter };
+    const phos = withPhos ? new THREE.Mesh(pG, pm) : null; if (phos) phos.userData = { id: 'phosphate' };
+    [sugar, base, phos].forEach(m => { if (m) { helix.add(m); c.pickables.push(m); } });
+    return { sugar, base, phos };
+  };
+  const mkHb = (cnt) => { const hb = new THREE.Group(); hb.userData = { id: 'hbond', priority: 1.2 }; for (let k = 0; k < cnt; k++) { const d = new THREE.Mesh(hG, hbMat); d.position.y = (k - (cnt - 1) / 2) * .17; hb.add(d); } helix.add(hb); c.pickables.push(hb); return hb; };
   const bp = [];
   for (let i = 0; i < n; i++) {
-    const y = (i - (n - 1) / 2) * rise, th = i * twist, letters = [SEQ[i], COMP[SEQ[i]]];
-    const e = { y, th, s: [] };
-    for (let s = 0; s < 2; s++) {
-      const sugar = new THREE.Mesh(sG, sugarMat); sugar.userData = { id: 'sugar' };
-      const base = new THREE.Mesh(bG, bMat[letters[s]]); base.userData = { id: 'base_' + letters[s] };
-      const phos = i < n - 1 ? new THREE.Mesh(pG, phosMat) : null; if (phos) phos.userData = { id: 'phosphate' };
-      [sugar, base, phos].forEach(m => { if (m) { helix.add(m); c.pickables.push(m); } });
-      e.s.push({ sugar, base, phos });
-    }
-    const hb = new THREE.Group(); hb.userData = { id: 'hbond', priority: 1.2 };
-    const cnt = (SEQ[i] === 'G' || SEQ[i] === 'C') ? 3 : 2;
-    for (let k = 0; k < cnt; k++) { const d = new THREE.Mesh(hG, hbMat); d.position.y = (k - (cnt - 1) / 2) * .17; hb.add(d); }
-    helix.add(hb); c.pickables.push(hb); e.hb = hb;
+    const L0 = SEQ[i], L1 = COMP[SEQ[i]], cnt = (L0 === 'G' || L0 === 'C') ? 3 : 2;
+    const e = { y: (i - (n - 1) / 2) * rise, a: i * twist, s: [mkNuc(L0, sugarMat, phosMat, i < n - 1), mkNuc(L1, sugarMat, phosMat, i < n - 1)], hb: mkHb(cnt), hb2: mkHb(cnt) };
+    // the new strands made during replication: strand 1's partner sits in slot 2 and vice versa
+    e.nw = [mkNuc(L0, sugarNew, phosNew, i < n - 1), mkNuc(L1, sugarNew, phosNew, i < n - 1)];   // nw[0]: new partner of old strand 2 (slot 1); nw[1]: new partner of old strand 1 (slot 2)
+    e.nw.forEach(o => { [o.sugar, o.base, o.phos].forEach(m => { if (m) m.visible = false; }); }); e.hb2.visible = false;
     bp.push(e);
   }
   const tubeMat = smat(0xf2c38b, { roughness: .4, emissive: 0x1a0d00 }); tubeMat.userData.noHL = true;
-  const tubes = [null, null];
-  const _a = new V3(), _b = new V3();
+  const tubeNew = smat(0x7dd3fc, { roughness: .4, emissive: 0x06202e }); tubeNew.userData.noHL = true;
+  const tubes = [null, null, null, null];     // old strand 1, old strand 2, new partner of 2 (leading), new partner of 1 (lagging)
+  const SHIFT = 1.45 * NM;                    // each daughter helix ends up 1.45 nm to its side: centres 2.9 nm apart for 2.0 nm wide helices
+  const fork = new THREE.Object3D(); helix.add(fork);
+  const _p = new V3(), _q = new V3(), _m = new V3(), _d = new V3(), UP = new V3(0, 1, 0);
+  function placeBase(o, sp, mid) { _d.subVectors(mid, sp); const len = Math.max(.01, _d.length() - .35); _d.normalize(); o.base.position.copy(sp).addScaledVector(_d, .35 + len / 2); o.base.scale.set(1, len, 1); o.base.quaternion.setFromUnitVectors(UP, _d); }
   function layout(u) {
-    const pts = [[], []];
+    const pts = [[], [], [], []];
+    let forkI = -1;
     for (let i = 0; i < n; i++) {
       const e = bp[i];
       const k = smooth(0, 1, (u * (n + 10) - (n - 1 - i)) / 10);
-      const angs = [e.th, e.th + off];
-      const orig = angs.map(a => new V3(R * Math.cos(a), e.y, R * Math.sin(a)));
-      const mid = new V3().addVectors(orig[0], orig[1]).multiplyScalar(.5);
-      for (let s = 0; s < 2; s++) {
-        const o = e.s[s], a = angs[s], rr = R + k * 2.4;
-        o.sugar.position.set(rr * Math.cos(a), e.y, rr * Math.sin(a));
-        const dir = new V3().subVectors(mid, orig[s]); const len = dir.length() - .3; dir.normalize();
-        const start = o.sugar.position.clone().addScaledVector(dir, .3);
-        o.base.position.copy(start).addScaledVector(dir, len / 2);
-        o.base.scale.set(1, len, 1); o.base.quaternion.setFromUnitVectors(new V3(0, 1, 0), dir);
-        pts[s].push(o.sugar.position.clone());
-        if (o.phos) {
-          const kn = smooth(0, 1, (u * (n + 10) - (n - 2 - i)) / 10), ra = R + .3 + (k + kn) * 1.2, pa = a + twist / 2;
-          o.phos.position.set(ra * Math.cos(pa), e.y + rise / 2, ra * Math.sin(pa)); pts[s].push(o.phos.position.clone());
-        }
+      if (k > .5 && forkI < 0) forkI = i;
+      const sx = SHIFT * k, kn = smooth(.1, .55, k), kp = i < n - 1 ? smooth(0, 1, (u * (n + 10) - (n - 2 - i)) / 10) : k, sxp = SHIFT * kp;
+      const aS = [e.a, e.a + off];
+      const p0 = spos(aS[0], Rs, e.y, new V3()), p1 = spos(aS[1], Rs, e.y, new V3()), mid0 = p0.add(p1).multiplyScalar(.5);
+      for (let s = 0; s < 2; s++) {                // old strand 1 goes with the left daughter (-x), old strand 2 with the right (+x)
+        const o = e.s[s], dir = s === 0 ? -1 : 1;
+        const sp = spos(aS[s], Rs, e.y, new V3()); sp.x += dir * sx; o.sugar.position.copy(sp); placeBase(o, sp, _m.set(mid0.x + dir * sx, mid0.y, mid0.z));
+        pts[s].push(sp.clone());
+        if (o.phos) { spos(aS[s] + twist / 2, Rp, e.y + rise / 2, _p); _p.x += dir * sxp; o.phos.position.copy(_p); pts[s].push(_p.clone()); }
       }
-      e.hb.visible = k < .05;
-      e.hb.position.copy(mid);
+      // new strands: nw[0] sits in slot 0 and pairs with old strand 2 (right daughter); nw[1] sits in slot 1 and pairs with old strand 1 (left daughter)
+      for (let s = 0; s < 2; s++) {
+        const o = e.nw[s], dirD = s === 0 ? 1 : -1, vis = kn > .02;
+        [o.sugar, o.base, o.phos].forEach(m => { if (m) m.visible = vis; });
+        if (!vis) continue;
+        const sp = spos(aS[s], Rs, e.y, new V3()); sp.x += dirD * sx; o.sugar.position.copy(sp); o.sugar.scale.setScalar(kn);
+        placeBase(o, sp, _m.set(mid0.x + dirD * sx, mid0.y, mid0.z)); o.base.scale.set(kn, o.base.scale.y * kn, kn);
+        pts[s === 0 ? 2 : 3].push(sp.clone());
+        if (o.phos) { spos(aS[s] + twist / 2, Rp, e.y + rise / 2, _q); _q.x += dirD * sxp; o.phos.position.copy(_q); o.phos.scale.setScalar(kn); pts[s === 0 ? 2 : 3].push(_q.clone()); }
+      }
+      // hydrogen bonds: the left daughter keeps hb, the right one gets hb2
+      e.hb.position.set(mid0.x - sx, mid0.y, mid0.z);
+      e.hb2.visible = kn > .02; e.hb2.position.set(mid0.x + sx, mid0.y, mid0.z); e.hb2.scale.setScalar(Math.max(.001, kn));
     }
-    for (let s = 0; s < 2; s++) {
-      if (tubes[s]) { helix.remove(tubes[s]); tubes[s].geometry.dispose(); }
-      const curve = new THREE.CatmullRomCurve3(pts[s]);
-      tubes[s] = new THREE.Mesh(new THREE.TubeGeometry(curve, n * 8, .12, 8, false), tubeMat); helix.add(tubes[s]);
+    const ft = forkI < 0 ? n - 1 : Math.max(0, forkI - 1); fork.position.set(0, bp[ft].y, 0);
+    for (let s = 0; s < 4; s++) {
+      if (tubes[s]) { helix.remove(tubes[s]); tubes[s].geometry.dispose(); tubes[s] = null; }
+      if (pts[s].length < 3) continue;
+      tubes[s] = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts[s]), pts[s].length * 3, .13, 6, false), s < 2 ? tubeMat : tubeNew); helix.add(tubes[s]);
     }
   }
   let unzip = 0, target = 0, built = false;
   layout(0);
-  // codon strip
-  const AA = { ATG: 'Met (start)', GCT: 'Ala', AGC: 'Ser', TTA: 'Leu', CGG: 'Arg', ATC: 'Ile', CGT: 'Arg', AAG: 'Lys', CTT: 'Leu', GCA: 'Ala', TGC: 'Cys', CTG: 'Leu', TAA: 'STOP' };
+  // ---- scale bar (2 nm) under the helix
+  const bar = new THREE.Group(); g.add(bar); bar.position.set(0, -(n * rise / 2 + 3.2), 0);
+  const barM = new THREE.MeshBasicMaterial({ color: 0xdbeafe }); const barMesh = new THREE.Mesh(new THREE.BoxGeometry(2 * NM, .09, .09), barM); bar.add(barMesh);
+  [-1, 1].forEach(sd => { const t = new THREE.Mesh(new THREE.BoxGeometry(.09, .5, .09), barM); t.position.x = sd * NM; bar.add(t); });
+  c.addLabel(bar, '2 nm', { offset: new V3(0, .2, 0), always: true });
+  // ---- codon strip: an invented example, shown as DNA letters
+  const AA = { ATG: 'Met (start)', GCT: 'Ala', AGC: 'Ser', TTA: 'Leu', CGG: 'Arg', ATC: 'Ile', CGT: 'Arg', AAG: 'Lys', CTT: 'Leu', GCA: 'Ala', TGC: 'Cys', CTG: 'Leu', TAA: 'Stop' };
   const strip = document.createElement('div'); strip.id = 'seq';
-  strip.innerHTML = '<span id="seqLbl">Gene recipe →</span>' + SEQ.match(/.{3}/g).map(cd => `<div class="codon"><span class="l">${cd.split('').map(ch => `<span style="color:#${BC[ch].toString(16).padStart(6, '0')}">${ch}</span>`).join('')}</span><span class="aa">${AA[cd]}</span></div>`).join('');
-  strip.title = 'Each 3-letter codon codes for one amino acid';
+  strip.innerHTML = '<span id="seqLbl">Invented example, read three letters at a time →</span>' + SEQ.match(/.{3}/g).map(cd => `<div class="codon"><span class="l">${cd.split('').map(ch => `<span style="color:#${BC[ch].toString(16).padStart(6, '0')}">${ch}</span>`).join('')}</span><span class="aa">${AA[cd]}</span></div>`).join('');
+  strip.title = 'These 39 letters are made up, not a real gene. A cell first copies a gene into messenger RNA (T becomes U), and the ribosome reads that copy three letters (one codon) at a time; each codon names one amino acid.';
   uiEl(strip);
-  const ub = actBtn('🧬 Unzip & copy', () => { target = target ? 0 : 1; ub.innerHTML = target ? '🧬 Zip back up' : '🧬 Unzip & copy'; });
+  const ub = actBtn('Show replication', () => { target = target ? 0 : 1; ub.textContent = target ? 'Zip back up' : 'Show replication'; sceneNote(c, target ? NOTE.rep : NOTE.helix); });
+  // ---- labels: the ends of each strand, the grooves, the fork
+  const endLbl = (o, t) => c.addLabel(o, t, { offset: new V3(0, .15, 0), always: true });
+  endLbl(bp[0].s[0].sugar, "5′"); endLbl(bp[n - 1].s[0].sugar, "3′"); endLbl(bp[n - 1].s[1].sugar, "5′"); endLbl(bp[0].s[1].sugar, "3′");
+  const grooveAnchor = (a, y, t) => { const o = new THREE.Object3D(); spos(a, Rp + 1.6, y, o.position); helix.add(o); c.addLabel(o, t, { offset: new V3(0, .1, 0) }); return o; };
+  const gA = [grooveAnchor(bp[12].a + off / 2, bp[12].y, 'Minor groove'), grooveAnchor(bp[22].a + off / 2 + Math.PI, bp[22].y, 'Major groove')];
   c.addLabel(bp[n - 4].s[0].base, 'Base pair', { offset: new V3(0, .3, 0) });
   c.addLabel(bp[6].s[0].phos, 'Sugar-phosphate backbone', { offset: new V3(0, .5, 0) });
+  c.addLabel(fork, 'Replication fork', { offset: new V3(2.6, 0, 0) });
+  const NOTE = {
+    helix: 'Schematic ball-and-stick model of B-DNA, drawn to scale in length and width: 2.0 nm wide, 0.34 nm per base pair, 10.5 base pairs (3.6 nm) per turn, right-handed. Spheres and rods are symbols, not atoms. 39 base pairs, an invented sequence.',
+    rep: 'Schematic of replication. Each new double helix keeps one old strand (tan) and gets one new strand (blue). In a cell, helicase opens the fork and DNA polymerase builds each new strand. The lagging strand is made in short pieces (drawn here as one). Not a real simulation.',
+    fiber: 'Schematic at true size: 4 nucleosomes of the beaded 10 nm form of chromatin. Each wraps 147 base pairs (1.65 turns) round 8 histone proteins and is about 11 nm across; DNA is 2 nm thick. Histone shapes are simplified. Inside a living nucleus the next level of folding is irregular, not a neat 30 nm fibre.',
+  };
+  sceneNote(c, NOTE.helix);
   c.update = (dt) => {
-    // (no spin in v3)
     if (Math.abs(unzip - target) > .001) {
-      unzip += Math.sign(target - unzip) * Math.min(Math.abs(target - unzip), dt / 3.2);
+      unzip += Math.sign(target - unzip) * Math.min(Math.abs(target - unzip), dt / 6);
       layout(unzip);
       if (unzip >= .999 && !built) { built = true; fire('unzip'); showInfo('unzip'); }
       if (unzip < .5) built = false;
     }
+    const open = unzip > .03;
+    gA.forEach(o => { o.visible = !open; }); fork.visible = open && unzip < .995;
   };
-  // chromatin packing view: nucleosomes on a 30-nm-style fiber
+  // ---- chromatin: beads on a string, at true size (nm), see NOTE.fiber
   const chrom = new THREE.Group(); chrom.visible = false; g.add(chrom);
-  const HC = [0xf472b6, 0xfb923c, 0x60a5fa, 0x34d399], fiberPts = [], cores = [];
-  const nNuc = 10;
-  for (let k = 0; k < nNuc; k++) {
-    const ctr = new V3(Math.cos(k * 1.15) * 6.5, (k - (nNuc - 1) / 2) * 2.7, Math.sin(k * 1.15) * 6.5);
-    const core = new THREE.Group(); core.position.copy(ctr); core.lookAt(new V3(0, ctr.y, 0)); core.rotateX(Math.PI / 2); core.userData = { id: 'histone', priority: 1.2 };
-    for (let j = 0; j < 8; j++) { const a = (j % 4) / 4 * TAU + (j < 4 ? 0 : .4), m = new THREE.Mesh(new THREE.SphereGeometry(.85, 18, 14), smat(HC[j % 4], { roughness: .55 })); m.position.set(Math.cos(a) * .85, j < 4 ? -.45 : .45, Math.sin(a) * .85); core.add(m); }
-    chrom.add(core); c.pickables.push(core); cores.push(core); core.updateMatrixWorld(true);
-    for (let i = 0; i <= 40; i++) { const t = i / 40, a = t * 1.65 * TAU; fiberPts.push(new V3(Math.cos(a) * 2.05, (t - .5) * 1.7, Math.sin(a) * 2.05).applyMatrix4(core.matrix)); }
-  }
-  const fiber = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(fiberPts), nNuc * 70, .3, 8), smat(0x7dd3fc, { emissive: 0x0b3a52, roughness: .35 }));
+  const HC = [0xf472b6, 0xfb923c, 0x60a5fa, 0x34d399], cores = [], dnaPts = [];
+  const sup = (s, ctr, Q) => { const a = -s * TAU, rr = 4.4 * NM; return new V3(rr * Math.cos(a), (s - .825) * 2.4 * NM, rr * Math.sin(a)).applyQuaternion(Q).add(ctr); };   // 1.65 left-handed turns, 2.4 nm pitch, 4.4 nm radius
+  const NUC = [[-19, 5, 0, .3, 0, .4], [-5, -6, 6, 1.4, .8, 0], [9, 5, -4, 2.2, 0, 1.1], [23, -4, 2, .6, 1.4, .2]];
+  const prevExit = { p: null, t: null };
+  NUC.forEach((d, k) => {
+    const ctr = new V3(d[0], d[1], d[2]).multiplyScalar(NM), Q = new THREE.Quaternion().setFromEuler(new THREE.Euler(d[3], d[4], d[5]));
+    const core = new THREE.Group(); core.position.copy(ctr); core.quaternion.copy(Q); core.userData = { id: 'histone', priority: 1.2 };
+    for (let j = 0; j < 8; j++) { const a = (j % 4) / 4 * TAU + (j < 4 ? 0 : .78), m = new THREE.Mesh(new THREE.SphereGeometry(1.65 * NM, 20, 14), smat(HC[j % 4], { roughness: .55, emissive: new THREE.Color(HC[j % 4]).multiplyScalar(.25) })); m.position.set(Math.cos(a) * 1.55 * NM, (j < 4 ? -1 : 1) * 1.5 * NM, Math.sin(a) * 1.55 * NM); core.add(m); }
+    chrom.add(core); c.pickables.push(core); cores.push(core);
+    const s0 = sup(0, ctr, Q), s1 = sup(1.65, ctr, Q), t0 = sup(.02, ctr, Q).sub(s0).normalize(), t1 = s1.clone().sub(sup(1.63, ctr, Q)).normalize();
+    if (k === 0) dnaPts.push(s0.clone().addScaledVector(t0, -9 * NM), s0.clone().addScaledVector(t0, -4 * NM));
+    else { dnaPts.push(prevExit.p.clone().addScaledVector(prevExit.t, 4 * NM), s0.clone().addScaledVector(t0, -4 * NM)); }
+    for (let i = 0; i <= 60; i++) dnaPts.push(sup(i / 60 * 1.65, ctr, Q));
+    prevExit.p = s1; prevExit.t = t1;
+    if (k === NUC.length - 1) dnaPts.push(s1.clone().addScaledVector(t1, 4 * NM), s1.clone().addScaledVector(t1, 9 * NM));
+  });
+  const fiber = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(dnaPts), dnaPts.length * 2, 1 * NM, 10), smat(0x7dd3fc, { emissive: 0x0b3a52, roughness: .35 }));
   fiber.userData = { id: 'nucleosome' }; chrom.add(fiber); c.pickables.push(fiber);
-  c.addLabel(cores[4], 'Histone core', { offset: new V3(0, 1.8, 0) });
-  const fAnchor = new THREE.Object3D(); fAnchor.position.copy(fiberPts[Math.floor(fiberPts.length * .78)]); chrom.add(fAnchor); c.addLabel(fAnchor, 'DNA wrapped into nucleosomes', { pick: fiber });
-  seg([['helix', 'Double helix'], ['fiber', 'Chromatin packing']], 'helix', k => { const f = k === 'fiber'; chrom.visible = f; tilt.visible = !f; strip.style.display = f ? 'none' : ''; ub.style.display = f ? 'none' : ''; if (f) showInfo('nucleosome'); });
-  const upd0 = c.update; c.update = (dt, t) => { upd0(dt, t); };
+  c.addLabel(cores[1], 'Histone core (8 proteins)', { offset: new V3(0, 5 * NM, 0) });
+  const fAnchor = new THREE.Object3D(); fAnchor.position.copy(dnaPts[dnaPts.length - 12]); chrom.add(fAnchor); c.addLabel(fAnchor, 'DNA, 2 nm thick', { pick: fiber });
+  const lAnchor = new THREE.Object3D(); lAnchor.position.copy(dnaPts[dnaPts.length - 70 * 1]); chrom.add(lAnchor);
+  const bar2 = new THREE.Group(); chrom.add(bar2); bar2.position.set(-8 * NM, -15 * NM, 0);
+  bar2.add(new THREE.Mesh(new THREE.BoxGeometry(10 * NM, .12, .12), barM)); [-1, 1].forEach(sd => { const t = new THREE.Mesh(new THREE.BoxGeometry(.12, .7, .12), barM); t.position.x = sd * 5 * NM; bar2.add(t); });
+  c.addLabel(bar2, '10 nm', { offset: new V3(0, .3, 0), always: true });
+  const view = k => {
+    const f = k === 'fiber'; chrom.visible = f; tilt.visible = !f; bar.visible = !f; strip.style.display = f ? 'none' : ''; ub.style.display = f ? 'none' : '';
+    sceneNote(c, f ? NOTE.fiber : (target ? NOTE.rep : NOTE.helix));
+    if (f) showInfo('nucleosome');
+    if (typeof flyTo === 'function' && c.frame) flyTo(c.frame, new V3(), f ? 6.5e-8 : 2.6e-8);
+  };
+  seg([['helix', 'Double helix'], ['fiber', 'Chromatin packing']], 'helix', view);
   c.focusIn = () => new V3();
   c.focusFor = () => ({ pos: bp[Math.floor(n / 2)].s[0].base.getWorldPosition(new V3()), r: .5 });
   c.zoomInTarget = () => ({ key: 'molecule', opts: { mol: 'H2O' } });

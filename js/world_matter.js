@@ -269,11 +269,12 @@ FT.nucleus = {
 v2frame('proton', 'proton', () => .84 / 5.2, (F) => { F.blurb = 'Inside a nucleon: three valence quarks bound by gluons, in a seething sea of virtual quark–antiquark pairs (quantum chromodynamics).'; });
 /* ---------- DNA (unit nm) & cell (unit µm) via v2 ---------- */
 v2frame('dna', 'dna', () => 1 / 2.4, (F, c) => {
-  F.blurb = 'DNA at true scale: 2 nm wide, 0.34 nm between base pairs. Zoom into a base pair to see every atom.';
+  F.blurb = 'DNA, the double helix. Choose "Chromatin packing" to see how it is wound round proteins.';
   F.spawn = (T, hint) => {
     const id = hint && hint.id || '';
     const mol = /base_[AT]/.test(id) ? 'bp_AT' : /base_[GC]/.test(id) ? 'bp_GC' : id === 'sugar' ? 'deoxyribose' : id === 'phosphate' ? 'phosphate' : 'bp_GC';
-    return new Frame({ type: 'mol', name: mol, unit: 1e-10, radius: 25, r1: 1.2e-8, spawnD: 1e-9, pos: T.clone(), opts: { mol, fixed: true } });
+    const nm = { bp_AT: 'Adenine-thymine base pair', bp_GC: 'Guanine-cytosine base pair', deoxyribose: 'Deoxyribose (the sugar in DNA)', phosphate: 'Phosphate group' }[mol];
+    return new Frame({ type: 'mol', name: nm, unit: 1e-10, radius: 25, r1: 1.2e-8, spawnD: 1e-9, pos: T.clone(), opts: { mol, fixed: true } });
   };
   F.spawnD = 2.5e-9;
 });
