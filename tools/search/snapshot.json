@@ -744,6 +744,11 @@
 "D": 0.05,
 "label": "Honey bee (14 mm)",
 "side": true
+},
+{
+"D": 8,
+"label": "Pond",
+"side": true
 }
 ],
 "nodes": {
@@ -1492,6 +1497,7 @@
 "park_bee": "thing",
 "park_flower": "via:thing",
 "park_mushroom": "thing",
+"park_pond": "thing",
 "patella_l": "part",
 "patella_r": "part",
 "pcb_design": "tear",
@@ -1523,6 +1529,59 @@
 "pineal_gland": "hotspot",
 "pipelining_hazards": "tear",
 "pituitary_gland": "hotspot",
+"pond_bacteria": "via:thing",
+"pond_bank": "thing",
+"pond_chlamydomonas": "via:thing",
+"pond_daphnia": "thing",
+"pond_daphnia_antennae": "thing",
+"pond_daphnia_eggs": "thing",
+"pond_daphnia_gut": "thing",
+"pond_daphnia_head": "thing",
+"pond_daphnia_heart": "thing",
+"pond_daphnia_limbs": "thing",
+"pond_detritus": "via:thing",
+"pond_diatom": "via:thing",
+"pond_dragonfly_larva": "via:thing",
+"pond_drop": "via:thing",
+"pond_duckweed": "thing",
+"pond_food_web": "via:thing",
+"pond_gas_bubbles": "thing",
+"pond_green_water": "via:thing",
+"pond_hornwort": "thing",
+"pond_iris": "thing",
+"pond_iris_flower": "thing",
+"pond_iris_rhizome": "thing",
+"pond_larva_abdomen": "thing",
+"pond_larva_head": "thing",
+"pond_larva_legs": "thing",
+"pond_larva_mask": "thing",
+"pond_larva_thorax": "thing",
+"pond_leaf_litter": "thing",
+"pond_leg_hairs": "via:thing",
+"pond_life_cycles": "via:thing",
+"pond_methanogens": "via:thing",
+"pond_mud": "thing",
+"pond_mud_bacteria": "via:thing",
+"pond_mud_grains": "via:thing",
+"pond_mud_oxygen": "thing",
+"pond_oxygen": "thing",
+"pond_oxygen_day_night": "via:thing",
+"pond_paramecium": "via:thing",
+"pond_rotifer": "via:thing",
+"pond_skater": "thing",
+"pond_skater_legs": "thing",
+"pond_snail": "thing",
+"pond_snail_body": "thing",
+"pond_snail_senses": "thing",
+"pond_stones": "thing",
+"pond_stratification": "thing",
+"pond_surface": "thing",
+"pond_surface_film": "thing",
+"pond_tadpole": "thing",
+"pond_tadpole_legs": "thing",
+"pond_tadpole_tail": "thing",
+"pond_volvox": "via:thing",
+"pond_water": "thing",
 "proximal_tubule": "hotspot",
 "pulmonary_valve": "hotspot",
 "quadriceps": "part",
@@ -3371,6 +3430,268 @@
 "name": "Sugar moving in the phloem",
 "node": "bio_phloem_transport"
 }
+],
+"pond": [
+{
+"id": "surface",
+"name": "Water surface",
+"node": "pond_surface"
+},
+{
+"id": "bank",
+"name": "Bank and marginal zone",
+"node": "pond_bank"
+},
+{
+"id": "stones",
+"name": "Edging stones",
+"node": "pond_stones"
+},
+{
+"id": "water",
+"name": "Open water",
+"node": "pond_water"
+},
+{
+"id": "mud",
+"name": "Mud",
+"node": "pond_mud"
+},
+{
+"id": "leaf_litter",
+"name": "Fallen leaves",
+"node": "pond_leaf_litter"
+},
+{
+"id": "gas_pockets",
+"name": "Bubbles in the mud",
+"node": "pond_gas_bubbles"
+},
+{
+"id": "gas_bubbles",
+"name": "Bubbles rising from the mud",
+"node": "pond_gas_bubbles"
+},
+{
+"id": "duckweed",
+"name": "Common duckweed",
+"node": "pond_duckweed"
+},
+{
+"id": "duckweed_mat",
+"name": "Common duckweed (raft)",
+"node": "pond_duckweed"
+},
+{
+"id": "skater_body",
+"name": "Pond skater: body",
+"node": "pond_skater"
+},
+{
+"id": "skater_front_legs",
+"name": "Pond skater: front legs",
+"node": "pond_skater_legs"
+},
+{
+"id": "skater_mid_legs",
+"name": "Pond skater: middle legs (rowing)",
+"node": "pond_skater_legs"
+},
+{
+"id": "skater_hind_legs",
+"name": "Pond skater: hind legs (steering)",
+"node": "pond_skater_legs"
+},
+{
+"id": "film_dimples",
+"name": "Dimples in the surface film",
+"node": "pond_surface_film"
+},
+{
+"id": "hornwort",
+"name": "Hornwort (submerged plant)",
+"node": "pond_hornwort"
+},
+{
+"id": "hornwort_b",
+"name": "Hornwort (submerged plant)",
+"node": "pond_hornwort"
+},
+{
+"id": "hornwort_stems",
+"name": "Hornwort stems",
+"node": "pond_hornwort"
+},
+{
+"id": "hornwort_far",
+"name": "Hornwort (submerged plant)",
+"node": "pond_hornwort"
+},
+{
+"id": "oxygen_bubbles",
+"name": "Oxygen bubbles on the leaves",
+"node": "pond_oxygen"
+},
+{
+"id": "iris_leaves",
+"name": "Yellow flag iris: leaves",
+"node": "pond_iris"
+},
+{
+"id": "iris_flowers",
+"name": "Yellow flag iris: flowers",
+"node": "pond_iris_flower"
+},
+{
+"id": "iris_stalks",
+"name": "Yellow flag iris: flower stalks",
+"node": "pond_iris"
+},
+{
+"id": "iris_far",
+"name": "Yellow flag iris",
+"node": "pond_iris"
+},
+{
+"id": "iris_rhizome",
+"name": "Yellow flag iris: rhizome in the mud",
+"node": "pond_iris_rhizome"
+},
+{
+"id": "iris_roots",
+"name": "Yellow flag iris: roots",
+"node": "pond_iris_rhizome"
+},
+{
+"id": "daphnia_carapace",
+"name": "Water flea: shell (carapace)",
+"node": "pond_daphnia"
+},
+{
+"id": "daphnia_head",
+"name": "Water flea: head",
+"node": "pond_daphnia_head"
+},
+{
+"id": "daphnia_eye",
+"name": "Water flea: compound eye",
+"node": "pond_daphnia_head"
+},
+{
+"id": "daphnia_antennae",
+"name": "Water flea: second antennae",
+"node": "pond_daphnia_antennae"
+},
+{
+"id": "daphnia_heart",
+"name": "Water flea: heart",
+"node": "pond_daphnia_heart"
+},
+{
+"id": "daphnia_gut",
+"name": "Water flea: gut",
+"node": "pond_daphnia_gut"
+},
+{
+"id": "daphnia_eggs",
+"name": "Water flea: eggs in the brood chamber",
+"node": "pond_daphnia_eggs"
+},
+{
+"id": "daphnia_limbs",
+"name": "Water flea: filtering limbs",
+"node": "pond_daphnia_limbs"
+},
+{
+"id": "daphnia_swarm",
+"name": "Water fleas (more of them)",
+"node": "pond_daphnia"
+},
+{
+"id": "snail_shell",
+"name": "Great pond snail: shell",
+"node": "pond_snail"
+},
+{
+"id": "snail_body",
+"name": "Great pond snail: foot and head",
+"node": "pond_snail_body"
+},
+{
+"id": "snail_tentacles",
+"name": "Great pond snail: tentacles",
+"node": "pond_snail_senses"
+},
+{
+"id": "snail_eyes",
+"name": "Great pond snail: eyes",
+"node": "pond_snail_senses"
+},
+{
+"id": "larva_head",
+"name": "Dragonfly larva: head",
+"node": "pond_larva_head"
+},
+{
+"id": "larva_eyes",
+"name": "Dragonfly larva: compound eyes",
+"node": "pond_larva_head"
+},
+{
+"id": "larva_mask",
+"name": "Dragonfly larva: folded lip (the mask)",
+"node": "pond_larva_mask"
+},
+{
+"id": "larva_thorax",
+"name": "Dragonfly larva: thorax",
+"node": "pond_larva_thorax"
+},
+{
+"id": "larva_wingpads",
+"name": "Dragonfly larva: wing pads",
+"node": "pond_larva_thorax"
+},
+{
+"id": "larva_legs",
+"name": "Dragonfly larva: legs",
+"node": "pond_larva_legs"
+},
+{
+"id": "larva_abdomen",
+"name": "Dragonfly larva: abdomen",
+"node": "pond_larva_abdomen"
+},
+{
+"id": "larva_cerci",
+"name": "Dragonfly larva: tail points",
+"node": "pond_larva_abdomen"
+},
+{
+"id": "tadpole_body",
+"name": "Frog tadpole: body",
+"node": "pond_tadpole"
+},
+{
+"id": "tadpole_eyes",
+"name": "Frog tadpole: eyes",
+"node": "pond_tadpole"
+},
+{
+"id": "tadpole_tail",
+"name": "Frog tadpole: tail",
+"node": "pond_tadpole_tail"
+},
+{
+"id": "tadpole_legs",
+"name": "Frog tadpole: hind legs",
+"node": "pond_tadpole_legs"
+},
+{
+"id": "tadpole_swarm",
+"name": "Frog tadpoles (more of them)",
+"node": "pond_tadpole"
+}
 ]
 },
 "things": [
@@ -3553,6 +3874,11 @@
 "id": "bee",
 "n": 0,
 "title": "Honey bee worker"
+},
+{
+"id": "pond",
+"n": 0,
+"title": "A pond in the park"
 }
 ]
 }
