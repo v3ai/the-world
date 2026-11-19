@@ -6,7 +6,6 @@
 .pxk i.b.hol { background: transparent; border: 2px solid #2bbfcf }
 .pxk i.b.gl { background: linear-gradient(90deg, #e2533f 50%, #2bbfcf 50%) }
 .pxk i.b.p { background: #e0664a } .pxk i.b.n { background: #b4c0d0 }
-body.cardOpen .pxp { display: none }
 @media (max-width: 860px) { .pxp { left: calc(var(--ruler-w) + 8px); right: 8px; top: 96px; width: auto; max-height: 30vh } }
 
 .pxp.pxsm { left: auto; right: 16px; top: 64px; width: 300px; max-height: calc(100vh - 64px - 96px) }

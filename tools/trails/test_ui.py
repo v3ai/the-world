@@ -27,10 +27,13 @@ with World(size=size, mobile=a.phone, start=False) as w:
     n = w.js("document.querySelectorAll('#questions .qitem').length"); tn = w.js('TRAILS.list.length'); check('list shows all trails', n == tn and tn > 0, n)
     w.shot('list' + sfx)
     # 3. search
-    w.js("openLibrary(true)"); w.js("(() => { const q = document.querySelector('#libQ'); q.value = 'why is a leaf green'; libSearch(q.value); })()"); w.settle(1)
-    txt = w.js("document.querySelector('#library').innerText")
+    # (the one search field; the Library no longer has a box of its own)
+    w.js("(() => { const q = document.querySelector('#srchQ'); SEARCH.focus(); q.value = 'why is a leaf green'; q.dispatchEvent(new Event('input', { bubbles: true })); })()")
+    try: w.page.wait_for_selector('#srchPanel .srow', timeout=60000)
+    except Exception: pass
+    w.settle(1); txt = w.js("document.querySelector('#srchPanel').innerText")
     check('search finds the trail', 'Why is a leaf green?' in txt); w.shot('search' + sfx)
-    w.js("closePops()")
+    w.js("document.querySelector('#srchX').click(); closePops()")
     # 4. play, Next/Back, arrows
     w.js("TRAILS.start('what_am_i_made_of', 0)"); w.settle(4)
     check('panel open', w.js("document.querySelector('#trail').classList.contains('on')"))
@@ -53,7 +56,7 @@ with World(size=size, mobile=a.phone, start=False) as w:
     w.page.keyboard.press('Escape'); w.settle(1)
     check('Escape leaves the trail', not w.js("document.querySelector('#trail').classList.contains('on')"))
     # 8. answer page and where next
-    w.js("TRAILS.start('what_is_light', 4)"); w.settle(3); w.js("document.querySelector('#trail .next').click()"); w.settle(2)
+    w.js("TRAILS.start('what_is_light', TRAILS.by.what_is_light.stops.length - 1)"); w.settle(3);   # its last stop, whatever the trail's length w.js("document.querySelector('#trail .next').click()"); w.settle(2)
     check('answer page', 'The answer' in w.js("document.querySelector('#trail').innerText")); w.shot('answer' + sfx)
     w.js("TRAILS.leave()")
     # 9. 'Asked here' on a card of a stop

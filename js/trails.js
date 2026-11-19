@@ -184,9 +184,9 @@ const TRAILS = {
     else if (a.bodyMode) { const F = FR.body; F.mode = a.bodyMode; store.set('bodyMode', a.bodyMode); if (typeof applyMode === 'function') applyMode(F); if (F.modeSeg) F.modeSeg.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === a.bodyMode)); }
     else if (a.element) { const F = FR.atom; await until(() => F.setElement, 8000); F.setElement(a.element); }
     else if (a.sm) { await until(() => typeof PX !== 'undefined' && PX.inSM(), 8000); PX.smSet(a.sm.mode || 'overview', Object.assign({}, a.sm, { mode: undefined })); }
-    else if (a.time) { simTime = Date.parse(a.time); if (a.speed !== undefined) { timeSpeed = a.speed; const b = $q('#timeS'); if (b) b.textContent = a.speed === 0 ? '⏸' : a.speed === 1 ? '1×' : b.textContent; } }
+    else if (a.time) { simTime = Date.parse(a.time); if (a.speed !== undefined) { timeSpeed = a.speed; const b = $q('#timeS'); if (b) b.textContent = a.speed === 0 ? 'Paused' : a.speed === 1 ? '1×' : b.textContent; } }
     else if (a.dir) { setCamDir(V(a.dir)); }
-    else if (a.press) { const want = a.press.toLowerCase(); const b = await until(() => [...document.querySelectorAll('#info button, #controls button, #ptable button')].find(x => x.offsetParent && x.textContent.trim().toLowerCase().includes(want)), a.waitMs || 6000); if (b) b.click(); else T.errors.push('no button: ' + a.press); }
+    else if (a.press) { const want = a.press.toLowerCase(); const b = await until(() => [...document.querySelectorAll('#info button, #sceneSecs button, #controls button, #ptable button')].find(x => x.offsetParent && x.textContent.trim().toLowerCase().includes(want)), a.waitMs || 6000); if (b) b.click(); else T.errors.push('no button: ' + a.press); }
     else if (a.hide) { const F = FR.body; a.hide.forEach(id => F.hidden.add(id)); applyMode(F); }
     else if (a.hideBody) { const F = FR.body; if (F && F.hidden && typeof ANAT_SYNC !== 'undefined' && ANAT_SYNC) { ANAT_SYNC.parts.forEach(p => F.hidden.add(p.id)); if (typeof applyMode === 'function') applyMode(F); } }
     else if (a.reveal) { goToNode(a.reveal); }
@@ -196,7 +196,7 @@ const TRAILS = {
   /* ---------- the player ---------- */
   function panel() {
     let el = $q('#trail');
-    if (!el) { el = document.createElement('aside'); el.id = 'trail'; el.setAttribute('aria-label', 'Trail'); el.setAttribute('aria-live', 'polite'); document.body.appendChild(el); }
+    if (!el) { el = document.createElement('section'); el.id = 'trail'; el.setAttribute('aria-label', 'Trail'); el.setAttribute('aria-live', 'polite'); ($q('#trailSlot') || document.body).appendChild(el); } // a section of the one panel (index.html), above the card of the place or the selected thing
     return el;
   }
   T.start = function (id, i) {
@@ -209,7 +209,7 @@ const TRAILS = {
     });
   };
   T.leave = function () {
-    T.token++; T.cur = null; T.arrived = false; document.body.classList.remove('trailOn'); const p = $q('#trail'); if (p) { p.classList.remove('on'); p.innerHTML = ''; } document.body.style.removeProperty('--trailH');
+    T.token++; T.cur = null; T.arrived = false; document.body.classList.remove('trailOn'); const p = $q('#trail'); if (p) { p.classList.remove('on'); p.innerHTML = ''; }
     buildList();
   };
   T.go = function (i) {
@@ -239,7 +239,7 @@ const TRAILS = {
   function render() {
     const t = T.cur, el = panel(); if (!t) return;
     const n = t.stops.length, atEnd = T.i >= n;
-    let h = `<div class="tr-head"><span class="tr-q">${esc(t.question)}</span><span class="tr-btns"><button class="tr-fold" title="Hide the text to see more of the scene">${T.fold ? 'Show text' : 'Hide text'}</button><button class="tr-leave" title="Close the trail. Your place is remembered.">Leave trail</button></span></div>`;
+    let h = `<div class="tr-head"><span class="tr-q">${esc(t.question)}</span><span class="tr-btns"><button class="tr-leave" title="Close the trail. Your place is remembered.">Leave trail</button></span></div>`;
     if (!atEnd) {
       const s = t.stops[T.i];
       h += `<div class="tr-step">Stop ${T.i + 1} of ${n}${s.scale ? ' · ' + esc(s.scale) : ''}</div><h3>${s.title}</h3>`;
@@ -254,31 +254,23 @@ const TRAILS = {
       const nx = (t.next || []).map(id => T.by[id]).filter(Boolean);
       if (nx.length) h += `<div class="tr-next"><b>Where next</b>${nx.map(x => `<button data-t="${x.id}">${esc(x.question)}</button>`).join('')}</div>`;
     }
-    h += `<div class="tr-here"><b></b><span class="tr-fnote"></span></div>`;
     h += `<div class="tr-nav"><button class="b back"${T.i === 0 ? ' disabled' : ''}>Back</button><div class="tr-dots" role="group" aria-label="Progress">`
       + Array.from({ length: n + 1 }, (_, k) => `<button class="${k < T.i ? 'done' : ''}${k === T.i ? ' on' : ''}${k === n ? ' end' : ''}" data-k="${k}" aria-label="${k === n ? 'The answer' : 'Stop ' + (k + 1)}"></button>`).join('')
       + `</div><button class="b next"${atEnd ? ' disabled' : ''}>${T.i === n - 1 ? 'The answer' : 'Next'}</button></div>`;
     el.innerHTML = h;
-    el.querySelector('.tr-leave').onclick = T.leave; el.classList.toggle('fold', !!T.fold);
-    el.querySelector('.tr-fold').onclick = e => { T.fold = !T.fold; e.target.textContent = T.fold ? 'Show text' : 'Hide text'; el.classList.toggle('fold', T.fold); sizeVars(); };
+    el.querySelector('.tr-leave').onclick = T.leave;   // to see more of the scene, minimise the panel: its tab then carries Back, Next and "Show text"
     el.querySelector('.back').onclick = T.back; el.querySelector('.next').onclick = T.next;
     el.querySelectorAll('.tr-dots button').forEach(b => b.onclick = () => T.go(+b.dataset.k));
     el.querySelectorAll('.tr-deeper button').forEach(b => b.onclick = () => openCard(b.dataset.n));
     el.querySelectorAll('.tr-next button').forEach(b => b.onclick = () => T.start(b.dataset.t, 0));
     const r = el.querySelector('.tr-ret'); if (r) r.onclick = () => T.go(T.i);
-    el.scrollTop = 0; syncHere(); sizeVars();
+    const pb = $q('#panelBody'); if (pb) pb.scrollTop = 0;   // a new stop is read from its top; the place (its name and what the picture is) follows below in the same panel
   }
-  function syncHere() {
-    const el = $q('#trail .tr-here'); if (!el) return; const n = ($q('#capN') || {}).textContent || '', k = ($q('#capK') || {}).textContent || '', note = ($q('#capNote') || {}).textContent || '';
-    const b = el.querySelector('b'), f = el.querySelector('.tr-fnote'), t1 = n ? n + (k ? ' · ' + k : '') : k; if (b.textContent !== t1) b.textContent = t1; if (f.textContent !== note) f.textContent = note;
-  }
-  function sizeVars() { const p = $q('#trail'), c = $q('#caption'); if (c) document.body.style.setProperty('--capH', c.offsetHeight + 'px'); if (p && T.cur) document.body.style.setProperty('--trailH', p.offsetHeight + 'px'); }
 
   /* has the visitor wandered off? */
-  function syncAway() { const a = $q('#trail .tr-away'); if (a) a.classList.toggle('on', !!T.away && !!T.cur && T.i < T.cur.stops.length); sizeVars(); }
+  function syncAway() { const a = $q('#trail .tr-away'); if (a) a.classList.toggle('on', !!T.away && !!T.cur && T.i < T.cur.stops.length); }
   setInterval(() => {
     if (!T.cur) return;
-    syncHere(); sizeVars();
     if (T.i >= T.cur.stops.length) return;
     if (typeof fly !== 'undefined' && fly) { return; }
     if (!T.arrived) { if (performance.now() - T.startedAt > 3000 && !T.pending) { /* the visitor took over the camera mid-flight: treat as arrived */ T.arrived = true; T.landed = { frame: cam.A, D: cam.D }; T.away = true; syncAway(); } return; }
@@ -301,6 +293,5 @@ const TRAILS = {
 
   /* ---------- boot ---------- */
   addButton();
-  if (typeof ResizeObserver !== 'undefined') { const c = $q('#caption'); if (c) new ResizeObserver(sizeVars).observe(c); }
   T.load();
 })();

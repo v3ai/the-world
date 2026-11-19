@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>The World: everything at its true size</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="css/search.css">
 </head>
 <body>
-<canvas id="c" tabindex="0" aria-label="The world, at true scale. Scroll to zoom, drag to look around, click anything to learn about it."></canvas>
+<canvas id="c" tabindex="0" aria-label="The world, at true scale. Scroll to zoom, drag to look around, click a thing to select it, double-click it to look inside."></canvas>
 <div id="labels"></div>
 <nav id="ruler" aria-label="Scale">
   <div class="mark"><b>The World</b><span>Everything at its true size</span></div>
@@ -25,15 +25,34 @@
 <nav id="topright" aria-label="Main">
   <button class="tb" id="bTracks">Tracks</button><button class="tb" id="bLibrary">Library</button><button class="tb" id="bLabels" title="Show or hide labels">Labels</button><button class="tb" id="bHelp">Help</button>
 </nav>
-<section id="caption" aria-live="polite">
-  <nav id="crumbs" aria-label="Where you are" aria-live="off"><button class="back" id="navBack" disabled title="Return to the previous place and card">Back</button><ol id="crumbList"></ol></nav>
-  <div class="n" id="capN"></div><div class="d" id="capD"></div><div class="nt" id="capNote"></div>
-  <div class="meta"><span class="k" id="capK"></span><button class="fold" id="capFold" title="Fold the description away, or open it again">Hide details</button><span id="timebar"><span id="timeT"></span><button id="timeS" title="Change how fast time runs">Real time</button><button id="timeNow" title="Jump to the present moment">Now</button></span></div>
-</section>
-<aside id="info" aria-live="polite"></aside>
+<aside id="panel" aria-label="Where you are and what you have selected">
+  <div class="grab" id="panelGrab" role="button" tabindex="0" aria-label="Drag up to make this panel taller, down to make it shorter"></div>
+  <header id="panelHead">
+    <nav id="crumbs" aria-label="Where you are" aria-live="off"><button class="back" id="navBack" disabled title="Return to the previous place and card">Back</button><ol id="crumbList"></ol></nav>
+    <button id="panelMin" title="Fold this panel away to the edge of the screen. It stays folded until you click a thing or its tab.">Minimise</button>
+  </header>
+  <div id="panelBody">
+    <p id="panelHint" hidden>Click a thing to read about it here. Double-click it to look inside.<button id="panelHintX" type="button">Got it</button></p>
+    <div id="trailSlot"></div>
+    <div id="procSlot"></div>
+    <section id="info" aria-live="polite" aria-label="What you have selected"></section>
+    <section id="place" aria-live="polite" aria-label="This place">
+      <div class="ptag" id="placeTag">This place</div>
+      <h2 class="n" id="capN"></h2><div class="d" id="capD"></div><div class="nt" id="capNote"></div><div class="tn" id="capT"></div><div class="nobuilt" id="placeNote"></div>
+      <div class="btnrow" id="placeBtns"><button class="zoom" id="placeIn" title="Go one level in at the middle of the view: the same as double-clicking what is there">Look inside</button><button class="zoom alt" id="placeOut" title="Fly out one level: the same as the step before this one in the path above">See it from further out</button></div>
+    </section>
+    <div id="sceneSecs"></div>
+    <details class="psec" id="timeSec"><summary>Time</summary><div id="timebar"><span id="timeT"></span><button id="timeS" title="Change how fast time runs">Real time</button><button id="timeNow" title="Jump to the present moment">Now</button></div></details>
+  </div>
+</aside>
+<div id="panelTab" role="group" aria-label="The panel is minimised">
+  <span id="tabTrail" hidden><button id="tabPrev" type="button" title="The trail's previous stop">Back</button><button id="tabNext" type="button" title="The trail's next stop">Next</button><button id="tabShow" type="button" title="Open the panel to read this stop">Show text</button></span>
+  <button id="panelTabB" type="button" title="Open the panel: where you are and what you have selected"><i class="dot" aria-hidden="true"></i><span class="tt" id="panelTabT"></span><span class="to">Open</span></button>
+</div>
+<div id="fov"><span class="k" id="capK"></span><button id="clockBtn" type="button" title="Date and time: open the Time section of the panel">Time</button></div>
 <div id="library" class="pop"><button class="px" aria-label="Close the library">Close</button><h3>Library</h3><div class="sub">Browse the knowledge map, the places on the scale and 51 open textbooks. To look something up by name, use the search field.<span class="kb"> Press / from anywhere.</span></div><div class="tours2"><span>Guided tours, one stop at a time:</span><button id="tourIn2">Tour in</button><button id="tourOut2">Tour out</button></div><button id="libSearchBtn" class="libsb" type="button">Search for anything</button><div id="libRes"></div><div class="lic">Section titles and key terms are indexed from OpenStax textbooks (CC BY and CC BY-NC-SA 4.0); links open the full text on openstax.org. The explanations in this explorer are original.</div></div>
 <div id="controls"></div>
-<div id="zoombtns"><button id="zin" title="Zoom in (hold)" aria-label="Zoom in">+</button><button id="zout" title="Zoom out (hold)" aria-label="Zoom out">−</button></div>
+<div id="zoombtns"><button id="zin" title="Move closer to the middle of the view (hold)" aria-label="Move closer">+</button><button id="zout" title="Move further away (hold)" aria-label="Move further away">−</button></div>
 <div id="push" class="glass"><span id="pushT"></span></div>
 <div id="tip"></div>
 <div id="toasts"></div>
@@ -44,11 +63,12 @@
     <p class="lead">A proton, a cell, a park, the Earth, the Milky Way: one world you can zoom through. Here is all you need.</p>
     <ol class="steps">
       <li><b>Scroll to zoom.</b><span>Scroll, or pinch on a phone, to move toward whatever is under the pointer. You can keep going in or out across more than 40 powers of ten. Drag to look around.</span></li>
-      <li><b>Click anything.</b><span>Click or tap an object and a card opens: what it is, what it is made of, how it works. Choose Basics, Deeper or Expert. Double-click to fly to it.</span></li>
+      <li><b>Click a thing, then double-click it.</b><span>One click or tap selects a thing: the view moves to frame it and the panel on the right says what it is, what it is made of and how it works (Basics, Deeper or Expert). A double click or double tap looks inside it: its cut-open view if it has one, otherwise the next level down at that spot.</span></li>
       <li><b>Watch the ruler.</b><span>The scale down the left edge shows how big your view is. Click a place on it, such as Your skin, London or the Milky Way, to fly there. On a phone, tap the strip, or choose Library and open Places on the scale.</span></li>
     </ol>
     <div class="grid">
-      <span class="key">Where am I?</span><span>The path at the bottom left (Universe, Milky Way, Earth and so on) shows where you are. Click a step to fly out to it, or press Back to return.</span>
+      <span class="key">Where am I?</span><span>The path at the top of the panel (Universe, Milky Way, Earth and so on) shows where you are. Click a step to fly out to it, or press Back to return.</span>
+      <span class="key">One panel</span><span>Everything to read is in the panel on the right: the place you are in, the thing you selected, a question trail, notes on what a picture is. Minimise folds it to a tab at the edge; it then stays folded until you click a thing or the tab.</span>
       <span class="key">Find anything</span><span>Use the search field at the top right (heart, gold, caffeine, London, mitosis, a battery) to find places, elements, molecules, topics and 51 open textbooks. Library lists them to browse.<span class="kb"> Press / from anywhere to jump to the field.</span></span>
       <span class="key">Speed meter</span><span>Add ?stats=1 to the address to see frames per second and what the drawing costs (Shift+P on a keyboard). On a phone the panel scrolls, and Hide closes it.</span>
       <span class="key">Tours and tracks</span><span>Tour in or Tour out flies the whole way, one stop at a time. Tracks are guided paths through a subject.</span>

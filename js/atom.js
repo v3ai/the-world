@@ -706,6 +706,11 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
     nucHit.userData.center = () => new V3(); nucHit.userData.radius = () => 3; nucHit.userData.madeOf = null; nucHit.userData.title = 'Nucleus';
     const nucTrue = new THREE.Mesh(new THREE.SphereGeometry(1, 20, 14), smat(0xc0453a, { roughness: 0.5 })); F.add(nucTrue);
     F.pickables.push(hitMain, nucHit);
+    /* a click on the cloud or on the nucleus selects it and brings it to the middle (the nucleus is far too small to frame: its pick target is a stand-in);
+       a double click on either, or "Look inside", goes into the nucleus: `inner` is this scene's entry point for lookInside (js/engine.js) when the descent module is not loaded */
+    nucHit.userData.extent = () => ({ p: new V3(), r: null });
+    const intoNucleus = () => { let c = F.children.find(k => k.type === 'nucleus'); if (!c) { c = F.spawn(new V3()); if (!c) return false; c.dynamic = true; c.keep = performance.now() + 60000; F.addChild(c); } c.ensure(); flyTo(c, new V3(), frameOverviewD(c)); return 'nucleus'; };
+    nucHit.userData.inner = intoNucleus; hitMain.userData.inner = intoNucleus;
     const nucAnchor = mkAnchor(); const nucLbl = F.label(nucAnchor, 'Nucleus (true size, far too small to see)', { offset: new V3(0, 0, 0) });
     // ---------- interface ----------
     const btnEl = actBtn('', () => ATM.openPicker(F));
@@ -728,17 +733,16 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
     const row = cls => { const r = document.createElement('div'); r.className = 'arow ' + cls; panel.appendChild(r); return r; };
     const r1 = row('r1'), r2 = row('r2'), r3 = row('r3'), r4 = row('r4'), r5 = row('r5');
     r1.append(modeSeg); r2.append(strip); r3.append(famSeg, nSel, lSel, pSel, supSel); r4.append(cutBtn, flowBtn, dotSel); r5.append(isoSel);
-    const specBox = uiEl(document.createElement('div')); specBox.className = 'atomSpec glass';
+    const specBox = uiEl(document.createElement('div')); specBox.className = 'atomSpec glass'; specBox.dataset.sec = 'Light from this atom'; specBox.dataset.secKey = 'atomSpec'; specBox.dataset.secOpen = 'always';   // data-sec: a section of the one panel (updateControls, js/engine.js)
     // Bohr controls
     const bohrBar = uiEl(document.createElement('div')); bohrBar.className = 'atomOpts glass bohrBar';
     const biSel = ATM.selEl('', 'from n', v => { S.bi = +v; if (S.bf >= S.bi) S.bf = S.bi - 1; syncBohr(); refresh(); });
     const bfSel = ATM.selEl('', 'to n', v => { S.bf = +v; syncBohr(); });
     const emitBtn = document.createElement('button'); emitBtn.className = 'act'; emitBtn.textContent = 'Let it jump and emit light'; emitBtn.onclick = () => bohrEmit();
     bohrBar.append(biSel, bfSel, emitBtn);
-    const note = document.createElement('div'); note.className = 'atomNote glass'; document.body.appendChild(note); if (window.innerWidth <= 860 || store.get('atomNoteSeen', 0)) note.classList.add('shut');   // open on the very first view only; collapsed once it has been read
-    const noteTimer = setInterval(() => { note.classList.toggle('on', typeof capFrame !== 'undefined' && capFrame === F); }, 250);   // F.update does not run while the frame is faded out
-    F.onDispose = () => { clearInterval(noteTimer); cloud.dispose(); note.remove(); ATM.frames.delete(F); clearModel(); };
-    note.addEventListener('click', ev => { const b = ev.target.closest('[data-n]'); if (b) { showBodyNode(b.dataset.n, null); } const t = ev.target.closest('.noteHead'); if (t) note.classList.toggle('shut'); });
+    const note = uiEl(document.createElement('div')); note.className = 'atomNote'; note.dataset.sec = 'What this picture is'; note.dataset.secKey = 'atomNote';   // a section of the one panel: open the first time, folded once it has been read (panelSection, js/engine_ui.js)
+    F.onDispose = () => { cloud.dispose(); note.remove(); ATM.frames.delete(F); clearModel(); };
+    note.addEventListener('click', ev => { const b = ev.target.closest('[data-n]'); if (b) { showBodyNode(b.dataset.n, null); } });
 
     function syncToggles() {
       cutBtn.textContent = S.cut ? 'Put the quarter back' : 'Cut away a quarter'; cutBtn.classList.toggle('on', S.cut);
@@ -915,7 +919,7 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
         links = [['at_models', 'The historical models'], [M.node, M.title]];
       }
       if (fromMol) h += `<p class="from"><b>You came here from a molecule.</b> This is a free atom, alone in space. In a molecule the outer electrons are shared in bonds, so the outer cloud there is reshaped, while the inner shells are almost unchanged.</p>`;
-      note.innerHTML = `<button class="noteHead" aria-label="Show or hide the explanation"><span class="nl">${head}</span><span class="nx">What this picture is</span></button><div class="noteBody">${h}<div class="nlinks">${links.filter(l => typeof NODE === 'undefined' || NODE[l[0]]).map(l => `<button class="chip" data-n="${l[0]}">${l[1]}</button>`).join(' ')}</div></div>`;
+      note.innerHTML = `<div class="noteHead"><span class="nl">${head}</span></div><div class="noteBody">${h}<div class="nlinks">${links.filter(l => typeof NODE === 'undefined' || NODE[l[0]]).map(l => `<button class="chip" data-n="${l[0]}">${l[1]}</button>`).join(' ')}</div></div>`;
     }
     function updateUI() {
       const e = ELJ[S.el], isQ = S.model === 'quantum', isB = S.model === 'bohr';
@@ -997,12 +1001,12 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
       let tx = 0, ty = 0;
       if (cam.A === F && innerWidth > 860) {
         const rl = document.getElementById('ruler'), left = rl ? rl.getBoundingClientRect().right : 0;
-        const nr = note.classList.contains('on') && !note.classList.contains('shut') ? note.getBoundingClientRect() : null;
-        const right = nr ? nr.left - 8 : innerWidth;
+        const pn = document.getElementById('panel'), right = pn && document.body.classList.contains('panelOpen') ? pn.offsetLeft - 8 : innerWidth;   // the panel on the right, while it is open
         let top = 0; document.querySelectorAll('#controls > *, .atomOpts, .atomSpec').forEach(el => { if (el.offsetParent !== null) { const b = el.getBoundingClientRect(); if (b.width > 0 && b.top < innerHeight * 0.5) top = Math.max(top, b.bottom + 6); } });
         tx = Math.max(-0.2 * innerWidth, Math.min(0.2 * innerWidth, (left + right) / 2 - innerWidth / 2));
         ty = Math.max(0, Math.min(0.2 * innerHeight, top / 2));
       }
+      if (innerWidth <= 860) return;   // phone: the engine's own shift (the bottom sheet) stands
       const k = 1 - Math.exp(-Math.min(dt, 0.2) * 6); S.vx = (S.vx || 0) + (tx - (S.vx || 0)) * k; S.vy = (S.vy || 0) + (ty - (S.vy || 0)) * k;
       if (Math.abs(S.vx) + Math.abs(S.vy) < 0.5 && tx === 0 && ty === 0) { if (F.cam.view && F.cam.view.enabled) F.cam.clearViewOffset(); }
       else F.cam.setViewOffset(W, H, -Math.round(S.vx), -Math.round(S.vy), W, H);
@@ -1011,9 +1015,6 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
       const v = new THREE.Vector2(); renderer.getDrawingBufferSize(v); cloud.setView(v.y, 50);
       if (S.model === 'quantum') cloud.update(dt);
       if (S.anim) S.anim(dt);
-      const on = typeof capFrame !== 'undefined' && capFrame === F; note.classList.toggle('on', on);
-      // the explanation is open the first time only: it collapses itself after it has been on screen for a while and stays collapsed next time
-      if (on && !note.classList.contains('shut') && !store.get('atomNoteSeen', 0)) { S.noteT = (S.noteT || 0) + dt; if (S.noteT > 30) { store.set('atomNoteSeen', 1); note.classList.add('shut'); } }
       centreCloud(dt);
       // arriving by a landmark flight that ends too close for this atom: ease back so the whole atom is in view
       if (cam.A !== F) S.fitDone = false;

@@ -50,7 +50,7 @@ function navFlyHook() {
   if (top && top.card === e.card && sameSnap(top.cam, e.cam)) return;
   navStack.push(e); if (navStack.length > 60) navStack.shift(); navUpdate();
 }
-function navUpdate() { const b = $('#navBack'); if (b) b.disabled = !navStack.length; const c = $('#cardBack'); if (c) c.hidden = !navStack.length; }
+function navUpdate() { const b = $('#navBack'); if (b) b.disabled = !navStack.length; }
 function navBack() {
   const e = navStack.pop(); navUpdate(); if (!e) return;
   cancelTour(); navQuiet++;
@@ -66,21 +66,29 @@ function crumbGo(f) {
   cancelTour();
   const lms = LANDMARKS.filter(l => l.frame === f).sort((a, b) => b.D - a.D); // the widest landmark of that frame is its overview
   if (lms.length) { lms[0].go(); return; }
-  const D = f.r1 !== Infinity ? f.r1 * .3 : f.radius * f.unit * .8;
-  flyTo(f, f.center ? f.center.clone() : new V3(), Math.max(D, MIN_D * 10));
+  flyTo(f, f.center ? f.center.clone() : new V3(), frameOverviewD(f)); // no landmark: a little outside its content (the whole body, not 27 m away)
+}
+/* The path as the panel shows it: root ... the frame you are in. The patch of skin (and the cell, DNA and atoms in it) sits on the person standing in the park: say so, and let "You" be a way out. */
+function crumbChain(cur) {
+  const chain = chainOf(cur).reverse();
+  const i = typeof FR !== 'undefined' && FR.skin ? chain.indexOf(FR.skin) : -1; if (i > 0 && FR.body && !chain.includes(FR.body)) chain.splice(i, 0, FR.body);
+  return chain;
+}
+/* "See it from further out": one level back up, which is what the step before the last one in the path does. */
+function goFurtherOut() {
+  if (typeof DESCENT !== 'undefined' && DESCENT && DESCENT.up) { DESCENT.up(); return; }   // the descent module (js/descent.js) knows the way back out of what it built
+  const ch = crumbChain(capFrame || cam.A); if (ch.length > 1) crumbGo(ch[ch.length - 2]); else message('This is the widest view there is.');
 }
 function updateCrumbs(cur) {
   const ol = $('#crumbList'); if (!ol) return;
-  const chain = chainOf(cur).reverse(); // root ... current
-  // the patch of skin (and the cell, DNA and atoms in it) sits on the person standing in the park: say so, and let "You" be a way out
-  { const i = typeof FR !== 'undefined' && FR.skin ? chain.indexOf(FR.skin) : -1; if (i > 0 && FR.body && !chain.includes(FR.body)) chain.splice(i, 0, FR.body); }
+  const chain = crumbChain(cur); // root ... current
   const short = f => { const n = CRUMB_NAME[humanName(f)] || humanName(f); return n.length > 26 ? n.slice(0, 25) + '…' : n; };
   let items = chain.map((f, i) => ({ f, last: i === chain.length - 1 }));
-  let cut = 0; if (chain.length > 11 && !crumbsAll) { cut = chain.length - 7; items = [items[0], { more: cut - 1 }].concat(items.slice(cut)); }
+  let cut = 0; if (chain.length > 7 && !crumbsAll) { cut = chain.length - 4; items = [items[0], { more: cut - 1 }].concat(items.slice(cut)); } // one line in the panel's head: the root, the last four steps, and a way to see the rest
   ol.innerHTML = items.map(it => it.more !== undefined ? `<li><button class="crumb more" title="Show the whole path">… ${it.more} more</button></li>` : `<li>${it.last ? `<span class="crumb cur" aria-current="location" title="${humanName(it.f)}">${short(it.f)}</span>` : `<button class="crumb" data-i="${chain.indexOf(it.f)}" title="Fly out to ${humanName(it.f)}">${short(it.f)}</button>`}</li>`).join('');
   ol.querySelectorAll('.crumb[data-i]').forEach(b => b.onclick = () => crumbGo(chain[+b.dataset.i]));
   const mo = ol.querySelector('.more'); if (mo) mo.onclick = () => { crumbsAll = true; updateCrumbs(cur); };
-  ol.scrollLeft = ol.scrollWidth; ol.classList.toggle("clip", ol.scrollLeft > 2);
+  ol.classList.toggle('all', crumbsAll); ol.scrollLeft = ol.scrollWidth; ol.classList.toggle("clip", ol.scrollLeft > 2);
 }
 
 /* ================= ONE CARD =================
@@ -90,7 +98,8 @@ function updateCrumbs(cur) {
    header, figure, tabs, facts, actions, what it is made of, what it is part of, how it works, more, textbook sections,
    open questions, how certain science is. Spec keys: tag, title, figure, core, track, basics, deeper, expert, facts, note,
    buttons, after, madeLabel, made, partLabel, part, howLabel, how, more, books, open (html), cert (C1..C4), sci (true: fill
-   "The science behind this" once the knowledge map has loaded). */
+   "The science behind this" once the knowledge map has loaded), look (true: the card of a clicked thing: Look inside and See it
+   from further out go straight under its title). */
 const infoEl = $('#info');
 let depthPref = store.get('depth', 0), infoState = null;
 const CERT_WORDS = { C1: 'Settled: checked in many independent ways and not in serious doubt.', C2: 'Well supported, and the details are still being refined.', C3: 'Debated: experts disagree about this.', C4: 'Speculative: a proposal that has not been tested yet.' };
@@ -113,7 +122,8 @@ function wireTabs() {
 }
 function cardHtml(s) {
   const sec = (label, body) => body ? `<div class="refs"><div class="rh">${label}</div>${body}</div>` : '';
-  let h = `<div class="cardhead"><button class="back" id="cardBack"${navStack.length ? '' : ' hidden'}>Back</button><div class="tag">${s.tag || ''}</div></div><h2>${s.title}</h2>`;
+  let h = `<div class="cardhead"><div class="tag">${s.tag || ''}</div></div><h2>${s.title}</h2>`; // Back is in the panel's head, once
+  if (s.look) h += `<div class="lookrow">${LOOK_BTNS}</div>`; // the card of a clicked thing: its two controls, straight under the title
   h += (s.figure || '') + (s.core || '') + (s.track || '');
   h += layered([['Basics', s.basics ? `<div class="body">${s.basics}</div>` : ''], ['Deeper', s.deeper ? `<div class="body"><p>${s.deeper}</p></div>` : ''], ['Expert', s.expert ? `<div class="body expert"><p>${s.expert}</p></div>` : '']]);
   if (s.facts && s.facts.length) h += '<dl>' + s.facts.map(f => `<dt>${f[0]}</dt><dd>${f[1]}</dd>`).join('') + '</dl>';
@@ -127,27 +137,129 @@ function cardHtml(s) {
   else if (s.sci) h += '<div id="sci"></div>';
   return h;
 }
+/* The two controls every card of a clicked thing has. "Look inside" does exactly what a double click on the thing does (lookInside, js/engine.js);
+   "See it from further out" goes one level back up, which is what the step before the last one in the path does. */
+const LOOK_BTNS = '<button class="zoom" id="zoomBtn" title="The same as double-clicking it: its cut-open view if it has one, otherwise the next level down">Look inside</button><button class="zoom alt" id="outBtn" title="Fly out one level, to the place this is part of">See it from further out</button>';
+function wireLookBtns(h) {
+  const zb = $('#zoomBtn'); if (zb) zb.onclick = () => lookInside(h); const ob = $('#outBtn'); if (ob) ob.onclick = goFurtherOut;
+  /* where the answer is the next level down (no cut-open view to show first), the descent module can say what that level is: the button names it, and a stand-in is admitted under the buttons */
+  if (zb && h && h.obj && h.frame && h.frame.built && typeof DESCENT !== 'undefined' && DESCENT && DESCENT.describe && !h.obj.userData.lookInside) {
+    let d = null; try { if (!cutOpenOf(h, true)) d = DESCENT.describe(h); } catch (e) { d = null; }
+    if (d && d.title) zb.textContent = 'Look inside: ' + d.title;
+    if (d && d.note) { const n = document.createElement('p'); n.className = 'cnote lookNote'; n.textContent = d.note; const row = zb.closest('.lookrow'); if (row) row.insertAdjacentElement('afterend', n); }
+  }
+}
 function chipsHtml(items) { return items.length ? `<div class="chips">${items.join('')}</div>` : ''; }
 /* A card opened in this same run of code and then a flight started (goToNode, search, a trail stop, a chip) is a deliberate jump: the card describes where
-   the flight is going, so it stays open (with whatever the jump highlighted or peeled). A flight started on its own closes a card left over from where you were. */
+   the flight is going, so it stays open (with whatever the jump highlighted or peeled). A flight started on its own closes a card left over from where you were.
+   (The flights that belong to a selection, framing it and looking inside it, go through flyKeep in js/engine.js.) */
 let CARD_FRESH = false;
 { const _fly = flyTo; window.flyTo = function (...a) { if (!CARD_FRESH) { try { closeInfo(); } catch (e) { } } return _fly.apply(this, a); }; }
+
+/* ================= THE PANEL =================
+   One panel on the right holds everything there is to read (see ONE PANEL in css/app.css and the layout in index.html):
+   the path and Back; a trail (js/trails.js) and a process (js/nodes.js) when one is running; the card of the selected thing (#info,
+   drawn by openPanel) or else the place (#place, kept by updateCaption); the scene's own explanations (panelSection); the clock.
+   PANEL.min is the minimised state, remembered across reloads. While minimised the panel NEVER opens by itself: panelShow(why) is
+   called only from something the visitor did (a click on a thing, a search result, a link in a list, the tab, a trail's "Show text",
+   the clock button). Everything else that changes its content only updates the tab (title, and a quiet dot). */
+const panelEl = $('#panel');
+const PANEL = { min: !!store.get('panelMin', false), hint: !store.get('panelHint', false), tab: '', secs: store.get('panelSecs', {}), opened: [], userSel: false };
+function panelApply() {
+  panelEl.classList.toggle('min', PANEL.min); document.body.classList.toggle('panelMin', PANEL.min); document.body.classList.toggle('panelOpen', !PANEL.min);
+  const b = $('#panelMin'); if (b) b.setAttribute('aria-expanded', String(!PANEL.min));
+  const h = $('#panelHint'); if (h) h.hidden = !PANEL.hint;
+}
+function panelSet(min) {
+  if (PANEL.min === min) return; PANEL.min = min; store.set('panelMin', min); panelApply();
+  $('#panelTab').classList.remove('new'); if (!min) panelEl.classList.remove('tall');
+}
+function panelShow(why) { PANEL.opened.push(why || '?'); if (PANEL.opened.length > 40) PANEL.opened.shift(); panelSet(false); } // PANEL.opened: what opened it, for the tests
+function panelMinimise() { panelSet(true); panelHintDone(); canvas.focus(); }
+function panelHintDone() { if (!PANEL.hint) return; PANEL.hint = false; store.set('panelHint', true); const h = $('#panelHint'); if (h) h.hidden = true; }
+/* what the panel is about now, in a few words: the tab shows it while the panel is minimised */
+function panelTitle() {
+  if (typeof TRAILS !== 'undefined' && TRAILS.cur) { const t = TRAILS.cur, n = t.stops.length; return TRAILS.i < n ? `Stop ${TRAILS.i + 1} of ${n}: ${String(t.stops[TRAILS.i].title).replace(/<[^>]+>/g, '')}` : 'The answer'; }
+  const h2 = infoState && infoEl.querySelector('h2'); if (h2) return h2.textContent;
+  return $('#capN').textContent || '';
+}
+let _ptT = 0;
+function panelSync(now) { // about four times a second: the tab's title, the dot, the scene sections that have emptied or filled
+  if (now - _ptT < 240) return; _ptT = now;
+  const t = panelTitle(), el = $('#panelTabT');
+  if (t !== PANEL.tab) { const first = !PANEL.tab; PANEL.tab = t; el.textContent = W <= 860 && /^Stop \d+ of \d+: /.test(t) ? t.split(':')[0] : t; if (PANEL.min && !first) $('#panelTab').classList.add('new'); } // a phone's pill has room for "Stop 3 of 9" beside the trail's buttons, not for the stop's title
+  const tt = $('#tabTrail'), on = typeof TRAILS !== 'undefined' && !!TRAILS.cur;
+  if (tt.hidden === on) tt.hidden = !on;
+  if (on) { const n = TRAILS.cur.stops.length; $('#tabPrev').disabled = TRAILS.i === 0; $('#tabNext').disabled = TRAILS.i >= n; }
+  const ss = $('#sceneSecs');
+  for (const d of [...ss.children]) {
+    const e = d._el; if (!e || e.parentNode !== d) { d.remove(); continue; }
+    const empty = e.style.display === 'none' || !e.firstChild; if (d.classList.contains('empty') !== empty) d.classList.toggle('empty', empty);
+    const sm = d.firstChild, ti = e.dataset.sec || 'About this view'; if (sm.textContent !== ti) sm.textContent = ti;
+    if (!empty && d.open && !PANEL.min && !PANEL.secs[d.dataset.k] && e.dataset.secOpen !== 'always') { d._seen = (d._seen || 0) + .24; if (d._seen > 20) { PANEL.secs[d.dataset.k] = 1; store.set('panelSecs', PANEL.secs); } } // read once (on screen for 20 s): folded the next time
+  }
+}
+/* A scene's own explanation as a section of the panel: open the first time it is met, folded after it has been read (or always open
+   for a section the scene works through: data-sec-open="always"). The visitor's own fold or unfold is remembered. */
+function panelSection(el) {
+  const d = document.createElement('details'), k = el.dataset.secKey || el.dataset.sec || el.className; d.className = 'psec'; d.dataset.k = k; d._el = el;
+  const sm = document.createElement('summary'); sm.textContent = el.dataset.sec || 'About this view'; d.appendChild(sm); d.appendChild(el);
+  const st = PANEL.secs[k]; d.open = st === 'open' || (st !== 'shut' && (el.dataset.secOpen === 'always' || !st));
+  d.addEventListener('toggle', () => { if (d._auto) { d._auto = false; return; } PANEL.secs[k] = d.open ? 'open' : 'shut'; store.set('panelSecs', PANEL.secs); });
+  return d;
+}
 function openPanel(h, desc) {
   CARD_FRESH = true; Promise.resolve().then(() => { CARD_FRESH = false; });
   const key = desc && desc.key || '';
   if (!navQuiet && key && (!curCard || curCard.key !== key)) navStack.push({ card: curCard, cam: curCard ? curCard.cam : camSnap() }), navStack.length > 60 && navStack.shift();
   curCard = key ? { key, reopen: desc.reopen, cam: camSnap() } : null;
-  document.body.classList.add('cardOpen'); infoEl.innerHTML = `<button class="x" aria-label="Close">×</button><div class="grab" role="button" tabindex="0" aria-label="Drag up to make this card taller, down to make it shorter"></div>` + h; infoEl.classList.remove('tall'); wireGrab(); infoEl.classList.add('open'); infoEl.scrollTop = 0; infoEl.querySelector('.x').onclick = closeInfo; wireTabs(); wireCardLinks(); navUpdate();
+  if (typeof selHit !== 'undefined' && selHit && !(infoState && infoState.h === selHit)) setSelected(null); // another card: the thing that was selected is no longer
+  document.body.classList.add('cardOpen'); panelEl.classList.add('hasSel');
+  infoEl.innerHTML = `<button class="x" title="Close this card and show the place again">Close</button>` + h;
+  infoEl.classList.add('open'); infoEl.querySelector('.x').onclick = closeInfo; wireTabs(); wireCardLinks(); navUpdate();
+  const body = $('#panelBody'), tr = $('#trail');
+  if (tr && tr.classList.contains('on') && PANEL.userSel) body.scrollTop = Math.max(0, infoEl.offsetTop - 8); else body.scrollTop = 0; // a card you asked for while a trail plays: bring it into view; otherwise the top
+  PANEL.userSel = false;
 }
-/* Phone: the card is a sheet that starts low (about a third of the screen, so what you tapped stays in view) and is dragged up for the rest. */
+/* Phone: the panel is a sheet that starts low (about a third of the screen, so what you tapped stays in view) and is dragged up for the rest. */
 function wireGrab() {
-  const g = infoEl.querySelector('.grab'); if (!g) return; let y0 = null, moved = false;
+  const g = $('#panelGrab'); if (!g) return; let y0 = null, moved = false;
   g.onpointerdown = e => { y0 = e.clientY; moved = false; try { g.setPointerCapture(e.pointerId); } catch (_) { } };
-  g.onpointermove = e => { if (y0 === null) return; const dy = e.clientY - y0; if (Math.abs(dy) > 24) { moved = true; infoEl.classList.toggle('tall', dy < 0); y0 = e.clientY; } };
-  g.onpointerup = () => { if (y0 !== null && !moved) infoEl.classList.toggle('tall'); y0 = null; };
-  g.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); infoEl.classList.toggle('tall'); } };
+  g.onpointermove = e => { if (y0 === null) return; const dy = e.clientY - y0; if (Math.abs(dy) > 24) { moved = true; panelEl.classList.toggle('tall', dy < 0); y0 = e.clientY; } };
+  g.onpointerup = () => { if (y0 !== null && !moved) panelEl.classList.toggle('tall'); y0 = null; };
+  g.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); panelEl.classList.toggle('tall'); } };
 }
-function closeInfo() { infoEl.classList.remove('open'); document.body.classList.remove('cardOpen'); infoState = null; curCard = null; if (typeof FR !== 'undefined' && FR.body) { FR.body.sel = null; FR.body.reveal = null; } }
+/* closeInfo: nothing is selected any more. The panel stays as it is (open or minimised) and shows the place. */
+function closeInfo() {
+  infoEl.classList.remove('open'); infoEl.innerHTML = ''; document.body.classList.remove('cardOpen'); panelEl.classList.remove('hasSel'); infoState = null; curCard = null; selLeave = null;
+  if (typeof selHit !== 'undefined' && selHit) setSelected(null);
+  if (typeof FR !== 'undefined' && FR.body) { FR.body.sel = null; FR.body.reveal = null; }
+}
+/* "No closer view of this has been built yet": said in the panel, on the card of what the thing is made of when there is one, else on
+   the thing's own card; with nothing selected, on the place. A toast says it too (the panel may be minimised). */
+/* a thing that has no parts to show (a particle of the Standard Model): say so on its card, in the scene's own words */
+function showNoParts(text) {
+  toast(text.split('. ')[0] + '.');
+  infoEl.querySelectorAll('.nobuilt').forEach(e => e.remove());
+  const d = document.createElement('div'); d.className = 'nobuilt noparts'; d.textContent = text; const hd = infoEl.querySelector('.cardhead'); if (hd) hd.insertAdjacentElement('beforebegin', d); else $('#placeNote').textContent = text;
+  $('#panelBody').scrollTop = 0;
+}
+const NOT_BUILT = 'No closer view of this has been built yet';
+/* reason: the sentence to show (the descent module gives its own; the default is NOT_BUILT). card: the node whose card goes with it (default: what the thing is made of, when that has a card). */
+function showNotBuilt(h, reason, card) {
+  const say = reason || NOT_BUILT + '.';
+  toast(say);
+  const pn = $('#placeNote'); if (pn) pn.textContent = '';
+  if (!h) { if (pn) pn.textContent = reason || NOT_BUILT + '. This is as far in as the model of this place goes.'; $('#panelBody').scrollTop = 0; return; }
+  const ud = h.obj.userData, n = typeof NODE !== 'undefined' && NODE[ud.node || h.id];
+  const made = card !== undefined ? (card && typeof NODE !== 'undefined' && NODE[card] ? card : null) : n && (n.made_of || []).find(i => NODE[i] && i !== n.id);
+  const title = (infoState && infoEl.querySelector('h2') ? infoEl.querySelector('h2').textContent : '') || (n && n.title) || 'this';
+  let txt = say;
+  if (made && !(infoState && infoState.node === made)) { showBodyNode(made, null); txt = `${say} ${title} is as far in as the model goes here; this card is about what it is made of.`; }
+  infoEl.querySelectorAll('.nobuilt').forEach(e => e.remove());
+  const d = document.createElement('div'); d.className = 'nobuilt'; d.textContent = txt; const hd = infoEl.querySelector('.cardhead'); if (hd) hd.insertAdjacentElement('beforebegin', d); else infoEl.prepend(d);
+  $('#panelBody').scrollTop = 0;
+}
 function closePops() { ['#library', '#tourPop', '#tracks'].forEach(s => { const e = $(s); if (e) e.classList.remove('open'); }); document.body.classList.remove('trackOpen'); }
 function scienceSection(simIds) {
   const nodes = []; simIds.forEach(s => (KN_BY_SIM[s] || []).forEach(n => { if (!nodes.includes(n)) nodes.push(n); }));
@@ -160,7 +272,6 @@ function wireCardLinks() {
   wireKn();
   infoEl.querySelectorAll('.nd').forEach(b => b.onclick = () => (TEAR[b.dataset.n] ? goToNode(b.dataset.n) : focusNode(b.dataset.n)));
   infoEl.querySelectorAll('.pr').forEach(b => b.onclick = () => startProcess(b.dataset.p));
-  const bk = $('#cardBack'); if (bk) bk.onclick = navBack;
 }
 /* the card for an object that has an id but no card data: say so, never stay silent */
 const NO_CARD = new Set();
@@ -190,11 +301,11 @@ function showInfoFor(h) {
   const simIds = [SIM_OF[id] || id].concat(ud.sim || []);
   const spec = {
     tag: d.tag || '', title: d.title, basics: (d.body || '') + (d.fun ? `<div class="fun"><b>Did you know?</b>${d.fun}</div>` : ''), deeper: dp.d, expert: dp.x, facts: d.facts, note: d.note, sci: true,
-    buttons: (h.noZoom ? '' : '<button class="zoom" id="zoomBtn">Zoom in</button>') + (ud.madeOf ? `<button class="zoom alt" id="madeBtn">See what it is made of</button>` : '') + (h.elSym ? `<button class="zoom" id="atomBtn">Fly to ${(ELJ[h.elSym] || {}).name || h.elSym} atoms</button>` : ''),
+    look: !h.noZoom, buttons: (ud.madeOf ? `<button class="zoom alt" id="madeBtn">See what it is made of</button>` : '') + (h.elSym ? `<button class="zoom" id="atomBtn">Fly to ${(ELJ[h.elSym] || {}).name || h.elSym} atoms</button>` : ''),
     books: dp.r && dp.r.length ? dp.r.map(refChip).join('') : '',
   };
   openPanel(cardHtml(spec), { key: 'info:' + (id || d.title), reopen: () => showInfoFor(h) });
-  const zb0 = $('#zoomBtn'); if (zb0) zb0.onclick = () => zoomIntoHit(h);
+  wireLookBtns(h);
   const mb = $('#madeBtn'); if (mb) mb.onclick = () => { closeInfo(); diveMaterial(h); };
   const ab = $('#atomBtn'); if (ab) ab.onclick = () => flyToElement(h.elSym);
   loadKnowledge().then(() => { const s = $('#sci'); if (s && infoState && infoState.h === h) { s.outerHTML = scienceSection(simIds) || ''; wireKn(); } });
@@ -457,23 +568,40 @@ function humanName(f) {
   }
   return n;
 }
-let capSince = performance.now(), capPref = null; // capPref: null = automatic (folds a few seconds after you arrive, or while a card is open), true/false = your choice for this place
+/* The place card (#place) and the one-line field of view (#fov). The card names the frame the camera is in, with its one-paragraph
+   description and the honest note on what is to scale and what is illustrative (F.blurb, F.note; F.timeNote says what moves).
+   When a thing is selected the same block shrinks to the place's name and note under the thing's card. */
 function updateCaption() {
   let f = active[active.length - 1];
-  if (active.includes(cam.A)) f = cam.A; // the caption and the path name the frame the camera is in as soon as it is the anchor, not once it has faded in
+  if (active.includes(cam.A)) f = cam.A; // the place and the path name the frame the camera is in as soon as it is the anchor, not once it has faded in
   else for (let i = active.length - 1; i >= 0; i--) if (active[i].alpha > .6) { f = active[i]; break; }
-  const view = cam.D * 2 * Math.tan(25 * Math.PI / 180), e = Math.log10(view);
+  const view = cam.D * 2 * Math.tan(25 * Math.PI / 180);
   const nm = humanName(f);
   if (f !== capFrame || $('#capN').textContent !== nm) {
-    capFrame = f; crumbsAll = false; capSince = performance.now(); capPref = null; updateCrumbs(f);
+    capFrame = f; crumbsAll = false; updateCrumbs(f);
     $('#capN').textContent = nm;
     $('#capD').textContent = f.blurb || '';
     $('#capNote').textContent = f.note || '';
-    $('#timebar').style.display = f.device ? 'none' : ''; // the clock means nothing inside a chip
+    $('#placeNote').textContent = '';
+    $('#timeSec').hidden = $('#clockBtn').hidden = !!f.device; // the clock means nothing inside a chip
+    $('#placeOut').hidden = crumbChain(f).length < 2;
     updateControls(f);
   }
-  { const min = capPref !== null ? capPref : (document.body.classList.contains('cardOpen') || performance.now() - capSince > 14000), cp = $('#caption'); if (cp.classList.contains('min') !== min) { cp.classList.toggle('min', min); $('#capFold').textContent = min ? 'Show details' : 'Hide details'; } }
-  const k = `Field of view ${fmtLen(view)}${f.timeNote ? `, ${f.timeNote}` : ''}`; if ($('#capK').textContent !== k) $('#capK').textContent = k;
+  const tn = f.timeNote || ''; if ($('#capT').textContent !== tn) $('#capT').textContent = tn;
+  const k = `Field of view ${fmtLen(view)}`; if ($('#capK').textContent !== k) $('#capK').textContent = k;
+  // a thing you looked inside: when the camera arrives in the new place (or the flight is over), the place takes the panel
+  if (selLeave) { const L = selLeave; if (!curCard || curCard.key !== L.key) selLeave = null; else if (chainOf(cam.A).includes(L.frame) || (!fly && performance.now() - L.t > 400)) { const arrived = chainOf(cam.A).includes(L.frame); selLeave = null; closeInfo(); if (arrived && L.note) $('#placeNote').textContent = L.note; } } // L.note: what the descent module said about the level it built (a stand-in, say)
+  panelSync(performance.now());
+}
+/* The ring round a selected thing that has no glow of its own (a star, a marker, one of a crowd). One projection a frame, no picking. */
+const _smV = new V3(); let _selMark = null;
+function updateSelMark() {
+  const h = typeof selHit !== 'undefined' ? selHit : null, f = h && h.frame;
+  const show = !!(h && !h.glow && h.selP && f && f.built && f.C && drawn.includes(f));
+  if (!_selMark) { if (!show) return; _selMark = document.createElement('i'); _selMark.id = 'selMark'; _selMark.setAttribute('aria-hidden', 'true'); document.body.appendChild(_selMark); }
+  let vis = false;
+  if (show) { _smV.copy(h.selP).sub(f.C).project(f.cam); vis = _smV.z < 1 && Math.abs(_smV.x) < 1.02 && Math.abs(_smV.y) < 1.02; if (vis) _selMark.style.transform = `translate(${(_smV.x * .5 + .5) * W}px,${(-_smV.y * .5 + .5) * H}px) translate(-50%,-50%)`; }
+  if (_selMark._on !== vis) { _selMark._on = vis; _selMark.style.display = vis ? 'block' : 'none'; }
 }
 function updateTimeUI() {
   const d = new Date(simTime);
@@ -523,7 +651,7 @@ function loop(now) {
   renderAll(dt);
   PERF.gpuEnd();
   const tC = performance.now(); PERF.add('render', tC - tB);
-  updateLabels(); updateCaption(); updateRuler();
+  updateLabels(); updateCaption(); updateRuler(); updateSelMark();
   /* Hover. What can be picked changes when frames arrive, load their parts or fade in: that counts as a change of the view.
      The pick itself waits until the pointer has rested and the camera is still; while either moves, the tooltip is hidden. */
   let sig = drawn.length; for (const f of drawn) sig = (sig * 31 + (f.pickables ? f.pickables.length : 0) * 2 + (f.alpha >= .5 ? 1 : 0)) | 0;
@@ -544,7 +672,20 @@ async function startApp() {
   $('#bTracks').onclick = e => { e.stopPropagation(); openTracks(); };
   $('#libSearchBtn').onclick = () => { closePops(); if (typeof SEARCH !== 'undefined' && SEARCH.focus) SEARCH.focus(); };
   document.querySelectorAll('.pop .px').forEach(b => b.onclick = () => closePops());
-  $('#navBack').onclick = navBack; $('#capFold').onclick = () => { capPref = !$('#caption').classList.contains('min'); };
+  $('#navBack').onclick = navBack;
+  // the panel: minimise, the tab, the hint, the clock, the place's two buttons
+  panelApply(); wireGrab();
+  $('#panelMin').onclick = panelMinimise; $('#panelTabB').onclick = () => panelShow('tab');
+  $('#panelHintX').onclick = panelHintDone;
+  if (matchMedia('(pointer: coarse)').matches) $('#panelHint').firstChild.textContent = 'Tap a thing to read about it here. Double-tap it to look inside.';
+  $('#tabShow').onclick = () => panelShow('trail-show-text'); $('#tabPrev').onclick = () => TRAILS.back(); $('#tabNext').onclick = () => TRAILS.next();
+  $('#clockBtn').onclick = () => { panelShow('clock'); const t = $('#timeSec'); t.open = true; t.scrollIntoView({ block: 'nearest' }); };
+  $('#placeIn').onclick = () => lookInsidePlace(); $('#placeOut').onclick = goFurtherOut;
+  /* A result in search, or a link in a list (the Library, Tracks, the Questions list, the starter questions): the visitor asked for something to read, so a minimised panel opens.
+     Nothing else opens it: not a ruler stop, not a tour, not a flight. */
+  const LIST_LINK = '#srchPanel .srow, #library .kn, #library [data-lm], #tracks .trk, #questions .qitem, #help .starters button, #scalePopNever';
+  document.addEventListener('click', e => { const t = e.target && e.target.closest && e.target.closest(LIST_LINK); if (t) panelShow(t.closest('#srchPanel') ? 'search' : 'list'); }, true);
+  document.addEventListener('submit', e => { if (e.target && e.target.id === 'srchForm' && document.querySelector('#srchPanel .srow')) panelShow('search'); }, true);
   $('#bLabels').classList.toggle('off', !labelsOn);
   $('#bLabels').onclick = () => { labelsOn = !labelsOn; store.set('labels', labelsOn); $('#bLabels').classList.toggle('off', !labelsOn); };
   $('#bHelp').onclick = () => $('#help').classList.remove('hide');

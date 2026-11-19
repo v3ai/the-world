@@ -16,3 +16,6 @@
   .thLegend .thLH, .thLegend .thLg { flex: none; white-space: nowrap }
   .thLegend .thLN { display: none }
 }
+
+#sceneSecs .thLegend .thLg { padding: 3px 8px 3px 0 }
+#sceneSecs .thLegend .thLN { display: block; margin-top: 4px }

@@ -99,7 +99,7 @@ PX.declutter = (F, items) => {
 PX.lab = (F, obj, text, o = {}) => { const L = F.label(obj, text, o); return L; };
 
 /* ---------- small DOM panels (porcelain, per frame; the engine mounts and unmounts them with the frame) ---------- */
-PX.el = (html, cls) => { const d = document.createElement('div'); d.className = cls || 'pxp'; d.innerHTML = html; return d; };
+PX.el = (html, cls) => { const d = document.createElement('div'); d.className = cls || 'pxp'; d.innerHTML = html; const hh = d.querySelector('.pxh'); d.dataset.sec = hh ? hh.textContent : 'About this view'; d.dataset.secKey = (cls || 'pxp') + ':' + d.dataset.sec; return d; };   // data-sec: shown as a section of the one panel, not as a box over the scene (updateControls, js/engine.js)
 PX.fmtFrac = s => ({ '2/3': '⅔', '-1/3': '−⅓', '1/3': '⅓', '-2/3': '−⅔', '1': '1', '-1': '−1', '0': '0' }[s] || s);
 PX.chgText = (frac, flip) => { const f = String(frac); const m = { '2/3': '+⅔', '-1/3': '−⅓', '-1': '−1', '0': '0', '±1': '±1', '1': '+1' }; if (flip) { const n = { '2/3': '−⅔', '-1/3': '+⅓', '-1': '+1', '0': '0', '±1': '∓1', '1': '−1' }; return n[f] || f; } return m[f] || f; };
 
@@ -522,7 +522,7 @@ FT.sm = {
     F.sm = { t: 0, ht: 0, shift: new V3(), P, twin, grav, hdr, axisG, band, stage, hstage, board, MASSIVE, axLabs, dParent, dKids, dLabs, flash, decLine, hQ, hRing, hLab, hAnc, vtx };
 
     // ---- panel and controls ----
-    const panel = PX.el('', 'pxp pxsm'); uiEl(panel);
+    const panel = PX.el('', 'pxp pxsm'); uiEl(panel); panel.dataset.sec = 'The Standard Model view'; panel.dataset.secKey = 'pxsm'; panel.dataset.secOpen = 'always';   // the view's working panel: a section of the one panel, open unless the visitor folds it
     const modes = [['overview', 'Overview'], ['forces', 'Forces'], ['everyday', 'Everyday matter'], ['mass', 'Mass'], ['decay', 'Decays'], ['hadron', 'Build a hadron']];
     const modeSeg = seg(modes, SM.mode, k => { SM.mode = k; if (k !== 'overview') SM.sel = SM.sel; refresh(); });
     F.modeSeg = modeSeg; modeSeg.classList.add('pxmodes');
@@ -637,6 +637,14 @@ PX.smBind = F => {
   const SM = PX.SM, S = F.sm, P = S.P, D = PX.D;
   PX.smFrames.push(F); F.onDispose = () => { const i = PX.smFrames.indexOf(F); if (i >= 0) PX.smFrames.splice(i, 1); };
   Object.values(P).forEach(p => { p.orb.userData.onPick = () => { SM.sel = p.id; PX.smFrames.forEach(f => f.built && f.refresh && f.refresh()); }; });
+  /* a click frames the particle with room round it (three ball sizes), so its neighbours and the antiparticle drawn beside it stay in view */
+  { const bx = new THREE.Box3(), sz = new V3(); Object.values(P).forEach(p => { p.orb.userData.extent = () => { bx.setFromObject(p.orb); bx.getSize(sz); return { p: bx.getCenter(new V3()).add(F.C), r: Math.max(sz.x, sz.y, sz.z) * 1.5 }; }; }); }
+  /* a double click on a particle, or its card's "Look inside": none of the seventeen has known parts, so the answer is what it turns into (its decay is played) or, for one that does not decay, a plain statement */
+  Object.values(P).forEach(p => { p.orb.userData.lookInside = () => {
+    const dec = PX.decayList().findIndex(x => x.pid === p.id), nm = (PX.P[p.id] && PX.P[p.id].name) || PX.nm(p.id), none = 'No structure has been seen in any of these particles, down to about 10⁻¹⁹ m, and below that nobody has looked.';
+    if (dec >= 0) { PX.smSet('decay', { decay: { i: dec } }); if (typeof showNoParts === 'function') showNoParts(`${nm}: no parts are known. ${none} It does not last, though: the view is now playing one of the ways it decays (the panel's Decays section lists them).`); return 'decay'; }
+    if (typeof showNoParts === 'function') showNoParts(`${nm}: no parts are known. ${none} This view has no decay to play for it.`); return 'no-parts';
+  }; });
   const tmp = new V3(), tc = new THREE.Color(), up = new V3(0, 1, 0);
   const FEEL = id => { const ints = D.interactions, i = ints.find(x => x.id === SM.force); return i ? i : null; };
   const labs = []; Object.values(P).forEach(p => labs.push({ L: p.lab, pri: 8, text: () => SM.mode === 'decay' || SM.mode === 'hadron' ? '' : SM.anti && !p.M.self ? p.M.aname : p.M.short }));
@@ -799,7 +807,7 @@ PX.nearestQuark = (pf, T) => { const S = pf && pf.proto; if (!S) return null; le
 /* the camera is anywhere under a Standard Model frame? */
 PX.inSM = () => chainOf(cam.A).find(f => f.type === 'sm') || null;
 /* fly into the Standard Model view. focus: a particle id to arrive at, or null for the whole picture. host: a proton frame to dive from */
-PX.smD = d => { const a = W / H; return a < 1 ? d * Math.min(2.4, .95 / a) : d; };   // a portrait screen needs to stand further back to fit the whole picture
+PX.smD = d => { const a = (typeof freeArea === 'function' ? freeArea().w : W) / H; return a < 1 ? d * Math.min(2.4, .95 / a) : d; };   // a portrait screen, or a view narrowed by the open panel, needs to stand further back to fit the whole picture
 PX.goSM = (focus, host, then) => {
   const f0 = PX.inSM();
   if (f0) { f0.ensure(); const p = PX.smPos(f0, focus); flyTo(f0, p, focus ? 1.0e-17 : PX.smD(3.8e-17), then); return f0; }
