@@ -1,0 +1,13 @@
+# Extra everyday words found by the coverage report. Format: see aliases_src.txt.
+hydrogen atom, atom of hydrogen => el:H // src: iupac-elements
+oxygen atom, atom of oxygen => el:O, lm:Oxygen nucleus // src: iupac-elements
+gold atom, atom of gold => el:Au // src: iupac-elements
+carbon atom, atom of carbon => el:C // src: iupac-elements
+iron atom, atom of iron => el:Fe // src: iupac-elements
+salt crystals, salt crystal, crystals of salt => crystal:halite // src: usgs
+vitamin b12, vitamin e, vitamin k, vitamin b6, vitamin b5, vitamin b => node:bio_cofactors_coenzymes // There is no model of this vitamin yet; the card covers cofactors, coenzymes and vitamins. // src: openstax-bio
+graphene, carbon nanotube, carbon nanotubes => crystal:graphite, kn:topological_matter // Graphene is a single layer of the carbon sheets that stack to make graphite. // near: crystal:graphite // src: mindat
+carbon fibre, carbon fiber => el:C, crystal:graphite // Carbon fibre is made of thin threads of carbon in graphite-like layers. // near: crystal:graphite // src: usgs
+gemstone, gemstones, gem, gems, jewel, jewels => crystal:diamond, crystal:quartz // Diamond and quartz (which includes amethyst) are gem minerals. Ruby and emerald are other minerals the explorer does not have yet. // src: mindat usgs
+light year, light years, lightyear => trail:how_big_is_everything, kn:distance_ladder // A light-year is the distance light travels in a year, about 9.46 trillion kilometres. // src: nasa
+time travel => kn:special_relativity, kn:arrow_of_time // Relativity says clocks can run at different rates; the cards cover what physics says about time. // src: nasa
