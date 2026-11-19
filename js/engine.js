@@ -37,29 +37,81 @@ const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, logarithmicD
 renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.autoClear = false;
+/* Opaque objects: by render order, then nearest first, so that what is in front fills the depth buffer before what it hides is shaded.
+   With the logarithmic depth buffer every fragment writes its own depth and nothing is rejected early, so there the order within one
+   shader program is nearest first but programs stay together (fewer state changes); with depth=tight or vert it is nearest first throughout. */
+renderer.setOpaqueSort(PERF.flags.depth === 'log'
+  ? (a, b) => a.groupOrder - b.groupOrder || a.renderOrder - b.renderOrder || a.program.id - b.program.id || a.z - b.z || a.id - b.id
+  : (a, b) => a.groupOrder - b.groupOrder || a.renderOrder - b.renderOrder || a.z - b.z || a.id - b.id);
 renderer.info.autoReset = false; // a frame is many render() calls: the loop resets the counters once per frame, so they add up (js/perf.js reads them)
-let W = innerWidth, H = innerHeight, composer = null, bloom = null;
-const BLOOM_OK = !!(THREE.EffectComposer && THREE.UnrealBloomPass) && !/Mobi|Android/i.test(navigator.userAgent);
-class FramesPass extends (THREE.Pass || class { }) {
-  constructor() { super(); this.needsSwap = false; this.clear = true; }
-  render(r, wb, rb) { r.setRenderTarget(this.renderToScreen ? null : rb); renderFrames(r); }
-}
-function setupComposer() {
+let W = innerWidth, H = innerHeight, bloom = null, bloomAmt = 0, sceneTex = null;
+let composer = null; // retired: frames are drawn straight to the canvas (see renderAll); the name stays for old test scripts that read it
+const BLOOM_OK = !!(THREE.Pass && THREE.UnrealBloomPass) && !/Mobi|Android/i.test(navigator.userAgent);
+const _v2 = new THREE.Vector2();
+/* Glow. The frames are always drawn straight to the canvas, so they get the canvas's real antialiasing and its 24-bit depth buffer.
+   When something should glow (bloomTarget), the finished picture is copied once into a texture and the bloom pass's own steps run on
+   that: bright areas, blurs, and one additive blend back onto the canvas. No composer and no off-screen copy of the scene: the old
+   path cost a 16-bit, non-antialiased render target, an extra full-screen copy, and 14 passes even where nothing glows.
+   bloom=half (the default) runs the blur chain from a quarter-size bright target instead of a half-size one; its mip weights are
+   shifted by one level so the glow keeps about the same width and energy. */
+function setupBloom() {
   if (!BLOOM_OK) return;
-  composer = new THREE.EffectComposer(renderer);
-  composer.addPass(new FramesPass());
   bloom = new THREE.UnrealBloomPass(new THREE.Vector2(W, H), .55, .45, .86);
-  composer.addPass(bloom);
+  bloomResize();
+}
+function bloomResize() {
+  if (!bloom) return;
+  const sz = renderer.getDrawingBufferSize(_v2), half = PERF.flags.bloom !== 'full';
+  bloom.setSize(half ? sz.x / 2 : sz.x, half ? sz.y / 2 : sz.y);
+  bloom.radius = half ? 0 : .45; bloom.compositeMaterial.uniforms.bloomFactors.value = half ? [1.26, .6, .58, .56, 0] : [1, .8, .6, .4, .2]; bloom.mips = half ? 4 : 5;
+  if (sceneTex) sceneTex.dispose();
+  sceneTex = new THREE.DataTexture(null, sz.x, sz.y, THREE.RGBFormat); sceneTex.minFilter = sceneTex.magFilter = THREE.LinearFilter;
+}
+PERF.on('bloom', bloomResize);
+/* How much glow the view wants. Stars, the Sun, cells and molecules on a dark ground glow; an illustrated scene seen close, and a
+   daylight scene that fills the view (the park, a landscape), do not: there the glow only washed out the sky and the paper white. */
+function bloomTarget() {
+  if (!bloom || PERF.flags.bloom === '0') return 0;
+  const f0 = drawn[0];
+  if (f0 && f0.env && f0.env.opaque && f0.alpha > .995 && (f0.daylight || (f0.illo && cam.D < 6))) return 0;
+  return drawn.some(f => f.illo && f.alpha > .3 && cam.D < 6) ? 0 : .55;
+}
+function bloomRender() {
+  const r = renderer, B = bloom, q = B.fsQuad, UB = THREE.UnrealBloomPass, n = B.mips;
+  r.copyFramebufferToTexture(_v2.set(0, 0), sceneTex);
+  r.getClearColor(B._oldClearColor); const oa = r.getClearAlpha(); r.setClearColor(B.clearColor, 0);
+  B.highPassUniforms.tDiffuse.value = sceneTex; B.highPassUniforms.luminosityThreshold.value = B.threshold;
+  q.material = B.materialHighPassFilter; r.setRenderTarget(B.renderTargetBright); r.clear(); q.render(r);
+  let inp = B.renderTargetBright;
+  for (let i = 0; i < n; i++) {
+    const m = B.separableBlurMaterials[i]; q.material = m;
+    m.uniforms.colorTexture.value = inp.texture; m.uniforms.direction.value = UB.BlurDirectionX; r.setRenderTarget(B.renderTargetsHorizontal[i]); r.clear(); q.render(r);
+    m.uniforms.colorTexture.value = B.renderTargetsHorizontal[i].texture; m.uniforms.direction.value = UB.BlurDirectionY; r.setRenderTarget(B.renderTargetsVertical[i]); r.clear(); q.render(r);
+    inp = B.renderTargetsVertical[i];
+  }
+  const cu = B.compositeMaterial.uniforms; q.material = B.compositeMaterial; cu.bloomStrength.value = B.strength; cu.bloomRadius.value = B.radius; cu.bloomTintColors.value = B.bloomTintColors;
+  r.setRenderTarget(B.renderTargetsHorizontal[0]); r.clear(); q.render(r);
+  q.material = B.materialCopy; B.copyUniforms.tDiffuse.value = B.renderTargetsHorizontal[0].texture; r.setRenderTarget(null); q.render(r);
+  r.setClearColor(B._oldClearColor, oa);
+  PERF._passes += 3 + 2 * n;
+}
+/* one frame of drawing: every scene, then the glow if the view wants any */
+function renderAll(dt) {
+  const bt = bloomTarget(); bloomAmt += (bt - bloomAmt) * (1 - Math.exp(-dt * 6)); if (Math.abs(bt - bloomAmt) < .01) bloomAmt = bt;
+  renderer.setRenderTarget(null); renderFrames(renderer);
+  { const ri = renderer.info.render; PERF.calls = ri.calls; PERF.tris = ri.triangles; PERF.points = ri.points; } // the scenes' own numbers, without the full-screen passes
+  if (bloom && bloomAmt > .02) { bloom.strength = bloomAmt; bloomRender(); }
 }
 function resize() {
   W = innerWidth; H = innerHeight; renderer.setSize(W, H, false);
-  if (composer) composer.setSize(W, H);
+  bloomResize();
   forEachFrame(f => { if (f.cam) { f.cam.aspect = W / H; f.cam.updateProjectionMatrix(); } });
 }
 addEventListener('resize', resize);
 
 /* ================= FRAMES ================= */
 const FT = {};           // frame type registry: FT[type] = { build(F, opts) }
+const compileQ = [];     // frames built since the last tick: their shaders are compiled before they are first seen (compileStep)
 let building = null;     // frame currently being built (for seg/actBtn/labels)
 const _cc = new THREE.Vector3();
 class Frame {
@@ -74,7 +126,7 @@ class Frame {
     const prev = building; building = this;
     try { FT[this.type].build(this, this.opts); } catch (e) { console.error('build failed', this.type, e); }
     finally { building = prev; }
-    this.built = true;
+    this.built = true; compileQ.push(this);
   }
   add(o) { this.root.add(o); return o; }
   pick(o, id, priority) { o.userData.id = id; if (priority !== undefined) o.userData.priority = priority; this.pickables.push(o); return o; }
@@ -219,13 +271,13 @@ function computeActive() {
   // is not anchored inside it, and shares the parent's depth buffer so near things hide far things across frames.
   drawn = [];
   for (const f of active) {
-    f._share = !!(f.coRender && f.parent && f.parent.unit === f.unit && drawn.includes(f.parent));
+    f._share = !!(f.coRender && f.parent && f.parent.unit === f.unit && drawn.includes(f.parent)); f._nb = false; f._culled = false;
     drawn.push(f);
     for (const c of f.children) {
       if (!c.coRender || c.unit !== f.unit || active.includes(c)) continue;
       safePlace(c);
       const a = coAlpha(c);
-      c.alpha = a; c._share = true;
+      c.alpha = a; c._share = true; c._nb = true;
       if (c.proxy) c.proxy.visible = !(a > .98);
       if (a > .004) drawn.push(c);
     }
@@ -296,7 +348,7 @@ let simTime = Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), ne
 function renderFrames(r) {
   r.setClearColor(0x000000, 1); r.clear(true, true, true);
   drawn.forEach((f, i) => {
-    if (!f.scene) return;
+    if (!f.scene || f._culled) return;
     const bg = f.scene.background;
     if (i > 0) f.scene.background = null;
     else if (f.env && f.env.bg !== undefined && !bg) { r.setClearColor(f.env.bg, 1); r.clear(true, true, true); }
@@ -305,6 +357,36 @@ function renderFrames(r) {
     f.scene.background = bg;
   });
 }
+
+/* ---- work that cannot be seen is not done ----
+   A co-rendered neighbour (a thing in the park that the camera is not inside) whose content is outside the view, or under about two
+   pixels across, is neither drawn nor picked, and its update hook runs only every eighth frame (so its detail tier and layers are
+   current when it comes back into view). The bound is the frame's pick sphere; until one exists the frame is always drawn. */
+const _fcM = new THREE.Matrix4(), _fcF = new THREE.Frustum(), _fcS = new THREE.Sphere(), PX_PER_RAD = () => H / (2 * Math.tan(25 * Math.PI / 180));
+function frameCull(f) {
+  f._culled = false;
+  const B = f._pkB; if (!f._nb || !B || !B.ok || B.n !== f.pickables.length) return;
+  _fcS.center.copy(B.c).sub(f.C); _fcS.radius = B.r * 1.15;
+  const d = _fcS.center.length(); if (d <= _fcS.radius) return; // the camera is inside its bound
+  if (_fcS.radius / d * PX_PER_RAD() < 1) { f._culled = true; return; }
+  f.cam.updateMatrixWorld(); _fcF.setFromProjectionMatrix(_fcM.multiplyMatrices(f.cam.projectionMatrix, f.cam.matrixWorldInverse));
+  if (!_fcF.intersectsSphere(_fcS)) f._culled = true;
+}
+/* Shaders are compiled when a frame is built and again when its content has arrived (a thing's parts load after the frame exists),
+   one frame per tick, so a layer mode or a cut view that has not been shown yet does not stall the frame in which it first appears. */
+function compileStep() {
+  let f = compileQ.shift();
+  if (!f) for (const d of drawn) if (d.built && d.pickables && d._cmpK !== d.pickables.length) { f = d; break; }
+  if (!f || !f.built || !f.scene) return;
+  f._cmpK = f.pickables.length;
+  try { renderer.compile(f.scene, f.cam); } catch (e) { }
+}
+/* Inked outlines (the inverted hull that draws every part a second time; the ink is about 1.5 pixels wide at any distance).
+   outline=all: always. outline=0: only the part under the pointer or selected. outline=near (the default): the ink fades out as the
+   whole thing gets small on screen, between 70 and 40 pixels tall (px = its height in pixels): at that size the ink no longer draws an
+   edge, it only darkens the figure. A thing's far detail tier has none (js/things.js). Chosen from screenshots: notes/perf.md. */
+const OUTLINE_PX = [40, 70];
+function outlineAmt(px) { const o = PERF.flags.outline; return o === 'all' ? 1 : o === '0' ? 0 : smooth(OUTLINE_PX[0], OUTLINE_PX[1], px); }
 
 /* ================= INPUT: zoom-to-cursor, orbit, fly ================= */
 const zoom = { pending: 0, pivot: null, pt: -1e9, px: 0, py: 0, gen: -1 }; // pending = remaining ln(D) change; pt, px, py, gen: when, where and in which state of the view the pivot was last picked
@@ -415,7 +497,7 @@ canvas.addEventListener('pointerdown', e => {
   lastInput = performance.now(); closePops();
 });
 canvas.addEventListener('pointermove', e => {
-  mouse.x = e.clientX; mouse.y = e.clientY; mouse.has = true; mouse.dirty = true; mouse.t = performance.now();
+  mouse.x = e.clientX; mouse.y = e.clientY; mouse.has = true; mouse.dirty = true; mouse.t = lastInput = performance.now();
   if (Math.abs(mouse.x - mouse.tipX) > 5 || Math.abs(mouse.y - mouse.tipY) > 5) tipEl.classList.remove('show'); // the tooltip belongs to where the pointer rested: it does not trail behind a moving pointer
   const p = pointers.get(e.pointerId); if (!p) return;
   const dx = e.clientX - p.x, dy = e.clientY - p.y; p.x = e.clientX; p.y = e.clientY;
@@ -433,6 +515,7 @@ canvas.addEventListener('pointerup', e => endPointer(e, true));
 canvas.addEventListener('pointercancel', e => endPointer(e, false));
 canvas.addEventListener('pointerleave', () => { mouse.has = false; setHover(null); });
 canvas.addEventListener('dblclick', e => { cancelTour(); const h = pickAt(e.clientX, e.clientY); if (h) zoomIntoHit(h); });
+['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(t => addEventListener(t, () => { lastInput = performance.now(); }, { capture: true, passive: true })); // any input, anywhere on the page, ends the resting frame rate at once
 let holdZoom = 0;
 function bindHold(el, dir) {
   const start = e => { e.preventDefault(); holdZoom = dir; }, stop = () => { holdZoom = 0; };
@@ -766,7 +849,7 @@ const _lv = new V3(), _lo = new V3();
 function updateLabels() {
   const shown = new Set();
   for (const f of drawn) {
-    if (f.alpha < .6 || !f.labels) continue;
+    if (f.alpha < .6 || !f.labels || f._culled) continue;
     if (f !== cam.A && f.dLoc < f.radius * 1e-3) continue; // outer frames: only when their structure is in view
     for (const L of f.labels) {
       if ((!labelsOn && !L.always) || !L.el.textContent || !visibleChain(L.obj)) continue;

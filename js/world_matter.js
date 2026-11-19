@@ -623,7 +623,7 @@ FT.landscape = {
     }
     if (B.rocks) { const rm = new THREE.InstancedMesh(new THREE.DodecahedronGeometry(1, 0), smat(0x6e3a22, { roughness: 1, flatShading: true }), 400), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(); for (let i = 0; i < 400; i++) { const a = r() * TAU, d = 3 + Math.sqrt(r()) * 300, s = .1 + Math.pow(r(), 3) * 1.5; q.setFromEuler(new THREE.Euler(r() * 6, r() * 6, r() * 6)); m4.compose(new V3(Math.cos(a) * d, s * .3, Math.sin(a) * d), q, new V3(s, s * .7, s)); rm.setMatrixAt(i, m4); } F.add(rm); F.pick(rm, 'rock', 2); rm.userData.madeOf = 'rock'; }
     const sky = B.sky ? skyDome(F, B.sky, 30000) : null;
-    if (B.sky) F.env = { opaque: true, bg: 0x000000 };
+    if (B.sky) { F.env = { opaque: true, bg: 0x000000 }; F.daylight = true; }
     const bn = o.body || 'Earth', GAS = { Jupiter: ' and the temperature is about 165 K (−108 °C)', Saturn: ' and the temperature is about 134 K (−139 °C)' };
     if (o.biome === 'cloudtops') { F.blurb = `${bn} has no solid surface. This is an illustration of its cloud tops, at the level where the pressure is about 1 bar (Earth's sea-level air pressure)${GAS[bn] || ''}. Going down, the gas only gets denser and hotter: there is no ground to stand on.`; F.note = 'Illustration only: a made-up cloud deck, not an image. The real clouds lie in layers, with ammonia ice highest, then ammonium hydrosulfide, then water.'; }
     else if (o.biome === 'venus') { F.blurb = 'Venus\'s surface: about 740 K (467 °C) and 93 bar, under a thick cloud deck, on volcanic plains of basalt. Lit by the real Sun for the date shown, though very little sunlight actually reaches the ground.'; F.note = 'Illustrative: the ground, the sky and the light are generic. Known: the temperature and pressure, and that the plains are basalt (measured by Venera and Vega landers).'; }
@@ -675,12 +675,24 @@ FT.region = {
 };
 /* ---------- the park (unit m): v2 park, real sun ---------- */
 v2frame('park', 'life', () => 1, (F, c) => {
-  F.env = { opaque: true, bg: 0x000000 };
+  F.env = { opaque: true, bg: 0x000000 }; F.daylight = true; // a daylight scene takes no glow while it fills the view (engine.js bloomTarget)
   F.blurb = 'Greenwich Park, London — you, a dog, trees and a pond, lit by the real Sun for this date and time.';
   const P = c.parts, up0 = F.update;
+  /* The sun's shadow map is drawn again only when the sun has moved enough to shift a shadow, or while the stand-in figure (which
+     breathes) is still showing, and at most ten times a second. In between, the map is still right in the park's own coordinates; only
+     the scene's origin moves (it follows the camera), so the shadow matrix is shifted by that movement each frame. shadows=0 turns it off. */
+  const SH = P.sun.shadow, sh = { t: -1e9, dir: new V3(), M: new THREE.Matrix4(), root: new V3(), have: false, wait: false, d: new THREE.Matrix4() };
+  SH.autoUpdate = false; P.sun.castShadow = PERF.flags.shadows; PERF.on('shadows', on => { P.sun.castShadow = !!on; sh.t = -1e9; sh.have = false; });
+  const shadowStep = () => {
+    if (!P.sun.castShadow) return;
+    const now = performance.now();
+    if (sh.wait && !SH.needsUpdate) { sh.wait = false; sh.have = true; sh.M.copy(SH.matrix); } // the map was drawn in the last frame: keep its matrix and where the origin was
+    if (!sh.wait && now - sh.t > 100 && (!sh.have || sh.dir.distanceToSquared(P.sun.position) > 1.6e-3 || P.human.visible)) { sh.t = now; sh.dir.copy(P.sun.position); sh.root.copy(F.root.position); SH.needsUpdate = true; sh.wait = true; sh.have = false; }
+    else if (sh.have) { sh.d.makeTranslation(sh.root.x - F.root.position.x, sh.root.y - F.root.position.y, sh.root.z - F.root.position.z); SH.matrix.multiplyMatrices(sh.M, sh.d); }
+  };
   F.update = (dt, t) => {
     up0(dt, t);
-    const s = sunDirIn(F); c.setSun(s); const day = smooth(-.12, .12, s.y);
+    const s = sunDirIn(F); c.setSun(s); const day = smooth(-.12, .12, s.y); shadowStep();
     F.env.opaque = cam.D < 300 && day > .2; P.sky.visible = cam.D < 380 && F.alpha > .6;
     if (c.scene.fog) { c.scene.fog.near = Math.max(45, cam.D * .6); c.scene.fog.far = Math.max(170, cam.D * 4); }
   };

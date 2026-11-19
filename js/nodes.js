@@ -25,8 +25,26 @@ function toonGrad() {
   _toonGrad = new THREE.DataTexture(d, 4, 1, THREE.RGBAFormat); _toonGrad.minFilter = _toonGrad.magFilter = THREE.NearestFilter; _toonGrad.needsUpdate = true;
   return _toonGrad;
 }
+/* Opaque by default. A material made here is drawn opaque (no blending, front to back, depth written) exactly while its opacity is 1,
+   and turns transparent by itself while anything sets its opacity lower: a layer peeling, a frame fading, a see-through wall.
+   (`transparent` is not part of a shader's cache key in three r128, so the switch costs nothing.) Pass extra.transparent = true for a
+   material that must always blend. */
+function opaqueUnlessFading(m) {
+  if (m._autoTr) return m; m._autoTr = true; let op = m.opacity;
+  Object.defineProperty(m, 'opacity', { get() { return op; }, set(v) { op = v; this.transparent = v < .995; }, enumerable: true, configurable: true });
+  m.transparent = op < .995; return m;
+}
+/* For a layered figure whose parts are painted in a fixed order whatever their depth (the body: skeleton first, organs after it, skin
+   last, so a ghosted skull never veils the brain). Such a material always stays in the opaque pass, where parts that share a position
+   are drawn in the order they were made, and blends only while its opacity is below 1; a solid part is then drawn without blending. */
+function paintedInOrder(m) {
+  let op = m.opacity;
+  Object.defineProperty(m, 'opacity', { get() { return op; }, set(v) { op = v; this.blending = v < .995 ? THREE.CustomBlending : THREE.NormalBlending; }, enumerable: true, configurable: true });
+  m.transparent = false; m.blending = op < .995 ? THREE.CustomBlending : THREE.NormalBlending; return m;
+}
 function illoMat(color, o = {}) {
-  return new THREE.MeshToonMaterial(Object.assign({ color, gradientMap: toonGrad(), transparent: true, opacity: 1, side: o.double ? THREE.DoubleSide : THREE.FrontSide }, o.extra || {}));
+  const m = new THREE.MeshToonMaterial(Object.assign({ color, gradientMap: toonGrad(), opacity: 1, side: o.double ? THREE.DoubleSide : THREE.FrontSide }, o.extra || {}));
+  return o.extra && o.extra.transparent ? m : opaqueUnlessFading(m);
 }
 function outlineMat(color = 0x1a1f2b, w = .0022) {
   return new THREE.ShaderMaterial({
@@ -37,8 +55,8 @@ function outlineMat(color = 0x1a1f2b, w = .0022) {
   });
 }
 function inked(geo, color, o = {}) {
-  const g = new THREE.Group(), m = new THREE.Mesh(geo, illoMat(color, o)); g.add(m);
-  if (o.outline !== false) { const ol = new THREE.Mesh(geo, outlineMat(o.ink, o.w)); ol.userData.outline = true; g.add(ol); g.userData.ol = ol; }
+  const g = new THREE.Group(), m = new THREE.Mesh(geo, illoMat(color, o)); g.add(m); m.matrixAutoUpdate = false; // the group is what gets placed; the two meshes inside it stay at identity
+  if (o.outline !== false) { const ol = new THREE.Mesh(geo, outlineMat(o.ink, o.w)); ol.userData.outline = true; ol.matrixAutoUpdate = false; g.add(ol); g.userData.ol = ol; }
   g.userData.main = m; return g;
 }
 
@@ -89,15 +107,20 @@ FT.body = {
     Promise.all([loadAnatomyIndex(), loadNodes()]).then(([A]) => {
       if (!A || !F.built) return;
       const files = [...new Set(A.parts.map(p => p.file))];
+      /* Parts are painted in the order of the anatomy index (skeleton, muscles, nerves, vessels, organs ...), so a ghosted skull never veils the
+         brain. It used to be the order in which the files happened to arrive, which changed from one page load to the next. */
+      const rank = {}; A.parts.forEach((p, i) => { rank[p.id] = i; });
       Promise.all(files.map(file => getJSON('data/anatomy/' + file).then(S => {
         if (!F.built) return;
         S.parts.forEach(p => {
           if (p.parent) { (F.detail = F.detail || {})[p.parent] = (F.detail[p.parent] || []).concat([p]); return; }
-          const g = inked(decodePart(p), (p.id === 'skin' ? 0xcf9f82 : 0) || PART_COL[p.id] || (p.color ? new THREE.Color(p.color).getHex() : 0) || SYS_COL[p.system] || 0xcccccc, { w: p.id === 'skin' ? .0012 : .0018, double: p.id === 'skin' });
+          const g = inked(decodePart(p), (p.id === 'skin' ? 0xcf9f82 : 0) || PART_COL[p.id] || (p.color ? new THREE.Color(p.color).getHex() : 0) || SYS_COL[p.system] || 0xcccccc, { w: p.id === 'skin' ? .0012 : .0018, double: p.id === 'skin', extra: { transparent: true } });
+          paintedInOrder(g.userData.main.material); // layers are painted in the order the parts were made, as before; a solid part is drawn without blending
+          { const om = g.userData.ol.material; om.transparent = false; om.blending = THREE.CustomBlending; } // the ink too stays in that pass (render order 0: before every part, so ghost layers veil it as they always did)
           bodySurface(g.userData.main.material); // fine grain, so a close-up of a smooth part still has something to read
           const big = () => p.radius > .1;
           Object.assign(g.userData, {
-            id: p.id, node: nodeForMesh(p.id), part: p, priority: 1, madeOf: 'tissue', title: p.name, op: 1, shown: 1,
+            id: p.id, node: nodeForMesh(p.id), part: p, priority: 1, madeOf: 'tissue', title: p.name, op: 1, shown: 1, rank: (rank[p.id] ?? 0) * 1e-4,
             tipFn: h => bodyTip(F, p, h),
             // a large part (skin, a long muscle) is zoomed at the clicked point; a small one at its centre
             center: h => (h && h.pointLocal && big() ? h.pointLocal.clone() : new V3(...p.center)), radius: h => (h && h.pointLocal && big() ? .05 : p.radius)
@@ -107,6 +130,7 @@ FT.body = {
             const sh = new THREE.Mesh(lungShellGeo(g.userData.main.geometry, A.byId.heart), new THREE.MeshToonMaterial({ color: 0xf0b3c0, gradientMap: toonGrad(), transparent: true, opacity: .5, depthWrite: false, side: THREE.DoubleSide }));
             sh.renderOrder = 3; g.add(sh); g.userData.shell = sh; sh.material.userData.noHL = true;
           }
+          g.traverse(o => { o.matrixAutoUpdate = false; }); // body parts never move: their matrices are composed once (identity), not every frame
           grp.add(g); F.pickables.push(g); F.parts[p.id] = { g, p }; regMesh(p.id, g);
         });
       }))).then(() => {
@@ -148,6 +172,7 @@ function applyMode(F) {
   if (F.modeSeg && F._layer !== layer) { F._layer = layer; const b = F.modeSeg.querySelector('[data-k=auto]'); if (b) b.textContent = layer ? 'Auto: ' + layer : 'Auto'; }
   const focus = bodyFocus(F), hov = hovered && hovered.userData && hovered.userData.part ? hovered : null;
   let vs = 0, vi = 0; // which parts can be seen (and so picked): when that changes, the hover under a resting pointer is worked out again
+  const olK = F.C ? outlineAmt(1.75 / Math.max(F.C.distanceTo(F.center || V3Z), 1e-6) * PX_PER_RAD()) : 1; // outlines fade out as the figure gets small on screen (outline=near)
   for (const id in F.parts) {
     const { g, p } = F.parts[id], u = g.userData, s = M.vessel !== undefined && isVessel(p) ? 'vessel' : sysOf(p);
     let op = M[s] !== undefined ? M[s] : (M['*'] !== undefined ? M['*'] : 0);
@@ -161,9 +186,9 @@ function applyMode(F) {
     if (u.shell) u.shell.material.opacity = .5 * ev * F.alpha;
     g.visible = ev > .01 && (!F.hidden.has(id) || isSel);
     u.shown = g.visible ? op : 0; vi++; if (u.shown >= BODY_VISIBLE_OP) vs = (vs * 31 + vi) | 0;
-    u.ol.visible = ev > .5 || (hl && ev > .2); u.ol.material.uniforms.uOpacity.value = .85 * Math.max(ev, hl ? .9 : 0) * F.alpha;
+    u.ol.visible = (ev > .5 && olK > .02) || (hl && ev > .2); u.ol.material.uniforms.uOpacity.value = .85 * Math.max(ev * olK, hl ? .9 : 0) * F.alpha;
     u.ol.material.uniforms.uColor.value.setHex(hl ? 0x1e4e8f : 0x1a1f2b);
-    u.main.renderOrder = s === 'skin' ? 2 : 1;
+    u.main.renderOrder = (s === 'skin' ? 2 : 1) + u.rank; u.ol.renderOrder = u.rank; // ink first, then the parts in index order, the skin last
   }
   if (vs !== F._vs) { F._vs = vs; viewChanged(); }
   if (F.showAllBtn) { const n = F.hidden.size, on = n || F.reveal, d = on ? '' : 'none'; if (F.showAllBtn.style.display !== d) F.showAllBtn.style.display = d; const t = n ? `Show everything (${n} hidden)` : F.reveal ? 'Show everything' : ''; if (on && F.showAllBtn.textContent !== t) F.showAllBtn.textContent = t; }
@@ -216,7 +241,8 @@ FT.organ = {
       if (dead || F.filled) return;
       const c = F.pos.clone(), P = { radius: o.R }, mir = o.mirror ? -1 : 1;
       const addMesh = (geo, col, nodeId, pri, title, shell) => {
-        const outer = new THREE.Mesh(geo, illoMat(col, { extra: { clippingPlanes: F.cut ? [plane] : [] } }));
+        // the three meshes of a cut-open part are painted in a fixed order (ink, lit inside, outside: renderOrder below), so all three stay in the blended pass
+        const outer = new THREE.Mesh(geo, illoMat(col, { extra: { clippingPlanes: F.cut ? [plane] : [], transparent: true } }));
         if (shell) { outer.material.opacity = .38; outer.material.depthWrite = false; } // a see-through wall: what is inside it shows
         // the inside of the cut: lit from within so it reads as a hollow, not a black hole
         const inner = new THREE.Mesh(geo, new THREE.MeshToonMaterial({ color: new THREE.Color(col).multiplyScalar(.75), emissive: new THREE.Color(col).multiplyScalar(.28), gradientMap: toonGrad(), side: THREE.BackSide, clippingPlanes: F.cut ? [plane] : [], transparent: true }));
@@ -241,7 +267,7 @@ FT.organ = {
       o.hotspots.forEach(hid => {
         const n = NODE[hid]; if (!n || !n.hotspot || !n.hotspot.at) return;
         const at = new V3(...n.hotspot.at); at.x *= mir; if (at.length() > P.radius * 1.6) at.setLength(P.radius * .8);
-        const g = inked(dotG, 0xffd166, { w: .004 }); g.position.copy(at); F.add(g);
+        const g = inked(dotG, 0xffd166, { w: .004, extra: { transparent: true } }); g.position.copy(at); F.add(g); // a marker is painted over everything, ink first then fill: both stay in the blended pass, where renderOrder decides
         g.userData.main.renderOrder = 11; g.userData.ol.renderOrder = 10; // marker above its own outline
         g.children.forEach(m => { m.material.depthTest = false; });
         Object.assign(g.userData, { id: hid, node: hid, priority: 4, title: n.hotspot.label || n.title, center: () => at.clone(), radius: () => P.radius * .12, madeOf: 'tissue' }); g.userData.main.userData.pickRoot = g; F.pickables.push(g); regMesh(hid, g);

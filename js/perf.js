@@ -17,7 +17,7 @@
 const PERF = (() => {
   const q = new URLSearchParams(location.search), get = (k, ok, d) => { const v = q.get(k); return v !== null && (!ok || ok.includes(v)) ? v : d; };
   const fx = get('fx', ['low', 'high'], '');
-  const PRESET = { low: { bloom: '0', shadows: '0', outline: '0', dprMax: 1 }, high: { bloom: 'full', shadows: '1', outline: 'all', dprMax: 2 }, '': { bloom: 'half', shadows: '1', outline: 'all', dprMax: 2 } }[fx];
+  const PRESET = { low: { bloom: '0', shadows: '0', outline: '0', dprMax: 1 }, high: { bloom: 'full', shadows: '1', outline: 'all', dprMax: 2 }, '': { bloom: 'half', shadows: '1', outline: 'near', dprMax: 2 } }[fx];
   const dprQ = q.get('dpr'), dprN = dprQ !== null && isFinite(+dprQ) && +dprQ > 0 ? clampN(+dprQ, .25, 4) : null;
   function clampN(x, a, b) { return Math.max(a, Math.min(b, x)); }
   const flags = {
