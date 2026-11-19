@@ -798,6 +798,306 @@
     "cut_half"
    ],
    "r": 0.012
+  },
+  {
+   "id": "at_dog_coat_group",
+   "node": "dog_coat_group",
+   "at": [
+    -0.1,
+    0.5,
+    0.1
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_skeleton",
+   "node": "dog_skeleton",
+   "at": [
+    0,
+    0.49,
+    0
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_muscles",
+   "node": "dog_muscles",
+   "at": [
+    -0.25,
+    0.38,
+    0.09
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_organs",
+   "node": "dog_organs",
+   "at": [
+    -0.04,
+    0.4,
+    0
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_gait",
+   "node": "dog_gait",
+   "at": [
+    0.1,
+    0.25,
+    0.075
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_skin_scene",
+   "node": "dog_skin_scene",
+   "at": [
+    -0.1,
+    0.5,
+    0.105
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_skin_epidermis",
+   "node": "dog_skin_epidermis",
+   "at": [
+    -0.1,
+    0.5,
+    0.105
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_skin_dermis",
+   "node": "dog_skin_dermis",
+   "at": [
+    -0.1,
+    0.5,
+    0.105
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_follicle",
+   "node": "dog_follicle",
+   "at": [
+    -0.1,
+    0.5,
+    0.105
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_undercoat",
+   "node": "dog_undercoat",
+   "at": [
+    -0.1,
+    0.5,
+    0.105
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_gland",
+   "node": "dog_gland",
+   "at": [
+    -0.1,
+    0.5,
+    0.105
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_olfactory_epithelium",
+   "node": "dog_olfactory_epithelium",
+   "at": [
+    0.4503,
+    0.5989,
+    0
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_osn",
+   "node": "dog_osn",
+   "at": [
+    0.4503,
+    0.5989,
+    0
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_sustentacular",
+   "node": "dog_sustentacular",
+   "at": [
+    0.4503,
+    0.5989,
+    0
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_basal",
+   "node": "dog_basal",
+   "at": [
+    0.4503,
+    0.5989,
+    0
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_bowman",
+   "node": "dog_bowman",
+   "at": [
+    0.4503,
+    0.5989,
+    0
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_axons",
+   "node": "dog_axons",
+   "at": [
+    0.4503,
+    0.5989,
+    0
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_muscle_scene",
+   "node": "dog_muscle_scene",
+   "at": [
+    -0.25,
+    0.38,
+    0.09
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_muscle_fibre",
+   "node": "dog_muscle_fibre",
+   "at": [
+    -0.25,
+    0.38,
+    0.09
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_nmj",
+   "node": "dog_nmj",
+   "at": [
+    -0.25,
+    0.38,
+    0.09
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_retina_scene",
+   "node": "dog_retina_scene",
+   "at": [
+    0.4238,
+    0.6178,
+    0.0449
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_rod",
+   "node": "dog_rod",
+   "at": [
+    0.4238,
+    0.6178,
+    0.0449
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_cone",
+   "node": "dog_cone",
+   "at": [
+    0.4238,
+    0.6178,
+    0.0449
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_tapetal_cells",
+   "node": "dog_tapetal_cells",
+   "at": [
+    0.4238,
+    0.6178,
+    0.0449
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
+  },
+  {
+   "id": "at_dog_rpe",
+   "node": "dog_rpe",
+   "at": [
+    0.4238,
+    0.6178,
+    0.0449
+   ],
+   "label": "",
+   "r": 0.004,
+   "modes": []
   }
  ],
  "parts": [

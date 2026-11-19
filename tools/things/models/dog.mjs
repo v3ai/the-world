@@ -127,6 +127,14 @@ export default function build() {
   // markers offer the same "next level down" button as parts do (the same tissue scenes as the parts they mark)
   const HD = { hs_ret: { type: 'tissue2', id: 'dog_retina', D: 2.8e-4, button: 'Look inside the retina and tapetum' }, hs_tap: { type: 'tissue2', id: 'dog_retina', D: 2.8e-4, button: 'Look inside the retina and tapetum' }, hs_olf: { type: 'tissue2', id: 'dog_olfactory_epithelium', D: 2.8e-4, button: 'Look inside the smell lining' } };
   for (const h of thing.hotspots) if (HD[h.id]) h.deeper = HD[h.id];
+  // Cards that name no single part (the layers, the tissue and cell cards, the gait card): an invisible locator marker (modes: [] never shows) tells "Show where it is" and goToNode where on the dog to fly.
+  { const P3 = (x, y, z) => [x, y, z], E = H.EYE_C.map(v => v * .01), nose = H.HL(14, 1.3, 0);
+    const AT = { dog_coat_group: P3(-.1, .5, .1), dog_skeleton: P3(0, .49, 0), dog_muscles: P3(-.25, .38, .09), dog_organs: P3(-.04, .4, 0), dog_gait: P3(.1, .25, .075),
+      dog_skin_scene: P3(-.1, .5, .105), dog_skin_epidermis: P3(-.1, .5, .105), dog_skin_dermis: P3(-.1, .5, .105), dog_follicle: P3(-.1, .5, .105), dog_undercoat: P3(-.1, .5, .105), dog_gland: P3(-.1, .5, .105),
+      dog_olfactory_epithelium: nose, dog_osn: nose, dog_sustentacular: nose, dog_basal: nose, dog_bowman: nose, dog_axons: nose,
+      dog_muscle_scene: P3(-.25, .38, .09), dog_muscle_fibre: P3(-.25, .38, .09), dog_nmj: P3(-.25, .38, .09),
+      dog_retina_scene: E, dog_rod: E, dog_cone: E, dog_tapetal_cells: E, dog_rpe: E };
+    for (const [node, at] of Object.entries(AT)) thing.hotspots.push({ id: 'at_' + node, node, at: at.map(v => +v.toFixed(4)), label: '', r: .004, modes: [] }); }
   thing.parts = parts; log('assembled');
   return { thing, meshes, instances };
 }
