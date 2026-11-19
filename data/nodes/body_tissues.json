@@ -28,18 +28,18 @@
   "facts": [
    [
     "Thickness",
-    "≈ 10-100 µm"
+    "from under 1 µm (air sacs of the lung) to about 1 mm or more (epidermis of palms and soles)"
    ],
    [
     "Types",
-    "≈ 8 common"
+    "8 in the standard classification"
    ],
    [
     "Blood vessels",
     "none"
    ]
   ],
-  "did_you_know": "Epithelial cells are the origin of about 85-90% of cancers (carcinomas).",
+  "did_you_know": "Carcinomas, cancers that arise from epithelial cells, make up the large majority of human cancers; the exact share varies by population and registry.",
   "certainty": "C1",
   "refs": [
    [
@@ -78,11 +78,11 @@
     "fibroblast"
    ],
    [
-    "Main fiber",
-    "collagen"
+    "Fibers",
+    "collagen, elastic and reticular, loosely woven"
    ]
   ],
-  "did_you_know": "Collagen is the most abundant protein in the human body.",
+  "did_you_know": "Loose connective tissue is packed with immune cells such as mast cells and macrophages, so it acts as a first guard post wherever tissue is wounded or infected.",
   "certainty": "C1",
   "refs": [
    [
@@ -116,20 +116,20 @@
   "summary": "Tough, fiber-packed tissue forming tendons, ligaments and capsules.",
   "layers": {
    "basics": "Very strong and rope-like tissue that links muscle to bone and bone to bone.",
-   "deeper": "Dense regular tissue has parallel collagen fibers (tendon); dense irregular has woven fibers (dermis).",
+   "deeper": "Dense regular tissue has parallel collagen fibers (tendon); dense irregular tissue has collagen bundles running in many directions (dermis, organ capsules), so it resists pull from any direction.",
    "expert": "Type I collagen fibrils bundled into fascicles; sparse fibroblasts (tenocytes); poor blood supply slows healing."
   },
   "facts": [
    [
     "Tensile strength",
-    "≈ 50-100 MPa (tendon)"
+    "tens of MPa (tendon; varies with tendon, age and test method)"
    ],
    [
     "Collagen content",
     "≈ 70-80% dry mass"
    ]
   ],
-  "did_you_know": "Tendons can store and return a significant part of the energy of a running stride.",
+  "did_you_know": "Tendons act as springs: in running, the Achilles tendon stores energy as it stretches and returns part of it as it recoils.",
   "certainty": "C1",
   "refs": [
    [
@@ -160,20 +160,23 @@
   "layers": {
    "basics": "Fat cells store extra energy as oil droplets and also cushion organs.",
    "deeper": "White fat stores energy, brown fat makes heat, and fat also releases hormones such as leptin.",
-   "expert": "Adipocytes ≈ 70-120 µm; adipokines (leptin, adiponectin); beige adipocytes can express UCP1; typical body fat ≈ 15-30% in adults."
+   "expert": "Adipocytes ≈ 70-120 µm; adipokines (leptin, adiponectin); beige adipocytes can express UCP1; body-fat share varies with sex and age."
   },
   "facts": [
    [
     "Fat share of body",
-    "≈ 15-30%"
+    "varies with sex and age; typically higher in women than in men"
    ],
    [
     "Energy density",
-    "≈ 37 kJ/g"
+    "≈ 30-34 kJ/g of adipose tissue (pure fat is ≈ 37 kJ/g)"
    ]
   ],
   "did_you_know": "Brown fat, once thought only in infants, is also found in adults.",
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How much do brown and beige fat contribute to total energy expenditure and metabolic health in adult humans?"
+  ],
   "refs": [
    [
     "ANP",
@@ -215,7 +218,7 @@
     "none"
    ]
   ],
-  "did_you_know": "Your nose and ears are mostly cartilage and keep growing slightly through life.",
+  "did_you_know": "Ears measurably get larger through adult life, but whether cartilage growth, sagging or changes in collagen are the cause is not settled.",
   "certainty": "C1",
   "refs": [
    [
@@ -248,7 +251,7 @@
   "layers": {
    "basics": "Bone is a living material, mostly collagen strengthened with calcium phosphate crystals.",
    "deeper": "Cells within bone sense strain and direct remodeling, and blood vessels run through it.",
-   "expert": "About 65% mineral (hydroxyapatite), ≈ 25% organic (mostly collagen I) and ≈ 10% water by weight; osteon structure; turnover of ≈ 10% of the skeleton per year."
+   "expert": "About 65% mineral (hydroxyapatite), ≈ 25% organic (mostly collagen I) and ≈ 10% water by weight; osteon structure; whole-skeleton turnover ≈ 10% per year, far faster in spongy bone than in cortical bone."
   },
   "facts": [
    [
@@ -257,10 +260,10 @@
    ],
    [
     "Turnover",
-    "≈ 10%/yr"
+    "≈ 10%/yr overall (spongy ≈ 28%, dense cortical ≈ 4%)"
    ]
   ],
-  "did_you_know": "Most of your adult skeleton is replaced over about a decade.",
+  "did_you_know": "On average about a tenth of your skeleton is remodelled each year, so the whole skeleton is renewed in roughly a decade. Spongy bone turns over much faster than the dense bone of the shaft.",
   "certainty": "C1",
   "refs": [
    [
@@ -289,7 +292,6 @@
    "neutrophil",
    "lymphocyte_t",
    "lymphocyte_b",
-   "macrophage",
    "platelet"
   ],
   "processes": [],
@@ -297,7 +299,7 @@
   "mesh": null,
   "summary": "A fluid connective tissue: cells suspended in plasma.",
   "layers": {
-   "basics": "Blood is a tissue with floating cells in liquid.",
+   "basics": "Blood is a liquid tissue. Its fluid part, plasma, carries proteins and dissolved substances; floating in it are red cells that carry oxygen, white cells that defend you, and platelets that help blood clot.",
    "deeper": "Cells include red cells, white cells and platelets; plasma carries proteins and solutes.",
    "expert": "Hematopoiesis from HSCs; erythrocytes ≈ 4.5-5.5×10^12/L, leukocytes ≈ 4-11×10^9/L, platelets ≈ 150-400×10^9/L."
   },
@@ -349,12 +351,12 @@
   "layers": {
    "basics": "Muscles are bundles of long fibers that shorten when told to.",
    "deeper": "Each muscle fiber is a giant multinucleated cell packed with striped contractile units.",
-   "expert": "Fibers bundled into fascicles with endomysium, perimysium, epimysium; satellite cells repair; motor-unit organization."
+   "expert": "Fibers bundled into fascicles with endomysium, perimysium, epimysium; each fiber holds many myofibrils built of repeating sarcomeres, in which myosin heads pull on actin filaments; satellite cells repair; motor-unit organization."
   },
   "facts": [
    [
     "Fiber length",
-    "≈ up to cm"
+    "from a few mm to many cm, depending on the muscle"
    ],
    [
     "Fiber diameter",
@@ -390,7 +392,7 @@
   "mesh": null,
   "summary": "Striated, involuntary muscle of the heart with branching cells.",
   "layers": {
-   "basics": "The heart muscle never rests and cannot tire.",
+   "basics": "The heart muscle contracts about once a second for a whole lifetime, resting only briefly between beats, and is built to resist fatigue.",
    "deeper": "Cells are joined end to end at intercalated discs, so electrical signals spread.",
    "expert": "Gap junctions (connexin 43) enable syncytium-like conduction; desmosomes bear force; ≈ 25-35% of volume is mitochondria."
   },
@@ -401,11 +403,14 @@
    ],
    [
     "Mitochondria",
-    "≈ 30% of volume"
+    "≈ 25-35% of cell volume"
    ]
   ],
-  "did_you_know": "Heart muscle cells turn over very slowly, around 1% per year in young adults.",
-  "certainty": "C1",
+  "did_you_know": "Carbon-14 dating suggests human heart muscle cells are replaced very slowly, about 1% a year in young adults and less in old age, though other studies report faster renewal.",
+  "certainty": "C2",
+  "open_questions": [
+   "How fast are adult human heart muscle cells replaced, and can the heart be induced to regenerate muscle after injury?"
+  ],
   "refs": [
    [
     "ANP",
@@ -450,7 +455,7 @@
     "1"
    ]
   ],
-  "did_you_know": "Uterine smooth muscle cells grow in length about tenfold during pregnancy.",
+  "did_you_know": "Uterine smooth muscle cells lengthen several-fold during pregnancy as the uterus grows.",
   "certainty": "C1",
   "refs": [
    [
@@ -482,12 +487,12 @@
   "layers": {
    "basics": "Neurons send signals; glial cells feed, insulate and protect them.",
    "deeper": "Gray matter is cell-body rich and white matter holds myelinated fibers.",
-   "expert": "Neurons, astrocytes, oligodendrocytes, microglia (CNS); Schwann cells (PNS); glia:neuron ratio is ≈ 1:1 overall in the human brain."
+   "expert": "Neurons, astrocytes, oligodendrocytes, microglia (CNS); Schwann cells (PNS); the glia:neuron ratio is ≈ 1:1 across the whole human brain but differs between regions (about 85 billion non-neuronal cells to 86 billion neurons in one count)."
   },
   "facts": [
    [
     "Glia:neuron",
-    "≈ 1:1"
+    "≈ 1:1 in the whole human brain; differs between regions"
    ],
    [
     "Brain water",
@@ -525,15 +530,15 @@
   "layers": {
    "basics": "One thin layer of flat cells lines air sacs and blood vessels, letting gases pass easily.",
    "deeper": "Found in alveoli (type I cells), capillary endothelium and mesothelium.",
-   "expert": "Thickness ≈ 0.1-0.5 µm in the alveolar wall; allows passive diffusion."
+   "expert": "Gas flux across the barrier follows Fick's law: it grows with surface area and pressure difference and falls with thickness. Thin type I cells, together with the capillary endothelium and their shared basement membrane, make the barrier very thin."
   },
   "facts": [
    [
     "Thickness",
-    "≈ 0.2-2 µm"
+    "air-blood barrier of the lung well under 1 µm in thin regions"
    ]
   ],
-  "did_you_know": "The alveolar wall that gases cross is far thinner than a human hair, about 1/100 the width.",
+  "did_you_know": "The air-blood barrier that gases cross is far thinner than a human hair.",
   "certainty": "C1",
   "refs": [
    [
@@ -574,7 +579,7 @@
     "≈ 20-30 µm"
    ]
   ],
-  "did_you_know": "Goblet cells produce about a liter of mucus a day in the gut.",
+  "did_you_know": "Goblet cells and other mucus-secreting cells keep the digestive tract coated with mucus; the daily total is large, but published figures are loose estimates.",
   "certainty": "C1",
   "refs": [
    [
@@ -606,7 +611,7 @@
   "summary": "Many layers of cells that resist wear, like skin.",
   "layers": {
    "basics": "Layered flat cells tough enough for the skin, mouth and esophagus.",
-   "deeper": "Keratinized in skin, non-keratinized in mouth and esophagus.",
+   "deeper": "Keratinized in skin (and parts of the mouth such as gums and hard palate), non-keratinized in the cheek lining, floor of the mouth and esophagus.",
    "expert": "Basal stem cells renew the layers; differentiation moves cells to the surface."
   },
   "facts": [
@@ -616,10 +621,10 @@
    ],
    [
     "Turnover (skin)",
-    "≈ 28-40 days"
+    "≈ 4-6 weeks in adults; slower with age"
    ]
   ],
-  "did_you_know": "The inside of your cheek replaces itself in about a week.",
+  "did_you_know": "The lining of your cheek is replaced faster than your skin, in days to a few weeks depending on the study.",
   "certainty": "C1",
   "refs": [
    [
@@ -649,13 +654,17 @@
   "summary": "A stretchy multi-layer lining of the bladder and ureters.",
   "layers": {
    "basics": "This lining can stretch when the bladder fills.",
-   "deeper": "Umbrella cells flatten as the bladder expands.",
+   "deeper": "As the bladder fills, the folded surface cells flatten and the lining thins, so it can stretch without leaking.",
    "expert": "Uroplakin plaques and tight junctions form a highly impermeable barrier to urine."
   },
   "facts": [
    [
     "Barrier",
-    "one of the tightest in the body"
+    "permeability to urine is very low"
+   ],
+   [
+    "Bladder empty vs full",
+    "lining looks thick and folded when empty, thin and flat when stretched"
    ]
   ],
   "did_you_know": "It is among the least permeable epithelia in the body.",

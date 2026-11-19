@@ -1,0 +1,5 @@
+{
+ "thing": "robin",
+ "placement": { "on": { "thing": "boulder", "placement": 0, "at": [0.02, 0.686, -0.05] }, "rot": -30, "scale": 1 },
+ "note": "The robin stands on the highest flat spot of the first boulder (found from the boulder's baked mesh: within 5 mm over a 10 cm patch). The park position is about (-4.60, 0.69, 3.35) m. The old pick id `bird` stays as an invisible alias at the robin."
+}

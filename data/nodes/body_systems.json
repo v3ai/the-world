@@ -31,8 +31,8 @@
   "summary": "An adult human is a single organism built from about 30 trillion human cells organized into tissues, organs and eleven cooperating organ systems.",
   "layers": {
    "basics": "Your body is a layered machine. Cells form tissues, tissues form organs, and organs team up in organ systems that move you, feed you, protect you and think.",
-   "deeper": "Roughly 60% of adult body mass is water. The systems constantly trade signals and materials: the nervous and endocrine systems coordinate, the cardiovascular system delivers, and the skin, kidneys and lungs keep the internal environment stable (homeostasis).",
-   "expert": "Typical reference adult: about 30 trillion human cells (≈37 trillion in older estimates) and a comparable number of resident microbes (roughly 1:1, not the old 10:1). Core temperature is regulated near 37 C, plasma pH near 7.40, and blood glucose near 5 mmol/L through negative-feedback loops."
+   "deeper": "Roughly 50-60% of adult body mass is water. The systems constantly trade signals and materials: the nervous and endocrine systems coordinate, the cardiovascular system delivers, and the skin, kidneys and lungs keep the internal environment stable (homeostasis).",
+   "expert": "Typical reference adult: about 30 trillion human cells for a 70 kg reference man (Sender et al., 2016; estimates differ between studies and with body size and sex) and a comparable number of resident microbes (roughly 1:1, not the old 10:1). Core temperature is regulated near 37 C, plasma pH near 7.40, and blood glucose near 5 mmol/L through negative-feedback loops."
   },
   "facts": [
    [
@@ -45,15 +45,18 @@
    ],
    [
     "Human cells",
-    "≈ 3×10^13"
+    "≈ 3×10^13 (reference man; estimate)"
    ],
    [
     "Water fraction",
-    "≈ 60%"
+    "≈ 50-60% of adult body mass (lower in old age)"
    ]
   ],
-  "did_you_know": "You shed roughly 30,000-40,000 dead skin cells every minute, and most of the dust on a table is not mostly skin.",
-  "certainty": "C1",
+  "did_you_know": "Your skin sheds dead outer cells all the time, but the popular claim that house dust is mostly dead skin is a myth. Household dust is a mix of soil, fibres, pollen and other debris.",
+  "certainty": "C2",
+  "open_questions": [
+   "How many human cells and resident microbes does a typical person have? Published counts differ by study and depend on body size, sex and what is counted."
+  ],
   "refs": [
    [
     "ANP",
@@ -64,6 +67,11 @@
     "ANP",
     "1.5",
     "1-5-homeostasis"
+   ],
+   [
+    "ANP",
+    "26.1",
+    "26-1-body-fluids-and-fluid-compartments"
    ]
   ],
   "kn": [
@@ -92,7 +100,7 @@
   "layers": {
    "basics": "Your skin keeps water in and germs out, helps control temperature through sweat, and lets you feel touch. Hair and nails are made of tough keratin.",
    "deeper": "The skin is the body's largest organ. Its layers (epidermis, dermis, hypodermis) house sensory receptors, sweat and oil glands, hair follicles, and a vascular network that can shunt blood to shed or hold heat. It also makes vitamin D3 when UVB reaches the epidermis.",
-   "expert": "Barrier function depends on the stratum corneum 'bricks and mortar' of corneocytes and lamellar lipids (ceramides, cholesterol, free fatty acids). Melanocytes transfer melanosomes to keratinocytes to shield nuclei from UV. Thermoregulation uses eccrine sweating (up to about 1-2 L/h) and arteriovenous anastomoses."
+   "expert": "Barrier function depends on the stratum corneum 'bricks and mortar' of corneocytes and lamellar lipids (ceramides, cholesterol, free fatty acids). Melanocytes transfer melanosomes to keratinocytes to shield nuclei from UV. Thermoregulation uses eccrine sweating (rates rise steeply in hard exercise or heat and differ with fitness and acclimatisation) and arteriovenous anastomoses."
   },
   "facts": [
    [
@@ -100,15 +108,11 @@
     "≈ 1.7-2 m²"
    ],
    [
-    "Mass",
-    "≈ 4-5 kg"
-   ],
-   [
     "Epidermis thickness",
     "≈ 0.05-1.5 mm"
    ]
   ],
-  "did_you_know": "Your outer skin layer is replaced about every 4 to 6 weeks.",
+  "did_you_know": "The outermost layer of your skin, the stratum corneum, is replaced about every 4 weeks.",
   "certainty": "C1",
   "refs": [
    [
@@ -117,9 +121,9 @@
     "5-1-layers-of-the-skin"
    ],
    [
-    "BIO",
-    "33.1",
-    "33-1-animal-form-and-function"
+    "ANP",
+    "5.3",
+    "5-3-functions-of-the-integumentary-system"
    ]
   ],
   "kn": [
@@ -198,11 +202,6 @@
     "ANP",
     "6.1",
     "6-1-the-functions-of-the-skeletal-system"
-   ],
-   [
-    "BIO",
-    "33.1",
-    "33-1-animal-form-and-function"
    ]
   ],
   "kn": [
@@ -244,7 +243,7 @@
   "summary": "Skeletal muscles pull on bones to move the body, hold posture and generate heat.",
   "layers": {
    "basics": "Muscles work by shortening. You have hundreds of skeletal muscles that you control on purpose, plus heart and smooth muscle that work automatically.",
-   "deeper": "Skeletal muscles are attached to bones by tendons and act as levers across joints. They can only pull, so they work in opposing pairs (agonist and antagonist). Together they make up about 40% of body mass and produce much of resting body heat.",
+   "deeper": "Skeletal muscles are attached to bones by tendons and act as levers across joints. They can only pull, so they work in opposing pairs (agonist and antagonist). Together they make up about 40% of body mass and also give off heat, which is most of the body's extra heat during exercise and shivering.",
    "expert": "Force arises from cross-bridge cycling within sarcomeres, controlled by motor-unit recruitment (size principle) and rate coding. Fibers vary from slow oxidative (type I) to fast glycolytic (type IIx), with plasticity under training."
   },
   "facts": [
@@ -255,13 +254,9 @@
    [
     "Share of body mass",
     "≈ 35-45%"
-   ],
-   [
-    "Heat at rest",
-    "≈ 20-25% of resting heat"
    ]
   ],
-  "did_you_know": "The stapedius in your ear is the smallest skeletal muscle, about 1 mm long.",
+  "did_you_know": "The stapedius in your middle ear is usually called the smallest skeletal muscle in the body. Cadaver studies put its belly at about 3-4 mm long, or about 5 mm with its tendon.",
   "certainty": "C1",
   "refs": [
    [
@@ -270,9 +265,9 @@
     "10-1-overview-of-muscle-tissues"
    ],
    [
-    "BIO",
-    "33.1",
-    "33-1-animal-form-and-function"
+    "ANP",
+    "10.2",
+    "10-2-skeletal-muscle"
    ]
   ],
   "kn": [
@@ -309,7 +304,7 @@
   "layers": {
    "basics": "Your nervous system is a fast communications network. Neurons send electrical pulses and chemical messages to sense, decide, and move.",
    "deeper": "It has a central part (brain and spinal cord) and a peripheral part (nerves, ganglia). The somatic branch handles voluntary movement and sensation; the autonomic branch (sympathetic, parasympathetic, enteric) runs organs automatically.",
-   "expert": "The CNS contains roughly 86 billion neurons and a similar order of glia. Signaling uses action potentials along axons and chemical or electrical synapses; plasticity (LTP/LTD, structural remodeling) underlies learning. Autonomic output integrates through hypothalamic and brainstem nuclei."
+   "expert": "The human brain contains roughly 86 billion neurons and about as many non-neuronal cells (glia and others), according to direct counts in four adult male brains (Azevedo et al., 2009). Signaling uses action potentials along axons and chemical or electrical synapses; plasticity (LTP/LTD, structural remodeling) underlies learning. Autonomic output integrates through hypothalamic and brainstem nuclei."
   },
   "facts": [
    [
@@ -326,7 +321,10 @@
    ]
   ],
   "did_you_know": "The brain is about 2% of body mass but uses roughly 20% of resting energy.",
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How do networks of neurons store memories and skills, and which of the many known forms of plasticity matter most for learning?"
+  ],
   "refs": [
    [
     "ANP",
@@ -334,9 +332,9 @@
     "12-1-basic-structure-and-function-of-the-nervous-system"
    ],
    [
-    "BIO",
-    "33.1",
-    "33-1-animal-form-and-function"
+    "ANP",
+    "12.4",
+    "12-4-the-action-potential"
    ]
   ],
   "kn": [
@@ -368,21 +366,21 @@
   "mesh": null,
   "summary": "Glands release hormones into the blood to regulate growth, metabolism, stress and reproduction.",
   "layers": {
-   "basics": "Hormones are chemical messengers. Glands drop them into the blood, and they act slowly but for a long time on far-away targets.",
+   "basics": "Hormones are chemical messengers. Glands drop them into the blood, and they travel through the blood to far-away targets. Their effects range from seconds (adrenaline) to many hours or days (some reproductive and thyroid hormones).",
    "deeper": "The endocrine system works through feedback loops such as the hypothalamus-pituitary axes. Hormones are peptides, steroids or amines, and bind receptors on the cell surface or inside cells.",
    "expert": "Major axes: HPA (CRH-ACTH-cortisol), HPT (TRH-TSH-T3/T4), HPG, GH-IGF-1. Peptide hormones act through GPCR/RTK second-messenger cascades; steroid and thyroid hormones act through nuclear receptors altering transcription. Pulsatility and circadian rhythm shape effects."
   },
   "facts": [
    [
     "Hormone classes",
-    "3 (peptide, steroid, amine)"
+    "3 main chemical groups in the usual scheme (peptide, steroid, amine)"
    ],
    [
     "Pituitary mass",
     "≈ 0.5 g"
    ]
   ],
-  "did_you_know": "The pituitary gland, the 'master gland', is only about the size of a pea.",
+  "did_you_know": "The pituitary gland, often called the 'master gland', is only about the size of a pea, and it is itself directed by the hypothalamus.",
   "certainty": "C1",
   "refs": [
    [
@@ -391,9 +389,9 @@
     "17-1-an-overview-of-the-endocrine-system"
    ],
    [
-    "BIO",
-    "33.1",
-    "33-1-animal-form-and-function"
+    "ANP",
+    "17.3",
+    "17-3-the-pituitary-gland-and-hypothalamus"
    ]
   ],
   "kn": [
@@ -429,7 +427,7 @@
   "summary": "The heart pumps blood through a closed network of vessels carrying oxygen, nutrients and waste.",
   "layers": {
    "basics": "Your heart pushes blood around a loop of tubes. The blood delivers oxygen and food to every cell and carries waste away.",
-   "deeper": "Two circuits operate in series: the pulmonary circuit (right heart to lungs) and the systemic circuit (left heart to the body). About 5 L of blood circulates through roughly 100,000 km of vessels in an adult.",
+   "deeper": "Two circuits operate in series: the pulmonary circuit (right heart to lungs) and the systemic circuit (left heart to the body). About 5 L of blood circulates through a vessel network whose total length is only roughly known. The popular figure of 100,000 km is an old back-of-envelope estimate, and recent work suggests the true value is much lower.",
    "expert": "Cardiac output = stroke volume × heart rate (≈ 5 L/min at rest, up to 20-25 L/min in exercise). Mean arterial pressure is regulated by baroreceptors, the renin-angiotensin-aldosterone system and autonomic tone. Capillary exchange follows Starling forces."
   },
   "facts": [
@@ -442,11 +440,11 @@
     "≈ 100,000"
    ],
    [
-    "Vessel length",
-    "≈ 100,000 km (often-quoted estimate)"
+    "Total vessel length",
+    "only roughly known (the old '100,000 km' figure is not reliable)"
    ]
   ],
-  "did_you_know": "The vessel length figure of about 100,000 km is an oft-repeated estimate, and capillaries make up most of it.",
+  "did_you_know": "The famous '100,000 km of blood vessels' comes from an old estimate that assumed a very muscular body and a very dense capillary bed. Measured capillary densities in human muscle are several times lower, so the real total is far smaller.",
   "certainty": "C1",
   "refs": [
    [
@@ -456,8 +454,8 @@
    ],
    [
     "BIO",
-    "33.1",
-    "33-1-animal-form-and-function"
+    "40.3",
+    "40-3-mammalian-heart-and-blood-vessels"
    ]
   ],
   "kn": [
@@ -498,15 +496,18 @@
    ],
    [
     "Lymph nodes",
-    "≈ 600-700"
+    "≈ 500-600 (varies by person)"
    ],
    [
     "Lymphocytes",
-    "≈ 2×10^12"
+    "≈ 4-5×10^11 (classic estimate from 1974; uncertain)"
    ]
   ],
-  "did_you_know": "The thymus shrinks throughout adult life and is mostly fat by old age.",
-  "certainty": "C1",
+  "did_you_know": "The thymus is largest in childhood. It starts shrinking after puberty and its tissue is gradually replaced by fat, though some thymus tissue remains in old age.",
+  "certainty": "C2",
+  "open_questions": [
+   "How is long-term immune memory maintained for decades, and how many lymphocytes does a person have? The usual total is an old extrapolation from rat data."
+  ],
   "refs": [
    [
     "ANP",
@@ -515,8 +516,8 @@
    ],
    [
     "BIO",
-    "33.1",
-    "33-1-animal-form-and-function"
+    "42.2",
+    "42-2-adaptive-immune-response"
    ]
   ],
   "kn": [
@@ -554,18 +555,18 @@
   "facts": [
    [
     "Breaths per minute (rest)",
-    "≈ 12-16"
+    "≈ 12-18"
    ],
    [
     "Alveolar surface",
-    "≈ 70 m² (often 50-100 m²)"
+    "≈ 120-140 m² (older estimates ≈ 70 m²)"
    ],
    [
     "Air per breath",
     "≈ 0.5 L"
    ]
   ],
-  "did_you_know": "Your lungs' gas-exchange surface is often compared to a tennis court but is closer to a studio apartment, around 70 m².",
+  "did_you_know": "The gas-exchange surface of your lungs is often compared to a tennis court (about 260 m²). Modern measurements put it at about 120-140 m², roughly half that.",
   "certainty": "C1",
   "refs": [
    [
@@ -574,9 +575,9 @@
     "22-1-organs-and-structures-of-the-respiratory-system"
    ],
    [
-    "BIO",
-    "33.1",
-    "33-1-animal-form-and-function"
+    "ANP",
+    "22.3",
+    "22-3-the-process-of-breathing"
    ]
   ],
   "kn": [
@@ -611,12 +612,12 @@
   "layers": {
    "basics": "Digestion turns your meal into tiny molecules your body can use. Food passes from mouth to stomach to intestines, helped by the liver and pancreas.",
    "deeper": "Mechanical churning and chemical digestion by enzymes, acid and bile reduce food to monomers (sugars, amino acids, fatty acids) absorbed mostly in the small intestine. The large intestine reclaims water and hosts gut microbes.",
-   "expert": "The enteric nervous system and hormones (gastrin, CCK, secretin, GIP, GLP-1) coordinate motility and secretion. Absorption uses brush-border enzymes and transporters (SGLT1, GLUT2/5, PepT1). Hepatic portal blood carries absorbed nutrients to the liver first."
+   "expert": "The enteric nervous system and hormones (gastrin, CCK, secretin, GIP, GLP-1) coordinate motility and secretion. Absorption uses brush-border enzymes and transporters (SGLT1, GLUT2/5, PepT1). Hepatic portal blood carries absorbed sugars, amino acids and short-chain fatty acids to the liver first; long-chain fats are packaged into chylomicrons and enter lymph vessels (lacteals), reaching the blood through the thoracic duct."
   },
   "facts": [
    [
     "GI tract length",
-    "≈ 7-9 m (in life ~4-5 m)"
+    "≈ 7.5-10.5 m (shorter in life, longer after death when muscle tone is lost)"
    ],
    [
     "Transit time",
@@ -627,7 +628,7 @@
     "≈ 30-40 m² (effective)"
    ]
   ],
-  "did_you_know": "The stomach lining replaces itself every few days because acid and enzymes constantly wear it down.",
+  "did_you_know": "The surface lining of your stomach is replaced every few days, which helps keep the layer facing the acid intact.",
   "certainty": "C1",
   "refs": [
    [
@@ -636,9 +637,9 @@
     "23-1-overview-of-the-digestive-system"
    ],
    [
-    "BIO",
-    "33.1",
-    "33-1-animal-form-and-function"
+    "ANP",
+    "23.7",
+    "23-7-chemical-digestion-and-absorption-a-closer-look"
    ]
   ],
   "kn": [
@@ -691,13 +692,13 @@
   "refs": [
    [
     "ANP",
-    "25.1",
-    "25-1-physical-characteristics-of-urine"
+    "25.5",
+    "25-5-physiology-of-urine-formation"
    ],
    [
-    "BIO",
-    "33.1",
-    "33-1-animal-form-and-function"
+    "ANP",
+    "25.6",
+    "25-6-tubular-reabsorption"
    ]
   ],
   "kn": [
@@ -732,14 +733,14 @@
   "facts": [
    [
     "Sperm production",
-    "≈ 10^7-10^8 per day (range)"
+    "≈ 4.5×10^7 to 2.1×10^8 per day (range for most men aged 20-50; varies with testis size)"
    ],
    [
     "Menstrual cycle",
     "≈ 28 days (typical, varies)"
    ]
   ],
-  "did_you_know": "A human egg is the largest human cell, about 0.1 mm across, just visible to the naked eye.",
+  "did_you_know": "A human egg is one of the largest cells in the body by volume, about 0.1 mm across and just visible to the naked eye. Muscle fibres and neurons are longer but much thinner.",
   "certainty": "C1",
   "refs": [
    [
@@ -748,9 +749,19 @@
     "27-1-anatomy-and-physiology-of-the-testicular-reproductive-system"
    ],
    [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ],
+   [
     "BIO",
-    "33.1",
-    "33-1-animal-form-and-function"
+    "43.3",
+    "43-3-human-reproductive-anatomy-and-gametogenesis"
+   ],
+   [
+    "BIO",
+    "43.4",
+    "43-4-hormonal-control-of-human-reproduction"
    ]
   ],
   "kn": [

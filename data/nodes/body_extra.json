@@ -24,21 +24,24 @@
   "summary": "The network of arteries, veins and capillaries that carries blood everywhere.",
   "layers": {
    "basics": "Blood vessels are the body's plumbing: arteries carry blood out, capillaries exchange materials, and veins bring blood back.",
-   "deeper": "Arteries have thick muscular walls, veins have valves and thin walls, and capillaries are one cell thick.",
+   "deeper": "Vessel walls have up to three layers: an inner lining of endothelial cells on a basement membrane, a middle layer of smooth muscle and elastic fibres, and an outer layer of connective tissue. The middle layer is usually thickest in arteries, while veins are thinner-walled and have valves. Capillaries have only the lining and its basement membrane, which lets gases and nutrients cross.",
    "expert": "Total resistance is set mainly by arterioles; vessel tone is regulated by endothelial NO, sympathetic nerves, and angiotensin II; angiogenesis is driven by VEGF."
   },
   "facts": [
    [
-    "Total length",
-    "≈ 100,000 km (often quoted)"
+    "Capillary width",
+    "≈ 5-10 µm (inner diameter)"
    ],
    [
-    "Capillaries",
-    "≈ 10^10"
+    "Total length of all vessels",
+    "Not well known; the often-quoted 100,000 km is a myth"
    ]
   ],
-  "did_you_know": "If all your capillaries were laid end to end they would circle Earth more than once by the usual estimate, though that figure is approximate.",
+  "did_you_know": "You may have read that your blood vessels would circle Earth more than twice. That figure is not a measurement: it traces back to an early calculation for an idealised, very densely supplied muscle. How long the whole network really is remains uncertain.",
   "certainty": "C2",
+  "open_questions": [
+   "How long is the whole capillary network, and how many capillaries are there? Published estimates rest on assumptions about capillary density and differ widely."
+  ],
   "refs": [
    [
     "ANP",
@@ -70,22 +73,25 @@
   "mesh": null,
   "summary": "The tiny junction where one neuron signals to the next.",
   "layers": {
-   "basics": "A synapse is a microscopic gap across which chemical messengers pass.",
-   "deeper": "The gap (cleft) is about 20 nanometers wide; vesicles on one side release neurotransmitter onto receptors on the other.",
-   "expert": "Active zone with Ca2+ channels and docked vesicles; postsynaptic density with scaffold PSD-95; AMPA/NMDA receptor trafficking underlies LTP; ≈ 10^14-10^15 synapses in the human brain."
+   "basics": "In most synapses, chemical messengers cross a microscopic gap from one neuron to the next. A few synapses are instead direct electrical links.",
+   "deeper": "In a chemical synapse the gap (cleft) is only a few tens of nanometres wide; vesicles on one side release neurotransmitter onto receptors on the other.",
+   "expert": "Active zone with Ca2+ channels and docked vesicles; postsynaptic density with scaffold PSD-95; AMPA/NMDA receptor trafficking is a main mechanism of long-term potentiation (LTP) at many glutamate synapses, though how synaptic plasticity relates to memory is still debated; the number of synapses in the human brain is an order-of-magnitude estimate, not a count."
   },
   "facts": [
    [
-    "Cleft",
-    "≈ 20 nm"
+    "Cleft (chemical synapse)",
+    "Tens of nm"
    ],
    [
     "Synapses in brain",
-    "≈ 10^14-10^15"
+    "Very many; only an order-of-magnitude estimate"
    ]
   ],
-  "did_you_know": "The brain's synapse count is in the hundreds of trillions.",
-  "certainty": "C1",
+  "did_you_know": "Some synapses are not chemical at all: at electrical synapses, ions pass straight from one cell to the next through channels, with no messenger molecule.",
+  "certainty": "C2",
+  "open_questions": [
+   "How synaptic strengthening (LTP) and weakening relate to learning and memory is still debated, as is exactly how much of LTP is expressed before versus after the synapse."
+  ],
   "refs": [
    [
     "ANP",
@@ -124,20 +130,20 @@
   "summary": "The synapse where a motor neuron commands a muscle fiber.",
   "layers": {
    "basics": "This is where nerve meets muscle, using the chemical acetylcholine.",
-   "deeper": "One motor neuron's terminal releases acetylcholine onto receptors on the muscle fiber.",
-   "expert": "Nicotinic ACh receptors (≈ 10^4 µm⁻²) produce end-plate potentials, with a high safety factor; acetylcholinesterase ends the signal; targeted by curare and botulinum toxin."
+   "deeper": "A nerve impulse reaching the terminal opens calcium channels, vesicles of acetylcholine release their contents, and the acetylcholine opens receptors on the muscle fibre. The resulting local depolarisation (the end-plate potential) triggers an action potential in the fibre.",
+   "expert": "Nicotinic ACh receptors, packed densely on the folded muscle membrane, produce end-plate potentials that normally exceed the threshold needed to fire the muscle fibre, a margin called the safety factor; acetylcholinesterase ends the signal. Curare blocks the receptors, while botulinum toxin stops the nerve from releasing acetylcholine."
   },
   "facts": [
    [
     "Safety factor",
-    "≈ 3-5×"
+    "End-plate potential exceeds threshold (margin varies with species and muscle)"
    ],
    [
     "Cleft",
-    "≈ 50 nm"
+    "Tens of nm"
    ]
   ],
-  "did_you_know": "Botulinum toxin paralyzes muscle by blocking acetylcholine release here.",
+  "did_you_know": "Botulinum toxin paralyses muscle by stopping the nerve terminal from releasing acetylcholine, whereas curare blocks the receptors on the muscle side.",
   "certainty": "C1",
   "refs": [
    [
@@ -172,22 +178,22 @@
   "summary": "A tough cord of collagen joining muscle to bone.",
   "layers": {
    "basics": "Tendons transmit the pull of muscles to bones.",
-   "deeper": "They are strong but poorly supplied with blood, so heal slowly.",
-   "expert": "Parallel type I collagen with tenocytes; stores elastic energy (Achilles ≈ 35% of running work); tensile strength ≈ 50-100 MPa."
+   "deeper": "Tendon is dense connective tissue with its collagen fibres lying parallel to the pull. At the muscle end its collagen intertwines with the muscle's connective-tissue wrappings; at the far end it fuses with the covering of the bone. It is strong but poorly supplied with blood, so it heals slowly.",
+   "expert": "Parallel type I collagen with sparse tendon cells (tenocytes). Tendons stretch and recoil, so the Achilles tendon stores and returns part of the energy of each running stride; the share depends on speed and method of measurement."
   },
   "facts": [
    [
-    "Strength",
-    "≈ 50-100 MPa"
+    "Main material",
+    "Type I collagen"
    ]
   ],
-  "did_you_know": "The Achilles tendon can handle loads of several times body weight.",
+  "did_you_know": "The Achilles tendon is the thickest tendon in the body and acts like a spring in running and jumping.",
   "certainty": "C1",
   "refs": [
    [
     "ANP",
-    "11.1",
-    "11-1-interactions-of-skeletal-muscles-their-fascicle-arrangement-and-their-lever-systems"
+    "10.2",
+    "10-2-skeletal-muscle"
    ]
   ],
   "kn": [
@@ -206,16 +212,16 @@
   ],
   "parts": [],
   "made_of": [
-   "bone_tissue"
+   "dense_connective_tissue"
   ],
   "processes": [],
   "related": [],
   "mesh": "teeth",
   "summary": "Your teeth cut, tear and grind food so it can be swallowed and digested.",
   "layers": {
-   "basics": "Teeth are the hardest parts of your body. You grow 20 baby teeth, which fall out and are replaced by 32 adult teeth. Chewing breaks food into small pieces and mixes it with saliva.",
+   "basics": "The enamel on your teeth is the hardest material in your body. You grow 20 baby teeth, which fall out and are replaced by 32 adult teeth. Chewing breaks food into small pieces and mixes it with saliva.",
    "deeper": "Each tooth has a crown above the gum and a root in the jaw. The crown is covered in enamel, under which lies dentin, a bone-like tissue around a pulp cavity holding nerves and blood vessels. The root is covered in cementum.",
-   "expert": "Adult teeth: 8 incisors, 4 canines (cuspids), 8 premolars and 12 molars. Different shapes do different jobs: incisors shear, canines tear, premolars and molars crush and grind. The model shows the teeth as one merged shape."
+   "expert": "Adult teeth number 32: 8 incisors, 4 canines (cuspids), 8 premolars and 12 molars, the last including the wisdom teeth. Enamel is mineral, built of calcium crystals, so it can be dissolved by acids made by bacteria, and it cannot repair itself. A periodontal ligament holds each tooth in its socket in the jaw. Different shapes do different jobs: incisors shear, canines tear, premolars and molars crush and grind. The model shows the teeth as one merged shape."
   },
   "facts": [
    [
@@ -263,8 +269,8 @@
   "summary": "A muscular organ that moves food around the mouth, helps you swallow and speak, and carries your taste buds.",
   "layers": {
    "basics": "Your tongue is made almost entirely of muscle. It pushes food between your teeth, shapes the sounds of speech, and its surface holds the taste buds.",
-   "deeper": "Four muscles inside the tongue change its shape; four more start on nearby bones and move it as a whole. Small bumps called papillae cover the top. Taste buds sit in the mushroom-shaped ones; the thin, pointed ones sense touch. A fold called the lingual frenulum ties it to the floor of the mouth.",
-   "expert": "Intrinsic muscles: superior and inferior longitudinal, transverse and vertical. Extrinsic: genioglossus, hyoglossus, styloglossus and palatoglossus. A frenulum that is too short restricts movement (ankyloglossia, 'tongue tie'). The model shows the tongue's outer shape only."
+   "deeper": "Four muscles inside the tongue change its shape; four more start on nearby bones and move it as a whole. Small bumps called papillae cover the top. Taste buds sit in the mushroom-shaped ones (and in some other kinds of papillae); the thin, pointed ones sense touch and have no taste buds. A fold called the lingual frenulum ties it to the floor of the mouth.",
+   "expert": "Intrinsic muscles: superior and inferior longitudinal, transverse and vertical. Extrinsic: genioglossus, hyoglossus, styloglossus and palatoglossus (the last is often grouped with the palate). A frenulum that is too short restricts movement (ankyloglossia, 'tongue tie'). The model shows the tongue's outer shape only."
   },
   "facts": [
    [
@@ -277,10 +283,10 @@
    ],
    [
     "Taste buds in",
-    "Fungiform papillae"
+    "Fungiform papillae (and others)"
    ]
   ],
-  "did_you_know": "If the fold under the tongue is too short, it restricts movement: this is called tongue tie.",
+  "did_you_know": "The rough feel of your tongue comes from thousands of tiny filiform papillae, which grip food and carry touch receptors.",
   "certainty": "C1",
   "refs": [
    [
@@ -311,9 +317,9 @@
   "mesh": "hyoid",
   "summary": "A small U-shaped bone in the neck that touches no other bone: the base on which the tongue works.",
   "layers": {
-   "basics": "The hyoid sits high in the front of your neck, near the level of your jaw. It is the only bone that is not joined to another bone. Muscles hold it in place and move it as you swallow and speak.",
+   "basics": "The hyoid sits in the front of your neck below the jaw, above the voice box. No joint connects it to another bone. Muscles hold it in place and move it as you swallow and speak.",
    "deeper": "It anchors the tongue above, the larynx below and the pharynx behind. Small muscles above and below move it up, down, forward and back, in step with the tongue, larynx and pharynx.",
-   "expert": "It is not counted as part of the skull. It is held in place only by muscles and ligaments, and its movements are coordinated with the tongue, larynx and pharynx in swallowing and speech."
+   "expert": "It is not counted as part of the skull. Muscles above it (suprahyoid) lift it and muscles below it (infrahyoid) pull it down, and it also anchors the tongue's extrinsic muscles. It is held in place only by muscles and ligaments, so it moves together with the tongue, larynx and pharynx in swallowing and speech."
   },
   "facts": [
    [
@@ -356,14 +362,14 @@
   "mesh": "intervertebral_discs",
   "summary": "Tough, springy pads between the bones of your spine that absorb shock and let it bend.",
   "layers": {
-   "basics": "Between each pair of spine bones lies a disc, like a jelly-filled cushion with a strong skin. Discs soften the load of walking and jumping and let your back bend and twist.",
+   "basics": "Between most pairs of spine bones lies a disc, like a jelly-filled cushion with a strong skin. Discs soften the load of walking and jumping and let your back bend and twist.",
    "deeper": "A disc has a tough fibrous outer ring (the anulus fibrosus) and a softer, gel-like centre (the nucleus pulposus) that resists compression because it holds so much water. Discs make up about a quarter of the height between the pelvis and the base of the skull, and are thinnest in the neck and thickest in the lower back.",
-   "expert": "The anulus is firmly anchored to the rims of the neighbouring vertebral bodies. If the ring tears, the gel can bulge or leak (a herniated disc) and press on a nerve root. The model shows all the discs as one merged shape."
+   "expert": "The anulus is a fibrocartilage ring firmly anchored to the rims of the neighbouring vertebral bodies, and the water-holding nucleus spreads compression sideways into it. If the ring tears, the gel can bulge or leak (a herniated disc) and press on a nerve root. The model shows all the discs as one merged shape."
   },
   "facts": [
    [
-    "Share of trunk height",
-    "about 25%"
+    "Share of spine length",
+    "≈ 25% (between pelvis and skull base)"
    ],
    [
     "Thickest in",
@@ -407,12 +413,12 @@
   "layers": {
    "basics": "Most of the strength in your grip and the fine control of your fingers comes from muscles in your forearm, connected to the fingers by long tendons.",
    "deeper": "They are grouped in front (flexors, which bend the wrist and fingers) and behind (extensors, which straighten them). Pronator teres turns the palm down; brachioradialis helps bend the elbow; extensor digitorum opens the fingers.",
-   "expert": "Anterior compartment: flexor carpi radialis, palmaris longus, flexor carpi ulnaris, flexor digitorum superficialis (superficial); flexor pollicis longus, flexor digitorum profundus (deep). Posterior compartment: extensor carpi radialis longus and brevis, extensor digitorum, extensor digiti minimi, extensor carpi ulnaris (superficial); abductor pollicis longus, extensor pollicis brevis and longus, extensor indicis (deep). The model merges them into one shape per arm."
+   "expert": "Anterior compartment: pronator teres, flexor carpi radialis, palmaris longus, flexor carpi ulnaris, flexor digitorum superficialis (superficial); flexor pollicis longus, flexor digitorum profundus and pronator quadratus (deep). Also brachioradialis (elbow flexor). Posterior compartment: supinator, anconeus, extensor carpi radialis longus and brevis, extensor digitorum, extensor digiti minimi, extensor carpi ulnaris (superficial); abductor pollicis longus, extensor pollicis brevis and longus, extensor indicis (deep). The model merges them into one shape per arm."
   },
   "facts": [
    [
     "Front group",
-    "Bends wrist and fingers"
+    "Bends wrist and fingers; also turns palm down"
    ],
    [
     "Back group",

@@ -69,7 +69,7 @@
   "layers": {
    "basics": "The cap of your shoulder; it raises your arm out to the side, forward and back.",
    "deeper": "Three parts (anterior, middle, posterior) act together to abduct the arm and individually to flex or extend it.",
-   "expert": "Axillary nerve (C5-C6). Middle fibers are multipennate, giving force for abduction beyond the first ~15° initiated by supraspinatus."
+   "expert": "Axillary nerve (C5-C6). The middle fibers are multipennate, which gives them force for abduction. Supraspinatus and deltoid both contribute to abduction; the older rule that supraspinatus alone starts the first 15 degrees is a simplification."
   },
   "facts": [
    [
@@ -117,7 +117,7 @@
   "layers": {
    "basics": "Your biceps bends the elbow and also twists the palm up, as when you turn a screwdriver.",
    "deeper": "It attaches to the shoulder blade and the radius. It is a strong supinator when the elbow is bent.",
-   "expert": "Musculocutaneous nerve (C5-C6); crosses both shoulder and elbow, so it is biarticular. Distal biceps tendon rupture causes a 'Popeye' bulge."
+   "expert": "Musculocutaneous nerve (C5-C6); crosses both shoulder and elbow, so it is biarticular. Rupture of the long head tendon at the shoulder produces a 'Popeye' bulge in the upper arm; rupture of the distal tendon at the elbow produces a 'reverse Popeye' deformity, with the muscle retracted toward the shoulder."
   },
   "facts": [
    [
@@ -129,7 +129,7 @@
     "Musculocutaneous C5-C6"
    ]
   ],
-  "did_you_know": "Its main job is actually turning the forearm, not just bending the elbow.",
+  "did_you_know": "It does two jobs: it bends the elbow, and with the elbow bent it is a strong supinator, turning the palm upward.",
   "certainty": "C1",
   "refs": [
    [
@@ -177,7 +177,7 @@
     "Radial C6-C8"
    ]
   ],
-  "did_you_know": "Triceps means 'three heads'.",
+  "did_you_know": "Its long head crosses the shoulder joint as well as the elbow, so the triceps can act at both.",
   "certainty": "C1",
   "refs": [
    [
@@ -213,12 +213,12 @@
   "layers": {
    "basics": "These are the 'six-pack' muscles; they curl your trunk forward and brace the belly.",
    "deeper": "Tendinous intersections divide each muscle into segments inside the rectus sheath.",
-   "expert": "Innervated by thoracoabdominal nerves (T7-T12); critical for intra-abdominal pressure and trunk flexion."
+   "expert": "Innervated by thoracoabdominal nerves (T7-T12); the main trunk flexor, and one of several abdominal-wall muscles that raise intra-abdominal pressure."
   },
   "facts": [
    [
-    "Segments",
-    "≈ 3-4 per side"
+    "Tendinous intersections",
+    "typically 3 (so 4 segments per side); varies from person to person"
    ],
    [
     "Nerve",
@@ -260,7 +260,7 @@
   "summary": "The outermost side muscles of the abdomen that twist and bend the trunk.",
   "layers": {
    "basics": "They run diagonally along your sides and help you twist and lean.",
-   "deeper": "Working on one side bends and rotates to the opposite side. Both sides together flex the trunk and compress the abdomen.",
+   "deeper": "Acting on one side, it bends the trunk toward that same side and rotates it toward the opposite side. Both sides together flex the trunk and compress the abdomen.",
    "expert": "Fibers run in a 'hands in pockets' direction; form inguinal ligament by aponeurosis. Innervated T7-T12."
   },
   "facts": [
@@ -273,7 +273,7 @@
     "T7-T12"
    ]
   ],
-  "did_you_know": "The three layers of flat abdominal muscles run in crossing directions like plywood for strength.",
+  "did_you_know": "The three flat abdominal muscles run in different directions (external oblique down and in, internal oblique up and in, transversus horizontal), a layered arrangement a little like plywood.",
   "certainty": "C1",
   "refs": [
    [
@@ -309,7 +309,7 @@
   "layers": {
    "basics": "The biggest muscle on the front of your thigh, used to stand up, climb stairs and kick.",
    "deeper": "Rectus femoris, vastus lateralis, medialis and intermedius share one tendon around the patella.",
-   "expert": "Femoral nerve (L2-L4); rectus femoris also flexes the hip. It is the largest muscle mass in the body by volume group."
+   "expert": "Femoral nerve (L2-L4); rectus femoris also flexes the hip. It is commonly described as the largest muscle group in the body."
   },
   "facts": [
    [
@@ -328,6 +328,11 @@
     "ANP",
     "11.6",
     "11-6-appendicular-muscles-of-the-pelvic-girdle-and-lower-limbs"
+   ],
+   [
+    "ANP",
+    "6.2",
+    "6-2-bone-classification"
    ]
   ],
   "kn": [
@@ -356,7 +361,7 @@
   "summary": "The three muscles at the back of the thigh that bend the knee and extend the hip.",
   "layers": {
    "basics": "These muscles pull your heel toward your buttock and help you run.",
-   "deeper": "Biceps femoris, semitendinosus and semimembranosus cross both hip and knee.",
+   "deeper": "Biceps femoris (long head), semitendinosus and semimembranosus cross both hip and knee; the short head of biceps femoris crosses only the knee.",
    "expert": "Tibial and common fibular divisions of the sciatic nerve (L5-S2); injury is common during sprinting in late swing phase."
   },
   "facts": [
@@ -369,7 +374,7 @@
     "Sciatic L5-S2"
    ]
   ],
-  "did_you_know": "The name comes from butchers hanging hams by these tendons.",
+  "did_you_know": "The name joins 'ham', an old word for the back of the thigh and knee, to 'string', meaning tendon. A popular story says butchers hung hams by these tendons.",
   "certainty": "C1",
   "refs": [
    [
@@ -401,11 +406,11 @@
   ],
   "related": [],
   "mesh": "gastrocnemius",
-  "summary": "The main calf muscle that lifts the heel.",
+  "summary": "The superficial calf muscle that lifts the heel and also helps bend the knee.",
   "layers": {
    "basics": "The bulge of your calf; it pushes you up on tiptoe and propels each step.",
    "deeper": "Its two heads join the Achilles tendon with the soleus.",
-   "expert": "Tibial nerve (S1-S2). The Achilles tendon stores and returns elastic energy, ~35% of running work comes from tendon recoil."
+   "expert": "Tibial nerve (S1-S2). The Achilles tendon stores elastic energy as the foot lands and returns part of it at push-off, which reduces the work the muscles must do in running; the share depends on speed and on how it is measured."
   },
   "facts": [
    [
@@ -417,7 +422,7 @@
     "Achilles"
    ]
   ],
-  "did_you_know": "The Achilles tendon is the thickest and strongest tendon in the body.",
+  "did_you_know": "The Achilles tendon is a thick, strong tendon that attaches the calf muscles to the heel bone.",
   "certainty": "C1",
   "refs": [
    [
@@ -451,9 +456,9 @@
   "mesh": "gluteus_maximus",
   "summary": "The big buttock muscle that extends the hip.",
   "layers": {
-   "basics": "The largest muscle in the body; it powers climbing, standing up and running.",
+   "basics": "The largest of the gluteal muscles and generally ranked the largest single muscle in the body; it powers climbing, standing up and running.",
    "deeper": "It extends and rotates the thigh outward and steadies the pelvis.",
-   "expert": "Inferior gluteal nerve (L5-S2). Insertion into the iliotibial tract and gluteal tuberosity. Its size is linked to human bipedal running."
+   "expert": "Inferior gluteal nerve (L5-S2). Insertion into the iliotibial tract and gluteal tuberosity. A leading hypothesis (Bramble and Lieberman, 2004) links its size to endurance running in the human lineage; when and why it enlarged is still debated."
   },
   "facts": [
    [
@@ -462,11 +467,14 @@
    ],
    [
     "Rank",
-    "Largest muscle (by mass)"
+    "Largest gluteal muscle; generally ranked largest muscle overall"
    ]
   ],
-  "did_you_know": "Its large size is an evolutionary signature of upright walking and running.",
-  "certainty": "C1",
+  "did_you_know": "Its large size is often linked to the demands of running, since it is strongly active in running and climbing but little used in level walking; researchers still debate how much of it arose from running versus other uses.",
+  "certainty": "C2",
+  "open_questions": [
+   "When and why the human gluteus maximus enlarged, and how much of that was driven by running rather than other uses, remains debated."
+  ],
   "refs": [
    [
     "ANP",
@@ -501,7 +509,7 @@
   "layers": {
    "basics": "It lets you shrug and pull your shoulder blades together.",
    "deeper": "Upper, middle and lower fibers move the scapula up, back and down.",
-   "expert": "Spinal accessory nerve (CN XI) plus C3-C4. Part of the trapezius derived from branchial arch mesoderm."
+   "expert": "Spinal accessory nerve (CN XI) plus C3-C4. Its embryological origin is mixed: it shares cranial (pharyngeal arch) mesoderm with sternocleidomastoid and also has somite-derived parts, and the exact contribution is still being worked out."
   },
   "facts": [
    [
@@ -509,12 +517,15 @@
     "CN XI + C3-C4"
    ],
    [
-    "Fibers",
-    "upper, middle, lower"
+    "Insertion",
+    "lateral clavicle, acromion and spine of scapula"
    ]
   ],
   "did_you_know": "Trapezius is named for the trapezoid shape formed by its two halves.",
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How much of the trapezius, and of sternocleidomastoid, derives from cranial mesoderm versus somites is still being worked out."
+  ],
   "refs": [
    [
     "ANP",
@@ -557,8 +568,8 @@
     "Thoracodorsal C6-C8"
    ],
    [
-    "Span",
-    "≈ 25-40 cm wide"
+    "Origin",
+    "spinous processes of T7-T12 and lower vertebrae, iliac crest, ribs 9-12"
    ]
   ],
   "did_you_know": "Because of its size, surgeons sometimes borrow it to rebuild other body parts.",
@@ -597,7 +608,7 @@
   "layers": {
    "basics": "Look at the cords running diagonally down your neck when you turn your head; those are sternocleidomastoids.",
    "deeper": "Acting on one side it tilts the head to that side and rotates the face to the other; together they flex the neck.",
-   "expert": "Accessory nerve (CN XI) motor, proprioception from C2-C3; congenital torticollis can result from fibrosis."
+   "expert": "Accessory nerve (CN XI) motor, proprioception from C2-C3; congenital muscular torticollis involves fibrosis and shortening of the muscle; why it develops (for example fetal crowding or birth injury) is still debated."
   },
   "facts": [
    [
@@ -610,7 +621,10 @@
    ]
   ],
   "did_you_know": "It also acts as a respiratory accessory muscle during heavy breathing.",
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "What causes the fibrosis in congenital muscular torticollis (fetal crowding, birth injury or others) is not settled."
+  ],
   "refs": [
    [
     "ANP",

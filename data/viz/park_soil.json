@@ -1,0 +1,450 @@
+{
+ "soil_block": {
+  "type": "geometry",
+  "range": [
+   0,
+   100,
+   0,
+   62
+  ],
+  "shapes": [
+   {
+    "k": "rect",
+    "x": 5,
+    "y": 49,
+    "w": 58,
+    "h": 3,
+    "fill": "#3b2f20"
+   },
+   {
+    "k": "rect",
+    "x": 5,
+    "y": 38,
+    "w": 58,
+    "h": 11,
+    "fill": "#4a3828"
+   },
+   {
+    "k": "rect",
+    "x": 5,
+    "y": 16,
+    "w": 58,
+    "h": 22,
+    "fill": "#9a7b4e"
+   },
+   {
+    "k": "rect",
+    "x": 5,
+    "y": 2,
+    "w": 58,
+    "h": 14,
+    "fill": "#cdb98c"
+   },
+   {
+    "k": "text",
+    "x": 66,
+    "y": 50.5,
+    "text": "O  litter and thatch: about 3 cm",
+    "size": 11,
+    "align": "left"
+   },
+   {
+    "k": "text",
+    "x": 66,
+    "y": 43.5,
+    "text": "A  topsoil: down to about 25 cm",
+    "size": 11,
+    "align": "left"
+   },
+   {
+    "k": "text",
+    "x": 66,
+    "y": 27,
+    "text": "B  subsoil: down to about 80 cm",
+    "size": 11,
+    "align": "left"
+   },
+   {
+    "k": "text",
+    "x": 66,
+    "y": 9,
+    "text": "C  pebble bed: below",
+    "size": 11,
+    "align": "left"
+   }
+  ],
+  "caption": "The four horizons of the block drawn to scale (1.2 m deep). The depths are typical values chosen for the model; real soils vary from place to place."
+ },
+ "soil_formation": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "Sicily: rock to soil",
+    "value": 0.1
+   },
+   {
+    "label": "SE Australia: lowest maximum",
+    "value": 0.05
+   },
+   {
+    "label": "SE Australia: highest maximum",
+    "value": 0.14
+   },
+   {
+    "label": "N California: lowest maximum",
+    "value": 0.08
+   },
+   {
+    "label": "N California: highest maximum",
+    "value": 2.0
+   },
+   {
+    "label": "Earthworm casts (Darwin, Down, 29 years)",
+    "value": 5.6
+   }
+  ],
+  "ylabel": "millimetres a year",
+  "logy": true,
+  "caption": "Published rates of turning rock into soil (and Darwin's rate of burying objects under worm casts, 0.22 inch a year = 5.6 mm). Different sites and methods: a guide to the scale, not one number."
+ },
+ "soil_pores": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "solid: mineral grains",
+    "value": 45
+   },
+   {
+    "label": "solid: organic matter",
+    "value": 5
+   },
+   {
+    "label": "pores: water (silt loam example)",
+    "value": 25
+   },
+   {
+    "label": "pores: air (silt loam example)",
+    "value": 25
+   }
+  ],
+  "ylabel": "% of soil volume",
+  "logy": false,
+  "caption": "Volume shares of a typical soil, and the split of the pores in one silt-loam example (Wikipedia, Soil). Real soils vary; wetter soil has more water and less air."
+ },
+ "soil_decomposition": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "leaf",
+    "label": "Dead leaf (litter)",
+    "x": 10,
+    "y": 50
+   },
+   {
+    "id": "shred",
+    "label": "Shredded and pulled down by woodlice, springtails, mites, earthworms",
+    "x": 38,
+    "y": 20
+   },
+   {
+    "id": "dig",
+    "label": "Digested by fungi and bacteria",
+    "x": 38,
+    "y": 80
+   },
+   {
+    "id": "graze",
+    "label": "Grazed by nematodes, springtails, mites",
+    "x": 68,
+    "y": 80
+   },
+   {
+    "id": "co2",
+    "label": "Carbon dioxide to the air",
+    "x": 92,
+    "y": 20
+   },
+   {
+    "id": "nut",
+    "label": "Nutrients in the soil water",
+    "x": 92,
+    "y": 50
+   },
+   {
+    "id": "hum",
+    "label": "Humus in the soil",
+    "x": 92,
+    "y": 82
+   }
+  ],
+  "edges": [
+   {
+    "from": "leaf",
+    "to": "shred"
+   },
+   {
+    "from": "shred",
+    "to": "dig",
+    "label": "smaller pieces"
+   },
+   {
+    "from": "dig",
+    "to": "graze"
+   },
+   {
+    "from": "dig",
+    "to": "co2"
+   },
+   {
+    "from": "dig",
+    "to": "nut"
+   },
+   {
+    "from": "dig",
+    "to": "hum"
+   }
+  ],
+  "caption": "A relay: animals shred, fungi and bacteria digest, small animals graze on them. Simplified: real soil food webs are much more tangled."
+ },
+ "soil_carbon": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "Atmosphere (2011)",
+    "value": 828
+   },
+   {
+    "label": "Vegetation: low estimate",
+    "value": 450
+   },
+   {
+    "label": "Vegetation: high estimate",
+    "value": 650
+   },
+   {
+    "label": "Litter and soils: low estimate",
+    "value": 1500
+   },
+   {
+    "label": "Litter and soils: high estimate",
+    "value": 2400
+   },
+   {
+    "label": "Permafrost soils (extra)",
+    "value": 1700
+   }
+  ],
+  "ylabel": "petagrams of carbon (PgC)",
+  "logy": false,
+  "caption": "Carbon reservoirs in the IPCC Fifth Assessment Report: the atmosphere, plants and soils (ranges shown as a low and a high bar). Source: Working Group I, chapter 6, Figure 6.1."
+ },
+ "soil_nitrogen": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "n2",
+    "label": "Nitrogen gas (N2) in air",
+    "x": 8,
+    "y": 20
+   },
+   {
+    "id": "nh",
+    "label": "Ammonia and ammonium (NH3, NH4+)",
+    "x": 40,
+    "y": 20
+   },
+   {
+    "id": "no2",
+    "label": "Nitrite (NO2-)",
+    "x": 40,
+    "y": 55
+   },
+   {
+    "id": "no3",
+    "label": "Nitrate (NO3-)",
+    "x": 70,
+    "y": 55
+   },
+   {
+    "id": "org",
+    "label": "Organic nitrogen in plants and animals",
+    "x": 70,
+    "y": 20
+   },
+   {
+    "id": "dead",
+    "label": "Dead matter, wastes",
+    "x": 92,
+    "y": 38
+   }
+  ],
+  "edges": [
+   {
+    "from": "n2",
+    "to": "nh",
+    "label": "fixation (bacteria)"
+   },
+   {
+    "from": "nh",
+    "to": "no2",
+    "label": "nitrification"
+   },
+   {
+    "from": "no2",
+    "to": "no3",
+    "label": "nitrification"
+   },
+   {
+    "from": "no3",
+    "to": "org",
+    "label": "uptake by roots"
+   },
+   {
+    "from": "nh",
+    "to": "org",
+    "label": "uptake by roots"
+   },
+   {
+    "from": "org",
+    "to": "dead"
+   },
+   {
+    "from": "dead",
+    "to": "nh",
+    "label": "ammonification"
+   },
+   {
+    "from": "no3",
+    "to": "n2",
+    "label": "denitrification"
+   }
+  ],
+  "caption": "The soil nitrogen cycle as the standard accounts describe it. Microbes carry out every step except plant uptake."
+ },
+ "soil_handful": {
+  "type": "table",
+  "cols": [
+   "Group",
+   "Size",
+   "Abundance estimate"
+  ],
+  "rows": [
+   [
+    "Bacteria",
+    "0.5 to 5 µm",
+    "≈ 10⁸ per gram"
+   ],
+   [
+    "Fungi (counted as units)",
+    "hyphae 4 to 6 µm wide",
+    "≈ 10⁶ per gram of garden soil"
+   ],
+   [
+    "Nematodes",
+    "often under 2.5 mm",
+    "often over 10⁶ per m²"
+   ],
+   [
+    "Springtails",
+    "1 to 2 mm (soil dwellers)",
+    "estimates ≈ 10⁵ per m²"
+   ],
+   [
+    "Earthworms",
+    "90 to 300 mm (L. terrestris)",
+    "13 per m² (Hensen, a garden)"
+   ]
+  ],
+  "caption": "Published estimates of soil life. They come from different methods and places: use them for scale, not as a count of this block."
+ },
+ "soil_cec": {
+  "type": "table",
+  "cols": [
+   "Material",
+   "CEC (meq per 100 g)"
+  ],
+  "rows": [
+   [
+    "Kaolinite",
+    "3"
+   ],
+   [
+    "Halloysite",
+    "12"
+   ],
+   [
+    "Illite",
+    "25"
+   ],
+   [
+    "Chlorite",
+    "40"
+   ],
+   [
+    "Smectite",
+    "85"
+   ],
+   [
+    "Vermiculite",
+    "150"
+   ],
+   [
+    "Humus",
+    "100 to 300"
+   ]
+  ],
+  "caption": "Cation-exchange capacity of clay minerals (Wikipedia, Clay minerals) and humus (Donahue, Miller and Shickluna 1977, via Wikipedia, Soil). Single values are mid-range; real clays vary."
+ },
+ "soil_earthworm": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "woodlouse (15 mm)",
+    "value": 15
+   },
+   {
+    "label": "Lumbricus: shortest usual (110 mm)",
+    "value": 110
+   },
+   {
+    "label": "Lumbricus: model (170 mm)",
+    "value": 170
+   },
+   {
+    "label": "Lumbricus: longest usual (200 mm)",
+    "value": 200
+   },
+   {
+    "label": "burrow depth: usual limit (500 mm)",
+    "value": 500
+   }
+  ],
+  "ylabel": "millimetres",
+  "logy": false,
+  "caption": "The earthworm of the block against the usual range of the species and a woodlouse. Burrows reach 50 cm usually and sometimes much deeper."
+ },
+ "soil_darwin": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "objects buried in 10 years: poor pasture",
+    "value": 0.83
+   },
+   {
+    "label": "objects buried in 10 years: good pasture, Down",
+    "value": 2.2
+   },
+   {
+    "label": "Leith Hill castings, spread out over 10 years (terrace)",
+    "value": 0.9
+   },
+   {
+    "label": "Leith Hill castings, spread out over 10 years (common)",
+    "value": 1.43
+   }
+  ],
+  "ylabel": "inches in ten years",
+  "logy": false,
+  "caption": "How deep Darwin found worm castings bury things in ten years, from burial of objects on fields and from weighed castings (The Formation of Vegetable Mould, 1881, chapter 3)."
+ }
+}

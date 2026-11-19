@@ -117,12 +117,12 @@
   },
   "facts": [
    [
-    "Core themes",
-    "information, energy, structure-function, evolution, interaction"
+    "Core themes (this card)",
+    "cells, information, energy, structure-function, evolution, interaction with the environment"
    ],
    [
-    "Proposed in",
-    "textbook syntheses since the 1900s"
+    "Integrating theory",
+    "evolution by natural selection"
    ]
   ],
   "certainty": "C1",
@@ -166,7 +166,7 @@
   "layers": {
    "basics": "Life is nested: atoms form molecules, molecules form organelles and cells, cells form tissues and organs, organs form organisms, and organisms form populations, communities and ecosystems.",
    "deeper": "Each level has emergent properties that its parts lack. A heartbeat is not a property of a single cardiomyocyte, and a food web is not a property of one species.",
-   "expert": "Reductionism explains higher levels by lower ones, but explanation often runs both ways: gene expression depends on the cellular and organismal context. Scales span about 20 orders of magnitude, from atoms (0.1 nm) to the biosphere (10^7 m)."
+   "expert": "Reductionism explains higher levels by lower ones, but explanation often runs both ways: gene expression depends on the cellular and organismal context. Scales span about 17 orders of magnitude, from atoms (≈ 10^-10 m) to the biosphere (≈ 10^7 m)."
   },
   "facts": [
    [
@@ -275,7 +275,7 @@
   "layers": {
    "basics": "Every organism consists of one or more cells, the cell is the basic unit of life, and new cells arise only from existing cells.",
    "deeper": "The theory grew from microscope work by Hooke, Leeuwenhoek, Schleiden, Schwann and Virchow. Later additions: cells carry DNA and metabolism happens inside them.",
-   "expert": "Endosymbiosis shows eukaryotic cells themselves arose by merging prokaryotes. Exceptions that test the rule: syncytia (muscle fibres), acellular viruses, and anucleate cells such as mature red blood cells."
+   "expert": "Endosymbiosis shows that mitochondria and chloroplasts descend from free-living bacteria taken up by an ancestral host cell, so eukaryotic cells are chimaeric. The exact nature of the host and the origin of the nucleus are still debated. Exceptions that test the rule: syncytia (muscle fibres), acellular viruses, and anucleate cells such as mature red blood cells."
   },
   "facts": [
    [
@@ -298,6 +298,11 @@
     "MIC",
     "3.2",
     "3-2-foundations-of-modern-cell-theory"
+   ],
+   [
+    "BIO",
+    "23.1",
+    "23-1-eukaryotic-origins"
    ]
   ],
   "kn": [
@@ -391,7 +396,7 @@
    ],
    [
     "C. elegans cells",
-    "959 somatic cells in the adult hermaphrodite"
+    "959 somatic cells in the adult hermaphrodite (males have more)"
    ]
   ],
   "did_you_know": "The nematode C. elegans has every one of its cell divisions mapped, one of very few animals where that is true.",
@@ -399,8 +404,8 @@
   "refs": [
    [
     "BIO",
-    "1.2",
-    "1-2-themes-and-concepts-of-biology"
+    "10.3",
+    "10-3-control-of-the-cell-cycle"
    ]
   ],
   "where": "place:pond"
@@ -426,7 +431,7 @@
   "summary": "Naming and grouping species in a nested hierarchy.",
   "layers": {
    "basics": "Species get two-part Latin names (genus and species), and groups nest: genus, family, order, class, phylum, kingdom, domain.",
-   "deeper": "The three-domain system (Bacteria, Archaea, Eukarya) came from ribosomal RNA comparisons by Woese. Modern classification aims to name monophyletic groups that include all descendants of a common ancestor.",
+   "deeper": "The three-domain system (Bacteria, Archaea, Eukarya) came from ribosomal RNA comparisons by Woese. Genomes of Asgard archaea suggest that eukaryotes may have arisen from within Archaea, which would make the tree two-domain. Modern classification aims to name monophyletic groups that include all descendants of a common ancestor.",
    "expert": "Linnaean ranks are conventions, while the phylogeny is the data. Names are governed by codes (ICZN, ICN), and species concepts (biological, phylogenetic, ecological) can disagree on where to draw lines."
   },
   "facts": [
@@ -436,10 +441,13 @@
    ],
    [
     "Described species",
-    "≈ 2 million"
+    "≈ 2 million (2020s); the total number of living species is unknown"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Eukaryotes may have arisen from within Archaea (Asgard lineage), which would give a two-domain tree rather than three; the root of the tree of life is also debated."
+  ],
   "refs": [
    [
     "BIO",
@@ -450,6 +458,11 @@
     "COB",
     "12.1",
     "12-1-organizing-life-on-earth"
+   ],
+   [
+    "BIO",
+    "20.3",
+    "20-3-perspectives-on-the-phylogenetic-tree"
    ]
   ],
   "kn": [
@@ -484,11 +497,15 @@
   "facts": [
    [
     "Typical replicates",
-    "≥ 3 biological"
+    "≥ 3 biological (a common convention, not a rule)"
    ],
    [
-    "Technical vs biological",
-    "different sources of variation"
+    "Technical replicate",
+    "repeat measurement of the same sample (measures method noise)"
+   ],
+   [
+    "Biological replicate",
+    "independent organisms or cultures (measures real variation)"
    ]
   ],
   "certainty": "C1",
@@ -726,7 +743,7 @@
   "layers": {
    "basics": "In an ionic bond one atom hands electrons to another and the resulting charged ions attract. In a covalent bond atoms share electrons.",
    "deeper": "Covalent bonds hold biomolecules together and are strong (≈ 350 kJ/mol for C–C). In water, salts like NaCl dissociate because ions are stabilised by the solvent.",
-   "expert": "Bond polarity lies on a continuum set by electronegativity difference. Bond energies set the thermodynamics of metabolism: ATP stores energy in strained phosphoanhydride bonds."
+   "expert": "Bond polarity lies on a continuum set by electronegativity difference. Bond energies enter the thermodynamics of metabolism, but ATP hydrolysis is favourable mainly because its products (ADP and phosphate) are better stabilised by solvation, resonance and reduced charge repulsion, not because the phosphoanhydride bond is unusually strong or strained."
   },
   "facts": [
    [
@@ -894,7 +911,7 @@
   "summary": "Why water is the medium of life.",
   "layers": {
    "basics": "Water is a polar solvent with strong cohesion, high heat capacity and a solid form (ice) that floats. These traits stabilise temperature and let life dissolve and move molecules.",
-   "deeper": "Cohesion and adhesion lift water up plants, surface tension supports pond insects, and high heat of vaporisation (≈ 2,260 J/g) makes sweating an effective coolant.",
+   "deeper": "Cohesion and adhesion lift water up plants, surface tension supports pond insects, and high heat of vaporisation (≈ 2,260 J/g at 100 °C, about 2,400 J/g near body temperature) makes sweating an effective coolant.",
    "expert": "Water is densest at ≈ 4 °C, so lakes freeze from the top. Its dielectric constant (≈ 80) screens charges, which is why salts dissolve and why ion-pair interactions behave differently in cells."
   },
   "facts": [
@@ -960,13 +977,13 @@
   "summary": "How much dissolved stuff is in a liquid.",
   "layers": {
    "basics": "A solution is a solute dissolved in a solvent. Concentration tells how much solute per volume, as mass/volume or moles/litre (molarity).",
-   "deeper": "Osmolarity counts dissolved particles, because osmosis depends on the number of particles. Cells placed in a hypotonic solution swell, in a hypertonic solution shrink.",
-   "expert": "Colligative properties (osmotic pressure Π = iMRT) depend on particle count, not identity. Blood plasma is ≈ 290 mOsm/L, and cells use compatible osmolytes to resist drying."
+   "deeper": "Osmolarity counts dissolved particles, because osmosis depends on the number of particles. Whether a cell swells or shrinks depends on tonicity, the concentration of solutes that cannot cross its membrane: cells swell in a hypotonic solution and shrink in a hypertonic one.",
+   "expert": "Colligative properties (osmotic pressure Π = iMRT, valid for dilute ideal solutions) depend on particle count, not identity. Blood plasma is ≈ 275–295 mOsm/kg, and cells use compatible osmolytes to resist drying."
   },
   "facts": [
    [
-    "Plasma osmolarity",
-    "≈ 290 mOsm/L"
+    "Plasma osmolality",
+    "≈ 275–295 mOsm/kg"
    ],
    [
     "Normal saline",
@@ -1319,12 +1336,12 @@
   "layers": {
    "basics": "Energy cannot be created or destroyed, only changed in form. Every conversion loses some energy as heat and increases disorder overall.",
    "deeper": "Cells are open systems: they stay ordered by taking in energy (light or food) and exporting heat and waste. Life does not violate the second law.",
-   "expert": "Entropy production in the surroundings exceeds local entropy decrease. Efficiency of ATP production from glucose is ≈ 35–40%, with the rest lost as heat that also warms endotherms."
+   "expert": "Entropy production in the surroundings exceeds local entropy decrease. About a third to 40% of the free energy of glucose is captured as ATP, depending on the ATP yield and conditions assumed, with the rest lost as heat that also warms endotherms."
   },
   "facts": [
    [
-    "Glucose oxidation",
-    "≈ −2,870 kJ/mol"
+    "Glucose oxidation, free energy change",
+    "≈ −2,870 kJ/mol (varies ≈ −2,840 to −2,910 with conditions)"
    ],
    [
     "Human power at rest",
@@ -1498,9 +1515,9 @@
   ],
   "summary": "The cell's universal energy currency.",
   "layers": {
-   "basics": "ATP carries energy in its phosphate bonds. Cells split off a phosphate to power work, then rebuild ATP from food or light.",
+   "basics": "ATP holds usable free energy: its breakdown to ADP and phosphate is strongly favourable inside cells. Cells split off a phosphate to power work, then rebuild ATP from food or light.",
    "deeper": "Hydrolysis of ATP is coupled to pumps, motors and synthesis by transferring the phosphate to a target molecule, which raises that molecule's energy.",
-   "expert": "A person turns over roughly their own body weight of ATP per day (≈ 50–70 kg), recycling a pool of only ≈ 50 g. ATP synthase makes ≈ 90% of it in aerobic tissues."
+   "expert": "A person turns over roughly their own body weight of ATP per day (a rough estimate, ≈ 50–70 kg), recycling a pool of only ≈ 50 g. In glucose breakdown, ATP synthase driven by the proton gradient (chemiosmosis) makes about 90% of the ATP; the share varies with tissue and fuel."
   },
   "facts": [
    [
@@ -1557,7 +1574,7 @@
   "summary": "Charged ions that carry signals and set osmotic balance.",
   "layers": {
    "basics": "Ions like Na+, K+, Ca2+ and Cl− dissolve in body fluids and carry electric charge. Cells keep different amounts inside and outside.",
-   "deeper": "The gap in K+ and Na+ across the membrane is the source of the resting membrane voltage, and calcium is a ubiquitous signal.",
+   "deeper": "The K+ gradient together with the membrane's high K+ permeability sets most of the resting voltage, and the Na+/K+ pump maintains the gradients. Calcium is a ubiquitous signal.",
    "expert": "Typical mammalian concentrations: [K+] ≈ 140 mM inside vs 5 mM outside; [Na+] ≈ 12 mM inside vs 145 mM outside. The Nernst equation gives the equilibrium potential for each ion."
   },
   "facts": [
@@ -1567,7 +1584,7 @@
    ],
    [
     "Resting potential",
-    "≈ −70 mV"
+    "≈ −70 mV in a typical neuron (varies with cell type and species)"
    ]
   ],
   "formula": "E_ion = (RT/zF)·ln([out]/[in])",
@@ -1608,7 +1625,7 @@
   "layers": {
    "basics": "Carbon makes four stable bonds, forming chains, rings and branches with itself and with H, O, N, P and S.",
    "deeper": "These skeletons carry functional groups that give each biomolecule its chemistry. Isomers with the same formula can behave very differently.",
-   "expert": "Carbon–carbon bonds are strong yet reactive enough for metabolism, and carbon's tendency to form stable ring and chain structures underlies the huge variety of organic chemistry (> 10^8 known compounds)."
+   "expert": "Carbon–carbon bonds are strong yet reactive enough for metabolism, and carbon's tendency to form stable ring and chain structures underlies the huge variety of organic chemistry (millions of known compounds)."
   },
   "facts": [
    [
@@ -1617,7 +1634,7 @@
    ],
    [
     "Known organic compounds",
-    "> 10^8"
+    "millions catalogued; the count keeps growing"
    ]
   ],
   "certainty": "C1",
@@ -1763,7 +1780,7 @@
   "layers": {
    "basics": "Hydroxyl, carbonyl, carboxyl, amino, phosphate and sulfhydryl groups sit on carbon skeletons and determine polarity, acidity and reactivity.",
    "deeper": "A hydroxyl makes alcohols (sugars), a carboxyl makes acids (amino acids, fatty acids), and phosphate groups carry charge and energy.",
-   "expert": "Group properties set pKa and nucleophilicity: thiolate (Cys) and imidazole (His) are common catalytic groups, and phosphoanhydrides are high-energy transfer groups."
+   "expert": "Group properties set pKa and nucleophilicity: thiolate (Cys) and imidazole (His) are common catalytic groups, and phosphoanhydrides have a high phosphoryl transfer potential, meaning their hydrolysis is strongly favourable."
   },
   "facts": [
    [
@@ -1830,8 +1847,8 @@
     "C6H12O6 both"
    ],
    [
-    "Possible stereoisomers",
-    "2^n for n stereocentres"
+    "Maximum stereoisomers",
+    "2^n for n stereocentres (fewer if the molecule has internal symmetry, e.g. meso forms)"
    ]
   ],
   "certainty": "C1",
@@ -1874,8 +1891,8 @@
   "summary": "Molecules that are mirror images but not superimposable.",
   "layers": {
    "basics": "A carbon with four different groups is a stereocentre. The two mirror-image forms are enantiomers, like left and right hands.",
-   "deeper": "Life uses almost only L-amino acids and D-sugars. Enantiomers can differ in taste, smell or drug effect: thalidomide's isomers are the classic warning.",
-   "expert": "Cahn–Ingold–Prelog priority rules give R/S labels; optical rotation measures enantiomeric excess. The origin of biological homochirality is unsolved (see origin of life)."
+   "deeper": "Life uses almost only L-amino acids and D-sugars. Enantiomers can differ in smell or drug action, because receptors and enzymes are chiral themselves. Thalidomide is a caution of a subtler kind: its two enantiomers interconvert in the body, so giving a single enantiomer cannot be assumed to avoid harm.",
+   "expert": "Cahn–Ingold–Prelog priority rules give R/S labels; optical rotation measures enantiomeric excess. The origin of biological homochirality is unsolved (see origin of life), although the stereochemistry itself is settled."
   },
   "facts": [
    [
@@ -1887,7 +1904,10 @@
     "mostly D"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Why life uses L-amino acids and D-sugars is unexplained: was it chance amplified by autocatalysis, a small physical bias, or delivery of chiral material from space?"
+  ],
   "refs": [
    [
     "ORG",
@@ -1935,7 +1955,7 @@
   "summary": "How sugars are drawn and how they close into rings.",
   "layers": {
    "basics": "Sugars are drawn as chains (Fischer projection) but in water mostly form rings. Ring closure creates a new stereocentre, giving α and β forms.",
-   "deeper": "Glucose in water is ≈ 64% β-pyranose, ≈ 36% α-pyranose, with trace open chain. α versus β linkage separates digestible starch from indigestible cellulose.",
+   "deeper": "Glucose in water is ≈ 64% β-pyranose, ≈ 36% α-pyranose, with trace open chain. α versus β linkage separates starch, which human enzymes digest, from cellulose, which they cannot.",
    "expert": "Anomeric carbon, mutarotation and the anomeric effect govern ring preferences. Haworth and chair representations convey the same molecule in different ways."
   },
   "facts": [
@@ -2233,12 +2253,12 @@
   "summary": "Reactions at C=O, the workhorse of metabolism.",
   "layers": {
    "basics": "Carbonyl carbons are electrophiles. Nucleophiles add to them to make alcohols, hemiacetals and imines.",
-   "deeper": "Sugar rings are hemiacetals, Schiff bases link retinal to opsin, and the aldol reaction builds carbon–carbon bonds in glycolysis and the Calvin cycle.",
+   "deeper": "Sugar rings are hemiacetals, Schiff bases link retinal to opsin, and the aldol reaction forms carbon–carbon bonds in the Calvin cycle and gluconeogenesis, while glycolysis runs it in reverse (retro-aldol) when aldolase cleaves fructose 1,6-bisphosphate.",
    "expert": "Aldol and Claisen condensations use enolates (α-carbon nucleophiles). Citrate synthase and fatty-acid synthesis are biological Claisen-type reactions."
   },
   "facts": [
    [
-    "Aldol in glycolysis",
+    "Retro-aldol in glycolysis",
     "aldolase cleaves FBP"
    ],
    [
@@ -2360,7 +2380,7 @@
   "layers": {
    "basics": "Phosphate groups are moved from one molecule to another, such as from ATP to a protein. Kinases add phosphate; phosphatases remove it.",
    "deeper": "Phosphoryl transfer drives signalling and energy coupling. DNA and RNA backbones are phosphodiesters, and nucleotide synthesis relies on activated triphosphates.",
-   "expert": "Transfers occur via associative or dissociative transition states, often with Mg2+ stabilising the leaving group. Phosphodiester bonds are remarkably stable (hydrolysis half-life ≈ 10^8 years for DNA at neutral pH in water)."
+   "expert": "Transfers occur via associative or dissociative transition states, often with Mg2+ stabilising the leaving group. Phosphodiester linkages are remarkably stable: a simple model diester (dineopentyl phosphate) is estimated to have a spontaneous hydrolysis half-life of ≈ 3×10^7 years in water at 25 °C, extrapolated from measurements at higher temperature, which indicates how resistant DNA's backbone is to attack by water."
   },
   "facts": [
    [
@@ -2368,8 +2388,8 @@
     "≈ 500"
    ],
    [
-    "DNA phosphodiester stability",
-    "half-life ≈ 10^8 y"
+    "Model phosphodiester half-life (25 °C, water)",
+    "≈ 3×10^7 y (dineopentyl phosphate, extrapolated)"
    ]
   ],
   "certainty": "C1",
@@ -2534,7 +2554,7 @@
   "layers": {
    "basics": "Mass spectrometry weighs molecules, infrared spectroscopy identifies bond types, NMR maps the carbon–hydrogen framework, and UV–visible spectroscopy detects conjugated systems.",
    "deeper": "Biologists use MS in proteomics and metabolomics, NMR and X-ray crystallography for protein structure, and UV–vis for nucleic-acid and protein concentration.",
-   "expert": "NMR depends on nuclear spin in a magnetic field (chemical shift, coupling). Cryo-EM and X-ray diffraction give atomic models of large complexes; resolution ≈ 1.5–3 Å is typical."
+   "expert": "NMR depends on nuclear spin in a magnetic field (chemical shift, coupling). Cryo-EM and X-ray diffraction give atomic models of large complexes; resolution varies: X-ray structures often reach ≈ 1.5–3 Å, while most cryo-EM maps fall in the 3–5 Å range, with a growing number better than 3 Å."
   },
   "facts": [
    [

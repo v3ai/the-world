@@ -221,7 +221,7 @@
   "layers": {
    "basics": "Starch (plants) and glycogen (animals) store glucose; cellulose and chitin build cell walls and exoskeletons.",
    "deeper": "Glycogen is highly branched so many ends can be cleaved at once, giving rapid glucose release. Cellulose chains line up in hydrogen-bonded microfibrils that are very strong.",
-   "expert": "Cellulose is the most abundant biopolymer on Earth, but only microbes (including gut symbionts of ruminants and termites) produce the cellulases to digest it. Chitin contains N-acetylglucosamine."
+   "expert": "Cellulose is the most abundant biopolymer on Earth, but no vertebrate makes its own cellulase, so ruminants and other plant-eaters rely on gut microbes. Some invertebrates, including termites, make their own cellulases, usually working together with gut symbionts. Chitin contains N-acetylglucosamine."
   },
   "facts": [
    [
@@ -290,7 +290,7 @@
   "facts": [
    [
     "ABO antigen basis",
-    "terminal sugars"
+    "one terminal sugar: N-acetylgalactosamine (A), galactose (B), none beyond the H antigen (O)"
    ],
    [
     "N-glycan precursor",
@@ -299,11 +299,6 @@
   ],
   "certainty": "C1",
   "refs": [
-   [
-    "BIO",
-    "4.6",
-    "4-6-connections-between-cells-and-cellular-activities"
-   ],
    [
     "ORG",
     "25.10",
@@ -333,7 +328,7 @@
   "summary": "Hydrocarbon chains that store energy.",
   "layers": {
    "basics": "Fatty acids are long carbon chains with a carboxyl end. Three of them on a glycerol make a triglyceride (fat), the main long-term energy store.",
-   "deeper": "Saturated fats have no double bonds and pack tightly (solid at room temperature); unsaturated fats have kinks and stay liquid. Fat stores about twice the energy of carbohydrate per gram.",
+   "deeper": "Saturated fats have no double bonds and pack tightly (solid at room temperature); unsaturated fats have kinks and stay liquid. Fat gives about 9 kcal/g, a little over twice the ≈ 4 kcal/g of carbohydrate.",
    "expert": "Essential fatty acids (linoleic, α-linolenic) cannot be made by humans. Trans fats raise LDL; cis double bonds impart fluidity to membranes."
   },
   "facts": [
@@ -408,7 +403,7 @@
    ],
    [
     "Lateral diffusion of lipids",
-    "≈ 1 µm²/s"
+    "≈ 1 µm²/s in cell membranes; faster in simple lipid bilayers"
    ]
   ],
   "certainty": "C1",
@@ -612,7 +607,7 @@
   "layers": {
    "basics": "A peptide bond joins the carboxyl of one amino acid to the amino group of the next. A chain has an N-terminus and a C-terminus.",
    "deeper": "The bond is planar and rigid, so the chain's flexibility comes mainly from rotations about the φ and ψ angles on either side.",
-   "expert": "Ramachandran plots show which (φ, ψ) pairs are sterically allowed, explaining the helix and sheet regions. Peptide bond hydrolysis has t½ ≈ 400 years at neutral pH without catalysts."
+   "expert": "Ramachandran plots show which (φ, ψ) pairs are sterically allowed, explaining the helix and sheet regions. Without a catalyst, hydrolysis of a peptide bond in neutral water at room temperature takes of the order of hundreds of years, which is why proteases matter."
   },
   "facts": [
    [
@@ -621,7 +616,7 @@
    ],
    [
     "Typical protein length",
-    "≈ 300–400 residues"
+    "a few hundred residues (varies by organism)"
    ]
   ],
   "certainty": "C1",
@@ -666,7 +661,7 @@
   "layers": {
    "basics": "Primary structure is the amino-acid sequence, secondary is local folding (α-helix, β-sheet), tertiary is the full 3D shape and quaternary is how several chains assemble.",
    "deeper": "Hydrogen bonds stabilise helices and sheets; hydrophobic burial, disulfides, salt bridges and metal ions stabilise tertiary and quaternary structure.",
-   "expert": "Domains are independent folding units; motifs such as the helix–turn–helix recur in DNA-binding proteins. The Protein Data Bank holds > 200,000 experimental structures."
+   "expert": "Domains are independent folding units; motifs such as the helix–turn–helix recur in DNA-binding proteins. The Protein Data Bank holds well over 200,000 experimental structures."
   },
   "facts": [
    [
@@ -801,7 +796,7 @@
   "facts": [
    [
     "GroEL cavity",
-    "≈ 8 nm"
+    "≈ 6.5 nm across (GroEL–GroES folding cage)"
    ],
    [
     "Hsp70 ATPase cycle",
@@ -906,8 +901,8 @@
   "summary": "A protein that shows how structure changes with ligand.",
   "layers": {
    "basics": "Hemoglobin carries oxygen in red blood cells using four heme groups. Binding of oxygen to one subunit makes it easier for the others to bind.",
-   "deeper": "This cooperativity gives a sigmoidal oxygen-binding curve, so hemoglobin loads in the lungs and unloads in tissues. CO2, H+ and 2,3-BPG shift the curve (Bohr effect).",
-   "expert": "T (tense) to R (relaxed) quaternary transition explains cooperativity in the MWC model; Hill coefficient ≈ 2.8. Fetal hemoglobin has higher affinity thanks to weaker 2,3-BPG binding."
+   "deeper": "This cooperativity gives a sigmoidal oxygen-binding curve, so hemoglobin loads in the lungs and unloads in tissues. H+ and CO2 shift the curve to the right (the Bohr effect), and 2,3-BPG also lowers oxygen affinity.",
+   "expert": "In the MWC model, a T (tense) to R (relaxed) quaternary transition explains cooperativity, though other models also exist; Hill coefficient ≈ 2.8. Fetal hemoglobin has higher affinity thanks to weaker 2,3-BPG binding."
   },
   "facts": [
    [
@@ -920,7 +915,10 @@
    ]
   ],
   "formula": "Y = pⁿ/(P₅₀ⁿ + pⁿ)",
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Which structural pathway and which intermediate states couple oxygen binding at one subunit to the others (MWC versus sequential and other models) is still debated."
+  ],
   "refs": [
    [
     "ANP",
@@ -973,12 +971,12 @@
   "layers": {
    "basics": "Proteins are separated by size (gel electrophoresis), charge or affinity, and measured by antibody-based methods such as Western blots.",
    "deeper": "SDS-PAGE unfolds proteins and coats them with charge, so migration reflects molecular weight. Chromatography steps (size, ion exchange, affinity tags) purify them.",
-   "expert": "Mass spectrometry identifies proteins and modifications in complex mixtures. X-ray crystallography, NMR and cryo-EM give structures; typical cryo-EM resolutions now reach ≈ 1.2–3 Å."
+   "expert": "Mass spectrometry identifies proteins and modifications in complex mixtures. X-ray crystallography, NMR and cryo-EM give structures; cryo-EM has reached ≈ 1.25 Å resolution on apoferritin, and typical results are coarser."
   },
   "facts": [
    [
-    "SDS-PAGE separates by",
-    "size (kDa)"
+    "Cryo-EM record resolution",
+    "≈ 1.25 Å (apoferritin, 2020)"
    ],
    [
     "Cryo-EM Nobel",
@@ -1031,12 +1029,12 @@
   },
   "facts": [
    [
-    "Bases in DNA",
-    "A, T, G, C"
+    "DNA backbone link",
+    "3′–5′ phosphodiester bond"
    ],
    [
     "Human haploid genome",
-    "≈ 3.1 × 10⁹ bp"
+    "≈ 3.1 × 10⁹ bp (haploid)"
    ]
   ],
   "certainty": "C1",
@@ -1099,7 +1097,7 @@
   "layers": {
    "basics": "RNA is usually single-stranded and can fold into shapes. mRNA carries the message, tRNA brings amino acids, rRNA forms ribosomes.",
    "deeper": "Ribozymes are RNAs that catalyse reactions, including the ribosome's peptide bond formation. Small RNAs (miRNA, siRNA) silence genes.",
-   "expert": "Only ≈ 1–2% of the human genome codes for protein, yet ≈ 75% is transcribed at some level; the functional share of noncoding transcripts is debated. rRNA makes ≈ 80% of total cellular RNA."
+   "expert": "Only ≈ 1–2% of the human genome codes for protein. ENCODE reported that most of the genome is transcribed at some level, but how much of that transcription is functional is debated. rRNA makes ≈ 80% of total cellular RNA."
   },
   "facts": [
    [
@@ -1111,7 +1109,10 @@
     "≈ 2–5%"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How much of the transcription detected across the human genome is functional, rather than low-level or incidental, is debated."
+  ],
   "refs": [
    [
     "BIO",
@@ -1150,10 +1151,10 @@
    "bio_reaction_kinetics",
    "bio_protein_structure"
   ],
-  "summary": "Proteins that speed reactions up to a trillion-fold.",
+  "summary": "Proteins that speed reactions up by factors from about a million to more than 10^17.",
   "layers": {
    "basics": "Enzymes bind a substrate at the active site and turn it into product. They are not used up and make reactions fast enough for life.",
-   "deeper": "They lower activation energy by orienting substrates, straining bonds and providing acid–base or covalent catalysis. Each is highly specific.",
+   "deeper": "They lower activation energy by orienting substrates, straining bonds and providing acid–base or covalent catalysis. Enzymes are usually specific for a substrate or reaction type, but many accept related substrates.",
    "expert": "Rate enhancements range from 10^6 to > 10^17 (orotidine decarboxylase). Catalytic proficiency reflects transition-state binding much tighter than substrate binding."
   },
   "facts": [
@@ -1211,7 +1212,7 @@
   "layers": {
    "basics": "The active site is a small pocket whose shape and chemistry fit the substrate. Binding can make it close around the substrate, called induced fit.",
    "deeper": "Lock-and-key was the older picture; induced fit and conformational selection show enzymes are flexible.",
-   "expert": "Catalytic triads (Ser–His–Asp in chymotrypsin) and metal ions position nucleophiles. Dynamics on µs–ms timescales couple with the catalytic step."
+   "expert": "Catalytic triads (Ser–His–Asp in chymotrypsin) and metal ions position nucleophiles. Dynamics on µs–ms timescales are thought to couple with the catalytic step."
   },
   "facts": [
    [
@@ -1223,7 +1224,10 @@
     "few residues in a large protein"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How much of catalysis comes from conformational dynamics, as opposed to preorganised electrostatics, is debated."
+  ],
   "refs": [
    [
     "BIO",
@@ -1260,7 +1264,7 @@
   "layers": {
    "basics": "Many enzymes need metal ions or small organic helpers (coenzymes). Many vitamins are the precursors of coenzymes.",
    "deeper": "NAD+ carries hydride, FAD carries electrons, coenzyme A carries acyl groups, and biotin carries CO2.",
-   "expert": "Examples: thiamine pyrophosphate (decarboxylations), pyridoxal phosphate (amino-acid transformations), folate (one-carbon units), B12 (rearrangements). Deficiencies cause beriberi, pellagra, scurvy and others."
+   "expert": "Examples: thiamine pyrophosphate (decarboxylations), pyridoxal phosphate (amino-acid transformations), folate (one-carbon units), B12 (rearrangements). Deficiencies cause beriberi (thiamine), pellagra (niacin) and megaloblastic anaemia (folate or B12)."
   },
   "facts": [
    [
@@ -1322,13 +1326,13 @@
   "summary": "How reaction rate depends on substrate concentration.",
   "layers": {
    "basics": "At low substrate, rate rises in proportion to substrate; at high substrate the enzyme saturates and the rate levels off at Vmax.",
-   "deeper": "Km is the substrate level giving half-maximal rate; a low Km means tight binding. kcat is the turnover number per enzyme per second.",
+   "deeper": "Km is the substrate level giving half-maximal rate; a low Km does not by itself prove tight binding, because Km approximates the dissociation constant of the enzyme–substrate complex only when catalysis is slow compared with dissociation. kcat is the turnover number per enzyme per second.",
    "expert": "Derived from E + S ⇌ ES → E + P with the steady-state assumption: Km = (k₋₁ + kcat)/k₁. The ratio kcat/Km (≤ 10^8–10^9 M⁻¹s⁻¹, diffusion limit) measures catalytic efficiency."
   },
   "facts": [
    [
     "Typical Km",
-    "≈ 10⁻⁵–10⁻² M"
+    "mostly sub-millimolar to millimolar (varies widely between enzymes)"
    ],
    [
     "Catalase kcat",
@@ -1494,7 +1498,7 @@
   "summary": "Binding at one site changes activity at another.",
   "layers": {
    "basics": "Allosteric enzymes have regulatory sites away from the active site. Binding of an activator or inhibitor changes the enzyme's shape and activity.",
-   "deeper": "These enzymes show sigmoidal rather than hyperbolic kinetics. Phosphofructokinase is turned down by ATP and citrate and up by AMP.",
+   "deeper": "Cooperative allosteric enzymes show sigmoidal rather than hyperbolic kinetics, but not all allosteric enzymes are cooperative. Phosphofructokinase is turned down by ATP and citrate and up by AMP.",
    "expert": "MWC (concerted) and KNF (sequential) models describe T/R state transitions. Allostery underlies feedback inhibition, receptor activation and signalling switches."
   },
   "facts": [
@@ -1552,7 +1556,7 @@
   "summary": "Why enzymes have optimal conditions.",
   "layers": {
    "basics": "Enzymes work best in a narrow temperature and pH range. Too hot or too far from the optimum and they lose shape and activity (denature).",
-   "deeper": "Human enzymes peak near 37 °C and neutral pH, but pepsin works near pH 2 and Taq polymerase survives 95 °C.",
+   "deeper": "Most human enzymes work best near 37 °C and pH 7.4, but lysosomal enzymes prefer about pH 5, pepsin works near pH 2 and Taq polymerase survives 95 °C. The apparent temperature optimum depends on how long the assay runs.",
    "expert": "Rate rises with temperature until unfolding dominates, giving a bell-shaped curve. Extremophile enzymes underlie PCR (Taq) and laundry detergents (proteases)."
   },
   "facts": [
@@ -1659,7 +1663,7 @@
   "facts": [
    [
     "Basal metabolic rate (human)",
-    "≈ 1,400–1,800 kcal/day"
+    "varies with body size, sex and age"
    ],
    [
     "ATP yield from glucose",
@@ -1713,7 +1717,7 @@
   "summary": "Splitting glucose into two pyruvates.",
   "layers": {
    "basics": "Glycolysis is a ten-step pathway in the cytosol that converts one glucose to two pyruvate, with a small net gain of ATP and NADH.",
-   "deeper": "It uses two ATP early and makes four later (net 2 ATP) plus 2 NADH. It works without oxygen and is common to nearly all life.",
+   "deeper": "It uses two ATP early and makes four later (net 2 ATP) plus 2 NADH. The ATP is made by substrate-level phosphorylation at phosphoglycerate kinase and pyruvate kinase, and the NADH at glyceraldehyde-3-phosphate dehydrogenase. It works without oxygen and is common to nearly all life.",
    "expert": "Regulated at hexokinase, PFK-1 (the committed step) and pyruvate kinase. Tumours often show the Warburg effect: high glycolysis even in the presence of oxygen."
   },
   "facts": [
@@ -1786,7 +1790,7 @@
   "needs": [
    "bio_glycolysis"
   ],
-  "summary": "Making ATP without oxygen.",
+  "summary": "Regenerating NAD+ so glycolysis can make ATP without oxygen.",
   "layers": {
    "basics": "When oxygen is absent, cells regenerate NAD+ by turning pyruvate into lactate or ethanol so glycolysis can continue.",
    "deeper": "Muscles make lactate during intense work; yeast makes ethanol and CO2, the basis of bread, wine and beer.",
@@ -2057,14 +2061,14 @@
   "facts": [
    [
     "Rotation speed",
-    "≈ 100–150 rev/s"
+    "≈ 100–650 rev/s (in vitro; depends on organism, temperature and load)"
    ],
    [
     "ATP per NADH",
     "≈ 2.5"
    ]
   ],
-  "formula": "Δp = Δψ − (2.3RT/F)·ΔpH",
+  "formula": "Δp = Δψ − (2.303RT/F)·ΔpH (≈ Δψ − 59 mV × ΔpH at 25 °C; Δψ and ΔpH are both inside minus outside)",
   "did_you_know": "Peter Mitchell proposed chemiosmosis in 1961, was mocked at first, and won the 1978 Nobel Prize in Chemistry.",
   "certainty": "C1",
   "refs": [
@@ -2241,7 +2245,7 @@
   "layers": {
    "basics": "This pathway makes NADPH (for biosynthesis and antioxidant defence) and ribose-5-phosphate (for nucleotides) from glucose-6-phosphate.",
    "deeper": "It is especially active in liver, fat, adrenal tissue and red blood cells, which need NADPH to keep glutathione reduced.",
-   "expert": "G6PD deficiency (≈ 400 million carriers) makes red cells vulnerable to oxidative stress, causing hemolysis after fava beans or certain drugs, yet protects against malaria."
+   "expert": "G6PD deficiency (an estimated ≈ 400 million people, most without symptoms until triggered) makes red cells vulnerable to oxidative stress, causing hemolysis after fava beans or certain drugs, yet protects against malaria."
   },
   "facts": [
    [
@@ -2256,9 +2260,9 @@
   "certainty": "C1",
   "refs": [
    [
-    "BIO",
-    "7.6",
-    "7-6-connections-of-carbohydrate-protein-and-lipid-metabolic-pathways"
+    "MIC",
+    "8.2",
+    "8-2-catabolism-of-carbohydrates"
    ]
   ],
   "where": "mol:ribose",
@@ -2290,7 +2294,7 @@
   "layers": {
    "basics": "Amino groups are removed from amino acids (transamination) and converted to urea in the liver. The carbon skeletons enter energy pathways.",
    "deeper": "Ammonia is toxic, so it is converted to urea (humans), uric acid (birds, reptiles) or excreted directly as ammonia (fish).",
-   "expert": "Urea cycle: ammonia + CO2 + 3 ATP → urea. Defects cause hyperammonemia. Glucogenic amino acids can make glucose; ketogenic ones make acetyl-CoA."
+   "expert": "Urea cycle: one nitrogen of urea comes from ammonium and the other from aspartate, and the carbon comes from CO2. The cycle spends 3 ATP, which are split to 2 ADP and AMP, equal to 4 high-energy phosphate bonds per urea. Defects cause hyperammonemia. Glucogenic amino acids can make glucose; ketogenic ones make acetyl-CoA."
   },
   "facts": [
    [
@@ -2410,12 +2414,12 @@
   "layers": {
    "basics": "Plants, algae and cyanobacteria capture light energy to make sugars from CO2 and water, releasing oxygen.",
    "deeper": "Two stages: light reactions in thylakoid membranes make ATP and NADPH; the Calvin cycle in the stroma uses them to fix CO2. Chlorophyll absorbs mainly red and blue light.",
-   "expert": "Net: 6 CO2 + 12 H2O + light → C6H12O6 + 6 O2 + 6 H2O. Global net primary productivity ≈ 100–120 Pg C/yr, split roughly equally between land and ocean."
+   "expert": "Net: 6 CO2 + 12 H2O + light → C6H12O6 + 6 O2 + 6 H2O. Global net primary productivity is ≈ 105 Pg C/yr, split roughly equally between land and ocean."
   },
   "facts": [
    [
     "Global NPP",
-    "≈ 100–120 Pg C/yr"
+    "≈ 105 Pg C/yr (Field et al. 1998)"
    ],
    [
     "Efficiency (leaf, light to biomass)",
@@ -2542,8 +2546,8 @@
   "summary": "Building sugar from CO2.",
   "layers": {
    "basics": "In the stroma, the enzyme Rubisco attaches CO2 to a five-carbon sugar. Using ATP and NADPH, the product is turned into G3P, which makes glucose and regenerates the starting sugar.",
-   "deeper": "Three turns fix 3 CO2 and net one G3P at a cost of 9 ATP and 6 NADPH. Rubisco is slow (≈ 3–10 s⁻¹) and also fixes O2, which wastes energy.",
-   "expert": "Rubisco is thought to be the most abundant enzyme on Earth. Its oxygenase activity drives photorespiration, which has motivated C4, CAM, and engineering efforts to improve carbon fixation."
+   "deeper": "Three turns fix 3 CO2 and net one G3P at a cost of 9 ATP and 6 NADPH. Rubisco is slow (a few turnovers per second per active site) and also fixes O2, which wastes energy.",
+   "expert": "Rubisco is thought to be the most abundant enzyme on Earth. Its oxygenase activity drives photorespiration. C4 and CAM photosynthesis evolved repeatedly as ways to concentrate CO2 around Rubisco, and breeders and engineers now try to reduce photorespiration further."
   },
   "facts": [
    [
@@ -2552,7 +2556,7 @@
    ],
    [
     "Rubisco kcat",
-    "≈ 3–10 s⁻¹"
+    "≈ 3–10 s⁻¹ per active site (varies with species and temperature)"
    ]
   ],
   "certainty": "C1",
@@ -2665,16 +2669,16 @@
   "layers": {
    "basics": "After a meal the body stores glucose as glycogen and fat; between meals, it releases them. In long fasting, the liver makes ketone bodies.",
    "deeper": "Liver, muscle, fat and brain each have a different fuel profile. Insulin dominates the fed state; glucagon, cortisol and adrenaline dominate fasting.",
-   "expert": "Diabetes mellitus results from insufficient insulin (type 1) or insulin resistance (type 2). During prolonged fasting the brain derives ≈ 60–70% of its energy from ketones."
+   "expert": "Type 1 diabetes is autoimmune loss of insulin-making beta cells. Type 2 arises when insulin resistance is not matched by enough beta-cell insulin secretion. During prolonged fasting the brain derives a large share of its energy from ketones."
   },
   "facts": [
    [
     "Ketone adaptation",
-    "≈ 3 days of fasting"
+    "ketone levels rise over the first days of fasting; brain use keeps growing for weeks"
    ],
    [
-    "Type 2 diabetes prevalence",
-    "≈ 10% of adults"
+    "Diabetes prevalence",
+    "≈ 10% of adults aged 20–79 worldwide for all diabetes (IDF 2021: 10.5%)"
    ]
   ],
   "certainty": "C1",

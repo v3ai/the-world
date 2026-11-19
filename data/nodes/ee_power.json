@@ -20,13 +20,24 @@
   "summary": "Flux through iron paths.",
   "layers": {
    "basics": "Iron cores guide magnetic flux like wires guide current, with turns×current acting as the push (mmf).",
-   "deeper": "Reluctance ℜ=ℓ/μA; air gaps dominate reluctance; saturation limits flux density near 1.5–2 T for silicon steel.",
+   "deeper": "Reluctance ℜ=ℓ/μA; where a path has an air gap, the gap usually dominates the reluctance; silicon steel saturates at roughly 2 T, and designs normally run somewhat below that.",
    "expert": "Core loss = hysteresis + eddy (laminations cut eddy); B–H curves; fringing; inductance L=N²/ℜ."
   },
   "facts": [],
   "formula": "mmf = N I = Φ ℜ",
   "certainty": "C1",
-  "refs": [],
+  "refs": [
+   [
+    "UP2",
+    "14.2",
+    "14-2-self-inductance-and-inductors"
+   ],
+   [
+    "UP2",
+    "13.5",
+    "13-5-eddy-currents"
+   ]
+  ],
   "kn": [
    "magnetic_materials"
   ],
@@ -62,9 +73,9 @@
   ],
   "summary": "Real transformers at scale.",
   "layers": {
-   "basics": "Power transformers step voltage up for transmission and down for use; efficiency exceeds 99%.",
+   "basics": "Power transformers step voltage up for transmission and down for use; efficiency is typically 98–99% for small distribution units and rises with transformer size, but falls at light load, where core losses dominate.",
    "deeper": "Equivalent circuit: winding resistance, leakage reactance, magnetising branch; tests: open- and short-circuit.",
-   "expert": "Voltage regulation, per-unit impedance, three-phase connections (Δ–Y); inrush current; cooling classes (ONAN); losses ∝ I² and core loss ∝ B²."
+   "expert": "Voltage regulation, per-unit impedance, three-phase connections (Δ–Y); inrush current; cooling classes (ONAN); winding loss ∝ I²; core loss has hysteresis and eddy-current parts and rises steeply with flux density (roughly as B² to B³ in practice) and with frequency."
   },
   "facts": [],
   "certainty": "C1",
@@ -82,7 +93,7 @@
     "url": "https://en.wikipedia.org/wiki/Transformer"
    }
   ],
-  "where": "flyback_transformer"
+  "where": "step_up_transformer"
  },
  {
   "id": "dc_machines",
@@ -110,7 +121,7 @@
    "expert": "T=k_tΦI_a, E_b=k_eΦω; speed control by armature voltage or field weakening; separately excited, series and shunt types."
   },
   "facts": [],
-  "formula": "T = k_t I,  E_b = k_e ω",
+  "formula": "T = k_t Φ I_a,  E_b = k_e Φ ω  (k_t = k_e in SI; at constant flux, as in a permanent-magnet motor: T = K I_a, E_b = K ω)",
   "certainty": "C1",
   "refs": [
    [
@@ -125,7 +136,13 @@
   "lab": {
    "id": "field",
    "preset": "motor_torque"
-  }
+  },
+  "ext": [
+   {
+    "title": "Wikipedia: DC motor",
+    "url": "https://en.wikipedia.org/wiki/DC_motor"
+   }
+  ]
  },
  {
   "id": "induction_motor",
@@ -237,7 +254,7 @@
   "layers": {
    "basics": "Steam, gas, water or wind turn turbines that spin generators; solar panels make DC directly.",
    "deeper": "Base-load, peaking and variable plants; efficiency limited by heat-engine (Carnot) theory for thermal plants.",
-   "expert": "Combined-cycle gas ~60% efficient; hydro >90%; capacity factor; inertia from rotating mass stabilises frequency."
+   "expert": "Modern combined-cycle gas plants reach roughly 55–64% at best (most large units peak at 55–59% on a lower-heating-value basis, and in-service averages are lower); hydro turbines convert a larger share of their input energy than any thermal plant; capacity factor; inertia from rotating mass stabilises frequency."
   },
   "facts": [],
   "certainty": "C1",
@@ -276,8 +293,8 @@
   "summary": "Moving power across a continent.",
   "layers": {
    "basics": "High voltage cuts current for the same power, so wires lose less as heat; substations step voltage down near users.",
-   "deeper": "Typical levels: 765/345/230 kV transmission, 11–35 kV distribution, 120/230 V utilisation.",
-   "expert": "Line losses I²R; surge-impedance loading; long lines need reactive compensation; HVDC beats AC beyond ~600 km overhead."
+   "deeper": "In North America, transmission is generally 230–500 kV (with some 765 kV lines), distribution is below about 33 kV, and household supply is near 120/240 V. Other regions use different standard levels.",
+   "expert": "Line losses I²R; surge-impedance loading; long lines need reactive compensation; HVDC usually becomes cheaper than AC for overhead lines beyond a break-even distance of roughly 600–800 km, and for undersea cables beyond about 50 km; the exact figure depends on cost and route."
   },
   "facts": [],
   "formula": "P_loss = I²R",
@@ -392,10 +409,10 @@
   "layers": {
    "basics": "A fault creates huge currents; analysis predicts them so equipment can be sized and protected.",
    "deeper": "Faults: three-phase, line-to-ground, line-to-line; symmetrical components simplify unbalanced faults.",
-   "expert": "Zero, positive and negative sequence networks; fault current I_f=V/Z_th; breaker interrupting rating and X/R ratio."
+   "expert": "Zero, positive and negative sequence networks; three-phase fault current I_f=V/Z_th; breaker interrupting rating and X/R ratio."
   },
   "facts": [],
-  "formula": "I_f = V_th / Z_th",
+  "formula": "I_f = V_th / Z_th  (three-phase bolted fault);  I_f = 3V_th/(Z1+Z2+Z0)  (line-to-ground)",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -470,13 +487,13 @@
   "summary": "Balancing a continent-sized machine.",
   "layers": {
    "basics": "Supply and demand must match every instant; wind and solar vary, so storage, flexible demand and communication help.",
-   "deeper": "Inverters feed solar into the grid; grid-forming inverters replace the inertia of spinning generators; smart meters enable demand response.",
+   "deeper": "Inverters feed solar into the grid; grid-forming inverters can emulate some of the frequency and voltage support that spinning generators give, drawing on stored energy or reserved headroom to do it; smart meters enable demand response.",
    "expert": "Frequency control (primary, secondary), RoCoF, duck curve; synchrophasor measurement; microgrids; cybersecurity of grid control."
   },
   "facts": [],
   "certainty": "C2",
   "open_questions": [
-   "How to keep inertia-free grids stable at very high renewable share?",
+   "What is the limit of stable operation, including protection and black-start, when almost all generation is inverter-based?",
    "What storage mix is cheapest for multi-day lulls?"
   ],
   "refs": [],
@@ -557,7 +574,7 @@
    "expert": "ΔI_L=(V_in−V_out)D T/L; CCM/DCM boundary; synchronous rectification; control by voltage-mode or current-mode."
   },
   "facts": [],
-  "formula": "Vout = D Vin",
+  "formula": "Vout = D Vin  (ideal, continuous conduction)",
   "certainty": "C1",
   "refs": [],
   "lab": null,
@@ -591,10 +608,10 @@
   "layers": {
    "basics": "Boost: output above input. Buck-boost: output of either size, inverted.",
    "deeper": "Boost V_out=V_in/(1−D); inductor stores energy while the switch is on and releases it through a diode.",
-   "expert": "RHP zero in boost control loop; flyback derived from buck-boost with a coupled inductor; efficiency 85–98%."
+   "expert": "RHP zero in boost control loop; flyback derived from buck-boost with a coupled inductor; efficiency depends on duty ratio, load and components."
   },
   "facts": [],
-  "formula": "Vout = Vin/(1−D)",
+  "formula": "Boost, ideal CCM: Vout = Vin/(1−D);  buck-boost, ideal CCM: Vout = −Vin D/(1−D)",
   "certainty": "C1",
   "refs": [],
   "lab": null,
@@ -626,7 +643,7 @@
   ],
   "summary": "Compact, efficient power conversion.",
   "layers": {
-   "basics": "Switch-mode supplies chop DC at 50 kHz–2 MHz through small transformers and inductors, replacing bulky 50/60 Hz parts.",
+   "basics": "Switch-mode supplies chop DC at tens of kHz up to a few MHz through small transformers and inductors, replacing bulky 50/60 Hz parts.",
    "deeper": "Topologies: flyback, forward, half/full bridge, LLC; isolation via transformer and optocoupler or secondary-side control.",
    "expert": "Magnetics design (area product); snubbers; EMI filters; soft switching (ZVS) improves efficiency; GaN enables MHz operation."
   },
@@ -663,7 +680,7 @@
   ],
   "summary": "Controlling speed and torque electronically.",
   "layers": {
-   "basics": "A drive turns fixed mains into variable-frequency variable-voltage power, so motors run at any speed efficiently.",
+   "basics": "A drive turns fixed mains into variable-frequency variable-voltage power, so motors can run at adjustable speed and save energy, especially on pumps and fans.",
    "deeper": "V/f control for simple loads; field-oriented control for high performance.",
    "expert": "FOC decouples torque and flux through Clarke/Park transforms; encoders or sensorless estimation; regenerative braking."
   },
@@ -704,10 +721,10 @@
   "layers": {
    "basics": "Power MOSFETs, IGBTs and wide-band-gap SiC and GaN devices handle high voltage and current with low loss.",
    "deeper": "IGBT: MOS gate with BJT conduction for 600 V–6.5 kV; SiC MOSFET and GaN HEMT switch faster with lower loss.",
-   "expert": "Wide band gap raises breakdown field (SiC 2.8 MV/cm vs Si 0.3), allowing thinner drift layers; figure of merit R_on·Q_g; thermal limits and packaging."
+   "expert": "Wide band gap raises breakdown field (4H-SiC roughly 2–3 MV/cm vs Si about 0.3 MV/cm, depending on doping and source), allowing thinner drift layers; figure of merit R_on·Q_g; thermal limits and packaging."
   },
   "facts": [],
-  "formula": "V_BR ∝ E_crit²",
+  "formula": "V_BR ≈ ε E_crit² / (2 q N_D)  (abrupt one-sided junction, drift layer sized to the breakdown width)",
   "certainty": "C1",
   "refs": [],
   "lab": {

@@ -34,9 +34,9 @@
   "mesh": "heart",
   "summary": "The heart is a four-chambered muscular pump that moves about 5 liters of blood per minute.",
   "layers": {
-   "basics": "Your heart is a fist-sized muscle that squeezes about 100,000 times a day to push blood around your body.",
+   "basics": "Your heart is a fist-sized muscle that squeezes roughly 100,000 times a day (about 108,000 at 75 beats a minute) to push blood around your body.",
    "deeper": "It has two upper chambers (atria) and two lower chambers (ventricles). The right side sends blood to the lungs; the left side sends it to the rest of the body. Valves keep blood flowing one way.",
-   "expert": "A pacemaker region, the sinoatrial node, starts each beat. The impulse spreads across the atria, pauses at the AV node, then travels via the His-Purkinje system so the ventricles contract from the apex upward. Cardiac muscle is fed by the coronary arteries during diastole."
+   "expert": "A pacemaker region, the sinoatrial node, starts each beat. The impulse spreads across the atria, pauses at the AV node, then travels via the His-Purkinje system so the ventricles contract from the apex upward. Cardiac muscle is fed by the coronary arteries; the thick left-ventricular wall is perfused mostly in diastole, because contraction squeezes the vessels inside it shut."
   },
   "facts": [
    [
@@ -59,7 +59,7 @@
   "did_you_know": "The heart starts beating about 3 weeks after conception, before most other organs exist.",
   "certainty": "C1",
   "open_questions": [
-   "Can the adult human heart be induced to regenerate substantial muscle after injury?"
+   "Can the adult human heart be induced to regenerate substantial muscle after injury? Adult heart muscle cells are replaced at only about 1% a year at age 25, falling to about 0.45% at age 75, and whether that can be raised after a heart attack is unresolved."
   ],
   "refs": [
    [
@@ -207,7 +207,7 @@
   "layers": {
    "basics": "This chamber pushes blood into the lungs, a short low-pressure trip.",
    "deeper": "Its wall is thin relative to the left because pulmonary pressure is low.",
-   "expert": "Crescentic shape wrapped around the septum; peak systolic pressure ≈ 25 mmHg; moderator band carries conduction fibers."
+   "expert": "Crescentic shape wrapped around the septum; peak systolic pressure far below the left ventricle's; moderator band carries conduction fibers."
   },
   "facts": [
    [
@@ -258,8 +258,8 @@
   "summary": "The strongest chamber: it pumps blood to the whole body.",
   "layers": {
    "basics": "The thick-walled chamber that sends blood out to the body at high pressure.",
-   "deeper": "Its muscle wall is about 1 cm thick and generates around 120 mmHg in systole.",
-   "expert": "Conical with helical fiber orientation producing twist; ejection fraction normally 55-70%; supplies coronary perfusion in diastole."
+   "deeper": "Its muscle wall is about 1 cm thick and generates around 120 mmHg in systole when blood pressure is a normal 120/80.",
+   "expert": "Conical with helical fiber orientation producing twist; ejection fraction normally above half of the filled volume; its inner muscle layers are perfused mostly in diastole, when relaxation lets aortic pressure drive blood into the coronary arteries."
   },
   "facts": [
    [
@@ -267,7 +267,7 @@
     "The strongest chamber: it pumps blood to the whole body"
    ]
   ],
-  "did_you_know": "The left ventricle alone makes the pulse you feel.",
+  "did_you_know": "Each ejection from the left ventricle sends a pressure wave along the arteries; that wave is the pulse you feel at your wrist or neck.",
   "certainty": "C1",
   "refs": [
    [
@@ -363,12 +363,16 @@
   "layers": {
    "basics": "A one-way door with three flaps.",
    "deeper": "Tied to the ventricle wall by thin cords so it does not flip backward.",
-   "expert": "Chordae tendineae and papillary muscles prevent prolapse; annulus ≈ 10-11 cm circumference."
+   "expert": "Chordae tendineae and papillary muscles prevent prolapse."
   },
   "facts": [
    [
     "Role",
     "Valve between right atrium and right ventricle"
+   ],
+   [
+    "Cusps",
+    "3"
    ]
   ],
   "did_you_know": "Its name just means 'three points'.",
@@ -421,6 +425,10 @@
    [
     "Role",
     "Valve between left atrium and left ventricle"
+   ],
+   [
+    "Cusps",
+    "2"
    ]
   ],
   "did_you_know": "Named after a bishop's mitre.",
@@ -473,6 +481,10 @@
    [
     "Role",
     "Valve between left ventricle and aorta"
+   ],
+   [
+    "Cusps",
+    "3"
    ]
   ],
   "did_you_know": "It opens and closes about 100,000 times a day.",
@@ -518,13 +530,17 @@
   "summary": "Valve between right ventricle and pulmonary artery.",
   "layers": {
    "basics": "Another three-cup valve letting blood leave toward the lungs.",
-   "deeper": "Prevents backflow into the right ventricle.",
-   "expert": "A semilunar valve at the top of the right ventricular outflow tract, with three cusps that close under back-pressure."
+   "deeper": "It opens when pressure in the right ventricle rises above that in the pulmonary artery and shuts when it falls below, so blood cannot slip back into the ventricle.",
+   "expert": "A semilunar valve at the top of the right ventricular outflow tract, with three cusps that close under back-pressure. Together with the aortic valve it makes the second heart sound as the two valves close at the start of ventricular filling."
   },
   "facts": [
    [
     "Role",
     "Valve between right ventricle and pulmonary artery"
+   ],
+   [
+    "Cusps",
+    "3"
    ]
   ],
   "did_you_know": "In the Ross procedure, a surgeon swaps a diseased aortic valve with the patient's own pulmonary valve.",
@@ -570,17 +586,24 @@
   "summary": "The heart's natural pacemaker.",
   "layers": {
    "basics": "A cluster of special cells in the right atrium that sets the heartbeat rhythm.",
-   "deeper": "Its cells spontaneously fire about 60-100 times per minute.",
+   "deeper": "Left to itself, with no nerve input, the node fires about 90-100 times a minute in healthy young adults; the vagus nerve slows it to the usual resting 60-100.",
    "expert": "Pacemaker cells use the funny current (If, HCN4) and calcium clock; autonomic input modulates rate."
   },
   "facts": [
    [
     "Role",
     "The heart's natural pacemaker"
+   ],
+   [
+    "Intrinsic rate",
+    "≈ 90-100 per minute in healthy young adults"
    ]
   ],
   "did_you_know": "Without an SA node signal, other cells take over at a slower pace.",
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How much of the pacemaker rhythm comes from the membrane-voltage mechanism (the funny current) and how much from rhythmic calcium release inside the cell?"
+  ],
   "refs": [
    [
     "ANP",
@@ -623,7 +646,7 @@
   "layers": {
    "basics": "The signal pauses here for a fraction of a second so the atria can finish emptying.",
    "deeper": "It is the only normal electrical connection between atria and ventricles.",
-   "expert": "Slow conduction (≈ 0.05 m/s) from calcium-channel-based action potentials; secondary pacemaker (40-60 bpm)."
+   "expert": "Slow conduction from calcium-channel-based action potentials; secondary pacemaker (40-60 bpm)."
   },
   "facts": [
    [
@@ -676,7 +699,7 @@
   "layers": {
    "basics": "The heart needs its own blood supply, delivered by arteries on its surface.",
    "deeper": "Left and right coronary arteries start just above the aortic valve and branch around the heart.",
-   "expert": "Mostly filled in diastole; blockage by atherosclerosis causes angina and myocardial infarction. Coronary flow ≈ 250 mL/min at rest."
+   "expert": "Left-ventricular flow is mostly in diastole; blockage by atherosclerosis causes angina and myocardial infarction."
   },
   "facts": [
    [
@@ -684,7 +707,7 @@
     "The arteries that feed the heart muscle itself"
    ]
   ],
-  "did_you_know": "The heart muscle receives most of its blood only while it is relaxed.",
+  "did_you_know": "The left ventricle's muscle receives most of its blood while the heart is relaxed, because contraction squeezes the vessels inside the wall shut.",
   "certainty": "C1",
   "refs": [
    [
@@ -719,18 +742,18 @@
   "mesh": "aorta",
   "summary": "The body's largest artery, carrying oxygen-rich blood from the heart.",
   "layers": {
-   "basics": "The aorta is the main highway for blood leaving the heart; all other arteries branch from it.",
+   "basics": "The aorta is the main highway for blood leaving the heart; every artery of the body's systemic circulation branches from it, directly or indirectly.",
    "deeper": "Its elastic walls stretch with each beat and recoil to keep blood flowing smoothly between beats (Windkessel effect).",
-   "expert": "Segments: ascending, arch, descending thoracic, abdominal; diameter ≈ 2.5-3.5 cm; pulse wave velocity ≈ 4-10 m/s rises with stiffness."
+   "expert": "Segments: ascending, arch, descending thoracic, abdominal; diameter is largest near the heart and narrows along its length; the speed of the pulse wave rises as the wall stiffens."
   },
   "facts": [
    [
     "Diameter",
-    "≈ 2.5-3 cm"
+    "≈ 2-3 cm, widest near the heart"
    ],
    [
-    "Length",
-    "≈ 40 cm"
+    "Segments",
+    "ascending, arch, descending, abdominal"
    ]
   ],
   "did_you_know": "The aorta's elastic recoil keeps blood moving between heartbeats.",
@@ -767,7 +790,7 @@
   "summary": "The two great veins that return oxygen-poor blood to the heart.",
   "layers": {
    "basics": "The superior vena cava drains the upper body; the inferior drains the lower.",
-   "deeper": "Veins have thin walls and low pressure; muscle pumps and valves help return blood.",
+   "deeper": "The superior vena cava collects blood from the head, neck and arms, and the inferior vena cava from the legs, abdomen and pelvis. Both empty into the right atrium, helped by the pressure changes in the chest as you breathe.",
    "expert": "IVC lacks valves except a rudimentary Eustachian valve; ≈ 2 cm diameter; venous return influenced by respiratory pump."
   },
   "facts": [
@@ -814,7 +837,7 @@
   "summary": "Paired neck arteries that carry blood to the head and brain.",
   "layers": {
    "basics": "You can feel a pulse on either side of your neck from these arteries.",
-   "deeper": "Each splits into an internal branch (brain, eye) and an external branch (face, scalp).",
+   "deeper": "The brain also receives blood from the two vertebral arteries. Each carotid splits into an internal branch (brain, eye) and an external branch (face, scalp).",
    "expert": "The carotid sinus contains baroreceptors; carotid bodies sense O2/CO2; plaque here is a major stroke cause."
   },
   "facts": [
@@ -823,11 +846,11 @@
     "≈ 6-8 mm"
    ],
    [
-    "Blood to brain",
-    "≈ 15% of cardiac output"
+    "Blood to brain (all four arteries)",
+    "≈ 15-20% of cardiac output"
    ]
   ],
-  "did_you_know": "Pressing the carotid sinus can slow the heart rate.",
+  "did_you_know": "Pressure on the carotid sinus fools its baroreceptors into reading high blood pressure, which slows the heart. Doctors use it only under supervision, because it can cause fainting; it is not safe to try at home.",
   "certainty": "C1",
   "refs": [
    [
@@ -872,10 +895,10 @@
    ],
    [
     "Mean pressure",
-    "≈ 90-100 mmHg"
+    "≈ 70-110 mmHg in large arteries (≈ 93 for 120/80)"
    ]
   ],
-  "did_you_know": "Arteries are named for the Greek for 'air pipes' since they were found empty after death.",
+  "did_you_know": "The Greek word for artery first meant windpipe. Early anatomists found arteries empty after death and took them to carry air, which is how the name came to be attached to them.",
   "certainty": "C1",
   "refs": [
    [
@@ -909,7 +932,7 @@
   "mesh": null,
   "summary": "Thin-walled vessels returning blood to the heart.",
   "layers": {
-   "basics": "Veins are wider and softer than arteries and have valves to stop blood falling backward.",
+   "basics": "Veins have a wider channel and thinner wall than the matching artery, and many veins of the limbs have valves that stop blood falling backward.",
    "deeper": "Squeezing leg muscles pushes blood up through them.",
    "expert": "Hold ≈ 60-70% of blood volume (capacitance vessels); valves prevent backflow; varicose veins arise from valve failure."
   },
@@ -920,7 +943,7 @@
    ],
    [
     "Pressure",
-    "≈ 5-10 mmHg"
+    "far lower than in arteries; rises in the legs when standing"
    ]
   ],
   "did_you_know": "Your veins hold most of your blood at any moment.",
@@ -1007,25 +1030,25 @@
   "mesh": null,
   "summary": "The fluid tissue that carries oxygen, nutrients, hormones, heat and immune cells.",
   "layers": {
-   "basics": "Blood is about half liquid plasma and half cells. It carries almost everything your body needs and wastes it needs to get rid of.",
+   "basics": "Blood is about half liquid plasma and half cells. It carries nearly everything your cells need, from oxygen to nutrients, and takes away the wastes they produce.",
    "deeper": "Red cells carry oxygen, white cells fight infection, platelets stop bleeding, and plasma carries proteins, salts, sugars and hormones.",
-   "expert": "Hematocrit ≈ 40-45%; plasma ≈ 55%, of which water ≈ 92%; albumin ≈ 4 g/dL; pH 7.35-7.45."
+   "expert": "Hematocrit ≈ 42-52% in men and 37-47% in women, so plasma is roughly 48-58% of blood volume, of which water ≈ 92%; albumin ≈ 4 g/dL; pH 7.35-7.45."
   },
   "facts": [
    [
     "Volume",
-    "≈ 5 L"
+    "≈ 4-6 L (about 8% of body weight)"
    ],
    [
     "Hematocrit",
-    "≈ 40-45%"
+    "≈ 42-52% (men), 37-47% (women)"
    ],
    [
     "pH",
     "≈ 7.4"
    ]
   ],
-  "did_you_know": "A drop of blood holds about 5 million red cells.",
+  "did_you_know": "One cubic millimetre of blood (a microlitre) holds about 5 million red cells but only a few thousand white cells.",
   "certainty": "C1",
   "refs": [
    [
@@ -1060,20 +1083,20 @@
   "summary": "The upper airway that warms, moistens and filters air.",
   "layers": {
    "basics": "Air enters through the nose, where hairs and mucus trap dust, and warms up on its way to the lungs.",
-   "deeper": "The nasal cavity has a rich blood supply and mucus-coated lining with cilia.",
-   "expert": "Turbinates create turbulent flow to humidify air to ≈ 100% relative humidity at body temperature; olfactory epithelium sits at the roof."
+   "deeper": "The nasal cavity has a rich blood supply and mucus-coated lining with cilia. Behind the nasal cavity, the pharynx (throat) is a shared passage for air and food, and the soft palate and epiglottis help steer each one the right way.",
+   "expert": "Turbinates create turbulent flow that brings air into contact with the moist lining. The nose does only part of the conditioning: air leaving it is roughly 32-33 C with humidity of about 85% or more, and the lower airway completes the job (37 C, 100% humidity) a few centimetres below the carina; olfactory epithelium sits at the roof."
   },
   "facts": [
    [
-    "Air warming",
-    "to ≈ 37 C"
+    "Air leaving the nose",
+    "≈ 32-33 C, humidity ≈ 85-100%"
    ],
    [
-    "Humidification",
-    "≈ 100%"
+    "Fully conditioned (37 C, 100%)",
+    "a few cm below the carina"
    ]
   ],
-  "did_you_know": "Your nose alternates which nostril is dominant every few hours.",
+  "did_you_know": "In most people the nasal passages take turns carrying more of the airflow, a nasal cycle that lasts hours (about 6 hours on average in one sleep study of healthy adults).",
   "certainty": "C1",
   "refs": [
    [
@@ -1108,8 +1131,8 @@
   "summary": "The voice box that guards the airway and produces sound.",
   "layers": {
    "basics": "The larynx holds your vocal cords. They vibrate when air passes to make your voice.",
-   "deeper": "Cartilages and muscles move the vocal folds, and the epiglottis closes the airway when you swallow.",
-   "expert": "Phonation by Bernoulli effects and mucosal wave; fundamental frequency ≈ 100-120 Hz (typically lower voices) to ≈ 200-250 Hz; superior and recurrent laryngeal nerves."
+   "deeper": "Cartilages and muscles move the vocal folds, and during a swallow the larynx lifts and the vocal folds close, while the epiglottis folds over the entrance and helps guide food past.",
+   "expert": "Phonation follows the myoelastic-aerodynamic account: air pressure pushes the folds apart, then their elastic recoil and the Bernoulli drop in pressure between them pull them together, and the cycle repeats. Speaking pitch is lower on average in men than in women; superior and recurrent laryngeal nerves."
   },
   "facts": [
    [
@@ -1209,8 +1232,8 @@
   "summary": "The left lung exchanges oxygen and carbon dioxide with the blood. It has two lobes.",
   "layers": {
    "basics": "Lungs are spongy, air-filled organs. When you breathe in, oxygen passes into the blood and carbon dioxide passes out.",
-   "deeper": "Airways branch about 23 times from the trachea down to the alveoli. The left lung has a notch (cardiac notch) for the heart.",
-   "expert": "Lungs are surrounded by a double-layered pleura and held against the chest wall by negative pleural pressure (≈ -5 cmH2O at rest). Surfactant lowers surface tension, and dual blood supply comes from pulmonary and bronchial circulations."
+   "deeper": "In the standard idealised model the airways divide about 23 times from the trachea to the alveolar sacs; real lungs branch irregularly. The left lung has a notch (cardiac notch) for the heart.",
+   "expert": "A fissure divides the left lung into superior and inferior lobes, and each lobe holds several bronchopulmonary segments, each with its own bronchus and artery. Lungs are surrounded by a double-layered pleura and held against the chest wall by negative pleural pressure (≈ -5 cmH2O at rest). Surfactant lowers surface tension, and dual blood supply comes from pulmonary and bronchial circulations."
   },
   "facts": [
    [
@@ -1223,7 +1246,7 @@
    ],
    [
     "Total lung capacity (both)",
-    "≈ 6 L"
+    "≈ 4-6 L (≈ 6 L in men, ≈ 4.2 L in women)"
    ]
   ],
   "did_you_know": "Lung tissue is so light that it would float on water.",
@@ -1266,8 +1289,8 @@
   "summary": "The right lung exchanges oxygen and carbon dioxide with the blood. It has three lobes.",
   "layers": {
    "basics": "Lungs are spongy, air-filled organs. When you breathe in, oxygen passes into the blood and carbon dioxide passes out.",
-   "deeper": "Airways branch about 23 times from the trachea down to the alveoli. The right lung is slightly larger and has three lobes.",
-   "expert": "Lungs are surrounded by a double-layered pleura and held against the chest wall by negative pleural pressure (≈ -5 cmH2O at rest). Surfactant lowers surface tension, and dual blood supply comes from pulmonary and bronchial circulations."
+   "deeper": "In the standard idealised model the airways divide about 23 times from the trachea to the alveolar sacs; real lungs branch irregularly. The right lung is slightly larger and has three lobes.",
+   "expert": "Fissures divide the right lung into superior, middle and inferior lobes, and each lobe holds several bronchopulmonary segments, each with its own bronchus and artery. Lungs are surrounded by a double-layered pleura and held against the chest wall by negative pleural pressure (≈ -5 cmH2O at rest). Surfactant lowers surface tension, and dual blood supply comes from pulmonary and bronchial circulations."
   },
   "facts": [
    [
@@ -1280,7 +1303,7 @@
    ],
    [
     "Total lung capacity (both)",
-    "≈ 6 L"
+    "≈ 4-6 L (≈ 6 L in men, ≈ 4.2 L in women)"
    ]
   ],
   "did_you_know": "Lung tissue is so light that it would float on water.",
@@ -1309,7 +1332,8 @@
   "parts": [],
   "made_of": [
    "epithelial_tissue",
-   "smooth_muscle_tissue"
+   "smooth_muscle_tissue",
+    "cartilage_tissue"
   ],
   "processes": [
    "breathing"
@@ -1395,8 +1419,8 @@
     "< 1 mm"
    ],
    [
-    "Generations",
-    "≈ 5-16"
+    "Generations (idealised model)",
+    "conducting bronchioles end near 16; respiratory bronchioles follow"
    ]
   ],
   "did_you_know": "They have no cartilage, only muscle, so they can clamp down in an asthma attack.",
@@ -1425,7 +1449,7 @@
   "parts": [],
   "made_of": [
    "epithelial_tissue",
-   "smooth_muscle_tissue"
+   "connective_tissue_loose"
   ],
   "processes": [
    "breathing"
@@ -1444,13 +1468,13 @@
   "summary": "Microscopic air sacs where gases pass into and out of the blood.",
   "layers": {
    "basics": "Each lung has hundreds of millions of tiny sacs wrapped in capillaries.",
-   "deeper": "Their walls are one cell thick so oxygen can diffuse across in a fraction of a second.",
-   "expert": "≈ 480 million alveoli total, diameter ≈ 200 µm; type I cells for exchange, type II cells make surfactant; blood-gas barrier ≈ 0.2-0.6 µm."
+   "deeper": "Between the air and the blood lie only a very thin alveolar cell, a capillary cell and the thin membrane they share, so oxygen can diffuse across in a fraction of a second.",
+   "expert": "Roughly 300-500 million alveoli in total (one stereology study of six adult lungs found a mean of 480 million, range 274-790 million), diameter ≈ 200 µm; type I cells for exchange, type II cells make surfactant; blood-gas barrier ≈ 0.2-0.6 µm."
   },
   "facts": [
    [
     "Number",
-    "≈ 3-5×10^8"
+    "≈ 3-5×10^8 (individual range ≈ 2.7-7.9×10^8)"
    ],
    [
     "Diameter",
@@ -1458,10 +1482,10 @@
    ],
    [
     "Barrier thickness",
-    "≈ 0.5 µm"
+    "≈ 0.2-0.6 µm"
    ]
   ],
-  "did_you_know": "The alveolar surface is often compared to a tennis court, but measured values (~50-100 m²) are closer to a studio apartment.",
+  "did_you_know": "The alveolar surface is often compared to a tennis court, but measured values are about 70-140 m², depending on the method used.",
   "certainty": "C1",
   "refs": [
    [
@@ -1498,7 +1522,7 @@
   "layers": {
    "basics": "When you breathe in, the diaphragm flattens and pulls air into the lungs.",
    "deeper": "It separates chest from abdomen. Hiccups are spasms of this muscle.",
-   "expert": "Innervated by the phrenic nerves (C3-C5); contributes ≈ 60-70% of quiet inspiratory volume; excursion ≈ 1.5 cm quiet, up to 10 cm deep."
+   "expert": "Innervated by the phrenic nerves (C3-C5); is the main muscle of quiet breathing; excursion ≈ 1.5 cm quiet, up to 10 cm deep."
   },
   "facts": [
    [

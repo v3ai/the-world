@@ -367,6 +367,91 @@
      "scale": 1
     }
    ]
+  },
+  {
+   "id": "robin",
+   "placements": [
+    {
+     "on": {
+      "thing": "boulder",
+      "placement": 0,
+      "at": [
+       0.02,
+       0.686,
+       -0.05
+      ],
+      "note": "a flat spot near the top of the boulder (the highest point of the rock mesh, found from the baked mesh: surface within 5 mm over a 10 cm patch)"
+     },
+     "rot": -30,
+     "scale": 1
+    }
+   ]
+  },
+  {
+   "id": "grass",
+   "placements": [
+    {
+     "at": [
+      1.2,
+      -2.6
+     ],
+     "rot": 20,
+     "scale": 1.0
+    },
+    {
+     "at": [
+      -6.4,
+      0.3
+     ],
+     "rot": 140,
+     "scale": 0.9
+    },
+    {
+     "at": [
+      0.9,
+      -3.6
+     ],
+     "rot": 250,
+     "scale": 0.85
+    },
+    {
+     "at": [
+      4.6,
+      5.6
+     ],
+     "rot": 70,
+     "scale": 1.05
+    },
+    {
+     "at": [
+      -2.4,
+      4.8
+     ],
+     "rot": 300,
+     "scale": 0.95
+    },
+    {
+     "at": [
+      7.5,
+      -0.6
+     ],
+     "rot": 200,
+     "scale": 0.9
+    }
+   ]
+  },
+  {
+   "id": "soil",
+   "placements": [
+    {
+     "at": [
+      -11.0,
+      13.3
+     ],
+     "rot": 219.6,
+     "scale": 1
+    }
+   ]
   }
  ]
 }

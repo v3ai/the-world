@@ -19,11 +19,11 @@
    "stokes_theorem",
    "divergence_theorem"
   ],
-  "summary": "The language of field theory.",
+  "summary": "Gradient, divergence and curl: the calculus used to describe fields.",
   "layers": {
-   "basics": "Fields are vectors defined everywhere; gradient, divergence and curl describe how they change.",
+   "basics": "A field gives a number (scalar field) or an arrow (vector field) at every point. The gradient says which way a scalar field rises fastest, the divergence says how much a vector field spreads out from a point, and the curl says how much it swirls.",
    "deeper": "Choose Cartesian, cylindrical or spherical coordinates to match geometry.",
-   "expert": "Helmholtz theorem: a field is fixed by its divergence and curl plus boundary conditions; Dirac delta for point sources."
+   "expert": "Helmholtz theorem: a vector field that decays fast enough at infinity is fixed by its divergence and curl, as a gradient part plus a curl part; Dirac delta for point sources."
   },
   "facts": [],
   "certainty": "C1",
@@ -60,12 +60,12 @@
   ],
   "summary": "Static electric fields in matter.",
   "layers": {
-   "basics": "Insulators polarise in a field, reducing it by the relative permittivity εr.",
+   "basics": "Insulators polarise in an applied field. Their bound charges partly cancel it: in a capacitor filled with the dielectric and holding fixed charge, the field falls by the factor εr.",
    "deeper": "Boundary conditions: tangential E continuous, normal D jumps by surface charge. Method of images and Poisson/Laplace equations solve problems.",
    "expert": "D=ε₀E+P=εE; bound charge ρ_b=−∇·P; energy density ½E·D; uniqueness theorem."
   },
   "facts": [],
-  "formula": "D = εE;  ∇²V = −ρ/ε",
+  "formula": "D = εE (linear isotropic dielectric);  ∇²V = −ρ_free/ε (uniform ε)",
   "certainty": "C1",
   "refs": [
    [
@@ -75,8 +75,8 @@
    ],
    [
     "UP2",
-    "7.4",
-    "7-4-determining-field-from-potential"
+    "8.5",
+    "8-5-molecular-model-of-a-dielectric"
    ]
   ],
   "lab": {
@@ -109,7 +109,7 @@
    "expert": "Boundary: normal B continuous, tangential H jumps by surface current. Hysteresis loop area is energy lost per cycle; soft vs hard magnetic materials."
   },
   "facts": [],
-  "formula": "B = μH;  ℜ = ℓ/(μA)",
+  "formula": "B = μH (linear materials, small signal; in ferromagnets μ depends on H and history);  ℜ = ℓ/(μA) (uniform path of length ℓ and area A)",
   "certainty": "C1",
   "refs": [
    [
@@ -146,11 +146,11 @@
    "magnetostatics_materials",
    "faraday_lenz"
   ],
-  "summary": "Four equations that govern all electromagnetism.",
+  "summary": "Four equations that govern classical electromagnetism.",
   "layers": {
    "basics": "Gauss’s law for E and B, Faraday’s law and Ampère–Maxwell law describe how charges and currents make fields and how changing fields make each other.",
    "deeper": "The displacement current term lets the equations predict waves travelling at c=1/√(μ₀ε₀).",
-   "expert": "∇·D=ρ, ∇·B=0, ∇×E=−∂B/∂t, ∇×H=J+∂D/∂t. Boundary conditions and constitutive relations close the system; covariant form F^{μν}."
+   "expert": "Macroscopic form, with ρ and J the free charge and current densities: ∇·D=ρ, ∇·B=0, ∇×E=−∂B/∂t, ∇×H=J+∂D/∂t; in vacuum D=ε₀E and B=μ₀H. Boundary conditions and constitutive relations close the system; covariant form F^{μν}."
   },
   "facts": [],
   "formula": "∇×E = −∂B/∂t;  ∇×H = J + ∂D/∂t",
@@ -198,9 +198,18 @@
   "layers": {
    "basics": "In free space, E and B oscillate perpendicular to each other and to the direction of travel at c.",
    "deeper": "Polarisation describes the E-field’s orientation: linear, circular or elliptical.",
-   "expert": "E=E₀e^{j(ωt−kz)}; η₀=√(μ₀/ε₀)≈377 Ω; Poynting S=E×H; in lossy media, skin depth δ=√(2/ωμσ)."
+   "expert": "E=E₀e^{j(ωt−kz)}; η₀=√(μ₀/ε₀)≈377 Ω; Poynting S=E×H; in a good conductor (σ ≫ ωε) the field falls off over the skin depth δ=√(2/ωμσ); in general lossy media δ=1/α, where α is the attenuation constant."
   },
-  "facts": [],
+  "facts": [
+   [
+    "Impedance of free space",
+    "≈ 376.730 Ω (CODATA 2022)"
+   ],
+   [
+    "Speed of light in vacuum",
+    "299 792 458 m/s (exact, defines the metre)"
+   ]
+  ],
   "formula": "η₀ = √(μ₀/ε₀) ≈ 377 Ω",
   "certainty": "C1",
   "refs": [
@@ -243,18 +252,28 @@
   ],
   "summary": "Waves at interfaces.",
   "layers": {
-   "basics": "When a wave hits a boundary, some reflects and some transmits, with a bend determined by the media’s impedances.",
-   "deeper": "Reflection coefficient Γ=(η₂−η₁)/(η₂+η₁); Brewster angle gives no reflection for one polarisation; total internal reflection traps light in fibre.",
+   "basics": "When a wave hits a boundary, part reflects and part passes on. The direction of the transmitted wave bends according to Snell’s law, from the two refractive indices (wave speeds). How much is reflected depends on the impedance mismatch.",
+   "deeper": "At normal incidence the reflection coefficient is Γ=(η₂−η₁)/(η₂+η₁); at other angles it depends on angle and polarisation; Brewster angle gives no reflection for one polarisation; total internal reflection traps light in fibre.",
    "expert": "Fresnel equations for TE/TM; phase shifts on reflection; thin-film anti-reflection coatings with quarter-wave layers."
   },
   "facts": [],
-  "formula": "Γ = (η₂−η₁)/(η₂+η₁)",
+  "formula": "Γ = (η₂−η₁)/(η₂+η₁) (normal incidence; η is the wave impedance of each medium)",
   "certainty": "C1",
   "refs": [
    [
     "UP3",
-    "1.1",
-    "1-1-the-propagation-of-light"
+    "1.3",
+    "1-3-refraction"
+   ],
+   [
+    "UP3",
+    "1.4",
+    "1-4-total-internal-reflection"
+   ],
+   [
+    "UP3",
+    "1.7",
+    "1-7-polarization"
    ]
   ],
   "lab": {
@@ -283,12 +302,12 @@
   ],
   "summary": "When wires are long compared to wavelength.",
   "layers": {
-   "basics": "When a signal’s wavelength is comparable to wire length, wires act as waveguides with a characteristic impedance.",
-   "deeper": "Mismatched terminations cause reflections; PCB traces, coax and antennas feeds are transmission lines.",
+   "basics": "When a signal’s wavelength is comparable to the length of the wire, the wire must be treated as a transmission line: a signal travels along it as a wave, and the line has a characteristic impedance. A common rule of thumb is length above about λ/10.",
+   "deeper": "Mismatched terminations reflect part of the wave back. PCB traces, coax and antenna feeds are all transmission lines once their length is a sizeable fraction of a wavelength.",
    "expert": "Telegrapher’s equations; Z₀=√((R+jωL)/(G+jωC)) ≈√(L/C); velocity 1/√(LC); Γ_L=(Z_L−Z₀)/(Z_L+Z₀)."
   },
   "facts": [],
-  "formula": "Z₀ = √(L/C);  Γ = (Z_L−Z₀)/(Z_L+Z₀)",
+  "formula": "Z₀ = √(L/C) (lossless line, L and C per unit length);  Γ = (Z_L−Z₀)/(Z_L+Z₀)",
   "certainty": "C1",
   "refs": [],
   "ext": [
@@ -365,10 +384,10 @@
   "layers": {
    "basics": "The Smith chart is a circular graph that maps complex impedance onto reflection coefficient, making matching problems visual.",
    "deeper": "Moving along a line rotates around the centre; adding series and shunt elements moves along circles.",
-   "expert": "Conformal map Γ=(z−1)/(z+1); admittance chart is a 180° rotation; used for stub and L-network matching and amplifier design."
+   "expert": "Conformal map Γ=(z−1)/(z+1) with z=Z/Z₀; admittance chart is a 180° rotation; used for stub and L-network matching and amplifier design."
   },
   "facts": [],
-  "formula": "Γ = (z−1)/(z+1)",
+  "formula": "Γ = (z−1)/(z+1), with z = Z/Z₀ the normalised impedance",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -404,7 +423,7 @@
   "summary": "Make loads look like the line.",
   "layers": {
    "basics": "Matching networks (L-networks, stubs, quarter-wave transformers) make a load look like the source impedance so power is transferred without reflection.",
-   "deeper": "Quarter-wave transformer Z_T=√(Z₀Z_L); single-stub tuning; bandwidth shrinks with higher mismatch.",
+   "deeper": "Quarter-wave transformer Z_T=√(Z₀Z_L) for a real load Z_L, exact only where the section is λ/4 long (the design frequency); single-stub tuning; bandwidth shrinks with higher mismatch.",
    "expert": "Bode–Fano limit bounds broadband matching; lumped LC L-section Q=√(R_h/R_l−1)."
   },
   "facts": [],
@@ -442,9 +461,9 @@
   ],
   "summary": "Hollow metal pipes for microwaves.",
   "layers": {
-   "basics": "At microwave frequencies, a hollow metal tube guides waves with less loss than coax.",
+   "basics": "At microwave frequencies and above (roughly beyond a few GHz), a hollow metal tube can carry waves with less loss than coax and can handle more power. Below its cutoff frequency it carries nothing.",
    "deeper": "Modes TE/TM have cutoff frequencies; below cutoff nothing propagates.",
-   "expert": "Rectangular TE₁₀ cutoff f_c=c/2a; dispersion v_g=c√(1−(f_c/f)²); optical fibre is a dielectric waveguide."
+   "expert": "Air-filled rectangular guide, wide inner dimension a: TE₁₀ cutoff f_c=c/(2a); group velocity v_g=c√(1−(f_c/f)²); optical fibre is a dielectric waveguide."
   },
   "facts": [],
   "formula": "f_c = c/(2a)",
@@ -481,11 +500,16 @@
   ],
   "summary": "AC current hugs the surface.",
   "layers": {
-   "basics": "At high frequency, current flows only near the surface of a conductor, raising resistance.",
-   "deeper": "Skin depth δ=√(2/ωμσ): ~66 µm for copper at 1 MHz; Litz wire and plating mitigate.",
-   "expert": "R_ac≈R_dc·a/(2δ) for round wire; proximity effect adds in coils; rough surfaces add further loss at GHz."
+   "basics": "At high frequency, the current crowds toward the surface of a conductor, falling off exponentially over a distance called the skin depth, so less of the metal carries current and the resistance rises.",
+   "deeper": "Skin depth δ=√(2/ωμσ): about 65 µm for copper at 1 MHz (good-conductor formula); Litz wire and plating mitigate.",
+   "expert": "For a round wire of radius a ≫ δ, R_ac≈R_dc·a/(2δ); for a ≲ δ, R_ac≈R_dc; proximity effect adds in coils; rough surfaces add further loss at GHz."
   },
-  "facts": [],
+  "facts": [
+   [
+    "Copper skin depth at 1 MHz",
+    "≈ 65 µm (resistivity ≈ 1.7×10⁻⁸ Ω·m)"
+   ]
+  ],
   "formula": "δ = √(2/(ωμσ))",
   "certainty": "C1",
   "refs": [],
@@ -521,10 +545,19 @@
   "summary": "Launching and catching waves.",
   "layers": {
    "basics": "An antenna turns circuit signals into radiated waves and back; its radiation pattern shows where it sends power.",
-   "deeper": "Gain is directivity times efficiency; dipole 2.15 dBi; effective aperture A_e=λ²G/4π; Friis equation for links.",
-   "expert": "Reciprocity; far-field r>2D²/λ; radiation resistance of a half-wave dipole ≈73 Ω; polarisation mismatch loss."
+   "deeper": "Gain is directivity times efficiency; a lossless half-wave dipole has 2.15 dBi gain (1.64 linear); effective aperture effective aperture A_e=λ²G/(4π) with G as a linear ratio; Friis equation for links.",
+   "expert": "Reciprocity; far-field distance r>2D²/λ for an aperture with D ≫ λ; a thin centre-fed half-wave dipole has a radiation resistance of about 73 Ω; polarisation mismatch loss."
   },
-  "facts": [],
+  "facts": [
+   [
+    "Lossless half-wave dipole gain",
+    "2.15 dBi (1.64 linear)"
+   ],
+   [
+    "Short dipole gain",
+    "1.76 dBi (1.5 linear)"
+   ]
+  ],
   "formula": "A_e = λ² G/(4π)",
   "certainty": "C1",
   "refs": [],
@@ -561,10 +594,15 @@
   "summary": "Simplest resonant antennas.",
   "layers": {
    "basics": "A half-wave dipole is two quarter-wave rods driven at the centre; a monopole above a ground plane acts like half of one.",
-   "deeper": "Phone antennas are folded and miniaturised variants (PIFA, IFA).",
-   "expert": "Current distribution sinusoidal; pattern ∝cos(π/2 cosθ)/sinθ; bandwidth depends on thickness; small antennas limited by Chu limit."
+   "deeper": "A quarter-wave monopole over a perfect ground plane radiates only into the upper half-space, so its gain is 3 dB above a dipole’s (about 5.15 dBi) and its radiation resistance is half (about 36 Ω). Phone antennas shorten this design by folding it (IFA, PIFA).",
+   "expert": "Current distribution sinusoidal; for a half-wave dipole the field pattern is ∝cos((π/2)cosθ)/sinθ, with θ measured from the dipole axis; bandwidth depends on thickness; small antennas limited by Chu limit."
   },
-  "facts": [],
+  "facts": [
+   [
+    "Thin half-wave dipole radiation resistance",
+    "≈ 73 Ω"
+   ]
+  ],
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -601,7 +639,7 @@
   "layers": {
    "basics": "Combining several antennas with chosen phases forms a narrow, steerable beam.",
    "deeper": "Array factor AF=Σe^{jnψ}; ψ=kd cosθ+β; phased arrays steer electronically without moving.",
-   "expert": "Grating lobes appear when spacing exceeds λ/2; beamforming weights from DSP; massive MIMO in 5G."
+   "expert": "Grating lobes (extra main beams) appear when the element spacing d is large enough, d ≥ λ for a broadside beam and d > λ/(1+|sinθ₀|) for a beam steered to θ₀, so spacing of λ/2 or less keeps them out at any scan angle; beamforming weights from DSP; massive MIMO in 5G."
   },
   "facts": [],
   "formula": "AF = Σ aₙ e^{jnψ}",
@@ -640,7 +678,7 @@
   "summary": "Keeping devices from disturbing each other.",
   "layers": {
    "basics": "Electronics emit and receive unwanted electromagnetic noise; EMC design ensures devices coexist.",
-   "deeper": "Shielding, filtering, careful PCB layout (return paths, ground planes) and cable management.",
+   "deeper": "A current loop radiates and picks up noise in proportion to its area, so good layout keeps each signal’s return current close beside it. A conductive shield works by reflecting the wave and absorbing what enters it, with absorption growing with thickness measured in skin depths; openings that are a sizeable fraction of a wavelength let the field leak. Filtering and cable management complete the toolkit.",
    "expert": "Common-mode vs differential-mode; ferrites; ground loops; ESD (kV transients); FCC/CISPR limits; spread-spectrum clocking."
   },
   "facts": [],

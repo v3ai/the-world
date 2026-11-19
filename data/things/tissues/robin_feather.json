@@ -1,0 +1,225 @@
+{
+ "cell": "animal",
+ "id": "robin_feather",
+ "tag": "Inside a feather",
+ "title": "Inside a robin's flight feather",
+ "node": "robin_feather_scene",
+ "blurb": "A piece of a flight feather: the central shaft (rachis), the barbs that grow from it, their barbules with hooklets, and pigment granules. Click a part.",
+ "note": "The spacing of the barbules (8 to 16 micrometres, drawn as 12) is a published measurement for the flight feathers of birds from hummingbirds to condors. Everything else is illustrative: the length and thickness of the barbs and barbules, the number of hooklets, and the size and number of pigment granules. The keratin filaments in the shaft are 3 nanometres across and are too small to draw.",
+ "bg": "#f2eee6",
+ "center": [
+  0,
+  0,
+  0
+ ],
+ "D_um": 430,
+ "labels": [
+  {
+   "text": "Rachis: the shaft",
+   "at": [
+    -190,
+    175,
+    30
+   ],
+   "pop": "rachis"
+  },
+  {
+   "text": "Barbs",
+   "at": [
+    60,
+    160,
+    30
+   ],
+   "pop": "barb"
+  },
+  {
+   "text": "Barbules, 8 to 16 µm apart",
+   "at": [
+    -60,
+    -165,
+    30
+   ],
+   "pop": "barbule"
+  },
+  {
+   "text": "Hooklets",
+   "at": [
+    110,
+    -165,
+    30
+   ],
+   "pop": "hooklet"
+  },
+  {
+   "text": "Pigment granules",
+   "at": [
+    130,
+    100,
+    30
+   ],
+   "pop": "granule"
+  }
+ ],
+ "populations": [
+  {
+   "id": "rachis",
+   "name": "Rachis (shaft)",
+   "node": "robin_rach",
+   "shape": "cylinder",
+   "size": [
+    70,
+    380,
+    70
+   ],
+   "color": "#b9ab8d",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -170,
+       0,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "barb",
+   "name": "Barb",
+   "node": "robin_barb",
+   "shape": "tube_x",
+   "size": [
+    330,
+    14,
+    14
+   ],
+   "color": "#8d7b5a",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -5,
+     -140,
+     0
+    ],
+    "n": [
+     1,
+     11,
+     1
+    ],
+    "step": [
+     1,
+     28,
+     1
+    ]
+   }
+  },
+  {
+   "id": "barbule",
+   "name": "Barbule",
+   "node": "robin_barbule",
+   "shape": "cylinder",
+   "size": [
+    3.4,
+    50,
+    3.4
+   ],
+   "color": "#b29f78",
+   "opacity": 0.95,
+   "ink": 1,
+   "priority": 4,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -125,
+     -140,
+     0
+    ],
+    "n": [
+     26,
+     11,
+     1
+    ],
+    "step": [
+     12,
+     28,
+     1
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "cystine",
+    "name": "Cystine, the sulfur bridge of keratin",
+    "button": "See the molecule: cystine, the sulfur-to-sulfur bridge that locks keratin"
+   }
+  },
+  {
+   "id": "hooklet",
+   "name": "Hooklet",
+   "node": "robin_hooklet",
+   "shape": "ellipsoid",
+   "size": [
+    4.5,
+    4.5,
+    4.5
+   ],
+   "color": "#4a3a26",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 5,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -125,
+     -112,
+     0
+    ],
+    "n": [
+     13,
+     11,
+     1
+    ],
+    "step": [
+     24,
+     28,
+     1
+    ]
+   }
+  },
+  {
+   "id": "granule",
+   "name": "Pigment granule",
+   "node": "robin_pigment_granule",
+   "shape": "ellipsoid",
+   "size": [
+    4,
+    2.6,
+    2.6
+   ],
+   "color": "#3b2a1c",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 6,
+   "arrange": {
+    "kind": "inside",
+    "of": "barb",
+    "per": 3,
+    "margin": 0.6,
+    "seed": 14
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "l_dopa",
+    "name": "L-DOPA, a step on the way to melanin",
+    "button": "See the molecule: L-DOPA, a step on the way to melanin"
+   }
+  }
+ ]
+}

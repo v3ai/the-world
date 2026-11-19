@@ -23,8 +23,8 @@
 "geometry_topology"
 ],
 "evidence": [
-"Consistency relative to large-cardinal hierarchies",
-"Independence proofs (forcing)"
+"Nearly all published mathematics can be formalised in ZFC",
+"Independence proofs (forcing) show where ZFC is silent"
 ],
 "frontier": [],
 "refs": [
@@ -46,7 +46,7 @@
 "scale_m": null,
 "certainty": "C1",
 "domain": "Mathematics",
-"basics": "Any consistent formal system strong enough to do arithmetic contains true statements it cannot prove. It also cannot prove its own consistency.",
+"basics": "Any consistent formal system with a checkable list of axioms that is strong enough to do arithmetic contains true statements it cannot prove. It also cannot prove its own consistency.",
 "deeper": "The proof encodes statements about proofs as numbers, then builds a sentence that says 'I am not provable here'. This limits dreams of a single complete rulebook for mathematics.",
 "expert": "Theorem I: consistent, recursively axiomatized T ⊇ PA ⇒ ∃ G_T true but T ⊬ G_T. Theorem II: T ⊬ Con(T).",
 "regime": "Applies to formal systems that can express arithmetic; says nothing against everyday reasoning or physical theories that are not axiomatic in this sense.",
@@ -60,12 +60,7 @@
 "Rigorous proof (1931)"
 ],
 "frontier": [],
-"refs": [
-[
-"CMA",
-"2.1"
-]
-],
+"refs": [],
 "sim": []
 },
 {
@@ -106,7 +101,7 @@
 ],
 [
 "CA2",
-"5.1"
+"6.3"
 ]
 ],
 "sim": []
@@ -181,10 +176,6 @@
 [
 "UP3",
 "7.1"
-],
-[
-"CA3",
-"2.5"
 ]
 ],
 "sim": []
@@ -211,7 +202,12 @@
 "Underpins every GR test"
 ],
 "frontier": [],
-"refs": [],
+"refs": [
+[
+"AST",
+"24.2"
+]
+],
 "sim": []
 },
 {
@@ -224,7 +220,7 @@
 "basics": "A symmetry is a change that leaves something looking the same. Group theory classifies all such changes and explains why particles and crystals come in neat patterns.",
 "deeper": "Rotations, reflections and gauge transformations form groups. Particle families correspond to representations of groups such as SU(3), SU(2) and U(1).",
 "expert": "Standard Model gauge group SU(3)_C × SU(2)_L × U(1)_Y; 230 space groups classify crystals.",
-"regime": "Exact symmetries are rare; many are broken (e.g. electroweak).",
+"regime": "Some symmetries are exact as far as we know (Poincaré invariance, colour SU(3)); others are broken (electroweak, flavour, crystal symmetries at a given temperature).",
 "emerges_from": [
 "logic_sets",
 "linalg_hilbert"
@@ -246,10 +242,6 @@
 [
 "UP3",
 "11.1"
-],
-[
-"UP3",
-"9.5"
 ]
 ],
 "sim": []
@@ -262,8 +254,8 @@
 "certainty": "C1",
 "domain": "Mathematics",
 "basics": "Every continuous symmetry of a physical law brings a conserved quantity. Same laws at all times gives energy conservation, same laws everywhere gives momentum conservation, same laws in all directions gives angular momentum conservation.",
-"deeper": "This explains why conservation laws exist rather than treating them as separate facts. Gauge symmetry brings conservation of electric charge.",
-"expert": "δS = 0 under q→q+εK ⇒ dQ/dt = 0, Q = Σ (∂L/∂q̇)K. Time shift → E; translation → p; rotation → L.",
+"deeper": "This explains why conservation laws exist rather than treating them as separate facts. The global phase symmetry of charged fields brings conservation of electric charge.",
+"expert": "If δL = ε dF/dt under q→q+εK, then Q = Σ(∂L/∂q̇)K − F is conserved on solutions of the equations of motion (dQ/dt = 0). Time shift → E; translation → p; rotation → L.",
 "regime": "Applies to systems with an action principle; energy is not globally conserved in an expanding universe.",
 "emerges_from": [
 "group_symmetry",
@@ -284,11 +276,11 @@
 "refs": [
 [
 "UP1",
-"8.1"
+"8.3"
 ],
 [
 "UP1",
-"9.1"
+"9.3"
 ]
 ],
 "sim": []
@@ -409,9 +401,9 @@
 "scale_m": null,
 "certainty": "C1",
 "domain": "Mathematics",
-"basics": "Any signal can be built by adding simple sine waves. This explains musical tones, image compression and why waves of different colours can be separated.",
+"basics": "Almost any signal you meet in practice can be built by adding sine waves of different frequencies. This explains musical tones, image compression and why waves of different colours can be separated.",
 "deeper": "A function and its Fourier transform are two views of the same thing; narrow in one means broad in the other, which is the maths behind the uncertainty principle.",
-"expert": "f̂(k)=∫f(x)e^{−ikx}dx; Δx·Δk ≥ ½.",
+"expert": "f̂(k)=∫f(x)e^{−ikx}dx; Δx·Δk ≥ ½ (Δx, Δk the standard deviations of |f|² and |f̂|²).",
 "regime": "Linear systems; nonlinear systems mix frequencies.",
 "emerges_from": [
 "calculus",
@@ -430,11 +422,7 @@
 "refs": [
 [
 "UP1",
-"16.1"
-],
-[
-"CA3",
-"7.1"
+"16.6"
 ]
 ],
 "sim": []
@@ -448,8 +436,8 @@
 "domain": "Mathematics",
 "basics": "A graph is dots joined by lines. It is the standard way to describe the internet, food webs, neurons and social ties.",
 "deeper": "Key measures include degree, shortest paths and clustering. Many real networks are 'small-world' or have a few hugely connected hubs.",
-"expert": "Degree distribution P(k)∼k^{−γ} for scale-free nets (often 2<γ<3); Erdős-Rényi threshold ⟨k⟩=1.",
-"regime": "Real networks evolve, so static graph models are snapshots.",
+"expert": "Some networks have heavy-tailed degree distributions P(k)∼k^{−γ} (γ typically 2–3 when a power law fits), but strictly scale-free networks are rare (Broido & Clauset 2019). Erdős-Rényi: a giant component appears at ⟨k⟩=1.",
+"regime": "Real networks evolve, so static graph models are snapshots; whether degree distributions are truly power-law is contested.",
 "emerges_from": [
 "logic_sets"
 ],
@@ -478,7 +466,7 @@
 "certainty": "C3",
 "domain": "Mathematics",
 "basics": "Some of the deepest unanswered questions are in pure mathematics: the Riemann hypothesis, P versus NP, the Yang-Mills mass gap and whether fluid equations can blow up.",
-"deeper": "Several of these control what physics and computing can do. The mass-gap problem asks for a rigorous proof of facts that experiments and computer lattice simulations already strongly suggest.",
+"deeper": "Several of these bear on cryptography, number theory and the foundations of computing and fluid modelling. The mass-gap problem asks for a rigorous proof of facts that experiments and computer lattice simulations already strongly suggest.",
 "expert": "Navier-Stokes: ∂ₜu+(u·∇)u=−∇p/ρ+ν∇²u, ∇·u=0 (smoothness for all time unproven in 3D unforced). RH: all nontrivial zeros of ζ(s) have Re s=½.",
 "regime": "Open as of the knowledge baseline; progress claims need peer review.",
 "emerges_from": [
@@ -501,12 +489,7 @@
 "as_of": "2023-12"
 }
 ],
-"refs": [
-[
-"CMA",
-"2.1"
-]
-],
+"refs": [],
 "sim": [],
 "frontier_ref": [
 "navier_stokes_ai"
@@ -522,7 +505,7 @@
 ],
 "certainty": "C1",
 "domain": "Classical mechanics",
-"basics": "An object keeps its velocity unless a force acts, acceleration equals force divided by mass, and forces come in equal opposite pairs. These rules explain everyday motion.",
+"basics": "An object keeps its velocity unless a force acts, acceleration equals the net force divided by mass, and for contact and gravitational forces they come in equal, opposite pairs. These rules explain everyday motion.",
 "deeper": "Newton's second law, together with a force law like gravity, lets you compute future paths. Forces are tied to interactions, not to objects 'wanting' to move.",
 "expert": "F = dp/dt = ma; F₁₂ = −F₂₁; p = mv.",
 "regime": "Fails for v ≈ c (relativity), tiny scales (quantum), and very strong gravity (GR).",
@@ -582,7 +565,7 @@
 "domain": "Classical mechanics",
 "basics": "Every mass attracts every other with a force that weakens with the square of the distance. It holds planets in orbit and makes things fall.",
 "deeper": "Near Earth the pull is about 9.8 m/s² for everything, regardless of mass. Newton's law was the first law to unite earthly and heavenly motion.",
-"expert": "F = G m₁m₂/r², G = 6.674×10⁻¹¹ N m² kg⁻²; g = GM/R² ≈ 9.81 m/s²; v_esc = √(2GM/r).",
+"expert": "F = G m₁m₂/r², G = 6.67430(15)×10⁻¹¹ N m² kg⁻² (CODATA 2018); g = GM/R² ≈ 9.81 m/s²; v_esc = √(2GM/r).",
 "regime": "Breaks down near compact objects and at cosmological distances where general relativity matters.",
 "emerges_from": [
 "newton_laws"
@@ -638,7 +621,7 @@
 "basics": "Planets move on ellipses with the Sun at one focus, sweep equal areas in equal times, and take longer to orbit the farther out they are.",
 "deeper": "These laws follow from inverse-square gravity and angular momentum conservation. Orbital periods let astronomers weigh stars and planets.",
 "expert": "T² = 4π²a³/(G(M+m)); L = mr²θ̇ constant; vis-viva v² = GM(2/r−1/a).",
-"regime": "Small corrections from other bodies and relativity (Mercury's 43″/century perihelion advance).",
+"regime": "Small corrections from other bodies and relativity: Mercury's perihelion advances about 574″/century in total, and the 43″/century left after planetary perturbations is explained by GR.",
 "emerges_from": [
 "gravitation_newton",
 "conservation_momentum"
@@ -760,7 +743,7 @@
 "domain": "Classical mechanics",
 "basics": "Spinning things resist changes to their spin. Pull your arms in and you spin faster because angular momentum is conserved.",
 "deeper": "Torque changes angular momentum like force changes momentum. Gyroscopes, spinning planets and collapsing stars all use this.",
-"expert": "τ = dL/dt; L = Iω; I = Σmr²; KE_rot = ½Iω².",
+"expert": "τ = dL/dt; L = Iω for rotation about a principal axis (in general L = 𝐈·ω, and L need not be parallel to ω); I = Σmr²; KE_rot = ½Iω².",
 "regime": "Relativistic and quantum versions add spin; classical formula fails for fundamental spin-½ particles.",
 "emerges_from": [
 "newton_laws",
@@ -778,11 +761,15 @@
 "refs": [
 [
 "UP1",
-"10.2"
+"10.6"
 ],
 [
 "UP1",
 "11.2"
+],
+[
+"UP1",
+"11.3"
 ]
 ],
 "sim": [
@@ -812,12 +799,7 @@
 "Equivalent to Newton for conservative systems"
 ],
 "frontier": [],
-"refs": [
-[
-"UP1",
-"8.1"
-]
-],
+"refs": [],
 "sim": []
 },
 {
@@ -833,7 +815,7 @@
 "basics": "Anything with a restoring force near equilibrium swings back and forth. Pushing at its natural frequency builds large oscillations (resonance).",
 "deeper": "Springs, pendulums, molecular bonds and electric circuits all share the same maths. Damping makes the swing die out.",
 "expert": "ẍ+ω₀²x=0, ω₀=√(k/m); damped driven: ẍ+2γẋ+ω₀²x=F cosΩt/m; Q=ω₀/2γ.",
-"regime": "Linear only for small amplitudes.",
+"regime": "Linear only for small amplitudes. The 1940 Tacoma Narrows collapse is often quoted as resonance, but it was self-excited aeroelastic flutter.",
 "emerges_from": [
 "newton_laws",
 "ode_pde"
@@ -842,7 +824,7 @@
 "waves"
 ],
 "evidence": [
-"Tacoma Narrows bridge",
+"Driven pendulum and LC-circuit resonance curves",
 "Quartz clocks"
 ],
 "frontier": [],
@@ -850,6 +832,10 @@
 [
 "UP1",
 "15.5"
+],
+[
+"UP1",
+"15.6"
 ]
 ],
 "sim": []
@@ -913,7 +899,7 @@
 ],
 "certainty": "C1",
 "domain": "Classical mechanics",
-"basics": "Solids stretch in proportion to the force until they permanently deform or break. Stiffness comes from atomic bonds acting like tiny springs.",
+"basics": "For small stretches, solids stretch in proportion to the force; beyond the elastic limit they deform permanently or break. Stiffness comes from atomic bonds acting like tiny springs.",
 "deeper": "Young's modulus tells how stiff a material is. Beyond the elastic limit, defects move and the material yields.",
 "expert": "σ=Eε; E_steel≈200 GPa, E_rubber≈0.01–0.1 GPa; shear τ=Gγ; bulk B=−V dP/dV.",
 "regime": "Linear elasticity valid for small strains; plasticity and fracture need other models.",
@@ -951,7 +937,7 @@
 "certainty": "C1",
 "domain": "Chemistry",
 "basics": "Atoms attract at moderate distances and repel when too close, so the energy has a minimum at the bond length. Near that minimum the bond acts like a spring.",
-"deeper": "The Lennard-Jones form is a common model of this balance. Such curves explain thermal expansion, stiffness and melting.",
+"deeper": "The Lennard-Jones form, with an r⁻⁶ attraction (van der Waals) and a convenient r⁻¹² repulsion (really exclusion-principle overlap), is a common model for neutral atoms; covalent and ionic bonds use other curves such as the Morse potential. Such curves explain thermal expansion, stiffness and melting.",
 "expert": "V(r)=4ε[(σ/r)¹²−(σ/r)⁶]; minimum at r=2^{1/6}σ; k=V″(r₀).",
 "regime": "Classical approximation for neutral atoms; real bonds need quantum mechanics.",
 "emerges_from": [
@@ -1024,7 +1010,7 @@
 ],
 "certainty": "C1",
 "domain": "Fluids",
-"basics": "In smoothly flowing fluid, faster flow goes with lower pressure. Wings turn the air downward, and that and the pressure difference produce lift.",
+"basics": "In smoothly flowing fluid, faster flow goes with lower pressure. Wings turn the air downward; the pressure difference across the wing is how that momentum change pushes the wing up.",
 "deeper": "Newton's third law and Bernoulli's equation are two descriptions of the same momentum change. Stall happens when flow separates from the wing.",
 "expert": "P+½ρv²+ρgh=const along a streamline; L=½ρv²SC_L.",
 "regime": "Steady, incompressible, inviscid flow; fails with strong viscosity or shocks.",
@@ -1043,7 +1029,7 @@
 "refs": [
 [
 "UP1",
-"14.3"
+"14.6"
 ]
 ],
 "sim": [
@@ -1063,7 +1049,7 @@
 "domain": "Fluids",
 "basics": "These equations say how a fluid's velocity changes because of pressure, viscosity and external forces. They govern air, water, blood and the weather.",
 "deeper": "Solutions are well tested, but whether they stay smooth forever in 3D is a famous unsolved problem. Practical simulations use numerical grids and turbulence models.",
-"expert": "ρ(∂ₜu+u·∇u)=−∇p+μ∇²u+f; ∇·u=0; Re=ρUL/μ.",
+"expert": "Incompressible, constant-viscosity form: ρ(∂ₜu+u·∇u)=−∇p+μ∇²u+f; ∇·u=0; Re=ρUL/μ (compressible flows add a density equation and bulk viscosity).",
 "regime": "Continuum limit (length ≫ mean free path); non-Newtonian fluids need modified stress laws.",
 "emerges_from": [
 "newton_laws",
@@ -1106,8 +1092,8 @@
 "domain": "Fluids",
 "basics": "Fast flows break into swirling eddies of all sizes. Turbulence mixes heat and momentum very efficiently but has no complete first-principles theory.",
 "deeper": "Energy cascades from big eddies to small ones until viscosity turns it into heat. Kolmogorov's 1941 scaling predicts how the energy is spread over eddy sizes.",
-"expert": "E(k)=C ε^{2/3}k^{−5/3}, C≈1.5; Kolmogorov scale η=(ν³/ε)^{1/4}; Re_crit(pipe)≈2300.",
-"regime": "Statistical scaling is well supported; exact closure is unsolved.",
+"expert": "E(k)=C ε^{2/3}k^{−5/3}, C≈1.5; Kolmogorov scale η=(ν³/ε)^{1/4}; Re_crit(pipe)≈2000–2300 (sustained turbulence near Re≈2040; laminar flow can persist far higher in very quiet conditions).",
+"regime": "The −5/3 spectrum is well supported in the 3D inertial range, but intermittency makes higher-order scaling exponents deviate from Kolmogorov's 1941 values; exact closure is unsolved.",
 "emerges_from": [
 "navier_stokes",
 "dynamical_chaos"
@@ -1145,7 +1131,7 @@
 ],
 "certainty": "C1",
 "domain": "Thermodynamics",
-"basics": "Temperature measures the average random motion energy of particles; heat is energy moving because of a temperature difference.",
+"basics": "Temperature tells which way heat flows; for a dilute gas it is proportional to the average random kinetic energy of the molecules. Heat is energy moving because of a temperature difference.",
 "deeper": "Heat flows by conduction, convection and radiation. Materials differ in how much heat they need to warm up (specific heat).",
 "expert": "Q=mcΔT; q=−k∇T; P_rad=εσAT⁴, σ=5.670×10⁻⁸ W m⁻² K⁻⁴; Wien λ_max T=2.898×10⁻³ m K.",
 "regime": "Local equilibrium assumed; temperature is undefined far from equilibrium.",
@@ -1190,7 +1176,7 @@
 "domain": "Thermodynamics",
 "basics": "Heat and dissolved particles spread out from hot or concentrated regions to cooler or emptier ones, driven by random motion.",
 "deeper": "The same equation describes cooling coffee, ink in water and the slow flow of heat through Earth's crust. The spread grows as the square root of time.",
-"expert": "∂u/∂t=D∇²u; ⟨x²⟩=2Dt; Fick J=−D∇c.",
+"expert": "∂u/∂t=D∇²u; ⟨x²⟩=2Dt in one dimension (⟨r²⟩=2nDt in n dimensions); Fick J=−D∇c.",
 "regime": "Valid when transport is diffusive, not ballistic.",
 "emerges_from": [
 "ode_pde",
@@ -1212,8 +1198,12 @@
 "1.4"
 ],
 [
-"BIO",
-"5.1"
+"UP2",
+"1.6"
+],
+[
+"CHE",
+"9.4"
 ]
 ],
 "sim": []
@@ -1304,7 +1294,7 @@
 "scale_m": null,
 "certainty": "C1",
 "domain": "Thermodynamics",
-"basics": "In an isolated system disorder, measured as entropy, tends to increase. This gives time its arrow and explains why heat flows from hot to cold.",
+"basics": "In an isolated system entropy (a count of the microscopic arrangements that look the same as what we see) tends to increase. This gives time its arrow and explains why heat flows from hot to cold.",
 "deeper": "Entropy counts how many microscopic arrangements match what we see. Local order (like life) is possible only by exporting entropy.",
 "expert": "dS≥δQ/T; S=k_B ln W (k_B=1.380649×10⁻²³ J/K); η_Carnot=1−T_c/T_h.",
 "regime": "Statistical law, essentially exact for macroscopic systems; fluctuation theorems cover tiny systems.",
@@ -1350,7 +1340,7 @@
 "certainty": "C1",
 "domain": "Thermodynamics",
 "basics": "You cannot reach absolute zero in a finite number of steps. Entropy of a perfect crystal approaches zero at 0 K.",
-"deeper": "Cooling gets harder near zero because there is less heat to extract. Quantum effects like superfluidity appear at very low temperature.",
+"deeper": "Cooling gets harder near zero because heat capacities and entropy differences between states vanish, so every cooling step gains less than the last. Quantum effects like superfluidity appear at very low temperature.",
 "expert": "S→0 as T→0 (perfect crystal); 0 K=−273.15 °C.",
 "regime": "Residual entropy exists for disordered solids like ice.",
 "emerges_from": [
@@ -1381,7 +1371,7 @@
 "certainty": "C1",
 "domain": "Thermodynamics",
 "basics": "Statistical mechanics derives the laws of heat from the random motion of huge numbers of atoms. It is the main bridge from microscopic to macroscopic.",
-"deeper": "At equilibrium, a state with energy E is occupied with probability proportional to e^(−E/kT). Averaging over this distribution gives pressure, heat capacity and magnetisation.",
+"deeper": "At equilibrium each microstate with energy E has probability proportional to e^(−E/kT); a set of states sharing an energy is weighted by how many there are. Averaging over this distribution gives pressure, heat capacity and magnetisation.",
 "expert": "p_i=e^{−E_i/kT}/Z; Z=Σe^{−E_i/kT}; F=−kT ln Z; S=−k Σp ln p.",
 "regime": "Needs many particles and ergodic mixing; small or driven systems need fluctuation theorems.",
 "emerges_from": [
@@ -1511,7 +1501,7 @@
 "certainty": "C1",
 "domain": "Thermodynamics",
 "basics": "Hot objects glow, and the colour depends only on temperature. This is why a heated metal goes red then white and why stars have colours.",
-"deeper": "Planck explained the spectrum by assuming light energy comes in packets, starting quantum theory. The Sun's surface (5772 K) peaks in the visible.",
+"deeper": "Planck explained the spectrum in 1900 by assuming the oscillators in the cavity walls exchange energy only in units hf; Einstein (1905) extended the idea to light itself. This started quantum theory. The Sun's surface (5772 K) peaks in the visible.",
 "expert": "B_λ=(2hc²/λ⁵)/(e^{hc/λkT}−1); h=6.62607×10⁻³⁴ J s; L=4πR²σT⁴.",
 "regime": "Ideal for opaque bodies; real objects have emissivity<1.",
 "emerges_from": [
@@ -1552,7 +1542,7 @@
 "certainty": "C1",
 "domain": "Electromagnetism",
 "basics": "Like charges repel and opposite charges attract, with a force that weakens with distance squared. This force holds atoms and molecules together.",
-"deeper": "The electric force between a proton and electron is about 10³⁹ times stronger than their gravity. Charge is quantised in units of e.",
+"deeper": "The electric force between a proton and electron is about 10³⁹ times stronger than their gravity. Free charge is quantised in units of e (quarks carry e/3 and 2e/3 but are never found free).",
 "expert": "F=k q₁q₂/r², k=8.988×10⁹ N m²/C²; e=1.602176634×10⁻¹⁹ C; ε₀=8.854×10⁻¹² F/m.",
 "regime": "Static point charges; moving charges need full electrodynamics.",
 "emerges_from": [
@@ -1637,7 +1627,7 @@
 "basics": "Current is charge flow, and in many materials it is proportional to the voltage across them. Circuit rules let you predict how currents split and voltages drop.",
 "deeper": "Resistance comes from electrons scattering off lattice vibrations and defects. Power dissipated as heat is voltage times current.",
 "expert": "V=IR; P=IV=I²R; Kirchhoff ΣI=0 at nodes, ΣV=0 around loops; RC time constant τ=RC.",
-"regime": "Ohmic materials; diodes and transistors are nonlinear.",
+"regime": "Ohmic materials; the loop rule needs no changing magnetic flux; diodes and transistors are nonlinear.",
 "emerges_from": [
 "electric_fields",
 "band_theory"
@@ -1886,7 +1876,7 @@
 "domain": "Optics",
 "basics": "Light waves add and cancel to make bright and dark fringes, and spread around obstacles. This shows light's wave nature and sets the limit on how fine an image can be.",
 "deeper": "Slit patterns reveal wavelength; thin films and soap bubbles show colour from interference. Polarisation selects the wave's oscillation direction.",
-"expert": "d sinθ=mλ; single slit a sinθ=mλ; Rayleigh limit θ=1.22λ/D; Malus I=I₀cos²θ.",
+"expert": "d sinθ=mλ (double-slit bright fringes, m=0,±1,…); a sinθ=mλ (single-slit dark minima, m=±1,±2,…); Rayleigh limit θ=1.22λ/D; Malus I=I₀cos²θ.",
 "regime": "Scalar/Maxwell wave theory; needs quantum treatment for single-photon statistics.",
 "emerges_from": [
 "electromagnetic_waves"
@@ -1925,7 +1915,7 @@
 "domain": "Classical mechanics",
 "basics": "Thrown objects follow curved paths because gravity pulls them down while their sideways motion continues. Without air, all objects fall equally fast.",
 "deeper": "Horizontal and vertical motion are independent. Air drag adds a terminal speed, which is why raindrops do not hit like bullets.",
-"expert": "y=v₀t sinθ−½gt²; range=v₀² sin2θ/g; terminal v_t=√(2mg/ρC_dA).",
+"expert": "y=v₀t sinθ−½gt²; range=v₀² sin2θ/g (launch and landing at the same height, uniform g, no drag); terminal v_t=√(2mg/ρC_dA).",
 "regime": "Uniform g and no spin or drag assumed.",
 "emerges_from": [
 "newton_laws",
@@ -1963,7 +1953,7 @@
 "domain": "Engineering",
 "basics": "Rockets move by throwing mass backwards, and the Tsiolkovsky rocket equation says how much fuel it takes to change speed.",
 "deeper": "Most of a rocket is propellant. Orbiting needs about 7.8 km/s sideways at low Earth altitude, not just height.",
-"expert": "Δv=v_e ln(m₀/m_f); v_circ=√(GM/r)≈7.8 km/s (LEO); v_esc(Earth)=11.2 km/s.",
+"expert": "Δv=v_e ln(m₀/m_f); v_circ=√(GM/r)≈7.7–7.8 km/s (LEO, 200–400 km); v_esc(Earth)=11.2 km/s.",
 "regime": "Chemical rockets limited by exhaust speed ≈ 3–4.5 km/s.",
 "emerges_from": [
 "conservation_momentum",
@@ -2000,8 +1990,8 @@
 "domain": "Relativity",
 "basics": "The speed of light is the same for every observer, so time and space measurements depend on motion. Moving clocks run slow and length contracts.",
 "deeper": "Mass and energy are interchangeable, and nothing with mass can reach light speed. The theory combines space and time into one four-dimensional spacetime.",
-"expert": "γ=1/√(1−v²/c²); Δt=γΔt₀; E²=(pc)²+(mc²)²; E=mc²; 1 u=931.494 MeV/c².",
-"regime": "Valid in flat spacetime (no gravity); exact otherwise at all tested speeds.",
+"expert": "γ=1/√(1−v²/c²); Δt=γΔt₀; E²=(pc)²+(mc²)²; E=mc² at rest; 1 u=931.494 MeV/c².",
+"regime": "Exact in flat spacetime (no gravity) and valid locally in GR; tested at all speeds up to those of cosmic rays and LHC protons.",
 "emerges_from": [
 "maxwell",
 "noether"
@@ -2023,7 +2013,15 @@
 "refs": [
 [
 "UP3",
-"5.2"
+"5.3"
+],
+[
+"UP3",
+"5.4"
+],
+[
+"UP3",
+"5.6"
 ]
 ],
 "sim": []
@@ -2039,9 +2037,9 @@
 "certainty": "C1",
 "domain": "Relativity",
 "basics": "Gravity is the curvature of spacetime caused by mass and energy, and objects follow the straightest paths through that curved geometry. It extends Newton's gravity to strong fields and cosmic distances.",
-"deeper": "Its predictions include light bending, gravitational time dilation, gravitational waves and black holes. All tests so far have confirmed it.",
+"deeper": "Its predictions include light bending, gravitational time dilation, gravitational waves and black holes. All precision tests so far agree with it.",
 "expert": "G_μν+Λg_μν=(8πG/c⁴)T_μν; Schwarzschild r_s=2GM/c²; Mercury precession 42.98″/century.",
-"regime": "Tested from lab to cosmological scales; must fail at singularities and the Planck scale.",
+"regime": "Tested from the laboratory to solar-system and astrophysical scales (cosmological tests are weaker); expected to fail at singularities and the Planck scale.",
 "emerges_from": [
 "special_relativity",
 "diff_geometry",
@@ -2077,8 +2075,8 @@
 "24.1"
 ],
 [
-"UP3",
-"5.2"
+"AST",
+"24.3"
 ]
 ],
 "sim": [
@@ -2111,7 +2109,11 @@
 "refs": [
 [
 "UP3",
-"5.2"
+"5.3"
+],
+[
+"AST",
+"24.3"
 ]
 ],
 "sim": []
@@ -2165,7 +2167,7 @@
 "domain": "Relativity",
 "basics": "Accelerating masses ripple spacetime. Detectors like LIGO sense stretches smaller than a proton in arms several kilometres long.",
 "deeper": "The first detected merger (2015) matched GR waveforms for two ~30 solar-mass black holes. Mergers of neutron stars also emit light, enabling multi-messenger astronomy.",
-"expert": "h≈ΔL/L∼10⁻²¹; v=c; chirp mass ℳ=(m₁m₂)^{3/5}/(m₁+m₂)^{1/5}; L_GW ∼ c⁵/G for equal mergers.",
+"expert": "h≈ΔL/L∼10⁻²¹; v=c; chirp mass ℳ=(m₁m₂)^{3/5}/(m₁+m₂)^{1/5}; peak luminosity of GW150914 ≈3.6×10⁴⁹ W ≈10⁻³ c⁵/G (c⁵/G≈3.6×10⁵² W is the natural scale, not the typical value).",
 "regime": "Linear weak-field regime for the propagation; strong-field merger needs numerical relativity.",
 "emerges_from": [
 "general_relativity"
@@ -2200,10 +2202,10 @@
 1000.0,
 10000000000000.0
 ],
-"certainty": "C1",
+"certainty": "C2",
 "domain": "Relativity",
 "basics": "A black hole is a region where gravity is so strong that nothing, not even light, can leave. They form when massive stars collapse and also sit at the centres of galaxies.",
-"deeper": "The edge, the event horizon, is not a surface but a one-way boundary. Black holes are described by mass, spin and charge, and spin lets them power jets.",
+"deeper": "The edge, the event horizon, is not a surface but a one-way boundary. Black holes are described by mass, spin and charge, and spin is thought to power jets (the Blandford-Znajek mechanism is the leading model).",
 "expert": "r_s=2GM/c²≈2.95 km (M/M☉); T_H=ħc³/(8πGMk_B)≈6×10⁻⁸ K (M☉/M); S=k_Bc³A/(4Għ).",
 "regime": "Hawking radiation is predicted but unobserved; interior and information fate depend on quantum gravity.",
 "emerges_from": [
@@ -2353,7 +2355,7 @@
 "computational_chemistry"
 ],
 "evidence": [
-"Hydrogen spectrum to <1 ppm",
+"Hydrogen energy levels (Rydberg series, to about 10⁻⁵ relative accuracy; finer detail needs the Dirac equation and QED)",
 "Chemistry",
 "Semiconductor devices"
 ],
@@ -2378,7 +2380,7 @@
 "domain": "Quantum mechanics",
 "basics": "You cannot know both a particle's position and momentum exactly at the same time. This is a property of nature, not a limit of instruments.",
 "deeper": "It is why electrons do not fall into the nucleus and why a confined particle has minimum motion (zero-point energy).",
-"expert": "ΔxΔp≥ħ/2; ΔEΔt≳ħ/2; zero-point energy E₀=½ħω.",
+"expert": "ΔxΔp≥ħ/2 (Kennard, standard deviations); energy-time: ΔE·τ≳ħ/2, where τ is the time over which the state changes appreciably; zero-point energy E₀=½ħω.",
 "regime": "Universal; follows from wave nature (Fourier).",
 "emerges_from": [
 "fourier",
@@ -2386,8 +2388,8 @@
 ],
 "explains": [],
 "evidence": [
-"Neutron diffraction",
-"Casimir effect"
+"Single-slit diffraction of electrons and neutrons (width-momentum spread)",
+"Spectral line widths"
 ],
 "frontier": [],
 "refs": [
@@ -2411,7 +2413,7 @@
 "basics": "Particles carry an intrinsic angular momentum called spin. Two identical electrons cannot share the same quantum state, which forces atoms into shells.",
 "deeper": "Exclusion makes matter occupy space and holds up white dwarfs and neutron stars. Spin-statistics theorem sorts particles into fermions and bosons.",
 "expert": "s=½ (electron), g≈2.00232; fermions antisymmetric ψ(1,2)=−ψ(2,1); Fermi energy E_F=(ħ²/2m)(3π²n)^{2/3}.",
-"regime": "Exact for identical particles; spin-statistics proven in relativistic QFT.",
+"regime": "Exact for identical particles; the spin-statistics theorem is proven in relativistic QFT in 3+1 dimensions, while quasi-particles in 2D can be anyons.",
 "emerges_from": [
 "schrodinger",
 "standard_model"
@@ -2466,7 +2468,13 @@
 "Loophole-free Bell tests 2015",
 "Nobel Prize 2022"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "Which interpretation of quantum mechanics is correct (non-local hidden variables, many-worlds, collapse models) is open; Bell tests rule out local hidden variables only.",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "UP3",
@@ -2520,7 +2528,7 @@
 "title": "Measurement problem and interpretations",
 "level": "1",
 "scale_m": null,
-"certainty": "C4",
+"certainty": "C3",
 "domain": "Quantum mechanics",
 "basics": "Quantum theory predicts probabilities extremely well, but why a single definite result appears when we measure is still debated. Several interpretations give identical predictions.",
 "deeper": "Main options: Copenhagen (collapse on measurement), many-worlds (no collapse, branching), Bohmian pilot waves, objective collapse models, and relational or Bayesian readings.",
@@ -2540,9 +2548,9 @@
 ],
 "frontier": [
 {
-"text": "Interpretations make the same predictions in all tests so far",
+"text": "Can any experiment distinguish interpretations (for example collapse-model heating or X-ray emission bounds)?",
 "status": "open",
-"as_of": "2023-12"
+"as_of": "2026-11"
 },
 {
 "text": "Objective collapse models are being tested",
@@ -2553,7 +2561,7 @@
 "refs": [
 [
 "UP3",
-"7.4"
+"7.1"
 ]
 ],
 "sim": []
@@ -2570,7 +2578,7 @@
 "domain": "Quantum mechanics",
 "basics": "Interaction with surroundings quickly scrambles the delicate phase relations that make quantum effects visible. That is why everyday objects look classical.",
 "deeper": "Larger and warmer systems decohere faster. This is also the main obstacle for quantum computers.",
-"expert": "τ_D≈τ_R(λ_dB/Δx)²; coherence times: superconducting qubits ~10⁻⁴ s, trapped ions >1 s.",
+"expert": "τ_D≈τ_R(λ_T/Δx)², λ_T=ħ/√(2mk_BT) (Zurek's estimate; order of magnitude only); coherence times: superconducting qubits ~10⁻⁴ s, trapped ions >1 s.",
 "regime": "Explains apparent collapse but does not by itself solve the measurement problem.",
 "emerges_from": [
 "schrodinger",
@@ -2583,13 +2591,14 @@
 "Cavity QED (Haroche)",
 "Molecular interferometry"
 ],
-"frontier": [],
-"refs": [
-[
-"UP3",
-"7.4"
-]
+"frontier": [
+{
+"text": "What is the largest object that can be kept in a quantum superposition, and does any collapse mechanism set a limit?",
+"status": "open",
+"as_of": "2026-11"
+}
 ],
+"refs": [],
 "sim": []
 },
 {
@@ -2603,7 +2612,7 @@
 "certainty": "C1",
 "domain": "Quantum field theory",
 "basics": "QED describes light and charged matter as quantum fields exchanging photons. It is the most precisely tested theory in science.",
-"deeper": "The electron's magnetic moment calculated from QED matches experiment to about one part in a trillion. Virtual particles are bookkeeping for terms in the calculation.",
+"deeper": "The electron's magnetic moment is measured to about 1 part in 10¹² and agrees with QED, given the fine-structure constant measured independently. Virtual particles are bookkeeping for terms in the calculation.",
 "expert": "L=ψ̄(iγ^μD_μ−m)ψ−¼F_μνF^μν; α=e²/(4πε₀ħc)≈1/137.036; a_e=(g−2)/2=0.00115965218.",
 "regime": "Perturbative in α; incomplete without weak and strong forces.",
 "emerges_from": [
@@ -2623,12 +2632,7 @@
 "Electron g-2"
 ],
 "frontier": [],
-"refs": [
-[
-"UP3",
-"11.1"
-]
-],
+"refs": [],
 "sim": []
 },
 {
@@ -2643,7 +2647,7 @@
 "domain": "Particle physics",
 "basics": "The Standard Model lists the known elementary particles (quarks, leptons, force carriers and the Higgs) and three of the four forces. It is tested to extraordinary precision but is known to be incomplete.",
 "deeper": "It has 12 matter particles in three generations and gauge bosons for the strong, weak and electromagnetic forces. It omits gravity, dark matter and neutrino masses as normally written.",
-"expert": "Gauge group SU(3)_C×SU(2)_L×U(1)_Y; ~19 free parameters (more with neutrino masses); m_W=80.38 GeV, m_Z=91.19 GeV, m_H≈125 GeV.",
+"expert": "Gauge group SU(3)_C×SU(2)_L×U(1)_Y; ~19 free parameters (more with neutrino masses); m_W=80.377 GeV (PDG average; CDF 2022 measured 80.434 GeV, in tension), m_Z=91.19 GeV, m_H≈125 GeV.",
 "regime": "Valid up to at least TeV energies; new physics must exist for gravity and dark matter.",
 "emerges_from": [
 "group_symmetry",
@@ -2665,7 +2669,13 @@
 "LEP precision electroweak data",
 "Higgs discovery 2012"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "What explains dark matter and neutrino masses, and why is the W-mass measurement from CDF in tension with the other results?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "UP3",
@@ -2777,12 +2787,12 @@
 1e-19,
 1e-17
 ],
-"certainty": "C1",
+"certainty": "C2",
 "domain": "Particle physics",
 "basics": "A field filling space gives mass to W and Z bosons and to the fundamental matter particles. The Higgs boson, found in 2012, is a ripple of that field.",
 "deeper": "It explains why the weak force is short-range, but not why particle masses have their pattern. Only a small part of everyday mass comes from the Higgs.",
-"expert": "⟨φ⟩=v/√2, v=246 GeV; m_W=gv/2; m_f=y_f v/√2; m_H≈125.1 GeV.",
-"regime": "Higgs couplings agree with the Standard Model within ~10–20 %.",
+"expert": "⟨φ⟩=v/√2, v=246 GeV; m_W=gv/2; m_f=y_f v/√2; m_H=125.20±0.11 GeV (PDG 2024).",
+"regime": "Measured couplings (W, Z, top, bottom, tau, muon) agree with the Standard Model at the ~5–25 % level; the charm, light-quark and self-couplings are not yet measured precisely.",
 "emerges_from": [
 "standard_model",
 "symmetry_breaking"
@@ -2819,9 +2829,9 @@
 ],
 "certainty": "C2",
 "domain": "Particle physics",
-"basics": "Neutrinos are nearly massless particles that barely interact. Billions pass through each person every second, and they change type (flavour) as they travel.",
+"basics": "Neutrinos are nearly massless particles that barely interact. About 60 billion solar neutrinos pass through every square centimetre each second, so several hundred trillion pass through a person every second, and they change type (flavour) as they travel.",
 "deeper": "Flavour oscillation proves they have mass, which the original Standard Model lacked. Their absolute mass scale and whether they are their own antiparticles remain unknown.",
-"expert": "P(ν_μ→ν_e)=sin²2θ sin²(1.27Δm²L/E); Δm²₂₁≈7.5×10⁻⁵ eV², |Δm²₃₁|≈2.5×10⁻³ eV²; Σm_ν<~0.1 eV from cosmology.",
+"expert": "Two-flavour approximation: P(ν_α→ν_β)=sin²2θ·sin²(1.27 Δm²[eV²]·L[km]/E[GeV]); the real three-flavour case adds matter effects and a CP phase. Δm²₂₁≈7.5×10⁻⁵ eV², |Δm²₃₁|≈2.5×10⁻³ eV²; Σm_ν<0.07–0.12 eV (95 %, ΛCDM, model-dependent); direct limit m_νe<0.45 eV (KATRIN 2024).",
 "regime": "Oscillation parameters well measured; ordering and absolute scale open.",
 "emerges_from": [
 "standard_model"
@@ -2829,7 +2839,7 @@
 "explains": [],
 "evidence": [
 "Super-Kamiokande 1998",
-"SNO 2001 solar deficit",
+"SNO 2001-02 (solar neutrinos change flavour)",
 "Reactor experiments"
 ],
 "frontier": [
@@ -2851,7 +2861,7 @@
 ],
 [
 "AST",
-"16.1"
+"16.4"
 ]
 ],
 "sim": [],
@@ -2870,7 +2880,7 @@
 ],
 "certainty": "C3",
 "domain": "Particle physics",
-"basics": "Every particle has an antiparticle, yet the universe contains almost only matter. The Standard Model's tiny CP violation cannot explain the imbalance.",
+"basics": "Every particle has an antiparticle (some, like the photon, are their own), yet the universe contains almost only matter. The Standard Model's tiny CP violation cannot explain the imbalance.",
 "deeper": "Sakharov listed three conditions for creating a net excess: baryon-number violation, C and CP violation, and departure from equilibrium. Leptogenesis and electroweak baryogenesis are leading ideas.",
 "expert": "η=(n_B−n_B̄)/n_γ≈6×10⁻¹⁰; Jarlskog invariant J≈3×10⁻⁵.",
 "regime": "SM CP violation gives η too small by orders of magnitude.",
@@ -2879,8 +2889,7 @@
 "big_bang"
 ],
 "explains": [
-"antihydrogen",
-"medical_imaging"
+"antihydrogen"
 ],
 "evidence": [
 "Kaon and B-meson CP violation",
@@ -2917,7 +2926,7 @@
 "certainty": "C3",
 "domain": "Particle physics",
 "basics": "QCD allows a CP-violating term, yet the neutron's electric dipole moment is tiny. The axion is a proposed particle that would explain it and could also be dark matter.",
-"deeper": "Axion searches use strong magnetic fields to convert them into microwave photons.",
+"deeper": "The strong CP problem is real (the neutron dipole moment is tiny), but the axion solution is hypothetical and undetected. Axion searches use strong magnetic fields to convert them into microwave photons.",
 "expert": "|θ̄|<10⁻¹⁰ (from d_n<1.8×10⁻²⁶ e cm); axion mass m_a≈5.7 μeV (10¹²GeV/f_a).",
 "regime": "Hypothetical; no detection yet.",
 "emerges_from": [
@@ -3000,7 +3009,6 @@
 ],
 "explains": [
 "black_hole_info",
-"inflation",
 "string_theory_holography",
 "loop_quantum_gravity"
 ],
@@ -3069,9 +3077,9 @@
 ],
 "certainty": "C1",
 "domain": "Nuclear physics",
-"basics": "Protons and neutrons are each made of three quarks held by gluons, with radius about 0.84 femtometres. The neutron is slightly heavier and decays outside nuclei.",
+"basics": "Protons and neutrons are each made of three valence quarks plus a sea of gluons and quark-antiquark pairs, with a charge radius of about 0.84 femtometres. The neutron is slightly heavier and decays outside nuclei.",
 "deeper": "Most of their mass is energy of the strong field. Measurements of the proton radius from muonic hydrogen and electron scattering have largely converged.",
-"expert": "m_p=938.272 MeV/c², m_n=939.565 MeV/c²; r_p≈0.84 fm; τ_n≈879 s (bottle/beam values differ by ~9 s).",
+"expert": "m_p=938.272 MeV/c², m_n=939.565 MeV/c²; r_p≈0.84 fm (charge radius); τ_n≈878.4 s (PDG); bottle ≈877.8 s, beam ≈888 s, a gap of ~10 s.",
 "regime": "Composite particles; probe energies above ~1 GeV resolve quarks.",
 "emerges_from": [
 "quarks_leptons",
@@ -3117,7 +3125,7 @@
 ],
 "certainty": "C1",
 "domain": "Nuclear physics",
-"basics": "A short-range attraction between nucleons holds protons and neutrons together against electric repulsion. Nuclei are about 10,000 times smaller than atoms.",
+"basics": "A short-range attraction between nucleons holds protons and neutrons together against electric repulsion. Nuclei are roughly 10,000 to 100,000 times smaller than atoms.",
 "deeper": "Stable nuclei have a balance of neutrons and protons, with magic numbers (2, 8, 20, 28, 50, 82, 126) of extra stability.",
 "expert": "R=r₀A^{1/3}, r₀≈1.2 fm; nuclear density ≈2.3×10¹⁷ kg/m³; range ~1–2 fm.",
 "regime": "Effective description of residual QCD forces.",
@@ -3173,7 +3181,7 @@
 "nucleosynthesis_stars"
 ],
 "evidence": [
-"Mass-spectrometer tables"
+"Atomic mass evaluation tables (AME2020) of measured nuclear masses"
 ],
 "frontier": [],
 "refs": [
@@ -3199,7 +3207,7 @@
 "certainty": "C1",
 "domain": "Nuclear physics",
 "basics": "Unstable nuclei decay at random but with a fixed average rate, shown by a half-life. Alpha, beta and gamma are the main types.",
-"deeper": "Alpha decay is tunnelling; beta decay changes a neutron into a proton via the weak force. Half-lives range from microseconds to billions of years.",
+"deeper": "Alpha decay is tunnelling; beta decay changes a neutron into a proton via the weak force. Half-lives range from less than a microsecond to far longer than the age of the universe (for example Te-128, ~10²⁴ years).",
 "expert": "N=N₀e^{−λt}, t_{1/2}=ln2/λ; ¹⁴C 5730 y; ²³⁸U 4.468 Gy; ⁴⁰K 1.25 Gy.",
 "regime": "Statistical; individual decay times unpredictable.",
 "emerges_from": [
@@ -3208,8 +3216,7 @@
 "weak_force_note"
 ],
 "explains": [
-"radiometric_dating",
-"geodynamo"
+"radiometric_dating"
 ],
 "evidence": [
 "Geiger counters",
@@ -3262,7 +3269,7 @@
 ],
 [
 "UP3",
-"10.1"
+"10.3"
 ]
 ],
 "sim": []
@@ -3278,9 +3285,9 @@
 "certainty": "C1",
 "domain": "Geochronology",
 "basics": "Counting how much of a radioactive isotope has decayed into its product dates rocks and fossils. Different isotope pairs cover timescales from thousands to billions of years.",
-"deeper": "Uranium-lead dates zircon crystals; carbon-14 dates organic remains back to ~50,000 years. Meteorites give Earth's age.",
+"deeper": "Uranium-lead dates zircon crystals; carbon-14 dates organic remains back to ~50,000 years once calibrated against tree-ring and other records (IntCal20). Meteorites give Earth's age.",
 "expert": "t=(1/λ)ln(1+D/P); age of Earth 4.54±0.05 Gyr (Pb-Pb); oldest zircons ≈4.4 Gyr.",
-"regime": "Needs a closed system and known starting ratios.",
+"regime": "Needs a system that stayed closed. Isochron and concordia methods can solve for the starting ratio, while simple parent-daughter methods must assume it.",
 "emerges_from": [
 "radioactivity"
 ],
@@ -3331,7 +3338,7 @@
 "refs": [
 [
 "UP3",
-"10.4"
+"10.5"
 ],
 [
 "CHE",
@@ -3350,10 +3357,10 @@
 ],
 "certainty": "C1",
 "domain": "Nuclear physics",
-"basics": "Light nuclei combine and release energy when pushed together at extreme temperatures. Fusion powers the Sun and all stars.",
+"basics": "Light nuclei combine and release energy when pushed together at extreme temperatures. Fusion powers the Sun and other stars on the main sequence and giant branches.",
 "deeper": "Protons must tunnel through electric repulsion; this makes fusion slow and steady in the Sun. In reactors deuterium and tritium fuse more easily.",
 "expert": "pp chain: 4¹H→⁴He+2e⁺+2ν+26.7 MeV; D+T→⁴He(3.5 MeV)+n(14.1 MeV); ~0.7 % of mass converted.",
-"regime": "Power-plant fusion not yet achieved; ignition demonstrated at NIF in 2022 in a lab shot.",
+"regime": "Power-plant fusion not yet achieved; NIF reached ignition in December 2022 (3.15 MJ fusion yield from 2.05 MJ of laser energy on target), though the lasers drew about 300 MJ from the grid.",
 "emerges_from": [
 "nuclear_binding",
 "tunneling"
@@ -3373,7 +3380,7 @@
 "refs": [
 [
 "AST",
-"16.1"
+"16.3"
 ],
 [
 "UP3",
@@ -3397,7 +3404,7 @@
 "basics": "Electrons in atoms occupy fuzzy regions called orbitals, each with a fixed energy. Atoms emit or absorb light only when electrons jump between levels.",
 "deeper": "Orbitals are described by quantum numbers n, l, m and spin. Orbital shape (s, p, d, f) determines bond directions in molecules.",
 "expert": "E_n=−13.606 eV/n²; Bohr radius a₀=0.0529 nm; ΔE=hf; shells hold 2n² electrons.",
-"regime": "Exact for hydrogen; multi-electron atoms require approximations (Hartree-Fock, DFT).",
+"regime": "Exactly solvable for hydrogen in the Schrödinger model; fine structure, the Lamb shift and hyperfine splitting need relativity and QED. Multi-electron atoms require approximations (Hartree-Fock, DFT).",
 "emerges_from": [
 "schrodinger",
 "spin_pauli",
@@ -3506,16 +3513,7 @@
 "Sky polarisation measurements"
 ],
 "frontier": [],
-"refs": [
-[
-"UP3",
-"1.1"
-],
-[
-"AST",
-"5.1"
-]
-],
+"refs": [],
 "sim": [
 "air",
 "cloud"
@@ -3532,7 +3530,7 @@
 "certainty": "C1",
 "domain": "Atomic physics",
 "basics": "Elements arranged by atomic number repeat their chemical behaviour in a periodic pattern, because electron shells fill in a regular order.",
-"deeper": "Elements in the same column have the same outer electron count. Trends in size, ionisation energy and electronegativity follow from effective nuclear charge.",
+"deeper": "Main-group elements in the same column have the same number of outer electrons; transition metals follow looser patterns. Trends in size, ionisation energy and electronegativity follow from effective nuclear charge.",
 "expert": "Aufbau order 1s 2s 2p 3s 3p 4s 3d 4p…; Z_eff=Z−S; first ionisation energy H 13.6 eV, He 24.6 eV, Na 5.14 eV.",
 "regime": "Aufbau has exceptions (Cr, Cu); heavy elements show relativistic effects (gold colour).",
 "emerges_from": [
@@ -3580,17 +3578,21 @@
 "basics": "Optical atomic clocks count light cycles from atoms and are accurate to about one second in the age of the universe. They test whether constants drift and may detect dark matter.",
 "deeper": "The SI second is defined by caesium-133 hyperfine transition at 9 192 631 770 Hz.",
 "expert": "Fractional uncertainty ~10⁻¹⁸; Δν/ν sensitivity to α-variation; Sr lattice at 429 THz.",
-"regime": "No variation of constants found within current limits.",
+"regime": "No variation of constants found within current limits. GPS satellites carry microwave clocks; optical clocks test gravitational redshift but do not underlie GPS.",
 "emerges_from": [
 "atomic_spectra"
 ],
-"explains": [
-"gps_relativity"
-],
+"explains": [],
 "evidence": [
 "Comparisons of Sr, Yb and Al⁺ clocks"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "Which optical transition will replace caesium in the SI second, and when (a decision expected around 2030)?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "UP3",
@@ -3609,7 +3611,7 @@
 ],
 "certainty": "C2",
 "domain": "Atomic physics",
-"basics": "Antimatter atoms made at CERN have the same spectrum as hydrogen so far, and tests of their weight show they fall down like normal matter.",
+"basics": "Antimatter atoms made at CERN have the same spectrum as hydrogen so far. A 2023 test (ALPHA-g) found they fall downward, consistent with ordinary gravity to about 25 % precision.",
 "deeper": "Studying antihydrogen tests CPT symmetry and the equivalence principle for antimatter.",
 "expert": "1S-2S transition measured to ~2×10⁻¹² relative precision, consistent with hydrogen.",
 "regime": "Few atoms available per experiment.",
@@ -3621,7 +3623,13 @@
 "evidence": [
 "ALPHA and ATRAP experiments"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "Does antihydrogen fall with exactly the same acceleration as hydrogen (measured only to tens of percent so far)?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "UP3",
@@ -3769,7 +3777,7 @@
 ],
 [
 "CAF",
-"5.1"
+"10.1"
 ]
 ],
 "sim": [
@@ -3787,8 +3795,8 @@
 "certainty": "C1",
 "domain": "Chemistry",
 "basics": "Water molecules form hydrogen bonds, which give it a high boiling point, large heat capacity and strong solvent power. Ice is less dense than liquid water because bonds lock molecules into an open lattice.",
-"deeper": "Floating ice insulates lakes so life can survive winter. Water's maximum density near 4 °C and its high heat capacity moderate climate.",
-"expert": "ρ_ice=917 kg/m³, ρ_water(4 °C)=1000; c_p=4.18 J g⁻¹K⁻¹; L_fus=334 J/g, L_vap=2260 J/g; dielectric constant 80.",
+"deeper": "Floating ice insulates lakes so life can survive winter. Water's density maximum near 4 °C makes lakes freeze from the top; its high heat capacity and latent heats moderate climate.",
+"expert": "ρ_ice=917 kg/m³, ρ_water(4 °C)=1000; c_p=4.18 J g⁻¹K⁻¹ (25 °C); L_fus=334 J/g (0 °C), L_vap=2257 J/g (100 °C); dielectric constant ≈80 (20 °C), 78 (25 °C).",
 "regime": "Anomalies fade at high temperature and in confinement.",
 "emerges_from": [
 "intermolecular_forces",
@@ -3832,7 +3840,7 @@
 "domain": "Chemistry",
 "basics": "Matter exists as solid, liquid, gas and plasma depending on how strongly particles interact compared with their thermal energy.",
 "deeper": "Solids have fixed positions, liquids flow while staying dense, gases fill containers, and plasmas are ionised gases. Phase diagrams map the conditions.",
-"expert": "Ideal gas PV=nRT; van der Waals (P+an²/V²)(V−nb)=nRT; water triple point 273.16 K, 611.7 Pa.",
+"expert": "Ideal gas PV=nRT; van der Waals (P+an²/V²)(V−nb)=nRT; water triple point 273.16 K, 611.657 Pa (see the phase diagram; the kelvin was defined by this point before 2019).",
 "regime": "Real behaviour near critical points departs from simple laws.",
 "emerges_from": [
 "kinetic_theory",
@@ -3851,7 +3859,11 @@
 "refs": [
 [
 "CHE",
-"9.4"
+"9.2"
+],
+[
+"CHE",
+"9.6"
 ],
 [
 "CHE",
@@ -3875,7 +3887,7 @@
 ],
 "certainty": "C1",
 "domain": "Chemistry",
-"basics": "Dry air is about 78 % nitrogen, 21 % oxygen and about 1 % argon, with traces of carbon dioxide and other gases. Its pressure falls by half every ~5.5 km of altitude.",
+"basics": "Dry air is about 78 % nitrogen, 21 % oxygen and about 1 % argon, with traces of carbon dioxide and other gases. In the real atmosphere pressure halves about every 5.5 km of altitude; an isothermal atmosphere with H≈8.5 km would give 5.9 km.",
 "deeper": "Water vapour varies up to a few percent. Oxygen is a by-product of photosynthesis and was almost absent before about 2.4 billion years ago.",
 "expert": "N₂ 78.08 %, O₂ 20.95 %, Ar 0.93 %; ρ_air=1.2 kg/m³ at 20 °C; scale height H=kT/mg≈8.5 km.",
 "regime": "Barometric law assumes isothermal atmosphere.",
@@ -3887,7 +3899,7 @@
 "atmosphere_structure"
 ],
 "evidence": [
-"Sampling studies"
+"Direct gas analysis of dry air (NOAA/NIST composition measurements)"
 ],
 "frontier": [],
 "refs": [
@@ -3912,8 +3924,8 @@
 "certainty": "C1",
 "domain": "Chemistry",
 "basics": "Substances dissolve when attractions to the solvent compensate for breaking their own bonds. Water's polarity dissolves salts and sugars but not oils.",
-"deeper": "Concentration is measured as molarity; dissolved particles change boiling, freezing and osmotic pressure. Colloids such as milk are suspensions of tiny particles.",
-"expert": "M=n/V; Raoult P=xP°; osmotic Π=MRT; ΔT_f=K_f m.",
+"deeper": "Concentration is measured as molarity; dissolved particles change boiling, freezing and osmotic pressure. Colloids such as milk are mixtures where tiny droplets or particles stay dispersed without settling.",
+"expert": "M=n/V; Raoult P=xP°; Π=iMRT; ΔT_f=i K_f m (ideal dilute solutions; i is the van 't Hoff factor).",
 "regime": "Ideal solutions assumed; ionic solutions deviate.",
 "emerges_from": [
 "intermolecular_forces",
@@ -3951,7 +3963,7 @@
 "domain": "Chemistry",
 "basics": "Chemical reactions absorb or release heat because bonds break and form. Enthalpy change measures the heat at constant pressure.",
 "deeper": "Hess's law lets you add reactions to find unknown enthalpies. Burning fuels releases energy because the products have stronger bonds.",
-"expert": "ΔH°_rxn=ΣΔH_f°(products)−ΣΔH_f°(reactants); CH₄+2O₂→CO₂+2H₂O ΔH=−890 kJ/mol; glucose combustion −2803 kJ/mol.",
+"expert": "ΔH°_rxn=ΣΔH_f°(products)−ΣΔH_f°(reactants); CH₄(g)+2O₂(g)→CO₂(g)+2H₂O(l) ΔH°=−890 kJ/mol (−802 kJ/mol if H₂O is a gas); glucose combustion −2803 kJ/mol.",
 "regime": "Standard-state values at 298 K.",
 "emerges_from": [
 "first_law",
@@ -3971,7 +3983,7 @@
 ],
 [
 "CAF",
-"5.1"
+"9.4"
 ]
 ],
 "sim": []
@@ -3986,7 +3998,7 @@
 ],
 "certainty": "C1",
 "domain": "Chemistry",
-"basics": "A process happens on its own if it lowers the free energy, which balances heat released against disorder gained. Free energy sets which reactions can run and how far.",
+"basics": "At constant temperature and pressure, a process happens on its own if it lowers the Gibbs free energy, which balances heat released against disorder gained. Free energy sets which reactions can run and how far.",
 "deeper": "Cells couple unfavourable reactions to ATP hydrolysis to drive them. Entropy matters most at high temperature.",
 "expert": "ΔG=ΔH−TΔS; ΔG°=−RT ln K; ATP hydrolysis ΔG°′≈−30.5 kJ/mol; ΔG=−nFE.",
 "regime": "Says whether a reaction can occur, not how fast.",
@@ -4055,7 +4067,7 @@
 ],
 [
 "CHE",
-"15.2"
+"14.6"
 ]
 ],
 "sim": []
@@ -4095,7 +4107,7 @@
 ],
 [
 "CAF",
-"12.1"
+"17.1"
 ]
 ],
 "sim": []
@@ -4135,7 +4147,7 @@
 ],
 [
 "CAF",
-"17.1"
+"16.1"
 ]
 ],
 "sim": []
@@ -4203,7 +4215,7 @@
 "basics": "Many molecules exist as mirror images that cannot be superimposed. Biology uses almost only one hand: L-amino acids and D-sugars.",
 "deeper": "The two forms of a drug can have different effects. Why life chose one handedness is unresolved.",
 "expert": "R/S via Cahn-Ingold-Prelog; specific rotation [α]=α/(l·c); enantiomeric excess ee=|R−S|/(R+S).",
-"regime": "Concept applies to any molecule with a stereogenic centre.",
+"regime": "Chirality arises whenever a molecule cannot be superimposed on its mirror image, usually from a stereogenic centre but also from axes, planes or helices.",
 "emerges_from": [
 "organic_functional_groups",
 "molecular_shapes"
@@ -4214,7 +4226,7 @@
 ],
 "evidence": [
 "Polarimetry",
-"Thalidomide history"
+"Thalidomide: the S-form binds cereblon and causes birth defects, but the two forms interconvert in the body, so a single-enantiomer drug would not have avoided the harm"
 ],
 "frontier": [
 {
@@ -4246,7 +4258,7 @@
 "domain": "Chemistry",
 "basics": "Molecules absorb specific energies of radio, infrared and visible light. NMR, IR and mass spectrometry reveal their structure and composition.",
 "deeper": "NMR uses nuclear spin in a magnetic field, the same physics as MRI. Mass spectrometry weighs ions.",
-"expert": "NMR ν=γB/2π (¹H: 42.58 MHz/T); IR C=O stretch ≈1715 cm⁻¹; m/z=mass/charge.",
+"expert": "NMR ν=γB/2π (¹H: 42.58 MHz/T); IR C=O stretch ≈1650–1800 cm⁻¹ (ketone ≈1715); m/z=mass/charge.",
 "regime": "Needs reference data and sample prep.",
 "emerges_from": [
 "quantum_orbitals",
@@ -4257,7 +4269,8 @@
 "mri_tech"
 ],
 "evidence": [
-"Standard laboratory practice"
+"X-ray structures checked against NMR/IR assignments",
+"Known-compound spectral libraries (SDBS)"
 ],
 "frontier": [],
 "refs": [
@@ -4287,9 +4300,9 @@
 "certainty": "C1",
 "domain": "Chemistry",
 "basics": "Polymers are long chains made of repeating units. Natural examples are DNA, proteins and cellulose; synthetic ones include polyethylene and nylon.",
-"deeper": "Chain length and cross-linking determine stiffness and melting. Plastics are durable because their backbone bonds are strong and microbes lack enzymes for them.",
+"deeper": "Chain length and cross-linking determine stiffness and melting. Most plastics persist because their long, water-repelling chains resist microbes and they degrade only slowly; a few enzymes that break PET and some polyesters have been found.",
 "expert": "M_n, M_w, PDI=M_w/M_n; polyethylene (–CH₂–)ₙ T_m≈135 °C (HDPE); Tg of PMMA ≈105 °C.",
-"regime": "Entangled-chain dynamics described by reptation theory.",
+"regime": "T_m and T_g depend on chain structure and molar mass (HDPE ≈130–137 °C; atactic PMMA T_g ≈105 °C). Entangled-chain dynamics are described by reptation theory.",
 "emerges_from": [
 "organic_functional_groups"
 ],
@@ -4303,7 +4316,11 @@
 "refs": [
 [
 "ORG",
-"31.2"
+"31.1"
+],
+[
+"ORG",
+"31.7"
 ]
 ],
 "sim": [
@@ -4320,8 +4337,8 @@
 ],
 "certainty": "C1",
 "domain": "Chemistry",
-"basics": "Metals such as iron and copper bind molecules called ligands to form coloured, reactive complexes. They sit at the heart of haemoglobin, chlorophyll and many catalysts.",
-"deeper": "Crystal field theory explains colour from d-electron splitting. Metalloproteins use this to carry oxygen and transfer electrons.",
+"basics": "Transition metals such as iron and copper bind molecules called ligands to form coloured, reactive complexes. Iron sits at the heart of haemoglobin and cytochromes, and copper in some oxygen carriers and electron-transfer proteins. (Chlorophyll uses magnesium.)",
+"deeper": "Crystal field theory explains the colour of many complexes through d-d transitions; charge-transfer bands explain others, such as permanganate. Metalloproteins use this chemistry to carry oxygen and transfer electrons.",
 "expert": "Δ_oct splitting: [Ti(H₂O)₆]³⁺ ≈20 300 cm⁻¹ (blue-green absorption); 18-electron rule.",
 "regime": "Models are semi-quantitative; DFT used for accuracy.",
 "emerges_from": [
@@ -4360,7 +4377,7 @@
 "domain": "Chemistry",
 "basics": "Plants need fixed nitrogen, which is scarce because N₂ has a very strong triple bond. The Haber-Bosch process makes ammonia from nitrogen and hydrogen and feeds roughly half of humanity.",
 "deeper": "It runs at ~400–500 °C and 150–300 atm over an iron catalyst. Industrial fixation now rivals natural land fixation.",
-"expert": "N₂+3H₂⇌2NH₃, ΔH=−92 kJ/mol; N≡N 945 kJ/mol; global NH₃ output ≈ 1.5×10⁸ t/yr.",
+"expert": "N₂+3H₂⇌2NH₃, ΔH=−92 kJ/mol; N≡N 945 kJ/mol; global ammonia output ≈1.5×10⁸ t of nitrogen per year (≈1.8–1.9×10⁸ t as NH₃), recent USGS estimates.",
 "regime": "Energy-intensive; catalysts working at mild conditions are an active research target.",
 "emerges_from": [
 "reaction_kinetics",
@@ -4384,11 +4401,11 @@
 "refs": [
 [
 "CHE",
-"13.1"
+"13.3"
 ],
 [
 "BIO",
-"46.1"
+"46.3"
 ]
 ],
 "sim": []
@@ -4422,12 +4439,7 @@
 "as_of": "2023-12"
 }
 ],
-"refs": [
-[
-"CHE",
-"8.4"
-]
-],
+"refs": [],
 "sim": [],
 "frontier_ref": [
 "alphafold_limits"
@@ -4525,9 +4537,9 @@
 ],
 "certainty": "C1",
 "domain": "Condensed matter",
-"basics": "Adding small amounts of impurities makes a semiconductor carry current with electrons (n-type) or holes (p-type). Joining them makes a diode, and three layers make a transistor.",
+"basics": "Adding small amounts of impurities makes a semiconductor carry current with electrons (n-type) or holes (p-type). Joining them makes a diode. A bipolar transistor has three layers; the MOSFET used in processors has a gate controlling a channel between source and drain.",
 "deeper": "A transistor is a switch with a gate that controls the current. Billions of them form a processor.",
-"expert": "Shockley diode I=I_s(e^{V/V_T}−1), V_T=kT/q=25.9 mV; MOSFET threshold V_th≈0.3–1 V; modern gate pitch ~tens of nm.",
+"expert": "Shockley diode I=I_s(e^{V/V_T}−1), V_T=kT/q≈25.9 mV at 300 K (25.7 mV at 298 K); MOSFET threshold V_th≈0.3–1 V; modern gate pitch ~tens of nm.",
 "regime": "Quantum tunnelling and heat limit further miniaturisation.",
 "emerges_from": [
 "band_theory"
@@ -4605,17 +4617,15 @@
 ],
 "certainty": "C1",
 "domain": "Condensed matter",
-"basics": "Iron, nickel and cobalt are ferromagnetic because electron spins align over regions called domains. Heating above the Curie temperature destroys the order.",
+"basics": "Iron, nickel and cobalt are ferromagnetic because the exchange interaction aligns neighbouring electron spins; the material then splits into domains to lower its magnetic field energy. Heating above the Curie temperature destroys the order.",
 "deeper": "Hard drives store bits in magnetic domains. Magnetic order is a classic example of spontaneous symmetry breaking.",
-"expert": "Curie T_c(Fe)=1043 K; μ_B=9.274×10⁻²⁴ J/T; Curie-Weiss χ=C/(T−T_c).",
+"expert": "Curie T_c(Fe)=1043 K; μ_B=9.274×10⁻²⁴ J/T; above T_c, Curie-Weiss χ=C/(T−T_c), with C the Curie constant.",
 "regime": "Exchange interaction is quantum mechanical in origin.",
 "emerges_from": [
 "spin_pauli",
 "symmetry_breaking"
 ],
-"explains": [
-"geodynamo"
-],
+"explains": [],
 "evidence": [
 "Hysteresis loops",
 "Neutron scattering"
@@ -4641,8 +4651,8 @@
 "domain": "Materials",
 "basics": "Real metals are far weaker than perfect crystals because lines of misplaced atoms (dislocations) slide easily. Making them harder to move strengthens the metal.",
 "deeper": "Alloying, work hardening and fine grains block dislocations. Steel's strength is tuned by carbon content and heat treatment.",
-"expert": "τ_theory≈G/10 but τ_real≈G/10³–10⁴; Hall-Petch σ_y=σ₀+k d^{−1/2}; steel yield ≈250–1500 MPa.",
-"regime": "Brittle ceramics fail by cracks instead (Griffith criterion).",
+"expert": "τ_theory≈G/10–G/30; τ_real≈G/10²–10⁵, from strong alloys to pure single crystals; Hall-Petch σ_y=σ₀+k d^{−1/2}; steel yield ≈250–1500 MPa.",
+"regime": "Hall-Petch holds down to grain sizes of ~10–20 nm; below that, strength may fall. Brittle ceramics fail by cracks instead (Griffith criterion).",
 "emerges_from": [
 "crystal_lattices",
 "elasticity_materials"
@@ -4672,8 +4682,8 @@
 ],
 "certainty": "C1",
 "domain": "Materials",
-"basics": "Engineers choose materials by linking structure to properties: metals are tough and conductive, ceramics hard and heat-resistant, polymers light, composites combine strengths, and glass is a frozen liquid.",
-"deeper": "Carbon-fibre composites reach steel's strength at a quarter of the weight. Glass has no long-range order, so it lacks sharp melting.",
+"basics": "Engineers choose materials by linking structure to properties: metals are tough and conductive, ceramics hard and heat-resistant, polymers light, composites combine strengths, and glass is an amorphous solid with a liquid-like atomic arrangement.",
+"deeper": "Carbon-fibre composites have about one fifth the density of steel and, along the fibres, comparable or higher strength. Glass has no long-range order, so it lacks sharp melting.",
 "expert": "Density: Al 2.70, steel 7.85, CFRP ~1.6 g/cm³; E: diamond 1050 GPa, glass 70 GPa.",
 "regime": "Properties depend on processing as well as composition.",
 "emerges_from": [
@@ -4687,12 +4697,7 @@
 "Materials databases"
 ],
 "frontier": [],
-"refs": [
-[
-"ADM",
-"1.1"
-]
-],
+"refs": [],
 "sim": [
 "rock"
 ]
@@ -4721,7 +4726,13 @@
 "evidence": [
 "Colloid experiments"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "Is there a general theory of glassy dynamics and jamming?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "CHE",
@@ -4740,9 +4751,9 @@
 ],
 "certainty": "C2",
 "domain": "Condensed matter",
-"basics": "Some materials have conduction that is protected by the global shape of their electron states. Graphene, one atom-thick carbon, and quantum-Hall systems are well-known examples.",
+"basics": "Some materials have conduction that is protected by the global shape of their electron states. Quantum-Hall systems are the classic example. Graphene, one atom-thick carbon, is the best-known 2D material and shows the quantum Hall effect, though by itself it is not a topological insulator.",
 "deeper": "Quantum-Hall resistance is quantised to extreme precision, now used in electrical standards. Twisted layers (moiré materials) show correlated and superconducting phases.",
-"expert": "R_H=h/(νe²), h/e²=25 812.807 Ω; graphene mobility >10⁵ cm²/V s.",
+"expert": "R_H=h/(νe²), h/e²=25 812.807 Ω; graphene mobility up to ~10⁵ cm²/V s at room temperature in clean encapsulated samples (≈10⁴ on SiO₂).",
 "regime": "Active research; practical devices still emerging.",
 "emerges_from": [
 "band_theory",
@@ -4762,8 +4773,8 @@
 ],
 "refs": [
 [
-"UP3",
-"9.5"
+"UP2",
+"11.6"
 ]
 ],
 "sim": []
@@ -4779,8 +4790,8 @@
 "certainty": "C1",
 "domain": "Technology",
 "basics": "A solar cell is a p-n junction that turns absorbed photons into electric current. Silicon cells convert roughly 20–25 % of sunlight.",
-"deeper": "The Shockley-Queisser limit caps a single-junction cell at about 33 %. Perovskites and tandem cells are research frontiers, with stability a main hurdle.",
-"expert": "SQ limit ≈33 % at E_g≈1.34 eV; Si record ≈26–27 %; P_sun at Earth 1361 W/m² (1000 W/m² at surface).",
+"deeper": "The Shockley-Queisser limit is about 33 % at the best band gap and about 29 % for silicon; the best silicon cells reach ~27 %. Perovskites and tandem cells are research frontiers, with stability a main hurdle.",
+"expert": "SQ limit ≈33 % at E_g≈1.34 eV; Si record ≈26–27 %; P_sun at Earth 1361 W/m² (about 1000 W/m² at the surface under clear sky at the AM1.5 standard test condition).",
 "regime": "Multijunction cells exceed single-junction limit.",
 "emerges_from": [
 "semiconductors_pn"
@@ -4815,9 +4826,9 @@
 "certainty": "C1",
 "domain": "Biochemistry",
 "basics": "Life is built from carbohydrates, lipids, proteins and nucleic acids, all made largely of carbon, hydrogen, oxygen, nitrogen, phosphorus and sulfur.",
-"deeper": "Each class is built from small repeating units: sugars, fatty acids, amino acids and nucleotides. Their shapes and charges decide what they do.",
-"expert": "CHONPS ≈ 98 % of body atoms; ~20 amino acids, 4 DNA bases; glucose C₆H₁₂O₆ (180 g/mol); average amino acid ≈110 Da.",
-"regime": "Some organisms use additional elements (Fe, Zn, Mg, Mo, Se).",
+"deeper": "Carbohydrates, proteins and nucleic acids are polymers of sugars, amino acids and nucleotides. Lipids are different: they are built from fatty acids and other small parts but are not chains of repeating units, and they are grouped by their water-avoiding character. Their shapes and charges decide what they do.",
+"expert": "CHONPS ≈ 97–98 % of body mass; ~20 amino acids, 4 DNA bases; glucose C₆H₁₂O₆ (180 g/mol); average amino-acid residue ≈110 Da.",
+"regime": "Living things also need trace elements such as Fe, Zn, Mg, Mo and Se; which ones vary by organism, but Fe, Zn and Mg are used almost universally.",
 "emerges_from": [
 "organic_functional_groups",
 "intermolecular_forces"
@@ -4871,7 +4882,7 @@
 ],
 "certainty": "C1",
 "domain": "Biochemistry",
-"basics": "Sugars store quick energy and build structures like cellulose; fats store much more energy per gram and form cell membranes.",
+"basics": "Sugars store quick energy and build structures like cellulose; fats (triglycerides) store much more energy per gram, and phospholipids, a related lipid, form cell membranes.",
 "deeper": "Glucose chains make starch (plant storage), glycogen (animal storage) and cellulose (plant walls). Fatty acids have long hydrocarbon tails that avoid water.",
 "expert": "Fat ≈37 kJ/g vs carbohydrate ≈17 kJ/g; cellulose β-1,4 linkage; palmitic acid C₁₆H₃₂O₂.",
 "regime": "Digestibility depends on enzymes present (e.g. cellulase absent in humans).",
@@ -4915,7 +4926,7 @@
 "domain": "Biochemistry",
 "basics": "A protein is a chain of amino acids that folds into a specific 3D shape set by its sequence. The shape allows it to act as an enzyme, motor, channel or building block.",
 "deeper": "Four levels: sequence, local helices and sheets, overall fold and multi-chain assemblies. Folding is driven by hiding oily groups and forming hydrogen bonds. Many proteins also have flexible disordered regions.",
-"expert": "Peptide bond 0.133 nm; α-helix 3.6 residues/turn, 0.54 nm pitch; Levinthal paradox: ~10³⁰⁰ conformations but folds in ms–s; ΔG_fold≈−20 to −60 kJ/mol.",
+"expert": "Peptide bond 0.133 nm; α-helix 3.6 residues/turn, 0.54 nm pitch; Levinthal paradox: a ~150-residue chain has ~10³⁰⁰ possible conformations yet folds in ms–s; ΔG_fold≈−20 to −60 kJ/mol.",
 "regime": "Prediction of static folds is now accurate; dynamics and design remain challenging.",
 "emerges_from": [
 "biomolecules_overview",
@@ -4967,7 +4978,7 @@
 ],
 "certainty": "C1",
 "domain": "Biochemistry",
-"basics": "Enzymes are protein catalysts that speed up reactions by millions of times by holding molecules in the right position. Each acts on specific substrates.",
+"basics": "Enzymes are mostly protein catalysts (some are RNA) that speed up reactions by factors of a million or far more, chiefly by stabilising the transition state. Each acts on specific substrates.",
 "deeper": "Michaelis-Menten kinetics describes how rate saturates with substrate. Inhibitors and allosteric regulators tune enzymes.",
 "expert": "v=V_max[S]/(K_m+[S]); k_cat/K_m up to ~10⁸–10⁹ M⁻¹s⁻¹ (diffusion limit); catalase k_cat≈10⁷ s⁻¹.",
 "regime": "Idealised for single substrate steady state.",
@@ -4993,7 +5004,7 @@
 ],
 [
 "MIC",
-"7.1"
+"8.1"
 ]
 ],
 "sim": [
@@ -5010,7 +5021,7 @@
 ],
 "certainty": "C1",
 "domain": "Biochemistry",
-"basics": "ATP stores energy in its phosphate bonds. Cells break it to ADP to power movement, building and pumping, then rebuild it from food or light.",
+"basics": "ATP is an unstable, far-from-equilibrium molecule: when it is hydrolysed to ADP and phosphate the products are much more stable, and that drop in free energy is what cells couple to other reactions. The energy is not held in a single bond. Cells use this to power movement, building and pumping, then rebuild ATP from food or light.",
 "deeper": "A human recycles roughly their own body weight in ATP every day. Many reactions are coupled to ATP hydrolysis.",
 "expert": "ATP+H₂O→ADP+Pi, ΔG°′≈−30.5 kJ/mol (≈−50 kJ/mol in cells); ~10²¹ ATP molecules/s used by a human at rest.",
 "regime": "Used by nearly all life; other nucleotides (GTP) also carry energy.",
@@ -5030,11 +5041,7 @@
 "refs": [
 [
 "BIO",
-"6.1"
-],
-[
-"ANP",
-"24.6"
+"6.4"
 ]
 ],
 "sim": [
@@ -5053,7 +5060,7 @@
 "certainty": "C1",
 "domain": "Biochemistry",
 "basics": "Cells extract energy from glucose in stages: glycolysis, the Krebs cycle and the electron transport chain. Oxygen is the final electron acceptor in humans.",
-"deeper": "Glycolysis yields 2 ATP in the cytoplasm; the rest of up to ~30 ATP per glucose comes from the mitochondrion.",
+"deeper": "Glycolysis nets 2 ATP in the cytoplasm; pyruvate oxidation, the Krebs cycle and electron transport in the mitochondrion bring the total to about 30–32 ATP per glucose.",
 "expert": "C₆H₁₂O₆+6O₂→6CO₂+6H₂O, ΔG°′=−2870 kJ/mol; ~30–32 ATP per glucose; fermentation 2 ATP.",
 "regime": "Yield varies with proton leak and tissue.",
 "emerges_from": [
@@ -5072,6 +5079,10 @@
 [
 "BIO",
 "7.2"
+],
+[
+"BIO",
+"7.4"
 ],
 [
 "COB",
@@ -5136,7 +5147,6 @@
 "regime": "Rubisco also reacts with O₂ (photorespiration), lowering efficiency.",
 "emerges_from": [
 "electrochemistry",
-"oxidative_phosphorylation",
 "atomic_spectra"
 ],
 "explains": [
@@ -5176,8 +5186,8 @@
 "certainty": "C1",
 "domain": "Molecular biology",
 "basics": "DNA is a double helix of two strands, with the bases A-T and G-C pairing across the middle. Its sequence stores genetic information and it is copied before cells divide.",
-"deeper": "Each strand serves as a template for a new partner (semi-conservative replication), carried out by DNA polymerase with proofreading, giving about one error per 10⁹–10¹⁰ bases.",
-"expert": "Helix diameter 2.0 nm, 0.34 nm per base pair, 10.5 bp per turn; human genome ≈3.1×10⁹ bp ≈ 2 m long per cell; error rate ≈10⁻⁹–10⁻¹⁰.",
+"deeper": "Each strand serves as a template for a new partner (semi-conservative replication), carried out by DNA polymerase, whose proofreading brings errors to about 1 per 10⁷ bases; mismatch repair then cuts this to about 1 per 10⁹–10¹⁰.",
+"expert": "Helix diameter 2.0 nm, 0.34 nm per base pair, 10.5 bp per turn; human genome ≈3.1×10⁹ bp per haploid set (≈6.2×10⁹ bp in a diploid cell), which at 0.34 nm per bp is ≈2 m of DNA per cell; final error rate ≈10⁻⁹–10⁻¹⁰ after proofreading and mismatch repair.",
 "regime": "Universal in cellular life; some viruses use RNA genomes.",
 "emerges_from": [
 "intermolecular_forces",
@@ -5225,7 +5235,7 @@
 "certainty": "C1",
 "domain": "Molecular biology",
 "basics": "DNA is copied into RNA, and RNA is read by ribosomes to build proteins. A three-letter genetic code in RNA specifies each amino acid.",
-"deeper": "The code has 64 codons for 20 amino acids and stop signals, nearly universal. Exceptions exist, and RNA viruses reverse the direction using reverse transcriptase.",
+"deeper": "The code has 64 codons for 20 amino acids and stop signals, nearly universal. Exceptions exist. Retroviruses such as HIV reverse the direction using reverse transcriptase (RNA→DNA), and most other RNA viruses copy RNA directly with an RNA-dependent RNA polymerase.",
 "expert": "64 codons→20 aa+3 stops; AUG start; ribosome adds ≈15–20 aa/s (bacteria); RNA polymerase ≈50 nt/s.",
 "regime": "Near-universal code with documented variants.",
 "emerges_from": [
@@ -5260,6 +5270,14 @@
 [
 "MIC",
 "11.3"
+],
+[
+"BIO",
+"15.5"
+],
+[
+"MIC",
+"11.4"
 ]
 ],
 "sim": [
@@ -5326,7 +5344,7 @@
 "certainty": "C1",
 "domain": "Molecular biology",
 "basics": "DNA is wrapped around protein spools (nucleosomes) and folded into chromosomes. Humans have 46 chromosomes holding about 20,000 protein-coding genes.",
-"deeper": "Only about 1–2 % of the genome codes for protein; the rest includes regulatory regions, repeats and RNA genes. A gap-free human sequence was completed in 2022.",
+"deeper": "Only about 1–2 % of the genome codes for protein; the rest includes regulatory regions, repeats and RNA genes. The first gap-free sequence of a human genome (CHM13, without a Y chromosome) was published in 2022, and a complete Y chromosome followed in 2023.",
 "expert": "Nucleosome: 147 bp around 8 histones; 3.1 Gbp; ≈20 000 protein-coding genes; mitochondrial genome 16.6 kb.",
 "regime": "Function of much non-coding DNA is still being mapped.",
 "emerges_from": [
@@ -5454,10 +5472,10 @@
 ],
 "certainty": "C1",
 "domain": "Cell biology",
-"basics": "Small gases and water cross membranes freely, while ions and large molecules need channels or pumps. Water moves toward higher solute concentration by osmosis.",
+"basics": "Small nonpolar gases cross membranes easily; water crosses slowly through the lipid itself and much faster through aquaporin channels, while ions and large molecules need channels or pumps. Water moves toward higher solute concentration by osmosis.",
 "deeper": "Pumps like the sodium-potassium ATPase spend ATP to build gradients, which cells then use for signals, nutrient uptake and ATP production.",
 "expert": "Na⁺/K⁺-ATPase: 3 Na⁺ out, 2 K⁺ in per ATP; osmotic Π=iMRT; aquaporin ≈3×10⁹ water/s per channel.",
-"regime": "Passive diffusion follows concentration gradients; active transport requires energy.",
+"regime": "Passive diffusion follows concentration gradients (the electrochemical gradient for ions); active transport requires energy.",
 "emerges_from": [
 "membrane_structure",
 "heat_diffusion",
@@ -5641,8 +5659,8 @@
 "domain": "Cell biology",
 "basics": "Chloroplasts are green organelles where photosynthesis happens. Plant cells also have rigid cellulose walls and a large water-filled vacuole.",
 "deeper": "Stacks of membranes called thylakoids hold chlorophyll and the electron-transport machinery. Turgor pressure from the vacuole keeps soft plants upright.",
-"expert": "Chloroplast 4–10 μm; ≈50–100 per leaf cell; chlorophyll absorbs ≈430 and 662 nm; turgor 0.3–1 MPa.",
-"regime": "Plants only; algae vary.",
+"expert": "Chloroplast 4–10 μm; ≈30–120 per leaf mesophyll cell depending on species; chlorophyll absorbs ≈430 and 662 nm; turgor 0.3–1 MPa.",
+"regime": "Found in plants and algae (and a few other eukaryotes by secondary endosymbiosis); the cellulose wall and large central vacuole are features of plant cells.",
 "emerges_from": [
 "photosynthesis_light",
 "mitochondria_org"
@@ -5685,7 +5703,7 @@
 "domain": "Cell biology",
 "basics": "Cells copy their DNA and split into two identical daughters by mitosis. Meiosis halves the chromosome number to make eggs and sperm and shuffles genes.",
 "deeper": "Checkpoint proteins stop division if DNA is damaged. Loss of these controls is a hallmark of cancer.",
-"expert": "Human cell cycle ≈24 h; M phase ≈1 h; meiosis I recombination ~1–2 crossovers per chromosome arm.",
+"expert": "Human cell cycle ≈24 h in fast-dividing cultured cells; M phase ≈1 h; meiosis I recombination ≈1–3 crossovers per chromosome pair (≈30–50 per human meiosis, more in females than males).",
 "regime": "Bacteria divide by binary fission.",
 "emerges_from": [
 "dna_structure",
@@ -5796,7 +5814,7 @@
 ],
 [
 "COB",
-"3.1"
+"3.3"
 ]
 ],
 "sim": [
@@ -5856,7 +5874,7 @@
 "domain": "Microbiology",
 "basics": "Microbes are the most abundant and diverse life, living from deep rocks to our guts. Bacteria and archaea are single-celled without a nucleus, and microbes drive Earth's chemical cycles.",
 "deeper": "Bacteria can swap genes sideways (conjugation, transformation). The gut microbiome affects digestion, but many claimed links to disease are still correlations.",
-"expert": "≈10³⁰ prokaryote cells on Earth; E. coli doubling ≈20 min, genome 4.6 Mb; human gut ≈10¹³–10¹⁴ microbes.",
+"expert": "≈10³⁰ prokaryote cells on Earth; E. coli doubling ≈20 min, genome 4.6 Mb; human body ≈4×10¹³ bacteria (mostly in the colon), about the same as the number of human cells.",
 "regime": "Causal health effects of microbiome remain C3.",
 "emerges_from": [
 "cell_biology_intro"
@@ -6118,7 +6136,8 @@
 ],
 "evidence": [
 "Iridium layer (Alvarez)",
-"Fossil diversity curves"
+"Fossil diversity curves",
+"Schulte et al. 2010, Science (Chicxulub impact and the end-Cretaceous extinction)"
 ],
 "frontier": [],
 "refs": [],
@@ -6201,10 +6220,6 @@
 ],
 "refs": [
 [
-"BIO",
-"2.2"
-],
-[
 "AST",
 "30.2"
 ]
@@ -6227,7 +6242,7 @@
 "domain": "Origin of life",
 "basics": "RNA can both store information and catalyse reactions, so it may have preceded DNA and proteins. The ribosome's core is made of RNA, a clue.",
 "deeper": "It leaves open how RNA first formed and how the shift to DNA and proteins occurred.",
-"expert": "Hammerhead and RNase P ribozymes; peptidyl transferase is rRNA; non-enzymatic copying yields ≲1 % errors only with special conditions.",
+"expert": "Hammerhead and RNase P ribozymes; peptidyl transferase is rRNA; non-enzymatic copying of RNA templates is slow and error-prone (errors of order a few percent per nucleotide in typical experiments), far below what is needed to maintain long genomes.",
 "regime": "Plausible stage, not a proven origin.",
 "emerges_from": [
 "origin_of_life",
@@ -6238,15 +6253,22 @@
 "Ribozymes",
 "Ribosome structure (Nobel 2009)"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "How the first RNAs formed from prebiotic chemistry (the ribonucleotide synthesis and polymerisation problem)",
+"status": "open",
+"as_of": "2026-11"
+},
+{
+"text": "Whether RNA came first or alongside peptides, lipids and metabolism",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "BIO",
-"15.1"
-],
-[
-"COB",
-"9.1"
+"15.5"
 ]
 ],
 "sim": [],
@@ -6266,7 +6288,7 @@
 "domain": "Origin of life",
 "basics": "All present life descends from one ancestral population, the last universal common ancestor, which lived billions of years ago.",
 "deeper": "Shared genes across bacteria and archaea hint at what LUCA needed, but its age and lifestyle are estimated indirectly.",
-"expert": "Universal genes ≈ a few hundred; earliest widely accepted fossils ≈3.5 Ga.",
+"expert": "Molecular-clock estimates place LUCA around 4.2 Ga (a 2024 study; uncertainty several hundred Myr), with a few hundred universal gene families; disputed microfossil and stromatolite evidence for life reaches back ≈3.5 Ga.",
 "regime": "Dates depend on molecular-clock calibration.",
 "emerges_from": [
 "origin_of_life"
@@ -6276,7 +6298,18 @@
 "Universal gene sets",
 "Stromatolites"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "Age and lifestyle of LUCA (4.2 Ga estimate vs younger and older proposals)",
+"status": "open",
+"as_of": "2026-11"
+},
+{
+"text": "Whether LUCA was a single organism or a community exchanging genes",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "BIO",
@@ -6298,7 +6331,7 @@
 ],
 "certainty": "C1",
 "domain": "Biology",
-"basics": "Humans have about 200 classically named cell types (the Human Cell Atlas has already told apart more than 500, and the true number is still being worked out), arranged in four tissue kinds: epithelial, connective, muscle and nervous. They differ in which genes are active, not in their DNA.",
+"basics": "Humans have about 200 classically named cell types (the Human Cell Atlas has already told apart more than 500, and the true number is still being worked out), arranged in four tissue kinds: epithelial, connective, muscle and nervous. They differ mostly in which genes are active, not in their DNA (exceptions include lymphocytes, whose receptor genes are rearranged, and red blood cells, which lose their nucleus).",
 "deeper": "Stem cells can renew themselves and give rise to specialised cells. Induced pluripotent stem cells show that adult cells can be reprogrammed.",
 "expert": "≈30×10¹² cells in a human (Sender et al. 2016; older estimates ≈37×10¹²); iPSC via Oct4, Sox2, Klf4, c-Myc (Yamanaka 2006).",
 "regime": "Cell-type counts depend on the classification scheme.",
@@ -6343,7 +6376,7 @@
 "domain": "Developmental biology",
 "basics": "A fertilised egg divides and organises into a body through gradients of signalling molecules. Hox genes mark positions along the head-to-tail axis.",
 "deeper": "Cells decide fates by reading morphogen concentrations and neighbours. Regeneration and organoid research try to reuse these programmes.",
-"expert": "Human gestation ≈266 days; ≈10¹⁰ divisions; Bicoid gradient length ≈100 μm in fly embryo; Turing reaction-diffusion patterns.",
+"expert": "Human gestation ≈266 days; ≈45 rounds of cell doubling (≈3×10¹³ cell divisions in total, more counting cells that die) to build ≈3×10¹³ cells; Bicoid gradient length ≈100 μm in fly embryo; Turing reaction-diffusion patterns.",
 "regime": "How genomes encode 3D form is incompletely understood.",
 "emerges_from": [
 "gene_regulation",
@@ -6359,9 +6392,9 @@
 ],
 "frontier": [
 {
-"text": "Whether ageing can be substantially slowed",
+"text": "How genome-encoded gene networks and mechanical forces together produce reproducible 3D organ shape",
 "status": "open",
-"as_of": "2023-12"
+"as_of": "2026-11"
 }
 ],
 "refs": [
@@ -6388,7 +6421,7 @@
 "domain": "Biology",
 "basics": "Bodies gradually lose function as damage accumulates and repair slows. Hallmarks include DNA damage, shortened telomeres and worn-out cells.",
 "deeper": "Calorie restriction extends lifespan in many animals, and some drugs lengthen it in mice. Applying this to humans is unproven.",
-"expert": "Telomere loss ≈50–100 bp per division; Hayflick limit ≈50 divisions; human max lifespan ≈122 y.",
+"expert": "Telomere loss ≈50–100 bp per division; Hayflick limit ≈50 divisions; longest verified human lifespan 122 y 164 d (J. Calment, died 1997); whether a biological limit exists is debated.",
 "regime": "Mechanistic theories compete.",
 "emerges_from": [
 "development_biology",
@@ -6426,7 +6459,7 @@
 "domain": "Physiology",
 "basics": "Body systems cooperate to keep temperature, blood sugar and acidity near set points using negative feedback. Examples include shivering, sweating and insulin release.",
 "deeper": "Hormones and nerves act as sensors, controllers and effectors. Failure of these loops leads to diseases like diabetes.",
-"expert": "Core temp 37 °C; blood glucose ≈5 mmol/L fasting; blood pH 7.35–7.45; HR ≈70 bpm.",
+"expert": "Core temp ≈36.5–37.5 °C (the old 37 °C is a convention); blood glucose ≈5 mmol/L fasting; blood pH 7.35–7.45; HR ≈70 bpm.",
 "regime": "Set points shift with age, circadian rhythm and stress.",
 "emerges_from": [
 "cell_signaling",
@@ -6471,7 +6504,7 @@
 "basics": "The heart pumps blood through arteries, tiny capillaries and veins, delivering oxygen and removing wastes. It beats about 100,000 times a day.",
 "deeper": "Pressure from the left ventricle drives flow; valves keep it one way. The heart's electrical pacemaker is the sinoatrial node.",
 "expert": "Cardiac output ≈5 L/min at rest, stroke volume ≈70 mL; BP 120/80 mmHg; capillary diameter ≈8 μm; aorta ≈2.5 cm.",
-"regime": "Poiseuille flow Q=πr⁴ΔP/8ηL for laminar flow.",
+"regime": "Poiseuille's law Q=πr⁴ΔP/(8ηL) assumes steady, laminar flow of a Newtonian fluid in a rigid straight tube; it is only an approximation in the pulsatile, elastic large arteries and when red cells are comparable to vessel size (capillaries).",
 "emerges_from": [
 "navier_stokes",
 "homeostasis",
@@ -6490,7 +6523,11 @@
 ],
 [
 "ANP",
-"20.6"
+"20.1"
+],
+[
+"ANP",
+"20.2"
 ],
 [
 "BIO",
@@ -6717,7 +6754,7 @@
 "certainty": "C1",
 "domain": "Physiology",
 "basics": "Muscle shortens when myosin heads grip actin filaments and pull, powered by ATP. A nerve signal releases calcium, which unlocks the filaments.",
-"deeper": "Each myosin head cycle moves actin about 5–10 nm and the ratchet is repeated thousands of times per second across a fibre.",
+"deeper": "Each myosin head cycle moves actin about 5–10 nm. A head completes about 5–50 cycles per second, and a fibre contains billions of heads working out of step.",
 "expert": "Sarcomere shortening ≈ 1 μm; force per myosin head ≈3–5 pN; Ca²⁺ ≈10⁻⁷→10⁻⁵ M triggers contraction.",
 "regime": "Cross-bridge model; details of power stroke debated.",
 "emerges_from": [
@@ -6850,7 +6887,7 @@
 "basics": "Infectious diseases are caused by microbes. Sanitation, vaccines and antibiotics have produced the largest gains in life expectancy in history.",
 "deeper": "Vaccines prime memory immunity without disease; antibiotics kill bacteria or stop their growth. Resistance evolves by natural selection.",
 "expert": "Smallpox eradicated 1980; penicillin 1928/1940s; R₀ measles ≈12–18; herd immunity threshold 1−1/R₀.",
-"regime": "Antibiotic resistance erodes treatments.",
+"regime": "Antibiotic resistance erodes treatments. Herd immunity threshold 1−1/R₀ (homogeneous mixing, fully effective vaccine; with efficacy E the needed coverage is (1−1/R₀)/E).",
 "emerges_from": [
 "immune_system",
 "bacteria_archaea",
@@ -6883,6 +6920,10 @@
 [
 "MIC",
 "13.1"
+],
+[
+"MIC",
+"18.5"
 ]
 ],
 "sim": []
@@ -6911,12 +6952,7 @@
 "Clinical trials"
 ],
 "frontier": [],
-"refs": [
-[
-"ORG",
-"29.1"
-]
-],
+"refs": [],
 "sim": [
 "molecule"
 ]
@@ -6979,7 +7015,7 @@
 "basics": "X-rays, CT, MRI, ultrasound and PET let doctors see inside the body. Each uses a different physical interaction: absorption, nuclear spin, echoes or positron annihilation.",
 "deeper": "MRI uses strong magnets and radio pulses on hydrogen nuclei in water; PET uses antimatter, since positrons annihilate with electrons.",
 "expert": "MRI Larmor f=42.58 MHz/T (1.5–3 T); X-ray 20–150 keV; ultrasound 2–15 MHz; PET γ=511 keV.",
-"regime": "Ionising radiation has dose limits.",
+"regime": "X-ray, CT and PET use ionising radiation with dose limits; MRI and ultrasound do not, but have their own safety limits (implants, heating).",
 "emerges_from": [
 "electromagnetic_waves",
 "spectroscopy_methods",
@@ -6987,7 +7023,9 @@
 ],
 "explains": [],
 "evidence": [
-"Clinical use"
+"Röntgen X-ray 1895",
+"Hounsfield CT 1971",
+"Lauterbur and Mansfield MRI (Nobel 2003)"
 ],
 "frontier": [],
 "refs": [
@@ -7016,7 +7054,7 @@
 "domain": "Technology",
 "basics": "MRI aligns the spins of hydrogen nuclei with a strong magnetic field, nudges them with radio pulses, and listens to the signals they emit as they relax.",
 "deeper": "Superconducting magnets give the field. Contrast comes from differences in how fast different tissues relax.",
-"expert": "ω_L=γB₀, γ/2π=42.58 MHz/T; T₁≈1 s, T₂≈50–100 ms in tissue.",
+"expert": "ω_L=γB₀, γ/2π=42.58 MHz/T; at 1.5 T: T₁≈0.25–0.5 s for fat, ≈0.6–1.0 s for white and grey matter, ≈4 s for CSF, longer at higher field; T₂≈40–100 ms in most soft tissue.",
 "regime": "Contraindicated with some metal implants.",
 "emerges_from": [
 "spectroscopy_methods",
@@ -7027,12 +7065,7 @@
 "Clinical use since 1980s"
 ],
 "frontier": [],
-"refs": [
-[
-"UP3",
-"10.7"
-]
-],
+"refs": [],
 "sim": []
 },
 {
@@ -7183,7 +7216,7 @@
 "domain": "Neuroscience",
 "basics": "Connectomics maps every neuron and synapse in a brain using electron microscopy. Complete maps exist for small animals and growing parts of mammal brains.",
 "deeper": "Wiring maps provide constraints for circuit models, but they do not give the strengths, chemistry or dynamics by themselves.",
-"expert": "C. elegans: 302 neurons, ≈7,000 synapses; mouse cortex 1 mm³ ≈ 10⁵ neurons.",
+"expert": "C. elegans: 302 neurons, ≈7,000 synapses; adult Drosophila brain (FlyWire) ≈1.4×10⁵ neurons and ≈5×10⁷ synapses; MICrONS mouse cortex 1 mm³ ≈7×10⁴ neurons (≈2×10⁵ cells) and ≈5×10⁸ synapses.",
 "regime": "Structure alone does not determine function.",
 "emerges_from": [
 "brain_organization",
@@ -7354,7 +7387,18 @@
 "Patient H.M.",
 "Conditioning experiments"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "How memories are physically stored and how consolidation during sleep works",
+"status": "open",
+"as_of": "2026-11"
+},
+{
+"text": "Whether engram-based storage generalises across memory types",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "PSY",
@@ -7378,7 +7422,7 @@
 "certainty": "C2",
 "domain": "Psychology",
 "basics": "Psychology studies perception, thinking, emotion and personality. Reliable findings include limited attention, heuristics and biases, and conditioning.",
-"deeper": "Heritability of many traits is moderate (≈30–60 %), meaning genes and environment both matter.",
+"deeper": "Twin studies find that for many traits about 30–60 % of the variation between people in a given population is statistically linked to genetic differences; this says nothing about how much of one person's trait is genetic.",
 "expert": "Twin studies h² for IQ ≈0.5–0.8 in adults; Kahneman-Tversky prospect theory; Big Five traits.",
 "regime": "Findings must be judged one by one; many classic effects failed replication.",
 "emerges_from": [
@@ -7402,11 +7446,11 @@
 ],
 [
 "PSY",
-"10.3"
+"7.3"
 ],
 [
 "PSY",
-"11.2"
+"11.7"
 ],
 [
 "PSY",
@@ -7461,7 +7505,7 @@
 "domain": "Neuroscience",
 "basics": "Why brain activity comes with subjective experience is unsolved. Rival theories include integrated information, global neuronal workspace, higher-order and predictive-processing views.",
 "deeper": "Experiments compare brain activity for stimuli that are seen versus unseen. No consensus theory exists, and no test settles whether a machine could be conscious.",
-"expert": "Integrated information Φ (IIT); global workspace ignition ≈300 ms post-stimulus (P3b).",
+"expert": "Integrated information Φ (IIT); global workspace theory predicts a late \"ignition\" (≈300–500 ms after the stimulus, often linked to the P3b), but whether the P3b marks conscious access or later report-related processing is itself disputed.",
 "regime": "Measurement problem: reports versus experience.",
 "emerges_from": [
 "brain_organization"
@@ -7540,7 +7584,7 @@
 ],
 "certainty": "C2",
 "domain": "Physiology",
-"basics": "Sleep follows a roughly 24-hour clock driven by cells in the brain and genes that cycle in expression. Its functions include memory consolidation and clearing metabolic waste.",
+"basics": "Sleep follows a roughly 24-hour clock driven by cells in the brain and genes that cycle in expression. Sleep supports memory consolidation and many other processes; a role in clearing metabolic waste from the brain has been proposed, but the evidence is disputed.",
 "deeper": "Light resets the clock via special retinal cells. Lack of sleep impairs attention and health.",
 "expert": "Circadian period ≈24.2 h; REM cycles ≈90 min; adults need ≈7–9 h; melatonin peaks at night.",
 "regime": "Exact functions of sleep are not fully known.",
@@ -7580,7 +7624,7 @@
 "domain": "Ecology",
 "basics": "Ecosystems get energy from sunlight, and only about 10 % passes from each feeding level to the next. This limits how many top predators can exist.",
 "deeper": "Producers capture light, consumers eat them, and decomposers recycle nutrients. Food webs link species in complex networks.",
-"expert": "Transfer efficiency ≈10 % (range 5–20 %); global NPP ≈105 Pg C/yr (land ≈55, ocean ≈50); only ≈1 % of sunlight is fixed by plants.",
+"expert": "Transfer efficiency ≈10 % (range 5–20 %); global NPP ≈105 Pg C/yr (land ≈55, ocean ≈50); only ≈0.1 % of incident sunlight ends up as global net primary production (≈1 % in the best crop stands).",
 "regime": "Efficiency varies with ecosystem.",
 "emerges_from": [
 "photosynthesis_light",
@@ -7622,7 +7666,7 @@
 "domain": "Ecology",
 "basics": "Populations grow until limited by food or space. Predators and prey, competitors and partners shape each other's numbers.",
 "deeper": "The logistic equation and Lotka-Volterra models capture basic cycles. Mutualism, parasitism and competition appear throughout nature.",
-"expert": "dN/dt=rN(1−N/K); Lotka-Volterra ẋ=αx−βxy, ẏ=δxy−γy; r-K strategies.",
+"expert": "dN/dt=rN(1−N/K); Lotka-Volterra ẋ=αx−βxy, ẏ=δxy−γy; r–K selection (a historical scheme, now mostly superseded by age-structured life-history theory).",
 "regime": "Real populations show noise, age structure, and chaos in some cases.",
 "emerges_from": [
 "ode_pde",
@@ -7711,9 +7755,9 @@
 1000.0,
 10000000.0
 ],
-"certainty": "C1",
+"certainty": "C2",
 "domain": "Earth system",
-"basics": "Early photosynthesising bacteria filled the air with oxygen around 2.4 billion years ago, the Great Oxidation Event, transforming chemistry and enabling later complex life.",
+"basics": "Cyanobacteria released oxygen, and the air changed chemically about 2.4 billion years ago in the Great Oxidation Event. Oxygen was needed for complex life but was not sufficient for it to arise immediately.",
 "deeper": "Banded iron formations record the oxygen sink. Later, plants on land changed erosion and the carbon cycle.",
 "expert": "O₂ rose from <10⁻⁵ to ≈1–10 % of present level around 2.4–2.1 Ga; present 21 %.",
 "regime": "Timing and rate of oxygenation debated in detail.",
@@ -7728,7 +7772,18 @@
 "Banded iron formations",
 "Sulfur isotope signals"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "When did oxygenic photosynthesis arise (before the Great Oxidation Event, with \"whiffs\" of oxygen in the Archean)?",
+"status": "open",
+"as_of": "2026-11"
+},
+{
+"text": "Why did oxygen stay near 1–10 % of the present level until about 0.6 billion years ago?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [],
 "sim": []
 },
@@ -7813,7 +7868,7 @@
 "refs": [
 [
 "AST",
-"8.2"
+"8.1"
 ]
 ],
 "sim": [
@@ -7907,7 +7962,7 @@
 "refs": [
 [
 "AST",
-"8.2"
+"8.1"
 ]
 ],
 "sim": [
@@ -7955,7 +8010,7 @@
 },
 {
 "id": "mountain_building",
-"title": "Mountains, weathering and erosion",
+"title": "Mountain building",
 "level": "8",
 "scale_m": [
 1,
@@ -7964,7 +8019,7 @@
 "certainty": "C1",
 "domain": "Geology",
 "basics": "Colliding plates push up mountains, while rain, ice, rivers and wind wear them down and carry sediment to the sea. Chemical weathering also removes CO₂ from air.",
-"deeper": "Uplift and erosion balance over millions of years. Weathering of silicate rocks is a slow thermostat for climate.",
+"deeper": "Collision thickens the crust; isostasy keeps thick crust high, and erosion removes material at a rate set by relief and climate. Uplift and erosion balance over millions of years. Weathering of silicate rocks is a slow thermostat for climate.",
 "expert": "Himalaya uplift ≈5 mm/yr; erosion rates 0.01–1 mm/yr; CaSiO₃+CO₂→CaCO₃+SiO₂.",
 "regime": "Rates vary with climate and lithology.",
 "emerges_from": [
@@ -8001,7 +8056,7 @@
 "domain": "Geology",
 "basics": "Broken-down rock is carried by water and wind, deposited in layers, and cemented into sedimentary rock. Soil forms where rock, air, water and life interact.",
 "deeper": "Soil layers (horizons) hold nutrients and water that plants rely on. A centimetre of soil can take hundreds of years to form.",
-"expert": "Soil formation ≈0.01–0.1 mm/yr; clay <2 μm, silt 2–50 μm, sand 50 μm–2 mm; soil organic C ≈1,500 Pg globally.",
+"expert": "Soil formation ≈0.01–0.1 mm/yr; USDA texture classes: clay <2 μm, silt 2–50 μm, sand 50 μm–2 mm; soil organic C ≈1,500 Pg in the top 1 m (about 2,400 Pg to 2 m).",
 "regime": "Rates vary widely with climate.",
 "emerges_from": [
 "mountain_building",
@@ -8038,11 +8093,11 @@
 1e-06,
 1
 ],
-"certainty": "C1",
+"certainty": "C2",
 "domain": "Ecology",
-"basics": "A handful of soil holds billions of microbes, fungi and tiny animals that recycle nutrients and feed plants. Fungal networks connect roots.",
+"basics": "A handful of soil holds billions of microbes, fungi and tiny animals that recycle nutrients and feed plants. Fungal networks physically connect many plant roots; whether they carry significant nutrients or signals between plants in nature is debated.",
 "deeper": "Nitrogen-fixing bacteria in root nodules supply plants with ammonia. Soil carbon is a major store.",
-"expert": "≈10⁸–10⁹ bacteria per gram; fungal hyphae km per gram; soil pH 4–9.",
+"expert": "≈10⁸–10⁹ bacteria per gram; fungal hyphae ≈10–1000 m per gram of soil depending on soil type; soil pH 4–9.",
 "regime": "Complex, hard to model at ecosystem scale.",
 "emerges_from": [
 "weathering_erosion",
@@ -8053,7 +8108,13 @@
 "Metagenomics",
 "Mycorrhiza studies"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "Do mycorrhizal networks transfer significant nutrients or signals between plants in natural ecosystems?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "BIO",
@@ -8122,7 +8183,7 @@
 "domain": "Geophysics",
 "basics": "Moving liquid iron in the outer core generates Earth's magnetic field, which shields the surface from charged particles. The field flips polarity at irregular intervals.",
 "deeper": "Convection driven by heat and crystallisation of the inner core, together with rotation, sustains the dynamo. Auroras are caused by solar particles funnelled along field lines.",
-"expert": "Surface field ≈25–65 μT; dipole moment ≈8×10²² A m²; reversals ≈every 0.2–1 Myr (last 780 ka).",
+"expert": "Surface field ≈25–65 μT; dipole moment ≈8×10²² A m²; reversals average about every 0.25 Myr over the last 10 Myr, but are irregular, with superchrons lasting tens of Myr; the last was Matuyama–Brunhes at ≈773 ka.",
 "regime": "Numerical dynamos reproduce key features; detailed mechanisms of reversals are debated.",
 "emerges_from": [
 "earth_interior",
@@ -8139,7 +8200,7 @@
 "refs": [
 [
 "AST",
-"8.2"
+"8.1"
 ]
 ],
 "sim": [
@@ -8148,7 +8209,7 @@
 },
 {
 "id": "oceans_circulation",
-"title": "Ocean circulation and tides",
+"title": "Ocean circulation",
 "level": "8",
 "scale_m": [
 1.0,
@@ -8157,7 +8218,7 @@
 "certainty": "C1",
 "domain": "Oceanography",
 "basics": "Ocean water moves in surface gyres driven by wind and in deep currents driven by differences in temperature and saltiness. This circulation carries heat from the tropics to higher latitudes.",
-"deeper": "Coriolis deflection and continents shape currents like the Gulf Stream. Deep water forms in the North Atlantic and around Antarctica and returns over centuries.",
+"deeper": "Coriolis deflection and continents shape currents like the Gulf Stream. Deep water forms in the North Atlantic and around Antarctica and returns over several centuries to about a thousand years.",
 "expert": "Gulf Stream ≈30 Sv (1 Sv=10⁶ m³/s); AMOC ≈17 Sv; ocean covers 71 % of Earth, mean depth ≈3.7 km; thermohaline turnover ≈1000 yr.",
 "regime": "Models resolve large-scale flows; eddy parametrisation is an uncertainty.",
 "emerges_from": [
@@ -8237,7 +8298,7 @@
 "domain": "Meteorology",
 "basics": "On a rotating Earth, moving air and water curve to the right in the northern hemisphere and to the left in the southern. This makes cyclones spin.",
 "deeper": "It is an apparent force from viewing motion in a rotating frame. It is negligible in a sink but dominates large weather systems.",
-"expert": "a=−2Ω×v; f=2Ω sinφ, Ω=7.292×10⁻⁵ rad/s; Rossby number Ro=U/fL.",
+"expert": "a=−2Ω×v; f=2Ω sinφ, Ω=7.292×10⁻⁵ rad/s; f vanishes at the equator, so tropical cyclones do not form within about 5° of it; Rossby number Ro=U/fL.",
 "regime": "Only matters for large scales or long times.",
 "emerges_from": [
 "rotational_dynamics",
@@ -8255,7 +8316,7 @@
 "refs": [
 [
 "UP1",
-"10.1"
+"6.3"
 ]
 ],
 "sim": [
@@ -8275,7 +8336,7 @@
 "domain": "Meteorology",
 "basics": "Earth's atmosphere has layers: troposphere (weather), stratosphere (ozone layer), mesosphere and thermosphere. Half the air lies below about 5.5 km.",
 "deeper": "Temperature falls with height in the troposphere by about 6.5 °C per km, rises in the stratosphere because ozone absorbs UV, and again in the thermosphere.",
-"expert": "Troposphere top ≈8–15 km; P(z)=P₀e^{−z/H}, H≈8.4 km; lapse rate Γ≈6.5 K/km (dry adiabatic 9.8 K/km); Kármán line 100 km.",
+"expert": "Troposphere top ≈8–9 km at the poles to ≈16–18 km in the tropics (mean ≈11–12 km); P(z)=P₀e^{−z/H}, H≈8.4 km; lapse rate Γ≈6.5 K/km (dry adiabatic 9.8 K/km); Kármán line 100 km.",
 "regime": "Boundaries vary with latitude and season.",
 "emerges_from": [
 "kinetic_theory",
@@ -8315,9 +8376,9 @@
 ],
 "certainty": "C1",
 "domain": "Climate",
-"basics": "Gases like water vapour, carbon dioxide and methane let sunlight in but absorb heat leaving the surface, keeping Earth about 33 °C warmer than it would be without them.",
+"basics": "Gases like water vapour, carbon dioxide and methane let sunlight in but absorb heat leaving the surface, keeping Earth about 33 °C warmer than the 255 K it would have at its present albedo if the atmosphere absorbed no infrared.",
 "deeper": "Adding more CO₂ reduces outgoing radiation until the planet warms to rebalance. The effect was first described by Fourier, Tyndall and Arrhenius.",
-"expert": "T_eff=[S(1−α)/4σ]^{1/4}=255 K; surface 288 K; ΔF≈5.35 ln(C/C₀) W/m² for CO₂; ≈3.7 W/m² per doubling.",
+"expert": "T_eff=[S(1−α)/4σ]^{1/4}=255 K, with S=1361 W/m² the solar constant and α≈0.30 the albedo; surface 288 K; ΔF≈5.35 ln(C/C₀) W/m² for CO₂; ≈3.7 W/m² per doubling.",
 "regime": "Radiative physics is solid; feedbacks (clouds, ice) set the response.",
 "emerges_from": [
 "blackbody",
@@ -8404,7 +8465,7 @@
 "certainty": "C1",
 "domain": "Meteorology",
 "basics": "Weather arises when air rises, cools and its water vapour condenses into clouds and precipitation. Warm, moist air carries the energy.",
-"deeper": "Cloud droplets (≈10 μm) need condensation nuclei like dust and sea salt. They grow by collision into raindrops about 1 mm across.",
+"deeper": "Cloud droplets (≈10 μm) need condensation nuclei like dust and sea salt. In warm clouds droplets grow by collision and coalescence. In cold clouds ice crystals grow at the droplets' expense and melt as they fall. Raindrops are typically 0.5–5 mm.",
 "expert": "Latent heat L_v=2.5 MJ/kg; Clausius-Clapeyron: saturation vapour pressure rises ≈7 %/K; cloud droplet ≈10 μm, raindrop ≈1 mm.",
 "regime": "Microphysics parameterised in models.",
 "emerges_from": [
@@ -8440,9 +8501,9 @@
 ],
 "certainty": "C2",
 "domain": "Meteorology",
-"basics": "Forecasts run physical equations on computers starting from observations. Skill reaches about 10 days for large systems, limited by chaos.",
+"basics": "Forecasts run physical equations on computers starting from observations. Useful skill for large systems is about 7–10 days, and the theoretical predictability limit (Lorenz) is about 2 weeks.",
 "deeper": "Machine-learning models trained on past weather now rival physics-based ones for some measures. Ensembles show uncertainty.",
-"expert": "Lorenz limit ≈2 weeks; 5-day forecast skill ≈ today's 1-day skill of the 1980s; grid ≈9 km (ECMWF HRES).",
+"expert": "Lorenz limit ≈2 weeks; forecast skill has gained about one day of lead time per decade since the 1980s (Bauer et al. 2015); grid ≈9 km (ECMWF HRES).",
 "regime": "Extreme events and local convection remain hard.",
 "emerges_from": [
 "atmospheric_circulation",
@@ -8450,15 +8511,11 @@
 ],
 "explains": [],
 "evidence": [
-"Forecast verification statistics"
+"Forecast verification statistics",
+"Bauer, Thorpe and Brunet 2015, Nature (the quiet revolution of numerical weather prediction)"
 ],
 "frontier": [],
-"refs": [
-[
-"DSC",
-"5.3"
-]
-],
+"refs": [],
 "sim": [
 "cloud"
 ]
@@ -8471,11 +8528,11 @@
 100.0,
 1000000.0
 ],
-"certainty": "C1",
+"certainty": "C2",
 "domain": "Meteorology",
 "basics": "Hurricanes draw energy from warm ocean water (above ~26.5 °C) and spin because of Earth's rotation. Thunderstorms form when warm moist air rises rapidly.",
 "deeper": "Wind strength, rain and storm surge cause damage. Warmer seas favour more intense storms, though trends in frequency are uncertain.",
-"expert": "Wind ≥119 km/h for hurricane; power ≈10¹⁴ W (latent heating); storm surge up to ≈8 m; SST threshold ≈26.5 °C.",
+"expert": "Wind ≥119 km/h for hurricane; latent-heat release ≈6×10¹⁴ W (≈5×10¹⁹ J/day), of which wind kinetic energy is ≈10¹² W (about 0.25 %); storm surge several metres for major landfalls, with records above 8 m (Katrina 2005 ≈8.5 m); SST threshold ≈26.5 °C.",
 "regime": "Link to climate change is robust for intensity, less certain for frequency.",
 "emerges_from": [
 "atmospheric_circulation",
@@ -8527,10 +8584,6 @@
 "refs": [
 [
 "BIO",
-"44.1"
-],
-[
-"BIO",
 "46.3"
 ]
 ],
@@ -8555,7 +8608,7 @@
 "basics": "Elements circulate between rock, ocean, air and living things. These cycles connect geology to biology and set climate over long times.",
 "deeper": "Carbon moves between air, oceans, plants and rocks; nitrogen is fixed by microbes and human industry; phosphorus comes mainly from rock weathering and limits growth in many places.",
 "expert": "Atmospheric C ≈ 850 Pg; ocean ≈38 000 Pg; land plants ≈450–650 Pg; fossil-fuel emissions ≈ 10 Pg C/yr in recent decades; N fixation by industry ≈ natural land fixation.",
-"regime": "Fluxes uncertain by ~10–20 %.",
+"regime": "Atmospheric stocks and fossil emissions are known to a few %, but many natural fluxes (biological N fixation, the land sink, phosphorus) are uncertain by 30 % to a factor of 2.",
 "emerges_from": [
 "ecology_energy",
 "bacteria_archaea",
@@ -8591,7 +8644,7 @@
 "domain": "Earth system",
 "basics": "Nitrogen gas is turned into usable ammonia by bacteria and lightning, then cycles through plants and animals and is returned to air by denitrifying microbes.",
 "deeper": "Fertiliser runoff causes eutrophication. Humans have roughly doubled the amount of reactive nitrogen entering ecosystems.",
-"expert": "N fixation: natural ≈110, industrial ≈ 120 Tg N/yr; nitrogenase requires 16 ATP per N₂.",
+"expert": "N fixation: terrestrial natural ≈58 (range 40–100) Tg N/yr plus lightning ≈5; industrial (Haber–Bosch) ≈120 Tg N/yr in 2010, ≈150 Tg N/yr in recent years; nitrogenase requires 16 ATP per N₂.",
 "regime": "Budgets uncertain.",
 "emerges_from": [
 "biogeochemical_cycles",
@@ -8686,8 +8739,12 @@
 "14.1"
 ],
 [
+"CHE",
+"14.6"
+],
+[
 "BIO",
-"44.1"
+"44.5"
 ]
 ],
 "sim": []
@@ -8702,9 +8759,9 @@
 ],
 "certainty": "C1",
 "domain": "Climate",
-"basics": "Earth's climate is set by sunlight, atmosphere, oceans, ice and life. Human activity has unequivocally warmed the planet by about 1.1 °C since the late 1800s.",
-"deeper": "Energy imbalance mostly goes into the oceans (about 90 %). Feedbacks like melting ice and water vapour amplify warming, while aerosols cool a little.",
-"expert": "Radiative forcing F; ΔT=λF with equilibrium sensitivity λ; Earth energy imbalance ≈0.5–1 W/m²; sea-level rise ≈3–4 mm/yr recently.",
+"basics": "Earth's climate is set by sunlight, atmosphere, oceans, ice and life. Human activity has unequivocally warmed the planet: about 1.1 °C by 2011–2020 (IPCC AR6) and about 1.2 °C over 2015–2024 relative to 1850–1900, with 2024 the first calendar year about 1.5 °C above that baseline.",
+"deeper": "Energy imbalance mostly goes into the oceans (about 90 %). Feedbacks like melting ice and water vapour amplify warming, while aerosols cool by about −1.3 W/m² (−2.0 to −0.6), masking part of the greenhouse forcing. Equilibrium climate sensitivity is likely 2.5–4 °C per CO₂ doubling, best estimate 3 °C (IPCC AR6).",
+"expert": "Radiative forcing F; ΔT=λF with equilibrium sensitivity λ; Earth energy imbalance ≈0.5–1 W/m²; global mean sea-level rise ≈3.3 mm/yr over 1993–2018 and ≈4–5 mm/yr in the most recent decade.",
 "regime": "Physics solid; regional details and tipping thresholds uncertain.",
 "emerges_from": [
 "greenhouse_effect",
@@ -8790,7 +8847,7 @@
 "domain": "Climate",
 "basics": "Ice sheets in Greenland and Antarctica hold enough water to raise sea level by about 65 metres if fully melted. Glaciers flow slowly under their own weight.",
 "deeper": "Warming ocean water can undercut floating ice shelves, speeding up flow. Sea level also rises because water expands when it warms.",
-"expert": "Greenland ≈7.4 m, West Antarctic ≈5 m, East Antarctic ≈53 m SLE; ice flow v ∝ τ³ (Glen's law n≈3).",
+"expert": "Greenland ≈7.4 m, West Antarctic ≈5 m, East Antarctic ≈53 m SLE; Glen's flow law: strain rate ε̇=Aτⁿ with n≈3 (A depends strongly on temperature).",
 "regime": "Rate of future ice loss is the largest uncertainty in sea-level projections.",
 "emerges_from": [
 "climate_system",
@@ -8829,7 +8886,7 @@
 ],
 "certainty": "C3",
 "domain": "Climate",
-"basics": "The Atlantic overturning circulation brings warm water north and sends cold deep water south. It moderates the climate of northwestern Europe.",
+"basics": "The Atlantic overturning circulation brings warm water north and sends cold deep water south. It contributes to the mild climate of northwestern Europe, though most of that mildness comes from atmospheric transport and the ocean's heat storage.",
 "deeper": "Freshwater from melting ice could weaken it. How close it is to a tipping point is debated.",
 "expert": "≈17 Sv at 26.5°N; heat transport ≈1.2 PW; Stommel bistable model.",
 "regime": "Short observational record limits conclusions.",
@@ -8873,7 +8930,7 @@
 "basics": "A thin layer of ozone in the stratosphere absorbs most harmful ultraviolet light. Industrial chlorofluorocarbons broke it down, creating the Antarctic ozone hole.",
 "deeper": "The Montreal Protocol phased out these chemicals and the layer is slowly recovering.",
 "expert": "O₃ peak ≈ 20–25 km; column ≈300 DU (Dobson units); O₃+hν(<310 nm); Cl catalytic cycle: Cl+O₃→ClO+O₂.",
-"regime": "Recovery expected over decades.",
+"regime": "Per WMO/UNEP 2022: recovery to 1980 levels around 2040 (global), 2045 (Arctic) and 2066 (Antarctic).",
 "emerges_from": [
 "atmosphere_structure",
 "reaction_kinetics"
@@ -8887,7 +8944,7 @@
 "refs": [
 [
 "CHE",
-"12.1"
+"12.7"
 ],
 [
 "AST",
@@ -8910,7 +8967,7 @@
 "domain": "Planetary science",
 "basics": "The Sun and planets formed about 4.57 billion years ago from a collapsing cloud of gas and dust. Dust stuck together into planetesimals, then planets.",
 "deeper": "Rocky planets formed near the Sun where it was too hot for ice; giants formed beyond the snow line. Giant planets may have migrated, as in the Nice model.",
-"expert": "Age 4.568 Gyr (CAIs); snow line ≈2.7 AU; disk mass ≈0.01–0.1 M☉; pebble accretion; Hill radius r_H=a(m/3M)^{1/3}.",
+"expert": "Age 4.568 Gyr (CAIs); snow line ≈2.7–5 AU depending on the disc model (about 2.7 AU in the classic minimum-mass nebula); disk mass ≈0.01–0.1 M☉; pebble accretion; Hill radius r_H=a(m/3M)^{1/3}.",
 "regime": "Broad picture solid; migration histories debated.",
 "emerges_from": [
 "gravitation_newton",
@@ -9017,7 +9074,7 @@
 3000000.0,
 400000000.0
 ],
-"certainty": "C3",
+"certainty": "C2",
 "domain": "Planetary science",
 "basics": "The Moon likely formed when a Mars-sized body hit the young Earth. Lunar rocks are surprisingly similar in isotopes to Earth's, which challenges simple versions of this model.",
 "deeper": "Alternatives and refinements include a vaporised donut-shaped structure, a faster-spinning Earth, or multiple impacts.",
@@ -9031,7 +9088,13 @@
 "Apollo samples",
 "Isotope ratios"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "Which kind of impact formed the Moon (a fast-spinning Earth, a synestia or multiple smaller impacts) and how its isotopes came to match Earth's so closely",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "AST",
@@ -9056,7 +9119,7 @@
 "certainty": "C3",
 "domain": "Planetary science",
 "basics": "Water may have arrived with asteroids rich in water, been built into Earth's rocky ingredients, or both. Comets contribute little by their isotopic ratios.",
-"deeper": "Hydrogen isotope ratios (D/H) compare water in different bodies to Earth's oceans.",
+"deeper": "Hydrogen isotope ratios (D/H) match carbonaceous chondrites but not 67P-type comets. Enstatite chondrites, which formed near Earth's own orbit, also hold enough hydrogen to supply several oceans (Piani et al., Science 2020), so some water may be native.",
 "expert": "Ocean D/H≈1.56×10⁻⁴ (VSMOW); carbonaceous chondrites ≈1.4–1.7×10⁻⁴; comet 67P ≈5.3×10⁻⁴.",
 "regime": "Mixed sources likely.",
 "emerges_from": [
@@ -9090,7 +9153,7 @@
 "certainty": "C1",
 "domain": "Planetary science",
 "basics": "Moons orbiting giant planets are squeezed and flexed by tides. This heats Io into the most volcanic body known and keeps oceans liquid under the ice of Europa and Enceladus.",
-"deeper": "Giant planets have rings made of ice and rock particles; Saturn's are the most extensive. Titan has a thick atmosphere and methane lakes.",
+"deeper": "Tidal flexing heats a moon only if its orbit stays eccentric. For Io, Europa and Ganymede the Laplace resonance keeps it so, which is why Io's surface heat flow reaches ≈2 W/m². Giant planets also have rings made of ice and rock particles, and Titan has a thick atmosphere and methane lakes.",
 "expert": "Io heat flow ≈2 W/m²; Enceladus plume ≈200 kg/s; Saturn main rings ≈7×10⁴–1.4×10⁵ km from centre, typical thickness ≈10–20 m.",
 "regime": "Presence of oceans inferred from gravity/magnetism and plumes.",
 "emerges_from": [
@@ -9169,7 +9232,7 @@
 "domain": "Planetary science",
 "basics": "Thousands of planets have been found around other stars using tiny dips in starlight (transits) and star wobbles (radial velocity). Planet types not in our system, like super-Earths, are the most common.",
 "deeper": "Statistics show most stars host planets. JWST is beginning to read atmospheres of some of them.",
-"expert": "Transit depth ≈(R_p/R_*)²; RV semi-amplitude K=28.4 m/s ×(M_p sin i/M_J)(P/1yr)^{-1/3}(M_*/M☉)^{-2/3}.",
+"expert": "Transit depth ≈(R_p/R_*)²; RV semi-amplitude K=28.4 m/s ×(M_p sin i/M_J)(P/1yr)^{-1/3}(M_*/M☉)^{-2/3}(1−e²)^{-1/2}, for M_p≪M_*.",
 "regime": "Detection biases favour large, close-in planets.",
 "emerges_from": [
 "planet_types",
@@ -9214,7 +9277,7 @@
 "basics": "The habitable zone is the range of distances where a planet could have liquid surface water. Life elsewhere is possible but not detected.",
 "deeper": "Claims of biosignatures, such as gases in atmospheres, need careful testing against non-biological explanations.",
 "expert": "HZ inner edge ≈0.95 AU, outer ≈1.4–1.7 AU for Sun-like star; Drake equation N=R*·fp·ne·fl·fi·fc·L.",
-"regime": "No confirmed extraterrestrial life.",
+"regime": "The habitable zone only means a rocky planet with an Earth-like atmosphere could hold surface liquid water. It is neither necessary nor sufficient for life. No extraterrestrial life is confirmed.",
 "emerges_from": [
 "exoplanets",
 "origin_of_life"
@@ -9299,7 +9362,7 @@
 "domain": "Stellar astrophysics",
 "basics": "A star is a balance between gravity pulling inward and pressure pushing outward. Fusion in the core keeps the pressure up.",
 "deeper": "More massive stars burn hotter and much brighter, so they live shorter lives. This is the mass-luminosity relation.",
-"expert": "dP/dr=−Gmρ/r²; L∝M^{3.5} (main sequence); lifetime t≈10 Gyr(M/M☉)^{−2.5}; virial 2K+U=0.",
+"expert": "dP/dr=−Gmρ/r²; L∝M^{3.5} (main sequence); lifetime t≈10 Gyr(M/M☉)^{−2.5} for roughly 0.5–10 M☉, while for M≳25 M☉ lifetimes level off at about 3–7 Myr; virial 2K+U=0.",
 "regime": "Simplified for spherical, non-rotating stars.",
 "emerges_from": [
 "gravitation_newton",
@@ -9463,7 +9526,7 @@
 "domain": "Stellar astrophysics",
 "basics": "Dead stars become dense remnants: white dwarfs supported by electron degeneracy, or neutron stars and black holes after core-collapse supernovae.",
 "deeper": "A teaspoon of neutron-star matter weighs about a billion tonnes. Pulsars are spinning neutron stars with beams.",
-"expert": "WD: M≈0.6 M☉, R≈R⊕, M_Ch=1.4 M☉; NS: M≈1.4–2 M☉, R≈11–13 km, ρ≈10¹⁷ kg/m³; SN energy ≈10⁴⁴ J (1 foe).",
+"expert": "WD: M≈0.6 M☉, R≈R⊕, M_Ch=1.4 M☉; NS: M≈1.4–2 M☉, R≈11–13 km, mean density ≈4×10¹⁷ kg/m³ (up to ≈10¹⁸ kg/m³ at the centre), so a teaspoon is about 10⁹–10¹⁰ tonnes; core-collapse supernova releases ≈10⁴⁶ J (≈99 % as neutrinos), of which ≈10⁴⁴ J (1 foe) is ejecta kinetic energy and ≈10⁴²–10⁴³ J is light.",
 "regime": "Neutron-star equation of state uncertain.",
 "emerges_from": [
 "stellar_evolution",
@@ -9491,7 +9554,7 @@
 ],
 [
 "AST",
-"24.1"
+"23.4"
 ]
 ],
 "sim": [
@@ -9511,7 +9574,7 @@
 "domain": "Astrophysics",
 "basics": "The Big Bang made hydrogen, helium and a little lithium; stars forged carbon through iron; most heavier elements are built by capturing neutrons, either slowly (the s-process, in giant stars late in their lives) or rapidly (the r-process, in neutron-rich events such as neutron-star mergers and possibly some supernovae).",
 "deeper": "We are made of star-processed material. How much of the heaviest elements comes from mergers versus other supernovae is still debated.",
-"expert": "Abundance by mass: H 74 %, He 24 %, O 0.8 %, C 0.3 %; BBN D/H≈2.5×10⁻⁵, ⁷Li shortfall ≈3×; r-process peaks A≈80, 130, 195. The s-process in low- and intermediate-mass asymptotic-giant-branch stars and the r-process together produce the bulk of the heavy elements in the solar system (review in IAU Symposium 343, 2019).",
+"expert": "Solar photosphere by mass (Asplund et al. 2009): H 73.8 %, He 24.9 %, O 0.57 %, C 0.24 %; BBN D/H≈2.5×10⁻⁵, ⁷Li shortfall ≈3×; r-process peaks A≈80, 130, 195. The s-process in low- and intermediate-mass asymptotic-giant-branch stars and the r-process together produce the bulk of the heavy elements in the solar system (review: Kobayashi, Karakas and Lugaro 2020, ApJ 900, 179).",
 "regime": "Sources of r-process elements debated.",
 "emerges_from": [
 "fusion_stars",
@@ -9562,7 +9625,7 @@
 "domain": "Astrophysics",
 "basics": "When two neutron stars merge, they emit gravitational waves, a burst of gamma rays and a glow powered by freshly made heavy elements such as gold.",
 "deeper": "GW170817 was seen in both gravitational waves and light, confirming such events create r-process elements.",
-"expert": "GW170817: 1.17–1.60 M☉ components, d≈40 Mpc, ejecta ≈0.05 M☉; kilonova peak ≈10⁴¹ erg/s.",
+"expert": "GW170817: 1.17–1.60 M☉ components, d≈40 Mpc, ejecta ≈0.05 M☉; AT2017gfo (the kilonova) peak bolometric luminosity ≈ a few 10⁴¹ to 10⁴² erg/s (≈10³⁵ W) within about 1 day, depending on the reconstruction.",
 "regime": "Event rate and yields uncertain.",
 "emerges_from": [
 "gravitational_waves",
@@ -9576,7 +9639,7 @@
 "refs": [
 [
 "AST",
-"24.1"
+"24.7"
 ]
 ],
 "sim": []
@@ -9591,9 +9654,9 @@
 ],
 "certainty": "C1",
 "domain": "Stellar astrophysics",
-"basics": "Over half of Sun-like stars have a companion. Variable stars such as Cepheids pulse in a way that reveals their true brightness, used as cosmic distance markers.",
+"basics": "About half of Sun-like stars (≈44 ± 2 %) have at least one stellar companion. Variable stars such as Cepheids pulse in a way that reveals their true brightness, used as cosmic distance markers.",
 "deeper": "Binaries let astronomers weigh stars directly. Type Ia supernovae from white dwarfs in binaries act as standard candles.",
-"expert": "Cepheid P-L: M_V≈−2.43(log P−1)−4.05; SN Ia peak M≈−19.3.",
+"expert": "Cepheid P-L: M_V≈−2.43(log P−1)−4.05; SN Ia peak M_B≈−19.3 (after light-curve standardisation; raw spread about 0.4 mag).",
 "regime": "Calibration of standard candles underlies the Hubble tension.",
 "emerges_from": [
 "stellar_spectra",
@@ -9610,7 +9673,7 @@
 "refs": [
 [
 "AST",
-"18.3"
+"18.2"
 ],
 [
 "AST",
@@ -9631,7 +9694,7 @@
 "domain": "Astronomy",
 "basics": "Astronomers measure distances stepwise: parallax for nearby stars, standard candles like Cepheids for galaxies, then supernovae and redshift for the far universe.",
 "deeper": "Each rung calibrates the next, so errors propagate upward. Gaia has measured parallaxes for over a billion stars.",
-"expert": "d(pc)=1/p(arcsec); m−M=5log₁₀(d/10pc); z→d_L=(1+z)∫c dz/H(z).",
+"expert": "d(pc)=1/p(arcsec); m−M=5log₁₀(d/10pc); for a flat universe d_L=(1+z)∫₀^z c dz′/H(z′).",
 "regime": "Systematics at each rung are debated.",
 "emerges_from": [
 "binary_variable",
@@ -9672,7 +9735,7 @@
 ],
 "certainty": "C1",
 "domain": "Galactic astronomy",
-"basics": "Our galaxy is a spiral of a few hundred billion stars about 100,000 light-years across, with the Sun about 27,000 light-years from the centre.",
+"basics": "Our galaxy is a barred spiral of a few hundred billion stars about 100,000 light-years across, with the Sun about 27,000 light-years from the centre. The Sun orbits the centre once in about 230 million years; stars closer in orbit faster.",
 "deeper": "Stars orbit the centre once every ~230 million years. A supermassive black hole, Sgr A*, sits at the centre.",
 "expert": "Disk diameter ≈30 kpc; R☉≈8.2 kpc; v_circ≈230 km/s; M_stars≈6×10¹⁰ M☉; Sgr A* ≈4.3×10⁶ M☉; halo mass ≈10¹² M☉.",
 "regime": "Mass of halo depends on dark matter modelling.",
@@ -9726,9 +9789,9 @@
 ],
 "frontier": [
 {
-"text": "Cusp-core and missing-satellite problems",
+"text": "Cusp-core, too-big-to-fail and satellite-plane problems (the original \"missing satellites\" count has largely been resolved by faint-dwarf discoveries and baryonic feedback)",
 "status": "open",
-"as_of": "2023-12"
+"as_of": "2026-11"
 }
 ],
 "refs": [
@@ -9795,6 +9858,10 @@
 [
 "AST",
 "28.4"
+],
+[
+"AST",
+"29.5"
 ]
 ],
 "sim": [
@@ -9818,7 +9885,7 @@
 "domain": "Astrophysics",
 "basics": "Some galaxies have extremely bright centres powered by gas falling into a supermassive black hole. Quasars outshine whole galaxies.",
 "deeper": "Jets of plasma travel near light speed. Black-hole mass correlates with the host galaxy's bulge.",
-"expert": "L_Edd=1.26×10³¹ W (M/M☉)=4πGMm_pc/σ_T; efficiency η≈0.06–0.4; M-σ relation.",
+"expert": "L_Edd=4πGMm_pc/σ_T=1.26×10³¹ W (M/M☉), for spherical accretion of ionised hydrogen (discs can exceed it briefly); efficiency η≈0.06–0.4; M-σ relation.",
 "regime": "Accretion physics is complex.",
 "emerges_from": [
 "black_holes",
@@ -9855,7 +9922,7 @@
 "domain": "Astrophysics",
 "basics": "Giant black holes already existed less than a billion years after the Big Bang, which challenges simple growth models. JWST has found compact red sources that may be linked.",
 "deeper": "Possible routes are heavy seeds from direct collapse, rapid accretion, or mergers of lighter seeds.",
-"expert": "Sgr A* 4×10⁶ M☉; quasars at z>7 with M≈10⁹ M☉ within 0.7 Gyr; Salpeter time t_S=450 Myr·η/(1−η).",
+"expert": "Sgr A* ≈4.3×10⁶ M☉; quasars at z>7 with M≈10⁹ M☉ within 0.7 Gyr; Salpeter time t_S=450 Myr·η/(1−η).",
 "regime": "Open question; measurements of black-hole masses in early objects are uncertain.",
 "emerges_from": [
 "agn_quasars"
@@ -9898,7 +9965,7 @@
 "domain": "Cosmology",
 "basics": "Distant galaxies are moving away from us, and the farther they are the faster they go. This is explained by space itself expanding.",
 "deeper": "Light stretches as space expands, shifting it to longer wavelengths (redshift). The expansion rate today is the Hubble constant.",
-"expert": "v=H₀d; 1+z=a₀/a; H₀≈67–74 km/s/Mpc (two methods disagree); Hubble time 1/H₀≈14 Gyr.",
+"expert": "v≈cz=H₀d for z≪1 (d≪c/H₀≈4 Gpc); at larger distances use the full expansion history d_L=(1+z)∫c dz/H(z); 1+z=a₀/a; H₀≈67–74 km/s/Mpc (two methods disagree); Hubble time 1/H₀≈14 Gyr.",
 "regime": "Expansion applies on scales beyond bound systems.",
 "emerges_from": [
 "general_relativity",
@@ -9945,7 +10012,7 @@
 "basics": "Two ways of measuring how fast the universe expands, one from the early universe and one from nearby objects, give different answers. Whether this is new physics or measurement error is unresolved.",
 "deeper": "Proposed fixes include early dark energy or extra relativistic particles, none confirmed.",
 "expert": "Planck 2018 ΛCDM: H₀=67.4±0.5 km/s/Mpc; SH0ES Cepheid-SN ladder ≈73 km/s/Mpc (≈5σ gap).",
-"regime": "Numbers from before 2024 are shown here; the open-questions list below has the newer measurements.",
+"regime": "The tension depends on the calibration route: Cepheid and supernova ladders give ≈73 km/s/Mpc, CMB-based ΛCDM gives ≈67.4, and TRGB/JWST analyses (CCHP) give values in between. The apparent tension is about 5σ for the Cepheid ladder and smaller for TRGB. The open-questions list has newer measurements.",
 "emerges_from": [
 "expansion_hubble",
 "cmb",
@@ -10144,7 +10211,7 @@
 "refs": [
 [
 "AST",
-"29.4"
+"29.6"
 ]
 ],
 "sim": [
@@ -10161,10 +10228,10 @@
 ],
 "certainty": "C3",
 "domain": "Cosmology",
-"basics": "Supernova observations in 1998 showed that the expansion of the universe is speeding up. A mysterious 'dark energy' making up about 68 % of the energy content is the leading explanation.",
+"basics": "Supernova observations in 1998 showed that the expansion of the universe is speeding up. A mysterious 'dark energy' making up about 68–69 % of the energy content is the leading explanation.",
 "deeper": "The simplest version is a cosmological constant, though its observed value is vastly smaller than quantum estimates. Whether it changes over time is being tested.",
-"expert": "w=P/ρc²=−1 for Λ; Ω_Λ≈0.69; ρ_Λ≈6×10⁻²⁷ kg/m³; deceleration parameter q₀≈−0.55.",
-"regime": "Λ fits all current data; mild hints of evolution are not conclusive.",
+"expert": "w=P/ρc²=−1 for Λ; Ω_Λ≈0.685 (Planck 2018); ρ_Λ≈6×10⁻²⁷ kg/m³; deceleration parameter q₀=Ω_m/2−Ω_Λ≈−0.53.",
+"regime": "Λ still fits the data, but DESI DR2 with the CMB prefers evolving dark energy at about 3σ (2.8–4.2σ depending on the supernova sample); not yet conclusive.",
 "emerges_from": [
 "expansion_hubble",
 "general_relativity"
@@ -10213,7 +10280,7 @@
 "certainty": "C2",
 "domain": "Cosmology",
 "basics": "Galaxies lie along filaments and walls surrounding huge empty voids. Gravity amplified tiny early fluctuations over billions of years.",
-"deeper": "Baryon acoustic oscillations leave a standard ruler of ≈150 Mpc in galaxy clustering, used to measure expansion.",
+"deeper": "Baryon acoustic oscillations leave a standard ruler of ≈147 Mpc (comoving) in galaxy clustering, used to measure expansion.",
 "expert": "BAO scale ≈147 Mpc; σ₈≈0.81; homogeneity scale ≈100 Mpc.",
 "regime": "N-body simulations match observations on large scales.",
 "emerges_from": [
@@ -10224,8 +10291,7 @@
 "galaxies"
 ],
 "evidence": [
-"SDSS, DESI maps",
-"Millennium Simulation"
+"SDSS, DESI maps"
 ],
 "frontier": [],
 "refs": [
@@ -10248,7 +10314,7 @@
 ],
 "certainty": "C2",
 "domain": "Cosmology",
-"basics": "The first stars lit up after about 100–200 million years and their ultraviolet light gradually split the neutral gas between galaxies into ions. By about a billion years the universe was largely reionised.",
+"basics": "Models predict that the first stars lit up about 100–200 million years after the Big Bang. They have not yet been observed directly. Their ultraviolet light gradually split the neutral gas between galaxies into ions. By about a billion years the universe was largely reionised.",
 "deeper": "JWST now sees galaxies from within the first few hundred million years.",
 "expert": "Reionisation midpoint z≈7.7±0.7; optical depth τ≈0.054; first stars z≈20–30.",
 "regime": "Sources of reionisation still debated.",
@@ -10261,7 +10327,13 @@
 "Gunn-Peterson troughs",
 "CMB optical depth"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "When did the first stars form, and what were they like (they have not been observed directly)?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "AST",
@@ -10289,7 +10361,7 @@
 "basics": "If dark energy stays constant, the universe will keep expanding forever, growing cold and dark. Ideas about other universes (multiverse) are speculative and untested.",
 "deeper": "Fine-tuning arguments ask why constants allow life; anthropic and multiverse answers are not testable so far.",
 "expert": "de Sitter (cosmic event) horizon ≈5 Gpc proper (≈16 Gly); Hawking decay of BHs ≈10⁶⁷–10¹⁰⁰ yr; Λ-dominated ⇒ a∝e^{Ht}.",
-"regime": "Speculative extrapolation.",
+"regime": "Speculative extrapolation. Certainty by part: heat death or Big Freeze under constant dark energy is C2; the multiverse is C4.",
 "emerges_from": [
 "dark_energy_node",
 "inflation"
@@ -10305,12 +10377,7 @@
 "as_of": "2023-12"
 }
 ],
-"refs": [
-[
-"AST",
-"29.1"
-]
-],
+"refs": [],
 "sim": [
 "cosmos"
 ]
@@ -10390,7 +10457,7 @@
 "domain": "Philosophy of science",
 "basics": "Science builds models, tests their predictions, and revises them when they fail. Confidence grows with independent tests, and no theory is ever proven final.",
 "deeper": "A good theory is falsifiable and has a stated domain of validity. Measurements are separated from interpretations of them.",
-"expert": "Bayesian update posterior∝likelihood×prior; 5σ convention; Occam factor penalises complexity.",
+"expert": "Bayes: P(H|D)∝P(D|H)P(H); 5σ (p≈3×10⁻⁷) is the particle-physics discovery convention, other fields use p<0.05 or Bayes factors; Occam factor penalises complexity.",
 "regime": "A norm, not a single recipe; practice differs across fields.",
 "emerges_from": [
 "bayes_stats"
@@ -10423,7 +10490,7 @@
 "domain": "Complexity",
 "basics": "Each scale of nature has its own simplest description: you do not need quarks to do chemistry or atoms to predict the weather. Higher-level laws emerge from lower ones but are not derived in practice.",
 "deeper": "Renormalisation explains why details at tiny scales wash out. Zooming in means switching to the deeper theory when the shallower one breaks down.",
-"expert": "RG flow dg/dlnμ=β(g); universality classes; weak emergence vs strong emergence.",
+"expert": "RG flow dg/dlnμ=β(g); irrelevant couplings shrink as μ^(−n), so low-energy physics depends on few parameters; universality classes; weak emergence vs strong emergence.",
 "regime": "Principle, valid across physics; claims of strong emergence are contested.",
 "emerges_from": [
 "statistical_mechanics",
@@ -10439,12 +10506,7 @@
 "Phonons as emergent particles"
 ],
 "frontier": [],
-"refs": [
-[
-"UP3",
-"9.5"
-]
-],
+"refs": [],
 "sim": []
 },
 {
@@ -10454,7 +10516,7 @@
 "scale_m": null,
 "certainty": "C3",
 "domain": "Thermodynamics",
-"basics": "Microscopic laws work the same forwards and backwards, yet eggs do not unscramble. The direction of time comes from entropy increasing from a low-entropy past.",
+"basics": "The microscopic laws that govern most everyday dynamics work the same forwards and backwards (rare weak-force decays are a tiny exception that does not set the arrow), yet eggs do not unscramble. The direction of time comes from entropy increasing from a low-entropy past.",
 "deeper": "Why the early universe began with such low entropy is not explained.",
 "expert": "S=k_B ln Ω; Poincaré recurrence ∼e^{S}; ΔS_universe≥0.",
 "regime": "Statistical arrow is solid; its cosmological origin is open.",
@@ -10490,7 +10552,7 @@
 "domain": "Information",
 "basics": "Information is measured in bits, as the reduction in uncertainty. Shannon showed how much data a noisy channel can carry and how far data can be compressed.",
 "deeper": "Entropy sets the best possible compression, and channel capacity sets the highest reliable data rate, and both are achievable with clever coding.",
-"expert": "H=−Σp log₂p; C=B log₂(1+S/N); mutual information I(X;Y)=H(X)−H(X|Y).",
+"expert": "H=−Σp log₂p; C=B log₂(1+S/N) for a band-limited channel with additive white Gaussian noise; mutual information I(X;Y)=H(X)−H(X|Y).",
 "regime": "Exact for stationary sources; semantic meaning not captured.",
 "emerges_from": [
 "probability"
@@ -10506,12 +10568,7 @@
 "Compression codecs"
 ],
 "frontier": [],
-"refs": [
-[
-"DSC",
-"1.1"
-]
-],
+"refs": [],
 "sim": []
 },
 {
@@ -10531,15 +10588,11 @@
 ],
 "explains": [],
 "evidence": [
-"Colloidal-particle bit-erasure experiments"
+"Colloidal-particle bit-erasure experiments",
+"Bérut et al., Nature 483, 187 (2012): measured erasure heat in a colloidal bit"
 ],
 "frontier": [],
-"refs": [
-[
-"UP2",
-"4.1"
-]
-],
+"refs": [],
 "sim": []
 },
 {
@@ -10613,7 +10666,7 @@
 "domain": "Information",
 "basics": "Quantum computers use superposition and entanglement to tackle certain problems faster, such as factoring large numbers. Errors are the main obstacle.",
 "deeper": "Quantum error correction spreads one logical qubit over many physical qubits; useful machines need extremely low error rates.",
-"expert": "Shor: O((log N)³); Grover √N speed-up; threshold theorem p_th≈10⁻²–10⁻³; physical error ≈10⁻³.",
+"expert": "Shor: O((log N)³); Grover √N speed-up; error-correction threshold ≈10⁻²–10⁻³ for the surface code (model-dependent); best two-qubit gate errors ≈10⁻³; Google's 2024 Willow experiment showed logical error falling as the code distance grew.",
 "regime": "No large fault-tolerant machine yet.",
 "emerges_from": [
 "entanglement",
@@ -10658,15 +10711,10 @@
 ],
 "explains": [],
 "evidence": [
-"Computers"
+"IRDS roadmap tables (transistor density, gate delay)"
 ],
 "frontier": [],
-"refs": [
-[
-"WSS",
-"1.1"
-]
-],
+"refs": [],
 "sim": []
 },
 {
@@ -10678,7 +10726,7 @@
 "domain": "Artificial intelligence",
 "basics": "Neural networks learn patterns by adjusting millions or billions of numerical weights to reduce errors on training data. They power image recognition, translation and language models.",
 "deeper": "Transformers, introduced in 2017, use attention to weigh relationships between parts of the input. Performance often improves smoothly with more data, parameters and compute.",
-"expert": "θ←θ−η∇L (SGD); backpropagation via chain rule; attention softmax(QKᵀ/√d)V; scaling L∝N^{−α}, α≈0.07–0.1.",
+"expert": "θ←θ−η∇L (SGD); backpropagation via chain rule; attention softmax(QKᵀ/√d)V; empirical scaling fits for language-model loss: L∝N^{−α_N}, α_N≈0.076 (parameters) and α_D≈0.095 (data) in Kaplan et al. 2020; Hoffmann et al. 2022 refit with a different split and optimal data about equal to parameters. These are fits, not laws.",
 "regime": "Why they generalise and how to verify their outputs are active research questions.",
 "emerges_from": [
 "linalg_hilbert",
@@ -10731,7 +10779,7 @@
 "domain": "Complexity",
 "basics": "Many interacting parts can form patterns no part intends: flocks, traffic jams, ant colonies and ecosystems. Networks with hubs or small-world links appear throughout biology and society.",
 "deeper": "Criticality, power laws and feedback loops are recurring ideas, but there is no single theory of complexity.",
-"expert": "Turing patterns λ≈2π√(D_slow/…); power law P(x)∼x^{−α}; Watts-Strogatz small world L∼ln N.",
+"expert": "Turing patterns: at onset the critical wavenumber is k_c²=√(det J/(D_u D_v)), so λ_c=2π/k_c=2π(D_u D_v/det J)^{1/4}; power law P(x)∼x^{−α}; the Watts-Strogatz small-world path length scales as L∼ln N.",
 "regime": "Descriptive rather than predictive in many cases.",
 "emerges_from": [
 "graph_theory",
@@ -10768,11 +10816,11 @@
 "title": "Evolution as an information-accumulating process",
 "level": "X",
 "scale_m": null,
-"certainty": "C1",
+"certainty": "C2",
 "domain": "Biology",
-"basics": "Natural selection accumulates information about environments into genomes, a process researchers also copy in evolutionary algorithms.",
+"basics": "One useful way to describe natural selection is as a process that accumulates information about the environment in genomes, which researchers also copy in evolutionary algorithms.",
 "deeper": "Selection works with variation, inheritance and differential success at any scale from RNA molecules to ecosystems.",
-"expert": "Fisher's fundamental theorem dW̄/dt=Var(W)/W̄; Price equation Δz̄=Cov(w,z)/w̄+E(wΔz)/w̄.",
+"expert": "Fisher's fundamental theorem: the rate of increase in mean fitness due to natural selection equals the additive genetic variance in fitness, dW̄/dt=Var_A(W) (divided by W̄ in the discrete-time form); Price equation Δz̄=Cov(w,z)/w̄+E(wΔz)/w̄.",
 "regime": "Substrate-independent principle.",
 "emerges_from": [
 "natural_selection",
@@ -10785,7 +10833,13 @@
 "Directed evolution of enzymes",
 "Genetic algorithms"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "How should the information that selection puts into genomes be defined and measured?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "BIO",
@@ -10799,9 +10853,9 @@
 "title": "Scaling laws and dimensional analysis",
 "level": "X",
 "scale_m": null,
-"certainty": "C1",
+"certainty": "C2",
 "domain": "Physics",
-"basics": "Many natural features change with size in predictable ways: a mouse and an elephant differ in metabolism, strength and cooling. Dimensional analysis finds such relations from units alone.",
+"basics": "Many natural features change with size in predictable ways: a mouse and an elephant differ in metabolism, strength and cooling. Dimensional analysis finds such relations from units alone. Across animals, resting metabolic rate rises roughly as mass to the power 2/3 to 3/4 (Kleiber's 3/4 is the usual fit; the exponent and its explanation are debated).",
 "deeper": "Metabolic rate scales as mass to the power of about three quarters across animals, while strength and heat loss follow area versus volume.",
 "expert": "Kleiber B∝M^{3/4}; square-cube: area∝L², volume∝L³; Reynolds, Froude numbers dimensionless.",
 "regime": "Exponents debated for some taxa.",
@@ -10812,7 +10866,13 @@
 "evidence": [
 "Allometry data"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "Is metabolic scaling a single power law, and what sets the exponent?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "UP1",
@@ -10903,7 +10963,7 @@
 ],
 "certainty": "C1",
 "domain": "Technology",
-"basics": "A current-carrying coil in a magnetic field feels a force and turns. Motors are generators run in reverse and use about half of the world's electricity.",
+"basics": "A current-carrying coil in a magnetic field feels a force and turns. Motors are generators run in reverse, and motor-driven systems account for roughly 45–55 % of global electricity use (IEA estimates).",
 "deeper": "Efficiency of large motors exceeds 95 %.",
 "expert": "τ=NIAB sinθ; back-EMF ε=kΦω; P=τω.",
 "regime": "Heat and magnet materials limit power density.",
@@ -10936,7 +10996,7 @@
 "domain": "Technology",
 "basics": "A battery stores energy in chemical form and releases it as electric current when ions and electrons move between electrodes. Lithium-ion cells shuttle lithium ions in and out of layered materials.",
 "deeper": "Energy density of Li-ion is about 250 Wh/kg, far less than gasoline per mass. Solid-state batteries aim to improve safety and density.",
-"expert": "E=½CV²-like capacity Q×V; Li-ion ≈150–270 Wh/kg; gasoline ≈12,000 Wh/kg; LiCoO₂ + C₆ chemistry ≈3.7 V.",
+"expert": "E=∫V dQ≈Q·V_avg (Wh = Ah × V; a capacitor stores ½CV² and its voltage falls as it discharges); Li-ion ≈150–270 Wh/kg; gasoline ≈12,000 Wh/kg; LiCoO₂ + C₆ chemistry ≈3.7 V.",
 "regime": "Degradation and dendrite growth limit lifetimes.",
 "emerges_from": [
 "electrochemistry"
@@ -11005,7 +11065,7 @@
 "domain": "Technology",
 "basics": "Light travels along glass fibres by total internal reflection. Lasers send pulses carrying data at terabits per second across oceans.",
 "deeper": "Glass with attenuation of about 0.2 dB/km made modern internet cables possible.",
-"expert": "θ_c=arcsin(n₂/n₁); attenuation ≈0.2 dB/km at 1550 nm; Shannon limit per fibre ≈ 100 Tb/s.",
+"expert": "θ_c=arcsin(n₂/n₁); attenuation ≈0.2 dB/km at 1550 nm; capacity is bounded by the nonlinear Shannon limit, which depends on bandwidth used and fibre type; single-core fibre demonstrations now exceed 300 Tb/s over a ~37 THz band (NICT 2024: 402 Tb/s estimated, 378 Tb/s decoded, 50 km).",
 "regime": "Nonlinear effects limit power in fibre.",
 "emerges_from": [
 "optics_geometric",
@@ -11040,7 +11100,7 @@
 "domain": "Technology",
 "basics": "In a diode, electrons and holes combine and emit light. LEDs make efficient lighting and laser diodes power barcode scanners and communications.",
 "deeper": "The colour is set by the band gap of the semiconductor.",
-"expert": "λ(nm)=1240/E_g(eV); blue GaN LED E_g≈3.4 eV; LED efficacy >150 lm/W.",
+"expert": "λ(nm)≈1240/E_g(eV); GaN has E_g≈3.4 eV (≈365 nm, UV); blue LEDs use InGaN quantum wells with E_g≈2.7 eV (≈460 nm); LED efficacy >150 lm/W.",
 "regime": "Efficiency drops at high current (droop).",
 "emerges_from": [
 "semiconductors_pn",
@@ -11102,7 +11162,7 @@
 "domain": "Technology",
 "basics": "Fusion could provide energy from hydrogen isotopes, but holding plasma hotter than the Sun's core is hard. In 2022 a laser shot at the NIF produced more fusion energy than the laser delivered to the target, but not a power plant.",
 "deeper": "Tokamaks use magnetic confinement; NIF uses lasers to compress fuel pellets.",
-"expert": "Lawson: nTτ≳3×10²¹ keV s m⁻³; D-T 150 million K; NIF target gain ≈1.5.",
+"expert": "Lawson: nTτ≳3×10²¹ keV s m⁻³; D-T 150 million K; NIF target gain ≈1.5 in Dec 2022 (3.15 MJ from 2.05 MJ) and a record 4.13 in Apr 2025 (8.6 MJ from 2.08 MJ); the lasers draw about 300 MJ from the grid per shot, so the whole system is far from net energy.",
 "regime": "No net-power reactor yet.",
 "emerges_from": [
 "fusion_stars",
@@ -11122,7 +11182,7 @@
 "refs": [
 [
 "UP3",
-"10.2"
+"10.6"
 ]
 ],
 "sim": [
@@ -11142,7 +11202,7 @@
 "basics": "A plasma is a gas hot enough that atoms lose electrons. Stars, lightning and auroras are plasma, which makes up most visible matter in the universe.",
 "deeper": "Plasmas respond collectively to electric and magnetic fields. They carry currents and support waves.",
 "expert": "Debye length λ_D=√(ε₀kT/ne²); plasma frequency ω_p=√(ne²/ε₀m); ionisation at ≳10⁴ K.",
-"regime": "Cold plasma to relativistic regimes vary.",
+"regime": "Collective behaviour requires many particles within a Debye sphere (nλ_D³≫1) and system size ≫λ_D.",
 "emerges_from": [
 "maxwell",
 "kinetic_theory"
@@ -11160,10 +11220,6 @@
 [
 "AST",
 "15.1"
-],
-[
-"UP2",
-"2.1"
 ]
 ],
 "sim": [
@@ -11222,7 +11278,13 @@
 "Market experiments",
 "Trade data"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "How well do simple rational-agent models predict real economic behaviour?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "MIE",
@@ -11257,7 +11319,13 @@
 "Axelrod tournaments",
 "Lab experiments"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "How often do people and organisations settle on equilibrium play in real strategic situations?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "MIE",
@@ -11332,7 +11400,13 @@
 "evidence": [
 "Kahneman-Tversky experiments"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "How large and general is loss aversion, and how robust are default and nudge effects outside the original studies?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "PSY",
@@ -11354,7 +11428,7 @@
 "domain": "Social science",
 "basics": "Sociology studies how groups, norms, institutions and inequality shape behaviour. Methods include surveys, ethnography and experiments.",
 "deeper": "Social structures such as family, education, work and government emerge from many interactions and persist over generations.",
-"expert": "Gini coefficient G∈[0,1]; social network homophily; Dunbar number ≈150.",
+"expert": "Gini coefficient G∈[0,1]; social network homophily; Dunbar's number (≈150 for typical human network size) is a contested estimate: a 2021 reanalysis found the statistical basis cannot support a single figure (95 % CI ≈4–520).",
 "regime": "Findings are context-dependent, causal claims are harder.",
 "emerges_from": [
 "cognition_psychology",
@@ -11366,7 +11440,13 @@
 "evidence": [
 "Census and survey data"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "How much of social behaviour can be explained by individual choice versus social structure?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "SOC",
@@ -11388,8 +11468,8 @@
 "title": "Human development across the lifespan",
 "level": "7",
 "scale_m": [
-1,
-1000000000.0
+0.3,
+2.5
 ],
 "certainty": "C2",
 "domain": "Psychology",
@@ -11405,7 +11485,13 @@
 "evidence": [
 "Longitudinal studies"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "How do genes, environment and chance combine to shape development across a lifetime?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "LSD",
@@ -11429,8 +11515,8 @@
 "certainty": "C2",
 "domain": "Cognitive science",
 "basics": "Language is a learned symbolic system humans use to share thoughts. Children acquire it rapidly and speakers invent new sentences constantly.",
-"deeper": "Brain regions such as Broca's and Wernicke's areas support language. About 7,000 languages exist, and many are endangered.",
-"expert": "≈7,000 living languages; children reach ≈10,000 words by age 6–7; Zipf f∝1/rank.",
+"deeper": "Language relies on a distributed left-lateralised network that includes, but is not limited to, Broca's and Wernicke's areas. About 7,000 languages exist, and many are endangered.",
+"expert": "≈7,000 living languages; a six-year-old's vocabulary is estimated at roughly 5,000–14,000 words depending on how a \"word\" is counted; Zipf f∝1/rank.",
 "regime": "Debates over innate grammar versus learning.",
 "emerges_from": [
 "brain_organization",
@@ -11440,11 +11526,21 @@
 "evidence": [
 "Aphasia studies"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "How much of grammar is innate, and how much is learned from experience?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "PSY",
 "7.1"
+],
+[
+"PSY",
+"7.2"
 ]
 ],
 "sim": []
@@ -11458,7 +11554,7 @@
 "domain": "Medicine",
 "basics": "Randomised controlled trials and epidemiology tell which treatments work and what causes disease. Confidence rises with replication and consistent mechanisms.",
 "deeper": "Confounding and bias can mislead observational studies, so randomisation and blinding are the reference methods.",
-"expert": "Relative risk RR=I_exp/I_unexp; NNT=1/ARR; p-value; R₀ and herd immunity threshold 1−1/R₀.",
+"expert": "Relative risk RR=I_exp/I_unexp; NNT=1/ARR; p-value; R₀ and herd immunity threshold 1−1/R₀ (homogeneous mixing, fully effective vaccine).",
 "regime": "Subject to ethical and practical limits.",
 "emerges_from": [
 "bayes_stats",
@@ -11470,14 +11566,6 @@
 ],
 "frontier": [],
 "refs": [
-[
-"IST",
-"8.1"
-],
-[
-"IST",
-"9.1"
-],
 [
 "MIC",
 "16.1"
@@ -11504,18 +11592,14 @@
 "quantum_computing"
 ],
 "evidence": [
-"Internet security",
-"Prime number theorem"
+"RSA and elliptic-curve deployments",
+"NIST post-quantum standards FIPS 203/204/205 (2024)"
 ],
 "frontier": [],
 "refs": [
 [
 "CMA",
 "3.1"
-],
-[
-"CMA",
-"4.1"
 ]
 ],
 "sim": []
@@ -11529,7 +11613,7 @@
 "domain": "Mathematics",
 "basics": "Geometry studies shapes and distances; topology studies properties unchanged by stretching, like holes. Fractals are shapes that look similar at every scale, such as coastlines and ferns.",
 "deeper": "Topology classifies phases of matter and knots in DNA. Fractal dimension quantifies roughness.",
-"expert": "Euler characteristic χ=V−E+F=2−2g; Hausdorff dimension D=ln N/ln(1/s) (Koch curve 1.26); Mandelbrot set.",
+"expert": "Euler characteristic χ=V−E+F=2−2g; similarity dimension D=ln N/ln(1/s) (equals the Hausdorff dimension for the Koch curve, 1.26); Mandelbrot set.",
 "regime": "Idealised mathematical objects.",
 "emerges_from": [
 "logic_sets",
@@ -11544,12 +11628,7 @@
 "Lorenz attractor geometry"
 ],
 "frontier": [],
-"refs": [
-[
-"CMA",
-"10.1"
-]
-],
+"refs": [],
 "sim": []
 },
 {
@@ -11633,9 +11712,9 @@
 "certainty": "C1",
 "domain": "Relativity",
 "basics": "All objects fall the same way in a gravitational field, so locally gravity feels the same as acceleration. This idea led Einstein to general relativity.",
-"deeper": "Torsion balances and satellites test it to a few parts in 10¹⁵.",
-"expert": "η=2|a₁−a₂|/(a₁+a₂)<1.5×10⁻¹⁵ (MICROSCOPE); gravitational redshift Δf/f=gh/c².",
-"regime": "Tested for ordinary matter; antimatter tests in progress.",
+"deeper": "Torsion balances test it to about 1 part in 10¹³ and the MICROSCOPE satellite to a few parts in 10¹⁵.",
+"expert": "η=2|a₁−a₂|/(a₁+a₂); MICROSCOPE final result η(Ti,Pt)=(−1.5±2.3(stat)±1.5(syst))×10⁻¹⁵ (1σ), consistent with zero; gravitational redshift Δf/f=gh/c².",
+"regime": "Tested to about 10⁻¹⁵ for ordinary matter; antihydrogen has been shown to fall downward (ALPHA-g, 2023) but only at the tens-of-percent level.",
 "emerges_from": [
 "gravitation_newton"
 ],
@@ -11672,7 +11751,7 @@
 "domain": "Nuclear physics",
 "basics": "At temperatures above ~2 trillion kelvin, quarks and gluons are no longer confined and behave as a hot fluid like the universe a microsecond after the Big Bang.",
 "deeper": "Heavy-ion collisions at RHIC and the LHC create tiny droplets that flow with very low viscosity.",
-"expert": "T_c≈155 MeV≈1.8×10¹² K; η/s≈1/4π(close to lower bound); energy density ≳1 GeV/fm³.",
+"expert": "Crossover temperature T_pc≈156 MeV≈1.8×10¹² K (no sharp T_c at zero baryon density); critical energy density about 0.3–0.5 GeV/fm³ (lattice); η/s within a small factor of the conjectured 1/4π bound.",
 "regime": "Created only briefly in colliders.",
 "emerges_from": [
 "qcd",
@@ -11682,7 +11761,13 @@
 "evidence": [
 "RHIC and ALICE results"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "Is there a critical point in the QCD phase diagram?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "UP3",
@@ -11736,7 +11821,7 @@
 ],
 "certainty": "C1",
 "domain": "Space physics",
-"basics": "The Sun blows a stream of charged particles (solar wind) past Earth. Earth's magnetic field deflects most, and the rest spiral into the atmosphere near the poles, making auroras.",
+"basics": "The Sun blows a stream of charged particles (solar wind) past Earth. Earth's magnetic field deflects most of it. Energy from the wind is stored in the magnetotail, and when it is released it accelerates electrons down the field lines into the upper atmosphere near the poles, where they excite oxygen and nitrogen to glow as aurora.",
 "deeper": "Solar storms can disturb satellites, radio and power grids. The heliosphere shields the solar system from some galactic cosmic rays.",
 "expert": "Wind speed 300–800 km/s, n≈5 cm⁻³; heliopause ≈120 AU; Dst index −100 to −500 nT in storms.",
 "regime": "Forecasting flare and CME arrival is imprecise.",
@@ -11779,7 +11864,7 @@
 "domain": "Planetary science",
 "basics": "Mars is a cold, dry world with a thin carbon-dioxide atmosphere, but ancient river valleys and minerals show it once had liquid water.",
 "deeper": "Its surface holds the Solar System's tallest volcano, Olympus Mons. Rovers search for signs of past life.",
-"expert": "R=3390 km; g=3.71 m/s²; surface P≈600 Pa; T≈210 K; Olympus Mons ≈22 km high; day 24.62 h.",
+"expert": "R=3390 km; g=3.71 m/s²; surface P≈600 Pa; T≈210 K; Olympus Mons ≈22 km high; sidereal rotation 24.62 h, solar day (sol) 24.66 h.",
 "regime": "Whether Mars hosted life is unknown.",
 "emerges_from": [
 "planet_types"
@@ -11811,7 +11896,7 @@
 "certainty": "C1",
 "domain": "Planetary science",
 "basics": "Venus is similar in size to Earth but has a 92-bar carbon-dioxide atmosphere that holds the surface near 460 °C. It is a warning of an extreme greenhouse effect.",
-"deeper": "Its clouds of sulfuric acid hide the surface; it rotates backwards very slowly (243 Earth days).",
+"deeper": "Its clouds of sulfuric acid hide the surface; it rotates backwards very slowly (243 Earth days, sidereal). A runaway greenhouse is the leading explanation for the loss of its water, not a measured history.",
 "expert": "T_s≈737 K, P≈92 bar, albedo ≈0.76 (so T_eff≈230 K), greenhouse warming ≈500 K.",
 "regime": "Past water history uncertain.",
 "emerges_from": [
@@ -11852,7 +11937,7 @@
 "domain": "Planetary science",
 "basics": "Jupiter and Saturn are mostly hydrogen and helium with deep layers of metallic hydrogen, banded clouds and strong winds. Jupiter's mass is 318 Earths.",
 "deeper": "Jupiter's Great Red Spot is a centuries-old storm. Uranus and Neptune have more ices and are tilted or windy.",
-"expert": "M_J=1.898×10²⁷ kg=318 M_E; R_J=69 911 km; Saturn density 0.69 g/cm³; wind speeds ≈150 m/s (≈500 km/h; JWST measured ≈515 km/h) in Jupiter's fastest jet, ≈400–500 m/s (≈1,350–1,800 km/h) at Saturn's equator, ≈2,000 km/h on Neptune.",
+"expert": "M_J=1.898×10²⁷ kg=318 M_E; R_J=69 911 km; Saturn density 0.69 g/cm³; Jupiter's fastest jet ≈140–150 m/s (≈500–540 km/h; JWST ≈515 km/h); Saturn's equatorial jet ≈400–500 m/s (≈1,400–1,800 km/h); Neptune ≈580 m/s (≈2,100 km/h, Voyager 2).",
 "regime": "Interior structure inferred from gravity data.",
 "emerges_from": [
 "planet_types"
@@ -11919,7 +12004,7 @@
 "certainty": "C1",
 "domain": "Planetary science",
 "basics": "Earth is the only known planet with liquid-water oceans, plate tectonics and life. Its size, distance and magnetic field help keep it habitable.",
-"deeper": "A large Moon stabilises its tilt. Earth's interior heat comes from primordial energy and radioactive decay.",
+"deeper": "The Moon damps the tilt's wobble; without it the tilt would vary faster over a wider range, but simulations disagree on how large and how harmful the change would be. Earth's interior heat comes from primordial energy and radioactive decay.",
 "expert": "M=5.972×10²⁴ kg; R=6371 km; g=9.81 m/s²; a=1 AU; day 23.93 h; axial tilt 23.44°; surface heat flow ≈47 TW.",
 "regime": "Properties precisely measured.",
 "emerges_from": [
@@ -11954,7 +12039,7 @@
 "domain": "Botany",
 "basics": "Plants pull water from roots to leaves through narrow tubes (xylem), using evaporation from leaves as the pump. Sugars made in leaves are moved to roots and fruit through phloem.",
 "deeper": "Pores called stomata open to let CO₂ in and water out. Hormones such as auxin steer growth toward light.",
-"expert": "Cohesion-tension: water potential gradient ≈−1 to −3 MPa; tall trees >100 m; transpiration ≈ 99 % of water absorbed; stomatal pore ≈10–20 μm.",
+"expert": "Cohesion-tension: leaf water potential ≈−1 to −3 MPa (a gradient of about −0.01 to −0.02 MPa per metre of height); tall trees >100 m; transpiration ≈99 % of water absorbed; open stomatal aperture ≈3–10 μm wide, guard-cell pair 10–30 μm long.",
 "regime": "Limits tree height ≈130 m.",
 "emerges_from": [
 "photosynthesis_light",
@@ -11971,10 +12056,6 @@
 [
 "BIO",
 "30.5"
-],
-[
-"BIO",
-"31.1"
 ]
 ],
 "sim": [
@@ -12004,7 +12085,13 @@
 "evidence": [
 "Pollination experiments"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "How large are pollinator declines, and how much do they reduce crop and wild-plant yields?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "BIO",
@@ -12075,7 +12162,7 @@
 "basics": "Undersea earthquakes can displace the ocean floor and launch tsunamis that cross ocean basins at jet speed. Landslides, floods and volcanic eruptions are other major hazards.",
 "deeper": "In deep water a tsunami is a long, low wave; near shore it slows and grows tall.",
 "expert": "v=√(gh); h=4000 m → v≈200 m/s (≈720 km/h); wavelength ≈100–200 km; Green's law A∝h^{−1/4}.",
-"regime": "Warning systems rely on seismic and ocean sensors.",
+"regime": "v=√(gh) and Green's law apply to a linear, long wave (wavelength much greater than depth) over slowly varying depth; near shore, nonlinearity, breaking and run-up dominate and need full models. Warning systems rely on seismic and ocean sensors.",
 "emerges_from": [
 "seismology",
 "waves"
@@ -12180,7 +12267,7 @@
 "domain": "Geology",
 "basics": "Fossils are preserved traces of ancient life in rock. They show how life changed and when groups appeared.",
 "deeper": "Rare conditions are needed: fast burial and mineralisation. The record is incomplete but shows many transitional forms.",
-"expert": "Oldest microfossils ≈3.5 Ga; Cambrian ≈538 Ma; Tiktaalik ≈375 Ma; Archaeopteryx ≈150 Ma.",
+"expert": "Oldest widely accepted traces of life ≈3.4–3.5 Ga (stromatolites and microfossils; interpretation of the oldest ones is disputed), with older claims up to ≥3.7 Ga contested; Cambrian starts ≈538.8 Ma; Tiktaalik ≈375 Ma; Archaeopteryx ≈150 Ma.",
 "regime": "Preservation bias skews the record.",
 "emerges_from": [
 "deep_time",
@@ -12197,7 +12284,7 @@
 "refs": [
 [
 "BIO",
-"20.1"
+"18.1"
 ]
 ],
 "sim": []
@@ -12261,7 +12348,13 @@
 "evidence": [
 "Census and FAO data"
 ],
-"frontier": [],
+"frontier": [
+{
+"text": "When will world population peak, and at what level (UN and IHME projections differ)?",
+"status": "open",
+"as_of": "2026-11"
+}
+],
 "refs": [
 [
 "SOC",
@@ -12277,7 +12370,7 @@
 "scale_m": null,
 "certainty": "C1",
 "domain": "Physics",
-"basics": "Energy, momentum, angular momentum, charge and baryon number are conserved, and many of them follow from symmetries. They let us predict outcomes without knowing the details of an interaction.",
+"basics": "Energy, momentum, angular momentum and electric charge follow from symmetries and have never been seen violated. Baryon number is conserved in all observed processes (proton lifetime >10³⁴ yr), but it is only an accidental symmetry: the Standard Model violates it non-perturbatively (sphalerons, conserving B−L), and the universe's matter excess requires some violation. Conservation laws let us predict outcomes without knowing the details of an interaction.",
 "deeper": "Each is tested to extraordinary precision; any claimed violation would revolutionise physics.",
 "expert": "Proton lifetime >10³⁴ yr (baryon number); charge conservation: e⁻ lifetime >6.6×10²⁸ yr.",
 "regime": "Energy conservation is subtle in cosmology.",
@@ -12312,7 +12405,7 @@
 "certainty": "C4",
 "domain": "Fundamental physics",
 "basics": "String theory replaces point particles with tiny vibrating strings and naturally includes gravity. It has inspired deep mathematics but has made no tested prediction yet.",
-"deeper": "Holography (AdS/CFT) links a gravity theory in one space to a quantum theory without gravity on its boundary, offering a model of quantum gravity. The theory allows an enormous 'landscape' of possible universes.",
+"deeper": "Holography (AdS/CFT) links a gravity theory in one space to a quantum theory without gravity on its boundary. It works for a universe with negative cosmological constant, unlike ours; a de Sitter version is not established. It is a useful model of quantum gravity, not a description of our universe. The theory allows an enormous \"landscape\" of possible universes.",
 "expert": "String length ℓ_s≈ℓ_P; critical dimension 10 (superstring) or 11 (M-theory); AdS/CFT: Z_gravity=Z_CFT; landscape ≳10⁵⁰⁰ vacua (estimate).",
 "regime": "Mathematically rich; no experimental support; no supersymmetric partners found at the LHC.",
 "emerges_from": [
@@ -12351,7 +12444,7 @@
 "domain": "Fundamental physics",
 "basics": "Loop quantum gravity treats space as made of tiny discrete units. Asymptotic safety and causal sets are other attempts to quantise gravity without strings.",
 "deeper": "These programmes try to remove the singularities of black holes and the Big Bang.",
-"expert": "Area spectrum A=8πγℓ_P²Σ√(j(j+1)); Barbero-Immirzi γ≈0.24 (from BH entropy matching).",
+"expert": "Area spectrum A=8πγℓ_P²Σ√(j(j+1)); the Barbero-Immirzi parameter γ is free; matching the Bekenstein-Hawking entropy fixes it to ≈0.127 or ≈0.24 depending on how the horizon states are counted.",
 "regime": "Not tested.",
 "emerges_from": [
 "quantum_gravity",
@@ -12368,12 +12461,7 @@
 "as_of": "2023-12"
 }
 ],
-"refs": [
-[
-"UP3",
-"11.1"
-]
-],
+"refs": [],
 "sim": []
 },
 {
@@ -12383,7 +12471,7 @@
 "scale_m": null,
 "certainty": "C4",
 "domain": "Philosophy of mind",
-"basics": "There is no agreed test for whether an artificial system could have experience. Different theories of consciousness give different answers.",
+"basics": "There is no agreed test for whether an artificial system could have experience. Different theories of consciousness give different answers, and the status of integrated information theory is itself disputed (open letter, 2023). Theories of consciousness are C3; machine consciousness is C4.",
 "deeper": "Behaviour alone may not settle it, because systems trained on human text can talk about experience without having any.",
 "expert": "IIT: Φ depends on physical causal structure, not on software; functionalist theories: organisation suffices.",
 "regime": "Speculative; depends on unsettled theory of consciousness.",

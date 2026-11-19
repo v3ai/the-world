@@ -38,7 +38,7 @@
   "summary": "Step-by-step walkthroughs of the key processes of life.",
   "layers": {
    "basics": "Many biological ideas are really stories with a sequence of steps. This section lines them up so you can watch them unfold, from copying DNA to building an embryo.",
-   "deeper": "Each process links to the molecules, organelles and cells where it happens.",
+   "deeper": "Each walkthrough lists steps in the order they usually happen. Most real processes overlap in time and are regulated, so the order is a teaching simplification. Some processes, such as the nitrogen cycle or speciation, still have open research questions, shown on their own cards.",
    "expert": "Processes are summaries of branching, regulated, noisy networks; steps shown are the canonical pathway."
   },
   "facts": [],
@@ -75,7 +75,7 @@
   "facts": [
    [
     "Human origins",
-    "≈ 30,000–50,000"
+    "tens of thousands used per S phase (mapping methods report from ≈ 25,000 to > 100,000 sites; varies by cell type)"
    ],
    [
     "Okazaki fragment length",
@@ -181,8 +181,8 @@
     "≈ 1–4 kb/min"
    ],
    [
-    "Promoter box",
-    "TATA at ≈ −30"
+    "TATA box (when present)",
+    "≈ 25–30 bp upstream of the start; only a minority of human promoters have one (roughly 10% canonical, about a quarter if TATA-like elements count)"
    ]
   ],
   "certainty": "C1",
@@ -231,21 +231,21 @@
    },
    {
     "title": "Termination",
-    "text": "A terminator signal causes the polymerase to release RNA and DNA.",
+    "text": "In bacteria, a terminator sequence or the Rho protein makes the polymerase release the RNA and DNA. In eukaryotes, Pol II terminates downstream of the poly-A signal, and cleavage and poly-A addition at the 3′ end are coupled to this.",
     "focus": [
      "bio_transcription_prokaryotic"
     ]
    },
    {
     "title": "Capping and polyadenylation",
-    "text": "A 5′ cap and a poly-A tail are added to pre-mRNA.",
+    "text": "A 5′ cap is added early, while the RNA is still being made. A poly-A tail is added at the 3′ end after the RNA is cleaved.",
     "focus": [
      "bio_rna_processing"
     ]
    },
    {
     "title": "Splicing and export",
-    "text": "The spliceosome removes introns; the mature mRNA exits through nuclear pores.",
+    "text": "The spliceosome removes introns, mostly while transcription is still under way; the mature mRNA exits through nuclear pores.",
     "focus": [
      "bio_nuclear_organization"
     ]
@@ -374,8 +374,8 @@
   ],
   "summary": "Eight steps that oxidise acetyl units.",
   "layers": {
-   "basics": "An acetyl group joins a four-carbon molecule, is oxidised around a loop, and leaves as CO₂.",
-   "deeper": "Each turn makes 3 NADH, 1 FADH₂ and 1 GTP.",
+   "basics": "An acetyl group joins a four-carbon molecule to make a six-carbon one. Going round the loop, two carbons leave as CO₂ and the four-carbon starter is rebuilt. The carbons lost in one turn are not the acetyl carbons just added; those leave in later turns.",
+   "deeper": "Each turn makes 3 NADH, 1 FADH₂ and 1 GTP (or ATP, depending on the tissue).",
    "expert": "α-Ketoglutarate dehydrogenase and isocitrate dehydrogenase are key regulated steps."
   },
   "facts": [
@@ -449,7 +449,7 @@
    },
    {
     "title": "Regeneration",
-    "text": "Succinate, fumarate and malate are oxidised, giving FADH₂ and NADH, and regenerating oxaloacetate.",
+    "text": "Succinate is oxidised to fumarate (making FADH₂), fumarate is hydrated to malate, and malate is oxidised to oxaloacetate (making NADH), which restarts the cycle.",
     "focus": [
      "mol:oxaloacetate"
     ]
@@ -478,7 +478,7 @@
   "summary": "From electrons to ATP.",
   "layers": {
    "basics": "Electrons from NADH and FADH₂ flow to oxygen, pumping protons that power ATP synthase.",
-   "deeper": "The proton gradient across the inner mitochondrial membrane is the energy store.",
+   "deeper": "The proton-motive force, a combined pH difference and voltage across the inner mitochondrial membrane, is the energy store. The total of ≈ 30–32 ATP per glucose counts all stages of respiration; oxidative phosphorylation gives most of it.",
    "expert": "≈ 10 H⁺ pumped per NADH; ≈ 4 H⁺ per ATP including phosphate transport; P/O ≈ 2.5 for NADH."
   },
   "facts": [
@@ -580,7 +580,7 @@
   "layers": {
    "basics": "Light energy excites electrons in chlorophyll; the electrons make ATP and NADPH and water is split to oxygen.",
    "deeper": "Two photosystems work in series in the thylakoid membrane.",
-   "expert": "The Z-scheme combines PSII (P680), cytochrome b6f, PSI (P700) and ATP synthase; ≈ 8 photons per O₂."
+   "expert": "The Z-scheme traces the electron path from PSII (P680) through plastoquinone, cytochrome b6f and plastocyanin to PSI (P700) and ferredoxin; the proton gradient it builds drives ATP synthase. The minimum is ≈ 8 photons per O₂."
   },
   "facts": [
    [
@@ -626,7 +626,7 @@
    },
    {
     "title": "Electron transport",
-    "text": "Electrons travel through plastoquinone and cytochrome b6f, pumping protons into the lumen.",
+    "text": "Electrons travel through plastoquinone and cytochrome b6f, pumping protons into the lumen, then pass to plastocyanin.",
     "focus": [
      "bio_electron_transport_chain"
     ]
@@ -785,7 +785,7 @@
    ],
    [
     "Human crossovers",
-    "≈ 40–60 per meiosis"
+    "a few tens per meiosis; more in female than in male meiosis"
    ]
   ],
   "certainty": "C1",
@@ -882,7 +882,7 @@
    ],
    [
     "Copies after 30 cycles",
-    "≈ 10⁹"
+    "≤ 2³⁰ ≈ 10⁹ per template, reached only at 100% efficiency; fewer in practice"
    ]
   ],
   "certainty": "C1",
@@ -969,7 +969,7 @@
   "layers": {
    "basics": "A guide RNA leads Cas9 to a matching site, Cas9 cuts, and the cell's repair changes the gene.",
    "deeper": "The edit can disable a gene or insert a new sequence from a template.",
-   "expert": "Requires a PAM (NGG for SpCas9); NHEJ yields indels in most cells, HDR efficiency is typically < 20% and cell-cycle-dependent."
+   "expert": "Requires a PAM (NGG for SpCas9); NHEJ often leaves small insertions or deletions (indels); HDR efficiency varies widely with cell type, locus and delivery, is usually lower than NHEJ, and needs dividing cells (S/G2 phase)."
   },
   "facts": [
    [
@@ -977,18 +977,17 @@
     "≈ 20 nt"
    ],
    [
-    "Typical HDR efficiency",
-    "≲ 20%"
+    "HDR efficiency",
+    "varies widely with cell type, locus and cell-cycle stage; usually lower than NHEJ"
    ]
   ],
-  "certainty": "C1",
-  "refs": [
-   [
-    "MIC",
-    "12.4",
-    "12-4-gene-therapy"
-   ]
+  "certainty": "C2",
+  "open_questions": [
+   "How can the outcome of DNA repair after a Cas9 cut be predicted and controlled?",
+   "How can off-target edits be measured completely and reduced?",
+   "How durable and safe is editing inside the body, over years?"
   ],
+  "refs": [],
   "kn": [
    "crispr_biotech"
   ],
@@ -1060,12 +1059,12 @@
   "layers": {
    "basics": "A virus enters a cell, uses the cell's machinery to copy its genome and proteins, assembles new particles and leaves.",
    "deeper": "Lytic viruses burst cells; some viruses bud out; some integrate and hide.",
-   "expert": "Burst size ranges 10–10⁵; eclipse period from minutes (phage T4 ≈ 12 min) to hours; Baltimore class determines the replication strategy."
+   "expert": "Burst size and the eclipse period (the time before new particles can be detected inside the cell) vary widely between viruses and with host conditions such as temperature and host growth rate; Baltimore class determines the replication strategy."
   },
   "facts": [
    [
     "Phage T4 latent period",
-    "≈ 25 min"
+    "tens of minutes in E. coli; shorter in faster-growing hosts"
    ],
    [
     "Influenza assembly site",
@@ -1156,12 +1155,12 @@
   "layers": {
    "basics": "Individuals differ, some differences are inherited, and those that help survival and reproduction become more common.",
    "deeper": "Across generations this leads to adaptation to the environment.",
-   "expert": "Change per generation Δp = s·p·q/w̄ (haploid, simple); rate depends on selection coefficient and variation."
+   "expert": "For a haploid population in which one type has relative fitness 1 + s and the other 1, with allele frequencies p and q = 1 − p, the change per generation is Δp = s·p·q/w̄, where w̄ = 1 + s·p is the mean fitness. Diploid models add dominance terms. The rate depends on the selection coefficient s and on the variation present."
   },
   "facts": [
    [
-    "Peppered moth dark form",
-    "≈ 2% to ≈ 95% in 50 years"
+    "Peppered moth dark form (industrial Britain)",
+    "rose from rare to the large majority in industrial regions during the 1800s, then fell again after clean-air laws"
    ],
    [
     "Required conditions",
@@ -1195,7 +1194,7 @@
    },
    {
     "title": "Overproduction",
-    "text": "More offspring are born than the environment supports.",
+    "text": "In many populations more offspring are born than survive. Selection needs only that individuals differ in how many offspring they leave.",
     "focus": [
      "bio_exponential_logistic_growth"
     ]
@@ -1250,21 +1249,26 @@
   ],
   "summary": "How one species splits into two.",
   "layers": {
-   "basics": "Two populations stop exchanging genes, differ over time and eventually cannot interbreed.",
+   "basics": "Two populations stop, or greatly reduce, exchanging genes and diverge over time. Eventually barriers to interbreeding keep them distinct. These barriers can be partial, and some species still hybridise at low levels.",
    "deeper": "A geographic barrier often starts the process.",
    "expert": "Reproductive isolation accumulates by Dobzhansky–Muller incompatibilities; reinforcement may strengthen prezygotic barriers in sympatry."
   },
   "facts": [
    [
-    "Typical time to isolation",
-    "10⁴–10⁷ y"
+    "Time to reproductive isolation",
+    "varies from thousands of years to millions, depending on the group"
    ],
    [
     "Polyploid speciation",
-    "1 generation"
+    "can occur within a single generation"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How common is speciation with continuing gene flow, compared with speciation in complete isolation?",
+   "How often does reinforcement finish the job of reproductive isolation?",
+   "Which species concept should be used, given that biologists disagree?"
+  ],
   "refs": [
    [
     "BIO",
@@ -1319,7 +1323,7 @@
    },
    {
     "title": "Two species",
-    "text": "The groups are now reproductively isolated.",
+    "text": "The groups are now kept distinct by reproductive barriers, which may be partial.",
     "focus": [
      "bio_phylogeny_cladistics"
     ]
@@ -1349,7 +1353,7 @@
   "layers": {
    "basics": "Bacteria turn atmospheric nitrogen into forms plants can use, and other bacteria return it to the air.",
    "deeper": "Key steps are fixation, nitrification, assimilation, ammonification and denitrification.",
-   "expert": "Biological N fixation ≈ 100–140 Tg N/yr on land plus ocean; human fixation (Haber–Bosch, crops, fossil fuel) ≈ 150–200 Tg N/yr."
+   "expert": "Natural biological N fixation is ≈ 200 Tg N/yr (land ≈ 60, range 40–100; ocean ≈ 140 ± 50). Human activity now fixes about as much again, ≈ 210 Tg N/yr for 2010 (Haber–Bosch ≈ 120, nitrogen-fixing crops ≈ 60, fossil-fuel burning ≈ 30). All these global figures are uncertain."
   },
   "facts": [
    [
@@ -1357,11 +1361,16 @@
     "≈ 78%"
    ],
    [
-    "Haber–Bosch fertiliser",
+    "Haber–Bosch fertiliser (2010)",
     "≈ 120 Tg N/yr"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How large is nitrogen fixation in the ocean and on land? Current estimates are uncertain by tens of percent.",
+   "How big is the nitrous oxide (N₂O) budget, and which sources dominate?",
+   "How much do anammox and denitrification each return nitrogen to the air?"
+  ],
   "refs": [
    [
     "BIO",
@@ -1453,15 +1462,15 @@
   "layers": {
    "basics": "Plants take CO₂ from the air; respiration, decay and burning return it.",
    "deeper": "Oceans and soils store large amounts of carbon, and humans add CO₂ by burning fossil fuels.",
-   "expert": "Atmosphere ≈ 880 Pg C; fossil fuel emissions ≈ 10 Pg C/yr; land and ocean sinks absorb roughly half."
+   "expert": "Atmosphere ≈ 890 Pg C (2023); fossil fuel emissions ≈ 10 Pg C/yr (2023); land and ocean sinks together absorb roughly half of all emissions."
   },
   "facts": [
    [
-    "Atmospheric carbon",
-    "≈ 880 Pg C"
+    "Atmospheric carbon (2023)",
+    "≈ 890 Pg C"
    ],
    [
-    "Fossil emissions",
+    "Fossil emissions (2023)",
     "≈ 10 Pg C/yr"
    ]
   ],
@@ -1518,6 +1527,13 @@
     ]
    },
    {
+    "title": "Geological exchange",
+    "text": "Rock weathering, burial of carbonate and organic carbon, and volcanic outgassing move carbon over thousands to millions of years.",
+    "focus": [
+     "bio_biogeochemical_cycles_concept"
+    ]
+   },
+   {
     "title": "Human perturbation",
     "text": "Fossil fuels and land-use change add CO₂, warming the climate.",
     "focus": [
@@ -1545,7 +1561,7 @@
    "bio_rtk_cascades",
    "bio_gpcr_signaling"
   ],
-  "summary": "From a message at the surface to a change in the cell.",
+  "summary": "From a message arriving at a receptor, on the surface or inside the cell, to a change in what the cell does.",
   "layers": {
    "basics": "A signal binds a receptor, which passes the message through a chain of molecules to change what the cell does.",
    "deeper": "The message is amplified and can be switched off.",
@@ -1554,7 +1570,7 @@
   "facts": [
    [
     "Amplification",
-    "10²–10⁴-fold"
+    "depends on the pathway; some cascades, such as the visual one, multiply the signal enormously, while others add little gain"
    ],
    [
     "Cascade tiers (MAPK)",
@@ -1651,7 +1667,7 @@
   ],
   "summary": "Training memory without disease.",
   "layers": {
-   "basics": "A vaccine shows the immune system a harmless piece of a pathogen so it can respond quickly later.",
+   "basics": "A vaccine shows the immune system a harmless form of a pathogen (a weakened or killed whole microbe, a piece of it, or instructions for making a piece) so it can respond quickly later.",
    "deeper": "Memory cells and antibodies persist, giving protection.",
    "expert": "Primary response ≈ 1–2 weeks; boosters trigger germinal-centre affinity maturation; durability varies from months to decades by antigen."
   },
@@ -1665,7 +1681,11 @@
     "≈ 97%"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Which immune measurements reliably predict protection for each vaccine?",
+   "How long does protection last, and why does it vary so much between vaccines?"
+  ],
   "refs": [
    [
     "MIC",
@@ -1755,7 +1775,7 @@
   "facts": [
    [
     "Human primitive streak",
-    "≈ day 15"
+    "about two weeks after fertilisation (varies between embryos)"
    ],
    [
     "Layers formed",
@@ -1817,7 +1837,7 @@
    },
    {
     "title": "Axis",
-    "text": "The body axes (head–tail, left–right) are set.",
+    "text": "The head–tail, left–right and back–front axes are laid down and patterned during and just after gastrulation.",
     "focus": [
      "bio_hox_developmental_genes"
     ]
@@ -1843,10 +1863,10 @@
    "bio_sanger_sequencing",
    "bio_ngs"
   ],
-  "summary": "Two ways to read DNA.",
+  "summary": "Ways to read DNA.",
   "layers": {
-   "basics": "Sanger sequencing reads one fragment at a time; NGS reads millions in parallel.",
-   "deeper": "Both use polymerases and fluorescent bases to detect sequence.",
+   "basics": "Sanger sequencing reads one fragment at a time; NGS reads millions to billions in parallel; nanopore sequencing reads single molecules by the change in electrical current as a strand passes through a pore.",
+   "deeper": "Sanger and Illumina sequencing both use a polymerase and fluorescently labelled bases. Nanopore sequencing needs neither.",
    "expert": "Sanger: ddNTP chain termination, capillary electrophoresis; Illumina: bridge amplification and reversible terminators; ONT: current changes through nanopores."
   },
   "facts": [

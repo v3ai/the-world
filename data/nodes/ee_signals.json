@@ -17,7 +17,7 @@
   "needs": [
    "complex_numbers"
   ],
-  "summary": "Functions that carry information.",
+  "summary": "A quantity that varies with time or position and carries information, at every instant or only at sample points.",
   "layers": {
    "basics": "A signal is a quantity varying with time (or position): a voltage, a sound, a row of pixels. Continuous signals exist at every instant; discrete ones only at samples.",
    "deeper": "Basic signals: step, ramp, impulse, sinusoid, exponential. Operations: shift, scale, reverse, add.",
@@ -58,9 +58,9 @@
   ],
   "summary": "The idealised spike and switch.",
   "layers": {
-   "basics": "The impulse is an infinitely narrow spike with unit area; the step switches from 0 to 1. They probe systems.",
+   "basics": "The impulse is the idealised limit of a pulse made ever narrower and taller while its area stays 1. The step switches from 0 to 1. Feeding either into a system reveals how the system behaves.",
    "deeper": "Any signal is a sum of shifted impulses; the step is the integral of the impulse.",
-   "expert": "∫δ(t)f(t)dt=f(0); δ is a distribution; unit step u(t)=∫δ."
+   "expert": "∫δ(t)f(t)dt=f(0) for f continuous at 0; δ is a distribution, not an ordinary function; unit step u(t)=∫_{−∞}^{t} δ(τ)dτ."
   },
   "facts": [],
   "formula": "∫ δ(t) f(t) dt = f(0)",
@@ -97,9 +97,9 @@
   ],
   "summary": "What makes a system tractable.",
   "layers": {
-   "basics": "Linear: scaling and addition pass through. Time-invariant: delaying the input delays the output. Causal: no response before input. Stable: bounded input gives bounded output.",
+   "basics": "Linear: scaling and addition pass through. Time-invariant: delaying the input delays the output. Causal: no response before input. Stable (BIBO): every bounded input gives a bounded output.",
    "deeper": "LTI systems are fully described by their impulse response and respond to sinusoids with sinusoids of the same frequency.",
-   "expert": "BIBO stability ⇔ ∫|h|dt<∞; memoryless vs dynamic; invertibility; non-linear systems (saturation, hysteresis) need other tools."
+   "expert": "For an LTI system, BIBO stability ⇔ ∫|h(t)|dt<∞ (discrete time: Σ|h[n]|<∞); memoryless vs dynamic; invertibility; non-linear systems (saturation, hysteresis) need other tools."
   },
   "facts": [],
   "certainty": "C1",
@@ -171,17 +171,17 @@
   "related": [],
   "mesh": null,
   "needs": [
-   "convolution",
+   "lti_properties",
    "fourier_math"
   ],
   "summary": "Periodic signals as sums of harmonics.",
   "layers": {
    "basics": "A repeating waveform is a sum of a fundamental and its multiples; square waves need odd harmonics.",
    "deeper": "The coefficients show how much of each harmonic is present; power splits across them (Parseval).",
-   "expert": "x(t)=Σcₖe^{jkω₀t}, cₖ=(1/T)∫x e^{−jkω₀t}dt; Gibbs phenomenon; square wave cₖ ∝ 1/k for odd k."
+   "expert": "x(t)=Σcₖe^{jkω₀t}, cₖ=(1/T)∫x e^{−jkω₀t}dt; square wave cₖ ∝ 1/k for odd k. Gibbs phenomenon: near a jump the partial sums overshoot by about 9% of the jump, and the overshoot does not shrink as more terms are added."
   },
   "facts": [],
-  "formula": "cₖ = (1/T) ∫ x(t) e^{−jkω₀t} dt",
+  "formula": "For x(t) periodic with period T and ω₀ = 2π/T: cₖ = (1/T) ∫ over one period of x(t) e^{−jkω₀t} dt",
   "certainty": "C1",
   "refs": [],
   "kn": [
@@ -220,10 +220,10 @@
   "layers": {
    "basics": "The Fourier transform shows which frequencies a signal contains; narrow in time means wide in frequency.",
    "deeper": "Properties: linearity, shifting, scaling, convolution-multiplication duality, Parseval.",
-   "expert": "X(ω)=∫x(t)e^{−jωt}dt; rect↔sinc; Gaussian↔Gaussian (uncertainty); F{δ}=1."
+   "expert": "X(ω)=∫x(t)e^{−jωt}dt (this form exists directly for absolutely integrable signals; sinusoids and the step need generalised functions); rect↔sinc; Gaussian↔Gaussian (uncertainty); F{δ}=1."
   },
   "facts": [],
-  "formula": "X(ω) = ∫ x(t) e^{−jωt} dt",
+  "formula": "X(ω) = ∫ x(t) e^{−jωt} dt over all t, with inverse x(t) = (1/2π) ∫ X(ω) e^{jωt} dω",
   "certainty": "C1",
   "refs": [],
   "kn": [
@@ -262,11 +262,11 @@
   "summary": "Transfer functions of LTI systems.",
   "layers": {
    "basics": "The Laplace transform lets you describe a system by a transfer function H(s) and find its response to anything by multiplication.",
-   "deeper": "Region of convergence decides causality and stability; poles in the left half-plane mean stable.",
+   "deeper": "The region of convergence (ROC), the set of s where the transform integral converges, together with the pole locations fixes causality and stability. A system is BIBO stable exactly when the ROC contains the jω axis; for a causal system this means all poles lie in the left half-plane.",
    "expert": "Bilateral vs unilateral; Y(s)=H(s)X(s); relationship to Fourier: s=jω if the imaginary axis lies in the ROC."
   },
   "facts": [],
-  "formula": "Y(s) = H(s) X(s)",
+  "formula": "Y(s) = H(s) X(s), for an LTI system with zero initial conditions and s in the common region of convergence",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -302,7 +302,7 @@
   "summary": "Laplace’s discrete-time sibling.",
   "layers": {
    "basics": "The z-transform turns difference equations (the discrete cousins of differential equations) into algebra.",
-   "deeper": "The unit circle |z|=1 plays the role of the jω axis; poles inside the circle mean stability.",
+   "deeper": "The unit circle |z|=1 plays the role of the jω axis: a system is stable exactly when the region of convergence contains it. For a causal system this means all poles lie inside the circle.",
    "expert": "X(z)=Σx[n]z⁻ⁿ; delay ↔ z⁻¹; H(z) from difference equation; mapping z=e^{sT}."
   },
   "facts": [],
@@ -338,11 +338,11 @@
   "needs": [
    "fourier_transform_ee"
   ],
-  "summary": "Sample at least twice the highest frequency.",
+  "summary": "Sample at more than twice the highest frequency in the signal.",
   "layers": {
-   "basics": "To capture a signal perfectly from samples, you must sample at more than twice its highest frequency.",
+   "basics": "A signal containing no frequencies above B can be rebuilt exactly from its samples if the sampling rate exceeds 2B. Real signals are never perfectly bandlimited, so in practice the reconstruction is only approximate.",
    "deeper": "Ideal reconstruction uses sinc interpolation; practical systems oversample and use filters.",
-   "expert": "Sampling multiplies by an impulse train, replicating the spectrum every f_s; bandlimited signals avoid overlap; Nyquist–Shannon."
+   "expert": "Sampling multiplies by an impulse train, replicating the spectrum every f_s; bandlimited signals avoid overlap. At exactly f_s = 2B the samples can fail to identify the signal (a sinusoid sampled at its zero crossings is lost)."
   },
   "facts": [],
   "formula": "f_s > 2 f_max",
@@ -385,10 +385,10 @@
   "layers": {
    "basics": "If you sample too slowly, high frequencies fold back and look like lower ones, like wagon wheels appearing to spin backwards.",
    "deeper": "An anti-aliasing low-pass filter before the ADC prevents it; once aliased, it cannot be undone.",
-   "expert": "f_alias=|f−k f_s|; undersampling deliberately mixes a band down in RF receivers."
+   "expert": "f_alias=|f−k f_s|, where k is the integer nearest f/f_s so that 0 ≤ f_alias ≤ f_s/2; undersampling deliberately mixes a band down in RF receivers."
   },
   "facts": [],
-  "formula": "f_alias = |f − k f_s|",
+  "formula": "f_alias = |f − k·f_s|, k the integer nearest f/f_s, so 0 ≤ f_alias ≤ f_s/2",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -422,7 +422,7 @@
   ],
   "summary": "Keeping some frequencies, dropping others.",
   "layers": {
-   "basics": "A spectrum plots strength vs frequency. Filtering multiplies the spectrum by the filter’s frequency response.",
+   "basics": "A spectrum plots strength vs frequency. A linear time-invariant filter multiplies the spectrum of its input by the filter’s frequency response.",
    "deeper": "Ideal filters have brick-wall shape but infinite sinc impulse responses; real ones compromise.",
    "expert": "Y(f)=H(f)X(f); group delay −dφ/dω; linear-phase FIR; spectral leakage and windows; PSD of random signals."
   },
@@ -461,9 +461,9 @@
   ],
   "summary": "Shifting signals to carriers.",
   "layers": {
-   "basics": "Multiplying a signal by a carrier shifts its spectrum to the carrier frequency, so it can be transmitted by antenna.",
+   "basics": "Multiplying a signal by a carrier copies its spectrum to either side of the carrier frequency, which is how amplitude modulation works and lets the signal be sent by antenna. FM and PM change the carrier's frequency or phase instead, a nonlinear operation that spreads the spectrum in a more complicated way.",
    "deeper": "AM, FM and PM vary carrier amplitude, frequency or phase; mixers do the multiplication.",
-   "expert": "x(t)cos ω_c t ↔ ½[X(ω−ω_c)+X(ω+ω_c)]; demodulation by product detector + low-pass; bandwidth rules."
+   "expert": "x(t)cos ω_c t ↔ ½[X(ω−ω_c)+X(ω+ω_c)]; amplitude-type signals are demodulated by multiplying by a synchronous carrier and low-pass filtering. FM bandwidth is estimated by Carson's rule, B ≈ 2(Δf + f_m), with Δf the peak frequency deviation and f_m the highest modulating frequency."
   },
   "facts": [],
   "formula": "x(t)cos ω_c t",

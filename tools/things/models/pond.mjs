@@ -79,8 +79,8 @@ export default function build() {
   // the tadpole's eyes are separate geometry in the build; keep the names the model script made
   const thing = {
     id: 'pond', title: 'A pond in the park', label: 'Pond', scientific: null, node: 'park_pond', main_part: 'surface',
-    blurb: 'A small pond in the park: a slice through the water, the mud and the bank, with the plants and animals of a British garden pond at their true sizes. Click anything, or choose a layer.',
-    model_note: 'A model built from typical measurements of each species, not a scan of a real pond. The pond\'s outline and depth are choices (about 6 m by 4.6 m, 0.6 m deep); the animals and plants are at true size, and how many there are and where they sit is illustrative.',
+    blurb: 'A small pond in the park: a slice through the water, the mud and the bank, with the plants and animals of a British garden pond at typical sizes. Click anything, or choose a layer.',
+    model_note: 'A model built from typical measurements of each species, not a scan of a real pond. The pond\'s outline and depth are choices (about 6 m by 4.6 m, 0.6 m deep); the animals and plants are drawn at typical sizes for their kind (hornwort stems are shortened to fit the pond), and how many there are and where they sit is illustrative.',
     size_m: { width: 6.0, depth: 4.6, deepest: POND.depth }, height_m: 1.0, radius_m: 3.7, draw_m: 500, seed: 2718,
     label_m: 45,
     systems: [
@@ -115,7 +115,7 @@ export default function build() {
     anim: [
       { kind: 'sway', parts: ['duckweed'], from_y: -.012, to_y: .0003, amp_m: .0035, hz: .12, label: 'Duckweed drifting' },
       { kind: 'wag', parts: ['skater_body', 'skater_front_legs', 'skater_mid_legs', 'skater_hind_legs', 'film_dimples'], pivot: P.skater.at, axis: [0, 1, 0], amp_deg: 5, hz: 1.4, shown_hz: .7, illustrative: true, label: 'Pond skater twitch' },
-      { kind: 'pulse', part: 'daphnia_heart', pivot: pt('daphnia', [.4, .58, 0]), amp: .22, hz: 3, shown_hz: 1.5, label: 'Water flea heart' },
+      { kind: 'pulse', part: 'daphnia_heart', pivot: pt('daphnia', [.4, .58, 0]), amp: .22, hz: 4, shown_hz: 1.5, label: 'Water flea heart' },
       { kind: 'flap', part: 'daphnia_antennae', pivot: pt('daphnia', [1.05, -.05, 0]), axis: ax('daphnia', [0, 0, 1]), amp_deg: 22, shown_hz: 1.2, illustrative: true, label: 'Water flea antennae (its hop)' },
     ],
     ruler: { label: 'Pond', D: 8, at: [0, 0, 0] },

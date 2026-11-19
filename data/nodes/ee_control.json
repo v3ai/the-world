@@ -19,10 +19,10 @@
    "mechanics_kinematics",
    "rlc_transient"
   ],
-  "summary": "Equations that describe plants.",
+  "summary": "Equations that describe the thing being controlled (the plant).",
   "layers": {
    "basics": "To control something, first write equations for it: a motor, a heater, a circuit. Electrical and mechanical systems have direct analogies.",
-   "deeper": "Mass–spring–damper ↔ series RLC; DC motor couples electrical and mechanical equations through k_t and k_e.",
+   "deeper": "Mass–spring–damper ↔ series RLC (mass m ↔ inductance L, damping b ↔ resistance R, spring k ↔ 1/C, force ↔ voltage, velocity ↔ current); DC motor couples electrical and mechanical equations through k_t and k_e.",
    "expert": "Force–voltage analogy; linearisation about operating point; state variables chosen as energy-storage quantities."
   },
   "facts": [],
@@ -61,11 +61,11 @@
   "summary": "Wiring diagrams for dynamics.",
   "layers": {
    "basics": "Block diagrams show how signals flow through subsystems; transfer functions in blocks multiply along a path.",
-   "deeper": "Closed-loop T=G/(1+GH); signal-flow graphs and Mason’s gain formula handle complex loops.",
-   "expert": "Mason: T=ΣPₖΔₖ/Δ, Δ=1−ΣL+ΣLL−…; block reduction rules; algebra equals Cramer’s rule on the graph."
+   "deeper": "Closed-loop T=G/(1+GH) for negative feedback, with G the forward path and H the feedback path (positive feedback gives G/(1−GH)); signal-flow graphs and Mason’s gain formula handle complex loops.",
+   "expert": "Mason: T=ΣPₖΔₖ/Δ, where Pₖ are the forward-path gains, Δ=1−Σ(loop gains)+Σ(products of pairs of non-touching loops)−…, and Δₖ is Δ with the loops touching path k removed; block reduction rules; algebra equals Cramer’s rule on the graph."
   },
   "facts": [],
-  "formula": "T = G/(1+GH)",
+  "formula": "T = G/(1+GH)  (negative feedback)",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -101,11 +101,11 @@
   "summary": "How a control system’s response is judged.",
   "layers": {
    "basics": "We judge a controller by how fast, how smoothly and how accurately the output follows a step command.",
-   "deeper": "Second-order metrics: overshoot %OS=e^{−πζ/√(1−ζ²)}, settling t_s≈4/(ζω_n), rise time ≈1.8/ω_n.",
+   "deeper": "Underdamped second-order step response (0<ζ<1, no zeros): overshoot %OS=100·e^{−πζ/√(1−ζ²)}; 2% settling time t_s≈4/(ζω_n); 10–90% rise time t_r≈1.8/ω_n only near ζ≈0.5, or roughly (2.16ζ+0.6)/ω_n for 0.3<ζ<0.8.",
    "expert": "Steady-state error from system type: e_ss=1/(1+K_p) for type 0 step; type-1 systems track steps with zero error."
   },
   "facts": [],
-  "formula": "%OS = 100·exp(−πζ/√(1−ζ²))",
+  "formula": "%OS = 100·exp(−πζ/√(1−ζ²)),  0<ζ<1 (standard second-order, no zeros)",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -179,11 +179,11 @@
   "summary": "How poles move as gain changes.",
   "layers": {
    "basics": "A root locus plots where the closed-loop poles go as the controller gain is turned up.",
-   "deeper": "Rules for sketching: starts at open-loop poles, ends at zeros, asymptotes, breakaway points.",
+   "deeper": "Rules for sketching (for gain K≥0, negative feedback): branches start at the open-loop poles (K=0) and end at the open-loop zeros as K→∞; branches with no finite zero go to infinity along asymptotes; branches can leave the real axis at breakaway points.",
    "expert": "Angle condition ∠L(s)=±180°(2k+1), magnitude gives K; design by adding poles/zeros (compensators) to reshape locus."
   },
   "facts": [],
-  "formula": "1 + K·G(s)H(s) = 0",
+  "formula": "1 + K·G(s)H(s) = 0  (K = loop gain)",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -219,9 +219,9 @@
   ],
   "summary": "Stability from measured frequency response.",
   "layers": {
-   "basics": "Nyquist plots the open-loop response in the complex plane; encirclements of −1 reveal instability. Gain and phase margins show the safety buffer.",
+   "basics": "Nyquist plots the open-loop response in the complex plane; the net number of clockwise encirclements of −1, together with the number of unstable open-loop poles, decides whether the closed loop is stable. Gain and phase margins show the safety buffer.",
    "deeper": "Can be measured on real plants without a model; handles time delay.",
-   "expert": "Nyquist: Z=N+P; sensitivity peak M_s=max|1/(1+L)|; Bode gain–phase relation; delay adds phase −ωτ."
+   "expert": "Nyquist: Z=N+P, where N is the net clockwise encirclement count of −1, P the open-loop right-half-plane poles and Z the closed-loop right-half-plane poles (stable only if Z=0); sensitivity peak M_s=max|1/(1+L)|; Bode gain–phase relation; delay adds phase −ωτ."
   },
   "facts": [],
   "formula": "Z = N + P",
@@ -258,7 +258,7 @@
   ],
   "summary": "Proportional, integral, derivative control.",
   "layers": {
-   "basics": "PID looks at the error now (P), its accumulated past (I) and its trend (D) to decide the correction; it runs most industrial loops.",
+   "basics": "PID looks at the error now (P), its accumulated past (I) and its trend (D) to decide the correction; it is by far the most common controller in industry, used in the large majority of control loops (surveys have reported about 90% or more).",
    "deeper": "P speeds response, I removes steady error, D adds damping; tuning methods: Ziegler–Nichols, loop-shaping.",
    "expert": "u=K_p e+K_i∫e+K_d de/dt; anti-windup, derivative filter; digital form with sample time; 2-DOF structures."
   },
@@ -299,8 +299,8 @@
   "summary": "Reshape the loop.",
   "layers": {
    "basics": "A lead compensator adds phase near crossover for stability and speed; a lag improves low-frequency gain (accuracy).",
-   "deeper": "Lead: C=(1+sαT)/(1+sT), α<1; lag: places a pole–zero pair at low frequency.",
-   "expert": "Max phase lead φ_m=asin((1−α)/(1+α)) at ω=1/(T√α); lead-lag combined = PID-like."
+   "deeper": "Lead: C=(1+sT)/(1+sαT) with 0<α<1 (zero at 1/T, pole farther out at 1/(αT)); lag: the same form with α>1, which puts a pole–zero pair at low frequency.",
+   "expert": "For the lead form C=(1+sT)/(1+sαT), 0<α<1: max phase lead φ_m=asin((1−α)/(1+α)) at ω_m=1/(T√α), the geometric mean of the zero and pole frequencies; lead-lag combined = PID-like."
   },
   "facts": [],
   "formula": "φ_max = asin((1−α)/(1+α))",
@@ -333,7 +333,7 @@
   "summary": "Matrices describe dynamics.",
   "layers": {
    "basics": "State-space writes a system as first-order equations in a state vector; it handles multi-input multi-output systems naturally.",
-   "deeper": "ẋ=Ax+Bu, y=Cx+Du; eigenvalues of A are the poles; transfer function G=C(sI−A)⁻¹B+D.",
+   "deeper": "ẋ=Ax+Bu, y=Cx+Du; eigenvalues of A are the system’s modes, and equal the poles of G(s) when the realisation is minimal (controllable and observable); transfer function G=C(sI−A)⁻¹B+D.",
    "expert": "Realisations (canonical forms); similarity transformations; balanced truncation for model reduction."
   },
   "facts": [],
@@ -451,7 +451,7 @@
   "summary": "Controllers running on a computer.",
   "layers": {
    "basics": "Digital controllers sample the plant, compute in software, and output through a DAC with zero-order hold.",
-   "deeper": "Discretise the plant (c2d) or the controller (Tustin); choose sample rate ≥10× bandwidth.",
+   "deeper": "Discretise the plant (for example with a zero-order-hold equivalent) or the controller (for example with the Tustin, or bilinear, transform). As a rule of thumb, sample roughly 10 to 20 times faster than the closed-loop bandwidth, and faster if delay and noise matter; the Nyquist limit of twice the signal bandwidth is only a theoretical minimum.",
    "expert": "z-plane stability inside unit circle; deadbeat; computational delay and jitter; aliasing; dual-rate loops."
   },
   "facts": [],

@@ -21,7 +21,7 @@
   "summary": "The four quantities every circuit is described by.",
   "layers": {
    "basics": "Voltage is the push, current is the flow, resistance is the opposition and power is how fast energy is used.",
-   "deeper": "Conventional current flows from + to −; a component absorbs power when current enters its + terminal. Energy bills are watts × time.",
+   "deeper": "Conventional current flows from + to − through a load and from − to + inside a source; a component absorbs power when current enters its + terminal. Energy bills are watts × time.",
    "expert": "Passive sign convention; P=VI; units V, A, Ω, W, J (=W·s); a kilowatt-hour is 3.6 MJ. Ideal sources and ground reference define the model world of lumped circuits."
   },
   "facts": [],
@@ -80,7 +80,7 @@
   "layers": {
    "basics": "The current through a resistor is proportional to the voltage across it.",
    "deeper": "A resistor’s I–V line is straight; non-ohmic devices (diodes, lamps) curve. Resistors dissipate P=I²R as heat.",
-   "expert": "Ohm’s law is a material property J=σE, valid over a wide but limited range; temperature, high fields and quantum effects bend it."
+   "expert": "Ohm’s law is an empirical relation, J=σE, valid over a wide but limited range; σ changes with temperature, and diodes are non-ohmic."
   },
   "facts": [],
   "formula": "V = I R;  P = I²R = V²/R",
@@ -126,7 +126,7 @@
   "summary": "Currents into a node sum to zero.",
   "layers": {
    "basics": "Charge does not pile up at a junction: what flows in must flow out.",
-   "deeper": "KCL gives one equation per node; it is charge conservation applied to a node.",
+   "deeper": "KCL gives one equation per node, but only N−1 of them are independent in a connected circuit with N nodes; it is charge conservation applied to a node.",
    "expert": "Σiₖ=0 on any closed surface for lumped circuits; displacement current extends it to capacitors in Maxwell’s form."
   },
   "facts": [],
@@ -266,7 +266,13 @@
   "facts": [],
   "formula": "Vout = Vin·R₂/(R₁+R₂)",
   "certainty": "C1",
-  "refs": [],
+  "refs": [
+   [
+    "UP2",
+    "10.2",
+    "10-2-resistors-in-series-and-parallel"
+   ]
+  ],
   "lab": {
    "id": "circuit",
    "preset": "voltage_divider"
@@ -299,13 +305,19 @@
   "summary": "Parallel branches split a current.",
   "layers": {
    "basics": "Current prefers the easier path: the smaller resistor takes more of it.",
-   "deeper": "Used for shunt-resistor current sensing and in analysing parallel loads.",
+   "deeper": "Used in ammeter shunts, which divert most of the current around the meter movement, and in analysing parallel loads.",
    "expert": "I₁=I_T R₂/(R₁+R₂) for two branches; for n branches I_k=I_T G_k/ΣG."
   },
   "facts": [],
   "formula": "I₁ = I·R₂/(R₁+R₂)",
   "certainty": "C1",
-  "refs": [],
+  "refs": [
+   [
+    "UP2",
+    "10.2",
+    "10-2-resistors-in-series-and-parallel"
+   ]
+  ],
   "lab": {
    "id": "circuit",
    "preset": "current_divider"
@@ -421,7 +433,7 @@
   "layers": {
    "basics": "Compute the effect of each source alone (others turned off) and add the results.",
    "deeper": "Turn off voltage sources by shorting them and current sources by opening. It fails for power, which is non-linear.",
-   "expert": "Holds for any linear time-invariant circuit; used to split AC and DC and to superpose different frequencies."
+   "expert": "Holds for any linear circuit; used to split AC and DC and to superpose different frequencies."
   },
   "facts": [],
   "certainty": "C1",
@@ -500,7 +512,7 @@
   "summary": "A load takes most power when matched to the source.",
   "layers": {
    "basics": "A load gets the greatest power when its resistance equals the source’s internal resistance.",
-   "deeper": "At matching, only half the total power reaches the load; efficiency is 50%, so power systems avoid matching while RF systems seek it.",
+   "deeper": "For a source modelled as a fixed Thévenin voltage behind a resistance, matching delivers only half the source power to the load (50% efficiency), so power systems avoid it; radio links match impedances to avoid reflections on the line, though real transmitters are not simple Thévenin sources.",
    "expert": "P_L=V_th²R_L/(R_th+R_L)² peaks at R_L=R_th; for AC, Z_L=Z_th* (conjugate match)."
   },
   "facts": [],
@@ -540,7 +552,7 @@
   "layers": {
    "basics": "A voltage source in series with a resistor behaves the same as a current source in parallel with it, so you can swap them to simplify.",
    "deeper": "The transformation is a quick pencil-and-paper way to combine sources; only the outside terminals match.",
-   "expert": "V_s/R_s=I_s; it does not preserve internal dissipation; use with caution around dependent sources."
+   "expert": "I_s=V_s/R_s with the same R_s in parallel (R_s must be non-zero and finite); only the terminal behaviour matches, not internal dissipation; with dependent sources it works only while the controlling variable stays in the circuit."
   },
   "facts": [],
   "formula": "I_s = V_s/R_s",
@@ -619,7 +631,7 @@
   "layers": {
    "basics": "A capacitor blocks steady DC but passes changing signals; it holds a charge.",
    "deeper": "Current is proportional to the rate of change of voltage; the voltage cannot jump. Used for decoupling, filtering, timing.",
-   "expert": "i=C dv/dt; impedance 1/(jωC); real capacitors add ESR, ESL and leakage; dielectrics (C0G, X7R, electrolytic) differ in stability and loss."
+   "expert": "i=C dv/dt; impedance 1/(jωC); real capacitors add ESR, ESL and leakage; capacitor types (C0G and X7R ceramic, aluminium electrolytic) differ in stability, loss and voltage dependence."
   },
   "facts": [],
   "formula": "i = C dv/dt;  U = ½CV²",
@@ -711,7 +723,7 @@
   "layers": {
    "basics": "When a capacitor charges through a resistor, the voltage rises fast then levels off; the time constant is R×C.",
    "deeper": "After one time constant the capacitor is 63% charged; after five it is effectively full. Used for timers, debouncing and filters.",
-   "expert": "v(t)=V_f+(V_0−V_f)e^{−t/τ}, τ=RC. Energy delivered by the source is CV²: half stored, half dissipated in R regardless of R."
+   "expert": "v(t)=V_f+(V_0−V_f)e^{−t/τ}, τ=RC. Charging an initially empty capacitor to a source voltage V, the source delivers CV²: half is stored and half is dissipated in R, whatever R is."
   },
   "facts": [],
   "formula": "v(t) = V_f + (V₀−V_f) e^{−t/RC}",
@@ -754,7 +766,7 @@
   ],
   "summary": "Current builds up gradually in a coil.",
   "layers": {
-   "basics": "Current in a coil rises over a time L/R after a switch closes.",
+   "basics": "After a switch closes, current in a coil climbs towards its final value V/R with time constant L/R: about 63% of the way after one L/R.",
    "deeper": "It mirrors the RC case with current and voltage roles swapped.",
    "expert": "i(t)=I_f+(I₀−I_f)e^{−tR/L}; opening a switch on an inductive load forces large di/dt unless a path is provided."
   },
@@ -801,8 +813,8 @@
   "summary": "Ringing circuits.",
   "layers": {
    "basics": "A circuit with R, L and C can oscillate as energy sloshes between capacitor and inductor, while R drains it.",
-   "deeper": "Parameters ζ=R/2√(C/L) for series RLC decide whether the response overshoots and rings or creeps to its final value.",
-   "expert": "Characteristic roots s=−α±√(α²−ω₀²); α=R/2L, ω₀=1/√LC. Natural response (no source) and step response (DC drive) share roots, differ by forced term."
+   "deeper": "The damping ratio ζ=(R/2)·√(C/L)=α/ω₀ of a series RLC circuit decides whether the response overshoots and rings (ζ<1) or creeps to its final value (ζ>1).",
+   "expert": "Characteristic roots s=−α±√(α²−ω₀²); ω₀=1/√(LC), and α=R/2L for the series circuit (α=1/2RC for the parallel circuit). Natural response (no source) and step response (DC drive) share roots, differ by forced term."
   },
   "facts": [],
   "formula": "s = −α ± √(α² − ω₀²)",
@@ -846,7 +858,7 @@
   "layers": {
    "basics": "Overdamped: slow smooth return. Underdamped: oscillating and decaying. Critically damped: the fastest return without ringing.",
    "deeper": "α>ω₀ gives two real roots, α=ω₀ a double root, α<ω₀ complex roots with damped frequency ω_d.",
-   "expert": "Q=ω₀/2α; underdamped overshoot exp(−πζ/√(1−ζ²)); settling time ≈4/α; critical damping is a design target for sensors and shock absorbers."
+   "expert": "Q=ω₀/2α; underdamped overshoot exp(−πζ/√(1−ζ²)); for the underdamped case the 2% settling time is ≈4/α; critical damping is a design target for sensors and shock absorbers."
   },
   "facts": [],
   "formula": "ζ = α/ω₀;  Q = 1/(2ζ)",
@@ -856,6 +868,11 @@
     "UP1",
     "15.5",
     "15-5-damped-oscillations"
+   ],
+   [
+    "UP2",
+    "14.6",
+    "14-6-rlc-series-circuits"
    ]
   ],
   "lab": {
@@ -1021,8 +1038,8 @@
   "summary": "P, Q and S: what is used, what sloshes, what is carried.",
   "layers": {
    "basics": "Real power P does work; reactive power Q flows back and forth; apparent power S is the product V_rms·I_rms.",
-   "deeper": "S=P+jQ with units W, var and VA; the power triangle relates them; utilities bill and size equipment on VA.",
-   "expert": "S=VI*; P=VI cosφ, Q=VI sinφ; Tellegen’s theorem ensures ΣS=0 over a network."
+   "deeper": "S=P+jQ with units W, var and VA; the power triangle relates them; conductors, transformers and generators are sized on VA because they must carry the full current, including the part that does no work.",
+   "expert": "With rms phasors, S=VI*; P=|V||I|cosφ, Q=|V||I|sinφ, φ=arg V − arg I. With associated reference directions, Tellegen’s theorem makes the complex powers of all elements sum to zero."
   },
   "facts": [],
   "formula": "S = P + jQ = V I*",
@@ -1061,12 +1078,18 @@
   "layers": {
    "basics": "Power factor is the fraction of apparent power that does real work. Motors lower it; capacitors bring it back.",
    "deeper": "Low PF means extra current, extra line losses and bigger cables; factories add capacitor banks.",
-   "expert": "pf=cosφ; correction capacitance C=P(tanφ₁−tanφ₂)/(ωV²); non-linear loads add distortion PF, solved by PFC converters."
+   "expert": "In general pf=P/S=displacement factor × distortion factor; for sinusoidal waveforms pf=cosφ. Single-phase correction capacitance (V = rms load voltage): C=P(tanφ₁−tanφ₂)/(ωV²); non-linear loads add distortion PF, solved by PFC converters."
   },
   "facts": [],
-  "formula": "pf = cosφ = P/S",
+  "formula": "pf = P/S  (= cosφ for sinusoids)",
   "certainty": "C1",
-  "refs": [],
+  "refs": [
+   [
+    "UP2",
+    "15.4",
+    "15-4-power-in-an-ac-circuit"
+   ]
+  ],
   "lab": {
    "id": "circuit",
    "preset": "power_factor"
@@ -1098,9 +1121,9 @@
   ],
   "summary": "Three sinusoids 120° apart.",
   "layers": {
-   "basics": "Three-phase power uses three conductors carrying sine waves offset by 120°, giving constant total power and smaller wires.",
+   "basics": "Three-phase power uses three conductors carrying sine waves offset by 120°, with a balanced load the total instantaneous power is constant, and less conductor is needed than for single-phase at the same power.",
    "deeper": "Wye (star) and delta connections link sources and loads: line voltage is √3 times phase voltage in wye.",
-   "expert": "P_total=√3 V_L I_L cosφ; balanced systems analysed per-phase; unbalanced via symmetrical components; rotating field for motors."
+   "expert": "For a balanced load, P_total=√3 V_L I_L cosφ with φ the angle between phase voltage and phase current; balanced systems analysed per-phase; unbalanced via symmetrical components; rotating field for motors."
   },
   "facts": [],
   "formula": "P = √3 V_L I_L cosφ",
@@ -1378,7 +1401,7 @@
   "summary": "Remove one frequency.",
   "layers": {
    "basics": "A notch filter blocks a narrow band, such as 50/60 Hz mains hum, and passes everything else.",
-   "deeper": "Twin-T and bridged networks create the notch; ECG instruments rely on them.",
+   "deeper": "Twin-T and bridged networks create the notch; ECG amplifiers reduce mains pickup mainly with shielding, instrumentation amplifiers and a right-leg drive circuit; a notch can add to that.",
    "expert": "Zeros on jω axis at ω₀ with Q controlling width; digital notches use z-plane zeros on the unit circle."
   },
   "facts": [],
@@ -1417,7 +1440,7 @@
   "layers": {
    "basics": "A two-port is characterised by a small matrix relating input and output voltages and currents.",
    "deeper": "Z, Y, h, ABCD and S parameters are different ways to write the same relation; cascaded stages multiply ABCD matrices.",
-   "expert": "Reciprocity (Z12=Z21) holds for passive linear networks; S-parameters are used at RF where open/short measurement is hard."
+   "expert": "Reciprocity (Z12=Z21) holds for networks built only from resistors, capacitors and inductors (including mutual inductance); passive devices containing ferrite, such as circulators and isolators, are non-reciprocal; S-parameters are used at RF where open/short measurement is hard."
   },
   "facts": [],
   "formula": "[V₁;V₂]=[Z][I₁;I₂]",
@@ -1490,7 +1513,7 @@
   "summary": "Changes voltage and current levels.",
   "layers": {
    "basics": "A transformer swaps voltage for current using two coils on a shared core; V₂/V₁ equals turns ratio.",
-   "deeper": "Power is preserved; impedances are scaled by the ratio squared; it only works with AC.",
+   "deeper": "Power is preserved; impedances are scaled by the ratio squared; it only works when the current, and so the flux, changes in time: AC or switched DC, never steady DC.",
    "expert": "V₂/V₁=N₂/N₁, I₂/I₁=N₁/N₂, Z_in=(N₁/N₂)²Z_L; real transformers have winding resistance, leakage, core loss, saturation."
   },
   "facts": [],
@@ -1512,7 +1535,7 @@
    "id": "circuit",
    "preset": "transformer"
   },
-  "where": "flyback_transformer"
+  "where": "power_transformers"
  },
  {
   "id": "laplace_circuit_analysis",

@@ -1,0 +1,147 @@
+{
+ "cell": "animal",
+ "id": "robin_flight_muscle",
+ "tag": "Inside a flight muscle",
+ "title": "Inside a robin's flight muscle",
+ "node": "robin_flight_muscle_scene",
+ "blurb": "Muscle fibres running side by side, each packed with energy-making mitochondria, with fine blood vessels between them. Click a fibre, a mitochondrion or a vessel.",
+ "note": "Schematic. The sizes, the number of fibres and the number of mitochondria drawn are illustrative, not measurements. What is true to the animal: the fibres are striated muscle, flight muscle is packed with mitochondria, and fine blood vessels run between the fibres.",
+ "bg": "#f2eee6",
+ "center": [
+  0,
+  0,
+  0
+ ],
+ "D_um": 330,
+ "labels": [
+  {
+   "text": "Muscle fibre",
+   "at": [
+    -120,
+    70,
+    80
+   ],
+   "pop": "fibre"
+  },
+  {
+   "text": "Mitochondria",
+   "at": [
+    -120,
+    0,
+    80
+   ],
+   "pop": "mito"
+  },
+  {
+   "text": "Capillary (blood vessel)",
+   "at": [
+    -120,
+    -70,
+    80
+   ],
+   "pop": "capillary"
+  }
+ ],
+ "populations": [
+  {
+   "id": "fibre",
+   "name": "Flight muscle fibre",
+   "node": "robin_muscle_fibre",
+   "shape": "tube_z",
+   "size": [
+    34,
+    34,
+    220
+   ],
+   "color": "#d9776a",
+   "opacity": 0.55,
+   "ink": 1,
+   "priority": 1,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -100,
+     -50,
+     -110
+    ],
+    "n": [
+     5,
+     4,
+     1
+    ],
+    "step": [
+     40,
+     40,
+     1
+    ],
+    "jitter": 0.02
+   },
+   "deeper": {
+    "type": "cell",
+    "cell": "animal"
+   }
+  },
+  {
+   "id": "mito",
+   "name": "Mitochondrion",
+   "node": "robin_mito",
+   "shape": "ellipsoid",
+   "size": [
+    8,
+    6,
+    14
+   ],
+   "color": "#e8a04a",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 4,
+   "arrange": {
+    "kind": "inside",
+    "of": "fibre",
+    "per": 9,
+    "margin": 0.75,
+    "seed": 5
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "atp",
+    "name": "ATP",
+    "button": "See the molecule: ATP, the energy currency"
+   }
+  },
+  {
+   "id": "capillary",
+   "name": "Capillary",
+   "node": "robin_flight_muscle_scene",
+   "shape": "tube_z",
+   "size": [
+    6,
+    6,
+    230
+   ],
+   "color": "#c0504a",
+   "opacity": 0.9,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -80,
+     -30,
+     -115
+    ],
+    "n": [
+     4,
+     3,
+     1
+    ],
+    "step": [
+     40,
+     40,
+     1
+    ],
+    "jitter": 0.01
+   }
+  }
+ ]
+}

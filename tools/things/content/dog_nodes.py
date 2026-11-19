@@ -5,6 +5,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 import dog_lib
 import dog_cards_a, dog_cards_b, dog_cards_c, dog_cards_d
 import dog_pass2
+import dog_pass3
 NODES, FIGS = dog_lib.NODES, dog_lib.FIGS
 ids = {n['id'] for n in NODES}
 assert len(ids) == len(NODES), 'duplicate ids'

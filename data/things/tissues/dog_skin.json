@@ -10,7 +10,7 @@
  ],
  "D_um": 1100,
  "blurb": "A slice through dog skin: a thin barrier layer on top, the thick dermis with three compound hair follicles, and fat below. Drag to turn it; click a layer, a hair or a gland.",
- "note": "A schematic, not a micrograph. The order of the layers, the compound follicles (a thick guard hair with fine undercoat hairs through one opening) and the gland types are as described for dog skin; every size here is illustrative, because no measured dog hair diameters, follicle depths or layer thicknesses were found.",
+ "note": "A schematic, not a micrograph. The order of the layers, the compound follicles (a thick guard hair with fine undercoat hairs through one opening) and the gland types are as described for dog skin; every size here is illustrative.",
  "labels": [
   {
    "text": "Barrier layer (dead flattened cells with lipids)",
@@ -76,7 +76,7 @@
    "pop": "sebaceous"
   },
   {
-   "text": "Scent gland",
+   "text": "Sweat gland (apocrine type)",
    "at": [
     -170,
     125,
@@ -464,7 +464,7 @@
   },
   {
    "id": "apocrine",
-   "name": "Scent (apocrine) gland",
+   "name": "Sweat gland (apocrine type)",
    "node": "dog_gland",
    "shape": "ellipsoid",
    "size": [

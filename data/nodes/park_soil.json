@@ -10,25 +10,4103 @@
    "park_scene"
   ],
   "parts": [
+   "soil_block",
+   "soil_profile",
+   "soil_formation",
+   "soil_carbon",
+   "soil_handful",
    "oak_roots",
    "oak_mycorrhiza"
   ],
   "processes": [],
-  "summary": "The ground is covered with grass over soil: a mixture of broken rock, dead plant material and living things.",
+  "summary": "The ground is covered with grass over soil: a mixture of broken rock, dead plant material, water, air and living things. Zoom into the block of soil by the oak to see inside it.",
   "layers": {
-   "basics": "Soil is not just dirt. It holds tiny grains of rock, the remains of dead plants and animals, water, air, and an enormous number of living things, from earthworms to microbes. Plant roots anchor in it and drink from it. Zoom in to see the grains.",
-   "deeper": "Soil grains clump together with the help of humus (dark decayed material), clay, plant roots and fungal threads. Fungi and bacteria break down dead matter and release nutrients that plants take up. Tree roots reach out through the soil with the help of fungal partners (mycorrhiza).",
-   "expert": "The close-up is a simplified view of soil grains and organisms, not a sample of real soil. The park is a simplified scene, not a scan of a real place."
+   "basics": "Soil is not just dirt. It holds grains of rock, the remains of dead plants and animals, water, air and an enormous number of living things, from earthworms to microbes. Plant roots anchor in it and drink from it. In this park a block of soil 1.2 metres deep has been cut open beside an oak, so you can see its layers, its stones and roots, the fungal threads and the burrow of an earthworm, and the animals that live in it. Choose \"The soil under your feet\" in the list of parts to go there.",
+   "deeper": "Soil grains clump together with the help of humus (dark decayed material), clay, plant roots and fungal threads, and the gaps between the clumps hold air and water. Fungi and bacteria break down dead matter and release nutrients that plants take up. Tree roots reach out through the soil with the help of fungal partners (mycorrhiza). Under the high ground of Greenwich Park lies a pebbly sand, the Blackheath pebble beds, with clays and chalk deeper below.",
+   "expert": "The soil block is a model built from typical measurements: the rock below is what the geological survey describes for the Greenwich Park plateau, and the depths of the soil layers are typical, not measured. The park around it is a simplified scene, not a scan of a real place. Away from the block, zooming into the grass shows a simplified generic view of soil grains and organisms, not a sample of real soil."
   },
   "facts": [
    [
-    "Shown here",
-    "grass over soil (simplified model)"
+    "Soil is about",
+    "50 % solid, 50 % pores (typical)"
+   ],
+   [
+    "Block of soil",
+    "1.5 m across, 1.2 m deep, by the oak"
    ]
   ],
   "certainty": "C1",
   "open_questions": [],
-  "refs": [],
-  "ext": []
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Soil (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil"
+   }
+  ]
+ },
+ {
+  "id": "soil_block",
+  "title": "The soil under your feet",
+  "kind": "habitat",
+  "template": "thing",
+  "scale_m": 1.5,
+  "area": "bio_ecology",
+  "parents": [
+   "park_ground"
+  ],
+  "parts": [
+   "soil_profile",
+   "soil_geology",
+   "soil_turf",
+   "soil_flints",
+   "soil_crumbs",
+   "soil_coarse_root",
+   "soil_hyphae",
+   "soil_earthworm"
+  ],
+  "processes": [],
+  "summary": "A cut block of park soil 1.5 m across and 1.2 m deep, standing where the lawn meets an oak's roots: layers of soil and rock, stones, roots, fungal threads, crumbs, and the animals that live in it.",
+  "layers": {
+   "basics": "Soil is the thin skin of the Earth where rock, air, water and living things meet. This block shows it as if the lawn had been cut open with a spade 1.2 metres deep. Under the grass comes a dark layer rich in dead plant material, then a darker, crumbly topsoil full of roots, then a paler subsoil, and at the bottom the pebbly sand that the soil grew from. Across all of it run oak roots, white fungal threads and the burrow of an earthworm, and in the surface layers live animals from a ground beetle to springtails smaller than a grain of rice. Choose a layer with the buttons: Surface, Topsoil, Subsoil, Whole profile cut, Life only (the soil turns see-through so only living things show) or Open the earthworm. Click anything to read about it, and zoom into the crumb or the clay to see what the soil is made of.",
+   "deeper": "Soil is a mixture of mineral grains (sand, silt and clay), dead and decaying organic matter, water, air and a very large number of living things. About half of a typical soil by volume is solid and about half is pore space, shared between water and air. The layers are called horizons, lettered O, A, B and C from the top down; this block draws all four. The soil of the Greenwich Park plateau forms in the Blackheath pebble beds, a layer of sand and rounded flint pebbles that the geological survey notes lie at the top of the park. The block is a model: the rock below is what the survey describes, the depths of the soil layers are typical values, and the animals, roots and stones are placed for illustration.",
+   "expert": "How the picture was made: every solid part is a closed mesh cut by a plane, so you see a true section of each horizon, stone, root and worm. Sizes are real where a source gives them and are stated on each card (the earthworm 170 mm by 8 mm, the woodlouse 15 mm, springtails 1.8 mm, oribatid mites 0.7 mm). Not to scale: fungal threads are drawn about 40 times thicker than the real 4 to 6 micrometre hyphae so that they can be seen, the density of grass blades, roots and crumbs is illustrative, and the colours on the cut face are a code. The park is itself a simplified scene, so this is not a core taken at a particular spot in Greenwich Park."
+  },
+  "facts": [
+   [
+    "Block",
+    "1.5 m across and 1.2 m deep; a slab 0.4 m thick behind the cut face"
+   ],
+   [
+    "Horizons drawn",
+    "O, A, B, C (typical depths)"
+   ],
+   [
+    "Rock below",
+    "Blackheath pebble beds (Harwich Formation), per the London Geodiversity Partnership"
+   ],
+   [
+    "Animals",
+    "earthworm, woodlouse, ground beetle, springtails, oribatid mites"
+   ],
+   [
+    "Tissue-style scenes",
+    "a soil crumb, a clay particle, an earthworm body wall"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ],
+   [
+    "BIO",
+    "46.1",
+    "46-1-ecology-of-ecosystems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Greenwich Park Geotrail (London Geodiversity Partnership, 2025), pages 2 to 12",
+    "url": "https://londongeopartnership.org.uk/wp/wp-content/uploads/2026/05/Greenwich-Park-Geotrail-2025.pdf"
+   },
+   {
+    "title": "Soil (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil"
+   },
+   {
+    "title": "Soil horizon (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_horizon"
+   }
+  ],
+  "related": [
+   "bio_soil_ecology",
+   "bio_plant_nutrition_soil",
+   "oak_roots",
+   "bio_primary_production_decomposition"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_profile",
+  "title": "The soil profile: horizons O, A, B and C",
+  "kind": "concept",
+  "template": "thing",
+  "scale_m": 1.2,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_block"
+  ],
+  "parts": [
+   "soil_horizon_o",
+   "soil_horizon_a",
+   "soil_horizon_b",
+   "soil_horizon_c"
+  ],
+  "processes": [],
+  "summary": "A soil profile is the vertical section through a soil, from the surface down to the rock it grew from; its layers, called horizons, are lettered O, A, B and C.",
+  "layers": {
+   "basics": "If you dig a pit, the soil is not the same all the way down. Soil scientists name the layers with letters. O is the surface layer made of dead plant material (leaves, grass thatch). A is the topsoil, where mineral grains are mixed with dark, decayed organic matter and where most roots and animals live. B is the subsoil, paler, with less living matter. C is the loose rock or sediment that the soil grew from, hardly changed. In the Whole profile cut view you can see all four with their typical depths.",
+   "deeper": "The letters follow the international descriptions of soil horizons: O is organic material at the top; A is a mineral layer at or near the surface where organic matter has been worked into the mineral grains; B is a mineral layer that formed below A and shows changes such as new structure or clay and iron brought down from above; C is unconsolidated mineral material with little or no soil formation in it. Horizons are roughly parallel to the surface and form in place as water, roots and animals work on the parent material. Their thickness varies from place to place; the depths drawn here (O about 3 cm, A to about 25 cm, B to about 80 cm) are typical values, and no survey of this exact spot supports them. Darwin measured the dark mould that earthworms work as usually 4 or 5 to 10 and even 12 inches thick (about 10 to 30 cm), which is the range of the topsoil drawn here.",
+   "expert": "Different classification systems (the World Reference Base, FAO, the US Soil Taxonomy) use the same master letters with different definitions, so horizon names are not interchangeable between them. Many soils have extra horizons: E, a pale layer from which clay and iron have been washed out, sits between A and B in some acid soils; R is hard rock. The profile drawn here is a simplified generic one for a lawn on sandy and pebbly parent material, not a described profile from a survey. The wavy boundaries between the horizons are drawn to look natural, not measured."
+  },
+  "facts": [
+   [
+    "O",
+    "organic: litter and thatch (drawn about 3 cm)"
+   ],
+   [
+    "A",
+    "topsoil: mineral grains with organic matter (to about 25 cm)"
+   ],
+   [
+    "B",
+    "subsoil: changed by weathering and by material moved down (to about 80 cm)"
+   ],
+   [
+    "C",
+    "parent material: little changed (below)"
+   ],
+   [
+    "Depths",
+    "typical, not from a local survey"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Soil horizon (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_horizon"
+   },
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   }
+  ],
+  "related": [
+   "bio_plant_nutrition_soil"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_horizon_o",
+  "title": "O horizon: litter and thatch",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.03,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_profile"
+  ],
+  "parts": [
+   "soil_litter",
+   "soil_hyphae",
+   "soil_springtail",
+   "soil_mite",
+   "soil_woodlouse"
+  ],
+  "processes": [],
+  "summary": "The O horizon is the thin top layer of a soil made of dead plant material: leaf litter and the matted dead grass and roots of the lawn.",
+  "layers": {
+   "basics": "On the lawn this layer is only a few centimetres thick: the felt of old grass stems and roots (called thatch) and, near the oak, a scatter of fallen leaves. It is the soil's larder and its first stage of recycling. Fungal threads grow through it, and woodlice, springtails and mites eat their way through it. Below it, the dark topsoil begins.",
+   "deeper": "The O horizon holds organic material that is only partly decayed; in some descriptions a 'litter layer' is the part where more than 90 % of the volume is still recognisable dead plant tissue. Much of what lies at the top of a lawn is thatch: grass leaves, stems and roots that die faster than they decompose. Darwin watched earthworms drag leaves into their burrows, which is one way plant remains are carried from the surface into the soil.",
+   "expert": "The O horizon is drawn 3 cm thick, a model choice. The litter on the surface (oak leaves about 10 cm long, tilted into the grass) shows how the layer is fed from above. Fungal threads in the layer are drawn about 40 times too thick; real hyphae are 4 to 6 micrometres across. In Whole profile cut the layer shows a dark pattern; its colours, like all the cut-face colours, are a code."
+  },
+  "facts": [
+   [
+    "Made of",
+    "dead plant material: litter, thatch, dead roots"
+   ],
+   [
+    "Drawn thickness",
+    "≈ 3 cm (model choice)"
+   ],
+   [
+    "Eaten and mixed by",
+    "woodlice, springtails, mites, earthworms, fungi, bacteria"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ],
+   [
+    "BIO",
+    "24.3",
+    "24-3-ecology-of-fungi"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Soil horizon (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_horizon"
+   }
+  ],
+  "related": [
+   "bio_primary_production_decomposition"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_horizon_a",
+  "title": "A horizon: the topsoil",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.22,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_profile"
+  ],
+  "parts": [
+   "soil_crumbs",
+   "soil_fine_roots",
+   "soil_earthworm",
+   "soil_pores"
+  ],
+  "processes": [],
+  "summary": "The A horizon is the topsoil: mineral grains mixed with dark, decayed organic matter, where most roots, fungi and soil animals live.",
+  "layers": {
+   "basics": "This is the layer you would call 'the soil' in a garden. It is dark because decayed plant material (humus) has been mixed into the mineral grains, mostly by earthworms and other animals. It is crumbly: the grains are stuck into little lumps called crumbs, with pores between them for air and water. Grass roots and the oak's fine roots spread through it, and most of the animals in this block live in it. In the model it reaches to about 25 cm.",
+   "deeper": "Because organic matter, roots and animals are concentrated here, the A horizon is the most biologically active part of the profile. Darwin found that the dark vegetable mould of old pasture was usually 4 or 5 to 10, and even 12, inches thick, and that earthworms pass it over and over through their bodies. In the block the topsoil shows the pocket of crumbs and pores on the cut face, flint pebbles, fungal threads and fine roots with their fungal sleeves, and the burrow of the earthworm.",
+   "expert": "The boundary with the O horizon above is drawn at 3 cm and with the B horizon below at about 25 cm, with a gentle undulation; both depths are typical values, not measured. The pocket of crumbs (4 to 9 mm across) is drawn on a patch of the face about 36 cm wide; in real topsoil crumb structure continues through the layer, and crumb size and stability depend on the soil."
+  },
+  "facts": [
+   [
+    "Made of",
+    "mineral grains + humus + living things"
+   ],
+   [
+    "Drawn depth",
+    "≈ 3 to 25 cm (typical)"
+   ],
+   [
+    "Structure",
+    "crumbs (aggregates) with pores between them"
+   ],
+   [
+    "Darwin",
+    "worm-worked mould usually 4 or 5 to 10 or 12 inches thick (≈ 10 to 30 cm)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Soil horizon (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_horizon"
+   },
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   },
+   {
+    "title": "Soil structure (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_structure"
+   }
+  ],
+  "related": [
+   "bio_soil_ecology",
+   "bio_plant_nutrition_soil"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_horizon_b",
+  "title": "B horizon: the subsoil",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.55,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_profile"
+  ],
+  "parts": [
+   "soil_clay",
+   "soil_coarse_root",
+   "soil_flints"
+  ],
+  "processes": [],
+  "summary": "The B horizon is the subsoil: a paler, firmer layer below the topsoil, changed by weathering and often enriched with clay and iron brought down from above.",
+  "layers": {
+   "basics": "Under the dark topsoil the soil turns paler and yellower-brown. There is much less dead plant matter here, fewer roots and far fewer animals. This layer is the zone where water seeping down carries very fine clay particles and iron compounds a short way, and leaves some behind. In the block, a thick oak root crosses this layer and its cross-section shows in the cut. Click the clay hotspot to look at a single clay particle.",
+   "deeper": "The B horizon forms below the A horizon and shows soil-forming changes: new structure, new clay formed by weathering, or material moved down from above (a process called illuviation). A few earthworm burrows from the deep-burrowing species go through it and let roots follow them down.",
+   "expert": "The B horizon is drawn between about 25 and 80 cm, a typical depth, not a measured one. Whether the Greenwich plateau soil has a clay-enriched B horizon at a particular place is not established by anything this model uses; the horizon is drawn as a generic subsoil. Whether the subsoil on pebbly sand is loamy or sandy where you stand depends on the exact site."
+  },
+  "facts": [
+   [
+    "Made of",
+    "mineral grains, clay, iron compounds; little organic matter"
+   ],
+   [
+    "Drawn depth",
+    "≈ 25 to 80 cm (typical)"
+   ],
+   [
+    "Living things",
+    "few; deep roots and the burrows of deep-burrowing earthworms"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Soil horizon (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_horizon"
+   }
+  ],
+  "related": [
+   "bio_plant_nutrition_soil"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_horizon_c",
+  "title": "C horizon: the pebble bed the soil grew from",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.4,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_profile",
+   "soil_geology"
+  ],
+  "parts": [
+   "soil_flints",
+   "soil_geology"
+  ],
+  "processes": [],
+  "summary": "The C horizon is the loose rock that a soil forms in. Here it is drawn as the Blackheath pebble bed: pale sand with many rounded flint pebbles.",
+  "layers": {
+   "basics": "At the bottom of the block lies the material the soil above has been made from. It is almost unchanged: no dark organic matter, few roots, no animals. Under Greenwich Park's high plateau this material is sand with many rounded black pebbles, all of them flint. The pebbles do not weather quickly, so they stay behind as the sand around them becomes soil, and some of them reach the surface.",
+   "deeper": "In soil science, C is unconsolidated mineral material (you could dig it with a spade) in which soil formation has had little effect. Beneath it, the geological column continues, here for several metres, as the next card describes. The pebbles in this layer are drawn 2.4 to 7 cm across; their number is illustrative.",
+   "expert": "The block ends at 1.2 m, well inside a bed that the geological survey puts at up to 10 m thick at the top of the park, so the real C horizon continues far below the bottom of the block. The pebble sizes and number are model choices; what is sourced is that the pebbles are rounded flint and that the sand and gravel are what lies below the plateau."
+  },
+  "facts": [
+   [
+    "Parent material (model)",
+    "Blackheath pebble bed: sand and rounded flint pebbles"
+   ],
+   [
+    "Bed thickness at the top of the park",
+    "up to about 10 m (London Geodiversity Partnership)"
+   ],
+   [
+    "Pebbles",
+    "rounded flint (model: 2.4 to 7 cm)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Greenwich Park Geotrail (London Geodiversity Partnership, 2025), pages 2 to 12",
+    "url": "https://londongeopartnership.org.uk/wp/wp-content/uploads/2026/05/Greenwich-Park-Geotrail-2025.pdf"
+   },
+   {
+    "title": "Soil horizon (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_horizon"
+   }
+  ],
+  "related": [
+   "boulder",
+   "rock_grains"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_geology",
+  "title": "What lies under Greenwich Park",
+  "kind": "concept",
+  "template": "thing",
+  "scale_m": 10,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_block",
+   "soil_horizon_c"
+  ],
+  "parts": [
+   "soil_horizon_c",
+   "soil_flints"
+  ],
+  "processes": [],
+  "summary": "The high plateau of Greenwich Park stands on the Blackheath pebble beds, a gravel and sand formed in a shallow sea about 55 million years ago, and below it lie clays and sands, then Thanet Sand and Chalk.",
+  "layers": {
+   "basics": "Greenwich Park is a hill: its steep slope falls about 25 metres to the River Thames, and the flat top, the Blackheath plateau, is made of sand and gravel. The pebbles in the gravel are rounded black flints, which started as layers in the Chalk, were washed out and rolled for a long time, probably by the sea, and were laid down again. Water falling on the plateau soaks down through the gravel and sand until it meets clay about 15 metres below the top of the slope, and comes out as springs. The block you see is a very thin slice of the top of that story: soil on the sand and pebbles.",
+   "deeper": "From the top down, as the London Geodiversity Partnership's geotrail describes it: the Blackheath pebble beds (the Blackheath Member of the Harwich Formation), up to about 10 m thick on Blackheath and at the top of the park; then the sands and clays of the Lambeth Group (including the Woolwich and Reading formations and, at the base, the Upnor Formation sand); then the Thanet Sand; then the Chalk. A spring line appears where the permeable gravel meets clay. The Harwich Formation dates from about 55 million years ago, and the Blackheath pebbles were laid down under the sea. The top surface of the pebble bed is at much the same height, 40 to 45 m, from Blackheath to Erith, 13 km away.",
+   "expert": "Younger deposits lie elsewhere: the Thames flood plain at the foot of the hill is alluvium (clays, sands and pebbles deposited in the last 10,000 years) and the Kempton Park Gravel, a Thames terrace laid down 100,000 to 50,000 years ago, is near the surface a few steps from the river. The block shows only the soil on the plateau's pebble bed. The geotrail does not describe the soil itself; the soil layers in the block and their depths are typical for a soil of this kind, not read from a survey of the park. Chalk lies deep below the park (it was mined nearby, in caverns at Blackheath), and at 1.2 m the block is nowhere near it."
+  },
+  "facts": [
+   [
+    "Plateau rock",
+    "Blackheath pebble beds (Harwich Formation): sand and rounded flint pebbles, up to about 10 m"
+   ],
+   [
+    "Age",
+    "about 55 million years (Harwich Formation); laid down under the sea"
+   ],
+   [
+    "Plateau height",
+    "40 to 45 m above sea level; the slope falls about 25 m to the Thames"
+   ],
+   [
+    "Below",
+    "Lambeth Group clays and sands, Thanet Sand, Chalk"
+   ],
+   [
+    "Park",
+    "73 hectares"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Greenwich Park Geotrail (London Geodiversity Partnership, 2025), pages 2 to 12",
+    "url": "https://londongeopartnership.org.uk/wp/wp-content/uploads/2026/05/Greenwich-Park-Geotrail-2025.pdf"
+   }
+  ],
+  "related": [
+   "boulder",
+   "rock_grains"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_turf",
+  "title": "Lawn grass and its root mat",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.04,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_block"
+  ],
+  "parts": [
+   "soil_fine_roots"
+  ],
+  "processes": [],
+  "summary": "A lawn is a dense mat of grass leaves above and a felt of fine roots and dead stems below, which holds the soil together and feeds the layers underneath.",
+  "layers": {
+   "basics": "The grass you see is the visible 4 centimetres of a larger plant. Each plant is a tuft of narrow leaves that grow from the base, so mowing does not kill them. Below the surface the same plants have a dense mass of fine roots in the top layer of soil. Together, the leaves and the root mat form the turf. The roots hold the soil, the dead leaves and roots become the thatch, and each time the grass is cut the clippings add dead plant matter that decomposers recycle. In the model, one patch of lawn covers the top of the block and sways a little in a drawn breeze.",
+   "deeper": "Grasses are flowering plants whose leaves grow from the base, which is why they survive grazing and mowing. Their roots are fibrous: many fine roots rather than one tap root. A mat of such roots binds the soil particles; fine roots release sugars and other compounds that feed bacteria and fungi around them (the rhizosphere), and root and fungal products help stick mineral grains into crumbs. Grass is a favourite example of a plant that absorbs nutrients mainly through its fine roots and root hairs.",
+   "expert": "The block draws 5,000 blades, each 4 cm high, as five-triangle strips in tufts; the number is illustrative and real lawns have far more. The species mix is not modelled (a typical British lawn contains several grasses and often white clover, a nitrogen-fixing legume; see the nitrogen card). Cellulose, the main structural material of the blades, can be viewed as a molecule fragment (cellotriose)."
+  },
+  "facts": [
+   [
+    "Mown height",
+    "≈ 4 cm (drawn)"
+   ],
+   [
+    "Blades in the model",
+    "5,000 (illustrative)"
+   ],
+   [
+    "Made of",
+    "cellulose-rich cell walls"
+   ],
+   [
+    "Roots",
+    "fibrous, mostly in the topsoil"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.3",
+    "30-3-roots"
+   ],
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Soil structure (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_structure"
+   }
+  ],
+  "related": [
+   "rn_cellulose",
+   "bio_roots_mycorrhiza"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_litter",
+  "title": "Leaf litter",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.1,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_horizon_o"
+  ],
+  "parts": [
+   "soil_decomposition"
+  ],
+  "processes": [],
+  "summary": "Fallen oak leaves lying on the lawn edge: the first food of the soil's recycling system.",
+  "layers": {
+   "basics": "Each autumn an oak drops its leaves. They lie on the ground and are the raw material of the O horizon. Fungi and bacteria soften them, woodlice and springtails and mites chew them, and earthworms pull pieces down into their burrows and eat them. Over time the leaf is eaten, digested, mixed with mineral grains and turned into the dark organic matter of the topsoil. The leaf shown is about the size of a real oak leaf, 10 centimetres long.",
+   "deeper": "Leaf litter is mostly cellulose and lignin, the same materials as wood, plus smaller amounts of sugars, proteins and minerals. Soft parts go first; tough, lignin-rich parts last. Decomposition is the work of many organisms in sequence, not of one. Mixing litter into the mineral soil protects some of its carbon from further decay.",
+   "expert": "The oak leaf in the card is drawn from a lobed outline 8 to 12 cm long (the oak card gives 10 to 12 cm); 46 leaves are scattered with a lean to the oak side. How fast a leaf disappears depends on climate, the leaf and the animals present; no rate is given in this model. Cellulose can be viewed as a molecule."
+  },
+  "facts": [
+   [
+    "Leaf size",
+    "8 to 12 cm (oak leaves are 10 to 12 cm)"
+   ],
+   [
+    "Mostly made of",
+    "cellulose and lignin"
+   ],
+   [
+    "Eaten by",
+    "fungi, bacteria, woodlice, springtails, mites, earthworms"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "24.3",
+    "24-3-ecology-of-fungi"
+   ],
+   [
+    "BIO",
+    "46.3",
+    "46-3-biogeochemical-cycles"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Woodlouse (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Woodlouse"
+   },
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   }
+  ],
+  "related": [
+   "oak_leaf",
+   "oak_lignin_cellulose",
+   "bio_primary_production_decomposition"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_flints",
+  "title": "Flint pebbles",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.04,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_horizon_c",
+   "soil_geology"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Flint pebbles are the rounded, dark, extremely hard stones in the Blackheath pebble bed: lumps of quartz that formed in chalk and were rolled smooth.",
+  "layers": {
+   "basics": "The stones in this block are flints. Flint is a very hard stone made of quartz (silica) in crystals so small you cannot see them, which formed as lumps inside the Chalk, long before the sand above it. When the Chalk wore away, the flints were washed out and tumbled until they were rounded, and were laid down again in the Blackheath pebble bed. Break one and the edge is sharp, which is why flint was used for tools. In the block they are thickest in the bottom layer; a few have worked up into the soil and one or two lie on the lawn.",
+   "deeper": "Flint is a cryptocrystalline form of quartz (silicon dioxide, SiO2), found chiefly as nodules in chalk and limestone, with a dark grey or black interior and usually a white rough rind. The geotrail says the Blackheath pebbles are all flint that originated as layers within the White Chalk, that they were rounded by long transport, probably by the sea, and that the size of the pebbles implies deposition by high-energy currents. Because flint is so resistant to weathering, it stays as the softer minerals around it break down. Quartz can be viewed as a crystal.",
+   "expert": "Pebble sizes in the block (2.4 to 7 cm) and their number are model choices; the sources say the pebbles are rounded flint but give no size. In the cut, each pebble shows a dark cross-section. The quartz crystal you can open from this card is a lattice of alpha quartz, the mineral flint is made of, not the microcrystalline texture of flint itself."
+  },
+  "facts": [
+   [
+    "Material",
+    "cryptocrystalline quartz (SiO2)"
+   ],
+   [
+    "Origin",
+    "nodules in the White Chalk"
+   ],
+   [
+    "Shape",
+    "rounded by transport; sizes in the block 2.4 to 7 cm (model)"
+   ],
+   [
+    "Weathering",
+    "very resistant"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Greenwich Park Geotrail (London Geodiversity Partnership, 2025), pages 2 to 12",
+    "url": "https://londongeopartnership.org.uk/wp/wp-content/uploads/2026/05/Greenwich-Park-Geotrail-2025.pdf"
+   },
+   {
+    "title": "Flint (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Flint"
+   }
+  ],
+  "related": [
+   "boulder",
+   "rock_grains"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_formation",
+  "title": "How soil forms, and how long it takes",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 1,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_block"
+  ],
+  "parts": [
+   "soil_darwin",
+   "soil_geology"
+  ],
+  "processes": [],
+  "summary": "Soil forms slowly, as rock breaks down and living things add organic matter; where rates have been measured they are tenths of a millimetre of new soil a year, so a few centimetres take centuries.",
+  "layers": {
+   "basics": "Soil is made from rock by weathering: rain, frost and chemistry break rock into smaller pieces, and plants, fungi, bacteria and animals mix in dead matter. Time matters most. It takes decades to several thousand years for a soil to develop a profile with layers. Where rates have been measured they are tiny: at some sites about a tenth of a millimetre of rock becomes soil each year, so a centimetre of soil can take about a hundred years. Earthworms speed up the mixing: Darwin buried chalk on a field and found it seven inches deep 29 years later.",
+   "deeper": "Five things shape a soil (the classical factors named by Jenny in 1941): the parent material, the climate, the topography, the organisms, and the time. Rates of soil production depend on how thick the soil already is: the model of the soil production function says the rate falls roughly exponentially as the soil thickens, from a maximum P0 that was found to range from 0.08 to 2.0 mm a year for sites in northern California and 0.05 to 0.14 mm a year for sites in south-east Australia. In Sicily the production rate was reported as approximately one tenth of a millimetre a year. These are rates of turning rock into soil; they say nothing about this particular block.",
+   "expert": "No measured rate of soil formation for Greenwich Park is used here. Chemical weathering roughly doubles for each 10 degrees C rise in temperature but depends strongly on water. At 0.1 mm a year a centimetre takes 100 years (my division of 10 mm by 0.1 mm per year); a soil 25 cm deep would need about 2,500 years at that rate. The topsoil of old pasture can also thicken from above, because earthworms bring fine earth up: Darwin's measurement is on the Darwin card."
+  },
+  "facts": [
+   [
+    "Typical rate of rock to soil",
+    "≈ 0.05 to 2 mm a year (maximum rate, from published sites)"
+   ],
+   [
+    "Sicily example",
+    "≈ 0.1 mm a year"
+   ],
+   [
+    "Time to develop a profile",
+    "decades to several thousand years"
+   ],
+   [
+    "Five factors",
+    "parent material, climate, topography, organisms, time"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Soil formation (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_formation"
+   },
+   {
+    "title": "Soil production function (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_production_function"
+   },
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   }
+  ],
+  "related": [
+   "bio_plant_nutrition_soil"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_crumbs",
+  "title": "Soil crumbs (aggregates)",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.006,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_horizon_a",
+   "soil_block"
+  ],
+  "parts": [
+   "soil_pores",
+   "soil_pore_water"
+  ],
+  "processes": [],
+  "summary": "Soil crumbs are small lumps in which mineral grains, humus, roots and fungal threads are stuck together; the gaps between crumbs are the soil's pores.",
+  "layers": {
+   "basics": "Rub a handful of good topsoil between your fingers and it falls apart into crumbs. Each crumb is a lump of sand, silt and clay grains glued together with sticky decayed plant matter, clay, fine roots and the threads of fungi. Between the crumbs are gaps (pores) that hold air and water. A soil made of crumbs is easy for roots to push through, drains well and still holds water; a soil with no crumbs sets hard like a brick when dry. Click the patch of crumbs on the cut face of the topsoil to see the pores, or look inside a crumb to see what it is made of.",
+   "deeper": "Soil particles are bonded into aggregates (peds) by iron oxides, carbonates, clay, silica and humus. In the topsoil, biological products matter as much: fungal hyphae, biofilms and glycoproteins help bind particles, and the breakdown products of organic matter both separate and bridge mineral particles. Earthworms improve soil structure where they were previously absent, as was seen in recent polders. A granular structure, roughly spherical or polyhedral lumps, allows good porosity and easy movement of air and water. Aggregate stability, the share of aggregates that do not fall apart in water, is used as an indicator of soil health.",
+   "expert": "In the block the crumbs are drawn as two layers of lumps, 4 to 9 mm across, in a patch about 36 cm by 14 cm of the A horizon face; their size and number are illustrative, and real soils have crumbs of many sizes at once, with smaller ones inside larger ones. The blue droplets at some contacts show water held in the narrowest gaps. The 'Look inside a soil crumb' scene shows one crumb at 2.2 mm field of view with the size classes of the grains, to scale."
+  },
+  "facts": [
+   [
+    "Bound by",
+    "humus, clay, iron oxides, fungal threads, roots, mucus"
+   ],
+   [
+    "Between them",
+    "pores holding water and air"
+   ],
+   [
+    "Drawn",
+    "crumbs 4 to 9 mm across, two layers, illustrative"
+   ],
+   [
+    "Roots and animals",
+    "earthworms and hyphae help make and keep crumbs"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Soil structure (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_structure"
+   },
+   {
+    "title": "Soil (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil"
+   },
+   {
+    "title": "Soil Physical Properties in Healthy Soils (Mississippi State University Extension, P3660)",
+    "url": "https://extension.msstate.edu/sites/default/files/publications/P3660_web.pdf"
+   }
+  ],
+  "related": [
+   "bio_soil_ecology",
+   "bio_plant_nutrition_soil"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_pores",
+  "title": "Pores: what the space between the grains holds",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.003,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_crumbs"
+  ],
+  "parts": [
+   "soil_pore_water"
+  ],
+  "processes": [],
+  "summary": "About half of a typical soil is empty space: pores that hold water and air, which roots, fungi and animals need.",
+  "layers": {
+   "basics": "Soil looks solid, but a typical soil is about half empty by volume. Those pores are as important as the grains. They are where the water is that roots drink, where the air is that roots, fungi, worms and bacteria breathe, and where small animals live and move. The pore space is shared between water and air, and the two trade places: after rain the pores fill with water and air is pushed out, and as the soil dries air moves back in. If soil is squashed (by footsteps or machines) the pores shrink, and air and water cannot get to the roots.",
+   "deeper": "A typical soil is about 50 % solids (about 45 % mineral and 5 % organic matter) and about 50 % voids; water and gas share the void space roughly equally on average, and the two vary inversely. Field capacity is the water remaining in soil two or three days after it has been thoroughly watered, with negligible free drainage; the permanent wilting point is the water content at which growing plants wilt and do not recover; the water between the two is the available water. The water that remains below the wilting point is held too tightly for plants to use. Coarse pores drain quickly; fine pores hold water.",
+   "expert": "In the model the pore space is the dark gap between the crumbs in the patch on the face of the topsoil. The proportions above are for a typical soil; real values depend on texture, structure and compaction, and a silt loam used as the worked example holds about 25 % water and 25 % gas by volume at the moment given. Carbon dioxide made by roots and organisms collects in the soil air; its molecule can be viewed from the pore-space scene of the crumb."
+  },
+  "facts": [
+   [
+    "Pore space",
+    "≈ 50 % of a typical soil by volume"
+   ],
+   [
+    "Shared by",
+    "water and air, in inverse proportion"
+   ],
+   [
+    "Solids",
+    "≈ 45 % mineral + 5 % organic matter"
+   ],
+   [
+    "Field capacity",
+    "water left 2 to 3 days after a thorough wetting"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Soil (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil"
+   },
+   {
+    "title": "Soil Physical Properties in Healthy Soils (Mississippi State University Extension, P3660)",
+    "url": "https://extension.msstate.edu/sites/default/files/publications/P3660_web.pdf"
+   }
+  ],
+  "related": [
+   "bio_water_properties"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_pore_water",
+  "title": "Water held in the pores",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0015,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_pores"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Water clings to the grain surfaces and sits in the narrow gaps between crumbs; this is the water that plant roots drink.",
+  "layers": {
+   "basics": "After rain, water sinks down through the biggest pores. The water that stays behind sticks to the grains and gathers in the narrowest spaces, like the small droplets drawn here where crumbs touch. Roots and fungi take it up, with the dissolved minerals in it. Water is also how nutrients reach roots: they are dissolved in this thin film.",
+   "deeper": "The water that is left in a soil two or three days after a thorough wetting is called field capacity; plants can use water between that and the wilting point, but not the water below it, which is held too strongly. Water is the solvent that carries dissolved ions such as ammonium and nitrate to roots and away down the profile. Soil water is a very dilute solution, not pure water.",
+   "expert": "The blue droplets at about 15 % of the crumb contacts are a drawing of where water would collect, not a measurement; the size (about 1 to 3 mm across) and number are illustrative. A water molecule can be viewed from the card."
+  },
+  "facts": [
+   [
+    "Held by",
+    "attraction to grain surfaces and in narrow gaps"
+   ],
+   [
+    "Available to plants",
+    "between field capacity and the wilting point"
+   ],
+   [
+    "Contains",
+    "dissolved ions: ammonium, nitrate, phosphate, calcium, potassium..."
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ],
+   [
+    "BIO",
+    "2.2",
+    "2-2-water"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Soil Physical Properties in Healthy Soils (Mississippi State University Extension, P3660)",
+    "url": "https://extension.msstate.edu/sites/default/files/publications/P3660_web.pdf"
+   },
+   {
+    "title": "Soil (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil"
+   }
+  ],
+  "related": [
+   "bio_water_properties",
+   "bio_polarity_hbonds"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_coarse_root",
+  "title": "Oak roots (the thick ones)",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.022,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_block",
+   "oak_roots"
+  ],
+  "parts": [
+   "soil_fine_roots",
+   "oak_roots",
+   "oak_mycorrhiza"
+  ],
+  "processes": [],
+  "summary": "A thick oak root crosses the block: in the cut its cross-section shows as a tan disc about 2 cm across, and thinner roots branch from it.",
+  "layers": {
+   "basics": "The oak that stands a few metres away sends its roots out far beyond the shade of its crown. The thick roots hold the tree up and carry water and food; the thin ones branching from them do most of the drinking. In the cut face you can see one thick root cut across (a round disc) and others running along the face. Most of the roots in a block like this lie in the upper layers, where the water, air and nutrients are. Look inside the root wood to see what it is made of.",
+   "deeper": "Big roots store sugars and anchor the tree; finer roots take up water and minerals. Many trees put most of their roots in the upper layers of soil, though the pattern varies with soil and species. Root systems draw their shape from the soil: roots go where the water and nutrients are. The existing oak cards describe the whole tree and its roots; this block shows a small part of the system at true size.",
+   "expert": "The thick roots are drawn 2.2 cm across where cut, tapering to about 1.5 mm; their paths and the number of branches are drawn for illustration, not mapped from a real tree. The 'wood' scene shows the wood of an oak trunk (vessels about 0.5 mm wide, from the species description); root wood has the same kinds of cells but different proportions, which the scene does not distinguish."
+  },
+  "facts": [
+   [
+    "Drawn root",
+    "2.2 cm across at the cut, tapering"
+   ],
+   [
+    "Does",
+    "anchors the tree, stores sugar, carries water"
+   ],
+   [
+    "Fine roots do",
+    "most water and mineral uptake"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.3",
+    "30-3-roots"
+   ]
+  ],
+  "ext": [],
+  "related": [
+   "oak_roots",
+   "oak_lignin_cellulose",
+   "bio_roots_mycorrhiza"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_fine_roots",
+  "title": "Oak fine roots",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.001,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_coarse_root",
+   "oak_roots"
+  ],
+  "parts": [
+   "oak_root_hairs",
+   "soil_ecm_tips"
+  ],
+  "processes": [],
+  "summary": "Fine roots, less than a millimetre or two across, are the oak's working surface: they take up water and minerals and are replaced all the time.",
+  "layers": {
+   "basics": "Most of what the oak drinks comes through roots as fine as thread. They are short-lived and are replaced all the time. In this block hundreds of them run through the topsoil, thickest near the surface and thinning with depth. Many of their tips are covered by a fungus that works with the tree (the pale sleeves). Bare tips carry root hairs, which are too small to draw in the block; look at one fine root and its hairs close up in the scene.",
+   "deeper": "Roots take up water by osmosis and ions by transporters, mostly near the tips where root hairs form. Root hairs are outgrowths of single epidermal cells, 15 to 17 micrometres wide and 80 to 1,500 micrometres long in published values for root hairs in general. Oak's fine root tips are usually covered by fungus and so have few or no root hairs, which is why the model shows both kinds of tip separately.",
+   "expert": "In the block the fine roots are drawn 0.9 mm across and 4 cm long; the 640 roots are illustrative and far fewer than real topsoil holds. Root hairs are not drawn in the block, because at 15 to 17 micrometres wide they are far thinner than anything at this scale; the scene of one root (3 mm field of view) draws them at true width against a root."
+  },
+  "facts": [
+   [
+    "Fine root (drawn)",
+    "0.9 mm across, ≈ 4 cm long"
+   ],
+   [
+    "Root hair",
+    "15 to 17 µm wide, 80 to 1,500 µm long (published, general)"
+   ],
+   [
+    "Does",
+    "water and mineral uptake"
+   ],
+   [
+    "Replaced",
+    "often (short-lived)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.3",
+    "30-3-roots"
+   ],
+   [
+    "BIO",
+    "31.1",
+    "31-1-nutritional-requirements-of-plants"
+   ]
+  ],
+  "ext": [],
+  "related": [
+   "oak_root_hairs",
+   "oak_mycorrhiza",
+   "bio_roots_mycorrhiza"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_ecm_tips",
+  "title": "Root tips wrapped in fungus (ectomycorrhiza)",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.003,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_fine_roots",
+   "oak_mycorrhiza"
+  ],
+  "parts": [
+   "oak_mycorrhiza"
+  ],
+  "processes": [],
+  "summary": "Many of the oak's finest root tips are wrapped in a sleeve of fungus; the fungus carries water and minerals to the tree and receives sugar from it.",
+  "layers": {
+   "basics": "The pale, slightly swollen tips drawn here are not bare roots: each is an oak root tip inside a fungal sleeve. The fungus grows white threads out into the soil, far beyond what the root could reach. In return the tree gives the fungus sugar from its leaves. This partnership is called ectomycorrhiza ('fungus outside the root cells'); some of the mushrooms you find under oaks in autumn are the fruiting bodies of such fungi. Look inside one to see the sleeve and the threads between the root's cells.",
+   "deeper": "The fungus forms a mantle around the root tip, which can be up to 40 micrometres thick, and grows between the root cells without entering them in a network called the Hartig net, where nutrients and sugars change hands. Hyphae extending from the mantle into the soil gather water and minerals, singly or in aggregated strands called rhizomorphs. Ectomycorrhiza forms on the roots of about 2 % of plant species, including the beech family, to which oaks belong. The tree gives sugar made in its leaves and the fungus gives mostly nitrogen and phosphorus. The existing oak mycorrhiza card covers the evidence on shared 'networks' between trees, which is contested.",
+   "expert": "The tips are drawn 1.2 mm across and 4.7 mm long, which is a model choice; the scene (0.7 mm field of view) shows a root tip with its mantle and Hartig net, with the thread width at the real 5 micrometres (range 2 to 10) and everything else illustrative."
+  },
+  "facts": [
+   [
+    "Partners",
+    "oak roots and a fungus"
+   ],
+   [
+    "Sleeve (mantle)",
+    "up to 40 µm thick"
+   ],
+   [
+    "Plant species with it",
+    "≈ 2 %"
+   ],
+   [
+    "Fungus gets",
+    "sugar"
+   ],
+   [
+    "Tree gets",
+    "water, nitrogen, phosphorus"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "24.3",
+    "24-3-ecology-of-fungi"
+   ],
+   [
+    "BIO",
+    "31.3",
+    "31-3-nutritional-adaptations-of-plants"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Ectomycorrhiza (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Ectomycorrhiza"
+   }
+  ],
+  "related": [
+   "oak_mycorrhiza",
+   "bio_fungal_ecology",
+   "bio_symbiosis"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_hyphae",
+  "title": "Fungal threads in the soil (hyphae)",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 5e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_horizon_o",
+   "soil_horizon_a"
+  ],
+  "parts": [
+   "soil_ecm_tips"
+  ],
+  "processes": [],
+  "summary": "Fungi live in soil as a web of microscopic threads that digest dead plant matter, bind the crumbs, and carry water and minerals.",
+  "layers": {
+   "basics": "Most of a soil fungus is hidden: a web of threads, each far thinner than a hair, growing through the litter and the soil. The threads digest dead leaves from outside, absorb the food, and hold the soil together. Some partner with roots (the tips on the oak). They are the 'rotting' in decay and, together with bacteria, the main recyclers in the soil. The threads in the block are drawn about 40 times thicker than real ones so that you can see them. Click the hotspot near the litter, or a root tip, to see a thread at its real size in a scene.",
+   "deeper": "A hypha is a tube 2 to 10 micrometres wide (about 4 to 6 in many fungi) that grows at its tip. Fungi release enzymes into the litter and take up the products; they are major decomposers, and springtails feed on their threads and spores. Fungal threads and their sticky products help stick mineral particles into crumbs. A gram of garden soil can contain around a million fungi.",
+   "expert": "The drawn threads are 0.2 mm wide and 5 cm long, in a cloud of about 500 through the litter and the top 16 cm of topsoil, which is an illustration, not a measure of how much fungus a real soil holds. The fungal species are not identified."
+  },
+  "facts": [
+   [
+    "Real hypha width",
+    "≈ 4 to 6 µm (range 2 to 10)"
+   ],
+   [
+    "Drawn",
+    "≈ 200 µm (about 40 times too thick)"
+   ],
+   [
+    "Fungi in garden soil",
+    "≈ 10⁶ per gram (Bridge and Spooner 2001, via Wikipedia)"
+   ],
+   [
+    "Does",
+    "digests dead matter, binds crumbs, partners with roots"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "24.3",
+    "24-3-ecology-of-fungi"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Soil biology (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_biology"
+   },
+   {
+    "title": "Soil structure (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_structure"
+   },
+   {
+    "title": "Springtail (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Springtail"
+   },
+   {
+    "title": "Ectomycorrhiza (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Ectomycorrhiza"
+   }
+  ],
+  "related": [
+   "bio_fungi_basics",
+   "bio_fungal_ecology",
+   "oak_mycorrhiza"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_decomposition",
+  "title": "Decomposition: who eats a dead leaf",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 0.1,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_block",
+   "soil_horizon_o"
+  ],
+  "parts": [
+   "soil_woodlouse",
+   "soil_springtail",
+   "soil_mite",
+   "soil_earthworm",
+   "soil_hyphae",
+   "soil_handful"
+  ],
+  "processes": [],
+  "summary": "A dead leaf is recycled by a relay of animals, fungi and bacteria: the animals shred it, the fungi and bacteria digest it, and carbon dioxide, mineral nutrients and humus come out.",
+  "layers": {
+   "basics": "When a leaf falls it is not simply 'rotting'. First woodlice, springtails, mites and earthworms bite it into smaller pieces and pull some of it into the soil. Fungi and bacteria then digest those pieces from outside, using enzymes. Tiny nematodes and other animals graze on the bacteria and fungi. At the end, the carbon from the leaf has gone back to the air as carbon dioxide (breathed out by all these organisms), the nutrients are back in the soil water where roots can take them up, and a dark remnant called humus is left in the soil. Without this recycling the forest floor would be buried in its own dead leaves.",
+   "deeper": "Different organisms do different jobs. Woodlice are detritivores that fragment plant matter without grinding it finely, so they contribute little to mineralisation themselves; oribatid mites help break down detritus and distribute fungi; springtails commonly eat fungal threads and spores; nematodes can eat up to 5,000 bacteria a minute; earthworms swallow soil and litter and grind it in a gizzard. Fungi and bacteria do most of the chemical breakdown. The decomposers are respiring: the carbon in leaf sugars and cellulose goes back to the air as carbon dioxide.",
+   "expert": "The speed of decomposition depends on temperature, moisture, the leaf and the community; no rate is given here, and the relay is simplified (real food webs are far more tangled). The cards for each animal give the facts and sources."
+  },
+  "facts": [
+   [
+    "Shredders",
+    "woodlice, springtails, mites, earthworms"
+   ],
+   [
+    "Digesters",
+    "fungi and bacteria (enzymes)"
+   ],
+   [
+    "Grazers on them",
+    "nematodes, springtails, mites"
+   ],
+   [
+    "Products",
+    "CO₂, mineral nutrients (ammonium, phosphate...), humus"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "46.3",
+    "46-3-biogeochemical-cycles"
+   ],
+   [
+    "BIO",
+    "24.3",
+    "24-3-ecology-of-fungi"
+   ],
+   [
+    "BIO",
+    "46.2",
+    "46-2-energy-flow-through-ecosystems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Woodlouse (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Woodlouse"
+   },
+   {
+    "title": "Oribatida, the oribatid mites (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Oribatida"
+   },
+   {
+    "title": "Springtail (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Springtail"
+   },
+   {
+    "title": "Nematode (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Nematode"
+   },
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   }
+  ],
+  "related": [
+   "bio_primary_production_decomposition",
+   "carbon_cycle_process",
+   "nitrogen_cycle_process",
+   "bio_soil_ecology"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_carbon",
+  "title": "Carbon in the soil, in the air and in plants",
+  "kind": "concept",
+  "template": "thing",
+  "scale_m": 1,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_block"
+  ],
+  "parts": [
+   "soil_decomposition"
+  ],
+  "processes": [],
+  "summary": "The world's soils and litter hold about 1,500 to 2,400 petagrams of carbon, roughly two to three times as much as the whole atmosphere, and more than the living plants.",
+  "layers": {
+   "basics": "Plants take carbon dioxide from the air and build their bodies from it. When plants and animals die, much of that carbon goes into the soil as dead roots, leaves and the dark organic matter humus. Across the Earth, soil and litter hold roughly twice to three times as much carbon as is in the whole atmosphere, and more than the living plants do. That is why the soil under your feet matters for the climate: a small change in how much carbon soils hold is a large change compared with what is in the air. The soil in this block is a very small piece of that store.",
+   "deeper": "The IPCC Fifth Assessment Report gives these reservoir sizes in petagrams of carbon (1 PgC = 10^15 g = a thousand million tonnes): the atmosphere, 828 PgC (at a carbon dioxide level of about 390.5 parts per million in 2011); living plants (vegetation), 450 to 650 PgC; dead organic matter in litter and soils, 1,500 to 2,400 PgC. There is additional old soil carbon in wetland soils (300 to 700 PgC) and in permafrost soils (about 1,700 PgC), with some overlap with the other numbers. Plants take about 123 ± 8 PgC a year out of the air by photosynthesis; plant, microbial and animal respiration puts carbon back. Dividing the ranges gives soils at about 1.8 to 2.9 times the atmosphere (my calculation).",
+   "expert": "The ranges are wide because soil carbon is hard to measure: it varies from place to place and with depth, and surveys differ in how deep they count. The 1,500 to 2,400 PgC figure is traced in the report to a 1996 compilation (Batjes) and the plant figure to Prentice and colleagues (2001). How long carbon stays in the soil depends on the soil and the climate; warming might speed decomposition, which is an active research question, not settled here. The block holds a vanishingly small share of the total."
+  },
+  "facts": [
+   [
+    "Atmosphere",
+    "≈ 828 PgC (2011)"
+   ],
+   [
+    "Vegetation",
+    "≈ 450 to 650 PgC"
+   ],
+   [
+    "Litter and soils",
+    "≈ 1,500 to 2,400 PgC"
+   ],
+   [
+    "Permafrost soils (extra, overlaps)",
+    "≈ 1,700 PgC"
+   ],
+   [
+    "Photosynthesis",
+    "123 ± 8 PgC a year"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How much of the carbon in soils will be released as the climate warms, and how fast, is still being studied."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "46.3",
+    "46-3-biogeochemical-cycles"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "IPCC AR5 Working Group I, chapter 6 (Carbon and other biogeochemical cycles), section 6.1.1 and Figure 6.1",
+    "url": "https://www.ipcc.ch/site/assets/uploads/2018/02/WG1AR5_Chapter06_FINAL.pdf"
+   }
+  ],
+  "related": [
+   "carbon_cycle_process",
+   "bio_soil_ecology",
+   "cellular_respiration"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_nitrogen",
+  "title": "Nitrogen in the soil: fixation, recycling and uptake",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 1,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_block"
+  ],
+  "parts": [
+   "soil_cec",
+   "soil_earthworm"
+  ],
+  "processes": [],
+  "summary": "Plants need nitrogen, but the air's nitrogen gas is useless to them until bacteria change it: in soil, fixation, ammonification, nitrification and uptake form a cycle driven by microbes.",
+  "layers": {
+   "basics": "Four-fifths of the air is nitrogen gas, but plants cannot use it. A few kinds of bacteria can turn it into ammonia, a process called nitrogen fixation: some live free in the soil, and some live in swellings (nodules) on the roots of clover and other legumes, such as clover. Other microbes break down dead plant and animal matter and release ammonium. Others change ammonium to nitrate, which roots take up easily, and which can be washed away. The oak in the block gets part of its nitrogen through its fungal partners. Earthworm casts are richer in nitrogen than the soil around them.",
+   "deeper": "Soil steps, as described in the standard accounts: nitrogenase, the enzyme complex that reduces nitrogen gas (N2) to ammonia (NH3), is found in free-living bacteria such as Azotobacter and in rhizobia living in legume root nodules, and it is degraded by oxygen. N2 + 16 ATP + 16 H2O + 8 e- + 8 H+ gives 2 NH3 + H2 + 16 ADP + 16 Pi, so fixing nitrogen is energetically costly. Ammonification: bacteria and fungi convert organic nitrogen into ammonia and ammonium. Nitrification: Nitrosomonas oxidise ammonia to nitrite and Nitrobacter oxidise nitrite to nitrate. Denitrification: bacteria such as Pseudomonas reduce nitrate back to nitrogen gas without oxygen. Assimilation: plants absorb nitrate or ammonium by their root hairs. Nitrate is very soluble and soils hold anions poorly, so it can leach into groundwater. About 30 % of total fixed nitrogen is made industrially by the Haber-Bosch process.",
+   "expert": "Darwin quoted analyses by Dr Gilbert of earthworm castings from a lawn: 0.35 (per cent) nitrogen, two to three times as much as ordinary arable surface soil. This block does not model nodules or nitrifying bacteria as parts: the bacteria in the crumb scene are not identified by species, and the nitrogen-fixing legumes of the lawn are not drawn. Ammonium and nitrate are available as molecules from the soil scenes, and clay particles can hold ammonium as one of their exchangeable cations."
+  },
+  "facts": [
+   [
+    "Fixation",
+    "N2 to NH3 by nitrogenase in bacteria (free-living and in legume nodules)"
+   ],
+   [
+    "Nitrification",
+    "ammonia to nitrite (Nitrosomonas) to nitrate (Nitrobacter)"
+   ],
+   [
+    "Denitrification",
+    "nitrate to N2 without oxygen"
+   ],
+   [
+    "Worm casts (Darwin, via Gilbert)",
+    "0.35 nitrogen, 2 to 3 times arable surface soil"
+   ],
+   [
+    "Fixing nitrogen costs",
+    "16 ATP for 2 NH3"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "46.3",
+    "46-3-biogeochemical-cycles"
+   ],
+   [
+    "BIO",
+    "31.3",
+    "31-3-nutritional-adaptations-of-plants"
+   ],
+   [
+    "BIO",
+    "22.3",
+    "22-3-prokaryotic-metabolism"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Nitrogen fixation (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Nitrogen_fixation"
+   },
+   {
+    "title": "Nitrogen cycle (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Nitrogen_cycle"
+   },
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   }
+  ],
+  "related": [
+   "nitrogen_cycle_process",
+   "bio_roots_mycorrhiza",
+   "bio_excretion_nitrogen"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_handful",
+  "title": "How many organisms live in a handful of soil?",
+  "kind": "concept",
+  "template": "thing",
+  "scale_m": 0.1,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_block"
+  ],
+  "parts": [
+   "soil_decomposition"
+  ],
+  "processes": [],
+  "summary": "A handful of soil holds billions of microbes and, depending on where it is, thousands of larger animals; the numbers are estimates, and they vary widely from place to place.",
+  "layers": {
+   "basics": "There is no single answer, because soils differ so much, but every estimate is enormous. In one gram of soil (a pinch) there are of the order of a hundred million bacteria, and in a teaspoon of productive soil between a hundred million and three billion. Fungi: around a million per gram of garden soil. Larger animals are fewer but still many: across a square metre of a lawn there may be up to about a hundred thousand springtails and, in some soils, a million or more nematodes, and about a dozen earthworms in one old count of a garden. Soil is also home to more kinds of life than any other habitat: one recent review estimates that about 59 per cent of all species live in soil, with a range of plus or minus 15 per cent.",
+   "deeper": "Sizes, from the soil biology classification: macrofauna 2 to 20 mm (earthworms, woodlice, ants), mesofauna 100 micrometres to 2 mm (mites, springtails, small worms), and microfauna and microflora 1 to 100 micrometres (protozoa, nematodes, bacteria and fungi). The numbers: mean prokaryote density roughly 10^8 per gram of soil; bacteria 100 million to 3 billion in a teaspoon of productive soil (Hoorman 2011); fungi about 10^6 per gram of garden soil (Bridge and Spooner 2001); nematodes often more than a million per square metre, about 90 % of them in the top 15 cm; springtails estimates of 100,000 per square metre; Hensen's count of earthworms in a garden, 133,000 per hectare (13 per square metre), reported by Darwin.",
+   "expert": "Counting soil life is hard: most microbes cannot be grown in a dish and are counted by chemical methods, and animals are extracted or dug and sorted by hand, so every figure is an estimate with a method behind it. The 59 ± 15 % figure for the share of species in soil comes from Anthony and colleagues (PNAS 2023), who reviewed the biodiversity literature and found that including phages brings the estimate down to about 21 %. Figures here come from secondary summaries of the primary papers; read the papers for the details."
+  },
+  "facts": [
+   [
+    "Bacteria",
+    "≈ 10⁸ per gram; 10⁸ to 3 × 10⁹ per teaspoon (estimates)"
+   ],
+   [
+    "Fungi",
+    "≈ 10⁶ per gram of garden soil (estimate)"
+   ],
+   [
+    "Nematodes",
+    "often more than 10⁶ per m²"
+   ],
+   [
+    "Springtails",
+    "estimates up to ≈ 10⁵ per m²"
+   ],
+   [
+    "Earthworms",
+    "13 per m² in Hensen's garden count (Darwin)"
+   ],
+   [
+    "Share of Earth's species in soil",
+    "59 ± 15 %"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How many species live in soil is uncertain by an order of magnitude or more; most microbial species are still unnamed."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "46.1",
+    "46-1-ecology-of-ecosystems"
+   ],
+   [
+    "BIO",
+    "22.2",
+    "22-2-structure-of-prokaryotes-bacteria-and-archaea"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Soil (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil"
+   },
+   {
+    "title": "Soil biology (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_biology"
+   },
+   {
+    "title": "Nematode (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Nematode"
+   },
+   {
+    "title": "Springtail (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Springtail"
+   },
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   },
+   {
+    "title": "Anthony, Bender and van der Heijden: Enumerating soil biodiversity (PNAS 2023)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10437432/"
+   }
+  ],
+  "related": [
+   "bio_soil_ecology",
+   "bio_metagenomics",
+   "bio_symbiosis"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_clay",
+  "title": "Clay: the finest particles",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 2e-06,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_horizon_b"
+  ],
+  "parts": [
+   "soil_cec",
+   "soil_horizon_b"
+  ],
+  "processes": [],
+  "summary": "Clay particles are the smallest mineral grains in soil, less than two thousandths of a millimetre across, flat plates with electrically charged surfaces that hold water and nutrients.",
+  "layers": {
+   "basics": "Soil grains come in three size groups. Sand is the biggest, silt is in between, and clay is the smallest: under 2 micrometres, too small to see even with a good lens. Clay particles are not tiny bits of ordinary rock: they are flat plates made of layers of silicon, aluminium and oxygen. Their flat surfaces carry electric charge, which lets them hold on to nutrient ions such as potassium and ammonium. Look at a clay particle, drawn inside the clay size range, with the ions it holds.",
+   "deeper": "On the ISO scale used here, sand is 63 micrometres to 2 mm, silt 2 to 63 micrometres, and clay below 2 micrometres (some classification systems put the clay limit at 4 micrometres). Clay minerals are layered phyllosilicates built of sheets of silica tetrahedra and alumina octahedra; kaolinite, a 1:1 clay, forms pseudohexagonal plates, and its layers are uncharged and held together by hydrogen bonds. 2:1 clays carry a net negative charge on their layers, which attracts cations; the interlayer space of smectite can also hold water.",
+   "expert": "How much clay the soil of the Greenwich plateau has at any particular place is not given by the geological sources used here; the clay in the B horizon is drawn as a generic presence."
+  },
+  "facts": [
+   [
+    "Clay size (ISO)",
+    "under 2 µm"
+   ],
+   [
+    "Silt",
+    "2 to 63 µm"
+   ],
+   [
+    "Sand",
+    "63 µm to 2 mm"
+   ],
+   [
+    "Kaolinite",
+    "Al2Si2O5(OH)4, 1:1 layers, pseudohexagonal plates"
+   ],
+   [
+    "Charge",
+    "negative on many clays (2:1) and at edges; kaolinite layers are uncharged"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Grain size (Wikipedia), ISO 14688-1:2017 classes",
+    "url": "https://en.wikipedia.org/wiki/Grain_size"
+   },
+   {
+    "title": "Clay minerals (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Clay_minerals"
+   },
+   {
+    "title": "Kaolinite (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Kaolinite"
+   },
+   {
+    "title": "Cation-exchange capacity (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Cation-exchange_capacity"
+   }
+  ],
+  "related": [
+   "rock_grains"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_cec",
+  "title": "Cation exchange: how clay holds nutrients",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 1e-06,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_clay",
+   "soil_nitrogen"
+  ],
+  "parts": [
+   "soil_clay",
+   "soil_nitrogen"
+  ],
+  "processes": [],
+  "summary": "Clay and humus carry negative charges that hold positively charged nutrient ions (calcium, potassium, magnesium, ammonium) and exchange them with the soil water, which keeps nutrients from washing away.",
+  "layers": {
+   "basics": "Many nutrients are dissolved as ions: atoms or small molecules with an electric charge. Calcium, magnesium, potassium and ammonium carry a positive charge. The surfaces of clay and humus carry negative charge, so these positive ions stick to them like iron filings to magnets, and are held there instead of draining away with the rain. The amount of positive charge a soil can hold is called its cation-exchange capacity, and it is why a clay or humus-rich soil is fertile for longer than a sandy one. Nitrate, which is negative, is not held, and can be washed away.",
+   "deeper": "Cation-exchange capacity (CEC) counts charge, not ions: it is reported in centimoles of charge per kilogram (older texts use milliequivalents per 100 g, which is the same number). A soil of 10 cmol/kg could hold 10 cmol of sodium but only 5 cmol of calcium, because calcium carries two charges. Negative charge comes from two sources: permanent charge, from substituting lower-charge elements for aluminium or silicon in the clay layers (it does not depend on pH), and variable charge, from hydroxyl groups on clay edges and from groups on organic matter, which lose protons at normal soil pH. The ions are held in a diffuse layer with their water shells and are easily replaced by others. Typical values in milliequivalents per 100 g: kaolinite 3, halloysite 12, illite 25, chlorite 40, smectite 85, vermiculite 150; humus 100 to 300.",
+   "expert": "The scene draws a clay plate seen edge-on and flat-on at a width inside the clay size range (1 micrometre across) with ions drawn about 200 times too large (a hydrated cation is a fraction of a nanometre across): the number and place of the ions are illustrative. Values differ between sources and even for one mineral (the table gives 3 for kaolinite, other sources give 1 to 15 or 3 to 15)."
+  },
+  "facts": [
+   [
+    "Held on clay and humus",
+    "Ca²⁺, Mg²⁺, K⁺, Na⁺, NH₄⁺, H⁺"
+   ],
+   [
+    "Unit",
+    "cmol/kg = meq/100 g"
+   ],
+   [
+    "Kaolinite",
+    "≈ 3 meq/100 g (sources give 1 to 15)"
+   ],
+   [
+    "Smectite",
+    "≈ 85 meq/100 g"
+   ],
+   [
+    "Humus",
+    "≈ 100 to 300 meq/100 g"
+   ],
+   [
+    "Not held",
+    "nitrate, which is negative"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ],
+   [
+    "BIO",
+    "31.1",
+    "31-1-nutritional-requirements-of-plants"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Cation-exchange capacity (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Cation-exchange_capacity"
+   },
+   {
+    "title": "Clay minerals (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Clay_minerals"
+   },
+   {
+    "title": "Soil (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil"
+   }
+  ],
+  "related": [
+   "bio_plant_nutrition_soil",
+   "nitrogen_cycle_process"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_earthworm",
+  "title": "Common earthworm (Lumbricus terrestris)",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.17,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_block",
+   "bio_lophotrochozoans"
+  ],
+  "parts": [
+   "soil_worm_head",
+   "soil_worm_segments",
+   "soil_worm_clitellum",
+   "soil_worm_setae",
+   "soil_worm_burrow",
+   "soil_worm_cast",
+   "soil_worm_circular",
+   "soil_worm_longitudinal",
+   "soil_worm_coelom",
+   "soil_worm_pharynx",
+   "soil_worm_oesophagus",
+   "soil_worm_crop",
+   "soil_worm_gizzard",
+   "soil_worm_intestine",
+   "soil_worm_vessels",
+   "soil_worm_hearts",
+   "soil_worm_nerve",
+   "soil_worm_brain",
+   "soil_worm_movement"
+  ],
+  "processes": [],
+  "summary": "The common earthworm is a segmented animal that lives in a deep vertical burrow, comes to the surface to feed, and swallows soil and leaves; here it is drawn at true size with its insides.",
+  "layers": {
+   "basics": "This is the earthworm of lawns and gardens, also called the nightcrawler. A grown one is about 11 to 20 centimetres long, about the width of a pencil, and made of well over a hundred rings called segments. It has no eyes, no legs and no jaws. It lives in a permanent burrow that runs straight down into the subsoil, with a little heap of earth, a cast, at the entrance. It crawls up to pull leaves down and eat them, and swallows soil as it burrows. It breathes through its skin, which is why it needs moist soil. Click 'Open the earthworm' to see inside: a gut that runs from end to end, five pairs of hearts, a nerve cord, and two layers of muscle.",
+   "deeper": "Lumbricus terrestris is generally 110 to 200 millimetres long (90 to 300 mm when mature), 7 to 10 millimetres wide, with around 120 to 170 segments, often 135 to 150. It is an annelid, a segmented worm. The body is a tube within a tube: an outer body wall (cuticle and skin, circular muscle, longitudinal muscle) around a fluid-filled cavity, the coelom, which contains the gut, the blood vessels and the nerve cord. The fluid works as a hydrostatic skeleton. The animal is hermaphroditic but mates with another worm, and it normally and regularly mates at the surface. Natural lifespan is not known; some have lived six years in captivity. Earthworms make casts of mixed organic and mineral material on the surface, and Lumbricus makes permanent, deep, vertical burrows.",
+   "expert": "The model draws 150 segments, a 170 mm body of 8 mm diameter, a head lobe without eyes, a swollen clitellum toward the front, eight bristles on each segment but the first, a dorsal and a ventral blood vessel, five pairs of hearts, a ventral nerve cord with a swelling in each segment, and a gut with pharynx, oesophagus and its lime glands, crop, gizzard and intestine. Not drawn: the septa between segments, the typhlosole, the nephridia (excretory tubes), the reproductive organs, and the other blood vessels. The thickness of each body-wall layer is illustrative. The earthworm is a 170 mm adult drawn from typical measurements; every internal part is simplified and its positions along the body are approximate."
+  },
+  "facts": [
+   [
+    "Length",
+    "110 to 200 mm usually; 90 to 300 mm when mature (model: 170 mm)"
+   ],
+   [
+    "Width",
+    "7 to 10 mm (model: 8 mm)"
+   ],
+   [
+    "Segments",
+    "≈ 120 to 170, often 135 to 150 (model: 150)"
+   ],
+   [
+    "Hearts",
+    "five pairs"
+   ],
+   [
+    "Eyes",
+    "none"
+   ],
+   [
+    "Burrow",
+    "permanent, vertical; usually down to 50 cm, deeper in places"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lumbricus terrestris (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lumbricus_terrestris"
+   },
+   {
+    "title": "Earthworm (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Earthworm"
+   },
+   {
+    "title": "Lumbricus terrestris, Invertebrate Anatomy OnLine (Lander University)",
+    "url": "https://lanwebs.lander.edu/faculty/rsfox/invertebrates/lumbricus.html"
+   },
+   {
+    "title": "Introduction to the Earthworms (E-Fauna BC, University of British Columbia)",
+    "url": "https://linnet.geog.ubc.ca/biodiversity/efauna/EarthwormsIntroduction.html"
+   },
+   {
+    "title": "Earthworm (Biotopics)",
+    "url": "https://www.biotopics.co.uk/pot/odds/worm.html"
+   },
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   }
+  ],
+  "related": [
+   "soil_darwin",
+   "soil_decomposition",
+   "bio_lophotrochozoans",
+   "heart",
+   "spinal_cord"
+  ],
+  "did_you_know": "Charles Darwin published a whole book about earthworms in 1881, The Formation of Vegetable Mould through the Action of Worms, and called worms animals that have played an important part in the history of the world.",
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_head",
+  "title": "Earthworm: head lobe and mouth",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.003,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "At the front of the earthworm is a small lobe over the mouth; the worm has no eyes, no teeth and no jaws, but the front end is its most sensitive part.",
+  "layers": {
+   "basics": "The front of the earthworm ends in a small rounded lobe that hangs over the mouth. The worm uses it to grip leaves and to feel its way. It has no eyes, but the front end is the most sensitive part of the body. It has no jaws or teeth of any kind; it pulls food in with its muscular pharynx and grinds it later inside.",
+   "deeper": "Darwin described the lobe (lip) as used for prehension, and the pharynx behind the mouth as pushed forward when the animal eats. The nerve ring around the pharynx, with the brain on top of it, lies just behind the lobe.",
+   "expert": "The lobe is drawn as an ellipsoid 5 mm wide, simplified; the first true segment, the peristomium, lies behind it."
+  },
+  "facts": [
+   [
+    "Eyes",
+    "none"
+   ],
+   [
+    "Jaws or teeth",
+    "none (Darwin)"
+   ],
+   [
+    "Used for",
+    "gripping food and sensing"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   },
+   {
+    "title": "Earthworm (Biotopics)",
+    "url": "https://www.biotopics.co.uk/pot/odds/worm.html"
+   }
+  ],
+  "related": [
+   "soil_worm_pharynx",
+   "soil_worm_brain"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_segments",
+  "title": "Earthworm: body rings (segments) and skin",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.17,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm"
+  ],
+  "parts": [
+   "soil_worm_circular",
+   "soil_worm_longitudinal"
+  ],
+  "processes": [],
+  "summary": "The body is a row of about 150 nearly identical rings, or segments, covered with a thin moist skin through which the worm breathes.",
+  "layers": {
+   "basics": "Look closely and the worm is made of rings separated by shallow grooves. Each ring is a segment. A worm has the same number of segments all its life: it grows by making the segments larger, not by adding more. The skin is thin, covered with mucus and always moist; the worm breathes through it, so it cannot live in dry air, and it dries out and dies if it is left on dry pavement. Underneath the skin lie the layers of muscle. The rings go all the way along, from the head lobe to the tail point, which is why the animal is so flexible.",
+   "deeper": "A large worm has 100 to 200 almost cylindrical segments (Darwin), around 120 to 170 in Lumbricus terrestris (often 135 to 150). Respiration is cutaneous, through the moist skin and its capillaries. Earthworms have no means of limiting water loss; Lumbricus can tolerate a water loss of up to 70 % of its body weight. Most segments carry bristles and a pair of excretory tubes (nephridia).",
+   "expert": "Colours are a drawing choice: darker above, paler underneath. The body is drawn with a circular cross-section and gentle taper; the tail end is blunter in real worms and the cross-section can be flattened. The skin scene shows a section of the body wall (1.8 mm field of view)."
+  },
+  "facts": [
+   [
+    "Segments",
+    "≈ 120 to 170 (model: 150)"
+   ],
+   [
+    "Grows by",
+    "enlarging existing segments"
+   ],
+   [
+    "Breathes through",
+    "moist skin"
+   ],
+   [
+    "Can lose",
+    "up to 70 % of body weight in water and survive"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lumbricus terrestris (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lumbricus_terrestris"
+   },
+   {
+    "title": "Earthworm (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Earthworm"
+   },
+   {
+    "title": "Introduction to the Earthworms (E-Fauna BC, University of British Columbia)",
+    "url": "https://linnet.geog.ubc.ca/biodiversity/efauna/EarthwormsIntroduction.html"
+   },
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   },
+   {
+    "title": "Lumbricus terrestris, Invertebrate Anatomy OnLine (Lander University)",
+    "url": "https://lanwebs.lander.edu/faculty/rsfox/invertebrates/lumbricus.html"
+   }
+  ],
+  "related": [
+   "bio_lophotrochozoans",
+   "skin"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_clitellum",
+  "title": "Earthworm: the clitellum (the saddle)",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.008,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The clitellum is the swollen, paler band toward the front of an adult earthworm; it makes the cocoon in which the eggs are laid.",
+  "layers": {
+   "basics": "Adult earthworms have a smooth, thick band round the body toward the front: the saddle, or clitellum. It is seen only when the worm is sexually mature, and it turns orange when the worm is ready to mate. Gland cells in the band make the cocoon, in which the eggs are stored. Worms are both male and female at once, but they still pair up with another worm and swap sperm.",
+   "deeper": "The clitellum is a glandular section of the body wall found in earthworms and leeches and gives the group its name, the clitellates. It secretes a viscous fluid that forms the cocoon (and in many earthworms an albumin that nourishes the eggs). Lumbricus mates at the surface. Which segments the clitellum covers differs between species and is used to tell them apart.",
+   "expert": "The clitellum is drawn as a band 9 mm long a little over a fifth of the way back from the head, with a slightly larger diameter and a paler orange-pink colour. Its exact position and extent in the model are approximate."
+  },
+  "facts": [
+   [
+    "Seen when",
+    "worm is sexually mature"
+   ],
+   [
+    "Colour",
+    "orange when ready to mate"
+   ],
+   [
+    "Makes",
+    "the cocoon in which eggs are stored"
+   ],
+   [
+    "Mating",
+    "worms are hermaphrodites but pair up; Lumbricus mates at the surface"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ],
+   [
+    "BIO",
+    "43.1",
+    "43-1-reproduction-methods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Clitellum (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Clitellum"
+   },
+   {
+    "title": "Introduction to the Earthworms (E-Fauna BC, University of British Columbia)",
+    "url": "https://linnet.geog.ubc.ca/biodiversity/efauna/EarthwormsIntroduction.html"
+   },
+   {
+    "title": "Earthworm (Biotopics)",
+    "url": "https://www.biotopics.co.uk/pot/odds/worm.html"
+   }
+  ],
+  "related": [
+   "bio_lophotrochozoans"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_setae",
+  "title": "Earthworm: bristles (setae)",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0005,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm",
+   "soil_worm_segments"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Each segment except the first carries eight tiny bristles, in four pairs, that the worm sticks into the soil as anchors.",
+  "layers": {
+   "basics": "On the underside and sides of every ring (except the very first) there are eight small bristles. A worm can poke them out and dig them into the burrow wall. They are the worm's grip: when the front of the worm stretches forward, the bristles of the back part hold on so that the worm is pulled forward and not just slid back.",
+   "deeper": "Each segment (except the first) bears eight chaetae in four pairs, two on each side, named a to d from the underside to the top. In crawling, shortened parts of the body are anchored by the bristles while other parts lengthen.",
+   "expert": "The 1,168 bristles are drawn 0.5 mm long, three-sided and leaning backwards; their exact positions around the body are approximate (angles 10 to 76 degrees each side of the underside)."
+  },
+  "facts": [
+   [
+    "Per segment",
+    "8 (4 pairs), except the first"
+   ],
+   [
+    "Used for",
+    "anchoring while crawling and burrowing"
+   ],
+   [
+    "Model",
+    "1,168 bristles, 0.5 mm long"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lumbricus terrestris, Invertebrate Anatomy OnLine (Lander University)",
+    "url": "https://lanwebs.lander.edu/faculty/rsfox/invertebrates/lumbricus.html"
+   },
+   {
+    "title": "Earthworm (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Earthworm"
+   }
+  ],
+  "related": [
+   "soil_worm_movement"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_burrow",
+  "title": "The earthworm burrow",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm",
+   "soil_horizon_a"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The burrow of Lumbricus terrestris is a permanent tunnel that runs straight down, usually to about half a metre and sometimes much deeper; it lets in air and rain and carries roots down.",
+  "layers": {
+   "basics": "Unlike garden worms that wander through the topsoil, this worm digs a permanent vertical tunnel and lives in it for years. It comes to the mouth at night, pulls in leaves and sometimes mates there. Burrows like this do three jobs: they let air into the soil, they let rainwater drain deep instead of running off, and they give roots an easy path down through hard soil. In the block the burrow goes straight down through every layer to about a metre.",
+   "deeper": "Burrow depth is usually up to 50 cm but may be up to 2.5 m, and worms go deeper in cold, dry weather. Endogeic species, by contrast, make horizontal burrows in the upper 10 to 30 cm. Burrows improve aeration, drainage and root penetration. Darwin found that worms can retreat into their burrows with extraordinary rapidity by the aid of their affixed tails.",
+   "expert": "The model burrow is 11 mm wide (the worm is 8 mm) and 1 m deep with a slight wobble below 30 cm: both are drawing choices. The lining is drawn as a dark, semi-transparent tube so you can see the worm inside it in the 'Life only' view."
+  },
+  "facts": [
+   [
+    "Type",
+    "permanent, vertical"
+   ],
+   [
+    "Depth",
+    "usually up to 50 cm; up to 2.5 m (deeper in cold, dry weather)"
+   ],
+   [
+    "Does",
+    "air in, water down, a path for roots"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Earthworm (Biotopics)",
+    "url": "https://www.biotopics.co.uk/pot/odds/worm.html"
+   },
+   {
+    "title": "Earthworm (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Earthworm"
+   },
+   {
+    "title": "Introduction to the Earthworms (E-Fauna BC, University of British Columbia)",
+    "url": "https://linnet.geog.ubc.ca/biodiversity/efauna/EarthwormsIntroduction.html"
+   },
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   }
+  ],
+  "related": [
+   "soil_darwin"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_cast",
+  "title": "Earthworm cast",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.03,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A cast is the small heap of fine earth that an earthworm leaves at the mouth of its burrow: soil that has passed through its gut.",
+  "layers": {
+   "basics": "The little heap of crumbly earth at the top of the burrow is the worm's waste: soil and leaf matter that went through its body. Darwin collected and weighed them. He found that a single full-sized cast at the mouth of a burrow often weighs more than an ounce (about 28 grams), and that over a year the worms on a field bring up several tons of earth per acre. Casts are richer in nitrogen than the soil around them and are a fine crumbly material, and rain slowly spreads them out.",
+   "deeper": "Casts are mixed organic and mineral material deposited on the soil surface. Darwin collected the castings from two square yards at Leith Hill Place, Surrey, for a year and calculated 7.56 and 16.1 tons per acre of dried earth (about 19 and 40 tonnes per hectare, my conversion). A lawn analysed by Dr Gilbert gave castings with 0.35 (per cent) nitrogen, two to three times as much as ordinary arable surface soil.",
+   "expert": "The cast is drawn as a heap of 38 pellets 3 to 7 mm across at the mouth of the burrow. Darwin noted that the amount he collected was somewhat less than the worms had ejected, because rain washes away some of the finest earth."
+  },
+  "facts": [
+   [
+    "A full cast",
+    "often more than 1 oz (≈ 28 g) (Darwin)"
+   ],
+   [
+    "Castings (Darwin, 2 measured sites)",
+    "7.56 and 16.1 tons per acre per year"
+   ],
+   [
+    "Nitrogen (lawn castings)",
+    "0.35 %, 2 to 3 times arable topsoil"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   },
+   {
+    "title": "Lumbricus terrestris (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lumbricus_terrestris"
+   }
+  ],
+  "related": [
+   "soil_darwin",
+   "soil_nitrogen"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_circular",
+  "title": "Earthworm: circular muscle",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0008,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm",
+   "soil_worm_segments"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Just under the skin is a thin layer of muscle whose fibres run around the body like hoops; when it tightens, the segment gets thinner and longer.",
+  "layers": {
+   "basics": "The worm has two layers of muscle that work against each other. The outer, thin one runs around the body in rings. When a stretch of the body tightens these hoops, the fluid inside has nowhere to go but along the body, so that stretch becomes long and thin and pushes forward through the soil, like a tube of toothpaste squeezed in the middle. The other layer, the longitudinal muscle, does the opposite.",
+   "deeper": "Each segment has a thin outer layer of circular muscle and a thicker inner layer of longitudinal muscle. The coelomic fluid acts as a hydrostatic skeleton: a fluid cannot be squeezed to a smaller volume, so when circular muscle narrows a segment it must lengthen. Waves of contraction travelling along the body alternately shorten and lengthen it, and shortened segments are anchored by the bristles. In fresh dissections this layer looks thick and reddish-brown.",
+   "expert": "The layer is drawn as a tube 0.08 to 0.24 mm deep under the skin; the proportions of the muscle layers are illustrative. Fresh specimens show it divided into rings by the segment grooves, which the model does not draw."
+  },
+  "facts": [
+   [
+    "Fibres run",
+    "around the body"
+   ],
+   [
+    "When it contracts",
+    "segment becomes longer and thinner"
+   ],
+   [
+    "Works against",
+    "the longitudinal muscle (antagonists)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Earthworm (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Earthworm"
+   },
+   {
+    "title": "Lumbricus terrestris, Invertebrate Anatomy OnLine (Lander University)",
+    "url": "https://lanwebs.lander.edu/faculty/rsfox/invertebrates/lumbricus.html"
+   }
+  ],
+  "related": [
+   "soil_worm_longitudinal",
+   "soil_worm_movement",
+   "bio_comparative_circulation"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_longitudinal",
+  "title": "Earthworm: longitudinal muscle",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.001,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm",
+   "soil_worm_segments"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Under the circular muscle is a thick layer of muscle running from head to tail; when it tightens, the segment gets shorter and fatter and grips the burrow.",
+  "layers": {
+   "basics": "The inner layer of muscle runs along the body, from head to tail, in several bundles. When a stretch of it tightens, that part of the worm shortens and bulges outward, pressing against the burrow wall and gripping it with the bristles. Shortened, fat stretches act as anchors, while the stretches ahead are pushed forward by the circular muscle. A wave of this, repeated along the body, is how the worm moves. A touch triggers a reflex that tightens the whole longitudinal layer at once, which is why a worm wriggles.",
+   "deeper": "In fresh specimens the longitudinal muscle is white or grey and is not interrupted at the segment boundaries. The touch reflex that contracts the longitudinal muscles does not require the central nervous system. Giant nerve fibres run the length of the body to carry the escape signal quickly (see the nerve cord card). The muscle scene shows the layers of the body wall as a block (1.8 mm field of view).",
+   "expert": "The layer is drawn between 0.24 and 0.66 mm below the surface; the thickness is illustrative. The scene of the body wall is built from typical animal muscle cell sizes and is marked illustrative."
+  },
+  "facts": [
+   [
+    "Fibres run",
+    "along the body"
+   ],
+   [
+    "When it contracts",
+    "segment becomes shorter and fatter"
+   ],
+   [
+    "Reflex",
+    "a touch makes it contract (does not need the brain)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Earthworm (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Earthworm"
+   },
+   {
+    "title": "Lumbricus terrestris, Invertebrate Anatomy OnLine (Lander University)",
+    "url": "https://lanwebs.lander.edu/faculty/rsfox/invertebrates/lumbricus.html"
+   }
+  ],
+  "related": [
+   "soil_worm_circular",
+   "soil_worm_movement",
+   "skeletal_muscle_fiber"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_coelom",
+  "title": "Earthworm: the body cavity (coelom)",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0012,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Between the body wall and the gut is a cavity filled with fluid; the fluid is the worm's skeleton.",
+  "layers": {
+   "basics": "An earthworm has no bones. Its stiffness comes from a liquid-filled space running its whole length, the coelom, divided into compartments by thin walls between the segments. Because the liquid cannot be squashed, the muscles can use it like a hydraulic system: squeezing one end makes the other end stretch. This kind of skeleton is called a hydrostatic skeleton, and many soft animals use it.",
+   "deeper": "The coelomic fluid functions as the hydrostatic skeleton. The coelom is divided by septa between the segments. It is lined with a membrane (the peritoneum) on the inner surface of the body wall, and the nephridia open into it. In the model the cavity is drawn as a pale tube between the muscle and the gut.",
+   "expert": "The coelom is drawn as a solid pale shape for the cut face; in life it is fluid and contains the gut, vessels and nerve cord. The septa are not drawn."
+  },
+  "facts": [
+   [
+    "Contains",
+    "fluid; the gut, vessels and nerve cord run through it"
+   ],
+   [
+    "Divided into",
+    "compartments by septa between segments"
+   ],
+   [
+    "Acts as",
+    "a hydrostatic skeleton"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Earthworm (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Earthworm"
+   },
+   {
+    "title": "Lumbricus terrestris, Invertebrate Anatomy OnLine (Lander University)",
+    "url": "https://lanwebs.lander.edu/faculty/rsfox/invertebrates/lumbricus.html"
+   },
+   {
+    "title": "Introduction to the Earthworms (E-Fauna BC, University of British Columbia)",
+    "url": "https://linnet.geog.ubc.ca/biodiversity/efauna/EarthwormsIntroduction.html"
+   }
+  ],
+  "related": [
+   "soil_worm_movement"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_pharynx",
+  "title": "Earthworm: pharynx",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0035,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm",
+   "soil_worm_head"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The pharynx is a strong muscular pump behind the mouth that sucks in leaves and soil.",
+  "layers": {
+   "basics": "Behind the mouth is a thick, muscular bulb. When the worm eats, it pushes the bulb forward and pulls it back like a pump, drawing in bits of leaf and earth. It has no teeth; whatever it swallows goes on to be softened and ground inside.",
+   "deeper": "The pharynx has thick, muscular walls with radial muscles; the buccal cavity before it covers about the first three segments and the pharynx itself about segments 3 to 5. Darwin noted that the pharynx is pushed forward when the animal eats and compared it to the protrusible trunk of other annelids.",
+   "expert": "The pharynx is drawn as a bulb about 3.4 mm long and 3 mm wide, in the head end of the body; the nerve ring and brain lie around it."
+  },
+  "facts": [
+   [
+    "Position",
+    "about segments 3 to 5"
+   ],
+   [
+    "Does",
+    "draws food in"
+   ],
+   [
+    "Wall",
+    "thick, muscular"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lumbricus terrestris, Invertebrate Anatomy OnLine (Lander University)",
+    "url": "https://lanwebs.lander.edu/faculty/rsfox/invertebrates/lumbricus.html"
+   },
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   }
+  ],
+  "related": [
+   "soil_worm_oesophagus",
+   "soil_worm_brain"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_oesophagus",
+  "title": "Earthworm: oesophagus and its lime glands",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.009,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The oesophagus carries food back from the pharynx; on its sides are glands that make lime (calcium carbonate) and help the worm control calcium and acidity.",
+  "layers": {
+   "basics": "The gullet is a narrow tube about 8 millimetres long in the model. Along it are pouches and glands that put chalk (calcium carbonate) into the food. Darwin was struck by them: he found that nothing like them was known in any other animal, and discussed what they were for. The modern account is that they help the worm keep the level of calcium and the acidity of its blood in balance,.",
+   "deeper": "Segments 6 to 12 are the oesophagus; esophageal pouches lie around segments 10 to 11 and two pairs of calciferous glands lie behind them, just behind the fifth heart. Darwin described three pairs of large glands that secrete a surprising amount of carbonate of lime. They help to regulate calcium and pH.",
+   "expert": "The model draws two pairs of pouch-like glands, not three, as a simplification; descriptions of the number differ between Darwin (three pairs) and the modern anatomy text (two pairs of glands behind the pouches). Their position is approximate."
+  },
+  "facts": [
+   [
+    "Position",
+    "segments 6 to 12"
+   ],
+   [
+    "Glands",
+    "calciferous (lime) glands; Darwin counted three pairs"
+   ],
+   [
+    "Make",
+    "calcium carbonate"
+   ],
+   [
+    "Role today",
+    "help regulate calcium and pH"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lumbricus terrestris, Invertebrate Anatomy OnLine (Lander University)",
+    "url": "https://lanwebs.lander.edu/faculty/rsfox/invertebrates/lumbricus.html"
+   },
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   },
+   {
+    "title": "Earthworm (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Earthworm"
+   }
+  ],
+  "related": [
+   "soil_worm_crop"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_crop",
+  "title": "Earthworm: crop",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.006,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The crop is a thin-walled storage pouch where swallowed food waits before it is ground.",
+  "layers": {
+   "basics": "Further back, the gullet widens into a thin-walled bag in which food waits. The next chamber, the gizzard, grinds it.",
+   "deeper": "In most earthworm species the oesophagus is enlarged into a crop in front of the gizzard (Darwin). The crop joins the oesophagus at about segment 12 and extends back through several segments.",
+   "expert": "The crop is drawn as a pouch 5.5 mm long behind the oesophagus; segment numbers are approximate in the model."
+  },
+  "facts": [
+   [
+    "Position",
+    "between the oesophagus and the gizzard"
+   ],
+   [
+    "Does",
+    "stores swallowed food"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   },
+   {
+    "title": "Lumbricus terrestris, Invertebrate Anatomy OnLine (Lander University)",
+    "url": "https://lanwebs.lander.edu/faculty/rsfox/invertebrates/lumbricus.html"
+   }
+  ],
+  "related": [
+   "soil_worm_gizzard"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_gizzard",
+  "title": "Earthworm: gizzard",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.004,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The gizzard is a tough muscular grinder lined with a hard membrane; the worm swallows grains of sand and small stones that work like millstones inside it.",
+  "layers": {
+   "basics": "Because the worm has no teeth, its food is ground inside. The gizzard has thick muscular walls and a hard lining, and it squeezes and grinds the food together with grains of sand and tiny stones that the worm has swallowed. Darwin found stones between about 1.3 and 2.5 millimetres across in the gizzards and intestines of worms, and he thought they work like millstones.",
+   "deeper": "Darwin's description: the gizzard is lined with a smooth thick chitinous membrane and surrounded by weak longitudinal and powerful transverse muscles. Perrier saw these muscles in energetic action, so the grinding must be done chiefly by this organ. Grains of sand and small stones from 1/20 to a little more than 1/10 inch in diameter (1.3 to 2.6 mm) are generally found in the gizzards and intestines. The gizzard opens into the intestine.",
+   "expert": "The gizzard is drawn as a barrel 4 mm long and 3.4 mm wide; its position is approximate."
+  },
+  "facts": [
+   [
+    "Wall",
+    "thick, muscular, with a hard lining"
+   ],
+   [
+    "Grinds with",
+    "sand grains and small stones (1.3 to 2.6 mm, Darwin)"
+   ],
+   [
+    "No",
+    "jaws or teeth anywhere"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   },
+   {
+    "title": "Lumbricus terrestris, Invertebrate Anatomy OnLine (Lander University)",
+    "url": "https://lanwebs.lander.edu/faculty/rsfox/invertebrates/lumbricus.html"
+   }
+  ],
+  "related": [
+   "soil_worm_intestine"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_intestine",
+  "title": "Earthworm: intestine and the soil inside it",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.14,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The intestine runs straight from the gizzard to the vent at the tail; in it the ground food is digested and absorbed, leaving the cast.",
+  "layers": {
+   "basics": "Behind the gizzard the gut becomes a long, straight, thin-walled tube that runs almost to the tail. Here the food, which is mostly soil with bits of decayed leaf in it, is digested and the nutrients pass into the blood. A fold runs along the roof of the tube to give more surface to absorb through. What remains passes out at the tail end and is the cast. The dark filling in the model is the soil that is being digested.",
+   "deeper": "Darwin described the intestine as running in a straight course to the vent, with a remarkable structure, the typhlosole, a deep longitudinal involution of its walls that gives an extensive absorbent surface; the dorsal wall is invaginated in the intestine and the typhlosole is absent from the rectum. The earthworm swallows large amounts of soil; its casts are richer in nitrogen than the soil around them.",
+   "expert": "The typhlosole is not drawn; the intestine is shown as a simple tube 1.45 mm wide, with the soil inside drawn as an inner dark tube. The thickness of the wall is illustrative."
+  },
+  "facts": [
+   [
+    "Runs",
+    "straight, from gizzard to vent"
+   ],
+   [
+    "Extra surface",
+    "the typhlosole fold (not drawn)"
+   ],
+   [
+    "Contents",
+    "soil and decayed plant matter"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   },
+   {
+    "title": "Lumbricus terrestris, Invertebrate Anatomy OnLine (Lander University)",
+    "url": "https://lanwebs.lander.edu/faculty/rsfox/invertebrates/lumbricus.html"
+   },
+   {
+    "title": "Earthworm (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Earthworm"
+   }
+  ],
+  "related": [
+   "soil_worm_cast",
+   "soil_nitrogen"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_vessels",
+  "title": "Earthworm: the blood vessels",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.15,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Two long blood vessels run the length of the gut, one above and one below, joined by the hearts; the blood is red because it carries haemoglobin.",
+  "layers": {
+   "basics": "The worm's blood travels in closed tubes. The big one above the gut, the dorsal vessel, carries blood forward toward the head; the big one below, the ventral vessel, carries it backward toward the tail. Short vessels in each segment link them. The blood carries oxygen picked up through the skin, in a red pigment (haemoglobin) dissolved directly in the blood and not packed in cells.",
+   "deeper": "There are five main closed vessels: dorsal, ventral, subneural and two lateroneural; each segment also has a pair of pallial vessels. Blood contains haemocytes and dissolved haemoglobin. In the dorsal vessel blood flows toward the head and in the ventral vessel toward the tail. Only the dorsal and ventral vessels are drawn.",
+   "expert": "The vessels are drawn 0.54 and 0.6 mm wide and in the same simple course from head to tail; their size is illustrative."
+  },
+  "facts": [
+   [
+    "Dorsal vessel",
+    "blood flows toward the head"
+   ],
+   [
+    "Ventral vessel",
+    "blood flows toward the tail"
+   ],
+   [
+    "Pigment",
+    "haemoglobin, dissolved in the blood"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Earthworm (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Earthworm"
+   },
+   {
+    "title": "Lumbricus terrestris, Invertebrate Anatomy OnLine (Lander University)",
+    "url": "https://lanwebs.lander.edu/faculty/rsfox/invertebrates/lumbricus.html"
+   }
+  ],
+  "related": [
+   "soil_worm_hearts",
+   "bio_comparative_circulation",
+   "bio_hemoglobin_cooperativity"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_hearts",
+  "title": "Earthworm: five pairs of hearts",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.003,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm",
+   "soil_worm_vessels"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Five pairs of muscular loops, one pair in each of five segments just behind the head, ring the oesophagus and pump blood from the top vessel to the bottom one.",
+  "layers": {
+   "basics": "An earthworm has ten hearts: five pairs, in a row just behind the head. Each is a muscular loop that goes around the gullet and joins the vessel above the gut to the vessel below. Together they pump the blood. They are not like our heart: they are simple muscular tubes that squeeze.",
+   "deeper": "The hearts are a pair of aortic arches in segments seven through eleven, which ring the coelom and act as hearts; they are large, contractile, segmental blood vessels encircling the oesophagus. Blood is moved forward in the dorsal vessel and backward in the ventral.",
+   "expert": "The hearts are drawn as ten loops 0.5 mm thick around the oesophagus at segments 7 to 11. They are drawn at rest. The ATP button leads to the molecule that muscle cells use as fuel."
+  },
+  "facts": [
+   [
+    "Hearts",
+    "5 pairs"
+   ],
+   [
+    "Segments",
+    "7 to 11"
+   ],
+   [
+    "Shape",
+    "loops around the oesophagus"
+   ],
+   [
+    "Joins",
+    "dorsal vessel to ventral vessel"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Earthworm (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Earthworm"
+   },
+   {
+    "title": "Lumbricus terrestris, Invertebrate Anatomy OnLine (Lander University)",
+    "url": "https://lanwebs.lander.edu/faculty/rsfox/invertebrates/lumbricus.html"
+   }
+  ],
+  "related": [
+   "heart",
+   "bee_heart",
+   "pond_daphnia_heart",
+   "bio_comparative_circulation"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_nerve",
+  "title": "Earthworm: ventral nerve cord",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.15,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A solid nerve cord runs along the underside of the body, with a small cluster of nerve cells in each segment and giant fibres for a fast escape.",
+  "layers": {
+   "basics": "The worm's nervous system is a cord running along the belly, not the back as in us. In each segment (from about the fifth) the cord swells into a small knot of nerve cells that controls that ring and sends nerves to its muscles and skin. A few very thick nerve fibres run the whole length of the cord and carry the alarm signal very quickly, so that a touch can make the whole worm withdraw.",
+   "deeper": "The cord is double and solid, with a segmental ganglion in each segment from the fifth to the last and three pairs of segmental nerves from each ganglion. The giant axons: the medial giant axon is 0.07 mm across and conducts at 32.2 m/s, and the two lateral giant axons are 0.05 mm across and conduct at 12.6 m/s.",
+   "expert": "The cord is drawn as a tube 0.5 mm wide with a swelling per segment from the fifth; the giant axons are not drawn separately. The cord is on the underside (to the left in the sagittal view)."
+  },
+  "facts": [
+   [
+    "Position",
+    "underside (ventral)"
+   ],
+   [
+    "Ganglia",
+    "one per segment from segment 5"
+   ],
+   [
+    "Medial giant axon",
+    "0.07 mm wide, 32.2 m/s"
+   ],
+   [
+    "Lateral giant axons",
+    "0.05 mm wide, 12.6 m/s"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Earthworm (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Earthworm"
+   },
+   {
+    "title": "Lumbricus terrestris, Invertebrate Anatomy OnLine (Lander University)",
+    "url": "https://lanwebs.lander.edu/faculty/rsfox/invertebrates/lumbricus.html"
+   }
+  ],
+  "related": [
+   "spinal_cord",
+   "bio_action_potential_channels"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_brain",
+  "title": "Earthworm: brain and nerve ring",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.003,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The earthworm's brain is a pair of small nerve-cell clusters on top of the pharynx, joined by two collars round it to a second cluster underneath.",
+  "layers": {
+   "basics": "A worm does not have much of a brain: a pair of tiny knots of nerve cells sits on top of the pharynx, and two nerve bands curve around the pharynx to join a second knot beneath it. From there the nerve cord runs down the belly.",
+   "deeper": "Paired cerebral ganglia (the brain) lie in segment 3, sub-pharyngeal ganglia in segment 4, joined by circum-pharyngeal connectives into a nerve ring.",
+   "expert": "The model draws two ganglia 1 mm wide and a smaller one under the pharynx."
+  },
+  "facts": [
+   [
+    "Brain",
+    "cerebral ganglia, segment 3"
+   ],
+   [
+    "Second knot",
+    "sub-pharyngeal ganglion, segment 4"
+   ],
+   [
+    "Joined by",
+    "nerve ring round the pharynx"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Earthworm (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Earthworm"
+   },
+   {
+    "title": "Lumbricus terrestris, Invertebrate Anatomy OnLine (Lander University)",
+    "url": "https://lanwebs.lander.edu/faculty/rsfox/invertebrates/lumbricus.html"
+   }
+  ],
+  "related": [
+   "soil_worm_nerve",
+   "brain"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_worm_movement",
+  "title": "How an earthworm moves",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 0.17,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_earthworm"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "An earthworm crawls by waves of squeezing along its body: fat, short parts grip with their bristles while thin, long parts push ahead, so it can move through a tunnel exactly its own width.",
+  "layers": {
+   "basics": "Try to picture a tube full of water that you can squeeze with rings. Squeeze a ring and the water goes along the tube, making it longer and thinner ahead of it. Let go and the tube relaxes and shortens. A worm does this along its body in a wave from head to tail: stretches that are short and fat grip the walls with their bristles, stretches that are long and thin reach forward. It can crawl backwards as well as forwards, and Darwin noted that it can retreat into its burrow with extraordinary rapidity by the aid of its affixed tail. On smooth moist ground one was reported to move at about 20 metres per hour, which is about 5.6 millimetres per second.",
+   "deeper": "Peristalsis uses two sets of muscle in opposition against a fluid skeleton: contraction of the circular muscle lengthens and thins a segment, contraction of the longitudinal muscle shortens and fattens it. The shortened segments are anchored by their bristles. The speed given is a reported figure for surface movement on moist, flat terrain; it is not the speed of burrowing, which is slower and depends on the soil. Nocturnal forays at the surface were estimated to reach 19 m.",
+   "expert": "The worm in the block is drawn at rest. The conversion from 20 m/h to millimetres per second is mine."
+  },
+  "facts": [
+   [
+    "Muscles",
+    "circular and longitudinal, opposing"
+   ],
+   [
+    "Skeleton",
+    "fluid-filled coelom"
+   ],
+   [
+    "Anchors",
+    "bristles on shortened segments"
+   ],
+   [
+    "Reported surface speed",
+    "≈ 20 m/h (≈ 5.6 mm/s) on moist flat ground"
+   ],
+   [
+    "Direction",
+    "forwards or backwards"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Earthworm (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Earthworm"
+   },
+   {
+    "title": "Lumbricus terrestris (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lumbricus_terrestris"
+   },
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   }
+  ],
+  "related": [
+   "soil_worm_circular",
+   "soil_worm_longitudinal",
+   "soil_worm_setae"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_darwin",
+  "title": "Why earthworms matter: Darwin's measurements",
+  "kind": "concept",
+  "template": "thing",
+  "scale_m": 1,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_block",
+   "soil_earthworm"
+  ],
+  "parts": [
+   "soil_worm_cast",
+   "soil_formation"
+  ],
+  "processes": [],
+  "summary": "Charles Darwin measured how much earth worms bring up and found that in a few decades they bury objects on a field several inches deep.",
+  "layers": {
+   "basics": "In 1881 Darwin published a book, The Formation of Vegetable Mould through the Action of Worms, after years of watching them. He found that earthworms swallow soil below and leave it on the surface as casts, and that over the years this buries things. On a field of his near Down, he had spread chalk on the grass, and when he dug a trench 29 years later he found a line of chalk lumps 7 inches (18 cm) below the surface: the soil had risen at an average of 0.22 inch (5.6 mm) a year. He weighed casts collected for a year on two square yards at Leith Hill, Surrey, and calculated 7.56 and 16.1 tons of dry earth per acre per year. He concluded that it may be doubted whether there are many other animals which have played so important a part in the history of the world as these lowly organised creatures.",
+   "deeper": "How many worms? Darwin quoted Hensen's count of 53,767 worms to the acre (133,000 per hectare) in a garden (Hensen believed twice as many as in corn fields) and noted that worms in old pasture had not been counted. Taking 15 tons of casts per acre a year and half Hensen's number of worms, he calculated that each worm would eject about 20 ounces a year. Objects strewn on grass fields were buried 1.9 to 2.2 inches in 10 years in four fields (sandy, swampy and argillaceous pastures) and 0.83 inch in a poor one. He also estimated that worms live chiefly in the surface mould, usually 4 or 5 to 10 and even 12 inches thick, and from time to time burrow far deeper and bring up earth from below. Worms do not work in dry weather in summer, or in winter in severe frosts.",
+   "expert": "Darwin's figures are from a few English sites around 1870 and depend on the soil, the weather and the worm species present (he did not separate species); the density counts are from gardens. Modern work confirms that earthworms improve soil structure, for example in new polders where they had been absent. The sums above are Darwin's own, except the conversion of tons per acre to tonnes per hectare, which are mine (7.56 and 16.1 long tons per acre are about 19 and 40 tonnes per hectare)."
+  },
+  "facts": [
+   [
+    "Chalk buried at Down",
+    "7 inches in 29 years (≈ 0.22 inch a year ≈ 5.6 mm a year)"
+   ],
+   [
+    "Castings (Leith Hill)",
+    "7.56 and 16.1 tons per acre per year"
+   ],
+   [
+    "Hensen's count (a garden)",
+    "53,767 worms per acre (133,000 per hectare)"
+   ],
+   [
+    "Objects buried in 10 years",
+    "0.83 to 2.2 inches"
+   ],
+   [
+    "Year",
+    "1881"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ],
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   },
+   {
+    "title": "Soil structure (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_structure"
+   }
+  ],
+  "related": [
+   "soil_formation",
+   "soil_decomposition",
+   "bio_soil_ecology"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_woodlouse",
+  "title": "Woodlouse (Oniscus asellus)",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.015,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_block",
+   "bio_arachnids_crustaceans"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The common woodlouse is not an insect but a land-living crustacean, a relative of crabs and shrimps; it eats dead plants and rotting wood.",
+  "layers": {
+   "basics": "Lift a flowerpot or a log and you will often find woodlice. A common woodlouse grows to about 16 millimetres long and 6 wide. It is flat, shiny brown-grey, made of overlapping plates, and has seven pairs of legs and two pairs of feelers (antennae); the second pair is long and the first so short that you can hardly see it. It is a crustacean, so closer to a crab than to a beetle; it breathes with modified limbs under its tail and loses water easily, which is why it gathers in damp places. It eats dead plant matter, especially partly decayed leaves, and also eats its own droppings to extract more from them. In this way it chews litter into small pieces for the fungi and bacteria that follow.",
+   "deeper": "Woodlice (Oniscidea) have a head, a pereon (thorax) of seven segments, each with a pair of legs, and a pleon (abdomen) of five segments plus a pleotelson. Some or all of the five pairs of pleopods are adapted for breathing. Woodlice are mainly detritivores that eat dead plant matter and reingest their faeces (coprophagy). Unlike earthworms, they fragment plant matter into small pieces without grinding it finely, so they contribute little to mineralisation; they are a major contributor to the humification process. They often gather under objects, which reduces moisture loss. Most woodlice cannot roll into a ball.",
+   "expert": "The model woodlouse is 15 mm long and 6.5 mm wide, with 13 body plates, two eyes, seven pairs of legs, long second antennae and two tail points (uropods); its plates are simplified and the short first antennae and the breathing structures under the tail are not drawn. Its chitin skeleton can be viewed as a molecule unit."
+  },
+  "facts": [
+   [
+    "Length",
+    "up to 16 mm (model: 15 mm)"
+   ],
+   [
+    "Width",
+    "6 mm (model: 6.5 mm)"
+   ],
+   [
+    "Legs",
+    "7 pairs"
+   ],
+   [
+    "Antennae",
+    "2 pairs"
+   ],
+   [
+    "Eats",
+    "dead plant matter; also its own droppings"
+   ],
+   [
+    "Group",
+    "crustacean (not an insect)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Oniscus asellus, the common woodlouse (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Oniscus_asellus"
+   },
+   {
+    "title": "Woodlouse (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Woodlouse"
+   }
+  ],
+  "related": [
+   "soil_decomposition",
+   "bio_arachnids_crustaceans",
+   "bee_chitin"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_springtail",
+  "title": "Springtails (Collembola)",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.0018,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_block",
+   "bio_entomology_insects"
+  ],
+  "parts": [
+   "soil_springtail_furca"
+  ],
+  "processes": [],
+  "summary": "Springtails are wingless, six-legged animals 1 to 2 millimetres long that live in huge numbers in leaf litter and soil, eating fungal threads and dead plant matter.",
+  "layers": {
+   "basics": "On the litter on the lawn, and in the crumbs of the topsoil, are specks the size of a full stop that jump when disturbed. They are springtails. A soil-living springtail is 1 to 2 millimetres long. Estimates of their numbers reach 100,000 in a square metre of ground. They live in leaf litter and rotting material and most eat fungal threads and spores as well as dead plant matter; a few eat other tiny animals. They are not insects in the strict sense but a related group, and there are more than 9,000 species. In the block there are about 16 of them in the litter and on the crumbs.",
+   "deeper": "Most springtails have a forked 'spring' (furcula) folded under the body and held under tension by a small catch (the retinaculum). When the catch lets go, the furcula snaps against the ground and flings the animal into the air; the whole action takes a few milliseconds. Many have a number of ocelli (simple eyes) from one to eight on each side of the head; blind species, mostly subterranean, lack them. They are free-living and moisture-loving. Atmobiotic (surface-dwelling) species are generally 8 to 10 mm long, hemiedaphic (soil-dwelling) species 1 to 2 mm.",
+   "expert": "The model springtail is 1.8 mm long, a drawing of an elongated soil species: body in 10 parts, four-segmented antennae drawn as bent tubes, six legs, and a folded spring. Eyes and the other details are not drawn. The spring is a separate part. The positions and the number (16) are illustrative."
+  },
+  "facts": [
+   [
+    "Length",
+    "1 to 2 mm for soil species (model: 1.8 mm)"
+   ],
+   [
+    "Legs",
+    "6"
+   ],
+   [
+    "Spring",
+    "furcula held by a catch; a jump takes a few milliseconds"
+   ],
+   [
+    "Density (estimate)",
+    "up to ≈ 100,000 per m²"
+   ],
+   [
+    "Species",
+    "more than 9,000"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Springtail (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Springtail"
+   }
+  ],
+  "related": [
+   "soil_decomposition",
+   "soil_hyphae",
+   "bio_entomology_insects"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_springtail_furca",
+  "title": "Springtail: the spring (furcula)",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0006,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_springtail"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The spring is a forked tail-like limb folded under the springtail's body; it is held under tension and, when released, flings the animal into the air in a few milliseconds.",
+  "layers": {
+   "basics": "The reason springtails have their name is a small forked piece under the end of the body. It is held bent under the belly like a loaded spring. When the animal is startled, it lets go and the fork flicks against the ground, throwing the animal up and away faster than you can follow.",
+   "deeper": "The furcula is held under tension by the retinaculum (also called the tenaculum). When released, it snaps against the substrate and flings the animal into the air; the action takes a few milliseconds.",
+   "expert": "The model draws two short rods folded under the rear of the animal; real furcula have a base and two slender branches."
+  },
+  "facts": [
+   [
+    "Part of",
+    "springtails (Collembola)"
+   ],
+   [
+    "Held by",
+    "a small catch (retinaculum)"
+   ],
+   [
+    "Action time",
+    "a few milliseconds"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Springtail (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Springtail"
+   }
+  ],
+  "related": [
+   "soil_springtail"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_mite",
+  "title": "Oribatid mites (moss mites)",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.0007,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_block",
+   "bio_arachnids_crustaceans"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Oribatid mites are tiny, hard-shelled, eight-legged soil animals, 0.2 to 1.4 millimetres long, that eat dead plant matter and fungi and help spread fungi through the soil.",
+  "layers": {
+   "basics": "On the leaf litter and between the crumbs live mites, relatives of spiders. The oribatid mites are the shiny, brown, dome-shaped ones, 0.2 to 1.4 millimetres long. Many of them have a hard, mineral-strengthened shell, like a tiny armoured beetle. They eat a wide variety of dead plant and fungal material, and are essential for breaking down dead matter and spreading fungi. They develop slowly: from egg to adult may take from several months to two years in forest soil, and the adults live a relatively long time.",
+   "deeper": "Oribatida range from 0.2 to 1.4 mm. Many have a mineralised exoskeleton as adults, some with wing-like flaps (pteromorphae) over the legs, and some can tuck in their legs. They feed on living and dead plant and fungal material (non-parasitic ones; a few are predatory). Density is highest in forests with thick organic layers.",
+   "expert": "The model mite is 0.7 mm long, a dome with a small head and eight legs, with no further detail; 10 of them are placed on the litter and the crumbs, which is illustrative. Adult mites have eight legs, as arachnids do."
+  },
+  "facts": [
+   [
+    "Length",
+    "0.2 to 1.4 mm (model: 0.7 mm)"
+   ],
+   [
+    "Legs (adult)",
+    "8"
+   ],
+   [
+    "Shell",
+    "mineral-strengthened in many"
+   ],
+   [
+    "Egg to adult",
+    "several months to two years (forest soil)"
+   ],
+   [
+    "Eats",
+    "dead plants, fungi"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Oribatida, the oribatid mites (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Oribatida"
+   }
+  ],
+  "related": [
+   "soil_decomposition",
+   "bio_arachnids_crustaceans"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_beetle",
+  "title": "Ground beetle (Pterostichus madidus)",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.016,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_block",
+   "bio_entomology_insects"
+  ],
+  "parts": [
+   "soil_beetle_head",
+   "soil_beetle_legs"
+  ],
+  "processes": [],
+  "summary": "A black ground beetle 14 to 20 millimetres long, common in gardens and grassland, which hides under stones and in grass and is most often seen in summer.",
+  "layers": {
+   "basics": "This glossy black beetle is a common ground beetle of British gardens and grassland. It is usually 14 to 20 millimetres long, black with reddish-brown to black legs, and you will find it under stones, in grass or in loose bark. It is most abundant in summer and breeds in autumn. In Britain it is also called the rain beetle, because it tends to appear when rain is coming. Click its head, its wing cases or its legs for the parts.",
+   "deeper": "The beetle's front wings are hardened into wing cases (elytra) that cover the folded flight wings and the abdomen; here the wing cases carry grooves running lengthwise. The skeleton is on the outside, made of chitin, which can be viewed as a molecule unit. The species is native to Europe.",
+   "expert": "The model beetle is 16 mm long, drawn from the general form of a ground beetle: head with large eyes, jaws and antennae, a pronotum (the shield over the thorax), wing cases with lengthwise grooves (nine are drawn on each side as a simplification) and three pairs of legs. Details such as the antennal joints and the leg spines are not drawn."
+  },
+  "facts": [
+   [
+    "Length",
+    "14 to 20 mm (model: 16 mm)"
+   ],
+   [
+    "Colour",
+    "black; legs red-brown to black"
+   ],
+   [
+    "Habitat",
+    "gardens, grassland, dry woodland"
+   ],
+   [
+    "Season",
+    "most abundant in summer; breeds in autumn"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Pterostichus madidus (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Pterostichus_madidus"
+   }
+  ],
+  "related": [
+   "bee_chitin",
+   "bio_entomology_insects"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_beetle_head",
+  "title": "Ground beetle: head, jaws and antennae",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.004,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_beetle"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The beetle's head has two large eyes, a pair of jaws that bite sideways, and two antennae for smell and touch.",
+  "layers": {
+   "basics": "The head carries two eyes, one on each side, two long feelers (antennae) that taste and smell the air and ground, and the jaws (mandibles), which open and close sideways like pincers.",
+   "deeper": "Beetle mouthparts are chewing mouthparts: the mandibles move sideways, not up and down, and the antennae carry the sense organs for smell and touch. The head is a rigid capsule of chitin.",
+   "expert": "The model head is 3.6 mm long with eyes, two curved jaws and two antennae; no mouthparts other than the jaws are drawn."
+  },
+  "facts": [
+   [
+    "Eyes",
+    "2"
+   ],
+   [
+    "Jaws",
+    "2 mandibles, move sideways"
+   ],
+   [
+    "Antennae",
+    "2, for smell and touch"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Pterostichus madidus (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Pterostichus_madidus"
+   }
+  ],
+  "related": [
+   "bee_compound_eye",
+   "bee_chitin"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_beetle_legs",
+  "title": "Ground beetle: legs",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.01,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_beetle"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A ground beetle has three pairs of long legs and runs fast over the ground.",
+  "layers": {
+   "basics": "The beetle has six legs, three on each side, long and slender, with reddish-brown to black colour. It is found on the ground, under stones and in grass.",
+   "deeper": "Insects and other arthropods have jointed legs: the segments are joined by hinge joints and moved by muscles inside the hard skeleton.",
+   "expert": "The legs are drawn as one tapered tube each, without the joints."
+  },
+  "facts": [
+   [
+    "Legs",
+    "6 (3 pairs)"
+   ],
+   [
+    "Colour",
+    "reddish-brown to black"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Pterostichus madidus (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Pterostichus_madidus"
+   }
+  ],
+  "related": [
+   "soil_beetle"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_crumb",
+  "title": "Inside a soil crumb",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.002,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_crumbs",
+   "soil_horizon_a"
+  ],
+  "parts": [
+   "soil_sand",
+   "soil_silt",
+   "soil_clay",
+   "soil_humus",
+   "soil_water_film",
+   "soil_air_pore",
+   "soil_bacteria",
+   "soil_nematode",
+   "soil_hyphae"
+  ],
+  "processes": [],
+  "summary": "A window of about 2 millimetres into one soil crumb: sand grains, many smaller grains of silt, flakes of clay, dark humus, a film of water, air pores, bacteria, a nematode, a fungal thread and a root hair.",
+  "layers": {
+   "basics": "A crumb of topsoil looks like a brown lump, but under a microscope it is a crowded city. The big stones are sand grains. Between them are many smaller grains of silt and, smaller than anything you can see even in this view, flakes of clay. Everything is glued together by dark humus (decayed plant matter), fungal threads and bacterial slime. A thin film of water coats the grains, and the gaps that are not full of water are filled with air. Bacteria live on the film. A nematode, a microscopic worm, grazes on them. A root hair reaches in to drink. All are drawn at their own sizes against a scale bar. Click anything in the scene.",
+   "deeper": "The size classes are standard: sand grains 63 micrometres to 2 mm (fine 63 to 200, medium 200 to 630, coarse 630 to 2,000), silt 2 to 63 micrometres, clay below 2 micrometres. The sand of inland soils is mostly quartz, the most common mineral resistant to weathering. A bacterium is 0.5 to 5 micrometres long; a fungal thread 4 to 6 (2 to 10) micrometres wide; a root hair 15 to 17 micrometres wide and 80 to 1,500 long; free-living nematodes are often under 2.5 mm long, some about 1 mm. Aggregation is helped by humus, clay, iron oxides, fungal hyphae and biofilms.",
+   "expert": "Drawn to scale: the size classes of the mineral grains, the width of the bacteria, the thread and the root hair. Illustrative: the number and places of every kind of thing (a real crumb holds far more bacteria and far fewer large organisms than this), the thickness of the water film and humus coats, the pore sizes, and the nematode's width. Clay flakes are drawn at 1.8 micrometres, just under the clay limit; real clay particles can be much smaller and thinner. The scene shows a window of the crumb, not the whole crumb, which is 4 to 9 mm across in the block."
+  },
+  "facts": [
+   [
+    "Field of view",
+    "≈ 2.2 mm"
+   ],
+   [
+    "Sand",
+    "63 µm to 2 mm (quartz mostly)"
+   ],
+   [
+    "Silt",
+    "2 to 63 µm"
+   ],
+   [
+    "Clay",
+    "under 2 µm"
+   ],
+   [
+    "Bacteria",
+    "0.5 to 5 µm"
+   ],
+   [
+    "Fungal thread",
+    "4 to 6 µm wide"
+   ],
+   [
+    "Root hair",
+    "15 to 17 µm wide"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ],
+   [
+    "BIO",
+    "22.2",
+    "22-2-structure-of-prokaryotes-bacteria-and-archaea"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Grain size (Wikipedia), ISO 14688-1:2017 classes",
+    "url": "https://en.wikipedia.org/wiki/Grain_size"
+   },
+   {
+    "title": "Sand (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Sand"
+   },
+   {
+    "title": "Soil structure (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_structure"
+   },
+   {
+    "title": "Nematode (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Nematode"
+   },
+   {
+    "title": "Soil biology (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_biology"
+   },
+   {
+    "title": "Ectomycorrhiza (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Ectomycorrhiza"
+   }
+  ],
+  "related": [
+   "soil_crumbs",
+   "soil_pores"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_sand",
+  "title": "Sand grains",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0004,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_crumb"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Sand grains are the big mineral grains of soil, 63 micrometres to 2 millimetres across; in soils like this one they are mostly quartz.",
+  "layers": {
+   "basics": "These are the large, rounded lumps in the crumb. Each is a piece of rock that weathering has broken off. In most inland soils the sand is mostly quartz, because quartz does not dissolve or crumble easily and so outlasts other minerals. Sand does not hold much water or nutrients, but it gives soil its framework and its pores. The quartz crystal can be viewed from the pebble bed of the block.",
+   "deeper": "ISO 14688 grades sand as fine (63 to 200 micrometres), medium (200 to 630) and coarse (630 to 2,000). Silica as quartz is the most common component of sand in inland settings, because of its chemical inertness and hardness; calcium carbonate is the second most common type, and the composition is highly variable.",
+   "expert": "The three grains are drawn 650, 420 and 500 micrometres across, which is coarse and medium sand."
+  },
+  "facts": [
+   [
+    "Size",
+    "63 µm to 2 mm"
+   ],
+   [
+    "Mostly",
+    "quartz (SiO₂) in inland soils"
+   ],
+   [
+    "Holds",
+    "little water and few nutrients"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Grain size (Wikipedia), ISO 14688-1:2017 classes",
+    "url": "https://en.wikipedia.org/wiki/Grain_size"
+   },
+   {
+    "title": "Sand (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Sand"
+   }
+  ],
+  "related": [
+   "rock_grains",
+   "soil_silt"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_silt",
+  "title": "Silt grains",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 3e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_crumb"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Silt grains are mineral grains between 2 and 63 micrometres: too small to feel as separate grains, they give soil a smooth, floury feel.",
+  "layers": {
+   "basics": "Silt is the in-between size: finer than sand, coarser than clay. The grains are the small angular specks packed around the sand grains. You can feel silt as smoothness when you rub a damp soil between your fingers.",
+   "deeper": "On the ISO scale silt is 2 to 63 micrometres. Silt, sand and clay together make up the mineral part of the soil, and their proportions give a soil its texture.",
+   "expert": "The scene draws 60 grains between 14 and 40 micrometres; the number and shapes are illustrative."
+  },
+  "facts": [
+   [
+    "Size",
+    "2 to 63 µm"
+   ],
+   [
+    "Feel",
+    "smooth, floury"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Grain size (Wikipedia), ISO 14688-1:2017 classes",
+    "url": "https://en.wikipedia.org/wiki/Grain_size"
+   }
+  ],
+  "related": [
+   "soil_sand",
+   "soil_clay"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_humus",
+  "title": "Humus coats",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_crumb"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Humus is the dark, sticky, decayed remains of plants and animals that coats the grains and glues crumbs together.",
+  "layers": {
+   "basics": "The dark film on the grains in the crumb is humus. It is what is left of dead matter when the decomposers have taken what they can: a complex mixture, not a single substance. It sticks the mineral grains together, holds water and nutrient ions, and gives topsoil its dark colour.",
+   "deeper": "Most soil organic matter is a complex assemblage of small organic molecules collectively called humus. It holds more nutrients and water per gram than clay minerals, and most soil cation-exchange capacity comes from carboxylic groups on organic matter (100 to 300 meq per 100 g for humus). Organic matter favours aggregation by forming stable bridges between mineral particles.",
+   "expert": "The coats are drawn as thin dark shells; their thickness is illustrative. Humus is a mixture with no single molecule, so no molecule button is offered."
+  },
+  "facts": [
+   [
+    "Is",
+    "a complex mixture of decayed organic matter"
+   ],
+   [
+    "Does",
+    "binds grains, holds water and nutrients"
+   ],
+   [
+    "CEC",
+    "≈ 100 to 300 meq per 100 g"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Soil (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil"
+   },
+   {
+    "title": "Soil structure (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_structure"
+   }
+  ],
+  "related": [
+   "soil_cec",
+   "soil_decomposition"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_water_film",
+  "title": "The water film",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_crumb",
+   "soil_pores"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A thin film of water coats the grains; the dissolved nutrients in it are what roots take up.",
+  "layers": {
+   "basics": "The grains are wet: water sticks to them in a thin film. In it are dissolved the nutrients the plants need. When the soil is moist the film is thick and the small gaps are full; when the soil dries the film thins, and the water left is held so tightly that roots cannot get it. Water is also where bacteria and nematodes swim and feed. Click the water for one of its molecules.",
+   "deeper": "Water that remains after drainage is the field capacity; water below the wilting point is unavailable to plants. Water is a solvent for the ions (ammonium, nitrate, potassium and so on) that plants need.",
+   "expert": "The film is drawn as a thin translucent coat on the big grain; its thickness (10 micrometres here) is much greater than a real film on dry soil and is only illustrative."
+  },
+  "facts": [
+   [
+    "Holds",
+    "dissolved nutrients"
+   ],
+   [
+    "Thickness",
+    "varies with how wet the soil is"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ],
+   [
+    "BIO",
+    "2.2",
+    "2-2-water"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Soil Physical Properties in Healthy Soils (Mississippi State University Extension, P3660)",
+    "url": "https://extension.msstate.edu/sites/default/files/publications/P3660_web.pdf"
+   }
+  ],
+  "related": [
+   "soil_pore_water",
+   "bio_water_properties"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_air_pore",
+  "title": "An air pore",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0001,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_crumb",
+   "soil_pores"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A pore that is not full of water is full of air: the air in soil has more carbon dioxide and less oxygen than the air above it, because roots and soil life breathe in it.",
+  "layers": {
+   "basics": "The dark gaps in the crumb are air pores. Roots, fungi, bacteria and animals all breathe the soil air. They use up oxygen and give off carbon dioxide, so soil air is richer in carbon dioxide than the air above ground. Click the pore to see the carbon dioxide molecule.",
+   "deeper": "Water and gas share the pore space; as soil wets, air is displaced; compaction reduces pore space so that air and water do not reach roots and organisms. Respiration by roots and decomposers releases carbon dioxide into the pores. Darwin noted a great excess of carbonic acid (carbon dioxide) in all soils, especially rich ones.",
+   "expert": "The pore is drawn as a dark lens 200 micrometres across; the sizes of real pores range widely."
+  },
+  "facts": [
+   [
+    "Holds",
+    "air: oxygen in, carbon dioxide out"
+   ],
+   [
+    "Competes with",
+    "water for the same space"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Soil (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil"
+   },
+   {
+    "title": "Soil Physical Properties in Healthy Soils (Mississippi State University Extension, P3660)",
+    "url": "https://extension.msstate.edu/sites/default/files/publications/P3660_web.pdf"
+   },
+   {
+    "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
+    "url": "https://www.gutenberg.org/ebooks/2355"
+   }
+  ],
+  "related": [
+   "soil_pores",
+   "cellular_respiration"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_bacteria",
+  "title": "Soil bacteria",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 2e-06,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_crumb",
+   "soil_handful"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Bacteria are single-celled organisms 0.5 to 5 micrometres long; they do most of the chemical work of the soil and there are about a hundred million in a gram.",
+  "layers": {
+   "basics": "The tiny rods and dots on the grain surfaces are bacteria. They are the most numerous living things in soil: about a hundred million in a gram on average. They live in the film of water, feed on dead matter, and break it down: they are the chief recyclers, along with fungi. Some change nitrogen into forms plants can use. When they break down proteins they release ammonium; click one to see that molecule.",
+   "deeper": "Mean prokaryote density is roughly 10^8 per gram of soil, and a teaspoon of productive soil may hold 100 million to 3 billion. Bacteria carry out the steps of the nitrogen cycle in soil: some fix nitrogen gas, some release ammonium from dead matter (ammonification), Nitrosomonas and Nitrobacter oxidise ammonium to nitrate, and others turn nitrate back to nitrogen gas without oxygen. Nematodes can eat up to 5,000 bacteria a minute.",
+   "expert": "The scene draws about 120 rods 1.6 by 3.5 micrometres; the number is far smaller than in real soil and their positions are illustrative. The bacteria are not identified by species."
+  },
+  "facts": [
+   [
+    "Size",
+    "0.5 to 5 µm"
+   ],
+   [
+    "Number",
+    "≈ 10⁸ per gram (mean)"
+   ],
+   [
+    "Does",
+    "decomposes; nitrogen steps"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "22.2",
+    "22-2-structure-of-prokaryotes-bacteria-and-archaea"
+   ],
+   [
+    "BIO",
+    "22.3",
+    "22-3-prokaryotic-metabolism"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Soil (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil"
+   },
+   {
+    "title": "Soil biology (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Soil_biology"
+   },
+   {
+    "title": "Nitrogen cycle (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Nitrogen_cycle"
+   },
+   {
+    "title": "Nematode (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Nematode"
+   }
+  ],
+  "related": [
+   "bio_bacterial_structure",
+   "bio_bacterial_diversity",
+   "nitrogen_cycle_process",
+   "soil_nitrogen"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_nematode",
+  "title": "A nematode",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.0008,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_crumb",
+   "soil_handful"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Nematodes are microscopic roundworms, often less than 2.5 millimetres long, that graze on bacteria, fungi and other small things in the water film of the soil.",
+  "layers": {
+   "basics": "The long thin worm in the crumb is a nematode, a roundworm. It is not an earthworm, and it is far smaller: most free-living nematodes are less than 2.5 millimetres long and some only about a millimetre. They are very common in soil: often more than a million in a square metre, mostly in the top 15 centimetres. They swim in the film of water around the grains and eat bacteria, fungi, algae and other small things; one can eat up to 5,000 bacteria a minute.",
+   "deeper": "Nematodes are very small, slender worms, bilaterally symmetrical, and often with ridges, rings or bristles on the body. The topsoil of the world holds about 4.4 × 10^20 nematodes. Some soil nematodes reach up to 7 mm.",
+   "expert": "The nematode is drawn 800 micrometres long and 25 micrometres wide, as a plain tube; its width and shape are illustrative."
+  },
+  "facts": [
+   [
+    "Length",
+    "often under 2.5 mm; some ≈ 1 mm; some up to 7 mm"
+   ],
+   [
+    "Number",
+    "often over 10⁶ per m²"
+   ],
+   [
+    "Where",
+    "≈ 90 % in the top 15 cm"
+   ],
+   [
+    "Rate of eating",
+    "up to 5,000 bacteria a minute"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.5",
+    "28-5-superphylum-ecdysozoa-nematodes-and-tardigrades"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Nematode (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Nematode"
+   }
+  ],
+  "related": [
+   "bio_nematodes_arthropods",
+   "soil_decomposition"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_cations",
+  "title": "Positive ions held on clay",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1e-07,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_cec"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Calcium, magnesium, potassium and ammonium ions cling to the negatively charged surfaces of clay plates, held loosely enough that roots and water can swap them for others.",
+  "layers": {
+   "basics": "The coloured balls in the scene near the clay plates are positive ions of plant nutrients: calcium (Ca²⁺), magnesium (Mg²⁺), potassium (K⁺) and ammonium (NH₄⁺). Each is held by the plate's negative charge, together with its shell of water molecules. They are not stuck for good: if another ion arrives in the water they can swap. This is how the clay acts as a store that releases nutrients gradually. Click an ammonium ion to see the molecule.",
+   "deeper": "Cations are held electrostatically in the diffuse layer, keeping their water shells, and are easily displaced by other cations in solution. Calcium, magnesium, potassium and sodium are the base cations; their share of the exchange capacity is the base saturation, which indicates weathering and nutrient availability. A lower pH (more hydrogen ions) reduces variable charge, and so the capacity.",
+   "expert": "The ions are drawn about 200 times larger than real so that you can see them; a hydrated ion is a fraction of a nanometre across. The number, kind and place of the ions are illustrative."
+  },
+  "facts": [
+   [
+    "Held",
+    "Ca²⁺, Mg²⁺, K⁺, Na⁺, NH₄⁺ (and H⁺)"
+   ],
+   [
+    "Held by",
+    "negative charge on clay and humus"
+   ],
+   [
+    "Exchangeable",
+    "yes: swapped with the soil water"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.2",
+    "31-2-the-soil"
+   ],
+   [
+    "BIO",
+    "31.1",
+    "31-1-nutritional-requirements-of-plants"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Cation-exchange capacity (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Cation-exchange_capacity"
+   }
+  ],
+  "related": [
+   "soil_cec",
+   "soil_nitrogen"
+  ],
+  "where": "soil_block"
+ },
+ {
+  "id": "soil_nitrate",
+  "title": "Nitrate in the soil water",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1e-07,
+  "area": "bio_ecology",
+  "parents": [
+   "soil_cec",
+   "soil_nitrogen"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Nitrate carries a negative charge, so clay does not hold it; it stays in the water, where roots take it up and where rain can wash it away.",
+  "layers": {
+   "basics": "The red balls drifting away from the plates are nitrate ions, the form of nitrogen that roots take up most easily. Their charge is negative, like the clay's, so the clay pushes them away instead of holding them. This is why nitrate is easily washed out of the soil by heavy rain into streams and groundwater. Click one to see the nitrate molecule.",
+   "deeper": "Nitrate is highly soluble and soils are highly unable to retain anions, so it can leach to groundwater. It is made by nitrifying bacteria from ammonium and can be turned back to nitrogen gas by denitrifying bacteria in oxygen-poor soil.",
+   "expert": "Ion sizes are exaggerated as on the card of the positive ions; the number and places of the nitrate ions are illustrative."
+  },
+  "facts": [
+   [
+    "Charge",
+    "negative (NO₃⁻)"
+   ],
+   [
+    "Held by clay",
+    "no (repelled)"
+   ],
+   [
+    "Fate",
+    "taken up by roots, leached, or denitrified"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "46.3",
+    "46-3-biogeochemical-cycles"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Nitrogen cycle (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Nitrogen_cycle"
+   },
+   {
+    "title": "Cation-exchange capacity (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Cation-exchange_capacity"
+   }
+  ],
+  "related": [
+   "soil_nitrogen",
+   "nitrogen_cycle_process"
+  ],
+  "where": "soil_block"
  }
 ]
