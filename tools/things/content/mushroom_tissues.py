@@ -29,7 +29,7 @@ for sgn in (1, -1):
                 spo.append(it(sgn * 91, by + sy * .8, z + sz * .8)) if (sy, sz) in ((-4, -4), (4, 4)) or True else None
 gill = {
     'id': 'mushroom_gill', 'title': 'Inside a gill', 'node': 'fa_gill_inside',
-    'blurb': 'A gill cut across, magnified about 500 times. A core of threads in the middle, small supporting cells, and on each face a crowd of club-shaped spore-making cells with spores on their tips. Click a part.',
+    'blurb': 'A gill cut across, A core of threads in the middle, small supporting cells, and on each face a crowd of club-shaped spore-making cells with spores on their tips. Click a part.',
     'note': 'Spore size (about 11 micrometres long; the species range is 9 to 13 by 6.5 to 9) and thread width (2 to 10 micrometres) are published values. The sizes of the club-shaped cells, the thickness of each layer and the number and arrangement of all cells are illustrative; a real gill has vastly more basidia than shown, and the pattern of its core threads is not shown.',
     'bg': '#f3efe6', 'center': [0, 0, 0], 'D_um': 620,
     'labels': [{'text': 'Core of threads (trama)', 'at': [-8, 105, 30], 'pop': 'trama'}, {'text': 'Supporting cells', 'at': [-42, -138, 30], 'pop': 'subhymenium'},
@@ -51,7 +51,7 @@ for r_, y in enumerate((60, 50)):
     for i in range(7): sub_h.append(it(-160 + i * 52 + (r_ * 18), y, rnd.uniform(-20, 20), HALF))
 fl = {
     'id': 'mushroom_flesh', 'title': 'Inside the cap', 'node': 'fa_cap_flesh',
-    'blurb': 'A slice through the cap, magnified about 700 times: a red skin on top, a yellowish layer under it, and below that the white flesh, a loose felt of fungal threads. Click a thread.',
+    'blurb': 'A slice through the cap, : a red skin on top, a yellowish layer under it, and below that the white flesh, a loose felt of fungal threads. Click a thread.',
     'note': 'Thread width (2 to 10 micrometres) is a published value for fungal hyphae in general. The number, direction and layout of the threads are illustrative, and real caps contain other kinds of cell shape; the thicknesses of the skin layers are not measured.',
     'bg': '#f3efe6', 'center': [0, 20, 0], 'D_um': 520,
     'labels': [{'text': 'Red skin (cuticle)', 'at': [-185, 92, 30], 'pop': 'cuticle'}, {'text': 'Yellowish layer', 'at': [-185, 56, 30], 'pop': 'subcuticle'}, {'text': 'Flesh: a felt of threads', 'at': [-185, -20, 30], 'pop': 'flesh'}],
@@ -81,7 +81,7 @@ sugar = [it(*[cell_c(i, 4, k)[0] + 9, cell_c(i, 4, k)[1] + 16, cell_c(i, 4, k)[2
 phos = [it(-235 + i * 52, 68 + rnd.uniform(-6, 6), rnd.uniform(-35, 35)) for i in range(6)]
 ecm = {
     'id': 'mushroom_ecm', 'title': 'A root tip and its fungal partner', 'node': 'fa_ecm',
-    'blurb': 'The outer layers of a mycorrhizal root tip, magnified about 800 times. Soil at the top, then the fungal sleeve (mantle), then the root cells with fungal threads in the gaps between them (Hartig net). Click a part.',
+    'blurb': 'The outer layers of a mycorrhizal root tip, Soil at the top, then the fungal sleeve (mantle), then the root cells with fungal threads in the gaps between them (Hartig net). Click a part.',
     'note': 'Real values: a fungal thread is about 5 micrometres wide (range 2 to 10) and the sleeve is up to about 40 micrometres thick (drawn here as four rows of threads). Everything else is illustrative: root cell size and shape, the number of cells, the depth of the net, the position of the sugar and phosphate particles, and the size of those particles (drawn far too large). Real cells are not boxes.',
     'bg': '#f3efe6', 'center': [-88, 20, 0], 'D_um': 700,
     'labels': [{'text': 'Thread in the soil', 'at': [-230, 190, 50], 'pop': 'soil_hypha'}, {'text': 'Mantle: the fungal sleeve (up to about 40 µm)', 'at': [-290, 70, 55], 'pop': 'mantle'},

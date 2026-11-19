@@ -2,7 +2,7 @@
  "id": "mushroom_ecm",
  "title": "A root tip and its fungal partner",
  "node": "fa_ecm",
- "blurb": "The outer layers of a mycorrhizal root tip, magnified about 800 times. Soil at the top, then the fungal sleeve (mantle), then the root cells with fungal threads in the gaps between them (Hartig net). Click a part.",
+ "blurb": "The outer layers of a mycorrhizal root tip, Soil at the top, then the fungal sleeve (mantle), then the root cells with fungal threads in the gaps between them (Hartig net). Click a part.",
  "note": "Real values: a fungal thread is about 5 micrometres wide (range 2 to 10) and the sleeve is up to about 40 micrometres thick (drawn here as four rows of threads). Everything else is illustrative: root cell size and shape, the number of cells, the depth of the net, the position of the sugar and phosphate particles, and the size of those particles (drawn far too large). Real cells are not boxes.",
  "bg": "#f3efe6",
  "center": [

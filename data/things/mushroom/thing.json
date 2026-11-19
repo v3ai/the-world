@@ -6,7 +6,7 @@
  "node": "park_mushroom",
  "main_part": "cap",
  "blurb": "A fly agaric, with a half-open one and a button beside it. Click the cap, the white warts, the gills, the ring or the swollen base. Use the layer buttons to cut it in half, see the threads underground, or follow how it grows.",
- "model_note": "A model built from typical measurements of the species, not a scan of one mushroom. The cap is 14 cm across (the species ranges from about 5 to 30 cm); the number of gills and warts is chosen. Underground, the fungal threads are drawn about 500 times thicker than they are.",
+ "model_note": "A model built from typical measurements of the species, not a scan of one mushroom. The cap is 14 cm across (the species ranges from about 5 to 30 cm); the number of gills and warts is chosen. Underground, the fungal threads are drawn several hundred times thicker than they are.",
  "size_m": {
   "cap_diameter": 0.14,
   "height": 0.16,
@@ -154,7 +154,7 @@
       "node": "bio_soil_ecology"
      }
     ],
-    "note": "Fungal threads are drawn about 500 times thicker than real; root tips are drawn larger than life too."
+    "note": "Fungal threads are drawn several hundred times thicker than real; root tips are drawn larger than life too."
    }
   },
   {
@@ -280,7 +280,7 @@
    "at": [
     0.17,
     0.024,
-    0.0005
+    -0.0195
    ],
    "label": "Inside the button",
    "r": 0.0025,
