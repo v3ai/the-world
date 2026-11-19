@@ -777,7 +777,7 @@ function thModeFor(T, pd) {   // a layered part is revealed in place; otherwise 
 function thClearView(F, id, own) {
   if (cam.A !== F || !F.C || fly) return;
   const P = new V3().copy(cam.T), d0 = cam.dir.clone(), up = F.up || new V3(0, 1, 0), at = () => { for (const f of drawn) placeFrameCam(f); const v = P.clone().sub(F.C).project(F.cam); return pickAt((v.x + 1) / 2 * W, (1 - v.y) / 2 * H); };
-  const blocked = h => !!(h && h.frame && h.meters < cam.D * .97 && (h.frame !== F || (own && h.obj.userData.node !== id && (h.obj.userData.shown || 0) >= .35)));   // something nearer than the target: another frame's, or (a second look, once the layers have settled) a solid part of this thing's own that is not it
+  const blocked = h => !!(h && h.frame && h.meters < cam.D * .97 && (h.frame !== F || (own && h.obj.userData.node !== id && !h.obj.userData.resolve && (h.obj.userData.shown || 0) >= .35)));   // something nearer than the target: another frame's, or (a second look, once the layers have settled) a solid part of this thing's own that is not it
   if (!blocked(at())) return;
   const az0 = Math.atan2(d0.z, d0.x);
   for (const el of [.45, .9, .1, -.3]) for (let k = 0; k < 8; k++) {
