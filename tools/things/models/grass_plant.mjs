@@ -29,7 +29,7 @@ export function buildPlant(ctx) {
       const b = grassBlade({ P0, az, tilt0: .1 + .05 * k, tilt1: [1.25, 1.05, .75][kk] + R.range(-.15, .15), len, W, rows: Math.max(6, Math.round(len * 90)), across: 6 });
       o.bu.push(b.up); o.bd.push(b.down);
       const bm = grassBlade({ P0, az, tilt0: .1, tilt1: [1.25, 1.05, .75][kk], len, W, rows: 4, across: 1, ribAmp: 0 }); o.bum.push(bm.up); o.bdm.push(bm.down);
-      const bf = grassBlade({ P0, az, tilt0: .1, tilt1: [1.25, 1.05, .75][kk], len, W: W * 1.6, rows: 2, across: 1, ribAmp: 0 }); o.farb.push(bf.up);
+      const bf = grassBlade({ P0, az, tilt0: .1, tilt1: [1.25, 1.05, .75][kk], len, W: W * 1.6, rows: 4, across: 1, ribAmp: 0 }); o.farb.push(bf.up);
       if (!young) {
         o.lig.push(sheath({ y0: y1 - .0004, y1: y1 + M.ligule, r0: r1 * .92, r1: r1 * .95, a0: -(az + Math.PI), wrap: 2.6, rows: 1, seg: 8 }));
         const S = [-Math.sin(az), 0, Math.cos(az)];

@@ -729,44 +729,6 @@
    "tris": 8232
   },
   {
-   "id": "blade_up_mid",
-   "name": "Leaf blade, upper surface",
-   "system": "blades",
-   "node": "grass_blade_upper",
-   "color": "#4d8a2e",
-   "priority": 1.7,
-   "solid": false,
-   "noink": true,
-   "mesh": "blade_up_mid",
-   "lod": "mid",
-   "center": [
-    -0.0122,
-    0.1077,
-    0.0122
-   ],
-   "radius": 0.1781,
-   "tris": 496
-  },
-  {
-   "id": "blade_down_mid",
-   "name": "Leaf blade, underside",
-   "system": "blades",
-   "node": "grass_blade_under",
-   "color": "#74b04a",
-   "priority": 1.7,
-   "solid": false,
-   "noink": true,
-   "mesh": "blade_down_mid",
-   "lod": "mid",
-   "center": [
-    -0.0122,
-    0.1075,
-    0.0123
-   ],
-   "radius": 0.1781,
-   "tris": 496
-  },
-  {
    "id": "far_blades",
    "name": "Leaf blades",
    "system": "blades",
@@ -776,15 +738,15 @@
    "solid": false,
    "noink": true,
    "mesh": "far_blades",
-   "lod": "far",
+   "lod": "mid+far",
    "double": true,
    "center": [
-    -0.013,
-    0.1074,
-    0.0133
+    -0.0122,
+    0.1075,
+    0.0122
    ],
-   "radius": 0.1806,
-   "tris": 248
+   "radius": 0.1781,
+   "tris": 496
   },
   {
    "id": "culm_blade_up",
@@ -855,7 +817,7 @@
    "noink": true,
    "mesh": "dead_leaves",
    "double": true,
-   "lod": "near+mid",
+   "lod": "near",
    "center": [
     -0.0086,
     0.0176,
@@ -885,26 +847,6 @@
    "tris": 2976
   },
   {
-   "id": "sheaths_mid",
-   "name": "Leaf sheaths",
-   "system": "sheaths",
-   "node": "grass_sheath",
-   "color": "#9ec06a",
-   "priority": 1.7,
-   "solid": false,
-   "noink": true,
-   "mesh": "sheaths_mid",
-   "double": true,
-   "lod": "mid",
-   "center": [
-    0.0037,
-    0.0253,
-    -0.0081
-   ],
-   "radius": 0.0949,
-   "tris": 992
-  },
-  {
    "id": "culm_sheaths",
    "name": "Stem leaf sheaths",
    "system": "sheaths",
@@ -923,26 +865,6 @@
    ],
    "radius": 0.1519,
    "tris": 720
-  },
-  {
-   "id": "culm_sheaths_mid",
-   "name": "Stem leaf sheaths",
-   "system": "sheaths",
-   "node": "grass_sheath",
-   "color": "#a4c46f",
-   "priority": 1.7,
-   "solid": false,
-   "noink": true,
-   "mesh": "culm_sheaths_mid",
-   "double": true,
-   "lod": "mid+far",
-   "center": [
-    0.001,
-    0.2308,
-    0.0382
-   ],
-   "radius": 0.1517,
-   "tris": 108
   },
   {
    "id": "ligules",
@@ -1071,7 +993,7 @@
    "solid": false,
    "noink": true,
    "mesh": "culm_nodes",
-   "lod": "near+mid",
+   "lod": "near",
    "center": [
     0.0025,
     0.1958,
@@ -1942,10 +1864,10 @@
   }
  ],
  "stats": {
-  "parts": 62,
-  "uniqueMeshTris": 53054,
+  "parts": 58,
+  "uniqueMeshTris": 51210,
   "nearTris": 61212,
-  "midTris": 5038,
-  "farTris": 2444
+  "midTris": 2584,
+  "farTris": 2584
  }
 }
