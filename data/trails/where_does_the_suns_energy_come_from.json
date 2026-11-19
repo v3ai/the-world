@@ -5,83 +5,227 @@
  "theme": "Energy and light",
  "question": "Where does the Sun's energy come from?",
  "teaser": "Follow a ray of sunlight back to the core of the Sun, to the tiny particles that make it shine, and on to the neutrinos passing through you.",
- "keywords": ["sun", "energy", "fusion", "star", "sunlight", "hydrogen", "helium", "neutrino", "weak force", "nuclear", "core", "shine"],
- "scales": ["the park", "a proton"],
+ "keywords": [
+  "sun",
+  "energy",
+  "fusion",
+  "star",
+  "sunlight",
+  "hydrogen",
+  "helium",
+  "neutrino",
+  "weak force",
+  "nuclear",
+  "core",
+  "shine"
+ ],
+ "scales": [
+  "the park",
+  "a proton"
+ ],
  "minutes": 8,
  "stops": [
   {
    "title": "Sunlight in the park",
    "scale": "the park",
-   "where": {"view": {"frame": "park", "point": [0, 1, 0], "D": 60}},
-   "expect": {"frame": "Greenwich Park"},
-   "text": ["Nearly all the energy that living things use arrives as sunlight. Plants and algae turn some of it into sugar, and animals eat the plants.", "That light left the Sun about 8 minutes and 20 seconds before it reaches the park. So where was the energy made?"],
+   "where": {
+    "view": {
+     "frame": "park",
+     "point": [
+      0,
+      1,
+      0
+     ],
+     "D": 60
+    }
+   },
+   "expect": {
+    "frame": "Greenwich Park"
+   },
+   "text": [
+    "Nearly all the energy that living things use arrives as sunlight. Plants and algae turn some of it into sugar, and animals eat the plants.",
+    "That light left the Sun about 8 minutes and 20 seconds before it reaches the park. So where was the energy made?"
+   ],
    "model": "The Sun in the park's sky is a drawn disc, not to scale.",
    "notice": "Look at the shadows under the trees. They point away from the Sun, which is the source of all this light.",
-   "deeper": [{"label": "The Sun", "node": "park_sun"}]
+   "deeper": [
+    {
+     "label": "The Sun",
+     "node": "park_sun"
+    }
+   ]
   },
   {
    "title": "A star next door",
    "scale": "view about 3 million km",
-   "where": {"landmark": "The Sun"},
-   "expect": {"frame": "The Sun"},
-   "text": ["The Sun is a ball of hot gas about 1.39 million kilometres across, which is 109 times the width of Earth. It holds 99.8 percent of all the mass in the Solar System.", "Its surface is at about 5,500 degrees Celsius. The gas there is far too thin and cool for the energy to be made at the surface."],
+   "where": {
+    "landmark": "The Sun"
+   },
+   "expect": {
+    "frame": "The Sun"
+   },
+   "text": [
+    "The Sun is a ball of hot gas about 1.39 million kilometres across, which is 109 times the width of Earth. It holds 99.8 percent of all the mass in the Solar System.",
+    "Its surface is at about 5,500 degrees Celsius. The gas there is far too thin and cool for the energy to be made at the surface."
+   ],
    "notice": "Look at the grainy surface. Each granule is a cell of hot gas about 1,000 kilometres across.",
-   "deeper": [{"label": "The Sun", "node": "sun"}, {"label": "The Sun's surface", "node": "sunPhoto"}]
+   "deeper": [
+    {
+     "label": "The Sun",
+     "node": "sun"
+    },
+    {
+     "label": "The Sun's surface",
+     "node": "sunPhoto"
+    }
+   ]
   },
   {
    "title": "Layers of the Sun",
    "scale": "view about 1.2 million km",
-   "where": {"landmark": "Inside the Sun (cut-away)"},
-   "expect": {"frame": "The Sun"},
-   "text": ["Cut open, the Sun has three main layers. The outer one boils like a pot of soup, with hot gas rising and cool gas sinking. Below it is a layer where light creeps outward by being absorbed and re-emitted again and again.", "Energy from the middle takes tens of thousands of years or more to get out. One standard estimate is about 170,000 years."],
+   "where": {
+    "landmark": "Inside the Sun (cut-away)"
+   },
+   "expect": {
+    "frame": "The Sun"
+   },
+   "text": [
+    "Cut open, the Sun has three main layers. The outer one boils like a pot of soup, with hot gas rising and cool gas sinking. Below it is a layer where light creeps outward by being absorbed and re-emitted again and again.",
+    "Energy from the middle takes tens of thousands of years or more to get out. One standard estimate is about 170,000 years."
+   ],
    "model": "A cut-away diagram. The radii, temperatures and densities come from a standard model of the Sun, and the colours are a temperature scale, not what you would see.",
    "notice": "Click each layer to see its temperature and density.",
-   "deeper": [{"label": "Radiative zone", "node": "sunRadiative"}, {"label": "Convective zone", "node": "sunConvective"}]
+   "deeper": [
+    {
+     "label": "Radiative zone",
+     "node": "sunRadiative"
+    },
+    {
+     "label": "Convective zone",
+     "node": "sunConvective"
+    }
+   ]
   },
   {
    "title": "The core",
    "scale": "view about 260,000 km",
-   "where": {"landmark": "The Sun's core"},
-   "expect": {"frame": "The Sun"},
-   "text": ["Only the core is hot and dense enough for nuclear fusion. It reaches about 15.7 million kelvin at the centre, and about 99 percent of the Sun's power is made within a quarter of its radius.", "Fusion turns hydrogen nuclei into helium, and a little mass becomes energy each time. In total the Sun turns about 4 million tonnes of matter into energy every second."],
+   "where": {
+    "landmark": "The Sun's core"
+   },
+   "expect": {
+    "frame": "The Sun"
+   },
+   "text": [
+    "Only the core is hot and dense enough for fusion: it reaches about 15.7 million kelvin at the centre, and about 99 percent of the Sun's power is made within a quarter of its radius. Fusion joins four hydrogen nuclei into one helium nucleus, which has about 0.7 percent less mass than the four nuclei it came from. That lost mass comes out as energy, with E = mc² as the exchange rate. At the Sun's power of 3.83 × 10²⁶ watts, about 4.3 million tonnes of matter are turned into energy every second."
+   ],
    "model": "The temperatures and densities come from a standard solar model, not from direct measurement of the core.",
    "notice": "Look at the centre of the diagram: that is where nearly all of the power is made.",
-   "deeper": [{"label": "The Sun's core", "node": "sunCore"}]
+   "deeper": [
+    {
+     "label": "The Sun's core",
+     "node": "sunCore"
+    }
+   ]
   },
   {
    "title": "Bare nuclei and electrons",
    "scale": "about 100 nanometres",
-   "where": {"scene": "sun_plasma"},
-   "expect": {"frame": "lasma"},
-   "text": ["At this size, the centre of the Sun is mostly bare hydrogen and helium nuclei and loose electrons, called a plasma. The heat is so great that atoms cannot hold on to their electrons.", "Fusion needs two protons to get very close, and they repel each other, so it is rare for any one pair, even in the core."],
+   "where": {
+    "scene": "sun_plasma"
+   },
+   "expect": {
+    "frame": "lasma"
+   },
+   "text": [
+    "At this size, the centre of the Sun is mostly bare hydrogen and helium nuclei and loose electrons, a state called a plasma. The heat is so great that atoms cannot hold on to their electrons. Two protons repel each other, and even at 15.7 million kelvin almost every pair is too slow to touch. A rare pair gets through anyway by a quantum effect called tunnelling, which is why fusion happens at all, but slowly."
+   ],
    "model": "Schematic: a small patch of plasma drawn at random, with the particles enlarged. It is not a simulation of the core.",
    "notice": "Read the note on the screen for the temperature, the density and how many particles are drawn compared with the real number.",
-   "deeper": [{"label": "The Sun's core", "node": "sunCore"}]
+   "deeper": [
+    {
+     "label": "The Sun's core",
+     "node": "sunCore"
+    }
+   ]
   },
   {
    "title": "The weak force makes it possible",
    "scale": "below 10 attometres",
-   "where": {"sm": {}},
-   "do": [{"sm": {"mode": "forces", "force": "weak"}}],
-   "expect": {"frame": "Standard Model"},
-   "text": ["For two protons to become part of a helium nucleus, one of them has to turn into a neutron. Only the weak force can do that, by changing a down quark into an up quark through a W boson.", "The weak force is rare and slow, which is why the Sun burns steadily for billions of years instead of exploding all at once."],
+   "where": {
+    "sm": {}
+   },
+   "do": [
+    {
+     "sm": {
+      "mode": "forces",
+      "force": "weak"
+     }
+    }
+   ],
+   "expect": {
+    "frame": "Standard Model"
+   },
+   "text": [
+    "Helium has two protons and two neutrons, so on the way to helium two of the four protons must become neutrons. Only the weak force can do that: it changes an up quark in a proton into a down quark, through a W boson, and a positron and a neutrino come out too. This first step is so rare that the Sun's hydrogen lasts for billions of years. The Sun stays steady for a different reason: the pressure of its hot gas balances its own gravity."
+   ],
    "model": "A diagram of particles and forces, not a picture of them.",
-   "notice": "The highlighted particles feel the weak force. The W boson is the one that carries it.",
-   "deeper": [{"label": "The W boson", "node": "sm_w_boson"}, {"label": "Beta decay", "node": "sm_beta_decay"}]
+   "notice": "The highlighted particles feel the weak force, and the W boson carries it. A proton is two up quarks and a down quark; the weak force turns one up into a down, and the proton becomes a neutron.",
+   "deeper": [
+    {
+     "label": "The W boson",
+     "node": "sm_w_boson"
+    },
+    {
+     "label": "Beta decay",
+     "node": "sm_beta_decay"
+    }
+   ]
   },
   {
    "title": "Neutrinos through you",
    "scale": "a person",
-   "where": {"view": {"frame": "body", "point": [0, 0.9, 0], "D": 3}},
-   "do": [{"card": "sm_nu_e"}],
-   "expect": {"frame": "ody|uman"},
-   "text": ["Each of those changes makes a neutrino, a particle that almost never interacts with matter. About 6 times ten to the tenth solar neutrinos of the commonest kind pass through every square centimetre of you each second.", "You do not feel them. They left the core about 8 minutes ago, while the light made at the same time is still wandering out."],
-   "notice": "Read the neutrino card. Its mass is still not known.",
-   "deeper": [{"label": "Neutrino oscillation", "node": "sm_neutrino_oscillation"}]
+   "where": {
+    "view": {
+     "frame": "body",
+     "point": [
+      0,
+      0.9,
+      0
+     ],
+     "D": 3
+    }
+   },
+   "do": [
+    {
+     "card": "sm_nu_e"
+    }
+   ],
+   "expect": {
+    "frame": "ody|uman"
+   },
+   "text": [
+    "Each of those changes makes a neutrino, a particle that almost never interacts with matter. About 6 × 10¹⁰ solar neutrinos of the commonest kind pass through every square centimetre of you each second, and some change type on the way. You do not feel them. They were made in the core about 8 minutes ago, while light made at the same time takes tens of thousands of years or more to wander out."
+   ],
+   "notice": "Read the neutrino card. Its mass is still not known, only that it is far smaller than any other particle's.",
+   "deeper": [
+    {
+     "label": "Neutrino oscillation",
+     "node": "sm_neutrino_oscillation"
+    }
+   ]
   }
  ],
- "answer": "The Sun's energy comes from nuclear fusion in its core, where hydrogen nuclei join to make helium, and the weak force makes the first step possible.",
+ "answer": "The Sun's energy comes from nuclear fusion in its core, where four hydrogen nuclei join to make helium and about 0.7 percent of their mass becomes energy. The weak force makes the first step possible.",
  "unknown": "The standard model of the Sun is tested by neutrinos and by vibrations of its surface, but the details of its inner layers and the Sun's magnetic field are still being worked out.",
- "next": ["where_did_my_atoms_come_from", "what_is_light", "what_holds_everything_together"],
- "sources": ["Cards: sun, sunPhoto, sunRadiative, sunCore, park_sun (499 s calculated), sm_w_boson, sm_beta_decay, sm_nu_e (6e10 per cm2 per s, PDG)", "Sun frame note: standard solar model (central 15.7 million K); 170,000 years is 'one standard estimate' on the card"]
+ "next": [
+  "where_did_my_atoms_come_from",
+  "what_is_light",
+  "what_holds_everything_together"
+ ],
+ "sources": [
+  "Cards: sun (4.3 million tonnes per second = 3.83e26 W / c^2, calculated), sunPhoto, sunRadiative (170,000 years: one standard estimate), sunCore, park_sun (499 s calculated), sm_w_boson, sm_beta_decay, sm_nu_e (6e10 per cm2 per s, PDG)",
+  "Sun frame note: standard solar model (central 15.7 million K)",
+  "0.7 percent: calculated from atomic masses, (4 x 1.007825 - 4.002603) / (4 x 1.007825) = 0.71 percent",
+  "Tunnelling and the weak first step: https://arxiv.org/pdf/2012.11620 (the pp-chain rate depends on the weak cross section and the tunnelling probability); pp neutrino flux 5.98e10 per cm2 per s in the standard solar model and Borexino measurement (6.6 +- 0.7)e10, with a survival probability of about 0.64, arXiv:1508.05379"
+ ]
 }

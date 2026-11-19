@@ -3,7 +3,7 @@
  "order": 20,
  "theme": "Living things",
  "question": "Why is a leaf green?",
- "teaser": "Go from an oak tree into one of its leaves, then into a single cell and the molecule that gives the colour.",
+ "teaser": "Go from an oak tree into one of its leaves and the molecule that gives the colour, then find out which colours it takes in and what happens to the green.",
  "keywords": [
   "leaf",
   "green",
@@ -18,7 +18,8 @@
  ],
  "scales": [
   "a tree",
-  "a molecule"
+  "a molecule",
+  "sunlight"
  ],
  "minutes": 6,
  "stops": [
@@ -40,10 +41,10 @@
     "thing": "oak"
    },
    "text": [
-    "A mature oak carries tens of thousands of leaves. Each leaf is a thin, flat solar panel and a small chemical factory: it takes in light and carbon dioxide and makes sugar for the whole tree."
+    "An oak is covered in leaves: this model draws about 9,500, and a real tree has more. Each leaf is a thin, flat sheet that catches light, a little like a solar panel, and a small chemical factory. It takes in light, water and carbon dioxide and makes sugar for the whole tree."
    ],
    "model": "A procedural model of a typical English oak, not a scan of one real tree.",
-   "notice": "Look at how many leaves there are and how they are spread out to catch light.",
+   "notice": "Look at how the leaves are spread out so that most of them catch light.",
    "deeper": [
     {
      "label": "English oak",
@@ -96,8 +97,7 @@
     "frame": "eaf"
    },
    "text": [
-    "Cut across, a leaf is only a fraction of a millimetre thick. Under the top skin stand rows of tall cells packed like fence posts, called the palisade layer. They face the sun and are crammed with green parts.",
-    "Below them is a looser layer with air gaps, and the pores called stomata on the underside let carbon dioxide in."
+    "Cut across, a leaf is only a fraction of a millimetre thick. Under the top skin stand rows of tall cells packed like fence posts, called the palisade layer, crowded with green parts called chloroplasts. Below them is a looser layer with air gaps, and pores called stomata on the underside let carbon dioxide in."
    ],
    "model": "An illustration of the layers of a typical broadleaf leaf, not a micrograph of an oak leaf. The layer thicknesses and the number of chloroplasts per cell are simplified.",
    "notice": "Click a tall palisade cell. The small green discs inside are chloroplasts.",
@@ -123,7 +123,7 @@
       0,
       0
      ],
-     "D": 4e-05
+     "D": 0.00004
     }
    },
    "do": [
@@ -135,7 +135,7 @@
     "frame": "ell"
    },
    "text": [
-    "A palisade cell holds many dozens of chloroplasts, up to about 100 in some plants. A chloroplast is a small green compartment where light is turned into chemical energy.",
+    "A palisade cell holds many dozens of chloroplasts, up to about 100 in some plants. A chloroplast is a small compartment where light is turned into chemical energy.",
     "The big empty-looking space in a plant cell is a water-filled vacuole, and the stiff cell wall keeps the shape."
    ],
    "model": "Schematic: sizes are right overall, but there are far fewer parts than a real cell has.",
@@ -158,7 +158,7 @@
    },
    "text": [
     "This is chlorophyll a. A flat ring of carbon and nitrogen atoms holds a single magnesium atom at its centre, and a long tail anchors it in the chloroplast's membrane.",
-    "The ring is what catches light, and its structure decides which colours it takes in."
+    "The ring is what catches light, and its structure decides which colours of light it takes in and which it lets by."
    ],
    "model": "A ball-and-stick picture of one molecule. Bond lengths are true, but the atoms are drawn smaller than their real size so that the bonds show, and the colours are a convention, not real colours.",
    "notice": "Look for the single magnesium atom in the middle of the ring.",
@@ -174,7 +174,7 @@
    ]
   },
   {
-   "title": "Light and the colour of leaves",
+   "title": "Which colours it takes in",
    "scale": "the park",
    "where": {
     "view": {
@@ -191,27 +191,64 @@
     "frame": "Greenwich Park"
    },
    "text": [
-    "Sunlight is a mixture of colours. Chlorophyll takes in red and blue light strongly, with absorption peaks near 430 and 660 nanometres, and takes in green light poorly.",
-    "The green that is not used is scattered back by the leaf, so it reaches your eye. That is why leaves look green."
+    "Sunlight is a mixture of colours, and each colour is a different wavelength of light, from about 400 nanometres (violet) to about 700 (red). Chlorophyll a takes in blue light most strongly, with a peak near 430 nanometres, and red light, with a peak near 660, measured in a solvent. In between, in the green, it takes in light much more weakly."
    ],
-   "notice": "Look at the grass and trees around you: the colour you see is the colour the plants did not use.",
+   "notice": "Look at the grass and the trees. Their green is the colour their chlorophyll takes in least.",
    "deeper": [
     {
      "label": "Photosynthesis: overview",
      "node": "bio_photosynthesis_overview"
+    },
+    {
+     "label": "Electromagnetic waves and spectrum",
+     "node": "electromagnetic_waves"
+    }
+   ]
+  },
+  {
+   "title": "What happens to the green",
+   "scale": "about 0.25 mm",
+   "where": {
+    "deep": {
+     "in": "oak",
+     "type": "tissue2",
+     "id": "leaf_section",
+     "at": [
+      0.25,
+      9.88,
+      0.84
+     ],
+     "D": 0.00026
+    }
+   },
+   "expect": {
+    "frame": "eaf"
+   },
+   "text": [
+    "Weakly does not mean not at all. In one study of lettuce leaves, a leaf took in about 93 percent of blue light, 92 percent of red light and 81 percent of green light from LEDs. The rest bounces off cell walls and air gaps or passes through, and what bounces back out of the top is the light you see.",
+    "The green that is taken in is used: in strong white light, green drove photosynthesis in sunflower leaves more efficiently than red, because it reaches deeper chloroplasts."
+   ],
+   "model": "An illustration of the layers of a typical broadleaf leaf, not a micrograph of an oak leaf. The percentages come from lettuce, not oak.",
+   "notice": "A leaf looks green because green is the colour it absorbs least, not because it ignores green.",
+   "deeper": [
+    {
+     "label": "Palisade layer",
+     "node": "oak_leaf_palisade"
     }
    ]
   }
  ],
- "answer": "A leaf is green because chlorophyll takes in red and blue light for making sugar and does not use much green, so the green light is scattered back to your eyes.",
- "unknown": "The colour itself is well understood. A leaf turns only about 1 to 2 percent of the light it receives into new plant material, and whether that can be improved is an active area of research.",
+ "answer": "A leaf looks green because chlorophyll takes in red and blue light much more strongly than green, so the light that bounces back to your eyes is richest in green. A leaf still takes in most of the green light that reaches it, and uses it.",
+ "unknown": "The colour itself is well understood. Why plants use a pigment that takes in green weakly, rather than one that takes in all colours, is still debated.",
  "next": [
   "how_does_a_tree_lift_water",
   "where_does_the_suns_energy_come_from",
   "what_is_light"
  ],
  "sources": [
-  "Chlorophyll absorption peaks (a: about 430 and 662 nm in ether; green poorly absorbed and scattered by cell walls): https://en.wikipedia.org/wiki/Chlorophyll (secondary source)",
-  "Cards: oak_leaf, oak_leaf_palisade, oak_leaf_stoma, bio_photosynthesis_overview; leaf_section scene note"
+  "Chlorophyll a peaks 428 and 660 nm in diethyl ether: Bjorn, Papageorgiou, Blankenship, Govindjee 2009, Photosynthesis Research 99:85-98 (https://www.life.illinois.edu/govindjee/Bjorn_et_al%282009%29PRES99_85-98.pdf)",
+  "Absorptance of lettuce leaf, blue 93.2 percent, green 81.1 percent, red 91.6 percent (LED-weighted), minimum 69.8 percent at 500 to 551 nm in one leaf spectrum; 'Green light is least absorbed by green leaves': Liu and van Iersel 2021, Frontiers in Plant Science 12:619987 (https://www.frontiersin.org/articles/10.3389/fpls.2021.619987/full)",
+  "Green light drives photosynthesis more efficiently than red in strong white light, in sunflower: Terashima et al. 2009, Plant and Cell Physiology 50:684-697, doi 10.1093/pcp/pcp034 (abstract and summaries read)",
+  "Cards: oak_english, oak_leaf (about 9,500 leaves in the model), oak_leaf_palisade, oak_leaf_stoma, bio_photosynthesis_overview; leaf_section scene note"
  ]
 }

@@ -3,7 +3,7 @@
  "order": 24,
  "theme": "Living things",
  "question": "How does a dog smell so much better than I do?",
- "teaser": "Open a dog's nose and compare its smell lining with yours, down to the cell that catches an odour.",
+ "teaser": "Open a dog's nose, follow the air to its smell lining, and meet the cell that catches an odour and the brain's first stop.",
  "keywords": [
   "dog",
   "smell",
@@ -44,8 +44,7 @@
     "thing": "dog"
    },
    "text": [
-    "A dog lives in a world of smells. This model is a typical medium-sized dog about 57 centimetres tall at the shoulder and about 30 kilograms.",
-    "Her nose does two jobs: breathing, and smelling. Most of the smelling is done far inside."
+    "A dog lives in a world of smells. This model is a typical medium-sized dog about 57 centimetres tall at the shoulder and about 30 kilograms. Her nose does two jobs, breathing and smelling, and it keeps them partly apart. Most of the smelling is done far inside."
    ],
    "model": "A procedural model of a typical dog, not one breed.",
    "notice": "Look at the bare, moist tip of the nose.",
@@ -57,7 +56,7 @@
    ]
   },
   {
-   "title": "Inside the nose",
+   "title": "Two paths for the air",
    "scale": "about 10 cm",
    "where": {
     "view": {
@@ -82,11 +81,10 @@
     "thing": "dog"
    },
    "text": [
-    "Air passes through the front of the nose, which warms and moistens it. Some of it goes to the back, where thin scrolls of bone, folded like parchment, are covered with a smell-sensing lining.",
-    "The folding packs a large surface into a small space."
+    "Air that a dog breathes in does not all go the same way. Most of it passes the scrolls at the front, which warm and moisten it, and goes on towards the lungs. A smaller share is steered up a narrow path to a pocket at the back of the nose, called the olfactory recess, where thin scrolls of bone covered with a smell-sensing lining are folded like parchment. In a computer model built from a scan of one dog, about 12 to 13 percent of the air breathed in reached that smell region."
    ],
-   "model": "A model of the inside of a dog's nose built for this world. The folds are typical, not copied from one animal.",
-   "notice": "Find the scrolls at the back and the airway scrolls at the front.",
+   "model": "A model of the inside of a dog's nose built for this world. The folds are typical, not copied from one animal, and the real folding is much finer.",
+   "notice": "Find the scrolls at the back (smell) and the scrolls at the front (airway).",
    "deeper": [
     {
      "label": "Smell lining",
@@ -95,6 +93,51 @@
     {
      "label": "Airway lining",
      "node": "dog_turb_resp"
+    },
+    {
+     "label": "Nose",
+     "node": "dog_nose"
+    }
+   ]
+  },
+  {
+   "title": "Sniffing",
+   "scale": "about 10 cm",
+   "where": {
+    "view": {
+     "frame": "thing_dog",
+     "part": "turb_resp",
+     "D": 0.25
+    }
+   },
+   "do": [
+    {
+     "hideBody": true
+    },
+    {
+     "mode": "cut_nose",
+     "thing": "dog"
+    },
+    {
+     "press": "Turn the cut to face me"
+    }
+   ],
+   "expect": {
+    "thing": "dog"
+   },
+   "text": [
+    "A sniffing dog takes about 4 to 7 short sniffs every second, roughly ten times faster than a person sniffs. The air she breathes out leaves by a different route, a jet from the side of the nose, and it mostly bypasses the smell pocket. So the odour-laden air in the pocket is held there, and the odour has more time to reach the lining."
+   ],
+   "model": "A model of the inside of a dog's nose built for this world. The airflow itself is not drawn.",
+   "notice": "Compare the pocket at the back with the open airway scrolls in front of it.",
+   "deeper": [
+    {
+     "label": "Airway lining",
+     "node": "dog_turb_resp"
+    },
+    {
+     "label": "Nose",
+     "node": "dog_nose"
     }
    ]
   },
@@ -112,15 +155,14 @@
     "thing": "dog"
    },
    "text": [
-    "A dog's smell lining covers about 170 square centimetres. A person's covers about 10.",
-    "A dog also has far more smell cells, with estimates of about 125 to 300 million, against about 5 million in a person, and about 800 working receptor genes against about 400."
+    "A dog's smell lining covers about 170 square centimetres in the figure usually quoted, against about 5 to 10 in a person. The area depends on the breed and size of the dog, and old measurements differ. A dog also has more working types of smell receptor: about 800 working receptor genes against about 400 in a person, counted from genome studies."
    ],
-   "model": "The dog's cell count comes from a secondary source and is a range, not an exact figure.",
-   "notice": "Compare the numbers: area differs by about seventeen times, and cell counts by tens of times.",
+   "model": "The dog's lining area comes from an encyclopedia figure and varies with breed. Gene counts depend on how a working gene is defined.",
+   "notice": "Compare the numbers: the area differs by roughly ten to forty times, the number of receptor types by about two.",
    "deeper": [
     {
-     "label": "Olfactory bulbs",
-     "node": "dog_bulbs"
+     "label": "Smell lining",
+     "node": "dog_turb_olf"
     }
    ],
    "do": [
@@ -156,8 +198,7 @@
     "frame": "mell|olfactory|Smell"
    },
    "text": [
-    "Smell cells are nerve cells. Each has a tuft of tiny hairs, called cilia, in the mucus at the surface.",
-    "When an odour molecule fits a receptor on one of these hairs, the cell sends a signal along its thread to the brain."
+    "Smell cells are nerve cells. Each has a tuft of tiny hairs, called cilia, in the mucus at the surface. When an odour molecule fits a receptor on one of these hairs, the cell sends a signal along its thread to the brain. Each smell cell carries just one kind of receptor, so the brain can tell odours apart by which cells fire."
    ],
    "model": "An illustration of the layers of the smell lining. It shows the kinds of cell and their order, not a micrograph, and sizes are simplified.",
    "notice": "Click a smell cell and then the thread that leaves it.",
@@ -170,6 +211,41 @@
    "do": [
     {
      "hideBody": true
+    }
+   ]
+  },
+  {
+   "title": "The brain's first stop",
+   "scale": "about 5 cm",
+   "where": {
+    "view": {
+     "frame": "thing_dog",
+     "part": "bulbs_n",
+     "D": 0.18
+    }
+   },
+   "do": [
+    {
+     "hideBody": true
+    },
+    {
+     "mode": "nerves",
+     "thing": "dog"
+    }
+   ],
+   "expect": {
+    "thing": "dog"
+   },
+   "text": [
+    "Every smell cell sends its thread to one of two olfactory bulbs at the front of the brain. In the bulb, cells with the same kind of receptor send their threads to the same small clusters, so each cluster answers to one kind of odour molecule. From there the signal goes on to the rest of the brain.",
+    "How much of a dog's skill comes from its nose, its receptors or how its brain reads the signal is not settled."
+   ],
+   "model": "The bulbs are drawn in a model of a typical dog, not a scan of one animal.",
+   "notice": "Find the two knobs at the front of the brain.",
+   "deeper": [
+    {
+     "label": "Olfactory bulbs",
+     "node": "dog_bulbs"
     }
    ]
   },
@@ -196,10 +272,9 @@
     "frame": "ody|uman"
    },
    "text": [
-    "A person has the same kind of smell lining, high in the nose. It covers only about 10 square centimetres, holds about 5 million smell cells, and uses about 400 working receptor genes.",
-    "A person still smells, and quite well, so the difference with a dog is one of degree. What the brain does with the signals matters too."
+    "A person has the same kind of smell lining, high in the nose. It covers about 5 to 10 square centimetres and uses about 400 working receptor genes. A person has no olfactory recess, so the smell lining sits on the main path of the breath, and a person sniffs about ten times slower than a dog. People still smell well, so the difference is one of degree."
    ],
-   "notice": "Open the card for the human nose and compare it with the dog's: it is the same kind of organ, much smaller.",
+   "notice": "Open the card for the human nose and compare it with the dog's: it is the same kind of organ, smaller, and without the separate pocket.",
    "deeper": [
     {
      "label": "Hearing, balance, taste and smell",
@@ -213,14 +288,17 @@
    ]
   }
  ],
- "answer": "A dog has a much larger smell lining, about 170 square centimetres against about 10 in a person, with many more smell cells and more working receptor genes, and a large part of the brain given to using them.",
- "unknown": "The exact number of smell cells in a dog differs between sources, and how the brain turns the signals into a perception of a scent is still not well understood.",
+ "answer": "A dog smells better because its nose steers a share of each sniffed breath into a separate pocket, lined with a much larger area of smell cells that have about twice as many kinds of receptor, and because it sniffs fast and breathes out by another route so odour stays in the pocket. A person has the same kind of lining on a smaller patch, on the main airway.",
+ "unknown": "How much of the difference comes from the nose, the receptors and the brain is still debated, and the number of smell cells in a dog is only an old estimate that differs between sources.",
  "next": [
   "what_is_light",
   "why_does_a_bee_visit_a_flower",
   "what_am_i_made_of"
  ],
  "sources": [
-  "Cards: dog_nose, dog_turb_olf, dog_turb_resp, dog_olfactory_epithelium, dog_osn, dog_bulbs, nose_airway, bio_hearing_chemosense (sources on the cards; the dog cell count is a secondary source)"
+  "Airflow, olfactory recess, 12 to 13 percent of inspired air, sniffing 4 to 7 Hz in dogs of 6.8 to 52.9 kg against 0.3 to 0.7 Hz in people, expired jet, region area about 200 cm2: Craven, Paterson and Settles 2010, J R Soc Interface 7:933, https://pmc.ncbi.nlm.nih.gov/articles/PMC2871809",
+  "Smell lining about 170 cm2 in the dog and 5 to 10 cm2 in people: Encyclopaedia Britannica, Chemoreception: Smell (as reported by a search; page not fetched), and card dog_turb_olf",
+  "Receptor genes: Quignon et al. 2005 (dog about 1,094 olfactory receptor genes, about 20 percent pseudogenes) and Gilad et al. 2005 Genome Research 15:224 (human: 862 genes, 56 percent disrupted); about 800 against about 400 working genes is my rounding of these",
+  "Cards: dog_nose, dog_turb_olf, dog_turb_resp, dog_olfactory_epithelium, dog_osn (one receptor type per cell), dog_bulbs, nose_airway, bio_hearing_chemosense"
  ]
 }

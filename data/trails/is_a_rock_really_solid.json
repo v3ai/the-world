@@ -50,8 +50,7 @@
     "thing": "boulder"
    },
    "text": [
-    "This boulder is modelled as granite, a rock that cooled from molten rock deep underground. At about 1.5 metres wide it would weigh around 1.6 tonnes.",
-    "It feels like the very definition of solid. What does solid actually mean?"
+    "This boulder is modelled as granite, a rock that cooled from molten rock deep underground. The model is about 1.5 metres wide, 0.7 metres high and 1 metre deep, a volume of 0.59 cubic metres, so solid granite of that size would weigh about 1.6 tonnes. It feels like the very definition of solid. What does solid actually mean?"
    ],
    "model": "A procedural model of a typical granite boulder, not a scan. Choosing granite is a modelling choice.",
    "notice": "Click the rock, the moss and the lichen. Each opens its own card.",
@@ -92,11 +91,10 @@
     "thing": "boulder"
    },
    "text": [
-    "Cut open, granite is a tight mosaic of mineral grains. Each grain is a crystal that grew until it met its neighbours, mostly quartz, feldspar and mica.",
-    "There are no gaps between them, which is part of why the rock is hard and heavy."
+    "Cut open, granite is a tight mosaic of mineral grains. Each grain is a crystal that grew until it met its neighbours, mostly quartz, feldspar and mica. There is almost no gap between them, which is part of why the rock is hard and heavy."
    ],
    "model": "The grain pattern on the cut face is illustrative. The legend says so, and real grain sizes and proportions differ.",
-   "notice": "Find the grey glassy quartz grains. Quartz is typically 20 to 60 percent of true granite by volume.",
+   "notice": "Find the grey glassy quartz grains. Feldspar is white or pink, and mica makes the black flecks.",
    "deeper": [
     {
      "label": "Mineral grains in granite",
@@ -117,7 +115,7 @@
       0.3,
       0
      ],
-     "D": 4e-09
+     "D": 4e-9
     }
    },
    "expect": {
@@ -151,11 +149,10 @@
     "frame": "Oxygen atom"
    },
    "text": [
-    "It is often said that atoms are mostly empty space. That is misleading. The electrons are not tiny balls with gaps between them: each one is spread out as a cloud of probability that fills the atom.",
-    "Two atoms cannot be pressed into the same place for two reasons. Their electrons repel each other, and the Pauli principle says that no two electrons in an atom can be in the same state, so extra electrons must go into higher states."
+    "It is often said that atoms are mostly empty space. That is misleading. The electrons are not tiny balls with gaps between them: each one is spread out as a cloud of probability that fills the atom. Two atoms cannot be pressed into the same place for two reasons. Their electrons repel each other, and the Pauli principle says that no two electrons can share exactly the same state, so extra electrons must go into higher states."
    ],
    "model": "A computed model of the electron cloud. The dots are places an electron could be found, not many electrons.",
-   "notice": "Use \"Cut away a quarter\" to see that the cloud has no hard edge and no gaps.",
+   "notice": "Use \"Cut away a quarter\" to see that the cloud has no hard edge.",
    "deeper": [
     {
      "label": "Spin and the Pauli principle",
@@ -173,11 +170,10 @@
     "frame": "Oxygen nucleus"
    },
    "text": [
-    "The nucleus is about a hundred thousand times smaller than the atom, yet it holds nearly all of its mass. That is what it is: a tiny, extremely dense core.",
-    "The rest of the atom's size is set by the electron cloud. So a rock is solid because of the cloud, not the nucleus."
+    "The nucleus is tens of thousands of times narrower than the atom, yet it holds nearly all of its mass. It is a tiny, extremely dense core. The rest of the atom's size is set by the electron cloud. So a rock is solid because of the cloud, not the nucleus."
    ],
    "model": "The nucleus is drawn with a radius from a rule of thumb, about 1.2 femtometres times the cube root of the number of particles.",
-   "notice": "Compare this view with the last one: the same atom, a hundred thousand times smaller.",
+   "notice": "Compare this view with the last one: the atom view is 0.5 nanometres wide and this one 20 femtometres, so the same atom is 25,000 times narrower here.",
    "deeper": [
     {
      "label": "The nucleus at true size",
@@ -186,7 +182,7 @@
    ]
   }
  ],
- "answer": "A rock is solid because its atoms are bound into crystals, and atoms cannot be pushed together because their electron clouds repel and the Pauli principle forbids squeezing electrons into the same state. An atom is not empty, since its electron cloud fills it.",
+ "answer": "A rock is solid because its atoms are bound into a rigid arrangement, crystals in the case of granite, and atoms cannot be pushed together because their electron clouds repel and the Pauli principle forbids squeezing electrons into the same state. An atom is not empty, since its electron cloud fills it.",
  "unknown": "Nothing here is in doubt. How the electrons are spread out between nucleus and cloud is described by quantum mechanics, but what an electron is \"really doing\" between measurements is argued about.",
  "next": [
   "what_holds_everything_together",
@@ -194,6 +190,8 @@
   "what_am_i_made_of"
  ],
  "sources": [
-  "Cards: boulder (1.6 t, calculated), rock_grains, at_spin_pauli, at_atom, at_orbital, nucleusQ; quartz crystal data (data/crystals.json)"
+  "Cards: boulder (0.59 m3 x 2.65 to 2.75 g/cm3 = 1.6 t, calculated), rock_grains, at_spin_pauli, at_atom, at_orbital, nucleusQ; quartz crystal data (data/crystals.json)",
+  "Calculated: the two views are 0.5 nm and 20 fm wide, ratio 25,000. Oxygen: charge radius about 2.7 fm (Angeli and Marinova 2013, as recalled; the table was not fetched) against an atom radius of about 60 to 150 pm gives about 2e4 to 5e4. Hydrogen: 0.84 fm against about 53 pm is about 6e4 to 1e5",
+  "Granite density 2.65 to 2.75 g/cm3: https://en.wikipedia.org/wiki/Granite. The quartz share of granite is left out because the 20 to 60 percent range is a classification limit on the quartz-feldspar fraction, not a typical volume"
  ]
 }

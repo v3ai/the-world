@@ -3,7 +3,7 @@
  "order": 32,
  "theme": "Energy and light",
  "question": "What is light?",
- "teaser": "See an atom give out one colour of light, meet the particle of light, and watch what the eye does with it.",
+ "teaser": "Meet light as a wave with a colour, see why hot things and single atoms give it out in different ways, and follow a photon into the eye.",
  "keywords": [
   "light",
   "photon",
@@ -20,6 +20,11 @@
  ],
  "scales": [
   "the park",
+  "a phone",
+  "the Sun",
+  "an atom",
+  "a particle",
+  "an eye",
   "a molecule"
  ],
  "minutes": 7,
@@ -42,14 +47,70 @@
     "frame": "Greenwich Park"
    },
    "text": [
-    "Sunlight lights the park and warms the grass. It also carries information: everything you see, you see by light that bounced off it or came from it.",
-    "What is that light made of?"
+    "Sunlight lights the park and warms the grass, and everything you see, you see by light that bounced off it or came from it. This light left the Sun about 8 minutes and 20 seconds ago, which is the 150 million kilometres to Earth divided by the speed of light. In empty space light always moves at 299,792,458 metres per second, whatever its colour. But what is it?"
    ],
-   "notice": "Look at the shadows. Light travels in straight lines until something blocks it.",
+   "notice": "Look at the shadows. In air light travels in straight lines, which is why shadows have sharp edges.",
    "deeper": [
     {
      "label": "The Sun",
      "node": "park_sun"
+    }
+   ]
+  },
+  {
+   "title": "A wave",
+   "scale": "your phone, about 30 cm",
+   "where": {
+    "landmark": "Your phone"
+   },
+   "do": [
+    {
+     "hideBody": true
+    },
+    {
+     "card": "electromagnetic_waves"
+    }
+   ],
+   "expect": {
+    "frame": "smartphone"
+   },
+   "text": [
+    "Light is a wave of electric and magnetic fields, called an electromagnetic wave. The distance from one crest of the wave to the next is its wavelength. Visible light runs from about 400 nanometres (violet) to about 700 nanometres (red), and your eye sees each wavelength as a colour.",
+    "Your phone sends and receives the same kind of wave with much longer wavelengths: Wi-Fi at 2.4 gigahertz has a wavelength of about 12 centimetres, the speed of light divided by the frequency."
+   ],
+   "notice": "In the card, find the visible band. It is a thin slice of one long spectrum of waves, from radio to gamma rays.",
+   "deeper": [
+    {
+     "label": "Electromagnetic waves and spectrum",
+     "node": "electromagnetic_waves"
+    }
+   ]
+  },
+  {
+   "title": "The glow of hot matter",
+   "scale": "view about 3 million km",
+   "where": {
+    "landmark": "The Sun"
+   },
+   "do": [
+    {
+     "card": "blackbody"
+    }
+   ],
+   "expect": {
+    "frame": "The Sun"
+   },
+   "text": "Most light around us, including sunlight, is the glow of hot matter. Anything hot gives out light of many wavelengths at once, and the hotter it is, the bluer the mixture. The Sun's surface is at about 5,772 kelvin, and its glow is strongest near 500 nanometres, but it covers all the visible colours, which together look white.",
+   "model": "The Sun in this view is a model drawn from real size and temperature; the colours are not what you would see.",
+   "notice": "Open the card for hot glow. A heated metal goes red, then white, as it gets hotter, for the same reason.",
+   "deeper": [
+    {
+     "label": "Thermal radiation and blackbody spectrum",
+     "node": "blackbody"
+    },
+    {
+     "label": "The Sun's surface",
+     "node": "sunPhoto"
     }
    ]
   },
@@ -71,8 +132,7 @@
     "frame": "tom"
    },
    "text": [
-    "A hydrogen atom has one electron, and the electron can only have certain amounts of energy. When it drops from a higher energy to a lower one, the atom gives out a single packet of light.",
-    "The bigger the drop, the bluer the light. The drop from the third level to the second gives the red line of hydrogen, at a wavelength of about 656 nanometres."
+    "A single atom of a gas can give out light in a different way, in sharp lines of one colour. A hydrogen atom's electron can only have certain amounts of energy. When it drops to a lower amount, the atom gives out one packet of light carrying exactly the energy lost, and a bigger drop gives a bluer colour. The drop from the third level to the second gives the red line of hydrogen, at a wavelength of about 656 nanometres in air."
    ],
    "model": "Bohr's 1913 picture, with the electron on circles, is a simple model that works for hydrogen but fails for atoms with more electrons. The real atom is the cloud in the quantum view.",
    "notice": "Choose two levels, such as 3 and 2, and press \"Let it jump and emit light\". Watch the packet of light leave and compare its colour with the matching line in the spectrum bar.",
@@ -88,7 +148,7 @@
    ]
   },
   {
-   "title": "The particle of light",
+   "title": "Light comes in packets",
    "scale": "below 10 attometres",
    "where": {
     "sm": {
@@ -104,11 +164,10 @@
     "frame": "Standard Model"
    },
    "text": [
-    "A packet of light is called a photon. It has no mass and no electric charge, and it always moves at the speed of light.",
-    "Sunlight is a stream of photons, and so are radio waves and X-rays, only with different energies. Photons are also what carries the electric and magnetic forces between charged particles."
+    "Light is given out and taken in as packets of energy called photons. A photon has no mass and no electric charge, and in empty space it always moves at 299,792,458 metres per second. Its energy is greater for a shorter wavelength: a violet photon carries about 1.7 times the energy of a red one. Light spreads and interferes like a wave, yet it is emitted and absorbed one photon at a time, and quantum theory describes both."
    ],
    "model": "A map of the particles. Positions are a diagram, and the sizes mean nothing.",
-   "notice": "Find the photon in the group of force carriers.",
+   "notice": "Find the photon among the force carriers: it also carries the electric and magnetic forces between charged particles.",
    "deeper": [
     {
      "label": "Light comes in packets",
@@ -126,8 +185,7 @@
     "frame": "ye"
    },
    "text": [
-    "The eye focuses light onto the retina at the back, which has about 120 million rods and about 6 million cones. Cones give colour and fine detail in bright light, and there are three kinds.",
-    "Each light-sensing cell can respond when its pigment absorbs a photon."
+    "The eye focuses light onto the retina at the back, which has about 90 million rods and about 5 million cones, counts that differ from person to person. Cones give colour and fine detail in bright light, and there are three kinds. A light-sensing cell responds when a pigment molecule in it absorbs a photon."
    ],
    "notice": "Look at the layers at the back of the eye cut open.",
    "deeper": [
@@ -151,22 +209,32 @@
     "frame": "etinal"
    },
    "text": [
-    "This is retinal, the light-sensitive part of the visual pigment in your eye. When it absorbs a photon, the molecule changes shape.",
-    "That change starts a chain of signals that ends in a nerve impulse to your brain, and you see."
+    "This is retinal, the light-sensitive part of the visual pigment in your eye. When it absorbs a photon, the molecule flips from a bent shape to a straighter one in about a trillionth of a second. That change starts a chain of signals that ends in a nerve impulse to your brain, and you see."
    ],
    "model": "A ball-and-stick picture of one molecule. Bond lengths are true, but the atoms are drawn smaller than their real size so that the bonds show, and the colours are a convention, not real colours.",
    "notice": "Look at the long chain of alternating bonds. That chain is what lets the molecule take in visible light.",
-   "deeper": []
+   "deeper": [
+    {
+     "label": "Vision and photoreception",
+     "node": "bio_vision_photoreception"
+    }
+   ]
   }
  ],
- "answer": "Light is a stream of photons, packets of energy with no mass that atoms give out when an electron drops to a lower level and that molecules in your eye take in.",
- "unknown": "Light behaves as a wave in some experiments and as particles in others. The theory that unites the two, quantum electrodynamics, is one of the best tested in science, but what the \"particle\" is, beyond what the equations say, is still argued about.",
+ "answer": "Light is a wave of electric and magnetic fields whose wavelength sets its colour, moving at 299,792,458 metres per second in empty space and given out and taken in as packets called photons. Hot matter glows with a mixture of wavelengths, while single atoms give out single colours.",
+ "unknown": "Light behaves as a wave in some experiments and as particles in others. The theory that unites the two, quantum electrodynamics, is one of the best tested in science, but what a photon is beyond what the equations say is still argued about.",
  "next": [
   "why_is_a_leaf_green",
   "where_does_the_suns_energy_come_from",
   "what_holds_everything_together"
  ],
  "sources": [
-  "Cards: at_spectra (H-alpha 656.29 nm in air, NIST ASD), at_model_bohr, sm_photon (PDG 2026), eye_r (rods about 1.2e8, cones about 6e6), cone_cell, photoelectric_effect, molecule retinal note"
+  "Speed of light 299,792,458 m/s exactly: NIST CODATA https://physics.nist.gov/cgi-bin/cuu/Value?c (exact by the definition of the metre)",
+  "Calculated: 1 AU / c = 499 s; Wi-Fi 2.4 GHz wavelength = c / f = 0.125 m; Wien peak of the Sun's glow = 2.898e-3 m K / 5772 K = 502 nm; photon energy ratio violet to red = 700 / 400 = 1.75",
+  "Sun's effective temperature 5,772 K (IAU 2015 nominal): card sunPhoto; Sun glow approximately a blackbody near 5,772 K, NASA https://acd-ext.gsfc.nasa.gov/anonftp/acd/daac_ozone/Lecture4/Text/Lecture_4/sunrad.html",
+  "Visible range conventions differ (380 to 750 nm in the card, about 400 to 700 nm elsewhere), so about 400 to 700 is used",
+  "Rods and cones: Curcio, Sloan, Kalina and Hendrickson 1990, J Comp Neurol 292:497 (average 92 million rods, 78 to 107 million; 4.6 million cones, 4.1 to 5.3 million): https://pubmed.ncbi.nlm.nih.gov/2324310/",
+  "Retinal 11-cis to all-trans on absorbing a photon, within picoseconds: https://pmc.ncbi.nlm.nih.gov/articles/PMC1440917 and card bio_vision_photoreception (about 200 fs)",
+  "Cards: electromagnetic_waves, blackbody, at_spectra (H-alpha 656.29 nm in air, NIST ASD), sm_photon (PDG 2026), photoelectric_effect, eye_r, retina, cone_cell, molecule retinal note"
  ]
 }

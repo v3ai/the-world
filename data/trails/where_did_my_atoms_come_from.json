@@ -101,11 +101,10 @@
     "frame": "The Sun"
    },
    "text": [
-    "In the Sun's core, hydrogen nuclei fuse into helium and release energy. This is how stars turn one element into another.",
-    "In bigger and older stars the process goes on, building carbon and heavier elements, up as far as iron."
+    "In the Sun's core, hydrogen nuclei fuse into helium and release energy. This is how stars turn one element into another. Late in its life the Sun will make carbon and oxygen too, and bigger stars go on to build elements up as far as iron."
    ],
    "model": "The core's temperature and density come from a standard solar model, not from direct measurement.",
-   "notice": "The core is where a star's atoms are changed. Everything else in the star is mostly waiting.",
+   "notice": "The core is where a star's atoms are changed. Outside the core it is too cool for fusion.",
    "deeper": [
     {
      "label": "The Sun's core",
@@ -128,11 +127,10 @@
     "frame": "Solar neighborhood"
    },
    "text": [
-    "Stars forge carbon through iron. The heavier elements come from violent events such as supernovae and the collision of neutron stars, which throw the new atoms out into space.",
-    "Later stars and planets form from that gas. The carbon and oxygen in you were made in earlier stars before the Sun was born."
+    "Massive stars forge elements from carbon up to iron, and their supernova explosions throw the new atoms, including much of the oxygen, out into space. Elements heavier than iron come by two routes: a slow one inside old giant stars, and a rapid one in violent events such as the collision of neutron stars. Later stars and planets form from that gas, so the carbon and oxygen in you were made in earlier stars before the Sun was born."
    ],
    "model": "The stars shown are real, at catalogue positions. The supernovae themselves are not drawn.",
-   "notice": "Read the card. It says how much of the heaviest elements come from mergers is still debated.",
+   "notice": "Read the card. It says how much of the heaviest elements comes from mergers is still debated.",
    "deeper": [
     {
      "label": "White dwarfs, supernovae and neutron stars",
@@ -141,7 +139,7 @@
    ]
   },
   {
-   "title": "The first atoms",
+   "title": "The first nuclei and atoms",
    "scale": "view about 200 billion light-years",
    "where": {
     "landmark": "Observable universe"
@@ -155,11 +153,10 @@
     "frame": "Observable universe"
    },
    "text": [
-    "The universe began about 13.8 billion years ago in a hot, dense state. In the first few minutes it made hydrogen, helium and a trace of lithium.",
-    "About 380,000 years later it had cooled enough for the first whole atoms to form. By mass, the ordinary matter was then about 74 percent hydrogen and 24 percent helium."
+    "The universe began about 13.8 billion years ago in a hot, dense state. Protons formed within the first second, and in the first few minutes some of them fused into the nuclei of helium, with traces of deuterium and lithium. About 380,000 years later it had cooled enough for the first whole atoms to form. By mass, the ordinary matter was then about 74 percent hydrogen and 24 percent helium."
    ],
    "model": "The glowing shell and its patterns are illustrations, not the measured map of the early universe.",
-   "notice": "The hydrogen in the water in you was made in the first minutes of the universe.",
+   "notice": "The hydrogen nuclei in the water in you formed in the first second of the universe. The oxygen in it came from stars.",
    "deeper": [
     {
      "label": "Big Bang nucleosynthesis",
@@ -181,6 +178,8 @@
  ],
  "sources": [
   "Knowledge cards: nucleosynthesis_stars (abundance by mass H 74 percent, He 24 percent), big_bang (13.8 Gyr, atoms after 380,000 years), bbn_node, stellar_death",
-  "Cards: human (six elements = 99 percent of mass), sunCore"
+  "Cards: human (six elements = 99 percent of mass), sunCore",
+  "Slow (s-process) neutron capture in giant stars and rapid (r-process) capture: Kappeler et al. 2011, Rev Mod Phys 83:157 (https://arxiv.org/abs/1012.5218; the two processes give roughly equal shares of the heavy elements, per search summaries) and Burbidge, Burbidge, Fowler and Hoyle 1957",
+  "Big Bang timeline (protons within about a second, helium and deuterium within minutes, atoms at 380,000 years): https://www.astronomy.com/science/how-did-the-first-element-form-after-the-big-bang/ and cards big_bang, bbn_node"
  ]
 }

@@ -37,8 +37,7 @@
     "frame": "Solar system"
    },
    "text": [
-    "Gravity keeps every planet on its orbit around the Sun. It also holds stars together in galaxies.",
-    "Between two single particles gravity is extremely weak: the electric push between two protons is about 10 to the power 36 times stronger than their pull on each other. It wins over long distances because mass only ever adds, and has no opposite."
+    "Gravity keeps every planet on its orbit around the Sun. It also holds stars together in galaxies. Between two single particles gravity is extremely weak: the electric push between two protons is about 10 to the power 36 times stronger than their pull on each other. It wins for big things because the electric charges in everyday matter cancel out, while mass only ever adds up."
    ],
    "notice": "Follow one planet's orbit line around the Sun. Gravity is what bends each path into a loop.",
    "deeper": [
@@ -46,7 +45,8 @@
      "label": "Gravity: the missing force",
      "node": "sm_gravity"
     }
-   ]
+   ],
+   "model": "The orbit lines are drawn for you, not measured."
   },
   {
    "title": "Electric force builds atoms",
@@ -62,7 +62,7 @@
     "The same force, acting between atoms, makes molecules, crystals and your body."
    ],
    "model": "A computed model of the electron cloud, not a photograph.",
-   "notice": "The cloud is spread out because an electron's position is a matter of chance, and the nucleus is far too small to see at this zoom.",
+   "notice": "The cloud is spread out because an electron does not have one position: the cloud shows where it is likely to be found. The nucleus is far too small to see at this zoom.",
    "deeper": [
     {
      "label": "The four interactions",
@@ -80,8 +80,7 @@
     "frame": "ater"
    },
    "text": [
-    "Atoms join into molecules by sharing electrons. A water molecule has one oxygen and two hydrogen atoms held by such shared electrons.",
-    "Neighbouring water molecules also attract each other weakly, which is a smaller version of the same electric force."
+    "Atoms often join into molecules by sharing electrons, and sometimes by pulling opposite electric charges together, as in salt. A water molecule has one oxygen and two hydrogen atoms held by shared electrons. Neighbouring water molecules also attract each other weakly, which is a smaller version of the same electric force."
    ],
    "notice": "Look at the angle between the two hydrogen atoms. The molecule is bent, not straight.",
    "deeper": [
@@ -102,8 +101,7 @@
     "frame": "Oxygen nucleus"
    },
    "text": [
-    "The 8 protons in an oxygen nucleus all have positive charge, so they push each other apart. Something stronger holds them in.",
-    "That is a faint leftover of the strong force, the same force that holds quarks inside each proton and neutron."
+    "The 8 protons in an oxygen nucleus all have positive charge, so they push each other apart. Something stronger holds them in. That is the leftover of the strong force that leaks out of each proton and neutron: at this tiny range it beats the electric push, but it fades within a few femtometres. The strong force itself is what holds quarks inside each proton and neutron."
    ],
    "model": "The nucleus is drawn as a packed cluster with radius from a rule of thumb. Real nuclei have fuzzy edges.",
    "notice": "Count the protons and neutrons. The neutrons add attraction without adding repulsion.",
@@ -158,8 +156,7 @@
     "frame": "Standard Model"
    },
    "text": [
-    "The weak force does not hold anything together. It changes one particle into another, which is what makes radioactive beta decay happen and what powers the Sun's slow fusion.",
-    "Its carriers, the W and Z bosons, are heavy, so the force only reaches about 2.5 times ten to the power minus 18 metres."
+    "The weak force does not hold anything together. It changes one particle into another, which is what makes radioactive beta decay happen and what powers the Sun's slow fusion. Its carriers, the W and Z bosons, are heavy, so the force only reaches about 2.5 times ten to the power minus 18 metres. The Higgs field, which gives particles their mass, is not a fourth force."
    ],
    "model": "A diagram of particles and forces, not a picture.",
    "notice": "Switch the force and see which particles feel each one.",
@@ -171,7 +168,7 @@
    ]
   }
  ],
- "answer": "Gravity holds the large things together, the electric force holds atoms and molecules together, and the strong force holds nuclei and protons together, while the weak force changes particles and powers the Sun.",
+ "answer": "Gravity holds the large things together, the electric force holds atoms and molecules together, and the strong force holds nuclei and protons together, while the weak force changes particles and powers the Sun. In the Sun, gravity pulling in is balanced by the pressure of hot gas pushing out.",
  "unknown": "Gravity has no tested quantum theory, so we do not know how to describe it in the same language as the other three forces.",
  "next": [
   "is_a_rock_really_solid",
@@ -179,6 +176,7 @@
   "what_am_i_made_of"
  ],
  "sources": [
-  "Cards: sm_interactions, sm_gravity (1.2e36 calculation), sm_strong_force, sm_proton, sm_gluon (PDG 2026)"
+  "Cards: sm_interactions, sm_gravity (1.2e36 calculation), sm_strong_force, sm_proton, sm_gluon (PDG 2026)",
+  "Residual strong force range about 1 to 3 fm and stronger than the Coulomb repulsion at under about 1.7 fm: https://en.wikipedia.org/wiki/Nuclear_force (as read in a search summary)"
  ]
 }
