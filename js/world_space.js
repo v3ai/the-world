@@ -126,7 +126,7 @@ FT.cosmos = {
       });
     });
     const lgm = markerSprite(0xffd166, 12); F.add(lgm);
-    const lgh = spaceHit(.2, { id: 'localgroup', priority: 3, sim: ['localgroup'], center: () => new V3(), radius: 1.5 }); F.add(lgh); F.pickables.push(lgh);
+    const lgh = spaceHit(.2, { id: 'localgroup', priority: 1.5, sim: ['localgroup'], center: () => new V3(), radius: 1.5 }, { off: () => cam.D < 1e24 }); F.add(lgh); F.pickables.push(lgh);
     spaceLabel(F, lgh, 'Local Group (you are here)', 100, { cls: 'you', always: true });
     F.update = () => { const k = smooth(5e22, 8e23, cam.D); web.material.uniforms.uOpacity.value = k; web.visible = k > .02; cmb.material.opacity = .5 * smooth(2e24, 1.5e26, cam.D); };
     F.blurb = 'The observable universe, from our Local Group out to the shell of the oldest light we can see.';
@@ -156,7 +156,8 @@ FT.localgroup = {
         if (member ? (g.diam_kpc > 3 || /Magellan/.test(g.name)) : g.diam_kpc >= 10) { const L = spaceLabel(F, hs, g.name, member ? 30 + Math.min(g.diam_kpc, 40) / 4 : 12, { offset: new V3(0, sz * .6, 0) }); L.minSizeFn = () => cam.D > (member ? 1.5e21 : 1e22) && (!F.C || p.distanceTo(F.C) < 6 * F.dLoc); }
       });
     });
-    const ml = spaceLabel(F, F.add(new THREE.Object3D()), 'Milky Way', 90, { cls: 'you', offset: new V3(0, 18, 0) }); ml.minSizeFn = () => cam.D > 8e21;
+    const mwo = F.add(new THREE.Object3D()); mwo.userData = { id: 'galaxy', priority: 1 };
+    const ml = spaceLabel(F, mwo, 'Milky Way', 90, { cls: 'you', offset: new V3(0, 18, 0) }); ml.minSizeFn = () => cam.D > 8e21;
     F.blurb = 'The Milky Way, Andromeda, Triangulum and the smaller galaxies around them, at their catalogued positions.';
     F.note = 'What is real: each galaxy\'s sky position and distance (catalogue values). Each glow is a generic symbol for its type, not a photograph, and the Milky Way is the schematic model. Galaxies beyond about 1 Mpc (NGC 3109, Sculptor, Maffei) are neighbours, not members.';
   }
@@ -320,14 +321,14 @@ FT.neighborhood = {
         cg.children.forEach(o => { if (o.isLineSegments) o.frustumCulled = false; });
       }
       F.update = () => {
-        mat.uniforms.uExp.value = 5 * Math.log10(Math.max(1, F.dLoc / 10)); // pulling far out, stars are brightened evenly so the catalogue stays visible
+        mat.uniforms.uExp.value = 5 * Math.log10(Math.max(1, F.dLoc / 10)) + 4.5 * (1 - smooth(5, 60, F.dLoc)); // pulling far out, stars are brightened evenly so the catalogue stays visible
         if (F.conLines && F.conLines.visible && F.C) F.conLines.scale.setScalar(Math.max(5, F.C.length() * 2));
       };
     });
     const sunh = spaceHit(.0005, { id: 'sun', priority: 3, radius: 1e-6, center: () => new V3(), zoomTo: () => { flyTo(FR.solar, new V3(), 1.5e13); } }, { px: 14 }); F.add(sunh); F.pickables.push(sunh);
     const sun = markerSprite(0xfff1c8, 10); F.add(sun); spaceLabel(F, sunh, 'Sun', 100, { cls: 'you', always: true });
     seg([['off', 'No constellations'], ['on', 'Constellation lines']], store.get('const', false) ? 'on' : 'off', k => { store.set('const', k === 'on'); if (F.conLines) F.conLines.visible = k === 'on'; });
-    F.blurb = '109,400 real stars from the HYG catalog, at their measured positions and colours. Far out, all stars are brightened evenly so you can see them; their relative brightness is true.';
+    F.blurb = '109,400 real stars from the HYG catalog, at their measured positions and colours. All stars are brightened evenly (like a long exposure) so the faint ones show; their relative brightness is true.';
     F.note = 'Real: the positions, colours and brightness of the catalogued stars. Constellation lines, if shown, are a pattern on our sky, drawn on a sphere around you: the stars in each figure are at very different distances and are not connected in space.';
     F.spawn = (T, hint) => {
       if (!F.stars) return null;
@@ -343,11 +344,12 @@ FT.neighborhood = {
 };
 /* ---------- a single star (unit = solar radius) ---------- */
 function starSurfaceMaterial(rgb, gran) {
+  const hot = smooth(5000, 9000, rgb[3]); // hot stars: cooler-looking dark cells stay blue-white rather than turning orange
   return new THREE.ShaderMaterial({
-    uniforms: { uTime: { value: 0 }, uCol: { value: new THREE.Vector3(rgb[0], rgb[1], rgb[2]) }, uGran: { value: gran } },
+    uniforms: { uTime: { value: 0 }, uCol: { value: new THREE.Vector3(rgb[0], rgb[1], rgb[2]) }, uGran: { value: gran }, uDark: { value: new THREE.Vector3(lerp(.8, .88, hot), lerp(.66, .9, hot), lerp(.55, .96, hot)) } },
     vertexShader: LDV(`varying vec3 vP; varying vec3 vN; varying vec3 vV; void main(){ vP=position; vec4 mv=modelViewMatrix*vec4(position,1.); vN=normalize(normalMatrix*normal); vV=normalize(-mv.xyz); gl_Position=projectionMatrix*mv; }`),
-    fragmentShader: LDF(NOISE_GLSL + `uniform float uTime; uniform vec3 uCol; uniform float uGran; varying vec3 vP; varying vec3 vN; varying vec3 vV;
-      void main(){ vec3 p=normalize(vP)*uGran; float n=fbm3(p+vec3(0.,uTime*.06,uTime*.03)+fbm3(p*1.7-uTime*.04)); vec3 c=mix(uCol*vec3(.8,.66,.55), uCol*1.06, smoothstep(.25,.8,n)); float mu=abs(dot(normalize(vN),normalize(vV))); c*=.5+.6*pow(mu,.6); gl_FragColor=vec4(c,1.); }`)
+    fragmentShader: LDF(NOISE_GLSL + `uniform float uTime; uniform vec3 uCol; uniform vec3 uDark; uniform float uGran; varying vec3 vP; varying vec3 vN; varying vec3 vV;
+      void main(){ vec3 p=normalize(vP)*uGran; float n=fbm3(p+vec3(0.,uTime*.06,uTime*.03)+fbm3(p*1.7-uTime*.04)); vec3 c=mix(uCol*uDark, uCol, smoothstep(.25,.8,n)); float mu=abs(dot(normalize(vN),normalize(vV))); c*=.4+.55*pow(mu,.6); gl_FragColor=vec4(c,1.); }`)
   });
 }
 FT.star = {
@@ -355,7 +357,7 @@ FT.star = {
     const P = o.P || starEstimate(o.M, o.bv), c = bvColor(o.bv), R = P.R, T = P.T;
     // the colour is the blackbody colour of the star's own temperature
     const tc = P.measured ? (() => { let best = c, bd = 1e9; for (let b = -.4; b <= 2; b += .02) { const k = bvColor(b), d = Math.abs(k[3] - T); if (d < bd) { bd = d; best = k; } } return best; })() : c;
-    const mat = starSurfaceMaterial(tc, R > 100 ? 1.6 : R > 10 ? 2.4 : 3.2); const m = new THREE.Mesh(new THREE.SphereGeometry(R, 64, 48), mat); F.add(m); F.pick(m, 'starbody');
+    const mat = starSurfaceMaterial(tc, R > 100 ? 1.6 : R > 10 ? 2.4 : 3.2); mat.transparent = true; mat.depthTest = false; const m = new THREE.Mesh(new THREE.SphereGeometry(R, 64, 48), mat); m.renderOrder = 10; F.add(m); // drawn after the glow sprites, which would otherwise show through it F.pick(m, 'starbody');
     const km = R * 695700, fmtL = L => L >= 100 ? Math.round(L).toLocaleString('en-US') : L >= 1 ? L.toPrecision(3) : L.toPrecision(2), a = P.measured ? '' : '≈ ';
     m.userData.info = {
       title: o.name || 'A star', tag: 'Star' + (o.sp && o.sp.text ? ` · spectral type ${o.sp.text}` : ''),
@@ -364,7 +366,7 @@ FT.star = {
       note: (P.measured ? `Measured values (${P.src}).` : 'Estimated from the star\'s colour and brightness (a bolometric correction, then L = 4πR²σT⁴); good to tens of per cent for ordinary stars, worse for giants and very red stars.') + ' The mottled surface is a schematic texture; real stars are not seen in this detail except the Sun.'
     };
     m.userData.sim = ['star']; m.userData.madeOf = 'plasma';
-    F.add(glowSprite(new THREE.Color(tc[0], tc[1], tc[2]).getHex(), R * 6, .8)); F.add(glowSprite(0xffffff, R * 2.4, .9));
+    F.add(glowSprite(new THREE.Color(tc[0], tc[1], tc[2]).getHex(), R * 6, .7)); F.add(glowSprite(0xffffff, R * 2.2, .5));
     F.update = (dt, t) => { mat.uniforms.uTime.value = t; m.rotation.y += dt * .02; };
     F.spawn = (T2) => T2.length() < R * 1.2 ? new Frame({ type: 'plasma', name: 'Stellar plasma', unit: 1e-10, radius: 60, r0: 1e-14, r1: 1e-7, pos: T2.clone() }) : null;
   }
@@ -540,9 +542,8 @@ function regionFrame(earthF, lat, lon, biome, isPark) {
 
 /* ---------- large-scale view hooks (run once the frame tree exists) ---------- */
 WORLD_EXT.push(async FR2 => {
-  // scrolling toward the Galactic Centre or the Sun pulls the zoom target onto it, so the black-hole scene and the solar system are reached by scrolling too
+  // scrolling toward the Galactic Centre pulls the zoom target onto it, so the black-hole scene is reached by scrolling
   FR2.mw.attract = new V3(); FR2.mw.attractD = 3e21; FR2.mw.attractR = .5;
-  FR2.nb.attract = new V3(); FR2.nb.attractD = 4e17; FR2.nb.attractR = .6;
   // the black-hole scene says what is to scale and what is not
   if (FT.sgrA && !FT.sgrA._spaceNote) {
     const b = FT.sgrA.build; FT.sgrA._spaceNote = true;
