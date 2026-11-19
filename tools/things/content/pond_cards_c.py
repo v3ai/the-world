@@ -48,14 +48,14 @@ N('pond_daphnia_antennae', 'Water flea: the swimming antennae', 'structure', 0.0
 N('pond_daphnia_heart', 'Water flea: the beating heart', 'structure', 0.0003, ['pond_daphnia'],
   "A water flea's heart is a small sac on its back, just behind the head, that you can see beating through the shell.",
   "Behind the head, at the top of the back, the heart pumps the animal's blood. Because the shell is clear, you can see it beat: about 180 times a minute (three beats per second) in normal conditions. It is the classic view of a water flea under a microscope. In the model the heart beats at half that speed so that you can watch it, and the screen says so.",
-  "Because of their size, Daphnia use both diffusion and circulation to move oxygen about; they make haemoglobin when oxygen is low. Heart rate depends on temperature and conditions: about 180 beats a minute is the average in normal conditions. A heart is a muscular pump in every animal that has one, including us; a human heart is a far bigger muscular pump, but it works on the same principle: heart muscle cells contract together. Press the button to look inside a heart muscle cell.",
+  "Because of their size, Daphnia use both diffusion and circulation to move oxygen about; they make haemoglobin when oxygen is low. Heart rate depends on temperature and conditions: about 180 beats a minute is the average in normal conditions. A heart is a muscular pump in every animal that has one, including us; a human heart is a far bigger muscular pump, but it works on the same principle: heart muscle cells contract together. Press the button to see ATP, the molecule that fuels every muscle cell.",
   "The heart is at the top of the back just behind the head (Wikipedia, Daphnia). In the model it is an ellipsoid 0.4 mm long, shown pulsing at 1.5 beats per second against the real 3 per second.",
   [('Heart rate', 'about 180 per minute, about 3 per second'), ('Where', 'top of the back, behind the head'), ('In the model', 'pulses at half speed')], 'C1', [R_ART], [W_DAPH], related=['heart', 'cardiomyocyte', 'bee_heart'], where='park_pond')
 
 N('pond_daphnia_gut', 'Water flea: the gut', 'structure', 0.002, ['pond_daphnia'],
   "The gut is a tube from the mouth to the tail; you can see green food moving through it.",
   "Food strained from the water is pushed into the gut, where it forms a ball that moves along the tube until it is passed out at the animal's tail end. Because the shell is clear, the gut can be seen through it. In the model the gut is a green tube with a pair of small pouches at the front.",
-  "Leg beating draws food particles into the digestive tract, where they form a bolus (a ball) that moves down until it is voided through the anus on the underside of the end of the body (Wikipedia, Daphnia). The pouches (caeca) at the front of the model's gut are drawn after the general plan; their exact form is not checked against a drawing.",
+  "Leg beating draws food particles into the digestive tract, where they form a bolus (a ball) that moves down until it is voided through the anus on the underside of the end of the body (Wikipedia, Daphnia). The pouches at the front of the model's gut are a simplification of the real gut's form.",
   "The gut is drawn 2 mm long and about 0.2 mm wide.",
   [('Passes food', 'mouth to anus on the underside of the tail'), ('Looks green', 'after eating algae')], 'C2', [R_ART], [W_DAPH], where='park_pond')
 
@@ -95,7 +95,7 @@ N('pond_snail_body', 'Great pond snail: foot, head and lung', 'structure', 0.04,
 N('pond_snail_senses', 'Great pond snail: tentacles and eyes', 'structure', 0.006, ['pond_snail'],
   "Two tentacles at the front of the head carry the snail's senses; small dark eyes sit at their base.",
   "The model gives the snail two tentacles on its head and a pair of small eyes. The model draws the tentacles as broad flat triangles and the eyes as black dots at the inner side of their bases.",
-  "The model shapes are drawn after the general plan of the snail head and are not checked against a measured specimen. Sensory detail is not drawn.",
+  "The shapes in the model are simplified; sensory detail is not drawn.",
   "In the model the tentacles are 5.6 mm long and the eyes 1.2 mm across.",
   [('Tentacles', 'two, on the head'), ('Eyes', 'two, simple, at the base of the tentacles')], 'C2', [R_MOL], [W_LYM], where='park_pond')
 

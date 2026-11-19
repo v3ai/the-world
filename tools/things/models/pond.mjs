@@ -23,9 +23,10 @@ export default function build() {
     // ---- bed ----
     part('mud', 'Mud', 'bed', 'pond_mud', '#4a3c2d', { mesh: 'mud', cutFace: 'mud', noink: true, deeper: { type: 'tissue2', id: 'pond_mud', D: 3e-4, button: 'Look inside the mud' } }),
     part('leaf_litter', 'Fallen leaves', 'bed', 'pond_leaf_litter', '#6c4a28', { instances: 'litter', tint: .3, double: true, lod: 'near' }),
+    part('gas_pockets', 'Bubbles in the mud', 'bed', 'pond_gas_bubbles', '#d9edf2', { instances: 'mud_bubbles', lod: 'near', deeper: { type: 'mol', mol: 'methane', name: 'Methane', button: 'See the molecule: methane' } }),
     part('gas_bubbles', 'Bubbles rising from the mud', 'bed', 'pond_gas_bubbles', '#d9edf2', { flow: 'bubbles', deeper: { type: 'mol', mol: 'methane', name: 'Methane', button: 'See the molecule: methane' } }),
     // ---- floating and surface life ----
-    part('duckweed', 'Common duckweed', 'floating', 'pond_duckweed', '#6aa83a', { instances: 'duckweed', tint: .25, double: true, lod: 'near', deeper: { type: 'cell', cell: 'plant', button: 'Look inside a duckweed cell' } }),
+    part('duckweed', 'Common duckweed', 'floating', 'pond_duckweed', '#6aa83a', { instances: 'duckweed', tint: .25, double: true, lod: 'near', deeper: { type: 'mol', mol: 'chlorophyll_a', name: 'Chlorophyll a', button: 'See the green pigment: chlorophyll a' } }),
     part('duckweed_mat', 'Common duckweed (raft)', 'floating', 'pond_duckweed', '#6aa83a', { mesh: 'duckweed_mat', solid: false, double: true, noink: true, lod: 'mid+far' }),
     part('skater_body', 'Pond skater: body', 'floating', 'pond_skater', '#3a2e22', { mesh: 'skater_body', lod: 'near', ink_w: .0006, deeper: { type: 'mol', mol: 'n_acetylglucosamine', name: 'N-acetylglucosamine', button: 'See the molecule: the unit of chitin' } }),
     part('skater_front_legs', 'Pond skater: front legs', 'floating', 'pond_skater_legs', '#4a3b2c', { mesh: 'skater_front', lod: 'near', ink_w: .0005, solid: false }),
@@ -33,8 +34,8 @@ export default function build() {
     part('skater_hind_legs', 'Pond skater: hind legs (steering)', 'floating', 'pond_skater_legs', '#4a3b2c', { mesh: 'skater_hind', lod: 'near', ink_w: .0005, solid: false }),
     part('film_dimples', 'Dimples in the surface film', 'floating', 'pond_surface_film', '#cfe6ee', { mesh: 'skater_dimples', lod: 'near', solid: false, double: true, noink: true, opacity_max: .55, deeper: { type: 'tissue2', id: 'pond_film', D: 4e-4, button: 'Look at the surface film, close up' } }),
     // ---- plants ----
-    part('hornwort', 'Hornwort (submerged plant)', 'plants', 'pond_hornwort', '#3f7d3a', { instances: 'hornwort_a', tint: .25, double: true, lod: 'near', deeper: { type: 'cell', cell: 'plant', button: 'Look inside a hornwort cell' } }),
-    part('hornwort_b', 'Hornwort (submerged plant)', 'plants', 'pond_hornwort', '#468543', { instances: 'hornwort_b', tint: .25, double: true, lod: 'near', deeper: { type: 'cell', cell: 'plant', button: 'Look inside a hornwort cell' } }),
+    part('hornwort', 'Hornwort (submerged plant)', 'plants', 'pond_hornwort', '#3f7d3a', { instances: 'hornwort_a', tint: .25, double: true, lod: 'near', deeper: { type: 'mol', mol: 'chlorophyll_a', name: 'Chlorophyll a', button: 'See the green pigment: chlorophyll a' } }),
+    part('hornwort_b', 'Hornwort (submerged plant)', 'plants', 'pond_hornwort', '#468543', { instances: 'hornwort_b', tint: .25, double: true, lod: 'near', deeper: { type: 'mol', mol: 'chlorophyll_a', name: 'Chlorophyll a', button: 'See the green pigment: chlorophyll a' } }),
     part('hornwort_stems', 'Hornwort stems', 'plants', 'pond_hornwort', '#587a38', { mesh: 'hornwort_stems', lod: 'near', noink: true }),
     part('hornwort_far', 'Hornwort (submerged plant)', 'plants', 'pond_hornwort', '#3f7d3a', { mesh: 'hornwort_far', lod: 'mid+far', noink: true }),
     part('oxygen_bubbles', 'Oxygen bubbles on the leaves', 'plants', 'pond_oxygen', '#eaf7fb', { instances: 'o2_bubbles', lod: 'near', deeper: { type: 'mol', mol: 'oxygen', name: 'Oxygen', button: 'See the molecule: oxygen' } }),
@@ -49,7 +50,7 @@ export default function build() {
     part('daphnia_head', 'Water flea: head', 'animals', 'pond_daphnia_head', '#e3caa0', { mesh: 'daphnia_head', lod: 'near', ink_w: .0003 }),
     part('daphnia_eye', 'Water flea: compound eye', 'animals', 'pond_daphnia_head', '#101010', { mesh: 'daphnia_eye', lod: 'near', noink: true }),
     part('daphnia_antennae', 'Water flea: second antennae', 'animals', 'pond_daphnia_antennae', '#e8d8b8', { mesh: 'daphnia_antennae', lod: 'near', ink_w: .0002, solid: false }),
-    part('daphnia_heart', 'Water flea: heart', 'animals', 'pond_daphnia_heart', '#cf5a4e', { mesh: 'daphnia_heart', lod: 'near', ink_w: .0002, deeper: { type: 'cell', cell: 'animal', button: 'Look inside a heart muscle cell (the human heart, for comparison)' } }),
+    part('daphnia_heart', 'Water flea: heart', 'animals', 'pond_daphnia_heart', '#cf5a4e', { mesh: 'daphnia_heart', lod: 'near', ink_w: .0002, deeper: { type: 'mol', mol: 'atp', name: 'ATP', button: 'See the molecule that fuels heart muscle: ATP' } }),
     part('daphnia_gut', 'Water flea: gut', 'animals', 'pond_daphnia_gut', '#7aa84a', { mesh: 'daphnia_gut', lod: 'near', ink_w: .0002 }),
     part('daphnia_eggs', 'Water flea: eggs in the brood chamber', 'animals', 'pond_daphnia_eggs', '#e8e0a8', { mesh: 'daphnia_eggs', lod: 'near', ink_w: .0002 }),
     part('daphnia_limbs', 'Water flea: filtering limbs', 'animals', 'pond_daphnia_limbs', '#d9c9a0', { mesh: 'daphnia_limbs', lod: 'near', ink_w: .0002 }),

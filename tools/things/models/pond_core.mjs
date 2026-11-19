@@ -41,6 +41,9 @@ export default function core(R) {
     const paths = [], sources = [[-.9, .75], [.2, .95], [1.1, .3], [-.3, -.55], [.7, -.8], [-1.5, -.2], [1.9, -.6], [.1, .2]];
     for (const [x, z] of sources) { const y0 = bedY(x, z) + .01, pts = []; for (let k = 0; k <= 6; k++) pts.push(x + .012 * Math.sin(k * 1.7 + x * 5), y0 + (yw - .005 - y0) * k / 6, z + .012 * Math.cos(k * 1.3 + z * 5)); paths.push({ p: pts.map(v => Math.round(v * 1e4) / 1e4), r: [0, 0, 0, 0, 0, 0, 0] }); }
     const markers = []; paths.forEach((_, i) => { for (let j = 0; j < 4; j++) markers.push([i, Math.round((j / 4 + R.range(0, .15)) * 1e3) / 1e3, 0]); });
+    // a few bubbles that have just left the mud and rest on it: 5 to 7 mm (the rising ones are drawn at the same size)
+    const rest = new L.Instances('bubble'); for (const [x, z] of sources) for (let k = 0; k < 2; k++) rest.add([x + R.range(-.03, .03), bedY(x, z) + .004, z + R.range(-.03, .03)], [0, 0, 0, 1], R.range(.6, 1.2));
+    instances.mud_bubbles = rest;
     flows.bubbles = { mesh: 'bubble', dir: 1, speed: .03, ring: 0, paths, markers }; }
   return { meshes, instances, flows };
 }

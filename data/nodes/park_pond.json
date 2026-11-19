@@ -178,7 +178,7 @@
   "layers": {
    "basics": "Inside the water, each molecule is pulled equally in every direction by its neighbours. At the surface there are neighbours only below and beside, so the molecules at the surface are pulled together and inwards. The surface acts like an elastic film, and it takes a force to stretch it. A pond skater is light enough, and its feet repel water so well, that the film bends under each foot into a small dimple and pushes back, holding the insect up. The pale bowls under the skater's four standing feet show this. Their size and depth are drawn for illustration, not measured.",
    "deeper": "The pull between water molecules comes from hydrogen bonds: each molecule, bent in shape with a slightly negative oxygen end and slightly positive hydrogen ends, links to several others (see Polarity and hydrogen bonds). At a surface the molecules have fewer partners, so making more surface costs energy; that energy per area is the surface tension. A dimple increases the area of the surface, and the film's tendency to shrink back pushes the foot up. For this to work the leg must not be wetted: if water clung to it the surface would pull the leg in and the animal would sink. Skaters have non-wettable legs covered with microscopic hairs (see Water-repelling hairs).",
-   "expert": "Surface tension of water: 72.8 mN/m at 20 °C and 71.97 mN/m at 25 °C (values from the Surface tension article). Typical pond water is not pure; dissolved and floating organic matter lowers the value somewhat. The depth and width of a real dimple depend on the animal's weight and the leg's shape and have been measured and modelled in the fluid-mechanics literature (for example Bush and Hu on walking on water); this model shows plausible dimples about 6 mm across, not measured ones."
+   "expert": "Surface tension of water: 72.8 mN/m at 20 °C and 71.97 mN/m at 25 °C (values from the Surface tension article). The depth and width of a real dimple depend on the animal's weight and the shape of its leg; this model shows plausible dimples about 6 mm across, not measured ones."
   },
   "facts": [
    [
@@ -1476,7 +1476,7 @@
   "layers": {
    "basics": "The yellow flag's flowers are bright yellow and shaped like other irises: broad petals that fold outward and down, smaller ones that stand up, and arching branches of the style that cover the stamens. In the model each flower has nine parts: three drooping falls, three arching style branches and three small upright standards. The flower is the plant's way of making seed.",
    "deeper": "The flower's parts are drawn after the typical iris plan; the model does not show the stamens or the ovary, and the details (marks on the falls, the proportions) are simplified. The seeds are dispersed by water.",
-   "expert": "Flowers 7 to 10 cm across (Wikipedia, Iris pseudacorus); the model flower is 8.5 cm across. Whether this model's proportions match a real flower in detail is not checked against measurements; it is a typical iris form."
+   "expert": "Flowers 7 to 10 cm across (Wikipedia, Iris pseudacorus); the model flower is 8.5 cm across. The model's proportions follow a typical iris flower and are simplified; the stamens, the ovary and the markings on the falls are not drawn."
   },
   "facts": [
    [
@@ -1896,7 +1896,7 @@
   "summary": "A water flea's heart is a small sac on its back, just behind the head, that you can see beating through the shell.",
   "layers": {
    "basics": "Behind the head, at the top of the back, the heart pumps the animal's blood. Because the shell is clear, you can see it beat: about 180 times a minute (three beats per second) in normal conditions. It is the classic view of a water flea under a microscope. In the model the heart beats at half that speed so that you can watch it, and the screen says so.",
-   "deeper": "Because of their size, Daphnia use both diffusion and circulation to move oxygen about; they make haemoglobin when oxygen is low. Heart rate depends on temperature and conditions: about 180 beats a minute is the average in normal conditions. A heart is a muscular pump in every animal that has one, including us; a human heart is a far bigger muscular pump, but it works on the same principle: heart muscle cells contract together. Press the button to look inside a heart muscle cell.",
+   "deeper": "Because of their size, Daphnia use both diffusion and circulation to move oxygen about; they make haemoglobin when oxygen is low. Heart rate depends on temperature and conditions: about 180 beats a minute is the average in normal conditions. A heart is a muscular pump in every animal that has one, including us; a human heart is a far bigger muscular pump, but it works on the same principle: heart muscle cells contract together. Press the button to see ATP, the molecule that fuels every muscle cell.",
    "expert": "The heart is at the top of the back just behind the head (Wikipedia, Daphnia). In the model it is an ellipsoid 0.4 mm long, shown pulsing at 1.5 beats per second against the real 3 per second."
   },
   "facts": [
@@ -1950,7 +1950,7 @@
   "summary": "The gut is a tube from the mouth to the tail; you can see green food moving through it.",
   "layers": {
    "basics": "Food strained from the water is pushed into the gut, where it forms a ball that moves along the tube until it is passed out at the animal's tail end. Because the shell is clear, the gut can be seen through it. In the model the gut is a green tube with a pair of small pouches at the front.",
-   "deeper": "Leg beating draws food particles into the digestive tract, where they form a bolus (a ball) that moves down until it is voided through the anus on the underside of the end of the body (Wikipedia, Daphnia). The pouches (caeca) at the front of the model's gut are drawn after the general plan; their exact form is not checked against a drawing.",
+   "deeper": "Leg beating draws food particles into the digestive tract, where they form a bolus (a ball) that moves down until it is voided through the anus on the underside of the end of the body (Wikipedia, Daphnia). The pouches at the front of the model's gut are a simplification of the real gut's form.",
    "expert": "The gut is drawn 2 mm long and about 0.2 mm wide."
   },
   "facts": [
@@ -2225,7 +2225,7 @@
   "summary": "Two tentacles at the front of the head carry the snail's senses; small dark eyes sit at their base.",
   "layers": {
    "basics": "The model gives the snail two tentacles on its head and a pair of small eyes. The model draws the tentacles as broad flat triangles and the eyes as black dots at the inner side of their bases.",
-   "deeper": "The model shapes are drawn after the general plan of the snail head and are not checked against a measured specimen. Sensory detail is not drawn.",
+   "deeper": "The shapes in the model are simplified; sensory detail is not drawn.",
    "expert": "In the model the tentacles are 5.6 mm long and the eyes 1.2 mm across."
   },
   "facts": [

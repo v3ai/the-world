@@ -501,6 +501,29 @@
    "tris": 2880
   },
   {
+   "id": "gas_pockets",
+   "name": "Bubbles in the mud",
+   "system": "bed",
+   "node": "pond_gas_bubbles",
+   "color": "#d9edf2",
+   "instances": "mud_bubbles",
+   "lod": "near",
+   "deeper": {
+    "type": "mol",
+    "mol": "methane",
+    "name": "Methane",
+    "button": "See the molecule: methane"
+   },
+   "center": [
+    0.1689,
+    -0.5581,
+    0.006
+   ],
+   "radius": 1.8564,
+   "count": 16,
+   "tris": 1024
+  },
+  {
    "id": "gas_bubbles",
    "name": "Bubbles rising from the mud",
    "system": "bed",
@@ -532,16 +555,17 @@
    "double": true,
    "lod": "near",
    "deeper": {
-    "type": "cell",
-    "cell": "plant",
-    "button": "Look inside a duckweed cell"
+    "type": "mol",
+    "mol": "chlorophyll_a",
+    "name": "Chlorophyll a",
+    "button": "See the green pigment: chlorophyll a"
    },
    "center": [
-    -1.1425,
+    -1.1418,
     0.0202,
-    0.8515
+    0.852
    ],
-   "radius": 0.4479,
+   "radius": 0.4485,
    "count": 2280,
    "tris": 27360
   },
@@ -684,18 +708,19 @@
    "double": true,
    "lod": "near",
    "deeper": {
-    "type": "cell",
-    "cell": "plant",
-    "button": "Look inside a hornwort cell"
+    "type": "mol",
+    "mol": "chlorophyll_a",
+    "name": "Chlorophyll a",
+    "button": "See the green pigment: chlorophyll a"
    },
    "center": [
-    -0.0088,
-    -0.3078,
-    -0.3193
+    -0.0604,
+    -0.3142,
+    -0.1502
    ],
-   "radius": 1.7731,
-   "count": 89,
-   "tris": 13884
+   "radius": 1.9398,
+   "count": 77,
+   "tris": 12012
   },
   {
    "id": "hornwort_b",
@@ -708,18 +733,19 @@
    "double": true,
    "lod": "near",
    "deeper": {
-    "type": "cell",
-    "cell": "plant",
-    "button": "Look inside a hornwort cell"
+    "type": "mol",
+    "mol": "chlorophyll_a",
+    "name": "Chlorophyll a",
+    "button": "See the green pigment: chlorophyll a"
    },
    "center": [
-    -0.1167,
-    -0.2984,
-    -0.1314
+    -0.0896,
+    -0.2971,
+    -0.2758
    ],
-   "radius": 1.74,
-   "count": 84,
-   "tris": 13104
+   "radius": 1.8465,
+   "count": 92,
+   "tris": 14352
   },
   {
    "id": "hornwort_stems",
@@ -731,11 +757,11 @@
    "lod": "near",
    "noink": true,
    "center": [
-    -0.0658,
-    -0.3118,
-    -0.1867
+    -0.1285,
+    -0.312,
+    -0.2014
    ],
-   "radius": 1.7584,
+   "radius": 1.8381,
    "tris": 1024
   },
   {
@@ -770,13 +796,13 @@
     "button": "See the molecule: oxygen"
    },
    "center": [
-    -0.0598,
-    -0.293,
-    -0.2056
+    -0.0733,
+    -0.2823,
+    -0.304
    ],
-   "radius": 1.7391,
-   "count": 42,
-   "tris": 1512
+   "radius": 1.815,
+   "count": 45,
+   "tris": 1620
   },
   {
    "id": "iris_leaves",
@@ -789,11 +815,11 @@
    "tint": 0.15,
    "lod": "near+mid",
    "center": [
-    0.7162,
+    0.7166,
     0,
-    -0.333
+    -0.3344
    ],
-   "radius": 3.8894,
+   "radius": 3.8647,
    "count": 27,
    "tris": 1836
   },
@@ -808,11 +834,11 @@
    "lod": "near+mid",
    "solid": false,
    "center": [
-    2.4296,
+    2.4051,
     0.9935,
-    -0.834
+    -0.8083
    ],
-   "radius": 0.4842,
+   "radius": 0.4606,
    "tris": 1728
   },
   {
@@ -824,11 +850,11 @@
    "mesh": "iris_stalks",
    "lod": "near+mid",
    "center": [
-    2.4203,
+    2.3987,
     0.4076,
-    -0.8426
+    -0.8131
    ],
-   "radius": 0.7443,
+   "radius": 0.7264,
    "tris": 404
   },
   {
@@ -874,11 +900,11 @@
    "lod": "near",
    "double": true,
    "center": [
-    0.7308,
+    0.7218,
     -0.1961,
-    -0.3236
+    -0.3282
    ],
-   "radius": 3.7088,
+   "radius": 3.7197,
    "count": 78,
    "tris": 1872
   },
@@ -968,9 +994,10 @@
    "lod": "near",
    "ink_w": 0.0002,
    "deeper": {
-    "type": "cell",
-    "cell": "animal",
-    "button": "Look inside a heart muscle cell (the human heart, for comparison)"
+    "type": "mol",
+    "mol": "atp",
+    "name": "ATP",
+    "button": "See the molecule that fuels heart muscle: ATP"
    },
    "center": [
     0.2804,
@@ -1040,11 +1067,11 @@
    "instances": "daphnia_swarm",
    "lod": "near",
    "center": [
-    0.2376,
-    -0.2402,
-    -0.326
+    0.2695,
+    -0.2221,
+    -0.3052
    ],
-   "radius": 1.275,
+   "radius": 1.1308,
    "count": 20,
    "tris": 4440
   },
@@ -1334,16 +1361,16 @@
    "lod": "near",
    "center": [
     -2.29,
-    -0.1081,
+    -0.1065,
     -0.47
    ],
-   "radius": 0.5039,
+   "radius": 0.504,
    "count": 5,
    "tris": 820
   }
  ],
  "stats": {
-  "parts": 51,
+  "parts": 52,
   "uniqueMeshTris": 64228,
   "nearTris": 48740,
   "midTris": 14708,

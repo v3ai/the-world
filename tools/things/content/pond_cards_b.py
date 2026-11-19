@@ -35,7 +35,7 @@ N('pond_iris_flower', 'Yellow flag flower', 'structure', 0.085, ['pond_iris'],
   "A yellow flag flower is a large iris bloom, 7 to 10 cm across, held above the water on a tall stalk.",
   "The yellow flag's flowers are bright yellow and shaped like other irises: broad petals that fold outward and down, smaller ones that stand up, and arching branches of the style that cover the stamens. In the model each flower has nine parts: three drooping falls, three arching style branches and three small upright standards. The flower is the plant's way of making seed.",
   "The flower's parts are drawn after the typical iris plan; the model does not show the stamens or the ovary, and the details (marks on the falls, the proportions) are simplified. The seeds are dispersed by water.",
-  "Flowers 7 to 10 cm across (Wikipedia, Iris pseudacorus); the model flower is 8.5 cm across. Whether this model's proportions match a real flower in detail is not checked against measurements; it is a typical iris form.",
+  "Flowers 7 to 10 cm across (Wikipedia, Iris pseudacorus); the model flower is 8.5 cm across. The model's proportions follow a typical iris flower and are simplified; the stamens, the ovary and the markings on the falls are not drawn.",
   [('Flower width', '7 to 10 cm (model: 8.5 cm)'), ('Colour', 'bright yellow'), ('Parts drawn', '3 falls, 3 style branches, 3 standards')], 'C1', [R_PLANT], [W_IRIS], where='park_pond', related=['rn_flower'])
 
 N('pond_iris_rhizome', 'Rhizome and roots in the mud', 'structure', 0.25, ['pond_iris', 'pond_mud'],
