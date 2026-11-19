@@ -143,7 +143,7 @@ const TRAILS = {
   }
   T.openCard = openCard;
   function landAt(w, then) {
-    const fin = () => { if (w.dir) { const d = V(w.dir).normalize(); cam.dir.copy(d); orthoUp(); } then(); };
+    const fin = () => { if (w.dir) { setCamDir(V(w.dir)); } then(); };
     if (w.landmark) { const L = LANDMARKS.find(l => l.label === w.landmark); if (!L) throw new Error('no landmark ' + w.landmark); L.go(fin); return; }
     if (w.node) { goToNode(w.node); waitFly(fin); return; }
     if (w.place) { if (!placeGo(w.place)) throw new Error('no place ' + w.place); waitFly(fin); return; }
@@ -185,7 +185,7 @@ const TRAILS = {
     else if (a.element) { const F = FR.atom; await until(() => F.setElement, 8000); F.setElement(a.element); }
     else if (a.sm) { await until(() => typeof PX !== 'undefined' && PX.inSM(), 8000); PX.smSet(a.sm.mode || 'overview', Object.assign({}, a.sm, { mode: undefined })); }
     else if (a.time) { simTime = Date.parse(a.time); if (a.speed !== undefined) { timeSpeed = a.speed; const b = $q('#timeS'); if (b) b.textContent = a.speed === 0 ? '⏸' : a.speed === 1 ? '1×' : b.textContent; } }
-    else if (a.dir) { cam.dir.copy(V(a.dir).normalize()); orthoUp(); }
+    else if (a.dir) { setCamDir(V(a.dir)); }
     else if (a.press) { const want = a.press.toLowerCase(); const b = await until(() => [...document.querySelectorAll('#info button, #controls button, #ptable button')].find(x => x.offsetParent && x.textContent.trim().toLowerCase().includes(want)), a.waitMs || 6000); if (b) b.click(); else T.errors.push('no button: ' + a.press); }
     else if (a.hide) { const F = FR.body; a.hide.forEach(id => F.hidden.add(id)); applyMode(F); }
     else if (a.hideBody) { const F = FR.body; if (F && F.hidden && typeof ANAT_SYNC !== 'undefined' && ANAT_SYNC) { ANAT_SYNC.parts.forEach(p => F.hidden.add(p.id)); if (typeof applyMode === 'function') applyMode(F); } }

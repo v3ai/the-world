@@ -39,9 +39,6 @@
    },
    "do": [
     {
-     "hideBody": true
-    },
-    {
      "mode": "whole",
      "thing": "boulder"
     }
@@ -76,9 +73,6 @@
     }
    },
    "do": [
-    {
-     "hideBody": true
-    },
     {
      "mode": "cut",
      "thing": "boulder"
@@ -115,7 +109,7 @@
       0.3,
       0
      ],
-     "D": 4e-9
+     "D": 4e-09
     }
    },
    "expect": {
@@ -127,12 +121,7 @@
    ],
    "model": "The lattice is drawn from the quartz crystal structure data, and the atom sizes are drawn for visibility.",
    "notice": "The red atoms are oxygen and the tan ones are silicon. Look for a repeating pattern, a unit that appears again and again; the yellow outline marks one such unit.",
-   "deeper": [],
-   "do": [
-    {
-     "hideBody": true
-    }
-   ]
+   "deeper": []
   },
   {
    "title": "An atom is not empty",

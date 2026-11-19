@@ -33,9 +33,6 @@
    },
    "do": [
     {
-     "hideBody": true
-    },
-    {
      "mode": "whole",
      "thing": "mushroom"
     }
@@ -66,9 +63,6 @@
     }
    },
    "do": [
-    {
-     "hideBody": true
-    },
     {
      "mode": "wood",
      "thing": "mushroom"
@@ -117,11 +111,6 @@
      "label": "Spores",
      "node": "fa_spores"
     }
-   ],
-   "do": [
-    {
-     "hideBody": true
-    }
    ]
   },
   {
@@ -135,9 +124,6 @@
     }
    },
    "do": [
-    {
-     "hideBody": true
-    },
     {
      "mode": "under",
      "thing": "mushroom"
@@ -195,11 +181,6 @@
     {
      "label": "Root tip and fungus",
      "node": "fa_ecm"
-    }
-   ],
-   "do": [
-    {
-     "hideBody": true
     }
    ]
   }
