@@ -459,7 +459,7 @@
   "kn": [
    "soil_biology"
   ],
-  "where": "place:soil"
+  "where": "oak_mycorrhiza"
  },
  {
   "id": "bio_plant_secondary_metabolites",
@@ -876,7 +876,7 @@
   "kn": [
    "fossils_paleontology"
   ],
-  "where": "place:air"
+  "where": "bee_wings"
  },
  {
   "id": "bio_lichens_fungal_biotech",
@@ -1845,7 +1845,7 @@
   "kn": [
    "flowers_pollination"
   ],
-  "where": "place:park"
+  "where": "park_bee"
  },
  {
   "id": "bio_soil_ecology",

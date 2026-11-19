@@ -291,8 +291,6 @@
     const f = FR[name]; if (!f) return false; f.ensure(); const o = f.pickables.find(x => x.userData && x.userData.id && x.userData.id.toLowerCase() === name.toLowerCase());
     flyTo(f, new V3(), ((o && typeof objRadiusLocal === 'function' && objRadiusLocal(o) * f.unit) || (e.rkm || 2000) * 1000) * K); return true;
   }
-  /* flyTo() closes the card that goToNode has just opened (engine behaviour), so open it again when the flight is over */
-  function reopen(id) { afterFlight(() => { const inf = document.getElementById('info'); if (!(inf && inf.classList.contains('open') && inf.querySelector('h2') && inf.querySelector('h2').textContent === (NODE[id] || {}).title)) showBodyNode(id, null); }); }
   function go(r) {
     const e = r.e || r, id = e.id, c = e.c; const key = id.slice(id.indexOf(':') + 1);
     if (typeof cancelTour === 'function') cancelTour();
@@ -300,8 +298,8 @@
     say(c === 'node' || c === 'kn' ? '' : '');
     if (c === 'mol') { placeGo('mol:' + key); afterFlight(() => { const F = cam.A; if (F && F.info && F.type === 'mol') openInfoOf(F.info, F); }); }
     else if (c === 'crystal') { placeGo('crystal:' + key); afterFlight(() => { const F = cam.A; if (F && F.info && F.type === 'crystal') openInfoOf(F.info, F); }); }
-    else if (c === 'el') { goToNode('at_el_' + key); reopen('at_el_' + key); }
-    else if (c === 'node') { goToNode(key); reopen(key); }
+    else if (c === 'el') { goToNode('at_el_' + key); }
+    else if (c === 'node') { goToNode(key); }
     else if (c === 'kn') { (typeof loadKnowledge === 'function' ? loadKnowledge() : Promise.resolve()).then(() => showNode(key)); }
     else if (c === 'lm') { const L = LANDMARKS.find(l => l.label === key); if (L) { L.go(); if (e.card) afterFlight(() => openCardById(e.card)); } }
     else if (c === 'pl') { if (planetFlight(e)) afterFlight(() => openCardById(e.card)); }
@@ -433,7 +431,8 @@
     $s('#srchBtn').onclick = () => { document.body.classList.add('srchFull'); inp.focus(); openPanel(); };
     $s('#srchX').onclick = () => { inp.value = ''; closePanel(); };
     document.addEventListener('pointerdown', ev => { if (S.open && !ev.target.closest('#srch')) closePanel(true); }, true);
-    // "/" and Ctrl/Cmd+K focus the field from anywhere. Capture phase, so the engine's own "/" (which opens the Library) does not also fire.
+    // "/" and Ctrl/Cmd+K focus the field from anywhere. 
+    S.focus = () => { document.body.classList.add('srchFull'); inp.focus(); inp.select(); openPanel(); };
     addEventListener('keydown', ev => {
       const t = ev.target, typing = t && /^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName) || (t && t.isContentEditable);
       const isK = (ev.ctrlKey || ev.metaKey) && !ev.altKey && (ev.key === 'k' || ev.key === 'K');

@@ -79,8 +79,11 @@ FT.phone = {
     pas.userData = { id: 'phone_passives', node: NODE.phone_passives ? 'phone_passives' : null, priority: 1.5, info: partInfo('phone_passives', 'Passive components', 'Around a thousand tiny capacitors and resistors; the smallest are 0.4 × 0.2 mm (0201 parts are smaller still).') }; layer(pas, 1); F.add(pas); F.pickables.push(pas); regMesh('phone_passives', pas);
     tearReg('smartphone', F, new V3(), .25);
     const ex = { mode: 'auto', k: 0 };
-    seg([['auto', 'Auto'], ['closed', 'Closed'], ['open', 'Exploded']], 'auto', k => ex.mode = k);
+    const sg = seg([['auto', 'Auto'], ['closed', 'Closed'], ['open', 'Exploded']], 'auto', k => ex.mode = k);
+    /* a result that targets a part inside the phone (search, a chip, "Show where it is"): open the phone and highlight the part while its card is open */
+    F.showPart = (id, card) => { ex.mode = 'open'; sg.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === 'open')); F.selId = id; F.selCard = card || id; F._selObj = null; };
     F.update = (dt) => {
+      if (F.selId) { const sel = infoState && infoState.node === F.selCard ? (F.pickables.find(o => o.userData.id === F.selId) || null) : null; if (sel !== F._selObj) { setHighlight(F._selObj, false); setHighlight(sel, true); F._selObj = sel; if (!sel) F.selId = null; } }
       const want = ex.mode === 'open' ? 1 : ex.mode === 'closed' ? 0 : 1 - smooth(.09, .32, cam.D);
       ex.k += (want - ex.k) * Math.min(1, dt * 4); F.exK = ex.k;
       F.layers.forEach(o => { o.position.z = o.userData.z0 + o.userData.zz * ex.k * 2.6; });

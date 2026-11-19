@@ -616,7 +616,7 @@
 "side": true
 },
 {
-"D": 0.018,
+"D": 0.012,
 "label": "Phone processor",
 "side": true
 },
@@ -721,11 +721,6 @@
 "side": false
 },
 {
-"D": 0.05,
-"label": "Honey bee (14 mm)",
-"side": true
-},
-{
 "D": 3000000000,
 "label": "The Sun",
 "side": false
@@ -744,6 +739,11 @@
 "D": 3.8e-17,
 "label": "Standard Model",
 "side": false
+},
+{
+"D": 0.05,
+"label": "Honey bee (14 mm)",
+"side": true
 }
 ],
 "nodes": {
@@ -1006,14 +1006,14 @@
 "bio_electron_transport_chain": "mol",
 "bio_emerging_viruses": "place",
 "bio_endosymbiosis": "place",
-"bio_entomology_insects": "place",
+"bio_entomology_insects": "via:thing",
 "bio_enzyme_catalysis": "mol",
 "bio_enzyme_inhibition": "mol",
 "bio_epigenetics": "place",
 "bio_epistasis_pleiotropy": "place",
 "bio_eukaryotic_gene_regulation": "place",
 "bio_evidence_for_evolution": "place",
-"bio_evolution_of_flight": "place",
+"bio_evolution_of_flight": "via:thing",
 "bio_excretion_nitrogen": "via:hotspot",
 "bio_experimental_evolution": "place",
 "bio_exponential_logistic_growth": "place",
@@ -1025,8 +1025,8 @@
 "bio_fishes_amphibians": "place",
 "bio_food_webs_energy_flow": "place",
 "bio_functional_groups": "mol",
-"bio_fungal_ecology": "place",
-"bio_fungi_basics": "place",
+"bio_fungal_ecology": "via:thing",
+"bio_fungi_basics": "via:thing",
 "bio_gastrulation_germ_layers": "place",
 "bio_gel_electrophoresis": "mol",
 "bio_gene_therapy": "place",
@@ -1065,7 +1065,7 @@
 "bio_lophotrochozoans": "place",
 "bio_macroevolution_evodevo": "place",
 "bio_macromolecule_synthesis": "mol",
-"bio_mammals_primates": "place",
+"bio_mammals_primates": "via:thing",
 "bio_marine_biology": "place",
 "bio_mass_extinctions": "place",
 "bio_meiosis_variation": "place",
@@ -1087,7 +1087,7 @@
 "bio_morphogens_gradients": "place",
 "bio_mutations": "place",
 "bio_natural_selection": "place",
-"bio_nematodes_arthropods": "place",
+"bio_nematodes_arthropods": "via:thing",
 "bio_nervous_disorders": "via:organ",
 "bio_neuro_methods": "via:organ",
 "bio_neurulation_organogenesis": "place",
@@ -1114,19 +1114,19 @@
 "bio_photosynthetic_adaptations": "place",
 "bio_phylogenetic_methods": "place",
 "bio_phylogeny_cladistics": "place",
-"bio_plant_body_tissues": "place",
-"bio_plant_development_flower": "place",
-"bio_plant_embryogenesis_note": "place",
+"bio_plant_body_tissues": "via:thing",
+"bio_plant_development_flower": "via:thing",
+"bio_plant_embryogenesis_note": "via:thing",
 "bio_plant_hormones": "place",
 "bio_plant_nutrition_soil": "thing",
 "bio_plant_pathogens_defense": "place",
 "bio_plant_polyploidy": "place",
-"bio_plant_reproduction": "place",
+"bio_plant_reproduction": "via:thing",
 "bio_plant_responses": "place",
 "bio_plant_secondary_metabolites": "place",
 "bio_plant_stress_drought": "place",
 "bio_polarity_hbonds": "mol",
-"bio_pollination_networks": "place",
+"bio_pollination_networks": "via:thing",
 "bio_polysaccharides": "mol",
 "bio_population_genetics": "place",
 "bio_population_structure": "place",
@@ -1150,11 +1150,11 @@
 "bio_rna_processing": "place",
 "bio_rna_types": "mol",
 "bio_rna_world_luca": "place",
-"bio_roots_mycorrhiza": "place",
+"bio_roots_mycorrhiza": "via:thing",
 "bio_sanger_sequencing": "place",
 "bio_scientific_method": "place",
 "bio_second_messengers": "mol",
-"bio_seed_plants": "place",
+"bio_seed_plants": "via:thing",
 "bio_selection_modes": "place",
 "bio_sex_determination_development": "place",
 "bio_sex_linkage": "place",
@@ -1170,7 +1170,7 @@
 "bio_steroids_terpenoids": "mol",
 "bio_substitution_elimination": "mol",
 "bio_succession_disturbance": "place",
-"bio_symbiosis": "place",
+"bio_symbiosis": "via:thing",
 "bio_synaptic_plasticity_memory": "via:hotspot",
 "bio_synthetic_biology": "place",
 "bio_taxonomy_intro": "place",
@@ -1240,8 +1240,11 @@
 "dna_replication_process": "place",
 "dog": "thing",
 "dog_arteries": "thing",
+"dog_axons": "thing",
 "dog_baculum": "thing",
+"dog_basal": "thing",
 "dog_bladder": "thing",
+"dog_bowman": "thing",
 "dog_brain": "thing",
 "dog_bronchi": "thing",
 "dog_bulbs": "thing",
@@ -1252,7 +1255,9 @@
 "dog_choroid": "thing",
 "dog_claws": "thing",
 "dog_coat": "thing",
+"dog_coat_group": "thing",
 "dog_cochlea": "thing",
+"dog_cone": "thing",
 "dog_cornea": "thing",
 "dog_costal": "thing",
 "dog_dewclaw": "thing",
@@ -1263,7 +1268,11 @@
 "dog_esophagus": "thing",
 "dog_eye": "thing",
 "dog_femur": "thing",
+"dog_fill": "thing",
+"dog_follicle": "thing",
 "dog_fur": "thing",
+"dog_gait": "thing",
+"dog_gland": "thing",
 "dog_heart": "thing",
 "dog_humerus": "thing",
 "dog_iris": "thing",
@@ -1309,10 +1318,17 @@
 "dog_mandible": "thing",
 "dog_metacarpals": "thing",
 "dog_metatarsals": "thing",
+"dog_muscle_fibre": "thing",
+"dog_muscle_scene": "thing",
+"dog_muscles": "thing",
 "dog_nerves_fore": "thing",
 "dog_nerves_hind": "thing",
+"dog_nmj": "thing",
 "dog_nose": "thing",
+"dog_olfactory_epithelium": "thing",
 "dog_optic": "thing",
+"dog_organs": "thing",
+"dog_osn": "thing",
 "dog_pads": "thing",
 "dog_patella": "thing",
 "dog_pelvis": "thing",
@@ -1320,17 +1336,26 @@
 "dog_ra": "thing",
 "dog_radius_ulna": "thing",
 "dog_retina": "thing",
+"dog_retina_scene": "thing",
 "dog_ribs": "thing",
+"dog_rod": "thing",
+"dog_rpe": "thing",
 "dog_rv": "thing",
 "dog_sacrum": "thing",
 "dog_scapula": "thing",
 "dog_sclera": "thing",
+"dog_skeleton": "thing",
+"dog_skin_dermis": "thing",
+"dog_skin_epidermis": "thing",
+"dog_skin_scene": "thing",
 "dog_skull": "thing",
 "dog_small_intestine": "thing",
 "dog_spinal_cord": "thing",
 "dog_spleen": "thing",
 "dog_sternum": "thing",
 "dog_stomach": "thing",
+"dog_sustentacular": "thing",
+"dog_tapetal_cells": "thing",
 "dog_tapetum": "thing",
 "dog_tarsus": "thing",
 "dog_teeth": "thing",
@@ -1340,6 +1365,7 @@
 "dog_trachea": "thing",
 "dog_turb_olf": "thing",
 "dog_turb_resp": "thing",
+"dog_undercoat": "thing",
 "dog_vagus": "thing",
 "dog_valves": "thing",
 "dog_veins": "thing",
@@ -1418,7 +1444,7 @@
 "liver_lobule": "hotspot",
 "logic_adder": "tear",
 "logic_gate_nand": "tear",
-"logic_gates": "tear",
+"logic_gates": "via:tear",
 "loop_of_henle": "hotspot",
 "lumbar_spine": "part",
 "lung_l": "organ",
@@ -1670,7 +1696,11 @@
 "cpu_core",
 "core_pipeline",
 "logic_adder",
-"logic_gate_nand",
+"logic_cell",
+"silicon_substrate",
+"cmos_vdd",
+"cmos_gnd",
+"cmos_out",
 "cmos_inverter",
 "finfet_transistor",
 "silicon_channel",
@@ -1743,7 +1773,7 @@
 },
 {
 "id": "sheath",
-"name": "Proboscis: sheath (maxillae and labial palps)",
+"name": "Proboscis: sheath (galeae and labial palps)",
 "node": "bee_proboscis"
 },
 {
@@ -1858,32 +1888,32 @@
 },
 {
 "id": "abd1",
-"name": "Abdomen: segment 1 of 6 (visible)",
+"name": "Abdomen: visible segment 1 of 6 (abdominal segment 2)",
 "node": "bee_abdomen"
 },
 {
 "id": "abd2",
-"name": "Abdomen: segment 2 of 6 (visible)",
+"name": "Abdomen: visible segment 2 of 6 (abdominal segment 3)",
 "node": "bee_abdomen"
 },
 {
 "id": "abd3",
-"name": "Abdomen: segment 3 of 6 (visible)",
+"name": "Abdomen: visible segment 3 of 6 (abdominal segment 4)",
 "node": "bee_abdomen"
 },
 {
 "id": "abd4",
-"name": "Abdomen: segment 4 of 6 (visible)",
+"name": "Abdomen: visible segment 4 of 6 (abdominal segment 5)",
 "node": "bee_abdomen"
 },
 {
 "id": "abd5",
-"name": "Abdomen: segment 5 of 6 (visible)",
+"name": "Abdomen: visible segment 5 of 6 (abdominal segment 6)",
 "node": "bee_abdomen"
 },
 {
 "id": "abd6",
-"name": "Abdomen: segment 6 of 6 (visible)",
+"name": "Abdomen: visible segment 6 of 6 (abdominal segment 7)",
 "node": "bee_abdomen"
 },
 {
@@ -1943,7 +1973,7 @@
 },
 {
 "id": "ganglia",
-"name": "Ganglia of the nerve cord",
+"name": "Ganglia of the nerve cord (a worker has one more abdominal ganglion than drawn)",
 "node": "bee_nerve_cord"
 },
 {
@@ -1973,7 +2003,7 @@
 },
 {
 "id": "malpighian",
-"name": "Malpighian tubules",
+"name": "Malpighian tubules (22 drawn as a sample; a worker has about 100)",
 "node": "bee_malpighian"
 },
 {
@@ -2013,7 +2043,7 @@
 },
 {
 "id": "wax",
-"name": "Wax glands (wax mirrors)",
+"name": "Wax glands (wax mirrors, abdominal segments 4 to 7)",
 "node": "bee_wax_glands"
 },
 {
@@ -2033,7 +2063,7 @@
 },
 {
 "id": "spiracles",
-"name": "Spiracles (breathing pores)",
+"name": "Spiracles (9 pairs drawn; a worker has 10)",
 "node": "bee_spiracles"
 }
 ],
@@ -2074,6 +2104,21 @@
 "id": "coat",
 "name": "Skin and coat",
 "node": "dog_coat"
+},
+{
+"id": "coat_mid",
+"name": "Skin and coat",
+"node": "dog_coat"
+},
+{
+"id": "coat_far",
+"name": "Skin and coat",
+"node": "dog_coat"
+},
+{
+"id": "fill",
+"name": "Soft tissue (a stand-in for fat, connective tissue and glands)",
+"node": "dog_fill"
 },
 {
 "id": "fur",
@@ -2594,11 +2639,6 @@
 "id": "tail_nerves",
 "name": "Tail nerves",
 "node": "dog_nerves_hind"
-},
-{
-"id": "eyes_n",
-"name": "Eyes",
-"node": "dog_eye"
 },
 {
 "id": "arteries",

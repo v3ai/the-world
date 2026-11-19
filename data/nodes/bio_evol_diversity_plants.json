@@ -1211,7 +1211,7 @@
   "kn": [
    "animal_diversity"
   ],
-  "where": "place:soil"
+  "where": "park_mushroom"
  },
  {
   "id": "bio_fungal_ecology",
@@ -1273,7 +1273,7 @@
   "kn": [
    "soil_biology"
   ],
-  "where": "place:soil"
+  "where": "fa_ecm"
  },
  {
   "id": "bio_algae_green_origin",
@@ -1450,7 +1450,7 @@
    "flowers_pollination",
    "plant_physiology"
   ],
-  "where": "place:park"
+  "where": "rn_acris"
  },
  {
   "id": "bio_animal_features",
@@ -1691,7 +1691,7 @@
   "kn": [
    "animal_diversity"
   ],
-  "where": "place:park"
+  "where": "park_bee"
  },
  {
   "id": "bio_entomology_insects",
@@ -1743,7 +1743,7 @@
   "kn": [
    "animal_diversity"
   ],
-  "where": "place:park"
+  "where": "park_bee"
  },
  {
   "id": "bio_echinoderms_chordates",
@@ -1972,7 +1972,7 @@
    "animal_diversity",
    "human_evolution"
   ],
-  "where": "place:park"
+  "where": "dog"
  },
  {
   "id": "bio_zoology_taxonomy_methods",
@@ -2131,7 +2131,7 @@
   "kn": [
    "plant_physiology"
   ],
-  "where": "place:leaf"
+  "where": "oak_english"
  },
  {
   "id": "bio_leaf_structure_gas_exchange",
@@ -2560,7 +2560,7 @@
   "kn": [
    "flowers_pollination"
   ],
-  "where": "place:park"
+  "where": "rn_acris"
  },
  {
   "id": "bio_plant_development_flower",
@@ -2607,6 +2607,6 @@
   "kn": [
    "development_biology"
   ],
-  "where": "place:leaf"
+  "where": "rn_acris"
  }
 ]
