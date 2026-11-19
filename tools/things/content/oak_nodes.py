@@ -82,9 +82,9 @@ N('oak_cambium', 'Vascular cambium', 'tissue', .0005, ['oak_trunk'],
 N('oak_sapwood', 'Sapwood', 'tissue', .03, ['oak_trunk'],
   'Sapwood is the younger, outer wood of a trunk. It carries water up from the roots and stores food.',
   'The pale wood near the outside of a log is the sapwood. Water rises through it from the roots to the leaves. It also stores sugar and starch that the tree draws on in spring, before new leaves can make food.',
-  'The water travels through dead, empty tubes (vessels) that are open like pipes. The living cells among them store food. In oak only the youngest rings do the carrying. A study of 344 trees of the English oak in south-eastern Europe found on average about 13 sapwood rings, with a range of 5 to 32, so the water-carrying zone is a thin outer layer of an old oak. The model log has 13 rings of sapwood.',
+  'The water travels through dead, empty tubes (vessels) that are open like pipes. The living cells among them store food. In oak only the youngest rings do the carrying. A study of 344 samples from 13 sites of the English oak in south-eastern Europe found on average about 13 sapwood rings, with a range of 5 to 32, so the water-carrying zone is a thin outer layer of an old oak. The model log has 13 rings of sapwood.',
   'Oak is ring-porous: the vessels formed in early spring, the earlywood, are very wide (about 0.5 mm across) and carry most of the water, while the narrow vessels of later wood carry less. A vessel is formed from a stack of cells whose end walls break down and whose living contents die, leaving a pipe. Sapwood width depends on the tree: crown size, site and position in the stand all matter. Open-grown trees tend to have wider sapwood for their size.',
-  [['Sapwood rings (English oak)', 'mean ≈ 13, range ≈ 5–32 (344 trees)'], ['Earlywood vessel width', '≈ 0.5 mm'], ['Model sapwood', '13 rings, ≈ 2.4 cm thick']],
+  [['Sapwood rings (English oak)', 'mean ≈ 13, range ≈ 5–32 (344 samples from 13 sites)'], ['Earlywood vessel width', '≈ 0.5 mm'], ['Model sapwood', '13 rings, ≈ 2.4 cm thick']],
   refs=[R302, R305], ext=[W_SAP, W_XYL, SAPDATA], parts=['bio_water_transport'])
 
 N('oak_heartwood', 'Heartwood', 'tissue', .3, ['oak_trunk'],

@@ -15,7 +15,7 @@ const M = {
   crownRx: 10, crownCy: 12.2, crownRy: 7.4,   // crown half-width, centre height, half-height
   forkY: 2.7,            // where the limbs begin
   rings: 150,            // annual rings drawn in the cut log
-  sapRings: 13,          // sapwood rings (mean 13.3, range 5-32 in a 344-tree study of Q. robur)
+  sapRings: 13,          // sapwood rings (mean about 13, range about 5-32 in 344 samples from 13 sites, Jevsenak et al. 2019 of Q. robur)
   barkT: .030, phloemT: .008, cambT: .005, pith: .006,  // m; bark and phloem typical, cambium drawn thicker than real
   logTop: 1.7, notchY: .75,
 };

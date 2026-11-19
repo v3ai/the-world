@@ -516,6 +516,7 @@ FT.tissue2 = {
     F.env = { opaque: true, bg: 0xf3efe6 }; F.illo = true;
     F.add(new THREE.HemisphereLight(0xffffff, 0x998877, .75)); const kl = new THREE.DirectionalLight(0xffffff, .75); kl.position.set(2, 4, 3); F.add(kl);
     F.spawnD = 3e-5;
+    F.update = dt => { if (cam.A === F) { F._age = (F._age || 0) + dt; if (F._age < 1.8) cam.T.multiplyScalar(Math.exp(-dt * 4)); } };   // arriving by scroll-zoom: glide to the scene instead of staying where the cursor was
     F.spawn = (T0, hint) => {
       const d = hint && hint.obj && hint.obj.userData.deeper; if (!d) return null;
       if (d.type === 'mol') return new Frame({ type: 'mol', name: d.name || d.mol, unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: T0.clone(), opts: { mol: d.mol, fixed: false } });
