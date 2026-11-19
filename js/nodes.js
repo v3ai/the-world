@@ -357,7 +357,8 @@ function showBodyNode(id, h) {
     made: (n.parts && n.parts.length ? '<div class="rs">Parts</div>' + chips(n.parts) : '') + (n.made_of && n.made_of.length ? (n.parts && n.parts.length ? '<div class="rs">Made of</div>' : '') + chips(n.made_of) : ''),
     part: chips(n.parents),
     how: n.processes && n.processes.length ? chips(n.processes, 'chip pr', 'data-p') : '',
-    more: (n.needs && n.needs.length ? `<div class="refs"><div class="rh">Builds on</div>${chips(n.needs)}</div>` : '')
+    more: (n.related && n.related.some(i => NODE[i]) ? `<div class="refs"><div class="rh">Compare with</div>${chips(n.related.filter(i => NODE[i]))}</div>` : '')
+      + (n.needs && n.needs.length ? `<div class="refs"><div class="rh">Builds on</div>${chips(n.needs)}</div>` : '')
       + (n.molecules && n.molecules.length ? `<div class="refs"><div class="rh">Key molecules</div>${chips(n.molecules.map(m => NODE[m] ? m : null))}</div>` : '')
       + (n.ext && n.ext.length ? `<div class="refs"><div class="rh">Further reading</div>${n.ext.map(e => `<a class="ref" href="${e.url}" target="_blank" rel="noopener"><b>${e.title}</b></a>`).join('')}</div>` : ''),
     books: n.refs && n.refs.length ? n.refs.map(r => bookRef(r[0], r[1])).join('') : '',
@@ -409,7 +410,7 @@ function goToNode(id) {
   const n = NODE[id]; if (!n) return;
   const tw = TEAR[id] || (n.where && TEAR[n.where]) || (n.hotspot && TEAR[n.hotspot.of]);
   if (tw) { showBodyNode(id, null); flyTo(tw.frame, tw.pos, tw.D); return; }
-  if (n.where && !TEAR[n.where] && n.where !== id && placeGo(n.where)) { setTimeout(() => showBodyNode(id, null), 0); return; }
+  if (n.where && !TEAR[n.where] && n.where !== id && placeGo(n.where, id)) { setTimeout(() => showBodyNode(id, null), 0); return; }
   const body = FR.body, ix = ANAT_SYNC, parts = nid => ix ? ix.parts.filter(p => !p.parent && p.id !== 'skin' && nodeForMesh(p.id) === nid) : [];
   const organOf = oid => body && body.children.find(c => c.type === 'organ' && c.opts.organ === oid);
   // 1. the part has its own cut-open view: go there. 2. it is a hotspot inside an organ: go to that organ's view, at the hotspot.
@@ -465,7 +466,7 @@ function placeGo(w) {
     'place:air': micro('air', () => new V3(0, 2.6, 2.5)),
   };
   if (P[w]) { P[w](); return true; }
-  if (w.startsWith('mol:')) { FR.park.ensure(); placeChild(FR.park, new Frame({ type: 'mol', name: w.slice(4), unit: 1e-10, radius: 40, r1: 2.5e-8, spawnD: 1e-9, pos: new V3(1.2, .01, 1.4), opts: { mol: w.slice(4) } }), 3.2e-9); return true; } // a molecule topic: the molecule frame in the park, away from the DNA frames that sit in the cell
+  if (w.startsWith('mol:')) { FR.park.ensure(); placeChild(FR.park, new Frame({ type: 'mol', name: w.slice(4), unit: 1e-10, radius: 40, r1: 2.5e-8, spawnD: 1e-9, pos: new V3(1.2, .01, 1.4), opts: { mol: w.slice(4), stand: !!(arguments[1] && NODE[arguments[1]] && NODE[arguments[1]].kind !== 'molecule') } }), 3.2e-9); return true; } // a molecule topic: the molecule frame in the park, away from the DNA frames that sit in the cell
   if (w.startsWith('crystal:')) { FR.park.ensure(); placeChild(FR.park, crystalFrame(w.slice(8), new V3(1.2, 0.01, 1.4)), 4e-9); return true; }
   if (NODE[w] && w !== arguments[1]) { goToNode(w); return true; }
   return false;

@@ -121,7 +121,7 @@ function diveMaterial(h) {
   else if (kind === 'crystal' || kind === 'rock') { f = crystalFrame(/ice/.test(h.id) ? 'ice_ih' : 'quartz', P); D = 4e-9; }
   else if (kind === 'cell') { f = new Frame({ type: 'cell', name: 'Animal cell', unit: 1e-6, radius: 16, r1: 2.5e-4, pos: P, opts: { type: 'animal' } }); D = 5e-5; }
   else if (kind === 'leaf') { f = microFrame('leaf', P); D = 1.2e-3; }
-  else if (kind === 'protein') { f = new Frame({ type: 'mol', name: 'Amino acid', unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: P, opts: { mol: 'aa_cys' } }); D = 3e-9; }
+  else if (kind === 'protein') { f = new Frame({ type: 'mol', name: 'Example molecule: cysteine, an amino acid (stands in for the protein)', unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: P, opts: { mol: 'aa_cys' } }); D = 3e-9; }
   else if (kind === 'atom') { const c = h.obj.userData.center ? h.obj.userData.center(h) : P; f = atomFrame(h.obj.userData.sym || 'O', c); D = 7e-10; }
   else if (kind === 'quarks') { f = new Frame({ type: 'proton', name: 'Nucleon', unit: 1e-15, radius: 4, r1: 4e-15, pos: h.obj.position.clone(), opts: { kind: h.id } }); D = 3.5e-15; }
   if (!f) { message('Keep zooming in to see what this is made of.'); return; }

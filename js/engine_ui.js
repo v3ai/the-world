@@ -24,8 +24,8 @@ const SIM_OF = {
   galaxy: 'milkyway', sunMarker: 'milkyway', sgrA: 'sgrA', bulge: 'milkyway', spiralArm: 'milkyway', globular: 'milkyway', lmc: 'localgroup', smc: 'localgroup', darkhalo: 'milkyway',
   blackhole: 'blackhole', horizon: 'blackhole', disk: 'blackhole', photonRing: 'blackhole', s2: 'sgrA', radii: 'blackhole', jets: 'blackhole', probe: 'blackhole',
   universe: 'cosmos', milkyway: 'milkyway', andromeda: 'localgroup', cluster: 'cosmos', filament: 'cosmos', galSpiral: 'galaxy', galElliptical: 'galaxy', galIrregular: 'galaxy', cmb: 'cmb', darkmatter: 'cosmos', expansion: 'cosmos',
-  proton: 'proton', neutron: 'neutron', electron: 'electron', valence: 'electron', ecloud: 'orbital', orbital_s: 'orbital', orbital_p: 'orbital', orbital_d: 'orbital', config: 'atom', photon: 'photon', nucleusQ: 'nucleus', model_quantum: 'atom', model_bohr: 'atom', model_dalton: 'atom', model_thomson: 'atom',
-  proton_inside: 'proton', quark_up: 'quark', quark_down: 'quark', gluon: 'gluon', seaquark: 'quark', colorcharge: 'quark', neutron_inside: 'neutron',
+  proton: 'proton', neutron: 'neutron', electron: 'electron', valence: 'electron', config: 'atom', photon: 'photon', 
+  gluon: 'gluon', 
   bond_single: 'molecule', bond_double: 'molecule', polarity: 'molecule', delocalized: 'molecule',
 };
 const CERT = { C1: ['Settled science', '#2f7d4f'], C2: ['Well supported', '#1e4e8f'], C3: ['Debated', '#b7791f'], C4: ['Speculative', '#9b2c4f'] };

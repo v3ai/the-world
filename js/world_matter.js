@@ -145,7 +145,7 @@ FT.mol = {
         facts: [['Formula', fm.text], ['Net charge', fm.charge ? (fm.charge > 0 ? '+' : '−') + Math.abs(fm.charge) : '0 (neutral)'], ['Molar mass', `${(+M.mw).toFixed(2)} g/mol`], ['Atoms', M.atoms.length], ['Size', `≈ ${(2 * rmax / 10 + .3).toFixed(1)} nm across`]]
       };
       g.userData.meshes.forEach(m => m.userData.molInfo = info);
-      F.info = info; F.name = o.cname || M.name; F.blurb = `${o.cname ? o.cname + '. ' : ''}${M.name} (${fm.text}): ${M.atoms.length} atoms, about ${(2 * rmax / 10 + .3).toFixed(1)} nm across.`; F.note = STYLE_NOTE[style];
+      F.info = info; F.name = o.cname || (o.stand ? 'Example molecule: ' + M.name : M.name); F.blurb = `${o.cname ? o.cname + '. ' : o.stand ? 'An example molecule that stands in for the topic you came from (the topic is bigger than one molecule). ' : ''}${M.name} (${fm.text}): ${M.atoms.length} atoms, about ${(2 * rmax / 10 + .3).toFixed(1)} nm across.`; F.note = STYLE_NOTE[style];
       if (F.molLabel) { F.molLabel.el.remove(); F.labels.splice(F.labels.indexOf(F.molLabel), 1); }
       const lo = new THREE.Object3D(); lo.position.set(0, rmax + 2, 0); lo.userData = { id: 'moleculecard', info, noZoom: true }; holder.add(lo); F.molLabel = F.label(lo, M.name);
       if (fit && cam.A === F) cam.D = Math.max(rmax * 2.6e-10, 1.2e-9);
@@ -343,25 +343,6 @@ FT.plasma = {
     F.spawnD = 3e-11;
   }
 };
-/* ---------- atom (unit pm) wraps the v2 quantum atom at true size ---------- */
-v2frame('atom', 'atom', c => c.pmPerUnit, (F, c, g, k) => {
-  // put the nucleus at its TRUE size (~1/50,000 of the atom); a marker shows where it is
-  let nucG = null; g.children.forEach(ch => ch.traverse(o => { if (!nucG && o.userData && (o.userData.id === 'proton' || o.userData.id === 'neutron')) nucG = o.parent; }));
-  const E = EL[c.opts.el] || { Z: 8, N: 8 }, A = E.Z + E.N;
-  const trueR = 1.2 * Math.cbrt(A) * 1e-3 / k; // in v2 units
-  const v2R = .42 * 1.25 * Math.cbrt(A);
-  const mk = markerSprite(0xff7755, 9); F.add(mk); mk.userData = { id: 'nucleus_atom', priority: 4, center: () => new V3(), radius: 1e-3 * 1.2 * Math.cbrt(A) * 4 }; F.pickables.push(mk);
-  F.label(mk, 'Nucleus (true size — 99.97% of the mass)', { offset: new V3(0, 0, 0) });
-  let real = store.get('realNuc', true);
-  const apply = () => { if (nucG) nucG.scale.setScalar(real ? trueR / v2R : 1); mk.visible = true; };
-  apply();
-  seg([['real', 'Nucleus: true size'], ['big', 'Nucleus: enlarged']], real ? 'real' : 'big', kk => { real = kk === 'real'; store.set('realNuc', real); apply(); });
-  F.blurb = `${E.name || ''} atom at true size: the electron cloud is ~100,000× wider than the nucleus at its center.`;
-  F.radius = 600;
-  F.spawn = (T) => T.length() < .5 ? new Frame({ type: 'nucleus', pinned: true, name: 'Atomic nucleus', unit: 1e-15, radius: 40, r0: 1.5e-15, r1: 3e-13, spawnD: 4e-15, pos: new V3(), opts: { Z: E.Z, N: E.N, el: c.opts.el } }) : null;
-  F.spawnD = 2e-13;
-  F.attract = new V3(); F.attractD = 1.2e-10; F.attractR = 250;
-});
 /* ---------- nucleus (unit fm) ---------- */
 FT.nucleus = {
   build(F, o) {
@@ -386,7 +367,6 @@ FT.nucleus = {
     };
   }
 };
-v2frame('proton', 'proton', () => .84 / 5.2, (F) => { F.blurb = 'Inside a nucleon: three valence quarks bound by gluons, in a seething sea of virtual quark–antiquark pairs (quantum chromodynamics).'; });
 /* ---------- DNA (unit nm) & cell (unit µm) via v2 ---------- */
 v2frame('dna', 'dna', () => 1 / 2.4, (F, c) => {
   F.blurb = 'DNA, the double helix. Choose "Chromatin packing" to see how it is wound round proteins.';
