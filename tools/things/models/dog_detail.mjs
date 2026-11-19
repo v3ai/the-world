@@ -31,7 +31,7 @@ export function eyes() {
 }
 export function paws() {
   const m = {}, pads = [], claws = [];
-  const addFoot = (s, toe0, toe1, toe2, zc, mcX, mcY, hind) => { for (let d = 0; d < 4; d++) { const zo = (d - 1.5) * 1.5, z0 = s * (zc + zo) * .01; pads.push(D.meshS(D.ell([toe0[0] + .026 + (d === 1 || d === 2 ? .004 : 0), .0075, z0 * 1], [1, 0, 0], .0125, .0072, .0085), .0035));
+  const addFoot = (s, toe0, toe1, toe2, zc, mcX, mcY, hind) => { for (let d = 0; d < 4; d++) { const zo = (d - 1.5) * 1.5, z0 = s * (zc + zo) * .01; pads.push(D.meshS(D.ell([toe0[0] + .026 + (d === 1 || d === 2 ? .004 : 0), .0075, z0 * 1], [1, 0, 0], .0125, .0072, .0085), .0045));
       claws.push(L.tube([[toe2[0], .006, z0], [toe2[0] + .012, .0035, z0], [toe2[0] + .022, .0004, z0]], t => .0032 * (1 - .85 * t), { sides: 5 })); }
     pads.push(D.meshS(D.ell([mcX * .01 + .008, .0085, s * zc * .01], [1, 0, 0], .018, .0085, .0155), .0035)); };
   for (const s of SIDES) { addFoot(s, [FORE.mcp[0] * .01, 0], 0, [(FORE.mcp[0] + 5.2) * .01, 0], FORE.zP, FORE.mcp[0], 0, false);

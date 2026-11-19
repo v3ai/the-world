@@ -12,16 +12,16 @@ export const MUSCLES = [
   { id: 'temporalis', node0: 'dog_m_temporalis', name: 'Temporalis (chewing)', pair: 1, sh: s => [H.hell([6, 4.6, s * 4.6], [1, -.2], 3.4, 2.4, 1.1)], reach: 2.6 },
   { id: 'masseter', node0: 'dog_m_masseter', name: 'Masseter (chewing)', pair: 1, sh: s => [H.hell([5.6, -.8, s * 5.1], [.25, 1], 3.2, 1.7, .9)], reach: 2.6 },
   { id: 'face_muscles', node0: 'dog_m_face', name: 'Muscles of the muzzle and lips', pair: 1, sh: s => [H.hrod([11, .2, s * 3.2], [19, .4, s * 2.1], .9, .8), H.hrod([11, -2.2, s * 3.2], [18, -2.5, s * 2.1], .8, .7)], reach: 3 },
-  { id: 'neck_dorsal', node0: 'dog_m_neck_dorsal', name: 'Splenius and neck extensors', pair: 1, sh: s => [rod(Z(31, 62.5, 2.8, s), Z(14, 55.5, 3.6, s), .026, .03)], reach: 3.5 },
+  { id: 'neck_dorsal', depth: 5.5, node0: 'dog_m_neck_dorsal', name: 'Splenius and neck extensors', pair: 1, sh: s => [rod(Z(31, 62.5, 2.8, s), Z(14, 55.5, 3.6, s), .026, .03)], reach: 3.5 },
   { id: 'brachiocephalicus', node0: 'dog_m_brachiocephalicus', name: 'Brachiocephalicus (draws the foreleg forward)', pair: 1, sh: s => [rod(Z(29, 58.5, 5.2, s), Z(20, 44, 7.5, s), .022, .026)], reach: 3.2 },
-  { id: 'neck_ventral', node0: 'dog_m_neck_ventral', name: 'Sternocephalicus and neck flexors', pair: 1, sh: s => [rod(Z(28, 55.5, 2.2, s), Z(17, 42, 3, s), .02, .022)], reach: 3 },
-  { id: 'trapezius', node0: 'trapezius', name: 'Trapezius', pair: 1, sh: s => [ell(Z(10, 54.5, 4.8, s), [1, -.1, 0], .09, .02, .02)], reach: 3 },
-  { id: 'latissimus', node0: 'latissimus_dorsi', name: 'Latissimus dorsi', pair: 1, sh: s => [ell(Z(-1, 46, 9, s), [1, -.55, 0], .14, .08, .02)], reach: 4 },
-  { id: 'chest_wall', node0: 'dog_m_chest_wall', name: 'Serratus ventralis and the chest wall (intercostal muscles)', pair: 1, sh: s => [ell(Z(5, 41, 8.6, s), [1, 0, 0], .13, .1, .02)], reach: 6 },
-  { id: 'pectorals', node0: 'pectoralis_major', name: 'Pectoral muscles', pair: 1, sh: s => [ell(Z(15, 33, 6.5, s), [.3, -1, 0], .09, .04, .028)], reach: 3.6 },
-  { id: 'back_extensors', node0: 'dog_m_epaxial', name: 'Longissimus and the back extensors', pair: 1, sh: s => [rod(Z(13, 54.5, 3.2, s), Z(-14, 52, 3.8, s), .034, .036), rod(Z(-14, 52, 3.8, s), Z(-29, 50, 3.8, s), .036, .03)], reach: 4 },
-  { id: 'external_oblique', node0: 'external_obliques', name: 'External oblique (flank)', pair: 1, sh: s => [ell(Z(-13.5, 38, 8.8, s), [1, .1, 0], .1, .08, .02)], reach: 5 },
-  { id: 'rectus_abdominis', node0: 'rectus_abdominis', name: 'Rectus abdominis', pair: 1, sh: s => [rod(Z(-8, 30, 2, s), Z(-24, 31.5, 2.4, s), .022, .022)], reach: 3.5 },
+  { id: 'neck_ventral', depth: 3.5, node0: 'dog_m_neck_ventral', name: 'Sternocephalicus and neck flexors', pair: 1, sh: s => [rod(Z(28, 55.5, 2.2, s), Z(17, 42, 3, s), .02, .022)], reach: 3 },
+  { id: 'trapezius', depth: 1.8, node0: 'trapezius', name: 'Trapezius', pair: 1, sh: s => [ell(Z(10, 54.5, 4.8, s), [1, -.1, 0], .09, .02, .02)], reach: 3 },
+  { id: 'latissimus', depth: 2.0, node0: 'latissimus_dorsi', name: 'Latissimus dorsi', pair: 1, sh: s => [ell(Z(-1, 46, 9, s), [1, -.55, 0], .14, .08, .02)], reach: 4 },
+  { id: 'chest_wall', depth: 2.2, node0: 'dog_m_chest_wall', name: 'Serratus ventralis and the chest wall (intercostal muscles)', pair: 1, sh: s => [ell(Z(5, 41, 8.6, s), [1, 0, 0], .13, .1, .02)], reach: 6 },
+  { id: 'pectorals', depth: 3.5, node0: 'pectoralis_major', name: 'Pectoral muscles', pair: 1, sh: s => [ell(Z(15, 33, 6.5, s), [.3, -1, 0], .09, .04, .028)], reach: 3.6 },
+  { id: 'back_extensors', depth: 6.5, node0: 'dog_m_epaxial', name: 'Longissimus and the back extensors', pair: 1, sh: s => [rod(Z(13, 54.5, 3.2, s), Z(-14, 52, 3.8, s), .034, .036), rod(Z(-14, 52, 3.8, s), Z(-29, 50, 3.8, s), .036, .03)], reach: 4 },
+  { id: 'external_oblique', depth: 2.2, node0: 'external_obliques', name: 'External oblique (flank)', pair: 1, sh: s => [ell(Z(-13.5, 38, 8.8, s), [1, .1, 0], .1, .08, .02)], reach: 5 },
+  { id: 'rectus_abdominis', depth: 2.2, node0: 'rectus_abdominis', name: 'Rectus abdominis', pair: 1, sh: s => [rod(Z(-8, 30, 2, s), Z(-24, 31.5, 2.4, s), .022, .022)], reach: 3.5 },
   { id: 'supraspinatus', node0: 'dog_m_supraspinatus', name: 'Supraspinatus and infraspinatus (shoulder)', pair: 1, sh: s => [ell(Z(16, 47, 5, s), [.5, .8, 0], .07, .03, .022), ell(Z(14.5, 43, 6.2, s), [.4, .9, 0], .07, .03, .022)], reach: 3.2 },
   { id: 'deltoid', node0: 'deltoid', name: 'Deltoideus', pair: 1, sh: s => [rod(Z(17.5, 42, 8.2, s), Z(13, 35.5, 8.6, s), .02, .02)], reach: 3 },
   { id: 'triceps', node0: 'triceps_brachii', name: 'Triceps brachii', pair: 1, sh: s => [ell(Z(11, 38, 8.4, s), [-.6, -.8, 0], .09, .05, .032)], reach: 4 },
@@ -52,7 +52,7 @@ export function muscleMeshes(skin, cell = .009) {
     for (const c of mine) {
       const R = m.reach * .01, lo = [0, 1, 2].map(i => Math.min(...c.shapes.map(x => x.lo[i])) - R), hi = [0, 1, 2].map(i => Math.max(...c.shapes.map(x => x.hi[i])) + R);
       const others = cores.filter(o => o !== c && o.shapes.some(sh => sh.lo.every((v, i) => v < hi[i] && sh.hi[i] > lo[i]) || true) && o.shapes.some(sh => [0, 1, 2].every(i => sh.lo[i] - .12 < hi[i] && sh.hi[i] + .12 > lo[i])));
-      const f = p => { const sk = skin.f(p) + inset; if (sk > R * 1.5 + .02) return sk; const dk = dist(c, p); let mo = Infinity; for (const o of others) { const v = dist(o, p); if (v < mo) mo = v; } return Math.max(sk, dk - mo, dk - R); };
+      const f = p => { const sk = skin.f(p) + inset; if (sk > R * 1.5 + .02) return sk; const dk = dist(c, p); let mo = Infinity; for (const o of others) { const v = dist(o, p); if (v < mo) mo = v; } const v = Math.max(sk, dk - mo, dk - R); return m.depth ? Math.max(v, -m.depth * .01 - (sk - inset)) : v; };
       meshes.push(L.meshSDF(f, { min: lo, max: hi, cell, refine: 1 }));
     }
     out[m.id] = L.merge(...meshes);

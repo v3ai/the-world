@@ -13,7 +13,7 @@ const bone = '#ecdfc6', cart = '#cfe0d8', blood = '#b3261e';
 const SYSTEMS = [
   { id: 'coat', label: 'Coat' }, { id: 'muscles', label: 'Muscles' }, { id: 'skeleton', label: 'Skeleton' }, { id: 'organs', label: 'Organs' }, { id: 'eyes', label: 'Eyes' },
   { id: 'nervous', label: 'Nerves' }, { id: 'cord', label: 'Spinal cord' }, { id: 'vessels', label: 'Heart and vessels' },
-  { id: 'd_heart', label: 'Inside the heart' }, { id: 'd_eye', label: 'Inside the eye' }, { id: 'd_nose', label: 'Inside the nose' }, { id: 'd_ear', label: 'Inside the ear' },
+  { id: 'fill', label: 'Soft tissue (stand-in)' }, { id: 'd_heart', label: 'Inside the heart' }, { id: 'd_eye', label: 'Inside the eye' }, { id: 'd_nose', label: 'Inside the nose' }, { id: 'd_ear', label: 'Inside the ear' },
 ];
 const EYE_N = (() => { const a = H.eyeAxis(1); return L.norm(L.cross([0, 1, 0], a)); })();
 const MODES = [
@@ -23,7 +23,7 @@ const MODES = [
   { id: 'organs', label: 'Organs', show: { organs: 1, eyes: 1, skeleton: .16 } },
   { id: 'nerves', label: 'Nerves', show: { nervous: 1, cord: 1, eyes: 1, skeleton: .2 } },
   { id: 'vessels', label: 'Heart and vessels', show: { vessels: 1, skeleton: .16 } },
-  { id: 'cut_half', label: 'Cut in half', cut: { at: [0, .4, 0], normal: [0, 0, 1] }, hotspots: true, show: { muscles: 1, skeleton: 1, organs: 1, cord: 1, eyes: 1 }, legend: { title: 'On the cut face', items: [{ name: 'Muscle and soft tissue', color: '#a8433a', node: 'dog_muscles' }, { name: 'Bone', color: '#e8dcc0', node: 'dog_skeleton' }, { name: 'Organs', color: '#c9776e', node: 'dog_organs' }], note: 'The dog is cut along its midline: look at it from the side first, then press the button. A schematic section: the pale blue-grey is sketched, not a scan.' } },
+  { id: 'cut_half', label: 'Cut in half', cut: { at: [0, .4, 0], normal: [0, 0, 1] }, hotspots: true, show: { muscles: 1, skeleton: 1, organs: 1, cord: 1, eyes: 1, fill: 1 }, legend: { title: 'On the cut face', items: [{ name: 'Muscle', color: '#a8433a', node: 'dog_muscles' }, { name: 'Fat and connective tissue (a stand-in)', color: '#d9c3b8', node: 'dog_fill' }, { name: 'Bone', color: '#e8dcc0', node: 'dog_skeleton' }, { name: 'Organs', color: '#c9776e', node: 'dog_organs' }], note: 'The dog is cut along its midline: look at it from the side first, then press the button. A schematic section: the pale blue-grey is sketched, not a scan.' } },
   { id: 'cut_heart', label: 'Inside the heart', cut: { at: [.085, .374, .003], normal: [-.31, -.95, 0] }, hotspots: true, show: { d_heart: 1 }, legend: { title: 'In the heart', items: [{ name: 'Heart muscle (myocardium)', color: '#b9524a', node: 'dog_heart' }, { name: 'Blood in the left side (oxygen-rich)', color: '#e0463c', node: 'dog_lv' }, { name: 'Blood in the right side (oxygen-poor)', color: '#4f6fb5', node: 'dog_rv' }], note: 'A simplified cut through a model heart: the wall thicknesses, the chamber shapes and the valve positions are schematic, not measured.' } },
   { id: 'cut_eye', label: 'Inside the eye', cut: { at: H.EYE_C.map(v => v * .01), normal: EYE_N }, hotspots: true, show: { d_eye: 1 }, legend: { title: 'In the eye', items: [{ name: 'Tapetum lucidum (shiny layer)', color: '#7fb98a', node: 'dog_tapetum' }, { name: 'Retina', color: '#d99a9a', node: 'dog_retina' }, { name: 'Lens', color: '#f0dfa0', node: 'dog_lens' }, { name: 'Choroid (dark layer)', color: '#3b2f2a', node: 'dog_choroid' }], note: 'A model eye with a schematic layout. Look at the dog from the side, then press the button; the cut passes through the middle of the eye.' } },
   { id: 'cut_nose', label: 'Inside the nose', cut: { at: [0, .4, 0], normal: [0, 0, 1] }, hotspots: true, show: { skeleton: 1, organs: 1, cord: 1, d_nose: 1 }, legend: { title: 'In the nose', items: [{ name: 'Scrolls at the back: the smell lining', color: '#e3a58e', node: 'dog_turb_olf' }, { name: 'Scrolls at the front: the airway lining', color: '#d9c9ce', node: 'dog_turb_resp' }], note: 'The turbinate scrolls are drawn as a schematic: the real ones are far more finely folded and branched. Look from the side, then press the button.' } },
@@ -42,8 +42,8 @@ export const thing = {
   layers: [{ id: 'coat', label: 'coat', systems: ['coat'], ghost: .06 }, { id: 'muscles', label: 'muscles', systems: ['muscles'], ghost: .08 }, { id: 'skeleton', label: 'bones', systems: ['skeleton'], ghost: .12, see_through: .3 }, { id: 'inside', label: 'organs', systems: ['organs', 'vessels', 'nervous', 'cord'], ghost: .1 }],
   // the tail wags a little (the whole coat is one mesh, so the bend is done in the shader on every part of the tail); an illustration, not a measured wag
   anim: [{ kind: 'swing', systems: ['coat', 'muscles', 'skeleton', 'nervous'], pivot: [-.38, .45, 0], dir: [-1, 0, 0], from: .07, to: .22, axis: [0, 1, 0], amp_deg: 16, shown_hz: 1.6, lat_axis: [0, 0, 1], lat: [.06, .11], label: 'Tail wag' }],
-  lod: { near_m: 14, far_m: 60 }, shadow: { radius_m: .85, opacity: .8 },
-  cut: { default: 'muscle', at: [0, .4, 0], faces: { muscle: { kind: 'plain', palette: [['#a8433a', 1]] }, bone: { kind: 'plain', palette: [['#e8dcc0', 1]] }, organ: { kind: 'plain', palette: [['#c9776e', 1]] }, blood_l: { kind: 'plain', palette: [['#e0463c', 1]] }, blood_r: { kind: 'plain', palette: [['#4f6fb5', 1]] }, brain: { kind: 'plain', palette: [['#d9c3bd', 1]] } } },
+  lod: { near_m: 9, far_m: 40 }, shadow: { radius_m: .85, opacity: .8 },
+  cut: { default: 'muscle', at: [0, .4, 0], faces: { fill: { kind: 'plain', palette: [['#d9c3b8', 1]] }, muscle: { kind: 'plain', palette: [['#a8433a', 1]] }, bone: { kind: 'plain', palette: [['#e8dcc0', 1]] }, organ: { kind: 'plain', palette: [['#c9776e', 1]] }, blood_l: { kind: 'plain', palette: [['#e0463c', 1]] }, blood_r: { kind: 'plain', palette: [['#4f6fb5', 1]] }, brain: { kind: 'plain', palette: [['#d9c3bd', 1]] } } },
   hotspots: [], parts: [],
 };
 
@@ -53,11 +53,14 @@ export default function build() {
   const skin = skinShape(), coat = D.meshS(skin, .01); meshes.coat = coat; log('coat');
   add('coat', 'Skin and coat', 'coat', 'dog_coat', '#cfa660', 'coat', { lod: 'near', priority: 1.2, cutFace: 'muscle', deeper: { type: 'tissue2', id: 'dog_skin', D: 1.6e-3, button: 'Look inside the skin and coat' } });
   // the same surface for the middle and far distances: a dog 20 m away does not need 37,000 triangles (vertex clustering at 3 cm: a few thousand)
-  meshes.coat_far = L.simplify(coat, .03); { const sh = (p, n) => .8 + .2 * D.ss(-.6, .7, n[1]) - .1 * D.ss(.55, 1, p[1] > .5 ? n[1] : 0); L.bakeShade(coat, sh); L.bakeShade(meshes.coat_far, sh); } add('coat_far', 'Skin and coat', 'coat', 'dog_coat', '#cfa660', 'coat_far', { lod: 'mid+far', priority: 1.2, solid: false });
+  meshes.coat_mid = L.simplify(coat, .016); meshes.coat_far = L.simplify(coat, .045);
+  { const sh = (p, n) => .8 + .2 * D.ss(-.6, .7, n[1]); for (const k of ['coat', 'coat_mid', 'coat_far']) L.bakeShade(meshes[k], sh); }
+  add('coat_mid', 'Skin and coat', 'coat', 'dog_coat', '#cfa660', 'coat_mid', { lod: 'mid', priority: 1.2, solid: false }); add('coat_far', 'Skin and coat', 'coat', 'dog_coat', '#cfa660', 'coat_far', { lod: 'far', priority: 1.2, solid: false });
+  { const inner = D.S(p => skin.f(p) + .024, skin.lo, skin.hi); meshes.fill = D.meshS(inner, .017, 1); add('fill', 'Soft tissue (a stand-in for fat, connective tissue and glands)', 'fill', 'dog_fill', '#d9c3b8', 'fill', { cutFace: 'fill', priority: 1.1, noink: true }); }
   // fur blades
   meshes.fur_blade = X.furBladeMesh(); instances.fur = X.fur(coat, 9000); parts.push({ id: 'fur', name: 'Fur', system: 'coat', node: 'dog_fur', color: '#cfa65f', instances: 'fur', tint: .22, double: true, lod: 'near', priority: 1.3 }); log('fur');
   meshes.ears = H.ears(skin.f); meshes.nose = H.nose(); Object.assign(meshes, X.paws());
-  add('ears', 'Ears', 'coat', 'dog_ear', '#b0843f', 'ears', { priority: 1.6, noink: false, solid: false, double: true });
+  add('ears', 'Ears', 'coat', 'dog_ear', '#bb9050', 'ears', { priority: 1.6, noink: false, solid: false, double: true });
   add('nose', 'Nose (rhinarium)', 'coat', 'dog_nose', '#231d1b', 'nose', { priority: 1.8 });
   add('paw_pads', 'Paw pads', 'coat', 'dog_pads', '#2b2220', 'paw_pads', { lod: 'near', priority: 1.8 });
   add('claws', 'Claws', 'coat', 'dog_claws', '#3a302b', 'claws', { priority: 1.8 });

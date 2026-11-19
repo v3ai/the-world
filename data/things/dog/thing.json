@@ -50,6 +50,10 @@
    "label": "Heart and vessels"
   },
   {
+   "id": "fill",
+   "label": "Soft tissue (stand-in)"
+  },
+  {
    "id": "d_heart",
    "label": "Inside the heart"
   },
@@ -138,15 +142,21 @@
     "skeleton": 1,
     "organs": 1,
     "cord": 1,
-    "eyes": 1
+    "eyes": 1,
+    "fill": 1
    },
    "legend": {
     "title": "On the cut face",
     "items": [
      {
-      "name": "Muscle and soft tissue",
+      "name": "Muscle",
       "color": "#a8433a",
       "node": "dog_muscles"
+     },
+     {
+      "name": "Fat and connective tissue (a stand-in)",
+      "color": "#d9c3b8",
+      "node": "dog_fill"
      },
      {
       "name": "Bone",
@@ -417,8 +427,8 @@
   }
  ],
  "lod": {
-  "near_m": 14,
-  "far_m": 60
+  "near_m": 9,
+  "far_m": 40
  },
  "shadow": {
   "radius_m": 0.85,
@@ -432,6 +442,15 @@
    0
   ],
   "faces": {
+   "fill": {
+    "kind": "plain",
+    "palette": [
+     [
+      "#d9c3b8",
+      1
+     ]
+    ]
+   },
    "muscle": {
     "kind": "plain",
     "palette": [
@@ -710,7 +729,7 @@
    "name": "Skin and coat",
    "system": "coat",
    "node": "dog_coat",
-   "color": "#d9b36f",
+   "color": "#cfa660",
    "mesh": "coat",
    "lod": "near",
    "priority": 1.2,
@@ -722,30 +741,66 @@
     "button": "Look inside the skin and coat"
    },
    "center": [
-    -0.0589,
+    -0.0594,
     0.3434,
     0
    ],
-   "radius": 0.6471,
-   "tris": 33404
+   "radius": 0.6467,
+   "tris": 33460
+  },
+  {
+   "id": "coat_mid",
+   "name": "Skin and coat",
+   "system": "coat",
+   "node": "dog_coat",
+   "color": "#cfa660",
+   "mesh": "coat_mid",
+   "lod": "mid",
+   "priority": 1.2,
+   "solid": false,
+   "center": [
+    -0.0594,
+    0.3433,
+    -0.0002
+   ],
+   "radius": 0.6456,
+   "tris": 10702
   },
   {
    "id": "coat_far",
    "name": "Skin and coat",
    "system": "coat",
    "node": "dog_coat",
-   "color": "#d9b36f",
+   "color": "#cfa660",
    "mesh": "coat_far",
-   "lod": "mid+far",
+   "lod": "far",
    "priority": 1.2,
    "solid": false,
    "center": [
-    -0.0593,
-    0.3418,
-    0.0004
+    -0.0633,
+    0.3413,
+    0.0005
    ],
-   "radius": 0.6403,
-   "tris": 3344
+   "radius": 0.6363,
+   "tris": 1530
+  },
+  {
+   "id": "fill",
+   "name": "Soft tissue (a stand-in for fat, connective tissue and glands)",
+   "system": "fill",
+   "node": "dog_fill",
+   "color": "#d9c3b8",
+   "mesh": "fill",
+   "cutFace": "fill",
+   "priority": 1.1,
+   "noink": true,
+   "center": [
+    -0.0523,
+    0.3425,
+    0.0006
+   ],
+   "radius": 0.607,
+   "tris": 6856
   },
   {
    "id": "fur",
@@ -759,31 +814,31 @@
    "lod": "near",
    "priority": 1.3,
    "center": [
-    -0.0698,
-    0.3694,
+    -0.0688,
+    0.3698,
     0
    ],
-   "radius": 0.6548,
-   "count": 16098,
-   "tris": 32196
+   "radius": 0.6532,
+   "count": 16125,
+   "tris": 32250
   },
   {
    "id": "ears",
    "name": "Ears",
    "system": "coat",
    "node": "dog_ear",
-   "color": "#c4964f",
+   "color": "#bb9050",
    "mesh": "ears",
    "priority": 1.6,
    "noink": false,
    "solid": false,
    "double": true,
    "center": [
-    0.3619,
-    0.6279,
+    0.365,
+    0.6215,
     0
    ],
-   "radius": 0.1005,
+   "radius": 0.1007,
    "tris": 1488
   },
   {
@@ -795,12 +850,12 @@
    "mesh": "nose",
    "priority": 1.8,
    "center": [
-    0.5232,
-    0.5952,
-    0
+    0.522,
+    0.5943,
+    0.0001
    ],
-   "radius": 0.0251,
-   "tris": 3632
+   "radius": 0.0283,
+   "tris": 1976
   },
   {
    "id": "paw_pads",
@@ -812,12 +867,12 @@
    "lod": "near",
    "priority": 1.8,
    "center": [
-    -0.1028,
+    -0.103,
     0.0549,
     -0.0001
    ],
-   "radius": 0.2627,
-   "tris": 7156
+   "radius": 0.263,
+   "tris": 5620
   },
   {
    "id": "claws",
@@ -1553,11 +1608,11 @@
    },
    "center": [
     0.3768,
-    0.6397,
+    0.6393,
     0
    ],
-   "radius": 0.0762,
-   "tris": 1244
+   "radius": 0.0752,
+   "tris": 1268
   },
   {
    "id": "m_masseter",
@@ -1576,11 +1631,11 @@
     "button": "Look inside the muscle"
    },
    "center": [
-    0.3521,
-    0.5781,
+    0.3522,
+    0.5786,
     -0.0001
    ],
-   "radius": 0.0756,
+   "radius": 0.0761,
    "tris": 1004
   },
   {
@@ -1600,12 +1655,12 @@
     "button": "Look inside the muscle"
    },
    "center": [
-    0.4545,
+    0.4539,
     0.5754,
-    -0.0005
+    -0.0002
    ],
-   "radius": 0.0798,
-   "tris": 2044
+   "radius": 0.0792,
+   "tris": 2080
   },
   {
    "id": "m_neck_dorsal",
@@ -1624,12 +1679,12 @@
     "button": "Look inside the muscle"
    },
    "center": [
-    0.2428,
-    0.6003,
+    0.2432,
+    0.6066,
     0.0007
    ],
-   "radius": 0.1385,
-   "tris": 4516
+   "radius": 0.1412,
+   "tris": 4496
   },
   {
    "id": "m_brachiocephalicus",
@@ -1672,12 +1727,12 @@
     "button": "Look inside the muscle"
    },
    "center": [
-    0.2277,
-    0.4765,
-    -0.0002
+    0.2481,
+    0.4772,
+    -0.0004
    ],
-   "radius": 0.1376,
-   "tris": 3920
+   "radius": 0.1245,
+   "tris": 2504
   },
   {
    "id": "m_trapezius",
@@ -1696,12 +1751,12 @@
     "button": "Look inside the muscle"
    },
    "center": [
-    0.1366,
-    0.537,
+    0.1281,
+    0.5384,
     -0.0025
    ],
-   "radius": 0.1021,
-   "tris": 1016
+   "radius": 0.1048,
+   "tris": 600
   },
   {
    "id": "m_latissimus",
@@ -1720,12 +1775,12 @@
     "button": "Look inside the muscle"
    },
    "center": [
-    -0.0326,
+    -0.0328,
     0.4509,
     0
    ],
-   "radius": 0.1621,
-   "tris": 3544
+   "radius": 0.1627,
+   "tris": 2896
   },
   {
    "id": "m_chest_wall",
@@ -1744,12 +1799,12 @@
     "button": "Look inside the muscle"
    },
    "center": [
-    0.0812,
+    0.0902,
     0.4055,
     0.0006
    ],
-   "radius": 0.1769,
-   "tris": 8912
+   "radius": 0.1789,
+   "tris": 6272
   },
   {
    "id": "m_pectorals",
@@ -1768,12 +1823,12 @@
     "button": "Look inside the muscle"
    },
    "center": [
-    0.1544,
-    0.3488,
+    0.1552,
+    0.3473,
     0
    ],
-   "radius": 0.1096,
-   "tris": 2608
+   "radius": 0.1093,
+   "tris": 2296
   },
   {
    "id": "m_back_extensors",
@@ -1792,12 +1847,12 @@
     "button": "Look inside the muscle"
    },
    "center": [
-    -0.0823,
+    -0.0883,
     0.5108,
     0.0001
    ],
-   "radius": 0.2654,
-   "tris": 9868
+   "radius": 0.2596,
+   "tris": 9864
   },
   {
    "id": "m_external_oblique",
@@ -1816,12 +1871,12 @@
     "button": "Look inside the muscle"
    },
    "center": [
-    -0.1463,
+    -0.1422,
     0.4003,
     -0.0016
    ],
-   "radius": 0.1411,
-   "tris": 3144
+   "radius": 0.1436,
+   "tris": 2244
   },
   {
    "id": "m_rectus_abdominis",
@@ -1841,11 +1896,11 @@
    },
    "center": [
     -0.1533,
-    0.3283,
+    0.3218,
     -0.0005
    ],
-   "radius": 0.1348,
-   "tris": 2560
+   "radius": 0.1349,
+   "tris": 2164
   },
   {
    "id": "m_supraspinatus",
@@ -3290,10 +3345,10 @@
   }
  ],
  "stats": {
-  "parts": 133,
-  "uniqueMeshTris": 357800,
-  "nearTris": 79056,
-  "midTris": 9644,
-  "farTris": 9644
+  "parts": 135,
+  "uniqueMeshTris": 363716,
+  "nearTris": 75974,
+  "midTris": 15346,
+  "farTris": 6174
  }
 }

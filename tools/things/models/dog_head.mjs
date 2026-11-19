@@ -120,7 +120,7 @@ export function mouthGroove() {
 export function nose() {
   const body = hell([20.7, 1.8, 0], [1, 0], 1.6, 1.8, 2.65);
   const slit = s => ell(HL(21.9, 1.8, s * 1.05), HD(.55, 0, s), .008, .0042, .003);
-  return meshS(subS(body, unionS(slit(1), slit(-1)), .0015), .002);
+  return meshS(subS(body, unionS(slit(1), slit(-1)), .0015), .003);
 }
 // a thin double-walled sheet over a grid: fn(u, v) -> [outerPoint, innerPoint] (u, v in 0..1)
 function slab(nu, nv, fn) {
