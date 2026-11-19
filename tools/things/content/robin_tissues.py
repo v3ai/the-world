@@ -40,14 +40,14 @@ write({'id': 'robin_flight_muscle', 'tag': 'Inside a flight muscle', 'title': "I
 
 # ---- hollow bone: a thin wall, an air-filled space, struts and bone cells ----
 write({'id': 'robin_bone', 'tag': 'Inside a bone', 'title': 'Inside a hollow bird bone', 'node': 'robin_bone_scene',
-  'blurb': 'A slice across the hollow of a bird bone: two thin walls of dense bone, the air-filled space between them, struts across it and bone cells in the wall. Click a part.',
-  'note': 'Schematic. The thickness of the wall, the width of the hollow, the number and thickness of struts and the size and number of bone cells are illustrative, not measurements on a robin. The air-filled space is shown empty.',
+  'blurb': 'A slice across the hollow of a bird bone: two thin walls of dense bone, the air-filled space between them, struts across it and bone cells lining the wall. Click a part.',
+  'note': 'Schematic. The thickness of the wall, the width of the hollow, the number and thickness of struts and the size and number of bone cells are illustrative, not measurements on a robin. The air-filled space is shown empty. Bone cells are drawn on the surface of the wall so that they can be seen; in life they sit inside it.',
   'bg': '#f2eee6', 'center': [0, 0, 0], 'D_um': 1400,
   'labels': [{'text': 'Wall of compact bone', 'at': [-420, 260, 60], 'pop': 'wall'}, {'text': 'Air-filled space', 'at': [-420, 0, 60], 'pop': 'wall'}, {'text': 'Strut', 'at': [-120, 60, 60], 'pop': 'strut'}, {'text': 'Bone cell', 'at': [200, 300, 60], 'pop': 'cell'}],
   'populations': [
-    pop('wall', 'Wall of compact bone', 'robin_bone_wall', 'rbox', [1000, 110, 160], '#e6dcc3', lst([0, 235, 0], [0, -235, 0]), .5, priority=2),
+    pop('wall', 'Wall of compact bone', 'robin_bone_wall', 'rbox', [1000, 110, 160], '#e6dcc3', lst([0, 235, 0], [0, -235, 0]), 1, priority=2),
     pop('strut', 'Strut', 'robin_bone_strut', 'rbox', [14, 400, 90], '#ddd2b6', lst({'at': [-250, 0, 0], 'rot': [0, 0, 20]}, {'at': [-20, 0, 0], 'rot': [0, 0, -25]}, {'at': [220, 0, 0], 'rot': [0, 0, 15]}), 1, priority=3),
-    pop('cell', 'Bone cell (osteocyte)', 'robin_osteocyte', 'ellipsoid', [26, 12, 12], '#9a7c56', {'kind': 'inside', 'of': 'wall', 'per': 7, 'margin': .8, 'seed': 9}, 1, ink=0, priority=5, deeper={'type': 'cell', 'cell': 'animal'}),
+    pop('cell', 'Bone cell (osteocyte)', 'robin_osteocyte', 'ellipsoid', [50, 22, 30], '#8a6c46', lst([-400, 188, 20], [-150, 188, 20], [120, 188, 20], [370, 188, 20], [-330, -188, 20], [-60, -188, 20], [200, -188, 20], [430, -188, 20]), 1, ink=1, priority=5, deeper={'type': 'cell', 'cell': 'animal'}),
   ]})
 
 # ---- retina: photoreceptors, with the cryptochrome hypothesis ----

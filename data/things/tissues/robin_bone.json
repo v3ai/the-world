@@ -4,8 +4,8 @@
  "tag": "Inside a bone",
  "title": "Inside a hollow bird bone",
  "node": "robin_bone_scene",
- "blurb": "A slice across the hollow of a bird bone: two thin walls of dense bone, the air-filled space between them, struts across it and bone cells in the wall. Click a part.",
- "note": "Schematic. The thickness of the wall, the width of the hollow, the number and thickness of struts and the size and number of bone cells are illustrative, not measurements on a robin. The air-filled space is shown empty.",
+ "blurb": "A slice across the hollow of a bird bone: two thin walls of dense bone, the air-filled space between them, struts across it and bone cells lining the wall. Click a part.",
+ "note": "Schematic. The thickness of the wall, the width of the hollow, the number and thickness of struts and the size and number of bone cells are illustrative, not measurements on a robin. The air-filled space is shown empty. Bone cells are drawn on the surface of the wall so that they can be seen; in life they sit inside it.",
  "bg": "#f2eee6",
  "center": [
   0,
@@ -63,7 +63,7 @@
     160
    ],
    "color": "#e6dcc3",
-   "opacity": 0.5,
+   "opacity": 1,
    "ink": 1,
    "priority": 2,
    "arrange": {
@@ -148,20 +148,74 @@
    "node": "robin_osteocyte",
    "shape": "ellipsoid",
    "size": [
-    26,
-    12,
-    12
+    50,
+    22,
+    30
    ],
-   "color": "#9a7c56",
+   "color": "#8a6c46",
    "opacity": 1,
-   "ink": 0,
+   "ink": 1,
    "priority": 5,
    "arrange": {
-    "kind": "inside",
-    "of": "wall",
-    "per": 7,
-    "margin": 0.8,
-    "seed": 9
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -400,
+       188,
+       20
+      ]
+     },
+     {
+      "at": [
+       -150,
+       188,
+       20
+      ]
+     },
+     {
+      "at": [
+       120,
+       188,
+       20
+      ]
+     },
+     {
+      "at": [
+       370,
+       188,
+       20
+      ]
+     },
+     {
+      "at": [
+       -330,
+       -188,
+       20
+      ]
+     },
+     {
+      "at": [
+       -60,
+       -188,
+       20
+      ]
+     },
+     {
+      "at": [
+       200,
+       -188,
+       20
+      ]
+     },
+     {
+      "at": [
+       430,
+       -188,
+       20
+      ]
+     }
+    ]
    },
    "deeper": {
     "type": "cell",
