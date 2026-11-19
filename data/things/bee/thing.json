@@ -301,8 +301,8 @@
   }
  ],
  "lod": {
-  "near_m": 0.6,
-  "far_m": 5
+  "near_m": 0.25,
+  "far_m": 1.5
  },
  "cut": {
   "default": "cuticle",

@@ -665,6 +665,10 @@ function thCardMadeOf(F, h, n) {
   const d = ud.hotspot ? ud.hotspot.deeper : (F.T.parts[ud.id] || {}).pd && F.T.parts[ud.id].pd.deeper; if (!d) return undefined;
   return { label: d.button || 'See what it is made of', go: () => thGoDeeper(F, h, d) };
 }
+CARD_HOOKS.push((id, h, n) => {   // a structure in a tissue scene: the scene's own tag in front of the card's kind line ("Inside a leaf · Cell, about 20 µm across")
+  const ud = h && h.obj && h.obj.userData; if (!ud || ud.thing !== 'tissue2' || !ud.info || !ud.info.tag) return;
+  const tg = infoEl.querySelector('.tag'); if (tg && !tg.dataset.scene) { tg.dataset.scene = '1'; tg.textContent = ud.info.tag + (tg.textContent ? ' · ' + tg.textContent : ''); }
+});
 CARD_HOOKS.push((id, h, n) => {   // the honest "model, not a scan" note on top of every card of a thing
   const F = h && h.frame, def = (F && F.T && F.T.def) || (!h && (thFindNode(id) || {}).def); if (!def || infoEl.querySelector('.thNote')) return;
   const note = document.createElement('div'); note.className = 'note thNote'; note.textContent = def.model_note || '';

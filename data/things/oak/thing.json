@@ -73,7 +73,7 @@
   }
  ],
  "lod": {
-  "near_m": 22,
+  "near_m": 17,
   "far_m": 75
  },
  "shadow": {

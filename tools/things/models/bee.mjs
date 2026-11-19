@@ -356,7 +356,7 @@ export default function build() {
     blurb: 'A western honey bee worker, about 14 mm long, drinking from a flower. Zoom right in: she is built to true size. Click any part.',
     model_note: 'A model built from published measurements and typical proportions of a worker, not a scan of one bee. Sizes of the whole body, eye, wing, ocelli, tibia and proboscis come from sources named on the cards; the rest are proportions drawn by eye from photographs and anatomical drawings. The bee is shown still, wings folded, as she stands on a flower; internal organs are placed and sized approximately.',
     size_m: { length: .0139, width: .0094, height: .0072 }, height_m: .0075, radius_m: .0125, draw_m: 40,
-    seed: 4242, systems: SYS, modes, lod: { near_m: .6, far_m: 5 },
+    seed: 4242, systems: SYS, modes, lod: { near_m: .25, far_m: 1.5 },
     cut: { default: 'cuticle', at: [2, 5, 0], faces: {
       cuticle: { kind: 'plain', palette: [[0x7a5632, 1]] },
       muscle: { kind: 'grains', cell: .00007, edge: .4, palette: [[0xc0463a, .5], [0xd36a5c, .3], [0xa83a30, .2]], note: 'Cut face colours are only a code for tissue type; they are not what the real tissue looks like.' },

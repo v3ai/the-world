@@ -182,7 +182,7 @@ Every tissue scene must say in `note` which sizes are real and which are illustr
 a part with no `lod` is drawn at every distance. Tier 0 (closer than `near_m`) is full detail; tier 1 (between) the middle stand-in; tier 2 (beyond `far_m`) the far stand-in.
 With no `far_m` the middle tier acts as the far one (the boulder). Parts swap at once, never fading, so two tiers are never drawn together. The bake prints triangles per part;
 `stats.nearTris / midTris / farTris` in thing.json give the totals that a placement draws in the default mode (the preview page lists them).
-Budget used by the oak: near about 150-200k triangles (only the one or two oaks within 22 m), middle about 15k (trunk, main limbs, 2,000 leaf-tuft cards), far about 9k (blobs). All 19 oaks together
+Budget used by the oak: near about 150-200k triangles (only the oaks within 17 m), middle about 15k (trunk, main limbs, 2,000 leaf-tuft cards), far about 9k (blobs). All 19 oaks together
 draw well under one million triangles in a typical park view. Instanced parts share one set of instance buffers between all placements of a thing (built once, in `TH.inst`), so the number of placements costs draw calls, not memory or load time.
 Do not put per-leaf geometry above 4 triangles; use `card` textures (`lobed_leaf` for one leaf, `leaf_cluster` for a tuft).
 

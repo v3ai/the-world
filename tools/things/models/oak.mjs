@@ -278,7 +278,7 @@ export default function build() {
     seed: 2026,
     systems: [{ id: 'trunk', label: 'Trunk' }, { id: 'branches', label: 'Branches' }, { id: 'twigs', label: 'Twigs' }, { id: 'leaves', label: 'Leaves' }, { id: 'acorns', label: 'Acorns' }, { id: 'roots', label: 'Roots' }, { id: 'soil', label: 'Soil' }, { id: 'wood', label: 'Wood' }, { id: 'flow', label: 'Flow' }, { id: 'crown_far', label: 'Distant crown' }],
     anim: [{ kind: 'sway', systems: ['leaves'], from_y: 4, to_y: 20, amp_m: .02, hz: .3, label: 'Leaves' }],   // a light breeze moves the crown a little (shader only); illustrative
-    lod: { near_m: 22, far_m: 75 },
+    lod: { near_m: 17, far_m: 75 },
     shadow: { radius_m: 12, opacity: .9 },
     modes: [
       { id: 'whole', label: 'Whole tree', show: { trunk: 1, branches: 1, twigs: 1, leaves: 1, acorns: 1, crown_far: 1 } },
