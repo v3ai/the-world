@@ -155,7 +155,7 @@
  {
   "id": "pn_reverse",
   "title": "Reverse bias",
-  "text": "At −5 V the depletion region widens to 1.1 µm, the junction capacitance falls and only a tiny leakage current (generation in the depletion region) flows.",
+  "text": "At −5 V the depletion region widens to about 1.2 µm, the junction capacitance falls and only a tiny leakage current (generation in the depletion region) flows.",
   "tab": "pn",
   "params": {
    "lNA": 16,
@@ -224,7 +224,7 @@
  {
   "id": "led_infrared",
   "title": "Infrared LED (GaAs)",
-  "text": "GaAs has E_g = 1.42 eV, so its photons (870 nm) are invisible to the eye: the LED in your remote control.",
+  "text": "GaAs has E_g = 1.42 eV, so its photons (about 870 nm) are invisible to the eye. Remote controls use similar infrared LEDs, typically at 850–940 nm.",
   "tab": "diodes",
   "params": {
    "mode": "led",
@@ -432,7 +432,7 @@
  {
   "id": "finfet",
   "title": "FinFET and gate-all-around",
-  "text": "Wrapping the gate around a thin fin or nanosheets shortens the electrostatic scale length λ, so DIBL stays small even at 20 nm gate lengths where the planar device has lost control.",
+  "text": "Wrapping the gate around a thin fin or nanosheets shortens the electrostatic scale length λ, so DIBL stays small even at 30 nm gate lengths, where the planar device has lost control.",
   "tab": "mos",
   "params": {
    "VGS": 1.0,

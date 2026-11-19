@@ -240,7 +240,7 @@ FT.finfet = {
     const lb = (t, p, pick) => { const o = new THREE.Object3D(); o.position.copy(p); F.add(o); F.label(o, t, { pick }); };
     lb('Gate', new V3(0, 0, 66), parts['Metal gate']); lb('Source', new V3(-40, 0, 55), parts['Source']); lb('Drain', new V3(40, 0, 55), parts['Drain']); lb('Fin, about 5–7 nm wide', new V3(0, -8, 4), parts['Silicon fin (channel)']);
     let on = true; seg([['on', 'Gate ON (1)'], ['off', 'Gate OFF (0)']], 'on', k => on = k === 'on');
-    F.update = (dt, t) => { cut.constant = F.root.position.y; es.forEach((e, i) => { const u = (t * .35 + e.userData.ph) % 1; e.visible = true; if (on) e.position.set(-60 + u * 120, (Math.sin(i * 7) * 2), 8 + (i % 6) * 6); else { const w = .5 + .5 * Math.sin(t * 2.1 + i * 1.7); e.position.set(i % 2 ? 16 + w * 40 : -16 - w * 40, (Math.sin(i * 7) * 2), 8 + (i % 6) * 6); } }); }; // OFF: the electrons stay in the source and the drain; a barrier, not an absence, stops them
+    F.update = (dt, t) => { tearAttract(F, dt, new V3(0, 0, 23), 9e-8, 70); cut.constant = F.root.position.y; es.forEach((e, i) => { const u = (t * .35 + e.userData.ph) % 1; e.visible = true; if (on) e.position.set(-60 + u * 120, (Math.sin(i * 7) * 2), 8 + (i % 6) * 6); else { const w = .5 + .5 * Math.sin(t * 2.1 + i * 1.7); e.position.set(i % 2 ? 16 + w * 40 : -16 - w * 40, (Math.sin(i * 7) * 2), 8 + (i % 6) * 6); } }); }; // OFF: the electrons stay in the source and the drain; a barrier, not an absence, stops them
     tearReg('finfet_transistor', F, new V3(0, 0, 23), 1.6e-7); tearReg('silicon_channel', F, new V3(0, 0, 23), 3e-9);
   }
 };

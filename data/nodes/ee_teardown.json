@@ -2048,10 +2048,7 @@
   "facts": [],
   "certainty": "C1",
   "refs": [],
-  "lab": {
-   "id": "circuit",
-   "preset": "flyback_converter"
-  },
+  "lab": null,
   "ext": [
    {
     "title": "Wikipedia: Flyback converter",
@@ -2191,10 +2188,7 @@
   "facts": [],
   "certainty": "C1",
   "refs": [],
-  "lab": {
-   "id": "circuit",
-   "preset": "buck_converter"
-  },
+  "lab": null,
   "ext": [
    {
     "title": "Wikipedia: Buck converter",
