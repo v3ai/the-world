@@ -20,7 +20,7 @@
  {
   "name": "Mercury",
   "parent": "Sun",
-  "radius_km": 2439.7,
+  "radius_km": 2439.4,
   "mass_kg": 3.3011e+23,
   "rotation_period_h": 1407.6,
   "axial_tilt_deg": 0.034,
@@ -33,7 +33,7 @@
   "texture": "mercury.jpg",
   "ring": null,
   "atmosphere": "Exosphere only (traces of O, Na, H, He, K); surface pressure ~1e-14 bar.",
-  "notes": "3:2 spin-orbit resonance; one solar day = ~176 Earth days. Radius is mean radius. Inclination to the ecliptic.",
+  "notes": "3:2 spin-orbit resonance; one solar day = ~176 Earth days. Radius is the IAU/JPL mean radius (2,439.4 km; the NASA fact sheet lists 2,439.7). Inclination to the ecliptic.",
   "approx": false
  },
  {
@@ -219,7 +219,8 @@
   "atmosphere": "Thin N2 atmosphere with CH4 and CO; surface pressure ~1 Pa (~10 microbar) and varies seasonally.",
   "notes": "Dwarf planet. Orbit semi-major axis, eccentricity and inclination vary noticeably over time (osculating, approximate). Pluto-Charon barycentre lies outside Pluto. Albedo is approx (Bond estimates range ~0.4-0.7).",
   "approx": true,
-  "dwarf": true
+  "dwarf": true,
+  "color": "#b8997f"
  },
  {
   "name": "Moon",
@@ -256,8 +257,10 @@
   "texture": null,
   "ring": null,
   "atmosphere": "None.",
-  "notes": "Mean radius; irregular (27 x 22 x 18 km). Orbits below synchronous altitude and spirals inward. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane).",
-  "approx": true
+  "notes": "",
+  "approx": true,
+  "color": "#5f554b",
+  "model_notes": "Mean radius; irregular (27 x 22 x 18 km). Orbits below synchronous altitude and spirals inward. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane)."
  },
  {
   "name": "Deimos",
@@ -275,8 +278,10 @@
   "texture": null,
   "ring": null,
   "atmosphere": "None.",
-  "notes": "Mean radius; irregular (15 x 12 x 10 km). Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane).",
-  "approx": true
+  "notes": "",
+  "approx": true,
+  "color": "#6b6258",
+  "model_notes": "Mean radius; irregular (15 x 12 x 10 km). Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane)."
  },
  {
   "name": "Io",
@@ -294,8 +299,10 @@
   "texture": null,
   "ring": null,
   "atmosphere": "Thin SO2 atmosphere from volcanism.",
-  "notes": "Most volcanically active body known; tidally heated. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane).",
-  "approx": false
+  "notes": "",
+  "approx": false,
+  "color": "#d9c36b",
+  "model_notes": "Most volcanically active body known; tidally heated. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane)."
  },
  {
   "name": "Europa",
@@ -313,8 +320,10 @@
   "texture": null,
   "ring": null,
   "atmosphere": "Very thin O2 exosphere.",
-  "notes": "Ice shell over a global subsurface ocean. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane).",
-  "approx": false
+  "notes": "",
+  "approx": false,
+  "color": "#cfc8b6",
+  "model_notes": "Ice shell over a global subsurface ocean. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane)."
  },
  {
   "name": "Ganymede",
@@ -332,8 +341,10 @@
   "texture": null,
   "ring": null,
   "atmosphere": "Very thin O2 exosphere.",
-  "notes": "Largest moon in the Solar System; has an intrinsic magnetic field. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane).",
-  "approx": false
+  "notes": "",
+  "approx": false,
+  "color": "#8f897e",
+  "model_notes": "Largest moon in the Solar System; has an intrinsic magnetic field. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane)."
  },
  {
   "name": "Callisto",
@@ -351,8 +362,10 @@
   "texture": null,
   "ring": null,
   "atmosphere": "Very thin CO2 exosphere.",
-  "notes": "Heavily cratered; possibly partially differentiated. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane).",
-  "approx": false
+  "notes": "",
+  "approx": false,
+  "color": "#5e5850",
+  "model_notes": "Heavily cratered; possibly partially differentiated. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane)."
  },
  {
   "name": "Titan",
@@ -370,8 +383,10 @@
   "texture": null,
   "ring": null,
   "atmosphere": "~95% N2, ~5% CH4; surface pressure ~1.47 bar.",
-  "notes": "Only moon with a dense atmosphere; liquid methane/ethane lakes. Albedo approximate (opaque haze). Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane).",
-  "approx": true
+  "notes": "",
+  "approx": true,
+  "color": "#c9993f",
+  "model_notes": "Only moon with a dense atmosphere; liquid methane/ethane lakes. Albedo approximate (opaque haze). Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane)."
  },
  {
   "name": "Enceladus",
@@ -389,8 +404,10 @@
   "texture": null,
   "ring": null,
   "atmosphere": "Thin water-vapour plume over the south pole.",
-  "notes": "Geysers feed Saturn's E ring; subsurface ocean. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane).",
-  "approx": false
+  "notes": "",
+  "approx": false,
+  "color": "#f1f1ef",
+  "model_notes": "Geysers feed Saturn's E ring; subsurface ocean. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane)."
  },
  {
   "name": "Mimas",
@@ -408,8 +425,10 @@
   "texture": null,
   "ring": null,
   "atmosphere": "None.",
-  "notes": "Large Herschel crater. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane).",
-  "approx": false
+  "notes": "",
+  "approx": false,
+  "color": "#bcbcbb",
+  "model_notes": "Large Herschel crater. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane)."
  },
  {
   "name": "Rhea",
@@ -427,8 +446,10 @@
   "texture": null,
   "ring": null,
   "atmosphere": "Very thin O2/CO2 exosphere.",
-  "notes": "Second largest moon of Saturn. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane).",
-  "approx": false
+  "notes": "",
+  "approx": false,
+  "color": "#c3c1bc",
+  "model_notes": "Second largest moon of Saturn. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane)."
  },
  {
   "name": "Iapetus",
@@ -446,8 +467,10 @@
   "texture": null,
   "ring": null,
   "atmosphere": "None.",
-  "notes": "Two-tone surface: leading hemisphere very dark (albedo ~0.03-0.05), trailing hemisphere bright (~0.5-0.6); equatorial ridge. Inclination is to the Laplace plane. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane).",
-  "approx": true
+  "notes": "",
+  "approx": true,
+  "color": "#8a7f70",
+  "model_notes": "Two-tone surface: leading hemisphere very dark (albedo ~0.03-0.05), trailing hemisphere bright (~0.5-0.6); equatorial ridge. Inclination is to the Laplace plane. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane)."
  },
  {
   "name": "Miranda",
@@ -465,8 +488,10 @@
   "texture": null,
   "ring": null,
   "atmosphere": "None.",
-  "notes": "Mean radius; patchwork terrain, Verona Rupes cliff. Mass approximate. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane).",
-  "approx": true
+  "notes": "",
+  "approx": true,
+  "color": "#a9a9a7",
+  "model_notes": "Mean radius; patchwork terrain, Verona Rupes cliff. Mass approximate. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane)."
  },
  {
   "name": "Titania",
@@ -484,8 +509,10 @@
   "texture": null,
   "ring": null,
   "atmosphere": "None.",
-  "notes": "Largest moon of Uranus. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane).",
-  "approx": false
+  "notes": "",
+  "approx": false,
+  "color": "#aaa59c",
+  "model_notes": "Largest moon of Uranus. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane)."
  },
  {
   "name": "Oberon",
@@ -503,8 +530,10 @@
   "texture": null,
   "ring": null,
   "atmosphere": "None.",
-  "notes": "Outermost major moon of Uranus. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane).",
-  "approx": false
+  "notes": "",
+  "approx": false,
+  "color": "#8f8479",
+  "model_notes": "Outermost major moon of Uranus. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane)."
  },
  {
   "name": "Triton",
@@ -522,8 +551,10 @@
   "texture": null,
   "ring": null,
   "atmosphere": "Tenuous N2 atmosphere (~1.4 Pa).",
-  "notes": "Retrograde orbit (likely captured Kuiper-belt object); nitrogen geysers. Inclination >90 deg = retrograde. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane).",
-  "approx": false
+  "notes": "",
+  "approx": false,
+  "color": "#d6c8b9",
+  "model_notes": "Retrograde orbit (likely captured Kuiper-belt object); nitrogen geysers. Inclination >90 deg = retrograde. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane)."
  },
  {
   "name": "Charon",
@@ -541,7 +572,246 @@
   "texture": null,
   "ring": null,
   "atmosphere": "None.",
-  "notes": "Pluto and Charon are mutually tidally locked (double synchronous). Axial tilt relative to its orbit ~0. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane).",
+  "notes": "",
+  "approx": true,
+  "color": "#8f8a85",
+  "model_notes": "Pluto and Charon are mutually tidally locked (double synchronous). Axial tilt relative to its orbit ~0. Rotation is synchronous with the orbit (tilt assumed ~0 relative to the orbital plane)."
+ },
+ {
+  "name": "Tethys",
+  "parent": "Saturn",
+  "radius_km": 531.1,
+  "mass_kg": 6.175e+20,
+  "rotation_period_h": 45.307,
+  "axial_tilt_deg": 0.0,
+  "semimajor_km": 295000,
+  "eccentricity": 0.001,
+  "inclination_deg": 1.1,
+  "orbital_period_days": 1.887802,
+  "albedo": null,
+  "albedo_type": "geometric",
+  "texture": null,
+  "color": "#dfdfdc",
+  "ring": null,
+  "atmosphere": "None.",
+  "notes": "",
+  "model_notes": "Radius and GM: JPL Planetary Satellite Physical Parameters (ssd.jpl.nasa.gov/sats/phys_par). a, e, i, P: JPL mean orbital elements (ssd.jpl.nasa.gov/sats/elem), rounded to the digits given there. Rotation assumed synchronous. ",
+  "approx": false
+ },
+ {
+  "name": "Dione",
+  "parent": "Saturn",
+  "radius_km": 561.4,
+  "mass_kg": 1.095e+21,
+  "rotation_period_h": 65.686,
+  "axial_tilt_deg": 0.0,
+  "semimajor_km": 377700,
+  "eccentricity": 0.002,
+  "inclination_deg": 0.0,
+  "orbital_period_days": 2.736916,
+  "albedo": null,
+  "albedo_type": "geometric",
+  "texture": null,
+  "color": "#cfcdc7",
+  "ring": null,
+  "atmosphere": "None.",
+  "notes": "",
+  "model_notes": "Radius and GM: JPL Planetary Satellite Physical Parameters (ssd.jpl.nasa.gov/sats/phys_par). a, e, i, P: JPL mean orbital elements (ssd.jpl.nasa.gov/sats/elem), rounded to the digits given there. Rotation assumed synchronous. ",
+  "approx": false
+ },
+ {
+  "name": "Ariel",
+  "parent": "Uranus",
+  "radius_km": 578.9,
+  "mass_kg": 1.251e+21,
+  "rotation_period_h": 60.489,
+  "axial_tilt_deg": 0.0,
+  "semimajor_km": 190929,
+  "eccentricity": 0.001,
+  "inclination_deg": 0.0,
+  "orbital_period_days": 2.520379,
+  "albedo": null,
+  "albedo_type": "geometric",
+  "texture": null,
+  "color": "#b3afa7",
+  "ring": null,
+  "atmosphere": "None.",
+  "notes": "",
+  "model_notes": "Radius and GM: JPL Planetary Satellite Physical Parameters (ssd.jpl.nasa.gov/sats/phys_par). a, e, i, P: JPL mean orbital elements (ssd.jpl.nasa.gov/sats/elem), rounded to the digits given there. Rotation assumed synchronous. ",
+  "approx": false
+ },
+ {
+  "name": "Umbriel",
+  "parent": "Uranus",
+  "radius_km": 584.7,
+  "mass_kg": 1.275e+21,
+  "rotation_period_h": 99.46,
+  "axial_tilt_deg": 0.0,
+  "semimajor_km": 265986,
+  "eccentricity": 0.004,
+  "inclination_deg": 0.1,
+  "orbital_period_days": 4.144177,
+  "albedo": null,
+  "albedo_type": "geometric",
+  "texture": null,
+  "color": "#6e6c68",
+  "ring": null,
+  "atmosphere": "None.",
+  "notes": "",
+  "model_notes": "Radius and GM: JPL Planetary Satellite Physical Parameters (ssd.jpl.nasa.gov/sats/phys_par). a, e, i, P: JPL mean orbital elements (ssd.jpl.nasa.gov/sats/elem), rounded to the digits given there. Rotation assumed synchronous. ",
+  "approx": false
+ },
+ {
+  "name": "Proteus",
+  "parent": "Neptune",
+  "radius_km": 208.0,
+  "mass_kg": 3.871e+19,
+  "rotation_period_h": 26.95,
+  "axial_tilt_deg": 0.0,
+  "semimajor_km": 117700,
+  "eccentricity": 0.001,
+  "inclination_deg": 0.6,
+  "orbital_period_days": 1.1229,
+  "albedo": null,
+  "albedo_type": "geometric",
+  "texture": null,
+  "color": "#5e5a56",
+  "ring": null,
+  "atmosphere": "None.",
+  "notes": "",
+  "model_notes": "Radius and GM: JPL Planetary Satellite Physical Parameters (ssd.jpl.nasa.gov/sats/phys_par). a, e, i, P: JPL mean orbital elements (ssd.jpl.nasa.gov/sats/elem), rounded to the digits given there. Rotation assumed synchronous. Radius 208 +/- 8 km and GM uncertain (2.58 +/- 2.42 km3/s2): mass is approximate.",
   "approx": true
+ },
+ {
+  "name": "Ceres",
+  "parent": "Sun",
+  "radius_km": 469.7,
+  "mass_kg": 9.38416e+20,
+  "rotation_period_h": 9.074,
+  "axial_tilt_deg": null,
+  "semimajor_au": 2.7656,
+  "eccentricity": 0.0797,
+  "inclination_deg": 10.588,
+  "orbital_period_days": 1679.9,
+  "albedo": 0.09,
+  "albedo_type": "geometric",
+  "texture": null,
+  "color": "#77736d",
+  "ring": null,
+  "atmosphere": "None known (Ceres: no significant atmosphere).",
+  "notes": "",
+  "approx": true,
+  "dwarf": true,
+  "elements": {
+   "a_au": 2.765552595034094,
+   "e": 0.07969229514816586,
+   "i_deg": 10.58802780183462,
+   "node_deg": 80.24862682043221,
+   "peri_deg": 73.29421453021587,
+   "ma_deg": 274.4193463761342,
+   "epoch_jd": 2461200.5,
+   "mean_motion_deg_d": 0.21430445064843,
+   "source": "JPL Small-Body Database (ssd-api.jpl.nasa.gov/sbdb.api), solution epoch JD 2461200.5 TDB, J2000 ecliptic"
+  },
+  "model_notes": "Radius, mass, rotation period, albedo: JPL Solar System Dynamics physical parameters (ssd.jpl.nasa.gov/planets/phys_par.html). Orbit: JPL SBDB osculating two-body elements; the drawn position is a Keplerian approximation (good to about a degree over a few years, not an ephemeris). Axial tilt not drawn. Display tint is approximate."
+ },
+ {
+  "name": "Eris",
+  "parent": "Sun",
+  "radius_km": 1200,
+  "mass_kg": 1.66e+22,
+  "rotation_period_h": 25.896,
+  "axial_tilt_deg": null,
+  "semimajor_au": 67.9339,
+  "eccentricity": 0.4382,
+  "inclination_deg": 43.926,
+  "orbital_period_days": 204516.7,
+  "albedo": 0.84,
+  "albedo_type": "geometric",
+  "texture": null,
+  "color": "#e9e8e4",
+  "ring": null,
+  "atmosphere": "Not measured; surface ices may form a thin atmosphere near perihelion.",
+  "notes": "",
+  "approx": true,
+  "dwarf": true,
+  "elements": {
+   "a_au": 67.93394687853566,
+   "e": 0.4382385347971672,
+   "i_deg": 43.9258279471791,
+   "node_deg": 36.00477044417249,
+   "peri_deg": 150.7949235840312,
+   "ma_deg": 211.774434275007,
+   "epoch_jd": 2461200.5,
+   "mean_motion_deg_d": 0.001760247770619088,
+   "source": "JPL Small-Body Database (ssd-api.jpl.nasa.gov/sbdb.api), solution epoch JD 2461200.5 TDB, J2000 ecliptic"
+  },
+  "model_notes": "Radius, mass, rotation period, albedo: JPL Solar System Dynamics physical parameters (ssd.jpl.nasa.gov/planets/phys_par.html). Orbit: JPL SBDB osculating two-body elements; the drawn position is a Keplerian approximation (good to about a degree over a few years, not an ephemeris). Axial tilt not drawn. Display tint is approximate."
+ },
+ {
+  "name": "Haumea",
+  "parent": "Sun",
+  "radius_km": 715,
+  "mass_kg": 4.006e+21,
+  "rotation_period_h": 3.914,
+  "axial_tilt_deg": null,
+  "semimajor_au": 43.0603,
+  "eccentricity": 0.1944,
+  "inclination_deg": 28.208,
+  "orbital_period_days": 103208.1,
+  "albedo": 0.72,
+  "albedo_type": "geometric",
+  "texture": null,
+  "color": "#e2e2e0",
+  "ring": null,
+  "atmosphere": "Not measured; surface ices may form a thin atmosphere near perihelion.",
+  "notes": "",
+  "approx": true,
+  "dwarf": true,
+  "elements": {
+   "a_au": 43.06029023650952,
+   "e": 0.1944430148898797,
+   "i_deg": 28.20847393040364,
+   "node_deg": 121.7860561329425,
+   "peri_deg": 240.6905472508661,
+   "ma_deg": 223.2104118812299,
+   "epoch_jd": 2461200.5,
+   "mean_motion_deg_d": 0.003488097731816818,
+   "source": "JPL Small-Body Database (ssd-api.jpl.nasa.gov/sbdb.api), solution epoch JD 2461200.5 TDB, J2000 ecliptic"
+  },
+  "model_notes": "Radius, mass, rotation period, albedo: JPL Solar System Dynamics physical parameters (ssd.jpl.nasa.gov/planets/phys_par.html). Orbit: JPL SBDB osculating two-body elements; the drawn position is a Keplerian approximation (good to about a degree over a few years, not an ephemeris). Axial tilt not drawn. Display tint is approximate."
+ },
+ {
+  "name": "Makemake",
+  "parent": "Sun",
+  "radius_km": 714,
+  "mass_kg": 3.1e+21,
+  "rotation_period_h": 22.488,
+  "axial_tilt_deg": null,
+  "semimajor_au": 45.5709,
+  "eccentricity": 0.1589,
+  "inclination_deg": 29.028,
+  "orbital_period_days": 112364.8,
+  "albedo": 0.81,
+  "albedo_type": "geometric",
+  "texture": null,
+  "color": "#c8a07c",
+  "ring": null,
+  "atmosphere": "Not measured; surface ices may form a thin atmosphere near perihelion.",
+  "notes": "",
+  "approx": true,
+  "dwarf": true,
+  "elements": {
+   "a_au": 45.57093317300052,
+   "e": 0.1588889953992523,
+   "i_deg": 29.02785603743067,
+   "node_deg": 79.2948338209406,
+   "peri_deg": 297.0922733397207,
+   "ma_deg": 169.9379962048232,
+   "epoch_jd": 2461200.5,
+   "mean_motion_deg_d": 0.003203850120050116,
+   "source": "JPL Small-Body Database (ssd-api.jpl.nasa.gov/sbdb.api), solution epoch JD 2461200.5 TDB, J2000 ecliptic"
+  },
+  "model_notes": "Radius, mass, rotation period, albedo: JPL Solar System Dynamics physical parameters (ssd.jpl.nasa.gov/planets/phys_par.html). Orbit: JPL SBDB osculating two-body elements; the drawn position is a Keplerian approximation (good to about a degree over a few years, not an ephemeris). Axial tilt not drawn. Display tint is approximate."
  }
 ]

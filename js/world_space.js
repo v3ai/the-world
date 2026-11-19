@@ -371,20 +371,129 @@ FT.star = {
     F.spawn = (T2) => T2.length() < R * 1.2 ? new Frame({ type: 'plasma', name: 'Stellar plasma', unit: 1e-10, radius: 60, r0: 1e-14, r1: 1e-7, pos: T2.clone() }) : null;
   }
 };
+/* ---------- the Sun: photosphere and cut-away interior (unit = 1 solar radius, 6.957e8 m) ---------- */
+const SUN_R_M = 6.957e8; // IAU 2015 nominal solar radius, 695,700 km
+// Anchor points of a standard solar model (r/R, temperature K, density kg/m3, hydrogen mass fraction):
+// centre 15.7 MK and 150 g/cm3 (Fiorentini and Ricci, via Wikipedia "Standard solar model" and "Solar core"); 0.19 R 10 MK, 40 g/cm3 and 0.25 R 7 MK, 20,000 kg/m3 (Solar core; Sun);
+// base of the convection zone 0.713 R, about 2 MK and 200 kg/m3 (Sun); photosphere 5,772 K and about 2e-4 kg/m3 (about 1e23 particles per m3). Values between anchors are interpolated in log space: a diagram, not a model run.
+const SUN_TBL = [[0, 1.57e7, 1.5e5, .34], [.19, 1e7, 4e4, .5], [.25, 7e6, 2e4, .7], [.713, 2e6, 200, .735], [1, 5772, 2e-4, .735]];
+function sunAt(r) {
+  r = clamp(r, 0, 1); let i = 0; while (i < SUN_TBL.length - 2 && r > SUN_TBL[i + 1][0]) i++;
+  const a = SUN_TBL[i], b = SUN_TBL[i + 1], u = (r - a[0]) / (b[0] - a[0]), L = (x, y) => Math.exp(lerp(Math.log(x), Math.log(y), u));
+  return { r, T: L(a[1], b[1]), rho: L(a[2], b[2]), X: lerp(a[3], b[3], u), layer: r < .25 ? 'core' : r < .713 ? 'radiative' : r < .9995 ? 'convective' : 'photosphere' };
+}
+function sunPhotoMat(extra) {
+  const m = new THREE.ShaderMaterial({
+    uniforms: Object.assign({ uTime: { value: 0 }, uPix: { value: .01 }, uCut: { value: 0 }, uSign: { value: new V3(1, 1, 1) }, uOpacity: { value: 1 } }, extra || {}),
+    vertexShader: LDV(`varying vec3 vP; varying vec3 vN; varying vec3 vV; void main(){ vP=position; vec4 mv=modelViewMatrix*vec4(position,1.); vN=normalize(normalMatrix*normal); vV=normalize(-mv.xyz); gl_Position=projectionMatrix*mv; }`),
+    fragmentShader: LDF(NOISE_GLSL + `uniform float uTime; uniform float uPix; uniform float uCut; uniform vec3 uSign; uniform float uOpacity; varying vec3 vP; varying vec3 vN; varying vec3 vV;
+      vec3 h33(vec3 p){ p=vec3(dot(p,vec3(127.1,311.7,74.7)),dot(p,vec3(269.5,183.3,246.1)),dot(p,vec3(113.5,271.9,124.6))); return fract(sin(p)*43758.5453); }
+      vec2 worley(vec3 p){ vec3 i=floor(p), f=fract(p); float d1=9., d2=9.; for(int x=-1;x<=1;x++) for(int y=-1;y<=1;y++) for(int z=-1;z<=1;z++){ vec3 g=vec3(float(x),float(y),float(z)); vec3 r=g+h33(i+g)-f; float d=dot(r,r); if(d<d1){ d2=d1; d1=d; } else if(d<d2) d2=d; } return vec2(sqrt(d1),sqrt(d2)); }
+      void main(){
+        if(uCut>.5 && vP.x*uSign.x>0. && vP.y*uSign.y>0. && vP.z*uSign.z>0.) discard;
+        vec3 p=normalize(vP); float mu=clamp(dot(normalize(vN),normalize(vV)),0.,1.);
+        float wg=1.-smoothstep(.0004,.0014,uPix);   // granules (about 1,000 km): drawn only while they are bigger than a few pixels
+        float ws=1.-smoothstep(.01,.04,uPix);       // supergranule-scale mottling (about 30,000 km)
+        vec3 pw=p*700.; pw+=.7*vec3(noise3(pw*.045),noise3(pw*.045+7.1),noise3(pw*.045+13.7))-.35; pw+=.18*vec3(noise3(pw*.4),noise3(pw*.4+3.3),noise3(pw*.4+9.1))-.09; vec2 g=worley(pw+vec3(uTime*.02)); float lane=smoothstep(0.,.3,g.y-g.x);
+        float b=1.; vec3 lt=vec3(1.); b*=mix(1.,(.58+.42*lane)*(1.12-.4*g.x),wg); lt=mix(vec3(1.),mix(vec3(1.,.78,.55),vec3(1.),lane),wg); b*=1.+wg*(h33(floor(p*700.)).x-.5)*.08;
+        vec2 sg=worley(p*23.); b*=mix(1.,.98+.03*smoothstep(0.,.5,sg.y-sg.x),ws);
+        b*=1.+(fbm3(p*6.+uTime*.01)-.5)*.06;
+        vec3 u=vec3(.50,.64,.80); vec3 limb=1.-u*(1.-mu);   // limb darkening: the edge is cooler, higher layer, and redder
+        vec3 base=vec3(1.,.93,.76);
+        gl_FragColor=vec4(base*limb*lt*b*.93,uOpacity);
+      }`)
+  });
+  m.transparent = true; return m;
+}
+function sunCutMat() { // the flat faces of the cut-away: radial layers, coloured by zone (a diagram), thin dark lines at the zone boundaries
+  return new THREE.ShaderMaterial({
+    uniforms: { uTime: { value: 0 }, uOpacity: { value: 1 } }, side: THREE.DoubleSide, transparent: true,
+    vertexShader: LDV(`varying vec3 vP; void main(){ vP=position; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }`),
+    fragmentShader: LDF(NOISE_GLSL + `uniform float uTime; uniform float uOpacity; varying vec3 vP;
+      void main(){ float r=length(vP); vec3 c;
+        if(r<.25){ float k=r/.25; c=mix(vec3(1.,.96,.72),vec3(1.,.78,.36),pow(k,.8)); }
+        else if(r<.713){ float k=(r-.25)/.463; c=mix(vec3(1.,.62,.22),vec3(.86,.34,.12),k); }
+        else { float k=(r-.713)/.287; float n=fbm3(normalize(vP)*(9.+6.*k)+uTime*.05); c=mix(vec3(.74,.22,.08),vec3(.98,.55,.16),k)*(.88+.24*n); }
+        float line=smoothstep(.004,0.,abs(r-.25))+smoothstep(.004,0.,abs(r-.713)); c=mix(c,vec3(.12,.07,.05),clamp(line,0.,1.)*.8);
+        float rim=smoothstep(.992,.999,r); c=mix(c,vec3(1.,.96,.82),rim);
+        gl_FragColor=vec4(c*.88,uOpacity); }`)
+  });
+}
+function sunQuarter(u, v) { // a quarter disc of radius 1 in the plane spanned by u and v
+  const nr = 48, nt = 24, pos = [], idx = [];
+  for (let i = 0; i <= nr; i++) for (let j = 0; j <= nt; j++) { const r = i / nr, a = j / nt * Math.PI / 2; pos.push(...u.clone().multiplyScalar(r * Math.cos(a)).addScaledVector(v, r * Math.sin(a)).toArray()); }
+  for (let i = 0; i < nr; i++) for (let j = 0; j < nt; j++) { const a = i * (nt + 1) + j, b = a + 1, c = a + nt + 1, d = c + 1; idx.push(a, c, b, b, c, d); }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); return g;
+}
+FT.sun = {
+  build(F) {
+    const mat = sunPhotoMat(), shell = new THREE.Mesh(new THREE.SphereGeometry(1, 256, 128), mat); F.add(shell);
+    let cutOn = false, userCut = false; const sg = new V3(1, 1, 1), cutGrp = new THREE.Group(); F.add(cutGrp);
+    const rc = THREE.Mesh.prototype.raycast, loc = new V3();
+    shell.raycast = function (ray, hits) { const tmp = []; rc.call(shell, ray, tmp); tmp.forEach(h => { loc.copy(h.point).add(F.C); if (!(cutOn && loc.x * sg.x > 0 && loc.y * sg.y > 0 && loc.z * sg.z > 0)) hits.push(h); }); };
+    F.pick(shell, 'sunPhoto', 2); shell.userData.madeOf = 'plasma'; shell.userData.zoomTo = h => { flyTo(F, h.pointLocal.clone(), 1.5e8); }; // to the surface point you chose, to see granules
+    const cm = sunCutMat(), faces = [[new V3(0, 1, 0), new V3(0, 0, 1)], [new V3(1, 0, 0), new V3(0, 0, 1)], [new V3(1, 0, 0), new V3(0, 1, 0)]].map(([u, v]) => { const m = new THREE.Mesh(sunQuarter(u, v), cm); m.visible = false; cutGrp.add(m); return m; });
+    const layerOf = h => { const p = h.point.clone().add(F.C); const l = sunAt(p.length()).layer; return l === 'core' ? 'sunCore' : l === 'radiative' ? 'sunRadiative' : l === 'convective' ? 'sunConvective' : 'sunPhoto'; };
+    faces.forEach(m => { m.userData = { resolve: layerOf, priority: 2.2, madeOf: 'plasma' }; const r0 = m.raycast.bind(m); m.raycast = (ray, hits) => { if (cutOn) r0(ray, hits); }; F.pickables.push(m); });
+    const corona = glowSprite(0xffe2a8, 5.2, .3); F.add(corona); const halo = glowSprite(0xffffff, 2.5, .25); F.add(halo); corona.renderOrder = halo.renderOrder = -1; shell.renderOrder = 0;
+    const pins = [[new V3(.09, .06, 0), 'sunCore', 'Core: fusion, 15.7 million K at the centre'], [new V3(.5, .2, 0), 'sunRadiative', 'Radiative zone: 7 to 2 million K'], [new V3(.86, .3, 0), 'sunConvective', 'Convective zone: 2 million K to 5,772 K']];
+    const lbls = pins.map(([p, id, t]) => { const o = new THREE.Object3D(); o.position.copy(p); o.userData = { id, priority: 2.5, madeOf: 'plasma' }; o.visible = false; cutGrp.add(o); F.label(o, t, {}); return o; });
+    const cutSeg = seg([['whole', 'Whole Sun'], ['cut', 'Cut-away']], 'whole', k => { userCut = k === 'cut'; });
+    F.blurb = 'The Sun at its true size: a ball of plasma 1.39 million km across. Zoom in to the surface, or open the cut-away to see its layers.';
+    F.note = 'To scale: the Sun\'s size, its limb darkening and the granule size (about 1,000 km). Interior: radii, temperatures and densities come from standard solar models; the cut-away colours are a temperature diagram, not what you would see. Sunspots are not drawn.';
+    F.spawnD = 3e3;
+    Object.defineProperty(F, 'floorD', { get: () => cam.T.length() > .95 ? 2e5 : 0 }); // the Sun has no solid surface to land on: the view stops 200 km above the photosphere; use "See what it is made of" for the gas itself
+    F.spawn = T => T.length() < 1.02 ? new Frame({ type: 'plasma', name: 'Plasma inside the Sun', unit: 1e-9, radius: 40, r1: 3e-7, pos: T.clone() }) : null;
+    F.update = (dt, t) => {
+      const inside = cam.A === F && cam.T.length() < .5 && cam.D < 2e9, was = cutOn; cutOn = userCut || inside;
+      if (cutOn && !was) { camPosIn(F, loc); sg.set(loc.x < 0 ? -1 : 1, loc.y < 0 ? -1 : 1, loc.z < 0 ? -1 : 1); cutGrp.scale.copy(sg); mat.uniforms.uSign.value.copy(sg); } // the removed octant faces the camera when the cut-away opens
+      mat.uniforms.uTime.value = t; mat.uniforms.uCut.value = cutOn ? 1 : 0; cm.uniforms.uTime.value = t;
+      mat.uniforms.uPix.value = Math.max(cam.D / F.unit, 1e-9) * 2 * Math.tan(25 * Math.PI / 180) / H * 1.0;
+      faces.forEach(m => { m.visible = cutOn; }); lbls.forEach(o => { o.visible = cutOn; });
+      cutSeg.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === (cutOn ? 'cut' : 'whole')));
+      corona.visible = halo.visible = cam.D > 6e8;
+      if (cam.A === F && cam.T.length() > .95 && cam.D < 2.2e5 && performance.now() - (F._msg || 0) > 8000) { F._msg = performance.now(); message('The Sun has no solid surface to land on. Choose "See what it is made of" to go into its gas.'); }
+    };
+  }
+};
 /* ---------- solar system (AU, ecliptic three: Y = north ecliptic pole) ---------- */
 let SOLAR = null;
-const PLANETS = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+const PLANETS = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto', 'Ceres', 'Haumea', 'Makemake', 'Eris'];
+// Dwarf planets that astronomy-engine does not know are placed from JPL Small-Body Database elements (data/solar.json `elements`): an osculating two-body orbit.
+function keplerThree(el, ms) {
+  const jd = ms / 86400000 + 2440587.5, d2r = Math.PI / 180, e = el.e;
+  const M = (((el.ma_deg + el.mean_motion_deg_d * (jd - el.epoch_jd)) % 360) + 360) % 360 * d2r; let E = M + e * Math.sin(M);
+  for (let k = 0; k < 8; k++) E -= (E - e * Math.sin(E) - M) / (1 - e * Math.cos(E));
+  const x = el.a_au * (Math.cos(E) - e), y = el.a_au * Math.sqrt(1 - e * e) * Math.sin(E), w = el.peri_deg * d2r, n = el.node_deg * d2r, i = el.i_deg * d2r;
+  const cw = Math.cos(w), sw = Math.sin(w), cn = Math.cos(n), sn = Math.sin(n), ci = Math.cos(i), si = Math.sin(i);
+  return new V3((cn * cw - sn * sw * ci) * x + (-cn * sw - sn * cw * ci) * y, (sw * si) * x + (cw * si) * y, -((sn * cw + cn * sw * ci) * x + (-sn * sw + cn * cw * ci) * y));
+}
+function helioAt(name, ms) { // heliocentric ecliptic position, AU (three axes), at time ms
+  const d = SOLAR && SOLAR.find(b => b.name === name); if (d && d.elements) return keplerThree(d.elements, ms);
+  if (window.Astronomy) { const v = Astronomy.HelioVector(name, new Date(ms)); return eq3(v.x, v.y, v.z).applyQuaternion(Q_EQ_TO_ECL); }
+  return new V3();
+}
+helio3 = name => helioAt(name, simTime);
+// Voyager 1 and 2: JPL Horizons heliocentric vectors (ecliptic J2000, AU and AU/day) at JD 2461362.5 TDB (2026-11-18 00:00), carried forward in a straight line.
+const VOYAGERS = [
+  { id: 'voyager1', name: 'Voyager 1', p: [-32.22039915514457, -137.2019354088705, 99.26779061000546], v: [-1.195196945150092e-3, -7.861217678351216e-3, 5.678158648322611e-3] },
+  { id: 'voyager2', name: 'Voyager 2', p: [40.00680002687236, -105.7232812437092, -90.01703017309499], v: [2.427664062065358e-3, -5.394403127429804e-3, -6.535571861190102e-3] }];
+function voyagerAt(V, ms, out) { const dd = ms / 86400000 + 2440587.5 - 2461362.5; return out.set(V.p[0] + V.v[0] * dd, V.p[2] + V.v[2] * dd, -(V.p[1] + V.v[1] * dd)); }
 FT.solarsystem = {
   build(F) {
     F.scene.background = null;
     F.add(new THREE.AmbientLight(0x404a66, .25)); const pl = new THREE.PointLight(0xfff4e0, 2.2, 0, 0); F.add(pl);
-    const KM = 1 / 1.495978707e8;
-    const sunR = 695700 * KM, sunM = new THREE.Mesh(new THREE.SphereGeometry(sunR, 64, 48), sunMaterial()); F.add(sunM); F.pick(sunM, 'sun');
-    sunM.userData.madeOf = 'plasma';
-    F.add(glowSprite(0xffc070, sunR * 14, .6)); F.add(glowSprite(0xfff1d0, sunR * 4, .9));
+    const KM = 1 / 1.495978707e8, PXK = 2 * Math.tan(25 * Math.PI / 180) / H, _v = new V3(), _w = new V3(), CP = new V3(), SUND = new V3(), PX = new V3(); let SD0 = 1, SUNHALF = 0;
+    const sunR = 695700 * KM, sunMat = sunPhotoMat(), sunM = new THREE.Mesh(new THREE.SphereGeometry(sunR, 128, 64), sunMat);
+    const sunGrp = new THREE.Group(); F.add(sunGrp); sunGrp.add(sunM); F.pick(sunM, 'sun'); sunM.userData.madeOf = 'plasma';
+    const toSun = () => { flyTo(FR.sun, new V3(), 3e9); };
+    sunM.userData.zoomTo = toSun;
+    [glowSprite(0xffc070, sunR * 14, .3), glowSprite(0xfff1d0, sunR * 4, .5)].forEach(g => { g.renderOrder = -1; sunGrp.add(g); });
+    if (FR.sun) FR.sun.proxy = sunGrp; // the stand-in disappears when the detailed Sun frame is fully shown
+    const sunH = hitSphere(1, 'sun', 3); sunH.userData.zoomTo = toSun; sunH.userData.madeOf = 'plasma'; F.add(sunH); F.pickables.push(sunH);
     const sunMk = markerSprite(0xfff1c8, 16); F.add(sunMk); F.label(sunM, 'Sun', { offset: new V3(0, sunR * 2, 0) });
     const orbitMat = new THREE.LineBasicMaterial({ color: 0x7084b0, transparent: true, opacity: .35, depthWrite: false });
-    F.bodies = {};
+    F.bodies = {}; // a planet label shows only when it is not on top of the Sun's disc, not behind it, and far enough from the Sun on screen not to pile up
     getJSON('data/solar.json').then(SD => {
       SOLAR = SD;
       PLANETS.forEach(name => {
@@ -392,66 +501,109 @@ FT.solarsystem = {
         const grp = new THREE.Group(); F.add(grp);
         const rAU = d.radius_km * KM;
         const map = d.texture ? tex(d.texture) : null;
-        const mesh = new THREE.Mesh(new THREE.SphereGeometry(rAU, 48, 32), new THREE.MeshStandardMaterial({ map, color: map ? 0xffffff : 0xbbbbbb, roughness: .9 }));
+        const mesh = new THREE.Mesh(new THREE.SphereGeometry(rAU, 48, 32), new THREE.MeshStandardMaterial({ map, color: map ? 0xffffff : new THREE.Color(d.color || '#bbbbbb'), roughness: .9 }));
         grp.add(mesh);
         if (d.ring && d.ring.texture) { const ri = d.ring.inner_km * KM, ro = d.ring.outer_km * KM, rg = new THREE.RingGeometry(ri, ro, 128, 1); const pa = rg.attributes.position, uv = rg.attributes.uv, v = new V3(); for (let i = 0; i < pa.count; i++) { v.fromBufferAttribute(pa, i); uv.setXY(i, (v.length() - ri) / (ro - ri), .5); } const ring = new THREE.Mesh(rg, new THREE.MeshBasicMaterial({ map: tex(d.ring.texture), transparent: true, side: THREE.DoubleSide, depthWrite: false })); ring.rotation.x = -Math.PI / 2; grp.add(ring); }
-        grp.rotation.z = (d.axial_tilt_deg || 0) * Math.PI / 180 * (d.axial_tilt_deg > 90 ? 1 : 1);
+        grp.rotation.z = (d.axial_tilt_deg || 0) * Math.PI / 180;
         const mk = markerSprite(0xffffff, 7); grp.add(mk);
         const id = name === 'Earth' ? 'earthPlanet' : name.toLowerCase();
-        grp.userData.id = id; grp.userData.priority = 2; grp.userData.radius = rAU; grp.userData.sim = [name === 'Pluto' ? 'dwarf:pluto' : 'planet:' + name.toLowerCase()];
-        F.pickables.push(grp); const hs = hitSphere(rAU * 1.5, id, 2); grp.add(hs);
-        F.label(grp, name, { offset: new V3(0, rAU * 3, 0) });
-        // orbit: sample the real ephemeris over one period
-        if (window.Astronomy) {
-          const P = d.orbital_period_days || 365, pts = [], t0 = simTime;
-          for (let k = 0; k <= 180; k++) { const v = Astronomy.HelioVector(name, new Date(t0 + k / 180 * P * 86400000)); pts.push(eq3(v.x, v.y, v.z).applyQuaternion(Q_EQ_TO_ECL)); }
-          F.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), orbitMat));
-        }
-        F.bodies[name] = { grp, mesh, d, rAU };
+        grp.userData.id = id; grp.userData.priority = 2; grp.userData.radius = rAU; if (!d.elements) grp.userData.sim = [name === 'Pluto' ? 'dwarf:pluto' : 'planet:' + name.toLowerCase()];
+        F.pickables.push(grp); const hs = hitSphere(1, id, 3); hs.userData.radius = rAU; grp.add(hs);
+        const L = F.label(grp, name, { offset: new V3(0, rAU * 3, 0) });
+        // orbit: sample the ephemeris over one period
+        { const P = d.orbital_period_days || 365, pts = [], t0 = simTime;
+          for (let k = 0; k <= 180; k++) pts.push(helioAt(name, t0 + k / 180 * P * 86400000));
+          F.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), orbitMat)); }
+        F.bodies[name] = { grp, mesh, d, rAU, hs, L };
       });
       Object.values(F.bodies).forEach(b => { const ch = F.children.find(c => c.opts && c.opts.body === b.d.name); if (ch) ch.proxy = b.grp; });
     });
-    // belts and clouds (statistical, real extents)
+    // belts and clouds (statistical, real extents); the dots are enlarged so that they can be seen
     const r = rng(5), ap = [], ac = [], as = [];
     const kep = (a, e, i, node, w, M) => { let E = M; for (let k = 0; k < 6; k++) E = M + e * Math.sin(E); const x = a * (Math.cos(E) - e), y = a * Math.sqrt(1 - e * e) * Math.sin(E); const cw = Math.cos(w), sw = Math.sin(w), cn = Math.cos(node), sn = Math.sin(node), ci = Math.cos(i), si = Math.sin(i); const X = (cn * cw - sn * sw * ci) * x + (-cn * sw - sn * cw * ci) * y, Yy = (sn * cw + cn * sw * ci) * x + (-sn * sw + cn * cw * ci) * y, Z = (sw * si) * x + (cw * si) * y; return [X, Z, -Yy]; };
-    for (let k = 0; k < 6000; k++) { const p = kep(2.1 + r() * 1.2, r() * .2, Math.abs(gauss(r)) * .15, r() * TAU, r() * TAU, r() * TAU); ap.push(...p); const b = .4 + r() * .4; ac.push(b * .85, b * .78, b * .68); as.push(.004 + r() * .006); }
+    for (let k = 0; k < 6000; k++) { const p = kep(2.1 + r() * 1.2, r() * .2, Math.abs(gauss(r)) * .15, r() * TAU, r() * TAU, r() * TAU); ap.push(...p); const b = .55 + r() * .45; ac.push(b * .95, b * .85, b * .7); as.push(.004 + r() * .006); }
     const belt = makePoints(ap, ac, as); F.add(belt); F.pick(belt, 'asteroids', .3);
     const kp = [], kc = [], ks = [];
-    for (let k = 0; k < 5000; k++) { const p = kep(r() < .2 ? 39.4 : 42 + r() * 6, r() * .15, Math.abs(gauss(r)) * .12, r() * TAU, r() * TAU, r() * TAU); kp.push(...p); const b = .3 + r() * .35; kc.push(b * .75, b * .85, b); ks.push(.05 + r() * .05); }
-    const kb = makePoints(kp, kc, ks, { opacity: .8 }); F.add(kb); F.pick(kb, 'kuiper', .25);
+    for (let k = 0; k < 5000; k++) { const p = kep(r() < .2 ? 39.4 : 42 + r() * 6, r() * .15, Math.abs(gauss(r)) * .12, r() * TAU, r() * TAU, r() * TAU); kp.push(...p); const b = .5 + r() * .5; kc.push(b * .7, b * .85, b); ks.push(.05 + r() * .05); }
+    const kb = makePoints(kp, kc, ks, { opacity: .9 }); F.add(kb); F.pick(kb, 'kuiper', .25);
     const op = [], oc = [], os = [];
-    for (let k = 0; k < 4000; k++) { const v = new V3(gauss(r), gauss(r), gauss(r)).normalize().multiplyScalar(Math.exp(lerp(Math.log(2000), Math.log(100000), r()))); op.push(v.x, v.y, v.z); oc.push(.35, .4, .5); os.push(v.length() * .004); }
-    const oort = makePoints(op, oc, os, { opacity: .6 }); F.add(oort); oort.userData = { id: 'oort', priority: .1, info: { title: 'Oort Cloud', tag: 'Icy outskirts (hypothesized)', body: '<p>A vast spherical swarm of icy bodies thought to surround the solar system from about 2,000 to 100,000 AU — up to a third of the way to the nearest star. It has never been seen directly; long-period comets are the evidence.</p>', facts: [['Extent', '≈ 2,000–100,000 AU (approx.)']] } }; F.pickables.push(oort);
+    for (let k = 0; k < 4000; k++) { const v = new V3(gauss(r), gauss(r), gauss(r)).normalize().multiplyScalar(Math.exp(lerp(Math.log(2000), Math.log(100000), r()))); op.push(v.x, v.y, v.z); oc.push(.55, .7, 1); os.push(v.length() * .004); }
+    const oort = makePoints(op, oc, os, { opacity: .85 }); F.add(oort); oort.userData = { id: 'oort', priority: .1 }; F.pickables.push(oort);
+    const ring = (R, col) => { const pts = []; for (let k = 0; k <= 180; k++) pts.push(new V3(Math.cos(k / 180 * TAU) * R, 0, Math.sin(k / 180 * TAU) * R)); const l = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: col, transparent: true, opacity: .45, depthWrite: false })); F.add(l); return l; };
+    const oortRings = [ring(2000, 0x6f8fe0), ring(100000, 0x6f8fe0)];
+    const mkLbl = (pos, text, id, rule) => { const o = new THREE.Object3D(); o.position.copy(pos); o.userData = { id, priority: 2 }; F.add(o); const L = F.label(o, text, {}); if (rule) L.minSizeFn = rule; return o; };
+    mkLbl(new V3(0, 0, 2.7), 'Asteroid belt (dots enlarged)', 'asteroids', () => cam.D > 3e10 && cam.D < 3e13);
+    mkLbl(new V3(0, 0, 43), 'Kuiper belt (dots enlarged)', 'kuiper', () => cam.D > 3e12 && cam.D < 3e15);
+    mkLbl(new V3(2000, 0, 0), 'Oort cloud, inner edge ≈ 2,000 AU (hypothesised)', 'oort', () => cam.D > 1e14);
+    mkLbl(new V3(0, 0, 100000), 'Oort cloud, outer edge ≈ 100,000 AU (hypothesised)', 'oort', () => cam.D > 1e14);
     const hel = new THREE.Mesh(new THREE.SphereGeometry(120, 64, 32), fresnelMat(0x5ab4ff, 2.6, .5)); F.add(hel);
-    const helH = hitSphere(122, 'heliosphere', -.2); helH.userData.info = { title: 'Heliopause', tag: 'Edge of the Sun\'s wind', body: '<p>Where the solar wind is stopped by the gas between the stars, about 120 AU from the Sun. Voyager 1 crossed it in 2012 and Voyager 2 in 2018.</p>', facts: [['Distance', '≈ 120 AU']] }; helH.userData.noZoom = true; F.add(helH); F.pickables.push(helH);
+    const helH = hitSphere(122, 'heliosphere', -.2); helH.userData.noZoom = true; F.add(helH); F.pickables.push(helH);
     F.label(helH, 'Heliopause (~120 AU)', { offset: new V3(0, 120, 0) });
-    [['Voyager 1', 257.6, 12.1, 168], ['Voyager 2', 296.5, -57.9, 141]].forEach(([nm, ra, de, au]) => { const p = raDec3(ra, de, au).applyQuaternion(Q_EQ_TO_ECL); const m = markerSprite(0x9fffe0, 6); m.position.copy(p); F.add(m); F.label(m, `${nm} (≈${au} AU, approx.)`); });
-    F.blurb = 'The Sun and planets at their real positions for the date shown, at true size. Planets are tiny dots — space is mostly empty.';
+    const vgs = VOYAGERS.map(V => { const g = new THREE.Group(); g.add(markerSprite(0x9fffe0, 6)); const hs = hitSphere(1, V.id, 3); g.add(hs); g.userData = { id: V.id, priority: 3, noZoom: true }; F.add(g); F.pickables.push(g); const L = F.label(g, V.name, {}); return { V, g, hs, L, t: 0 }; });
+    F.blurb = 'The Sun, the eight planets and the dwarf planets at their ephemeris positions for the date shown. Planets and the Sun are drawn at true size, which is why they are dots; markers and pick targets are enlarged.';
+    F.note = 'Positions: planets, Pluto and the Moon from an ephemeris (astronomy-engine); the other dwarf planets from a two-body orbit (approximate); Voyagers from a straight line through JPL vectors. Not to scale: marker dots, belt dots and orbit lines. Sizes of bodies and distances between them are true.';
     F.timeNote = null;
     F.update = (dt, t) => {
-      sunM.material.uniforms.uTime.value = t;
+      sunMat.uniforms.uTime.value = t; CP.copy(camPosIn(F, _v)); const cd0 = CP.length(); SD0 = Math.max(cd0, 1e-9);
+      sunMat.uniforms.uPix.value = Math.max(cam.D / F.unit, 1e-12) / sunR * PXK;
       orbitMat.opacity = .35 * smooth(2e9, 3e10, cam.D) * F.alpha;
-      for (const nm in F.bodies) { const b = F.bodies[nm]; b.grp.position.copy(helio3(nm)); b.mesh.rotation.y += dt * TAU / Math.abs(b.d.rotation_period_h || 24) / 3600 * Math.max(timeSpeed, 1) * Math.sign(b.d.rotation_period_h || 1); }
+      sunH.scale.setScalar(Math.max(sunR * 1.1, SD0 * PXK * 14)); SUNHALF = Math.asin(Math.min(1, sunR / SD0)); SUND.copy(CP).negate().normalize();
+      for (const nm in F.bodies) {
+        const b = F.bodies[nm]; b.grp.position.copy(helioAt(nm, simTime));
+        b.mesh.rotation.y = (simTime / 3600000 / (b.d.rotation_period_h || 24)) % 1 * TAU; // rotation follows the simulated clock: it stops when time is paused
+        const dd = Math.max(PX.copy(b.grp.position).distanceTo(CP), 1e-9); b.hs.scale.setScalar(Math.max(b.rAU * 1.5, dd * PXK * 12));
+        if (!b.L.hooked) { b.L.hooked = 1; b.L.minSizeFn = () => { if (FR.sun && FR.sun.alpha > .3) return false; const v = _w.copy(b.grp.position).sub(CP), dist = v.length(); v.normalize(); const behind = dist > SD0 && v.angleTo(SUND) < SUNHALF * 1.15; return !behind && b.grp.position.length() / dist / PXK > 22; }; }
+      }
+      if (!F._sunLbl) { F._sunLbl = 1; F.labels.forEach(L => { if (L.el.textContent === 'Sun' || /^Heliopause/.test(L.el.textContent)) L.minSizeFn = () => !(FR.sun && FR.sun.alpha > .3); }); }
+      oortRings.forEach(l => { l.visible = cam.D > 2e13; }); helH.visible = cd0 > 125; // the heliopause can be picked from outside it, never from the inner solar system
+      const sc = avg => Math.min(40, Math.max(1, 1.6 * (cam.D / F.unit) / (300 * avg))); belt.material.uniforms.uScale.value = renderer.getPixelRatio() * sc(.007); kb.material.uniforms.uScale.value = renderer.getPixelRatio() * sc(.075);
+      vgs.forEach(o => { voyagerAt(o.V, simTime, o.g.position); const dd = Math.max(o.g.position.distanceTo(CP), 1e-9); o.hs.scale.setScalar(dd * PXK * 12); if (performance.now() - o.t > 400) { o.t = performance.now(); o.L.el.textContent = `${o.V.name} (${Math.round(o.g.position.length())} AU from the Sun)`; } if (!o.L.hooked) { o.L.hooked = 1; o.L.minSizeFn = () => !(FR.sun && FR.sun.alpha > .3) && o.g.position.length() / Math.max(o.g.position.distanceTo(CP), 1e-9) / PXK > 14; } });
     };
   }
 };
 /* ---------- generic planet (unit 1000 km) ---------- */
+const MOON_TEXT = {
+  Phobos: 'The larger and closer of Mars\'s two small moons, a lumpy body about 27 by 22 by 18 km. It circles Mars in under 8 hours and is slowly spiralling inward.',
+  Deimos: 'The smaller, outer moon of Mars: an irregular lump about 15 by 12 by 10 km that circles the planet in about 30 hours.',
+  Io: 'The most volcanically active body known. Tides from Jupiter and the other big moons flex it and heat it from inside, and its thin atmosphere is mostly sulfur dioxide from the volcanoes.',
+  Europa: 'A shell of ice over a global ocean of liquid water, kept liquid by tidal heating. One of the best places to look for life beyond Earth.',
+  Ganymede: 'The largest moon in the solar system, bigger than the planet Mercury. It is the only moon known to have its own magnetic field.',
+  Callisto: 'An ancient, heavily cratered ball of ice and rock, the outermost of Jupiter\'s four big moons.',
+  Titan: 'The only moon with a thick atmosphere (mostly nitrogen, with methane). Lakes and rivers of liquid methane and ethane lie on its surface, under an orange haze.',
+  Enceladus: 'A small, very bright icy moon. Geysers at its south pole spray water ice into space and feed Saturn\'s E ring, and an ocean lies under the ice.',
+  Mimas: 'A small icy moon with one huge crater, Herschel, a third as wide as the moon itself.',
+  Rhea: 'Saturn\'s second-largest moon, an icy world with a cratered surface.',
+  Iapetus: 'A two-toned moon: its leading side is very dark and its trailing side bright. A ridge runs along its equator.',
+  Tethys: 'A mid-sized moon made almost entirely of water ice: its average density is about 0.98 g/cm³, close to that of water.',
+  Dione: 'A mid-sized moon of Saturn, a mix of water ice and rock with a mean density of about 1.48 g/cm³.',
+  Miranda: 'The smallest of Uranus\'s five big moons, with patchwork terrain and Verona Rupes, an enormous cliff.',
+  Ariel: 'One of the five large moons of Uranus, a mix of ice and rock (mean density about 1.54 g/cm³).',
+  Umbriel: 'One of the five large moons of Uranus, a mix of ice and rock (mean density about 1.52 g/cm³).',
+  Titania: 'The largest moon of Uranus, an icy world about half the width of our Moon.',
+  Oberon: 'The outermost of the five big moons of Uranus.',
+  Triton: 'Neptune\'s big moon orbits backwards, which suggests it was captured from the Kuiper belt. Geysers of nitrogen have been seen on its surface.',
+  Proteus: 'Neptune\'s second-largest moon, an irregular body that circles the planet in just over a day. Its mass is poorly known.',
+  Charon: 'Pluto\'s big moon, about half Pluto\'s width. The two lock the same faces towards each other and circle a point in the space between them.'
+};
+const fmtKm = x => x >= 1000 ? Math.round(x).toLocaleString('en-US') : String(+x.toPrecision(4));
 FT.planet = {
   build(F, o) {
     const d = SOLAR && SOLAR.find(b => b.name === o.body); if (!d) return;
-    F.add(new THREE.AmbientLight(0x334455, .25)); const sl = new THREE.DirectionalLight(0xffffff, 1.3); F.add(sl); F.add(sl.target);
+    F.add(new THREE.AmbientLight(0x334455, .22)); const sl = new THREE.DirectionalLight(0xffffff, .8); F.add(sl); F.add(sl.target); // 0.8: the day side of a bright texture (Venus, Jupiter) stays below white
     const R = d.radius_km / 1000, map = d.texture ? tex(d.texture) : null;
     const spin = new THREE.Group(); F.add(spin); spin.rotation.z = (d.axial_tilt_deg || 0) * Math.PI / 180;
     const body = new THREE.Group(); spin.add(body);
-    const mesh = new THREE.Mesh(new THREE.SphereGeometry(R, 96, 64), new THREE.MeshStandardMaterial({ map, roughness: .95 })); body.add(mesh);
+    const mesh = new THREE.Mesh(new THREE.SphereGeometry(R, 96, 64), new THREE.MeshStandardMaterial({ map, color: map ? 0xffffff : new THREE.Color(d.color || '#bbbbbb'), roughness: .95 })); body.add(mesh);
     const id = o.body === 'Pluto' ? 'pluto' : o.body.toLowerCase(); F.pick(mesh, id); mesh.userData.madeOf = /Jupiter|Saturn|Uranus|Neptune/.test(o.body) ? 'gasgiant' : 'regolith';
-    mesh.userData.sim = ['planet:' + id];
-    if (d.ring && d.ring.texture) { const ri = d.ring.inner_km / 1000, ro = d.ring.outer_km / 1000, rg = new THREE.RingGeometry(ri, ro, 256, 1); const pa = rg.attributes.position, uv = rg.attributes.uv, v = new V3(); for (let i = 0; i < pa.count; i++) { v.fromBufferAttribute(pa, i); uv.setXY(i, (v.length() - ri) / (ro - ri), .5); } const ring = new THREE.Mesh(rg, new THREE.MeshStandardMaterial({ map: tex(d.ring.texture), transparent: true, side: THREE.DoubleSide, depthWrite: false, roughness: 1 })); ring.rotation.x = -Math.PI / 2; spin.add(ring); F.pick(ring, 'saturn', .5); }
-    if (/Venus|Jupiter|Saturn|Uranus|Neptune|Earth|Mars/.test(o.body)) F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.015, 64, 48), fresnelMat(/Mars/.test(o.body) ? 0xffa070 : /Venus/.test(o.body) ? 0xffe0a0 : 0x9fd0ff, 3, .9)));
+    if (!d.elements) mesh.userData.sim = ['planet:' + id];
+    if (d.ring && d.ring.texture) { const ri = d.ring.inner_km / 1000, ro = d.ring.outer_km / 1000, rg = new THREE.RingGeometry(ri, ro, 256, 1); const pa = rg.attributes.position, uv = rg.attributes.uv, v = new V3(); for (let i = 0; i < pa.count; i++) { v.fromBufferAttribute(pa, i); uv.setXY(i, (v.length() - ri) / (ro - ri), .5); } const ring = new THREE.Mesh(rg, new THREE.MeshBasicMaterial({ map: tex(d.ring.texture), color: 0xdddddd, transparent: true, side: THREE.DoubleSide, depthWrite: false })); ring.rotation.x = -Math.PI / 2; spin.add(ring); F.pick(ring, 'saturn', .5); }
+    const ATM = { Venus: [0xffe6b0, .22], Jupiter: [0xe8d9c0, .14], Saturn: [0xeedfb5, .14], Uranus: [0x9fe6ee, .3], Neptune: [0x7aa5ff, .3] }[o.body];
+    if (ATM) F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.012, 64, 48), fresnelMat(ATM[0], 4, ATM[1])));
     const moons = (SOLAR || []).filter(m => m.parent === o.body);
     F.moons = moons.map(m => {
-      const mr = m.radius_km / 1000, mm = new THREE.Mesh(new THREE.SphereGeometry(mr, 48, 32), new THREE.MeshStandardMaterial({ map: m.texture ? tex(m.texture) : null, color: m.texture ? 0xffffff : 0xaaaaaa, roughness: 1 }));
-      spin.add(mm); mm.userData = { id: 'moon_' + m.name, priority: 2, info: { title: m.name, tag: `Moon of ${o.body}`, body: `<p>${m.notes || ''}</p>`, facts: [['Radius', `${m.radius_km} km`], ['Orbit', `${(m.semimajor_km / 1000).toFixed(0)} thousand km`], ['Period', `${m.orbital_period_days} days`]] }, madeOf: 'regolith' }; F.pickables.push(mm);
+      const mr = m.radius_km / 1000, mm = new THREE.Mesh(new THREE.SphereGeometry(mr, 48, 32), new THREE.MeshStandardMaterial({ map: m.texture ? tex(m.texture) : null, color: m.texture ? 0xffffff : new THREE.Color(m.color || '#aaaaaa'), roughness: 1 }));
+      const P = Math.abs(m.orbital_period_days);
+      spin.add(mm); mm.userData = { id: 'moon_' + m.name, priority: 2, info: { title: m.name, tag: `Moon of ${o.body}${m.orbital_period_days < 0 ? ' · orbits backwards' : ''}`, body: `<p>${MOON_TEXT[m.name] || ''}</p>`, facts: [['Radius', `${fmtKm(m.radius_km)} km`], ['Distance from ' + o.body + '\'s centre', `${fmtKm(m.semimajor_km)} km`], ['One orbit', `${+P.toPrecision(4)} days`]], note: 'Size and orbit are true; where the moon sits on its orbit here is illustrative, and its tint is approximate (no surface map).' }, madeOf: 'regolith' }; F.pickables.push(mm);
       F.label(mm, m.name, { offset: new V3(0, mr * 1.6, 0) }); const mk = markerSprite(0xffffff, 5); mm.add(mk);
       return { mm, a: m.semimajor_km / 1000, P: Math.abs(m.orbital_period_days || 1), ph: (m.name.length * 1.7) % TAU, retro: (m.orbital_period_days || 1) < 0 };
     });
@@ -461,7 +613,10 @@ FT.planet = {
       const days = simTime / 86400000; F.moons.forEach(m => { const a = m.ph + days / m.P * TAU * (m.retro ? -1 : 1); m.mm.position.set(Math.cos(a) * m.a, 0, -Math.sin(a) * m.a); });
       const s = sunDirIn(F); sl.position.copy(s).multiplyScalar(100);
     };
-    F.blurb = `${o.body} at its true size, with its major moons at their real orbital distances.`;
+    F.blurb = `${o.body} at its true size${F.moons.length ? `, with ${F.moons.length === 1 ? 'its largest moon' : 'its ' + F.moons.length + ' largest moons'} at their real orbital distances` : ''}.`;
+    F.note = [map ? 'The surface colours come from a published map; brightness is scaled for display.' : 'No surface map is drawn: the colour is an approximate tint.',
+      F.moons.length ? 'Moon sizes and distances are true; where each moon sits on its orbit is illustrative. Smaller moons are not drawn.' : '',
+      d.ring ? (d.ring.texture ? 'The ring is drawn flat, with no thickness (the real main rings are about 10 to 20 metres thick) and no shadow; its fainter parts are not drawn.' : 'The planet\'s faint rings are not drawn.') : ''].filter(Boolean).join(' ');
     F.spawn = (T) => { if (T.length() < R * 1.05) return bodySurface(() => new V3(), () => body.getWorldQuaternion(new THREE.Quaternion()), R, T, /Jupiter|Saturn|Uranus|Neptune/.test(o.body) ? 'cloudtops' : /Mars/.test(o.body) ? 'mars' : /Venus/.test(o.body) ? 'venus' : 'moonrock', o.body);
       for (const m of F.moons) if (T.distanceTo(m.mm.position.clone().applyQuaternion(spin.quaternion)) < m.mm.geometry.parameters.radius * 1.05) { const mm = m.mm; return bodySurface(() => mm.position.clone().applyQuaternion(spin.quaternion), () => spin.quaternion.clone(), mm.geometry.parameters.radius, T, 'moonrock', mm.userData.info.title); }
       return null; };
@@ -553,4 +708,34 @@ WORLD_EXT.push(async FR2 => {
       F.note = 'To scale: the event horizon, the shadow (about 2.6 times the horizon radius, about 33 million km), the photon ring and the innermost stable orbit (3 times the horizon radius). Not to scale or not real: the S-star orbits (the real S2 orbit is about 1,000 AU wide, far bigger than this scene) and the bright thin disc, which Sgr A* does not have today. Orbits and the probe are sped up.';
     };
   }
+});
+
+/* ---------- the Sun frame, its ruler stops, the Oort landmark and the time controls ---------- */
+WORLD_EXT.push(async FR2 => {
+  const sun = FR2.solar.addChild(new Frame({ type: 'sun', name: 'The Sun', unit: SUN_R_M, radius: 1.6, r0: 0, r1: 3e10 })); FR2.sun = sun;
+  const inside = (label, D, p, extra) => ({ label, D, frame: sun, side: true, go: then => { sun.ensure(); cam.dir.set(.62, .5, .6).normalize(); cam.up.set(0, 1, 0); flyTo(sun, p, D, then); }, ...extra });
+  EXT_LANDMARKS.push({ label: 'The Sun', D: 3e9, frame: sun, go: then => flyTo(sun, new V3(), 3e9, then) });
+  EXT_LANDMARKS.push(inside('Inside the Sun (cut-away)', 1.2e9, new V3(.1, .08, .08)));
+  EXT_LANDMARKS.push(inside('The Sun\'s core', 2.6e8, new V3(.05, .04, .04)));
+  // the ruler stop "Oort cloud" is set by world_build.js inside the neighbourhood frame, where no Oort cloud is drawn: put it inside the solar-system frame
+  let tries = 0; const hook = setInterval(() => {
+    if (typeof LANDMARKS === 'undefined' || !LANDMARKS.length) { if (++tries > 200) clearInterval(hook); return; }
+    clearInterval(hook);
+    const L = LANDMARKS.find(l => l.label === 'Oort cloud'); if (L) { L.D = 4e15; L.frame = FR2.solar; L.go = then => flyTo(FR2.solar, new V3(), 4e15, then); }
+    const K = LANDMARKS.find(l => l.label === 'Solar system'); if (K) K.label = 'Solar system (to Neptune)';
+    dispatchEvent(new Event('resize'));
+  }, 100);
+  // time controls: run backwards, faster, jump to a date
+  let t2 = 0; const th = setInterval(() => {
+    const bs = document.getElementById('timeS'), bn = document.getElementById('timeNow'); if (!bs || !bn || !bs.onclick) { if (++t2 > 300) clearInterval(th); return; }
+    clearInterval(th);
+    const speeds = [[1, '1×'], [60, '1 min/s'], [3600, '1 h/s'], [86400, '1 day/s'], [86400 * 30, '1 month/s'], [86400 * 365.25, '1 year/s'], [0, 'Paused'], [-86400, '−1 day/s'], [-86400 * 30, '−1 month/s'], [-86400 * 365.25, '−1 year/s']];
+    let si = 0; const apply = () => { timeSpeed = speeds[si][0]; bs.textContent = speeds[si][1]; };
+    bs.title = 'Time speed: click to cycle through forward, paused and backward speeds; the date is in UTC'; bs.onclick = () => { si = (si + 1) % speeds.length; apply(); };
+    bn.title = 'Set the clock to the present moment (the app starts at 12:00 UTC today)';
+    const tb = document.getElementById('timebar'); if (tb) tb.style.cssText += ';display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;align-items:center';
+    const dt = document.createElement('input'); dt.type = 'date'; dt.id = 'timeDate'; dt.title = 'Jump to a date (12:00 UTC)'; dt.setAttribute('aria-label', 'Jump to a date'); dt.style.cssText = 'font:inherit;font-size:12px;padding:2px 4px;border:1px solid var(--rule);border-radius:3px;background:var(--paper);color:var(--ink);width:118px';
+    bn.after(dt);
+    dt.onchange = () => { if (dt.value) { const [y, m, d] = dt.value.split('-').map(Number); simTime = Date.UTC(y, m - 1, d, 12, 0, 0); timeSpeed = 0; si = 6; apply(); } };
+  }, 200);
 });
