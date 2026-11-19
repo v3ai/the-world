@@ -214,6 +214,12 @@
     0.0006
    ],
    "label": "Inside a gill: the spore-making layer",
+   "deeper": {
+    "type": "tissue2",
+    "id": "mushroom_gill",
+    "D": 0.0006,
+    "button": "Look inside a gill"
+   },
    "r": 0.0025,
    "pivot": "wood",
    "modes": [

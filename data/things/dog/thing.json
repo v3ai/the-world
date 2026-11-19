@@ -528,7 +528,13 @@
    "modes": [
     "cut_eye"
    ],
-   "r": 0.0018
+   "r": 0.0018,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_retina",
+    "D": 0.00028,
+    "button": "Look inside the retina and tapetum"
+   }
   },
   {
    "id": "hs_lens",
@@ -556,7 +562,13 @@
    "modes": [
     "cut_eye"
    ],
-   "r": 0.0018
+   "r": 0.0018,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_retina",
+    "D": 0.00028,
+    "button": "Look inside the retina and tapetum"
+   }
   },
   {
    "id": "hs_olf",
@@ -570,7 +582,13 @@
    "modes": [
     "cut_nose"
    ],
-   "r": 0.008
+   "r": 0.008,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_olfactory_epithelium",
+    "D": 0.00028,
+    "button": "Look inside the smell lining"
+   }
   },
   {
    "id": "hs_resp",
@@ -679,6 +697,7 @@
    "node": "dog_coat",
    "color": "#d9b36f",
    "mesh": "coat",
+   "lod": "near",
    "priority": 1.2,
    "cutFace": "muscle",
    "deeper": {
@@ -694,6 +713,24 @@
    ],
    "radius": 0.6646,
    "tris": 37304
+  },
+  {
+   "id": "coat_far",
+   "name": "Skin and coat",
+   "system": "coat",
+   "node": "dog_coat",
+   "color": "#d9b36f",
+   "mesh": "coat_far",
+   "lod": "mid+far",
+   "priority": 1.2,
+   "solid": false,
+   "center": [
+    -0.062,
+    0.3511,
+    0
+   ],
+   "radius": 0.6596,
+   "tris": 3714
   },
   {
    "id": "fur",
@@ -756,6 +793,7 @@
    "node": "dog_pads",
    "color": "#2b2220",
    "mesh": "paw_pads",
+   "lod": "near",
    "priority": 1.8,
    "center": [
     -0.1303,
@@ -3236,10 +3274,10 @@
   }
  ],
  "stats": {
-  "parts": 132,
-  "uniqueMeshTris": 373864,
+  "parts": 133,
+  "uniqueMeshTris": 377578,
   "nearTris": 68390,
-  "midTris": 50428,
-  "farTris": 50428
+  "midTris": 9682,
+  "farTris": 9682
  }
 }

@@ -380,6 +380,10 @@ export default function build() {
   thing.ruler = { label: 'Honey bee (14 mm)', D: .05, at: [.001, .005, 0] };
   // Auto peels with what is under the view: exoskeleton, then muscles, then the organs, nerves and breathing tubes
   thing.auto = { label: 'Auto', layers: true, scale: .01 };
+  // The wings beat (230 per second is the figure on the wing-beat card: shown 100 times slower, and the screen says so); the heart pulse is an illustration of the dorsal vessel.
+  // The two wings turn opposite ways about the body's long axis (an illustration: a real wing stroke is a sweep back and forth with a twist, not a rotation about one line).
+  thing.anim = [{ kind: 'swing', system: 'wings', pivot: [.0029, .00695, 0], dir: [0, 0, 1], sym: true, from: .0008, to: .003, axis: [1, 0, 0], amp_deg: 18, hz: 230, shown_hz: 2.3, label: 'Wing beat' },
+    { kind: 'pulse', part: 'heart', pivot: [0, .0058, 0], amp: .12, shown_hz: 1.3, illustrative: true, label: 'Heart (dorsal vessel)' }];
   thing.layers = [{ id: 'shell', label: 'exoskeleton', systems: ['cuticle', 'wings', 'hairs'], ghost: .08 }, { id: 'muscles', label: 'muscles', systems: ['muscles'], ghost: .1, see_through: .4 }, { id: 'inside', label: 'organs', systems: ['organs', 'nerves', 'tracheal'], ghost: .1 }];
   console.log(log.join('\n'));
   return { thing, meshes, instances };

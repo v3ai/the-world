@@ -74,7 +74,7 @@ export default function build(_L) {
     size_m: { height: .67, width: 1.53, depth: 1.0 }, height_m: .67, radius_m: 1.7, draw_m: 500,
     seed: 1701,
     systems: SYSTEMS, modes: MODES,
-    lod: { near_m: 40 },
+    lod: { near_m: 15 },
     shadow: { radius_m: 1.35, opacity: .8 },
     cut: { default: 'granite', at: [0, .3, 0], faces: { moss: { kind: 'plain', palette: [[0x3c6526, 1]] }, granite: { kind: 'grains', cell: .04, edge: .5, palette: [[0x9a9fa3, .27], [0xd8b49c, .30], [0xeee6d6, .28], [0x2a2a30, .15]],
       legend: [{ name: 'Quartz (grey, glassy)', color: '#9a9fa3', node: 'rock_grains' }, { name: 'Feldspar (pink or white)', color: '#d8b49c', node: 'rock_grains' }, { name: 'Dark minerals (mica and others)', color: '#2a2a30', node: 'rock_grains' }],

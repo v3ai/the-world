@@ -293,7 +293,7 @@ export default function build() {
     ],
     hotspots: [
       { id: 'hs_half', node: 'fa_cut_half', at: [.0, .075, .004], label: 'Inside a fly agaric', r: .004, pivot: 'wood', modes: ['wood'] },
-      { id: 'hs_gill', node: 'fa_gill_inside', at: gillMid.map(v => +v.toFixed(4)), label: 'Inside a gill: the spore-making layer', r: .0025, pivot: 'wood', modes: ['wood'] },
+      { id: 'hs_gill', node: 'fa_gill_inside', at: gillMid.map(v => +v.toFixed(4)), label: 'Inside a gill: the spore-making layer', deeper: { type: 'tissue2', id: 'mushroom_gill', D: .0006, button: 'Look inside a gill' }, r: .0025, pivot: 'wood', modes: ['wood'] },
       { id: 'hs_flesh', node: 'fa_cap_flesh', at: [-.03, yU(S, .03) + .012, .0016], label: 'Flesh of the cap', r: .0025, pivot: 'wood', modes: ['wood'] },
       { id: 'hs_cuticle', node: 'fa_cuticle', at: [-.05, yT(S, .05) - .0012, .0016], label: 'Red skin of the cap', r: .003, pivot: 'wood', modes: ['wood'] },
       { id: 'hs_ring', node: 'fa_ring', at: [M.ringR * .9, M.ringY - .018, .0008], label: 'Ring: the torn partial veil', r: .0025, pivot: 'wood', modes: ['wood'] },

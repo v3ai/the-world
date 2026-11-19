@@ -188,24 +188,24 @@ function thLocalToFrame(def, pl, p) { const x = thPlacement(def, pl); return new
    kind 'sway': a gentle breeze moves the free end of stems and leaves, done in the vertex shader (cost: nothing per frame):
         { kind:'sway', system:'leaves', from_y, to_y (thing-local heights over which it grows), amp_m (displacement at to_y), hz, label }
    kind 'swing': the free end of a long part bends back and forth (a tail wag) in the vertex shader, so it works on a single mesh that holds the whole body:
-        { kind:'swing', systems|parts, pivot:[x,y,z], dir:[unit vector pointing away from the base], from, to (metres along dir over which it grows from 0 to full), axis:[x,y,z], amp_deg, hz, shown_hz, lat_axis, lat:[r0, r1] (fade out sideways), label }
+        { kind:'swing', systems|parts, pivot:[x,y,z], dir:[unit vector pointing away from the base], from, to (metres along dir over which it grows from 0 to full), axis:[x,y,z], amp_deg, hz, shown_hz, lat_axis, lat:[r0, r1] (fade out sideways), sym: true (the two sides turn opposite ways: wings; `from`/`to` then count |distance| along dir), label }
    kind 'wag' | 'flap' | 'sweep': a part turns back and forth about an axis through a point: { kind, part, pivot:[x,y,z], axis:[x,y,z], amp_deg, hz (real), shown_hz (drawn), phase, label }
    kind 'breathe' | 'pulse': a part swells and shrinks about a point: { kind, part, pivot, amp (fraction), hz, shown_hz, phase, label }
    `hz` is the real frequency if known. If `shown_hz` is given and slower, the slow-motion factor hz/shown_hz is stated on screen (frame.timeNote);
    `illustrative: true` says on screen that the motion is a sketch, not a measurement. */
 const TH_SWAY = { uTime: { value: 0 } };
-const TH_SWAY_GLSL = `uniform float uTime; uniform vec4 uSw; uniform vec2 uSw2; uniform vec2 uWg; uniform vec4 uWgR; uniform vec3 uWgP; uniform vec3 uWgD; uniform vec3 uWgA; uniform vec3 uWgL;
+const TH_SWAY_GLSL = `uniform float uTime; uniform vec4 uSw; uniform vec2 uSw2; uniform vec2 uWg; uniform float uWgS; uniform vec4 uWgR; uniform vec3 uWgP; uniform vec3 uWgD; uniform vec3 uWgA; uniform vec3 uWgL;
 vec3 thMove(vec3 p){
   float h = clamp((p.y - uSw.x) / max(uSw.y - uSw.x, 1e-4), 0., 1.); h *= h; float ph = uTime * uSw.w * 6.2832 + dot(p.xz, vec2(1.7, 1.3)) * uSw2.x;
   vec3 d = vec3(sin(ph) + .35 * sin(ph * 2.7 + p.z * 5.), .12 * sin(ph * 1.3), cos(ph * .83 + 1.3) + .35 * sin(ph * 3.1 + p.x * 5.)) * uSw.z * h;
-  vec3 r = p - uWgP; float w = smoothstep(uWgR.x, uWgR.y, dot(r, uWgD)) * (1. - smoothstep(uWgR.z, uWgR.w, abs(dot(r, uWgL))));
-  float a = sin(uTime * uWg.x * 6.2832) * uWg.y * w, c = cos(a), sn = sin(a); vec3 q = r * c + cross(uWgA, r) * sn + uWgA * dot(uWgA, r) * (1. - c);
+  vec3 r = p - uWgP; float sd = dot(r, uWgD), side = uWgS > .5 ? (sd < 0. ? -1. : 1.) : 1.; if (uWgS > .5) sd = abs(sd); float w = smoothstep(uWgR.x, uWgR.y, sd) * (1. - smoothstep(uWgR.z, uWgR.w, abs(dot(r, uWgL))));
+  float a = sin(uTime * uWg.x * 6.2832) * uWg.y * w * side, c = cos(a), sn = sin(a); vec3 q = r * c + cross(uWgA, r) * sn + uWgA * dot(uWgA, r) * (1. - c);
   return d + (q - r);
 }`;
 function thSwayUniforms(sp) {   // sp = { sway: entry|null, swing: entry|null }
   const a = sp.sway || {}, g = sp.swing || {}, V = (v, d) => new THREE.Vector3(...(v || d));
   return { uSw: { value: new THREE.Vector4(a.from_y ?? 0, a.to_y ?? 1, sp.sway ? (a.amp_m ?? .02) : 0, a.hz ?? .35) }, uSw2: { value: new THREE.Vector2(a.phase_k ?? 2.2, 0) },
-    uWg: { value: new THREE.Vector2(g.shown_hz || g.hz || 1, (g.amp_deg || 0) * Math.PI / 180) }, uWgR: { value: new THREE.Vector4(g.from ?? 0, g.to ?? 1, g.lat ? g.lat[0] : 1e3, g.lat ? g.lat[1] : 2e3) },
+    uWg: { value: new THREE.Vector2(g.shown_hz || g.hz || 1, (g.amp_deg || 0) * Math.PI / 180) }, uWgS: { value: g.sym ? 1 : 0 }, uWgR: { value: new THREE.Vector4(g.from ?? 0, g.to ?? 1, g.lat ? g.lat[0] : 1e3, g.lat ? g.lat[1] : 2e3) },
     uWgP: { value: V(g.pivot, [0, 0, 0]) }, uWgD: { value: V(g.dir, [1, 0, 0]).normalize() }, uWgA: { value: V(g.axis, [0, 1, 0]).normalize() }, uWgL: { value: V(g.lat_axis, [0, 0, 1]).normalize() } };
 }
 function thSwayPatch(mat, sp) {   // MeshToonMaterial: move the thing-space position (after the instance matrix) in the vertex shader
@@ -241,7 +241,8 @@ class ThingObj {
     const m0 = (def.modes[0] || {}).show || {}, dflt = def.systems.map(s => s.id).filter(s => (m0[s] ?? m0['*'] ?? 0) > 0);
     this.layers = (def.layers && def.layers.length ? def.layers : [{ systems: dflt }]).map(l => Object.assign({ ghost: .1 }, l));
     this.rank = {}; this.layers.forEach((l, i) => (l.systems || []).forEach(s => this.rank[s] = i));
-    this.autoOp = null; this.revealOp = null; this.revealId = null; this.revealFront = null; this.peelMode = null; this.layerName = '';
+    if (def.auto && def.auto.layers) { const ops = {}; this.layers.forEach((l, i) => (l.systems || []).forEach(sy => ops[sy] = i === 0 ? 1 : 0)); this.peelMode = { id: 'auto', show: Object.assign(ops, def.auto.always || {}) }; }
+    this.autoOp = null; this.revealOp = null; this.revealId = null; this.revealFront = null; this.layerName = '';
     for (const pd of def.parts) this._addPart(pd);
     if (def.shadow) this._addShadow(def.shadow);
     for (const h of def.hotspots || []) this._addHotspot(h);
@@ -325,7 +326,7 @@ class ThingObj {
     this.anims = []; this.notes = [];
     for (const a of this.def.anim || []) {
       if (a.kind === 'sway' || a.kind === 'swing') {
-        const slow = a.shown_hz && a.hz ? a.hz / a.shown_hz : 1, txt = a.note || (slow > 1.5 ? `${a.label || a.kind}: drawn about ${Math.round(slow)} times slower than real` : a.kind === 'sway' ? `${a.label || 'Sway'}: a gentle breeze, illustrative, not simulated wind` : `${a.label || 'Motion'}: illustrative, not a measured movement`);
+        const slow = a.shown_hz && a.hz ? a.hz / a.shown_hz : 1, txt = a.note || (slow > 1.5 ? `${a.label || a.kind}: drawn about ${Math.round(slow)} times slower than real` + (a.hz ? ` (really about ${a.hz} per second)` : '') : a.kind === 'sway' ? `${a.label || 'Sway'}: a gentle breeze, illustrative, not simulated wind` : `${a.label || 'Motion'}: illustrative, not a measured movement`);
         if (a.note !== null && !this.notes.includes(txt)) this.notes.push(txt); continue;
       }
       const ids = a.parts || (a.part ? [a.part] : this.def.parts.filter(p => p.system === a.system).map(p => p.id));
@@ -455,7 +456,7 @@ function thBindFrame(F, T, def) {
   const k = T.k, u = T.u;
   F.blurb = def.blurb || ''; F.note = def.model_note || ''; F.timeNote = T.timeNote || '';
   F.coreText = { head: 'Under this point, from the outside inward', note: `Depths are on the model of this ${(def.title || 'thing').toLowerCase()}, not a measurement of a real one.` };
-  F.spawnD = .006 * u;
+  F.spawnD = .006 * u; F.floorD = .0015 * u;   // no zooming into an empty gap: a part's tissue takes over at spawnD, otherwise the view stops here
   // controls: one button per layer mode, built now so the frame's control bar is ready when the camera arrives
   const modes = (def.auto ? [['auto', def.auto.label || 'Auto']] : []).concat(def.modes.map(m => [m.id, m.label]));
   building = F;
@@ -561,9 +562,10 @@ function thRayStack(F, targetFrame) {
   }
   rows.sort((a, b) => a.e - b.e); return rows;
 }
-function thPeel(T, rows, tgt) {
+function thPeel(T, rows, tgt, near = 0) {   // near: how close the camera is (0 far .. 1 inside); an empty ray with the camera close means it is inside the thing: everything in front is peeled
   const L = T.layers, nl = L.length, sc = T.peelScale, n = rows.length, pr = new Array(nl).fill(0); let focus = 0;
   if (tgt) { for (let r = 0; r < nl; r++) pr[r] = r < tgt.rank ? 1 : 0; focus = tgt.rank; }
+  else if (!n && nl > 1) { for (let k = 0; k < nl - 1; k++) pr[k] = near; focus = near > .5 ? nl - 1 : 0; }
   else if (n && nl > 1) {
     let prevT = Infinity, prevRank = -1, prevPi = 1;
     for (let i = 0; i < n; i++) {
@@ -592,15 +594,15 @@ function thAutoUpdate(F, dt) {
   camPosIn(F, _tpo); const dist = _tpo.distanceTo(_tpc.set(0, (T.def.radius_m || 1) * T.k * .5, 0)), active = (a && a.active_m) || (T.def.radius_m || 1) * T.k * 2.5;
   if (useAuto && !rv && dist > active) {   // far: the outermost layer, solid
     const ops = {}; T.layers.forEach((l, i) => (l.systems || []).forEach(s => ops[s] = i === 0 ? 1 : 0)); Object.assign(ops, a.always || {});
-    if (T.peelMode) T.peelMode.show = ops; T.layerName = (T.layers[0].label || T.layers[0].id || ''); T.revealOp = T.revealId = T.revealFront = null; S.key = ''; return;
+    T.peelMode.show = ops; T.layerName = (T.layers[0].label || T.layers[0].id || ''); T.revealOp = T.revealId = T.revealFront = null; S.key = ''; return;
   }
   const key = [_tpo.x, _tpo.y, _tpo.z, cam.T.x, cam.T.y, cam.T.z, F.hidden.size, rv ? rv.id : '', T.tier].map(v => typeof v === 'number' ? v.toFixed(4) : v).join();
   if (key === S.key || now - S.t < 110) return; S.key = key; S.t = now;
   let tl = null, tgt = null; if (rv) tl = new V3(...T.parts[rv.id].pd.center).applyMatrix4(T.group.matrix);
   const rows = thRayStack(F, tl);
   if (rv) { let k = rows.findIndex(r => r.id === rv.id); if (k < 0) { const dc = _tpo.distanceTo(tl); k = rows.filter(r => r.e < dc * .97).length; } tgt = { n: k, rank: T.parts[rv.id].rank }; T.revealFront = new Set(rows.slice(0, k).filter(r => r.rank >= tgt.rank).map(r => r.id)); }
-  const P = thPeel(T, rows, tgt);
-  if (useAuto) { const ops = Object.assign({}, P.ops, a.always || {}); (T.peelMode || T.resolveMode(0)).show = ops; T.layerName = P.focus; }
+  const P = thPeel(T, rows, tgt, 1 - smooth(active * .35, active * .6, dist));
+  if (useAuto) { const ops = Object.assign({}, P.ops, a.always || {}); T.peelMode.show = ops; T.layerName = P.focus; }
   if (rv) { T.revealOp = P.ops; T.revealId = rv.id; } else { T.revealOp = T.revealId = T.revealFront = null; }
   mouse.dirty = true;   // what is under a resting cursor has changed
 }
@@ -664,7 +666,7 @@ function thCardMadeOf(F, h, n) {
   return { label: d.button || 'See what it is made of', go: () => thGoDeeper(F, h, d) };
 }
 CARD_HOOKS.push((id, h, n) => {   // the honest "model, not a scan" note on top of every card of a thing
-  const F = h && h.frame, def = F && F.T && F.T.def; if (!def || infoEl.querySelector('.thNote')) return;
+  const F = h && h.frame, def = (F && F.T && F.T.def) || (!h && (thFindNode(id) || {}).def); if (!def || infoEl.querySelector('.thNote')) return;
   const note = document.createElement('div'); note.className = 'note thNote'; note.textContent = def.model_note || '';
   if (note.textContent) infoEl.querySelector('.tag') && infoEl.querySelector('.tag').insertAdjacentElement('beforebegin', note);
 });

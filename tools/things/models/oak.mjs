@@ -289,7 +289,7 @@ export default function build() {
     hotspots: [
       { id: 'hs_rings', node: 'oak_growth_rings', at: [.08, M.logTop, -.18], label: 'Count the rings', r: .03, pivot: 'wood', modes: ['wood'] },
       { id: 'hs_cambium', node: 'oak_cambium', at: [Math.cos(th0 + .12) * (trunkR(th0 + .12, M.logTop) - M.barkT - M.phloemT - .003), M.logTop, Math.sin(th0 + .12) * (trunkR(th0 + .12, M.logTop) - M.barkT - M.phloemT - .003)], label: 'Cambium: where the tree grows wider', r: .025, pivot: 'wood', modes: ['wood'] },
-      { id: 'hs_roottip', node: 'oak_root_hairs', at: rs[rtips[3]].p.map(v => +v.toFixed(2)), label: 'Root tip with root hairs', r: .12, modes: ['roots'] },
+      { id: 'hs_roottip', node: 'oak_root_hairs', at: rs[rtips[3]].p.map(v => +v.toFixed(2)), label: 'Root tip with root hairs', deeper: { type: 'tissue2', id: 'root_tip', D: .003, button: 'Look at root hairs' }, r: .12, modes: ['roots'] },
       { id: 'hs_myc', node: 'oak_mycorrhiza', at: rs[rtips[9]].p.map(v => +v.toFixed(2)), label: 'Fungal partner', r: .12, modes: ['roots'] },
     ],
     parts: [

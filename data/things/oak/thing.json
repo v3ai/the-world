@@ -244,6 +244,12 @@
     0.78
    ],
    "label": "Root tip with root hairs",
+   "deeper": {
+    "type": "tissue2",
+    "id": "root_tip",
+    "D": 0.003,
+    "button": "Look at root hairs"
+   },
    "r": 0.12,
    "modes": [
     "roots"
