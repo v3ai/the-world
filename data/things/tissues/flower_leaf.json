@@ -5,7 +5,7 @@
  "title": "The surface of a buttercup leaf",
  "node": "rn_leaf_epidermis",
  "blurb": "The skin of a leaf seen from above and a little to the side: flat cells, pairs of guard cells around pores (stomata), and hairs standing up. Drag to turn it. Click a cell, a pore or a hair.",
- "note": "Illustrative. The species is described as hairy and, like other leaves, has stomata, but I did not find measured cell sizes, stomatal density or hair dimensions for it. The cells here are drawn about 40 micrometres across, the guard-cell pairs about 25 micrometres long, the hairs 15 micrometres wide and 400 to 800 micrometres long.",
+ "note": "Illustrative. The species is described as hairy and, like other leaves, has stomata; the sizes in this scene are model values, not measurements. The cells here are drawn about 40 micrometres across, the guard-cell pairs about 25 micrometres long, the hairs 15 micrometres wide and 400 to 800 micrometres long.",
  "bg": "#f3efe6",
  "center": [
   0,

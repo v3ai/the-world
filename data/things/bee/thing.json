@@ -5,8 +5,8 @@
  "scientific": "Apis mellifera",
  "node": "park_bee",
  "main_part": "mesothorax",
- "blurb": "A western honey bee worker, about 14 mm long, drinking from a flower. Zoom right in: she is built to true size. Click any part.",
- "model_note": "A model built from published measurements and typical proportions of a worker, not a scan of one bee. Sizes of the whole body, eye, wing, ocelli, tibia and proboscis come from sources named on the cards; the rest are proportions drawn by eye from photographs and anatomical drawings. The bee is shown still, wings folded, as she stands on a flower; internal organs are placed and sized approximately.",
+ "blurb": "A western honey bee worker, about 14 mm long, drinking from a flower. Zoom right in: she is modelled at about her real size. Click any part.",
+ "model_note": "A model built from published measurements and typical proportions of a worker, not a scan of one bee. The overall length, eye, ocelli and wing sizes come from sources named on the cards; the rest, including the legs, mouthparts and organs, are proportions drawn by eye from photographs and anatomical drawings. Some counts are simplified: the model draws fewer ganglia, spiracle pairs and Malpighian tubules than a real worker has, and the cards say by how many. The bee is shown still, wings folded, as she stands on a flower; internal organs are placed and sized approximately. Where the wing beat is animated it is slowed about 100 times (a real wing beats about 230 times a second).",
  "size_m": {
   "length": 0.0139,
   "width": 0.0094,
@@ -760,7 +760,7 @@
   },
   {
    "id": "sheath",
-   "name": "Proboscis: sheath (maxillae and labial palps)",
+   "name": "Proboscis: sheath (galeae and labial palps)",
    "system": "cuticle",
    "node": "bee_proboscis",
    "color": "#7a5a35",
@@ -1167,7 +1167,7 @@
   },
   {
    "id": "abd1",
-   "name": "Abdomen: segment 1 of 6 (visible)",
+   "name": "Abdomen: visible segment 1 of 6 (abdominal segment 2)",
    "system": "cuticle",
    "node": "bee_abdomen",
    "color": "#c9862a",
@@ -1184,7 +1184,7 @@
   },
   {
    "id": "abd2",
-   "name": "Abdomen: segment 2 of 6 (visible)",
+   "name": "Abdomen: visible segment 2 of 6 (abdominal segment 3)",
    "system": "cuticle",
    "node": "bee_abdomen",
    "color": "#c58327",
@@ -1201,7 +1201,7 @@
   },
   {
    "id": "abd3",
-   "name": "Abdomen: segment 3 of 6 (visible)",
+   "name": "Abdomen: visible segment 3 of 6 (abdominal segment 4)",
    "system": "cuticle",
    "node": "bee_abdomen",
    "color": "#8a5a22",
@@ -1224,7 +1224,7 @@
   },
   {
    "id": "abd4",
-   "name": "Abdomen: segment 4 of 6 (visible)",
+   "name": "Abdomen: visible segment 4 of 6 (abdominal segment 5)",
    "system": "cuticle",
    "node": "bee_abdomen",
    "color": "#6d4720",
@@ -1241,7 +1241,7 @@
   },
   {
    "id": "abd5",
-   "name": "Abdomen: segment 5 of 6 (visible)",
+   "name": "Abdomen: visible segment 5 of 6 (abdominal segment 6)",
    "system": "cuticle",
    "node": "bee_abdomen",
    "color": "#4f3520",
@@ -1258,7 +1258,7 @@
   },
   {
    "id": "abd6",
-   "name": "Abdomen: segment 6 of 6 (visible)",
+   "name": "Abdomen: visible segment 6 of 6 (abdominal segment 7)",
    "system": "cuticle",
    "node": "bee_abdomen",
    "color": "#3d2a1c",
@@ -1488,7 +1488,7 @@
   },
   {
    "id": "ganglia",
-   "name": "Ganglia of the nerve cord",
+   "name": "Ganglia of the nerve cord (a worker has one more abdominal ganglion than drawn)",
    "system": "nerves",
    "node": "bee_nerve_cord",
    "color": "#eadcb8",
@@ -1604,7 +1604,7 @@
   },
   {
    "id": "malpighian",
-   "name": "Malpighian tubules",
+   "name": "Malpighian tubules (22 drawn as a sample; a worker has about 100)",
    "system": "organs",
    "node": "bee_malpighian",
    "color": "#e9e2a8",
@@ -1747,7 +1747,7 @@
   },
   {
    "id": "wax",
-   "name": "Wax glands (wax mirrors)",
+   "name": "Wax glands (wax mirrors, abdominal segments 4 to 7)",
    "system": "organs",
    "node": "bee_wax_glands",
    "color": "#efe6c8",
@@ -1820,7 +1820,7 @@
   },
   {
    "id": "spiracles",
-   "name": "Spiracles (breathing pores)",
+   "name": "Spiracles (9 pairs drawn; a worker has 10)",
    "system": "tracheal",
    "node": "bee_spiracles",
    "color": "#2a2018",

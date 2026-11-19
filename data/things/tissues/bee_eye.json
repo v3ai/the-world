@@ -1,11 +1,11 @@
 {
+ "tag": "Inside a honey bee's eye",
+ "cell": "animal",
  "id": "bee_eye",
  "title": "Inside a honey bee's compound eye",
  "node": "bee_compound_eye",
- "blurb": "A slice through a patch of a worker bee's compound eye. Each lens (facet) is one of about five thousand; under each lies its own light-sensing unit, an ommatidium. Click a lens, a cone, or a column of light-sensing cells.",
- "tag": "Inside a honey bee's eye",
- "cell": "animal",
- "note": "The facet width (25.2 micrometres) is measured (Streinzer and colleagues, 2013). The depth, the width of the cone and the cells, and the number of cells drawn are simplified and not to scale with each other; a real ommatidium has more light-sensing cells than are drawn here. Colours are only a code.",
+ "blurb": "A slice through a patch of a worker bee's compound eye. Each lens (facet) is one of about 5,400; under each lies its own light-sensing unit, an ommatidium. Click a lens, a cone, or a column of light-sensing cells.",
+ "note": "The facet width (25.2 micrometres) is measured (Streinzer and colleagues, 2013). The depth, the width of the cone and the cells, and the number of cells drawn are simplified and not to scale with each other; a real ommatidium has nine light-sensing cells (eight long and one short), more than are drawn here. Colours are only a code.",
  "bg": "#f3efe6",
  "center": [
   0,

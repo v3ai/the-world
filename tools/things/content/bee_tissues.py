@@ -8,13 +8,16 @@ def pop(id, name, node, shape, size, color, arrange, opacity=1, ink=1, deeper=No
     return p
 grid = lambda origin, n, step, stagger=0, jitter=0: {'kind': 'grid', 'origin': origin, 'n': n, 'step': step, **({'stagger': stagger} if stagger else {}), **({'jitter': jitter} if jitter else {})}
 lst = lambda *items: {'kind': 'list', 'items': [{'at': i} for i in items]}
-def write(d): json.dump(d, open('data/things/tissues/%s.json' % d['id'], 'w'), indent=1, ensure_ascii=False)
+TAGS = {'bee_eye': "Inside a honey bee's eye"}
+def write(d):
+    d = {'tag': TAGS.get(d['id'], 'Inside a honey bee'), 'cell': 'animal', **d}   # scene tag shown in front of each card's kind line; cell type of the scene
+    json.dump(d, open('data/things/tissues/%s.json' % d['id'], 'w'), indent=1, ensure_ascii=False)
 
 # ---- compound eye: a vertical slice through a patch of ommatidia ----
 P = 25.2; N = 13; x0 = -P * N / 2
 write({'id': 'bee_eye', 'title': "Inside a honey bee's compound eye", 'node': 'bee_compound_eye',
-  'blurb': 'A slice through a patch of a worker bee\'s compound eye. Each lens (facet) is one of about five thousand; under each lies its own light-sensing unit, an ommatidium. Click a lens, a cone, or a column of light-sensing cells.',
-  'note': 'The facet width (25.2 micrometres) is measured (Streinzer and colleagues, 2013). The depth, the width of the cone and the cells, and the number of cells drawn are simplified and not to scale with each other; a real ommatidium has more light-sensing cells than are drawn here. Colours are only a code.',
+  'blurb': 'A slice through a patch of a worker bee\'s compound eye. Each lens (facet) is one of about 5,400; under each lies its own light-sensing unit, an ommatidium. Click a lens, a cone, or a column of light-sensing cells.',
+  'note': 'The facet width (25.2 micrometres) is measured (Streinzer and colleagues, 2013). The depth, the width of the cone and the cells, and the number of cells drawn are simplified and not to scale with each other; a real ommatidium has nine light-sensing cells (eight long and one short), more than are drawn here. Colours are only a code.',
   'bg': '#f3efe6', 'center': [0, -85, 0], 'D_um': 400,
   'labels': [{'text': 'Lens (facet), 25 µm wide', 'at': [-170, 12, 30], 'pop': 'facet'}, {'text': 'Crystalline cone', 'at': [-170, -22, 30], 'pop': 'cone'}, {'text': 'Light-sensing cells and rhabdom', 'at': [-170, -95, 30], 'pop': 'rhabdom'}, {'text': 'Dark screening pigment cells', 'at': [-170, -60, 30], 'pop': 'pigment'}, {'text': 'Nerve fibres to the brain', 'at': [-170, -185, 30], 'pop': 'axon'}],
   'populations': [
@@ -40,8 +43,8 @@ write({'id': 'bee_flight_muscle', 'title': 'Inside a bee\'s flight muscle', 'nod
 
 # ---- cuticle ----
 write({'id': 'bee_cuticle', 'title': 'Inside the exoskeleton', 'node': 'bee_cuticle',
-  'blurb': 'A slice through the bee\'s outer skin: a waxy skin, a hard outer layer, a tougher layered inner layer, and the living cells that build it all. Click a layer.',
-  'note': 'Schematic. The order of the layers is as in insects generally: a thin waxy epicuticle on the outside, then the exocuticle, then the endocuticle, over a single layer of living cells (the epidermis). The thicknesses are illustrative, not measured on a bee. Chitin is drawn as stacked sheets; in life it is bundled into fibres embedded in protein.',
+  'blurb': 'A slice through the bee\'s outer skin: a waxy skin, a hard darkened outer layer, a softer, flexible layered inner layer, and the living cells that build it all. Click a layer.',
+  'note': 'Schematic. The order of the layers is as in insects generally: a thin waxy epicuticle on the outside, then the exocuticle, then the endocuticle, over a single layer of living cells (the epidermis). The thicknesses are illustrative, not measured on a bee. Chitin is drawn as stacked sheets, here only in the endocuticle; in life it is bundled into fibres embedded in protein.',
   'bg': '#f3efe6', 'center': [0, 0, 0], 'D_um': 160,
   'labels': [{'text': 'Epicuticle (wax, no chitin)', 'at': [-120, 40, 40], 'pop': 'epi'}, {'text': 'Exocuticle (hard, darkened)', 'at': [-120, 24, 40], 'pop': 'exo'}, {'text': 'Endocuticle: stacked chitin sheets', 'at': [-120, 2, 40], 'pop': 'chitin'}, {'text': 'Epidermis: the living cells', 'at': [-120, -30, 40], 'pop': 'epidermis'}],
   'populations': [
