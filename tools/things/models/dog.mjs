@@ -35,8 +35,8 @@ const MC = ['#b0463b', '#a23d35', '#bb5144', '#9a3a33', '#b84e41'];
 export const thing = {
   id: 'dog', title: 'Dog', label: 'Dog', scientific: 'Canis familiaris', node: 'dog', main_part: 'coat',
   blurb: 'A Labrador-type dog, with its body, muscles, bones, organs, nerves and blood vessels. Click any part, or use the layer buttons.',
-  model_note: 'A model built from typical proportions of a medium-sized dog (a Labrador-type male, 30 kg, 57 cm at the withers), not a scan of one animal. Bone shapes, muscle outlines and organ sizes are schematic; the counts (7 neck, 13 chest, 7 lower-back vertebrae, 13 pairs of ribs, 42 teeth) are real.',
-  size_m: { height_at_withers: .57, body_length: 1.0, mass_kg: 30 }, height_m: .66, radius_m: .85, draw_m: 400, seed: 2027,
+  model_note: 'A model built from typical proportions of a Labrador-type male (57 cm at the withers, 30 kg, about 1.15 m from nose to tail tip, 67 cm from the point of the shoulder to the point of the buttock), not a scan of one animal. Bone shapes, muscle outlines and organ sizes are schematic. The counts of neck, chest and lower-back vertebrae (7, 13, 7), rib pairs (13) and teeth (42) are real; the hock has its 7 bones; the head is scaled so the lower jaw is about 16 cm long, a Labrador reference; the liver is drawn as three fused lobes where a dog has six; the intestines are a short schematic coil.',
+  size_m: { height_at_withers: .57, body_length: 1.15, mass_kg: 30 }, height_m: .66, radius_m: .85, draw_m: 400, seed: 2027,
   systems: SYSTEMS, modes: MODES,
   // Auto peels with what is under the view (the human's ray-based peel): coat, then muscles, then bones, then what lies inside; the eyes stay
   auto: { label: 'Auto', layers: true, always: { eyes: 1 } },

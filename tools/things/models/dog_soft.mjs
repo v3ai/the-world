@@ -124,7 +124,8 @@ const HLpt = (x, y) => { const p = H.HLcm(x, y, 0); return [p[0], p[1], 0]; };
 export function nerves() {
   const m = {}; const T = (pts, r, o) => L.tube(L.spline(pts.map(p => P(wx(p[0]), p[1], p[2]))).sample(o && o.n || 24), r, { sides: 5 });
   // spinal cord in the vertebral canal, with the cervical and lumbar swellings
-  const cord = [HLpt(.8, .6), ...SPINE.cerv, ...SPINE.thor, ...SPINE.lum, ...SPINE.sac].map((p, i) => i === 0 ? p : [p[0], p[1] + .9, 0]);
+  const cord = [HLpt(.8, .6), ...SPINE.cerv, ...SPINE.thor, ...SPINE.lum]   // the cord ends in the lower back, at about the last lumbar vertebra (the nerves of the tail run on beyond it, not drawn)
+   .map((p, i) => i === 0 ? p : [p[0], p[1] + .9, 0]);
   m.spinal_cord = L.tube(L.spline(cord.map(p => P(...p))).sample(90), .0042, { sides: 5 });
   // brachial plexus and the main nerves of the foreleg; lumbosacral plexus and sciatic nerve of the hindleg; vagus; optic nerves
   const nn = [];
