@@ -457,7 +457,7 @@
   "kn": [
    "soil_biology"
   ],
-  "where": "place:soil"
+  "where": "oak_mycorrhiza"
  },
  {
   "id": "bio_community_structure",

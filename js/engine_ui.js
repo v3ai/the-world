@@ -128,7 +128,12 @@ function cardHtml(s) {
   return h;
 }
 function chipsHtml(items) { return items.length ? `<div class="chips">${items.join('')}</div>` : ''; }
+/* A card opened in this same run of code and then a flight started (goToNode, search, a trail stop, a chip) is a deliberate jump: the card describes where
+   the flight is going, so it stays open (with whatever the jump highlighted or peeled). A flight started on its own closes a card left over from where you were. */
+let CARD_FRESH = false;
+{ const _fly = flyTo; window.flyTo = function (...a) { if (!CARD_FRESH) { try { closeInfo(); } catch (e) { } } return _fly.apply(this, a); }; }
 function openPanel(h, desc) {
+  CARD_FRESH = true; Promise.resolve().then(() => { CARD_FRESH = false; });
   const key = desc && desc.key || '';
   if (!navQuiet && key && (!curCard || curCard.key !== key)) navStack.push({ card: curCard, cam: curCard ? curCard.cam : camSnap() }), navStack.length > 60 && navStack.shift();
   curCard = key ? { key, reopen: desc.reopen, cam: camSnap() } : null;
@@ -238,7 +243,7 @@ function libSearch(q) {
   if (KN) { const wre = q.length > 2 ? new RegExp('\\b' + q.replace(/[^a-z0-9 ]/g, '') + '\\b') : null, ti = KN.filter(n => foldText(n.title).includes(q)).map((n, i) => [matchRank(n.title, q), i, n]).sort((a, b) => a[0] - b[0] || a[1] - b[1]).map(x => x[2]), ks = ti.concat(wre && ti.length < 4 ? KN.filter(n => !ti.includes(n) && wre.test(foldText(n.basics || ''))) : []).slice(0, 8); if (ks.length) h += '<div class="jl">Knowledge map</div>' + ks.map(n => `<button class="kn simhit" data-k="${n.id}"><b>${n.title}</b><span>${n.certainty} · ${levelName(n.level)}</span></button>`).join(''); }
   const L = /[a-z]/.test(q[0]) ? q[0] : '0';
   const sh = termShards[L];
-  if (!sh) { termShards[L] = 'loading'; fetch(`data/library/terms_${L}.json`).then(r => r.json()).then(j => { termShards[L] = j; libSearch($('#libQ').value); }).catch(() => { termShards[L] = []; }); h += '<div class="sub">Searching the textbooks…</div>'; }
+  if (!sh) { termShards[L] = 'loading'; fetch(`data/library/terms_${L}.json`).then(r => r.json()).then(j => { termShards[L] = j; libSearch(''); }).catch(() => { termShards[L] = []; }); h += '<div class="sub">Searching the textbooks…</div>'; }
   else if (sh !== 'loading' && BOOKS) {
     const terms = sh.filter(t => t[0].toLowerCase().startsWith(q)).concat(sh.filter(t => !t[0].toLowerCase().startsWith(q) && t[0].toLowerCase().includes(q))).slice(0, 30);
     if (terms.length) h += '<div class="jl">Key terms</div>' + terms.map(t => `<div class="term"><div class="tt">${t[0]}</div>${t[1].slice(0, 8).map(r => { const b = BOOKS[r[0]]; return b ? `<a class="mini" href="${b.base || ('https://openstax.org/books/' + b.s + '/pages/')}${r[2]}" target="_blank" rel="noopener">${b.t} ${r[1]}</a>` : ''; }).join('')}</div>`).join('');
@@ -259,7 +264,7 @@ function noMatchHtml(q) {
   const start = ['Heart', 'DNA', 'Gold', 'Saturn', 'The Sun', 'Proton', 'Caffeine', 'Black hole'].map(t => `<button class="chip" data-q="${t}">${t}</button>`).join('');
   return `<div class="sub">Nothing is called "${q.replace(/[<>&]/g, '')}". Search works on names (a body part, an element or its symbol, a molecule, a planet, a place on the scale), so try one word, for example:</div><div class="chips">${start}</div>`;
 }
-function wireLib() { $('#libRes').querySelectorAll('[data-lm]').forEach(b => b.onclick = () => { const L = LANDMARKS[+b.dataset.lm]; if (L) { cancelTour(); closePops(); L.go(); canvas.focus(); } }); $('#libRes').querySelectorAll('.chip[data-q]').forEach(b => b.onclick = () => { $('#libQ').value = b.dataset.q; libSearch(b.dataset.q); }); $('#libRes').querySelectorAll('.kn').forEach(b => b.onclick = () => b.dataset.lm !== undefined ? 0 : b.dataset.g !== undefined ? libPick(+b.dataset.g) : (closePops(), showNode(b.dataset.k))); }
+function wireLib() { $('#libRes').querySelectorAll('[data-lm]').forEach(b => b.onclick = () => { const L = LANDMARKS[+b.dataset.lm]; if (L) { cancelTour(); closePops(); L.go(); canvas.focus(); } }); $('#libRes').querySelectorAll('.chip[data-q]').forEach(b => b.onclick = () => { libSearch(b.dataset.q); }); $('#libRes').querySelectorAll('.kn').forEach(b => b.onclick = () => b.dataset.lm !== undefined ? 0 : b.dataset.g !== undefined ? libPick(+b.dataset.g) : (closePops(), showNode(b.dataset.k))); }
 let libGo = [];
 function libPick(i) { const r = libGo[i]; if (!r) return; cancelTour(); closePops(); r.go(); canvas.focus(); }
 /* Search sources. Anything that can be found by name registers here. A source is one of:
@@ -317,14 +322,14 @@ SEARCH_SOURCES.push(q => {
 });
 let MOL_INDEX = null;
 SEARCH_SOURCES.push(q => {
-  if (!MOL_INDEX) { if (MOL_INDEX !== 0 && typeof getJSON === 'function') { MOL_INDEX = 0; getJSON('data/molecules_all.json').then(A => { MOL_INDEX = A.index; libSearch($('#libQ').value); }).catch(() => { MOL_INDEX = []; }); } return []; }
+  if (!MOL_INDEX) { if (MOL_INDEX !== 0 && typeof getJSON === 'function') { MOL_INDEX = 0; getJSON('data/molecules_all.json').then(A => { MOL_INDEX = A.index; libSearch(''); }).catch(() => { MOL_INDEX = []; }); } return []; }
   return MOL_INDEX.filter(m => m.name.toLowerCase().includes(q) || m.formula.toLowerCase() === q).map(m => ({ title: m.name, sub: `Molecule, ${m.formula}: fly to it at true size`, rank: m.formula.toLowerCase() === q ? 0 : undefined, go: () => placeGo('mol:' + m.id) }));
 });
 let CRY_INDEX = null; // crystals by name (and everyday names: salt, sand, rust ...)
 const CRY_ALIAS = { halite: 'table salt sodium chloride rock salt', diamond: 'carbon gem', graphite: 'pencil lead carbon', gold_fcc: 'gold', copper_fcc: 'copper', aluminium_fcc: 'aluminum aluminium foil', iron_bcc: 'iron steel', quartz: 'sand silica glass', calcite: 'limestone chalk marble', ice_ih: 'ice snow water frozen', silicon: 'chip semiconductor', hematite: 'rust iron ore', magnetite: 'lodestone', pyrite: 'fool\'s gold', rutile: 'titanium dioxide', fluorite: 'fluorspar calcium fluoride', forsterite: 'olivine peridot' };
 SEARCH_SOURCES.push(q => {
   if (q.length < 3) return [];
-  if (!CRY_INDEX) { if (CRY_INDEX !== 0 && typeof getJSON === 'function') { CRY_INDEX = 0; getJSON('data/crystals.json').then(A => { CRY_INDEX = A; libSearch($('#libQ').value); }).catch(() => { CRY_INDEX = []; }); } return []; }
+  if (!CRY_INDEX) { if (CRY_INDEX !== 0 && typeof getJSON === 'function') { CRY_INDEX = 0; getJSON('data/crystals.json').then(A => { CRY_INDEX = A; libSearch(''); }).catch(() => { CRY_INDEX = []; }); } return []; }
   return CRY_INDEX.filter(c => (c.name + ' ' + c.formula + ' ' + c.id + ' ' + (CRY_ALIAS[c.id] || '')).toLowerCase().includes(q)).map(c => ({ title: c.name, sub: 'Crystal lattice', prio: 0, go: () => { FR.park.ensure(); placeChild(FR.park, crystalFrame(c.id, new V3(1.2, .01, 1.4)), 4e-9); } }));
 });
 SEARCH_SOURCES.push(q => typeof NODE === 'undefined' ? [] : Object.values(NODE).filter(n => n.title.toLowerCase().includes(q)).map(n => ({ title: n.title, sub: `${(n.kind || '').replace(/_/g, ' ')}${n.summary ? ': ' + n.summary : ''}`.slice(0, 110), go: () => goToNode(n.id) })));
@@ -335,7 +340,7 @@ function bodyPlaces() {
   const P = [], fmt = (D) => `Fly there: about ${fmtLen(D)} across`;
   const planet = (name, key) => { const f = FR[key]; if (!f) return; P.push({ title: name, sub: `Planet. ${fmt(1)}`.replace(/Fly there.*/, 'Planet: fly there'), go: () => { f.ensure(); const o = f.pickables.find(x => x.userData && x.userData.id && x.userData.id.toLowerCase() === name.toLowerCase()), r = (o && objRadiusLocal(o)) || f.radius * .01; flyTo(f, new V3(), r * f.unit * 4.5); } }); };
   ['Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'].forEach(n => planet(n, n));
-  P.push({ title: 'The Sun', sub: 'Our star: fly there', alias: 'sun', go: () => flyTo(FR.solar, new V3(), 4e9) });
+  P.push({ title: 'The Sun', sub: 'Our star: fly there', alias: 'sun', go: () => flyTo(FR.sun || FR.solar, new V3(), 4e9) });
   P.push({ title: 'The Moon', sub: 'Earth\'s moon: fly there', alias: 'moon', go: () => { FR.earth.ensure(); const m = FR.earth.pickables.find(x => x.userData && x.userData.id === 'moon'); if (m) flyTo(FR.earth, m.position.clone(), 1.2e7); else flyTo(FR.earth, new V3(), 1.4e9); } });
   P.push({ title: 'International Space Station', sub: 'Fly there', alias: 'iss', go: () => { FR.earth.ensure(); const m = FR.earth.pickables.find(x => x.userData && x.userData.id === 'iss'); if (m) flyTo(FR.earth, m.position.clone(), 2e3); } });
   const park = { dog: 'Dog', tree: 'Tree', pond: 'Pond', flower: 'Flowers', bee: 'Honeybee', mushroom: 'Mushroom', bird: 'Bird', cloud: 'Cloud' };
@@ -354,7 +359,7 @@ function flyToElement(sym) {
   if (typeof atomFrame !== 'function' || !FR.park) { message('The atom view is not available.'); return; }
   closeInfo(); FR.park.ensure(); placeChild(FR.park, atomFrame(sym, new V3(1.2, .5, 1.4)), 7e-10);
 }
-function openLibrary(force) { const p = $('#library'); const o = force || !p.classList.contains('open'); if (!force || !p.classList.contains('open')) closePops(); if (!o) return; p.classList.add('open'); $('#libQ').focus(); $('#libQ').select(); loadKnowledge().then(() => libSearch($('#libQ').value)); libSearch($('#libQ').value); }
+function openLibrary(force) { const p = $('#library'); const o = force || !p.classList.contains('open'); if (!force || !p.classList.contains('open')) closePops(); if (!o) return; p.classList.add('open'); loadKnowledge().then(() => libSearch('')); libSearch(''); }
 
 /* ================= SCALE RULER ================= */
 const RULER_MIN = -19, RULER_MAX = 27;
@@ -377,14 +382,24 @@ function buildRuler() {
   svg += '</svg>'; box.insertAdjacentHTML('beforeend', svg);
   items.forEach(it => { const b = document.createElement('button'); b.className = 'lm'; b.style.top = it.p + 'px'; b.textContent = it.L.label; b.title = `Fly to ${it.L.label} (${fmtLen(it.L.D)} across)`; b.onclick = () => { cancelTour(); it.L.go(); }; it.L._el = b; box.appendChild(b); });
   const m = document.createElement('i'); m.id = 'rulerMark'; m.innerHTML = '<span class="ro" id="rulerRO"></span>'; box.appendChild(m);
-  // on a phone the strip has no room for names: tapping it flies to the nearest place on the scale and says which
+  // on a phone the strip has no room for names: tapping it opens a small list of the places on the scale around where you tapped (and says where you are now); tap one to fly there
   if (!box._tap) { box._tap = 1; box.addEventListener('click', e => {
     if (e.target.closest('.lm') || !LANDMARKS.length || getComputedStyle($('#ruler .lm') || box).display !== 'none') return;
     const r = box.getBoundingClientRect(), y = e.clientY - r.top, hh = box.clientHeight || 600;
-    let best = null, bd = 1e9; LANDMARKS.forEach(L => { const d = Math.abs(rulerY(Math.log10(L.D), hh) - y); if (d < bd) { bd = d; best = L; } });
-    if (best) { cancelTour(); toast(`Flying to ${best.label}`); best.go(); }
+    openScalePop(y, hh, e.clientY);
   }); }
   if (!buildRuler._ro) { buildRuler._ro = new ResizeObserver(() => buildRuler()); buildRuler._ro.observe(box); }
+}
+/* The phone's version of the ruler's names: a small list beside the strip, the places on the scale nearest the tap (about seven), with the one you are at in bold. */
+function openScalePop(y, hh, clientY) {
+  let pop = $('#scalePop'); if (!pop) { pop = document.createElement('div'); pop.id = 'scalePop'; pop.setAttribute('role', 'dialog'); pop.setAttribute('aria-label', 'Places on the scale'); document.body.appendChild(pop); }
+  const e = Math.log10(cam.D * 2 * Math.tan(25 * Math.PI / 180)), path = chainOf(cam.A);
+  let here = null, bd = .35; LANDMARKS.forEach(L => { const d = Math.abs(Math.log10(L.D) - e); if (d < bd && (!L.frame || path.includes(L.frame))) { bd = d; here = L; } });
+  const near = LANDMARKS.map(L => ({ L, d: Math.abs(rulerY(Math.log10(L.D), hh) - y) })).sort((a, b) => a.d - b.d).slice(0, 7).sort((a, b) => b.L.D - a.L.D);
+  pop.innerHTML = `<div class="sph">You are looking at about ${fmtLen(cam.D * 2 * Math.tan(25 * Math.PI / 180))} across${here ? ` (${here.label})` : ''}. Go to:</div>` + near.map(o => `<button data-i="${LANDMARKS.indexOf(o.L)}" class="${o.L === here ? 'near' : ''}"><b>${o.L.label}</b><span>${fmtLen(o.L.D)}</span></button>`).join('') + '<button class="spx" data-i="-1">Close</button>';
+  pop.style.top = clamp(clientY - 120, 8, innerHeight - 330) + 'px'; pop.classList.add('open');
+  pop.querySelectorAll('button').forEach(b => b.onclick = ev => { ev.stopPropagation(); const L = LANDMARKS[+b.dataset.i]; pop.classList.remove('open'); if (L) { cancelTour(); toast(`Flying to ${L.label}`); L.go(); } });
+  if (!openScalePop._d) { openScalePop._d = 1; document.addEventListener('pointerdown', ev => { const p = $('#scalePop'); if (p && p.classList.contains('open') && !p.contains(ev.target) && !ev.target.closest('#rulerScale')) p.classList.remove('open'); }, true); }
 }
 function updateRuler() {
   const box = $('#rulerScale'), m = $('#rulerMark'); if (!box || !m) return;
@@ -493,6 +508,7 @@ function loop(now) {
   reanchor();
   computeActive();
   for (const f of drawn) { f.ensure(); if (f.place) f.place(); }
+  for (let f = cam.A; f; f = f.parent) if (f.place && !drawn.includes(f)) f.place(); // an ancestor that is not drawn (the park hides the Earth) still moves with the clock: the Sun's direction in the park comes from it
   mergeStep();
   updateViewOffset();
   for (const f of drawn) {
@@ -526,8 +542,7 @@ async function startApp() {
   bindHold($('#zin'), -1); bindHold($('#zout'), 1);
   $('#bLibrary').onclick = e => { e.stopPropagation(); openLibrary(); };
   $('#bTracks').onclick = e => { e.stopPropagation(); openTracks(); };
-  $('#libQ').addEventListener('input', e => libSearch(e.target.value));
-  $('#libQ').addEventListener('keydown', e => { if (e.key === 'Enter') libPick(0); else if (e.key === 'Escape') { closePops(); canvas.focus(); } });
+  $('#libSearchBtn').onclick = () => { closePops(); if (typeof SEARCH !== 'undefined' && SEARCH.focus) SEARCH.focus(); };
   document.querySelectorAll('.pop .px').forEach(b => b.onclick = () => closePops());
   $('#navBack').onclick = navBack; $('#capFold').onclick = () => { capPref = !$('#caption').classList.contains('min'); };
   $('#bLabels').classList.toggle('off', !labelsOn);

@@ -1158,12 +1158,12 @@ if (typeof WORLD_EXT !== 'undefined' && typeof FT !== 'undefined' && AtomCloud) 
   ATM.load();
   if (typeof goToNode === 'function' && !goToNode._atom) {
     const orig = goToNode;
-    const wrapped = function (id) {
+    const wrapped = function (id, then) {
       const m = /^at_el_([A-Z][a-z]?)$/.exec(id);
       if (m && ELJ[m[1]] && FR.atom) {
         const F = FR.atom;
         if (F.at) F.setElement(m[1], { noFit: true }); else F.opts.el = m[1];
-        F.name = `${ATM.name(m[1])} atom`; showBodyNode(id, null); flyTo(F, new V3(), 7e-10); return;
+        F.name = `${ATM.name(m[1])} atom`; showBodyNode(id, null); flyTo(F, new V3(), 7e-10); if (then) afterFlight(then); return;
       }
       return orig.apply(this, arguments);
     };

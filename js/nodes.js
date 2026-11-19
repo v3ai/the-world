@@ -486,11 +486,21 @@ function renderProc() {
 }
 const GOTO_NEAR = { thyroid: 'larynx' }; // body nodes with no mesh of their own: the nearest part that has one
 /* jump to a node from anywhere (search, chips): fly to the body part if it has a mesh, else show its card */
-function goToNode(id) {
-  const n = NODE[id]; if (!n) return;
+function goToNode(id, then) {
+  const n = NODE[id]; if (!n) { if (then) safeThen(then); return; }
+  goToNode1(id);
+  if (then) afterFlight(then);
+}
+/* run fn when the camera flight that has just been started ends (at once if none runs) */
+function afterFlight(fn) {
+  let n = 0; const tick = () => { if (!fly || ++n > 4000) safeThen(fn); else setTimeout(tick, 120); };
+  setTimeout(tick, 60);
+}
+function goToNode1(id) {
+  const n = NODE[id];
   for (const fn of GOTO_HOOKS) if (fn(id)) return;
   const tw = TEAR[id] || (n.where && TEAR[n.where]) || (n.hotspot && TEAR[n.hotspot.of]);
-  if (tw) { showBodyNode(id, null); flyTo(tw.frame, tw.pos, tw.D); return; }
+  if (tw) { showBodyNode(id, null); if (tw.frame && tw.frame.ensure) tw.frame.ensure(); if (tw.frame && tw.frame.showPart && id !== 'smartphone') tw.frame.showPart(TEAR[id] ? id : n.where && TEAR[n.where] ? n.where : n.hotspot && n.hotspot.of, id); flyTo(tw.frame, tw.pos, tw.D); return; }
   if (n.where && !TEAR[n.where] && n.where !== id && placeGo(n.where, id)) { setTimeout(() => showBodyNode(id, null), 0); return; }
   const body = FR.body, ix = ANAT_SYNC, parts = nid => ix ? ix.parts.filter(p => !p.parent && p.id !== 'skin' && nodeForMesh(p.id) === nid) : [];
   const organOf = oid => body && body.children.find(c => c.type === 'organ' && c.opts.organ === oid);

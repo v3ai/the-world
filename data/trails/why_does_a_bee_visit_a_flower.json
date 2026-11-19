@@ -49,11 +49,6 @@
      "label": "Honey bee worker",
      "node": "park_bee"
     }
-   ],
-   "do": [
-    {
-     "hideBody": true
-    }
    ]
   },
   {
@@ -79,11 +74,6 @@
      "label": "Proboscis",
      "node": "bee_proboscis"
     }
-   ],
-   "do": [
-    {
-     "hideBody": true
-    }
    ]
   },
   {
@@ -97,9 +87,6 @@
     }
    },
    "do": [
-    {
-     "hideBody": true
-    },
     {
      "mode": "half",
      "thing": "flower"
@@ -160,9 +147,6 @@
    },
    "do": [
     {
-     "hideBody": true
-    },
-    {
      "mode": "organs",
      "thing": "bee"
     }
@@ -192,9 +176,6 @@
     }
    },
    "do": [
-    {
-     "hideBody": true
-    },
     {
      "mode": "flower",
      "thing": "flower"
@@ -246,11 +227,6 @@
     {
      "label": "Compound eye",
      "node": "bee_compound_eye"
-    }
-   ],
-   "do": [
-    {
-     "hideBody": true
     }
    ]
   }

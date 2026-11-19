@@ -4,6 +4,8 @@
    the memorable thing; every panel is a quiet porcelain label.
    ===================================================================== */
 :root {
+  --srch-row: 36px;         /* the row under the main buttons that holds the search field (desktop) */
+  --srch-btn-w: 76px;       /* the Search button at the top right of a phone */
   --paper: #edf0f0;        /* porcelain panels */
   --paper-2: #e2e7e8;      /* insets, hover */
   --ink: #17202a;          /* text */
@@ -73,10 +75,10 @@ body.trackOpen #ruler { visibility: hidden }
 #timeT { color: var(--ink-2) }
 
 /* ---------- scene controls ---------- */
-#controls { position: fixed; left: calc(var(--ruler-w) + 16px); right: 300px; top: 14px; z-index: 6; display: flex; gap: 8px; align-items: flex-start; flex-wrap: wrap; justify-content: center; pointer-events: none }
+#controls { position: fixed; left: calc(var(--ruler-w) + 16px); right: calc(var(--srch-w, 352px) + 32px); top: 14px; z-index: 6; display: flex; gap: 8px; align-items: flex-start; flex-wrap: wrap; justify-content: center; pointer-events: none }
 body.cardOpen #controls { right: 432px }
 #controls > * { pointer-events: auto }
-.seg { display: flex; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); overflow: hidden }
+.seg { display: flex; max-width: 100%; flex-wrap: wrap; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); overflow: hidden }
 .seg button { border: 0; border-left: 1px solid var(--rule); background: none; padding: 7px 12px; font-size: 12.5px; cursor: pointer; color: var(--ink-2); white-space: nowrap }
 .seg button:first-child { border-left: 0 }
 .seg button:hover { background: var(--paper-2); color: var(--ink) }
@@ -115,7 +117,7 @@ body.cardOpen #controls { right: 432px }
 #fade { position: fixed; inset: 0; background: #000; opacity: 1; pointer-events: none; z-index: 20 }
 
 /* ---------- the card: everything about one thing ---------- */
-#info { position: fixed; right: 16px; top: 62px; bottom: 16px; width: 400px; max-width: calc(100vw - 32px); z-index: 8; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); padding: 20px 24px 24px; overflow-y: auto; user-select: text; -webkit-user-select: text; transform: translateX(calc(100% + 40px)); transition: transform .28s cubic-bezier(.2,.8,.2,1); scrollbar-width: thin; scrollbar-color: var(--rule) transparent }
+#info { position: fixed; right: 16px; top: calc(62px + var(--srch-row)); bottom: 16px; width: 400px; max-width: calc(100vw - 32px); z-index: 8; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); padding: 20px 24px 24px; overflow-y: auto; user-select: text; -webkit-user-select: text; transform: translateX(calc(100% + 40px)); transition: transform .28s cubic-bezier(.2,.8,.2,1); scrollbar-width: thin; scrollbar-color: var(--rule) transparent }
 #info.open { transform: none }
 @media (prefers-reduced-motion: reduce) { #info { transition: none } }
 #info .x { position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border: 1px solid transparent; background: none; border-radius: var(--r-ctl); font-size: 18px; line-height: 1; cursor: pointer; color: var(--muted) }
@@ -305,7 +307,7 @@ details[open] > summary::before { content: '−' }
   #ruler .foot { display: none }
   #caption { left: calc(var(--ruler-w) + 8px); right: 8px; width: auto; bottom: 64px; padding: 10px 12px }
   #caption .d { display: none }
-  #controls { left: calc(var(--ruler-w) + 8px); right: 8px; top: 52px; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap }
+  #controls { left: calc(var(--ruler-w) + 8px); right: calc(var(--srch-btn-w) + 8px); top: 52px; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap }
   #tourbtns { display: none }
   #zoombtns { right: 8px; bottom: 10px }
   #info { left: 8px; right: 8px; top: auto; bottom: 8px; width: auto; max-width: none; height: 36vh; max-height: none; transform: translateY(calc(100% + 40px)); transition: transform .25s, height .2s; padding-top: 26px }
@@ -406,7 +408,8 @@ body.trackOpen #caption { left: 376px }
 #caption .n { padding-right: 84px }
 #caption #crumbs { padding-right: 84px }
 #caption .meta { flex-wrap: wrap; row-gap: 6px }
-#caption .k { flex: 1 1 auto; white-space: nowrap }
+#caption .k { flex: 1 1 100%; min-width: 0; white-space: normal; overflow-wrap: anywhere }   /* the field of view and the frame's motion notes wrap inside the card */
+#caption.min .k { flex: 1 1 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
 #caption.min #crumbs { padding-right: 0 }
 #caption .fold:hover { text-decoration: underline }
 #caption.min .d, #caption.min .nt, #caption.min #crumbs, #caption.min #timebar { display: none }
@@ -444,9 +447,28 @@ body.cardOpen #perf { right: 432px }
 #perf .pf-note { margin-top: 6px; color: var(--muted); min-height: 0 }
 #perf .pf-note:empty { display: none }
 #perf textarea { width: 100%; height: 110px; margin-top: 6px; font: 11px/1.35 ui-monospace, Menlo, Consolas, monospace; border: 1px solid var(--rule); border-radius: var(--r-ctl); background: #fff; color: var(--ink); resize: vertical }
-@media (max-width: 860px) { #perf, body.cardOpen #perf { right: 8px; left: 8px; bottom: auto; top: 52px; width: auto; max-height: 60vh; overflow: auto } }
+/* phone: the meter sits under the top buttons, scrolls inside itself (it never traps a drag meant for the page: the rest of the screen is still the canvas), and its Hide button stays in view */
+#perf header { position: sticky; top: -10px; z-index: 1; margin: -10px -12px 6px; padding: 10px 12px 6px; background: var(--paper) }
+@media (max-width: 860px) {
+  #perf, body.cardOpen #perf { right: 8px; left: 8px; bottom: auto; top: 96px; width: auto; max-height: min(52vh, calc(100vh - 150px)); overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; -webkit-overflow-scrolling: touch }
+  #perf button { min-height: 34px; padding: 4px 12px }
+  #perf .pf-seg button { min-height: 30px; padding: 3px 9px }
+  #perf textarea { height: 80px }
+}
 
 /* what is still arriving (js/nodes.js loadNote): a quiet line at the bottom of the view, gone when everything has loaded */
 #loadNote { position: fixed; left: calc(50% + var(--ruler-w) / 2); bottom: 118px; transform: translateX(-50%); z-index: 6; display: none; padding: 5px 12px; max-width: min(520px, calc(100vw - 32px)); background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); font: italic 400 13px/1.4 var(--serif); color: var(--ink-2); text-align: center; pointer-events: none }
 #loadNote.on { display: block }
 @media (max-width: 860px) { #loadNote { left: 50%; bottom: auto; top: 100px; width: max-content } }
+#library .libsb { display: block; width: 100%; margin: 4px 0 0; padding: 8px 11px; border-radius: var(--r-ctl); border: 1px solid var(--accent); background: #fff; color: var(--accent); font: 500 14px var(--sans); cursor: pointer; text-align: left }
+#library .libsb:hover { background: var(--accent); color: #fff }
+
+/* phone: the places on the scale, in a small list beside the ruler strip (the strip has no room for names) */
+#scalePop { display: none; position: fixed; left: calc(var(--ruler-w) + 6px); width: min(260px, calc(100vw - var(--ruler-w) - 16px)); z-index: 14; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); padding: 6px; max-height: 70vh; overflow-y: auto }
+#scalePop.open { display: block }
+#scalePop .sph { font: 400 12.5px/1.4 var(--sans); color: var(--muted); padding: 4px 6px 6px }
+#scalePop button { display: flex; justify-content: space-between; gap: 8px; width: 100%; border: 0; background: none; padding: 9px 8px; border-radius: var(--r-ctl); font: 400 14px/1.2 var(--sans); color: var(--ink); text-align: left; cursor: pointer; min-height: 40px; align-items: center }
+#scalePop button span { color: var(--muted); font-size: 12px; white-space: nowrap }
+#scalePop button:hover, #scalePop button:active { background: var(--paper-2) }
+#scalePop button.near b { font-weight: 600; color: var(--accent) }
+#scalePop .spx { color: var(--accent); justify-content: center; border-top: 1px solid var(--rule); border-radius: 0 0 var(--r-ctl) var(--r-ctl); margin-top: 2px }

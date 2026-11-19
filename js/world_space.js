@@ -46,23 +46,6 @@ function spaceHit(r, ud, o = {}) {
   return m;
 }
 function spaceLabel(F, obj, text, pri, o) { const L = F.label(obj, text, o); L.el.dataset.pri = pri; return L; }
-// a card button or double-click can name its own destination (a frame that scrolling would also reach)
-{ const _zoomIntoHit = zoomIntoHit; window.zoomIntoHit = function (h) { const z = h && h.obj && h.obj.userData && h.obj.userData.zoomTo; if (z && z(h) !== false) return; return _zoomIntoHit(h); }; }
-// labels sit above the canvas: pass the mouse wheel through so zooming works over a label too
-{ const LL = document.getElementById('labels'); if (LL) LL.addEventListener('wheel', e => { e.preventDefault(); canvas.dispatchEvent(new WheelEvent('wheel', { deltaX: e.deltaX, deltaY: e.deltaY, deltaMode: e.deltaMode, clientX: e.clientX, clientY: e.clientY, shiftKey: e.shiftKey, bubbles: true, cancelable: true })); }, { passive: false }); }
-// where labels collide in the large-scale views, the higher-priority one stays (data-pri); the rest hide until there is room
-const SPACE_TYPES = new Set(['cosmos', 'localgroup', 'milkyway', 'neighborhood', 'sgrA']);
-function declutterLabels() {
-  const LL = document.getElementById('labels'); if (!LL || typeof cam === 'undefined' || !cam.A) return;
-  const els = Array.from(LL.children);
-  if (!SPACE_TYPES.has(cam.A.type)) { els.forEach(e => { if (e.style.visibility) e.style.visibility = ''; }); return; }
-  const items = els.filter(e => e.style.display !== 'none').map(e => ({ e, pri: +e.dataset.pri || 0, r: e.getBoundingClientRect() }));
-  items.sort((a, b) => b.pri - a.pri || a.r.top - b.r.top);
-  const kept = [];
-  items.forEach(it => { const r = it.r, clash = kept.some(k => !(r.right + 4 < k.left || r.left - 4 > k.right || r.bottom + 2 < k.top || r.top - 2 > k.bottom)); it.e.style.visibility = clash ? 'hidden' : ''; if (!clash) kept.push(r); });
-  els.forEach(e => { if (e.style.display === 'none' && e.style.visibility) e.style.visibility = ''; });
-}
-setInterval(declutterLabels, 160);
 // type of a catalogue galaxy → the symbol drawn for it (explicit, not a loose regex)
 function galKind(type) {
   if (/dSph|dE\b|cE\b|^E\d|elliptical|^S0|cD/i.test(type)) return 'elliptical';
@@ -705,7 +688,8 @@ function biomeAtUV(u, v) {
 function biomeAtLatLon(lat, lon) { return biomeAtUV((lon + 180) / 360, (lat + 90) / 180); }
 function regionFrame(earthF, lat, lon, biome, isPark) {
   const f = new Frame({ type: 'region', name: isPark ? 'Greenwich, London' : `Earth's surface (${lat.toFixed(1)}°, ${lon.toFixed(1)}°)`, unit: 1e3, radius: 40, r0: 0, r1: 1.5e6, up: new V3(0, 1, 0), maxPolar: Math.PI / 2 - .02, opts: { lat, lon, biome, isPark } });
-  f.place = () => { const sp = earthF.spin ? earthF.spin.rotation.y : gmst(); const q = new THREE.Quaternion().setFromAxisAngle(new V3(0, 1, 0), sp); f.pos.copy(latLon3(lat, lon, 6.371)).applyQuaternion(q); f.quat.copy(q).multiply(enuQuat(lat, lon)); };
+  f.faceUp = true;
+  f.place = () => { const sp = gmst(); const q = new THREE.Quaternion().setFromAxisAngle(new V3(0, 1, 0), sp); f.pos.copy(latLon3(lat, lon, 6.371)).applyQuaternion(q); f.quat.copy(q).multiply(enuQuat(lat, lon)); };
   f.place();
   return f;
 }
@@ -714,12 +698,11 @@ function regionFrame(earthF, lat, lon, biome, isPark) {
 WORLD_EXT.push(async FR2 => {
   // scrolling toward the Galactic Centre pulls the zoom target onto it, so the black-hole scene is reached by scrolling
   FR2.mw.attract = new V3(); FR2.mw.attractD = 3e21; FR2.mw.attractR = .5;
-  // the black-hole scene says what is to scale and what is not
+  // the black-hole scene says what is to scale and what is not (the blurb itself is in world_matter.js; only this note is added here)
   if (FT.sgrA && !FT.sgrA._spaceNote) {
     const b = FT.sgrA.build; FT.sgrA._spaceNote = true;
     FT.sgrA.build = function (F, o) {
       b.call(this, F, o);
-      F.blurb = 'Sagittarius A*: about 4.3 million Suns inside an event horizon about 25 million km across (radius 12.7 million km).';
       F.note = 'To scale: the event horizon, the shadow (about 2.6 times the horizon radius, about 33 million km), the photon ring and the innermost stable orbit (3 times the horizon radius). Not to scale or not real: the S-star orbits (the real S2 orbit is about 1,000 AU wide, far bigger than this scene) and the bright thin disc, which Sgr A* does not have today. Orbits and the probe are sped up.';
     };
   }
@@ -732,7 +715,6 @@ WORLD_EXT.push(async FR2 => {
   EXT_LANDMARKS.push({ label: 'The Sun', D: 3e9, frame: sun, go: then => flyTo(sun, new V3(), 3e9, then) });
   EXT_LANDMARKS.push(inside('Inside the Sun (cut-away)', 1.2e9, new V3(.1, .08, .08)));
   EXT_LANDMARKS.push(inside('The Sun\'s core', 2.6e8, new V3(.05, .04, .04)));
-  { const _fly = flyTo; window.flyTo = function (...a) { try { closeInfo(); } catch (e) { } return _fly.apply(this, a); }; } // an open card describes where you were: close it when a flight starts
   // the ruler stop "Oort cloud" is set by world_build.js inside the neighbourhood frame, where no Oort cloud is drawn: put it inside the solar-system frame
   let tries = 0; const hook = setInterval(() => {
     if (typeof LANDMARKS === 'undefined' || !LANDMARKS.length) { if (++tries > 200) clearInterval(hook); return; }
@@ -749,7 +731,7 @@ WORLD_EXT.push(async FR2 => {
     let si = 0; const apply = () => { timeSpeed = speeds[si][0]; bs.textContent = speeds[si][1]; };
     bs.title = 'Time speed: click to cycle through forward, paused and backward speeds; the date is in UTC'; bs.onclick = () => { si = (si + 1) % speeds.length; apply(); };
     bn.title = 'Set the clock to the present moment (the app starts at 12:00 UTC today)';
-    const ck = document.getElementById('capK'); if (ck) ck.style.whiteSpace = 'nowrap'; const tt = document.getElementById('timeT'); if (tt) tt.style.whiteSpace = 'nowrap'; const tb = document.getElementById('timebar'); if (tb) tb.style.cssText += ';display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;align-items:center';
+    const tt = document.getElementById('timeT'); if (tt) tt.style.whiteSpace = 'nowrap'; const tb = document.getElementById('timebar'); if (tb) tb.style.cssText += ';display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;align-items:center';
     const dt = document.createElement('input'); dt.type = 'date'; dt.id = 'timeDate'; dt.title = 'Jump to a date (12:00 UTC)'; dt.setAttribute('aria-label', 'Jump to a date'); dt.style.cssText = 'font:inherit;font-size:12px;padding:2px 4px;border:1px solid var(--rule);border-radius:3px;background:var(--paper);color:var(--ink);width:118px';
     bn.after(dt);
     dt.onchange = () => { if (dt.value) { const [y, m, d] = dt.value.split('-').map(Number); simTime = Date.UTC(y, m - 1, d, 12, 0, 0); timeSpeed = 0; si = 6; apply(); } };

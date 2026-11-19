@@ -43,7 +43,7 @@ async function buildWorld() {
     const rc = new THREE.Raycaster(new V3(.6, 1.15, 3).add(park.root.position), new V3(0, 0, -1)); const hit = rc.intersectObject(h, true)[0];
     if (hit) { skin.pos.copy(hit.point).sub(park.root.position); skin.quat.setFromUnitVectors(new V3(0, 1, 0), new V3(0, 0, 1)); }
   };
-  FR.skin = skin;
+  skin.faceUp = true; FR.skin = skin;
   const cell = skin.addChild(new Frame({ type: 'cell', name: 'Skin cell', unit: 1e-6, radius: 16, r1: 2.5e-4, pos: new V3(0, -12, 0), opts: { type: "animal" } }));
   FR.cell = cell;
   const dna = cell.addChild(new Frame({ type: 'dna', name: 'DNA', unit: 1e-9, radius: 30, r1: 2.5e-7 }));

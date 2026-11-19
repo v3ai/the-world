@@ -33,9 +33,6 @@
    },
    "do": [
     {
-     "hideBody": true
-    },
-    {
      "mode": "coat",
      "thing": "dog"
     }
@@ -66,9 +63,6 @@
     }
    },
    "do": [
-    {
-     "hideBody": true
-    },
     {
      "mode": "cut_nose",
      "thing": "dog"
@@ -111,9 +105,6 @@
     }
    },
    "do": [
-    {
-     "hideBody": true
-    },
     {
      "mode": "cut_nose",
      "thing": "dog"
@@ -167,9 +158,6 @@
    ],
    "do": [
     {
-     "hideBody": true
-    },
-    {
      "mode": "cut_nose",
      "thing": "dog"
     },
@@ -207,11 +195,6 @@
      "label": "Smell neuron",
      "node": "dog_osn"
     }
-   ],
-   "do": [
-    {
-     "hideBody": true
-    }
    ]
   },
   {
@@ -225,9 +208,6 @@
     }
    },
    "do": [
-    {
-     "hideBody": true
-    },
     {
      "mode": "nerves",
      "thing": "dog"
