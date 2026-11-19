@@ -81,6 +81,8 @@ for i in ('dog_turb_olf', 'dog_osn'):
 fix('dog_turb_olf', 'deeper', 'A dog has about 800 working smell receptor genes, people about 400.', 'A dog has about 870 intact smell-receptor genes, people about 330 (calculated from gene counts and pseudogene fractions in two papers); the rest are pseudogenes, broken copies.')
 fix('dog_osn', 'deeper', 'A dog has about 800 working receptor genes, a person about 400.', 'A dog has about 870 intact receptor genes, a person about 330 (calculated from gene counts and pseudogene fractions in two papers).')
 
+fact('dog', 'Weight (model)', '≈ 30 kg (AKC: males 29-36 kg)')
+fact('dog_heart', 'Heart mass / body mass', '≈ 0.6-1.1 % (30 normal dogs)')
 # ---------------------------------------------------------------- new cards
 N('dog_fill', 'Soft tissue (the stand-in in the cut view)', 'structure', .5, ['dog_muscles'],
   'In the "Cut in half" view the grey-pink filling between the drawn organs, muscles and bones stands for everything the model does not draw: fat, connective tissue, small vessels, glands and lymph nodes.',
