@@ -1,0 +1,192 @@
+{
+ "cell": "plant",
+ "id": "pond_film",
+ "tag": "At the surface film",
+ "title": "The surface film and a skater's leg",
+ "node": "pond_surface_film",
+ "blurb": "A cut through the water surface where a pond skater's leg rests on it: the leg, its water-repelling hairs, the air trapped between them, and the water below. Click each part.",
+ "note": "Schematic and not to scale in the parts that matter. The leg width, the hair length and thickness and their number are illustrative (the real hairs are needle-like, thousands to each square millimetre, and carry grooves far finer than this scene can draw). The water is a block: its molecules are about 0.3 nm across, ten thousand times smaller than the finest thing here. The surface film is not a skin of different stuff; it is the top few layers of water molecules, held together by hydrogen bonds. Click the water to see one of its molecules.",
+ "bg": "#eaf1f2",
+ "center": [
+  0,
+  5,
+  0
+ ],
+ "D_um": 300,
+ "labels": [
+  {
+   "text": "Leg of a pond skater",
+   "at": [
+    -120,
+    75,
+    40
+   ],
+   "pop": "leg"
+  },
+  {
+   "text": "Water-repelling hairs",
+   "at": [
+    -120,
+    25,
+    40
+   ],
+   "pop": "hairs"
+  },
+  {
+   "text": "The surface film",
+   "at": [
+    -120,
+    -6,
+    40
+   ],
+   "pop": "film"
+  },
+  {
+   "text": "Water",
+   "at": [
+    -120,
+    -40,
+    40
+   ],
+   "pop": "water"
+  }
+ ],
+ "populations": [
+  {
+   "id": "leg",
+   "name": "Leg of a pond skater",
+   "node": "pond_skater_legs",
+   "shape": "tube_x",
+   "size": [
+    240,
+    60,
+    60
+   ],
+   "color": "#4a3b2c",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       60,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "hairs",
+   "name": "Water-repelling hairs on the leg",
+   "node": "pond_leg_hairs",
+   "shape": "cylinder",
+   "size": [
+    3,
+    30,
+    3
+   ],
+   "color": "#7a6650",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -100,
+     14,
+     -45
+    ],
+    "n": [
+     21,
+     1,
+     10
+    ],
+    "step": [
+     10,
+     1,
+     10
+    ],
+    "jitter": 0.35
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "n_acetylglucosamine",
+    "name": "N-acetylglucosamine",
+    "button": "See the molecule: the unit of chitin, the leg's skeleton material"
+   }
+  },
+  {
+   "id": "film",
+   "name": "The surface film",
+   "node": "pond_surface_film",
+   "shape": "rbox",
+   "size": [
+    250,
+    2,
+    130
+   ],
+   "color": "#e4f1f6",
+   "opacity": 0.9,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       -1,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "water",
+    "name": "Water",
+    "button": "See a water molecule"
+   }
+  },
+  {
+   "id": "water",
+   "name": "Water below the film",
+   "node": "pond_surface_film",
+   "shape": "rbox",
+   "size": [
+    250,
+    80,
+    130
+   ],
+   "color": "#8ec5d6",
+   "opacity": 0.4,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       -42,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "water",
+    "name": "Water",
+    "button": "See a water molecule"
+   }
+  }
+ ]
+}
