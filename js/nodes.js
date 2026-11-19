@@ -81,7 +81,7 @@ function sysOf(p) { return p.system === 'integumentary' || p.id === 'skin' ? 'sk
 FT.body = {
   build(F) {
     F.add(new THREE.HemisphereLight(0xffffff, 0x8899aa, .55)); const kl = new THREE.DirectionalLight(0xffffff, .85); kl.position.set(1.5, 3, 2.5); F.add(kl);
-    F.parts = {}; F.mode = store.get('bodyMode', 'auto'); F.illo = true; F.hidden = new Set(); F.sel = null; F.layerName = '';
+    F.parts = {}; F.mode = store.get('bodyMode', 'auto'); F.illo = true; F.layered = true; F.hidden = new Set(); F.sel = null; F.layerName = '';
     F.readyP = new Promise(res => { F._ready = res; });
     F.chooseHit = cands => bodyChooseHit(F, cands);
     const grp = new THREE.Group(); F.add(grp); F.grp = grp;
@@ -333,9 +333,15 @@ function chipList(ids, label) {
 }
 function kindLine(n) { const k = (n.kind || '').replace(/_/g, ' '); const K = k ? k[0].toUpperCase() + k.slice(1) : ''; return n.scale_m && n.id !== 'skin' ? `${K}${K ? ', ' : ''}about ${roughLen(n.scale_m)} across` : K; }
 function roughLen(m) { return fmtLen(m).replace(/^(\d+)\.\d+ /, '$1 ').replace(/^(\d)\.(\d)\d /, '$1.$2 '); }
+/* Extension points for other frame types (things.js uses them; nothing here knows about things):
+   CARD_HOOKS: fn(id, h, node) runs after a node card has been built (add buttons, notes).
+   GOTO_HOOKS: fn(id) runs first in goToNode and returns true when it handled the jump.
+   A frame with `layered = true` (and parts {id: {g, p}}, hidden Set, sel, reveal) gets the body's click features: the core sample, "Hide this", "Peel to here".
+   A frame may define cardMadeOf(h, node) -> {label, go()} | null to replace the card's "See what it is made of" button. */
+const CARD_HOOKS = [], GOTO_HOOKS = [];
 function showBodyNode(id, h) {
   const n = NODE[id]; if (!n) return false;
-  const BF = h && h.frame && h.frame.type === 'body' && h.frame.parts ? h.frame : null; // a click on the body: answer "what is under here?"
+  const BF = h && h.frame && h.frame.layered && h.frame.parts ? h.frame : null; // a click on a layered frame (the body, a thing): answer "what is under here?"
   if (BF) { if (h.ndc && !h.stack) h.stack = bodyCoreSample(BF, h); BF.sel = h.obj && h.obj.userData.part ? h.obj.userData.id : null; }
   else if (FR.body) FR.body.sel = null;
   if (FR.body && h) FR.body.reveal = null;
@@ -347,17 +353,19 @@ function showBodyNode(id, h) {
   const canLook = h && h.frame && h.frame.children && h.frame.children.some(c => c.type === 'organ' && c.opts.organ === id);
   const hideable = BF && h.obj && h.obj.userData.part;
   const chips = (ids, cls = 'chip nd', attr = 'data-n') => chipsHtml((ids || []).filter(Boolean).map(i => `<button class="${cls}" ${attr}="${i}">${nodeTitle(i)}</button>`));
+  const mo = h && h.frame && h.frame.cardMadeOf ? h.frame.cardMadeOf(h, n) : undefined; // a frame may replace the made-of button (things: the part's own `deeper`)
   const tw = (typeof TEAR !== 'undefined' && (TEAR[id] || (n.where && TEAR[n.where]))) || (n.where && /^(place|mol|crystal):/.test(n.where));
   const spec = {
     tag: kindLine(n), title: n.title, figure: '<div class="vzh" id="vizHost"></div>', core: BF && h.stack ? coreHtml(BF, h) : '', track: trackNav(id),
     basics, deeper: L.deeper, expert: L.expert, facts: n.facts,
-    buttons: (h ? `<button class="zoom" id="zoomBtn">${canLook ? 'Look inside' : 'Zoom in'}</button>` : '') + (h && n.made_of && n.made_of.length ? `<button class="zoom alt" id="madeBtn"><span>${BF ? 'Look at its tissue' : 'See what it is made of'}</span><span>▾</span></button>` : '') + (hideable ? `<button class="zoom alt" id="hideBtn">Hide this</button>` : '')
+    buttons: (h ? `<button class="zoom" id="zoomBtn">${canLook ? 'Look inside' : 'Zoom in'}</button>` : '') + (mo !== undefined ? (mo ? `<button class="zoom alt" id="madeBtn"><span>${mo.label}</span><span>▾</span></button>` : '') : h && n.made_of && n.made_of.length ? `<button class="zoom alt" id="madeBtn"><span>${BF && BF.type === 'body' ? 'Look at its tissue' : 'See what it is made of'}</span><span>▾</span></button>` : '') + (hideable ? `<button class="zoom alt" id="hideBtn">Hide this</button>` : '')
       + (n.lab ? `<button class="zoom lab" id="labBtn">${labAvailable(n.lab.id) ? 'Open in the ' : 'Planned: '}${LAB_NAMES[n.lab.id] || n.lab.id}</button>` : '') + (tw && !h ? `<button class="zoom alt" id="whereBtn">Show where it is</button>` : ''),
-    after: (/^lung_[lr]$/.test(id) && (BF || canLook || (h && h.frame && h.frame.type === 'organ')) ? `<p class="cnote">${LUNG_NOTE}</p>` : '') + (BF && n.made_of && n.made_of.length && !canLook ? `<p class="cnote">There is no cut-open view of this part yet. "Look at its tissue" shows an illustration of the kind of tissue it is made of, not a microscope image.</p>` : ''),
+    after: (/^lung_[lr]$/.test(id) && (BF && BF.type === 'body' || canLook || (h && h.frame && h.frame.type === 'organ')) ? `<p class="cnote">${LUNG_NOTE}</p>` : '') + (BF && BF.type === 'body' && mo === undefined && n.made_of && n.made_of.length && !canLook ? `<p class="cnote">There is no cut-open view of this part yet. "Look at its tissue" shows an illustration of the kind of tissue it is made of, not a microscope image.</p>` : ''),
     made: (n.parts && n.parts.length ? '<div class="rs">Parts</div>' + chips(n.parts) : '') + (n.made_of && n.made_of.length ? (n.parts && n.parts.length ? '<div class="rs">Made of</div>' : '') + chips(n.made_of) : ''),
     part: chips(n.parents),
     how: n.processes && n.processes.length ? chips(n.processes, 'chip pr', 'data-p') : '',
-    more: (n.needs && n.needs.length ? `<div class="refs"><div class="rh">Builds on</div>${chips(n.needs)}</div>` : '')
+    more: (n.related && n.related.some(i => NODE[i]) ? `<div class="refs"><div class="rh">Compare with</div>${chips(n.related.filter(i => NODE[i]))}</div>` : '')
+      + (n.needs && n.needs.length ? `<div class="refs"><div class="rh">Builds on</div>${chips(n.needs)}</div>` : '')
       + (n.molecules && n.molecules.length ? `<div class="refs"><div class="rh">Key molecules</div>${chips(n.molecules.map(m => NODE[m] ? m : null))}</div>` : '')
       + (n.ext && n.ext.length ? `<div class="refs"><div class="rh">Further reading</div>${n.ext.map(e => `<a class="ref" href="${e.url}" target="_blank" rel="noopener"><b>${e.title}</b></a>`).join('')}</div>` : ''),
     books: n.refs && n.refs.length ? n.refs.map(r => bookRef(r[0], r[1])).join('') : '',
@@ -367,11 +375,13 @@ function showBodyNode(id, h) {
   openPanel(cardHtml(spec), { key: 'node:' + id, reopen: () => showBodyNode(id, h) });
   mountViz($('#vizHost'), id); wireTrackNav();
   const zb = $('#zoomBtn'); if (zb) zb.onclick = () => { const ch = h.frame.children.find(c => c.type === 'organ' && c.opts.organ === id); if (ch) flyTo(ch, new V3(), ch.opts.R * 2.2); else zoomIntoHit(h); };
-  const mb = $('#madeBtn'); if (mb) mb.onclick = () => { closeInfo(); const f = tissueFrame(n.made_of[0], h.pointLocal || h.frame.C, id); f.dynamic = true; f.keep = performance.now() + 60000; h.frame.addChild(f); f.ensure(); flyTo(f, new V3(), 4e-4); };
+  const mb = $('#madeBtn'); if (mb && mo) mb.onclick = () => { closeInfo(); mo.go(); };
+  else if (mb) mb.onclick = () => { closeInfo(); const f = tissueFrame(n.made_of[0], h.pointLocal || h.frame.C, id); f.dynamic = true; f.keep = performance.now() + 60000; h.frame.addChild(f); f.ensure(); flyTo(f, new V3(), 4e-4); };
   if (BF && h.stack) wireCore(BF, h);
   const hb = $('#hideBtn'); if (hb) hb.onclick = () => bodyHide(BF, h.obj.userData.id);
   const lb = $('#labBtn'); if (lb) lb.onclick = () => openLab(n.lab.id, n.lab.preset, n.title);
   const wb = $('#whereBtn'); if (wb) wb.onclick = () => goToNode(id);
+  CARD_HOOKS.forEach(fn => fn(id, h, n));
   markSeen(id);
   return true;
 }
@@ -407,6 +417,7 @@ const GOTO_NEAR = { thyroid: 'larynx' }; // body nodes with no mesh of their own
 /* jump to a node from anywhere (search, chips): fly to the body part if it has a mesh, else show its card */
 function goToNode(id) {
   const n = NODE[id]; if (!n) return;
+  for (const fn of GOTO_HOOKS) if (fn(id)) return;
   const tw = TEAR[id] || (n.where && TEAR[n.where]) || (n.hotspot && TEAR[n.hotspot.of]);
   if (tw) { showBodyNode(id, null); flyTo(tw.frame, tw.pos, tw.D); return; }
   if (n.where && !TEAR[n.where] && n.where !== id && placeGo(n.where)) { setTimeout(() => showBodyNode(id, null), 0); return; }

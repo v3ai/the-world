@@ -1,4 +1,6 @@
 {
+ "tag": "On a leaf surface",
+ "cell": "plant",
  "id": "flower_leaf",
  "title": "The surface of a buttercup leaf",
  "node": "rn_leaf_epidermis",

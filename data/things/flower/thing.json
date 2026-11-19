@@ -54,6 +54,55 @@
   "near_m": 3.2,
   "far_m": 16
  },
+ "anim": [
+  {
+   "kind": "sway",
+   "systems": [
+    "leaves",
+    "stems",
+    "flowers",
+    "buds",
+    "fruit"
+   ],
+   "from_y": 0,
+   "to_y": 0.6,
+   "amp_m": 0.012,
+   "hz": 0.45,
+   "label": "Stems and leaves"
+  }
+ ],
+ "variation": {
+  "scale": [
+   0.88,
+   1.12
+  ],
+  "yaw": true,
+  "lean_deg": 4,
+  "groups": [
+   {
+    "id": "open_flowers",
+    "n": 4,
+    "keep": [
+     2,
+     4
+    ],
+    "always": [
+     0
+    ],
+    "members": {
+     "petals": 5,
+     "sepals": 5,
+     "scales": 5,
+     "pits": 5,
+     "filaments": 50,
+     "anthers": 50,
+     "ovaries": 25,
+     "styles": 25,
+     "discs": 1
+    }
+   }
+  ]
+ },
  "sites": {
   "open": [
    [
@@ -223,8 +272,8 @@
    ],
    "label": "Receptacle: where all the parts are attached",
    "r": 0.0006,
+   "pivot": "wood",
    "modes": [
-    "wood",
     "half"
    ]
   },
@@ -238,8 +287,8 @@
    ],
    "label": "Anther: pollen sacs (click it, then look inside)",
    "r": 0.0003,
+   "pivot": "wood",
    "modes": [
-    "wood",
     "half"
    ]
   },
@@ -253,8 +302,8 @@
    ],
    "label": "Carpel: ovary with one ovule (click it, then look inside)",
    "r": 0.0003,
+   "pivot": "wood",
    "modes": [
-    "wood",
     "half"
    ]
   },
@@ -268,8 +317,8 @@
    ],
    "label": "Nectary: pit and scale at the petal base",
    "r": 0.0004,
+   "pivot": "wood",
    "modes": [
-    "wood",
     "half"
    ]
   },
@@ -283,8 +332,8 @@
    ],
    "label": "Petal: why it shines (click it, then look inside)",
    "r": 0.0006,
+   "pivot": "wood",
    "modes": [
-    "wood",
     "half"
    ]
   },

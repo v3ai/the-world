@@ -10,6 +10,8 @@
  ],
  "D_um": 330,
  "blurb": "A slice through the back of the eye. Light comes from the top, passes the nerve cells, reaches the rods and cones, and the part that gets through is reflected back by the tapetum. Click a layer.",
+ "tag": "Inside a dog's eye",
+ "cell": "animal",
  "note": "A schematic of the order of the layers in a dog's eye. The cell numbers and thicknesses are illustrative. The rod-to-cone ratio is the only measured number: about 23 rods per cone at the sharpest spot in a beagle retina; the scene draws about 20 to 1. The tapetum has 9-20 cell layers in a real dog and 3 are drawn.",
  "labels": [
   {

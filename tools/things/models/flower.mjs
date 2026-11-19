@@ -262,7 +262,7 @@ export default function build() {
   // ===================== far / mid stand-ins: already covered by discs, balls, mid leaves =====================
 
   // ===================== thing description =====================
-  const hs = (id, node, at, label, r = .0003) => ({ id, node, at: at.map(v => +v.toFixed(5)), label, r, modes: ['wood', 'half'] });
+  const hs = (id, node, at, label, r = .0003) => ({ id, node, at: at.map(v => +v.toFixed(5)), label, r, pivot: 'wood', modes: ['half'] });
   const cc0 = cutCarpels[1], pC = domeAt(cc0.beta, 0), carpelAt = [pC[0] + .0007, pC[1] + O[1] + .0005, .0004];
   const thing = {
     id: 'flower', title: 'Meadow buttercup', label: 'Meadow buttercup', scientific: 'Ranunculus acris', node: 'rn_acris', main_part: 'stems', label_first_only: true,
@@ -271,6 +271,8 @@ export default function build() {
     size_m: { height: M.height, flower_width: M.flowerD }, height_m: M.height, radius_m: .8, draw_m: 120, seed: 2031,
     systems: [{ id: 'leaves', label: 'Leaves' }, { id: 'stems', label: 'Stems' }, { id: 'flowers', label: 'Flowers' }, { id: 'buds', label: 'Buds' }, { id: 'fruit', label: 'Fruit' }, { id: 'roots', label: 'Roots' }, { id: 'soil', label: 'Soil' }, { id: 'half', label: 'Half flower' }],
     lod: { near_m: 3.2, far_m: 16 },
+    anim: [{ kind: 'sway', systems: ['leaves', 'stems', 'flowers', 'buds', 'fruit'], from_y: 0, to_y: .6, amp_m: .012, hz: .45, label: 'Stems and leaves' }],   // a light breeze (shader only); illustrative
+    variation: { scale: [.88, 1.12], yaw: true, lean_deg: 4, groups: [{ id: 'open_flowers', n: 4, keep: [2, 4], always: [0], members: { petals: 5, sepals: 5, scales: 5, pits: 5, filaments: 50, anthers: 50, ovaries: 25, styles: 25, discs: 1 } }] },   // per-placement seed: size, heading, lean, and how many of the four open flowers are open (the first always is)
     sites: { open: openF.map(f => f.E.map(v => +v.toFixed(4))), bud: budF.map(f => f.E.map(v => +v.toFixed(4))), fruit: fruitF.map(f => f.E.map(v => +v.toFixed(4))) },
     shadow: { radius_m: .2, opacity: .55 },
     modes: [

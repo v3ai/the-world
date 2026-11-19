@@ -267,6 +267,7 @@
   "parts": 6,
   "uniqueMeshTris": 37559,
   "nearTris": 70908,
+  "midTris": 19811,
   "farTris": 19811
  }
 }

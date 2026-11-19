@@ -340,13 +340,18 @@
    "id": "bee",
    "placements": [
     {
-     "at": [
-      2.7013,
-      2.1946
-     ],
+     "on": {
+      "thing": "flower",
+      "placement": 0,
+      "at": [
+       0.1625,
+       0.3995,
+       0.0635
+      ],
+      "note": "top of the stamens of the first open flower (flower 0) of the first buttercup plant: its anther centroid (0.162, 0.397, 0.063) in the flower model's coordinates, lifted to the highest anther at y = 0.399"
+     },
      "rot": -30,
-     "scale": 1,
-     "y": 0
+     "scale": 1
     }
    ]
   }

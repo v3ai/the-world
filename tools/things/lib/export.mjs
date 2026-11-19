@@ -44,3 +44,36 @@ export function assemble(model) {
   for (const md of out.modes || []) for (const s of Object.keys(md.show || {})) if (s !== '*' && !syss.has(s)) problems.push(`mode ${md.id}: unknown system ${s}`);
   return { thing: out, mesh: mj, problems };
 }
+
+/* ---------------------------------------------------------------------------------------------------------------
+   Format 2 (compact binary): mesh.json holds only the index (offsets, scales, flows); mesh.bin holds the numbers.
+   Per mesh:      pos   Int16 x3 per vertex (position = pos * scale + offset), 4-byte aligned
+                  idx   triangle indices, delta from the previous index, zigzag, LEB128 varint (about 1.2 bytes per index)
+                  shade Uint8 per vertex (optional)
+   Per instances: p Int16 x3 per instance (min + p * pscale per axis), q Int16 x4 (quaternion x y z w, / 32767), s Float32 x1 or x3 (stride 8 or 10)
+   Everything is little-endian. Loader: js/things.js (thLoadBundle, thGeo, thInstT). */
+export function pack(mj) {
+  const chunks = []; let size = 0;
+  const put = (u8) => { const off = size, pad = (4 - (u8.length % 4)) % 4; chunks.push(u8); if (pad) chunks.push(new Uint8Array(pad)); size += u8.length + pad; return [off, u8.length]; };
+  const out = { format: 2, bin: 'mesh.bin', meshes: {}, instances: {}, flows: mj.flows || {} };
+  for (const [k, q] of Object.entries(mj.meshes)) {
+    const nv = q.pos.length / 3, ni = q.idx.length, pos = new Int16Array(q.pos), vb = [];
+    let prev = 0; for (let i = 0; i < ni; i++) { let d = q.idx[i] - prev; prev = q.idx[i]; let z = d < 0 ? (-d * 2 - 1) : d * 2; while (z >= 128) { vb.push((z & 127) | 128); z = Math.floor(z / 128); } vb.push(z); }
+    const e = { scale: q.scale, offset: q.offset, nv, ni, pos: put(new Uint8Array(pos.buffer)), idx: put(Uint8Array.from(vb)) };
+    if (q.shade) e.shade = put(Uint8Array.from(q.shade));
+    out.meshes[k] = e;
+  }
+  for (const [k, I] of Object.entries(mj.instances)) {
+    const st = I.stride, n = I.n, t = I.t, mn = [1e30, 1e30, 1e30], mx = [-1e30, -1e30, -1e30];
+    for (let i = 0; i < n; i++) for (let a = 0; a < 3; a++) { mn[a] = Math.min(mn[a], t[i * st + a]); mx[a] = Math.max(mx[a], t[i * st + a]); }
+    const ps = [0, 1, 2].map(a => Math.max(mx[a] - mn[a], 1e-9) / 65535), P = new Uint16Array(n * 3), Q = new Int16Array(n * 4), S = new Float32Array(n * (st - 7));
+    for (let i = 0; i < n; i++) {
+      for (let a = 0; a < 3; a++) P[i * 3 + a] = Math.round((t[i * st + a] - mn[a]) / ps[a]);
+      let qq = t.slice(i * st + 3, i * st + 7); const l = Math.hypot(...qq) || 1; qq = qq.map(v => v / l);
+      for (let a = 0; a < 4; a++) Q[i * 4 + a] = Math.round(qq[a] * 32767);
+      for (let a = 0; a < st - 7; a++) S[i * (st - 7) + a] = t[i * st + 7 + a];
+    }
+    out.instances[k] = { mesh: I.mesh, stride: st, n, min: mn.map(v => +v.toPrecision(9)), pscale: ps.map(v => +v.toPrecision(9)), p: put(new Uint8Array(P.buffer)), q: put(new Uint8Array(Q.buffer)), s: put(new Uint8Array(S.buffer)) };
+  }
+  return { json: out, bin: Buffer.concat(chunks.map(c => Buffer.from(c.buffer, c.byteOffset, c.length))) };
+}

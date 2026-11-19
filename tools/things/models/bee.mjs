@@ -4,7 +4,7 @@
 import * as L from '../lib/index.mjs';
 
 const MM = .001;
-const FLOWER_Y = .3235;   // metres: top of the centre disc of flower 0 in the park (see place.json)
+const FLOWER_Y = 0;   // metres: the bee stands at the origin; the park index puts her on a flower (data/things/index.json: placement `on`)
 // ---- measurements (sources in tools/things/content/bee_nodes.py and the report) ----
 const M = {
   bodyLen: 14,          // worker body length 12-15 mm (life-cycle table, Wikipedia "Honey bee life cycle"); model ~14 mm head to abdomen tip, proboscis folded out of count
@@ -370,21 +370,17 @@ export default function build() {
     ],
     parts,
   };
-  // Picking: the framework takes the highest priority along the whole ray, not the nearest hit, so priorities are set by layer: equal inside a layer (nearest wins),
-  // internal layers above the shell (so that a click in a see-through view reaches the organ), hairs below the body (a click on fur opens the body part under it).
-  const PRI = { cuticle: 1.5, wings: 1.5, hairs: 1.2, muscles: 2, organs: 2, nerves: 2, tracheal: 2 };
-  for (const p of thing.parts) p.priority = PRI[p.system];
+  // Picking: the framework takes the nearest visible un-clipped hit (like the human), so no per-layer priorities are needed.
   // cut-face patterns per part: muscles, nerves, gut ... (cutFace keys above)
   const cf = { dlm: 'muscle', dvm: 'muscle', leg_muscles: 'muscle', jaw_muscles: 'muscle', brain: 'nerve', optic_lobes: 'nerve', antennal_lobes: 'nerve', mushroom_bodies: 'nerve', ganglia: 'nerve', nerves: 'nerve', crop: 'gut', midgut: 'gut', hindgut: 'gut', oesophagus: 'gut', proventriculus: 'gut', hpg: 'gland', venom_sac: 'gland', ovaries: 'gland', wax: 'gland', nasonov: 'gland', heart: 'heart', air_sacs: 'air', trachea: 'air' };
   for (const p of thing.parts) if (cf[p.id]) p.cutFace = cf[p.id];
-  // The framework puts the frame origin on the ground and does not count a placement's `y` in the frame radius, so the whole bee is lifted to the height
-  // of her flower inside the model instead (feet at y = FLOWER_Y, the top of the flower's centre disc in the park).
-  const instMeshes = new Set(Object.values(instances).map(i => i.mesh));
-  for (const k of Object.keys(meshes)) if (!instMeshes.has(k)) { const sh = meshes[k].shade; meshes[k] = L.translateMesh(meshes[k], [0, FLOWER_Y, 0]); if (sh) meshes[k].shade = sh; }
-  for (const I of Object.values(instances)) for (const t of I.list) t.p = [t.p[0], t.p[1] + FLOWER_Y, t.p[2]];
-  for (const h of thing.hotspots) h.at[1] = +(h.at[1] + FLOWER_Y).toFixed(6);
-  thing.cut.at = [.002, .005 + FLOWER_Y, 0]; for (const m of thing.modes) if (m.cut && m.cut.at) m.cut.at = [m.cut.at[0] * MM, m.cut.at[1] * MM + FLOWER_Y, 0];
-  thing.height_m = FLOWER_Y + .0075; thing.radius_m = FLOWER_Y + .0125; thing.flower_y = FLOWER_Y;
+  // The placement's `y` is part of the frame now, so nothing is lifted inside the model: feet at y = 0 (the index puts the bee on a flower).
+  thing.cut.at = [.002, .005, 0]; for (const m of thing.modes) if (m.cut && m.cut.at) { m.cut.at = [m.cut.at[0] * MM, m.cut.at[1] * MM, 0]; m.cut.normal = [1, 0, 0]; }   // three transverse cuts, each at its own place along the body
+  thing.height_m = .0075; thing.radius_m = .0125; thing.label = 'Honey bee, 14 mm'; thing.label_m = 40;
+  thing.ruler = { label: 'Honey bee (14 mm)', D: .05, at: [.001, .005, 0] };
+  // Auto peels with what is under the view: exoskeleton, then muscles, then the organs, nerves and breathing tubes
+  thing.auto = { label: 'Auto', layers: true, scale: .01 };
+  thing.layers = [{ id: 'shell', label: 'exoskeleton', systems: ['cuticle', 'wings', 'hairs'], ghost: .08 }, { id: 'muscles', label: 'muscles', systems: ['muscles'], ghost: .1, see_through: .4 }, { id: 'inside', label: 'organs', systems: ['organs', 'nerves', 'tracheal'], ghost: .1 }];
   console.log(log.join('\n'));
   return { thing, meshes, instances };
 }
