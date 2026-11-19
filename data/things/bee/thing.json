@@ -109,6 +109,47 @@
     ]
    },
    "hotspots": true,
+   "legend": {
+    "title": "Colours on the cut face",
+    "items": [
+     {
+      "name": "Exoskeleton",
+      "color": "#7a5632",
+      "node": "bee_cuticle"
+     },
+     {
+      "name": "Flight and other muscle",
+      "color": "#c0463a",
+      "node": "bee_flight_muscles"
+     },
+     {
+      "name": "Brain and nerves",
+      "color": "#f2e8cf",
+      "node": "bee_brain"
+     },
+     {
+      "name": "Gut",
+      "color": "#e0b25a",
+      "node": "bee_midgut"
+     },
+     {
+      "name": "Glands",
+      "color": "#f6e3a8",
+      "node": "bee_hypopharyngeal_gland"
+     },
+     {
+      "name": "Heart",
+      "color": "#d25a4a",
+      "node": "bee_heart"
+     },
+     {
+      "name": "Air tubes and sacs",
+      "color": "#eaf4f8",
+      "node": "bee_tracheae"
+     }
+    ],
+    "note": "These colours only mark the kind of tissue; they are not what the tissue looks like."
+   },
    "show": {
     "cuticle": 1,
     "wings": 0.25,
@@ -130,6 +171,47 @@
     ]
    },
    "hotspots": true,
+   "legend": {
+    "title": "Colours on the cut face",
+    "items": [
+     {
+      "name": "Exoskeleton",
+      "color": "#7a5632",
+      "node": "bee_cuticle"
+     },
+     {
+      "name": "Flight and other muscle",
+      "color": "#c0463a",
+      "node": "bee_flight_muscles"
+     },
+     {
+      "name": "Brain and nerves",
+      "color": "#f2e8cf",
+      "node": "bee_brain"
+     },
+     {
+      "name": "Gut",
+      "color": "#e0b25a",
+      "node": "bee_midgut"
+     },
+     {
+      "name": "Glands",
+      "color": "#f6e3a8",
+      "node": "bee_hypopharyngeal_gland"
+     },
+     {
+      "name": "Heart",
+      "color": "#d25a4a",
+      "node": "bee_heart"
+     },
+     {
+      "name": "Air tubes and sacs",
+      "color": "#eaf4f8",
+      "node": "bee_tracheae"
+     }
+    ],
+    "note": "These colours only mark the kind of tissue; they are not what the tissue looks like."
+   },
    "show": {
     "cuticle": 1,
     "wings": 0.25,
@@ -151,6 +233,47 @@
     ]
    },
    "hotspots": true,
+   "legend": {
+    "title": "Colours on the cut face",
+    "items": [
+     {
+      "name": "Exoskeleton",
+      "color": "#7a5632",
+      "node": "bee_cuticle"
+     },
+     {
+      "name": "Flight and other muscle",
+      "color": "#c0463a",
+      "node": "bee_flight_muscles"
+     },
+     {
+      "name": "Brain and nerves",
+      "color": "#f2e8cf",
+      "node": "bee_brain"
+     },
+     {
+      "name": "Gut",
+      "color": "#e0b25a",
+      "node": "bee_midgut"
+     },
+     {
+      "name": "Glands",
+      "color": "#f6e3a8",
+      "node": "bee_hypopharyngeal_gland"
+     },
+     {
+      "name": "Heart",
+      "color": "#d25a4a",
+      "node": "bee_heart"
+     },
+     {
+      "name": "Air tubes and sacs",
+      "color": "#eaf4f8",
+      "node": "bee_tracheae"
+     }
+    ],
+    "note": "These colours only mark the kind of tissue; they are not what the tissue looks like."
+   },
    "show": {
     "cuticle": 1,
     "wings": 0.25,
@@ -454,7 +577,7 @@
    "name": "Head capsule",
    "system": "cuticle",
    "node": "bee_head",
-   "color": "#33261a",
+   "color": "#2a1f16",
    "mesh": "head",
    "lod": "near+mid",
    "priority": 1.5,
@@ -477,7 +600,7 @@
    "name": "Compound eye (left)",
    "system": "cuticle",
    "node": "bee_compound_eye",
-   "color": "#4a3326",
+   "color": "#86663f",
    "mesh": "eye_l",
    "lod": "near+mid",
    "priority": 1.5,
@@ -500,7 +623,7 @@
    "name": "Compound eye (right)",
    "system": "cuticle",
    "node": "bee_compound_eye",
-   "color": "#4a3326",
+   "color": "#86663f",
    "mesh": "eye_r",
    "lod": "near+mid",
    "priority": 1.5,
@@ -998,7 +1121,7 @@
    "name": "Pollen load",
    "system": "cuticle",
    "node": "bee_pollen_load",
-   "color": "#e5a928",
+   "color": "#d79a22",
    "mesh": "pollen",
    "lod": "near+mid",
    "priority": 1.5,
@@ -1007,8 +1130,8 @@
     0.3254,
     0
    ],
-   "radius": 0.0048,
-   "tris": 3824
+   "radius": 0.0049,
+   "tris": 3624
   },
   {
    "id": "cleaner",
@@ -1140,38 +1263,38 @@
    "name": "Body hairs (branched)",
    "system": "hairs",
    "node": "bee_hairs",
-   "color": "#c7ad7c",
+   "color": "#cdb88a",
    "instances": "hairs",
    "lod": "near",
    "tint": 0.25,
    "priority": 1.2,
    "center": [
-    0.0011,
-    0.3286,
+    0.0013,
+    0.3287,
     0
    ],
-   "radius": 0.0081,
-   "count": 2696,
-   "tris": 64704
+   "radius": 0.0083,
+   "count": 3518,
+   "tris": 84432
   },
   {
    "id": "hairs_mid",
    "name": "Body hairs (branched)",
    "system": "hairs",
    "node": "bee_hairs",
-   "color": "#c7ad7c",
+   "color": "#cdb88a",
    "instances": "hairs_mid",
    "lod": "mid",
    "tint": 0.2,
    "priority": 1.2,
    "center": [
-    0.0013,
-    0.3286,
+    0.0014,
+    0.3287,
     0
    ],
-   "radius": 0.0083,
-   "count": 702,
-   "tris": 16848
+   "radius": 0.0087,
+   "count": 901,
+   "tris": 21624
   },
   {
    "id": "body_far",
@@ -1702,9 +1825,9 @@
  "flower_y": 0.3235,
  "stats": {
   "parts": 68,
-  "uniqueMeshTris": 171470,
-  "nearTris": 157438,
-  "midTris": 109582,
+  "uniqueMeshTris": 171270,
+  "nearTris": 176966,
+  "midTris": 114158,
   "farTris": 6772
  }
 }

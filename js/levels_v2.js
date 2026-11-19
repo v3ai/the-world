@@ -891,7 +891,7 @@ BUILD.life = (c) => {
   }
   c.addLabel(flowers, 'Flowers', { offset: new V3(0, .8, 0) });
   // the honey bee is a data thing now (data/things/bee, placed from data/things/index.json); here only its park label and a ruler stop
-  { const beeAt = new THREE.Object3D(); beeAt.position.set(2.7013, .3235, 2.1946); g.add(beeAt); c.addLabel(beeAt, 'Honey bee, 14 mm', { offset: new V3(0, .5, 0) }); }
+  { const beeAt = new THREE.Object3D(); beeAt.position.set(2.7013, .3235, 2.1946); g.add(beeAt); const bl = c.addLabel(beeAt, 'Honey bee, 14 mm', { offset: new V3(0, .5, 0) }); bl.minSizeFn = () => cam.D > 8.5; }   // the thing's own name label takes over when the camera is within about 8 m
   // mushroom
   const mush = new THREE.Group(); mush.position.set(-3.4, 0, -1.6); mush.userData = { id: 'mushroom' }; g.add(mush); c.pickables.push(mush);
   const stem = new THREE.Mesh(new THREE.CylinderGeometry(.05, .07, .24, 10), smat(0xf3ead8)); stem.position.y = .12; mush.add(stem);

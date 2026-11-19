@@ -144,7 +144,7 @@ export default function build() {
       // corbicula: a smooth shallow dish on the outer face (the pollen basket), with a fringe of curved bristles round its rim
       const cc = add(add(mid, mul(u, ln * .08)), mul(nOut, .2)), dish = ell(cc, ln * .36, .42, .045, u, nOut); [lo, hi] = bb(cc, 1.4); corb.push(bnd(dish, lo, hi, .05, 1, 0));
       for (let i = 0; i < 26; i++) { const th = i / 26 * Math.PI * 2, pt = add(add(add(cc, mul(u, Math.cos(th) * ln * .36)), mul(w, Math.sin(th) * .42)), mul(nOut, .03)); const dir = norm(add(add(mul(nOut, .75), mul(w, Math.sin(th) * .65)), mul(u, Math.cos(th) * .3))); fringe.add(pt.map(v => v * MM), L.quatFromTo([0, 1, 0], dir), 1); }
-      const lc = add(cc, mul(nOut, .38)); load.push(bnd(L.noiseDisplace(ell(lc, ln * .34, .42, .36, u, nOut), { amp: .06, freq: 3, octaves: 2, seed: 9 }), ...bb(lc, 1.3), .08, 1));
+      const lc = add(cc, mul(nOut, .38)); load.push(bnd(L.noiseDisplace(ell(lc, ln * .3, .4, .42, u, nOut), { amp: .06, freq: 3, octaves: 2, seed: 9 }), ...bb(lc, 1.3), .08, 1));
       // broad first tarsal segment (the pollen press and combs live on its inner face)
       const b1 = zs(g.b1, s), bu = norm(sub(b1, b)), bn = norm(sub([0, 0, s], mul(bu, dot([0, 0, s], bu)))), bl = len(sub(b1, b)), bm = lerp3(b, b1, .5);
       [lo, hi] = bb(bm, bl); bas.push(bnd(L.smoothUnion(.08, ell(bm, bl * .58, .36, .12, bu, bn), ell(add(b, mul(bu, bl * .15)), bl * .2, .16, .15, bu, bn)), lo, hi, .07, 1));
@@ -174,8 +174,8 @@ export default function build() {
     return made;
   };
   const sphDir = () => R.unitVec();
-  const nT = placeHair(thoraxAll, [2.4, 5.2, 0], sphDir, 1500, p => R.range(.9, 1.5) * (p[1] > 5 ? 1 : .8), .5, 4, p => p[1] > 3.9);
-  const nH = placeHair(L.union(headS, eyesBoth), [6, 5.3, 0], sphDir, 300, () => R.range(.3, .55), .2, 3, p => p[1] > 3.8);
+  const nT = placeHair(thoraxAll, [2.4, 5.2, 0], sphDir, 2400, p => R.range(.65, 1.1) * (p[1] > 5 ? 1 : .8), .85, 4, p => p[1] > 3.9);
+  const nH = placeHair(L.union(headS, eyesBoth), [6, 5.3, 0], sphDir, 220, () => R.range(.25, .45), .4, 3, p => p[1] > 3.8);
   // abdomen: short hairs, denser in a band along the rear edge of each segment
   let nA = 0; for (let i = 0; i < M.nAbd; i++) for (let k = 0; k < 150; k++) { const x = segX[i] - R.range(.0, k % 3 ? .35 : 1.1), th = R.range(0, Math.PI * 2), dir = [0, Math.cos(th), Math.sin(th)], c = [x, 4.3 + (-3.7 - x) * -.05, 0], h = L.surfaceHit(abdS, add(c, mul(dir, 3.4)), mul(dir, -1), 8); if (!h) continue; const nn = L.normalAt(abdS, h.p), d2 = norm(add(mul(nn, .6), [-.6, 0, 0])), q = L.quatMul(L.quatFromTo([0, 1, 0], d2), L.quatAxisAngle([0, 1, 0], R.range(0, 6.28))), l = R.range(.28, .5), p = add(h.p, mul(nn, -.02)).map(v => v * MM); hairs.add(p, q, l); if (k % 4 === 0) hairsMid.add(p, q, l * 2); nA++; }
   instances.hairs = hairs; instances.hairs_mid = hairsMid; log.push(`hairs: thorax ${nT}, head ${nH}, abdomen ${nA}; mid ${hairsMid.count}`);
@@ -261,6 +261,10 @@ export default function build() {
   // ================= thing description =================
   const SYS = [{ id: 'cuticle', label: 'Exoskeleton' }, { id: 'wings', label: 'Wings' }, { id: 'hairs', label: 'Body hairs' }, { id: 'muscles', label: 'Muscles' }, { id: 'organs', label: 'Organs and glands' }, { id: 'nerves', label: 'Nervous system' }, { id: 'tracheal', label: 'Breathing tubes' }];
   const CUT_ALL = { cuticle: 1, wings: .25, muscles: 1, organs: 1, nerves: 1, tracheal: 1, hairs: 0 };
+  const CUT_LEGEND = { title: 'Colours on the cut face', items: [
+    { name: 'Exoskeleton', color: '#7a5632', node: 'bee_cuticle' }, { name: 'Flight and other muscle', color: '#c0463a', node: 'bee_flight_muscles' }, { name: 'Brain and nerves', color: '#f2e8cf', node: 'bee_brain' },
+    { name: 'Gut', color: '#e0b25a', node: 'bee_midgut' }, { name: 'Glands', color: '#f6e3a8', node: 'bee_hypopharyngeal_gland' }, { name: 'Heart', color: '#d25a4a', node: 'bee_heart' }, { name: 'Air tubes and sacs', color: '#eaf4f8', node: 'bee_tracheae' }],
+    note: 'These colours only mark the kind of tissue; they are not what the tissue looks like.' };
   const modes = [
     { id: 'outside', label: 'Outside', show: { cuticle: 1, wings: 1, hairs: 1 } },
     { id: 'shell', label: 'Exoskeleton only', show: { cuticle: 1, wings: 1 } },
@@ -268,11 +272,11 @@ export default function build() {
     { id: 'organs', label: 'Organs', show: { cuticle: .09, wings: .15, organs: 1 } },
     { id: 'nerves', label: 'Nerves', show: { cuticle: .09, nerves: 1 } },
     { id: 'breath', label: 'Breathing tubes', show: { cuticle: .09, tracheal: 1 } },
-    { id: 'cut_head', label: 'Cut open: head', cut: { at: [6, 5, 0] }, hotspots: true, show: CUT_ALL },
-    { id: 'cut_thorax', label: 'Cut open: thorax', cut: { at: [2.4, 5, 0] }, hotspots: true, show: CUT_ALL },
-    { id: 'cut_abdomen', label: 'Cut open: abdomen', cut: { at: [-3, 4, 0] }, hotspots: true, show: CUT_ALL },
+    { id: 'cut_head', label: 'Cut open: head', cut: { at: [6, 5, 0] }, hotspots: true, legend: CUT_LEGEND, show: CUT_ALL },
+    { id: 'cut_thorax', label: 'Cut open: thorax', cut: { at: [2.4, 5, 0] }, hotspots: true, legend: CUT_LEGEND, show: CUT_ALL },
+    { id: 'cut_abdomen', label: 'Cut open: abdomen', cut: { at: [-3, 4, 0] }, hotspots: true, legend: CUT_LEGEND, show: CUT_ALL },
   ];
-  const col = { head: '#33261a', eye: '#4a3326', hairc: '#c7ad7c', amber: '#c9862a', dark: '#4b3320', leg: '#4a3322', tars: '#7b5330', wing: '#e3eaee', vein: '#7e8a8f' };
+  const col = { head: '#2a1f16', eye: '#86663f', hairc: '#cdb88a', amber: '#c9862a', dark: '#4b3320', leg: '#4a3322', tars: '#7b5330', wing: '#e3eaee', vein: '#7e8a8f' };
   const P = (id, name, system, node, color, mesh, extra = {}) => ({ id, name, system, node, color, mesh, lod: 'near+mid', ...extra });
   const I = (id, name, system, node, color, inst, extra = {}) => ({ id, name, system, node, color, instances: inst, lod: 'near+mid', ...extra });
   const abdCol = ['#c9862a', '#c58327', '#8a5a22', '#6d4720', '#4f3520', '#3d2a1c'];
@@ -307,7 +311,7 @@ export default function build() {
     P('claws', 'Foot: claws and pad (pretarsus)', 'cuticle', 'bee_foot', '#2e2118', 'claws', { priority: 2.3 }),
     P('corbicula', 'Pollen basket (corbicula)', 'cuticle', 'bee_pollen_basket', '#2c2118', 'corbicula', { priority: 2.4 }),
     I('fringe', 'Pollen basket: fringe hairs', 'cuticle', 'bee_pollen_basket', '#9a7a48', 'fringe', { priority: 2.5 }),
-    P('pollen', 'Pollen load', 'cuticle', 'bee_pollen_load', '#e5a928', 'pollen', { priority: 2.2 }),
+    P('pollen', 'Pollen load', 'cuticle', 'bee_pollen_load', '#d79a22', 'pollen', { priority: 2.2 }),
     P('cleaner', 'Antenna cleaner (foreleg notch and spur)', 'cuticle', 'bee_antenna_cleaner', '#a2733f', 'cleaner', { priority: 2.6 }),
     ...Array.from({ length: M.nAbd }, (_, i) => P('abd' + (i + 1), `Abdomen: segment ${i + 1} of 6 (visible)`, 'cuticle', 'bee_abdomen', abdCol[i], 'abd' + (i + 1), { priority: 1.6, deeper: i === 2 ? { type: 'tissue2', id: 'bee_cuticle', D: 9e-5, button: 'Look inside the exoskeleton' } : undefined })),
     I('hairs', 'Body hairs (branched)', 'hairs', 'bee_hairs', col.hairc, 'hairs', { lod: 'near', tint: .25, priority: 2.4 }),
