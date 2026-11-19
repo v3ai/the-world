@@ -681,13 +681,14 @@ v2frame('park', 'life', () => 1, (F, c) => {
   /* The sun's shadow map is drawn again only when the sun has moved enough to shift a shadow, or while the stand-in figure (which
      breathes) is still showing, and at most ten times a second. In between, the map is still right in the park's own coordinates; only
      the scene's origin moves (it follows the camera), so the shadow matrix is shifted by that movement each frame. shadows=0 turns it off. */
-  const SH = P.sun.shadow, sh = { t: -1e9, dir: new V3(), M: new THREE.Matrix4(), root: new V3(), have: false, wait: false, d: new THREE.Matrix4() };
+  const SH = P.sun.shadow, sh = { t: -1e9, dir: new V3(), M: new THREE.Matrix4(), root: new V3(), have: false, wait: false, hv: true, d: new THREE.Matrix4() };
   SH.autoUpdate = false; P.sun.castShadow = PERF.flags.shadows; PERF.on('shadows', on => { P.sun.castShadow = !!on; sh.t = -1e9; sh.have = false; });
   const shadowStep = () => {
     if (!P.sun.castShadow) return;
     const now = performance.now();
     if (sh.wait && !SH.needsUpdate) { sh.wait = false; sh.have = true; sh.M.copy(SH.matrix); } // the map was drawn in the last frame: keep its matrix and where the origin was
-    if (!sh.wait && now - sh.t > 100 && (!sh.have || sh.dir.distanceToSquared(P.sun.position) > 1.6e-3 || P.human.visible)) { sh.t = now; sh.dir.copy(P.sun.position); sh.root.copy(F.root.position); SH.needsUpdate = true; sh.wait = true; sh.have = false; }
+    const hv = P.human.visible; // the stand-in figure is the only caster that moves; when the body has loaded it is hidden, and its shadow must go with it
+    if (!sh.wait && now - sh.t > 100 && (!sh.have || sh.dir.distanceToSquared(P.sun.position) > 1.6e-3 || hv || hv !== sh.hv)) { sh.hv = hv; sh.t = now; sh.dir.copy(P.sun.position); sh.root.copy(F.root.position); SH.needsUpdate = true; sh.wait = true; sh.have = false; }
     else if (sh.have) { sh.d.makeTranslation(sh.root.x - F.root.position.x, sh.root.y - F.root.position.y, sh.root.z - F.root.position.z); SH.matrix.multiplyMatrices(sh.M, sh.d); }
   };
   F.update = (dt, t) => {
