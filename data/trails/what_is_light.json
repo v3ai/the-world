@@ -100,7 +100,9 @@
    "expect": {
     "frame": "The Sun"
    },
-   "text": "Most light around us, including sunlight, is the glow of hot matter. Anything hot gives out light of many wavelengths at once, and the hotter it is, the bluer the mixture. The Sun's surface is at about 5,772 kelvin, and its glow is strongest near 500 nanometres, but it covers all the visible colours, which together look white.",
+   "text": [
+    "Most light around us, including sunlight, is the glow of hot matter. Anything hot gives out light of many wavelengths at once, and the hotter it is, the bluer the mixture. The Sun's surface is at about 5,772 kelvin, and its glow is strongest near 500 nanometres, but it covers all the visible colours, which together look white."
+   ],
    "model": "The Sun in this view is a model drawn from real size and temperature; the colours are not what you would see.",
    "notice": "Open the card for hot glow. A heated metal goes red, then white, as it gets hotter, for the same reason.",
    "deeper": [

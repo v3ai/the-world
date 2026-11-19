@@ -149,7 +149,7 @@
     "frame": "Oxygen atom"
    },
    "text": [
-    "It is often said that atoms are mostly empty space. That is misleading. The electrons are not tiny balls with gaps between them: each one is spread out as a cloud of probability that fills the atom. Two atoms cannot be pressed into the same place for two reasons. Their electrons repel each other, and the Pauli principle says that no two electrons can share exactly the same state, so extra electrons must go into higher states."
+    "It is often said that atoms are mostly empty space, but that is misleading. The electrons are not tiny balls with gaps between them: each one is spread out as a cloud of probability that fills the atom. Two atoms cannot be pressed into the same place for two reasons. Their electrons repel each other, and the Pauli principle says that no two electrons can share exactly the same state, so extra electrons must go into higher states."
    ],
    "model": "A computed model of the electron cloud. The dots are places an electron could be found, not many electrons.",
    "notice": "Use \"Cut away a quarter\" to see that the cloud has no hard edge.",
