@@ -595,7 +595,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_skin",
-    "D": 0.003,
+    "D": 0.0016,
     "button": "Look inside the skin and coat"
    },
    "center": [
@@ -1405,7 +1405,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1429,7 +1429,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1453,7 +1453,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1477,7 +1477,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1501,7 +1501,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1525,7 +1525,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1549,7 +1549,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1573,7 +1573,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1597,7 +1597,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1621,7 +1621,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1645,7 +1645,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1669,7 +1669,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1693,7 +1693,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1717,7 +1717,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1741,7 +1741,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1765,7 +1765,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1789,7 +1789,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1813,7 +1813,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1837,7 +1837,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1861,7 +1861,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1885,7 +1885,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1909,7 +1909,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1933,7 +1933,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1957,7 +1957,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -1981,7 +1981,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -2005,7 +2005,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -2029,7 +2029,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -2053,7 +2053,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -2077,7 +2077,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -2101,7 +2101,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_muscle",
-    "D": 0.0014,
+    "D": 0.0005,
     "button": "Look inside the muscle"
    },
    "center": [
@@ -2869,6 +2869,12 @@
    "node": "dog_tapetum",
    "color": "#3fae6a",
    "mesh": "eye_tapetum",
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_retina",
+    "D": 0.00028,
+    "button": "Look inside the retina and tapetum"
+   },
    "solid": false,
    "double": true,
    "priority": 2.2,
@@ -2891,6 +2897,12 @@
    "node": "dog_retina",
    "color": "#c4585a",
    "mesh": "eye_retina",
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_retina",
+    "D": 0.00028,
+    "button": "Look inside the retina and tapetum"
+   },
    "solid": false,
    "double": true,
    "priority": 2,
@@ -3007,7 +3019,7 @@
    "deeper": {
     "type": "tissue2",
     "id": "dog_olfactory_epithelium",
-    "D": 0.00022,
+    "D": 0.00028,
     "button": "Look inside the smell lining"
    },
    "center": [

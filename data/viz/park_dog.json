@@ -1,1 +1,191 @@
-{}
+{
+ "dog": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "w",
+    "label": "Wolf-like ancestor",
+    "x": 15,
+    "y": 20
+   },
+   {
+    "id": "d",
+    "label": "Domestic dog",
+    "x": 50,
+    "y": 50,
+    "color": "green"
+   },
+   {
+    "id": "b",
+    "label": "Breeds: from 2 kg to over 70 kg",
+    "x": 85,
+    "y": 80,
+    "color": "orange"
+   },
+   {
+    "id": "l",
+    "label": "Labrador: gundog, 30 kg",
+    "x": 85,
+    "y": 20
+   }
+  ],
+  "edges": [
+   {
+    "from": "w",
+    "to": "d",
+    "label": "domestication"
+   },
+   {
+    "from": "d",
+    "to": "b",
+    "label": "selective breeding"
+   },
+   {
+    "from": "d",
+    "to": "l"
+   }
+  ],
+  "flow": false,
+  "caption": "One species, a huge range of sizes. The model stands for a medium, athletic breed; the body plan is the same in all."
+ },
+ "dog_skeleton": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "dog: thoracic vertebrae",
+    "value": 13
+   },
+   {
+    "label": "human: thoracic vertebrae",
+    "value": 12
+   },
+   {
+    "label": "dog: lumbar vertebrae",
+    "value": 7
+   },
+   {
+    "label": "human: lumbar vertebrae",
+    "value": 5
+   },
+   {
+    "label": "dog: rib pairs",
+    "value": 13
+   },
+   {
+    "label": "human: rib pairs",
+    "value": 12
+   }
+  ],
+  "ylabel": "count",
+  "caption": "Dog and human side by side. The dog figures are from the vertebral formula in the open-access paper cited on this card and the 13 rib pairs on the Ribs card; the human figures are on the human cards linked above. The cervical count is 7 in both."
+ },
+ "dog_ear": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "dog: lowest sound (Hz)",
+    "value": 67
+   },
+   {
+    "label": "human: lowest sound (Hz)",
+    "value": 20
+   },
+   {
+    "label": "dog: highest sound (Hz)",
+    "value": 45000
+   },
+   {
+    "label": "human: highest sound (Hz)",
+    "value": 20000
+   }
+  ],
+  "ylabel": "frequency (Hz)",
+  "caption": "Range of hearing from the Hearing range reference. Dogs hear much higher sounds than people but lose out at the very low end.",
+  "logy": true
+ },
+ "dog_teeth": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "dog: adult teeth",
+    "value": 42
+   },
+   {
+    "label": "human: adult teeth",
+    "value": 32
+   }
+  ],
+  "ylabel": "number of teeth",
+  "caption": "Adult teeth: a dog has 42 (2 x (I3/3, C1/1, P4/4, M2/3), dvm360); people have 32."
+ },
+ "dog_heart": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "dog resting heart rate, low (per min)",
+    "value": 70
+   },
+   {
+    "label": "dog, high",
+    "value": 120
+   },
+   {
+    "label": "human, low",
+    "value": 60
+   },
+   {
+    "label": "human, high",
+    "value": 100
+   }
+  ],
+  "ylabel": "beats per minute",
+  "caption": "Typical resting ranges: dog 70-120 per minute (Merck Veterinary Manual), human 60-100 per minute (human heart card). Small dogs are near the top of the dog range."
+ },
+ "dog_retina": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "dog: rods per cone (area centralis)",
+    "value": 22.8
+   },
+   {
+    "label": "dog: rods per cone (lower periphery)",
+    "value": 41.4
+   },
+   {
+    "label": "dog: cone types",
+    "value": 2
+   },
+   {
+    "label": "human: cone types",
+    "value": 3
+   }
+  ],
+  "ylabel": "ratio or count",
+  "caption": "Beagle retina (Mol Vis 2008): about 23 rods for each cone at the sharpest spot and about 41 at the lower edge. Cone types: dog 2, human 3."
+ },
+ "dog_turb_olf": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "dog: epithelium area (cm²)",
+    "value": 170
+   },
+   {
+    "label": "human: epithelium area (cm²)",
+    "value": 10
+   },
+   {
+    "label": "dog: functional receptor genes (≈)",
+    "value": 800
+   },
+   {
+    "label": "human: functional receptor genes (≈)",
+    "value": 400
+   }
+  ],
+  "ylabel": "area in cm² or number of genes",
+  "caption": "Approximate comparison: lining area from the Olfaction reference (dog about 170 cm², human about 10 cm²) and receptor gene counts from the receptor-gene comparison of Quignon et al. 2003 and Wikipedia (about 800 and about 400).",
+  "logy": true
+ }
+}
