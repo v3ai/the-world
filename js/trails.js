@@ -51,6 +51,7 @@ const TRAILS = {
       if (s.where && s.where.node) add(s.where.node, t, i);
       (s.do || []).forEach(a => { if (a.card) add(a.card, t, i); });
       (s.asked || []).forEach(id => add(id, t, i));
+      (s.deeper || []).forEach(d => add(d.node, t, i));
     }));
   }
   const _openPanel = openPanel;
@@ -105,9 +106,9 @@ const TRAILS = {
     const card = $q('#help .card'), go = $q('#goBtn'); if (!card || !go || card.querySelector('.starters')) return;
     const st = T.list.filter(t => t.starter).slice(0, 3); if (!st.length) return;
     const d = document.createElement('div'); d.className = 'starters';
-    d.innerHTML = '<b>Or start with a question</b>' + st.map(t => `<button data-t="${t.id}">${esc(t.question)}<span>${t.stops.length} stops</span></button>`).join('');
+    d.innerHTML = '<b>Not sure where to go? Start with a question</b>' + st.map(t => `<button data-t="${t.id}">${esc(t.question)}<span>${t.stops.length} stops</span></button>`).join('');
     d.querySelectorAll('button').forEach(b => b.onclick = () => { $q('#help').classList.add('hide'); store.set('seenHelp', true); T.start(b.dataset.t, 0); });
-    go.parentNode.insertBefore(d, go);
+    const lead = card.querySelector('.lead'); if (lead && lead.nextSibling) lead.parentNode.insertBefore(d, lead.nextSibling); else go.parentNode.insertBefore(d, go);
   }
 
   /* ---------- search: a question finds its trail ---------- */
@@ -128,7 +129,7 @@ const TRAILS = {
       else if (inHead === qw.length) rank = 1;
       else if (inAll === qw.length) rank = 2;
       else if (qw.length > 2 && inAll >= Math.ceil(qw.length * .6)) rank = 3;
-      if (rank < 9) out.push({ title: t.question, sub: `Trail: ${t.stops.length} stops, about ${mins(t)} min. ${t.teaser}`.slice(0, 120), prio: 0, rank, go: () => T.start(t.id, resumeAt(t) || 0) });
+      if (rank < 9) out.push({ title: t.question, sub: `A trail of ${t.stops.length} stops, about ${mins(t)} minutes`, prio: 0, rank, go: () => T.start(t.id, resumeAt(t) || 0) });
     });
     return out;
   }
