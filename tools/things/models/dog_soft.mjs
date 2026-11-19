@@ -2,15 +2,16 @@
 import * as L from '../lib/index.mjs';
 import * as D from './dog_lib.mjs';
 import { P, bone, place, S, ell, ellA, rod, smoothS, unionS, subS, meshS, SIDES, path } from './dog_lib.mjs';
-import { SPINE, TAIL, FORE, HIND } from './dog_rig.mjs';
+import { SPINE, TAIL, FORE, HIND, DX, wx } from './dog_rig.mjs';
+import * as H from './dog_head.mjs';
 
 // ---------------- muscles ----------------
 // each core: id, name, shapes(s) -> Shape[], reach (cm). A muscle is the part of the space under the skin that is nearer to its core than to any other core.
 const Z = (x, y, z, s) => P(x, y, s * z);
 export const MUSCLES = [
-  { id: 'temporalis', node0: 'dog_m_temporalis', name: 'Temporalis (chewing)', pair: 1, sh: s => [ell(Z(37.5, 64.2, 4.6, s), [1, -.3, 0], .035, .025, .02)], reach: 2.6 },
-  { id: 'masseter', node0: 'dog_m_masseter', name: 'Masseter (chewing)', pair: 1, sh: s => [ell(Z(37.2, 59, 5.6, s), [.3, 1, 0], .035, .022, .016)], reach: 2.6 },
-  { id: 'face_muscles', node0: 'dog_m_face', name: 'Muscles of the muzzle and lips', pair: 1, sh: s => [rod(Z(41, 59, 3.8, s), Z(51, 56, 2.2, s), .012, .01), rod(Z(42, 55, 3.5, s), Z(50, 53.4, 2, s), .01, .009)], reach: 3 },
+  { id: 'temporalis', node0: 'dog_m_temporalis', name: 'Temporalis (chewing)', pair: 1, sh: s => [H.hell([6, 4.6, s * 4.6], [1, -.2], 3.4, 2.4, 1.1)], reach: 2.6 },
+  { id: 'masseter', node0: 'dog_m_masseter', name: 'Masseter (chewing)', pair: 1, sh: s => [H.hell([5.6, -.8, s * 5.1], [.25, 1], 3.2, 1.7, .9)], reach: 2.6 },
+  { id: 'face_muscles', node0: 'dog_m_face', name: 'Muscles of the muzzle and lips', pair: 1, sh: s => [H.hrod([11, .2, s * 3.2], [19, .4, s * 2.1], .9, .8), H.hrod([11, -2.2, s * 3.2], [18, -2.5, s * 2.1], .8, .7)], reach: 3 },
   { id: 'neck_dorsal', node0: 'dog_m_neck_dorsal', name: 'Splenius and neck extensors', pair: 1, sh: s => [rod(Z(31, 62.5, 2.8, s), Z(14, 55.5, 3.6, s), .026, .03)], reach: 3.5 },
   { id: 'brachiocephalicus', node0: 'dog_m_brachiocephalicus', name: 'Brachiocephalicus (draws the foreleg forward)', pair: 1, sh: s => [rod(Z(29, 58.5, 5.2, s), Z(20, 44, 7.5, s), .022, .026)], reach: 3.2 },
   { id: 'neck_ventral', node0: 'dog_m_neck_ventral', name: 'Sternocephalicus and neck flexors', pair: 1, sh: s => [rod(Z(28, 55.5, 2.2, s), Z(17, 42, 3, s), .02, .022)], reach: 3 },
@@ -18,9 +19,9 @@ export const MUSCLES = [
   { id: 'latissimus', node0: 'latissimus_dorsi', name: 'Latissimus dorsi', pair: 1, sh: s => [ell(Z(-1, 46, 9, s), [1, -.55, 0], .14, .08, .02)], reach: 4 },
   { id: 'chest_wall', node0: 'dog_m_chest_wall', name: 'Serratus ventralis and the chest wall (intercostal muscles)', pair: 1, sh: s => [ell(Z(5, 41, 8.6, s), [1, 0, 0], .13, .1, .02)], reach: 6 },
   { id: 'pectorals', node0: 'pectoralis_major', name: 'Pectoral muscles', pair: 1, sh: s => [ell(Z(15, 33, 6.5, s), [.3, -1, 0], .09, .04, .028)], reach: 3.6 },
-  { id: 'back_extensors', node0: 'dog_m_epaxial', name: 'Longissimus and the back extensors', pair: 1, sh: s => [rod(Z(13, 54.5, 3.2, s), Z(-14, 52, 3.8, s), .034, .036), rod(Z(-14, 52, 3.8, s), Z(-34, 50, 3.8, s), .036, .03)], reach: 4 },
-  { id: 'external_oblique', node0: 'external_obliques', name: 'External oblique (flank)', pair: 1, sh: s => [ell(Z(-17, 38, 8.8, s), [1, .1, 0], .12, .08, .02)], reach: 5 },
-  { id: 'rectus_abdominis', node0: 'rectus_abdominis', name: 'Rectus abdominis', pair: 1, sh: s => [rod(Z(-8, 30, 2, s), Z(-30, 31.5, 2.4, s), .022, .022)], reach: 3.5 },
+  { id: 'back_extensors', node0: 'dog_m_epaxial', name: 'Longissimus and the back extensors', pair: 1, sh: s => [rod(Z(13, 54.5, 3.2, s), Z(-14, 52, 3.8, s), .034, .036), rod(Z(-14, 52, 3.8, s), Z(-29, 50, 3.8, s), .036, .03)], reach: 4 },
+  { id: 'external_oblique', node0: 'external_obliques', name: 'External oblique (flank)', pair: 1, sh: s => [ell(Z(-13.5, 38, 8.8, s), [1, .1, 0], .1, .08, .02)], reach: 5 },
+  { id: 'rectus_abdominis', node0: 'rectus_abdominis', name: 'Rectus abdominis', pair: 1, sh: s => [rod(Z(-8, 30, 2, s), Z(-24, 31.5, 2.4, s), .022, .022)], reach: 3.5 },
   { id: 'supraspinatus', node0: 'dog_m_supraspinatus', name: 'Supraspinatus and infraspinatus (shoulder)', pair: 1, sh: s => [ell(Z(16, 47, 5, s), [.5, .8, 0], .07, .03, .022), ell(Z(14.5, 43, 6.2, s), [.4, .9, 0], .07, .03, .022)], reach: 3.2 },
   { id: 'deltoid', node0: 'deltoid', name: 'Deltoideus', pair: 1, sh: s => [rod(Z(17.5, 42, 8.2, s), Z(13, 35.5, 8.6, s), .02, .02)], reach: 3 },
   { id: 'triceps', node0: 'triceps_brachii', name: 'Triceps brachii', pair: 1, sh: s => [ell(Z(11, 38, 8.4, s), [-.6, -.8, 0], .09, .05, .032)], reach: 4 },
@@ -39,6 +40,8 @@ export const MUSCLES = [
   { id: 'hind_tendons', node0: 'tendon', name: 'Calcaneal (Achilles) and lower hindleg tendons', pair: 1, sh: s => [rod(Z(-40, 17.5, 6.8, s), Z(-40, 6, 6.5, s), .028, .026), ell(Z(-37, 2.6, 6.6, s), [1, 0, 0], .05, .025, .028)], reach: 3.2 },
   { id: 'tail_muscles', node0: 'dog_m_tail', name: 'Tail muscles', pair: 0, sh: s => { const f = L.spline(TAIL.map(p => P(...p))).sample(8), o = []; for (let i = 0; i < 8; i++) o.push(rod(f[i], f[i + 1], .045 * (1 - i / 9) + .006, .045 * (1 - (i + 1) / 9) + .006)); return o; }, reach: 3.5 },
 ];
+const HIND_M = ['gluteals', 'tensor', 'biceps_femoris', 'hamstrings', 'quadriceps', 'adductors', 'gastrocnemius', 'shin_muscles', 'hind_tendons'];
+for (const m of MUSCLES) if (HIND_M.includes(m.id)) { const f = m.sh; m.sh = s => f(s).map(x => D.translateS(x, [DX * .01, 0, 0])); }
 export function muscleMeshes(skin, cell = .009) {
   const out = {}; const cores = [];
   for (const m of MUSCLES) for (const s of (m.pair ? SIDES : [1])) cores.push({ m, s, shapes: m.sh(s) });
@@ -60,14 +63,7 @@ export function muscleMeshes(skin, cell = .009) {
 // ---------------- organs ----------------
 export function organs() {
   const m = {}, T = s => s;
-  // brain: two cerebral hemispheres, cerebellum, brainstem; large olfactory bulbs
-  { const hem = SIDES.map(s => ell(P(36.5, 63.4, s * 1.75), [1, -.1, 0], .036, .029, .0225)); const cb = ell(P(31.6, 62.2, 0), [1, 0, 0], .016, .018, .02), bs = rod(P(33.5, 61.4, 0), P(30.4, 59.4, 0), .01, .007);
-    const fis = S(L.translate(L.box(.05, .02, .0015, .0005), P(36.5, 66, 0)), P(30, 60, -1), P(42, 70, 1));
-    m.brain = meshS(smoothS(.004, ...hem, cb, bs), .0028);
-    m.bulbs = D.bothSides(s => ell(P(41.2, 62.6, s * 1.2), [1, -.1, 0], .014, .0125, .0105), .0022); }
-  // eyes
-  // tongue
-  m.tongue = meshS(smoothS(.004, rod(P(32.5, 54.6, 0), P(43.5, 53.9, 0), .014, .011), ell(P(42, 53.8, 0), [1, 0, 0], .045, .0075, .0155), rod(P(43.5, 53.9, 0), P(47.4, 53.4, 0), .011, .008)), .0028);
+  m.brain = H.brain(); m.bulbs = H.bulbs(); m.tongue = H.tongue();
   // airway
   { const tr = L.spline([[29, 56.2, 0], [24, 53.2, 0], [19, 50.2, 0], [14, 47.3, 0], [9, 44.8, 0], [6.2, 42.9, 0]].map(p => P(...p))).sample(24); m.trachea = L.tube(tr, .0105, { sides: 12 });
     const ring = L.merge(...[...Array(35)].map((_, i) => { const t = .04 + i * .93 / 34, f = L.spline([[29, 56.2, 0], [24, 53.2, 0], [19, 50.2, 0], [14, 47.3, 0], [9, 44.8, 0], [6.2, 42.9, 0]].map(p => P(...p))); const o = f(t), tn = L.norm(L.sub(f(Math.min(.999, t + .01)), f(Math.max(0, t - .01)))); const tor = L.lathe([[.0105, -.0011], [.0122, -.0011], [.0122, .0011], [.0105, .0011]], { segments: 10 }); return place(tor, o, [tn[1], -tn[0], 0], tn); })); m.tracheal_rings = ring;
@@ -75,7 +71,7 @@ export function organs() {
     m.larynx = meshS(smoothS(.004, ell(P(30, 56.6, 0), [1, -.2, 0], .018, .016, .014), rod(P(30.5, 58, 0), P(32.5, 59, 0), .008, .007)), .0028);
     m.esophagus = L.tube(L.spline([[29, 55.2, -.8], [22, 52, -1], [14, 47, -.8], [8, 45, -.2], [1, 44.2, 0], [-9, 43.8, 0], [-13, 42.8, 0]].map(p => P(...p))).sample(26), .0068, { sides: 8 }); }
   // lungs (right 4 lobes, left 2) ; cardiac notch cut out by the heart
-  { const heartCut = ell(P(8.4, 35.5, 0), [-.3, -1, 0], .075, .052, .042);
+  { const heartCut = ell(P(8.4, 36.9, 0), [-.3, -1, 0], .075, .052, .042);
     const lung = s => { const lobes = [ell(P(11.5, 41, s * 4.3), [.3, -1, 0], .07, .06, .042), ell(P(1.5, 38, s * 5.1), [-.2, -1, 0], .1, .075, .045), ell(P(-3, 41, s * 5.2), [-.15, -1, 0], .08, .07, .043)]; if (s > 0) lobes.push(ell(P(5, 33.5, s * 3.8), [1, -.3, 0], .045, .032, .03)); return subS(smoothS(.01, ...lobes), heartCut, .01); };
     m.lung_r = meshS(lung(1), .006); m.lung_l = meshS(lung(-1), .006); }
   // diaphragm: a thin dome behind the lungs
@@ -106,7 +102,8 @@ export function organs() {
   return m;
 }
 export function vessels() {
-  const m = {}; const T = (pts, r, o) => L.tube(L.spline(pts.map(p => P(...p))).sample(o && o.n || 24), r, { sides: 6 });
+  const m = {}; const HY = 1.4, hy = p => (p[0] > 2 && p[0] < 15 && p[1] > 33 && p[1] < 46) ? [p[0], p[1] + HY, p[2]] : p;
+  const T = (pts, r, o) => L.tube(L.spline(pts.map(p => P(...hy([wx(p[0]), p[1], p[2]])))).sample(o && o.n || 24), r, { sides: 6 });
   const art = [], vein = [];
   // aorta: out of the left ventricle, arch, then back along the spine
   art.push(T([[9.2, 38, -1.2], [10.4, 42, -1.2], [8.6, 44.8, -1.2], [4, 45.6, -.8], [-3, 46.3, -.5], [-12, 45.6, -.3], [-24, 44.6, -.2], [-33, 43, -.2]], .0085, { n: 40 }));
@@ -124,7 +121,7 @@ export function vessels() {
   return m;
 }
 export function nerves() {
-  const m = {}; const T = (pts, r, o) => L.tube(L.spline(pts.map(p => P(...p))).sample(o && o.n || 24), r, { sides: 5 });
+  const m = {}; const T = (pts, r, o) => L.tube(L.spline(pts.map(p => P(wx(p[0]), p[1], p[2]))).sample(o && o.n || 24), r, { sides: 5 });
   // spinal cord in the vertebral canal, with the cervical and lumbar swellings
   const cord = [[31, 60.6], [24, 58.2], [17.5, 54.2], [12, 50.6], [4, 49.5], [-6, 48.2], [-13, 47.6], [-24, 46.8], [-32, 46.2], [-36, 45.8]].map(p => [...p, 0]);
   m.spinal_cord = T(cord, .0042, { n: 60 });

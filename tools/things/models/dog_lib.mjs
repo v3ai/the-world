@@ -60,3 +60,13 @@ export function tubeCm(ptsCm, rf, { n = 20, sides = 8, caps = true } = {}) { ret
 export const lerpN = (a, b, t) => a.map((v, i) => v + (b[i] - v) * t);
 export const clamp01 = x => Math.max(0, Math.min(1, x));
 export const ss = (a, b, x) => { const t = clamp01((x - a) / (b - a)); return t * t * (3 - 2 * t); };
+
+// push every vertex that lies closer to the skin surface than `margin` back inside (organs and bones must never poke through the coat)
+export function fitInside(mesh, skin, margin = .006, iter = 3) {
+  let m = mesh;
+  for (let k = 0; k < iter; k++) {
+    m = L.transform(m, p => { const d = skin.f(p); if (d <= -margin) return null; const n = L.normalAt(skin.f, p, .003); const t = d + margin; return [p[0] - n[0] * t, p[1] - n[1] * t, p[2] - n[2] * t]; });
+  }
+  return m;
+}
+export const translateS = (sh, v) => S(p => sh.f([p[0] - v[0], p[1] - v[1], p[2] - v[2]]), [0, 1, 2].map(i => sh.lo[i] + v[i]), [0, 1, 2].map(i => sh.hi[i] + v[i]));

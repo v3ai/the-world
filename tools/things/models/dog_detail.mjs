@@ -4,11 +4,12 @@ import * as D from './dog_lib.mjs';
 import { P, bone, place, S, ell, ellA, rod, smoothS, unionS, subS, meshS, SIDES } from './dog_lib.mjs';
 import { FORE, HIND } from './dog_rig.mjs';
 
-export const EYE_C = [41.6, 63.4, 4.5], EYE_R = .0108;
-export const eyeAxis = s => L.norm([.94, 0, s * .34]);
+import { EYE_C, eyeAxis } from './dog_head.mjs';
+export { EYE_C, eyeAxis };
+export const EYE_R = .0108;
 const spherePatch = (rad, phi0, phi1, th0, th1, nu = 12, nv = 12) => { const m = L.newMesh(); for (let i = 0; i <= nu; i++) for (let j = 0; j <= nv; j++) { const ph = phi0 + (phi1 - phi0) * i / nu, th = th0 + (th1 - th0) * j / nv; m.pos.push(rad * Math.sin(ph) * Math.cos(th), -rad * Math.cos(ph), rad * Math.sin(ph) * Math.sin(th)); }
   for (let i = 0; i < nu; i++) for (let j = 0; j < nv; j++) { const a = i * (nv + 1) + j, b = a + 1, c = a + nv + 1, d = c + 1; m.idx.push(a, c, b, b, c, d); } return m; };
-const lat = (m, s) => { const a = eyeAxis(s); return place(m, P(...EYE_C.map((v, i) => i === 2 ? s * v : v)), [0, 1, 0], a); };
+const lat = (m, s) => { const a = eyeAxis(s), e = L.norm(L.sub([0, 1, 0], L.mul(a, a[1]))); return place(m, P(...EYE_C.map((v, i) => i === 2 ? s * v : v)), e, a); };
 const R = EYE_R, DEG = Math.PI / 180;
 
 export function eyes() {
@@ -26,21 +27,6 @@ export function eyes() {
   m.eye_lens = perSide(() => D.meshS(D.ellA([0, R * .24, 0], R * .5, R * .34, R * .5), .0012));
   m.eye_cornea = perSide(() => L.lathe([[R * .62, R * .78], [R * .5, R * .9], [R * .26, R * .99], [0, R * 1.02]], { segments: 20, caps: false }));
   m.eye_iris = perSide(() => L.lathe([[R * .17, R * .56], [R * .62, R * .6]], { segments: 22, caps: false }));
-  return m;
-}
-export function ears() {
-  const m = {}; const poly = []; const Lh = .11, W = .034;
-  for (let i = 0; i <= 16; i++) { const t = i / 16; poly.push([-W * (1 - t * .55) * (t > .88 ? Math.sqrt(1 - ((t - .88) / .12) ** 2 * .9) : 1), -Lh * t]); } for (let i = 16; i >= 0; i--) { const t = i / 16; poly.push([W * (1 - t * .55) * (t > .88 ? Math.sqrt(1 - ((t - .88) / .12) ** 2 * .9) : 1), -Lh * t]); }
-  const clean = []; for (const p of poly) if (!clean.length || Math.hypot(p[0] - clean[clean.length - 1][0], p[1] - clean[clean.length - 1][1]) > 1e-5) clean.push(p);
-  const side = s => { const o = P(36.2, 67.2, s * 5.2), A = [1, 0, 0], Dn = L.norm([-.12, -.94, s * .3]);
-    return L.transform(L.extrudeOutline(clean, .0035), p => { const u = p[0], v = -p[1], w = p[2], fold = .012 * (u / W) ** 2, hang = v / Lh; const base = L.add(o, L.add(L.mul(Dn, v), L.mul(A, u * (1 + .0))));
-      return [base[0] + .02 * hang * hang - fold * .3, base[1], base[2] + s * (fold + .025 * Math.sin(hang * 2.2) * 1) + w]; }); };
-  m.ears = L.merge(side(1), side(-1));
-  return m;
-}
-export function nose() {
-  const m = {}; const nose = ellA(P(52.2, 56.2, 0), .018, .0165, .03), slit = s => ell(P(53.2, 56.2, s * 1.2), [.5, 0, s * 1.0], .008, .0042, .003);
-  m.nose = meshS(subS(nose, unionS(slit(1), slit(-1)), .0015), .002);
   return m;
 }
 export function paws() {
@@ -67,27 +53,6 @@ export function fur(coat, n = 12000, seed = 9) {
   return inst;
 }
 export function furBladeMesh() { const m = L.newMesh(); const w = .0011, h = .016; m.pos.push(-w, 0, 0, w, 0, 0, 0, h, 0, 0, 0, -w, 0, 0, w, 0, h, 0); m.idx.push(0, 1, 2, 3, 4, 5); return m; }
-// ---------- nose cut-open: turbinates, as thin curled plates inside the nasal cavity ----------
-export function turbinates() {
-  const r = L.rng(21), olf = new L.Instances('turb_plate'), resp = new L.Instances('turb_plate');
-  for (let i = 0; i < 46; i++) { const back = i < 28, x = back ? 41.8 + r() * 3.6 : 45.6 + r() * 4.6, ang = r() * Math.PI * 2, rad = .004 + r() * .006, sz = back ? .7 + r() * .5 : .8 + r() * .7;
-    const o = P(x, 59.3 + Math.sin(ang) * rad * 100 * .75, Math.cos(ang) * rad * 100 * .9), q = L.quatAxisAngle([1, 0, 0], ang + Math.PI / 2); (back ? olf : resp).add(o, q, sz); }
-  return { olf, resp };
-}
 export function plateMesh() { return L.blade({ length: .036, halfWidth: t => .0055 * Math.sin(Math.PI * (.12 + .88 * t)) ** .6, thickness: .0009, nAlong: 6, nAcross: 3, curlAcross: 2.2 }); }
 // rotate blade so its length runs along x
 export function plateMeshX() { return L.transform(plateMesh(), p => [p[1], p[0], p[2]]); }
-// ---------- ear cut-open: canal, eardrum, bulla, cochlea, canals ----------
-export function earInner() {
-  const m = {};
-  const mk = s => { const z = k => s * k; return {
-    canal: L.tube(L.spline([P(36.4, 66, z(6.2)), P(36, 62.5, z(6.5)), P(35.6, 60.4, z(6)), P(35.5, 60.2, z(4.5))]).sample ? L.spline([P(36.4, 66, z(6.2)), P(36, 62.5, z(6.5)), P(35.6, 60.4, z(6)), P(35.5, 60.2, z(4.6))]).sample(18) : [], .0042, { sides: 10 }),
-    drum: place(L.lathe([[0, 0], [.0055, 0]], { segments: 14, caps: false }), P(35.5, 60.2, z(4.3)), [0, 1, 0], [0, 0, s]),
-    bulla: D.meshS(D.ell(P(35.4, 59.6, z(3.6)), [0, 1, .2 * s], .012, .011, .0105), .0018),
-    cochlea: L.tube(L.spline([...Array(22)].map((_, i) => { const t = i / 21, a = t * Math.PI * 5.2, rr = .0048 * (1 - .75 * t); return P(35.4 + Math.cos(a) * rr * 100, 60.7 + t * .5, z(2.9) + Math.sin(a) * rr * 100); })).sample(60), .0013, { sides: 5 }),
-    canals: L.merge(...[[0, 0, 1], [1, 0, 0], [0, 1, 0]].map((ax, k) => L.tube(L.spline([...Array(14)].map((_, i) => { const a = i / 13 * Math.PI * 1.7 + .3; return [(35.0 * .01 + Math.cos(a) * .0058 * (ax[0] ? 0 : 1) * (k === 0 ? 1 : .8)), 60.9 * .01 + Math.sin(a) * .0058 * (k === 0 ? 1 : ax[1] ? 0.1 : 1), z(1.8) * .01 + (k === 1 ? Math.cos(a) * .0058 : k === 2 ? Math.sin(a) * .0058 : 0)]; })).sample(30), .0009, { sides: 5 })))
-  }; };
-  const a = mk(1), b = mk(-1);
-  for (const k of Object.keys(a)) m['ear_' + k] = L.merge(a[k], b[k]);
-  return m;
-}
