@@ -1,0 +1,1868 @@
+{
+ "id": "soil",
+ "title": "The soil under your feet",
+ "label": "Soil",
+ "scientific": null,
+ "node": "soil_block",
+ "main_part": "hor_a",
+ "blurb": "A cut block of park soil, 1.5 m across and 1.2 m deep, where the lawn meets an oak's roots: its layers, stones, roots, fungal threads, crumbs and pores, and the animals that live in it at true size. Click anything, or choose a layer.",
+ "model_note": "A model built from typical measurements, not a scan or a core from a real place. The rock below (flint pebbles in sand) is what the geological survey says lies under Greenwich Park; the depths of the soil layers are typical values for such a soil, not measured here. Animals are drawn at typical sizes for their kind and their places are illustrative. Fungal threads are drawn about 40 times thicker than real ones so that you can see them.",
+ "size_m": {
+  "width": 1.5,
+  "depth": 0.8,
+  "deep": 1.2
+ },
+ "height_m": 1.2,
+ "radius_m": 1.5,
+ "draw_m": 120,
+ "seed": 5150,
+ "label_m": 25,
+ "systems": [
+  {
+   "id": "turf",
+   "label": "Turf and surface"
+  },
+  {
+   "id": "topsoil",
+   "label": "Topsoil and crumbs"
+  },
+  {
+   "id": "subsoil",
+   "label": "Subsoil"
+  },
+  {
+   "id": "parent",
+   "label": "Parent material"
+  },
+  {
+   "id": "roots",
+   "label": "Oak roots"
+  },
+  {
+   "id": "fungi",
+   "label": "Fungal threads"
+  },
+  {
+   "id": "animals",
+   "label": "Animals"
+  },
+  {
+   "id": "worm_in",
+   "label": "Inside the earthworm"
+  }
+ ],
+ "modes": [
+  {
+   "id": "surface",
+   "label": "Surface",
+   "show": {
+    "turf": 1,
+    "topsoil": 0,
+    "subsoil": 0,
+    "parent": 0,
+    "roots": 0,
+    "fungi": 0,
+    "animals": 1,
+    "worm_in": 0
+   }
+  },
+  {
+   "id": "topsoil",
+   "label": "Topsoil",
+   "groundSeeThrough": true,
+   "cut": {
+    "at": [
+     0,
+     -0.12,
+     0
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "turf": 1,
+    "topsoil": 1,
+    "subsoil": 0.1,
+    "parent": 0.06,
+    "roots": 1,
+    "fungi": 1,
+    "animals": 1,
+    "worm_in": 1
+   }
+  },
+  {
+   "id": "subsoil",
+   "label": "Subsoil",
+   "groundSeeThrough": true,
+   "cut": {
+    "at": [
+     0,
+     -0.5,
+     0
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "turf": 0.6,
+    "topsoil": 0.12,
+    "subsoil": 1,
+    "parent": 1,
+    "roots": 1,
+    "fungi": 0.4,
+    "animals": 1,
+    "worm_in": 0
+   }
+  },
+  {
+   "id": "profile",
+   "label": "Whole profile cut",
+   "groundSeeThrough": true,
+   "cut": {
+    "at": [
+     0,
+     -0.6,
+     0
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "turf": 1,
+    "topsoil": 1,
+    "subsoil": 1,
+    "parent": 1,
+    "roots": 1,
+    "fungi": 1,
+    "animals": 1,
+    "worm_in": 1
+   },
+   "legend": {
+    "title": "Horizons of this soil (typical depths)",
+    "items": [
+     {
+      "name": "O: litter and thatch",
+      "color": "#3b2f20",
+      "node": "soil_horizon_o"
+     },
+     {
+      "name": "A: topsoil",
+      "color": "#4a3828",
+      "node": "soil_horizon_a"
+     },
+     {
+      "name": "B: subsoil",
+      "color": "#9a7b4e",
+      "node": "soil_horizon_b"
+     },
+     {
+      "name": "C: pebble bed",
+      "color": "#cdb98c",
+      "node": "soil_horizon_c"
+     },
+     {
+      "name": "Flint",
+      "color": "#2d2e33",
+      "node": "soil_flints"
+     },
+     {
+      "name": "Oak root",
+      "color": "#8a6a43",
+      "node": "soil_coarse_root"
+     }
+    ],
+    "note": "The colours on the cut face are a code, not a photograph. The layer depths are typical values."
+   }
+  },
+  {
+   "id": "life",
+   "label": "Life only (soil see-through)",
+   "groundSeeThrough": true,
+   "show": {
+    "turf": 0.5,
+    "topsoil": 0.09,
+    "subsoil": 0.06,
+    "parent": 0.05,
+    "roots": 1,
+    "fungi": 1,
+    "animals": 1,
+    "worm_in": 0
+   }
+  },
+  {
+   "id": "worm",
+   "label": "Open the earthworm",
+   "groundSeeThrough": true,
+   "cut": {
+    "at": [
+     -0.28,
+     -0.12,
+     0
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "turf": 0.5,
+    "topsoil": 0.1,
+    "subsoil": 0.06,
+    "parent": 0.05,
+    "roots": 0.4,
+    "fungi": 0.3,
+    "animals": 1,
+    "worm_in": 1
+   },
+   "legend": {
+    "title": "Inside the earthworm (sagittal cut: back on the right)",
+    "items": [
+     {
+      "name": "Circular muscle",
+      "color": "#8a3b2b",
+      "node": "soil_worm_circular"
+     },
+     {
+      "name": "Longitudinal muscle",
+      "color": "#ddd2c4",
+      "node": "soil_worm_longitudinal"
+     },
+     {
+      "name": "Gut",
+      "color": "#b79468",
+      "node": "soil_worm_intestine"
+     },
+     {
+      "name": "Blood vessels and hearts",
+      "color": "#b3262d",
+      "node": "soil_worm_hearts"
+     },
+     {
+      "name": "Nerve cord",
+      "color": "#efe3a0",
+      "node": "soil_worm_nerve"
+     }
+    ],
+    "note": "The thickness of each layer is illustrative."
+   }
+  }
+ ],
+ "auto": {
+  "label": "Auto",
+  "stages": [
+   {
+    "max_m": 1.6,
+    "mode": "profile"
+   },
+   {
+    "max_m": 4.5,
+    "mode": "topsoil"
+   },
+   {
+    "mode": "surface"
+   }
+  ]
+ },
+ "layers": [
+  {
+   "id": "surface",
+   "label": "the turf and the surface",
+   "systems": [
+    "turf"
+   ],
+   "ghost": 0.15
+  },
+  {
+   "id": "topsoil",
+   "label": "the topsoil",
+   "systems": [
+    "topsoil"
+   ],
+   "ghost": 0.1
+  },
+  {
+   "id": "subsoil",
+   "label": "the subsoil and the rock below",
+   "systems": [
+    "subsoil",
+    "parent"
+   ],
+   "ghost": 0.08
+  }
+ ],
+ "lod": {
+  "near_m": 4.5,
+  "far_m": 28
+ },
+ "cut": {
+  "default": "ha",
+  "at": [
+   0,
+   -0.6,
+   0
+  ],
+  "faces": {
+   "ho": {
+    "kind": "grains",
+    "edge": 0.3,
+    "cell": 0.006,
+    "palette": [
+     [
+      3878688,
+      0.4
+     ],
+     [
+      2826520,
+      0.3
+     ],
+     [
+      5061928,
+      0.2
+     ],
+     [
+      6048304,
+      0.1
+     ]
+    ]
+   },
+   "ha": {
+    "kind": "grains",
+    "edge": 0.3,
+    "cell": 0.008,
+    "palette": [
+     [
+      4864040,
+      0.4
+     ],
+     [
+      3812126,
+      0.3
+     ],
+     [
+      5916210,
+      0.2
+     ],
+     [
+      6968632,
+      0.1
+     ]
+    ]
+   },
+   "hb": {
+    "kind": "grains",
+    "edge": 0.3,
+    "cell": 0.012,
+    "palette": [
+     [
+      10124110,
+      0.4
+     ],
+     [
+      8808767,
+      0.3
+     ],
+     [
+      11439966,
+      0.2
+     ],
+     [
+      8019512,
+      0.1
+     ]
+    ]
+   },
+   "hc": {
+    "kind": "grains",
+    "edge": 0.3,
+    "cell": 0.014,
+    "palette": [
+     [
+      13482380,
+      0.4
+     ],
+     [
+      12297591,
+      0.3
+     ],
+     [
+      14469792,
+      0.2
+     ],
+     [
+      11113576,
+      0.1
+     ]
+    ]
+   },
+   "flint": {
+    "kind": "plain",
+    "palette": [
+     [
+      3816256,
+      1
+     ]
+    ]
+   },
+   "root": {
+    "kind": "plain",
+    "palette": [
+     [
+      13215082,
+      1
+     ]
+    ]
+   },
+   "cast": {
+    "kind": "plain",
+    "palette": [
+     [
+      5916208,
+      1
+     ]
+    ]
+   },
+   "skin": {
+    "kind": "plain",
+    "palette": [
+     [
+      13207154,
+      1
+     ]
+    ]
+   },
+   "clit": {
+    "kind": "plain",
+    "palette": [
+     [
+      14459514,
+      1
+     ]
+    ]
+   },
+   "circ": {
+    "kind": "plain",
+    "palette": [
+     [
+      9059115,
+      1
+     ]
+    ]
+   },
+   "long": {
+    "kind": "plain",
+    "palette": [
+     [
+      15129807,
+      1
+     ]
+    ]
+   },
+   "coel": {
+    "kind": "plain",
+    "palette": [
+     [
+      15852243,
+      1
+     ]
+    ]
+   },
+   "pharynx": {
+    "kind": "plain",
+    "palette": [
+     [
+      13204330,
+      1
+     ]
+    ]
+   },
+   "oes": {
+    "kind": "plain",
+    "palette": [
+     [
+      14726543,
+      1
+     ]
+    ]
+   },
+   "crop": {
+    "kind": "plain",
+    "palette": [
+     [
+      15124900,
+      1
+     ]
+    ]
+   },
+   "gizz": {
+    "kind": "plain",
+    "palette": [
+     [
+      10123866,
+      1
+     ]
+    ]
+   },
+   "int": {
+    "kind": "plain",
+    "palette": [
+     [
+      12031080,
+      1
+     ]
+    ]
+   },
+   "gutc": {
+    "kind": "plain",
+    "palette": [
+     [
+      4864554,
+      1
+     ]
+    ]
+   },
+   "blood": {
+    "kind": "plain",
+    "palette": [
+     [
+      11740717,
+      1
+     ]
+    ]
+   },
+   "nerve": {
+    "kind": "plain",
+    "palette": [
+     [
+      15919284,
+      1
+     ]
+    ]
+   }
+  }
+ },
+ "hotspots": [
+  {
+   "id": "hs_crumbs",
+   "node": "soil_crumbs",
+   "at": [
+    0.24,
+    -0.14,
+    -0.012
+   ],
+   "label": "Soil crumbs and the pores between them",
+   "r": 0.011,
+   "modes": [
+    "topsoil",
+    "profile"
+   ],
+   "deeper": {
+    "type": "tissue2",
+    "id": "soil_crumb",
+    "D": 0.0022,
+    "button": "Look inside a soil crumb"
+   }
+  },
+  {
+   "id": "hs_worm",
+   "node": "soil_earthworm",
+   "at": [
+    -0.28,
+    -0.12,
+    -0.004
+   ],
+   "label": "An earthworm in its burrow",
+   "r": 0.006,
+   "modes": [
+    "topsoil",
+    "profile",
+    "worm"
+   ]
+  },
+  {
+   "id": "hs_gut",
+   "node": "soil_worm_intestine",
+   "at": [
+    -0.28,
+    -0.156,
+    -0.0005
+   ],
+   "label": "The gut",
+   "r": 0.0028,
+   "modes": [
+    "worm"
+   ]
+  },
+  {
+   "id": "hs_hearts",
+   "node": "soil_worm_hearts",
+   "at": [
+    -0.28,
+    -0.055,
+    -0.001
+   ],
+   "label": "The hearts",
+   "r": 0.0028,
+   "modes": [
+    "worm"
+   ]
+  },
+  {
+   "id": "hs_hyphae",
+   "node": "soil_hyphae",
+   "at": [
+    0.12,
+    -0.015,
+    -0.1
+   ],
+   "label": "Fungal threads in the litter",
+   "r": 0.011,
+   "modes": [
+    "topsoil",
+    "profile"
+   ]
+  },
+  {
+   "id": "hs_root",
+   "node": "soil_coarse_root",
+   "at": [
+    0.4,
+    -0.335,
+    -0.001
+   ],
+   "label": "An oak root cut across",
+   "r": 0.011,
+   "modes": [
+    "subsoil",
+    "profile"
+   ],
+   "deeper": {
+    "type": "tissue2",
+    "id": "wood_section",
+    "D": 0.0042,
+    "button": "Look inside the root wood"
+   }
+  },
+  {
+   "id": "hs_clay",
+   "node": "soil_clay",
+   "at": [
+    -0.5,
+    -0.5,
+    -0.01
+   ],
+   "label": "Clay: the finest particles",
+   "r": 0.014,
+   "modes": [
+    "subsoil",
+    "profile"
+   ],
+   "deeper": {
+    "type": "tissue2",
+    "id": "soil_clay_ions",
+    "D": 0.00006,
+    "button": "Look at a clay particle and its ions"
+   }
+  },
+  {
+   "id": "hs_pebbles",
+   "node": "soil_horizon_c",
+   "at": [
+    0.1,
+    -1,
+    -0.01
+   ],
+   "label": "The pebble bed below",
+   "r": 0.018,
+   "modes": [
+    "subsoil",
+    "profile"
+   ]
+  }
+ ],
+ "anim": [
+  {
+   "kind": "sway",
+   "parts": [
+    "grass"
+   ],
+   "from_y": -0.004,
+   "to_y": 0.042,
+   "amp_m": 0.004,
+   "hz": 0.35,
+   "label": "Grass in a light breeze"
+  }
+ ],
+ "ruler": {
+  "label": "Soil block",
+  "D": 3,
+  "at": [
+   0,
+   -0.2,
+   0
+  ]
+ },
+ "parts": [
+  {
+   "id": "hor_o",
+   "name": "Litter and thatch layer (O horizon)",
+   "system": "topsoil",
+   "node": "soil_horizon_o",
+   "color": "#3b2f20",
+   "mesh": "hor_o",
+   "cutFace": "ho",
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "soil_crumb",
+    "D": 0.0022,
+    "button": "Look inside a soil crumb"
+   },
+   "center": [
+    0,
+    -0.017,
+    0
+   ],
+   "radius": 0.8501,
+   "tris": 1360
+  },
+  {
+   "id": "hor_a",
+   "name": "Topsoil (A horizon)",
+   "system": "topsoil",
+   "node": "soil_horizon_a",
+   "color": "#4a3828",
+   "mesh": "hor_a",
+   "cutFace": "ha",
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "soil_crumb",
+    "D": 0.0022,
+    "button": "Look inside a soil crumb"
+   },
+   "center": [
+    0,
+    -0.1466,
+    0
+   ],
+   "radius": 0.8583,
+   "tris": 1360
+  },
+  {
+   "id": "hor_b",
+   "name": "Subsoil (B horizon)",
+   "system": "subsoil",
+   "node": "soil_horizon_b",
+   "color": "#9a7b4e",
+   "mesh": "hor_b",
+   "cutFace": "hb",
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "soil_clay_ions",
+    "D": 0.00006,
+    "button": "Look at a clay particle and its ions"
+   },
+   "center": [
+    0,
+    -0.5246,
+    0
+   ],
+   "radius": 0.8973,
+   "tris": 1360
+  },
+  {
+   "id": "hor_c",
+   "name": "Parent material (C horizon)",
+   "system": "parent",
+   "node": "soil_horizon_c",
+   "color": "#cdb98c",
+   "mesh": "hor_c",
+   "cutFace": "hc",
+   "noink": true,
+   "deeper": {
+    "type": "crystal",
+    "id": "quartz",
+    "button": "See a crystal of quartz, the main grain of sand"
+   },
+   "center": [
+    0,
+    -0.9859,
+    0
+   ],
+   "radius": 0.8765,
+   "tris": 1360
+  },
+  {
+   "id": "grass",
+   "name": "Lawn grass",
+   "system": "turf",
+   "node": "soil_turf",
+   "color": "#4f8a33",
+   "instances": "grass",
+   "tint": 0.3,
+   "double": true,
+   "lod": "near",
+   "deeper": {
+    "type": "mol",
+    "mol": "cellotriose",
+    "name": "Cellotriose",
+    "button": "See cellulose, the grass fibre: a piece of its chain"
+   },
+   "center": [
+    0.0256,
+    -0.004,
+    0.0077
+   ],
+   "radius": 0.8744,
+   "count": 5000,
+   "tris": 25000
+  },
+  {
+   "id": "grass_mid",
+   "name": "Lawn grass",
+   "system": "turf",
+   "node": "soil_turf",
+   "color": "#4f8a33",
+   "instances": "grass_mid",
+   "tint": 0.3,
+   "double": true,
+   "lod": "mid+far",
+   "center": [
+    0.0044,
+    -0.004,
+    0
+   ],
+   "radius": 0.845,
+   "count": 700,
+   "tris": 1400
+  },
+  {
+   "id": "litter",
+   "name": "Oak leaf litter",
+   "system": "turf",
+   "node": "soil_litter",
+   "color": "#7a5530",
+   "instances": "litter",
+   "tint": 0.35,
+   "double": true,
+   "lod": "near+mid",
+   "deeper": {
+    "type": "mol",
+    "mol": "cellotriose",
+    "name": "Cellotriose",
+    "button": "See cellulose, the main material of the leaf: a piece of its chain"
+   },
+   "center": [
+    0.2206,
+    0.0075,
+    -0.0507
+   ],
+   "radius": 0.6509,
+   "count": 46,
+   "tris": 1840
+  },
+  {
+   "id": "cast",
+   "name": "Earthworm cast",
+   "system": "turf",
+   "node": "soil_worm_cast",
+   "color": "#5a4630",
+   "mesh": "cast",
+   "cutFace": "cast",
+   "lod": "near+mid",
+   "noink": true,
+   "center": [
+    -0.2778,
+    0.0061,
+    0.0009
+   ],
+   "radius": 0.0337,
+   "tris": 1596
+  },
+  {
+   "id": "flints_s",
+   "name": "Flint pebbles on the lawn",
+   "system": "turf",
+   "node": "soil_flints",
+   "color": "#2d2e33",
+   "mesh": "flints_s",
+   "cutFace": "flint",
+   "lod": "near+mid",
+   "deeper": {
+    "type": "crystal",
+    "id": "quartz",
+    "button": "See a crystal of quartz, the mineral of flint"
+   },
+   "center": [
+    0.0751,
+    0.0063,
+    -0.0172
+   ],
+   "radius": 0.5756,
+   "tris": 1360
+  },
+  {
+   "id": "flints_a",
+   "name": "Flint pebbles in the topsoil",
+   "system": "topsoil",
+   "node": "soil_flints",
+   "color": "#2d2e33",
+   "mesh": "flints_a",
+   "cutFace": "flint",
+   "lod": "near",
+   "deeper": {
+    "type": "crystal",
+    "id": "quartz",
+    "button": "See a crystal of quartz, the mineral of flint"
+   },
+   "center": [
+    0.501,
+    -0.2113,
+    -0.209
+   ],
+   "radius": 0.2427,
+   "tris": 1352
+  },
+  {
+   "id": "flints_b",
+   "name": "Flint pebbles in the subsoil",
+   "system": "subsoil",
+   "node": "soil_flints",
+   "color": "#2d2e33",
+   "mesh": "flints_b",
+   "cutFace": "flint",
+   "lod": "near",
+   "deeper": {
+    "type": "crystal",
+    "id": "quartz",
+    "button": "See a crystal of quartz, the mineral of flint"
+   },
+   "center": [
+    -0.024,
+    -0.5134,
+    -0.2121
+   ],
+   "radius": 0.6436,
+   "tris": 6196
+  },
+  {
+   "id": "flints_c",
+   "name": "Flint pebbles in the pebble bed (C horizon)",
+   "system": "parent",
+   "node": "soil_flints",
+   "color": "#2d2e33",
+   "mesh": "flints_c",
+   "cutFace": "flint",
+   "lod": "near",
+   "deeper": {
+    "type": "crystal",
+    "id": "quartz",
+    "button": "See a crystal of quartz, the mineral of flint"
+   },
+   "center": [
+    0.0087,
+    -0.989,
+    -0.1882
+   ],
+   "radius": 0.7596,
+   "tris": 22696
+  },
+  {
+   "id": "crumbs_a",
+   "name": "Soil crumbs (aggregates)",
+   "system": "topsoil",
+   "node": "soil_crumbs",
+   "color": "#5b4430",
+   "instances": "crumbs_a",
+   "tint": 0.35,
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "soil_crumb",
+    "D": 0.0022,
+    "button": "Look inside a soil crumb"
+   },
+   "center": [
+    0.2437,
+    -0.1444,
+    -0.0077
+   ],
+   "radius": 0.1871,
+   "count": 668,
+   "tris": 28056
+  },
+  {
+   "id": "crumbs_b",
+   "name": "Soil crumbs (aggregates)",
+   "system": "topsoil",
+   "node": "soil_crumbs",
+   "color": "#66503a",
+   "instances": "crumbs_b",
+   "tint": 0.35,
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "soil_crumb",
+    "D": 0.0022,
+    "button": "Look inside a soil crumb"
+   },
+   "center": [
+    0.242,
+    -0.1446,
+    -0.0075
+   ],
+   "radius": 0.1828,
+   "count": 621,
+   "tris": 39744
+  },
+  {
+   "id": "pore_back",
+   "name": "Pore space between the crumbs",
+   "system": "topsoil",
+   "node": "soil_pores",
+   "color": "#1d150e",
+   "mesh": "pore_back",
+   "solid": false,
+   "double": true,
+   "noink": true,
+   "lod": "near",
+   "center": [
+    0.24,
+    -0.1425,
+    -0.0225
+   ],
+   "radius": 0.184,
+   "tris": 40
+  },
+  {
+   "id": "pore_water",
+   "name": "Water held in the pores",
+   "system": "topsoil",
+   "node": "soil_pore_water",
+   "color": "#6fb3e0",
+   "instances": "pore_water",
+   "lod": "near",
+   "opacity_max": 0.75,
+   "deeper": {
+    "type": "mol",
+    "mol": "water",
+    "name": "Water",
+    "button": "See a water molecule"
+   },
+   "center": [
+    0.253,
+    -0.1468,
+    -0.003
+   ],
+   "radius": 0.1856,
+   "count": 157,
+   "tris": 6594
+  },
+  {
+   "id": "roots_coarse",
+   "name": "Oak roots (coarse)",
+   "system": "roots",
+   "node": "soil_coarse_root",
+   "color": "#8a6a43",
+   "mesh": "roots_coarse",
+   "cutFace": "root",
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "wood_section",
+    "D": 0.0042,
+    "button": "Look inside the root wood"
+   },
+   "center": [
+    0.0008,
+    -0.3697,
+    -0.0027
+   ],
+   "radius": 0.8334,
+   "tris": 1722
+  },
+  {
+   "id": "froots",
+   "name": "Oak fine roots",
+   "system": "roots",
+   "node": "soil_fine_roots",
+   "color": "#d6b98a",
+   "instances": "froots",
+   "tint": 0.3,
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "root_tip",
+    "D": 0.003,
+    "button": "Look at root hairs"
+   },
+   "center": [
+    -0.0179,
+    -0.1464,
+    -0.152
+   ],
+   "radius": 0.7994,
+   "count": 640,
+   "tris": 25600
+  },
+  {
+   "id": "ecm_tips",
+   "name": "Fungus-covered root tips (ectomycorrhiza)",
+   "system": "roots",
+   "node": "soil_ecm_tips",
+   "color": "#e3d2a8",
+   "instances": "ecm_tips",
+   "tint": 0.3,
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "mushroom_ecm",
+    "D": 0.0015,
+    "button": "Look inside the root-fungus partnership"
+   },
+   "center": [
+    0.0028,
+    -0.1508,
+    -0.1471
+   ],
+   "radius": 0.7317,
+   "count": 304,
+   "tris": 13376
+  },
+  {
+   "id": "root_hairs",
+   "name": "Root hairs",
+   "system": "roots",
+   "node": "oak_root_hairs",
+   "color": "#efe8d6",
+   "instances": "root_hairs",
+   "double": true,
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "root_tip",
+    "D": 0.003,
+    "button": "Look at root hairs"
+   },
+   "center": [
+    -0.0631,
+    -0.1426,
+    -0.1351
+   ],
+   "radius": 0.7728,
+   "count": 636,
+   "tris": 1272
+  },
+  {
+   "id": "hyphae",
+   "name": "Fungal threads (hyphae)",
+   "system": "fungi",
+   "node": "soil_hyphae",
+   "color": "#f1ebdc",
+   "instances": "hyphae",
+   "tint": 0.25,
+   "lod": "near",
+   "double": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "mushroom_ecm",
+    "D": 0.0015,
+    "button": "Look inside the root-fungus partnership"
+   },
+   "center": [
+    -0.0008,
+    -0.1148,
+    -0.1495
+   ],
+   "radius": 0.7954,
+   "count": 508,
+   "tris": 18288
+  },
+  {
+   "id": "burrow",
+   "name": "Earthworm burrow",
+   "system": "animals",
+   "node": "soil_worm_burrow",
+   "color": "#2c211a",
+   "mesh": "burrow",
+   "solid": false,
+   "double": true,
+   "noink": true,
+   "lod": "near",
+   "opacity_max": 0.35,
+   "center": [
+    -0.2796,
+    -0.5005,
+    0
+   ],
+   "radius": 0.5046,
+   "tris": 336
+  },
+  {
+   "id": "worm_head",
+   "name": "Earthworm: head lobe and mouth",
+   "system": "animals",
+   "node": "soil_worm_head",
+   "color": "#b87563",
+   "mesh": "worm_head",
+   "lod": "near",
+   "ink_w": 0.0004,
+   "center": [
+    -0.28,
+    -0.0456,
+    0
+   ],
+   "radius": 0.0025,
+   "tris": 196
+  },
+  {
+   "id": "worm_skin",
+   "name": "Earthworm: body with its segments",
+   "system": "animals",
+   "node": "soil_worm_segments",
+   "color": "#c98672",
+   "mesh": "worm_skin",
+   "cutFace": "skin",
+   "lod": "near",
+   "ink_w": 0.0004,
+   "deeper": {
+    "type": "tissue2",
+    "id": "soil_worm_wall",
+    "D": 0.0018,
+    "button": "Look inside the body wall"
+   },
+   "center": [
+    -0.28,
+    -0.1307,
+    0
+   ],
+   "radius": 0.0843,
+   "tris": 24032
+  },
+  {
+   "id": "worm_clitellum",
+   "name": "Earthworm: clitellum (the saddle)",
+   "system": "animals",
+   "node": "soil_worm_clitellum",
+   "color": "#dca27a",
+   "mesh": "worm_clitellum",
+   "cutFace": "clit",
+   "lod": "near",
+   "ink_w": 0.0004,
+   "center": [
+    -0.28,
+    -0.0855,
+    0
+   ],
+   "radius": 0.0059,
+   "tris": 1000
+  },
+  {
+   "id": "worm_setae",
+   "name": "Earthworm: bristles (setae)",
+   "system": "animals",
+   "node": "soil_worm_setae",
+   "color": "#e8d9a8",
+   "instances": "worm_setae",
+   "lod": "near",
+   "deeper": {
+    "type": "mol",
+    "mol": "n_acetylglucosamine",
+    "name": "N-acetylglucosamine",
+    "button": "See the unit of chitin (an earthworm's bristles are made of it)"
+   },
+   "center": [
+    -0.2824,
+    -0.1289,
+    0
+   ],
+   "radius": 0.0825,
+   "count": 1168,
+   "tris": 14016
+  },
+  {
+   "id": "worm_circ",
+   "name": "Earthworm: circular muscle",
+   "system": "worm_in",
+   "node": "soil_worm_circular",
+   "color": "#8a3b2b",
+   "mesh": "worm_circ",
+   "cutFace": "circ",
+   "parent": "worm_skin",
+   "lod": "near",
+   "noink": true,
+   "center": [
+    -0.28,
+    -0.1305,
+    0
+   ],
+   "radius": 0.084,
+   "tris": 2272
+  },
+  {
+   "id": "worm_long",
+   "name": "Earthworm: longitudinal muscle",
+   "system": "worm_in",
+   "node": "soil_worm_longitudinal",
+   "color": "#ddd2c4",
+   "mesh": "worm_long",
+   "cutFace": "long",
+   "parent": "worm_skin",
+   "lod": "near",
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "soil_worm_wall",
+    "D": 0.0018,
+    "button": "Look inside the body wall"
+   },
+   "center": [
+    -0.28,
+    -0.1305,
+    0
+   ],
+   "radius": 0.0837,
+   "tris": 2272
+  },
+  {
+   "id": "worm_coelom",
+   "name": "Earthworm: coelom (the fluid-filled body cavity)",
+   "system": "worm_in",
+   "node": "soil_worm_coelom",
+   "color": "#efdccb",
+   "mesh": "worm_coelom",
+   "cutFace": "coel",
+   "parent": "worm_skin",
+   "lod": "near",
+   "noink": true,
+   "center": [
+    -0.28,
+    -0.1304,
+    0
+   ],
+   "radius": 0.0834,
+   "tris": 2272
+  },
+  {
+   "id": "worm_pharynx",
+   "name": "Earthworm: pharynx",
+   "system": "worm_in",
+   "node": "soil_worm_pharynx",
+   "color": "#c97b6a",
+   "mesh": "worm_pharynx",
+   "cutFace": "pharynx",
+   "parent": "worm_skin",
+   "lod": "near",
+   "ink_w": 0.0002,
+   "center": [
+    -0.28,
+    -0.049,
+    0
+   ],
+   "radius": 0.0019,
+   "tris": 420
+  },
+  {
+   "id": "worm_oesophagus",
+   "name": "Earthworm: oesophagus and lime glands",
+   "system": "worm_in",
+   "node": "soil_worm_oesophagus",
+   "color": "#e0b58f",
+   "mesh": "worm_oesophagus",
+   "cutFace": "oes",
+   "parent": "worm_skin",
+   "lod": "near",
+   "ink_w": 0.0002,
+   "center": [
+    -0.28,
+    -0.0548,
+    0
+   ],
+   "radius": 0.0042,
+   "tris": 660
+  },
+  {
+   "id": "worm_crop",
+   "name": "Earthworm: crop",
+   "system": "worm_in",
+   "node": "soil_worm_crop",
+   "color": "#e6c9a4",
+   "mesh": "worm_crop",
+   "cutFace": "crop",
+   "parent": "worm_skin",
+   "lod": "near",
+   "ink_w": 0.0002,
+   "center": [
+    -0.28,
+    -0.0617,
+    0
+   ],
+   "radius": 0.0028,
+   "tris": 420
+  },
+  {
+   "id": "worm_gizzard",
+   "name": "Earthworm: gizzard",
+   "system": "worm_in",
+   "node": "soil_worm_gizzard",
+   "color": "#9a7a5a",
+   "mesh": "worm_gizzard",
+   "cutFace": "gizz",
+   "parent": "worm_skin",
+   "lod": "near",
+   "ink_w": 0.0002,
+   "center": [
+    -0.28,
+    -0.0665,
+    0
+   ],
+   "radius": 0.0025,
+   "tris": 308
+  },
+  {
+   "id": "worm_intestine",
+   "name": "Earthworm: intestine",
+   "system": "worm_in",
+   "node": "soil_worm_intestine",
+   "color": "#b79468",
+   "mesh": "worm_intestine",
+   "cutFace": "int",
+   "parent": "worm_skin",
+   "lod": "near",
+   "ink_w": 0.0002,
+   "center": [
+    -0.28,
+    -0.1398,
+    0
+   ],
+   "radius": 0.0713,
+   "tris": 1944
+  },
+  {
+   "id": "worm_gutcontent",
+   "name": "Earthworm: soil being digested",
+   "system": "worm_in",
+   "node": "soil_worm_intestine",
+   "color": "#4a3a2a",
+   "mesh": "worm_gutcontent",
+   "cutFace": "gutc",
+   "parent": "worm_skin",
+   "lod": "near",
+   "noink": true,
+   "center": [
+    -0.28,
+    -0.139,
+    0
+   ],
+   "radius": 0.07,
+   "tris": 1420
+  },
+  {
+   "id": "worm_dorsal_vessel",
+   "name": "Earthworm: dorsal blood vessel",
+   "system": "worm_in",
+   "node": "soil_worm_vessels",
+   "color": "#b3262d",
+   "mesh": "worm_dorsal_vessel",
+   "cutFace": "blood",
+   "parent": "worm_skin",
+   "lod": "near",
+   "ink_w": 0.0002,
+   "center": [
+    -0.2783,
+    -0.13,
+    0
+   ],
+   "radius": 0.079,
+   "tris": 960
+  },
+  {
+   "id": "worm_ventral_vessel",
+   "name": "Earthworm: ventral blood vessel",
+   "system": "worm_in",
+   "node": "soil_worm_vessels",
+   "color": "#b3262d",
+   "mesh": "worm_ventral_vessel",
+   "cutFace": "blood",
+   "parent": "worm_skin",
+   "lod": "near",
+   "ink_w": 0.0002,
+   "center": [
+    -0.2817,
+    -0.13,
+    0
+   ],
+   "radius": 0.08,
+   "tris": 960
+  },
+  {
+   "id": "worm_hearts",
+   "name": "Earthworm: five pairs of hearts",
+   "system": "worm_in",
+   "node": "soil_worm_hearts",
+   "color": "#d23a40",
+   "mesh": "worm_hearts",
+   "cutFace": "blood",
+   "parent": "worm_skin",
+   "lod": "near",
+   "ink_w": 0.0002,
+   "deeper": {
+    "type": "mol",
+    "mol": "atp",
+    "name": "ATP",
+    "button": "See the molecule that fuels muscle: ATP"
+   },
+   "center": [
+    -0.28,
+    -0.0547,
+    0
+   ],
+   "radius": 0.0029,
+   "tris": 2100
+  },
+  {
+   "id": "worm_nerve_cord",
+   "name": "Earthworm: ventral nerve cord",
+   "system": "worm_in",
+   "node": "soil_worm_nerve",
+   "color": "#efe3a0",
+   "mesh": "worm_nerve_cord",
+   "cutFace": "nerve",
+   "parent": "worm_skin",
+   "lod": "near",
+   "ink_w": 0.0002,
+   "center": [
+    -0.2823,
+    -0.1297,
+    0
+   ],
+   "radius": 0.0805,
+   "tris": 2240
+  },
+  {
+   "id": "worm_brain",
+   "name": "Earthworm: brain and nerve ring",
+   "system": "worm_in",
+   "node": "soil_worm_brain",
+   "color": "#f2e8b4",
+   "mesh": "worm_brain",
+   "cutFace": "nerve",
+   "parent": "worm_skin",
+   "lod": "near",
+   "ink_w": 0.0002,
+   "center": [
+    -0.2803,
+    -0.0485,
+    0
+   ],
+   "radius": 0.0024,
+   "tris": 516
+  },
+  {
+   "id": "woodlouse_body",
+   "name": "Woodlouse: body",
+   "system": "animals",
+   "node": "soil_woodlouse",
+   "color": "#7a746a",
+   "mesh": "woodlouse_body",
+   "lod": "near",
+   "ink_w": 0.0006,
+   "deeper": {
+    "type": "mol",
+    "mol": "n_acetylglucosamine",
+    "name": "N-acetylglucosamine",
+    "button": "See the unit of chitin"
+   },
+   "center": [
+    0.3998,
+    0.0048,
+    -0.16
+   ],
+   "radius": 0.0091,
+   "tris": 4032
+  },
+  {
+   "id": "woodlouse_eyes",
+   "name": "Woodlouse: eyes",
+   "system": "animals",
+   "node": "soil_woodlouse",
+   "color": "#14110e",
+   "mesh": "woodlouse_eyes",
+   "lod": "near",
+   "noink": true,
+   "center": [
+    0.4062,
+    0.0049,
+    -0.1643
+   ],
+   "radius": 0.0019,
+   "tris": 288
+  },
+  {
+   "id": "woodlouse_legs",
+   "name": "Woodlouse: seven pairs of legs",
+   "system": "animals",
+   "node": "soil_woodlouse",
+   "color": "#8d857a",
+   "mesh": "woodlouse_legs",
+   "lod": "near",
+   "ink_w": 0.0004,
+   "center": [
+    0.4007,
+    0.0032,
+    -0.1605
+   ],
+   "radius": 0.0056,
+   "tris": 560
+  },
+  {
+   "id": "woodlouse_ant",
+   "name": "Woodlouse: antennae and tail points",
+   "system": "animals",
+   "node": "soil_woodlouse",
+   "color": "#8d857a",
+   "mesh": "woodlouse_ant",
+   "lod": "near",
+   "ink_w": 0.0004,
+   "center": [
+    0.4019,
+    0.0046,
+    -0.1621
+   ],
+   "radius": 0.0133,
+   "tris": 300
+  },
+  {
+   "id": "beetle_head",
+   "name": "Ground beetle: head",
+   "system": "animals",
+   "node": "soil_beetle_head",
+   "color": "#14120f",
+   "mesh": "beetle_head",
+   "lod": "near",
+   "ink_w": 0.0005,
+   "center": [
+    -0.5055,
+    0.0054,
+    -0.1168
+   ],
+   "radius": 0.0022,
+   "tris": 2252
+  },
+  {
+   "id": "beetle_eyes",
+   "name": "Ground beetle: eyes",
+   "system": "animals",
+   "node": "soil_beetle_head",
+   "color": "#2a2622",
+   "mesh": "beetle_eyes",
+   "lod": "near",
+   "noink": true,
+   "center": [
+    -0.5057,
+    0.0061,
+    -0.1167
+   ],
+   "radius": 0.0018,
+   "tris": 288
+  },
+  {
+   "id": "beetle_jaws",
+   "name": "Ground beetle: jaws (mandibles)",
+   "system": "animals",
+   "node": "soil_beetle_head",
+   "color": "#3a2a1c",
+   "mesh": "beetle_jaws",
+   "lod": "near",
+   "ink_w": 0.0004,
+   "center": [
+    -0.5075,
+    0.0051,
+    -0.1157
+   ],
+   "radius": 0.001,
+   "tris": 72
+  },
+  {
+   "id": "beetle_antennae",
+   "name": "Ground beetle: antennae",
+   "system": "animals",
+   "node": "soil_beetle_head",
+   "color": "#4a3526",
+   "mesh": "beetle_antennae",
+   "lod": "near",
+   "ink_w": 0.0003,
+   "center": [
+    -0.5102,
+    0.0066,
+    -0.1132
+   ],
+   "radius": 0.0048,
+   "tris": 260
+  },
+  {
+   "id": "beetle_pronotum",
+   "name": "Ground beetle: thorax shield (pronotum)",
+   "system": "animals",
+   "node": "soil_beetle",
+   "color": "#171512",
+   "mesh": "beetle_pronotum",
+   "lod": "near",
+   "ink_w": 0.0005,
+   "center": [
+    -0.5029,
+    0.0056,
+    -0.1184
+   ],
+   "radius": 0.0028,
+   "tris": 3092
+  },
+  {
+   "id": "beetle_elytra",
+   "name": "Ground beetle: wing cases (elytra)",
+   "system": "animals",
+   "node": "soil_beetle",
+   "color": "#13110f",
+   "mesh": "beetle_elytra",
+   "lod": "near",
+   "ink_w": 0.0005,
+   "deeper": {
+    "type": "mol",
+    "mol": "n_acetylglucosamine",
+    "name": "N-acetylglucosamine",
+    "button": "See the unit of chitin"
+   },
+   "center": [
+    -0.4977,
+    0.0058,
+    -0.1213
+   ],
+   "radius": 0.0059,
+   "tris": 7800
+  },
+  {
+   "id": "beetle_legs",
+   "name": "Ground beetle: legs",
+   "system": "animals",
+   "node": "soil_beetle_legs",
+   "color": "#4d3524",
+   "mesh": "beetle_legs",
+   "lod": "near",
+   "ink_w": 0.0004,
+   "center": [
+    -0.5003,
+    0.0042,
+    -0.1198
+   ],
+   "radius": 0.0098,
+   "tris": 1080
+  },
+  {
+   "id": "springtail_body",
+   "name": "Springtails (about 1.8 mm)",
+   "system": "animals",
+   "node": "soil_springtail",
+   "color": "#e4dccb",
+   "instances": "springtail_bodys",
+   "lod": "near",
+   "center": [
+    0.2672,
+    -0.0566,
+    -0.1095
+   ],
+   "radius": 0.296,
+   "count": 16,
+   "tris": 23040
+  },
+  {
+   "id": "springtail_legs",
+   "name": "Springtails: legs and antennae",
+   "system": "animals",
+   "node": "soil_springtail",
+   "color": "#cfc6b3",
+   "instances": "springtail_legss",
+   "lod": "near",
+   "center": [
+    0.2672,
+    -0.0566,
+    -0.1095
+   ],
+   "radius": 0.2959,
+   "count": 16,
+   "tris": 3328
+  },
+  {
+   "id": "springtail_furca",
+   "name": "Springtails: the spring (furca)",
+   "system": "animals",
+   "node": "soil_springtail_furca",
+   "color": "#bfb49a",
+   "instances": "springtail_furcas",
+   "lod": "near",
+   "center": [
+    0.2672,
+    -0.0566,
+    -0.1095
+   ],
+   "radius": 0.2953,
+   "count": 16,
+   "tris": 768
+  },
+  {
+   "id": "mite_body",
+   "name": "Oribatid mites (about 0.7 mm)",
+   "system": "animals",
+   "node": "soil_mite",
+   "color": "#7a3f1f",
+   "instances": "mite_bodys",
+   "lod": "near",
+   "center": [
+    0.2181,
+    -0.0539,
+    -0.0786
+   ],
+   "radius": 0.3729,
+   "count": 10,
+   "tris": 2880
+  },
+  {
+   "id": "mite_legs",
+   "name": "Oribatid mites: eight legs",
+   "system": "animals",
+   "node": "soil_mite",
+   "color": "#8a5a34",
+   "instances": "mite_legss",
+   "lod": "near",
+   "center": [
+    0.2181,
+    -0.0539,
+    -0.0786
+   ],
+   "radius": 0.3734,
+   "count": 10,
+   "tris": 2560
+  }
+ ],
+ "stats": {
+  "parts": 56,
+  "uniqueMeshTris": 104754,
+  "nearTris": 121976,
+  "midTris": 6196,
+  "farTris": 1400
+ }
+}
