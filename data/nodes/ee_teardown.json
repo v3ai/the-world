@@ -1666,7 +1666,7 @@
   "title": "Full adder",
   "kind": "structure",
   "template": "teardown",
-  "scale_m": 1e-05,
+  "scale_m": 5e-07,
   "area": "ee_digital",
   "parents": [
    "core_alu",
@@ -1717,7 +1717,7 @@
   "title": "NAND gate",
   "kind": "component",
   "template": "teardown",
-  "scale_m": 1e-06,
+  "scale_m": 2e-07,
   "area": "ee_digital",
   "parents": [
    "logic_adder",

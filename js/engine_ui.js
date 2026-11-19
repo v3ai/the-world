@@ -445,6 +445,7 @@ function updateCaption() {
     $('#capN').textContent = nm;
     $('#capD').textContent = f.blurb || '';
     $('#capNote').textContent = f.note || '';
+    $('#timebar').style.display = f.device ? 'none' : ''; // the clock means nothing inside a chip
     updateControls(f);
   }
   { const min = capPref !== null ? capPref : (document.body.classList.contains('cardOpen') || performance.now() - capSince > 14000), cp = $('#caption'); if (cp.classList.contains('min') !== min) { cp.classList.toggle('min', min); $('#capFold').textContent = min ? 'Show details' : 'Hide details'; } }

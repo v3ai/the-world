@@ -112,6 +112,7 @@ function diveMaterial(h) {
   else if (kind === 'gasgiant' || kind === 'gas') { f = new Frame({ type: 'gas', name: 'Gas molecules', unit: 1e-9, radius: 24, r1: 2e-7, spawnD: 1.2e-9, pos: P }); D = 5e-8; }
   else if (kind === 'water') { f = new Frame({ type: 'liquid', name: 'Liquid water', unit: 1e-10, radius: 18, r1: 2e-8, spawnD: 1e-9, pos: P }); D = 5e-9; }
   else if (kind === 'molecule') { f = /air|gas/.test(h.id) ? new Frame({ type: 'gas', name: 'Air molecules', unit: 1e-9, radius: 24, r1: 2e-7, spawnD: 1.2e-9, pos: P }) : new Frame({ type: 'liquid', name: 'Liquid water', unit: 1e-10, radius: 18, r1: 2e-8, spawnD: 1e-9, pos: P }); D = f.type === 'gas' ? 5e-8 : 5e-9; }
+  else if (kind === 'silicon') { f = crystalFrame('silicon', P); D = 4e-9; } // the chips of a phone: a silicon crystal
   else if (kind === 'crystal' || kind === 'rock') { f = crystalFrame(/ice/.test(h.id) ? 'ice_ih' : 'quartz', P); D = 4e-9; }
   else if (kind === 'cell') { f = new Frame({ type: 'cell', name: 'Cell', unit: 1e-6, radius: 16, r1: 2.5e-4, pos: P, opts: { type: 'animal' } }); D = 5e-5; }
   else if (kind === 'leaf') { f = microFrame('leaf', P); D = 1.2e-3; }
