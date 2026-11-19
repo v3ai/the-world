@@ -789,7 +789,12 @@ function pkInstHit(im, i, rc, out) { // the exact test of one instance, as three
   for (let k = 0; k < _pkTmp.length; k++) { const h = _pkTmp[k]; h.instanceId = i; h.object = im; out.push(h); }
   _pkTmp.length = 0;
 }
-const _pkStack = new Int32Array(512);
+const _pkStack = new Int32Array(512), _pkCand = [], PK_INST_HITS = 4;
+/* An instanced crowd is tested nearest instance first, and the test stops once four hits that are not cut away have been found and
+   no remaining instance can be nearer than the last of them. A ray along a dog's back crosses the bounding spheres of hundreds of
+   hairs; every pick rule in the app needs only the nearest hit of a part that is showing and not clipped (thChooseHit, the core
+   sample), so the hundreds behind it are not worth an exact test each. Hits removed by the material's clipping planes do not count
+   toward the four, so in a cut-open view the first hit that survives the cut is still found. */
 THREE.InstancedMesh.prototype.raycast = function (rc, out) {
   const n = this.count; if (!n || this.material === undefined) return;
   if (n < 16 || !this.geometry.attributes.position) return _pkInstRay.call(this, rc, out);
@@ -798,21 +803,40 @@ THREE.InstancedMesh.prototype.raycast = function (rc, out) {
   if (!_pkRay.intersectsBox(A.box)) return;
   const ox = _pkRay.origin.x, oy = _pkRay.origin.y, oz = _pkRay.origin.z, dx = _pkRay.direction.x, dy = _pkRay.direction.y, dz = _pkRay.direction.z;
   _pkMesh.geometry = this.geometry; _pkMesh.material = this.material;
-  const sph = i => { const k = i * 4, vx = S[k] - ox, vy = S[k + 1] - oy, vz = S[k + 2] - oz, t = vx * dx + vy * dy + vz * dz, d2 = vx * vx + vy * vy + vz * vz - (t > 0 ? t * t : 0); return d2 <= S[k + 3] * S[k + 3]; };
+  const C = _pkCand; C.length = 0; // candidates: [instance, where the ray enters its sphere (along the ray, in the mesh's own space)]
+  const sph = i => { const k = i * 4, vx = S[k] - ox, vy = S[k + 1] - oy, vz = S[k + 2] - oz, t = vx * dx + vy * dy + vz * dz, r = S[k + 3], d2 = vx * vx + vy * vy + vz * vz - (t > 0 ? t * t : 0); if (d2 <= r * r) C.push(i, t - r); };
   if (!A.nb) { // no tree (few instances, moving instances, or not built yet): every sphere is tested, which is still far cheaper than every instance's triangles
     if (!A.tree && !this._pkQ) { this._pkQ = true; this._pkPri = 0; PK.queue.push(this); PK.sorted = false; }
-    for (let i = 0; i < n; i++) if (sph(i)) pkInstHit(this, i, rc, out); return;
+    for (let i = 0; i < n; i++) sph(i);
+  } else {
+    const nb = A.nb, nl = A.nl, ids = A.ids, ix = 1 / dx, iy = 1 / dy, iz = 1 / dz; let sp = 0; _pkStack[sp++] = 0;
+    while (sp) {
+      const nd = _pkStack[--sp], b = nd * 6;
+      let t0 = (nb[b] - ox) * ix, t1 = (nb[b + 3] - ox) * ix, lo = Math.min(t0, t1), hi = Math.max(t0, t1);
+      t0 = (nb[b + 1] - oy) * iy; t1 = (nb[b + 4] - oy) * iy; lo = Math.max(lo, Math.min(t0, t1)); hi = Math.min(hi, Math.max(t0, t1));
+      t0 = (nb[b + 2] - oz) * iz; t1 = (nb[b + 5] - oz) * iz; lo = Math.max(lo, Math.min(t0, t1)); hi = Math.min(hi, Math.max(t0, t1));
+      if (hi < 0 || lo > hi) continue;
+      const a = nl[nd * 2], c = nl[nd * 2 + 1];
+      if (a < 0) { for (let j = -a - 1, e = j + c; j < e; j++) { const i = ids[j]; if (i < n) sph(i); } }
+      else if (sp < 510) { _pkStack[sp++] = a; _pkStack[sp++] = c; }
+    }
   }
-  const nb = A.nb, nl = A.nl, ids = A.ids, ix = 1 / dx, iy = 1 / dy, iz = 1 / dz; let sp = 0; _pkStack[sp++] = 0;
-  while (sp) {
-    const nd = _pkStack[--sp], b = nd * 6;
-    let t0 = (nb[b] - ox) * ix, t1 = (nb[b + 3] - ox) * ix, lo = Math.min(t0, t1), hi = Math.max(t0, t1);
-    t0 = (nb[b + 1] - oy) * iy; t1 = (nb[b + 4] - oy) * iy; lo = Math.max(lo, Math.min(t0, t1)); hi = Math.min(hi, Math.max(t0, t1));
-    t0 = (nb[b + 2] - oz) * iz; t1 = (nb[b + 5] - oz) * iz; lo = Math.max(lo, Math.min(t0, t1)); hi = Math.min(hi, Math.max(t0, t1));
-    if (hi < 0 || lo > hi) continue;
-    const a = nl[nd * 2], c = nl[nd * 2 + 1];
-    if (a < 0) { for (let j = -a - 1, e = j + c; j < e; j++) { const i = ids[j]; if (i < n && sph(i)) pkInstHit(this, i, rc, out); } }
-    else if (sp < 510) { _pkStack[sp++] = a; _pkStack[sp++] = c; }
+  const m = C.length >> 1; if (!m) return;
+  if (m <= PK_INST_HITS * 2) { for (let k = 0; k < m; k++) pkInstHit(this, C[k * 2], rc, out); return; }
+  // many candidates: nearest first
+  const ord = new Array(m); for (let k = 0; k < m; k++) ord[k] = k; ord.sort((p, q) => C[p * 2 + 1] - C[q * 2 + 1]);
+  const planes = this.material.clippingPlanes, base = out.length; let good = 0, far = -Infinity;
+  for (let k = 0; k < m; k++) {
+    const i = C[ord[k] * 2], te = C[ord[k] * 2 + 1];
+    if (good >= PK_INST_HITS) { // can this instance still hold a nearer hit than the ones found? (its sphere's entry point, measured in the world)
+      _pkV.copy(_pkRay.direction).multiplyScalar(Math.max(te, 0)).add(_pkRay.origin).applyMatrix4(this.matrixWorld);
+      if (_pkV.distanceTo(rc.ray.origin) > far) break;
+    }
+    const h0 = out.length; pkInstHit(this, i, rc, out);
+    for (let j = h0; j < out.length; j++) {
+      const h = out[j]; let cut = false; if (planes) for (let q = 0; q < planes.length; q++) if (planes[q].distanceToPoint(h.point) < 0) { cut = true; break; }
+      if (!cut) { good++; if (h.distance > far) far = h.distance; }
+    }
   }
 };
 /* the bounding sphere of everything pickable in a frame, in the frame's own coordinates. It is worked out in idle slices (pkIdle, every half

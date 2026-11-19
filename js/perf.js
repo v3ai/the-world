@@ -41,7 +41,7 @@ const PERF = (() => {
     flags,
     frame: 0,
     dts: new Float32Array(N), di: 0, dn: 0,        // the last N frame intervals (ms)
-    cpu: { update: 0, pick: 0, render: 0, other: 0 }, acc: { update: 0, pick: 0, render: 0 },   // smoothed ms per frame, and this frame's sums
+    cpu: { update: 0, pick: 0, render: 0, other: 0 }, acc: { update: 0, pick: 0, render: 0 }, last: { update: 0, pick: 0, render: 0, total: 0 },   // smoothed ms per frame, and this frame's sums
     pick: { n: 0, last: 0, max: 0, frameMax: 0, sum: 0, ring: new Float32Array(512) },   // single picks (ms): count, last, worst, the last 512; frameMax = most picking in one frame
     _framePick: 0,
     renders: 0, _renders: 0,                       // renderer.render() calls for scenes, last frame
@@ -61,6 +61,7 @@ const PERF = (() => {
       c.update += (a.update - c.update) * k; c.pick += (a.pick - c.pick) * k; c.render += (a.render - c.render) * k;
       c.other += (Math.max(0, total - a.update - a.pick - a.render) - c.other) * k;
       if (P._framePick > P.pick.frameMax) P.pick.frameMax = P._framePick;
+      P.last.update = a.update; P.last.pick = a.pick; P.last.render = a.render; P.last.total = total; // this frame's own figures (the smoothed ones above take a while to forget a one-off)
       a.update = a.pick = a.render = 0; P._framePick = 0;
       P.renders = P._renders; P._renders = 0; P.passes = P._passes; P._passes = 0;
     },
