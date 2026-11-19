@@ -677,30 +677,30 @@ function thSpawn(F, T0, hint) {
   const hu = hint && hint.obj && hint.obj.userData; let d = null;
   if (hu && hu.hotspot && hu.hotspot.deeper) d = hu.hotspot.deeper;
   else { const pid = thVisibleAt(F), rec = pid && F.T.parts[pid]; d = rec ? rec.pd.deeper : (hu && hu.part && F.T.parts[hu.id] ? F.T.parts[hu.id].pd.deeper : null); }   // what you see now, not what was under the cursor before the layers peeled
-  return d ? thDeepFrame(d, T0) : null;
+  return d ? thDeepFrame(d, T0, undefined, F.unit) : null;
 }
 const TH_CELLS = {
   plant: { name: 'Plant cell', opts: { type: 'plant' }, off: -10 },
   animal: { name: 'Animal cell', opts: { type: 'animal' }, off: 0 },
   fungal: { name: 'Fungal cell (generic stand-in)', opts: { type: 'animal' }, off: 0, note: 'No fungal-cell scene has been built yet, so this is the generic animal-cell scene standing in for it. A fungal cell also has a nucleus and mitochondria, but it is surrounded by a rigid cell wall and differs from an animal cell in other ways that are not drawn here.' }
 };
-function thCellFrame(kind, T0) {
-  const c = TH_CELLS[kind] || TH_CELLS.plant, f = new Frame({ type: 'cell', name: c.name, unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T0.clone().add(new V3(0, c.off, 0)), opts: Object.assign({}, c.opts) });
+function thCellFrame(kind, T0, pu = 1e-6) {   // pu: the parent frame's unit; the cell's offset below the point is in micrometres
+  const c = TH_CELLS[kind] || TH_CELLS.plant, f = new Frame({ type: 'cell', name: c.name, unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T0.clone().add(new V3(0, c.off * 1e-6 / pu, 0)), opts: Object.assign({}, c.opts) });
   if (c.note) f.note = c.note; return f;
 }
-function thDeepFrame(d, T0, dflt) {
+function thDeepFrame(d, T0, dflt, pu = 1e-6) {
   if (d.type === 'crystal') return crystalFrame(d.id, T0);
   if (d.type === 'micro') return microFrame(d.kind, T0);
   if (d.type === 'tissue') return tissueFrame(d.id, T0, d.organ);
   if (d.type === 'tissue2') return tissue2Frame(d.id, T0);
-  if (d.type === 'cell') return thCellFrame(d.cell || dflt || 'plant', T0);
+  if (d.type === 'cell') return thCellFrame(d.cell || dflt || 'plant', T0, pu);
   if (d.type === 'liquid') return new Frame({ type: 'liquid', name: d.name || 'Liquid water', unit: 1e-10, radius: 18, r1: 2e-8, spawnD: 1e-9, pos: T0.clone() });   // the 3 nm ball of liquid water (a tissue scene's water, a film of pond water)
   if (d.type === 'mol') return new Frame({ type: 'mol', name: d.name || d.mol, unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: T0.clone(), opts: { mol: d.mol, fixed: false } });
   return null;
 }
 const TH_DEEP_D = { liquid: 5e-9, crystal: 4e-9, mol: 2.5e-9, cell: 4e-5, tissue2: 4e-4, micro: 1.2e-3, tissue: 4e-4 };
 function thGoDeeper(F, h, d, dflt) {
-  closeInfo(); const p = h && h.pointLocal ? h.pointLocal.clone() : new V3(); const f = thDeepFrame(d, p, dflt); if (!f) return;
+  closeInfo(); const p = h && h.pointLocal ? h.pointLocal.clone() : new V3(); const f = thDeepFrame(d, p, dflt, F.unit); if (!f) return;
   f.dynamic = true; f.keep = performance.now() + 60000; F.addChild(f); f.ensure(); flyTo(f, new V3(), d.D || TH_DEEP_D[d.type] || 4e-9);
 }
 /* the card's "See what it is made of" button: a part's or a marker's own `deeper`; (a frame's cardMadeOf: see CARD_HOOKS in nodes.js) */
