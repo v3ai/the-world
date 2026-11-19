@@ -80,7 +80,7 @@ export function organs() {
     const g = p => Math.max(L.shell(L.ellipsoid(.11, .125, .105), .0045)([p[0] - c[0], p[1] - c[1], p[2] - c[2]]), -(p[0] - (c[0] + .0))); // keep x > c.x: the front half of the shell, bulging toward the chest
     m.diaphragm = meshS(S(g, P(-32, 27, -12), P(-8, 56, 12)), .0055); }
   // liver, stomach, spleen
-  m.liver = meshS(smoothS(.012, ell(P(-16.5, 40.5, 3), [.2, 1, 0], .062, .1, .06), ell(P(-17, 38, -3.5), [.3, 1, 0], .055, .085, .05), ell(P(-15.5, 35, 0), [1, 0, 0], .03, .045, .07)), .0045);
+  m.liver = meshS(smoothS(.012, ell(P(-16.5, 39.4, 3), [.2, 1, 0], .062, .1, .06), ell(P(-17, 37.2, -3.5), [.3, 1, 0], .055, .085, .05), ell(P(-15.5, 35, 0), [1, 0, 0], .03, .045, .07)), .0045);
   m.stomach = meshS(smoothS(.01, ell(P(-21.5, 36.5, -3.8), [.3, 1, .2], .072, .066, .052), rod(P(-21, 34, -2.8), P(-23, 33, 2.8), .028, .02), ell(P(-23.5, 34.2, 3.8), [1, 0, 0], .02, .018, .018)), .0045);
   m.spleen = meshS(rod(P(-17.5, 44, -7.4), P(-26.5, 31, -6.6), .016, .011), .0035);
   // intestines
@@ -88,8 +88,8 @@ export function organs() {
     m.small_intestine = L.tube(L.spline(pts.map(p => P(p[0], Math.max(29, Math.min(40, p[1])), p[2]))).sample(160), .0105, { sides: 8 });
     m.large_intestine = L.merge(L.tube(L.spline([[-27, 37, 4], [-24, 38.5, 2.5], [-23.5, 39.5, -1], [-25, 41.5, -3.5], [-30, 43.2, -2.2], [-36, 43.8, -1], [-40.5, 43, 0], [-43.2, 41.8, 0]].map(p => P(...p))).sample(30), t => .0165 - .006 * t, { sides: 9 }), meshS(rod(P(-27, 36.8, 4.5), P(-30, 33.6, 5.3), .011, .0065), .0028)); }
   // kidneys, bladder
-  m.kidney_r = meshS(ell(P(-14.5, 44, 3.6), [1, .15, .15], .033, .022, .019), .0028);
-  m.kidney_l = meshS(ell(P(-19, 43.6, -3.8), [1, .15, -.15], .033, .022, .019), .0028);
+  m.kidney_r = meshS(ell(P(-21, 46.4, 3.4), [1, .15, .15], .033, .022, .019), .0028);   // right kidney at about L2, left one a little further back (L3-L4), both under the lumbar muscles
+  m.kidney_l = meshS(ell(P(-26, 46.2, -3.6), [1, .15, -.15], .033, .022, .019), .0028);
   m.bladder = meshS(smoothS(.01, ell(P(-33.5, 33.8, 0), [.3, 1, 0], .035, .042, .032)), .0032);
   // heart: outer muscle (two ventricles, two atria with auricles), chambers inside (for the cut-open view)
   { const ax = [-.32, -1, 0], lv = ell(P(7.9, 35, -.5), ax, .056, .036, .036), rv = ell(P(9.5, 35.8, 1.9), [-.3, -1, 0], .05, .024, .022), la = ell(P(11, 40.5, -1.4), [0, 1, 0], .022, .02, .02), ra = ell(P(11.4, 40, 2.4), [0, 1, 0], .022, .02, .019), au = ell(P(13.2, 38.6, 3.6), [1, 0, 0], .014, .009, .008);
