@@ -1,0 +1,1379 @@
+{
+ "id": "pond",
+ "title": "A pond in the park",
+ "label": "Pond",
+ "scientific": null,
+ "node": "park_pond",
+ "main_part": "surface",
+ "blurb": "A small pond in the park: a slice through the water, the mud and the bank, with the plants and animals of a British garden pond at their true sizes. Click anything, or choose a layer.",
+ "model_note": "A model built from typical measurements of each species, not a scan of a real pond. The pond's outline and depth are choices (about 6 m by 4.6 m, 0.6 m deep); the animals and plants are at true size, and how many there are and where they sit is illustrative.",
+ "size_m": {
+  "width": 6,
+  "depth": 4.6,
+  "deepest": 0.6
+ },
+ "height_m": 1,
+ "radius_m": 3.7,
+ "draw_m": 500,
+ "seed": 2718,
+ "label_m": 45,
+ "systems": [
+  {
+   "id": "surface",
+   "label": "Water surface"
+  },
+  {
+   "id": "floating",
+   "label": "On and in the surface film"
+  },
+  {
+   "id": "bank",
+   "label": "Bank and edge"
+  },
+  {
+   "id": "water",
+   "label": "Open water"
+  },
+  {
+   "id": "plants",
+   "label": "Submerged plants"
+  },
+  {
+   "id": "animals",
+   "label": "Animals"
+  },
+  {
+   "id": "bed",
+   "label": "Bottom and mud"
+  }
+ ],
+ "modes": [
+  {
+   "id": "surface",
+   "label": "Surface",
+   "show": {
+    "surface": 0.9,
+    "floating": 1,
+    "bank": 1
+   }
+  },
+  {
+   "id": "water",
+   "label": "Open water",
+   "groundSeeThrough": true,
+   "hotspots": true,
+   "show": {
+    "surface": 0.2,
+    "floating": 1,
+    "bank": 1,
+    "water": 0.18,
+    "plants": 1,
+    "animals": 1,
+    "bed": 0.5
+   }
+  },
+  {
+   "id": "bed",
+   "label": "Bottom and mud",
+   "groundSeeThrough": true,
+   "show": {
+    "surface": 0.1,
+    "floating": 0.4,
+    "bank": 0.8,
+    "water": 0.06,
+    "plants": 0.75,
+    "animals": 1,
+    "bed": 1
+   }
+  },
+  {
+   "id": "slice",
+   "label": "Cut-away slice",
+   "groundSeeThrough": true,
+   "cut": {
+    "at": [
+     0,
+     -0.15,
+     0
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   "hotspots": false,
+   "show": {
+    "surface": 0.3,
+    "floating": 1,
+    "bank": 1,
+    "water": 0.32,
+    "plants": 1,
+    "animals": 1,
+    "bed": 1
+   },
+   "legend": {
+    "title": "A slice through the pond",
+    "items": [
+     {
+      "name": "Water",
+      "color": "#6fa8b8",
+      "node": "pond_water"
+     },
+     {
+      "name": "Mud (silt, clay and rotting plant matter)",
+      "color": "#5c4630",
+      "node": "pond_mud"
+     },
+     {
+      "name": "Roots and rhizome",
+      "color": "#b79b6b",
+      "node": "pond_iris_rhizome"
+     }
+    ],
+    "note": "The colours on the cut face are a code, not what the cut would look like in a real pond."
+   }
+  }
+ ],
+ "auto": {
+  "label": "Auto",
+  "stages": [
+   {
+    "max_m": 3.4,
+    "mode": "water"
+   },
+   {
+    "mode": "surface"
+   }
+  ]
+ },
+ "layers": [
+  {
+   "id": "surface",
+   "label": "the water surface and what floats on it",
+   "systems": [
+    "surface",
+    "floating",
+    "bank"
+   ],
+   "ghost": 0.1
+  },
+  {
+   "id": "water",
+   "label": "the open water, its plants and animals",
+   "systems": [
+    "water",
+    "plants",
+    "animals"
+   ],
+   "ghost": 0.1
+  },
+  {
+   "id": "bed",
+   "label": "the bottom and mud",
+   "systems": [
+    "bed"
+   ],
+   "ghost": 0.1
+  }
+ ],
+ "lod": {
+  "near_m": 6,
+  "far_m": 32
+ },
+ "cut": {
+  "default": "tissue",
+  "at": [
+   0,
+   -0.15,
+   0
+  ],
+  "faces": {
+   "tissue": {
+    "kind": "plain",
+    "palette": [
+     [
+      14340796,
+      1
+     ]
+    ]
+   },
+   "water": {
+    "kind": "plain",
+    "palette": [
+     [
+      7317688,
+      1
+     ]
+    ]
+   },
+   "mud": {
+    "kind": "grains",
+    "cell": 0.05,
+    "edge": 0.35,
+    "palette": [
+     [
+      6047280,
+      0.4
+     ],
+     [
+      4864038,
+      0.3
+     ],
+     [
+      7035458,
+      0.2
+     ],
+     [
+      2958878,
+      0.1
+     ]
+    ]
+   }
+  }
+ },
+ "hotspots": [
+  {
+   "id": "hs_drop",
+   "node": "pond_water",
+   "at": [
+    0.7,
+    -0.2,
+    0.55
+   ],
+   "label": "A drop of pond water",
+   "r": 0.05,
+   "modes": [
+    "water",
+    "slice"
+   ],
+   "deeper": {
+    "type": "tissue2",
+    "id": "pond_drop",
+    "D": 0.0006,
+    "button": "Look at a drop of pond water"
+   }
+  },
+  {
+   "id": "hs_mud_oxygen",
+   "node": "pond_mud_oxygen",
+   "at": [
+    0.5,
+    -0.6047201461785148,
+    0.02
+   ],
+   "label": "Where the oxygen runs out",
+   "r": 0.035,
+   "modes": [
+    "slice"
+   ]
+  },
+  {
+   "id": "hs_rhizome",
+   "node": "pond_iris_rhizome",
+   "at": [
+    2.62,
+    -0.18881544452734964,
+    -0.5
+   ],
+   "label": "Roots in the mud",
+   "r": 0.035,
+   "modes": [
+    "slice"
+   ]
+  },
+  {
+   "id": "hs_warm_top",
+   "node": "pond_stratification",
+   "at": [
+    -0.4,
+    -0.04,
+    0.03
+   ],
+   "label": "Warmer water at the top?",
+   "r": 0.035,
+   "modes": [
+    "slice"
+   ]
+  }
+ ],
+ "anim": [
+  {
+   "kind": "sway",
+   "parts": [
+    "duckweed"
+   ],
+   "from_y": -0.012,
+   "to_y": 0.0003,
+   "amp_m": 0.0035,
+   "hz": 0.12,
+   "label": "Duckweed drifting"
+  },
+  {
+   "kind": "wag",
+   "parts": [
+    "skater_body",
+    "skater_front_legs",
+    "skater_mid_legs",
+    "skater_hind_legs",
+    "film_dimples"
+   ],
+   "pivot": [
+    0.9,
+    0.02,
+    0.55
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "amp_deg": 5,
+   "hz": 1.4,
+   "shown_hz": 0.7,
+   "illustrative": true,
+   "label": "Pond skater twitch"
+  },
+  {
+   "kind": "pulse",
+   "part": "daphnia_heart",
+   "pivot": [
+    0.28038,
+    -0.21942,
+    -0.40014
+   ],
+   "amp": 0.22,
+   "hz": 3,
+   "shown_hz": 1.5,
+   "label": "Water flea heart"
+  },
+  {
+   "kind": "flap",
+   "part": "daphnia_antennae",
+   "pivot": [
+    0.28099,
+    -0.22005,
+    -0.40036
+   ],
+   "axis": [
+    0.3429,
+    0,
+    0.9394
+   ],
+   "amp_deg": 22,
+   "shown_hz": 1.2,
+   "illustrative": true,
+   "label": "Water flea antennae (its hop)"
+  }
+ ],
+ "ruler": {
+  "label": "Pond",
+  "D": 8,
+  "at": [
+   0,
+   0,
+   0
+  ]
+ },
+ "parts": [
+  {
+   "id": "surface",
+   "name": "Water surface",
+   "system": "surface",
+   "node": "pond_surface",
+   "color": "#3f7f7a",
+   "mesh": "surface",
+   "solid": false,
+   "double": true,
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "pond_film",
+    "D": 0.0004,
+    "button": "Look at the surface film, close up"
+   },
+   "center": [
+    0,
+    0.02,
+    0
+   ],
+   "radius": 3,
+   "tris": 4248
+  },
+  {
+   "id": "bank",
+   "name": "Bank and marginal zone",
+   "system": "bank",
+   "node": "pond_bank",
+   "color": "#6a5c3c",
+   "mesh": "bank",
+   "solid": false,
+   "double": true,
+   "noink": true,
+   "center": [
+    0,
+    0.014,
+    0
+   ],
+   "radius": 3.66,
+   "tris": 1152
+  },
+  {
+   "id": "stones",
+   "name": "Edging stones",
+   "system": "bank",
+   "node": "pond_stones",
+   "color": "#8b8a84",
+   "instances": "stones",
+   "tint": 0.15,
+   "center": [
+    -0.0038,
+    0.0339,
+    -0.0021
+   ],
+   "radius": 3.4166,
+   "count": 38,
+   "tris": 5320
+  },
+  {
+   "id": "water",
+   "name": "Open water",
+   "system": "water",
+   "node": "pond_water",
+   "color": "#4a928d",
+   "mesh": "water",
+   "cutFace": "water",
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "pond_drop",
+    "D": 0.0006,
+    "button": "Look at a drop of pond water"
+   },
+   "center": [
+    0,
+    -0.2948,
+    0
+   ],
+   "radius": 3.0165,
+   "tris": 5632
+  },
+  {
+   "id": "mud",
+   "name": "Mud",
+   "system": "bed",
+   "node": "pond_mud",
+   "color": "#4a3c2d",
+   "mesh": "mud",
+   "cutFace": "mud",
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "pond_mud",
+    "D": 0.0003,
+    "button": "Look inside the mud"
+   },
+   "center": [
+    0,
+    -0.45,
+    0
+   ],
+   "radius": 3.6876,
+   "tris": 7200
+  },
+  {
+   "id": "leaf_litter",
+   "name": "Fallen leaves",
+   "system": "bed",
+   "node": "pond_leaf_litter",
+   "color": "#6c4a28",
+   "instances": "litter",
+   "tint": 0.3,
+   "double": true,
+   "lod": "near",
+   "center": [
+    -0.0067,
+    -0.4145,
+    -0.0896
+   ],
+   "radius": 2.7652,
+   "count": 90,
+   "tris": 2880
+  },
+  {
+   "id": "gas_pockets",
+   "name": "Bubbles in the mud",
+   "system": "bed",
+   "node": "pond_gas_bubbles",
+   "color": "#d9edf2",
+   "instances": "mud_bubbles",
+   "lod": "near",
+   "deeper": {
+    "type": "mol",
+    "mol": "methane",
+    "name": "Methane",
+    "button": "See the molecule: methane"
+   },
+   "center": [
+    0.1689,
+    -0.5581,
+    0.006
+   ],
+   "radius": 1.8564,
+   "count": 16,
+   "tris": 1024
+  },
+  {
+   "id": "gas_bubbles",
+   "name": "Bubbles rising from the mud",
+   "system": "bed",
+   "node": "pond_gas_bubbles",
+   "color": "#d9edf2",
+   "flow": "bubbles",
+   "deeper": {
+    "type": "mol",
+    "mol": "methane",
+    "name": "Methane",
+    "button": "See the molecule: methane"
+   },
+   "center": [
+    0,
+    8,
+    0
+   ],
+   "radius": 10,
+   "tris": 0
+  },
+  {
+   "id": "duckweed",
+   "name": "Common duckweed",
+   "system": "floating",
+   "node": "pond_duckweed",
+   "color": "#6aa83a",
+   "instances": "duckweed",
+   "tint": 0.25,
+   "double": true,
+   "lod": "near",
+   "deeper": {
+    "type": "mol",
+    "mol": "chlorophyll_a",
+    "name": "Chlorophyll a",
+    "button": "See the green pigment: chlorophyll a"
+   },
+   "center": [
+    -1.1418,
+    0.0202,
+    0.852
+   ],
+   "radius": 0.4485,
+   "count": 2280,
+   "tris": 27360
+  },
+  {
+   "id": "duckweed_mat",
+   "name": "Common duckweed (raft)",
+   "system": "floating",
+   "node": "pond_duckweed",
+   "color": "#6aa83a",
+   "mesh": "duckweed_mat",
+   "solid": false,
+   "double": true,
+   "noink": true,
+   "lod": "mid+far",
+   "center": [
+    -1.1645,
+    0.0207,
+    0.8442
+   ],
+   "radius": 0.1951,
+   "tris": 20
+  },
+  {
+   "id": "skater_body",
+   "name": "Pond skater: body",
+   "system": "floating",
+   "node": "pond_skater",
+   "color": "#3a2e22",
+   "mesh": "skater_body",
+   "lod": "near",
+   "ink_w": 0.0006,
+   "deeper": {
+    "type": "mol",
+    "mol": "n_acetylglucosamine",
+    "name": "N-acetylglucosamine",
+    "button": "See the molecule: the unit of chitin"
+   },
+   "center": [
+    0.9,
+    0.0224,
+    0.5498
+   ],
+   "radius": 0.0049,
+   "tris": 4880
+  },
+  {
+   "id": "skater_front_legs",
+   "name": "Pond skater: front legs",
+   "system": "floating",
+   "node": "pond_skater_legs",
+   "color": "#4a3b2c",
+   "mesh": "skater_front",
+   "lod": "near",
+   "ink_w": 0.0005,
+   "solid": false,
+   "center": [
+    0.9043,
+    0.0222,
+    0.5475
+   ],
+   "radius": 0.0024,
+   "tris": 380
+  },
+  {
+   "id": "skater_mid_legs",
+   "name": "Pond skater: middle legs (rowing)",
+   "system": "floating",
+   "node": "pond_skater_legs",
+   "color": "#4a3b2c",
+   "mesh": "skater_mid",
+   "lod": "near",
+   "ink_w": 0.0005,
+   "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "pond_film",
+    "D": 0.0004,
+    "button": "Look at the leg hairs on the surface film"
+   },
+   "center": [
+    0.9031,
+    0.0225,
+    0.5482
+   ],
+   "radius": 0.0119,
+   "tris": 380
+  },
+  {
+   "id": "skater_hind_legs",
+   "name": "Pond skater: hind legs (steering)",
+   "system": "floating",
+   "node": "pond_skater_legs",
+   "color": "#4a3b2c",
+   "mesh": "skater_hind",
+   "lod": "near",
+   "ink_w": 0.0005,
+   "solid": false,
+   "center": [
+    0.8931,
+    0.0222,
+    0.5544
+   ],
+   "radius": 0.0102,
+   "tris": 380
+  },
+  {
+   "id": "film_dimples",
+   "name": "Dimples in the surface film",
+   "system": "floating",
+   "node": "pond_surface_film",
+   "color": "#cfe6ee",
+   "mesh": "skater_dimples",
+   "lod": "near",
+   "solid": false,
+   "double": true,
+   "noink": true,
+   "opacity_max": 0.55,
+   "deeper": {
+    "type": "tissue2",
+    "id": "pond_film",
+    "D": 0.0004,
+    "button": "Look at the surface film, close up"
+   },
+   "center": [
+    0.898,
+    0.0198,
+    0.5506
+   ],
+   "radius": 0.0149,
+   "tris": 672
+  },
+  {
+   "id": "hornwort",
+   "name": "Hornwort (submerged plant)",
+   "system": "plants",
+   "node": "pond_hornwort",
+   "color": "#3f7d3a",
+   "instances": "hornwort_a",
+   "tint": 0.25,
+   "double": true,
+   "lod": "near",
+   "deeper": {
+    "type": "mol",
+    "mol": "chlorophyll_a",
+    "name": "Chlorophyll a",
+    "button": "See the green pigment: chlorophyll a"
+   },
+   "center": [
+    -0.0604,
+    -0.3142,
+    -0.1502
+   ],
+   "radius": 1.9398,
+   "count": 77,
+   "tris": 12012
+  },
+  {
+   "id": "hornwort_b",
+   "name": "Hornwort (submerged plant)",
+   "system": "plants",
+   "node": "pond_hornwort",
+   "color": "#468543",
+   "instances": "hornwort_b",
+   "tint": 0.25,
+   "double": true,
+   "lod": "near",
+   "deeper": {
+    "type": "mol",
+    "mol": "chlorophyll_a",
+    "name": "Chlorophyll a",
+    "button": "See the green pigment: chlorophyll a"
+   },
+   "center": [
+    -0.0896,
+    -0.2971,
+    -0.2758
+   ],
+   "radius": 1.8465,
+   "count": 92,
+   "tris": 14352
+  },
+  {
+   "id": "hornwort_stems",
+   "name": "Hornwort stems",
+   "system": "plants",
+   "node": "pond_hornwort",
+   "color": "#587a38",
+   "mesh": "hornwort_stems",
+   "lod": "near",
+   "noink": true,
+   "center": [
+    -0.1285,
+    -0.312,
+    -0.2014
+   ],
+   "radius": 1.8381,
+   "tris": 1024
+  },
+  {
+   "id": "hornwort_far",
+   "name": "Hornwort (submerged plant)",
+   "system": "plants",
+   "node": "pond_hornwort",
+   "color": "#3f7d3a",
+   "mesh": "hornwort_far",
+   "lod": "mid+far",
+   "noink": true,
+   "center": [
+    -0.075,
+    -0.1841,
+    -0.225
+   ],
+   "radius": 1.8284,
+   "tris": 400
+  },
+  {
+   "id": "oxygen_bubbles",
+   "name": "Oxygen bubbles on the leaves",
+   "system": "plants",
+   "node": "pond_oxygen",
+   "color": "#eaf7fb",
+   "instances": "o2_bubbles",
+   "lod": "near",
+   "deeper": {
+    "type": "mol",
+    "mol": "oxygen",
+    "name": "Oxygen",
+    "button": "See the molecule: oxygen"
+   },
+   "center": [
+    -0.0733,
+    -0.2823,
+    -0.304
+   ],
+   "radius": 1.815,
+   "count": 45,
+   "tris": 1620
+  },
+  {
+   "id": "iris_leaves",
+   "name": "Yellow flag iris: leaves",
+   "system": "bank",
+   "node": "pond_iris",
+   "color": "#5b8a3a",
+   "instances": "iris_leaves",
+   "double": true,
+   "tint": 0.15,
+   "lod": "near+mid",
+   "center": [
+    0.7166,
+    0,
+    -0.3344
+   ],
+   "radius": 3.8647,
+   "count": 27,
+   "tris": 1836
+  },
+  {
+   "id": "iris_flowers",
+   "name": "Yellow flag iris: flowers",
+   "system": "bank",
+   "node": "pond_iris_flower",
+   "color": "#f2c81e",
+   "mesh": "iris_flowers",
+   "double": true,
+   "lod": "near+mid",
+   "solid": false,
+   "center": [
+    2.4051,
+    0.9935,
+    -0.8083
+   ],
+   "radius": 0.4606,
+   "tris": 1728
+  },
+  {
+   "id": "iris_stalks",
+   "name": "Yellow flag iris: flower stalks",
+   "system": "bank",
+   "node": "pond_iris",
+   "color": "#6b8f3a",
+   "mesh": "iris_stalks",
+   "lod": "near+mid",
+   "center": [
+    2.3987,
+    0.4076,
+    -0.8131
+   ],
+   "radius": 0.7264,
+   "tris": 404
+  },
+  {
+   "id": "iris_far",
+   "name": "Yellow flag iris",
+   "system": "bank",
+   "node": "pond_iris",
+   "color": "#5b8a3a",
+   "mesh": "iris_far",
+   "lod": "far",
+   "noink": true,
+   "center": [
+    0.0079,
+    0.4,
+    -0.25
+   ],
+   "radius": 2.9536,
+   "tris": 126
+  },
+  {
+   "id": "iris_rhizome",
+   "name": "Yellow flag iris: rhizome in the mud",
+   "system": "bed",
+   "node": "pond_iris_rhizome",
+   "color": "#b79b6b",
+   "mesh": "iris_rhizome",
+   "lod": "near",
+   "center": [
+    0.0052,
+    -0.1918,
+    -0.2448
+   ],
+   "radius": 2.894,
+   "tris": 462
+  },
+  {
+   "id": "iris_roots",
+   "name": "Yellow flag iris: roots",
+   "system": "bed",
+   "node": "pond_iris_rhizome",
+   "color": "#d9c7a0",
+   "instances": "iris_roots",
+   "lod": "near",
+   "double": true,
+   "center": [
+    0.7218,
+    -0.1961,
+    -0.3282
+   ],
+   "radius": 3.7197,
+   "count": 78,
+   "tris": 1872
+  },
+  {
+   "id": "daphnia_carapace",
+   "name": "Water flea: shell (carapace)",
+   "system": "animals",
+   "node": "pond_daphnia",
+   "color": "#cfe8e0",
+   "mesh": "daphnia_carapace",
+   "lod": "near",
+   "opacity_max": 0.32,
+   "noink": true,
+   "deeper": {
+    "type": "mol",
+    "mol": "n_acetylglucosamine",
+    "name": "N-acetylglucosamine",
+    "button": "See the molecule: the unit of chitin"
+   },
+   "center": [
+    0.2796,
+    -0.2199,
+    -0.4
+   ],
+   "radius": 0.0018,
+   "tris": 598
+  },
+  {
+   "id": "daphnia_head",
+   "name": "Water flea: head",
+   "system": "animals",
+   "node": "pond_daphnia_head",
+   "color": "#e3caa0",
+   "mesh": "daphnia_head",
+   "lod": "near",
+   "ink_w": 0.0003,
+   "center": [
+    0.2813,
+    -0.2198,
+    -0.4005
+   ],
+   "radius": 0.0008,
+   "tris": 1408
+  },
+  {
+   "id": "daphnia_eye",
+   "name": "Water flea: compound eye",
+   "system": "animals",
+   "node": "pond_daphnia_head",
+   "color": "#101010",
+   "mesh": "daphnia_eye",
+   "lod": "near",
+   "noink": true,
+   "center": [
+    0.2818,
+    -0.2196,
+    -0.4007
+   ],
+   "radius": 0.0002,
+   "tris": 100
+  },
+  {
+   "id": "daphnia_antennae",
+   "name": "Water flea: second antennae",
+   "system": "animals",
+   "node": "pond_daphnia_antennae",
+   "color": "#e8d8b8",
+   "mesh": "daphnia_antennae",
+   "lod": "near",
+   "ink_w": 0.0002,
+   "solid": false,
+   "center": [
+    0.2802,
+    -0.2209,
+    -0.4001
+   ],
+   "radius": 0.0013,
+   "tris": 656
+  },
+  {
+   "id": "daphnia_heart",
+   "name": "Water flea: heart",
+   "system": "animals",
+   "node": "pond_daphnia_heart",
+   "color": "#cf5a4e",
+   "mesh": "daphnia_heart",
+   "lod": "near",
+   "ink_w": 0.0002,
+   "deeper": {
+    "type": "mol",
+    "mol": "atp",
+    "name": "ATP",
+    "button": "See the molecule that fuels heart muscle: ATP"
+   },
+   "center": [
+    0.2804,
+    -0.2194,
+    -0.4001
+   ],
+   "radius": 0.0002,
+   "tris": 144
+  },
+  {
+   "id": "daphnia_gut",
+   "name": "Water flea: gut",
+   "system": "animals",
+   "node": "pond_daphnia_gut",
+   "color": "#7aa84a",
+   "mesh": "daphnia_gut",
+   "lod": "near",
+   "ink_w": 0.0002,
+   "center": [
+    0.28,
+    -0.2201,
+    -0.4
+   ],
+   "radius": 0.0011,
+   "tris": 338
+  },
+  {
+   "id": "daphnia_eggs",
+   "name": "Water flea: eggs in the brood chamber",
+   "system": "animals",
+   "node": "pond_daphnia_eggs",
+   "color": "#e8e0a8",
+   "mesh": "daphnia_eggs",
+   "lod": "near",
+   "ink_w": 0.0002,
+   "center": [
+    0.2795,
+    -0.2196,
+    -0.3998
+   ],
+   "radius": 0.0005,
+   "tris": 256
+  },
+  {
+   "id": "daphnia_limbs",
+   "name": "Water flea: filtering limbs",
+   "system": "animals",
+   "node": "pond_daphnia_limbs",
+   "color": "#d9c9a0",
+   "mesh": "daphnia_limbs",
+   "lod": "near",
+   "ink_w": 0.0002,
+   "center": [
+    0.2797,
+    -0.2205,
+    -0.4
+   ],
+   "radius": 0.0011,
+   "tris": 420
+  },
+  {
+   "id": "daphnia_swarm",
+   "name": "Water fleas (more of them)",
+   "system": "animals",
+   "node": "pond_daphnia",
+   "color": "#d8c8a0",
+   "instances": "daphnia_swarm",
+   "lod": "near",
+   "center": [
+    0.2695,
+    -0.2221,
+    -0.3052
+   ],
+   "radius": 1.1308,
+   "count": 20,
+   "tris": 4440
+  },
+  {
+   "id": "snail_shell",
+   "name": "Great pond snail: shell",
+   "system": "animals",
+   "node": "pond_snail",
+   "color": "#a07a45",
+   "mesh": "snail_shell",
+   "lod": "near",
+   "ink_w": 0.0012,
+   "solid": false,
+   "double": true,
+   "center": [
+    -0.5447,
+    -0.583,
+    -0.3029
+   ],
+   "radius": 0.0267,
+   "tris": 7200
+  },
+  {
+   "id": "snail_body",
+   "name": "Great pond snail: foot and head",
+   "system": "animals",
+   "node": "pond_snail_body",
+   "color": "#6e6a55",
+   "mesh": "snail_body",
+   "lod": "near",
+   "ink_w": 0.0008,
+   "center": [
+    -0.5519,
+    -0.5938,
+    -0.3017
+   ],
+   "radius": 0.0207,
+   "tris": 4392
+  },
+  {
+   "id": "snail_tentacles",
+   "name": "Great pond snail: tentacles",
+   "system": "animals",
+   "node": "pond_snail_senses",
+   "color": "#7b7660",
+   "mesh": "snail_tentacles",
+   "lod": "near",
+   "ink_w": 0.0006,
+   "center": [
+    -0.5676,
+    -0.5945,
+    -0.316
+   ],
+   "radius": 0.0038,
+   "tris": 16
+  },
+  {
+   "id": "snail_eyes",
+   "name": "Great pond snail: eyes",
+   "system": "animals",
+   "node": "pond_snail_senses",
+   "color": "#101010",
+   "mesh": "snail_eyes",
+   "lod": "near",
+   "noink": true,
+   "center": [
+    -0.5671,
+    -0.5935,
+    -0.3157
+   ],
+   "radius": 0.0026,
+   "tris": 128
+  },
+  {
+   "id": "larva_head",
+   "name": "Dragonfly larva: head",
+   "system": "animals",
+   "node": "pond_larva_head",
+   "color": "#6a6b3d",
+   "mesh": "larva_head",
+   "lod": "near",
+   "ink_w": 0.0006,
+   "center": [
+    0.6194,
+    -0.6001,
+    -0.5692
+   ],
+   "radius": 0.0034,
+   "tris": 1532
+  },
+  {
+   "id": "larva_eyes",
+   "name": "Dragonfly larva: compound eyes",
+   "system": "animals",
+   "node": "pond_larva_head",
+   "color": "#8a9a50",
+   "mesh": "larva_eyes",
+   "lod": "near",
+   "ink_w": 0.0006,
+   "center": [
+    0.6194,
+    -0.5992,
+    -0.57
+   ],
+   "radius": 0.0044,
+   "tris": 1256
+  },
+  {
+   "id": "larva_mask",
+   "name": "Dragonfly larva: folded lip (the mask)",
+   "system": "animals",
+   "node": "pond_larva_mask",
+   "color": "#8a7a50",
+   "mesh": "larva_mask",
+   "lod": "near",
+   "ink_w": 0.0005,
+   "solid": false,
+   "double": true,
+   "center": [
+    0.6195,
+    -0.6027,
+    -0.5672
+   ],
+   "radius": 0.0047,
+   "tris": 52
+  },
+  {
+   "id": "larva_thorax",
+   "name": "Dragonfly larva: thorax",
+   "system": "animals",
+   "node": "pond_larva_thorax",
+   "color": "#6a6b3d",
+   "mesh": "larva_thorax",
+   "lod": "near",
+   "ink_w": 0.0006,
+   "center": [
+    0.6197,
+    -0.5994,
+    -0.5611
+   ],
+   "radius": 0.0055,
+   "tris": 2644
+  },
+  {
+   "id": "larva_wingpads",
+   "name": "Dragonfly larva: wing pads",
+   "system": "animals",
+   "node": "pond_larva_thorax",
+   "color": "#5a5b34",
+   "mesh": "larva_wingpads",
+   "lod": "near",
+   "ink_w": 0.0005,
+   "center": [
+    0.62,
+    -0.5975,
+    -0.5549
+   ],
+   "radius": 0.0066,
+   "tris": 256
+  },
+  {
+   "id": "larva_legs",
+   "name": "Dragonfly larva: legs",
+   "system": "animals",
+   "node": "pond_larva_legs",
+   "color": "#5d5a35",
+   "mesh": "larva_legs",
+   "lod": "near",
+   "ink_w": 0.0005,
+   "center": [
+    0.6198,
+    -0.6026,
+    -0.5636
+   ],
+   "radius": 0.015,
+   "tris": 1080
+  },
+  {
+   "id": "larva_abdomen",
+   "name": "Dragonfly larva: abdomen",
+   "system": "animals",
+   "node": "pond_larva_abdomen",
+   "color": "#68693c",
+   "mesh": "larva_abdomen",
+   "lod": "near",
+   "ink_w": 0.0006,
+   "center": [
+    0.62,
+    -0.5998,
+    -0.5461
+   ],
+   "radius": 0.012,
+   "tris": 4570
+  },
+  {
+   "id": "larva_cerci",
+   "name": "Dragonfly larva: tail points",
+   "system": "animals",
+   "node": "pond_larva_abdomen",
+   "color": "#6a6638",
+   "mesh": "larva_cerci",
+   "lod": "near",
+   "ink_w": 0.0005,
+   "center": [
+    0.6205,
+    -0.5997,
+    -0.534
+   ],
+   "radius": 0.002,
+   "tris": 180
+  },
+  {
+   "id": "tadpole_body",
+   "name": "Frog tadpole: body",
+   "system": "animals",
+   "node": "pond_tadpole",
+   "color": "#3b3326",
+   "mesh": "tadpole_body",
+   "lod": "near",
+   "ink_w": 0.0008,
+   "center": [
+    -2.1499,
+    -0.144,
+    -0.5
+   ],
+   "radius": 0.0095,
+   "tris": 5296
+  },
+  {
+   "id": "tadpole_eyes",
+   "name": "Frog tadpole: eyes",
+   "system": "animals",
+   "node": "pond_tadpole",
+   "color": "#e1b94a",
+   "mesh": "tadpole_eyes",
+   "lod": "near",
+   "noink": true,
+   "center": [
+    -2.1523,
+    -0.1411,
+    -0.5032
+   ],
+   "radius": 0.004,
+   "tris": 144
+  },
+  {
+   "id": "tadpole_tail",
+   "name": "Frog tadpole: tail",
+   "system": "animals",
+   "node": "pond_tadpole_tail",
+   "color": "#5a4a32",
+   "mesh": "tadpole_tail",
+   "lod": "near",
+   "ink_w": 0.0006,
+   "center": [
+    -2.1411,
+    -0.1444,
+    -0.4872
+   ],
+   "radius": 0.0116,
+   "tris": 2258
+  },
+  {
+   "id": "tadpole_legs",
+   "name": "Frog tadpole: hind legs",
+   "system": "animals",
+   "node": "pond_tadpole_legs",
+   "color": "#4d3f2b",
+   "mesh": "tadpole_legs",
+   "lod": "near",
+   "ink_w": 0.0005,
+   "center": [
+    -2.1436,
+    -0.1474,
+    -0.4913
+   ],
+   "radius": 0.0054,
+   "tris": 216
+  },
+  {
+   "id": "tadpole_swarm",
+   "name": "Frog tadpoles (more of them)",
+   "system": "animals",
+   "node": "pond_tadpole",
+   "color": "#3b3326",
+   "instances": "tadpole_swarm",
+   "lod": "near",
+   "center": [
+    -2.29,
+    -0.1065,
+    -0.47
+   ],
+   "radius": 0.504,
+   "count": 5,
+   "tris": 820
+  }
+ ],
+ "stats": {
+  "parts": 52,
+  "uniqueMeshTris": 64228,
+  "nearTris": 48740,
+  "midTris": 14708,
+  "farTris": 10866
+ }
+}

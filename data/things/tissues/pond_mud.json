@@ -1,0 +1,292 @@
+{
+ "cell": "plant",
+ "id": "pond_mud",
+ "tag": "Inside pond mud",
+ "title": "Inside the mud",
+ "node": "pond_mud",
+ "blurb": "A thin slice of pond mud: mineral grains, a rotting leaf, bacteria that feed on it, the archaea that make methane from what the bacteria leave, and a gas bubble. Click anything.",
+ "note": "Schematic. The grains, the leaf piece and the bubble are drawn at sizes inside the ranges for silt, sand and a single leaf fragment, but their numbers and positions are illustrative (silt grains are 2 to 63 µm, drawn 14 µm; sand grains are 63 to 2,000 µm, drawn 120 µm; ISO 14688-1); the microbes are drawn at about 1 to 3 micrometres (bacteria are typically 0.5 to 5 µm), far fewer than a real gram of mud holds. The bubble is drawn about 100 µm across to fit the scene; bubbles that leave the mud are millimetres across. Methane-making archaea live only where there is no oxygen, so the scene shows a place deeper in the mud, below the thin surface layer that oxygen reaches.",
+ "bg": "#efe9de",
+ "center": [
+  0,
+  0,
+  0
+ ],
+ "D_um": 330,
+ "labels": [
+  {
+   "text": "Mineral grains (silt and sand)",
+   "at": [
+    -140,
+    85,
+    50
+   ],
+   "pop": "sand"
+  },
+  {
+   "text": "Rotting leaf piece",
+   "at": [
+    -140,
+    30,
+    50
+   ],
+   "pop": "leaf"
+  },
+  {
+   "text": "Bacteria on the leaf",
+   "at": [
+    -140,
+    -20,
+    50
+   ],
+   "pop": "bact"
+  },
+  {
+   "text": "Methane-making archaea",
+   "at": [
+    -140,
+    -80,
+    50
+   ],
+   "pop": "archaea"
+  },
+  {
+   "text": "Gas bubble (mostly methane)",
+   "at": [
+    80,
+    85,
+    50
+   ],
+   "pop": "bubble"
+  }
+ ],
+ "populations": [
+  {
+   "id": "sand",
+   "name": "Mineral grains",
+   "node": "pond_mud_grains",
+   "shape": "ellipsoid",
+   "size": [
+    120,
+    90,
+    100
+   ],
+   "color": "#c9b48e",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "random",
+    "n": 4,
+    "min": [
+     -150,
+     -100,
+     -60
+    ],
+    "max": [
+     150,
+     100,
+     60
+    ],
+    "gap": 8,
+    "seed": 3,
+    "exclude": [
+     {
+      "min": [
+       -70,
+       -25,
+       -80
+      ],
+      "max": [
+       70,
+       45,
+       80
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "silt",
+   "name": "Silt grains",
+   "node": "pond_mud_grains",
+   "shape": "ellipsoid",
+   "size": [
+    14,
+    10,
+    12
+   ],
+   "color": "#a08c6a",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 2,
+   "arrange": {
+    "kind": "random",
+    "n": 70,
+    "min": [
+     -150,
+     -100,
+     -60
+    ],
+    "max": [
+     150,
+     100,
+     60
+    ],
+    "gap": 2,
+    "seed": 5
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "leaf",
+   "name": "A rotting leaf fragment",
+   "node": "pond_leaf_litter",
+   "shape": "rbox",
+   "size": [
+    150,
+    9,
+    70
+   ],
+   "color": "#7a5a32",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -5,
+       10,
+       0
+      ],
+      "rot": [
+       0,
+       15,
+       4
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "cellotriose",
+    "name": "Cellotriose",
+    "button": "See the cellulose of the leaf: a piece of its chain"
+   }
+  },
+  {
+   "id": "bact",
+   "name": "Bacteria feeding on the leaf",
+   "node": "pond_mud_bacteria",
+   "shape": "cylinder",
+   "size": [
+    1.6,
+    3.5,
+    1.6
+   ],
+   "color": "#6f7f4c",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 2,
+   "arrange": {
+    "kind": "random",
+    "n": 120,
+    "min": [
+     -70,
+     12,
+     -30
+    ],
+    "max": [
+     70,
+     22,
+     30
+    ],
+    "gap": 2,
+    "seed": 21
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "acetate",
+    "name": "Acetate",
+    "button": "See a molecule such microbes make: acetate"
+   }
+  },
+  {
+   "id": "archaea",
+   "name": "Methane-making archaea",
+   "node": "pond_methanogens",
+   "shape": "ellipsoid",
+   "size": [
+    2,
+    2,
+    2
+   ],
+   "color": "#b0507a",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 2,
+   "arrange": {
+    "kind": "random",
+    "n": 60,
+    "min": [
+     -110,
+     -110,
+     -50
+    ],
+    "max": [
+     110,
+     -40,
+     50
+    ],
+    "gap": 2,
+    "seed": 23
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "methane",
+    "name": "Methane",
+    "button": "See the molecule they make: methane"
+   }
+  },
+  {
+   "id": "bubble",
+   "name": "A gas bubble",
+   "node": "pond_gas_bubbles",
+   "shape": "ellipsoid",
+   "size": [
+    90,
+    90,
+    90
+   ],
+   "color": "#dcecf3",
+   "opacity": 0.55,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       95,
+       -25,
+       -10
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "methane",
+    "name": "Methane",
+    "button": "See the main gas in it: methane"
+   }
+  }
+ ]
+}

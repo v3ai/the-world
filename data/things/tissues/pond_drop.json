@@ -1,0 +1,533 @@
+{
+ "cell": "plant",
+ "id": "pond_drop",
+ "tag": "In a drop of pond water",
+ "title": "A drop of pond water",
+ "node": "pond_drop",
+ "blurb": "About a third of a millimetre of pond water under a microscope: green algae, glass-shelled diatoms, a ciliate, a rotifer and bacteria, each drawn at its own size against a 100 micrometre bar. Click anything.",
+ "note": "Sizes are those quoted for each group, drawn once at a typical size inside the published range: Chlamydomonas about 10 µm; a Volvox colony (V. carteri) 100 to 500 µm, drawn 250 µm; diatoms 20 to 200 µm for most species, drawn 70 µm and 40 µm; Paramecium species 60 to 300 µm, drawn 200 µm; rotifers mostly 100 to 500 µm, drawn 250 µm; bacteria 0.5 to 5 µm. The numbers of each and where they sit are illustrative: a real drop holds far fewer large organisms than this. A water flea (about 2.5 mm) would be four times wider than this whole view and is not drawn. Shapes are simplified.",
+ "bg": "#eaf1f2",
+ "center": [
+  0,
+  0,
+  0
+ ],
+ "D_um": 820,
+ "labels": [
+  {
+   "text": "100 µm",
+   "at": [
+    -258,
+    -160,
+    0
+   ],
+   "pop": "scale"
+  },
+  {
+   "text": "Volvox colony (a hollow ball of cells)",
+   "at": [
+    -175,
+    118,
+    40
+   ],
+   "pop": "volvox"
+  },
+  {
+   "text": "Diatom (glass shell)",
+   "at": [
+    105,
+    120,
+    30
+   ],
+   "pop": "diatom"
+  },
+  {
+   "text": "Paramecium (one cell)",
+   "at": [
+    135,
+    -100,
+    30
+   ],
+   "pop": "paramecium"
+  },
+  {
+   "text": "Rotifer (an animal)",
+   "at": [
+    -215,
+    -88,
+    40
+   ],
+   "pop": "rotifer"
+  },
+  {
+   "text": "Chlamydomonas (one cell)",
+   "at": [
+    200,
+    40,
+    30
+   ],
+   "pop": "chlamy"
+  }
+ ],
+ "populations": [
+  {
+   "id": "scale",
+   "name": "Scale bar: 100 micrometres",
+   "node": "pond_drop",
+   "shape": "rbox",
+   "size": [
+    100,
+    3,
+    3
+   ],
+   "color": "#1e2a38",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -205,
+       -145,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "volvox",
+   "name": "Volvox colony",
+   "node": "pond_volvox",
+   "shape": "ellipsoid",
+   "size": [
+    250,
+    250,
+    250
+   ],
+   "color": "#9fd67c",
+   "opacity": 0.3,
+   "ink": 1,
+   "priority": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -120,
+       20,
+       -20
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "volvox_cell",
+   "name": "Volvox cell",
+   "node": "pond_volvox",
+   "shape": "ellipsoid",
+   "size": [
+    9,
+    9,
+    9
+   ],
+   "color": "#3f9a2f",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 3,
+   "arrange": {
+    "kind": "inside",
+    "of": "volvox",
+    "per": 70,
+    "margin": 0.93,
+    "seed": 4
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "chlorophyll_a",
+    "name": "Chlorophyll a",
+    "button": "See the green pigment: chlorophyll a"
+   }
+  },
+  {
+   "id": "chlamy",
+   "name": "Chlamydomonas (a green alga)",
+   "node": "pond_chlamydomonas",
+   "shape": "ellipsoid",
+   "size": [
+    10,
+    12,
+    10
+   ],
+   "color": "#4caa3a",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "random",
+    "n": 16,
+    "min": [
+     -60,
+     -110,
+     -60
+    ],
+    "max": [
+     280,
+     150,
+     60
+    ],
+    "gap": 6,
+    "seed": 7,
+    "exclude": [
+     {
+      "min": [
+       -260,
+       -150,
+       -100
+      ],
+      "max": [
+       0,
+       150,
+       100
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "chlorophyll_a",
+    "name": "Chlorophyll a",
+    "button": "See the green pigment: chlorophyll a"
+   }
+  },
+  {
+   "id": "diatom",
+   "name": "Diatom (long, boat-shaped)",
+   "node": "pond_diatom",
+   "shape": "ellipsoid",
+   "size": [
+    70,
+    13,
+    10
+   ],
+   "color": "#c9a24a",
+   "opacity": 0.9,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       110,
+       95,
+       10
+      ],
+      "rot": [
+       0,
+       20,
+       0
+      ]
+     },
+     {
+      "at": [
+       40,
+       -40,
+       -30
+      ],
+      "rot": [
+       0,
+       70,
+       0
+      ]
+     },
+     {
+      "at": [
+       250,
+       -120,
+       20
+      ],
+      "rot": [
+       0,
+       -30,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "silicic_acid",
+    "name": "Silicic acid",
+    "button": "See the dissolved form of the glass: silicic acid"
+   }
+  },
+  {
+   "id": "diatom_round",
+   "name": "Diatom (round, drum-shaped)",
+   "node": "pond_diatom",
+   "shape": "cylinder",
+   "size": [
+    40,
+    14,
+    40
+   ],
+   "color": "#d7b25c",
+   "opacity": 0.9,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       200,
+       120,
+       -20
+      ],
+      "rot": [
+       70,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       -10,
+       105,
+       30
+      ],
+      "rot": [
+       80,
+       0,
+       30
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "silicic_acid",
+    "name": "Silicic acid",
+    "button": "See the dissolved form of the glass: silicic acid"
+   }
+  },
+  {
+   "id": "paramecium",
+   "name": "Paramecium (a ciliate)",
+   "node": "pond_paramecium",
+   "shape": "ellipsoid",
+   "size": [
+    200,
+    55,
+    55
+   ],
+   "color": "#d8d3c0",
+   "opacity": 0.6,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       130,
+       -55,
+       10
+      ],
+      "rot": [
+       0,
+       0,
+       12
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "paramecium_nucleus",
+   "name": "Paramecium macronucleus",
+   "node": "pond_paramecium",
+   "shape": "ellipsoid",
+   "size": [
+    40,
+    24,
+    24
+   ],
+   "color": "#9a7aa8",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       125,
+       -52,
+       10
+      ],
+      "rot": [
+       0,
+       0,
+       12
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "rotifer",
+   "name": "Rotifer",
+   "node": "pond_rotifer",
+   "shape": "ellipsoid",
+   "size": [
+    250,
+    50,
+    50
+   ],
+   "color": "#e6c7a6",
+   "opacity": 0.7,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -170,
+       -88,
+       50
+      ],
+      "rot": [
+       0,
+       0,
+       -8
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "rotifer_corona",
+   "name": "Rotifer corona (the wheel of cilia)",
+   "node": "pond_rotifer",
+   "shape": "ellipsoid",
+   "size": [
+    16,
+    52,
+    52
+   ],
+   "color": "#c9d9e8",
+   "opacity": 0.8,
+   "ink": 0,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -292,
+       -80,
+       50
+      ],
+      "rot": [
+       0,
+       0,
+       -8
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "bacteria",
+   "name": "Bacteria",
+   "node": "pond_bacteria",
+   "shape": "cylinder",
+   "size": [
+    1.4,
+    3.2,
+    1.4
+   ],
+   "color": "#6f7f4c",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 2,
+   "arrange": {
+    "kind": "random",
+    "n": 130,
+    "min": [
+     -290,
+     -165,
+     -90
+    ],
+    "max": [
+     290,
+     165,
+     90
+    ],
+    "gap": 1.5,
+    "seed": 11
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "detritus",
+   "name": "Bits of dead plant (detritus)",
+   "node": "pond_detritus",
+   "shape": "rbox",
+   "size": [
+    20,
+    6,
+    13
+   ],
+   "color": "#6e5a3c",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "random",
+    "n": 18,
+    "min": [
+     -290,
+     -165,
+     -90
+    ],
+    "max": [
+     290,
+     165,
+     90
+    ],
+    "gap": 6,
+    "seed": 13
+   },
+   "deeper": {
+    "type": "none"
+   }
+  }
+ ]
+}

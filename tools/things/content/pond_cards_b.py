@@ -1,0 +1,47 @@
+# Cards B: the plants (duckweed, hornwort, yellow flag iris).
+from pond_lib import *
+
+N('pond_duckweed', 'Common duckweed', 'organism', 0.003, ['park_pond', 'pond_surface'],
+  "Common duckweed (Lemna minor): a tiny floating plant, each one a flat green frond a few millimetres across with a single root dangling in the water.",
+  "Duckweed is one of the smallest flowering plants. Each plant is a flat, oval green frond about 3 mm long, floating on the surface, with one thin root hanging down about 1 to 2 cm. It does not need soil: it takes what it needs from the water through its frond and root. It multiplies mostly by budding new fronds, so it can quickly cover a pond like a green carpet. In the model a raft of about 2,000 fronds floats in the pond with a few scattered singles, and the whole raft drifts slightly; the fronds and roots are true size.",
+  "A duckweed plant has one to four fronds joined together. Its body is only a few cells thick and often has air pockets, which keep it afloat. Reproduction is mostly asexual: new fronds bud from a meristem at the base of the parent. Flowers are rare and tiny; sexual reproduction is only occasional. Duckweed can double its biomass in about four and a half days under good conditions, which is among the fastest growth of any flowering plant. A thick mat shades the water below it and can reduce light-driven algal growth. It floats best in water of pH 6.5 to 8 and grows between about 6 and 33 °C.",
+  "Frond 1 to 8 mm long and 0.6 to 5 mm broad; root 1 to 2 cm (Wikipedia, Lemna minor). The model draws a 3 × 2.4 mm frond with a 12 mm root. The raft is about 0.3 m across, which is a small part of a pond's surface (21.7 m²); real rafts can cover a whole pond. In the model each frond is one instance of a 12-triangle shape; their drifting is a gentle sway drawn for illustration, not simulated wind or current. Duckweed is used as animal feed, with a protein content of 20 to 40 %.",
+  [('Frond size', '1 to 8 mm long, 0.6 to 5 mm broad (model: 3 × 2.4 mm)'), ('Root', 'one per frond, 1 to 2 cm long (model: 12 mm)'), ('Fronds per plant', 'one to four'), ('Growth', 'doubles its biomass in about 4.5 days'), ('Fronds in the model', '≈ 2,300')],
+  'C1', [R_SEED, R_NUT], [W_LEMNA, W_LEMNOID],
+  parts=[], related=['bio_chloroplasts_plastids'], where='park_pond',
+  fig=bars([('duckweed frond: length (model)', 3), ('frond length: smallest recorded', 1), ('frond length: largest recorded', 8), ('root (model)', 12), ('root: longest recorded', 20)], 'millimetres', 'A duckweed frond and its root against the recorded ranges (Wikipedia, Lemna minor): fronds 1 to 8 mm, roots 1 to 2 cm.'))
+
+N('pond_hornwort', 'Hornwort', 'organism', 0.5, ['park_pond', 'pond_water'],
+  "Rigid hornwort (Ceratophyllum demersum): a submerged plant with no roots, whose stems carry whorls of stiff, forked, thread-like leaves.",
+  "Hornwort lives entirely under water. It has no roots at all: it floats or loosely anchors itself. Its stems carry rings (whorls) of 6 to 12 leaves, each leaf 8 to 40 mm long and divided once or twice into stiff, thread-like segments with tiny teeth. In sunlight it makes oxygen, which is why plants like this are called oxygenators. In the model there are four clumps of four stems, about half a metre long, with the small bubbles of oxygen on the leaves drawn for illustration. Stems of a real plant can reach 1 to 3 m.",
+  "Finely divided leaves have a large surface for taking in minerals and gases, which matters under water, where carbon dioxide arrives slowly because a layer of still water clings to each leaf. Submerged plants also receive less light as the water deepens. Hornwort releases substances that inhibit algae and cyanobacteria, and it can crowd out other submerged plants. In autumn it forms thick buds (turions) that sink to the bottom and grow into new stems in spring. Its flowers are about 2 mm long, with separate male and female flowers on the same plant, sitting in the leaf axils.",
+  "Leaves in whorls of 6 to 12, 8 to 40 mm long, forked once or twice; stems 1 to 3 m (Wikipedia, Ceratophyllum demersum). The model's whorls have six leaves, 17 to 22 mm long, forked once and sometimes twice; the stems are 0.35 to 0.5 m because the pond is 0.6 m deep. Numbers and places of the clumps are illustrative. Hornwort grows in lakes, ponds and quiet streams with summer water temperatures of 15 to 30 °C and nutrient-rich water.",
+  [('Roots', 'none'), ('Leaves per whorl', '6 to 12 (model: 6)'), ('Leaf length', '8 to 40 mm'), ('Stem length', '1 to 3 m (model: up to 0.5 m)'), ('Winter', 'turions sink and sprout in spring')],
+  'C1', [R_PLANT, R_PHOTO], [W_CERA, W_CERAG, W_AQP],
+  parts=['pond_oxygen'], related=['bio_chloroplasts_plastids', 'photosynthesis_light_process'], where='park_pond',
+  fig=bars([('leaf length: shortest', 8), ('leaf length: longest', 40), ('model leaf (smaller whorl)', 17), ('model leaf (larger whorl)', 22)], 'millimetres', 'Hornwort leaf length against the model: leaves are 8 to 40 mm long (Wikipedia, Ceratophyllum demersum).'))
+
+N('pond_iris', 'Yellow flag iris', 'organism', 1, ['park_pond', 'pond_bank'],
+  "Yellow flag (Iris pseudacorus): a tall marginal plant with sword-shaped leaves and yellow flowers, rooted in the wet soil at the pond's edge.",
+  "The yellow flag stands in the shallow water at the edge with its roots in wet mud and its leaves and flowers in the air. The leaves are long and flat like swords, up to 90 cm long and 3 cm wide; the flowers are bright yellow, 7 to 10 cm across. A whole plant can be 1 to 1.5 m tall. In the model three clumps of nine leaves stand on the shelf at the east and west edges, two of them with flowers. Its roots and leaves are toxic.",
+  "Yellow flag grows best in very wet conditions and tolerates being submerged, low pH and soil without oxygen. It spreads by rhizomes and by seeds carried on water. It is native to Europe, western Asia and north-west Africa. Its roots take up nitrogen and phosphorus, and it has been used in water treatment.",
+  "Height 100 to 150 cm (rarely 2 m); leaves up to 90 cm long and 3 cm wide; flowers 7 to 10 cm across (Wikipedia, Iris pseudacorus). The model's leaves are 44 to 80 cm long and 2.6 cm wide, the flowers 8.5 cm across, and the clumps' places are illustrative. In the model the flower stems reach about 1 m.",
+  [('Height', '100 to 150 cm'), ('Leaves', 'up to 90 cm × 3 cm'), ('Flowers', 'yellow, 7 to 10 cm across'), ('Tolerates', 'flooding, acid soil, soil without oxygen'), ('Toxic', 'roots and leaves')],
+  'C1', [R_PLANT, R_NUT], [W_IRIS],
+  parts=['pond_iris_flower', 'pond_iris_rhizome'], related=['bio_chloroplasts_plastids'], where='park_pond',
+  fig=bars([('leaf length (max)', 900), ('leaf length (model)', 800), ('flower diameter, smallest (7 cm)', 70), ('flower diameter, largest (10 cm)', 100), ('flower diameter (model)', 85)], 'millimetres', 'Leaf length and flower width of yellow flag against the model (Wikipedia, Iris pseudacorus).'))
+
+N('pond_iris_flower', 'Yellow flag flower', 'structure', 0.085, ['pond_iris'],
+  "A yellow flag flower is a large iris bloom, 7 to 10 cm across, held above the water on a tall stalk.",
+  "The yellow flag's flowers are bright yellow and shaped like other irises: broad petals that fold outward and down, smaller ones that stand up, and arching branches of the style that cover the stamens. In the model each flower has nine parts: three drooping falls, three arching style branches and three small upright standards. The flower is the plant's way of making seed.",
+  "The flower's parts are drawn after the typical iris plan; the model does not show the stamens or the ovary, and the details (marks on the falls, the proportions) are simplified. The seeds are dispersed by water.",
+  "Flowers 7 to 10 cm across (Wikipedia, Iris pseudacorus); the model flower is 8.5 cm across. The model's proportions follow a typical iris flower and are simplified; the stamens, the ovary and the markings on the falls are not drawn.",
+  [('Flower width', '7 to 10 cm (model: 8.5 cm)'), ('Colour', 'bright yellow'), ('Parts drawn', '3 falls, 3 style branches, 3 standards')], 'C1', [R_PLANT], [W_IRIS], where='park_pond', related=['rn_flower'])
+
+N('pond_iris_rhizome', 'Rhizome and roots in the mud', 'structure', 0.25, ['pond_iris', 'pond_mud'],
+  "A thick underground stem (a rhizome) lies in the mud and sends up the leaves; roots spread from it into oxygen-poor soil.",
+  "Below the leaves the yellow flag has a fat horizontal stem, the rhizome, lying in the mud at the edge, a few centimetres below the surface. Thin roots grow from it into the soil. The rhizome stores food and lets the plant spread sideways to make a clump. The rhizome can survive long dry periods. In the model it is about 24 cm long and 2.8 cm thick, with roots hanging from it.",
+  "The soil around the roots has little or no oxygen, but iris tolerates that. Its roots take up dissolved nitrogen and phosphorus. The cut-away slice marks the rhizome with a hotspot. ",
+  "Rhizomes can survive prolonged dry conditions (Wikipedia, Iris pseudacorus). The model's rhizome is a tube of 1.4 cm radius and its 26 roots per clump are an illustration, not a count from a plant.",
+  [('What it is', 'horizontal underground stem'), ('Model size', '≈ 24 cm long, 2.8 cm thick'), ('Survives', 'prolonged dry conditions'), ('Soil it grows in', 'wet, with little oxygen')], 'C1', [R_PLANT, R_NUT], [W_IRIS], where='park_pond',
+  related=['oak_root_hairs'])

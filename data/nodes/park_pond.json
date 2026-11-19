@@ -1,7 +1,7 @@
 [
  {
   "id": "park_pond",
-  "title": "Pond",
+  "title": "A pond in the park",
   "kind": "habitat",
   "template": "thing",
   "scale_m": 5,
@@ -9,27 +9,3505 @@
   "parents": [
    "park_scene"
   ],
-  "parts": [],
+  "parts": [
+   "pond_surface",
+   "pond_water",
+   "pond_mud",
+   "pond_bank",
+   "pond_duckweed",
+   "pond_hornwort",
+   "pond_iris",
+   "pond_skater",
+   "pond_daphnia",
+   "pond_snail",
+   "pond_dragonfly_larva",
+   "pond_tadpole",
+   "pond_food_web",
+   "pond_oxygen",
+   "pond_life_cycles"
+  ],
   "processes": [],
-  "summary": "A small pond: still fresh water that holds a community of tiny plants, animals and microbes.",
+  "summary": "A small, still, shallow body of fresh water: sunlit water with plants, animals and microbes in it, mud beneath it and a damp margin around it. Here it is cut open so that you can see all three.",
   "layers": {
-   "basics": "A pond is a small, usually shallow patch of still water. Sunlight can reach the bottom, so plants and algae grow, and they feed snails, insects and fish. Most of the living things in it are too small to see. Zoom in and you meet some of them.",
-   "deeper": "The water is crowded with algae that make sugar from light, bacteria that break down dead material, and tiny animals that eat both. Ponds are usually shallow enough that light reaches much of the bottom (the line between a pond and a lake is not sharp).",
-   "expert": "Pond life is a food web: light energy enters through photosynthesis in algae and plants, and passes to grazers and then predators; microbes recycle what dies. The park is a simplified scene, not a scan of a real place."
+   "basics": "A pond is a small patch of still water, anything from a puddle that lasts months to a few hectares. Ponds are crowded with life because they are shallow and sunny: plants and tiny algae make food from light, animals eat them and each other, and microbes in the mud break down whatever dies. Choose a layer above to look at the surface, the open water, the mud, or a slice through all of them. Every plant and animal here is drawn at its true size, so the smallest (a water flea about 2.5 mm long) is very small beside the pond itself (about 6 m across).",
+   "deeper": "Think of the pond as three habitats stacked together. At the top is the surface film, where a pond skater stands and duckweed floats. In the open water live floating algae, water fleas, tadpoles, snails and dragonfly larvae, among submerged plants such as hornwort. At the bottom is mud made of mineral grains and rotting leaves; with no oxygen reaching deep into it, microbes there make methane, which rises as bubbles. Round the edge is the marginal zone, where plants such as the yellow flag iris stand with their roots in wet soil. Energy comes in as sunlight and is passed along a food web (see the food web card); materials such as carbon and nutrients are recycled by decomposers.",
+   "expert": "Definitions of 'pond' differ and are partly conventions. One working definition is a still, land-based body of water of under 5 hectares in area and under 5 metres deep, with under 30 % of the surface covered by emergent plants; the UK's Pond Conservation used 1 square metre to 2 hectares, holding water for four months or more. An older definition, that light must reach the bottom everywhere, is hard to check and is mostly no longer used. This model is 6 m by 4.6 m, 0.6 m deep at most (about 21.7 m² of water, calculated from the ellipse), with a shelf about 0.2 m deep round the edge. Those dimensions are a choice for this model, as are the numbers and places of the plants and animals; the sizes of the organisms are typical measured sizes, quoted on their cards."
   },
   "facts": [
    [
-    "What is real",
-    "The kinds of life shown at the close-up are typical pond organisms; the picture is a simplified model"
+    "What it is",
+    "a small, still body of fresh water"
    ],
    [
-    "Scale of the scene",
-    "a few metres across"
+    "Modelled size",
+    "6 m × 4.6 m; 0.6 m deep (chosen, not a measurement of a real pond)"
+   ],
+   [
+    "Water surface (model)",
+    "≈ 21.7 m² (π × 3 × 2.3)"
+   ],
+   [
+    "UK working range for a pond",
+    "1 m² to 2 ha, holding water four months or more"
+   ],
+   [
+    "Layers you can show",
+    "Surface · Open water · Bottom and mud · Cut-away slice"
+   ],
+   [
+    "Organisms shown",
+    "duckweed, hornwort, yellow flag iris, pond skater, water flea, great pond snail, dragonfly larva, frog tadpole, and the microbes of a drop of water and of the mud"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "44.4",
+    "44-4-aquatic-biomes"
+   ],
+   [
+    "BIO",
+    "46.1",
+    "46-1-ecology-of-ecosystems"
+   ],
+   [
+    "BIO",
+    "46.2",
+    "46-2-energy-flow-through-ecosystems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Pond (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Pond"
+   }
+  ],
+  "related": [
+   "bio_ecosystem_stability",
+   "bio_food_webs_energy_flow",
+   "bio_primary_production_decomposition",
+   "bio_biogeochemical_cycles_concept",
+   "bio_water_properties"
+  ],
+  "did_you_know": "The smallest animal in this pond (a water flea, about 2.5 mm) is about 2,400 times shorter than the pond is wide."
+ },
+ {
+  "id": "pond_surface",
+  "title": "The water surface",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 6,
+  "area": "bio_ecology",
+  "parents": [
+   "park_pond"
+  ],
+  "parts": [
+   "pond_surface_film",
+   "pond_skater",
+   "pond_duckweed"
+  ],
+  "processes": [],
+  "summary": "The boundary between pond and air: where oxygen can pass into the water, where light enters, and where a thin skin of water molecules carries small animals and floating plants.",
+  "layers": {
+   "basics": "From above you mostly see the sky reflected in the pond; a little light goes in, enough for plants and algae to grow below. The surface is also the pond's door to the air: oxygen can dissolve into the water here and gases can leave it. And it is a place to live: a pond skater stands on it and duckweed floats on it. In the Surface layer the water is drawn nearly opaque; choose Open water to see through it.",
+   "deeper": "Two things happen at the surface at once. Gases move across it: oxygen into the water when the water holds less than the air would give it, and out of it when plants have made more. And water molecules at the surface are pulled sideways and inwards by their neighbours but not upwards by air, so the surface behaves as if it were a stretched film (see The surface film). How much light gets in depends on the angle of the sun, the clarity of the water and anything floating on it: a thick mat of duckweed shades the water below it.",
+   "expert": "Dissolved gases follow the difference between what the air would give and what the water holds (see Oxygen: where it comes from). Surface tension of pure water is 72.8 mN/m at 20 °C and 72.0 mN/m at 25 °C. The modelled water level is 2 cm above the surrounding ground."
+  },
+  "facts": [
+   [
+    "Surface area (model)",
+    "≈ 21.7 m²"
+   ],
+   [
+    "Surface tension of pure water",
+    "72.8 mN/m at 20 °C; 72.0 mN/m at 25 °C"
+   ],
+   [
+    "Lives on the surface",
+    "pond skater, duckweed"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "2.2",
+    "2-2-water"
+   ],
+   [
+    "BIO",
+    "39.2",
+    "39-2-gas-exchange-across-respiratory-surfaces"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Surface tension (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Surface_tension"
+   },
+   {
+    "title": "Dissolved oxygen and water (USGS Water Science School)",
+    "url": "https://www.usgs.gov/special-topics/water-science-school/science/dissolved-oxygen-and-water"
+   }
+  ],
+  "related": [
+   "bio_water_properties",
+   "bio_polarity_hbonds"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_surface_film",
+  "title": "The surface film and the dimples under a skater's feet",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 0.01,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_surface",
+   "pond_skater"
+  ],
+  "parts": [
+   "pond_leg_hairs"
+  ],
+  "processes": [],
+  "summary": "Water molecules at the surface cling to each other so strongly that the surface resists being pushed in, like a very thin stretched sheet. A pond skater's hairy feet make shallow dimples in it without breaking through.",
+  "layers": {
+   "basics": "Inside the water, each molecule is pulled equally in every direction by its neighbours. At the surface there are neighbours only below and beside, so the molecules at the surface are pulled together and inwards. The surface acts like an elastic film, and it takes a force to stretch it. A pond skater is light enough, and its feet repel water so well, that the film bends under each foot into a small dimple and pushes back, holding the insect up. The pale bowls under the skater's four standing feet show this. Their size and depth are drawn for illustration, not measured.",
+   "deeper": "The pull between water molecules comes from hydrogen bonds: each molecule, bent in shape with a slightly negative oxygen end and slightly positive hydrogen ends, links to several others (see Polarity and hydrogen bonds). At a surface the molecules have fewer partners, so making more surface costs energy; that energy per area is the surface tension. A dimple increases the area of the surface, and the film's tendency to shrink back pushes the foot up. For this to work the leg must not be wetted: if water clung to it the surface would pull the leg in and the animal would sink. Skaters have non-wettable legs covered with microscopic hairs (see Water-repelling hairs).",
+   "expert": "Surface tension of water: 72.8 mN/m at 20 °C and 71.97 mN/m at 25 °C (values from the Surface tension article). The depth and width of a real dimple depend on the animal's weight and the shape of its leg; this model shows plausible dimples about 6 mm across, not measured ones."
+  },
+  "facts": [
+   [
+    "Surface tension of water",
+    "72.8 mN/m (20 °C); 71.97 mN/m (25 °C)"
+   ],
+   [
+    "What holds the film together",
+    "hydrogen bonds between water molecules"
+   ],
+   [
+    "Why the skater does not sink",
+    "non-wettable legs + surface tension pushes back at each dimple"
+   ],
+   [
+    "Dimples in this model",
+    "illustrative: ≈ 6 mm across, shallow"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "2.2",
+    "2-2-water"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Surface tension (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Surface_tension"
+   },
+   {
+    "title": "Water strider (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Water_strider"
+   },
+   {
+    "title": "Gerris lacustris, the common pond skater (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Gerris_lacustris"
+   }
+  ],
+  "related": [
+   "bio_polarity_hbonds",
+   "bio_water_properties"
+  ],
+  "did_you_know": "A surface skater walks on a layer that is only a few water molecules thick; the film is not a different material, just the water's own surface."
+ },
+ {
+  "id": "pond_leg_hairs",
+  "title": "Water-repelling hairs on a skater's leg",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0001,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_surface_film",
+   "pond_skater_legs"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Needle-like hairs, thousands to every square millimetre, cover a pond skater's legs and keep water from wetting them.",
+  "layers": {
+   "basics": "A skater's legs are not smooth. They carry a dense fur of microscopic hairs coated with a waxy layer. Water cannot spread over such a surface: it stays on top of the hairs in beads, and the leg stays dry. This is what lets the leg press on the surface film without being pulled into the water. Click the hairs in the scene to see what they are made of.",
+   "deeper": "The hairs (microsetae) are made of cuticle, the same material as the rest of the skeleton: a mix of chitin and proteins with a wax coating. In a water strider (Gerris remigis), electron microscopy shows needle-shaped, oriented microsetae carrying fine grooves (nanogrooves) of a still smaller scale. Having two scales of roughness helps a wax-coated surface repel water better than a smooth waxy one. In Gerris lacustris the pond skater drawn here, the body and legs are covered in tiny hairs with a wax-like coating.",
+   "expert": "Counts from the literature (as quoted by Wikipedia from Ward 1992): more than a thousand microhairs per millimetre of leg and several thousand per square millimetre in the locomotion section of the same article (the article uses both statements). The tissue scene draws hairs 3 µm across and 30 µm long, which is illustrative: real dimensions vary between species and leg segments and are not given on this card."
+  },
+  "facts": [
+   [
+    "Hairs",
+    "thousands per mm² (Wikipedia, citing Ward 1992)"
+   ],
+   [
+    "Shape",
+    "needle-like microsetae with nanogrooves (water strider, Gerris remigis)"
+   ],
+   [
+    "Coating",
+    "wax-like layer on the hairs (Gerris lacustris)"
+   ],
+   [
+    "Skeleton material",
+    "chitin, a polymer of N-acetylglucosamine"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How much the nanogrooves and any trapped air add to water repellence compared with the wax alone is a research topic in the physics of surfaces."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Water strider (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Water_strider"
+   },
+   {
+    "title": "Gerris lacustris, the common pond skater (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Gerris_lacustris"
+   },
+   {
+    "title": "Staying dry and clean: an insect's guide to hydrophobicity (Insects 2022)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9861782"
+   }
+  ],
+  "related": [
+   "bee_chitin",
+   "bio_polysaccharides"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_water",
+  "title": "Open water",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 3,
+  "area": "bio_ecology",
+  "parents": [
+   "park_pond"
+  ],
+  "parts": [
+   "pond_drop",
+   "pond_oxygen",
+   "pond_green_water",
+   "pond_daphnia",
+   "pond_hornwort"
+  ],
+  "processes": [],
+  "summary": "The body of the pond: fresh water holding dissolved gases, minerals and nutrients, and so much floating life that a single drop is a small world.",
+  "layers": {
+   "basics": "Pond water looks clear or a little green. It is full of things you cannot see: dissolved oxygen and carbon dioxide, dissolved minerals, and millions of tiny floating algae and bacteria. Larger animals swim through it: water fleas, tadpoles and, near the bottom, snails and dragonfly larvae. Sunlight reaches down through the water, fading with depth, so plants and algae grow in the upper part. Click the water, then press the button on its card to look at a single drop at a true scale.",
+   "deeper": "The water carries the pond's chemistry: dissolved oxygen (from the air and from photosynthesis, used by every animal and by microbes), carbon dioxide, and nutrients such as phosphorus and nitrogen that limit how much alga can grow. Light decreases with depth, which is why green life crowds near the surface and the bottom of a murky pond is dark. When the water is green, it is because tiny floating algae are dense in it. See also why ponds turn green. The water here is drawn as a pale tinted volume; its real colour depends on what is dissolved and suspended in it.",
+   "expert": "Dissolved oxygen in fresh water at 1 bar is at most 14.6 mg/L at 0 °C, 11.3 at 10 °C, 9.1 at 20 °C and 7.6 at 30 °C (Engineering ToolBox); the USGS gives typical summer surface-water values above 8 mg/L and calls water hypoxic below 2 mg/L. The water can hold less oxygen as it warms, which matters in a shallow pond on a hot day (see Day and night). Light is absorbed with depth: how quickly depends on the water's clarity and is not given for this model."
+  },
+  "facts": [
+   [
+    "Water in the model",
+    "≈ 21.7 m² × up to 0.6 m (a closed volume)"
+   ],
+   [
+    "Dissolved oxygen, fresh water, 20 °C, saturation",
+    "9.1 mg/L"
+   ],
+   [
+    "Typical summer surface water",
+    "more than 8 mg/L (USGS)"
+   ],
+   [
+    "Hypoxic",
+    "less than 2 mg/L"
+   ],
+   [
+    "See the drop",
+    "a drop of pond water, with a 100 µm bar"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "44.4",
+    "44-4-aquatic-biomes"
+   ],
+   [
+    "BIO",
+    "2.2",
+    "2-2-water"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Dissolved oxygen and water (USGS Water Science School)",
+    "url": "https://www.usgs.gov/special-topics/water-science-school/science/dissolved-oxygen-and-water"
+   },
+   {
+    "title": "Oxygen solubility in water (Engineering ToolBox), fresh water at 1 bar",
+    "url": "https://www.engineeringtoolbox.com/oxygen-solubility-water-d_841.html"
+   },
+   {
+    "title": "Pond (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Pond"
+   },
+   {
+    "title": "Aquatic plant (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Aquatic_plant"
+   }
+  ],
+  "related": [
+   "bio_water_properties",
+   "bio_protists",
+   "bio_microbial_ecology_elective"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_oxygen",
+  "title": "Oxygen in the water: where it comes from",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 3,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_water"
+  ],
+  "parts": [
+   "pond_oxygen_day_night"
+  ],
+  "processes": [],
+  "summary": "The oxygen that pond animals breathe comes from two places: the air above, and plants and algae in the water making it from light. Water holds about thirty times less of it than air does.",
+  "layers": {
+   "basics": "Fish and water fleas, snails and dragonfly larvae all need dissolved oxygen, just as we need oxygen from air. In a pond it arrives in two ways. Some dissolves in at the surface from the air. The rest is made right in the water: when sunlight falls on algae, hornwort and other plants, they use it to make sugar from carbon dioxide and water and release oxygen as a by-product. The bubbles on the hornwort leaves in the model show that oxygen leaving a plant. Water is a poor place to be an air-breather: a litre of air holds about 30 times more oxygen than a litre of water, so aquatic animals have little to spare.",
+   "deeper": "Photosynthesis in the chloroplast splits water and releases oxygen (see Photosynthesis: light reactions); chlorophyll a is the main pigment that starts it. Oxygen then diffuses away from the leaf into the water. Which of the two sources dominates in a pond depends on wind, plant growth and the time of day; at night the plants and algae stop making oxygen and use it, as do the animals and the microbes in the mud (see Day and night). Cold water holds more oxygen than warm: 14.6 mg/L at 0 °C against 7.6 mg/L at 30 °C.",
+   "expert": "Air is about 20.9 % oxygen by volume. One mole of gas takes about 24.06 L at 20 °C and 1 atmosphere (RT/P), so a litre of air holds 0.209 × 32.00 g/mol ÷ 24.06 L/mol ≈ 0.278 g = about 278 mg of oxygen (calculated). Fresh water at 20 °C and 1 bar holds at most 9.1 mg/L: the ratio is about 30 (calculated). Oxygen is released by water-splitting in photosystem II; the oxygen atoms come from water, not from carbon dioxide. The molecule on the end of this card's path is O₂, a double-bonded pair of oxygen atoms."
+  },
+  "facts": [
+   [
+    "Oxygen in air",
+    "≈ 20.9 % by volume; ≈ 278 mg per litre at 20 °C (calculated)"
+   ],
+   [
+    "Oxygen dissolved in fresh water at 20 °C, saturated",
+    "9.1 mg/L"
+   ],
+   [
+    "Ratio",
+    "≈ 30 (calculated)"
+   ],
+   [
+    "Dissolved oxygen, 0 °C / 10 °C / 30 °C",
+    "14.6 / 11.3 / 7.6 mg/L"
+   ],
+   [
+    "Made by",
+    "photosynthesis: light + CO₂ + water → sugar + O₂"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "8.1",
+    "8-1-overview-of-photosynthesis"
+   ],
+   [
+    "BIO",
+    "8.2",
+    "8-2-the-light-dependent-reactions-of-photosynthesis"
+   ],
+   [
+    "BIO",
+    "39.2",
+    "39-2-gas-exchange-across-respiratory-surfaces"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Oxygenation, environmental (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Oxygenation_(environmental)"
+   },
+   {
+    "title": "Oxygen solubility in water (Engineering ToolBox), fresh water at 1 bar",
+    "url": "https://www.engineeringtoolbox.com/oxygen-solubility-water-d_841.html"
+   },
+   {
+    "title": "Dissolved oxygen and water (USGS Water Science School)",
+    "url": "https://www.usgs.gov/special-topics/water-science-school/science/dissolved-oxygen-and-water"
+   },
+   {
+    "title": "Aquatic plant (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Aquatic_plant"
+   }
+  ],
+  "related": [
+   "photosynthesis_light_process",
+   "bio_photosynthesis_overview",
+   "bio_chloroplasts_plastids",
+   "bio_oxygen_transport_diving"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_oxygen_day_night",
+  "title": "Day and night: the oxygen swing",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 3,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_oxygen"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "In sunlight the plants and algae in a pond add oxygen to the water; at night they use it, as everything else does. So the oxygen level rises through the day and falls through the night.",
+  "layers": {
+   "basics": "A pond breathes in a daily cycle. By day, light powers photosynthesis, which adds oxygen faster than the animals and microbes use it, so the level rises. After dark, photosynthesis stops but breathing does not: plants, algae, animals and the microbes in the mud all use oxygen. The level falls, and is expected to be lowest around dawn. On a hot, calm night a small, crowded pond can fall to levels animals struggle in. The USGS notes that hot, calm weather can cause severe oxygen stress and the loss of many fish.",
+   "deeper": "The USGS describes dissolved oxygen in surface water as having both a seasonal and a daily cycle, with photosynthesis the main process behind them; water clarity and the strength and length of sunlight affect it. The Cultural eutrophication article states the daily pattern for blooms plainly: dissolved oxygen greatly increases during the day but is greatly reduced after dark, and decomposing dead algae use more. Two things make the swing larger in a small pond: a small volume of water to buffer it, and more life per litre. Warm water also holds less oxygen to begin with.",
+   "expert": "A water is called hypoxic when dissolved oxygen is below 2 mg/L (USGS). The amplitude of the daily swing is not a constant; it depends on the pond's volume, plant and algal density, temperature and weather, and this model does not simulate it. The figure on this card is a shape, not data. The timing of the minimum before dawn follows from the balance (photosynthesis off, respiration on) rather than from a measurement quoted here."
+  },
+  "facts": [
+   [
+    "Rises when",
+    "light drives photosynthesis faster than breathing uses oxygen"
+   ],
+   [
+    "Falls when",
+    "dark: breathing continues, photosynthesis stops"
+   ],
+   [
+    "Hypoxic",
+    "below 2 mg/L (USGS)"
+   ],
+   [
+    "A real daily swing",
+    "depends on the pond; not simulated here"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How large the daily swing is in a given small pond depends on its plants, algae, temperature and weather, and predicting it for a particular pond takes measurements."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "8.1",
+    "8-1-overview-of-photosynthesis"
+   ],
+   [
+    "BIO",
+    "39.2",
+    "39-2-gas-exchange-across-respiratory-surfaces"
+   ],
+   [
+    "BIO",
+    "46.1",
+    "46-1-ecology-of-ecosystems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Dissolved oxygen and water (USGS Water Science School)",
+    "url": "https://www.usgs.gov/special-topics/water-science-school/science/dissolved-oxygen-and-water"
+   },
+   {
+    "title": "Cultural eutrophication (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Cultural_eutrophication"
+   }
+  ],
+  "related": [
+   "cellular_respiration",
+   "bio_primary_production_decomposition"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_green_water",
+  "title": "Why ponds turn green",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 3,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_water"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A pond turns green when tiny floating algae multiply. They do so when the water holds plenty of nutrients, mostly phosphorus and nitrogen. When a green bloom dies, its decay can use up the oxygen.",
+  "layers": {
+   "basics": "Green pond water is a crowd of microscopic algae, the same kind of green cells you meet in a drop of pond water. Like any plants, they grow faster with more nutrients. Fertiliser washed off lawns, droppings, rotting leaves and sewage all add phosphorus and nitrogen. In fresh water phosphorus is usually the shortage that limits growth, so a little extra can make a big difference. Some blooms are blue-green algae, properly cyanobacteria, which can form a scum like paint on the surface. Those can make toxins. Keep children and dogs out of water with a scum and do not let them drink it: the toxins have killed livestock and affect birds, domestic animals and sometimes people.",
+   "deeper": "A bloom has two effects on oxygen. By day the algae make oxygen, sometimes more than the water can hold; at night they use it. And when the bloom dies, bacteria that feed on the dead algae use up oxygen as they decompose them, which can make the water hypoxic and suffocate animals. This is why a pond that was clear in spring can be dangerous in a warm, nutrient-rich summer. Floating bloom-formers are often nitrogen-fixing cyanobacteria, which gain an advantage when dissolved nitrogen runs short but phosphorus remains plentiful. Cutting the supply of nutrients is the crucial first step to recovery, and a pond with nutrient-rich mud can take many years to recover because the mud stores phosphorus. A duckweed raft shades the water, which can reduce light-driven algal growth (Wikipedia, Duckweed).",
+   "expert": "In most freshwater ecosystems phosphorus is the limiting nutrient for plant growth (in the sea it is usually nitrogen). Cyanotoxins include liver toxins (microcystins), a fast-acting nerve toxin (anatoxin-a) and others. Blooms form mainly when nutrient levels are high, especially phosphorus, and warmth and light favour toxic ones. The article for cyanobacterial blooms notes that blooms 'can look like foam, scum or mats or like paint floating on the surface of the water, but they are not always visible'. Restoration approaches include cutting nutrient input, binding phosphorus with alum or similar, aeration of small ponds, and filtering inflows. The model shows a clear pond; this card is about what could happen to it."
+  },
+  "facts": [
+   [
+    "Usually limits algae in fresh water",
+    "phosphorus"
+   ],
+   [
+    "Usually limits algae in the sea",
+    "nitrogen"
+   ],
+   [
+    "A scum on the water",
+    "may be toxic cyanobacteria: keep dogs and children out"
+   ],
+   [
+    "After a bloom dies",
+    "decay uses oxygen and can leave the water hypoxic"
+   ],
+   [
+    "First step in recovery",
+    "cut the supply of nutrients"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "46.3",
+    "46-3-biogeochemical-cycles"
+   ],
+   [
+    "BIO",
+    "44.4",
+    "44-4-aquatic-biomes"
+   ],
+   [
+    "BIO",
+    "46.1",
+    "46-1-ecology-of-ecosystems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Cultural eutrophication (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Cultural_eutrophication"
+   },
+   {
+    "title": "Cyanobacterial bloom (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Cyanobacterial_bloom"
+   },
+   {
+    "title": "Lemnoideae, the duckweeds (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lemnoideae"
+   }
+  ],
+  "related": [
+   "nitrogen_cycle_process",
+   "bio_biogeochemical_cycles_concept",
+   "bio_algae_green_origin",
+   "bio_ecosystem_stability"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_stratification",
+  "title": "Layers of warm and cool water?",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 1,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_water"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Deep lakes divide into warm water on top and cool below. A small shallow pond mostly does not: wind and cooling keep it mixed, though a hot calm spell can layer it briefly.",
+  "layers": {
+   "basics": "In a deep lake in summer the sun warms the top and the cold heavy water stays at the bottom: the lake forms layers that hardly mix. A pond is different. Ponds stratify the way lakes do only if they are deep enough or sheltered from the wind. In a shallow pond, wind or a cool night usually stirs the water through. This model is 0.6 m deep, so it does not draw layers of temperature. If layers form, it is most likely for a short time on a still, sunny day.",
+   "deeper": "Shallow lakes often do not stratify into the three layers (epilimnion, metalimnion, hypolimnion) because wind or cooling mixes them; such lakes are called polymictic. There is no fixed depth that separates polymictic from stratifying water: turbidity, surface area and climate also matter. In large shallow lakes, mixing is mostly diurnal: layers form by day and are broken at night. Heat waves can make otherwise mixed shallow lakes stratify for a while. For ponds in general the Pond article says they stratify like lakes if deep enough or protected from the wind, and in winter under ice the layering reverses.",
+   "expert": "Why a stratified water body matters: the bottom layer is cut off from the air and from photosynthesis, so oxygen there can run out. In a pond as shallow as this, that is more likely in the mud and the bottom few centimetres than as a thick cold layer. Pure water is densest at about 4 °C, which is why ice floats and winter layering is inverse (cold water near the surface); see the card on the properties of water."
+  },
+  "facts": [
+   [
+    "Deep lakes in summer",
+    "warm top layer over cold bottom layer"
+   ],
+   [
+    "Shallow ponds",
+    "often mixed by wind and by cooling; may layer briefly on hot, calm days"
+   ],
+   [
+    "A fixed depth for the change?",
+    "none (Lake stratification article)"
+   ],
+   [
+    "In this model",
+    "no temperature layers drawn"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How often, and for how long, a small garden pond layers depends on depth, shelter, clarity and weather; there is no single threshold, and it has to be measured for each pond."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "44.4",
+    "44-4-aquatic-biomes"
+   ],
+   [
+    "BIO",
+    "2.2",
+    "2-2-water"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lake stratification (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lake_stratification"
+   },
+   {
+    "title": "Pond (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Pond"
+   }
+  ],
+  "related": [
+   "bio_water_properties"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_bank",
+  "title": "The bank and the marginal zone",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 4,
+  "area": "bio_ecology",
+  "parents": [
+   "park_pond"
+  ],
+  "parts": [
+   "pond_iris",
+   "pond_stones"
+  ],
+  "processes": [],
+  "summary": "The damp edge of the pond, where land and water meet: wet soil with plants such as the yellow flag iris rooted in it, and the stones that edge it.",
+  "layers": {
+   "basics": "At the edge a pond fades into land. A shelf of shallow water, in the model about 0.2 m deep, and a ring of wet soil support plants that grow with their roots in water or mud and their leaves in the air (the marginal plants). Here that is the yellow flag iris. The margin matters to animals too: a dragonfly larva climbs out of the water on a plant stem to become an adult, and a frog leaves the water over the bank. The ring of stones is a feature of the park's earlier pond, kept in this model.",
+   "deeper": "Wet soil is poor in oxygen, so marginal plants need ways to live in it: the yellow flag iris tolerates submersion, acid and oxygen-free soils. Margin plants also take up nutrients (iris absorbs nitrogen and phosphorus through its roots and has been used in water treatment), which can help keep the water clear. A pond edge that slopes gently lets animals get in and out. The Pond article's working definition counts a pond as having under 30 % of its surface covered by emergent plants.",
+   "expert": "The model's shelf is a choice: 0.2 m at the outer edge, falling to 0.6 m in the middle; the bank ring is 1.22 times the water's width. The banks of real ponds vary far more than this (steep or gentle, clay or peat, grazed or overhung)."
+  },
+  "facts": [
+   [
+    "Model shelf depth",
+    "≈ 0.2 m (chosen)"
+   ],
+   [
+    "Marginal plant shown",
+    "yellow flag iris"
+   ],
+   [
+    "Working definition of a pond",
+    "under 30 % of the surface covered by emergent plants"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "44.4",
+    "44-4-aquatic-biomes"
+   ],
+   [
+    "BIO",
+    "31.1",
+    "31-1-nutritional-requirements-of-plants"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Pond (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Pond"
+   },
+   {
+    "title": "Iris pseudacorus, the yellow flag (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Iris_pseudacorus"
+   }
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_stones",
+  "title": "Edging stones",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.2,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_bank"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A ring of stones round the water's edge: a design feature, kept from the park's earlier pond.",
+  "layers": {
+   "basics": "In this park the stones simply mark where the water ends. There are 38 of them in the model, each between about 7 and 15 cm in radius. The stones are drawn as generic weathered rock, not a particular kind.",
+   "deeper": "A natural pond rarely has a neat ring of stones; this one is a garden feature. Stone at the water's edge is slowly weathered by water and frost and colonised by algae, moss and lichens (see the Boulder card in this park for the same processes at larger scale).",
+   "expert": "Each stone is an ellipsoid roughened by noise, 38 in all, scaled between 7 and 15 cm. They are an illustration, not a survey of any real pond."
+  },
+  "facts": [
+   [
+    "Stones in the model",
+    "38"
+   ],
+   [
+    "Radius",
+    "≈ 7 to 15 cm"
    ]
   ],
   "certainty": "C1",
   "open_questions": [],
   "refs": [],
-  "ext": []
+  "ext": [],
+  "related": [
+   "boulder",
+   "boulder_debris"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_mud",
+  "title": "Mud",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 2,
+  "area": "bio_ecology",
+  "parents": [
+   "park_pond"
+  ],
+  "parts": [
+   "pond_mud_oxygen",
+   "pond_leaf_litter",
+   "pond_gas_bubbles",
+   "pond_mud_grains",
+   "pond_mud_bacteria",
+   "pond_methanogens",
+   "pond_iris_rhizome"
+  ],
+  "processes": [],
+  "summary": "The soft sediment on the bottom: tiny mineral grains mixed with rotting plant matter, home to bacteria and archaea that use up the oxygen and make methane.",
+  "layers": {
+   "basics": "The bottom of a pond is mud: fine mineral grains that have settled out of the water, mixed with dead leaves and the bodies of dead plants and animals. It is soft because the grains are tiny and the matter is waterlogged. Below its thin top layer there is no oxygen, but life is not absent: microbes that do not need oxygen feed on the dead matter and break it down, and gases rise as bubbles. Snails, dragonfly larvae and the roots and rhizomes of marginal plants live in and on it. Press the button on its card to look inside it.",
+   "deeper": "Mud is where a pond's dead matter ends up and is recycled. In water without oxygen, bacteria ferment large organic molecules into smaller ones (hydrogen, carbon dioxide and small compounds such as acetate); archaea called methanogens then turn these into methane. Methane is mostly produced in anoxic sediments. The upper few millimetres or so have oxygen from the water above and different, oxygen-using microbes; just where the boundary lies depends on the pond. The hotspot in the cut-away slice marks it. Mud also stores nutrients such as phosphorus, which is why a nutrient-rich pond can stay green for years.",
+   "expert": "Grain sizes (ISO 14688-1): sand 63 µm to 2 mm, silt 2 to 63 µm, clay below 2 µm. Methane production needs strictly anoxic conditions (oxygen inhibits methanogens) and depends on the supply of labile carbon, other electron acceptors and temperature. Methanogenesis: acetate → methane + carbon dioxide, and carbon dioxide + hydrogen → methane + water. In the cut-away slice the mud is drawn as a block of grains in several browns; that is a colour code, not what a real cut would show."
+  },
+  "facts": [
+   [
+    "Sand / silt / clay (ISO 14688-1)",
+    "63 µm–2 mm / 2–63 µm / below 2 µm"
+   ],
+   [
+    "Where methane is made",
+    "mostly in anoxic sediment"
+   ],
+   [
+    "Modelled block",
+    "0.9 m below the ground, under the pond and its bank"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "7.5",
+    "7-5-metabolism-without-oxygen"
+   ],
+   [
+    "BIO",
+    "22.2",
+    "22-2-structure-of-prokaryotes-bacteria-and-archaea"
+   ],
+   [
+    "BIO",
+    "46.3",
+    "46-3-biogeochemical-cycles"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Effects of chironomid larvae density and mosquito biocide on methane and carbon dioxide dynamics in freshwater sediments (PLoS ONE 2024)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11125464"
+   },
+   {
+    "title": "Methanogenesis (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Methanogenesis"
+   },
+   {
+    "title": "Grain size (Wikipedia), ISO 14688-1:2017 classes",
+    "url": "https://en.wikipedia.org/wiki/Grain_size"
+   }
+  ],
+  "related": [
+   "bio_microbial_metabolism",
+   "bio_fermentation",
+   "bio_microbial_ecology_elective",
+   "carbon_cycle_process"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_mud_oxygen",
+  "title": "Where the oxygen runs out",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 0.01,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_mud"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Oxygen from the water soaks only a short way into the mud. Below that, microbes that do not use oxygen take over and make gases such as methane.",
+  "layers": {
+   "basics": "Oxygen has to dissolve into the pond mud from the water above, and microbes in the top layer use it as fast as it arrives, so it does not get deep. A little below the surface the mud has no oxygen. Other microbes, which live without oxygen, take over there and make gases, mostly methane with some hydrogen sulfide and carbon dioxide.",
+   "deeper": "Living without oxygen is not one lifestyle but several, arranged as layers: first oxygen is used, then, as the oxygen runs out, other electron acceptors (nitrate, then, deeper, others) and finally the fermenters and methanogens that need none. Methanogens are inhibited by oxygen. How deep the oxygen-using layer extends depends on the oxygen in the water above, the supply of dead plant matter and the grain size of the mud, which is why it cannot be given as a single number here.",
+   "expert": "Marsh gas is mainly methane, with smaller amounts of hydrogen sulfide and carbon dioxide, and traces of phosphine (Wikipedia, Marsh gas). Methanogens: oxygen inhibits their growth; carbon, not oxygen, is the terminal electron acceptor. Aeration of flooded soils raises sulfate and nitrate levels, which suppress methanogenesis."
+  },
+  "facts": [
+   [
+    "Oxygen reaches",
+    "only a thin top layer of the mud (depth varies with the pond)"
+   ],
+   [
+    "Below it",
+    "no oxygen: fermentation and methane production"
+   ],
+   [
+    "Marsh gas",
+    "mostly methane, with some hydrogen sulfide and carbon dioxide"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How the thin oxygen-using layer varies from pond to pond, and how quickly it changes with temperature and the supply of leaves, is studied pond by pond."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "7.5",
+    "7-5-metabolism-without-oxygen"
+   ],
+   [
+    "BIO",
+    "46.3",
+    "46-3-biogeochemical-cycles"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Marsh gas (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Marsh_gas"
+   },
+   {
+    "title": "Methanogenesis (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Methanogenesis"
+   },
+   {
+    "title": "Effects of chironomid larvae density and mosquito biocide on methane and carbon dioxide dynamics in freshwater sediments (PLoS ONE 2024)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11125464"
+   }
+  ],
+  "related": [
+   "bio_microbial_metabolism",
+   "bio_fermentation"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_leaf_litter",
+  "title": "Fallen leaves on the bottom",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.1,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_mud"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Leaves from the trees around the pond fall in, sink and rot. They are the main food of the mud's decomposers.",
+  "layers": {
+   "basics": "Every autumn leaves fall into a pond. Over weeks they soften and are eaten by bacteria and fungi, until only fine dark fragments are left. The breakdown returns the nutrients the leaves held to the water and mud, and uses oxygen while it goes on. The park's oaks are the source of this model's 90 leaves; their outline is an oak-like lobed shape.",
+   "deeper": "Leaf litter is the base of the 'detritus' part of a pond's food web: energy that came from the leaf's own photosynthesis is passed to the decomposers and then to the animals that eat them. Cellulose, the long chain of glucose units that makes up leaf cell walls, is broken down by microbes; see the cellulose molecule in the mud scene.",
+   "expert": "In the model there are 90 leaves, each 7 to 13 cm long, lying on the bed where the water is at least 0.2 m deep. Their number and positions are illustrative."
+  },
+  "facts": [
+   [
+    "Leaves in the model",
+    "90, each ≈ 7 to 13 cm"
+   ],
+   [
+    "Broken down by",
+    "bacteria and fungi"
+   ],
+   [
+    "Main structural material",
+    "cellulose"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "46.1",
+    "46-1-ecology-of-ecosystems"
+   ],
+   [
+    "BIO",
+    "46.2",
+    "46-2-energy-flow-through-ecosystems"
+   ],
+   [
+    "BIO",
+    "24.3",
+    "24-3-ecology-of-fungi"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Bacteria (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Bacteria"
+   }
+  ],
+  "related": [
+   "bio_primary_production_decomposition",
+   "bio_polysaccharides",
+   "oak_leaf"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_gas_bubbles",
+  "title": "Bubbles rising from the mud",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 0.005,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_mud"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Gas made in the mud collects in bubbles that rise to the surface. The main gas is methane.",
+  "layers": {
+   "basics": "Stir the bottom of a pond and bubbles rise. They are made in the mud by microbes that live without oxygen. The gas is mostly methane, with smaller amounts of hydrogen sulfide and carbon dioxide. In the model the bubbles rise along fixed paths, looping so that there is always something rising. Their speed in the model is a drawing speed, not a measurement.",
+   "deeper": "Gas bubbles form when the amount of gas produced in the mud is more than the water can dissolve. This is called ebullition. It is an important route for methane to leave wetlands: about 45 % of the annual methane flux from freshwater marshes goes as bubbles (Wikipedia, Marsh gas). Marsh gas is mainly methane with some hydrogen sulfide and carbon dioxide. The share of methane in bubbles varies with place, time and temperature and is not a single number.",
+   "expert": "Methane (CH₄) is made by archaea, from acetate (CH₃COOH → CH₄ + CO₂) or from carbon dioxide and hydrogen (CO₂ + 4H₂ → CH₄ + 2H₂O). Acetate accounts for about two thirds of global methane production by this route. Bubbles drawn here are 7 mm across for visibility; real ones vary in size."
+  },
+  "facts": [
+   [
+    "Main gas",
+    "methane (CH₄)"
+   ],
+   [
+    "Other gases",
+    "hydrogen sulfide, carbon dioxide"
+   ],
+   [
+    "Share of marsh methane leaving as bubbles",
+    "≈ 45 % (freshwater marshes)"
+   ],
+   [
+    "Bubbles in the model",
+    "≈ 7 mm across, enlarged for visibility"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "The share of methane in the bubbles from small ponds varies widely with temperature, depth and the supply of rotting matter, and is measured pond by pond."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "7.5",
+    "7-5-metabolism-without-oxygen"
+   ],
+   [
+    "BIO",
+    "46.3",
+    "46-3-biogeochemical-cycles"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Marsh gas (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Marsh_gas"
+   },
+   {
+    "title": "Methanogenesis (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Methanogenesis"
+   },
+   {
+    "title": "Effects of chironomid larvae density and mosquito biocide on methane and carbon dioxide dynamics in freshwater sediments (PLoS ONE 2024)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11125464"
+   }
+  ],
+  "related": [
+   "bio_microbial_metabolism",
+   "carbon_cycle_process"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_mud_grains",
+  "title": "Mineral grains",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0001,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_mud"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The mud's mineral part: tiny particles of rock, sorted by size into sand, silt and clay.",
+  "layers": {
+   "basics": "Pond mud is part mineral, part rotting plant matter. The mineral part is rock that has been broken into grains by weather and carried in by rain and wind. The names give the size: sand is the biggest, silt is finer, clay is finest. In the scene the large rounded grains are sand and the small ones silt.",
+   "deeper": "The ISO classes are sand 63 µm to 2 mm, silt 2 to 63 µm and clay below 2 µm (ISO 14688-1:2017); the older Wentworth scale puts the silt-clay boundary at 3.9 µm. Fine grains settle slowly and give the soft, sticky texture; they also carry dissolved ions on their surfaces.",
+   "expert": "In the scene the sand is drawn at 120 µm and the silt at 14 µm. Clay particles (below 2 µm) are too small to draw as separate grains at this scale."
+  },
+  "facts": [
+   [
+    "Sand",
+    "63 µm to 2 mm"
+   ],
+   [
+    "Silt",
+    "2 to 63 µm"
+   ],
+   [
+    "Clay",
+    "below 2 µm"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Grain size (Wikipedia), ISO 14688-1:2017 classes",
+    "url": "https://en.wikipedia.org/wiki/Grain_size"
+   }
+  ],
+  "related": [
+   "boulder",
+   "rock_grains"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_mud_bacteria",
+  "title": "Bacteria that break down dead matter",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 2e-06,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_mud"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The bacteria on a rotting leaf are the first recyclers: they eat dead plant matter and release smaller molecules.",
+  "layers": {
+   "basics": "Bacteria are single-celled living things without a nucleus, typically 0.5 to 5 micrometres long. In pond mud they coat dead leaves and feed on them. Some work with oxygen where there is some; deeper, others ferment the leaf matter without oxygen into smaller molecules such as hydrogen, carbon dioxide and acetate, and these are the food of the methane-making archaea.",
+   "deeper": "Bacteria are responsible for much of the breakdown of dead organic matter and the recycling of nutrients. Fermenting bacteria break down larger organic matter into hydrogen, small organic compounds and carbon dioxide; in anaerobic places these are the 'semi-final products of decay' that methanogens use. Acetate is one such compound (see the molecule).",
+   "expert": "Bacterial cells are typically 0.5 to 5 µm; the scene draws them at about 1.6 × 3.5 µm. A gram of soil may hold around a thousand million bacteria (Bacteria article); the scene shows only a few hundred."
+  },
+  "facts": [
+   [
+    "Cell length",
+    "typically 0.5 to 5 µm"
+   ],
+   [
+    "Do in mud",
+    "break down dead matter; ferment it where oxygen is absent"
+   ],
+   [
+    "Molecule shown",
+    "acetate"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "22.2",
+    "22-2-structure-of-prokaryotes-bacteria-and-archaea"
+   ],
+   [
+    "BIO",
+    "7.5",
+    "7-5-metabolism-without-oxygen"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Bacteria (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Bacteria"
+   },
+   {
+    "title": "Methanogenesis (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Methanogenesis"
+   }
+  ],
+  "related": [
+   "bio_bacterial_structure",
+   "bio_bacterial_diversity",
+   "bio_microbial_metabolism"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_methanogens",
+  "title": "Methane-making archaea",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 2e-06,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_mud"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Archaea that live without oxygen and make methane from the leftovers of bacterial decay.",
+  "layers": {
+   "basics": "Archaea look like bacteria under a microscope but are a separate branch of life. The ones that make methane (methanogens) live only where there is no oxygen, such as deep in pond mud. They use small molecules from the bacteria's decay as food and release methane. In the scene they are drawn as small pink balls among the mud grains.",
+   "deeper": "Methane-producing energy conservation has been found only in Archaea. Oxygen inhibits methanogens' growth, and carbon, not oxygen, is their terminal electron acceptor. They use acetate (CH₃COOH → CH₄ + CO₂) and carbon dioxide with hydrogen (CO₂ + 4H₂ → CH₄ + 2H₂O). They live near anaerobic bacteria that supply their food.",
+   "expert": "The scene draws the archaea about 2 µm across, which is illustrative: the cell sizes and shapes of methanogens vary between species."
+  },
+  "facts": [
+   [
+    "Domain",
+    "Archaea"
+   ],
+   [
+    "Need",
+    "no oxygen"
+   ],
+   [
+    "Make",
+    "methane (CH₄)"
+   ],
+   [
+    "From",
+    "acetate, or carbon dioxide and hydrogen"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "22.2",
+    "22-2-structure-of-prokaryotes-bacteria-and-archaea"
+   ],
+   [
+    "BIO",
+    "7.5",
+    "7-5-metabolism-without-oxygen"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Methanogenesis (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Methanogenesis"
+   }
+  ],
+  "related": [
+   "bio_archaea",
+   "bio_microbial_metabolism"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_duckweed",
+  "title": "Common duckweed",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.003,
+  "area": "bio_ecology",
+  "parents": [
+   "park_pond",
+   "pond_surface"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Common duckweed (Lemna minor): a tiny floating plant, each one a flat green frond a few millimetres across with a single root dangling in the water.",
+  "layers": {
+   "basics": "Duckweed is one of the smallest flowering plants. Each plant is a flat, oval green frond about 3 mm long, floating on the surface, with one thin root hanging down about 1 to 2 cm. It does not need soil: it takes what it needs from the water through its frond and root. It multiplies mostly by budding new fronds, so it can quickly cover a pond like a green carpet. In the model a raft of about 2,000 fronds floats in the pond with a few scattered singles, and the whole raft drifts slightly; the fronds and roots are true size.",
+   "deeper": "A duckweed plant has one to four fronds joined together. Its body is only a few cells thick and often has air pockets, which keep it afloat. Reproduction is mostly asexual: new fronds bud from a meristem at the base of the parent. Flowers are rare and tiny; sexual reproduction is only occasional. Duckweed can double its biomass in about four and a half days under good conditions, which is among the fastest growth of any flowering plant. A thick mat shades the water below it and can reduce light-driven algal growth. It floats best in water of pH 6.5 to 8 and grows between about 6 and 33 °C.",
+   "expert": "Frond 1 to 8 mm long and 0.6 to 5 mm broad; root 1 to 2 cm (Wikipedia, Lemna minor). The model draws a 3 × 2.4 mm frond with a 12 mm root. The raft is about 0.3 m across, which is a small part of a pond's surface (21.7 m²); real rafts can cover a whole pond. In the model each frond is one instance of a 12-triangle shape; their drifting is a gentle sway drawn for illustration, not simulated wind or current. Duckweed is used as animal feed, with a protein content of 20 to 40 %."
+  },
+  "facts": [
+   [
+    "Frond size",
+    "1 to 8 mm long, 0.6 to 5 mm broad (model: 3 × 2.4 mm)"
+   ],
+   [
+    "Root",
+    "one per frond, 1 to 2 cm long (model: 12 mm)"
+   ],
+   [
+    "Fronds per plant",
+    "one to four"
+   ],
+   [
+    "Growth",
+    "doubles its biomass in about 4.5 days"
+   ],
+   [
+    "Fronds in the model",
+    "≈ 2,300"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "26.1",
+    "26-1-evolution-of-seed-plants"
+   ],
+   [
+    "BIO",
+    "31.1",
+    "31-1-nutritional-requirements-of-plants"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lemna minor (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lemna_minor"
+   },
+   {
+    "title": "Lemnoideae, the duckweeds (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lemnoideae"
+   }
+  ],
+  "related": [
+   "bio_chloroplasts_plastids"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_hornwort",
+  "title": "Hornwort",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.5,
+  "area": "bio_ecology",
+  "parents": [
+   "park_pond",
+   "pond_water"
+  ],
+  "parts": [
+   "pond_oxygen"
+  ],
+  "processes": [],
+  "summary": "Rigid hornwort (Ceratophyllum demersum): a submerged plant with no roots, whose stems carry whorls of stiff, forked, thread-like leaves.",
+  "layers": {
+   "basics": "Hornwort lives entirely under water. It has no roots at all: it floats or loosely anchors itself. Its stems carry rings (whorls) of 6 to 12 leaves, each leaf 8 to 40 mm long and divided once or twice into stiff, thread-like segments with tiny teeth. In sunlight it makes oxygen, which is why plants like this are called oxygenators. In the model there are four clumps of four stems, about half a metre long, with the small bubbles of oxygen on the leaves drawn for illustration. Stems of a real plant can reach 1 to 3 m.",
+   "deeper": "Finely divided leaves have a large surface for taking in minerals and gases, which matters under water, where carbon dioxide arrives slowly because a layer of still water clings to each leaf. Submerged plants also receive less light as the water deepens. Hornwort releases substances that inhibit algae and cyanobacteria, and it can crowd out other submerged plants. In autumn it forms thick buds (turions) that sink to the bottom and grow into new stems in spring. Its flowers are about 2 mm long, with separate male and female flowers on the same plant, sitting in the leaf axils.",
+   "expert": "Leaves in whorls of 6 to 12, 8 to 40 mm long, forked once or twice; stems 1 to 3 m (Wikipedia, Ceratophyllum demersum). The model's whorls have six leaves, 17 to 22 mm long, forked once and sometimes twice; the stems are 0.35 to 0.5 m because the pond is 0.6 m deep. Numbers and places of the clumps are illustrative. Hornwort grows in lakes, ponds and quiet streams with summer water temperatures of 15 to 30 °C and nutrient-rich water."
+  },
+  "facts": [
+   [
+    "Roots",
+    "none"
+   ],
+   [
+    "Leaves per whorl",
+    "6 to 12 (model: 6)"
+   ],
+   [
+    "Leaf length",
+    "8 to 40 mm"
+   ],
+   [
+    "Stem length",
+    "1 to 3 m (model: up to 0.5 m)"
+   ],
+   [
+    "Winter",
+    "turions sink and sprout in spring"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.1",
+    "30-1-the-plant-body"
+   ],
+   [
+    "BIO",
+    "8.1",
+    "8-1-overview-of-photosynthesis"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Ceratophyllum demersum, rigid hornwort (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Ceratophyllum_demersum"
+   },
+   {
+    "title": "Ceratophyllum, the hornworts (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Ceratophyllum"
+   },
+   {
+    "title": "Aquatic plant (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Aquatic_plant"
+   }
+  ],
+  "related": [
+   "bio_chloroplasts_plastids",
+   "photosynthesis_light_process"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_iris",
+  "title": "Yellow flag iris",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 1,
+  "area": "bio_ecology",
+  "parents": [
+   "park_pond",
+   "pond_bank"
+  ],
+  "parts": [
+   "pond_iris_flower",
+   "pond_iris_rhizome"
+  ],
+  "processes": [],
+  "summary": "Yellow flag (Iris pseudacorus): a tall marginal plant with sword-shaped leaves and yellow flowers, rooted in the wet soil at the pond's edge.",
+  "layers": {
+   "basics": "The yellow flag stands in the shallow water at the edge with its roots in wet mud and its leaves and flowers in the air. The leaves are long and flat like swords, up to 90 cm long and 3 cm wide; the flowers are bright yellow, 7 to 10 cm across. A whole plant can be 1 to 1.5 m tall. In the model three clumps of nine leaves stand on the shelf at the east and west edges, two of them with flowers. Its roots and leaves are toxic.",
+   "deeper": "Yellow flag grows best in very wet conditions and tolerates being submerged, low pH and soil without oxygen. It spreads by rhizomes and by seeds carried on water. It is native to Europe, western Asia and north-west Africa. Its roots take up nitrogen and phosphorus, and it has been used in water treatment.",
+   "expert": "Height 100 to 150 cm (rarely 2 m); leaves up to 90 cm long and 3 cm wide; flowers 7 to 10 cm across (Wikipedia, Iris pseudacorus). The model's leaves are 44 to 80 cm long and 2.6 cm wide, the flowers 8.5 cm across, and the clumps' places are illustrative. In the model the flower stems reach about 1 m."
+  },
+  "facts": [
+   [
+    "Height",
+    "100 to 150 cm"
+   ],
+   [
+    "Leaves",
+    "up to 90 cm × 3 cm"
+   ],
+   [
+    "Flowers",
+    "yellow, 7 to 10 cm across"
+   ],
+   [
+    "Tolerates",
+    "flooding, acid soil, soil without oxygen"
+   ],
+   [
+    "Toxic",
+    "roots and leaves"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.1",
+    "30-1-the-plant-body"
+   ],
+   [
+    "BIO",
+    "31.1",
+    "31-1-nutritional-requirements-of-plants"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Iris pseudacorus, the yellow flag (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Iris_pseudacorus"
+   }
+  ],
+  "related": [
+   "bio_chloroplasts_plastids"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_iris_flower",
+  "title": "Yellow flag flower",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.085,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_iris"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A yellow flag flower is a large iris bloom, 7 to 10 cm across, held above the water on a tall stalk.",
+  "layers": {
+   "basics": "The yellow flag's flowers are bright yellow and shaped like other irises: broad petals that fold outward and down, smaller ones that stand up, and arching branches of the style that cover the stamens. In the model each flower has nine parts: three drooping falls, three arching style branches and three small upright standards. The flower is the plant's way of making seed.",
+   "deeper": "The flower's parts are drawn after the typical iris plan; the model does not show the stamens or the ovary, and the details (marks on the falls, the proportions) are simplified. The seeds are dispersed by water.",
+   "expert": "Flowers 7 to 10 cm across (Wikipedia, Iris pseudacorus); the model flower is 8.5 cm across. The model's proportions follow a typical iris flower and are simplified; the stamens, the ovary and the markings on the falls are not drawn."
+  },
+  "facts": [
+   [
+    "Flower width",
+    "7 to 10 cm (model: 8.5 cm)"
+   ],
+   [
+    "Colour",
+    "bright yellow"
+   ],
+   [
+    "Parts drawn",
+    "3 falls, 3 style branches, 3 standards"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.1",
+    "30-1-the-plant-body"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Iris pseudacorus, the yellow flag (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Iris_pseudacorus"
+   }
+  ],
+  "related": [
+   "rn_flower"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_iris_rhizome",
+  "title": "Rhizome and roots in the mud",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.25,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_iris",
+   "pond_mud"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A thick underground stem (a rhizome) lies in the mud and sends up the leaves; roots spread from it into oxygen-poor soil.",
+  "layers": {
+   "basics": "Below the leaves the yellow flag has a fat horizontal stem, the rhizome, lying in the mud at the edge, a few centimetres below the surface. Thin roots grow from it into the soil. The rhizome stores food and lets the plant spread sideways to make a clump. The rhizome can survive long dry periods. In the model it is about 24 cm long and 2.8 cm thick, with roots hanging from it.",
+   "deeper": "The soil around the roots has little or no oxygen, but iris tolerates that. Its roots take up dissolved nitrogen and phosphorus. The cut-away slice marks the rhizome with a hotspot. ",
+   "expert": "Rhizomes can survive prolonged dry conditions (Wikipedia, Iris pseudacorus). The model's rhizome is a tube of 1.4 cm radius and its 26 roots per clump are an illustration, not a count from a plant."
+  },
+  "facts": [
+   [
+    "What it is",
+    "horizontal underground stem"
+   ],
+   [
+    "Model size",
+    "≈ 24 cm long, 2.8 cm thick"
+   ],
+   [
+    "Survives",
+    "prolonged dry conditions"
+   ],
+   [
+    "Soil it grows in",
+    "wet, with little oxygen"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.1",
+    "30-1-the-plant-body"
+   ],
+   [
+    "BIO",
+    "31.1",
+    "31-1-nutritional-requirements-of-plants"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Iris pseudacorus, the yellow flag (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Iris_pseudacorus"
+   }
+  ],
+  "related": [
+   "oak_root_hairs"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_skater",
+  "title": "Pond skater",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.009,
+  "area": "bio_ecology",
+  "parents": [
+   "park_pond",
+   "pond_surface"
+  ],
+  "parts": [
+   "pond_skater_legs",
+   "pond_surface_film"
+  ],
+  "processes": [],
+  "summary": "The common pond skater (Gerris lacustris): a slim, dark brown insect, 8 to 10 mm long, that stands and rows on the surface film of still water.",
+  "layers": {
+   "basics": "A pond skater is a bug that lives on top of the water. It does not swim; it stands on the surface film on its four long back legs and glides across by rowing with the middle pair. Its feet make shallow dimples in the surface but do not break it. It hunts insects and other small animals that fall on or are just under the surface, with piercing, sucking mouthparts. The one in the model is a true-size 9 mm; its legs reach about 2 cm across, and it twitches now and then.",
+   "deeper": "The front pair of legs is short and holds prey; the middle pair propels the bug by rowing or jumping; the hind pair works as a rudder. The body and legs are covered with tiny hairs with a wax-like coating, so the legs do not get wet. A water strider can move at about 1 m/s or faster. Its mouthparts pierce and suck. Adults emerge around April and May; eggs take 12 to 14 days to develop, and from larva to adult takes about 24 to 30 days across five stages.",
+   "expert": "Body length 8 to 10 mm, dark brown (Wikipedia, Gerris lacustris). The model's proportions (leg lengths, the position of the legs on the body) are drawn from the general arrangement, not measured on a specimen: the hind legs reach about 10 mm sideways from the body in the model. The twitch is an illustrative motion, shown slowed, not a measured rate. Click the legs and the hairs to find out how it stays up."
+  },
+  "facts": [
+   [
+    "Body length",
+    "8 to 10 mm (model: 9 mm)"
+   ],
+   [
+    "Colour",
+    "dark brown"
+   ],
+   [
+    "Legs",
+    "front (grasp prey), middle (row), hind (steer)"
+   ],
+   [
+    "Speed",
+    "about 1 m/s or faster (water striders)"
+   ],
+   [
+    "Eats",
+    "insects and small invertebrates on or just under the surface"
+   ],
+   [
+    "Life cycle",
+    "5 larval stages; ≈ 24 to 30 days from larva to adult"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Gerris lacustris, the common pond skater (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Gerris_lacustris"
+   },
+   {
+    "title": "Water strider (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Water_strider"
+   }
+  ],
+  "related": [
+   "bio_entomology_insects",
+   "bio_nematodes_arthropods",
+   "bee_chitin"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_skater_legs",
+  "title": "Pond skater legs: rowing, steering and the grasp",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.012,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_skater"
+  ],
+  "parts": [
+   "pond_leg_hairs"
+  ],
+  "processes": [],
+  "summary": "Six legs with three jobs: the short front pair grasps prey, the long middle pair rows, and the long hind pair steers.",
+  "layers": {
+   "basics": "A pond skater uses its six legs differently. The front pair is short and stubby and holds the prey it catches. The middle pair is long; pressing back on the water, it rows the insect forward or makes it jump. The hind pair works as a rudder. The legs rest on the surface at their tips, and the pale dimples under the four standing feet in the model show where. Click the middle leg and press the button to look at the hairs that keep it dry.",
+   "deeper": "Rowing works because the middle legs press down and back on the water without breaking the surface: the stroke creates a circular surface wave that provides thrust. The legs are made of cuticle, the hard skeleton material of insects, and their tips are covered with water-repelling hairs. One source disagrees with the others about which legs sense vibration, and that detail is not settled on this card.",
+   "expert": "In the model each leg is drawn with a coxa at the body, a raised 'knee', a long shin and a foot lying along the surface; the hind and middle legs are about 11 and 12 mm long. These dimensions are a plausible drawing, not a measurement."
+  },
+  "facts": [
+   [
+    "Front legs",
+    "short; hold prey"
+   ],
+   [
+    "Middle legs",
+    "long; row and jump"
+   ],
+   [
+    "Hind legs",
+    "long; steer like a rudder"
+   ],
+   [
+    "Leg material",
+    "chitin and protein cuticle, with a wax-like coating"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Which legs sense the ripples of struggling prey is described differently in different sources."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Gerris lacustris, the common pond skater (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Gerris_lacustris"
+   },
+   {
+    "title": "Water strider (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Water_strider"
+   }
+  ],
+  "related": [
+   "pond_surface_film",
+   "bee_chitin"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_daphnia",
+  "title": "Water flea (Daphnia)",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.0025,
+  "area": "bio_ecology",
+  "parents": [
+   "park_pond",
+   "pond_water"
+  ],
+  "parts": [
+   "pond_daphnia_head",
+   "pond_daphnia_antennae",
+   "pond_daphnia_heart",
+   "pond_daphnia_gut",
+   "pond_daphnia_eggs",
+   "pond_daphnia_limbs"
+  ],
+  "processes": [],
+  "summary": "A water flea (Daphnia): a transparent crustacean about 2.5 mm long that swims in jerks with its big antennae and filters tiny algae from the water.",
+  "layers": {
+   "basics": "Water fleas are not insects and not fleas: they are small crustaceans, relatives of crabs and shrimp, and they swim by jerky hops, rowing with their large second antennae. A shell of two translucent halves covers most of the body, so you can see the organs through it: a dark eye, a gut, eggs in a pouch and, behind the head, a heart that beats about 180 times a minute. This is why Daphnia is a favourite of school microscopes. The model is 2.5 mm long; the shell is drawn translucent so the heart shows.",
+   "deeper": "Daphnia feed by filtering: the second and third pairs of legs strain food from the water, mainly single-celled algae and also bits of dead matter, protists and bacteria. Most species reproduce by cyclical parthenogenesis: females make eggs that develop without fertilisation, and the young are mostly female. When conditions worsen (crowding, for example), some young become males, and females make eggs that need fertilising and are protected in a tough case. Eggs hatch within about a day of being laid and stay in the female's brood pouch for about three days at 20 °C. In many species the carapace is translucent so that the heart and other organs are visible. Daphnia produce haemoglobin when oxygen is low.",
+   "expert": "Daphnia are usually 1 to 5 mm long; the genus ranges from 0.2 to 6 mm (Wikipedia, Daphnia). The model is a 2.5 mm female. The heart rate is about 180 per minute (3 per second) under normal conditions; the model beats it at half speed, as the screen says. The hop is an illustrative motion. Lifespan depends on temperature and predators, typically under five or six months, and up to 13 to 14 months in some cold lakes without fish."
+  },
+  "facts": [
+   [
+    "Length",
+    "1 to 5 mm typical (model: 2.5 mm)"
+   ],
+   [
+    "Heart rate",
+    "about 180 per minute"
+   ],
+   [
+    "Eats",
+    "single-celled algae, bacteria and fine dead matter, by filtering"
+   ],
+   [
+    "Reproduces",
+    "cyclical parthenogenesis"
+   ],
+   [
+    "Lifespan",
+    "typically under 5 to 6 months"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ],
+   [
+    "BIO",
+    "46.2",
+    "46-2-energy-flow-through-ecosystems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Daphnia (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Daphnia"
+   }
+  ],
+  "related": [
+   "bio_arachnids_crustaceans",
+   "bio_nematodes_arthropods",
+   "bee_chitin"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_daphnia_head",
+  "title": "Water flea: head and eye",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0006,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_daphnia"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The head carries one large compound eye and the mouth; it is a rounded cap at the front, outside the shell.",
+  "layers": {
+   "basics": "A water flea's head is at the front, rounded, with the dark eye on it. A compound eye is made of many tiny light-sensing units, like an insect's eye. The eye is moved by tiny muscles, which can be seen under a low-power microscope. The model draws the head as a simple rounded shape.",
+   "deeper": "The eye is among the most prominent features of the body and is moved by ciliary muscles, visible under low-power microscopy (Wikipedia, Daphnia). The model draws a single dark spherical eye on the front of the head; its detail (number of facets) is not drawn.",
+   "expert": "In the model the head is 1.2 mm long and the eye 0.34 mm across, drawn as a simple sphere."
+  },
+  "facts": [
+   [
+    "Eye",
+    "compound; moved by muscles"
+   ],
+   [
+    "Model eye size",
+    "0.34 mm"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Daphnia (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Daphnia"
+   }
+  ],
+  "related": [
+   "bee_compound_eye"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_daphnia_antennae",
+  "title": "Water flea: the swimming antennae",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.002,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_daphnia"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The second pair of antennae are big, branched limbs that power swimming; each stroke sends the animal forward in a small jump.",
+  "layers": {
+   "basics": "The water flea does not use its legs to swim. It rows with a pair of large branched limbs on its head, called the second antennae. Each stroke makes the animal lunge, which gives it its jerky, flea-like hops. In the model they are drawn as two stalks with two branches each, and they move to and fro for illustration.",
+   "deeper": "Swimming is powered mainly by the second set of antennae, which are larger than the first pair; the movement resembles flea-like jumping (Wikipedia, Daphnia).",
+   "expert": "The motion of the model's antennae is an illustration, not a measured stroke rate; the screen says so."
+  },
+  "facts": [
+   [
+    "Job",
+    "swimming (rowing)"
+   ],
+   [
+    "Resulting movement",
+    "jerky, flea-like hops"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Daphnia (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Daphnia"
+   }
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_daphnia_heart",
+  "title": "Water flea: the beating heart",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0003,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_daphnia"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A water flea's heart is a small sac on its back, just behind the head, that you can see beating through the shell.",
+  "layers": {
+   "basics": "Behind the head, at the top of the back, the heart pumps the animal's blood. Because the shell is clear, you can see it beat: about 180 times a minute (three beats per second) in normal conditions. It is the classic view of a water flea under a microscope. In the model the heart beats at half that speed so that you can watch it, and the screen says so.",
+   "deeper": "Because of their size, Daphnia use both diffusion and circulation to move oxygen about; they make haemoglobin when oxygen is low. Heart rate depends on temperature and conditions: about 180 beats a minute is the average in normal conditions. A heart is a muscular pump in every animal that has one, including us; a human heart is a far bigger muscular pump, but it works on the same principle: heart muscle cells contract together. Press the button to see ATP, the molecule that fuels every muscle cell.",
+   "expert": "The heart is at the top of the back just behind the head (Wikipedia, Daphnia). In the model it is an ellipsoid 0.4 mm long, shown pulsing at 1.5 beats per second against the real 3 per second."
+  },
+  "facts": [
+   [
+    "Heart rate",
+    "about 180 per minute, about 3 per second"
+   ],
+   [
+    "Where",
+    "top of the back, behind the head"
+   ],
+   [
+    "In the model",
+    "pulses at half speed"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Daphnia (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Daphnia"
+   }
+  ],
+  "related": [
+   "heart",
+   "cardiomyocyte",
+   "bee_heart"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_daphnia_gut",
+  "title": "Water flea: the gut",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.002,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_daphnia"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The gut is a tube from the mouth to the tail; you can see green food moving through it.",
+  "layers": {
+   "basics": "Food strained from the water is pushed into the gut, where it forms a ball that moves along the tube until it is passed out at the animal's tail end. Because the shell is clear, the gut can be seen through it. In the model the gut is a green tube with a pair of small pouches at the front.",
+   "deeper": "Leg beating draws food particles into the digestive tract, where they form a bolus (a ball) that moves down until it is voided through the anus on the underside of the end of the body (Wikipedia, Daphnia). The pouches at the front of the model's gut are a simplification of the real gut's form.",
+   "expert": "The gut is drawn 2 mm long and about 0.2 mm wide."
+  },
+  "facts": [
+   [
+    "Passes food",
+    "mouth to anus on the underside of the tail"
+   ],
+   [
+    "Looks green",
+    "after eating algae"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Daphnia (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Daphnia"
+   }
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_daphnia_eggs",
+  "title": "Water flea: eggs in the brood pouch",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0004,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_daphnia"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A female carries her eggs in a pouch on her back under the shell, where they develop without being fertilised.",
+  "layers": {
+   "basics": "A mature female water flea carries her young-to-be in a pouch under the shell, on her back. In good conditions the eggs need no father: each develops into a female that is a copy of her mother. Small species may carry only one or two eggs, and larger species such as Daphnia magna can carry over a hundred. The model shows four.",
+   "deeper": "Eggs hatch within a day and the young stay in the brood pouch for about three days at 20 °C before being released (Wikipedia, Daphnia). Reproduction without fertilisation is called parthenogenesis. When conditions worsen, females make eggs that must be fertilised, protected by a chitinous covering (the ephippium).",
+   "expert": "The model shows four eggs, each 0.34 mm across; the number and the positions are illustrative."
+  },
+  "facts": [
+   [
+    "Eggs per clutch",
+    "1 or 2 in small species; over 100 in larger ones"
+   ],
+   [
+    "In the pouch",
+    "about 3 days at 20 °C"
+   ],
+   [
+    "Model",
+    "4 eggs, 0.34 mm each"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Daphnia (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Daphnia"
+   }
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_daphnia_limbs",
+  "title": "Water flea: the filtering limbs",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0006,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_daphnia"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Five or six pairs of leaf-like legs beat under the shell, creating a current and straining food from it.",
+  "layers": {
+   "basics": "Under the shell, between the two halves, a water flea has five or six pairs of flattened legs. They are not for walking. They beat steadily, drawing a stream of water through the shell. Two of the pairs do the filter feeding; the others help make the current.",
+   "deeper": "Five or six pairs of legs lie in a gap on the underside beneath the carapace; the second and third pairs are used in filter feeding and the others create the incoming current (Wikipedia, Daphnia). The model draws five pairs as small flattened lobes plus a tail piece.",
+   "expert": "Each lobe is 0.18 × 0.6 mm in the model."
+  },
+  "facts": [
+   [
+    "Pairs",
+    "five or six"
+   ],
+   [
+    "Used for",
+    "filter feeding (two pairs) and making the current (the rest)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Daphnia (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Daphnia"
+   }
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_snail",
+  "title": "Great pond snail",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.05,
+  "area": "bio_ecology",
+  "parents": [
+   "park_pond",
+   "pond_water"
+  ],
+  "parts": [
+   "pond_snail_body",
+   "pond_snail_senses"
+  ],
+  "processes": [],
+  "summary": "The great pond snail (Lymnaea stagnalis): a large freshwater snail with a spiral shell 4.5 to 6 cm tall, that breathes air at the surface.",
+  "layers": {
+   "basics": "This is one of the biggest snails in British ponds. Its tall, pointed, spiral shell is brown and can be 45 to 60 mm tall and 20 to 30 mm wide. Unlike a fish it has no gills: it has a lung and breathes air. It crawls over plants and mud on one broad muscular foot. In the model the snail is true size, crawling on the mud with its two tentacles forward.",
+   "deeper": "The great pond snail belongs to the pulmonates, snails whose mantle cavity has no gills and is instead a blood-vessel-lined lung. Each snail is both male and female at once (a simultaneous hermaphrodite), though it plays only one role in a mating. It is air-breathing. In aquaria it eats vegetables, leaves, algae and other snails' eggs. It is a model organism in neuroscience and parasitology: its nerve cells are large, up to about 100 µm across, and it is an intermediate host for several flatworm parasites. The shell in the model is a spiral of 6 turns made by sweeping an oval along a logarithmic coil; it is an illustration of the shape, not a measured shell.",
+   "expert": "Shell height 45 to 60 mm, width 20 to 30 mm; rarely 70 mm (Wikipedia, Lymnaea stagnalis). The model's shell is 50 mm tall, 26 to 30 mm wide. The body size and posture are illustrative."
+  },
+  "facts": [
+   [
+    "Shell height",
+    "45 to 60 mm (model: 50 mm)"
+   ],
+   [
+    "Shell width",
+    "20 to 30 mm"
+   ],
+   [
+    "Breathes",
+    "air, with a lung"
+   ],
+   [
+    "Sexes",
+    "both at once (hermaphrodite)"
+   ],
+   [
+    "Nerve cells",
+    "large, up to about 100 µm"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ],
+   [
+    "BIO",
+    "39.2",
+    "39-2-gas-exchange-across-respiratory-surfaces"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lymnaea stagnalis, the great pond snail (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lymnaea_stagnalis"
+   },
+   {
+    "title": "Pulmonata (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Pulmonata"
+   }
+  ],
+  "related": [
+   "bio_lophotrochozoans",
+   "bio_model_organisms",
+   "bio_protists"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_snail_body",
+  "title": "Great pond snail: foot, head and lung",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.04,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_snail"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The soft body: a broad muscular foot to crawl on, a head with the mouth, and a lung under the shell.",
+  "layers": {
+   "basics": "Under the shell sits the snail's soft body. The foot is a single broad muscle that carries it along on a film of slime. The head has the mouth, which holds a ribbon of tiny teeth, the radula, that scrapes food. Behind the head, under the shell, is a chamber that works as a lung. The snail goes to the surface to fill it with air.",
+   "deeper": "A radula is a minutely toothed, chitinous ribbon that scrapes or cuts food before it reaches the oesophagus; most molluscs have one. In many snail lineages it rakes microscopic algae from surfaces. In pulmonate snails the mantle cavity has lost its gills and has become a lung lined with blood vessels. This model draws the visible parts only: foot, head and a collar of mantle at the shell's mouth; the lung is not drawn.",
+   "expert": "In the model the foot is about 36 mm long and 12 mm wide. The proportions are illustrative."
+  },
+  "facts": [
+   [
+    "Foot",
+    "one broad muscle"
+   ],
+   [
+    "Mouth",
+    "with a radula, a toothed ribbon of chitin"
+   ],
+   [
+    "Breathing organ",
+    "a lung in the mantle cavity (not drawn)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lymnaea stagnalis, the great pond snail (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lymnaea_stagnalis"
+   },
+   {
+    "title": "Pulmonata (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Pulmonata"
+   },
+   {
+    "title": "Radula (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Radula"
+   }
+  ],
+  "related": [
+   "bio_lophotrochozoans",
+   "bee_chitin"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_snail_senses",
+  "title": "Great pond snail: tentacles and eyes",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.006,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_snail"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Two tentacles at the front of the head carry the snail's senses; small dark eyes sit at their base.",
+  "layers": {
+   "basics": "The model gives the snail two tentacles on its head and a pair of small eyes. The model draws the tentacles as broad flat triangles and the eyes as black dots at the inner side of their bases.",
+   "deeper": "The shapes in the model are simplified; sensory detail is not drawn.",
+   "expert": "In the model the tentacles are 5.6 mm long and the eyes 1.2 mm across."
+  },
+  "facts": [
+   [
+    "Tentacles",
+    "two, on the head"
+   ],
+   [
+    "Eyes",
+    "two, simple, at the base of the tentacles"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lymnaea stagnalis, the great pond snail (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lymnaea_stagnalis"
+   }
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_dragonfly_larva",
+  "title": "Dragonfly larva (southern hawker)",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.042,
+  "area": "bio_ecology",
+  "parents": [
+   "park_pond",
+   "pond_water"
+  ],
+  "parts": [
+   "pond_larva_head",
+   "pond_larva_mask",
+   "pond_larva_legs",
+   "pond_larva_abdomen",
+   "pond_life_cycles"
+  ],
+  "processes": [],
+  "summary": "The underwater young of a southern hawker dragonfly (Aeshna cyanea): a brown-green hunter, about 4 cm long, that catches prey with a hinged lip shot out at lightning speed.",
+  "layers": {
+   "basics": "A dragonfly spends most of its life under water as a larva. The southern hawker's larva is 38 to 48 mm long, with big eyes, six legs, two small wing pads on the middle part of the body and a long tapering abdomen ending in a point. It is a predator that strikes with a folded lip (the mask) that shoots out to grab prey. It eats other water insects, small tadpoles and small fish. It lives like this for two or three years, then climbs a plant stem out of the water and the adult dragonfly emerges.",
+   "deeper": "The larva grows by moulting, shedding its skin between 6 and 15 times depending on the species. Southern hawkers emerge as adults in July and August and fly from June to October; the adult is about 70 mm long with a wingspan of up to 110 mm. The adults breed in well-vegetated small ponds, often garden ponds. When the larva is ready, it stops feeding, goes to the surface, generally at night, climbs a reed or other plant out of the water and moults for the last time.",
+   "expert": "Larva 38 to 48 mm (British Dragonfly Society); development 'two to three years' (Wikipedia, Aeshna cyanea). The model is 42 mm long. The proportions of the head, legs and wing pads are drawn from the general form of a hawker larva and are not measured on a specimen."
+  },
+  "facts": [
+   [
+    "Larva length",
+    "38 to 48 mm (model: 42 mm)"
+   ],
+   [
+    "Larval life",
+    "two to three years"
+   ],
+   [
+    "Moults",
+    "6 to 15, depending on species"
+   ],
+   [
+    "Eats",
+    "aquatic insects, small tadpoles, other invertebrates, small fish"
+   ],
+   [
+    "Adult",
+    "≈ 70 mm long, wingspan up to 110 mm; flies June to October"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ],
+   [
+    "BIO",
+    "46.2",
+    "46-2-energy-flow-through-ecosystems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Aeshna cyanea, the southern hawker (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Aeshna_cyanea"
+   },
+   {
+    "title": "Southern hawker (British Dragonfly Society species page)",
+    "url": "https://british-dragonflies.org.uk/species/southern-hawker/"
+   },
+   {
+    "title": "Dragonfly (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Dragonfly"
+   }
+  ],
+  "related": [
+   "bio_entomology_insects",
+   "bio_organoids_regeneration",
+   "bee_chitin"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_larva_head",
+  "title": "Dragonfly larva: head and eyes",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.007,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_dragonfly_larva"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A big head with two large compound eyes, set at the front.",
+  "layers": {
+   "basics": "The head carries two large compound eyes. Under the head lies the folded lip, which it uses like a hand.",
+   "deeper": "Each compound eye is made of many tiny lenses, like those in the bee's eye. The model draws the eyes as two bulging green ovals; their facets are too small to draw.",
+   "expert": "In the model the head is 7 mm wide across the eyes."
+  },
+  "facts": [
+   [
+    "Eyes",
+    "two compound eyes"
+   ],
+   [
+    "Head width (model)",
+    "≈ 7 mm"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Aeshna cyanea, the southern hawker (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Aeshna_cyanea"
+   }
+  ],
+  "related": [
+   "bee_compound_eye"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_larva_mask",
+  "title": "Dragonfly larva: the extending lip (the mask)",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.008,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_dragonfly_larva"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A hinged, hooked lower lip folded under the head, that shoots out to seize prey and snaps back.",
+  "layers": {
+   "basics": "The larva's most remarkable tool is the mask: a long, hinged lower lip folded under its head and body. When prey comes within reach, water pressure made by muscles in the abdomen drives it forward in a flash, and two hooks at its end grab the prey, which is pulled back to the mouth. In the model the mask is drawn folded.",
+   "deeper": "The labium is a huge, extensible lower lip armed with hooks and spines, folded under the body at rest and struck out at great speed by hydraulic pressure created by the abdominal muscles (Wikipedia, Dragonfly). In southern hawkers the mask is thin, more than 3.5 times as long as it is wide (British Dragonfly Society). The mask in the model is a flat plate with two hooks, drawn folded; its extension is not animated.",
+   "expert": "No figure for the speed or reach of the strike is quoted on this card."
+  },
+  "facts": [
+   [
+    "Folded under",
+    "the head and thorax"
+   ],
+   [
+    "Driven out by",
+    "hydraulic pressure from abdominal muscles"
+   ],
+   [
+    "Shape in southern hawkers",
+    "thin: more than 3.5 times as long as wide"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Dragonfly (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Dragonfly"
+   },
+   {
+    "title": "Southern hawker (British Dragonfly Society species page)",
+    "url": "https://british-dragonflies.org.uk/species/southern-hawker/"
+   }
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_larva_thorax",
+  "title": "Dragonfly larva: thorax and wing pads",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.01,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_dragonfly_larva"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The middle part of the body, which carries the legs and, in older larvae, two pairs of small wing pads that will become the wings.",
+  "layers": {
+   "basics": "Behind the head is the thorax, the part that holds the muscles for the legs. On its back lie two pairs of small flat cases, the wing pads. Inside them the adult's wings are growing, folded. When the larva climbs out of the water and sheds its skin for the last time, the wings unfold and harden.",
+   "deeper": "The wing pads grow with each moult. When ready, the larva stops feeding, goes to the surface, generally at night, climbs a reed or other plant and moults.",
+   "expert": "The wing pads in the model are two pairs of flat lobes about 5 to 6 mm long. Their size is illustrative."
+  },
+  "facts": [
+   [
+    "Parts",
+    "thorax; two pairs of wing pads"
+   ],
+   [
+    "Turns into",
+    "the adult wings at the last moult"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Dragonfly (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Dragonfly"
+   },
+   {
+    "title": "Aeshna cyanea, the southern hawker (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Aeshna_cyanea"
+   }
+  ],
+  "related": [
+   "bio_organoids_regeneration"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_larva_legs",
+  "title": "Dragonfly larva: legs",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.012,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_dragonfly_larva"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Six jointed legs for crawling over mud and plants.",
+  "layers": {
+   "basics": "The larva walks on six legs, three on each side. All insects have three pairs of legs on the thorax; each is jointed, with a thigh, a shin and a foot.",
+   "deeper": "The legs are made of the same hard cuticle as the rest of the body (chitin and protein). The model draws all six splayed as when crawling.",
+   "expert": "In the model each leg is about 11 mm long, with a thick thigh tapering to a fine foot."
+  },
+  "facts": [
+   [
+    "Legs",
+    "six, in three pairs"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Aeshna cyanea, the southern hawker (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Aeshna_cyanea"
+   }
+  ],
+  "related": [
+   "bee_chitin"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_larva_abdomen",
+  "title": "Dragonfly larva: abdomen, rectal gills and jet propulsion",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.024,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_dragonfly_larva"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The tapering abdomen holds the gills, which are inside the rectum, and ends in a pointed tail. The larva shoots water out of the tail end to jet itself away.",
+  "layers": {
+   "basics": "A dragonfly larva breathes through gills in its rear end. Water is drawn in and out of the tail end, passing over the gills inside. If the larva is alarmed, it can squirt the water out hard and shoot forward in a jet. The abdomen has ten segments, and at its tip are the pointed cerci and other tail points.",
+   "deeper": "Larvae breathe through gills in their rectum and can rapidly propel themselves by suddenly expelling water through the anus (Wikipedia, Dragonfly). Water is pumped through an opening at the tip of the abdomen. The abdomen's ten ring-shaped segments are drawn with a groove at each joint; the model draws three pointed tail appendages.",
+   "expert": "The abdomen is 24 mm long in the model."
+  },
+  "facts": [
+   [
+    "Gills",
+    "inside the rear end (rectal gills)"
+   ],
+   [
+    "Jet propulsion",
+    "water expelled through the tail end"
+   ],
+   [
+    "Segments",
+    "ten"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ],
+   [
+    "BIO",
+    "39.2",
+    "39-2-gas-exchange-across-respiratory-surfaces"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Dragonfly (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Dragonfly"
+   }
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_tadpole",
+  "title": "Common frog tadpole",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.034,
+  "area": "bio_ecology",
+  "parents": [
+   "park_pond",
+   "pond_water"
+  ],
+  "parts": [
+   "pond_tadpole_tail",
+   "pond_tadpole_legs",
+   "pond_life_cycles"
+  ],
+  "processes": [],
+  "summary": "A tadpole of the common frog (Rana temporaria): a dark, speckled swimmer with a round body, a tail with a fin, and, at this age, a pair of small hind legs.",
+  "layers": {
+   "basics": "Frogs lay clumps of eggs (spawn) in ponds in spring, and the eggs hatch into tadpoles. A tadpole is built for water: it breathes with gills, swims by waving its tail from side to side, and eats algae and rotting plants. The one in the model has grown hind legs, which is a stage about halfway to becoming a frog. Tadpoles are black at hatching and later become speckled with gold or brown. Many are eaten by fish, diving beetles, dragonfly larvae and birds. Those that survive lose the tail and leave the pond as tiny froglets in early summer, sometimes as late as September.",
+   "deeper": "A common frog spawns from January in the south to as late as June, generally peaking in April; a clump holds a few hundred to 5,000 eggs. The eggs usually hatch after 2 to 3 weeks (2 to 4 weeks according to the weather). About 16 weeks later the tadpoles begin growing back legs and then front legs. Early tadpoles have external gills that are later covered by skin. A chamber then forms, and the internal gills vent through small openings (spiracles). The gut is long and spiral, built for plant food, and the tail is flattened from side to side. When legs develop the diet changes to animal food; at metamorphosis the tail is absorbed, lungs develop and the gut shortens.",
+   "expert": "In a Perthshire study of upland tadpoles with hind legs, body length was 10 to 17.5 mm and tail 15 to 27.5 mm, with hind limbs 2 to 9 mm (Bland, The Glasgow Naturalist); those were unusually large, over-wintering tadpoles at 865 m, so they are a guide rather than the norm for a garden pond. The model has a 14 mm body, a 20 mm tail and 4 mm hind legs. Adult common frogs are up to 9 cm (males) and 13 cm (females) according to Froglife, and the model shows none."
+  },
+  "facts": [
+   [
+    "Spawn clump",
+    "a few hundred to 5,000 eggs"
+   ],
+   [
+    "Hatch",
+    "2 to 4 weeks after spawning"
+   ],
+   [
+    "Hind legs",
+    "about 16 weeks after hatching"
+   ],
+   [
+    "Size, hind-leg stage",
+    "body 10 to 17.5 mm, tail 15 to 27.5 mm (Perthshire study)"
+   ],
+   [
+    "Eats",
+    "algae and rotting plants; later animal food"
+   ],
+   [
+    "Eaten by",
+    "fish, diving beetles, dragonfly larvae, birds"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "29.3",
+    "29-3-amphibians"
+   ],
+   [
+    "BIO",
+    "46.2",
+    "46-2-energy-flow-through-ecosystems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Common frog (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Common_frog"
+   },
+   {
+    "title": "Common frog (Froglife)",
+    "url": "https://www.froglife.org/info-advice/amphibians-and-reptiles/common-frog/"
+   },
+   {
+    "title": "Common frog (Amphibian and Reptile Conservation Trust)",
+    "url": "https://www.arc-trust.org/common-frog"
+   },
+   {
+    "title": "Tadpole (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Tadpole"
+   },
+   {
+    "title": "Bland: Delayed metamorphosis of frog tadpoles at high altitude in Perthshire (The Glasgow Naturalist), Tables 1 and 2",
+    "url": "https://glasgownaturalhistory.org.uk/gn25_1/bland_delayedmetamorphosis.pdf"
+   }
+  ],
+  "related": [
+   "bio_fishes_amphibians",
+   "bio_organoids_regeneration",
+   "bio_deuterostome_protostome"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_tadpole_tail",
+  "title": "Tadpole: the tail",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.02,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_tadpole"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A strong, flattened tail with a thin fin along its top and bottom edges drives the tadpole through the water, and is absorbed when it becomes a frog.",
+  "layers": {
+   "basics": "The tail is the tadpole's engine. It is flattened from side to side and ends in a thin fin. Muscle inside it bends it from side to side, so the tadpole swims by wriggling like a fish. When the young frog is ready to leave the water, the tail shrinks and its material is taken back into the body.",
+   "deeper": "Tadpoles swim by lateral undulation, with a laterally compressed tail, like fishes; the tail is absorbed into the body at metamorphosis (Wikipedia, Tadpole). The model draws the tail as a tapered muscle with a flat fin sheet above and below it.",
+   "expert": "The tail in the model is 20 mm long, with a fin about 8 mm deep at its deepest."
+  },
+  "facts": [
+   [
+    "Used for",
+    "swimming by side-to-side waving"
+   ],
+   [
+    "At metamorphosis",
+    "absorbed into the body"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "29.3",
+    "29-3-amphibians"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Tadpole (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Tadpole"
+   },
+   {
+    "title": "Bland: Delayed metamorphosis of frog tadpoles at high altitude in Perthshire (The Glasgow Naturalist), Tables 1 and 2",
+    "url": "https://glasgownaturalhistory.org.uk/gn25_1/bland_delayedmetamorphosis.pdf"
+   }
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_tadpole_legs",
+  "title": "Tadpole: hind legs",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.004,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_tadpole"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Small hind legs grow from the base of the tail at about this age; they will later power the frog's jump.",
+  "layers": {
+   "basics": "Hind legs are the first sign that the tadpole is turning into a frog. They start as tiny buds near the base of the tail and grow longer and longer; later the front legs appear. In the model the legs are about 4 mm long.",
+   "deeper": "In upland tadpoles measured in a Scottish study the hind legs were 2 to 9 mm long at different stages; forelimbs appeared on the larger ones (Bland, The Glasgow Naturalist). The model draws them as small jointed rods ending in a folded foot.",
+   "expert": "Hind limb length in the study: 2 to 9 mm. The model's are 4 mm."
+  },
+  "facts": [
+   [
+    "Hind limb length (study)",
+    "2 to 9 mm"
+   ],
+   [
+    "Model",
+    "4 mm"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "29.3",
+    "29-3-amphibians"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Bland: Delayed metamorphosis of frog tadpoles at high altitude in Perthshire (The Glasgow Naturalist), Tables 1 and 2",
+    "url": "https://glasgownaturalhistory.org.uk/gn25_1/bland_delayedmetamorphosis.pdf"
+   },
+   {
+    "title": "Common frog (Froglife)",
+    "url": "https://www.froglife.org/info-advice/amphibians-and-reptiles/common-frog/"
+   }
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_food_web",
+  "title": "The pond food web",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 3,
+  "area": "bio_ecology",
+  "parents": [
+   "park_pond"
+  ],
+  "parts": [
+   "pond_daphnia",
+   "pond_tadpole",
+   "pond_snail",
+   "pond_dragonfly_larva",
+   "pond_skater",
+   "pond_duckweed",
+   "pond_hornwort"
+  ],
+  "processes": [],
+  "summary": "Who eats whom among the organisms in this pond: sunlight feeds algae and plants, they feed grazers and the microbes that break down dead matter, and the grazers feed the hunters.",
+  "layers": {
+   "basics": "A food web is a map of what eats what. In this pond it starts with sunlight. Algae, duckweed and hornwort turn light into food, and water fleas, tadpoles and snails feed on them or on bits of dead matter and bacteria. A dragonfly larva hunts the water fleas and tadpoles; a frog eats snails; and the pond skater, on top, eats small insects that land on the water. Everything that dies is broken down by bacteria, which return nutrients to the water for the plants and algae to use again. Only the organisms you can click in this pond are in the diagram; a real pond has many more.",
+   "deeper": "Energy flows one way through a food web: it enters as sunlight and, at each step from the grazers to the hunters, most is lost as heat, so there are always fewer hunters than grazers. Nutrients, by contrast, go round and round. Water fleas filter single-celled algae, detritus and bacteria; tadpoles eat algae and decomposed plants until their hind legs develop, then turn to animal food; a dragonfly larva eats aquatic insects, small tadpoles and other invertebrates and sometimes small fish; frogs eat invertebrates, slugs and snails in particular; tadpoles are in turn eaten by fish, diving beetles, dragonfly larvae and birds. A pond skater feeds on insects and small invertebrates on or just under the surface. In a great pond snail's case, diet in the wild is not covered here; in aquaria it eats leaves, vegetables and algae.",
+   "expert": "The links drawn here come from the sources named on each organism's card; they are a small sample of real feeding relationships. Real food webs have many more links (omnivory, cannibalism, seasonal diet changes), and an organism's diet changes as it grows, as the tadpole's does. Missing from this diagram: the fish and diving beetles that eat tadpoles (not modelled), the birds, and the insects that land on the surface for the skater to eat."
+  },
+  "facts": [
+   [
+    "Producers",
+    "algae, duckweed, hornwort (and the iris at the edge)"
+   ],
+   [
+    "Grazers and filter-feeders",
+    "water flea, tadpole, snail"
+   ],
+   [
+    "Hunters",
+    "dragonfly larva, pond skater, frog"
+   ],
+   [
+    "Recyclers",
+    "bacteria (and fungi) in the water and mud"
+   ],
+   [
+    "Energy",
+    "enters as sunlight; most is lost at each step"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "46.2",
+    "46-2-energy-flow-through-ecosystems"
+   ],
+   [
+    "BIO",
+    "45.6",
+    "45-6-community-ecology"
+   ],
+   [
+    "BIO",
+    "46.1",
+    "46-1-ecology-of-ecosystems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Daphnia (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Daphnia"
+   },
+   {
+    "title": "Common frog (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Common_frog"
+   },
+   {
+    "title": "Aeshna cyanea, the southern hawker (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Aeshna_cyanea"
+   },
+   {
+    "title": "Gerris lacustris, the common pond skater (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Gerris_lacustris"
+   },
+   {
+    "title": "Lymnaea stagnalis, the great pond snail (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lymnaea_stagnalis"
+   },
+   {
+    "title": "Common frog (Amphibian and Reptile Conservation Trust)",
+    "url": "https://www.arc-trust.org/common-frog"
+   }
+  ],
+  "related": [
+   "bio_food_webs_energy_flow",
+   "bio_primary_production_decomposition",
+   "bio_ecosystem_stability",
+   "bio_biogeochemical_cycles_concept"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_life_cycles",
+  "title": "Pond and land: the frog and the dragonfly",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 1,
+  "area": "bio_ecology",
+  "parents": [
+   "park_pond"
+  ],
+  "parts": [
+   "pond_tadpole",
+   "pond_dragonfly_larva"
+  ],
+  "processes": [],
+  "summary": "Frogs and dragonflies begin in the pond but spend their adult lives out of it: the pond is a nursery, and the land and air are where the adults live.",
+  "layers": {
+   "basics": "Two animals in this pond link it to the land. A common frog lays its eggs in the pond in spring; they hatch into tadpoles that breathe with gills and grow legs over the summer, then leave the water as tiny froglets. Adult frogs live in damp places near ponds and return to breed, and in winter some hibernate in the mud at the bottom of ponds. A southern hawker dragonfly lays its eggs in plants at the water's edge; the larva spends two or three years under water, then climbs a plant out of the water at night and the adult emerges. Both animals therefore carry food and nutrients between the pond and the land.",
+   "deeper": "Common frogs hibernate from late October to January and may leave hibernation as early as February to migrate to garden ponds. They spawn from January in the south-west of England to as late as June, generally peaking in April; the eggs hatch in 2 to 4 weeks and the tadpoles begin growing hind legs about 16 weeks later and leave the water in early summer, sometimes as late as September. Adult frogs are up to 9 cm (males) and 13 cm (females) long. A southern hawker's larva is 38 to 48 mm long and moults between 6 and 15 times over two to three years; adults emerge in July and August and fly from June to October. The adult is a land-and-air predator, so the dragonfly moves energy from the pond's food web to the air.",
+   "expert": "Where the animal sits in the web changes through its life. A tadpole is a plant-eater in the pond; the adult frog is a predator on land. A dragonfly larva is a top predator in the pond; the adult is an aerial one. Because the larva takes years, a pond that dries out or loses its plants loses a whole cohort. Common frogs 'hibernate in running water, muddy burrows or beneath decaying leaves and mud at the bottom of ponds or lakes', where the skin absorbs enough oxygen to sustain them (Wikipedia, Common frog)."
+  },
+  "facts": [
+   [
+    "Frog: from spawn to froglet",
+    "hatch in 2 to 4 weeks; hind legs after about 16 more weeks; leave the water early summer to September"
+   ],
+   [
+    "Frog: adult",
+    "up to 9 cm (male), 13 cm (female); damp places near ponds"
+   ],
+   [
+    "Dragonfly: larval life",
+    "two to three years; 6 to 15 moults"
+   ],
+   [
+    "Dragonfly: emergence",
+    "July and August; adults fly June to October"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "29.3",
+    "29-3-amphibians"
+   ],
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ],
+   [
+    "BIO",
+    "46.2",
+    "46-2-energy-flow-through-ecosystems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Common frog (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Common_frog"
+   },
+   {
+    "title": "Common frog (Froglife)",
+    "url": "https://www.froglife.org/info-advice/amphibians-and-reptiles/common-frog/"
+   },
+   {
+    "title": "Common frog (Amphibian and Reptile Conservation Trust)",
+    "url": "https://www.arc-trust.org/common-frog"
+   },
+   {
+    "title": "Aeshna cyanea, the southern hawker (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Aeshna_cyanea"
+   },
+   {
+    "title": "Southern hawker (British Dragonfly Society species page)",
+    "url": "https://british-dragonflies.org.uk/species/southern-hawker/"
+   },
+   {
+    "title": "Dragonfly (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Dragonfly"
+   }
+  ],
+  "related": [
+   "bio_fishes_amphibians",
+   "bio_organoids_regeneration",
+   "bio_entomology_insects"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_drop",
+  "title": "A drop of pond water",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0005,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_water"
+  ],
+  "parts": [
+   "pond_volvox",
+   "pond_chlamydomonas",
+   "pond_diatom",
+   "pond_paramecium",
+   "pond_rotifer",
+   "pond_bacteria",
+   "pond_detritus"
+  ],
+  "processes": [],
+  "summary": "A single drop of pond water holds green algae, glass-shelled diatoms, single-celled hunters, tiny animals and bacteria: a small world, each member a different size.",
+  "layers": {
+   "basics": "A drop of pond water looks like nothing, but under a microscope it teems with life. In the scene you see green algae (Chlamydomonas, and a ball-shaped colony called Volvox), diatoms with shells of glass, a Paramecium (a single cell that hunts), a rotifer (a tiny animal with a wheel of beating hairs) and many bacteria, with bits of dead plant. They are drawn against a 100 micrometre bar, one tenth of a millimetre, so you can see how much bigger some are than others: a bacterium is about 100 times shorter than the bar, and a rotifer about two and a half times longer. Click anything to find out what it is.",
+   "deeper": "These organisms make up the plankton of a pond: floating life too small to swim against currents (except by their own beating hairs). Green ones are producers, using light to make sugar; others eat bacteria, algae and dead matter; bacteria recycle what dies. The algae are what makes the water green when there are enough of them (see why ponds turn green). The scene is simplified: a real drop holds far fewer large organisms, and which species are present varies from pond to pond and season to season. A water flea, at about 2.5 mm, would be four times wider than this view.",
+   "expert": "Sizes, with sources: Chlamydomonas reinhardtii about 10 µm (cells 10 to 22 µm long, 8 to 22 µm wide); Volvox carteri spheroid 100 to 500 µm with about 2,000 to 4,000 somatic cells; diatom cells 2 to 2,000 µm, most 20 to 200 µm; Paramecium 60 to 300 µm; rotifers mostly 100 to 500 µm; bacteria 0.5 to 5 µm. The scene draws each at one size within its range and uses far fewer individuals than a real drop has."
+  },
+  "facts": [
+   [
+    "Scale bar",
+    "100 µm = 0.1 mm"
+   ],
+   [
+    "Smallest",
+    "bacteria, 0.5 to 5 µm"
+   ],
+   [
+    "Largest in the scene",
+    "a Volvox colony and a rotifer, ≈ 250 µm"
+   ],
+   [
+    "Not in the scene",
+    "a water flea (≈ 2.5 mm) would span four such views"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "23.2",
+    "23-2-characteristics-of-protists"
+   ],
+   [
+    "BIO",
+    "23.3",
+    "23-3-groups-of-protists"
+   ],
+   [
+    "BIO",
+    "25.2",
+    "25-2-green-algae-precursors-of-land-plants"
+   ],
+   [
+    "BIO",
+    "22.2",
+    "22-2-structure-of-prokaryotes-bacteria-and-archaea"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Chlamydomonas reinhardtii (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Chlamydomonas_reinhardtii"
+   },
+   {
+    "title": "The microalga Volvox carteri as a cell supportive building block for tissue engineering (PMC10923841), introduction and results 3.3",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10923841"
+   },
+   {
+    "title": "Diatom (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Diatom"
+   },
+   {
+    "title": "Paramecium (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Paramecium"
+   },
+   {
+    "title": "Rotifer (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Rotifer"
+   },
+   {
+    "title": "Bacteria (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Bacteria"
+   }
+  ],
+  "related": [
+   "bio_protists",
+   "bio_algae_green_origin",
+   "bio_bacterial_structure",
+   "bio_biofilms_quorum",
+   "bio_microbial_ecology_elective"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_volvox",
+  "title": "Volvox: a colony of cells",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.00025,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_drop"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Volvox is a hollow green ball, a few tenths of a millimetre across, made of thousands of small cells, each with two whip-like hairs, that rolls through the water.",
+  "layers": {
+   "basics": "Volvox is a freshwater alga that lives as a colony: a hollow sphere whose surface is a single layer of thousands of small green cells. Each cell has two whip-like flagella pointing outward, and together they beat to make the ball spin and swim. A few larger cells inside are not for swimming: they divide to make new daughter colonies inside the ball, and the daughters are released when the parent breaks open. Volvox is found in ponds and ditches, even in shallow puddles.",
+   "deeper": "Volvox carteri colonies (spheroids) are 100 to 500 µm across, commonly 150 to 300 µm; the shell has about 2,000 to 4,000 biflagellate cells and about 16 large cells that make the next generation (12 to 16 in another source). The genus overall has colonies of up to tens of thousands of cells. The small cells are Chlamydomonas-type cells, and they carry chlorophyll; the colony is a classic example of how a many-celled body may have evolved from single cells like Chlamydomonas.",
+   "expert": "Colonies are drawn 250 µm across with 70 cells shown; the real number is about two thousand or more. Each small cell has two flagella of equal length, facing outward; this is not drawn at this scale. During development each embryo turns itself inside out (inversion) so that its flagella point outward."
+  },
+  "facts": [
+   [
+    "Colony diameter (V. carteri)",
+    "100 to 500 µm; drawn 250 µm"
+   ],
+   [
+    "Cells in the surface layer",
+    "≈ 2,000 to 4,000 (V. carteri)"
+   ],
+   [
+    "Reproductive cells",
+    "about 12 to 16"
+   ],
+   [
+    "Each surface cell",
+    "two flagella, pointing outward"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "25.2",
+    "25-2-green-algae-precursors-of-land-plants"
+   ],
+   [
+    "BIO",
+    "23.3",
+    "23-3-groups-of-protists"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "The microalga Volvox carteri as a cell supportive building block for tissue engineering (PMC10923841), introduction and results 3.3",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10923841"
+   },
+   {
+    "title": "Volvox (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Volvox"
+   },
+   {
+    "title": "Volvox carteri (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Volvox_carteri"
+   }
+  ],
+  "related": [
+   "bio_algae_green_origin",
+   "bio_protists"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_chlamydomonas",
+  "title": "Chlamydomonas: a single green cell",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_drop"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A single-celled green alga about 10 micrometres across that swims with two whip-like flagella and steers towards light.",
+  "layers": {
+   "basics": "Chlamydomonas is one of the smallest green things in a pond: a single cell, about a hundredth of a millimetre across. It swims with two whiplike flagella at the front. Inside is a cup-shaped green chloroplast, where light is turned to sugar, and a red-orange eyespot that helps the cell find the light. It lives in still water and damp soil. The green pigment that catches the light is chlorophyll a; press the button to see the molecule.",
+   "deeper": "The cell is about 10 µm, with a single large cup-shaped chloroplast holding a pyrenoid where starch forms; the two flagella are each 1.5 to 2 times the length of the cell body. The eyespot sits near the cell's equator and, by changing the balance of the beating of the two flagella, steers the cell towards or away from light (phototaxis). The genus lives in stagnant water and damp soil, and generally prefers ammonium-rich environments.",
+   "expert": "C. reinhardtii: 10 to 22 µm long, 8 to 22 µm wide. The cell is drawn as a 10 × 12 µm ellipsoid."
+  },
+  "facts": [
+   [
+    "Size",
+    "about 10 µm (10 to 22 µm long)"
+   ],
+   [
+    "Flagella",
+    "two, each 1.5 to 2 cell-lengths long"
+   ],
+   [
+    "Chloroplast",
+    "one, cup-shaped, with a pyrenoid"
+   ],
+   [
+    "Pigment shown",
+    "chlorophyll a"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "25.2",
+    "25-2-green-algae-precursors-of-land-plants"
+   ],
+   [
+    "BIO",
+    "8.1",
+    "8-1-overview-of-photosynthesis"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Chlamydomonas reinhardtii (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Chlamydomonas_reinhardtii"
+   },
+   {
+    "title": "Chlamydomonas (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Chlamydomonas"
+   }
+  ],
+  "related": [
+   "bio_algae_green_origin",
+   "bio_chloroplasts_plastids",
+   "photosynthesis_light_process"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_diatom",
+  "title": "Diatoms: algae in glass houses",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 7e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_drop"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A diatom is a single-celled alga that lives in a box of glass: a hard, patterned shell made of silica.",
+  "layers": {
+   "basics": "Diatoms are algae enclosed in a shell of glass-like material, silica (the same substance as quartz sand, but in a hydrated form). The shell has two halves that fit together like a lid on a box and is covered with fine holes and patterns. Diatoms come in many shapes: boat-shaped ones and round, drum-shaped ones both appear in the scene. They make food from light like other algae. Press the button to see silicic acid, the dissolved form of the material their shell is made from.",
+   "deeper": "Each diatom cell is enclosed in a hard, porous wall of silica (hydrated silicon dioxide) called a frustule. Diatoms with radial symmetry are called centric, and those with bilateral symmetry are pennate. When a diatom divides each daughter gets one half of the frustule and makes a new, smaller half, so the average size of a population slowly falls until sexual reproduction restores it. Diatoms produce about 20 to 50 % of the oxygen produced on the planet each year, though estimates of their share of ocean production differ: 45 % in a 2003 study and about 20 % in a 2016 one.",
+   "expert": "Cells are 2 to 2,000 µm, mostly about 20 to 200 µm; about 12,000 species have been described, with higher estimates for the number that exist. The scene draws a boat-shaped cell 70 µm long and a round one 40 µm across."
+  },
+  "facts": [
+   [
+    "Size",
+    "2 to 2,000 µm; most 20 to 200 µm"
+   ],
+   [
+    "Shell",
+    "silica (hydrated silicon dioxide), the frustule"
+   ],
+   [
+    "Shapes",
+    "centric (round) and pennate (boat-shaped)"
+   ],
+   [
+    "Share of Earth's oxygen made",
+    "about 20 to 50 % a year (estimates differ)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What share of the planet's oxygen and of ocean photosynthesis diatoms are responsible for is estimated differently by different studies, from about 20 % to about 50 %."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "23.3",
+    "23-3-groups-of-protists"
+   ],
+   [
+    "BIO",
+    "8.1",
+    "8-1-overview-of-photosynthesis"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Diatom (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Diatom"
+   }
+  ],
+  "related": [
+   "bio_protists",
+   "bio_algae_green_origin"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_paramecium",
+  "title": "Paramecium: a hunter that is one cell",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.0002,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_drop"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Paramecium is a slipper-shaped single cell, 0.06 to 0.3 mm long, covered in beating hairs that swim it along and sweep bacteria into its mouth groove.",
+  "layers": {
+   "basics": "A Paramecium is one cell, yet it swims, hunts and digests. It is covered in rows of short beating hairs (cilia) that drive it through the water and sweep in the microbes it eats: bacteria, algae and yeasts. They are swept into a groove and then into the cell, where they are digested. A Paramecium is a protist, which is not a plant, animal or fungus.",
+   "deeper": "Cilia sweep prey and some water into an oral groove; food then passes through a small opening into the cell. Because pond water is less salty than the cell's inside, water flows in all the time, and contractile vacuoles pump it out again. The macronucleus is polyploid and controls the cell's everyday functions, apart from reproduction.",
+   "expert": "The genus ranges from 0.06 to 0.3 mm (60 to 300 µm); the scene shows a 200 µm cell with a 40 µm macronucleus. The numbers of cilia and vacuoles vary with the species and are not drawn."
+  },
+  "facts": [
+   [
+    "Length (genus)",
+    "60 to 300 µm; drawn 200 µm"
+   ],
+   [
+    "Eats",
+    "bacteria, algae and yeasts"
+   ],
+   [
+    "Moves with",
+    "rows of cilia"
+   ],
+   [
+    "Pumps out water with",
+    "contractile vacuoles"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "23.2",
+    "23-2-characteristics-of-protists"
+   ],
+   [
+    "BIO",
+    "23.3",
+    "23-3-groups-of-protists"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Paramecium (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Paramecium"
+   }
+  ],
+  "related": [
+   "bio_protists"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_rotifer",
+  "title": "Rotifer: a tiny animal with a wheel of hairs",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.00025,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_drop"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A rotifer is a tiny many-celled animal, often a quarter of a millimetre long, with a ring of beating hairs round its mouth that sweeps in food.",
+  "layers": {
+   "basics": "Rotifers are animals, but most are no longer than half a millimetre. At the front is a crown of beating hairs, the corona, that sweeps food in and, in free-swimming kinds, pulls the animal through the water. Behind the mouth is a muscular throat with tiny hard jaws. A rotifer eats dead matter, bacteria, algae and single-celled animals up to about 10 micrometres across. Rotifers are an important part of the floating animal life of fresh water.",
+   "deeper": "Most rotifers are about 0.1 to 0.5 mm, with a range from about 50 µm to over 2 mm. The corona is ciliated in all but one genus; the muscular chewing pharynx (mastax) holds calcified jaws (trophi), the only parts that fossilise. An adult has a fixed number of cells, usually of the order of 1,000 (eutely). Rotifers reproduce sexually or by parthenogenesis, which in many kinds dominates the life cycle and allows rapid population growth.",
+   "expert": "The scene draws a 250 µm rotifer with a 16 µm corona; the shape is simplified."
+  },
+  "facts": [
+   [
+    "Length",
+    "mostly 0.1 to 0.5 mm; drawn 0.25 mm"
+   ],
+   [
+    "Cells",
+    "about 1,000, fixed in adults"
+   ],
+   [
+    "Eats",
+    "detritus, bacteria, algae, protozoans up to 10 µm"
+   ],
+   [
+    "Reproduces",
+    "sexually or by parthenogenesis"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "28.6",
+    "28-6-superphylum-ecdysozoa-arthropods"
+   ],
+   [
+    "BIO",
+    "28.4",
+    "28-4-superphylum-lophotrochozoa-mollusks-and-annelids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Rotifer (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Rotifer"
+   }
+  ],
+  "related": [
+   "bio_lophotrochozoans"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_bacteria",
+  "title": "Bacteria in the water",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 2e-06,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_drop"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The smallest living things in the drop: single cells 0.5 to 5 micrometres long, in huge numbers, feeding on dissolved and dead matter.",
+  "layers": {
+   "basics": "Bacteria are the smallest living things in the scene, drawn as tiny rods. They have no nucleus. Most are rod-shaped or round. They feed on dissolved matter and on the dead plants and animals in the water, and they are food for Paramecium and rotifers. Without them the dead would never be broken down and their nutrients would not be returned for plants and algae to use again.",
+   "deeper": "Bacterial cells are typically 0.5 to 5 µm in length. Bacteria take part in many stages of nutrient cycles, including fixing nitrogen from the air, and are responsible for the breakdown of dead matter. In soil, a few grams hold around a thousand million of them; the scene draws only about 130.",
+   "expert": "Cells in the scene are drawn 1.4 × 3.2 µm, which is within the range."
+  },
+  "facts": [
+   [
+    "Cell length",
+    "typically 0.5 to 5 µm"
+   ],
+   [
+    "Shapes",
+    "mostly spheres or rods; also curved and spiral"
+   ],
+   [
+    "Role",
+    "recycle dead matter and nutrients"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "22.2",
+    "22-2-structure-of-prokaryotes-bacteria-and-archaea"
+   ],
+   [
+    "BIO",
+    "46.3",
+    "46-3-biogeochemical-cycles"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Bacteria (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Bacteria"
+   }
+  ],
+  "related": [
+   "bio_bacterial_structure",
+   "bio_bacterial_diversity",
+   "nitrogen_cycle_process"
+  ],
+  "where": "park_pond"
+ },
+ {
+  "id": "pond_detritus",
+  "title": "Detritus: bits of dead matter",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "pond_drop"
+  ],
+  "parts": [
+   "pond_leaf_litter"
+  ],
+  "processes": [],
+  "summary": "Flecks of dead plant and animal matter drifting in the water: food for rotifers, water fleas and bacteria.",
+  "layers": {
+   "basics": "Detritus is the name for bits of dead matter. In pond water it is broken leaf, plant debris and the remains of dead organisms, drifting or settling. Many small animals eat it, and bacteria live on it and break it down. It is an important link in the food web: energy first captured by plants is passed on from dead matter to the animals and microbes that feed on it.",
+   "deeper": "Water fleas eat detritus as well as algae, protists and bacteria; rotifers eat detritus and dead bacteria. Detritus also settles to become the rotting matter in the mud (see Fallen leaves). The scene draws 18 flecks, 20 µm long; a real drop holds many more of varied sizes.",
+   "expert": "The flecks in the scene are drawn at about 20 × 6 × 13 µm. They are illustrative."
+  },
+  "facts": [
+   [
+    "Eaten by",
+    "water fleas, rotifers (and broken down by bacteria)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "46.1",
+    "46-1-ecology-of-ecosystems"
+   ],
+   [
+    "BIO",
+    "46.2",
+    "46-2-energy-flow-through-ecosystems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Daphnia (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Daphnia"
+   },
+   {
+    "title": "Rotifer (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Rotifer"
+   }
+  ],
+  "related": [
+   "bio_primary_production_decomposition"
+  ],
+  "where": "park_pond"
  }
 ]
