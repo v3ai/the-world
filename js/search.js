@@ -90,6 +90,7 @@
   /* ---------- the index ---------- */
   const PREFIX = { dog: 'Dog', bee: 'Honey bee', oak: 'English oak', rn: 'Meadow buttercup', fa: 'Fly agaric' };
   function displayTitle(e) {
+    if (e.dn) return e.dn;
     if (e.c === 'node') { const m = /^(dog|bee|oak|rn|fa)_/.exec(e.id.slice(5)); if (m && !/^(dog|bee|oak|buttercup|fly agaric)/i.test(e.t)) return PREFIX[m[1]] + ': ' + e.t; }
     if (e.c === 'el') return `${e.t} (${e.sy})`;
     return e.t;
@@ -187,7 +188,7 @@
         const exactCov = k.t.length === n, cov = n / k.t.length, clean = c.pen === 0;
         // a name that is exactly the words typed beats one that merely contains them; a word completed from a prefix or a typo scores lower
         let s = (clean ? (exactCov ? 92 : 58 + 24 * cov) : (exactCov ? 74 : 50 + 18 * cov) - c.pen * 45);
-        s *= (k.kind === 'alias' && !exactCov ? .72 : k.kind === 'alias' && !clean ? .88 : 1) * k.w; s += k.b;
+        s *= (k.kind === 'alias' && !exactCov ? .72 : 1) * k.w; s += k.b;
         if (!exactCov && k.t[0] === q.stems[0]) s += 6; // the name starts with what was typed
         consider(k.e, s, ki, c.fuzz ? 'typo' : 'words');
       } else if (n >= 2 && m * 2 >= n && m >= 1) {
@@ -197,11 +198,14 @@
     // build results
     const list = [];
     best.forEach((b, ei) => {
-      const e = idx.E[ei]; let s = b.s; if (e.c === 'node' && e.m === 'park') s -= 2.5; if (e.c === 'node' && /^(dog|bee|oak|rn|fa)_/.test(e.id.slice(5))) s -= 1;
+      const e = idx.E[ei]; let s = b.s; if (e.c === 'node' && /^(dog|bee|oak|rn|fa)_/.test(e.id.slice(5))) s -= 8;
       const k = b.ki >= 0 ? idx.keys[b.ki] : null, a = k && k.alias !== undefined ? idx.aliases[k.alias] : null;
-      list.push({ e, id: e.id, score: s, why: b.why, key: k ? k.p : '', note: a && a.note || '', near: !!(k && k.near), alias: a, band: s >= 55 ? 0 : 1 });
+      list.push({ e, id: e.id, score: s, why: b.why, key: k ? k.p : '', note: a && a.note || '', near: !!(k && k.near), alias: a, band: s >= 64 ? 0 : 1 });
     });
-    list.sort((a, b) => a.band - b.band || (a.band === 0 ? (GROUP_RANK[a.e.g] - GROUP_RANK[b.e.g]) : 0) || b.score - a.score || a.e.t.length - b.e.t.length);
+    // good matches first; among those that are about equally good, things you can fly to before cards before trails; a much weaker match never jumps the queue
+    const topS = list.reduce((m, r) => Math.max(m, r.band === 0 ? r.score : 0), 0);
+    list.forEach(r => { r.tier = r.band === 0 && r.score >= topS - 12 ? 0 : 1; });
+    list.sort((a, b) => a.band - b.band || a.tier - b.tier || (a.band === 0 && a.tier === 0 ? (GROUP_RANK[a.e.g] - GROUP_RANK[b.e.g]) : 0) || b.score - a.score || a.e.t.length - b.e.t.length);
     out.results = list;
     const top = list.find(r => r.alias && r.alias.hint); if (top && list.indexOf(top) < 4) out.hint = top.alias.hint;
     out.partial = [...partial].map(([ei, b]) => ({ e: idx.E[ei], id: idx.E[ei].id, score: b.s, why: 'part' })).filter(r => !best.has(idx.byId.get(r.id))).sort((a, b) => b.score - a.score).slice(0, 8);
@@ -255,8 +259,10 @@
     if (c === 'kn') return ['Card', 'No 3D model yet; here is what it is'];
     const m = e.m;
     if (!m) return ['Card', 'No 3D model yet; here is what it is'];
-    return [{ phone: 'Part of your phone', particle: 'Particle', place: 'Topic with a place', molecule: 'Topic with a molecule', crystal: 'Topic with a crystal', atom: 'Element', park: 'In the park', body: 'Body part' }[m] || 'Topic',
-      { phone: 'Fly to it inside the phone', particle: 'Standard Model view, with it chosen', place: 'Fly to where it happens, with its card', molecule: 'Fly to a molecule, with its card', crystal: 'Fly to a crystal, with its card', atom: 'Fly to its atom', park: 'Fly to it in the park', body: 'Fly to it in the body, highlighted' }[m] || 'Fly there'];
+    if (m === 'place' || (m === 'via' && !e.wh)) return ['Card', 'No 3D model of it yet' + (e.wh ? '; it also flies to ' + e.wh : '')];
+    const to = e.wh ? 'Fly to ' + e.wh + ', with its card' : 'Fly to where it happens, with its card';
+    return [{ phone: 'Part of your phone', particle: 'Particle', place: 'Topic with a place', molecule: 'Topic with a molecule', crystal: 'Topic with a crystal', atom: 'Element', park: 'In the park', body: 'Body part', via: 'Topic with a place' }[m] || 'Topic',
+      { phone: 'Fly to it inside the phone', particle: 'Standard Model view, with it chosen', place: to, molecule: to, crystal: to, via: to, atom: 'Fly to its atom', park: 'Fly to it in the park', body: 'Fly to it in the body, highlighted' }[m] || 'Fly there'];
   }
   SC.describe = describe;
 
@@ -331,7 +337,8 @@
     if (rows.length) {
       if (res.hint) h += `<div class="shint">${esc(res.hint)}</div>`;
       let cur = null, i = 0; let ul = '';
-      rows.forEach((r, idx) => { const g = r.band === 1 ? 'weak' : (r.e.g === 'lab' ? 'card' : r.e.g); if (g !== cur) { if (ul) ul += '</ul>'; cur = g; ul += `<div class="sgh">${g === 'weak' ? 'Related' : GROUP_TITLE[g]}</div><ul role="presentation">`; } ul += row(r, idx); });
+      const shown = new Set(); if (res.hint) shown.add(res.hint);
+      rows.forEach((r, idx) => { if (r.note) { if (shown.has(r.note)) r.note = ''; else shown.add(r.note); } const g = r.band === 1 ? 'weak' : (r.e.g === 'lab' ? 'card' : r.e.g); if (g !== cur) { if (ul) ul += '</ul>'; cur = g; ul += `<div class="sgh">${g === 'weak' ? 'Related' : GROUP_TITLE[g]}</div><ul role="presentation">`; } ul += row(r, idx); });
       h += ul + '</ul>';
     }
     if (res.weak.length && rows.filter(r => r.band === 0).length < 3) {

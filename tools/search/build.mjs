@@ -45,16 +45,27 @@ const molAlt = (m) => {
   const dn = m.name.replace(/\s*\([^)]*\)/g, ''); a.add(dn);
   a.delete(m.name); return [...a].filter(x => x && x.length > 1);
 };
-mols.forEach(m => add({ id: 'mol:' + m.id, c: 'mol', g: 'model', t: m.name, f: m.formula, a: molAlt(m), s: `${m.category || 'molecule'}, ${m.mw ? m.mw.toFixed(1) + ' g/mol' : ''}`.replace(/, $/, '') }));
+const DN = { glucose_alpha: 'Glucose (alpha form)', glucose_beta: 'Glucose (beta form)', fructose: 'Fructose', galactose: 'Galactose' };
+mols.forEach(m => add({ id: 'mol:' + m.id, dn: DN[m.id], c: 'mol', g: 'model', t: m.name, f: m.formula, a: molAlt(m), s: `${m.category || 'molecule'}, ${m.mw ? m.mw.toFixed(1) + ' g/mol' : ''}`.replace(/, $/, '') }));
 crystals.forEach(x => add({ id: 'crystal:' + x.id, c: 'crystal', g: 'model', t: x.name, f: x.formula, a: parens(x.name).concat([stripParen(x.name)]).filter(Boolean), s: first(x.notes) }));
 // topic cards
 const modelKind = k => !k ? '' : k === 'tear' ? 'phone' : /^via:/.test(k) ? modelKind(k.slice(4)) : k === 'place' ? 'place' : k === 'mol' ? 'molecule' : k === 'crystal' ? 'crystal' : k === 'thing' ? 'park' : k === 'atom' ? 'atom' : 'body';
+const PLACE_NAME = { park: 'Greenwich Park', human: 'the human body', skin: 'your skin', cell: 'a cell', dna: 'DNA', base_pair: 'a base pair', atom: 'an atom', earth: 'Earth', leaf: 'a leaf', pond: 'the pond', soil: 'the soil', air: 'the air' };
+const MOLT = Object.fromEntries(mols.map(m => [m.id, m.name.replace(/\s*\([^)]*\)/g, '')])), CRT = Object.fromEntries(crystals.map(c => [c.id, c.name.replace(/\s*\([^)]*\)/g, '')]));
+const tearSet = new Set(snap.tear);
 nodes.forEach(n => {
   if (/^at_el_/.test(n.id)) return; // elements come from elements.json
-  let mk = modelKind(snap.nodes[n.id]);
+  const sk = snap.nodes[n.id]; let mk = modelKind(sk), wh = '';
   if (mk === 'phone' && /^sm_/.test(n.id)) mk = 'particle';
-  const e = { id: 'node:' + n.id, c: 'node', g: mk ? 'model' : 'card', t: n.title, s: first(n.summary || (n.layers && n.layers.basics)) };
-  if (mk) e.m = mk; if (n.kind) e.k = n.kind;
+  else if (sk === 'tear' && !tearSet.has(n.id)) { mk = 'via'; const t = n.where && tearSet.has(n.where) ? n.where : n.hotspot && n.hotspot.of; wh = ((NODE[t] || {}).title || t) + ' in your phone'; }
+  else if (mk === 'place') wh = PLACE_NAME[(n.where || '').replace('place:', '')] || '';
+  else if (mk === 'molecule') wh = 'the ' + (MOLT[(n.where || '').slice(4)] || 'molecule') + ' molecule';
+  else if (mk === 'crystal') wh = 'a crystal of ' + (CRT[(n.where || '').slice(8)] || 'it').toLowerCase();
+  else if (/^via:/.test(sk || '')) { mk = 'via'; wh = (NODE[n.where] || {}).title || ''; }
+  // a topic card that merely stands in a generic place (the pond, the park, a cell, DNA ...) is a card that also flies there, not a model of the thing
+  const proxy = mk === 'place' || (mk === 'via' && /^via:place/.test(sk || '') );
+  const e = { id: 'node:' + n.id, c: 'node', g: mk && !proxy ? 'model' : 'card', t: n.title, s: first(n.summary || (n.layers && n.layers.basics)) };
+  if (mk) e.m = mk; if (wh) e.wh = wh; if (n.kind) e.k = n.kind;
   add(e);
 });
 kn.forEach(n => add({ id: 'kn:' + n.id, c: 'kn', g: 'card', t: n.title, s: first(n.basics), k: 'knowledge' }));

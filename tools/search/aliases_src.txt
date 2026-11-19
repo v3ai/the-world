@@ -41,6 +41,10 @@ wood, timber, lumber, plank => node:oak_lignin_cellulose, node:oak_trunk, node:o
 glycogen => node:bio_polysaccharides, node:bio_gluconeogenesis // src: openstax-bio
 ribose, deoxyribose => mol:ribose, mol:deoxyribose // src: pubchem
 
+c6h12o6 => mol:glucose_alpha, mol:glucose_beta, mol:fructose, mol:galactose // hint: Several different sugars share the formula C6H12O6: glucose, fructose and galactose are all built from the same atoms in different arrangements. // src: pubchem
+c12h22o11 => mol:sucrose, mol:lactose, mol:maltose, mol:cellobiose // hint: Several different sugars share the formula C12H22O11: sucrose, lactose and maltose are the common ones. // src: pubchem
+c4h10 => mol:butane, mol:isobutane // hint: Two different molecules share the formula C4H10: butane and isobutane. // src: pubchem
+
 # ====================== salt, soda, vinegar and kitchen chemistry ======================
 salt, table salt, common salt, kitchen salt, rock salt, sodium chloride, nacl, halite, salty => crystal:halite, mol:nacl_pair, el:Na, el:Cl // Table salt is sodium chloride. In the solid, sodium and chloride ions sit in a cubic lattice; halite is the mineral. // hint: Salt in the kitchen is sodium chloride (NaCl). In chemistry, "a salt" can mean any compound made of ions. // src: pubchem usgs
 sea salt => crystal:halite // Sea salt is mostly sodium chloride. // src: usgs
@@ -203,9 +207,9 @@ steel, stainless steel, cutlery, knife blade => crystal:iron_bcc, el:Fe, kn:engi
 rust, rusting, rusty, corrosion, oxidised iron => crystal:hematite, crystal:magnetite, el:Fe, kn:electrochemistry // Rust is hydrated iron(III) oxide. The nearest crystal the explorer has is hematite, iron(III) oxide (Fe2O3); rust itself is a looser mix that holds water, so this is a close relative, not rust. // near: crystal:hematite // src: usgs openstax-chem-rust
 iron ore, haematite, hematite, red ochre => crystal:hematite, crystal:magnetite // src: usgs mindat
 magnet, magnets, magnetic, lodestone, fridge magnet, magnetite => crystal:magnetite, kn:magnetism_force, kn:magnetic_materials, node:magnetic_fields_forces // Magnetite is a naturally magnetic mineral (lodestone). Everyday magnets are made of other materials. // near: crystal:magnetite // src: usgs mindat
-copper, copper wire, wire, wires, electrical wire, cable, copper pipe, penny => crystal:copper_fcc, el:Cu // Electrical wire is usually copper (or aluminium). // src: usgs
-aluminium, aluminum, foil, tin foil, aluminium foil, can, drinks can, beer can => crystal:aluminium_fcc, el:Al // Foil and drinks cans are aluminium. // src: usgs
-gold, gold ring, jewellery, jewelry, golden, gold leaf, gold bar => crystal:gold_fcc, el:Au // src: usgs iupac-elements
+copper, copper wire, wire, wires, electrical wire, cable, copper pipe, penny => el:Cu, crystal:copper_fcc // Electrical wire is usually copper (or aluminium). // src: usgs
+aluminium, aluminum, foil, tin foil, aluminium foil, can, drinks can, beer can => el:Al, crystal:aluminium_fcc // Foil and drinks cans are aluminium. // src: usgs
+gold, gold ring, jewellery, jewelry, golden, gold leaf, gold bar => el:Au, crystal:gold_fcc // src: usgs iupac-elements
 silver, silverware, silver coin => el:Ag // src: iupac-elements
 brass => el:Cu, el:Zn, crystal:copper_fcc // Brass is an alloy of copper and zinc. // near: crystal:copper_fcc // src: usgs
 bronze => el:Cu, el:Sn, crystal:copper_fcc // Bronze is an alloy of copper, usually with tin. // near: crystal:copper_fcc // src: usgs

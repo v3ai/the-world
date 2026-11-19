@@ -1,6 +1,7 @@
 # Everyday words for the human body, cells and living things. Format: see aliases_src.txt.
 
 # ---------------- the whole body ----------------
+how do i see, how do eyes see, how do we see => kn:vision_eye, node:retina, node:vision, node:rod_cell, node:cone_cell, trail:what_is_light // src: openstax-ap
 human body, my body, me, myself, person, human, humans, anatomy, body parts, what am i made of => lm:You, node:human_body, trail:what_am_i_made_of, kn:homeostasis // src: openstax-ap app-card
 skeleton, bones, bone, my bones, skeletal system, bone structure => node:skeletal_system, lm:You, node:compact_bone, node:spongy_bone, node:bone_marrow, node:skull, node:ribcage // In the body view choose Skeleton at the top to see every bone. // src: openstax-ap app-card
 spine, backbone, spinal column, vertebrae, back bone => node:cervical_spine, node:thoracic_spine, node:lumbar_spine, node:sacrum, node:intervertebral_discs, node:spinal_cord // src: openstax-ap
@@ -144,10 +145,10 @@ crispr, gene editing, genetic engineering, gmo, gmos => node:bio_crispr_cas9, kn
 cell, cells, a cell, the cell, living cell, my cells, animal cell => lm:Skin cell, kn:cell_biology_intro, node:bio_prokaryote_eukaryote, node:nucleus, node:mitochondrion // src: openstax-bio
 cell division, mitosis, dividing cells, meiosis => node:mitosis, node:meiosis_process, node:bio_cell_cycle, kn:cell_cycle // src: openstax-bio
 nucleus, the nucleus => lm:Oxygen nucleus, node:nucleus, node:bio_nuclear_organization // hint: Nucleus can mean the centre of a cell or the centre of an atom. // src: openstax-bio openstax-chem
-mitochondria, mitochondrion, powerhouse of the cell, the powerhouse of the cell => node:mitochondrion, kn:mitochondria_org, node:oxidative_phosphorylation_process, mol:atp // Mitochondria make most of a cell's ATP. // src: openstax-bio
+mitochondria, mitochondrion, powerhouse of the cell, the powerhouse of the cell => node:mitochondrion, kn:mitochondria_org, node:oxidative_phosphorylation_process // Mitochondria make most of a cell's ATP. // src: openstax-bio
 organelle, organelles, golgi, endoplasmic reticulum, lysosome => node:golgi_apparatus, node:endoplasmic_reticulum, node:lysosome, kn:organelles_overview // src: openstax-bio
-cell energy, respiration in cells, cellular respiration, how cells make energy => node:cellular_respiration, node:bio_krebs_cycle, node:bio_glycolysis, mol:atp // src: openstax-bio
-photosynthesis, how plants make food, plants make food, how plants make energy, sunlight into sugar => trail:why_is_a_leaf_green, node:bio_photosynthesis_overview, mol:chlorophyll_a, node:bio_light_reactions, node:bio_calvin_cycle // src: openstax-bio
+cell energy, respiration in cells, cellular respiration, how cells make energy => node:cellular_respiration, node:bio_krebs_cycle, node:bio_glycolysis // src: openstax-bio
+photosynthesis, how plants make food, plants make food, how plants make energy, sunlight into sugar => trail:why_is_a_leaf_green, node:bio_photosynthesis_overview, kn:photosynthesis_light, node:bio_calvin_cycle // src: openstax-bio
 stem cell, stem cells => node:stem_cell, node:bio_stem_cells_differentiation // src: openstax-bio
 fat cell, fat tissue, body fat, belly fat, obesity => node:adipocyte, node:adipose_tissue, mol:tripalmitin // src: openstax-ap
 tissue, tissues, epithelium => node:epithelial_tissue, node:connective_tissue_loose, node:nervous_tissue, kn:cell_types // src: openstax-ap
