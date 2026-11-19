@@ -32,14 +32,14 @@ caps = [(-126.5, -75), (-26.5, -25), (73.5, -75), (123.5, 25), (-76.5, 75), (23.
 write('dog_muscle', {'id': 'dog_muscle', 'title': 'Inside a dog muscle', 'node': 'dog_muscle_scene', 'bg': '#f3efe6', 'center': [0, 25, 0], 'D_um': 600,
   'blurb': 'Muscle fibres seen end-on in a small bundle: each circle is one long cell about 47 micrometres across. Click a fibre or the nerve ending.',
   'note': 'The fibre width is drawn from a measured average cross-section of dog thigh muscle fibres (about 1,700-1,800 square micrometres, about 47 micrometres if round; vastus lateralis, 16 breeds, a thesis summary). The layout, the capillaries, the nuclei and the nerve ending are illustrative, as are their sizes.',
-  'labels': [{'text': 'Muscle fibre (one long cell)', 'at': [-190, 110, 210], 'pop': 'fibre'}, {'text': 'Capillary', 'at': [128, 33, 210], 'pop': 'capillary'}, {'text': 'Nerve ending: the neuromuscular junction', 'at': [-150, 150, 210], 'pop': 'nmj'}],
+  'labels': [{'text': 'Muscle fibre (one long cell)', 'at': [-190, 110, 210], 'pop': 'fibre'}, {'text': 'Capillary', 'at': [128, 33, 210], 'pop': 'capillary'}, {'text': 'Nerve ending: the neuromuscular junction', 'at': [-60, 160, 215], 'pop': 'nmj'}],
   'populations': [
     pop('fibre', 'Muscle fibre', 'dog_muscle_fibre', 'tube_z', [47, 47, 400], '#c0574b', .92, L([{'at': [x, y, 0]} for x, y in fib]), {'type': 'cell'}),
     pop('capillary', 'Capillary', 'capillary', 'tube_z', [8, 8, 400], '#8fb4d8', .9, L([{'at': [x, y, 0]} for x, y in caps])),
     pop('rbc', 'Red blood cell', 'red_blood_cell', 'ellipsoid', [7, 7, 3], '#c9302c', 1, L([{'at': [x, y, z]} for (x, y), z in zip(caps, [60, -80, 120, -30, 10, -140])])),
     pop('nuclei', 'Muscle cell nucleus', 'dog_muscle_fibre', 'ellipsoid', [9, 6, 18], '#4d3a63', .95, L([{'at': [x + 21, y, z]} for (x, y), z in zip(fib[::5], [-120, 60, 150, -40, 100, 0, -90, 30])])),
-    pop('axon', 'Motor nerve fibre', 'dog_nmj', 'tube_z', [6, 6, 200], '#efd66a', .95, L([{'at': [fib[2][0], fib[2][1] + 31, 300]}])),
-    pop('nmj', 'Neuromuscular junction (nerve ending)', 'dog_nmj', 'ellipsoid', [26, 14, 34], '#e8b83a', .95, L([{'at': [fib[2][0], fib[2][1] + 27, 195]}]), {'type': 'mol', 'mol': 'acetylcholine', 'name': 'Acetylcholine, the messenger that tells muscle to contract'})]})
+    pop('axon', 'Motor nerve fibre', 'dog_nmj', 'tube_z', [6, 6, 200], '#efd66a', .95, L([{'at': [fib[9][0], fib[9][1] + 31, 300]}])),
+    pop('nmj', 'Neuromuscular junction (nerve ending)', 'dog_nmj', 'ellipsoid', [26, 14, 34], '#e8b83a', .95, L([{'at': [fib[9][0], fib[9][1] + 28, 192]}]), {'type': 'mol', 'mol': 'acetylcholine', 'name': 'Acetylcholine, the messenger that tells muscle to contract'})]})
 # ---------------- olfactory epithelium ----------------
 ox = [-100 + 25 * i for i in range(9)]
 write('dog_olfactory_epithelium', {'id': 'dog_olfactory_epithelium', 'title': 'Inside the smell lining', 'node': 'dog_olfactory_epithelium', 'bg': '#f3efe6', 'center': [0, 40, 0], 'D_um': 330,
