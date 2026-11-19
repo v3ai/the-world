@@ -1,0 +1,172 @@
+{
+ "id": "what_is_light",
+ "order": 32,
+ "theme": "Energy and light",
+ "question": "What is light?",
+ "teaser": "See an atom give out one colour of light, meet the particle of light, and watch what the eye does with it.",
+ "keywords": [
+  "light",
+  "photon",
+  "colour",
+  "color",
+  "electromagnetic",
+  "wave",
+  "spectrum",
+  "eye",
+  "vision",
+  "retina",
+  "hydrogen",
+  "sunlight"
+ ],
+ "scales": [
+  "the park",
+  "a molecule"
+ ],
+ "minutes": 7,
+ "stops": [
+  {
+   "title": "Sunlight",
+   "scale": "the park",
+   "where": {
+    "view": {
+     "frame": "park",
+     "point": [
+      0,
+      1,
+      0
+     ],
+     "D": 60
+    }
+   },
+   "expect": {
+    "frame": "Greenwich Park"
+   },
+   "text": [
+    "Sunlight lights the park and warms the grass. It also carries information: everything you see, you see by light that bounced off it or came from it.",
+    "What is that light made of?"
+   ],
+   "notice": "Look at the shadows. Light travels in straight lines until something blocks it.",
+   "deeper": [
+    {
+     "label": "The Sun",
+     "node": "park_sun"
+    }
+   ]
+  },
+  {
+   "title": "An atom gives out one colour",
+   "scale": "about 0.1 nanometres",
+   "where": {
+    "landmark": "Oxygen atom"
+   },
+   "do": [
+    {
+     "element": "H"
+    },
+    {
+     "press": "Bohr 1913"
+    }
+   ],
+   "expect": {
+    "frame": "tom"
+   },
+   "text": [
+    "A hydrogen atom has one electron, and the electron can only have certain amounts of energy. When it drops from a higher energy to a lower one, the atom gives out a single packet of light.",
+    "The bigger the drop, the bluer the light. The drop from the third level to the second gives the red line of hydrogen, at a wavelength of about 656 nanometres."
+   ],
+   "model": "Bohr's 1913 picture, with the electron on circles, is a simple model that works for hydrogen but fails for atoms with more electrons. The real atom is the cloud in the quantum view.",
+   "notice": "Choose two levels, such as 3 and 2, and press \"Let it jump and emit light\". Watch the packet of light leave and compare its colour with the matching line in the spectrum bar.",
+   "deeper": [
+    {
+     "label": "Atomic spectra",
+     "node": "at_spectra"
+    },
+    {
+     "label": "Bohr's atom",
+     "node": "at_model_bohr"
+    }
+   ]
+  },
+  {
+   "title": "The particle of light",
+   "scale": "below 10 attometres",
+   "where": {
+    "sm": {
+     "focus": "photon"
+    }
+   },
+   "do": [
+    {
+     "card": "sm_photon"
+    }
+   ],
+   "expect": {
+    "frame": "Standard Model"
+   },
+   "text": [
+    "A packet of light is called a photon. It has no mass and no electric charge, and it always moves at the speed of light.",
+    "Sunlight is a stream of photons, and so are radio waves and X-rays, only with different energies. Photons are also what carries the electric and magnetic forces between charged particles."
+   ],
+   "model": "A map of the particles. Positions are a diagram, and the sizes mean nothing.",
+   "notice": "Find the photon in the group of force carriers.",
+   "deeper": [
+    {
+     "label": "Light comes in packets",
+     "node": "photoelectric_effect"
+    }
+   ]
+  },
+  {
+   "title": "The eye catches photons",
+   "scale": "about 24 mm",
+   "where": {
+    "node": "eye_r"
+   },
+   "expect": {
+    "frame": "ye"
+   },
+   "text": [
+    "The eye focuses light onto the retina at the back, which has about 120 million rods and about 6 million cones. Cones give colour and fine detail in bright light, and there are three kinds.",
+    "Each light-sensing cell can respond when its pigment absorbs a photon."
+   ],
+   "notice": "Look at the layers at the back of the eye cut open.",
+   "deeper": [
+    {
+     "label": "Retina",
+     "node": "retina"
+    },
+    {
+     "label": "Cone cell",
+     "node": "cone_cell"
+    }
+   ]
+  },
+  {
+   "title": "A molecule that changes shape",
+   "scale": "about 1 nanometre",
+   "where": {
+    "place": "mol:retinal"
+   },
+   "expect": {
+    "frame": "etinal"
+   },
+   "text": [
+    "This is retinal, the light-sensitive part of the visual pigment in your eye. When it absorbs a photon, the molecule changes shape.",
+    "That change starts a chain of signals that ends in a nerve impulse to your brain, and you see."
+   ],
+   "model": "A ball-and-stick picture of one molecule. Bond lengths are true, but the atoms are drawn smaller than their real size so that the bonds show, and the colours are a convention, not real colours.",
+   "notice": "Look at the long chain of alternating bonds. That chain is what lets the molecule take in visible light.",
+   "deeper": []
+  }
+ ],
+ "answer": "Light is a stream of photons, packets of energy with no mass that atoms give out when an electron drops to a lower level and that molecules in your eye take in.",
+ "unknown": "Light behaves as a wave in some experiments and as particles in others. The theory that unites the two, quantum electrodynamics, is one of the best tested in science, but what the \"particle\" is, beyond what the equations say, is still argued about.",
+ "next": [
+  "why_is_a_leaf_green",
+  "where_does_the_suns_energy_come_from",
+  "what_holds_everything_together"
+ ],
+ "sources": [
+  "Cards: at_spectra (H-alpha 656.29 nm in air, NIST ASD), at_model_bohr, sm_photon (PDG 2026), eye_r (rods about 1.2e8, cones about 6e6), cone_cell, photoelectric_effect, molecule retinal note"
+ ]
+}

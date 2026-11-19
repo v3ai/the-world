@@ -1,0 +1,184 @@
+{
+ "id": "what_holds_everything_together",
+ "order": 33,
+ "theme": "Forces and matter",
+ "question": "What holds everything together?",
+ "teaser": "Visit the four forces where each one rules: planets, atoms, nuclei and the Sun.",
+ "keywords": [
+  "forces",
+  "gravity",
+  "electromagnetism",
+  "strong force",
+  "weak force",
+  "glue",
+  "bonds",
+  "hold",
+  "fundamental",
+  "interactions"
+ ],
+ "scales": [
+  "the Solar System",
+  "a proton"
+ ],
+ "minutes": 7,
+ "stops": [
+  {
+   "title": "Gravity holds the Solar System",
+   "scale": "view about 15 billion km",
+   "where": {
+    "landmark": "Solar system (to Neptune)"
+   },
+   "do": [
+    {
+     "card": "sm_gravity"
+    }
+   ],
+   "expect": {
+    "frame": "Solar system"
+   },
+   "text": [
+    "Gravity keeps every planet on its orbit around the Sun. It also holds stars together in galaxies.",
+    "Between two single particles gravity is extremely weak: the electric push between two protons is about 10 to the power 36 times stronger than their pull on each other. It wins over long distances because mass only ever adds, and has no opposite."
+   ],
+   "notice": "Follow one planet's orbit line around the Sun. Gravity is what bends each path into a loop.",
+   "deeper": [
+    {
+     "label": "Gravity: the missing force",
+     "node": "sm_gravity"
+    }
+   ]
+  },
+  {
+   "title": "Electric force builds atoms",
+   "scale": "about 0.5 nanometres",
+   "where": {
+    "landmark": "Oxygen atom"
+   },
+   "expect": {
+    "frame": "Oxygen atom"
+   },
+   "text": [
+    "In an atom, the positive nucleus pulls on the negative electrons. That electric attraction is what keeps the electrons around the nucleus.",
+    "The same force, acting between atoms, makes molecules, crystals and your body."
+   ],
+   "model": "A computed model of the electron cloud, not a photograph.",
+   "notice": "The cloud is spread out because an electron's position is a matter of chance, and the nucleus is far too small to see at this zoom.",
+   "deeper": [
+    {
+     "label": "The four interactions",
+     "node": "sm_interactions"
+    }
+   ]
+  },
+  {
+   "title": "Electric force builds molecules",
+   "scale": "about 1 nanometre",
+   "where": {
+    "place": "mol:water"
+   },
+   "expect": {
+    "frame": "ater"
+   },
+   "text": [
+    "Atoms join into molecules by sharing electrons. A water molecule has one oxygen and two hydrogen atoms held by such shared electrons.",
+    "Neighbouring water molecules also attract each other weakly, which is a smaller version of the same electric force."
+   ],
+   "notice": "Look at the angle between the two hydrogen atoms. The molecule is bent, not straight.",
+   "deeper": [
+    {
+     "label": "Hydrogen bond in water",
+     "node": "hbond_water"
+    }
+   ],
+   "model": "A ball-and-stick picture of one molecule. Bond lengths are true, but the atoms are drawn smaller than their real size so that the bonds show, and the colours are a convention, not real colours."
+  },
+  {
+   "title": "The strong force holds the nucleus",
+   "scale": "about 20 femtometres",
+   "where": {
+    "landmark": "Oxygen nucleus"
+   },
+   "expect": {
+    "frame": "Oxygen nucleus"
+   },
+   "text": [
+    "The 8 protons in an oxygen nucleus all have positive charge, so they push each other apart. Something stronger holds them in.",
+    "That is a faint leftover of the strong force, the same force that holds quarks inside each proton and neutron."
+   ],
+   "model": "The nucleus is drawn as a packed cluster with radius from a rule of thumb. Real nuclei have fuzzy edges.",
+   "notice": "Count the protons and neutrons. The neutrons add attraction without adding repulsion.",
+   "deeper": [
+    {
+     "label": "The strong force",
+     "node": "sm_strong_force"
+    }
+   ]
+  },
+  {
+   "title": "Inside the proton",
+   "scale": "about 3 femtometres",
+   "where": {
+    "landmark": "Proton"
+   },
+   "expect": {
+    "frame": "Proton"
+   },
+   "text": [
+    "Inside a proton, gluons carry the strong force between quarks. It is so strong that quarks are never found alone: pulling two apart makes a new quark and antiquark instead.",
+    "Most of the proton's mass is the energy of this binding."
+   ],
+   "model": "A cartoon. Quarks have no measured size and nothing here has a definite position.",
+   "notice": "Press \"What is colour charge?\" to see the kind of charge the strong force acts on. It has nothing to do with visible colour.",
+   "deeper": [
+    {
+     "label": "The proton",
+     "node": "sm_proton"
+    },
+    {
+     "label": "Gluon",
+     "node": "sm_gluon"
+    }
+   ]
+  },
+  {
+   "title": "The weak force changes things",
+   "scale": "below 10 attometres",
+   "where": {
+    "sm": {}
+   },
+   "do": [
+    {
+     "sm": {
+      "mode": "forces",
+      "force": "weak"
+     }
+    }
+   ],
+   "expect": {
+    "frame": "Standard Model"
+   },
+   "text": [
+    "The weak force does not hold anything together. It changes one particle into another, which is what makes radioactive beta decay happen and what powers the Sun's slow fusion.",
+    "Its carriers, the W and Z bosons, are heavy, so the force only reaches about 2.5 times ten to the power minus 18 metres."
+   ],
+   "model": "A diagram of particles and forces, not a picture.",
+   "notice": "Switch the force and see which particles feel each one.",
+   "deeper": [
+    {
+     "label": "The four interactions",
+     "node": "sm_interactions"
+    }
+   ]
+  }
+ ],
+ "answer": "Gravity holds the large things together, the electric force holds atoms and molecules together, and the strong force holds nuclei and protons together, while the weak force changes particles and powers the Sun.",
+ "unknown": "Gravity has no tested quantum theory, so we do not know how to describe it in the same language as the other three forces.",
+ "next": [
+  "is_a_rock_really_solid",
+  "where_does_the_suns_energy_come_from",
+  "what_am_i_made_of"
+ ],
+ "sources": [
+  "Cards: sm_interactions, sm_gravity (1.2e36 calculation), sm_strong_force, sm_proton, sm_gluon (PDG 2026)"
+ ]
+}

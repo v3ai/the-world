@@ -1,0 +1,71 @@
+{
+ "id": "what_is_inside_a_black_hole",
+ "order": 91,
+ "theme": "Size and scale",
+ "question": "What is inside a black hole?",
+ "teaser": "Visit the black hole at the centre of our galaxy, see what we have measured, and find exactly where our knowledge stops.",
+ "keywords": ["black hole", "event horizon", "singularity", "gravity", "sagittarius", "galaxy", "inside", "relativity", "space", "spaghettification"],
+ "scales": ["the Milky Way", "a black hole"],
+ "minutes": 6,
+ "stops": [
+  {
+   "title": "At the centre of the Milky Way",
+   "scale": "view about 200,000 light-years",
+   "where": {"landmark": "Milky Way"},
+   "do": [{"card": "sgrA"}],
+   "expect": {"frame": "Milky Way"},
+   "text": ["At the centre of our galaxy, about 27,000 light-years from the Sun, is a supermassive black hole called Sagittarius A*. It has about 4.3 million times the mass of the Sun.", "A black hole is a region where gravity is so strong that nothing, not even light, can leave."],
+   "model": "The spiral arms are an artist's impression. The Sun's position and the distance to the centre are measured.",
+   "notice": "Find the bright centre of the galaxy. The black hole is invisible, but sits at its middle.",
+   "deeper": [{"label": "Sagittarius A*", "node": "sgrA"}]
+  },
+  {
+   "title": "How we know it is there",
+   "scale": "view about 300 million km",
+   "where": {"landmark": "Black hole Sgr A*"},
+   "do": [{"card": "s2"}],
+   "expect": {"frame": "Sagittarius A"},
+   "text": ["We cannot see the black hole, but we can see stars orbiting it. One star, S2, goes around it every 16 years and reaches about 2.5 percent of the speed of light at its closest.", "Tracking these stars showed that a very heavy, very small object must be in the middle, which was honoured with the 2020 Nobel Prize in Physics."],
+   "model": "Not to scale: the real orbit of S2 is about 1,000 AU across, and in this scene its 16-year orbit is sped up.",
+   "notice": "Click the star S2 and read its card.",
+   "deeper": [{"label": "Star S2", "node": "s2"}]
+  },
+  {
+   "title": "The edge, not a surface",
+   "scale": "view about 300 million km",
+   "where": {"landmark": "Black hole Sgr A*"},
+   "do": [{"card": "horizon"}],
+   "expect": {"frame": "Sagittarius A"},
+   "text": ["The edge of a black hole is called the event horizon. It is a point of no return, not a surface you could stand on.", "The dark disc you see is the shadow. Gravity bends light so much that the shadow looks about 2.6 times wider than the horizon itself. The horizon's radius is about 12.7 million kilometres."],
+   "model": "The horizon, shadow and photon ring are drawn to scale. The disc of glowing gas, and the star orbits, are not.",
+   "notice": "In 2022 the Event Horizon Telescope measured a ring about 52 microarcseconds across, which matches this picture.",
+   "deeper": [{"label": "Event horizon and shadow", "node": "horizon"}, {"label": "Key radii", "node": "radii"}]
+  },
+  {
+   "title": "Falling in",
+   "scale": "view about 300 million km",
+   "where": {"landmark": "Black hole Sgr A*"},
+   "do": [{"press": "Drop a probe"}],
+   "expect": {"frame": "Sagittarius A"},
+   "text": ["Falling toward a black hole, gravity pulls harder on the near end of an object than on the far end, which stretches it. For a hole this heavy the stretching at the horizon is gentle: on a person it would be about a thousandth of a metre per second squared.", "From far away you would never see the probe cross the horizon. Its light gets redder and dimmer, and it seems to freeze at the edge."],
+   "model": "The stretching of the probe is exaggerated so that you can see it.",
+   "notice": "Watch the probe as it nears the edge.",
+   "deeper": [{"label": "Spaghettification", "node": "probe"}]
+  },
+  {
+   "title": "Where knowledge ends",
+   "scale": "view about 300 million km",
+   "where": {"landmark": "Black hole Sgr A*"},
+   "do": [{"card": "black_holes"}],
+   "expect": {"frame": "Sagittarius A"},
+   "text": ["General relativity describes everything outside the horizon very well, and it has been tested by stars, ripples in space and images. What happens deep inside is another matter.", "The theory itself predicts that it breaks down at the centre. Describing the inside needs a theory that joins gravity with quantum physics, and nobody has one that has been tested."],
+   "model": "Nothing drawn inside the horizon is a measurement. The scene stops at the edge.",
+   "notice": "Read the part of the card called \"how certain is this\", which marks what is settled and what is not.",
+   "deeper": [{"label": "Black holes", "node": "black_holes"}, {"label": "The information paradox", "node": "black_hole_info"}]
+  }
+ ],
+ "answer": "Nobody knows: we can measure a black hole from outside, but what lies inside the event horizon, and what happens at the centre, needs a quantum theory of gravity that does not yet exist.",
+ "unknown": "The interior of a black hole, whether information that falls in is lost, and whether Hawking radiation, which is predicted but has not been observed, is real.",
+ "next": ["how_big_is_everything", "what_holds_everything_together", "where_did_my_atoms_come_from"],
+ "sources": ["Cards: sgrA, blackhole, horizon, radii, s2, probe (12.7 million km, 2.6 r_s, EHT 51.8 microarcseconds, 2020 Nobel); knowledge cards black_holes (regime: interior depends on quantum gravity), black_hole_info (C3)"]
+}

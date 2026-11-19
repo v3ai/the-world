@@ -1,0 +1,199 @@
+{
+ "id": "is_a_rock_really_solid",
+ "order": 34,
+ "theme": "Forces and matter",
+ "question": "Is a rock really solid?",
+ "teaser": "Go from a boulder to its crystals and its atoms, to find out why you cannot push two atoms into one place.",
+ "keywords": [
+  "rock",
+  "solid",
+  "boulder",
+  "granite",
+  "quartz",
+  "crystal",
+  "atoms",
+  "empty space",
+  "matter",
+  "touch",
+  "pauli"
+ ],
+ "scales": [
+  "a boulder",
+  "a nucleus"
+ ],
+ "minutes": 6,
+ "stops": [
+  {
+   "title": "A boulder",
+   "scale": "about 1.5 m",
+   "where": {
+    "view": {
+     "frame": "thing_boulder",
+     "point": [
+      0,
+      0.3,
+      0
+     ],
+     "D": 3.2
+    }
+   },
+   "do": [
+    {
+     "hideBody": true
+    },
+    {
+     "mode": "whole",
+     "thing": "boulder"
+    }
+   ],
+   "expect": {
+    "thing": "boulder"
+   },
+   "text": [
+    "This boulder is modelled as granite, a rock that cooled from molten rock deep underground. At about 1.5 metres wide it would weigh around 1.6 tonnes.",
+    "It feels like the very definition of solid. What does solid actually mean?"
+   ],
+   "model": "A procedural model of a typical granite boulder, not a scan. Choosing granite is a modelling choice.",
+   "notice": "Click the rock, the moss and the lichen. Each opens its own card.",
+   "deeper": [
+    {
+     "label": "Boulder",
+     "node": "boulder"
+    }
+   ]
+  },
+  {
+   "title": "A mosaic of crystals",
+   "scale": "about 1 m",
+   "where": {
+    "view": {
+     "frame": "thing_boulder",
+     "point": [
+      0,
+      0.3,
+      0
+     ],
+     "D": 1.8
+    }
+   },
+   "do": [
+    {
+     "hideBody": true
+    },
+    {
+     "mode": "cut",
+     "thing": "boulder"
+    },
+    {
+     "press": "Turn the cut to face me"
+    }
+   ],
+   "expect": {
+    "thing": "boulder"
+   },
+   "text": [
+    "Cut open, granite is a tight mosaic of mineral grains. Each grain is a crystal that grew until it met its neighbours, mostly quartz, feldspar and mica.",
+    "There are no gaps between them, which is part of why the rock is hard and heavy."
+   ],
+   "model": "The grain pattern on the cut face is illustrative. The legend says so, and real grain sizes and proportions differ.",
+   "notice": "Find the grey glassy quartz grains. Quartz is typically 20 to 60 percent of true granite by volume.",
+   "deeper": [
+    {
+     "label": "Mineral grains in granite",
+     "node": "rock_grains"
+    }
+   ]
+  },
+  {
+   "title": "Inside a quartz crystal",
+   "scale": "about 4 nanometres",
+   "where": {
+    "deep": {
+     "in": "boulder",
+     "type": "crystal",
+     "id": "quartz",
+     "at": [
+      0,
+      0.3,
+      0
+     ],
+     "D": 4e-09
+    }
+   },
+   "expect": {
+    "frame": "uartz"
+   },
+   "text": [
+    "A crystal is a regular pattern of atoms repeated again and again. Quartz is silicon and oxygen, joined by bonds in a pattern that is the same throughout the crystal.",
+    "The bonds hold the atoms in fixed places, and that is why the rock keeps its shape."
+   ],
+   "model": "The lattice is drawn from the quartz crystal structure data, and the atom sizes are drawn for visibility.",
+   "notice": "The red atoms are oxygen and the tan ones are silicon. Look for a repeating pattern, a unit that appears again and again; the yellow outline marks one such unit.",
+   "deeper": [],
+   "do": [
+    {
+     "hideBody": true
+    }
+   ]
+  },
+  {
+   "title": "An atom is not empty",
+   "scale": "about 0.5 nanometres",
+   "where": {
+    "landmark": "Oxygen atom"
+   },
+   "do": [
+    {
+     "card": "at_spin_pauli"
+    }
+   ],
+   "expect": {
+    "frame": "Oxygen atom"
+   },
+   "text": [
+    "It is often said that atoms are mostly empty space. That is misleading. The electrons are not tiny balls with gaps between them: each one is spread out as a cloud of probability that fills the atom.",
+    "Two atoms cannot be pressed into the same place for two reasons. Their electrons repel each other, and the Pauli principle says that no two electrons in an atom can be in the same state, so extra electrons must go into higher states."
+   ],
+   "model": "A computed model of the electron cloud. The dots are places an electron could be found, not many electrons.",
+   "notice": "Use \"Cut away a quarter\" to see that the cloud has no hard edge and no gaps.",
+   "deeper": [
+    {
+     "label": "Spin and the Pauli principle",
+     "node": "at_spin_pauli"
+    }
+   ]
+  },
+  {
+   "title": "The tiny, dense core",
+   "scale": "about 20 femtometres",
+   "where": {
+    "landmark": "Oxygen nucleus"
+   },
+   "expect": {
+    "frame": "Oxygen nucleus"
+   },
+   "text": [
+    "The nucleus is about a hundred thousand times smaller than the atom, yet it holds nearly all of its mass. That is what it is: a tiny, extremely dense core.",
+    "The rest of the atom's size is set by the electron cloud. So a rock is solid because of the cloud, not the nucleus."
+   ],
+   "model": "The nucleus is drawn with a radius from a rule of thumb, about 1.2 femtometres times the cube root of the number of particles.",
+   "notice": "Compare this view with the last one: the same atom, a hundred thousand times smaller.",
+   "deeper": [
+    {
+     "label": "The nucleus at true size",
+     "node": "nucleusQ"
+    }
+   ]
+  }
+ ],
+ "answer": "A rock is solid because its atoms are bound into crystals, and atoms cannot be pushed together because their electron clouds repel and the Pauli principle forbids squeezing electrons into the same state. An atom is not empty, since its electron cloud fills it.",
+ "unknown": "Nothing here is in doubt. How the electrons are spread out between nucleus and cloud is described by quantum mechanics, but what an electron is \"really doing\" between measurements is argued about.",
+ "next": [
+  "what_holds_everything_together",
+  "how_does_my_phone_think",
+  "what_am_i_made_of"
+ ],
+ "sources": [
+  "Cards: boulder (1.6 t, calculated), rock_grains, at_spin_pauli, at_atom, at_orbital, nucleusQ; quartz crystal data (data/crystals.json)"
+ ]
+}

@@ -1,0 +1,206 @@
+{
+ "id": "how_does_my_phone_think",
+ "order": 60,
+ "theme": "Machines you use",
+ "question": "How does my phone think?",
+ "teaser": "Follow a phone down to the switch that does all the work, and then to the crystal that the switch is cut from.",
+ "keywords": [
+  "phone",
+  "computer",
+  "processor",
+  "chip",
+  "transistor",
+  "logic",
+  "silicon",
+  "cpu",
+  "smartphone",
+  "electronics"
+ ],
+ "scales": [
+  "a phone",
+  "a silicon crystal"
+ ],
+ "minutes": 6,
+ "stops": [
+  {
+   "title": "A phone, opened up",
+   "scale": "about 30 cm",
+   "where": {
+    "landmark": "Your phone"
+   },
+   "do": [
+    {
+     "hideBody": true
+    },
+    {
+     "press": "Exploded"
+    }
+   ],
+   "expect": {
+    "frame": "smartphone"
+   },
+   "text": [
+    "A phone is a slab about 7 to 8 millimetres thick with a screen, a battery, a camera, radios and one main circuit board. The part that does the \"thinking\" is a single chip on that board.",
+    "It does not think the way you do. It follows instructions, one tiny step after another, very fast."
+   ],
+   "notice": "The view shows the phone taken apart. Click the parts to name them, and look for the main circuit board that holds the chips.",
+   "deeper": [
+    {
+     "label": "Smartphone",
+     "node": "smartphone"
+    }
+   ]
+  },
+  {
+   "title": "The main chip",
+   "scale": "about 2 cm",
+   "where": {
+    "landmark": "Phone processor"
+   },
+   "expect": {
+    "frame": "Processor die"
+   },
+   "text": [
+    "This is the system-on-chip, a die of silicon with an area of roughly 100 square millimetres. Processor cores, graphics, an engine for AI, an image processor and memory controllers all share it.",
+    "A chip like this holds roughly ten to twenty billion transistors."
+   ],
+   "model": "A schematic floor plan: the blocks are in plausible places, but this is not the layout of any one real chip.",
+   "notice": "Click a block, such as the CPU cluster or the GPU, to see what it is for.",
+   "deeper": [
+    {
+     "label": "System-on-chip",
+     "node": "phone_soc"
+    }
+   ]
+  },
+  {
+   "title": "One processor core",
+   "scale": "about 3 mm",
+   "where": {
+    "landmark": "CPU core"
+   },
+   "expect": {
+    "frame": "CPU core"
+   },
+   "text": [
+    "A core runs a program one instruction at a time. For each one it fetches the instruction, works out what it means, and then carries it out.",
+    "Many instructions are in progress at once, like cars on an assembly line, which is called pipelining."
+   ],
+   "model": "Schematic: the blocks show the job each part does, not the real arrangement.",
+   "notice": "Find the block called the arithmetic logic unit. That is where the adding and comparing happens.",
+   "deeper": [
+    {
+     "label": "CPU core",
+     "node": "cpu_core"
+    },
+    {
+     "label": "How a CPU runs one instruction",
+     "node": "instruction_execution"
+    }
+   ]
+  },
+  {
+   "title": "Logic gates",
+   "scale": "about 6 micrometres",
+   "where": {
+    "landmark": "Logic gates"
+   },
+   "expect": {
+    "frame": "Logic gates"
+   },
+   "text": [
+    "Down here the arithmetic is built from tiny circuits called logic gates. A NAND gate gives the answer 0 only when both of its inputs are 1, and every other logic function can be built from NAND gates.",
+    "Chain enough of them together and you can add numbers, compare them and move them around."
+   ],
+   "notice": "Click an adder or a gate. Each one is a few switches wired together.",
+   "deeper": [
+    {
+     "label": "NAND gate",
+     "node": "logic_gate_nand"
+    },
+    {
+     "label": "Full adder",
+     "node": "logic_adder"
+    }
+   ]
+  },
+  {
+   "title": "The simplest circuit",
+   "scale": "about 600 nanometres",
+   "where": {
+    "node": "cmos_inverter"
+   },
+   "expect": {
+    "frame": "inverter|Inverter|CMOS"
+   },
+   "text": [
+    "The inverter turns a 1 into a 0 and a 0 into a 1. It is made of two switches, one that pulls the output up and one that pulls it down, and only one is on at a time.",
+    "Because of that, hardly any current flows except at the moment of switching, which is why chips can have billions of them."
+   ],
+   "notice": "Find the two transistors. When the input is high, one conducts and pulls the output low.",
+   "deeper": [
+    {
+     "label": "CMOS inverter",
+     "node": "cmos_inverter"
+    }
+   ]
+  },
+  {
+   "title": "A transistor shaped like a fin",
+   "scale": "about 240 nanometres",
+   "where": {
+    "landmark": "Transistor"
+   },
+   "expect": {
+    "frame": "FinFET"
+   },
+   "text": [
+    "Each switch is a transistor. In a modern chip the current flows through a thin vertical fin of silicon, and the gate wraps around three sides of the fin to control it better.",
+    "A voltage on the gate attracts electrons into the fin and turns the switch on. Remove the voltage and it turns off."
+   ],
+   "model": "A simplified drawing of a FinFET, not a measured layout.",
+   "notice": "Find the fin, the gate wrapped around it, and the source and drain at its two ends.",
+   "deeper": [
+    {
+     "label": "FinFET transistor",
+     "node": "finfet_transistor"
+    },
+    {
+     "label": "How a transistor switches",
+     "node": "how_a_transistor_switches"
+    }
+   ]
+  },
+  {
+   "title": "The silicon crystal",
+   "scale": "about 3 nanometres",
+   "where": {
+    "place": "crystal:silicon"
+   },
+   "expect": {
+    "frame": "ilicon"
+   },
+   "text": [
+    "The part of the transistor where current flows is a sliver of near-perfect crystal. It is silicon, whose atoms sit in a regular pattern, and the electrons that carry the current move through it.",
+    "So the answer to the question is that your phone does not think with anything exotic. It shifts electrons through billions of switches, and logic does the rest."
+   ],
+   "notice": "Look at the regular pattern of atoms. A crystal like this is what the whole chip is cut from.",
+   "deeper": [
+    {
+     "label": "Silicon channel",
+     "node": "silicon_channel"
+    }
+   ]
+  }
+ ],
+ "answer": "A phone does not think: it follows instructions, and every step is made of billions of tiny silicon switches that electrons turn on and off.",
+ "unknown": "Nothing about how the chip works is mysterious. What is open is how much smaller and faster such switches can be made before atoms and heat set the limit.",
+ "next": [
+  "is_a_rock_really_solid",
+  "what_holds_everything_together",
+  "what_am_i_made_of"
+ ],
+ "sources": [
+  "Cards: smartphone, phone_soc, cpu_core, logic_gate_nand, cmos_inverter, finfet_transistor, silicon_channel, how_a_transistor_switches (data/nodes/ee_teardown.json)"
+ ]
+}

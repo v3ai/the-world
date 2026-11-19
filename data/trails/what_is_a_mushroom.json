@@ -1,0 +1,220 @@
+{
+ "id": "what_is_a_mushroom",
+ "order": 23,
+ "theme": "Living things",
+ "question": "What is a mushroom?",
+ "teaser": "The red toadstool in the park is only the fruit. Find the rest of the fungus, and the trees it trades with.",
+ "keywords": [
+  "mushroom",
+  "fungus",
+  "fungi",
+  "toadstool",
+  "spores",
+  "mycelium",
+  "fly agaric",
+  "mycorrhiza",
+  "gills"
+ ],
+ "scales": [
+  "a mushroom",
+  "a root tip"
+ ],
+ "minutes": 6,
+ "stops": [
+  {
+   "title": "A fly agaric",
+   "scale": "about 15 cm",
+   "where": {
+    "view": {
+     "frame": "thing_mushroom",
+     "part": "cap",
+     "D": 0.5
+    }
+   },
+   "do": [
+    {
+     "hideBody": true
+    },
+    {
+     "mode": "whole",
+     "thing": "mushroom"
+    }
+   ],
+   "expect": {
+    "thing": "mushroom"
+   },
+   "text": [
+    "This red toadstool with white warts is a fly agaric. It is poisonous, so never eat a wild mushroom you cannot identify with certainty.",
+    "But the real question is what it is. It is not the whole organism."
+   ],
+   "model": "A procedural model of a typical fly agaric. The cap diameter here, 14 cm, was chosen within the species range of about 5 to 30 cm.",
+   "notice": "Look around the park: the mushroom is near the trees. That is not an accident, as the last stops show.",
+   "deeper": [
+    {
+     "label": "Fly agaric",
+     "node": "park_mushroom"
+    }
+   ]
+  },
+  {
+   "title": "Gills under the cap",
+   "scale": "about 10 cm",
+   "where": {
+    "view": {
+     "frame": "thing_mushroom",
+     "part": "c_gill",
+     "D": 0.18
+    }
+   },
+   "do": [
+    {
+     "hideBody": true
+    },
+    {
+     "mode": "wood",
+     "thing": "mushroom"
+    }
+   ],
+   "expect": {
+    "thing": "mushroom"
+   },
+   "text": [
+    "Cut in half, the cap shows thin white plates fanned out beneath it, called gills. Each plate is lined on both sides with cells that make spores.",
+    "Many thin plates give far more surface for spores than a flat underside would."
+   ],
+   "notice": "Count the gills where the cut passes through them.",
+   "deeper": [
+    {
+     "label": "Gills",
+     "node": "fa_gills"
+    }
+   ]
+  },
+  {
+   "title": "Spores",
+   "scale": "about 0.6 mm",
+   "where": {
+    "deep": {
+     "in": "mushroom",
+     "type": "tissue2",
+     "id": "mushroom_gill",
+     "at": [
+      0,
+      0.1287,
+      0.0004
+     ],
+     "D": 0.0006
+    }
+   },
+   "expect": {
+    "frame": "ill"
+   },
+   "text": [
+    "A spore is a single cell, much smaller than a seed, that can grow into a new fungus if it lands somewhere good. Fly agaric spores are white and oval, about 9 to 13 micrometres long.",
+    "A gilled mushroom is thought to shed around thirty thousand spores every second. That figure is for gilled mushrooms in general, not measured for this species."
+   ],
+   "notice": "Find where the spores form on the surface of a gill.",
+   "deeper": [
+    {
+     "label": "Spores",
+     "node": "fa_spores"
+    }
+   ],
+   "do": [
+    {
+     "hideBody": true
+    }
+   ]
+  },
+  {
+   "title": "The hidden fungus",
+   "scale": "about 1 m",
+   "where": {
+    "view": {
+     "frame": "thing_mushroom",
+     "part": "mycelium",
+     "D": 1.6
+    }
+   },
+   "do": [
+    {
+     "hideBody": true
+    },
+    {
+     "mode": "under",
+     "thing": "mushroom"
+    }
+   ],
+   "expect": {
+    "thing": "mushroom"
+   },
+   "text": [
+    "Under the ground is the fungus itself: a web of fine threads called the mycelium. The mushroom is its fruit, which it builds to release spores, the way an apple tree makes apples.",
+    "The mycelium can be far bigger than the mushroom, and it lasts longer."
+   ],
+   "model": "The white threads are drawn several hundred times too thick to be seen. Real threads are only about 2 to 10 micrometres wide.",
+   "notice": "Follow the threads to the tree roots on the right.",
+   "deeper": [
+    {
+     "label": "Mycelium",
+     "node": "fa_mycelium"
+    },
+    {
+     "label": "Hypha",
+     "node": "fa_hypha"
+    }
+   ]
+  },
+  {
+   "title": "The partnership",
+   "scale": "about 0.4 mm",
+   "where": {
+    "deep": {
+     "in": "mushroom",
+     "type": "tissue2",
+     "id": "mushroom_ecm",
+     "at": [
+      -0.0012,
+      -0.1737,
+      0.3311
+     ],
+     "D": 0.0004
+    }
+   },
+   "expect": {
+    "frame": "oot|ECM|mycorrhiz"
+   },
+   "text": [
+    "The fungus wraps the finest tree roots in a sleeve of threads, and grows between the root's outer cells, but not inside them. The tree pays in sugar, and the fungus pays in water, nitrogen and phosphate.",
+    "In studies, the fungus receives about 15 percent of its host's food product, and can supply up to about 86 percent of a host's nitrogen."
+   ],
+   "model": "The root tips are drawn much larger than life so that you can see them.",
+   "notice": "Find the sleeve around the root and the threads running out into the soil.",
+   "deeper": [
+    {
+     "label": "The swap",
+     "node": "fa_trade"
+    },
+    {
+     "label": "Root tip and fungus",
+     "node": "fa_ecm"
+    }
+   ],
+   "do": [
+    {
+     "hideBody": true
+    }
+   ]
+  }
+ ],
+ "answer": "A mushroom is the short-lived fruit of a fungus whose real body is a web of fine threads in the soil, and which often trades minerals and water for sugar with the roots of trees.",
+ "unknown": "How much sugar and how many minerals actually pass between a fungus and a tree in the wild varies a lot, and the exact amounts are still being measured.",
+ "next": [
+  "how_does_a_tree_lift_water",
+  "why_does_a_bee_visit_a_flower",
+  "what_am_i_made_of"
+ ],
+ "sources": [
+  "Cards: park_mushroom, fa_gills, fa_spores, fa_mycelium, fa_ecm, fa_trade, fa_hypha (sources on the cards)"
+ ]
+}

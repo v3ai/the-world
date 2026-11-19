@@ -1,1 +1,79 @@
-/* styles for trails.js */
+/* Trails: question-led journeys. Porcelain panels, serif for reading, sans for controls. */
+#questions { width: 440px; padding: 18px 0 8px }
+#questions h3, #questions .sub { padding: 0 20px }
+#questions .qx { position: absolute; top: 8px; right: 10px; border: 0; background: none; font-size: 20px; line-height: 1; padding: 4px 8px; cursor: pointer; color: var(--muted) }
+#questions .qx:hover { color: var(--accent) }
+.qtheme { font: 600 12.5px var(--sans); color: var(--muted); padding: 14px 20px 6px; border-top: 1px solid var(--rule); margin-top: 8px }
+.qtheme:first-of-type { border-top: 0; margin-top: 0 }
+.qitem { display: block; width: 100%; text-align: left; border: 0; background: none; padding: 9px 20px 10px; cursor: pointer; border-top: 1px solid transparent }
+.qitem:hover { background: var(--paper-2) }
+.qitem .qq { display: block; font: 600 17.5px/1.25 var(--serif); color: var(--ink) }
+.qitem .qt { display: block; font: 14.5px/1.45 var(--serif); color: var(--ink-2); margin-top: 2px }
+.qitem .qm { display: block; font: 12px/1.4 var(--sans); color: var(--muted); margin-top: 4px }
+.qitem .qr { display: inline-block; margin-left: 8px; color: var(--accent); font-weight: 500 }
+.qitem:hover .qq { color: var(--accent) }
+
+#trail { position: fixed; left: calc(var(--ruler-w) + 16px); bottom: 16px; width: 392px; max-height: calc(100vh - 90px); overflow-y: auto; z-index: 9; display: none; padding: 14px 18px 12px; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); user-select: text; scrollbar-width: thin }
+#trail.on { display: block }
+#trail .tr-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; border-bottom: 1px solid var(--rule); padding-bottom: 7px; margin-bottom: 9px }
+#trail .tr-q { font: italic 400 14px/1.3 var(--serif); color: var(--muted) }
+#trail .tr-btns { flex: none; display: flex; gap: 12px }
+#trail.fold > :not(.tr-head):not(.tr-nav) { display: none }
+#trail.fold .tr-head { border-bottom: 0; padding-bottom: 0; margin-bottom: 6px }
+#trail .tr-fold, #trail .tr-leave { flex: none; border: 0; background: none; color: var(--accent); font: 500 12.5px var(--sans); cursor: pointer; padding: 2px 0; text-decoration: underline; text-decoration-color: rgba(30,78,143,.3); text-underline-offset: 3px }
+#trail .tr-fold:hover, #trail .tr-leave:hover { text-decoration-color: var(--accent) }
+#trail .tr-step { font: 12px var(--sans); color: var(--muted); margin-bottom: 2px }
+#trail h3 { margin: 0 0 6px; font: 600 21px/1.2 var(--serif); letter-spacing: -.005em }
+#trail p { margin: 0 0 8px; font: 15.5px/1.55 var(--serif); color: var(--ink) }
+#trail .tr-model { font: 12.5px/1.45 var(--sans); color: var(--ink-2); background: var(--paper-2); border-radius: var(--r-ctl); padding: 6px 9px; margin: 0 0 8px }
+#trail .tr-notice { font: 14px/1.5 var(--serif); color: var(--ink); border-left: 3px solid var(--accent); padding: 3px 0 3px 10px; margin: 10px 0 8px }
+#trail .tr-notice b { font: 600 12.5px var(--sans); color: var(--accent); margin-right: 6px }
+#trail .tr-deeper { font: 13px/1.6 var(--sans); color: var(--muted); margin: 6px 0 4px }
+#trail .tr-deeper button { border: 0; background: none; padding: 0; margin-left: 8px; color: var(--accent); font: inherit; cursor: pointer; text-decoration: underline; text-decoration-color: rgba(30,78,143,.3); text-underline-offset: 3px }
+#trail .tr-deeper button:hover { text-decoration-color: var(--accent) }
+#trail .tr-here { font: 12px/1.45 var(--sans); color: var(--muted); margin-top: 9px; padding-top: 7px; border-top: 1px solid var(--rule) }
+#trail .tr-here b { color: var(--ink-2); font-weight: 500 }
+#trail .tr-here .tr-fnote { display: block; margin-top: 2px; color: var(--ink-2) }
+body.trailOn #caption { display: none }
+#trail .tr-away { font: 13px/1.45 var(--sans); background: var(--paper-2); border-radius: var(--r-ctl); padding: 7px 9px; margin: 8px 0 2px; display: none; align-items: center; justify-content: space-between; gap: 8px }
+#trail .tr-away.on { display: flex }
+#trail .tr-away button { flex: none; border: 1px solid var(--accent); background: var(--accent); color: #fff; border-radius: var(--r-ctl); padding: 5px 10px; font: 500 12.5px var(--sans); cursor: pointer }
+#trail .tr-nav { position: sticky; bottom: -12px; background: var(--paper); padding-bottom: 10px; margin-bottom: -10px; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--rule) }
+#trail .tr-nav button.b { border: 1px solid var(--rule); background: var(--paper); border-radius: var(--r-panel); padding: 7px 14px; font: 500 13.5px var(--sans); cursor: pointer; color: var(--ink) }
+#trail .tr-nav button.b:hover:not(:disabled) { border-color: var(--accent); color: var(--accent) }
+#trail .tr-nav button.b:disabled { opacity: .4; cursor: default }
+#trail .tr-nav button.b.next { background: var(--accent); border-color: var(--accent); color: #fff }
+#trail .tr-nav button.b.next:hover:not(:disabled) { background: #173f75; color: #fff }
+#trail .tr-dots { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: center }
+#trail .tr-dots button { width: 11px; height: 11px; padding: 0; border-radius: 50%; border: 1.5px solid var(--muted); background: none; cursor: pointer }
+#trail .tr-dots button.done { background: var(--muted) }
+#trail .tr-dots button.on { background: var(--accent); border-color: var(--accent); transform: scale(1.25) }
+#trail .tr-dots button.end { border-radius: 2px }
+#trail .tr-ans { font: 600 19px/1.4 var(--serif); margin: 0 0 10px }
+#trail .tr-unk { font: 14.5px/1.5 var(--serif); color: var(--ink-2) }
+#trail .tr-unk b { font: 600 12.5px var(--sans); color: var(--muted); display: block; margin-bottom: 1px }
+#trail .tr-next { margin-top: 10px }
+#trail .tr-next b { font: 600 12.5px var(--sans); color: var(--muted); display: block; margin-bottom: 3px }
+#trail .tr-next button { display: block; width: 100%; text-align: left; border: 0; border-top: 1px solid var(--rule); background: none; padding: 7px 0; font: 600 15px/1.3 var(--serif); color: var(--accent); cursor: pointer }
+#trail .tr-next button:hover { text-decoration: underline }
+
+.asked { margin: 10px 0 0; font: 13px/1.5 var(--sans); color: var(--muted) }
+.asked button { border: 0; background: none; padding: 0; color: var(--accent); font: inherit; cursor: pointer; text-decoration: underline; text-decoration-color: rgba(30,78,143,.3); text-underline-offset: 3px }
+.asked button:hover { text-decoration-color: var(--accent) }
+
+#help .starters { margin: -4px 0 18px; padding: 10px 14px 8px; background: var(--paper-2); border-radius: var(--r-panel) }
+#help .starters b { display: block; font: 600 12.5px var(--sans); color: var(--muted); margin-bottom: 4px }
+#help .starters button { display: block; width: 100%; text-align: left; border: 0; background: none; padding: 3px 0; font: 600 16px/1.3 var(--serif); color: var(--accent); cursor: pointer }
+#help .starters button:hover { text-decoration: underline }
+#help .starters button span { font: 13px var(--sans); color: var(--muted); font-weight: 400; margin-left: 6px }
+
+@media (max-width: 860px) {
+  #questions { left: calc(var(--ruler-w) + 8px); right: 8px; width: auto }
+  #trail { left: 8px; right: 8px; bottom: 8px; width: auto; max-height: 50vh; padding: 10px 14px 10px }
+  #trail h3 { font-size: 18px }
+  #trail p { font-size: 15px; line-height: 1.5 }
+  body.trailOn #zoombtns { bottom: calc(var(--trailH, 0px) + 16px) }
+  body.trailOn #info { bottom: calc(var(--trailH, 0px) + 16px); max-height: calc(100vh - var(--trailH, 0px) - 80px) }
+  body.trailOn #info.tall { height: calc(100vh - var(--trailH, 0px) - 80px) }
+}
+@media (prefers-reduced-motion: reduce) { #trail * { transition: none !important } }
