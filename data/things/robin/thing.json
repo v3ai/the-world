@@ -1,0 +1,4049 @@
+{
+ "id": "robin",
+ "title": "European robin",
+ "label": "Robin, 14 cm",
+ "scientific": "Erithacus rubecula",
+ "node": "robin",
+ "main_part": "r_breast",
+ "blurb": "A European robin, about 14 cm long, standing alert on a boulder. Zoom right in: it is built to true size. Click any part, or use the layer buttons.",
+ "model_note": "A model built from typical proportions of an adult robin (about 14 cm long, 16 to 22 g), not a scan of one bird. The overall size and the feather counts that are published (10 primaries, 9 secondaries, 12 tail feathers) are used; every other proportion, and the size and place of every organ, is drawn by eye from photographs and anatomical drawings and is approximate. The bird stands still; the feathers are drawn as simple blades.",
+ "size_m": {
+  "length": 0.14,
+  "height": 0.115,
+  "wingspan": 0.21,
+  "mass_kg": 0.019
+ },
+ "height_m": 0.115,
+ "radius_m": 0.11,
+ "draw_m": 120,
+ "label_m": 14,
+ "seed": 5151,
+ "systems": [
+  {
+   "id": "outside",
+   "label": "Feathers"
+  },
+  {
+   "id": "skin",
+   "label": "Skin"
+  },
+  {
+   "id": "muscles",
+   "label": "Muscles"
+  },
+  {
+   "id": "fill",
+   "label": "Soft tissue (stand-in)"
+  },
+  {
+   "id": "skeleton",
+   "label": "Skeleton"
+  },
+  {
+   "id": "organs",
+   "label": "Organs"
+  },
+  {
+   "id": "eyes",
+   "label": "Eyes"
+  },
+  {
+   "id": "airway",
+   "label": "Air sacs and lungs"
+  },
+  {
+   "id": "nerves",
+   "label": "Nerves"
+  },
+  {
+   "id": "d_syrinx",
+   "label": "Inside the syrinx"
+  },
+  {
+   "id": "d_eye",
+   "label": "Inside the eye"
+  },
+  {
+   "id": "d_heart",
+   "label": "Inside the heart"
+  }
+ ],
+ "modes": [
+  {
+   "id": "feathers",
+   "label": "Feathers",
+   "show": {
+    "outside": 1
+   }
+  },
+  {
+   "id": "skin",
+   "label": "Skin",
+   "show": {
+    "skin": 1
+   }
+  },
+  {
+   "id": "muscles",
+   "label": "Muscles",
+   "show": {
+    "muscles": 1,
+    "eyes": 1
+   }
+  },
+  {
+   "id": "skeleton",
+   "label": "Skeleton",
+   "show": {
+    "skeleton": 1
+   }
+  },
+  {
+   "id": "organs",
+   "label": "Organs",
+   "show": {
+    "organs": 1,
+    "eyes": 1,
+    "skeleton": 0.16
+   }
+  },
+  {
+   "id": "airway",
+   "label": "Air sacs and lungs",
+   "show": {
+    "airway": 1,
+    "skeleton": 0.16,
+    "eyes": 0
+   }
+  },
+  {
+   "id": "nerves",
+   "label": "Nerves",
+   "show": {
+    "nerves": 1,
+    "eyes": 1,
+    "skeleton": 0.2
+   }
+  },
+  {
+   "id": "cut_half",
+   "label": "Cut in half",
+   "cut": {
+    "at": [
+     0,
+     0.06,
+     0
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "muscles": 1,
+    "skeleton": 1,
+    "organs": 1,
+    "airway": 1,
+    "nerves": 1,
+    "eyes": 1,
+    "fill": 1
+   },
+   "legend": {
+    "title": "On the cut face",
+    "items": [
+     {
+      "name": "Muscle",
+      "color": "#a8433a",
+      "node": "robin_muscles"
+     },
+     {
+      "name": "Soft tissue (a stand-in)",
+      "color": "#e8cbbd",
+      "node": "robin_fill"
+     },
+     {
+      "name": "Bone",
+      "color": "#e8dcc0",
+      "node": "robin_skeleton"
+     },
+     {
+      "name": "Organs",
+      "color": "#c9776e",
+      "node": "robin_organs"
+     }
+    ],
+    "note": "The bird is cut along its midline: look at it from its right side first, then press the button. A schematic section: the pale pink between the organs is a stand-in for fat and connective tissue, not a scan."
+   }
+  },
+  {
+   "id": "cut_wing",
+   "label": "Cut open: the wing",
+   "cut": {
+    "at": [
+     0,
+     0.06,
+     0.0156
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "muscles": 1,
+    "skeleton": 1,
+    "fill": 1
+   },
+   "legend": {
+    "title": "Wing bones and the human arm",
+    "items": [
+     {
+      "name": "Humerus: our upper arm bone",
+      "color": "#eadfc8",
+      "node": "humerus_r"
+     },
+     {
+      "name": "Radius and ulna: our forearm bones",
+      "color": "#eadfc8",
+      "node": "radius_ulna_r"
+     },
+     {
+      "name": "Fused hand bone: our wrist and palm",
+      "color": "#eadfc8",
+      "node": "robin_carpometacarpus"
+     },
+     {
+      "name": "Wing muscles",
+      "color": "#b34a3e",
+      "node": "robin_wing_muscles"
+     }
+    ],
+    "note": "Look at the bird from its right side, then press the button: the cut passes along the right wing. The bones are drawn as simple rods; the muscles are schematic."
+   }
+  },
+  {
+   "id": "cut_syrinx",
+   "label": "Cut open: the syrinx",
+   "cut": {
+    "at": [
+     0.008672525192321656,
+     0.07065295246253853,
+     0
+    ],
+    "normal": [
+     0.999488924356071,
+     0.03196701564963894,
+     0
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "d_syrinx": 1
+   },
+   "legend": {
+    "title": "In the syrinx",
+    "items": [
+     {
+      "name": "Wall of the windpipe and bronchi",
+      "color": "#d8d2e0",
+      "node": "robin_syrinx"
+     },
+     {
+      "name": "Pessulus (bony wedge)",
+      "color": "#eadfc8",
+      "node": "robin_pessulus"
+     },
+     {
+      "name": "Vibrating membranes",
+      "color": "#f2c9b8",
+      "node": "robin_tympaniform"
+     },
+     {
+      "name": "Muscles",
+      "color": "#b34a3e",
+      "node": "robin_syr_muscles"
+     }
+    ],
+    "note": "Drawn at true size (the windpipe is a few millimetres wide), simplified: the real membranes, rings and muscles are more complex. Look at the bird from the front, then press the button."
+   }
+  },
+  {
+   "id": "cut_eye",
+   "label": "Cut open: the eye",
+   "cut": {
+    "at": [
+     0.028009246750062746,
+     0.09708803181607821,
+     0.008199999999999999
+    ],
+    "normal": [
+     -0.927626772267296,
+     0,
+     0.37350846225080087
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "d_eye": 1
+   },
+   "legend": {
+    "title": "In the eye",
+    "items": [
+     {
+      "name": "Retina",
+      "color": "#c4585a",
+      "node": "robin_retina"
+     },
+     {
+      "name": "Lens",
+      "color": "#e9c860",
+      "node": "robin_lens"
+     },
+     {
+      "name": "Pecten (pleated fold)",
+      "color": "#b64a45",
+      "node": "robin_pecten"
+     },
+     {
+      "name": "Choroid (dark layer)",
+      "color": "#2a201c",
+      "node": "robin_choroid"
+     }
+    ],
+    "note": "A model eye about 8 mm across, with a schematic layout. Look at the bird from the front, then press the button."
+   }
+  },
+  {
+   "id": "cut_heart",
+   "label": "Cut open: the heart",
+   "cut": {
+    "at": [
+     0.009475552584564003,
+     0.060366789572164466,
+     0
+    ],
+    "normal": [
+     -0.6156614753256583,
+     0.7880107536067219,
+     0
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "d_heart": 1
+   },
+   "legend": {
+    "title": "In the heart",
+    "items": [
+     {
+      "name": "Heart muscle",
+      "color": "#b9524a",
+      "node": "robin_heart"
+     },
+     {
+      "name": "Left side: oxygen-rich blood",
+      "color": "#e0463c",
+      "node": "robin_lv"
+     },
+     {
+      "name": "Right side: oxygen-poor blood",
+      "color": "#4f6fb5",
+      "node": "robin_rv"
+     }
+    ],
+    "note": "A simplified model heart: chamber shapes and wall thicknesses are schematic. Look at the bird from above, then press the button."
+   }
+  }
+ ],
+ "lod": {
+  "near_m": 0.7,
+  "far_m": 7
+ },
+ "auto": {
+  "label": "Auto",
+  "layers": true,
+  "scale": 0.07,
+  "always": {
+   "eyes": 1
+  }
+ },
+ "layers": [
+  {
+   "id": "feathers",
+   "label": "feathers",
+   "systems": [
+    "outside"
+   ],
+   "ghost": 0.05
+  },
+  {
+   "id": "skin",
+   "label": "skin",
+   "systems": [
+    "skin"
+   ],
+   "ghost": 0.06
+  },
+  {
+   "id": "muscles",
+   "label": "muscles",
+   "systems": [
+    "muscles"
+   ],
+   "ghost": 0.08
+  },
+  {
+   "id": "skeleton",
+   "label": "skeleton",
+   "systems": [
+    "skeleton"
+   ],
+   "ghost": 0.12,
+   "see_through": 0.3
+  },
+  {
+   "id": "inside",
+   "label": "organs",
+   "systems": [
+    "organs",
+    "airway",
+    "nerves"
+   ],
+   "ghost": 0.1
+  }
+ ],
+ "anim": [
+  {
+   "kind": "breathe",
+   "parts": [
+    "r_breast",
+    "r_belly",
+    "r_grey",
+    "r_flank"
+   ],
+   "pivot": [
+    0,
+    0.05,
+    0
+   ],
+   "amp": 0.012,
+   "label": "Breathing",
+   "illustrative": true
+  },
+  {
+   "kind": "pulse",
+   "parts": [
+    "og_heart",
+    "hd_muscle"
+   ],
+   "pivot": [
+    0.010091214059889662,
+    0.05957877881855774,
+    0
+   ],
+   "amp": 0.08,
+   "label": "Heartbeat",
+   "illustrative": true
+  }
+ ],
+ "shadow": {
+  "radius_m": 0.05,
+  "opacity": 0.6
+ },
+ "cut": {
+  "default": "muscle",
+  "at": [
+   0,
+   0.06,
+   0
+  ],
+  "faces": {
+   "muscle": {
+    "kind": "plain",
+    "palette": [
+     [
+      11027258,
+      1
+     ]
+    ]
+   },
+   "bone": {
+    "kind": "plain",
+    "palette": [
+     [
+      15260864,
+      1
+     ]
+    ]
+   },
+   "organ": {
+    "kind": "plain",
+    "palette": [
+     [
+      13203310,
+      1
+     ]
+    ]
+   },
+   "fill": {
+    "kind": "plain",
+    "palette": [
+     [
+      15256509,
+      1
+     ]
+    ]
+   },
+   "skin": {
+    "kind": "plain",
+    "palette": [
+     [
+      15317414,
+      1
+     ]
+    ]
+   },
+   "gut": {
+    "kind": "plain",
+    "palette": [
+     [
+      14263691,
+      1
+     ]
+    ]
+   },
+   "brain": {
+    "kind": "plain",
+    "palette": [
+     [
+      14271421,
+      1
+     ]
+    ]
+   },
+   "nerve": {
+    "kind": "plain",
+    "palette": [
+     [
+      15786672,
+      1
+     ]
+    ]
+   },
+   "air": {
+    "kind": "plain",
+    "palette": [
+     [
+      13887728,
+      1
+     ]
+    ]
+   },
+   "tract": {
+    "kind": "plain",
+    "palette": [
+     [
+      14209760,
+      1
+     ]
+    ]
+   },
+   "blood_l": {
+    "kind": "plain",
+    "palette": [
+     [
+      14698044,
+      1
+     ]
+    ]
+   },
+   "blood_r": {
+    "kind": "plain",
+    "palette": [
+     [
+      5205941,
+      1
+     ]
+    ]
+   }
+  }
+ },
+ "ruler": {
+  "label": "European robin (14 cm)",
+  "D": 0.35,
+  "at": [
+   0,
+   0.06,
+   0
+  ]
+ },
+ "hotspots": [
+  {
+   "id": "hs_brain",
+   "node": "robin_brain",
+   "at": [
+    0.020271,
+    0.096102,
+    0
+   ],
+   "label": "Brain",
+   "modes": [
+    "cut_half"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_syrinx",
+   "node": "robin_syrinx",
+   "at": [
+    0.008673,
+    0.070653,
+    0
+   ],
+   "label": "Syrinx",
+   "modes": [
+    "cut_half"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_heart",
+   "node": "robin_heart",
+   "at": [
+    0.010091,
+    0.059579,
+    0
+   ],
+   "label": "Heart",
+   "modes": [
+    "cut_half"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_lung",
+   "node": "robin_lungs",
+   "at": [
+    0.000093,
+    0.067503,
+    0.0032
+   ],
+   "label": "Lung",
+   "modes": [
+    "cut_half"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_gizzard",
+   "node": "robin_gizzard",
+   "at": [
+    0.002684,
+    0.049731,
+    -0.0008
+   ],
+   "label": "Gizzard",
+   "modes": [
+    "cut_half"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_liver",
+   "node": "robin_liver",
+   "at": [
+    0.005693,
+    0.053351,
+    0
+   ],
+   "label": "Liver",
+   "modes": [
+    "cut_half"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_keel",
+   "node": "robin_sternum",
+   "at": [
+    0.010695,
+    0.048248,
+    0
+   ],
+   "label": "Keel",
+   "modes": [
+    "cut_half"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_kidney",
+   "node": "robin_kidneys",
+   "at": [
+    -0.016505,
+    0.057074,
+    0.0038
+   ],
+   "label": "Kidney",
+   "modes": [
+    "cut_half"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_synsacrum",
+   "node": "robin_synsacrum",
+   "at": [
+    -0.020199,
+    0.061802,
+    0
+   ],
+   "label": "Synsacrum",
+   "modes": [
+    "cut_half"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_cloaca",
+   "node": "robin_cloaca",
+   "at": [
+    -0.019324,
+    0.038755,
+    0
+   ],
+   "label": "Cloaca",
+   "modes": [
+    "cut_half"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_pyg",
+   "node": "robin_pygostyle",
+   "at": [
+    -0.034,
+    0.0445,
+    0
+   ],
+   "label": "Pygostyle",
+   "modes": [
+    "cut_half"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_pecto",
+   "node": "robin_pectoralis",
+   "at": [
+    0.009845,
+    0.055833,
+    0.0112
+   ],
+   "label": "Pectoralis",
+   "modes": [
+    "cut_half"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_humerus",
+   "node": "robin_humerus",
+   "at": [
+    -0.007,
+    0.066,
+    0.010676
+   ],
+   "label": "Humerus",
+   "modes": [
+    "cut_wing"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_ru",
+   "node": "robin_radius",
+   "at": [
+    -0.0015,
+    0.0615,
+    0.013496
+   ],
+   "label": "Radius, ulna",
+   "modes": [
+    "cut_wing"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_cmc",
+   "node": "robin_carpometacarpus",
+   "at": [
+    0.006,
+    0.0575,
+    0.015638
+   ],
+   "label": "Hand bone",
+   "modes": [
+    "cut_wing"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_canal",
+   "node": "robin_canal",
+   "at": [
+    0.011672,
+    0.070712,
+    0.0074
+   ],
+   "label": "Pulley",
+   "modes": [
+    "cut_wing"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_wmus",
+   "node": "robin_wing_muscles",
+   "at": [
+    -0.007,
+    0.0684,
+    0.010676
+   ],
+   "label": "Wing muscle",
+   "modes": [
+    "cut_wing"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_prim",
+   "node": "robin_prim",
+   "at": [
+    -0.0038,
+    0.05045,
+    0.015652
+   ],
+   "label": "Flight feather",
+   "modes": [
+    "cut_wing"
+   ],
+   "r": 0.0017
+  },
+  {
+   "id": "hs_sy_wall",
+   "node": "robin_syrinx",
+   "at": [
+    0.00968,
+    0.076688,
+    0
+   ],
+   "label": "Windpipe wall",
+   "modes": [
+    "cut_syrinx"
+   ],
+   "r": 0.0006
+  },
+  {
+   "id": "hs_sy_rings",
+   "node": "robin_syr_rings",
+   "at": [
+    0.00961,
+    0.078887,
+    0
+   ],
+   "label": "Rings",
+   "modes": [
+    "cut_syrinx"
+   ],
+   "r": 0.0005
+  },
+  {
+   "id": "hs_sy_pess",
+   "node": "robin_pessulus",
+   "at": [
+    0.008679,
+    0.070453,
+    0
+   ],
+   "label": "Pessulus",
+   "modes": [
+    "cut_syrinx"
+   ],
+   "r": 0.0005
+  },
+  {
+   "id": "hs_sy_mem",
+   "node": "robin_tympaniform",
+   "at": [
+    0.008709,
+    0.069504,
+    0.0005
+   ],
+   "label": "Vibrating membranes",
+   "modes": [
+    "cut_syrinx"
+   ],
+   "r": 0.0005
+  },
+  {
+   "id": "hs_sy_mus",
+   "node": "robin_syr_muscles",
+   "at": [
+    0.010184,
+    0.067199,
+    0.0016
+   ],
+   "label": "Syringeal muscle",
+   "modes": [
+    "cut_syrinx"
+   ],
+   "r": 0.0005
+  },
+  {
+   "id": "hs_sy_bron",
+   "node": "robin_bronchus",
+   "at": [
+    0.008794,
+    0.066855,
+    0.0032
+   ],
+   "label": "Bronchus to the lung",
+   "modes": [
+    "cut_syrinx"
+   ],
+   "r": 0.0005
+  },
+  {
+   "id": "hs_ey_cornea",
+   "node": "robin_cornea",
+   "at": [
+    0.028932,
+    0.097475,
+    0.010491
+   ],
+   "label": "Cornea",
+   "modes": [
+    "cut_eye"
+   ],
+   "r": 0.0004
+  },
+  {
+   "id": "hs_ey_lens",
+   "node": "robin_lens",
+   "at": [
+    0.027972,
+    0.097073,
+    0.008108
+   ],
+   "label": "Lens",
+   "modes": [
+    "cut_eye"
+   ],
+   "r": 0.0004
+  },
+  {
+   "id": "hs_ey_iris",
+   "node": "robin_iris",
+   "at": [
+    0.028324,
+    0.099143,
+    0.008981
+   ],
+   "label": "Iris",
+   "modes": [
+    "cut_eye"
+   ],
+   "r": 0.0004
+  },
+  {
+   "id": "hs_ey_ret",
+   "node": "robin_retina",
+   "at": [
+    0.026958,
+    0.095028,
+    0.005589
+   ],
+   "label": "Retina",
+   "modes": [
+    "cut_eye"
+   ],
+   "r": 0.0004,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_retina",
+    "D": 0.00026,
+    "button": "Look inside the retina"
+   }
+  },
+  {
+   "id": "hs_ey_pec",
+   "node": "robin_pecten",
+   "at": [
+    0.027249,
+    0.095859,
+    0.006313
+   ],
+   "label": "Pecten",
+   "modes": [
+    "cut_eye"
+   ],
+   "r": 0.0004
+  },
+  {
+   "id": "hs_ey_ring",
+   "node": "robin_scleral_ring",
+   "at": [
+    0.028598,
+    0.09445,
+    0.009663
+   ],
+   "label": "Scleral ring",
+   "modes": [
+    "cut_eye"
+   ],
+   "r": 0.0004
+  },
+  {
+   "id": "hs_ey_opt",
+   "node": "robin_optic_nerve",
+   "at": [
+    0.026519,
+    0.095296,
+    0.003428
+   ],
+   "label": "Optic nerve",
+   "modes": [
+    "cut_eye"
+   ],
+   "r": 0.0004
+  },
+  {
+   "id": "hs_hd_lv",
+   "node": "robin_lv",
+   "at": [
+    0.009875,
+    0.058394,
+    -0.0009
+   ],
+   "label": "Left ventricle",
+   "modes": [
+    "cut_heart"
+   ],
+   "r": 0.0007
+  },
+  {
+   "id": "hs_hd_rv",
+   "node": "robin_rv",
+   "at": [
+    0.009943,
+    0.058956,
+    0.002
+   ],
+   "label": "Right ventricle",
+   "modes": [
+    "cut_heart"
+   ],
+   "r": 0.0007
+  },
+  {
+   "id": "hs_hd_la",
+   "node": "robin_la",
+   "at": [
+    0.010261,
+    0.062123,
+    -0.0023
+   ],
+   "label": "Left atrium",
+   "modes": [
+    "cut_heart"
+   ],
+   "r": 0.0006
+  },
+  {
+   "id": "hs_hd_ra",
+   "node": "robin_ra",
+   "at": [
+    0.010261,
+    0.062123,
+    0.0023
+   ],
+   "label": "Right atrium",
+   "modes": [
+    "cut_heart"
+   ],
+   "r": 0.0006
+  },
+  {
+   "id": "at_robin_flight",
+   "node": "robin_flight",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_song",
+   "node": "robin_song",
+   "at": [
+    0.008673,
+    0.070653,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_night_song",
+   "node": "robin_night_song",
+   "at": [
+    0.008673,
+    0.070653,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_territory",
+   "node": "robin_territory",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_migration",
+   "node": "robin_migration",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_temperature",
+   "node": "robin_temperature",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_lifespan",
+   "node": "robin_lifespan",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_dinosaur",
+   "node": "robin_dinosaur",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_compass",
+   "node": "robin_compass",
+   "at": [
+    0.026958,
+    0.095028,
+    0.005589
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_keratin",
+   "node": "robin_keratin",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_pigment",
+   "node": "robin_pigment",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_breathing",
+   "node": "robin_breathing",
+   "at": [
+    0.000093,
+    0.067503,
+    0.0032
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_perching",
+   "node": "robin_perching",
+   "at": [
+    0,
+    0.008,
+    0.011
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_hollow_bones",
+   "node": "robin_hollow_bones",
+   "at": [
+    -0.007,
+    0.066,
+    0.010676
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_wing",
+   "node": "robin_wing",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_muscles",
+   "node": "robin_muscles",
+   "at": [
+    -0.002,
+    0.058,
+    0.003
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_skeleton",
+   "node": "robin_skeleton",
+   "at": [
+    -0.002,
+    0.058,
+    0.003
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_organs",
+   "node": "robin_organs",
+   "at": [
+    -0.002,
+    0.058,
+    0.003
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_leg_bones",
+   "node": "robin_leg_bones",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_air_sacs",
+   "node": "robin_air_sacs",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_peripheral_nerves",
+   "node": "robin_peripheral_nerves",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_feather_scene",
+   "node": "robin_feather_scene",
+   "at": [
+    -0.02,
+    0.056,
+    0.02
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_barb",
+   "node": "robin_barb",
+   "at": [
+    -0.02,
+    0.056,
+    0.02
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_barbule",
+   "node": "robin_barbule",
+   "at": [
+    -0.02,
+    0.056,
+    0.02
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_hooklet",
+   "node": "robin_hooklet",
+   "at": [
+    -0.02,
+    0.056,
+    0.02
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_pigment_granule",
+   "node": "robin_pigment_granule",
+   "at": [
+    -0.02,
+    0.056,
+    0.02
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_flight_muscle_scene",
+   "node": "robin_flight_muscle_scene",
+   "at": [
+    0.009845,
+    0.055833,
+    0.0112
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_muscle_fibre",
+   "node": "robin_muscle_fibre",
+   "at": [
+    0.009845,
+    0.055833,
+    0.0112
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_mito",
+   "node": "robin_mito",
+   "at": [
+    0.009845,
+    0.055833,
+    0.0112
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_bone_scene",
+   "node": "robin_bone_scene",
+   "at": [
+    -0.007,
+    0.066,
+    0.010676
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_bone_wall",
+   "node": "robin_bone_wall",
+   "at": [
+    -0.007,
+    0.066,
+    0.010676
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_bone_strut",
+   "node": "robin_bone_strut",
+   "at": [
+    -0.007,
+    0.066,
+    0.010676
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_osteocyte",
+   "node": "robin_osteocyte",
+   "at": [
+    -0.007,
+    0.066,
+    0.010676
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_retina_scene",
+   "node": "robin_retina_scene",
+   "at": [
+    0.026958,
+    0.095028,
+    0.005589
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_photoreceptor",
+   "node": "robin_photoreceptor",
+   "at": [
+    0.026958,
+    0.095028,
+    0.005589
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_cryptochrome",
+   "node": "robin_cryptochrome",
+   "at": [
+    0.026958,
+    0.095028,
+    0.005589
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_park_bird",
+   "node": "park_bird",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  }
+ ],
+ "parts": [
+  {
+   "id": "r_belly",
+   "name": "Belly",
+   "system": "outside",
+   "node": "robin_belly",
+   "color": "#e6dfcc",
+   "mesh": "r_belly",
+   "solid": false,
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    0.0015,
+    0.045,
+    0
+   ],
+   "radius": 0.0278,
+   "tris": 6474
+  },
+  {
+   "id": "r_flank",
+   "name": "Flank",
+   "system": "outside",
+   "node": "robin_flank",
+   "color": "#9a8662",
+   "mesh": "r_flank",
+   "solid": false,
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    -0.0015,
+    0.0659,
+    0
+   ],
+   "radius": 0.029,
+   "tris": 4707
+  },
+  {
+   "id": "r_breast",
+   "name": "Breast",
+   "system": "outside",
+   "node": "robin_breast",
+   "color": "#d6661f",
+   "mesh": "r_breast",
+   "solid": false,
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    0.0165,
+    0.0655,
+    0
+   ],
+   "radius": 0.0225,
+   "tris": 3265
+  },
+  {
+   "id": "r_rump",
+   "name": "Rump",
+   "system": "outside",
+   "node": "robin_rump",
+   "color": "#7c6842",
+   "mesh": "r_rump",
+   "solid": false,
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    -0.0237,
+    0.0468,
+    0
+   ],
+   "radius": 0.0207,
+   "tris": 5107
+  },
+  {
+   "id": "r_vent",
+   "name": "Vent and undertail area",
+   "system": "outside",
+   "node": "robin_vent",
+   "color": "#d6ccb2",
+   "mesh": "r_vent",
+   "solid": false,
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    -0.0119,
+    0.0358,
+    0.0001
+   ],
+   "radius": 0.0166,
+   "tris": 1746
+  },
+  {
+   "id": "r_grey",
+   "name": "Grey border of the breast",
+   "system": "outside",
+   "node": "robin_grey",
+   "color": "#879399",
+   "mesh": "r_grey",
+   "solid": false,
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    0.019,
+    0.0691,
+    0
+   ],
+   "radius": 0.0212,
+   "tris": 2236
+  },
+  {
+   "id": "r_back",
+   "name": "Back (mantle and scapulars)",
+   "system": "outside",
+   "node": "robin_back",
+   "color": "#6d5b3a",
+   "mesh": "r_back",
+   "solid": false,
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    -0.0063,
+    0.069,
+    0
+   ],
+   "radius": 0.022,
+   "tris": 2111
+  },
+  {
+   "id": "r_nape",
+   "name": "Nape and neck",
+   "system": "outside",
+   "node": "robin_nape",
+   "color": "#7c6c4a",
+   "mesh": "r_nape",
+   "solid": false,
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    0.0034,
+    0.0876,
+    0
+   ],
+   "radius": 0.0229,
+   "tris": 4002
+  },
+  {
+   "id": "r_face",
+   "name": "Face and throat",
+   "system": "outside",
+   "node": "robin_face",
+   "color": "#d2621f",
+   "mesh": "r_face",
+   "solid": false,
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    0.0277,
+    0.0931,
+    0
+   ],
+   "radius": 0.0155,
+   "tris": 4139
+  },
+  {
+   "id": "r_crown",
+   "name": "Crown",
+   "system": "outside",
+   "node": "robin_crown",
+   "color": "#6f5e3c",
+   "mesh": "r_crown",
+   "solid": false,
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    0.0191,
+    0.0984,
+    -0.0001
+   ],
+   "radius": 0.0139,
+   "tris": 1533
+  },
+  {
+   "id": "bill_up",
+   "name": "Upper mandible",
+   "system": "outside",
+   "node": "robin_bill",
+   "color": "#2b2622",
+   "mesh": "bill_up",
+   "lod": "near+mid",
+   "center": [
+    0.04,
+    0.0965,
+    0
+   ],
+   "radius": 0.0096,
+   "tris": 2510
+  },
+  {
+   "id": "bill_lo",
+   "name": "Lower mandible",
+   "system": "outside",
+   "node": "robin_bill",
+   "color": "#2b2622",
+   "mesh": "bill_lo",
+   "lod": "near+mid",
+   "center": [
+    0.039,
+    0.0935,
+    0
+   ],
+   "radius": 0.0092,
+   "tris": 2092
+  },
+  {
+   "id": "nostrils",
+   "name": "Nostrils",
+   "system": "outside",
+   "node": "robin_nostrils",
+   "color": "#111",
+   "mesh": "nostrils",
+   "lod": "near+mid",
+   "center": [
+    0.035,
+    0.0968,
+    0
+   ],
+   "radius": 0.0029,
+   "tris": 456
+  },
+  {
+   "id": "eye",
+   "name": "Eye",
+   "system": "outside",
+   "node": "robin_eye",
+   "color": "#0f0d0c",
+   "mesh": "eye",
+   "lod": "near+mid",
+   "center": [
+    0.0279,
+    0.0971,
+    0
+   ],
+   "radius": 0.0135,
+   "tris": 1232
+  },
+  {
+   "id": "eye_ring",
+   "name": "Eye ring",
+   "system": "outside",
+   "node": "robin_eye_ring",
+   "color": "#8f8264",
+   "mesh": "eye_ring",
+   "lod": "near+mid",
+   "center": [
+    0.0282,
+    0.0974,
+    0
+   ],
+   "radius": 0.0139,
+   "tris": 560
+  },
+  {
+   "id": "f_prim",
+   "name": "Primaries",
+   "system": "outside",
+   "node": "robin_prim",
+   "color": "#54442d",
+   "instances": "prim",
+   "double": true,
+   "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    0.0057,
+    0.0573,
+    0
+   ],
+   "radius": 0.0459,
+   "count": 20,
+   "tris": 1760
+  },
+  {
+   "id": "f_sec",
+   "name": "Secondaries",
+   "system": "outside",
+   "node": "robin_sec",
+   "color": "#5c4a33",
+   "instances": "sec",
+   "double": true,
+   "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    0.0039,
+    0.0614,
+    0
+   ],
+   "radius": 0.039,
+   "count": 12,
+   "tris": 1056
+  },
+  {
+   "id": "f_tert",
+   "name": "Tertials",
+   "system": "outside",
+   "node": "robin_tert",
+   "color": "#614f35",
+   "instances": "tert",
+   "double": true,
+   "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    -0.0103,
+    0.0604,
+    0
+   ],
+   "radius": 0.0336,
+   "count": 6,
+   "tris": 528
+  },
+  {
+   "id": "f_pcov",
+   "name": "Primary coverts",
+   "system": "outside",
+   "node": "robin_coverts",
+   "color": "#6f5d3d",
+   "instances": "pcov",
+   "double": true,
+   "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    0.0077,
+    0.0587,
+    0
+   ],
+   "radius": 0.0269,
+   "count": 18,
+   "tris": 1584
+  },
+  {
+   "id": "f_gcov",
+   "name": "Greater coverts",
+   "system": "outside",
+   "node": "robin_coverts",
+   "color": "#6f5d3d",
+   "instances": "gcov",
+   "double": true,
+   "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    -0.0023,
+    0.0604,
+    0
+   ],
+   "radius": 0.0329,
+   "count": 18,
+   "tris": 1584
+  },
+  {
+   "id": "f_mcov",
+   "name": "Median coverts",
+   "system": "outside",
+   "node": "robin_coverts",
+   "color": "#6f5d3d",
+   "instances": "mcov",
+   "double": true,
+   "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    -0.0036,
+    0.0632,
+    0
+   ],
+   "radius": 0.0298,
+   "count": 20,
+   "tris": 1760
+  },
+  {
+   "id": "f_lcov",
+   "name": "Lesser coverts",
+   "system": "outside",
+   "node": "robin_coverts",
+   "color": "#6f5d3d",
+   "instances": "lcov",
+   "double": true,
+   "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    -0.0049,
+    0.0665,
+    0
+   ],
+   "radius": 0.0276,
+   "count": 32,
+   "tris": 2816
+  },
+  {
+   "id": "f_alula",
+   "name": "Alula",
+   "system": "outside",
+   "node": "robin_alula",
+   "color": "#4a3d2b",
+   "instances": "alula",
+   "double": true,
+   "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    0.0139,
+    0.0631,
+    0
+   ],
+   "radius": 0.0227,
+   "count": 6,
+   "tris": 528
+  },
+  {
+   "id": "f_tail",
+   "name": "Tail feathers (12)",
+   "system": "outside",
+   "node": "robin_tail",
+   "color": "#5f4f38",
+   "instances": "tail",
+   "double": true,
+   "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    -0.033,
+    0.0411,
+    0
+   ],
+   "radius": 0.0342,
+   "count": 12,
+   "tris": 1056
+  },
+  {
+   "id": "f_utc",
+   "name": "Upper tail coverts",
+   "system": "outside",
+   "node": "robin_tail_coverts",
+   "color": "#7d6c48",
+   "instances": "utc",
+   "double": true,
+   "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    -0.0306,
+    0.0443,
+    0
+   ],
+   "radius": 0.0195,
+   "count": 10,
+   "tris": 880
+  },
+  {
+   "id": "f_undertc",
+   "name": "Under tail coverts",
+   "system": "outside",
+   "node": "robin_tail_coverts",
+   "color": "#d6ccb4",
+   "instances": "undertc",
+   "double": true,
+   "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    -0.0287,
+    0.0363,
+    0
+   ],
+   "radius": 0.0185,
+   "count": 10,
+   "tris": 880
+  },
+  {
+   "id": "f_rach",
+   "name": "Rachis (feather shafts)",
+   "system": "outside",
+   "node": "robin_rach",
+   "color": "#3d3223",
+   "instances": "rach",
+   "double": true,
+   "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    -0.0061,
+    0.0549,
+    0
+   ],
+   "radius": 0.0896,
+   "count": 48,
+   "tris": 768
+  },
+  {
+   "id": "leg_shin",
+   "name": "Shin (tibiotarsus)",
+   "system": "outside",
+   "node": "robin_leg_shin",
+   "color": "#8d6a58",
+   "mesh": "leg_shin",
+   "lod": "near+mid",
+   "center": [
+    0.0051,
+    0.0369,
+    0
+   ],
+   "radius": 0.0184,
+   "tris": 448
+  },
+  {
+   "id": "leg_ankle",
+   "name": "Ankle joint",
+   "system": "outside",
+   "node": "robin_leg_ankle",
+   "color": "#8d6a58",
+   "mesh": "leg_ankle",
+   "lod": "near+mid",
+   "center": [
+    -0.004,
+    0.027,
+    0
+   ],
+   "radius": 0.0127,
+   "tris": 504
+  },
+  {
+   "id": "leg_tarsus",
+   "name": "Tarsus",
+   "system": "outside",
+   "node": "robin_leg_tarsus",
+   "color": "#8d6a58",
+   "mesh": "leg_tarsus",
+   "lod": "near+mid",
+   "center": [
+    -0.0016,
+    0.0151,
+    0
+   ],
+   "radius": 0.0171,
+   "tris": 608
+  },
+  {
+   "id": "leg_toes",
+   "name": "Forward toes (three)",
+   "system": "outside",
+   "node": "robin_leg_toes",
+   "color": "#8d6a58",
+   "mesh": "leg_toes",
+   "lod": "near+mid",
+   "center": [
+    0.0095,
+    0.0021,
+    0
+   ],
+   "radius": 0.0175,
+   "tris": 2268
+  },
+  {
+   "id": "leg_hallux",
+   "name": "Hind toe (hallux)",
+   "system": "outside",
+   "node": "robin_leg_hallux",
+   "color": "#8d6a58",
+   "mesh": "leg_hallux",
+   "lod": "near+mid",
+   "center": [
+    -0.0042,
+    0.0022,
+    0
+   ],
+   "radius": 0.013,
+   "tris": 756
+  },
+  {
+   "id": "leg_claws",
+   "name": "Claws",
+   "system": "outside",
+   "node": "robin_leg_claws",
+   "color": "#4a3a32",
+   "mesh": "leg_claws",
+   "lod": "near+mid",
+   "center": [
+    0.0028,
+    -0.0017,
+    0
+   ],
+   "radius": 0.0227,
+   "tris": 864
+  },
+  {
+   "id": "sk_skull",
+   "name": "Skull",
+   "system": "skeleton",
+   "node": "robin_skull",
+   "color": "#eadfc8",
+   "mesh": "sk_skull",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "center": [
+    0.0224,
+    0.0949,
+    0
+   ],
+   "radius": 0.0116,
+   "tris": 8896
+  },
+  {
+   "id": "sk_upper_jaw",
+   "name": "Upper jaw bone",
+   "system": "skeleton",
+   "node": "robin_upper_jaw",
+   "color": "#eadfc8",
+   "mesh": "sk_upper_jaw",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "center": [
+    0.0389,
+    0.0956,
+    0
+   ],
+   "radius": 0.0083,
+   "tris": 3228
+  },
+  {
+   "id": "sk_mandible",
+   "name": "Lower jaw bone",
+   "system": "skeleton",
+   "node": "robin_mandible",
+   "color": "#eadfc8",
+   "mesh": "sk_mandible",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "center": [
+    0.0338,
+    0.0918,
+    0
+   ],
+   "radius": 0.014,
+   "tris": 504
+  },
+  {
+   "id": "sk_cervical",
+   "name": "Neck vertebrae",
+   "system": "skeleton",
+   "node": "robin_cervical",
+   "color": "#eadfc8",
+   "mesh": "sk_cervical",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "center": [
+    0.0096,
+    0.0806,
+    0
+   ],
+   "radius": 0.0101,
+   "tris": 2256
+  },
+  {
+   "id": "sk_thoracic",
+   "name": "Chest vertebrae",
+   "system": "skeleton",
+   "node": "robin_thoracic",
+   "color": "#eadfc8",
+   "mesh": "sk_thoracic",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "center": [
+    -0.0061,
+    0.0737,
+    0
+   ],
+   "radius": 0.0108,
+   "tris": 656
+  },
+  {
+   "id": "sk_synsacrum",
+   "name": "Synsacrum",
+   "system": "skeleton",
+   "node": "robin_synsacrum",
+   "color": "#eadfc8",
+   "mesh": "sk_synsacrum",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "center": [
+    -0.0214,
+    0.0595,
+    0
+   ],
+   "radius": 0.011,
+   "tris": 656
+  },
+  {
+   "id": "sk_caudal",
+   "name": "Tail vertebrae",
+   "system": "skeleton",
+   "node": "robin_caudal",
+   "color": "#eadfc8",
+   "mesh": "sk_caudal",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "center": [
+    -0.0309,
+    0.0483,
+    0.0001
+   ],
+   "radius": 0.005,
+   "tris": 322
+  },
+  {
+   "id": "sk_pygostyle",
+   "name": "Pygostyle",
+   "system": "skeleton",
+   "node": "robin_pygostyle",
+   "color": "#eadfc8",
+   "mesh": "sk_pygostyle",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "center": [
+    -0.0356,
+    0.0437,
+    0
+   ],
+   "radius": 0.0027,
+   "tris": 1312
+  },
+  {
+   "id": "sk_sternum",
+   "name": "Breastbone with keel",
+   "system": "skeleton",
+   "node": "robin_sternum",
+   "color": "#eadfc8",
+   "mesh": "sk_sternum",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
+   "center": [
+    0.008,
+    0.0502,
+    0
+   ],
+   "radius": 0.0166,
+   "tris": 2468
+  },
+  {
+   "id": "sk_furcula",
+   "name": "Wishbone (furcula)",
+   "system": "skeleton",
+   "node": "robin_furcula",
+   "color": "#eadfc8",
+   "mesh": "sk_furcula",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "center": [
+    0.0166,
+    0.0673,
+    0
+   ],
+   "radius": 0.0121,
+   "tris": 492
+  },
+  {
+   "id": "sk_coracoid",
+   "name": "Coracoids",
+   "system": "skeleton",
+   "node": "robin_shoulder_girdle",
+   "color": "#eadfc8",
+   "mesh": "sk_coracoid",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
+   "center": [
+    0.0154,
+    0.0651,
+    0
+   ],
+   "radius": 0.0112,
+   "tris": 420
+  },
+  {
+   "id": "sk_scapula",
+   "name": "Shoulder blades",
+   "system": "skeleton",
+   "node": "robin_shoulder_girdle",
+   "color": "#eadfc8",
+   "mesh": "sk_scapula",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
+   "center": [
+    -0.0018,
+    0.0668,
+    0
+   ],
+   "radius": 0.0161,
+   "tris": 504
+  },
+  {
+   "id": "sk_ribs",
+   "name": "Ribs",
+   "system": "skeleton",
+   "node": "robin_ribs",
+   "color": "#eadfc8",
+   "mesh": "sk_ribs",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "center": [
+    -0.0023,
+    0.0601,
+    0
+   ],
+   "radius": 0.0197,
+   "tris": 2100
+  },
+  {
+   "id": "sk_uncinate",
+   "name": "Uncinate processes",
+   "system": "skeleton",
+   "node": "robin_uncinate",
+   "color": "#eadfc8",
+   "mesh": "sk_uncinate",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "center": [
+    -0.0055,
+    0.0606,
+    0
+   ],
+   "radius": 0.018,
+   "tris": 160
+  },
+  {
+   "id": "sk_pelvis",
+   "name": "Pelvis",
+   "system": "skeleton",
+   "node": "robin_pelvis",
+   "color": "#eadfc8",
+   "mesh": "sk_pelvis",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "center": [
+    -0.0179,
+    0.0519,
+    0
+   ],
+   "radius": 0.0209,
+   "tris": 2868
+  },
+  {
+   "id": "sk_humerus",
+   "name": "Humerus",
+   "system": "skeleton",
+   "node": "robin_humerus",
+   "color": "#eadfc8",
+   "mesh": "sk_humerus",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
+   "center": [
+    -0.0071,
+    0.0662,
+    0.0133
+   ],
+   "radius": 0.0125,
+   "tris": 420
+  },
+  {
+   "id": "sk_radius",
+   "name": "Radius",
+   "system": "skeleton",
+   "node": "robin_radius",
+   "color": "#eadfc8",
+   "mesh": "sk_radius",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
+   "center": [
+    -0.0015,
+    0.0615,
+    0.0144
+   ],
+   "radius": 0.0158,
+   "tris": 260
+  },
+  {
+   "id": "sk_ulna",
+   "name": "Ulna",
+   "system": "skeleton",
+   "node": "robin_ulna",
+   "color": "#eadfc8",
+   "mesh": "sk_ulna",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
+   "center": [
+    -0.0015,
+    0.0614,
+    0.0128
+   ],
+   "radius": 0.0158,
+   "tris": 312
+  },
+  {
+   "id": "sk_carpometacarpus",
+   "name": "Hand bone (carpometacarpus)",
+   "system": "skeleton",
+   "node": "robin_carpometacarpus",
+   "color": "#eadfc8",
+   "mesh": "sk_carpometacarpus",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
+   "center": [
+    0.006,
+    0.0576,
+    0.0152
+   ],
+   "radius": 0.0099,
+   "tris": 264
+  },
+  {
+   "id": "sk_digits",
+   "name": "Finger bones",
+   "system": "skeleton",
+   "node": "robin_digits",
+   "color": "#eadfc8",
+   "mesh": "sk_digits",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "center": [
+    0.0038,
+    0.0565,
+    0.0158
+   ],
+   "radius": 0.0167,
+   "tris": 160
+  },
+  {
+   "id": "sk_femur",
+   "name": "Thigh bone (femur)",
+   "system": "skeleton",
+   "node": "robin_femur",
+   "color": "#eadfc8",
+   "mesh": "sk_femur",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
+   "center": [
+    0.0051,
+    0.0469,
+    0
+   ],
+   "radius": 0.0159,
+   "tris": 364
+  },
+  {
+   "id": "sk_tibiotarsus",
+   "name": "Shin bone (tibiotarsus)",
+   "system": "skeleton",
+   "node": "robin_tibiotarsus",
+   "color": "#eadfc8",
+   "mesh": "sk_tibiotarsus",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
+   "center": [
+    0.0062,
+    0.0382,
+    0.0001
+   ],
+   "radius": 0.0192,
+   "tris": 476
+  },
+  {
+   "id": "sk_fibula",
+   "name": "Fibula",
+   "system": "skeleton",
+   "node": "robin_fibula",
+   "color": "#eadfc8",
+   "mesh": "sk_fibula",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "center": [
+    0.0121,
+    0.0431,
+    0
+   ],
+   "radius": 0.0115,
+   "tris": 32
+  },
+  {
+   "id": "sk_tarsometatarsus",
+   "name": "Foot bone (tarsometatarsus)",
+   "system": "skeleton",
+   "node": "robin_tarsometatarsus",
+   "color": "#eadfc8",
+   "mesh": "sk_tarsometatarsus",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
+   "center": [
+    -0.0015,
+    0.0151,
+    0
+   ],
+   "radius": 0.017,
+   "tris": 56
+  },
+  {
+   "id": "sk_toe_bones",
+   "name": "Toe bones",
+   "system": "skeleton",
+   "node": "robin_toe_bones",
+   "color": "#eadfc8",
+   "mesh": "sk_toe_bones",
+   "lod": "near+mid",
+   "cutFace": "bone",
+   "center": [
+    0.0044,
+    0.002,
+    0
+   ],
+   "radius": 0.0197,
+   "tris": 560
+  },
+  {
+   "id": "mu_skin",
+   "name": "Skin",
+   "system": "skin",
+   "node": "robin_skin",
+   "color": "#e9b9a6",
+   "mesh": "mu_skin",
+   "lod": "near+mid",
+   "cutFace": "skin",
+   "center": [
+    0.0005,
+    0.0681,
+    0
+   ],
+   "radius": 0.0455,
+   "tris": 21380
+  },
+  {
+   "id": "mu_fill",
+   "name": "Soft tissue (a stand-in)",
+   "system": "fill",
+   "node": "robin_fill",
+   "color": "#e8cbbd",
+   "mesh": "mu_fill",
+   "lod": "near+mid",
+   "cutFace": "fill",
+   "center": [
+    0.0005,
+    0.0681,
+    0
+   ],
+   "radius": 0.0438,
+   "tris": 14108
+  },
+  {
+   "id": "mu_pectoralis",
+   "name": "Pectoralis (downstroke muscle)",
+   "system": "muscles",
+   "node": "robin_pectoralis",
+   "color": "#b0463b",
+   "mesh": "mu_pectoralis",
+   "lod": "near+mid",
+   "cutFace": "muscle",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_flight_muscle",
+    "D": 0.00033,
+    "button": "Look inside the flight muscle"
+   },
+   "center": [
+    0.0061,
+    0.0572,
+    0
+   ],
+   "radius": 0.016,
+   "tris": 21296
+  },
+  {
+   "id": "mu_supracoracoideus",
+   "name": "Supracoracoideus (upstroke muscle)",
+   "system": "muscles",
+   "node": "robin_supracoracoideus",
+   "color": "#a23d35",
+   "mesh": "mu_supracoracoideus",
+   "lod": "near+mid",
+   "cutFace": "muscle",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_flight_muscle",
+    "D": 0.00033,
+    "button": "Look inside the flight muscle"
+   },
+   "center": [
+    0.0138,
+    0.0531,
+    0
+   ],
+   "radius": 0.0092,
+   "tris": 2116
+  },
+  {
+   "id": "mu_sc_tendon",
+   "name": "Tendon of the supracoracoideus",
+   "system": "muscles",
+   "node": "robin_sc_tendon",
+   "color": "#e9e2cf",
+   "mesh": "mu_sc_tendon",
+   "lod": "near+mid",
+   "cutFace": "muscle",
+   "center": [
+    0.0093,
+    0.0687,
+    0
+   ],
+   "radius": 0.0146,
+   "tris": 420
+  },
+  {
+   "id": "mu_canal",
+   "name": "Triosseal canal (the pulley)",
+   "system": "muscles",
+   "node": "robin_canal",
+   "color": "#eadfc8",
+   "mesh": "mu_canal",
+   "lod": "near+mid",
+   "cutFace": "muscle",
+   "center": [
+    0.0117,
+    0.0707,
+    0
+   ],
+   "radius": 0.0093,
+   "tris": 360
+  },
+  {
+   "id": "mu_neck_muscles",
+   "name": "Neck muscles",
+   "system": "muscles",
+   "node": "robin_neck_muscles",
+   "color": "#b85246",
+   "mesh": "mu_neck_muscles",
+   "lod": "near+mid",
+   "cutFace": "muscle",
+   "center": [
+    0.0097,
+    0.0805,
+    0
+   ],
+   "radius": 0.0103,
+   "tris": 864
+  },
+  {
+   "id": "mu_back_muscles",
+   "name": "Back muscles",
+   "system": "muscles",
+   "node": "robin_neck_muscles",
+   "color": "#a84a3f",
+   "mesh": "mu_back_muscles",
+   "lod": "near+mid",
+   "cutFace": "muscle",
+   "center": [
+    -0.0139,
+    0.0679,
+    0.0001
+   ],
+   "radius": 0.0214,
+   "tris": 868
+  },
+  {
+   "id": "mu_jaw_muscle",
+   "name": "Jaw muscle",
+   "system": "muscles",
+   "node": "robin_jaw_muscle",
+   "color": "#bb5144",
+   "mesh": "mu_jaw_muscle",
+   "lod": "near+mid",
+   "cutFace": "muscle",
+   "center": [
+    0.02,
+    0.092,
+    0
+   ],
+   "radius": 0.0108,
+   "tris": 3768
+  },
+  {
+   "id": "mu_wing_muscles",
+   "name": "Wing muscles",
+   "system": "muscles",
+   "node": "robin_wing_muscles",
+   "color": "#b34a3e",
+   "mesh": "mu_wing_muscles",
+   "lod": "near+mid",
+   "cutFace": "muscle",
+   "center": [
+    -0.0015,
+    0.0669,
+    0
+   ],
+   "radius": 0.0235,
+   "tris": 676
+  },
+  {
+   "id": "mu_thigh_muscles",
+   "name": "Thigh muscles",
+   "system": "muscles",
+   "node": "robin_thigh_muscles",
+   "color": "#a8433a",
+   "mesh": "mu_thigh_muscles",
+   "lod": "near+mid",
+   "cutFace": "muscle",
+   "center": [
+    0.0046,
+    0.0465,
+    0
+   ],
+   "radius": 0.018,
+   "tris": 7728
+  },
+  {
+   "id": "mu_shank_muscles",
+   "name": "Shank muscles",
+   "system": "muscles",
+   "node": "robin_shank_muscles",
+   "color": "#b24b3f",
+   "mesh": "mu_shank_muscles",
+   "lod": "near+mid",
+   "cutFace": "muscle",
+   "center": [
+    0.0096,
+    0.0418,
+    0
+   ],
+   "radius": 0.017,
+   "tris": 5656
+  },
+  {
+   "id": "mu_tail_muscles",
+   "name": "Tail muscles",
+   "system": "muscles",
+   "node": "robin_tail_muscles",
+   "color": "#b85246",
+   "mesh": "mu_tail_muscles",
+   "lod": "near+mid",
+   "cutFace": "muscle",
+   "center": [
+    -0.0315,
+    0.0443,
+    0
+   ],
+   "radius": 0.0055,
+   "tris": 3072
+  },
+  {
+   "id": "mu_tendon",
+   "name": "Perching tendon and toe flexor tendons",
+   "system": "muscles",
+   "node": "robin_tendon",
+   "color": "#efe6d0",
+   "mesh": "mu_tendon",
+   "lod": "near+mid",
+   "cutFace": "muscle",
+   "center": [
+    0.0045,
+    0.0195,
+    0
+   ],
+   "radius": 0.0266,
+   "tris": 1224
+  },
+  {
+   "id": "og_heart",
+   "name": "Heart",
+   "system": "organs",
+   "node": "robin_heart",
+   "color": "#b04a45",
+   "mesh": "og_heart",
+   "lod": "near+mid",
+   "cutFace": "muscle",
+   "center": [
+    0.0098,
+    0.059,
+    0
+   ],
+   "radius": 0.0061,
+   "tris": 5876
+  },
+  {
+   "id": "og_liver",
+   "name": "Liver",
+   "system": "organs",
+   "node": "robin_liver",
+   "color": "#7a3a2a",
+   "mesh": "og_liver",
+   "lod": "near+mid",
+   "cutFace": "organ",
+   "center": [
+    0.0058,
+    0.0534,
+    0.0004
+   ],
+   "radius": 0.0093,
+   "tris": 7028
+  },
+  {
+   "id": "og_oesophagus",
+   "name": "Gullet (oesophagus)",
+   "system": "organs",
+   "node": "robin_oesophagus",
+   "color": "#c88f86",
+   "mesh": "og_oesophagus",
+   "lod": "near+mid",
+   "cutFace": "gut",
+   "center": [
+    0.0127,
+    0.0725,
+    -0.0007
+   ],
+   "radius": 0.0165,
+   "tris": 1136
+  },
+  {
+   "id": "og_proventriculus",
+   "name": "Proventriculus (glandular stomach)",
+   "system": "organs",
+   "node": "robin_proventriculus",
+   "color": "#d7a58b",
+   "mesh": "og_proventriculus",
+   "lod": "near+mid",
+   "cutFace": "organ",
+   "center": [
+    0.0068,
+    0.0555,
+    -0.0016
+   ],
+   "radius": 0.0032,
+   "tris": 2124
+  },
+  {
+   "id": "og_gizzard",
+   "name": "Gizzard (muscular stomach)",
+   "system": "organs",
+   "node": "robin_gizzard",
+   "color": "#8a5a4a",
+   "mesh": "og_gizzard",
+   "lod": "near+mid",
+   "cutFace": "muscle",
+   "center": [
+    0.0027,
+    0.0497,
+    -0.0026
+   ],
+   "radius": 0.005,
+   "tris": 3084
+  },
+  {
+   "id": "og_spleen",
+   "name": "Spleen",
+   "system": "organs",
+   "node": "robin_spleen",
+   "color": "#7d3b4a",
+   "mesh": "og_spleen",
+   "lod": "near+mid",
+   "cutFace": "organ",
+   "center": [
+    0.0017,
+    0.0548,
+    0.0036
+   ],
+   "radius": 0.0015,
+   "tris": 1232
+  },
+  {
+   "id": "og_pancreas",
+   "name": "Pancreas",
+   "system": "organs",
+   "node": "robin_pancreas",
+   "color": "#e6c7a0",
+   "mesh": "og_pancreas",
+   "lod": "near+mid",
+   "cutFace": "organ",
+   "center": [
+    0.0068,
+    0.0478,
+    -0.0048
+   ],
+   "radius": 0.0048,
+   "tris": 1268
+  },
+  {
+   "id": "og_intestines",
+   "name": "Intestines",
+   "system": "organs",
+   "node": "robin_intestines",
+   "color": "#e0aa98",
+   "mesh": "og_intestines",
+   "lod": "near+mid",
+   "cutFace": "gut",
+   "center": [
+    -0.0074,
+    0.0416,
+    -0.0002
+   ],
+   "radius": 0.0124,
+   "tris": 1554
+  },
+  {
+   "id": "og_cloaca",
+   "name": "Cloaca",
+   "system": "organs",
+   "node": "robin_cloaca",
+   "color": "#c9786b",
+   "mesh": "og_cloaca",
+   "lod": "near+mid",
+   "cutFace": "organ",
+   "center": [
+    -0.0193,
+    0.0388,
+    0
+   ],
+   "radius": 0.0026,
+   "tris": 1404
+  },
+  {
+   "id": "og_rectum",
+   "name": "Rectum",
+   "system": "organs",
+   "node": "robin_rectum",
+   "color": "#c18a73",
+   "mesh": "og_rectum",
+   "lod": "near+mid",
+   "cutFace": "organ",
+   "center": [
+    -0.0186,
+    0.0399,
+    0
+   ],
+   "radius": 0.0017,
+   "tris": 126
+  },
+  {
+   "id": "og_kidneys",
+   "name": "Kidneys",
+   "system": "organs",
+   "node": "robin_kidneys",
+   "color": "#8d4a3c",
+   "mesh": "og_kidneys",
+   "lod": "near+mid",
+   "cutFace": "organ",
+   "center": [
+    -0.0175,
+    0.0563,
+    0
+   ],
+   "radius": 0.0092,
+   "tris": 10040
+  },
+  {
+   "id": "og_eyeballs",
+   "name": "Eyeballs",
+   "system": "eyes",
+   "node": "robin_eyeballs",
+   "color": "#e9e3d0",
+   "mesh": "og_eyeballs",
+   "lod": "near+mid",
+   "cutFace": "organ",
+   "center": [
+    0.028,
+    0.0971,
+    0
+   ],
+   "radius": 0.0123,
+   "tris": 1536
+  },
+  {
+   "id": "og_trachea",
+   "name": "Windpipe (trachea)",
+   "system": "airway",
+   "node": "robin_trachea",
+   "color": "#d8d2e0",
+   "mesh": "og_trachea",
+   "lod": "near+mid",
+   "cutFace": "tract",
+   "center": [
+    0.0168,
+    0.0798,
+    0
+   ],
+   "radius": 0.0141,
+   "tris": 1220
+  },
+  {
+   "id": "og_lungs",
+   "name": "Lungs",
+   "system": "airway",
+   "node": "robin_lungs",
+   "color": "#d98a86",
+   "mesh": "og_lungs",
+   "lod": "near+mid",
+   "cutFace": "organ",
+   "center": [
+    0.0007,
+    0.0675,
+    0
+   ],
+   "radius": 0.0138,
+   "tris": 13680
+  },
+  {
+   "id": "og_sac_interclav",
+   "name": "Interclavicular air sac",
+   "system": "airway",
+   "node": "robin_sac_interclav",
+   "color": "#cfe6ef",
+   "mesh": "og_sac_interclav",
+   "lod": "near+mid",
+   "cutFace": "air",
+   "center": [
+    0.0149,
+    0.0669,
+    0
+   ],
+   "radius": 0.0075,
+   "tris": 4692
+  },
+  {
+   "id": "og_sac_cervical",
+   "name": "Cervical air sacs",
+   "system": "airway",
+   "node": "robin_sac_cervical",
+   "color": "#cfe6ef",
+   "mesh": "og_sac_cervical",
+   "lod": "near+mid",
+   "cutFace": "air",
+   "center": [
+    0.0068,
+    0.0779,
+    0
+   ],
+   "radius": 0.005,
+   "tris": 3288
+  },
+  {
+   "id": "og_sac_ant",
+   "name": "Anterior thoracic air sacs",
+   "system": "airway",
+   "node": "robin_sac_ant",
+   "color": "#cfe6ef",
+   "mesh": "og_sac_ant",
+   "lod": "near+mid",
+   "cutFace": "air",
+   "center": [
+    0.0073,
+    0.0617,
+    0
+   ],
+   "radius": 0.012,
+   "tris": 7476
+  },
+  {
+   "id": "og_sac_post",
+   "name": "Posterior thoracic air sacs",
+   "system": "airway",
+   "node": "robin_sac_post",
+   "color": "#cfe6ef",
+   "mesh": "og_sac_post",
+   "lod": "near+mid",
+   "cutFace": "air",
+   "center": [
+    -0.0015,
+    0.0554,
+    0
+   ],
+   "radius": 0.0126,
+   "tris": 8108
+  },
+  {
+   "id": "og_sac_abd",
+   "name": "Abdominal air sacs",
+   "system": "airway",
+   "node": "robin_sac_abd",
+   "color": "#cfe6ef",
+   "mesh": "og_sac_abd",
+   "lod": "near+mid",
+   "cutFace": "air",
+   "center": [
+    -0.0093,
+    0.0446,
+    0
+   ],
+   "radius": 0.0138,
+   "tris": 12816
+  },
+  {
+   "id": "og_brain",
+   "name": "Brain",
+   "system": "nerves",
+   "node": "robin_brain",
+   "color": "#e3c6c0",
+   "mesh": "og_brain",
+   "lod": "near+mid",
+   "cutFace": "brain",
+   "center": [
+    0.0203,
+    0.0955,
+    0
+   ],
+   "radius": 0.0103,
+   "tris": 6944
+  },
+  {
+   "id": "og_optic_lobes",
+   "name": "Optic lobes",
+   "system": "nerves",
+   "node": "robin_optic_lobes",
+   "color": "#d8b5ad",
+   "mesh": "og_optic_lobes",
+   "lod": "near+mid",
+   "cutFace": "organ",
+   "center": [
+    0.0208,
+    0.0938,
+    0
+   ],
+   "radius": 0.0096,
+   "tris": 3952
+  },
+  {
+   "id": "og_optic_nerves",
+   "name": "Optic nerves",
+   "system": "nerves",
+   "node": "robin_optic_nerves",
+   "color": "#f0d896",
+   "mesh": "og_optic_nerves",
+   "lod": "near+mid",
+   "cutFace": "organ",
+   "center": [
+    0.0239,
+    0.0954,
+    0
+   ],
+   "radius": 0.0061,
+   "tris": 60
+  },
+  {
+   "id": "og_spinal_cord",
+   "name": "Spinal cord",
+   "system": "nerves",
+   "node": "robin_spinal_cord",
+   "color": "#f3e9c7",
+   "mesh": "og_spinal_cord",
+   "lod": "near+mid",
+   "cutFace": "nerve",
+   "center": [
+    -0.0073,
+    0.0713,
+    0
+   ],
+   "radius": 0.0281,
+   "tris": 1452
+  },
+  {
+   "id": "og_brachial",
+   "name": "Wing nerves (brachial plexus)",
+   "system": "nerves",
+   "node": "robin_brachial",
+   "color": "#efd66a",
+   "mesh": "og_brachial",
+   "lod": "near+mid",
+   "cutFace": "organ",
+   "center": [
+    -0.0044,
+    0.0703,
+    0
+   ],
+   "radius": 0.0205,
+   "tris": 600
+  },
+  {
+   "id": "og_sciatic",
+   "name": "Leg nerve (sciatic)",
+   "system": "nerves",
+   "node": "robin_sciatic",
+   "color": "#efd66a",
+   "mesh": "og_sciatic",
+   "lod": "near+mid",
+   "cutFace": "organ",
+   "center": [
+    -0.0058,
+    0.0423,
+    0
+   ],
+   "radius": 0.0197,
+   "tris": 580
+  },
+  {
+   "id": "og_vagus",
+   "name": "Vagus nerves",
+   "system": "nerves",
+   "node": "robin_vagus",
+   "color": "#e8c14e",
+   "mesh": "og_vagus",
+   "lod": "near+mid",
+   "cutFace": "organ",
+   "center": [
+    0.0105,
+    0.0757,
+    0
+   ],
+   "radius": 0.0141,
+   "tris": 656
+  },
+  {
+   "id": "sy_wall",
+   "name": "Syrinx: windpipe base and bronchi (cut open)",
+   "system": "d_syrinx",
+   "node": "robin_syrinx",
+   "color": "#d8d2e0",
+   "mesh": "sy_wall",
+   "parent": "og_trachea",
+   "cutFace": "tract",
+   "lod": "near+mid",
+   "center": [
+    0.0085,
+    0.0747,
+    0
+   ],
+   "radius": 0.0094,
+   "tris": 26048
+  },
+  {
+   "id": "sy_pessulus",
+   "name": "Pessulus",
+   "system": "d_syrinx",
+   "node": "robin_pessulus",
+   "color": "#eadfc8",
+   "mesh": "sy_pessulus",
+   "parent": "og_trachea",
+   "lod": "near+mid",
+   "center": [
+    0.0087,
+    0.0706,
+    0
+   ],
+   "radius": 0.0013,
+   "tris": 20
+  },
+  {
+   "id": "sy_membranes",
+   "name": "Tympaniform membranes",
+   "system": "d_syrinx",
+   "node": "robin_tympaniform",
+   "color": "#f2c9b8",
+   "mesh": "sy_membranes",
+   "parent": "og_trachea",
+   "solid": false,
+   "double": true,
+   "lod": "near+mid",
+   "center": [
+    0.0087,
+    0.0695,
+    0
+   ],
+   "radius": 0.0014,
+   "tris": 3464
+  },
+  {
+   "id": "sy_muscles",
+   "name": "Syringeal muscles",
+   "system": "d_syrinx",
+   "node": "robin_syr_muscles",
+   "color": "#b34a3e",
+   "mesh": "sy_muscles",
+   "parent": "og_trachea",
+   "cutFace": "muscle",
+   "lod": "near+mid",
+   "center": [
+    0.01,
+    0.0725,
+    0
+   ],
+   "radius": 0.0076,
+   "tris": 144
+  },
+  {
+   "id": "sy_rings",
+   "name": "Windpipe rings (complete)",
+   "system": "d_syrinx",
+   "node": "robin_syr_rings",
+   "color": "#e9e4ee",
+   "instances": "sy_rings",
+   "parent": "og_trachea",
+   "lod": "near+mid",
+   "center": [
+    8.4807,
+    76.6499,
+    0
+   ],
+   "radius": 4.2012,
+   "count": 9,
+   "tris": 1800
+  },
+  {
+   "id": "sy_halves",
+   "name": "Bronchial half-rings (C-shaped)",
+   "system": "d_syrinx",
+   "node": "robin_syr_rings",
+   "color": "#e9e4ee",
+   "instances": "sy_halves",
+   "parent": "og_trachea",
+   "lod": "near+mid",
+   "center": [
+    8.7778,
+    67.3606,
+    0
+   ],
+   "radius": 5.6867,
+   "count": 16,
+   "tris": 2400
+  },
+  {
+   "id": "ey_sclera",
+   "name": "Sclera (white of the eye)",
+   "system": "d_eye",
+   "node": "robin_eye_sclera",
+   "color": "#d6c9ae",
+   "mesh": "ey_sclera",
+   "parent": "og_eyeballs",
+   "double": true,
+   "cutFace": "bone",
+   "lod": "near+mid",
+   "center": [
+    0.0285,
+    0.0973,
+    0.0095
+   ],
+   "radius": 0.004,
+   "tris": 4274
+  },
+  {
+   "id": "ey_scleral_ring",
+   "name": "Scleral ring (small bones)",
+   "system": "d_eye",
+   "node": "robin_scleral_ring",
+   "color": "#e9dfc8",
+   "mesh": "ey_scleral_ring",
+   "parent": "og_eyeballs",
+   "double": true,
+   "cutFace": "bone",
+   "lod": "near+mid",
+   "center": [
+    0.0284,
+    0.0973,
+    0.0093
+   ],
+   "radius": 0.0031,
+   "tris": 3536
+  },
+  {
+   "id": "ey_cornea",
+   "name": "Cornea",
+   "system": "d_eye",
+   "node": "robin_cornea",
+   "color": "#dfeef5",
+   "mesh": "ey_cornea",
+   "parent": "og_eyeballs",
+   "double": true,
+   "opacity_max": 0.4,
+   "cutFace": "air",
+   "lod": "near+mid",
+   "center": [
+    0.0284,
+    0.0973,
+    0.0094
+   ],
+   "radius": 0.003,
+   "tris": 11416
+  },
+  {
+   "id": "ey_iris",
+   "name": "Iris and pupil",
+   "system": "d_eye",
+   "node": "robin_iris",
+   "color": "#4a3a2a",
+   "mesh": "ey_iris",
+   "parent": "og_eyeballs",
+   "double": true,
+   "cutFace": "bone",
+   "lod": "near+mid",
+   "center": [
+    0.0282,
+    0.0972,
+    0.0087
+   ],
+   "radius": 0.0026,
+   "tris": 11184
+  },
+  {
+   "id": "ey_lens",
+   "name": "Lens",
+   "system": "d_eye",
+   "node": "robin_lens",
+   "color": "#e9c860",
+   "mesh": "ey_lens",
+   "parent": "og_eyeballs",
+   "double": true,
+   "cutFace": "bone",
+   "lod": "near+mid",
+   "center": [
+    0.028,
+    0.0971,
+    0.0081
+   ],
+   "radius": 0.0015,
+   "tris": 3760
+  },
+  {
+   "id": "ey_vitreous",
+   "name": "Vitreous body",
+   "system": "d_eye",
+   "node": "robin_vitreous",
+   "color": "#8db6d6",
+   "mesh": "ey_vitreous",
+   "parent": "og_eyeballs",
+   "double": true,
+   "opacity_max": 0.45,
+   "cutFace": "air",
+   "lod": "near+mid",
+   "center": [
+    0.0284,
+    0.0972,
+    0.0091
+   ],
+   "radius": 0.0034,
+   "tris": 3298
+  },
+  {
+   "id": "ey_retina",
+   "name": "Retina",
+   "system": "d_eye",
+   "node": "robin_retina",
+   "color": "#c4585a",
+   "mesh": "ey_retina",
+   "parent": "og_eyeballs",
+   "double": true,
+   "cutFace": "organ",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_retina",
+    "D": 0.00026,
+    "button": "Look inside the retina"
+   },
+   "lod": "near+mid",
+   "center": [
+    0.0282,
+    0.0972,
+    0.0087
+   ],
+   "radius": 0.0035,
+   "tris": 1702
+  },
+  {
+   "id": "ey_choroid",
+   "name": "Choroid (dark layer)",
+   "system": "d_eye",
+   "node": "robin_choroid",
+   "color": "#2a201c",
+   "mesh": "ey_choroid",
+   "parent": "og_eyeballs",
+   "double": true,
+   "cutFace": "bone",
+   "lod": "near+mid",
+   "center": [
+    0.0283,
+    0.0972,
+    0.0089
+   ],
+   "radius": 0.0036,
+   "tris": 394
+  },
+  {
+   "id": "ey_pecten",
+   "name": "Pecten (pleated fold)",
+   "system": "d_eye",
+   "node": "robin_pecten",
+   "color": "#b64a45",
+   "mesh": "ey_pecten",
+   "parent": "og_eyeballs",
+   "double": true,
+   "solid": false,
+   "lod": "near+mid",
+   "center": [
+    0.0273,
+    0.097,
+    0.0064
+   ],
+   "radius": 0.0017,
+   "tris": 112
+  },
+  {
+   "id": "ey_optic_nerve",
+   "name": "Optic nerve",
+   "system": "d_eye",
+   "node": "robin_optic_nerve",
+   "color": "#f0d896",
+   "mesh": "ey_optic_nerve",
+   "parent": "og_eyeballs",
+   "double": true,
+   "cutFace": "nerve",
+   "lod": "near+mid",
+   "center": [
+    0.0264,
+    0.0954,
+    0.0031
+   ],
+   "radius": 0.0021,
+   "tris": 36
+  },
+  {
+   "id": "hd_muscle",
+   "name": "Heart muscle (cut open)",
+   "system": "d_heart",
+   "node": "robin_heart",
+   "color": "#b9524a",
+   "mesh": "hd_muscle",
+   "cutFace": "muscle",
+   "lod": "near+mid",
+   "center": [
+    0.0098,
+    0.059,
+    0
+   ],
+   "radius": 0.0061,
+   "tris": 5876
+  },
+  {
+   "id": "hd_lv",
+   "name": "Left ventricle (cavity)",
+   "system": "d_heart",
+   "node": "robin_lv",
+   "color": "#e0463c",
+   "mesh": "hd_lv",
+   "parent": "og_heart",
+   "cutFace": "blood_l",
+   "lod": "near+mid",
+   "center": [
+    0.0099,
+    0.0584,
+    -0.0009
+   ],
+   "radius": 0.0035,
+   "tris": 5164
+  },
+  {
+   "id": "hd_rv",
+   "name": "Right ventricle (cavity)",
+   "system": "d_heart",
+   "node": "robin_rv",
+   "color": "#4f6fb5",
+   "mesh": "hd_rv",
+   "parent": "og_heart",
+   "cutFace": "blood_r",
+   "lod": "near+mid",
+   "center": [
+    0.0099,
+    0.059,
+    0.002
+   ],
+   "radius": 0.0034,
+   "tris": 3784
+  },
+  {
+   "id": "hd_la",
+   "name": "Left atrium (cavity)",
+   "system": "d_heart",
+   "node": "robin_la",
+   "color": "#e0463c",
+   "mesh": "hd_la",
+   "parent": "og_heart",
+   "cutFace": "blood_l",
+   "lod": "near+mid",
+   "center": [
+    0.0103,
+    0.0621,
+    -0.0023
+   ],
+   "radius": 0.0017,
+   "tris": 1584
+  },
+  {
+   "id": "hd_ra",
+   "name": "Right atrium (cavity)",
+   "system": "d_heart",
+   "node": "robin_ra",
+   "color": "#4f6fb5",
+   "mesh": "hd_ra",
+   "parent": "og_heart",
+   "cutFace": "blood_r",
+   "lod": "near+mid",
+   "center": [
+    0.0103,
+    0.0621,
+    0.0023
+   ],
+   "radius": 0.0018,
+   "tris": 1796
+  },
+  {
+   "id": "r_belly_mid",
+   "name": "Belly",
+   "system": "outside",
+   "node": "robin_belly",
+   "color": "#e6dfcc",
+   "mesh": "r_belly_mid",
+   "lod": "mid",
+   "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    0.0016,
+    0.045,
+    0
+   ],
+   "radius": 0.0276,
+   "tris": 1394
+  },
+  {
+   "id": "r_flank_mid",
+   "name": "Flank",
+   "system": "outside",
+   "node": "robin_flank",
+   "color": "#9a8662",
+   "mesh": "r_flank_mid",
+   "lod": "mid",
+   "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    -0.0014,
+    0.0656,
+    0
+   ],
+   "radius": 0.0291,
+   "tris": 1000
+  },
+  {
+   "id": "r_breast_mid",
+   "name": "Breast",
+   "system": "outside",
+   "node": "robin_breast",
+   "color": "#d6661f",
+   "mesh": "r_breast_mid",
+   "lod": "mid",
+   "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    0.0167,
+    0.0653,
+    0
+   ],
+   "radius": 0.0222,
+   "tris": 673
+  },
+  {
+   "id": "r_rump_mid",
+   "name": "Rump",
+   "system": "outside",
+   "node": "robin_rump",
+   "color": "#7c6842",
+   "mesh": "r_rump_mid",
+   "lod": "mid",
+   "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    -0.0236,
+    0.0469,
+    0
+   ],
+   "radius": 0.0207,
+   "tris": 1052
+  },
+  {
+   "id": "r_vent_mid",
+   "name": "Vent and undertail area",
+   "system": "outside",
+   "node": "robin_vent",
+   "color": "#d6ccb2",
+   "mesh": "r_vent_mid",
+   "lod": "mid",
+   "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    -0.0118,
+    0.0356,
+    0
+   ],
+   "radius": 0.0164,
+   "tris": 377
+  },
+  {
+   "id": "r_grey_mid",
+   "name": "Grey border of the breast",
+   "system": "outside",
+   "node": "robin_grey",
+   "color": "#879399",
+   "mesh": "r_grey_mid",
+   "lod": "mid",
+   "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    0.019,
+    0.0691,
+    -0.0001
+   ],
+   "radius": 0.0212,
+   "tris": 466
+  },
+  {
+   "id": "r_back_mid",
+   "name": "Back (mantle and scapulars)",
+   "system": "outside",
+   "node": "robin_back",
+   "color": "#6d5b3a",
+   "mesh": "r_back_mid",
+   "lod": "mid",
+   "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    -0.0064,
+    0.0689,
+    0.0001
+   ],
+   "radius": 0.022,
+   "tris": 410
+  },
+  {
+   "id": "r_nape_mid",
+   "name": "Nape and neck",
+   "system": "outside",
+   "node": "robin_nape",
+   "color": "#7c6c4a",
+   "mesh": "r_nape_mid",
+   "lod": "mid",
+   "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    0.0032,
+    0.0873,
+    0
+   ],
+   "radius": 0.0222,
+   "tris": 863
+  },
+  {
+   "id": "r_face_mid",
+   "name": "Face and throat",
+   "system": "outside",
+   "node": "robin_face",
+   "color": "#d2621f",
+   "mesh": "r_face_mid",
+   "lod": "mid",
+   "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    0.0277,
+    0.0933,
+    0
+   ],
+   "radius": 0.0153,
+   "tris": 851
+  },
+  {
+   "id": "r_crown_mid",
+   "name": "Crown",
+   "system": "outside",
+   "node": "robin_crown",
+   "color": "#6f5e3c",
+   "mesh": "r_crown_mid",
+   "lod": "mid",
+   "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
+   "center": [
+    0.019,
+    0.0984,
+    -0.0003
+   ],
+   "radius": 0.0138,
+   "tris": 305
+  },
+  {
+   "id": "body_far",
+   "name": "Robin",
+   "system": "outside",
+   "node": "robin",
+   "color": "#9a6a3c",
+   "mesh": "body_far",
+   "lod": "far",
+   "far_of": "r_back",
+   "solid": false,
+   "center": [
+    0.0004,
+    0.068,
+    0
+   ],
+   "radius": 0.0483,
+   "tris": 1322
+  }
+ ],
+ "stats": {
+  "parts": 130,
+  "uniqueMeshTris": 359137,
+  "nearTris": 62818,
+  "midTris": 34889,
+  "farTris": 1322
+ }
+}

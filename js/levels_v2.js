@@ -672,19 +672,11 @@ BUILD.life = (c) => {
     for (let k = 0; k < 6; k++) { const s = new THREE.Mesh(new THREE.IcosahedronGeometry(2 + r() * 2, 2), cm); s.position.set((r() - .5) * 8, (r() - .3) * 2, (r() - .5) * 4); cg.add(s); }
     const a = r() * TAU, d = 40 + r() * 70; cg.position.set(Math.cos(a) * d, 26 + r() * 14, Math.sin(a) * d); g.add(cg); c.pickables.push(cg); clouds.push(cg);
   }
-  // birds
-  const birds = [];
-  for (let i = 0; i < 3; i++) {
-    const b = new THREE.Group(); b.userData = { id: 'bird', priority: 2 };
-    const bm = smat(0x2a2a33);
-    const body = new THREE.Mesh(new THREE.SphereGeometry(1, 10, 8), bm); body.scale.set(.25, .08, .08); b.add(body);
-    const ws = [-1, 1].map(s => { const piv = new THREE.Group(); const w = new THREE.Mesh(new THREE.BoxGeometry(.18, .01, .45), bm); w.position.z = s * .24; piv.add(w); b.add(piv); return { piv, s }; });
-    b.add(hitSphere(.9, 'bird', 2));
-    g.add(b); c.pickables.push(b); birds.push({ b, ws, r: 9 + i * 3, h: 8 + i * 1.5, sp: .25 + i * .05, ph: i * 2 });
-  }
-  c.addLabel(birds[0].b, 'Bird', { offset: new V3(0, .5, 0) });
+  // the three cartoon birds are gone: the European robin is a data thing now (data/things/robin, standing on the boulder; see data/things/index.json).
+  // The old pick id `bird` stays as an alias: a tiny invisible target at the robin that "Bird" in search and the fly-to list use to find it (the robin's own parts take every real click).
+  const birdAlias = new THREE.Group(); birdAlias.userData = { id: 'bird', node: 'robin', priority: 0 }; birdAlias.position.set(-4.3, .72, 3.2); g.add(birdAlias); c.pickables.push(birdAlias);
   // every clickable park object opens its own card (data/nodes/park_*.json); objects that have no card yet keep the old INFO text
-  { const PN = { pond: 'park_pond', cloud: 'park_cloud', bird: 'park_bird', sunSky: 'park_sun', air: 'park_sky', ground: 'park_ground' };
+  { const PN = { pond: 'park_pond', cloud: 'park_cloud', sunSky: 'park_sun', air: 'park_sky', ground: 'park_ground' };
     c.pickables.forEach(o => o.traverse(m => { const n = m.userData && PN[m.userData.id]; if (n) m.userData.node = n; })); }
   c.update = (dt, t) => {
     const wave = false;
@@ -693,7 +685,6 @@ BUILD.life = (c) => {
     arms[0].piv.rotation.z = -.12 - Math.sin(t * 1.3) * .02;
     human.scale.y = 1 + Math.sin(t * 2) * .006;
     clouds.forEach((cg, i) => { cg.position.x += dt * .6; if (cg.position.x > 120) cg.position.x = -120; });
-    birds.forEach(B => { const a = t * B.sp + B.ph; B.b.position.set(Math.cos(a) * B.r, B.h + Math.sin(t * .7 + B.ph) * .6, Math.sin(a) * B.r - 4); B.b.rotation.y = -a; B.ws.forEach(w => w.piv.rotation.x = Math.sin(t * 8 + B.ph) * .55 * w.s); });
   };
   c.focusIn = () => new V3(0, 1.2, 0);
   c.focusFor = (k, o) => (o && o.type === 'plant') ? { pos: new V3(-13, 4.2, -9), r: 1.4 } : { pos: new V3(0, 1.2, 0), r: .45 };

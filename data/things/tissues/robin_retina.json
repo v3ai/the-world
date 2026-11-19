@@ -1,0 +1,149 @@
+{
+ "cell": "animal",
+ "id": "robin_retina",
+ "tag": "Inside the retina",
+ "title": "Inside a robin's retina",
+ "node": "robin_retina_scene",
+ "blurb": "Light-sensing cells (photoreceptors) of the retina, with fibres below them that run to the optic nerve. Click a cell or the small blue spheres that stand for cryptochrome.",
+ "note": "Schematic. The cell shapes and sizes, and the numbers drawn, are illustrative. Cryptochrome is drawn as small spheres inside the photoreceptors to show a hypothesis (a magnetic sensor): where it sits in the living retina is not shown by this picture, and the idea is not proved.",
+ "bg": "#f2eee6",
+ "center": [
+  0,
+  0,
+  0
+ ],
+ "D_um": 300,
+ "labels": [
+  {
+   "text": "Photoreceptor cell",
+   "at": [
+    -120,
+    70,
+    30
+   ],
+   "pop": "photoreceptor"
+  },
+  {
+   "text": "Cryptochrome (hypothesis)",
+   "at": [
+    -120,
+    20,
+    30
+   ],
+   "pop": "cry"
+  },
+  {
+   "text": "Nerve fibres to the optic nerve",
+   "at": [
+    -120,
+    -80,
+    30
+   ],
+   "pop": "fibre"
+  }
+ ],
+ "populations": [
+  {
+   "id": "photoreceptor",
+   "name": "Photoreceptor cell",
+   "node": "robin_photoreceptor",
+   "shape": "cylinder",
+   "size": [
+    9,
+    90,
+    9
+   ],
+   "color": "#c9a05a",
+   "opacity": 0.8,
+   "ink": 1,
+   "priority": 2,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -90,
+     20,
+     -30
+    ],
+    "n": [
+     10,
+     1,
+     4
+    ],
+    "step": [
+     18,
+     1,
+     18
+    ],
+    "jitter": 0.02
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "retinal",
+    "name": "Retinal, the light-catching molecule",
+    "button": "See the molecule: retinal, the light-catching molecule"
+   }
+  },
+  {
+   "id": "cry",
+   "name": "Cryptochrome 4 (hypothesis)",
+   "node": "robin_cryptochrome",
+   "shape": "ellipsoid",
+   "size": [
+    4,
+    4,
+    4
+   ],
+   "color": "#4f6fb5",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 6,
+   "arrange": {
+    "kind": "inside",
+    "of": "photoreceptor",
+    "per": 2,
+    "margin": 0.7,
+    "seed": 6
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "fad",
+    "name": "FAD, the light-absorbing cofactor of cryptochrome",
+    "button": "See the molecule: FAD, the cofactor that absorbs the light"
+   }
+  },
+  {
+   "id": "fibre",
+   "name": "Nerve fibres",
+   "node": "robin_retina_scene",
+   "shape": "tube_x",
+   "size": [
+    220,
+    5,
+    5
+   ],
+   "color": "#e9dfc4",
+   "opacity": 0.9,
+   "ink": 1,
+   "priority": 1,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     0,
+     -90,
+     -30
+    ],
+    "n": [
+     1,
+     3,
+     4
+    ],
+    "step": [
+     1,
+     12,
+     18
+    ],
+    "jitter": 0.02
+   }
+  }
+ ]
+}
