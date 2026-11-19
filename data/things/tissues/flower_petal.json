@@ -4,8 +4,8 @@
  "id": "flower_petal",
  "title": "Inside a buttercup petal",
  "node": "rn_gloss",
- "blurb": "A slice through a petal, about 0.18 mm thick, with every layer at its published thickness. The shiny top skin is the thin flat sheet at the top. Drag to turn it. Click a layer.",
- "note": "Layer thicknesses are from the optical model of van der Kooi and colleagues (2017): upper epidermis 2.7 micrometres (measured in R. acris), starch layer 38, mesophyll 100, lower epidermis 40. The air gap is drawn 4 micrometres and in life it varies. Cell widths, the size and number of starch grains and the cell layout are illustrative, not measured.",
+ "blurb": "A slice through a petal about 0.18 mm thick, with its layers in the order found in glossy buttercups. The shiny top skin is the thin flat sheet at the top. Drag to turn it. Click a layer.",
+ "note": "The order of the layers follows the optical study of glossy buttercup petals by van der Kooi and colleagues (2017). The layer thicknesses (upper skin 2.7 micrometres, starch layer 38, spongy layer 100, lower skin 40, air gap 4) are model values for the picture, not measurements of a petal. Cell widths, the size and number of starch grains and the cell layout are illustrative.",
  "bg": "#f3efe6",
  "center": [
   0,

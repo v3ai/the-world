@@ -15,7 +15,7 @@
     "value": 2400
    },
    {
-    "label": "forewing",
+    "label": "wing length",
     "value": 9700
    },
    {
@@ -25,7 +25,7 @@
   ],
   "ylabel": "micrometres",
   "logy": true,
-  "caption": "Sizes on a honey bee worker, in micrometres, on a log scale: facet width, ocellus and eye length from Streinzer and colleagues (2013), forewing length 9.7 mm, body about 14 mm."
+  "caption": "Sizes on a honey bee worker, in micrometres, on a log scale: facet width, ocellus and eye length from Streinzer and colleagues (2013), average wing length 9.7 mm (Altshuler and colleagues 2005), body about 14 mm in the model."
  },
  "bee_head": {
   "type": "blocks",
@@ -101,7 +101,7 @@
   ],
   "ylabel": "ommatidia per eye",
   "logy": false,
-  "caption": "Ommatidia per eye in Apis mellifera (Streinzer et al. 2013, Table 1): worker 5,375, drone 9,993 (the queen figure is from a search summary of the same table)."
+  "caption": "Ommatidia per eye in Apis mellifera (Streinzer et al. 2013, Table 1): queen 4,460, worker 5,375, drone 9,993."
  },
  "bee_facet": {
   "type": "plot",
@@ -207,21 +207,21 @@
   ],
   "fns": [
    {
-    "f": "exp(-((x-344)/45)^2)",
-    "label": "ultraviolet receptor (peak 344 nm)"
+    "f": "exp(-((x-340)/45)^2)",
+    "label": "ultraviolet receptor (peak about 340 nm)"
    },
    {
-    "f": "exp(-((x-436)/55)^2)",
-    "label": "blue receptor (peak 436 nm)"
+    "f": "exp(-((x-430)/55)^2)",
+    "label": "blue receptor (peak about 430 nm)"
    },
    {
-    "f": "exp(-((x-544)/70)^2)",
-    "label": "green receptor (peak 544 nm)"
+    "f": "exp(-((x-540)/70)^2)",
+    "label": "green receptor (peak about 540 nm)"
    }
   ],
   "xlabel": "wavelength (nm)",
   "ylabel": "relative sensitivity",
-  "caption": "Schematic bell curves centred on the measured peaks of the three honey bee receptors (344, 436 and about 544 nm; Hempel de Ibarra and colleagues 2014). The widths are drawn by eye; real curves are not symmetric."
+  "caption": "Schematic bell curves centred on the approximate peaks of the three honey bee receptors (about 340, 430 and 540 nm; Lichtenstein and colleagues 2018). The widths are drawn by eye; real curves are not symmetric."
  },
  "bee_rhabdom": {
   "type": "blocks",
@@ -350,18 +350,14 @@
    }
   ],
   "flow": false,
-  "caption": "Jaws are tools: muscles in the head drive them to work wax and handle things."
+  "caption": "Jaws are tools: muscles in the head drive them to work wax and handle things. Liquids are taken by the tongue."
  },
  "bee_proboscis": {
   "type": "bars",
   "bars": [
    {
-    "label": "proboscis, Egyptian bees",
-    "value": 5.69
-   },
-   {
-    "label": "proboscis, Himalayan bees (mean)",
-    "value": 6.29
+    "label": "tongue (glossa), bees of Wei et al. 2023",
+    "value": 3.5
    },
    {
     "label": "shown extended in the model",
@@ -370,7 +366,7 @@
   ],
   "ylabel": "millimetres",
   "logy": false,
-  "caption": "Proboscis length in two studies (5.69 mm and 6.29 mm) and the 3.9 mm shown partly extended in the model."
+  "caption": "Tongue length of the bees in the PNAS study (about 3.5 mm) and the 3.9 mm shown partly extended in the model. Another study gives about 2 mm for the glossa, so lengths depend on the bees and the method."
  },
  "bee_thorax": {
   "type": "blocks",
@@ -426,7 +422,7 @@
   ],
   "ylabel": "millimetres",
   "logy": false,
-  "caption": "The forewing is about 9.7 mm long; the body about 14 mm (model); the hind tibia 2.9 mm (measured range 2.7 to 3.0 mm)."
+  "caption": "Average wing length 9.7 mm (Altshuler et al. 2005); the body about 14 mm and the hind tibia 2.9 mm are the model's sizes."
  },
  "bee_hamuli": {
   "type": "blocks",
@@ -544,7 +540,7 @@
   ],
   "xlabel": "wingbeat frequency (Hz)",
   "ylabel": "average wing-tip speed (m/s)",
-  "caption": "Arithmetic on sourced values: a wing 9.7 mm long, swept through an angle A twice per beat, at 230 beats per second, has an average tip speed of about 7 m/s at 90°. It is a calculation, not a measurement."
+  "caption": "Arithmetic on published values (average wing length 9.7 mm, about 90 degrees and 230 beats per second; Altshuler and colleagues 2005): a wing swept through an angle A twice per beat has an average tip speed of about 7 m/s at 90 degrees. It is a calculation, not a measurement."
  },
  "bee_flight_muscles": {
   "type": "blocks",
@@ -780,7 +776,7 @@
   "nodes": [
    {
     "id": "t",
-    "label": "Tarsal segments (taste and feel)",
+    "label": "Tarsal segments",
     "x": 20,
     "y": 30
    },
@@ -792,7 +788,7 @@
    },
    {
     "id": "p",
-    "label": "Sticky pad: grips smooth surfaces",
+    "label": "Soft pad: for smooth surfaces",
     "x": 80,
     "y": 50,
     "color": "orange"
@@ -848,24 +844,40 @@
   "caption": "Pollen moves from body to comb to press to basket."
  },
  "bee_pollen_load": {
-  "type": "bars",
-  "bars": [
+  "type": "blocks",
+  "nodes": [
    {
-    "label": "pollen eaten by an adult worker per day (low)",
-    "value": 3.4
+    "id": "h",
+    "label": "Pollen catches in branched hairs",
+    "x": 15,
+    "y": 25
    },
    {
-    "label": "pollen eaten per day (high)",
-    "value": 4.3
+    "id": "p",
+    "label": "Packed with a little nectar",
+    "x": 50,
+    "y": 50
    },
    {
-    "label": "sugar needed per day",
-    "value": 4
+    "id": "b",
+    "label": "Carried home in the basket",
+    "x": 85,
+    "y": 75,
+    "color": "orange"
    }
   ],
-  "ylabel": "milligrams per day",
-  "logy": false,
-  "caption": "An adult worker eats about 3.4 to 4.3 mg of pollen and needs about 4 mg of sugar per day (Honey bee, Wikipedia)."
+  "edges": [
+   {
+    "from": "h",
+    "to": "p"
+   },
+   {
+    "from": "p",
+    "to": "b"
+   }
+  ],
+  "flow": false,
+  "caption": "From flower to basket to nest: the pollen is the colony's protein."
  },
  "bee_antenna_cleaner": {
   "type": "blocks",
@@ -955,37 +967,27 @@
   "type": "blocks",
   "nodes": [
    {
-    "id": "h",
-    "label": "Honey and pollen eaten",
-    "x": 15,
-    "y": 50
-   },
-   {
     "id": "g",
-    "label": "Wax glands make wax",
-    "x": 50,
+    "label": "Wax glands over the wax mirrors, segments 4 to 7",
+    "x": 20,
     "y": 50,
     "color": "orange"
    },
    {
     "id": "f",
-    "label": "Flakes on the underside",
-    "x": 70,
+    "label": "Flakes collect in pockets on the underside",
+    "x": 55,
     "y": 50
    },
    {
     "id": "c",
-    "label": "Chewed into comb",
+    "label": "Picked off and worked into comb",
     "x": 90,
     "y": 50,
     "color": "green"
    }
   ],
   "edges": [
-   {
-    "from": "h",
-    "to": "g"
-   },
    {
     "from": "g",
     "to": "f"
@@ -996,7 +998,7 @@
    }
   ],
   "flow": false,
-  "caption": "From food to comb."
+  "caption": "From gland to comb."
  },
  "bee_nasonov": {
   "type": "blocks",
@@ -1046,13 +1048,13 @@
    },
    {
     "id": "p",
-    "label": "Bee pulls away: sting, sac and part of abdomen tear free",
+    "label": "Bee pulls away: sting, sac and part of abdomen can tear free",
     "x": 50,
     "y": 50
    },
    {
     "id": "v",
-    "label": "Sting keeps pumping venom",
+    "label": "Detached sting keeps working for a short time",
     "x": 85,
     "y": 50,
     "color": "orange"
@@ -1079,7 +1081,7 @@
    }
   ],
   "flow": true,
-  "caption": "Why a worker dies after stinging a mammal: the barbed sting stays behind and keeps working."
+  "caption": "What happens when a worker stings a mammal. Why the sting autotomy evolved is a hypothesis (kin selection is the usual one)."
  },
  "bee_venom_sac": {
   "type": "blocks",
@@ -1118,20 +1120,40 @@
   "caption": "Venom: made, stored, pumped."
  },
  "bee_ovaries": {
-  "type": "bars",
-  "bars": [
+  "type": "blocks",
+  "nodes": [
    {
-    "label": "worker ovaries (reduced)",
-    "value": 1
+    "id": "q",
+    "label": "Queen: large ovaries, lays the eggs",
+    "x": 20,
+    "y": 25,
+    "color": "orange"
    },
    {
-    "label": "queen ovaries (large)",
-    "value": 10
+    "id": "w",
+    "label": "Worker: ovaries reduced, held back by queen and brood",
+    "x": 50,
+    "y": 55
+   },
+   {
+    "id": "n",
+    "label": "No queen: some workers' ovaries develop; unfertilised eggs become males",
+    "x": 80,
+    "y": 85
    }
   ],
-  "ylabel": "relative size (schematic)",
-  "logy": false,
-  "caption": "Schematic: a worker's ovaries are small and a queen's large. The numbers are only a code for \"small\" and \"large\", not measurements."
+  "edges": [
+   {
+    "from": "q",
+    "to": "w"
+   },
+   {
+    "from": "w",
+    "to": "n"
+   }
+  ],
+  "flow": false,
+  "caption": "Reproduction in a colony: the queen lays; workers normally do not."
  },
  "bee_oesophagus": {
   "type": "blocks",
@@ -1173,17 +1195,17 @@
   "type": "bars",
   "bars": [
    {
-    "label": "nectar carried in the crop",
-    "value": 75
+    "label": "maximum load in a foraging model (Winston 1987)",
+    "value": 32.5
    },
    {
-    "label": "daily sugar need of an adult",
-    "value": 4
+    "label": "uptake of 1.5 M sucrose at an artificial flower (Stabentheiner and Kovac 2014)",
+    "value": 64.9
    }
   ],
-  "ylabel": "milligrams",
+  "ylabel": "milligrams of nectar",
   "logy": false,
-  "caption": "One crop holds about 75 mg of nectar, many times an adult worker's daily sugar need (about 4 mg)."
+  "caption": "Two published figures for how much a forager can carry: they differ with the bees, the method and the solution, so the card gives a range of about 30 to 65 mg."
  },
  "bee_proventriculus": {
   "type": "blocks",
@@ -1474,7 +1496,7 @@
   "nodes": [
    {
     "id": "s",
-    "label": "Sight and smell arrive at the cups",
+    "label": "Smell and sight arrive at the cups",
     "x": 15,
     "y": 50
    },
@@ -1487,7 +1509,7 @@
    },
    {
     "id": "l",
-    "label": "Memory: this colour or scent means food",
+    "label": "Learned link: this colour or scent means food (memory also lies elsewhere)",
     "x": 85,
     "y": 50,
     "color": "green"
@@ -1504,7 +1526,7 @@
    }
   ],
   "flow": false,
-  "caption": "Associative learning is the job of the mushroom bodies."
+  "caption": "The mushroom bodies take part in associative learning."
  },
  "bee_nerve_cord": {
   "type": "blocks",
@@ -1523,13 +1545,13 @@
    },
    {
     "id": "t",
-    "label": "Thoracic ganglia: legs, wings",
+    "label": "Thoracic ganglia (2): legs, wings",
     "x": 60,
     "y": 50
    },
    {
     "id": "a",
-    "label": "Abdominal ganglia: segments and sting",
+    "label": "Abdominal ganglia (5): segments and sting",
     "x": 85,
     "y": 50
    }
@@ -1549,7 +1571,7 @@
    }
   ],
   "flow": false,
-  "caption": "The chain of ganglia from head to sting."
+  "caption": "The chain of ganglia from head to sting in a real worker. The model draws four abdominal ganglia."
  },
  "bee_tracheae": {
   "type": "blocks",
@@ -1603,17 +1625,25 @@
   "type": "bars",
   "bars": [
    {
-    "label": "thoracic pairs",
+    "label": "real worker: thorax and propodeum",
     "value": 3
    },
    {
-    "label": "abdominal pairs drawn in the model",
+    "label": "real worker: abdomen behind",
+    "value": 7
+   },
+   {
+    "label": "model: thorax and propodeum",
+    "value": 3
+   },
+   {
+    "label": "model: abdomen",
     "value": 6
    }
   ],
-  "ylabel": "pairs",
+  "ylabel": "pairs of spiracles",
   "logy": false,
-  "caption": "Three pairs of spiracles are on the thorax (Buzz About Bees); the model shows six on the abdomen as a schematic, the real number was not confirmed."
+  "caption": "A worker has 10 pairs (Snodgrass 1910): 3 on the apparent thorax (2 true thoracic and 1 on the propodeum) and 7 on the abdomen. The model draws 9."
  },
  "bee_air_sacs": {
   "type": "blocks",
@@ -1662,14 +1692,14 @@
    },
    {
     "id": "x",
-    "label": "Exocuticle: hard",
+    "label": "Exocuticle: rigid, darkened",
     "x": 50,
     "y": 35,
     "color": "orange"
    },
    {
     "id": "n",
-    "label": "Endocuticle: layered chitin",
+    "label": "Endocuticle: layered chitin, tough and flexible",
     "x": 50,
     "y": 60
    },
@@ -1748,22 +1778,16 @@
    },
    {
     "id": "p",
-    "label": "Catches pollen",
-    "x": 50,
+    "label": "Pollen tangles in it",
+    "x": 85,
     "y": 25,
     "color": "orange"
    },
    {
-    "id": "w",
-    "label": "Keeps thorax warm",
-    "x": 50,
-    "y": 75
-   },
-   {
     "id": "s",
-    "label": "Senses air and touch",
+    "label": "Some hairs sense touch",
     "x": 85,
-    "y": 50
+    "y": 75
    }
   ],
   "edges": [
@@ -1773,47 +1797,51 @@
    },
    {
     "from": "h",
-    "to": "w"
-   },
-   {
-    "from": "h",
     "to": "s"
    }
   ],
   "flow": false,
-  "caption": "Branched hairs do several jobs."
+  "caption": "Branched hairs catch pollen; some hairs are touch sensors."
  },
  "bee_nectar": {
   "type": "bars",
   "bars": [
    {
-    "label": "water",
-    "value": 80
+    "label": "nectar sugar, low end of the range",
+    "value": 10
    },
    {
-    "label": "sugars and the rest",
-    "value": 20
+    "label": "nectar sugar, high end of the range",
+    "value": 70
    }
   ],
-  "ylabel": "percent of nectar (about)",
+  "ylabel": "percent sugar by weight",
   "logy": false,
-  "caption": "Nectar is nearly 80% water (Western honey bee, Wikipedia)."
+  "caption": "Floral nectar ranges from about 10 to 70 percent sugar by weight (Nicolson 2022); water makes up the rest, so about 30 to 90 percent."
  },
  "bee_honey": {
   "type": "bars",
   "bars": [
    {
-    "label": "nectar: water content",
-    "value": 80
+    "label": "nectar water, if nectar is 70% sugar",
+    "value": 30
    },
    {
-    "label": "honey: water content (below)",
-    "value": 20
+    "label": "nectar water, if nectar is 10% sugar",
+    "value": 90
+   },
+   {
+    "label": "finished honey water, lower figure",
+    "value": 15.5
+   },
+   {
+    "label": "finished honey water, upper figure",
+    "value": 18
    }
   ],
   "ylabel": "percent water",
   "logy": false,
-  "caption": "Honey is dried below 20% water; nectar starts at about 80% (Western honey bee, Wikipedia)."
+  "caption": "Water in nectar spans about 30 to 90 percent (the rest of the 10 to 70 percent sugar range); finished honey holds about 15.5 to 18 percent (Honey, Wikipedia)."
  },
  "bee_vision": {
   "type": "plot",
@@ -1827,79 +1855,57 @@
   ],
   "fns": [
    {
-    "f": "exp(-((x-344)/45)^2)",
-    "label": "ultraviolet receptor (peak 344 nm)"
+    "f": "exp(-((x-340)/45)^2)",
+    "label": "ultraviolet receptor (peak about 340 nm)"
    },
    {
-    "f": "exp(-((x-436)/55)^2)",
-    "label": "blue receptor (peak 436 nm)"
+    "f": "exp(-((x-430)/55)^2)",
+    "label": "blue receptor (peak about 430 nm)"
    },
    {
-    "f": "exp(-((x-544)/70)^2)",
-    "label": "green receptor (peak 544 nm)"
+    "f": "exp(-((x-540)/70)^2)",
+    "label": "green receptor (peak about 540 nm)"
    }
   ],
   "xlabel": "wavelength (nm)",
   "ylabel": "relative sensitivity",
-  "caption": "The three colour channels of a honey bee: ultraviolet, blue and green. There is no receptor for red. The curves are schematic bell shapes centred on the measured peaks."
+  "caption": "The three colour channels of a honey bee: ultraviolet, blue and green. There is no receptor for red. The curves are schematic bell shapes centred on the approximate peaks."
  },
  "bee_waggle_dance": {
   "type": "plot",
   "x": [
-   0,
-   180
+   -90,
+   90
   ],
   "y": [
-   -180,
-   180
-  ],
-  "params": [
-   {
-    "id": "a",
-    "label": "angle of the food from the sun",
-    "min": -90,
-    "max": 90,
-    "value": 45,
-    "step": 5,
-    "unit": "°"
-   }
+   -90,
+   90
   ],
   "fns": [
    {
-    "f": "a",
-    "label": "angle of the waggle run from straight up (°)"
+    "f": "x",
+    "label": "angle of the waggle run from straight up"
    }
   ],
-  "readouts": [
-   {
-    "label": "Waggle run from vertical",
-    "value": "a",
-    "unit": "°, right if positive"
-   }
-  ],
-  "xlabel": "time (arbitrary)",
-  "ylabel": "angle (°)",
-  "caption": "The rule: the waggle run is tilted from vertical by the same angle as the food is from the sun. 45° right of the sun gives a run 45° right of up."
+  "xlabel": "angle of the food to the right of the sun direction (degrees)",
+  "ylabel": "angle of the waggle run to the right of straight up (degrees)",
+  "caption": "The rule: the waggle run is tilted from vertical by the same angle as the food is from the sun. 45 degrees right of the sun gives a run 45 degrees right of up. This is the rule of the dance; how much followers use it is debated."
  },
  "bee_colony": {
   "type": "bars",
   "bars": [
    {
-    "label": "midsummer colony (low)",
-    "value": 40000
-   },
-   {
-    "label": "midsummer colony (high)",
-    "value": 80000
-   },
-   {
-    "label": "workers in a large hive (Wikipedia: \"as many as\")",
+    "label": "workers, upper figure (Delaware extension)",
     "value": 60000
+   },
+   {
+    "label": "midsummer, upper figure quoted by Wikipedia",
+    "value": 80000
    }
   ],
   "ylabel": "bees",
   "logy": false,
-  "caption": "Colony sizes quoted in two sources: 40,000 to 80,000 in midsummer; \"as many as 60,000\" workers."
+  "caption": "Upper figures quoted for the number of workers in a colony at its peak. Colonies vary from some thousands in winter to tens of thousands in summer."
  },
  "bee_lifespan": {
   "type": "blocks",

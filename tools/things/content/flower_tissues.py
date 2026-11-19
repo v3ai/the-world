@@ -7,14 +7,17 @@ def pop(id, name, node, shape, size, color, opacity, arrange, ink=1, deeper=None
     if priority: d['priority'] = priority
     return d
 L = lambda *items: {'kind': 'list', 'items': [{'at': list(i[:3]), **({'rotY': i[3]} if len(i) > 3 else {})} for i in items]}
-def write(id, d): json.dump(d, open(OUT + id + '.json', 'w'), indent=1); print(id, len(d['populations']), 'populations')
+TAGS = {'flower_anther': 'Inside an anther', 'flower_carpel': 'Inside a carpel', 'flower_leaf': 'On a leaf surface', 'flower_petal': 'Inside a petal'}
+def write(id, d):
+    d = {'tag': TAGS[id], 'cell': 'plant', **d}   # scene tag shown in front of each card's kind line; cell type of the scene
+    json.dump(d, open(OUT + id + '.json', 'w'), indent=1); print(id, len(d['populations']), 'populations')
 
 # ---------- petal: cross-section through the four layers, true layer thicknesses ----------
 # stack from the bottom: lower epidermis 0-40, mesophyll 40-140, starch layer 140-178, air gap 178-182, upper epidermis 182-184.7 (thicknesses from van der Kooi et al. 2017, model values)
 write('flower_petal', {
   'id': 'flower_petal', 'title': 'Inside a buttercup petal', 'node': 'rn_gloss',
-  'blurb': 'A slice through a petal, about 0.18 mm thick, with every layer at its published thickness. The shiny top skin is the thin flat sheet at the top. Drag to turn it. Click a layer.',
-  'note': 'Layer thicknesses are from the optical model of van der Kooi and colleagues (2017): upper epidermis 2.7 micrometres (measured in R. acris), starch layer 38, mesophyll 100, lower epidermis 40. The air gap is drawn 4 micrometres and in life it varies. Cell widths, the size and number of starch grains and the cell layout are illustrative, not measured.',
+  'blurb': 'A slice through a petal about 0.18 mm thick, with its layers in the order found in glossy buttercups. The shiny top skin is the thin flat sheet at the top. Drag to turn it. Click a layer.',
+  'note': 'The order of the layers follows the optical study of glossy buttercup petals by van der Kooi and colleagues (2017). The layer thicknesses (upper skin 2.7 micrometres, starch layer 38, spongy layer 100, lower skin 40, air gap 4) are model values for the picture, not measurements of a petal. Cell widths, the size and number of starch grains and the cell layout are illustrative.',
   'bg': '#f3efe6', 'center': [0, 92, 0], 'D_um': 300,
   'labels': [
     {'text': 'Flat upper skin with yellow pigment: 2.7 µm (the mirror)', 'at': [-300, 186, 40], 'pop': 'epi_top'},
@@ -35,7 +38,7 @@ write('flower_petal', {
 write('flower_anther', {
   'id': 'flower_anther', 'title': 'Inside a buttercup anther', 'node': 'rn_anther',
   'blurb': 'A slice across an anther: a wall around four pollen sacs, each full of pollen grains. The grains are drawn at their real size (about 27 micrometres); the anther is about half a millimetre wide. Click a part.',
-  'note': 'The pollen grain size (about 27 by 26 micrometres) is from a pollen reference collection. The anther width, the shape of the sacs and the number of grains drawn are illustrative: a real sac holds far more grains than are shown, and I did not find measured anther dimensions for this species.',
+  'note': 'The pollen grain size (about 27 by 26 micrometres) is from a pollen reference collection. The anther width, the shape of the sacs and the number of grains drawn are illustrative: a real sac holds far more grains than are shown.',
   'bg': '#f3efe6', 'center': [0, 0, 0], 'D_um': 800,
   'labels': [
     {'text': 'Anther wall (skin, endothecium, tapetum)', 'at': [-300, 175, 100], 'pop': 'wall'},
@@ -54,7 +57,7 @@ write('flower_anther', {
 write('flower_carpel', {
   'id': 'flower_carpel', 'title': 'Inside a buttercup carpel', 'node': 'rn_carpel',
   'blurb': 'One carpel opened lengthwise: the ovary wall, the single ovule, and inside the ovule the embryo sac with its egg cell. A pollen tube is shown growing from the stigma down the style to the ovule. Click a part.',
-  'note': 'A diagram built from the usual flowering-plant plan. Sizes are illustrative (a carpel about 1.5 millimetres tall; the ovule about 0.5 mm; the embryo sac about 0.15 mm); the embryo sac drawn is the typical seven-celled pattern, which I could not confirm for this species. The pollen tube is drawn thicker than a real one so you can see it.',
+  'note': 'A diagram built from the usual flowering-plant plan. Sizes are illustrative (a carpel about 1.5 millimetres tall; the ovule about 0.5 mm; the embryo sac about 0.15 mm); the embryo sac drawn is the seven-celled pattern typical for flowering plants. The pollen tube is drawn thicker than a real one so you can see it.',
   'bg': '#f3efe6', 'center': [0, 650, 0], 'D_um': 1700,
   'labels': [
     {'text': 'Stigma (catches pollen)', 'at': [-300, 1330, 100], 'pop': 'stigma'},
@@ -83,7 +86,7 @@ cells = []
 write('flower_leaf', {
   'id': 'flower_leaf', 'title': 'The surface of a buttercup leaf', 'node': 'rn_leaf_epidermis',
   'blurb': 'The skin of a leaf seen from above and a little to the side: flat cells, pairs of guard cells around pores (stomata), and hairs standing up. Drag to turn it. Click a cell, a pore or a hair.',
-  'note': 'Illustrative. The species is described as hairy and, like other leaves, has stomata, but I did not find measured cell sizes, stomatal density or hair dimensions for it. The cells here are drawn about 40 micrometres across, the guard-cell pairs about 25 micrometres long, the hairs 15 micrometres wide and 400 to 800 micrometres long.',
+  'note': 'Illustrative. The species is described as hairy and, like other leaves, has stomata; the sizes in this scene are model values, not measurements. The cells here are drawn about 40 micrometres across, the guard-cell pairs about 25 micrometres long, the hairs 15 micrometres wide and 400 to 800 micrometres long.',
   'bg': '#f3efe6', 'center': [0, 150, 0], 'D_um': 900,
   'labels': [
     {'text': 'Hair (trichome)', 'at': [-260, 430, 40], 'pop': 'hair'},

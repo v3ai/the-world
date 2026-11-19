@@ -24,11 +24,11 @@
    "bee_honey"
   ],
   "processes": [],
-  "summary": "A western honey bee worker (Apis mellifera): a female, about 12 to 15 mm long, that gathers nectar and pollen, builds and cleans the nest and, in her last weeks, forages.",
+  "summary": "A western honey bee worker (Apis mellifera): a female, roughly 12 to 15 mm long, that gathers nectar and pollen, builds and cleans the nest and, in her last weeks, forages.",
   "layers": {
    "basics": "She is a six-legged insect with her body in three parts: a head with big eyes, feelers and a tongue, a middle part (the thorax) that carries the wings and legs, and a rear part (the abdomen) that holds the gut, the heart, the wax glands and the sting. Her skeleton is on the outside, like a suit of armour, and she has no lungs: air reaches her tissues through tubes. Use the layer buttons to peel her, and click any part for its card.",
-   "deeper": "Workers are the female bees that do the work of the colony; the queen lays the eggs and the males (drones) mate. A worker flies on two pairs of wings that beat together because of a row of small hooks, sees ultraviolet light but not red, and tells her sisters where food is by dancing. Her blood is not kept in a closed system of vessels the way yours is: it washes around the organs, pushed forward by a tube along her back.",
-   "expert": "Taxonomically she is an arthropod, a hexapod, a hymenopteran. Bees are part of the wasp lineage that turned to flowers for food. A worker is a haplodiploid female developed from a fertilised egg; her ovaries are reduced, though not always functionless. Nearly everything you can click here is one of the structures that textbook arthropod anatomy names, and the cards say where the honey bee departs from the general plan."
+   "deeper": "Workers are the female bees that do the work of the colony; the queen lays the eggs and the males (drones) mate. A worker flies on two pairs of wings that beat together because of a row of small hooks, sees ultraviolet light but has no receptor tuned to red, and can tell her sisters where food is by dancing. Her blood is not kept in a closed system of vessels the way yours is: it washes around the organs, pushed forward by a tube along her back.",
+   "expert": "Taxonomically she is an arthropod, a hexapod, a hymenopteran. A worker is a haplodiploid female developed from a fertilised egg; her ovaries are reduced, though not always functionless. Nearly everything you can click here is one of the structures that textbook arthropod anatomy names, and the cards say where the honey bee departs from the general plan and where the model departs from a real worker."
   },
   "facts": [
    [
@@ -40,12 +40,12 @@
     "≈ 5,375 ommatidia per eye in workers (mean of 4 bees)"
    ],
    [
-    "Wing",
-    "forewing ≈ 9.7 mm long; beats ≈ 230 Hz while hovering"
+    "Wing length",
+    "≈ 9.7 mm; beats ≈ 230 Hz while hovering"
    ],
    [
     "Colony",
-    "≈ 40,000 to 80,000 bees in midsummer"
+    "some thousands to tens of thousands of workers, depending on season"
    ],
    [
     "Model",
@@ -86,7 +86,11 @@
    },
    {
     "title": "Honey bee life cycle (Wikipedia)",
-    "url": "https://Www.wikipedia.org/wiki/Honey_bee_life_cycle"
+    "url": "https://en.wikipedia.org/wiki/Honey_bee_life_cycle"
+   },
+   {
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    }
   ],
   "related": [
@@ -97,7 +101,7 @@
    "respiratory_system",
    "digestive_system"
   ],
-  "did_you_know": "She has no lungs and her blood carries no oxygen: air is delivered straight to her muscles through branching tubes."
+  "did_you_know": "She has no lungs, and her blood carries almost no oxygen: air is delivered straight to her muscles through branching tubes."
  },
  {
   "id": "bee_head",
@@ -122,8 +126,8 @@
   "summary": "The head carries the two compound eyes, three small simple eyes, the antennae and the mouthparts, and holds the brain and the glands that make food for larvae.",
   "layers": {
    "basics": "Nearly everything a bee uses to find food and sense the world is on her head. On the sides sit two big eyes. On top are three tiny extra eyes. In front are two feelers (antennae) that smell, taste and touch, and below them the jaws and the tongue. Inside the hard shell are the brain, the muscles that work the jaws and the glands that make food for the young.",
-   "deeper": "The head capsule is a rigid box of cuticle. The face looks forward and down, which is a good arrangement for reaching into flowers. The mouthparts are of the \"chewing-lapping\" kind: jaws that can chew wax and pollen, and a tongue that laps nectar.",
-   "expert": "Inside the head capsule lie the brain, the muscles of the jaws and of the sucking pump, and the hypopharyngeal glands. Head tracheae and air sacs bring air. The compound eyes occupy most of each side; the model eye is 2.4 mm long."
+   "deeper": "The head capsule is a rigid box of cuticle. The mouthparts combine two tools: a pair of jaws (mandibles) for working wax and handling things, and a tongue with a sheath for drinking, worked by a pump in the head.",
+   "expert": "Inside the head capsule lie the brain, the muscles of the jaws and of the sucking pump (the cibarial pump), and the hypopharyngeal glands. Head tracheae and air sacs bring air. The compound eyes occupy most of each side; the model eye is 2.4 mm long."
   },
   "facts": [
    [
@@ -150,8 +154,12 @@
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
    },
    {
-    "title": "Honey bee anatomy (Buzz About Bees)",
-    "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
+   },
+   {
+    "title": "Wei et al. 2023: Honey bees switch mechanisms to drink deep nectar efficiently (PNAS 120)",
+    "url": "https://doi.org/10.1073/pnas.2305436120"
    }
   ],
   "related": []
@@ -175,16 +183,20 @@
    "bee_vision"
   ],
   "processes": [],
-  "summary": "Each of her two big eyes is a mosaic of about five thousand tiny lenses, each feeding its own light-sensing unit.",
+  "summary": "Each of her two big eyes is a mosaic of about 5,400 tiny lenses (a worker has 5,375 ± 143 per eye), each feeding its own light-sensing unit.",
   "layers": {
-   "basics": "You have one lens per eye that makes a sharp picture on a screen at the back. A bee's eye is built differently: it is made of thousands of separate little eyes packed side by side, called ommatidia. Each one looks at one tiny patch of the world, and together they make a coarse picture, a bit like a screen of pixels. The picture is not sharp, but it is very fast, which suits an animal that flies and has to notice movement.",
-   "deeper": "A worker's eye has about 5,375 ommatidia (a drone's eye has about 10,000, a queen's about 4,500). Each lens, called a facet, is about 25 micrometres across. Under it a crystalline cone and a small bundle of light-sensing cells make up the ommatidium. Her eye sees three colour channels: ultraviolet, blue and green. Click the button to look inside.",
-   "expert": "Worker (Apis mellifera): ommatidia 5,375 ± 143 (n = 4), facet diameter 25.2 ± 0.3 µm (n = 3), eye length 2.4 ± 0.1 mm, eye surface area 2.5 ± 0.1 mm² (Streinzer et al. 2013). Compared with a camera eye, resolution is far lower: the angle between neighbouring ommatidia sets the finest detail she can see, and it is some degrees, not a fraction of a degree. The honey bee eye also carries fine hairs between the facets."
+   "basics": "You have one lens per eye that makes a sharp picture on a screen at the back. A bee's eye is built differently: it is made of thousands of separate little eyes packed side by side, called ommatidia. Each one looks at one small patch of the world, and together they make a coarse picture, a bit like a screen of pixels. The picture is not sharp, but it is quick to follow movement, which suits an animal that flies.",
+   "deeper": "A worker's eye has about 5,375 ommatidia (a drone's eye has about 10,000, a queen's about 4,500). Each lens, called a facet, is about 25 micrometres across. Under it a crystalline cone and a small bundle of light-sensing cells make up the ommatidium: nine light-sensing cells in each, eight long and one short, whose inner edges form the central rod (the rhabdom). Her eye has three colour channels: ultraviolet, blue and green. Click the button to look inside.",
+   "expert": "Worker (Apis mellifera): ommatidia 5,375 ± 143 (n = 4), facet diameter 25.2 ± 0.3 µm (n = 3), eye length 2.4 ± 0.1 mm, eye surface area 2.5 ± 0.1 mm² (Streinzer et al. 2013, Table 1). Queen 4,460 ± 55 (n = 2); drone 9,993 ± 483 (n = 4). The finest detail a bee can resolve is set by how far apart neighbouring ommatidia point, so it is much coarser than a camera eye of the same size. The cornea carries fine hairs (Snodgrass 1910). The tissue scene draws fewer than nine cells per ommatidium."
   },
   "facts": [
    [
     "Ommatidia per eye (worker)",
     "5,375 ± 143"
+   ],
+   [
+    "Ommatidia per eye (queen, drone)",
+    "4,460 ± 55; 9,993 ± 483"
    ],
    [
     "Facet diameter",
@@ -197,6 +209,10 @@
    [
     "Eye surface area",
     "2.5 ± 0.1 mm²"
+   ],
+   [
+    "Light-sensing cells per ommatidium",
+    "9 (8 long, 1 short)"
    ],
    [
     "Colour channels",
@@ -220,12 +236,16 @@
   ],
   "ext": [
    {
-    "title": "Streinzer et al. 2013: Sex and caste-specific variation in compound eye morphology of five honeybee species (PLOS ONE)",
+    "title": "Streinzer et al. 2013: Sex and caste-specific variation in compound eye morphology of five honeybee species (PLOS ONE), Table 1",
     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3584085/"
    },
    {
-    "title": "Hempel de Ibarra, Vorobyev, Menzel 2014: Mechanisms, functions and ecology of colour vision in the honeybee",
-    "url": "https://link.springer.com/doi/10.1007/s00359-014-0915-1"
+    "title": "Lichtenstein, Grubel and Spaethe 2018: Opsin expression patterns coincide with photoreceptor development during pupal development in the honey bee (BMC Dev. Biol. 18)",
+    "url": "https://doi.org/10.1186/s12861-018-0162-8"
+   },
+   {
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    }
   ],
   "related": [
@@ -233,7 +253,7 @@
    "vision",
    "bio_vision_photoreception"
   ],
-  "did_you_know": "Her eye has hairs growing between the lenses, and the facets are so small that 40 of them would fit across a pinhead one millimetre wide."
+  "did_you_know": "Her eye has hairs growing between the lenses, and the facets are so small that about 40 of them would fit side by side across one millimetre."
  },
  {
   "id": "bee_facet",
@@ -270,7 +290,7 @@
   ],
   "ext": [
    {
-    "title": "Streinzer et al. 2013: Sex and caste-specific variation in compound eye morphology of five honeybee species (PLOS ONE)",
+    "title": "Streinzer et al. 2013: Sex and caste-specific variation in compound eye morphology of five honeybee species (PLOS ONE), Table 1",
     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3584085/"
    },
    {
@@ -298,13 +318,17 @@
   "summary": "One of the thousands of separate light-sensing units that make up a compound eye.",
   "layers": {
    "basics": "Think of it as a tiny tube that looks in one direction. Light enters through its lens, is guided down a cone, and reaches a bundle of light-sensing cells that tell the brain how bright, and which colour, that one patch is. Dark cells around it stop light leaking in from the neighbours.",
-   "deeper": "An ommatidium has a lens, a crystalline cone, a bundle of photoreceptor cells that form a central light-catching rod (the rhabdom), and pigment cells that screen it. The photoreceptors are of three main spectral types in the honey bee, tuned to ultraviolet, blue and green.",
-   "expert": "Spectral sensitivity peaks of the three honey bee receptor types: about 344 nm (ultraviolet), 436 nm (blue) and 544 nm (green; some papers give 556 nm) (Hempel de Ibarra, Vorobyev and Menzel 2014). The depth and cell sizes in the picture are illustrative."
+   "deeper": "An ommatidium has a lens, a crystalline cone, nine photoreceptor cells (eight long and one short) whose inner edges form a central light-catching rod (the rhabdom), and pigment cells that screen it. In a worker each ommatidium has six green-sensitive cells plus two more that are either ultraviolet or blue, in one of three combinations scattered across the eye; the sensitivity of the short ninth cell is not known (Lichtenstein et al. 2018).",
+   "expert": "Spectral sensitivity peaks of the three honey bee receptor types are at about 340 nm (ultraviolet), 430 nm (blue) and 540 nm (green) (Lichtenstein et al. 2018). Snodgrass (1910) counted eight or nine cells around the rod. The depth and cell sizes in the picture are illustrative, and the picture draws fewer cells than a real ommatidium has."
   },
   "facts": [
    [
     "Receptor peaks",
-    "≈ 344, 436, 544 nm"
+    "≈ 340, 430, 540 nm"
+   ],
+   [
+    "Photoreceptor cells",
+    "9 per ommatidium (8 long, 1 short)"
    ],
    [
     "Compare with the human",
@@ -322,11 +346,15 @@
   ],
   "ext": [
    {
-    "title": "Hempel de Ibarra, Vorobyev, Menzel 2014: Mechanisms, functions and ecology of colour vision in the honeybee",
-    "url": "https://link.springer.com/doi/10.1007/s00359-014-0915-1"
+    "title": "Lichtenstein, Grubel and Spaethe 2018: Opsin expression patterns coincide with photoreceptor development during pupal development in the honey bee (BMC Dev. Biol. 18)",
+    "url": "https://doi.org/10.1186/s12861-018-0162-8"
    },
    {
-    "title": "Streinzer et al. 2013: Sex and caste-specific variation in compound eye morphology of five honeybee species (PLOS ONE)",
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
+   },
+   {
+    "title": "Streinzer et al. 2013: Sex and caste-specific variation in compound eye morphology of five honeybee species (PLOS ONE), Table 1",
     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3584085/"
    }
   ],
@@ -348,14 +376,22 @@
   "processes": [],
   "summary": "The cells under the lens that turn light into nerve signals; they come in three kinds, tuned to ultraviolet, blue and green.",
   "layers": {
-   "basics": "These long thin cells are the bee's \"pixels\". Each one holds a pigment that changes shape when light hits it, and that starts a signal that runs to the brain. Cells tuned to ultraviolet, to blue and to green let her tell flowers apart by colour, including patterns that only show up in ultraviolet.",
-   "deeper": "They are the same kind of cell as your own rods and cones in principle: a light-catching molecule inside a membrane-rich region, and an electrical signal on the other side. In insects, though, the light-catching region sits on the side of the cell facing the light, and the cell signals by a graded voltage change, not by the same chain as in vertebrate rods.",
-   "expert": "The pigment is a visual pigment (an opsin protein holding a retinal chromophore). Honey bee peaks: UV ≈ 344 nm, blue ≈ 436 nm, green ≈ 544 nm. Bees have no receptor for red light, so a pure red flower looks dark to them unless it also reflects other colours."
+   "basics": "These long thin cells are the bee's pixels. Each one holds a pigment that changes shape when light hits it, and that starts a signal that runs to the brain. Cells tuned to ultraviolet, to blue and to green let her tell flowers apart by colour, including patterns that only show up in ultraviolet.",
+   "deeper": "They are the same kind of cell as your own rods and cones in principle: a light-catching molecule packed into a membrane-rich region (here the rhabdom), with an electrical signal on the other side. The chain of events after the photon differs. In a vertebrate rod, light-activated rhodopsin turns on transducin and an enzyme that breaks down cGMP, channels close and the cell becomes more negative. In insect photoreceptors, as worked out mainly in fruit flies, light-activated rhodopsin turns on a Gq protein and the enzyme phospholipase C, TRP channels open and the cell becomes less negative (depolarises). Both kinds of cell give graded responses.",
+   "expert": "The pigment is a visual pigment (an opsin protein holding a retinal chromophore). Honey bee peaks: UV ≈ 340 nm, blue ≈ 430 nm, green ≈ 540 nm (Lichtenstein et al. 2018). The cascade is described from Drosophila; this card does not claim every step has been shown in the honey bee. Bees have no receptor with its peak in the red; how a red flower looks to a bee depends on what else it reflects, for example ultraviolet or blue."
   },
   "facts": [
    [
     "Types",
     "ultraviolet, blue, green (trichromatic)"
+   ],
+   [
+    "Cascade in insects",
+    "rhodopsin, Gq, phospholipase C, TRP channels open (depolarising)"
+   ],
+   [
+    "Cascade in vertebrate rods",
+    "rhodopsin, transducin, cGMP breakdown, channels close (hyperpolarising)"
    ],
    [
     "Compare with the human",
@@ -373,8 +409,8 @@
   ],
   "ext": [
    {
-    "title": "Hempel de Ibarra, Vorobyev, Menzel 2014: Mechanisms, functions and ecology of colour vision in the honeybee",
-    "url": "https://link.springer.com/doi/10.1007/s00359-014-0915-1"
+    "title": "Lichtenstein, Grubel and Spaethe 2018: Opsin expression patterns coincide with photoreceptor development during pupal development in the honey bee (BMC Dev. Biol. 18)",
+    "url": "https://doi.org/10.1186/s12861-018-0162-8"
    }
   ],
   "related": [
@@ -421,8 +457,8 @@
   ],
   "ext": [
    {
-    "title": "Hempel de Ibarra, Vorobyev, Menzel 2014: Mechanisms, functions and ecology of colour vision in the honeybee",
-    "url": "https://link.springer.com/doi/10.1007/s00359-014-0915-1"
+    "title": "Lichtenstein, Grubel and Spaethe 2018: Opsin expression patterns coincide with photoreceptor development during pupal development in the honey bee (BMC Dev. Biol. 18)",
+    "url": "https://doi.org/10.1186/s12861-018-0162-8"
    }
   ],
   "related": [
@@ -444,9 +480,9 @@
   "processes": [],
   "summary": "Three small simple eyes on the top of her head, each a single lens about 0.3 mm across.",
   "layers": {
-   "basics": "Besides the big eyes she has three tiny extra eyes arranged in a triangle on top of her head. They do not see pictures. They sense how bright the sky is and help her keep level and steady in flight.",
-   "deeper": "Each ocellus is a single lens over a layer of light-sensing cells. The median ocellus is about 0.30 mm across and the lateral ones about 0.28 mm in workers. They are used to detect the horizon and changes of light, and probably help stabilise flight and set the daily rhythm of foraging.",
-   "expert": "Median ocellus 0.30 ± 0.01 mm; lateral 0.28 ± 0.01 mm (Streinzer et al. 2013). The function in stabilising flight is well supported in several insects; the finer details in bees are still studied."
+   "basics": "Besides the big eyes she has three tiny extra eyes arranged in a triangle on top of her head. They do not see pictures. They respond to light levels and are thought to help her keep steady in flight.",
+   "deeper": "Each ocellus is a single lens over a layer of light-sensing cells. The median ocellus is about 0.30 mm across and the lateral ones about 0.28 mm in workers. In insects the ocelli are generally linked to flight stability and horizon detection; their exact job in the honey bee is not settled.",
+   "expert": "Median ocellus 0.30 ± 0.01 mm; lateral 0.28 ± 0.01 mm (Streinzer et al. 2013, Table 1). Snodgrass (1910) noted that the bee's ocelli had not been carefully studied."
   },
   "facts": [
    [
@@ -459,7 +495,9 @@
    ]
   ],
   "certainty": "C2",
-  "open_questions": [],
+  "open_questions": [
+   "What exactly the ocelli contribute in the honey bee (horizon detection, stabilising flight, setting the daily rhythm) is not settled."
+  ],
   "refs": [
    [
     "BIO",
@@ -469,12 +507,12 @@
   ],
   "ext": [
    {
-    "title": "Streinzer et al. 2013: Sex and caste-specific variation in compound eye morphology of five honeybee species (PLOS ONE)",
+    "title": "Streinzer et al. 2013: Sex and caste-specific variation in compound eye morphology of five honeybee species (PLOS ONE), Table 1",
     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3584085/"
    },
    {
-    "title": "Honey bee anatomy (Buzz About Bees)",
-    "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    }
   ],
   "related": []
@@ -493,16 +531,20 @@
    "bee_antenna_cleaner"
   ],
   "processes": [],
-  "summary": "Her two feelers: long, jointed, covered with sensors for smell, taste, touch and air movement. A worker's antenna has 12 segments: a long scape, a short pedicel and the flagellum.",
+  "summary": "Her two feelers: long, jointed, covered with sensors for smell, taste, touch and air movement. A worker's antenna has 12 segments: a long scape, a short pedicel and a flagellum of ten.",
   "layers": {
    "basics": "The antennae are her nose, her fingertips and part of her tongue. They are covered with microscopic pits and hairs that pick up smells in the air, taste what she touches, and feel vibration and air movement. When she meets another bee, she sniffs her with them.",
    "deeper": "The first segment, the scape, is the longest and is set in a socket so that it swings. The second, the pedicel, is short and houses a sensory organ that senses movement of the rest. The remaining ten segments are the flagellum, which carries most of the smell sensors. Drones have 13 segments.",
-   "expert": "Sources disagree slightly on how the segments are counted: most give 12 in total for females (scape, pedicel and ten flagellar segments). The model draws the three parts with correct order and relative lengths, but the exact lengths are proportions chosen by eye."
+   "expert": "Snodgrass (1910) counted the scape plus a flagellum of 11 small joints in workers and queens (12 in drones): 12 joints in all in females, 13 in males. In the modern way of counting, the first of those 11 is the pedicel, leaving ten flagellar segments. The model draws the three parts in correct order with relative lengths chosen by eye."
   },
   "facts": [
    [
     "Segments (worker)",
     "12: scape, pedicel, 10 in the flagellum"
+   ],
+   [
+    "Segments (drone)",
+    "13"
    ],
    [
     "Antenna cleaning",
@@ -520,12 +562,8 @@
   ],
   "ext": [
    {
-    "title": "Bee antennae (Buzz About Bees)",
-    "url": "https://buzzaboutbees.net/bee-antennae.html"
-   },
-   {
-    "title": "Honey bee anatomy (Buzz About Bees)",
-    "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    }
   ],
   "related": []
@@ -542,11 +580,11 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "Her two jaws: strong, spoon-shaped, used to work wax, handle pollen, groom and defend, rather than to chew solid food.",
+  "summary": "Her two jaws: strong, spoon-shaped tools used to work wax, handle pollen and other material, groom and defend. She does not drink with them.",
   "layers": {
-   "basics": "The jaws open sideways, not up and down like yours. A worker uses them to mould and nibble wax when she builds comb, to carry things, to clean the nest and to bite an enemy.",
-   "deeper": "The mandibles are driven by large muscles inside the head. They sit either side of the mouth, and the tongue and its sheath lie between and below them.",
-   "expert": "In bees the mandibles are for manipulation, wax and defence; feeding on liquids is done by the proboscis."
+   "basics": "The jaws open sideways, not up and down like yours. A worker uses them to mould and nibble wax when she builds comb, to carry things, to clean the nest and to bite an enemy. Nectar is drunk through the tongue, not chewed.",
+   "deeper": "The mandibles are driven by large muscles inside the head. They sit either side of the mouth, and the tongue and its sheath lie between and below them. Bees take pollen into the mouth, but Snodgrass (1910) found that pollen grains pass through the gut undamaged: the jaws do not crush them.",
+   "expert": "In bees the mandibles are for manipulation, wax and defence; feeding on liquids is done by the proboscis and the pump behind it."
   },
   "facts": [
    [
@@ -565,8 +603,8 @@
   ],
   "ext": [
    {
-    "title": "Honey bee anatomy (Buzz About Bees)",
-    "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    },
    {
     "title": "Insect morphology (Wikipedia)",
@@ -588,23 +626,35 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "Her drinking straw: a long hairy tongue (the glossa) inside a sheath made from the second maxillae and the labial palps. In the picture it is partly extended into the flower.",
+  "summary": "Her drinking tool: a long hairy tongue (the glossa) inside a tube formed by the paired galeae (from the first maxillae) and the labial palps (part of the labium). She both laps and sucks. In the picture it is partly extended into the flower.",
   "layers": {
-   "basics": "Bees do not suck nectar through a hole like a straw. The tongue is a hairy rod that is dipped in the nectar, gets coated by it, and is then drawn back up in the sheath, where the nectar is squeezed up toward the mouth. When she is not feeding, the whole thing folds back under her head.",
-   "deeper": "The glossa is long and tipped with a small spoon. It moves in and out quickly, and the sheath around it forms a food canal. Honey bees are \"long-tongued\" bees, and that is what lets them reach nectar deep in many flowers.",
-   "expert": "Proboscis length varies between populations: one study found 5.4 to 5.9 mm (mean 5.69 mm), another a mean of 6.29 mm over several populations. The model shows it extended to about 3.9 mm, which is a choice for the picture."
+   "basics": "A bee drinks in two ways. She can lap: the hairy tongue is pushed out, dips into the nectar, picks up a coat of it and is pulled back into the tube, where it is released. Or she can suck: the tongue stays still and a pump in her head draws nectar up through the tube. She switches between the two. Thin, watery nectar (about 10 percent sugar) is mostly sucked; thick nectar (about 50 percent) is lapped; at about 30 percent she starts by lapping and changes to suction as the nectar level drops out of reach. When she is not feeding the whole thing folds back under her head.",
+   "deeper": "The mouthparts are made from three paired pieces. The two galeae are the blade-like outer lobes of the first maxillae; the two labial palps belong to the labium, which is the pair of second maxillae fused together; the glossa is the central tongue of the labium. Together the galeae and palps form a tube around the glossa, and nectar travels up the tube to the pump. The glossa is covered in rings of hairs that stand up near full extension to load nectar. Viscosity seems to be the cue she uses to choose a method: thinned 10 percent sugar solution that was as thick as 50 percent was mostly lapped.",
+   "expert": "In the high-speed video study, bees fed on 10, 30 and 50 percent (w/w) sucrose; at 10 percent they used suction until the liquid was out of reach, at 50 percent they lapped throughout, and lapping is the more efficient method for 50 percent solution when the liquid is within about 3.5 mm of the galea tips (Wei et al. 2023). The tongue of those bees was about 3.5 mm long; another study gives about 2 mm for the glossa, so published lengths depend on the bees and on how the tongue is measured. The model shows the tongue extended to about 3.9 mm, a choice made for the picture."
   },
   "facts": [
    [
-    "Length (fully extended)",
-    "≈ 5.4 to 6.3 mm depending on the population"
+    "Mouthparts of the tube",
+    "paired galeae (first maxillae) and labial palps (labium)"
+   ],
+   [
+    "Tongue",
+    "glossa, with rings of hairs"
+   ],
+   [
+    "Methods of drinking",
+    "lapping and suction (switches with sugar concentration and depth)"
+   ],
+   [
+    "Tongue length",
+    "≈ 3.5 mm in the bees of Wei et al. 2023"
    ],
    [
     "Shown in the model",
     "≈ 3.9 mm, partly extended"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
   "open_questions": [],
   "refs": [
    [
@@ -615,12 +665,20 @@
   ],
   "ext": [
    {
-    "title": "Proboscis length of honey bee workers, Egyptian study",
-    "url": "https://jppp.journals.ekb.eg/article_376650_73741fbc699d2723e243700581b85765.pdf"
+    "title": "Wei et al. 2023: Honey bees switch mechanisms to drink deep nectar efficiently (PNAS 120)",
+    "url": "https://doi.org/10.1073/pnas.2305436120"
    },
    {
-    "title": "Honey bee anatomy (Buzz About Bees)",
-    "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
+    "title": "Sucking or lapping: facultative feeding mechanisms in honeybees (Biology Letters 2020)",
+    "url": "https://doi.org/10.1098/rsbl.2020.0449"
+   },
+   {
+    "title": "Nectar feeding by a honey bee's hairy tongue: morphology, dynamics, and energy-saving strategies (Insects 12, 2021)",
+    "url": "https://doi.org/10.3390/insects12090762"
+   },
+   {
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    }
   ],
   "related": []
@@ -646,17 +704,17 @@
   "summary": "The middle section that carries all six legs and both pairs of wings, and is almost entirely filled with flight muscle. It has three segments.",
   "layers": {
    "basics": "The thorax is the bee's engine room. Three segments are joined into a solid box: the front one (prothorax) carries the front legs, the middle one (mesothorax) the front wings and middle legs, and the rear one (metathorax) the back wings and hind legs. Inside is a block of muscle that shakes the box to beat the wings.",
-   "deeper": "The two wing-bearing segments are fused into one rigid unit called the pterothorax. In a bee the first segment of the abdomen is also fused to the thorax, which is why a bee's \"waist\" lies between the first and second abdominal segments. Three pairs of breathing pores (spiracles) open on the thorax.",
-   "expert": "The thoracic exoskeleton acts as a mechanical resonator: the indirect flight muscles deform the box, and the wing hinge turns that small deformation into a large wing stroke."
+   "deeper": "The two wing-bearing segments are fused into one rigid unit called the pterothorax. In a bee the first segment of the abdomen (the propodeum) is also fused to the thorax, which is why a bee's waist lies between the first and second abdominal segments. Two pairs of breathing pores (spiracles) open on the true thorax, and a third pair on the propodeum.",
+   "expert": "The thoracic exoskeleton acts as a mechanical resonator: the indirect flight muscles deform the box, and the wing hinge turns that small deformation into a large wing stroke. The thorax of a bee is therefore really thorax plus the first abdominal segment (Snodgrass 1910)."
   },
   "facts": [
    [
     "Segments",
-    "3: prothorax, mesothorax, metathorax"
+    "3: prothorax, mesothorax, metathorax (plus the fused first abdominal segment)"
    ],
    [
-    "Thoracic spiracles",
-    "3 pairs"
+    "Spiracles on the thorax",
+    "2 pairs, plus 1 pair on the fused first abdominal segment"
    ]
   ],
   "certainty": "C1",
@@ -670,12 +728,12 @@
   ],
   "ext": [
    {
-    "title": "Insect morphology (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Insect_morphology"
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    },
    {
-    "title": "Honey bee anatomy (Buzz About Bees)",
-    "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
+    "title": "Insect morphology (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Insect_morphology"
    }
   ],
   "related": []
@@ -696,15 +754,15 @@
    "bee_wing_hinge"
   ],
   "processes": [],
-  "summary": "Two pairs of thin membrane wings, stiffened by veins. The forewing is about 9.7 mm long; the smaller hindwing hooks onto it in flight. Here they are folded back, as at rest.",
+  "summary": "Two pairs of thin membrane wings, stiffened by veins. The wing is about 9.7 mm long on average; the smaller hindwing hooks onto the forewing in flight. Here they are folded back, as at rest.",
   "layers": {
    "basics": "A bee has four wings, but she flies as if she had two, because the small hind wing is hooked onto the large front wing. The wings are thin sheets held by a framework of veins, a bit like a kite. The veins are hollow tubes that also carry blood, air and nerves.",
    "deeper": "Wings are outgrowths of the exoskeleton: a double layer of cuticle with veins between. They are not moved by muscles inside them. Instead, muscles in the thorax deform the thorax, and the wing hinge turns that into a stroke. The pattern of veins forms closed cells, and the arrangement is used to tell bee species and races apart.",
-   "expert": "Average wing length 9.7 mm in honey bees (quoted from a PNAS-related study; the model's forewing is 9.7 mm). Veins in the model are a simplified pattern: the real forewing has several submarginal cells and the model draws three."
+   "expert": "Average wing length 9.7 mm in honey bees (Altshuler et al. 2005, citing Sotavalta 1952); published forewing lengths from morphometric studies vary with the population and with how the wing is measured. The model forewing is 9.7 mm. Veins in the model are a simplified pattern: the real forewing has several submarginal cells and the model draws three."
   },
   "facts": [
    [
-    "Forewing length",
+    "Wing length (average)",
     "≈ 9.7 mm"
    ],
    [
@@ -723,12 +781,12 @@
   ],
   "ext": [
    {
-    "title": "Collison 2016: Wings and flight (honey bee wing coupling and wingbeat)",
-    "url": "https://static1.squarespace.com/static/522b22f2e4b04879e6b51037/t/6161b093d301b565753367ca/1633792151834/Wings+and+Flight++-++Clarence+Collison++-++2016.pdf"
+    "title": "Altshuler, Dickson, Vance, Roberts and Dickinson 2005: Short-amplitude high-frequency wing strokes determine the aerodynamics of honeybee flight (PNAS 102)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1312389"
    },
    {
-    "title": "Honeybee hovering: about 230 Hz at about 90 degrees stroke amplitude (search summary of Altshuler et al. 2005, PNAS; paper itself not opened)",
-    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1312389"
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    }
   ],
   "related": []
@@ -749,7 +807,7 @@
   "layers": {
    "basics": "Before flying, a bee locks her back wing to her front wing with a row of little hooks. They catch a groove on the front wing like a zip. Once hooked, the two wings act as one larger wing. When she lands the hooks release and the wings fold back.",
    "deeper": "The hooks are the hamuli (singular hamulus). They engage the decurved rear margin of the forewing. The coupling makes the two wings a single aerofoil, so the bee beats them in step.",
-   "expert": "The number of hamuli varies between bees and has been used as a measured trait in morphometric studies; the model draws 20 on each hindwing as an illustration, not a count. The wings are drawn folded, hence the hooks lie under the forewing and are shown disengaged."
+   "expert": "The number of hamuli varies between bees and has been used as a measured trait in morphometric studies, where counts of roughly 11 to 22 per hindwing have been reported in different populations. The model draws 20 on each hindwing as an illustration, not a count. The wings are drawn folded, hence the hooks lie under the forewing and are shown disengaged."
   },
   "facts": [
    [
@@ -772,8 +830,8 @@
   ],
   "ext": [
    {
-    "title": "Collison 2016: Wings and flight (honey bee wing coupling and wingbeat)",
-    "url": "https://static1.squarespace.com/static/522b22f2e4b04879e6b51037/t/6161b093d301b565753367ca/1633792151834/Wings+and+Flight++-++Clarence+Collison++-++2016.pdf"
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    }
   ],
   "related": []
@@ -839,22 +897,18 @@
   "processes": [],
   "summary": "A hovering worker beats her wings about 230 times a second, with a short, fast stroke of about 90 degrees.",
   "layers": {
-   "basics": "Bees fly by a trick. Her muscles do not pull the wings directly. They squeeze the thorax up and down, and the stiff little box flexes, driving the wing hinge. Because the muscles contract on a stretch rhythm, they can beat much faster than a nerve signal could ask them to. The result is a buzz: the wing flaps about 230 times a second.",
-   "deeper": "The wing moves on a short stroke (about 90 degrees) at a high frequency (about 230 Hz). Foragers loaded with nectar beat at a lower frequency. A foraging flight over open ground has been measured at roughly 5 m/s air speed with harmonic radar.",
-   "expert": "The average wing tip speed follows from the numbers above: tip path per stroke = 9.7 mm × 1.57 rad ≈ 15.2 mm; two strokes per cycle at 230 cycles per second gives about 7 m/s. That is arithmetic on the quoted values, not a separate measurement. The wing beats are far faster than the nerve impulses that command them, which is why the muscles are of the \"asynchronous\" kind."
+   "basics": "Bees fly by a trick. Her muscles do not pull the wings directly. They squeeze the thorax up and down, and the stiff little box flexes, driving the wing hinge. Because the muscles are stretch-activated, they can beat much faster than a nerve signal could ask them to. The result is a buzz: the wing flaps about 230 times a second.",
+   "deeper": "The wing moves on a short stroke (about 90 degrees) at a high frequency (about 230 Hz). In hovering experiments in thinner air (a helium and oxygen mixture, which makes hovering cost more power), the bees kept the frequency nearly constant (about 2 percent higher) and raised the stroke amplitude by close to 50 percent. A foraging flight over open ground has been tracked with harmonic radar, but the speed is not given here.",
+   "expert": "Hovering bees in normal air: 229.8 ± 11.0 Hz and 90.8 ± 8.6° stroke amplitude (Altshuler et al. 2005, Table 1). The average wing-tip speed follows from the numbers above: tip path per stroke = 9.7 mm × 1.57 rad ≈ 15.2 mm; two strokes per cycle at 230 cycles per second gives about 7 m/s. That is arithmetic on the quoted values, not a separate measurement. The wing beats are far faster than the nerve impulses that command them, which is why the muscles are of the asynchronous kind."
   },
   "facts": [
    [
     "Wingbeat frequency",
-    "≈ 230 Hz (hovering)"
+    "≈ 230 Hz (hovering): 229.8 ± 11.0 Hz"
    ],
    [
     "Stroke amplitude",
-    "≈ 90°"
-   ],
-   [
-    "Air speed in foraging flight",
-    "≈ 5 m/s (≈ 18 km/h), early harmonic-radar mean"
+    "≈ 90°: 90.8 ± 8.6°"
    ],
    [
     "Average wing tip speed",
@@ -863,7 +917,7 @@
   ],
   "certainty": "C2",
   "open_questions": [
-   "The detail of how the muscle's stretch-activated rhythm is tuned to the thorax as it loads up with nectar is still being worked out."
+   "How the stretch-activated rhythm of the muscle is tuned to the thorax as a bee loads up with nectar is still being worked out."
   ],
   "refs": [
    [
@@ -879,16 +933,8 @@
   ],
   "ext": [
    {
-    "title": "Honeybee hovering: about 230 Hz at about 90 degrees stroke amplitude (search summary of Altshuler et al. 2005, PNAS; paper itself not opened)",
+    "title": "Altshuler, Dickson, Vance, Roberts and Dickinson 2005: Short-amplitude high-frequency wing strokes determine the aerodynamics of honeybee flight (PNAS 102)",
     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1312389"
-   },
-   {
-    "title": "Collison 2016: Wings and flight (honey bee wing coupling and wingbeat)",
-    "url": "https://static1.squarespace.com/static/522b22f2e4b04879e6b51037/t/6161b093d301b565753367ca/1633792151834/Wings+and+Flight++-++Clarence+Collison++-++2016.pdf"
-   },
-   {
-    "title": "Harmonic radar tracking of honey bee flight (air speed about 5 m/s; summary of an early study)",
-    "url": "https://www.nature.com/articles/35000564"
    }
   ],
   "did_you_know": "A beat every 4 milliseconds: in the time it takes you to blink, her wings have gone round about 70 times.",
@@ -955,7 +1001,7 @@
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
    },
    {
-    "title": "Honeybee hovering: about 230 Hz at about 90 degrees stroke amplitude (search summary of Altshuler et al. 2005, PNAS; paper itself not opened)",
+    "title": "Altshuler, Dickson, Vance, Roberts and Dickinson 2005: Short-amplitude high-frequency wing strokes determine the aerodynamics of honeybee flight (PNAS 102)",
     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1312389"
    }
   ],
@@ -982,7 +1028,7 @@
   "layers": {
    "basics": "A muscle fibre is a long cell that can shorten. It has rows of tiny repeating units, the sarcomeres, and in each unit two kinds of protein thread slide past each other. The bee fibres are the same basic machine as yours, but built for speed.",
    "deeper": "The sliding-filament mechanism is the same as in vertebrate skeletal muscle (see \"Muscle contraction (sliding filament)\" in the human body). Insect flight fibres are a specialised \"fibrillar\" type that can beat far faster than their nerve input.",
-   "expert": "The sizes in the tissue picture are illustrative; real fibres are of the order of tens of micrometres across."
+   "expert": "The sizes in the tissue picture are illustrative, not measurements."
   },
   "facts": [
    [
@@ -1133,9 +1179,9 @@
   "processes": [],
   "summary": "Six legs, each made of the same named pieces: coxa, trochanter, femur, tibia, tarsus and the foot (pretarsus). The hind pair carries the pollen baskets.",
   "layers": {
-   "basics": "Insects have six legs, three on each side. A leg is a chain of tubes joined by hinges: the coxa is the hip, a short trochanter follows, then a long thigh (femur), a shin (tibia) and a foot made of small segments (the tarsus), ending in a pair of claws. The front legs clean the antennae, the middle legs clean and carry, and the hind legs have the pollen baskets.",
-   "deeper": "The muscles that bend each joint are inside the leg, pulling on the inner side of the hard cuticle. Each pair of legs is a little different: the hind leg is the longest and its tibia and first tarsal segment are broad and flat. Her feet have claws to grip rough surfaces and a soft pad that sticks to smooth ones.",
-   "expert": "The model's hind tibia is 2.9 mm long; the measured range is 2.7 to 3.0 mm in one study. Other segment lengths are proportions chosen by eye, and the three leg pairs share one card."
+   "basics": "Insects have six legs, three on each side. A leg is a chain of tubes joined by hinges: the coxa is the hip, a short trochanter follows, then a long thigh (femur), a shin (tibia) and a foot made of small segments (the tarsus), ending in a pair of claws. The front legs clean the antennae, and the hind legs have the pollen baskets.",
+   "deeper": "The muscles that bend each joint are inside the leg, pulling on the inner side of the hard cuticle. Each pair of legs is a little different: the hind leg is the longest and its tibia and first tarsal segment are broad and flat (Snodgrass 1910).",
+   "expert": "The model's hind tibia is 2.9 mm long; the other segment lengths are proportions chosen by eye, and the three leg pairs share one card."
   },
   "facts": [
    [
@@ -1147,8 +1193,8 @@
     "coxa, trochanter, femur, tibia, tarsus, pretarsus"
    ],
    [
-    "Hind tibia",
-    "≈ 2.7 to 3.0 mm"
+    "Hind tibia in the model",
+    "2.9 mm"
    ]
   ],
   "certainty": "C1",
@@ -1162,12 +1208,12 @@
   ],
   "ext": [
    {
-    "title": "Insect morphology (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Insect_morphology"
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    },
    {
-    "title": "Proboscis length of honey bee workers, Egyptian study",
-    "url": "https://jppp.journals.ekb.eg/article_376650_73741fbc699d2723e243700581b85765.pdf"
+    "title": "Insect morphology (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Insect_morphology"
    }
   ],
   "related": []
@@ -1186,9 +1232,9 @@
   "processes": [],
   "summary": "The end of each leg: a chain of small tarsal segments, two claws, and a soft pad between them.",
   "layers": {
-   "basics": "At the tip of each leg are two tiny claws and between them a soft sticky pad. The claws hook rough surfaces; the pad grips smooth ones such as petals and glass. The foot also tastes: it has sensors that let her taste what she stands on.",
+   "basics": "At the tip of each leg are two tiny claws and between them a soft pad. The claws hook rough surfaces; the pad is for smooth ones such as petals and glass.",
    "deeper": "The part at the end is the pretarsus. The tarsus before it is divided into small segments with no muscles of their own; the first, longest segment is called the basitarsus.",
-   "expert": "The pad is a wet adhesive pad; the exact mechanism of attachment is still under study in insects generally."
+   "expert": "How the pad grips smooth surfaces is still under study in insects generally."
   },
   "facts": [
    [
@@ -1231,8 +1277,8 @@
   "summary": "A smooth, shallow hollow on the outside of each hind leg's tibia, fringed with long curved hairs, in which she carries a packed ball of pollen.",
   "layers": {
    "basics": "On the outer face of each back leg is a smooth dish ringed with stiff curved hairs. She packs pollen, moistened with a little nectar, into it until she has a ball on each leg. Then she flies home with her cargo.",
-   "deeper": "The dish is called the corbicula. The hairs form a basket that holds the pellet in place. Only the hind legs have one. The first tarsal segment has combs that brush pollen off her body and a press that squeezes it up into the basket.",
-   "expert": "The corbicula is a feature of true honey bees, bumble bees and their relatives; many other bees carry pollen in hairs under the abdomen or on the legs instead. The pellet in the model is a loose illustration."
+   "deeper": "The dish is called the corbicula. The hairs form a basket that holds the pellet in place. Workers have one; Snodgrass (1910) notes that the queen and drone have the flattened leg but no special use for it. The inner face of the first tarsal segment carries rows of stiff spines that form a brush for gathering pollen from the body.",
+   "expert": "The pellet in the model is a loose illustration."
   },
   "facts": [
    [
@@ -1242,21 +1288,11 @@
   ],
   "certainty": "C1",
   "open_questions": [],
-  "refs": [
-   [
-    "BIO",
-    "32.2",
-    "32-2-pollination-and-fertilization"
-   ]
-  ],
+  "refs": [],
   "ext": [
    {
-    "title": "Honey bee anatomy (Buzz About Bees)",
-    "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
-   },
-   {
-    "title": "Western honey bee (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    }
   ],
   "related": []
@@ -1276,13 +1312,13 @@
   "summary": "The pellet of pollen she carries home in the basket. Pollen is the flower's male cell packaging, and her main source of protein.",
   "layers": {
    "basics": "Pollen grains are dust-like packages made by the male part of a flower. A bee eats pollen as her protein, and feeds it to her young. While she gathers it she also carries some from flower to flower, which is how she pollinates.",
-   "deeper": "The pollen is packed in with a little nectar so that it sticks together. Adult workers eat about 3.4 to 4.3 mg of pollen a day; most of it goes to feed the brood and make royal jelly.",
+   "deeper": "The pollen is packed in with a little nectar so that it sticks together. How much pollen a worker has in her gut depends on her age and job: in one study it was highest in nurse bees about nine days old and lowest in foragers (Crailsheim et al. 1992).",
    "expert": "The size and colour of the model's pellet are illustrative: real pellets come in many colours depending on the plant."
   },
   "facts": [
    [
-    "Adult pollen intake",
-    "≈ 3.4 to 4.3 mg per day"
+    "Pollen in the gut by age",
+    "highest in nurse bees, lowest in foragers"
    ],
    [
     "Compare with the human",
@@ -1299,6 +1335,10 @@
    ]
   ],
   "ext": [
+   {
+    "title": "Crailsheim et al. 1992: Pollen consumption and utilization in worker honeybees (Apis mellifera carnica): dependence on individual age and function (J. Insect Physiol. 38; abstract)",
+    "url": "https://doi.org/10.1016/0022-1910(92)90014-D"
+   },
    {
     "title": "Honey bee (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Honey_bee"
@@ -1324,7 +1364,7 @@
   "summary": "A small notch and comb on each foreleg, closed by a spur, through which she pulls her antenna to clean it.",
   "layers": {
    "basics": "She keeps her feelers clean with a built-in comb. Each front leg has a semicircular notch lined with fine bristles. She bends the leg, passes her antenna through the notch and pulls it through, like drawing a thread through your fingers.",
-   "deeper": "The notch is on the first tarsal segment and the spur is on the end of the tibia; together they close into a ring around the antenna. Clean antennae matter because smell is the sense she relies on most.",
+   "deeper": "The notch is at the base of the first tarsal segment and a spur on the end of the tibia closes over it when the tarsus is bent toward the tibia; together they close into a ring around the antenna (Snodgrass 1910).",
    "expert": "The model draws the cleaner schematically, as a small ring and spur, not as an exact reconstruction of the bristles."
   },
   "facts": [
@@ -1344,8 +1384,8 @@
   ],
   "ext": [
    {
-    "title": "Honey bee anatomy (Buzz About Bees)",
-    "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    }
   ],
   "related": []
@@ -1370,16 +1410,16 @@
    "bee_ovaries"
   ],
   "processes": [],
-  "summary": "The rear section: six visible segments (the first is fused into the thorax), packed with the honey stomach, midgut, heart, wax glands, and at the tip the sting.",
+  "summary": "The rear section: six visible segments (the first abdominal segment is fused into the thorax), packed with the honey stomach, midgut, heart, wax glands, and at the tip the sting.",
   "layers": {
    "basics": "The abdomen is the back part of the bee. Its hard plates overlap like a roll-top desk, so that it can swell when the honey stomach is full. Inside are the gut, the heart, the wax glands, the venom sac and the sting.",
    "deeper": "Each segment has a hard plate on the back (tergite) and one on the belly (sternite), joined by soft folds that let the abdomen stretch and bend. The wax glands are on the belly, the Nasonov gland on the back near the tip, and the sting is inside the tip.",
-   "expert": "The count of visible segments depends on how one counts; the first abdominal segment is fused into the thorax (the propodeum) and the last segments are folded inside. The model shows six overlapping visible segments with a banded colour."
+   "expert": "The first abdominal segment is fused into the thorax (the propodeum), so the six segments you can see are abdominal segments 2 to 7, and the last segments are folded inside (Snodgrass 1910). The parts in the model are named by visible segment (1 to 6) and by true abdominal segment (2 to 7). The model shows six overlapping visible segments with a banded colour."
   },
   "facts": [
    [
     "Visible segments",
-    "6 in the model"
+    "6 (abdominal segments 2 to 7); 6 in the model"
    ]
   ],
   "certainty": "C1",
@@ -1393,12 +1433,12 @@
   ],
   "ext": [
    {
-    "title": "Insect morphology (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Insect_morphology"
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    },
    {
-    "title": "Honey bee anatomy (Buzz About Bees)",
-    "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
+    "title": "Insect morphology (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Insect_morphology"
    }
   ],
   "related": []
@@ -1415,16 +1455,20 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "Glands on the underside of the abdomen that ooze liquid wax, which hardens into flakes and is used to build the comb. The model draws four pairs.",
+  "summary": "Glands on the underside of the abdomen that make liquid wax, which hardens into flakes and is used to build the comb. They lie over four pairs of smooth plates, the wax mirrors.",
   "layers": {
-   "basics": "Honeycomb is made of wax that she makes herself. In mature workers wax oozes from glands on the underside of her abdomen, hardens into thin flakes on small smooth patches, and is picked off with the legs and chewed into shape.",
-   "deeper": "Mature workers secrete beeswax from glands on the abdomen (Western honey bee, Wikipedia). The flakes are worked with the jaws and legs into the comb; the details of that are general beekeeping knowledge and were not checked against a source here.",
-   "expert": "Beeswax is a mixture of esters and long-chain hydrocarbons and fatty acids; the exact composition is not covered by a source consulted here."
+   "basics": "Honeycomb is made of wax that she makes herself. In mature workers wax is made by a layer of gland cells over smooth patches on the underside of her abdomen, collects in a pocket under the next plate, hardens into thin flakes, and is picked off with the legs and worked into shape.",
+   "deeper": "The wax-forming cells lie over the smooth, shiny front part of the belly plates (the wax mirrors) of the four hindmost visible segments, abdominal segments 4 to 7 (Snodgrass 1910). The flakes are worked with the jaws and legs into the comb.",
+   "expert": "In the model the wax glands are drawn as four pairs of patches under the abdomen, one pair for each of those segments."
   },
   "facts": [
    [
     "Position",
-    "underside of the abdomen"
+    "underside of the abdomen, segments 4 to 7"
+   ],
+   [
+    "Number",
+    "4 pairs"
    ]
   ],
   "certainty": "C1",
@@ -1437,6 +1481,10 @@
    ]
   ],
   "ext": [
+   {
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
+   },
    {
     "title": "Western honey bee (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
@@ -1458,14 +1506,18 @@
   "processes": [],
   "summary": "A gland on the back at the tip of the abdomen that releases a scent used to call other bees: to a swarm, to a hive entrance, to water.",
   "layers": {
-   "basics": "When a bee lifts the tip of her abdomen and fans her wings, she is releasing a lemony-smelling \"come here\" scent from this gland. Other bees follow it home.",
-   "deeper": "It is a pheromone gland opening on the back at the base of the last visible tergite. Bees use it to attract workers to a settled swarm, to guide lost bees to the hive, to mark water and food that has little scent of its own.",
-   "expert": "The article consulted does not list the chemicals in it. The model draws the gland as an orange band at the correct position; in life it is exposed only when the abdomen tip is curled down."
+   "basics": "When a bee lifts the tip of her abdomen and fans her wings, she is releasing a lemony-smelling come-here scent from this gland. Other bees follow it home.",
+   "deeper": "It is a pheromone gland whose opening is on the upper side at the base (front edge) of the last visible tergite, at the tip of the abdomen. Bees use the scent to orient foragers back to the colony, to attract workers to a settled swarm, and to mark entrances and flowers.",
+   "expert": "The scent is a mixture of terpenoids including geraniol, nerolic acid, citral and geranic acid. A synthetic lure of citral and geraniol in a 2:1 ratio is used to attract swarms to empty hives. The model draws the gland as an orange band at the position described; in life it is exposed only when the abdomen tip is curled down."
   },
   "facts": [
    [
     "Position",
-    "back, at the rear edge of the last tergite"
+    "upper side, at the front (base) edge of the last visible tergite"
+   ],
+   [
+    "Main components",
+    "geraniol, nerolic acid, citral, geranic acid"
    ]
   ],
   "certainty": "C1",
@@ -1481,6 +1533,10 @@
    {
     "title": "Nasonov gland (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Nasonov_gland"
+   },
+   {
+    "title": "Nasonov pheromone (Wikipedia; cites Williams, Pickett and Martin 1981, J. Chem. Ecol. 7: 225-237)",
+    "url": "https://en.wikipedia.org/wiki/Nasonov_pheromone"
    }
   ],
   "related": []
@@ -1499,11 +1555,11 @@
    "bee_venom_sac"
   ],
   "processes": [],
-  "summary": "The sting is a modified egg-laying tool. A worker's sting has barbs, so that when it lodges in skin of a mammal it stays behind, still pumping venom.",
+  "summary": "The sting is a modified egg-laying tool. A worker's sting has barbs, so that when it lodges in the skin of a mammal it can be left behind, still working.",
   "layers": {
-   "basics": "Only females can sting, because the sting is a rearranged egg-laying organ. A worker's sting is a hollow shaft and two sliding, barbed blades. When she stings a mammal the barbs catch in the skin. As she pulls away, the whole sting, the venom sac and part of her abdomen tear free, and she dies. The sting goes on pumping venom for a few minutes.",
-   "deeper": "The two blades (lancets) slide alternately, like a saw, each time driving the sting deeper and pumping venom through a valve-and-piston arrangement. Muscles and a tiny nerve ganglion are attached to it, so it continues to work after it is torn away. A bee that stings another insect can usually withdraw her sting and survive. It also gives off an alarm pheromone, isopentyl acetate, that excites other bees.",
-   "expert": "Worker stingers are barbed and the barbs do not always catch. The \"why she dies\" is a trade: for the colony, a deeper and longer-lasting dose of venom and an alarm signal. How that evolved is a question of kin selection (a worker's sisters share many of her genes). The sting is shown retracted inside the abdomen tip, as at rest; the barb counts drawn are illustrative."
+   "basics": "Only females can sting, because the sting is a rearranged egg-laying organ. A worker's sting is a hollow shaft and two sliding, barbed blades. When she stings a mammal the barbs catch in the skin. As she pulls away, the whole sting, the venom sac and part of her abdomen can tear free, and she dies. The detached sting goes on working for a short time.",
+   "deeper": "The two blades (lancets) slide alternately, out of step with each other, each time driving the sting deeper. Muscles on the plates at the base of the sting move the lancets, and venom is delivered by the valves on the lancets rather than leaving through the tip like a hypodermic needle. A tiny nerve ganglion goes with the sting, with its connections intact, which is why it keeps working after it is torn away. The sting also carries an alarm pheromone, isopentyl acetate, that is left at the sting site and excites other bees to join in.",
+   "expert": "Each lancet carries about 10 barbs, facing backward; the stylet has smaller, more variable barbs (Ramirez-Esquivel and Ravi 2023). Losing the sting is costly, yet effective as a defence. Why it evolved is a hypothesis, not a measured fact: the usual proposal is that a worker's death can pay off through the survival of her sisters, which share many of her genes (kin selection), and that leaving the sting behind may deliver more venom and more alarm signal. The sting is shown retracted inside the abdomen tip, as at rest; the barb count drawn in the model (18) is illustrative."
   },
   "facts": [
    [
@@ -1511,17 +1567,21 @@
     "a modified egg-laying organ (ovipositor)"
    ],
    [
+    "Barbs",
+    "≈ 10 per lancet (Ramirez-Esquivel and Ravi 2023)"
+   ],
+   [
     "Alarm pheromone",
     "isopentyl acetate"
    ],
    [
     "After stinging a mammal",
-    "the sting tears free; the worker dies"
+    "the sting can tear free; the worker usually dies"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
   "open_questions": [
-   "Exactly how often a stung bee dies in the wild, and what the stinging bee gains, are still debated; the \"kin selection\" account is widely accepted but not the whole story."
+   "Why the sting autotomy evolved is a hypothesis: kin selection is the usual explanation, but how often a stung bee dies in the wild and what the colony gains are still being worked out."
   ],
   "refs": [
    [
@@ -1532,23 +1592,23 @@
   ],
   "ext": [
    {
-    "title": "Western honey bee (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
+    "title": "Ramirez-Esquivel and Ravi 2023: Functional anatomy of the worker honeybee stinger (iScience 26: 107103)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10359947"
    },
    {
-    "title": "Bee stingers work like saws to pump venom (Popular Science)",
-    "url": "https://www.popsci.com/?p=788953"
+    "title": "Shorter and Rueppell 2012: A review on self-destructive defense behaviors in social insects (Insectes Sociaux 59: 1-10)",
+    "url": "https://doi.org/10.1007/s00040-011-0210-x"
+   },
+   {
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    },
    {
     "title": "Bee alarm pheromone (University of Bristol, Molecule of the Month)",
     "url": "https://www.chm.bris.ac.uk/motm/ethylacetate/bee.htm"
-   },
-   {
-    "title": "Honey bee anatomy (Buzz About Bees)",
-    "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
    }
   ],
-  "did_you_know": "Only the workers that sting mammals die. A queen's sting is not barbed, so she can sting again.",
+  "did_you_know": "A queen's sting is smoother and less barbed than a worker's.",
   "related": []
  },
  {
@@ -1563,16 +1623,16 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "A small reservoir that stores venom and feeds it down to the sting.",
+  "summary": "A small reservoir that stores venom made by two glands and feeds it down to the sting.",
   "layers": {
-   "basics": "The venom is made in a gland and stored in a small sac. When the sting goes in, the venom is pumped out of the sac, through the sting and into the victim.",
-   "deeper": "The sac stays attached to the sting when it is torn free, so the sting can keep injecting venom after the bee has gone. The main component of honey bee venom is melittin, a small protein that damages cell membranes (no molecule file for melittin exists in this explorer).",
-   "expert": "Melittin is a peptide of 26 amino acids; this detail was not checked against a source in this session and is left out of the facts."
+   "basics": "The venom is made in glands and stored in a small sac. When the sting goes in, venom flows from the sac into the sting and into the victim.",
+   "deeper": "The sac is not muscular: the sting's own muscles and sliding blades drive the venom, not the sac (Snodgrass 1910). The sac stays attached to the sting when it is torn free. The main component of honey bee venom is melittin, a peptide that damages cell membranes.",
+   "expert": "Melittin is a peptide of 26 amino acids (the mature peptide cut from a 70-residue precursor) and makes up about 40 to 60 percent of the dry weight of the venom. No molecule file for melittin exists in this explorer."
   },
   "facts": [
    [
     "Contents",
-    "venom, with a peptide called melittin as the main component"
+    "venom, with the peptide melittin (26 amino acids) as the main component"
    ]
   ],
   "certainty": "C1",
@@ -1586,12 +1646,20 @@
   ],
   "ext": [
    {
-    "title": "Western honey bee (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    },
    {
-    "title": "Bee stingers work like saws to pump venom (Popular Science)",
-    "url": "https://www.popsci.com/?p=788953"
+    "title": "Melittin (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Melittin"
+   },
+   {
+    "title": "UniProt P01501: melittin precursor of Apis mellifera (mature peptide: the last 26 of 70 residues)",
+    "url": "https://rest.uniprot.org/uniprotkb/P01501.json"
+   },
+   {
+    "title": "Ramirez-Esquivel and Ravi 2023: Functional anatomy of the worker honeybee stinger (iScience 26: 107103)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10359947"
    }
   ],
   "related": []
@@ -1700,20 +1768,24 @@
    "bee_proventriculus"
   ],
   "processes": [],
-  "summary": "A stretchy bag in the front of the abdomen where she carries nectar home. It holds about 75 mg of nectar.",
+  "summary": "A stretchy bag in the front of the abdomen where she carries nectar home. A full load is tens of milligrams.",
   "layers": {
    "basics": "This is her honey stomach, though no honey is made in it as such. She sucks up nectar and stores it here, separate from her own digestion, then flies home and gives it to other workers. Nectar starts changing into honey as soon as it is in her crop, because she adds enzymes to it.",
-   "deeper": "The crop is part of the foregut. A valve at its end (the proventriculus) lets her keep the nectar for the colony or let a little pass into the midgut when she needs fuel.",
-   "expert": "The crop carries about 75 mg of nectar; sugar need of an adult worker is about 4 mg per day (Honey bee, Wikipedia). Her own digestion happens in the midgut, so the nectar in the crop is cargo, not food, until she lets some through."
+   "deeper": "The crop is part of the foregut. A valve at its end (the proventriculus) lets her keep the nectar for the colony or let a little pass into the midgut when she needs fuel. How full the crop is varies: a forager's crop leaves the hive nearly empty or with a little fuel, and returns with a load that depends on the flower and the sugar concentration.",
+   "expert": "Published numbers for full loads differ with the bees and the method: a maximum load of 32.5 mg is the figure used in a foraging model (Winston 1987, as tabulated by Baveco et al. 2016), and bees at an artificial flower with 1.5 M sucrose took up about 65 mg in a lab-style test (Stabentheiner and Kovac 2014). Flight is fuelled by sugar: a forager's flight costs about 0.037 J per second unloaded and 0.075 J per second loaded, and sugar holds about 17.2 J per mg (Seeley 1985, 1986, in Baveco et al. 2016). That is about 8 mg of sugar an hour unloaded and about 16 mg an hour loaded (calculated here: 0.037 / 17.2 × 3600 and 0.075 / 17.2 × 3600). Her own digestion happens in the midgut, so the nectar in the crop is cargo, not food, until she lets some through."
   },
   "facts": [
    [
-    "Capacity",
-    "≈ 75 mg of nectar"
+    "Full load of nectar",
+    "≈ 30 to 65 mg depending on the study"
    ],
    [
-    "Adult sugar need",
-    "≈ 4 mg per day"
+    "Flight cost, unloaded / loaded",
+    "≈ 0.037 / 0.075 J per second (foragers)"
+   ],
+   [
+    "Sugar burned in flight",
+    "≈ 8 / 16 mg per hour (calculated)"
    ],
    [
     "Compare with the human",
@@ -1731,12 +1803,16 @@
   ],
   "ext": [
    {
-    "title": "Honey bee anatomy (Buzz About Bees)",
-    "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
+    "title": "Baveco et al. 2016: An energetics-based honeybee nectar-foraging model (PeerJ 4: e2293), Table 1 (parameters from Seeley 1985, 1986 and Winston 1987)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4991850"
    },
    {
-    "title": "Honey bee (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Honey_bee"
+    "title": "Stabentheiner and Kovac 2014: Energetic optimisation of foraging honeybees (PLoS ONE 9: e105432)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4146532"
+   },
+   {
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    }
   ],
   "related": [
@@ -1756,10 +1832,10 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "A small valve between the crop and the midgut that lets her pass nectar on or keep it.",
+  "summary": "A small valve between the crop and the midgut that passes food on or keeps it in the crop.",
   "layers": {
    "basics": "It is a small muscular gate at the end of the honey stomach. It lets her hold the nectar in the crop for the colony, and release some to the midgut when she needs food.",
-   "deeper": "In bees it is also a filter: pollen grains can be removed from the nectar there. It is the last part of the foregut.",
+   "deeper": "It projects into the back of the honey stomach, with an X-shaped mouth of four thick lips. Old books say it picks pollen grains out of the nectar; Snodgrass (1910) argued this was never shown, and that it is simply the ordinary valve through which an insect passes food from the crop to the stomach. It is the last part of the foregut.",
    "expert": "The details of the valve action are not drawn; the model shows a small bulb and a short lip at the right place."
   },
   "facts": [
@@ -1778,6 +1854,10 @@
    ]
   ],
   "ext": [
+   {
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
+   },
    {
     "title": "Insect morphology (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
@@ -1800,8 +1880,8 @@
   "summary": "The part of the gut where food is digested and absorbed.",
   "layers": {
    "basics": "Most of her own digestion happens here. Enzymes break the food down and the gut wall takes up the sugars and other nutrients, which go into her blood to be carried to the rest of the body.",
-   "deeper": "The wall is lined with microvilli that give a large surface for absorption. In insects the midgut is also protected from its contents by a thin tube, the peritrophic membrane.",
-   "expert": "Peritrophic membrane is general insect knowledge and not specifically verified for the honey bee in the sources consulted."
+   "deeper": "The midgut (the ventriculus in older books) is a large U-shaped part with thick walls. In the honey bee its contents, partly digested pollen among them, are wrapped in thin peritrophic membranes that the wall sheds (Snodgrass 1910).",
+   "expert": "The model draws the midgut as a looped tube; folds and microscopic structure are not shown."
   },
   "facts": [
    [
@@ -1824,6 +1904,10 @@
   ],
   "ext": [
    {
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
+   },
+   {
     "title": "Insect morphology (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
    }
@@ -1845,20 +1929,24 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "Fine tubes that clean her blood: they lie in the body cavity and pour waste into the gut, where the water is mostly taken back.",
+  "summary": "Fine tubes that clean her blood: they lie in the body cavity and pour waste into the gut at the junction of midgut and hindgut.",
   "layers": {
    "basics": "She has no kidneys. Instead many thin tubes float in her blood, take up waste and extra salts, and empty them into the gut at the point where midgut meets hindgut. Waste leaves with the droppings, mostly as dry uric acid so little water is lost.",
-   "deeper": "The tubes attach at the junction of the midgut and hindgut. Insects have between two and over a hundred, depending on the species. The model shows 22 as a sample, not a count.",
-   "expert": "Insects can reclaim most of the water from their waste in the rectum. The number in the honey bee was not verified here, so the model draws a sample."
+   "deeper": "The tubes attach at the junction of the midgut and the small intestine. A worker has about 100 of them, each a very long threadlike tube coiled among the organs, each opening separately into the gut (Snodgrass 1910). The model draws 22 as a sample, not a count.",
+   "expert": "Insects overall have anywhere from two to more than a hundred; the honey bee is at the high end. The rectum then takes water back from the wastes."
   },
   "facts": [
    [
     "Position",
-    "where midgut meets hindgut"
+    "where midgut meets small intestine"
    ],
    [
-    "Number in insects",
-    "2 to over 100 depending on species"
+    "Number in a worker",
+    "≈ 100"
+   ],
+   [
+    "Number in the model",
+    "22 (a sample)"
    ],
    [
     "Compare with the human",
@@ -1875,6 +1963,10 @@
    ]
   ],
   "ext": [
+   {
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
+   },
    {
     "title": "Insect morphology (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
@@ -1898,9 +1990,9 @@
   "processes": [],
   "summary": "The last part of the gut, where water is taken back before the waste leaves.",
   "layers": {
-   "basics": "The hindgut collects what she cannot use. In the rectum most of the water is absorbed back, and the dry droppings leave through the anus. Bees prefer not to soil the hive, and can hold a great deal of waste in the rectum until a flight.",
-   "deeper": "The hindgut is lined with chitin. The rectum has thickened pads that absorb water; about 90% of the water in the waste can be recovered in many insects.",
-   "expert": "The 90% figure is for insects in general (Insect morphology, Wikipedia), not measured for honey bees."
+   "basics": "The hindgut collects what she cannot use. In the rectum water is absorbed back, and the dry droppings leave through the anus. Bees prefer not to soil the hive, and the rectum can swell into a large sac that fills much of the abdomen until she can make a flight.",
+   "deeper": "The hindgut is lined with chitin. The rectum has six thick bands, the rectal glands, at its front end (Snodgrass 1910).",
+   "expert": "In insects in general the rectum recovers most of the water from the waste (about 90 percent is the figure quoted for insects as a group; it has not been measured for the honey bee)."
   },
   "facts": [
    [
@@ -1928,6 +2020,10 @@
   ],
   "ext": [
    {
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
+   },
+   {
     "title": "Insect morphology (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
    }
@@ -1950,9 +2046,9 @@
   "processes": [],
   "summary": "A tube along the back with a chambered rear part (the heart) and a narrow front part (the aorta). It pushes blood forward into the body cavity, where it flows freely around the organs.",
   "layers": {
-   "basics": "A bee's blood is called haemolymph and it does not travel in closed vessels. The heart is a long tube in the back of the abdomen. It pulses, sucks blood in through small valved slits and pushes it forward through the thorax to the head, where it spills out into the body and washes slowly back around the organs. It does not carry oxygen, because bees breathe through tubes.",
-   "deeper": "This is an open circulatory system. A human has a closed one: blood stays inside vessels and the heart pumps it round a circuit. In a bee the haemolymph carries nutrients, waste, hormones and immune cells but not oxygen, so there is no need to circulate it quickly.",
-   "expert": "The dorsal vessel has one-way valves (ostia) in its heart part and pulses peristaltically. The honey bee blood has no red blood cells. Chambers in the model are schematic."
+   "basics": "A bee's blood is called haemolymph and it does not travel in closed vessels. The heart is a long tube in the back of the abdomen. It pulses, sucks blood in through small valved slits and pushes it forward through the thorax to the head, where it spills out into the body and washes slowly back around the organs. It carries very little oxygen, because bees breathe through tubes.",
+   "deeper": "This is an open circulatory system. A human has a closed one: blood stays inside vessels and the heart pumps it round a circuit. In a bee the haemolymph carries nutrients, waste, hormones and immune cells and has no red blood cells, so it has little capacity for oxygen; the air tubes do that job.",
+   "expert": "The dorsal vessel has one-way valves (ostia) in its heart part and pulses from back to front. The honey bee heart has four chambers in abdominal segments 3 to 6 and a looped front end where it passes the waist; the aorta runs forward through the thorax into the head (Snodgrass 1910). Chambers in the model are schematic."
   },
   "facts": [
    [
@@ -1961,7 +2057,11 @@
    ],
    [
     "Oxygen",
-    "not carried by the blood; supplied by tracheae"
+    "little carried by the blood; supplied by tracheae"
+   ],
+   [
+    "Heart chambers",
+    "4"
    ],
    [
     "Compare with the human",
@@ -1978,6 +2078,10 @@
    ]
   ],
   "ext": [
+   {
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
+   },
    {
     "title": "Insect morphology (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
@@ -2001,10 +2105,10 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "Two long, coiled, bead-like glands in the head of a young worker. They make the protein-rich food, part of royal jelly, with which nurse bees feed larvae.",
+  "summary": "Two long, coiled, bead-like glands in the head of a young worker. They make part of royal jelly, the protein-rich food with which nurse bees feed larvae.",
   "layers": {
-   "basics": "Young workers called nurse bees feed the grubs. They make a rich, milky food from glands in their heads, and feed it to larvae, the queen and the drones. When a bee gets older and turns to foraging, these glands shrink and she makes other secretions.",
-   "deeper": "The glands are tube-shaped organs covered with small clusters of secretory cells, which is what makes them look like strings of beads. They are important in royal jelly production and in feeding.",
+   "basics": "Young workers called nurse bees feed the grubs. They make a rich, milky food from glands in their heads, and feed it to larvae and the queen. When a bee gets older and turns to foraging, these glands shrink and she makes other secretions.",
+   "deeper": "The glands are tube-shaped organs covered with small clusters of secretory cells, which is what makes them look like strings of beads. Royal jelly is made in the hypopharyngeal and mandibular glands of nurse bees. The same glands add enzymes to nectar when it is being turned into honey.",
    "expert": "The glands are drawn in the model as two coiled beaded strings; real glands are larger, with thousands of tiny acini, and shrink with age."
   },
   "facts": [
@@ -2014,22 +2118,20 @@
    ],
    [
     "Product",
-    "protein secretion fed to larvae, queens and drones"
+    "protein secretion fed to larvae and queens"
    ]
   ],
   "certainty": "C1",
   "open_questions": [],
-  "refs": [
-   [
-    "BIO",
-    "34.1",
-    "34-1-digestive-systems"
-   ]
-  ],
+  "refs": [],
   "ext": [
    {
-    "title": "Honey bee anatomy (Buzz About Bees)",
-    "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
+    "title": "Honey bee (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Honey_bee"
+   },
+   {
+    "title": "Honey (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Honey"
    }
   ],
   "related": []
@@ -2050,7 +2152,7 @@
    "bee_nerve_cord"
   ],
   "processes": [],
-  "summary": "A bee's brain is smaller than a sesame seed but runs flight, vision, smell, memory and the dance. It has large optic lobes and antennal lobes, and mushroom bodies for learning.",
+  "summary": "A bee's brain is tiny but runs flight, vision, smell, learning and the dance. It has large optic lobes and antennal lobes, and mushroom bodies where senses are combined.",
   "layers": {
    "basics": "The bee brain sits in the head behind her face. It is tiny but remarkably capable: bees learn flower colours and scents, remember routes, tell the time of day and communicate with a dance. Two big lumps at the sides, the optic lobes, deal with what the eyes see. Two smaller ones in front, the antennal lobes, deal with smell.",
    "deeper": "Insect brains are built differently from yours. Visual and smell information are processed in dedicated lobes, then combined in the mushroom bodies, which are important for learning and memory. The brain is joined to a ventral nerve cord that runs through the body.",
@@ -2077,12 +2179,12 @@
   ],
   "ext": [
    {
-    "title": "Honey bee anatomy (Buzz About Bees)",
-    "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
+    "title": "Menzel 2012: The honeybee as a model for understanding the basis of cognition (Nature Reviews Neuroscience 13: 758-768)",
+    "url": "https://doi.org/10.1038/nrn3357"
    },
    {
-    "title": "Western honey bee (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    }
   ],
   "related": [
@@ -2103,16 +2205,16 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "Cup-shaped structures in the brain, two per side, where smell and sight are combined; they are central to learning and memory.",
+  "summary": "Cup-shaped structures in the brain, two per side, where smell and sight are combined; they are central to learning, and memory traces also lie elsewhere.",
   "layers": {
-   "basics": "These are mushroom-shaped clumps of nerve cells in the upper part of the brain. In a bee they are where she learns which flower colours and scents mean food, and where she keeps her memory of them.",
-   "deeper": "Each mushroom body has cups (calyces) that receive input from the senses, and stalks that carry output to lobes. They are large in bees and wasps, which is linked to their rich learning and navigation.",
+   "basics": "These are mushroom-shaped clumps of nerve cells in the upper part of the brain. They take in smell, sight and other senses, and are where she links a flower's colour or scent with food. Memory is not stored in one spot: traces of what she has learned lie in several places in the brain, mushroom bodies among them.",
+   "deeper": "Each mushroom body has cups (calyces) that receive input from the senses, and stalks that carry output to lobes. They are described as high-order integration centres for the senses (Menzel 2012).",
    "expert": "In the model the mushroom bodies are drawn as two cups and a stalk per side, a simplified outline."
   },
   "facts": [
    [
     "Role",
-    "learning and memory"
+    "integrating the senses; learning and memory"
    ],
    [
     "Compare with the human",
@@ -2130,8 +2232,8 @@
   ],
   "ext": [
    {
-    "title": "Honey bee anatomy (Buzz About Bees)",
-    "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
+    "title": "Menzel 2012: The honeybee as a model for understanding the basis of cognition (Nature Reviews Neuroscience 13: 758-768)",
+    "url": "https://doi.org/10.1038/nrn3357"
    }
   ],
   "related": [
@@ -2154,12 +2256,20 @@
   "layers": {
    "basics": "Instead of a spinal cord along her back, as you have, a bee has a nerve cord along her belly. It has swellings, ganglia, in each region. Each controls its own legs, wings or segments with some independence, with the brain giving the orders.",
    "deeper": "The first ganglion under the oesophagus, the suboesophageal ganglion, controls the mouthparts. The thoracic ganglia run legs and wings. The last abdominal ganglion runs the sting.",
-   "expert": "The number of ganglia in the model is schematic: a suboesophageal, two thoracic and four abdominal ganglia are drawn."
+   "expert": "A real worker has, behind the head, two ganglia in the thorax (the second is a compound of the mesothoracic and metathoracic ganglia and the first two abdominal ones, because the first abdominal segment is fused to the thorax) and five in the abdomen, the last a compound of several segments' ganglia (Snodgrass 1910). The model draws a suboesophageal, two thoracic and four abdominal ganglia: one abdominal ganglion fewer than a real worker."
   },
   "facts": [
    [
     "Position",
     "belly (ventral)"
+   ],
+   [
+    "Ganglia behind the head, real worker",
+    "2 in the thorax + 5 in the abdomen"
+   ],
+   [
+    "Drawn in the model",
+    "2 in the thorax + 4 in the abdomen"
    ],
    [
     "Compare with the human",
@@ -2176,6 +2286,10 @@
    ]
   ],
   "ext": [
+   {
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
+   },
    {
     "title": "Insect morphology (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
@@ -2205,7 +2319,7 @@
   "layers": {
    "basics": "A bee breathes through tubes. Small pores in her sides (spiracles) open to tubes that branch and branch again until the smallest touch individual cells. Oxygen goes straight from the air to the tissue, not through the blood.",
    "deeper": "The tubes, called tracheae, are lined with a spiral of stiffening chitin that keeps them from collapsing. At the muscles they end in tracheoles, thin enough to push in between the cells. Large thin-walled air sacs act as bellows and as stores of air.",
-   "expert": "Gas moves partly by diffusion and partly by the pumping of the abdomen. This is why insects of this size are possible: diffusion through air works over short distances. The model has a trunk on each side with branches to the legs, wings, and head."
+   "expert": "Gas moves partly by diffusion and partly by the pumping of the abdomen. Diffusion through air works over short distances, which is part of why insects of this size can breathe this way. The model has a trunk on each side with branches to the legs, wings, and head."
   },
   "facts": [
    [
@@ -2214,7 +2328,7 @@
    ],
    [
     "Entry",
-    "spiracles"
+    "spiracles (10 pairs in a worker)"
    ],
    [
     "Compare with the human",
@@ -2231,6 +2345,10 @@
    ]
   ],
   "ext": [
+   {
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
+   },
    {
     "title": "Insect morphology (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
@@ -2255,20 +2373,20 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "Small closable pores along each side that let air into the tracheae. There are three pairs on the thorax and more on the abdomen.",
+  "summary": "Small closable pores along each side that let air into the tracheae. A worker has ten pairs: two on the thorax, one on the fused first abdominal segment and seven on the abdomen behind.",
   "layers": {
    "basics": "These are the doors to her air tubes. Each has a valve that can close it to save water. In the model, small dark rings along her sides mark them.",
-   "deeper": "The spiracles are on the sides of the thorax (three pairs) and the abdomen. The number on the abdomen is not given in the sources consulted here; the model shows six pairs.",
-   "expert": "Closing the spiracles reduces water loss through breathing, which matters in a dry, hot day of flying."
+   "deeper": "Insects usually have ten pairs of spiracles. In the honey bee two pairs lie on the true thorax (one in front of the mesothorax, one between mesothorax and metathorax) and eight on the abdomen, the first of them on the propodeum, which looks like part of the thorax, and the last on the eighth tergite (Snodgrass 1910). So the apparent thorax carries three pairs, and the visible abdomen seven.",
+   "expert": "The model draws 3 pairs on the thorax and 6 on the abdomen (9 pairs, 18 pores): one pair fewer than a real worker. Closing the spiracles reduces water loss through breathing."
   },
   "facts": [
    [
-    "Thoracic spiracles",
-    "3 pairs"
+    "Pairs in a worker",
+    "10: 2 thoracic, 1 on the propodeum, 7 abdominal"
    ],
    [
-    "Abdominal spiracles in the model",
-    "6 pairs (schematic)"
+    "Pairs drawn in the model",
+    "9: 3 on the thorax and propodeum, 6 on the abdomen"
    ]
   ],
   "certainty": "C1",
@@ -2282,8 +2400,8 @@
   ],
   "ext": [
    {
-    "title": "Honey bee anatomy (Buzz About Bees)",
-    "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    },
    {
     "title": "Insect morphology (Wikipedia)",
@@ -2306,8 +2424,8 @@
   "processes": [],
   "summary": "Large, thin-walled bags of air in the abdomen, thorax and head that connect to the tracheae. They act as bellows and air stores.",
   "layers": {
-   "basics": "Some of her air tubes widen into big bags. Her abdomen squeezes and expands like a bellows, pushing air in and out. The sacs also give her a little buoyancy and take up space in the head and thorax.",
-   "deeper": "Unlike tracheae, air sacs have no stiffening spiral, so they collapse and re-inflate. The abdomen pumps them.",
+   "basics": "Some of her air tubes widen into big bags. Her abdomen squeezes and expands like a bellows, pushing air in and out of them.",
+   "deeper": "Unlike tracheae, air sacs have no stiffening spiral, so they collapse and re-inflate. The abdomen pumps them (Snodgrass 1910).",
    "expert": "The positions drawn are approximate: a pair in the abdomen, a pair behind the thorax, and head sacs."
   },
   "facts": [
@@ -2326,6 +2444,10 @@
    ]
   ],
   "ext": [
+   {
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
+   },
    {
     "title": "Insect morphology (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
@@ -2349,9 +2471,9 @@
   "processes": [],
   "summary": "Her hard outer skin: layers of chitin and protein with a waxy skin on top, laid down by a single layer of living cells below.",
   "layers": {
-   "basics": "A bee's skeleton is on the outside. It is the skin itself, hardened. On the outside is a thin waxy skin that keeps water in. Under it is a hard layer, then a tougher layered one, all made by living cells at the bottom. To grow, an insect has to shed it; an adult bee no longer does.",
-   "deeper": "The outer waxy layer is the epicuticle and it has no chitin. Under it the procuticle has two parts: the hard, darkened exocuticle outside and the tougher, flexible endocuticle inside. Chitin is a polymer of N-acetylglucosamine, embedded in protein. Where the cuticle is thin and soft it forms the joints.",
-   "expert": "In this picture the thicknesses of the layers are illustrative; the order is right. Click a chitin sheet and the molecule button to see its unit."
+   "basics": "A bee's skeleton is on the outside. It is the skin itself, hardened. On the outside is a thin waxy skin that keeps water in. Under it is a hard, darkened layer, then a softer, flexible layered one, all made by living cells at the bottom. To grow, an insect has to shed it; an adult bee no longer does.",
+   "deeper": "The outer waxy layer is the epicuticle and it has no chitin. Under it the procuticle has two parts: the rigid, hardened, darkened exocuticle outside and the tough but more flexible endocuticle inside, built of many layers of chitin fibres and protein with the fibres crisscrossing from layer to layer. Chitin is a polymer of N-acetylglucosamine, embedded in protein. Where the cuticle is thin and soft it forms the joints.",
+   "expert": "In this picture the thicknesses of the layers are illustrative; the order is right. The stacked chitin sheets are drawn in the endocuticle. Click a chitin sheet and the molecule button to see its unit."
   },
   "facts": [
    [
@@ -2407,7 +2529,7 @@
   "summary": "A tough, fibre-forming sugar polymer: long chains of N-acetylglucosamine. It is the main structural material of insect cuticle and of fungal walls.",
   "layers": {
    "basics": "Chitin is like cellulose but with a small nitrogen-containing group on each sugar unit. The chains line up into fibres that, with protein around them, make a material both strong and light, like the fibres in fibreglass. It is also the material of crab shells and mushroom walls.",
-   "deeper": "The unit that repeats along the chain is N-acetylglucosamine. The sugar rings are linked by β-1,4 bonds and the chains pack side by side held by hydrogen bonds. In cuticle the chains lie in layers whose direction rotates a little from layer to layer.",
+   "deeper": "The unit that repeats along the chain is N-acetylglucosamine. The sugar rings are linked by β-1,4 bonds and the chains pack side by side held by hydrogen bonds. In insect cuticle the fibres lie in layers, with the direction changing from layer to layer.",
    "expert": "Chitin: poly(β-1,4-N-acetylglucosamine). Click the molecule button to see the unit."
   },
   "facts": [
@@ -2449,30 +2571,25 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "Her body is covered with hairs that are themselves branched, like tiny feathers. They catch pollen, sense air movement and keep her warm.",
+  "summary": "Her body is covered with hairs, many of them branched, like tiny feathers. They catch pollen, and some are touch sensors.",
   "layers": {
-   "basics": "Bees are furry. The hairs are not smooth; each has side branches, which is what makes a bee such a good pollen collector: pollen grains stick and tangle in them. She grooms the pollen from her hairs with the combs on her legs and packs it into the baskets.",
-   "deeper": "The hairs also insulate the thorax, which must be warm to fly, and some of them are sensory, bending when air or touch moves them (general insect biology; not checked against a source here).",
-   "expert": "The model draws about 3,000 hairs as a shaft with side barbs; a real bee has far more. Their position and density are approximate."
+   "basics": "Bees are furry. The hairs are not smooth; many have side branches, which is what makes a bee such a good pollen collector: pollen grains tangle in them. She grooms the pollen from her hairs with the brushes on her legs and packs it into the baskets.",
+   "deeper": "Snodgrass (1910) found bits of feathered bee hairs in the gut and described some hairs as touch sensors: hairs with a nerve ending at their base bend when something brushes them. Other hairs have no nerve and are not sensory.",
+   "expert": "The model draws about 3,500 hairs as a shaft with side barbs on the near view and about 900 on the middle view; a real bee has far more. Their position and density are approximate."
   },
   "facts": [
    [
     "Hair type",
-    "branched (plumose)"
+    "branched (\"feathered\")"
    ],
    [
     "Model count",
-    "≈ 3,000 (real: many more)"
+    "≈ 3,500 (real: many more)"
    ]
   ],
   "certainty": "C1",
   "open_questions": [],
   "refs": [
-   [
-    "BIO",
-    "32.2",
-    "32-2-pollination-and-fertilization"
-   ],
    [
     "BIO",
     "28.6",
@@ -2481,8 +2598,8 @@
   ],
   "ext": [
    {
-    "title": "Western honey bee (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
+    "title": "Snodgrass 1910: The Anatomy of the Honey Bee (U.S. Bureau of Entomology Bulletin 18)",
+    "url": "https://archive.org/details/anatomyofhoneybe00snod"
    }
   ],
   "related": []
@@ -2500,16 +2617,16 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "The sweet liquid flowers make to pay bees. It is about 80 percent water with sugars, mainly sucrose, glucose and fructose.",
+  "summary": "The sweet liquid flowers make that bees collect. Its sugar content ranges from about 10 to 70 percent by weight; the sugars are mainly sucrose, glucose and fructose.",
   "layers": {
    "basics": "Nectar is sugar water. A flower makes it so that bees will visit and carry pollen. For the bee it is fuel: sugar for her flight muscles.",
-   "deeper": "The main sugars are sucrose (table sugar, made of one glucose and one fructose joined) and the two simple sugars glucose and fructose. The bee adds an enzyme that splits sucrose into glucose and fructose.",
-   "expert": "Nectar is nearly 80% water (Western honey bee, Wikipedia). The proportions of the sugars vary from plant to plant."
+   "deeper": "The main sugars are sucrose (table sugar, made of one glucose and one fructose joined) and the two simple sugars glucose and fructose. The bee adds an enzyme that splits sucrose into glucose and fructose. How watery nectar is depends on the plant and the weather: nectar of about 20 percent sugar is therefore about 80 percent water, but other nectars are far thicker or thinner.",
+   "expert": "Floral nectar ranges from about 10 to 70 percent sugar by weight (Nicolson 2022). Foragers have been found to return with crop sugar concentrations about twice that of the nectar they collected. The proportions of the sugars vary from plant to plant."
   },
   "facts": [
    [
-    "Water",
-    "≈ 80%"
+    "Sugar concentration",
+    "≈ 10 to 70 % w/w (varies by plant)"
    ],
    [
     "Main sugars",
@@ -2527,8 +2644,12 @@
   ],
   "ext": [
    {
-    "title": "Western honey bee (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
+    "title": "Nicolson 2022: Sweet solutions: nectar chemistry and quality (Phil. Trans. R. Soc. B 377)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9058545"
+   },
+   {
+    "title": "Honey (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Honey"
    }
   ],
   "related": []
@@ -2548,24 +2669,20 @@
    "bee_crop"
   ],
   "processes": [],
-  "summary": "Workers dry nectar from about 80 percent water to under 20 percent, and add enzymes that split its sugars; the thick result is capped in wax.",
+  "summary": "Workers dry nectar and add enzymes that split its sugars; the thick result, with a water content of about 15 to 18 percent, is capped in wax.",
   "layers": {
-   "basics": "A forager brings nectar home in her crop and hands it to a house bee. The house bees pass it mouth to mouth for around half an hour, adding enzymes. They then spread it in the wax cells, fan it with their wings to drive off water, and cap the cells with wax when it is thick.",
-   "deeper": "The enzymes split sucrose into glucose and fructose. Evaporation drops the water content from about 80% in nectar to under 20% in honey, which is thick enough that microbes cannot grow in it.",
-   "expert": "Digestion of nectar takes about 30 minutes and drying brings the water to under 20% (Western honey bee, Wikipedia). Honey is stored energy for the colony: in temperate climates a colony eats 15 to 50 kg through the winter (Honey bee, Wikipedia)."
+   "basics": "A forager brings nectar home in her crop and hands it to a house bee. The house bees pass it mouth to mouth, adding enzymes. They then spread it in the wax cells, evaporate water with the warm air and wing beats, and cap the cells with wax when it is thick.",
+   "deeper": "The enzymes split sucrose into glucose and fructose. Evaporation drives off the water: nectar is often described as 70 to 80 percent water, though the range is wider, and finished honey reaches about 15.5 to 18 percent. Honey is thick enough, and sugary enough, that microbes cannot easily grow in it.",
+   "expert": "Worker bees digest the nectar for about 30 minutes before it is dried to under 20 percent water (Western honey bee, Wikipedia). Honey is also acidic (average pH about 3.9) and contains hydrogen peroxide made by an enzyme the bees add, which together with the sugar concentration holds microbes back (Honey, Wikipedia)."
   },
   "facts": [
    [
     "Nectar water",
-    "≈ 80%"
+    "varies with the plant: about 30 to 90 % (follows from 10 to 70 % sugar)"
    ],
    [
     "Honey water",
-    "< 20%"
-   ],
-   [
-    "Winter honey eaten",
-    "≈ 15 to 50 kg (temperate)"
+    "≈ 15.5 to 18 %"
    ]
   ],
   "certainty": "C1",
@@ -2579,12 +2696,16 @@
   ],
   "ext": [
    {
+    "title": "Honey (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Honey"
+   },
+   {
     "title": "Western honey bee (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
    },
    {
-    "title": "Honey bee (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Honey_bee"
+    "title": "Nicolson 2022: Sweet solutions: nectar chemistry and quality (Phil. Trans. R. Soc. B 377)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9058545"
    }
   ],
   "related": []
@@ -2604,20 +2725,20 @@
    "bee_ocelli"
   ],
   "processes": [],
-  "summary": "Bees see three colours, as people do, but a different three: ultraviolet, blue and green. They do not see red as a colour.",
+  "summary": "Bees see three colours, as people do, but a different three: ultraviolet, blue and green. They have no receptor tuned to red.",
   "layers": {
-   "basics": "A bee sees a flower differently from you. Many flowers have patterns that reflect ultraviolet light, which is invisible to us, and which act as landing guides for bees. Bees do not have a receptor for red, so a plain red flower looks dark to them. Their world is coarse and quick: about 5,000 separate patches per eye.",
-   "deeper": "The three receptor types peak at about 344 nm (ultraviolet), 436 nm (blue) and 544 nm (green) (some papers give 556 nm). Her ocelli add a measure of the brightness of the sky. Compared with a human eye, hers has no single lens and focuses nothing: the ommatidia point in slightly different directions and each reports one patch.",
-   "expert": "The bee's three colour channels support trichromatic colour vision with properties similar to human colour vision. Human vision uses a different set, so the colours a bee distinguishes are not the colours we see."
+   "basics": "A bee sees a flower differently from you. Many flowers have patterns that reflect ultraviolet light, which is invisible to us, and which can act as landing guides for bees. Bees have no receptor with its peak in the red, so red looks very different to them. Their world is coarse and quick: each eye has about 5,400 ommatidia, each looking at one patch.",
+   "deeper": "The three receptor types peak at about 340 nm (ultraviolet), 430 nm (blue) and 540 nm (green). Her ocelli add a measure of the brightness of the sky. Each facet of the compound eye has a lens that focuses light onto its own light-sensing cells, but the eye has no single lens that forms one image: the ommatidia point in slightly different directions and each reports one patch.",
+   "expert": "The bee's three colour channels support trichromatic colour vision, but a bee's colour space is not ours. Human vision uses a different set of receptors, so the colours a bee distinguishes are not the colours we see."
   },
   "facts": [
    [
     "Receptor peaks",
-    "≈ 344, 436, 544 nm"
+    "≈ 340, 430, 540 nm"
    ],
    [
     "Red",
-    "no red receptor"
+    "no receptor peaking in the red"
    ],
    [
     "Compare with the human",
@@ -2635,11 +2756,11 @@
   ],
   "ext": [
    {
-    "title": "Hempel de Ibarra, Vorobyev, Menzel 2014: Mechanisms, functions and ecology of colour vision in the honeybee",
-    "url": "https://link.springer.com/doi/10.1007/s00359-014-0915-1"
+    "title": "Lichtenstein, Grubel and Spaethe 2018: Opsin expression patterns coincide with photoreceptor development during pupal development in the honey bee (BMC Dev. Biol. 18)",
+    "url": "https://doi.org/10.1186/s12861-018-0162-8"
    },
    {
-    "title": "Streinzer et al. 2013: Sex and caste-specific variation in compound eye morphology of five honeybee species (PLOS ONE)",
+    "title": "Streinzer et al. 2013: Sex and caste-specific variation in compound eye morphology of five honeybee species (PLOS ONE), Table 1",
     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3584085/"
    }
   ],
@@ -2660,11 +2781,11 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "A forager that has found a good patch of flowers dances on the comb in the dark: the angle of her waggle run shows the direction, and its length shows the distance.",
+  "summary": "A forager that has found a good patch of flowers dances on the comb in the dark: the angle of her waggle run correlates with the direction of the food, and its length with the distance.",
   "layers": {
-   "basics": "Back in the hive a bee that has found food can tell her sisters where. She walks a straight line while shaking her abdomen from side to side (the waggle run), then loops back and repeats. The angle of the run from straight up on the comb is the angle between the food and the sun, and a longer waggle means a farther place. Nearby sisters follow her closely, smell the flower scent on her and fly off.",
-   "deeper": "A run straight up the comb means \"toward the sun\". A run 45° to the right means 45° to the right of the sun. For food close to the hive a bee may dance a simple round dance with no direction. This was decoded by Karl von Frisch.",
-   "expert": "Not every follower uses the information: in one study, 93% of foragers that closely followed a dance ignored its direction and location and returned to a patch they already knew. In another, displaced bees followed the path to a feeder as the dance told them."
+   "basics": "Back in the hive a bee that has found food can tell her sisters where. She walks a straight line while shaking her abdomen from side to side (the waggle run), then loops back and repeats. The angle of the run from straight up on the comb matches the angle between the food and the sun, and a longer waggle goes with a farther place. Nearby sisters follow her closely and can fly off toward the food.",
+   "deeper": "A run straight up the comb means toward the sun. A run 45° to the right means 45° to the right of the sun. For food close to the hive a bee may dance a simple round dance with no direction. The code was worked out by Karl von Frisch. Radar tracking of recruits that had followed a dance found that most flew straight to the neighbourhood of the feeder, and recruits taken to other release sites flew in the direction the dance indicated, not to the feeder itself (Riley et al. 2005).",
+   "expert": "What is debated is how much followers use the dance in everyday foraging. In a test set up so that a dance pointed to a place that conflicted with what experienced foragers already knew, 93 percent of those cases ended with the follower relying on her own private information, and 7 percent (3 of 43) used the dance (Gruter et al. 2008). The proposal from that line of work is that the dance location is often a backup used when a bee lacks reliable information of her own (Gruter and Farina 2009). Both findings stand: recruits can fly the vector, and experienced bees often do not use it."
   },
   "facts": [
    [
@@ -2682,7 +2803,7 @@
   ],
   "certainty": "C2",
   "open_questions": [
-   "How much of the dance information followers really use, and how they decode it in the dark, is still studied."
+   "How much of the dance information followers really use in the wild, and how they read it in the dark, is still studied."
   ],
   "refs": [
    [
@@ -2693,15 +2814,23 @@
   ],
   "ext": [
    {
-    "title": "Waggle dance (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Waggle_dance"
+    "title": "Riley, Greggers, Smith, Reynolds and Menzel 2005: The flight paths of honeybees recruited by the waggle dance (Nature 435: 205-207)",
+    "url": "https://doi.org/10.1038/nature03526"
    },
    {
-    "title": "Western honey bee (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
+    "title": "Gruter, Balbuena and Farina 2008: Informational conflicts created by the waggle dance (Proc. R. Soc. B 275)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2602683"
+   },
+   {
+    "title": "Gruter and Farina 2009: The honeybee waggle dance: can we follow the steps? (Trends Ecol. Evol. 24)",
+    "url": "https://doi.org/10.1016/j.tree.2008.12.003"
+   },
+   {
+    "title": "Waggle dance (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Waggle_dance"
    }
   ],
-  "did_you_know": "The dance is performed in the dark on a vertical comb, so \"up\" stands for \"toward the sun\".",
+  "did_you_know": "She keeps adjusting the angle as the sun moves across the sky, so her dance stays right all day.",
   "related": []
  },
  {
@@ -2718,28 +2847,32 @@
    "bee_lifespan"
   ],
   "processes": [],
-  "summary": "A colony is one queen, some hundreds of males in season, and tens of thousands of sister workers living as one.",
+  "summary": "A colony is one queen, a few to several hundred males in season, and thousands to tens of thousands of sister workers living as one.",
   "layers": {
-   "basics": "No bee lives alone. A healthy hive in midsummer may hold 40,000 to 80,000 bees, nearly all of them workers. They share the nest, the young, the honey and the work: cleaning, nursing, building, guarding, foraging.",
-   "deeper": "The queen lays up to 2,000 eggs a day in the season. A worker takes 21 days from egg to adult, a drone 24, a queen 16. The workers regulate the hive's temperature: in winter they cluster, with the centre about 27 °C at the start of winter and the edge about 8 to 9 °C.",
-   "expert": "Workers are replaced about every four months, as about 1% die naturally each day. Numbers are for the western honey bee in temperate climates."
+   "basics": "No bee lives alone. A colony changes in size through the year, from some thousands of bees in winter to a peak in early summer that sources put at up to about 60,000 workers (some quote up to 80,000). They share the nest, the young, the honey and the work: cleaning, nursing, building, guarding, foraging.",
+   "deeper": "A worker takes about 21 days from egg to adult, a drone 24, a queen 15 to 16. A queen can lay up to about 2,000 eggs a day at her peak. Workers keep the brood warm at about 34 °C (93 °F), and in cold weather the bees cluster to keep each other warm. Worker lifespan is on the card A worker's life.",
+   "expert": "The colony model of Khoury and colleagues (2011) assumes 2,000 eggs a day and a three-week development time. Numbers are for the western honey bee in temperate climates; sizes differ between wild nests, managed hives and races."
   },
   "facts": [
    [
-    "Midsummer population",
-    "≈ 40,000 to 80,000"
+    "Workers at the early-summer peak",
+    "up to ≈ 60,000 (some sources say 80,000)"
+   ],
+   [
+    "Drones",
+    "a few to several hundred, in season"
    ],
    [
     "Queen egg laying",
     "up to ≈ 2,000 eggs a day"
    ],
    [
-    "Worker development",
-    "21 days"
+    "Development, egg to adult",
+    "worker 21 days; drone 24; queen 15 to 16"
    ],
    [
-    "Winter cluster",
-    "centre ≈ 27 °C, edge ≈ 8 to 9 °C"
+    "Brood temperature",
+    "≈ 34 °C"
    ],
    [
     "Compare with the human",
@@ -2757,12 +2890,20 @@
   ],
   "ext": [
    {
-    "title": "Western honey bee (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
+    "title": "Seasonal cycles of activities in the honey bee colony (University of Delaware extension)",
+    "url": "https://canr.udel.edu/maarec/?p=361"
    },
    {
-    "title": "Honey bee (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Honey_bee"
+    "title": "Khoury, Myerscough and Barron 2011: A quantitative model of honey bee colony population dynamics (PLoS ONE 6: e18491)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3078911"
+   },
+   {
+    "title": "Honey bee life cycle (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Honey_bee_life_cycle"
+   },
+   {
+    "title": "Western honey bee (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
    }
   ],
   "related": [
@@ -2782,24 +2923,24 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "A summer worker lives a few weeks; a worker born in autumn can live several months to carry the colony through winter.",
+  "summary": "A summer worker lives a few weeks; a worker born in autumn can live many months to carry the colony through winter.",
   "layers": {
-   "basics": "A summer worker wears herself out. Workers born in spring and summer live only a few weeks, flying more and more as they age. Workers born in autumn do little flying, stay in the warm cluster and live for several months, until spring.",
-   "deeper": "A worker begins adult life inside the hive, cleaning cells and feeding larvae, then builds comb, then guards, and only in her last weeks forages. About 1% of workers die naturally each day, and the whole set of workers is replaced about every four months.",
-   "expert": "The figure \"a few weeks\" is the qualitative statement from the source consulted; precise values vary with the season, the race, and the workload."
+   "basics": "A summer worker wears herself out. Workers born in spring and summer live only a few weeks, flying more and more as they age. Workers born in autumn do little flying, stay in the warm cluster and live for months, until spring.",
+   "deeper": "A worker begins adult life inside the hive, cleaning cells and feeding larvae, then builds comb, then guards, and only in her last weeks forages. The age at which she starts to forage is the main thing that sets her lifespan (Rueppell et al. 2007). In a healthy colony a bee forages for about a week.",
+   "expert": "Summer workers have been reported to live 3 to 4 weeks (Rueppell et al. 2007) or 15 to 48 days (Kunc et al. 2019), and in the colony model's data a worker's observed lifespan was 22 to 27 days with a flying life of 6.5 to 8.8 days (Khoury et al. 2011, Table 1). Winter workers live from over 6 months to up to 8 months in those reviews. The values depend on season, race, and workload."
   },
   "facts": [
    [
     "Spring and summer worker",
-    "a few weeks"
+    "≈ 2 to 7 weeks (reports vary)"
    ],
    [
-    "Autumn worker",
-    "several months"
+    "Autumn and winter worker",
+    "≈ 6 to 8 months"
    ],
    [
-    "Daily natural loss",
-    "≈ 1%"
+    "Time spent foraging",
+    "≈ 1 week (6.5 to 8.8 days observed)"
    ]
   ],
   "certainty": "C1",
@@ -2813,8 +2954,16 @@
   ],
   "ext": [
    {
-    "title": "Western honey bee (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
+    "title": "Rueppell et al. 2007: Regulation of life history determines lifespan of worker honey bees (Exp. Gerontol. 42)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2398712"
+   },
+   {
+    "title": "Kunc et al. 2019: The year of the honey bee with respect to its physiology and immunity (Insects 10: 244)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6723739"
+   },
+   {
+    "title": "Khoury, Myerscough and Barron 2011: A quantitative model of honey bee colony population dynamics (PLoS ONE 6: e18491)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3078911"
    }
   ],
   "related": []

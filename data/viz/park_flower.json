@@ -16,7 +16,7 @@
    }
   ],
   "ylabel": "cm",
-  "caption": "Height of the meadow buttercup: floras give about 30 to 100 cm. The model plant is 60 cm, a chosen value within that range."
+  "caption": "Height of the meadow buttercup: floras and Wikipedia give about 30 to 100 cm. The model plant is 60 cm, a chosen value within that range."
  },
  "rn_stem": {
   "type": "blocks",
@@ -71,46 +71,31 @@
     "x": 50,
     "y": 50,
     "color": "green"
-   },
-   {
-    "id": "a",
-    "label": "Still air held near the surface",
-    "x": 80,
-    "y": 30,
-    "color": "blue"
    }
   ],
   "edges": [
    {
     "from": "e",
     "to": "h"
-   },
-   {
-    "from": "h",
-    "to": "a"
    }
   ],
   "flow": false,
-  "caption": "A hair is an outgrowth of one skin cell. A coat of hairs holds a thin layer of still air against the surface."
+  "caption": "A hair is an outgrowth of one skin cell. What the buttercup's hairs do is not established."
  },
  "rn_basal_leaf": {
   "type": "bars",
   "bars": [
    {
-    "label": "segments, fewest (floras)",
-    "value": 3
-   },
-   {
-    "label": "primary lobes in the model",
+    "label": "primary lobes in the model blade",
     "value": 5
    },
    {
-    "label": "segments, most (floras)",
-    "value": 7
+    "label": "cuts per lobe in the model",
+    "value": 3
    }
   ],
-  "ylabel": "segments of the blade",
-  "caption": "Basal blades are described as divided into about 3 to 7 wedge-shaped segments; the model blade has 5 primary lobes, each cut into 3."
+  "ylabel": "count (model)",
+  "caption": "How the model blade is built: 5 primary lobes, each cut into 3. Real blades vary in lobe number and depth."
  },
  "rn_stem_leaf": {
   "type": "bars",
@@ -152,7 +137,7 @@
    }
   ],
   "ylabel": "number of parts",
-  "caption": "Parts of the model flower. Floras give 5 sepals and 5 petals; stamens are reported as about 30 to 70 and carpels as about 15 to 40, and the model picks 50 and 25."
+  "caption": "Parts of the model flower. Floras give 5 sepals and 5 petals and describe numerous stamens and many carpels; the model picks 50 and 25."
  },
  "rn_sepal": {
   "type": "blocks",
@@ -165,7 +150,7 @@
    },
    {
     "id": "o",
-    "label": "Open flower: sepals stand against the petals",
+    "label": "Open flower: sepals spread beneath the petals",
     "x": 50,
     "y": 50,
     "color": "green"
@@ -192,28 +177,52 @@
   "caption": "The life of a sepal."
  },
  "rn_petal": {
-  "type": "bars",
-  "bars": [
+  "type": "blocks",
+  "nodes": [
    {
-    "label": "upper epidermis",
-    "value": 2.7
+    "id": "u",
+    "label": "Upper skin: one very flat, pigment-filled cell layer",
+    "x": 50,
+    "y": 10,
+    "color": "orange"
    },
    {
-    "label": "starch layer",
-    "value": 38
+    "id": "a",
+    "label": "Thin air gap",
+    "x": 50,
+    "y": 35,
+    "color": "blue"
    },
    {
-    "label": "mesophyll",
-    "value": 100
+    "id": "s",
+    "label": "Starch layer: scatters light",
+    "x": 50,
+    "y": 60
    },
    {
-    "label": "lower epidermis",
-    "value": 40
+    "id": "m",
+    "label": "Spongy layer and lower skin",
+    "x": 50,
+    "y": 85,
+    "color": "green"
    }
   ],
-  "ylabel": "micrometres",
-  "caption": "Thickness of the layers of a buttercup petal, as used in the optical model of van der Kooi and colleagues (2017); the upper epidermis value is measured in R. acris. The petal is about 0.18 mm thick in all.",
-  "logy": true
+  "edges": [
+   {
+    "from": "u",
+    "to": "a"
+   },
+   {
+    "from": "a",
+    "to": "s"
+   },
+   {
+    "from": "s",
+    "to": "m"
+   }
+  ],
+  "flow": false,
+  "caption": "The layers of a buttercup petal, top to bottom (order after van der Kooi and colleagues 2017). The thicknesses in the model, about 0.18 mm in all, are model values."
  },
  "rn_nectary": {
   "type": "blocks",
@@ -266,9 +275,9 @@
   "params": [
    {
     "id": "n",
-    "label": "stamens per flower",
-    "min": 30,
-    "max": 70,
+    "label": "stamens in the model flower",
+    "min": 20,
+    "max": 80,
     "value": 50,
     "step": 1
    }
@@ -293,7 +302,7 @@
   ],
   "xlabel": "stamens",
   "ylabel": "",
-  "caption": "Slide the number of stamens across the reported range (about 30 to 70): each one adds 137.5 degrees to the spiral and four pollen sacs."
+  "caption": "Slide the number of stamens (floras say only numerous; the model uses 50): each one adds 137.5 degrees to the spiral and four pollen sacs."
  },
  "rn_filament": {
   "type": "bars",
@@ -451,20 +460,16 @@
   "type": "bars",
   "bars": [
    {
-    "label": "carpels, lowest reported",
-    "value": 15
-   },
-   {
-    "label": "model",
+    "label": "carpels in the model flower",
     "value": 25
    },
    {
-    "label": "carpels, highest reported",
-    "value": 40
+    "label": "achenes in the model fruiting head",
+    "value": 24
    }
   ],
-  "ylabel": "carpels per flower",
-  "caption": "Reported range of carpels per flower (about 15 to 40, a secondary source) and the model's choice."
+  "ylabel": "count (model)",
+  "caption": "Floras say a flower has many separate carpels; the model draws 25, and its fruiting head 24 achenes."
  },
  "rn_style_stigma": {
   "type": "blocks",
@@ -559,7 +564,7 @@
    }
   ],
   "ylabel": "count",
-  "caption": "The typical (seven-celled, eight-nucleus) embryo sac and the two sperm cells that take part in double fertilisation. Typical plan; not confirmed for R. acris."
+  "caption": "The typical (seven-celled, eight-nucleus) embryo sac of flowering plants and the two sperm cells that take part in double fertilisation."
  },
  "rn_receptacle": {
   "type": "blocks",
@@ -609,15 +614,8 @@
     "y": 20
    },
    {
-    "id": "w",
-    "label": "Winter: low temperatures help",
-    "x": 50,
-    "y": 50,
-    "color": "blue"
-   },
-   {
     "id": "o",
-    "label": "Flowering",
+    "label": "Next year: flowering",
     "x": 80,
     "y": 80,
     "color": "green"
@@ -626,15 +624,11 @@
   "edges": [
    {
     "from": "d",
-    "to": "w"
-   },
-   {
-    "from": "w",
     "to": "o"
    }
   ],
   "flow": false,
-  "caption": "Flower buds start to form in late summer of the year before flowering; cold winters promote flower development (as described for the species)."
+  "caption": "Flower buds are described as starting to form in late summer of the year before flowering."
  },
  "rn_fruit": {
   "type": "bars",
@@ -668,7 +662,7 @@
    }
   ],
   "ylabel": "mm",
-  "caption": "Achene length is about 2 to 3 mm (garden flora page); a pinhead is about 2 mm across for scale."
+  "caption": "Achene length is about 2 to 3 mm (floras); a pinhead is about 2 mm across for scale."
  },
  "rn_fruit_development": {
   "type": "blocks",
@@ -739,27 +733,41 @@
   "caption": "From flower to fruit."
  },
  "rn_pollination": {
-  "type": "bars",
-  "bars": [
+  "type": "blocks",
+  "nodes": [
    {
-    "label": "bees",
-    "value": 1
+    "id": "v",
+    "label": "Bees and flies visit most; butterflies and beetles less often",
+    "x": 20,
+    "y": 30
    },
    {
-    "label": "flies",
-    "value": 1
+    "id": "r",
+    "label": "Reward: nectar and pollen",
+    "x": 55,
+    "y": 55,
+    "color": "orange"
    },
    {
-    "label": "beetles",
-    "value": 1
-   },
-   {
-    "label": "butterflies and moths",
-    "value": 1
+    "id": "p",
+    "label": "Pollen carried to other flowers",
+    "x": 85,
+    "y": 80,
+    "color": "green"
    }
   ],
-  "ylabel": "listed as visitors (not ranked)",
-  "caption": "Groups of insects listed as visitors of the meadow buttercup in a plant database. The bars are all equal because the source gives a list, not numbers: no ranking is implied."
+  "edges": [
+   {
+    "from": "v",
+    "to": "r"
+   },
+   {
+    "from": "r",
+    "to": "p"
+   }
+  ],
+  "flow": false,
+  "caption": "Visitors of the meadow buttercup and what they gain and carry. No ranking of pollinators is implied."
  },
  "rn_nectar": {
   "type": "blocks",
@@ -798,97 +806,139 @@
   "caption": "Sucrose is one glucose joined to one fructose; it is the sugar carried in the phloem and a common nectar sugar."
  },
  "rn_gloss": {
-  "type": "plot",
-  "x": [
-   400,
-   700
-  ],
-  "y": [
-   0,
-   1.6
-  ],
-  "params": [
+  "type": "blocks",
+  "nodes": [
    {
-    "id": "p",
-    "label": "peak wavelength of the pigment",
-    "min": 430,
-    "max": 460,
-    "value": 448,
-    "step": 2,
-    "unit": "nm"
+    "id": "s",
+    "label": "Sunlight",
+    "x": 15,
+    "y": 15
+   },
+   {
+    "id": "m",
+    "label": "Flat pigment-filled top skin: thin-film mirror",
+    "x": 50,
+    "y": 35,
+    "color": "orange"
+   },
+   {
+    "id": "g",
+    "label": "Gloss: mirror-like reflection",
+    "x": 85,
+    "y": 15,
+    "color": "green"
+   },
+   {
+    "id": "b",
+    "label": "Starch and spongy layers scatter light back up",
+    "x": 50,
+    "y": 75
+   },
+   {
+    "id": "y",
+    "label": "Light filtered by the pigment: matte yellow",
+    "x": 85,
+    "y": 75,
+    "color": "green"
    }
   ],
-  "fns": [
+  "edges": [
    {
-    "f": "1.4*exp(-((x-p)/30)^2)",
-    "label": "pigment absorbance (illustrative shape, peak 1.4 as measured at 448 nm)"
+    "from": "s",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "g",
+    "label": "reflected"
+   },
+   {
+    "from": "m",
+    "to": "b",
+    "label": "passes in"
+   },
+   {
+    "from": "b",
+    "to": "y",
+    "label": "scattered out"
    }
   ],
-  "xlabel": "wavelength (nm)",
-  "ylabel": "absorbance",
-  "vlines": [
-   {
-    "x": 448,
-    "label": "448 nm measured peak"
-   }
-  ],
-  "caption": "The petal pigment absorbs blue light (peaks at about 425, 448 and 478 nm; peak absorbance 1.4 at 448 nm in the study). The curve is a smooth illustration of one peak, not the measured spectrum, and it shows why blue is taken out and yellow is left."
+  "flow": true,
+  "caption": "Two kinds of colour in a buttercup petal: a structural gloss from the top skin and a yellow from pigment filtering the scattered light."
  },
  "rn_petal_epidermis": {
-  "type": "bars",
-  "bars": [
+  "type": "blocks",
+  "nodes": [
    {
-    "label": "upper epidermis, R. acris",
-    "value": 2.7
+    "id": "f",
+    "label": "Very flat cells",
+    "x": 20,
+    "y": 50
    },
    {
-    "label": "upper epidermis, R. repens",
-    "value": 2.3
+    "id": "t",
+    "label": "Thin-film reflection: the gloss",
+    "x": 50,
+    "y": 25,
+    "color": "orange"
    },
    {
-    "label": "upper epidermis, R. lingua",
-    "value": 3.1
+    "id": "p",
+    "label": "Carotenoid filter: the yellow",
+    "x": 50,
+    "y": 75,
+    "color": "green"
    }
   ],
-  "ylabel": "micrometres",
-  "caption": "Measured thickness of the flat upper epidermis in three glossy buttercups (cryo-SEM, van der Kooi et al. 2017): 2.7, 2.3 and 3.1 micrometres."
+  "edges": [
+   {
+    "from": "f",
+    "to": "t"
+   },
+   {
+    "from": "f",
+    "to": "p"
+   }
+  ],
+  "flow": false,
+  "caption": "What the flat top skin of the petal does."
  },
  "rn_starch_layer": {
-  "type": "plot",
-  "x": [
-   0,
-   100
-  ],
-  "y": [
-   0,
-   1
-  ],
-  "params": [
+  "type": "blocks",
+  "nodes": [
    {
-    "id": "k",
-    "label": "scattering coefficient",
-    "min": 2,
-    "max": 12,
-    "value": 10,
-    "step": 1,
-    "unit": "/mm"
+    "id": "l",
+    "label": "Light enters",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "s",
+    "label": "Starch grains scatter it",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "o",
+    "label": "Scattered light goes back up",
+    "x": 85,
+    "y": 50,
+    "color": "green"
    }
   ],
-  "fns": [
+  "edges": [
    {
-    "f": "exp(-k*x/1000)",
-    "label": "light that has not been scattered after depth x"
+    "from": "l",
+    "to": "s"
+   },
+   {
+    "from": "s",
+    "to": "o"
    }
   ],
-  "vlines": [
-   {
-    "x": 38,
-    "label": "layer thickness 38 µm"
-   }
-  ],
-  "xlabel": "depth into the layer (µm)",
-  "ylabel": "fraction not yet scattered",
-  "caption": "A simple exponential for the fraction of light not scattered in a layer, using the optical model's coefficient for the starch layer (about 10 per mm). It is arithmetic on the paper's number, not the paper's full model."
+  "flow": false,
+  "caption": "The starch layer works like white paint behind the yellow skin."
  },
  "rn_starch": {
   "type": "blocks",
@@ -943,41 +993,41 @@
   "caption": "Starch grains are made of two kinds of glucose polymer."
  },
  "rn_petal_mesophyll": {
-  "type": "plot",
-  "x": [
-   0,
-   150
-  ],
-  "y": [
-   0,
-   1
-  ],
-  "params": [
+  "type": "blocks",
+  "nodes": [
    {
-    "id": "k",
-    "label": "scattering coefficient",
-    "min": 2,
-    "max": 12,
-    "value": 5,
-    "step": 1,
-    "unit": "/mm"
+    "id": "c",
+    "label": "Loose cells with air gaps",
+    "x": 20,
+    "y": 50
+   },
+   {
+    "id": "a",
+    "label": "Air and cell contents differ in refractive index",
+    "x": 55,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "s",
+    "label": "Light is scattered",
+    "x": 90,
+    "y": 50,
+    "color": "green"
    }
   ],
-  "fns": [
+  "edges": [
    {
-    "f": "exp(-k*x/1000)",
-    "label": "light not yet scattered at depth x"
+    "from": "c",
+    "to": "a"
+   },
+   {
+    "from": "a",
+    "to": "s"
    }
   ],
-  "vlines": [
-   {
-    "x": 100,
-    "label": "mesophyll 100 µm"
-   }
-  ],
-  "xlabel": "depth into the layer (µm)",
-  "ylabel": "fraction not yet scattered",
-  "caption": "Same simple exponential for the mesophyll, whose coefficient in the optical model is about 5 per mm, half that of the starch layer."
+  "flow": false,
+  "caption": "Why the spongy layer scatters light."
  },
  "rn_carotenoid": {
   "type": "plot",
@@ -992,23 +1042,23 @@
   "params": [
    {
     "id": "p",
-    "label": "main absorption peak",
+    "label": "main absorption peak (illustrative)",
     "min": 430,
-    "max": 460,
-    "value": 448,
+    "max": 470,
+    "value": 450,
     "step": 2,
     "unit": "nm"
    }
   ],
   "fns": [
    {
-    "f": "1.4*exp(-((x-p)/22)^2)",
+    "f": "1.4*exp(-((x-p)/30)^2)",
     "label": "absorbance of a blue-absorbing carotenoid (illustrative)"
    }
   ],
   "xlabel": "wavelength (nm)",
   "ylabel": "absorbance",
-  "caption": "Carotenoids take out blue light: a smooth peak near 448 nm (the measured main peak in the petals) with the blue and violet removed. Illustrative curve."
+  "caption": "Carotenoids take out blue and violet light (they absorb from about 400 to 550 nm), which leaves yellow. The curve is an illustrative smooth peak, not a measured spectrum of the petal pigment."
  },
  "rn_cellulose": {
   "type": "blocks",

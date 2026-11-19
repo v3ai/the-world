@@ -4,8 +4,8 @@
  "id": "bee_cuticle",
  "title": "Inside the exoskeleton",
  "node": "bee_cuticle",
- "blurb": "A slice through the bee's outer skin: a waxy skin, a hard outer layer, a tougher layered inner layer, and the living cells that build it all. Click a layer.",
- "note": "Schematic. The order of the layers is as in insects generally: a thin waxy epicuticle on the outside, then the exocuticle, then the endocuticle, over a single layer of living cells (the epidermis). The thicknesses are illustrative, not measured on a bee. Chitin is drawn as stacked sheets; in life it is bundled into fibres embedded in protein.",
+ "blurb": "A slice through the bee's outer skin: a waxy skin, a hard darkened outer layer, a softer, flexible layered inner layer, and the living cells that build it all. Click a layer.",
+ "note": "Schematic. The order of the layers is as in insects generally: a thin waxy epicuticle on the outside, then the exocuticle, then the endocuticle, over a single layer of living cells (the epidermis). The thicknesses are illustrative, not measured on a bee. Chitin is drawn as stacked sheets, here only in the endocuticle; in life it is bundled into fibres embedded in protein.",
  "bg": "#f3efe6",
  "center": [
   0,
