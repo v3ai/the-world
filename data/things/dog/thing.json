@@ -890,6 +890,12 @@
    "double": true,
    "lod": "near",
    "priority": 1.3,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_skin",
+    "D": 0.0016,
+    "button": "Look inside the skin and coat"
+   },
    "center": [
     -0.0674,
     0.3684,
