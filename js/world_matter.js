@@ -278,17 +278,47 @@ v2frame('dna', 'dna', () => 1 / 2.4, (F, c) => {
   };
   F.spawnD = 2.5e-9;
 });
-v2frame('cell', 'cell', () => 10 / 12, (F, c) => {
-  F.blurb = c.cellPlant ? 'A plant cell from a leaf, about 40 µm long — chloroplasts capture sunlight.' : 'One of your skin cells at true size: about 20 µm across, with ~37 trillion like it in your body.';
+v2frame('cell', 'cell', (c) => c.opts.type === 'bacterium' ? .1 : 10 / 12, (F, c) => {
+  const kind = c.cellKind || 'animal';
+  const NAMES = { animal: 'Animal cell', plant: 'Plant cell', bacterium: 'Bacterium' };
+  const BLURBS = {
+    animal: 'A generic animal cell, about 20 µm across (a skin cell is one example). A human body has about 37 trillion cells of more than 200 types.',
+    plant: 'A plant cell, here about 30 µm long, as in a leaf. Chloroplasts capture sunlight.',
+    bacterium: 'A rod-shaped bacterium, about 2 µm long. It has no nucleus: its DNA floats in the cell as a tangle called the nucleoid.',
+  };
+  F.name = (F.opts && F.opts.cname) || NAMES[kind]; F.blurb = (F.opts && F.opts.blurb) || BLURBS[kind];
+  const nuc0 = c.nucPos.clone();
+  F.chooseHit = cands => {
+    let best = null; for (const k of cands) if (!best || k.pri > best.pri) best = k;
+    if (!best) return null;
+    const id = best.obj.userData.id;
+    if (id !== 'membrane' && id !== 'cellwall' && id !== 'bacwall') return best;
+    const inner = cands.find(k => k.obj.userData.id === 'cytoplasm');
+    if (!inner) return best;
+    // the shell wins only at the rim of the cell (a ray that skims it) or at a box edge; anywhere else the click is on the cytoplasm behind it
+    let rim;
+    if (id === 'cellwall') { const p = best.hit.object.worldToLocal(best.hit.point.clone()), g = best.hit.object.geometry.parameters; const e = [Math.abs(p.x) > g.width / 2 - 1.3, Math.abs(p.y) > g.height / 2 - 1.3, Math.abs(p.z) > g.depth / 2 - 1.3]; rim = e.filter(Boolean).length >= 2; }
+    else { const nrm = best.hit.face.normal.clone().transformDirection(best.hit.object.matrixWorld); rim = Math.abs(nrm.dot(raycaster.ray.direction)) < .4; }
+    return rim ? best : inner;
+  };
   F.spawn = (T, hint) => {
     const id = hint && hint.id || '';
-    const nucP = c.nucPos.clone().multiplyScalar(c.k);
-    if (/nucle|chromatin/.test(id) || T.distanceTo(nucP) < 3.4 * c.k) return new Frame({ type: 'dna', name: 'DNA', unit: 1e-9, radius: 30, r1: 2.5e-7, pos: T.clone() });
-    const mol = /membrane|phospholipid|channel|glyco/.test(id) ? 'popc' : /mito/.test(id) ? 'atp' : /chloro/.test(id) ? 'chlorophyll_a' : /vacuole/.test(id) ? null : /wall/.test(id) ? 'cellotriose' : /ribosome|er|golgi/.test(id) ? 'aa_gly' : null;
-    if (!mol) return new Frame({ type: 'liquid', name: 'Cytosol water', unit: 1e-10, radius: 18, r1: 2e-8, spawnD: 1e-9, pos: T.clone() });
-    return new Frame({ type: 'mol', name: mol, unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: T.clone(), opts: { mol, fixed: false } });
+    const nucP = nuc0.clone().multiplyScalar(c.k);
+    const dnaF = () => new Frame({ type: 'dna', name: kind === 'bacterium' ? 'DNA of the bacterium' : 'DNA', unit: 1e-9, radius: 30, r1: 2.5e-7, pos: T.clone() });
+    if (kind === 'bacterium') { if (/nucleoid/.test(id) || T.distanceTo(nucP) < 3 * c.k) return dnaF(); }
+    else if (/nucle|chromatin/.test(id) || T.distanceTo(nucP) < 3.4 * c.k) return dnaF();
+    const molF = (mol, name) => new Frame({ type: 'mol', name, unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: T.clone(), opts: { mol, fixed: false } });
+    if (/membrane|phospholipid|channel|glyco/.test(id)) return molF('popc', 'POPC, a common membrane phospholipid (one lipid of the bilayer)');
+    if (/mito/.test(id)) return molF('atp', 'ATP, the molecule mitochondria make (the inside of a mitochondrion is not built yet)');
+    if (/chloro/.test(id)) return molF('chlorophyll_a', 'Chlorophyll a, the green pigment in chloroplasts');
+    if (/cellwall/.test(id)) return molF('cellotriose', 'Cellotriose: three glucose units of cellulose, the stuff of plant cell walls');
+    if (/vacuole/.test(id)) return new Frame({ type: 'liquid', name: 'Water, the main ingredient of a vacuole (dissolved sugars and salts not drawn)', unit: 1e-10, radius: 18, r1: 2e-8, spawnD: 1e-9, pos: T.clone() });
+    if (/^(cytoplasm|bacwall)$/.test(id) || !id) return new Frame({ type: 'liquid', name: 'Water, the main ingredient of cytoplasm (dissolved molecules not drawn)', unit: 1e-10, radius: 18, r1: 2e-8, spawnD: 1e-9, pos: T.clone() });
+    const NONE = { ribosome: 'ribosome', er: 'endoplasmic reticulum', golgi: 'Golgi apparatus', lysosome: 'lysosome', nucleolus: 'nucleolus', flagellum: 'flagellum' };
+    for (const k in NONE) if (id === k) { message(`No deeper view of the ${NONE[k]} has been built yet.`); return null; }
+    return null;
   };
-  F.spawnD = 1.2e-6;
+  F.spawnD = kind === 'bacterium' ? 6e-6 : 1.2e-6;
 });
 /* ---------- micro scale (unit µm): tissue surfaces, grains, pond life, aerosols ---------- */
 function voronoiTex(key, cols, n, line, seed, w = 512) {
@@ -303,18 +333,22 @@ function voronoiTex(key, cols, n, line, seed, w = 512) {
     g.putImageData(img, 0, 0);
   }, { wrap: true });
 }
+const FUNGAL = { type: 'animal', cname: 'Fungal cell (drawn as a generic animal-type cell)', blurb: 'A fungal cell: like an animal cell it has a nucleus and organelles, but it also has a rigid wall of chitin, which is not drawn here.', note: 'Fungal cells have a chitin wall that this generic cell does not show.' };
+const DIATOM = { type: 'plant', cname: 'Diatom cell (drawn as a generic plant-type cell)', blurb: 'A diatom is a single-celled alga. Like a plant cell it has a nucleus and chloroplasts; it lives in a two-part shell of silica (glass), which is not drawn here.', note: 'The diatom\'s silica shell is not drawn.' };
+const ALGA = { type: 'plant', cname: 'Green alga cell (drawn as a generic plant-type cell)', blurb: 'A single-celled green alga, close kin of land plants: nucleus, chloroplasts and a cell wall.', note: 'Real algal cells are often rounder and have one large chloroplast; this is the generic plant cell.' };
+const POLLEN = { type: 'plant', cname: 'Pollen grain (drawn as a generic plant-type cell)', blurb: 'A pollen grain is a tiny plant body inside a tough wall of sporopollenin; it carries the male cells. The scene shows a generic plant cell, not its real structure.', note: 'A pollen grain is not like a leaf cell: this generic plant cell stands in for it.' };
 const MICRO = {
-  skin: { title: 'Skin surface', blurb: 'Your skin at 0.1 mm: the outer layer is flattened dead cells (corneocytes, ~40 µm across) that flake off — you shed about 40,000 every minute. A hair is ~70 µm thick.', ground: ['#e9b59b', '#e2a98e', '#efc0a6', '#dca089'], cells: 30, hair: 3, bact: 40, child: 'cell' },
-  fur: { title: 'Dog skin and fur', blurb: 'Fur at 0.1 mm: each hair is a tube of dead keratin cells about 50–100 µm thick.', ground: ['#c9a27e', '#b8916e', '#d6b08b'], cells: 30, hair: 40, bact: 20, child: 'cell' },
-  leaf: { title: 'Leaf surface', blurb: 'A leaf at 0.1 mm: jigsaw-shaped epidermis cells and stomata — tiny mouths (~25 µm) that let CO₂ in and water vapour out.', ground: ['#5fa64a', '#69b153', '#57983f', '#74b85b'], cells: 22, stoma: 14, bact: 10, child: 'plantcell' },
-  soil: { title: 'Soil', blurb: 'Soil at 0.1 mm: mineral grains (sand ~0.1–2 mm, silt, clay), organic matter, fungal threads and bacteria — a gram of soil holds ~1 billion microbes.', ground: ['#5b4632', '#4f3c2a', '#6a523a'], grains: ['#cdb89a', '#a58e6e', '#8c7a63', '#e0d3bd'], n: 160, hyphae: 25, bact: 120, crystal: 'quartz' },
+  skin: { title: 'Skin surface', blurb: 'Your skin, about 1 mm across: the outer layer is flattened dead cells (corneocytes, tens of µm across) that flake off all the time. A hair is roughly 50 to 100 µm thick.', ground: ['#e9b59b', '#e2a98e', '#efc0a6', '#dca089'], cells: 30, hair: 3, bact: 40, child: 'cell' },
+  fur: { title: 'Dog skin and fur', blurb: 'Fur, about 1 mm across: each hair is a tube of dead keratin cells about 50–100 µm thick.', ground: ['#c9a27e', '#b8916e', '#d6b08b'], cells: 30, hair: 40, bact: 20, child: 'cell' },
+  leaf: { title: 'Leaf surface', blurb: 'A leaf, about 1 mm across: epidermis cells (jigsaw-shaped in many plants, drawn here as simple polygons) and stomata, tiny mouths (~25 µm) that let CO₂ in and water vapour out.', ground: ['#5fa64a', '#69b153', '#57983f', '#74b85b'], cells: 22, stoma: 14, bact: 10, child: 'plantcell' },
+  soil: { title: 'Soil', blurb: 'Soil, about 1 mm across: mineral grains (sand ~0.1–2 mm, silt, clay), organic matter, fungal threads and bacteria — a gram of soil holds ~1 billion microbes.', ground: ['#5b4632', '#4f3c2a', '#6a523a'], grains: ['#cdb89a', '#a58e6e', '#8c7a63', '#e0d3bd'], n: 160, hyphae: 25, bact: 120, crystal: 'quartz' },
   sand: { title: 'Desert sand', blurb: 'Sand grains are mostly quartz (SiO₂) rounded by wind — each 0.06–2 mm.', ground: ['#d9b77f', '#cfa86c'], grains: ['#e8cf9c', '#d4b07a', '#f0dcb4', '#c79d63', '#b98a55'], n: 220, crystal: 'quartz' },
   regolith: { title: 'Lunar regolith', blurb: 'Moon dust: sharp, glassy fragments made by billions of years of micrometeorite impacts — no wind or water has ever rounded them.', ground: ['#5c5c5c', '#666'], grains: ['#8a8a8a', '#6f6f6f', '#a2a2a2', '#4d4d4d', '#b5b0a0'], n: 220, sharp: true, crystal: 'forsterite' },
   mars: { title: 'Martian soil', blurb: 'Mars dust is basaltic rock coated with iron oxides (rust) — that is why the planet is red.', ground: ['#8a4a2e', '#7a3f26'], grains: ['#b3623b', '#a0522d', '#c27a4f', '#7c3a21'], n: 220, crystal: 'hematite' },
   ice: { title: 'Snow and ice', blurb: 'Snow and ice: crystals of frozen water, each grain a lattice of H₂O molecules in hexagonal ice Ih.', ground: ['#dfeef8', '#cfe3f2'], grains: ['#f4fbff', '#e2f1fb', '#d0e6f6'], n: 120, crystal: 'ice_ih', glass: true },
-  pond: { title: 'Pond water', blurb: 'A drop of pond water at 0.1 mm: diatoms with glass (silica) shells, green algae and bacteria drift in liquid water.', water: true, diatoms: 40, algae: 60, bact: 200, child: 'water' },
-  ocean: { title: 'Sea water', blurb: 'Sea water at 0.1 mm: phytoplankton make about half of Earth\'s oxygen.', water: true, diatoms: 50, algae: 80, bact: 200, child: 'water' },
-  air: { title: 'Air (aerosols)', blurb: 'Air at 0.1 mm: almost empty, with a few dust grains, pollen and cloud droplets drifting by. The gas molecules themselves are far too small to see at this scale.', air: true, child: 'gas' },
+  pond: { title: 'Pond water', blurb: 'A drop of pond water, about 1 mm across: diatoms with glass (silica) shells, green algae and bacteria drift in liquid water.', water: true, diatoms: 40, algae: 60, bact: 200, child: 'water' },
+  ocean: { title: 'Sea water', blurb: 'Sea water, about 1 mm across: phytoplankton make about half of Earth\'s oxygen.', water: true, diatoms: 50, algae: 80, bact: 200, child: 'water' },
+  air: { title: 'Air (aerosols)', blurb: 'Air, about 1 mm across: almost empty, with a few dust grains, pollen and cloud droplets drifting by. The gas molecules themselves are far too small to see at this scale.', air: true, child: 'gas' },
   rock: { title: 'Rock surface', blurb: 'Granite-like rock: interlocking crystals of quartz, feldspar and mica.', ground: ['#a9a39b', '#8f8a84', '#c8c2b8', '#5f5b57', '#e6dfd2'], cells: 40, crystal: 'quartz' },
   metal: { title: 'Metal surface', blurb: 'Polished iron under a microscope shows grains — each a single crystal of atoms in a cubic lattice.', ground: ['#9aa3ad', '#8c96a1', '#a7b0b9'], cells: 26, crystal: 'iron_bcc' },
 };
@@ -325,7 +359,7 @@ FT.micro = {
     F.env = { opaque: true, bg: 0x0d0f14 };
     F.add(new THREE.HemisphereLight(0xf2f6ff, 0x404040, .75)); const dl = new THREE.DirectionalLight(0xffffff, .9); dl.position.set(3, 8, 4); F.add(dl);
     F.name = M.title; F.blurb = M.blurb;
-    const info = { title: M.title, tag: 'Microscopic view (true scale, µm)', body: `<p>${M.blurb}</p>` };
+    const info = { title: M.title, tag: 'Microscopic view (sizes true, shapes schematic)', body: `<p>${M.blurb}</p>` };
     if (M.ground) {
       const t = M.cells ? voronoiTex('vor_' + o.kind, M.ground, M.cells * 3, 5, 7) : canvasTex('grd_' + o.kind, 256, 256, (g, w, h) => { const rr = rng(3); g.fillStyle = M.ground[0]; g.fillRect(0, 0, w, h); for (let i = 0; i < 3000; i++) { g.fillStyle = M.ground[i % M.ground.length]; g.globalAlpha = .4; g.fillRect(rr() * w, rr() * h, 2 + rr() * 4, 2 + rr() * 4); } }, { wrap: true });
       t.repeat.set(4, 4);
@@ -333,7 +367,7 @@ FT.micro = {
       for (let i = 0; i < pa.count; i++) { const x = pa.getX(i), y = pa.getY(i); pa.setZ(i, (Math.sin(x * .02) * Math.cos(y * .017) * (M.cells ? 4 : 2)) + (o.kind === 'skin' ? -6 * Math.exp(-Math.pow((x * .7 + y * .7) % 260 / 22, 2)) : 0)); }
       geo.computeVertexNormals();
       const gm = new THREE.Mesh(geo, smat(0xffffff, { map: t, roughness: .8 })); gm.rotation.x = -Math.PI / 2; F.add(gm);
-      F.pick(gm, 'microsurface', 1); gm.userData.info = info; gm.userData.madeOf = M.crystal ? 'crystal' : 'cell';
+      F.pick(gm, 'microsurface', 1); gm.userData.info = info; gm.userData.madeOf = M.crystal ? 'crystal' : 'cell'; gm.userData.cellOpts = { type: M.child === 'plantcell' ? 'plant' : 'animal' };
     }
     const sg = new THREE.IcosahedronGeometry(1, 1);
     if (M.grains) {
@@ -348,39 +382,39 @@ FT.micro = {
       for (let i = 0; i < M.hair; i++) { const a = r() * TAU, d = Math.sqrt(r()) * 600, h = 400 + r() * 600; const c = new THREE.Mesh(new THREE.CylinderGeometry(35, 38, h, 24), smat(o.kind === 'fur' ? 0x8a6340 : 0x3b2a20, { roughness: .45 })); c.position.set(Math.cos(a) * d, h / 2 - 10, Math.sin(a) * d); c.rotation.set((r() - .5) * 1.4, 0, (r() - .5) * 1.4); F.add(c); F.pick(c, 'hair', 2); c.userData.info = { title: 'Hair', tag: 'Keratin fiber, ~70 µm thick', body: '<p>A hair is a rope of dead cells packed with keratin protein, covered in overlapping scales (the cuticle). It grows from a follicle about 1 cm per month.</p>' }; c.userData.madeOf = 'protein'; }
     }
     if (M.stoma) {
-      for (let i = 0; i < M.stoma; i++) { const a = r() * TAU, d = Math.sqrt(r()) * 650, s = new THREE.Group(); s.position.set(Math.cos(a) * d, 2, Math.sin(a) * d); s.rotation.y = r() * 6; [-1, 1].forEach(k => { const g = new THREE.Mesh(new THREE.SphereGeometry(1, 20, 12), smat(0x3f8f35, { roughness: .6 })); g.scale.set(14, 6, 5); g.position.z = k * 5; s.add(g); }); F.add(s); F.pick(s, 'stoma', 2); s.userData.info = { title: 'Stoma', tag: 'A leaf\'s breathing pore', body: '<p>Two curved guard cells swell with water to open the pore and shrink to close it, balancing CO₂ intake against water loss. A leaf has thousands per square centimeter.</p>' }; s.userData.madeOf = 'cell'; }
+      for (let i = 0; i < M.stoma; i++) { const a = r() * TAU, d = Math.sqrt(r()) * 650, s = new THREE.Group(); s.position.set(Math.cos(a) * d, 2, Math.sin(a) * d); s.rotation.y = r() * 6; [-1, 1].forEach(k => { const g = new THREE.Mesh(new THREE.SphereGeometry(1, 20, 12), smat(0x3f8f35, { roughness: .6 })); g.scale.set(14, 6, 5); g.position.z = k * 5; s.add(g); }); F.add(s); F.pick(s, 'stoma', 2); s.userData.info = { title: 'Stoma', tag: 'A leaf\'s breathing pore', body: '<p>Two curved guard cells swell with water to open the pore and shrink to close it, balancing CO₂ intake against water loss. A leaf has thousands per square centimeter.</p>' }; s.userData.madeOf = 'cell'; s.userData.cellOpts = { type: 'plant', cname: 'Guard cell (plant cell)' }; }
     }
     if (M.bact) {
       const bm = new THREE.InstancedMesh(new THREE.SphereGeometry(.6, 10, 8).scale(1, 1, 1.9), smat(0x9fd38a, { roughness: .5 }), M.bact), m4 = new THREE.Matrix4(), q = new THREE.Quaternion();
       for (let i = 0; i < M.bact; i++) { const a = r() * TAU, d = Math.sqrt(r()) * 500; q.setFromEuler(new THREE.Euler(r() * 6, r() * 6, r() * 6)); m4.compose(new V3(Math.cos(a) * d, M.water ? (r() - .5) * 300 : 3, Math.sin(a) * d), q, new V3(1, 1, 1)); bm.setMatrixAt(i, m4); }
-      F.add(bm); F.pick(bm, 'bacterium', 3); bm.userData.info = { title: 'Bacteria', tag: 'Single-celled prokaryotes, ~1–2 µm', body: '<p>Bacteria have no nucleus; their DNA floats in a single loop. Your skin alone carries about a trillion of them, most harmless or helpful.</p>' }; bm.userData.madeOf = 'cell';
+      F.add(bm); F.pick(bm, 'bacterium', 3); bm.userData.info = { title: 'Bacteria', tag: 'Single-celled prokaryotes, ~1–2 µm', body: '<p>Bacteria have no nucleus; their DNA floats in a single loop. Your skin alone carries about a trillion of them, most harmless or helpful.</p>' }; bm.userData.madeOf = 'cell'; bm.userData.cellOpts = { type: 'bacterium' };
     }
-    if (M.hyphae) { for (let i = 0; i < M.hyphae; i++) { const pts = []; let p = new V3((r() - .5) * 1200, 20 + r() * 60, (r() - .5) * 1200), d = new V3(gauss(r), gauss(r) * .2, gauss(r)).normalize(); for (let k = 0; k < 12; k++) { pts.push(p.clone()); d.add(new V3(gauss(r), gauss(r) * .2, gauss(r)).multiplyScalar(.3)).normalize(); p = p.clone().addScaledVector(d, 50); } const t = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 40, 2.5, 6), smat(0xe9e3d0, { roughness: .6 })); F.add(t); F.pick(t, 'hypha', 2); t.userData.info = { title: 'Fungal hyphae', tag: '~5 µm threads', body: '<p>Fungi grow as networks of thread-like cells (mycelium) that digest organic matter and trade nutrients with plant roots.</p>' }; t.userData.madeOf = 'cell'; } }
+    if (M.hyphae) { for (let i = 0; i < M.hyphae; i++) { const pts = []; let p = new V3((r() - .5) * 1200, 20 + r() * 60, (r() - .5) * 1200), d = new V3(gauss(r), gauss(r) * .2, gauss(r)).normalize(); for (let k = 0; k < 12; k++) { pts.push(p.clone()); d.add(new V3(gauss(r), gauss(r) * .2, gauss(r)).multiplyScalar(.3)).normalize(); p = p.clone().addScaledVector(d, 50); } const t = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 40, 2.5, 6), smat(0xe9e3d0, { roughness: .6 })); F.add(t); F.pick(t, 'hypha', 2); t.userData.info = { title: 'Fungal hyphae', tag: '~5 µm threads', body: '<p>Fungi grow as networks of thread-like cells (mycelium) that digest organic matter and trade nutrients with plant roots.</p>' }; t.userData.madeOf = 'cell'; t.userData.cellOpts = FUNGAL; } }
     if (M.water) {
       F.scene.fog = new THREE.FogExp2(0x2a6f8f, .0018); F.env = { bg: 0x2a6f8f, opaque: true };
-      for (let i = 0; i < M.diatoms; i++) { const s = 15 + r() * 40, m = new THREE.Mesh(new THREE.CylinderGeometry(s, s, s * .4, 32), new THREE.MeshStandardMaterial({ color: 0xc8b46a, roughness: .2, transparent: true, opacity: .75 })); m.position.set((r() - .5) * 1100, (r() - .5) * 600, (r() - .5) * 1100); m.rotation.set(r() * 6, r() * 6, 0); F.add(m); F.pick(m, 'diatom', 2); m.userData.info = { title: 'Diatom', tag: 'Algae in glass houses, 20–200 µm', body: '<p>Diatoms build intricate shells of silica (glass). They produce about a fifth of the oxygen made on Earth each year.</p>' }; m.userData.madeOf = 'cell'; }
+      for (let i = 0; i < M.diatoms; i++) { const s = 15 + r() * 40, m = new THREE.Mesh(new THREE.CylinderGeometry(s, s, s * .4, 32), new THREE.MeshStandardMaterial({ color: 0xc8b46a, roughness: .2, transparent: true, opacity: .75 })); m.position.set((r() - .5) * 1100, (r() - .5) * 600, (r() - .5) * 1100); m.rotation.set(r() * 6, r() * 6, 0); F.add(m); F.pick(m, 'diatom', 2); m.userData.info = { title: 'Diatom', tag: 'Algae in glass houses, 20–200 µm', body: '<p>Diatoms build intricate shells of silica (glass). They produce about a fifth of the oxygen made on Earth each year.</p>' }; m.userData.madeOf = 'cell'; m.userData.cellOpts = DIATOM; }
       const am = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 16, 12), smat(0x3fa34d, { roughness: .4 }), M.algae), m4 = new THREE.Matrix4();
       for (let i = 0; i < M.algae; i++) { const s = 4 + r() * 8; m4.makeScale(s, s, s).setPosition((r() - .5) * 1100, (r() - .5) * 600, (r() - .5) * 1100); am.setMatrixAt(i, m4); }
-      F.add(am); F.pick(am, 'algae', 2); am.userData.info = { title: 'Green algae', tag: 'Single-celled plants, ~5–20 µm', body: '<p>Single-celled green algae (like Chlorella) photosynthesize with the same chlorophyll as land plants — which evolved from green algae.</p>' }; am.userData.madeOf = 'cell';
+      F.add(am); F.pick(am, 'algae', 2); am.userData.info = { title: 'Green algae', tag: 'Single-celled plants, ~5–20 µm', body: '<p>Single-celled green algae (like Chlorella) photosynthesize with the same chlorophyll as land plants — which evolved from green algae.</p>' }; am.userData.madeOf = 'cell'; am.userData.cellOpts = ALGA;
       const wv = hitSphere(900, 'water', -1); wv.userData.info = { title: 'Liquid water', tag: 'H₂O', body: '<p>At this scale water looks perfectly smooth. Zoom another 100,000 times to see individual molecules.</p>' }; wv.userData.madeOf = 'molecule'; wv.material.side = THREE.BackSide; F.add(wv); F.pickables.push(wv);
     }
     if (M.air) {
       F.env = { bg: 0x9cc8ef };
-      const add = (n, col, smin, smax, id, inf) => { for (let i = 0; i < n; i++) { const s = smin + r() * (smax - smin), m = new THREE.Mesh(new THREE.IcosahedronGeometry(s, id === 'pollen' ? 2 : 1), smat(col, { roughness: id === 'droplet' ? .05 : .8, transparent: id === 'droplet', opacity: id === 'droplet' ? .6 : 1 })); m.position.set((r() - .5) * 1400, (r() - .5) * 900, (r() - .5) * 1400); F.add(m); F.pick(m, id, 2); m.userData.info = inf; m.userData.madeOf = id === 'droplet' ? 'water' : 'crystal'; } };
-      add(10, 0xa58e6e, 1, 6, 'dust', { title: 'Dust particle', tag: '1–10 µm', body: '<p>Mineral dust, soot and sea salt — aerosols. They seed cloud droplets and scatter sunlight.</p>' });
+      const add = (n, col, smin, smax, id, inf) => { for (let i = 0; i < n; i++) { const s = smin + r() * (smax - smin), m = new THREE.Mesh(new THREE.IcosahedronGeometry(s, id === 'pollen' ? 2 : 1), smat(col, { roughness: id === 'droplet' ? .05 : .8, transparent: id === 'droplet', opacity: id === 'droplet' ? .6 : 1 })); m.position.set((r() - .5) * 1400, (r() - .5) * 900, (r() - .5) * 1400); F.add(m); F.pick(m, id, 2); m.userData.info = inf; m.userData.madeOf = id === 'droplet' ? 'water' : id === 'pollen' ? 'cell' : 'crystal'; if (id === 'pollen') m.userData.cellOpts = POLLEN; } };
+      add(10, 0xa58e6e, 1, 6, 'dust', { title: 'Dust particle', tag: '1–10 µm', body: '<p>Mineral dust, soot and sea salt: aerosols. They seed cloud droplets and scatter sunlight. Dust is a mix, so "what it is made of" shows quartz only as one common example.</p>' });
       add(6, 0xf2c94c, 12, 18, 'pollen', { title: 'Pollen grain', tag: '~25 µm', body: '<p>A pollen grain carries a plant\'s male gametes inside a tough, often spiky shell.</p>' });
-      add(14, 0xdff1ff, 5, 12, 'droplet', { title: 'Cloud droplet', tag: '~10 µm', body: '<p>A cloud droplet is about a million times smaller in volume than a raindrop. It takes about a million of them merging to make one raindrop.</p>' });
+      add(14, 0xdff1ff, 5, 12, 'droplet', { title: 'Cloud droplet', tag: '≈ 20 µm across (10 µm radius)', body: '<p>A cloud droplet is about a million times smaller in volume than a raindrop. It takes about a million of them merging to make one raindrop.</p>' });
       const av = hitSphere(900, 'airvol', -1); av.material.side = THREE.BackSide; av.userData.info = { title: 'Air', tag: 'Gas mixture', body: '<p>Zoom about 10,000× more to see individual nitrogen and oxygen molecules.</p>' }; av.userData.madeOf = 'molecule'; F.add(av); F.pickables.push(av);
     }
     F.info = info;
     F.spawn = (T, hint) => {
       const id = hint && hint.id || '';
       if (/microsurface/.test(id) || (!hint && M.ground)) {
-        if (M.child === 'cell' || M.child === 'plantcell') return new Frame({ type: 'cell', name: 'Cell', unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T.clone().add(new V3(0, -10, 0)), opts: { type: M.child === 'plantcell' ? 'plant' : 'animal' } });
+        if (M.child === 'cell' || M.child === 'plantcell') return new Frame({ type: 'cell', name: M.child === 'plantcell' ? 'Plant cell' : 'Animal cell', unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T.clone().add(new V3(0, -10, 0)), opts: { type: M.child === 'plantcell' ? 'plant' : 'animal' } });
         if (M.crystal) return crystalFrame(M.crystal, T);
       }
       if (/grain|dust/.test(id)) return crystalFrame(M.crystal || 'quartz', T);
-      if (/stoma|diatom|algae|hypha|bacterium|pollen/.test(id)) return new Frame({ type: 'cell', name: 'Cell', unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T.clone(), opts: { type: /stoma|diatom|algae|pollen/.test(id) ? 'plant' : 'animal' } });
+      if (/stoma|diatom|algae|hypha|bacterium|pollen/.test(id)) { const co = (hint && hint.obj && hint.obj.userData.cellOpts) || { type: 'animal' }; return new Frame({ type: 'cell', name: co.cname || 'Cell', unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T.clone(), opts: Object.assign({}, co) }); }
       if (/hair/.test(id)) return new Frame({ type: 'mol', name: 'Keratin building block', unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: T.clone(), opts: { mol: 'aa_cys' } });
       if (/water|droplet/.test(id) || M.water) return new Frame({ type: 'liquid', name: 'Liquid water', unit: 1e-10, radius: 18, r1: 2e-8, spawnD: 1e-9, pos: T.clone() });
       if (/airvol/.test(id) || M.air) return new Frame({ type: 'gas', name: 'Air molecules', unit: 1e-9, radius: 24, r1: 2e-7, spawnD: 1.2e-9, pos: T.clone() });
@@ -514,3 +548,16 @@ v2frame('park', 'life', () => 1, (F, c) => {
 });
 /* ---------- black hole at the galactic center (unit 1e10 m) ---------- */
 v2frame('sgrA', 'blackhole', () => .6, (F) => { F.blurb = 'Sagittarius A*: 4.3 million Suns of mass inside an event horizon 24 million km across. (Accretion flow shown brighter than reality.)'; });
+/* "See what it is made of" on a cell-bearing thing opens the right kind of cell (plant, bacterium, ...), which world_build's diveMaterial cannot tell apart. */
+WORLD_EXT.push(async () => {
+  const dive0 = diveMaterial;
+  diveMaterial = function (h) {
+    const ud = h.obj.userData;
+    if (ud.madeOf === 'cell' && ud.cellOpts) {
+      const co = ud.cellOpts, F = h.frame, P = h.pointLocal.clone();
+      const f = new Frame({ type: 'cell', name: co.cname || (co.type === 'plant' ? 'Plant cell' : co.type === 'bacterium' ? 'Bacterium' : 'Animal cell'), unit: 1e-6, radius: 16, r1: 2.5e-4, pos: P, opts: Object.assign({}, co) });
+      f.dynamic = true; f.keep = performance.now() + 60000; F.addChild(f); f.ensure(); flyTo(f, new V3(), co.type === 'bacterium' ? 6e-6 : 5e-5); return;
+    }
+    return dive0(h);
+  };
+});
