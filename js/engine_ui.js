@@ -484,7 +484,9 @@ function loop(now) {
   updateViewOffset();
   for (const f of drawn) { placeFrameCam(f); applyFade(f); if (f.update) f.update(dt, clock, f); }
   const tB = performance.now(); PERF.add('update', tB - tA - (PERF.acc.pick - pk0)); // picks made on the way (the zoom buttons' pivot) are counted as picking
+  renderer.info.reset(); PERF.gpuBegin();
   if (composer) composer.render(); else renderFrames(renderer);
+  PERF.gpuEnd(); { const ri = renderer.info.render; PERF.calls = ri.calls; PERF.tris = ri.triangles; PERF.points = ri.points; }
   const tC = performance.now(); PERF.add('render', tC - tB);
   updateLabels(); updateCaption(); updateRuler();
   /* Hover. What can be picked changes when frames arrive, load their parts or fade in: that counts as a change of the view.
@@ -496,7 +498,7 @@ function loop(now) {
   if (!camMoving) pkIdle(4, performance.now() - lastInput > 1500); // trees for picking, a few milliseconds at a time, never while the camera moves
   if ((clock * 4 | 0) !== ((clock - dt) * 4 | 0)) updateTimeUI();
   const pe = $('#push'); if (now - msg.t < 2600 && msg.text) { $('#pushT').textContent = msg.text; pe.classList.add('show'); } else pe.classList.remove('show');
-  PERF.endFrame(dtMs, performance.now() - tA);
+  PERF.endFrame(dtMs, performance.now() - tA); PERF.tick(now);
 }
 async function startApp() {
   ROOT = await buildWorld();
@@ -520,6 +522,7 @@ async function startApp() {
   $('#timeNow').onclick = () => { simTime = Date.now(); };
   if (store.get('seenHelp', false)) $('#help').classList.add('hide');
   startView();
+  if (PERF.flags.stats) PERF.show(true);
   const fade = $('#fade'); fade.style.transition = 'opacity 1.2s'; requestAnimationFrame(() => fade.style.opacity = 0);
   loadKnowledge();
   requestAnimationFrame(loop);

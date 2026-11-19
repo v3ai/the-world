@@ -37,6 +37,7 @@ const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, logarithmicD
 renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.autoClear = false;
+renderer.info.autoReset = false; // a frame is many render() calls: the loop resets the counters once per frame, so they add up (js/perf.js reads them)
 let W = innerWidth, H = innerHeight, composer = null, bloom = null;
 const BLOOM_OK = !!(THREE.EffectComposer && THREE.UnrealBloomPass) && !/Mobi|Android/i.test(navigator.userAgent);
 class FramesPass extends (THREE.Pass || class { }) {
