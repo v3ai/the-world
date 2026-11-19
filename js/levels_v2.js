@@ -717,7 +717,7 @@ function buildBacterium(c) {
   c.update = (dt, t) => { };
   sceneNote(c, 'Schematic rod-shaped bacterium, drawn at true size: about 2 µm long and 0.7 µm wide. Ribosomes (about 20 nm) are true size, so they show only when you zoom in; the DNA thread is drawn about 10 times too thick, and the real cell holds far more ribosomes. Layers of the envelope are simplified.');
   c.focusIn = () => new V3(); c.focusFor = () => ({ pos: new V3(), r: RO });
-  seg([['animal', 'Animal cell'], ['plant', 'Plant cell'], ['bacterium', 'Bacterium']], 'bacterium', k => swapTo('cell', { type: k }));
+  seg([['animal', 'Animal cell'], ['plant', 'Plant cell'], ['bacterium', 'Bacterium']], 'bacterium', k => { const F = c.frame; swapTo('cell', { type: k }); if (typeof flyTo === 'function') flyTo(F, new V3(), k === 'bacterium' ? 6e-6 : 4e-5); });
 }
 BUILD.cell = (c, opts) => {
   if (opts.type === 'bacterium') return buildBacterium(c);
@@ -771,9 +771,9 @@ BUILD.cell = (c, opts) => {
   const erG = new THREE.Group(); erG.position.copy(nucPos); erG.userData = { id: 'er' }; cell.add(erG); c.pickables.push(erG);
   const erMat = new THREE.MeshStandardMaterial({ color: 0x38bdf8, roughness: .5, emissive: 0x05202c, transparent: true, opacity: .75, side: THREE.DoubleSide });
   const ribPts = [];
-  const sheetN = plant ? 3 : 4;
+  const sheetN = plant ? 4 : 6;
   for (let k = 0; k < sheetN; k++) {
-    const rad = NR + .5 + k * .5, th0 = .3 + r() * 1.2, thL = 1.3 + r() * .9, ph0 = r() * TAU, phL = 2.2 + r() * 1.6;
+    const rad = NR + .5 + k * .5, th0 = .4 + r() * 1.6, thL = .7 + r() * .6, ph0 = r() * TAU, phL = 1.1 + r() * 1.1;
     const geo = new THREE.SphereGeometry(rad, 40, 20, ph0, phL, th0, thL), pa = geo.attributes.position;
     for (let i = 0; i < pa.count; i++) { const v = new V3().fromBufferAttribute(pa, i), w = 1 + .07 * Math.sin(v.x * 2.1 + v.y * 1.7 + k) * Math.cos(v.z * 1.9 + k * 2); v.multiplyScalar(w); pa.setXYZ(i, v.x, v.y, v.z); }
     geo.computeVertexNormals(); erG.add(new THREE.Mesh(geo, erMat));
@@ -907,10 +907,10 @@ BUILD.cell = (c, opts) => {
     mem: 'Schematic patch of membrane at true size, about 17 nm across: the bilayer is about 4 to 5 nm thick and the lipid heads about 0.8 nm apart. Cholesterol, most proteins and the constant sideways motion of lipids are left out; the channel and sugar chain are simplified shapes, not real structures.',
   };
   sceneNote(c, NOTES[c.opts.type]);
-  seg([['animal', 'Animal cell'], ['plant', 'Plant cell'], ['bacterium', 'Bacterium']], c.opts.type, k => swapTo('cell', { type: k }));
+  seg([['animal', 'Animal cell'], ['plant', 'Plant cell'], ['bacterium', 'Bacterium']], c.opts.type, k => { const F = c.frame; swapTo('cell', { type: k }); if (typeof flyTo === 'function') flyTo(F, new V3(), k === 'bacterium' ? 6e-6 : 4e-5); });
   seg([['cell', 'Whole cell'], ['mem', 'Membrane up close']], 'cell', k => {
-    const m = k === 'mem'; patch.visible = m; cell.visible = !m; sceneNote(c, m ? NOTES.mem : NOTES[c.opts.type]);
-    if (typeof flyTo === 'function' && c.frame) flyTo(c.frame, new V3(), m ? 2.4e-8 : (plant ? 4.5e-5 : 4e-5));
+    const m = k === 'mem'; c.patchOn = m; patch.visible = m; cell.visible = !m; sceneNote(c, m ? NOTES.mem : NOTES[c.opts.type]);
+    if (typeof flyTo === 'function' && c.frame) flyTo(c.frame, new V3(), m ? 3.2e-8 : (plant ? 4.5e-5 : 4e-5));
     if (m) showInfo('phospholipid');
   });
 };

@@ -302,11 +302,12 @@ v2frame('cell', 'cell', (c) => c.opts.type === 'bacterium' ? .1 : 10 / 12, (F, c
     return rim ? best : inner;
   };
   F.spawn = (T, hint) => {
-    const id = hint && hint.id || '';
+    let id = hint && hint.id || '';
+    if (c.patchOn) id = /phospholipid|channel|glyco/.test(id) ? id : 'phospholipid';   // the membrane patch sits at the cell centre in the drawing, but it is a patch of membrane
     const nucP = nuc0.clone().multiplyScalar(c.k);
     const dnaF = () => new Frame({ type: 'dna', name: kind === 'bacterium' ? 'DNA of the bacterium' : 'DNA', unit: 1e-9, radius: 30, r1: 2.5e-7, pos: T.clone() });
     if (kind === 'bacterium') { if (/nucleoid/.test(id) || T.distanceTo(nucP) < 3 * c.k) return dnaF(); }
-    else if (/nucle|chromatin/.test(id) || T.distanceTo(nucP) < 3.4 * c.k) return dnaF();
+    else if (!c.patchOn && (/nucle|chromatin/.test(id) || T.distanceTo(nucP) < 3.4 * c.k)) return dnaF();
     const molF = (mol, name) => new Frame({ type: 'mol', name, unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: T.clone(), opts: { mol, fixed: false } });
     if (/membrane|phospholipid|channel|glyco/.test(id)) return molF('popc', 'POPC, a common membrane phospholipid (one lipid of the bilayer)');
     if (/mito/.test(id)) return molF('atp', 'ATP, the molecule mitochondria make (the inside of a mitochondrion is not built yet)');
