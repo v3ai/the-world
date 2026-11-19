@@ -10,8 +10,6 @@
  ],
  "D_um": 330,
  "blurb": "A slice through the smell lining of the nose: the air is at the top. Click a smell neuron, its cilia, a supporting cell, a stem cell or a mucus gland.",
- "tag": "Inside a dog's nose",
- "cell": "animal",
  "note": "A schematic of the layers and cell types of the lining of a mammal's nose, as the textbooks describe them. All sizes and the number of cells are illustrative: no measured dog cell dimensions were found. A real smell neuron has many more cilia than drawn.",
  "labels": [
   {
@@ -850,5 +848,7 @@
    },
    "ink": 1
   }
- ]
+ ],
+ "tag": "Inside the smell lining",
+ "cell": "animal"
 }

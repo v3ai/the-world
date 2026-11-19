@@ -104,88 +104,1813 @@
   "logy": true
  },
  "dog_teeth": {
-  "type": "bars",
-  "bars": [
-   {
-    "label": "dog: adult teeth",
-    "value": 42
-   },
-   {
-    "label": "human: adult teeth",
-    "value": 32
-   }
+  "type": "table",
+  "cols": [
+   "",
+   "Incisors",
+   "Canines",
+   "Premolars",
+   "Molars",
+   "Total"
   ],
-  "ylabel": "number of teeth",
-  "caption": "Adult teeth: a dog has 42 (2 x (I3/3, C1/1, P4/4, M2/3), dvm360); people have 32."
+  "rows": [
+   [
+    "Dog, upper, each side",
+    "3",
+    "1",
+    "4",
+    "2",
+    "10"
+   ],
+   [
+    "Dog, lower, each side",
+    "3",
+    "1",
+    "4",
+    "3",
+    "11"
+   ],
+   [
+    "Dog, whole mouth",
+    "12",
+    "4",
+    "16",
+    "10",
+    "42"
+   ],
+   [
+    "Person, whole mouth",
+    "8",
+    "4",
+    "8",
+    "12",
+    "32"
+   ]
+  ],
+  "caption": "Adult teeth by type (dvm360 dentistry proceedings for the dog; the human count is on the human teeth cards). The upper fourth premolar and the lower first molar are the carnassials that shear meat."
  },
  "dog_heart": {
   "type": "bars",
   "bars": [
    {
-    "label": "dog resting heart rate, low (per min)",
-    "value": 70
+    "label": "horse 28-40",
+    "value": 34
    },
    {
-    "label": "dog, high",
-    "value": 120
+    "label": "dog 70-120",
+    "value": 95
    },
    {
-    "label": "human, low",
-    "value": 60
+    "label": "cat 120-140",
+    "value": 130
    },
    {
-    "label": "human, high",
-    "value": 100
+    "label": "rat 250-400",
+    "value": 325
+   },
+   {
+    "label": "mouse 450-750",
+    "value": 600
    }
   ],
-  "ylabel": "beats per minute",
-  "caption": "Typical resting ranges: dog 70-120 per minute (Merck Veterinary Manual), human 60-100 per minute (human heart card). Small dogs are near the top of the dog range."
+  "ylabel": "beats per minute (mid-point)",
+  "caption": "Resting heart rate falls as animals get bigger: the bars are the mid-points of the ranges listed in the Merck Veterinary Manual (listed from the heaviest to the lightest animal). A dog sits at 70-120 per minute; a person is 60-100.",
+  "logy": true
  },
  "dog_retina": {
-  "type": "bars",
-  "bars": [
+  "type": "plot",
+  "x": [
+   380,
+   700
+  ],
+  "y": [
+   0,
+   1.1
+  ],
+  "xlabel": "wavelength (nm)",
+  "ylabel": "relative sensitivity (shape illustrative)",
+  "fns": [
    {
-    "label": "dog: rods per cone (area centralis)",
-    "value": 22.8
+    "f": "gauss(x,429,38)/gauss(429,429,38)",
+    "label": "dog blue cone (peak ≈ 429 nm)",
+    "color": "blue"
    },
    {
-    "label": "dog: rods per cone (lower periphery)",
-    "value": 41.4
-   },
-   {
-    "label": "dog: cone types",
-    "value": 2
-   },
-   {
-    "label": "human: cone types",
-    "value": 3
+    "f": "gauss(x,555,55)/gauss(555,555,55)",
+    "label": "dog green-yellow cone (peak ≈ 555 nm)",
+    "color": "green"
    }
   ],
-  "ylabel": "ratio or count",
-  "caption": "Beagle retina (Mol Vis 2008): about 23 rods for each cone at the sharpest spot and about 41 at the lower edge. Cone types: dog 2, human 3."
+  "vlines": [
+   {
+    "x": 429,
+    "label": "429"
+   },
+   {
+    "x": 555,
+    "label": "555"
+   }
+  ],
+  "caption": "A dog has two kinds of cone. Only the peaks (about 429 and 555 nm, beagle retina, Mol Vis 2008) are measured values; the bell-curve shapes and widths are drawn for illustration. A person has three kinds, so a dog sees colour like a person with red-green colour blindness."
  },
  "dog_turb_olf": {
   "type": "bars",
   "bars": [
    {
-    "label": "dog: epithelium area (cm²)",
-    "value": 170
+    "label": "dog (intact genes, ≈)",
+    "value": 870
    },
    {
-    "label": "human: epithelium area (cm²)",
-    "value": 10
-   },
-   {
-    "label": "dog: functional receptor genes (≈)",
-    "value": 800
-   },
-   {
-    "label": "human: functional receptor genes (≈)",
-    "value": 400
+    "label": "human (intact genes, ≈)",
+    "value": 330
    }
   ],
-  "ylabel": "area in cm² or number of genes",
-  "caption": "Approximate comparison: lining area from the Olfaction reference (dog about 170 cm², human about 10 cm²) and receptor gene counts from the receptor-gene comparison of Quignon et al. 2003 and Wikipedia (about 800 and about 400).",
+  "ylabel": "intact smell-receptor genes",
+  "caption": "Calculated from the gene counts and pseudogene fractions in Quignon et al. 2003 and 2005: dog about 1,094 genes with about 20 % broken copies, human about 900 with about 63 %. The lining area (about 170 cm² in a dog, about 10 cm² in a person) is in the text."
+ },
+ "dog_coat_group": {
+  "type": "geometry",
+  "range": [
+   -70,
+   62,
+   -13,
+   72
+  ],
+  "shapes": [
+   {
+    "k": "poly",
+    "pts": [
+     [
+      -63,
+      31.5
+     ],
+     [
+      -59,
+      40
+     ],
+     [
+      -53.5,
+      45.5
+     ],
+     [
+      -50,
+      48
+     ],
+     [
+      -45,
+      50.5
+     ],
+     [
+      -42.5,
+      51
+     ],
+     [
+      -34,
+      56
+     ],
+     [
+      -28.5,
+      56.5
+     ],
+     [
+      -23,
+      54.5
+     ],
+     [
+      -20,
+      54.5
+     ],
+     [
+      -16.5,
+      56
+     ],
+     [
+      -9.5,
+      56
+     ],
+     [
+      -6.5,
+      55
+     ],
+     [
+      5.5,
+      56
+     ],
+     [
+      13,
+      58.5
+     ],
+     [
+      31,
+      68.5
+     ],
+     [
+      38.5,
+      68
+     ],
+     [
+      43.5,
+      65.5
+     ],
+     [
+      45,
+      62.5
+     ],
+     [
+      47.5,
+      62.5
+     ],
+     [
+      53,
+      60.5
+     ],
+     [
+      53,
+      58
+     ],
+     [
+      51.5,
+      56.5
+     ],
+     [
+      51.5,
+      53
+     ],
+     [
+      50.5,
+      52
+     ],
+     [
+      48,
+      52
+     ],
+     [
+      46,
+      53
+     ],
+     [
+      37,
+      53.5
+     ],
+     [
+      31.5,
+      50.5
+     ],
+     [
+      25.5,
+      44.5
+     ],
+     [
+      25,
+      43
+     ],
+     [
+      25.5,
+      38
+     ],
+     [
+      24,
+      34.5
+     ],
+     [
+      22,
+      32.5
+     ],
+     [
+      19.5,
+      31.5
+     ],
+     [
+      16.5,
+      31.5
+     ],
+     [
+      12.5,
+      29.5
+     ],
+     [
+      11,
+      28
+     ],
+     [
+      10,
+      25.5
+     ],
+     [
+      10,
+      22
+     ],
+     [
+      10.5,
+      21.5
+     ],
+     [
+      10.5,
+      15.5
+     ],
+     [
+      11.5,
+      13.5
+     ],
+     [
+      11.5,
+      8.5
+     ],
+     [
+      13,
+      6.5
+     ],
+     [
+      17.5,
+      4
+     ],
+     [
+      17.5,
+      2
+     ],
+     [
+      15.5,
+      0.5
+     ],
+     [
+      11.5,
+      0
+     ],
+     [
+      8,
+      2
+     ],
+     [
+      7,
+      6.5
+     ],
+     [
+      3.5,
+      10
+     ],
+     [
+      3,
+      11.5
+     ],
+     [
+      4,
+      14.5
+     ],
+     [
+      4,
+      18
+     ],
+     [
+      2.5,
+      24
+     ],
+     [
+      -1,
+      29.5
+     ],
+     [
+      -7,
+      30.5
+     ],
+     [
+      -7.5,
+      30
+     ],
+     [
+      -16,
+      30.5
+     ],
+     [
+      -16.5,
+      29.5
+     ],
+     [
+      -14.5,
+      26.5
+     ],
+     [
+      -14.5,
+      23.5
+     ],
+     [
+      -15.5,
+      21.5
+     ],
+     [
+      -18.5,
+      19.5
+     ],
+     [
+      -29.5,
+      16.5
+     ],
+     [
+      -32,
+      14.5
+     ],
+     [
+      -33,
+      12
+     ],
+     [
+      -32.5,
+      7.5
+     ],
+     [
+      -31,
+      6
+     ],
+     [
+      -28,
+      5
+     ],
+     [
+      -27,
+      2.5
+     ],
+     [
+      -29,
+      0.5
+     ],
+     [
+      -32.5,
+      0
+     ],
+     [
+      -35.5,
+      1
+     ],
+     [
+      -37,
+      3
+     ],
+     [
+      -36.5,
+      8.5
+     ],
+     [
+      -37,
+      11
+     ],
+     [
+      -39.5,
+      15.5
+     ],
+     [
+      -39,
+      21.5
+     ],
+     [
+      -34,
+      22.5
+     ],
+     [
+      -29.5,
+      27
+     ],
+     [
+      -32,
+      31.5
+     ],
+     [
+      -33,
+      36.5
+     ],
+     [
+      -36.5,
+      38
+     ],
+     [
+      -40,
+      41.5
+     ],
+     [
+      -43,
+      41.5
+     ],
+     [
+      -49,
+      39
+     ],
+     [
+      -52.5,
+      36.5
+     ],
+     [
+      -59.5,
+      26
+     ],
+     [
+      -61,
+      25.5
+     ],
+     [
+      -63,
+      27
+     ],
+     [
+      -63,
+      31
+     ]
+    ],
+    "fill": "#d9b36f",
+    "alpha": 0.35,
+    "closed": true,
+    "color": "dim"
+   },
+   {
+    "k": "line",
+    "x1": -66,
+    "y1": 58,
+    "x2": 22,
+    "y2": 58,
+    "color": "accent",
+    "dash": 4
+   },
+   {
+    "k": "text",
+    "x": -66,
+    "y": 61,
+    "text": "height at the withers ≈ 57 cm",
+    "size": 11,
+    "align": "left"
+   },
+   {
+    "k": "line",
+    "x1": -66,
+    "y1": 29,
+    "x2": 22,
+    "y2": 29,
+    "color": "orange",
+    "dash": 4
+   },
+   {
+    "k": "text",
+    "x": -66,
+    "y": 31.5,
+    "text": "brisket and elbow ≈ 29 cm: half the height (0.51)",
+    "size": 11,
+    "align": "left"
+   },
+   {
+    "k": "arrow",
+    "x1": 25.5,
+    "y1": -5,
+    "x2": -41.5,
+    "y2": -5,
+    "color": "green"
+   },
+   {
+    "k": "arrow",
+    "x1": -41.5,
+    "y1": -5,
+    "x2": 25.5,
+    "y2": -5,
+    "color": "green"
+   },
+   {
+    "k": "text",
+    "x": -8,
+    "y": -9,
+    "text": "point of shoulder to buttock ≈ 67 cm (1.18 × the height)",
+    "size": 11,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": -4,
+    "y1": 0,
+    "x2": -4,
+    "y2": 58,
+    "color": "dim",
+    "dash": 2
+   }
+  ],
+  "caption": "The model's own side view with the breed standard's proportions: a dog a little longer than tall, with the elbow at half the height. Heights and lengths are measured on the model (a 3-D reconstruction from typical proportions); the standard says \"equal to or slightly longer than\" and \"elbow to ground equal to one half of the height\" (AKC) and 56-57 cm (UK Kennel Club).",
+  "aspect": 0.62
+ },
+ "dog_gait": {
+  "type": "geometry",
+  "range": [
+   -22,
+   104,
+   8,
+   72
+  ],
+  "shapes": [
+   {
+    "k": "text",
+    "x": 0,
+    "y": 67,
+    "text": "Walk (lateral sequence): stance about 65 % of the stride",
+    "size": 11,
+    "align": "left"
+   },
+   {
+    "k": "text",
+    "x": -2,
+    "y": 62.8,
+    "text": "left front",
+    "size": 9,
+    "align": "right"
+   },
+   {
+    "k": "rect",
+    "x": 25.0,
+    "y": 62.0,
+    "w": 65.0,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": -2,
+    "y": 57.599999999999994,
+    "text": "right front",
+    "size": 9,
+    "align": "right"
+   },
+   {
+    "k": "rect",
+    "x": 75.0,
+    "y": 56.8,
+    "w": 25.0,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "rect",
+    "x": 0,
+    "y": 56.8,
+    "w": 40.0,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": -2,
+    "y": 52.4,
+    "text": "left hind",
+    "size": 9,
+    "align": "right"
+   },
+   {
+    "k": "rect",
+    "x": 0,
+    "y": 51.6,
+    "w": 65.0,
+    "h": 4,
+    "fill": "orange"
+   },
+   {
+    "k": "text",
+    "x": -2,
+    "y": 47.199999999999996,
+    "text": "right hind",
+    "size": 9,
+    "align": "right"
+   },
+   {
+    "k": "rect",
+    "x": 50.0,
+    "y": 46.4,
+    "w": 50.0,
+    "h": 4,
+    "fill": "orange"
+   },
+   {
+    "k": "rect",
+    "x": 0,
+    "y": 46.4,
+    "w": 15.0,
+    "h": 4,
+    "fill": "orange"
+   },
+   {
+    "k": "text",
+    "x": 0,
+    "y": 35,
+    "text": "Trot (diagonal pairs): stance about 45 % of the stride",
+    "size": 11,
+    "align": "left"
+   },
+   {
+    "k": "text",
+    "x": -2,
+    "y": 30.8,
+    "text": "left front",
+    "size": 9,
+    "align": "right"
+   },
+   {
+    "k": "rect",
+    "x": 0,
+    "y": 30.0,
+    "w": 45.0,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": -2,
+    "y": 25.6,
+    "text": "right front",
+    "size": 9,
+    "align": "right"
+   },
+   {
+    "k": "rect",
+    "x": 50.0,
+    "y": 24.8,
+    "w": 45.0,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": -2,
+    "y": 20.400000000000002,
+    "text": "left hind",
+    "size": 9,
+    "align": "right"
+   },
+   {
+    "k": "rect",
+    "x": 50.0,
+    "y": 19.6,
+    "w": 45.0,
+    "h": 4,
+    "fill": "orange"
+   },
+   {
+    "k": "text",
+    "x": -2,
+    "y": 15.2,
+    "text": "right hind",
+    "size": 9,
+    "align": "right"
+   },
+   {
+    "k": "rect",
+    "x": 0,
+    "y": 14.399999999999999,
+    "w": 45.0,
+    "h": 4,
+    "fill": "orange"
+   }
+  ],
+  "caption": "Idealised footfall timing over one stride (left to right, 0-100 %); a bar is a foot on the ground. Only the order (lateral walk, diagonal trot) and \"stance over half the stride at the walk, under half at the trot\" come from the study cited; the exact percentages and even spacing are illustrative.",
+  "aspect": 0.62
+ },
+ "dog_lungs": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "horse 10-14",
+    "value": 12
+   },
+   {
+    "label": "dog 18-34",
+    "value": 26
+   },
+   {
+    "label": "cat 16-40",
+    "value": 28
+   },
+   {
+    "label": "sheep 16-34",
+    "value": 25
+   },
+   {
+    "label": "pig 32-58",
+    "value": 45
+   }
+  ],
+  "ylabel": "breaths per minute (mid-point)",
+  "caption": "Resting breaths per minute, mid-points of the ranges in the Merck Veterinary Manual. A dog at rest breathes about 18-34 times a minute; panting is much faster and shallower."
+ },
+ "dog_cochlea": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "elephant",
+    "value": 12000
+   },
+   {
+    "label": "human",
+    "value": 20000
+   },
+   {
+    "label": "dog",
+    "value": 45000
+   },
+   {
+    "label": "cat",
+    "value": 79000
+   },
+   {
+    "label": "mouse",
+    "value": 70000
+   }
+  ],
+  "ylabel": "highest audible sound (Hz)",
+  "caption": "Upper limit of hearing from the Hearing range reference (elephant 12 kHz, human 20 kHz, dog 45 kHz, cat 79 kHz, mouse 70 kHz). The ranges depend on how they were measured and on the individual.",
   "logy": true
+ },
+ "dog_small_intestine": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "dog 5 kg",
+    "value": 2.4
+   },
+   {
+    "label": "dog 33 kg",
+    "value": 6.4
+   }
+  ],
+  "ylabel": "length of the small intestine (m)",
+  "caption": "Small intestine length in two dogs from an open-access measurement study of dogs of different sizes: the tube is longer in a bigger dog."
+ },
+ "dog_large_intestine": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "miniature poodle",
+    "value": 32
+   },
+   {
+    "label": "Great Dane",
+    "value": 99
+   }
+  ],
+  "ylabel": "length of the large intestine (cm)",
+  "caption": "Large intestine length in the smallest and largest dog in the same open-access study."
+ },
+ "dog_osn": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "o",
+    "label": "Odour molecule",
+    "x": 8,
+    "y": 50
+   },
+   {
+    "id": "r",
+    "label": "Receptor on the cilium",
+    "x": 28,
+    "y": 50
+   },
+   {
+    "id": "g",
+    "label": "G protein",
+    "x": 46,
+    "y": 22
+   },
+   {
+    "id": "a",
+    "label": "Adenylyl cyclase",
+    "x": 46,
+    "y": 78
+   },
+   {
+    "id": "c",
+    "label": "cAMP made",
+    "x": 66,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "i",
+    "label": "Ion channel opens",
+    "x": 82,
+    "y": 22
+   },
+   {
+    "id": "f",
+    "label": "Neuron fires",
+    "x": 92,
+    "y": 78,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "o",
+    "to": "r",
+    "label": "binds"
+   },
+   {
+    "from": "r",
+    "to": "g",
+    "label": "activates"
+   },
+   {
+    "from": "g",
+    "to": "a"
+   },
+   {
+    "from": "a",
+    "to": "c",
+    "label": "ATP to cAMP"
+   },
+   {
+    "from": "c",
+    "to": "i"
+   },
+   {
+    "from": "i",
+    "to": "f",
+    "label": "Ca²⁺ and Na⁺ in"
+   }
+  ],
+  "flow": true,
+  "caption": "How a smell cell turns a molecule into a nerve signal (the textbook scheme for mammalian olfactory neurons)."
+ },
+ "dog_axons": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "n",
+    "label": "Nostril: sniff",
+    "x": 6,
+    "y": 50
+   },
+   {
+    "id": "t",
+    "label": "Turbinate scrolls",
+    "x": 28,
+    "y": 50
+   },
+   {
+    "id": "e",
+    "label": "Smell lining",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "a",
+    "label": "Nerve fibres through the sieve plate",
+    "x": 72,
+    "y": 22
+   },
+   {
+    "id": "b",
+    "label": "Olfactory bulb",
+    "x": 90,
+    "y": 50,
+    "color": "green"
+   },
+   {
+    "id": "c",
+    "label": "Brain",
+    "x": 72,
+    "y": 80
+   }
+  ],
+  "edges": [
+   {
+    "from": "n",
+    "to": "t",
+    "label": "air in"
+   },
+   {
+    "from": "t",
+    "to": "e"
+   },
+   {
+    "from": "e",
+    "to": "a",
+    "label": "signals"
+   },
+   {
+    "from": "a",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "c"
+   }
+  ],
+  "flow": true,
+  "caption": "The route of a smell, from the nostril to the brain. Positions are schematic."
+ },
+ "dog_nmj": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "a",
+    "label": "Nerve impulse arrives",
+    "x": 10,
+    "y": 50
+   },
+   {
+    "id": "r",
+    "label": "Acetylcholine released",
+    "x": 33,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "b",
+    "label": "Binds receptors on the fibre",
+    "x": 56,
+    "y": 50
+   },
+   {
+    "id": "d",
+    "label": "Channels open, fibre fires",
+    "x": 78,
+    "y": 25
+   },
+   {
+    "id": "m",
+    "label": "Fibre contracts",
+    "x": 90,
+    "y": 75,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "a",
+    "to": "r"
+   },
+   {
+    "from": "r",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "d"
+   },
+   {
+    "from": "d",
+    "to": "m"
+   }
+  ],
+  "flow": true,
+  "caption": "The steps at a neuromuscular junction, the same in a dog as in a person."
+ },
+ "dog_valves": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "ra",
+    "label": "Right atrium",
+    "x": 12,
+    "y": 25,
+    "color": "blue"
+   },
+   {
+    "id": "rv",
+    "label": "Right ventricle",
+    "x": 40,
+    "y": 25,
+    "color": "blue"
+   },
+   {
+    "id": "lu",
+    "label": "Lungs",
+    "x": 66,
+    "y": 25
+   },
+   {
+    "id": "la",
+    "label": "Left atrium",
+    "x": 88,
+    "y": 25,
+    "color": "red"
+   },
+   {
+    "id": "lv",
+    "label": "Left ventricle",
+    "x": 66,
+    "y": 75,
+    "color": "red"
+   },
+   {
+    "id": "bo",
+    "label": "Body",
+    "x": 30,
+    "y": 75
+   }
+  ],
+  "edges": [
+   {
+    "from": "ra",
+    "to": "rv",
+    "label": "tricuspid valve"
+   },
+   {
+    "from": "rv",
+    "to": "lu",
+    "label": "pulmonary valve"
+   },
+   {
+    "from": "lu",
+    "to": "la"
+   },
+   {
+    "from": "la",
+    "to": "lv",
+    "label": "mitral valve"
+   },
+   {
+    "from": "lv",
+    "to": "bo",
+    "label": "aortic valve"
+   },
+   {
+    "from": "bo",
+    "to": "ra"
+   }
+  ],
+  "flow": true,
+  "caption": "The path of blood through the four chambers and four valves; blue is oxygen-poor and red oxygen-rich blood."
+ },
+ "dog_skin_scene": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "e",
+    "label": "Epidermis: barrier of dead cells over living layers",
+    "x": 50,
+    "y": 12
+   },
+   {
+    "id": "d",
+    "label": "Dermis: follicles, glands, vessels, nerves",
+    "x": 50,
+    "y": 42,
+    "color": "orange"
+   },
+   {
+    "id": "s",
+    "label": "Subcutis: fat and connective tissue",
+    "x": 50,
+    "y": 72
+   }
+  ],
+  "edges": [
+   {
+    "from": "e",
+    "to": "d"
+   },
+   {
+    "from": "d",
+    "to": "s"
+   }
+  ],
+  "flow": false,
+  "caption": "The three layers of dog skin, outside to inside (a schematic; sizes are in the scene)."
+ },
+ "dog_tapetum": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "l",
+    "label": "Light enters the eye",
+    "x": 10,
+    "y": 50
+   },
+   {
+    "id": "r",
+    "label": "Passes the retina: some is absorbed",
+    "x": 36,
+    "y": 22
+   },
+   {
+    "id": "t",
+    "label": "Tapetum reflects the rest",
+    "x": 62,
+    "y": 50,
+    "color": "green"
+   },
+   {
+    "id": "r2",
+    "label": "Second pass through the retina",
+    "x": 82,
+    "y": 22
+   },
+   {
+    "id": "o",
+    "label": "Some leaves: eyeshine",
+    "x": 90,
+    "y": 78,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "l",
+    "to": "r"
+   },
+   {
+    "from": "r",
+    "to": "t"
+   },
+   {
+    "from": "t",
+    "to": "r2",
+    "label": "reflected"
+   },
+   {
+    "from": "r2",
+    "to": "o"
+   }
+  ],
+  "flow": true,
+  "caption": "Why a dog's eyes glow in a torch beam: the shiny layer behind the retina sends light back for a second chance to be caught."
+ },
+ "dog_arteries": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "h",
+    "label": "Heart: left ventricle",
+    "x": 10,
+    "y": 50,
+    "color": "red"
+   },
+   {
+    "id": "a",
+    "label": "Aorta",
+    "x": 32,
+    "y": 50
+   },
+   {
+    "id": "b",
+    "label": "Branches to head, legs, organs",
+    "x": 58,
+    "y": 22
+   },
+   {
+    "id": "c",
+    "label": "Capillaries: oxygen delivered",
+    "x": 82,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "v",
+    "label": "Veins carry blood back",
+    "x": 58,
+    "y": 80,
+    "color": "blue"
+   }
+  ],
+  "edges": [
+   {
+    "from": "h",
+    "to": "a"
+   },
+   {
+    "from": "a",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "c"
+   },
+   {
+    "from": "c",
+    "to": "v"
+   }
+  ],
+  "flow": true,
+  "caption": "Arteries carry blood away from the heart, veins carry it back; the capillaries between them are where the exchange happens."
+ },
+ "dog_eye": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "c",
+    "label": "Cornea",
+    "x": 8,
+    "y": 50
+   },
+   {
+    "id": "i",
+    "label": "Pupil (iris)",
+    "x": 26,
+    "y": 50
+   },
+   {
+    "id": "l",
+    "label": "Lens",
+    "x": 44,
+    "y": 50
+   },
+   {
+    "id": "v",
+    "label": "Vitreous gel",
+    "x": 62,
+    "y": 50
+   },
+   {
+    "id": "r",
+    "label": "Retina (and tapetum behind)",
+    "x": 80,
+    "y": 25,
+    "color": "orange"
+   },
+   {
+    "id": "n",
+    "label": "Optic nerve to the brain",
+    "x": 90,
+    "y": 78,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "c",
+    "to": "i",
+    "label": "light"
+   },
+   {
+    "from": "i",
+    "to": "l"
+   },
+   {
+    "from": "l",
+    "to": "v"
+   },
+   {
+    "from": "v",
+    "to": "r"
+   },
+   {
+    "from": "r",
+    "to": "n",
+    "label": "signals"
+   }
+  ],
+  "flow": true,
+  "caption": "The path of light through a dog's eye: the same order of parts as in a human eye."
+ },
+ "dog_bulbs": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "r",
+    "label": "Receptor cells of one type",
+    "x": 12,
+    "y": 25
+   },
+   {
+    "id": "g",
+    "label": "One cluster (glomerulus)",
+    "x": 40,
+    "y": 25,
+    "color": "orange"
+   },
+   {
+    "id": "m",
+    "label": "Relay neurons of the bulb",
+    "x": 66,
+    "y": 25
+   },
+   {
+    "id": "b",
+    "label": "Brain: smell areas",
+    "x": 88,
+    "y": 25,
+    "color": "green"
+   },
+   {
+    "id": "x",
+    "label": "Many receptor types, many clusters: a pattern for each smell",
+    "x": 50,
+    "y": 75
+   }
+  ],
+  "edges": [
+   {
+    "from": "r",
+    "to": "g",
+    "label": "same-type fibres converge"
+   },
+   {
+    "from": "g",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "b"
+   },
+   {
+    "from": "g",
+    "to": "x"
+   }
+  ],
+  "flow": true,
+  "caption": "How the olfactory bulb sorts smells: fibres from receptor cells of the same type meet in the same cluster, so each smell makes its own pattern of clusters."
+ },
+ "dog_trachea": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "n",
+    "label": "Nose and mouth",
+    "x": 8,
+    "y": 50
+   },
+   {
+    "id": "p",
+    "label": "Throat and larynx",
+    "x": 28,
+    "y": 50
+   },
+   {
+    "id": "t",
+    "label": "Windpipe (trachea)",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "b",
+    "label": "Two bronchi",
+    "x": 70,
+    "y": 50
+   },
+   {
+    "id": "a",
+    "label": "Air sacs (alveoli): gas exchange",
+    "x": 90,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "n",
+    "to": "p",
+    "label": "air in"
+   },
+   {
+    "from": "p",
+    "to": "t"
+   },
+   {
+    "from": "t",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "a"
+   }
+  ],
+  "flow": true,
+  "caption": "The path of breathed air from the nose to the air sacs of the lungs."
+ },
+ "dog_kidneys": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "a",
+    "label": "Blood from the renal artery",
+    "x": 10,
+    "y": 30,
+    "color": "red"
+   },
+   {
+    "id": "f",
+    "label": "Filtered in the nephrons",
+    "x": 38,
+    "y": 30,
+    "color": "orange"
+   },
+   {
+    "id": "u",
+    "label": "Urine in the ureters",
+    "x": 66,
+    "y": 30
+   },
+   {
+    "id": "b",
+    "label": "Bladder stores it",
+    "x": 88,
+    "y": 30
+   },
+   {
+    "id": "v",
+    "label": "Cleaned blood to the renal vein",
+    "x": 38,
+    "y": 75,
+    "color": "blue"
+   },
+   {
+    "id": "e",
+    "label": "Urethra: leaves the body",
+    "x": 88,
+    "y": 75
+   }
+  ],
+  "edges": [
+   {
+    "from": "a",
+    "to": "f"
+   },
+   {
+    "from": "f",
+    "to": "u"
+   },
+   {
+    "from": "u",
+    "to": "b"
+   },
+   {
+    "from": "f",
+    "to": "v"
+   },
+   {
+    "from": "b",
+    "to": "e"
+   }
+  ],
+  "flow": true,
+  "caption": "What a kidney does with blood: filter it, return what is needed, and send the waste as urine to the bladder."
+ },
+ "dog_stomach": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "m",
+    "label": "Mouth",
+    "x": 6,
+    "y": 50
+   },
+   {
+    "id": "o",
+    "label": "Gullet",
+    "x": 24,
+    "y": 50
+   },
+   {
+    "id": "s",
+    "label": "Stomach",
+    "x": 42,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "i",
+    "label": "Small intestine",
+    "x": 62,
+    "y": 50
+   },
+   {
+    "id": "l",
+    "label": "Large intestine",
+    "x": 80,
+    "y": 50
+   },
+   {
+    "id": "r",
+    "label": "Rectum and anus",
+    "x": 94,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "m",
+    "to": "o",
+    "label": "swallow"
+   },
+   {
+    "from": "o",
+    "to": "s"
+   },
+   {
+    "from": "s",
+    "to": "i"
+   },
+   {
+    "from": "i",
+    "to": "l",
+    "label": "nutrients absorbed"
+   },
+   {
+    "from": "l",
+    "to": "r",
+    "label": "water taken back"
+   }
+  ],
+  "flow": true,
+  "caption": "The path of food through a dog's gut."
+ },
+ "dog_spinal_cord": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "s",
+    "label": "Sensory nerve ending",
+    "x": 8,
+    "y": 50
+   },
+   {
+    "id": "d",
+    "label": "Sensory fibre to the cord",
+    "x": 30,
+    "y": 50
+   },
+   {
+    "id": "c",
+    "label": "Spinal cord: connection",
+    "x": 52,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "m",
+    "label": "Motor fibre",
+    "x": 72,
+    "y": 50
+   },
+   {
+    "id": "u",
+    "label": "Muscle contracts",
+    "x": 92,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "s",
+    "to": "d"
+   },
+   {
+    "from": "d",
+    "to": "c"
+   },
+   {
+    "from": "c",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "u"
+   }
+  ],
+  "flow": true,
+  "caption": "A reflex: the simplest route through the spinal cord, from a sensing ending to a muscle, without waiting for the brain."
+ },
+ "dog_turb_resp": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "n",
+    "label": "Cold, dry air in",
+    "x": 10,
+    "y": 50
+   },
+   {
+    "id": "t",
+    "label": "Maxilloturbinates warm and wet it",
+    "x": 36,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "l",
+    "label": "Warm, moist air to the lungs",
+    "x": 66,
+    "y": 25
+   },
+   {
+    "id": "s",
+    "label": "A share goes to the smell region",
+    "x": 66,
+    "y": 78,
+    "color": "green"
+   },
+   {
+    "id": "o",
+    "label": "Exhaled air returns some heat and water",
+    "x": 90,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "n",
+    "to": "t"
+   },
+   {
+    "from": "t",
+    "to": "l"
+   },
+   {
+    "from": "t",
+    "to": "s"
+   },
+   {
+    "from": "l",
+    "to": "o"
+   }
+  ],
+  "flow": true,
+  "caption": "What the front scrolls of the nose do to the air on its way in (a schematic of the flow; the real folds are far finer)."
+ },
+ "dog_tongue": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "h",
+    "label": "Dog is hot",
+    "x": 10,
+    "y": 50
+   },
+   {
+    "id": "p",
+    "label": "Panting: fast, shallow breaths",
+    "x": 32,
+    "y": 50
+   },
+   {
+    "id": "e",
+    "label": "Water evaporates from tongue and nose lining",
+    "x": 60,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "c",
+    "label": "Heat leaves with the vapour: blood cools",
+    "x": 86,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "h",
+    "to": "p"
+   },
+   {
+    "from": "p",
+    "to": "e"
+   },
+   {
+    "from": "e",
+    "to": "c"
+   }
+  ],
+  "flow": true,
+  "caption": "How a dog cools by panting: a dog has sweat glands only on its pads, so evaporation from the wet surfaces of the mouth and nose does most of the work."
+ },
+ "dog_diaphragm": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "d",
+    "label": "Diaphragm contracts and flattens",
+    "x": 14,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "v",
+    "label": "Chest space grows",
+    "x": 40,
+    "y": 50
+   },
+   {
+    "id": "p",
+    "label": "Air pressure in the lungs falls",
+    "x": 64,
+    "y": 50
+   },
+   {
+    "id": "a",
+    "label": "Air flows in",
+    "x": 88,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "d",
+    "to": "v"
+   },
+   {
+    "from": "v",
+    "to": "p"
+   },
+   {
+    "from": "p",
+    "to": "a"
+   }
+  ],
+  "flow": true,
+  "caption": "How the diaphragm draws a breath in; the ribs help, and the diaphragm relaxes to let the air out."
  }
 }

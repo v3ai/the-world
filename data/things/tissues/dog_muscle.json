@@ -1,6 +1,4 @@
 {
- "tag": "Inside a dog",
- "cell": "animal",
  "id": "dog_muscle",
  "title": "Inside a dog muscle",
  "node": "dog_muscle_scene",
@@ -35,9 +33,9 @@
   {
    "text": "Nerve ending: the neuromuscular junction",
    "at": [
-    -150,
+    -60,
     150,
-    210
+    -230
    ],
    "pop": "nmj"
   }
@@ -340,7 +338,10 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "deeper": {
+    "type": "cell"
+   }
   },
   {
    "id": "capillary",
@@ -557,8 +558,8 @@
      {
       "at": [
        -151.5,
-       31,
-       300
+       100,
+       -345
       ]
      }
     ]
@@ -583,8 +584,8 @@
      {
       "at": [
        -151.5,
-       27,
-       195
+       100,
+       -224
       ]
      }
     ]
@@ -596,5 +597,7 @@
     "name": "Acetylcholine, the messenger that tells muscle to contract"
    }
   }
- ]
+ ],
+ "tag": "Inside a dog muscle",
+ "cell": "animal"
 }

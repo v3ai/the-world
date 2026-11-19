@@ -17,7 +17,8 @@
    "dog_spinal_cord",
    "dog_arteries",
    "dog_heart",
-   "dog_eye"
+   "dog_eye",
+   "dog_gait"
   ],
   "processes": [],
   "related": [
@@ -27,16 +28,16 @@
   "layers": {
    "basics": "Click any part of the dog to meet it. The layer buttons peel it like the human body: coat, muscles, skeleton, organs, nerves, and heart and vessels. Almost every bone and organ has a counterpart in you, so each card says what is the same and what differs. The \"Inside\" buttons open the heart, the eye, the nose and the ear.",
    "deeper": "A dog is a mammal, so it has the same plan as you: a backbone, four limbs, a four-chambered heart, lungs, a liver and a brain. The differences come from how it lives. It walks on its toes (digitigrade), so its heel is the \"hock\" halfway up the hind leg. It has a long nose lined with far more smell receptors than yours, big movable ears, and two kinds of colour-sensing cells in the eye instead of three. It cools itself by panting, not by sweating. Compare with the whole human body in the same park: the two skeletons share nearly every bone.",
-   "expert": "The model is a Labrador-type male, 57 cm tall at the withers (the top of the shoulders) and 30 kg, inside the breed-standard ranges. Breed standards give height and weight for a type of dog, not for every dog, and dogs vary widely in size. A healthy dog's resting heart rate is about 70-120 beats a minute and its normal body temperature is about 37.5-39.2 C."
+   "expert": "The model is a Labrador-type male, 57 cm tall at the withers (the top of the shoulders) and 30 kg, inside the breed-standard ranges; six Labrador and Golden Retrievers in one 2015 gait study averaged 35 kg and 57 cm. The body is drawn to the standard's proportions (see the figure on the card \"The dog's outside\"): a little longer than tall, with the brisket (the breast) at the level of the elbow, half the height above the ground. Breed standards give height and weight for a type of dog, not for every dog, and dogs vary widely in size. A healthy dog's resting heart rate is about 70-120 beats a minute and its normal body temperature is about 37.5-39.2 C."
   },
   "facts": [
    [
     "Height at withers (model)",
-    "57 cm (UK Kennel Club: dogs 56-57 cm; AKC: 57-62 cm)"
+    "≈ 57 cm (UK Kennel Club: dogs 56-57 cm; AKC: 57-62 cm); measured on the model coat: ≈ 57 cm"
    ],
    [
     "Weight (model)",
-    "30 kg (AKC: males 29-36 kg)"
+    "≈ 30 kg (AKC: males 29-36 kg)"
    ],
    [
     "Teeth",
@@ -61,6 +62,18 @@
    [
     "Typical lifespan, Labradors",
     "median ≈ 12 years (UK study)"
+   ],
+   [
+    "Body length (model)",
+    "≈ 67 cm from the point of the shoulder to the point of the buttock, about 1.18 times the height (AKC: equal to or slightly longer than the height)"
+   ],
+   [
+    "Elbow and brisket height (model)",
+    "≈ 29 cm, half the height (AKC: elbow to ground equals half the height at the withers)"
+   ],
+   [
+    "Tail (model)",
+    "≈ 32 cm along its curve, very thick at the base and tapering, the \"otter\" tail (AKC: no longer than the hock)"
    ]
   ],
   "certainty": "C1",
@@ -99,6 +112,10 @@
    {
     "title": "Life expectancy of Labrador retrievers in the UK (McGreevy et al. 2018, Canine Genetics and Epidemiology)",
     "url": "https://doaj.org/article/3c1bb1583f6a406288e295907487714a"
+   },
+   {
+    "title": "Planar covariation of hindlimb and forelimb elevation angles in dogs (Catavitello, Ivanenko and Lacquaniti 2015, PLoS One): six Labrador and Golden Retrievers, 35 kg and 57 cm at the withers",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4517757"
    }
   ],
   "did_you_know": "A dog's ancestor was a wolf. People and dogs have lived together for at least about 15,000 years, so a dog's body has been shaped as much by us as by nature."
@@ -167,7 +184,7 @@
   "layers": {
    "basics": "The skeleton holds the dog up, protects the brain, heart and lungs, and gives the muscles something to pull on. Press \"Skeleton\" and click a bone. Nearly every bone has a human counterpart, and the cards say which.",
    "deeper": "Compared with a person: the dog has no working collarbone, so the front legs are held to the body by muscle and the shoulder blade can slide along the side of the chest, lengthening the stride. The dog walks on its toes, so its wrist (carpus) and ankle (tarsus, the hock) are halfway up the leg, not at the ground. It has more vertebrae in the chest and a long tail. In people: 206 bones; compare the human skeleton.",
-   "expert": "Counts differ a little between dogs: the tail vertebrae are about 20 but may be 19-23, and some dogs have a transitional extra lumbar vertebra. A commonly quoted total of about 320 bones depends on how many tail bones are counted and on small bones such as sesamoids."
+   "expert": "Counts differ a little between dogs: the tail vertebrae are about 20 (20-23 in the vertebral-formula table cited), and some dogs have a transitional extra lumbar vertebra. A commonly quoted total of about 320 bones depends on how many tail bones are counted and on small bones such as sesamoids."
   },
   "facts": [
    [
@@ -213,6 +230,10 @@
    {
     "title": "Dog anatomy (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Dog_anatomy"
+   },
+   {
+    "title": "Transitional, fused and supernumerary vertebrae in the lumbosacrocaudal spine of domestic mammals (Covasa et al. 2024, Veterinarni Medicina): dog vertebral formula, Table 2",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11148713/"
    }
   ]
  },
@@ -229,7 +250,8 @@
   "parts": [
    "dog_m_triceps",
    "dog_m_quadriceps",
-   "dog_m_masseter"
+   "dog_m_masseter",
+   "dog_fill"
   ],
   "processes": [],
   "related": [
@@ -431,7 +453,7 @@
   "facts": [
    [
     "Model strokes drawn",
-    "≈ 9,000 (a real coat has far more hairs)"
+    "≈ 16,000 (a real coat has far more hairs)"
    ],
    [
     "Hair type",
@@ -475,7 +497,7 @@
   "summary": "The outer ear of a Labrador hangs down, but the same flap of cartilage can be raised and turned in many other dogs, to catch sound.",
   "layers": {
    "basics": "The ear flap, or pinna, gathers sound and funnels it into the ear canal. A dog can move its ears independently, which helps it find where a sound comes from. Press \"Inside the ear\" to see the canal and inner ear.",
-   "deeper": "Eighteen or more muscles move a dog's ear (according to a standard reference), so a dog with prick ears can swivel them toward a sound. Dogs hear a wider range than people: about 67 Hz to about 45 kHz against about 20 Hz to 20 kHz for people. Floppy ears like the Labrador's are a trait selected during domestication; the cartilage of the flap is the same. In people the outer ear is a smaller, fixed flap; few people can move it.",
+   "deeper": "Many small muscles move a dog's ear (a popular source says 18; I could not check the number in a veterinary anatomy text), so a dog with prick ears can swivel them toward a sound. Dogs hear a wider range than people: about 67 Hz to about 45 kHz against about 20 Hz to 20 kHz for people. Floppy ears like the Labrador's are common in domesticated animals and are thought to be a by-product of domestication (an idea that is still debated); the cartilage of the flap is the same. In people the outer ear is a smaller, fixed flap; few people can move it.",
    "expert": "The pinna is elastic cartilage covered in skin and hair. Sound waves are funnelled into the vertical and then horizontal parts of the ear canal to the eardrum. Floppy ears may reduce hearing slightly in some conditions; how much is still being measured."
   },
   "facts": [
@@ -489,7 +511,7 @@
    ],
    [
     "Ear muscles",
-    "18 or more"
+    "many (18 is often quoted; not checked in a veterinary text)"
    ]
   ],
   "certainty": "C2",
@@ -723,12 +745,12 @@
   "layers": {
    "basics": "The skull protects the brain and holds the eyes, the nose passages and the teeth. A Labrador has a broad skull with a moderately long muzzle. The long muzzle contains the nasal cavity, where the scent-sensing lining sits. Press \"Inside the nose\" to look into it.",
    "deeper": "Same bones as a person's skull, arranged differently: the face (the muzzle) is long and sticks forward, while ours is flat and tucked under the braincase. A bony arch on each side (the zygomatic arch) leaves room for the jaw muscles, and the eye sockets are open at the side of the head. Skull shapes vary more between dog breeds than between almost any other animals. In people: the skull, 22 bones; same bones, but the human face is short and flat.",
-   "expert": "In the model the skull is a single solid with a hollow braincase and a nasal cavity, so a cut shows them. The sutures between the skull bones and the finer sinuses are not drawn."
+   "expert": "In the model the skull is a single solid with a hollow braincase, a nasal cavity and open eye sockets, and the 42 teeth sit in their rows so that the upper and lower crowns meet; a cut shows the hollows. The length of the skull from the back to the stop is drawn about equal to the length of the muzzle from the stop to the nose. The sutures between the skull bones and the finer sinuses are not drawn."
   },
   "facts": [
    [
     "Skull length",
-    "≈ 20 cm in this model (modelled from proportions)"
+    "≈ 21 cm in this model (modelled from proportions; 25 mesaticephalic mongrel skulls averaged ≈ 17.8 cm and 9.5 cm wide across the cheekbones: Labradors are bigger dogs, but this model may be a little large)"
    ],
    [
     "Teeth",
@@ -748,6 +770,10 @@
    {
     "title": "Dog skeleton (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Dog_skeleton"
+   },
+   {
+    "title": "Craniometric measurements in dogs: mesaticephalic skulls (Schimming and Pinto e Silva 2013, Braz J Vet Res Anim Sci): 25 skulls, mean length about 178 mm, zygomatic width about 95 mm",
+    "url": "https://revistas.usp.br/bjvras/article/view/55818"
    }
   ]
  },
@@ -766,11 +792,11 @@
   "related": [
    "mandible"
   ],
-  "summary": "The lower jaw is a single hinge of bone that opens and closes to bite and carry.",
+  "summary": "The lower jaw is a pair of long bones, joined at the chin, that hinge on the skull to open and close the mouth for biting and carrying.",
   "layers": {
    "basics": "The two halves of the lower jaw are joined at the chin. They swing on a hinge joint in front of the ear. A dog's jaw moves mainly up and down like a pair of scissors, with little sideways grinding.",
-   "deeper": "The jaw is the same bone as the human mandible; the dog's is long and narrow and carries 22 teeth, with a tall flange (the coronoid process) where the strong temporalis muscle attaches. In people: the mandible; same bone, shorter, with a chin.",
-   "expert": "The model draws the jaw as a rod and a ramus on each side, a simplified outline."
+   "deeper": "Each half is the same bone as the human mandible (in people the two halves fuse in the first year of life; in dogs the joint at the chin, the mandibular symphysis, is described as a fibrous or cartilage joint with only rare bony fusion, and the sources disagree on its class); the dog's is long and narrow and carries 22 teeth, with a tall flange (the coronoid process) where the strong temporalis muscle attaches. In people: the mandible; same bone, shorter, with a chin.",
+   "expert": "The model draws each half as a rod with a rising branch (the ramus, with the coronoid process and the condyle) and joins them at the chin; the lower teeth sit in a ridge along the top of the body of the jaw and meet the upper teeth in a scissor bite."
   },
   "facts": [
    [
@@ -795,6 +821,10 @@
    {
     "title": "Dental formula and carnassial teeth (dvm360 dentistry proceedings)",
     "url": "https://www.dvm360.com/view/tighten-your-dentistry-knowledge-proceedings-0"
+   },
+   {
+    "title": "The mandibular symphysis of the dog (Frontiers in Veterinary Science 2023, 10.3389/fvets.2023.1260451)",
+    "url": "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1260451/pdf"
    }
   ]
  },
@@ -1059,13 +1089,13 @@
   "summary": "About twenty small vertebrae make the tail, from big blocks at the base to slender rods at the tip.",
   "layers": {
    "basics": "The tail balances the dog when it turns, helps it swim as a rudder, and signals mood. A Labrador's \"otter\" tail is thick at the base and tapers.",
-   "deeper": "Dogs have 19-23 tail vertebrae depending on breed and tail length (about 20 here); people have a tiny tailbone of 3-5 fused vertebrae, the coccyx. The tail is moved by muscles along its sides. In people the tailbone (coccyx) is the equivalent, a few small fused bones inside the pelvis.",
+   "deeper": "Dogs have 20-23 tail vertebrae depending on breed and tail length (about 20 here); people have a tiny tailbone of 3-5 fused vertebrae, the coccyx. The tail is moved by muscles along its sides. In people the tailbone (coccyx) is the equivalent, a few small fused bones inside the pelvis.",
    "expert": "Some breeds are born without a tail or with a short one; wagging is done by muscles attached to the first tail bones."
   },
   "facts": [
    [
     "Number",
-    "≈ 20 (varies 19-23)"
+    "≈ 20 (varies 20-23)"
    ],
    [
     "Human",
@@ -1089,6 +1119,10 @@
    {
     "title": "Labrador retriever breed standard (The Kennel Club, UK)",
     "url": "https://www.royalkennelclub.com/breed-standards/gundog/retriever-labrador/"
+   },
+   {
+    "title": "Transitional, fused and supernumerary vertebrae in the lumbosacrocaudal spine of domestic mammals (Covasa et al. 2024, Veterinarni Medicina): dog vertebral formula, Table 2",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11148713/"
    }
   ]
  },
@@ -1110,7 +1144,7 @@
   "related": [
    "ribcage"
   ],
-  "summary": "Thirteen pairs of ribs form the dog's deep, narrow chest: nine join the breastbone, four do not.",
+  "summary": "Thirteen pairs of ribs form the dog's deep chest: nine join the breastbone, four do not.",
   "layers": {
    "basics": "The ribs protect the heart and lungs and move with each breath. A dog's chest is deep from top to bottom and narrow side to side, which suits running.",
    "deeper": "Nine pairs of ribs link to the breastbone by cartilage (the true ribs), four do not (the false and floating ribs); the last is usually free. People have 12 pairs, with 7 reaching the sternum directly. In people: 12 pairs, a barrel-shaped chest that is wide from side to side.",
@@ -1434,7 +1468,7 @@
   "summary": "Two long bones make the forearm, and the ulna sticks out behind the elbow as a point.",
   "layers": {
    "basics": "The point of the elbow is the end of the ulna, the same bone you can feel behind your own elbow. The radius carries most of the weight in a dog.",
-   "deeper": "The radius and ulna are fixed together so the dog's forearm twists very little, unlike yours; the two bones lock into one stiff post for running. In people: the same two bones; people can rotate the forearm (palm up or down), dogs very little.",
+   "deeper": "The radius and ulna are tied together by a tough ligament so the dog's forearm can twist only a little, unlike yours; the two bones act as one stiff post for running. In people: the same two bones; people can rotate the forearm (palm up or down), dogs very little.",
    "expert": "The model draws the two as separate rods with an elbow point."
   },
   "facts": [
@@ -2053,13 +2087,13 @@
   "summary": "A strap of muscle from the head and neck to the upper arm that pulls the foreleg forward and turns the head.",
   "layers": {
    "basics": "When the foot is planted it turns or tips the neck. When the head is fixed it swings the leg forward, lengthening the stride.",
-   "deeper": "It is a special dog muscle: in animals with no working collarbone it joins the neck to the arm. A tiny collarbone remnant sits inside it. In people: no single equivalent; its parts are comparable to the front of the deltoid and parts of the neck muscles.",
+   "deeper": "It is a special dog muscle: in animals with no working collarbone it joins the neck to the arm. A tiny collarbone remnant sits inside it: a study of 50 adult dogs found a thin clavicle in 96 % of them, attached to this muscle. In people: no single equivalent; its parts are comparable to the front of the deltoid and parts of the neck muscles.",
    "expert": "The outline drawn in the model is schematic: it shows the region of the body that this muscle occupies, not its exact edges, and many muscles lie under the ones shown."
   },
   "facts": [
    [
     "Parts",
-    "3 (it has three parts)"
+    "3: the cleidobrachialis (to the upper arm) and two parts of the cleidocephalicus (to the neck and to the skull), joined at a faint line, the clavicular intersection"
    ]
   ],
   "certainty": "C2",
@@ -2079,6 +2113,10 @@
    {
     "title": "Carnivore muscle lab: thigh muscles (University of Minnesota VANAT)",
     "url": "https://vanat.ahc.umn.edu/carnLabs/Lab05/Lab05.html"
+   },
+   {
+    "title": "Dog and cat anatomy lab guide, extrinsic muscles (University of Minnesota Libraries, Pressbooks)",
+    "url": "https://pressbooks.umn.edu/dogcatanatomylabguide/chapter/part-2-extrinsic-muscles-and-associated-structures/"
    }
   ]
  },
@@ -2570,7 +2608,7 @@
   "summary": "The big muscle behind the upper arm that straightens the elbow.",
   "layers": {
    "basics": "It is large in dogs because it holds up the front of the body when standing and pushes during running.",
-   "deeper": "The same muscle as in people, with the same long, lateral and medial heads. In people: the triceps brachii, on the back of the arm.",
+   "deeper": "The same muscle as in people, but with four heads in the dog (long, lateral, medial and a small accessory head); people have three. In people: the triceps brachii, on the back of the arm.",
    "expert": "The outline drawn in the model is schematic: it shows the region of the body that this muscle occupies, not its exact edges, and many muscles lie under the ones shown."
   },
   "facts": [
@@ -3645,7 +3683,7 @@
    ],
    [
     "Heart mass / body mass",
-    "0.6-1.1% (30 normal dogs)"
+    "≈ 0.6-1.1 % (30 normal dogs)"
    ],
    [
     "Blood volume",
@@ -4167,7 +4205,7 @@
   "related": [
    "optic_nerve"
   ],
-  "summary": "Each eye is joined to the brain by an optic nerve, a cable of about a hundred thousand fibres.",
+  "summary": "Each eye is joined to the brain by an optic nerve, a cable of on the order of 100,000 or more fibres.",
   "layers": {
    "basics": "The optic nerve carries the signals from the retina to the brain. Its fibres leave the eye at a spot with no light-sensing cells (the blind spot).",
    "deeper": "The same nerve as in people (cranial nerve II). In people: the same nerve.",
@@ -4177,6 +4215,10 @@
    [
     "Cranial nerve",
     "II"
+   ],
+   [
+    "Fibres in the optic nerve",
+    "≈ 115,000-150,000 (a range cited in a 2025 beagle paper; one older count of retinal ganglion cells gave about 81,000, so estimates differ)"
    ]
   ],
   "certainty": "C2",
@@ -4188,7 +4230,12 @@
     "36-5-vision"
    ]
   ],
-  "ext": []
+  "ext": [
+   {
+    "title": "Optic nerve head area and retinal nerve fibre layer in beagles (2025 open-access paper; cites 115,000-150,000 axons in the canine optic nerve)",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12353270/"
+   }
+  ]
  },
  {
   "id": "dog_arteries",
@@ -4863,7 +4910,7 @@
   "summary": "At the back of a dog's nose, thin scrolls of bone folded up like parchment are covered with a smell-sensing lining that is far larger than yours.",
   "layers": {
    "basics": "Air breathed in flows through the nose; some of it goes to the back where the smell-sensing scrolls are. The folding packs a large surface into a small space. Press the button to look inside the lining.",
-   "deeper": "In a dog the lining area is about 170 cm² (one reference) compared with about 5-10 cm² in a person, and the lining holds hundreds of millions of receptor cells (a secondary source gives about 125-300 million for dogs and about 5 million for people). A dog has about 800 working smell receptor genes, people about 400. The folding itself is more intricate in the real nose than the schematic scrolls drawn here. In people: the lining is on the roof of the nose, a patch of about 5 cm² (OpenStax) and the scrolls (turbinates) are small.",
+   "deeper": "In a dog the lining area is about 170 cm² (one reference) compared with about 5-10 cm² in a person, and the lining holds hundreds of millions of receptor cells (a secondary source gives about 125-300 million for dogs and about 5 million for people). A dog has about 870 intact smell-receptor genes, people about 330 (calculated from gene counts and pseudogene fractions in two papers); the rest are pseudogenes, broken copies. The folding itself is more intricate in the real nose than the schematic scrolls drawn here. In people: the lining is on the roof of the nose, a patch of about 5 cm² (OpenStax) and the scrolls (turbinates) are small.",
    "expert": "Dogs sniff in short bursts, and the nasal passage divides air into a route for smell and a route to the lungs. Detection thresholds are often quoted as thousands of times lower than ours, but the numbers depend on the odour and the method, and no solid source was found for them here."
   },
   "facts": [
@@ -4876,8 +4923,8 @@
     "≈ 125-300 million (dog, secondary source) vs ≈ 5 million (human)"
    ],
    [
-    "Receptor genes",
-    "≈ 800 (dog) vs ≈ 400 (human)"
+    "Intact receptor genes",
+    "≈ 870 intact genes in the dog (1,094 genes, about 20 % of them pseudogenes) against ≈ 330 in a person (about 900 genes, about 63 % pseudogenes); calculated from the two papers"
    ]
   ],
   "certainty": "C2",
@@ -4911,6 +4958,14 @@
    {
     "title": "The sense of smell: dogs or us (RAPS)",
     "url": "https://www.raps.org/resource/the-sense-of-smell-dogs-or-us.html"
+   },
+   {
+    "title": "Comparison of the canine and human olfactory receptor gene repertoires (Quignon et al. 2003, Genome Biology 4:R80)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC329419"
+   },
+   {
+    "title": "The canine olfactory subgenome (Quignon et al. 2005, Genome Biology 6:R83): 1,094 genes, about 20 % pseudogenes",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1257466"
    }
   ],
   "did_you_know": "A dog's nose also has a second chemical organ, the vomeronasal organ, above the roof of the mouth, for chemical signals from other animals."
@@ -5433,13 +5488,13 @@
   "summary": "A smell cell is a nerve cell that senses odour molecules with receptors on its cilia and sends the signal to the brain.",
   "layers": {
    "basics": "Each smell cell carries one type of receptor. Odour molecules dissolve in the mucus, fit a receptor and trigger a signal. Press the button to see the molecule that carries the message inside the cell.",
-   "deeper": "When an odour binds the receptor, the receptor activates a G protein that turns on an enzyme (adenylyl cyclase). The enzyme makes cyclic AMP (cAMP) from ATP, cAMP opens channels in the cilium that let calcium and sodium in, and the cell fires. A dog has about 800 working receptor genes, a person about 400. In people: the same type of neuron.",
+   "deeper": "When an odour binds the receptor, the receptor activates a G protein that turns on an enzyme (adenylyl cyclase). The enzyme makes cyclic AMP (cAMP) from ATP, cAMP opens channels in the cilium that let calcium and sodium in, and the cell fires. A dog has about 870 intact receptor genes, a person about 330 (calculated from gene counts and pseudogene fractions in two papers). In people: the same type of neuron.",
    "expert": "Smell cells are replaced throughout life from the stem cells at the base of the lining. Each cell expresses one receptor gene out of the many; how a cell chooses one is a research question."
   },
   "facts": [
    [
-    "Receptor genes (functional)",
-    "≈ 800 dog, ≈ 400 human"
+    "Intact receptor genes",
+    "≈ 870 intact genes in the dog (1,094 genes, about 20 % of them pseudogenes) against ≈ 330 in a person (about 900 genes, about 63 % pseudogenes); calculated from the two papers"
    ],
    [
     "Messenger",
@@ -5465,6 +5520,14 @@
    {
     "title": "Comparison of canine and human olfactory receptor gene repertoires (Quignon et al. 2003, Genome Biology)",
     "url": "https://www.jcvi.org/publications/comparison-canine-and-human-olfactory-receptor-gene-repertoires"
+   },
+   {
+    "title": "Comparison of the canine and human olfactory receptor gene repertoires (Quignon et al. 2003, Genome Biology 4:R80)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC329419"
+   },
+   {
+    "title": "The canine olfactory subgenome (Quignon et al. 2005, Genome Biology 6:R83): 1,094 genes, about 20 % pseudogenes",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1257466"
    }
   ]
  },
@@ -5946,6 +6009,99 @@
    {
     "title": "Tapetum lucidum (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Tapetum_lucidum"
+   }
+  ]
+ },
+ {
+  "id": "dog_fill",
+  "title": "Soft tissue (the stand-in in the cut view)",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.5,
+  "area": "bio_animals",
+  "parents": [
+   "dog_muscles"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "human_body"
+  ],
+  "summary": "In the \"Cut in half\" view the grey-pink filling between the drawn organs, muscles and bones stands for everything the model does not draw: fat, connective tissue, small vessels, glands and lymph nodes.",
+  "layers": {
+   "basics": "A real dog is not hollow, and between the big organs there is no empty space. The model draws about 130 named parts, and the rest of the volume is shown as one plain colour so that the cut face looks like a solid body, not a shell.",
+   "deeper": "In a real section these spaces hold the thin fatty and fibrous sheets that wrap organs and muscles (fasciae), the lymph nodes, nerves and small vessels. None of them is drawn as a separate part here, and the colour is a stand-in, not a measurement. The human body in this park shows its organs the same way: named parts, with the rest left out.",
+   "expert": "The filling is a single closed shape a little inside the skin. It exists only so that the cut face is painted; it has no tissue structure, and it is not a statement about how much of a dog is fat."
+  },
+  "facts": [
+   [
+    "What it is",
+    "a stand-in, not a measured tissue"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "33.1",
+    "33-1-animal-form-and-function"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Dog anatomy (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Dog_anatomy"
+   }
+  ]
+ },
+ {
+  "id": "dog_gait",
+  "title": "Walk, trot and gallop",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 0.6,
+  "area": "bio_animals",
+  "parents": [
+   "dog"
+  ],
+  "parts": [
+   "dog_scapula",
+   "dog_femur"
+  ],
+  "processes": [],
+  "related": [
+   "skeletal_system"
+  ],
+  "summary": "A dog changes how it moves its legs as it speeds up: a four-beat walk, a two-beat trot in which opposite legs move together, and a bounding gallop.",
+  "layers": {
+   "basics": "At a walk a dog always has at least two feet on the ground, and the feet land one after another. At a trot, the left front foot and the right hind foot land together, then the right front and the left hind. At a gallop all four feet leave the ground for a moment.",
+   "deeper": "At the walk the order of footfalls is \"lateral\": a hind foot, then the front foot on the same side, then the other hind foot, then the other front foot. The trot is \"diagonal\": the two feet of a diagonal pair move together. At the gallop the dog bounds: the back flexes and stretches, and there is a moment with no foot on the ground. How long each foot stays down (the duty factor) is more than half the stride at a walk and less than half at a trot or a gallop. People walk on two legs with the heel on the ground; a dog walks on its toes (digitigrade) on four, which is why its \"knee\" in front is the wrist.",
+   "expert": "In a study of six Labrador and Golden Retrievers (about 35 kg and 57 cm at the withers) the dogs walked with a lateral sequence of footfalls, trotted with synchronized diagonal limbs and galloped transversely; the stance part of the cycle was more than half of it in walking and less than half in the other gaits. The figure draws idealised timing (even spacing of the walk footfalls, and 65 % and 45 % stance), which is illustrative: real strides vary with speed, breed and the individual dog. The model does not animate legs; only the tail wag and the breathing and heartbeat are moved."
+  },
+  "facts": [
+   [
+    "Gaits shown",
+    "walk (lateral sequence), trot (diagonal), gallop (transverse)"
+   ],
+   [
+    "Stance part of the cycle",
+    "more than 50 % at a walk, less than 50 % in the trot and gallop (Catavitello et al. 2015)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "38.4",
+    "38-4-muscle-contraction-and-locomotion"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Planar covariation of hindlimb and forelimb elevation angles in dogs (Catavitello, Ivanenko and Lacquaniti 2015, PLoS One): six Labrador and Golden Retrievers, 35 kg and 57 cm at the withers",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4517757"
    }
   ]
  }
