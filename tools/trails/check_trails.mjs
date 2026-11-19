@@ -108,6 +108,47 @@ for (const t of trails) {
     if (e.frame === undefined && e.thing === undefined) err(S, 'expect needs frame or thing');
   });
 }
+
+// ---- guard against known errors and myth phrasings (found by the scientific referee; do not reintroduce)
+// Each entry: [regex, why, optional "unless" regex that makes the phrase acceptable in the same stop]
+const BANNED = [
+  [/down quark (?:into|to) an up quark|down quark (?:becomes|turns into|changes into) an up/i, 'reversed: a proton becomes a neutron when an UP quark becomes a DOWN quark', /neutron (?:turns|changes|becomes|decays)|beta decay|neutron into a proton/i],
+  [/does not use (?:much )?green|doesn'?t use (?:much )?green|takes? in green (?:light )?poorly|colou?r (?:you see )?is the colou?r the plants? did not use|reflects green because|green (?:light )?is (?:scattered|reflected) back (?:because|since)/i, 'leaf myth: leaves absorb and use most of the green light; green is only the colour absorbed least'],
+  [/do not suck nectar|not suck nectar through/i, 'honey bees both lap and suck (Wei et al. 2023)'],
+  [/empty tubes/i, 'working xylem tubes are full of water'],
+  [/only about 4 milligrams of sugar a day for herself/i, 'a flying forager burns about 7 to 12 mg of sugar an hour'],
+  [/(?:hundred thousand|100,000) times (?:smaller|narrower) than the atom/i, 'about 20,000 to 50,000 for oxygen; 100,000 only for hydrogen', /hydrogen/i],
+  [/mostly empty space/i, 'say it is misleading', /misleading/i],
+  [/faint leftover/i, 'the nuclear force beats the electric push at 1 to 2 fm'],
+  [/mass only ever adds, and has no opposite|has no opposite/i, 'gravity wins for big things because charges cancel; mass only adds'],
+  [/(?:thirty thousand|30,000) spores/i, 'unsourced figure'],
+  [/120 million rods|6 million cones/i, 'old textbook counts; Curcio 1990 gives about 92 million rods and 4.6 million cones'],
+  [/sarcomeres?,? each about 2\.2 to 2\.5/i, 'a skeletal-muscle value; heart sarcomeres are about 2 micrometres'],
+  [/breaking off the last one is what releases/i, 'breaking a bond costs energy; the reaction as a whole releases it'],
+  [/no gaps between them|no hard edge and no gaps/i, 'granite has some pore space; an electron cloud has low-density regions'],
+  [/best description of what everything is made of/i, 'the Standard Model leaves out gravity, dark matter and dark energy'],
+  [/light is a stream of photons/i, 'light is a wave that is emitted and absorbed in photons'],
+  [/travels in straight lines until something blocks/i, 'only true in empty space or a uniform medium'],
+  [/hydrogen[^.]*made in the first minutes/i, 'hydrogen nuclei formed in the first second; the first minutes made helium'],
+  [/violent events such as supernovae and the collision of neutron stars\./i, 'half of the heavy elements come from the slow neutron-capture process in giant stars'],
+  [/mostly waiting/i, 'anthropomorphic and misleading'],
+  [/orbit of S2 is about 1,000 AU across/i, '1,000 AU is the semi-major axis; the orbit is about 2,000 AU across'],
+  [/takes a pressure difference of about 0\.2 megapascals/i, 'it is a minimum, at least about 0.2 MPa'],
+];
+for (const t of trails) {
+  const fields = [['teaser', t.teaser], ['answer', t.answer], ['unknown', t.unknown]];
+  (t.stops || []).forEach((s, i) => ['title', 'text', 'notice', 'model'].forEach(k => fields.push([`stop ${i + 1} ${k}`, s[k]])));
+  const stopText = (name) => { const m = /^stop (\d+)/.exec(name); if (!m) return ''; const s = t.stops[m[1] - 1]; return [s.title, [].concat(s.text || []).join(' '), s.notice, s.model].join(' '); };
+  for (const [name, val] of fields) {
+    const v = [].concat(val || []).join(' ');
+    for (const [re, why, unless] of BANNED) {
+      if (!re.test(v)) continue;
+      const ctx = name.startsWith('stop') ? stopText(name) : v;
+      if (unless && unless.test(ctx)) continue;
+      err(t.id || t._file, `${name}: banned phrasing ${re} (${why})`);
+    }
+  }
+}
 // cross-check: every trail is reachable from some other trail or from the list
 console.log(`${trails.length} trails, ${trails.reduce((a, t) => a + (t.stops || []).length, 0)} stops`);
 for (const t of trails) console.log(`  ${t.id}: ${(t.stops || []).length} stops, "${t.question}"`);

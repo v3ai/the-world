@@ -33,8 +33,7 @@
     "frame": "Greenwich Park"
    },
    "text": [
-    "Everything in this world is drawn at its true size, so a person here is the size of a person. This is your yardstick.",
-    "Each step on this trail is a much bigger view than the last one."
+    "Everything in this world is drawn at its true size, except labels and markers, which say so. A person here is the size of a person. This is your yardstick. Each step on this trail is a much bigger view than the last one."
    ],
    "notice": "Watch the ruler down the left edge. The yellow needle shows how wide your view is, in powers of ten, and it will climb all the way up.",
    "deeper": [
@@ -54,7 +53,7 @@
     "frame": "Greenwich, London"
    },
    "text": [
-    "From 80 kilometres up, the park is a small green patch inside the city. You have made the view about ten thousand times wider than a minute ago."
+    "At a view 80 kilometres wide, the park is a small green patch inside the city. You have made the view about ten thousand times wider than a minute ago."
    ],
    "notice": "The needle has moved up the ruler by about four marks, each one a factor of ten.",
    "deeper": []
@@ -72,7 +71,7 @@
     "Earth is about 12,742 kilometres across. That is roughly seven million times the height of a person.",
     "About 71 percent of the surface is water, and the air around it is a thin skin compared with the size of the planet."
    ],
-   "notice": "Look at how thin the atmosphere is at the edge of the disc.",
+   "notice": "Click Earth to read its card, and watch the ruler: the needle shows how wide your view is.",
    "deeper": [
     {
      "label": "Earth",
@@ -112,10 +111,9 @@
     "frame": "Solar system"
    },
    "text": [
-    "The Sun, eight planets and their moons. Neptune, the farthest planet, orbits about 4.5 billion kilometres from the Sun.",
-    "Light from the Sun takes about 8 minutes 20 seconds to reach Earth, and over four hours to reach Neptune."
+    "The Sun, eight planets and their moons. Neptune, the farthest planet, orbits about 4.5 billion kilometres from the Sun. Light from the Sun takes about 8 minutes 20 seconds to reach Earth, and over four hours to reach Neptune."
    ],
-   "model": "Positions and sizes of the planets are true. The labelled dots, the belt dots and the orbit lines are not to scale: they are drawn so that you can see them.",
+   "model": "The planets' positions and sizes are true, but the planets are too small to see, so each is marked by a bigger dot. The labelled dots, the belt dots and the orbit lines are not to scale.",
    "notice": "Most of the Solar System is empty space. The labelled dots are markers, because the real planets are far too small to see at this zoom.",
    "deeper": [
     {
@@ -150,7 +148,7 @@
     "frame": "Milky Way"
    },
    "text": [
-    "Our galaxy is a barred spiral of 100 to 400 billion stars. The Sun is one of them, about 27,000 light-years from the centre, and it takes roughly 230 million years to go once around."
+    "Our galaxy is a barred spiral of 100 to 400 billion stars. The Sun is one of them, about 27,000 light-years from the centre, and it takes about 230 million years to go once around."
    ],
    "model": "The Sun's position is measured. The spiral arms drawn around it are an artist's impression, not the measured arm positions.",
    "notice": "Find the marker for the Sun's address, and the black hole at the centre. Click either one.",
@@ -205,7 +203,7 @@
     "Next to a person that is a width of about 5 times ten to the power 26, and it is where this world ends."
    ],
    "model": "The web itself is an illustration: its threads are random points joined up. Only the labelled galaxies and clusters are at their real positions.",
-   "notice": "Look at the ruler: you have crossed about twenty-four powers of ten in view width since the first stop.",
+   "notice": "Look at the ruler: the width of the view has grown about twenty-four powers of ten since the first stop.",
    "deeper": [
     {
      "label": "The cosmic web",
@@ -218,7 +216,7 @@
    ]
   }
  ],
- "answer": "From a person to the observable universe is about twenty-six and a half powers of ten, and almost all of the space in between is empty, with matter gathered into small, widely spaced places.",
+ "answer": "From a person to the whole observable universe is nearly twenty-seven powers of ten, and almost all of the space in between is empty, with matter gathered into small, widely spaced places.",
  "unknown": "The observable universe is only the part whose light has had time to reach us. Whether the whole universe is bigger, and by how much, is not known.",
  "next": [
   "where_did_my_atoms_come_from",
@@ -227,6 +225,7 @@
  ],
  "sources": [
   "Cards: earth, moon, solar, truescale, galaxy, sunMarker, localgroup, andromeda, universe (sources on the cards)",
-  "Computed: 1 AU / c = 499 s; 268,000 AU / 63,241 AU per light-year = 4.24 light-years; 93e9 ly * 9.4607e15 m / 1.8 m = 4.9e26"
+  "Computed: 1 AU / c = 499 s; 268,000 AU / 63,241 AU per light-year = 4.24 light-years; 93e9 ly * 9.4607e15 m / 1.8 m = 4.9e26",
+  "Calculated: 6 m to about 4e8 light-years of view is 2.4e23 times wider, 23.8 powers of ten; 93 Gly across / 1.8 m is 4.9e26, 26.7 powers of ten (the answer counts a person to the universe's full width, the notice counts the width of the view)"
  ]
 }

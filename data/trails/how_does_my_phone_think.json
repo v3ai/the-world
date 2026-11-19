@@ -61,8 +61,7 @@
     "frame": "Processor die"
    },
    "text": [
-    "This is the system-on-chip, a die of silicon with an area of roughly 100 square millimetres. Processor cores, graphics, an engine for AI, an image processor and memory controllers all share it.",
-    "A chip like this holds roughly ten to twenty billion transistors."
+    "This is the system-on-chip, a die of silicon with an area of roughly 100 square millimetres. Processor cores, graphics, an engine for AI, an image processor and memory controllers all share it. A chip like this holds roughly ten to twenty billion transistors. The main memory is in separate chips, so this trail follows the processor."
    ],
    "model": "A schematic floor plan: the blocks are in plausible places, but this is not the layout of any one real chip.",
    "notice": "Click a block, such as the CPU cluster or the GPU, to see what it is for.",
@@ -109,8 +108,7 @@
     "frame": "Logic gates"
    },
    "text": [
-    "Down here the arithmetic is built from tiny circuits called logic gates. A NAND gate gives the answer 0 only when both of its inputs are 1, and every other logic function can be built from NAND gates.",
-    "Chain enough of them together and you can add numbers, compare them and move them around."
+    "Inside a chip, 0 and 1 are two voltage levels, low and high. Down here the arithmetic is built from tiny circuits called logic gates. A NAND gate gives the answer 0 only when both of its inputs are 1, and every other logic function can be built from NAND gates. Chain enough of them together and you can add numbers, compare them and move them around."
    ],
    "notice": "Click an adder or a gate. Each one is a few switches wired together.",
    "deeper": [
@@ -134,8 +132,7 @@
     "frame": "inverter|Inverter|CMOS"
    },
    "text": [
-    "The inverter turns a 1 into a 0 and a 0 into a 1. It is made of two switches, one that pulls the output up and one that pulls it down, and only one is on at a time.",
-    "Because of that, hardly any current flows except at the moment of switching, which is why chips can have billions of them."
+    "The inverter turns a 1 into a 0 and a 0 into a 1. It is made of two switches, one that pulls the output up and one that pulls it down, and only one is on at a time. Because of that, hardly any current flows while the gate holds its value, only a brief surge when it switches. Real chips also leak a little, but this is why they can have billions of such gates."
    ],
    "notice": "Find the two transistors. When the input is high, one conducts and pulls the output low.",
    "deeper": [
@@ -193,7 +190,7 @@
    ]
   }
  ],
- "answer": "A phone does not think: it follows instructions, and every step is made of billions of tiny silicon switches that electrons turn on and off.",
+ "answer": "A phone does not think: it follows instructions, and every step is made of billions of tiny silicon switches that a voltage turns on and off, letting electrons flow.",
  "unknown": "Nothing about how the chip works is mysterious. What is open is how much smaller and faster such switches can be made before atoms and heat set the limit.",
  "next": [
   "is_a_rock_really_solid",
@@ -201,6 +198,6 @@
   "what_am_i_made_of"
  ],
  "sources": [
-  "Cards: smartphone, phone_soc, cpu_core, logic_gate_nand, cmos_inverter, finfet_transistor, silicon_channel, how_a_transistor_switches (data/nodes/ee_teardown.json)"
+  "Cards: smartphone, phone_soc, cpu_core, logic_gate_nand, cmos_inverter (leakage grows as the threshold falls), finfet_transistor, silicon_channel, how_a_transistor_switches (data/nodes/ee_teardown.json)"
  ]
 }

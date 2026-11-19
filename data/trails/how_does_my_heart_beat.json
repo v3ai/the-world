@@ -40,8 +40,7 @@
     "frame": "ody|uman"
    },
    "text": [
-    "In the middle of your chest, slightly to the left, is a fist-sized muscle. It squeezes about 100,000 times a day to push blood around your body.",
-    "Over a lifetime that adds up to roughly 2.5 to 3 billion beats."
+    "In the middle of your chest, with its point tilting to the left, is a fist-sized muscle. It squeezes about 100,000 times a day to push blood around your body. Over a lifetime that adds up to roughly 2.5 to 3 billion beats."
    ],
    "model": "An anatomical model of an average adult. The positions of organs are typical, not those of any one person.",
    "notice": "Choose \"Organs\" at the top to see what lies behind the ribs.",
@@ -88,8 +87,7 @@
     "frame": "eart"
    },
    "text": [
-    "The beat does not wait for a signal from the brain. A small cluster of special cells in the right atrium, the sinoatrial node, sets the rhythm.",
-    "Each time it fires, an electrical signal spreads through the muscle and makes it squeeze."
+    "The beat does not wait for a signal from the brain. A small cluster of special cells in the right atrium, the sinoatrial node, sets the rhythm. Each time it fires, the signal spreads over the two upper chambers and makes them squeeze. It then waits a moment at a second relay, the atrioventricular node, before it crosses the two lower chambers."
    ],
    "notice": "Find the marked point in the right atrium, the pacemaker.",
    "deeper": [
@@ -114,8 +112,7 @@
     "frame": "eart"
    },
    "text": [
-    "A beat has two phases: the heart relaxes and fills with blood, and then it squeezes to push blood out. At 75 beats a minute the whole cycle takes about 0.8 seconds.",
-    "The left chamber holds about 120 millilitres when full, and squeezes out roughly 55 to 70 percent of that each beat."
+    "A beat has two phases: the heart relaxes and fills with blood, and then it squeezes to push blood out. At 75 beats a minute the whole cycle takes about 0.8 seconds. The left ventricle holds about 120 millilitres when full, and squeezes out roughly 55 to 70 percent of that each beat."
    ],
    "notice": "Read the numbers on the card, then count your own pulse for fifteen seconds and multiply by four.",
    "deeper": [
@@ -146,8 +143,7 @@
     "frame": "ardiac|issue"
    },
    "text": [
-    "Heart muscle is made of cells that are striped, branched and joined end to end, so a signal can pass from one to the next. Each cell is about 100 micrometres long.",
-    "About 30 percent of the volume of a heart muscle cell is mitochondria, which release energy from food. The heart never rests, so it needs a constant supply."
+    "Heart muscle is made of cells that are striped, branched and joined end to end, so a signal can pass from one to the next. Each cell is about 100 micrometres long. About 30 percent of the volume of a heart muscle cell is mitochondria, which make ATP, the cell's energy currency. The heart never rests, so it needs a constant supply."
    ],
    "model": "A generic illustration of muscle tissue, not a micrograph. The cells are drawn as plain rods: real heart cells are striped and branched.",
    "notice": "Each rod stands for one muscle cell, about 100 micrometres long. Notice how they lie side by side in bundles, so that they can pull together.",
@@ -188,8 +184,7 @@
     "frame": "ardiac|issue"
    },
    "text": [
-    "Inside each cell are stacks of tiny protein motors called sarcomeres, each about 2.2 to 2.5 micrometres long. A signal makes calcium flood the cell, and the motors pull thin filaments past thick ones.",
-    "Each pull moves the filament about 5 to 10 nanometres. Millions of them at once shorten the cell, and so squeeze the heart."
+    "Inside each cell are chains of units called sarcomeres, each about 2 micrometres long at rest in heart muscle. In each one, protein motors called myosin pull thin filaments past thick ones, and each pull moves a filament about 5 to 10 nanometres. A signal makes calcium flood the cell, and millions of these pulls at once shorten the cell, and so squeeze the heart."
    ],
    "notice": "Read the card: each little motor needs ATP to pull.",
    "deeper": [
@@ -213,11 +208,10 @@
     "frame": "TP|denosine"
    },
    "text": [
-    "The motors run on a molecule called ATP, the cell's energy currency. A cell splits a phosphate off ATP to power work, and rebuilds the ATP from food.",
-    "The body holds only about 50 grams of ATP at a time, but it turns over about 50 to 70 kilograms of it a day."
+    "The motors run on a molecule called ATP, the cell's energy currency. A cell splits a phosphate off ATP to power work, and rebuilds the ATP from food. The body holds only about 50 grams of ATP at a time, but it turns over roughly 50 to 70 kilograms of it a day."
    ],
    "model": "A ball-and-stick picture of one molecule. Bond lengths are true, but the atoms are drawn smaller than their real size so that the bonds show, and the colours are a convention, not real colours.",
-   "notice": "Find the chain of three phosphate groups at one end. Breaking off the last one is what releases the energy.",
+   "notice": "Find the chain of three phosphate groups at one end. A cell splits off the last phosphate by adding water, and the reaction gives out energy the cell can use.",
    "deeper": [
     {
      "label": "ATP and energy coupling",
@@ -234,6 +228,7 @@
   "how_does_a_dog_smell_so_well"
  ],
  "sources": [
-  "Cards: heart (250-350 g, about 100,000 beats a day), cardiac_cycle, cardiac_muscle_tissue, cardiomyocyte, sa_node, sarcomere, muscle_contraction, bio_atp_energy_coupling (sources on the cards)"
+  "Cards: heart (250-350 g, about 100,000 beats a day, pacemaker then AV node then ventricles), cardiac_cycle (EDV 120 mL, EF 55-70 percent), cardiac_muscle_tissue, cardiomyocyte, sa_node, muscle_contraction (5-10 nm power stroke), bio_atp_energy_coupling (50 g, 50-70 kg per day)",
+  "Resting sarcomere about 2.0 micrometres in the human heart and about 2.5 in skeletal muscle: https://pmc.ncbi.nlm.nih.gov/articles/PMC4415482/figure/fig1 (the sarcomere card's 2.2 to 2.5 micrometres is a skeletal value)"
  ]
 }

@@ -40,8 +40,7 @@
     "thing": "oak"
    },
    "text": [
-    "A big oak is about 20 metres tall, and every leaf needs water. Lifting water that high against gravity takes a pressure difference of about 0.2 megapascals, which is roughly two atmospheres.",
-    "The tree has no heart and no pump. So where does the lift come from?"
+    "A big oak is about 20 metres tall, and every leaf needs water. Air pressure can push water up a pipe only about 10 metres, so the water cannot simply be pushed up from the bottom. Even just holding water at that height against gravity needs a pressure difference of at least about 0.2 megapascals, roughly two atmospheres. The tree has no heart and no pump, so where does the lift come from?"
    ],
    "model": "A procedural model of a typical oak.",
    "notice": "Hold on to this question, and follow the water from the bottom.",
@@ -116,8 +115,7 @@
     "thing": "oak"
    },
    "text": [
-    "Water rises through the outer, younger wood, called sapwood. The dark wood at the centre no longer carries water. It only holds the tree up.",
-    "The sapwood is made of long empty tubes, so water has a clear path from root to leaf."
+    "Water rises through the outer, younger wood, called sapwood. The dark wood at the centre no longer carries water. It only holds the tree up. The sapwood is made of long, narrow, hollow tubes, the dead walls of old cells, and they are filled with water, so the water has an unbroken path from root to leaf."
    ],
    "model": "A log cut open. About 150 rings are drawn, one per year of the model tree, and the thin layers near the bark are drawn thicker than they are.",
    "notice": "Count the pale outer layer: that thin ring is the part doing the lifting.",
@@ -188,8 +186,7 @@
     "frame": "eaf"
    },
    "text": [
-    "On the underside of a leaf are tiny pores called stomata. When they are open, the leaf takes in carbon dioxide, and water evaporates out of it.",
-    "That evaporation is the engine. It pulls water out of the leaf's vessels, and the water behind it is drawn up to replace it."
+    "On the underside of a leaf are tiny pores called stomata. When they are open, the leaf takes in carbon dioxide, and water evaporates out of it. The Sun's heat drives that evaporation, and it is the engine. It pulls water out of the leaf's vessels, and the water behind it is drawn up to replace it."
    ],
    "notice": "Look along the lower skin of the leaf, turning the view if you need to, for a gap between two bean-shaped guard cells. That gap is a stoma.",
    "deeper": [
@@ -209,8 +206,7 @@
     "frame": "ater"
    },
    "text": [
-    "Water molecules stick to each other through hydrogen bonds. A hydrogen of one molecule is pulled toward the oxygen of its neighbour.",
-    "So when evaporation pulls on the top of the water column in the wood, the molecules behind come with it, like a chain, and the tension runs all the way down. Tension in the xylem is typically about minus 1 to minus 3 megapascals."
+    "Water molecules stick to each other through hydrogen bonds. A hydrogen of one molecule is pulled toward the oxygen of its neighbour. So when evaporation pulls on the top of the water column in the wood, the molecules behind come with it, like a chain, and the water in the narrow tubes is held under tension, a negative pressure, without breaking. Tension in the xylem is typically about minus 1 to minus 3 megapascals."
    ],
    "notice": "Count the three atoms of a single water molecule. Each one can bond to others nearby.",
    "deeper": [
@@ -222,14 +218,16 @@
    "model": "A ball-and-stick picture of one molecule. Bond lengths are true, but the atoms are drawn smaller than their real size so that the bonds show, and the colours are a convention, not real colours."
   }
  ],
- "answer": "The leaves pull the water up: evaporation at the top tugs on a continuous chain of water molecules that cling together, so the tree is drawing water up rather than pushing it.",
- "unknown": "Water under such tension can break into bubbles, and how xylem avoids or repairs that is still being studied.",
+ "answer": "The leaves pull the water up: the Sun's heat evaporates water from the leaves, and that tugs on a continuous chain of water molecules that cling together, so the tree draws water up rather than pushing it.",
+ "unknown": "This pulling explanation, called cohesion-tension, is the accepted one, though some measurements of water under tension are still argued over. How xylem avoids or repairs bubbles in water under tension is still being studied.",
  "next": [
   "why_is_a_leaf_green",
   "what_is_a_mushroom",
   "how_big_is_everything"
  ],
  "sources": [
-  "Cards: oak_water_lift (0.2 MPa from 9.8 kPa per m x 20 m, tension -1 to -3 MPa), oak_sapwood, oak_heartwood, oak_leaf_stoma, hbond_water; oak thing legends and notes"
+  "Cards: oak_water_lift (0.2 MPa = 9.8 kPa per m x 20 m; tension -1 to -3 MPa), oak_sapwood, oak_heartwood, oak_leaf_stoma, hbond_water",
+  "Calculated: air pressure 101,325 Pa / (998 kg/m3 x 9.81 m/s2) = 10.3 m, the most that air pressure can hold up a water column",
+  "Gravity adds about 0.01 MPa of tension per metre of height; water columns stay intact below -3.5 MPa in centrifuge tests (Pockman et al., Nature 1995); the theory is still contested: https://sperry.biology.utah.edu/publications/sperry2008.pdf and https://www.nature.com/articles/378715a0.pdf (via search summaries)"
  ]
 }

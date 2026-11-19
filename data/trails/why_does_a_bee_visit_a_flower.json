@@ -3,7 +3,7 @@
  "order": 22,
  "theme": "Living things",
  "question": "Why does a bee visit a flower?",
- "teaser": "A flower pays a bee in sugar. Follow the trade from the bee's tongue to the nectar and the pollen she carries away.",
+ "teaser": "A flower pays a bee in sugar and she carries its pollen away. Follow the trade from her tongue to the nectar, to what she does with it and to the pollen she carries.",
  "keywords": [
   "bee",
   "flower",
@@ -40,8 +40,7 @@
     "thing": "bee"
    },
    "text": [
-    "This is a worker honey bee, a female about 12 to 15 millimetres long. She is a forager: she gathers nectar and pollen from flowers and carries them home to the nest.",
-    "Her colony may hold 40,000 to 80,000 bees in midsummer, and all of them depend on what foragers bring in."
+    "This is a worker honey bee, a female about 12 to 15 millimetres long. A forager gathers nectar and pollen from flowers and carries them home to the nest. Her colony may hold 40,000 to 80,000 bees in midsummer, and all of them depend on what foragers bring in."
    ],
    "model": "A model built from the measurements named on each card. The proportions that were not measured were set by eye.",
    "notice": "Use the layer buttons at the top to peel her. Click any part to read what it does.",
@@ -58,7 +57,7 @@
    ]
   },
   {
-   "title": "Her drinking straw",
+   "title": "Her tongue",
    "scale": "about 5 mm",
    "where": {
     "view": {
@@ -71,11 +70,10 @@
     "thing": "bee"
    },
    "text": [
-    "Bees do not suck nectar through a hole like a straw. The tongue is a hairy rod that is dipped in the nectar and coated by it, then drawn back into its sheath, where the nectar is squeezed up toward the mouth.",
-    "Fully extended, the tongue is about 5.4 to 6.3 millimetres long, depending on the population."
+    "A honey bee drinks nectar in two ways. With thick, sugary nectar she laps: the hairy tongue is dipped in, nectar coats it, and it is drawn back into its sheath. With thin, watery nectar she sucks it up the tongue's channel with a pump in her head. Fully extended, the tongue is about 5.4 to 6.3 millimetres long, depending on the population."
    ],
    "model": "In the model the tongue is shown about 3.9 mm long, partly extended into the flower.",
-   "notice": "Look for the long hairy tongue under her head.",
+   "notice": "Look for the long hairy tongue under her head. The model shows it partly out, in the pose of lapping or sipping.",
    "deeper": [
     {
      "label": "Proboscis",
@@ -114,8 +112,7 @@
     "thing": "flower"
    },
    "text": [
-    "This is a meadow buttercup, cut in half. At the base of each of its five petals is a small pit called a nectary, which makes a droplet of nectar.",
-    "A little flap can cover the pit, so rain stays out and a visitor has to reach in."
+    "This is a meadow buttercup, cut in half. At the base of each of its five petals is a small pit called a nectary, which makes a droplet of nectar. A little flap can cover the pit, so rain stays out and a visitor has to reach in. Making nectar costs the flower sugar, and it pays off because a visitor that comes for nectar carries pollen to other flowers, where it can help make seeds."
    ],
    "model": "A procedural model of a buttercup flower. The cut is made to show the inside.",
    "notice": "Find the small pits at the base of the petals.",
@@ -136,8 +133,7 @@
     "frame": "ucrose"
    },
    "text": [
-    "Nectar is mostly water with sugar dissolved in it. The main sugar is usually sucrose, which is ordinary table sugar, one glucose joined to one fructose.",
-    "Bee nectar is about 80 percent water, and the sugars in it are sucrose, glucose and fructose. For the bee, it is fuel for her flight muscles."
+    "Nectar is mostly water with sugar dissolved in it. The main sugar is usually sucrose, ordinary table sugar, one glucose joined to one fructose. In a 2023 study of how honey bees drink, sugar solutions of 10, 30 and 50 percent by weight were tested, and 30 percent was described as typical of nature. For the bee the sugar is fuel."
    ],
    "model": "A ball-and-stick picture of one molecule. Bond lengths are true, but the atoms are drawn smaller than their real size so that the bonds show, and the colours are a convention, not real colours.",
    "notice": "Count the carbon, hydrogen and oxygen atoms. Twelve carbons, twenty-two hydrogens and eleven oxygens make one molecule.",
@@ -175,10 +171,9 @@
     "thing": "bee"
    },
    "text": [
-    "The nectar goes into a stretchy bag at the front of her abdomen, called the crop, which holds about 75 milligrams.",
-    "It is kept apart from her own digestion. She flies home and passes it to other workers, and it begins turning into honey as she adds enzymes."
+    "The nectar goes into a stretchy bag at the front of her abdomen, called the crop, which keeps it apart from her own digestion. A load is often tens of milligrams, and she may leave a flower with the crop only part full. Flying burns sugar fast: about 7 to 12 milligrams an hour, so she spends part of every load on herself. The rest she passes to other workers at the nest, and it begins turning into honey as she adds enzymes."
    ],
-   "notice": "Find the crop. An adult bee needs only about 4 milligrams of sugar a day for herself, so most of what she carries is for the colony.",
+   "notice": "Find the crop. A bee resting in the hive needs only a few milligrams of sugar a day, but a forager in flight uses far more.",
    "deeper": [
     {
      "label": "Crop",
@@ -187,7 +182,7 @@
    ]
   },
   {
-   "title": "What she carries away",
+   "title": "Pollen: the protein",
    "scale": "about 2 mm",
    "where": {
     "view": {
@@ -209,8 +204,7 @@
     "thing": "flower"
    },
    "text": [
-    "While she drinks, she brushes against the anthers, which are loaded with pollen. A pollen grain of a meadow buttercup is about 27 micrometres across.",
-    "Pollen sticks to her hairs, and some is packed into baskets on her hind legs. Some rubs off on the next flower, which is how the flower gets pollinated."
+    "While she drinks, she brushes against the anthers, which are loaded with pollen. A pollen grain of a meadow buttercup is about 27 micrometres across. Honey bees also collect pollen on purpose, packing it into baskets on their hind legs, because it is the colony's protein food and the young are fed on it. Some grains rub off on the next flower, which is how the flower gets pollinated."
    ],
    "notice": "Find the ring of anthers around the centre of the flower.",
    "deeper": [
@@ -244,8 +238,7 @@
     "frame": "ye"
    },
    "text": [
-    "Each eye is a mosaic of about 5,000 tiny lenses, each looking at one patch of the world, so the picture is coarse like a screen of pixels. It is very quick, which suits an animal that flies.",
-    "She has three colour channels, ultraviolet, blue and green, so she sees ultraviolet and does not see red the way you do."
+    "Each eye is a mosaic of about 5,400 tiny lenses, each looking at one patch of the world, so the picture is coarse like a screen of pixels. It is also very quick, which suits an animal that flies. She has three colour channels, ultraviolet, blue and green, and no receptor for red. Many flowers have patterns that reflect ultraviolet light and act as landing guides for bees."
    ],
    "model": "An illustration. The facet width, 25.2 micrometres, is measured. The depth of the units, their widths and the number of cells drawn are simplified and not to scale with each other, and the colours are only a code.",
    "notice": "Each column is one tiny eye: a lens at the top, a cone below it, and light-sensing cells down the middle. Click a part to name it.",
@@ -262,7 +255,7 @@
    ]
   }
  ],
- "answer": "A bee visits a flower for nectar, which is sugar water she uses as fuel and carries home to her colony, and in doing so she carries its pollen from flower to flower.",
+ "answer": "A bee visits a flower for nectar, sugar water that fuels her own flight and that she carries home to her colony, and for pollen, the protein food of the colony's young. The flower makes nectar to pay for the carrying of its pollen from flower to flower.",
  "unknown": "How much of what a bee does at a flower is learned and how much is inborn is still being studied.",
  "next": [
   "what_is_light",
@@ -270,6 +263,11 @@
   "how_does_a_dog_smell_so_well"
  ],
  "sources": [
-  "Cards: park_bee, bee_proboscis, bee_crop, bee_nectar, bee_compound_eye, rn_nectary, rn_nectar, rn_pollen_grain, rn_pollination (sources on the cards)"
+  "How honey bees drink: Wei et al. 2023, PNAS, doi 10.1073/pnas.2305436120, via the report https://phys.org/news/2023-08-video-honey-bees-mechanisms-resource.html (10 percent sucrose: suction; 30 percent: lapping then suction; 50 percent: lapping only; 30 percent described as typical of nature)",
+  "Sugar needed in flight 7 to 12 mg per hour (Balderrama 1992; Gmeinbauer and Crailsheim 1993), quoted in https://ojs.openagrar.de/index.php/JKA/article/view/10024/9206",
+  "Pollen as the protein source and nectar as the carbohydrate source; larvae fed protein-rich brood food: https://www.dpi.nsw.gov.au/animals-and-livestock/bees/management/nutrition2/nutritional-requirements-of-honey-bees and https://pmc.ncbi.nlm.nih.gov/articles/PMC5443605",
+  "Ommatidia 5,375 +- 143 per worker eye: Streinzer et al. 2013 (https://pmc.ncbi.nlm.nih.gov/articles/PMC3584085/)",
+  "Crop load: no firm value found, so none is given (a popular source says about 40 mg; foragers often leave part full)",
+  "Cards: park_bee, bee_proboscis, bee_crop, bee_nectar, bee_vision, bee_compound_eye, rn_nectary, rn_nectar, rn_pollen_grain, rn_pollination"
  ]
 }

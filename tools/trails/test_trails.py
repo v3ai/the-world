@@ -44,7 +44,8 @@ def run_stop(w, t, i, cold):
     if e.get('thing') and not r['thingDrawn']: ok = False; why.append('thing %s not drawn' % e['thing'])
     if r['errors']: ok = False; why.append('player errors %s' % r['errors'])
     if w.errors: ok = False; why.append('console %s' % w.errors[:2])
-    shot = w.shot('%s_%02d' % (t['id'], i + 1))
+    try: shot = w.shot('%s_%02d' % (t['id'], i + 1))
+    except Exception as ex: shot = None; print('note: screenshot failed (%s)' % type(ex).__name__, flush=True)  # a slow machine can time out; the assertions do not need it
     rec = dict(trail=t['id'], stop=i + 1, ok=ok, why=why, chain=[n.split('|')[0] for n in r['names']][:3], D=r['D'], card=r['card'], shot=shot)
     out.write(json.dumps(rec) + '\n'); out.flush(); print(('PASS ' if ok else 'FAIL ') + t['id'], i + 1, '; '.join(why)[:300], flush=True)
     w.errors.clear()

@@ -44,8 +44,7 @@
     "thing": "mushroom"
    },
    "text": [
-    "This red toadstool with white warts is a fly agaric. It is poisonous, so never eat a wild mushroom you cannot identify with certainty.",
-    "But the real question is what it is. It is not the whole organism."
+    "This red toadstool with white warts is a fly agaric. It is poisonous, so never eat a wild mushroom you cannot identify with certainty. It is not a plant: a fungus has no chlorophyll and cannot make food from light, it absorbs its food, and genetically it is closer kin to animals. And what you see is not the whole organism."
    ],
    "model": "A procedural model of a typical fly agaric. The cap diameter here, 14 cm, was chosen within the species range of about 5 to 30 cm.",
    "notice": "Look around the park: the mushroom is near the trees. That is not an accident, as the last stops show.",
@@ -110,8 +109,7 @@
     "frame": "ill"
    },
    "text": [
-    "A spore is a single cell, much smaller than a seed, that can grow into a new fungus if it lands somewhere good. Fly agaric spores are white and oval, about 9 to 13 micrometres long.",
-    "A gilled mushroom is thought to shed around thirty thousand spores every second. That figure is for gilled mushrooms in general, not measured for this species."
+    "A spore is a single cell, far smaller than a seed. Fly agaric spores are white and oval, about 9 to 13 micrometres long. A spore that lands somewhere good can grow threads of a new fungus, and two compatible threads must meet before a mushroom can form. A mushroom sheds a huge number of spores, and almost all of them die."
    ],
    "notice": "Find where the spores form on the surface of a gill.",
    "deeper": [
@@ -185,8 +183,7 @@
     "frame": "oot|ECM|mycorrhiz"
    },
    "text": [
-    "The fungus wraps the finest tree roots in a sleeve of threads, and grows between the root's outer cells, but not inside them. The tree pays in sugar, and the fungus pays in water, nitrogen and phosphate.",
-    "In studies, the fungus receives about 15 percent of its host's food product, and can supply up to about 86 percent of a host's nitrogen."
+    "The fungus wraps the finest tree roots in a sleeve of threads, and grows between the root's outer cells, but not inside them. The tree pays in sugar, and the fungus pays in water, nitrogen and phosphate. In one study of ectomycorrhizal fungi in Arctic tundra, the fungi received about 8 to 17 percent of the plants' photosynthetic carbon and supplied about 61 to 86 percent of their nitrogen."
    ],
    "model": "The root tips are drawn much larger than life so that you can see them.",
    "notice": "Find the sleeve around the root and the threads running out into the soil.",
@@ -215,6 +212,8 @@
   "what_am_i_made_of"
  ],
  "sources": [
-  "Cards: park_mushroom, fa_gills, fa_spores, fa_mycelium, fa_ecm, fa_trade, fa_hypha (sources on the cards)"
+  "Cards: park_mushroom (fungi are not plants), fa_gills, fa_spores (spore size; the card's 30,000 spores per second is not used because it has no checked source), fa_mycelium, fa_ecm, fa_trade, fa_hypha",
+  "Hobbie and Hobbie 2006, Ecology (Arctic tundra, nitrogen-15): mycorrhizal fungi supplied 61 to 86 percent of plant nitrogen and received 8 to 17 percent of plant photosynthetic carbon (abstract as read in a search summary); a result for one ecosystem, not for the fly agaric",
+  "Fungi group with animals, not plants (opisthokonts): https://en.wikipedia.org/wiki/Opisthokont"
  ]
 }
