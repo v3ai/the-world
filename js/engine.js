@@ -331,8 +331,10 @@ function frameAlpha(f) {
   }
   return a;
 }
+let _coHost = null, _coHostR = 0;   // the co-rendered thing the camera is anchored in (or inside), and its size in metres
 function computeActive() {
   const ch = chainOf(cam.A).reverse(); // root ... A
+  _coHost = null; for (let i = ch.length - 1; i >= 0; i--) { const f = ch[i]; if (f.coRender && f.parent && f.parent.unit === f.unit) { _coHost = f; _coHostR = (f.radius || 1) * f.unit; break; } }
   const list = [];
   for (const f of ch) {
     let a = f === cam.A ? Math.max(frameAlpha(f), cam.D < f.r0 ? 1 : 0) : frameAlpha(f);
@@ -369,7 +371,11 @@ function coAlpha(c, inChain) {
   const pa = inChain || p === cam.A ? 1 : (p.alpha ?? 1);
   if (lim === Infinity) return pa;
   const dist = camPosIn(p, _cv).distanceTo(c.pos) * p.unit;
-  return Math.min(pa, 1 - smooth(lim * .7, lim, dist));
+  let a = Math.min(pa, 1 - smooth(lim * .7, lim, dist));
+  // Close to one thing, the other neighbours get out of the way (the person does not stand in a close-up of the bee): beyond about 10 times the viewing distance
+  // from the camera they fade out, completely by 24 times; they come back smoothly as the camera pulls back (D grows) or leaves the thing (5 sizes of it).
+  if (!inChain && _coHost && c !== _coHost && cam.D < 5 * _coHostR) { const dn = Math.max(0, dist - (c.radius || 0) * c.unit); a = Math.min(a, 1 - smooth(10 * cam.D, 24 * cam.D, dn)); }
+  return a;
 }
 function applyFade(f) {
   const a = f.alpha;
@@ -410,11 +416,30 @@ function updateViewOffset() {
   viewOff.x += (nx - viewOff.x) * k; viewOff.y += (ny - viewOff.y) * k;
   if (Math.abs(viewOff.x - nx) < .5) viewOff.x = nx; if (Math.abs(viewOff.y - ny) < .5) viewOff.y = ny;
 }
+/* A scene is shifted so that the eye sits at its origin, and three.js takes a hemisphere light's direction (and the direction of a directional light whose target
+   is not in the scene) from the light's position in the scene: so the shading used to depend on where the camera was. Here each such light is moved by the opposite
+   of the shift, so that its direction is the one the frame gave it (a hemisphere light: up) wherever the camera is. A light that casts a shadow is left alone (its
+   shadow camera follows it). */
+const _slNew = new V3();
+function fixSceneLights(f) {
+  const n = f.root.children.length;
+  if (f._ltN !== n) {   // the frame's content group is rebuilt rarely; look again when the root's children change. Lights in a group that only holds them (no offset, turn or scale) count too.
+    f._ltN = n; f._lt = [];
+    const plain = g => g.position.lengthSq() === 0 && g.quaternion.w === 1 && g.scale.x === 1 && g.scale.y === 1 && g.scale.z === 1;
+    f.root.traverse(o => { if (!(o.isHemisphereLight || (o.isDirectionalLight && !o.target.parent && !o.castShadow))) return; let a = o.parent; while (a && a !== f.root && plain(a)) a = a.parent; if (a === f.root) f._lt.push(o); });
+  }
+  for (const o of f._lt) {
+    const u = o.userData; if (!u._p0) { u._p0 = o.position.clone(); u._lw = o.position.clone(); }
+    if (!o.position.equals(u._lw)) u._p0.copy(o.position);   // the frame has moved the light itself: that is the direction it wants
+    o.position.copy(u._p0).sub(f.root.position); u._lw.copy(o.position);
+  }
+}
 function placeFrameCam(f) {
   camPosIn(f, _cp); _tp.copy(cam.T); convertP(_tp, cam.A, f);
   _dv.copy(cam.dir); convertD(_dv, cam.A, f); _uv.copy(cam.up); convertD(_uv, cam.A, f);
   f.C = (f.C || new V3()).copy(_cp);
   f.root.position.copy(_cp).negate();
+  fixSceneLights(f);
   const c = f.cam, dl = cam.D / f.unit;
   c.position.set(0, 0, 0); c.up.copy(_uv); c.lookAt(_dv.negate());
   c.near = Math.max(dl * 2e-4, 1e-9); c.far = Math.max(dl * 1e7, f.radius * 8 + _cp.length() * 4);
@@ -624,6 +649,13 @@ function levelUp(dt) {
   if (want.length() < .15) return;
   want.normalize(); cam.up.lerp(want, 1 - Math.exp(-dt * 3)).normalize();
 }
+/* Set the view direction (in the anchor frame's coordinates) and re-level the up vector in the same call, as the engine would only do over several frames:
+   a script that looks somewhere sees the finished view at once. */
+function setCamDir(d, upHint) {
+  cam.dir.copy(d).normalize(); const u = upHint || cam.A.up;
+  if (u) { const want = u.clone().sub(cam.dir.clone().multiplyScalar(u.dot(cam.dir))); if (want.length() > .15) { cam.up.copy(want.normalize()); return; } }
+  orthoUp();
+}
 function orthoUp() { cam.dir.normalize(); cam.up.sub(cam.dir.clone().multiplyScalar(cam.up.dot(cam.dir))).normalize(); }
 // fly to a point in a frame, ending at distance Dgoal (meters). Zooms out, travels, zooms in as needed.
 function flyTo(frame, pointLocal, Dgoal, then) {
@@ -632,6 +664,16 @@ function flyTo(frame, pointLocal, Dgoal, then) {
   chainOf(frame).reverse().forEach(f => { f.ensure(); if (f.place) f.place(); }); // the whole path must exist and be in position
   fly = { frame, p: pointLocal.clone(), Dg: Dgoal, then, t: 0 };
   camHold = frame; // a flight lands in the frame it names, not in a child that happens to sit under the landing point; scrolling in again lifts this
+}
+/* A frame that is one-sided ground (the skin patch, a landscape or map tile) has `faceUp`: a flight must not end with the camera under it, looking up at its back
+   (a dark picture): if the camera is under the surface, lift it to look down on it from the side it came from. */
+const _fsV = new V3(), _fsU = new V3();
+function faceSurface(f) {
+  if (!f || !f.faceUp || !f.up) return;
+  _fsV.copy(cam.dir); convertD(_fsV, cam.A, f); const k = _fsV.dot(f.up); if (k > .12) return;   // cam.dir points from the target to the camera: above the surface when it points the way `up` does
+  _fsV.addScaledVector(f.up, -k); if (_fsV.lengthSq() < 1e-6) _fsV.set(f.up.y > .9 ? 1 : 0, 0, f.up.y > .9 ? 0 : 1);
+  _fsV.normalize().multiplyScalar(.89).addScaledVector(f.up, .45); convertD(_fsV, f, cam.A);
+  setCamDir(_fsV);
 }
 function safeThen(t) { if (t) try { t(); } catch (e) { console.error('flight callback failed', e); } } // a throwing callback must not abort the frame
 function stepFly(dt) {
@@ -644,7 +686,7 @@ function stepFly(dt) {
   cam.D = Math.exp(lnD + dl);
   if (distM > cam.D * .6) { const stepM = Math.min(distM, cam.D * dt * 1.6); cam.T.add(g.sub(cam.T).multiplyScalar(stepM / distM)); }
   else cam.T.lerp(g, 1 - Math.exp(-dt * 4));
-  if (distM < cam.D * .02 && Math.abs(lnW - Math.log(cam.D)) < .03) { const t = F.then; fly = null; safeThen(t); }
+  if (distM < cam.D * .02 && Math.abs(lnW - Math.log(cam.D)) < .03) { const t = F.then; fly = null; faceSurface(F.frame); safeThen(t); }
   if (fly === F && F.t > 60) { const t = F.then; jumpTo(F.frame, F.p, F.Dg); safeThen(t); } // never strand a tour: finish the trip
 }
 // pointer handlers
@@ -686,7 +728,6 @@ function bindHold(el, dir) {
 addEventListener('keydown', e => {
   if (/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName) || e.ctrlKey || e.metaKey || e.altKey) return;
   const k = e.key;
-  if (k === '/') { e.preventDefault(); openLibrary(true); return; }
   if (k === '+' || k === '=') zoomBy(-.25, W / 2, H / 2);
   else if (k === '-' || k === '_') zoomBy(.25);
   else if (k === 'Escape') { const vm = document.getElementById('vizModal'); if (vm && vm.classList.contains('open')) { vm.classList.remove('open'); return; } closeInfo(); closePops(); fly = null; cancelTour(); $('#help').classList.add('hide'); }
