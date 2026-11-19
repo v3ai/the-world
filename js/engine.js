@@ -395,7 +395,7 @@ const _cp = new V3(), _tp = new V3(), _dv = new V3(), _uv = new V3();
    phone the panel is a sheet at the bottom). It eases in and out, and everything that projects through f.cam (picking, labels) follows.
    freeArea() is that part of the screen, in CSS pixels: between the ruler (or Tracks) and the open panel, below the top controls; on a
    phone, between the top buttons and the sheet. It is read from layout positions, not from the panel's rectangle while it slides. */
-const viewOff = { x: 0, y: 0 };
+const viewOff = { x: 0, y: 0, wantX: 0, wantY: 0 };   // wantX, wantY: where it is easing to
 let _voT = performance.now();
 function freeArea() {
   const A = { l: 0, r: W, t: 0, b: H }, pn = document.getElementById('panel'), open = pn && document.body.classList.contains('panelOpen');
@@ -413,9 +413,9 @@ function updateViewOffset() {
   const A = freeArea();
   if (!A.tracks && !A.panel) { /* no panel open: the view is centred as ever */ }
   else if (W > 860) tx = clamp(A.cx - W / 2, -W * .3, W * .3); // the free area's centre, relative to the screen's centre
-  else if (A.panel) ty = clamp(A.cy - H / 2, -H * .3, 0);
+  else if (A.panel) { tx = A.cx - W / 2; ty = clamp(A.cy - H / 2, -H * .3, 0); } // phone: up above the sheet, and clear of the ruler strip
   // setViewOffset moves the window over the full image: a window shifted right shows content that sits further right, so the scene moves left by +x
-  const k = 1 - Math.exp(-dt * 9), nx = -tx, ny = -ty;
+  const k = 1 - Math.exp(-dt * 9), nx = -tx, ny = -ty; viewOff.wantX = nx; viewOff.wantY = ny;
   viewOff.x += (nx - viewOff.x) * k; viewOff.y += (ny - viewOff.y) * k;
   if (Math.abs(viewOff.x - nx) < .5) viewOff.x = nx; if (Math.abs(viewOff.y - ny) < .5) viewOff.y = ny;
 }
@@ -1073,6 +1073,7 @@ function clickThing(h) {
    the selected part), a soft glow on the object's materials where they can glow, and otherwise a ring drawn round the point (#selMark). */
 function selectHit(h) {
   if (h.obj.userData.onPick) h.obj.userData.onPick(h);
+  if (typeof PANEL !== 'undefined') PANEL.userSel = true;   // asked for by a click: while a trail plays, the card is scrolled into view (openPanel)
   showInfoFor(h);
   setSelected(h);
   if (typeof panelHintDone === 'function') panelHintDone();

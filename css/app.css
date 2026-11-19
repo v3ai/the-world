@@ -463,6 +463,9 @@ details[open] > summary::before { content: '−' }
 #info { position: relative; padding-bottom: 18px; margin-bottom: 16px; border-bottom: 1px solid var(--rule) }
 #info .cardhead { padding-right: 62px; min-height: 22px }
 #info h2 { margin-right: 0; overflow-wrap: anywhere }
+#info .lookrow { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 14px }
+#info .lookrow .zoom { padding: 7px 13px }
+#info .lookNote { margin: -6px 0 12px }
 #info .nobuilt, #place .nobuilt { margin: 0 0 12px; padding: 8px 10px; border-left: 3px solid var(--accent); background: #fff; font: 14px/1.5 var(--serif); color: var(--ink) }
 #place .nobuilt:empty { display: none }
 #place .nobuilt { margin-top: 12px }
@@ -525,6 +528,7 @@ body.trackOpen #fov { left: 376px }
 body.panelOpen #controls { right: calc(var(--panel-w) + 32px) }
 body.panelOpen #zoombtns { right: calc(var(--panel-w) + 28px) }
 body.panelOpen #perf { right: calc(var(--panel-w) + 78px) }
+@media (min-width: 861px) { body.panelOpen #toasts, body.panelOpen #push, body.panelOpen #loadNote { left: calc(50% + var(--ruler-w) / 2 - var(--panel-w) / 2 - 8px) } }   /* messages sit in the middle of the free area */
 @media (max-width: 860px) {
   #panel { left: calc(var(--ruler-w) + 6px); right: 6px; top: auto; bottom: 8px; width: auto; max-width: none; height: 36vh; transition: transform .25s, height .2s, visibility 0s }
   #panel.min { transform: translateY(calc(100% + 40px)); transition: transform .25s, height .2s, visibility 0s .25s }
@@ -538,10 +542,14 @@ body.panelOpen #perf { right: calc(var(--panel-w) + 78px) }
   #panelTabB { padding: 8px 14px 8px 12px; min-height: 34px }
   #panelTabB .tt { max-width: 38vw }
   #tabTrail button { padding: 8px 9px }
+  #tabTrail:not([hidden]) ~ #panelTabB .to { display: none }   /* "Show text" already opens it */
+  #trail .tr-dots { gap: 5px }
   body.panelOpen #controls { right: calc(var(--srch-btn-w) + 8px) }
   body.panelOpen #zoombtns { right: 8px; bottom: calc(36vh + 16px) }
   body.panelOpen #perf { right: 8px }
-  #fov { left: calc(var(--ruler-w) + 68px); bottom: 54px }   /* clear of the ruler's own read-out, which can sit at this height */
+  #fov { left: calc(var(--ruler-w) + 68px); right: 54px; bottom: 54px }   /* clear of the ruler's own read-out, which can sit at this height, and of the zoom buttons */
+  #fov .k { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+  #clockBtn { flex: none }
   body.panelOpen #fov { bottom: calc(36vh + 14px) }
   body.trackOpen #fov, #library.open ~ #fov { display: none }
 }

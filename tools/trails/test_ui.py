@@ -27,10 +27,13 @@ with World(size=size, mobile=a.phone, start=False) as w:
     n = w.js("document.querySelectorAll('#questions .qitem').length"); tn = w.js('TRAILS.list.length'); check('list shows all trails', n == tn and tn > 0, n)
     w.shot('list' + sfx)
     # 3. search
-    w.js("openLibrary(true)"); w.js("(() => { const q = document.querySelector('#libQ'); q.value = 'why is a leaf green'; libSearch(q.value); })()"); w.settle(1)
-    txt = w.js("document.querySelector('#library').innerText")
+    # (the one search field; the Library no longer has a box of its own)
+    w.js("(() => { const q = document.querySelector('#srchQ'); SEARCH.focus(); q.value = 'why is a leaf green'; q.dispatchEvent(new Event('input', { bubbles: true })); })()")
+    try: w.page.wait_for_selector('#srchPanel .srow', timeout=60000)
+    except Exception: pass
+    w.settle(1); txt = w.js("document.querySelector('#srchPanel').innerText")
     check('search finds the trail', 'Why is a leaf green?' in txt); w.shot('search' + sfx)
-    w.js("closePops()")
+    w.js("document.querySelector('#srchX').click(); closePops()")
     # 4. play, Next/Back, arrows
     w.js("TRAILS.start('what_am_i_made_of', 0)"); w.settle(4)
     check('panel open', w.js("document.querySelector('#trail').classList.contains('on')"))

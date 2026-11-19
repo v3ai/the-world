@@ -98,7 +98,8 @@ function updateCrumbs(cur) {
    header, figure, tabs, facts, actions, what it is made of, what it is part of, how it works, more, textbook sections,
    open questions, how certain science is. Spec keys: tag, title, figure, core, track, basics, deeper, expert, facts, note,
    buttons, after, madeLabel, made, partLabel, part, howLabel, how, more, books, open (html), cert (C1..C4), sci (true: fill
-   "The science behind this" once the knowledge map has loaded). */
+   "The science behind this" once the knowledge map has loaded), look (true: the card of a clicked thing: Look inside and See it
+   from further out go straight under its title). */
 const infoEl = $('#info');
 let depthPref = store.get('depth', 0), infoState = null;
 const CERT_WORDS = { C1: 'Settled: checked in many independent ways and not in serious doubt.', C2: 'Well supported, and the details are still being refined.', C3: 'Debated: experts disagree about this.', C4: 'Speculative: a proposal that has not been tested yet.' };
@@ -122,6 +123,7 @@ function wireTabs() {
 function cardHtml(s) {
   const sec = (label, body) => body ? `<div class="refs"><div class="rh">${label}</div>${body}</div>` : '';
   let h = `<div class="cardhead"><div class="tag">${s.tag || ''}</div></div><h2>${s.title}</h2>`; // Back is in the panel's head, once
+  if (s.look) h += `<div class="lookrow">${LOOK_BTNS}</div>`; // the card of a clicked thing: its two controls, straight under the title
   h += (s.figure || '') + (s.core || '') + (s.track || '');
   h += layered([['Basics', s.basics ? `<div class="body">${s.basics}</div>` : ''], ['Deeper', s.deeper ? `<div class="body"><p>${s.deeper}</p></div>` : ''], ['Expert', s.expert ? `<div class="body expert"><p>${s.expert}</p></div>` : '']]);
   if (s.facts && s.facts.length) h += '<dl>' + s.facts.map(f => `<dt>${f[0]}</dt><dd>${f[1]}</dd>`).join('') + '</dl>';
@@ -144,7 +146,7 @@ function wireLookBtns(h) {
   if (zb && h && h.obj && h.frame && h.frame.built && typeof DESCENT !== 'undefined' && DESCENT && DESCENT.describe && !h.obj.userData.lookInside) {
     let d = null; try { if (!cutOpenOf(h, true)) d = DESCENT.describe(h); } catch (e) { d = null; }
     if (d && d.title) zb.textContent = 'Look inside: ' + d.title;
-    if (d && d.note) { const n = document.createElement('p'); n.className = 'cnote lookNote'; n.textContent = d.note; const row = zb.closest('.btnrow'); if (row) row.insertAdjacentElement('afterend', n); }
+    if (d && d.note) { const n = document.createElement('p'); n.className = 'cnote lookNote'; n.textContent = d.note; const row = zb.closest('.lookrow'); if (row) row.insertAdjacentElement('afterend', n); }
   }
 }
 function chipsHtml(items) { return items.length ? `<div class="chips">${items.join('')}</div>` : ''; }
@@ -185,7 +187,7 @@ let _ptT = 0;
 function panelSync(now) { // about four times a second: the tab's title, the dot, the scene sections that have emptied or filled
   if (now - _ptT < 240) return; _ptT = now;
   const t = panelTitle(), el = $('#panelTabT');
-  if (t !== PANEL.tab) { const first = !PANEL.tab; PANEL.tab = t; el.textContent = t; if (PANEL.min && !first) $('#panelTab').classList.add('new'); }
+  if (t !== PANEL.tab) { const first = !PANEL.tab; PANEL.tab = t; el.textContent = W <= 860 && /^Stop \d+ of \d+: /.test(t) ? t.split(':')[0] : t; if (PANEL.min && !first) $('#panelTab').classList.add('new'); } // a phone's pill has room for "Stop 3 of 9" beside the trail's buttons, not for the stop's title
   const tt = $('#tabTrail'), on = typeof TRAILS !== 'undefined' && !!TRAILS.cur;
   if (tt.hidden === on) tt.hidden = !on;
   if (on) { const n = TRAILS.cur.stops.length; $('#tabPrev').disabled = TRAILS.i === 0; $('#tabNext').disabled = TRAILS.i >= n; }
@@ -299,7 +301,7 @@ function showInfoFor(h) {
   const simIds = [SIM_OF[id] || id].concat(ud.sim || []);
   const spec = {
     tag: d.tag || '', title: d.title, basics: (d.body || '') + (d.fun ? `<div class="fun"><b>Did you know?</b>${d.fun}</div>` : ''), deeper: dp.d, expert: dp.x, facts: d.facts, note: d.note, sci: true,
-    buttons: (h.noZoom ? '' : LOOK_BTNS) + (ud.madeOf ? `<button class="zoom alt" id="madeBtn">See what it is made of</button>` : '') + (h.elSym ? `<button class="zoom" id="atomBtn">Fly to ${(ELJ[h.elSym] || {}).name || h.elSym} atoms</button>` : ''),
+    look: !h.noZoom, buttons: (ud.madeOf ? `<button class="zoom alt" id="madeBtn">See what it is made of</button>` : '') + (h.elSym ? `<button class="zoom" id="atomBtn">Fly to ${(ELJ[h.elSym] || {}).name || h.elSym} atoms</button>` : ''),
     books: dp.r && dp.r.length ? dp.r.map(refChip).join('') : '',
   };
   openPanel(cardHtml(spec), { key: 'info:' + (id || d.title), reopen: () => showInfoFor(h) });

@@ -637,6 +637,8 @@ PX.smBind = F => {
   const SM = PX.SM, S = F.sm, P = S.P, D = PX.D;
   PX.smFrames.push(F); F.onDispose = () => { const i = PX.smFrames.indexOf(F); if (i >= 0) PX.smFrames.splice(i, 1); };
   Object.values(P).forEach(p => { p.orb.userData.onPick = () => { SM.sel = p.id; PX.smFrames.forEach(f => f.built && f.refresh && f.refresh()); }; });
+  /* a click frames the particle with room round it (three ball sizes), so its neighbours and the antiparticle drawn beside it stay in view */
+  { const bx = new THREE.Box3(), sz = new V3(); Object.values(P).forEach(p => { p.orb.userData.extent = () => { bx.setFromObject(p.orb); bx.getSize(sz); return { p: bx.getCenter(new V3()).add(F.C), r: Math.max(sz.x, sz.y, sz.z) * 1.5 }; }; }); }
   /* a double click on a particle, or its card's "Look inside": none of the seventeen has known parts, so the answer is what it turns into (its decay is played) or, for one that does not decay, a plain statement */
   Object.values(P).forEach(p => { p.orb.userData.lookInside = () => {
     const dec = PX.decayList().findIndex(x => x.pid === p.id), nm = (PX.P[p.id] && PX.P[p.id].name) || PX.nm(p.id), none = 'No structure has been seen in any of these particles, down to about 10⁻¹⁹ m, and below that nobody has looked.';
