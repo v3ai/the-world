@@ -4,64 +4,223 @@
  "theme": "Living things",
  "question": "How does a dog smell so much better than I do?",
  "teaser": "Open a dog's nose and compare its smell lining with yours, down to the cell that catches an odour.",
- "keywords": ["dog", "smell", "nose", "scent", "olfactory", "receptor", "sniff", "canine", "senses"],
- "scales": ["a dog", "a cell"],
+ "keywords": [
+  "dog",
+  "smell",
+  "nose",
+  "scent",
+  "olfactory",
+  "receptor",
+  "sniff",
+  "canine",
+  "senses"
+ ],
+ "scales": [
+  "a dog",
+  "a cell"
+ ],
  "minutes": 6,
  "stops": [
   {
    "title": "A dog in the park",
    "scale": "about 1 m",
-   "where": {"view": {"frame": "thing_dog", "part": "coat", "D": 2.4}},
-   "do": [{"mode": "coat", "thing": "dog"}],
-   "expect": {"thing": "dog"},
-   "text": ["A dog lives in a world of smells. This model is a typical medium-sized dog about 57 centimetres tall at the shoulder and about 30 kilograms.", "Her nose does two jobs: breathing, and smelling. Most of the smelling is done far inside."],
+   "where": {
+    "view": {
+     "frame": "thing_dog",
+     "part": "coat",
+     "D": 2.4
+    }
+   },
+   "do": [
+    {
+     "hideBody": true
+    },
+    {
+     "mode": "coat",
+     "thing": "dog"
+    }
+   ],
+   "expect": {
+    "thing": "dog"
+   },
+   "text": [
+    "A dog lives in a world of smells. This model is a typical medium-sized dog about 57 centimetres tall at the shoulder and about 30 kilograms.",
+    "Her nose does two jobs: breathing, and smelling. Most of the smelling is done far inside."
+   ],
    "model": "A procedural model of a typical dog, not one breed.",
    "notice": "Look at the bare, moist tip of the nose.",
-   "deeper": [{"label": "Nose", "node": "dog_nose"}]
+   "deeper": [
+    {
+     "label": "Nose",
+     "node": "dog_nose"
+    }
+   ]
   },
   {
    "title": "Inside the nose",
    "scale": "about 10 cm",
-   "where": {"view": {"frame": "thing_dog", "part": "turb_olf", "D": 0.25}},
-   "do": [{"mode": "cut_nose", "thing": "dog"}],
-   "expect": {"thing": "dog"},
-   "text": ["Air passes through the front of the nose, which warms and moistens it. Some of it goes to the back, where thin scrolls of bone, folded like parchment, are covered with a smell-sensing lining.", "The folding packs a large surface into a small space."],
+   "where": {
+    "view": {
+     "frame": "thing_dog",
+     "part": "turb_olf",
+     "D": 0.25
+    }
+   },
+   "do": [
+    {
+     "hideBody": true
+    },
+    {
+     "mode": "cut_nose",
+     "thing": "dog"
+    },
+    {
+     "press": "Turn the cut to face me"
+    }
+   ],
+   "expect": {
+    "thing": "dog"
+   },
+   "text": [
+    "Air passes through the front of the nose, which warms and moistens it. Some of it goes to the back, where thin scrolls of bone, folded like parchment, are covered with a smell-sensing lining.",
+    "The folding packs a large surface into a small space."
+   ],
    "model": "A model of the inside of a dog's nose built for this world. The folds are typical, not copied from one animal.",
    "notice": "Find the scrolls at the back and the airway scrolls at the front.",
-   "deeper": [{"label": "Smell lining", "node": "dog_turb_olf"}, {"label": "Airway lining", "node": "dog_turb_resp"}]
+   "deeper": [
+    {
+     "label": "Smell lining",
+     "node": "dog_turb_olf"
+    },
+    {
+     "label": "Airway lining",
+     "node": "dog_turb_resp"
+    }
+   ]
   },
   {
    "title": "How much lining",
    "scale": "about 10 cm",
-   "where": {"view": {"frame": "thing_dog", "part": "turb_olf", "D": 0.12}},
-   "expect": {"thing": "dog"},
-   "text": ["A dog's smell lining covers about 170 square centimetres. A person's covers about 10.", "A dog also has far more smell cells, with estimates of about 125 to 300 million, against about 5 million in a person, and about 800 working receptor genes against about 400."],
+   "where": {
+    "view": {
+     "frame": "thing_dog",
+     "part": "turb_olf",
+     "D": 0.12
+    }
+   },
+   "expect": {
+    "thing": "dog"
+   },
+   "text": [
+    "A dog's smell lining covers about 170 square centimetres. A person's covers about 10.",
+    "A dog also has far more smell cells, with estimates of about 125 to 300 million, against about 5 million in a person, and about 800 working receptor genes against about 400."
+   ],
    "model": "The dog's cell count comes from a secondary source and is a range, not an exact figure.",
    "notice": "Compare the numbers: area differs by about seventeen times, and cell counts by tens of times.",
-   "deeper": [{"label": "Olfactory bulbs", "node": "dog_bulbs"}]
+   "deeper": [
+    {
+     "label": "Olfactory bulbs",
+     "node": "dog_bulbs"
+    }
+   ],
+   "do": [
+    {
+     "hideBody": true
+    },
+    {
+     "mode": "cut_nose",
+     "thing": "dog"
+    },
+    {
+     "press": "Turn the cut to face me"
+    }
+   ]
   },
   {
    "title": "The smell cell",
    "scale": "about 0.3 mm",
-   "where": {"deep": {"in": "dog", "type": "tissue2", "id": "dog_olfactory_epithelium", "at": [0.4324, 0.5923, 0], "D": 0.00028}},
-   "expect": {"frame": "mell|olfactory|Smell"},
-   "text": ["Smell cells are nerve cells. Each has a tuft of tiny hairs, called cilia, in the mucus at the surface.", "When an odour molecule fits a receptor on one of these hairs, the cell sends a signal along its thread to the brain."],
-   "model": "An illustration of the layers of the lining. Its note on screen says which parts are drawn by hand.",
+   "where": {
+    "deep": {
+     "in": "dog",
+     "type": "tissue2",
+     "id": "dog_olfactory_epithelium",
+     "at": [
+      0.4324,
+      0.5923,
+      0
+     ],
+     "D": 0.00028
+    }
+   },
+   "expect": {
+    "frame": "mell|olfactory|Smell"
+   },
+   "text": [
+    "Smell cells are nerve cells. Each has a tuft of tiny hairs, called cilia, in the mucus at the surface.",
+    "When an odour molecule fits a receptor on one of these hairs, the cell sends a signal along its thread to the brain."
+   ],
+   "model": "An illustration of the layers of the smell lining. It shows the kinds of cell and their order, not a micrograph, and sizes are simplified.",
    "notice": "Click a smell cell and then the thread that leaves it.",
-   "deeper": [{"label": "Smell neuron", "node": "dog_osn"}]
+   "deeper": [
+    {
+     "label": "Smell neuron",
+     "node": "dog_osn"
+    }
+   ],
+   "do": [
+    {
+     "hideBody": true
+    }
+   ]
   },
   {
    "title": "And in you",
    "scale": "about 10 cm",
-   "where": {"node": "nose_airway"},
-   "expect": {"frame": "ose|Human|body|Greenwich"},
-   "text": ["A person has the same kind of smell lining, high in the nose. It is much smaller, and you have fewer receptor types working.", "A person still smells, and quite well, so the difference is one of degree, and what the brain does with the signals matters too."],
-   "notice": "Compare this card with the dog's: the layout is the same kind of tissue.",
-   "deeper": [{"label": "Hearing, balance, taste and smell", "node": "bio_hearing_chemosense"}]
+   "where": {
+    "view": {
+     "frame": "body",
+     "point": [
+      0,
+      1.66,
+      0.1
+     ],
+     "D": 0.45,
+     "dir": [
+      0,
+      0,
+      1
+     ]
+    }
+   },
+   "expect": {
+    "frame": "ody|uman"
+   },
+   "text": [
+    "A person has the same kind of smell lining, high in the nose. It covers only about 10 square centimetres, holds about 5 million smell cells, and uses about 400 working receptor genes.",
+    "A person still smells, and quite well, so the difference with a dog is one of degree. What the brain does with the signals matters too."
+   ],
+   "notice": "Open the card for the human nose and compare it with the dog's: it is the same kind of organ, much smaller.",
+   "deeper": [
+    {
+     "label": "Hearing, balance, taste and smell",
+     "node": "bio_hearing_chemosense"
+    }
+   ],
+   "do": [
+    {
+     "card": "nose_airway"
+    }
+   ]
   }
  ],
  "answer": "A dog has a much larger smell lining, about 170 square centimetres against about 10 in a person, with many more smell cells and more working receptor genes, and a large part of the brain given to using them.",
  "unknown": "The exact number of smell cells in a dog differs between sources, and how the brain turns the signals into a perception of a scent is still not well understood.",
- "next": ["what_is_light", "why_does_a_bee_visit_a_flower", "what_am_i_made_of"],
- "sources": ["Cards: dog_nose, dog_turb_olf, dog_turb_resp, dog_olfactory_epithelium, dog_osn, dog_bulbs, nose_airway, bio_hearing_chemosense (sources on the cards; the dog cell count is a secondary source)"]
+ "next": [
+  "what_is_light",
+  "why_does_a_bee_visit_a_flower",
+  "what_am_i_made_of"
+ ],
+ "sources": [
+  "Cards: dog_nose, dog_turb_olf, dog_turb_resp, dog_olfactory_epithelium, dog_osn, dog_bulbs, nose_airway, bio_hearing_chemosense (sources on the cards; the dog cell count is a secondary source)"
+ ]
 }

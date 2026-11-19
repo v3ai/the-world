@@ -15,7 +15,7 @@
        {scene: "sun_plasma"}                         named scene launcher
      do: [ actions run when the camera has arrived ]
        {card: id} {mode: id, thing: id} {bodyMode: "auto"|...} {element: "C"} {sm: {mode, ...}} {time: iso, speed}
-       {dir: [x,y,z]} {press: "button text"} {hide: [body part ids]} {reveal: id} {wait: ms}
+       {dir: [x,y,z]} {press: "button text"} {hide: [body part ids]} {hideBody: true} {reveal: id} {wait: ms}
      expect: {frame: "regex on the frame names of the camera chain", thing: "oak"} used by the validator and the tests
      deeper: [{label, node}]                         "go deeper" links that open cards
    ===================================================================== */
@@ -187,6 +187,7 @@ const TRAILS = {
     else if (a.dir) { cam.dir.copy(V(a.dir).normalize()); orthoUp(); }
     else if (a.press) { const want = a.press.toLowerCase(); const b = await until(() => [...document.querySelectorAll('#info button, #controls button, #ptable button')].find(x => x.offsetParent && x.textContent.trim().toLowerCase().includes(want)), a.waitMs || 6000); if (b) b.click(); else T.errors.push('no button: ' + a.press); }
     else if (a.hide) { const F = FR.body; a.hide.forEach(id => F.hidden.add(id)); applyMode(F); }
+    else if (a.hideBody) { const F = FR.body; if (F && F.hidden && typeof ANAT_SYNC !== 'undefined' && ANAT_SYNC) { ANAT_SYNC.parts.forEach(p => F.hidden.add(p.id)); if (typeof applyMode === 'function') applyMode(F); } }
     else if (a.reveal) { goToNode(a.reveal); }
     else if (a.wait) await new Promise(r => setTimeout(r, a.wait));
   }

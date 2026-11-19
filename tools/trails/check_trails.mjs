@@ -79,6 +79,7 @@ for (const t of trails) {
     if (w.deep !== undefined) {
       const d = w.deep; if (!frameKey(d.in)) err(S, 'unknown frame ' + d.in);
       if (d.type === 'tissue2') { if (!tissues.has(d.id)) err(S, 'unknown tissue scene ' + d.id); }
+      else if (d.type === 'tissue') { if (!nodeIds.has(d.id)) err(S, 'unknown tissue node ' + d.id); if (d.organ !== undefined && !nodeIds.has(d.organ)) err(S, 'unknown organ ' + d.organ); }
       else if (d.type === 'crystal') { if (!crystals.has(d.id)) err(S, 'unknown crystal ' + d.id); }
       else if (d.type === 'micro') { if (!(d.kind || d.id)) err(S, 'micro needs kind'); }
       else err(S, 'unknown deep type ' + d.type);
@@ -95,7 +96,7 @@ for (const t of trails) {
       if (a.time !== undefined && Number.isNaN(Date.parse(a.time))) err(S, 'bad time ' + a.time);
       if (a.hide !== undefined && !Array.isArray(a.hide)) err(S, 'hide must be a list');
       if (a.reveal !== undefined && !nodeIds.has(a.reveal)) err(S, 'unknown reveal node ' + a.reveal);
-      const keys = ['card', 'mode', 'bodyMode', 'element', 'sm', 'time', 'dir', 'press', 'hide', 'reveal', 'wait'].filter(k => a[k] !== undefined);
+      const keys = ['card', 'mode', 'bodyMode', 'element', 'sm', 'time', 'dir', 'press', 'hide', 'hideBody', 'reveal', 'wait'].filter(k => a[k] !== undefined);
       if (keys.length < 1) err(S, 'empty action ' + JSON.stringify(a));
     });
     (s.deeper || []).forEach(d => { if (!known(d.node)) err(S, 'deeper link to unknown card ' + d.node); if (!d.label) err(S, 'deeper link needs a label'); });

@@ -4,75 +4,183 @@
  "theme": "Energy and light",
  "question": "Where did my atoms come from?",
  "teaser": "Trace the oxygen and carbon in your body back through the periodic table, the stars and the first minutes of the universe.",
- "keywords": ["atoms", "elements", "origin", "stars", "supernova", "big bang", "hydrogen", "helium", "carbon", "oxygen", "periodic table", "stardust"],
- "scales": ["a person", "the early universe"],
+ "keywords": [
+  "atoms",
+  "elements",
+  "origin",
+  "stars",
+  "supernova",
+  "big bang",
+  "hydrogen",
+  "helium",
+  "carbon",
+  "oxygen",
+  "periodic table",
+  "stardust"
+ ],
+ "scales": [
+  "a person",
+  "the early universe"
+ ],
  "minutes": 7,
  "stops": [
   {
    "title": "What you are made of, by element",
    "scale": "about 2 m",
-   "where": {"view": {"frame": "body", "point": [0, 0.9, 0], "D": 3}},
-   "do": [{"card": "human"}],
-   "expect": {"frame": "ody|uman"},
-   "text": ["About 99 percent of your body's mass is just six elements: oxygen, carbon, hydrogen, nitrogen, calcium and phosphorus.", "Each atom of those has a history that began long before you. The question is where each kind was made."],
+   "where": {
+    "view": {
+     "frame": "body",
+     "point": [
+      0,
+      0.9,
+      0
+     ],
+     "D": 3
+    }
+   },
+   "do": [
+    {
+     "card": "human"
+    }
+   ],
+   "expect": {
+    "frame": "ody|uman"
+   },
+   "text": [
+    "About 99 percent of your body's mass is just six elements: oxygen, carbon, hydrogen, nitrogen, calcium and phosphorus.",
+    "Each atom of those has a history that began long before you. The question is where each kind was made."
+   ],
    "notice": "Open the card and look at the main elements it lists.",
-   "deeper": [{"label": "The human body", "node": "human"}]
+   "deeper": [
+    {
+     "label": "The human body",
+     "node": "human"
+    }
+   ]
   },
   {
    "title": "One atom of oxygen",
    "scale": "about 0.5 nanometres",
-   "where": {"landmark": "Oxygen atom"},
-   "expect": {"frame": "Oxygen atom"},
-   "text": ["This is an oxygen atom. What makes it oxygen, and not carbon or iron, is the number of protons in its nucleus: eight.", "Atoms of the same element are identical in the ways that matter, whether they are in your breath, in a rock or in a star."],
+   "where": {
+    "landmark": "Oxygen atom"
+   },
+   "expect": {
+    "frame": "Oxygen atom"
+   },
+   "text": [
+    "This is an oxygen atom. What makes it oxygen, and not carbon or iron, is the number of protons in its nucleus: eight.",
+    "Atoms of the same element are identical in the ways that matter, whether they are in your breath, in a rock or in a star."
+   ],
    "model": "A computed model of the electron cloud. Each dot marks one place an electron could be found.",
-   "notice": "Press the element button at the top to open the periodic table in the next stop.",
+   "notice": "Try \"Cut away a quarter\" to see inside the cloud. The nucleus is at its true size, so it is too small to see at this zoom.",
    "deeper": []
   },
   {
    "title": "The table of elements",
    "scale": "about 0.5 nanometres",
-   "where": {"landmark": "Oxygen atom"},
-   "do": [{"press": "periodic table"}],
-   "expect": {"frame": "Oxygen atom"},
-   "text": ["Every kind of atom found in nature, and some made in laboratories, is in this table, in order of the number of protons. There are 118 elements in it.", "Only a few of them were made in the first minutes of the universe. All the rest had to be made later, and somewhere else."],
-   "notice": "Choose \"Colour by\" and try \"Year discovered\". Hydrogen and helium are the two at the top.",
+   "where": {
+    "landmark": "Oxygen atom"
+   },
+   "expect": {
+    "frame": "Oxygen atom"
+   },
+   "text": [
+    "Every kind of atom found in nature, and some made in laboratories, is in this table, in order of the number of protons. There are 118 elements in it.",
+    "Only a few of them were made in the first minutes of the universe. All the rest had to be made later, and somewhere else."
+   ],
+   "notice": "Press the button at the top that says \"Element: Oxygen (O) · periodic table\" to open the table. Choose \"Colour by\" and try \"Year discovered\". Close it to come back to the trail.",
    "deeper": []
   },
   {
    "title": "A star making helium",
    "scale": "view about 260,000 km",
-   "where": {"landmark": "The Sun's core"},
-   "expect": {"frame": "The Sun"},
-   "text": ["In the Sun's core, hydrogen nuclei fuse into helium and release energy. This is how stars turn one element into another.", "In bigger and older stars the process goes on, building carbon and heavier elements, up as far as iron."],
+   "where": {
+    "landmark": "The Sun's core"
+   },
+   "expect": {
+    "frame": "The Sun"
+   },
+   "text": [
+    "In the Sun's core, hydrogen nuclei fuse into helium and release energy. This is how stars turn one element into another.",
+    "In bigger and older stars the process goes on, building carbon and heavier elements, up as far as iron."
+   ],
    "model": "The core's temperature and density come from a standard solar model, not from direct measurement.",
    "notice": "The core is where a star's atoms are changed. Everything else in the star is mostly waiting.",
-   "deeper": [{"label": "The Sun's core", "node": "sunCore"}]
+   "deeper": [
+    {
+     "label": "The Sun's core",
+     "node": "sunCore"
+    }
+   ]
   },
   {
    "title": "Stars and their deaths",
    "scale": "view about 50 light-years",
-   "where": {"landmark": "Nearest stars"},
-   "do": [{"card": "nucleosynthesis_stars"}],
-   "expect": {"frame": "Solar neighborhood"},
-   "text": ["Stars forge carbon through iron. The heavier elements come from violent events such as supernovae and the collision of neutron stars, which throw the new atoms out into space.", "Later stars and planets form from that gas. The carbon and oxygen in you were made in earlier stars before the Sun was born."],
+   "where": {
+    "landmark": "Nearest stars"
+   },
+   "do": [
+    {
+     "card": "nucleosynthesis_stars"
+    }
+   ],
+   "expect": {
+    "frame": "Solar neighborhood"
+   },
+   "text": [
+    "Stars forge carbon through iron. The heavier elements come from violent events such as supernovae and the collision of neutron stars, which throw the new atoms out into space.",
+    "Later stars and planets form from that gas. The carbon and oxygen in you were made in earlier stars before the Sun was born."
+   ],
    "model": "The stars shown are real, at catalogue positions. The supernovae themselves are not drawn.",
    "notice": "Read the card. It says how much of the heaviest elements come from mergers is still debated.",
-   "deeper": [{"label": "White dwarfs, supernovae and neutron stars", "node": "stellar_death"}]
+   "deeper": [
+    {
+     "label": "White dwarfs, supernovae and neutron stars",
+     "node": "stellar_death"
+    }
+   ]
   },
   {
    "title": "The first atoms",
    "scale": "view about 200 billion light-years",
-   "where": {"landmark": "Observable universe"},
-   "do": [{"card": "big_bang"}],
-   "expect": {"frame": "Observable universe"},
-   "text": ["The universe began about 13.8 billion years ago in a hot, dense state. In the first few minutes it made hydrogen, helium and a trace of lithium.", "About 380,000 years later it had cooled enough for the first whole atoms to form. By mass, the ordinary matter was then about 74 percent hydrogen and 24 percent helium."],
+   "where": {
+    "landmark": "Observable universe"
+   },
+   "do": [
+    {
+     "card": "big_bang"
+    }
+   ],
+   "expect": {
+    "frame": "Observable universe"
+   },
+   "text": [
+    "The universe began about 13.8 billion years ago in a hot, dense state. In the first few minutes it made hydrogen, helium and a trace of lithium.",
+    "About 380,000 years later it had cooled enough for the first whole atoms to form. By mass, the ordinary matter was then about 74 percent hydrogen and 24 percent helium."
+   ],
    "model": "The glowing shell and its patterns are illustrations, not the measured map of the early universe.",
    "notice": "The hydrogen in the water in you was made in the first minutes of the universe.",
-   "deeper": [{"label": "Big Bang nucleosynthesis", "node": "bbn_node"}, {"label": "Cosmic microwave background", "node": "cmb"}]
+   "deeper": [
+    {
+     "label": "Big Bang nucleosynthesis",
+     "node": "bbn_node"
+    },
+    {
+     "label": "Cosmic microwave background",
+     "node": "cmb"
+    }
+   ]
   }
  ],
  "answer": "The hydrogen in you was made in the Big Bang, and most of the heavier atoms, such as the carbon and oxygen, were made inside stars and thrown into space when they died.",
  "unknown": "How much of the heaviest elements, such as gold, comes from neutron star mergers and how much from other kinds of supernova is still debated, and the lithium made in the Big Bang is about three times less than predicted.",
- "next": ["where_does_the_suns_energy_come_from", "what_holds_everything_together", "how_big_is_everything"],
- "sources": ["Knowledge cards: nucleosynthesis_stars (abundance by mass H 74 percent, He 24 percent), big_bang (13.8 Gyr, atoms after 380,000 years), bbn_node, stellar_death", "Cards: human (six elements = 99 percent of mass), sunCore"]
+ "next": [
+  "where_does_the_suns_energy_come_from",
+  "what_holds_everything_together",
+  "how_big_is_everything"
+ ],
+ "sources": [
+  "Knowledge cards: nucleosynthesis_stars (abundance by mass H 74 percent, He 24 percent), big_bang (13.8 Gyr, atoms after 380,000 years), bbn_node, stellar_death",
+  "Cards: human (six elements = 99 percent of mass), sunCore"
+ ]
 }

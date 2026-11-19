@@ -21,10 +21,10 @@
   {
    "title": "One leaf",
    "scale": "about 10 cm",
-   "where": {"view": {"frame": "thing_oak", "part": "leaves", "D": 0.5}},
+   "where": {"view": {"frame": "thing_oak", "part": "leaves", "D": 1.6}},
    "expect": {"thing": "oak"},
    "text": ["An oak leaf is about 10 to 12 centimetres long, with rounded lobes along its sides. Its flat shape gives it a large surface for catching light.", "The green colour comes from a molecule called chlorophyll. To see where it sits, we have to look inside."],
-   "notice": "Click a leaf, then choose \"Look inside the leaf\" on its card.",
+   "notice": "Find one lobed leaf among the branches, click it, and choose \"Look inside the leaf\" on its card.",
    "deeper": [{"label": "Oak leaf", "node": "oak_leaf"}]
   },
   {
@@ -33,7 +33,7 @@
    "where": {"deep": {"in": "oak", "type": "tissue2", "id": "leaf_section", "at": [0.25, 9.88, 0.84], "D": 0.00026}},
    "expect": {"frame": "eaf"},
    "text": ["Cut across, a leaf is only a fraction of a millimetre thick. Under the top skin stand rows of tall cells packed like fence posts, called the palisade layer. They face the sun and are crammed with green parts.", "Below them is a looser layer with air gaps, and the pores called stomata on the underside let carbon dioxide in."],
-   "model": "An illustration built from typical sizes, and its note on screen says which parts are drawn for clarity rather than measured.",
+   "model": "An illustration of the layers of a typical broadleaf leaf, not a micrograph of an oak leaf. The layer thicknesses and the number of chloroplasts per cell are simplified.",
    "notice": "Click a tall palisade cell. The small green discs inside are chloroplasts.",
    "deeper": [{"label": "Palisade layer", "node": "oak_leaf_palisade"}, {"label": "Stomata", "node": "oak_leaf_stoma"}]
   },

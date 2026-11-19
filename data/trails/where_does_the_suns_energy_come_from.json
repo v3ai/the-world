@@ -53,7 +53,7 @@
    "scale": "about 100 nanometres",
    "where": {"scene": "sun_plasma"},
    "expect": {"frame": "lasma"},
-   "text": ["At this size, the centre of the Sun is a gas of bare hydrogen and helium nuclei and loose electrons, called a plasma. The heat is so great that atoms cannot hold on to their electrons.", "Fusion needs two protons to get very close, and they repel each other, so it is rare for any one pair, even in the core."],
+   "text": ["At this size, the centre of the Sun is mostly bare hydrogen and helium nuclei and loose electrons, called a plasma. The heat is so great that atoms cannot hold on to their electrons.", "Fusion needs two protons to get very close, and they repel each other, so it is rare for any one pair, even in the core."],
    "model": "Schematic: a small patch of plasma drawn at random, with the particles enlarged. It is not a simulation of the core.",
    "notice": "Read the note on the screen for the temperature, the density and how many particles are drawn compared with the real number.",
    "deeper": [{"label": "The Sun's core", "node": "sunCore"}]

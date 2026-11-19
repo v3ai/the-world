@@ -42,7 +42,7 @@
    "title": "DNA, the instructions",
    "scale": "about 24 nanometres",
    "where": {"landmark": "DNA"},
-   "expect": {"frame": "^DNA$"},
+   "expect": {"frame": "^DNA\\|"},
    "text": ["Inside the nucleus the instructions are written in DNA, a long molecule shaped like a twisted ladder. It is only about 2 nanometres wide, which is tens of thousands of times thinner than a hair.", "The rungs of the ladder are pairs of smaller molecules, called bases. The order of the bases is the code."],
    "model": "A ball-and-stick model. Spheres and rods are symbols, not atoms, and the sequence shown is invented.",
    "notice": "Press \"Show replication\" to see the two strands pull apart, which is how a cell copies its DNA before it divides.",
