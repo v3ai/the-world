@@ -56,7 +56,7 @@ with World(size=size, mobile=a.phone, start=False) as w:
     w.page.keyboard.press('Escape'); w.settle(1)
     check('Escape leaves the trail', not w.js("document.querySelector('#trail').classList.contains('on')"))
     # 8. answer page and where next
-    w.js("TRAILS.start('what_is_light', 4)"); w.settle(3); w.js("document.querySelector('#trail .next').click()"); w.settle(2)
+    w.js("TRAILS.start('what_is_light', TRAILS.by.what_is_light.stops.length - 1)"); w.settle(3);   # its last stop, whatever the trail's length w.js("document.querySelector('#trail .next').click()"); w.settle(2)
     check('answer page', 'The answer' in w.js("document.querySelector('#trail').innerText")); w.shot('answer' + sfx)
     w.js("TRAILS.leave()")
     # 9. 'Asked here' on a card of a stop
