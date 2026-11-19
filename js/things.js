@@ -787,23 +787,25 @@ function thModeFor(T, pd) {   // a layered part is revealed in place; otherwise 
    has landed, if what is at the target's pixel belongs to another frame, look from another side (same distance, a few directions: current heading first, then the
    others round the target, higher first) until the target is in the clear. One pick per direction, once per jump. */
 function thClearView(F, id, own) {
-  if (cam.A !== F || !F.C || fly) return;
+  if (cam.A !== F || !F.C || fly) return true;
+  if (own && F.T && (F.T.cutActive || (F.T.curMode && F.T.curMode.pivot))) own = false;   // in a cut or pivoted view what is in front is the cut's business
   const P = new V3().copy(cam.T), d0 = cam.dir.clone(), up = F.up || new V3(0, 1, 0), at = () => { for (const f of drawn) placeFrameCam(f); const v = P.clone().sub(F.C).project(F.cam); return pickAt((v.x + 1) / 2 * W, (1 - v.y) / 2 * H); };
   const blocked = h => !!(h && h.frame && h.meters < cam.D * .97 && (h.frame !== F || (own && h.obj.userData.node !== id && !h.obj.userData.resolve && (h.obj.userData.shown || 0) >= .35)));   // something nearer than the target: another frame's, or (a second look, once the layers have settled) a solid part of this thing's own that is not it
-  if (!blocked(at())) return;
+  const turned = () => { const T = F.T; if (T && (T.cutActive || (T.curMode && T.curMode.pivot))) T.faceCut(); };   // a cut or pivoted view faces the camera: aim it again after the camera has moved
+  if (!blocked(at())) return true;
   const az0 = Math.atan2(d0.z, d0.x);
   for (const el of [.45, .9, .1, -.3, -.7, -.95]) for (let k = 0; k < 8; k++) {
     const az = az0 + k * Math.PI / 4;
     cam.dir.set(Math.cos(az) * Math.sqrt(Math.max(0, 1 - el * el)), el, Math.sin(az) * Math.sqrt(Math.max(0, 1 - el * el)));
-    setCamDir(cam.dir, up); if (!blocked(at())) return;
+    setCamDir(cam.dir, up); if (!blocked(at())) { turned(); return true; }
   }
-  setCamDir(d0, up);
+  setCamDir(d0, up); return false;
 }
 function thFlyToNode(id, t) {
   const F = t.f; showBodyNode(id, null); F.selNode = id; F.ensure(); F.spawnHold = t.D;
   const R = (t.def.radius_m || 1) * (F.T ? F.T.k : 1), d = new V3(t.p.x, 0, t.p.z);
   if (d.length() > R * .06) { d.y = d.length() * .12; d.normalize(); const u = new V3(0, 1, 0); convertD(d, F, cam.A); convertD(u, F, cam.A); cam.dir.copy(d); cam.up.copy(u); }   // look at it from the side it is on
-  flyTo(F, t.p, t.D, () => { if (F.T && (F.T.cutActive || (F.T.curMode && F.T.curMode.pivot))) F.T.faceCut(); /* the cut was aimed when the flight began, from far away: aim it again from where the camera has landed */ setTimeout(() => thClearView(F, id, false), 350); setTimeout(() => { if (cam.A === F && infoState && infoState.node === id && !fly) thClearView(F, id, true); }, 1500); }); camHold = F;
+  flyTo(F, t.p, t.D, () => { if (F.T && (F.T.cutActive || (F.T.curMode && F.T.curMode.pivot))) F.T.faceCut(); /* the cut was aimed when the flight began, from far away: aim it again from where the camera has landed */ const t0 = performance.now(), tries = [350, 1100, 2000, 3000]; let k = 0; const again = () => { if (cam.A !== F || fly || lastInput > t0 + 200 || !(infoState && infoState.node === id)) return; const clear = thClearView(F, id, k >= 1); if (!clear && ++k < tries.length) setTimeout(again, tries[k] - tries[k - 1]); }; setTimeout(again, tries[0]); }); camHold = F;
   F.ready.then(() => {
     const T = F.T; if (!T) return;
     if (t.inst && !t.rep) { const r = thRepInstance(t.def, t.pl, t.part); if (r && fly && fly.frame === F) { const x = thPlacement(t.def, t.pl), u = thUnit(t.def, x.k); fly.p.copy(thLocalToFrame(t.def, t.pl, r.p)); fly.Dg = Math.min(Math.max(r.size * x.k * 6, .25 * u), (t.def.radius_m || 1) * x.k * .5); } }
