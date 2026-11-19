@@ -890,13 +890,8 @@ BUILD.life = (c) => {
     flowers.add(f);
   }
   c.addLabel(flowers, 'Flowers', { offset: new V3(0, .8, 0) });
-  // bee
-  const bee = new THREE.Group(); bee.userData = { id: 'bee', priority: 3 };
-  const bb = new THREE.Mesh(new THREE.SphereGeometry(1, 12, 8), smat(0xffc21a)); bb.scale.set(.05, .035, .035); bee.add(bb);
-  const band = new THREE.Mesh(new THREE.SphereGeometry(1, 12, 8), smat(0x111111)); band.scale.set(.02, .037, .037); band.position.x = -.012; bee.add(band);
-  const wings = [-1, 1].map(s => { const w = new THREE.Mesh(new THREE.SphereGeometry(1, 8, 6), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .6 })); w.scale.set(.03, .005, .02); w.position.set(0, .035, s * .025); bee.add(w); return w; });
-  const beeHit = hitSphere(.28, 'bee', 3); bee.add(beeHit);
-  g.add(bee); c.pickables.push(bee);
+  // the honey bee is a data thing now (data/things/bee, placed from data/things/index.json); here only its park label and a ruler stop
+  { const beeAt = new THREE.Object3D(); beeAt.position.set(2.7013, .3235, 2.1946); g.add(beeAt); c.addLabel(beeAt, 'Honey bee, 14 mm', { offset: new V3(0, .5, 0) }); }
   // mushroom
   const mush = new THREE.Group(); mush.position.set(-3.4, 0, -1.6); mush.userData = { id: 'mushroom' }; g.add(mush); c.pickables.push(mush);
   const stem = new THREE.Mesh(new THREE.CylinderGeometry(.05, .07, .24, 10), smat(0xf3ead8)); stem.position.y = .12; mush.add(stem);
@@ -922,7 +917,7 @@ BUILD.life = (c) => {
   }
   c.addLabel(birds[0].b, 'Bird', { offset: new V3(0, .5, 0) });
   // every clickable park object opens its own card (data/nodes/park_*.json); objects that have no card yet keep the old INFO text
-  { const PN = { pond: 'park_pond', flower: 'park_flower', bee: 'park_bee', mushroom: 'park_mushroom', cloud: 'park_cloud', bird: 'park_bird', sunSky: 'park_sun', air: 'park_sky', ground: 'park_ground' };
+  { const PN = { pond: 'park_pond', flower: 'park_flower', mushroom: 'park_mushroom', cloud: 'park_cloud', bird: 'park_bird', sunSky: 'park_sun', air: 'park_sky', ground: 'park_ground' };
     c.pickables.forEach(o => o.traverse(m => { const n = m.userData && PN[m.userData.id]; if (n) m.userData.node = n; })); }
   c.update = (dt, t) => {
     const wave = false;
@@ -931,9 +926,6 @@ BUILD.life = (c) => {
     arms[0].piv.rotation.z = -.12 - Math.sin(t * 1.3) * .02;
     human.scale.y = 1 + Math.sin(t * 2) * .006;
     tail.rotation.x = Math.sin(t * 14) * .5;
-    const bt = t * 1.4; bee.position.set(2.6 + Math.sin(bt) * .7, .55 + Math.sin(bt * 3) * .12, 2.6 + Math.sin(bt * 2) * .5);
-    bee.rotation.y = -Math.atan2(Math.cos(bt * 2) * 1.0, Math.cos(bt) * .7);
-    wings.forEach((w, i) => w.rotation.x = Math.sin(t * 60) * .6 * (i ? 1 : -1));
     clouds.forEach((cg, i) => { cg.position.x += dt * .6; if (cg.position.x > 120) cg.position.x = -120; });
     birds.forEach(B => { const a = t * B.sp + B.ph; B.b.position.set(Math.cos(a) * B.r, B.h + Math.sin(t * .7 + B.ph) * .6, Math.sin(a) * B.r - 4); B.b.rotation.y = -a; B.ws.forEach(w => w.piv.rotation.x = Math.sin(t * 8 + B.ph) * .55 * w.s); });
   };
@@ -1470,3 +1462,6 @@ BUILD.universe = (c) => {
   let cmbOn = false;
   const cb = actBtn('🌌 Show the oldest light', () => { cmbOn = !cmbOn; cmb.visible = cmbOn; cb.innerHTML = cmbOn ? '🌌 Hide the oldest light' : '🌌 Show the oldest light'; if (cmbOn) showInfo('cmb'); });
 };
+
+// ruler stop and search entry for the honey bee (14 mm, standing on a flower of the patch): a visitor can fly straight to it at true size
+WORLD_EXT.push(async FRb => { EXT_LANDMARKS.push({ label: 'Honey bee (14 mm)', D: .05, side: true, go: then => { FRb.park.ensure && FRb.park.ensure(); flyTo(FRb.thing_bee || FRb.park, new V3(.001, .3285, 0), .05, then); } }); });

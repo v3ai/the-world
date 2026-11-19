@@ -1,0 +1,1710 @@
+{
+ "id": "bee",
+ "title": "Honey bee worker",
+ "label": "Honey bee",
+ "scientific": "Apis mellifera",
+ "node": "park_bee",
+ "main_part": "mesothorax",
+ "blurb": "A western honey bee worker, about 14 mm long, drinking from a flower. Zoom right in: she is built to true size. Click any part.",
+ "model_note": "A model built from published measurements and typical proportions of a worker, not a scan of one bee. Sizes of the whole body, eye, wing, ocelli, tibia and proboscis come from sources named on the cards; the rest are proportions drawn by eye from photographs and anatomical drawings. The bee is shown still, wings folded, as she stands on a flower; internal organs are placed and sized approximately.",
+ "size_m": {
+  "length": 0.0139,
+  "width": 0.0094,
+  "height": 0.0072
+ },
+ "height_m": 0.331,
+ "radius_m": 0.336,
+ "draw_m": 40,
+ "seed": 4242,
+ "systems": [
+  {
+   "id": "cuticle",
+   "label": "Exoskeleton"
+  },
+  {
+   "id": "wings",
+   "label": "Wings"
+  },
+  {
+   "id": "hairs",
+   "label": "Body hairs"
+  },
+  {
+   "id": "muscles",
+   "label": "Muscles"
+  },
+  {
+   "id": "organs",
+   "label": "Organs and glands"
+  },
+  {
+   "id": "nerves",
+   "label": "Nervous system"
+  },
+  {
+   "id": "tracheal",
+   "label": "Breathing tubes"
+  }
+ ],
+ "modes": [
+  {
+   "id": "outside",
+   "label": "Outside",
+   "show": {
+    "cuticle": 1,
+    "wings": 1,
+    "hairs": 1
+   }
+  },
+  {
+   "id": "shell",
+   "label": "Exoskeleton only",
+   "show": {
+    "cuticle": 1,
+    "wings": 1
+   }
+  },
+  {
+   "id": "muscles",
+   "label": "Muscles and flight",
+   "show": {
+    "cuticle": 0.09,
+    "wings": 0.35,
+    "muscles": 1
+   }
+  },
+  {
+   "id": "organs",
+   "label": "Organs",
+   "show": {
+    "cuticle": 0.09,
+    "wings": 0.15,
+    "organs": 1
+   }
+  },
+  {
+   "id": "nerves",
+   "label": "Nerves",
+   "show": {
+    "cuticle": 0.09,
+    "nerves": 1
+   }
+  },
+  {
+   "id": "breath",
+   "label": "Breathing tubes",
+   "show": {
+    "cuticle": 0.09,
+    "tracheal": 1
+   }
+  },
+  {
+   "id": "cut_head",
+   "label": "Cut open: head",
+   "cut": {
+    "at": [
+     0.006,
+     0.3285,
+     0
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "cuticle": 1,
+    "wings": 0.25,
+    "muscles": 1,
+    "organs": 1,
+    "nerves": 1,
+    "tracheal": 1,
+    "hairs": 0
+   }
+  },
+  {
+   "id": "cut_thorax",
+   "label": "Cut open: thorax",
+   "cut": {
+    "at": [
+     0.0024,
+     0.3285,
+     0
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "cuticle": 1,
+    "wings": 0.25,
+    "muscles": 1,
+    "organs": 1,
+    "nerves": 1,
+    "tracheal": 1,
+    "hairs": 0
+   }
+  },
+  {
+   "id": "cut_abdomen",
+   "label": "Cut open: abdomen",
+   "cut": {
+    "at": [
+     -0.003,
+     0.3275,
+     0
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "cuticle": 1,
+    "wings": 0.25,
+    "muscles": 1,
+    "organs": 1,
+    "nerves": 1,
+    "tracheal": 1,
+    "hairs": 0
+   }
+  }
+ ],
+ "lod": {
+  "near_m": 0.6,
+  "far_m": 5
+ },
+ "cut": {
+  "default": "cuticle",
+  "at": [
+   0.002,
+   0.3285,
+   0
+  ],
+  "faces": {
+   "cuticle": {
+    "kind": "plain",
+    "palette": [
+     [
+      8017458,
+      1
+     ]
+    ]
+   },
+   "muscle": {
+    "kind": "grains",
+    "cell": 0.00007,
+    "edge": 0.4,
+    "palette": [
+     [
+      12600890,
+      0.5
+     ],
+     [
+      13855324,
+      0.3
+     ],
+     [
+      11024944,
+      0.2
+     ]
+    ],
+    "note": "Cut face colours are only a code for tissue type; they are not what the real tissue looks like."
+   },
+   "nerve": {
+    "kind": "plain",
+    "palette": [
+     [
+      15919311,
+      1
+     ]
+    ]
+   },
+   "gut": {
+    "kind": "plain",
+    "palette": [
+     [
+      14725722,
+      1
+     ]
+    ]
+   },
+   "gland": {
+    "kind": "plain",
+    "palette": [
+     [
+      16180136,
+      1
+     ]
+    ]
+   },
+   "air": {
+    "kind": "plain",
+    "palette": [
+     [
+      15398136,
+      1
+     ]
+    ]
+   },
+   "heart": {
+    "kind": "plain",
+    "palette": [
+     [
+      13785674,
+      1
+     ]
+    ]
+   }
+  }
+ },
+ "hotspots": [
+  {
+   "id": "hs_eye",
+   "node": "bee_compound_eye",
+   "at": [
+    0.0059,
+    0.32905,
+    0.00125
+   ],
+   "label": "Compound eye",
+   "r": 0.00018,
+   "modes": [
+    "cut_head"
+   ]
+  },
+  {
+   "id": "hs_brain",
+   "node": "bee_brain",
+   "at": [
+    0.00585,
+    0.3293,
+    0
+   ],
+   "label": "Brain",
+   "r": 0.00018,
+   "modes": [
+    "cut_head"
+   ]
+  },
+  {
+   "id": "hs_mb",
+   "node": "bee_mushroom_bodies",
+   "at": [
+    0.00585,
+    0.32985,
+    0
+   ],
+   "label": "Mushroom bodies",
+   "r": 0.00018,
+   "modes": [
+    "cut_head"
+   ]
+  },
+  {
+   "id": "hs_hpg",
+   "node": "bee_hypopharyngeal_gland",
+   "at": [
+    0.00645,
+    0.3287,
+    0
+   ],
+   "label": "Hypopharyngeal glands",
+   "r": 0.00018,
+   "modes": [
+    "cut_head"
+   ]
+  },
+  {
+   "id": "hs_mouth",
+   "node": "bee_proboscis",
+   "at": [
+    0.00745,
+    0.327,
+    0
+   ],
+   "label": "Mouthparts",
+   "r": 0.00018,
+   "modes": [
+    "cut_head"
+   ]
+  },
+  {
+   "id": "hs_dlm",
+   "node": "bee_flight_muscles",
+   "at": [
+    0.0024,
+    0.3292,
+    0
+   ],
+   "label": "Flight muscles",
+   "r": 0.00018,
+   "modes": [
+    "cut_thorax"
+   ]
+  },
+  {
+   "id": "hs_dvm",
+   "node": "bee_flight_muscles",
+   "at": [
+    0.0034,
+    0.3282,
+    0
+   ],
+   "label": "Flight muscles (up and down)",
+   "r": 0.00018,
+   "modes": [
+    "cut_thorax"
+   ]
+  },
+  {
+   "id": "hs_hinge",
+   "node": "bee_wing_hinge",
+   "at": [
+    0.0025,
+    0.3304,
+    0
+   ],
+   "label": "Wing hinge",
+   "r": 0.00018,
+   "modes": [
+    "cut_thorax"
+   ]
+  },
+  {
+   "id": "hs_gang",
+   "node": "bee_nerve_cord",
+   "at": [
+    0.0019,
+    0.32725,
+    0
+   ],
+   "label": "Thoracic ganglion",
+   "r": 0.00018,
+   "modes": [
+    "cut_thorax"
+   ]
+  },
+  {
+   "id": "hs_crop",
+   "node": "bee_crop",
+   "at": [
+    -0.0016,
+    0.328,
+    0
+   ],
+   "label": "Crop (honey stomach)",
+   "r": 0.00018,
+   "modes": [
+    "cut_abdomen"
+   ]
+  },
+  {
+   "id": "hs_mid",
+   "node": "bee_midgut",
+   "at": [
+    -0.0043,
+    0.3278,
+    0
+   ],
+   "label": "Midgut",
+   "r": 0.00018,
+   "modes": [
+    "cut_abdomen"
+   ]
+  },
+  {
+   "id": "hs_heart",
+   "node": "bee_heart",
+   "at": [
+    -0.003,
+    0.32935,
+    0
+   ],
+   "label": "Heart (dorsal vessel)",
+   "r": 0.00018,
+   "modes": [
+    "cut_abdomen"
+   ]
+  },
+  {
+   "id": "hs_sting",
+   "node": "bee_sting",
+   "at": [
+    -0.0061,
+    0.32665,
+    0
+   ],
+   "label": "Sting",
+   "r": 0.00018,
+   "modes": [
+    "cut_abdomen"
+   ]
+  },
+  {
+   "id": "hs_venom",
+   "node": "bee_venom_sac",
+   "at": [
+    -0.0051,
+    0.32715,
+    0
+   ],
+   "label": "Venom sac",
+   "r": 0.00018,
+   "modes": [
+    "cut_abdomen"
+   ]
+  }
+ ],
+ "parts": [
+  {
+   "id": "head",
+   "name": "Head capsule",
+   "system": "cuticle",
+   "node": "bee_head",
+   "color": "#33261a",
+   "mesh": "head",
+   "lod": "near+mid",
+   "priority": 1.6,
+   "deeper": {
+    "type": "tissue2",
+    "id": "bee_cuticle",
+    "D": 0.00009,
+    "button": "Look inside the exoskeleton"
+   },
+   "center": [
+    0.0061,
+    0.3286,
+    0
+   ],
+   "radius": 0.0019,
+   "tris": 8144
+  },
+  {
+   "id": "eye_l",
+   "name": "Compound eye (left)",
+   "system": "cuticle",
+   "node": "bee_compound_eye",
+   "color": "#4a3326",
+   "mesh": "eye_l",
+   "lod": "near+mid",
+   "priority": 1.7,
+   "deeper": {
+    "type": "tissue2",
+    "id": "bee_eye",
+    "D": 0.00036,
+    "button": "Look inside the compound eye"
+   },
+   "center": [
+    0.0059,
+    0.3291,
+    0.0013
+   ],
+   "radius": 0.0012,
+   "tris": 3856
+  },
+  {
+   "id": "eye_r",
+   "name": "Compound eye (right)",
+   "system": "cuticle",
+   "node": "bee_compound_eye",
+   "color": "#4a3326",
+   "mesh": "eye_r",
+   "lod": "near+mid",
+   "priority": 1.7,
+   "deeper": {
+    "type": "tissue2",
+    "id": "bee_eye",
+    "D": 0.00036,
+    "button": "Look inside the compound eye"
+   },
+   "center": [
+    0.0059,
+    0.3291,
+    -0.0013
+   ],
+   "radius": 0.0012,
+   "tris": 3828
+  },
+  {
+   "id": "ocelli",
+   "name": "Ocelli (three simple eyes)",
+   "system": "cuticle",
+   "node": "bee_ocelli",
+   "color": "#d9c9a0",
+   "mesh": "ocelli",
+   "lod": "near+mid",
+   "priority": 2.2,
+   "center": [
+    0.0062,
+    0.3304,
+    0
+   ],
+   "radius": 0.0008,
+   "tris": 1112
+  },
+  {
+   "id": "ant_scape",
+   "name": "Antenna: scape",
+   "system": "cuticle",
+   "node": "bee_antenna",
+   "color": "#3d2b1e",
+   "mesh": "ant_scape",
+   "lod": "near+mid",
+   "priority": 2,
+   "center": [
+    0.0075,
+    0.3296,
+    0
+   ],
+   "radius": 0.0015,
+   "tris": 288
+  },
+  {
+   "id": "ant_pedicel",
+   "name": "Antenna: pedicel",
+   "system": "cuticle",
+   "node": "bee_antenna",
+   "color": "#3d2b1e",
+   "mesh": "ant_pedicel",
+   "lod": "near+mid",
+   "priority": 2.2,
+   "center": [
+    0.0082,
+    0.3304,
+    0
+   ],
+   "radius": 0.0014,
+   "tris": 64
+  },
+  {
+   "id": "ant_flagellum",
+   "name": "Antenna: flagellum",
+   "system": "cuticle",
+   "node": "bee_antenna",
+   "color": "#4a3524",
+   "mesh": "ant_flagellum",
+   "lod": "near+mid",
+   "priority": 2,
+   "center": [
+    0.0101,
+    0.3303,
+    0
+   ],
+   "radius": 0.0035,
+   "tris": 1708
+  },
+  {
+   "id": "mandibles",
+   "name": "Mandibles",
+   "system": "cuticle",
+   "node": "bee_mandibles",
+   "color": "#6b4a2a",
+   "mesh": "mandibles",
+   "lod": "near+mid",
+   "priority": 2.2,
+   "center": [
+    0.007,
+    0.3276,
+    0
+   ],
+   "radius": 0.0008,
+   "tris": 2920
+  },
+  {
+   "id": "glossa",
+   "name": "Proboscis: tongue (glossa)",
+   "system": "cuticle",
+   "node": "bee_proboscis",
+   "color": "#a9814d",
+   "mesh": "glossa",
+   "lod": "near+mid",
+   "priority": 2.2,
+   "center": [
+    0.0078,
+    0.3258,
+    0
+   ],
+   "radius": 0.0019,
+   "tris": 350
+  },
+  {
+   "id": "sheath",
+   "name": "Proboscis: sheath (maxillae and labial palps)",
+   "system": "cuticle",
+   "node": "bee_proboscis",
+   "color": "#7a5a35",
+   "mesh": "sheath",
+   "lod": "near+mid",
+   "priority": 2.2,
+   "center": [
+    0.0077,
+    0.3261,
+    0
+   ],
+   "radius": 0.0016,
+   "tris": 912
+  },
+  {
+   "id": "prothorax",
+   "name": "Thorax: prothorax",
+   "system": "cuticle",
+   "node": "bee_thorax",
+   "color": "#3a2a1c",
+   "mesh": "prothorax",
+   "lod": "near+mid",
+   "priority": 1.7,
+   "center": [
+    0.0042,
+    0.3283,
+    0
+   ],
+   "radius": 0.0014,
+   "tris": 3932
+  },
+  {
+   "id": "mesothorax",
+   "name": "Thorax: mesothorax",
+   "system": "cuticle",
+   "node": "bee_thorax",
+   "color": "#3a2a1c",
+   "mesh": "mesothorax",
+   "lod": "near+mid",
+   "priority": 1.6,
+   "deeper": {
+    "type": "tissue2",
+    "id": "bee_cuticle",
+    "D": 0.00009,
+    "button": "Look inside the exoskeleton"
+   },
+   "center": [
+    0.0025,
+    0.3289,
+    0
+   ],
+   "radius": 0.0019,
+   "tris": 9748
+  },
+  {
+   "id": "metathorax",
+   "name": "Thorax: metathorax and propodeum",
+   "system": "cuticle",
+   "node": "bee_thorax",
+   "color": "#3a2a1c",
+   "mesh": "metathorax",
+   "lod": "near+mid",
+   "priority": 1.7,
+   "center": [
+    0.0005,
+    0.3282,
+    0
+   ],
+   "radius": 0.0013,
+   "tris": 4176
+  },
+  {
+   "id": "tegulae",
+   "name": "Tegulae",
+   "system": "cuticle",
+   "node": "bee_wing_hinge",
+   "color": "#6b4a2a",
+   "mesh": "tegulae",
+   "lod": "near+mid",
+   "priority": 2.2,
+   "center": [
+    0.0033,
+    0.3304,
+    0
+   ],
+   "radius": 0.0019,
+   "tris": 1208
+  },
+  {
+   "id": "wing_hinge",
+   "name": "Wing hinge (sclerites)",
+   "system": "cuticle",
+   "node": "bee_wing_hinge",
+   "color": "#8a6a3a",
+   "mesh": "wing_hinge",
+   "lod": "near+mid",
+   "priority": 2.3,
+   "center": [
+    0.0025,
+    0.3305,
+    0
+   ],
+   "radius": 0.0017,
+   "tris": 1040
+  },
+  {
+   "id": "forewings",
+   "name": "Forewings",
+   "system": "wings",
+   "node": "bee_wings",
+   "color": "#e3eaee",
+   "mesh": "forewings",
+   "lod": "near+mid",
+   "priority": 1.8,
+   "opacity_max": 0.5,
+   "solid": false,
+   "noink": true,
+   "center": [
+    -0.0019,
+    0.3302,
+    0
+   ],
+   "radius": 0.0062,
+   "tris": 104
+  },
+  {
+   "id": "hindwings",
+   "name": "Hindwings",
+   "system": "wings",
+   "node": "bee_wings",
+   "color": "#e3eaee",
+   "mesh": "hindwings",
+   "lod": "near+mid",
+   "priority": 1.9,
+   "opacity_max": 0.5,
+   "solid": false,
+   "noink": true,
+   "center": [
+    -0.0011,
+    0.33,
+    0
+   ],
+   "radius": 0.0047,
+   "tris": 80
+  },
+  {
+   "id": "veins",
+   "name": "Wing veins",
+   "system": "wings",
+   "node": "bee_wings",
+   "color": "#7e8a8f",
+   "mesh": "veins",
+   "lod": "near+mid",
+   "priority": 2.1,
+   "solid": false,
+   "noink": true,
+   "center": [
+    -0.0017,
+    0.3301,
+    0
+   ],
+   "radius": 0.0059,
+   "tris": 1360
+  },
+  {
+   "id": "hamuli",
+   "name": "Hamuli (wing-coupling hooks)",
+   "system": "wings",
+   "node": "bee_hamuli",
+   "color": "#5b6468",
+   "instances": "hamuli",
+   "lod": "near+mid",
+   "priority": 2.5,
+   "center": [
+    -0.0013,
+    0.3297,
+    0
+   ],
+   "radius": 0.0019,
+   "count": 40,
+   "tris": 1280
+  },
+  {
+   "id": "coxa",
+   "name": "Leg: coxa",
+   "system": "cuticle",
+   "node": "bee_leg",
+   "color": "#4a3322",
+   "mesh": "coxa",
+   "lod": "near+mid",
+   "priority": 2,
+   "center": [
+    0.0023,
+    0.3272,
+    0
+   ],
+   "radius": 0.0028,
+   "tris": 288
+  },
+  {
+   "id": "trochanter",
+   "name": "Leg: trochanter",
+   "system": "cuticle",
+   "node": "bee_leg",
+   "color": "#4a3322",
+   "mesh": "trochanter",
+   "lod": "near+mid",
+   "priority": 2.1,
+   "center": [
+    0.0023,
+    0.3269,
+    0
+   ],
+   "radius": 0.003,
+   "tris": 192
+  },
+  {
+   "id": "femur",
+   "name": "Leg: femur",
+   "system": "cuticle",
+   "node": "bee_leg",
+   "color": "#4a3322",
+   "mesh": "femur",
+   "lod": "near+mid",
+   "priority": 2,
+   "center": [
+    0.0023,
+    0.3269,
+    0
+   ],
+   "radius": 0.0047,
+   "tris": 192
+  },
+  {
+   "id": "tibia",
+   "name": "Leg: tibia (front and middle legs)",
+   "system": "cuticle",
+   "node": "bee_leg",
+   "color": "#4f3623",
+   "mesh": "tibia",
+   "lod": "near+mid",
+   "priority": 2,
+   "center": [
+    0.0045,
+    0.3257,
+    0
+   ],
+   "radius": 0.0045,
+   "tris": 128
+  },
+  {
+   "id": "hind_tibia",
+   "name": "Hind leg: tibia",
+   "system": "cuticle",
+   "node": "bee_leg",
+   "color": "#5a3d27",
+   "mesh": "hind_tibia",
+   "lod": "near+mid",
+   "priority": 2,
+   "center": [
+    -0.0014,
+    0.3255,
+    0
+   ],
+   "radius": 0.0043,
+   "tris": 4988
+  },
+  {
+   "id": "basitarsus",
+   "name": "Leg: first tarsal segment (front and middle legs)",
+   "system": "cuticle",
+   "node": "bee_leg",
+   "color": "#7b5330",
+   "mesh": "basitarsus",
+   "lod": "near+mid",
+   "priority": 2,
+   "center": [
+    0.0052,
+    0.3243,
+    0
+   ],
+   "radius": 0.0045,
+   "tris": 128
+  },
+  {
+   "id": "hind_basitarsus",
+   "name": "Hind leg: first tarsal segment",
+   "system": "cuticle",
+   "node": "bee_leg",
+   "color": "#7b5330",
+   "mesh": "hind_basitarsus",
+   "lod": "near+mid",
+   "priority": 2,
+   "center": [
+    -0.0026,
+    0.324,
+    0
+   ],
+   "radius": 0.0046,
+   "tris": 2968
+  },
+  {
+   "id": "tarsomeres",
+   "name": "Leg: small tarsal segments",
+   "system": "cuticle",
+   "node": "bee_foot",
+   "color": "#7b5330",
+   "mesh": "tarsomeres",
+   "lod": "near+mid",
+   "priority": 2.1,
+   "center": [
+    0.0017,
+    0.3237,
+    0
+   ],
+   "radius": 0.0076,
+   "tris": 432
+  },
+  {
+   "id": "claws",
+   "name": "Foot: claws and pad (pretarsus)",
+   "system": "cuticle",
+   "node": "bee_foot",
+   "color": "#2e2118",
+   "mesh": "claws",
+   "lod": "near+mid",
+   "priority": 2.3,
+   "center": [
+    0.0016,
+    0.3235,
+    0
+   ],
+   "radius": 0.0078,
+   "tris": 1448
+  },
+  {
+   "id": "corbicula",
+   "name": "Pollen basket (corbicula)",
+   "system": "cuticle",
+   "node": "bee_pollen_basket",
+   "color": "#2c2118",
+   "mesh": "corbicula",
+   "lod": "near+mid",
+   "priority": 2.4,
+   "center": [
+    -0.0014,
+    0.3253,
+    0
+   ],
+   "radius": 0.0043,
+   "tris": 5208
+  },
+  {
+   "id": "fringe",
+   "name": "Pollen basket: fringe hairs",
+   "system": "cuticle",
+   "node": "bee_pollen_basket",
+   "color": "#9a7a48",
+   "instances": "fringe",
+   "lod": "near+mid",
+   "priority": 2.5,
+   "center": [
+    -0.0014,
+    0.3253,
+    0
+   ],
+   "radius": 0.0048,
+   "count": 52,
+   "tris": 1248
+  },
+  {
+   "id": "pollen",
+   "name": "Pollen load",
+   "system": "cuticle",
+   "node": "bee_pollen_load",
+   "color": "#e5a928",
+   "mesh": "pollen",
+   "lod": "near+mid",
+   "priority": 2.2,
+   "center": [
+    -0.0014,
+    0.3254,
+    0
+   ],
+   "radius": 0.0048,
+   "tris": 3824
+  },
+  {
+   "id": "cleaner",
+   "name": "Antenna cleaner (foreleg notch and spur)",
+   "system": "cuticle",
+   "node": "bee_antenna_cleaner",
+   "color": "#a2733f",
+   "mesh": "cleaner",
+   "lod": "near+mid",
+   "priority": 2.6,
+   "center": [
+    0.0061,
+    0.3248,
+    0
+   ],
+   "radius": 0.0036,
+   "tris": 1216
+  },
+  {
+   "id": "abd1",
+   "name": "Abdomen: segment 1 of 6 (visible)",
+   "system": "cuticle",
+   "node": "bee_abdomen",
+   "color": "#c9862a",
+   "mesh": "abd1",
+   "lod": "near+mid",
+   "priority": 1.6,
+   "center": [
+    -0.0003,
+    0.328,
+    0
+   ],
+   "radius": 0.0015,
+   "tris": 3180
+  },
+  {
+   "id": "abd2",
+   "name": "Abdomen: segment 2 of 6 (visible)",
+   "system": "cuticle",
+   "node": "bee_abdomen",
+   "color": "#c58327",
+   "mesh": "abd2",
+   "lod": "near+mid",
+   "priority": 1.6,
+   "center": [
+    -0.0014,
+    0.328,
+    0
+   ],
+   "radius": 0.0017,
+   "tris": 3844
+  },
+  {
+   "id": "abd3",
+   "name": "Abdomen: segment 3 of 6 (visible)",
+   "system": "cuticle",
+   "node": "bee_abdomen",
+   "color": "#8a5a22",
+   "mesh": "abd3",
+   "lod": "near+mid",
+   "priority": 1.6,
+   "deeper": {
+    "type": "tissue2",
+    "id": "bee_cuticle",
+    "D": 0.00009,
+    "button": "Look inside the exoskeleton"
+   },
+   "center": [
+    -0.0026,
+    0.3277,
+    0
+   ],
+   "radius": 0.0019,
+   "tris": 4836
+  },
+  {
+   "id": "abd4",
+   "name": "Abdomen: segment 4 of 6 (visible)",
+   "system": "cuticle",
+   "node": "bee_abdomen",
+   "color": "#6d4720",
+   "mesh": "abd4",
+   "lod": "near+mid",
+   "priority": 1.6,
+   "center": [
+    -0.0038,
+    0.3277,
+    0
+   ],
+   "radius": 0.0019,
+   "tris": 5192
+  },
+  {
+   "id": "abd5",
+   "name": "Abdomen: segment 5 of 6 (visible)",
+   "system": "cuticle",
+   "node": "bee_abdomen",
+   "color": "#4f3520",
+   "mesh": "abd5",
+   "lod": "near+mid",
+   "priority": 1.6,
+   "center": [
+    -0.005,
+    0.3276,
+    0
+   ],
+   "radius": 0.0019,
+   "tris": 4592
+  },
+  {
+   "id": "abd6",
+   "name": "Abdomen: segment 6 of 6 (visible)",
+   "system": "cuticle",
+   "node": "bee_abdomen",
+   "color": "#3d2a1c",
+   "mesh": "abd6",
+   "lod": "near+mid",
+   "priority": 1.6,
+   "center": [
+    -0.0062,
+    0.3273,
+    0
+   ],
+   "radius": 0.0015,
+   "tris": 2720
+  },
+  {
+   "id": "hairs",
+   "name": "Body hairs (branched)",
+   "system": "hairs",
+   "node": "bee_hairs",
+   "color": "#c7ad7c",
+   "instances": "hairs",
+   "lod": "near",
+   "tint": 0.25,
+   "priority": 2.4,
+   "center": [
+    0.0011,
+    0.3286,
+    0
+   ],
+   "radius": 0.0081,
+   "count": 2696,
+   "tris": 64704
+  },
+  {
+   "id": "hairs_mid",
+   "name": "Body hairs (branched)",
+   "system": "hairs",
+   "node": "bee_hairs",
+   "color": "#c7ad7c",
+   "instances": "hairs_mid",
+   "lod": "mid",
+   "tint": 0.2,
+   "priority": 2.4,
+   "center": [
+    0.0013,
+    0.3286,
+    0
+   ],
+   "radius": 0.0083,
+   "count": 702,
+   "tris": 16848
+  },
+  {
+   "id": "body_far",
+   "name": "Honey bee",
+   "system": "cuticle",
+   "node": "park_bee",
+   "color": "#7c5a2b",
+   "mesh": "body_far",
+   "lod": "far",
+   "far_of": "head",
+   "priority": 1.5,
+   "center": [
+    0.0003,
+    0.3283,
+    0
+   ],
+   "radius": 0.0071,
+   "tris": 6772
+  },
+  {
+   "id": "dlm",
+   "name": "Dorsal longitudinal flight muscles",
+   "system": "muscles",
+   "node": "bee_flight_muscles",
+   "color": "#c6564a",
+   "mesh": "dlm",
+   "lod": "near+mid",
+   "priority": 1.8,
+   "deeper": {
+    "type": "tissue2",
+    "id": "bee_flight_muscle",
+    "D": 0.00032,
+    "button": "Look inside flight muscle"
+   },
+   "cutFace": "muscle",
+   "center": [
+    0.0024,
+    0.3292,
+    0
+   ],
+   "radius": 0.0017,
+   "tris": 5784
+  },
+  {
+   "id": "dvm",
+   "name": "Dorsoventral flight muscles",
+   "system": "muscles",
+   "node": "bee_flight_muscles",
+   "color": "#d1665a",
+   "mesh": "dvm",
+   "lod": "near+mid",
+   "priority": 1.8,
+   "deeper": {
+    "type": "tissue2",
+    "id": "bee_flight_muscle",
+    "D": 0.00032,
+    "button": "Look inside flight muscle"
+   },
+   "cutFace": "muscle",
+   "center": [
+    0.0025,
+    0.3285,
+    0
+   ],
+   "radius": 0.0021,
+   "tris": 7088
+  },
+  {
+   "id": "leg_muscles",
+   "name": "Leg muscles in the thorax",
+   "system": "muscles",
+   "node": "bee_other_muscles",
+   "color": "#b94d44",
+   "mesh": "leg_muscles",
+   "lod": "near+mid",
+   "priority": 2,
+   "cutFace": "muscle",
+   "center": [
+    0.0023,
+    0.3273,
+    0
+   ],
+   "radius": 0.0023,
+   "tris": 3432
+  },
+  {
+   "id": "jaw_muscles",
+   "name": "Jaw (mandible) muscles",
+   "system": "muscles",
+   "node": "bee_other_muscles",
+   "color": "#b94d44",
+   "mesh": "jaw_muscles",
+   "lod": "near+mid",
+   "priority": 2,
+   "cutFace": "muscle",
+   "center": [
+    0.0061,
+    0.3286,
+    0
+   ],
+   "radius": 0.0013,
+   "tris": 2056
+  },
+  {
+   "id": "brain",
+   "name": "Brain",
+   "system": "nerves",
+   "node": "bee_brain",
+   "color": "#e8dcc0",
+   "mesh": "brain",
+   "lod": "near+mid",
+   "priority": 1.8,
+   "opacity_max": 0.55,
+   "cutFace": "nerve",
+   "center": [
+    0.0059,
+    0.3293,
+    0
+   ],
+   "radius": 0.0007,
+   "tris": 1788
+  },
+  {
+   "id": "optic_lobes",
+   "name": "Optic lobes",
+   "system": "nerves",
+   "node": "bee_brain",
+   "color": "#dccfae",
+   "mesh": "optic_lobes",
+   "lod": "near+mid",
+   "priority": 1.9,
+   "cutFace": "nerve",
+   "center": [
+    0.0059,
+    0.3291,
+    0
+   ],
+   "radius": 0.0015,
+   "tris": 2632
+  },
+  {
+   "id": "antennal_lobes",
+   "name": "Antennal lobes",
+   "system": "nerves",
+   "node": "bee_brain",
+   "color": "#f0e4c8",
+   "mesh": "antennal_lobes",
+   "lod": "near+mid",
+   "priority": 2.1,
+   "cutFace": "nerve",
+   "center": [
+    0.0064,
+    0.3287,
+    0
+   ],
+   "radius": 0.0005,
+   "tris": 2592
+  },
+  {
+   "id": "mushroom_bodies",
+   "name": "Mushroom bodies",
+   "system": "nerves",
+   "node": "bee_mushroom_bodies",
+   "color": "#e29a52",
+   "mesh": "mushroom_bodies",
+   "lod": "near+mid",
+   "priority": 2,
+   "cutFace": "nerve",
+   "center": [
+    0.0061,
+    0.3294,
+    0
+   ],
+   "radius": 0.001,
+   "tris": 6576
+  },
+  {
+   "id": "ganglia",
+   "name": "Ganglia of the nerve cord",
+   "system": "nerves",
+   "node": "bee_nerve_cord",
+   "color": "#eadcb8",
+   "mesh": "ganglia",
+   "lod": "near+mid",
+   "priority": 1.9,
+   "cutFace": "nerve",
+   "center": [
+    0.0004,
+    0.3272,
+    0
+   ],
+   "radius": 0.0061,
+   "tris": 4640
+  },
+  {
+   "id": "nerves",
+   "name": "Nerve cord and nerves",
+   "system": "nerves",
+   "node": "bee_nerve_cord",
+   "color": "#e0d2ac",
+   "mesh": "nerves",
+   "lod": "near+mid",
+   "priority": 2,
+   "solid": true,
+   "cutFace": "nerve",
+   "center": [
+    0.001,
+    0.3278,
+    0
+   ],
+   "radius": 0.0062,
+   "tris": 640
+  },
+  {
+   "id": "oesophagus",
+   "name": "Oesophagus",
+   "system": "organs",
+   "node": "bee_oesophagus",
+   "color": "#d9b97c",
+   "mesh": "oesophagus",
+   "lod": "near+mid",
+   "priority": 2,
+   "cutFace": "gut",
+   "center": [
+    0.0033,
+    0.3278,
+    0
+   ],
+   "radius": 0.0038,
+   "tris": 518
+  },
+  {
+   "id": "crop",
+   "name": "Crop (honey stomach)",
+   "system": "organs",
+   "node": "bee_crop",
+   "color": "#e8c474",
+   "mesh": "crop",
+   "lod": "near+mid",
+   "priority": 1.7,
+   "opacity_max": 0.85,
+   "deeper": {
+    "type": "tissue2",
+    "id": "bee_crop",
+    "D": 0.0005,
+    "button": "Look at what the crop carries"
+   },
+   "cutFace": "gut",
+   "center": [
+    -0.0016,
+    0.3279,
+    0
+   ],
+   "radius": 0.0015,
+   "tris": 3488
+  },
+  {
+   "id": "proventriculus",
+   "name": "Proventriculus",
+   "system": "organs",
+   "node": "bee_proventriculus",
+   "color": "#c99a58",
+   "mesh": "proventriculus",
+   "lod": "near+mid",
+   "priority": 2.1,
+   "cutFace": "gut",
+   "center": [
+    -0.0032,
+    0.3278,
+    0
+   ],
+   "radius": 0.0004,
+   "tris": 1192
+  },
+  {
+   "id": "midgut",
+   "name": "Midgut",
+   "system": "organs",
+   "node": "bee_midgut",
+   "color": "#c68d4a",
+   "mesh": "midgut",
+   "lod": "near+mid",
+   "priority": 1.8,
+   "cutFace": "gut",
+   "center": [
+    -0.0044,
+    0.3275,
+    0.0001
+   ],
+   "radius": 0.0014,
+   "tris": 738
+  },
+  {
+   "id": "malpighian",
+   "name": "Malpighian tubules",
+   "system": "organs",
+   "node": "bee_malpighian",
+   "color": "#e9e2a8",
+   "mesh": "malpighian",
+   "lod": "near+mid",
+   "priority": 2.2,
+   "solid": false,
+   "center": [
+    -0.0036,
+    0.3276,
+    0
+   ],
+   "radius": 0.0029,
+   "tris": 4224
+  },
+  {
+   "id": "hindgut",
+   "name": "Hindgut and rectum",
+   "system": "organs",
+   "node": "bee_hindgut",
+   "color": "#9a7a4a",
+   "mesh": "hindgut",
+   "lod": "near+mid",
+   "priority": 2,
+   "cutFace": "gut",
+   "center": [
+    -0.0052,
+    0.3273,
+    -0.0001
+   ],
+   "radius": 0.0015,
+   "tris": 3758
+  },
+  {
+   "id": "heart",
+   "name": "Dorsal vessel (heart and aorta)",
+   "system": "organs",
+   "node": "bee_heart",
+   "color": "#d86a5a",
+   "mesh": "heart",
+   "lod": "near+mid",
+   "priority": 1.9,
+   "cutFace": "heart",
+   "center": [
+    0,
+    0.3293,
+    0
+   ],
+   "radius": 0.0062,
+   "tris": 1136
+  },
+  {
+   "id": "hpg",
+   "name": "Hypopharyngeal glands",
+   "system": "organs",
+   "node": "bee_hypopharyngeal_gland",
+   "color": "#f0d9a2",
+   "mesh": "hpg",
+   "lod": "near+mid",
+   "priority": 2,
+   "cutFace": "gland",
+   "center": [
+    0.0065,
+    0.3287,
+    0
+   ],
+   "radius": 0.001,
+   "tris": 1464
+  },
+  {
+   "id": "ovaries",
+   "name": "Ovaries (reduced in a worker)",
+   "system": "organs",
+   "node": "bee_ovaries",
+   "color": "#e6d8c0",
+   "mesh": "ovaries",
+   "lod": "near+mid",
+   "priority": 2.1,
+   "cutFace": "gland",
+   "center": [
+    -0.0044,
+    0.3285,
+    0
+   ],
+   "radius": 0.0011,
+   "tris": 1272
+  },
+  {
+   "id": "venom_sac",
+   "name": "Venom sac",
+   "system": "organs",
+   "node": "bee_venom_sac",
+   "color": "#d8c25a",
+   "mesh": "venom_sac",
+   "lod": "near+mid",
+   "priority": 2,
+   "cutFace": "gland",
+   "center": [
+    -0.0048,
+    0.3272,
+    0
+   ],
+   "radius": 0.001,
+   "tris": 1806
+  },
+  {
+   "id": "sting",
+   "name": "Sting (stylet and lancets)",
+   "system": "organs",
+   "node": "bee_sting",
+   "color": "#5a3a1e",
+   "mesh": "sting",
+   "lod": "near+mid",
+   "priority": 1.9,
+   "center": [
+    -0.006,
+    0.3268,
+    0
+   ],
+   "radius": 0.0009,
+   "tris": 2724
+  },
+  {
+   "id": "barbs",
+   "name": "Sting barbs",
+   "system": "organs",
+   "node": "bee_sting",
+   "color": "#3a2412",
+   "instances": "barbs",
+   "lod": "near+mid",
+   "priority": 2.4,
+   "center": [
+    -0.0065,
+    0.3265,
+    0
+   ],
+   "radius": 0.0003,
+   "count": 18,
+   "tris": 180
+  },
+  {
+   "id": "wax",
+   "name": "Wax glands (wax mirrors)",
+   "system": "organs",
+   "node": "bee_wax_glands",
+   "color": "#efe6c8",
+   "mesh": "wax",
+   "lod": "near+mid",
+   "priority": 2.1,
+   "cutFace": "gland",
+   "center": [
+    -0.0031,
+    0.3265,
+    0
+   ],
+   "radius": 0.0025,
+   "tris": 2416
+  },
+  {
+   "id": "nasonov",
+   "name": "Nasonov gland",
+   "system": "organs",
+   "node": "bee_nasonov",
+   "color": "#f3b13c",
+   "mesh": "nasonov",
+   "lod": "near+mid",
+   "priority": 2.2,
+   "cutFace": "gland",
+   "center": [
+    -0.0056,
+    0.3286,
+    0
+   ],
+   "radius": 0.0007,
+   "tris": 968
+  },
+  {
+   "id": "trachea",
+   "name": "Tracheae (breathing tubes)",
+   "system": "tracheal",
+   "node": "bee_tracheae",
+   "color": "#cfe6ef",
+   "mesh": "trachea",
+   "lod": "near+mid",
+   "priority": 2.1,
+   "cutFace": "air",
+   "center": [
+    -0.0001,
+    0.3287,
+    0
+   ],
+   "radius": 0.0063,
+   "tris": 2168
+  },
+  {
+   "id": "air_sacs",
+   "name": "Air sacs",
+   "system": "tracheal",
+   "node": "bee_air_sacs",
+   "color": "#e6f1f6",
+   "mesh": "air_sacs",
+   "lod": "near+mid",
+   "priority": 1.9,
+   "opacity_max": 0.75,
+   "cutFace": "air",
+   "center": [
+    0.0002,
+    0.3285,
+    0
+   ],
+   "radius": 0.0059,
+   "tris": 9392
+  },
+  {
+   "id": "spiracles",
+   "name": "Spiracles (breathing pores)",
+   "system": "tracheal",
+   "node": "bee_spiracles",
+   "color": "#2a2018",
+   "instances": "spiracles",
+   "lod": "near+mid",
+   "priority": 2.5,
+   "center": [
+    -0.0014,
+    0.3278,
+    0
+   ],
+   "radius": 0.0057,
+   "count": 18,
+   "tris": 864
+  }
+ ],
+ "flower_y": 0.3235,
+ "stats": {
+  "parts": 68,
+  "uniqueMeshTris": 171470,
+  "nearTris": 157438,
+  "midTris": 109582,
+  "farTris": 6772
+ }
+}

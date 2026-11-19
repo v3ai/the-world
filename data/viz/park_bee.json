@@ -1,0 +1,1947 @@
+{
+ "park_bee": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "facet width",
+    "value": 25.2
+   },
+   {
+    "label": "ocellus",
+    "value": 300
+   },
+   {
+    "label": "eye length",
+    "value": 2400
+   },
+   {
+    "label": "forewing",
+    "value": 9700
+   },
+   {
+    "label": "body (model)",
+    "value": 14000
+   }
+  ],
+  "ylabel": "micrometres",
+  "logy": true,
+  "caption": "Sizes on a honey bee worker, in micrometres, on a log scale: facet width, ocellus and eye length from Streinzer and colleagues (2013), forewing length 9.7 mm, body about 14 mm."
+ },
+ "bee_head": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "e",
+    "label": "Eyes and ocelli: light",
+    "x": 15,
+    "y": 20
+   },
+   {
+    "id": "a",
+    "label": "Antennae: smell, taste, touch",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "m",
+    "label": "Jaws and tongue: feeding, wax",
+    "x": 15,
+    "y": 80
+   },
+   {
+    "id": "b",
+    "label": "Brain: decides",
+    "x": 60,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "g",
+    "label": "Glands: food for the young",
+    "x": 85,
+    "y": 80
+   }
+  ],
+  "edges": [
+   {
+    "from": "e",
+    "to": "b"
+   },
+   {
+    "from": "a",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "m"
+   },
+   {
+    "from": "g",
+    "to": "m"
+   }
+  ],
+  "flow": false,
+  "caption": "What the head does: sensors on the outside feed the brain, which drives the mouthparts; the glands make food for larvae."
+ },
+ "bee_compound_eye": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "queen",
+    "value": 4460
+   },
+   {
+    "label": "worker",
+    "value": 5375
+   },
+   {
+    "label": "drone",
+    "value": 9993
+   }
+  ],
+  "ylabel": "ommatidia per eye",
+  "logy": false,
+  "caption": "Ommatidia per eye in Apis mellifera (Streinzer et al. 2013, Table 1): worker 5,375, drone 9,993 (the queen figure is from a search summary of the same table)."
+ },
+ "bee_facet": {
+  "type": "plot",
+  "x": [
+   0,
+   3
+  ],
+  "y": [
+   0,
+   130
+  ],
+  "params": [
+   {
+    "id": "d",
+    "label": "eye length",
+    "min": 1,
+    "max": 3,
+    "value": 2.4,
+    "step": 0.1,
+    "unit": "mm"
+   }
+  ],
+  "fns": [
+   {
+    "f": "x*1000/25.2",
+    "label": "facets that fit along a length x (mm)"
+   }
+  ],
+  "vlines": [
+   {
+    "x": "d",
+    "label": "eye length"
+   }
+  ],
+  "readouts": [
+   {
+    "label": "Facets along the eye if packed side by side",
+    "value": "d*1000/25.2",
+    "unit": "facets"
+   }
+  ],
+  "xlabel": "length (mm)",
+  "ylabel": "facets of 25.2 µm",
+  "caption": "Arithmetic: with facets 25.2 µm wide, about 95 would fit end to end along the 2.4 mm eye (the real count along any line is a little different because of the hexagonal packing and the curve)."
+ },
+ "bee_ommatidium": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "l",
+    "label": "Lens",
+    "x": 50,
+    "y": 12
+   },
+   {
+    "id": "c",
+    "label": "Crystalline cone",
+    "x": 50,
+    "y": 38
+   },
+   {
+    "id": "r",
+    "label": "Light-sensing cells and rhabdom",
+    "x": 50,
+    "y": 64,
+    "color": "orange"
+   },
+   {
+    "id": "n",
+    "label": "Nerve fibre to brain",
+    "x": 50,
+    "y": 90
+   }
+  ],
+  "edges": [
+   {
+    "from": "l",
+    "to": "c",
+    "label": "light in"
+   },
+   {
+    "from": "c",
+    "to": "r"
+   },
+   {
+    "from": "r",
+    "to": "n",
+    "label": "signal out"
+   }
+  ],
+  "flow": true,
+  "caption": "One ommatidium: light enters a lens, is guided down a cone to a bundle of light-sensing cells, and a nerve fibre carries the signal away."
+ },
+ "bee_photoreceptor": {
+  "type": "plot",
+  "x": [
+   300,
+   650
+  ],
+  "y": [
+   0,
+   1.1
+  ],
+  "fns": [
+   {
+    "f": "exp(-((x-344)/45)^2)",
+    "label": "ultraviolet receptor (peak 344 nm)"
+   },
+   {
+    "f": "exp(-((x-436)/55)^2)",
+    "label": "blue receptor (peak 436 nm)"
+   },
+   {
+    "f": "exp(-((x-544)/70)^2)",
+    "label": "green receptor (peak 544 nm)"
+   }
+  ],
+  "xlabel": "wavelength (nm)",
+  "ylabel": "relative sensitivity",
+  "caption": "Schematic bell curves centred on the measured peaks of the three honey bee receptors (344, 436 and about 544 nm; Hempel de Ibarra and colleagues 2014). The widths are drawn by eye; real curves are not symmetric."
+ },
+ "bee_rhabdom": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "p",
+    "label": "Photon of light",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "o",
+    "label": "Opsin with retinal",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "s",
+    "label": "Shape change: signal starts",
+    "x": 85,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "p",
+    "to": "o"
+   },
+   {
+    "from": "o",
+    "to": "s"
+   }
+  ],
+  "flow": false,
+  "caption": "The first step of seeing: a photon changes the shape of retinal inside the opsin protein, and that starts a nerve signal."
+ },
+ "bee_ocelli": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "median ocellus",
+    "value": 0.3
+   },
+   {
+    "label": "lateral ocellus",
+    "value": 0.28
+   },
+   {
+    "label": "one facet",
+    "value": 0.0252
+   }
+  ],
+  "ylabel": "millimetres",
+  "logy": false,
+  "caption": "Ocelli are about 0.3 mm across: about twelve times the width of one facet (25.2 µm), still smaller than a grain of sand."
+ },
+ "bee_antenna": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "s",
+    "label": "Scape: long, swings in the socket",
+    "x": 15,
+    "y": 20
+   },
+   {
+    "id": "p",
+    "label": "Pedicel: short, senses movement",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "f",
+    "label": "Flagellum: 10 segments, many smell sensors",
+    "x": 85,
+    "y": 80,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "s",
+    "to": "p"
+   },
+   {
+    "from": "p",
+    "to": "f"
+   }
+  ],
+  "flow": false,
+  "caption": "A worker antenna: three named parts, 12 segments in all."
+ },
+ "bee_mandibles": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "m",
+    "label": "Muscles in the head",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "j",
+    "label": "Jaws open and close sideways",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "w",
+    "label": "Wax, pollen, grooming, defence",
+    "x": 85,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "m",
+    "to": "j"
+   },
+   {
+    "from": "j",
+    "to": "w"
+   }
+  ],
+  "flow": false,
+  "caption": "Jaws are tools: muscles in the head drive them to work wax and handle things."
+ },
+ "bee_proboscis": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "proboscis, Egyptian bees",
+    "value": 5.69
+   },
+   {
+    "label": "proboscis, Himalayan bees (mean)",
+    "value": 6.29
+   },
+   {
+    "label": "shown extended in the model",
+    "value": 3.9
+   }
+  ],
+  "ylabel": "millimetres",
+  "logy": false,
+  "caption": "Proboscis length in two studies (5.69 mm and 6.29 mm) and the 3.9 mm shown partly extended in the model."
+ },
+ "bee_thorax": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "p",
+    "label": "Prothorax: front legs",
+    "x": 15,
+    "y": 25
+   },
+   {
+    "id": "m",
+    "label": "Mesothorax: forewings, middle legs",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "t",
+    "label": "Metathorax: hindwings, hind legs",
+    "x": 85,
+    "y": 75
+   }
+  ],
+  "edges": [
+   {
+    "from": "p",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "t"
+   }
+  ],
+  "flow": false,
+  "caption": "The thorax has three segments; the middle two are fused into a rigid flight box."
+ },
+ "bee_wings": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "forewing length",
+    "value": 9.7
+   },
+   {
+    "label": "body length (model)",
+    "value": 14
+   },
+   {
+    "label": "hind tibia (model)",
+    "value": 2.9
+   }
+  ],
+  "ylabel": "millimetres",
+  "logy": false,
+  "caption": "The forewing is about 9.7 mm long; the body about 14 mm (model); the hind tibia 2.9 mm (measured range 2.7 to 3.0 mm)."
+ },
+ "bee_hamuli": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "h",
+    "label": "Hindwing hooks (hamuli)",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "f",
+    "label": "Fold on rear edge of forewing",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "w",
+    "label": "One wide wing: both beat together",
+    "x": 85,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "h",
+    "to": "f",
+    "label": "catch"
+   },
+   {
+    "from": "f",
+    "to": "w"
+   }
+  ],
+  "flow": false,
+  "caption": "In flight the hooks on the hindwing catch the fold of the forewing; at rest they let go and the wings fold."
+ },
+ "bee_wing_hinge": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "m",
+    "label": "Thorax squeezed by muscles",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "h",
+    "label": "Hinge plates and elastic cuticle",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "w",
+    "label": "Wing stroke",
+    "x": 85,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "m",
+    "to": "h"
+   },
+   {
+    "from": "h",
+    "to": "w",
+    "label": "small motion, big stroke"
+   }
+  ],
+  "flow": true,
+  "caption": "The wing hinge turns a small deformation of the thorax into a large wing stroke."
+ },
+ "bee_flight": {
+  "type": "plot",
+  "x": [
+   100,
+   300
+  ],
+  "y": [
+   0,
+   12
+  ],
+  "params": [
+   {
+    "id": "A",
+    "label": "stroke amplitude",
+    "min": 60,
+    "max": 120,
+    "value": 90,
+    "step": 5,
+    "unit": "°"
+   }
+  ],
+  "fns": [
+   {
+    "f": "2*0.0097*(A*pi/180)*x",
+    "label": "average wing-tip speed (m/s)"
+   }
+  ],
+  "vlines": [
+   {
+    "x": 230,
+    "label": "≈ 230 Hz"
+   }
+  ],
+  "readouts": [
+   {
+    "label": "Average tip speed at 230 Hz",
+    "value": "2*0.0097*(A*pi/180)*230",
+    "unit": "m/s"
+   }
+  ],
+  "xlabel": "wingbeat frequency (Hz)",
+  "ylabel": "average wing-tip speed (m/s)",
+  "caption": "Arithmetic on sourced values: a wing 9.7 mm long, swept through an angle A twice per beat, at 230 beats per second, has an average tip speed of about 7 m/s at 90°. It is a calculation, not a measurement."
+ },
+ "bee_flight_muscles": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "d",
+    "label": "Up-and-down muscles shorten: roof pulled down",
+    "x": 15,
+    "y": 25
+   },
+   {
+    "id": "u",
+    "label": "Wings flip up",
+    "x": 15,
+    "y": 75,
+    "color": "green"
+   },
+   {
+    "id": "l",
+    "label": "Front-to-back muscles shorten: roof bows up",
+    "x": 85,
+    "y": 25
+   },
+   {
+    "id": "w",
+    "label": "Wings flip down",
+    "x": 85,
+    "y": 75,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "d",
+    "to": "u"
+   },
+   {
+    "from": "l",
+    "to": "w"
+   },
+   {
+    "from": "u",
+    "to": "l",
+    "label": "stretch triggers the next"
+   },
+   {
+    "from": "w",
+    "to": "d",
+    "label": "stretch triggers the next"
+   }
+  ],
+  "flow": true,
+  "caption": "Two sets of muscles take turns on the thorax box; each one stretches the other and triggers its contraction."
+ },
+ "bee_flight_fibre": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "n",
+    "label": "Nerve impulse",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "c",
+    "label": "Calcium released",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "s",
+    "label": "Filaments slide: fibre shortens",
+    "x": 85,
+    "y": 50,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "n",
+    "to": "c"
+   },
+   {
+    "from": "c",
+    "to": "s"
+   }
+  ],
+  "flow": false,
+  "caption": "Sliding filaments: the same machine as in human muscle, tuned for speed."
+ },
+ "bee_mitochondria": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "s",
+    "label": "Sugar from the crop",
+    "x": 15,
+    "y": 20
+   },
+   {
+    "id": "o",
+    "label": "Oxygen from the air tubes",
+    "x": 15,
+    "y": 80,
+    "color": "blue"
+   },
+   {
+    "id": "m",
+    "label": "Mitochondrion",
+    "x": 55,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "a",
+    "label": "ATP: fuel for the muscle",
+    "x": 90,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "s",
+    "to": "m"
+   },
+   {
+    "from": "o",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "a"
+   }
+  ],
+  "flow": true,
+  "caption": "Mitochondria burn sugar with oxygen to make ATP; in flight muscle the oxygen arrives through air tubes."
+ },
+ "bee_other_muscles": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "m",
+    "label": "Muscles inside the skeleton",
+    "x": 20,
+    "y": 50
+   },
+   {
+    "id": "p",
+    "label": "Pull on the inner side of the cuticle",
+    "x": 55,
+    "y": 50
+   },
+   {
+    "id": "j",
+    "label": "Joint bends",
+    "x": 90,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "m",
+    "to": "p"
+   },
+   {
+    "from": "p",
+    "to": "j"
+   }
+  ],
+  "flow": false,
+  "caption": "An arthropod muscle works from inside the skeleton, pulling on the inner side of the cuticle."
+ },
+ "bee_leg": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "c",
+    "label": "Coxa (hip)",
+    "x": 10,
+    "y": 20
+   },
+   {
+    "id": "t",
+    "label": "Trochanter",
+    "x": 30,
+    "y": 35
+   },
+   {
+    "id": "f",
+    "label": "Femur (thigh)",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "b",
+    "label": "Tibia (shin)",
+    "x": 70,
+    "y": 65
+   },
+   {
+    "id": "a",
+    "label": "Tarsus and pretarsus (foot)",
+    "x": 90,
+    "y": 80,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "c",
+    "to": "t"
+   },
+   {
+    "from": "t",
+    "to": "f"
+   },
+   {
+    "from": "f",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "a"
+   }
+  ],
+  "flow": false,
+  "caption": "The six named parts of every insect leg, from hip to claws."
+ },
+ "bee_foot": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "t",
+    "label": "Tarsal segments (taste and feel)",
+    "x": 20,
+    "y": 30
+   },
+   {
+    "id": "c",
+    "label": "Two claws: grip rough surfaces",
+    "x": 20,
+    "y": 70
+   },
+   {
+    "id": "p",
+    "label": "Sticky pad: grips smooth surfaces",
+    "x": 80,
+    "y": 50,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "t",
+    "to": "p"
+   },
+   {
+    "from": "c",
+    "to": "p"
+   }
+  ],
+  "flow": false,
+  "caption": "The foot has two ways to hold on."
+ },
+ "bee_pollen_basket": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "c",
+    "label": "Combs brush pollen from hairs",
+    "x": 15,
+    "y": 25
+   },
+   {
+    "id": "p",
+    "label": "Press squeezes it up",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "b",
+    "label": "Basket holds the pellet",
+    "x": 85,
+    "y": 75,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "c",
+    "to": "p"
+   },
+   {
+    "from": "p",
+    "to": "b"
+   }
+  ],
+  "flow": true,
+  "caption": "Pollen moves from body to comb to press to basket."
+ },
+ "bee_pollen_load": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "pollen eaten by an adult worker per day (low)",
+    "value": 3.4
+   },
+   {
+    "label": "pollen eaten per day (high)",
+    "value": 4.3
+   },
+   {
+    "label": "sugar needed per day",
+    "value": 4
+   }
+  ],
+  "ylabel": "milligrams per day",
+  "logy": false,
+  "caption": "An adult worker eats about 3.4 to 4.3 mg of pollen and needs about 4 mg of sugar per day (Honey bee, Wikipedia)."
+ },
+ "bee_antenna_cleaner": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "a",
+    "label": "Antenna drawn through the notch",
+    "x": 20,
+    "y": 50
+   },
+   {
+    "id": "b",
+    "label": "Bristles comb off dirt",
+    "x": 55,
+    "y": 50
+   },
+   {
+    "id": "c",
+    "label": "Clean antenna: better smell",
+    "x": 90,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "a",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "c"
+   }
+  ],
+  "flow": false,
+  "caption": "How the foreleg cleans an antenna."
+ },
+ "bee_abdomen": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "c",
+    "label": "Crop: carries nectar",
+    "x": 20,
+    "y": 20
+   },
+   {
+    "id": "m",
+    "label": "Midgut: digests",
+    "x": 55,
+    "y": 20
+   },
+   {
+    "id": "h",
+    "label": "Heart: moves blood",
+    "x": 20,
+    "y": 55,
+    "color": "orange"
+   },
+   {
+    "id": "w",
+    "label": "Wax glands, underneath",
+    "x": 55,
+    "y": 55
+   },
+   {
+    "id": "s",
+    "label": "Sting, at the tip",
+    "x": 90,
+    "y": 80
+   }
+  ],
+  "edges": [
+   {
+    "from": "c",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "s"
+   }
+  ],
+  "flow": false,
+  "caption": "What the abdomen holds, roughly from front to back."
+ },
+ "bee_wax_glands": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "h",
+    "label": "Honey and pollen eaten",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "g",
+    "label": "Wax glands make wax",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "f",
+    "label": "Flakes on the underside",
+    "x": 70,
+    "y": 50
+   },
+   {
+    "id": "c",
+    "label": "Chewed into comb",
+    "x": 90,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "h",
+    "to": "g"
+   },
+   {
+    "from": "g",
+    "to": "f"
+   },
+   {
+    "from": "f",
+    "to": "c"
+   }
+  ],
+  "flow": false,
+  "caption": "From food to comb."
+ },
+ "bee_nasonov": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "g",
+    "label": "Nasonov gland on the back",
+    "x": 15,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "s",
+    "label": "Scent fanned by wings",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "b",
+    "label": "Other bees follow it",
+    "x": 85,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "g",
+    "to": "s"
+   },
+   {
+    "from": "s",
+    "to": "b"
+   }
+  ],
+  "flow": false,
+  "caption": "A scent beacon: swarm, hive entrance, water."
+ },
+ "bee_sting": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "b",
+    "label": "Barbs catch in mammal skin",
+    "x": 15,
+    "y": 20
+   },
+   {
+    "id": "p",
+    "label": "Bee pulls away: sting, sac and part of abdomen tear free",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "v",
+    "label": "Sting keeps pumping venom",
+    "x": 85,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "a",
+    "label": "Alarm pheromone alerts nestmates",
+    "x": 85,
+    "y": 85
+   }
+  ],
+  "edges": [
+   {
+    "from": "b",
+    "to": "p"
+   },
+   {
+    "from": "p",
+    "to": "v"
+   },
+   {
+    "from": "p",
+    "to": "a"
+   }
+  ],
+  "flow": true,
+  "caption": "Why a worker dies after stinging a mammal: the barbed sting stays behind and keeps working."
+ },
+ "bee_venom_sac": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "g",
+    "label": "Venom gland",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "s",
+    "label": "Venom sac stores it",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "n",
+    "label": "Pumped through the sting",
+    "x": 85,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "g",
+    "to": "s"
+   },
+   {
+    "from": "s",
+    "to": "n"
+   }
+  ],
+  "flow": false,
+  "caption": "Venom: made, stored, pumped."
+ },
+ "bee_ovaries": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "worker ovaries (reduced)",
+    "value": 1
+   },
+   {
+    "label": "queen ovaries (large)",
+    "value": 10
+   }
+  ],
+  "ylabel": "relative size (schematic)",
+  "logy": false,
+  "caption": "Schematic: a worker's ovaries are small and a queen's large. The numbers are only a code for \"small\" and \"large\", not measurements."
+ },
+ "bee_oesophagus": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "m",
+    "label": "Mouth",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "t",
+    "label": "Oesophagus through thorax",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "c",
+    "label": "Crop",
+    "x": 85,
+    "y": 50,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "m",
+    "to": "t"
+   },
+   {
+    "from": "t",
+    "to": "c"
+   }
+  ],
+  "flow": true,
+  "caption": "The path of nectar from the mouth to the honey stomach."
+ },
+ "bee_crop": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "nectar carried in the crop",
+    "value": 75
+   },
+   {
+    "label": "daily sugar need of an adult",
+    "value": 4
+   }
+  ],
+  "ylabel": "milligrams",
+  "logy": false,
+  "caption": "One crop holds about 75 mg of nectar, many times an adult worker's daily sugar need (about 4 mg)."
+ },
+ "bee_proventriculus": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "c",
+    "label": "Crop: nectar for the colony",
+    "x": 15,
+    "y": 30,
+    "color": "orange"
+   },
+   {
+    "id": "v",
+    "label": "Proventriculus: valve",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "m",
+    "label": "Midgut: her own food",
+    "x": 85,
+    "y": 70
+   }
+  ],
+  "edges": [
+   {
+    "from": "c",
+    "to": "v"
+   },
+   {
+    "from": "v",
+    "to": "m",
+    "label": "a little, when she needs fuel"
+   }
+  ],
+  "flow": false,
+  "caption": "A valve decides whether nectar stays cargo or becomes her food."
+ },
+ "bee_midgut": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "f",
+    "label": "Food and enzymes",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "d",
+    "label": "Digestion",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "a",
+    "label": "Absorption into the blood",
+    "x": 85,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "f",
+    "to": "d"
+   },
+   {
+    "from": "d",
+    "to": "a"
+   }
+  ],
+  "flow": true,
+  "caption": "Digestion and absorption happen in the midgut."
+ },
+ "bee_malpighian": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "b",
+    "label": "Waste in the blood",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "m",
+    "label": "Malpighian tubules",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "g",
+    "label": "Hindgut: water taken back",
+    "x": 85,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "b",
+    "to": "m",
+    "label": "taken up"
+   },
+   {
+    "from": "m",
+    "to": "g",
+    "label": "emptied"
+   }
+  ],
+  "flow": true,
+  "caption": "Her kidney substitute: tubes in the blood that empty into the gut."
+ },
+ "bee_hindgut": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "w",
+    "label": "Waste from tubules and midgut",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "r",
+    "label": "Rectum: water reabsorbed",
+    "x": 50,
+    "y": 50,
+    "color": "blue"
+   },
+   {
+    "id": "d",
+    "label": "Dry droppings leave",
+    "x": 85,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "w",
+    "to": "r"
+   },
+   {
+    "from": "r",
+    "to": "d"
+   }
+  ],
+  "flow": true,
+  "caption": "The last stage: water is saved."
+ },
+ "bee_heart": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "h",
+    "label": "Heart (abdomen): pulses",
+    "x": 15,
+    "y": 70,
+    "color": "orange"
+   },
+   {
+    "id": "a",
+    "label": "Aorta through thorax",
+    "x": 50,
+    "y": 40
+   },
+   {
+    "id": "b",
+    "label": "Head: blood spills out",
+    "x": 85,
+    "y": 20
+   },
+   {
+    "id": "o",
+    "label": "Body cavity: blood washes organs",
+    "x": 50,
+    "y": 90,
+    "color": "blue"
+   }
+  ],
+  "edges": [
+   {
+    "from": "h",
+    "to": "a",
+    "label": "forward"
+   },
+   {
+    "from": "a",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "o"
+   },
+   {
+    "from": "o",
+    "to": "h",
+    "label": "back in through slits"
+   }
+  ],
+  "flow": true,
+  "caption": "An open circulation: the blood is pumped forward, then flows freely back among the organs and re-enters the heart through valved slits."
+ },
+ "bee_hypopharyngeal_gland": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "p",
+    "label": "Pollen and honey eaten by a nurse",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "g",
+    "label": "Hypopharyngeal glands",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "f",
+    "label": "Food for larvae and queen",
+    "x": 85,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "p",
+    "to": "g"
+   },
+   {
+    "from": "g",
+    "to": "f"
+   }
+  ],
+  "flow": true,
+  "caption": "A nurse bee turns pollen and honey into larval food in her head."
+ },
+ "bee_brain": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "o",
+    "label": "Optic lobes: sight",
+    "x": 15,
+    "y": 30
+   },
+   {
+    "id": "a",
+    "label": "Antennal lobes: smell",
+    "x": 15,
+    "y": 70
+   },
+   {
+    "id": "m",
+    "label": "Mushroom bodies: learning",
+    "x": 55,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "c",
+    "label": "Motor output: flight, legs, dance",
+    "x": 90,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "o",
+    "to": "m"
+   },
+   {
+    "from": "a",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "c"
+   }
+  ],
+  "flow": true,
+  "caption": "How the brain's parts work together."
+ },
+ "bee_mushroom_bodies": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "s",
+    "label": "Sight and smell arrive at the cups",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "m",
+    "label": "Mushroom body: association",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "l",
+    "label": "Memory: this colour or scent means food",
+    "x": 85,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "s",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "l"
+   }
+  ],
+  "flow": false,
+  "caption": "Associative learning is the job of the mushroom bodies."
+ },
+ "bee_nerve_cord": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "b",
+    "label": "Brain",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "s",
+    "label": "Suboesophageal ganglion: mouthparts",
+    "x": 35,
+    "y": 50
+   },
+   {
+    "id": "t",
+    "label": "Thoracic ganglia: legs, wings",
+    "x": 60,
+    "y": 50
+   },
+   {
+    "id": "a",
+    "label": "Abdominal ganglia: segments and sting",
+    "x": 85,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "b",
+    "to": "s"
+   },
+   {
+    "from": "s",
+    "to": "t"
+   },
+   {
+    "from": "t",
+    "to": "a"
+   }
+  ],
+  "flow": false,
+  "caption": "The chain of ganglia from head to sting."
+ },
+ "bee_tracheae": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "s",
+    "label": "Spiracle opens",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "t",
+    "label": "Tracheae branch",
+    "x": 40,
+    "y": 50,
+    "color": "blue"
+   },
+   {
+    "id": "l",
+    "label": "Tracheoles reach the muscle cells",
+    "x": 65,
+    "y": 50
+   },
+   {
+    "id": "o",
+    "label": "Oxygen goes straight into cells",
+    "x": 90,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "s",
+    "to": "t",
+    "label": "air in"
+   },
+   {
+    "from": "t",
+    "to": "l"
+   },
+   {
+    "from": "l",
+    "to": "o"
+   }
+  ],
+  "flow": true,
+  "caption": "No lungs: air is piped to the cells."
+ },
+ "bee_spiracles": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "thoracic pairs",
+    "value": 3
+   },
+   {
+    "label": "abdominal pairs drawn in the model",
+    "value": 6
+   }
+  ],
+  "ylabel": "pairs",
+  "logy": false,
+  "caption": "Three pairs of spiracles are on the thorax (Buzz About Bees); the model shows six on the abdomen as a schematic, the real number was not confirmed."
+ },
+ "bee_air_sacs": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "a",
+    "label": "Abdomen squeezes",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "s",
+    "label": "Air sacs: bellows",
+    "x": 50,
+    "y": 50,
+    "color": "blue"
+   },
+   {
+    "id": "t",
+    "label": "Air pushed through the tubes",
+    "x": 85,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "a",
+    "to": "s"
+   },
+   {
+    "from": "s",
+    "to": "t"
+   }
+  ],
+  "flow": false,
+  "caption": "Air sacs act as bellows."
+ },
+ "bee_cuticle": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "e",
+    "label": "Epicuticle: wax, no chitin",
+    "x": 50,
+    "y": 10
+   },
+   {
+    "id": "x",
+    "label": "Exocuticle: hard",
+    "x": 50,
+    "y": 35,
+    "color": "orange"
+   },
+   {
+    "id": "n",
+    "label": "Endocuticle: layered chitin",
+    "x": 50,
+    "y": 60
+   },
+   {
+    "id": "d",
+    "label": "Epidermis: living cells",
+    "x": 50,
+    "y": 85,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "d",
+    "to": "n",
+    "label": "builds"
+   },
+   {
+    "from": "d",
+    "to": "x"
+   },
+   {
+    "from": "d",
+    "to": "e"
+   }
+  ],
+  "flow": false,
+  "caption": "Layers of the exoskeleton, from outside to the cells that make it."
+ },
+ "bee_chitin": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "g",
+    "label": "Glucose",
+    "x": 15,
+    "y": 25
+   },
+   {
+    "id": "n",
+    "label": "N-acetylglucosamine",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "c",
+    "label": "Chitin chain",
+    "x": 85,
+    "y": 75
+   }
+  ],
+  "edges": [
+   {
+    "from": "g",
+    "to": "n",
+    "label": "modified"
+   },
+   {
+    "from": "n",
+    "to": "c",
+    "label": "joined end to end"
+   }
+  ],
+  "flow": true,
+  "caption": "Chitin is a chain of N-acetylglucosamine units."
+ },
+ "bee_hairs": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "h",
+    "label": "Branched hair",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "p",
+    "label": "Catches pollen",
+    "x": 50,
+    "y": 25,
+    "color": "orange"
+   },
+   {
+    "id": "w",
+    "label": "Keeps thorax warm",
+    "x": 50,
+    "y": 75
+   },
+   {
+    "id": "s",
+    "label": "Senses air and touch",
+    "x": 85,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "h",
+    "to": "p"
+   },
+   {
+    "from": "h",
+    "to": "w"
+   },
+   {
+    "from": "h",
+    "to": "s"
+   }
+  ],
+  "flow": false,
+  "caption": "Branched hairs do several jobs."
+ },
+ "bee_nectar": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "water",
+    "value": 80
+   },
+   {
+    "label": "sugars and the rest",
+    "value": 20
+   }
+  ],
+  "ylabel": "percent of nectar (about)",
+  "logy": false,
+  "caption": "Nectar is nearly 80% water (Western honey bee, Wikipedia)."
+ },
+ "bee_honey": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "nectar: water content",
+    "value": 80
+   },
+   {
+    "label": "honey: water content (below)",
+    "value": 20
+   }
+  ],
+  "ylabel": "percent water",
+  "logy": false,
+  "caption": "Honey is dried below 20% water; nectar starts at about 80% (Western honey bee, Wikipedia)."
+ },
+ "bee_vision": {
+  "type": "plot",
+  "x": [
+   300,
+   650
+  ],
+  "y": [
+   0,
+   1.1
+  ],
+  "fns": [
+   {
+    "f": "exp(-((x-344)/45)^2)",
+    "label": "ultraviolet receptor (peak 344 nm)"
+   },
+   {
+    "f": "exp(-((x-436)/55)^2)",
+    "label": "blue receptor (peak 436 nm)"
+   },
+   {
+    "f": "exp(-((x-544)/70)^2)",
+    "label": "green receptor (peak 544 nm)"
+   }
+  ],
+  "xlabel": "wavelength (nm)",
+  "ylabel": "relative sensitivity",
+  "caption": "The three colour channels of a honey bee: ultraviolet, blue and green. There is no receptor for red. The curves are schematic bell shapes centred on the measured peaks."
+ },
+ "bee_waggle_dance": {
+  "type": "plot",
+  "x": [
+   0,
+   180
+  ],
+  "y": [
+   -180,
+   180
+  ],
+  "params": [
+   {
+    "id": "a",
+    "label": "angle of the food from the sun",
+    "min": -90,
+    "max": 90,
+    "value": 45,
+    "step": 5,
+    "unit": "°"
+   }
+  ],
+  "fns": [
+   {
+    "f": "a",
+    "label": "angle of the waggle run from straight up (°)"
+   }
+  ],
+  "readouts": [
+   {
+    "label": "Waggle run from vertical",
+    "value": "a",
+    "unit": "°, right if positive"
+   }
+  ],
+  "xlabel": "time (arbitrary)",
+  "ylabel": "angle (°)",
+  "caption": "The rule: the waggle run is tilted from vertical by the same angle as the food is from the sun. 45° right of the sun gives a run 45° right of up."
+ },
+ "bee_colony": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "midsummer colony (low)",
+    "value": 40000
+   },
+   {
+    "label": "midsummer colony (high)",
+    "value": 80000
+   },
+   {
+    "label": "workers in a large hive (Wikipedia: \"as many as\")",
+    "value": 60000
+   }
+  ],
+  "ylabel": "bees",
+  "logy": false,
+  "caption": "Colony sizes quoted in two sources: 40,000 to 80,000 in midsummer; \"as many as 60,000\" workers."
+ },
+ "bee_lifespan": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "h",
+    "label": "In the hive: clean, nurse",
+    "x": 15,
+    "y": 25
+   },
+   {
+    "id": "b",
+    "label": "Build comb, guard",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "f",
+    "label": "Forage: the last weeks",
+    "x": 85,
+    "y": 75,
+    "color": "orange"
+   },
+   {
+    "id": "w",
+    "label": "Autumn workers: stay warm, live months",
+    "x": 50,
+    "y": 90,
+    "color": "blue"
+   }
+  ],
+  "edges": [
+   {
+    "from": "h",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "f"
+   }
+  ],
+  "flow": true,
+  "caption": "Jobs change with age; autumn workers live much longer than summer ones."
+ }
+}

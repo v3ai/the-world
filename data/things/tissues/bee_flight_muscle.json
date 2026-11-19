@@ -1,0 +1,141 @@
+{
+ "id": "bee_flight_muscle",
+ "title": "Inside a bee's flight muscle",
+ "node": "bee_flight_muscles",
+ "blurb": "Flight muscle fibres running side by side, each packed with energy-making mitochondria, with air tubes (tracheoles) running between them. Click a fibre, a mitochondrion or an air tube.",
+ "note": "Schematic. The sizes, the number of fibres and the number of mitochondria drawn are illustrative, not measurements. What is true to the animal: the fibres are striated muscle, the mitochondria are very numerous, and air reaches the muscle through fine tubes that end among the fibres.",
+ "bg": "#f3efe6",
+ "center": [
+  0,
+  0,
+  0
+ ],
+ "D_um": 320,
+ "labels": [
+  {
+   "text": "Muscle fibre (striated)",
+   "at": [
+    -120,
+    62,
+    80
+   ],
+   "pop": "fibre"
+  },
+  {
+   "text": "Mitochondria",
+   "at": [
+    -120,
+    0,
+    80
+   ],
+   "pop": "mito"
+  },
+  {
+   "text": "Tracheole: air tube",
+   "at": [
+    -120,
+    -62,
+    80
+   ],
+   "pop": "tracheole"
+  }
+ ],
+ "populations": [
+  {
+   "id": "fibre",
+   "name": "Flight muscle fibre",
+   "node": "bee_flight_fibre",
+   "shape": "tube_z",
+   "size": [
+    34,
+    34,
+    220
+   ],
+   "color": "#d9776a",
+   "opacity": 0.55,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -100,
+     -50,
+     -110
+    ],
+    "n": [
+     5,
+     4,
+     1
+    ],
+    "step": [
+     40,
+     40,
+     1
+    ],
+    "jitter": 0.02
+   }
+  },
+  {
+   "id": "mito",
+   "name": "Mitochondrion",
+   "node": "bee_mitochondria",
+   "shape": "ellipsoid",
+   "size": [
+    8,
+    6,
+    14
+   ],
+   "color": "#e8a04a",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 2.5,
+   "arrange": {
+    "kind": "inside",
+    "of": "fibre",
+    "per": 9,
+    "margin": 0.75,
+    "seed": 5
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "atp",
+    "name": "ATP",
+    "button": "See the molecule: ATP, the energy currency"
+   }
+  },
+  {
+   "id": "tracheole",
+   "name": "Tracheole",
+   "node": "bee_tracheae",
+   "shape": "tube_z",
+   "size": [
+    3,
+    3,
+    230
+   ],
+   "color": "#cfe6ef",
+   "opacity": 0.9,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -80,
+     -30,
+     -115
+    ],
+    "n": [
+     4,
+     3,
+     1
+    ],
+    "step": [
+     40,
+     40,
+     1
+    ],
+    "jitter": 0.01
+   }
+  }
+ ]
+}
