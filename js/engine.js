@@ -252,6 +252,29 @@ function applyFade(f) {
   f._faded = !done;
 }
 const _cp = new V3(), _tp = new V3(), _dv = new V3(), _uv = new V3();
+/* The part of the screen that is not under a panel is where the scene's centre of interest belongs. viewOff (pixels) shifts the
+   projection so the camera's target appears in the middle of that free area (card open on the right, Tracks on the left; on a
+   phone the card is a sheet at the bottom). It eases in and out, and everything that projects through f.cam (picking, labels) follows. */
+const viewOff = { x: 0, y: 0 };
+function updateViewOffset(dt) {
+  let tx = 0, ty = 0;
+  const vis = e => e && e.classList.contains('open') ? e.getBoundingClientRect() : null;
+  const L = vis(document.getElementById('tracks')), I = vis(document.getElementById('info'));
+  if (W > 860) {
+    let lo = 0, hi = W;
+    if (L) lo = Math.max(lo, L.right); else { const rl = document.getElementById('ruler'); if (rl && rl.offsetWidth) lo = rl.getBoundingClientRect().right; }
+    if (I) hi = Math.min(hi, I.left);
+    tx = (lo + hi) / 2 - W / 2; // the free area's centre, relative to the screen's centre
+    tx = clamp(tx, -W * .3, W * .3);
+  } else if (I) {
+    const top = 96, bot = Math.min(H, I.top);
+    ty = clamp((top + bot) / 2 - H / 2, -H * .3, 0);
+  }
+  // setViewOffset moves the window over the full image: a window shifted right shows content that sits further right, so the scene moves left by +x
+  const k = 1 - Math.exp(-dt * 7), nx = -tx, ny = -ty;
+  viewOff.x += (nx - viewOff.x) * k; viewOff.y += (ny - viewOff.y) * k;
+  if (Math.abs(viewOff.x - nx) < .5) viewOff.x = nx; if (Math.abs(viewOff.y - ny) < .5) viewOff.y = ny;
+}
 function placeFrameCam(f) {
   camPosIn(f, _cp); _tp.copy(cam.T); convertP(_tp, cam.A, f);
   _dv.copy(cam.dir); convertD(_dv, cam.A, f); _uv.copy(cam.up); convertD(_uv, cam.A, f);
@@ -261,7 +284,8 @@ function placeFrameCam(f) {
   c.position.set(0, 0, 0); c.up.copy(_uv); c.lookAt(_dv.negate());
   c.near = Math.max(dl * 2e-4, 1e-9); c.far = Math.max(dl * 1e7, f.radius * 8 + _cp.length() * 4);
   if (f._share) { c.near = f.parent.cam.near; c.far = f.parent.cam.far; } // same projection as the parent, so depths compare
-  c.aspect = W / H; c.updateProjectionMatrix();
+  c.aspect = W / H;
+  if (viewOff.x || viewOff.y) c.setViewOffset(W, H, viewOff.x, viewOff.y, W, H); else { if (c.view && c.view.enabled) c.clearViewOffset(); c.updateProjectionMatrix(); }
   f.dLoc = dl;
 }
 let simTime = Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate(), 12, 0, 0), timeSpeed = 1, clock = 0;
@@ -399,7 +423,7 @@ addEventListener('keydown', e => {
   if (k === '/') { e.preventDefault(); openLibrary(true); return; }
   if (k === '+' || k === '=') zoomBy(-.25, W / 2, H / 2);
   else if (k === '-' || k === '_') zoomBy(.25);
-  else if (k === 'Escape') { closeInfo(); closePops(); fly = null; cancelTour(); $('#help').classList.add('hide'); }
+  else if (k === 'Escape') { const vm = document.getElementById('vizModal'); if (vm && vm.classList.contains('open')) { vm.classList.remove('open'); return; } closeInfo(); closePops(); fly = null; cancelTour(); $('#help').classList.add('hide'); }
   else if (k === 'ArrowLeft') orbit(-25, 0); else if (k === 'ArrowRight') orbit(25, 0);
   else if (k === 'ArrowUp') orbit(0, -17); else if (k === 'ArrowDown') orbit(0, 17);
   else return;
@@ -482,6 +506,7 @@ function objRadiusLocal(obj) {
   return isFinite(r) && r > 0 ? r : null;
 }
 function zoomIntoHit(h) {
+  const zt = h && h.obj && h.obj.userData && h.obj.userData.zoomTo; if (zt && zt(h) !== false) return; // an object can name its own destination (a frame that scrolling would also reach)
   const f = h.frame; let p, r;
   if (h.obj.userData.id === 'air' && f === FR.park && typeof placeGo === 'function') { placeGo('place:air'); return; } // the sky is not a place to fly to: go into the air itself
   const og = f.children && h.obj.userData.node && f.children.find(c => c.enterOnly && c.opts && c.opts.organ === h.obj.userData.node); // an organ you can see has a cut-open view: double-click goes inside, on purpose
@@ -507,6 +532,17 @@ function addLabelTo(f, obj, text, o = {}) {
   el.addEventListener('click', ev => { ev.stopPropagation(); const target = o.pick || obj; const h = { frame: f, obj: target, id: target.userData.id, pointLocal: target.getWorldPosition(new V3()).add(f.C), hit: null }; if (target.userData.onPick) target.userData.onPick(h); showInfoFor(h); });
   return L;
 }
+// labels sit above the canvas: pass the mouse wheel through, so scroll-zoom works over a label too (stopImmediatePropagation: a second forwarder, if any, must not zoom twice)
+labelLayer.addEventListener('wheel', e => { e.preventDefault(); e.stopImmediatePropagation(); canvas.dispatchEvent(new WheelEvent('wheel', { deltaX: e.deltaX, deltaY: e.deltaY, deltaMode: e.deltaMode, clientX: e.clientX, clientY: e.clientY, shiftKey: e.shiftKey, bubbles: true, cancelable: true })); }, { passive: false });
+// where labels collide, the one with the higher data-pri stays (then the upper one); the rest hide until there is room. Re-evaluated every 160 ms, in every scene.
+let lblClashT = 0;
+function declutterLabels(now) {
+  if (now - lblClashT < 160) return; lblClashT = now;
+  const items = []; for (const el of labelLayer.children) if (el.style.display !== 'none') items.push({ e: el, pri: +el.dataset.pri || 0, r: el.getBoundingClientRect() }); else if (el.classList.contains('lblhide')) el.classList.remove('lblhide');
+  items.sort((a, b) => b.pri - a.pri || a.r.top - b.r.top);
+  const kept = [];
+  for (const it of items) { const r = it.r, clash = kept.some(k => !(r.right + 4 < k.left || r.left - 4 > k.right || r.bottom + 2 < k.top || r.top - 2 > k.bottom)); it.e.classList.toggle('lblhide', clash); if (!clash) kept.push(r); }
+}
 const _lv = new V3(), _lo = new V3();
 function updateLabels() {
   const shown = new Set();
@@ -525,6 +561,7 @@ function updateLabels() {
     }
   }
   for (const el of labelLayer.children) if (!shown.has(el)) el.style.display = 'none';
+  declutterLabels(performance.now());
 }
 
 /* ================= UI HELPERS (controls belong to frames) ================= */

@@ -1302,7 +1302,7 @@ BUILD.solar = (c) => {
     else if (id === 'sun') { c.follow = null; c.view.g.target.set(0, 0, 0); c.view.g.dist = 45; }
   };
   c.onEmptyClick = () => { if (c.follow) { c.follow = null; c.view.g.target.set(0, 0, 0); c.view.g.dist = Math.max(c.view.g.dist, 70); } };
-  seg([['0', '⏸'], ['1', '1×'], ['6', '6×'], ['30', '30×']], '1', k => speed = +k);
+  seg([['0', 'Pause'], ['1', '1×'], ['6', '6×'], ['30', '30×']], '1', k => speed = +k);
   actBtn('☉ Whole system', () => { c.follow = null; c.view.g.target.set(0, 0, 0); c.view.g.dist = 80; closeInfo(); });
   seg([['sq', 'Squeezed view'], ['true', 'True scale']], 'sq', k => { setTrue(k === 'true'); if (k === 'true') { c.follow = null; c.view.g.target.set(0, 0, 0); c.view.g.dist = 120; showInfo('truescale'); } });
   actBtn('📐 Kepler\'s laws', () => showInfo('kepler'));

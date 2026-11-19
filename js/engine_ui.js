@@ -203,7 +203,7 @@ function showNode(id) {
   const dom = (n.domain || '').replace(/_/g, ' ');
   const link = ids => chipsHtml((ids || []).filter(i => KN_BY_ID[i]).map(i => `<button class="kn chip" data-k="${i}">${KN_BY_ID[i].title}</button>`));
   const fr = (n.frontier || []).map(f => `<li><b>${f.status || 'open'}</b> ${f.text}${f.as_of ? ` <i>(${f.as_of})</i>` : ''}</li>`).join('');
-  const fr2 = (n.frontier_ref || []).map(k => FRONT[k]).filter(Boolean).map(f => `<li>${certBadge(f.certainty)} <b>${f.topic}</b>: ${f.claim} <i>(${f.status}, ${f.as_of})</i>${f.note ? ` — ${f.note}` : ''} ${(f.sources || []).slice(0, 2).map(s => `<a href="${s.url}" target="_blank" rel="noopener">source ↗</a>`).join(' ')}</li>`).join('');
+  const fr2 = (n.frontier_ref || []).map(k => FRONT[k]).filter(Boolean).map(f => `<li>${certBadge(f.certainty)} <b>${f.topic}</b>: ${f.claim} <i>(as of ${f.as_of})</i>${f.note ? ` ${f.note}` : ''} ${(f.sources || []).slice(0, 2).map(s => `<a href="${s.url}" target="_blank" rel="noopener">source ↗</a>`).join(' ')}</li>`).join('');
   const spec = {
     tag: `${dom ? dom[0].toUpperCase() + dom.slice(1) : 'Topic'}${n.scale_m ? `, from ${fmtLen(n.scale_m[0])} to ${fmtLen(n.scale_m[1])}` : ''}`, title: n.title,
     figure: '<div class="vzh" id="vizHost"></div>', basics, deeper: n.deeper, expert: n.expert,
@@ -215,18 +215,19 @@ function showNode(id) {
   openPanel(cardHtml(spec), { key: 'kn:' + id, reopen: () => showNode(id) }); if (window.mountViz) mountViz($('#vizHost'), id);
 }
 const seen = new Set(store.get('seen', []));
-function markSeen(id) { if (!seen.has(id)) { seen.add(id); store.set('seen', [...seen]); } }
+function markSeen(id) { if (!seen.has(id)) { seen.add(id); store.set('seen', [...seen]); } if (typeof trackProgress === 'function') trackProgress(); }
 
 /* ================= LIBRARY (all indexed books + knowledge graph) ================= */
 const termShards = {};
 function libSearch(q) {
-  const box = $('#libRes'); q = (q || '').trim().toLowerCase();
+  const box = $('#libRes'); q = foldText((q || '').trim());
   if (!q) {
     let h = '';
     if (KN && KN.length) {
       const levels = {}; KN.forEach(n => (levels[n.level] = levels[n.level] || []).push(n));
-      h += `<div class="jl">Knowledge map · ${KN.length} topics</div>` + Object.keys(levels).sort((a, b) => (a === 'X') - (b === 'X') || +a - +b).map(l => `<details><summary>Level ${l} (${levels[l].length})</summary>${levels[l].map(n => `<button class="kn chip" data-k="${n.id}">${n.title}</button>`).join('')}</details>`).join('');
+      h += `<div class="jl">Knowledge map · ${KN.length} topics</div>` + Object.keys(levels).sort((a, b) => (a === 'X') - (b === 'X') || +a - +b).map(l => `<details><summary>${levelName(l)} (${levels[l].length})</summary>${levels[l].map(n => `<button class="kn chip" data-k="${n.id}">${n.title}</button>`).join('')}</details>`).join('');
     }
+    if (LANDMARKS.length) h += `<div class="jl">Places on the scale</div><details><summary>${LANDMARKS.length} places, from a proton to the observable universe</summary>${LANDMARKS.slice().sort((a, b) => a.D - b.D).map(L => `<button class="kn chip" data-lm="${LANDMARKS.indexOf(L)}">${L.label}</button>`).join('')}</details>`;
     if (BOOKS && BOOKS.length) h += `<div class="jl">${BOOKS.length} textbooks</div>` + BOOKS.map(b => `<a class="ref" href="${b.base || ('https://openstax.org/books/' + b.s + '/pages/')}${b.ch[0][2][0][2]}" target="_blank" rel="noopener"><b>${b.t}</b> ${b.subject || ''}</a>`).join('');
     box.innerHTML = h || '<div class="sub">Loading…</div>'; wireLib(); return;
   }
@@ -234,7 +235,7 @@ function libSearch(q) {
   const goHits = searchGoHits(q);
   if (goHits.length) h += '<div class="jl">Take me there</div>' + goHits.map((r, i) => `<button class="kn gohit" data-g="${i}"><b>${r.title}</b><span>${r.sub || ''}</span></button>`).join('');
   libGo = goHits;
-  if (KN) { const wre = q.length > 2 ? new RegExp('\\b' + q.replace(/[^a-z0-9 ]/g, '') + '\\b') : null, ti = KN.filter(n => n.title.toLowerCase().includes(q)), ks = ti.concat(wre && ti.length < 4 ? KN.filter(n => !ti.includes(n) && wre.test((n.basics || '').toLowerCase())) : []).slice(0, 8); if (ks.length) h += '<div class="jl">Knowledge map</div>' + ks.map(n => `<button class="kn simhit" data-k="${n.id}"><b>${n.title}</b><span>${n.certainty} · level ${n.level}</span></button>`).join(''); }
+  if (KN) { const wre = q.length > 2 ? new RegExp('\\b' + q.replace(/[^a-z0-9 ]/g, '') + '\\b') : null, ti = KN.filter(n => foldText(n.title).includes(q)).map((n, i) => [matchRank(n.title, q), i, n]).sort((a, b) => a[0] - b[0] || a[1] - b[1]).map(x => x[2]), ks = ti.concat(wre && ti.length < 4 ? KN.filter(n => !ti.includes(n) && wre.test(foldText(n.basics || ''))) : []).slice(0, 8); if (ks.length) h += '<div class="jl">Knowledge map</div>' + ks.map(n => `<button class="kn simhit" data-k="${n.id}"><b>${n.title}</b><span>${n.certainty} · ${levelName(n.level)}</span></button>`).join(''); }
   const L = /[a-z]/.test(q[0]) ? q[0] : '0';
   const sh = termShards[L];
   if (!sh) { termShards[L] = 'loading'; fetch(`data/library/terms_${L}.json`).then(r => r.json()).then(j => { termShards[L] = j; libSearch($('#libQ').value); }).catch(() => { termShards[L] = []; }); h += '<div class="sub">Searching the textbooks…</div>'; }
@@ -253,12 +254,12 @@ function noMatchHtml(q) {
   words.forEach(w => { const gh = searchGoHits(w).slice(0, 3); gh.forEach(r => { if (!seenT.has(r.title)) { seenT.add(r.title); sug.push({ r }); } });
     if (KN) KN.filter(n => n.title.toLowerCase().includes(w)).slice(0, 2).forEach(n => { if (!seenT.has(n.title)) { seenT.add(n.title); sug.push({ k: n }); } }); });
   libGo = sug.filter(x => x.r).map(x => x.r); let gi = 0;
-  const btns = sug.slice(0, 8).map(x => x.r ? `<button class="kn gohit" data-g="${gi++}"><b>${x.r.title}</b><span>${x.r.sub || ''}</span></button>` : `<button class="kn simhit" data-k="${x.k.id}"><b>${x.k.title}</b><span>${x.k.certainty} · level ${x.k.level}</span></button>`).join('');
+  const btns = sug.slice(0, 8).map(x => x.r ? `<button class="kn gohit" data-g="${gi++}"><b>${x.r.title}</b><span>${x.r.sub || ''}</span></button>` : `<button class="kn simhit" data-k="${x.k.id}"><b>${x.k.title}</b><span>${x.k.certainty} · ${levelName(x.k.level)}</span></button>`).join('');
   if (btns) return `<div class="sub">Nothing is called "${q.replace(/[<>&]/g, '')}". The closest topics to the words in it:</div>${btns}`;
   const start = ['Heart', 'DNA', 'Gold', 'Saturn', 'The Sun', 'Proton', 'Caffeine', 'Black hole'].map(t => `<button class="chip" data-q="${t}">${t}</button>`).join('');
   return `<div class="sub">Nothing is called "${q.replace(/[<>&]/g, '')}". Search works on names (a body part, an element or its symbol, a molecule, a planet, a place on the scale), so try one word, for example:</div><div class="chips">${start}</div>`;
 }
-function wireLib() { $('#libRes').querySelectorAll('.chip[data-q]').forEach(b => b.onclick = () => { $('#libQ').value = b.dataset.q; libSearch(b.dataset.q); }); $('#libRes').querySelectorAll('.kn').forEach(b => b.onclick = () => b.dataset.g !== undefined ? libPick(+b.dataset.g) : showNode(b.dataset.k)); }
+function wireLib() { $('#libRes').querySelectorAll('[data-lm]').forEach(b => b.onclick = () => { const L = LANDMARKS[+b.dataset.lm]; if (L) { cancelTour(); closePops(); L.go(); canvas.focus(); } }); $('#libRes').querySelectorAll('.chip[data-q]').forEach(b => b.onclick = () => { $('#libQ').value = b.dataset.q; libSearch(b.dataset.q); }); $('#libRes').querySelectorAll('.kn').forEach(b => b.onclick = () => b.dataset.lm !== undefined ? 0 : b.dataset.g !== undefined ? libPick(+b.dataset.g) : (closePops(), showNode(b.dataset.k))); }
 let libGo = [];
 function libPick(i) { const r = libGo[i]; if (!r) return; cancelTour(); closePops(); r.go(); canvas.focus(); }
 /* Search sources. Anything that can be found by name registers here. A source is one of:
@@ -274,8 +275,11 @@ function libPick(i) { const r = libGo[i]; if (!r) return; cancelTour(); closePop
    A source that throws is reported once on the console, never per keystroke; a malformed source is reported once and skipped. */
 const SEARCH_SOURCES = [];
 const _srcState = new WeakMap(); // per source: {fn, warned, cache}
+const foldText = s => String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // Schrödinger matches schrodinger
+const LEVEL_NAMES = { 0: 'Mathematics', 1: 'Classical, quantum and thermal physics', 2: 'Nuclei', 3: 'Atoms', 4: 'Chemistry', 5: 'Materials and the molecules of life', 6: 'Cells', 7: 'Bodies, machines and technology', 8: 'Life on Earth and its history', 9: 'Planets, climate and weather', 10: 'Stars and gravity', 11: 'The whole universe', X: 'Ideas that cut across scales' };
+const levelName = l => LEVEL_NAMES[l] || 'Level ' + l;
 function matchRank(title, q) {
-  const t = String(title).toLowerCase(); if (t === q) return 0; if (t.startsWith(q)) return 1;
+  const t = foldText(title); if (t === q) return 0; if (t.startsWith(q)) return 1;
   if (t.split(/[^a-z0-9α-ω]+/).some(w => w.startsWith(q))) return 2; return t.includes(q) ? 3 : 9;
 }
 function searchSourceFn(src) {
@@ -377,7 +381,8 @@ function updateRuler() {
   const box = $('#rulerScale'), m = $('#rulerMark'); if (!box || !m) return;
   const view = cam.D * 2 * Math.tan(25 * Math.PI / 180), e = Math.log10(view), h = box.clientHeight;
   m.style.top = clamp(rulerY(e, h), 0, h) + 'px'; const ro = $('#rulerRO'); const t = fmtLen(view); if (ro.textContent !== t) ro.textContent = t;
-  let best = null, bd = .35; LANDMARKS.forEach(L => { const d = Math.abs(Math.log10(L.D) - e); if (d < bd) { bd = d; best = L; } });
+  // the name is bold only where the camera really is: a landmark whose frame is not on the camera's path (another cell, a surface you flew past) is not named, the scale tick still shows the size
+  const path = chainOf(cam.A); let best = null, bd = .35; LANDMARKS.forEach(L => { const d = Math.abs(Math.log10(L.D) - e); if (d < bd && (!L.frame || path.includes(L.frame))) { bd = d; best = L; } });
   LANDMARKS.forEach(L => L._el && L._el.classList.toggle('near', L === best));
 }
 
@@ -428,6 +433,7 @@ function humanName(f) {
   }
   return n;
 }
+let capSince = performance.now(), capPref = null; // capPref: null = automatic (folds a few seconds after you arrive, or while a card is open), true/false = your choice for this place
 function updateCaption() {
   let f = active[active.length - 1];
   if (active.includes(cam.A)) f = cam.A; // the caption and the path name the frame the camera is in as soon as it is the anchor, not once it has faded in
@@ -435,12 +441,13 @@ function updateCaption() {
   const view = cam.D * 2 * Math.tan(25 * Math.PI / 180), e = Math.log10(view);
   const nm = humanName(f);
   if (f !== capFrame || $('#capN').textContent !== nm) {
-    capFrame = f; crumbsAll = false; updateCrumbs(f);
+    capFrame = f; crumbsAll = false; capSince = performance.now(); capPref = null; updateCrumbs(f);
     $('#capN').textContent = nm;
     $('#capD').textContent = f.blurb || '';
     $('#capNote').textContent = f.note || '';
     updateControls(f);
   }
+  { const min = capPref !== null ? capPref : (document.body.classList.contains('cardOpen') || performance.now() - capSince > 14000), cp = $('#caption'); if (cp.classList.contains('min') !== min) { cp.classList.toggle('min', min); $('#capFold').textContent = min ? 'Show details' : 'Hide details'; } }
   const k = `Field of view ${fmtLen(view)}${f.timeNote ? `, ${f.timeNote}` : ''}`; if ($('#capK').textContent !== k) $('#capK').textContent = k;
 }
 function updateTimeUI() {
@@ -463,6 +470,7 @@ function loop(now) {
   computeActive();
   for (const f of drawn) { f.ensure(); if (f.place) f.place(); }
   if (typeof bloom !== 'undefined' && bloom) bloom.strength = drawn.some(f => f.illo && f.alpha > .3 && cam.D < 6) ? .03 : .55;
+  updateViewOffset(dt);
   for (const f of drawn) { placeFrameCam(f); applyFade(f); if (f.update) f.update(dt, clock, f); }
   if (composer) composer.render(); else renderFrames(renderer);
   updateLabels(); updateCaption(); updateRuler();
@@ -479,14 +487,14 @@ async function startApp() {
   $('#bTracks').onclick = e => { e.stopPropagation(); openTracks(); };
   $('#libQ').addEventListener('input', e => libSearch(e.target.value));
   $('#libQ').addEventListener('keydown', e => { if (e.key === 'Enter') libPick(0); else if (e.key === 'Escape') { closePops(); canvas.focus(); } });
-  $('#navBack').onclick = navBack;
+  $('#navBack').onclick = navBack; $('#capFold').onclick = () => { capPref = !$('#caption').classList.contains('min'); };
   $('#bLabels').classList.toggle('off', !labelsOn);
   $('#bLabels').onclick = () => { labelsOn = !labelsOn; store.set('labels', labelsOn); $('#bLabels').classList.toggle('off', !labelsOn); };
   $('#bHelp').onclick = () => $('#help').classList.remove('hide');
   $('#goBtn').onclick = () => { $('#help').classList.add('hide'); store.set('seenHelp', true); canvas.focus(); };
   $('#tourIn').onclick = () => startTour(true); $('#tourOut').onclick = () => startTour(false);
   $('#tourIn2').onclick = () => { closePops(); startTour(true); }; $('#tourOut2').onclick = () => { closePops(); startTour(false); }; // the same tours, from the Library panel (the ruler's buttons have no room on a phone)
-  const speeds = [[1, '1×'], [60, '1 min/s'], [3600, '1 h/s'], [86400, '1 day/s'], [86400 * 30, '1 month/s'], [0, '⏸']];
+  const speeds = [[1, 'Real time'], [60, '1 min per s'], [3600, '1 hour per s'], [86400, '1 day per s'], [86400 * 30, '1 month per s'], [0, 'Paused']];
   let si = 0; $('#timeS').onclick = () => { si = (si + 1) % speeds.length; timeSpeed = speeds[si][0]; $('#timeS').textContent = speeds[si][1]; };
   $('#timeNow').onclick = () => { simTime = Date.now(); };
   if (store.get('seenHelp', false)) $('#help').classList.add('hide');
