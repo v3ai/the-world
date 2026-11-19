@@ -19,8 +19,8 @@
   ],
   "summary": "The contract between software and hardware.",
   "layers": {
-   "basics": "An ISA defines the instructions a processor understands. RISC uses simple fixed-size instructions; CISC has complex variable ones.",
-   "deeper": "ARM, RISC-V (RISC) and x86 (CISC outside, RISC-like inside) are the common ISAs.",
+   "basics": "An ISA defines the instructions a processor understands. RISC designs favour simple instructions, mostly of regular and often fixed length, and a load/store model, where only dedicated instructions touch memory. CISC designs such as x86 have richer, variable-length instructions. The line is blurred, since x86 chips decode their instructions into simple internal micro-operations.",
+   "deeper": "ARM and RISC-V are RISC instruction sets, and x86 is a CISC instruction set. An x86 core decodes each instruction into internal micro-operations that are simple and RISC-like, but these are not an exposed instruction set that software can use.",
    "expert": "Load/store architecture, register count, addressing modes, endianness; micro-ops decouple CISC from execution; ISA extensions (SIMD, NEON, AVX)."
   },
   "facts": [],
@@ -62,8 +62,8 @@
   ],
   "summary": "Human-readable machine instructions.",
   "layers": {
-   "basics": "Assembly writes machine instructions as short mnemonics: ADD, LOAD, JUMP.",
-   "deeper": "Used for boot code, interrupt handlers and tight loops; compilers generate it from C.",
+   "basics": "Assembly writes each machine instruction as a short mnemonic such as ADD, LDR or JMP. The exact names and operands depend on the processor family.",
+   "deeper": "Used for boot code, interrupt handlers and tight loops; compilers translate C into it.",
    "expert": "Calling conventions, stack frames, link register vs push return; reading compiler output reveals optimisation."
   },
   "facts": [],
@@ -104,7 +104,7 @@
   "summary": "The machine that executes instructions.",
   "layers": {
    "basics": "A datapath of registers, ALU and buses is steered by a control unit decoding each instruction.",
-   "deeper": "Single-cycle, multi-cycle and pipelined designs trade clock rate and complexity.",
+   "deeper": "A single-cycle design finishes each instruction in one long clock cycle. A multi-cycle design splits the work into shorter steps, and a pipelined design overlaps those steps for several instructions. Each choice trades clock rate against complexity.",
    "expert": "Hardwired vs microcoded control; critical path through instruction memory, regfile, ALU, data memory."
   },
   "facts": [],
@@ -142,9 +142,9 @@
   ],
   "summary": "An assembly line for instructions.",
   "layers": {
-   "basics": "Pipelining overlaps instruction stages (fetch, decode, execute, memory, write-back) so one finishes every cycle.",
+   "basics": "Pipelining overlaps instruction stages (fetch, decode, execute, memory, write-back) so that, in the ideal case with a full pipeline, one instruction finishes every cycle. Hazards cause stalls that break this ideal.",
    "deeper": "Hazards: structural, data (forward results), control (branch prediction).",
-   "expert": "Speedup ≈ number of stages minus stalls; forwarding paths; branch predictors reach >95% accuracy; out-of-order and superscalar designs."
+   "expert": "The ideal speedup equals the number of stages; with an average of s stall cycles per instruction it falls to stages / (1 + s). Forwarding paths remove many data stalls. Simple dynamic branch predictors reach roughly 93–97% on classic benchmarks, and modern ones are generally better, but accuracy depends strongly on the workload. Out-of-order and superscalar designs go further by issuing several instructions per cycle."
   },
   "facts": [],
   "certainty": "C1",
@@ -183,11 +183,11 @@
   "summary": "Small and fast copies of memory.",
   "layers": {
    "basics": "A cache keeps recently used data near the CPU because programs reuse data (locality).",
-   "deeper": "Organisation: direct-mapped, set-associative; block size; replacement policy.",
-   "expert": "AMAT=hit time+miss rate×miss penalty; write-through vs write-back; coherence protocols (MESI) in multicores."
+   "deeper": "A block can go in exactly one place (direct-mapped), in any of a few ways within one set (set-associative), or anywhere (fully associative). More ways cut conflict misses at the cost of a slower, larger lookup. Block size and the replacement policy also shape the miss rate.",
+   "expert": "AMAT = hit time + miss rate × miss penalty, where the penalty is the extra time to fetch from the next level; write-through vs write-back; coherence protocols (MESI) in multicores."
   },
   "facts": [],
-  "formula": "AMAT = t_hit + m·t_miss",
+  "formula": "AMAT = t_hit + m·t_penalty",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -223,7 +223,7 @@
   "summary": "Registers → cache → DRAM → flash.",
   "layers": {
    "basics": "Fast memory is small and costly; big memory is slow. The hierarchy gives the illusion of fast and large.",
-   "deeper": "Typical: registers <1 ns, L1 ~1 ns, L2 3–5 ns, L3 10–20 ns, DRAM ~80 ns, flash ~50 µs.",
+   "deeper": "Each level is slower than the one above it. Registers and L1 cache respond within a few clock cycles, lower cache levels take progressively longer, DRAM takes tens of nanoseconds or more, and flash storage takes tens of microseconds or more. Exact values vary with the processor design.",
    "expert": "Bandwidth, latency and the memory wall; prefetching; NUMA."
   },
   "facts": [],
@@ -262,7 +262,7 @@
   "summary": "Each program thinks it owns memory.",
   "layers": {
    "basics": "The OS and hardware map each program’s addresses to physical memory, protecting programs from each other.",
-   "deeper": "Page tables, TLB cache translations; page faults load pages from storage.",
+   "deeper": "Page tables record where each virtual page lives in physical memory. The TLB, a small cache, keeps recent translations so most accesses avoid a table walk. A page fault occurs when a page is not in memory, and the OS then loads it from storage.",
    "expert": "Multi-level page tables, huge pages, MMU/IOMMU, address space layout randomisation."
   },
   "facts": [],
@@ -297,7 +297,7 @@
   "summary": "A computer on a chip.",
   "layers": {
    "basics": "A microcontroller bundles a CPU, memory and peripherals (timers, ADC, serial) in one chip for controlling devices.",
-   "deeper": "ARM Cortex-M dominates; AVR (Arduino) and PIC remain common in education and small designs.",
+   "deeper": "Arm Cortex-M cores are widely used in 32-bit microcontrollers and have replaced many 8-bit parts. 8-bit AVR (Arduino) and PIC parts, and families such as the 8051, remain common in education and low-cost designs. A phone system-on-chip is a much larger relative: it is an application processor running an operating system, though it contains small microcontroller-class cores.",
    "expert": "Harvard vs von Neumann, NVIC interrupt controller, memory map, flash wait states, clock tree, debug via SWD/JTAG."
   },
   "facts": [],
@@ -336,7 +336,7 @@
   "summary": "Pins that read and write bits.",
   "layers": {
    "basics": "General-purpose input/output pins can be configured as inputs or outputs and used to blink an LED or read a button.",
-   "deeper": "Modes: push-pull, open-drain, pull-up/down, analog, alternate function.",
+   "deeper": "A push-pull output actively drives both high and low, while an open-drain output only pulls low and relies on a pull-up resistor. Pull-up and pull-down resistors give an input a defined level when nothing drives it. Pins can also be switched to analog or to an alternate function such as a serial peripheral.",
    "expert": "Slew rate, drive strength, Schmitt-trigger inputs, debouncing in hardware/software."
   },
   "facts": [],
@@ -374,7 +374,7 @@
   "summary": "Hardware-initiated attention.",
   "layers": {
    "basics": "An interrupt pauses the program when something happens (a pin changes, a timer expires) and runs a handler.",
-   "deeper": "Priorities and nesting; keep handlers short; shared data needs protection.",
+   "deeper": "Interrupts have priorities, and a higher-priority interrupt can preempt a running handler. Handlers should be short, and data shared with the main program needs protection against being changed halfway through an access.",
    "expert": "Interrupt latency, vector table, tail-chaining on Cortex-M; priority inversion; volatile and atomic access."
   },
   "facts": [],
@@ -409,14 +409,14 @@
   "needs": [
    "mcu_architecture"
   ],
-  "summary": "Counting clocks; fake analog by switching.",
+  "summary": "Counting clocks; analog-like control by fast switching.",
   "layers": {
    "basics": "A timer counts clock pulses; pulse-width modulation varies how long a pin is high, controlling brightness or motor speed.",
-   "deeper": "Duty cycle D sets average voltage D·Vcc; filters or inertia smooth it.",
-   "expert": "Input capture, output compare, dead-time insertion for half-bridges; PWM resolution=log₂(f_clk/f_pwm) bits."
+   "deeper": "The duty cycle D is the fraction of each period the pin is high. For an ideal output switching between 0 and Vcc it sets the average voltage to D·Vcc, and a filter or the inertia of the load smooths the pulses.",
+   "expert": "Input capture, output compare, dead-time insertion for half-bridges; For an edge-aligned counter, PWM resolution is log₂(f_clk/f_pwm) bits, and centre-aligned counting halves the count per period."
   },
   "facts": [],
-  "formula": "V_avg = D·V_cc",
+  "formula": "V_avg = D·V_cc (ideal output switching between 0 and V_cc)",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -492,7 +492,7 @@
   "layers": {
    "basics": "UART sends bytes one bit at a time on a wire with agreed speed (baud), framed by start and stop bits.",
    "deeper": "Used for consoles, GPS modules and Bluetooth modules; RS-232/RS-485 levels extend range.",
-   "expert": "Baud error tolerance ≈ ±3%; oversampling receiver; flow control RTS/CTS."
+   "expert": "Combined transmitter and receiver baud error must stay within a few percent for an 8N1 frame; sampling mid-bit in a ten-bit frame gives a theoretical limit near 5%, and longer frames tighten it; oversampling receiver; flow control RTS/CTS."
   },
   "facts": [],
   "certainty": "C1",
@@ -568,7 +568,7 @@
   "layers": {
    "basics": "I²C connects many chips on two wires (clock and data), each with its own address.",
    "deeper": "Open-drain lines with pull-up resistors; speeds 100 kHz–3.4 MHz; ACK bits confirm delivery.",
-   "expert": "Arbitration and clock stretching; bus capacitance limits to 400 pF; rise-time requirement sets pull-up value."
+   "expert": "Arbitration and clock stretching; total bus capacitance is limited to 400 pF in the standard and fast modes (other modes differ); rise-time requirement sets pull-up value."
   },
   "facts": [],
   "certainty": "C1",
@@ -606,7 +606,7 @@
   "layers": {
    "basics": "CAN is a two-wire differential bus where many nodes share messages; messages carry priority.",
    "deeper": "Used in cars (engine, brakes, battery); non-destructive arbitration on message ID.",
-   "expert": "Dominant/recessive bits, bit stuffing, CRC-15, error confinement, CAN-FD to 5–8 Mbit/s."
+   "expert": "Dominant/recessive bits, bit stuffing, Classic CAN uses a 15-bit CRC and error confinement. CAN FD uses a 17- or 21-bit CRC, depending on payload length, and sends its data phase at about 5–8 Mbit/s depending on bus length and transceiver; arbitration stays at 1 Mbit/s or below."
   },
   "facts": [],
   "certainty": "C1",
@@ -643,11 +643,11 @@
   "summary": "A universal cable and protocol.",
   "layers": {
    "basics": "USB carries data and power over one cable; the host polls devices which present descriptors.",
-   "deeper": "Speeds 480 Mb/s (USB 2) to 40 Gb/s (USB4); USB-C adds orientation-independent connector and Power Delivery.",
-   "expert": "Differential signalling; enumeration; PD negotiates 5–48 V up to 240 W (EPR); CC pins carry configuration."
+   "deeper": "Speeds run from 1.5 and 12 Mb/s (USB 1.x) and 480 Mb/s (USB 2) through USB 3.x at 5–20 Gb/s to USB4 at 40 Gb/s, and 80 Gb/s (120 Gb/s in one direction with 40 in the other) with USB4 Version 2.0. The USB-C connector is reversible, and the separate USB Power Delivery specification negotiates higher voltage and current.",
+   "expert": "Differential signalling; enumeration; PD negotiates fixed voltage levels: 5–20 V up to 100 W in the standard power range, and 28, 36 or 48 V up to 240 W in the extended power range, which needs an EPR-rated 5 A cable. The CC pin carries cable orientation detection and configuration messages."
   },
   "facts": [],
-  "formula": "P = V·I (PD up to 240 W)",
+  "formula": "P = V·I; the largest USB PD contract is 48 V × 5 A = 240 W (extended power range, EPR-rated cable)",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -684,10 +684,10 @@
   "layers": {
    "basics": "An RTOS switches between tasks predictably so deadlines are met.",
    "deeper": "Priority-based preemptive scheduling, semaphores, queues; FreeRTOS and Zephyr are common.",
-   "expert": "Rate-monotonic analysis (utilisation bound n(2^{1/n}−1)), priority inheritance, worst-case execution time."
+   "expert": "Rate-monotonic analysis: for n periodic, independent tasks under preemptive fixed priorities (shorter period, higher priority) with deadline equal to period, the set is schedulable if total utilisation U = Σ Cᵢ/Tᵢ (computation time over period) is at most n(2^{1/n}−1). The test is sufficient but not necessary, and the bound falls toward ln 2 ≈ 0.693 as n grows. Also priority inversion, priority inheritance, worst-case execution time."
   },
   "facts": [],
-  "formula": "U ≤ n(2^{1/n} − 1)",
+  "formula": "U = Σ Cᵢ/Tᵢ ≤ n(2^{1/n} − 1)",
   "certainty": "C1",
   "refs": [],
   "ext": [
@@ -719,10 +719,10 @@
   "layers": {
    "basics": "Sleep modes, slower clocks and turning off unused parts reduce power by factors of thousands.",
    "deeper": "Duty-cycled devices spend most time asleep at µA; energy per task matters.",
-   "expert": "Dynamic voltage and frequency scaling P∝CV²f; leakage in deep sleep; energy harvesting; battery life=capacity/average current."
+   "expert": "Dynamic voltage and frequency scaling P ∝ α·C·V²·f; leakage in deep sleep; energy harvesting; battery life ≈ usable capacity / average current, an ideal estimate because real capacity falls with low temperature, high drain and ageing."
   },
   "facts": [],
-  "formula": "P_dyn = C V² f",
+  "formula": "P_dyn = α·C·V²·f (α = average fraction of the capacitance switched per cycle)",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -834,7 +834,7 @@
   "summary": "Driving actuators.",
   "layers": {
    "basics": "Motors need more current than a pin supplies: use a transistor or H-bridge and a flyback diode, with PWM for speed.",
-   "deeper": "DC, stepper and servo motors each need a different driver.",
+   "deeper": "A DC motor needs a transistor or H-bridge. A stepper needs a coil driver that sequences the phases. A hobby servo already contains its own drive electronics and needs only a control pulse (nominally 1–2 ms, repeated every 20 ms) and a power supply.",
    "expert": "H-bridge dead-time to avoid shoot-through; current sensing; back-EMF; encoder feedback closes the loop."
   },
   "facts": [],
@@ -873,7 +873,7 @@
   "summary": "Showing information.",
   "layers": {
    "basics": "LED, LCD and OLED displays connect over parallel, SPI or I²C buses; a frame buffer holds pixels.",
-   "deeper": "Multiplexing LED matrices cuts pins; OLED pixels emit light, LCDs modulate a backlight.",
+   "deeper": "Multiplexing LED matrices cuts pins; OLED pixels emit their own light, while LCD pixels control how much light from a backlight (or ambient light, in reflective types) passes through.",
    "expert": "Refresh rate and bandwidth; MIPI DSI for phone displays; display controllers with DMA."
   },
   "facts": [],

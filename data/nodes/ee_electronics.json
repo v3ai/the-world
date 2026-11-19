@@ -21,8 +21,8 @@
   "summary": "Why solids split into conductors, semiconductors, insulators.",
   "layers": {
    "basics": "In a crystal, allowed electron energies merge into bands separated by gaps. Silicon’s gap is 1.12 eV, small enough to control electrically.",
-   "deeper": "Electrons in the valence band are stuck; those lifted to the conduction band move freely and leave mobile holes behind.",
-   "expert": "E_g(Si)=1.12 eV, Ge 0.66, GaAs 1.42 (direct), SiC ≈3.3, GaN 3.4; intrinsic concentration nᵢ≈10¹⁰ cm⁻³ for Si at 300 K, nᵢ∝T^{3/2}e^{−E_g/2kT}."
+   "deeper": "A completely full valence band cannot carry net current; electrons lifted to the conduction band move freely and leave mobile holes behind.",
+   "expert": "E_g(Si)=1.12 eV, Ge 0.66, GaAs 1.42 (direct), SiC ≈3.0–3.3 depending on polytype (4H ≈3.2, 6H ≈3.05), GaN 3.4; intrinsic concentration nᵢ≈10¹⁰ cm⁻³ for Si at 300 K, varying roughly as T^{3/2}e^{−E_g/2kT} (E_g itself shrinks as T rises)."
   },
   "facts": [],
   "formula": "nᵢ ∝ T^{3/2} e^{−E_g/2kT}",
@@ -63,9 +63,9 @@
   ],
   "summary": "Adding impurities to set carrier type.",
   "layers": {
-   "basics": "Adding a few phosphorus atoms gives free electrons (n-type); boron gives holes (p-type). Conductivity can be tuned by a factor of a million.",
-   "deeper": "Dopants of ~10¹⁵–10²⁰ cm⁻³ dominate over intrinsic carriers; mass-action law np=nᵢ² ties electrons and holes.",
-   "expert": "Donor/acceptor levels sit ~45 meV from band edges for P/B in Si, fully ionised at room temperature; compensation and degenerate doping."
+   "basics": "Adding a few phosphorus atoms gives free electrons (n-type); boron gives holes (p-type). Doping can change the conductivity of silicon by many orders of magnitude.",
+   "deeper": "Dopants of ~10¹⁵–10²⁰ cm⁻³ dominate over intrinsic carriers; in equilibrium, for non-degenerate material, the mass-action law np=nᵢ² ties electrons and holes.",
+   "expert": "Donor/acceptor levels sit ~45 meV from band edges for P/B in Si, essentially fully ionised at room temperature at moderate doping; at very heavy (degenerate) doping ionisation is incomplete and np=nᵢ² no longer holds; compensation also matters."
   },
   "facts": [],
   "formula": "n·p = nᵢ²",
@@ -107,7 +107,7 @@
   "summary": "Two ways carriers move.",
   "layers": {
    "basics": "Carriers drift in an electric field and diffuse from high to low concentration.",
-   "deeper": "Total current J=qnμE+qD dn/dx; Einstein relation links mobility and diffusion.",
+   "deeper": "Electron current J_n=qnμ_nE+qD_n dn/dx and hole current J_p=qpμ_pE−qD_p dp/dx; the total is their sum. The Einstein relation links mobility and diffusion.",
    "expert": "D=μkT/q (thermal voltage kT/q≈25.9 mV at 300 K); velocity saturates near 10⁷ cm/s in Si at high fields."
   },
   "facts": [],
@@ -141,7 +141,7 @@
   "layers": {
    "basics": "Where p-type meets n-type, carriers diffuse across, leaving a depletion zone with a built-in field; this lets current pass one way only.",
    "deeper": "Forward bias shrinks the barrier and current grows exponentially; reverse bias widens it and little current flows.",
-   "expert": "I=I_s(e^{V/nV_T}−1); built-in potential V_bi=V_T ln(N_aN_d/nᵢ²)≈0.7 V for Si; ideality n between 1 and 2."
+   "expert": "I=I_s(e^{V/nV_T}−1); built-in potential V_bi=V_T ln(N_aN_d/nᵢ²) with V_T=kT/q the thermal voltage, about 0.6 V for Si doped 10¹⁵ cm⁻³ on both sides and rising with doping (not the 0.7 V conventional forward drop); ideality n between 1 and 2."
   },
   "facts": [],
   "formula": "I = I_s (e^{V/nV_T} − 1)",
@@ -184,7 +184,7 @@
   "layers": {
    "basics": "Simple models: an ideal one-way switch; or a switch with a 0.7 V drop; or the full exponential curve.",
    "deeper": "Load-line analysis and iterative solving give operating points; small-signal resistance r_d=nV_T/I.",
-   "expert": "SPICE diode includes series R_s, junction capacitance C_j=C_j0/(1+V_R/V_bi)^m and transit time for charge storage."
+   "expert": "SPICE diode includes series R_s, junction capacitance for reverse bias (V_R>0) C_j=C_j0/(1+V_R/V_bi)^m, which SPICE linearises in forward bias, and transit time for charge storage."
   },
   "facts": [],
   "formula": "r_d = nV_T/I_D",
@@ -223,11 +223,11 @@
   "summary": "AC to pulsating DC.",
   "layers": {
    "basics": "A diode lets only one half of an AC wave through. A bridge of four diodes uses both halves.",
-   "deeper": "A filter capacitor smooths the ripple; ripple ≈ I/(2fC) for full-wave.",
-   "expert": "Half-wave: V_dc=Vm/π; full-wave: 2Vm/π; diode peak inverse voltage and conduction angle drive transformer sizing and EMI."
+   "deeper": "A filter capacitor smooths the ripple; ripple ≈ I/(2fC) for full-wave, with f the mains frequency.",
+   "expert": "Half-wave: V_dc=Vm/π; full-wave: 2Vm/π ≈ 0.637 Vm, less about two diode drops in a bridge; diode peak inverse voltage and conduction angle drive transformer sizing and EMI."
   },
   "facts": [],
-  "formula": "V_dc = 2Vm/π (full-wave)",
+  "formula": "V_dc = 2Vm/π (full-wave, ideal diodes, no filter)",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -265,7 +265,7 @@
   "layers": {
    "basics": "Clippers trim peaks off a signal; clampers shift its DC level.",
    "deeper": "Input protection and level shifting; a clamper holds a capacitor charged to a peak.",
-   "expert": "Biased clippers use reference voltages; clamper time constant must exceed signal period."
+   "expert": "Biased clippers use reference voltages; the clamper's RC time constant must be much longer than the signal period so the capacitor does not discharge between peaks."
   },
   "facts": [],
   "certainty": "C1",
@@ -303,7 +303,7 @@
   "layers": {
    "basics": "In reverse breakdown, a zener holds nearly constant voltage, so it provides a simple voltage reference.",
    "deeper": "Series resistor limits current; load and line regulation depend on dynamic resistance.",
-   "expert": "Zener (<5.5 V, tunnelling) vs avalanche (>5.5 V); temperature coefficient crosses zero near 5.6 V; bandgap references are better."
+   "expert": "Breakdown below about 5.6 V is mainly the Zener (tunnelling) effect, with a negative temperature coefficient; above it avalanche dominates, with a positive coefficient. Near 5.6 V both act and the coefficients nearly cancel. Bandgap references are better."
   },
   "facts": [],
   "certainty": "C1",
@@ -340,8 +340,8 @@
   "summary": "Light out, light in.",
   "layers": {
    "basics": "In an LED, electrons and holes recombine and emit light; a photodiode does the reverse, turning light into current.",
-   "deeper": "LED colour is set by band gap: ~1.9 eV red, ~2.7 eV blue; always limit current with a series resistor.",
-   "expert": "Direct band-gap materials (GaAs, GaN) radiate efficiently; photodiode in photoconductive (reverse) mode is fast; I_ph=ηqP/hν."
+   "deeper": "LED colour is set by band gap: ~1.9 eV red, ~2.7 eV blue; limit current with a series resistor or a constant-current driver.",
+   "expert": "Direct band-gap materials (GaAs, GaN) radiate efficiently; photodiode in photoconductive (reverse-bias) mode is fast, and it can also run with no bias (photovoltaic mode); I_ph=ηqP/hν."
   },
   "facts": [],
   "formula": "λ(μm) ≈ 1.24/E_g(eV)",
@@ -381,10 +381,10 @@
   "needs": [
    "pn_junction_ee"
   ],
-  "summary": "A current-controlled transistor.",
+  "summary": "A transistor where a small base current goes with a much larger collector current.",
   "layers": {
    "basics": "A bipolar transistor has three layers (NPN or PNP). A small base current controls a much larger collector current.",
-   "deeper": "Regions: cutoff (off), active (amplifier), saturation (switch on); β=I_C/I_B typically 50–300.",
+   "deeper": "Regions: cutoff (off), active (amplifier), saturation (switch on); β=I_C/I_B is typically about 50–300 for small-signal parts and varies with current and temperature. Active region: base–emitter forward-biased, base–collector reverse-biased.",
    "expert": "I_C=I_s e^{V_BE/V_T}(1+V_CE/V_A); Ebers–Moll model; transconductance g_m=I_C/V_T."
   },
   "facts": [],
@@ -543,8 +543,8 @@
   "summary": "On/off driving of loads.",
   "layers": {
    "basics": "Driving a BJT between cutoff and saturation lets a small control signal switch a larger current.",
-   "deeper": "A base resistor sets drive; V_CE(sat)≈0.2 V; a flyback diode protects against inductive loads.",
-   "expert": "Storage-time delay in saturation limits speed; Baker clamps and Darlington pairs."
+   "deeper": "A base resistor sets drive; V_CE(sat) is typically a few tenths of a volt or less for small-signal parts, depending on I_C and base drive; a flyback diode protects against inductive loads.",
+   "expert": "Storage-time delay in saturation limits speed; Baker clamps reduce it by preventing deep saturation. Darlington pairs give high current gain but a higher V_CE(sat)."
   },
   "facts": [],
   "certainty": "C1",
@@ -625,11 +625,11 @@
   "summary": "Triode, saturation, cutoff.",
   "layers": {
    "basics": "At small V_DS the MOSFET acts as a resistor; at large V_DS the current saturates.",
-   "deeper": "Square-law model I_D=½k(V_GS−V_T)² in saturation; g_m=∂I_D/∂V_GS.",
+   "deeper": "Square-law model, valid in saturation (V_DS ≥ V_GS−V_T) for a long channel: I_D=½k(V_GS−V_T)² with k=μC_ox W/L; g_m=∂I_D/∂V_GS.",
    "expert": "Channel-length modulation λ; velocity saturation makes current linear in overdrive in short channels; subthreshold current exponential."
   },
   "facts": [],
-  "formula": "I_D = ½ μC_ox (W/L)(V_GS−V_T)²",
+  "formula": "I_D = ½ μC_ox (W/L)(V_GS−V_T)²  (saturation, long channel)",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -664,7 +664,7 @@
   ],
   "summary": "Setting the operating point.",
   "layers": {
-   "basics": "Resistor dividers or a current source set the gate voltage so the MOSFET stays in saturation.",
+   "basics": "A resistor divider sets the gate voltage, or a current source (often a mirror) sets the drain current directly, so the MOSFET stays in saturation.",
    "deeper": "Source degeneration and constant-current biasing improve stability.",
    "expert": "IC design uses bias currents from mirrors and gm/Id methodology rather than hand-picked resistors."
   },
@@ -705,15 +705,15 @@
   "layers": {
    "basics": "Common-source gives gain; common-drain (source follower) buffers; common-gate suits high-frequency.",
    "deeper": "A_v≈−g_m(r_o∥R_D) for CS; follower gain<1 and no inversion.",
-   "expert": "Cascode, folded cascode, and active loads boost gain g_m r_o; gain per stage in modern CMOS is only ~10–30 due to low r_o."
+   "expert": "Cascode, folded cascode, and active loads raise output resistance and so gain; one transistor's intrinsic gain g_m r_o is limited by its finite r_o, and a cascode raises it towards about (g_m r_o)²."
   },
   "facts": [],
   "formula": "A_v ≈ −g_m (r_o ∥ R_D)",
   "certainty": "C1",
   "refs": [],
   "lab": {
-   "id": "circuit",
-   "preset": "common_emitter"
+   "id": "device",
+   "preset": "mosfet_output"
   },
   "ext": [
    {
@@ -784,7 +784,7 @@
   "layers": {
    "basics": "In CMOS each gate has PMOS transistors that pull the output up and NMOS that pull it down; only one network conducts at once so static power is tiny.",
    "deeper": "NAND = series NMOS + parallel PMOS; NOR the opposite. Dynamic power ≈ αCV²f.",
-   "expert": "Noise margins, propagation delay t_p≈0.69RC, logical effort; leakage now rivals dynamic power in deep-submicron nodes."
+   "expert": "Noise margins, propagation delay t_p≈0.69RC, logical effort; leakage grew into a major part of chip power in deep-submicron generations; high-k gates and FinFETs reduced it, but it remains significant, especially in idle blocks."
   },
   "facts": [],
   "formula": "P_dyn = α C V² f",
@@ -823,7 +823,7 @@
   "summary": "Specifying an amplifier.",
   "layers": {
    "basics": "Gain says how much bigger the output is; input/output impedance say how it loads and is loaded.",
-   "deeper": "Gain in dB, bandwidth, and gain-bandwidth trade-offs determine suitability.",
+   "deeper": "Voltage gain in dB is 20 log₁₀|A_v| (power gain uses 10 log₁₀), so a gain of 100 is 40 dB. For a single-pole amplifier, gain × bandwidth is constant: the gain-bandwidth product.",
    "expert": "Two-port model with R_in, R_out, A_v; frequency roll-off set by coupling capacitors (low) and parasitics (high)."
   },
   "facts": [],
@@ -900,7 +900,7 @@
   "layers": {
    "basics": "A differential pair amplifies the difference between two inputs and rejects what both share (noise).",
    "deeper": "Common-mode rejection ratio CMRR measures this; the tail current source sets the gain.",
-   "expert": "A_d=g_m R_D; A_cm≈−R_D/2R_tail; the long-tailed pair is the input stage of nearly every op-amp."
+   "expert": "For a single-ended output, A_d=g_m R_D/2 and A_cm≈−R_D/(2R_tail) (taking R_tail ≫ 1/g_m), so CMRR≈g_m R_tail. For a differential output, A_d=g_m R_D and a perfectly matched pair has A_cm≈0. The long-tailed pair is the input stage of most voltage-feedback op-amps."
   },
   "facts": [],
   "formula": "CMRR = |A_d/A_cm|",
@@ -973,7 +973,7 @@
   "summary": "Transistors replace resistors as loads.",
   "layers": {
    "basics": "A current-mirror load gives high gain in little chip area.",
-   "deeper": "Small-signal gain g_m r_o, single-ended conversion.",
+   "deeper": "Small-signal gain is g_m(r_on∥r_op), about g_m r_o/2 for equal r_o. The mirror also converts the differential signal to a single-ended output.",
    "expert": "Output resistance r_o∥r_o; limits of headroom; common-mode feedback required in fully differential stages."
   },
   "facts": [],
@@ -1002,7 +1002,7 @@
   "layers": {
    "basics": "Stages are chained for more gain, with input, gain and output stages.",
    "deeper": "Gain multiplies, bandwidth shrinks, loading between stages matters.",
-   "expert": "Two-stage Miller-compensated op-amp is the textbook design; bandwidth shrinkage factor √(2^{1/n}−1)."
+   "expert": "Two-stage Miller-compensated op-amp is the textbook design; for n identical, non-interacting single-pole stages the overall bandwidth is √(2^{1/n}−1) times that of one stage."
   },
   "facts": [],
   "certainty": "C1",
@@ -1029,8 +1029,8 @@
   "summary": "Delivering power to a load.",
   "layers": {
    "basics": "Class A conducts all the time (clean, wasteful); class B splits the wave between two transistors; AB adds bias to avoid crossover distortion; D switches fully on/off.",
-   "deeper": "Efficiencies: A≤25–50%, B≤78.5%, D>90%.",
-   "expert": "Class D PWM + LC filter; switching frequencies 300 kHz–1 MHz; thermal design; crossover distortion cured by Vbe-multiplier bias."
+   "deeper": "Maximum theoretical efficiency with a sine wave: class A 25% (50% with inductive or transformer coupling), class B 78.5%. Class D above 80% is common and above 90% is achievable.",
+   "expert": "Class D PWM + LC filter; the switching frequency is at least about ten times the highest audio frequency, typically hundreds of kHz; thermal design; a Vbe-multiplier bias reduces crossover distortion by setting a small quiescent current."
   },
   "facts": [],
   "formula": "η_B max = π/4 ≈ 78.5%",
@@ -1302,7 +1302,7 @@
   "layers": {
    "basics": "Three op-amps and a gain resistor amplify the tiny difference from sensors like bridges and ECG electrodes, with high input impedance and CMRR.",
    "deeper": "One resistor sets the gain, and matched resistors determine CMRR.",
-   "expert": "G=1+2R/R_G; CMRR >100 dB in modern ICs; chopper stabilisation cancels offset."
+   "expert": "for the three-op-amp topology with a unity-gain difference stage, G=1+2R/R_G; good ICs can exceed 100 dB CMRR at higher gain settings, and CMRR falls with frequency; chopper stabilisation cancels offset."
   },
   "facts": [],
   "formula": "G = 1 + 2R/R_G",
@@ -1448,7 +1448,7 @@
   "layers": {
    "basics": "Feeding part of the output back to subtract from the input makes the gain predictable and cuts distortion.",
    "deeper": "Four topologies (series/shunt, voltage/current) change input and output impedances.",
-   "expert": "A_f=A/(1+Aβ); desensitivity; bandwidth extends by (1+Aβ); improves linearity by the same factor."
+   "expert": "A_f=A/(1+Aβ); desensitivity; for a single-pole amplifier the closed-loop bandwidth is (1+Aβ) times the open-loop bandwidth, and distortion within the loop is reduced by about the same factor, where the loop gain is large."
   },
   "facts": [],
   "formula": "A_f = A/(1 + Aβ)",
@@ -1528,7 +1528,7 @@
   "layers": {
    "basics": "An oscillator is an amplifier whose output is fed back with exactly the right phase and gain to sustain a sine wave.",
    "deeper": "Barkhausen criterion: loop gain 1 and phase 0°. Wien bridge uses RC; Colpitts uses LC; crystals give accurate frequency.",
-   "expert": "Wien: f=1/2πRC with gain 3; Colpitts f=1/2π√(L C₁C₂/(C₁+C₂)); quartz Q~10⁴–10⁶, stability ~ppm; amplitude limited by non-linearity."
+   "expert": "Wien: f=1/2πRC with gain 3; Colpitts f=1/2π√(L C₁C₂/(C₁+C₂)); quartz Q≈10⁴–10⁶, with stability of ppm order that depends on cut, temperature and ageing (oven control improves it); amplitude limited by non-linearity."
   },
   "facts": [],
   "formula": "f_Wien = 1/(2πRC)",
@@ -1609,10 +1609,10 @@
   "layers": {
    "basics": "An ADC samples a voltage and turns it into a binary number; more bits, finer steps.",
    "deeper": "Architectures: flash (fast), SAR (balanced), sigma-delta (precise), pipeline.",
-   "expert": "LSB=V_ref/2ᴺ; ideal SNR=6.02N+1.76 dB; INL/DNL; aperture jitter limits SNR at high input frequency; plain oversampling gains 3 dB per octave of oversampling; sigma-delta noise shaping gains (6L+3) dB per octave for an order-L modulator."
+   "expert": "LSB=V_FS/2ᴺ with V_FS the full-scale range (V_ref for a unipolar converter); ideal SNR=6.02N+1.76 dB; INL/DNL; aperture jitter limits SNR at high input frequency; plain oversampling gains 3 dB per octave of oversampling; sigma-delta noise shaping gains (6L+3) dB per octave for an order-L modulator."
   },
   "facts": [],
-  "formula": "SNR = 6.02N + 1.76 dB",
+  "formula": "SNR = 6.02N + 1.76 dB (ideal N-bit, full-scale sine, quantisation noise only)",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -1687,11 +1687,11 @@
   "summary": "Steady voltage by burning the excess.",
   "layers": {
    "basics": "A linear regulator uses a pass transistor and feedback to hold a fixed output; the excess voltage is dissipated as heat.",
-   "deeper": "Low dropout (LDO) regulators work close to input voltage; low noise makes them good for analog.",
-   "expert": "Dropout, PSRR, quiescent current, stability with output-cap ESR; P_diss=(Vin−Vout)I."
+   "deeper": "Dropout is the smallest V_in − V_out at which the output still regulates; low-dropout (LDO) regulators work close to the input voltage; low noise makes them good for analog.",
+   "expert": "Dropout, PSRR, quiescent current, stability with output-cap ESR; P_diss≈(Vin−Vout)·I_load + Vin·I_q, where I_q is the quiescent (ground-pin) current."
   },
   "facts": [],
-  "formula": "P = (V_in − V_out) I",
+  "formula": "P ≈ (V_in − V_out)·I_load + V_in·I_q",
   "certainty": "C1",
   "refs": [],
   "ext": [

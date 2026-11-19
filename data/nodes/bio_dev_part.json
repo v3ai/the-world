@@ -36,8 +36,22 @@
    "expert": "Development is a gene regulatory program in space and time. Evo-devo shows conserved toolkits underlying very different body plans; regeneration and stem cells show how plastic it can be."
   },
   "facts": [],
-  "certainty": "C1",
-  "refs": [],
+  "certainty": "C2",
+  "open_questions": [
+   "How does an embryo control the size of its organs and still reach the same form despite molecular noise?"
+  ],
+  "refs": [
+   [
+    "BIO",
+    "43.6",
+    "43-6-fertilization-and-early-embryonic-development"
+   ],
+   [
+    "BIO",
+    "43.7",
+    "43-7-organogenesis-and-vertebrate-axis-formation"
+   ]
+  ],
   "kn": [
    "development_biology"
   ]
@@ -64,25 +78,24 @@
   "layers": {
    "basics": "A sperm binds and fuses with an egg, combining genetic material and starting development. The egg then blocks other sperm.",
    "deeper": "A calcium wave sweeps the egg to activate it. In humans fertilisation occurs in the fallopian tube.",
-   "expert": "Fast block (membrane depolarisation) and slow block (cortical reaction) prevent polyspermy. Human zygote genome activation occurs at the 4–8 cell stage."
+   "expert": "In sea urchins and frogs a fast block (a brief membrane depolarisation) and a slow block (release of cortical granules) stop more than one sperm from entering. In mice no electrical fast block has been found; the main block is the cortical reaction, in which the enzyme ovastacin cleaves the zona pellucida protein ZP2 so that sperm can no longer bind. Whether humans use an electrical block as well is not settled. The embryo's own genes switch on gradually over the first few cleavage divisions."
   },
   "facts": [
    [
     "Sperm number in ejaculate",
-    "≈ 10⁸"
+    "hundreds of millions (varies widely between men)"
    ],
    [
-    "Zygote genome activation",
-    "4–8 cell stage"
+    "Embryo's own genes switch on",
+    "gradually, over the first few cleavage divisions"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Which molecules drive sperm–egg membrane fusion in mammals, and what exactly triggers the calcium wave that activates the egg?",
+   "Does the human egg use any fast electrical block to polyspermy, as sea urchin and frog eggs do?"
+  ],
   "refs": [
-   [
-    "BIO",
-    "43.2",
-    "43-2-fertilization"
-   ],
    [
     "BIO",
     "43.6",
@@ -121,7 +134,7 @@
   "layers": {
    "basics": "The zygote divides repeatedly without growing, forming a ball of cells and then a hollow blastula.",
    "deeper": "In mammals the blastocyst has an inner cell mass (source of embryonic stem cells) and a trophoblast that forms the placenta.",
-   "expert": "Yolk amount shapes cleavage patterns (holoblastic vs meroblastic). Cell polarity and cell–cell contacts set the first fate decisions (Hippo pathway in mouse embryos)."
+   "expert": "Yolk amount shapes cleavage patterns (holoblastic vs meroblastic). In mouse embryos, cell polarity and cell–cell contacts set the first fate decision (inner cell mass versus trophoblast) through Hippo signalling. Human embryos differ in timing and markers, so how far the mouse model applies is still being tested."
   },
   "facts": [
    [
@@ -130,10 +143,13 @@
    ],
    [
     "Cells at blastocyst",
-    "≈ 100–200"
+    "over 100 (rises as the blastocyst expands)"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How closely does the mouse model of the first fate decision (polarity and Hippo signalling) apply to human embryos?"
+  ],
   "refs": [
    [
     "BIO",
@@ -171,16 +187,16 @@
   "needs": [
    "bio_cleavage_blastula"
   ],
-  "summary": "Making three layers.",
+  "summary": "Cells move inward to build the three germ layers of the embryo.",
   "layers": {
    "basics": "Cells move inward to form three layers: ectoderm (skin, nerves), mesoderm (muscle, bone, blood) and endoderm (gut lining, organs).",
-   "deeper": "Gastrulation sets up the body axes. Lewis Wolpert said \"it is not birth, marriage or death, but gastrulation which is truly the most important time in your life.\"",
-   "expert": "In humans gastrulation occurs at ≈ day 14–16 with the primitive streak. Conserved movements include invagination, ingression, involution and convergent extension."
+   "deeper": "In amniotes such as humans, cells at the primitive streak leave the surface sheet and move inward. These movements put ectoderm, mesoderm and endoderm in their proper places and lay out the head–tail and left–right axes. The biologist Lewis Wolpert joked that gastrulation is the most important time in your life.",
+   "expert": "In humans gastrulation occurs at ≈ day 14–15 after fertilisation, with the primitive streak. Conserved movements include invagination, ingression, involution and convergent extension."
   },
   "facts": [
    [
     "Primitive streak appears",
-    "≈ day 15"
+    "≈ day 14–15 after fertilisation"
    ],
    [
     "Germ layers",
@@ -237,17 +253,17 @@
   "summary": "Building nervous system and organs.",
   "layers": {
    "basics": "The ectoderm folds to form a neural tube, which becomes the brain and spinal cord; organs then form from the three layers.",
-   "deeper": "Folic acid helps prevent neural tube defects such as spina bifida. The heart is the first functional organ, beating by ≈ week 4.",
-   "expert": "Neural crest cells migrate widely and give rise to peripheral neurons, pigment cells and facial cartilage. Somitogenesis uses a segmentation clock with ≈ 4–6 h (human) period."
+   "deeper": "Folic acid helps prevent neural tube defects such as spina bifida. The heart is the first functional organ, beating by ≈ week 4 (weeks counted from fertilisation).",
+   "expert": "Neural crest cells migrate widely and give rise to peripheral neurons, pigment cells and facial cartilage. Somitogenesis is paced by a segmentation clock whose period depends on the species. In human stem-cell-derived tissue it is about 5 hours, measured in vitro rather than in an intact human embryo."
   },
   "facts": [
    [
     "Heart begins beating",
-    "≈ week 4"
+    "≈ start of week 4 after fertilisation"
    ],
    [
-    "Neural tube closure",
-    "≈ week 4"
+    "Neural tube forms",
+    "during week 4 after fertilisation"
    ]
   ],
   "certainty": "C1",
@@ -294,19 +310,23 @@
   "layers": {
    "basics": "A morphogen forms a concentration gradient and cells respond according to how much they receive. In fly embryos, Bicoid sets head–tail pattern.",
    "deeper": "Wolpert's French-flag model explains thresholds. Other morphogens: Sonic hedgehog in limbs, BMP in dorsal–ventral patterning.",
-   "expert": "Turing reaction–diffusion systems explain periodic patterns (digits, animal skin). The robustness of gradients to noise and scaling with embryo size are active research areas."
+   "expert": "Turing reaction–diffusion models can produce periodic patterns and have experimental support for the spacing of digits, but other mechanisms such as cell movement and cell–cell interactions also shape digits and skin, so how general the model is remains debated. How gradients stay precise despite noise, and how they scale with embryo size, are active research areas."
   },
   "facts": [
    [
-    "Bicoid gradient length",
-    "≈ 100 µm"
+    "Bicoid gradient",
+    "falls off steeply along the fly embryo's head–tail axis"
    ],
    [
     "Turing paper",
     "1952"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How do cells read noisy morphogen gradients so precisely?",
+   "How much of digit and skin patterning is truly Turing-type reaction–diffusion?"
+  ],
   "refs": [
    [
     "BIO",
@@ -342,8 +362,8 @@
   "summary": "Genes that give each segment an identity.",
   "layers": {
    "basics": "Hox genes specify what each body segment becomes. Mutations can turn an antenna into a leg in flies.",
-   "deeper": "They are arranged along the chromosome in the same order as their expression along the body (colinearity). Vertebrates have four Hox clusters.",
-   "expert": "Hox genes encode homeodomain transcription factors. Lewis, Nüsslein-Volhard and Wieschaus won the 1995 Nobel. Changes in Hox regulation underlie differences in vertebrate neck and limb."
+   "deeper": "They are arranged along the chromosome in the same order as their expression along the body (colinearity). Mammals have four Hox clusters (HoxA–D); zebrafish, which went through an extra genome duplication, have seven.",
+   "expert": "Hox genes encode homeodomain transcription factors. Edward Lewis's work on the bithorax complex in flies was recognised in the 1995 Nobel Prize in Physiology or Medicine, shared with Nüsslein-Volhard and Wieschaus, who found the segmentation genes that act upstream of Hox. Changes in where and when Hox genes are expressed are linked to differences in vertebrate body and limb patterning, though proving cause in each case is hard."
   },
   "facts": [
    [
@@ -407,14 +427,17 @@
   "facts": [
    [
     "Core pathways",
-    "≈ 7–10"
+    "a handful (Wnt, Hedgehog, Notch, TGF-β/BMP, receptor tyrosine kinases such as FGF); counts differ between authors"
    ],
    [
-    "Colon cancers with Wnt pathway mutations",
-    "> 80%"
+    "Colorectal tumours with a Wnt pathway alteration",
+    "≈ 93% (TCGA 2012)"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How do cells combine several signalling pathways at once to make a single fate decision?"
+  ],
   "refs": [
    [
     "BIO",
@@ -455,20 +478,24 @@
   "summary": "Rebuilding and remodelling.",
   "layers": {
    "basics": "Some animals regrow lost parts: salamanders limbs, planarians whole bodies. Insects and amphibians undergo metamorphosis.",
-   "deeper": "Mammals regenerate livers and fingertips but not limbs. Hormones (ecdysone, thyroid hormone) control metamorphosis.",
-   "expert": "Blastema formation, dedifferentiation and positional memory underlie limb regeneration. Planarians use ≈ 20–30% neoblasts. Organoids derived from stem cells mimic organ structures in vitro."
+   "deeper": "Mammals regenerate livers and fingertips but not limbs. Metamorphosis is controlled by hormones: in insects, ecdysone triggers each moult and juvenile hormone decides whether the result stays larval or becomes pupal and adult; in amphibians, thyroid hormone drives it.",
+   "expert": "Blastema formation, dedifferentiation and positional memory underlie limb regeneration. Up to about 30% of planarian cells are neoblasts, the dividing stem cells that rebuild the body; they are not all alike, and only some can give rise to every cell type. Organoids derived from stem cells mimic organ structures in vitro."
   },
   "facts": [
    [
     "Axolotl limb regrowth",
-    "≈ weeks"
+    "weeks to months, slower in larger, older animals"
    ],
    [
     "Liver regeneration (human)",
-    "≈ 8–15 days"
+    "regains mass after partial removal, but the original shape is not fully restored"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Why can salamanders regrow limbs while mammals mostly cannot?",
+   "What cellular memory tells a regenerating limb which parts to rebuild?"
+  ],
   "refs": [
    [
     "BIO",
@@ -507,7 +534,7 @@
   ],
   "summary": "From zygote to newborn.",
   "layers": {
-   "basics": "Pregnancy lasts about 38 weeks. The embryo forms organs in the first 8 weeks; then the fetus grows.",
+   "basics": "Pregnancy lasts about 38 weeks counted from conception (about 40 weeks counted from the last menstrual period). The embryo forms its organs in the first 8 weeks after conception; from the ninth week it is called a fetus and grows.",
    "deeper": "The placenta supplies nutrients and oxygen and removes waste. Hormones (hCG, progesterone, oxytocin) regulate pregnancy and birth.",
    "expert": "Teratogens (thalidomide, alcohol, rubella) act during sensitive windows. Fetal hemoglobin has higher O₂ affinity than adult Hb. Fetal programming of adult disease (Barker hypothesis) is supported by epidemiology but mechanisms are partly unclear."
   },
@@ -518,10 +545,13 @@
    ],
    [
     "Newborn weight",
-    "≈ 3.4 kg"
+    "≈ 2.5–4 kg at term (typical range)"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How much of the link between birth weight and adult disease is causal programming, and how much is shared genes and environment?"
+  ],
   "refs": [
    [
     "BIO",
@@ -571,12 +601,12 @@
   "summary": "Seeds from zygote to seedling.",
   "layers": {
    "basics": "In plants the zygote becomes a seed embryo with a root and shoot tip and cotyledons; it can wait for years before germinating.",
-   "deeper": "Germination starts when water is taken up (imbibition) and hormones trigger enzyme production.",
-   "expert": "Seed dormancy is broken by light, cold stratification or fire. The oldest seed germinated: a ≈ 2,000-year-old date palm."
+   "deeper": "Germination starts when the dry seed takes up water (imbibition). Abscisic acid holds seeds dormant, and gibberellins break dormancy and promote germination.",
+   "expert": "Seed dormancy can be broken by cues such as light, a long cold spell or fire. A Judean date palm seed about 2,000 years old was grown into a plant, a record for a seed that germinated directly. Separately, plants were regenerated in 2012 from about 32,000-year-old fruit tissue of Silene stenophylla; that was tissue regrown, not a seed germinating."
   },
   "facts": [
    [
-    "Date palm seed age",
+    "Date palm seed age (germinated directly)",
     "≈ 2,000 y"
    ],
    [
@@ -595,6 +625,11 @@
     "BIO",
     "32.2",
     "32-2-pollination-and-fertilization"
+   ],
+   [
+    "BIO",
+    "30.6",
+    "30-6-plant-sensory-systems-and-responses"
    ]
   ],
   "kn": [

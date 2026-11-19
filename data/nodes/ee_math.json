@@ -17,9 +17,9 @@
   "needs": [],
   "summary": "What a function approaches, and whether it jumps.",
   "layers": {
-   "basics": "A limit asks what value a function heads toward as its input nears some point. A function is continuous if you can draw it without lifting the pen.",
+   "basics": "A limit asks what value a function heads toward as its input nears some point. A function is continuous on an interval if it has no jumps or gaps there, so you could draw it without lifting the pen (a useful picture, not the definition).",
    "deeper": "Limits make instantaneous change and infinite sums precise. Circuit voltages across a capacitor are continuous; a switch flipping is modelled as a jump that the capacitor smooths.",
-   "expert": "ε–δ definition: for every ε>0 there is δ>0 with |x−a|<δ ⇒ |f(x)−L|<ε. Piecewise models (ideal switches, step inputs) are discontinuous; physical energy storage keeps state variables continuous."
+   "expert": "ε–δ definition: for every ε>0 there is δ>0 with |x−a|<δ ⇒ |f(x)−L|<ε. Piecewise models (ideal switches, step inputs) are discontinuous; with finite currents and voltages, capacitor voltage and inductor current stay continuous; ideal impulses or capacitor loops can force jumps."
   },
   "facts": [],
   "formula": "lim x→a f(x) = L",
@@ -115,7 +115,7 @@
   "layers": {
    "basics": "An integral adds up many tiny pieces: total charge from current over time, or total energy from power.",
    "deeper": "The fundamental theorem links differentiation and integration as inverse operations, so antiderivatives compute areas exactly.",
-   "expert": "∫ₐᵇ f dx = F(b)−F(a). Capacitor voltage v(t)=v(0)+(1/C)∫i dt; energy E=∫p dt. Riemann and Lebesgue definitions agree on well-behaved signals."
+   "expert": "If F′=f on [a,b] and f is continuous, ∫ₐᵇ f dx = F(b)−F(a). Capacitor voltage v(t)=v(0)+(1/C)∫i dt; energy E=∫p dt. Riemann and Lebesgue definitions agree on well-behaved signals."
   },
   "facts": [],
   "formula": "Q = ∫ i dt;  E = ∫ p dt",
@@ -156,13 +156,18 @@
   ],
   "summary": "Substitution, parts, partial fractions.",
   "layers": {
-   "basics": "Tricks to evaluate integrals that do not look simple: substitute a new variable, split into pieces, or use parts.",
+   "basics": "Methods for integrals that do not look simple: substitute a new variable, split a fraction into simpler fractions (partial fractions), or integrate by parts.",
    "deeper": "Partial fractions are especially important because they invert Laplace and z transforms of rational functions.",
    "expert": "Integration by parts ∫u dv=uv−∫v du; improper integrals converge or diverge by comparison tests; numerical quadrature takes over when no closed form exists."
   },
   "facts": [],
   "certainty": "C1",
   "refs": [
+   [
+    "CA1",
+    "5.5",
+    "5-5-substitution"
+   ],
    [
     "CA2",
     "3.1",
@@ -205,10 +210,10 @@
   "layers": {
    "basics": "A series adds endless terms; some, like 1+½+¼+…, add up to a finite number.",
    "deeper": "Convergence tests (ratio, comparison, integral) decide whether the sum exists. Geometric series appear in transmission-line multiple reflections and in the z-transform.",
-   "expert": "Σ rⁿ = 1/(1−r) for |r|<1. Absolute vs conditional convergence matters when rearranging terms; uniform convergence justifies termwise differentiation."
+   "expert": "Σₙ₌₀^∞ rⁿ = 1/(1−r) for |r|<1 (starting at n=1 the sum is r/(1−r)). Absolute vs conditional convergence matters when rearranging terms. Uniform convergence justifies termwise integration; termwise differentiation also needs the series of derivatives to converge uniformly (and the original series to converge at one point)."
   },
   "facts": [],
-  "formula": "Σₙ rⁿ = 1/(1−r)",
+  "formula": "Σₙ₌₀^∞ rⁿ = 1/(1−r),  |r|<1",
   "certainty": "C1",
   "refs": [
    [
@@ -254,7 +259,7 @@
   "layers": {
    "basics": "Near a point, almost any smooth function looks like a polynomial; more terms give a better match.",
    "deeper": "Engineers truncate Taylor series to linearize a transistor curve or to derive sin x ≈ x for small angles; e^x and sin/cos are exactly their series.",
-   "expert": "f(x)=Σ f⁽ⁿ⁾(a)(x−a)ⁿ/n!. Remainder bounds quantify truncation error. Radius of convergence is set by the nearest complex singularity."
+   "expert": "For an analytic f within its radius of convergence, f(x)=Σ f⁽ⁿ⁾(a)(x−a)ⁿ/n!. Smooth is not enough: e^(−1/x²) (with f(0)=0) has a Taylor series at 0 that is identically zero. Remainder bounds quantify truncation error. Radius of convergence is set by the nearest complex singularity."
   },
   "facts": [],
   "formula": "eˣ = Σ xⁿ/n!",
@@ -354,7 +359,7 @@
    "expert": "Total differential df=Σ(∂f/∂xᵢ)dxᵢ; the Jacobian generalises the chain rule and drives small-signal linearization and Newton iteration."
   },
   "facts": [],
-  "formula": "gm = ∂iD/∂vGS",
+  "formula": "gm = ∂iD/∂vGS at constant vDS, at the bias point",
   "certainty": "C1",
   "refs": [
    [
@@ -394,7 +399,7 @@
   ],
   "summary": "The direction of steepest increase.",
   "layers": {
-   "basics": "The gradient points uphill. Electric field is the downhill direction of potential: E = −∇V.",
+   "basics": "The gradient points uphill. In electrostatics the electric field points downhill in potential: E = −∇V. With changing magnetic fields the field also has a term −∂A/∂t, where A is the vector potential.",
    "deeper": "It turns a scalar map (potential, temperature) into a vector field and is perpendicular to level surfaces.",
    "expert": "∇f=(∂f/∂x,∂f/∂y,∂f/∂z); directional derivative D_u f=∇f·u. Gradient descent for optimization and training uses the same object."
   },
@@ -489,7 +494,7 @@
    "expert": "∫C F·dr; F=∇φ iff curl F=0 on simply connected domains. Faraday induction breaks conservativeness, which is why KVL needs care with changing flux."
   },
   "facts": [],
-  "formula": "V_ab = −∫ E·dl",
+  "formula": "V_ab = V_a − V_b = ∫ₐᵇ E·dl  (equivalently V(b) − V(a) = −∫ₐᵇ E·dl)",
   "certainty": "C1",
   "refs": [
    [
@@ -551,7 +556,7 @@
  {
   "id": "greens_theorem",
   "title": "Green’s theorem",
-  "kind": "law",
+  "kind": "concept",
   "template": "concept",
   "scale_m": null,
   "area": "ee_math",
@@ -573,7 +578,7 @@
    "expert": "∮(P dx+Q dy)=∬(∂Q/∂x−∂P/∂y)dA for positively oriented piecewise-smooth boundaries."
   },
   "facts": [],
-  "formula": "∮(P dx+Q dy) = ∬(Qx−Py) dA",
+  "formula": "∮(P dx+Q dy) = ∬(∂Q/∂x − ∂P/∂y) dA",
   "certainty": "C1",
   "refs": [
    [
@@ -586,7 +591,7 @@
  {
   "id": "stokes_theorem",
   "title": "Stokes’ theorem",
-  "kind": "law",
+  "kind": "concept",
   "template": "concept",
   "scale_m": null,
   "area": "ee_math",
@@ -605,7 +610,7 @@
   "layers": {
    "basics": "The line integral of a field around a closed loop equals the flux of its curl through any surface bounded by that loop.",
    "deeper": "Turns Faraday’s law from differential to integral form: EMF around a loop equals −dΦ/dt.",
-   "expert": "∮∂S F·dr=∬S(∇×F)·dS. Independence of surface follows from ∇·(∇×F)=0."
+   "expert": "∮∂S F·dr=∬S(∇×F)·dS, for a piecewise-smooth surface S and a continuously differentiable F, with the boundary ∂S oriented by the right-hand rule relative to the normal of S. Independence of surface follows from ∇·(∇×F)=0."
   },
   "facts": [],
   "formula": "∮ F·dr = ∬ (∇×F)·dS",
@@ -621,7 +626,7 @@
  {
   "id": "divergence_theorem",
   "title": "Divergence theorem",
-  "kind": "law",
+  "kind": "concept",
   "template": "concept",
   "scale_m": null,
   "area": "ee_math",
@@ -722,8 +727,8 @@
   "summary": "Oscillation, damping and resonance.",
   "layers": {
    "basics": "Second-order equations govern masses on springs and RLC circuits: they can ring, decay smoothly, or in between.",
-   "deeper": "The characteristic equation s²+2ζω₀s+ω₀²=0 has real, repeated or complex roots giving over-, critical or under-damping.",
-   "expert": "General solution = homogeneous + particular. Undetermined coefficients or variation of parameters handle drives; Q=1/(2ζ)."
+   "deeper": "With natural frequency ω₀ and damping ratio ζ, the characteristic equation s²+2ζω₀s+ω₀²=0 has two real roots (ζ>1, overdamped), a repeated root (ζ=1, critical damping) or complex roots (ζ<1, underdamped). A sinusoidal drive near ω₀ produces resonance.",
+   "expert": "General solution = homogeneous + particular. Undetermined coefficients or variation of parameters handle drives; for a series or parallel RLC resonator the sharpness of resonance is the quality factor Q=1/(2ζ)."
   },
   "facts": [],
   "formula": "s² + 2ζω₀s + ω₀² = 0",
@@ -784,6 +789,12 @@
     "7-1-second-order-linear-equations"
    ]
   ],
+ "ext": [
+  {
+   "title": "MIT OpenCourseWare 18.03SC Differential Equations",
+   "url": "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/"
+  }
+ ],
   "kn": [
    "ode_pde"
   ]
@@ -811,7 +822,7 @@
   "layers": {
    "basics": "The Laplace transform converts calculus problems about time into algebra in a new variable s, then converts back.",
    "deeper": "Derivatives become multiplication by s, so a circuit ODE becomes an algebraic equation, with initial conditions built in.",
-   "expert": "F(s)=∫₀^∞ f(t)e^{−st}dt; L{f′}=sF−f(0); final-value and initial-value theorems; inverse via partial fractions or the Bromwich integral."
+   "expert": "F(s)=∫₀⁻^∞ f(t)e^{−st}dt (lower limit 0⁻ so impulses at t=0 count); L{f′}=sF−f(0); the final-value theorem lim f(t)=lim s→0 sF(s) holds only when every pole of sF(s) lies in the open left half-plane (it fails for sustained oscillation or growth), and the initial-value theorem gives f(0⁺); inverse via partial fractions or the Bromwich integral."
   },
   "facts": [],
   "formula": "L{f′} = sF(s) − f(0)",
@@ -848,7 +859,7 @@
   ],
   "summary": "Heat, wave and Laplace equations.",
   "layers": {
-   "basics": "Partial differential equations describe fields varying in space and time: heat flow, waves on a line, and voltage on a conductor.",
+   "basics": "Partial differential equations describe fields varying in space and time: heat flow, waves on a line, and voltage along a transmission line (the wave equation applies to the lossless case).",
    "deeper": "Separation of variables splits a PDE into ODEs. The wave equation underlies transmission lines; Laplace’s equation underlies electrostatics.",
    "expert": "Heat: u_t=αu_xx; wave: u_tt=c²u_xx; Laplace: ∇²φ=0. Boundary conditions and uniqueness theorems decide which solutions are physical; numerical solvers (FDM, FEM) fill in for awkward geometries."
   },
@@ -886,7 +897,7 @@
   "summary": "Rectangular arrays that solve many equations at once.",
   "layers": {
    "basics": "A matrix stores a list of equations compactly. Gaussian elimination solves them step by step.",
-   "deeper": "Nodal and mesh analysis of any circuit reduces to Ax=b with a conductance or impedance matrix.",
+   "deeper": "Nodal and mesh analysis of a linear circuit reduces to Ax=b with a conductance or impedance matrix (at one frequency, using phasors, for AC). Nonlinear circuits are solved as a sequence of such linear systems.",
    "expert": "LU factorization costs ~⅔n³ flops; ill-conditioned A amplifies error by condition number κ(A). Sparse solvers power circuit simulators."
   },
   "facts": [],
@@ -932,9 +943,9 @@
   "needs": [
    "matrices_systems"
   ],
-  "summary": "A single number telling if a matrix is invertible.",
+  "summary": "A single number telling if a square matrix is invertible.",
   "layers": {
-   "basics": "The determinant is zero exactly when the equations are dependent, so there is no unique solution.",
+   "basics": "For a square matrix, the determinant is zero exactly when the matrix is singular, meaning the system of equations has no unique solution.",
    "deeper": "It measures volume scaling of the transformation and appears in Cramer’s rule and in characteristic polynomials.",
    "expert": "det(AB)=det A·det B; det A=Πλᵢ. Singular node-admittance matrices flag floating nodes in a circuit."
   },
@@ -1006,9 +1017,9 @@
   ],
   "summary": "Directions that a matrix only stretches.",
   "layers": {
-   "basics": "An eigenvector is not turned by a matrix, only scaled by its eigenvalue.",
+   "basics": "An eigenvector keeps pointing along the same line when the matrix acts on it: it is only stretched, shrunk or flipped by its eigenvalue.",
    "deeper": "Eigenvalues are the natural frequencies and decay rates of linear systems and decide stability.",
-   "expert": "Av=λv, det(A−λI)=0. Symmetric matrices have real eigenvalues and orthogonal eigenvectors; the spectrum of A_state places closed-loop poles."
+   "expert": "Av=λv, det(A−λI)=0. Real symmetric (or Hermitian) matrices have real eigenvalues and an orthogonal set of eigenvectors. For a state-space system ẋ=Ax+Bu, the eigenvalues of A are the open-loop poles; with state feedback u=−Kx the eigenvalues of A−BK are the closed-loop poles."
   },
   "facts": [],
   "formula": "A v = λ v",
@@ -1046,7 +1057,7 @@
   "layers": {
    "basics": "Breaking a matrix into simpler pieces makes solving, compressing and analysing data easier.",
    "deeper": "SVD finds the dominant patterns in data (principal components, noise removal); QR gives stable least squares; Cholesky speeds symmetric solves.",
-   "expert": "A=UΣVᵀ with singular values σ₁≥σ₂≥…; truncated SVD is the best low-rank approximation (Eckart–Young). Used in MIMO precoding, Kalman filter square-root forms and balanced model reduction."
+   "expert": "A=UΣVᵀ with singular values σ₁≥σ₂≥…; truncated SVD is the best low-rank approximation (Eckart–Young). Used in MIMO precoding and balanced model reduction; square-root Kalman filters instead use Cholesky or QR factors. Other factorizations: LU (A=PLU) for general solves and QR (A=QR) for least squares."
   },
   "facts": [],
   "formula": "A = U Σ Vᵀ",
@@ -1081,10 +1092,10 @@
   "layers": {
    "basics": "A random variable assigns a number to an uncertain outcome. Its distribution says how likely each value is.",
    "deeper": "Bernoulli, binomial, Poisson, uniform, exponential and Gaussian distributions model bit errors, packet arrivals, component lifetimes and noise.",
-   "expert": "PMF/PDF/CDF; the Gaussian N(μ,σ²) emerges from sums by the central limit theorem, which is why thermal noise is Gaussian."
+   "expert": "PMF/PDF/CDF; the Gaussian N(μ,σ²) emerges from sums of many independent finite-variance contributions (central limit theorem); thermal noise is approximately Gaussian because it adds up many small random electron motions."
   },
   "facts": [],
-  "formula": "f(x) = e^{−(x−μ)²/2σ²}/(σ√2π)",
+  "formula": "f(x) = exp(−(x−μ)²/(2σ²)) / (σ√(2π))",
   "certainty": "C1",
   "refs": [
    [
@@ -1133,7 +1144,7 @@
   "summary": "Average value and spread.",
   "layers": {
    "basics": "The expected value is the long-run average; variance measures how widely values scatter around it.",
-   "deeper": "Noise power is variance; signal-to-noise ratio is a ratio of expectations.",
+   "deeper": "For zero-mean noise, noise power is the variance; signal-to-noise ratio is the ratio of expected signal power to expected noise power.",
    "expert": "E[X]=∫x f dx; Var X=E[X²]−E[X]²; covariance and correlation generalise to pairs; linearity of expectation holds without independence."
   },
   "facts": [],
@@ -1169,10 +1180,10 @@
   "layers": {
    "basics": "A random process is a whole family of possible waveforms, like all the possible noise traces from a resistor.",
    "deeper": "Stationarity lets us describe a process by its autocorrelation and power spectral density.",
-   "expert": "Wiener–Khinchin: S(f)=F{R(τ)}. White noise has flat PSD; filtering by H(f) multiplies PSD by |H(f)|². Ergodicity lets one long trace stand in for the ensemble."
+   "expert": "Wiener–Khinchin: S(f)=F{R(τ)}. White noise has flat PSD; filtering a wide-sense-stationary process by a stable linear time-invariant filter H(f) multiplies its PSD by |H(f)|². Ergodicity lets one long trace stand in for the ensemble."
   },
   "facts": [],
-  "formula": "S_y(f) = |H(f)|² S_x(f)",
+  "formula": "stable LTI H, stationary input: S_y(f) = |H(f)|² S_x(f)",
   "certainty": "C1",
   "refs": [
    [
@@ -1209,12 +1220,12 @@
   "summary": "Thermal, shot and flicker noise.",
   "layers": {
    "basics": "Every resistor hisses faintly from random electron motion; every current also carries shot noise from discrete charges.",
-   "deeper": "Thermal noise 4kTRB, shot noise 2qIB and 1/f noise are modelled as random sources added to circuits.",
-   "expert": "v_n²=4kTRΔf (Johnson–Nyquist); noise figure F=SNR_in/SNR_out; Friis cascade sets receiver sensitivity. Quantum limits appear at very low T or high f."
+   "deeper": "Thermal noise (mean-square voltage 4kTRB), shot noise (mean-square current 2qIB) and 1/f noise are modelled as random sources added to circuits. The physical origin of 1/f noise is still debated in many devices.",
+   "expert": "v_n²=4kTRΔf (Johnson–Nyquist), the classical low-frequency form valid for hf≪kT (below roughly a few terahertz at room temperature); noise figure F=SNR_in/SNR_out; Friis cascade sets receiver sensitivity. Quantum corrections appear at very low T or very high f."
   },
   "facts": [],
   "formula": "v_n² = 4kTRΔf",
-  "certainty": "C1",
+  "certainty": "C2",
   "refs": [],
   "kn": [
    "statistical_mechanics"
@@ -1248,10 +1259,10 @@
   "layers": {
    "basics": "Estimation turns noisy measurements into the best guess of the underlying quantity.",
    "deeper": "Least squares, maximum likelihood, and Kalman filtering are the working tools of sensors, GPS and radar.",
-   "expert": "Cramér–Rao bound Var(θ̂)≥1/I(θ). Kalman filter is the MMSE estimator for linear-Gaussian state-space models; Bayesian estimation gives the posterior."
+   "expert": "Cramér–Rao bound: for any unbiased estimator under regularity conditions, Var(θ̂)≥1/I(θ), where I(θ) is the Fisher information of the whole data set (n times the single-sample value for n independent identical samples). Kalman filter is the MMSE estimator for linear-Gaussian state-space models; Bayesian estimation gives the posterior."
   },
   "facts": [],
-  "formula": "Var(θ̂) ≥ 1/I(θ)",
+  "formula": "unbiased θ̂: Var(θ̂) ≥ 1/I(θ)",
   "certainty": "C1",
   "refs": [
    [
@@ -1260,6 +1271,16 @@
     "12-3-the-regression-equation"
    ]
   ],
+ "ext": [
+  {
+   "title": "Wikipedia: Kalman filter",
+   "url": "https://en.wikipedia.org/wiki/Kalman_filter"
+  },
+  {
+   "title": "Wikipedia: Cramér–Rao bound",
+   "url": "https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound"
+  }
+ ],
   "kn": [
    "bayes_stats"
   ]
@@ -1305,7 +1326,7 @@
  {
   "id": "euler_formula",
   "title": "Euler’s formula",
-  "kind": "law",
+  "kind": "concept",
   "template": "concept",
   "scale_m": null,
   "area": "ee_math",
@@ -1402,7 +1423,7 @@
   "summary": "Where a transfer function blows up or vanishes.",
   "layers": {
    "basics": "Poles are the complex frequencies where a system’s response is infinite, zeros where it vanishes. Together they sketch the response.",
-   "deeper": "Poles in the left half-plane mean decaying behaviour (stable); on the imaginary axis, oscillation; in the right half, runaway.",
+   "deeper": "Poles in the left half-plane mean decaying behaviour (stable); on the imaginary axis, simple poles give sustained oscillation (marginal stability) and repeated ones give growth; in the right half, runaway. This is for continuous-time (s-plane) systems.",
    "expert": "H(s)=K Π(s−zᵢ)/Π(s−pⱼ). Frequency response is |H(jω)| read off the pole-zero plot by distances to jω."
   },
   "facts": [],
@@ -1443,7 +1464,7 @@
   "layers": {
    "basics": "Integrals along loops in the complex plane can be computed from the poles inside them.",
    "deeper": "It gives inverse Laplace transforms and some real integrals that otherwise resist; also the Nyquist stability criterion’s argument principle.",
-   "expert": "∮f dz=2πj Σ Res f(zₖ) (Cauchy). Argument principle: N=Z−P encirclements. Jordan’s lemma handles semicircle arcs."
+   "expert": "∮f dz=2πj Σ Res f(zₖ) (Cauchy) for a counterclockwise simple closed contour, with f analytic except at isolated poles zₖ inside. Argument principle: the number of counterclockwise encirclements of the origin by f(z) along the contour equals Z−P, the zeros minus the poles of f inside it. Jordan’s lemma handles semicircle arcs."
   },
   "facts": [],
   "formula": "∮ f dz = 2πj ΣRes",
@@ -1528,7 +1549,7 @@
   "layers": {
    "basics": "A graph is dots joined by lines. A circuit diagram is a graph, and so is a network of computers.",
    "deeper": "Trees and cut sets give systematic mesh and node counts; shortest-path algorithms route packets.",
-   "expert": "Kirchhoff’s matrix-tree theorem counts spanning trees from the Laplacian; independent KCL equations = n−1, KVL = b−n+1."
+   "expert": "Kirchhoff’s matrix-tree theorem counts spanning trees from the Laplacian; for a connected circuit with n nodes and b branches there are n−1 independent KCL equations and b−n+1 independent KVL (mesh) equations."
   },
   "facts": [],
   "certainty": "C1",
@@ -1615,7 +1636,13 @@
   "facts": [],
   "formula": "x₍n+1₎ = xₙ − f(xₙ)/f′(xₙ)",
   "certainty": "C1",
-  "refs": [],
+  "refs": [
+   [
+    "CA1",
+    "4.9",
+    "4-9-newtons-method"
+   ]
+  ],
   "ext": [
    {
     "title": "Wikipedia: Newton's method",
@@ -1649,10 +1676,10 @@
   "layers": {
    "basics": "Trapezoid and Simpson rules estimate integrals from sampled values.",
    "deeper": "Used inside simulators to step through time and to compute energy and RMS from measured data.",
-   "expert": "Trapezoid error O(h²), Simpson O(h⁴); Gauss quadrature reaches higher order with fewer points."
+   "expert": "For sufficiently smooth f, the composite trapezoid rule has global error O(h²) and composite Simpson O(h⁴); Gauss quadrature reaches higher order with fewer points."
   },
   "facts": [],
-  "formula": "∫f ≈ h/2 [f₀ + 2f₁ + … + fₙ]",
+  "formula": "∫ₐᵇ f dx ≈ (h/2)[f₀ + 2f₁ + 2f₂ + … + 2f_{n−1} + fₙ],  h=(b−a)/n",
   "certainty": "C1",
   "refs": [
    [
@@ -1685,7 +1712,7 @@
   "layers": {
    "basics": "Euler’s method advances using the slope; better methods (Runge–Kutta, backward Euler) are more accurate or more stable.",
    "deeper": "SPICE uses implicit trapezoidal or Gear methods so that stiff circuits with fast and slow time constants stay stable.",
-   "expert": "Local error O(hᵖ⁺¹); stiffness requires A-stable implicit methods; adaptive step control keeps error below tolerance."
+   "expert": "Local error O(hᵖ⁺¹); stiff problems need implicit methods with large stability regions (A-stable or stiffly stable ones such as backward Euler or Gear/BDF), while explicit methods need tiny steps; adaptive step control keeps error below tolerance."
   },
   "facts": [],
   "formula": "yₙ₊₁ = yₙ + h f(tₙ, yₙ)",
@@ -1759,9 +1786,9 @@
   ],
   "summary": "Any signal is a sum of sinusoids.",
   "layers": {
-   "basics": "Fourier showed that periodic waves are sums of sine waves at multiples of a base frequency.",
+   "basics": "Fourier proposed in 1807 that periodic waves are sums of sine waves at multiples of a base frequency; later mathematicians such as Dirichlet made this precise for well-behaved waves.",
    "deeper": "Orthogonality of sines makes the coefficients easy to compute with an integral; the idea extends to non-repeating signals.",
-   "expert": "Convergence (Dirichlet), Gibbs overshoot ~9% at jumps, Parseval’s theorem equates energy in time and frequency."
+   "expert": "Convergence (Dirichlet conditions); Gibbs overshoot of about 9% of the jump size at a jump discontinuity (it does not shrink as more terms are added); Parseval’s theorem equates energy in time and frequency."
   },
   "facts": [],
   "formula": "x(t)=Σ cₖ e^{jkω₀t}",

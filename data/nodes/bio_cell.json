@@ -50,7 +50,12 @@
    "deeper": "Prokaryotic cells are simple and small; eukaryotic cells have a nucleus and compartments. Compartments let a cell run incompatible chemistry side by side and target proteins to the right place.",
    "expert": "Cell behaviour emerges from networks: signalling pathways convert external cues to gene-expression and cytoskeletal changes, while checkpoints tie growth to division and trigger apoptosis when damage is irreparable."
   },
-  "facts": [],
+  "facts": [
+  [
+   "Domains of life",
+   "3: bacteria, archaea, eukaryotes"
+  ]
+  ],
   "certainty": "C1",
   "refs": [],
   "kn": [
@@ -80,7 +85,7 @@
   "layers": {
    "basics": "Prokaryotes (bacteria and archaea) lack a nucleus and membrane-bound organelles. Eukaryotes keep their DNA in a nucleus and have compartments.",
    "deeper": "Prokaryotes are typically 0.5–5 µm and eukaryotes 10–100 µm. Both have ribosomes, DNA and a plasma membrane.",
-   "expert": "Eukaryotes arose from an archaeal host that acquired bacterial endosymbionts. Eukaryotic cell volume is ≈ 1,000–10,000× that of a bacterium and mitochondria give the energy budget to support large genomes."
+   "expert": "Eukaryotes arose from an archaeal host that acquired a bacterial endosymbiont. Eukaryotic cell volume is ≈ 1,000–10,000× that of a bacterium. One influential hypothesis is that mitochondria supplied the energy per gene needed to support large genomes; later analyses question how large that energy gap really is, so the idea is debated."
   },
   "facts": [
    [
@@ -92,7 +97,10 @@
     "≈ 10–30 µm"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Which archaeal lineage was the host, why complex cells arose only once, and whether mitochondrial energy made large genomes possible are still debated."
+  ],
   "refs": [
    [
     "BIO",
@@ -138,7 +146,7 @@
   "layers": {
    "basics": "As a cell grows, volume increases faster than surface area, so it becomes harder to supply and clear the interior.",
    "deeper": "This is why cells divide, why gut lining and lung surfaces are folded, and why large cells use many small compartments.",
-   "expert": "For a sphere SA/V = 3/r. Diffusion time scales with distance squared (t ≈ x²/2D); in cytoplasm, a small molecule diffuses ≈ 10 µm in ≈ 50 ms but 1 mm in ≈ 10 min."
+   "expert": "For a sphere SA/V = 3/r. Diffusion time scales with distance squared (t ≈ x²/2D in one dimension). In water, where a small molecule has D ≈ 10⁻⁹ m²/s, it covers 10 µm in about 50 ms but 1 mm in about 8 minutes. Cytoplasm is more crowded, so small molecules diffuse several times more slowly there and the times are correspondingly longer."
   },
   "facts": [
    [
@@ -147,10 +155,10 @@
    ],
    [
     "Diffusion time for 10 µm",
-    "≈ 50 ms"
+    "≈ 50 ms in water (several times longer in cytoplasm)"
    ]
   ],
-  "formula": "t ≈ x² / (2D)",
+  "formula": "t ≈ x²/(2D) in one dimension (x²/(6D) in three)",
   "certainty": "C1",
   "refs": [
    [
@@ -191,7 +199,7 @@
   "layers": {
    "basics": "The plasma membrane is a fluid bilayer of phospholipids with proteins, cholesterol and carbohydrates embedded.",
    "deeper": "Lipids and many proteins move sideways; cholesterol buffers fluidity. Membrane proteins act as channels, pumps, receptors and anchors.",
-   "expert": "Lipid rafts and cytoskeletal fences create domains; the membrane is asymmetric between leaflets. Membrane composition changes with temperature (homeoviscous adaptation)."
+   "expert": "Cytoskeletal fences confine many membrane proteins into domains, and the membrane is asymmetric between leaflets. Membrane composition changes with temperature (homeoviscous adaptation). Whether lipid rafts, small ordered lipid patches, exist as stable domains in living cells is still debated."
   },
   "facts": [
    [
@@ -200,10 +208,13 @@
    ],
    [
     "Protein share of mass",
-    "≈ 50%"
+    "≈ 50% in a typical plasma membrane (about 18–75% across membranes)"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Whether lipid rafts exist as stable ordered domains in living cells, and how large and long-lived they are, is debated."
+  ],
   "refs": [
    [
     "BIO",
@@ -254,7 +265,7 @@
   "layers": {
    "basics": "Particles spread from high to low concentration (diffusion). Water follows by osmosis across a semipermeable membrane toward higher solute concentration.",
    "deeper": "Small nonpolar molecules (O2, CO2) cross membranes directly. Cells in hypotonic solution swell, in hypertonic solution shrink; plant walls prevent bursting.",
-   "expert": "Fick's first law gives flux J = −D dC/dx. Aquaporins increase osmotic water permeability by ≈ 10–100-fold; Peter Agre received the 2003 Nobel for their discovery."
+   "expert": "Fick's first law gives flux J = −D dC/dx. Expressing the aquaporin CHIP28 (AQP1) in Xenopus oocytes raised their osmotic water permeability (Preston et al., 1992); Peter Agre received the 2003 Nobel for their discovery."
   },
   "facts": [
    [
@@ -263,7 +274,7 @@
    ],
    [
     "Aquaporin rate",
-    "≈ 3×10⁹ water/s"
+    "≈ 3×10⁹ water molecules/s per channel (AQP1 monomer; an estimate)"
    ]
   ],
   "formula": "J = −D·dC/dx",
@@ -308,12 +319,12 @@
   "layers": {
    "basics": "Channel and carrier proteins let ions and polar molecules cross membranes without energy, always downhill.",
    "deeper": "Ion channels can be gated by voltage, ligand or force. GLUT transporters move glucose into cells.",
-   "expert": "Channels conduct up to 10^7–10^8 ions/s while carriers cycle at 10²–10⁴ s⁻¹. Selectivity filters (K+ channel) discriminate by dehydration and coordination geometry."
+   "expert": "Channels pass up to about 10⁷–10⁸ ions per second, while carriers cycle at about 10²–10⁴ per second. The selectivity filter of a K⁺ channel replaces the ion's water shell with oxygen atoms from the protein backbone; exactly why this excludes Na⁺ is still studied."
   },
   "facts": [
    [
     "K+ channel selectivity",
-    "≈ 1000:1 over Na+"
+    "at least ≈ 1000:1 over Na⁺ (varies by channel)"
    ],
    [
     "GLUT1 rate",
@@ -357,8 +368,8 @@
   "summary": "Pumping against gradients with ATP.",
   "layers": {
    "basics": "The sodium-potassium pump uses ATP to push 3 Na+ out and 2 K+ in. It builds and maintains the ion gradients.",
-   "deeper": "It consumes about a quarter of resting ATP in the body and up to two-thirds in neurons. Secondary active transport (e.g. SGLT) uses the sodium gradient to import glucose.",
-   "expert": "P-type ATPases phosphorylate an aspartate in the cycle. Digoxin inhibits the pump and raises intracellular Ca2+ in the heart. Co-transport and antiport couple solute movement to ion gradients."
+   "deeper": "It uses a large share of resting ATP, and the share depends on cell type and conditions; one review puts it at over 80% of ATP turnover in neurons. Secondary active transport (e.g. SGLT) uses the sodium gradient to import glucose.",
+   "expert": "P-type ATPases phosphorylate an aspartate in the cycle. Digoxin inhibits the pump and raises intracellular Ca²⁺ in the heart. Co-transport and antiport couple solute movement to ion gradients."
   },
   "facts": [
    [
@@ -366,8 +377,8 @@
     "3 Na⁺ out : 2 K⁺ in per ATP"
    ],
    [
-    "Share of resting ATP",
-    "≈ 20–25%"
+    "Share of ATP used by the pump",
+    "large; over 80% in neurons (one estimate)"
    ]
   ],
   "certainty": "C1",
@@ -469,7 +480,7 @@
   "layers": {
    "basics": "Cells are electrically polarised, with the inside negative. Ion gradients and selective channels create this resting voltage.",
    "deeper": "Resting potential is ≈ −70 mV in neurons, set mainly by K+ leak channels. Changes in this voltage are the basis of nerve signals.",
-   "expert": "The Goldman–Hodgkin–Katz equation weights each ion by permeability. Mitochondria also maintain a ≈ −180 mV potential across their inner membrane."
+   "expert": "The Goldman–Hodgkin–Katz equation weights each ion by permeability. Mitochondria keep the matrix roughly 150–180 mV negative of the intermembrane space, depending on cell state."
   },
   "facts": [
    [
@@ -478,10 +489,10 @@
    ],
    [
     "Mitochondrial inner membrane",
-    "≈ −180 mV"
+    "≈ −150 to −180 mV (matrix side negative)"
    ]
   ],
-  "formula": "Vm = (RT/F)·ln[(ΣPₖ[K]ₒ + …)/(ΣPₖ[K]ᵢ + …)]",
+  "formula": "Vm = (RT/F)·ln[(P_K[K⁺]ₒ + P_Na[Na⁺]ₒ + P_Cl[Cl⁻]ᵢ)/(P_K[K⁺]ᵢ + P_Na[Na⁺]ᵢ + P_Cl[Cl⁻]ₒ)]",
   "certainty": "C1",
   "refs": [
    [
@@ -522,12 +533,12 @@
   "layers": {
    "basics": "The nucleus holds chromosomes inside a double membrane with pores. The nucleolus inside builds ribosome parts.",
    "deeper": "Nuclear pore complexes regulate traffic between nucleus and cytoplasm; mRNA exits while transcription factors enter.",
-   "expert": "Each pore is ≈ 120 MDa made of ≈ 30 distinct nucleoporins and passes ≈ 1,000 translocations per second. The lamina gives mechanical support; mutations in lamin A cause progeria."
+   "expert": "A vertebrate pore is ≈ 110–125 MDa (a yeast pore is about half that) and is built from about 30 different nucleoporins; one pore can handle on the order of 10³ translocations per second (an estimate). The lamina gives mechanical support; mutations in lamin A cause progeria."
   },
   "facts": [
    [
     "Nuclear pore mass",
-    "≈ 120 MDa"
+    "≈ 110–125 MDa (vertebrate)"
    ],
    [
     "Pores per nucleus",
@@ -573,7 +584,7 @@
   "summary": "Getting proteins to the right place.",
   "layers": {
    "basics": "Proteins destined for secretion or membranes are made on ER-bound ribosomes, folded and glycosylated in the ER, sorted in the Golgi, and shipped in vesicles.",
-   "deeper": "A short signal sequence on the new chain directs it to the ER. Other signals send proteins to the nucleus, mitochondria or lysosomes.",
+   "deeper": "A short signal sequence on the new chain directs most ER proteins to the ER. Other signals send proteins to the nucleus and mitochondria, and lysosomal enzymes are tagged with mannose-6-phosphate in the Golgi.",
    "expert": "The signal recognition particle (SRP) pauses translation and docks the ribosome onto the translocon (Sec61). Mannose-6-phosphate tags direct enzymes to lysosomes; I-cell disease results from loss of the tagging enzyme."
   },
   "facts": [
@@ -623,7 +634,7 @@
   "layers": {
    "basics": "In autophagy a membrane wraps cytoplasm or damaged organelles and delivers them to lysosomes for breakdown and recycling.",
    "deeper": "It is activated by starvation and stress, and clears damaged mitochondria (mitophagy) and aggregates. Yoshinori Ohsumi won the 2016 Nobel for discovering its mechanisms.",
-   "expert": "The ATG gene family drives phagophore formation; mTOR inhibition triggers it. Impaired autophagy is linked to neurodegeneration and cancer, but tumours can also exploit it."
+   "expert": "The ATG gene family drives phagophore formation; mTOR inhibition triggers it. Impaired autophagy is linked to neurodegeneration and cancer, but tumours can also exploit it, so the effect of boosting or blocking it depends on context."
   },
   "facts": [
    [
@@ -635,13 +646,11 @@
     "≈ 0.5–1.5 µm"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Whether boosting or blocking autophagy helps in cancer and neurodegeneration depends on context and is not settled."
+  ],
   "refs": [
-   [
-    "BIO",
-    "4.4",
-    "4-4-the-endomembrane-system-and-proteins"
-   ],
    [
     "ANP",
     "3.2",
@@ -671,8 +680,8 @@
   ],
   "summary": "Mitochondria and chloroplasts as ex-bacteria.",
   "layers": {
-   "basics": "Mitochondria and chloroplasts descend from free-living bacteria engulfed by ancestral cells. They keep their own DNA and ribosomes and divide independently.",
-   "deeper": "Evidence: circular DNA, bacterial-type ribosomes, double membranes, and genes that group with alpha-proteobacteria (mitochondria) and cyanobacteria (chloroplasts). Lynn Margulis championed the idea in 1967.",
+   "basics": "Mitochondria and chloroplasts descend from free-living bacteria that came to live inside ancestral cells. They keep a small genome and their own ribosomes and divide by fission, but most of the proteins they need are made from nuclear genes.",
+   "deeper": "Evidence: circular DNA, bacterial-type ribosomes, double membranes, and genes that most closely resemble those of alpha-proteobacteria (the exact bacterial relative of mitochondria is debated) and cyanobacteria (chloroplasts). Lynn Margulis championed the idea in 1967.",
    "expert": "Most endosymbiont genes have moved to the nucleus; the human mtDNA retains only 37 genes (16.6 kb). Secondary endosymbiosis explains algae with 3–4 membranes around plastids. The identity of the archaeal host (Asgard archaea) is still being tested."
   },
   "facts": [
@@ -687,7 +696,7 @@
   ],
   "certainty": "C2",
   "open_questions": [
-   "The exact nature of the host cell and the timing of mitochondrial acquisition relative to eukaryotic complexity (mitochondria-early vs late) remain debated."
+   "Asgard archaea are the closest known relatives of the host, but how the first endosymbiont entered, how complex the host already was, and when mitochondria were acquired relative to eukaryotic complexity (early or late) are still debated."
   ],
   "refs": [
    [
@@ -795,7 +804,7 @@
   ],
   "summary": "Outer layers that support and connect cells.",
   "layers": {
-   "basics": "Plant cells have cellulose walls, bacteria have peptidoglycan walls and fungi have chitin. Animal cells are embedded in an extracellular matrix of collagen and other proteins.",
+   "basics": "Plant cells have cellulose walls, most bacteria have peptidoglycan walls and fungi have walls of chitin and glucan. Animal cells are embedded in an extracellular matrix of collagen and other proteins.",
    "deeper": "Walls resist osmotic bursting; the ECM carries signals and guides cell migration. Collagen is the most abundant protein in the human body.",
    "expert": "Integrins link the ECM to the actin cytoskeleton and transmit mechanical signals (mechanotransduction). Primary vs secondary plant walls differ in composition; lignin makes wood rigid."
   },
@@ -806,7 +815,7 @@
    ],
    [
     "Bacterial wall",
-    "peptidoglycan"
+    "peptidoglycan (most bacteria)"
    ]
   ],
   "certainty": "C1",
@@ -846,7 +855,7 @@
   "layers": {
    "basics": "Tight junctions seal gaps between cells, desmosomes act as spot rivets, and gap junctions form channels that let small molecules pass.",
    "deeper": "Plant cells connect through plasmodesmata. Junctions let tissues act as units, for example synchronising heart cells.",
-   "expert": "Gap junctions are made of connexins and pass molecules < 1 kDa. Tight junctions (claudins, occludin) set epithelial barrier properties and the blood–brain barrier."
+   "expert": "Vertebrate gap junctions are made of connexins (invertebrates use innexins) and pass molecules up to roughly 1 kDa. Tight junctions (claudins, occludin) set epithelial barrier properties and the blood–brain barrier."
   },
   "facts": [
    [
@@ -854,8 +863,8 @@
     "≈ 1 kDa"
    ],
    [
-    "Plasmodesmata pore",
-    "≈ 3–50 nm"
+    "Plasmodesma size",
+    "≈ 30 nm wide and ≈ 100 nm long (simple type); only the narrow cytoplasmic sleeve is open to traffic"
    ]
   ],
   "certainty": "C1",
@@ -999,12 +1008,12 @@
   "layers": {
    "basics": "A signalling molecule (ligand) binds a receptor, which starts a chain of events inside the cell leading to a response.",
    "deeper": "Signals can act at a distance (endocrine), nearby (paracrine), on themselves (autocrine) or by direct contact. Receptors are at the surface or inside.",
-   "expert": "Signalling networks add amplification, feedback and crosstalk. Response specificity arises from receptor type, scaffold proteins and cell context; typical receptor K_d ≈ nM."
+   "expert": "Signalling networks add amplification, feedback and crosstalk. Response specificity arises from receptor type, scaffold proteins and cell context; receptor affinities (K_d) span roughly picomolar to micromolar, and many hormone receptors bind in the nanomolar range or tighter."
   },
   "facts": [
    [
     "Receptor affinity",
-    "K_d ≈ nM"
+    "K_d ≈ pM–µM; often nM for hormone receptors"
    ],
    [
     "Signalling classes",
@@ -1027,11 +1036,6 @@
     "BIO",
     "9.3",
     "9-3-response-to-the-signal"
-   ],
-   [
-    "COB",
-    "6.1",
-    "6-1-the-genome"
    ]
   ],
   "kn": [
@@ -1121,12 +1125,12 @@
   "layers": {
    "basics": "When a growth factor binds an RTK, receptors pair up and phosphorylate each other. This starts cascades such as Ras–MAP kinase.",
    "deeper": "Cascades amplify the signal and end in changes to transcription factors. Mutations that lock Ras or RTKs \"on\" drive many cancers.",
-   "expert": "SH2 domains dock to phosphotyrosines, Grb2/SOS activates Ras, and the Raf–MEK–ERK module relays the signal. Imatinib and other kinase inhibitors target these pathways."
+   "expert": "SH2 domains dock to phosphotyrosines, Grb2/SOS activates Ras, and the Raf–MEK–ERK module relays the signal. Kinase inhibitors act on such signalling: gefitinib blocks the receptor EGFR, and imatinib blocks the kinases BCR-ABL, KIT and PDGFR."
   },
   "facts": [
    [
-    "Ras mutated in",
-    "≈ 20–30% of human cancers"
+    "RAS mutated in",
+    "≈ 20–25% of human cancers (KRAS, NRAS, HRAS together)"
    ],
    [
     "MAPK tiers",
@@ -1171,9 +1175,9 @@
   ],
   "summary": "Small molecules that spread the message.",
   "layers": {
-   "basics": "cAMP, IP3, diacylglycerol and Ca2+ are small second messengers that relay and amplify signals.",
-   "deeper": "Cytosolic Ca2+ rises from ≈ 100 nM to ≈ 1 µM when channels open, triggering muscle contraction, secretion and fertilisation responses.",
-   "expert": "Calmodulin decodes Ca2+ oscillations; phosphodiesterases degrade cAMP (caffeine inhibits them). Signal amplification: one activated receptor can generate thousands of second messengers."
+   "basics": "cAMP, IP3, diacylglycerol and Ca²⁺ are small second messengers that relay and amplify signals.",
+   "deeper": "Cytosolic Ca²⁺ rises from ≈ 100 nM to ≈ 1 µM when channels open, triggering muscle contraction, secretion and fertilisation responses.",
+   "expert": "Calmodulin binds Ca²⁺ and switches on enzymes such as CaMKII, which can decode the frequency of Ca²⁺ oscillations. Phosphodiesterases degrade cAMP; caffeine inhibits them only at high, non-physiological doses, and at normal doses it mainly blocks adenosine receptors. Signal amplification: one activated receptor can generate thousands of second messengers."
   },
   "facts": [
    [
@@ -1226,7 +1230,7 @@
   ],
   "summary": "Hormones that act directly on gene expression.",
   "layers": {
-   "basics": "Lipid-soluble hormones like cortisol, estrogen and thyroid hormone cross the membrane and bind receptors that act as transcription factors.",
+   "basics": "Steroid hormones such as cortisol and estrogen cross the membrane freely, and thyroid hormone enters through transporters; all bind receptors that act as transcription factors.",
    "deeper": "The hormone–receptor complex binds hormone response elements in DNA and turns genes on or off. Effects are slower but longer lasting than membrane receptors.",
    "expert": "The nuclear receptor superfamily has ≈ 48 human members. Many drugs (tamoxifen, glucocorticoids) target them."
   },
@@ -1282,14 +1286,14 @@
   ],
   "summary": "G1, S, G2 and M.",
   "layers": {
-   "basics": "Cells grow in G1, copy DNA in S, prepare in G2 and divide in M phase (mitosis and cytokinesis).",
-   "deeper": "Cell cycle lengths vary: ≈ 24 h in typical cultured human cells, ≈ 20 min for E. coli, and G0 for cells that exit the cycle such as neurons.",
+   "basics": "G1 is the main growth phase, DNA is copied in S, and the cell finishes preparing in G2 and divide in M phase (mitosis and cytokinesis).",
+   "deeper": "Cell cycle lengths vary: ≈ 24 h in typical cultured human cells, ≈ 20 min for E. coli in ideal conditions, and G0 for cells that exit the cycle such as neurons.",
    "expert": "Cyclin-dependent kinases (CDKs) partner with cyclins, whose abundance oscillates. Three main checkpoints: G1/S, G2/M and the spindle checkpoint in metaphase."
   },
   "facts": [
    [
-    "Typical human cell cycle",
-    "≈ 24 h"
+    "Typical cultured human cell cycle",
+    "≈ 24 h (in the body, from hours to years)"
    ],
    [
     "S phase",
@@ -1342,13 +1346,13 @@
   "summary": "Brakes and accelerators of division.",
   "layers": {
    "basics": "Checkpoints stop the cycle if DNA is damaged or chromosomes are not aligned. Proteins like p53 and Rb act as brakes.",
-   "deeper": "Cyclin–CDK complexes push the cycle forward; p21 and p27 inhibit them. Mutated p53 is found in about half of human cancers.",
-   "expert": "Rb holds E2F transcription factors until phosphorylated by CDK4/6. p53 senses DNA damage via ATM/ATR and induces arrest, repair or apoptosis; the anaphase-promoting complex triggers separation of sister chromatids."
+   "deeper": "Cyclin–CDK complexes push the cycle forward; p21 and p27 inhibit them. Mutated p53 is found in roughly a third to a half of human cancers, depending on the dataset.",
+   "expert": "Rb holds E2F transcription factors until phosphorylated by CDK4/6. the kinases ATM and ATR detect DNA damage and activate p53, which then induces arrest, repair or apoptosis; the anaphase-promoting complex triggers separation of sister chromatids."
   },
   "facts": [
    [
     "TP53 mutated in",
-    "≈ 50% of cancers"
+    "≈ 35–50% of human cancers, depending on the dataset"
    ],
    [
     "CDK4/6 inhibitors",
@@ -1406,7 +1410,7 @@
   "facts": [
    [
     "E. coli doubling time",
-    "≈ 20 min"
+    "≈ 20 min in rich medium at 37 °C (hours in poor conditions)"
    ],
    [
     "Bacterial division protein",
@@ -1454,26 +1458,21 @@
   "summary": "Programmed cell suicide.",
   "layers": {
    "basics": "Apoptosis is an orderly, controlled way for cells to die. It shapes tissues in development and removes damaged cells.",
-   "deeper": "A cascade of caspase enzymes cuts cell components. The cell shrinks, blebs and is eaten by neighbours without causing inflammation, unlike necrosis.",
-   "expert": "Intrinsic pathway: mitochondrial cytochrome c release and apoptosome; extrinsic: death receptors (Fas). BCL-2 family proteins balance survival. In C. elegans exactly 131 of 1,090 somatic cells die by apoptosis."
+   "deeper": "A cascade of caspase enzymes cuts cell components. The cell shrinks, blebs and is eaten by neighbours without causing inflammation, unlike necrosis. Cells can also die by regulated non-apoptotic routes, including necroptosis, pyroptosis and ferroptosis, which do provoke inflammation.",
+   "expert": "Intrinsic pathway: mitochondrial cytochrome c release and apoptosome; extrinsic: death receptors (Fas). BCL-2 family proteins balance survival. In the C. elegans hermaphrodite, 131 of the 1,090 somatic cells made during development die by programmed cell death."
   },
   "facts": [
    [
     "C. elegans cells dying",
-    "131"
+    "131 (hermaphrodite)"
    ],
    [
-    "Adult human cells lost per day",
-    "≈ 50–70 billion"
+    "Adult human cells turned over per day",
+    "≈ 3×10¹¹ (about 90% blood cells; Sender and Milo, 2021)"
    ]
   ],
   "certainty": "C1",
   "refs": [
-   [
-    "BIO",
-    "10.3",
-    "10-3-control-of-the-cell-cycle"
-   ],
    [
     "ANP",
     "3.5",
@@ -1514,8 +1513,8 @@
   ],
   "summary": "Cells that can renew and become specialised.",
   "layers": {
-   "basics": "Stem cells divide to renew themselves and to produce cells that specialise. Embryonic stem cells can give rise to any cell type.",
-   "deeper": "Adult stem cells (bone marrow, gut crypts, skin) maintain tissues. Reprogramming adult cells to induced pluripotent stem cells (iPSC) won Yamanaka the 2012 Nobel.",
+   "basics": "Stem cells divide to renew themselves and to produce cells that specialise. Embryonic stem cells are pluripotent: they can give rise to nearly every cell type of the body, but not to a whole organism with its placenta.",
+   "deeper": "Adult stem cells (bone marrow, gut crypts, skin) maintain tissues. Reprogramming adult cells to induced pluripotent stem cells (iPSC) won Shinya Yamanaka and John Gurdon (whose nuclear-transfer work showed that mature nuclei can be reprogrammed) the 2012 Nobel Prize in Physiology or Medicine.",
    "expert": "Pluripotency is maintained by OCT4, SOX2 and NANOG; differentiation involves epigenetic restriction. Applications include disease modelling, organoids and cell therapy; safety concerns include tumour formation."
   },
   "facts": [
@@ -1534,11 +1533,6 @@
     "ANP",
     "3.6",
     "3-6-cellular-differentiation"
-   ],
-   [
-    "BIO",
-    "10.1",
-    "10-1-cell-division"
    ]
   ],
   "kn": [
@@ -1574,13 +1568,13 @@
   "summary": "The cell's division counter.",
   "layers": {
    "basics": "Telomeres are repeated DNA caps at chromosome ends that shorten with each division. When short, cells stop dividing (senescence).",
-   "deeper": "Telomerase rebuilds telomeres in stem and germ cells and is reactivated in most cancers. Hayflick found normal human cells divide ≈ 40–60 times.",
-   "expert": "Human telomere repeat TTAGGG, 5–15 kb long at birth. Senescent cells secrete inflammatory factors (SASP); clearing them extends healthspan in mice. How much telomere loss drives human ageing is still being studied."
+   "deeper": "Telomerase rebuilds telomeres in stem and germ cells and is reactivated in most cancers. Hayflick and Moorhead found that cultured human fetal fibroblasts stop after about 50 ± 10 doublings.",
+   "expert": "The human telomere repeat is TTAGGG; telomeres are several to about 15 kb long at birth, vary between people and cell types, and shorten with age. Senescent cells secrete inflammatory factors (SASP); clearing them extends healthspan in mice. How much telomere loss drives human ageing is still being studied."
   },
   "facts": [
    [
     "Hayflick limit",
-    "≈ 40–60 divisions"
+    "≈ 50 ± 10 doublings (cultured fetal fibroblasts)"
    ],
    [
     "Telomere repeat",

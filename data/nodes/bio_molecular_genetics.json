@@ -43,12 +43,28 @@
   "summary": "How genetic information is stored, copied, read and regulated.",
   "layers": {
    "basics": "DNA stores instructions, RNA copies them, and ribosomes build proteins from them. Cells also decide which genes to read, when and how much.",
-   "deeper": "Replication copies the genome with high fidelity and repair systems fix damage. Transcription and translation follow the genetic code, and layers of regulation (chromatin, factors, RNAs) control expression.",
+   "deeper": "DNA polymerase proofreads as it copies and mismatch repair fixes errors it misses, so copying mistakes are very rare. Transcription and translation follow the genetic code, and layers of regulation (chromatin, factors, RNAs) control expression.",
    "expert": "Gene expression is a regulated, noisy, multi-step process with feedback at every level. Chromatin state, noncoding RNAs and post-transcriptional control give eukaryotes a vast regulatory repertoire."
   },
   "facts": [],
   "certainty": "C1",
-  "refs": [],
+  "refs": [
+   [
+    "BIO",
+    "14.3",
+    "14-3-basics-of-dna-replication"
+   ],
+   [
+    "BIO",
+    "15.1",
+    "15-1-the-genetic-code"
+   ],
+   [
+    "BIO",
+    "16.1",
+    "16-1-regulation-of-gene-expression"
+   ]
+  ],
   "kn": [
    "central_dogma",
    "dna_structure",
@@ -161,7 +177,7 @@
     "≈ 2 m"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
   "refs": [
    [
     "BIO",
@@ -177,7 +193,10 @@
   "kn": [
    "chromatin_genome"
   ],
-  "where": "place:dna"
+  "where": "place:dna",
+  "open_questions": [
+   "What is the three-dimensional structure of chromatin in living cells beyond the nucleosome?"
+  ]
  },
  {
   "id": "bio_central_dogma",
@@ -203,8 +222,8 @@
   "summary": "DNA to RNA to protein.",
   "layers": {
    "basics": "Information normally flows from DNA to RNA to protein. DNA is copied (replication), read (transcription) and translated into proteins.",
-   "deeper": "Exceptions: retroviruses copy RNA into DNA with reverse transcriptase, RNA viruses replicate RNA, and prions transmit shape-based information.",
-   "expert": "Crick's 1958 formulation prohibits information flow from protein back to nucleic acid; this still holds. Telomerase and retrotransposons also use reverse transcription."
+   "deeper": "Exceptions: retroviruses copy RNA into DNA with reverse transcriptase, RNA viruses replicate RNA, and prions copy a protein fold rather than a sequence, so they do not break the rule.",
+   "expert": "Crick's 1958 rule forbids transfer of sequence information out of protein, to protein or to nucleic acid. It still holds. Telomerase and retrotransposons also use reverse transcription."
   },
   "facts": [
    [
@@ -225,8 +244,13 @@
    ],
    [
     "COB",
-    "9.1",
-    "9-1-the-structure-of-dna"
+    "9.3",
+    "9-3-transcription"
+   ],
+   [
+    "COB",
+    "9.4",
+    "9-4-translation"
    ]
   ],
   "kn": [
@@ -259,7 +283,7 @@
   "layers": {
    "basics": "Each new double helix has one old and one new strand (semiconservative). Helicase unwinds the DNA and DNA polymerase builds new strands from the 5′ to 3′ direction.",
    "deeper": "The leading strand is made continuously, the lagging strand in short Okazaki fragments joined by ligase. Primase lays RNA primers.",
-   "expert": "E. coli replicates ≈ 1,000 nt/s with an error rate ≈ 10⁻¹⁰ per base after proofreading and mismatch repair; human forks move ≈ 50 nt/s from ≈ 30,000–50,000 origins. Meselson–Stahl confirmed semiconservative replication in 1958."
+   "expert": "E. coli replicates ≈ 1,000 nt/s with an error rate ≈ 10⁻¹⁰ per base after proofreading and mismatch repair; human forks move much more slowly than bacterial ones and start from many thousands of origins in each S phase. Meselson–Stahl confirmed semiconservative replication in 1958."
   },
   "facts": [
    [
@@ -267,8 +291,8 @@
     "≈ 1,000 nt/s"
    ],
    [
-    "Final error rate",
-    "≈ 10⁻¹⁰ per bp"
+    "Final error rate after proofreading and mismatch repair",
+    "≈ 10⁻⁹–10⁻¹⁰ per base per replication"
    ]
   ],
   "certainty": "C1",
@@ -373,7 +397,7 @@
   "layers": {
    "basics": "Cells can swap segments between DNA molecules (recombination) and some DNA sequences can move around the genome (transposons).",
    "deeper": "Crossing over in meiosis is recombination; transposons make up ≈ 45% of the human genome, mostly inactive remnants.",
-   "expert": "Barbara McClintock discovered mobile elements in maize. Retrotransposons (LINEs, Alus) copy via RNA; V(D)J recombination uses recombination to build antibody genes."
+   "expert": "Barbara McClintock discovered mobile elements in maize. Retrotransposons (LINEs, Alus) copy via RNA; V(D)J recombination uses the RAG1 and RAG2 proteins to cut and join gene segments, which builds antibody and T-cell receptor genes."
   },
   "facts": [
    [
@@ -389,13 +413,8 @@
   "refs": [
    [
     "BIO",
-    "14.6",
-    "14-6-dna-repair"
-   ],
-   [
-    "MIC",
-    "11.6",
-    "11-6-how-asexual-prokaryotes-achieve-genetic-diversity"
+    "11.1",
+    "11-1-the-process-of-meiosis"
    ]
   ],
   "kn": [
@@ -425,7 +444,7 @@
   "layers": {
    "basics": "Each group of three bases (codon) in mRNA specifies one amino acid or a stop. There are 64 codons for 20 amino acids.",
    "deeper": "The code is redundant (\"degenerate\") and almost universal. AUG codes for methionine and starts translation; UAA, UAG, UGA are stop codons.",
-   "expert": "Wobble pairing at the third position lets ≈ 40 tRNAs read 61 sense codons. Codon usage bias affects expression; some organisms recode stop codons (e.g., UGA for selenocysteine)."
+   "expert": "Wobble pairing at the third position lets ≈ 40 tRNAs read 61 sense codons. Codon usage bias affects expression; some genomes reassign codons (UGA codes tryptophan in Mycoplasma and many mitochondria; UAA and UAG code glutamine in some ciliates). Separately, UGA can code selenocysteine in specific genes when a special mRNA hairpin (SECIS element) is present; this is a context-dependent reading of the stop codon, not a reassignment."
   },
   "facts": [
    [
@@ -541,13 +560,13 @@
   "summary": "Three polymerases and general factors.",
   "layers": {
    "basics": "Eukaryotes use three RNA polymerases (I, II, III). Pol II makes mRNA and needs many general transcription factors.",
-   "deeper": "The TATA box and the pre-initiation complex position Pol II; enhancers far away boost transcription through looping.",
+   "deeper": "General transcription factors assemble a pre-initiation complex that positions Pol II at the start site. Many human promoters have no TATA box and rely on other core elements; enhancers far away boost transcription through looping.",
    "expert": "Mediator, TFIID and chromatin remodellers integrate signals; transcription is bursty. Pol II CTD phosphorylation coordinates capping, splicing and termination."
   },
   "facts": [
    [
-    "Pol II machinery",
-    "≈ 50 proteins"
+    "Pol II + general factors in the pre-initiation complex",
+    "dozens of polypeptides (Mediator adds more)"
    ],
    [
     "Transcription speed",
@@ -589,7 +608,7 @@
   "layers": {
    "basics": "Eukaryotic pre-mRNA gets a 5′ cap and a poly-A tail, and introns are cut out so exons are joined (splicing).",
    "deeper": "Cap and tail protect mRNA and help translation. The spliceosome, made of snRNAs and proteins, removes introns.",
-   "expert": "Human genes average ≈ 8–9 exons; introns are ≈ 95% of a gene. Alternative splicing lets ≈ 95% of multi-exon genes make more than one mRNA, so ≈ 20,000 genes give ≫ 20,000 proteins."
+   "expert": "Human genes average ≈ 8–9 exons; introns are ≈ 95% of a gene. Alternative splicing lets most multi-exon genes make more than one mRNA, so there are many more transcript isoforms than genes. How many of them are made into distinct, functional proteins is still debated: protein-level surveys find a single dominant isoform for the vast majority of genes."
   },
   "facts": [
    [
@@ -598,10 +617,10 @@
    ],
    [
     "Multi-exon genes alternatively spliced",
-    "≈ 95%"
+    "most"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
   "refs": [
    [
     "BIO",
@@ -617,7 +636,10 @@
   "kn": [
    "central_dogma"
   ],
-  "where": "place:dna"
+  "where": "place:dna",
+  "open_questions": [
+   "How many of the many splice isoforms are translated into proteins with distinct functions?"
+  ]
  },
  {
   "id": "bio_trna_translation_machinery",
@@ -752,8 +774,8 @@
   ],
   "summary": "Gene regulation in bacteria.",
   "layers": {
-   "basics": "Bacteria group related genes into an operon controlled together. The lac operon is turned on only when lactose is present and glucose is low.",
-   "deeper": "A repressor blocks the lac promoter until lactose (allolactose) releases it; CAP–cAMP boosts transcription when glucose is scarce. The trp operon is switched off when tryptophan is plentiful.",
+   "basics": "Bacteria group related genes into an operon controlled together. The lac operon is switched on strongly when lactose is present and glucose is scarce. With glucose present it stays at a low level.",
+   "deeper": "The LacI repressor binds the operator beside the promoter and blocks RNA polymerase, until allolactose (made from lactose) binds the repressor and releases it; CAP–cAMP boosts transcription when glucose is scarce. The trp operon is switched off when tryptophan is plentiful.",
    "expert": "Jacob and Monod proposed the operon model in 1961 (Nobel 1965). The lac system shows combinatorial control, and trp adds attenuation. Gene circuits built from these parts are the basis of synthetic biology."
   },
   "facts": [
@@ -868,7 +890,7 @@
   "summary": "Heritable changes in expression without changes in sequence.",
   "layers": {
    "basics": "Chemical tags on DNA (methylation) and on histones change how tightly DNA is packed and whether genes are active.",
-   "deeper": "Methylation of CpG sites usually silences genes. X-inactivation and genomic imprinting use epigenetic silencing; marks can be passed through cell divisions.",
+   "deeper": "Methylation of CpG sites in promoters usually silences genes, whereas methylation within gene bodies is often found in actively transcribed genes. X-inactivation and genomic imprinting use epigenetic silencing; marks can be passed through cell divisions.",
    "expert": "Histone acetylation opens chromatin, H3K27me3 marks repression and H3K4me3 marks active promoters. Transgenerational epigenetic inheritance in humans is debated and evidence is limited."
   },
   "facts": [
@@ -930,14 +952,14 @@
   ],
   "summary": "Parent-of-origin and dosage compensation.",
   "layers": {
-   "basics": "In female mammals one X chromosome is silenced in each cell. Some genes are expressed only from the maternal or only the paternal copy (imprinting).",
+   "basics": "In female placental mammals one X chromosome is mostly silenced in each cell. Which one is random, and a minority of genes on it escape silencing. Some genes are expressed only from the maternal or only the paternal copy (imprinting).",
    "deeper": "Tortoiseshell and calico cats show X-inactivation as a patchwork of coat colours. Imprinting disorders include Prader–Willi and Angelman syndromes.",
-   "expert": "Xist RNA coats the inactive X and recruits silencing complexes. Imprinted genes (~100–200 in humans) are regulated by differentially methylated regions set in the germline."
+   "expert": "Xist RNA coats the inactive X and recruits silencing complexes. Imprinted genes (on the order of 100 well established in humans, with more candidates) are regulated by differentially methylated regions set in the germline."
   },
   "facts": [
    [
     "Imprinted genes in humans",
-    "≈ 100–200"
+    "≈ 100 or more (catalogues differ)"
    ],
    [
     "Xist RNA length",
@@ -984,7 +1006,7 @@
   "summary": "RNAs that regulate rather than code.",
   "layers": {
    "basics": "Small RNAs (microRNA, siRNA) bind mRNAs and reduce their expression. Long noncoding RNAs act as scaffolds and guides.",
-   "deeper": "RNA interference was discovered in C. elegans (Fire and Mello, Nobel 2006). Over 2,000 human miRNAs regulate a majority of genes.",
+   "deeper": "RNA interference was discovered in C. elegans (Fire and Mello, Nobel 2006). Annotation databases list well over 1,000 human miRNAs, but a curated 2015 analysis found fewer than a third of the 1,881 human entries then listed to be robustly supported. Conserved target sites suggest that more than 60% of human protein-coding genes are regulated by miRNAs.",
    "expert": "Argonaute proteins load guide RNAs into RISC and cleave or repress targets. piRNAs defend germ cells against transposons. Many lncRNAs have unknown function and their number (≈ 20,000+) is debated."
   },
   "facts": [
@@ -993,11 +1015,11 @@
     "≈ 22 nt"
    ],
    [
-    "Human miRNAs",
-    "≈ 2,000"
+    "Human miRNA genes",
+    "several hundred well supported (database lists are longer and include doubtful entries)"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
   "refs": [
    [
     "BIO",
@@ -1023,6 +1045,10 @@
     "title": "Wikipedia: RNA interference",
     "url": "https://en.wikipedia.org/wiki/RNA_interference"
    }
+  ],
+  "open_questions": [
+   "How many human lncRNAs are functional rather than transcriptional noise?",
+   "How many annotated miRNAs are real?"
   ]
  },
  {
@@ -1048,16 +1074,16 @@
   "layers": {
    "basics": "Cells also control genes by regulating how long mRNAs last and where they are used.",
    "deeper": "RNA-binding proteins and miRNAs target mRNAs for decay; localised mRNAs let proteins be made where needed, as in neuron dendrites.",
-   "expert": "Nonsense-mediated decay removes mRNAs with premature stops. Poly-A tail length and AU-rich elements set half-life; mRNA vaccines use modified nucleosides and optimised UTRs to improve stability."
+   "expert": "Nonsense-mediated decay removes mRNAs with premature stops. Decay of most mRNAs starts with deadenylation, the shortening of the poly-A tail, and in mouse fibroblasts most molecules are degraded only once the tail falls below about 25 nt. Rates of deadenylation differ about 1000-fold between mRNAs, which sets their lifetimes."
   },
   "facts": [
    [
-    "Average mammalian mRNA half-life",
-    "≈ 9 h"
+    "mRNA half-life",
+    "varies very widely between genes (up to ≈ 1000-fold in decay rate in mouse fibroblasts); depends on cell type and method"
    ],
    [
     "Nonsense-mediated decay",
-    "degrades PTC-mRNAs"
+    "degrades mRNAs with a premature stop codon (PTC)"
    ]
   ],
   "certainty": "C1",
@@ -1175,9 +1201,20 @@
    "deeper": "Genes sit on chromosomes, so some travel together (linkage) and can be mapped. Mutations create new alleles, chromosome changes cause syndromes, and complex traits depend on many genes and the environment.",
    "expert": "Population genetics tracks allele frequencies through time under mutation, selection, drift, migration and non-random mating; the Hardy–Weinberg principle is the null model."
   },
-  "facts": [],
+  "facts": [
+   [
+    "Mendel's pea-plant paper",
+    "1866 (rediscovered c. 1900)"
+   ]
+  ],
   "certainty": "C1",
-  "refs": [],
+  "refs": [
+   [
+    "BIO",
+    "12.1",
+    "12-1-mendels-experiments-and-the-laws-of-probability"
+   ]
+  ],
   "kn": [
    "genetics_inheritance"
   ]
@@ -1331,11 +1368,11 @@
     "1/4"
    ],
    [
-    "P(carrier) from Aa × Aa unaffected",
+    "P(carrier | unaffected child of Aa × Aa)",
     "2/3"
    ]
   ],
-  "formula": "P(A and B) = P(A)·P(B);  P(A or B) = P(A) + P(B)",
+  "formula": "P(A and B) = P(A)·P(B) if A and B are independent;  P(A or B) = P(A) + P(B) if A and B are mutually exclusive (in general P(A or B) = P(A) + P(B) − P(A and B))",
   "certainty": "C1",
   "refs": [
    [
@@ -1449,7 +1486,7 @@
   },
   "facts": [
    [
-    "Human gamete combinations",
+    "Human gamete combinations from chromosome assortment alone (no crossing over)",
     "2²³ ≈ 8.4 million"
    ],
    [
@@ -1497,7 +1534,7 @@
   "layers": {
    "basics": "In incomplete dominance the heterozygote is intermediate; in codominance both alleles show, as in AB blood. Some genes have more than two alleles.",
    "deeper": "ABO blood group has three alleles (IA, IB, i). Rh and other factors add further antigens.",
-   "expert": "Dominance is a property of the phenotype and level of observation, not of the molecule: sickle-cell heterozygotes are recessive for anaemia, codominant for haemoglobin, and dominant for malaria resistance."
+   "expert": "Dominance is a property of the phenotype and level of observation, not of the molecule: sickle-cell heterozygotes are recessive for anaemia, codominant for haemoglobin, and dominant for partial protection against severe malaria."
   },
   "facts": [
    [
@@ -1506,7 +1543,7 @@
    ],
    [
     "Sickle heterozygote",
-    "malaria resistance"
+    "partial protection against severe malaria"
    ]
   ],
   "certainty": "C1",
@@ -1612,7 +1649,7 @@
   "layers": {
    "basics": "Meiosis makes four genetically different cells with half the chromosomes. Crossing over and random assortment shuffle alleles.",
    "deeper": "Crossing over happens between homologous chromosomes in prophase I. Fertilisation restores the diploid number.",
-   "expert": "About 1–2 crossovers per human chromosome arm. Nondisjunction in meiosis I or II causes aneuploidy; the chance rises with maternal age (Down syndrome ≈ 1/1,500 at 20 vs ≈ 1/100 at 40)."
+   "expert": "Nearly every human chromosome pair gets at least one crossover, and larger chromosomes get more (chromosome 1 had 2–6 in males in one large study). Averaged over the genome that is ≈ 50 (male) to ≈ 70 (female) crossovers per meiosis. Nondisjunction in meiosis I or II causes aneuploidy; the chance rises steeply with maternal age. That rise is well documented; its cause is still being worked out."
   },
   "facts": [
    [
@@ -1621,7 +1658,7 @@
    ],
    [
     "Crossovers per human meiosis",
-    "≈ 40–60"
+    "≈ 50 in males, ≈ 70 in females (MLH1 foci per cell)"
    ]
   ],
   "certainty": "C1",
@@ -1699,11 +1736,6 @@
     "BIO",
     "13.1",
     "13-1-chromosomal-theory-and-genetic-linkage"
-   ],
-   [
-    "COB",
-    "7.1",
-    "7-1-sexual-reproduction"
    ]
   ],
   "kn": [
@@ -1732,7 +1764,7 @@
   "summary": "Genes close together travel together.",
   "layers": {
    "basics": "Genes near each other on a chromosome tend to be inherited together. Crossing over breaks the link sometimes, and its frequency estimates distance.",
-   "deeper": "One map unit (1 centimorgan) equals 1% recombination. A three-point test cross orders genes along a chromosome.",
+   "deeper": "For short distances, one map unit (1 centimorgan) corresponds to 1% recombination; for longer distances the recombination frequency underestimates map distance. A three-point test cross orders genes along a chromosome.",
    "expert": "Recombination frequency saturates at 50% for far-apart genes; mapping functions (Haldane, Kosambi) correct for double crossovers. Human genetic map ≈ 3,500 cM; ≈ 1 cM ≈ 1 Mb on average."
   },
   "facts": [
@@ -1785,14 +1817,14 @@
   ],
   "summary": "X and Y chromosomes and their traits.",
   "layers": {
-   "basics": "In humans XX is female and XY is male. Genes on the X show different patterns in males and females.",
+   "basics": "In humans XX is typically female and XY typically male, though variants such as XXY, XO and XY females also occur. Genes on the X show different patterns in males and females.",
    "deeper": "X-linked recessive traits such as red–green colour blindness and haemophilia are more common in males, who have only one X.",
    "expert": "SRY on the Y triggers male development. Other systems: ZW in birds, haplodiploidy in bees, temperature-dependent sex in many reptiles. Dosage compensation evolves by different mechanisms."
   },
   "facts": [
    [
     "Red–green colour blindness",
-    "≈ 8% of men, 0.5% of women"
+    "≈ 8% of men and ≈ 0.5% of women of Northern European ancestry (lower in other populations)"
    ],
    [
     "SRY",
@@ -1843,7 +1875,7 @@
   "summary": "Reading family trees.",
   "layers": {
    "basics": "A pedigree chart shows who in a family has a trait. Its pattern suggests dominant, recessive or sex-linked inheritance.",
-   "deeper": "Squares are males, circles females, shaded symbols affected individuals. Affected children of unaffected parents imply recessive inheritance.",
+   "deeper": "Squares are males, circles females, shaded symbols affected individuals. Affected children of unaffected parents suggest recessive inheritance (autosomal or X-linked), although new mutations or reduced penetrance can produce the same pattern.",
    "expert": "Software computes likelihoods for carrier status using Bayes' theorem and linkage data. Complicating factors: reduced penetrance, new mutations, mosaicism, consanguinity."
   },
   "facts": [
@@ -1852,7 +1884,7 @@
     "≈ 1 in 25"
    ],
    [
-    "Carrier risk, sibling of affected",
+    "Carrier risk, unaffected sibling of a person with an autosomal recessive disease",
     "2/3"
    ]
   ],
@@ -1903,7 +1935,7 @@
   "layers": {
    "basics": "A mutation is a change in the DNA sequence. Point mutations swap one base; insertions and deletions can shift the reading frame.",
    "deeper": "Silent, missense and nonsense mutations differ in effect on the protein. Most mutations are neutral or harmful; a few are beneficial.",
-   "expert": "The human germline mutation rate is ≈ 1.2×10⁻⁸ per base per generation, giving ≈ 70 new mutations per child. Somatic mutations accumulate in tissues and drive cancer."
+   "expert": "The human germline mutation rate is ≈ 1.2×10⁻⁸ per base per generation in Icelandic trios whose fathers averaged about 30 years old. For a genome of about 6 billion bases that gives roughly 70 new single-base changes per child. The count rises by about two for each extra year of the father's age. Somatic mutations accumulate in tissues and drive cancer."
   },
   "facts": [
    [
@@ -1911,8 +1943,8 @@
     "≈ 1.2×10⁻⁸ per bp"
    ],
    [
-    "New mutations per child",
-    "≈ 70"
+    "New single-base changes per child",
+    "≈ 70 (rises with father's age)"
    ]
   ],
   "certainty": "C1",
@@ -1926,11 +1958,6 @@
     "MIC",
     "11.5",
     "11-5-mutations"
-   ],
-   [
-    "COB",
-    "9.5",
-    "9-5-how-genes-are-regulated"
    ]
   ],
   "kn": [
@@ -2011,9 +2038,9 @@
   ],
   "summary": "Mendelian diseases and non-Mendelian inheritance.",
   "layers": {
-   "basics": "Cystic fibrosis, sickle-cell disease and Huntington's disease are caused by changes in single genes. Mitochondrial DNA is inherited from the mother.",
+   "basics": "Cystic fibrosis, sickle-cell disease and Huntington's disease are caused by changes in single genes. Mitochondrial DNA is inherited almost entirely from the mother.",
    "deeper": "Autosomal recessive diseases need two mutant copies; dominant ones need one. Mitochondrial diseases show maternal inheritance and heteroplasmy.",
-   "expert": "CFTR ΔF508 is the most common cystic fibrosis allele; Huntington's disease is a CAG repeat expansion in HTT. OMIM lists > 7,000 single-gene phenotypes."
+   "expert": "CFTR ΔF508 is the most common cystic fibrosis allele; Huntington's disease is a CAG repeat expansion in HTT. OMIM catalogues thousands of single-gene phenotypes, and the count keeps growing."
   },
   "facts": [
    [
@@ -2021,8 +2048,8 @@
     "≈ 1 in 25"
    ],
    [
-    "Known Mendelian phenotypes",
-    "> 7,000"
+    "Known Mendelian phenotypes with a known molecular basis",
+    "thousands (count grows; see OMIM statistics)"
    ]
   ],
   "certainty": "C1",
@@ -2062,7 +2089,7 @@
   "layers": {
    "basics": "Height, weight and yield vary continuously because many genes and the environment contribute.",
    "deeper": "Heritability is the fraction of variation in a population due to genetic differences; it is not the same as genetic determination and applies to a population, not an individual.",
-   "expert": "Broad-sense H² = VG/VP; narrow-sense h² = VA/VP predicts response to selection (breeder's equation R = h²S). Human height h² ≈ 0.8, but ≈ 12,000 variants explain most of the genetic variance."
+   "expert": "Broad-sense H² = VG/VP; narrow-sense h² = VA/VP predicts response to selection (breeder's equation R = h²S). R is the response to selection and S the selection differential. Human height has a narrow-sense heritability of ≈ 0.8 in twin and family studies. A 2022 GWAS of 5.4 million people found ≈ 12,000 common variants that together explain ≈ 40% of height variation in people of European ancestry (only about 10–20% in other ancestries), roughly half the heritability. The rest is thought to lie in rarer variants and effects not yet captured."
   },
   "facts": [
    [
@@ -2074,8 +2101,8 @@
     "R = h²S"
    ]
   ],
-  "formula": "R = h²·S",
-  "certainty": "C1",
+  "formula": "R = h²·S  (R = response to selection, S = selection differential, h² = narrow-sense heritability)",
+  "certainty": "C2",
   "refs": [
    [
     "BIO",
@@ -2091,7 +2118,10 @@
   "kn": [
    "genetics_inheritance"
   ],
-  "where": "place:dna"
+  "where": "place:dna",
+  "open_questions": [
+   "Where the rest of the heritability of height lies (rarer variants, imperfect tagging, other effects) is still being worked out."
+  ]
  },
  {
   "id": "bio_gwas",
@@ -2114,7 +2144,7 @@
   ],
   "summary": "Finding variants linked to traits.",
   "layers": {
-   "basics": "GWAS compare the genomes of thousands of people with and without a trait to find variants that are more common in one group.",
+   "basics": "GWAS compare the genotypes of thousands of people at millions of common variants, to find variants whose frequency differs between people with and without a trait, or that track a measured trait.",
    "deeper": "Most hits have small effects. Results are used to build polygenic scores and to find drug targets.",
    "expert": "Genome-wide significance is p < 5×10⁻⁸ to correct for ≈ 10⁶ independent tests. Confounding by population structure and ancestry bias in reference data are major concerns."
   },
@@ -2128,7 +2158,7 @@
     "small (< 1% of variance)"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
   "refs": [
    [
     "BIO",
@@ -2144,7 +2174,10 @@
   "kn": [
    "bayes_stats"
   ],
-  "where": "place:dna"
+  "where": "place:dna",
+  "open_questions": [
+   "How can polygenic scores be made accurate across ancestries?"
+  ]
  },
  {
   "id": "bio_population_genetics",
@@ -2285,7 +2318,7 @@
   "layers": {
    "basics": "Genetic drift is random change in small populations; gene flow mixes alleles between populations; selection favours alleles that boost survival and reproduction.",
    "deeper": "Bottlenecks and founder effects reduce diversity. Heterozygote advantage maintains the sickle-cell allele where malaria is common.",
-   "expert": "Selection coefficient s changes allele frequency by Δp ≈ s·p·q/w̄ for a haploid model. Fixation probability of a neutral allele equals its frequency; for a new beneficial mutation it is ≈ 2s."
+   "expert": "Selection coefficient s changes allele frequency by Δp ≈ s·p·q/w̄ for a haploid model. Fixation probability of a neutral allele equals its frequency; for a new, additive beneficial mutation with small s in a large diploid population it is ≈ 2s (≈ s in a haploid model)."
   },
   "facts": [
    [
@@ -2293,8 +2326,8 @@
     "≈ 2s"
    ],
    [
-    "Time to fixation of neutral allele",
-    "≈ 4Ne generations"
+    "Mean time to fixation of a neutral allele that does fix",
+    "≈ 4Ne generations (idealised diploid population)"
    ]
   ],
   "certainty": "C1",
@@ -2358,8 +2391,8 @@
     "1995 Texas pumas"
    ]
   ],
-  "formula": "F = Σ(½)^(n₁+n₂+1)",
-  "certainty": "C1",
+  "formula": "F = Σ (½)^(n₁+n₂+1) (1+F_A), summed over every path through a common ancestor A, where n₁ and n₂ count the individuals from each parent up to and including A. For first cousins there are two common ancestors, so F = 2 × (½)⁵ = 1/16.",
+  "certainty": "C2",
   "refs": [
    [
     "BIO",
@@ -2375,6 +2408,9 @@
   "kn": [
    "biodiversity_conservation"
   ],
-  "where": "place:park"
+  "where": "place:park",
+  "open_questions": [
+   "How much are harmful recessive alleles purged in long-inbred populations, and when does genetic rescue help?"
+  ]
  }
 ]

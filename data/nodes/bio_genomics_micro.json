@@ -37,7 +37,7 @@
   "summary": "Reading, copying and editing DNA, and analysing biological data.",
   "layers": {
    "basics": "Biotechnology uses cells and molecules as tools. PCR copies DNA, gels separate it, sequencers read it, and CRISPR edits it.",
-   "deeper": "Sequencing has become a million-fold cheaper in two decades, producing datasets that need computing to interpret. Alignment, phylogenetics and omics methods turn raw sequences into biological insight.",
+   "deeper": "Sequencing a human genome has become more than a hundred thousand times cheaper in two decades, producing datasets that need computing to interpret. Alignment, phylogenetics and omics methods turn raw sequences into biological insight.",
    "expert": "Method choice depends on read length, throughput, error profile and cost. Editing technologies raise safety and ethics questions that are as important as the technical ones."
   },
   "facts": [],
@@ -134,20 +134,20 @@
   "summary": "Exponentially copying a chosen DNA region.",
   "layers": {
    "basics": "PCR uses heat cycles, short primers and a heat-stable DNA polymerase to make millions of copies of one DNA segment.",
-   "deeper": "Each cycle (denature ≈ 95 °C, anneal ≈ 55–65 °C, extend ≈ 72 °C) roughly doubles the target, so 30 cycles give ≈ 10⁹ copies. Kary Mullis devised it in 1983 (Nobel 1993).",
+   "deeper": "Each cycle (denature ≈ 95 °C, anneal ≈ 55–65 °C, extend ≈ 72 °C) at best doubles the target. With perfect doubling 30 cycles give 2³⁰ ≈ 10⁹ copies; real reactions copy less than perfectly each cycle and level off as reagents run out. Kary Mullis devised it in 1983 (Nobel 1993).",
    "expert": "Primer design (Tm, specificity), polymerase fidelity and inhibitors determine success. qPCR measures amplification in real time; RT-PCR starts from RNA; digital PCR counts single molecules."
   },
   "facts": [
    [
     "Copies after n cycles",
-    "2ⁿ"
+    "(1 + E)ⁿ, where E ≤ 1 is the efficiency; 2ⁿ if E = 1"
    ],
    [
     "Typical run",
     "25–35 cycles, 1–2 h"
    ]
   ],
-  "formula": "N = N₀·2ⁿ",
+  "formula": "N = N₀·(1+E)ⁿ",
   "certainty": "C1",
   "refs": [
    [
@@ -383,13 +383,13 @@
   "summary": "Massively parallel DNA reading.",
   "layers": {
    "basics": "Instead of one fragment at a time, NGS reads millions to billions of short fragments simultaneously, typically 100–300 bases each.",
-   "deeper": "Illumina sequencing-by-synthesis images fluorescent bases added cycle by cycle. Sequencing a human genome fell from ≈ $3 billion (2003) to ≈ $200–600 now.",
+   "deeper": "Illumina sequencing-by-synthesis images fluorescent bases added cycle by cycle. NHGRI's estimate of the production cost of sequencing a human-sized genome fell from ≈ $95 million (2001) to ≈ $525 (2022); the estimate leaves out analysis.",
    "expert": "Coverage (reads per base, ≈ 30× for human WGS) determines variant-calling confidence. Long-read platforms (PacBio HiFi, Oxford Nanopore) give 10 kb–Mb reads that resolve repeats and structural variants."
   },
   "facts": [
    [
-    "Human genome sequencing cost",
-    "≈ $200–600"
+    "Cost per genome (NHGRI series)",
+    "≈ $95 million (2001) → ≈ $525 (2022)"
    ],
    [
     "Standard coverage",
@@ -440,7 +440,7 @@
   "summary": "From reads to a genome and its genes.",
   "layers": {
    "basics": "Short reads are stitched into longer sequences (assembly) and genes and other features are marked (annotation).",
-   "deeper": "Repeats make assembly hard. The first complete human genome without gaps (T2T-CHM13) was published in 2022.",
+   "deeper": "Repeats make assembly hard. In 2022 the T2T consortium published T2T-CHM13, the first gapless sequence of every human chromosome except Y (3.055 Gb, from a homozygous 46,XX cell line). A gapless Y chromosome followed in 2023.",
    "expert": "Assemblers use overlap or de Bruijn graphs; scaffolding uses Hi-C or optical maps. Annotation combines ab initio prediction, RNA-seq evidence and homology."
   },
   "facts": [
@@ -450,7 +450,7 @@
    ],
    [
     "T2T-CHM13",
-    "2022"
+    "2022 (all chromosomes except Y)"
    ]
   ],
   "certainty": "C1",
@@ -605,22 +605,12 @@
   ],
   "did_you_know": "The CRISPR repeats were first noticed in E. coli in 1987 and only decades later linked to bacterial immunity.",
   "certainty": "C1",
-  "refs": [
-   [
-    "BIO",
-    "17.1",
-    "17-1-biotechnology"
-   ],
-   [
-    "MIC",
-    "12.4",
-    "12-4-gene-therapy"
-   ],
-   [
-    "ORG",
-    "28.8",
-    "28-8-the-polymerase-chain-reaction"
-   ]
+  "refs": [],
+  "ext": [
+   {
+    "title": "Jinek et al. 2012, Science 337:816: dual-RNA-guided DNA endonuclease",
+    "url": "https://www.science.org/doi/10.1126/science.1225829"
+   }
   ],
   "kn": [
    "crispr_biotech"
@@ -659,8 +649,8 @@
   },
   "facts": [
    [
-    "Share of US corn that is GM",
-    "≈ 90%"
+    "Share of US corn acres planted with GE varieties (USDA, 2025)",
+    "> 90% (≈ 87% insect-resistant, ≈ 92% herbicide-tolerant, 84% stacked)"
    ],
    [
     "First GM food approved",
@@ -720,7 +710,11 @@
     "2012"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How long do single-dose gene therapies last, and what are their rare long-term risks such as vector integration and immune reactions?",
+   "Can very high prices be made sustainable for ultra-rare diseases?"
+  ],
   "refs": [
    [
     "MIC",
@@ -769,8 +763,8 @@
     "20"
    ],
    [
-    "Random match probability",
-    "< 1 in 10⁹ typical"
+    "Random match probability (full profile)",
+    "well below 1 in 10⁹ for unrelated people; weaker for partial, mixed or related-person comparisons"
    ]
   ],
   "certainty": "C1",
@@ -832,6 +826,12 @@
     "20-2-determining-evolutionary-relationships"
    ]
   ],
+  "ext": [
+   {
+    "title": "Henikoff and Henikoff 1992, PNAS 89:10915: BLOSUM substitution matrices",
+    "url": "https://doi.org/10.1073/pnas.89.22.10915"
+   }
+  ],
   "kn": [
    "information_theory"
   ],
@@ -868,7 +868,7 @@
   "layers": {
    "basics": "BLAST quickly searches huge databases for sequences similar to yours. Databases like GenBank, UniProt and the PDB store sequences and structures.",
    "deeper": "The E-value says how many matches of that score you would expect by chance; smaller is more significant. Annotated databases link sequences to function.",
-   "expert": "BLAST uses seeds (words of ≈ 3 aa or 11 nt) extended into high-scoring pairs. GenBank holds > 10¹² bases; AlphaFold DB provides > 200 million predicted structures."
+   "expert": "BLAST uses seeds (short words, a few amino acids or some nucleotides depending on the program and settings) extended into high-scoring pairs. GenBank release 274 (October 2026) holds ≈ 9×10¹² bases in its traditional divisions and ≈ 5×10¹³ more in whole-genome-shotgun records; AlphaFold DB provides > 200 million predicted structures."
   },
   "facts": [
    [
@@ -876,8 +876,8 @@
     "< 10⁻⁵ often used"
    ],
    [
-    "GenBank size",
-    "> 10¹² bases"
+    "GenBank size (release 274, Oct 2026)",
+    "≈ 9×10¹² bases (traditional) + ≈ 5×10¹³ (WGS)"
    ]
   ],
   "certainty": "C1",
@@ -978,9 +978,9 @@
   ],
   "summary": "What genomes reveal when compared.",
   "layers": {
-   "basics": "Comparing genomes shows shared genes between species and what makes each unique. Humans and chimpanzees differ by ≈ 1.2% in single-base changes.",
-   "deeper": "Humans have ≈ 20,000 protein-coding genes, similar to other mammals; most of the genome is regulatory or repetitive. The Human Genome Project (1990–2003) cost ≈ $2.7 billion.",
-   "expert": "Conserved noncoding elements flag functional regions. Human populations share ≈ 99.9% of their DNA; most variation lies within, not between, continental groups (≈ 85–90%)."
+   "basics": "Comparing genomes shows shared genes between species and what makes each unique. Humans and chimpanzees differ by ≈ 1.2% in single-base changes, plus about five million insertion or deletion events.",
+   "deeper": "Humans have ≈ 20,000 protein-coding genes, similar to other mammals; only about 5–10% of the genome shows signs of purifying selection (one study: 8.2%, range 7.1–9.2%), and about half is repeat or transposon-derived DNA. How much of the rest is functional is debated. The Human Genome Project (1990–2003) cost ≈ $2.7 billion.",
+   "expert": "Conserved noncoding elements flag functional regions. Two people differ at about 0.1% of single-base positions, and at least ≈ 0.5% once copy-number and other structural variants are counted. Classic estimates put ≈ 85% of human genetic variation within local populations, so most variation is shared across continents; the exact share depends on the markers and study."
   },
   "facts": [
    [
@@ -988,11 +988,14 @@
     "≈ 1.2% (SNVs)"
    ],
    [
-    "Variation within populations",
-    "≈ 85–90%"
+    "Variation within local populations",
+    "≈ 85% in classic estimates (varies with markers)"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How much of the human genome has a biological function, and does the answer depend on how function is defined?"
+  ],
   "refs": [
    [
     "BIO",
@@ -1033,12 +1036,12 @@
   "layers": {
    "basics": "Sequencing all DNA from a sample (soil, water, gut) reveals the microbes present without growing them.",
    "deeper": "16S rRNA gene sequencing classifies bacteria; shotgun metagenomics adds functional genes. eDNA from water can detect rare animals.",
-   "expert": "Most microbial species have never been cultured (the \"great plate count anomaly\"); metagenome-assembled genomes expand the tree of life, including Asgard archaea and the CPR bacteria."
+   "expert": "In many environments only a small fraction of the cells seen under a microscope form colonies on standard media (the \"great plate count anomaly\"); metagenome-assembled genomes expand the tree of life, including Asgard archaea and the CPR bacteria."
   },
   "facts": [
    [
-    "Cultured share of microbes",
-    "≈ < 1–2% (many habitats)"
+    "Cells that grow on standard media",
+    "a small minority in many environments; varies widely by habitat"
    ],
    [
     "16S gene length",
@@ -1099,7 +1102,7 @@
   "related": [],
   "mesh": null,
   "needs": [],
-  "summary": "Bacteria, archaea, protists, fungi and viruses, and how they affect us.",
+  "summary": "Bacteria, archaea, protists and viruses, and how they affect us.",
   "layers": {
    "basics": "Microbes are the most numerous and diverse living things. Many are harmless or helpful, a few cause disease, and viruses are particles that replicate only inside cells.",
    "deeper": "Bacteria and archaea show enormous metabolic variety, exchange genes horizontally and form communities such as biofilms and the human microbiome. Viruses are classified by their genomes and replication.",
@@ -1136,7 +1139,7 @@
   "layers": {
    "basics": "Bacteria have a cell wall of peptidoglycan, a nucleoid region, ribosomes, and often flagella or pili.",
    "deeper": "Gram-positive bacteria have a thick peptidoglycan layer; Gram-negative ones have a thin layer plus an outer membrane. This explains Gram stain results and antibiotic susceptibility.",
-   "expert": "The outer membrane carries lipopolysaccharide (endotoxin). Capsules, S-layers and endospores add protection; endospores of Bacillus can survive > 10⁵ years in some reports."
+   "expert": "The outer membrane carries lipopolysaccharide (endotoxin). Capsules, S-layers and endospores add protection; endospores can stay viable for very long times, and revival after millions of years has been claimed (for example from amber and salt crystals) but is not independently established."
   },
   "facts": [
    [
@@ -1196,12 +1199,12 @@
   },
   "facts": [
    [
-    "Generation time E. coli",
-    "≈ 20 min"
+    "Generation time, E. coli",
+    "≈ 20 min in optimal lab conditions; longer in poorer conditions"
    ],
    [
-    "Colony count",
-    "CFU/mL"
+    "Formula valid only",
+    "in the exponential (log) phase"
    ]
   ],
   "formula": "N = N₀·2^(t/g)",
@@ -1259,20 +1262,23 @@
   "summary": "Many ways to make a living.",
   "layers": {
    "basics": "Microbes get energy from light (phototrophs), organic molecules (heterotrophs) or inorganic chemicals (chemolithotrophs), and carbon from CO2 or organic matter.",
-   "deeper": "Anaerobic respiration uses alternatives to oxygen (nitrate, sulfate, CO2). Cyanobacteria invented oxygenic photosynthesis ≈ 2.4–3 billion years ago.",
+   "deeper": "Anaerobic respiration uses alternatives to oxygen (nitrate, sulfate, CO2). Cyanobacteria evolved oxygenic photosynthesis at least ≈ 2.4 billion years ago, before the Great Oxidation Event; some evidence points to ≈ 2.7 billion years or earlier, and the date is debated.",
    "expert": "Nitrogen fixers (nitrogenase), methanogens, sulfate reducers and anammox bacteria drive global cycles. Electron donors and acceptors set energy yield via the redox tower."
   },
   "facts": [
    [
     "Oxygenic photosynthesis arose",
-    "≈ 2.4–3 Ga"
+    "before ≈ 2.4 Ga (≈ 2.7 Ga or earlier debated)"
    ],
    [
     "Methanogens",
     "archaea only"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "When did oxygenic photosynthesis first evolve?"
+  ],
   "refs": [
    [
     "MIC",
@@ -1323,7 +1329,7 @@
   "layers": {
    "basics": "Bacteria share genes by conjugation (plasmid transfer), transformation (taking up free DNA) and transduction (via phage).",
    "deeper": "This spreads traits like antibiotic resistance among species. Griffith's 1928 mouse experiments revealed transformation.",
-   "expert": "Genomes of one species can differ by 10–30% in gene content (pan-genome). Integrons, transposons and plasmids (F, R) drive gene mobility; CRISPR provides adaptive defence."
+   "expert": "Strains of one species can differ widely in gene content (the pan-genome is the set of all genes found in the species). In a 20-strain E. coli study an average genome held ≈ 4,700 genes, the pan-genome held ≈ 17,800, and one strain revealed only about a quarter of it. Integrons, transposons and plasmids (F, R) drive gene mobility; CRISPR provides adaptive defence."
   },
   "facts": [
    [
@@ -1332,7 +1338,7 @@
    ],
    [
     "E. coli core genome",
-    "≈ 50% of pan-genome"
+    "≈ 2,000 genes in a 20-strain study: ≈ 11% of its 17,838-gene pan-genome, ≈ 40–45% of an average genome"
    ]
   ],
   "certainty": "C1",
@@ -1373,9 +1379,9 @@
   ],
   "summary": "Major groups of bacteria.",
   "layers": {
-   "basics": "Notable groups include Proteobacteria (E. coli, Salmonella), Firmicutes (Bacillus, Streptococcus), Actinobacteria, Cyanobacteria and spirochetes.",
+   "basics": "Notable groups include Proteobacteria (E. coli, Salmonella; formally Pseudomonadota), Firmicutes (Bacillus, Streptococcus; formally Bacillota), Actinobacteria (formally Actinomycetota), Cyanobacteria and spirochetes.",
    "deeper": "Different groups cause disease, fix nitrogen, make antibiotics (Streptomyces) or photosynthesise (cyanobacteria).",
-   "expert": "Culture-independent surveys revealed dozens of phyla, including Candidate Phyla Radiation bacteria with tiny genomes. Bacteria are probably 10⁹–10¹⁰ species; only ≈ 10⁴ are formally described."
+   "expert": "Culture-independent surveys revealed dozens of phyla, including Candidate Phyla Radiation bacteria with tiny genomes. Estimates of how many bacterial and archaeal species exist differ by many orders of magnitude (one scaling-law study predicts up to ≈ 10¹²), while only about 23,000 have validly published names."
   },
   "facts": [
    [
@@ -1384,10 +1390,13 @@
    ],
    [
     "Formally named species",
-    "≈ 10⁴–10⁵"
+    "≈ 23,000 (LPSN, Nov 2026)"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How many prokaryote species exist, and how should a species be defined?"
+  ],
   "refs": [
    [
     "BIO",
@@ -1437,19 +1446,22 @@
   "layers": {
    "basics": "Archaea look like bacteria but are genetically closer to eukaryotes. Many live in extreme places, though they also live in soil and oceans.",
    "deeper": "Groups include methanogens, halophiles and thermophiles. They have ether-linked membrane lipids and no peptidoglycan.",
-   "expert": "Asgard archaea contain eukaryote-like proteins and are the closest known relatives of the eukaryotic host. Thermococcus and Pyrolobus can grow above 100 °C (record ≈ 122 °C)."
+   "expert": "Asgard archaea contain eukaryote-like proteins and are the closest known relatives of the eukaryotic host (a leading hypothesis). Several archaea grow above 100 °C; Pyrolobus fumarii holds the reproducible record of 113 °C, and Methanopyrus kandleri strain 116 was reported to grow at 122 °C under high pressure (20 MPa) in one study."
   },
   "facts": [
    [
     "Growth record",
-    "≈ 122 °C (Methanopyrus kandleri strain 116)"
+    "≈ 122 °C under 20 MPa (Methanopyrus kandleri strain 116, one study)"
    ],
    [
     "Discovered as a domain",
     "1977 (Woese)"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Which archaeal lineage gave rise to the eukaryote host cell?"
+  ],
   "refs": [
    [
     "BIO",
@@ -1547,13 +1559,13 @@
   "summary": "Attach, enter, replicate, assemble, exit.",
   "layers": {
    "basics": "A virus attaches to a host receptor, enters, hijacks the cell to copy itself, assembles new particles and leaves.",
-   "deeper": "Lytic viruses burst the cell; lysogenic viruses integrate their DNA and wait. Enveloped viruses bud from the membrane.",
-   "expert": "Burst sizes range from ≈ 10 to > 10⁵ particles per cell. Latency (herpesviruses), antigenic drift (influenza) and reassortment (flu pandemics) are key evolutionary features."
+   "deeper": "In a lytic cycle the virus makes new particles and the cell is destroyed as they are released. In lysogeny the phage genome is kept silently in the host, integrated into its chromosome and copied with it, until a trigger such as stress starts the lytic cycle. Enveloped viruses bud from the membrane.",
+   "expert": "Burst size, the number of new particles released from one infected cell, varies widely between viruses and conditions. Latency (herpesviruses), antigenic drift (influenza) and reassortment (flu pandemics) are key evolutionary features."
   },
   "facts": [
    [
-    "Phage burst size",
-    "≈ 100–200"
+    "Lytic phage cycle stages",
+    "attachment, entry, biosynthesis, maturation, release"
    ],
    [
     "Influenza genome",
@@ -1600,7 +1612,7 @@
   "layers": {
    "basics": "Bacteriophages are the most abundant biological entities (≈ 10³¹ on Earth). They infect bacteria and can control bacterial populations.",
    "deeper": "Phage T4 and λ were model systems that shaped molecular biology. Phage therapy is being revisited for resistant infections.",
-   "expert": "Phages shuttle genes (transduction), transfer toxins, and shape ocean carbon cycling by lysing ≈ 20% of marine bacteria daily. Phage display evolves binding proteins (Nobel 2018)."
+   "expert": "Phages shuttle genes (transduction), transfer toxins, and shape ocean carbon cycling by an estimated ≈ 20% of the ocean's microorganism biomass killed by viruses each day (a rough, poorly constrained figure). Phage display evolves binding proteins (Nobel 2018)."
   },
   "facts": [
    [
@@ -1608,8 +1620,8 @@
     "≈ 10³¹"
    ],
    [
-    "Ocean bacteria lysed/day",
-    "≈ 20%"
+    "Ocean microbial biomass killed by viruses/day",
+    "≈ 20% (rough estimate)"
    ]
   ],
   "certainty": "C1",
@@ -1653,13 +1665,13 @@
   "summary": "RNA viruses that write DNA.",
   "layers": {
    "basics": "Retroviruses like HIV copy their RNA genome into DNA and insert it into the host genome. HIV attacks CD4⁺ T cells and causes AIDS if untreated.",
-   "deeper": "Antiretroviral drugs target reverse transcriptase, protease and integrase; combination therapy makes HIV a manageable infection. About 39 million people live with HIV.",
+   "deeper": "Antiretroviral drugs target reverse transcriptase, protease and integrase; combination therapy makes HIV a manageable infection. About 41 million people were living with HIV at the end of 2025.",
    "expert": "Reverse transcriptase is error-prone (≈ 10⁻⁴ per base) giving rapid evolution and drug resistance. Latent reservoirs in resting cells prevent cure; rare bone-marrow transplants have cured a few patients."
   },
   "facts": [
    [
-    "People with HIV",
-    "≈ 39 million"
+    "People with HIV (end of 2025)",
+    "≈ 41 million (UNAIDS: 41.0 million, range 35.3–47.5 million)"
    ],
    [
     "RT error rate",
@@ -1730,7 +1742,10 @@
     "1997"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "What is the high-resolution structure of infectious PrPSc, which form is toxic to neurons, and what encodes strain differences?"
+  ],
   "refs": [
    [
     "BIO",
@@ -1770,7 +1785,7 @@
   "layers": {
    "basics": "New viruses often jump from animals to people (zoonosis). Examples are HIV, influenza, Ebola and SARS-CoV-2.",
    "deeper": "Mutation, reassortment and recombination give variants. Surveillance, vaccines and antivirals are the main responses.",
-   "expert": "R₀ and generation time drive spread; COVID-19 pandemic (2019–) caused > 7 million reported deaths. Origin investigations weigh zoonotic spillover against lab-related hypotheses; this remains debated for SARS-CoV-2."
+   "expert": "R₀ and generation time drive spread; COVID-19 (first detected in 2019; WHO ended its international emergency status on 5 May 2023) has about 7.1 million officially reported deaths, and WHO estimated ≈ 14.8 million excess deaths in 2020 and 2021 alone, so the true toll is higher than the reported count. Origin investigations weigh zoonotic spillover against lab-related hypotheses; this remains debated for SARS-CoV-2."
   },
   "facts": [
    [
@@ -1825,7 +1840,7 @@
   "layers": {
    "basics": "Protists are mostly single-celled eukaryotes: amoebas, ciliates, algae, diatoms and parasites like Plasmodium.",
    "deeper": "They include producers, predators and parasites. Diatoms and dinoflagellates are important marine photosynthesisers, and malaria kills ≈ 600,000 people a year.",
-   "expert": "Protists are polyphyletic; eukaryotic supergroups (Opisthokonta, Archaeplastida, SAR, Excavata, Amoebozoa) reflect phylogenomics. Secondary endosymbiosis shaped plastids of many algae."
+   "expert": "Protists are not a natural group: they are the eukaryotes left over once animals, plants and fungi are set aside, and they are spread across several supergroups (Opisthokonta, which also holds animals and fungi, Archaeplastida, SAR, Excavata, Amoebozoa). Secondary endosymbiosis shaped plastids of many algae."
   },
   "facts": [
    [
@@ -1833,8 +1848,8 @@
     "≈ 600,000/yr"
    ],
    [
-    "Diatom share of ocean productivity",
-    "≈ 20%"
+    "Diatom share of primary production",
+    "≈ 20% of global, up to ≈ 40% of marine (estimates)"
    ]
   ],
   "certainty": "C1",
@@ -1896,12 +1911,12 @@
   },
   "facts": [
    [
-    "Gut bacteria",
-    "≈ 4×10¹³ cells"
+    "Bacteria in the human body",
+    "≈ 3.8×10¹³ (70 kg reference man)"
    ],
    [
-    "Microbial genes in gut",
-    "≈ 3 million"
+    "Microbial genes in a gut catalogue",
+    "3.3 million (2010, 124 people); the count grows with sampling"
    ]
   ],
   "certainty": "C2",
@@ -1911,8 +1926,8 @@
   "refs": [
    [
     "MIC",
-    "21.1",
-    "21-1-anatomy-and-normal-microbiota-of-the-skin-and-eyes"
+    "24.1",
+    "24-1-anatomy-and-normal-microbiota-of-the-digestive-system"
    ],
    [
     "BIO",
@@ -1954,12 +1969,12 @@
   "layers": {
    "basics": "A pathogen must reach the host, attach, evade defences and damage tissue. Toxins, enzymes and capsules help.",
    "deeper": "Exotoxins (cholera, botulinum) are proteins; endotoxin is LPS from Gram-negative walls. Koch's postulates link a microbe to a disease.",
-   "expert": "Virulence factors are often on pathogenicity islands or plasmids. ID50 (infectious dose) and LD50 quantify virulence; botulinum toxin is among the most lethal known (≈ 1 ng/kg)."
+   "expert": "Virulence factors are often on pathogenicity islands or plasmids. ID50 (infectious dose) and LD50 quantify virulence; botulinum toxin is among the most lethal known (estimated human lethal dose ≈ 1–2 ng/kg by injection; other routes differ)."
   },
   "facts": [
    [
-    "Botulinum toxin lethal dose",
-    "≈ 1 ng/kg"
+    "Botulinum toxin lethal dose (est.)",
+    "≈ 1–2 ng/kg by injection (0.09–0.15 µg for 70 kg)"
    ],
    [
     "Koch's postulates",
@@ -2013,7 +2028,7 @@
   "summary": "Drugs that kill or stop bacteria.",
   "layers": {
    "basics": "Antibiotics target bacterial structures absent from human cells: cell wall synthesis (penicillin), ribosomes, DNA gyrase or folate synthesis.",
-   "deeper": "Fleming discovered penicillin in 1928. Antibiotics do not work on viruses.",
+   "deeper": "Fleming noticed in 1928 that a Penicillium mould killed bacteria on a plate. Florey, Chain and colleagues later purified penicillin and showed it worked in patients, in the early 1940s. Antibiotics act on bacterial targets, so they do nothing against viruses.",
    "expert": "Selective toxicity depends on target differences (70S vs 80S ribosomes). Spectrum, MIC and pharmacokinetics guide use; many antibiotics derive from soil actinomycetes."
   },
   "facts": [
@@ -2085,8 +2100,8 @@
     "≈ 4.7 million"
    ],
    [
-    "New antibiotic classes since 1987",
-    "few"
+    "New antibiotic classes since the 1960s",
+    "only a handful (e.g. oxazolidinones, cyclic lipopeptides); 12 classes were launched 1935–1968"
    ]
   ],
   "certainty": "C1",

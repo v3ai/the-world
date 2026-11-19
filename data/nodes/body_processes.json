@@ -33,7 +33,7 @@
     "≈ 55-70%"
    ]
   ],
-  "did_you_know": "The heart's four phases occur in under one second, and its valves open and close about 100,000 times daily.",
+  "did_you_know": "Each beat takes about 0.8 s at 75 bpm, and at that rate each heart valve opens and closes roughly 100,000 times a day.",
   "certainty": "C1",
   "refs": [
    [
@@ -106,7 +106,7 @@
    },
    {
     "title": "Filling and coronary flow",
-    "text": "The AV valves open and blood flows in; the coronary arteries fill mainly now.",
+    "text": "The AV valves open and blood flows in; flow through the left ventricle's coronary arteries is greatest now, because the relaxed muscle no longer squeezes its vessels.",
     "focus": [
      "tricuspid_valve",
      "mitral_valve",
@@ -192,7 +192,7 @@
    },
    {
     "title": "Reaching the alveoli",
-    "text": "Branching bronchioles deliver fresh air to millions of alveoli.",
+    "text": "Branching bronchioles deliver fresh air to hundreds of millions of alveoli (one stereological study found about 480 million on average).",
     "focus": [
      "bronchioles",
      "alveoli"
@@ -209,7 +209,7 @@
    },
    {
     "title": "Oxygen transport",
-    "text": "Oxygen binds to hemoglobin in red cells and is carried to tissues, which release it where CO2 and acidity are higher.",
+    "text": "Oxygen binds to hemoglobin in red cells and is carried to tissues, where hemoglobin unloads it more readily where CO2 and acidity are higher.",
     "focus": [
      "red_blood_cell",
      "blood"
@@ -250,7 +250,7 @@
   "summary": "A brief, self-propagating electrical pulse that carries signals along a neuron.",
   "layers": {
    "basics": "A neuron at rest is electrically charged. When stimulated enough, a spike of voltage races down its axon like a wave.",
-   "deeper": "Sodium channels open, sodium rushes in and flips the voltage; then potassium channels open and restore it. Myelin makes the signal jump quickly.",
+   "deeper": "Sodium channels open, sodium rushes in and flips the voltage; then potassium channels open and restore it. Myelin insulates the axon, so the spike regenerates only at the bare nodes and appears to jump from node to node.",
    "expert": "Threshold ≈ -55 mV, peak ≈ +30 mV, resting ≈ -70 mV; Hodgkin-Huxley kinetics; Na+ channel inactivation gives refractory period; saltatory conduction at nodes of Ranvier reaches ≈ 100 m/s in large myelinated axons."
   },
   "facts": [
@@ -283,13 +283,11 @@
   "kn": [
    "action_potential"
   ],
-  "molecules": [
-   "acetylcholine"
-  ],
+  "molecules": null,
   "steps": [
    {
     "title": "Resting state",
-    "text": "Na+/K+ pumps and leak channels hold the inside about 70 mV negative.",
+    "text": "The Na+/K+ pump keeps K+ high inside and Na+ high outside, and K+ leaking out through open channels leaves the inside about 70 mV negative.",
     "focus": [
      "neuron",
      "cell_membrane"
@@ -319,7 +317,7 @@
    },
    {
     "title": "Refractory period",
-    "text": "Overshoot below rest briefly prevents another spike so the impulse travels one way.",
+    "text": "While Na+ channels are inactivated no new spike can start (the absolute refractory period); afterwards extra K+ outflow makes a spike harder to trigger (the relative period). The inactivated patch behind the spike is why the impulse travels one way.",
     "focus": [
      "neuron"
     ]
@@ -352,7 +350,7 @@
   "layers": {
    "basics": "An electrical pulse reaching a nerve ending triggers release of chemical messengers that cross a tiny gap and excite or inhibit the next cell.",
    "deeper": "Calcium entering the terminal makes vesicles fuse and release neurotransmitter, which binds receptors on the target cell. Chemical synapses can strengthen or weaken with use.",
-   "expert": "Vesicle fusion via SNARE complexes and synaptotagmin (Ca2+ sensor) takes ≈ 0.2-0.5 ms; ionotropic (AMPA, NMDA, GABA-A) versus metabotropic receptors; reuptake and enzymatic degradation terminate signals; LTP/LTD underlie plasticity."
+   "expert": "Vesicle fusion via SNARE complexes and synaptotagmin (Ca2+ sensor) follows Ca2+ entry within a fraction of a millisecond (the full synaptic delay at a fast synapse includes channel opening and is ≈ 0.5 ms or more); ionotropic (AMPA, NMDA, GABA-A) versus metabotropic receptors; reuptake and enzymatic degradation terminate signals; LTP/LTD underlie plasticity."
   },
   "facts": [
    [
@@ -563,18 +561,18 @@
   "facts": [
    [
     "Transit",
-    "≈ 1-3 days"
+    "≈ 1-3 days (whole gut, varies widely between people)"
    ],
    [
     "Absorbed in small intestine",
-    "≈ 90% of nutrients"
+    "most nutrients and most of the water (≈ 6.5 L of fluid a day; the colon takes ≈ 1.3 L)"
    ],
    [
-    "Chyme pH (stomach)",
-    "≈ 2"
+    "Gastric juice pH",
+    "≈ 1.5-3.5"
    ]
   ],
-  "did_you_know": "Most of the water your gut handles is actually secretions: about 8-9 L a day, nearly all reabsorbed.",
+  "did_you_know": "Most of the water your gut handles is secretions, not what you drink: saliva (about 1.5 L a day), gastric juice (2.5 L), bile (0.5 L), pancreatic fluid (1.5 L) and intestinal fluid, almost all of it reabsorbed in the intestines.",
   "certainty": "C1",
   "refs": [
    [
@@ -770,12 +768,12 @@
   "layers": {
    "basics": "When a vessel is cut, platelets clump to plug it and proteins build a mesh that seals the wound.",
    "deeper": "Hemostasis has three stages: vessel constriction, platelet plug, and coagulation producing fibrin.",
-   "expert": "Collagen exposure activates platelets (GPVI, α2β1); tissue factor-FVIIa initiates the cascade, thrombin amplifies it via FV, FVIII, FXI, and converts fibrinogen to fibrin; FXIII cross-links; antithrombin and protein C limit the clot; plasmin lyses it."
+   "expert": "Collagen exposure activates platelets (GPVI, α2β1); tissue factor-FVIIa initiates the cascade, thrombin amplifies it via FV, FVIII, FXI, and converts fibrinogen to fibrin; FXIII cross-links; antithrombin and protein C limit the clot; plasmin lyses it. The old split into intrinsic and extrinsic pathways is a teaching simplification; in the body tissue factor starts clotting and the reactions then run on the surface of activated platelets (the cell-based model)."
   },
   "facts": [
    [
     "Bleeding time",
-    "≈ 2-9 min"
+    "depends on the test method and is now rarely used, so no single normal range is quoted"
    ],
    [
     "Platelets",
@@ -819,7 +817,7 @@
    },
    {
     "title": "Cascade",
-    "text": "Clotting factors trigger a cascade culminating in thrombin.",
+    "text": "Clotting factors activate one another in sequence, and the chain ends with thrombin being made.",
     "focus": [
      "blood"
     ]
@@ -883,6 +881,21 @@
     "ANP",
     "21.2",
     "21-2-barrier-defenses-and-the-innate-immune-response"
+   ],
+   [
+    "ANP",
+    "21.3",
+    "21-3-the-adaptive-immune-response-t-lymphocytes-and-their-functional-types"
+   ],
+   [
+    "ANP",
+    "21.4",
+    "21-4-the-adaptive-immune-response-b-lymphocytes-and-antibodies"
+   ],
+   [
+    "ANP",
+    "21.5",
+    "21-5-the-immune-response-against-pathogens"
    ]
   ],
   "kn": [
@@ -907,7 +920,7 @@
    },
    {
     "title": "Antigen presentation",
-    "text": "Dendritic cells and macrophages carry fragments to lymph nodes.",
+    "text": "Dendritic cells pick up fragments of the invader and carry them to lymph nodes, where they show them to T cells.",
     "focus": [
      "macrophage",
      "lymph_nodes"
@@ -918,7 +931,7 @@
     "text": "Matching T cells multiply; helper T cells coordinate, killer T cells destroy infected cells.",
     "focus": [
      "lymphocyte_t",
-     "thymus"
+     "lymph_nodes"
     ]
    },
    {
@@ -956,7 +969,7 @@
   "summary": "Glands release hormones that change body conditions; the change then switches the release off.",
   "layers": {
    "basics": "After a meal, blood sugar rises, and the pancreas releases insulin to lower it. If sugar falls, glucagon raises it. This keeps sugar steady.",
-   "deeper": "Insulin helps cells (muscle, fat, liver) take up glucose and store it. Glucagon makes the liver release glucose.",
+   "deeper": "Insulin helps cells (muscle, fat, liver) take up glucose and store it. Glucagon makes the liver release glucose. Peptide hormones such as insulin bind receptors on the cell surface, while steroid hormones such as cortisol cross the membrane and act on intracellular receptors.",
    "expert": "Beta cell glucose sensing triggers insulin exocytosis; insulin binds RTK, activating PI3K-Akt and GLUT4 translocation; glucagon via GPCR-cAMP-PKA stimulates glycogenolysis and gluconeogenesis; fasting glucose ≈ 4-5.5 mmol/L."
   },
   "facts": [
@@ -1057,12 +1070,12 @@
   "layers": {
    "basics": "Your cells burn sugar with oxygen, but in slow controlled steps that capture energy as ATP.",
    "deeper": "Glycolysis in the cytosol splits glucose; the citric acid cycle and the electron transport chain in mitochondria produce most ATP.",
-   "expert": "Glucose + 6 O2 → 6 CO2 + 6 H2O; net ≈ 30-32 ATP per glucose (modern estimates); glycolysis yields 2 ATP + 2 NADH; TCA cycle yields NADH/FADH2; electron transport pumps protons, ATP synthase makes ATP."
+   "expert": "Glucose + 6 O2 → 6 CO2 + 6 H2O; net yield is quoted anywhere from ≈ 30 to 36 ATP per glucose depending on the textbook and assumptions (it depends on the H+/ATP ratio and on how NADH enters the mitochondrion, so it is not a fixed integer); glycolysis yields 2 ATP + 2 NADH; TCA cycle yields NADH/FADH2; electron transport pumps protons, ATP synthase makes ATP."
   },
   "facts": [
    [
     "ATP per glucose",
-    "≈ 30-32"
+    "≈ 30-36 (estimates vary)"
    ],
    [
     "ATP turnover",
@@ -1070,12 +1083,20 @@
    ]
   ],
   "did_you_know": "You make and use roughly your body weight in ATP each day.",
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "What is the exact number of protons pumped per electron pair, and the number of protons needed per ATP, in human mitochondria?"
+  ],
   "refs": [
    [
     "ANP",
     "24.2",
     "24-2-carbohydrate-metabolism"
+   ],
+   [
+    "BIO",
+    "7.4",
+    "7-4-oxidative-phosphorylation"
    ]
   ],
   "kn": [
@@ -1097,7 +1118,7 @@
   "steps": [
    {
     "title": "Glycolysis",
-    "text": "Glucose is split into two pyruvate molecules in the cytosol, producing a little ATP and NADH.",
+    "text": "Glucose is split into two pyruvate molecules in the fluid inside the cell, outside the mitochondria, producing a little ATP and NADH.",
     "focus": [
      "cell_membrane"
     ]
@@ -1157,7 +1178,7 @@
   "layers": {
    "basics": "The cell copies a gene into a messenger molecule, then ribosomes read the message three letters at a time and link amino acids into a protein.",
    "deeper": "Transcription happens in the nucleus; mRNA is processed (cap, splice, tail) and exported; translation happens at ribosomes with tRNAs delivering amino acids.",
-   "expert": "RNA polymerase II transcribes; spliceosome removes introns (≈ 90% of a gene's length); ribosome decodes 64 codons (61 sense) via tRNA anticodon pairing; start AUG; peptide ≈ 3-6 aa/s; chaperones fold proteins."
+   "expert": "RNA polymerase II transcribes; spliceosome removes introns, which make up most of a typical human gene's length; ribosome decodes 64 codons (61 sense) via tRNA anticodon pairing; start AUG; a eukaryotic ribosome adds a few amino acids per second (bacterial ribosomes are faster); chaperones fold proteins."
   },
   "facts": [
    [
@@ -1252,10 +1273,10 @@
   "processes": [],
   "related": [],
   "mesh": null,
-  "summary": "A cell copies its chromosomes and splits into two identical daughter cells.",
+  "summary": "A cell that has copied its chromosomes splits them into two genetically matching daughter cells.",
   "layers": {
    "basics": "Before dividing a cell copies its DNA. Mitosis then sorts the copies equally into two new cells.",
-   "deeper": "Phases: prophase, metaphase, anaphase, telophase, followed by cytokinesis.",
+   "deeper": "DNA is copied in S phase. In mitosis the spindle attaches to each chromosome, the nuclear envelope breaks down, the chromosomes line up, and the sister chromatids are separated and pulled to opposite ends before the cell is cut in two.",
    "expert": "Cyclin-CDK control; spindle assembly checkpoint; cohesin cleavage by separase triggers anaphase; centrosomes and microtubules segregate 46 chromosomes; M-phase ≈ 1 h in a ≈ 24 h cycle."
   },
   "facts": [
@@ -1344,33 +1365,45 @@
   "summary": "Old bone is steadily dissolved and replaced with new bone.",
   "layers": {
    "basics": "Your bones are constantly renewed: some cells remove old bone and others lay down new bone.",
-   "deeper": "Osteoclasts resorb bone; osteoblasts then fill the cavity with new matrix. Exercise and hormones regulate the balance.",
-   "expert": "Basic multicellular unit: activation, resorption (≈ 2-4 weeks), reversal, formation (≈ 3-4 months); RANKL/OPG, PTH, calcitriol, estrogens, sclerostin; osteoporosis arises from resorption exceeding formation."
+   "deeper": "Osteoclasts resorb bone; osteoblasts then fill the cavity with new matrix. Exercise and hormones regulate the balance. Bone mineral is mostly hydroxyapatite, a calcium phosphate.",
+   "expert": "Basic multicellular unit: activation, resorption (weeks), reversal, formation (months); RANKL/OPG, PTH, calcitriol, estrogens, sclerostin; osteoporosis arises from resorption exceeding formation."
   },
   "facts": [
    [
     "Cycle",
-    "≈ 4-6 months per site"
+    "several months per remodeling site (varies with site and age)"
    ],
    [
     "Turnover",
-    "≈ 10%/yr"
+    "≈ 5-10% of the skeleton per year"
    ]
   ],
   "did_you_know": "Astronauts lose bone mass fast in microgravity because bone remodels in response to load.",
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How do osteocytes convert mechanical load into signals that target remodeling to specific sites?"
+  ],
   "refs": [
    [
     "ANP",
     "6.4",
     "6-4-bone-formation-and-development"
+   ],
+   [
+    "ANP",
+    "6.3",
+    "6-3-bone-structure"
+   ],
+   [
+    "ANP",
+    "6.6",
+    "6-6-exercise-nutrition-hormones-and-bone-tissue"
    ]
   ],
   "kn": [
    "musculoskeletal"
   ],
   "molecules": [
-   "calcium_carbonate_unit",
    "phosphate",
    "vitamin_d3"
   ],
@@ -1445,8 +1478,8 @@
   },
   "facts": [
    [
-    "Photon response (rod)",
-    "≈ 1 photon"
+    "Rod sensitivity",
+    "one absorbed photon gives a detectable signal in a rod (measured in toad rods); seeing a faint flash takes ≈ 5-14 absorbed photons"
    ],
    [
     "Signal to brain",
@@ -1536,16 +1569,16 @@
   "processes": [],
   "related": [],
   "mesh": null,
-  "summary": "Body temperature is held near 37 C by balancing heat production and loss.",
+  "summary": "Body temperature is held within about a degree of 37 °C by balancing heat production and loss.",
   "layers": {
    "basics": "When you get hot you sweat and your skin flushes; when cold, you shiver and your skin vessels narrow.",
-   "deeper": "The hypothalamus acts as a thermostat, comparing set point with inputs from skin and core temperature sensors.",
+   "deeper": "A common model treats the hypothalamus as a thermostat comparing a set point with signals from skin and core temperature sensors.",
    "expert": "Heat loss via radiation, conduction, convection, evaporation; vasomotor control through sympathetic tone; shivering and non-shivering thermogenesis (UCP1); fever is a raised set point mediated by prostaglandin E2."
   },
   "facts": [
    [
     "Core temperature",
-    "≈ 37 C (36.1-37.2)"
+    "≈ 36.5-37.5 °C; modern average oral readings sit a little below 37 °C and have drifted down ≈ 0.03 °C per decade"
    ],
    [
     "Sweat evaporation",
@@ -1553,7 +1586,11 @@
    ]
   ],
   "did_you_know": "Evaporating one liter of sweat removes about 2,400 kJ of heat.",
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Is there a single set point, or do separate heat-loss and heat-production thresholds act in parallel?",
+   "How do preoptic neurons combine skin and core temperature signals into one response?"
+  ],
   "refs": [
    [
     "ANP",

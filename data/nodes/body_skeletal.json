@@ -19,7 +19,7 @@
    "brain"
   ],
   "mesh": "skull",
-  "summary": "The skull is the bony case of 22 fused and joined bones that houses the brain and shapes the face.",
+  "summary": "The skull is the bony case of 22 bones, 21 locked together by sutures and one, the mandible, movable, that houses the brain and shapes the face.",
   "layers": {
    "basics": "The skull protects your brain and holds your eyes, ears, nose and teeth. Most of its bones are locked together by zig-zag seams.",
    "deeper": "Eight cranial bones form the braincase and fourteen facial bones form the face; sutures are fibrous joints that allow growth in childhood. Holes (foramina) pass nerves and vessels, such as the foramen magnum for the spinal cord.",
@@ -35,8 +35,8 @@
     "≈ 3.5 cm long"
    ],
    [
-    "Adult skull mass",
-    "≈ 0.7-1 kg"
+    "Movable bone",
+    "Mandible only"
    ]
   ],
   "did_you_know": "A newborn's skull has soft gaps (fontanelles) so the head can squeeze through the birth canal.",
@@ -82,10 +82,10 @@
    ],
    [
     "Bite force (molars)",
-    "≈ 500-700 N"
+    "Varies widely with sex, age, dental state and measuring device"
    ]
   ],
-  "did_you_know": "The mandible is the strongest and densest bone of the face.",
+  "did_you_know": "The mandible is the only bone of the skull that moves; the other 21 are locked together by sutures.",
   "certainty": "C1",
   "refs": [
    [
@@ -118,7 +118,7 @@
   "layers": {
    "basics": "The neck's seven small bones, C1 to C7, hold the head up. The top two, atlas and axis, are specially shaped so you can nod yes and shake no.",
    "deeper": "Each vertebra has a body, arch and processes and the stack encloses the spinal cord. Intervertebral discs cushion the joints, and transverse foramina carry the vertebral arteries.",
-   "expert": "Atlanto-occipital joint supports flexion-extension, atlanto-axial joint (dens of C2) supports ~50% of cervical rotation. Cervical lordosis is a secondary curve developing as infants lift their heads."
+   "expert": "Atlanto-occipital joint supports flexion-extension, and the atlanto-axial joint (dens of C2) supplies a large share of cervical rotation. Cervical lordosis is a secondary curve developing as infants lift their heads."
   },
   "facts": [
    [
@@ -130,7 +130,7 @@
     "≈ 4.5-5 kg"
    ]
   ],
-  "did_you_know": "Giraffes and humans both have exactly seven neck vertebrae.",
+  "did_you_know": "Nearly all mammals, from mice to giraffes to humans, have exactly seven neck vertebrae. Sloths and manatees are the known exceptions.",
   "certainty": "C1",
   "refs": [
    [
@@ -171,8 +171,8 @@
     "12 (T1-T12)"
    ],
    [
-    "Length",
-    "≈ 28 cm"
+    "Curve",
+    "Gentle outward curve (kyphosis)"
    ]
   ],
   "did_you_know": "Thoracic vertebrae change shape gradually, with the lower ones looking more like lumbar vertebrae.",
@@ -216,11 +216,11 @@
     "5 (L1-L5)"
    ],
    [
-    "Typical disc height",
-    "≈ 9-10 mm"
+    "Curve",
+    "Inward curve (lordosis)"
    ]
   ],
-  "did_you_know": "The spinal cord ends higher than the spine does, so lumbar punctures are made below it where only nerve roots float.",
+  "did_you_know": "The spinal cord ends around L1-L2, above the end of the spine, so lumbar punctures are made lower down, where only loose nerve roots (the cauda equina) float in the fluid.",
   "certainty": "C1",
   "refs": [
    [
@@ -265,7 +265,7 @@
     "≈ 10-12 cm"
    ]
   ],
-  "did_you_know": "The name 'sacrum' comes from Latin for 'sacred bone'.",
+  "did_you_know": "'Sacrum' comes from the Latin os sacrum, 'sacred bone'; why the bone was called sacred is not clear.",
   "certainty": "C1",
   "refs": [
    [
@@ -308,11 +308,11 @@
     "12"
    ],
    [
-    "Longest rib",
-    "≈ 24 cm (7th-8th)"
+    "Rib pairs by attachment",
+    "7 true, 3 false, 2 floating"
    ]
   ],
-  "did_you_know": "About 1 in 200 people has an extra (cervical) rib.",
+  "did_you_know": "A small share of people has an extra (cervical) rib growing from the seventh neck vertebra; reported rates vary between studies.",
   "certainty": "C1",
   "refs": [
    [
@@ -345,7 +345,7 @@
   "layers": {
    "basics": "The sternum is the flat bone in the middle of your chest that most of your ribs attach to.",
    "deeper": "It has three parts: the manubrium, body, and the xiphoid process. It protects the heart and holds bone marrow suitable for sampling.",
-   "expert": "The manubriosternal joint (sternal angle) is a landmark at the level of the 2nd rib and T4/T5, where the trachea bifurcates and the aortic arch begins/ends."
+   "expert": "The manubriosternal joint (sternal angle) is easy to feel and lies level with the 2nd costal cartilage, which is why it is used as a starting point for counting ribs."
   },
   "facts": [
    [
@@ -390,7 +390,7 @@
   "layers": {
    "basics": "The pelvis carries your upper-body weight to your legs and cradles the organs of the lower abdomen.",
    "deeper": "Each hip bone is made of three fused bones (ilium, ischium, pubis). The hip sockets (acetabula) hold the heads of the femurs.",
-   "expert": "Sex differences in pelvic inlet shape reflect obstetric adaptation; the pelvis is a compromise between bipedal locomotion and childbirth ('obstetric dilemma', debated)."
+   "expert": "Male and female pelves differ in the shape of the inlet and outlet. Why is debated: the obstetric-dilemma view says walking and birth pull the pelvis in opposite directions, while the energetics-of-gestation-and-growth hypothesis says the mother's metabolism limits fetal size."
   },
   "facts": [
    [
@@ -403,7 +403,7 @@
    ]
   ],
   "did_you_know": "The pelvis' shape is among the best clues to a skeleton's sex.",
-  "certainty": "C1",
+  "certainty": "C2",
   "refs": [
    [
     "ANP",
@@ -413,6 +413,9 @@
   ],
   "kn": [
    "musculoskeletal"
+  ],
+  "open_questions": [
+   "Is pelvic shape limited mainly by the demands of walking and birth (the obstetric dilemma), or does the mother's metabolic ceiling set when babies are born?"
   ]
  },
  {
@@ -433,9 +436,9 @@
   "mesh": "clavicle_l",
   "summary": "The left collarbone braces the shoulder away from the chest.",
   "layers": {
-   "basics": "A slender S-shaped bone that holds your shoulder out to the side and is the one most often broken in a fall.",
+   "basics": "A slender S-shaped bone that holds your shoulder out to the side. It is one of the most commonly broken bones, usually after a hard fall or blow to the shoulder.",
    "deeper": "It connects the sternum to the scapula and transmits forces from the arm to the trunk.",
-   "expert": "Intramembranous ossification begins here earliest, and it is the last to fuse its medial growth plate (around age 25)."
+   "expert": "The clavicle is the first bone to begin ossifying (about week 5 of development) and forms mainly by intramembranous ossification, directly from mesenchyme without a cartilage model. Its ossification is not complete until about age 25."
   },
   "facts": [
    [
@@ -443,7 +446,7 @@
     "≈ 15 cm"
    ]
   ],
-  "did_you_know": "It is one of the first bones to start ossifying in the embryo and one of the last to finish.",
+  "did_you_know": "It is the first bone of the body to start ossifying (about week 5 of development) and does not finish until about age 25.",
   "certainty": "C1",
   "refs": [
    [
@@ -476,7 +479,7 @@
   "layers": {
    "basics": "A flat bone on the upper back that forms the socket of the shoulder and anchors many muscles.",
    "deeper": "The glenoid cavity forms the shoulder socket; spine and acromion provide leverage for deltoid and trapezius.",
-   "expert": "Scapulothoracic motion contributes about one third of arm elevation (scapulohumeral rhythm ~2:1)."
+   "expert": "Across the full range of arm elevation, the shoulder blade's rotation contributes about one third and the glenohumeral joint about two thirds (an average 2:1 scapulohumeral rhythm that varies along the movement)."
   },
   "facts": [
    [
@@ -604,7 +607,7 @@
   "summary": "The left hand has 27 bones in wrist, palm and fingers.",
   "layers": {
    "basics": "Eight small wrist bones, five palm bones and fourteen finger bones give your hand fine control.",
-   "deeper": "Opposable thumb saddle joint allows pinch and grip.",
+   "deeper": "The thumb's first carpometacarpal joint is a saddle joint: it moves in two planes, which lets the thumb tip meet the other fingertips (opposition) for pinch and power grip.",
    "expert": "Carpal arrangement in two rows; scaphoid is the most commonly fractured carpal and has retrograde blood supply, risking avascular necrosis."
   },
   "facts": [
@@ -617,7 +620,7 @@
     "≈ 13%"
    ]
   ],
-  "did_you_know": "Each hand holds roughly a quarter of all the body's bones.",
+  "did_you_know": "Both hands together hold about a quarter of the body's 206 bones (54 of them); each hand holds 27, about 13%.",
   "certainty": "C1",
   "refs": [
    [
@@ -651,7 +654,7 @@
   "summary": "The left femur is the longest, strongest bone in the body.",
   "layers": {
    "basics": "The femur is your thigh bone. It must carry several times your body weight when you run or jump.",
-   "deeper": "Its ball-shaped head fits the hip socket; the lower end forms the knee. The neck angle is about 125 degrees.",
+   "deeper": "Its ball-shaped head fits the hip socket; the lower end forms the knee. The neck makes an angle of roughly 125 degrees with the shaft, and this varies between people and with age.",
    "expert": "Trabecular architecture aligns with principal stress trajectories; femoral neck fractures are a major osteoporosis outcome."
   },
   "facts": [
@@ -660,8 +663,8 @@
     "≈ 45 cm"
    ],
    [
-    "Typical load while running",
-    "≈ 3-5× body weight"
+    "Hip joint force when running",
+    "Several times body weight, and more than when walking"
    ]
   ],
   "did_you_know": "The femur's length is about a quarter of a person's height.",
@@ -680,7 +683,7 @@
  {
   "id": "patella_l",
   "title": "Left patella (kneecap)",
-  "kind": "structure",
+  "kind": "organ",
   "template": "anatomy",
   "scale_m": 0.05,
   "parents": [
@@ -697,7 +700,7 @@
   "layers": {
    "basics": "A small bone in front of the knee that works as a pulley to boost the thigh muscle's pull.",
    "deeper": "It increases the lever arm of the quadriceps and protects the joint.",
-   "expert": "The largest sesamoid bone; cartilage on its back is the thickest in the body (~5 mm)."
+   "expert": "The largest sesamoid bone. The cartilage on its back surface is thick, up to a few millimetres."
   },
   "facts": [
    [
@@ -706,10 +709,10 @@
    ],
    [
     "Cartilage thickness",
-    "≈ 4-5 mm"
+    "Up to a few mm"
    ]
   ],
-  "did_you_know": "Babies are born with only a cartilage kneecap that ossifies around age 3-5.",
+  "did_you_know": "Babies are born with a kneecap made of cartilage. It starts turning to bone in early childhood and is not fully bony until later in growth.",
   "certainty": "C1",
   "refs": [
    [
@@ -741,7 +744,7 @@
   "summary": "The left lower-leg bones: weight-bearing tibia and slender fibula.",
   "layers": {
    "basics": "The big shin bone carries your weight and the thin outer bone mostly anchors muscles.",
-   "deeper": "The tibia supports about 85-90% of load while the fibula forms the outer ankle.",
+   "deeper": "The tibia carries most of the load, while the fibula carries a small share that changes with ankle position and forms the outer ankle.",
    "expert": "Interosseous membrane transfers load; the tibial plateau articulates with femoral condyles via menisci."
   },
   "facts": [
@@ -788,14 +791,14 @@
   "facts": [
    [
     "Bones",
-    "26"
+    "26 (usual count)"
    ],
    [
     "Foot length",
     "≈ 25 cm"
    ]
   ],
-  "did_you_know": "Humans have arched feet unlike any other ape.",
+  "did_you_know": "Each foot holds 26 of the body's 206 bones, so the two feet together hold about a quarter of them.",
   "certainty": "C1",
   "refs": [
    [
@@ -826,9 +829,9 @@
   "mesh": "clavicle_r",
   "summary": "The right collarbone braces the shoulder away from the chest.",
   "layers": {
-   "basics": "A slender S-shaped bone that holds your shoulder out to the side and is the one most often broken in a fall.",
+   "basics": "A slender S-shaped bone that holds your shoulder out to the side. It is one of the most commonly broken bones, usually after a hard fall or blow to the shoulder.",
    "deeper": "It connects the sternum to the scapula and transmits forces from the arm to the trunk.",
-   "expert": "Intramembranous ossification begins here earliest, and it is the last to fuse its medial growth plate (around age 25)."
+   "expert": "The clavicle is the first bone to begin ossifying (about week 5 of development) and forms mainly by intramembranous ossification, directly from mesenchyme without a cartilage model. Its ossification is not complete until about age 25."
   },
   "facts": [
    [
@@ -836,7 +839,7 @@
     "≈ 15 cm"
    ]
   ],
-  "did_you_know": "It is one of the first bones to start ossifying in the embryo and one of the last to finish.",
+  "did_you_know": "It is the first bone of the body to start ossifying (about week 5 of development) and does not finish until about age 25.",
   "certainty": "C1",
   "refs": [
    [
@@ -869,7 +872,7 @@
   "layers": {
    "basics": "A flat bone on the upper back that forms the socket of the shoulder and anchors many muscles.",
    "deeper": "The glenoid cavity forms the shoulder socket; spine and acromion provide leverage for deltoid and trapezius.",
-   "expert": "Scapulothoracic motion contributes about one third of arm elevation (scapulohumeral rhythm ~2:1)."
+   "expert": "Across the full range of arm elevation, the shoulder blade's rotation contributes about one third and the glenohumeral joint about two thirds (an average 2:1 scapulohumeral rhythm that varies along the movement)."
   },
   "facts": [
    [
@@ -997,7 +1000,7 @@
   "summary": "The right hand has 27 bones in wrist, palm and fingers.",
   "layers": {
    "basics": "Eight small wrist bones, five palm bones and fourteen finger bones give your hand fine control.",
-   "deeper": "Opposable thumb saddle joint allows pinch and grip.",
+   "deeper": "The thumb's first carpometacarpal joint is a saddle joint: it moves in two planes, which lets the thumb tip meet the other fingertips (opposition) for pinch and power grip.",
    "expert": "Carpal arrangement in two rows; scaphoid is the most commonly fractured carpal and has retrograde blood supply, risking avascular necrosis."
   },
   "facts": [
@@ -1010,7 +1013,7 @@
     "≈ 13%"
    ]
   ],
-  "did_you_know": "Each hand holds roughly a quarter of all the body's bones.",
+  "did_you_know": "Both hands together hold about a quarter of the body's 206 bones (54 of them); each hand holds 27, about 13%.",
   "certainty": "C1",
   "refs": [
    [
@@ -1044,7 +1047,7 @@
   "summary": "The right femur is the longest, strongest bone in the body.",
   "layers": {
    "basics": "The femur is your thigh bone. It must carry several times your body weight when you run or jump.",
-   "deeper": "Its ball-shaped head fits the hip socket; the lower end forms the knee. The neck angle is about 125 degrees.",
+   "deeper": "Its ball-shaped head fits the hip socket; the lower end forms the knee. The neck makes an angle of roughly 125 degrees with the shaft, and this varies between people and with age.",
    "expert": "Trabecular architecture aligns with principal stress trajectories; femoral neck fractures are a major osteoporosis outcome."
   },
   "facts": [
@@ -1053,8 +1056,8 @@
     "≈ 45 cm"
    ],
    [
-    "Typical load while running",
-    "≈ 3-5× body weight"
+    "Hip joint force when running",
+    "Several times body weight, and more than when walking"
    ]
   ],
   "did_you_know": "The femur's length is about a quarter of a person's height.",
@@ -1073,7 +1076,7 @@
  {
   "id": "patella_r",
   "title": "Right patella (kneecap)",
-  "kind": "structure",
+  "kind": "organ",
   "template": "anatomy",
   "scale_m": 0.05,
   "parents": [
@@ -1090,7 +1093,7 @@
   "layers": {
    "basics": "A small bone in front of the knee that works as a pulley to boost the thigh muscle's pull.",
    "deeper": "It increases the lever arm of the quadriceps and protects the joint.",
-   "expert": "The largest sesamoid bone; cartilage on its back is the thickest in the body (~5 mm)."
+   "expert": "The largest sesamoid bone. The cartilage on its back surface is thick, up to a few millimetres."
   },
   "facts": [
    [
@@ -1099,10 +1102,10 @@
    ],
    [
     "Cartilage thickness",
-    "≈ 4-5 mm"
+    "Up to a few mm"
    ]
   ],
-  "did_you_know": "Babies are born with only a cartilage kneecap that ossifies around age 3-5.",
+  "did_you_know": "Babies are born with a kneecap made of cartilage. It starts turning to bone in early childhood and is not fully bony until later in growth.",
   "certainty": "C1",
   "refs": [
    [
@@ -1134,7 +1137,7 @@
   "summary": "The right lower-leg bones: weight-bearing tibia and slender fibula.",
   "layers": {
    "basics": "The big shin bone carries your weight and the thin outer bone mostly anchors muscles.",
-   "deeper": "The tibia supports about 85-90% of load while the fibula forms the outer ankle.",
+   "deeper": "The tibia carries most of the load, while the fibula carries a small share that changes with ankle position and forms the outer ankle.",
    "expert": "Interosseous membrane transfers load; the tibial plateau articulates with femoral condyles via menisci."
   },
   "facts": [
@@ -1181,14 +1184,14 @@
   "facts": [
    [
     "Bones",
-    "26"
+    "26 (usual count)"
    ],
    [
     "Foot length",
     "≈ 25 cm"
    ]
   ],
-  "did_you_know": "Humans have arched feet unlike any other ape.",
+  "did_you_know": "Each foot holds 26 of the body's 206 bones, so the two feet together hold about a quarter of them.",
   "certainty": "C1",
   "refs": [
    [
@@ -1235,14 +1238,14 @@
   "facts": [
    [
     "Compact bone",
-    "≈ 80% of skeleton mass"
+    "The dense outer shell of the shaft"
    ],
    [
     "Osteon diameter",
     "≈ 0.2-0.3 mm"
    ]
   ],
-  "did_you_know": "Bone is about as strong as cast iron for its weight in compression but much lighter.",
+  "did_you_know": "Bone is strong for its weight because it is light and its material sits where the loads are. In absolute terms it is weaker than steel.",
   "certainty": "C1",
   "refs": [
    [
@@ -1294,7 +1297,7 @@
     "Dense bone forming the outer shell"
    ]
   ],
-  "did_you_know": "Osteons are tiny: dozens fit in a pinhead cross-section.",
+  "did_you_know": "Osteons are microscopic: each is only a fraction of a millimetre across.",
   "certainty": "C1",
   "refs": [
    [
@@ -1335,8 +1338,8 @@
   "summary": "A lattice of thin struts at the bone ends.",
   "layers": {
    "basics": "A honeycomb inside the ends of bones that makes them light and shock-absorbing.",
-   "deeper": "Trabeculae align along stress; marrow fills the gaps.",
-   "expert": "Higher surface-to-volume ratio gives it ~8× the remodeling turnover of cortical bone."
+   "deeper": "Thin plates and rods called trabeculae tend to line up with the main directions of load (the idea known as Wolff's law). The spaces between them hold marrow, and the lattice spreads load from the joint surface into the shaft.",
+   "expert": "Trabecular bone has far more surface exposed to marrow than compact bone, and it turns over several times faster."
   },
   "facts": [
    [
@@ -1369,8 +1372,8 @@
   ],
   "parts": [],
   "made_of": [
-   "bone_tissue",
-   "stem_cell"
+   "stem_cell",
+   "adipose_tissue"
   ],
   "processes": [],
   "related": [],
@@ -1386,14 +1389,14 @@
   },
   "summary": "Soft tissue inside bones that makes blood cells.",
   "layers": {
-   "basics": "Red marrow produces blood cells; yellow marrow stores fat.",
+   "basics": "Red marrow makes blood cells; yellow marrow stores fat. In adults the shaft cavity of a long bone holds yellow marrow, while red marrow fills the spaces in spongy bone, such as at the bone ends.",
    "deeper": "Hematopoietic stem cells in marrow niches give rise to red cells, white cells and platelets.",
    "expert": "Adults produce ≈ 2×10^11 red cells and ≈ 10^11 platelets and neutrophils daily; niches involve CXCL12-abundant reticular cells and osteoblasts."
   },
   "facts": [
    [
-    "Role",
-    "Soft tissue inside bones that makes blood cells"
+    "Red cells made per day",
+    "≈ 2×10^11"
    ]
   ],
   "did_you_know": "Your marrow makes about 2 million red blood cells every second.",
@@ -1420,7 +1423,7 @@
   ],
   "parts": [],
   "made_of": [
-   "bone_tissue"
+   "dense_connective_tissue"
   ],
   "processes": [],
   "related": [],
@@ -1446,7 +1449,7 @@
     "A tough membrane covering the outer bone"
    ]
   ],
-  "did_you_know": "Bone breaks hurt largely because the periosteum is packed with nerves.",
+  "did_you_know": "Bone breaks hurt in large part because the periosteum, which contains nerves, and the bone and marrow under it can sense pain.",
   "certainty": "C1",
   "refs": [
    [
@@ -1470,7 +1473,7 @@
   ],
   "parts": [],
   "made_of": [
-   "bone_tissue"
+   "cartilage_tissue"
   ],
   "processes": [],
   "related": [],
@@ -1487,7 +1490,7 @@
   "summary": "A cartilage disc that lets a growing bone lengthen.",
   "layers": {
    "basics": "Children grow taller because cartilage here keeps being made and then turned into bone.",
-   "deeper": "Cells stack in columns, enlarge, die and are replaced by bone. It closes after puberty.",
+   "deeper": "Cells stack in columns, enlarge, die and are replaced by bone. The plate closes in early adulthood (about 18-21 years in OpenStax's account), and the timing differs between bones and between people.",
    "expert": "Zones: resting, proliferative, hypertrophic and calcification; regulated by GH/IGF-1, sex steroids, thyroid hormone, and Ihh/PTHrP."
   },
   "facts": [
@@ -1529,21 +1532,21 @@
   "summary": "A joint with a fluid-filled capsule that lets bones slide smoothly.",
   "layers": {
    "basics": "A freely movable joint, like your knee or shoulder, where slippery cartilage and fluid cut friction to almost nothing.",
-   "deeper": "Cartilage caps the bones, a capsule makes lubricating synovial fluid, and ligaments stabilize the joint. Types include hinge, ball-and-socket, pivot and saddle.",
-   "expert": "Friction coefficients of about 0.001-0.01 arise from boundary lubrication (lubricin, hyaluronan) and fluid-film mechanisms. Cartilage lacks blood vessels and is nourished by loading-driven diffusion."
+   "deeper": "Cartilage caps the bones, a capsule makes lubricating synovial fluid, and ligaments stabilize the joint. Types include plane (gliding), hinge, pivot, condyloid, saddle and ball-and-socket.",
+   "expert": "Friction between cartilage surfaces is very low, and the value measured depends on load, speed and test conditions. The relative roles of boundary lubrication (lubricin, hyaluronan), hydration lubrication and pressurised fluid film are still being worked out. Cartilage lacks blood vessels and is nourished by loading-driven diffusion."
   },
   "facts": [
    [
     "Friction coefficient",
-    "≈ 0.001-0.01"
+    "Very low; varies with load, speed and test conditions"
    ],
    [
     "Synovial fluid in knee",
     "≈ 1-3 mL"
    ]
   ],
-  "did_you_know": "Joint cartilage can be slipperier than ice on ice.",
-  "certainty": "C1",
+  "did_you_know": "Healthy joint cartilage is extremely slippery, and it has no blood supply of its own.",
+  "certainty": "C2",
   "refs": [
    [
     "ANP",
@@ -1553,6 +1556,9 @@
   ],
   "kn": [
    "musculoskeletal"
+  ],
+  "open_questions": [
+   "Which lubrication mechanisms dominate in a living joint?"
   ]
  }
 ]

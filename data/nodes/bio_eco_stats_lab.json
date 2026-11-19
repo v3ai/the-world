@@ -184,7 +184,7 @@
   "layers": {
    "basics": "Without limits, populations grow exponentially. Real populations level off near the carrying capacity K.",
    "deeper": "Exponential growth: dN/dt = rN. Logistic: dN/dt = rN(1 − N/K). Real populations often overshoot, cycle or crash.",
-   "expert": "Solution of logistic: N(t) = K/(1 + ((K − N₀)/N₀)e^(−rt)). Time delays cause oscillations (May's chaos in the discrete logistic map for r > ≈ 3)."
+   "expert": "Solution of logistic: N(t) = K/(1 + ((K − N₀)/N₀)e^(−rt)). The discrete-time logistic map (May, 1976) settles to a fixed point for growth parameter r < 3, doubles its period from r = 3, and is chaotic beyond r ≈ 3.57. Time delays in continuous models can also produce oscillations."
   },
   "facts": [
    [
@@ -246,8 +246,8 @@
   ],
   "summary": "Trade-offs between growth, reproduction and survival.",
   "layers": {
-   "basics": "r-selected species make many offspring with little care; K-selected species make few offspring with more care. Density-dependent factors (disease, competition) regulate population size.",
-   "deeper": "Weather and disasters act independent of density. Predator–prey and boom–bust cycles (lemmings, snowshoe hare–lynx) are classic examples.",
+   "basics": "r-selected species make many offspring with little care; K-selected species make few offspring with more care. Density-dependent factors (disease, competition) regulate population size. An African elephant carries one calf for about 22 months, a typical K-selected strategy.",
+   "deeper": "Weather and disasters act independent of density. Boom–bust cycles such as snowshoe hare–lynx are classic examples; field experiments point to predation and food acting together.",
    "expert": "The r/K scheme is a simplification; modern life-history theory uses trade-offs between fecundity and survival. Snowshoe hare cycle period ≈ 10 years."
   },
   "facts": [
@@ -260,7 +260,10 @@
     "≈ 22 months"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "What drives the roughly 10-year snowshoe hare cycle (predation, food shortage, or both) and what drives lemming cycles is still debated."
+  ],
   "refs": [
    [
     "BIO",
@@ -303,22 +306,25 @@
   ],
   "summary": "Patches of populations and the human trend.",
   "layers": {
-   "basics": "A metapopulation is a set of local populations linked by migration, where local extinction and recolonisation balance. Human population is ≈ 8.1 billion and growth is slowing.",
+   "basics": "A metapopulation is a set of local populations linked by migration, where local extinction and recolonisation balance. Human population is ≈ 8.2 billion and growth is slowing.",
    "deeper": "The demographic transition describes falling death rates then birth rates. UN medium projections peak near 10.3 billion in the 2080s.",
-   "expert": "Levins model: dp/dt = cp(1 − p) − ep. Total fertility rate globally ≈ 2.3; replacement ≈ 2.1. Projections carry substantial uncertainty."
+   "expert": "Levins model: dp/dt = cp(1 − p) − ep. Total fertility rate globally ≈ 2.25 (2024); replacement ≈ 2.1. Projections carry substantial uncertainty."
   },
   "facts": [
    [
     "World population",
-    "≈ 8.1 billion (2024)"
+    "≈ 8.2 billion (mid-2024, UN WPP 2024)"
    ],
    [
     "Global TFR",
-    "≈ 2.3"
+    "≈ 2.25 (2024, UN WPP 2024)"
    ]
   ],
   "formula": "dp/dt = c·p(1 − p) − e·p",
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How fast fertility will keep falling, and therefore when and at what level world population peaks, is uncertain (UN medium variant about 10.3 billion in the 2080s)."
+  ],
   "refs": [
    [
     "BIO",
@@ -360,7 +366,7 @@
   "layers": {
    "basics": "Species that need the same resources compete. Predators reduce prey numbers, and prey adaptations evolve in response.",
    "deeper": "Gause's experiments with Paramecium showed competitive exclusion. Lotka–Volterra equations produce predator–prey cycles.",
-   "expert": "Lotka–Volterra: dx/dt = αx − βxy, dy/dt = δxy − γy. Competitive coexistence requires intraspecific competition to exceed interspecific. Resource partitioning allows coexistence (MacArthur's warblers)."
+   "expert": "Lotka–Volterra predator–prey model: dx/dt = αx − βxy, dy/dt = δxy − γy, where x is prey, y is predator, α is the prey growth rate, β the predation rate, δ the conversion of prey into predators and γ the predator death rate. In the separate Lotka–Volterra competition model, dN₁/dt = r₁N₁(1 − (N₁ + α₁₂N₂)/K₁), coexistence requires each species to limit itself more than it limits the other. Resource partitioning allows coexistence (MacArthur's warblers)."
   },
   "facts": [
    [
@@ -474,7 +480,7 @@
   "summary": "Who lives together and how many.",
   "layers": {
    "basics": "A community is all the species in an area. Species richness counts species; evenness describes how equally abundant they are.",
-   "deeper": "Keystone species (sea otters, wolves, sea stars) affect communities far beyond their abundance. Removing wolves from Yellowstone led to trophic cascades.",
+   "deeper": "Keystone species (sea otters, wolves, sea stars) affect communities far beyond their abundance. Wolf removal from Yellowstone (1920s) and return (1995) have been linked to changes in elk behaviour and willow and aspen recovery, but how much of this is a true trophic cascade is debated.",
    "expert": "Shannon index H = −Σ pᵢ ln pᵢ. Paine's Pisaster removal experiment (1966) cut mussel-bed diversity from 15 to 8 species. Species–area relationship S = cA^z with z ≈ 0.15–0.35."
   },
   "facts": [
@@ -488,7 +494,10 @@
    ]
   ],
   "formula": "H = −Σ pᵢ ln pᵢ",
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How much of the Yellowstone vegetation change is due to wolves, as opposed to climate, hydrology, other predators and hunting, is disputed."
+  ],
   "refs": [
    [
     "BIO",
@@ -528,8 +537,8 @@
   "summary": "How communities change over time.",
   "layers": {
    "basics": "After a disturbance such as fire, communities change in a predictable sequence called succession. Primary succession starts on bare rock; secondary succession starts on soil.",
-   "deeper": "Pioneer species (lichens, grasses) are replaced by shrubs and trees. Intermediate disturbance maintains highest diversity.",
-   "expert": "Climax community concepts are now seen as less deterministic; priority effects and history matter. After Mount St. Helens (1980), vegetation recovered over decades."
+   "deeper": "Pioneer species (lichens, grasses) are replaced by shrubs and trees. The intermediate-disturbance hypothesis predicts highest diversity at moderate disturbance; empirical support is mixed.",
+   "expert": "Climax community concepts are now seen as less deterministic; priority effects and history matter. After the 1980 Mount St. Helens eruption, surviving plants and buried seeds and roots (biological legacies) sped recovery on parts of the blast zone, while the barren pumice plain was colonised slowly by pioneers such as lupines."
   },
   "facts": [
    [
@@ -537,11 +546,14 @@
     "1980"
    ],
    [
-    "Peak diversity at",
-    "intermediate disturbance"
+    "Intermediate-disturbance hypothesis",
+    "predicts a diversity peak; support mixed"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Whether diversity really peaks at intermediate disturbance, and how often, is debated."
+  ],
   "refs": [
    [
     "BIO",
@@ -576,8 +588,8 @@
   "summary": "Who eats whom and how energy passes.",
   "layers": {
    "basics": "Energy enters ecosystems through producers and passes to consumers and decomposers. Most energy is lost as heat at each step.",
-   "deeper": "Only about 10% of energy transfers between trophic levels, so food chains are short. Biomass pyramids narrow upward in most ecosystems.",
-   "expert": "Trophic transfer efficiency ranges ≈ 5–20%. Net primary production = GPP − respiration. Aquatic food webs can show inverted biomass pyramids with rapid-turnover producers."
+   "deeper": "Typically about 10% of energy passes to the next trophic level (real values vary widely), which is one reason food chains rarely exceed four or five links; ecosystem size and dynamic stability may also play a part. Biomass pyramids narrow upward in most ecosystems.",
+   "expert": "Trophic transfer efficiency ranges ≈ 5–20%. Net primary production = gross primary production (GPP) minus the producers' own respiration. Aquatic food webs can show inverted biomass pyramids with rapid-turnover producers."
   },
   "facts": [
    [
@@ -589,7 +601,7 @@
     "≈ 100–120 Pg C/yr"
    ]
   ],
-  "formula": "NPP = GPP − R",
+  "formula": "NPP = GPP − Rₐ (Rₐ = respiration of the producers themselves)",
   "certainty": "C1",
   "refs": [
    [
@@ -645,8 +657,8 @@
   },
   "facts": [
    [
-    "Open ocean share of global NPP",
-    "≈ 45–50%"
+    "Ocean share of global NPP (open ocean plus coastal)",
+    "≈ 46% (48.5 of 104.9 Pg C/yr; Field et al. 1998)"
    ],
    [
     "Iron-limited ocean regions",
@@ -698,7 +710,7 @@
   "layers": {
    "basics": "Elements cycle between living things and the environment. Carbon, nitrogen, phosphorus and water each have reservoirs and fluxes.",
    "deeper": "Humans have altered these cycles: fossil fuel burning adds CO₂, fertilisers add nitrogen and phosphorus, and runoff causes eutrophication.",
-   "expert": "Residence times range from days (atmospheric water ≈ 9 d) to millions of years (rock P). Human nitrogen fixation (≈ 150–200 Tg N/yr) now exceeds natural terrestrial fixation (≈ 100–140 Tg N/yr)."
+   "expert": "Residence times range from days (atmospheric water ≈ 9 d) to millions of years (rock P). Human creation of reactive nitrogen (≈ 210 Tg N/yr, about 120 of it by the Haber–Bosch process) is several times natural terrestrial biological fixation (≈ 58 Tg N/yr, range 40–100)."
   },
   "facts": [
    [
@@ -762,7 +774,7 @@
   "facts": [
    [
     "Tropical rainforest species share",
-    "≈ half of terrestrial species"
+    "large share, often quoted as about half; poorly quantified because many tropical groups are undescribed"
    ],
    [
     "Ocean share of Earth's surface",
@@ -835,7 +847,10 @@
     "tropics have more species"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Why species richness peaks in the tropics (energy, area, time, speciation and extinction rates) is unresolved."
+  ],
   "refs": [
    [
     "BIO",
@@ -872,19 +887,22 @@
   "layers": {
    "basics": "Rising temperature and CO₂ are shifting ranges, seasons and ecosystems. Oceans are warming and becoming more acidic.",
    "deeper": "Coral bleaching, phenological mismatches and species range shifts are documented. Ocean pH has fallen by ≈ 0.1 since pre-industrial times.",
-   "expert": "Global mean surface temperature is ≈ 1.1–1.2 °C above pre-industrial. Impacts depend on adaptation capacity, dispersal, and interactions; tipping points (Amazon dieback, coral loss) are assessed with uncertainty."
+   "expert": "Long-term global warming is ≈ 1.3 °C above the 1850–1900 average (WMO assessment for 2024), and the single year 2024 was ≈ 1.55 °C above it. Impacts depend on adaptation capacity, dispersal, and interactions; tipping points (Amazon dieback, coral loss) are assessed with uncertainty."
   },
   "facts": [
    [
-    "Warming since pre-industrial",
-    "≈ 1.1–1.2 °C"
+    "Warming above 1850–1900",
+    "≈ 1.3 °C long-term; 2024 alone ≈ 1.55 °C"
    ],
    [
     "Ocean pH change",
     "≈ −0.1"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Where ecological tipping points (Amazon dieback, coral reef loss) lie, and how fast species can adapt or disperse, remain uncertain."
+  ],
   "refs": [
    [
     "BIO",
@@ -926,8 +944,8 @@
   "summary": "Why diversity matters and how it is lost.",
   "layers": {
    "basics": "Biodiversity includes genetic, species and ecosystem diversity. It is declining mainly through habitat loss, overexploitation, invasive species, pollution and climate change.",
-   "deeper": "IUCN assesses extinction risk (Least Concern to Extinct). About 28% of assessed species are threatened. Wildlife populations monitored have declined ≈ 69% since 1970 (WWF Living Planet Index, 2022).",
-   "expert": "Estimated extinction rates are ≈ 10–1,000× background depending on method. The Living Planet Index is debated methodologically. Ecosystem services (pollination, water purification) are valued at tens of trillions of dollars per year, with substantial uncertainty."
+   "deeper": "IUCN assesses extinction risk (Least Concern to Extinct). About 28% of assessed species are threatened. Monitored vertebrate populations declined by an average of ≈ 73% from 1970 to 2020 (Living Planet Index, 2024). This tracks the average change across monitored populations, not the loss of total animal numbers.",
+   "expert": "Estimated extinction rates are ≈ 10–1,000× background depending on method. The Living Planet Index is debated methodologically. Global ecosystem-service value estimates (pollination, water purification and more) are of order $100 trillion per year (Costanza et al. 2014: $125 trillion for 2011), but they depend heavily on assumptions."
   },
   "facts": [
    [
@@ -939,7 +957,10 @@
     "≈ 10–1000×"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How fast species are going extinct today depends strongly on method (10–1000× background), and the Living Planet Index methodology is debated."
+  ],
   "refs": [
    [
     "BIO",
@@ -1000,7 +1021,7 @@
   "layers": {
    "basics": "Conservation tools include protected areas, habitat restoration, species recovery plans, anti-poaching efforts and managing invasive species.",
    "deeper": "Corridors link habitats. Reintroductions such as gray wolves to Yellowstone and California condor breeding programs show recovery is possible.",
-   "expert": "Population viability analysis estimates extinction risk; 30×30 targets aim to protect 30% of land and sea by 2030. Invasive species (zebra mussels, cane toads) cause ≈ $400 billion in global costs yearly."
+   "expert": "Population viability analysis estimates extinction risk; 30×30 targets aim to protect 30% of land and sea by 2030. Invasive alien species cost the global economy more than US$423 billion a year (2019, IPBES 2023), a figure widely regarded as an underestimate."
   },
   "facts": [
    [
@@ -1055,17 +1076,17 @@
   "summary": "Benefits nature gives people.",
   "layers": {
    "basics": "Ecosystems provide food, clean water, pollination, climate regulation and recreation, which have large economic and cultural value.",
-   "deeper": "Wetlands filter water and buffer floods; pollinators support much of food production.",
-   "expert": "Valuation uses market prices, avoided costs and stated preference methods and is controversial; Costanza et al. estimated ≈ $125–145 trillion per year (2014), a disputed order-of-magnitude figure."
+   "deeper": "Wetlands filter water and buffer floods; pollinators matter most for fruit, nut and vegetable crops.",
+   "expert": "Valuation uses market prices, avoided costs and stated preference methods and is controversial; Costanza et al. estimated $125–145 trillion per year in 2007 US dollars (2014, depending on the scenario), a disputed order-of-magnitude figure."
   },
   "facts": [
    [
-    "Costanza estimate (2014)",
-    "≈ $125–145 trillion/yr (disputed)"
+    "Costanza et al. 2014 (2007 US dollars)",
+    "$125 trillion/yr for 2011 (unit values and biome areas updated) or $145 trillion/yr (unit values only); disputed"
    ],
    [
-    "Pollinator-dependent crops",
-    "≈ 35% of production"
+    "Crops that depend at least partly on animal pollinators",
+    "≈ 35% of global crop production by volume; total loss of pollinators would cut production ≈ 3–8%"
    ]
   ],
   "certainty": "C2",
@@ -1214,7 +1235,7 @@
   "layers": {
    "basics": "The binomial counts successes in n trials (offspring with a trait), the Poisson counts rare events (mutations per genome), and the normal describes many continuous traits.",
    "deeper": "The Poisson variance equals its mean; for large n the binomial is approximately normal. About 95% of a normal population lies within ±1.96 SD.",
-   "expert": "Luria–Delbrück's experiment used the Poisson-like fluctuation pattern to show mutations arise before selection. Overdispersed counts are better modelled by negative binomial."
+   "expert": "Luria–Delbrück (1943) found far more variance in resistant-colony counts between cultures than a Poisson distribution predicts, with occasional 'jackpot' cultures, showing that mutations arise spontaneously before selection rather than being induced by it. Overdispersed counts are better modelled by negative binomial."
   },
   "facts": [
    [
@@ -1284,8 +1305,8 @@
     "quadruples"
    ],
    [
-    "n often cited for CLT",
-    "≈ 30"
+    "Rule-of-thumb n for the CLT",
+    "≈ 30 (depends on skew: strongly skewed data need far more)"
    ]
   ],
   "certainty": "C1",
@@ -1387,7 +1408,7 @@
   ],
   "summary": "Testing a null hypothesis.",
   "layers": {
-   "basics": "A hypothesis test asks how surprising the data would be if there were no effect (the null hypothesis). The p-value is that probability.",
+   "basics": "A hypothesis test asks how surprising the data would be if there were no effect (the null hypothesis). The p-value is the probability, if the null hypothesis were true, of getting results at least as extreme as those observed.",
    "deeper": "A small p (< 0.05 by convention) suggests the data are unlikely under the null. Type I error is a false positive; Type II is a false negative.",
    "expert": "p-values are not the probability the null is true, and are not effect sizes. Power = 1 − β. Misuse (p-hacking, publication bias) contributes to the replication crisis."
   },
@@ -1457,7 +1478,7 @@
   "layers": {
    "basics": "A t-test compares a sample mean with a value, or two group means, accounting for the variability and sample size.",
    "deeper": "Types: one-sample, two-sample (independent), paired (same subjects before and after). Welch's test does not assume equal variances.",
-   "expert": "Student (W. S. Gosset) derived the t distribution in 1908 while working at Guinness. Assumes approximate normality; for small samples with skew use Wilcoxon/Mann–Whitney."
+   "expert": "Student (W. S. Gosset) derived the t distribution in 1908 while working at Guinness. Assumes approximate normality; for small, skewed samples, rank-based tests (Wilcoxon signed-rank for paired data, Mann–Whitney for two independent groups) test a shift in distribution rather than a difference in means."
   },
   "facts": [
    [
@@ -1479,8 +1500,8 @@
    ],
    [
     "IST",
-    "10.3",
-    "10-3-comparing-two-independent-population-proportions"
+    "9.6",
+    "9-6-hypothesis-testing-of-a-single-mean-and-single-proportion"
    ],
    [
     "IST",
@@ -1936,7 +1957,7 @@
   "layers": {
    "basics": "A matrix tracks how many individuals are in each age or stage class and projects them forward one step at a time.",
    "deeper": "The dominant eigenvalue λ gives the long-term growth rate: λ > 1 growth, λ < 1 decline.",
-   "expert": "Elasticity analysis shows which vital rates most affect λ; for sea turtles, adult survival dominates, guiding conservation (turtle excluder devices). Stochastic and density-dependent extensions exist."
+   "expert": "Elasticity analysis shows which vital rates most affect λ; for loggerhead sea turtles, λ is most sensitive to survival of large juveniles (then small juveniles and adults), not to egg or hatchling survival, which pointed to turtle excluder devices in shrimp trawls (Crouse et al. 1987; Crowder et al. 1994). Stochastic and density-dependent extensions exist."
   },
   "facts": [
    [
@@ -1944,19 +1965,13 @@
     "λ = dominant eigenvalue"
    ],
    [
-    "Loggerhead sea turtle key rate",
-    "adult survival"
+    "Loggerhead key rate",
+    "large-juvenile survival (then adults)"
    ]
   ],
   "formula": "n(t+1) = L·n(t)",
   "certainty": "C1",
-  "refs": [
-   [
-    "CA3",
-    "2.1",
-    "2-1-vectors-in-the-plane"
-   ]
-  ],
+  "refs": [],
   "kn": [
    "linalg_hilbert",
    "population_dynamics"
@@ -1996,18 +2011,12 @@
     "2016"
    ],
    [
-    "Survey of irreproducible results (Nature, 2016)",
-    "> 70% failed to reproduce another's experiment"
+    "Nature survey of ~1,500 researchers (Baker 2016)",
+    "> 70% had tried and failed to reproduce another scientist's experiment"
    ]
   ],
   "certainty": "C1",
-  "refs": [
-   [
-    "DSC",
-    "1.1",
-    "1-1-what-is-data-science"
-   ]
-  ],
+  "refs": [],
   "kn": [
    "replication_crisis",
    "computation"
@@ -2092,13 +2101,7 @@
    ]
   ],
   "certainty": "C1",
-  "refs": [
-   [
-    "MIC",
-    "13.1",
-    "13-1-controlling-microbial-growth"
-   ]
-  ]
+  "refs": []
  },
  {
   "id": "bio_light_microscopy",
@@ -2121,7 +2124,7 @@
   "summary": "Seeing cells with visible light.",
   "layers": {
    "basics": "A compound microscope uses lenses to magnify cells. Total magnification is eyepiece × objective, and resolution limits detail.",
-   "deeper": "Bright-field, phase-contrast and DIC reveal unstained cells. Staining (Gram, H&E) adds contrast.",
+   "deeper": "Phase-contrast and DIC reveal unstained living cells; bright-field needs staining (Gram, H&E) for good contrast.",
    "expert": "Abbe limit: d = λ/(2NA) ≈ 200 nm for visible light and NA ≈ 1.4. Oil immersion raises NA. Resolution, not magnification, decides what can be seen."
   },
   "facts": [
@@ -2254,13 +2257,13 @@
   "summary": "Imaging with electrons.",
   "layers": {
    "basics": "Electron microscopes use electron beams to see detail far smaller than light microscopes: TEM shows interior slices, SEM shows surfaces.",
-   "deeper": "Samples must be fixed and kept in vacuum (except cryo methods). Images are grey-scale.",
-   "expert": "Resolution ≈ 0.05–0.2 nm in practice for TEM; cryo-EM reconstructs structures to near-atomic resolution from thousands of frozen particle images (Nobel 2017)."
+   "deeper": "The beam path must be in vacuum, so conventional samples are chemically fixed, dehydrated and stained; cryo-EM instead flash-freezes samples in vitreous ice, but they are still imaged in vacuum. Images are grey-scale.",
+   "expert": "Instrument resolution reaches ≈ 0.05–0.2 nm for TEM (aberration-corrected, robust physical samples), while biological specimens are limited to much coarser detail by preparation and radiation damage; cryo-EM reconstructs structures to near-atomic resolution from thousands of frozen particle images (Nobel 2017)."
   },
   "facts": [
    [
-    "TEM resolution",
-    "≈ 0.1 nm"
+    "TEM instrument resolution",
+    "≈ 0.05–0.2 nm (aberration-corrected, physical specimens); biological specimens much coarser"
    ],
    [
     "Cryo-EM Nobel",
@@ -2319,7 +2322,7 @@
    ],
    [
     "Typical accuracy",
-    "≈ ±1–2%"
+    "depends on volume; worst at the bottom of the range (see the manufacturer datasheet)"
    ]
   ],
   "formula": "mass = M × V × MW",
@@ -2471,7 +2474,7 @@
   "layers": {
    "basics": "Cells are grown in flasks or dishes with nutrient medium at 37 °C and 5% CO₂. Aseptic technique, working in a biosafety cabinet and sterilising tools, prevents contamination.",
    "deeper": "Primary cells have limited life; immortal lines (HeLa, from 1951) grow indefinitely. Cultures are checked for mycoplasma.",
-   "expert": "Cell line misidentification is common (≈ 15–20% of lines), so authentication (STR profiling) is needed. HeLa raised ethical issues about consent; Henrietta Lacks' family was acknowledged in later agreements."
+   "expert": "Cell line misidentification is well documented (the ICLAC register lists hundreds of misidentified lines), so authentication (STR profiling) is needed. HeLa raised ethical issues about consent; Henrietta Lacks' family was acknowledged in later agreements."
   },
   "facts": [
    [
@@ -2480,7 +2483,7 @@
    ],
    [
     "Misidentified cell lines",
-    "≈ 15–20%"
+    "hundreds documented (ICLAC register)"
    ]
   ],
   "certainty": "C1",
@@ -2489,11 +2492,6 @@
     "MIC",
     "13.2",
     "13-2-using-physical-methods-to-control-microorganisms"
-   ],
-   [
-    "MIC",
-    "9.6",
-    "9-6-media-used-for-bacterial-growth"
    ]
   ],
   "lab": {
@@ -2539,17 +2537,11 @@
    ],
    [
     "Excitation / emission",
-    "≈ 488 / 509 nm"
+    "wild type ≈ 395 / 509 nm; EGFP ≈ 488 / 507 nm"
    ]
   ],
   "certainty": "C1",
-  "refs": [
-   [
-    "MIC",
-    "20.5",
-    "20-5-fluorescent-antibody-techniques"
-   ]
-  ],
+  "refs": [],
   "ext": [
    {
     "title": "RCSB PDB: 1EMA GFP",
@@ -2599,17 +2591,11 @@
    ],
    [
     "Data retention",
-    "often ≥ 5–7 years"
+    "set by funder and institution; commonly several years after a project ends"
    ]
   ],
   "certainty": "C1",
-  "refs": [
-   [
-    "WRG",
-    "1.1",
-    "1-1-reading-to-understand-and-respond"
-   ]
-  ]
+  "refs": []
  },
  {
   "id": "bio_literature_scientific_writing",
@@ -2638,11 +2624,11 @@
   "facts": [
    [
     "PubMed records",
-    "> 36 million"
+    "> 40 million citations (PubMed home page)"
    ],
    [
-    "Retractions per year",
-    "≈ 5,000+"
+    "Retractions in 2023",
+    "> 10,000 (Nature analysis; inflated by mass retractions at one publisher)"
    ]
   ],
   "certainty": "C1",
@@ -2737,8 +2723,8 @@
     "≈ 1 m²"
    ],
    [
-    "Camera-trap days per site",
-    "≈ 30–60"
+    "Camera-trap survey length per site",
+    "depends on how detectable the target species is"
    ]
   ],
   "certainty": "C1",
