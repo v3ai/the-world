@@ -725,41 +725,28 @@
   "caption": "A gill in cross-section, from the core to the air. Not to scale."
  },
  "fa_spores": {
-  "type": "plot",
-  "x": [
-   0,
-   24
-  ],
-  "y": [
-   0,
-   3
-  ],
-  "params": [
+  "type": "bars",
+  "bars": [
    {
-    "id": "rate",
-    "label": "spores per second",
-    "min": 5000,
-    "max": 50000,
-    "value": 30000,
-    "step": 1000
+    "label": "spore length, lower end of range",
+    "value": 9
+   },
+   {
+    "label": "spore length, upper end of range",
+    "value": 13
+   },
+   {
+    "label": "spore width, lower end of range",
+    "value": 6.5
+   },
+   {
+    "label": "spore width, upper end of range",
+    "value": 9
    }
   ],
-  "fns": [
-   {
-    "f": "rate*3600*x/1e9",
-    "label": "billions of spores released"
-   }
-  ],
-  "xlabel": "hours",
-  "ylabel": "billions of spores",
-  "readouts": [
-   {
-    "label": "In one day",
-    "value": "rate*86400/1e9",
-    "unit": "billion"
-   }
-  ],
-  "caption": "About 30,000 per second (a figure for gilled mushrooms in general) is billions per day. Move the slider to see how the total depends on the rate."
+  "ylabel": "micrometres",
+  "logy": false,
+  "caption": "The size range of a fly agaric spore: 9 to 13 micrometres long and 6.5 to 9 wide."
  },
  "fa_stipe": {
   "type": "bars",
@@ -1029,15 +1016,11 @@
    {
     "label": "spore length, A. muscaria (µm)",
     "value": 11
-   },
-   {
-    "label": "mantle thickness, up to (µm)",
-    "value": 40
    }
   ],
   "ylabel": "micrometres",
   "logy": true,
-  "caption": "The fungal sheath around a root tip is up to about 40 µm thick, only a few times the width of a hypha or the length of a spore."
+  "caption": "For scale: a fungal thread is a few micrometres wide and a fly agaric spore about 11 micrometres long. The sheath around a root tip is built of rows of such threads."
  },
  "fa_mantle": {
   "type": "blocks",
@@ -1155,7 +1138,7 @@
    {
     "from": "r",
     "to": "f",
-    "label": "about 15 % of the host's food product"
+    "label": "one tundra study: 8–17 % of carbon"
    },
    {
     "from": "p",
@@ -1164,11 +1147,11 @@
    {
     "from": "f",
     "to": "r",
-    "label": "nitrogen up to 86 %, phosphate, water"
+    "label": "nitrogen (61–86 % in that study), phosphate, water"
    }
   ],
   "flow": true,
-  "caption": "The swap at a mycorrhizal root tip, with the figures from the sources used."
+  "caption": "The exchange at a mycorrhizal root tip, with figures from one arctic tundra study; other sites and methods give other values."
  },
  "fa_ways_of_life": {
   "type": "blocks",
@@ -1211,7 +1194,7 @@
    }
   ],
   "flow": false,
-  "caption": "Two lifestyles of fungi. The fly agaric is a partner."
+  "caption": "Lifestyles of fungi (the parasite group is not drawn). The fly agaric is a partner."
  },
  "fa_chitin": {
   "type": "blocks",
@@ -1292,7 +1275,7 @@
    {
     "from": "i",
     "to": "m",
-    "label": "loses CO₂"
+    "label": "partly converted in the body"
    },
    {
     "from": "i",
@@ -1326,13 +1309,13 @@
    },
    {
     "id": "p",
-    "label": "Peak within ≈ 3 hours",
+    "label": "Strongest at ≈ 2–3 h",
     "x": 80,
     "y": 65
    },
    {
     "id": "r",
-    "label": "Most recover within ≈ 12–24 h",
+    "label": "Typically settle in ≈ 6 h; sometimes 12–24 h",
     "x": 50,
     "y": 90,
     "color": "green"
@@ -1350,10 +1333,10 @@
    {
     "from": "p",
     "to": "r",
-    "label": "treatment is supportive"
+    "label": "hospital care is often needed"
    }
   ],
   "flow": false,
-  "caption": "The usual time course. No antidote exists. If someone may have eaten one, call a poison centre or emergency services."
+  "caption": "The usual time course. No antidote exists. If a person or pet may have eaten one, call a poison centre or emergency services."
  }
 }

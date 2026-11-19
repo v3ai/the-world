@@ -31,9 +31,9 @@
   "processes": [],
   "summary": "The red mushroom with white warts. What you see is only the fruit of a much larger fungus whose threads run through the soil and partner with the roots of trees.",
   "layers": {
-   "basics": "The fly agaric is a toadstool: a red cap dotted with white warts on a white stem, with a ring on the stem and a swollen base. It is poisonous. The mushroom is not the whole organism. It is the short-lived fruit body that a fungus builds above ground to release spores, the way an apple tree makes apples. The rest of the fungus is a web of fine threads in the soil, and it swaps minerals and water for sugar with the roots of nearby trees. Use the layer buttons: cut it in half, look underground, or follow how it grows from a small white egg.",
-   "deeper": "Fungi are not plants. They have no chlorophyll and cannot make their own food; they absorb it. Their cell walls are made of chitin (the same material as insect shells), and genetically they are closer kin to animals than to plants. This species feeds in partnership: its threads wrap the finest roots of trees (an ectomycorrhiza) and trade. Each fruit body goes through three visible stages: a button wrapped in a white veil, a half-open cap with the veil tearing, and a mature flat cap. The white warts and the ring are what is left of two veils that once enclosed the young mushroom.",
-   "expert": "Amanita muscaria is a basidiomycete (Agaricales), a mushroom that makes its spores on gill surfaces, four to a spore-making cell (basidium). The fruit body is a small part of the fungal individual; whether the fruit bodies in a patch come from one mycelium or several is not shown. It contains ibotenic acid and muscimol, which act on glutamate and GABA receptors in the nervous system. It is native to temperate and boreal woodland across the northern hemisphere and has been carried to the southern hemisphere with planted trees. The park model is a reconstruction from typical measurements; sizes, counts and layer thicknesses that the model chooses are said so on the cards."
+   "basics": "The fly agaric is a toadstool: a red cap dotted with white warts on a white stem, with a ring on the stem and a swollen base. It is poisonous and can put people, especially children, and pets in hospital: never eat a wild mushroom on the strength of an app or a photograph. The mushroom is not the whole organism. It is the short-lived fruit body that a fungus builds above ground to release spores, the way an apple tree makes apples. The rest of the fungus is a web of fine threads in the soil, and it swaps minerals and water for sugar with the roots of nearby trees. Use the layer buttons: cut it in half, look underground, or follow how it grows from a small white egg.",
+   "deeper": "Fungi are not plants. They have no chlorophyll and cannot make their own food; they absorb it. Their cell walls are made of chitin (the same material as insect shells), and genetically they are closer kin to animals than to plants. This species feeds in partnership: its threads wrap the finest roots of trees (an ectomycorrhiza) and exchange materials with them. Each fruit body goes through three visible stages: a button wrapped in a white veil, a half-open cap with the veil tearing, and a mature flat cap. The white warts and the ring are what is left of two veils that once enclosed the young mushroom.",
+   "expert": "Amanita muscaria is a basidiomycete (Agaricales), a mushroom that makes its spores on gill surfaces, four to a spore-making cell (basidium). The fruit body is a small part of the fungal individual; the fruit bodies in one patch may or may not come from the same mycelium. It contains ibotenic acid and muscimol, which act on glutamate and GABA receptors in the nervous system. It is native to temperate and boreal woodland across the northern hemisphere and has been carried to the southern hemisphere with planted trees. The park model is a reconstruction from typical measurements; sizes, counts and layer thicknesses that the model chooses are said so on the cards."
   },
   "facts": [
    [
@@ -54,11 +54,11 @@
    ],
    [
     "Poison",
-    "ibotenic acid and muscimol; poisonous, rarely deadly"
+    "ibotenic acid and muscimol: poisonings often need medical care; deaths are very rare; other Amanita species can be deadly"
    ],
    [
     "Partner trees",
-    "pine, spruce, fir, birch, cedar and oak are named in the species account"
+    "pine, spruce, fir and birch are commonly reported; the list varies by region"
    ]
   ],
   "certainty": "C1",
@@ -171,8 +171,8 @@
   "summary": "The skin of the cap is a thin red layer; just under it is a yellowish layer. Together they are far thinner than they look in the cut model.",
   "layers": {
    "basics": "The bright red skin is the cap's surface layer. If you cut a cap, you find a thin yellow layer just beneath the red, and below that, white flesh.",
-   "deeper": "In the cut-open model the red and yellow bands are drawn about a millimetre or two thick so that you can see them; real thicknesses are not given in the sources used here and are not measured in the model. A yellowish layer is also seen under the veil of a young specimen when it is dissected.",
-   "expert": "The pigments that colour the cap are not described on this card because I did not source them. The cap colour can fade to orange or yellow in some forms and with slow development of a purple pigment; the cause of that difference between populations is not established here."
+   "deeper": "In the cut-open model the red and yellow bands are drawn about a millimetre or two thick so that you can see them; the real skin is thinner. A yellowish layer is also seen under the veil of a young specimen when it is dissected.",
+   "expert": "Cap colour varies between forms of the species, from red to orange to yellow, and the red cap of the common form fades towards reddish orange in sunlight."
   },
   "facts": [
    [
@@ -185,9 +185,7 @@
    ]
   ],
   "certainty": "C2",
-  "open_questions": [
-   "What pigments colour the cap, and why the colour differs between populations, is not covered by the sources used for these cards."
-  ],
+  "open_questions": [],
   "refs": [
    [
     "BIO",
@@ -199,6 +197,10 @@
    {
     "title": "Amanita muscaria (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Amanita_muscaria"
+   },
+   {
+    "title": "Duffy: Amanita muscaria and A. pantherina, Toxic Fungi of Western North America (MykoWeb)",
+    "url": "https://www.mykoweb.com/TFWNA/P-26.html"
    }
   ],
   "mesh": null
@@ -217,11 +219,11 @@
    "fa_hypha"
   ],
   "processes": [],
-  "summary": "The white flesh of the cap is not made of cells like an apple's: it is a packed felt of fungal threads called hyphae.",
+  "summary": "The white flesh of the cap is a packed mass of fungal threads called hyphae, each one a chain of cells.",
   "layers": {
-   "basics": "Cut a cap and the white flesh looks solid. Under a microscope it is a tangle of very thin tubes, each a few thousandths of a millimetre wide, packed together. Each tube is a hypha. The whole mushroom, like all the rest of the fungus, is built from these threads.",
+   "basics": "Cut a cap and the white flesh looks solid. Under a microscope it is a tangle of very thin tubes, each a few thousandths of a millimetre wide, packed together. Each tube is a hypha, a chain of cells divided by cross-walls. The whole mushroom, like all the rest of the fungus, is built from these threads.",
    "deeper": "Hyphae are typically 2 to 10 micrometres across and grow at their tips. Their walls are made of chitin and glucans. In the flesh the hyphae are interwoven and pressed together; in the soil the same kind of thread runs loosely as the mycelium. Click a thread in the tissue scene to see chitin's building block.",
-   "expert": "The tissue scene shows threads at true width (2 to 10 µm); the number, direction and layout of the threads are illustrative. The different cell shapes real mushrooms use in different tissues are not shown."
+   "expert": "The tissue scene draws threads about 6 µm wide, inside the usual range; their number, direction and layout are illustrative. Real mushroom flesh also contains other cell shapes, such as swollen cells among the threads, which the scene does not show."
   },
   "facts": [
    [
@@ -378,8 +380,8 @@
   "summary": "Gills are the thin vertical plates under the cap. Their surface is covered by the cells that make spores.",
   "layers": {
    "basics": "Look under a mature cap and you see dozens of thin white plates fanned out from the stem to the rim. These are the gills. Each plate is lined on both sides with tiny spore-making cells. Packing many thin plates under a cap gives far more surface for spores than a smooth underside would. Fly agaric gills are white and do not touch the stem: there is a small gap, which is what \"free\" means.",
-   "deeper": "The plates are not all the same length. Long gills run from near the stem to the rim, and shorter ones lie between them near the rim. The model uses 56 long gills, 56 of two-thirds length and 112 of two-fifths length (224 in all, a chosen count). A gilled cap offers roughly a quarter more spore-bearing surface than a pored (tube) cap of the same width.",
-   "expert": "The gill count is the model's: real counts vary and were not found in a source. Spore colour in a deposit (spore print) is white in this species. The gill plates are drawn about half a millimetre thick, a chosen value."
+   "deeper": "The plates are not all the same length. Long gills run from near the stem to the rim, and shorter ones lie between them near the rim. The model uses 56 long gills, 56 of two-thirds length and 112 of two-fifths length (224 in all, a chosen count).",
+   "expert": "The gill count is the model's; real counts vary. Spore colour in a deposit (spore print) is white in this species. The gill plates are drawn about half a millimetre thick, a chosen value."
   },
   "facts": [
    [
@@ -438,8 +440,8 @@
   "summary": "A gill is a thin sheet of threads with a skin of spore-making cells on each face. Each of these cells, a basidium, makes four spores.",
   "layers": {
    "basics": "Cut across a gill and you see three parts. In the middle is a thin core of loose threads that holds the gill up. On each side is a layer of small supporting cells, and on the outside a crowded layer of club-shaped cells called basidia. This outer layer is the hymenium. Each basidium puts out four tiny prongs, and a spore grows on the tip of each.",
-   "deeper": "A basidium usually carries four spores, though two or eight happen in other species. When a spore is ripe, a drop of water forms at its tip and another on its side. When the two drops merge, the sudden change in surface tension launches the spore at an acceleration estimated at about 10,000 times gravity. The spore flies a very short distance, clear of the gill, and then falls down between the plates and out from under the cap into the air.",
-   "expert": "In the tissue scene the spore length (about 11 µm; the species range is 9–13 × 6.5–9 µm) and thread width are true to the sources; the size of the basidia and the thickness of the gill layers are illustrative, and a real gill carries enormous numbers of basidia. The fine structure of the gill's core (how its threads are arranged) is not claimed here."
+   "deeper": "A basidium usually carries four spores, though two or eight happen in other species. When a spore is ripe, a drop of water forms at its tip and another on its side. When the two drops merge, the sudden change in surface tension launches the spore. In gilled mushrooms the spore travels less than 0.1 mm, just clear of the gill, and then falls down between the plates and out from under the cap into the air.",
+   "expert": "In the tissue scene the spore length (about 11 µm; the species range is 9–13 × 6.5–9 µm) and thread width are true to the sources; the size of the basidia and the thickness of the gill layers are illustrative, and a real gill carries enormous numbers of basidia. The arrangement of threads in the gill's core is simplified."
   },
   "facts": [
    [
@@ -456,7 +458,7 @@
    ],
    [
     "Launch",
-    "surface-tension catapult, ≈ 10,000 g"
+    "surface-tension catapult; < 0.1 mm travel in gilled mushrooms"
    ]
   ],
   "certainty": "C1",
@@ -485,6 +487,10 @@
    {
     "title": "Amanita muscaria (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Amanita_muscaria"
+   },
+   {
+    "title": "Stolze-Rybczynski et al. 2009: Adaptation of the spore discharge mechanism in the Basidiomycota (PLoS ONE)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2612744"
    }
   ],
   "molecules": [
@@ -506,8 +512,8 @@
   "processes": [],
   "summary": "A mushroom releases an enormous number of spores. Each is a single cell with a tough wall that can ride the air to new places.",
   "layers": {
-   "basics": "A spore is the fungus's seed-like unit: one cell, much smaller than a seed, that can grow into a new network of threads if it lands somewhere good. The fly agaric's spores are white, oval and about 11 micrometres long. Most land and die; a few find the right soil and a root. A gilled mushroom is thought to shed around thirty thousand spores every second (a figure for gilled mushrooms in general, not measured on this species), which adds up to billions a day.",
-   "deeper": "Calculation: 30,000 per second × 86,400 seconds is about 2.6 × 10⁹ per day. This is an order-of-magnitude figure for gilled mushrooms in general, quoted from a search summary of a review (not read in full); a real mushroom's rate depends on its size, age and weather. Spores do not turn blue in iodine (an identification test in this genus).",
+   "basics": "A spore is the fungus's seed-like unit: one cell, much smaller than a seed, that can grow into a new network of threads if it lands somewhere good. The fly agaric's spores are white, oval and about 11 micrometres long. Most land and die; a few find the right soil and a root. A single mushroom sheds a very large number of spores, and how many depends on its size, age and the weather.",
+   "deeper": "Spores are carried out from under the cap by air movement after the launch from the gill. The figure shown here is the size of one spore, the one measurement of this species that the card states.",
    "expert": "Spores are the haploid products of meiosis in the basidium; two compatible threads grown from different spores must fuse for the mushroom stage to form."
   },
   "facts": [
@@ -516,18 +522,12 @@
     "≈ 9–13 × 6.5–9 µm"
    ],
    [
-    "Release (gilled mushrooms in general)",
-    "≈ 30,000 per second"
-   ],
-   [
-    "Per day (calculated)",
-    "≈ 2.6 × 10⁹"
+    "Colour in a spore print",
+    "white"
    ]
   ],
-  "certainty": "C2",
-  "open_questions": [
-   "Per-species spore output is not known for the fly agaric from the sources used here; the figure is for gilled mushrooms in general."
-  ],
+  "certainty": "C1",
+  "open_questions": [],
   "refs": [
    [
     "BIO",
@@ -542,12 +542,12 @@
   ],
   "ext": [
    {
-    "title": "Review of spore release in fungi (PMC4624964)",
-    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4624964"
-   },
-   {
     "title": "Amanita muscaria (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Amanita_muscaria"
+   },
+   {
+    "title": "Stolze-Rybczynski et al. 2009: Adaptation of the spore discharge mechanism in the Basidiomycota (PLoS ONE)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2612744"
    }
   ],
   "mesh": null
@@ -569,9 +569,9 @@
   "processes": [],
   "summary": "The stem lifts the cap into the air so that spores can fall clear and be carried by the wind.",
   "layers": {
-   "basics": "The white stem holds the cap high above the ground. In a mature fly agaric it is 5 to 20 cm tall and 1 to 2 cm wide, a little brittle and fibrous. It widens into a swollen base at the soil. Inside, it is made of threads like those of the cap.",
-   "deeper": "The ring partway up and the scales at the base are leftovers of the veils. How fast and by what mechanism the stem lengthens is not covered by the sources used for these cards.",
-   "expert": "The model's stem is 14 cm tall (chosen in the range 5–20 cm), 1.7 cm wide under the cap (range 1–2 cm), with a swollen base 4 cm wide (chosen). Whether the stem is solid or hollow is not described on this card."
+   "basics": "The white stem holds the cap high above the ground. In a mature fly agaric it is 5 to 20 cm tall and 1 to 2 cm wide, smooth above the ring and fibrous to scaly below it. It widens into a swollen base at the soil. Inside, it is made of threads like those of the cap.",
+   "deeper": "The ring partway up and the scales at the base are leftovers of the veils.",
+   "expert": "The model's stem is 14 cm tall (chosen in the range 5–20 cm), 1.7 cm wide under the cap (range 1–2 cm), with a swollen base 4 cm wide (chosen). The model draws the stem as one solid piece; the inside of a real stem varies."
   },
   "facts": [
    [
@@ -775,7 +775,7 @@
   "layers": {
    "basics": "As the stem lengthens and the cap swells, the white egg skin splits and slips down, leaving warts on the cap. The cap is still a dome, folded down around the stem, and the partial veil still hides the gills. Later the cap flattens, the veil tears from its rim, and the gills are open to the air.",
    "deeper": "In the park, three separate fruit bodies stand side by side to show the sequence; they are not one mushroom over time. The half-open one has the same 150 warts as the mature one on a smaller cap, which is why they are closer together.",
-   "expert": "The timing from button to open cap is not given by the sources used here and is not modelled. The proportions of the half-open specimen are a chosen interpolation between the button and the mature cap."
+   "expert": "The model does not show the timing from button to open cap. The proportions of the half-open specimen are a chosen interpolation between the button and the mature cap."
   },
   "facts": [
    [
@@ -831,7 +831,7 @@
    "fa_volva"
   ],
   "processes": [],
-  "summary": "Cut in half, the mushroom shows a thin red skin, white flesh, gills hanging free of the stem, and a solid white stem with a ring and a swollen base.",
+  "summary": "Cut in half, the mushroom shows a thin red skin, white flesh, gills hanging free of the stem, and a white stem with a ring and a swollen base.",
   "layers": {
    "basics": "Slice a fly agaric from top to bottom and you see its layers at once: the thin red skin of the cap, a yellowish layer under it, thick white flesh, and the gills hanging in the space below the cap. The stem runs straight up the middle and swells at the base. The ring is a thin skirt that sticks out from the stem. Click a part of the cut surface, or a yellow marker.",
    "deeper": "This is a model cut, not a photograph. The gill in the cutting plane is drawn lengthwise; the other gills in the kept half are drawn behind it. The bands of skin are drawn a millimetre or so thick to be visible. The button beside it is cut the same way, to show the young structures inside its veil.",
@@ -884,9 +884,9 @@
   "processes": [],
   "summary": "Under the mushroom is the fungus itself: a spreading web of fine threads that may be much larger than the mushroom and last much longer.",
   "layers": {
-   "basics": "The mushroom is only the fruit. The fungus is the web of threads (the mycelium) in the soil, which absorbs water and nutrients and reaches the roots of trees. A mycelium can be far bigger than the mushroom it produces. In the underground view, the white lines are the web, drawn about a thousand times too thick for you to see them.",
+   "basics": "The mushroom is only the fruit. The fungus is the web of threads (the mycelium) in the soil, which absorbs water and nutrients and reaches the roots of trees. A mycelium can be far bigger than the mushroom it produces. In the underground view, the white lines are the web, drawn several hundred times too thick so that you can see them.",
    "deeper": "Each thread is a hypha, 2 to 10 micrometres across; hyphae can bunch into thicker cords, which let a mycelium move water and nutrients over distance. Some are drawn here as cords linking the three fruit bodies to a hub and spreading outwards; some run to the root tips of the host tree. The layout is a drawing of the idea, not a map of a real mycelium.",
-   "expert": "The thinnest threads drawn are about 2 mm wide against a real width of about 5 µm: several hundred times too thick. The largest known fungal individual is a honey fungus (Armillaria) mycelium in Oregon, about 9 km² in area, with an estimated age of 2,000 years or more (source: the park's fungi card), which shows how large and old a mycelium can become."
+   "expert": "The thinnest threads drawn are about 2 mm wide against a real width of about 5 µm: several hundred times too thick. One honey fungus (Armillaria ostoyae), a parasite that also feeds on dead wood, covers about 9 km² (2,385 acres) of forest in Oregon, which shows how large a single mycelium can become."
   },
   "facts": [
    [
@@ -898,14 +898,12 @@
     "≈ 2–4.5 mm, several hundred times too thick"
    ],
    [
-    "Largest known fungus (Armillaria, for scale)",
-    "≈ 9 km²"
+    "A very large mycelium (Armillaria, Oregon)",
+    "≈ 9 km² (not the fly agaric)"
    ]
   ],
   "certainty": "C1",
-  "open_questions": [
-   "How far a single fly agaric mycelium spreads, and how many fruit bodies in a patch belong to one individual, are not covered by the sources used here."
-  ],
+  "open_questions": [],
   "refs": [
    [
     "BIO",
@@ -926,6 +924,10 @@
    {
     "title": "Ectomycorrhiza (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Ectomycorrhiza"
+   },
+   {
+    "title": "Oregon Encyclopedia: Humongous fungus, Armillaria ostoyae",
+    "url": "https://www.oregonencyclopedia.org/articles/humongous-fungus-armillaria-ostoyae/"
    }
   ],
   "mesh": null
@@ -946,19 +948,19 @@
    "oak_mycorrhiza"
   ],
   "processes": [],
-  "summary": "The fly agaric forms a partnership with the roots of certain trees. The root shown stands for a pine or birch, which are classic partners.",
+  "summary": "The fly agaric forms a partnership with the roots of certain trees. The root shown stands for a pine or birch, which are well-documented partners.",
   "layers": {
-   "basics": "This fungus does not live alone. Its threads attach to the fine roots of living trees and swap goods with them. The species account names pine, spruce, fir, birch, cedar and oak among its hosts, and silver birch and pines in particular in places where the fungus has been introduced. The root in the underground view is a generic root of such a tree; the tree itself is off the edge of the model.",
-   "deeper": "This fungus is a partner of living trees rather than a decomposer of dead wood, which is why it is found in woods and under trees. The nearest oak in this park is about 16 m from the mushroom, too far to tell you anything about a partnership; see the oak's own card on its mycorrhiza.",
-   "expert": "The hosts listed come from the species account on Wikipedia, which names oak among them. I did not find a primary study of oak as a host in this session, so how strong that partnership is has not been checked: pine and birch are the best-documented hosts. Fly agaric has spread to the southern hemisphere on planted pines and under southern beech (Nothofagus)."
+   "basics": "This fungus does not live alone. Its threads attach to the fine roots of living trees and swap goods with them. Pine, spruce, fir and birch are among the trees it is commonly reported with, and where it has been carried to the southern hemisphere it grows with planted pines and under southern beech (Nothofagus). The root in the underground view is a generic root of such a tree; the tree itself is off the edge of the model.",
+   "deeper": "This fungus is a partner of living trees rather than a decomposer of dead wood, which is why it is found in woods and under trees. For the tree's side of such a partnership, see the oak's card on its mycorrhiza, which tells the story for a different tree.",
+   "expert": "Pine and birch are the best-documented partners. The set of trees a given fly agaric mycelium is joined to varies from region to region."
   },
   "facts": [
    [
-    "Named host trees",
-    "pine, spruce, fir, birch, cedar, oak (secondary source)"
+    "Commonly reported partner trees",
+    "pine, spruce, fir, birch"
    ],
    [
-    "Classic hosts",
+    "Best documented",
     "birch and pine"
    ],
    [
@@ -967,9 +969,7 @@
    ]
   ],
   "certainty": "C2",
-  "open_questions": [
-   "Which trees any one fly agaric mycelium is joined to, and how that varies between regions, is not established by the sources used here."
-  ],
+  "open_questions": [],
   "refs": [
    [
     "BIO",
@@ -1014,13 +1014,13 @@
   "summary": "A mycorrhizal root tip is a tree's finest root wrapped in a sleeve of fungus, with fungal threads growing between its outer cells.",
   "layers": {
    "basics": "The very ends of the tree's finest roots do not look bare. Each is covered by a sheath of fungal threads, the mantle, and more threads reach outwards into the soil. Inside, the fungus grows between the root's outer cells (never into them), in a net where tree and fungus touch. The tips in the park are drawn much larger than life so you can see them.",
-   "deeper": "The sheath (mantle) can be up to about 40 micrometres thick. The inner net of threads between the root cells is the Hartig net. In this type of partnership, called ectomycorrhiza, the fungus never enters the root cells. About 2 per cent of plant species form it, mostly woody plants, and the fungi are mainly basidiomycetes and ascomycetes. Click the tissue scene to see mantle, net and cells.",
-   "expert": "In flowering trees like eucalyptus and alder the net stays in the outer cell layer; in most conifers it reaches deeper cell layers. The tissue scene is schematic: real tips are rounded and branched, and the cells are not boxes."
+   "deeper": "The sheath (mantle) is a layer of tightly woven threads whose thickness varies with the fungus and the tree. The inner net of threads between the root cells is the Hartig net. In this type of partnership, called ectomycorrhiza, the fungus never enters the root cells. About 2 per cent of plant species form it (Brundrett and Tedersoo 2018), mostly woody plants, and the fungi are mainly basidiomycetes and ascomycetes. Click the tissue scene to see mantle, net and cells.",
+   "expert": "In most flowering trees the net stays in the outermost layer of root cells, while in conifers such as pine it reaches deeper into the cortex. The tissue scene is schematic: real tips are rounded and branched, and the cells are not boxes."
   },
   "facts": [
    [
     "Mantle thickness",
-    "up to ≈ 40 µm"
+    "varies with fungus and tree"
    ],
    [
     "Where the fungus grows",
@@ -1049,6 +1049,14 @@
    {
     "title": "Ectomycorrhiza (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Ectomycorrhiza"
+   },
+   {
+    "title": "Brundrett and Tedersoo 2018: Evolutionary history of mycorrhizal symbioses and global host plant diversity (New Phytologist)",
+    "url": "https://doi.org/10.1111/nph.14976"
+   },
+   {
+    "title": "Brundrett: ectomycorrhizas (mycorrhizas.info)",
+    "url": "https://mycorrhizas.info/ecm.html"
    }
   ],
   "mesh": null
@@ -1068,13 +1076,13 @@
   "summary": "The mantle is a layer of tightly woven fungal threads that covers the tip of the root.",
   "layers": {
    "basics": "The mantle is the outer part of the partnership: a sleeve of fungus around the root tip. It is dense, so that the root surface is covered. From its outside, the threads reach out into the soil and make up the mycelium.",
-   "deeper": "Mantle thickness is up to about 40 micrometres in the sources used; in the tissue scene, the mantle is drawn as four rows of threads, a schematic choice. Threads in the soil can carry water to the mantle, and some cords carry it over larger distances.",
-   "expert": "How the mantle regulates what passes between soil and root is not described here."
+   "deeper": "Mantle thickness varies with the fungus and the tree; in the tissue scene, the mantle is drawn as four rows of threads, a schematic choice. Threads in the soil can carry water to the mantle, and some cords carry it over larger distances.",
+   "expert": "The mantle sits between the soil and the root surface, so what the root takes up from the fungus and gives to it passes through or around this layer."
   },
   "facts": [
    [
     "Thickness",
-    "up to ≈ 40 µm"
+    "varies with fungus and tree"
    ]
   ],
   "certainty": "C1",
@@ -1109,8 +1117,8 @@
   "summary": "The Hartig net is fungal threads that grow between the outer cells of the root: the surface where the swap happens.",
   "layers": {
    "basics": "Between the tree's root cells, the fungus pushes thin threads that wind around each cell like a net. These do not enter the cells: the fungus stays outside and touches the walls. The tree and the fungus pass materials across this shared surface.",
-   "deeper": "In the roots of conifers, the net usually goes down to the cortex or even the layer beyond; in eucalyptus and alder it stays in the outermost layer. The net greatly increases the contact surface between partners.",
-   "expert": "The exact molecules and transporters that cross the interface are an active research area and are not listed here."
+   "deeper": "In conifers such as pine the net reaches deep into the root cortex; in most flowering trees it stays in the outermost cell layer (Brundrett, mycorrhizas.info). Either way the net greatly increases the contact surface between partners.",
+   "expert": "Which transporters carry sugars and nutrients across this interface is an active research area."
   },
   "facts": [
    [
@@ -1131,6 +1139,10 @@
    {
     "title": "Ectomycorrhiza (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Ectomycorrhiza"
+   },
+   {
+    "title": "Brundrett: ectomycorrhizas (mycorrhizas.info)",
+    "url": "https://mycorrhizas.info/ecm.html"
    }
   ],
   "molecules": [
@@ -1151,20 +1163,20 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "The tree gives the fungus sugar; the fungus gives the tree water and minerals such as nitrogen and phosphate. Each could not do as well alone.",
+  "summary": "The tree gives the fungus sugar; the fungus gives the tree water and minerals such as nitrogen and phosphate. How much each side gains depends on the soil and the conditions.",
   "layers": {
-   "basics": "A tree makes sugar in its leaves by photosynthesis, and it sends some of it down to its roots. The fungus cannot make sugar from sunlight, but it is far better than a root at gathering minerals and water from the soil, because its threads are so thin and so numerous. So the two trade. The tree pays with sugar; the fungus pays with nitrogen, phosphorus and water.",
-   "deeper": "Estimates in the sources used: the fungi receive about 15 per cent of the host's food product, and can supply up to 86 per cent of a host's nitrogen. Phosphorus is handed over largely as phosphate ions. Tree sugar travels in the phloem as sucrose.",
-   "expert": "Whether trees share much carbon or chemical signals through fungal networks that connect several trees is debated; experiments exist, but how much it matters in a real forest is not settled. The molecules in the tissue scene (sucrose for the tree's sugar, phosphate for the minerals) are named because they are the standard forms; the scene is schematic."
+   "basics": "A tree makes sugar in its leaves by photosynthesis, and it sends some of it down to its roots. The fungus cannot make sugar from sunlight, but it is far better than a root at gathering minerals and water from the soil, because its threads are so thin and so numerous. So the two exchange: the tree supplies sugar, and the fungus supplies nitrogen, phosphorus and water.",
+   "deeper": "The shares vary with site and method. In one arctic tundra study, mycorrhizal fungi were estimated to supply 61 to 86 per cent of the nitrogen in the plants, while the plants gave 8 to 17 per cent of their photosynthetic carbon to the fungi (Hobbie and Hobbie 2006). The same paper cites field estimates of 2.5 to 14 per cent of gross primary production going to ectomycorrhizal fungi and culture studies of 1 to 11 per cent. Phosphorus is handed over largely as phosphate ions. Tree sugar travels in the phloem as sucrose.",
+   "expert": "Whether trees share much carbon or chemical signals through fungal networks that connect several trees is disputed: Karst and colleagues (2023) judge the evidence for forest-wide sharing too sparse and unsettled. In culture the fly agaric grows on glucose or fructose but not on sucrose, so the sucrose a tree sends is first split into those two sugars by an enzyme at the root before the fungus takes it up (Nehls et al. 2000). The molecules in the tissue scene (sucrose for the tree's sugar, phosphate for the minerals) are named as the standard forms; the scene is schematic."
   },
   "facts": [
    [
-    "Fungus receives",
-    "≈ 15 % of the host's food product"
+    "Plant carbon given to fungi (one tundra study)",
+    "≈ 8–17 % of photosynthetic carbon"
    ],
    [
-    "Fungus can supply",
-    "up to ≈ 86 % of a host's nitrogen"
+    "Plant nitrogen from fungi (one tundra study)",
+    "≈ 61–86 %"
    ],
    [
     "Phosphorus form",
@@ -1173,7 +1185,7 @@
   ],
   "certainty": "C2",
   "open_questions": [
-   "Do trees share meaningful amounts of carbon and chemical signals through fungal networks that join them? How much this matters in a real forest is still debated."
+   "Do trees share meaningful amounts of carbon and chemical signals through fungal networks that join them in real forests? The evidence is disputed and the question is open."
   ],
   "refs": [
    [
@@ -1191,6 +1203,18 @@
    {
     "title": "Ectomycorrhiza (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Ectomycorrhiza"
+   },
+   {
+    "title": "Hobbie and Hobbie 2006: 15N in symbiotic fungi and plants estimates nitrogen and carbon flux rates in Arctic tundra (Ecology 87)",
+    "url": "https://harvardforest1.fas.harvard.edu/publications/pdfs/Hobbie_Ecology_2006.pdf"
+   },
+   {
+    "title": "Karst, Jones and Hoeksema 2023: Positive citation bias and overinterpreted results lead to misinformation on common mycorrhizal networks in forests (Nature Ecology and Evolution 7)",
+    "url": "https://doi.org/10.1038/s41559-023-01986-1"
+   },
+   {
+    "title": "Nehls et al. 2000: sugar uptake by the fly agaric, hexose transporter AmMst1 (Plant Biology 2)",
+    "url": "https://www.thieme-connect.com/products/ejournals/pdf/10.1055/s-2000-12984.pdf"
    }
   ],
   "molecules": [
@@ -1201,7 +1225,7 @@
  },
  {
   "id": "fa_ways_of_life",
-  "title": "Two ways to make a living: rot or partner",
+  "title": "Ways of living: rot, partner or parasite",
   "kind": "process",
   "template": "thing",
   "scale_m": 1,
@@ -1212,11 +1236,11 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "Some fungi feed on dead material and some trade with living trees. The fly agaric is in the second group.",
+  "summary": "Some fungi feed on dead material, some exchange materials with living trees, and some feed on living hosts. The fly agaric is a partner.",
   "layers": {
-   "basics": "Many fungi are decomposers: they digest dead wood, leaves and dung, and return nutrients to the soil. Others, like the fly agaric, partner with living plants. The two lifestyles use the same kind of threads but have opposite needs: a decomposer needs dead food, while a partner needs a living tree and pays with minerals.",
-   "deeper": "Fungi are described as the principal decomposers in ecosystems, and more than 90 per cent of plants depend on mycorrhizal partnerships. Fly agaric is a partner of living trees.",
-   "expert": "The line between the lifestyles is not sharp: some partner fungi can also release enzymes that digest organic matter, and some decomposers occasionally partner with plants. That nuance is not detailed in the sources used here."
+   "basics": "Many fungi are decomposers: they digest dead wood, leaves and dung, and return nutrients to the soil. Others, like the fly agaric, partner with living plants. The two lifestyles use the same kind of threads but have different needs: a decomposer needs dead food, while a partner needs a living tree and supplies it with minerals and water. A third group, the parasites, feed on living hosts.",
+   "deeper": "Fungi are described as the principal decomposers in ecosystems. Most land plants form a mycorrhiza: in a survey of vascular plant species, 72 per cent were arbuscular mycorrhizal, 2 per cent ectomycorrhizal, 1.5 per cent ericoid and 10 per cent orchid mycorrhizal, and only 8 per cent never form one (Brundrett and Tedersoo 2018). Fly agaric is a partner of living trees.",
+   "expert": "The line between the lifestyles is not sharp: honey fungi (Armillaria), for example, feed on living wood and go on feeding on it after the tree dies."
   },
   "facts": [
    [
@@ -1228,8 +1252,8 @@
     "trade with living plant roots"
    ],
    [
-    "Plants with mycorrhizal partners",
-    "> 90 % (Wikipedia, Fungus)"
+    "Plant species that form a mycorrhiza",
+    "≈ 85 % (72 % arbuscular, 2 % ecto-, 1.5 % ericoid, 10 % orchid; Brundrett and Tedersoo 2018)"
    ]
   ],
   "certainty": "C1",
@@ -1254,6 +1278,10 @@
    {
     "title": "Ectomycorrhiza (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Ectomycorrhiza"
+   },
+   {
+    "title": "Brundrett and Tedersoo 2018: Evolutionary history of mycorrhizal symbioses and global host plant diversity (New Phytologist)",
+    "url": "https://doi.org/10.1111/nph.14976"
    }
   ],
   "mesh": null
@@ -1274,7 +1302,7 @@
   "summary": "Fungal walls are made of chitin, the same material as insect shells. Fungi are closer relatives of animals than of plants.",
   "layers": {
    "basics": "A mushroom looks like a plant that stands still, but it is not one. It cannot make its own food, it absorbs it. Its cell walls are made of chitin, which animals such as insects and crabs use for their hard shells, not the cellulose plants use. And when biologists compare genes, fungi turn out to be more closely related to animals than to plants.",
-   "deeper": "Chitin is a long chain of N-acetylglucosamine units. Fungal walls combine chitin with glucans, a pairing found in no other group of organisms. Fungi and animals appear to have split from plants roughly a billion years ago.",
+   "deeper": "Chitin is a long chain of N-acetylglucosamine units. Fungal walls combine chitin with glucans. Fungi and animals belong to one major group of organisms (the opisthokonts) and plants to another; the dates of these splits are estimates from molecular clocks and fossils and remain uncertain.",
    "expert": "The molecule appears in this app as N-acetylglucosamine (the repeating unit). You can reach it from any thread in the tissue scenes by pressing the molecule button."
   },
   "facts": [
@@ -1287,11 +1315,11 @@
     "N-acetylglucosamine, C8H15NO6"
    ],
    [
-    "Divergence from animals and plants",
-    "≈ 1 billion years ago"
+    "Relationship",
+    "fungi are closer kin to animals than to plants (dates uncertain)"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
   "open_questions": [],
   "refs": [
    [
@@ -1333,8 +1361,8 @@
   "processes": [],
   "summary": "The fly agaric contains two chemicals that act on the brain: ibotenic acid, which excites nerve cells, and muscimol, which dampens them. They make the mushroom poisonous.",
   "layers": {
-   "basics": "These two substances are made by the mushroom and they disturb how nerve cells talk to each other. Ibotenic acid looks like the brain's main excitatory messenger (glutamate). Muscimol looks like the brain's main calming messenger (GABA). In a person who eats the mushroom, the result can be confusion, nausea, twitching, hallucinations and, in severe cases, seizures or coma. This is poisoning, not a treat: do not eat any wild mushroom you cannot identify with certainty.",
-   "deeper": "Ibotenic acid changes (loses a carbon dioxide) into muscimol, which is a potent agonist of GABA type A receptors: it opens chloride channels and quiets neurons. Ibotenic acid acts like glutamate at NMDA receptors. Muscimol is C4H6N2O2, molar mass about 114 g/mol. Drying and storage can change the balance between the two compounds. Muscarine, the substance the species is named after, is present at levels too low to explain the poisoning, and the deadly amatoxins of some other Amanita species are not present.",
+   "basics": "These two substances are made by the mushroom and they disturb how nerve cells talk to each other. Ibotenic acid looks like the brain's main excitatory messenger (glutamate). Muscimol looks like the brain's main calming messenger (GABA). In a person who eats the mushroom, the result can be confusion, nausea, twitching, hallucinations and, in severe cases, seizures or coma. This is poisoning, not a treat: never eat a wild mushroom on the strength of an app or a photograph.",
+   "deeper": "Ibotenic acid is a close chemical relative of muscimol and is partly converted to it in the body. Muscimol is a potent agonist of GABA type A receptors: it opens chloride channels and quiets neurons. Ibotenic acid acts like glutamate at NMDA receptors. Muscimol is C4H6N2O2, molar mass about 114 g/mol. Muscarine, the substance the species is named after, is present at levels too low to explain the poisoning, and the deadly amatoxins of some other Amanita species are not present.",
    "expert": "Two molecules are missing from this app's molecule set: ibotenic acid and muscimol; their shape is not shown. GABA, which muscimol imitates, is present and is linked here. The amount of toxin varies strongly with season and place."
   },
   "facts": [
@@ -1347,13 +1375,13 @@
     "prodrug; glutamate-like, NMDA receptor agonist"
    ],
    [
-    "Amatoxins",
-    "not present"
+    "Amatoxins (the deadly toxins of some other Amanita species)",
+    "not present in the fly agaric"
    ]
   ],
   "certainty": "C1",
   "open_questions": [
-   "The balance and amounts of ibotenic acid and muscimol vary widely between mushrooms and seasons, and the reasons are not well understood."
+   "The amounts of ibotenic acid and muscimol vary widely between mushrooms and between seasons, and the reasons are not well understood."
   ],
   "refs": [
    [
@@ -1370,6 +1398,10 @@
    {
     "title": "Muscimol (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Muscimol"
+   },
+   {
+    "title": "INCHEM poisons information monograph: Amanita muscaria and A. pantherina",
+    "url": "https://inchem.org/documents/pims/fungi/pimg026.htm"
    }
   ],
   "molecules": [
@@ -1390,37 +1422,37 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "Poisoning by fly agaric is real but deaths are rare. Do not eat it, and do not eat any wild mushroom you cannot identify with certainty.",
+  "summary": "Fly agaric poisoning is real and often needs hospital care. Deaths are rare, but children and pets are at particular risk. Never eat a wild mushroom on the strength of an app.",
   "layers": {
-   "basics": "Fly agaric poisoning happens: to small children who put things in their mouths, to people who confuse it with edible mushrooms, and to people who try it on purpose. Symptoms usually start within about an hour or two. They can include nausea, twitching, confusion and hallucination, and in severe cases seizures or coma. Most people recover within a day. There is no antidote; doctors treat the symptoms. If someone may have eaten one, call a poison centre or emergency services at once.",
-   "deeper": "Historical deaths are reported, but modern fatal poisoning is described as extremely rare, and one mycological society reported no reliably documented death from these toxins in a hundred years. The mushroom is not the same as the deadly Amanita species, which contain different poisons.",
-   "expert": "This card gives no instructions of any kind for preparation or use, and none will be added. Quantities that cause effects are deliberately not given."
+   "basics": "Fly agaric poisoning happens: to small children who put things in their mouths, to people who mistake it for an edible mushroom, to people who eat it on purpose, and to dogs. Symptoms usually begin 30 to 90 minutes after eating and are strongest at about 2 to 3 hours. They can include nausea and vomiting, drowsiness, twitching, confusion and hallucination, and in severe cases seizures, trouble breathing or coma. Seizures are reported mainly in children. There is no antidote: doctors treat the symptoms and protect the airway, and some patients have needed a breathing machine for days. If someone, or a pet, may have eaten one, call a poison centre or emergency services at once. Never eat a wild mushroom on the strength of an app, a photograph or a description.",
+   "deeper": "Poison-information monographs describe deaths from these toxins as extremely rare, and attribute them to complications. That is not the same as harmless. In a review of 34 cases reported to one US regional poison centre in 2002 to 2016, none died, but five patients were intubated (Moss and Hendrickson 2019). In Minnesota in 2018 a man who ate fly agaric was intubated and ventilated for four days and left hospital after eight (CDC 2019). A fatal case in a dog, confirmed by DNA and chemical tests, has been published. Most poisonings happen when a mushroom is mistaken for an edible one. Other Amanita species look quite different and can be deadly: A. bisporigera, which contains amatoxins, caused an outbreak in Minnesota in 2006 that made nine people ill and killed one.",
+   "expert": "Doses and preparation are deliberately not given here or anywhere in this explorer. Clinical features come from a poison-information monograph and from case series; the numbers in them are small, so they describe what has been seen, not what will happen to any one person."
   },
   "facts": [
    [
     "Onset",
-    "≈ 30–90 minutes"
+    "≈ 30–90 minutes (poison-information monograph)"
    ],
    [
-    "Recovery in most cases",
-    "≈ 12–24 hours"
+    "Strongest effects",
+    "≈ 2–3 hours after eating"
+   ],
+   [
+    "Duration",
+    "typically ≈ 6 hours; up to 12–24 hours"
    ],
    [
     "Antidote",
-    "none; treatment is supportive"
+    "none; treatment is supportive and may need hospital care"
+   ],
+   [
+    "Deaths",
+    "extremely rare (monograph); not zero for other Amanita species"
    ]
   ],
   "certainty": "C2",
-  "open_questions": [
-   "How often poisonings occur worldwide is not reliably recorded in the sources used here."
-  ],
-  "refs": [
-   [
-    "BIO",
-    "24.4",
-    "24-4-fungal-parasites-and-pathogens"
-   ]
-  ],
+  "open_questions": [],
+  "refs": [],
   "ext": [
    {
     "title": "Amanita muscaria (Wikipedia)",
@@ -1429,6 +1461,22 @@
    {
     "title": "Muscimol (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Muscimol"
+   },
+   {
+    "title": "INCHEM poisons information monograph: Amanita muscaria and A. pantherina",
+    "url": "https://inchem.org/documents/pims/fungi/pimg026.htm"
+   },
+   {
+    "title": "Moss and Hendrickson 2019: Toxicity of muscimol and ibotenic acid containing mushrooms reported to a regional poison control center 2002-2016 (Clinical Toxicology)",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30073844/"
+   },
+   {
+    "title": "CDC 2019: Notes from the field, acute intoxications from Amanita muscaria, Minnesota 2018",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6542478/"
+   },
+   {
+    "title": "Fatal Amanita muscaria poisoning in a dog confirmed by PCR identification of mushrooms (J Vet Diagn Invest 2019)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6838700"
    }
   ],
   "mesh": null

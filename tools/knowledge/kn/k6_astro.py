@@ -84,9 +84,9 @@ n("stellar_death","White dwarfs, supernovae and neutron stars","10",(1e4,1e12),"
  "Neutron-star equation of state uncertain.",
  em="stellar_evolution spin_pauli",ev="Crab pulsar|SN 1987A neutrinos",refs="AST 23; AST 24",ex="black_holes nucleosynthesis_stars",fr="Neutron-star equation of state~open",sim="blackhole star")
 n("nucleosynthesis_stars","Origin of the chemical elements","10",(1e-15,1e20),"C2","Astrophysics",
- "The Big Bang made hydrogen, helium and a little lithium; stars forged carbon through iron; heavier elements come from neutron-rich events like supernovae and neutron-star mergers.",
+ "The Big Bang made hydrogen, helium and a little lithium; stars forged carbon through iron; most heavier elements are built by capturing neutrons, either slowly (the s-process, in giant stars late in their lives) or rapidly (the r-process, in neutron-rich events such as neutron-star mergers and possibly some supernovae).",
  "We are made of star-processed material. How much of the heaviest elements comes from mergers versus other supernovae is still debated.",
- "Abundance by mass: H 74 %, He 24 %, O 0.8 %, C 0.3 %; BBN D/H≈2.5×10⁻⁵, ⁷Li shortfall ≈3×; r-process peaks A≈80, 130, 195.",
+ "Abundance by mass: H 74 %, He 24 %, O 0.8 %, C 0.3 %; BBN D/H≈2.5×10⁻⁵, ⁷Li shortfall ≈3×; r-process peaks A≈80, 130, 195. The s-process in low- and intermediate-mass asymptotic-giant-branch stars and the r-process together produce the bulk of the heavy elements in the solar system (review in IAU Symposium 343, 2019).",
  "Sources of r-process elements debated.",
  em="fusion_stars nuclear_binding stellar_death",ev="Stellar spectra|Meteoritic abundances|GW170817",refs="AST 16; AST 23; AST 29",ex="periodic_table",fr="Neutron-star mergers vs collapsars for r-process~open")
 n("kilonova_rprocess","Kilonovae and heavy elements","10",(1e4,1e12),"C2","Astrophysics",

@@ -1,10 +1,8 @@
 {
- "tag": "Inside a mushroom",
- "cell": "fungal",
  "id": "mushroom_gill",
  "title": "Inside a gill",
  "node": "fa_gill_inside",
- "blurb": "A gill cut across, A core of threads in the middle, small supporting cells, and on each face a crowd of club-shaped spore-making cells with spores on their tips. Click a part.",
+ "blurb": "A gill cut across. A core of threads in the middle, small supporting cells, and on each face a crowd of club-shaped spore-making cells with spores on their tips. Click a part.",
  "note": "Spore size (about 11 micrometres long; the species range is 9 to 13 by 6.5 to 9) and thread width (2 to 10 micrometres) are published values. The sizes of the club-shaped cells, the thickness of each layer and the number and arrangement of all cells are illustrative; a real gill has vastly more basidia than shown, and the pattern of its core threads is not shown.",
  "bg": "#f3efe6",
  "center": [

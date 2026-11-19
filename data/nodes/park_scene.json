@@ -19,7 +19,7 @@
   "layers": {
    "basics": "Look closely at the surface and you will see that it is not one smooth lump. It is rough, with cracks and crumbling edges, and it carries living things: moss in the damp hollows on top and flat crusts of lichen. Around the bottom lie small stones that have broken off. Choose \"Cut open\" to see the grains it is made of.",
    "deeper": "Granite is built from interlocking mineral grains, mostly quartz, feldspar and mica. They grew as the molten rock cooled slowly underground, which is why the grains are big enough to see. Rain, frost and living things slowly break the rock down. This breaking down in place is called weathering, and the loose stones at the base are its leftovers.",
-   "expert": "True granite is usually defined by its mineral content: about 20 to 60 percent quartz by volume, with alkali feldspar making up 35 to 90 percent of its total feldspar, plus plagioclase and micas, often with hornblende. The texture is phaneritic, meaning the grains are coarse enough to see without a lens. Weathering splits into physical processes (frost action, root wedging), chemical ones (hydrolysis of feldspar to clay, oxidation of iron minerals) and biological ones, which combine both."
+   "expert": "True granite is defined by its mineral content in the standard geologists’ classification (the QAPF diagram), which counts only quartz and the feldspars and rescales them to 100 percent: a granite has 20 to 60 percent quartz of that quartz-plus-feldspar total, with alkali feldspar making up 35 to 90 percent of the feldspar. Micas and dark minerals such as hornblende come on top of that and are not counted in the percentages. The texture is phaneritic, meaning the grains are coarse enough to see without a lens. Weathering splits into physical processes (frost action, root wedging), chemical ones (hydrolysis of feldspar to clay, oxidation of iron minerals) and biological ones, which combine both."
   },
   "facts": [
    [
@@ -36,7 +36,7 @@
    ],
    [
     "Quartz in true granite",
-    "≈ 20–60 % by volume"
+    "20–60 % of the quartz-plus-feldspar part (QAPF classification)"
    ]
   ],
   "did_you_know": "The word granite comes from the Latin granum, a grain. The name describes exactly what you see when the rock is cut open.",
@@ -67,7 +67,7 @@
   "parts": [],
   "summary": "Granite is a tight mosaic of mineral grains, mostly quartz, feldspar and mica, each a crystal that grew until it met its neighbours.",
   "layers": {
-   "basics": "A mineral is a natural solid with a fixed chemical makeup and a regular inner pattern of atoms. In granite, three kinds do most of the work. Quartz is grey and glassy. Feldspar is white or pink and makes up much of the rock. Mica and other dark minerals add the black flecks. The grains grew into each other like a jigsaw, so there are no gaps.",
+   "basics": "A mineral is a natural solid with a fixed chemical makeup and a regular inner pattern of atoms. In granite, three kinds do most of the work. Quartz is grey and glassy. Feldspar is white or pink and makes up much of the rock. Mica and other dark minerals add the black flecks. The grains grew into each other like a jigsaw, so the rock is tightly packed, though real granite still has tiny pores and cracks.",
    "deeper": "The grains formed as silica-rich molten rock cooled slowly underground. Slow cooling gives each crystal time to grow large. Each grain is a single crystal: atoms arranged in a repeating lattice. Use \"See a crystal of quartz\" on the rock to look at such a lattice.",
    "expert": "Granite is mainly quartz, alkali feldspar, plagioclase (typically sodium-rich oligoclase) and mica; biotite and muscovite are the common micas and amphibole (often hornblende) is frequent. Some leucogranites have almost no dark minerals. Colour is typically white, pink or grey, depending on the feldspar and on how much dark mineral there is."
   },
@@ -78,7 +78,7 @@
    ],
    [
     "Quartz share",
-    "≈ 20–60 % by volume in true granite"
+    "20–60 % of the quartz-plus-feldspar part in true granite (QAPF classification)"
    ],
    [
     "Typical colour",
@@ -142,9 +142,9 @@
    "bio_lichens_fungal_biotech"
   ],
   "parts": [],
-  "summary": "A lichen is a partnership of a fungus and an alga or bacterium, and on bare rock it slowly works its way into the surface.",
+  "summary": "A lichen is a partnership between a fungus and an alga or a cyanobacterium (some lichens hold more than one of each), and on bare rock it slowly works its way into the surface.",
   "layers": {
-   "basics": "Lichen looks like a single plant but is a team. A fungus gives it structure and holds it to the rock, while a tiny green alga (or sometimes a bacterium that photosynthesises) inside it makes sugar from light. The fungus gets that sugar. The partner gets shelter, water and minerals. Lichens are among the first living things to settle on fresh bare rock.",
+   "basics": "Lichen looks like a single plant but is a partnership. A fungus gives it structure and holds it to the rock, while a tiny green alga (or sometimes a bacterium that photosynthesises) inside it makes sugar from light. The fungus gets that sugar. The partner gets shelter, water and minerals. Lichens are among the first living things to settle on fresh bare rock.",
    "deeper": "Where the crust touches the stone, the threads of the fungus (hyphae) creep between mineral grains and can pry them loose. The lichen also releases compounds that pull metal ions out of the rock. This is biological weathering, and over long times it contributes to turning rock into soil.",
    "expert": "The fungal partner is the mycobiont and the photosynthetic partner is the photobiont, usually a green alga or a cyanobacterium. The fungus gains carbohydrates; the photobiont gains protection and access to water and minerals. Some lichens are endolithic and live inside solid rock, growing between the grains. Hyphal prising and chelating organic acids are the two main ways lichens are thought to weather the mineral surface."
   },
@@ -158,7 +158,7 @@
     "bare rock, among other places; some live inside the rock"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
   "open_questions": [
    "How much faster is rock under a lichen crust weathered than bare rock, across different climates and rock types?"
   ],

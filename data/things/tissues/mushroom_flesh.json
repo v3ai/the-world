@@ -1,11 +1,9 @@
 {
- "tag": "Inside a mushroom",
- "cell": "fungal",
  "id": "mushroom_flesh",
  "title": "Inside the cap",
  "node": "fa_cap_flesh",
- "blurb": "A slice through the cap, : a red skin on top, a yellowish layer under it, and below that the white flesh, a loose felt of fungal threads. Click a thread.",
- "note": "Thread width (2 to 10 micrometres) is a published value for fungal hyphae in general. The number, direction and layout of the threads are illustrative, and real caps contain other kinds of cell shape; the thicknesses of the skin layers are not measured.",
+ "blurb": "A slice through the cap: a red skin on top, a yellowish layer under it, and below that the white flesh, made of fungal threads. Click a thread.",
+ "note": "Thread width (2 to 10 micrometres) is the usual range for fungal hyphae in general; the threads are drawn about 6 micrometres wide. The number, direction and layout of the threads are illustrative, and real caps also contain other kinds of cell, such as swollen cells, which are not drawn; the skin layers are drawn thicker than real.",
  "bg": "#f3efe6",
  "center": [
   0,
@@ -33,7 +31,7 @@
    "pop": "subcuticle"
   },
   {
-   "text": "Flesh: a felt of threads",
+   "text": "Flesh: a mass of threads",
    "at": [
     -185,
     -20,
