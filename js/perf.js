@@ -143,6 +143,7 @@ const PERF = (() => {
 <dt>Graphics card</dt><dd id="pfName"></dd>
 </dl>
 <div class="pf-sw" id="pfSw"></div>
+<div class="pf-foot">While this panel is open every frame is drawn (no resting rate), so the numbers are of continuous drawing. Move the view while you read them.</div>
 <div class="pf-note" id="pfNote"></div>
 <textarea id="pfText" readonly hidden aria-label="Performance report text"></textarea>`;
     document.body.appendChild(el);
@@ -151,8 +152,8 @@ const PERF = (() => {
       ['dpr', 'Sharpness', [['auto', 'Automatic'], ['0.6', '0.6'], ['0.75', '0.75'], ['1', '1'], ['1.5', '1.5'], ['2', '2']], v => v === 'auto' ? 'auto' : +v],
       ['shadows', 'Sun shadow', [['1', 'On'], ['0', 'Off']], v => v === '1'],
       ['outline', 'Ink outlines', [['all', 'All'], ['near', 'Near'], ['0', 'Pointed at']], v => v],
-      ['merge', 'Far things in one scene', [['1', 'On'], ['0', 'Off']], v => v === '1'],
-      ['depth', 'Depth (reloads the page)', [['log', 'Logarithmic'], ['tight', 'Fitted'], ['vert', 'Logarithmic, per vertex']], v => v]
+      ['merge', 'Things in the park\'s scene', [['1', 'On'], ['0', 'Off']], v => v === '1'],
+      ['depth', 'Depth (reloads the page)', [['log', 'Logarithmic'], ['tight', 'In slices'], ['vert', 'Per vertex (shows errors)']], v => v]
     ];
     const sw = el.querySelector('#pfSw');
     SW.forEach(([k, label, opts, conv]) => {

@@ -33,7 +33,24 @@ function LDF(src) { return '#include <logdepthbuf_pars_fragment>\n' + src.replac
 
 /* ================= RENDERER ================= */
 const canvas = $('#c');
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, logarithmicDepthBuffer: true, powerPreference: 'high-performance' });
+/* Depth buffer (switch `depth`, fixed when the page loads):
+   log    (default) three's logarithmic depth: every fragment shader writes gl_FragDepth. Right at every scale, but a fragment that
+          writes its own depth cannot be rejected before it is shaded, so hidden surfaces cost as much as visible ones.
+   vert   the same logarithmic depth computed per vertex only (the four logdepthbuf shader chunks are replaced by their non-EXT
+          branch below). Early rejection works again. Depth is then interpolated linearly across a triangle, which is wrong for a
+          triangle that is large on screen and comes close to the camera (the ground under your feet): it can hide what stands on it.
+   tight  ordinary depth. Each depth group (a frame and the frames co-rendered with it) is drawn in one or more slices, far to near,
+          the depth buffer cleared between them, so that no slice spans a near-to-far ratio above DEPTH_SLICE (renderFramesTight).
+          The near plane is at 1/500 of the viewing distance (log: 1/5000) and the far plane no further than the content reaches.
+          Early rejection works and depth is exact within a slice; the cost is that a group's scenes are submitted once per slice. */
+const DEPTH = PERF.flags.depth, DEPTH_SLICE = 1e5; // the largest far-to-near ratio of one slice: 24-bit depth then resolves 0.6% of the distance at the far end of a slice
+if (DEPTH === 'vert') {
+  const C = THREE.ShaderChunk;
+  C.logdepthbuf_pars_vertex = '#ifdef USE_LOGDEPTHBUF\n\tuniform float logDepthBufFC;\n#endif';
+  C.logdepthbuf_vertex = '#ifdef USE_LOGDEPTHBUF\n\tif ( isPerspectiveMatrix( projectionMatrix ) ) {\n\t\tgl_Position.z = log2( max( EPSILON, gl_Position.w + 1.0 ) ) * logDepthBufFC - 1.0;\n\t\tgl_Position.z *= gl_Position.w;\n\t}\n#endif';
+  C.logdepthbuf_pars_fragment = ''; C.logdepthbuf_fragment = '';
+}
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, logarithmicDepthBuffer: DEPTH !== 'tight', powerPreference: 'high-performance' });
 const PIXR_BASE = Math.min(window.devicePixelRatio || 1, 2); // the scale the page was always drawn at: point sizes in the shaders are written for it
 const PIXK = { value: 1 };                                    // current render scale / PIXR_BASE, a uniform shared by the point shaders, so points keep their size on screen at any scale
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -394,13 +411,68 @@ function placeFrameCam(f) {
   const c = f.cam, dl = cam.D / f.unit;
   c.position.set(0, 0, 0); c.up.copy(_uv); c.lookAt(_dv.negate());
   c.near = Math.max(dl * 2e-4, 1e-9); c.far = Math.max(dl * 1e7, f.radius * 8 + _cp.length() * 4);
+  if (DEPTH === 'tight') { c.near = Math.max(dl * 2e-3, 1e-9); const reach = frameReach(f); if (reach > 0) c.far = Math.max(dl * 4, _cp.length() + reach); } // the near plane ten times further out (1/500 of the viewing distance) and the far plane no further than the content: fewer slices
   if (f._share) { c.near = f.parent.cam.near; c.far = f.parent.cam.far; } // same projection as the parent, so depths compare
   c.aspect = W / H;
   if (viewOff.x || viewOff.y) c.setViewOffset(W, H, viewOff.x, viewOff.y, W, H); else { if (c.view && c.view.enabled) c.clearViewOffset(); c.updateProjectionMatrix(); }
   f.dLoc = dl;
 }
 let simTime = Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate(), 12, 0, 0), timeSpeed = 1, clock = 0;
+/* depth=tight. How far a frame's content reaches from its origin (own units): every object under its root, by bounding sphere
+   (instance bounds for instanced meshes; points that a shader spreads out by uExpand are allowed for). Worked out again every two
+   seconds, once the frame has been drawn; 0 means not known yet, and the far plane then stays where it always was. */
+const _frS = new THREE.Sphere(), _frV = new V3();
+function frameReach(f) {
+  const now = performance.now(), n = f.root.children.length + (f.pickables ? f.pickables.length : 0);
+  if (f._reachT && now - f._reachT < 2000 && f._reachN === n) return f._reach;
+  if (!f._drawnOnce || !f.C || f.root.parent !== f.scene && !f._merged) return f._reach || 0;
+  let R = 0;
+  f.root.traverse(o => {
+    let d = 0;
+    if (o.isInstancedMesh && o.count >= 16 && o.geometry.attributes.position) { const b = pkInstAccel(o).box; if (!b.isEmpty()) for (let i = 0; i < 8; i++) d = Math.max(d, _frV.set(i & 1 ? b.max.x : b.min.x, i & 2 ? b.max.y : b.min.y, i & 4 ? b.max.z : b.min.z).applyMatrix4(o.matrixWorld).add(f.C).length()); }
+    else if (o.geometry && o.geometry.isBufferGeometry && o.geometry.attributes.position) {
+      const g = o.geometry; if (g.boundingSphere === null) g.computeBoundingSphere();
+      _frS.copy(g.boundingSphere).applyMatrix4(o.matrixWorld); const ex = o.material && o.material.uniforms && o.material.uniforms.uExpand ? Math.max(1, o.material.uniforms.uExpand.value) : 1;
+      d = (_frV.copy(_frS.center).add(f.C).length() + _frS.radius) * ex;
+    } else if (o.isSprite) d = _frV.setFromMatrixPosition(o.matrixWorld).add(f.C).length() + Math.max(o.scale.x, o.scale.y);
+    if (isFinite(d) && d > R) R = d;
+  });
+  f._reach = R * 1.15; f._reachT = now; f._reachN = n; return f._reach;
+}
+/* depth=tight: each depth group in slices, far to near. A slice's far plane is the next slice's near plane (with 0.2% overlap, so the
+   seam cannot show a crack; in the overlap a see-through surface is blended twice, which is why it is kept that thin and far away); three.js culls objects outside a slice, and a merged child whose bound does not reach into a slice is
+   hidden for it (its instanced meshes are not culled by three). The cameras get their whole range back afterwards, for picking and labels. */
+function renderFramesTight(r) {
+  r.setClearColor(0x000000, 1); r.clear(true, true, true);
+  for (let i = 0; i < drawn.length;) {
+    let j = i + 1; while (j < drawn.length && drawn[j]._share) j++;
+    const G = []; for (let k = i; k < j; k++) { const f = drawn[k]; if (f.scene && !f._culled && !f._merged) G.push(f); }
+    if (G.length) {
+      let near = Infinity, far = 0; for (const f of G) { near = Math.min(near, f.cam.near); far = Math.max(far, f.cam.far); }
+      const kids = []; for (const m of mergedSet) if (!m._culled && G.includes(m.parent) && m._pkB && m._pkB.ok) { const d = _frV.copy(m._pkB.c).sub(m.C).length(), rr = m._pkB.r * 1.15; kids.push([m, (d - rr) * .7, d + rr]); }
+      for (const kd of kids) far = Math.max(far, kd[2] * 1.05); // the group reaches as far as its merged children do
+      const n = clamp(Math.ceil(Math.log(far / near) / Math.log(DEPTH_SLICE) - 1e-9), 1, 4); // the nearest slice is as deep as a slice may be, so the split falls far away, where there is little to draw twice
+      for (let s = n - 1; s >= 0; s--) {
+        const pn = near * Math.pow(DEPTH_SLICE, s) * (s ? .998 : 1), pf = s === n - 1 ? far : near * Math.pow(DEPTH_SLICE, s + 1);
+        r.clearDepth();
+        for (const kd of kids) kd[0].root.visible = kd[2] >= pn && kd[1] <= pf;
+        for (const f of G) {
+          const bg = f.scene.background, c = f.cam, n0 = c.near, f0 = c.far;
+          if (i > 0 || f !== drawn[0] || s < n - 1) f.scene.background = null;
+          else if (f.env && f.env.bg !== undefined && !bg) { r.setClearColor(f.env.bg, 1); r.clear(true, true, true); }
+          c.near = pn; c.far = pf; c.updateProjectionMatrix();
+          r.render(f.scene, c); PERF._renders++; f._drawnOnce = true;
+          c.near = n0; c.far = f0; c.updateProjectionMatrix(); f.scene.background = bg;
+        }
+      }
+      for (const kd of kids) kd[0].root.visible = true;
+    }
+    i = j;
+  }
+  for (const f of mergedSet) if (!f._culled && f.parent._drawnOnce) f._drawnOnce = true;
+}
 function renderFrames(r) {
+  if (DEPTH === 'tight') return renderFramesTight(r);
   r.setClearColor(0x000000, 1); r.clear(true, true, true);
   drawn.forEach((f, i) => {
     if (!f.scene || f._culled || f._merged) return; // a merged frame is drawn inside its parent's scene
