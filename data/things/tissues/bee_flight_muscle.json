@@ -54,7 +54,7 @@
    "color": "#d9776a",
    "opacity": 0.55,
    "ink": 1,
-   "priority": 3,
+   "priority": 1,
    "arrange": {
     "kind": "grid",
     "origin": [
@@ -88,7 +88,7 @@
    "color": "#e8a04a",
    "opacity": 1,
    "ink": 0,
-   "priority": 2.5,
+   "priority": 4,
    "arrange": {
     "kind": "inside",
     "of": "fibre",

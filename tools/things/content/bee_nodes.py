@@ -407,7 +407,7 @@ N('bee_hairs', 'Body hairs', 'structure', .001, ['park_bee'],
   [['Hair type', 'branched (plumose)'], ['Model count', '≈ 3,000 (real: many more)']], refs=[R_POL, R_ART], ext=[W_WBH])
 
 # ------------------------------------------------------------------ nectar and honey
-N('bee_nectar', 'Nectar and its sugars', 'substance', 1e-9, ['bee_crop', 'bee_honey'],
+N('bee_nectar', 'Nectar and its sugars', 'substance', 1e-3, ['bee_crop', 'bee_honey'],
   'The sweet liquid flowers make to pay bees. It is about 80 percent water with sugars, mainly sucrose, glucose and fructose.',
   'Nectar is sugar water. A flower makes it so that bees will visit and carry pollen. For the bee it is fuel: sugar for her flight muscles.',
   'The main sugars are sucrose (table sugar, made of one glucose and one fructose joined) and the two simple sugars glucose and fructose. The bee adds an enzyme that splits sucrose into glucose and fructose.',

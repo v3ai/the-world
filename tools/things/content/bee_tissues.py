@@ -22,7 +22,7 @@ write({'id': 'bee_eye', 'title': "Inside a honey bee's compound eye", 'node': 'b
     pop('cone', 'Crystalline cone', 'bee_ommatidium', 'ellipsoid', [11, 24, 11], '#f2e6b8', grid([x0 + 7, -20, -22], [N, 1, 3], [P, 1, 21.8], .5), .85),
     pop('pigment', 'Screening pigment cell', 'bee_ommatidium', 'cylinder', [5, 105, 5], '#3b2a26', grid([x0 + 22, -62, -22], [N, 1, 3], [P, 1, 21.8], .5), .9),
     pop('retinula', 'Light-sensing cell (photoreceptor)', 'bee_photoreceptor', 'cylinder', [7, 120, 7], '#8fb6d6', grid([x0 + 3.5, -100, -22], [N, 1, 3], [P, 1, 21.8], .5), .75, deeper={'type': 'mol', 'mol': 'retinal', 'name': 'Retinal (the light-catching molecule)', 'button': 'See the molecule: retinal, the light-catching part of a visual pigment'}),
-    pop('rhabdom', 'Rhabdom (where light is caught)', 'bee_rhabdom', 'cylinder', [3, 110, 3], '#e7a13a', grid([x0 + 8.5, -97, -22], [N, 1, 3], [P, 1, 21.8], .5), 1, deeper={'type': 'mol', 'mol': 'retinal', 'name': 'Retinal (the light-catching molecule)', 'button': 'See the molecule: retinal, the light-catching part of a visual pigment'}, priority=2.5),
+    pop('rhabdom', 'Rhabdom (where light is caught)', 'bee_rhabdom', 'cylinder', [5, 110, 5], '#e7a13a', grid([x0 + 8.5, -97, -22], [N, 1, 3], [P, 1, 21.8], .5), 1, deeper={'type': 'mol', 'mol': 'retinal', 'name': 'Retinal (the light-catching molecule)', 'button': 'See the molecule: retinal, the light-catching part of a visual pigment'}, priority=4),
     pop('axon', 'Nerve fibre from one ommatidium', 'bee_photoreceptor', 'cylinder', [2.5, 70, 2.5], '#e9dfc4', grid([x0 + 8.5, -190, -22], [N, 1, 3], [P, 1, 21.8], .5), 1),
   ]})
 
@@ -33,8 +33,8 @@ write({'id': 'bee_flight_muscle', 'title': 'Inside a bee\'s flight muscle', 'nod
   'bg': '#f3efe6', 'center': [0, 0, 0], 'D_um': 320,
   'labels': [{'text': 'Muscle fibre (striated)', 'at': [-120, 62, 80], 'pop': 'fibre'}, {'text': 'Mitochondria', 'at': [-120, 0, 80], 'pop': 'mito'}, {'text': 'Tracheole: air tube', 'at': [-120, -62, 80], 'pop': 'tracheole'}],
   'populations': [
-    pop('fibre', 'Flight muscle fibre', 'bee_flight_fibre', 'tube_z', [34, 34, 220], '#d9776a', grid([-100, -50, -110], [5, 4, 1], [40, 40, 1], .0, .02), .55),
-    pop('mito', 'Mitochondrion', 'bee_mitochondria', 'ellipsoid', [8, 6, 14], '#e8a04a', {'kind': 'inside', 'of': 'fibre', 'per': 9, 'margin': .75, 'seed': 5}, 1, ink=0, deeper={'type': 'mol', 'mol': 'atp', 'name': 'ATP', 'button': 'See the molecule: ATP, the energy currency'}, priority=2.5),
+    pop('fibre', 'Flight muscle fibre', 'bee_flight_fibre', 'tube_z', [34, 34, 220], '#d9776a', grid([-100, -50, -110], [5, 4, 1], [40, 40, 1], .0, .02), .55, priority=1),
+    pop('mito', 'Mitochondrion', 'bee_mitochondria', 'ellipsoid', [8, 6, 14], '#e8a04a', {'kind': 'inside', 'of': 'fibre', 'per': 9, 'margin': .75, 'seed': 5}, 1, ink=0, deeper={'type': 'mol', 'mol': 'atp', 'name': 'ATP', 'button': 'See the molecule: ATP, the energy currency'}, priority=4),
     pop('tracheole', 'Tracheole', 'bee_tracheae', 'tube_z', [3, 3, 230], '#cfe6ef', grid([-80, -30, -115], [4, 3, 1], [40, 40, 1], 0, .01), .9),
   ]})
 
@@ -47,8 +47,8 @@ write({'id': 'bee_cuticle', 'title': 'Inside the exoskeleton', 'node': 'bee_cuti
   'populations': [
     pop('epi', 'Epicuticle', 'bee_cuticle', 'rbox', [260, 1.5, 70], '#e6d8a0', lst([0, 40, 0]), 1),
     pop('exo', 'Exocuticle', 'bee_cuticle', 'rbox', [260, 12, 70], '#7a4f2a', lst([0, 33, 0]), 1),
-    pop('chitin', 'Chitin sheet', 'bee_chitin', 'rbox', [260, 2.2, 70], '#e8d79a', grid([-130, -4, -35], [1, 8, 1], [1, 3.4, 1]), 1, deeper={'type': 'mol', 'mol': 'n_acetylglucosamine', 'name': 'N-acetylglucosamine (the unit of chitin)', 'button': 'See the molecule: N-acetylglucosamine, the unit of chitin'}, priority=2.5),
-    pop('endo_matrix', 'Endocuticle (protein between the sheets)', 'bee_cuticle', 'rbox', [260, 30, 70], '#c9b27a', lst([0, 12, 0]), .35, ink=0, priority=4),
+    pop('chitin', 'Chitin sheet', 'bee_chitin', 'rbox', [260, 2.2, 70], '#e8d79a', grid([-130, -4, -35], [1, 8, 1], [1, 3.4, 1]), 1, deeper={'type': 'mol', 'mol': 'n_acetylglucosamine', 'name': 'N-acetylglucosamine (the unit of chitin)', 'button': 'See the molecule: N-acetylglucosamine, the unit of chitin'}, priority=4),
+    pop('endo_matrix', 'Endocuticle (protein between the sheets)', 'bee_cuticle', 'rbox', [260, 30, 70], '#c9b27a', lst([0, 12, 0]), .35, ink=0, priority=1),
     pop('epidermis', 'Epidermal cell', 'bee_cuticle', 'rbox', [16, 16, 16], '#c7d9b6', grid([-125, -22, -30], [15, 1, 3], [17, 1, 20]), .6),
   ]})
 

@@ -366,6 +366,10 @@ export default function build() {
     ],
     parts,
   };
+  // Picking: the framework takes the highest priority along the whole ray, not the nearest hit, so priorities are set by layer: equal inside a layer (nearest wins),
+  // internal layers above the shell (so that a click in a see-through view reaches the organ), hairs below the body (a click on fur opens the body part under it).
+  const PRI = { cuticle: 1.5, wings: 1.5, hairs: 1.2, muscles: 2, organs: 2, nerves: 2, tracheal: 2 };
+  for (const p of thing.parts) p.priority = PRI[p.system];
   // cut-face patterns per part: muscles, nerves, gut ... (cutFace keys above)
   const cf = { dlm: 'muscle', dvm: 'muscle', leg_muscles: 'muscle', jaw_muscles: 'muscle', brain: 'nerve', optic_lobes: 'nerve', antennal_lobes: 'nerve', mushroom_bodies: 'nerve', ganglia: 'nerve', nerves: 'nerve', crop: 'gut', midgut: 'gut', hindgut: 'gut', oesophagus: 'gut', proventriculus: 'gut', hpg: 'gland', venom_sac: 'gland', ovaries: 'gland', wax: 'gland', nasonov: 'gland', heart: 'heart', air_sacs: 'air', trachea: 'air' };
   for (const p of thing.parts) if (cf[p.id]) p.cutFace = cf[p.id];

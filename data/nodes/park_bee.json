@@ -2402,7 +2402,7 @@
   "title": "Nectar and its sugars",
   "kind": "substance",
   "template": "thing",
-  "scale_m": 1e-09,
+  "scale_m": 0.001,
   "area": "bio_ecology",
   "parents": [
    "bee_crop",

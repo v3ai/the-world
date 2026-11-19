@@ -117,7 +117,7 @@
    "color": "#e8d79a",
    "opacity": 1,
    "ink": 1,
-   "priority": 2.5,
+   "priority": 4,
    "arrange": {
     "kind": "grid",
     "origin": [
@@ -156,7 +156,7 @@
    "color": "#c9b27a",
    "opacity": 0.35,
    "ink": 0,
-   "priority": 4,
+   "priority": 1,
    "arrange": {
     "kind": "list",
     "items": [

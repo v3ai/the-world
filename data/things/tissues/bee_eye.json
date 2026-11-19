@@ -213,14 +213,14 @@
    "node": "bee_rhabdom",
    "shape": "cylinder",
    "size": [
-    3,
+    5,
     110,
-    3
+    5
    ],
    "color": "#e7a13a",
    "opacity": 1,
    "ink": 1,
-   "priority": 2.5,
+   "priority": 4,
    "arrange": {
     "kind": "grid",
     "origin": [
