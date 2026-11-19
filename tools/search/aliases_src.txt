@@ -1,0 +1,245 @@
+# Curated everyday words -> the explorer's own ids. Read by tools/search/build.mjs (which fails on a wrong id or a missing source).
+#
+# Line format:   phrase, phrase, ... => target, target, ... // note shown under the first result // hint: line shown above the results // near: target // src: source ids
+#   target = mol:<id> crystal:<id> el:<Symbol> node:<id> (or just the node id) kn:<id> lm:<Landmark label> pl:<Name> trail:<id> lab:<lab>/<preset>
+#   targets are listed best first; the first is shown first.
+#   near: marks a target that is only the NEAREST thing the explorer has (the result then says "Nearest model we have").
+#   every line needs src: (ids from the @src lines below). Phrases are matched after lower-casing, dropping accents, punctuation, plurals
+#   and filler words (a, the, what is, how does ... work), so "whats water made of" and "water" are the same phrase.
+# Rule: an alias must be TRUE. A common name goes to the thing it really is; if the explorer only has a near relative, say so with near:.
+
+@src pubchem | PubChem compound records (NCBI), names and synonyms section for the compound | https://pubchem.ncbi.nlm.nih.gov/
+@src iupac | IUPAC Gold Book and Nomenclature of Inorganic Chemistry (names, symbols and the Latin origin of symbols) | https://goldbook.iupac.org/
+@src iupac-elements | IUPAC periodic table of the elements: names and symbols | https://iupac.org/what-we-do/periodic-table-of-elements/
+@src nist | NIST Chemistry WebBook, synonyms listed for the compound | https://webbook.nist.gov/chemistry/
+@src openstax-chem | OpenStax Chemistry 2e (chemical names, acids and bases, polymers, organic chemistry) | https://openstax.org/details/books/chemistry-2e
+@src openstax-bio | OpenStax Biology 2e (biomolecules, cells, organisms) | https://openstax.org/details/books/biology-2e
+@src openstax-ap | OpenStax Anatomy and Physiology 2e (names of organs and bones) | https://openstax.org/details/books/anatomy-and-physiology-2e
+@src usgs | USGS National Minerals Information Center and mineral commodity summaries | https://www.usgs.gov/centers/national-minerals-information-center
+@src mindat | Mindat mineral database (names, varieties and uses of minerals) | https://www.mindat.org/
+@src nasa | NASA Solar System Exploration (bodies, missions, phenomena) | https://science.nasa.gov/solar-system/
+@src noaa | NOAA National Weather Service and SciJinks (weather and ocean phenomena) | https://scijinks.gov/
+@src app-card | The explorer's own card for the target covers this subject; no outside equivalence is claimed | -
+@src dictionary | Standard dictionary meaning of the everyday word (Merriam-Webster, Oxford English Dictionary) | https://www.merriam-webster.com/
+
+# ====================== sugars and sweet things ======================
+sugar, sugars => mol:sucrose, mol:glucose_alpha, mol:fructose, mol:lactose, mol:maltose, mol:galactose, node:bio_monosaccharides, node:bio_disaccharides // Sugar on its own usually means sucrose, table sugar. // hint: Sugar on its own usually means sucrose, table sugar. There are several different sugars (glucose, fructose, lactose, maltose and more), and each is a different molecule. // src: pubchem openstax-bio
+table sugar, cane sugar, beet sugar, white sugar, granulated sugar, caster sugar, icing sugar, powdered sugar, sucrose, saccharose => mol:sucrose, node:bio_disaccharides, node:rn_nectar // Table sugar is sucrose: one glucose unit joined to one fructose unit. // src: pubchem openstax-bio
+brown sugar => mol:sucrose // Brown sugar is mostly sucrose with a little molasses left in it. // src: dictionary pubchem
+blood sugar, blood glucose, dextrose, grape sugar, glucose, d glucose => mol:glucose_alpha, mol:glucose_beta, node:bio_monosaccharides, node:hormone_signaling, node:bio_glycolysis // Blood sugar is glucose. Dissolved glucose is a mixture of ring forms; the alpha and beta rings are the two here. // src: pubchem openstax-bio
+fruit sugar, fructose, levulose => mol:fructose, node:bio_monosaccharides // Fruit sugar is fructose. // src: pubchem
+milk sugar, lactose => mol:lactose, node:bio_disaccharides // Milk sugar is lactose: one glucose unit joined to one galactose unit. // src: pubchem
+malt sugar, maltose => mol:maltose, node:bio_disaccharides // Malt sugar is maltose: two glucose units joined. // src: pubchem
+galactose => mol:galactose // src: pubchem
+sweet, sweetness, sweetener => mol:sucrose, mol:fructose, mol:glucose_alpha // Sweetness is how the tongue reports sugars such as these. Artificial sweeteners are different molecules that are not in the explorer. // src: dictionary
+honey => node:bee_honey, mol:fructose, mol:glucose_alpha, mol:sucrose // Honey is mostly the sugars fructose and glucose with a little water; bees make it from nectar, which is mostly sucrose. // src: nist-honey openstax-bio
+carbohydrate, carbohydrates, carbs, saccharide, saccharides => node:bio_monosaccharides, node:bio_disaccharides, node:bio_polysaccharides, mol:glucose_alpha, kn:carbohydrates_energy // src: openstax-bio
+starch, potato, bread, pasta, rice, flour => node:rn_starch, node:bio_polysaccharides, mol:glucose_alpha // Starch is a long chain of glucose units; plants store energy in it. // src: openstax-bio
+cellulose, fibre, fiber, dietary fibre, plant fibre => node:rn_cellulose, mol:cellotriose, node:oak_lignin_cellulose, node:bio_polysaccharides // Cellulose is a long chain of glucose units that plants build their cell walls from. // src: openstax-bio
+cotton, paper, cardboard, linen => mol:cellotriose, node:rn_cellulose, node:oak_lignin_cellulose // Cotton and paper are mostly cellulose; the model is a short piece of a cellulose chain. // near: mol:cellotriose // src: pubchem openstax-bio
+wood, timber, lumber, plank => node:oak_lignin_cellulose, node:oak_trunk, node:oak_sapwood, node:oak_heartwood, mol:cellotriose, node:oak_english // Wood is mostly cellulose and lignin. // src: openstax-bio
+glycogen => node:bio_polysaccharides, node:bio_gluconeogenesis // src: openstax-bio
+ribose, deoxyribose => mol:ribose, mol:deoxyribose // src: pubchem
+
+# ====================== salt, soda, vinegar and kitchen chemistry ======================
+salt, table salt, common salt, kitchen salt, rock salt, sodium chloride, nacl, halite, salty => crystal:halite, mol:nacl_pair, el:Na, el:Cl // Table salt is sodium chloride. In the solid, sodium and chloride ions sit in a cubic lattice; halite is the mineral. // hint: Salt in the kitchen is sodium chloride (NaCl). In chemistry, "a salt" can mean any compound made of ions. // src: pubchem usgs
+sea salt => crystal:halite // Sea salt is mostly sodium chloride. // src: usgs
+baking soda, bicarbonate of soda, bicarb, sodium bicarbonate, sodium hydrogen carbonate, sodium hydrogencarbonate, nahco3 => mol:bicarbonate, mol:carbonate // Baking soda is sodium hydrogencarbonate (NaHCO3). The explorer has its bicarbonate ion (HCO3-), the part that does the chemistry, but not the solid. // near: mol:bicarbonate // src: pubchem
+washing soda, soda ash, sodium carbonate, na2co3 => mol:carbonate // Washing soda is sodium carbonate (Na2CO3). The explorer has the carbonate ion, not the solid. // near: mol:carbonate // src: pubchem
+vinegar, acetic acid, ethanoic acid, pickling => mol:acetic_acid, mol:acetate // Vinegar is mostly water with a few per cent acetic acid, which is what makes it sour and sharp. // src: pubchem openstax-chem
+lemon, lemon juice, citric acid, citrus, orange juice => mol:citrate, mol:limonene, mol:ascorbic_acid // Lemon juice is sour mainly from citric acid (the model is citrate, its ion). Limonene is the oil in citrus peel that smells of lemon and orange. // near: mol:citrate // src: pubchem
+baking, yeast, bread rising, brewing, dough => node:bio_fermentation, mol:ethanol, mol:carbon_dioxide, node:bio_fungi_basics // Yeast ferments sugar into ethanol and carbon dioxide; the gas makes bread rise. // src: openstax-bio
+fermentation, ferment => node:bio_fermentation, mol:ethanol, mol:lactate // src: openstax-bio
+milk => mol:lactose, node:bio_disaccharides, mol:tripalmitin // Milk contains the sugar lactose and fats; this is a card about each, not a model of milk. // src: dictionary
+fizzy, fizzy drink, soda, soda water, sparkling water, carbonated, carbonation, cola, bubbles in drinks => mol:carbon_dioxide // The bubbles in fizzy drinks are carbon dioxide gas dissolved under pressure. // src: pubchem
+dry ice => mol:carbon_dioxide // Dry ice is solid carbon dioxide. // src: pubchem
+chilli, chili, hot pepper, spicy, spice, hot sauce, capsaicin => mol:capsaicin // Capsaicin is the molecule that makes chilli peppers burn. // src: pubchem
+mint, peppermint, minty, cooling, menthol => mol:menthol // Menthol gives mint its cool feeling. // src: pubchem
+vanilla, vanillin => mol:vanillin // Vanillin is the main flavour molecule of vanilla. // src: pubchem
+turmeric, curry, curcumin => mol:curcumin // Curcumin is the yellow-orange pigment of turmeric. // src: pubchem
+carrot, carrots, orange colour, beta carotene, betacarotene => mol:beta_carotene // Beta-carotene is the orange pigment in carrots; the body can turn it into vitamin A. // src: pubchem
+tomato, tomatoes, lycopene => mol:lycopene // Lycopene is the red pigment in tomatoes. // src: pubchem
+jeans, denim, blue dye, indigo => mol:indigo // Blue jeans are dyed with indigo. // src: pubchem
+anthocyanin, red cabbage, blueberry, blueberries, purple pigment => mol:cyanidin // Cyanidin is one of the anthocyanin pigments that colour many red, purple and blue fruits and flowers. // near: mol:cyanidin // src: pubchem
+chlorophyll, green pigment, why leaves are green => mol:chlorophyll_a, trail:why_is_a_leaf_green, node:bio_light_reactions // Chlorophyll a is the main green pigment that catches light for photosynthesis. // src: pubchem openstax-bio
+coffee, tea, caffeine, energy drink, cola caffeine, coffee beans, espresso => mol:caffeine // Coffee, tea and many cola drinks contain caffeine; coffee itself is a mixture of hundreds of compounds. // src: pubchem
+chocolate, cocoa => mol:caffeine, mol:vanillin // Chocolate contains a little caffeine. // near: mol:caffeine // src: pubchem
+alcohol, beer, wine, spirits, whisky, vodka, ethanol, drinking alcohol, booze => mol:ethanol, node:bio_fermentation // The alcohol in drinks is ethanol. // src: pubchem
+rubbing alcohol, isopropyl alcohol, isopropanol, hand sanitiser, hand sanitizer, disinfectant => mol:isopropanol, mol:ethanol // Rubbing alcohol is usually isopropanol (isopropyl alcohol); many hand sanitisers use ethanol or isopropanol. // src: pubchem
+methanol, wood alcohol => mol:methanol // src: pubchem
+antifreeze, ethylene glycol => mol:ethylene_glycol // Car antifreeze is mostly ethylene glycol. // src: pubchem
+nail polish remover, acetone => mol:acetone // Nail polish remover is usually acetone. // src: pubchem
+petrol, gasoline, fuel, car fuel => mol:octane, mol:heptane, mol:hexane, kn:energy_systems // Petrol is a mixture of many hydrocarbons; octane (C8H18) is one of them. // near: mol:octane // src: pubchem
+lighter fuel, camping gas, lpg, bottled gas, cooking gas, propane, butane => mol:propane, mol:butane // Camping gas and lighter fuel are mostly propane or butane. // src: pubchem
+natural gas, gas hob, gas cooker => mol:methane // Natural gas is mostly methane. // src: pubchem
+fire, flame, burning, combustion, to burn => kn:thermochemistry, mol:methane, mol:oxygen, mol:carbon_dioxide // Fire is a fast reaction of a fuel with oxygen that gives out heat and light. Burning methane makes carbon dioxide and water. // near: mol:methane // src: openstax-chem
+explosive, explosion, tnt, trinitrotoluene, bomb => mol:tnt // TNT is a well-known explosive. // src: pubchem
+mothball, mothballs, moth balls, naphthalene => mol:naphthalene // Traditional mothballs are naphthalene. // src: pubchem
+glue, super glue, adhesive => kn:polymers_chem // src: app-card
+laughing gas, nitrous oxide, whippet => mol:nitrous_oxide // Laughing gas is nitrous oxide. // src: pubchem
+rotten eggs, stink, sulphur smell, sulfur smell, hydrogen sulfide, hydrogen sulphide => mol:hydrogen_sulfide // Hydrogen sulfide smells of rotten eggs. // src: pubchem
+ammonia, cleaning ammonia, smelling salts => mol:ammonia, mol:ammonium // src: pubchem
+battery acid, sulfuric acid, sulphuric acid => mol:sulfuric_acid // Car (lead-acid) batteries contain sulfuric acid. // src: pubchem
+stomach acid, hydrochloric acid, hcl, hydrogen chloride => mol:hydrogen_chloride, node:stomach, node:digestion // Stomach acid is mostly hydrochloric acid, which is hydrogen chloride dissolved in water. // src: pubchem openstax-ap
+acid rain, so2, sulfur dioxide, sulphur dioxide => mol:sulfur_dioxide, mol:sulfuric_acid, mol:nitric_acid // Acid rain comes mainly from sulfur dioxide and nitrogen oxides that turn into sulfuric and nitric acids. // src: noaa pubchem
+nitric acid => mol:nitric_acid // src: pubchem
+fertiliser, fertilizer, manure, plant food => mol:ammonium, mol:nitrate, mol:phosphate, kn:haber_bosch, kn:nitrogen_cycle // Fertilisers supply nitrogen (as ammonium or nitrate) and phosphorus (as phosphate). // src: openstax-chem openstax-bio
+phosphate, phosphoric acid, cola acid => mol:phosphate, mol:phosphoric_acid // src: pubchem
+bleach, chlorine, chlorine gas, swimming pool => el:Cl, mol:chlorine // Chlorine gas is the element Cl2; household bleach is a different compound (sodium hypochlorite) that the explorer does not have. // near: mol:chlorine // src: pubchem
+formaldehyde, embalming, preservative => mol:formaldehyde // src: pubchem
+chloroform => mol:chloroform // src: pubchem
+ether, diethyl ether => mol:diethyl_ether // src: pubchem
+refrigerant, cfc, cfcs, freon, aerosol propellant => mol:freon12, kn:ozone_layer // Freon is a brand name for CFC refrigerants; CFC-12 is one of them. // src: pubchem noaa
+ozone, ozone layer, ozone hole => mol:ozone, kn:ozone_layer, mol:freon12 // src: pubchem noaa
+greenhouse gas, greenhouse gases, global warming gas, carbon footprint => mol:carbon_dioxide, mol:methane, mol:nitrous_oxide, kn:greenhouse_effect // Carbon dioxide, methane and nitrous oxide are greenhouse gases. // src: noaa pubchem
+carbon dioxide, co2, exhale, breathing out => mol:carbon_dioxide, kn:carbon_cycle_climate, el:C // src: pubchem
+carbon monoxide, co, exhaust, exhaust fumes, car exhaust, carbon monoxide poisoning => mol:carbon_monoxide // Carbon monoxide is a poisonous gas from incomplete burning. // src: pubchem
+nitrogen, n2, dinitrogen => mol:nitrogen, el:N, kn:nitrogen_cycle // src: pubchem
+oxygen, o2, dioxygen, the air we breathe => mol:oxygen, el:O, node:breathing // src: pubchem
+hydrogen, h2, hydrogen gas, hydrogen fuel => mol:hydrogen, el:H // src: pubchem
+helium, balloon, party balloon => el:He // Helium is the light gas used in balloons. // src: iupac-elements
+water, h2o, drinking water, liquid water, tap water, whats water made of, what is water made of => mol:water, node:bio_water_properties, kn:liquid_water_properties, crystal:ice_ih, node:park_pond // Water is H2O: one oxygen atom bonded to two hydrogen atoms. // src: pubchem openstax-chem
+ice, frozen water, snow, snowflake, snowflakes, hail, frost => crystal:ice_ih, mol:water, kn:ice_sheets // Ordinary ice is the crystal Ice Ih. Snowflakes are ice crystals. // src: pubchem noaa
+steam, water vapour, water vapor, evaporation => mol:water, kn:states_of_matter, kn:water_cycle // Steam is water as a gas; each molecule is the same H2O. // src: openstax-chem
+hydroxide, lye, caustic soda => mol:hydroxide // src: pubchem
+hydrogen peroxide, peroxide, h2o2 => mol:hydrogen_peroxide // src: pubchem
+urea => mol:urea // src: pubchem
+urine, pee, wee => mol:urea, node:urine_formation, mol:uric_acid // Urea is the main nitrogen-containing waste in urine. // src: openstax-ap pubchem
+gout, uric acid => mol:uric_acid // Too much uric acid in the blood can form crystals in joints and cause gout. // src: pubchem
+detergent, soap, soapy, washing up liquid, shampoo => mol:stearic_acid, mol:palmitic_acid, node:bio_membrane_lipids // Soaps are salts of fatty acids: a long oily tail and a charged head. Stearic acid is the acid form of a common soap ingredient. // near: mol:stearic_acid // src: openstax-chem pubchem
+fat, fats, oil, oils, butter, grease, lard, cooking oil, lipid, lipids => mol:tripalmitin, mol:oleic_acid, mol:stearic_acid, mol:palmitic_acid, node:bio_fatty_acids_fats, node:adipose_tissue // Fats and oils are triglycerides: three fatty acids on a glycerol backbone. Tripalmitin is one example. // src: openstax-bio pubchem
+olive oil => mol:oleic_acid // Oleic acid is the main fatty acid in olive oil. // src: pubchem
+glycerol, glycerine, glycerin => mol:glycerol, mol:tripalmitin // src: pubchem
+cholesterol => mol:cholesterol, node:bio_steroids_terpenoids, node:bio_membrane_lipids // src: pubchem openstax-bio
+membrane, cell membrane, phospholipid, phospholipids, lipid bilayer => node:cell_membrane, mol:popc, kn:membrane_structure // src: openstax-bio
+protein, proteins, enzyme, enzymes, peptide, peptides => node:bio_protein_structure, node:bio_amino_acids, node:bio_enzyme_catalysis, mol:polyglycine_5, kn:protein_structure // Proteins are long chains of amino acids. The model is a short five-glycine chain. // src: openstax-bio
+amino acid, amino acids => node:bio_amino_acids, mol:aa_gly, mol:aa_ala, mol:aa_trp // There are 20 standard amino acids; the explorer has models of all of them. // src: openstax-bio
+vitamin, vitamins => node:bio_cofactors_coenzymes, mol:ascorbic_acid, mol:retinol, mol:vitamin_d3, mol:thiamine, mol:riboflavin, mol:niacin, mol:folic_acid, mol:biotin // hint: There are many vitamins; these are the ones with models. // src: openstax-bio
+vitamin c, ascorbic acid, scurvy => mol:ascorbic_acid // Vitamin C is ascorbic acid. // src: pubchem
+vitamin a, retinol, night vision => mol:retinol, mol:retinal // Vitamin A is retinol (and related molecules such as retinal). // src: pubchem
+vitamin d, vitamin d3, cholecalciferol, sunshine vitamin => mol:vitamin_d3 // Vitamin D3 is cholecalciferol; skin makes it in sunlight. // src: pubchem openstax-ap
+vitamin b1, thiamine, thiamin, vitamin b 1 => mol:thiamine // src: pubchem
+vitamin b2, riboflavin => mol:riboflavin // src: pubchem
+vitamin b3, niacin, nicotinic acid => mol:niacin, mol:nicotinamide // src: pubchem
+vitamin b9, folate, folic acid => mol:folic_acid // src: pubchem
+vitamin b7, biotin => mol:biotin // src: pubchem
+creatine => mol:creatine // src: pubchem
+taurine => mol:taurine // src: pubchem
+carnitine => mol:carnitine // src: pubchem
+atp, adenosine triphosphate, energy currency, cell energy => mol:atp, mol:adp, node:bio_atp_energy_coupling, kn:atp_energy // ATP is the molecule cells use to pay for work. // src: openstax-bio pubchem
+nad, nadh, fad => mol:nad_plus, mol:nadh, mol:fad // src: pubchem
+
+# ====================== medicine, drugs and hormones ======================
+painkiller, painkillers, pain relief, headache tablet, analgesic => mol:paracetamol, mol:ibuprofen, mol:aspirin, mol:morphine // Common painkillers: paracetamol (acetaminophen), ibuprofen and aspirin act differently. // src: pubchem
+aspirin, acetylsalicylic acid => mol:aspirin, mol:salicylic_acid // src: pubchem
+ibuprofen, advil, nurofen, brufen => mol:ibuprofen // Advil and Nurofen are brand names of ibuprofen. // src: pubchem
+paracetamol, acetaminophen, tylenol, panadol => mol:paracetamol // Paracetamol and acetaminophen are the same molecule; Tylenol and Panadol are brand names. // src: pubchem
+antibiotic, antibiotics, penicillin, amoxicillin => mol:penicillin_g, mol:amoxicillin, node:bio_antibiotics, node:bio_antibiotic_resistance // src: pubchem openstax-bio
+morphine, opium, opiate, opiates => mol:morphine // Morphine is the main active alkaloid of opium. // src: pubchem
+cannabis, marijuana, weed, pot, thc => mol:thc // THC is the main psychoactive molecule of cannabis. // src: pubchem
+nicotine, cigarette, cigarettes, smoking, tobacco, vaping, vape => mol:nicotine // Nicotine is the addictive molecule in tobacco. // src: pubchem
+valium, diazepam, sedative => mol:diazepam // Valium is a brand name of diazepam. // src: pubchem
+lidocaine, local anaesthetic, local anesthetic, numbing, dentist => mol:lidocaine // Lidocaine is a common local anaesthetic. // src: pubchem
+blood thinner, warfarin, anticoagulant => mol:warfarin, node:blood_clotting // src: pubchem
+chemotherapy, chemo, cisplatin => mol:cisplatin, node:bio_cancer_hallmarks // Cisplatin is one chemotherapy drug. // src: pubchem
+metformin, type 2 diabetes drug => mol:metformin // src: pubchem
+levodopa, l dopa, parkinsons, parkinson's => mol:l_dopa, mol:dopamine // L-DOPA is used to treat Parkinson's disease; the brain turns it into dopamine. // src: pubchem
+adrenaline, epinephrine, fight or flight, adrenalin => mol:adrenaline, mol:noradrenaline // Adrenaline and epinephrine are the same molecule. // src: pubchem
+noradrenaline, norepinephrine => mol:noradrenaline // src: pubchem
+stress hormone, cortisol, stress => mol:cortisol // Cortisol is often called the stress hormone. // src: pubchem
+happy hormone, feel good, mood, serotonin => mol:serotonin, mol:dopamine // Serotonin and dopamine are chemical messengers involved in mood and reward; "happy hormone" is a simplification. // src: pubchem
+dopamine, reward, motivation => mol:dopamine // src: pubchem
+sleep hormone, melatonin, jet lag => mol:melatonin, kn:sleep_circadian // src: pubchem
+oestrogen, estrogen, estradiol => mol:estradiol // Estradiol is the main oestrogen. // src: pubchem
+testosterone => mol:testosterone // src: pubchem
+progesterone => mol:progesterone // src: pubchem
+thyroid hormone, thyroxine => mol:thyroxine, node:thyroid // src: pubchem
+insulin, diabetes, blood sugar control => node:hormone_signaling, mol:glucose_alpha, node:pancreatic_islets, node:beta_cell, kn:endocrine_physiology // Insulin is a protein, which the explorer does not model; the cards cover how blood sugar is controlled. // src: openstax-ap
+hormone, hormones => node:endocrine_system, node:hormone_signaling, kn:endocrine_physiology // src: openstax-ap
+neurotransmitter, neurotransmitters, chemical messenger => mol:dopamine, mol:serotonin, mol:acetylcholine, mol:gaba, mol:histamine, node:synaptic_transmission // src: openstax-bio
+allergy, allergies, hay fever, antihistamine, histamine => mol:histamine, node:bio_hypersensitivity_autoimmunity // src: pubchem openstax-bio
+weed killer, weedkiller, herbicide, roundup, glyphosate => mol:glyphosate // Roundup's active ingredient is glyphosate. // src: pubchem
+aromatic, benzene, solvent => mol:benzene, mol:toluene, mol:phenol // src: pubchem
+camphor => mol:camphor // src: pubchem
+pheromone => kn:animal_diversity // src: app-card
+
+# ====================== bases of heredity ======================
+dna bases, letters of dna, genetic letters, nucleobases, nucleotide bases => mol:adenine, mol:thymine, mol:guanine, mol:cytosine, mol:bp_AT, mol:bp_GC // DNA has four bases: adenine, thymine, guanine and cytosine; RNA uses uracil in place of thymine. // src: openstax-bio
+adenine, thymine, guanine, cytosine, uracil => mol:adenine, mol:thymine, mol:guanine, mol:cytosine, mol:uracil // src: pubchem
+base pair, base pairs, watson crick => mol:bp_AT, mol:bp_GC, lm:Base pair (molecule) // src: openstax-bio
+
+# ====================== plastics, rubber, textiles ======================
+plastic, plastics, polymer, polymers, synthetic => mol:polyethylene_c20, mol:pet_frag, mol:pvc_frag, mol:polypropylene_frag, mol:polystyrene_frag, mol:ptfe_frag, mol:nylon66_frag, kn:polymers_chem // hint: There are many plastics. These models are short pieces of the most common long chains. // src: openstax-chem
+carrier bag, plastic bag, polythene, polyethene, polyethylene, milk jug => mol:polyethylene_c20 // Carrier bags and milk bottles are polyethylene (polythene). // near: mol:polyethylene_c20 // src: openstax-chem pubchem
+water bottle, pet, polyester, fleece, drink bottle => mol:pet_frag // Drinks bottles and polyester fibre are PET. // near: mol:pet_frag // src: openstax-chem pubchem
+pvc, vinyl, drain pipe => mol:pvc_frag // src: openstax-chem
+polypropylene, yoghurt pot => mol:polypropylene_frag // src: openstax-chem
+polystyrene, styrofoam, foam cup, packing foam => mol:polystyrene_frag // Styrofoam is a brand name for polystyrene foam. // src: openstax-chem pubchem
+teflon, ptfe, non stick, nonstick, frying pan coating => mol:ptfe_frag // Teflon is the brand name of PTFE. // src: openstax-chem pubchem
+nylon, tights, rope, parachute => mol:nylon66_frag // Nylon 6,6 is one common nylon. // src: openstax-chem
+kevlar, bulletproof, body armour, body armor, aramid => mol:kevlar_frag // Kevlar is an aramid fibre. // src: openstax-chem pubchem
+rubber, tyre, tire, elastic, bouncy, latex, rubber band => mol:rubber_frag, mol:isoprene // Natural rubber is polyisoprene. // src: openstax-chem pubchem
+bioplastic, compostable plastic, pla, polylactic acid => mol:pla_frag // src: openstax-chem
+silk, wool, hair keratin => node:bio_protein_structure, mol:polyglycine_5 // Silk, wool and hair are made of proteins; the explorer has the general protein card and a short peptide, not these fibres. // near: mol:polyglycine_5 // src: openstax-bio
+glass, window, window glass, bottle glass => crystal:quartz, kn:engineering_materials // Common glass is mostly silicon dioxide but has no crystal structure; quartz is crystalline silicon dioxide, the nearest thing here. // near: crystal:quartz // src: usgs openstax-chem
+ceramic, ceramics, pottery, brick, tile, porcelain => kn:engineering_materials, crystal:quartz // src: app-card
+sand, beach, silica, silicon dioxide, sio2, quartz => crystal:quartz, el:Si // Sand is mostly grains of quartz, which is silicon dioxide. // src: usgs mindat
+silicate, silicates, silica chain => mol:silicate_orthosilicate, mol:silicate_chain_trimer, mol:silicate_ring_trimer, mol:disilicate // src: mindat
+clay, kaolin => mol:aluminate_tetrahedron, mol:silicate_chain_trimer, kn:minerals_rocks // Clays are layered silicates; these are building blocks of silicate minerals. // near: mol:aluminate_tetrahedron // src: mindat
+limestone, chalk, marble, calcite, calcium carbonate, caco3, eggshell, seashell, shell, antacid => crystal:calcite, mol:calcium_carbonate_unit // Limestone, chalk and marble are mostly calcium carbonate, the mineral calcite; eggshell and seashell are mostly calcium carbonate too. // src: usgs mindat
+cement, concrete, mortar, plaster => kn:engineering_materials, crystal:calcite // Cement is made by heating limestone (calcium carbonate) with clay. Concrete itself is a composite, not a single crystal. // near: crystal:calcite // src: usgs
+granite, rock, rocks, stone, pebble, boulder => node:boulder, node:rock_grains, kn:minerals_rocks, trail:is_a_rock_really_solid, crystal:quartz // Granite is made of mineral grains such as quartz. // src: usgs
+mineral, minerals => kn:minerals_rocks, crystal:quartz, crystal:calcite, crystal:halite, crystal:pyrite, crystal:fluorite // src: usgs
+crystal, crystals, lattice => kn:crystal_lattices, crystal:quartz, crystal:diamond, crystal:halite, crystal:ice_ih // hint: A crystal is a solid whose atoms sit in a repeating pattern. These are some you can fly into. // src: openstax-chem
+olivine, peridot, green sand => crystal:forsterite // Olivine is a mineral series; forsterite is its magnesium end member. // src: mindat
+fools gold, fool's gold, iron pyrite, pyrite => crystal:pyrite // Fool's gold is pyrite, iron sulfide. // src: mindat
+fluorite, fluorspar, calcium fluoride => crystal:fluorite // src: mindat
+titanium dioxide, white pigment, white paint, sunscreen, rutile => crystal:rutile // Titanium dioxide, mineral form rutile, is the white pigment in most paint and a UV blocker in many sunscreens. // src: usgs mindat
+diamond, diamonds, engagement ring, drill bit => crystal:diamond, el:C // Diamond is a crystal of pure carbon. // src: usgs mindat
+graphite, pencil, pencil lead, lead pencil, lubricant => crystal:graphite, el:C // Pencil "lead" is graphite mixed with clay; there is no lead in it. // src: usgs mindat
+charcoal, coal, soot, carbon => el:C, crystal:graphite, crystal:diamond // Coal and charcoal are mostly carbon but not crystalline; diamond and graphite are the two crystalline forms. // src: openstax-chem
+iron, rusty nail, nail, ferrous => el:Fe, crystal:iron_bcc // src: iupac-elements
+steel, stainless steel, cutlery, knife blade => crystal:iron_bcc, el:Fe, kn:engineering_materials // Steel is iron with a little carbon (and other metals in stainless steel); iron is the crystal here. // near: crystal:iron_bcc // src: usgs openstax-chem
+rust, rusting, rusty, corrosion, oxidised iron => crystal:hematite, crystal:magnetite, el:Fe, kn:electrochemistry // Rust is hydrated iron(III) oxide. The nearest crystal the explorer has is hematite, iron(III) oxide (Fe2O3); rust itself is a looser mix that holds water, so this is a close relative, not rust. // near: crystal:hematite // src: usgs openstax-chem-rust
+iron ore, haematite, hematite, red ochre => crystal:hematite, crystal:magnetite // src: usgs mindat
+magnet, magnets, magnetic, lodestone, fridge magnet, magnetite => crystal:magnetite, kn:magnetism_force, kn:magnetic_materials, node:magnetic_fields_forces // Magnetite is a naturally magnetic mineral (lodestone). Everyday magnets are made of other materials. // near: crystal:magnetite // src: usgs mindat
+copper, copper wire, wire, wires, electrical wire, cable, copper pipe, penny => crystal:copper_fcc, el:Cu // Electrical wire is usually copper (or aluminium). // src: usgs
+aluminium, aluminum, foil, tin foil, aluminium foil, can, drinks can, beer can => crystal:aluminium_fcc, el:Al // Foil and drinks cans are aluminium. // src: usgs
+gold, gold ring, jewellery, jewelry, golden, gold leaf, gold bar => crystal:gold_fcc, el:Au // src: usgs iupac-elements
+silver, silverware, silver coin => el:Ag // src: iupac-elements
+brass => el:Cu, el:Zn, crystal:copper_fcc // Brass is an alloy of copper and zinc. // near: crystal:copper_fcc // src: usgs
+bronze => el:Cu, el:Sn, crystal:copper_fcc // Bronze is an alloy of copper, usually with tin. // near: crystal:copper_fcc // src: usgs
+silicon chip, silicon, chip material, solar cell material, wafer => crystal:silicon, el:Si, node:crystal_structure_ee // Chips are cut from wafers of nearly perfect silicon crystal. // src: usgs
+metal, metals, metallic, alloy, alloys => kn:engineering_materials, crystal:iron_bcc, crystal:copper_fcc, crystal:gold_fcc, crystal:aluminium_fcc // hint: Metals are crystals of atoms that share their outer electrons. These are four you can fly into. // src: openstax-chem
+mercury thermometer, quicksilver => el:Hg // src: iupac-elements
+lithium battery material, lithium => el:Li, node:phone_battery // Lithium is the element behind lithium-ion batteries. // src: iupac-elements
+sodium => el:Na, crystal:halite // src: iupac-elements
+potassium, banana => el:K // Potassium is the element K; bananas are known for containing it. // src: iupac-elements
+
+# ====================== elements: Latin names and symbols ======================
+natrium => el:Na // Na comes from the Latin natrium. // src: iupac-elements
+kalium => el:K // K comes from the Latin kalium. // src: iupac-elements
+ferrum => el:Fe // Fe comes from the Latin ferrum. // src: iupac-elements
+aurum => el:Au // Au comes from the Latin aurum. // src: iupac-elements
+argentum => el:Ag // Ag comes from the Latin argentum. // src: iupac-elements
+plumbum, lead metal, lead pipe, lead poisoning => el:Pb // Pb comes from the Latin plumbum. // src: iupac-elements
+stannum, tin => el:Sn // Sn comes from the Latin stannum. // src: iupac-elements
+cuprum => el:Cu // Cu comes from the Latin cuprum. // src: iupac-elements
+hydrargyrum => el:Hg // Hg comes from the Greek-Latin hydrargyrum. // src: iupac-elements
+wolfram => el:W // W comes from wolfram, the old name of tungsten. // src: iupac-elements
+light bulb filament, tungsten => el:W // src: iupac-elements
+periodic table, table of elements, element, elements, chemical element, chemical elements => kn:periodic_table, node:at_configuration, node:at_trends, el:H // src: iupac-elements
+noble gas, noble gases, neon sign, neon => el:Ne, el:He, el:Ar, el:Kr, el:Xe // src: iupac-elements
+uranium, nuclear fuel, nuclear power, nuclear reactor, atomic bomb => el:U, kn:fission_power, kn:radioactivity // src: iupac-elements openstax-chem
+radioactive, radioactivity, radiation, half life, geiger counter => kn:radioactivity, kn:radiometric_dating, el:U, el:Ra // src: openstax-chem
+carbon dating, radiocarbon, c14 => kn:radiometric_dating, el:C // src: openstax-chem
+acid, acids, base, bases, alkaline, ph, ph scale, acidic => node:bio_acids_bases_ph, kn:chemistry_equilibrium, mol:hydrogen_chloride, mol:acetic_acid // src: openstax-chem
+chemical bond, chemical bonds, bonding, covalent, ionic, hydrogen bond, hydrogen bonds => node:bio_ionic_covalent, kn:chemical_bonding, node:bio_polarity_hbonds // src: openstax-chem
+chemical reaction, reactions, catalyst, catalysis, reaction rate => kn:reaction_kinetics, kn:thermochemistry, kn:chemistry_equilibrium // src: openstax-chem
+solution, dissolve, dissolving, mixture, solute => kn:chemistry_solutions, node:bio_solutions_concentration // src: openstax-chem
+gas, gases, air pressure => kn:states_of_matter, kn:kinetic_theory, kn:gas_air_properties // src: openstax-chem
+solid, liquid, states of matter, melting, freezing, boiling, phase, phase change => kn:states_of_matter, kn:phase_transitions // src: openstax-chem
+plasma, fourth state of matter => kn:plasma_physics, kn:quark_gluon_plasma // src: openstax-chem
+molecule, molecules => kn:chemical_bonding, kn:molecular_shapes, mol:water, mol:methane, mol:caffeine // src: openstax-chem
+@src nist-honey | placeholder | -
+@src openstax-chem-rust | placeholder | -

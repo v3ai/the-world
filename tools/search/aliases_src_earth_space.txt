@@ -1,0 +1,121 @@
+# Everyday words for the Earth, weather, space, forces and big ideas. Format: see aliases_src.txt.
+
+# ---------------- sky, light and weather ----------------
+why is the sky blue, sky blue, blue sky, why sky is blue, sky colour, sky color, rayleigh scattering, scattering, why the sky is blue => kn:light_scattering, kn:atmosphere_structure, trail:what_is_light // The sky is blue because air scatters blue light more strongly than red light. // src: noaa nasa
+sunset, sunrise, red sky, why are sunsets red, sunsets, orange sky => kn:light_scattering, trail:what_is_light // Near sunrise and sunset sunlight crosses far more air, which scatters the blue away and leaves red and orange. // src: noaa nasa
+rainbow, rainbows, double rainbow, why rainbows form, colours of the rainbow => kn:optics_geometric, node:reflection_refraction, trail:what_is_light, kn:electromagnetic_waves // A rainbow is sunlight bent and reflected inside raindrops, which spreads it into its colours. // src: noaa nasa
+colour, colours, color, colors, spectrum, what is colour, rgb => trail:what_is_light, kn:electromagnetic_waves, node:cone_cell, kn:light_scattering // src: app-card
+light, sunlight, what is light, daylight, photons of light, brightness, speed of light, light speed => trail:what_is_light, kn:electromagnetic_waves, node:sm_photon, kn:photon_node, kn:special_relativity // src: app-card
+shadow, shadows, darkness => trail:what_is_light, kn:optics_geometric // src: app-card
+cloud, clouds, fluffy clouds, why clouds float, cumulus, fog, mist => pl:Cloud, node:park_cloud, kn:weather_dynamics, kn:water_cycle // src: noaa app-card
+rain, raining, rainfall, drizzle, precipitation, shower => kn:water_cycle, kn:weather_dynamics, pl:Cloud // src: noaa
+water cycle, evaporation and rain, hydrological cycle => kn:water_cycle, mol:water, pl:Cloud, kn:oceans_circulation // src: noaa
+weather, weather forecast, forecast, meteorology, whats the weather, high pressure, low pressure => kn:weather_dynamics, kn:weather_prediction, kn:atmospheric_circulation // src: noaa
+wind, winds, breeze, why does the wind blow, gale, trade winds, jet stream => kn:atmospheric_circulation, kn:coriolis_effect, kn:weather_dynamics // src: noaa
+hurricane, hurricanes, cyclone, typhoon, tornado, tornadoes, twister, tropical storm => kn:hurricanes_storms, kn:coriolis_effect, kn:weather_dynamics // src: noaa
+tsunami, tsunamis, tidal wave, natural disaster, natural hazards => kn:tsunami_hazards, kn:seismology, kn:volcanism // src: noaa nasa
+air, the air, atmosphere, the atmosphere, the sky, sky, what is air made of, air pressure => pl:Air, kn:atmosphere_structure, kn:gas_air_properties, mol:nitrogen, mol:oxygen // Dry air is about 78% nitrogen and 21% oxygen. // src: noaa pubchem
+climate, climate change, global warming, the climate, warming planet, carbon emissions, emissions, co2 emissions, net zero => kn:climate_system, kn:greenhouse_effect, kn:carbon_cycle_climate, node:bio_climate_change_biology, mol:carbon_dioxide // src: noaa
+greenhouse effect, greenhouse, the greenhouse effect => kn:greenhouse_effect, mol:carbon_dioxide, mol:methane, mol:water // src: noaa
+carbon cycle, carbon, where does carbon go => kn:carbon_cycle_climate, node:carbon_cycle_process, el:C, kn:biogeochemical_cycles // src: noaa openstax-bio
+nitrogen cycle => kn:nitrogen_cycle, node:nitrogen_cycle_process, kn:haber_bosch // src: openstax-bio
+ocean acidification, acid oceans => kn:ocean_acidification, mol:carbon_dioxide, mol:carbonate // src: noaa
+ocean, oceans, sea, seas, seawater, the sea, deep sea, currents, ocean currents, gulf stream => kn:oceans_circulation, kn:amoc_node, kn:tides, kn:ocean_acidification, node:bio_marine_biology // src: noaa
+tide, tides, high tide, low tide, why are there tides, spring tide => kn:tides, kn:moons_tidal, pl:Moon // Tides are mainly raised by the Moon's gravity. // src: noaa nasa
+waves, wave, sound waves, water waves, ocean waves, wave motion => kn:waves, node:waves_interference, kn:wave_optics, kn:oceans_circulation // src: app-card
+ice age, ice ages, glacier, glaciers, ice sheet, ice sheets, polar ice, sea level, melting ice, iceberg, antarctica, arctic => kn:ice_sheets, kn:milankovitch, kn:climate_system, crystal:ice_ih // src: noaa nasa
+el nino, el niño, la nina, la niña, enso => kn:enso, kn:oceans_circulation // src: noaa
+seasons, summer, winter, spring, autumn, why are there seasons, solstice, equinox => kn:milankovitch, kn:planet_earth_node, lm:Earth // src: nasa
+
+# ---------------- the solid Earth ----------------
+earth, planet earth, the earth, our planet, the planet, globe, the world, home planet, world => lm:Earth, lm:Earth & Moon, kn:planet_earth_node, kn:earth_interior // src: nasa
+inside the earth, earth core, earths core, core of the earth, earth interior, mantle, crust, magma chamber, earth layers, centre of the earth => kn:earth_interior, kn:geodynamo, kn:plate_tectonics // src: nasa usgs
+volcano, volcanoes, volcanic, lava, magma, eruption, volcanic eruption, erupt, ash cloud => kn:volcanism, kn:plate_tectonics, kn:earth_interior // src: usgs
+earthquake, earthquakes, quake, tremor, seismic, seismology, richter, fault line, san andreas => kn:seismology, kn:plate_tectonics, kn:tsunami_hazards // src: usgs
+tectonic, tectonics, plate tectonics, continental drift, tectonic plates, continents moving, pangaea => kn:plate_tectonics, kn:mountain_building, kn:earth_interior // src: usgs
+mountain, mountains, mountain range, hill, hills, himalayas, cliff, canyon, valley => kn:mountain_building, kn:weathering_erosion, kn:plate_tectonics // src: usgs
+erosion, weathering, sediment, river, rivers, delta, sedimentary rock, how rocks form, rock cycle => kn:weathering_erosion, kn:mountain_building, kn:minerals_rocks // src: usgs
+soil, dirt, mud, ground, earth soil, topsoil, loam, garden soil, the ground => pl:Soil, node:park_ground, kn:soil_biology, node:bio_plant_nutrition_soil // src: app-card usgs
+rocks and minerals, igneous, metamorphic, ores, ore, geology => kn:minerals_rocks, node:boulder, crystal:quartz, crystal:hematite // src: usgs
+oil, crude oil, petroleum => kn:energy_systems, mol:octane, mol:hexane // Oil is a mixture of many hydrocarbon molecules. // near: mol:octane // src: usgs
+earth magnetic field, magnetic poles, north pole, south pole, geodynamo, why does a compass point north => kn:geodynamo, kn:space_weather, kn:magnetism_force // src: nasa usgs
+deep time, age of the earth, how old is the earth, history of the earth, geological time, geologic time => kn:deep_time, node:bio_geologic_time, kn:radiometric_dating // src: usgs
+oxygen on earth, great oxidation, photosynthesis changed earth => kn:biosphere_energy, node:bio_photosynthesis_overview // src: app-card
+
+# ---------------- space ----------------
+sun, the sun, our sun, sunshine, star, our star, solar, day star, sol => lm:The Sun, node:park_sun, kn:sun_structure, trail:where_does_the_suns_energy_come_from, lm:Inside the Sun (cut-away) // The Sun is a star: a ball of hot plasma held together by its own gravity. // src: nasa
+sun core, centre of the sun, inside the sun, solar core, what is inside the sun => lm:The Sun's core, lm:Inside the Sun (cut-away), kn:fusion_stars, kn:hydrostatic_balance // src: nasa
+how does the sun shine, why does the sun shine, sun energy, suns energy, nuclear fusion, fusion, how stars shine => trail:where_does_the_suns_energy_come_from, kn:fusion_stars, kn:sun_structure // src: nasa
+moon, the moon, lunar, moon phases, full moon, new moon, moonlight, earths moon, how the moon formed => pl:Moon, lm:Earth & Moon, kn:moon_origin_node, kn:tides // src: nasa
+eclipse, solar eclipse, lunar eclipse, total eclipse => pl:Moon, lm:Earth & Moon, lm:The Sun // src: nasa
+solar system, the solar system, planets, the planets, our solar system, planet, orrery, neptune and beyond => lm:Solar system (to Neptune), lm:Inner planets, kn:planet_types, kn:solar_system_formation // src: nasa
+mercury, planet mercury => pl:Mercury // src: nasa
+venus, planet venus, morning star, evening star => pl:Venus, kn:venus_node // src: nasa
+mars, planet mars, the red planet, red planet, martian, mars rover, life on mars, colonise mars => pl:Mars, kn:mars_node // Mars is red because of iron oxide in its dust. // src: nasa
+jupiter, planet jupiter, great red spot, gas giant, gas giants => pl:Jupiter, kn:giant_planets_node, pl:Io, pl:Europa, pl:Ganymede // src: nasa
+saturn, planet saturn, rings of saturn, saturns rings, ringed planet => pl:Saturn, kn:giant_planets_node, kn:moons_tidal, pl:Titan // src: nasa
+uranus, neptune, ice giant, ice giants => pl:Uranus, pl:Neptune, kn:giant_planets_node, kn:planet_types // src: nasa
+pluto, dwarf planet, dwarf planets, kuiper belt, kuiper, eris, ceres, haumea, makemake => pl:Pluto, kn:pluto_kuiper, pl:Ceres, pl:Eris, pl:Haumea, pl:Makemake // src: nasa
+moons, moon of jupiter, moons of saturn, titan, io, europa, ganymede, callisto, enceladus, triton, phobos, charon => pl:Titan, pl:Io, pl:Europa, pl:Ganymede, pl:Callisto, pl:Enceladus, pl:Triton, pl:Phobos, pl:Charon, kn:moons_tidal // src: nasa
+asteroid, asteroids, asteroid belt, comet, comets, meteor, meteors, meteorite, shooting star, shooting stars, meteor shower, space rock, impact, impacts, crater => kn:small_bodies, pl:Ceres, kn:mass_extinctions // src: nasa
+space station, international space station, iss, astronaut, astronauts, zero gravity, weightless, weightlessness, microgravity => pl:ISS, kn:orbits_kepler, kn:rocketry // src: nasa
+space, outer space, the cosmos, cosmos, the universe, universe, everything, how big is space, how big is the universe, scale of the universe, how big is everything => trail:how_big_is_everything, lm:Observable universe, lm:Milky Way, lm:Solar system (to Neptune), kn:observable_universe // src: nasa
+stars, star, night sky, stargazing, constellation, constellations, starlight, twinkle, why do stars twinkle, nearest star, alpha centauri, proxima => lm:Nearest stars, lm:Local stars, kn:stellar_evolution, kn:stellar_spectra, kn:star_formation // src: nasa
+how are stars born, star birth, nebula, stellar nursery, star formation => kn:star_formation, kn:stellar_evolution // src: nasa
+supernova, supernovae, dying star, white dwarf, neutron star, pulsar, stellar death, red giant => kn:stellar_death, kn:stellar_evolution, kn:nucleosynthesis_stars, kn:kilonova_rprocess // src: nasa
+where do elements come from, where did my atoms come from, stardust, we are stardust, origin of elements, made in stars => trail:where_did_my_atoms_come_from, kn:nucleosynthesis_stars, kn:bbn_node, kn:kilonova_rprocess // src: nasa
+black hole, black holes, event horizon, singularity, spaghettification, sagittarius a, sgr a, what is inside a black hole, what is inside a black hole => trail:what_is_inside_a_black_hole, lm:Black hole Sgr A*, kn:black_holes, kn:black_hole_info // src: nasa
+galaxy, galaxies, milky way, the milky way, our galaxy, spiral galaxy, andromeda => lm:Milky Way, lm:Local Group, kn:milky_way, kn:galaxies // src: nasa
+cosmic web, large scale structure, filaments, galaxy clusters, supercluster, local group => lm:Cosmic web, lm:Local Group, kn:cosmic_web, kn:galaxies // src: nasa
+big bang, beginning of the universe, origin of the universe, how did the universe begin, cosmic history, age of the universe, how old is the universe => kn:big_bang, kn:cmb, kn:inflation, kn:bbn_node, kn:expansion_hubble // src: nasa
+expanding universe, expansion, hubble, hubble constant, redshift, hubble tension, accelerating universe => kn:expansion_hubble, kn:hubble_tension_node, kn:dark_energy_node, kn:distance_ladder // src: nasa
+dark matter => kn:dark_matter_evidence, kn:galaxies // src: nasa
+dark energy => kn:dark_energy_node, kn:expansion_hubble // src: nasa
+multiverse, other universes, parallel universes, end of the universe, fate of the universe, heat death => kn:fate_multiverse, kn:inflation // src: nasa
+alien, aliens, extraterrestrial, life on other planets, et, is there life in space, exoplanet, exoplanets, habitable zone, goldilocks, seti => kn:habitability, kn:exoplanets, node:bio_astrobiology // src: nasa
+aurora, northern lights, southern lights, aurora borealis, solar wind, solar flare, geomagnetic storm, space weather => kn:space_weather, kn:geodynamo, lm:The Sun // src: nasa
+gravity, gravitation, why do things fall, falling, weight, newtons gravity, what is gravity, apple falling, orbit of planets => kn:gravitation_newton, kn:general_relativity, kn:orbits_kepler, node:sm_gravity, kn:equivalence_principle // src: nasa
+relativity, einstein, spacetime, space time, time dilation, general relativity, special relativity, e mc2, emc2, curved space => kn:special_relativity, kn:general_relativity, kn:gps_relativity, kn:gravitational_lensing // src: nasa
+gravitational waves, ligo, ripples in spacetime => kn:gravitational_waves, kn:general_relativity // src: nasa
+
+# ---------------- forces, energy, matter ----------------
+force, forces, push, pull, newton, newtons laws, laws of motion, motion, speed, velocity, acceleration, inertia => kn:newton_laws, kn:conservation_momentum, kn:conservation_energy // src: openstax-chem
+energy, what is energy, kinetic energy, potential energy, conservation of energy, power, joule, watts, calories, calorie => kn:conservation_energy, kn:first_law, node:energy_momentum // src: app-card
+entropy, disorder, second law, heat death, arrow of time, why time moves forward => kn:second_law, kn:arrow_of_time, kn:statistical_mechanics // src: app-card
+pressure, buoyancy, floating, why do ships float, sinking, archimedes, underwater, deep sea pressure, hydraulics => kn:fluid_statics, kn:navier_stokes // src: app-card
+friction, drag, air resistance, sliding => kn:newton_laws, kn:bernoulli_flight, kn:elasticity_materials // src: app-card
+spring, springs, elastic, stretch, strength of materials, stress and strain, bending, why things break, materials strength => kn:elasticity_materials, kn:electrostatic_bonds, kn:dislocations_strength // src: app-card
+spin, spinning, rotation, torque, angular momentum, ice skater, gyroscope effect => kn:rotational_dynamics, node:rotation_torque // src: app-card
+vibrations, oscillation, pendulum, swing, resonance, bridge collapse, tuning fork => kn:oscillations, node:resonance_q, kn:waves // src: app-card
+sound, noise, music, echo, pitch, loud, volume, how do we hear sound, sonic boom => kn:sound_hearing, kn:waves, node:phone_speaker // src: app-card
+turbulence, chaos, butterfly effect, chaotic, unpredictable => kn:turbulence, kn:dynamical_chaos // src: app-card
+atom, atoms, an atom, what is an atom, atomic, structure of the atom, inside an atom, tiny things, atom model => lm:Oxygen nucleus, node:at_atom, node:at_orbital, el:O, node:at_models, el:H // Every atom has a tiny nucleus surrounded by a cloud of electrons. // src: openstax-chem
+electron, electrons, electron cloud, orbital, orbitals => node:sm_electron, node:at_orbital, lm:Standard Model, node:at_quantum_numbers // src: openstax-chem
+proton, protons => node:sm_proton, node:sm_up, node:sm_down, kn:protons_neutrons // A proton is made of three quarks: two up and one down. // src: openstax-chem
+neutron, neutrons => node:sm_neutron, kn:protons_neutrons // src: openstax-chem
+quark, quarks, up quark, down quark, gluon, gluons, strong force, hadron => node:sm_up, node:sm_down, node:sm_gluon, kn:quarks_leptons, kn:qcd, lm:Standard Model // src: openstax-chem
+standard model, particle physics, elementary particles, fundamental particles, subatomic particles, particles, higgs, higgs boson, cern, lhc, large hadron collider, boson, lepton => lm:Standard Model, node:sm_overview, node:sm_higgs, kn:standard_model, kn:higgs_mechanism // src: app-card
+neutrino, neutrinos, ghost particle => node:sm_nu_e, node:sm_neutrino_oscillation, kn:neutrinos // src: app-card
+antimatter, antiparticle, positron, antiproton, anti matter => node:sm_antimatter, kn:antimatter_asymmetry, kn:antihydrogen // src: app-card
+quantum, quantum mechanics, quantum physics, quantum theory, wave function, wavefunction, uncertainty, heisenberg, schrodinger, schrodingers cat, superposition, entanglement => kn:quantum_discovery, kn:wave_particle, kn:schrodinger, kn:uncertainty, kn:entanglement, node:at_wavefunction // src: app-card
+fundamental forces, four forces, the four forces, forces of nature, what holds things together, what holds everything together, glue of the universe => trail:what_holds_everything_together, node:sm_interactions, node:sm_strong_force, kn:maxwell // src: app-card
+tiny, smallest thing, what is the smallest thing, smallest particle, how small can things get => lm:Standard Model, node:sm_proton, lm:Oxygen nucleus, trail:what_am_i_made_of // src: app-card
+am i mostly empty space, is a rock solid, is a rock really solid, is matter empty, solid matter => trail:is_a_rock_really_solid, node:at_atom, node:boulder // src: app-card
+isotope, isotopes, ion, ions, charged atom => node:at_isotopes, node:at_ions, kn:nuclear_binding // src: openstax-chem
+orbit of electrons, bohr model, rutherford, history of the atom, dalton, thomson => node:at_models, node:at_model_bohr, node:at_model_rutherford, node:at_model_dalton, node:at_model_thomson // src: openstax-chem
+
+# ---------------- maths and ideas ----------------
+maths, math, mathematics, algebra, calculus, equations, differential equations => kn:calculus, kn:ode_pde, kn:linalg_hilbert, kn:logic_sets, node:ee_math // src: app-card
+infinity, prime numbers, primes, cryptography, encryption, codes, pi, number theory => kn:number_theory_crypto, kn:logic_sets // src: app-card
+fractal, fractals, shapes, geometry, topology, mobius strip => kn:geometry_topology, kn:diff_geometry // src: app-card
+probability, chance, odds, statistics, luck, randomness, random, data science, averages, bell curve => kn:probability, kn:bayes_stats, kn:regression_models, node:bio_descriptive_statistics // src: app-card
+symmetry, patterns, conservation laws, noether => kn:group_symmetry, kn:noether, kn:symmetry_conservation_summary // src: app-card
+information, entropy of information, bits of information, shannon => kn:information_theory, kn:landauer, node:information_entropy_capacity // src: app-card
+network, networks of people, complexity, emergence, self organisation, complex systems, ant colony, flocking, swarm => kn:networks_complexity, kn:effective_theories, node:bee_colony // src: app-card
+science, scientific method, how science works, how do we know, experiments, evidence, scientific certainty, what is true, certainty => kn:scientific_method, kn:replication_crisis, kn:effective_theories // src: app-card
+units, measurement, metre, meter, kilogram, second, si units, how long is a metre, how big, how heavy => kn:si_units, kn:dimensional_scaling, node:si_units_ee // src: app-card
+size, scale, how small, how large, powers of ten, orders of magnitude, scale ruler, zoom, how tiny => trail:how_big_is_everything, kn:dimensional_scaling, lm:You, lm:Observable universe // src: app-card
+help, how do i use this, how does this work, what can i do here, how to use the explorer, tutorial, controls => lm:Greenwich Park // The explorer opens in a park. Scroll to zoom, click anything for a card, and use the ruler on the left to fly to other scales. Choose Help (top right) for the full guide. // src: app-card
+park, greenwich park, the park, grass, meadow, field, outdoors, london park => lm:Greenwich Park, pl:Tree, pl:Pond, pl:Dog // src: app-card
+london, the city, city, uk, england, britain => lm:London // src: app-card
+economics, money, supply and demand, inflation, markets, game theory, society, sociology, psychology, language => kn:economics_basics, kn:macro_economics, kn:game_theory, kn:sociology_basics, kn:language_cognition // src: app-card

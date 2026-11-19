@@ -1,0 +1,81 @@
+# Everyday words for devices and technology. Format: see aliases_src.txt.
+@src ee-cards | The explorer's electrical-engineering topic cards (data/nodes/ee_*.json) describe the target; the teardown of the phone places it | -
+
+# ---------------- batteries and power ----------------
+battery, batteries, a battery, phone battery, battery pack, cell phone battery, mobile battery, lithium ion, lithium-ion, lithium ion battery, li ion, rechargeable, rechargeable battery, power bank, laptop battery => node:phone_battery, node:batteries_electrochem, node:battery_storage_systems, kn:batteries_tech, el:Li // The phone in your hand opens into its parts, and the battery is one of them: a lithium-ion cell. There is no model of a battery cell cut open yet. // src: ee-cards
+battery storage, grid storage, store electricity, energy storage => node:battery_storage_systems, kn:batteries_tech, node:grid_renewables_smart // src: ee-cards
+electric car, electric vehicle, ev, tesla, hybrid => node:ev_motor_control, kn:electric_motors, node:battery_storage_systems, kn:batteries_tech // src: ee-cards
+charge, charging, charger, charging my phone, phone charger, plug in, how a phone charges => node:how_a_phone_charges, node:usb_c_charger, node:phone_charger_port, node:phone_pmic, node:phone_battery // src: ee-cards
+usb, usb c, usb-c, cable port, charging port => node:phone_charger_port, node:usb_protocol, node:usb_c_charger // src: ee-cards
+wall socket, socket, plug socket, wall outlet, mains, mains electricity, electrical outlet, power point => node:wall_outlet, node:electric_power_grid, node:usb_c_charger // src: ee-cards
+power grid, electricity grid, national grid, power lines, pylons, power station, electricity supply, how electricity gets to my house => node:electric_power_grid, node:power_plant, node:transmission_line, node:substation, node:distribution_transformer, kn:power_grid, node:power_grid_delivery // src: ee-cards
+power plant, power station, generator, generators, dynamo, alternator => node:power_plant, node:generator, kn:induction_generators, node:power_generation, node:synchronous_machines // src: ee-cards
+transformer, transformers => node:step_up_transformer, node:distribution_transformer, node:power_transformers, node:transformer_ideal, node:flyback_transformer // src: ee-cards
+electricity, electric, electrical, current, electric current, voltage, volts, amps, ohm, resistance => node:electrical_basics, kn:circuits_ohm, kn:coulomb_law, lab:circuit/ohms_law // src: ee-cards
+ohms law, ohm's law => node:ohms_law_node, lab:circuit/ohms_law, kn:circuits_ohm // src: ee-cards
+circuit, circuits, electronic circuit, circuit board, breadboard, electronics => node:electrical_basics, lab:circuit/series_parallel, node:phone_pcb, node:breadboarding, node:ee_electronics // src: ee-cards
+static, static electricity, static shock, sparks, spark, charge on a balloon => kn:coulomb_law, kn:electric_fields, node:coulombs_law_ee // Static electricity is charge that has built up on a surface, as in lightning. // src: ee-cards
+lightning, thunder, thunderstorm, thunderstorms, bolt, storm, storms => kn:hurricanes_storms, kn:weather_dynamics, kn:coulomb_law // Lightning is a huge spark of static electricity inside a storm cloud. // src: noaa ee-cards
+resistor, resistors => lab:circuit/ohms_law, node:electrical_basics, node:current_resistance_physics // src: ee-cards
+capacitor, capacitors, condenser, supercapacitor => node:capacitor_ee, node:capacitance_physics, lab:circuit/rc_charging // src: ee-cards
+inductor, inductors, coil, coils, choke => node:inductor_ee, node:inductance_physics, lab:circuit/rl_transient // src: ee-cards
+diode, diodes, rectifier => node:diode_models, node:pn_junction_ee, lab:device/pn_forward, lab:circuit/half_wave_rectifier, node:rectifiers // src: ee-cards
+semiconductor, semiconductors, doping, doped, n type, p type, pn junction => node:doping_pn_material, node:pn_junction_ee, crystal:silicon, node:energy_bands_ee, kn:semiconductors_pn, lab:device/intrinsic_si // src: ee-cards
+fuse, circuit breaker, trip switch => node:protection_relays_breakers // src: ee-cards
+switch, light switch, relay => node:protection_relays_breakers, node:bjt_switch_node, node:mosfet_switch_node // src: ee-cards
+solar panel, solar panels, solar cell, solar cells, photovoltaic, pv, solar power, solar energy, sunlight into electricity, solar electricity => kn:solar_cells, node:solar_pv_systems, node:photodetectors_solar, lab:device/solar_cell, crystal:silicon // Solar cells are usually made of silicon; the explorer has cards and a lab but no model of a solar panel yet. // src: ee-cards
+wind turbine, wind turbines, wind power, windmill, wind energy, turbine => node:wind_energy_systems, node:generator, kn:induction_generators // src: ee-cards
+nuclear reactor, fission, nuclear energy, atomic power => kn:fission_power, el:U, kn:radioactivity // src: openstax-chem
+fusion energy, fusion power, fusion reactor, tokamak => kn:fusion_energy, kn:fusion_stars, kn:plasma_physics, trail:where_does_the_suns_energy_come_from // src: app-card
+renewable, renewables, renewable energy, green energy, clean energy, energy sources, oil and gas, fossil fuels, fossil fuel, coal power => kn:energy_systems, node:grid_renewables_smart, kn:fusion_energy // src: app-card
+motor, motors, electric motor, electric motors => node:phone_vibration_motor, kn:electric_motors, node:dc_machines, node:induction_motor, node:motor_drives // The smallest motor in the explorer is the vibration motor inside the phone; the cards cover larger motors. // near: node:phone_vibration_motor // src: ee-cards
+vibration, buzz, haptics, phone buzz, vibrate => node:phone_vibration_motor, kn:oscillations // src: ee-cards
+engine, car engine, petrol engine, steam engine, fridge, refrigerator, air conditioner, air conditioning, heat pump => kn:heat_engines, kn:first_law, kn:second_law // src: app-card
+robot, robots, robotics, drone, mechatronics => node:robotics_mechatronics, node:interfacing_motors, node:pid_controller // src: ee-cards
+
+# ---------------- the phone and what is in it ----------------
+phone, smartphone, mobile phone, cell phone, mobile, iphone, android, my phone, telephone, handset => node:smartphone, trail:how_does_my_phone_think, node:phone_pcb, node:phone_battery, node:phone_display // The phone in your hand opens into its parts. // src: ee-cards
+screen, display, oled, lcd, phone screen, tv screen, monitor, pixels, pixel => node:phone_display, node:phone_touchscreen, node:optoelectronic_devices // src: ee-cards
+touch screen, touchscreen, touch sensor, how a touchscreen works => node:phone_touchscreen, node:how_touchscreen_senses // src: ee-cards
+camera, phone camera, photo, photos, picture, taking a photo, how a photo is taken, sensor => node:phone_camera, node:how_a_photo_is_taken, node:soc_isp, node:image_video_processing // src: ee-cards
+speaker, speakers, headphones, earphones, loudspeaker, sound from a phone, audio => node:phone_speaker, kn:sound_hearing, kn:waves // src: ee-cards
+microphone, mic, recording sound => kn:sound_hearing, node:phone_sensors // The phone's motion sensors are modelled; its microphone is not. // src: ee-cards
+sensors, motion sensor, accelerometer, gyroscope, mems, compass sensor, step counter => node:phone_sensors, node:nanotech_mems // src: ee-cards
+wifi, wi fi, wi-fi, wireless, wireless internet, wlan, router, hotspot, bluetooth => node:phone_wifi_bt, node:how_wifi_sends_data, node:wireless_channels_fading, node:digital_modulation // Wi-Fi sends data as radio waves, mainly in the 2.4 and 5 GHz bands. // src: ee-cards
+cellular, mobile data, 4g, 5g, 6g, mobile network, phone signal, signal strength, cell tower, mobile mast, modem, antenna, antennas, aerial => node:phone_modem, node:phone_antenna, node:wireless_5g6g, node:antenna_fundamentals, node:phone_rf_frontend // src: ee-cards
+radio, radio waves, fm radio, am radio, television, tv, broadcast, radio signal, communication => kn:radio_comm, node:analog_modulation, node:phone_antenna, kn:electromagnetic_waves // src: ee-cards
+gps, satellite navigation, sat nav, satnav, location, maps app => kn:gps_relativity, kn:special_relativity, kn:general_relativity // GPS satellites need corrections from relativity to stay accurate. // src: app-card
+internet, the internet, web, the web, network, networks, ethernet, data, bits and bytes, email => node:computer_networks_iot, node:networking_osi_tcpip, node:how_wifi_sends_data, kn:radio_comm // src: ee-cards
+fibre optic, fiber optic, fibre optics, fiber optics, optical fibre, broadband cable, light pipe => node:fiber_optics_photonics, kn:fiber_optics // src: ee-cards
+chip, chips, microchip, computer chip, processor, cpu, integrated circuit, ic, silicon chip, soc, system on chip, brain of the phone, how does my phone think => trail:how_does_my_phone_think, node:phone_soc, node:cpu_core, crystal:silicon, node:chip_fabrication // src: ee-cards
+transistor, transistors, how a transistor works, mosfet, finfet, switch in a chip => node:finfet_transistor, node:how_a_transistor_switches, node:cmos_inverter, node:mosfet_physics_ee, lab:device/finfet // A modern chip holds billions of transistors; each is a tiny switch. // src: ee-cards
+logic gate, logic gates, and gate, nand, nor, boolean, binary, bits => node:logic_gate_nand, node:logic_gates, node:logic_adder, node:number_systems, kn:electronics_logic // src: ee-cards
+computer, computers, pc, laptop, how computers work, cpu core, computing => node:cpu_core, node:phone_soc, node:instruction_execution, kn:electronics_logic, node:isa_risc_cisc // src: ee-cards
+memory chip, ram, computer memory, flash, flash storage, ssd, usb stick, storage, hard drive, memory card, sd card => node:phone_ram, node:phone_flash, node:flash_memory, node:memory_rom_ram, node:memory_hierarchy // src: ee-cards
+gpu, graphics card, graphics => node:soc_gpu, node:neural_accelerator_hw // src: ee-cards
+ai, artificial intelligence, machine learning, neural network, neural networks, chatgpt, deep learning, algorithm => kn:neural_nets, node:machine_learning_engineers, node:soc_npu, node:neural_accelerator_hw // src: app-card
+software, code, coding, programming, program, app, apps, programmer => node:intro_programming, node:instruction_execution, node:c_language, node:assembly_language // src: ee-cards
+quantum computer, quantum computing, qubit, qubits => kn:quantum_computing, node:quantum_computing_hardware // src: app-card
+chip making, how chips are made, lithography, wafer fab, fabrication => node:chip_fabrication, node:fabrication_lithography, node:fabrication_overview, lab:device/fab_process // src: ee-cards
+
+# ---------------- light and displays ----------------
+led, leds, light emitting diode, led light, led lamp, led bulb => node:led_photodiode, node:optoelectronic_devices, lab:device/led_colors, lab:circuit/led_circuit, kn:led_lasers // An LED makes light when electrons cross a band gap in a semiconductor. // src: ee-cards
+light bulb, light bulbs, bulb, bulbs, lamp, lamps, lightbulb, lighting, incandescent, filament => node:led_photodiode, kn:blackbody, kn:led_lasers, lab:device/led_colors // Old filament bulbs glow because a hot wire gives out thermal radiation; LEDs work differently. // src: ee-cards
+laser, lasers, laser pointer, laser beam, laser light, barcode scanner, lasers in fibre => node:lasers_semiconductor, kn:led_lasers, kn:atomic_spectra, node:photonic_integrated_circuits // src: ee-cards
+optics, lens, lenses, magnifying glass, glasses, spectacles, contact lenses, reflection, refraction, mirror, mirrors, prism => kn:optics_geometric, node:reflection_refraction, node:optics_basics, node:lens, kn:wave_optics // src: ee-cards openstax-ap
+microscope, microscopes, microscopy, see small things, magnify => node:bio_light_microscopy, node:bio_electron_microscopy, node:bio_fluorescence_microscopy // src: openstax-bio
+telescope, telescopes, binoculars, hubble, james webb, observatory => kn:telescopes_tech, kn:distance_ladder // src: app-card
+x ray, xray, x rays, xrays, mri, mri scan, ct scan, ultrasound, scan, scanner, medical scan, medical imaging, scans => kn:medical_imaging, kn:mri_tech, kn:electromagnetic_waves, node:medical_devices // src: app-card
+ecg, ekg, eeg, heart monitor, biomedical, medical device, medical devices, pacemaker device => node:biomedical_instrumentation, node:medical_devices // src: ee-cards
+microwave, microwave oven, microwaves, wavelength => kn:electromagnetic_waves, node:plane_waves // Microwave ovens use radio waves that are absorbed by water in food. // src: ee-cards
+infrared, ultraviolet, uv, visible light, electromagnetic spectrum, em spectrum, gamma rays, radio spectrum => kn:electromagnetic_waves, trail:what_is_light, kn:ozone_layer // src: app-card
+magnetism, magnetic field, magnetic fields, electromagnet, electromagnets, compass => kn:magnetism_force, node:magnetic_fields_forces, kn:magnetic_materials, kn:geodynamo, crystal:magnetite // A compass needle lines up with Earth's magnetic field. // src: ee-cards
+induction, electromagnetic induction, faraday, wireless charging => kn:induction_generators, node:faraday_lenz, node:mutual_inductance // src: ee-cards
+superconductor, superconductors, superconductivity, maglev, levitation => kn:superconductivity, kn:magnetic_materials // src: app-card
+3d printer, 3d printing, additive manufacturing, printer => kn:additive_manufacturing_tech // src: app-card
+oscilloscope, multimeter, soldering, solder, lab equipment, electronics lab => node:oscilloscope, node:multimeter, node:soldering, node:breadboarding // src: ee-cards
+airplane, aeroplane, plane, aircraft, jet, how planes fly, flight, flying, wing, wings, lift, aerodynamics => kn:flight_tech, kn:bernoulli_flight, kn:newton_laws // src: app-card
+rocket, rockets, rocket science, spaceflight, launch, space travel, spacecraft => kn:rocketry, pl:ISS, kn:orbits_kepler // src: nasa
+satellite, satellites, orbit, orbiting, in orbit => pl:ISS, kn:orbits_kepler, kn:gps_relativity // src: nasa
+clock, clocks, watch, time keeping, atomic clock, timekeeping => kn:optical_clocks, kn:special_relativity, kn:arrow_of_time // src: app-card
+thermometer, temperature, hot, cold, heat, how hot, kelvin, celsius => kn:temperature_heat, kn:kinetic_theory, kn:third_law // src: app-card
