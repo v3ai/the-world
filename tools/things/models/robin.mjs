@@ -1,5 +1,6 @@
 // A European robin (Erithacus rubecula), true size (about 14 cm), standing alert on a boulder.
 // Everything is modelled in MILLIMETRES and scaled to metres at the end. See /home/rhett/projects/how/.devtools/notes/robin.md for sources.
+import fs from 'fs';
 import { L, MM, fin, S2, D2R, add, cross } from './robin_lib.mjs';
 import { headLocal, WING } from './robin_shape.mjs';
 import * as O from './robin_out.mjs';
@@ -54,7 +55,7 @@ export default function build() {
   for (const p of parts) { if (/^f_(prim|sec|tert|pcov|gcov|mcov|lcov|alula|tail|utc|undertc|rach)$/.test(p.id) || (/^r_[a-z]+$/.test(p.id) && !/_mid$/.test(p.id)) || /^r_[a-z]+_mid$/.test(p.id)) p.deeper = FEATH;
     if (p.id === 'mu_pectoralis' || p.id === 'mu_supracoracoideus') p.deeper = MUSC; if (/^sk_(humerus|radius|ulna|carpometacarpus|femur|tibiotarsus|tarsometatarsus|sternum|scapula|coracoid)$/.test(p.id)) p.deeper = BONE; }
   // ---- hotspots (thing-local metres) ----
-  const BP = N.Bp, hs = (id, node, at, label, modes, extra = {}) => ({ id, node, at: at.map(v => +(v * MM).toFixed(6)), label, modes, r: .0022, ...extra });
+  const BP = N.Bp, hs = (id, node, at, label, modes, extra = {}) => ({ id, node, at: at.map(v => +(v * MM).toFixed(6)), label, modes, r: .0017, ...extra });
   const SYa = N.SYR.at, W = sy.frame.W, EW = ey.frame.W, wR = N.wingPts(1);
   const HOT = [
     hs('hs_brain', 'robin_brain', headLocal([-3.4, 2.6, 0]), 'Brain', ['cut_half']), hs('hs_syrinx', 'robin_syrinx', SYa, 'Syrinx', ['cut_half']), hs('hs_heart', 'robin_heart', BP([10.5, -6.2, 0]), 'Heart', ['cut_half']),
@@ -72,6 +73,10 @@ export default function build() {
     hs('hs_ey_opt', 'robin_optic_nerve', EW([-5.2, -1.0, -.4]), 'Optic nerve', ['cut_eye'], { r: .0004 }),
     hs('hs_hd_lv', 'robin_lv', BP([9.6, -7, -.9]), 'Left ventricle', ['cut_heart'], { r: .0007 }), hs('hs_hd_rv', 'robin_rv', BP([10, -6.6, 2]), 'Right ventricle', ['cut_heart'], { r: .0007 }), hs('hs_hd_la', 'robin_la', BP([12.4, -2.7, -2.3]), 'Left atrium', ['cut_heart'], { r: .0006 }), hs('hs_hd_ra', 'robin_ra', BP([12.4, -2.7, 2.3]), 'Right atrium', ['cut_heart'], { r: .0006 }),
   ];
+  // ---- cards that name no single part (concepts, tissue scenes, the layers): an invisible locator marker (modes: [] never shows) tells goToNode and "Show where it is" where on the bird to fly ----
+  { const used = new Set([...parts.map(p => p.node), ...HOT.map(h => h.node)]); let ids = []; try { ids = JSON.parse(fs.readFileSync(new URL('../../../data/nodes/park_bird.json', import.meta.url))).map(n => n.id); } catch (e) { }
+    const AT = (id) => /feather_scene|^robin_(barb|barbule|hooklet|pigment_granule)$/.test(id) ? [-20, 56, 20] : /flight_muscle_scene|muscle_fibre|^robin_mito$/.test(id) ? BP([8, -9, 11.2]) : /bone_scene|bone_wall|bone_strut|osteocyte|hollow_bones/.test(id) ? L.lerp3(wR.shoulder, wR.elbow, .5) : /retina_scene|photoreceptor|cryptochrome|compass/.test(id) ? EW([-3.1, -1.6, 0]) : /syrinx|song/.test(id) ? SYa : /breathing/.test(id) ? BP([7.5, 6.2, 3.2]) : /perching/.test(id) ? [0, 8, 11] : /^robin_(muscles|fill|skeleton|organs|skin)$/.test(id) ? BP([0, 0, 3]) : BP([0, 2, 0]);
+    for (const id of ids) if (!used.has(id)) HOT.push({ id: 'at_' + id, node: id, at: AT(id).map(v => +(v * MM).toFixed(6)), label: '', r: .001, modes: [] }); }
   // ---- layers, modes ----
   const MODES = [
     { id: 'feathers', label: 'Feathers', show: { outside: 1 } },
@@ -89,9 +94,8 @@ export default function build() {
     { id: 'cut_half', label: 'Cut in half', cut: cutHalf, hotspots: true, show: { muscles: 1, skeleton: 1, organs: 1, airway: 1, nerves: 1, eyes: 1, fill: 1 }, legend: LEG1 },
     { id: 'cut_wing', label: 'Cut open: the wing', cut: { at: [0, .06, 15.6 * MM], normal: [0, 0, 1] }, hotspots: true, show: { muscles: 1, skeleton: 1, fill: 1 }, legend: { title: 'Wing bones and the human arm', items: [{ name: 'Humerus: our upper arm bone', color: '#eadfc8', node: 'humerus_r' }, { name: 'Radius and ulna: our forearm bones', color: '#eadfc8', node: 'radius_ulna_r' }, { name: 'Fused hand bone: our wrist and palm', color: '#eadfc8', node: 'robin_carpometacarpus' }, { name: 'Wing muscles', color: '#b34a3e', node: 'robin_wing_muscles' }], note: 'Look at the bird from its right side, then press the button: the cut passes along the right wing. The bones are drawn as simple rods; the muscles are schematic.' } },
     { id: 'cut_syrinx', label: 'Cut open: the syrinx', cut: { at: SYa.map(v => v * MM), normal: sy.frame.normal }, hotspots: true, show: { d_syrinx: 1 }, legend: { title: 'In the syrinx', items: [{ name: 'Wall of the windpipe and bronchi', color: '#d8d2e0', node: 'robin_syrinx' }, { name: 'Pessulus (bony wedge)', color: '#eadfc8', node: 'robin_pessulus' }, { name: 'Vibrating membranes', color: '#f2c9b8', node: 'robin_tympaniform' }, { name: 'Muscles', color: '#b34a3e', node: 'robin_syr_muscles' }], note: 'Drawn at true size (the windpipe is a few millimetres wide), simplified: the real membranes, rings and muscles are more complex. Look at the bird from the front, then press the button.' } },
-    { id: 'cut_eye', label: 'Cut open: the eye', cut: { at: ey.frame.c.map(v => v * MM), normal: cross(ey.frame.ax, ey.frame.up) }, hotspots: true, show: { d_eye: 1 }, legend: { title: 'In the eye', items: [{ name: 'Retina', color: '#c4585a', node: 'robin_retina' }, { name: 'Lens', color: '#e9c860', node: 'robin_lens' }, { name: 'Pecten (pleated fold)', color: '#b64a45', node: 'robin_pecten' }, { name: 'Choroid (dark layer)', color: '#2a201c', node: 'robin_choroid' }], note: 'A model eye about 8 mm across, with a schematic layout. Look at the bird from its right side, then press the button.' } },
+    { id: 'cut_eye', label: 'Cut open: the eye', cut: { at: ey.frame.c.map(v => v * MM), normal: cross(ey.frame.ax, ey.frame.up) }, hotspots: true, show: { d_eye: 1 }, legend: { title: 'In the eye', items: [{ name: 'Retina', color: '#c4585a', node: 'robin_retina' }, { name: 'Lens', color: '#e9c860', node: 'robin_lens' }, { name: 'Pecten (pleated fold)', color: '#b64a45', node: 'robin_pecten' }, { name: 'Choroid (dark layer)', color: '#2a201c', node: 'robin_choroid' }], note: 'A model eye about 8 mm across, with a schematic layout. Look at the bird from the front, then press the button.' } },
     { id: 'cut_heart', label: 'Cut open: the heart', cut: { at: BP([10.5, -6.2, 0]).map(v => v * MM), normal: [-SA38(), CA38(), 0] }, hotspots: true, show: { d_heart: 1 }, legend: { title: 'In the heart', items: [{ name: 'Heart muscle', color: '#b9524a', node: 'robin_heart' }, { name: 'Left side: oxygen-rich blood', color: '#e0463c', node: 'robin_lv' }, { name: 'Right side: oxygen-poor blood', color: '#4f6fb5', node: 'robin_rv' }], note: 'A simplified model heart: chamber shapes and wall thicknesses are schematic. Look at the bird from above, then press the button.' } },
-    { id: 'cut_feather', label: 'Cut across the flight feathers', cut: { at: featherCutAt(wR).map(v => v * MM), normal: wingN }, hotspots: true, show: { outside: 1 }, legend: { title: 'Flight feathers cut across', items: [{ name: 'Rachis: the central shaft', color: '#3d3223', node: 'robin_rach' }, { name: 'Vane', color: '#5e4c33', node: 'robin_prim' }], note: 'Several flight feathers cut across, overlapping like roof tiles. Look at the bird from behind, then press the button.' } },
   );
   const FACES = { muscle: '#a8433a', bone: '#e8dcc0', organ: '#c9776e', fill: '#e8cbbd', skin: '#e9b9a6', gut: '#d9a58b', brain: '#d9c3bd', nerve: '#f0e2b0', air: '#d3e8f0', tract: '#d8d2e0', blood_l: '#e0463c', blood_r: '#4f6fb5' };
   const faces = {}; for (const [k, c] of Object.entries(FACES)) faces[k] = { kind: 'plain', palette: [[parseInt(c.slice(1), 16), 1]] };
@@ -112,4 +116,3 @@ export default function build() {
   return { thing, meshes, instances };
 }
 const lerp = L.lerp3, SA38 = () => Math.sin(38 * D2R), CA38 = () => Math.cos(38 * D2R);
-function featherCutAt(wR) { const a = [Math.cos(WING.dirDeg * D2R), Math.sin(WING.dirDeg * D2R), 0]; return [wR.wrist[0] + a[0] * 30 - 6, wR.wrist[1] + a[1] * 30 - 4, 15]; }

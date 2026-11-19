@@ -1181,5 +1181,498 @@
   ],
   "ylabel": "vertebrae fused",
   "caption": "Vertebrae in the synsacrum of birds in general (Wikipedia, Bird anatomy): 1 + 6 + 2 + 5 = 14."
+ },
+ "robin_leg_ankle": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "h",
+    "label": "Hip (hidden)",
+    "x": 8,
+    "y": 20
+   },
+   {
+    "id": "k",
+    "label": "Knee (hidden in the belly feathers)",
+    "x": 35,
+    "y": 20
+   },
+   {
+    "id": "a",
+    "label": "Ankle: the \"backward knee\"",
+    "x": 62,
+    "y": 40,
+    "color": "orange"
+   },
+   {
+    "id": "t",
+    "label": "Toes",
+    "x": 85,
+    "y": 75
+   }
+  ],
+  "edges": [
+   {
+    "from": "h",
+    "to": "k",
+    "label": "femur"
+   },
+   {
+    "from": "k",
+    "to": "a",
+    "label": "tibiotarsus"
+   },
+   {
+    "from": "a",
+    "to": "t",
+    "label": "tarsometatarsus"
+   }
+  ],
+  "flow": true,
+  "caption": "The true joints of a bird's leg (Wikipedia, Bird feet and legs): the visible joint is the ankle; the segment below it is a foot bone."
+ },
+ "robin_cloaca": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "g",
+    "label": "Gut (rectum)",
+    "x": 12,
+    "y": 20
+   },
+   {
+    "id": "k",
+    "label": "Kidneys (urine as uric acid)",
+    "x": 12,
+    "y": 50
+   },
+   {
+    "id": "r",
+    "label": "Reproductive tract",
+    "x": 12,
+    "y": 80
+   },
+   {
+    "id": "c",
+    "label": "Cloaca",
+    "x": 55,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "o",
+    "label": "One opening",
+    "x": 88,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "g",
+    "to": "c"
+   },
+   {
+    "from": "k",
+    "to": "c"
+   },
+   {
+    "from": "r",
+    "to": "c"
+   },
+   {
+    "from": "c",
+    "to": "o"
+   }
+  ],
+  "flow": true,
+  "caption": "Everything leaves a bird by one opening (Wikipedia, Bird anatomy)."
+ },
+ "robin_oesophagus": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "b",
+    "label": "Bill",
+    "x": 6,
+    "y": 50
+   },
+   {
+    "id": "o",
+    "label": "Gullet",
+    "x": 24,
+    "y": 50
+   },
+   {
+    "id": "p",
+    "label": "Proventriculus: acid and enzymes",
+    "x": 46,
+    "y": 50
+   },
+   {
+    "id": "g",
+    "label": "Gizzard: grinds the food",
+    "x": 68,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "i",
+    "label": "Intestines",
+    "x": 88,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "b",
+    "to": "o"
+   },
+   {
+    "from": "o",
+    "to": "p",
+    "label": "a crop here in many birds, drawn as absent in the robin"
+   },
+   {
+    "from": "p",
+    "to": "g"
+   },
+   {
+    "from": "g",
+    "to": "i"
+   }
+  ],
+  "flow": true,
+  "caption": "The route of food. Many birds have a crop on the gullet (not owls); descriptions differ for songbirds (Wikipedia, Crop; Bird anatomy)."
+ },
+ "robin_photoreceptor": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "l",
+    "label": "A photon of light",
+    "x": 8,
+    "y": 50
+   },
+   {
+    "id": "r",
+    "label": "Retinal in the light-sensitive protein changes shape",
+    "x": 36,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "c",
+    "label": "A chain of reactions in the cell",
+    "x": 64,
+    "y": 50
+   },
+   {
+    "id": "n",
+    "label": "A nerve signal to the brain",
+    "x": 90,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "l",
+    "to": "r"
+   },
+   {
+    "from": "r",
+    "to": "c"
+   },
+   {
+    "from": "c",
+    "to": "n"
+   }
+  ],
+  "flow": true,
+  "caption": "How a photoreceptor turns light into a signal (general vision biology; see the Vision cards)."
+ },
+ "robin_cryptochrome": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "l",
+    "label": "Light reaches the retina",
+    "x": 8,
+    "y": 30
+   },
+   {
+    "id": "c",
+    "label": "Cryptochrome 4 with FAD",
+    "x": 32,
+    "y": 30
+   },
+   {
+    "id": "r",
+    "label": "Electron jumps along four tryptophans: a radical pair forms",
+    "x": 58,
+    "y": 30,
+    "color": "orange"
+   },
+   {
+    "id": "f",
+    "label": "Earth's field might change how long the pair lasts",
+    "x": 58,
+    "y": 75,
+    "color": "orange"
+   },
+   {
+    "id": "s",
+    "label": "A signal to the brain? (not shown)",
+    "x": 85,
+    "y": 55
+   }
+  ],
+  "edges": [
+   {
+    "from": "l",
+    "to": "c"
+   },
+   {
+    "from": "c",
+    "to": "r",
+    "label": "in vitro"
+   },
+   {
+    "from": "r",
+    "to": "f",
+    "label": "hypothesis"
+   },
+   {
+    "from": "f",
+    "to": "s",
+    "label": "unproven"
+   }
+  ],
+  "flow": true,
+  "caption": "The radical-pair hypothesis. The first steps are measured in purified robin cryptochrome 4 (Xu et al. 2021; Wong et al. 2021); the last two are not shown in a living bird."
+ },
+ "robin_pigment_granule": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "t",
+    "label": "Tyrosine",
+    "x": 10,
+    "y": 50
+   },
+   {
+    "id": "d",
+    "label": "L-DOPA",
+    "x": 35,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "m",
+    "label": "Melanin",
+    "x": 60,
+    "y": 50,
+    "color": "green"
+   },
+   {
+    "id": "g",
+    "label": "Pigment granules in the feather",
+    "x": 85,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "t",
+    "to": "d"
+   },
+   {
+    "from": "d",
+    "to": "m",
+    "label": "more steps"
+   },
+   {
+    "from": "m",
+    "to": "g"
+   }
+  ],
+  "flow": true,
+  "caption": "The route to melanin. Whether the orange breast is melanin-based is not settled (Delhey et al. 2010 classed it so without a chemical test)."
+ },
+ "robin_pectoralis": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "m",
+    "label": "Supracoracoideus on the breast",
+    "x": 10,
+    "y": 70
+   },
+   {
+    "id": "t",
+    "label": "Tendon",
+    "x": 35,
+    "y": 70
+   },
+   {
+    "id": "c",
+    "label": "Triosseal canal: the pulley",
+    "x": 60,
+    "y": 30,
+    "color": "orange"
+   },
+   {
+    "id": "h",
+    "label": "Top of the humerus: wing goes up",
+    "x": 85,
+    "y": 70,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "m",
+    "to": "t",
+    "label": "contracts"
+   },
+   {
+    "from": "t",
+    "to": "c",
+    "label": "pulled down"
+   },
+   {
+    "from": "c",
+    "to": "h",
+    "label": "turned up"
+   }
+  ],
+  "flow": true,
+  "caption": "The pulley that lets a breast muscle lift the wing."
+ },
+ "robin_canal": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "m",
+    "label": "Supracoracoideus on the breast",
+    "x": 10,
+    "y": 70
+   },
+   {
+    "id": "t",
+    "label": "Tendon",
+    "x": 35,
+    "y": 70
+   },
+   {
+    "id": "c",
+    "label": "Triosseal canal: the pulley",
+    "x": 60,
+    "y": 30,
+    "color": "orange"
+   },
+   {
+    "id": "h",
+    "label": "Top of the humerus: wing goes up",
+    "x": 85,
+    "y": 70,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "m",
+    "to": "t",
+    "label": "contracts"
+   },
+   {
+    "from": "t",
+    "to": "c",
+    "label": "pulled down"
+   },
+   {
+    "from": "c",
+    "to": "h",
+    "label": "turned up"
+   }
+  ],
+  "flow": true,
+  "caption": "The pulley that lets a breast muscle lift the wing."
+ },
+ "robin_mito": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "f",
+    "label": "Fuel and oxygen",
+    "x": 10,
+    "y": 50
+   },
+   {
+    "id": "m",
+    "label": "Mitochondrion",
+    "x": 45,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "a",
+    "label": "ATP",
+    "x": 80,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "f",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "a",
+    "label": "oxidative phosphorylation"
+   }
+  ],
+  "flow": true,
+  "caption": "Flight muscle is packed with mitochondria, which turn fuel and oxygen into ATP."
+ },
+ "robin_flight_muscle_scene": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "f",
+    "label": "Fuel and oxygen",
+    "x": 10,
+    "y": 50
+   },
+   {
+    "id": "m",
+    "label": "Mitochondrion",
+    "x": 45,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "a",
+    "label": "ATP",
+    "x": 80,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "f",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "a",
+    "label": "oxidative phosphorylation"
+   }
+  ],
+  "flow": true,
+  "caption": "Flight muscle is packed with mitochondria, which turn fuel and oxygen into ATP."
  }
 }

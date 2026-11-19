@@ -178,7 +178,7 @@
   "layers": {
    "basics": "A bird does not sing with its throat the way you do. The sound is made deep in the chest, where the windpipe splits in two to go to the lungs. That organ is the syrinx. Because each of the two branches has its own vibrating membranes and its own muscles, the two sides can be controlled separately, and some songbirds use this to make more than one sound at the same time. The mouth and windpipe above then shape the sound.",
    "deeper": "In songbirds the syrinx lies where the windpipe forks (the tracheobronchial form). Sound comes from vibration of thin membranes and of the pessulus, a median bony wedge, as air from the lungs passes. Muscles on each bronchus tension the membranes of that side independently; a study of the intact syrinx measured the contributions of the left and right sides separately (Suthers 1990). Songbirds (oscines) have the finest control of these muscles of any birds. Both sexes sing, all year round; the winter song is more plaintive, and a male starts morning song about an hour before sunrise.",
-   "expert": "Whether a robin routinely sings with both sides at once is not established by the sources here; the demonstration of independent left and right contributions is from other songbirds. The model's syrinx (cut-open view) is a simplified drawing at true size."
+   "expert": "The demonstration of independent left and right contributions comes from other songbirds, so it is a statement about songbirds in general. The model's syrinx (cut-open view) is a simplified drawing at true size."
   },
   "facts": [
    [
@@ -437,7 +437,7 @@
   ],
   "certainty": "C2",
   "open_questions": [
-   "What is a robin's own heart rate at rest, in flight and in winter? The values on this card are for birds in general and a similar-sized tropical songbird."
+   "What is a robin's own heart rate at rest, in flight and in winter? The values on this card are for birds in general and for a similar-sized tropical songbird."
   ],
   "refs": [
    [
@@ -1190,7 +1190,7 @@
   "summary": "A band of bluish grey between the orange breast and the brown back, on the sides of the neck and chest.",
   "layers": {
    "basics": "The orange face and breast are edged on the sides of the neck and chest with bluish grey. The grey makes the orange stand out.",
-   "deeper": "Grey in feathers is usually a dilute black melanin. Blue-looking greys can also come from the way fine feather structure scatters light, but which applies in the robin is not shown here.",
+   "deeper": "Grey in feathers is usually a dilute black melanin. Blue-looking colours in feathers can also come from fine structure that scatters light, so the origin of the blue tinge is a separate question.",
    "expert": "The colour in the model is a flat grey; the real band is feathered and graded."
   },
   "facts": [
@@ -1862,7 +1862,7 @@
   "layers": {
    "basics": "Over the roots of the long feathers lie rows of shorter ones: the primary coverts, the greater, median and lesser coverts. They protect the shafts and smooth the airflow. In first-winter robins the tips of the coverts are yellow-brown and more obvious, which helps tell young birds from old.",
    "deeper": "Coverts lie above and below the flight feathers: at least one layer on each side. In the model each of the four groups is drawn, from the long greater coverts to the small lesser coverts, as a set of overlapping blades.",
-   "expert": "The number of coverts in each row is not given in the sources used; the model's counts are drawn to make the rows look right."
+   "expert": "The counts of coverts in each row are drawn to make the rows look right; they are not measured counts."
   },
   "facts": [
    [
@@ -2575,7 +2575,7 @@
   "layers": {
    "basics": "The pectoralis lies on each side of the keel, over the ribs and the underside of the breast. When it contracts it pulls the wing down, and the downstroke makes most of the lift and thrust of a beat. This is why a bird has such a plump breast.",
    "deeper": "The muscle runs from the keel and the wishbone to the humerus, on its crest. It is the muscle bird-lovers mean by \"breast\". It is made of fibres packed with mitochondria that supply the energy of flight; click the muscle's scene to look inside.",
-   "expert": "The pectoralis is the larger of the two flight muscles. Its size is drawn as a thick sheet over the sternum; the real mass in a robin is not given in the sources used."
+   "expert": "The pectoralis is the larger of the two flight muscles. It is drawn as a thick sheet over the sternum; its size is schematic."
   },
   "facts": [
    [
@@ -6428,7 +6428,7 @@
   "layers": {
    "basics": "At the end of a barbule are minute hooks, barbicels, that catch on the ridge of the next barbule. Down feathers lack them, so their barbules float free.",
    "deeper": "This is what turns a loose set of branches into a continuous vane.",
-   "expert": "The hooklet size is not given in the sources used; the shapes are drawn illustratively."
+   "expert": "The hooklets are drawn illustratively: their size and number are not measured."
   },
   "facts": [
    [

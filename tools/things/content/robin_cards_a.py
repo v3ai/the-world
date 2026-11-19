@@ -26,7 +26,7 @@ N('robin_song', 'Song, and how a bird sings two notes at once', 'process', .2, [
   'A robin sings with its syrinx, a voice box at the base of the windpipe that has two sides which can work separately.',
   'A bird does not sing with its throat the way you do. The sound is made deep in the chest, where the windpipe splits in two to go to the lungs. That organ is the syrinx. Because each of the two branches has its own vibrating membranes and its own muscles, the two sides can be controlled separately, and some songbirds use this to make more than one sound at the same time. The mouth and windpipe above then shape the sound.',
   'In songbirds the syrinx lies where the windpipe forks (the tracheobronchial form). Sound comes from vibration of thin membranes and of the pessulus, a median bony wedge, as air from the lungs passes. Muscles on each bronchus tension the membranes of that side independently; a study of the intact syrinx measured the contributions of the left and right sides separately (Suthers 1990). Songbirds (oscines) have the finest control of these muscles of any birds. Both sexes sing, all year round; the winter song is more plaintive, and a male starts morning song about an hour before sunrise.',
-  'Whether a robin routinely sings with both sides at once is not established by the sources here; the demonstration of independent left and right contributions is from other songbirds. The model\'s syrinx (cut-open view) is a simplified drawing at true size.',
+  'The demonstration of independent left and right contributions comes from other songbirds, so it is a statement about songbirds in general. The model\'s syrinx (cut-open view) is a simplified drawing at true size.',
   [['Where', 'at the fork of the windpipe, above the lungs'], ['Sides', 'two, with independent muscles (Suthers 1990)'], ['Morning song', 'starts about an hour before civil sunrise (WR)'], ['Season', 'both sexes sing, all year (WR)']],
   cert='C2', refs=[R_BIRD, R_HEAR], ext=[SYR, WR, WPA],
   openq=['How much do robins use both sides of the syrinx at once? The independent-sides result comes from other songbirds.'], parts=['robin_syrinx'], related=['larynx'])
@@ -63,7 +63,7 @@ N('robin_temperature', 'Body temperature and heart rate', 'process', .2, ['robin
   'Heart rate and oxygen use rise together, so a heart-rate record can stand in for the energy a bird spends. Many birds lower their body temperature a little at night as a way to save energy. The antbird numbers are for another species in a rain forest, not a measurement on robins.',
   [['Body temperature, resting phase', '≈ 38.5 °C (all birds; mean of 203)'], ['Active', '≈ 41.0 °C (all birds; mean of 724)'], ['High activity', '≈ 43.9 °C (all birds; mean of 74)'], ['Heart rate, spotted antbird (≈ 17 g)', '260 to 824 beats/min, mean 492 (Steiger et al. 2009)']],
   cert='C2', refs=[R_HOM, R_CIRC], ext=[PRZ, STE, WBA],
-  openq=['What is a robin\'s own heart rate at rest, in flight and in winter? The values on this card are for birds in general and a similar-sized tropical songbird.'], related=['heart'])
+  openq=['What is a robin\'s own heart rate at rest, in flight and in winter? The values on this card are for birds in general and for a similar-sized tropical songbird.'], related=['heart'])
 
 N('robin_lifespan', 'How long a robin lives', 'process', .2, ['robin'],
   'Most robins die in their first year: the average life expectancy is about 1.1 years, though a few live many years.',
@@ -159,7 +159,7 @@ reg('robin_breast', 'Breast', 'The orange breast: the robin\'s famous signal, bo
   [['Colour', 'orange; classed melanin-based (unproven)'], ['Signal', 'a bundle of red feathers could provoke attack (Lack)']], cert='C2', refs=[R_BEH], ext=[WR, DEL, LAC], related=['robin_territory', 'robin_pigment', 'robin_pectoralis'])
 reg('robin_grey', 'Grey border of the breast', 'A band of bluish grey between the orange breast and the brown back, on the sides of the neck and chest.',
   'The orange face and breast are edged on the sides of the neck and chest with bluish grey. The grey makes the orange stand out.',
-  'Grey in feathers is usually a dilute black melanin. Blue-looking greys can also come from the way fine feather structure scatters light, but which applies in the robin is not shown here.',
+  'Grey in feathers is usually a dilute black melanin. Blue-looking colours in feathers can also come from fine structure that scatters light, so the origin of the blue tinge is a separate question.',
   'The colour in the model is a flat grey; the real band is feathered and graded.',
   [['Colour', 'bluish grey (WR)']], refs=[R_BIRD], ext=[WR, WFE])
 reg('robin_back', 'Back (mantle and scapulars)', 'The olive-brown upper back and the long shoulder feathers that cover the folded wing\'s root.',

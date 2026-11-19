@@ -31,7 +31,7 @@ F('robin_tert', 'Tertials', 'The three innermost secondaries, which lie over the
 F('robin_coverts', 'Coverts: small feathers over the flight feathers', 'The coverts are short feathers that cover the shafts of the flight feathers and smooth the wing surface; there are several rows.',
   'Over the roots of the long feathers lie rows of shorter ones: the primary coverts, the greater, median and lesser coverts. They protect the shafts and smooth the airflow. In first-winter robins the tips of the coverts are yellow-brown and more obvious, which helps tell young birds from old.',
   'Coverts lie above and below the flight feathers: at least one layer on each side. In the model each of the four groups is drawn, from the long greater coverts to the small lesser coverts, as a set of overlapping blades.',
-  'The number of coverts in each row is not given in the sources used; the model\'s counts are drawn to make the rows look right.',
+  'The counts of coverts in each row are drawn to make the rows look right; they are not measured counts.',
   [['Rows', 'primary, greater, median, lesser coverts'], ['First winter', 'yellow-brown covert tips (WR)']], scale=.02, refs=[R_BIRD], ext=[WFF, WR])
 F('robin_alula', 'Alula', 'The alula is a small group of feathers on the bird\'s "thumb", used like a slat on an aircraft wing for slow flight and landing.',
   'The alula is a few small feathers at the front of the wrist. When a bird slows down to land, it lifts the alula and the air stays smoothly attached to the wing instead of breaking away. The model draws three.',

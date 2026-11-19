@@ -14,7 +14,7 @@ const EB = (c, r, ang = 0, axis = [0, 0, 1]) => { let s = L.ellipsoid(r[0], r[1]
 const tubeW = (pts, r, sides = 7, n = 0, caps = true) => L.tube(n ? sp(pts, n) : pts, r, { sides, caps });
 const shade = (m, k = 1) => { L.bakeShade(m, (p, n) => k * (.8 + .2 * Math.max(0, n[1] * .5 + .5))); return m; };
 
-export function wingPts(s) { const g = k => { const w = WING[k], z = (L.surfaceHit(bodySdf, [w[0], w[1], s * 60], [0, 0, -s], 70) || { p: [0, 0, 14] }).p[2]; return [w[0], w[1], s * z + s * w[2]]; }; return { shoulder: g('shoulder'), elbow: g('elbow'), wrist: g('wrist'), handEnd: g('handEnd') }; }
+export function wingPts(s) { const g = k => { const w = WING[k], z = Math.abs((L.surfaceHit(bodySdf, [w[0], w[1], s * 60], [0, 0, -s], 70) || { p: [0, 0, 14] }).p[2]); return [w[0], w[1], s * z + s * w[2]]; }; return { shoulder: g('shoulder'), elbow: g('elbow'), wrist: g('wrist'), handEnd: g('handEnd') }; }
 // ---------------------------------------------------------------------------------------------------------- skeleton
 export function skeleton() {
   const o = {};
@@ -113,7 +113,7 @@ export function muscles(sk) {
     const bk = [[17, 16.4], [10, 17.2], [3, 17.2], [-4, 16.6], [-11, 15.4], [-18, 14.2], [-24, 12.8]].map(([u, v]) => v);
     o.back_muscles = L.merge(...S2.map(s => L.tube(sp([[17, 16.6, s * 3.7], [10, 17.4, s * 4], [3, 17.4, s * 4.4], [-4, 16.8, s * 4.6], [-11, 15.6, s * 4.4], [-18, 14.4, s * 3.9], [-24, 13, s * 3.2]].map(Bp), 30), t => 1.7 - .55 * t, { sides: 7, caps: true })));
     const jm = S2.map(s => bnd(L.translate(L.ellipsoid(4.6, 3.3, 1.9), [-4.2, -1.4, s * 8.9]), [-10, -6, s > 0 ? 5 : -12], [2, 4, s > 0 ? 12 : -5], .45, 1, 1)); o.jaw_muscle = L.transform(L.merge(...jm), p => headLocal(p));
-    const wm = []; for (const s of S2) { const wp = k => { const w = WING[k]; const z = (L.surfaceHit(bodySdf, [w[0], w[1], s * 60], [0, 0, -s], 70) || { p: [0, 0, 14] }).p[2]; return [w[0], w[1], s * z + s * w[2]]; };
+    const wm = []; for (const s of S2) { const wp = k => { const w = WING[k]; const z = Math.abs((L.surfaceHit(bodySdf, [w[0], w[1], s * 60], [0, 0, -s], 70) || { p: [0, 0, 14] }).p[2]); return [w[0], w[1], s * z + s * w[2]]; };
       const Sh = wp('shoulder'), E = wp('elbow'), Wr = wp('wrist');
       wm.push(L.tube(sp([add(Sh, [-1, 1, s * 1.2]), add(lerp3(Sh, E, .5), [0, 1.2, s * 1.5]), add(E, [.5, .8, s * 1])], 12), t => .9 + 1.1 * Math.sin(Math.PI * t) * .9, { sides: 7, caps: true }));
       wm.push(L.tube(sp([add(E, [0, .6, s * 1.2]), add(lerp3(E, Wr, .5), [0, .8, s * 1.4]), add(Wr, [0, .2, s * 1.2])], 12), t => .5 + .6 * Math.sin(Math.PI * t * .9 + .2), { sides: 6, caps: true })); }

@@ -314,7 +314,7 @@
       "node": "robin_choroid"
      }
     ],
-    "note": "A model eye about 8 mm across, with a schematic layout. Look at the bird from its right side, then press the button."
+    "note": "A model eye about 8 mm across, with a schematic layout. Look at the bird from the front, then press the button."
    }
   },
   {
@@ -356,42 +356,6 @@
      }
     ],
     "note": "A simplified model heart: chamber shapes and wall thicknesses are schematic. Look at the bird from above, then press the button."
-   }
-  },
-  {
-   "id": "cut_feather",
-   "label": "Cut across the flight feathers",
-   "cut": {
-    "at": [
-     -0.016270509831248427,
-     0.04136644243122581,
-     0.015
-    ],
-    "normal": [
-     -0.8090169943749475,
-     -0.587785252292473,
-     0
-    ]
-   },
-   "hotspots": true,
-   "show": {
-    "outside": 1
-   },
-   "legend": {
-    "title": "Flight feathers cut across",
-    "items": [
-     {
-      "name": "Rachis: the central shaft",
-      "color": "#3d3223",
-      "node": "robin_rach"
-     },
-     {
-      "name": "Vane",
-      "color": "#5e4c33",
-      "node": "robin_prim"
-     }
-    ],
-    "note": "Several flight feathers cut across, overlapping like roof tiles. Look at the bird from behind, then press the button."
    }
   }
  ],
@@ -630,7 +594,7 @@
    "modes": [
     "cut_half"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_syrinx",
@@ -644,7 +608,7 @@
    "modes": [
     "cut_half"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_heart",
@@ -658,7 +622,7 @@
    "modes": [
     "cut_half"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_lung",
@@ -672,7 +636,7 @@
    "modes": [
     "cut_half"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_sac",
@@ -686,7 +650,7 @@
    "modes": [
     "cut_half"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_gizzard",
@@ -700,7 +664,7 @@
    "modes": [
     "cut_half"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_liver",
@@ -714,7 +678,7 @@
    "modes": [
     "cut_half"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_keel",
@@ -728,7 +692,7 @@
    "modes": [
     "cut_half"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_kidney",
@@ -742,7 +706,7 @@
    "modes": [
     "cut_half"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_synsacrum",
@@ -756,7 +720,7 @@
    "modes": [
     "cut_half"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_cloaca",
@@ -770,7 +734,7 @@
    "modes": [
     "cut_half"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_pyg",
@@ -784,7 +748,7 @@
    "modes": [
     "cut_half"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_eso",
@@ -798,7 +762,7 @@
    "modes": [
     "cut_half"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_pecto",
@@ -812,7 +776,7 @@
    "modes": [
     "cut_half"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_humerus",
@@ -826,7 +790,7 @@
    "modes": [
     "cut_wing"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_ru",
@@ -840,7 +804,7 @@
    "modes": [
     "cut_wing"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_cmc",
@@ -854,7 +818,7 @@
    "modes": [
     "cut_wing"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_alula",
@@ -868,7 +832,7 @@
    "modes": [
     "cut_wing"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_canal",
@@ -882,7 +846,7 @@
    "modes": [
     "cut_wing"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_wmus",
@@ -896,7 +860,7 @@
    "modes": [
     "cut_wing"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_prim",
@@ -910,7 +874,7 @@
    "modes": [
     "cut_wing"
    ],
-   "r": 0.0022
+   "r": 0.0017
   },
   {
    "id": "hs_sy_wall",
@@ -1155,6 +1119,450 @@
     "cut_heart"
    ],
    "r": 0.0006
+  },
+  {
+   "id": "at_robin_flight",
+   "node": "robin_flight",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_song",
+   "node": "robin_song",
+   "at": [
+    0.008673,
+    0.070653,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_night_song",
+   "node": "robin_night_song",
+   "at": [
+    0.008673,
+    0.070653,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_territory",
+   "node": "robin_territory",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_migration",
+   "node": "robin_migration",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_temperature",
+   "node": "robin_temperature",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_lifespan",
+   "node": "robin_lifespan",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_dinosaur",
+   "node": "robin_dinosaur",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_compass",
+   "node": "robin_compass",
+   "at": [
+    0.026958,
+    0.095028,
+    0.005589
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_keratin",
+   "node": "robin_keratin",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_pigment",
+   "node": "robin_pigment",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_breathing",
+   "node": "robin_breathing",
+   "at": [
+    0.000093,
+    0.067503,
+    0.0032
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_perching",
+   "node": "robin_perching",
+   "at": [
+    0,
+    0.008,
+    0.011
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_hollow_bones",
+   "node": "robin_hollow_bones",
+   "at": [
+    -0.007,
+    0.066,
+    0.010676
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_wing",
+   "node": "robin_wing",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_muscles",
+   "node": "robin_muscles",
+   "at": [
+    -0.002,
+    0.058,
+    0.003
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_skeleton",
+   "node": "robin_skeleton",
+   "at": [
+    -0.002,
+    0.058,
+    0.003
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_organs",
+   "node": "robin_organs",
+   "at": [
+    -0.002,
+    0.058,
+    0.003
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_leg_bones",
+   "node": "robin_leg_bones",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_air_sacs",
+   "node": "robin_air_sacs",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_peripheral_nerves",
+   "node": "robin_peripheral_nerves",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_feather_scene",
+   "node": "robin_feather_scene",
+   "at": [
+    -0.02,
+    0.056,
+    0.02
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_barb",
+   "node": "robin_barb",
+   "at": [
+    -0.02,
+    0.056,
+    0.02
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_barbule",
+   "node": "robin_barbule",
+   "at": [
+    -0.02,
+    0.056,
+    0.02
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_hooklet",
+   "node": "robin_hooklet",
+   "at": [
+    -0.02,
+    0.056,
+    0.02
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_pigment_granule",
+   "node": "robin_pigment_granule",
+   "at": [
+    -0.02,
+    0.056,
+    0.02
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_flight_muscle_scene",
+   "node": "robin_flight_muscle_scene",
+   "at": [
+    0.009845,
+    0.055833,
+    0.0112
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_muscle_fibre",
+   "node": "robin_muscle_fibre",
+   "at": [
+    0.009845,
+    0.055833,
+    0.0112
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_mito",
+   "node": "robin_mito",
+   "at": [
+    0.009845,
+    0.055833,
+    0.0112
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_bone_scene",
+   "node": "robin_bone_scene",
+   "at": [
+    -0.007,
+    0.066,
+    0.010676
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_bone_wall",
+   "node": "robin_bone_wall",
+   "at": [
+    -0.007,
+    0.066,
+    0.010676
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_bone_strut",
+   "node": "robin_bone_strut",
+   "at": [
+    -0.007,
+    0.066,
+    0.010676
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_osteocyte",
+   "node": "robin_osteocyte",
+   "at": [
+    -0.007,
+    0.066,
+    0.010676
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_retina_scene",
+   "node": "robin_retina_scene",
+   "at": [
+    0.026958,
+    0.095028,
+    0.005589
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_photoreceptor",
+   "node": "robin_photoreceptor",
+   "at": [
+    0.026958,
+    0.095028,
+    0.005589
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_robin_cryptochrome",
+   "node": "robin_cryptochrome",
+   "at": [
+    0.026958,
+    0.095028,
+    0.005589
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
+  },
+  {
+   "id": "at_park_bird",
+   "node": "park_bird",
+   "at": [
+    -0.003231,
+    0.059576,
+    0
+   ],
+   "label": "",
+   "r": 0.001,
+   "modes": []
   }
  ],
  "parts": [
@@ -1175,11 +1583,11 @@
    },
    "center": [
     0.0015,
-    0.0451,
+    0.045,
     0
    ],
-   "radius": 0.0279,
-   "tris": 6294
+   "radius": 0.0278,
+   "tris": 6474
   },
   {
    "id": "r_flank",
@@ -1198,11 +1606,11 @@
    },
    "center": [
     -0.0015,
-    0.0654,
+    0.0659,
     0
    ],
-   "radius": 0.0297,
-   "tris": 4801
+   "radius": 0.029,
+   "tris": 4707
   },
   {
    "id": "r_breast",
@@ -1221,11 +1629,11 @@
    },
    "center": [
     0.0165,
-    0.0653,
+    0.0655,
     0
    ],
-   "radius": 0.0223,
-   "tris": 3335
+   "radius": 0.0225,
+   "tris": 3265
   },
   {
    "id": "r_rump",
@@ -1248,7 +1656,7 @@
     0
    ],
    "radius": 0.0207,
-   "tris": 5110
+   "tris": 5107
   },
   {
    "id": "r_vent",
@@ -1266,19 +1674,19 @@
     "button": "Look inside a feather"
    },
    "center": [
-    -0.0117,
+    -0.0119,
     0.0358,
     0.0001
    ],
    "radius": 0.0166,
-   "tris": 1792
+   "tris": 1746
   },
   {
    "id": "r_grey",
    "name": "Grey border of the breast",
    "system": "outside",
    "node": "robin_grey",
-   "color": "#7e8991",
+   "color": "#879399",
    "mesh": "r_grey",
    "solid": false,
    "lod": "near",
@@ -1290,11 +1698,11 @@
    },
    "center": [
     0.019,
-    0.0693,
+    0.0691,
     0
    ],
-   "radius": 0.0213,
-   "tris": 2167
+   "radius": 0.0212,
+   "tris": 2236
   },
   {
    "id": "r_back",
@@ -1312,12 +1720,12 @@
     "button": "Look inside a feather"
    },
    "center": [
-    -0.0008,
+    -0.0063,
     0.069,
     0
    ],
-   "radius": 0.0253,
-   "tris": 2116
+   "radius": 0.022,
+   "tris": 2111
   },
   {
    "id": "r_nape",
@@ -1340,7 +1748,7 @@
     0
    ],
    "radius": 0.0229,
-   "tris": 4038
+   "tris": 4002
   },
   {
    "id": "r_face",
@@ -1363,7 +1771,7 @@
     0
    ],
    "radius": 0.0155,
-   "tris": 4097
+   "tris": 4139
   },
   {
    "id": "r_crown",
@@ -1381,12 +1789,12 @@
     "button": "Look inside a feather"
    },
    "center": [
-    0.0195,
+    0.0191,
     0.0984,
     -0.0001
    ],
-   "radius": 0.0138,
-   "tris": 1570
+   "radius": 0.0139,
+   "tris": 1533
   },
   {
    "id": "bill_up",
@@ -1486,9 +1894,9 @@
    "center": [
     0.0057,
     0.0573,
-    0.0162
+    0
    ],
-   "radius": 0.0307,
+   "radius": 0.0459,
    "count": 20,
    "tris": 1760
   },
@@ -1510,9 +1918,9 @@
    "center": [
     0.0039,
     0.0614,
-    0.0161
+    0
    ],
-   "radius": 0.0277,
+   "radius": 0.039,
    "count": 12,
    "tris": 1056
   },
@@ -1534,9 +1942,9 @@
    "center": [
     -0.0103,
     0.0604,
-    0.0152
+    0
    ],
-   "radius": 0.0196,
+   "radius": 0.0336,
    "count": 6,
    "tris": 528
   },
@@ -1558,9 +1966,9 @@
    "center": [
     0.0077,
     0.0587,
-    0.016
+    0
    ],
-   "radius": 0.017,
+   "radius": 0.0269,
    "count": 18,
    "tris": 1584
   },
@@ -1582,9 +1990,9 @@
    "center": [
     -0.0023,
     0.0604,
-    0.0158
+    0
    ],
-   "radius": 0.0238,
+   "radius": 0.0329,
    "count": 18,
    "tris": 1584
   },
@@ -1606,9 +2014,9 @@
    "center": [
     -0.0036,
     0.0632,
-    0.015
+    0
    ],
-   "radius": 0.022,
+   "radius": 0.0298,
    "count": 20,
    "tris": 1760
   },
@@ -1630,9 +2038,9 @@
    "center": [
     -0.0049,
     0.0665,
-    0.0139
+    0
    ],
-   "radius": 0.0212,
+   "radius": 0.0276,
    "count": 32,
    "tris": 2816
   },
@@ -1654,9 +2062,9 @@
    "center": [
     0.0139,
     0.0631,
-    0.0149
+    0
    ],
-   "radius": 0.0094,
+   "radius": 0.0227,
    "count": 6,
    "tris": 528
   },
@@ -1750,9 +2158,9 @@
    "center": [
     -0.0061,
     0.0549,
-    0.012
+    0
    ],
-   "radius": 0.0922,
+   "radius": 0.0896,
    "count": 48,
    "tris": 768
   },
@@ -2514,9 +2922,9 @@
    "center": [
     -0.0015,
     0.0669,
-    0.0137
+    0
    ],
-   "radius": 0.0169,
+   "radius": 0.0235,
    "tris": 676
   },
   {
@@ -3441,11 +3849,11 @@
    },
    "center": [
     0.0016,
-    0.0452,
+    0.045,
     0
    ],
-   "radius": 0.0277,
-   "tris": 1346
+   "radius": 0.0276,
+   "tris": 1394
   },
   {
    "id": "r_flank_mid",
@@ -3464,11 +3872,11 @@
    },
    "center": [
     -0.0014,
-    0.0653,
+    0.0656,
     0
    ],
-   "radius": 0.0293,
-   "tris": 1030
+   "radius": 0.0291,
+   "tris": 1000
   },
   {
    "id": "r_breast_mid",
@@ -3491,7 +3899,7 @@
     0
    ],
    "radius": 0.0222,
-   "tris": 685
+   "tris": 673
   },
   {
    "id": "r_rump_mid",
@@ -3532,19 +3940,19 @@
     "button": "Look inside a feather"
    },
    "center": [
-    -0.0117,
+    -0.0118,
     0.0356,
     0
    ],
    "radius": 0.0164,
-   "tris": 392
+   "tris": 377
   },
   {
    "id": "r_grey_mid",
    "name": "Grey border of the breast",
    "system": "outside",
    "node": "robin_grey",
-   "color": "#7e8991",
+   "color": "#879399",
    "mesh": "r_grey_mid",
    "lod": "mid",
    "solid": false,
@@ -3556,11 +3964,11 @@
    },
    "center": [
     0.019,
-    0.0694,
+    0.0691,
     -0.0001
    ],
-   "radius": 0.0214,
-   "tris": 453
+   "radius": 0.0212,
+   "tris": 466
   },
   {
    "id": "r_back_mid",
@@ -3578,12 +3986,12 @@
     "button": "Look inside a feather"
    },
    "center": [
-    -0.0009,
+    -0.0064,
     0.0689,
     0.0001
    ],
-   "radius": 0.0253,
-   "tris": 411
+   "radius": 0.022,
+   "tris": 410
   },
   {
    "id": "r_nape_mid",
@@ -3606,7 +4014,7 @@
     0
    ],
    "radius": 0.0222,
-   "tris": 865
+   "tris": 863
   },
   {
    "id": "r_face_mid",
@@ -3629,7 +4037,7 @@
     0
    ],
    "radius": 0.0153,
-   "tris": 848
+   "tris": 851
   },
   {
    "id": "r_crown_mid",
@@ -3647,12 +4055,12 @@
     "button": "Look inside a feather"
    },
    "center": [
-    0.0194,
+    0.019,
     0.0984,
     -0.0003
    ],
-   "radius": 0.0137,
-   "tris": 309
+   "radius": 0.0138,
+   "tris": 305
   },
   {
    "id": "body_far",

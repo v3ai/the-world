@@ -3,7 +3,7 @@ import { L, ball, EZ, S2, add, sub, mul, norm, cross, dot, len, lerp3, bnd, sp, 
 import { bodySdf, headSdf, HC, HB, headLocal, headInv, LEG, WING, TAIL, surfZ } from './robin_shape.mjs';
 
 export const COL = {
-  crown: '#6f5e3c', nape: '#7c6c4a', face: '#d2621f', breast: '#d6661f', grey: '#7e8991', back: '#6d5b3a', rump: '#7c6842', flank: '#9a8662', belly: '#e6dfcc', vent: '#d6ccb2',
+  crown: '#6f5e3c', nape: '#7c6c4a', face: '#d2621f', breast: '#d6661f', grey: '#8793996'.slice(0,7), back: '#6d5b3a', rump: '#7c6842', flank: '#9a8662', belly: '#e6dfcc', vent: '#d6ccb2',
   bill: '#2b2622', eye: '#0f0d0c', ring: '#8f8264', leg: '#8d6a58', claw: '#4a3a32',
   prim: '#54442d', sec: '#5c4a33', tert: '#614f35', covert: '#6f5d3d', alula: '#4a3d2b', tail: '#5f4f38', utc: '#7d6c48', undertc: '#d6ccb4',
 };
@@ -11,7 +11,7 @@ export const COL = {
 export function bodyRegions(R) {
   const m = bnd(bodySdf, [-45, 23, -22], [45, 113, 22], .9, 1, 1);
   const C = [-2, 58], a = -38 * D2R, ca = Math.cos(a), sa = Math.sin(a);
-  const noise = (p, f = .18, amp = 2.2) => amp * L.fbm(p[0] * f, p[1] * f, p[2] * f, { octaves: 2, seed: 31 });
+  const noise = (p, f = .18, amp = 2.2) => amp * L.fbm(p[0] * f, p[1] * f, Math.abs(p[2]) * f, { octaves: 2, seed: 31 });
   const cls = (p, n) => {
     const h = headInv(p), hh = Math.hypot(h[0] / 14, h[1] / 13, h[2] / 11.5), nh = rot2(n, -HB);
     const u = (p[0] - C[0]) * ca - (p[1] - C[1]) * sa, v = (p[0] - C[0]) * sa + (p[1] - C[1]) * ca, az = Math.abs(p[2]);
@@ -22,15 +22,15 @@ export function bodyRegions(R) {
       if (h[0] < -7 + nn) return 'nape';
       return 'face';
     }
-    if (p[1] > 75 && h[0] < -2 && nh[1] > -.1 && p[2] * 0 === 0 && dot(n, [-.6, .8, 0]) > .25) return 'nape';    // back of the neck
+    if (p[1] > 75 && p[0] < 13 && h[0] < -2 && nh[1] > -.1 && dot(n, [-.6, .8, 0]) > .25) return 'nape';    // back of the neck
     if (p[1] > 69 && az > 8.5 && p[0] > 12 && p[0] < 24 && n[1] < .5) return 'grey';          // side of the neck and shoulder
     // below the neck: breast, sides, belly, back
-    if (n[1] > .45 && u < 26) return u < -15 ? 'rump' : 'back';
+    if (n[1] > .45 && u < 26 && p[0] < 11 + nn) return u < -15 ? 'rump' : 'back';
     if (v < -9 + nn && u < 14) return u < -17 + nn ? 'vent' : 'belly';
     if (p[1] > 47 && p[0] > -2 && az < 8.5 + nn * 1.4 && n[0] > -.2) return 'breast';
     if (p[1] > 53 && p[0] > 12 && az >= 9.5 + nn * 1.4 && az < 15) return 'grey';
     if (u > 6 && v < -2) return 'breast';
-    if (az > 8 && p[1] > 39 && u > -6) return 'flank';
+    if (az > 10 + nn && v > -7 && u > -6) return 'flank';
     if (u < -17 && v > -8) return 'rump';
     return v < -4 ? 'belly' : 'flank';
   };
@@ -67,7 +67,7 @@ export function featherMeshes() {
   return { feather: blade, rachis: shaft };
 }
 export function placeFeather(I, bx, by, bz0, dirDeg, lenMm, widMm, lift, side, tiltDeg = 0, nrmBlend = 1) {
-  const zs0 = surfZ(bodySdf, bx, by, side); const bz = (zs0 === null ? Math.abs(bz0) : zs0) + lift;
+  const zs0 = surfZ(bodySdf, bx, by, side); const bz = (zs0 === null ? Math.abs(bz0) : Math.abs(zs0)) + lift;
   const P = [bx, by, side * bz], n0 = L.normalAt(bodySdf, [bx, by, side * (bz - lift)]);
   const dir0 = [Math.cos(dirDeg * D2R), Math.sin(dirDeg * D2R), 0];
   const nrm = norm(add(mul(n0, nrmBlend), mul([0, 0, side], 1 - nrmBlend)));
