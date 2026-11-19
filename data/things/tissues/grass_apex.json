@@ -1,0 +1,306 @@
+{
+ "cell": "plant",
+ "id": "grass_apex",
+ "tag": "In a grass shoot base",
+ "title": "The growing point and the base of a young leaf",
+ "node": "grass_meristem",
+ "blurb": "About 1 mm across, at the base of a grass shoot: the dome of dividing cells that is the growing point, the youngest leaf wrapping it, and cells further down that store sugar. Click a part.",
+ "note": "Schematic. What is shown follows textbook and extension descriptions: a dome of dividing cells (the shoot apex), leaf primordia round it, and a zone of dividing cells at the base of each growing leaf. Measured for perennial ryegrass: in a growing leaf, cell division is confined to the basal 0.6 to 0.9 mm and cells keep lengthening over the basal 31 to 36 mm (Lolium perenne, kinematic study, Plant Physiology). Everything else, including the cell sizes (about 10 to 40 µm here), the dome size and the number of cells, is illustrative. Ryegrass stores its reserve sugars as fructans in the leaf sheaths and elongating leaf bases (Lolium perenne papers cited on the card); the storage cells are drawn larger than the dividing cells.",
+ "bg": "#f3efe6",
+ "center": [
+  0,
+  150,
+  0
+ ],
+ "D_um": 800,
+ "labels": [
+  {
+   "text": "Growing point (dome of dividing cells)",
+   "at": [
+    -380,
+    330,
+    40
+   ],
+   "pop": "dome"
+  },
+  {
+   "text": "Young leaf primordium",
+   "at": [
+    -380,
+    250,
+    40
+   ],
+   "pop": "prim"
+  },
+  {
+   "text": "Base of the youngest leaf: cells divide and then lengthen",
+   "at": [
+    -380,
+    170,
+    40
+   ],
+   "pop": "gz"
+  },
+  {
+   "text": "Cells that store fructan, a sugar reserve",
+   "at": [
+    -380,
+    30,
+    40
+   ],
+   "pop": "store"
+  }
+ ],
+ "populations": [
+  {
+   "id": "dome",
+   "name": "Cell of the growing point",
+   "node": "grass_meristem",
+   "shape": "ellipsoid",
+   "size": [
+    12,
+    12,
+    12
+   ],
+   "color": "#f0c94c",
+   "opacity": 0.95,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -60,
+     280,
+     -24
+    ],
+    "n": [
+     10,
+     6,
+     5
+    ],
+    "step": [
+     12,
+     12,
+     12
+    ],
+    "jitter": 0.08,
+    "skip": [
+     {
+      "x": [
+       -60,
+       -40
+      ],
+      "y": [
+       330,
+       400
+      ]
+     },
+     {
+      "x": [
+       40,
+       60
+      ],
+      "y": [
+       330,
+       400
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "prim",
+   "name": "Cell of a young leaf primordium",
+   "node": "grass_leaf_primordium",
+   "shape": "ellipsoid",
+   "size": [
+    12,
+    14,
+    12
+   ],
+   "color": "#d9c25a",
+   "opacity": 0.85,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -150,
+     250,
+     -18
+    ],
+    "n": [
+     2,
+     5,
+     3
+    ],
+    "step": [
+     14,
+     14,
+     14
+    ],
+    "jitter": 0.08
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "prim2",
+   "name": "Cell of a young leaf primordium",
+   "node": "grass_leaf_primordium",
+   "shape": "ellipsoid",
+   "size": [
+    12,
+    14,
+    12
+   ],
+   "color": "#d9c25a",
+   "opacity": 0.85,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     128,
+     250,
+     -18
+    ],
+    "n": [
+     2,
+     5,
+     3
+    ],
+    "step": [
+     14,
+     14,
+     14
+    ],
+    "jitter": 0.08
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "gz",
+   "name": "Cell at the base of a growing leaf",
+   "node": "grass_growth_zone",
+   "shape": "rbox",
+   "size": [
+    18,
+    20,
+    18
+   ],
+   "color": "#e9a94a",
+   "opacity": 0.7,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -170,
+     120,
+     -18
+    ],
+    "n": [
+     18,
+     6,
+     3
+    ],
+    "step": [
+     19,
+     22,
+     19
+    ],
+    "jitter": 0.06
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "store",
+   "name": "Sheath cell that stores fructan",
+   "node": "grass_fructan",
+   "shape": "rbox",
+   "size": [
+    40,
+    44,
+    36
+   ],
+   "color": "#e8dfc0",
+   "opacity": 0.5,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -190,
+     -40,
+     -36
+    ],
+    "n": [
+     9,
+     3,
+     2
+    ],
+    "step": [
+     44,
+     48,
+     40
+    ],
+    "jitter": 0.05
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "fructose",
+    "name": "Fructose",
+    "button": "See the molecule: fructose, the unit fructan is made of"
+   }
+  },
+  {
+   "id": "walls",
+   "name": "Cell wall",
+   "node": "bio_cell_wall_ecm",
+   "shape": "rbox",
+   "size": [
+    2,
+    90,
+    36
+   ],
+   "color": "#a99a6a",
+   "opacity": 0.8,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -205,
+       20,
+       0
+      ]
+     },
+     {
+      "at": [
+       215,
+       20,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "cellotriose",
+    "name": "Cellulose",
+    "button": "See the molecule: cellulose"
+   }
+  }
+ ]
+}

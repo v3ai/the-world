@@ -34,7 +34,7 @@ export function buildThing(ctx, M) {
     P('anthers', 'Anther', 'flowers', 'grass_anther', '#e8d35a', { instances: 'anthers', lod: 'near', double: true, tint: .1, priority: 2.2, deeper: { type: 'tissue2', id: 'grass_pollen', D: 2.5e-4, button: 'Look at grass pollen' } }),
     P('stigmas', 'Stigma', 'flowers', 'grass_stigma', '#d9d6e6', { instances: 'stigmas', lod: 'near', double: true, priority: 2.1 }),
     // ---- roots ----
-    P('roots', 'Fibrous roots', 'roots', 'grass_roots', '#d9c796', { mesh: 'roots', lod: 'near+mid', deeper: { type: 'tissue2', id: 'grass_root_tip', D: 4e-4, button: 'Look at a root tip' } }),
+    P('roots', 'Fibrous roots', 'roots', 'grass_roots', '#d9c796', { mesh: 'roots', lod: 'near', deeper: { type: 'tissue2', id: 'grass_root_tip', D: 4e-4, button: 'Look at a root tip' } }),
     P('lateral_roots', 'Lateral roots', 'roots', 'grass_roots', '#e6d9b2', { mesh: 'lateral_roots', lod: 'near' }),
     P('root_tips', 'Root cap', 'roots', 'grass_root_tip', '#f2e8c4', { instances: 'root_tips', lod: 'near', priority: 2.1, deeper: { type: 'tissue2', id: 'grass_root_tip', D: 4e-4, button: 'Look at a root tip' } }),
     P('root_hairs', 'Root hairs', 'roots', 'grass_root_hairs', '#f6f1dc', { instances: 'root_hairs', lod: 'near', double: true, priority: 2 }),
@@ -57,7 +57,7 @@ export function buildThing(ctx, M) {
     blurb: 'A tussock of perennial ryegrass, the commonest park lawn grass, at true size. Click a blade, a sheath, the base of a stem, a flower or a root. The layers pull one shoot apart, open the flowers, and show the roots.',
     model_note: 'A procedural model built from typical measurements of the species, not a scan of one plant. Counts of tillers, leaves and spikelets are choices within the ranges on the cards; real tussocks are larger and untidier.',
     size_m: { height: M.culmH, leaf_blade: M.bladeLen[1] }, height_m: M.culmH + .16, radius_m: .8, draw_m: 90, seed: 7771,
-    systems, lod: { near_m: 2.5, far_m: 14 },
+    systems, lod: { near_m: 2.5, far_m: 6 },
     shadow: { radius_m: .16, opacity: .5 },
     pivots: ctx.pivots || {},
     anim: [{ kind: 'sway', systems: ['blades', 'stems', 'flowers'], from_y: .02, to_y: .6, amp_m: .01, hz: .5, label: 'Leaves and flowering stems' }],

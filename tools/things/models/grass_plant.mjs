@@ -97,10 +97,10 @@ export function buildPlant(ctx) {
   meshes.culm_blade_mid = L.merge(...culBum); meshes.culm_sheaths_mid = L.merge(...culShm);
   // ---- spikelet pieces (unit meshes, spikelet frame: Y along the spikelet, X across in the broad plane, Z the thin direction) ----
   const LL = M.lemmaLen;
-  meshes.lemma = L.blade({ length: LL, halfWidth: t => .00115 * Math.pow(Math.sin(Math.PI * Math.pow(t, .75)), .65), thickness: .00018, nAlong: 6, nAcross: 2, curlAcross: .55, curlAlong: .12, midribBulge: .00005 });
+  meshes.lemma = L.blade({ length: LL, halfWidth: t => .00115 * Math.pow(Math.sin(Math.PI * Math.pow(t, .75)), .65), thickness: .00018, nAlong: 4, nAcross: 1, curlAcross: .55, curlAlong: .12, midribBulge: .00005 });
   L.bakeShade(meshes.lemma, p => .72 + .28 * Math.min(1, p[1] / LL));
   meshes.glume = L.blade({ length: .0085, halfWidth: t => .00085 * Math.pow(Math.sin(Math.PI * Math.pow(t, .6)), .8), thickness: .00014, nAlong: 6, nAcross: 1, curlAcross: .25 });
-  meshes.spikelet_lens = L.lathe([[0, 0], [.0013, .002], [.0016, .0055], [.0013, .0095], [.0004, .0112], [0, .0115]], { segments: 5, caps: false });
+  meshes.spikelet_lens = L.lathe([[0, 0], [.0013, .002], [.0016, .0055], [.0013, .0095], [.0004, .0112], [0, .0115]], { segments: 3, caps: false });
   meshes.anther = L.lathe([[0, 0], [.00018, .00025], [.00026, M.antherLen * .5], [.00018, M.antherLen * .9], [0, M.antherLen]], { segments: 5, caps: false });
   meshes.filament = L.lathe([[.00008, 0], [.00006, 1]], { segments: 3, caps: false });
   meshes.stigma = L.lathe([[.00006, 0], [.00022, .0008], [.00016, .002], [0, .0031]], { segments: 4, caps: false });
@@ -132,7 +132,7 @@ export function buildPlant(ctx) {
   // ---------- daughter tiller marker mesh = merged into daughter parts below ----------
   // ---------- roots ----------
   const roots = [], lats = [], hairsI = I('root_hairs'), tipsI = I('root_tips'); ctx.unit.root_hairs = 'root_hair'; ctx.unit.root_tips = 'root_cap';
-  meshes.root_hair = L.lathe([[.00003, 0], [0, .0007]], { segments: 3, caps: false }); meshes.root_cap = L.lathe([[0, -.0007], [.0002, -.0005], [.00032, 0], [.0003, .0007]], { segments: 6, caps: false });
+  meshes.root_hair = L.lathe([[.00003, 0], [0, .0007]], { segments: 3, caps: false }); meshes.root_cap = L.lathe([[0, -.0007], [.00032, 0], [.0003, .0007]], { segments: 4, caps: false });
   const rootOf = (base, a0, n) => {
     for (let i = 0; i < n; i++) {
       const a = a0 + i * 1.9 + R(), depth = M.rootDepth * R.range(.35, 1), pts = [[base[0], -.002, base[2]]], hdir = [Math.cos(a), 0, Math.sin(a)];

@@ -1,0 +1,262 @@
+{
+ "grass_plant": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "youngest leaf of a daughter tiller (model, 3 cm)",
+    "value": 3
+   },
+   {
+    "label": "shortest mature blade (model, 7 cm)",
+    "value": 7
+   },
+   {
+    "label": "longest blade (model, 21 cm)",
+    "value": 21
+   },
+   {
+    "label": "tallest flowering stem (model, 50 cm)",
+    "value": 50
+   },
+   {
+    "label": "flowering stem, upper end of floras (90 cm)",
+    "value": 90
+   }
+  ],
+  "ylabel": "length in centimetres",
+  "logy": false,
+  "caption": "Sizes in the model against the ranges in floras. Blade length range in floras: 5-25 cm; flowering stem: 30-90 cm. Typical measurements, not one plant."
+ },
+ "grass_lawn": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "fine lawn, top of range (13 mm)",
+    "value": 13
+   },
+   {
+    "label": "domestic lawn, summer, top (25 mm)",
+    "value": 25
+   },
+   {
+    "label": "domestic lawn, spring and autumn (40 mm)",
+    "value": 40
+   },
+   {
+    "label": "new lawn: first cut when at least (50 mm)",
+    "value": 50
+   }
+  ],
+  "ylabel": "height in millimetres",
+  "logy": false,
+  "caption": "RHS mowing heights for lawns: the upper end of each recommended range, and the height a new lawn should reach before its first cut."
+ },
+ "grass_base_growth": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "cells divide (basal 0.9 mm, low P)",
+    "value": 0.9
+   },
+   {
+    "label": "cells divide (basal 0.6 mm, high P)",
+    "value": 0.6
+   },
+   {
+    "label": "cells lengthen (basal 31 mm, low P)",
+    "value": 31
+   },
+   {
+    "label": "cells lengthen (basal 36 mm, high P)",
+    "value": 36
+   }
+  ],
+  "ylabel": "length of zone in millimetres",
+  "logy": false,
+  "caption": "Lolium perenne, a growing leaf: the zone where cells divide is under 1 mm long; the zone where they go on lengthening is 31-36 mm (cv. Condesa; the two values in each pair are the two phosphorus treatments)."
+ },
+ "grass_tillering": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "tillers per m² (low end)",
+    "value": 5000
+   },
+   {
+    "label": "tillers per m² (high end)",
+    "value": 7000
+   }
+  ],
+  "ylabel": "tillers per square metre",
+  "logy": false,
+  "caption": "Tiller density in an established perennial ryegrass sward: 5,000 to 7,000 per square metre (AHDB)."
+ },
+ "grass_blade": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "blade width, narrow end (2 mm)",
+    "value": 2
+   },
+   {
+    "label": "blade width, broad end (4 mm)",
+    "value": 4
+   },
+   {
+    "label": "ligule (1-2 mm)",
+    "value": 1.5
+   },
+   {
+    "label": "ryegrass pollen grain (0.04 mm, 40 µm)",
+    "value": 0.04
+   }
+  ],
+  "ylabel": "millimetres",
+  "logy": false,
+  "caption": "A few sizes on a ryegrass leaf: blade width 2-4 mm (DELTA), ligule 1-2 mm (DELTA, Minnesota Wildflowers), and a pollen grain 26-50 µm (PalDat) for comparison."
+ },
+ "grass_stoma": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "stoma length, lower end (10 µm)",
+    "value": 10
+   },
+   {
+    "label": "ryegrass pollen grain, lower end (26 µm)",
+    "value": 26
+   },
+   {
+    "label": "stoma length, upper end (80 µm)",
+    "value": 80
+   }
+  ],
+  "ylabel": "micrometres",
+  "logy": false,
+  "caption": "Stomata are 10 to 80 micrometres long across species (Wikipedia: Stoma); a ryegrass pollen grain is 26-50 µm (PalDat). Neither is a measurement of ryegrass stomata."
+ },
+ "grass_silica_defence": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "L. perenne leaf silica, low treatment (%)",
+    "value": 0.54
+   },
+   {
+    "label": "L. perenne leaf silica, high treatment (%)",
+    "value": 4.68
+   },
+   {
+    "label": "Festuca ovina, low (%)",
+    "value": 0.52
+   },
+   {
+    "label": "Festuca ovina, high (%)",
+    "value": 2.44
+   }
+  ],
+  "ylabel": "silica, per cent of dry mass",
+  "logy": false,
+  "caption": "Leaf silica in two grasses grown with low and high silicon supply (Massey and Hartley 2006, Table 1)."
+ },
+ "grass_c3_c4": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "C4 plants, share of terrestrial plant species (%)",
+    "value": 3
+   },
+   {
+    "label": "C4 plants, share of plant biomass (%)",
+    "value": 5
+   },
+   {
+    "label": "C4 plants, share of terrestrial carbon fixation (%)",
+    "value": 23
+   },
+   {
+    "label": "grass species that are C4 (%)",
+    "value": 46
+   }
+  ],
+  "ylabel": "per cent",
+  "logy": false,
+  "caption": "C4 photosynthesis: rare among plant species but common among grasses and responsible for about a quarter of land photosynthesis (Wikipedia, C4 carbon fixation)."
+ },
+ "grass_spikelet": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "lemma length, lower (4 mm)",
+    "value": 4
+   },
+   {
+    "label": "lemma length, upper (8.5 mm)",
+    "value": 8.5
+   },
+   {
+    "label": "spikelet length, typical lower (7 mm)",
+    "value": 7
+   },
+   {
+    "label": "spikelet length, typical upper (15 mm)",
+    "value": 15
+   },
+   {
+    "label": "anther length (about 3 mm)",
+    "value": 3.1
+   }
+  ],
+  "ylabel": "millimetres",
+  "logy": false,
+  "caption": "Sizes in a ryegrass spikelet from floras: lemma 4-8.5 mm, spikelet 7-15 mm (typical range), anther 2.9-3.4 mm (DELTA)."
+ },
+ "grass_pollen": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "sub-pollen particle (0.1 µm)",
+    "value": 0.1
+   },
+   {
+    "label": "ryegrass pollen, lower (26 µm)",
+    "value": 26
+   },
+   {
+    "label": "ryegrass pollen, upper (50 µm)",
+    "value": 50
+   },
+   {
+    "label": "human hair, lower (50 µm)",
+    "value": 50
+   }
+  ],
+  "ylabel": "micrometres",
+  "logy": true,
+  "caption": "Pollen grain size: 26-50 µm (PalDat); the sub-pollen particles released in rain are about 60-200 nm (0.06-0.2 µm); a human hair is 50-100 µm (Skin card)."
+ },
+ "grass_hay_fever": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "Met Office: peak, month 6 (June)",
+    "value": 6
+   },
+   {
+    "label": "Met Office: peak, month 7 (July)",
+    "value": 7
+   },
+   {
+    "label": "Asthma + Lung UK: levels often highest from month 5 (mid-May)",
+    "value": 5
+   },
+   {
+    "label": "and until month 7 (July)",
+    "value": 7
+   }
+  ],
+  "ylabel": "month of the year (5 = May)",
+  "logy": false,
+  "caption": "Grass pollen season in Britain: it can start as early as May and generally peaks in June and July (Met Office); levels are often highest between mid-May and July (Asthma + Lung UK)."
+ }
+}

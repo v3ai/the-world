@@ -60,7 +60,7 @@
  ],
  "lod": {
   "near_m": 2.5,
-  "far_m": 14
+  "far_m": 6
  },
  "shadow": {
   "radius_m": 0.16,
@@ -1140,7 +1140,7 @@
    ],
    "radius": 0.1025,
    "count": 378,
-   "tris": 30240
+   "tris": 9072
   },
   {
    "id": "spikelet_lens",
@@ -1161,7 +1161,7 @@
    ],
    "radius": 0.0994,
    "count": 54,
-   "tris": 2700
+   "tris": 1620
   },
   {
    "id": "filaments",
@@ -1243,7 +1243,7 @@
    "solid": false,
    "noink": true,
    "mesh": "roots",
-   "lod": "near+mid",
+   "lod": "near",
    "deeper": {
     "type": "tissue2",
     "id": "grass_root_tip",
@@ -1301,7 +1301,7 @@
    ],
    "radius": 0.2162,
    "count": 675,
-   "tris": 24300
+   "tris": 10800
   },
   {
    "id": "root_hairs",
@@ -1944,8 +1944,8 @@
  "stats": {
   "parts": 62,
   "uniqueMeshTris": 53054,
-  "nearTris": 82380,
-  "midTris": 6118,
-  "farTris": 3524
+  "nearTris": 61212,
+  "midTris": 5038,
+  "farTris": 2444
  }
 }

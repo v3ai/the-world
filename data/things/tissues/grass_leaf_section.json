@@ -1,0 +1,999 @@
+{
+ "cell": "plant",
+ "id": "grass_leaf_section",
+ "tag": "Inside a grass leaf",
+ "title": "Inside a ryegrass leaf blade",
+ "node": "grass_blade_upper",
+ "blurb": "A slice 700 micrometres wide through a grass blade, showing three of its parallel veins. The upper surface is at the top. Click a cell or a layer.",
+ "note": "An illustration of the layers of a temperate grass leaf, not a micrograph of ryegrass. The order of the layers and which cell types are present follow published descriptions of the genus (ribbed upper surface; bulliform cells in fans on the upper side; every vascular bundle accompanied by sclerenchyma; bundle sheaths; silica bodies; stomata). The blade thickness (150 µm here), cell sizes, cell counts and the number of chloroplasts per cell are not measured values: they are illustrative. The ribs over the veins are not drawn.",
+ "bg": "#f3efe6",
+ "center": [
+  0,
+  75,
+  0
+ ],
+ "D_um": 520,
+ "labels": [
+  {
+   "text": "Upper epidermis (the ribbed side)",
+   "at": [
+    -340,
+    150,
+    40
+   ],
+   "pop": "epi_top"
+  },
+  {
+   "text": "Bulliform cells",
+   "at": [
+    -120,
+    168,
+    40
+   ],
+   "pop": "bulliform"
+  },
+  {
+   "text": "Silica body",
+   "at": [
+    180,
+    160,
+    40
+   ],
+   "pop": "silica"
+  },
+  {
+   "text": "Mesophyll cells with chloroplasts",
+   "at": [
+    -340,
+    80,
+    40
+   ],
+   "pop": "mesophyll"
+  },
+  {
+   "text": "Bundle sheath",
+   "at": [
+    28,
+    108,
+    40
+   ],
+   "pop": "bsheath"
+  },
+  {
+   "text": "Xylem and phloem",
+   "at": [
+    32,
+    70,
+    40
+   ],
+   "pop": "xylem"
+  },
+  {
+   "text": "Sclerenchyma fibres",
+   "at": [
+    -20,
+    142,
+    40
+   ],
+   "pop": "scl"
+  },
+  {
+   "text": "Lower epidermis (the glossy side)",
+   "at": [
+    -340,
+    -6,
+    40
+   ],
+   "pop": "epi_bottom"
+  },
+  {
+   "text": "Stoma",
+   "at": [
+    -132,
+    -10,
+    40
+   ],
+   "pop": "guard"
+  }
+ ],
+ "populations": [
+  {
+   "id": "epi_top",
+   "name": "Upper epidermis cell",
+   "node": "grass_epidermis",
+   "shape": "rbox",
+   "size": [
+    28,
+    12,
+    26
+   ],
+   "color": "#d6ebc4",
+   "opacity": 0.45,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -345,
+     138,
+     -13
+    ],
+    "n": [
+     25,
+     1,
+     2
+    ],
+    "step": [
+     28,
+     0,
+     26
+    ],
+    "jitter": 0.03,
+    "skip": [
+     {
+      "x": [
+       -140,
+       -90
+      ]
+     },
+     {
+      "x": [
+       90,
+       140
+      ]
+     },
+     {
+      "x": [
+       -10,
+       10
+      ]
+     },
+     {
+      "x": [
+       200,
+       240
+      ]
+     },
+     {
+      "x": [
+       -240,
+       -200
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "bulliform",
+   "name": "Bulliform cell",
+   "node": "grass_bulliform",
+   "shape": "rbox",
+   "size": [
+    26,
+    30,
+    26
+   ],
+   "color": "#f1f8dc",
+   "opacity": 0.55,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -130,
+       130,
+       0
+      ]
+     },
+     {
+      "at": [
+       -112,
+       132,
+       0
+      ]
+     },
+     {
+      "at": [
+       -95,
+       130,
+       0
+      ]
+     },
+     {
+      "at": [
+       -130,
+       130,
+       22
+      ]
+     },
+     {
+      "at": [
+       -95,
+       130,
+       22
+      ]
+     },
+     {
+      "at": [
+       110,
+       130,
+       0
+      ]
+     },
+     {
+      "at": [
+       128,
+       132,
+       0
+      ]
+     },
+     {
+      "at": [
+       92,
+       130,
+       0
+      ]
+     },
+     {
+      "at": [
+       110,
+       130,
+       22
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "silica",
+   "name": "Silica body (silica cell)",
+   "node": "grass_silica_body",
+   "shape": "rbox",
+   "size": [
+    22,
+    10,
+    26
+   ],
+   "color": "#fbfbf5",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -220,
+       143,
+       0
+      ]
+     },
+     {
+      "at": [
+       0,
+       143,
+       0
+      ]
+     },
+     {
+      "at": [
+       220,
+       143,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "silicic_acid",
+    "name": "Silicic acid",
+    "button": "See the dissolved form of silica: silicic acid"
+   }
+  },
+  {
+   "id": "epi_bottom",
+   "name": "Lower epidermis cell",
+   "node": "grass_epidermis",
+   "shape": "rbox",
+   "size": [
+    30,
+    12,
+    26
+   ],
+   "color": "#d6ebc4",
+   "opacity": 0.45,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -345,
+     0,
+     -13
+    ],
+    "n": [
+     23,
+     1,
+     2
+    ],
+    "step": [
+     31,
+     0,
+     26
+    ],
+    "jitter": 0.03,
+    "skip": [
+     {
+      "x": [
+       -165,
+       -100
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "guard",
+   "name": "Guard cell",
+   "node": "grass_guard_cell",
+   "shape": "bean",
+   "size": [
+    24,
+    10,
+    8
+   ],
+   "color": "#8fcf6a",
+   "opacity": 0.9,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -132,
+       8,
+       -5
+      ]
+     },
+     {
+      "at": [
+       -132,
+       8,
+       5
+      ],
+      "rot": [
+       0,
+       180,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "none"
+   }
+  },
+  {
+   "id": "mesophyll",
+   "name": "Mesophyll cell",
+   "node": "grass_mesophyll",
+   "shape": "ellipsoid",
+   "size": [
+    26,
+    20,
+    22
+   ],
+   "color": "#c4e2a6",
+   "opacity": 0.36,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "random",
+    "n": 58,
+    "min": [
+     -340,
+     22,
+     -26
+    ],
+    "max": [
+     340,
+     120,
+     26
+    ],
+    "gap": 3,
+    "seed": 5,
+    "exclude": [
+     {
+      "min": [
+       -262,
+       30,
+       -40
+      ],
+      "max": [
+       -178,
+       124,
+       40
+      ]
+     },
+     {
+      "min": [
+       -42,
+       30,
+       -40
+      ],
+      "max": [
+       42,
+       124,
+       40
+      ]
+     },
+     {
+      "min": [
+       178,
+       30,
+       -40
+      ],
+      "max": [
+       262,
+       124,
+       40
+      ]
+     },
+     {
+      "min": [
+       -150,
+       112,
+       -40
+      ],
+      "max": [
+       -75,
+       125,
+       40
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "chloro",
+   "name": "Chloroplast",
+   "node": "bio_chloroplasts_plastids",
+   "shape": "lens",
+   "size": [
+    6,
+    3,
+    6
+   ],
+   "color": "#2f8f3a",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "inside",
+    "of": "mesophyll",
+    "per": 5,
+    "margin": 0.7,
+    "seed": 3
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "chlorophyll_a",
+    "name": "Chlorophyll a",
+    "button": "See the molecule: chlorophyll a, the green pigment"
+   }
+  },
+  {
+   "id": "bsheath",
+   "name": "Bundle sheath cell",
+   "node": "grass_bundle_sheath",
+   "shape": "tube_z",
+   "size": [
+    14,
+    14,
+    50
+   ],
+   "color": "#a9d68a",
+   "opacity": 0.6,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -192.0,
+       75.0,
+       0
+      ]
+     },
+     {
+      "at": [
+       -198.6,
+       90.3,
+       0
+      ]
+     },
+     {
+      "at": [
+       -215.1,
+       98.4,
+       0
+      ]
+     },
+     {
+      "at": [
+       -234.0,
+       95.6,
+       0
+      ]
+     },
+     {
+      "at": [
+       -246.3,
+       83.1,
+       0
+      ]
+     },
+     {
+      "at": [
+       -246.3,
+       66.9,
+       0
+      ]
+     },
+     {
+      "at": [
+       -234.0,
+       54.4,
+       0
+      ]
+     },
+     {
+      "at": [
+       -215.1,
+       51.6,
+       0
+      ]
+     },
+     {
+      "at": [
+       -198.6,
+       59.7,
+       0
+      ]
+     },
+     {
+      "at": [
+       28.0,
+       75.0,
+       0
+      ]
+     },
+     {
+      "at": [
+       21.4,
+       90.3,
+       0
+      ]
+     },
+     {
+      "at": [
+       4.9,
+       98.4,
+       0
+      ]
+     },
+     {
+      "at": [
+       -14.0,
+       95.6,
+       0
+      ]
+     },
+     {
+      "at": [
+       -26.3,
+       83.1,
+       0
+      ]
+     },
+     {
+      "at": [
+       -26.3,
+       66.9,
+       0
+      ]
+     },
+     {
+      "at": [
+       -14.0,
+       54.4,
+       0
+      ]
+     },
+     {
+      "at": [
+       4.9,
+       51.6,
+       0
+      ]
+     },
+     {
+      "at": [
+       21.4,
+       59.7,
+       0
+      ]
+     },
+     {
+      "at": [
+       248.0,
+       75.0,
+       0
+      ]
+     },
+     {
+      "at": [
+       241.4,
+       90.3,
+       0
+      ]
+     },
+     {
+      "at": [
+       224.9,
+       98.4,
+       0
+      ]
+     },
+     {
+      "at": [
+       206.0,
+       95.6,
+       0
+      ]
+     },
+     {
+      "at": [
+       193.7,
+       83.1,
+       0
+      ]
+     },
+     {
+      "at": [
+       193.7,
+       66.9,
+       0
+      ]
+     },
+     {
+      "at": [
+       206.0,
+       54.4,
+       0
+      ]
+     },
+     {
+      "at": [
+       224.9,
+       51.6,
+       0
+      ]
+     },
+     {
+      "at": [
+       241.4,
+       59.7,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "xylem",
+   "name": "Xylem vessel",
+   "node": "bio_water_transport",
+   "shape": "tube_z",
+   "size": [
+    11,
+    11,
+    50
+   ],
+   "color": "#4aa3df",
+   "opacity": 0.85,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -229,
+       84,
+       0
+      ]
+     },
+     {
+      "at": [
+       -211,
+       84,
+       0
+      ]
+     },
+     {
+      "at": [
+       -9,
+       84,
+       0
+      ]
+     },
+     {
+      "at": [
+       9,
+       84,
+       0
+      ]
+     },
+     {
+      "at": [
+       211,
+       84,
+       0
+      ]
+     },
+     {
+      "at": [
+       229,
+       84,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "water",
+    "name": "Water",
+    "button": "See a water molecule"
+   }
+  },
+  {
+   "id": "phloem",
+   "name": "Phloem sieve tube",
+   "node": "bio_phloem_transport",
+   "shape": "tube_z",
+   "size": [
+    7,
+    7,
+    50
+   ],
+   "color": "#e0a526",
+   "opacity": 0.9,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -227,
+       64,
+       0
+      ]
+     },
+     {
+      "at": [
+       -213,
+       64,
+       0
+      ]
+     },
+     {
+      "at": [
+       -7,
+       64,
+       0
+      ]
+     },
+     {
+      "at": [
+       7,
+       64,
+       0
+      ]
+     },
+     {
+      "at": [
+       213,
+       64,
+       0
+      ]
+     },
+     {
+      "at": [
+       227,
+       64,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "sucrose",
+    "name": "Sucrose",
+    "button": "See the molecule: sucrose, the sugar carried in the phloem"
+   }
+  },
+  {
+   "id": "scl",
+   "name": "Sclerenchyma fibre",
+   "node": "grass_sclerenchyma",
+   "shape": "tube_z",
+   "size": [
+    8,
+    8,
+    50
+   ],
+   "color": "#b79b6a",
+   "opacity": 0.9,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -229,
+       122,
+       0
+      ]
+     },
+     {
+      "at": [
+       -229,
+       28,
+       0
+      ]
+     },
+     {
+      "at": [
+       -220,
+       122,
+       0
+      ]
+     },
+     {
+      "at": [
+       -220,
+       28,
+       0
+      ]
+     },
+     {
+      "at": [
+       -211,
+       122,
+       0
+      ]
+     },
+     {
+      "at": [
+       -211,
+       28,
+       0
+      ]
+     },
+     {
+      "at": [
+       -9,
+       122,
+       0
+      ]
+     },
+     {
+      "at": [
+       -9,
+       28,
+       0
+      ]
+     },
+     {
+      "at": [
+       0,
+       122,
+       0
+      ]
+     },
+     {
+      "at": [
+       0,
+       28,
+       0
+      ]
+     },
+     {
+      "at": [
+       9,
+       122,
+       0
+      ]
+     },
+     {
+      "at": [
+       9,
+       28,
+       0
+      ]
+     },
+     {
+      "at": [
+       211,
+       122,
+       0
+      ]
+     },
+     {
+      "at": [
+       211,
+       28,
+       0
+      ]
+     },
+     {
+      "at": [
+       220,
+       122,
+       0
+      ]
+     },
+     {
+      "at": [
+       220,
+       28,
+       0
+      ]
+     },
+     {
+      "at": [
+       229,
+       122,
+       0
+      ]
+     },
+     {
+      "at": [
+       229,
+       28,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  }
+ ]
+}

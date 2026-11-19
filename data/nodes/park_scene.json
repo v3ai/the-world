@@ -172,5 +172,3149 @@
     "url": "https://en.wikipedia.org/wiki/Weathering"
    }
   ]
+ },
+ {
+  "id": "grass_plant",
+  "title": "A grass plant: perennial ryegrass",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.5,
+  "area": "bio_ecology",
+  "parents": [
+   "park_scene"
+  ],
+  "parts": [
+   "grass_tiller",
+   "grass_base_growth",
+   "grass_blade",
+   "grass_sheath",
+   "grass_crown",
+   "grass_culm",
+   "grass_spike",
+   "grass_roots",
+   "grass_below_ground",
+   "grass_tillering",
+   "grass_lawn",
+   "grass_monocot",
+   "grass_c3_c4",
+   "grass_hay_fever"
+  ],
+  "processes": [],
+  "summary": "Perennial ryegrass (Lolium perenne) is the grass of many British lawns, playing fields and pastures: a tufted plant made of many shoots, each with narrow leaves that grow from their base, and a mass of fine roots.",
+  "layers": {
+   "basics": "A grass plant is not one stem but a clump of many small shoots called tillers, all joined at the base. Each tiller has a few narrow leaves, each leaf in two parts: a tube-like sheath wrapped round the stem and a flat blade that spreads outward. The leaves in this model are 5 to 20 cm long and 3 to 4 mm wide. The growing point of each shoot stays low, tucked inside the sheaths near the ground, which is why a lawn can be mown again and again. Some shoots send up a tall flowering stem with a flat spike of tiny flowers that shed their pollen on the wind. Under the ground is a fibrous root system. The layers above pull one shoot apart, show the flowers, and show the roots; three cut-open views open a leaf, the growing point and a floret.",
+   "deeper": "Perennial ryegrass is a grass (family Poaceae), so a flowering plant and a monocot: one seed leaf, parallel leaf veins, fibrous roots. It is native to Europe, the Middle East, North Africa and eastward into central Asia, and is sown for pasture, lawns and sports pitches (it was used on the Wimbledon courts from 2001). It is a C3 plant, which grows best in cool, moist conditions. Its leaves grow from a zone at their base, its growing points sit near the soil until the plant flowers, and it spreads by making new tillers rather than by creeping stems. Click the parts: every one has its own card, and you can follow the leaf, the growing point or the root down to the cells and molecules they are made of.",
+   "expert": "Descriptions of the species differ in detail between floras: culm height is given as 30 to 90 cm (DELTA), up to 90 cm (Wikipedia) or 10 to 50 cm (NZ Flora); blades as (5-)15-25 cm by 2-4 mm (DELTA) or 6-25 cm by 2-5 mm (Cornell). The model uses values inside these ranges: tallest flowering stem about 50 cm, blades about 5 to 21 cm, 3.0 to 3.8 mm wide. The diploid chromosome number is 2n = 14 (DELTA); tetraploid cultivars (2n = 28) are also grown. Counts of tillers, leaves and spikelets are choices; see the notes on each card."
+  },
+  "facts": [
+   [
+    "Species",
+    "Lolium perenne L., perennial ryegrass; family Poaceae"
+   ],
+   [
+    "Leaf blade length",
+    "≈ 5-25 cm (floras: 5-25 cm)"
+   ],
+   [
+    "Leaf blade width",
+    "2-4 mm (DELTA)"
+   ],
+   [
+    "Flowering stem height",
+    "30-90 cm in floras (model ≈ 50 cm)"
+   ],
+   [
+    "Chromosomes",
+    "2n = 14 (diploid; DELTA)"
+   ],
+   [
+    "Layers",
+    "Whole plant · One tiller pulled apart · In flower · Underground · three cut-open views"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.1",
+    "30-1-the-plant-body"
+   ],
+   [
+    "BIO",
+    "26.3",
+    "26-3-angiosperms"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium perenne, perennial ryegrass (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lolium_perenne"
+   },
+   {
+    "title": "Lolium perenne in Grasses of North America, Festuca group (DELTA)",
+    "url": "https://www.delta-intkey.com/festucna/www/lope.htm"
+   },
+   {
+    "title": "Lolium perenne (NZ Flora factsheet)",
+    "url": "https://www.nzflora.info/factsheet/taxon/Lolium-perenne.html"
+   },
+   {
+    "title": "Perennial ryegrass (Cornell Weed ID)",
+    "url": "https://blogs.cornell.edu/weedid/?p=5329"
+   }
+  ],
+  "related": [
+   "rn_acris",
+   "bio_seed_plants",
+   "bio_plant_body_tissues",
+   "park_ground"
+  ],
+  "did_you_know": "Perennial ryegrass has been used on the Wimbledon courts since 2001 (Wikipedia)."
+ },
+ {
+  "id": "grass_lawn",
+  "title": "The lawn: turf of mown grass",
+  "kind": "habitat",
+  "template": "thing",
+  "scale_m": 10,
+  "area": "bio_ecology",
+  "parents": [
+   "park_scene",
+   "grass_plant"
+  ],
+  "parts": [
+   "grass_plant",
+   "grass_base_growth",
+   "grass_tillering",
+   "grass_blade"
+  ],
+  "processes": [],
+  "summary": "A lawn is grass kept short by repeated mowing. It works because grass leaves grow from their base and its growing points sit low: the mower removes the tops of the blades and leaves the part that makes new leaf.",
+  "layers": {
+   "basics": "From a distance the lawn is a green carpet. Close up it is thousands of grass plants, each a clump of narrow leaves, with the cut ends of the blades square rather than pointed. In this park the lawn is drawn in three levels of detail so that it can cover a large area: small clumps of real blades near you, flat crossed cards of grass a little farther away, and a painted surface in the distance. A real lawn is much denser than the clumps drawn here. The taller plants standing on their own are whole grass plants at true size, left unmown so that you can see how the plant is built. Click the lawn to read about it, or click one of the tall plants to open it.",
+   "deeper": "RHS advice for ordinary domestic lawns is to mow to about 13-25 mm in summer and up to about 40 mm in spring and autumn, never taking off more than a third of the height at one cut; fine lawns are kept at 6-13 mm. Regular mowing cuts the leaf blades above the point where they grow, so the plant regrows them from the base. Regular mowing also removes the flowering stems before they ripen. A sward of perennial ryegrass typically holds 5,000-7,000 tillers per square metre (AHDB).",
+   "expert": "The lawn in the park is a stand-in, not a measured turf. The clumps of blades are drawn at about 3-5 cm, which is the height of a lawn kept fairly long; their density is far lower than the 5,000-7,000 tillers per m² quoted for an established sward, and the number of blades per clump (28) is a choice. Beyond about 10 m the lawn is the painted ground; from high above only that texture is drawn."
+  },
+  "facts": [
+   [
+    "Mowing height, domestic lawn (RHS)",
+    "13-25 mm in summer; up to 40 mm in spring and autumn"
+   ],
+   [
+    "Fine lawn (RHS)",
+    "6-13 mm"
+   ],
+   [
+    "Tillers in an established sward (AHDB)",
+    "≈ 5,000-7,000 per m²"
+   ],
+   [
+    "In the park",
+    "clumps of 28 blades near you, crossed cards to about 10 m, painted ground beyond (a stand-in)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.1",
+    "30-1-the-plant-body"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Mowing lawns (Royal Horticultural Society)",
+    "url": "https://www.rhs.org.uk/lawns/mowing"
+   },
+   {
+    "title": "Grassland management tips for the first season (AHDB)",
+    "url": "https://ahdb.org.uk/knowledge-library/grassland-management-tips-for-first-season"
+   },
+   {
+    "title": "Lolium perenne, perennial ryegrass (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lolium_perenne"
+   }
+  ],
+  "related": [
+   "park_ground",
+   "bio_plant_nutrition_soil"
+  ]
+ },
+ {
+  "id": "grass_base_growth",
+  "title": "Why grass survives mowing: it grows from the base",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 0.05,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_plant"
+  ],
+  "parts": [
+   "grass_meristem",
+   "grass_growth_zone",
+   "grass_sheath",
+   "grass_crown",
+   "grass_tillering",
+   "grass_lawn"
+  ],
+  "processes": [],
+  "summary": "Grass leaves lengthen from a zone at their base, and the growing point of the shoot sits near the soil, wrapped in sheaths. Mowing removes only the old tops, so the plant keeps its growing parts.",
+  "layers": {
+   "basics": "Most plants grow at the tips of their shoots, so cutting a tip stops that shoot. A grass leaf grows differently: new cells are made at the bottom of the blade, down inside the tube formed by the older leaf sheaths, and push the blade up and out. The tip of a grass blade is the oldest part of the leaf. When a mower or a grazing animal cuts or bites off the top of the blade, the part that makes new leaf is untouched, and the leaf grows back. The growing point of the whole shoot is also low, near the soil surface, and protected inside the sheaths, so it is out of reach of the mower. Open the layer 'Growing point cut open' to see where it sits.",
+   "deeper": "Two separate growing regions matter. The shoot apical meristem (the growing point) makes new leaves and, later, the flower stalk; in the early part of the season the growing points of grasses are at or near ground level (University of Missouri Extension). The leaf growth zone (an intercalary meristem at the base of each blade, in the collar region) makes the blade lengthen; if a leaf is cut below the collar, through sheath tissue, the blade cannot regrow (Oregon State). The exception is a shoot that is about to flower: the stem lengthens and lifts the growing point up, where a mower or an animal can remove it. About half of the growing points of grasses develop into seed heads this way, and a shoot that has lost its raised growing point can only be replaced by a new tiller from a bud that had been dormant (Missouri).",
+   "expert": "In a kinematic study of Lolium perenne (cv. Condesa), cell division in a growing leaf was confined to the basal 0.6-0.9 mm, while cells went on lengthening over the basal 31-36 mm (the two values are for high and low phosphorus). Leaf elongation rates were 2.30 ± 0.05 mm/h (high phosphorus) and 1.41 ± 0.05 mm/h (low phosphorus), which is about 55 and 34 mm per day (calculated). The rate depends on temperature, water and nutrients; these are values for one cultivar grown under controlled conditions. The sources do not give a height in millimetres for the vegetative growing point: they say 'at or near ground level' and 'near the soil surface (crown)'."
+  },
+  "facts": [
+   [
+    "Growing point (shoot apex)",
+    "at or near ground level in a vegetative shoot (Missouri; Oregon State)"
+   ],
+   [
+    "Leaf growth zone, cell division",
+    "basal 0.6-0.9 mm of the leaf (L. perenne)"
+   ],
+   [
+    "Leaf growth zone, cell lengthening",
+    "basal 31-36 mm of the leaf (L. perenne)"
+   ],
+   [
+    "Leaf elongation rate",
+    "2.30 mm/h and 1.41 mm/h in two conditions (≈ 55 and 34 mm/day)"
+   ],
+   [
+    "Cut a flowering stem",
+    "can remove the raised growing point; regrowth then needs a new tiller"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [
+   "How the height of a growing point above the soil varies between ryegrass cultivars, seasons and mowing regimes is not given in the sources used here."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "30.1",
+    "30-1-the-plant-body"
+   ],
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Grass growth and structure (Oregon State University Forage Information System)",
+    "url": "https://forages.oregonstate.edu/node/1627"
+   },
+   {
+    "title": "Grass growth and management: M182 (University of Missouri Extension)",
+    "url": "https://extension.missouri.edu/publications/m182"
+   },
+   {
+    "title": "Leaf growth zone of Lolium perenne, kinematic study (Plant Physiology, PMC1475472)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1475472"
+   }
+  ],
+  "related": [
+   "bio_plant_body_tissues",
+   "bio_plant_hormones"
+  ]
+ },
+ {
+  "id": "grass_tiller",
+  "title": "A tiller: one shoot of the grass plant",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.2,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_plant"
+  ],
+  "parts": [
+   "grass_sheath",
+   "grass_blade",
+   "grass_ligule",
+   "grass_auricle",
+   "grass_crown",
+   "grass_meristem",
+   "grass_node"
+  ],
+  "processes": [],
+  "summary": "A tiller is a complete shoot: a short stem with its growing point at the bottom, a few leaves wrapped round each other, and roots from its base. A grass plant is a crowd of tillers.",
+  "layers": {
+   "basics": "Look at one shoot and you see a stack: the outside leaf is the oldest, and each younger leaf grows up through the middle of the older ones. The layer 'One tiller pulled apart' separates three leaves from the stem so that you can see their sheaths opened out, the ligule and auricles where each sheath meets its blade, and the very short stem with its growing point. In the real plant the sheaths stay wrapped round the stem and round each other, forming a tube about the thickness of a pencil lead.",
+   "deeper": "A tiller consists of a growing point (apical meristem), a stem, leaves and roots (Missouri Extension). The stem is compressed into a short crown at the base; its nodes are packed close together, and a leaf grows from each. The new tillers of a grass plant arise at the base of leaves; see Tillers: how a grass plant spreads. A tiller that flowers elongates its stem and stops making leaves.",
+   "expert": "The leaves of this tiller are modelled from the typical shapes in floras: sheaths of 3.4 to 4.8 cm, blades of 11, 15 and 19 cm. A published phyllochron (the time between the appearance of successive leaves) for Lolium perenne cv. Aberdart in hydroponics was 9.22 days in spring and 4.44 days in autumn (PMC8399834). The number of leaves alive on a tiller at one time is not given in the sources opened for this model: a few."
+  },
+  "facts": [
+   [
+    "A tiller has",
+    "growing point, short stem with nodes, leaves, roots"
+   ],
+   [
+    "Phyllochron, spring and autumn (hydroponics)",
+    "9.22 and 4.44 days (cv. Aberdart)"
+   ],
+   [
+    "Drawn",
+    "three leaves pulled away from the stem; life size"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.1",
+    "30-1-the-plant-body"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Grass growth and management: M182 (University of Missouri Extension)",
+    "url": "https://extension.missouri.edu/publications/m182"
+   },
+   {
+    "title": "Phyllochron and root numbers in Lolium perenne cv. Aberdart (PMC8399834)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8399834/"
+   }
+  ],
+  "related": [
+   "grass_tillering",
+   "grass_base_growth"
+  ]
+ },
+ {
+  "id": "grass_tillering",
+  "title": "Tillers: how a grass plant spreads",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 0.3,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_plant"
+  ],
+  "parts": [
+   "grass_tiller",
+   "grass_lawn"
+  ],
+  "processes": [],
+  "summary": "A grass plant spreads by making new tillers at the base of its leaves. Ryegrass has no creeping stems: the clump thickens and widens, and a lawn fills up.",
+  "layers": {
+   "basics": "Each new tiller starts as a small bud in the angle between a leaf and the stem, at the base of the plant. The bud grows into a shoot of its own, with its own leaves, growing point and roots. Two young tillers are drawn at the edge of the clump. Because the plant keeps making tillers, mowing does not thin it: a mown lawn gets denser.",
+   "deeper": "Daughter tillers begin to appear once the third or fourth leaf has formed on the main tiller (AHDB). Perennial ryegrass has no rhizomes (horizontal underground stems): DELTA states that horizontal rooting stems are absent, and Cornell contrasts it with quackgrass, which has rhizomes. An established sward typically holds 5,000-7,000 tillers per square metre (AHDB).",
+   "expert": "That tiller buds sit in the angle between a leaf and the stem is the standard botanical description; the pages opened for this model say only 'tiller buds' and that daughter tillers appear after the third or fourth leaf. They do not say whether ryegrass tillers grow up inside the parent's sheath or break out through it; the model draws young tillers at the edge of the clump. Seeding is the other route to spread: seed from the flowers."
+  },
+  "facts": [
+   [
+    "Tillers in an established sward (AHDB)",
+    "≈ 5,000-7,000 per m²"
+   ],
+   [
+    "When daughter tillers appear (AHDB)",
+    "once the main tiller has a third or fourth leaf"
+   ],
+   [
+    "Creeping stems (rhizomes)",
+    "absent (DELTA; Cornell)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.1",
+    "30-1-the-plant-body"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Grassland management tips for the first season (AHDB)",
+    "url": "https://ahdb.org.uk/knowledge-library/grassland-management-tips-for-first-season"
+   },
+   {
+    "title": "Lolium perenne in Grasses of North America, Festuca group (DELTA)",
+    "url": "https://www.delta-intkey.com/festucna/www/lope.htm"
+   },
+   {
+    "title": "Perennial ryegrass (Cornell Weed ID)",
+    "url": "https://blogs.cornell.edu/weedid/?p=5329"
+   }
+  ],
+  "related": [
+   "grass_base_growth",
+   "bio_plant_hormones"
+  ]
+ },
+ {
+  "id": "grass_meristem",
+  "title": "The growing point (shoot apex)",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0006,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_tiller",
+   "grass_base_growth"
+  ],
+  "parts": [
+   "grass_leaf_primordium",
+   "grass_growth_zone",
+   "grass_crown"
+  ],
+  "processes": [],
+  "summary": "A tiny dome of dividing cells at the top of the short stem, at the base of the shoot. It makes every new leaf, and, later, the flower stalk.",
+  "layers": {
+   "basics": "The growing point is smaller than a pinhead. It sits low, near the soil, deep inside the sheaths, so the mower never touches it. New leaves start as small ridges round the dome and grow upward inside the older leaves. Click 'Look inside the growing point' to see its cells.",
+   "deeper": "The shoot apical meristem is a group of cells that divide and make the tissues of the shoot. In grasses the leaves arise one at a time on alternate sides of the stem. While the plant is vegetative the dome stays at the base of the shoot (Missouri). When the plant is triggered to flower the apex changes into the start of the flower stalk, the stem lengthens, and the growing point is lifted up: after that a cut can kill the shoot.",
+   "expert": "The dome is drawn at about 1 mm tall in the cut-open view and about 0.3 mm across: illustrative sizes. The tissue scene shows cells of about 12 µm, also illustrative. What triggers flowering in ryegrass (cold winter followed by lengthening days) is not covered by the sources opened here."
+  },
+  "facts": [
+   [
+    "Where",
+    "at the top of the compressed stem, inside the sheaths, near ground level in a vegetative shoot"
+   ],
+   [
+    "Makes",
+    "leaves; later the flowering stem"
+   ],
+   [
+    "Drawn size",
+    "illustrative: dome ≈ 0.3 mm"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.1",
+    "30-1-the-plant-body"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Grass growth and management: M182 (University of Missouri Extension)",
+    "url": "https://extension.missouri.edu/publications/m182"
+   },
+   {
+    "title": "Grass growth and structure (Oregon State University Forage Information System)",
+    "url": "https://forages.oregonstate.edu/node/1627"
+   }
+  ],
+  "related": [
+   "bio_plant_body_tissues",
+   "bio_plant_development_flower",
+   "grass_base_growth"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "grass_leaf_primordium",
+  "title": "A young leaf starting to grow",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0003,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_meristem"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A small ridge of cells beside the growing point that will become a leaf: the youngest leaf of the shoot, still tiny and wrapped up.",
+  "layers": {
+   "basics": "Every leaf begins as a bump on the side of the growing point. It grows up as a hood that closes round the dome, then lengthens into the sheath and blade. The oldest leaves are on the outside, the youngest in the middle.",
+   "deeper": "Primordia form in a regular sequence at the apex; the next leaf starts on the opposite side of the stem. The base of each growing leaf keeps dividing (the growth zone) while the older parts of it stretch.",
+   "expert": "The primordia in the tissue scene are illustrative cells and arrangement, not measurements."
+  },
+  "facts": [
+   [
+    "Arrangement of leaves",
+    "two ranks, on opposite sides of the stem (floras: spikelets distichous; leaves alternate)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.1",
+    "30-1-the-plant-body"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Grass growth and structure (Oregon State University Forage Information System)",
+    "url": "https://forages.oregonstate.edu/node/1627"
+   }
+  ],
+  "related": [
+   "grass_growth_zone",
+   "grass_meristem"
+  ]
+ },
+ {
+  "id": "grass_growth_zone",
+  "title": "The leaf growth zone",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.03,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_base_growth",
+   "grass_blade"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The base of each growing blade, inside the sheaths, where new cells are made and then stretch. This is why a leaf keeps growing after its tip is cut.",
+  "layers": {
+   "basics": "Only the bottom few centimetres of a growing leaf are growing. Cells are made in the lowest millimetre; above that they swell and lengthen, and the blade is pushed up and out of the tube. Higher up, the blade is finished and does not grow any more. Cutting the top off does no harm to the zone.",
+   "deeper": "This is an intercalary meristem: growth in the middle of an organ rather than at its tip. In perennial ryegrass cell division is confined to the basal 0.6-0.9 mm of a growing leaf and cell lengthening occurs over the basal 31-36 mm (Plant Physiology, kinematic study). The collar region includes the zone that accounts for blade growth (Oregon State). A cut through the sheath below the collar removes this zone and the blade cannot regrow.",
+   "expert": "Measured values are for one cultivar (Condesa) in controlled conditions; the drawn zone in the cut-open view (about 6 mm tall) is a visible simplification of a zone that is really 31-36 mm long."
+  },
+  "facts": [
+   [
+    "Cell division",
+    "basal 0.6-0.9 mm"
+   ],
+   [
+    "Cell lengthening",
+    "basal 31-36 mm"
+   ],
+   [
+    "Cells produced (high and low phosphorus)",
+    "1.91 and 1.52 per hour per cell file"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Leaf growth zone of Lolium perenne, kinematic study (Plant Physiology, PMC1475472)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1475472"
+   },
+   {
+    "title": "Grass growth and structure (Oregon State University Forage Information System)",
+    "url": "https://forages.oregonstate.edu/node/1627"
+   }
+  ],
+  "related": [
+   "grass_base_growth",
+   "grass_meristem"
+  ]
+ },
+ {
+  "id": "grass_crown",
+  "title": "The stem base (crown) and its nodes",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.004,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_tiller"
+  ],
+  "parts": [
+   "grass_node",
+   "grass_fructan"
+  ],
+  "processes": [],
+  "summary": "The very short stem at the base of a vegetative shoot. Its nodes are packed together, each bearing a leaf, and roots grow from it.",
+  "layers": {
+   "basics": "The stem of a vegetative grass shoot is only a few millimetres long. Where a leaf attaches there is a node; because the stem does not stretch, the nodes sit one above another like the layers of a stack of washers. The roots grow from the lowest nodes. The sugar reserves of the plant are stored in this base and in the sheaths.",
+   "deeper": "Perennial ryegrass accumulates large amounts of fructans, its storage carbohydrate, in the tiller base, made up of the leaf sheaths and the elongating leaf bases (Plant Physiol and Frontiers papers). The base is where regrowth begins after cutting. The stem only lengthens when the plant flowers.",
+   "expert": "The model's crown is 2 cm tall and 3.4 mm wide, and its four visible nodes are drawn 3.5 mm apart: illustrative sizes within a few millimetres."
+  },
+  "facts": [
+   [
+    "Length of the stem in a vegetative shoot (model)",
+    "≈ 2 cm, illustrative"
+   ],
+   [
+    "Stores",
+    "fructan reserves, in sheaths and leaf bases"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.2",
+    "30-2-stems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Fructans in Lolium perenne (PMC3060680)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3060680"
+   },
+   {
+    "title": "Abeynayake et al. 2015, fructans in perennial ryegrass (Frontiers in Plant Science)",
+    "url": "https://frontiersin.org/articles/10.3389/fpls.2015.00329/full"
+   }
+  ],
+  "related": [
+   "grass_roots",
+   "bio_polysaccharides"
+  ]
+ },
+ {
+  "id": "grass_node",
+  "title": "A node: where a leaf joins the stem",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.003,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_crown",
+   "grass_culm"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A node is a swelling on a stem where a leaf is attached. On the flowering stem the nodes are visible as dark rings; at the base they are crowded together.",
+  "layers": {
+   "basics": "A grass stem is divided into nodes, the points where leaves are attached, and the lengths of stem between them (internodes). On the tall flowering stem you can see two or three nodes spaced out along the stem; the flowering stem of a ryegrass often hides them inside the sheaths. At the base of the plant the nodes are too close to tell apart.",
+   "deeper": "DELTA describes the culm nodes of Lolium perenne as 'never exposed or becoming exposed, 1 or 2 (when visible)', so a model with three exposed rings is a simplification.",
+   "expert": "Three rings are drawn on each flowering stem at 20, 42 and 66 per cent of its height (a choice)."
+  },
+  "facts": [
+   [
+    "Exposed nodes on the flowering stem (DELTA)",
+    "1 or 2, when visible"
+   ],
+   [
+    "Drawn",
+    "3 rings (a simplification)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.2",
+    "30-2-stems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium perenne in Grasses of North America, Festuca group (DELTA)",
+    "url": "https://www.delta-intkey.com/festucna/www/lope.htm"
+   }
+  ],
+  "related": [
+   "grass_culm",
+   "grass_crown"
+  ]
+ },
+ {
+  "id": "grass_blade",
+  "title": "A leaf blade",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.15,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_plant",
+   "grass_tiller"
+  ],
+  "parts": [
+   "grass_blade_upper",
+   "grass_blade_under",
+   "grass_ligule",
+   "grass_auricle",
+   "grass_growth_zone",
+   "grass_mesophyll"
+  ],
+  "processes": [],
+  "summary": "The flat, narrow, ribbed part of a grass leaf. It catches light, takes in carbon dioxide and gives off water vapour, and its veins run in parallel along its length.",
+  "layers": {
+   "basics": "A grass blade is long and narrow, 2 to 4 mm wide in this species, with a pointed tip and a fold down the middle on its underside. Its upper surface is ribbed and its underside is smooth and shiny. The veins run side by side from base to tip, the pattern of a monocot, unlike the branching network of a buttercup or oak leaf. Click the upper surface or the underside, or open the cut-open view 'Leaf blade cut across' to see inside.",
+   "deeper": "Perennial ryegrass blades are (5-)15-25 cm long and 2-4 mm wide with 10-20 veins (DELTA); other floras give 6-25 cm by 2-5 mm (Cornell). They are folded in the bud (Wikipedia; Virginia Tech), which distinguishes them from the rolled young leaves of Italian ryegrass. The blade grows from its base (see Why grass survives mowing). In Lolium all vascular bundles are accompanied by sclerenchyma and the upper surface has prominent ribs of constant size (Grass Genera of the World).",
+   "expert": "The model blades are 5 to 21 cm long by 3.0 to 3.8 mm wide, built as two sheets 0.22 mm apart with 9 ribs drawn 0.06 mm high: the thickness and rib height are illustrative."
+  },
+  "facts": [
+   [
+    "Length",
+    "(5-)15-25 cm (DELTA); 6-25 cm (Cornell)"
+   ],
+   [
+    "Width",
+    "2-4 mm (DELTA)"
+   ],
+   [
+    "Veins",
+    "10-20, parallel (DELTA)"
+   ],
+   [
+    "Folded in the bud",
+    "yes (Wikipedia; Virginia Tech)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium perenne in Grasses of North America, Festuca group (DELTA)",
+    "url": "https://www.delta-intkey.com/festucna/www/lope.htm"
+   },
+   {
+    "title": "Perennial ryegrass (Cornell Weed ID)",
+    "url": "https://blogs.cornell.edu/weedid/?p=5329"
+   },
+   {
+    "title": "Perennial ryegrass (Virginia Tech Weed ID)",
+    "url": "https://weedid.cals.vt.edu/profile/450/"
+   },
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   },
+   {
+    "title": "Lolium perenne, perennial ryegrass (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lolium_perenne"
+   }
+  ],
+  "related": [
+   "oak_leaf",
+   "rn_basal_leaf",
+   "bio_leaf_structure_gas_exchange",
+   "grass_monocot"
+  ]
+ },
+ {
+  "id": "grass_blade_upper",
+  "title": "The upper surface of the blade: ribbed",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.003,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_blade"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The side of the blade that faces the sky when the leaf stands up: dull, with fine parallel ribs along its length.",
+  "layers": {
+   "basics": "Run a finger along the blade lengthways and you can feel parallel ridges on the upper side. The ridges lie over the veins. Between them, in the furrows, are special cells that shrink in dry weather and make the blade fold. The underside is smooth and shiny.",
+   "deeper": "The ribs are prominent and about constant in size in Lolium (Grass Genera of the World). Under each rib is a vascular bundle with sclerenchyma; in the furrows are fans of bulliform cells. The cut-open view shows the ribs as the bumps on the upper surface of the section.",
+   "expert": "Rib number and height in the model (9 across, 0.06 mm high) are illustrative; DELTA gives 10-20 veins."
+  },
+  "facts": [
+   [
+    "Ribs",
+    "prominent, parallel, over the veins (Wikipedia; Grass Genera of the World)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   },
+   {
+    "title": "Lolium perenne, perennial ryegrass (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lolium_perenne"
+   }
+  ],
+  "related": [
+   "grass_bulliform",
+   "grass_blade_under",
+   "grass_bundle"
+  ]
+ },
+ {
+  "id": "grass_blade_under",
+  "title": "The underside of the blade: smooth and glossy",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.003,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_blade"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The outer surface of the blade, smooth and shiny, with a fold or keel down the middle.",
+  "layers": {
+   "basics": "Turn a ryegrass blade over and the underside is smooth and glossy, while the upper side is ribbed and dull. This difference is one of the features used to tell ryegrass from other lawn grasses. The shine comes from the surface of the epidermis; the model draws the underside paler to show it.",
+   "deeper": "Wikipedia describes the lower surface as smooth and glossy and the upper surface as having prominent parallel veins, with a strong central keel. Virginia Tech records a prominent white midrib and keeled tip. Stomata are common on this surface (Grass Genera of the World).",
+   "expert": "The shine cannot be drawn by the renderer, so a lighter colour stands in for it."
+  },
+  "facts": [
+   [
+    "Surface",
+    "smooth, glossy; strong central keel (Wikipedia)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium perenne, perennial ryegrass (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lolium_perenne"
+   },
+   {
+    "title": "Perennial ryegrass (Virginia Tech Weed ID)",
+    "url": "https://weedid.cals.vt.edu/profile/450/"
+   },
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   }
+  ],
+  "related": [
+   "grass_blade_upper",
+   "grass_stoma"
+  ]
+ },
+ {
+  "id": "grass_sheath",
+  "title": "The leaf sheath",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.04,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_tiller",
+   "grass_blade"
+  ],
+  "parts": [
+   "grass_ligule",
+   "grass_auricle",
+   "grass_fructan"
+  ],
+  "processes": [],
+  "summary": "The lower part of a grass leaf: a tube-like sheet that wraps round the stem and the younger leaves, protecting them and the growing point.",
+  "layers": {
+   "basics": "Where the blade of a tree leaf is joined to the twig by a short stalk, a grass leaf has a sheath: the leaf's base is rolled round the stem like a sheet of paper round a pencil. The sheaths of the older leaves fit around the younger ones, forming a stiff tube near the ground, inside which the youngest leaves and the growing point are hidden. In perennial ryegrass the base of the sheaths is often tinged pink or purple.",
+   "deeper": "The sheath is hairless and not fully closed: DELTA says the sheaths are glabrous, entire (not split) and open for more than half their length; the margins overlap. Wikipedia says they are usually tinged pink and hairless at the base. The sheath bases hold the plant's sugar stores, fructans (see Fructan).",
+   "expert": "Sheath lengths in the model are 3.4 to 4.8 cm, chosen. The colour at the base is not drawn."
+  },
+  "facts": [
+   [
+    "Sheath",
+    "open for more than half its length, hairless (DELTA)"
+   ],
+   [
+    "Base colour",
+    "usually tinged pink (Wikipedia); purplish tiller bases (DELTA)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium perenne in Grasses of North America, Festuca group (DELTA)",
+    "url": "https://www.delta-intkey.com/festucna/www/lope.htm"
+   },
+   {
+    "title": "Lolium perenne, perennial ryegrass (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lolium_perenne"
+   }
+  ],
+  "related": [
+   "grass_base_growth",
+   "grass_tiller"
+  ]
+ },
+ {
+  "id": "grass_ligule",
+  "title": "The ligule: a tiny membrane at the junction",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0015,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_sheath",
+   "grass_blade"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A thin, short, transparent flap of tissue where the blade meets the sheath, on the inside of the leaf. Botanists use it to tell grasses apart.",
+  "layers": {
+   "basics": "If you pull a grass leaf away from the stem, a tiny skirt-like membrane stands at the top of the sheath, against the stem. In ryegrass it is very short, about 1 to 2 mm, with a blunt, jagged top edge and no hairs. Its job is probably to keep rain and dirt from running down between the sheath and the stem.",
+   "deeper": "Lengths given for the ligule of Lolium perenne: 1-2 mm (DELTA; Minnesota Wildflowers), 'very short and truncated' (Wikipedia), less than 1 mm to 2 mm (Virginia Tech), 3 mm (Cornell); no hairs (cilia) (DELTA). That the ligule keeps water out of the sheath is a general botanical statement, not tested for this species in the sources used here.",
+   "expert": "Drawn at 1.5 mm."
+  },
+  "facts": [
+   [
+    "Length",
+    "1-2 mm (DELTA; Minnesota Wildflowers); sources vary from under 1 to 3 mm"
+   ],
+   [
+    "Edge",
+    "truncated, jagged, without hairs"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium perenne in Grasses of North America, Festuca group (DELTA)",
+    "url": "https://www.delta-intkey.com/festucna/www/lope.htm"
+   },
+   {
+    "title": "Perennial ryegrass (Minnesota Wildflowers)",
+    "url": "https://minnesotawildflowers.info/grass-sedge-rush/perennial-ryegrass"
+   },
+   {
+    "title": "Lolium perenne, perennial ryegrass (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lolium_perenne"
+   },
+   {
+    "title": "Perennial ryegrass (Virginia Tech Weed ID)",
+    "url": "https://weedid.cals.vt.edu/profile/450/"
+   },
+   {
+    "title": "Perennial ryegrass (Cornell Weed ID)",
+    "url": "https://blogs.cornell.edu/weedid/?p=5329"
+   }
+  ],
+  "related": [
+   "grass_auricle",
+   "grass_sheath"
+  ]
+ },
+ {
+  "id": "grass_auricle",
+  "title": "Auricles: the small claws at the base of the blade",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.002,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_blade",
+   "grass_sheath"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Two tiny pointed projections at the base of the blade, one on each side, where it meets the sheath. In ryegrass they are small and variable.",
+  "layers": {
+   "basics": "At the top of the sheath, on either side of where the blade begins, ryegrass has a pair of little ears or claws that may grip the stem. They are small, and whether they are present and how they look differs between descriptions. Botanists check the ligule and the auricles together to identify a grass.",
+   "deeper": "Descriptions disagree: Wikipedia says small, white and gripping the stem; DELTA says present, claw-like and tapering; Virginia Tech says present, short and not clasping; Cornell says straight to pointed or clasping; Minnesota Wildflowers says absent or poorly developed, or small brown lobes. The honest summary is that ryegrass auricles are small and variable.",
+   "expert": "Drawn as two 2 mm horns curving round the stem; this is a choice within that variation."
+  },
+  "facts": [
+   [
+    "Auricles in L. perenne",
+    "small and variable: present or poorly developed; descriptions differ"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How much auricle size varies between individual plants and cultivars, and why the floras disagree, is not settled by the sources used here."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium perenne, perennial ryegrass (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lolium_perenne"
+   },
+   {
+    "title": "Lolium perenne in Grasses of North America, Festuca group (DELTA)",
+    "url": "https://www.delta-intkey.com/festucna/www/lope.htm"
+   },
+   {
+    "title": "Perennial ryegrass (Virginia Tech Weed ID)",
+    "url": "https://weedid.cals.vt.edu/profile/450/"
+   },
+   {
+    "title": "Perennial ryegrass (Cornell Weed ID)",
+    "url": "https://blogs.cornell.edu/weedid/?p=5329"
+   },
+   {
+    "title": "Perennial ryegrass (Minnesota Wildflowers)",
+    "url": "https://minnesotawildflowers.info/grass-sedge-rush/perennial-ryegrass"
+   }
+  ],
+  "related": [
+   "grass_ligule",
+   "grass_sheath"
+  ]
+ },
+ {
+  "id": "grass_dead_leaf",
+  "title": "Dead leaves at the base",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.08,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_plant"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Old leaves that have died and turned straw-coloured, lying at the base of the clump.",
+  "layers": {
+   "basics": "Each leaf lives for a limited time. After it has grown and worked for a while it yellows and dies from the tip down, and the plant keeps going with newer leaves in the middle. The dead leaf is full of fibres and breaks down slowly into the soil.",
+   "deeper": "Leaf development and senescence take about three to four phyllochrons in ryegrass (PMC8399834); at the phyllochrons measured there (4.44 to 9.22 days) that is about 13-37 days (calculated). Before the leaf dies, much of its nitrogen and sugars is moved back into the plant.",
+   "expert": "Number and shape of the dead leaves in the model are illustrative. The move-back of nutrients is a general statement about senescing leaves, not checked for ryegrass here."
+  },
+  "facts": [
+   [
+    "Leaf life: development to senescence",
+    "≈ 3-4 phyllochrons (PMC8399834)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Phyllochron and root numbers in Lolium perenne cv. Aberdart (PMC8399834)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8399834/"
+   }
+  ],
+  "related": [
+   "carbon_cycle_process",
+   "grass_tiller"
+  ]
+ },
+ {
+  "id": "grass_mesophyll",
+  "title": "Mesophyll: the green tissue inside the blade",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.0001,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_blade"
+  ],
+  "parts": [
+   "grass_epidermis",
+   "grass_bundle"
+  ],
+  "processes": [],
+  "summary": "The soft green tissue between the two skins of the leaf, full of chloroplasts: this is where most of the light is caught and sugar is made.",
+  "layers": {
+   "basics": "Cut a grass blade across and most of what you see is mesophyll: rounded cells packed with chloroplasts, the green bodies that run photosynthesis, with small air spaces between them so that carbon dioxide can reach every cell. It lies between the upper and lower skin of the leaf (the epidermis) and surrounds the veins.",
+   "deeper": "The chloroplasts hold chlorophyll, which absorbs red and blue light, and the enzymes that turn carbon dioxide and water into sugar (see Photosynthesis overview). Ryegrass is a C3 plant, which means it fixes carbon dioxide directly in these mesophyll cells (see C3 and C4 grasses). The sugar leaves the leaf through the phloem.",
+   "expert": "Cell sizes, counts and the number of chloroplasts per cell in the tissue scene are illustrative; the scene says so."
+  },
+  "facts": [
+   [
+    "Where",
+    "between the upper and lower epidermis, around the vascular bundles"
+   ],
+   [
+    "Type of photosynthesis",
+    "C3"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ],
+   [
+    "BIO",
+    "8.1",
+    "8-1-overview-of-photosynthesis"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   },
+   {
+    "title": "Pooideae are exclusively C3 (PMC10184452)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10184452/"
+   }
+  ],
+  "related": [
+   "oak_leaf_palisade",
+   "oak_leaf_spongy",
+   "bio_chloroplasts_plastids",
+   "bio_photosynthesis_overview",
+   "photosynthesis_light_process",
+   "calvin_cycle_process",
+   "bio_leaf_structure_gas_exchange"
+  ]
+ },
+ {
+  "id": "grass_epidermis",
+  "title": "Epidermis: the skin of the leaf",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 5e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_blade"
+  ],
+  "parts": [
+   "grass_stoma",
+   "grass_bulliform",
+   "grass_silica_body"
+  ],
+  "processes": [],
+  "summary": "The single layer of cells on each face of the leaf. It keeps water in, lets light through, and contains the pores (stomata) and the silica cells.",
+  "layers": {
+   "basics": "The epidermis is the skin of the leaf: one layer of cells, covered on the outside by a waxy film. In grasses it contains three special kinds of cell besides the ordinary skin cells: pairs of guard cells round the pores, bulliform cells that fold the leaf in drought, and cells that hold bodies of silica.",
+   "deeper": "Costal cells over the veins are rectangular and the cells between them are longer and spindle-shaped (Grass Genera of the World). The outer wall carries a cuticle. Cell walls are built of cellulose: click a cell and look inside it, and follow it down to the cellulose molecule.",
+   "expert": "Cell sizes in the cut-open view and tissue scene are illustrative: the sources opened for this model give no epidermal cell dimensions."
+  },
+  "facts": [
+   [
+    "Layers",
+    "upper and lower epidermis, one cell thick"
+   ],
+   [
+    "Special cells",
+    "guard, subsidiary, bulliform, silica cells"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   }
+  ],
+  "related": [
+   "oak_leaf_epidermis",
+   "rn_leaf_epidermis",
+   "bio_cell_wall_ecm"
+  ]
+ },
+ {
+  "id": "grass_bundle",
+  "title": "A vein: a vascular bundle",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 5e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_blade",
+   "grass_mesophyll"
+  ],
+  "parts": [
+   "grass_bundle_sheath",
+   "grass_sclerenchyma"
+  ],
+  "processes": [],
+  "summary": "A strand of two kinds of pipe-like tissue, xylem and phloem, running the length of the blade: xylem brings water in, phloem takes sugar out.",
+  "layers": {
+   "basics": "The parallel lines you see along a grass blade are its veins. Each vein is a bundle: the xylem carries water and minerals up from the roots into the leaf, and the phloem carries the sugar made in the leaf away to where it is used or stored, including the base of the shoot. Round each bundle is a ring of cells, the bundle sheath, and strengthening fibres.",
+   "deeper": "The xylem works by the cohesion-tension mechanism: water evaporating from the leaf pulls a column of water up through the dead, water-filled xylem tubes. The phloem moves sugar, mostly sucrose, by pressure flow. In Lolium all vascular bundles are accompanied by sclerenchyma (Grass Genera of the World). A ryegrass blade has 10 to 20 veins (DELTA); the cut-open view draws 11 and the tissue scene 3.",
+   "expert": "Bundle sizes and cell counts are illustrative."
+  },
+  "facts": [
+   [
+    "Veins per blade",
+    "10-20 (DELTA)"
+   ],
+   [
+    "Carried",
+    "xylem: water and minerals; phloem: sugar (mostly sucrose)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ],
+   [
+    "BIO",
+    "30.5",
+    "30-5-transport-of-water-and-solutes-in-plants"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium perenne in Grasses of North America, Festuca group (DELTA)",
+    "url": "https://www.delta-intkey.com/festucna/www/lope.htm"
+   },
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   }
+  ],
+  "related": [
+   "bio_water_transport",
+   "bio_phloem_transport",
+   "oak_leaf_vein"
+  ]
+ },
+ {
+  "id": "grass_bundle_sheath",
+  "title": "The bundle sheath",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 3e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_bundle"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A ring of cells round each vein. In C4 grasses such as maize these cells do the second half of photosynthesis; in ryegrass they do not.",
+  "layers": {
+   "basics": "Every vein in a grass leaf is wrapped in a ring of cells called the bundle sheath. In maize, sugarcane and other C4 grasses this ring holds special chloroplasts and is central to how the plant concentrates carbon dioxide. In ryegrass, which is a C3 plant, the sheath is a plainer ring that surrounds the vein.",
+   "deeper": "In C4 plants the bundle sheath cells are the inner ring of a two-ring Kranz arrangement and hold starch-rich chloroplasts (Wikipedia, C4 carbon fixation). Lolium is listed as C3 (Grass Genera of the World; the grass subfamily Pooideae is exclusively C3).",
+   "expert": "Drawn as nine tube-shaped cells round each bundle: illustrative."
+  },
+  "facts": [
+   [
+    "Role in C4 grasses",
+    "second stage of carbon fixation"
+   ],
+   [
+    "In ryegrass",
+    "C3: no Kranz specialisation"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ],
+   [
+    "BIO",
+    "8.1",
+    "8-1-overview-of-photosynthesis"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "C4 carbon fixation (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/C4_carbon_fixation"
+   },
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   },
+   {
+    "title": "Pooideae are exclusively C3 (PMC10184452)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10184452/"
+   }
+  ],
+  "related": [
+   "grass_c3_c4",
+   "bio_photosynthetic_adaptations",
+   "grass_bundle"
+  ]
+ },
+ {
+  "id": "grass_sclerenchyma",
+  "title": "Sclerenchyma: the stiffening fibres",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 3e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_bundle"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Strands of thick-walled, dead fibres that run beside the veins and stiffen the blade.",
+  "layers": {
+   "basics": "A grass blade is thin and long, and could flop like a ribbon. Strands of tough fibre cells beside the veins give it stiffness while leaving it flexible enough to bend in the wind. They also make grass leaves tough to chew.",
+   "deeper": "The fibre cells have thick walls strengthened with cellulose and lignin. In Lolium all the vascular bundles are accompanied by sclerenchyma (Grass Genera of the World). Together with silica they make the leaf hard for herbivores to digest.",
+   "expert": "Positions (caps above and below the larger bundles) are illustrative."
+  },
+  "facts": [
+   [
+    "Role",
+    "support; toughness"
+   ],
+   [
+    "Present at",
+    "every vascular bundle in Lolium (Grass Genera of the World)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   }
+  ],
+  "related": [
+   "bio_cell_wall_ecm",
+   "grass_silica_defence"
+  ]
+ },
+ {
+  "id": "grass_bulliform",
+  "title": "Bulliform cells: the cells that fold the leaf",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 4e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_epidermis",
+   "grass_blade_upper"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Large, thin-walled cells in fans on the upper surface of the leaf. When the plant is short of water they lose water and shrink, and the leaf folds.",
+  "layers": {
+   "basics": "On a dry, hot day a grass leaf can roll or fold. The cause is a group of big, empty-looking cells in the furrows of the upper surface. When they lose water they shrink, the two edges of the blade are drawn together, and the leaf closes like a half-shut book. That cuts the area exposed to the air and slows water loss. When water is available again the cells swell and the leaf opens.",
+   "deeper": "Bulliform cells are large, empty and colourless cells on the upper surface, generally near the midvein; the fold when they shrink is the standard explanation, though the Wikipedia article notes it is not confirmed for all monocots. In Lolium they occur in discrete, regular groups on the upper surface, in simple fans (Grass Genera of the World).",
+   "expert": "Number, size and position of the cells in the drawings are illustrative."
+  },
+  "facts": [
+   [
+    "Where",
+    "upper surface, in fans in the furrows between ribs"
+   ],
+   [
+    "Effect",
+    "shrink when short of water; blade folds"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Bulliform cell (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Bulliform_cell"
+   },
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   }
+  ],
+  "related": [
+   "grass_blade_upper",
+   "bio_plant_hormones"
+  ],
+  "where": "place:park"
+ },
+ {
+  "id": "grass_stoma",
+  "title": "A grass stoma: a pore with dumbbell guard cells",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 3e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_epidermis",
+   "grass_blade_under"
+  ],
+  "parts": [
+   "grass_guard_cell",
+   "grass_subsidiary_cell"
+  ],
+  "processes": [],
+  "summary": "A microscopic pore in the leaf skin, framed by two dumbbell-shaped guard cells and two flanking cells. Carbon dioxide goes in and water vapour goes out through it.",
+  "layers": {
+   "basics": "Leaves breathe through pores called stomata. In most plants, including the oak, each pore is flanked by two bean-shaped guard cells. Grass stomata are different: the two guard cells are shaped like dumbbells, with swollen ends and a narrow middle, and on each side of the pair sits another cell, a subsidiary cell. Click 'Look inside the leaf blade' for the section, or the pore in the scene to follow the carbon dioxide down to the molecule.",
+   "deeper": "Grass guard cells are 'narrower in the middle and bulbous on each end' and flanked by two lens-shaped subsidiary cells (Wikipedia, Stoma). Dumbbell guard cells open and close faster than kidney-shaped ones: in a comparison of four stomatal types, wheat's dumbbell stomata showed very rapid movements, which the authors attribute to their form and to a see-saw of pressure between guard and subsidiary cells (Franks and Farquhar 2007); a later review reports that graminoid stomata were on average faster by 10 minutes than the elliptical type, and that subsidiary cells are as important as guard cells. Stomata are common on the underside of the Lolium blade (Grass Genera of the World).",
+   "expert": "Stoma length is 10 to 80 micrometres across plant species (Wikipedia); the scene's 30 µm pore is illustrative. The sources opened for this model give no stomatal density for ryegrass."
+  },
+  "facts": [
+   [
+    "Guard cells",
+    "dumbbell-shaped, with two subsidiary cells"
+   ],
+   [
+    "Compare the oak",
+    "kidney-shaped guard cells, no subsidiary cells"
+   ],
+   [
+    "Length across species",
+    "10-80 µm (Wikipedia)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [
+   "Why the dumbbell type is faster, and how much of the speed comes from the subsidiary cells, is still being worked out."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ],
+   [
+    "BIO",
+    "8.1",
+    "8-1-overview-of-photosynthesis"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Stoma (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Stoma"
+   },
+   {
+    "title": "Franks and Farquhar 2007, The mechanical diversity of stomata (Plant Physiology; abstract via Europe PMC)",
+    "url": "https://doi.org/10.1104/pp.106.089367"
+   },
+   {
+    "title": "Franks and Farquhar (2007) and beyond (Plant Physiology review, PMC13711088)",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13711088/fullTextXML"
+   },
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   }
+  ],
+  "related": [
+   "oak_leaf_stoma",
+   "rn_stoma",
+   "bio_leaf_structure_gas_exchange"
+  ]
+ },
+ {
+  "id": "grass_guard_cell",
+  "title": "A dumbbell-shaped guard cell",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 3e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_stoma"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "One of the pair of cells that open and close the pore. In grasses each is shaped like a dumbbell.",
+  "layers": {
+   "basics": "When the guard cells swell with water the pore opens; when they lose water it closes. The swollen ends of a grass guard cell and its narrow middle are what give the type its name.",
+   "deeper": "The pressure in guard cells and in their subsidiary cells changes in opposite directions as the pore moves; this see-saw is thought to underlie the fast movements (Franks and Farquhar 2007).",
+   "expert": "Drawn with 11 µm ends and a 3.4 µm middle: illustrative."
+  },
+  "facts": [
+   [
+    "Shape",
+    "dumbbell: bulbous ends, narrow middle"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Stoma (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Stoma"
+   },
+   {
+    "title": "Franks and Farquhar 2007, The mechanical diversity of stomata (Plant Physiology; abstract via Europe PMC)",
+    "url": "https://doi.org/10.1104/pp.106.089367"
+   }
+  ],
+  "related": [
+   "grass_stoma",
+   "grass_subsidiary_cell",
+   "oak_leaf_stoma"
+  ]
+ },
+ {
+  "id": "grass_subsidiary_cell",
+  "title": "A subsidiary cell",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 4e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_stoma"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "One of the two cells that lie beside the guard cells. They are a mark of the grass type of stoma.",
+  "layers": {
+   "basics": "The oak's stoma has no cells like these. In grasses the two flanking cells have a lens shape and lie parallel to the pore. They help the pore move quickly.",
+   "deeper": "A review states that the role of subsidiary cells is as important as that of guard cells in regulating how quickly the pore moves; dumbbell guard cells are always flanked by subsidiary cells of this kind (Plant Physiology review).",
+   "expert": "Drawn 38 µm long: illustrative."
+  },
+  "facts": [
+   [
+    "Number",
+    "2 per stoma"
+   ],
+   [
+    "Shape",
+    "lens-shaped, parallel to the pore"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.4",
+    "30-4-leaves"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Franks and Farquhar (2007) and beyond (Plant Physiology review, PMC13711088)",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13711088/fullTextXML"
+   },
+   {
+    "title": "Stoma (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Stoma"
+   }
+  ],
+  "related": [
+   "grass_stoma",
+   "grass_guard_cell"
+  ]
+ },
+ {
+  "id": "grass_silica_body",
+  "title": "Silica bodies: glass in the leaf",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 2e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_epidermis",
+   "grass_silica_defence"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Tiny hard particles of silica, a glass-like mineral, laid down in cells of the leaf skin. They make grass abrasive to the animals that eat it.",
+  "layers": {
+   "basics": "Grass takes up silicon from the soil, dissolved in water as silicic acid, and deposits it in and between cells as hard, glassy silica. The silica forms little bodies in certain skin cells over the veins. A mouthful of grass is therefore slightly gritty, and it wears the teeth and mouthparts of grazers.",
+   "deeper": "Silicon is taken up from the soil as monosilicic acid, Si(OH)4, through transporters in the root (Lsi1 on the outer side, Lsi2 moving it inward in rice), and deposited as amorphous silica, called phytolith opal (PMC8066056; PMC6724085). Silicon content ranges from practically zero in some plants to 5 % of dry weight or more in grasses (PMC8066056). In Lolium the silica bodies are horizontally elongated or rounded (Grass Genera of the World).",
+   "expert": "The scene draws one body above each vein; positions and sizes are illustrative. The silicic acid molecule in this explorer's data is orthosilicic acid."
+  },
+  "facts": [
+   [
+    "Taken up as",
+    "silicic acid, Si(OH)4"
+   ],
+   [
+    "Deposited as",
+    "amorphous silica (opal) in cells"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.1",
+    "31-1-nutritional-requirements-of-plants"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Silicon in grasses (review, PMC8066056)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8066056/"
+   },
+   {
+    "title": "Phytoliths in grasses (PMC6724085)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6724085/"
+   },
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   }
+  ],
+  "related": [
+   "grass_silica_defence",
+   "grass_epidermis"
+  ]
+ },
+ {
+  "id": "grass_silica_defence",
+  "title": "Silica as a defence: grass that wears the teeth",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 0.001,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_blade"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Grasses with more silica in their leaves are tougher and harder to digest, and animals that eat them grow more slowly and wear down their mouthparts.",
+  "layers": {
+   "basics": "Grass cannot run away from being eaten, so it has other defences. One is silica: a grass plant growing in silica-rich conditions packs more into its leaves. Voles fed on such grass grew more slowly; insect caterpillars that fed on it chewed down their mandibles and did not convert their food as well, even after being moved to softer food.",
+   "deeper": "In perennial ryegrass (Lolium perenne) leaf silica was about 0.54 % of dry mass in a low-silica treatment and 4.68 % in a high-silica one; field plants ranged 0.58-4.52 % (Massey and Hartley 2006). Raised silica increased the abrasiveness of grass and deterred feeding by voles, and reduced vole growth by lowering the nitrogen they could take up (Massey and Hartley 2006). In insects, silica addition made leaves more abrasive in four of five grass species and deterred two leaf-chewing species, but did not affect a sap-feeding aphid (Massey, Ennos and Hartley 2006). Mandible wear in caterpillars was rapid, and part of the lasting effect on growth (Massey and Hartley 2009).",
+   "expert": "These are experiments on particular herbivores. The sources opened do not show the 'wear on grazers' teeth' for large grazing mammals, so this card does not claim it."
+  },
+  "facts": [
+   [
+    "Leaf silica, L. perenne, low and high treatment",
+    "0.54 % and 4.68 % of dry mass"
+   ],
+   [
+    "Field plants, L. perenne",
+    "0.58-4.52 %"
+   ],
+   [
+    "Effect",
+    "more abrasive leaves; reduced vole and caterpillar growth"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.1",
+    "31-1-nutritional-requirements-of-plants"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Massey and Hartley 2006: antiherbivore effects of silica in grasses (Proc R Soc B, PMC1636089)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1636089"
+   },
+   {
+    "title": "Massey, Ennos and Hartley 2006: silica in grasses as a defence against insect herbivores (J Anim Ecol)",
+    "url": "https://doi.org/10.1111/j.1365-2656.2006.01082.x"
+   },
+   {
+    "title": "Massey and Hartley 2009: physical defences wear you down (J Anim Ecol)",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Physical%20defences%20wear%20you%20down%22&format=json"
+   },
+   {
+    "title": "Silicon in grasses (review, PMC8066056)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8066056/"
+   }
+  ],
+  "related": [
+   "grass_silica_body",
+   "grass_sclerenchyma"
+  ]
+ },
+ {
+  "id": "grass_c3_c4",
+  "title": "C3 ryegrass and C4 maize: two ways to photosynthesise",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 0.001,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_plant",
+   "grass_mesophyll"
+  ],
+  "parts": [
+   "grass_bundle_sheath",
+   "grass_mesophyll"
+  ],
+  "processes": [],
+  "summary": "Perennial ryegrass uses the C3 type of photosynthesis, best in cool, moist weather. Maize, sugarcane and many tropical grasses use C4, which does better in heat and bright light.",
+  "layers": {
+   "basics": "All green plants turn carbon dioxide and water into sugar using light. Plants differ in how they first capture the carbon dioxide. In C3 plants such as ryegrass, wheat and oak, the capture happens in the main leaf cells. In C4 plants such as maize, an extra first step happens in one set of cells and the carbon dioxide is then handed to the cells round the veins. That helps in hot, bright, dry weather. This is why ryegrass is a cool-season grass that grows best in spring and autumn, while maize is a summer crop.",
+   "deeper": "About 8,100 plant species use C4 carbon fixation, about 3 % of terrestrial plant species; 46 % of grasses are C4 and they make up 61 % of C4 species; C4 plants are about 5 % of Earth's plant biomass and about 23 % of terrestrial carbon fixation (Wikipedia, C4 carbon fixation). The grass subfamily that contains Lolium (Pooideae) is exclusively C3 (PMC10184452). Optimum soil temperature for shoot growth of perennial ryegrass is 16-24 °C (60-75 °F), and for root growth about 10-18 °C (University of Minnesota turf).",
+   "expert": "The C4 figures are from one secondary source. The statement that grasses make 'more than 25 % of terrestrial photosynthesis' comes from a preprint (Lehmann et al.) that is not peer reviewed, and is not used in a number here."
+  },
+  "facts": [
+   [
+    "Ryegrass",
+    "C3, cool-season: shoot growth best at 16-24 °C soil temperature (Minnesota turf)"
+   ],
+   [
+    "Maize, sugarcane, sorghum",
+    "C4 (Wikipedia)"
+   ],
+   [
+    "Grass species that are C4",
+    "≈ 46 % (Wikipedia)"
+   ],
+   [
+    "Share of terrestrial carbon fixation by C4 plants",
+    "≈ 23 % (Wikipedia)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "8.1",
+    "8-1-overview-of-photosynthesis"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "C4 carbon fixation (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/C4_carbon_fixation"
+   },
+   {
+    "title": "Pooideae are exclusively C3 (PMC10184452)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10184452/"
+   },
+   {
+    "title": "Perennial ryegrass growth and temperature (University of Minnesota turf)",
+    "url": "https://turf.umn.edu/seed-production-newsletter-april-29-2025"
+   }
+  ],
+  "related": [
+   "bio_photosynthetic_adaptations",
+   "bio_photosynthesis_overview",
+   "calvin_cycle_process",
+   "photosynthesis_light_process"
+  ]
+ },
+ {
+  "id": "grass_monocot",
+  "title": "Grass and buttercup: a monocot and a eudicot",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 0.5,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_plant",
+   "rn_acris"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Grasses are monocots; the buttercup in the park is a eudicot. They are both flowering plants, but differ in seed leaves, leaf veins, flower parts and roots.",
+  "layers": {
+   "basics": "Flowering plants fall into two big groups. A grass has one seed leaf, long narrow leaves with parallel veins, and a mass of fine roots of similar size. A buttercup has two seed leaves, leaves with a branching network of veins, flowers in fours, fives or many whorls, and a root system that starts with one main root. Grass flowers, being pollinated by wind, are tiny and have no showy petals.",
+   "deeper": "From the OpenStax table of monocot and eudicot characteristics: cotyledons, one or two; leaf veins, parallel (monocot) or a network (eudicot); floral parts in threes or sixes (monocot) or in fours, fives or many whorls (eudicot); roots fibrous with no main tap root (monocot) or anchored by one main root (eudicot); stem vascular bundles scattered (monocot) or in a ring (eudicot); pollen with one furrow (monocot) or three (most eudicots). None of these traits is exclusive to one group (Wikipedia). A grass flower is reduced: its petals and sepals are replaced by two small scales, the lodicules.",
+   "expert": "The meadow buttercup in the park is a eudicot and the grass sits near it; follow the 'Compare with' links. The 'monocot' trait of 'floral parts in threes' is not obvious in grass because the flower is so reduced."
+  },
+  "facts": [
+   [
+    "Seed leaves",
+    "grass: 1; buttercup: 2"
+   ],
+   [
+    "Leaf veins",
+    "grass: parallel; buttercup: net"
+   ],
+   [
+    "Flower parts",
+    "grass: reduced (3 stamens, 2 lodicules); buttercup: 5 petals, 5 sepals, many stamens"
+   ],
+   [
+    "Roots",
+    "grass: fibrous; buttercup: fibrous from a short stock (see its card)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [
+   "Whether the ancestor of both groups was more like a monocot or a eudicot is not covered here."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "26.3",
+    "26-3-angiosperms"
+   ],
+   [
+    "BIO",
+    "30.1",
+    "30-1-the-plant-body"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Angiosperms, Table 26.1 monocots and eudicots (OpenStax Biology 2e, 26.3)",
+    "url": "https://openstax.org/books/biology-2e/pages/26-3-angiosperms"
+   },
+   {
+    "title": "Monocotyledon (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Monocotyledon"
+   },
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   }
+  ],
+  "related": [
+   "rn_acris",
+   "rn_basal_leaf",
+   "rn_flower",
+   "rn_roots",
+   "bio_seed_plants"
+  ]
+ },
+ {
+  "id": "grass_roots",
+  "title": "The fibrous root system",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.25,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_plant",
+   "grass_below_ground"
+  ],
+  "parts": [
+   "grass_root_tip",
+   "grass_root_hairs",
+   "grass_soil"
+  ],
+  "processes": [],
+  "summary": "A mass of thin roots, all about the same size, spreading from the base of the plant. They anchor it and take up water and minerals.",
+  "layers": {
+   "basics": "A grass has no single main root. Instead, many thin roots grow out from the lowest nodes of every tiller, each branching into finer roots. Together they form a dense mat in the top layer of the soil. New roots grow with new tillers, so the root system grows as the clump grows. Select the layer 'Underground' to see them.",
+   "deeper": "Most of the roots of a perennial ryegrass sward are shallow: root mass is typically concentrated in the top 10 cm of soil (Troughton 1957, cited in a Grassland Congress abstract). In one hydroponic study (cv. Aberdart) there were typically two roots per leaf-unit of the shoot (range 0 to 6), and the main root axis measured 36.9 cm in spring and 26.3 cm in autumn: that is a length in solution, not a depth in soil. Ryegrass is usually associated with arbuscular mycorrhizal fungi (Wikipedia).",
+   "expert": "The model's roots reach about 26 cm and are a schematic: number, course and branching differ in a real plant. 'Root depth' of real ryegrass swards from deeper studies was not confirmed in sources opened here."
+  },
+  "facts": [
+   [
+    "Root mass of a ryegrass sward",
+    "typically in the top 10 cm (Troughton 1957)"
+   ],
+   [
+    "Main root axis in hydroponics",
+    "36.9 cm (spring); 26.3 cm (autumn)"
+   ],
+   [
+    "Type",
+    "fibrous: no main tap root"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.3",
+    "30-3-roots"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Root mass of a perennial ryegrass sward (Univ. of Kentucky, International Grassland Congress abstract)",
+    "url": "https://uknowledge.uky.edu/igc/20/themeA/18"
+   },
+   {
+    "title": "Phyllochron and root numbers in Lolium perenne cv. Aberdart (PMC8399834)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8399834/"
+   },
+   {
+    "title": "Roots (OpenStax Biology 2e, 30.3)",
+    "url": "https://openstax.org/books/biology-2e/pages/30-3-roots"
+   },
+   {
+    "title": "Lolium perenne, perennial ryegrass (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lolium_perenne"
+   }
+  ],
+  "related": [
+   "rn_roots",
+   "oak_roots",
+   "bio_roots_mycorrhiza",
+   "bio_plant_nutrition_soil",
+   "grass_below_ground"
+  ]
+ },
+ {
+  "id": "grass_root_tip",
+  "title": "The root tip and root cap",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0015,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_roots"
+  ],
+  "parts": [
+   "grass_root_cap",
+   "grass_root_hairs"
+  ],
+  "processes": [],
+  "summary": "The end of a root: a protective cap, a zone where cells divide, a zone where they lengthen, and then root hairs.",
+  "layers": {
+   "basics": "A root grows only at its tip. The very end is covered by a root cap that is rubbed away as the root pushes through the soil and is replaced. Behind it is a small zone where cells divide, then a zone where they lengthen and push the tip forward. Further back the cells are mature and some grow root hairs.",
+   "deeper": "The zones, from the tip: root cap (continuously replaced because it is damaged easily), zone of cell division (the root meristem), zone of elongation, and zone of maturation, where cells differentiate, starting at the first root hair (OpenStax Biology 2e 30.3).",
+   "expert": "Zone lengths in the tissue scene are illustrative."
+  },
+  "facts": [
+   [
+    "Zones, tip to base",
+    "root cap · cell division · elongation · maturation with root hairs"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.3",
+    "30-3-roots"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Roots (OpenStax Biology 2e, 30.3)",
+    "url": "https://openstax.org/books/biology-2e/pages/30-3-roots"
+   }
+  ],
+  "related": [
+   "oak_root_hairs",
+   "bio_roots_mycorrhiza"
+  ]
+ },
+ {
+  "id": "grass_root_cap",
+  "title": "The root cap",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0003,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_root_tip"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A thimble of loose cells over the tip of the root, protecting the growing cells behind it.",
+  "layers": {
+   "basics": "As the root pushes through soil, the cap cells at the front are scraped off and constantly replaced by new ones.",
+   "deeper": "The root cap is continuously replaced because it gets damaged easily as the root pushes through the soil (OpenStax Biology 2e 30.3).",
+   "expert": "Cell sizes and counts in the tissue scene are illustrative."
+  },
+  "facts": [
+   [
+    "Fate",
+    "continuously worn away and replaced"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.3",
+    "30-3-roots"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Roots (OpenStax Biology 2e, 30.3)",
+    "url": "https://openstax.org/books/biology-2e/pages/30-3-roots"
+   }
+  ],
+  "related": [
+   "grass_root_tip"
+  ]
+ },
+ {
+  "id": "grass_root_hairs",
+  "title": "Root hairs",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0005,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_root_tip",
+   "grass_roots"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Tiny hair-like extensions of single root skin cells, which greatly increase the surface through which water and minerals are taken up.",
+  "layers": {
+   "basics": "Just behind the growing tip, some skin cells of the root put out a thin tube, the root hair. Each is one cell's extension, too small to see without magnification. They reach into the spaces between soil grains and take up water and dissolved minerals. In this model they are drawn only on the tips of the roots and at an illustrative length.",
+   "deeper": "Root hair cells vary between 15 and 17 µm in diameter, and 80 to 1,500 µm in length (Wikipedia, Root hair; values for root hairs in general, not ryegrass). Root hairs are found only in the zone of maturation (OpenStax Biology 2e 30.3). Fibrous roots near the soil surface are typical of monocots.",
+   "expert": "The sources opened here give no measured length or density of ryegrass root hairs, so the model's hairs (about 0.7 mm, 36 per root tip) are illustrative."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "15-17 µm (general; Wikipedia)"
+   ],
+   [
+    "Length",
+    "80-1,500 µm (general; Wikipedia)"
+   ],
+   [
+    "Drawn",
+    "illustrative length"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.3",
+    "30-3-roots"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Root hair (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Root_hair"
+   },
+   {
+    "title": "Roots (OpenStax Biology 2e, 30.3)",
+    "url": "https://openstax.org/books/biology-2e/pages/30-3-roots"
+   }
+  ],
+  "related": [
+   "oak_root_hairs",
+   "bio_roots_mycorrhiza",
+   "bio_plant_nutrition_soil"
+  ]
+ },
+ {
+  "id": "grass_soil",
+  "title": "The soil round the roots",
+  "kind": "habitat",
+  "template": "thing",
+  "scale_m": 0.3,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_roots"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Soil: mineral grains, dead plant material and living things. Grass roots grow through it and hold it together.",
+  "layers": {
+   "basics": "This block of soil is drawn see-through so that you can see the roots. The roots of grass are so many and so fine that they bind soil grains together, which is why turf holds firm.",
+   "deeper": "See the Ground and soil card for what soil is made of; the nutrients grass takes from it are covered in Plant nutrition and soil.",
+   "expert": "The block is 0.6 m across and 0.32 m deep and is not a sample of real soil."
+  },
+  "facts": [
+   [
+    "Drawn",
+    "see-through block, 0.6 m × 0.32 m"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "31.1",
+    "31-1-nutritional-requirements-of-plants"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Roots (OpenStax Biology 2e, 30.3)",
+    "url": "https://openstax.org/books/biology-2e/pages/30-3-roots"
+   }
+  ],
+  "related": [
+   "park_ground",
+   "bio_plant_nutrition_soil",
+   "bio_roots_mycorrhiza"
+  ]
+ },
+ {
+  "id": "grass_below_ground",
+  "title": "How much of the grass plant is below ground?",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 0.3,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_plant",
+   "grass_roots"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "In many grasslands a large part of a plant's living material is underground; the roots of a ryegrass sward are concentrated in the top 10 cm.",
+  "layers": {
+   "basics": "What you see above the soil is only part of the plant. The roots are hidden. Because they sit in the top layer of soil, the underground part of a lawn is a thin, dense mat. Mowing cuts only the above-ground leaf and leaves the roots.",
+   "deeper": "Root mass of a perennial ryegrass sward is typically shallow, concentrated in the top 10 cm of soil (Troughton 1957). The plant's root-to-shoot ratio is not given here as a single number because the sources opened do not provide one for ryegrass. A general point from the University of Missouri guidance: plants maintain maximum root vigour if no more than half the leaf area is removed at each grazing. Grasses invest a smaller proportion of total biomass in leaves than non-grass herbs (a paper citing Poorter et al.).",
+   "expert": "No numerical fraction of ryegrass biomass below ground is stated: the primary review (Poorter et al. 2012, New Phytologist) could not be opened for this model."
+  },
+  "facts": [
+   [
+    "Root mass of a sward",
+    "concentrated in the top 10 cm (Troughton 1957)"
+   ],
+   [
+    "Keeping root vigour (Missouri, for grazing)",
+    "remove no more than half the leaf area at each grazing"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What fraction of the whole ryegrass plant's dry mass is below ground in a lawn or pasture, and how it changes with mowing: not stated in the sources opened for this model."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "30.3",
+    "30-3-roots"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Root mass of a perennial ryegrass sward (Univ. of Kentucky, International Grassland Congress abstract)",
+    "url": "https://uknowledge.uky.edu/igc/20/themeA/18"
+   },
+   {
+    "title": "Grass growth and management: M182 (University of Missouri Extension)",
+    "url": "https://extension.missouri.edu/publications/m182"
+   },
+   {
+    "title": "Root:shoot allometry in grasses and forbs (PMC4417138)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4417138"
+   }
+  ],
+  "related": [
+   "grass_roots",
+   "grass_lawn",
+   "bio_ecosystem_stability"
+  ]
+ },
+ {
+  "id": "grass_fructan",
+  "title": "Fructan: the sugar store of ryegrass",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 5e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_crown",
+   "grass_sheath"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Ryegrass keeps its spare sugar not as starch but as fructan, a chain of fructose units, stored in the leaf sheaths and the base of the shoot.",
+  "layers": {
+   "basics": "When a plant makes more sugar than it uses, it stores some. Many plants store starch. Perennial ryegrass stores fructan: a chain of fructose sugar units joined to a sucrose end. It is kept in the sheaths and the base of the shoot, the part that survives mowing, and is used for regrowth after cutting and for winter hardiness.",
+   "deeper": "The main storage compounds in Lolium perenne are fructans with mainly β(2-6) linkages, which are sucrose-derived fructose polymers; perennial ryegrass accumulates large amounts of them in the tiller base, made up of leaf sheaths and elongating leaf bases (PMC3060680). Fructans are believed to confer cold and drought tolerance. In one study chain lengths up to 70 units were found, and fructans up to length 8 were well characterised; those with more than 8 units made up 75 % of the fructans that had an internal glucose (PMC3060680; Frontiers 2015). Root fructan can be used for rapid growth in early spring (Frontiers 2015).",
+   "expert": "The molecule set of this explorer has no fructan: the scene ends at fructose, the sugar unit. That ryegrass stores fructans 'instead of starch' is not stated in the papers opened; the card says only that fructans are its main storage compounds."
+  },
+  "facts": [
+   [
+    "Main storage compounds",
+    "fructans (β(2-6) linkages)"
+   ],
+   [
+    "Stored in",
+    "tiller base: leaf sheaths and elongating leaf bases"
+   ],
+   [
+    "Chain length found",
+    "up to 70 units (Frontiers 2015)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [
+   "How much of the regrowth after mowing is paid for by stored fructan, and how much by current photosynthesis, is not given by the sources used here."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "8.1",
+    "8-1-overview-of-photosynthesis"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Fructans in Lolium perenne (PMC3060680)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3060680"
+   },
+   {
+    "title": "Abeynayake et al. 2015, fructans in perennial ryegrass (Frontiers in Plant Science)",
+    "url": "https://frontiersin.org/articles/10.3389/fpls.2015.00329/full"
+   }
+  ],
+  "related": [
+   "bio_polysaccharides",
+   "grass_crown",
+   "grass_base_growth"
+  ]
+ },
+ {
+  "id": "grass_culm",
+  "title": "The flowering stem (culm)",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.5,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_plant"
+  ],
+  "parts": [
+   "grass_node",
+   "grass_spike",
+   "grass_sheath"
+  ],
+  "processes": [],
+  "summary": "The tall, slender, jointed stem that some shoots send up in early summer to carry the flower spike.",
+  "layers": {
+   "basics": "Most of the shoots in a lawn stay short and make only leaves. Some, left unmown, stretch up a hollow, jointed stem. The stem has a few leaves along it, each with a long sheath round the stem, and ends in the flower spike. Mowing regularly cuts these stems down before the flowers open, which is why a lawn rarely flowers.",
+   "deeper": "Flowering stems of perennial ryegrass are 30-90 cm tall (DELTA); floras give 10-50 cm (NZ Flora) up to 90 cm (Wikipedia). When a shoot flowers its stem lengthens and lifts the growing point; after that the shoot makes no more leaves (Missouri Extension). The stem leaves are shorter than the leaves at the base.",
+   "expert": "The three flowering stems of the model are 41-52 cm tall and lean slightly; the nodes drawn (three) exceed DELTA's 'one or two (when visible)'. Counts and curvature are choices."
+  },
+  "facts": [
+   [
+    "Height of flowering stems",
+    "30-90 cm (DELTA)"
+   ],
+   [
+    "After flowering starts",
+    "the shoot stops making leaves (Missouri)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.2",
+    "30-2-stems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium perenne in Grasses of North America, Festuca group (DELTA)",
+    "url": "https://www.delta-intkey.com/festucna/www/lope.htm"
+   },
+   {
+    "title": "Lolium perenne (NZ Flora factsheet)",
+    "url": "https://www.nzflora.info/factsheet/taxon/Lolium-perenne.html"
+   },
+   {
+    "title": "Lolium perenne, perennial ryegrass (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lolium_perenne"
+   },
+   {
+    "title": "Grass growth and management: M182 (University of Missouri Extension)",
+    "url": "https://extension.missouri.edu/publications/m182"
+   }
+  ],
+  "related": [
+   "grass_base_growth",
+   "rn_stem"
+  ]
+ },
+ {
+  "id": "grass_spike",
+  "title": "The flower spike",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.15,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_culm",
+   "grass_plant"
+  ],
+  "parts": [
+   "grass_rachis",
+   "grass_spikelet",
+   "grass_wind_pollination"
+  ],
+  "processes": [],
+  "summary": "A flat spike at the top of the flowering stem, made of small groups of flowers called spikelets set along it in two rows, with their narrow edge to the stem.",
+  "layers": {
+   "basics": "The flowers of ryegrass are small and green or yellowish and there are no petals, because the wind, not insects, carries the pollen. They are packed in a flat spike: about two dozen small clusters called spikelets set one above another along a zigzag axis, alternately on the two sides. The spikelets stand edge-on to the axis, which makes the spike look flat, like a narrow ribbon. Choose the layer 'In flower' to see anthers hanging out.",
+   "deeper": "Spike length is (8-)10-20(-25) cm (DELTA), 4-28 cm (NZ Flora) or 8-30 cm (Cornell). Spikelets alternate on opposite sides of the axis (DELTA; Wikipedia) and are 'conspicuously distichous'. Some descriptions call the head a spike, others a branched spike or panicle (Virginia Tech, Cornell), so 'always a simple spike' is too strong.",
+   "expert": "The number of spikelets per spike was not found in the sources opened: the model draws 18 per spike, decreasing in size toward the tip, a choice. The spikes of three flowering stems are drawn 14-16 cm long."
+  },
+  "facts": [
+   [
+    "Spike length",
+    "(8-)10-20(-25) cm (DELTA)"
+   ],
+   [
+    "Spikelets",
+    "alternate, in two rows, edge-on to the axis"
+   ],
+   [
+    "In the model",
+    "18 per spike (a choice)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium perenne in Grasses of North America, Festuca group (DELTA)",
+    "url": "https://www.delta-intkey.com/festucna/www/lope.htm"
+   },
+   {
+    "title": "Lolium perenne (NZ Flora factsheet)",
+    "url": "https://www.nzflora.info/factsheet/taxon/Lolium-perenne.html"
+   },
+   {
+    "title": "Perennial ryegrass (Cornell Weed ID)",
+    "url": "https://blogs.cornell.edu/weedid/?p=5329"
+   },
+   {
+    "title": "Lolium perenne, perennial ryegrass (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lolium_perenne"
+   },
+   {
+    "title": "Perennial ryegrass (Virginia Tech Weed ID)",
+    "url": "https://weedid.cals.vt.edu/profile/450/"
+   }
+  ],
+  "related": [
+   "rn_flower",
+   "bio_plant_reproduction"
+  ]
+ },
+ {
+  "id": "grass_rachis",
+  "title": "The spike axis (rachis)",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.15,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_spike"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The zigzag central axis of the spike, with a notch for each spikelet.",
+  "layers": {
+   "basics": "The spike's central axis is a slender, slightly zigzag rod, and each spikelet sits in a small hollow on one side. Because the spikelets alternate from side to side, the axis zigzags.",
+   "deeper": "In Lolium each spikelet sits with a single glume against the axis and the axis itself takes the place of the missing second glume (a standard description; see the glume card).",
+   "expert": "The zigzag amplitude (0.6 mm) is illustrative."
+  },
+  "facts": [
+   [
+    "Spikelets per node",
+    "1, alternating sides"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   }
+  ],
+  "related": [
+   "grass_spikelet",
+   "grass_spike"
+  ]
+ },
+ {
+  "id": "grass_spikelet",
+  "title": "A spikelet: a cluster of florets",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.011,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_spike"
+  ],
+  "parts": [
+   "grass_glume",
+   "grass_lemma",
+   "grass_palea",
+   "grass_lodicule",
+   "grass_anther",
+   "grass_stigma",
+   "grass_ovary"
+  ],
+  "processes": [],
+  "summary": "The basic unit of a grass flower head: a small, flattened cluster of florets with scales at its base. In ryegrass each spikelet has 4 to 14 florets.",
+  "layers": {
+   "basics": "A spikelet is a miniature spike of its own: a short axis with florets arranged in two rows, overlapping like roof tiles, and at the base a single scale called the glume. In the model a spikelet is about 11 mm long. Click the spikelet in the middle distance, or a floret close up, to open the parts; the layer 'A floret opened' separates one floret into its parts.",
+   "deeper": "Spikelet length is (5-)7-15(-20) mm and 3-5 mm wide (DELTA), 6-15 mm (NZ Flora), 5-22 mm (Minnesota Wildflowers). Florets per spikelet: four to 14 (Wikipedia), 5-11 (DELTA), 4-10 (Minnesota Wildflowers). In Lolium there is one glume per spikelet, except that the terminal spikelet has two, and the glumes face the rachis (Grass Genera of the World); Wikipedia describes the glume as on the side away from the stem.",
+   "expert": "The model's spikelets have 3 to 8 florets, shrinking toward the tip of the spike. About 38 per cent of the florets are drawn open: a choice, not a measurement."
+  },
+  "facts": [
+   [
+    "Spikelet length",
+    "(5-)7-15(-20) mm (DELTA)"
+   ],
+   [
+    "Florets per spikelet",
+    "4-14 (Wikipedia); 5-11 (DELTA)"
+   ],
+   [
+    "Glumes",
+    "1 (terminal spikelet: 2)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium perenne in Grasses of North America, Festuca group (DELTA)",
+    "url": "https://www.delta-intkey.com/festucna/www/lope.htm"
+   },
+   {
+    "title": "Lolium perenne (NZ Flora factsheet)",
+    "url": "https://www.nzflora.info/factsheet/taxon/Lolium-perenne.html"
+   },
+   {
+    "title": "Perennial ryegrass (Minnesota Wildflowers)",
+    "url": "https://minnesotawildflowers.info/grass-sedge-rush/perennial-ryegrass"
+   },
+   {
+    "title": "Lolium perenne, perennial ryegrass (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lolium_perenne"
+   },
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   }
+  ],
+  "related": [
+   "grass_spike"
+  ]
+ },
+ {
+  "id": "grass_glume",
+  "title": "The glume: one scale at the base",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.008,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_spikelet"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A thin scale at the base of the spikelet. Ryegrass has only one, except in the top spikelet.",
+  "layers": {
+   "basics": "Most grasses have two glumes at the foot of each spikelet. Perennial ryegrass has one, set on the side of the spikelet away from the stem, and the spike axis itself fills the place of the missing one. That is a quick way to recognise a ryegrass spike.",
+   "deeper": "In Lolium there is one glume per spikelet, except that the terminal spikelet has two; the upper glume is 3-7 nerved, membranous and not keeled (Grass Genera of the World). It is 4-10(-12) mm long and about as long as the first lemma (DELTA).",
+   "expert": "Drawn 8.5 mm long."
+  },
+  "facts": [
+   [
+    "Glumes",
+    "1 per spikelet (2 in the terminal one)"
+   ],
+   [
+    "Length",
+    "4-10(-12) mm (DELTA)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   },
+   {
+    "title": "Lolium perenne in Grasses of North America, Festuca group (DELTA)",
+    "url": "https://www.delta-intkey.com/festucna/www/lope.htm"
+   },
+   {
+    "title": "Lolium perenne, perennial ryegrass (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lolium_perenne"
+   }
+  ],
+  "related": [
+   "grass_spikelet",
+   "grass_lemma"
+  ]
+ },
+ {
+  "id": "grass_lemma",
+  "title": "The lemma: the outer scale of a floret",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.006,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_spikelet"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The boat-shaped scale that covers the outside of each floret. Ryegrass lemmas are usually without a bristle (an awn).",
+  "layers": {
+   "basics": "Each floret is closed between two scales: a bigger outer one, the lemma, and a smaller inner one, the palea. The lemma has five fine veins and is 5 to 7 mm long. In ryegrass it usually has no awn, the bristle found on barley or wild oat, though some plants have a short one.",
+   "deeper": "Lemma length is (4-)5-7 mm with 5 veins and an awn of 0-0.2 mm (DELTA); (4.5)-5-7-(8.5) mm, muticous or occasionally minutely awned to 1 mm (NZ Flora); 3.5-9 mm and mostly awnless (Minnesota Wildflowers, which also notes some awns up to 8 mm).",
+   "expert": "Drawn 6 mm long and awnless."
+  },
+  "facts": [
+   [
+    "Length",
+    "5-7 mm (DELTA)"
+   ],
+   [
+    "Veins",
+    "5"
+   ],
+   [
+    "Awn",
+    "usually none"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium perenne in Grasses of North America, Festuca group (DELTA)",
+    "url": "https://www.delta-intkey.com/festucna/www/lope.htm"
+   },
+   {
+    "title": "Lolium perenne (NZ Flora factsheet)",
+    "url": "https://www.nzflora.info/factsheet/taxon/Lolium-perenne.html"
+   },
+   {
+    "title": "Perennial ryegrass (Minnesota Wildflowers)",
+    "url": "https://minnesotawildflowers.info/grass-sedge-rush/perennial-ryegrass"
+   }
+  ],
+  "related": [
+   "grass_palea",
+   "grass_spikelet"
+  ]
+ },
+ {
+  "id": "grass_palea",
+  "title": "The palea: the inner scale",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0055,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_spikelet"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A thin scale tucked against the stem side of the floret, opposite the lemma.",
+  "layers": {
+   "basics": "Inside the lemma sits the palea, a smaller, thinner scale. Together the two enclose the real flower parts: the stamens and the ovary.",
+   "deeper": "A floret has two bracts round the flower: one external, the lemma, and one internal, the palea (Wikipedia, Poaceae).",
+   "expert": "The palea is drawn slightly shorter than the lemma and narrower: not measured."
+  },
+  "facts": [
+   [
+    "Position",
+    "inner bract of the floret"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Poaceae, the grass family (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Poaceae"
+   }
+  ],
+  "related": [
+   "grass_lemma",
+   "grass_lodicule"
+  ]
+ },
+ {
+  "id": "grass_lodicule",
+  "title": "Lodicules: the scales that open the floret",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0008,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_spikelet"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Two tiny scales inside a grass floret in place of petals. They swell and push the lemma and palea apart so that the anthers and stigmas can come out.",
+  "layers": {
+   "basics": "A grass flower has no petals. Instead there are two tiny scales at the base of the floret. When they take up water and swell, they spread the lemma and palea and the floret opens.",
+   "deeper": "In grasses the perianth is reduced to two scales, the lodicules, which expand and contract to spread the lemma and palea; they are generally interpreted as modified sepals (Wikipedia, Poaceae). In Lolium they are 2, free, membranous and hairless (Grass Genera of the World).",
+   "expert": "Drawn 0.8 mm tall."
+  },
+  "facts": [
+   [
+    "Number",
+    "2, free, membranous (GGW)"
+   ],
+   [
+    "Role",
+    "swell and open the floret"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Poaceae, the grass family (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Poaceae"
+   },
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   }
+  ],
+  "related": [
+   "grass_lemma",
+   "rn_petal",
+   "grass_monocot"
+  ]
+ },
+ {
+  "id": "grass_filament",
+  "title": "The filament: the thread that holds the anther out",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0035,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_anther"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A very thin thread that carries each anther, long enough to hang it out of the floret into the wind.",
+  "layers": {
+   "basics": "The anthers of a ryegrass flower do not stay inside. The thread-like filaments lengthen and let them hang down outside the floret, where they can swing and shed pollen into passing air.",
+   "deeper": "Long, well-exposed stamens are a typical feature of wind-pollinated plants (Wikipedia, Anemophily).",
+   "expert": "Drawn 3.5 mm long, a choice."
+  },
+  "facts": [
+   [
+    "Role",
+    "holds the anther clear of the floret"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Anemophily, wind pollination (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Anemophily"
+   }
+  ],
+  "related": [
+   "grass_anther",
+   "grass_wind_pollination"
+  ]
+ },
+ {
+  "id": "grass_anther",
+  "title": "The anthers: where the pollen is made",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0031,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_spikelet",
+   "grass_wind_pollination"
+  ],
+  "parts": [
+   "grass_filament",
+   "grass_pollen"
+  ],
+  "processes": [],
+  "summary": "Each ryegrass floret has three pale yellow anthers, each about 3 mm long, that hang out on thread-like filaments and shed pollen to the wind.",
+  "layers": {
+   "basics": "An anther is the pollen-making part of a flower. In ryegrass there are three per floret, and they hang out of the floret on thin threads. Each is a small, pale yellow pouch that splits and releases a cloud of tiny pollen grains. The numbers of grains are huge. Click 'Look at grass pollen' to see grains the size of ryegrass pollen.",
+   "deeper": "Stamens: 3 (Grass Genera of the World). Anther length: 2.9-3.4 mm (DELTA), (1.5)-2.5-4 mm (NZ Flora), 1.3-4.5 mm (Grass Genera of the World); anthers are pale yellow (Wikipedia). The pollen grains are 26-50 µm, spheroidal, with one pore (PalDat).",
+   "expert": "The model draws 3.1 mm anthers and opens about 38 per cent of the florets; how many open at once on a real spike, and in what order along it, was not found in the sources opened."
+  },
+  "facts": [
+   [
+    "Stamens per floret",
+    "3"
+   ],
+   [
+    "Anther length",
+    "2.9-3.4 mm (DELTA); 1.3-4.5 mm in the genus"
+   ],
+   [
+    "Colour",
+    "pale yellow"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   },
+   {
+    "title": "Lolium perenne in Grasses of North America, Festuca group (DELTA)",
+    "url": "https://www.delta-intkey.com/festucna/www/lope.htm"
+   },
+   {
+    "title": "Lolium perenne (NZ Flora factsheet)",
+    "url": "https://www.nzflora.info/factsheet/taxon/Lolium-perenne.html"
+   },
+   {
+    "title": "Lolium perenne, perennial ryegrass (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Lolium_perenne"
+   },
+   {
+    "title": "Lolium perenne pollen (PalDat)",
+    "url": "https://www.paldat.org/en/pub/Lolium_perenne/102928"
+   }
+  ],
+  "related": [
+   "rn_anther",
+   "rn_stamen",
+   "rn_pollen_grain"
+  ]
+ },
+ {
+  "id": "grass_stigma",
+  "title": "The stigmas: feathery pollen traps",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.003,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_spikelet",
+   "grass_wind_pollination"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Each floret has two white stigmas that stick out of the floret; wind-pollinated plants like grasses have large, feathery ones that catch pollen from the air.",
+  "layers": {
+   "basics": "The stigma is the part of the flower that receives pollen. A grass has two on each flower, and they stick out of the floret, branched like tiny feathers, so that a pollen grain drifting past is likely to touch one.",
+   "deeper": "Stigmas: 2, white (Grass Genera of the World). Wind-pollinated flowers typically have large feathery stigmas (Wikipedia, Anemophily); the sources opened for ryegrass do not describe the branching in detail.",
+   "expert": "The feather branches in the model are drawn as 14 small hairs per stigma, illustrative. Their number and length are not measurements."
+  },
+  "facts": [
+   [
+    "Number per floret",
+    "2, white"
+   ],
+   [
+    "Shape",
+    "feathery (wind-pollinated type)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   },
+   {
+    "title": "Anemophily, wind pollination (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Anemophily"
+   }
+  ],
+  "related": [
+   "rn_style_stigma",
+   "grass_ovary"
+  ]
+ },
+ {
+  "id": "grass_ovary",
+  "title": "The ovary: where the seed grows",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0023,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_spikelet"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "The small rounded base of the pistil in the middle of the floret. After pollination one seed grows in it; the seed and its thin coat form the grain.",
+  "layers": {
+   "basics": "Pollen landing on a stigma sends a tube down to the ovary and fertilises the ovule. The ovary then ripens into a grass fruit in which the seed and the fruit wall are joined into one, a grain (technically a caryopsis).",
+   "deeper": "The ryegrass grain is 2-4 mm long by 0.7-1.5 mm wide (NZ Flora), about 3-4 mm long (DELTA). Grass fruit are described as compressed with a groove along them (Grass Genera of the World).",
+   "expert": "The model draws the ovary at 2.3 mm tall; not measured."
+  },
+  "facts": [
+   [
+    "Grain",
+    "2-4 × 0.7-1.5 mm (NZ Flora)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium perenne (NZ Flora factsheet)",
+    "url": "https://www.nzflora.info/factsheet/taxon/Lolium-perenne.html"
+   },
+   {
+    "title": "Lolium perenne in Grasses of North America, Festuca group (DELTA)",
+    "url": "https://www.delta-intkey.com/festucna/www/lope.htm"
+   },
+   {
+    "title": "Lolium in Grass Genera of the World (DELTA, University of Hamburg)",
+    "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/delta/grass/www/lolium.htm"
+   }
+  ],
+  "related": [
+   "rn_carpel",
+   "rn_ovule",
+   "rn_achene"
+  ]
+ },
+ {
+  "id": "grass_wind_pollination",
+  "title": "Wind pollination: flowers without petals",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 1,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_spike"
+  ],
+  "parts": [
+   "grass_anther",
+   "grass_stigma",
+   "grass_pollen",
+   "grass_hay_fever"
+  ],
+  "processes": [],
+  "summary": "Grass flowers are pollinated by the wind, not by insects: they have no scent or nectar or showy petals, but many anthers on long threads and feathery stigmas.",
+  "layers": {
+   "basics": "Insect-pollinated flowers like the buttercup advertise with colour and nectar. Grasses do the opposite: they save the cost of petals and rely on wind. For that to work, the plant has to make a huge amount of light pollen, hold its anthers in the wind, and have stigmas that can catch a grain from the air.",
+   "deeper": "Wind-pollinated flowers have smooth, light, non-sticky pollen made in enormous numbers, long well-exposed stamens and large feathery stigmas; grasses are the most important producers of airborne allergens in most temperate regions (Wikipedia, Anemophily). In grasses the perianth is reduced to two lodicules (Wikipedia, Poaceae).",
+   "expert": "The sources opened here give no figure for the amount of pollen per anther or per plant."
+  },
+  "facts": [
+   [
+    "Pollen type",
+    "light, smooth, non-sticky, abundant"
+   ],
+   [
+    "Stamens",
+    "long, well exposed"
+   ],
+   [
+    "Stigmas",
+    "large, feathery"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Anemophily, wind pollination (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Anemophily"
+   },
+   {
+    "title": "Poaceae, the grass family (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Poaceae"
+   }
+  ],
+  "related": [
+   "rn_pollination",
+   "bio_pollination_networks",
+   "bio_plant_reproduction",
+   "rn_acris"
+  ]
+ },
+ {
+  "id": "grass_pollen",
+  "title": "Grass pollen",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 4e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_anther",
+   "grass_hay_fever"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A ryegrass pollen grain is a rough sphere about 26 to 50 micrometres across, with a single pore. Each carries the male cells of the plant and, on its surface and inside, proteins that cause hay fever.",
+  "layers": {
+   "basics": "Pollen grains are the male half of the plant's reproduction. They are narrower than a human hair (a hair is 50-100 µm thick), and are carried on the wind. Most land nowhere useful. The scene shows ryegrass-sized grains and a feathery stigma branch.",
+   "deeper": "PalDat describes Lolium perenne pollen as medium-sized (26-50 µm), spheroidal, with one pore with a thickened ring (annulus) and a lid (operculum), three-celled, without a pollen coat. In rain the grains can swell and burst: in laboratory work on ryegrass pollen, osmotic pressure from water makes grains break apart and release sub-pollen particles mostly between 60 and 200 nm across.",
+   "expert": "The grains in the scene are drawn at 35-40 µm and are fewer than a real cloud; sub-pollen particles are not drawn (too small for the scene)."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "26-50 µm (PalDat)"
+   ],
+   [
+    "Pore",
+    "one, with annulus and operculum"
+   ],
+   [
+    "Sub-pollen particles from bursting",
+    "≈ 60-200 nm (laboratory study)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Lolium perenne pollen (PalDat)",
+    "url": "https://www.paldat.org/en/pub/Lolium_perenne/102928"
+   },
+   {
+    "title": "Ryegrass pollen rupture and thunderstorm asthma (Sci Rep, PMC13421526)",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13421526/fullTextXML"
+   }
+  ],
+  "related": [
+   "grass_hay_fever",
+   "rn_pollen_grain",
+   "bio_hypersensitivity_autoimmunity"
+  ]
+ },
+ {
+  "id": "grass_hay_fever",
+  "title": "Grass pollen and hay fever",
+  "kind": "process",
+  "template": "thing",
+  "scale_m": 4e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "grass_pollen",
+   "grass_plant"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "Hay fever is an allergy to pollen. In Britain grass pollen is the commonest trigger, and its season is mainly from May to July.",
+  "layers": {
+   "basics": "In most people pollen causes nothing. In people with hay fever, the immune system treats harmless pollen proteins as a threat, and the result is sneezing, a runny nose and itchy eyes. About one in five people in the UK has hay fever, and the large majority of them are allergic to grass pollen. The grass pollen season can start as early as May and usually peaks in June and July; there are often two peaks, one in the first half of June and one in early July. Counts are often highest in the early morning, between about 5 and 10 am. Dry, windy weather keeps pollen in the air; rain usually washes it out for a while.",
+   "deeper": "The immune system makes IgE antibodies against a pollen protein. The IgE sits on mast cells; when pollen protein cross-links it, the mast cells release histamine and other chemicals (OpenStax Microbiology 19.1). Allergen proteins of perennial ryegrass in the WHO/IUIS list include Lol p 1 (27 kDa, a beta-expansin), Lol p 2 (11 kDa), Lol p 5 (31 kDa). In timothy grass, allergen groups 1 and 5 together account for sensitisation with a prevalence above 90 % (the figures are for timothy, not ryegrass). In thunderstorms, rain can make grains swell and burst into tiny particles that reach deeper into the lungs: 'thunderstorm asthma'.",
+   "expert": "Prevalence figures differ by source and year: about 1 in 5 (Met Office); about 13 million people (Royal Meteorological Society); 26 % of adults and 10-15 % of children (Allergy UK). Asthma + Lung UK and the Royal Meteorological Society say grass pollen affects about 95 % of hay fever sufferers; the Met Office says 'the majority' and 'the vast majority'. Mowing: the sources opened do not say that mowing releases pollen or that regular mowing prevents flowering, so this card does not claim it (but mown grass does not flower)."
+  },
+  "facts": [
+   [
+    "Season (Met Office)",
+    "can start in May; generally peaks in June and July; two peaks, first half of June and early July"
+   ],
+   [
+    "Grass pollen among hay fever sufferers",
+    "≈ 95 % (Asthma + Lung UK; RMetS); \"the vast majority\" (Met Office)"
+   ],
+   [
+    "Hay fever in the UK",
+    "≈ 1 in 5 people (Met Office)"
+   ],
+   [
+    "Ryegrass allergens",
+    "Lol p 1 (27 kDa), Lol p 2 (11 kDa), Lol p 5 (31 kDa)"
+   ],
+   [
+    "Daily peak",
+    "early morning, about 5-10 am (RMetS)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [
+   "Why prevalence figures vary so much between sources, and how climate change will alter the grass pollen season in Britain: not settled by the sources used here."
+  ],
+  "refs": [
+   [
+    "MIC",
+    "19.1",
+    "19-1-hypersensitivities"
+   ],
+   [
+    "BIO",
+    "32.2",
+    "32-2-pollination-and-fertilization"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "A change in the pollen season (Met Office, 2022)",
+    "url": "https://www.metoffice.gov.uk/blog/2022/a-change-in-the-pollen-season-but-is-it-worse-than-normal"
+   },
+   {
+    "title": "What is the pollen forecast this year? (Met Office, 2023)",
+    "url": "https://www.metoffice.gov.uk/blog/2023/whats-the-pollen-forecast-this-year"
+   },
+   {
+    "title": "Pollen levels and hay fever (Asthma + Lung UK press release)",
+    "url": "https://www.asthmaandlung.org.uk/media/press-releases/high-pollen-levels-could-put-lives-millions-risk-charity-warns-11"
+   },
+   {
+    "title": "Achoo! A guide to hay fever and the pollen season (Royal Meteorological Society)",
+    "url": "https://www.rmets.org/metmatters/achoo-metmatters-guide-hay-fever-and-pollen-season"
+   },
+   {
+    "title": "Allergic rhinitis and hay fever fact sheet (Allergy UK)",
+    "url": "https://www.allergyuk.org/resources/allergic-rhinitis-and-hay-fever-fact-sheet/"
+   },
+   {
+    "title": "WHO/IUIS allergen nomenclature: Lol p",
+    "url": "https://www.allergen.org/search.php?allergenname=Lol+p&allergensource=&TaxSource=&TaxOrder=&foodallerg=all&bioname="
+   },
+   {
+    "title": "Grass pollen allergen sensitisation (Int J Mol Sci, PMC12898073)",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12898073/fullTextXML"
+   },
+   {
+    "title": "Ryegrass pollen rupture and thunderstorm asthma (Sci Rep, PMC13421526)",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13421526/fullTextXML"
+   },
+   {
+    "title": "Hypersensitivities (OpenStax Microbiology, 19.1)",
+    "url": "https://openstax.org/books/microbiology/pages/19-1-hypersensitivities"
+   }
+  ],
+  "related": [
+   "bio_hypersensitivity_autoimmunity",
+   "grass_pollen",
+   "grass_wind_pollination"
+  ]
  }
 ]
