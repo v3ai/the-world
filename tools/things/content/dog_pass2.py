@@ -34,8 +34,8 @@ HEARING = WHEAR
 fix('dog', 'expert', 'The model is a Labrador-type male, 57 cm tall at the withers (the top of the shoulders) and 30 kg, inside the breed-standard ranges.',
     'The model is a Labrador-type male, 57 cm tall at the withers (the top of the shoulders) and 30 kg, inside the breed-standard ranges; six Labrador and Golden Retrievers in one 2015 gait study averaged 35 kg and 57 cm. The body is drawn to the standard\'s proportions (see the figure on the card "The dog\'s outside"): a little longer than tall, with the brisket (the breast) at the level of the elbow, half the height above the ground.')
 ext('dog', CATAV)
-fact('dog', 'Height at withers (model)', '≈ 57 cm (UK Kennel Club: dogs 56-57 cm; AKC: 57-62 cm); the coat in the model tops out at ≈ 58 cm')
-fact('dog', 'Body length (model)', '≈ 67 cm from the point of the shoulder to the point of the buttock, about 1.15 times the height (AKC: equal to or slightly longer than the height)')
+fact('dog', 'Height at withers (model)', '≈ 57 cm (UK Kennel Club: dogs 56-57 cm; AKC: 57-62 cm); measured on the model coat: ≈ 57 cm')
+fact('dog', 'Body length (model)', '≈ 67 cm from the point of the shoulder to the point of the buttock, about 1.18 times the height (AKC: equal to or slightly longer than the height)')
 fact('dog', 'Elbow and brisket height (model)', '≈ 29 cm, half the height (AKC: elbow to ground equals half the height at the withers)')
 fact('dog', 'Tail (model)', '≈ 32 cm along its curve, very thick at the base and tapering, the "otter" tail (AKC: no longer than the hock)')
 # skeleton and vertebrae
@@ -106,9 +106,9 @@ def bars2(id, items, ylabel, caption, logy=False): bars(id, items, ylabel, capti
 # proportions (the silhouette is the model's own side view)
 o = json.load(open(os.path.join(os.path.dirname(__file__), 'dog_outline.json')))['pts']
 S = [{'k': 'poly', 'pts': [[round(x, 1), round(y, 1)] for x, y in o], 'fill': '#d9b36f', 'alpha': .35, 'closed': True, 'color': 'dim'},
-     {'k': 'line', 'x1': -44, 'y1': 58, 'x2': 22, 'y2': 58, 'color': 'accent', 'dash': 4}, {'k': 'text', 'x': -44, 'y': 61, 'text': 'height at the withers ≈ 57-58 cm', 'size': 11, 'align': 'left'},
-     {'k': 'line', 'x1': -20, 'y1': 29, 'x2': 20, 'y2': 29, 'color': 'orange', 'dash': 4}, {'k': 'text', 'x': -44, 'y': 31.5, 'text': 'brisket and elbow ≈ 29 cm: half the height', 'size': 11, 'align': 'left'},
-     {'k': 'arrow', 'x1': 25.5, 'y1': -5, 'x2': -41.5, 'y2': -5, 'color': 'green'}, {'k': 'arrow', 'x1': -41.5, 'y1': -5, 'x2': 25.5, 'y2': -5, 'color': 'green'}, {'k': 'text', 'x': -8, 'y': -9, 'text': 'point of shoulder to buttock ≈ 67 cm (1.15 × the height)', 'size': 11, 'align': 'center'},
+     {'k': 'line', 'x1': -44, 'y1': 58, 'x2': 22, 'y2': 58, 'color': 'accent', 'dash': 4}, {'k': 'text', 'x': -44, 'y': 61, 'text': 'height at the withers ≈ 57 cm', 'size': 11, 'align': 'left'},
+     {'k': 'line', 'x1': -20, 'y1': 29, 'x2': 20, 'y2': 29, 'color': 'orange', 'dash': 4}, {'k': 'text', 'x': -44, 'y': 31.5, 'text': 'brisket and elbow ≈ 29 cm: half the height (0.51)', 'size': 11, 'align': 'left'},
+     {'k': 'arrow', 'x1': 25.5, 'y1': -5, 'x2': -41.5, 'y2': -5, 'color': 'green'}, {'k': 'arrow', 'x1': -41.5, 'y1': -5, 'x2': 25.5, 'y2': -5, 'color': 'green'}, {'k': 'text', 'x': -8, 'y': -9, 'text': 'point of shoulder to buttock ≈ 67 cm (1.18 × the height)', 'size': 11, 'align': 'center'},
      {'k': 'line', 'x1': -4, 'y1': 0, 'x2': -4, 'y2': 58, 'color': 'dim', 'dash': 2}]
 FIGS['dog_coat_group'] = {'type': 'geometry', 'range': [-48, 62, -13, 72], 'shapes': S, 'caption': 'The model\'s own side view with the breed standard\'s proportions: a dog a little longer than tall, with the elbow at half the height. Heights and lengths are measured on the model (a 3-D reconstruction from typical proportions); the standard says "equal to or slightly longer than" and "elbow to ground equal to one half of the height" (AKC) and 56-57 cm (UK Kennel Club).', 'aspect': .62}
 

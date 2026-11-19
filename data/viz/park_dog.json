@@ -607,7 +607,7 @@
     "k": "text",
     "x": -44,
     "y": 61,
-    "text": "height at the withers ≈ 57-58 cm",
+    "text": "height at the withers ≈ 57 cm",
     "size": 11,
     "align": "left"
    },
@@ -624,7 +624,7 @@
     "k": "text",
     "x": -44,
     "y": 31.5,
-    "text": "brisket and elbow ≈ 29 cm: half the height",
+    "text": "brisket and elbow ≈ 29 cm: half the height (0.51)",
     "size": 11,
     "align": "left"
    },
@@ -648,7 +648,7 @@
     "k": "text",
     "x": -8,
     "y": -9,
-    "text": "point of shoulder to buttock ≈ 67 cm (1.15 × the height)",
+    "text": "point of shoulder to buttock ≈ 67 cm (1.18 × the height)",
     "size": 11,
     "align": "center"
    },
