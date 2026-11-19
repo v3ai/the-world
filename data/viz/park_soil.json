@@ -76,36 +76,131 @@
   "caption": "The four horizons of the block drawn to scale (1.2 m deep). The depths are typical values chosen for the model; real soils vary from place to place."
  },
  "soil_formation": {
-  "type": "bars",
-  "bars": [
+  "type": "geometry",
+  "range": [
+   0,
+   100,
+   0,
+   52
+  ],
+  "shapes": [
    {
-    "label": "Sicily: rock to soil",
-    "value": 0.1
+    "k": "line",
+    "x1": 36.0,
+    "y1": 8,
+    "x2": 36.0,
+    "y2": 48,
+    "color": "dim",
+    "width": 0.5
    },
    {
-    "label": "SE Australia: lowest maximum",
-    "value": 0.05
+    "k": "text",
+    "x": 36.0,
+    "y": 3,
+    "text": "0.01 mm",
+    "size": 10,
+    "align": "center"
    },
    {
-    "label": "SE Australia: highest maximum",
-    "value": 0.14
+    "k": "line",
+    "x1": 56.0,
+    "y1": 8,
+    "x2": 56.0,
+    "y2": 48,
+    "color": "dim",
+    "width": 0.5
    },
    {
-    "label": "N California: lowest maximum",
-    "value": 0.08
+    "k": "text",
+    "x": 56.0,
+    "y": 3,
+    "text": "0.1 mm",
+    "size": 10,
+    "align": "center"
    },
    {
-    "label": "N California: highest maximum",
-    "value": 2.0
+    "k": "line",
+    "x1": 76.0,
+    "y1": 8,
+    "x2": 76.0,
+    "y2": 48,
+    "color": "dim",
+    "width": 0.5
    },
    {
-    "label": "Earthworm casts (Darwin, Down, 29 years)",
-    "value": 5.6
+    "k": "text",
+    "x": 76.0,
+    "y": 3,
+    "text": "1 mm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "line",
+    "x1": 96.0,
+    "y1": 8,
+    "x2": 96.0,
+    "y2": 48,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 96.0,
+    "y": 3,
+    "text": "10 mm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 40,
+    "text": "S.E. Australia (several sites)",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 49.98,
+    "y": 39.5,
+    "w": 8.94,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 28,
+    "text": "N. California (several sites)",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 54.06,
+    "y": 27.5,
+    "w": 27.96,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 16,
+    "text": "Sicily (one report)",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "circle",
+    "x": 56.0,
+    "y": 17.5,
+    "r": 1.1,
+    "fill": "accent"
    }
   ],
-  "ylabel": "millimetres a year",
-  "logy": true,
-  "caption": "Published rates of turning rock into soil (and Darwin's rate of burying objects under worm casts, 0.22 inch a year = 5.6 mm). Different sites and methods: a guide to the scale, not one number."
+  "caption": "Reported maximum rates of turning rock into soil, each bar spanning the range found across sites (log scale, 0.01 to 10 millimetres a year). A bar is the spread between places, not an uncertainty. Darwin's worm-cast burial, about 5.6 mm a year, is a different process and is left out."
  },
  "soil_pores": {
   "type": "bars",
@@ -129,7 +224,7 @@
   ],
   "ylabel": "% of soil volume",
   "logy": false,
-  "caption": "Volume shares of a typical soil, and the split of the pores in one silt-loam example (Wikipedia, Soil). Real soils vary; wetter soil has more water and less air."
+  "caption": "Volume shares of a typical soil, and the split of the pores in one silt-loam example. Real soils vary; wetter soil has more water and less air."
  },
  "soil_decomposition": {
   "type": "blocks",
@@ -287,12 +382,17 @@
    {
     "from": "nh",
     "to": "no2",
-    "label": "nitrification"
+    "label": "ammonia oxidisers: archaea, bacteria"
    },
    {
     "from": "no2",
     "to": "no3",
-    "label": "nitrification"
+    "label": "nitrite oxidisers"
+   },
+   {
+    "from": "nh",
+    "to": "no3",
+    "label": "comammox (one cell)"
    },
    {
     "from": "no3",
@@ -319,7 +419,7 @@
     "label": "denitrification"
    }
   ],
-  "caption": "The soil nitrogen cycle as the standard accounts describe it. Microbes carry out every step except plant uptake."
+  "caption": "The soil nitrogen cycle. Nitrification can run in two steps by different microbes, or in one step in a single comammox cell. Microbes carry out every step except plant uptake."
  },
  "soil_handful": {
   "type": "table",
@@ -350,12 +450,22 @@
     "estimates ≈ 10⁵ per m²"
    ],
    [
-    "Earthworms",
+    "Earthworms, 28 UK pasture fields (2021 survey)",
     "90 to 300 mm (L. terrestris)",
-    "13 per m² (Hensen, a garden)"
+    "≈ 600 per m² on average, top 10 cm"
+   ],
+   [
+    "Earthworms, English arable (2019 pilot)",
+    "same",
+    "≈ 150 to 350 per m² typical"
+   ],
+   [
+    "Earthworms, one garden (Darwin, Hensen)",
+    "same",
+    "13 per m²"
    ]
   ],
-  "caption": "Published estimates of soil life. They come from different methods and places: use them for scale, not as a count of this block."
+  "caption": "Published estimates of soil life. They come from different methods, depths and places: use them for scale, not as a count of this block. Earthworm counts vary by a factor of 50 between the garden of 1881 and modern pastures, so the old figure is not a typical density."
  },
  "soil_cec": {
   "type": "table",
@@ -393,35 +503,132 @@
     "100 to 300"
    ]
   ],
-  "caption": "Cation-exchange capacity of clay minerals (Wikipedia, Clay minerals) and humus (Donahue, Miller and Shickluna 1977, via Wikipedia, Soil). Single values are mid-range; real clays vary."
+  "caption": "Cation-exchange capacity of clay minerals and, from a 1977 textbook table, of humus. Single values are mid-range; real clays vary."
  },
  "soil_earthworm": {
-  "type": "bars",
-  "bars": [
+  "type": "geometry",
+  "range": [
+   0,
+   100,
+   0,
+   64
+  ],
+  "shapes": [
    {
-    "label": "woodlouse (15 mm)",
-    "value": 15
+    "k": "line",
+    "x1": 36.0,
+    "y1": 8,
+    "x2": 36.0,
+    "y2": 60,
+    "color": "dim",
+    "width": 0.5
    },
    {
-    "label": "Lumbricus: shortest usual (110 mm)",
-    "value": 110
+    "k": "text",
+    "x": 36.0,
+    "y": 3,
+    "text": "10 mm",
+    "size": 10,
+    "align": "center"
    },
    {
-    "label": "Lumbricus: model (170 mm)",
-    "value": 170
+    "k": "line",
+    "x1": 66.0,
+    "y1": 8,
+    "x2": 66.0,
+    "y2": 60,
+    "color": "dim",
+    "width": 0.5
    },
    {
-    "label": "Lumbricus: longest usual (200 mm)",
-    "value": 200
+    "k": "text",
+    "x": 66.0,
+    "y": 3,
+    "text": "100 mm",
+    "size": 10,
+    "align": "center"
    },
    {
-    "label": "burrow depth: usual limit (500 mm)",
-    "value": 500
+    "k": "line",
+    "x1": 96.0,
+    "y1": 8,
+    "x2": 96.0,
+    "y2": 60,
+    "color": "dim",
+    "width": 0.5
+   },
+   {
+    "k": "text",
+    "x": 96.0,
+    "y": 3,
+    "text": "1000 mm",
+    "size": 10,
+    "align": "center"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 52,
+    "text": "woodlouse (up to 16)",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "circle",
+    "x": 42.12,
+    "y": 53.5,
+    "r": 1.1,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 40,
+    "text": "L. terrestris, usual length",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 67.24,
+    "y": 39.5,
+    "w": 7.79,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 28,
+    "text": "L. terrestris, when mature",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "rect",
+    "x": 64.63,
+    "y": 27.5,
+    "w": 15.69,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "text",
+    "x": 2,
+    "y": 16,
+    "text": "the worm in the block",
+    "size": 10,
+    "align": "left"
+   },
+   {
+    "k": "circle",
+    "x": 72.91,
+    "y": 17.5,
+    "r": 1.1,
+    "fill": "accent"
    }
   ],
-  "ylabel": "millimetres",
-  "logy": false,
-  "caption": "The earthworm of the block against the usual range of the species and a woodlouse. Burrows reach 50 cm usually and sometimes much deeper."
+  "caption": "Length of the earthworm in the block against the range for the species and a woodlouse, on a log scale (10 to 1,000 millimetres). A bar spans the range between individuals; a dot is one value. Burrows usually reach 50 cm, and sometimes much deeper."
  },
  "soil_darwin": {
   "type": "bars",

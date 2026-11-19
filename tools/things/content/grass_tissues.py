@@ -22,7 +22,7 @@ BX = [-220, 0, 220]   # three vascular bundles
 ring = lambda cx, cy, r, n: [[round(cx + r * math.cos(2 * math.pi * i / n), 1), round(cy + .85 * r * math.sin(2 * math.pi * i / n), 1), 0] for i in range(n)]
 write({'id': 'grass_leaf_section', 'tag': 'Inside a grass leaf', 'title': 'Inside a ryegrass leaf blade', 'node': 'grass_blade_upper',
   'blurb': 'A slice 700 micrometres wide through a grass blade, showing three of its parallel veins. The upper surface is at the top. Click a cell or a layer.',
-  'note': 'An illustration of the layers of a temperate grass leaf, not a micrograph of ryegrass. The order of the layers and which cell types are present follow published descriptions of the genus (ribbed upper surface; bulliform cells in fans on the upper side; every vascular bundle accompanied by sclerenchyma; bundle sheaths; silica bodies; stomata). The blade thickness (150 µm here), cell sizes, cell counts and the number of chloroplasts per cell are not measured values: they are illustrative. The ribs over the veins are not drawn.',
+  'note': 'An illustration of the layers of a temperate grass leaf, not a micrograph of ryegrass. The order of the layers and which cell types are present follow published descriptions of the genus (ribbed upper surface; bulliform cells in fans on the upper side; every vascular bundle accompanied by sclerenchyma; bundle sheaths; silica bodies; stomata). The blade thickness (150 µm here), cell sizes, cell counts and the number of chloroplasts per cell are not measured values: they are illustrative. The ribs over the veins are not drawn. Guard cells are shown in cross-section, where they look rounded and bean-like; seen from above (the stoma scene) they are dumbbell-shaped. Stomata are drawn on the lower face only.',
   'bg': '#f3efe6', 'center': [0, 75, 0], 'D_um': 520,
   'labels': [
     {'text': 'Upper epidermis (the ribbed side)', 'at': [-340, 150, 40], 'pop': 'epi_top'},
@@ -50,7 +50,7 @@ write({'id': 'grass_leaf_section', 'tag': 'Inside a grass leaf', 'title': 'Insid
 
 # ---------------------------------------------------------------- a grass stoma
 write({'id': 'grass_stoma_scene', 'tag': 'On a grass leaf surface', 'title': 'A grass stoma (leaf pore), seen from above', 'node': 'grass_stoma',
-  'blurb': 'A patch of grass leaf surface about 220 micrometres wide: a pore between two dumbbell-shaped guard cells, with a lens-shaped subsidiary cell on each side. Compare the oak leaf stoma, with its two bean-shaped guard cells and no subsidiary cells. Click a cell.',
+  'blurb': 'A patch of grass leaf surface about 280 micrometres wide: a pore between two dumbbell-shaped guard cells, with a lens-shaped subsidiary cell on each side. Compare the oak leaf stoma, with its two bean-shaped guard cells and no subsidiary cells. Click a cell.',
   'note': 'Schematic. The dumbbell guard cells (bulbous ends, narrow middle) and the two flanking subsidiary cells follow published descriptions of the grass type of stoma; the lengths and widths drawn (a pore about 30 µm long) are illustrative, within the 10 to 80 µm that stomata span across species (Wikipedia: Stoma), and not measured on ryegrass. The elongated epidermal cells and the line of stomata are simplified. In a real leaf the guard cells swell and shrink to open and close the pore; nothing moves here.',
   'bg': '#eef3e6', 'center': [0, 0, 0], 'D_um': 150,
   'labels': [
@@ -68,8 +68,8 @@ write({'id': 'grass_stoma_scene', 'tag': 'On a grass leaf surface', 'title': 'A 
 
 # ---------------------------------------------------------------- a grass root tip
 write({'id': 'grass_root_tip', 'tag': 'In a grass root', 'title': 'The tip of a grass root', 'node': 'grass_root_tip',
-  'blurb': 'The last 1.5 mm of a fibrous root, with the tip at the left: root cap, dividing cells, cells that are lengthening, and root hairs further back. Click a part.',
-  'note': 'Schematic. The order of the zones (root cap, cell division, elongation, maturation with root hairs) is as in textbook descriptions of roots. The length of each zone and the cell sizes are illustrative. Root hairs are drawn 16 µm wide, as in the published range of 15 to 17 µm, and 500 µm long (published range for root hair cells in general: 80 to 1,500 µm; I have no measured ryegrass value).',
+  'blurb': 'The last 1.7 mm of a fibrous root, with the tip at the left: root cap, dividing cells, cells that are lengthening, and root hairs further back. Click a part.',
+  'note': 'Schematic. The order of the zones (root cap, cell division, elongation, maturation with root hairs) is as in textbook descriptions of roots. The length of each zone and the cell sizes are illustrative. Root hairs are drawn 16 µm wide, as in the published range of 15 to 17 µm, and 500 µm long (published range for root hair cells in general: 80 to 1,500 µm; not measured on ryegrass).',
   'bg': '#efe9dc', 'center': [700, 0, 0], 'D_um': 1700,
   'labels': [
     {'text': 'Root cap', 'at': [20, 105, 30], 'pop': 'cap'},
@@ -88,7 +88,7 @@ write({'id': 'grass_root_tip', 'tag': 'In a grass root', 'title': 'The tip of a 
 
 # ---------------------------------------------------------------- the growing point and the tiller base
 write({'id': 'grass_apex', 'tag': 'In a grass shoot base', 'title': 'The growing point and the base of a young leaf', 'node': 'grass_meristem',
-  'blurb': 'About 1 mm across, at the base of a grass shoot: the dome of dividing cells that is the growing point, the youngest leaf wrapping it, and cells further down that store sugar. Click a part.',
+  'blurb': 'A window about 0.4 mm wide and 0.45 mm tall, at the base of a grass shoot: the dome of dividing cells that is the growing point, the youngest leaf wrapping it, and cells further down that store sugar. Click a part.',
   'note': 'Schematic. What is shown follows textbook and extension descriptions: a dome of dividing cells (the shoot apex), leaf primordia round it, and a zone of dividing cells at the base of each growing leaf. Measured for perennial ryegrass: in a growing leaf, cell division is confined to the basal 0.6 to 0.9 mm and cells keep lengthening over the basal 31 to 36 mm (Lolium perenne, kinematic study, Plant Physiology). Everything else, including the cell sizes (about 10 to 40 µm here), the dome size and the number of cells, is illustrative. Ryegrass stores its reserve sugars as fructans in the leaf sheaths and elongating leaf bases (Lolium perenne papers cited on the card); the storage cells are drawn larger than the dividing cells.',
   'bg': '#f3efe6', 'center': [0, 150, 0], 'D_um': 800,
   'labels': [
@@ -107,7 +107,7 @@ write({'id': 'grass_apex', 'tag': 'In a grass shoot base', 'title': 'The growing
 
 # ---------------------------------------------------------------- grass pollen and a stigma
 write({'id': 'grass_pollen', 'tag': 'On the wind', 'title': 'Grass pollen caught by a feathery stigma', 'node': 'grass_pollen',
-  'blurb': 'A box 450 micrometres wide: pollen grains of the size of ryegrass pollen, and the branched hairs of a feathery stigma that catch them. Click a grain or a hair.',
+  'blurb': 'A box about 400 micrometres wide: pollen grains of the size of ryegrass pollen, and the branched hairs of a feathery stigma that catch them. Click a grain or a hair.',
   'note': 'Schematic. Ryegrass pollen grains are 26 to 50 µm across, roughly spherical, each with one pore closed by a lid (PalDat, Lolium perenne): the scene draws them 35 to 40 µm. The stigma branch width, hair spacing and the number of grains are illustrative. The tiny particles that burst pollen releases in rain (about 60 to 200 nm, from laboratory work on ryegrass pollen) are far too small to draw at this scale. The allergen proteins (for example Lol p 1) are not in this explorer\'s molecule set.',
   'bg': '#f4f1e6', 'center': [0, 0, 0], 'D_um': 480,
   'labels': [

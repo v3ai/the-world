@@ -75,8 +75,8 @@
   "summary": "A cut block of park soil 1.5 m across and 1.2 m deep, standing where the lawn meets an oak's roots: layers of soil and rock, stones, roots, fungal threads, crumbs, and the animals that live in it.",
   "layers": {
    "basics": "Soil is the thin skin of the Earth where rock, air, water and living things meet. This block shows it as if the lawn had been cut open with a spade 1.2 metres deep. Under the grass comes a dark layer rich in dead plant material, then a darker, crumbly topsoil full of roots, then a paler subsoil, and at the bottom the pebbly sand that the soil grew from. Across all of it run oak roots, white fungal threads and the burrow of an earthworm, and in the surface layers live animals from a ground beetle to springtails smaller than a grain of rice. Choose a layer with the buttons: Surface, Topsoil, Subsoil, Whole profile cut, Life only (the soil turns see-through so only living things show) or Open the earthworm. Click anything to read about it, and zoom into the crumb or the clay to see what the soil is made of.",
-   "deeper": "Soil is a mixture of mineral grains (sand, silt and clay), dead and decaying organic matter, water, air and a very large number of living things. About half of a typical soil by volume is solid and about half is pore space, shared between water and air. The layers are called horizons, lettered O, A, B and C from the top down; this block draws all four. The soil of the Greenwich Park plateau forms in the Blackheath pebble beds, a layer of sand and rounded flint pebbles that the geological survey notes lie at the top of the park. The block is a model: the rock below is what the survey describes, the depths of the soil layers are typical values, and the animals, roots and stones are placed for illustration.",
-   "expert": "How the picture was made: every solid part is a closed mesh cut by a plane, so you see a true section of each horizon, stone, root and worm. Sizes are real where a source gives them and are stated on each card (the earthworm 170 mm by 8 mm, the woodlouse 15 mm, springtails 1.8 mm, oribatid mites 0.7 mm). Not to scale: fungal threads are drawn about 40 times thicker than the real 4 to 6 micrometre hyphae so that they can be seen, the density of grass blades, roots and crumbs is illustrative, and the colours on the cut face are a code. The park is itself a simplified scene, so this is not a core taken at a particular spot in Greenwich Park."
+   "deeper": "Soil is a mixture of mineral grains (sand, silt and clay), dead and decaying organic matter, water, air and a very large number of living things. About half of a typical soil by volume is solid and about half is pore space, shared between water and air. The layers are called horizons, lettered O, A, B and C from the top down; this block draws all four. The soil of the Greenwich Park plateau forms in the Blackheath pebble beds, a layer of sand and rounded flint pebbles that lies at the top of the park. The block is a typical lawn soil, not a core from the park: the rock below is what the geological survey describes, the depths of the soil layers are typical values, and the animals, roots and stones are placed for illustration. Soils on these beds elsewhere south of London are mapped as acid, sandy soils, so the real soil is probably paler and sandier than a textbook loam.",
+   "expert": "How the picture was made: every solid part is a closed mesh cut by a plane, so you see a true section of each horizon, stone, root and worm. Sizes are real where they are known and are stated on each card (the earthworm 170 mm by 8 mm, the woodlouse 15 mm, springtails 1.8 mm, oribatid mites 0.7 mm). Not to scale: fungal threads are drawn about 40 times thicker than the real 4 to 6 micrometre hyphae so that they can be seen, the density of grass blades, roots and crumbs is illustrative, and the colours on the cut face are a code. The park is itself a simplified scene, so this is not a core taken at a particular spot in Greenwich Park."
   },
   "facts": [
    [
@@ -89,15 +89,15 @@
    ],
    [
     "Rock below",
-    "Blackheath pebble beds (Harwich Formation), per the London Geodiversity Partnership"
+    "Blackheath pebble beds (Harwich Formation)"
    ],
    [
     "Animals",
     "earthworm, woodlouse, ground beetle, springtails, oribatid mites"
    ],
    [
-    "Tissue-style scenes",
-    "a soil crumb, a clay particle, an earthworm body wall"
+    "Zoom-in scenes",
+    "a soil crumb; a clay plate with the ions it holds"
    ]
   ],
   "certainty": "C2",
@@ -126,6 +126,10 @@
    {
     "title": "Soil horizon (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Soil_horizon"
+   },
+   {
+    "title": "Soil Site Reporter, Shirrell Heath association (LandIS, Cranfield University)",
+    "url": "https://www.landis.org.uk/soilsguide/mapunit.cfm?mu=63104"
    }
   ],
   "related": [
@@ -156,8 +160,8 @@
   "summary": "A soil profile is the vertical section through a soil, from the surface down to the rock it grew from; its layers, called horizons, are lettered O, A, B and C.",
   "layers": {
    "basics": "If you dig a pit, the soil is not the same all the way down. Soil scientists name the layers with letters. O is the surface layer made of dead plant material (leaves, grass thatch). A is the topsoil, where mineral grains are mixed with dark, decayed organic matter and where most roots and animals live. B is the subsoil, paler, with less living matter. C is the loose rock or sediment that the soil grew from, hardly changed. In the Whole profile cut view you can see all four with their typical depths.",
-   "deeper": "The letters follow the international descriptions of soil horizons: O is organic material at the top; A is a mineral layer at or near the surface where organic matter has been worked into the mineral grains; B is a mineral layer that formed below A and shows changes such as new structure or clay and iron brought down from above; C is unconsolidated mineral material with little or no soil formation in it. Horizons are roughly parallel to the surface and form in place as water, roots and animals work on the parent material. Their thickness varies from place to place; the depths drawn here (O about 3 cm, A to about 25 cm, B to about 80 cm) are typical values, and no survey of this exact spot supports them. Darwin measured the dark mould that earthworms work as usually 4 or 5 to 10 and even 12 inches thick (about 10 to 30 cm), which is the range of the topsoil drawn here.",
-   "expert": "Different classification systems (the World Reference Base, FAO, the US Soil Taxonomy) use the same master letters with different definitions, so horizon names are not interchangeable between them. Many soils have extra horizons: E, a pale layer from which clay and iron have been washed out, sits between A and B in some acid soils; R is hard rock. The profile drawn here is a simplified generic one for a lawn on sandy and pebbly parent material, not a described profile from a survey. The wavy boundaries between the horizons are drawn to look natural, not measured."
+   "deeper": "The letters follow the international descriptions of soil horizons: O is organic material at the top; A is a mineral layer at or near the surface where organic matter has been worked into the mineral grains; B is a mineral layer that formed below A and shows changes such as new structure or clay and iron brought down from above; C is unconsolidated mineral material with little or no soil formation in it. Horizons are roughly parallel to the surface and form in place as water, roots and animals work on the parent material. Their thickness varies from place to place; the depths drawn here (O about 3 cm, A to about 25 cm, B to about 80 cm) are typical values for a lawn soil, not measured at this spot. Darwin measured the dark mould that earthworms work as usually 4 or 5 to 10 and even 12 inches thick (about 10 to 30 cm), which is the range of the topsoil drawn here.",
+   "expert": "Different classification systems (the World Reference Base, FAO, the US Soil Taxonomy) use the same master letters with different definitions, so horizon names are not interchangeable between them. Many soils have extra horizons: E, a pale layer from which clay and iron have been washed out, sits between A and B in some acid soils; R is hard rock. The profile drawn here is a simplified typical one for a lawn on sandy and pebbly parent material, not a described profile from a survey. On acid sandy parent material the pale E layer is common and humus and iron are washed down into the B layer: soils on Blackheath Beds south of London are mapped as humo-ferric podzols of this kind (LandIS). A clay-enriched B layer, as in many loams, would be less expected here. The wavy boundaries between the horizons are drawn to look natural, not measured."
   },
   "facts": [
    [
@@ -178,7 +182,7 @@
    ],
    [
     "Depths",
-    "typical, not from a local survey"
+    "typical values, not measured here"
    ]
   ],
   "certainty": "C1",
@@ -198,6 +202,10 @@
    {
     "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
     "url": "https://www.gutenberg.org/ebooks/2355"
+   },
+   {
+    "title": "Soil Site Reporter, Shirrell Heath association (LandIS, Cranfield University)",
+    "url": "https://www.landis.org.uk/soilsguide/mapunit.cfm?mu=63104"
    }
   ],
   "related": [
@@ -354,16 +362,16 @@
    "soil_flints"
   ],
   "processes": [],
-  "summary": "The B horizon is the subsoil: a paler, firmer layer below the topsoil, changed by weathering and often enriched with clay and iron brought down from above.",
+  "summary": "The B horizon is the subsoil: a paler, firmer layer below the topsoil that weathering has changed. In many soils it collects clay or iron washed down from above; on acid sandy gravels it is more likely to be sandy.",
   "layers": {
-   "basics": "Under the dark topsoil the soil turns paler and yellower-brown. There is much less dead plant matter here, fewer roots and far fewer animals. This layer is the zone where water seeping down carries very fine clay particles and iron compounds a short way, and leaves some behind. In the block, a thick oak root crosses this layer and its cross-section shows in the cut. Click the clay hotspot to look at a single clay particle.",
-   "deeper": "The B horizon forms below the A horizon and shows soil-forming changes: new structure, new clay formed by weathering, or material moved down from above (a process called illuviation). A few earthworm burrows from the deep-burrowing species go through it and let roots follow them down.",
-   "expert": "The B horizon is drawn between about 25 and 80 cm, a typical depth, not a measured one. Whether the Greenwich plateau soil has a clay-enriched B horizon at a particular place is not established by anything this model uses; the horizon is drawn as a generic subsoil. Whether the subsoil on pebbly sand is loamy or sandy where you stand depends on the exact site."
+   "basics": "Under the dark topsoil the soil turns paler and yellower-brown. There is much less dead plant matter here, fewer roots and far fewer animals. In many soils this is the zone where water seeping down leaves behind fine clay particles and iron compounds. The block is drawn as a typical lawn soil, so it includes a little clay here; the soils on the Blackheath sands and gravels are probably sandier. In the block, a thick oak root crosses this layer and its cross-section shows in the cut. Click the clay hotspot to look at a single clay particle.",
+   "deeper": "The B horizon forms below the A horizon and shows soil-forming changes: new structure, new clay formed by weathering, or material moved down from above (a process called illuviation). On very acid sandy material the moved material is mostly humus and iron rather than clay, giving a podzol; the soil association that LandIS maps over the Blackheath and Woolwich Beds south of London is dominated by such humo-ferric podzols. A few earthworm burrows from the deep-burrowing species go through the B horizon and let roots follow them down.",
+   "expert": "The B horizon is drawn between about 25 and 80 cm, a typical depth, not a measured one. No soil survey of Greenwich Park itself was found, so whether the soil at any spot is podzolic, a brown earth or something disturbed by park use is not known; the horizon is drawn as a generic subsoil. Texture and colour depend on the exact site."
   },
   "facts": [
    [
     "Made of",
-    "mineral grains, clay, iron compounds; little organic matter"
+    "mineral grains, some clay, iron compounds; little organic matter"
    ],
    [
     "Drawn depth",
@@ -372,9 +380,13 @@
    [
     "Living things",
     "few; deep roots and the burrows of deep-burrowing earthworms"
+   ],
+   [
+    "On acid sands",
+    "sandier and less clay-rich than a loam"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
   "open_questions": [],
   "refs": [
    [
@@ -387,6 +399,10 @@
    {
     "title": "Soil horizon (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Soil_horizon"
+   },
+   {
+    "title": "Soil Site Reporter, Shirrell Heath association (LandIS, Cranfield University)",
+    "url": "https://www.landis.org.uk/soilsguide/mapunit.cfm?mu=63104"
    }
   ],
   "related": [
@@ -475,7 +491,7 @@
   "layers": {
    "basics": "Greenwich Park is a hill: its steep slope falls about 25 metres to the River Thames, and the flat top, the Blackheath plateau, is made of sand and gravel. The pebbles in the gravel are rounded black flints, which started as layers in the Chalk, were washed out and rolled for a long time, probably by the sea, and were laid down again. Water falling on the plateau soaks down through the gravel and sand until it meets clay about 15 metres below the top of the slope, and comes out as springs. The block you see is a very thin slice of the top of that story: soil on the sand and pebbles.",
    "deeper": "From the top down, as the London Geodiversity Partnership's geotrail describes it: the Blackheath pebble beds (the Blackheath Member of the Harwich Formation), up to about 10 m thick on Blackheath and at the top of the park; then the sands and clays of the Lambeth Group (including the Woolwich and Reading formations and, at the base, the Upnor Formation sand); then the Thanet Sand; then the Chalk. A spring line appears where the permeable gravel meets clay. The Harwich Formation dates from about 55 million years ago, and the Blackheath pebbles were laid down under the sea. The top surface of the pebble bed is at much the same height, 40 to 45 m, from Blackheath to Erith, 13 km away.",
-   "expert": "Younger deposits lie elsewhere: the Thames flood plain at the foot of the hill is alluvium (clays, sands and pebbles deposited in the last 10,000 years) and the Kempton Park Gravel, a Thames terrace laid down 100,000 to 50,000 years ago, is near the surface a few steps from the river. The block shows only the soil on the plateau's pebble bed. The geotrail does not describe the soil itself; the soil layers in the block and their depths are typical for a soil of this kind, not read from a survey of the park. Chalk lies deep below the park (it was mined nearby, in caverns at Blackheath), and at 1.2 m the block is nowhere near it."
+   "expert": "Younger deposits lie elsewhere: the Thames flood plain at the foot of the hill is alluvium (clays, sands and pebbles deposited in the last 10,000 years) and the Kempton Park Gravel, a Thames terrace laid down 100,000 to 50,000 years ago, is near the surface a few steps from the river. The block shows only the soil on the plateau's pebble bed. The geotrail does not describe the soil itself; the soil layers in the block and their depths are typical for a lawn soil on sand and gravel, not read from a survey of the park. The park register describes the southern half as high gravel plateau and the northern part as low-lying flood plain, separated by a ridge about 25 m high. Chalk lies deep below the park (it was mined nearby, in caverns at Blackheath), and at 1.2 m the block is nowhere near it."
   },
   "facts": [
    [
@@ -495,8 +511,8 @@
     "Lambeth Group clays and sands, Thanet Sand, Chalk"
    ],
    [
-    "Park",
-    "73 hectares"
+    "Park area",
+    "≈ 74 hectares"
    ]
   ],
   "certainty": "C1",
@@ -512,6 +528,10 @@
    {
     "title": "Greenwich Park Geotrail (London Geodiversity Partnership, 2025), pages 2 to 12",
     "url": "https://londongeopartnership.org.uk/wp/wp-content/uploads/2026/05/Greenwich-Park-Geotrail-2025.pdf"
+   },
+   {
+    "title": "Greenwich Park (Parks & Gardens UK, from the Register of Parks and Gardens of Special Historic Interest)",
+    "url": "https://parksandgardens.org/places/greenwich-park"
    }
   ],
   "related": [
@@ -536,8 +556,8 @@
   "processes": [],
   "summary": "A lawn is a dense mat of grass leaves above and a felt of fine roots and dead stems below, which holds the soil together and feeds the layers underneath.",
   "layers": {
-   "basics": "The grass you see is the visible 4 centimetres of a larger plant. Each plant is a tuft of narrow leaves that grow from the base, so mowing does not kill them. Below the surface the same plants have a dense mass of fine roots in the top layer of soil. Together, the leaves and the root mat form the turf. The roots hold the soil, the dead leaves and roots become the thatch, and each time the grass is cut the clippings add dead plant matter that decomposers recycle. In the model, one patch of lawn covers the top of the block and sways a little in a drawn breeze.",
-   "deeper": "Grasses are flowering plants whose leaves grow from the base, which is why they survive grazing and mowing. Their roots are fibrous: many fine roots rather than one tap root. A mat of such roots binds the soil particles; fine roots release sugars and other compounds that feed bacteria and fungi around them (the rhizosphere), and root and fungal products help stick mineral grains into crumbs. Grass is a favourite example of a plant that absorbs nutrients mainly through its fine roots and root hairs.",
+   "basics": "The lawn here is drawn 4 centimetres tall, and what you see is only the upper part of each plant. Each plant is a tuft of narrow leaves that grow from the base, so mowing does not kill them. Below the surface the same plants have a dense mass of fine roots in the top layer of soil. Together, the leaves and the root mat form the turf. The roots hold the soil, the dead leaves and roots become the thatch, and each time the grass is cut the clippings add dead plant matter that decomposers recycle. In the model, one patch of lawn covers the top of the block and sways a little in a drawn breeze.",
+   "deeper": "Grasses are flowering plants whose leaves grow from the base, which is why they survive grazing and mowing. Their roots are fibrous: many fine roots rather than one tap root. A mat of such roots binds the soil particles; fine roots release sugars and other compounds that feed bacteria and fungi around them (the rhizosphere), and root and fungal products help stick mineral grains into crumbs. Like other plants, grass absorbs most of its water and nutrients through its fine roots and root hairs.",
    "expert": "The block draws 5,000 blades, each 4 cm high, as five-triangle strips in tufts; the number is illustrative and real lawns have far more. The species mix is not modelled (a typical British lawn contains several grasses and often white clover, a nitrogen-fixing legume; see the nitrogen card). Cellulose, the main structural material of the blades, can be viewed as a molecule fragment (cellotriose)."
   },
   "facts": [
@@ -602,7 +622,7 @@
   "layers": {
    "basics": "Each autumn an oak drops its leaves. They lie on the ground and are the raw material of the O horizon. Fungi and bacteria soften them, woodlice and springtails and mites chew them, and earthworms pull pieces down into their burrows and eat them. Over time the leaf is eaten, digested, mixed with mineral grains and turned into the dark organic matter of the topsoil. The leaf shown is about the size of a real oak leaf, 10 centimetres long.",
    "deeper": "Leaf litter is mostly cellulose and lignin, the same materials as wood, plus smaller amounts of sugars, proteins and minerals. Soft parts go first; tough, lignin-rich parts last. Decomposition is the work of many organisms in sequence, not of one. Mixing litter into the mineral soil protects some of its carbon from further decay.",
-   "expert": "The oak leaf in the card is drawn from a lobed outline 8 to 12 cm long (the oak card gives 10 to 12 cm); 46 leaves are scattered with a lean to the oak side. How fast a leaf disappears depends on climate, the leaf and the animals present; no rate is given in this model. Cellulose can be viewed as a molecule."
+   "expert": "The oak leaf in the card is drawn from a lobed outline 8 to 12 cm long (the oak card gives 10 to 12 cm); 46 leaves are scattered with a lean to the oak side. How fast a leaf disappears depends on climate, the leaf and the animals present; the model gives no rate. Cellulose can be viewed as a molecule."
   },
   "facts": [
    [
@@ -666,7 +686,7 @@
   "layers": {
    "basics": "The stones in this block are flints. Flint is a very hard stone made of quartz (silica) in crystals so small you cannot see them, which formed as lumps inside the Chalk, long before the sand above it. When the Chalk wore away, the flints were washed out and tumbled until they were rounded, and were laid down again in the Blackheath pebble bed. Break one and the edge is sharp, which is why flint was used for tools. In the block they are thickest in the bottom layer; a few have worked up into the soil and one or two lie on the lawn.",
    "deeper": "Flint is a cryptocrystalline form of quartz (silicon dioxide, SiO2), found chiefly as nodules in chalk and limestone, with a dark grey or black interior and usually a white rough rind. The geotrail says the Blackheath pebbles are all flint that originated as layers within the White Chalk, that they were rounded by long transport, probably by the sea, and that the size of the pebbles implies deposition by high-energy currents. Because flint is so resistant to weathering, it stays as the softer minerals around it break down. Quartz can be viewed as a crystal.",
-   "expert": "Pebble sizes in the block (2.4 to 7 cm) and their number are model choices; the sources say the pebbles are rounded flint but give no size. In the cut, each pebble shows a dark cross-section. The quartz crystal you can open from this card is a lattice of alpha quartz, the mineral flint is made of, not the microcrystalline texture of flint itself."
+   "expert": "Pebble sizes in the block (2.4 to 7 cm) and their number are model choices; what is known is that the pebbles are rounded flint. In the cut, each pebble shows a dark cross-section. The quartz crystal you can open from this card is a lattice of alpha quartz, the mineral flint is made of, not the microcrystalline texture of flint itself."
   },
   "facts": [
    [
@@ -726,16 +746,16 @@
    "soil_geology"
   ],
   "processes": [],
-  "summary": "Soil forms slowly, as rock breaks down and living things add organic matter; where rates have been measured they are tenths of a millimetre of new soil a year, so a few centimetres take centuries.",
+  "summary": "Soil forms slowly, as rock breaks down and living things add organic matter. Where it has been measured, the fastest rates of turning rock into soil range from about 0.05 to 2 millimetres a year, so a few centimetres take centuries.",
   "layers": {
-   "basics": "Soil is made from rock by weathering: rain, frost and chemistry break rock into smaller pieces, and plants, fungi, bacteria and animals mix in dead matter. Time matters most. It takes decades to several thousand years for a soil to develop a profile with layers. Where rates have been measured they are tiny: at some sites about a tenth of a millimetre of rock becomes soil each year, so a centimetre of soil can take about a hundred years. Earthworms speed up the mixing: Darwin buried chalk on a field and found it seven inches deep 29 years later.",
-   "deeper": "Five things shape a soil (the classical factors named by Jenny in 1941): the parent material, the climate, the topography, the organisms, and the time. Rates of soil production depend on how thick the soil already is: the model of the soil production function says the rate falls roughly exponentially as the soil thickens, from a maximum P0 that was found to range from 0.08 to 2.0 mm a year for sites in northern California and 0.05 to 0.14 mm a year for sites in south-east Australia. In Sicily the production rate was reported as approximately one tenth of a millimetre a year. These are rates of turning rock into soil; they say nothing about this particular block.",
-   "expert": "No measured rate of soil formation for Greenwich Park is used here. Chemical weathering roughly doubles for each 10 degrees C rise in temperature but depends strongly on water. At 0.1 mm a year a centimetre takes 100 years (my division of 10 mm by 0.1 mm per year); a soil 25 cm deep would need about 2,500 years at that rate. The topsoil of old pasture can also thicken from above, because earthworms bring fine earth up: Darwin's measurement is on the Darwin card."
+   "basics": "Soil is made from rock by weathering: rain, frost and chemistry break rock into smaller pieces, and plants, fungi, bacteria and animals mix in dead matter. Time matters most. It takes decades to several thousand years for a soil to develop a profile with layers. Where rates have been measured they are small: at some sites around a tenth of a millimetre of rock becomes soil each year, so a centimetre of soil can take about a hundred years. Earthworms speed up the mixing in a different way: Darwin buried chalk on a field and found it seven inches deep 29 years later, because worm casts piled up on top of it.",
+   "deeper": "Five things shape a soil, the classical factors named by Jenny in 1941: the parent material, the climate, the topography, the organisms and the time. Rates of soil production depend on how thick the soil already is: the soil production function says the rate falls roughly exponentially as the soil thickens, from a maximum P0 that was reported to range from 0.08 to 2.0 mm a year for sites in northern California and 0.05 to 0.14 mm a year for sites in south-east Australia. In Sicily a production rate of approximately one tenth of a millimetre a year was reported. These are rates of turning rock into soil, a different process from the burial of objects by worm casts, and they say nothing about this particular block.",
+   "expert": "No measured rate of soil formation for Greenwich Park is used here. Chemical weathering roughly doubles for each 10 degrees C rise in temperature but depends strongly on water. At 0.1 mm a year, 10 mm of soil takes 100 years, and a soil 25 cm deep would need about 2,500 years. The topsoil of old pasture can also thicken from above, because earthworms bring fine earth up: Darwin's measurement is on the Darwin card. The rates quoted here are summaries of published field studies at particular sites; they are not typical of every soil."
   },
   "facts": [
    [
-    "Typical rate of rock to soil",
-    "≈ 0.05 to 2 mm a year (maximum rate, from published sites)"
+    "Maximum rate of rock to soil, reported sites",
+    "≈ 0.05 to 2 mm a year"
    ],
    [
     "Sicily example",
@@ -1189,7 +1209,7 @@
    ],
    [
     "Fungi in garden soil",
-    "≈ 10⁶ per gram (Bridge and Spooner 2001, via Wikipedia)"
+    "≈ 10⁶ per gram"
    ],
    [
     "Does",
@@ -1253,8 +1273,8 @@
   "summary": "A dead leaf is recycled by a relay of animals, fungi and bacteria: the animals shred it, the fungi and bacteria digest it, and carbon dioxide, mineral nutrients and humus come out.",
   "layers": {
    "basics": "When a leaf falls it is not simply 'rotting'. First woodlice, springtails, mites and earthworms bite it into smaller pieces and pull some of it into the soil. Fungi and bacteria then digest those pieces from outside, using enzymes. Tiny nematodes and other animals graze on the bacteria and fungi. At the end, the carbon from the leaf has gone back to the air as carbon dioxide (breathed out by all these organisms), the nutrients are back in the soil water where roots can take them up, and a dark remnant called humus is left in the soil. Without this recycling the forest floor would be buried in its own dead leaves.",
-   "deeper": "Different organisms do different jobs. Woodlice are detritivores that fragment plant matter without grinding it finely, so they contribute little to mineralisation themselves; oribatid mites help break down detritus and distribute fungi; springtails commonly eat fungal threads and spores; nematodes can eat up to 5,000 bacteria a minute; earthworms swallow soil and litter and grind it in a gizzard. Fungi and bacteria do most of the chemical breakdown. The decomposers are respiring: the carbon in leaf sugars and cellulose goes back to the air as carbon dioxide.",
-   "expert": "The speed of decomposition depends on temperature, moisture, the leaf and the community; no rate is given here, and the relay is simplified (real food webs are far more tangled). The cards for each animal give the facts and sources."
+   "deeper": "Different organisms do different jobs. Woodlice are detritivores that fragment plant matter without grinding it finely, so they contribute little to mineralisation themselves; oribatid mites help break down detritus and distribute fungi; springtails commonly eat fungal threads and spores; nematodes graze on bacteria and fungi; earthworms swallow soil and litter and grind it in a gizzard. Fungi and bacteria do most of the chemical breakdown. The decomposers are respiring: the carbon in leaf sugars and cellulose goes back to the air as carbon dioxide.",
+   "expert": "The speed of decomposition depends on temperature, moisture, the leaf and the community; the relay is simplified (real food webs are far more tangled). The cards for each animal give the facts and sources."
   },
   "facts": [
    [
@@ -1340,8 +1360,8 @@
   "summary": "The world's soils and litter hold about 1,500 to 2,400 petagrams of carbon, roughly two to three times as much as the whole atmosphere, and more than the living plants.",
   "layers": {
    "basics": "Plants take carbon dioxide from the air and build their bodies from it. When plants and animals die, much of that carbon goes into the soil as dead roots, leaves and the dark organic matter humus. Across the Earth, soil and litter hold roughly twice to three times as much carbon as is in the whole atmosphere, and more than the living plants do. That is why the soil under your feet matters for the climate: a small change in how much carbon soils hold is a large change compared with what is in the air. The soil in this block is a very small piece of that store.",
-   "deeper": "The IPCC Fifth Assessment Report gives these reservoir sizes in petagrams of carbon (1 PgC = 10^15 g = a thousand million tonnes): the atmosphere, 828 PgC (at a carbon dioxide level of about 390.5 parts per million in 2011); living plants (vegetation), 450 to 650 PgC; dead organic matter in litter and soils, 1,500 to 2,400 PgC. There is additional old soil carbon in wetland soils (300 to 700 PgC) and in permafrost soils (about 1,700 PgC), with some overlap with the other numbers. Plants take about 123 ± 8 PgC a year out of the air by photosynthesis; plant, microbial and animal respiration puts carbon back. Dividing the ranges gives soils at about 1.8 to 2.9 times the atmosphere (my calculation).",
-   "expert": "The ranges are wide because soil carbon is hard to measure: it varies from place to place and with depth, and surveys differ in how deep they count. The 1,500 to 2,400 PgC figure is traced in the report to a 1996 compilation (Batjes) and the plant figure to Prentice and colleagues (2001). How long carbon stays in the soil depends on the soil and the climate; warming might speed decomposition, which is an active research question, not settled here. The block holds a vanishingly small share of the total."
+   "deeper": "The IPCC Fifth Assessment Report gives these reservoir sizes in petagrams of carbon (1 PgC = 10^15 g = a thousand million tonnes): the atmosphere, 828 PgC (at a carbon dioxide level of about 390.5 parts per million in 2011); living plants (vegetation), 450 to 650 PgC; dead organic matter in litter and soils, 1,500 to 2,400 PgC. There is additional old soil carbon in wetland soils (300 to 700 PgC) and in permafrost soils (about 1,700 PgC), with some overlap with the other numbers. Plants take about 123 ± 8 PgC a year out of the air by photosynthesis; plant, microbial and animal respiration puts carbon back. Dividing the ranges, 1,500 and 2,400 by 828, puts litter and soils at about 1.8 to 2.9 times the carbon in the atmosphere.",
+   "expert": "The ranges are wide because soil carbon is hard to measure: it varies from place to place and with depth, and surveys differ in how deep they count. The 1,500 to 2,400 PgC figure is traced in the report to a 1996 compilation (Batjes) and the plant figure to Prentice and colleagues (2001). How long carbon stays in the soil depends on the soil and the climate; whether warming will speed decomposition and release more of it is an active research question. The block holds a vanishingly small share of the total."
   },
   "facts": [
    [
@@ -1404,11 +1424,11 @@
    "soil_earthworm"
   ],
   "processes": [],
-  "summary": "Plants need nitrogen, but the air's nitrogen gas is useless to them until bacteria change it: in soil, fixation, ammonification, nitrification and uptake form a cycle driven by microbes.",
+  "summary": "Plants need nitrogen, but the air's nitrogen gas is useless to them until microbes change it: in soil, fixation, ammonification, nitrification and uptake form a cycle driven mostly by microbes.",
   "layers": {
-   "basics": "Four-fifths of the air is nitrogen gas, but plants cannot use it. A few kinds of bacteria can turn it into ammonia, a process called nitrogen fixation: some live free in the soil, and some live in swellings (nodules) on the roots of clover and other legumes, such as clover. Other microbes break down dead plant and animal matter and release ammonium. Others change ammonium to nitrate, which roots take up easily, and which can be washed away. The oak in the block gets part of its nitrogen through its fungal partners. Earthworm casts are richer in nitrogen than the soil around them.",
-   "deeper": "Soil steps, as described in the standard accounts: nitrogenase, the enzyme complex that reduces nitrogen gas (N2) to ammonia (NH3), is found in free-living bacteria such as Azotobacter and in rhizobia living in legume root nodules, and it is degraded by oxygen. N2 + 16 ATP + 16 H2O + 8 e- + 8 H+ gives 2 NH3 + H2 + 16 ADP + 16 Pi, so fixing nitrogen is energetically costly. Ammonification: bacteria and fungi convert organic nitrogen into ammonia and ammonium. Nitrification: Nitrosomonas oxidise ammonia to nitrite and Nitrobacter oxidise nitrite to nitrate. Denitrification: bacteria such as Pseudomonas reduce nitrate back to nitrogen gas without oxygen. Assimilation: plants absorb nitrate or ammonium by their root hairs. Nitrate is very soluble and soils hold anions poorly, so it can leach into groundwater. About 30 % of total fixed nitrogen is made industrially by the Haber-Bosch process.",
-   "expert": "Darwin quoted analyses by Dr Gilbert of earthworm castings from a lawn: 0.35 (per cent) nitrogen, two to three times as much as ordinary arable surface soil. This block does not model nodules or nitrifying bacteria as parts: the bacteria in the crumb scene are not identified by species, and the nitrogen-fixing legumes of the lawn are not drawn. Ammonium and nitrate are available as molecules from the soil scenes, and clay particles can hold ammonium as one of their exchangeable cations."
+   "basics": "Four-fifths of the air is nitrogen gas, but plants cannot use it. A few kinds of bacteria can turn it into ammonia, a process called nitrogen fixation: some live free in the soil, and some live in swellings (nodules) on the roots of clover and other legumes. Other microbes break down dead plant and animal matter and release ammonium. Others change ammonium to nitrate, which roots take up easily and which can be washed away. The oak in the block gets part of its nitrogen through its fungal partners. Earthworm casts are richer in nitrogen than the soil around them.",
+   "deeper": "Soil steps, as the standard accounts describe them. Fixation: nitrogenase, the enzyme complex that reduces nitrogen gas (N2) to ammonia (NH3), is found in free-living bacteria such as Azotobacter and in rhizobia living in legume root nodules, and it is damaged by oxygen. The overall reaction, N2 + 16 ATP + 16 H2O + 8 e- + 8 H+ gives 2 NH3 + H2 + 16 ADP + 16 Pi, is costly in energy. Ammonification: bacteria and fungi convert organic nitrogen into ammonia and ammonium. Nitrification, oxidising ammonia to nitrite and then nitrate: the textbook account names Nitrosomonas for the first step and Nitrobacter for the second, but in soils the ammonia-oxidisers include archaea as well as bacteria (in a survey of 12 soils, archaeal amoA genes were up to 3,000 times more abundant than bacterial ones), and since 2015 some Nitrospira bacteria have been shown to do both steps in one cell (complete ammonia oxidisers, or comammox). Which group does most of the work varies with the soil, so Nitrosomonas and Nitrobacter are examples, not the whole story. Denitrification: bacteria such as Pseudomonas reduce nitrate back to nitrogen gas without oxygen. Assimilation: plants absorb nitrate or ammonium through their roots. Nitrate is very soluble and soils hold anions poorly, so it can leach into groundwater. About 30 % of total fixed nitrogen is made industrially by the Haber-Bosch process.",
+   "expert": "Darwin quoted analyses by Dr Gilbert of earthworm castings from a lawn: 0.35 (per cent) nitrogen, two to three times as much as ordinary arable surface soil. This block does not model nodules or nitrifying microbes as parts: the bacteria in the crumb scene are not identified by species, and the nitrogen-fixing legumes of the lawn are not drawn. Ammonium and nitrate are available as molecules from the soil scenes, and clay particles can hold ammonium as one of their exchangeable cations. How the ammonia-oxidising archaea, bacteria and comammox share the work in a particular soil is an area of active research."
   },
   "facts": [
    [
@@ -1417,14 +1437,14 @@
    ],
    [
     "Nitrification",
-    "ammonia to nitrite (Nitrosomonas) to nitrate (Nitrobacter)"
+    "ammonia to nitrite to nitrate, by ammonia-oxidising archaea and bacteria, nitrite-oxidising bacteria, and comammox Nitrospira"
    ],
    [
     "Denitrification",
     "nitrate to N2 without oxygen"
    ],
    [
-    "Worm casts (Darwin, via Gilbert)",
+    "Worm casts",
     "0.35 nitrogen, 2 to 3 times arable surface soil"
    ],
    [
@@ -1432,8 +1452,10 @@
     "16 ATP for 2 NH3"
    ]
   ],
-  "certainty": "C1",
-  "open_questions": [],
+  "certainty": "C2",
+  "open_questions": [
+   "How much of soil nitrification is done by ammonia-oxidising archaea, by ammonia-oxidising bacteria and by comammox bacteria, and how that depends on acidity and fertiliser, is still being worked out."
+  ],
   "refs": [
    [
     "BIO",
@@ -1461,6 +1483,18 @@
     "url": "https://en.wikipedia.org/wiki/Nitrogen_cycle"
    },
    {
+    "title": "Leininger et al. 2006: Archaea predominate among ammonia-oxidizing prokaryotes in soils (Nature)",
+    "url": "https://doi.org/10.1038/nature04983"
+   },
+   {
+    "title": "Daims et al. 2015: Complete nitrification by Nitrospira bacteria (Nature)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5152751/"
+   },
+   {
+    "title": "van Kessel et al. 2015: Complete nitrification by a single microorganism (Nature)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4878690/"
+   },
+   {
     "title": "Darwin, The Formation of Vegetable Mould through the Action of Worms (1881), Project Gutenberg",
     "url": "https://www.gutenberg.org/ebooks/2355"
    }
@@ -1486,11 +1520,11 @@
    "soil_decomposition"
   ],
   "processes": [],
-  "summary": "A handful of soil holds billions of microbes and, depending on where it is, thousands of larger animals; the numbers are estimates, and they vary widely from place to place.",
+  "summary": "A handful of soil holds billions of microbes and, depending on where it is, hundreds of larger animals; the numbers are estimates, and they vary widely from place to place.",
   "layers": {
-   "basics": "There is no single answer, because soils differ so much, but every estimate is enormous. In one gram of soil (a pinch) there are of the order of a hundred million bacteria, and in a teaspoon of productive soil between a hundred million and three billion. Fungi: around a million per gram of garden soil. Larger animals are fewer but still many: across a square metre of a lawn there may be up to about a hundred thousand springtails and, in some soils, a million or more nematodes, and about a dozen earthworms in one old count of a garden. Soil is also home to more kinds of life than any other habitat: one recent review estimates that about 59 per cent of all species live in soil, with a range of plus or minus 15 per cent.",
-   "deeper": "Sizes, from the soil biology classification: macrofauna 2 to 20 mm (earthworms, woodlice, ants), mesofauna 100 micrometres to 2 mm (mites, springtails, small worms), and microfauna and microflora 1 to 100 micrometres (protozoa, nematodes, bacteria and fungi). The numbers: mean prokaryote density roughly 10^8 per gram of soil; bacteria 100 million to 3 billion in a teaspoon of productive soil (Hoorman 2011); fungi about 10^6 per gram of garden soil (Bridge and Spooner 2001); nematodes often more than a million per square metre, about 90 % of them in the top 15 cm; springtails estimates of 100,000 per square metre; Hensen's count of earthworms in a garden, 133,000 per hectare (13 per square metre), reported by Darwin.",
-   "expert": "Counting soil life is hard: most microbes cannot be grown in a dish and are counted by chemical methods, and animals are extracted or dug and sorted by hand, so every figure is an estimate with a method behind it. The 59 ± 15 % figure for the share of species in soil comes from Anthony and colleagues (PNAS 2023), who reviewed the biodiversity literature and found that including phages brings the estimate down to about 21 %. Figures here come from secondary summaries of the primary papers; read the papers for the details."
+   "basics": "There is no single answer, because soils differ so much, but every estimate is enormous. In one gram of soil (a pinch) there are of the order of a hundred million bacteria, and in a teaspoon of productive soil between a hundred million and three billion. Fungi: around a million per gram of garden soil. Larger animals are fewer but still many: a square metre of farm pasture in the UK has been found to hold hundreds of earthworms in its top 10 centimetres, against only 13 in one garden counted in Darwin's day. Soil is also home to more kinds of life than any other habitat: one recent review estimates that about 59 per cent of all species live in soil, with a spread of plus or minus 15 per cent.",
+   "deeper": "Sizes, from the soil biology classification: macrofauna 2 to 20 mm (earthworms, woodlice, ants), mesofauna 100 micrometres to 2 mm (mites, springtails, small worms), and microfauna and microflora 1 to 100 micrometres (protozoa, nematodes, bacteria and fungi). The numbers: mean prokaryote density roughly 10^8 per gram of soil; bacteria 100 million to 3 billion in a teaspoon of productive soil; fungi about 10^6 per gram of garden soil; nematodes often more than a million per square metre, about 90 % of them in the top 15 cm; springtails up to about 100,000 per square metre in some estimates. Earthworms, two counts a century and a half apart: Hensen's garden count quoted by Darwin, 53,767 per acre, which is 13 per square metre; and a modern survey of 28 pasture fields on UK farms (Hodson and colleagues 2021), whose totals of 13,298 worms from about 530 pits of 20 by 20 centimetres, dug to 10 centimetres, work out at roughly 25 worms per pit, about 600 per square metre. A pilot survey of English farms (Stroud 2019) quotes 150 to 350 per square metre as typical for arable soils and 400 or more as high. Methods, depth and season differ, so these are not a trend.",
+   "expert": "Counting soil life is hard: most microbes cannot be grown in a dish and are counted by chemical methods, and animals are extracted or dug and sorted by hand, so every figure is an estimate with a method behind it. The 59 ± 15 % figure for the share of species in soil comes from Anthony and colleagues (PNAS 2023), who reviewed the biodiversity literature. It is the average of their low, middle and high estimates, with the spread among those three, and it leaves out phages (viruses of bacteria); including the very numerous phages brings the soil share down to about 21 ± 11 %. The total number of species on Earth, soil or not, is itself uncertain by orders of magnitude."
   },
   "facts": [
    [
@@ -1510,17 +1544,25 @@
     "estimates up to ≈ 10⁵ per m²"
    ],
    [
-    "Earthworms",
-    "13 per m² in Hensen's garden count (Darwin)"
+    "Earthworms, modern UK pastures",
+    "≈ 600 per m² on average (28 fields, top 10 cm)"
+   ],
+   [
+    "Earthworms, English arable soils",
+    "≈ 150 to 350 per m² typical"
+   ],
+   [
+    "Earthworms, one garden in Darwin's day",
+    "13 per m² (Hensen)"
    ],
    [
     "Share of Earth's species in soil",
-    "59 ± 15 %"
+    "59 ± 15 % (21 ± 11 % with phages)"
    ]
   ],
   "certainty": "C2",
   "open_questions": [
-   "How many species live in soil is uncertain by an order of magnitude or more; most microbial species are still unnamed."
+   "The number of species on Earth, and so the number in soil, is uncertain by orders of magnitude; most microbial species are still unnamed."
   ],
   "refs": [
    [
@@ -1558,6 +1600,14 @@
    {
     "title": "Anthony, Bender and van der Heijden: Enumerating soil biodiversity (PNAS 2023)",
     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10437432/"
+   },
+   {
+    "title": "Hodson et al. 2021: Earthworm distributions are not driven by measurable soil properties (PLoS ONE)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8404981/"
+   },
+   {
+    "title": "Stroud 2019: Soil health pilot study in England, an on-farm earthworm survey (PLoS ONE)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6382109/"
    }
   ],
   "related": [
@@ -1584,9 +1634,9 @@
   "processes": [],
   "summary": "Clay particles are the smallest mineral grains in soil, less than two thousandths of a millimetre across, flat plates with electrically charged surfaces that hold water and nutrients.",
   "layers": {
-   "basics": "Soil grains come in three size groups. Sand is the biggest, silt is in between, and clay is the smallest: under 2 micrometres, too small to see even with a good lens. Clay particles are not tiny bits of ordinary rock: they are flat plates made of layers of silicon, aluminium and oxygen. Their flat surfaces carry electric charge, which lets them hold on to nutrient ions such as potassium and ammonium. Look at a clay particle, drawn inside the clay size range, with the ions it holds.",
+   "basics": "Soil grains come in three size groups. Sand is the biggest, silt is in between, and clay is the smallest: under 2 micrometres, too small to see even with a good lens. Clay particles are not tiny bits of ordinary rock: they are flat plates made of layers of silicon, aluminium and oxygen. Their flat surfaces carry electric charge, which lets them hold on to nutrient ions such as potassium and ammonium. Look at clay plates, drawn here 1.4 to 1.8 micrometres wide, inside the clay size range, with the ions they hold.",
    "deeper": "On the ISO scale used here, sand is 63 micrometres to 2 mm, silt 2 to 63 micrometres, and clay below 2 micrometres (some classification systems put the clay limit at 4 micrometres). Clay minerals are layered phyllosilicates built of sheets of silica tetrahedra and alumina octahedra; kaolinite, a 1:1 clay, forms pseudohexagonal plates, and its layers are uncharged and held together by hydrogen bonds. 2:1 clays carry a net negative charge on their layers, which attracts cations; the interlayer space of smectite can also hold water.",
-   "expert": "How much clay the soil of the Greenwich plateau has at any particular place is not given by the geological sources used here; the clay in the B horizon is drawn as a generic presence."
+   "expert": "How much clay the soil of the Greenwich plateau has at any particular place is not known: the clay in the B horizon is drawn as a typical presence, and soils on sandy gravels usually hold less clay than a loam."
   },
   "facts": [
    [
@@ -1662,7 +1712,7 @@
   "layers": {
    "basics": "Many nutrients are dissolved as ions: atoms or small molecules with an electric charge. Calcium, magnesium, potassium and ammonium carry a positive charge. The surfaces of clay and humus carry negative charge, so these positive ions stick to them like iron filings to magnets, and are held there instead of draining away with the rain. The amount of positive charge a soil can hold is called its cation-exchange capacity, and it is why a clay or humus-rich soil is fertile for longer than a sandy one. Nitrate, which is negative, is not held, and can be washed away.",
    "deeper": "Cation-exchange capacity (CEC) counts charge, not ions: it is reported in centimoles of charge per kilogram (older texts use milliequivalents per 100 g, which is the same number). A soil of 10 cmol/kg could hold 10 cmol of sodium but only 5 cmol of calcium, because calcium carries two charges. Negative charge comes from two sources: permanent charge, from substituting lower-charge elements for aluminium or silicon in the clay layers (it does not depend on pH), and variable charge, from hydroxyl groups on clay edges and from groups on organic matter, which lose protons at normal soil pH. The ions are held in a diffuse layer with their water shells and are easily replaced by others. Typical values in milliequivalents per 100 g: kaolinite 3, halloysite 12, illite 25, chlorite 40, smectite 85, vermiculite 150; humus 100 to 300.",
-   "expert": "The scene draws a clay plate seen edge-on and flat-on at a width inside the clay size range (1 micrometre across) with ions drawn about 200 times too large (a hydrated cation is a fraction of a nanometre across): the number and place of the ions are illustrative. Values differ between sources and even for one mineral (the table gives 3 for kaolinite, other sources give 1 to 15 or 3 to 15)."
+   "expert": "The scene draws three clay plates 1.4 to 1.8 micrometres wide, inside the clay size range (the scale bar is 1 micrometre), with ions drawn about 200 times too large (a hydrated cation is a fraction of a nanometre across): the number and place of the ions are illustrative. Values differ between sources and even for one mineral (the table gives 3 for kaolinite, other sources give 1 to 15 or 3 to 15)."
   },
   "facts": [
    [
@@ -1675,7 +1725,7 @@
    ],
    [
     "Kaolinite",
-    "≈ 3 meq/100 g (sources give 1 to 15)"
+    "≈ 3 meq/100 g (published values range from 1 to 15)"
    ],
    [
     "Smectite",
@@ -1683,7 +1733,7 @@
    ],
    [
     "Humus",
-    "≈ 100 to 300 meq/100 g"
+    "high, of the order of 100 to 300 meq/100 g in textbook tables"
    ],
    [
     "Not held",
@@ -1831,7 +1881,7 @@
    "heart",
    "spinal_cord"
   ],
-  "did_you_know": "Charles Darwin published a whole book about earthworms in 1881, The Formation of Vegetable Mould through the Action of Worms, and called worms animals that have played an important part in the history of the world.",
+  "did_you_know": "Charles Darwin published a whole book about earthworms in 1881, The Formation of Vegetable Mould through the Action of Worms, and wrote that it may be doubted whether there are many other animals which have played so important a part in the history of the world as these lowly organised creatures.",
   "where": "soil_block"
  },
  {
@@ -1850,7 +1900,7 @@
   "layers": {
    "basics": "The front of the earthworm ends in a small rounded lobe that hangs over the mouth. The worm uses it to grip leaves and to feel its way. It has no eyes, but the front end is the most sensitive part of the body. It has no jaws or teeth of any kind; it pulls food in with its muscular pharynx and grinds it later inside.",
    "deeper": "Darwin described the lobe (lip) as used for prehension, and the pharynx behind the mouth as pushed forward when the animal eats. The nerve ring around the pharynx, with the brain on top of it, lies just behind the lobe.",
-   "expert": "The lobe is drawn as an ellipsoid 5 mm wide, simplified; the first true segment, the peristomium, lies behind it."
+   "expert": "The lobe is drawn as an ellipsoid 5 mm wide, simplified; the first true segment, the peristomium, lies behind it. The head is where the worm's sensing is concentrated, and the brain lies just behind the lobe, above the pharynx."
   },
   "facts": [
    [
@@ -1910,7 +1960,7 @@
   "layers": {
    "basics": "Look closely and the worm is made of rings separated by shallow grooves. Each ring is a segment. A worm has the same number of segments all its life: it grows by making the segments larger, not by adding more. The skin is thin, covered with mucus and always moist; the worm breathes through it, so it cannot live in dry air, and it dries out and dies if it is left on dry pavement. Underneath the skin lie the layers of muscle. The rings go all the way along, from the head lobe to the tail point, which is why the animal is so flexible.",
    "deeper": "A large worm has 100 to 200 almost cylindrical segments (Darwin), around 120 to 170 in Lumbricus terrestris (often 135 to 150). Respiration is cutaneous, through the moist skin and its capillaries. Earthworms have no means of limiting water loss; Lumbricus can tolerate a water loss of up to 70 % of its body weight. Most segments carry bristles and a pair of excretory tubes (nephridia).",
-   "expert": "Colours are a drawing choice: darker above, paler underneath. The body is drawn with a circular cross-section and gentle taper; the tail end is blunter in real worms and the cross-section can be flattened. The skin scene shows a section of the body wall (1.8 mm field of view)."
+   "expert": "Colours are a drawing choice: darker above, paler underneath. The body is drawn with a circular cross-section and gentle taper; the tail end is blunter in real worms and the cross-section can be flattened. There is no zoom-in scene for the skin."
   },
   "facts": [
    [
@@ -1981,9 +2031,9 @@
   "processes": [],
   "summary": "The clitellum is the swollen, paler band toward the front of an adult earthworm; it makes the cocoon in which the eggs are laid.",
   "layers": {
-   "basics": "Adult earthworms have a smooth, thick band round the body toward the front: the saddle, or clitellum. It is seen only when the worm is sexually mature, and it turns orange when the worm is ready to mate. Gland cells in the band make the cocoon, in which the eggs are stored. Worms are both male and female at once, but they still pair up with another worm and swap sperm.",
+   "basics": "Adult earthworms have a smooth, thick band round the body toward the front: the saddle, or clitellum. It is seen only when the worm is sexually mature. Its colour varies from white to orange-red or reddish-brown, and a more orange or reddish saddle is a sign that the worm is ready to mate. Gland cells in the band make the cocoon, in which the eggs are stored. Worms are both male and female at once, but they still pair up with another worm and swap sperm.",
    "deeper": "The clitellum is a glandular section of the body wall found in earthworms and leeches and gives the group its name, the clitellates. It secretes a viscous fluid that forms the cocoon (and in many earthworms an albumin that nourishes the eggs). Lumbricus mates at the surface. Which segments the clitellum covers differs between species and is used to tell them apart.",
-   "expert": "The clitellum is drawn as a band 9 mm long a little over a fifth of the way back from the head, with a slightly larger diameter and a paler orange-pink colour. Its exact position and extent in the model are approximate."
+   "expert": "The clitellum is drawn as a band 9 mm long a little over a fifth of the way back from the head, with a slightly larger diameter and a paler orange-pink colour. Its exact position and extent along the body are approximate."
   },
   "facts": [
    [
@@ -1992,7 +2042,7 @@
    ],
    [
     "Colour",
-    "orange when ready to mate"
+    "white, orange-red or reddish-brown; more orange when ready to mate"
    ],
    [
     "Makes",
@@ -2173,7 +2223,7 @@
   "summary": "A cast is the small heap of fine earth that an earthworm leaves at the mouth of its burrow: soil that has passed through its gut.",
   "layers": {
    "basics": "The little heap of crumbly earth at the top of the burrow is the worm's waste: soil and leaf matter that went through its body. Darwin collected and weighed them. He found that a single full-sized cast at the mouth of a burrow often weighs more than an ounce (about 28 grams), and that over a year the worms on a field bring up several tons of earth per acre. Casts are richer in nitrogen than the soil around them and are a fine crumbly material, and rain slowly spreads them out.",
-   "deeper": "Casts are mixed organic and mineral material deposited on the soil surface. Darwin collected the castings from two square yards at Leith Hill Place, Surrey, for a year and calculated 7.56 and 16.1 tons per acre of dried earth (about 19 and 40 tonnes per hectare, my conversion). A lawn analysed by Dr Gilbert gave castings with 0.35 (per cent) nitrogen, two to three times as much as ordinary arable surface soil.",
+   "deeper": "Casts are mixed organic and mineral material deposited on the soil surface. Darwin collected the castings from two square yards at Leith Hill Place, Surrey, for a year and calculated 7.56 and 16.1 tons per acre of dried earth (about 19 and 40 tonnes per hectare). A lawn analysed by Dr Gilbert gave castings with 0.35 (per cent) nitrogen, two to three times as much as ordinary arable surface soil.",
    "expert": "The cast is drawn as a heap of 38 pellets 3 to 7 mm across at the mouth of the burrow. Darwin noted that the amount he collected was somewhat less than the worms had ejected, because rain washes away some of the finest earth."
   },
   "facts": [
@@ -2230,8 +2280,8 @@
   "processes": [],
   "summary": "Just under the skin is a thin layer of muscle whose fibres run around the body like hoops; when it tightens, the segment gets thinner and longer.",
   "layers": {
-   "basics": "The worm has two layers of muscle that work against each other. The outer, thin one runs around the body in rings. When a stretch of the body tightens these hoops, the fluid inside has nowhere to go but along the body, so that stretch becomes long and thin and pushes forward through the soil, like a tube of toothpaste squeezed in the middle. The other layer, the longitudinal muscle, does the opposite.",
-   "deeper": "Each segment has a thin outer layer of circular muscle and a thicker inner layer of longitudinal muscle. The coelomic fluid acts as a hydrostatic skeleton: a fluid cannot be squeezed to a smaller volume, so when circular muscle narrows a segment it must lengthen. Waves of contraction travelling along the body alternately shorten and lengthen it, and shortened segments are anchored by the bristles. In fresh dissections this layer looks thick and reddish-brown.",
+   "basics": "The worm has two layers of muscle that work against each other. The outer, thin one runs around the body in rings. When a stretch of the body tightens these hoops, the fluid inside has nowhere to go but along the body, so that stretch becomes long and thin and pushes forward through the soil, much as a long water balloon gets longer and thinner when you squeeze a ring round it. The other layer, the longitudinal muscle, does the opposite.",
+   "deeper": "Each segment has a thin outer layer of circular muscle and a thicker inner layer of longitudinal muscle. The coelomic fluid acts as a hydrostatic skeleton: a fluid cannot be squeezed to a smaller volume, so when circular muscle narrows a segment it must lengthen. Waves of contraction travelling along the body alternately shorten and lengthen it, and shortened segments are anchored by the bristles. ",
    "expert": "The layer is drawn as a tube 0.08 to 0.24 mm deep under the skin; the proportions of the muscle layers are illustrative. Fresh specimens show it divided into rings by the segment grooves, which the model does not draw."
   },
   "facts": [
@@ -2289,9 +2339,9 @@
   "processes": [],
   "summary": "Under the circular muscle is a thick layer of muscle running from head to tail; when it tightens, the segment gets shorter and fatter and grips the burrow.",
   "layers": {
-   "basics": "The inner layer of muscle runs along the body, from head to tail, in several bundles. When a stretch of it tightens, that part of the worm shortens and bulges outward, pressing against the burrow wall and gripping it with the bristles. Shortened, fat stretches act as anchors, while the stretches ahead are pushed forward by the circular muscle. A wave of this, repeated along the body, is how the worm moves. A touch triggers a reflex that tightens the whole longitudinal layer at once, which is why a worm wriggles.",
-   "deeper": "In fresh specimens the longitudinal muscle is white or grey and is not interrupted at the segment boundaries. The touch reflex that contracts the longitudinal muscles does not require the central nervous system. Giant nerve fibres run the length of the body to carry the escape signal quickly (see the nerve cord card). The muscle scene shows the layers of the body wall as a block (1.8 mm field of view).",
-   "expert": "The layer is drawn between 0.24 and 0.66 mm below the surface; the thickness is illustrative. The scene of the body wall is built from typical animal muscle cell sizes and is marked illustrative."
+   "basics": "The inner layer of muscle runs along the body, from head to tail, in several bundles. When a stretch of it tightens, that part of the worm shortens and bulges outward, pressing against the burrow wall and gripping it with the bristles. Shortened, fat stretches act as anchors, while the stretches ahead are pushed forward by the circular muscle. A wave of this, repeated along the body, is how the worm moves. A sharp touch sets off an escape reflex: giant nerve fibres run along the nerve cord and the body muscles twitch, pulling the worm back (see the nerve cord card).",
+   "deeper": "In fresh specimens the longitudinal muscle is white or grey and is not interrupted at the segment boundaries. The quick escape reflex when the worm is touched at either end is carried by giant nerve fibres in the ventral nerve cord, and ends in a sudden contraction of the body muscles (see the nerve cord card).",
+   "expert": "The layer is drawn between 0.24 and 0.66 mm below the surface; the thickness is illustrative. There is no zoom-in scene for the muscle."
   },
   "facts": [
    [
@@ -2304,7 +2354,7 @@
    ],
    [
     "Reflex",
-    "a touch makes it contract (does not need the brain)"
+    "a touch at either end sets off giant nerve fibres and a quick contraction"
    ]
   ],
   "certainty": "C1",
@@ -2465,8 +2515,8 @@
   "processes": [],
   "summary": "The oesophagus carries food back from the pharynx; on its sides are glands that make lime (calcium carbonate) and help the worm control calcium and acidity.",
   "layers": {
-   "basics": "The gullet is a narrow tube about 8 millimetres long in the model. Along it are pouches and glands that put chalk (calcium carbonate) into the food. Darwin was struck by them: he found that nothing like them was known in any other animal, and discussed what they were for. The modern account is that they help the worm keep the level of calcium and the acidity of its blood in balance,.",
-   "deeper": "Segments 6 to 12 are the oesophagus; esophageal pouches lie around segments 10 to 11 and two pairs of calciferous glands lie behind them, just behind the fifth heart. Darwin described three pairs of large glands that secrete a surprising amount of carbonate of lime. They help to regulate calcium and pH.",
+   "basics": "The gullet is a narrow tube about 8 millimetres long in the model. Along it are pouches and glands that put chalk (calcium carbonate) into the food. Darwin was struck by them: he found that nothing like them was known in any other animal, and discussed what they were for. The modern account is that they help the worm keep the level of calcium and the acidity of its blood in balance.",
+   "deeper": "In one anatomy text the oesophagus runs through segments 6 to 12; esophageal pouches lie around segments 10 to 11 and two pairs of calciferous glands lie behind them, just behind the fifth heart. Darwin described three pairs of large glands that secrete a surprising amount of carbonate of lime. They help to regulate calcium and pH.",
    "expert": "The model draws two pairs of pouch-like glands, not three, as a simplification; descriptions of the number differ between Darwin (three pairs) and the modern anatomy text (two pairs of glands behind the pouches). Their position is approximate."
   },
   "facts": [
@@ -2530,7 +2580,7 @@
   "summary": "The crop is a thin-walled storage pouch where swallowed food waits before it is ground.",
   "layers": {
    "basics": "Further back, the gullet widens into a thin-walled bag in which food waits. The next chamber, the gizzard, grinds it.",
-   "deeper": "In most earthworm species the oesophagus is enlarged into a crop in front of the gizzard (Darwin). The crop joins the oesophagus at about segment 12 and extends back through several segments.",
+   "deeper": "In most earthworm species the oesophagus is enlarged into a crop in front of the gizzard (Darwin). One anatomy text puts the crop at about segment 12, extending back through several segments; other accounts may number the segments differently, and the model's positions are approximate.",
    "expert": "The crop is drawn as a pouch 5.5 mm long behind the oesophagus; segment numbers are approximate in the model."
   },
   "facts": [
@@ -2581,9 +2631,9 @@
   "processes": [],
   "summary": "The gizzard is a tough muscular grinder lined with a hard membrane; the worm swallows grains of sand and small stones that work like millstones inside it.",
   "layers": {
-   "basics": "Because the worm has no teeth, its food is ground inside. The gizzard has thick muscular walls and a hard lining, and it squeezes and grinds the food together with grains of sand and tiny stones that the worm has swallowed. Darwin found stones between about 1.3 and 2.5 millimetres across in the gizzards and intestines of worms, and he thought they work like millstones.",
-   "deeper": "Darwin's description: the gizzard is lined with a smooth thick chitinous membrane and surrounded by weak longitudinal and powerful transverse muscles. Perrier saw these muscles in energetic action, so the grinding must be done chiefly by this organ. Grains of sand and small stones from 1/20 to a little more than 1/10 inch in diameter (1.3 to 2.6 mm) are generally found in the gizzards and intestines. The gizzard opens into the intestine.",
-   "expert": "The gizzard is drawn as a barrel 4 mm long and 3.4 mm wide; its position is approximate."
+   "basics": "Because the worm has no teeth, its food is ground inside. The gizzard has thick muscular walls and a hard lining, and it squeezes and grinds the food together with grains of sand and tiny stones that the worm has swallowed. Darwin found stones between about 1.3 and a little over 2.5 millimetres across in the gizzards and intestines of worms, and he thought they work like millstones.",
+   "deeper": "Darwin's description: the gizzard is lined with a smooth thick chitinous membrane and surrounded by weak longitudinal and powerful transverse muscles. Perrier saw these muscles in energetic action, so the grinding must be done chiefly by this organ. Grains of sand and small stones from 1/20 to a little more than 1/10 inch in diameter (1.3 to a little over 2.5 mm) are generally found in the gizzards and intestines. The gizzard opens into the intestine.",
+   "expert": "The gizzard is drawn as a barrel 4 mm long and 3.4 mm wide; its position is approximate. Modern anatomy texts call it the major site of mechanical digestion, where food is ground into smaller pieces, while Darwin's evidence for the grinding was the sand and stones he found in it and the strong muscles round it."
   },
   "facts": [
    [
@@ -2592,7 +2642,7 @@
    ],
    [
     "Grinds with",
-    "sand grains and small stones (1.3 to 2.6 mm, Darwin)"
+    "sand grains and small stones (1.3 to a little over 2.5 mm, Darwin)"
    ],
    [
     "No",
@@ -2821,7 +2871,7 @@
   "summary": "A solid nerve cord runs along the underside of the body, with a small cluster of nerve cells in each segment and giant fibres for a fast escape.",
   "layers": {
    "basics": "The worm's nervous system is a cord running along the belly, not the back as in us. In each segment (from about the fifth) the cord swells into a small knot of nerve cells that controls that ring and sends nerves to its muscles and skin. A few very thick nerve fibres run the whole length of the cord and carry the alarm signal very quickly, so that a touch can make the whole worm withdraw.",
-   "deeper": "The cord is double and solid, with a segmental ganglion in each segment from the fifth to the last and three pairs of segmental nerves from each ganglion. The giant axons: the medial giant axon is 0.07 mm across and conducts at 32.2 m/s, and the two lateral giant axons are 0.05 mm across and conduct at 12.6 m/s.",
+   "deeper": "The cord is double and solid, with a segmental ganglion in each segment from the fifth to the last and three pairs of segmental nerves from each ganglion. The giant axons: the medial giant fibre (about 0.07 mm across) carries signals from a touch at the front end toward the tail, and the lateral giant fibres (about 0.05 mm across, joined into one working unit) carry signals from the tail end toward the head; both end in a quick twitch of the body muscles, the escape reflex. In teaching-laboratory recordings from live worms at room temperature the medial fibre conducted at about 23 m/s (mean of one set of worms, spread 4.5) and about 30 m/s (another set), and the lateral fibres at about 8 m/s.",
    "expert": "The cord is drawn as a tube 0.5 mm wide with a swelling per segment from the fifth; the giant axons are not drawn separately. The cord is on the underside (to the left in the sagittal view)."
   },
   "facts": [
@@ -2834,12 +2884,12 @@
     "one per segment from segment 5"
    ],
    [
-    "Medial giant axon",
-    "0.07 mm wide, 32.2 m/s"
+    "Medial giant fibre",
+    "≈ 0.07 mm wide; ≈ 20 to 30 m/s measured"
    ],
    [
-    "Lateral giant axons",
-    "0.05 mm wide, 12.6 m/s"
+    "Lateral giant fibres",
+    "≈ 0.05 mm wide; ≈ 8 m/s measured"
    ]
   ],
   "certainty": "C1",
@@ -2853,12 +2903,20 @@
   ],
   "ext": [
    {
-    "title": "Earthworm (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Earthworm"
-   },
-   {
     "title": "Lumbricus terrestris, Invertebrate Anatomy OnLine (Lander University)",
     "url": "https://lanwebs.lander.edu/faculty/rsfox/invertebrates/lumbricus.html"
+   },
+   {
+    "title": "Shannon et al. 2014: Portable conduction velocity experiments using earthworms (Advances in Physiology Education)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4116350/"
+   },
+   {
+    "title": "Bahring and Bauer 2014: single nerve fibre measurements in intact earthworms (Advances in Physiology Education)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4154267/"
+   },
+   {
+    "title": "Earthworm (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Earthworm"
    }
   ],
   "related": [
@@ -2882,8 +2940,8 @@
   "summary": "The earthworm's brain is a pair of small nerve-cell clusters on top of the pharynx, joined by two collars round it to a second cluster underneath.",
   "layers": {
    "basics": "A worm does not have much of a brain: a pair of tiny knots of nerve cells sits on top of the pharynx, and two nerve bands curve around the pharynx to join a second knot beneath it. From there the nerve cord runs down the belly.",
-   "deeper": "Paired cerebral ganglia (the brain) lie in segment 3, sub-pharyngeal ganglia in segment 4, joined by circum-pharyngeal connectives into a nerve ring.",
-   "expert": "The model draws two ganglia 1 mm wide and a smaller one under the pharynx."
+   "deeper": "Paired cerebral ganglia (the brain) lie in segment 3, sub-pharyngeal ganglia in segment 4, joined by circum-pharyngeal connectives into a nerve ring. In earthworms the brain has moved back out of the very front of the animal into a more posterior segment, and the double ventral nerve cord has a pair of ganglia in each segment.",
+   "expert": "The model draws two ganglia 1 mm wide above the pharynx and a smaller one beneath it, joined by connectives round the pharynx. Their sizes are illustrative."
   },
   "facts": [
    [
@@ -2940,7 +2998,7 @@
   "layers": {
    "basics": "Try to picture a tube full of water that you can squeeze with rings. Squeeze a ring and the water goes along the tube, making it longer and thinner ahead of it. Let go and the tube relaxes and shortens. A worm does this along its body in a wave from head to tail: stretches that are short and fat grip the walls with their bristles, stretches that are long and thin reach forward. It can crawl backwards as well as forwards, and Darwin noted that it can retreat into its burrow with extraordinary rapidity by the aid of its affixed tail. On smooth moist ground one was reported to move at about 20 metres per hour, which is about 5.6 millimetres per second.",
    "deeper": "Peristalsis uses two sets of muscle in opposition against a fluid skeleton: contraction of the circular muscle lengthens and thins a segment, contraction of the longitudinal muscle shortens and fattens it. The shortened segments are anchored by their bristles. The speed given is a reported figure for surface movement on moist, flat terrain; it is not the speed of burrowing, which is slower and depends on the soil. Nocturnal forays at the surface were estimated to reach 19 m.",
-   "expert": "The worm in the block is drawn at rest. The conversion from 20 m/h to millimetres per second is mine."
+   "expert": "The worm in the block is drawn at rest, because the model cannot show a wave travelling along a body. The reported 20 m/h is a surface speed on moist, flat ground; burrowing through soil is slower and depends on the soil."
   },
   "facts": [
    [
@@ -3014,7 +3072,7 @@
   "layers": {
    "basics": "In 1881 Darwin published a book, The Formation of Vegetable Mould through the Action of Worms, after years of watching them. He found that earthworms swallow soil below and leave it on the surface as casts, and that over the years this buries things. On a field of his near Down, he had spread chalk on the grass, and when he dug a trench 29 years later he found a line of chalk lumps 7 inches (18 cm) below the surface: the soil had risen at an average of 0.22 inch (5.6 mm) a year. He weighed casts collected for a year on two square yards at Leith Hill, Surrey, and calculated 7.56 and 16.1 tons of dry earth per acre per year. He concluded that it may be doubted whether there are many other animals which have played so important a part in the history of the world as these lowly organised creatures.",
    "deeper": "How many worms? Darwin quoted Hensen's count of 53,767 worms to the acre (133,000 per hectare) in a garden (Hensen believed twice as many as in corn fields) and noted that worms in old pasture had not been counted. Taking 15 tons of casts per acre a year and half Hensen's number of worms, he calculated that each worm would eject about 20 ounces a year. Objects strewn on grass fields were buried 1.9 to 2.2 inches in 10 years in four fields (sandy, swampy and argillaceous pastures) and 0.83 inch in a poor one. He also estimated that worms live chiefly in the surface mould, usually 4 or 5 to 10 and even 12 inches thick, and from time to time burrow far deeper and bring up earth from below. Worms do not work in dry weather in summer, or in winter in severe frosts.",
-   "expert": "Darwin's figures are from a few English sites around 1870 and depend on the soil, the weather and the worm species present (he did not separate species); the density counts are from gardens. Modern work confirms that earthworms improve soil structure, for example in new polders where they had been absent. The sums above are Darwin's own, except the conversion of tons per acre to tonnes per hectare, which are mine (7.56 and 16.1 long tons per acre are about 19 and 40 tonnes per hectare)."
+   "expert": "Darwin's figures are from a few English sites around 1870 and depend on the soil, the weather and the worm species present (he did not separate species); the density counts are from gardens. Modern work confirms that earthworms improve soil structure, for example in new polders where they had been absent. The sums above are Darwin's own; 7.56 and 16.1 long tons per acre are about 19 and 40 tonnes per hectare."
   },
   "facts": [
    [
@@ -3157,9 +3215,9 @@
   "processes": [],
   "summary": "Springtails are wingless, six-legged animals 1 to 2 millimetres long that live in huge numbers in leaf litter and soil, eating fungal threads and dead plant matter.",
   "layers": {
-   "basics": "On the litter on the lawn, and in the crumbs of the topsoil, are specks the size of a full stop that jump when disturbed. They are springtails. A soil-living springtail is 1 to 2 millimetres long. Estimates of their numbers reach 100,000 in a square metre of ground. They live in leaf litter and rotting material and most eat fungal threads and spores as well as dead plant matter; a few eat other tiny animals. They are not insects in the strict sense but a related group, and there are more than 9,000 species. In the block there are about 16 of them in the litter and on the crumbs.",
-   "deeper": "Most springtails have a forked 'spring' (furcula) folded under the body and held under tension by a small catch (the retinaculum). When the catch lets go, the furcula snaps against the ground and flings the animal into the air; the whole action takes a few milliseconds. Many have a number of ocelli (simple eyes) from one to eight on each side of the head; blind species, mostly subterranean, lack them. They are free-living and moisture-loving. Atmobiotic (surface-dwelling) species are generally 8 to 10 mm long, hemiedaphic (soil-dwelling) species 1 to 2 mm.",
-   "expert": "The model springtail is 1.8 mm long, a drawing of an elongated soil species: body in 10 parts, four-segmented antennae drawn as bent tubes, six legs, and a folded spring. Eyes and the other details are not drawn. The spring is a separate part. The positions and the number (16) are illustrative."
+   "basics": "On the litter on the lawn, and in the crumbs of the topsoil, are specks the size of a full stop that jump when disturbed. They are springtails. A soil-living springtail is 1 to 2 millimetres long. Estimates of their numbers reach 100,000 in a square metre of ground. They live in leaf litter and rotting material and most eat fungal threads and spores as well as dead plant matter; a few eat other tiny animals. They are not insects: they belong to a separate group of six-legged animals, and there are more than 9,000 species. In the block there are about 16 of them in the litter and on the crumbs.",
+   "deeper": "Most springtails have a forked 'spring' (furcula) folded under the body and held under tension by a small catch (the retinaculum). When the catch lets go, the furcula snaps against the ground and flings the animal into the air; the whole action takes a few milliseconds. Many have a number of ocelli (simple eyes) from one to eight on each side of the head; blind species, mostly subterranean, lack them. They are free-living and moisture-loving. Springtails are normally under 6 mm long, and the species that live in the litter and the top of the soil are about 1 to 2 mm. Species that live deeper in the soil are often pale and blind and have a reduced or missing spring.",
+   "expert": "The model springtail is 1.8 mm long, a drawing of an elongated litter-dwelling species: body in 10 parts, four-segmented antennae drawn as bent tubes, six legs, and a folded spring. Many springtails that live deeper in the soil have a small spring or none, so the spring drawn here is typical of litter species. Eyes and the other details are not drawn. The spring is a separate part. The positions and the number (16) are illustrative."
   },
   "facts": [
    [
@@ -3272,7 +3330,7 @@
   "processes": [],
   "summary": "Oribatid mites are tiny, hard-shelled, eight-legged soil animals, 0.2 to 1.4 millimetres long, that eat dead plant matter and fungi and help spread fungi through the soil.",
   "layers": {
-   "basics": "On the leaf litter and between the crumbs live mites, relatives of spiders. The oribatid mites are the shiny, brown, dome-shaped ones, 0.2 to 1.4 millimetres long. Many of them have a hard, mineral-strengthened shell, like a tiny armoured beetle. They eat a wide variety of dead plant and fungal material, and are essential for breaking down dead matter and spreading fungi. They develop slowly: from egg to adult may take from several months to two years in forest soil, and the adults live a relatively long time.",
+   "basics": "On the leaf litter and between the crumbs live mites, relatives of spiders. The oribatid mites are the shiny, brown, dome-shaped ones, 0.2 to 1.4 millimetres long. Many of them have a hard, mineral-strengthened shell, like a tiny armoured beetle. They eat a wide variety of dead plant and fungal material, and help to break down dead matter and spread fungi. They develop slowly: from egg to adult may take from several months to two years in forest soil, and the adults live a relatively long time.",
    "deeper": "Oribatida range from 0.2 to 1.4 mm. Many have a mineralised exoskeleton as adults, some with wing-like flaps (pteromorphae) over the legs, and some can tuck in their legs. They feed on living and dead plant and fungal material (non-parasitic ones; a few are predatory). Density is highest in forests with thick organic layers.",
    "expert": "The model mite is 0.7 mm long, a dome with a small head and eight legs, with no further detail; 10 of them are placed on the litter and the crumbs, which is illustrative. Adult mites have eight legs, as arachnids do."
   },
@@ -3337,9 +3395,9 @@
   "processes": [],
   "summary": "A black ground beetle 14 to 20 millimetres long, common in gardens and grassland, which hides under stones and in grass and is most often seen in summer.",
   "layers": {
-   "basics": "This glossy black beetle is a common ground beetle of British gardens and grassland. It is usually 14 to 20 millimetres long, black with reddish-brown to black legs, and you will find it under stones, in grass or in loose bark. It is most abundant in summer and breeds in autumn. In Britain it is also called the rain beetle, because it tends to appear when rain is coming. Click its head, its wing cases or its legs for the parts.",
+   "basics": "This glossy black beetle is a common ground beetle of British gardens and grassland. It is usually 14 to 20 millimetres long, black with reddish-brown to black legs, and you will find it under stones, in grass or in loose bark. It is most abundant in summer and breeds in autumn. In Britain it is also called the rain beetle, because it tends to appear when rain is coming. It is mostly a predator of small animals on the ground, such as caterpillars and slugs, and also eats some plant matter. Click its head, its wing cases or its legs for the parts.",
    "deeper": "The beetle's front wings are hardened into wing cases (elytra) that cover the folded flight wings and the abdomen; here the wing cases carry grooves running lengthwise. The skeleton is on the outside, made of chitin, which can be viewed as a molecule unit. The species is native to Europe.",
-   "expert": "The model beetle is 16 mm long, drawn from the general form of a ground beetle: head with large eyes, jaws and antennae, a pronotum (the shield over the thorax), wing cases with lengthwise grooves (nine are drawn on each side as a simplification) and three pairs of legs. Details such as the antennal joints and the leg spines are not drawn."
+   "expert": "The model beetle is 16 mm long, drawn from the general form of a ground beetle: head with eyes, jaws and antennae, a pronotum (the shield over the thorax), wing cases with lengthwise grooves (nine are drawn on each side as a simplification) and three pairs of legs. Details such as the antennal joints and the leg spines are not drawn."
   },
   "facts": [
    [
@@ -3349,6 +3407,10 @@
    [
     "Colour",
     "black; legs red-brown to black"
+   ],
+   [
+    "Eats",
+    "mostly small ground animals (caterpillars, slugs), some plant matter"
    ],
    [
     "Habitat",
@@ -3372,6 +3434,10 @@
    {
     "title": "Pterostichus madidus (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Pterostichus_madidus"
+   },
+   {
+    "title": "Black clock beetle (Wild Bristol)",
+    "url": "https://wildbristol.uk/groups/beetles/ground-beetles/black-clock-beetle/"
    }
   ],
   "related": [
@@ -3445,9 +3511,9 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "A ground beetle has three pairs of long legs and runs fast over the ground.",
+  "summary": "A ground beetle has three pairs of jointed legs, built for walking over the ground.",
   "layers": {
-   "basics": "The beetle has six legs, three on each side, long and slender, with reddish-brown to black colour. It is found on the ground, under stones and in grass.",
+   "basics": "The beetle has six legs, three on each side, reddish-brown to black. It is found on the ground, under stones and in grass.",
    "deeper": "Insects and other arthropods have jointed legs: the segments are joined by hinge joints and moved by muscles inside the hard skeleton.",
    "expert": "The legs are drawn as one tapered tube each, without the joints."
   },
@@ -3704,16 +3770,16 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "Humus is the dark, sticky, decayed remains of plants and animals that coats the grains and glues crumbs together.",
+  "summary": "Humus is the dark, sticky, decayed organic matter that coats grains and helps glue crumbs together. Its molecular nature is debated.",
   "layers": {
-   "basics": "The dark film on the grains in the crumb is humus. It is what is left of dead matter when the decomposers have taken what they can: a complex mixture, not a single substance. It sticks the mineral grains together, holds water and nutrient ions, and gives topsoil its dark colour.",
-   "deeper": "Most soil organic matter is a complex assemblage of small organic molecules collectively called humus. It holds more nutrients and water per gram than clay minerals, and most soil cation-exchange capacity comes from carboxylic groups on organic matter (100 to 300 meq per 100 g for humus). Organic matter favours aggregation by forming stable bridges between mineral particles.",
-   "expert": "The coats are drawn as thin dark shells; their thickness is illustrative. Humus is a mixture with no single molecule, so no molecule button is offered."
+   "basics": "The dark film on the grains in the crumb stands for humus. It is what is left of dead matter when the decomposers have taken what they can: a complex mixture, not a single substance. It helps stick the mineral grains together, holds water and nutrient ions, and gives topsoil its dark colour.",
+   "deeper": "The traditional view was that soil organic matter contains large, stable 'humic' molecules made in the soil. Lehmann and Kleber argued in Nature in 2015 that the evidence does not support this: they see soil organic matter as a continuum of progressively decomposing compounds, whose persistence depends largely on the soil environment. That view is itself contested, and the older textbook picture still appears in many sources. Whatever its structure, organic matter holds a great deal of nutrient charge per gram; textbook tables give a cation-exchange capacity of the order of 100 to 300 meq per 100 g for humus, usually more per gram than clay minerals. In clay-rich soils the clay supplies most of the soil's total capacity; in sandy soils the organic matter can supply most of it. Organic matter also favours aggregation by forming bridges between mineral particles.",
+   "expert": "The coats are drawn as thin dark shells; their thickness is illustrative. Humus is not a single molecule, so no molecule button is offered."
   },
   "facts": [
    [
     "Is",
-    "a complex mixture of decayed organic matter"
+    "decayed organic matter, a mixture whose molecular nature is debated"
    ],
    [
     "Does",
@@ -3721,11 +3787,13 @@
    ],
    [
     "CEC",
-    "≈ 100 to 300 meq per 100 g"
+    "high per gram; textbook values ≈ 100 to 300 meq per 100 g"
    ]
   ],
-  "certainty": "C1",
-  "open_questions": [],
+  "certainty": "C2",
+  "open_questions": [
+   "What soil organic matter is at the molecular scale, and why some of it persists for centuries, is debated; Lehmann and Kleber (2015) argue against the long-standing idea of large stable humic molecules."
+  ],
   "refs": [
    [
     "BIO",
@@ -3741,6 +3809,10 @@
    {
     "title": "Soil structure (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Soil_structure"
+   },
+   {
+    "title": "Lehmann and Kleber 2015: The contentious nature of soil organic matter (Nature 528:60-68)",
+    "url": "https://doi.org/10.1038/nature16069"
    }
   ],
   "related": [
@@ -3878,7 +3950,7 @@
   "summary": "Bacteria are single-celled organisms 0.5 to 5 micrometres long; they do most of the chemical work of the soil and there are about a hundred million in a gram.",
   "layers": {
    "basics": "The tiny rods and dots on the grain surfaces are bacteria. They are the most numerous living things in soil: about a hundred million in a gram on average. They live in the film of water, feed on dead matter, and break it down: they are the chief recyclers, along with fungi. Some change nitrogen into forms plants can use. When they break down proteins they release ammonium; click one to see that molecule.",
-   "deeper": "Mean prokaryote density is roughly 10^8 per gram of soil, and a teaspoon of productive soil may hold 100 million to 3 billion. Bacteria carry out the steps of the nitrogen cycle in soil: some fix nitrogen gas, some release ammonium from dead matter (ammonification), Nitrosomonas and Nitrobacter oxidise ammonium to nitrate, and others turn nitrate back to nitrogen gas without oxygen. Nematodes can eat up to 5,000 bacteria a minute.",
+   "deeper": "Mean prokaryote density is roughly 10^8 per gram of soil, and a teaspoon of productive soil may hold 100 million to 3 billion. Microbes carry out the steps of the nitrogen cycle in soil: some bacteria fix nitrogen gas, some release ammonium from dead matter (ammonification), ammonia-oxidising archaea and bacteria and nitrite-oxidising bacteria (for example Nitrosomonas and Nitrobacter) turn ammonium into nitrate, and others turn nitrate back to nitrogen gas without oxygen.",
    "expert": "The scene draws about 120 rods 1.6 by 3.5 micrometres; the number is far smaller than in real soil and their positions are illustrative. The bacteria are not identified by species."
   },
   "facts": [
@@ -3923,8 +3995,8 @@
     "url": "https://en.wikipedia.org/wiki/Nitrogen_cycle"
    },
    {
-    "title": "Nematode (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Nematode"
+    "title": "Leininger et al. 2006: Archaea predominate among ammonia-oxidizing prokaryotes in soils (Nature)",
+    "url": "https://doi.org/10.1038/nature04983"
    }
   ],
   "related": [
@@ -3950,7 +4022,7 @@
   "processes": [],
   "summary": "Nematodes are microscopic roundworms, often less than 2.5 millimetres long, that graze on bacteria, fungi and other small things in the water film of the soil.",
   "layers": {
-   "basics": "The long thin worm in the crumb is a nematode, a roundworm. It is not an earthworm, and it is far smaller: most free-living nematodes are less than 2.5 millimetres long and some only about a millimetre. They are very common in soil: often more than a million in a square metre, mostly in the top 15 centimetres. They swim in the film of water around the grains and eat bacteria, fungi, algae and other small things; one can eat up to 5,000 bacteria a minute.",
+   "basics": "The long thin worm in the crumb is a nematode, a roundworm. It is not an earthworm, and it is far smaller: most free-living nematodes are less than 2.5 millimetres long and some only about a millimetre. They are very common in soil: often more than a million in a square metre, mostly in the top 15 centimetres. They swim in the film of water around the grains and eat bacteria, fungi, algae and other small things.",
    "deeper": "Nematodes are very small, slender worms, bilaterally symmetrical, and often with ridges, rings or bristles on the body. The topsoil of the world holds about 4.4 × 10^20 nematodes. Some soil nematodes reach up to 7 mm.",
    "expert": "The nematode is drawn 800 micrometres long and 25 micrometres wide, as a plain tube; its width and shape are illustrative."
   },
@@ -3966,10 +4038,6 @@
    [
     "Where",
     "≈ 90 % in the top 15 cm"
-   ],
-   [
-    "Rate of eating",
-    "up to 5,000 bacteria a minute"
    ]
   ],
   "certainty": "C1",
@@ -4067,7 +4135,7 @@
   "summary": "Nitrate carries a negative charge, so clay does not hold it; it stays in the water, where roots take it up and where rain can wash it away.",
   "layers": {
    "basics": "The red balls drifting away from the plates are nitrate ions, the form of nitrogen that roots take up most easily. Their charge is negative, like the clay's, so the clay pushes them away instead of holding them. This is why nitrate is easily washed out of the soil by heavy rain into streams and groundwater. Click one to see the nitrate molecule.",
-   "deeper": "Nitrate is highly soluble and soils are highly unable to retain anions, so it can leach to groundwater. It is made by nitrifying bacteria from ammonium and can be turned back to nitrogen gas by denitrifying bacteria in oxygen-poor soil.",
+   "deeper": "Nitrate is highly soluble and soils are highly unable to retain anions, so it can leach to groundwater. It is made by nitrifying microbes from ammonium and can be turned back to nitrogen gas by denitrifying bacteria in oxygen-poor soil.",
    "expert": "Ion sizes are exaggerated as on the card of the positive ions; the number and places of the nitrate ions are illustrative."
   },
   "facts": [

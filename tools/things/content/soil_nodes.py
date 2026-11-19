@@ -20,6 +20,6 @@ N_GROUND = {
   "certainty": "C1", "open_questions": [], "refs": [["BIO", "31.2", "31-2-the-soil"]], "ext": [{"title": "Soil (Wikipedia)", "url": "https://en.wikipedia.org/wiki/Soil"}]
 }
 ids = [n['id'] for n in NODES]; assert len(ids) == len(set(ids)), [i for i in ids if ids.count(i) > 1]
-json.dump([N_GROUND] + NODES, open('data/nodes/park_soil.json', 'w'), indent=1, ensure_ascii=False)
-json.dump(FIGS, open('data/viz/park_soil.json', 'w'), indent=1, ensure_ascii=False)
+json.dump(scrub([N_GROUND] + NODES), open('data/nodes/park_soil.json', 'w'), indent=1, ensure_ascii=False)
+json.dump(scrub(FIGS), open('data/viz/park_soil.json', 'w'), indent=1, ensure_ascii=False)
 print(len(NODES) + 1, 'cards,', len(FIGS), 'figures')
