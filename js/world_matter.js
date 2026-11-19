@@ -492,8 +492,8 @@ function microFrame(kind, pos, quat) { const M = MICRO[kind] || MICRO.soil; retu
 FT.micro = {
   build(F, o) {
     const M = MICRO[o.kind] || MICRO.soil, r = rng(o.kind.length * 13 + 5);
-    F.env = { opaque: true, bg: 0x0d0f14 };
-    F.add(new THREE.HemisphereLight(0xf2f6ff, 0x404040, .75)); const dl = new THREE.DirectionalLight(0xffffff, .9); dl.position.set(3, 8, 4); F.add(dl);
+    F.env = { opaque: true, bg: 0x0d0f14 }; F.daylight = true; // a lit close-up of pale grains: glow only burned them out to white
+    F.add(new THREE.HemisphereLight(0xf2f6ff, 0x404040, .5)); const dl = new THREE.DirectionalLight(0xffffff, .5); dl.position.set(3, 8, 4); F.add(dl);
     F.name = M.title; F.blurb = M.blurb;
     const info = { title: M.title, tag: 'Microscopic view (sizes true, shapes schematic)', body: `<p>${M.blurb}</p>` };
     if (M.ground) {

@@ -487,8 +487,11 @@ function buildRuler() {
   }
   // landmarks: place names at their true heights, nudged apart so none overlap
   const items = LANDMARKS.map(L => ({ L, y: rulerY(Math.log10(L.D), h) })).sort((a, b) => a.y - b.y);
-  const gap = 15; for (let k = 1; k < items.length; k++) items[k].p = Math.max(items[k].y, (items[k - 1].p ?? items[k - 1].y) + gap); if (items.length) items[0].p = items[0].p ?? items[0].y;
-  const over = (items.length ? items[items.length - 1].p : 0) - (h - 6); if (over > 0) for (let k = items.length - 1; k >= 0; k--) { items[k].p -= over; if (k && items[k - 1].p > items[k].p - gap) items[k - 1].p = items[k].p - gap; }
+  // push names down so none overlap; if the last runs off the bottom, pin it there and push the ones above it up; with more names than room, close the spacing up
+  const n = items.length, gap = Math.min(15, n > 1 ? (h - 12) / (n - 1) : 15);
+  if (n) items[0].p = Math.max(items[0].y, 6);
+  for (let k = 1; k < n; k++) items[k].p = Math.max(items[k].y, items[k - 1].p + gap);
+  if (n && items[n - 1].p > h - 6) { items[n - 1].p = h - 6; for (let k = n - 2; k >= 0; k--) items[k].p = Math.min(items[k].p, items[k + 1].p - gap); }
   items.forEach(it => { svg += `<path class="lead" d="M15 ${it.y} L48 ${it.y} L58 ${it.p}"/>`; });
   svg += '</svg>'; box.insertAdjacentHTML('beforeend', svg);
   items.forEach(it => { const b = document.createElement('button'); b.className = 'lm'; b.style.top = it.p + 'px'; b.textContent = it.L.label; b.title = `Fly to ${it.L.label} (${fmtLen(it.L.D)} across)`; b.onclick = () => { cancelTour(); it.L.go(); }; it.L._el = b; box.appendChild(b); });
