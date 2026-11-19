@@ -1,0 +1,26 @@
+{
+ "about": "The smartphone (FT.phone).",
+ "spawnD": 0.008,
+ "ids": {
+  "smartphone": "phone_frame",
+  "phone_antenna": "phone_frame",
+  "phone_display": "oled",
+  "phone_touchscreen": "glass",
+  "phone_battery": "battery_graphite",
+  "phone_pcb": "circuit_copper",
+  "phone_soc": "chip_silicon",
+  "phone_ram": "chip_silicon",
+  "phone_flash": "chip_silicon",
+  "phone_pmic": "chip_silicon",
+  "phone_rf_frontend": "chip_silicon",
+  "phone_modem": "chip_silicon",
+  "phone_wifi_bt": "chip_silicon",
+  "phone_sensors": "chip_silicon",
+  "phone_crystal_osc": "quartz_resonator",
+  "phone_camera": "camera_sensor",
+  "phone_speaker": "not_built",
+  "phone_charger_port": "not_built",
+  "phone_vibration_motor": "not_built",
+  "phone_passives": "not_built"
+ }
+}

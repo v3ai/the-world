@@ -44,7 +44,7 @@
  ],
  "populations": [
   {
-   "id": "gill",
+   "id": "gill", "material": "fungal_cells",
    "name": "Gill (flesh of the cap)",
    "node": "park_mushroom",
    "shape": "rbox",
@@ -70,7 +70,7 @@
    }
   },
   {
-   "id": "hypha",
+   "id": "hypha", "material": "fungal_cells",
    "name": "Hypha (fungal thread)",
    "node": "oak_mycorrhiza",
    "shape": "tube_z",
@@ -100,7 +100,7 @@
    }
   },
   {
-   "id": "basidium",
+   "id": "basidium", "material": "fungal_cells",
    "name": "Basidium",
    "node": "park_mushroom",
    "shape": "ellipsoid",
@@ -130,7 +130,7 @@
    }
   },
   {
-   "id": "spore",
+   "id": "spore", "material": "fungal_cells",
    "name": "Basidiospore",
    "node": "park_mushroom",
    "shape": "ellipsoid",

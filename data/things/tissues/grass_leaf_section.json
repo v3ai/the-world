@@ -384,7 +384,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "plant_cells"
   },
   {
    "id": "mesophyll",

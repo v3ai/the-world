@@ -94,7 +94,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "plant_cells"
   },
   {
    "id": "ovule",
@@ -120,7 +121,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "plant_cells"
   },
   {
    "id": "sac",
@@ -146,7 +148,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "plant_cells"
   },
   {
    "id": "egg",
@@ -172,7 +175,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "plant_cells"
   },
   {
    "id": "syn",
@@ -205,7 +209,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "plant_cells"
   },
   {
    "id": "central",
@@ -231,7 +236,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "plant_cells"
   },
   {
    "id": "anti",
@@ -271,7 +277,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "plant_cells"
   },
   {
    "id": "style",
@@ -297,7 +304,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "plant_cells"
   },
   {
    "id": "stigma",
@@ -323,7 +331,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "plant_cells"
   },
   {
    "id": "pollen",
@@ -356,7 +365,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "pollen"
   },
   {
    "id": "tube",
@@ -382,7 +392,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "plant_cells"
   }
  ]
 }

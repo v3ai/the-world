@@ -77,7 +77,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "animal_cells"
   },
   {
    "id": "crop_cell",
@@ -110,7 +111,8 @@
      1,
      29
     ]
-   }
+   },
+   "material": "animal_cells"
   },
   {
    "id": "sucrose",

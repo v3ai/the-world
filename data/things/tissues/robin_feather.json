@@ -86,7 +86,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "keratin"
   },
   {
    "id": "barb",
@@ -119,7 +120,8 @@
      28,
      1
     ]
-   }
+   },
+   "material": "keratin"
   },
   {
    "id": "barbule",
@@ -191,7 +193,8 @@
      28,
      1
     ]
-   }
+   },
+   "material": "keratin"
   },
   {
    "id": "granule",

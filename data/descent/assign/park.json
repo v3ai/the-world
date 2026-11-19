@@ -1,0 +1,9 @@
+{
+ "about": "The park (FT.park): its own pickable objects by id. Things standing in the park have their own files.",
+ "ids": {
+  "bird": "far_bird",
+  "sunSky": "sun_in_sky",
+  "cloud": "dusty_air",
+  "pond": "pond_water"
+ }
+}

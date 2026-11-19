@@ -1,0 +1,5 @@
+{
+ "about": "The processor die (FT.die).",
+ "default": "chip_block",
+ "everywhere": true
+}

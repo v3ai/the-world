@@ -1,0 +1,26 @@
+{
+ "about": "The fly agaric.",
+ "default": "fungal_flesh",
+ "systems": {
+  "soil": "soil",
+  "mycelium": "mycorrhiza",
+  "root": "root"
+ },
+ "ids": {
+  "cap_under": "fungal_gill",
+  "gills": "fungal_gill",
+  "c_under": "fungal_gill",
+  "c_gills": "fungal_gill",
+  "c_gill": "fungal_gill",
+  "e_gills": "fungal_gill",
+  "ecm_core": "mycorrhiza",
+  "ecm_sheath": "mycorrhiza",
+  "hs_gill": "fungal_gill"
+ },
+ "match": [
+  [
+   "^hs_",
+   "marker"
+  ]
+ ]
+}

@@ -83,7 +83,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "plant_cells"
   },
   {
    "id": "guard",

@@ -89,7 +89,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "model_edge"
   },
   {
    "id": "plate0",
@@ -296,7 +297,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "ion_ca"
   },
   {
    "id": "ion_Mg",
@@ -438,7 +440,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "ion_mg"
   },
   {
    "id": "ion_K",
@@ -531,7 +534,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "ion_k"
   },
   {
    "id": "ion_NH4",

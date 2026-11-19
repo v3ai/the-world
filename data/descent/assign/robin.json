@@ -1,0 +1,59 @@
+{
+ "about": "The European robin.",
+ "default": "animal_cells",
+ "systems": {
+  "skeleton": "bird_bone",
+  "nerves": "nervous_tissue",
+  "d_heart": "cardiac_muscle"
+ },
+ "ids": {
+  "mu_skin": "epithelium",
+  "og_trachea": "lining",
+  "ey_scleral_ring": "bird_bone",
+  "mu_canal": null,
+  "sy_rings": "cartilage",
+  "sy_halves": "cartilage",
+  "eye_ring": "feather",
+  "bill_up": "keratin",
+  "bill_lo": "keratin",
+  "leg_claws": "keratin",
+  "leg_shin": "keratin",
+  "leg_ankle": "keratin",
+  "leg_tarsus": "keratin",
+  "leg_toes": "keratin",
+  "leg_hallux": "keratin",
+  "mu_neck_muscles": "skeletal_muscle",
+  "mu_back_muscles": "skeletal_muscle",
+  "mu_jaw_muscle": "skeletal_muscle",
+  "mu_wing_muscles": "skeletal_muscle",
+  "mu_thigh_muscles": "skeletal_muscle",
+  "mu_shank_muscles": "skeletal_muscle",
+  "mu_tail_muscles": "skeletal_muscle",
+  "sy_muscles": "skeletal_muscle",
+  "mu_sc_tendon": "collagen",
+  "mu_tendon": "collagen",
+  "og_heart": "cardiac_muscle",
+  "og_liver": "liver_tissue",
+  "og_spleen": "lymphoid",
+  "og_pancreas": "gland_tissue",
+  "og_kidneys": "kidney_tissue",
+  "og_oesophagus": "organ_wall",
+  "og_proventriculus": "organ_wall",
+  "og_gizzard": "organ_wall",
+  "og_intestines": "organ_wall",
+  "og_cloaca": "organ_wall",
+  "og_rectum": "organ_wall",
+  "og_eyeballs": "collagen",
+  "ey_sclera": "collagen",
+  "ey_cornea": "collagen",
+  "ey_lens": "lens_protein",
+  "ey_vitreous": "vitreous",
+  "ey_optic_nerve": "nervous_tissue"
+ },
+ "match": [
+  [
+   "^(hs_|at_)",
+   "marker"
+  ]
+ ]
+}

@@ -1,0 +1,5 @@
+{
+ "about": "The CPU core (FT.core).",
+ "default": "chip_block",
+ "everywhere": true
+}

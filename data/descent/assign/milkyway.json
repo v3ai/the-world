@@ -1,0 +1,11 @@
+{
+ "about": "The Milky Way (FT.milkyway): the space between its stars.",
+ "spawnD": 3e+17,
+ "default": "interstellar_gas",
+ "everywhere": true,
+ "ids": {
+  "spiralArm": "interstellar_gas",
+  "sunMarker": "marker",
+  "galaxy": "interstellar_gas"
+ }
+}

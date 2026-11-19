@@ -77,7 +77,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "insect_wax"
   },
   {
    "id": "exo",
@@ -104,7 +105,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "chitin"
   },
   {
    "id": "chitin",
@@ -170,7 +172,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "chitin"
   },
   {
    "id": "epidermis",
@@ -203,7 +206,8 @@
      1,
      20
     ]
-   }
+   },
+   "material": "animal_cells"
   }
  ]
 }

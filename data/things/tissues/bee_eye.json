@@ -133,7 +133,8 @@
      21.8
     ],
     "stagger": 0.5
-   }
+   },
+   "material": "animal_cells"
   },
   {
    "id": "pigment",
@@ -167,7 +168,8 @@
      21.8
     ],
     "stagger": 0.5
-   }
+   },
+   "material": "animal_cells"
   },
   {
    "id": "retinula",
@@ -281,7 +283,8 @@
      21.8
     ],
     "stagger": 0.5
-   }
+   },
+   "material": "animal_cells"
   }
  ]
 }

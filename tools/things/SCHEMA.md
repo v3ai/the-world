@@ -68,6 +68,11 @@ to each part and a `stats` block. Coordinates are thing-local metres, **base at 
 * `cutFace`: key into `cut.faces` for the pattern of this part's cut face (default `cut.default`).
 * `tint`: for instanced parts, per-instance brightness variation 0..1. `double`: draw both sides (leaves).
 * `priority`: pick priority (default 1.5, details 2). `ink_w`, `noink`: outline control.
+* **What a part is made of.** Give every part a way down. A part that has a scene of its own gets `deeper` (below). Every other part gets a **material**: either
+  `material: '<id>'` on the part (an id of `data/descent/materials.json`), or, better for whole groups, a row in the thing's assignment file
+  `data/descent/assign/<thing id>.json` (`default` for the kind of creature, `systems`, then exceptions by part id; `null` for a part you are not sure of). Do not
+  leave a part with neither: zooming into it then stops at the floor. `node tools/descent/check.mjs` checks the table and the files; the format and the rule are
+  in `docs/DEVELOPMENT.md`, "What everything is made of".
 * `deeper`: what it is made of at the next level down: `{type:'crystal', id:'quartz'}` (an existing crystal frame),
   `{type:'micro', kind:'leaf'}` (an existing micro scene), `{type:'tissue', id:'<node or tissue id>', organ}`; plus
   `button` (label) and `D` (view distance in metres to end at). The card then shows a "See what it is made of" button,
@@ -161,6 +166,8 @@ A population: `{id, name, node (card), shape: rbox|ellipsoid|lens|tube_z|cylinde
 with `arrange` one of `{kind:'list', items:[{at, rotY}]}`, `{kind:'grid', origin, n:[nx,ny,nz], step, jitter, stagger, skip:[{x:[a,b]}]}`,
 `{kind:'random', n, min, max, gap, seed, exclude:[{min,max}]}`, `{kind:'inside', of:<population id>, per, margin, seed}` (children scattered inside each parent cell).
 A population's `deeper` is `{type:'cell', cell?}` (a cell frame of the scene's own kind), `{type:'mol', mol:<id in molecules_all.json>, name}` or `{type:'none'}`; with no `deeper` there is no button.
+A population without a `deeper` (or with `{type:'none'}`) must have `material: '<id>'` (a row of `data/descent/materials.json`: `keratin`, `plant_cells`, `chitin`, `rock_grain` ..., or a `stop` material such as `humus`):
+that is what zooming into it leads to. With the pointer between structures the nearest one answers. `node tools/descent/check.mjs` lists every population that has neither.
 Clicking a population opens its `node` card. **Scene fields added in pass 2:** `tag` (the card tag of every population, e.g. "Inside a leaf"; a population may override it with its own `tag`; default "Inside the tissue"),
 `cell` (`'plant'` | `'animal'` | `'fungal'`: what `deeper:{type:'cell'}` opens; a `deeper.cell` overrides; default plant). There is no fungal cell scene yet, so `fungal` opens the generic animal-cell scene,
 named "Fungal cell (generic stand-in)" with a note on screen that says so. **Orientation:** a `list` item may give `rot: [rx, ry, rz]` (degrees, full 3-D) or `dir: [x, y, z]` (where the shape's long axis points: z for `tube_z`, x for `tube_x`, y otherwise) instead of `rotY`;

@@ -1,0 +1,21 @@
+{
+ "about": "The honey bee worker.",
+ "default": "animal_cells",
+ "systems": {
+  "cuticle": "insect_cuticle",
+  "wings": "insect_wing",
+  "hairs": "insect_cuticle"
+ },
+ "ids": {
+  "pollen": "pollen",
+  "sting": "insect_cuticle",
+  "barbs": "insect_cuticle",
+  "trachea": "chitin"
+ },
+ "match": [
+  [
+   "^hs_",
+   "marker"
+  ]
+ ]
+}

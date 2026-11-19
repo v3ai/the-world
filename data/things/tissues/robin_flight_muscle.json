@@ -141,7 +141,8 @@
      1
     ],
     "jitter": 0.01
-   }
+   },
+   "material": "animal_cells"
   }
  ]
 }

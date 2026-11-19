@@ -502,7 +502,7 @@ function thBindFrame(F, T, def) {
       id: pd.id, node, part: { id: pd.id, name: pd.name, system: pd.system, center: pd.center, radius: pd.radius, parent: pd.parent || null }, thing: def.id, frame: F,
       info: { title: pd.name, tag: (def.systems.find(s => s.id === pd.system) || {}).label || pd.system, body: '' },
       priority: pd.priority ?? (pd.parent ? 2 : 1.5), shown: 0,
-      madeOf: pd.deeper ? 'thing' : undefined,
+      madeOf: pd.deeper ? 'thing' : undefined, material: pd.material,
       center: h => (h && h.pointLocal) ? h.pointLocal.clone() : partCenter(),
       radius: h => Math.max(pd.fly_m !== undefined ? pd.fly_m * k * .5 : Math.min(.015 * u, (pd.radius || .1) * k * 1.2), Math.min((pd.radius || .1) * k * .3, thingR * .2))   /* the smallest distance a double-click goes to: part.fly_m, else the default for a hand-sized thing but no larger than 1.2 radii of a tiny part */
     });
@@ -642,6 +642,7 @@ function thAutoUpdate(F, dt) {
    have that part's card open, instead of ending on a blank stop. (Rate-limited by the caller: one ray test per part, a few times a second.) */
 function thAtFloor(F) {
   const pid = thVisibleAt(F), rec = pid && F.T.parts[pid]; if (!rec || rec.pd.deeper) return;
+  if (typeof DESCENT !== 'undefined' && (DESCENT.has(F, thQuery(rec)) || F._dzStop)) return;   // the materials table knows what it is made of (the zoom goes on), or has said why it stops
   const node = NODE[rec.pd.node] ? rec.pd.node : null; if (!node || F.floorNode === node) return;
   F.floorNode = node;
   if (!(infoState && infoState.node === node)) { showBodyNode(node, { frame: F, obj: rec.g, id: pid, pointLocal: cam.T.clone() }); }
@@ -672,17 +673,31 @@ function thChooseHit(F, cands) {
 }
 
 /* ---------- what each part is made of at the next level down ---------- */
+/* The part under the zoom point: the one the pointer is on, as long as it is still showing (a layer that has peeled to a ghost no longer counts: then it is the
+   part that is visibly under the target now); a marker's own `deeper` comes first. What it is made of: its own `deeper`, else its material (the part's
+   `material`, or the thing's assignment file data/descent/assign/<thing>.json: js/descent.js). */
+function thPartAt(F, hint) {
+  const hu = hint && hint.obj && hint.obj.userData, own = hu && hu.part && F.T.parts[hu.id];
+  if (own && (hu.shown || 0) >= .35 * Math.min(1, own.pd.opacity_max ?? 1)) return own;
+  const pid = thVisibleAt(F); return (pid && F.T.parts[pid]) || own || null;
+}
+const thQuery = rec => ({ id: rec.pd.id, node: rec.pd.node, system: rec.pd.system, what: rec.pd.name, obj: rec.g, u: rec.g.userData });
 function thSpawn(F, T0, hint) {
   if (!F.T) return null;
-  const hu = hint && hint.obj && hint.obj.userData; let d = null;
-  if (hu && hu.hotspot && hu.hotspot.deeper) d = hu.hotspot.deeper;
-  else { const pid = thVisibleAt(F), rec = pid && F.T.parts[pid]; d = rec ? rec.pd.deeper : (hu && hu.part && F.T.parts[hu.id] ? F.T.parts[hu.id].pd.deeper : null); }   // what you see now, not what was under the cursor before the layers peeled
-  return d ? thDeepFrame(d, T0, undefined, F.unit) : null;
+  const hu = hint && hint.obj && hint.obj.userData;
+  let rec = null;
+  if (hu && hu.hotspot) {   // a marker: its own `deeper`; else what the part it names is made of (the first part with the marker's card); else nothing (the table then says it is only a marker)
+    if (hu.hotspot.deeper) return thDeepFrame(hu.hotspot.deeper, T0, undefined, F.unit);
+    rec = F.T.list.find(r => r.pd.node === hu.hotspot.node && !r.flow) || null; if (!rec) return null;
+  } else rec = thPartAt(F, hint);
+  if (!rec) return null;
+  if (rec.pd.deeper) return thDeepFrame(rec.pd.deeper, T0, undefined, F.unit);
+  return typeof DESCENT !== 'undefined' ? DESCENT.spawnFor(F, thQuery(rec), T0) : null;
 }
 const TH_CELLS = {
   plant: { name: 'Plant cell', opts: { type: 'plant' }, off: -10 },
   animal: { name: 'Animal cell', opts: { type: 'animal' }, off: 0 },
-  fungal: { name: 'Fungal cell (generic stand-in)', opts: { type: 'animal' }, off: 0, note: 'No fungal-cell scene has been built yet, so this is the generic animal-cell scene standing in for it. A fungal cell also has a nucleus and mitochondria, but it is surrounded by a rigid cell wall and differs from an animal cell in other ways that are not drawn here.' }
+  fungal: { name: 'Fungal cell (generic stand-in)', opts: { type: 'animal', cname: 'Fungal cell (generic stand-in)' }, off: 0, note: 'No fungal-cell scene has been built yet, so this is the generic animal-cell scene standing in for it. A fungal cell also has a nucleus and mitochondria, but it is surrounded by a rigid cell wall and differs from an animal cell in other ways that are not drawn here.' }
 };
 function thCellFrame(kind, T0, pu = 1e-6) {   // pu: the parent frame's unit; the cell's offset below the point is in micrometres
   const c = TH_CELLS[kind] || TH_CELLS.plant, f = new Frame({ type: 'cell', name: c.name, unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T0.clone().add(new V3(0, c.off * 1e-6 / pu, 0)), opts: Object.assign({}, c.opts) });
@@ -932,7 +947,19 @@ FT.tissue2 = {
     F.add(new THREE.HemisphereLight(0xffffff, 0x998877, .75)); const kl = new THREE.DirectionalLight(0xffffff, .75); kl.position.set(2, 4, 3); F.add(kl);
     F.spawnD = 3e-5;
     F.update = dt => { if (cam.A === F) { F._age = (F._age || 0) + dt; if (F._age < 1.8) cam.T.multiplyScalar(Math.exp(-dt * 4)); } };   // arriving by scroll-zoom: glide to the scene instead of staying where the cursor was
-    F.spawn = (T0, hint) => { const d = hint && hint.obj && hint.obj.userData.deeper; return d ? thDeepFrame(d, T0) : null; };
+    /* What a structure is made of: its own `deeper`, else its `material` (js/descent.js). With the pointer between structures, the nearest one answers:
+       a descent in a tissue never ends in the gap between two cells. */
+    F.spawn = (T0, hint) => {
+      let o = hint && hint.obj && hint.obj.userData.thing === 'tissue2' ? hint.obj : null;
+      if (!o) { let bd = Infinity; for (const p of F.pickables) { const c = p.userData.cen; if (!c) continue; for (let i = 0; i < c.length; i += 4) { const d = Math.hypot(c[i] - T0.x, c[i + 1] - T0.y, c[i + 2] - T0.z) - c[i + 3]; if (d < bd) { bd = d; o = p; } } } }
+      if (!o) return null; const u = o.userData;
+      if (u.deeper) {   // a cell of this scene opens the generic cell of its kind: its name says which cell it stands for
+        const f = thDeepFrame(u.deeper, T0), t = u.info && u.info.title;
+        if (f && f.type === 'cell' && t) f.opts.cname = f.opts.cname ? `${t}: a fungal cell (generic stand-in)` : `${t}: drawn as a generic ${f.opts.type === 'plant' ? 'plant' : 'animal'} cell`;
+        return f;
+      }
+      return typeof DESCENT !== 'undefined' ? DESCENT.spawnFor(F, { id: u.id, node: u.node, what: u.info && u.info.title, u }, T0) : null;
+    };
     F.cardMadeOf = (h, n) => { const d = h && h.obj && h.obj.userData.deeper; return d ? { label: d.button, go: () => thGoDeeper(h.frame, h, d) } : null; };
     Promise.all([thLoadTissue(o.id), loadNodes()]).then(([def]) => {
       if (!F.built) return;
@@ -948,7 +975,8 @@ FT.tissue2 = {
         inst.forEach((t, i) => { thTissueQuat(t, pop, q); m4.compose(new V3(...t.p), q, new V3(...t.s)); im.setMatrixAt(i, m4); im.setColorAt(i, col.setRGB(1 - rr() * .08, 1 - rr() * .06, 1 - rr() * .08)); });
         im.instanceMatrix.needsUpdate = true; im.frustumCulled = false; grp.add(im);
         const nid = NODE[pop.node] ? pop.node : null, deeper = thTissueDeeper(def, pop); if (!nid) console.warn('tissue2', def.id, pop.id, 'has no card', pop.node);
-        im.userData = { id: pop.id, node: nid, priority: pop.priority ?? 3, deeper, thing: 'tissue2', madeOf: deeper ? 'cell' : undefined, info: { title: pop.name, tag: pop.tag || def.tag || 'Inside the tissue', body: '' }, main: im };
+        im.userData = { id: pop.id, node: nid, priority: pop.priority ?? 3, deeper, thing: 'tissue2', madeOf: deeper ? 'cell' : undefined, material: pop.material, info: { title: pop.name, tag: pop.tag || def.tag || 'Inside the tissue', body: '' }, main: im };
+        { const cen = im.userData.cen = new Float32Array(inst.length * 4), gp = grp.position; inst.forEach((t, i) => { cen[i * 4] = t.p[0] + gp.x; cen[i * 4 + 1] = t.p[1] + gp.y; cen[i * 4 + 2] = t.p[2] + gp.z; cen[i * 4 + 3] = Math.min(t.s[0], t.s[1], t.s[2]) / 2; }); }   // centres (frame coordinates) and half the smallest side, for "the structure nearest this point"
         im.userData.resolve = () => pop.id; im.userData.pickRoot = im;
         F.pickables.push(im); if (nid) regMesh(pop.id, im);
         if (pop.ink) { const io = new THREE.InstancedMesh(geo, thInstOutline(0x1a2b1a, .0016), inst.length); io.instanceMatrix = im.instanceMatrix; io.frustumCulled = false; io.renderOrder = -1; grp.add(io); }

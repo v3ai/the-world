@@ -1,0 +1,22 @@
+{
+ "about": "The meadow buttercup.",
+ "default": "plant_cells",
+ "systems": {
+  "soil": "soil"
+ },
+ "ids": {
+  "basal_leaves_mid": "broadleaf",
+  "stem_leaves_mid": "broadleaf",
+  "hairs": "broadleaf",
+  "styles": "carpel",
+  "h_styles": "carpel",
+  "achenes": "carpel",
+  "beaks": "carpel"
+ },
+ "match": [
+  [
+   "^hs_",
+   "marker"
+  ]
+ ]
+}

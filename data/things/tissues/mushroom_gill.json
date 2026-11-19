@@ -222,7 +222,7 @@
    }
   },
   {
-   "id": "subhymenium",
+   "id": "subhymenium", "material": "fungal_cells",
    "name": "Supporting cell (subhymenium)",
    "node": "fa_gill_inside",
    "shape": "ellipsoid",
@@ -1081,7 +1081,7 @@
    }
   },
   {
-   "id": "basidium",
+   "id": "basidium", "material": "fungal_cells",
    "name": "Basidium (spore-making cell)",
    "node": "fa_gill_inside",
    "shape": "ellipsoid",
@@ -1520,7 +1520,7 @@
    }
   },
   {
-   "id": "sterigma",
+   "id": "sterigma", "material": "fungal_cells",
    "name": "Prong holding a spore",
    "node": "fa_gill_inside",
    "shape": "tube_z",
@@ -2019,7 +2019,7 @@
    }
   },
   {
-   "id": "spore",
+   "id": "spore", "material": "fungal_cells",
    "name": "Basidiospore",
    "node": "fa_spores",
    "shape": "ellipsoid",

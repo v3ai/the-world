@@ -170,7 +170,8 @@
       "rotY": 1.5707963267948966
      }
     ]
-   }
+   },
+   "material": "fungal_cells"
   },
   {
    "id": "subcuticle",
@@ -301,7 +302,8 @@
       "rotY": 1.5707963267948966
      }
     ]
-   }
+   },
+   "material": "fungal_cells"
   },
   {
    "id": "flesh",

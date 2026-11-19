@@ -64,7 +64,8 @@
      1,
      50
     ]
-   }
+   },
+   "material": "plant_cells"
   },
   {
    "id": "hair_s",
@@ -118,7 +119,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "plant_cells"
   },
   {
    "id": "hair_m",
@@ -172,7 +174,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "plant_cells"
   },
   {
    "id": "hair_l",
@@ -219,7 +222,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "plant_cells"
   }
  ]
 }

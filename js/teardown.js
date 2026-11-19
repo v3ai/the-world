@@ -252,6 +252,7 @@ FT.finfet = {
 function buildTeardown(body) {
   const phone = body.addChild(new Frame({ type: 'phone', name: 'Your smartphone', unit: 1e-3, radius: 100, r0: 0, r1: .9, pos: new V3(-.3, .83, .12), quat: new THREE.Quaternion().setFromEuler(new THREE.Euler(-.25, -.35, 0)) }));
   phone.pinned = true; phone.floorD = 2e-3;
+  phone.enterIf = aim => aim.frame !== body || aim.id === 'skin';   // the phone lies in the hand: scrolling in at the hand's skin reaches it; a bone, muscle or vessel of the hand that you point at is not the phone
   const die = phone.addChild(new Frame({ type: 'die', name: 'Processor die', unit: 1e-6, radius: 7600, r0: 0, r1: .02, pos: new V3(0, 46, 1.6), up: new V3(0, 1, 0) }));
   const core = die.addChild(new Frame({ type: 'core', name: 'CPU core', unit: 1e-6, radius: 950, r1: 8e-3, pos: new V3(-3500, 2700, 100) }));
   const cells = core.addChild(new Frame({ type: 'cells', name: 'Logic gates', unit: 1e-9, radius: 2600, r1: 2.2e-5, pos: new V3(420, 200, 14) }));

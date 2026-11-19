@@ -510,7 +510,8 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "material": "animal_cells"
   },
   {
    "id": "osn",
@@ -672,7 +673,8 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "material": "animal_cells"
   },
   {
    "id": "basal",
@@ -747,7 +749,8 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "material": "animal_cells"
   },
   {
    "id": "lamina",
@@ -773,7 +776,8 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "material": "animal_cells"
   },
   {
    "id": "gland",
@@ -806,7 +810,8 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "material": "animal_cells"
   },
   {
    "id": "axons",
@@ -846,7 +851,8 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "material": "animal_cells"
   }
  ],
  "tag": "Inside the smell lining",

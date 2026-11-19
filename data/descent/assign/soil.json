@@ -1,0 +1,24 @@
+{
+ "about": "The block of soil.",
+ "default": null,
+ "systems": {
+  "worm_in": "animal_cells",
+  "animals": "arthropod_shell"
+ },
+ "ids": {
+  "worm_setae": "chitin",
+  "pore_back": "soil_air",
+  "burrow": "soil_air",
+  "cast": "soil",
+  "grass_mid": "plant_wall",
+  "worm_head": "animal_cells",
+  "worm_skin": "animal_cells",
+  "worm_clitellum": "animal_cells",
+  "worm_gutcontent": "soil",
+  "hs_worm": "marker",
+  "hs_gut": "marker",
+  "hs_hearts": "marker",
+  "hs_hyphae": "marker",
+  "hs_pebbles": "marker"
+ }
+}

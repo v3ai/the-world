@@ -75,7 +75,8 @@
     ],
     "jitter": 0.25,
     "seed": 5
-   }
+   },
+   "material": "cellulose"
   },
   {
    "id": "fibre",
@@ -161,7 +162,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "plant_cells"
   }
  ]
 }
