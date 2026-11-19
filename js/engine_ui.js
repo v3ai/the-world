@@ -466,10 +466,24 @@ function updateTimeUI() {
 }
 
 /* ================= MAIN LOOP ================= */
-let lastT = performance.now(), hoverTick = 0;
+let lastT = performance.now(), pickSig = 0, lastChange = performance.now(), restedLast = false;
+const REST_AFTER_MS = 1500, REST_FRAME_MS = 31; // nothing has moved for 1.5 s: about 30 frames a second until something does
+function coversCanvas() { const l = document.getElementById('lab'); return !!(l && l.classList.contains('open')); } // a lab is a full-screen, opaque overlay
+document.addEventListener('visibilitychange', () => { lastT = performance.now(); });
 function loop(now) {
   requestAnimationFrame(loop);
-  const dt = Math.min(.05, (now - lastT) / 1000); lastT = now; clock += dt;
+  /* Nothing to show (the tab is hidden, or a lab covers the canvas): do nothing. Nothing moving (no input, flight, zoom, tour, fade or
+     fast clock for a while): skip every other frame, so ambient motion runs at about 30 frames a second. Any input sets lastInput, and
+     the very next frame is drawn in full, so the resting rate never delays a response. The meter (Shift+P) switches resting off. */
+  if (document.hidden || coversCanvas()) { lastT = now; PERF.hidden = true; return; }
+  PERF.hidden = false;
+  const tA = performance.now(), busy = !!fly || zoom.pending !== 0 || pointers.size > 0 || !!holdZoom || !!tour || Math.abs(timeSpeed) > 1;
+  if (busy) lastChange = tA;
+  PERF.idle = PERF.flags.idle && !PERF.shown && tA - Math.max(lastChange, lastInput) > REST_AFTER_MS;
+  if (PERF.idle && now - lastT < REST_FRAME_MS) return;
+  const dtMs = now - lastT, pk0 = PERF.acc.pick;
+  if (!PERF.idle && !restedLast) rsFeed(dtMs); restedLast = PERF.idle; // the render scale follows the frame time (engine.js, RENDER SCALE)
+  const dt = Math.min(.05, dtMs / 1000); lastT = now; clock += dt;
   simTime += dt * 1000 * timeSpeed;
   if (holdZoom) zoomBy(holdZoom * dt * 1.6, holdZoom < 0 ? W / 2 : undefined, H / 2);
   if (fly) stepFly(dt);
@@ -479,18 +493,35 @@ function loop(now) {
   reanchor();
   computeActive();
   for (const f of drawn) { f.ensure(); if (f.place) f.place(); }
-  if (typeof bloom !== 'undefined' && bloom) bloom.strength = drawn.some(f => f.illo && f.alpha > .3 && cam.D < 6) ? .03 : .55;
+  mergeStep();
   updateViewOffset();
-  for (const f of drawn) { placeFrameCam(f); applyFade(f); if (f.update) f.update(dt, clock, f); }
-  if (composer) composer.render(); else renderFrames(renderer);
+  for (const f of drawn) {
+    placeFrameCam(f); applyFade(f); frameCull(f); if (f._merged) mergePlace(f); if (f._faded) lastChange = tA;
+    if (!f.update) continue;
+    if (!f._culled) { f._skipDt = 0; f.update(dt, clock, f); }
+    else { f._skipDt = (f._skipDt || 0) + dt; if (((PERF.frame + (f._phase ?? (f._phase = drawn.indexOf(f)))) & 7) === 0) { f.update(Math.min(f._skipDt, .25), clock, f); f._skipDt = 0; } } // out of view: every eighth frame is enough
+  }
+  compileStep();
+  const tB = performance.now(); PERF.add('update', tB - tA - (PERF.acc.pick - pk0)); // picks made on the way (the zoom buttons' pivot) are counted as picking
+  renderer.info.reset(); PERF.gpuBegin();
+  renderAll(dt);
+  PERF.gpuEnd();
+  const tC = performance.now(); PERF.add('render', tC - tB);
   updateLabels(); updateCaption(); updateRuler();
-  if ((hoverTick += dt) > .12 || mouse.dirty) { hoverTick = 0; doHover(); }
+  /* Hover. What can be picked changes when frames arrive, load their parts or fade in: that counts as a change of the view.
+     The pick itself waits until the pointer has rested and the camera is still; while either moves, the tooltip is hidden. */
+  let sig = drawn.length; for (const f of drawn) sig = (sig * 31 + (f.pickables ? f.pickables.length : 0) * 2 + (f.alpha >= .5 ? 1 : 0)) | 0;
+  if (sig !== pickSig) { pickSig = sig; viewChanged(); lastChange = tA; }
+  const camMoving = !!fly || Math.abs(zoom.pending) > 2e-3 || pointers.size > 0 || !!holdZoom; // the last 0.2% of a zoom ease no longer moves anything under the pointer
+  if (mouse.dirty) { if (camMoving || tour) tipEl.classList.remove('show'); else if (performance.now() - mouse.t >= HOVER_REST_MS) doHover(); }
+  if (!camMoving) pkIdle(clamp(dtMs * .1, 4, 12), performance.now() - lastInput > 1500); // trees for picking, a few milliseconds at a time (a tenth of the frame when frames are slow), never while the camera moves
   if ((clock * 4 | 0) !== ((clock - dt) * 4 | 0)) updateTimeUI();
   const pe = $('#push'); if (now - msg.t < 2600 && msg.text) { $('#pushT').textContent = msg.text; pe.classList.add('show'); } else pe.classList.remove('show');
+  PERF.endFrame(dtMs, performance.now() - tA); PERF.tick(now);
 }
 async function startApp() {
   ROOT = await buildWorld();
-  setupComposer(); resize();
+  setupBloom(); resize();
   buildRuler();
   bindHold($('#zin'), -1); bindHold($('#zout'), 1);
   $('#bLibrary').onclick = e => { e.stopPropagation(); openLibrary(); };
@@ -510,6 +541,7 @@ async function startApp() {
   $('#timeNow').onclick = () => { simTime = Date.now(); };
   if (store.get('seenHelp', false)) $('#help').classList.add('hide');
   startView();
+  if (PERF.flags.stats) PERF.show(true);
   const fade = $('#fade'); fade.style.transition = 'opacity 1.2s'; requestAnimationFrame(() => fade.style.opacity = 0);
   loadKnowledge();
   requestAnimationFrame(loop);

@@ -14,10 +14,14 @@ function thLoadIndex() { return TH.index || (TH.index = getJSON('data/things/ind
 TH.loaded = {};
 function thLoadDef(id) { return TH.defs[id] || (TH.defs[id] = getJSON('data/things/' + id + '/thing.json').then(d => TH.loaded[id] = d)); }
 function thLoadBundle(id) {   // format 1: everything in mesh.json; format 2: mesh.json is the index and mesh.bin holds the numbers (tools/things/lib/export.mjs, pack)
-  return TH.bundles[id] || (TH.bundles[id] = getJSON('data/things/' + id + '/mesh.json').then(async j => {
+  if (TH.bundles[id]) return TH.bundles[id];
+  const here = () => getJSON('data/things/' + id + '/mesh.json').then(async j => {   // on the main thread, as before: used when the worker is not available
     if (j.format === 2) { const r = await fetch('data/things/' + id + '/' + j.bin); if (!r.ok) throw new Error('data/things/' + id + '/' + j.bin + ' ' + r.status); j.buf = await r.arrayBuffer(); }
     return j;
-  }));
+  });
+  // in the worker (js/mesh_worker.js): every mesh arrives decoded, with normals and bounding sphere (bundle.dec[key]); mesh.bin is handed back for the instance lists and shade bytes
+  const w = typeof meshWorker === 'function' ? meshWorker({ op: 'thing', json: absURL('data/things/' + id + '/mesh.json'), bin: absURL('data/things/' + id + '/mesh.bin') }).then(r => { const j = r.json; j.buf = r.buf; j.dec = r.meshes; return j; }).catch(here) : here();
+  return TH.bundles[id] = w;
 }
 function thDecodeV2(bundle, q) {   // int16 positions, delta/zigzag/varint triangle indices, optional uint8 shade
   const buf = bundle.buf, p16 = new Int16Array(buf, q.pos[0], q.nv * 3), pos = new Float32Array(q.nv * 3), s = q.scale, o = q.offset;
@@ -35,7 +39,7 @@ function thInst(bundle, key) {   // {mesh, stride, n, t: flat x y z qx qy qz qw 
 function thGeo(id, bundle, key) {   // one shared BufferGeometry per mesh key
   const k = id + '/' + key; if (TH.geos[k]) return TH.geos[k];
   const q = bundle.meshes[key]; if (!q) return null;
-  const g = bundle.format === 2 ? thDecodeV2(bundle, q) : decodePart(q);
+  const g = bundle.dec && bundle.dec[key] ? geoFromArrays(bundle.dec[key]) : bundle.format === 2 ? thDecodeV2(bundle, q) : decodePart(q);
   if (q.shade) { const sh = bundle.format === 2 ? new Uint8Array(bundle.buf, q.shade[0], q.nv) : q.shade, c = new Float32Array(sh.length * 3); for (let i = 0; i < sh.length; i++) c[i * 3] = c[i * 3 + 1] = c[i * 3 + 2] = sh[i] / 255; g.setAttribute('color', new THREE.BufferAttribute(c, 3)); }   // baked brightness (occlusion, staining)
   return TH.geos[k] = g;
 }
@@ -119,6 +123,7 @@ void main(){
 function thInked(geo, color, o = {}) {   // like inked(), but the outline respects clipping planes
   const g = new THREE.Group(), m = new THREE.Mesh(geo, illoMat(color, { double: o.double, extra: o.vc ? { vertexColors: true } : {} })); g.add(m);
   const ol = new THREE.Mesh(geo, thOutlineMat(o.ink, o.w, o.sway)); ol.userData.outline = true; g.add(ol); g.userData.ol = ol; g.userData.main = m;
+  m.matrixAutoUpdate = ol.matrixAutoUpdate = false;   // the group is what moves (if anything does); the meshes inside it stay at identity
   return g;
 }
 let _thShadowTex = null;
@@ -208,9 +213,20 @@ function thSwayUniforms(sp) {   // sp = { sway: entry|null, swing: entry|null }
     uWg: { value: new THREE.Vector2(g.shown_hz || g.hz || 1, (g.amp_deg || 0) * Math.PI / 180) }, uWgS: { value: g.sym ? 1 : 0 }, uWgR: { value: new THREE.Vector4(g.from ?? 0, g.to ?? 1, g.lat ? g.lat[0] : 1e3, g.lat ? g.lat[1] : 2e3) },
     uWgP: { value: V(g.pivot, [0, 0, 0]) }, uWgD: { value: V(g.dir, [1, 0, 0]).normalize() }, uWgA: { value: V(g.axis, [0, 1, 0]).normalize() }, uWgL: { value: V(g.lat_axis, [0, 0, 1]).normalize() } };
 }
-function thSwayPatch(mat, sp) {   // MeshToonMaterial: move the thing-space position (after the instance matrix) in the vertex shader
-  const u = thSwayUniforms(sp); mat.userData.sway = u;
+/* Every lit material of a thing goes through thPatch.
+   Light: a thing is lit by the park's sun and sky at reduced strength (sun x 0.75, sky x 0.55 and less at night), so that toon shading
+   reads well at any sun angle. That reduction is done here, in the shader, on the light the scene provides: TH_LIGHT.uThSun and uThSky
+   scale the direct and the ambient light. So a thing looks the same whether it is drawn in its own scene (with copies of the park's
+   two lights) or inside the park's scene (with the park's own lights): see "fewer scenes" in js/engine.js. Outside the park (the
+   preview tool) both factors are 1.
+   Sway (sp, optional): moves the thing-space position, after the instance matrix, in the vertex shader. */
+const TH_LIGHT = { uThSun: { value: 1 }, uThSky: { value: 1 } };
+function thPatch(mat, sp) {
+  const u = sp ? thSwayUniforms(sp) : null; if (u) mat.userData.sway = u;
   mat.onBeforeCompile = sh => {
+    Object.assign(sh.uniforms, TH_LIGHT);
+    sh.fragmentShader = 'uniform float uThSun; uniform float uThSky;\n' + sh.fragmentShader.replace('vec3 outgoingLight =', 'reflectedLight.directDiffuse *= uThSun; reflectedLight.indirectDiffuse *= uThSky;\n\tvec3 outgoingLight =');
+    if (!u) return;
     Object.assign(sh.uniforms, { uTime: TH_SWAY.uTime }, u);
     sh.vertexShader = TH_SWAY_GLSL + '\n' + sh.vertexShader.replace('#include <project_vertex>', `vec4 thP = vec4(transformed, 1.0);
 #ifdef USE_INSTANCING
@@ -219,7 +235,7 @@ function thSwayPatch(mat, sp) {   // MeshToonMaterial: move the thing-space posi
   thP.xyz += thMove(thP.xyz);
   vec4 mvPosition = modelViewMatrix * thP; gl_Position = projectionMatrix * mvPosition;`);
   };
-  mat.customProgramCacheKey = () => 'thsway';
+  mat.customProgramCacheKey = () => u ? 'thlit+sway' : 'thlit';
 }
 
 /* ---------- ThingObj: the meshes of one thing ---------- */
@@ -247,6 +263,9 @@ class ThingObj {
     if (def.shadow) this._addShadow(def.shadow);
     for (const h of def.hotspots || []) this._addHotspot(h);
     this._addAnims();
+    // parts that no animation moves keep the matrix they have (identity): it is not composed again every frame
+    { const moving = new Set(this.anims.map(e => e.rec)); for (const r of this.list) if (!moving.has(r)) { r.g.updateMatrix(); r.g.matrixAutoUpdate = false; } for (const h of this.hot) { h.updateMatrix(); h.traverse(o => { o.matrixAutoUpdate = false; }); } if (this.shadow) { this.shadow.updateMatrix(); this.shadow.matrixAutoUpdate = false; } }
+    this.olK = 1; this.hovId = null;   // set by the frame: how strongly outlines are drawn (0..1), and the part under the pointer
     this.setMode((def.auto ? 'auto' : (def.modes[0] || {}).id));
   }
   _pivot(name) {   // a group that turns about the vertical axis through def.pivots[name].at ([x, z]); its parts and hotspots live inside
@@ -270,14 +289,14 @@ class ThingObj {
     if (pd.mesh) {
       geo = thGeo(def.id, this.bundle, pd.mesh); if (!geo) { console.warn('thing', def.id, 'part', pd.id, 'missing mesh', pd.mesh); return; }
       g = thInked(geo, color, { w: pd.ink_w || def.ink_w || .0018, double: !!pd.double, vc: !!geo.attributes.color, sway: sw });
-      g.userData.main.material.clippingPlanes = null; if (sw) thSwayPatch(g.userData.main.material, sw);
+      g.userData.main.material.clippingPlanes = null; thPatch(g.userData.main.material, sw);
       if (pd.solid !== false) {   // inside faces for the cut-open view, painted with the cut-face pattern
-        const fm = thFaceMat(this._faceFor(pd), this.plane); fm.clippingPlanes = this.planes; const cap = new THREE.Mesh(geo, fm); cap.visible = false; cap.userData.cap = true; cap.renderOrder = 0; g.add(cap); g.userData.cap = cap; this.faceMats.push(fm);
+        const fm = thFaceMat(this._faceFor(pd), this.plane); fm.clippingPlanes = this.planes; const cap = new THREE.Mesh(geo, fm); cap.visible = false; cap.userData.cap = true; cap.renderOrder = 0; cap.matrixAutoUpdate = false; g.add(cap); g.userData.cap = cap; this.faceMats.push(fm);
       }
     } else if (pd.instances) {
       const inst = thInst(this.bundle, pd.instances); geo = thGeo(def.id, this.bundle, inst.mesh);
       const ex = geo.attributes.color ? { vertexColors: true } : {}; if (pd.card) { thCardUV(geo); ex.map = thCardTexture(pd.card); ex.alphaTest = .5; }
-      const mat = illoMat(color, { double: !!pd.double, extra: ex }); if (sw) thSwayPatch(mat, sw);
+      const mat = illoMat(color, { double: !!pd.double, extra: ex }); thPatch(mat, sw);
       const rj = pd.tint || 0, ck = def.id + ':' + pd.instances + ':' + rj;
       let sh = TH.inst[ck];
       if (!sh) {   // one master set of instance matrices per thing, shared by every placement (built once)
@@ -318,8 +337,9 @@ class ThingObj {
     return null;
   }
   _addHotspot(h) {
-    const R = this.def.radius_m || 1, geo = new THREE.SphereGeometry(h.r || Math.max(.01 * this.u, R * .02), 14, 10), g = inked(geo, 0xffd166, { w: .004 });
-    g.children.forEach(m => { m.material.depthTest = false; m.renderOrder = m.userData.outline ? 9 : 10; });   // ink first, fill on top
+    const R = this.def.radius_m || 1, geo = new THREE.SphereGeometry(h.r || Math.max(.01 * this.u, R * .02), 14, 10), g = inked(geo, 0xffd166, { w: .004, extra: { transparent: true } });
+    g.children.forEach(m => { m.material.depthTest = false; m.renderOrder = m.userData.outline ? 9 : 10; });   // ink first, fill on top (both in the blended pass, where renderOrder decides)
+    thPatch(g.userData.main.material, null);
     const pv = this._hotPivot(h); g.userData.hotspot = h; g.visible = false; g.position.set(...h.at); (pv ? this._pivot(pv) : this.group).add(g); this.hot.push(g);
   }
   _addAnims() {
@@ -396,7 +416,7 @@ class ThingObj {
     }
     if (this.anims.length && this.tier < 2 && alpha > .05) this._stepAnims(this.clock);
     // opacity map: the mode's, or Auto's peel, or a reveal (everything in front of a part gives way, in any mode); a peeled thing shows all its layers
-    let sh = (md && md.show) || {}; const peeled = this.hidden.size > 0;
+    let sh = (md && md.show) || {}; const peeled = this.hidden.size > 0; let vs = this.cutActive ? 1 : 0, vi = 0;   // vs: which parts can be seen (and so picked)
     if (this.revealOp && this.revealId) sh = Object.assign({}, sh, this.revealOp);
     for (const r of this.list) {
       const pd = r.pd, sys = pd.system;
@@ -409,17 +429,18 @@ class ThingObj {
       let lodPart = false; if (pd.lod) { lodPart = true; if (!pd.lod.split('+').some(n => tierNames.includes(n))) tgt = 0; }
       r.tgt = tgt; if (lodPart && (lodSnap || tgt === 0)) r.op = tgt; else { r.op += (tgt - r.op) * (1 - Math.exp(-dt * 9)); if (Math.abs(r.op - tgt) < .01) r.op = tgt; }   // detail tiers swap at once, never both drawn
       const op = r.op * alpha, g = r.g, main = g.userData.main, mat = main.material;
-      g.visible = op > .01; g.userData.shown = g.visible ? r.op : 0;
+      g.visible = op > .01; g.userData.shown = g.visible ? r.op : 0; vi++; if (g.userData.shown >= .35) vs = (vs * 31 + vi) | 0;
       if (g.visible && r.flow) { thFlowUpdate(r.flow, this.clock); mat.opacity = op; continue; }
       if (g.visible) {
         const isSel = this.sel === pd.id;
         mat.opacity = op; mat.transparent = op < .99; mat.depthWrite = op > .9; if (mat.clippingPlanes !== planes) { mat.clippingPlanes = planes; mat.needsUpdate = true; }
-        const ol = g.userData.ol; if (ol) { ol.visible = op > .5 && !pd.noink; ol.material.uniforms.uOpacity.value = .85 * op; ol.material.uniforms.uColor.value.setHex(isSel ? 0x1e4e8f : 0x1a1f2b); if (ol.material.clippingPlanes !== planes) { ol.material.clippingPlanes = planes; ol.material.needsUpdate = true; } }
-        const cap = g.userData.cap; if (cap) { cap.visible = !!cut && op > .5; cap.material.uniforms.uOpacity.value = op; }
+        const ol = g.userData.ol, olK = isSel || this.hovId === pd.id ? 1 : this.olK; if (ol) { ol.visible = op > .5 && !pd.noink && olK > .02; ol.material.uniforms.uOpacity.value = .85 * op * olK; ol.material.uniforms.uColor.value.setHex(isSel ? 0x1e4e8f : 0x1a1f2b); if (ol.material.clippingPlanes !== planes) { ol.material.clippingPlanes = planes; ol.material.needsUpdate = true; } }
+        const cap = g.userData.cap; if (cap) { cap.visible = !!cut && op > .5; cap.material.uniforms.uOpacity.value = op; cap.material.transparent = op < .995; }
       }
     }
     for (const h of this.hot) { const hs = h.userData.hotspot; h.visible = (!!cut || !!(md && md.hotspots)) && (!hs.modes || (md && hs.modes.includes(md.id))); h.children.forEach(m => { if (m.material.uniforms && m.material.uniforms.uOpacity) m.material.uniforms.uOpacity.value = .85 * alpha; else m.material.opacity = alpha; }); }
     if (this.shadow) this.shadow.material.opacity = (def.shadow.opacity ?? 1) * alpha;
+    this.shownSig = vs;
     return md;
   }
   dispose() { this.holder.traverse(o => { if (o.material) (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); }); }
@@ -430,6 +451,8 @@ const TH_PEEL = { K: 12, TMIN: .008, TMAX: .045 };   // the human's peel constan
 FT.thing = {
   build(F, o) {
     const id = o.thing, pl = o.placement || {}; F.illo = true; F.noFade = true;   // opacity is handled per part, like the body
+    F.mergeable = true;   // drawn inside the park's scene whenever the park is drawn (js/engine.js, "fewer scenes"); its own two lights are then switched off
+    F.onMerge = on => { if (F.T) F.T.lights.hemi.visible = F.T.lights.sun.visible = !on; };
     renderer.localClippingEnabled = true;
     F.parts = {}; F.mode = null; F.layered = true; F.hidden = new Set(); F.sel = null; F.reveal = null;   // the body's click features (core sample, hide, peel) work on this frame too
     F.env = { bg: 0, opaque: false };
@@ -439,7 +462,7 @@ FT.thing = {
       if (!F.built) return;
       const T = new ThingObj(def, bundle, { placement: pl, hidden: F.hidden });
       F.T = T; T.group.position.set(0, 0, 0); T.group.updateMatrix(); T.holder.position.set(0, 0, 0);
-      F.add(T.holder); F.add(T.lights.hemi); F.add(T.lights.sun); F.add(T.lights.sun.target);
+      F.add(T.holder); F.add(T.lights.hemi); F.add(T.lights.sun); F.add(T.lights.sun.target); F.onMerge(!!F._merged);
       const validModes = ['auto'].concat(def.modes.map(m => m.id)); if (!def.auto) validModes.shift();
       T.setMode(validModes.includes(F.mode) ? F.mode : validModes[0]);
       thBindFrame(F, T, def);
@@ -527,8 +550,9 @@ function thFrameUpdate(F, dt, t) {
   const P = FR.park;
   if (P && P.scene) {
     if (!_thPark || _thPark.scene !== P.scene) { _thPark = { scene: P.scene, sun: null, hemi: null }; P.scene.traverse(o => { if (o.isDirectionalLight && !_thPark.sun) _thPark.sun = o; if (o.isHemisphereLight && !_thPark.hemi) _thPark.hemi = o; }); }
-    if (_thPark.sun) { T.lights.sun.position.copy(_thPark.sun.position).normalize().multiplyScalar(40); T.lights.sun.intensity = _thPark.sun.intensity * .75; T.lights.sun.color.copy(_thPark.sun.color); }
-    if (_thPark.hemi) { const day = Math.min(1, _thPark.sun ? _thPark.sun.intensity / 1.15 : 1); T.lights.hemi.intensity = _thPark.hemi.intensity * .55 * (.18 + .82 * day); }
+    // this frame's own lights are copies of the park's (used when it is drawn alone); the reduction to sun x 0.75 and sky x 0.55 (less at night) is in the shader (thPatch)
+    if (_thPark.sun) { T.lights.sun.position.copy(_thPark.sun.position).normalize().multiplyScalar(40); T.lights.sun.intensity = _thPark.sun.intensity; T.lights.sun.color.copy(_thPark.sun.color); TH_LIGHT.uThSun.value = .75; }
+    if (_thPark.hemi) { const day = Math.min(1, _thPark.sun ? _thPark.sun.intensity / 1.15 : 1); T.lights.hemi.intensity = _thPark.hemi.intensity; T.lights.hemi.color.copy(_thPark.hemi.color); T.lights.hemi.groundColor.copy(_thPark.hemi.groundColor); T.lights.hemi.position.copy(_thPark.hemi.position).sub(F.pos); /* at the park light's own place: three takes a hemisphere light's direction from its position in the scene */ TH_LIGHT.uThSky.value = .55 * (.18 + .82 * day); }
     if (P.scene.fog && F.scene.fog !== P.scene.fog) F.scene.fog = P.scene.fog;
   }
   const C = F.C || _thV.set(0, 0, 0);   // camera position in frame coordinates; in the shifted frame root the camera sits at the world origin (T.camW stays 0)
@@ -536,7 +560,10 @@ function thFrameUpdate(F, dt, t) {
   // the part a card is about stays selected only while its card is open
   if (F.sel || F.reveal) { const st = infoState, keep = st && ((st.h && st.h.frame === F && st.h.obj && st.h.obj.userData.id === F.sel) || (!st.h && st.node === F.selNode)); if (!keep) { F.sel = null; F.reveal = null; } }
   T.sel = F.sel; thAutoUpdate(F, dt);
-  T.update(dt, C, _thOff, F.alpha);
+  T.olK = T.tier === 2 && PERF.flags.outline !== 'all' ? 0 : outlineAmt(2 * (T.def.radius_m || 1) * T.k / Math.max(T.dist || 1e-6, 1e-6) * PX_PER_RAD()); T.hovId = hovered && hovered.userData.frame === F ? hovered.userData.id : null;   // outline=near: no ink on the far detail tier, and it fades out as the thing gets small on screen
+  if (F._arr === undefined) F._arr = 0; if (F._arr < 1) F._arr = Math.min(1, F._arr + dt / .4);   // a thing that has just loaded fades in over 0.4 s
+  T.update(dt, C, _thOff, F.alpha * F._arr);
+  if (T.shownSig !== F._vs) { F._vs = T.shownSig; viewChanged(); }   // the parts that can be seen have changed: the hover under a resting pointer is worked out again
   thGroundFade(FR.things.some(f => f.T && f.T.seeThrough && f.alpha > .5));
   if (F._lastModeId !== T.modeId) { F._lastModeId = T.modeId; thUpdateControls(F); F.mode = T.modeId; }
   const n = F.hidden.size, on = n || F.reveal, dsp = on ? '' : 'none'; if (F.showAllBtn.style.display !== dsp) F.showAllBtn.style.display = dsp;
@@ -603,7 +630,6 @@ function thAutoUpdate(F, dt) {
   const P = thPeel(T, rows, tgt, 1 - smooth(active * .35, active * .6, dist));
   if (useAuto) { const ops = Object.assign({}, P.ops, a.always || {}); T.peelMode.show = ops; T.layerName = P.focus; }
   if (rv) { T.revealOp = P.ops; T.revealId = rv.id; } else { T.revealOp = T.revealId = T.revealFront = null; }
-  mouse.dirty = true;   // what is under a resting cursor has changed
 }
 /* which part is visibly under the camera's target right now (nearest, un-clipped, drawn at least about a third solid) */
 function thVisibleAt(F) {
@@ -721,7 +747,7 @@ WORLD_EXT.push(async FR => {
   for (const e of ix.things || []) { try { defs[e.id] = await thLoadDef(e.id); } catch (err) { console.error('thing data missing', e.id, err); } }
   for (const e of ix.things || []) {
     const def = defs[e.id]; if (!def) continue;
-    thLoadBundle(e.id); def.parts.forEach(p => { if (p.deeper && p.deeper.type === 'tissue2') thLoadTissue(p.deeper.id); });
+    loadNote(def.label || def.title || e.id, thLoadBundle(e.id)); def.parts.forEach(p => { if (p.deeper && p.deeper.type === 'tissue2') thLoadTissue(p.deeper.id); });
     (e.placements || []).forEach((pl0, i) => {
       const pl = thResolvePlacement(pl0, ix, defs), x = thPlacement(def, pl), R = (def.radius_m || 1) * x.k * 1.15;
       const f = FR.park.addChild(new Frame({ type: 'thing', name: def.title, unit: 1, radius: R, r0: 0, r1: Math.max(R * 12, 8), up: new V3(0, 1, 0), pos: new V3(pl.at[0], pl.y || 0, pl.at[1]), opts: { thing: e.id, placement: pl, n: i } }));

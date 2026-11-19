@@ -419,3 +419,34 @@ body.trackOpen #caption { left: 376px }
   #tracks { top: 52px; left: 8px; right: 8px; bottom: 8px; width: auto; border-radius: var(--r-panel); border-width: 1px }
   #help .go { position: sticky; bottom: -18px; box-shadow: 0 0 0 10px var(--paper) }
 }
+
+/* ---- performance meter (js/perf.js): shown with ?stats=1 or Shift+P; sits left of the zoom buttons, and left of the card when one is open ---- */
+#perf { position: fixed; right: 66px; bottom: 16px; width: 372px; max-width: calc(100vw - 32px); z-index: 11; display: none; padding: 10px 12px 10px; background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); font: 400 12px/1.4 var(--sans); color: var(--ink); user-select: text; -webkit-user-select: text }
+#perf.open { display: block }
+body.cardOpen #perf { right: 432px }
+#perf header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 6px }
+#perf header b { font: 600 15px/1.2 var(--serif) }
+#perf button { border: 1px solid var(--rule); background: #fff; border-radius: var(--r-ctl); padding: 2px 8px; font-size: 11.5px; cursor: pointer; color: var(--ink-2) }
+#perf button:hover { border-color: var(--accent); color: var(--accent) }
+#perf .pf-btns { display: flex; gap: 6px }
+#perf dl { display: grid; grid-template-columns: auto 1fr; margin: 0; border-top: 1px solid var(--rule) }
+#perf dt, #perf dd { margin: 0; padding: 3px 0; border-bottom: 1px solid var(--rule) }
+#perf dt { color: var(--muted); padding-right: 12px; white-space: nowrap }
+#perf dd { overflow-wrap: anywhere }
+#perf .pf-warn { margin: 0 0 8px; padding: 6px 8px; border-left: 3px solid var(--accent); background: #fff; font-size: 12px; line-height: 1.45 }
+#perf .pf-sw { margin-top: 8px; display: grid; gap: 4px }
+#perf .pf-row { display: flex; align-items: center; justify-content: space-between; gap: 8px }
+#perf .pf-row > span:first-child { color: var(--muted) }
+#perf .pf-seg { display: flex; flex-wrap: wrap; justify-content: flex-end }
+#perf .pf-seg button { border-radius: 0; margin-left: -1px; padding: 1px 7px }
+#perf .pf-seg button.on { background: var(--ink); color: var(--paper); border-color: var(--ink) }
+#perf .pf-foot { margin-top: 8px; color: var(--muted); font-size: 11.5px; line-height: 1.4 }
+#perf .pf-note { margin-top: 6px; color: var(--muted); min-height: 0 }
+#perf .pf-note:empty { display: none }
+#perf textarea { width: 100%; height: 110px; margin-top: 6px; font: 11px/1.35 ui-monospace, Menlo, Consolas, monospace; border: 1px solid var(--rule); border-radius: var(--r-ctl); background: #fff; color: var(--ink); resize: vertical }
+@media (max-width: 860px) { #perf, body.cardOpen #perf { right: 8px; left: 8px; bottom: auto; top: 52px; width: auto; max-height: 60vh; overflow: auto } }
+
+/* what is still arriving (js/nodes.js loadNote): a quiet line at the bottom of the view, gone when everything has loaded */
+#loadNote { position: fixed; left: calc(50% + var(--ruler-w) / 2); bottom: 118px; transform: translateX(-50%); z-index: 6; display: none; padding: 5px 12px; max-width: min(520px, calc(100vw - 32px)); background: var(--paper); border: 1px solid rgba(23,32,42,.14); border-radius: var(--r-panel); box-shadow: var(--lift); font: italic 400 13px/1.4 var(--serif); color: var(--ink-2); text-align: center; pointer-events: none }
+#loadNote.on { display: block }
+@media (max-width: 860px) { #loadNote { left: 50%; bottom: auto; top: 100px; width: max-content } }
