@@ -256,11 +256,14 @@ const _cp = new V3(), _tp = new V3(), _dv = new V3(), _uv = new V3();
    projection so the camera's target appears in the middle of that free area (card open on the right, Tracks on the left; on a
    phone the card is a sheet at the bottom). It eases in and out, and everything that projects through f.cam (picking, labels) follows. */
 const viewOff = { x: 0, y: 0 };
-function updateViewOffset(dt) {
+let _voT = performance.now();
+function updateViewOffset() {
+  const now = performance.now(), dt = Math.min(.3, (now - _voT) / 1000); _voT = now; // real time, so it settles in about half a second even at a low frame rate
   let tx = 0, ty = 0;
   const vis = e => e && e.classList.contains('open') ? e.getBoundingClientRect() : null;
   const L = vis(document.getElementById('tracks')), I = vis(document.getElementById('info'));
-  if (W > 860) {
+  if (!L && !I) { /* no panel open: the view is centred as ever */ }
+  else if (W > 860) {
     let lo = 0, hi = W;
     if (L) lo = Math.max(lo, L.right); else { const rl = document.getElementById('ruler'); if (rl && rl.offsetWidth) lo = rl.getBoundingClientRect().right; }
     if (I) hi = Math.min(hi, I.left);
@@ -271,7 +274,7 @@ function updateViewOffset(dt) {
     ty = clamp((top + bot) / 2 - H / 2, -H * .3, 0);
   }
   // setViewOffset moves the window over the full image: a window shifted right shows content that sits further right, so the scene moves left by +x
-  const k = 1 - Math.exp(-dt * 7), nx = -tx, ny = -ty;
+  const k = 1 - Math.exp(-dt * 9), nx = -tx, ny = -ty;
   viewOff.x += (nx - viewOff.x) * k; viewOff.y += (ny - viewOff.y) * k;
   if (Math.abs(viewOff.x - nx) < .5) viewOff.x = nx; if (Math.abs(viewOff.y - ny) < .5) viewOff.y = ny;
 }

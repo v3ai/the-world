@@ -478,7 +478,7 @@ function loop(now) {
   computeActive();
   for (const f of drawn) { f.ensure(); if (f.place) f.place(); }
   if (typeof bloom !== 'undefined' && bloom) bloom.strength = drawn.some(f => f.illo && f.alpha > .3 && cam.D < 6) ? .03 : .55;
-  updateViewOffset(dt);
+  updateViewOffset();
   for (const f of drawn) { placeFrameCam(f); applyFade(f); if (f.update) f.update(dt, clock, f); }
   if (composer) composer.render(); else renderFrames(renderer);
   updateLabels(); updateCaption(); updateRuler();
