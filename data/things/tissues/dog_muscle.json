@@ -1,0 +1,598 @@
+{
+ "id": "dog_muscle",
+ "title": "Inside a dog muscle",
+ "node": "dog_muscle_scene",
+ "bg": "#f3efe6",
+ "center": [
+  0,
+  25,
+  0
+ ],
+ "D_um": 600,
+ "blurb": "Muscle fibres seen end-on in a small bundle: each circle is one long cell about 47 micrometres across. Click a fibre or the nerve ending.",
+ "note": "The fibre width is drawn from a measured average cross-section of dog thigh muscle fibres (about 1,700-1,800 square micrometres, about 47 micrometres if round; vastus lateralis, 16 breeds, a thesis summary). The layout, the capillaries, the nuclei and the nerve ending are illustrative, as are their sizes.",
+ "labels": [
+  {
+   "text": "Muscle fibre (one long cell)",
+   "at": [
+    -190,
+    110,
+    210
+   ],
+   "pop": "fibre"
+  },
+  {
+   "text": "Capillary",
+   "at": [
+    128,
+    33,
+    210
+   ],
+   "pop": "capillary"
+  },
+  {
+   "text": "Nerve ending: the neuromuscular junction",
+   "at": [
+    -150,
+    150,
+    210
+   ],
+   "pop": "nmj"
+  }
+ ],
+ "populations": [
+  {
+   "id": "fibre",
+   "name": "Muscle fibre",
+   "node": "dog_muscle_fibre",
+   "shape": "tube_z",
+   "size": [
+    47,
+    47,
+    400
+   ],
+   "color": "#c0574b",
+   "opacity": 0.92,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -151.5,
+       -100,
+       0
+      ]
+     },
+     {
+      "at": [
+       -151.5,
+       -50,
+       0
+      ]
+     },
+     {
+      "at": [
+       -151.5,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       -151.5,
+       50,
+       0
+      ]
+     },
+     {
+      "at": [
+       -151.5,
+       100,
+       0
+      ]
+     },
+     {
+      "at": [
+       -101.5,
+       -100,
+       0
+      ]
+     },
+     {
+      "at": [
+       -101.5,
+       -50,
+       0
+      ]
+     },
+     {
+      "at": [
+       -101.5,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       -101.5,
+       50,
+       0
+      ]
+     },
+     {
+      "at": [
+       -101.5,
+       100,
+       0
+      ]
+     },
+     {
+      "at": [
+       -51.5,
+       -100,
+       0
+      ]
+     },
+     {
+      "at": [
+       -51.5,
+       -50,
+       0
+      ]
+     },
+     {
+      "at": [
+       -51.5,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       -51.5,
+       50,
+       0
+      ]
+     },
+     {
+      "at": [
+       -51.5,
+       100,
+       0
+      ]
+     },
+     {
+      "at": [
+       -1.5,
+       -100,
+       0
+      ]
+     },
+     {
+      "at": [
+       -1.5,
+       -50,
+       0
+      ]
+     },
+     {
+      "at": [
+       -1.5,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       -1.5,
+       50,
+       0
+      ]
+     },
+     {
+      "at": [
+       -1.5,
+       100,
+       0
+      ]
+     },
+     {
+      "at": [
+       48.5,
+       -100,
+       0
+      ]
+     },
+     {
+      "at": [
+       48.5,
+       -50,
+       0
+      ]
+     },
+     {
+      "at": [
+       48.5,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       48.5,
+       50,
+       0
+      ]
+     },
+     {
+      "at": [
+       48.5,
+       100,
+       0
+      ]
+     },
+     {
+      "at": [
+       98.5,
+       -100,
+       0
+      ]
+     },
+     {
+      "at": [
+       98.5,
+       -50,
+       0
+      ]
+     },
+     {
+      "at": [
+       98.5,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       98.5,
+       50,
+       0
+      ]
+     },
+     {
+      "at": [
+       98.5,
+       100,
+       0
+      ]
+     },
+     {
+      "at": [
+       148.5,
+       -100,
+       0
+      ]
+     },
+     {
+      "at": [
+       148.5,
+       -50,
+       0
+      ]
+     },
+     {
+      "at": [
+       148.5,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       148.5,
+       50,
+       0
+      ]
+     },
+     {
+      "at": [
+       148.5,
+       100,
+       0
+      ]
+     },
+     {
+      "at": [
+       198.5,
+       -100,
+       0
+      ]
+     },
+     {
+      "at": [
+       198.5,
+       -50,
+       0
+      ]
+     },
+     {
+      "at": [
+       198.5,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       198.5,
+       50,
+       0
+      ]
+     },
+     {
+      "at": [
+       198.5,
+       100,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  },
+  {
+   "id": "capillary",
+   "name": "Capillary",
+   "node": "capillary",
+   "shape": "tube_z",
+   "size": [
+    8,
+    8,
+    400
+   ],
+   "color": "#8fb4d8",
+   "opacity": 0.9,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -126.5,
+       -75,
+       0
+      ]
+     },
+     {
+      "at": [
+       -26.5,
+       -25,
+       0
+      ]
+     },
+     {
+      "at": [
+       73.5,
+       -75,
+       0
+      ]
+     },
+     {
+      "at": [
+       123.5,
+       25,
+       0
+      ]
+     },
+     {
+      "at": [
+       -76.5,
+       75,
+       0
+      ]
+     },
+     {
+      "at": [
+       23.5,
+       25,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  },
+  {
+   "id": "rbc",
+   "name": "Red blood cell",
+   "node": "red_blood_cell",
+   "shape": "ellipsoid",
+   "size": [
+    7,
+    7,
+    3
+   ],
+   "color": "#c9302c",
+   "opacity": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -126.5,
+       -75,
+       60
+      ]
+     },
+     {
+      "at": [
+       -26.5,
+       -25,
+       -80
+      ]
+     },
+     {
+      "at": [
+       73.5,
+       -75,
+       120
+      ]
+     },
+     {
+      "at": [
+       123.5,
+       25,
+       -30
+      ]
+     },
+     {
+      "at": [
+       -76.5,
+       75,
+       10
+      ]
+     },
+     {
+      "at": [
+       23.5,
+       25,
+       -140
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  },
+  {
+   "id": "nuclei",
+   "name": "Muscle cell nucleus",
+   "node": "dog_muscle_fibre",
+   "shape": "ellipsoid",
+   "size": [
+    9,
+    6,
+    18
+   ],
+   "color": "#4d3a63",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -130.5,
+       -100,
+       -120
+      ]
+     },
+     {
+      "at": [
+       -80.5,
+       -100,
+       60
+      ]
+     },
+     {
+      "at": [
+       -30.5,
+       -100,
+       150
+      ]
+     },
+     {
+      "at": [
+       19.5,
+       -100,
+       -40
+      ]
+     },
+     {
+      "at": [
+       69.5,
+       -100,
+       100
+      ]
+     },
+     {
+      "at": [
+       119.5,
+       -100,
+       0
+      ]
+     },
+     {
+      "at": [
+       169.5,
+       -100,
+       -90
+      ]
+     },
+     {
+      "at": [
+       219.5,
+       -100,
+       30
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  },
+  {
+   "id": "axon",
+   "name": "Motor nerve fibre",
+   "node": "dog_nmj",
+   "shape": "tube_z",
+   "size": [
+    6,
+    6,
+    200
+   ],
+   "color": "#efd66a",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -151.5,
+       31,
+       300
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  },
+  {
+   "id": "nmj",
+   "name": "Neuromuscular junction (nerve ending)",
+   "node": "dog_nmj",
+   "shape": "ellipsoid",
+   "size": [
+    26,
+    14,
+    34
+   ],
+   "color": "#e8b83a",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -151.5,
+       27,
+       195
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "deeper": {
+    "type": "mol",
+    "mol": "acetylcholine",
+    "name": "Acetylcholine, the messenger that tells muscle to contract"
+   }
+  }
+ ]
+}

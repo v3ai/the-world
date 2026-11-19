@@ -1,0 +1,503 @@
+{
+ "id": "dog_skin",
+ "title": "Inside a dog's skin and coat",
+ "node": "dog_skin_scene",
+ "bg": "#f3efe6",
+ "center": [
+  0,
+  190,
+  0
+ ],
+ "D_um": 1100,
+ "blurb": "A slice through dog skin: a thin barrier layer on top, the thick dermis with three compound hair follicles, and fat below. Drag to turn it; click a layer, a hair or a gland.",
+ "note": "A schematic, not a micrograph. The order of the layers, the compound follicles (a thick guard hair with fine undercoat hairs through one opening) and the gland types are as described for dog skin; every size here is illustrative, because no measured dog hair diameters, follicle depths or layer thicknesses were found.",
+ "labels": [
+  {
+   "text": "Barrier layer (dead flattened cells with lipids)",
+   "at": [
+    -440,
+    402,
+    40
+   ],
+   "pop": "corneum"
+  },
+  {
+   "text": "Living epidermis",
+   "at": [
+    -440,
+    360,
+    40
+   ],
+   "pop": "epi"
+  },
+  {
+   "text": "Dermis",
+   "at": [
+    -440,
+    250,
+    40
+   ],
+   "pop": "dermis"
+  },
+  {
+   "text": "Guard hair",
+   "at": [
+    -262,
+    470,
+    20
+   ],
+   "pop": "guard"
+  },
+  {
+   "text": "Fine undercoat hairs",
+   "at": [
+    -30,
+    440,
+    30
+   ],
+   "pop": "under"
+  },
+  {
+   "text": "Hair root (bulb)",
+   "at": [
+    -300,
+    -60,
+    40
+   ],
+   "pop": "bulb"
+  },
+  {
+   "text": "Oil gland",
+   "at": [
+    60,
+    285,
+    30
+   ],
+   "pop": "sebaceous"
+  },
+  {
+   "text": "Scent gland",
+   "at": [
+    -170,
+    125,
+    30
+   ],
+   "pop": "apocrine"
+  },
+  {
+   "text": "Fat cells",
+   "at": [
+    -440,
+    -60,
+    40
+   ],
+   "pop": "fat"
+  }
+ ],
+ "populations": [
+  {
+   "id": "corneum",
+   "name": "Barrier layer (stratum corneum)",
+   "node": "dog_skin_epidermis",
+   "shape": "rbox",
+   "size": [
+    900,
+    12,
+    80
+   ],
+   "color": "#e8d9a8",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       402,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "deeper": {
+    "type": "mol",
+    "mol": "cholesterol",
+    "name": "Cholesterol, one of the lipids of the skin barrier"
+   }
+  },
+  {
+   "id": "epi",
+   "name": "Living epidermal cell",
+   "node": "dog_skin_epidermis",
+   "shape": "ellipsoid",
+   "size": [
+    17,
+    10,
+    17
+   ],
+   "color": "#f0cbb8",
+   "opacity": 0.8,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -440,
+     336,
+     -34
+    ],
+    "n": [
+     50,
+     5,
+     4
+    ],
+    "step": [
+     17.5,
+     10.5,
+     18
+    ],
+    "jitter": 0.05
+   },
+   "ink": 1
+  },
+  {
+   "id": "dermis",
+   "name": "Dermis",
+   "node": "dog_skin_dermis",
+   "shape": "rbox",
+   "size": [
+    900,
+    300,
+    80
+   ],
+   "color": "#e6b9a4",
+   "opacity": 0.42,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       180,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  },
+  {
+   "id": "fat",
+   "name": "Fat cell (adipocyte)",
+   "node": "adipocyte",
+   "shape": "ellipsoid",
+   "size": [
+    42,
+    40,
+    42
+   ],
+   "color": "#f5e6a0",
+   "opacity": 0.8,
+   "arrange": {
+    "kind": "random",
+    "n": 22,
+    "min": [
+     -420,
+     -140,
+     -34
+    ],
+    "max": [
+     420,
+     0,
+     34
+    ],
+    "gap": 2,
+    "seed": 4
+   },
+   "ink": 1
+  },
+  {
+   "id": "guard",
+   "name": "Guard hair",
+   "node": "dog_fur",
+   "shape": "cylinder",
+   "size": [
+    18,
+    520,
+    18
+   ],
+   "color": "#caa05a",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -250,
+       220,
+       0
+      ]
+     },
+     {
+      "at": [
+       0,
+       220,
+       0
+      ]
+     },
+     {
+      "at": [
+       250,
+       220,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  },
+  {
+   "id": "under",
+   "name": "Undercoat hair",
+   "node": "dog_follicle",
+   "shape": "cylinder",
+   "size": [
+    7,
+    470,
+    7
+   ],
+   "color": "#e2c58a",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -274,
+       200,
+       -10
+      ]
+     },
+     {
+      "at": [
+       -262,
+       200,
+       12
+      ]
+     },
+     {
+      "at": [
+       -236,
+       200,
+       -12
+      ]
+     },
+     {
+      "at": [
+       -224,
+       200,
+       10
+      ]
+     },
+     {
+      "at": [
+       -246,
+       200,
+       0
+      ]
+     },
+     {
+      "at": [
+       -24,
+       200,
+       -10
+      ]
+     },
+     {
+      "at": [
+       -12,
+       200,
+       12
+      ]
+     },
+     {
+      "at": [
+       14,
+       200,
+       -12
+      ]
+     },
+     {
+      "at": [
+       26,
+       200,
+       10
+      ]
+     },
+     {
+      "at": [
+       4,
+       200,
+       0
+      ]
+     },
+     {
+      "at": [
+       226,
+       200,
+       -10
+      ]
+     },
+     {
+      "at": [
+       238,
+       200,
+       12
+      ]
+     },
+     {
+      "at": [
+       264,
+       200,
+       -12
+      ]
+     },
+     {
+      "at": [
+       276,
+       200,
+       10
+      ]
+     },
+     {
+      "at": [
+       254,
+       200,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  },
+  {
+   "id": "bulb",
+   "name": "Hair root (follicle bulb)",
+   "node": "dog_follicle",
+   "shape": "ellipsoid",
+   "size": [
+    54,
+    70,
+    54
+   ],
+   "color": "#c98f78",
+   "opacity": 0.85,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -250,
+       -40,
+       0
+      ]
+     },
+     {
+      "at": [
+       0,
+       -40,
+       0
+      ]
+     },
+     {
+      "at": [
+       250,
+       -40,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  },
+  {
+   "id": "sebaceous",
+   "name": "Oil (sebaceous) gland",
+   "node": "dog_gland",
+   "shape": "ellipsoid",
+   "size": [
+    46,
+    56,
+    46
+   ],
+   "color": "#f2d98a",
+   "opacity": 0.9,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -198,
+       250,
+       14
+      ]
+     },
+     {
+      "at": [
+       52,
+       250,
+       14
+      ]
+     },
+     {
+      "at": [
+       302,
+       250,
+       14
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  },
+  {
+   "id": "apocrine",
+   "name": "Scent (apocrine) gland",
+   "node": "dog_gland",
+   "shape": "ellipsoid",
+   "size": [
+    40,
+    62,
+    40
+   ],
+   "color": "#a8c7e0",
+   "opacity": 0.9,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -304,
+       140,
+       -14
+      ]
+     },
+     {
+      "at": [
+       -54,
+       140,
+       -14
+      ]
+     },
+     {
+      "at": [
+       196,
+       140,
+       -14
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  }
+ ]
+}

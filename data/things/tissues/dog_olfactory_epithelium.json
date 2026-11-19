@@ -1,0 +1,852 @@
+{
+ "id": "dog_olfactory_epithelium",
+ "title": "Inside the smell lining",
+ "node": "dog_olfactory_epithelium",
+ "bg": "#f3efe6",
+ "center": [
+  0,
+  40,
+  0
+ ],
+ "D_um": 330,
+ "blurb": "A slice through the smell lining of the nose: the air is at the top. Click a smell neuron, its cilia, a supporting cell, a stem cell or a mucus gland.",
+ "note": "A schematic of the layers and cell types of the lining of a mammal's nose, as the textbooks describe them. All sizes and the number of cells are illustrative: no measured dog cell dimensions were found. A real smell neuron has many more cilia than drawn.",
+ "labels": [
+  {
+   "text": "Mucus (odour molecules dissolve here)",
+   "at": [
+    -130,
+    128,
+    30
+   ],
+   "pop": "mucus"
+  },
+  {
+   "text": "Cilia with the smell receptors",
+   "at": [
+    -130,
+    112,
+    30
+   ],
+   "pop": "cilia"
+  },
+  {
+   "text": "Smell neuron",
+   "at": [
+    -130,
+    56,
+    30
+   ],
+   "pop": "osn"
+  },
+  {
+   "text": "Supporting cell",
+   "at": [
+    -130,
+    82,
+    30
+   ],
+   "pop": "sust"
+  },
+  {
+   "text": "Stem cell",
+   "at": [
+    -130,
+    8,
+    30
+   ],
+   "pop": "basal"
+  },
+  {
+   "text": "Mucus gland",
+   "at": [
+    -130,
+    -30,
+    30
+   ],
+   "pop": "gland"
+  },
+  {
+   "text": "Nerve fibres to the brain",
+   "at": [
+    -130,
+    -58,
+    30
+   ],
+   "pop": "axons"
+  }
+ ],
+ "populations": [
+  {
+   "id": "mucus",
+   "name": "Mucus layer",
+   "node": "dog_bowman",
+   "shape": "rbox",
+   "size": [
+    280,
+    8,
+    40
+   ],
+   "color": "#cfe6ee",
+   "opacity": 0.55,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       126,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  },
+  {
+   "id": "cilia",
+   "name": "Cilia with odour receptors",
+   "node": "dog_osn",
+   "shape": "tube_z",
+   "size": [
+    1.4,
+    1.4,
+    50
+   ],
+   "color": "#e8a98c",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -100,
+       108,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       -100,
+       112,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       -100,
+       116,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       -75,
+       108,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       -75,
+       112,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       -75,
+       116,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       -50,
+       108,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       -50,
+       112,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       -50,
+       116,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       -25,
+       108,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       -25,
+       112,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       -25,
+       116,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       0,
+       108,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       0,
+       112,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       0,
+       116,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       25,
+       108,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       25,
+       112,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       25,
+       116,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       50,
+       108,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       50,
+       112,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       50,
+       116,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       75,
+       108,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       75,
+       112,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       75,
+       116,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       100,
+       108,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       100,
+       112,
+       0
+      ],
+      "rotY": 1.5708
+     },
+     {
+      "at": [
+       100,
+       116,
+       0
+      ],
+      "rotY": 1.5708
+     }
+    ]
+   },
+   "ink": 1,
+   "deeper": {
+    "type": "mol",
+    "mol": "camp",
+    "name": "Cyclic AMP, the messenger inside a smell neuron"
+   }
+  },
+  {
+   "id": "knob",
+   "name": "Dendrite knob",
+   "node": "dog_osn",
+   "shape": "ellipsoid",
+   "size": [
+    6,
+    6,
+    6
+   ],
+   "color": "#e5a07f",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -100,
+       102,
+       0
+      ]
+     },
+     {
+      "at": [
+       -75,
+       102,
+       0
+      ]
+     },
+     {
+      "at": [
+       -50,
+       102,
+       0
+      ]
+     },
+     {
+      "at": [
+       -25,
+       102,
+       0
+      ]
+     },
+     {
+      "at": [
+       0,
+       102,
+       0
+      ]
+     },
+     {
+      "at": [
+       25,
+       102,
+       0
+      ]
+     },
+     {
+      "at": [
+       50,
+       102,
+       0
+      ]
+     },
+     {
+      "at": [
+       75,
+       102,
+       0
+      ]
+     },
+     {
+      "at": [
+       100,
+       102,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "deeper": {
+    "type": "mol",
+    "mol": "camp",
+    "name": "Cyclic AMP, the messenger inside a smell neuron"
+   }
+  },
+  {
+   "id": "dendrite",
+   "name": "Dendrite",
+   "node": "dog_osn",
+   "shape": "cylinder",
+   "size": [
+    2.6,
+    36,
+    2.6
+   ],
+   "color": "#e5a07f",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -100,
+       82,
+       0
+      ]
+     },
+     {
+      "at": [
+       -75,
+       82,
+       0
+      ]
+     },
+     {
+      "at": [
+       -50,
+       82,
+       0
+      ]
+     },
+     {
+      "at": [
+       -25,
+       82,
+       0
+      ]
+     },
+     {
+      "at": [
+       0,
+       82,
+       0
+      ]
+     },
+     {
+      "at": [
+       25,
+       82,
+       0
+      ]
+     },
+     {
+      "at": [
+       50,
+       82,
+       0
+      ]
+     },
+     {
+      "at": [
+       75,
+       82,
+       0
+      ]
+     },
+     {
+      "at": [
+       100,
+       82,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  },
+  {
+   "id": "osn",
+   "name": "Smell neuron (cell body)",
+   "node": "dog_osn",
+   "shape": "ellipsoid",
+   "size": [
+    11,
+    13,
+    11
+   ],
+   "color": "#e5a07f",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -100,
+       58,
+       0
+      ]
+     },
+     {
+      "at": [
+       -75,
+       58,
+       0
+      ]
+     },
+     {
+      "at": [
+       -50,
+       58,
+       0
+      ]
+     },
+     {
+      "at": [
+       -25,
+       58,
+       0
+      ]
+     },
+     {
+      "at": [
+       0,
+       58,
+       0
+      ]
+     },
+     {
+      "at": [
+       25,
+       58,
+       0
+      ]
+     },
+     {
+      "at": [
+       50,
+       58,
+       0
+      ]
+     },
+     {
+      "at": [
+       75,
+       58,
+       0
+      ]
+     },
+     {
+      "at": [
+       100,
+       58,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "deeper": {
+    "type": "mol",
+    "mol": "camp",
+    "name": "Cyclic AMP, the messenger inside a smell neuron"
+   }
+  },
+  {
+   "id": "sust",
+   "name": "Supporting cell",
+   "node": "dog_sustentacular",
+   "shape": "rbox",
+   "size": [
+    11,
+    96,
+    11
+   ],
+   "color": "#b9d4a8",
+   "opacity": 0.6,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -87.5,
+       56,
+       0
+      ]
+     },
+     {
+      "at": [
+       -62.5,
+       56,
+       0
+      ]
+     },
+     {
+      "at": [
+       -37.5,
+       56,
+       0
+      ]
+     },
+     {
+      "at": [
+       -12.5,
+       56,
+       0
+      ]
+     },
+     {
+      "at": [
+       12.5,
+       56,
+       0
+      ]
+     },
+     {
+      "at": [
+       37.5,
+       56,
+       0
+      ]
+     },
+     {
+      "at": [
+       62.5,
+       56,
+       0
+      ]
+     },
+     {
+      "at": [
+       87.5,
+       56,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  },
+  {
+   "id": "basal",
+   "name": "Basal (stem) cell",
+   "node": "dog_basal",
+   "shape": "ellipsoid",
+   "size": [
+    10,
+    7,
+    10
+   ],
+   "color": "#b79bd1",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -94,
+       6,
+       4
+      ]
+     },
+     {
+      "at": [
+       -69,
+       6,
+       4
+      ]
+     },
+     {
+      "at": [
+       -44,
+       6,
+       4
+      ]
+     },
+     {
+      "at": [
+       -19,
+       6,
+       4
+      ]
+     },
+     {
+      "at": [
+       6,
+       6,
+       4
+      ]
+     },
+     {
+      "at": [
+       31,
+       6,
+       4
+      ]
+     },
+     {
+      "at": [
+       56,
+       6,
+       4
+      ]
+     },
+     {
+      "at": [
+       81,
+       6,
+       4
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  },
+  {
+   "id": "lamina",
+   "name": "Connective layer",
+   "node": "dog_axons",
+   "shape": "rbox",
+   "size": [
+    280,
+    70,
+    40
+   ],
+   "color": "#ecd5c6",
+   "opacity": 0.4,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       -35,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  },
+  {
+   "id": "gland",
+   "name": "Mucus gland (Bowman's gland)",
+   "node": "dog_bowman",
+   "shape": "ellipsoid",
+   "size": [
+    34,
+    24,
+    30
+   ],
+   "color": "#e8d27a",
+   "opacity": 0.9,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -60,
+       -22,
+       0
+      ]
+     },
+     {
+      "at": [
+       55,
+       -28,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  },
+  {
+   "id": "axons",
+   "name": "Nerve fibres to the brain",
+   "node": "dog_axons",
+   "shape": "tube_z",
+   "size": [
+    5,
+    5,
+    150
+   ],
+   "color": "#efd66a",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       -52,
+       0
+      ]
+     },
+     {
+      "at": [
+       -30,
+       -48,
+       0
+      ]
+     },
+     {
+      "at": [
+       40,
+       -54,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1
+  }
+ ]
+}
