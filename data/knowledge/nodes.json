@@ -9130,7 +9130,7 @@
 "domain": "Planetary science",
 "basics": "Moons orbiting giant planets are squeezed and flexed by tides. This heats Io into the most volcanic body known and keeps oceans liquid under the ice of Europa and Enceladus.",
 "deeper": "Giant planets have rings made of ice and rock particles; Saturn's are the most extensive. Titan has a thick atmosphere and methane lakes.",
-"expert": "Io heat flow ≈2 W/m²; Enceladus plume ≈200 kg/s; Saturn main rings ≈7×10⁴–1.4×10⁵ km from centre, thickness ≈10 m.",
+"expert": "Io heat flow ≈2 W/m²; Enceladus plume ≈200 kg/s; Saturn main rings ≈7×10⁴–1.4×10⁵ km from centre, typical thickness ≈10–20 m.",
 "regime": "Presence of oceans inferred from gravity/magnetism and plumes.",
 "emerges_from": [
 "planet_types",
@@ -9288,9 +9288,9 @@
 ],
 "certainty": "C1",
 "domain": "Stellar astrophysics",
-"basics": "The Sun is a middle-aged star that shines by fusing hydrogen in its core. Energy takes thousands of years to reach the surface by radiation and convection.",
+"basics": "The Sun is a middle-aged star that shines by fusing hydrogen in its core. Energy made in the core takes tens of thousands of years or more (one standard estimate: about 170,000 years) to reach the surface by radiation and convection.",
 "deeper": "Its surface (photosphere) is about 5800 K, with sunspots, flares and a million-degree corona. The solar wind fills the heliosphere.",
-"expert": "L☉=3.828×10²⁶ W; R☉=6.957×10⁸ m; M☉=1.989×10³⁰ kg; T_c≈1.57×10⁷ K; ρ_c≈150 g/cm³; photon diffusion ≈10⁵ yr; 11-yr cycle.",
+"expert": "L☉=3.828×10²⁶ W; R☉=6.957×10⁸ m; M☉=1.989×10³⁰ kg; T_c≈1.57×10⁷ K; ρ_c≈150 g/cm³; photon diffusion time ≈10⁴–1.7×10⁵ yr depending on the model; 11-yr cycle.",
 "regime": "Coronal heating mechanism still debated.",
 "emerges_from": [
 "fusion_stars",

@@ -470,6 +470,7 @@ FT.landscape = {
     if (B.water) {
       const wm = new THREE.Mesh(new THREE.CircleGeometry(4000, 96).rotateX(-Math.PI / 2), new THREE.MeshStandardMaterial({ color: B.cloud ? 0xd9c7a2 : 0x1b4f7a, roughness: B.cloud ? 1 : .12, metalness: B.cloud ? 0 : .3 })); F.add(wm); ground = wm;
       F.pick(wm, B.cloud ? 'cloudtop' : 'ocean', 1); wm.userData.madeOf = B.cloud ? 'gas' : 'water';
+      if (B.cloud) wm.material = hitMat(); // no ground is drawn: the sky colour fills everything, so there is nothing to stand on (the plane stays only as a click target)
       if (B.cloud) wm.userData.info = { title: 'Cloud tops', tag: 'Giant planet atmosphere', body: '<p>Gas giants have no solid surface: hydrogen and helium get gradually denser with depth until they become liquid and, deeper still, metallic hydrogen. The visible clouds are ammonia ice and ammonium hydrosulfide.</p>' };
     } else {
       ground = terrain(4000, 160); F.add(ground); F.pick(ground, 'ground', 0); ground.userData.madeOf = B.micro;
@@ -490,7 +491,7 @@ FT.landscape = {
     else if (o.body && o.body !== 'Earth') { F.blurb = `A generic rocky landscape standing in for ${bn}. Lit by the real Sun for the date shown.`; F.note = `Illustrative: this is generic procedural terrain, not a map or photograph of ${bn}. Its real surface is not drawn.`; }
     else F.blurb = 'Earth\'s surface, lit by the real Sun for this place and time.';
     F.update = () => {
-      const s = sunDirIn(F); sun.position.copy(s).multiplyScalar(100); const day = smooth(-.1, .15, s.y); sun.intensity = 1.25 * day; hemi.intensity = .08 + .55 * day;
+      const s = sunDirIn(F); sun.position.copy(s).multiplyScalar(100); const day = smooth(-.1, .15, s.y); sun.intensity = (o.body && o.body !== 'Earth' ? .95 : 1.25) * day; hemi.intensity = .08 + .55 * day;
       if (sky) { sky.material.uniforms.uSun.value.copy(s); F.env.opaque = day > .25; }
     };
     F.spawn = (T, hint) => {
@@ -510,9 +511,9 @@ FT.region = {
       const rr = rng(5); g.fillStyle = cols[0]; g.fillRect(0, 0, w, h);
       for (let i = 0; i < 900; i++) { g.fillStyle = cols[i % cols.length]; g.globalAlpha = .35; g.beginPath(); g.ellipse(rr() * w, rr() * h, 5 + rr() * 40, 5 + rr() * 30, rr() * 3, 0, TAU); g.fill(); }
       if (o.isPark) { // a city: grey blocks, a river
-        g.globalAlpha = 1; for (let i = 0; i < 1800; i++) { const x = rr() * w, y = rr() * h, d = Math.hypot(x - w / 2, y - h / 2); if (d < 28) continue; g.fillStyle = ['#8d8a86', '#7a7773', '#9c978f', '#6d6a66'][i % 4]; g.globalAlpha = .65; g.fillRect(x, y, 3 + rr() * 6, 3 + rr() * 6); }
+        g.globalAlpha = 1; for (let i = 0; i < 1800; i++) { const x = rr() * w, y = rr() * h, d = Math.hypot(x - w / 2, y - h / 2); if (d < 6) continue; g.fillStyle = ['#8d8a86', '#7a7773', '#9c978f', '#6d6a66'][i % 4]; g.globalAlpha = .65; g.fillRect(x, y, 3 + rr() * 6, 3 + rr() * 6); }
         g.globalAlpha = 1; g.strokeStyle = '#2d4f66'; g.lineWidth = 7; g.beginPath(); g.moveTo(0, h * .38); for (let x = 0; x <= w; x += 16) g.lineTo(x, h * .38 + Math.sin(x * .02) * 18 - (x > w * .4 && x < w * .6 ? 14 : 0)); g.stroke();
-        g.fillStyle = '#4f8a33'; g.beginPath(); g.ellipse(w / 2, h / 2, 26, 20, 0, 0, TAU); g.fill();
+        g.fillStyle = '#4f8a33'; g.beginPath(); g.ellipse(w / 2, h / 2, 3, 2.4, 0, 0, TAU); g.fill(); // the park is about half a kilometre wide: a few pixels of this 80-km tile
       }
       g.globalAlpha = 1;
     }, {});
@@ -520,10 +521,15 @@ FT.region = {
     const mat = new THREE.MeshStandardMaterial({ map: t, roughness: .95, transparent: true, depthWrite: false });
     mat.onBeforeCompile = sh => { sh.fragmentShader = sh.fragmentShader.replace('#include <dithering_fragment>', '#include <dithering_fragment>\n gl_FragColor.a *= smoothstep(1.0, 0.75, length(vUv-0.5)*2.0);'); };
     const m = new THREE.Mesh(geo, mat); F.add(m); F.pick(m, B.water ? 'ocean' : 'land', 0); m.userData.madeOf = B.micro;
-    m.userData.info = { title: o.isPark ? 'Greenwich, London' : 'Earth\'s surface', tag: `${o.lat.toFixed(2)}°, ${o.lon.toFixed(2)}° · ${o.biome}`, body: '<p>A 80-km-wide patch of the surface. Keep zooming to land here.</p>' };
+    m.userData.info = { title: o.isPark ? 'Greenwich, London (schematic tile)' : 'Earth\'s surface', tag: `${o.lat.toFixed(2)}°, ${o.lon.toFixed(2)}° · schematic`, body: o.isPark ? '<p>An 80-km-wide patch around Greenwich Park. <b>The picture is a schematic stand-in, not a map:</b> the grey blocks, the river line and the green patch are a generated pattern, not London\'s real streets, buildings or Thames. Keep zooming to land in the park.</p>' : '<p>An 80-km-wide patch of the surface, coloured by the land type under it on the globe map. It is an illustrative tile, not a map of this place. Keep zooming to land here.</p>', note: 'Schematic: not real streets, buildings or rivers.' };
     if (o.isPark) { const pk = markerSprite(0xffd166, 10); pk.position.y = .01; F.add(pk); F.label(pk, 'Greenwich Park', { cls: 'you', always: true }); }
     F.update = () => { const s = sunDirIn(F); sun.position.copy(s).multiplyScalar(100); };
-    F.blurb = o.isPark ? 'London from above. The park is where your journey started.' : `Earth's surface at ${o.lat.toFixed(1)}°, ${o.lon.toFixed(1)}° (${o.biome}). Textures at this scale are illustrative.`;
+    F.blurb = o.isPark ? 'Above London and Greenwich Park, where your journey started. The ground picture is a schematic tile, not a map.' : `Earth's surface at ${o.lat.toFixed(1)}°, ${o.lon.toFixed(1)}° (${o.biome}). The ground picture is an illustrative tile, not a map.`;
+    F.note = 'Schematic: the blocks, river and park are a generated pattern, not real streets or buildings. The sky colour follows the Sun and altitude. The globe\'s own map is blurry below about 100 km (4096 by 2048 pixels for the whole Earth).';
+    // a sky above the tile: blue by day, black above about 100 km and at night; the stars of the parent frames show through at night and from high up
+    const dome = skyDome(F, 1, 1500); dome.geometry.dispose(); dome.geometry = new THREE.SphereGeometry(1500, 32, 16, 0, TAU, 0, Math.PI / 2 + .09); dome.renderOrder = -1;
+    const baseUp = F.update; F.update = () => { baseUp(); const s = sunDirIn(F); dome.material.uniforms.uSun.value.copy(s); dome.material.uniforms.uOpacity.value = (1 - smooth(3e4, 1.2e5, cam.D)) * F.alpha; dome.visible = cam.D < 1.3e5; };
+    if (o.isPark) { F.attract = new V3(); F.attractD = 4000; F.attractR = 1.5; } // scrolling toward the park pulls the target onto it: you land in the park, not in generic grass
     F.spawn = (T) => landscapeFrame(o.isPark ? 'grass' : o.biome, T.clone().setY(0), null, 'Earth');
     F.spawnD = 2500;
   }

@@ -527,7 +527,7 @@ FT.solarsystem = {
     for (let k = 0; k < 5000; k++) { const p = kep(r() < .2 ? 39.4 : 42 + r() * 6, r() * .15, Math.abs(gauss(r)) * .12, r() * TAU, r() * TAU, r() * TAU); kp.push(...p); const b = .5 + r() * .5; kc.push(b * .7, b * .85, b); ks.push(.05 + r() * .05); }
     const kb = makePoints(kp, kc, ks, { opacity: .9 }); F.add(kb); F.pick(kb, 'kuiper', .25);
     const op = [], oc = [], os = [];
-    for (let k = 0; k < 4000; k++) { const v = new V3(gauss(r), gauss(r), gauss(r)).normalize().multiplyScalar(Math.exp(lerp(Math.log(2000), Math.log(100000), r()))); op.push(v.x, v.y, v.z); oc.push(.55, .7, 1); os.push(v.length() * .004); }
+    for (let k = 0; k < 4000; k++) { const v = new V3(gauss(r), gauss(r), gauss(r)).normalize().multiplyScalar(Math.exp(lerp(Math.log(2000), Math.log(100000), r()))); op.push(v.x, v.y, v.z); oc.push(.6, .75, 1); os.push(v.length() * .012); }
     const oort = makePoints(op, oc, os, { opacity: .85 }); F.add(oort); oort.userData = { id: 'oort', priority: .1 }; F.pickables.push(oort);
     const ring = (R, col) => { const pts = []; for (let k = 0; k <= 180; k++) pts.push(new V3(Math.cos(k / 180 * TAU) * R, 0, Math.sin(k / 180 * TAU) * R)); const l = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: col, transparent: true, opacity: .45, depthWrite: false })); F.add(l); return l; };
     const oortRings = [ring(2000, 0x6f8fe0), ring(100000, 0x6f8fe0)];
@@ -554,7 +554,7 @@ FT.solarsystem = {
         const dd = Math.max(PX.copy(b.grp.position).distanceTo(CP), 1e-9); b.hs.scale.setScalar(Math.max(b.rAU * 1.5, dd * PXK * 12));
         if (!b.L.hooked) { b.L.hooked = 1; b.L.minSizeFn = () => { if (FR.sun && FR.sun.alpha > .3) return false; const v = _w.copy(b.grp.position).sub(CP), dist = v.length(); v.normalize(); const behind = dist > SD0 && v.angleTo(SUND) < SUNHALF * 1.15; return !behind && b.grp.position.length() / dist / PXK > 22; }; }
       }
-      if (!F._sunLbl) { F._sunLbl = 1; F.labels.forEach(L => { if (L.el.textContent === 'Sun' || /^Heliopause/.test(L.el.textContent)) L.minSizeFn = () => !(FR.sun && FR.sun.alpha > .3); }); }
+      if (!F._sunLbl) { F._sunLbl = 1; F.labels.forEach(L => { if (L.el.textContent === 'Sun') L.minSizeFn = () => !(FR.sun && FR.sun.alpha > .3); else if (/^Heliopause/.test(L.el.textContent)) L.minSizeFn = () => !(FR.sun && FR.sun.alpha > .3) && cam.D < 6e13; }); }
       oortRings.forEach(l => { l.visible = cam.D > 2e13; }); helH.visible = cd0 > 125; // the heliopause can be picked from outside it, never from the inner solar system
       const sc = avg => Math.min(40, Math.max(1, 1.6 * (cam.D / F.unit) / (300 * avg))); belt.material.uniforms.uScale.value = renderer.getPixelRatio() * sc(.007); kb.material.uniforms.uScale.value = renderer.getPixelRatio() * sc(.075);
       vgs.forEach(o => { voyagerAt(o.V, simTime, o.g.position); const dd = Math.max(o.g.position.distanceTo(CP), 1e-9); o.hs.scale.setScalar(dd * PXK * 12); if (performance.now() - o.t > 400) { o.t = performance.now(); o.L.el.textContent = `${o.V.name} (${Math.round(o.g.position.length())} AU from the Sun)`; } if (!o.L.hooked) { o.L.hooked = 1; o.L.minSizeFn = () => !(FR.sun && FR.sun.alpha > .3) && o.g.position.length() / Math.max(o.g.position.distanceTo(CP), 1e-9) / PXK > 14; } });
@@ -589,7 +589,7 @@ const fmtKm = x => x >= 1000 ? Math.round(x).toLocaleString('en-US') : String(+x
 FT.planet = {
   build(F, o) {
     const d = SOLAR && SOLAR.find(b => b.name === o.body); if (!d) return;
-    F.add(new THREE.AmbientLight(0x334455, .22)); const sl = new THREE.DirectionalLight(0xffffff, .8); F.add(sl); F.add(sl.target); // 0.8: the day side of a bright texture (Venus, Jupiter) stays below white
+    F.add(new THREE.AmbientLight(0x334455, .22)); const sl = new THREE.DirectionalLight(0xffffff, { Saturn: 1.1, Uranus: 1.0, Neptune: 1.0, Mars: 1.0, Mercury: .95 }[o.body] || .8); F.add(sl); F.add(sl.target); // about 0.8: the day side of a bright texture (Venus, Jupiter) stays below white
     const R = d.radius_km / 1000, map = d.texture ? tex(d.texture) : null;
     const spin = new THREE.Group(); F.add(spin); spin.rotation.z = (d.axial_tilt_deg || 0) * Math.PI / 180;
     const body = new THREE.Group(); spin.add(body);
@@ -617,13 +617,13 @@ FT.planet = {
     F.note = [map ? 'The surface colours come from a published map; brightness is scaled for display.' : 'No surface map is drawn: the colour is an approximate tint.',
       F.moons.length ? 'Moon sizes and distances are true; where each moon sits on its orbit is illustrative. Smaller moons are not drawn.' : '',
       d.ring ? (d.ring.texture ? 'The ring is drawn flat, with no thickness (the real main rings are about 10 to 20 metres thick) and no shadow; its fainter parts are not drawn.' : 'The planet\'s faint rings are not drawn.') : ''].filter(Boolean).join(' ');
-    F.spawn = (T) => { if (T.length() < R * 1.05) return bodySurface(() => new V3(), () => body.getWorldQuaternion(new THREE.Quaternion()), R, T, /Jupiter|Saturn|Uranus|Neptune/.test(o.body) ? 'cloudtops' : /Mars/.test(o.body) ? 'mars' : /Venus/.test(o.body) ? 'venus' : 'moonrock', o.body);
-      for (const m of F.moons) if (T.distanceTo(m.mm.position.clone().applyQuaternion(spin.quaternion)) < m.mm.geometry.parameters.radius * 1.05) { const mm = m.mm; return bodySurface(() => mm.position.clone().applyQuaternion(spin.quaternion), () => spin.quaternion.clone(), mm.geometry.parameters.radius, T, 'moonrock', mm.userData.info.title); }
+    F.spawn = (T) => { if (T.length() < R * 1.05) return spaceBodySurface(() => new V3(), () => body.getWorldQuaternion(new THREE.Quaternion()), R, T, /Jupiter|Saturn|Uranus|Neptune/.test(o.body) ? 'cloudtops' : /Mars/.test(o.body) ? 'mars' : /Venus/.test(o.body) ? 'venus' : 'moonrock', o.body);
+      for (const m of F.moons) if (T.distanceTo(m.mm.position.clone().applyQuaternion(spin.quaternion)) < m.mm.geometry.parameters.radius * 1.05) { const mm = m.mm; return spaceBodySurface(() => mm.position.clone().applyQuaternion(spin.quaternion), () => spin.quaternion.clone(), mm.geometry.parameters.radius, T, 'moonrock', mm.userData.info.title); }
       return null; };
     F.spawnD = 3e5;
   }
 };
-function bodySurface(getC, getQ, R, T, biome, body) { // landscape frame glued to a rotating/moving body (parent unit = 1000 km)
+function spaceBodySurface(getC, getQ, R, T, biome, body) { // landscape frame glued to a rotating/moving body (parent unit = 1000 km)
   const q0 = getQ(), nl = T.clone().sub(getC()).applyQuaternion(q0.clone().invert()).normalize();
   const f = landscapeFrame(biome, new V3(), null, body); f.r1 = 2e5;
   f.place = () => { const q = getQ(); f.pos.copy(nl).multiplyScalar(R * 1.0000002).applyQuaternion(q).add(getC()); f.quat.copy(q).multiply(new THREE.Quaternion().setFromUnitVectors(new V3(0, 1, 0), nl)); };
@@ -635,7 +635,7 @@ let EARTH_PIX = null;
 FT.earth = {
   build(F) {
     F.add(new THREE.AmbientLight(0x223355, .08));
-    const sl = new THREE.DirectionalLight(0xffffff, 1.4); F.add(sl); F.add(sl.target);
+    const sl = new THREE.DirectionalLight(0xffffff, 1.0); F.add(sl); F.add(sl.target); // 1.0: the lit half of the Moon stays below white, so craters and maria show
     const R = 6.371, spin = new THREE.Group(); F.add(spin); F.spin = spin;
     const day = tex('earth_day.jpg', t => { const c = document.createElement('canvas'); c.width = 1024; c.height = 512; const g = c.getContext('2d'); g.drawImage(t.image, 0, 0, 1024, 512); EARTH_PIX = g.getImageData(0, 0, 1024, 512); });
     const mat = new THREE.ShaderMaterial({
@@ -648,27 +648,42 @@ FT.earth = {
           gl_FragColor=vec4(col,uOpacity); }`),
     });
     const globe = new THREE.Mesh(new THREE.SphereGeometry(R, 160, 96), mat); spin.add(globe);
-    globe.userData = { priority: 1, resolve: h => { if (!h || !h.uv || !EARTH_PIX) return 'earth'; const b = biomeAtUV(h.uv.x, h.uv.y); return b === 'ocean' ? 'ocean' : b === 'ice' ? 'ice' : 'land'; } }; F.pickables.push(globe);
+    globe.userData = { priority: 1, zoomTo: h => { flyTo(F, h.pointLocal.clone(), Math.max(cam.D * .35, 3e6)); }, resolve: h => { if (!h || !h.uv || !EARTH_PIX) return 'earth'; const b = biomeAtUV(h.uv.x, h.uv.y); return b === 'ocean' ? 'ocean' : b === 'ice' ? 'ice' : 'land'; } }; F.pickables.push(globe);
     const clouds = new THREE.Mesh(new THREE.SphereGeometry(R * 1.006, 128, 64), new THREE.MeshStandardMaterial({ map: tex('earth_clouds.png'), transparent: true, depthWrite: false, roughness: 1 })); spin.add(clouds);
-    F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.012, 96, 64), fresnelMat(0x6ab8ff, 3.2, 1.3)));
-    F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.06, 96, 64), haloMat(0x4aa0ff, 2.4)));
-    const pk = markerSprite(0xffd166, 11); pk.position.copy(latLon3(PARK.lat, PARK.lon, R * 1.001)); spin.add(pk); F.label(pk, 'Greenwich Park', { cls: 'you', always: true });
-    const moon = new THREE.Mesh(new THREE.SphereGeometry(1.7374, 96, 64), new THREE.MeshStandardMaterial({ map: tex('moon.jpg'), roughness: 1 })); F.add(moon);
-    moon.userData = { id: 'moon', priority: 2, madeOf: 'regolith', sim: ['moon'] }; F.pickables.push(moon); F.label(moon, 'Moon', { offset: new V3(0, 2.6, 0) }); moon.add(markerSprite(0xffffff, 6));
+    F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.0157, 96, 64), fresnelMat(0x6ab8ff, 3.2, 1.3))); // the glow is drawn about 100 km thick (the conventional edge of space)
+    F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.03, 96, 64), haloMat(0x4aa0ff, 2.4)));
+    const atm = hitSphere(R * 1.03, 'atmosphere', .5); atm.userData.noZoom = true; F.add(atm); F.pickables.push(atm); const eLbl = F.label(atm, 'Earth', { offset: new V3(0, R * 1.2, 0) }); eLbl.minSizeFn = () => cam.D > 3e8;
+    const pk = markerSprite(0xffd166, 11); pk.position.copy(latLon3(PARK.lat, PARK.lon, R * 1.001)); spin.add(pk); pk.userData = Object.assign(pk.userData, { id: 'parkMarker', priority: 3, zoomTo: () => { flyTo(FR.park, new V3(0, 0, 0), 700); } }); F.pickables.push(pk); const pkL = F.label(pk, 'Greenwich Park', { cls: 'you', always: true }); pkL.minSizeFn = () => cam.D < 1.5e8;
+    const moon = new THREE.Mesh(new THREE.SphereGeometry(1.7374, 96, 64), new THREE.MeshStandardMaterial({ map: tex('moon.jpg'), color: 0xd8d8d8, roughness: 1 })); F.add(moon);
+    moon.userData = { id: 'moon', priority: 2, madeOf: 'regolith', sim: ['moon'] }; F.pickables.push(moon); F.label(moon, 'Moon', { offset: new V3(0, 2.6, 0) }); const mkM = markerSprite(0xffffff, 6); moon.add(mkM); const mh = hitSphere(1, 'moon', 3); mh.userData.zoomTo = () => { flyTo(F, moon.position.clone(), 6e6); }; moon.add(mh); // a pick target a few pixels wide, so the Moon dot can be hit
+    moon.userData.zoomTo = mh.userData.zoomTo;
     F.moon = moon;
+    const moonCard = () => { const L = moon.userData.live, i = INFO.moon; if (!L) return i; const ph = L.phase, k = (1 - Math.cos(ph * Math.PI / 180)) / 2, nm = ph < 7.5 || ph >= 352.5 ? 'new Moon' : ph < 82.5 ? 'waxing crescent' : ph < 97.5 ? 'first quarter' : ph < 172.5 ? 'waxing gibbous' : ph < 187.5 ? 'full Moon' : ph < 262.5 ? 'waning gibbous' : ph < 277.5 ? 'last quarter' : 'waning crescent';
+      return Object.assign({}, i, { facts: [['Distance on the date shown', `${Math.round(L.dist).toLocaleString('en-US')} km`], ['Phase on the date shown', `${nm}, about ${Math.round(k * 100)}% lit`]].concat(i.facts) }); };
+    moon.userData.infoFn = moonCard; mh.userData.infoFn = moonCard;
+    if (window.Astronomy) { const pts = [], t0 = simTime; for (let k = 0; k <= 96; k++) { const v = Astronomy.GeoMoon(new Date(t0 + k / 96 * 27.3217 * 86400000)); pts.push(eq3(v.x, v.y, v.z).multiplyScalar(149597.870)); } const ml = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: 0x8aa0c8, transparent: true, opacity: .4, depthWrite: false })); F.add(ml); F.moonRing = ml; }
     const geo = new THREE.Mesh(new THREE.TorusGeometry(42.164, .02, 4, 256), new THREE.MeshBasicMaterial({ color: 0x6ee7ff, transparent: true, opacity: .25 })); geo.rotation.x = Math.PI / 2; F.add(geo);
-    { const go = new THREE.Object3D(); go.position.set(42.164, 0, 0); F.add(go); F.label(go, 'Geostationary orbit (35,786 km up)'); }
-    const iss = new THREE.Group(); iss.add(markerSprite(0xffffff, 6)); iss.add(hitSphere(.12, 'iss', 3)); F.add(iss); iss.userData = { id: 'iss', priority: 3 }; F.pickables.push(iss); F.label(iss, 'ISS (illustrative orbit)', { offset: new V3(0, .15, 0) });
+    { const go = new THREE.Object3D(); go.position.set(42.164, 0, 0); F.add(go); const gl = F.label(go, 'Geostationary orbit (35,786 km up)'); gl.minSizeFn = () => cam.D < 3e8; }
+    const iss = new THREE.Group(); iss.add(markerSprite(0xffffff, 6)); const issH = hitSphere(1, 'iss', 3); iss.add(issH); F.add(iss); iss.userData = { id: 'iss', priority: 3, noZoom: true }; F.pickables.push(iss); const issL = F.label(iss, 'ISS (position illustrative)', { offset: new V3(0, .15, 0) }); issL.minSizeFn = () => cam.D < 6e7;
+    const PXKe = 2 * Math.tan(25 * Math.PI / 180) / H;
     F.update = () => {
       spin.rotation.y = gmst(); clouds.rotation.y = (simTime / 3.6e6 * .004) % TAU;
       const s = sunDirIn(F); mat.uniforms.uSun.value.copy(s); sl.position.copy(s).multiplyScalar(100);
-      if (window.Astronomy) { const v = Astronomy.GeoMoon(astroDate()); moon.position.copy(eq3(v.x, v.y, v.z).multiplyScalar(149597.870)); moon.quaternion.setFromUnitVectors(new V3(1, 0, 0), moon.position.clone().negate().normalize()); }
+      if (window.Astronomy) {
+        const dtt = astroDate(), v = Astronomy.GeoMoon(dtt); moon.position.copy(eq3(v.x, v.y, v.z).multiplyScalar(149597.870));
+        // near side toward Earth, north pole along the Moon's rotation axis (IAU); libration is not modelled
+        const toE = moon.position.clone().negate().normalize(), q1 = new THREE.Quaternion().setFromUnitVectors(new V3(1, 0, 0), toE);
+        try { const ax = Astronomy.RotationAxis(Astronomy.Body.Moon, dtt), np = eq3(ax.north.x, ax.north.y, ax.north.z).normalize(), up1 = new V3(0, 1, 0).applyQuaternion(q1), pr = (x) => x.clone().addScaledVector(toE, -x.dot(toE)).normalize(), a = pr(up1), b = pr(np), ang = Math.atan2(a.clone().cross(b).dot(toE), a.dot(b)); moon.quaternion.copy(new THREE.Quaternion().setFromAxisAngle(toE, ang).multiply(q1)); } catch (e) { moon.quaternion.copy(q1); }
+        moon.userData.live = { dist: moon.position.length() * 1000, phase: Astronomy.MoonPhase(dtt) };
+      }
+      const camE = camPosIn(F, new V3()); issH.scale.setScalar(Math.max(.12, camE.distanceTo(iss.position) * PXKe * 12)); mh.scale.setScalar(Math.max(1.7374, camE.distanceTo(moon.position) * PXKe * 12)); atm.userData.noZoom = true; if (F.moonRing) F.moonRing.visible = cam.D > 5e7;
       const ia = (simTime / 60000 / 92.9) % 1 * TAU, ip = new V3(Math.cos(ia) * 6.79, 0, Math.sin(ia) * 6.79).applyAxisAngle(new V3(1, 0, 0), 51.6 * Math.PI / 180); iss.position.copy(ip);
     };
-    F.blurb = 'Earth at its true size, turning in real time, lit by the Sun from its true direction. The Moon is at its real current position.';
+    F.blurb = 'Earth at its true size, turning in real time, lit by the Sun from its true direction. The Moon is at its true size, distance and position for the date shown.';
+    F.note = 'True: sizes, the Sun\'s direction, the day and night line, the Moon\'s position and phase. Illustrative: the clouds are a fixed sample image, not today\'s weather; the ISS position; the blue glow, drawn about 100 km thick (the conventional edge of space), where the air really thins out gradually.';
     F.spawnD = 2e5;
     F.spawn = (T) => {
-      if (T.distanceTo(moon.position) < 1.7374 * 1.05) return bodySurface(() => moon.position.clone(), () => moon.quaternion.clone(), 1.7374, T, 'moonrock', 'Moon');
+      if (T.distanceTo(moon.position) < 1.7374 * 1.05) return spaceBodySurface(() => moon.position.clone(), () => moon.quaternion.clone(), 1.7374, T, 'moonrock', 'Moon');
       if (T.length() > R * 1.03) return null;
       const loc = T.clone().applyAxisAngle(new V3(0, 1, 0), -gmst()).normalize();
       const lat = Math.asin(loc.y) * 180 / Math.PI, lon = Math.atan2(-loc.z, loc.x) * 180 / Math.PI;
@@ -717,6 +732,7 @@ WORLD_EXT.push(async FR2 => {
   EXT_LANDMARKS.push({ label: 'The Sun', D: 3e9, frame: sun, go: then => flyTo(sun, new V3(), 3e9, then) });
   EXT_LANDMARKS.push(inside('Inside the Sun (cut-away)', 1.2e9, new V3(.1, .08, .08)));
   EXT_LANDMARKS.push(inside('The Sun\'s core', 2.6e8, new V3(.05, .04, .04)));
+  { const _fly = flyTo; window.flyTo = function (...a) { try { closeInfo(); } catch (e) { } return _fly.apply(this, a); }; } // an open card describes where you were: close it when a flight starts
   // the ruler stop "Oort cloud" is set by world_build.js inside the neighbourhood frame, where no Oort cloud is drawn: put it inside the solar-system frame
   let tries = 0; const hook = setInterval(() => {
     if (typeof LANDMARKS === 'undefined' || !LANDMARKS.length) { if (++tries > 200) clearInterval(hook); return; }
@@ -733,7 +749,7 @@ WORLD_EXT.push(async FR2 => {
     let si = 0; const apply = () => { timeSpeed = speeds[si][0]; bs.textContent = speeds[si][1]; };
     bs.title = 'Time speed: click to cycle through forward, paused and backward speeds; the date is in UTC'; bs.onclick = () => { si = (si + 1) % speeds.length; apply(); };
     bn.title = 'Set the clock to the present moment (the app starts at 12:00 UTC today)';
-    const tb = document.getElementById('timebar'); if (tb) tb.style.cssText += ';display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;align-items:center';
+    const ck = document.getElementById('capK'); if (ck) ck.style.whiteSpace = 'nowrap'; const tt = document.getElementById('timeT'); if (tt) tt.style.whiteSpace = 'nowrap'; const tb = document.getElementById('timebar'); if (tb) tb.style.cssText += ';display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;align-items:center';
     const dt = document.createElement('input'); dt.type = 'date'; dt.id = 'timeDate'; dt.title = 'Jump to a date (12:00 UTC)'; dt.setAttribute('aria-label', 'Jump to a date'); dt.style.cssText = 'font:inherit;font-size:12px;padding:2px 4px;border:1px solid var(--rule);border-radius:3px;background:var(--paper);color:var(--ink);width:118px';
     bn.after(dt);
     dt.onchange = () => { if (dt.value) { const [y, m, d] = dt.value.split('-').map(Number); simTime = Date.UTC(y, m - 1, d, 12, 0, 0); timeSpeed = 0; si = 6; apply(); } };
