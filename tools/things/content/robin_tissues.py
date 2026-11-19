@@ -45,7 +45,7 @@ write({'id': 'robin_bone', 'tag': 'Inside a bone', 'title': 'Inside a hollow bir
   'bg': '#f2eee6', 'center': [0, 0, 0], 'D_um': 1400,
   'labels': [{'text': 'Wall of compact bone', 'at': [-420, 260, 60], 'pop': 'wall'}, {'text': 'Air-filled space', 'at': [-420, 0, 60], 'pop': 'wall'}, {'text': 'Strut', 'at': [-120, 60, 60], 'pop': 'strut'}, {'text': 'Bone cell', 'at': [200, 300, 60], 'pop': 'cell'}],
   'populations': [
-    pop('wall', 'Wall of compact bone', 'robin_bone_wall', 'rbox', [1000, 110, 160], '#e6dcc3', lst([0, 235, 0], [0, -235, 0]), 1, priority=2),
+    pop('wall', 'Wall of compact bone', 'robin_bone_wall', 'rbox', [1000, 110, 160], '#e6dcc3', lst([0, 235, 0], [0, -235, 0]), .5, priority=2),
     pop('strut', 'Strut', 'robin_bone_strut', 'rbox', [14, 400, 90], '#ddd2b6', lst({'at': [-250, 0, 0], 'rot': [0, 0, 20]}, {'at': [-20, 0, 0], 'rot': [0, 0, -25]}, {'at': [220, 0, 0], 'rot': [0, 0, 15]}), 1, priority=3),
     pop('cell', 'Bone cell (osteocyte)', 'robin_osteocyte', 'ellipsoid', [26, 12, 12], '#9a7c56', {'kind': 'inside', 'of': 'wall', 'per': 7, 'margin': .8, 'seed': 9}, 1, ink=0, priority=5, deeper={'type': 'cell', 'cell': 'animal'}),
   ]})

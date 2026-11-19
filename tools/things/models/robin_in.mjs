@@ -139,7 +139,7 @@ export function organs(sk) {
   const o = {};
   const smoothE = (c, r, ang = 0) => EB(c, r, ang);
   // heart: four chambers in one body, between the coracoids, over the front of the liver (the cut view shows the chambers)
-  { const h = L.smoothUnion(1.1, EB([HEART_B[0] - .8, HEART_B[1] - .6, 0], [4.3, 5.3, 4.1], -.35), EB([HEART_B[0] + 1.8, HEART_B[1] + 3.6, 2.4], [2.2, 2.4, 2.0]), EB([HEART_B[0] + 1.8, HEART_B[1] + 3.6, -2.4], [2.2, 2.4, 2.0]));
+  { const h = L.smoothUnion(1.1, EB([HEART_B[0] - .8, HEART_B[1] - .6, 0], [4.3, 5.3, 4.1], -.35), EB([HEART_B[0] + 1.6, HEART_B[1] + 1.9, 2.4], [2.2, 2.4, 2.0]), EB([HEART_B[0] + 1.6, HEART_B[1] + 1.9, -2.4], [2.2, 2.4, 2.0]));
     o.heart = bB(L.rotate(h, [0, 0, 1], 0), [3, -14, -7], [20, 5, 7], .22, 1, 1); }
   // liver: two lobes, the right a little larger, wrapped round the back of the heart
   o.liver = bB(L.smoothUnion(1.2, EB([3.2, -8.4, 5.2], [5.8, 5.6, 4.4], .2), EB([3.6, -8.8, -4.8], [5.3, 5.3, 4.0], -.2)), [-4, -16, -11], [11, -1, 11], .3, 1, 1);

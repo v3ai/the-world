@@ -206,7 +206,7 @@ N('robin_eye', 'Eye', 'structure', .008, ['robin'],
   'The eye is drawn about 8 mm across; the real size varies by individual. The visible dark dome in the plumage is the cornea and pupil; the iris is dark brown to black in a robin.',
   [['Eyeball (model)', '≈ 8 mm across'], ['Colour', 'dark, "black" (WR)']], refs=[R_VIS], ext=[WR, PECT, SCL], related=['robin_retina', 'cornea', 'iris'], parts=['robin_eye_ring', 'robin_cornea'])
 N('robin_eye_ring', 'Eye ring', 'structure', .008, ['robin'], 'A thin pale ring round the eye: the rim of the eyelids with a ring of tiny feathers.',
-  'Many birds have a ring round the eye, made of the eyelid rim and small feathers. In a robin it is faint. A bird has three eyelids: an upper, a lower, and a see-through one (the nictitating membrane) that sweeps across the eye from the corner.',
-  'The lower lid moves more than the upper in most birds. The third eyelid cleans and protects the eye and can be drawn across it in flight.',
+  'Many birds have a ring round the eye, made of the eyelid rim and small feathers. In a robin it is faint.',
+  'The ring follows the edge of the eyelids, which close over the eye.',
   'The ring is drawn as a thin tube; in life it is graded and feathered.',
-  [['Eyelids', 'upper, lower and a see-through third']], refs=[R_VIS], ext=[WR], related=['robin_eye'])
+  [['Where', 'round the eye, on the edge of the eyelids']], refs=[R_VIS], ext=[WR], related=['robin_eye'])

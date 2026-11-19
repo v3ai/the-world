@@ -322,8 +322,8 @@
    "label": "Cut open: the heart",
    "cut": {
     "at": [
-     0.010091214059889662,
-     0.05957877881855774,
+     0.009475552584564003,
+     0.060366789572164466,
      0
     ],
     "normal": [
@@ -639,20 +639,6 @@
    "r": 0.0017
   },
   {
-   "id": "hs_sac",
-   "node": "robin_sac_ant",
-   "at": [
-    0.007289,
-    0.061704,
-    0.0042
-   ],
-   "label": "Air sac",
-   "modes": [
-    "cut_half"
-   ],
-   "r": 0.0017
-  },
-  {
    "id": "hs_gizzard",
    "node": "robin_gizzard",
    "at": [
@@ -751,20 +737,6 @@
    "r": 0.0017
   },
   {
-   "id": "hs_eso",
-   "node": "robin_oesophagus",
-   "at": [
-    0.006656,
-    0.070473,
-    -0.001
-   ],
-   "label": "Gullet (no crop)",
-   "modes": [
-    "cut_half"
-   ],
-   "r": 0.0017
-  },
-  {
    "id": "hs_pecto",
    "node": "robin_pectoralis",
    "at": [
@@ -800,7 +772,7 @@
     0.0615,
     0.013496
    ],
-   "label": "Radius and ulna",
+   "label": "Radius, ulna",
    "modes": [
     "cut_wing"
    ],
@@ -814,21 +786,7 @@
     0.0575,
     0.015638
    ],
-   "label": "Fused hand bone",
-   "modes": [
-    "cut_wing"
-   ],
-   "r": 0.0017
-  },
-  {
-   "id": "hs_alula",
-   "node": "robin_digits",
-   "at": [
-    0.0162,
-    0.0649,
-    0.015497
-   ],
-   "label": "Thumb and alula",
+   "label": "Hand bone",
    "modes": [
     "cut_wing"
    ],
@@ -842,7 +800,7 @@
     0.070712,
     0.0074
    ],
-   "label": "Pulley (triosseal canal)",
+   "label": "Pulley",
    "modes": [
     "cut_wing"
    ],
@@ -856,7 +814,7 @@
     0.0684,
     0.010676
    ],
-   "label": "Wing muscles",
+   "label": "Wing muscle",
    "modes": [
     "cut_wing"
    ],
@@ -1096,8 +1054,8 @@
    "id": "hs_hd_la",
    "node": "robin_la",
    "at": [
-    0.009434,
-    0.063507,
+    0.010261,
+    0.062123,
     -0.0023
    ],
    "label": "Left atrium",
@@ -1110,8 +1068,8 @@
    "id": "hs_hd_ra",
    "node": "robin_ra",
    "at": [
-    0.009434,
-    0.063507,
+    0.010261,
+    0.062123,
     0.0023
    ],
    "label": "Right atrium",
@@ -3006,11 +2964,11 @@
    "cutFace": "muscle",
    "center": [
     0.0098,
-    0.0598,
+    0.059,
     0
    ],
-   "radius": 0.0068,
-   "tris": 6424
+   "radius": 0.0061,
+   "tris": 5876
   },
   {
    "id": "og_liver",
@@ -3754,11 +3712,11 @@
    "lod": "near+mid",
    "center": [
     0.0098,
-    0.0598,
+    0.059,
     0
    ],
-   "radius": 0.0068,
-   "tris": 6424
+   "radius": 0.0061,
+   "tris": 5876
   },
   {
    "id": "hd_lv",
@@ -3807,12 +3765,12 @@
    "cutFace": "blood_l",
    "lod": "near+mid",
    "center": [
-    0.0094,
-    0.0635,
+    0.0103,
+    0.0621,
     -0.0023
    ],
-   "radius": 0.0013,
-   "tris": 1284
+   "radius": 0.0017,
+   "tris": 1584
   },
   {
    "id": "hd_ra",
@@ -3825,12 +3783,12 @@
    "cutFace": "blood_r",
    "lod": "near+mid",
    "center": [
-    0.0094,
-    0.0635,
+    0.0103,
+    0.0621,
     0.0023
    ],
-   "radius": 0.0015,
-   "tris": 1564
+   "radius": 0.0018,
+   "tris": 1796
   },
   {
    "id": "r_belly_mid",
@@ -4083,7 +4041,7 @@
  ],
  "stats": {
   "parts": 130,
-  "uniqueMeshTris": 359701,
+  "uniqueMeshTris": 359137,
   "nearTris": 62818,
   "midTris": 34889,
   "farTris": 1322

@@ -1584,14 +1584,14 @@
   "processes": [],
   "summary": "A thin pale ring round the eye: the rim of the eyelids with a ring of tiny feathers.",
   "layers": {
-   "basics": "Many birds have a ring round the eye, made of the eyelid rim and small feathers. In a robin it is faint. A bird has three eyelids: an upper, a lower, and a see-through one (the nictitating membrane) that sweeps across the eye from the corner.",
-   "deeper": "The lower lid moves more than the upper in most birds. The third eyelid cleans and protects the eye and can be drawn across it in flight.",
+   "basics": "Many birds have a ring round the eye, made of the eyelid rim and small feathers. In a robin it is faint.",
+   "deeper": "The ring follows the edge of the eyelids, which close over the eye.",
    "expert": "The ring is drawn as a thin tube; in life it is graded and feathered."
   },
   "facts": [
    [
-    "Eyelids",
-    "upper, lower and a see-through third"
+    "Where",
+    "round the eye, on the edge of the eyelids"
    ]
   ],
   "certainty": "C1",

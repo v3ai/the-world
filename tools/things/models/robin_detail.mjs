@@ -64,7 +64,7 @@ export function heartDetail() {
   const ch = (c, r, ang = 0) => L.transform(bnd(B(c, r, ang), [c[0] - r[0] - .5, c[1] - r[1] - .5, c[2] - r[2] - .5], [c[0] + r[0] + .5, c[1] + r[1] + .5, c[2] + r[2] + .5], .2, 1, 1), Bp);
   const o = {};
   o.lv = ch([H[0] - .9, H[1] - .8, -.9], [2.2, 3.5, 1.5], -20); o.rv = ch([H[0] - .5, H[1] - .4, 2.0], [1.6, 3.4, 1.3], -20);
-  o.la = ch([H[0] + 1.9, H[1] + 3.5, -2.3], [1.15, 1.35, 1.05]); o.ra = ch([H[0] + 1.9, H[1] + 3.5, 2.3], [1.25, 1.5, 1.15]);
+  o.la = ch([H[0] + 1.7, H[1] + 1.9, -2.3], [1.2, 1.7, 1.05]); o.ra = ch([H[0] + 1.7, H[1] + 1.9, 2.3], [1.25, 1.8, 1.15]);
   const out = {}; for (const [k, m] of Object.entries(o)) out[k] = fin(shade(m, 1));
   return out;
 }
