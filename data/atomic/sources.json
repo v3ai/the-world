@@ -70,7 +70,7 @@
    "source": "Computed here: tools/atom/scf.py (non-relativistic spherical self-consistent-field atom, Kohn-Sham/Gaspar local exchange, no correlation) run by tools/atom/build_scf.py for the NIST ground-state configuration of every element.",
    "validation": "Compared with numerical Hartree-Fock <r> from Table 11 of J. B. Mann, Atomic Structure Calculations II, Los Alamos report LA-3691 (1968), https://www.osti.gov/biblio/4553157 (text layer of the scanned report read by tools/atom/parse_mann.py). The statistics are stored in scf.json under 'validation'.",
    "url": "https://www.osti.gov/biblio/4553157",
-   "note": "Relativity is not included; for gold the 6s mean radius is about 15% smaller in published relativistic calculations (about 3.4 to 2.9 bohr, J. Autschbach, J. Chem. Phys. 136, 150902 (2012), found through a search excerpt; the paper itself was not opened)."
+   "note": "Relativity is not included; relativity contracts s and p shells and expands d and f shells, most strongly at gold in its row (P. Pyykkö and J.-P. Desclaux, Acc. Chem. Res. 12, 276 (1979)). No number is quoted for the size of the contraction because none was checked against the paper."
   }
  }
 }
