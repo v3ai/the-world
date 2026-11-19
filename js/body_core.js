@@ -143,7 +143,7 @@ function bodyHide(F, id) { F.hidden.add(id); if (F.sel === id) F.sel = null; clo
    gap to the next deeper kind of layer behind it, and each deeper layer waits until the one in front is mostly gone. So the same
    rule gives a hand, a forearm, the head and the abdomen their own distances. The first organ (or vessel, or nerve) on the ray is the
    end of the descent: it is never peeled, so you finish on the surface of the thing you were pointing at. */
-const PEEL_K = 12, PEEL_TMIN = .008, PEEL_GHOST_SKIN = .06, PEEL_GHOST_MUSCLE = .08, PEEL_GHOST_BONE = .12;
+const PEEL_K = 12, PEEL_TMIN = .008, PEEL_TMAX = .045, PEEL_GHOST_SKIN = .06, PEEL_GHOST_MUSCLE = .08, PEEL_GHOST_BONE = .12;
 const PEEL_RANK = { skin: 0, muscular: 1, skeletal: 2 };
 function peelRank(p) { const s = sysOf(p); return s in PEEL_RANK ? PEEL_RANK[s] : 3; }
 const _po = new V3(), _pd = new V3(), _pc = new V3();
@@ -176,8 +176,10 @@ function bodyPeel(F, rows, tgt) {
   for (let i = 0; i < n; i++) {
     const r = rows[i]; let j = i + 1; while (j < n && rows[j].rank <= r.rank) j++;
     if (tgt) { r.pi = i < tgt.n ? 1 : 0; continue; }
-    if (j >= n) { r.pi = 0; continue; } // nothing deeper behind it: the end of the descent
-    if (r.rank !== prevRank) { r.T = Math.min(PEEL_K * Math.max(rows[j].e - r.e, PEEL_TMIN), prevT * .5); prevT = r.T; prevRank = r.rank; r.pi = Math.min(prevPi, 1 - smooth(r.T, r.T * 1.6, r.e)); prevPi = r.pi; }
+    // nothing deeper behind it on this ray: a bone or organ is the end of the descent; a skin or muscle (a ray along an edge) is
+    // treated as a thin layer with something behind it, so the view does not flicker between peeled and not as the ray wanders
+    if (j >= n && r.rank > 1) { r.pi = 0; continue; }
+    if (r.rank !== prevRank) { r.T = Math.min(PEEL_K * Math.min(Math.max(j < n ? rows[j].e - r.e : .025, PEEL_TMIN), PEEL_TMAX), prevT * .5); prevT = r.T; prevRank = r.rank; r.pi = Math.min(prevPi, 1 - smooth(r.T, r.T * 1.6, r.e)); prevPi = r.pi; }
     else { const p0 = rows[i - 1]; r.T = p0.T; r.pi = p0.pi; }
   }
   // only the layers down to the one you are looking at (the focus) count; deeper ones, and ones the camera has already passed, do not
@@ -213,8 +215,8 @@ function bodyAutoUpdate(F, dt) {
     let tl = null, tgt = null; if (reveal) tl = _rc.set(...F.parts[reveal.id].p.center);
     const rows = bodyRayStack(F, tl);
     if (reveal) { let k = rows.findIndex(r => r.id === reveal.id); if (k < 0) { const dc = _po.distanceTo(tl); k = rows.filter(r => r.e < dc * .97).length; } tgt = { n: k, rank: peelRank(F.parts[reveal.id].p) }; }
-    A.P = bodyPeel(F, rows, tgt); A.P.op = peelOpacities(A.P);
-    A.front = tgt ? new Set(rows.slice(0, tgt.n).filter(r => r.rank === 3).map(r => r.id)) : null; // organs in front of the part you asked for
+    A.P = bodyPeel(F, rows, tgt); A.P.op = peelOpacities(A.P); mouse.dirty = true; // what is under a resting cursor has changed
+    A.front = tgt ? new Set(rows.slice(0, tgt.n).filter(r => r.rank >= tgt.rank).map(r => r.id)) : null; // parts of its own kind or deeper that sit in front of it (a muscle over a muscle, an organ over an organ)
   }
 }
 const V3Z = new V3();
@@ -251,3 +253,24 @@ function lungShellGeo(tree, heart) {
   return sph;
 }
 const LUNG_NOTE = 'The lung outline is drawn schematically around the airway tree, because the model data holds only the airways. Its size and shape are approximate.';
+
+/* ---------- surface grain ----------
+   Body parts are smooth single-colour meshes: close up they become a flat wall. A faint value noise in object space (two scales,
+   about 7 mm and 1 mm cells, each fading out with the camera's distance) gives the eye something to judge distance and direction by.
+   It only modulates the colour by a few percent; it is not anatomy. */
+function bodySurface(mat) {
+  mat.onBeforeCompile = sh => {
+    sh.vertexShader = 'varying vec3 vObjPos;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n vObjPos = position;');
+    sh.fragmentShader = `varying vec3 vObjPos;
+float bgh(vec3 p){ return fract(sin(dot(p, vec3(127.1, 311.7, 74.7))) * 43758.5453); }
+float bgn(vec3 p){ vec3 i = floor(p), f = fract(p); f = f * f * (3. - 2. * f);
+  return mix(mix(mix(bgh(i), bgh(i + vec3(1, 0, 0)), f.x), mix(bgh(i + vec3(0, 1, 0)), bgh(i + vec3(1, 1, 0)), f.x), f.y),
+             mix(mix(bgh(i + vec3(0, 0, 1)), bgh(i + vec3(1, 0, 1)), f.x), mix(bgh(i + vec3(0, 1, 1)), bgh(i + vec3(1, 1, 1)), f.x), f.y), f.z); }
+` + sh.fragmentShader.replace('#include <color_fragment>', `#include <color_fragment>
+ { float dv = length(vViewPosition);
+   float a1 = 1. - smoothstep(.5, 2.5, dv), a2 = 1. - smoothstep(.05, .35, dv);
+   float n = bgn(vObjPos * 150.) * a1 * .14 + bgn(vObjPos * 1000.) * a2 * .2;
+   diffuseColor.rgb *= 1. - n; }`); // only darkens, so a pale bone is not clipped to flat white
+  };
+  mat.customProgramCacheKey = () => 'bodysurface';
+}

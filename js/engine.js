@@ -124,6 +124,7 @@ const anchored = [];  // extra points that live in anchor coords and must follow
 function rotAnchored(fn) { fn(cam.T, 'p'); fn(cam.dir, 'd'); fn(cam.up, 'd'); anchored.forEach(a => fn(a.p, 'p')); }
 function ascend() { const f = cam.A; rotAnchored((v, k) => k === 'p' ? toParentP(f, v) : toParentD(f, v)); cam.A = f.parent; }
 function descend(c) { rotAnchored((v, k) => k === 'p' ? fromParentP(c, v) : fromParentD(c, v)); cam.A = c; c.entered = true; }
+let camHold = null; // the frame the last flight was sent to: its children are not entered on landing (only by scrolling in, or by being on a flight's path)
 let lastZoomHit = null; // {frame, obj, point (frame-local), normal (frame-local)}
 let _fp = null;
 function reanchor() {
@@ -161,6 +162,7 @@ function pickChild(A) {
   for (const c of A.children) {
     safePlace(c);
     if (cam.D > c.r1 || !c.containsP(cam.T)) continue;
+    if (camHold === A && !(path && path.includes(c))) continue;
     if (c.enterOnly && !(path && path.includes(c))) continue; // entered on purpose only (a flight to it), never by scroll-zoom
     if (path && !path.includes(c) && path.includes(A) && chainOf(c).includes(fly.frame)) continue; // flying out to a frame: do not dive back into one of its children on the way
     if (path && path.includes(c)) return c;
@@ -295,7 +297,7 @@ function pivotAt(x, y) {
   return p;
 }
 function zoomBy(lnDelta, x, y) {
-  lastInput = performance.now(); fly = null; cancelTour();
+  lastInput = performance.now(); fly = null; cancelTour(); if (lnDelta < 0) camHold = null;
   if (lnDelta < 0 && x !== undefined) { const p = pivotAt(x, y); zoom.pivot = zoom.pivot || { p }; zoom.pivot.p.copy(p); if (!anchored.includes(zoom.pivot)) anchored.push(zoom.pivot); }
   else if (lnDelta > 0) { zoom.pivot = null; anchored.length = 0; }
   zoom.pending += lnDelta;
@@ -308,6 +310,7 @@ function applyZoom(dt) {
   let nd = clamp(cam.D * lam, MIN_D, MAX_D);
   if (lam < 1 && cam.A.floorD) nd = Math.max(nd, Math.min(cam.D, cam.A.floorD)); // a floor, so the camera cannot sink into an empty region
   lam = nd / cam.D;
+  mouse.dirty = true; // the view moves under a resting cursor: its tooltip and highlight must follow
   if (zoom.pivot && lam < 1) { // scale camera rig about the pivot: keeps the point under the cursor fixed
     const P = zoom.pivot.p;
     cam.T.sub(P).multiplyScalar(lam).add(P);
@@ -337,9 +340,10 @@ function orthoUp() { cam.dir.normalize(); cam.up.sub(cam.dir.clone().multiplySca
 // fly to a point in a frame, ending at distance Dgoal (meters). Zooms out, travels, zooms in as needed.
 function flyTo(frame, pointLocal, Dgoal, then) {
   if (typeof navFlyHook === 'function') navFlyHook(); // remember where we were, for Back
-  zoom.pending = 0; zoom.pivot = null; anchored.length = 0;
+  zoom.pending = 0; zoom.pivot = null; anchored.length = 0; camHold = null;
   chainOf(frame).reverse().forEach(f => { f.ensure(); if (f.place) f.place(); }); // the whole path must exist and be in position
   fly = { frame, p: pointLocal.clone(), Dg: Dgoal, then, t: 0 };
+  camHold = frame; // a flight lands in the frame it names, not in a child that happens to sit under the landing point; scrolling in again lifts this
 }
 function safeThen(t) { if (t) try { t(); } catch (e) { console.error('flight callback failed', e); } } // a throwing callback must not abort the frame
 function stepFly(dt) {

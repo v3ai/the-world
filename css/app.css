@@ -310,7 +310,7 @@ details[open] > summary::before { content: '−' }
   #zoombtns { right: 8px; bottom: 10px }
   #info { left: 8px; right: 8px; top: auto; bottom: 8px; width: auto; max-width: none; height: 36vh; max-height: none; transform: translateY(calc(100% + 40px)); transition: transform .25s, height .2s; padding-top: 26px }
   #info.tall { height: 82vh }
-  #info .grab { display: block }
+  #info .grab { display: block !important }
   #controls { flex-wrap: wrap !important; overflow: visible !important; row-gap: 4px }
   #library.open ~ #controls, #tracks.open ~ #controls { display: none }
   #topright { right: 8px; top: 8px }

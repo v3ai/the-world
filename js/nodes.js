@@ -94,6 +94,7 @@ FT.body = {
         S.parts.forEach(p => {
           if (p.parent) { (F.detail = F.detail || {})[p.parent] = (F.detail[p.parent] || []).concat([p]); return; }
           const g = inked(decodePart(p), (p.id === 'skin' ? 0xcf9f82 : 0) || PART_COL[p.id] || (p.color ? new THREE.Color(p.color).getHex() : 0) || SYS_COL[p.system] || 0xcccccc, { w: p.id === 'skin' ? .0012 : .0018, double: p.id === 'skin' });
+          bodySurface(g.userData.main.material); // fine grain, so a close-up of a smooth part still has something to read
           const big = () => p.radius > .1;
           Object.assign(g.userData, {
             id: p.id, node: nodeForMesh(p.id), part: p, priority: 1, madeOf: 'tissue', title: p.name, op: 1, shown: 1,
@@ -153,13 +154,13 @@ function applyMode(F) {
     if (F.auto && F.auto.P && !focus && !F.hidden.size && (F.mode === 'auto' || F.reveal)) { const c = F.auto.cur, k = F._k || 1; c[id] = c[id] === undefined ? op : c[id] + (op - c[id]) * k; op = c[id]; } // ease, so layers fade rather than pop
     if (focus) op = focus.opts.meshes.includes(id) ? (focus.alpha > .9 ? 0 : Math.max(op, .6) * (1 - focus.alpha)) : op * (1 - focus.alpha);
     u.op = op;
-    const isSel = F.sel === id, isHov = hov === g && op > .01, hl = isSel || isHov;
+    const isSel = F.sel === id, isHov = hov === g && op >= BODY_VISIBLE_OP, hl = isSel || isHov; // a ghost layer is not highlighted by pointing at it (its ink outline made a flat blue wall)
     let ev = op; if (isSel) ev = Math.max(ev, .6); // the part a card is about is drawn solid enough to read; hovering never pulls a ghost layer back (it made a flat wall)
     const m = u.main.material; m.opacity = ev * F.alpha; m.depthWrite = ev > .9;
     if (u.shell) u.shell.material.opacity = .5 * ev * F.alpha;
     g.visible = ev > .01 && (!F.hidden.has(id) || isSel);
     u.shown = g.visible ? op : 0;
-    u.ol.visible = ev > .5 || hl; u.ol.material.uniforms.uOpacity.value = .85 * Math.max(ev, hl ? .9 : 0) * F.alpha;
+    u.ol.visible = ev > .5 || (hl && ev > .2); u.ol.material.uniforms.uOpacity.value = .85 * Math.max(ev, hl ? .9 : 0) * F.alpha;
     u.ol.material.uniforms.uColor.value.setHex(hl ? 0x1e4e8f : 0x1a1f2b);
     u.main.renderOrder = s === 'skin' ? 2 : 1;
   }
@@ -414,24 +415,28 @@ function goToNode(id) {
   // 1. the part has its own cut-open view: go there. 2. it is a hotspot inside an organ: go to that organ's view, at the hotspot.
   const own = organOf(id);
   if (own) { showBodyNode(id, null); flyTo(own, new V3(), own.opts.R * 2.2); return; }
-  const org = n.hotspot && organOf(n.hotspot.of);
-  if (org && n.hotspot.at) { showBodyNode(id, null); const at = new V3(...n.hotspot.at); if (org.opts.mirror) at.x = -at.x; flyTo(org, at, org.opts.R * 1.2); return; }
+  const of0 = n.hotspot && n.hotspot.of, of = GOTO_PARENT[of0] || of0; // a tissue-level hotspot (a nephron, a long bone, the skin) belongs to the body part that holds it
+  const org = of && organOf(of);
+  if (org) { showBodyNode(id, null); if (of === of0 && n.hotspot.at) { const at = new V3(...n.hotspot.at); if (org.opts.mirror) at.x = -at.x; flyTo(org, at, org.opts.R * 1.2); } else flyTo(org, new V3(), org.opts.R * 2.2); return; }
   // 3. otherwise stay in the whole-body view: peel what is in front of the part, highlight it, centre it and name it
-  let P = id === 'skin' ? (ix && ix.parts.filter(p => p.id === 'skin')) : parts(id);
-  if (!P.length && n.hotspot) P = parts(n.hotspot.of);
+  const skinP = ix && ix.parts.filter(p => p.id === 'skin');
+  let P = id === 'skin' ? skinP : parts(id);
+  if (!P.length && of) P = of === 'skin' ? skinP : parts(of);
   if (!P.length && GOTO_NEAR[id]) { P = parts(GOTO_NEAR[id]); if (P.length) toast(`The model has no separate ${n.title.toLowerCase()}; showing ${nodeTitle(GOTO_NEAR[id]).toLowerCase()}, which it sits against.`); }
   if (body && P.length) {
     const c = new V3(); P.forEach(p => c.add(new V3(...p.center))); c.divideScalar(P.length);
     let R = 0; P.forEach(p => R = Math.max(R, c.distanceTo(new V3(...p.center)) + p.radius));
     showBodyNode(id, null);
-    const main = P.slice().sort((a, b) => b.radius - a.radius)[0];
-    body.sel = main.id; if (id !== 'skin') body.reveal = { id: main.id };
-    if (c.z < -.02 && id !== 'skin') cam.dir.set(0, .05, -1).normalize(); else if (id !== 'skin') cam.dir.set(0, .05, 1).normalize(); // look at it from the side it is nearer to
-    cam.up.set(0, 1, 0);
-    flyTo(body, c, Math.max(Math.min(R, .6) * 3.2, .15)); return;
+    const main = P.slice().sort((a, b) => b.radius - a.radius)[0], skinOnly = main.id === 'skin';
+    body.sel = main.id; if (!skinOnly) body.reveal = { id: main.id };
+    if (!skinOnly) { const d = new V3(0, .05, c.z < -.02 ? -1 : 1).normalize(), u = new V3(0, 1, 0); convertD(d, body, cam.A); convertD(u, body, cam.A); cam.dir.copy(d); cam.up.copy(u); } // look at it from the side it is nearer to (the camera's vectors live in the anchor frame)
+    flyTo(body, c, Math.max(Math.min(R, .6) * 3.2, .15));
+    camHold = body; // the flight ends here, not in a frame that happens to sit next to the part (the phone in the hand)
+    return;
   }
   showBodyNode(id, null);
 }
+const GOTO_PARENT = { nephron: 'kidney_r', long_bone: 'femur_r', skin: 'skin' }; // tissue-level hotspot parents with no organ view of their own
 let ANAT_SYNC = null; loadAnatomyIndex().then(a => ANAT_SYNC = a);
 
 /* ---------- "where it lives": fly to a topic's home in the world ---------- */
