@@ -81,6 +81,7 @@ add({ id: 'pl:ISS', c: 'pl', g: 'model', t: 'International Space Station', s: 'A
 [['Dog', 'dog'], ['Tree', 'tree'], ['Pond', 'pond'], ['Flowers', 'flower'], ['Honeybee', 'bee'], ['Mushroom', 'mushroom'], ['Bird', 'bird'], ['Cloud', 'cloud']].forEach(([t, k]) => add({ id: 'pl:' + t, c: 'pl', g: 'model', t, s: 'In Greenwich Park', card: [k] }));
 add({ id: 'pl:Air', c: 'pl', g: 'model', t: 'Air', s: 'In Greenwich Park: what the air is made of', card: ['air'] });
 add({ id: 'pl:Soil', c: 'pl', g: 'model', t: 'Soil and rock', s: 'In Greenwich Park: down into the soil', card: ['soil'] });
+add({ id: 'act:ptable', c: 'act', g: 'model', t: 'Periodic table of the elements', s: 'Choose any element and fly to its atom' });
 // trails and labs
 trails.forEach(t => add({ id: 'trail:' + t.id, c: 'trail', g: 'trail', t: t.question, kw: t.keywords || [], s: first(t.teaser), n: (t.stops || []).length, min: t.minutes }));
 labPresets.forEach(([lab, name, presets]) => presets.forEach(p => add({ id: `lab:${lab}/${p.id}`, c: 'lab', g: 'lab', t: p.title || p.name || p.id, s: name })));

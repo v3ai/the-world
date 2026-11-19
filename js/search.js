@@ -254,6 +254,7 @@
     if (c === 'el') return ['Element', 'Fly to its atom, with its card'];
     if (c === 'lm') return ['Place', 'Fly there'];
     if (c === 'pl') return [/^Moon of|planet/i.test(e.s) ? 'Moon' : e.s === 'Planet' || e.s === 'Dwarf planet' ? e.s : 'Place', 'Fly there, with its card'];
+    if (c === 'act') return ['Interactive', 'Open the periodic table; choose an element to fly to its atom'];
     if (c === 'trail') return ['Question trail', `A guided journey, ${e.n || 'a few'} stops`];
     if (c === 'lab') return ['Interactive lab', 'Opens the lab: ' + e.s];
     if (c === 'kn') return ['Card', 'No 3D model yet; here is what it is'];
@@ -301,6 +302,7 @@
     else if (c === 'kn') { (typeof loadKnowledge === 'function' ? loadKnowledge() : Promise.resolve()).then(() => showNode(key)); }
     else if (c === 'lm') { const L = LANDMARKS.find(l => l.label === key); if (L) { L.go(); if (e.card) afterFlight(() => openCardById(e.card)); } }
     else if (c === 'pl') { if (planetFlight(e)) afterFlight(() => openCardById(e.card)); }
+    else if (c === 'act') { goToNode('at_el_H'); afterFlight(() => { if (typeof ATM !== 'undefined' && ATM.openPicker) ATM.openPicker(); }); }
     else if (c === 'trail') { TRAILS.load().then(() => TRAILS.start(key, 0)); }
     else if (c === 'lab') { const [lab, preset] = key.split('/'); openLab(lab, preset, 'Search'); }
   }

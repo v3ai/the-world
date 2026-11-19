@@ -27,7 +27,7 @@ tendon, tendons, achilles, sinew, ligament, ligaments => node:tendon, node:dense
 growing taller, growth, height, growth plate => node:growth_plate, node:bone_remodeling // src: openstax-ap
 
 # ---------------- muscles ----------------
-muscle, muscles, my muscles, muscular system, muscle tissue, six pack => node:muscular_system, node:muscle_contraction, node:skeletal_muscle_fiber, node:rectus_abdominis, node:biceps_brachii // src: openstax-ap
+muscle, muscles, my muscles, muscular system, muscle tissue, six pack => lm:You, node:muscular_system, node:muscle_contraction, node:skeletal_muscle_fiber, node:rectus_abdominis, node:biceps_brachii // src: openstax-ap
 bicep, biceps, arm muscle => node:biceps_brachii, node:triceps_brachii // src: openstax-ap
 tricep, triceps => node:triceps_brachii // src: openstax-ap
 abs, abdominals, six pack abs, stomach muscles => node:rectus_abdominis, node:external_obliques // src: openstax-ap
@@ -102,7 +102,7 @@ lens, eye lens => node:lens, node:eye_l // src: openstax-ap
 retina, rods and cones => node:retina, node:rod_cell, node:cone_cell, node:fovea // src: openstax-ap
 colour blindness, color blindness, colour vision, color vision => node:cone_cell, node:retina // The retina has three kinds of cone cells; colour blindness is usually a missing or altered kind. // src: openstax-ap
 blind spot, optic nerve => node:optic_nerve, node:retina // src: openstax-ap
-ear, ears, my ears, hearing, hear, eardrum, deafness => kn:sound_hearing, node:dog_eardrum, node:dog_cochlea // The human ear has no 3D model yet; the dog's ear (eardrum, cochlea) is modelled and works the same way. // near: node:dog_cochlea // src: openstax-ap
+ear, ears, my ears, hearing, hear, eardrum, deafness => kn:sound_hearing, node:dog_eardrum, node:dog_cochlea // The human ear has no 3D model yet; the dog's ear (eardrum, cochlea) is modelled and works the same way. // near: node:dog_eardrum, node:dog_cochlea // src: openstax-ap
 nose, my nose, smell, smelling, sense of smell, sniff, scent => node:nose_airway, trail:how_does_a_dog_smell_so_well, node:dog_nose // near: node:dog_nose // src: openstax-ap
 touch, feeling, skin sense, sense of touch => node:skin, kn:sensory_systems, node:peripheral_nerves // src: openstax-ap
 senses, five senses, sense organs => kn:sensory_systems, node:bio_sensory_transduction // src: openstax-ap
@@ -131,6 +131,7 @@ ageing, aging, getting old, old age, lifespan, longevity, why we age => kn:aging
 pregnancy, pregnant, baby, babies, embryo, foetus, fetus, womb => node:bio_human_prenatal_development, node:uterus, kn:development_biology, node:bio_fertilization // src: openstax-ap
 uterus, ovaries, ovary, testes, testicles, reproduction, reproductive system, sex => node:uterus, node:ovaries, node:testes, node:reproductive_system, node:sperm, node:egg_cell // src: openstax-ap
 sperm, egg cell, ovum, fertilisation, fertilization => node:sperm, node:egg_cell, node:bio_fertilization // src: openstax-ap
+egg, eggs, chicken egg, boiled egg, scrambled egg => node:egg_cell, node:bio_fertilization // There is no model of a hen's egg yet; the cards describe the egg cell, the cell that starts a new life. // src: openstax-bio
 twins, identical twins => node:bio_twin_family_studies // src: openstax-bio
 inheritance, heredity, genes, genetics, inherited, gene, mendel, punnett => node:bio_mendel_laws, kn:genetics_inheritance, node:bio_alleles_genotype, node:bio_genetics // src: openstax-bio
 

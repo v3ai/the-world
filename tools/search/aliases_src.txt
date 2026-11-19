@@ -8,7 +8,7 @@
 #   and filler words (a, the, what is, how does ... work), so "whats water made of" and "water" are the same phrase.
 # Rule: an alias must be TRUE. A common name goes to the thing it really is; if the explorer only has a near relative, say so with near:.
 
-@src pubchem | PubChem compound records (NCBI), names and synonyms section for the compound | https://pubchem.ncbi.nlm.nih.gov/
+@src pubchem | PubChem compound records (NCBI), names and synonyms. The PubChem site refused automated fetches in this session (reCAPTCHA); baking soda = sodium hydrogencarbonate NaHCO3 (IUPAC name; baking soda and bicarbonate of soda are common names) was confirmed by web search of Wikipedia's sodium bicarbonate entry | https://pubchem.ncbi.nlm.nih.gov/
 @src iupac | IUPAC Gold Book and Nomenclature of Inorganic Chemistry (names, symbols and the Latin origin of symbols) | https://goldbook.iupac.org/
 @src iupac-elements | IUPAC periodic table of the elements: names and symbols | https://iupac.org/what-we-do/periodic-table-of-elements/
 @src nist | NIST Chemistry WebBook, synonyms listed for the compound | https://webbook.nist.gov/chemistry/
@@ -67,7 +67,7 @@ jeans, denim, blue dye, indigo => mol:indigo // Blue jeans are dyed with indigo.
 anthocyanin, red cabbage, blueberry, blueberries, purple pigment => mol:cyanidin // Cyanidin is one of the anthocyanin pigments that colour many red, purple and blue fruits and flowers. // near: mol:cyanidin // src: pubchem
 chlorophyll, green pigment, why leaves are green => mol:chlorophyll_a, trail:why_is_a_leaf_green, node:bio_light_reactions // Chlorophyll a is the main green pigment that catches light for photosynthesis. // src: pubchem openstax-bio
 coffee, tea, caffeine, energy drink, cola caffeine, coffee beans, espresso => mol:caffeine // Coffee, tea and many cola drinks contain caffeine; coffee itself is a mixture of hundreds of compounds. // src: pubchem
-chocolate, cocoa => mol:caffeine, mol:vanillin // Chocolate contains a little caffeine. // near: mol:caffeine // src: pubchem
+chocolate, cocoa => mol:caffeine // Chocolate contains a little caffeine. // near: mol:caffeine // src: pubchem
 alcohol, beer, wine, spirits, whisky, vodka, ethanol, drinking alcohol, booze => mol:ethanol, node:bio_fermentation // The alcohol in drinks is ethanol. // src: pubchem
 rubbing alcohol, isopropyl alcohol, isopropanol, hand sanitiser, hand sanitizer, disinfectant => mol:isopropanol, mol:ethanol // Rubbing alcohol is usually isopropanol (isopropyl alcohol); many hand sanitisers use ethanol or isopropanol. // src: pubchem
 methanol, wood alcohol => mol:methanol // src: pubchem
@@ -89,8 +89,8 @@ acid rain, so2, sulfur dioxide, sulphur dioxide => mol:sulfur_dioxide, mol:sulfu
 nitric acid => mol:nitric_acid // src: pubchem
 fertiliser, fertilizer, manure, plant food => mol:ammonium, mol:nitrate, mol:phosphate, kn:haber_bosch, kn:nitrogen_cycle // Fertilisers supply nitrogen (as ammonium or nitrate) and phosphorus (as phosphate). // src: openstax-chem openstax-bio
 phosphate, phosphoric acid, cola acid => mol:phosphate, mol:phosphoric_acid // src: pubchem
-bleach, chlorine, chlorine gas, swimming pool => el:Cl, mol:chlorine // Chlorine gas is the element Cl2; household bleach is a different compound (sodium hypochlorite) that the explorer does not have. // near: mol:chlorine // src: pubchem
-formaldehyde, embalming, preservative => mol:formaldehyde // src: pubchem
+bleach, chlorine, chlorine gas, swimming pool => mol:chlorine, el:Cl // Chlorine gas is the element Cl2; household bleach is a different compound (sodium hypochlorite) that the explorer does not have. // near: mol:chlorine, el:Cl // src: pubchem
+formaldehyde, embalming => mol:formaldehyde // src: pubchem
 chloroform => mol:chloroform // src: pubchem
 ether, diethyl ether => mol:diethyl_ether // src: pubchem
 refrigerant, cfc, cfcs, freon, aerosol propellant => mol:freon12, kn:ozone_layer // Freon is a brand name for CFC refrigerants; CFC-12 is one of them. // src: pubchem noaa
@@ -158,7 +158,7 @@ oestrogen, estrogen, estradiol => mol:estradiol // Estradiol is the main oestrog
 testosterone => mol:testosterone // src: pubchem
 progesterone => mol:progesterone // src: pubchem
 thyroid hormone, thyroxine => mol:thyroxine, node:thyroid // src: pubchem
-insulin, diabetes, blood sugar control => node:hormone_signaling, mol:glucose_alpha, node:pancreatic_islets, node:beta_cell, kn:endocrine_physiology // Insulin is a protein, which the explorer does not model; the cards cover how blood sugar is controlled. // src: openstax-ap
+insulin, diabetes, blood sugar control => node:pancreatic_islets, node:hormone_signaling, mol:glucose_alpha, node:beta_cell, kn:endocrine_physiology // Insulin is a protein, which the explorer does not model; the cards cover how blood sugar is controlled. // src: openstax-ap
 hormone, hormones => node:endocrine_system, node:hormone_signaling, kn:endocrine_physiology // src: openstax-ap
 neurotransmitter, neurotransmitters, chemical messenger => mol:dopamine, mol:serotonin, mol:acetylcholine, mol:gaba, mol:histamine, node:synaptic_transmission // src: openstax-bio
 allergy, allergies, hay fever, antihistamine, histamine => mol:histamine, node:bio_hypersensitivity_autoimmunity // src: pubchem openstax-bio
@@ -180,13 +180,13 @@ pvc, vinyl, drain pipe => mol:pvc_frag // src: openstax-chem
 polypropylene, yoghurt pot => mol:polypropylene_frag // src: openstax-chem
 polystyrene, styrofoam, foam cup, packing foam => mol:polystyrene_frag // Styrofoam is a brand name for polystyrene foam. // src: openstax-chem pubchem
 teflon, ptfe, non stick, nonstick, frying pan coating => mol:ptfe_frag // Teflon is the brand name of PTFE. // src: openstax-chem pubchem
-nylon, tights, rope, parachute => mol:nylon66_frag // Nylon 6,6 is one common nylon. // src: openstax-chem
+nylon, tights, parachute => mol:nylon66_frag // Nylon 6,6 is one common nylon. // src: openstax-chem
 kevlar, bulletproof, body armour, body armor, aramid => mol:kevlar_frag // Kevlar is an aramid fibre. // src: openstax-chem pubchem
 rubber, tyre, tire, elastic, bouncy, latex, rubber band => mol:rubber_frag, mol:isoprene // Natural rubber is polyisoprene. // src: openstax-chem pubchem
 bioplastic, compostable plastic, pla, polylactic acid => mol:pla_frag // src: openstax-chem
 silk, wool, hair keratin => node:bio_protein_structure, mol:polyglycine_5 // Silk, wool and hair are made of proteins; the explorer has the general protein card and a short peptide, not these fibres. // near: mol:polyglycine_5 // src: openstax-bio
 glass, window, window glass, bottle glass => crystal:quartz, kn:engineering_materials // Common glass is mostly silicon dioxide but has no crystal structure; quartz is crystalline silicon dioxide, the nearest thing here. // near: crystal:quartz // src: usgs openstax-chem
-ceramic, ceramics, pottery, brick, tile, porcelain => kn:engineering_materials, crystal:quartz // src: app-card
+ceramic, ceramics, pottery, brick, tile, porcelain => kn:engineering_materials, crystal:quartz // There is no model of a ceramic yet. Many ceramics are made from clay and silica, so quartz and the silicate molecules are related materials. // near: crystal:quartz // src: usgs openstax-chem
 sand, beach, silica, silicon dioxide, sio2, quartz => crystal:quartz, el:Si // Sand is mostly grains of quartz, which is silicon dioxide. // src: usgs mindat
 silicate, silicates, silica chain => mol:silicate_orthosilicate, mol:silicate_chain_trimer, mol:silicate_ring_trimer, mol:disilicate // src: mindat
 clay, kaolin => mol:aluminate_tetrahedron, mol:silicate_chain_trimer, kn:minerals_rocks // Clays are layered silicates; these are building blocks of silicate minerals. // near: mol:aluminate_tetrahedron // src: mindat
@@ -202,7 +202,7 @@ titanium dioxide, white pigment, white paint, sunscreen, rutile => crystal:rutil
 diamond, diamonds, engagement ring, drill bit => crystal:diamond, el:C // Diamond is a crystal of pure carbon. // src: usgs mindat
 graphite, pencil, pencil lead, lead pencil, lubricant => crystal:graphite, el:C // Pencil "lead" is graphite mixed with clay; there is no lead in it. // src: usgs mindat
 charcoal, coal, soot, carbon => el:C, crystal:graphite, crystal:diamond // Coal and charcoal are mostly carbon but not crystalline; diamond and graphite are the two crystalline forms. // src: openstax-chem
-iron, rusty nail, nail, ferrous => el:Fe, crystal:iron_bcc // src: iupac-elements
+iron, rusty nail, ferrous => el:Fe, crystal:iron_bcc // src: iupac-elements
 steel, stainless steel, cutlery, knife blade => crystal:iron_bcc, el:Fe, kn:engineering_materials // Steel is iron with a little carbon (and other metals in stainless steel); iron is the crystal here. // near: crystal:iron_bcc // src: usgs openstax-chem
 rust, rusting, rusty, corrosion, oxidised iron => crystal:hematite, crystal:magnetite, el:Fe, kn:electrochemistry // Rust is hydrated iron(III) oxide. The nearest crystal the explorer has is hematite, iron(III) oxide (Fe2O3); rust itself is a looser mix that holds water, so this is a close relative, not rust. // near: crystal:hematite // src: usgs openstax-chem-rust
 iron ore, haematite, hematite, red ochre => crystal:hematite, crystal:magnetite // src: usgs mindat
@@ -232,7 +232,7 @@ cuprum => el:Cu // Cu comes from the Latin cuprum. // src: iupac-elements
 hydrargyrum => el:Hg // Hg comes from the Greek-Latin hydrargyrum. // src: iupac-elements
 wolfram => el:W // W comes from wolfram, the old name of tungsten. // src: iupac-elements
 light bulb filament, tungsten => el:W // src: iupac-elements
-periodic table, table of elements, element, elements, chemical element, chemical elements => kn:periodic_table, node:at_configuration, node:at_trends, el:H // src: iupac-elements
+periodic table, table of elements, element, elements, chemical element, chemical elements => act:ptable, kn:periodic_table, node:at_configuration, node:at_trends // src: iupac-elements
 noble gas, noble gases, neon sign, neon => el:Ne, el:He, el:Ar, el:Kr, el:Xe // src: iupac-elements
 uranium, nuclear fuel, nuclear power, nuclear reactor, atomic bomb => el:U, kn:fission_power, kn:radioactivity // src: iupac-elements openstax-chem
 radioactive, radioactivity, radiation, half life, geiger counter => kn:radioactivity, kn:radiometric_dating, el:U, el:Ra // src: openstax-chem
@@ -245,5 +245,5 @@ gas, gases, air pressure => kn:states_of_matter, kn:kinetic_theory, kn:gas_air_p
 solid, liquid, states of matter, melting, freezing, boiling, phase, phase change => kn:states_of_matter, kn:phase_transitions // src: openstax-chem
 plasma, fourth state of matter => kn:plasma_physics, kn:quark_gluon_plasma // src: openstax-chem
 molecule, molecules => kn:chemical_bonding, kn:molecular_shapes, mol:water, mol:methane, mol:caffeine // src: openstax-chem
-@src nist-honey | placeholder | -
-@src openstax-chem-rust | placeholder | -
+@src nist-honey | National Honey Board composition figures (about 38.5% fructose, 31% glucose, 17% water on average), found by web search in this session; the Board's brochure itself was not opened | https://www.honey.com/
+@src openstax-chem-rust | Chemguide rusting page and Wikipedia Iron(III) oxide: rust is hydrated iron(III) oxide, Fe2O3.xH2O, of variable water content (an ill-defined mixture of iron oxides and hydroxides), seen via web search | https://www.chemguide.co.uk/14to16/metals/rusting.html

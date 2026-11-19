@@ -1,0 +1,693 @@
+# Everyday queries for the coverage report (tools/search/coverage.mjs).  One per line.
+# [section] sets the category; "model" sections are things a 3D model could show, "concept" sections are ideas where a card is a fair answer.
+# A trailing * means "very many people would ask this", + "many", ~ "few". No mark = a typical question.
+# Add queries freely: the report is the to-do list for future content, so write what real people type.
+
+[materials | model]
+glass*
+steel*
+plastic*
+rubber+
+concrete*
+wood*
+paper*
+cotton+
+soap+
+sand+
+clay
+brick
+ceramic
+porcelain
+leather
+silk
+wool
+nylon+
+polyester+
+cardboard
+cement
+metal*
+iron*
+copper*
+aluminium+
+gold*
+silver+
+brass~
+bronze~
+titanium
+platinum~
+diamond*
+graphite+
+charcoal
+coal+
+rust*
+alloy~
+rock*
+granite+
+marble
+limestone
+chalk+
+quartz+
+salt*
+crystal*
+gemstone~
+ruby~
+emerald~
+pearl~
+amber~
+ice*
+snow+
+foam~
+glue
+paint+
+ink
+dye
+concrete mixer~
+asphalt~
+fibreglass~
+carbon fibre+
+graphene+
+silicon*
+kevlar~
+teflon+
+velcro~
+sponge
+wax
+rope~
+fabric~
+magnet*
+lodestone~
+fool's gold~
+mercury+
+lead+
+uranium+
+plutonium~
+
+[foods and their chemistry | model]
+sugar*
+salt crystals+
+fat*
+oil+
+butter+
+protein*
+starch+
+fibre
+caffeine*
+alcohol*
+ethanol
+vinegar+
+vitamins*
+vitamin c*
+vitamin d+
+vitamin b12+
+vitamin e~
+iron in food~
+calcium+
+sodium+
+potassium+
+glucose*
+fructose+
+lactose+
+sucrose+
+honey*
+milk*
+chocolate*
+coffee*
+tea+
+wine+
+beer+
+bread+
+rice
+pasta
+egg*
+meat+
+cheese+
+yoghurt
+carbohydrates*
+cholesterol*
+omega 3+
+amino acids+
+antioxidants+
+baking soda*
+baking powder+
+yeast+
+fermentation+
+chilli+
+garlic+
+pepper+
+vanilla
+cinnamon~
+mint
+lemon+
+orange juice
+tomato
+carrot
+spinach~
+banana
+apple
+sweetener+
+aspartame~
+msg~
+artificial flavour~
+preservatives~
+food colouring~
+nicotine*
+cannabis+
+aspirin*
+paracetamol*
+ibuprofen+
+penicillin+
+insulin*
+morphine
+antibiotics*
+vaccine*
+chemotherapy~
+
+[household chemistry | model]
+water*
+bleach+
+ammonia+
+detergent+
+shampoo
+toothpaste+
+fluoride~
+hydrogen peroxide
+rubbing alcohol
+antifreeze
+petrol*
+diesel+
+natural gas+
+propane
+butane
+lighter fuel
+acetone
+nail polish remover~
+fertiliser+
+weed killer
+pesticide~
+hand sanitiser+
+air freshener~
+fire*
+smoke+
+explosion+
+gunpowder+
+dynamite+
+TNT
+fireworks+
+matches
+candle+
+battery acid~
+carbon monoxide+
+carbon dioxide*
+oxygen*
+nitrogen+
+hydrogen*
+helium+
+ozone+
+methane*
+laughing gas
+smog~
+acid rain+
+dry ice+
+fizzy drinks+
+rust remover~
+
+[the body | model]
+heart*
+my heart*
+brain*
+lungs*
+liver*
+kidneys+
+stomach*
+intestines+
+skin*
+bones*
+skeleton*
+muscles*
+blood*
+red blood cells+
+white blood cells+
+platelets~
+veins+
+arteries+
+nerves*
+spinal cord+
+eye*
+ear*
+nose+
+tongue+
+teeth*
+hair*
+nails~
+pancreas+
+bladder
+spleen~
+gallbladder~
+thyroid+
+womb+
+sperm+
+egg cell+
+skull+
+spine*
+ribs+
+knee+
+hip
+shoulder+
+elbow~
+hand*
+foot
+fingers~
+biceps+
+abs+
+thigh
+calf
+back muscles
+tendons+
+cartilage
+joints+
+bone marrow+
+DNA*
+genes*
+chromosomes+
+cell*
+mitochondria*
+nucleus*
+neuron*
+synapse+
+hormones*
+adrenaline*
+serotonin+
+dopamine*
+melatonin+
+cortisol+
+testosterone+
+oestrogen+
+insulin+
+immune system*
+antibodies+
+virus*
+bacteria*
+fungus+
+parasite~
+cancer*
+diabetes+
+allergy+
+asthma~
+fever~
+pulse+
+blood pressure+
+digestion*
+breathing*
+sleep*
+memory*
+dreams~
+pregnancy+
+ageing*
+vision+
+hearing+
+smell+
+taste+
+touch+
+pain+
+sweat+
+tears~
+heartbeat*
+what am i made of*
+
+[living things | model]
+dog*
+cat*
+horse+
+cow+
+pig~
+sheep~
+chicken+
+fish*
+shark+
+whale+
+dolphin+
+frog+
+snake+
+lizard~
+crocodile~
+dinosaur*
+bird*
+eagle~
+penguin+
+owl~
+bee*
+honey bee*
+butterfly+
+ant+
+spider*
+mosquito+
+beetle~
+worm+
+snail~
+jellyfish+
+octopus+
+elephant+
+lion+
+tiger~
+bear+
+monkey+
+human*
+insect*
+mammal+
+reptile+
+amphibian
+tree*
+oak+
+leaf*
+flower*
+rose+
+grass+
+moss+
+fern~
+mushroom*
+yeast
+algae+
+seaweed
+lichen~
+bacterium
+plankton~
+coral reef+
+rainforest+
+forest+
+desert+
+ocean life+
+pond+
+soil*
+seed+
+pollen*
+photosynthesis*
+chlorophyll*
+evolution*
+natural selection*
+extinction+
+fossils+
+bee dance
+pollination+
+roots+
+bark~
+acorn~
+
+[devices and technology | model]
+battery*
+lithium battery+
+phone*
+smartphone*
+iphone~
+screen+
+touchscreen+
+camera*
+speaker+
+microphone+
+headphones+
+antenna~
+wifi*
+bluetooth+
+5g+
+gps+
+internet*
+computer*
+chip*
+processor*
+cpu+
+gpu~
+transistor*
+microchip+
+memory chip~
+hard drive+
+usb+
+charger*
+charging cable~
+power bank
+solar panel*
+wind turbine+
+generator+
+electric motor*
+transformer+
+power plant+
+nuclear reactor+
+power lines+
+light bulb*
+LED*
+laser*
+magnet*
+electromagnet~
+wire+
+circuit*
+resistor+
+capacitor+
+diode+
+semiconductor+
+silicon chip+
+computer memory+
+logic gate+
+binary+
+artificial intelligence*
+neural network+
+robot*
+drone~
+3d printer+
+microscope*
+telescope*
+x-ray+
+mri scan+
+ultrasound+
+pacemaker+
+thermometer~
+clock+
+atomic clock+
+compass+
+radio*
+television+
+microwave oven*
+refrigerator+
+air conditioner~
+car engine*
+electric car*
+aeroplane*
+rocket*
+satellite+
+space station*
+bicycle~
+bridge~
+elevator~
+smoke detector~
+touch id~
+bar code~
+qr code~
+
+[weather and the earth | place]
+cloud*
+rain*
+snow
+lightning*
+thunder+
+rainbow*
+wind*
+tornado+
+hurricane*
+fog~
+storm+
+weather*
+climate*
+climate change*
+global warming*
+greenhouse effect*
+ozone layer+
+atmosphere*
+air*
+sky*
+sunset+
+why is the sky blue*
+volcano*
+earthquake*
+tsunami+
+mountain+
+river~
+ocean*
+sea+
+tides+
+waves+
+glacier+
+ice age+
+desert
+planet earth*
+earth's core+
+earth's magnetic field+
+plate tectonics+
+continents~
+soil
+rocks*
+minerals+
+water cycle+
+carbon cycle+
+nitrogen cycle~
+aurora+
+northern lights+
+seasons+
+day and night
+el nino~
+coral bleaching~
+oil+
+fossil fuels+
+renewable energy+
+tide~
+
+[space | place]
+the sun*
+sun*
+moon*
+the moon*
+mars*
+venus+
+mercury
+jupiter*
+saturn*
+uranus
+neptune
+pluto*
+solar system*
+planets*
+stars*
+galaxy*
+milky way*
+black hole*
+big bang*
+universe*
+dark matter*
+dark energy+
+asteroid+
+comet+
+meteor+
+eclipse+
+space*
+astronaut+
+space station
+telescope
+supernova+
+neutron star+
+white dwarf~
+nebula+
+exoplanet+
+aliens*
+life on mars+
+the iss+
+titan+
+europa+
+io
+enceladus~
+ceres~
+oort cloud~
+cosmic microwave background+
+expanding universe+
+gravitational waves+
+event horizon+
+wormhole+
+time travel+
+speed of light*
+light year+
+sun's core+
+how big is the universe*
+what is the sun made of*
+
+[atoms and particles | model]
+atom*
+atoms*
+molecule*
+electron*
+proton*
+neutron*
+quark*
+nucleus*
+photon*
+neutrino+
+higgs boson*
+antimatter+
+periodic table*
+element*
+hydrogen atom+
+carbon*
+oxygen atom
+gold atom~
+isotope+
+radioactivity*
+radiation*
+nuclear power+
+fission+
+fusion*
+chemical bond+
+covalent bond~
+ionic bond~
+hydrogen bond+
+orbital+
+quantum*
+standard model*
+what is matter*
+is everything made of atoms+
+the smallest thing*
+what is inside an atom*
+
+[forces and energy | concept]
+gravity*
+magnetism*
+electricity*
+static electricity+
+current+
+voltage+
+energy*
+heat*
+temperature*
+light*
+sound*
+colour*
+force+
+friction+
+pressure+
+momentum
+speed+
+acceleration
+inertia
+newton's laws*
+relativity*
+einstein*
+time*
+entropy+
+quantum mechanics*
+wave-particle duality+
+uncertainty principle+
+schrodinger's cat+
+superconductor+
+plasma+
+states of matter+
+boiling+
+melting~
+freezing~
+evaporation
+buoyancy+
+why do ships float+
+how do planes fly*
+lift~
+sonic boom~
+echo~
+resonance+
+pendulum~
+spring
+chaos+
+butterfly effect+
+fractal+
+infinity+
+prime numbers+
+pi*
+probability+
+statistics+
+calculus+
+algebra
+geometry
+maths*
+logic~
+information+
+cryptography+
