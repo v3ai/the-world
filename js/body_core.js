@@ -224,7 +224,7 @@ function bodyAutoUpdate(F, dt) {
     let tl = null, tgt = null; if (reveal) tl = _rc.set(...F.parts[reveal.id].p.center);
     const rows = bodyRayStack(F, tl);
     if (reveal) { let k = rows.findIndex(r => r.id === reveal.id); if (k < 0) { const dc = _po.distanceTo(tl); k = rows.filter(r => r.e < dc * .97).length; } tgt = { n: k, rank: peelRank(F.parts[reveal.id].p) }; }
-    A.P = bodyPeel(F, rows, tgt); A.P.op = peelOpacities(A.P); mouse.dirty = true; // what is under a resting cursor has changed
+    A.P = bodyPeel(F, rows, tgt); A.P.op = peelOpacities(A.P); // (applyMode notices when the parts that can be seen change, and has the hover worked out again)
     A.front = tgt ? new Set(rows.slice(0, tgt.n).filter(r => r.rank >= tgt.rank).map(r => r.id)) : null; // parts of its own kind or deeper that sit in front of it (a muscle over a muscle, an organ over an organ)
   }
 }

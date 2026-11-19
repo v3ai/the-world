@@ -396,7 +396,7 @@ class ThingObj {
     }
     if (this.anims.length && this.tier < 2 && alpha > .05) this._stepAnims(this.clock);
     // opacity map: the mode's, or Auto's peel, or a reveal (everything in front of a part gives way, in any mode); a peeled thing shows all its layers
-    let sh = (md && md.show) || {}; const peeled = this.hidden.size > 0;
+    let sh = (md && md.show) || {}; const peeled = this.hidden.size > 0; let vs = this.cutActive ? 1 : 0, vi = 0;   // vs: which parts can be seen (and so picked)
     if (this.revealOp && this.revealId) sh = Object.assign({}, sh, this.revealOp);
     for (const r of this.list) {
       const pd = r.pd, sys = pd.system;
@@ -409,7 +409,7 @@ class ThingObj {
       let lodPart = false; if (pd.lod) { lodPart = true; if (!pd.lod.split('+').some(n => tierNames.includes(n))) tgt = 0; }
       r.tgt = tgt; if (lodPart && (lodSnap || tgt === 0)) r.op = tgt; else { r.op += (tgt - r.op) * (1 - Math.exp(-dt * 9)); if (Math.abs(r.op - tgt) < .01) r.op = tgt; }   // detail tiers swap at once, never both drawn
       const op = r.op * alpha, g = r.g, main = g.userData.main, mat = main.material;
-      g.visible = op > .01; g.userData.shown = g.visible ? r.op : 0;
+      g.visible = op > .01; g.userData.shown = g.visible ? r.op : 0; vi++; if (g.userData.shown >= .35) vs = (vs * 31 + vi) | 0;
       if (g.visible && r.flow) { thFlowUpdate(r.flow, this.clock); mat.opacity = op; continue; }
       if (g.visible) {
         const isSel = this.sel === pd.id;
@@ -420,6 +420,7 @@ class ThingObj {
     }
     for (const h of this.hot) { const hs = h.userData.hotspot; h.visible = (!!cut || !!(md && md.hotspots)) && (!hs.modes || (md && hs.modes.includes(md.id))); h.children.forEach(m => { if (m.material.uniforms && m.material.uniforms.uOpacity) m.material.uniforms.uOpacity.value = .85 * alpha; else m.material.opacity = alpha; }); }
     if (this.shadow) this.shadow.material.opacity = (def.shadow.opacity ?? 1) * alpha;
+    this.shownSig = vs;
     return md;
   }
   dispose() { this.holder.traverse(o => { if (o.material) (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); }); }
@@ -537,6 +538,7 @@ function thFrameUpdate(F, dt, t) {
   if (F.sel || F.reveal) { const st = infoState, keep = st && ((st.h && st.h.frame === F && st.h.obj && st.h.obj.userData.id === F.sel) || (!st.h && st.node === F.selNode)); if (!keep) { F.sel = null; F.reveal = null; } }
   T.sel = F.sel; thAutoUpdate(F, dt);
   T.update(dt, C, _thOff, F.alpha);
+  if (T.shownSig !== F._vs) { F._vs = T.shownSig; viewChanged(); }   // the parts that can be seen have changed: the hover under a resting pointer is worked out again
   thGroundFade(FR.things.some(f => f.T && f.T.seeThrough && f.alpha > .5));
   if (F._lastModeId !== T.modeId) { F._lastModeId = T.modeId; thUpdateControls(F); F.mode = T.modeId; }
   const n = F.hidden.size, on = n || F.reveal, dsp = on ? '' : 'none'; if (F.showAllBtn.style.display !== dsp) F.showAllBtn.style.display = dsp;
@@ -603,7 +605,6 @@ function thAutoUpdate(F, dt) {
   const P = thPeel(T, rows, tgt, 1 - smooth(active * .35, active * .6, dist));
   if (useAuto) { const ops = Object.assign({}, P.ops, a.always || {}); T.peelMode.show = ops; T.layerName = P.focus; }
   if (rv) { T.revealOp = P.ops; T.revealId = rv.id; } else { T.revealOp = T.revealId = T.revealFront = null; }
-  mouse.dirty = true;   // what is under a resting cursor has changed
 }
 /* which part is visibly under the camera's target right now (nearest, un-clipped, drawn at least about a third solid) */
 function thVisibleAt(F) {

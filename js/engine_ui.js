@@ -466,10 +466,11 @@ function updateTimeUI() {
 }
 
 /* ================= MAIN LOOP ================= */
-let lastT = performance.now(), hoverTick = 0;
+let lastT = performance.now(), pickSig = 0;
 function loop(now) {
   requestAnimationFrame(loop);
-  const dt = Math.min(.05, (now - lastT) / 1000); lastT = now; clock += dt;
+  const tA = performance.now(), dtMs = now - lastT, pk0 = PERF.acc.pick;
+  const dt = Math.min(.05, dtMs / 1000); lastT = now; clock += dt;
   simTime += dt * 1000 * timeSpeed;
   if (holdZoom) zoomBy(holdZoom * dt * 1.6, holdZoom < 0 ? W / 2 : undefined, H / 2);
   if (fly) stepFly(dt);
@@ -482,11 +483,20 @@ function loop(now) {
   if (typeof bloom !== 'undefined' && bloom) bloom.strength = drawn.some(f => f.illo && f.alpha > .3 && cam.D < 6) ? .03 : .55;
   updateViewOffset();
   for (const f of drawn) { placeFrameCam(f); applyFade(f); if (f.update) f.update(dt, clock, f); }
+  const tB = performance.now(); PERF.add('update', tB - tA - (PERF.acc.pick - pk0)); // picks made on the way (the zoom buttons' pivot) are counted as picking
   if (composer) composer.render(); else renderFrames(renderer);
+  const tC = performance.now(); PERF.add('render', tC - tB);
   updateLabels(); updateCaption(); updateRuler();
-  if ((hoverTick += dt) > .12 || mouse.dirty) { hoverTick = 0; doHover(); }
+  /* Hover. What can be picked changes when frames arrive, load their parts or fade in: that counts as a change of the view.
+     The pick itself waits until the pointer has rested and the camera is still; while either moves, the tooltip is hidden. */
+  let sig = drawn.length; for (const f of drawn) sig = (sig * 31 + (f.pickables ? f.pickables.length : 0) * 2 + (f.alpha >= .5 ? 1 : 0)) | 0;
+  if (sig !== pickSig) { pickSig = sig; viewChanged(); }
+  const camMoving = !!fly || Math.abs(zoom.pending) > 2e-3 || pointers.size > 0 || !!holdZoom; // the last 0.2% of a zoom ease no longer moves anything under the pointer
+  if (mouse.dirty) { if (camMoving || tour) tipEl.classList.remove('show'); else if (performance.now() - mouse.t >= HOVER_REST_MS) doHover(); }
+  if (!camMoving) pkIdle(4, performance.now() - lastInput > 1500); // trees for picking, a few milliseconds at a time, never while the camera moves
   if ((clock * 4 | 0) !== ((clock - dt) * 4 | 0)) updateTimeUI();
   const pe = $('#push'); if (now - msg.t < 2600 && msg.text) { $('#pushT').textContent = msg.text; pe.classList.add('show'); } else pe.classList.remove('show');
+  PERF.endFrame(dtMs, performance.now() - tA);
 }
 async function startApp() {
   ROOT = await buildWorld();

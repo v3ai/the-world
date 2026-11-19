@@ -23,6 +23,10 @@ Other sources:
 
 ### Software / data references
 - astronomy-engine (Don Cross), MIT, https://github.com/cosinekitty/astronomy — used by engine at runtime for ephemerides (not copied here).
+- js/vendor/three-mesh-bvh.js: three-mesh-bvh 0.5.24 (Garrett Johnson), MIT, https://github.com/gkjohnson/three-mesh-bvh . The UMD build
+  `build/index.umd.cjs` from the npm package (https://unpkg.com/three-mesh-bvh@0.5.24/build/index.umd.cjs, 149,044 bytes,
+  sha256 base64 `+iH+0kr2f1ulWyMhFoXgyWAEfdoYKsi6uzWGszeIy4M=`), copied unchanged and renamed to `.js`; licence text in js/vendor/three-mesh-bvh.LICENSE.
+  Used for picking: a bounding-volume tree per mesh, so a ray test does not visit every triangle.
 - data/solar.json and data/galaxies.json: compiled from standard published reference values (NASA planetary fact sheets, JPL SSD, NED/Local Group catalogs such as McConnachie 2012); facts only, no text copied.
 
 ## Molecules, materials, elements (workstream "chem")

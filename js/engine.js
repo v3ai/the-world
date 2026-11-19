@@ -90,7 +90,7 @@ class Frame {
     this.root.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); });
     (this.labels || []).forEach(l => l.el.remove()); (this.uiEls || []).forEach(e => e.remove());
     if (this.onDispose) this.onDispose();
-    this.built = false; this.scene = null; this.root = null;
+    this.built = false; this.scene = null; this.root = null; this._drawnOnce = false; this._pkB = null;
   }
 }
 let ROOT = null;
@@ -300,14 +300,19 @@ function renderFrames(r) {
     if (i > 0) f.scene.background = null;
     else if (f.env && f.env.bg !== undefined && !bg) { r.setClearColor(f.env.bg, 1); r.clear(true, true, true); }
     if (!f._share) r.clearDepth();
-    r.render(f.scene, f.cam);
+    r.render(f.scene, f.cam); PERF._renders++; f._drawnOnce = true;
     f.scene.background = bg;
   });
 }
 
 /* ================= INPUT: zoom-to-cursor, orbit, fly ================= */
-const zoom = { pending: 0, pivot: null }; // pending = remaining ln(D) change
+const zoom = { pending: 0, pivot: null, pt: -1e9, px: 0, py: 0, gen: -1 }; // pending = remaining ln(D) change; pt, px, py, gen: when, where and in which state of the view the pivot was last picked
 let lastInput = performance.now(), fly = null;
+/* viewGen counts changes of what can be under a resting pointer other than the camera's own zoom: layers peeling, frames arriving or
+   fading in, an orbit. A hover pick and the zoom pivot are worked out again only when the pointer or this has changed. */
+let viewGen = 0;
+function viewChanged() { viewGen++; mouse.dirty = true; }
+const PIVOT_MIN_MS = 150, PIVOT_MAX_MS = 400;
 const MIN_D = 1e-20, MAX_D = 3e27; // 1e-20 m: below every length that has been probed; nothing is known to have structure there
 function pivotAt(x, y) {
   const h = pickAt(x, y, true);
@@ -325,7 +330,17 @@ function pivotAt(x, y) {
 }
 function zoomBy(lnDelta, x, y) {
   lastInput = performance.now(); fly = null; cancelTour(); if (lnDelta < 0) camHold = null;
-  if (lnDelta < 0 && x !== undefined) { const p = pivotAt(x, y); zoom.pivot = zoom.pivot || { p }; zoom.pivot.p.copy(p); if (!anchored.includes(zoom.pivot)) anchored.push(zoom.pivot); }
+  if (lnDelta < 0 && x !== undefined) {
+    /* A wheel burst keeps the pivot it has. Scaling the camera about the pivot leaves the pivot under the pointer, so picking again
+       returns the same point unless the pointer moved or the view changed (viewGen): then it is picked again, at most every 150 ms;
+       and in any case after 400 ms, so a slow change that nothing announced (a detail tier swapping) cannot leave it stale. */
+    const now = performance.now(), age = now - zoom.pt, pv = zoom.pivot;
+    const moved = Math.abs(x - zoom.px) > 1.5 || Math.abs(y - zoom.py) > 1.5 || zoom.gen !== viewGen;
+    if (!pv || !anchored.includes(pv) || age > PIVOT_MAX_MS || (moved && age >= PIVOT_MIN_MS)) {
+      const p = pivotAt(x, y); zoom.pivot = zoom.pivot || { p }; zoom.pivot.p.copy(p); if (!anchored.includes(zoom.pivot)) anchored.push(zoom.pivot);
+      zoom.pt = now; zoom.px = x; zoom.py = y; zoom.gen = viewGen;
+    }
+  }
   else if (lnDelta > 0) { zoom.pivot = null; anchored.length = 0; }
   zoom.pending += lnDelta;
 }
@@ -347,6 +362,7 @@ function applyZoom(dt) {
   cam.D = nd;
 }
 function orbit(dx, dy) {
+  viewGen++;
   const f = cam.A, k = .006;
   const upAxis = f.up ? f.up.clone() : cam.up.clone();
   const qy = new THREE.Quaternion().setFromAxisAngle(upAxis, -dx * k);
@@ -388,7 +404,7 @@ function stepFly(dt) {
 }
 // pointer handlers
 const pointers = new Map(); let dragMoved = false, downPos = null, pinchD = 0;
-const mouse = { x: 0, y: 0, has: false, dirty: false, touch: false };
+const mouse = { x: 0, y: 0, has: false, dirty: false, touch: false, t: 0, tipX: 0, tipY: 0 }; // dirty: the hover must be worked out again; t: when the pointer last moved
 canvas.addEventListener('wheel', e => { e.preventDefault(); let d = e.deltaY; if (e.deltaMode === 1) d *= 16; d = clamp(d, -240, 240); zoomBy(d * .0016 * (e.shiftKey ? 4 : 1), e.clientX, e.clientY); }, { passive: false });
 canvas.addEventListener('pointerdown', e => {
   try { canvas.setPointerCapture(e.pointerId); } catch (_) { }
@@ -398,7 +414,8 @@ canvas.addEventListener('pointerdown', e => {
   lastInput = performance.now(); closePops();
 });
 canvas.addEventListener('pointermove', e => {
-  mouse.x = e.clientX; mouse.y = e.clientY; mouse.has = true; mouse.dirty = true;
+  mouse.x = e.clientX; mouse.y = e.clientY; mouse.has = true; mouse.dirty = true; mouse.t = performance.now();
+  if (Math.abs(mouse.x - mouse.tipX) > 5 || Math.abs(mouse.y - mouse.tipY) > 5) tipEl.classList.remove('show'); // the tooltip belongs to where the pointer rested: it does not trail behind a moving pointer
   const p = pointers.get(e.pointerId); if (!p) return;
   const dx = e.clientX - p.x, dy = e.clientY - p.y; p.x = e.clientX; p.y = e.clientY;
   if (pointers.size === 1) { if (Math.hypot(e.clientX - downPos.x, e.clientY - downPos.y) > 6) dragMoved = true; if (dragMoved) { orbit(dx, dy); fly = null; cancelTour(); } }
@@ -433,17 +450,208 @@ addEventListener('keydown', e => {
   lastInput = performance.now();
 });
 
+/* ================= PICK ACCELERATION =================
+   A pick must never stall a frame. Four things keep it to a fraction of a millisecond:
+   1. Each frame's pickable content has a bounding sphere (pkFrameSphere); a ray that misses it touches nothing in the frame.
+   2. Only visible objects are walked (a hit on a hidden object was thrown away afterwards anyway).
+   3. Every mesh of 64 triangles or more gets a bounding-volume tree (three-mesh-bvh, js/vendor/), built in idle slices while the
+      camera rests (pkIdle): first the meshes a ray has already reached, then those in view, then the hidden ones. Until its tree
+      exists a mesh is tested the plain way. The tree is built over a copy of the index, so the drawn geometry and its triangle
+      order are untouched. All hits are returned, as before: the body's core sample and pick rules need them.
+   4. An InstancedMesh (leaves, hair, grass) gets one bounding sphere per instance, held in a small tree of boxes in the mesh's own
+      space, shared by every mesh that uses the same instance matrices. A ray visits only the instances whose spheres it crosses, so a
+      single leaf is still picked exactly, without a loop over tens of thousands of instances.
+   PK.log holds the build times (ms) for the report in the meter. */
+const PK = { lib: window.MeshBVHLib || null, minTris: 64, built: 0, ms: 0, maxMs: 0, maxTris: 0, tris: 0, failed: 0, queue: [], sorted: true, scanT: 0, inst: 0, instTrees: 0, instMs: 0 };
+const _pkMeshRay = THREE.Mesh.prototype.raycast, _pkInstRay = THREE.InstancedMesh.prototype.raycast, _pkAccel = PK.lib && PK.lib.acceleratedRaycast;
+const _pkSph = new THREE.Sphere(), _pkInv = new THREE.Matrix4(), _pkRay = new THREE.Ray(), _pkLM = new THREE.Matrix4(), _pkWM = new THREE.Matrix4(), _pkMesh = new THREE.Mesh(), _pkTmp = [], _pkBox = new THREE.Box3(), _pkV = new V3(), _pkHits = [];
+function pkTris(g) { return g.index ? g.index.count / 3 : g.attributes.position ? g.attributes.position.count / 3 : 0; }
+function pkCan(g) { // is a tree worth building for this geometry, and can the library handle it?
+  if (!_pkAccel || !g || !g.isBufferGeometry || g._pkNo) return false;
+  const p = g.attributes.position;
+  return !!p && !p.isInterleavedBufferAttribute && !g.morphAttributes.position && g.drawRange.start === 0 && g.drawRange.count === Infinity && pkTris(g) >= PK.minTris;
+}
+function pkBuild(g) {
+  const t0 = performance.now();
+  try {
+    // the tree sorts an index in place: give it its own copy, so the order in which the triangles are drawn does not change
+    const pg = new THREE.BufferGeometry(); pg.attributes = g.attributes; pg.groups = g.groups; if (g.index) pg.setIndex(g.index.clone());
+    if (g.boundingBox) pg.boundingBox = g.boundingBox;
+    const bt = new PK.lib.MeshBVH(pg, { verbose: false }); bt._pv = g.attributes.position.version; g.boundsTree = bt;
+  } catch (e) { g._pkNo = true; PK.failed++; return false; }
+  const ms = performance.now() - t0, n = pkTris(g); PK.built++; PK.ms += ms; PK.tris += n; if (ms > PK.maxMs) { PK.maxMs = ms; PK.maxTris = n; }
+  return true;
+}
+THREE.Mesh.prototype.raycast = function (rc, out) {
+  const g = this.geometry; let bt = g && g.boundsTree;
+  if (bt && (bt._pv !== g.attributes.position.version || g.drawRange.count !== Infinity)) { // rewritten since the tree was built; a geometry that keeps changing is tested the plain way
+    g.boundsTree = bt = null; if ((g._pkRe = (g._pkRe || 0) + 1) > 2) g._pkNo = true;
+  }
+  if (bt) return _pkAccel.call(this, rc, out);
+  /* No tree yet: answer the plain way now and have the tree built in the next idle slice. A build inside a pick would cost more than
+     the one plain test it replaces (measured: about 0.3 ms per thousand triangles to build, about 0.1 ms to test them plainly), and a pick must stay short. */
+  if (this.material !== undefined && !g._pkQ0 && pkCan(g)) {
+    if (g.boundingSphere === null) g.computeBoundingSphere();
+    _pkSph.copy(g.boundingSphere).applyMatrix4(this.matrixWorld);
+    if (!rc.ray.intersectsSphere(_pkSph)) return;
+    g._pkQ0 = true; pkEnqueue(g, 0);
+  }
+  _pkMeshRay.call(this, rc, out);
+};
+/* per-instance bounding spheres (in the mesh's own space) and a tree of boxes over them; cached on the instance-matrix attribute */
+function pkInstAccel(im) {
+  const at = im.instanceMatrix, g = im.geometry; let A = at._pk;
+  if (A && A.v === at.version && A.g === g) return A;
+  const t0 = performance.now(), dyn = A ? A.dyn + 1 : 0, n = at.count, a = at.array;
+  if (g.boundingSphere === null) g.computeBoundingSphere();
+  const c = g.boundingSphere.center, r = g.boundingSphere.radius, S = A && A.S.length === n * 4 ? A.S : new Float32Array(n * 4), box = new THREE.Box3();
+  let x0 = Infinity, y0 = Infinity, z0 = Infinity, x1 = -Infinity, y1 = -Infinity, z1 = -Infinity;
+  for (let i = 0, o = 0, k = 0; i < n; i++, o += 16, k += 4) {
+    const x = a[o] * c.x + a[o + 4] * c.y + a[o + 8] * c.z + a[o + 12], y = a[o + 1] * c.x + a[o + 5] * c.y + a[o + 9] * c.z + a[o + 13], z = a[o + 2] * c.x + a[o + 6] * c.y + a[o + 10] * c.z + a[o + 14];
+    const sx = a[o] * a[o] + a[o + 1] * a[o + 1] + a[o + 2] * a[o + 2], sy = a[o + 4] * a[o + 4] + a[o + 5] * a[o + 5] + a[o + 6] * a[o + 6], sz = a[o + 8] * a[o + 8] + a[o + 9] * a[o + 9] + a[o + 10] * a[o + 10];
+    const R = r * Math.sqrt(Math.max(sx, sy, sz)); S[k] = x; S[k + 1] = y; S[k + 2] = z; S[k + 3] = R;
+    if (x - R < x0) x0 = x - R; if (y - R < y0) y0 = y - R; if (z - R < z0) z0 = z - R; if (x + R > x1) x1 = x + R; if (y + R > y1) y1 = y + R; if (z + R > z1) z1 = z + R;
+  }
+  box.min.set(x0, y0, z0); box.max.set(x1, y1, z1);
+  A = at._pk = { v: at.version, g, n, S, box, dyn, nb: null, nl: null, ids: null, tree: n < 256 || dyn >= 3 }; // tree: built, or not wanted (few instances; or matrices rewritten every frame, such as flow markers: those are scanned in a line)
+  PK.inst++; PK.instMs += performance.now() - t0;
+  return A;
+}
+function pkInstTree(A) { // the tree of boxes over the instance spheres, built when a ray first reaches the set (or in an idle slice)
+  const t0 = performance.now(), n = A.n, S = A.S, ids = new Uint32Array(n), nb = [], nl = []; for (let i = 0; i < n; i++) ids[i] = i;
+  const build = (lo, hi) => {
+    let ax0 = Infinity, ay0 = Infinity, az0 = Infinity, ax1 = -Infinity, ay1 = -Infinity, az1 = -Infinity, cx0 = Infinity, cy0 = Infinity, cz0 = Infinity, cx1 = -Infinity, cy1 = -Infinity, cz1 = -Infinity;
+    for (let j = lo; j < hi; j++) {
+      const k = ids[j] * 4, x = S[k], y = S[k + 1], z = S[k + 2], R = S[k + 3];
+      if (x - R < ax0) ax0 = x - R; if (y - R < ay0) ay0 = y - R; if (z - R < az0) az0 = z - R; if (x + R > ax1) ax1 = x + R; if (y + R > ay1) ay1 = y + R; if (z + R > az1) az1 = z + R;
+      if (x < cx0) cx0 = x; if (y < cy0) cy0 = y; if (z < cz0) cz0 = z; if (x > cx1) cx1 = x; if (y > cy1) cy1 = y; if (z > cz1) cz1 = z;
+    }
+    const ix = nl.length / 2; nb.push(ax0, ay0, az0, ax1, ay1, az1); nl.push(0, 0);
+    if (hi - lo <= 8) { nl[ix * 2] = -(lo + 1); nl[ix * 2 + 1] = hi - lo; return ix; }
+    const ex = cx1 - cx0, ey = cy1 - cy0, ez = cz1 - cz0, ax = ex >= ey && ex >= ez ? 0 : ey >= ez ? 1 : 2, mid = ax === 0 ? (cx0 + cx1) / 2 : ax === 1 ? (cy0 + cy1) / 2 : (cz0 + cz1) / 2;
+    let i = lo, j = hi - 1;
+    while (i <= j) { if (S[ids[i] * 4 + ax] < mid) i++; else { const t = ids[i]; ids[i] = ids[j]; ids[j] = t; j--; } }
+    if (i - lo < (hi - lo) >> 3 || hi - i < (hi - lo) >> 3) i = (lo + hi) >> 1; // a lopsided split (clustered or coincident instances): split by count, so the tree stays shallow
+    const L = build(lo, i), Rr = build(i, hi); nl[ix * 2] = L; nl[ix * 2 + 1] = Rr; return ix;
+  };
+  build(0, n); A.nb = new Float32Array(nb); A.nl = new Int32Array(nl); A.ids = ids; A.tree = true;
+  PK.instTrees++; PK.instMs += performance.now() - t0;
+}
+function pkInstHit(im, i, rc, out) { // the exact test of one instance, as three.js does it
+  im.getMatrixAt(i, _pkLM); _pkWM.multiplyMatrices(im.matrixWorld, _pkLM); _pkMesh.matrixWorld = _pkWM;
+  _pkMesh.raycast(rc, _pkTmp);
+  for (let k = 0; k < _pkTmp.length; k++) { const h = _pkTmp[k]; h.instanceId = i; h.object = im; out.push(h); }
+  _pkTmp.length = 0;
+}
+const _pkStack = new Int32Array(512);
+THREE.InstancedMesh.prototype.raycast = function (rc, out) {
+  const n = this.count; if (!n || this.material === undefined) return;
+  if (n < 16 || !this.geometry.attributes.position) return _pkInstRay.call(this, rc, out);
+  const A = pkInstAccel(this), S = A.S;
+  _pkInv.copy(this.matrixWorld).invert(); _pkRay.copy(rc.ray).applyMatrix4(_pkInv);
+  if (!_pkRay.intersectsBox(A.box)) return;
+  const ox = _pkRay.origin.x, oy = _pkRay.origin.y, oz = _pkRay.origin.z, dx = _pkRay.direction.x, dy = _pkRay.direction.y, dz = _pkRay.direction.z;
+  _pkMesh.geometry = this.geometry; _pkMesh.material = this.material;
+  const sph = i => { const k = i * 4, vx = S[k] - ox, vy = S[k + 1] - oy, vz = S[k + 2] - oz, t = vx * dx + vy * dy + vz * dz, d2 = vx * vx + vy * vy + vz * vz - (t > 0 ? t * t : 0); return d2 <= S[k + 3] * S[k + 3]; };
+  if (!A.nb) { // no tree (few instances, moving instances, or not built yet): every sphere is tested, which is still far cheaper than every instance's triangles
+    if (!A.tree && !this._pkQ) { this._pkQ = true; this._pkPri = 0; PK.queue.push(this); PK.sorted = false; }
+    for (let i = 0; i < n; i++) if (sph(i)) pkInstHit(this, i, rc, out); return;
+  }
+  const nb = A.nb, nl = A.nl, ids = A.ids, ix = 1 / dx, iy = 1 / dy, iz = 1 / dz; let sp = 0; _pkStack[sp++] = 0;
+  while (sp) {
+    const nd = _pkStack[--sp], b = nd * 6;
+    let t0 = (nb[b] - ox) * ix, t1 = (nb[b + 3] - ox) * ix, lo = Math.min(t0, t1), hi = Math.max(t0, t1);
+    t0 = (nb[b + 1] - oy) * iy; t1 = (nb[b + 4] - oy) * iy; lo = Math.max(lo, Math.min(t0, t1)); hi = Math.min(hi, Math.max(t0, t1));
+    t0 = (nb[b + 2] - oz) * iz; t1 = (nb[b + 5] - oz) * iz; lo = Math.max(lo, Math.min(t0, t1)); hi = Math.min(hi, Math.max(t0, t1));
+    if (hi < 0 || lo > hi) continue;
+    const a = nl[nd * 2], c = nl[nd * 2 + 1];
+    if (a < 0) { for (let j = -a - 1, e = j + c; j < e; j++) { const i = ids[j]; if (i < n && sph(i)) pkInstHit(this, i, rc, out); } }
+    else if (sp < 510) { _pkStack[sp++] = a; _pkStack[sp++] = c; }
+  }
+};
+/* the bounding sphere of everything pickable in a frame, in the frame's own coordinates. It is worked out in idle slices (pkIdle, every half
+   second while the camera rests), never inside a pick; until a frame has one, or after its content changed, the frame is simply not skipped. */
+function pkExpand(o, box) {
+  if (o.isInstancedMesh && o.count >= 16 && o.geometry.attributes.position) {
+    const b = pkInstAccel(o).box; if (b.isEmpty()) return true;
+    for (let i = 0; i < 8; i++) box.expandByPoint(_pkV.set(i & 1 ? b.max.x : b.min.x, i & 2 ? b.max.y : b.min.y, i & 4 ? b.max.z : b.min.z).applyMatrix4(o.matrixWorld));
+  } else if (o.geometry && o.geometry.isBufferGeometry && o.geometry.attributes.position) {
+    const g = o.geometry; if (g.boundingSphere === null) g.computeBoundingSphere();
+    _pkSph.copy(g.boundingSphere).applyMatrix4(o.matrixWorld); if (!(_pkSph.radius >= 0) || !isFinite(_pkSph.radius)) return false;
+    box.expandByPoint(_pkV.copy(_pkSph.center).addScalar(_pkSph.radius)); box.expandByPoint(_pkV.copy(_pkSph.center).addScalar(-_pkSph.radius));
+  } else if (o.isSprite) {
+    _pkV.setFromMatrixPosition(o.matrixWorld); const r = Math.max(o.scale.x, o.scale.y) * (o.material && o.material.sizeAttenuation === false ? 1e9 : 1); if (r > 1e8) return false;
+    box.expandByPoint(_pkSph.center.copy(_pkV).addScalar(r)); box.expandByPoint(_pkSph.center.copy(_pkV).addScalar(-r));
+  }
+  if (Object.prototype.hasOwnProperty.call(o, 'raycast')) return false; // an object with its own hit test may answer outside its geometry (a star's screen-sized target): no sphere test for this frame
+  for (let i = 0; i < o.children.length; i++) if (!pkExpand(o.children[i], box)) return false;
+  return true;
+}
+function pkFrameSphere(f, refresh) {
+  const B = f._pkB || (f._pkB = { c: new V3(), r: 0, n: -1, t: -1e9, ok: false, fr: 0 });
+  if (B.n !== f.pickables.length) { B.n = f.pickables.length; B.ok = false; B.fr = PERF.frame; B.t = -1e9; return B; } // new content: no sphere test until it has been drawn once
+  if (!refresh) return B;
+  const now = performance.now(); if (now - B.t < 500) return B;
+  if (!f._drawnOnce || !f.C || PERF.frame <= B.fr) return B; // nothing has computed its world matrices yet
+  B.t = now; B.ok = false;
+  _pkBox.makeEmpty(); let ok = true;
+  for (let i = 0; i < f.pickables.length && ok; i++) ok = pkExpand(f.pickables[i], _pkBox);
+  if (!ok || _pkBox.isEmpty()) return B;
+  _pkBox.getCenter(B.c); B.r = _pkBox.min.distanceTo(_pkBox.max) / 2; B.c.add(f.C); B.ok = isFinite(B.r);
+  return B;
+}
+function pkFrameHit(f, ray) { // could this ray touch anything pickable in the frame?
+  const B = pkFrameSphere(f, false); if (!B.ok) return true;
+  _pkSph.center.copy(B.c).sub(f.C); _pkSph.radius = B.r * 1.1 + f.dLoc * .03;
+  return ray.intersectsSphere(_pkSph);
+}
+function pkWalk(o, rc, out) { // like Raycaster.intersectObject(o, true), but hidden objects and what is under them are skipped
+  if (!o.visible) return;
+  if (o.layers.test(rc.layers)) o.raycast(rc, out);
+  const ch = o.children; for (let i = 0; i < ch.length; i++) pkWalk(ch[i], rc, out);
+}
+/* trees ahead of time: the meshes now in view, the smallest first, a few milliseconds per frame and only while the camera rests */
+function pkEnqueue(g, pri) { // pri 0: a ray reached it without a tree; 1: in view; 2: pickable but hidden (another layer mode or detail tier)
+  if (g.boundsTree || !pkCan(g)) return;
+  if (g._pkQ) { if (pri < g._pkPri) { g._pkPri = pri; PK.sorted = false; } return; }
+  g._pkQ = true; g._pkPri = pri; PK.queue.push(g); PK.sorted = false;
+}
+function pkScan() {
+  const add = (o, vis) => {
+    vis = vis && o.visible;
+    if (o.isInstancedMesh) { if (vis && o.count >= 256 && o.geometry.attributes.position) { const A = o.instanceMatrix._pk; if ((!A || !A.tree) && !o._pkQ) { o._pkQ = true; o._pkPri = 1; PK.queue.push(o); PK.sorted = false; } } }
+    else if (o.isMesh && o.geometry) pkEnqueue(o.geometry, vis ? 1 : 2);
+    for (let i = 0; i < o.children.length; i++) add(o.children[i], vis);
+  };
+  for (const f of drawn) if (f.pickables && f.alpha >= .5 && !f._culled) for (const p of f.pickables) add(p, visibleChain(p));
+}
+function pkIdle(budgetMs, deep) { // deep: the camera has rested for a while, so the trees of hidden parts may be built too
+  const t0 = performance.now();
+  if (t0 - PK.scanT > 700) { PK.scanT = t0; pkScan(); }
+  for (const f of drawn) { if (f.pickables && f.alpha >= .5 && !f._culled) pkFrameSphere(f, true); if (performance.now() - t0 > budgetMs) return; } // kept fresh here, so a pick never pays for them
+  const Q = PK.queue; if (!Q.length) return;
+  if (!PK.sorted) { const k = x => x.isInstancedMesh ? x.count / 4 : pkTris(x); Q.sort((a, b) => a._pkPri - b._pkPri || k(a) - k(b)); PK.sorted = true; }
+  while (Q.length && performance.now() - t0 < budgetMs) {
+    if (Q[0]._pkPri > 1 && !deep) return;
+    const g = Q.shift();
+    if (g.isInstancedMesh) { g._pkQ = false; const A = pkInstAccel(g); if (!A.tree) pkInstTree(A); }
+    else { g._pkQ = false; if (!g.boundsTree && pkCan(g)) pkBuild(g); }
+  }
+}
+
 /* ================= PICKING / HOVER ================= */
 const raycaster = new THREE.Raycaster(), ndc = new THREE.Vector2();
 raycaster.params.Points = { threshold: 1 }; raycaster.params.Line = { threshold: 1 };
 function pickFrame(f, forZoom) { // best candidate inside one frame: highest priority, then nearest
-  if (f.alpha < .5 || !f.pickables || !f.cam) return null;
+  if (f.alpha < .5 || !f.pickables || !f.cam || f._culled) return null;
   raycaster.setFromCamera(ndc, f.cam);
   raycaster.params.Points.threshold = f.dLoc * .012; raycaster.params.Line.threshold = f.dLoc * .01;
-  const hits = raycaster.intersectObjects(f.pickables, true);
+  if (!pkFrameHit(f, raycaster.ray)) return null;
+  const hits = _pkHits; hits.length = 0;
+  for (let i = 0; i < f.pickables.length; i++) { const p = f.pickables[i]; if (visibleChain(p)) pkWalk(p, raycaster, hits); }
+  hits.sort((a, b) => a.distance - b.distance);
   const cands = [];
   for (const h of hits) {
-    if (!visibleChain(h.object)) continue;
     let o = h.object; while (o && !o.userData.id && !o.userData.resolve) o = o.parent;
     if (!o) continue;
     if (forZoom && o.userData.noZoom && hits.length > 1) continue;
@@ -456,6 +664,7 @@ function pickFrame(f, forZoom) { // best candidate inside one frame: highest pri
   return fb;
 }
 function pickAt(x, y, forZoom) {
+  const t0 = performance.now();
   ndc.set(x / W * 2 - 1, -(y / H) * 2 + 1);
   let best = null;
   // Walk inward to outward. Frames that share a depth buffer (a parent and its co-rendered children) form one group and
@@ -468,11 +677,13 @@ function pickAt(x, y, forZoom) {
     }
     i = j - 1;
   }
-  if (!best) return null;
-  const f = best.frame; best.ndc = ndc.clone();
-  best.pointLocal = best.hit.point.clone().add(f.C);
-  best.normalLocal = best.hit.face ? best.hit.face.normal.clone().transformDirection(best.hit.object.matrixWorld) : null;
-  best.id = best.obj.userData.resolve ? best.obj.userData.resolve(best.hit) : best.obj.userData.id;
+  if (best) {
+    const f = best.frame; best.ndc = ndc.clone();
+    best.pointLocal = best.hit.point.clone().add(f.C);
+    best.normalLocal = best.hit.face ? best.hit.face.normal.clone().transformDirection(best.hit.object.matrixWorld) : null;
+    best.id = best.obj.userData.resolve ? best.obj.userData.resolve(best.hit) : best.obj.userData.id;
+  }
+  PERF.pickDone(performance.now() - t0);
   return best;
 }
 function visibleChain(o) { while (o) { if (!o.visible) return false; o = o.parent; } return true; }
@@ -484,10 +695,14 @@ function setHighlight(obj, on) {
 }
 function setHover(o) { if (o === hovered) return; setHighlight(hovered, false); hovered = o; setHighlight(hovered, true); canvas.style.cursor = o ? 'pointer' : 'grab'; }
 const tipEl = $('#tip');
+const HOVER_REST_MS = 70;
+/* The hover (highlight and tooltip) is worked out once the pointer has moved and then rested for HOVER_REST_MS, or when the view under a
+   resting pointer has changed and come to rest; never while the camera moves (the loop decides: see engine_ui.js). */
 function doHover() {
   mouse.dirty = false;
   if (!mouse.has || mouse.touch || pointers.size) { tipEl.classList.remove('show'); return; }
   const h = pickAt(mouse.x, mouse.y);
+  mouse.tipX = mouse.x; mouse.tipY = mouse.y;
   if (h && (h.obj.userData.priority ?? 1) >= 0) {
     const ud = h.obj.userData, tf = ud.tipFn && ud.tipFn(h), d = tf ? { title: tf } : (ud.infoFn && ud.infoFn(h)) || ud.info || INFO[h.id] || (ud.title ? { title: ud.title } : null);
     setHover(h.obj);

@@ -147,6 +147,7 @@ function applyMode(F) {
   if (F.hidden.size) { M = { '*': 1 }; if (F.mode === 'auto') layer = 'peeled'; } // something is peeled away: show what is behind it, all of it solid
   if (F.modeSeg && F._layer !== layer) { F._layer = layer; const b = F.modeSeg.querySelector('[data-k=auto]'); if (b) b.textContent = layer ? 'Auto: ' + layer : 'Auto'; }
   const focus = bodyFocus(F), hov = hovered && hovered.userData && hovered.userData.part ? hovered : null;
+  let vs = 0, vi = 0; // which parts can be seen (and so picked): when that changes, the hover under a resting pointer is worked out again
   for (const id in F.parts) {
     const { g, p } = F.parts[id], u = g.userData, s = M.vessel !== undefined && isVessel(p) ? 'vessel' : sysOf(p);
     let op = M[s] !== undefined ? M[s] : (M['*'] !== undefined ? M['*'] : 0);
@@ -159,11 +160,12 @@ function applyMode(F) {
     const m = u.main.material; m.opacity = ev * F.alpha; m.depthWrite = ev > .9;
     if (u.shell) u.shell.material.opacity = .5 * ev * F.alpha;
     g.visible = ev > .01 && (!F.hidden.has(id) || isSel);
-    u.shown = g.visible ? op : 0;
+    u.shown = g.visible ? op : 0; vi++; if (u.shown >= BODY_VISIBLE_OP) vs = (vs * 31 + vi) | 0;
     u.ol.visible = ev > .5 || (hl && ev > .2); u.ol.material.uniforms.uOpacity.value = .85 * Math.max(ev, hl ? .9 : 0) * F.alpha;
     u.ol.material.uniforms.uColor.value.setHex(hl ? 0x1e4e8f : 0x1a1f2b);
     u.main.renderOrder = s === 'skin' ? 2 : 1;
   }
+  if (vs !== F._vs) { F._vs = vs; viewChanged(); }
   if (F.showAllBtn) { const n = F.hidden.size, on = n || F.reveal, d = on ? '' : 'none'; if (F.showAllBtn.style.display !== d) F.showAllBtn.style.display = d; const t = n ? `Show everything (${n} hidden)` : F.reveal ? 'Show everything' : ''; if (on && F.showAllBtn.textContent !== t) F.showAllBtn.textContent = t; }
 }
 // an organ view is open (the camera is inside it): the body behind it gives way
