@@ -1,0 +1,87 @@
+{
+ "id": "why_does_a_bee_visit_a_flower",
+ "order": 22,
+ "theme": "Living things",
+ "question": "Why does a bee visit a flower?",
+ "teaser": "A flower pays a bee in sugar. Follow the trade from the bee's tongue to the nectar and the pollen she carries away.",
+ "keywords": ["bee", "flower", "nectar", "pollen", "pollination", "honey", "buttercup", "sugar", "insect", "sucrose"],
+ "scales": ["a bee", "a molecule"],
+ "minutes": 7,
+ "stops": [
+  {
+   "title": "A honey bee worker",
+   "scale": "about 14 mm",
+   "where": {"view": {"frame": "thing_bee", "point": [0.001, 0.3285, 0], "D": 0.06}},
+   "expect": {"thing": "bee"},
+   "text": ["This is a worker honey bee, a female about 12 to 15 millimetres long. She is a forager: she gathers nectar and pollen from flowers and carries them home to the nest.", "Her colony may hold 40,000 to 80,000 bees in midsummer, and all of them depend on what foragers bring in."],
+   "model": "A model built from the measurements named on each card. The proportions that were not measured were set by eye.",
+   "notice": "Use the layer buttons at the top to peel her. Click any part to read what it does.",
+   "deeper": [{"label": "Honey bee worker", "node": "park_bee"}]
+  },
+  {
+   "title": "Her drinking straw",
+   "scale": "about 5 mm",
+   "where": {"view": {"frame": "thing_bee", "part": "glossa", "D": 0.012}},
+   "expect": {"thing": "bee"},
+   "text": ["Bees do not suck nectar through a hole like a straw. The tongue is a hairy rod that is dipped in the nectar and coated by it, then drawn back into its sheath, where the nectar is squeezed up toward the mouth.", "Fully extended, the tongue is about 5.4 to 6.3 millimetres long, depending on the population."],
+   "model": "In the model the tongue is shown about 3.9 mm long, partly extended into the flower.",
+   "notice": "Look for the long hairy tongue under her head.",
+   "deeper": [{"label": "Proboscis", "node": "bee_proboscis"}]
+  },
+  {
+   "title": "The flower's sweet shop",
+   "scale": "about 1 cm",
+   "where": {"view": {"frame": "thing_flower", "part": "h_pits", "D": 0.02}},
+   "do": [{"mode": "half", "thing": "flower"}],
+   "expect": {"thing": "flower"},
+   "text": ["This is a meadow buttercup, cut in half. At the base of each of its five petals is a small pit called a nectary, which makes a droplet of nectar.", "A little flap can cover the pit, so rain stays out and a visitor has to reach in."],
+   "model": "A procedural model of a buttercup flower. The cut is made to show the inside.",
+   "notice": "Find the small pits at the base of the petals.",
+   "deeper": [{"label": "Nectary", "node": "rn_nectary"}]
+  },
+  {
+   "title": "Sugar water",
+   "scale": "about 1 nanometre",
+   "where": {"place": "mol:sucrose"},
+   "expect": {"frame": "ucrose"},
+   "text": ["Nectar is mostly water with sugar dissolved in it. The main sugar is usually sucrose, which is ordinary table sugar, one glucose joined to one fructose.", "Bee nectar is about 80 percent water, and the sugars in it are sucrose, glucose and fructose. For the bee, it is fuel for her flight muscles."],
+   "model": "A computed shape of one sucrose molecule at true size.",
+   "notice": "Count the carbon, hydrogen and oxygen atoms. Twelve carbons, twenty-two hydrogens and eleven oxygens make one molecule.",
+   "deeper": [{"label": "Nectar and sucrose", "node": "rn_nectar"}, {"label": "Nectar and its sugars", "node": "bee_nectar"}]
+  },
+  {
+   "title": "Carrying it home",
+   "scale": "about 5 mm",
+   "where": {"view": {"frame": "thing_bee", "part": "crop", "D": 0.02}},
+   "do": [{"mode": "organs", "thing": "bee"}],
+   "expect": {"thing": "bee"},
+   "text": ["The nectar goes into a stretchy bag at the front of her abdomen, called the crop, which holds about 75 milligrams.", "It is kept apart from her own digestion. She flies home and passes it to other workers, and it begins turning into honey as she adds enzymes."],
+   "notice": "Find the crop. An adult bee needs only about 4 milligrams of sugar a day for herself, so most of what she carries is for the colony.",
+   "deeper": [{"label": "Crop", "node": "bee_crop"}]
+  },
+  {
+   "title": "What she carries away",
+   "scale": "about 2 mm",
+   "where": {"view": {"frame": "thing_flower", "part": "anthers", "D": 0.012}},
+   "do": [{"mode": "flower", "thing": "flower"}],
+   "expect": {"thing": "flower"},
+   "text": ["While she drinks, she brushes against the anthers, which are loaded with pollen. A pollen grain of a meadow buttercup is about 27 micrometres across.", "Pollen sticks to her hairs, and some is packed into baskets on her hind legs. Some rubs off on the next flower, which is how the flower gets pollinated."],
+   "notice": "Find the ring of anthers around the centre of the flower.",
+   "deeper": [{"label": "Pollen grain", "node": "rn_pollen_grain"}, {"label": "Who pollinates a buttercup", "node": "rn_pollination"}]
+  },
+  {
+   "title": "What her eyes see",
+   "scale": "about 0.4 mm",
+   "where": {"deep": {"in": "bee", "type": "tissue2", "id": "bee_eye", "at": [0.0059, 0.32905, 0.00125], "D": 0.00036}},
+   "expect": {"frame": "ye"},
+   "text": ["Each eye is a mosaic of about 5,000 tiny lenses, each looking at one patch of the world, so the picture is coarse like a screen of pixels. It is very quick, which suits an animal that flies.", "She has three colour channels, ultraviolet, blue and green, so she sees ultraviolet and does not see red the way you do."],
+   "model": "An illustration of the structure of a compound eye. The note on screen says which parts are drawn by hand.",
+   "notice": "Count the tiny lenses you can see at the surface.",
+   "deeper": [{"label": "Compound eye", "node": "bee_compound_eye"}]
+  }
+ ],
+ "answer": "A bee visits a flower for nectar, which is sugar water she uses as fuel and carries home to her colony, and in doing so she carries its pollen from flower to flower.",
+ "unknown": "How much of what a bee does at a flower is learned and how much is inborn is still being studied.",
+ "next": ["what_is_light", "what_is_a_mushroom", "how_does_a_dog_smell_so_well"],
+ "sources": ["Cards: park_bee, bee_proboscis, bee_crop, bee_nectar, bee_compound_eye, rn_nectary, rn_nectar, rn_pollen_grain, rn_pollination (sources on the cards)"]
+}

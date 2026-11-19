@@ -146,7 +146,18 @@ const TRAILS = {
     if (w.landmark) { const L = LANDMARKS.find(l => l.label === w.landmark); if (!L) throw new Error('no landmark ' + w.landmark); L.go(fin); return; }
     if (w.node) { goToNode(w.node); waitFly(fin); return; }
     if (w.place) { if (!placeGo(w.place)) throw new Error('no place ' + w.place); waitFly(fin); return; }
-    if (w.view) { const f = frameOfKey(w.view.frame); if (!f) throw new Error('no frame ' + w.view.frame); if (f.place) f.place(); w.dir = w.dir || w.view.dir; flyTo(f, V(w.view.point), w.view.D, fin); return; }
+    if (w.view) {
+      const v = w.view, f = frameOfKey(v.frame); if (!f) throw new Error('no frame ' + v.frame); if (f.place) f.place(); w.dir = w.dir || v.dir;
+      const go = () => {
+        let p = V(v.point);
+        if (v.part) { const rec = f.T && f.T.parts && f.T.parts[v.part]; if (!rec) { T.errors.push('no part ' + v.part); } else p = V(rec.pd.center).applyMatrix4(f.T.group.matrix); }
+        flyTo(f, p, v.D, fin);
+      };
+      // a thing's parts exist only once its frame has been drawn: arrive near it first, then fly to the part
+      if (v.part && !(f.T && f.T.parts && f.T.parts[v.part])) { f.ensure(); flyTo(f, V(v.point || [0, 1, 0]), v.D0 || (f.radius ? f.radius * f.unit * 3 : 20), () => until(() => f.T && f.T.parts && f.T.parts[v.part], 25000).then(go)); }
+      else go();
+      return;
+    }
     if (w.deep) {
       const d = w.deep, parent = frameOfKey(d.in); if (!parent) throw new Error('no frame ' + d.in);
       parent.ensure(); const f = thDeepFrame({ type: d.type, id: d.id, kind: d.kind, organ: d.organ }, V(d.at)); if (!f) throw new Error('no deep scene ' + d.type + ':' + d.id);

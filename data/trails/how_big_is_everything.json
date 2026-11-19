@@ -1,0 +1,103 @@
+{
+ "id": "how_big_is_everything",
+ "order": 90,
+ "starter": true,
+ "theme": "Size and scale",
+ "question": "How big is everything?",
+ "teaser": "Zoom out from a person to the whole cosmic web, one step at a time, using the ruler on the left.",
+ "keywords": ["size", "scale", "universe", "galaxy", "earth", "solar system", "stars", "distance", "light-year", "big"],
+ "scales": ["a person", "the observable universe"],
+ "minutes": 7,
+ "stops": [
+  {
+   "title": "A person, about 2 metres",
+   "scale": "6 m across",
+   "where": {"landmark": "You"},
+   "expect": {"frame": "Greenwich Park"},
+   "text": ["Everything in this world is drawn at its true size, so a person here is the size of a person. This is your yardstick.", "Each step on this trail is a much bigger view than the last one."],
+   "notice": "Watch the ruler down the left edge. The yellow needle shows how wide your view is, in powers of ten, and it will climb all the way up.",
+   "deeper": [{"label": "The human body", "node": "human"}]
+  },
+  {
+   "title": "A city",
+   "scale": "80 km across",
+   "where": {"landmark": "London"},
+   "expect": {"frame": "Greenwich, London"},
+   "text": ["From 80 kilometres up, the park is a small green patch inside the city. You have made the view about ten thousand times wider than a minute ago."],
+   "notice": "The needle has moved up the ruler by about four marks, each one a factor of ten.",
+   "deeper": []
+  },
+  {
+   "title": "A planet",
+   "scale": "30,000 km across",
+   "where": {"landmark": "Earth"},
+   "expect": {"frame": "^Earth$"},
+   "text": ["Earth is about 12,742 kilometres across. That is roughly seven million times the height of a person.", "About 71 percent of the surface is water, and the air around it is a thin skin compared with the size of the planet."],
+   "notice": "Look at how thin the atmosphere is at the edge of the disc.",
+   "deeper": [{"label": "Earth", "node": "earth"}]
+  },
+  {
+   "title": "A planet and its Moon",
+   "scale": "1.4 million km across",
+   "where": {"landmark": "Earth & Moon"},
+   "expect": {"frame": "^Earth$"},
+   "text": ["The Moon is 3,474 kilometres across and about 384,400 kilometres away, so light takes about 1.3 seconds to reach it.", "Earth would fit between the two bodies about thirty times over."],
+   "model": "Not to scale in the picture: the Moon is drawn much nearer than it really is, so that both fit on the screen.",
+   "notice": "Compare the size of the Moon with the gap between the two. The real gap is far larger than the one drawn.",
+   "deeper": [{"label": "The Moon", "node": "moon"}]
+  },
+  {
+   "title": "The Solar System",
+   "scale": "15 billion km across",
+   "where": {"landmark": "Solar system (to Neptune)"},
+   "expect": {"frame": "Solar system"},
+   "text": ["The Sun, eight planets and their moons. Neptune, the farthest planet, orbits about 4.5 billion kilometres from the Sun.", "Light from the Sun takes about 8 minutes 20 seconds to reach Earth, and over four hours to reach Neptune."],
+   "model": "Not everything is to scale: the note under the view says which sizes are squeezed to fit on the screen.",
+   "notice": "Most of the Solar System is empty space. The planets are specks on thin orbit lines.",
+   "deeper": [{"label": "The Solar System", "node": "solar"}]
+  },
+  {
+   "title": "The nearest stars",
+   "scale": "view about 50 light-years wide",
+   "where": {"landmark": "Nearest stars"},
+   "expect": {"frame": "Solar neighborhood"},
+   "text": ["The nearest star beyond the Sun, Proxima Centauri, is about 268,000 times farther from us than the Sun is, or roughly four and a quarter light-years.", "A light-year is the distance light travels in a year, about 9.5 trillion kilometres. The whole Solar System is a tiny dot at this scale."],
+   "notice": "Hover over the labelled stars to see their names. Each one is a sun, and each is very far from the next.",
+   "deeper": []
+  },
+  {
+   "title": "The Milky Way",
+   "scale": "view about 200,000 light-years wide",
+   "where": {"landmark": "Milky Way"},
+   "expect": {"frame": "Milky Way"},
+   "text": ["Our galaxy is a barred spiral of 100 to 400 billion stars. The Sun is one of them, about 27,000 light-years from the centre, and it takes roughly 230 million years to go once around."],
+   "model": "The Sun's position is measured. The spiral arms drawn around it are an artist's impression, not the measured arm positions.",
+   "notice": "Find the marker for the Sun's address, and the black hole at the centre. Click either one.",
+   "deeper": [{"label": "The Milky Way", "node": "galaxy"}, {"label": "You are here", "node": "sunMarker"}]
+  },
+  {
+   "title": "The Local Group",
+   "scale": "view about 20 million light-years wide",
+   "where": {"landmark": "Local Group"},
+   "expect": {"frame": "Local Group"},
+   "text": ["The Milky Way belongs to a small group of galaxies held together by gravity. The three largest are Andromeda, the Milky Way and Triangulum, and the rest are mostly small dwarf galaxies.", "Andromeda is about 2.5 million light-years away, and it is heading our way."],
+   "model": "Galaxy positions and distances are catalogue values. The glows are symbols.",
+   "notice": "Andromeda is the closest big galaxy. The light you would see from it left before modern humans existed.",
+   "deeper": [{"label": "Andromeda", "node": "andromeda"}, {"label": "The Local Group", "node": "localgroup"}]
+  },
+  {
+   "title": "The cosmic web",
+   "scale": "view about 400 million light-years wide",
+   "where": {"landmark": "Cosmic web"},
+   "expect": {"frame": "Observable universe"},
+   "text": ["On the largest scales, galaxies gather into clusters and long threads called filaments, around huge nearly empty gaps called voids. The observable universe is about 93 billion light-years across.", "Next to a person that is a width of about 5 times ten to the power 26, and it is where this world ends."],
+   "model": "The web itself is an illustration: its threads are random points joined up. Only the labelled galaxies and clusters are at their real positions.",
+   "notice": "Look at the ruler: you have crossed about twenty-four powers of ten in view width since the first stop.",
+   "deeper": [{"label": "The cosmic web", "node": "universe"}, {"label": "The expanding universe", "node": "expansion"}]
+  }
+ ],
+ "answer": "From a person to the observable universe is about twenty-six and a half powers of ten, and almost all of the space in between is empty, with matter gathered into small, widely spaced places.",
+ "unknown": "The observable universe is only the part whose light has had time to reach us. Whether the whole universe is bigger, and by how much, is not known.",
+ "next": ["where_did_my_atoms_come_from", "what_holds_everything_together", "where_does_the_suns_energy_come_from"],
+ "sources": ["Cards: earth, moon, solar, truescale, galaxy, sunMarker, localgroup, andromeda, universe (sources on the cards)", "Computed: 1 AU / c = 499 s; 268,000 AU / 63,241 AU per light-year = 4.24 light-years; 93e9 ly * 9.4607e15 m / 1.8 m = 4.9e26"]
+}

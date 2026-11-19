@@ -1,0 +1,105 @@
+{
+ "id": "what_am_i_made_of",
+ "order": 1,
+ "starter": true,
+ "theme": "You and your body",
+ "question": "What am I made of?",
+ "teaser": "Start with yourself and keep asking \"and what is that made of?\" until the answer runs out.",
+ "keywords": ["body", "human", "atoms", "cells", "quarks", "dna", "protons", "matter", "particles"],
+ "scales": ["a person", "a quark"],
+ "minutes": 8,
+ "stops": [
+  {
+   "title": "You, in a London park",
+   "scale": "about 2 m",
+   "where": {"landmark": "You"},
+   "expect": {"frame": "Greenwich Park"},
+   "text": ["This is a person drawn at true size, standing in a model of Greenwich Park. The question is simple: what is that body made of?", "The first answer is cells. An adult body has roughly 30 to 37 trillion of its own cells, of more than 200 kinds."],
+   "notice": "Scroll in on the body. The skin turns see-through, then the muscles, then the bones and organs, and you keep going.",
+   "deeper": [{"label": "The human body", "node": "human"}]
+  },
+  {
+   "title": "The skin you can see",
+   "scale": "about 1.5 mm",
+   "where": {"landmark": "Your skin"},
+   "expect": {"frame": "Skin surface"},
+   "text": ["A patch of skin about a millimetre across. The surface is flattened, dead cells, each tens of micrometres wide, and they flake off all the time.", "Below them the living cells are being made, so the surface of you is replaced again and again."],
+   "model": "A model of skin: the cell shapes are drawn to fit the size, not copied from a photograph.",
+   "notice": "The dark pillars are hairs. A hair is roughly 50 to 100 micrometres thick, so each is a few skin cells wide.",
+   "deeper": [{"label": "Skin", "node": "skin"}]
+  },
+  {
+   "title": "Inside one cell",
+   "scale": "about 20 micrometres",
+   "where": {"landmark": "Skin cell"},
+   "expect": {"frame": "ell"},
+   "text": ["A human cell is a bag of watery jelly with a membrane around it and many small machines inside. The big round one is the nucleus, which holds the instructions for the whole body.", "The orange ovals are mitochondria, which release energy from food."],
+   "model": "Schematic: the overall size is true, but the shapes are simplified and there are far fewer parts than in a real cell, which has hundreds to thousands of mitochondria and millions of ribosomes.",
+   "notice": "Click the nucleus or a mitochondrion to read what it does.",
+   "deeper": [{"label": "Animal cell", "node": "cell_animal"}]
+  },
+  {
+   "title": "DNA, the instructions",
+   "scale": "about 24 nanometres",
+   "where": {"landmark": "DNA"},
+   "expect": {"frame": "^DNA$"},
+   "text": ["Inside the nucleus the instructions are written in DNA, a long molecule shaped like a twisted ladder. It is only about 2 nanometres wide, which is tens of thousands of times thinner than a hair.", "The rungs of the ladder are pairs of smaller molecules, called bases. The order of the bases is the code."],
+   "model": "A ball-and-stick model. Spheres and rods are symbols, not atoms, and the sequence shown is invented.",
+   "notice": "Press \"Show replication\" to see the two strands pull apart, which is how a cell copies its DNA before it divides.",
+   "deeper": [{"label": "DNA", "node": "dna"}]
+  },
+  {
+   "title": "One rung of the ladder",
+   "scale": "about 3 nanometres",
+   "where": {"landmark": "Base pair (molecule)"},
+   "expect": {"frame": "base pair|A.T"},
+   "text": ["One rung is a pair of bases, here adenine and thymine. They are molecules too, built from carbon, nitrogen, oxygen and hydrogen atoms.", "The two halves are held together by hydrogen bonds. A hydrogen bond is weak, which is why the ladder can be unzipped and read."],
+   "notice": "Each ball is an atom. Count the colours: the same few kinds of atom build every base.",
+   "deeper": [{"label": "Hydrogen bonds", "node": "hbond"}]
+  },
+  {
+   "title": "An atom of oxygen",
+   "scale": "about 0.5 nanometres",
+   "where": {"landmark": "Oxygen atom"},
+   "expect": {"frame": "Oxygen atom"},
+   "text": ["Every atom has a tiny nucleus and a cloud of electrons around it. This is oxygen, which is one of the main elements in your body, along with carbon, hydrogen and nitrogen.", "The cloud is a picture of where the electrons are likely to be found. It is not many little balls going round: the electrons are better described as spread-out waves."],
+   "model": "A computed model, not a photograph. The sizes come from a calculation that is accurate to a few percent, and each dot marks one place an electron could be found.",
+   "notice": "Try \"Cut away a quarter\" to look into the cloud. The nucleus is at its true size, so it is too small to see at this zoom.",
+   "deeper": [{"label": "How electron clouds are drawn", "node": "at_cloud_sizes"}]
+  },
+  {
+   "title": "The nucleus",
+   "scale": "about 20 femtometres",
+   "where": {"landmark": "Oxygen nucleus"},
+   "expect": {"frame": "Oxygen nucleus"},
+   "text": ["The nucleus of the common kind of oxygen has 8 protons and 8 neutrons. It is about a hundred thousand times smaller than the atom, yet it holds nearly all of its mass.", "The number of protons is what makes an atom oxygen and not carbon or iron."],
+   "model": "The nucleus is drawn as a packed cluster whose radius follows a rule of thumb, about 1.2 femtometres times the cube root of the number of particles. Real nuclei have fuzzy edges.",
+   "notice": "Count the two colours: protons carry electric charge and neutrons do not.",
+   "deeper": [{"label": "The nucleus at true size", "node": "nucleusQ"}]
+  },
+  {
+   "title": "Inside a proton",
+   "scale": "about 3 femtometres",
+   "where": {"landmark": "Proton"},
+   "expect": {"frame": "Proton"},
+   "text": ["A proton is not solid. It holds two up quarks and one down quark, tied together by gluons, and its radius is about 0.84 femtometres.", "The three quarks account for only a small part of the proton's mass, about 1 percent by the usual count. Most of the rest is the energy of their motion and of the gluon field, and energy has mass."],
+   "model": "A cartoon, not a photograph. Quarks have no measured size, nothing here has a definite position, and the balls are far bigger than any quark.",
+   "notice": "Press \"Where does the mass come from?\" for how the energy adds up.",
+   "deeper": [{"label": "The proton", "node": "sm_proton"}]
+  },
+  {
+   "title": "The bottom of what we know",
+   "scale": "below 10 attometres",
+   "where": {"landmark": "Standard Model"},
+   "expect": {"frame": "Standard Model"},
+   "text": ["Quarks and electrons are two of seventeen elementary particles in the Standard Model, our best description of what everything is made of. \"Elementary\" means no parts have been found.", "Experiments have looked down to roughly a ten-thousandth of a proton's radius and seen no structure in quarks or electrons."],
+   "model": "A map of the particles, not a picture of them. The positions are a diagram, and the sizes mean nothing.",
+   "notice": "Click any particle to read its card. The up and down quarks are the two you just met inside the proton.",
+   "deeper": [{"label": "The Standard Model", "node": "sm_overview"}, {"label": "The electron", "node": "sm_electron"}]
+  }
+ ],
+ "answer": "You are made of cells, cells of molecules, molecules of atoms, atoms of electrons around a tiny nucleus, and nuclei of protons and neutrons, which are made of quarks and gluons.",
+ "unknown": "No parts have been found inside electrons or quarks, down to roughly a ten-thousandth of a proton's radius. That is a limit of our instruments, so whether they are truly the bottom is not known.",
+ "next": ["where_did_my_atoms_come_from", "is_a_rock_really_solid", "what_holds_everything_together"],
+ "sources": ["Cards: human, skin, cell_animal, dna, hbond, at_cloud_sizes, nucleusQ, sm_proton, sm_overview (their sources are on the cards)", "Frame notes in the app: Skin cell, DNA, Proton (no structure found down to about 1e-19 m)"]
+}

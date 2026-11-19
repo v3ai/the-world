@@ -71,7 +71,9 @@ for (const t of trails) {
     }
     if (w.view !== undefined) {
       const v = w.view; if (!frameKey(v.frame)) err(S, 'unknown frame ' + v.frame);
-      if (!Array.isArray(v.point) || v.point.length !== 3 || v.point.some(x => typeof x !== 'number')) err(S, 'view.point must be [x,y,z]');
+      const th = things[(v.frame || '').replace(/^thing_/, '')];
+      if (v.part) { if (!th || !th.parts.has(v.part)) err(S, 'unknown thing part ' + v.frame + ':' + v.part); }
+      else if (!Array.isArray(v.point) || v.point.length !== 3 || v.point.some(x => typeof x !== 'number')) err(S, 'view.point must be [x,y,z] (or give a thing part)');
       if (!(v.D > 0)) err(S, 'view.D must be a positive number of metres');
     }
     if (w.deep !== undefined) {
