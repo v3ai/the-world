@@ -189,8 +189,8 @@ reg('robin_vent', 'Vent and undertail area', 'The feathers round the single open
   [['Opening', 'one: the cloaca']], refs=[R_EXC], ext=[WBA], related=['robin_cloaca'])
 
 N('robin_bill', 'Bill: upper and lower mandible', 'structure', .013, ['robin'],
-  'The bill is a thin, pointed horny sheath over the jaw bones: the robin\'s tweezers for picking insects and berries.',
-  'The bill has two halves, the upper and lower mandible. They are covered with a hard, horny sheath of keratin and are black in a robin. A robin uses its bill like tweezers to take small insects, worms and seeds from the ground. Birds have no teeth: the bill and the gizzard do the work.',
+  'The bill is a thin, pointed horny sheath over the jaw bones: the robin\'s tweezers for picking up small food.',
+  'The bill has two halves, the upper and lower mandible. They are covered with a hard, horny sheath of keratin and are black in a robin. A robin uses its bill like tweezers to pick up small food. Birds have no teeth: the bill and the gizzard do the work.',
   'The horn sheath is a living tissue that grows continuously and wears at the tip. Inside, the upper jaw is a slender bone (the premaxilla) fused to the skull, and the lower jaw hinges at the quadrate bone. The nostrils open on the top of the upper mandible near its base.',
   'The sheath is beta-keratin, like feathers and claws. Birds can move the upper jaw a little on the skull (cranial kinesis), a trait that varies by group; its extent in robins is not described here.',
   [['Colour', 'black (WR)'], ['Material', 'keratin over bone']], refs=[R_BIRD], ext=[WR, WBA], related=['robin_keratin', 'robin_upper_jaw'])
@@ -200,7 +200,7 @@ N('robin_nostrils', 'Nostrils', 'structure', .001, ['robin'], 'The two small ope
   'The nostrils are drawn as small ovals at true size.',
   [['Number', '2']], refs=[R_BIRD], ext=[WBA])
 N('robin_eye', 'Eye', 'structure', .008, ['robin'],
-  'A robin\'s eye is large and dark. Its size, relative to the head, is large.',
+  'A robin\'s eye is dark and large for the size of its head.',
   'The black bead you see is the front of the eye: the dark pupil and the iris round it. The whole eyeball is about 8 mm across in the model and fills much of the head. Each eye points sideways, so the robin sees a wide area at once, and it turns its head to look at things with both eyes.',
   'The cut-open view shows the layers: the cornea, the iris, the lens, the vitreous, the retina, and the pecten, a pleated fold that is only found in birds. Click the retina to look inside it.',
   'The eye is drawn about 8 mm across; the real size varies by individual. The visible dark dome in the plumage is the cornea and pupil; the iris is dark brown to black in a robin.',

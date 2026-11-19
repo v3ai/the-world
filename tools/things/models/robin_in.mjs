@@ -99,7 +99,7 @@ export function muscles(sk) {
   o.fill = bnd(inset(4.8), [-44, 25, -18], [42, 110, 18], 1.1, 1, 1);
   // pectoralis: the big downstroke muscle, a thick sheet over the sides and underside of the rib cage (two halves, parted at the keel)
   { const sh = L.subtract(EB([6, -5.5, 0], [16, 14.8, 13.3]), EB([6, -5.5, 0], [16, 12.3, 10.9])), cut = L.intersect(sh, p => p[1] - 4, p => 1 - Math.abs(p[2]), p => bodySdf(Bp(p)) + 3.3, p => p[0] - 21);
-    o.pectoralis = bB(cut, [-12, -22, -14], [24, 5, 14], .7, 1, 1); }
+    o.pectoralis = bB(cut, [-12, -22, -14], [24, 5, 14], .42, 1, 1); }
   // supracoracoideus: the smaller, deeper upstroke muscle beside the keel; its tendon rises through the triosseal canal to the top of the humerus
   { const sc = S2.map(s => bB(L.rotate(EB([12.5, -10.8, s * 4.1], [8.2, 5.6, 2.3]), [0, 0, 1], -.25), [2, -18, s > 0 ? 0 : -8], [22, -3, s > 0 ? 8 : 0], .5, 1, 1)); o.supracoracoideus = L.merge(...sc);
     const tn = [], ring = [];

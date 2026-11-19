@@ -2795,12 +2795,12 @@
     "button": "Look inside the flight muscle"
    },
    "center": [
-    0.006,
-    0.0571,
+    0.0061,
+    0.0572,
     0
    ],
    "radius": 0.016,
-   "tris": 7512
+   "tris": 21296
   },
   {
    "id": "mu_supracoracoideus",
@@ -4083,7 +4083,7 @@
  ],
  "stats": {
   "parts": 130,
-  "uniqueMeshTris": 345917,
+  "uniqueMeshTris": 359701,
   "nearTris": 62818,
   "midTris": 34889,
   "farTris": 1322

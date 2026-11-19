@@ -1432,9 +1432,9 @@
    "robin"
   ],
   "processes": [],
-  "summary": "The bill is a thin, pointed horny sheath over the jaw bones: the robin's tweezers for picking insects and berries.",
+  "summary": "The bill is a thin, pointed horny sheath over the jaw bones: the robin's tweezers for picking up small food.",
   "layers": {
-   "basics": "The bill has two halves, the upper and lower mandible. They are covered with a hard, horny sheath of keratin and are black in a robin. A robin uses its bill like tweezers to take small insects, worms and seeds from the ground. Birds have no teeth: the bill and the gizzard do the work.",
+   "basics": "The bill has two halves, the upper and lower mandible. They are covered with a hard, horny sheath of keratin and are black in a robin. A robin uses its bill like tweezers to pick up small food. Birds have no teeth: the bill and the gizzard do the work.",
    "deeper": "The horn sheath is a living tissue that grows continuously and wears at the tip. Inside, the upper jaw is a slender bone (the premaxilla) fused to the skull, and the lower jaw hinges at the quadrate bone. The nostrils open on the top of the upper mandible near its base.",
    "expert": "The sheath is beta-keratin, like feathers and claws. Birds can move the upper jaw a little on the skull (cranial kinesis), a trait that varies by group; its extent in robins is not described here."
   },
@@ -1526,7 +1526,7 @@
    "robin_cornea"
   ],
   "processes": [],
-  "summary": "A robin's eye is large and dark. Its size, relative to the head, is large.",
+  "summary": "A robin's eye is dark and large for the size of its head.",
   "layers": {
    "basics": "The black bead you see is the front of the eye: the dark pupil and the iris round it. The whole eyeball is about 8 mm across in the model and fills much of the head. Each eye points sideways, so the robin sees a wide area at once, and it turns its head to look at things with both eyes.",
    "deeper": "The cut-open view shows the layers: the cornea, the iris, the lens, the vitreous, the retina, and the pecten, a pleated fold that is only found in birds. Click the retina to look inside it.",
