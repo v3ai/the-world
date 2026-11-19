@@ -1129,7 +1129,9 @@
    "oak_roots",
    "bio_roots_mycorrhiza"
   ],
-  "parts": [],
+  "parts": [
+   "fa_ecm"
+  ],
   "processes": [],
   "summary": "Oaks trade sugar with underground fungi that act as extensions of their roots.",
   "layers": {

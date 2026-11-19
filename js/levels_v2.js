@@ -897,11 +897,8 @@ BUILD.life = (c) => {
   const wings = [-1, 1].map(s => { const w = new THREE.Mesh(new THREE.SphereGeometry(1, 8, 6), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .6 })); w.scale.set(.03, .005, .02); w.position.set(0, .035, s * .025); bee.add(w); return w; });
   const beeHit = hitSphere(.28, 'bee', 3); bee.add(beeHit);
   g.add(bee); c.pickables.push(bee);
-  // mushroom
-  const mush = new THREE.Group(); mush.position.set(-3.4, 0, -1.6); mush.userData = { id: 'mushroom' }; g.add(mush); c.pickables.push(mush);
-  const stem = new THREE.Mesh(new THREE.CylinderGeometry(.05, .07, .24, 10), smat(0xf3ead8)); stem.position.y = .12; mush.add(stem);
-  const cap = new THREE.Mesh(new THREE.SphereGeometry(.17, 18, 10, 0, TAU, 0, Math.PI / 2), smat(0xd63a2a, { roughness: .5 })); cap.position.y = .22; cap.castShadow = true; mush.add(cap);
-  for (let i = 0; i < 9; i++) { const a = r() * TAU, el = r() * 1.1; const d = new THREE.Mesh(new THREE.SphereGeometry(.018, 6, 4), smat(0xffffff)); d.position.set(Math.cos(a) * Math.sin(el) * .17, .22 + Math.cos(el) * .17, Math.sin(a) * Math.sin(el) * .17); mush.add(d); }
+  // mushroom: now a data-driven thing (data/things/mushroom, FT.thing); this empty group keeps the old click id 'mushroom' as a place to fly to
+  const mush = new THREE.Group(); mush.position.set(-3.4, .1, -1.6); mush.userData = { id: 'mushroom', node: 'park_mushroom' }; g.add(mush);
   // clouds
   const clouds = [];
   for (let i = 0; i < 9; i++) {
@@ -922,7 +919,7 @@ BUILD.life = (c) => {
   }
   c.addLabel(birds[0].b, 'Bird', { offset: new V3(0, .5, 0) });
   // every clickable park object opens its own card (data/nodes/park_*.json); objects that have no card yet keep the old INFO text
-  { const PN = { pond: 'park_pond', flower: 'park_flower', bee: 'park_bee', mushroom: 'park_mushroom', cloud: 'park_cloud', bird: 'park_bird', sunSky: 'park_sun', air: 'park_sky', ground: 'park_ground' };
+  { const PN = { pond: 'park_pond', flower: 'park_flower', bee: 'park_bee', cloud: 'park_cloud', bird: 'park_bird', sunSky: 'park_sun', air: 'park_sky', ground: 'park_ground' };
     c.pickables.forEach(o => o.traverse(m => { const n = m.userData && PN[m.userData.id]; if (n) m.userData.node = n; })); }
   c.update = (dt, t) => {
     const wave = false;

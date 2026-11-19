@@ -1,0 +1,1327 @@
+{
+ "id": "mushroom",
+ "title": "Fly agaric",
+ "label": "Fly agaric",
+ "scientific": "Amanita muscaria",
+ "node": "park_mushroom",
+ "main_part": "cap",
+ "blurb": "A fly agaric, with a half-open one and a button beside it. Click the cap, the white warts, the gills, the ring or the swollen base. Use the layer buttons to cut it in half, see the threads underground, or follow how it grows.",
+ "model_note": "A model built from typical measurements of the species, not a scan of one mushroom. The cap is 14 cm across (the species ranges from about 5 to 30 cm); the number of gills and warts is chosen. Underground, the fungal threads are drawn several hundred times thicker than they are.",
+ "size_m": {
+  "cap_diameter": 0.14,
+  "height": 0.16,
+  "stipe_width": 0.017
+ },
+ "height_m": 0.17,
+ "radius_m": 0.85,
+ "draw_m": 260,
+ "seed": 4242,
+ "systems": [
+  {
+   "id": "mature",
+   "label": "Mature fruit body"
+  },
+  {
+   "id": "halfopen",
+   "label": "Half-open fruit body"
+  },
+  {
+   "id": "egg",
+   "label": "Button stage"
+  },
+  {
+   "id": "half",
+   "label": "Cut fruit body"
+  },
+  {
+   "id": "eggcut",
+   "label": "Cut button"
+  },
+  {
+   "id": "soil",
+   "label": "Soil"
+  },
+  {
+   "id": "mycelium",
+   "label": "Mycelium"
+  },
+  {
+   "id": "root",
+   "label": "Host root"
+  }
+ ],
+ "lod": {
+  "near_m": 12
+ },
+ "shadow": {
+  "radius_m": 0.26,
+  "opacity": 0.75,
+  "offset": [
+   0,
+   0
+  ]
+ },
+ "modes": [
+  {
+   "id": "whole",
+   "label": "Whole",
+   "show": {
+    "mature": 1,
+    "halfopen": 1,
+    "egg": 1
+   }
+  },
+  {
+   "id": "wood",
+   "label": "Cut in half",
+   "pivot": "wood",
+   "show": {
+    "half": 1,
+    "eggcut": 1
+   },
+   "hotspots": true,
+   "legend": {
+    "title": "What the cut shows",
+    "items": [
+     {
+      "name": "Red skin (cuticle)",
+      "color": "#c8261b",
+      "node": "fa_cuticle"
+     },
+     {
+      "name": "Yellow layer under the skin",
+      "color": "#e8c24a",
+      "node": "fa_cuticle"
+     },
+     {
+      "name": "White flesh",
+      "color": "#fbf8ee",
+      "node": "fa_cap_flesh"
+     },
+     {
+      "name": "Gill",
+      "color": "#f2ecdd",
+      "node": "fa_gills"
+     },
+     {
+      "name": "Stipe (stem)",
+      "color": "#f1ecdf",
+      "node": "fa_stipe"
+     },
+     {
+      "name": "Ring",
+      "color": "#f4efe3",
+      "node": "fa_ring"
+     }
+    ],
+    "note": "The layers of skin are drawn thicker than they are, to be visible. The button on the right is cut the same way."
+   }
+  },
+  {
+   "id": "under",
+   "label": "Underground",
+   "show": {
+    "mature": 0.12,
+    "halfopen": 0.12,
+    "egg": 0.12,
+    "soil": 1,
+    "mycelium": 1,
+    "root": 1
+   },
+   "groundSeeThrough": true,
+   "hotspots": true,
+   "legend": {
+    "title": "Underground",
+    "items": [
+     {
+      "name": "Mycelium (threads of the fungus)",
+      "color": "#f6f3ea",
+      "node": "fa_mycelium"
+     },
+     {
+      "name": "Root of a host tree",
+      "color": "#7a5b3f",
+      "node": "fa_host_root"
+     },
+     {
+      "name": "Root tips wrapped in fungus",
+      "color": "#efe1b8",
+      "node": "fa_ecm"
+     },
+     {
+      "name": "Soil",
+      "color": "#6b4c32",
+      "node": "bio_soil_ecology"
+     }
+    ],
+    "note": "Fungal threads are drawn several hundred times thicker than real; root tips are drawn larger than life too."
+   }
+  },
+  {
+   "id": "grows",
+   "label": "How it grows",
+   "show": {
+    "mature": 1,
+    "halfopen": 1,
+    "egg": 1
+   },
+   "hotspots": true,
+   "legend": {
+    "title": "Three stages",
+    "items": [
+     {
+      "name": "1  Button (egg)",
+      "color": "#f1ece0",
+      "node": "fa_button"
+     },
+     {
+      "name": "2  Half open",
+      "color": "#d02a1e",
+      "node": "fa_expanding"
+     },
+     {
+      "name": "3  Mature",
+      "color": "#d02a1e",
+      "node": "fa_cap"
+     }
+    ],
+    "note": "Three different fruit bodies standing side by side, drawn at one moment as stages of one life. They are not one mushroom photographed over time."
+   }
+  }
+ ],
+ "hotspots": [
+  {
+   "id": "hs_half",
+   "node": "fa_cut_half",
+   "at": [
+    0,
+    0.075,
+    0.004
+   ],
+   "label": "Inside a fly agaric",
+   "r": 0.004,
+   "modes": [
+    "wood"
+   ]
+  },
+  {
+   "id": "hs_gill",
+   "node": "fa_gill_inside",
+   "at": [
+    0.034,
+    0.1292,
+    0.0006
+   ],
+   "label": "Inside a gill: the spore-making layer",
+   "r": 0.0025,
+   "modes": [
+    "wood"
+   ]
+  },
+  {
+   "id": "hs_flesh",
+   "node": "fa_cap_flesh",
+   "at": [
+    -0.03,
+    0.14779591836734696,
+    0.0016
+   ],
+   "label": "Flesh of the cap",
+   "r": 0.0025,
+   "modes": [
+    "wood"
+   ]
+  },
+  {
+   "id": "hs_cuticle",
+   "node": "fa_cuticle",
+   "at": [
+    -0.05,
+    0.14392130078126628,
+    0.0016
+   ],
+   "label": "Red skin of the cap",
+   "r": 0.003,
+   "modes": [
+    "wood"
+   ]
+  },
+  {
+   "id": "hs_ring",
+   "node": "fa_ring",
+   "at": [
+    0.030600000000000002,
+    0.09999999999999999,
+    0.0008
+   ],
+   "label": "Ring: the torn partial veil",
+   "r": 0.0025,
+   "modes": [
+    "wood"
+   ]
+  },
+  {
+   "id": "hs_base",
+   "node": "fa_volva",
+   "at": [
+    0.017,
+    0.012,
+    0.001
+   ],
+   "label": "Swollen base with scales",
+   "r": 0.0025,
+   "modes": [
+    "wood"
+   ]
+  },
+  {
+   "id": "hs_egg",
+   "node": "fa_button",
+   "at": [
+    0.17,
+    0.024,
+    -0.0195
+   ],
+   "label": "Inside the button",
+   "r": 0.0025,
+   "modes": [
+    "wood"
+   ]
+  },
+  {
+   "id": "hs_hub",
+   "node": "fa_mycelium",
+   "at": [
+    0,
+    -0.035,
+    0
+   ],
+   "label": "Mycelium: the fungus itself",
+   "r": 0.02,
+   "modes": [
+    "under"
+   ]
+  },
+  {
+   "id": "hs_tip",
+   "node": "fa_ecm",
+   "at": [
+    -0.622,
+    -0.224,
+    0.424
+   ],
+   "label": "Root tip wrapped in fungus",
+   "r": 0.02,
+   "modes": [
+    "under"
+   ]
+  },
+  {
+   "id": "hs_tip2",
+   "node": "fa_trade",
+   "at": [
+    -0.491,
+    -0.238,
+    0.189
+   ],
+   "label": "Where sugar is swapped for minerals",
+   "r": 0.02,
+   "modes": [
+    "under"
+   ]
+  },
+  {
+   "id": "hs_root",
+   "node": "fa_host_root",
+   "at": [
+    0.025,
+    -0.175,
+    0.31
+   ],
+   "label": "Root of a partner tree",
+   "r": 0.03,
+   "modes": [
+    "under"
+   ]
+  },
+  {
+   "id": "hs_g1",
+   "node": "fa_button",
+   "at": [
+    0.17,
+    0.052,
+    0.12
+   ],
+   "label": "1  Button",
+   "r": 0.006,
+   "modes": [
+    "grows"
+   ]
+  },
+  {
+   "id": "hs_g2",
+   "node": "fa_expanding",
+   "at": [
+    -0.19,
+    0.09,
+    0.14
+   ],
+   "label": "2  Veil tearing",
+   "r": 0.006,
+   "modes": [
+    "grows"
+   ]
+  },
+  {
+   "id": "hs_g3",
+   "node": "fa_cap",
+   "at": [
+    0,
+    0.17,
+    0
+   ],
+   "label": "3  Mature",
+   "r": 0.006,
+   "modes": [
+    "grows"
+   ]
+  }
+ ],
+ "parts": [
+  {
+   "id": "cap",
+   "name": "Cap (pileus)",
+   "system": "mature",
+   "node": "fa_cap",
+   "color": "#d12a1d",
+   "mesh": "cap",
+   "lod": "near",
+   "ink_w": 0.0016,
+   "priority": 1.4,
+   "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "mushroom_flesh",
+    "D": 0.0008,
+    "button": "Look inside the cap flesh"
+   },
+   "center": [
+    0,
+    0.1468,
+    0
+   ],
+   "radius": 0.0732,
+   "tris": 5248
+  },
+  {
+   "id": "cap_under",
+   "name": "Underside of the cap",
+   "system": "mature",
+   "node": "fa_gills",
+   "color": "#e8dfc6",
+   "mesh": "cap_under",
+   "lod": "near",
+   "double": true,
+   "noink": true,
+   "priority": 1.5,
+   "solid": false,
+   "center": [
+    0,
+    0.132,
+    0
+   ],
+   "radius": 0.0707,
+   "tris": 5248
+  },
+  {
+   "id": "warts",
+   "name": "Warts (universal veil remnants)",
+   "system": "mature",
+   "node": "fa_warts",
+   "color": "#f6f1e2",
+   "instances": "warts",
+   "tint": 0.12,
+   "lod": "near",
+   "priority": 1.9,
+   "center": [
+    0.0016,
+    0.1475,
+    0.0016
+   ],
+   "radius": 0.0715,
+   "count": 150,
+   "tris": 1200
+  },
+  {
+   "id": "gills",
+   "name": "Gills (lamellae)",
+   "system": "mature",
+   "node": "fa_gills",
+   "color": "#f2ecdd",
+   "mesh": "gills",
+   "lod": "near",
+   "double": true,
+   "noink": true,
+   "priority": 1.7,
+   "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "mushroom_gill",
+    "D": 0.0006,
+    "button": "Look inside a gill"
+   },
+   "center": [
+    0,
+    0.1287,
+    0
+   ],
+   "radius": 0.0693,
+   "tris": 11760
+  },
+  {
+   "id": "stipe",
+   "name": "Stipe (stem)",
+   "system": "mature",
+   "node": "fa_stipe",
+   "color": "#f1ecdf",
+   "mesh": "stipe",
+   "lod": "near",
+   "ink_w": 0.0014,
+   "priority": 1.5,
+   "solid": false,
+   "center": [
+    0,
+    0.0918,
+    0
+   ],
+   "radius": 0.0487,
+   "tris": 560
+  },
+  {
+   "id": "ring",
+   "name": "Ring (annulus)",
+   "system": "mature",
+   "node": "fa_ring",
+   "color": "#f4efe3",
+   "mesh": "ring",
+   "lod": "near",
+   "ink_w": 0.0012,
+   "priority": 1.8,
+   "solid": false,
+   "center": [
+    0.0002,
+    0.1087,
+    0.0003
+   ],
+   "radius": 0.0381,
+   "tris": 1120
+  },
+  {
+   "id": "bulb",
+   "name": "Swollen base (volva remains)",
+   "system": "mature",
+   "node": "fa_volva",
+   "color": "#ece4d0",
+   "mesh": "bulb",
+   "lod": "near",
+   "ink_w": 0.0014,
+   "priority": 1.6,
+   "solid": false,
+   "center": [
+    0,
+    0.0185,
+    0
+   ],
+   "radius": 0.0297,
+   "tris": 560
+  },
+  {
+   "id": "volva_scales",
+   "name": "Rings of scales on the base",
+   "system": "mature",
+   "node": "fa_volva",
+   "color": "#f4eede",
+   "instances": "volva_scales",
+   "tint": 0.12,
+   "lod": "near",
+   "priority": 1.9,
+   "center": [
+    -0.0001,
+    0.0142,
+    0.0001
+   ],
+   "radius": 0.0297,
+   "count": 38,
+   "tris": 304
+  },
+  {
+   "id": "cap_far",
+   "name": "Cap (pileus)",
+   "system": "mature",
+   "node": "fa_cap",
+   "color": "#d12a1d",
+   "mesh": "cap_far",
+   "lod": "far",
+   "priority": 1.4,
+   "solid": false,
+   "far_of": "cap",
+   "center": [
+    0,
+    0.146,
+    0
+   ],
+   "radius": 0.073,
+   "tris": 392
+  },
+  {
+   "id": "stipe_far",
+   "name": "Stipe (stem)",
+   "system": "mature",
+   "node": "fa_stipe",
+   "color": "#f1ecdf",
+   "mesh": "stipe_far",
+   "lod": "far",
+   "priority": 1.5,
+   "solid": false,
+   "far_of": "stipe",
+   "center": [
+    0,
+    0.0693,
+    0
+   ],
+   "radius": 0.0721,
+   "tris": 80
+  },
+  {
+   "id": "h_cap",
+   "name": "Cap, half open",
+   "system": "halfopen",
+   "node": "fa_expanding",
+   "color": "#d12a1d",
+   "mesh": "h_cap",
+   "lod": "near",
+   "ink_w": 0.0014,
+   "priority": 1.4,
+   "solid": false,
+   "center": [
+    -0.19,
+    0.082,
+    0.14
+   ],
+   "radius": 0.0438,
+   "tris": 5952
+  },
+  {
+   "id": "h_warts",
+   "name": "Warts",
+   "system": "halfopen",
+   "node": "fa_warts",
+   "color": "#f6f1e2",
+   "instances": "h_warts",
+   "tint": 0.12,
+   "lod": "near",
+   "priority": 1.9,
+   "center": [
+    -0.1892,
+    0.0842,
+    0.1408
+   ],
+   "radius": 0.0417,
+   "count": 150,
+   "tris": 1200
+  },
+  {
+   "id": "h_veil",
+   "name": "Partial veil (still joined)",
+   "system": "halfopen",
+   "node": "fa_ring",
+   "color": "#f4efe3",
+   "mesh": "h_veil",
+   "lod": "near",
+   "ink_w": 0.001,
+   "priority": 1.8,
+   "solid": false,
+   "center": [
+    -0.19,
+    0.0532,
+    0.14
+   ],
+   "radius": 0.0354,
+   "tris": 640
+  },
+  {
+   "id": "h_stipe",
+   "name": "Stipe, half open",
+   "system": "halfopen",
+   "node": "fa_stipe",
+   "color": "#f1ecdf",
+   "mesh": "h_stipe",
+   "lod": "near",
+   "ink_w": 0.0012,
+   "priority": 1.5,
+   "solid": false,
+   "center": [
+    -0.19,
+    0.0384,
+    0.14
+   ],
+   "radius": 0.0451,
+   "tris": 504
+  },
+  {
+   "id": "h_scales",
+   "name": "Scales on the base",
+   "system": "halfopen",
+   "node": "fa_volva",
+   "color": "#f4eede",
+   "instances": "h_scales",
+   "tint": 0.12,
+   "lod": "near",
+   "priority": 1.9,
+   "center": [
+    -0.1902,
+    0.0092,
+    0.1401
+   ],
+   "radius": 0.022,
+   "count": 20,
+   "tris": 160
+  },
+  {
+   "id": "h_far",
+   "name": "Half-open fruit body",
+   "system": "halfopen",
+   "node": "fa_expanding",
+   "color": "#e9e2d0",
+   "mesh": "h_stipe_far",
+   "lod": "far",
+   "priority": 1.4,
+   "solid": false,
+   "far_of": "h_stipe",
+   "center": [
+    -0.19,
+    0.0414,
+    0.14
+   ],
+   "radius": 0.0437,
+   "tris": 36
+  },
+  {
+   "id": "egg",
+   "name": "Button (universal veil)",
+   "system": "egg",
+   "node": "fa_button",
+   "color": "#f1ece0",
+   "mesh": "egg",
+   "ink_w": 0.0012,
+   "priority": 1.5,
+   "solid": false,
+   "center": [
+    0.17,
+    0.0223,
+    0.12
+   ],
+   "radius": 0.0272,
+   "tris": 576
+  },
+  {
+   "id": "egg_flakes",
+   "name": "Veil flakes",
+   "system": "egg",
+   "node": "fa_button",
+   "color": "#f1e8c6",
+   "instances": "egg_flakes",
+   "tint": 0.1,
+   "lod": "near",
+   "priority": 1.9,
+   "center": [
+    0.1678,
+    0.0239,
+    0.1211
+   ],
+   "radius": 0.0268,
+   "count": 46,
+   "tris": 368
+  },
+  {
+   "id": "c_cap",
+   "name": "Cap (pileus)",
+   "system": "half",
+   "node": "fa_cap",
+   "color": "#d12a1d",
+   "mesh": "c_cap",
+   "pivot": "wood",
+   "ink_w": 0.0014,
+   "priority": 1.4,
+   "solid": false,
+   "center": [
+    0,
+    0.1468,
+    -0.0353
+   ],
+   "radius": 0.0812,
+   "tris": 2624
+  },
+  {
+   "id": "c_under",
+   "name": "Underside of the cap",
+   "system": "half",
+   "node": "fa_gills",
+   "color": "#e8dfc6",
+   "mesh": "c_under",
+   "pivot": "wood",
+   "double": true,
+   "noink": true,
+   "priority": 1.5,
+   "solid": false,
+   "center": [
+    0,
+    0.132,
+    -0.0353
+   ],
+   "radius": 0.0791,
+   "tris": 2624
+  },
+  {
+   "id": "c_warts",
+   "name": "Warts",
+   "system": "half",
+   "node": "fa_warts",
+   "color": "#f6f1e2",
+   "instances": "c_warts",
+   "pivot": "wood",
+   "tint": 0.12,
+   "priority": 1.9,
+   "center": [
+    0.0008,
+    0.1481,
+    -0.0282
+   ],
+   "radius": 0.0685,
+   "count": 71,
+   "tris": 568
+  },
+  {
+   "id": "c_gills",
+   "name": "Gills (lamellae)",
+   "system": "half",
+   "node": "fa_gills",
+   "color": "#f2ecdd",
+   "mesh": "c_gills",
+   "pivot": "wood",
+   "double": true,
+   "noink": true,
+   "priority": 1.7,
+   "solid": false,
+   "center": [
+    0,
+    0.1287,
+    -0.0349
+   ],
+   "radius": 0.0769,
+   "tris": 5796
+  },
+  {
+   "id": "c_stipe",
+   "name": "Stipe (stem)",
+   "system": "half",
+   "node": "fa_stipe",
+   "color": "#f1ecdf",
+   "mesh": "c_stipe",
+   "pivot": "wood",
+   "ink_w": 0.0012,
+   "priority": 1.5,
+   "solid": false,
+   "center": [
+    0,
+    0.0918,
+    -0.0067
+   ],
+   "radius": 0.0491,
+   "tris": 280
+  },
+  {
+   "id": "c_bulb",
+   "name": "Swollen base",
+   "system": "half",
+   "node": "fa_volva",
+   "color": "#ece4d0",
+   "mesh": "c_bulb",
+   "pivot": "wood",
+   "ink_w": 0.0012,
+   "priority": 1.6,
+   "solid": false,
+   "center": [
+    0,
+    0.0185,
+    -0.0102
+   ],
+   "radius": 0.0314,
+   "tris": 280
+  },
+  {
+   "id": "c_scales",
+   "name": "Scales on the base",
+   "system": "half",
+   "node": "fa_volva",
+   "color": "#f4eede",
+   "instances": "c_scales",
+   "pivot": "wood",
+   "tint": 0.12,
+   "priority": 1.9,
+   "center": [
+    0.0001,
+    0.0141,
+    -0.0114
+   ],
+   "radius": 0.0291,
+   "count": 20,
+   "tris": 160
+  },
+  {
+   "id": "c_ring",
+   "name": "Ring (annulus)",
+   "system": "half",
+   "node": "fa_ring",
+   "color": "#f4efe3",
+   "mesh": "c_ring",
+   "pivot": "wood",
+   "ink_w": 0.001,
+   "priority": 1.8,
+   "solid": false,
+   "center": [
+    0.0004,
+    0.1088,
+    -0.0177
+   ],
+   "radius": 0.0412,
+   "tris": 560
+  },
+  {
+   "id": "c_cuticle",
+   "name": "Cuticle (red skin)",
+   "system": "half",
+   "node": "fa_cuticle",
+   "color": "#c8261b",
+   "mesh": "c_cuticle",
+   "pivot": "wood",
+   "double": true,
+   "noink": true,
+   "priority": 2,
+   "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "mushroom_flesh",
+    "D": 0.0008,
+    "button": "Look inside the cap flesh"
+   },
+   "center": [
+    0,
+    0.1469,
+    0.0002
+   ],
+   "radius": 0.0726,
+   "tris": 176
+  },
+  {
+   "id": "c_subcuticle",
+   "name": "Yellow layer under the skin",
+   "system": "half",
+   "node": "fa_cuticle",
+   "color": "#e8c24a",
+   "mesh": "c_subcuticle",
+   "pivot": "wood",
+   "double": true,
+   "noink": true,
+   "priority": 2,
+   "solid": false,
+   "center": [
+    0,
+    0.1454,
+    0.0002
+   ],
+   "radius": 0.0726,
+   "tris": 176
+  },
+  {
+   "id": "c_flesh",
+   "name": "Flesh of the cap",
+   "system": "half",
+   "node": "fa_cap_flesh",
+   "color": "#fbf8ee",
+   "mesh": "c_flesh",
+   "pivot": "wood",
+   "double": true,
+   "noink": true,
+   "priority": 1.8,
+   "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "mushroom_flesh",
+    "D": 0.0008,
+    "button": "Look inside the cap flesh"
+   },
+   "center": [
+    0,
+    0.144,
+    0.0002
+   ],
+   "radius": 0.0723,
+   "tris": 176
+  },
+  {
+   "id": "c_gill",
+   "name": "Gill, cut lengthwise",
+   "system": "half",
+   "node": "fa_gill_inside",
+   "color": "#efe3c4",
+   "mesh": "c_gill",
+   "pivot": "wood",
+   "double": true,
+   "noink": true,
+   "priority": 2,
+   "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "mushroom_gill",
+    "D": 0.0006,
+    "button": "Look inside a gill"
+   },
+   "center": [
+    0,
+    0.1287,
+    0.0004
+   ],
+   "radius": 0.0693,
+   "tris": 80
+  },
+  {
+   "id": "c_stipe_sec",
+   "name": "Stipe, cut",
+   "system": "half",
+   "node": "fa_stipe",
+   "color": "#f1ecdf",
+   "mesh": "c_stipe_sec",
+   "pivot": "wood",
+   "double": true,
+   "noink": true,
+   "priority": 1.8,
+   "solid": false,
+   "center": [
+    0,
+    0.065,
+    0
+   ],
+   "radius": 0.0737,
+   "tris": 80
+  },
+  {
+   "id": "c_ring_sec",
+   "name": "Ring, cut",
+   "system": "half",
+   "node": "fa_ring",
+   "color": "#f4efe3",
+   "mesh": "c_ring_sec",
+   "pivot": "wood",
+   "double": true,
+   "noink": true,
+   "priority": 2,
+   "solid": false,
+   "center": [
+    0,
+    0.1102,
+    0.0003
+   ],
+   "radius": 0.0363,
+   "tris": 16
+  },
+  {
+   "id": "e_outer",
+   "name": "Button (universal veil)",
+   "system": "eggcut",
+   "node": "fa_button",
+   "color": "#f1ece0",
+   "mesh": "e_outer",
+   "pivot": "wood",
+   "double": true,
+   "noink": true,
+   "priority": 1.5,
+   "solid": false,
+   "center": [
+    0.17,
+    0.0223,
+    -0.0295
+   ],
+   "radius": 0.0288,
+   "tris": 288
+  },
+  {
+   "id": "e_veil",
+   "name": "Universal veil, cut",
+   "system": "eggcut",
+   "node": "fa_button",
+   "color": "#f1ece0",
+   "mesh": "e_veil",
+   "pivot": "wood",
+   "double": true,
+   "noink": true,
+   "priority": 1.8,
+   "solid": false,
+   "center": [
+    0.17,
+    0.0223,
+    -0.02
+   ],
+   "radius": 0.0263,
+   "tris": 120
+  },
+  {
+   "id": "e_roof",
+   "name": "Universal veil, cut",
+   "system": "eggcut",
+   "node": "fa_button",
+   "color": "#f1ece0",
+   "mesh": "e_roof",
+   "pivot": "wood",
+   "double": true,
+   "noink": true,
+   "priority": 1.8,
+   "solid": false,
+   "center": [
+    0.17,
+    0.0445,
+    -0.02
+   ],
+   "radius": 0.0098,
+   "tris": 24
+  },
+  {
+   "id": "e_stem",
+   "name": "Young stipe",
+   "system": "eggcut",
+   "node": "fa_stipe",
+   "color": "#f1ecdf",
+   "mesh": "e_stem",
+   "pivot": "wood",
+   "double": true,
+   "noink": true,
+   "priority": 1.8,
+   "solid": false,
+   "center": [
+    0.17,
+    0.015,
+    -0.02
+   ],
+   "radius": 0.0159,
+   "tris": 22
+  },
+  {
+   "id": "e_cap_cuticle",
+   "name": "Young cap, red skin",
+   "system": "eggcut",
+   "node": "fa_cuticle",
+   "color": "#c8261b",
+   "mesh": "e_cap_cuticle",
+   "pivot": "wood",
+   "double": true,
+   "noink": true,
+   "priority": 2,
+   "solid": false,
+   "center": [
+    0.17,
+    0.0313,
+    -0.0198
+   ],
+   "radius": 0.0156,
+   "tris": 64
+  },
+  {
+   "id": "e_cap_sub",
+   "name": "Yellow layer under the skin",
+   "system": "eggcut",
+   "node": "fa_cuticle",
+   "color": "#e8c24a",
+   "mesh": "e_cap_sub",
+   "pivot": "wood",
+   "double": true,
+   "noink": true,
+   "priority": 2,
+   "solid": false,
+   "center": [
+    0.17,
+    0.0325,
+    -0.0198
+   ],
+   "radius": 0.0143,
+   "tris": 64
+  },
+  {
+   "id": "e_cap_flesh",
+   "name": "Young cap, flesh",
+   "system": "eggcut",
+   "node": "fa_cap_flesh",
+   "color": "#fbf8ee",
+   "mesh": "e_cap_flesh",
+   "pivot": "wood",
+   "double": true,
+   "noink": true,
+   "priority": 1.9,
+   "solid": false,
+   "center": [
+    0.17,
+    0.0298,
+    -0.0198
+   ],
+   "radius": 0.0132,
+   "tris": 64
+  },
+  {
+   "id": "e_gills",
+   "name": "Young gills",
+   "system": "eggcut",
+   "node": "fa_gills",
+   "color": "#f2ecdd",
+   "mesh": "e_gills",
+   "pivot": "wood",
+   "double": true,
+   "noink": true,
+   "priority": 2,
+   "solid": false,
+   "center": [
+    0.17,
+    0.0221,
+    -0.0196
+   ],
+   "radius": 0.0119,
+   "tris": 28
+  },
+  {
+   "id": "soil",
+   "name": "Soil",
+   "system": "soil",
+   "node": "bio_soil_ecology",
+   "color": "#6b4c32",
+   "mesh": "soil",
+   "priority": 0.5,
+   "solid": false,
+   "noink": true,
+   "opacity_max": 0.3,
+   "center": [
+    0,
+    -0.25,
+    0
+   ],
+   "radius": 0.8191,
+   "tris": 160
+  },
+  {
+   "id": "mycelium",
+   "name": "Mycelium (fungal threads)",
+   "system": "mycelium",
+   "node": "fa_mycelium",
+   "color": "#f6f3ea",
+   "mesh": "mycelium",
+   "priority": 1.8,
+   "solid": false,
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "mushroom_ecm",
+    "D": 0.0004,
+    "button": "Look at a root tip and its fungal partner"
+   },
+   "center": [
+    -0.0455,
+    -0.2069,
+    -0.0748
+   ],
+   "radius": 0.8131,
+   "tris": 22898
+  },
+  {
+   "id": "root",
+   "name": "Root of a host tree",
+   "system": "root",
+   "node": "fa_host_root",
+   "color": "#8a6a47",
+   "mesh": "root",
+   "priority": 1.5,
+   "solid": false,
+   "noink": true,
+   "center": [
+    -0.0012,
+    -0.1737,
+    0.3311
+   ],
+   "radius": 0.7833,
+   "tris": 984
+  },
+  {
+   "id": "rootlets",
+   "name": "Fine roots",
+   "system": "root",
+   "node": "fa_host_root",
+   "color": "#a98d62",
+   "mesh": "rootlets",
+   "priority": 1.6,
+   "solid": false,
+   "noink": true,
+   "center": [
+    -0.0343,
+    -0.2066,
+    0.3278
+   ],
+   "radius": 0.7031,
+   "tris": 1620
+  },
+  {
+   "id": "ecm_core",
+   "name": "Root tips (inside the sheath)",
+   "system": "root",
+   "node": "fa_ecm",
+   "color": "#b89a6c",
+   "mesh": "ecm_core",
+   "priority": 1.8,
+   "solid": false,
+   "noink": true,
+   "center": [
+    -0.0387,
+    -0.2258,
+    0.3289
+   ],
+   "radius": 0.7142,
+   "tris": 5040
+  },
+  {
+   "id": "ecm_sheath",
+   "name": "Fungal sheath (mantle) on a root tip",
+   "system": "root",
+   "node": "fa_ecm",
+   "color": "#efe1b8",
+   "mesh": "ecm_sheath",
+   "priority": 1.9,
+   "solid": false,
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "mushroom_ecm",
+    "D": 0.0004,
+    "button": "Look at a root tip and its fungal partner"
+   },
+   "center": [
+    -0.0399,
+    -0.2262,
+    0.3295
+   ],
+   "radius": 0.715,
+   "tris": 4800
+  }
+ ],
+ "stats": {
+  "parts": 46,
+  "uniqueMeshTris": 81720,
+  "nearTris": 35400,
+  "midTris": 1084,
+  "farTris": 1084
+ }
+}
