@@ -16,10 +16,10 @@ hurricane, hurricanes, cyclone, typhoon, tornado, tornadoes, twister, tropical s
 tsunami, tsunamis, tidal wave, natural disaster, natural hazards => kn:tsunami_hazards, kn:seismology, kn:volcanism // src: noaa nasa
 air, the air, atmosphere, the atmosphere, the sky, sky, what is air made of, air pressure => pl:Air, kn:atmosphere_structure, kn:gas_air_properties, mol:nitrogen, mol:oxygen // Dry air is about 78% nitrogen and 21% oxygen. // src: noaa pubchem
 climate, climate change, global warming, the climate, warming planet, carbon emissions, emissions, co2 emissions, net zero => kn:climate_system, kn:greenhouse_effect, kn:carbon_cycle_climate, node:bio_climate_change_biology // src: noaa
-greenhouse effect, greenhouse, the greenhouse effect => kn:greenhouse_effect, mol:carbon_dioxide, mol:methane, mol:water // src: noaa
-carbon cycle, carbon, where does carbon go => kn:carbon_cycle_climate, node:carbon_cycle_process, el:C, kn:biogeochemical_cycles // src: noaa openstax-bio
+greenhouse effect, greenhouse, the greenhouse effect => kn:greenhouse_effect // src: noaa
+carbon cycle, carbon, where does carbon go => kn:carbon_cycle_climate, node:carbon_cycle_process, kn:biogeochemical_cycles // src: noaa openstax-bio
 nitrogen cycle => kn:nitrogen_cycle, node:nitrogen_cycle_process, kn:haber_bosch // src: openstax-bio
-ocean acidification, acid oceans => kn:ocean_acidification, mol:carbon_dioxide, mol:carbonate // src: noaa
+ocean acidification, acid oceans => kn:ocean_acidification // src: noaa
 ocean, oceans, sea, seas, seawater, the sea, deep sea, currents, ocean currents, gulf stream => kn:oceans_circulation, kn:amoc_node, kn:tides, kn:ocean_acidification, node:bio_marine_biology // src: noaa
 tide, tides, high tide, low tide, why are there tides, spring tide => kn:tides, kn:moons_tidal, pl:Moon // Tides are mainly raised by the Moon's gravity. // src: noaa nasa
 waves, wave, sound waves, water waves, ocean waves, wave motion => kn:waves, node:waves_interference, kn:wave_optics, kn:oceans_circulation // src: app-card
@@ -86,7 +86,7 @@ pressure, buoyancy, floating, why do ships float, sinking, archimedes, underwate
 friction, drag, air resistance, sliding => kn:newton_laws, kn:bernoulli_flight, kn:elasticity_materials // src: app-card
 spring, springs, elastic, stretch, strength of materials, stress and strain, bending, why things break, materials strength => kn:elasticity_materials, kn:electrostatic_bonds, kn:dislocations_strength // src: app-card
 spin, spinning, rotation, torque, angular momentum, ice skater, gyroscope effect => kn:rotational_dynamics, node:rotation_torque // src: app-card
-vibrations, oscillation, pendulum, swing, resonance, bridge collapse, tuning fork => kn:oscillations, node:resonance_q, kn:waves // src: app-card
+vibrations, oscillation, pendulum, swing, resonance, bridge collapse, tuning fork => kn:oscillations, kn:waves // src: app-card
 sound, noise, music, echo, pitch, loud, volume, how do we hear sound, sonic boom => kn:sound_hearing, kn:waves, node:phone_speaker // src: app-card
 turbulence, chaos, butterfly effect, chaotic, unpredictable => kn:turbulence, kn:dynamical_chaos // src: app-card
 atom, atoms, an atom, what is an atom, atomic, structure of the atom, inside an atom, tiny things, atom model => lm:Oxygen nucleus, node:at_atom, node:at_orbital, el:O, node:at_models, el:H // Every atom has a tiny nucleus surrounded by a cloud of electrons. // src: openstax-chem

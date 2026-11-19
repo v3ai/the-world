@@ -236,7 +236,7 @@ periodic table, table of elements, element, elements, chemical element, chemical
 noble gas, noble gases, neon sign, neon => el:Ne, el:He, el:Ar, el:Kr, el:Xe // src: iupac-elements
 uranium, nuclear fuel, nuclear power, nuclear reactor, atomic bomb => el:U, kn:fission_power, kn:radioactivity // src: iupac-elements openstax-chem
 radioactive, radioactivity, radiation, half life, geiger counter => kn:radioactivity, kn:radiometric_dating, el:U, el:Ra // src: openstax-chem
-carbon dating, radiocarbon, c14 => kn:radiometric_dating, el:C // src: openstax-chem
+carbon dating, radiocarbon, c14 => kn:radiometric_dating // src: openstax-chem
 acid, acids, base, bases, alkaline, ph, ph scale, acidic => node:bio_acids_bases_ph, kn:chemistry_equilibrium, mol:hydrogen_chloride, mol:acetic_acid // src: openstax-chem
 chemical bond, chemical bonds, bonding, covalent, ionic, hydrogen bond, hydrogen bonds => node:bio_ionic_covalent, kn:chemical_bonding, node:bio_polarity_hbonds // src: openstax-chem
 chemical reaction, reactions, catalyst, catalysis, reaction rate => kn:reaction_kinetics, kn:thermochemistry, kn:chemistry_equilibrium // src: openstax-chem
