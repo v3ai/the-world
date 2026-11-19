@@ -323,22 +323,55 @@ FT.gas = {
     };
   }
 };
-/* ---------- plasma (stellar photosphere / corona) — unit nm ---------- */
+/* ---------- plasma (inside the Sun, or a star) — unit nm ---------- */
+const PLASMA_SUP = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+const plasmaSci = x => { const e = Math.floor(Math.log10(x)), m = x / Math.pow(10, e); return `${m.toFixed(1)} × 10${e < 0 ? '⁻' : ''}${String(Math.abs(e)).split('').map(c => PLASMA_SUP[+c]).join('')}`; };
 FT.plasma = {
   build(F) {
     F.env = { opaque: true, bg: 0x04070f };
-    const r = rng(4), P = [], C = [], S = [], kinds = [];
-    for (let i = 0; i < 2600; i++) { const p = new V3(gauss(r), gauss(r), gauss(r)).normalize().multiplyScalar(30 * Math.cbrt(r())); const e = r() < .5; P.push(p.x, p.y, p.z); kinds.push(e ? 'e' : 'p'); if (e) { C.push(.45, .7, 1); S.push(.25); } else { C.push(1, .45, .3); S.push(.45); } }
-    const pts = makePoints(P, C, S); F.add(pts); F.pick(pts, 'plasma', 1);
-    pts.userData.info = { title: 'Plasma', tag: 'The fourth state of matter', body: '<p>So hot that atoms are torn apart: bare nuclei (red, mostly protons in hydrogen plasma) and free electrons (blue) move separately. Plasma conducts electricity and is steered by magnetic fields. Stars are made of it, and most of the ordinary matter we can see in the universe is plasma.</p><p class="mini">Model: 2,600 dots in a ball 60 nm across, random positions, equal numbers of electrons and nuclei. Dot sizes are not true sizes (a proton is about 10⁶ times smaller than a nanometer). The density drawn, about 2×10²⁵ particles per m³, is like air; the Sun\'s core has about 10⁷ times more per volume (150 g/cm³, NASA).</p>', facts: [['Sun\'s surface', '≈ 5,800 K'], ['Sun\'s core', '≈ 15 million K'], ['Sun\'s core density', '≈ 150 g/cm³']] };
-    F.blurb = 'Plasma at the scale of nanometers: free electrons (blue) and bare nuclei (red).';
-    F.note = 'Schematic: random positions, dot sizes not to scale, density about like air (the Sun\'s core is about 10⁷ times denser). Zoom into a red dot to reach a proton.';
-    F.update = (dt, t) => { pts.rotation.y += dt * .04; };
+    const par = F.parent, AUSUN = 695700 / 1.495978707e8; let r = null;
+    if (par && par.type === 'sun') r = F.pos.length(); else if (par && par.type === 'solarsystem' && F.pos.length() < 2 * AUSUN) r = F.pos.length() / AUSUN;
+    const M = r === null ? null : sunAt(r), ionised = !M || M.T > 1.5e4;
+    const X = M ? M.X : .7, Z = .02, Y = 1 - X - Z, nH = X / 1.008, nHe = Y / 4.0026, ne = nH + 2 * nHe;       // moles per gram of each species
+    const perM3 = M ? M.rho * 1000 * 6.02214e23 * (ionised ? nH + nHe + ne : nH + nHe) : null;                    // particles (ions and electrons, or atoms) per m3
+    const Rp = ionised ? 30 : 60, vol = 4 / 3 * Math.PI * Math.pow(Rp * 1e-9, 3), Nreal = perM3 ? perM3 * vol : null;
+    const N = Nreal ? Math.max(24, Math.min(2600, Math.round(Nreal))) : 2600;
+    const rg = rng(4), P = [], C = [], S = [], K = [], tot = ionised ? nH + nHe + ne : nH + nHe;
+    const add = (kind) => { const p = new V3(gauss(rg), gauss(rg), gauss(rg)).normalize().multiplyScalar(Rp * Math.cbrt(rg())); return p; };
+    const species = ionised ? [['p', nH / tot, [1, .42, .3], 1.8], ['he', nHe / tot, [1, .82, .3], 3.2], ['e', ne / tot, [.5, .75, 1], 1.0]] : [['p', nH / tot, [1, .42, .3], 3], ['he', nHe / tot, [1, .82, .3], 5]];
+    species.forEach(([k, f, c, sz]) => { const n = Math.round(N * f); for (let i = 0; i < n; i++) { const p = add(); P.push(p.x, p.y, p.z); C.push(...c); S.push(sz); K.push(k); if (!ionised) { const q = p.clone().add(new V3(gauss(rg), gauss(rg), gauss(rg)).multiplyScalar(.9)); P.push(q.x, q.y, q.z); C.push(.5, .75, 1); S.push(1.6); K.push('e'); if (k === 'he') { const q2 = p.clone().add(new V3(gauss(rg), gauss(rg), gauss(rg)).multiplyScalar(.9)); P.push(q2.x, q2.y, q2.z); C.push(.5, .75, 1); S.push(1.6); K.push('e'); } } } });
+    const pts = makePoints(P, C, S); F.add(pts); F.pick(pts, 'plasma', 1); pts.userData.madeOf = null;
+    const T = M ? M.T : null, vp = T ? Math.sqrt(3 * 1.380649e-23 * T / 1.67262e-27) / 1000 : null;
+    const place = M ? (r > .999 ? 'the photosphere, the Sun\'s visible surface' : r < .001 ? 'the centre of the Sun (the core)' : `${(r * 100).toFixed(0)}% of the way out from the centre, in the Sun's ${M.layer} ${M.layer === 'core' ? '' : 'zone'}`.replace(' zone', ' zone').replace('core ', 'core')) : null;
+    const tK = T ? (T >= 1e6 ? `${(T / 1e6).toFixed(T >= 1e7 ? 1 : 1)} million K` : `${Math.round(T).toLocaleString('en-US')} K`) : '';
+    const rho = M ? (M.rho >= 1 ? `${Math.round(M.rho).toLocaleString('en-US')} kg/m³` : `${plasmaSci(M.rho)} kg/m³`) : '';
+    const comp = M ? `${Math.round(X * 100)}% hydrogen and ${Math.round(Y * 100)}% helium by mass` : '';
+    pts.userData.info = M ? { title: ionised ? 'Plasma inside the Sun' : 'Gas at the Sun\'s surface', tag: ionised ? 'Fully ionised plasma' : 'Hot, thinly ionised gas',
+      body: ionised ? `<p>At ${tK} atoms cannot hold on to their electrons. What is left is a gas of bare hydrogen nuclei (single protons, red), helium nuclei (gold) and free electrons (blue), all moving freely, steered by electric and magnetic fields. This is the fourth state of matter, plasma.</p>`
+        : `<p>At about ${tK} the gas at the Sun's surface is mostly <b>neutral atoms</b>: a proton with its electron (red and blue) and helium atoms (gold with two blue electrons). Only a small fraction are ionised. The Sun's surface is not a plasma in the sense of its hot interior.</p>`,
+      facts: [['Where', place], ['Temperature', `≈ ${tK} (standard solar model)`], ['Density', `≈ ${rho}`], ['Composition', `≈ ${comp} (approximate)`], ['Particles per m³', `≈ ${plasmaSci(perM3)}`], ['Typical proton speed', `≈ ${Math.round(vp).toLocaleString('en-US')} km/s (√(3kT/m), calculated)`]],
+      note: 'Conditions are interpolated between standard-solar-model values; the picture is schematic.' }
+      : { title: 'Plasma', tag: 'The fourth state of matter', body: '<p>So hot that atoms are torn apart: bare nuclei (red, mostly protons) and free electrons (blue) fly separately. Plasma conducts electricity and is steered by magnetic fields. Over 99% of the visible matter in the universe is plasma, and stars are made of it.</p>', facts: [['Sun\'s surface', '≈ 5,772 K'], ['Sun\'s core', '≈ 15 million K']] };
+    if (M) {
+      F.name = ionised ? `Plasma inside the Sun (${r < .001 ? 'centre' : r.toFixed(2) + ' R'})` : 'Gas at the Sun\'s surface';
+      if (!F.blurb || r > .001) F.blurb = `Inside the Sun, at ${place}: a patch ${Rp * 2} nm wide, ${tK}, density ${rho}. ${ionised ? 'Bare hydrogen and helium nuclei and free electrons.' : 'Mostly neutral hydrogen and helium atoms.'}`;
+      F.note = `Schematic: ${N.toLocaleString('en-US')} particles are drawn${Nreal && Nreal > N * 1.5 ? ` of the roughly ${plasmaSci(Nreal)} that would fill this view (at this density the real spacing is about ${(Math.cbrt(1 / perM3) * 1e9).toFixed(3)} nm)` : Nreal ? ' (about the true number for this density)' : ''}; positions are random and the dots are far larger than real nuclei (about 10⁻¹⁵ m). Composition: ${comp} (rounded); the heavier elements (about 2%) are left out. Conditions come from a standard solar model, interpolated.`;
+    } else { F.blurb = F.blurb || 'Stellar plasma at nanometer scale: free electrons and bare nuclei.'; F.note = 'Schematic: a patch of stellar plasma drawn at random; the conditions of any particular star are not modelled.'; }
+    const vel = new Float32Array(P.length), sp = { p: 1, he: .5, e: 6 }; for (let i = 0; i < K.length; i++) { const k = sp[K[i]] * (T ? Math.sqrt(T / 1.57e7) : 1) * .8; vel[3 * i] = gauss(rg) * k; vel[3 * i + 1] = gauss(rg) * k; vel[3 * i + 2] = gauss(rg) * k; }
+    const pos = pts.geometry.attributes.position;
+    F.update = (dt, t) => {
+      pts.rotation.y += dt * .04; const d = Math.min(dt, .05); // thermal motion, slowed down enormously: electrons move fastest, helium nuclei slowest
+      if (ionised) for (let i = 0; i < K.length; i++) { let x = pos.array[3 * i] + vel[3 * i] * d, y = pos.array[3 * i + 1] + vel[3 * i + 1] * d, z = pos.array[3 * i + 2] + vel[3 * i + 2] * d; if (x * x + y * y + z * z > Rp * Rp) { vel[3 * i] *= -1; vel[3 * i + 1] *= -1; vel[3 * i + 2] *= -1; x = pos.array[3 * i]; y = pos.array[3 * i + 1]; z = pos.array[3 * i + 2]; } pos.array[3 * i] = x; pos.array[3 * i + 1] = y; pos.array[3 * i + 2] = z; }
+      pos.needsUpdate = true;
+    };
+    // zooming into a nucleus goes on down: a hydrogen nucleus is a proton; a helium nucleus is two protons and two neutrons
     F.spawn = (T) => {
-      let bi = -1, bd = Infinity; for (let i = 0; i < kinds.length; i++) { const d = Math.hypot(P[i * 3] - T.x, P[i * 3 + 1] - T.y, P[i * 3 + 2] - T.z); if (d < bd) { bd = d; bi = i; } }
+      const A = pos.array; let bi = -1, bd = Infinity; for (let i = 0; i < K.length; i++) { const d = Math.hypot(A[i * 3] - T.x, A[i * 3 + 1] - T.y, A[i * 3 + 2] - T.z); if (d < bd) { bd = d; bi = i; } }
       if (bi < 0 || bd > 1.2) return null;
-      if (kinds[bi] === 'e') { message('An electron has no known smaller parts: it is a point, as far as any experiment can tell.'); return null; }
-      return new Frame({ type: 'proton', pinned: true, name: 'Proton', unit: 1e-15, radius: 4, r1: 1.2e-14, pos: new V3(P[bi * 3], P[bi * 3 + 1], P[bi * 3 + 2]), opts: { kind: 'proton' } });
+      const at = new V3(A[bi * 3], A[bi * 3 + 1], A[bi * 3 + 2]);
+      if (K[bi] === 'e') { message('An electron has no known smaller parts: it is a point, as far as any experiment can tell.'); return null; }
+      if (K[bi] === 'he') return new Frame({ type: 'nucleus', pinned: true, name: 'Helium-4 nucleus', unit: 1e-15, radius: 40, r0: 1.5e-15, r1: 3e-13, spawnD: 4e-15, pos: at, opts: { Z: 2, N: 2, el: 'He' } });
+      return new Frame({ type: 'proton', pinned: true, name: 'Proton', unit: 1e-15, radius: 4, r1: 1.2e-14, pos: at, opts: { kind: 'proton' } });
     };
     F.spawnD = 3e-11;
   }
@@ -472,6 +505,7 @@ const MICRO = {
   air: { title: 'Air (aerosols)', blurb: 'Air, about 1 mm across: almost empty, with a few dust grains, pollen and cloud droplets drifting by. The gas molecules themselves are far too small to see at this scale.', air: true, child: 'gas' },
   cloudtops: { title: 'Cloud tops of a gas giant', blurb: 'Inside a giant planet\'s upper atmosphere, about 1 mm across: the gas is mostly hydrogen and helium. The cloud particles and haze that colour the planet are not drawn here.', air: 'giant', child: 'gas' },
   rock: { title: 'Rock surface', blurb: 'Granite-like rock: interlocking crystals of quartz, feldspar and mica.', ground: ['#a9a39b', '#8f8a84', '#c8c2b8', '#5f5b57', '#e6dfd2'], cells: 40, crystal: 'quartz' },
+  basalt: { title: 'Basalt', blurb: 'Basalt is a dark volcanic rock made of tiny crystals (mostly pyroxene and feldspar). Landers on Venus measured rock compositions similar to basalts, and radar maps show lava plains across most of the planet.', ground: ['#4f4a44', '#5d5750', '#3f3b37', '#6b645b'], cells: 40, crystal: 'forsterite' },
   metal: { title: 'Metal surface', blurb: 'Polished iron under a microscope shows grains — each a single crystal of atoms in a cubic lattice.', ground: ['#9aa3ad', '#8c96a1', '#a7b0b9'], cells: 26, crystal: 'iron_bcc' },
 };
 function microFrame(kind, pos, quat) { const M = MICRO[kind] || MICRO.soil; return new Frame({ type: 'micro', name: M.title, unit: 1e-6, radius: 800, r0: 1.5e-4, r1: 6e-3, spawnD: 1.5e-4, pos: pos.clone(), quat: quat || new THREE.Quaternion(), up: new V3(0, 1, 0), opts: { kind } }); }
@@ -555,7 +589,7 @@ const BIOME = {
   ocean: { water: true, sky: 1, micro: 'ocean' },
   moonrock: { g: ['#7d7d7d', '#8c8c8c', '#6c6c6c'], craters: true, sky: 0, micro: 'regolith', h: 15 },
   mars: { g: ['#9a4f2c', '#a85a33', '#8a4426'], rocks: true, sky: 2, micro: 'mars', h: 40 },
-  venus: { g: ['#8a6a3a', '#7c5e33'], sky: 3, micro: 'rock', h: 20 },
+  venus: { g: ['#6b5a45', '#5d4e3b', '#7a6850'], sky: 3, micro: 'basalt', h: 20 },
   cloudtops: { water: true, cloud: true, sky: 4, micro: 'cloudtops' },
 };
 const SKYCOL = { 1: [[.2, .45, .86], [.79, .88, .97]], 2: [[.55, .42, .3], [.85, .68, .5]], 3: [[.65, .52, .25], [.85, .72, .4]], 4: [[.55, .6, .75], [.85, .82, .75]] };
@@ -570,7 +604,7 @@ function skyDome(F, kind, R) {
   }));
   F.add(m); return m;
 }
-function landscapeFrame(biome, pos, quat, body) { return new Frame({ type: 'landscape', name: body ? `${body} surface` : 'Landscape', unit: 1, radius: 4000, r0: 2e-4, r1: 4e4, spawnD: .02, up: new V3(0, 1, 0), maxPolar: Math.PI / 2 - .02, pos: pos.clone(), quat: quat || new THREE.Quaternion(), opts: { biome, body } }); }
+function landscapeFrame(biome, pos, quat, body) { return new Frame({ type: 'landscape', name: biome === 'cloudtops' ? `${body} cloud tops (no solid surface)` : body ? `${body} surface` : 'Landscape', unit: 1, radius: 4000, r0: 2e-4, r1: 4e4, spawnD: .02, up: new V3(0, 1, 0), maxPolar: Math.PI / 2 - .02, pos: pos.clone(), quat: quat || new THREE.Quaternion(), opts: { biome, body } }); }
 FT.landscape = {
   build(F, o) {
     const B = BIOME[o.biome] || BIOME.grass, r = rng(o.biome.length * 31 + 3);
@@ -595,10 +629,11 @@ FT.landscape = {
     if (B.water) {
       const wm = new THREE.Mesh(new THREE.CircleGeometry(4000, 96).rotateX(-Math.PI / 2), new THREE.MeshStandardMaterial({ color: B.cloud ? 0xd9c7a2 : 0x1b4f7a, roughness: B.cloud ? 1 : .12, metalness: B.cloud ? 0 : .3 })); F.add(wm); ground = wm;
       F.pick(wm, B.cloud ? 'cloudtop' : 'ocean', 1); wm.userData.madeOf = B.cloud ? 'gas' : 'water';
+      if (B.cloud) wm.material = hitMat(); // no ground is drawn: the sky colour fills everything, so there is nothing to stand on (the plane stays only as a click target)
       if (B.cloud) wm.userData.info = { title: 'Cloud tops', tag: 'Giant planet atmosphere', body: '<p>Gas giants have no solid surface: hydrogen and helium get gradually denser with depth until they become liquid and, deeper still, metallic hydrogen. The visible clouds are ammonia ice and ammonium hydrosulfide.</p>' };
     } else {
       ground = terrain(4000, 160); F.add(ground); F.pick(ground, 'ground', 0); ground.userData.madeOf = B.micro;
-      ground.userData.info = { title: o.body ? `${o.body} surface` : 'The ground', tag: o.biome, body: `<p>${MICRO[B.micro] ? MICRO[B.micro].blurb : ''}</p>` };
+      ground.userData.info = { title: o.body ? `${o.body} surface` : 'The ground', tag: o.biome === 'venus' ? 'About 740 K, about 93 bar' : o.biome, body: `<p>${MICRO[B.micro] ? MICRO[B.micro].blurb : ''}</p>`, note: o.body && o.body !== 'Earth' ? 'The terrain you see is a generic illustration, not a map of this place.' : undefined };
       const near = terrain(60, 120); near.position.y = .02; F.add(near); F.pick(near, 'ground', 0); near.userData = ground.userData;
     }
     if (B.trees) {
@@ -609,9 +644,13 @@ FT.landscape = {
     if (B.rocks) { const rm = new THREE.InstancedMesh(new THREE.DodecahedronGeometry(1, 0), smat(0x6e3a22, { roughness: 1, flatShading: true }), 400), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(); for (let i = 0; i < 400; i++) { const a = r() * TAU, d = 3 + Math.sqrt(r()) * 300, s = .1 + Math.pow(r(), 3) * 1.5; q.setFromEuler(new THREE.Euler(r() * 6, r() * 6, r() * 6)); m4.compose(new V3(Math.cos(a) * d, s * .3, Math.sin(a) * d), q, new V3(s, s * .7, s)); rm.setMatrixAt(i, m4); } F.add(rm); F.pick(rm, 'rock', 2); rm.userData.madeOf = 'rock'; }
     const sky = B.sky ? skyDome(F, B.sky, 30000) : null;
     if (B.sky) F.env = { opaque: true, bg: 0x000000 };
-    F.blurb = o.body && o.body !== 'Earth' ? `Standing on ${o.body}. Lit by the real Sun for the date shown.` : 'Earth\'s surface, lit by the real Sun for this place and time.';
+    const bn = o.body || 'Earth', GAS = { Jupiter: ' and the temperature is about 165 K (−108 °C)', Saturn: ' and the temperature is about 134 K (−139 °C)' };
+    if (o.biome === 'cloudtops') { F.blurb = `${bn} has no solid surface. This is an illustration of its cloud tops, at the level where the pressure is about 1 bar (Earth's sea-level air pressure)${GAS[bn] || ''}. Going down, the gas only gets denser and hotter: there is no ground to stand on.`; F.note = 'Illustration only: a made-up cloud deck, not an image. The real clouds lie in layers, with ammonia ice highest, then ammonium hydrosulfide, then water.'; }
+    else if (o.biome === 'venus') { F.blurb = 'Venus\'s surface: about 740 K (467 °C) and 93 bar, under a thick cloud deck, on volcanic plains of basalt. Lit by the real Sun for the date shown, though very little sunlight actually reaches the ground.'; F.note = 'Illustrative: the ground, the sky and the light are generic. Known: the temperature and pressure, and that the plains are basalt (measured by Venera and Vega landers).'; }
+    else if (o.body && o.body !== 'Earth') { F.blurb = `A generic rocky landscape standing in for ${bn}. Lit by the real Sun for the date shown.`; F.note = `Illustrative: this is generic procedural terrain, not a map or photograph of ${bn}. Its real surface is not drawn.`; }
+    else F.blurb = 'Earth\'s surface, lit by the real Sun for this place and time.';
     F.update = () => {
-      const s = sunDirIn(F); sun.position.copy(s).multiplyScalar(100); const day = smooth(-.1, .15, s.y); sun.intensity = 1.25 * day; hemi.intensity = .08 + .55 * day;
+      const s = sunDirIn(F); sun.position.copy(s).multiplyScalar(100); const day = smooth(-.1, .15, s.y); sun.intensity = (o.body && o.body !== 'Earth' ? .95 : 1.25) * day; hemi.intensity = .08 + .55 * day;
       if (sky) { sky.material.uniforms.uSun.value.copy(s); F.env.opaque = day > .25; }
     };
     F.spawn = (T, hint) => {
@@ -631,9 +670,9 @@ FT.region = {
       const rr = rng(5); g.fillStyle = cols[0]; g.fillRect(0, 0, w, h);
       for (let i = 0; i < 900; i++) { g.fillStyle = cols[i % cols.length]; g.globalAlpha = .35; g.beginPath(); g.ellipse(rr() * w, rr() * h, 5 + rr() * 40, 5 + rr() * 30, rr() * 3, 0, TAU); g.fill(); }
       if (o.isPark) { // a city: grey blocks, a river
-        g.globalAlpha = 1; for (let i = 0; i < 1800; i++) { const x = rr() * w, y = rr() * h, d = Math.hypot(x - w / 2, y - h / 2); if (d < 28) continue; g.fillStyle = ['#8d8a86', '#7a7773', '#9c978f', '#6d6a66'][i % 4]; g.globalAlpha = .65; g.fillRect(x, y, 3 + rr() * 6, 3 + rr() * 6); }
+        g.globalAlpha = 1; for (let i = 0; i < 1800; i++) { const x = rr() * w, y = rr() * h, d = Math.hypot(x - w / 2, y - h / 2); if (d < 6) continue; g.fillStyle = ['#8d8a86', '#7a7773', '#9c978f', '#6d6a66'][i % 4]; g.globalAlpha = .65; g.fillRect(x, y, 3 + rr() * 6, 3 + rr() * 6); }
         g.globalAlpha = 1; g.strokeStyle = '#2d4f66'; g.lineWidth = 7; g.beginPath(); g.moveTo(0, h * .38); for (let x = 0; x <= w; x += 16) g.lineTo(x, h * .38 + Math.sin(x * .02) * 18 - (x > w * .4 && x < w * .6 ? 14 : 0)); g.stroke();
-        g.fillStyle = '#4f8a33'; g.beginPath(); g.ellipse(w / 2, h / 2, 26, 20, 0, 0, TAU); g.fill();
+        g.fillStyle = '#4f8a33'; g.beginPath(); g.ellipse(w / 2, h / 2, 3, 2.4, 0, 0, TAU); g.fill(); // the park is about half a kilometre wide: a few pixels of this 80-km tile
       }
       g.globalAlpha = 1;
     }, {});
@@ -641,10 +680,15 @@ FT.region = {
     const mat = new THREE.MeshStandardMaterial({ map: t, roughness: .95, transparent: true, depthWrite: false });
     mat.onBeforeCompile = sh => { sh.fragmentShader = sh.fragmentShader.replace('#include <dithering_fragment>', '#include <dithering_fragment>\n gl_FragColor.a *= smoothstep(1.0, 0.75, length(vUv-0.5)*2.0);'); };
     const m = new THREE.Mesh(geo, mat); F.add(m); F.pick(m, B.water ? 'ocean' : 'land', 0); m.userData.madeOf = B.micro;
-    m.userData.info = { title: o.isPark ? 'Greenwich, London' : 'Earth\'s surface', tag: `${o.lat.toFixed(2)}°, ${o.lon.toFixed(2)}° · ${o.biome}`, body: '<p>A 80-km-wide patch of the surface. Keep zooming to land here.</p>' };
+    m.userData.info = { title: o.isPark ? 'Greenwich, London (schematic tile)' : 'Earth\'s surface', tag: `${o.lat.toFixed(2)}°, ${o.lon.toFixed(2)}° · schematic`, body: o.isPark ? '<p>An 80-km-wide patch around Greenwich Park. <b>The picture is a schematic stand-in, not a map:</b> the grey blocks, the river line and the green patch are a generated pattern, not London\'s real streets, buildings or Thames. Keep zooming to land in the park.</p>' : '<p>An 80-km-wide patch of the surface, coloured by the land type under it on the globe map. It is an illustrative tile, not a map of this place. Keep zooming to land here.</p>', note: 'Schematic: not real streets, buildings or rivers.' };
     if (o.isPark) { const pk = markerSprite(0xffd166, 10); pk.position.y = .01; F.add(pk); F.label(pk, 'Greenwich Park', { cls: 'you', always: true }); }
     F.update = () => { const s = sunDirIn(F); sun.position.copy(s).multiplyScalar(100); };
-    F.blurb = o.isPark ? 'London from above. The park is where your journey started.' : `Earth's surface at ${o.lat.toFixed(1)}°, ${o.lon.toFixed(1)}° (${o.biome}). Textures at this scale are illustrative.`;
+    F.blurb = o.isPark ? 'Above London and Greenwich Park, where your journey started. The ground picture is a schematic tile, not a map.' : `Earth's surface at ${o.lat.toFixed(1)}°, ${o.lon.toFixed(1)}° (${o.biome}). The ground picture is an illustrative tile, not a map.`;
+    F.note = 'Schematic: the blocks, river and park are a generated pattern, not real streets or buildings. The sky colour follows the Sun and altitude. The globe\'s own map is blurry below about 100 km (4096 by 2048 pixels for the whole Earth).';
+    // a sky above the tile: blue by day, black above about 100 km and at night; the stars of the parent frames show through at night and from high up
+    const dome = skyDome(F, 1, 1500); dome.geometry.dispose(); dome.geometry = new THREE.SphereGeometry(1500, 32, 16, 0, TAU, 0, Math.PI / 2 + .09); dome.renderOrder = -1;
+    const baseUp = F.update; F.update = () => { baseUp(); const s = sunDirIn(F); dome.material.uniforms.uSun.value.copy(s); dome.material.uniforms.uOpacity.value = (1 - smooth(3e4, 1.2e5, cam.D)) * F.alpha; dome.visible = cam.D < 1.3e5; };
+    if (o.isPark) { F.attract = new V3(); F.attractD = 4000; F.attractR = 1.5; } // scrolling toward the park pulls the target onto it: you land in the park, not in generic grass
     F.spawn = (T) => landscapeFrame(o.isPark ? 'grass' : o.biome, T.clone().setY(0), null, 'Earth');
     F.spawnD = 2500;
   }
