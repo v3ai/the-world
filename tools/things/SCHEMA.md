@@ -200,11 +200,11 @@ Example target: **a dog**. The same steps give a bee, a flower, a mushroom or a 
    [Bee: body length, wing span, number of ommatidia, from a published description. Flower: petal count, floret count in the head.]
 2. **Name the layers (systems).** For a dog: `coat`, `muscles`, `skeleton`, `organs`. For a bee: `cuticle`, `wings`, `muscles`, `organs`. For a flower: `petals`, `stem`, `reproductive parts`, `roots`.
    One system = one set of parts that appear together. Write `modes[]`: each has `id`, a plain-language `label` ("Show the skeleton"), and `show: {system: opacity}`; optional `cut`, `legend`, `hotspots`, `groundSeeThrough`, `pivot`.
-3. **Write the model script** `models/dog.mjs`, `export default function build()` returning `{ thing, meshes, instances, flows? }` (see `oak.mjs` for a large one, `boulder.mjs` for a small one).
+3. **Write the model script** `models/dog.mjs` (declare `layers` and `auto` so Auto, the core sample and Hide work; `anim` where a movement is true; section 9), `export default function build()` returning `{ thing, meshes, instances, flows? }` (see `oak.mjs` for a large one, `boulder.mjs` for a small one).
    Meshes come from the toolkit: `sphere/ellipsoid/capsule/roundCone` SDFs with `smoothUnion`, meshed by `surfaceNets` (bodies, heads, organs); `tube` along `spline` (legs, tail, vessels, antennae, roots);
    `lathe` (acorns, bones' shafts, stems); `blade`/`extrudeOutline` (petals, wings, ears); `spaceColonize` + `pipeRadii` or a recursive grower (the oak's `grow`) for branching systems;
    `Instances` for repeated organs (fur tufts as 2-triangle cards, scales, teeth, florets). Parts that are cut open must be analytic geometry (see section 6).
-   Each part entry: `{id, name, system, node, color, mesh | instances | flow, lod?, parent?, deeper?, ink_w?, noink?, priority?}`. `parent` marks a detail part drawn only in cut views; `deeper` says what it is made of
+   Each part entry: `{id, name, system, node, color, mesh | instances | flow, lod?, parent?, deeper?, ink_w?, noink?}` (`priority` is not needed). `parent` marks a detail part drawn only in cut views; `deeper` says what it is made of
    (`{type:'tissue2', id, D, button}`; or `crystal`, `micro`, `tissue` of the body).
 4. **Make the three detail tiers** (section 7): full detail, a middle version (`simplify`, fewer sides, fewer instances scaled up), a far blob. Keep near under about 200k triangles.
 5. **Bake and look**: `node tools/things/bake.mjs dog` (prints triangles per part, problems); open `tools/things/preview.html?thing=dog` (orbit, layers, tiers, click parts). Fix proportions against photographs or drawings.
@@ -214,7 +214,7 @@ Example target: **a dog**. The same steps give a bee, a flower, a mushroom or a 
 7. **Tissue scenes** for what the parts are made of: write `data/things/tissues/<id>.json` (section 5): populations of cells with real sizes (cite them; mark illustrative ones in `note`), arranged with
    `list`/`grid`/`random`/`inside`; each population names its card and a `deeper` (`cell`, or a molecule from `data/molecules_all.json`). Reach it from the part with `deeper: {type:'tissue2', ...}`.
    Check the whole path in the browser: click the part, press its button, click a cell, press its button, until you reach a molecule.
-8. **Place it**: add `{id, placements:[{at:[x,z], rot, scale, seed}]}` to `data/things/index.json`. Nothing else is needed for it to appear, hide, be clicked and have layer buttons.
+8. **Place it**: add `{id, placements:[{at:[x,z], y?, rot, scale, seed}]}` to `data/things/index.json` (`y` to stand above the ground; `on` to stand on another thing; section 9). Nothing else is needed for it to appear, hide, be clicked and have layer buttons.
 9. **Remove the old primitive** (`makeDog` etc. in `BUILD.life`) and its `PN` row, only after the data version is better. Make sure there is exactly one click target per object and that it opens the right card.
 10. **Test** with the harness: `jumpTo(FR.thing_dog, new V3(0, 0.5, 0), 3)`; `FR.thing_dog.T.setMode('skeleton')` (settle a few seconds after jumpTo first: `T` exists once the frame has been drawn once);
     scan with `pickAt` for each part id, click it, read `#info h2`; `renderer.info.render` for triangles and `performance.now()` around two `requestAnimationFrame`s for frame time. Screenshots at 1280x800 and 390x844.
@@ -239,7 +239,7 @@ the Auto button peels like the human: the camera looks along a ray through the z
 **Body features on every thing.** The frame sets `layered = true` and works with `js/body_core.js`: click a part and the card lists every part under that point from the outside inward (parts in the current detail tier, not clipped by a cut), each with "Peel to here";
 the card has "Hide this"; a "Show everything" button appears while anything is hidden or revealed. `goToNode(id)` (search, chips, "Show where it is") flies to the thing, switches to a mode that shows the part if needed, peels what is in front of it,
 highlights it and opens its card. Scrolling toward a point peels the layers (Auto) and then spawns the tissue scene of the part that is *visibly* under the point (not of the one that was under the cursor before the layers peeled).
-The hover name is the nearest visible, un-clipped part; a peeled (see-through) layer is never named. Picking is nearest-visible-hit, not `priority` (markers still win); `priority` is only a tie-breaker now.
+The hover name is the nearest visible, un-clipped part; a peeled (see-through) layer is never named. Picking is the nearest visible, un-clipped hit, not the highest `priority` (markers, priority 3 and up, still win, so per-layer priorities are no longer needed and are ignored); a click in a cut view on the cut face opens the part that is cut.
 
 **Hooks (js/nodes.js).** `CARD_HOOKS.push((id, h, node) => ...)` runs after a node card is built; `GOTO_HOOKS.push(id => handled)` runs first in `goToNode`; a frame may define `cardMadeOf(h, node)` returning `{label, go}` or `null` to replace the card's
 "See what it is made of" button, and `layered`, `coreIds()`, `coreClip(point)`, `coreText` for the core sample. Nothing wraps `showBodyNode` or `goToNode` any more. A node's `related` list is drawn as a "Compare with" row of links.

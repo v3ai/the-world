@@ -88,3 +88,19 @@ test('export: int16 quantisation error stays below half a step; instances and pa
   assert.deepEqual(out.problems, []); assert.equal(out.thing.parts[1].count, 2); assert.ok(out.thing.parts[0].tris > 100);
   assert.equal(L.assemble({ thing: { parts: [{ id: 'x', system: 'q', mesh: 'nope' }], systems: [] }, meshes: {} }).problems.length > 0, true);
 });
+
+test('format 2: pack() round-trips positions, indices, shade and instances (decoder as in js/things.js)', async () => {
+  const { pack } = await import('../lib/export.mjs');
+  const m = L.meshSDF(L.sphere(1), { ...box(1.2), res: 24 }); m.shade = m.pos.filter((_, i) => i % 3 === 0).map((_, i) => (i % 7) / 7);
+  const inst = new L.Instances('m'); for (let i = 0; i < 20; i++) inst.add([i * .1, 1 + i * .01, -i * .05], [0, Math.sin(i), 0, Math.cos(i)], .5 + i * .01);
+  const out = L.assemble({ thing: { parts: [{ id: 'a', name: 'A', system: 's', node: 'n', mesh: 'm' }, { id: 'b', name: 'B', system: 's', node: 'n', instances: 'i' }], systems: [{ id: 's' }], modes: [] }, meshes: { m }, instances: { i: inst } });
+  const { json, bin } = pack(out.mesh), buf = bin.buffer.slice(bin.byteOffset, bin.byteOffset + bin.length), q = json.meshes.m, src = out.mesh.meshes.m;
+  const p16 = new Int16Array(buf, q.pos[0], q.nv * 3); assert.deepEqual(Array.from(p16), src.pos);
+  const bytes = new Uint8Array(buf, q.idx[0], q.idx[1]), idx = []; let b = 0, prev = 0;
+  for (let i = 0; i < q.ni; i++) { let z = 0, mul = 1, c; do { c = bytes[b++]; z += (c & 127) * mul; mul *= 128; } while (c & 128); prev += (z & 1) ? -((z + 1) / 2) : z / 2; idx.push(prev); }
+  assert.deepEqual(idx, src.idx);
+  assert.deepEqual(Array.from(new Uint8Array(buf, q.shade[0], q.nv)), src.shade);
+  const I = json.instances.i, P = new Uint16Array(buf, I.p[0], I.n * 3), S = new Float32Array(buf, I.s[0], I.n), t = out.mesh.instances.i.t;
+  for (let i = 0; i < I.n; i++) { for (let a = 0; a < 3; a++) assert.ok(Math.abs(I.min[a] + P[i * 3 + a] * I.pscale[a] - t[i * 8 + a]) < 1e-4); assert.ok(Math.abs(S[i] - t[i * 8 + 7]) < 1e-6); }
+  assert.ok(bin.length < JSON.stringify(out.mesh).length, 'binary is smaller than the JSON it replaces');
+});

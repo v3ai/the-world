@@ -20,8 +20,12 @@ function bodyChooseHit(F, cands) {
   for (const c of cands) if (c.pri >= 3 && (!top || c.pri > top.pri)) top = c;
   if (top) return top;
   for (const c of cands) if ((c.obj.userData.shown || 0) >= BODY_VISIBLE_OP) return c;
-  return cands[0];
+  return PICK_HOVER ? null : cands[0];   // a click may still select a see-through layer; a tooltip must not name one (hovering a gap in a peeled chest said "Skin")
 }
+/* true while the hover tooltip is being worked out (set around engine.js doHover) */
+let PICK_HOVER = false;
+const _doHover0 = doHover;
+doHover = function () { PICK_HOVER = true; try { return _doHover0(); } finally { PICK_HOVER = false; } };
 
 /* ---------- regions ---------- */
 // Which segment of the body each bone belongs to; the region of a skin point is the segment of the nearest bone.

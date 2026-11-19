@@ -227,7 +227,7 @@ class ThingObj {
   /* def: thing.json, bundle: mesh.json, o: { placement: {scale, rot (deg), seed}, or scale / rotY (radians) / seed; hidden: Set } */
   constructor(def, bundle, o = {}) {
     this.def = def; this.bundle = bundle; this.o = o;
-    const pl = o.placement || { scale: o.scale, rot: (o.rotY || 0) * 180 / Math.PI, seed: o.seed }; this.pl = pl; this.xf = thPlacement(def, pl); this.k = this.xf.k; this.u = thUnit(def, this.k);
+    const pl = o.placement || { scale: o.scale, rot: (o.rotY || 0) * 180 / Math.PI, seed: o.seed }; this.pl = pl; this.xf = thPlacement(def, pl); this.qInv = this.xf.q.clone().invert(); this._camT = new V3(); this._c0 = new V3(); this.k = this.xf.k; this.u = thUnit(def, this.k);
     this.group = new THREE.Group(); this.group.scale.setScalar(this.k); this.group.quaternion.copy(this.xf.q); this.group.updateMatrix();
     this.holder = new THREE.Group();             // what the frame adds to its scene: group + shadow + hotspots (not scaled)
     this.parts = {}; this.list = []; this.hot = []; this.hidden = o.hidden || new Set(); this.sel = null;
@@ -370,16 +370,16 @@ class ThingObj {
   faceCut() { this.cutPending = true; this.pivotPending = true; }
   /* per-frame: dt seconds, camLocal = camera position in the group's parent coordinates (metres), off = world offset of the container (frame root position), alpha = frame alpha */
   update(dt, camLocal, off, alpha = 1) {
-    const def = this.def, camT = camLocal.clone().applyQuaternion(this.xf.q.clone().invert()).divideScalar(this.k);   // camera in thing-local coordinates
-    const d = camLocal.distanceTo(new V3(0, (def.radius_m || 1) * this.k * .5, 0));
+    const def = this.def, camT = this._camT.copy(camLocal).applyQuaternion(this.qInv).divideScalar(this.k);   // camera in thing-local coordinates
+    const d = camLocal.distanceTo(this._c0.set(0, (def.radius_m || 1) * this.k * .5, 0));
     this.dist = d; const md = this.resolveMode(d); this.curMode = md; const cut = md && md.cut; this.cutActive = !!cut;
     const lod = def.lod, t0 = this.tier;   // three tiers: 0 near (full detail), 1 mid, 2 far; without lod.far_m the mid tier is the far one
     if (this.lodForce) this.tier = this.lodForce === 'near' ? 0 : this.lodForce === 'mid' ? 1 : 2;
     else if (lod) { const nm = lod.near_m, fm = lod.far_m || 1e9, T = this.tier; this.tier = d > fm * (T === 2 ? .9 : 1.12) ? 2 : d > nm * (T === 0 ? 1.12 : .9) ? 1 : 0; }
     this.near = this.tier === 0; const tierNames = this.tier === 0 ? ['near'] : this.tier === 2 ? ['far'] : (lod && lod.far_m ? ['mid'] : ['far', 'mid']), lodSnap = t0 !== this.tier; this.tierNames = tierNames;
     // cut plane (thing-local -> scene coordinates)
-    const cutDef = typeof cut === 'object' ? cut : {}, at = new V3(...(cutDef.at || def.cut && def.cut.at || [0, (def.height_m || 1) * .5, 0]));
     if (cut) {
+      const cutDef = typeof cut === 'object' ? cut : {}, at = new V3(...(cutDef.at || def.cut && def.cut.at || [0, (def.height_m || 1) * .5, 0]));
       if (this.cutPending) { this.cutPending = false; this.aimCut(at, cutDef, camT); }
       const nC = this.cutN.clone().applyQuaternion(this.xf.q), qC = at.clone().applyMatrix4(this.group.matrix);
       this.plane.normal.copy(nC); this.plane.constant = -nC.dot(qC) - nC.dot(off);
@@ -387,7 +387,7 @@ class ThingObj {
       for (const fm of this.faceMats) { const u = fm.uniforms; u.uPlane.value.set(nC.x, nC.y, nC.z, this.plane.constant); u.uCam.value.copy(this.camW || new V3()); u.uOff.value.copy(off); u.uInv.value.copy(inv); }
     }
     const planes = cut ? this.planes : [];
-    this.clock += dt; this.seeThrough = !!(md && md.groundSeeThrough);
+    this.clock += dt; TH_SWAY.uTime.value = (performance.now() / 1000) % 3600; this.seeThrough = !!(md && md.groundSeeThrough);
     // pivot groups: the mode's pivot turns (once per choice) so that its opening faces the camera; the others stay where they are
     if (md && md.pivot) {
       const pv = this.pivots[md.pivot] || (this._pivot(md.pivot), this.pivots[md.pivot]);
@@ -536,7 +536,6 @@ function thFrameUpdate(F, dt, t) {
   // the part a card is about stays selected only while its card is open
   if (F.sel || F.reveal) { const st = infoState, keep = st && ((st.h && st.h.frame === F && st.h.obj && st.h.obj.userData.id === F.sel) || (!st.h && st.node === F.selNode)); if (!keep) { F.sel = null; F.reveal = null; } }
   T.sel = F.sel; thAutoUpdate(F, dt);
-  TH_SWAY.uTime.value = (performance.now() / 1000) % 3600;
   T.update(dt, C, _thOff, F.alpha);
   thGroundFade(FR.things.some(f => f.T && f.T.seeThrough && f.alpha > .5));
   if (F._lastModeId !== T.modeId) { F._lastModeId = T.modeId; thUpdateControls(F); F.mode = T.modeId; }
@@ -624,7 +623,8 @@ function thChooseHit(F, cands) {
   if (!cands.length) return null; const T = F.T;
   let top = null; for (const c of cands) if (c.pri >= 3 && (!top || c.pri > top.pri || (c.pri === top.pri && c.hit.distance < top.hit.distance))) top = c;
   if (top) return top;
-  const ok = T ? cands.filter(c => !T.isClipped(c.hit.point)) : cands, vis = ok.filter(c => (c.obj.userData.shown || 0) >= .35), pool = vis.length ? vis : ok.length ? ok : cands;
+  const ok = T ? cands.filter(c => !T.isClipped(c.hit.point)) : cands, vis = ok.filter(c => (c.obj.userData.shown || 0) >= .35); if (!vis.length && typeof PICK_HOVER !== 'undefined' && PICK_HOVER) return null;   // a tooltip never names a see-through layer
+  const pool = vis.length ? vis : ok.length ? ok : cands;
   return pool.reduce((b, c) => c.hit.distance < b.hit.distance ? c : b);
 }
 
