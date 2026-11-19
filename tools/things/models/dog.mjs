@@ -63,13 +63,13 @@ export default function build() {
   // fur blades
   meshes.fur_blade = X.furBladeMesh(); instances.fur = X.fur(coat, 9000); parts.push({ id: 'fur', name: 'Fur', system: 'coat', node: 'dog_fur', color: '#dcb86d', instances: 'fur', tint: .22, double: true, lod: 'near', priority: 1.3 }); log('fur');
   meshes.ears = H.ears(skin.f); meshes.nose = H.nose(); Object.assign(meshes, X.paws());
-  add('ears', 'Ears', 'coat', 'dog_ear', '#bb9050', 'ears', { priority: 1.6, noink: false, solid: false, double: true });
-  add('nose', 'Nose (rhinarium)', 'coat', 'dog_nose', '#231d1b', 'nose', { priority: 1.8 });
+  add('ears', 'Ears', 'coat', 'dog_ear', '#bb9050', 'ears', { lod: 'near+mid', priority: 1.6, noink: false, solid: false, double: true });
+  add('nose', 'Nose (rhinarium)', 'coat', 'dog_nose', '#231d1b', 'nose', { lod: 'near+mid', priority: 1.8 });
   add('paw_pads', 'Paw pads', 'coat', 'dog_pads', '#2b2220', 'paw_pads', { lod: 'near', priority: 1.8 });
-  add('claws', 'Claws', 'coat', 'dog_claws', '#3a302b', 'claws', { priority: 1.8 });
+  add('claws', 'Claws', 'coat', 'dog_claws', '#3a302b', 'claws', { lod: 'near+mid', priority: 1.8 });
   const ey = X.eyes(); for (const k of ['eye_globe', 'eye_front']) meshes[k] = ey[k];
-  add('eyes', 'Eyes', 'eyes', 'dog_eye', '#6b4a2a', 'eye_globe', { priority: 1.9, solid: false, double: true, deeper: null });
-  add('eye_front', 'Eyes (front)', 'eyes', 'dog_eye', '#3b2a1c', 'eye_front', { priority: 1.9, solid: false, double: true });
+  add('eyes', 'Eyes', 'eyes', 'dog_eye', '#6b4a2a', 'eye_globe', { lod: 'near+mid', priority: 1.9, solid: false, double: true, deeper: null });
+  add('eye_front', 'Eyes (front)', 'eyes', 'dog_eye', '#3b2a1c', 'eye_front', { lod: 'near+mid', priority: 1.9, solid: false, double: true });
   // skeleton
   const sk = skeleton(); Object.assign(meshes, sk.meshes, limbBones()); log('skeleton');
   for (const k of Object.keys(meshes)) if (/^(phalanges|metacarpals|metatarsals|tarsus|dewclaw|baculum|pelvis|skull|mandible)/.test(k)) meshes[k] = D.fitInside(meshes[k], skin, .002, 2);
@@ -117,12 +117,12 @@ export default function build() {
   for (const [k, n, nd, c] of [['ear_canal', 'Ear canal', 'dog_ear_canal', '#e8b3a0'], ['ear_drum', 'Eardrum', 'dog_eardrum', '#f4e3d0'], ['ear_bulla', 'Middle ear (bulla)', 'dog_bulla', '#d8ccb0'], ['ear_cochlea', 'Cochlea', 'dog_cochlea', '#9cc1d9'], ['ear_canals', 'Balance canals', 'dog_cochlea', '#7fa6c4']]) add(k, n, 'd_ear', nd, c, k, { solid: false, double: true, parent: 'skull', priority: 2.2 });
   // hotspots
   const hs = (id, node, at, label, modes, r = .012) => thing.hotspots.push({ id, node, at: /^hs_(lv|rv|valves|la|ra|heart_c)/.test(id) ? [at[0], +(at[1] + .014).toFixed(4), at[2]] : at, label, modes, r });
-  hs('hs_lv', 'dog_lv', [.079, .35, -.006], 'Left ventricle', ['cut_heart'], .007); hs('hs_rv', 'dog_rv', [.094, .358, .022], 'Right ventricle', ['cut_heart'], .006);
-  hs('hs_valves', 'dog_valves', [.102, .384, -.009], 'Valves', ['cut_valves'], .005); hs('hs_la', 'dog_la', [.11, .406, -.014], 'Left atrium', ['cut_valves'], .005); hs('hs_ra', 'dog_ra', [.114, .402, .024], 'Right atrium', ['cut_valves'], .005);
+  hs('hs_lv', 'dog_lv', [.079, .35, -.016], 'Left ventricle', ['cut_heart'], .007); hs('hs_rv', 'dog_rv', [.094, .358, .03], 'Right ventricle', ['cut_heart'], .006);
+  hs('hs_valves', 'dog_valves', [.102, .384, -.009], 'Valves', ['cut_valves'], .005);
   { const c = H.EYE_C.map(v => v * .01), a = H.eyeAxis(1), at = (k, u) => c.map((v, i) => +(v + a[i] * k + (i === 1 ? u : 0)).toFixed(4));
     hs('hs_tap', 'dog_tapetum', at(-.0078, .005), 'Tapetum lucidum', ['cut_eye'], .0018); hs('hs_lens', 'dog_lens', at(.0027, 0), 'Lens', ['cut_eye'], .0018); hs('hs_ret', 'dog_retina', at(-.0092, -.002), 'Retina', ['cut_eye'], .0018); }
   hs('hs_olf', 'dog_turb_olf', H.HL(13.4, 1.3, 0), 'Smell lining', ['cut_nose'], .008); hs('hs_resp', 'dog_turb_resp', H.HL(17.2, 1.2, 0), 'Airway scrolls', ['cut_nose'], .008);
-  hs('hs_ear_canal', 'dog_ear_canal', H.HL(4.4, 2.6, 4.7), 'Ear canal', ['cut_ear'], .005); hs('hs_drum', 'dog_eardrum', H.HL(2.75, -1.95, 4.0), 'Eardrum', ['cut_ear'], .004); hs('hs_cochlea', 'dog_cochlea', H.HL(2.6, -1.75, 2.2), 'Cochlea', ['cut_ear'], .004);
+  hs('hs_ear_canal', 'dog_ear_canal', H.HL(4.1, .6, 4.8), 'Ear canal', ['cut_ear'], .005); hs('hs_drum', 'dog_eardrum', H.HL(2.75, -1.95, 4.0), 'Eardrum', ['cut_ear'], .004); hs('hs_cochlea', 'dog_cochlea', H.HL(2.6, -1.75, 2.2), 'Cochlea', ['cut_ear'], .004);
   hs('hs_brain', 'dog_brain', H.HL(6.8, 3.4, 0), 'Brain', ['cut_half'], .015); hs('hs_heart_c', 'dog_heart', [.083, .358, 0], 'Heart', ['cut_half'], .015); hs('hs_tongue', 'dog_tongue', H.HL(14.5, -2.8, 0), 'Tongue', ['cut_half'], .012);
   // markers offer the same "next level down" button as parts do (the same tissue scenes as the parts they mark)
   const HD = { hs_ret: { type: 'tissue2', id: 'dog_retina', D: 2.8e-4, button: 'Look inside the retina and tapetum' }, hs_tap: { type: 'tissue2', id: 'dog_retina', D: 2.8e-4, button: 'Look inside the retina and tapetum' }, hs_olf: { type: 'tissue2', id: 'dog_olfactory_epithelium', D: 2.8e-4, button: 'Look inside the smell lining' } };

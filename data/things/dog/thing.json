@@ -591,7 +591,7 @@
    "at": [
     0.079,
     0.364,
-    -0.006
+    -0.016
    ],
    "label": "Left ventricle",
    "modes": [
@@ -605,7 +605,7 @@
    "at": [
     0.094,
     0.372,
-    0.022
+    0.03
    ],
    "label": "Right ventricle",
    "modes": [
@@ -622,34 +622,6 @@
     -0.009
    ],
    "label": "Valves",
-   "modes": [
-    "cut_valves"
-   ],
-   "r": 0.005
-  },
-  {
-   "id": "hs_la",
-   "node": "dog_la",
-   "at": [
-    0.11,
-    0.42,
-    -0.014
-   ],
-   "label": "Left atrium",
-   "modes": [
-    "cut_valves"
-   ],
-   "r": 0.005
-  },
-  {
-   "id": "hs_ra",
-   "node": "dog_ra",
-   "at": [
-    0.114,
-    0.416,
-    0.024
-   ],
-   "label": "Right atrium",
    "modes": [
     "cut_valves"
    ],
@@ -747,9 +719,9 @@
    "id": "hs_ear_canal",
    "node": "dog_ear_canal",
    "at": [
-    0.3504936163450622,
-    0.6269969880791907,
-    0.05029000000000001
+    0.34433655148385633,
+    0.6062519970622028,
+    0.05136
    ],
    "label": "Ear canal",
    "modes": [
@@ -934,6 +906,7 @@
    "node": "dog_ear",
    "color": "#bb9050",
    "mesh": "ears",
+   "lod": "near+mid",
    "priority": 1.6,
    "noink": false,
    "solid": false,
@@ -953,6 +926,7 @@
    "node": "dog_nose",
    "color": "#231d1b",
    "mesh": "nose",
+   "lod": "near+mid",
    "priority": 1.8,
    "center": [
     0.522,
@@ -986,6 +960,7 @@
    "node": "dog_claws",
    "color": "#3a302b",
    "mesh": "claws",
+   "lod": "near+mid",
    "priority": 1.8,
    "center": [
     -0.0572,
@@ -1002,6 +977,7 @@
    "node": "dog_eye",
    "color": "#6b4a2a",
    "mesh": "eye_globe",
+   "lod": "near+mid",
    "priority": 1.9,
    "solid": false,
    "double": true,
@@ -1021,6 +997,7 @@
    "node": "dog_eye",
    "color": "#3b2a1c",
    "mesh": "eye_front",
+   "lod": "near+mid",
    "priority": 1.9,
    "solid": false,
    "double": true,
@@ -3436,6 +3413,6 @@
   "uniqueMeshTris": 361070,
   "nearTris": 75064,
   "midTris": 15202,
-  "farTris": 6164
+  "farTris": 1520
  }
 }
