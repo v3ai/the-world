@@ -42,7 +42,7 @@ export function buildThing(ctx, M) {
   const plant = (o = 1) => ({ blades: o, sheaths: o, stems: o, flowers: o });
   const modes = [
     { id: 'whole', label: 'Whole plant', show: plant(1) },
-    { id: 'tiller', label: 'One tiller pulled apart', pivot: 'tiller', show: { ...plant(.12), tiller: 1 }, hotspots: true, legend: ctx.legends?.tiller },
+    { id: 'tiller', label: 'One tiller pulled apart', pivot: 'tiller', show: { ...plant(.12), tiller: 1 }, hotspots: true, groundSeeThrough: true, legend: ctx.legends?.tiller },
     { id: 'flower', label: 'In flower', show: { blades: .35, sheaths: .35, stems: 1, flowers: 1 }, hotspots: true, legend: ctx.legends?.flower },
     { id: 'under', label: 'Underground', show: { roots: 1, soil: 1, stems: .9, sheaths: .2, blades: .08, flowers: .05 }, groundSeeThrough: true, hotspots: true,
       legend: { title: 'Underground', items: [{ name: 'Fibrous roots', color: '#d9c796', node: 'grass_roots' }, { name: 'Root cap and tip', color: '#f2e8c4', node: 'grass_root_tip' }, { name: 'Root hairs', color: '#f6f1dc', node: 'grass_root_hairs' }, { name: 'Stem base', color: '#b9a06a', node: 'grass_crown' }], note: 'The soil is drawn see-through. The roots are a schematic of a fibrous system: the number and course of real roots differ from plant to plant. Root hairs are drawn at an illustrative length.' } },

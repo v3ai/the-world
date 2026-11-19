@@ -712,7 +712,7 @@ function makeLawn(g, c, r) {
   const rr = rng(77), sites = [];
   for (let x = -RAD; x < RAD; x += SPN) for (let z = -RAD; z < RAD; z += SPN) {
     const px = x + (rr() - .5) * SPN * .95, pz = z + (rr() - .5) * SPN * .95, d2 = px * px + pz * pz, near = true;
-    if (d2 > RAD * RAD || Math.hypot(px - 5, (pz + 4) * 1.25) < 3.4 || plants.some(q => Math.hypot(px - q[0], pz - q[1]) < .3) || holes.some(q => Math.hypot(px - q[0], pz - q[1]) < q[2])) continue;
+    if (d2 > RAD * RAD || Math.hypot(px - 5, (pz + 4) * 1.25) < 3.4 || plants.some(q => Math.hypot(px - q[0], pz - q[1]) < .7) || holes.some(q => Math.hypot(px - q[0], pz - q[1]) < q[2])) continue;
     // thin out with distance so that the sites are about SPN apart within 3 m and about SP apart beyond
     if (!near && rr() > (SPN * SPN) / (SP * SP)) continue;
     sites.push(px, pz, rr() * 6.283, .8 + rr() * .5, rr());

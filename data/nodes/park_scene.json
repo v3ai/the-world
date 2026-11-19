@@ -292,9 +292,9 @@
   "processes": [],
   "summary": "A lawn is grass kept short by repeated mowing. It works because grass leaves grow from their base and its growing points sit low: the mower removes the tops of the blades and leaves the part that makes new leaf.",
   "layers": {
-   "basics": "From a distance the lawn is a green carpet. Close up it is thousands of grass plants, each a clump of narrow leaves, with the cut ends of the blades square rather than pointed. In this park the lawn is drawn in three levels of detail so that it can cover a large area: small clumps of real blades near you, flat crossed cards of grass a little farther away, and a painted surface in the distance. A real lawn is much denser than the clumps drawn here. The taller plants standing on their own are whole grass plants at true size, left unmown so that you can see how the plant is built. Click the lawn to read about it, or click one of the tall plants to open it.",
+   "basics": "From a distance the lawn is a green carpet. Close up it is thousands of grass plants, each a clump of narrow leaves, with the cut ends of the blades square rather than pointed. In this park the lawn is drawn in three levels of detail so that it can cover a large area: small clumps of real curved blades within a couple of metres of you, a dense short pile of grass strands out to about 12 m, and a painted surface farther away. The pile is a stand-in: it is drawn in layers rather than blade by blade. The taller plants standing on their own are whole grass plants at true size, left unmown so that you can see how the plant is built. Click the lawn to read about it, or click one of the tall plants to open it.",
    "deeper": "RHS advice for ordinary domestic lawns is to mow to about 13-25 mm in summer and up to about 40 mm in spring and autumn, never taking off more than a third of the height at one cut; fine lawns are kept at 6-13 mm. Regular mowing cuts the leaf blades above the point where they grow, so the plant regrows them from the base. Regular mowing also removes the flowering stems before they ripen. A sward of perennial ryegrass typically holds 5,000-7,000 tillers per square metre (AHDB).",
-   "expert": "The lawn in the park is a stand-in, not a measured turf. The clumps of blades are drawn at about 3-5 cm, which is the height of a lawn kept fairly long; their density is far lower than the 5,000-7,000 tillers per m² quoted for an established sward, and the number of blades per clump (28) is a choice. Beyond about 10 m the lawn is the painted ground; from high above only that texture is drawn."
+   "expert": "The lawn in the park is a stand-in, not a measured turf. The clumps of blades near you are drawn 2 to 5 cm high (36 blades per clump, a choice) and are much sparser than the 5,000-7,000 tillers per m² of an established sward; the strand pile (about 240 strands per metre, up to 4 cm) is a visual device, not a count of tillers, and thins out with distance. Beyond about 12 m the lawn is painted ground, and from high above only that texture is drawn. Colour variation across the lawn is a made-up pattern, not a measurement."
   },
   "facts": [
    [
@@ -311,7 +311,7 @@
    ],
    [
     "In the park",
-    "clumps of 28 blades near you, crossed cards to about 10 m, painted ground beyond (a stand-in)"
+    "clumps of 36 blades near you, a layered strand pile to about 12 m, painted ground beyond (a stand-in)"
    ]
   ],
   "certainty": "C1",
@@ -3315,6 +3315,76 @@
    "bio_hypersensitivity_autoimmunity",
    "grass_pollen",
    "grass_wind_pollination"
+  ]
+ },
+ {
+  "id": "park_scene",
+  "title": "Greenwich Park",
+  "kind": "habitat",
+  "template": "thing",
+  "scale_m": 300,
+  "area": "bio_ecology",
+  "parents": [],
+  "parts": [
+   "human_body",
+   "dog",
+   "oak_english",
+   "park_bee",
+   "rn_acris",
+   "park_mushroom",
+   "robin",
+   "park_pond",
+   "boulder",
+   "grass_plant",
+   "grass_lawn",
+   "park_ground",
+   "park_sky",
+   "park_sun",
+   "park_cloud"
+  ],
+  "processes": [],
+  "summary": "The park in this explorer: a small, simplified patch of Greenwich Park in London, with a person, a dog, oaks, a pond, a boulder, a robin, a bee, a mushroom, buttercups and a lawn, all drawn at true size under the real Sun for the chosen date and time.",
+  "layers": {
+   "basics": "You start in the park. Everything standing in it is a model drawn at its real size, so the bee is 14 mm long next to a dog and a person. Click any living thing, or the ground, the pond, the Sun or the sky, to open a card about it. Scroll toward something to go inside it: through the skin and muscle of the dog or yourself, into a leaf of the oak or the grass, down through the pond water or the soil, and on down to cells and molecules. The lighting comes from the real Sun for the date and time shown on the card, so the park is lit differently in June and December.",
+   "deeper": "The real Greenwich Park is a Royal Park in the Royal Borough of Greenwich, London, of about 74 hectares (the infobox gives 74.5 ha, or 184 acres), which straddles the Greenwich Prime Meridian; the Royal Observatory stands on the hilltop near its centre. It is part of the Greenwich World Heritage Site and was the first of London's eight Royal Parks to be enclosed, in 1433 (Wikipedia). The park in this explorer is not a map of it: the ground is a simplified disc, and what stands on it (the pond, the oaks, the boulders, the lawn) are models placed to show the kinds of living thing and material you can meet in a British park.",
+   "expert": "Every object in the park is a model built from typical measurements and says so on its own card; nothing here is a scan of a real tree, animal or pond. The oaks, the grass and the buttercups are drawn after the species named on their cards; positions and numbers are choices."
+  },
+  "facts": [
+   [
+    "Real park, area",
+    "≈ 74 ha (74.5 ha, 184 acres in the infobox)"
+   ],
+   [
+    "Real park, position",
+    "straddles the Greenwich Prime Meridian; Royal Observatory on the hilltop"
+   ],
+   [
+    "Status",
+    "Royal Park; part of the Greenwich World Heritage Site; first London Royal Park enclosed, 1433"
+   ],
+   [
+    "In this explorer",
+    "a simplified patch with true-size models, lit by the real Sun for the chosen date and time"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "46.2",
+    "46-2-energy-flow-through-ecosystems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Greenwich Park (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Greenwich_Park"
+   }
+  ],
+  "related": [
+   "park_ground",
+   "grass_lawn"
   ]
  }
 ]

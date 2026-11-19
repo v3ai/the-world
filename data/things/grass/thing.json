@@ -173,6 +173,7 @@
     "tiller": 1
    },
    "hotspots": true,
+   "groundSeeThrough": true,
    "legend": {
     "title": "One tiller, pulled apart (life size)",
     "items": [
@@ -294,6 +295,7 @@
     "base": 1
    },
    "hotspots": true,
+   "groundSeeThrough": true,
    "legend": {
     "title": "The base of a shoot, cut lengthwise (life size)",
     "items": [
