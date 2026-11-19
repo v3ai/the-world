@@ -271,7 +271,7 @@ function reanchor() {
   for (let g = 0; g < 60; g++) {
     const A = cam.A; A.ensure(); let next = null;
     next = pickChild(A);
-    if (!next && A.spawn && !fly && cam.D < (A.spawnD || A.r0 * 1.6)) next = trySpawn(A); // a flight heads for a frame that already exists: never spawn stand-ins on the way
+    if (!next && A.spawn && !fly && cam.D < (A.spawnD || A.r0 * 1.6) && !(A.spawnHold && cam.D > A.spawnHold * .5)) next = trySpawn(A);   // spawnHold: a flight that was asked to end this close (a 2.5 mm water flea) does not dive into what it is made of until you zoom in further // a flight heads for a frame that already exists: never spawn stand-ins on the way
     if (!next) break;
     descend(next);
   }

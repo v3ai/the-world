@@ -563,6 +563,7 @@ function thFrameUpdate(F, dt, t) {
   // the part a card is about stays selected only while its card is open
   if (F.sel || F.reveal) { const st = infoState, keep = st && ((st.h && st.h.frame === F && st.h.obj && st.h.obj.userData.id === F.sel) || (!st.h && st.node === F.selNode)); if (!keep) { F.sel = null; F.reveal = null; } }
   T.sel = F.sel; thAutoUpdate(F, dt);
+  if (F.spawnHold && cam.A !== F && !fly) F.spawnHold = 0;
   if (cam.A === F && cam.D <= F.floorD * 1.25) { const nw = performance.now(); if (nw - (F._flT || 0) > 600) { F._flT = nw; thAtFloor(F); } } else if (F.floorNode && cam.D > F.floorD * 3) F.floorNode = null;
   T.olK = T.tier === 2 && PERF.flags.outline !== 'all' ? 0 : outlineAmt(2 * (T.def.radius_m || 1) * T.k / Math.max(T.dist || 1e-6, 1e-6) * PX_PER_RAD()); T.hovId = hovered && hovered.userData.frame === F ? hovered.userData.id : null;   // outline=near: no ink on the far detail tier, and it fades out as the thing gets small on screen
   if (F._arr === undefined) F._arr = 0; if (F._arr < 1) F._arr = Math.min(1, F._arr + dt / .4);   // a thing that has just loaded fades in over 0.4 s
@@ -788,7 +789,7 @@ function thClearView(F, id, own) {
   setCamDir(d0, up);
 }
 function thFlyToNode(id, t) {
-  const F = t.f; showBodyNode(id, null); F.selNode = id; F.ensure();
+  const F = t.f; showBodyNode(id, null); F.selNode = id; F.ensure(); F.spawnHold = t.D;
   const R = (t.def.radius_m || 1) * (F.T ? F.T.k : 1), d = new V3(t.p.x, 0, t.p.z);
   if (d.length() > R * .06) { d.y = d.length() * .12; d.normalize(); const u = new V3(0, 1, 0); convertD(d, F, cam.A); convertD(u, F, cam.A); cam.dir.copy(d); cam.up.copy(u); }   // look at it from the side it is on
   flyTo(F, t.p, t.D, () => { if (F.T && F.T.cutActive) F.T.faceCut(); /* the cut was aimed when the flight began, from far away: aim it again from where the camera has landed */ setTimeout(() => thClearView(F, id, false), 350); setTimeout(() => { if (cam.A === F && infoState && infoState.node === id && !fly) thClearView(F, id, true); }, 1500); }); camHold = F;
