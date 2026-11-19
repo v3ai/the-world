@@ -4,82 +4,236 @@
  "theme": "You and your body",
  "question": "How does my heart beat?",
  "teaser": "Open the heart, find its pacemaker, and follow the signal down to the muscle cells and the molecule that powers them.",
- "keywords": ["heart", "heartbeat", "pulse", "blood", "pacemaker", "muscle", "cardiac", "atp", "body", "circulation"],
- "scales": ["a person", "a molecule"],
+ "keywords": [
+  "heart",
+  "heartbeat",
+  "pulse",
+  "blood",
+  "pacemaker",
+  "muscle",
+  "cardiac",
+  "atp",
+  "body",
+  "circulation"
+ ],
+ "scales": [
+  "a person",
+  "a molecule"
+ ],
  "minutes": 7,
  "stops": [
   {
    "title": "Your body",
    "scale": "about 2 m",
-   "where": {"view": {"frame": "body", "point": [0, 0.9, 0], "D": 3}},
-   "expect": {"frame": "ody|uman"},
-   "text": ["In the middle of your chest, slightly to the left, is a fist-sized muscle. It squeezes about 100,000 times a day to push blood around your body.", "Over a lifetime that adds up to roughly 2.5 to 3 billion beats."],
+   "where": {
+    "view": {
+     "frame": "body",
+     "point": [
+      0,
+      0.9,
+      0
+     ],
+     "D": 3
+    }
+   },
+   "expect": {
+    "frame": "ody|uman"
+   },
+   "text": [
+    "In the middle of your chest, slightly to the left, is a fist-sized muscle. It squeezes about 100,000 times a day to push blood around your body.",
+    "Over a lifetime that adds up to roughly 2.5 to 3 billion beats."
+   ],
    "model": "An anatomical model of an average adult. The positions of organs are typical, not those of any one person.",
    "notice": "Choose \"Organs\" at the top to see what lies behind the ribs.",
-   "deeper": [{"label": "Heart", "node": "heart"}]
+   "deeper": [
+    {
+     "label": "Heart",
+     "node": "heart"
+    }
+   ]
   },
   {
    "title": "Inside the heart",
    "scale": "about 16 cm",
-   "where": {"landmark": "Your heart"},
-   "expect": {"frame": "eart"},
-   "text": ["The heart is a pump with four chambers. It weighs about 250 to 350 grams, and it moves roughly 5 litres of blood a minute.", "Valves between the chambers are one-way doors, so the blood always moves in the same direction."],
+   "where": {
+    "landmark": "Your heart"
+   },
+   "expect": {
+    "frame": "eart"
+   },
+   "text": [
+    "The heart is a pump with four chambers. It weighs about 250 to 350 grams, and it moves roughly 5 litres of blood a minute.",
+    "Valves between the chambers are one-way doors, so the blood always moves in the same direction."
+   ],
    "model": "The heart is cut open for a view of the inside. Structures are typical, not copied from one person.",
    "notice": "Click the chambers and valves to read what each one does.",
-   "deeper": [{"label": "Heart", "node": "heart"}, {"label": "Mitral valve", "node": "mitral_valve"}]
+   "deeper": [
+    {
+     "label": "Heart",
+     "node": "heart"
+    },
+    {
+     "label": "Mitral valve",
+     "node": "mitral_valve"
+    }
+   ]
   },
   {
    "title": "The pacemaker",
    "scale": "about 4 cm",
-   "where": {"node": "sa_node"},
-   "expect": {"frame": "eart"},
-   "text": ["The beat does not wait for a signal from the brain. A small cluster of special cells in the right atrium, the sinoatrial node, sets the rhythm.", "Each time it fires, an electrical signal spreads through the muscle and makes it squeeze."],
+   "where": {
+    "node": "sa_node"
+   },
+   "expect": {
+    "frame": "eart"
+   },
+   "text": [
+    "The beat does not wait for a signal from the brain. A small cluster of special cells in the right atrium, the sinoatrial node, sets the rhythm.",
+    "Each time it fires, an electrical signal spreads through the muscle and makes it squeeze."
+   ],
    "notice": "Find the marked point in the right atrium, the pacemaker.",
-   "deeper": [{"label": "Sinoatrial node", "node": "sa_node"}]
+   "deeper": [
+    {
+     "label": "Sinoatrial node",
+     "node": "sa_node"
+    }
+   ]
   },
   {
    "title": "One heartbeat",
    "scale": "about 16 cm",
-   "where": {"landmark": "Your heart"},
-   "do": [{"card": "cardiac_cycle"}],
-   "expect": {"frame": "eart"},
-   "text": ["A beat has two phases: the heart relaxes and fills with blood, and then it squeezes to push blood out. At 75 beats a minute the whole cycle takes about 0.8 seconds.", "The left chamber holds about 120 millilitres when full, and squeezes out roughly 55 to 70 percent of that each beat."],
+   "where": {
+    "landmark": "Your heart"
+   },
+   "do": [
+    {
+     "card": "cardiac_cycle"
+    }
+   ],
+   "expect": {
+    "frame": "eart"
+   },
+   "text": [
+    "A beat has two phases: the heart relaxes and fills with blood, and then it squeezes to push blood out. At 75 beats a minute the whole cycle takes about 0.8 seconds.",
+    "The left chamber holds about 120 millilitres when full, and squeezes out roughly 55 to 70 percent of that each beat."
+   ],
    "notice": "Read the numbers on the card, then count your own pulse for fifteen seconds and multiply by four.",
-   "deeper": [{"label": "Cardiac cycle", "node": "cardiac_cycle"}]
+   "deeper": [
+    {
+     "label": "Cardiac cycle",
+     "node": "cardiac_cycle"
+    }
+   ]
   },
   {
    "title": "Heart muscle",
    "scale": "about 0.4 mm",
-   "where": {"deep": {"in": "body", "type": "tissue", "id": "cardiac_muscle_tissue", "organ": "heart", "at": [0, 1.3, 0.02], "D": 0.0004}},
-   "expect": {"frame": "ardiac|issue"},
-   "text": ["Heart muscle is made of cells that are striped, branched and joined end to end, so a signal can pass from one to the next. Each cell is about 100 micrometres long.", "About 30 percent of the volume of a heart muscle cell is mitochondria, which release energy from food. The heart never rests, so it needs a constant supply."],
+   "where": {
+    "deep": {
+     "in": "body",
+     "type": "tissue",
+     "id": "cardiac_muscle_tissue",
+     "organ": "heart",
+     "at": [
+      0,
+      1.3,
+      0.02
+     ],
+     "D": 0.0004
+    }
+   },
+   "expect": {
+    "frame": "ardiac|issue"
+   },
+   "text": [
+    "Heart muscle is made of cells that are striped, branched and joined end to end, so a signal can pass from one to the next. Each cell is about 100 micrometres long.",
+    "About 30 percent of the volume of a heart muscle cell is mitochondria, which release energy from food. The heart never rests, so it needs a constant supply."
+   ],
    "model": "A generic illustration of muscle tissue, not a micrograph. The cells are drawn as plain rods: real heart cells are striped and branched.",
    "notice": "Each rod stands for one muscle cell, about 100 micrometres long. Notice how they lie side by side in bundles, so that they can pull together.",
-   "deeper": [{"label": "Cardiac muscle tissue", "node": "cardiac_muscle_tissue"}, {"label": "Heart muscle cell", "node": "cardiomyocyte"}]
+   "deeper": [
+    {
+     "label": "Cardiac muscle tissue",
+     "node": "cardiac_muscle_tissue"
+    },
+    {
+     "label": "Heart muscle cell",
+     "node": "cardiomyocyte"
+    }
+   ]
   },
   {
    "title": "The contracting machine",
    "scale": "about 2 micrometres",
-   "where": {"deep": {"in": "body", "type": "tissue", "id": "cardiac_muscle_tissue", "organ": "heart", "at": [0, 1.3, 0.02], "D": 0.0004}},
-   "do": [{"card": "muscle_contraction"}],
-   "expect": {"frame": "ardiac|issue"},
-   "text": ["Inside each cell are stacks of tiny protein motors called sarcomeres, each about 2.2 to 2.5 micrometres long. A signal makes calcium flood the cell, and the motors pull thin filaments past thick ones.", "Each pull moves the filament about 5 to 10 nanometres. Millions of them at once shorten the cell, and so squeeze the heart."],
+   "where": {
+    "deep": {
+     "in": "body",
+     "type": "tissue",
+     "id": "cardiac_muscle_tissue",
+     "organ": "heart",
+     "at": [
+      0,
+      1.3,
+      0.02
+     ],
+     "D": 0.0004
+    }
+   },
+   "do": [
+    {
+     "card": "muscle_contraction"
+    }
+   ],
+   "expect": {
+    "frame": "ardiac|issue"
+   },
+   "text": [
+    "Inside each cell are stacks of tiny protein motors called sarcomeres, each about 2.2 to 2.5 micrometres long. A signal makes calcium flood the cell, and the motors pull thin filaments past thick ones.",
+    "Each pull moves the filament about 5 to 10 nanometres. Millions of them at once shorten the cell, and so squeeze the heart."
+   ],
    "notice": "Read the card: each little motor needs ATP to pull.",
-   "deeper": [{"label": "Sarcomere", "node": "sarcomere"}, {"label": "Muscle contraction", "node": "muscle_contraction"}]
+   "deeper": [
+    {
+     "label": "Sarcomere",
+     "node": "sarcomere"
+    },
+    {
+     "label": "Muscle contraction",
+     "node": "muscle_contraction"
+    }
+   ]
   },
   {
    "title": "The fuel",
    "scale": "about 2 nanometres",
-   "where": {"place": "mol:atp"},
-   "expect": {"frame": "TP|denosine"},
-   "text": ["The motors run on a molecule called ATP, the cell's energy currency. A cell splits a phosphate off ATP to power work, and rebuilds the ATP from food.", "The body holds only about 50 grams of ATP at a time, but it turns over about 50 to 70 kilograms of it a day."],
-   "model": "A computed shape of one ATP molecule at true size.",
+   "where": {
+    "place": "mol:atp"
+   },
+   "expect": {
+    "frame": "TP|denosine"
+   },
+   "text": [
+    "The motors run on a molecule called ATP, the cell's energy currency. A cell splits a phosphate off ATP to power work, and rebuilds the ATP from food.",
+    "The body holds only about 50 grams of ATP at a time, but it turns over about 50 to 70 kilograms of it a day."
+   ],
+   "model": "A ball-and-stick picture of one molecule. Bond lengths are true, but the atoms are drawn smaller than their real size so that the bonds show, and the colours are a convention, not real colours.",
    "notice": "Find the chain of three phosphate groups at one end. Breaking off the last one is what releases the energy.",
-   "deeper": [{"label": "ATP and energy coupling", "node": "bio_atp_energy_coupling"}]
+   "deeper": [
+    {
+     "label": "ATP and energy coupling",
+     "node": "bio_atp_energy_coupling"
+    }
+   ]
   }
  ],
  "answer": "Your heart beats because a pacemaker in it fires regular electrical signals that make its muscle cells contract together, powered by ATP made in their mitochondria.",
  "unknown": "The beat is well understood. What is still studied is why the rhythm sometimes fails, and how to repair damaged heart muscle, which does not regrow much.",
- "next": ["what_am_i_made_of", "how_does_my_phone_think", "how_does_a_dog_smell_so_well"],
- "sources": ["Cards: heart (250-350 g, about 100,000 beats a day), cardiac_cycle, cardiac_muscle_tissue, cardiomyocyte, sa_node, sarcomere, muscle_contraction, bio_atp_energy_coupling (sources on the cards)"]
+ "next": [
+  "what_am_i_made_of",
+  "how_does_my_phone_think",
+  "how_does_a_dog_smell_so_well"
+ ],
+ "sources": [
+  "Cards: heart (250-350 g, about 100,000 beats a day), cardiac_cycle, cardiac_muscle_tissue, cardiomyocyte, sa_node, sarcomere, muscle_contraction, bio_atp_energy_coupling (sources on the cards)"
+ ]
 }

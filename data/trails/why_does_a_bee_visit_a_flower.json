@@ -139,7 +139,7 @@
     "Nectar is mostly water with sugar dissolved in it. The main sugar is usually sucrose, which is ordinary table sugar, one glucose joined to one fructose.",
     "Bee nectar is about 80 percent water, and the sugars in it are sucrose, glucose and fructose. For the bee, it is fuel for her flight muscles."
    ],
-   "model": "A computed shape of one sucrose molecule at true size.",
+   "model": "A ball-and-stick picture of one molecule. Bond lengths are true, but the atoms are drawn smaller than their real size so that the bonds show, and the colours are a convention, not real colours.",
    "notice": "Count the carbon, hydrogen and oxygen atoms. Twelve carbons, twenty-two hydrogens and eleven oxygens make one molecule.",
    "deeper": [
     {

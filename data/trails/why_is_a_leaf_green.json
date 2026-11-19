@@ -4,72 +4,214 @@
  "theme": "Living things",
  "question": "Why is a leaf green?",
  "teaser": "Go from an oak tree into one of its leaves, then into a single cell and the molecule that gives the colour.",
- "keywords": ["leaf", "green", "plant", "chlorophyll", "photosynthesis", "tree", "oak", "chloroplast", "colour", "color"],
- "scales": ["a tree", "a molecule"],
+ "keywords": [
+  "leaf",
+  "green",
+  "plant",
+  "chlorophyll",
+  "photosynthesis",
+  "tree",
+  "oak",
+  "chloroplast",
+  "colour",
+  "color"
+ ],
+ "scales": [
+  "a tree",
+  "a molecule"
+ ],
  "minutes": 6,
  "stops": [
   {
    "title": "An English oak",
    "scale": "about 20 m tall",
-   "where": {"view": {"frame": "thing_oak", "point": [0, 9, 0], "D": 38}},
-   "expect": {"thing": "oak"},
-   "text": ["A mature oak carries tens of thousands of leaves. Each leaf is a thin, flat solar panel and a small chemical factory: it takes in light and carbon dioxide and makes sugar for the whole tree."],
+   "where": {
+    "view": {
+     "frame": "thing_oak",
+     "point": [
+      0,
+      9,
+      0
+     ],
+     "D": 38
+    }
+   },
+   "expect": {
+    "thing": "oak"
+   },
+   "text": [
+    "A mature oak carries tens of thousands of leaves. Each leaf is a thin, flat solar panel and a small chemical factory: it takes in light and carbon dioxide and makes sugar for the whole tree."
+   ],
    "model": "A procedural model of a typical English oak, not a scan of one real tree.",
    "notice": "Look at how many leaves there are and how they are spread out to catch light.",
-   "deeper": [{"label": "English oak", "node": "oak_english"}]
+   "deeper": [
+    {
+     "label": "English oak",
+     "node": "oak_english"
+    }
+   ]
   },
   {
    "title": "One leaf",
    "scale": "about 10 cm",
-   "where": {"view": {"frame": "thing_oak", "part": "leaves", "D": 1.6}},
-   "expect": {"thing": "oak"},
-   "text": ["An oak leaf is about 10 to 12 centimetres long, with rounded lobes along its sides. Its flat shape gives it a large surface for catching light.", "The green colour comes from a molecule called chlorophyll. To see where it sits, we have to look inside."],
+   "where": {
+    "view": {
+     "frame": "thing_oak",
+     "part": "leaves",
+     "D": 1.6
+    }
+   },
+   "expect": {
+    "thing": "oak"
+   },
+   "text": [
+    "An oak leaf is about 10 to 12 centimetres long, with rounded lobes along its sides. Its flat shape gives it a large surface for catching light.",
+    "The green colour comes from a molecule called chlorophyll. To see where it sits, we have to look inside."
+   ],
    "notice": "Find one lobed leaf among the branches, click it, and choose \"Look inside the leaf\" on its card.",
-   "deeper": [{"label": "Oak leaf", "node": "oak_leaf"}]
+   "deeper": [
+    {
+     "label": "Oak leaf",
+     "node": "oak_leaf"
+    }
+   ]
   },
   {
    "title": "Inside the leaf",
    "scale": "about 0.25 mm",
-   "where": {"deep": {"in": "oak", "type": "tissue2", "id": "leaf_section", "at": [0.25, 9.88, 0.84], "D": 0.00026}},
-   "expect": {"frame": "eaf"},
-   "text": ["Cut across, a leaf is only a fraction of a millimetre thick. Under the top skin stand rows of tall cells packed like fence posts, called the palisade layer. They face the sun and are crammed with green parts.", "Below them is a looser layer with air gaps, and the pores called stomata on the underside let carbon dioxide in."],
+   "where": {
+    "deep": {
+     "in": "oak",
+     "type": "tissue2",
+     "id": "leaf_section",
+     "at": [
+      0.25,
+      9.88,
+      0.84
+     ],
+     "D": 0.00026
+    }
+   },
+   "expect": {
+    "frame": "eaf"
+   },
+   "text": [
+    "Cut across, a leaf is only a fraction of a millimetre thick. Under the top skin stand rows of tall cells packed like fence posts, called the palisade layer. They face the sun and are crammed with green parts.",
+    "Below them is a looser layer with air gaps, and the pores called stomata on the underside let carbon dioxide in."
+   ],
    "model": "An illustration of the layers of a typical broadleaf leaf, not a micrograph of an oak leaf. The layer thicknesses and the number of chloroplasts per cell are simplified.",
    "notice": "Click a tall palisade cell. The small green discs inside are chloroplasts.",
-   "deeper": [{"label": "Palisade layer", "node": "oak_leaf_palisade"}, {"label": "Stomata", "node": "oak_leaf_stoma"}]
+   "deeper": [
+    {
+     "label": "Palisade layer",
+     "node": "oak_leaf_palisade"
+    },
+    {
+     "label": "Stomata",
+     "node": "oak_leaf_stoma"
+    }
+   ]
   },
   {
    "title": "A plant cell and its chloroplasts",
    "scale": "about 40 micrometres",
-   "where": {"view": {"frame": "cell", "point": [0, 0, 0], "D": 0.00004}},
-   "do": [{"press": "Plant cell"}],
-   "expect": {"frame": "ell"},
-   "text": ["A palisade cell holds many dozens of chloroplasts, up to about 100 in some plants. A chloroplast is a small green compartment where light is turned into chemical energy.", "The big empty-looking space in a plant cell is a water-filled vacuole, and the stiff cell wall keeps the shape."],
+   "where": {
+    "view": {
+     "frame": "cell",
+     "point": [
+      0,
+      0,
+      0
+     ],
+     "D": 4e-05
+    }
+   },
+   "do": [
+    {
+     "press": "Plant cell"
+    }
+   ],
+   "expect": {
+    "frame": "ell"
+   },
+   "text": [
+    "A palisade cell holds many dozens of chloroplasts, up to about 100 in some plants. A chloroplast is a small green compartment where light is turned into chemical energy.",
+    "The big empty-looking space in a plant cell is a water-filled vacuole, and the stiff cell wall keeps the shape."
+   ],
    "model": "Schematic: sizes are right overall, but there are far fewer parts than a real cell has.",
    "notice": "Find the chloroplasts and click one.",
-   "deeper": [{"label": "Chloroplast", "node": "chloroplast"}]
+   "deeper": [
+    {
+     "label": "Chloroplast",
+     "node": "chloroplast"
+    }
+   ]
   },
   {
    "title": "The green molecule",
    "scale": "about 2 nanometres",
-   "where": {"place": "mol:chlorophyll_a"},
-   "expect": {"frame": "hlorophyll"},
-   "text": ["This is chlorophyll a. A flat ring of carbon and nitrogen atoms holds a single magnesium atom at its centre, and a long tail anchors it in the chloroplast's membrane.", "The ring is what catches light, and its structure decides which colours it takes in."],
-   "model": "A computed shape of one molecule, drawn at true size.",
+   "where": {
+    "place": "mol:chlorophyll_a"
+   },
+   "expect": {
+    "frame": "hlorophyll"
+   },
+   "text": [
+    "This is chlorophyll a. A flat ring of carbon and nitrogen atoms holds a single magnesium atom at its centre, and a long tail anchors it in the chloroplast's membrane.",
+    "The ring is what catches light, and its structure decides which colours it takes in."
+   ],
+   "model": "A ball-and-stick picture of one molecule. Bond lengths are true, but the atoms are drawn smaller than their real size so that the bonds show, and the colours are a convention, not real colours.",
    "notice": "Look for the single magnesium atom in the middle of the ring.",
-   "deeper": [{"label": "Photosynthesis: overview", "node": "bio_photosynthesis_overview"}, {"label": "Light reactions", "node": "bio_light_reactions"}]
+   "deeper": [
+    {
+     "label": "Photosynthesis: overview",
+     "node": "bio_photosynthesis_overview"
+    },
+    {
+     "label": "Light reactions",
+     "node": "bio_light_reactions"
+    }
+   ]
   },
   {
    "title": "Light and the colour of leaves",
    "scale": "the park",
-   "where": {"view": {"frame": "park", "point": [0, 1, 0], "D": 60}},
-   "expect": {"frame": "Greenwich Park"},
-   "text": ["Sunlight is a mixture of colours. Chlorophyll takes in red and blue light strongly, with absorption peaks near 430 and 660 nanometres, and takes in green light poorly.", "The green that is not used is scattered back by the leaf, so it reaches your eye. That is why leaves look green."],
+   "where": {
+    "view": {
+     "frame": "park",
+     "point": [
+      0,
+      1,
+      0
+     ],
+     "D": 60
+    }
+   },
+   "expect": {
+    "frame": "Greenwich Park"
+   },
+   "text": [
+    "Sunlight is a mixture of colours. Chlorophyll takes in red and blue light strongly, with absorption peaks near 430 and 660 nanometres, and takes in green light poorly.",
+    "The green that is not used is scattered back by the leaf, so it reaches your eye. That is why leaves look green."
+   ],
    "notice": "Look at the grass and trees around you: the colour you see is the colour the plants did not use.",
-   "deeper": [{"label": "Photosynthesis: overview", "node": "bio_photosynthesis_overview"}]
+   "deeper": [
+    {
+     "label": "Photosynthesis: overview",
+     "node": "bio_photosynthesis_overview"
+    }
+   ]
   }
  ],
  "answer": "A leaf is green because chlorophyll takes in red and blue light for making sugar and does not use much green, so the green light is scattered back to your eyes.",
  "unknown": "The colour itself is well understood. A leaf turns only about 1 to 2 percent of the light it receives into new plant material, and whether that can be improved is an active area of research.",
- "next": ["how_does_a_tree_lift_water", "where_does_the_suns_energy_come_from", "what_is_light"],
- "sources": ["Chlorophyll absorption peaks (a: about 430 and 662 nm in ether; green poorly absorbed and scattered by cell walls): https://en.wikipedia.org/wiki/Chlorophyll (secondary source)", "Cards: oak_leaf, oak_leaf_palisade, oak_leaf_stoma, bio_photosynthesis_overview; leaf_section scene note"]
+ "next": [
+  "how_does_a_tree_lift_water",
+  "where_does_the_suns_energy_come_from",
+  "what_is_light"
+ ],
+ "sources": [
+  "Chlorophyll absorption peaks (a: about 430 and 662 nm in ether; green poorly absorbed and scattered by cell walls): https://en.wikipedia.org/wiki/Chlorophyll (secondary source)",
+  "Cards: oak_leaf, oak_leaf_palisade, oak_leaf_stoma, bio_photosynthesis_overview; leaf_section scene note"
+ ]
 }
