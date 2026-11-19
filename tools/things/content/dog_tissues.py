@@ -6,7 +6,9 @@ def pop(id, name, node, shape, size, color, opacity, arrange, deeper=None, ink=1
     if deeper: p['deeper'] = deeper
     return p
 L = lambda items: {'kind': 'list', 'items': items}
+TAGS = {'dog_skin': 'Inside dog skin', 'dog_muscle': 'Inside a dog muscle', 'dog_olfactory_epithelium': 'Inside the smell lining', 'dog_retina': 'Inside the retina'}
 def write(id, d):
+    d['tag'] = TAGS[id]; d['cell'] = 'animal'
     json.dump(d, open(f'data/things/tissues/{id}.json', 'w'), indent=1); print(id, len(d['populations']), 'populations')
 # ---------------- skin ----------------
 xs = [-250, 0, 250]
@@ -16,7 +18,7 @@ write('dog_skin', {'id': 'dog_skin', 'title': 'Inside a dog\'s skin and coat', '
   'labels': [{'text': 'Barrier layer (dead flattened cells with lipids)', 'at': [-440, 402, 40], 'pop': 'corneum'}, {'text': 'Living epidermis', 'at': [-440, 360, 40], 'pop': 'epi'}, {'text': 'Dermis', 'at': [-440, 250, 40], 'pop': 'dermis'}, {'text': 'Guard hair', 'at': [-262, 470, 20], 'pop': 'guard'}, {'text': 'Fine undercoat hairs', 'at': [-30, 440, 30], 'pop': 'under'}, {'text': 'Hair root (bulb)', 'at': [-300, -60, 40], 'pop': 'bulb'}, {'text': 'Oil gland', 'at': [60, 285, 30], 'pop': 'sebaceous'}, {'text': 'Scent gland', 'at': [-170, 125, 30], 'pop': 'apocrine'}, {'text': 'Fat cells', 'at': [-440, -60, 40], 'pop': 'fat'}],
   'populations': [
     pop('corneum', 'Barrier layer (stratum corneum)', 'dog_skin_epidermis', 'rbox', [900, 12, 80], '#e8d9a8', .95, L([{'at': [0, 402, 0]}]), {'type': 'mol', 'mol': 'cholesterol', 'name': 'Cholesterol, one of the lipids of the skin barrier'}),
-    pop('epi', 'Living epidermal cell', 'dog_skin_epidermis', 'ellipsoid', [17, 10, 17], '#f0cbb8', .8, {'kind': 'grid', 'origin': [-440, 336, -34], 'n': [50, 5, 4], 'step': [17.5, 10.5, 18], 'jitter': .05}),
+    pop('epi', 'Living epidermal cell', 'dog_skin_epidermis', 'ellipsoid', [17, 10, 17], '#f0cbb8', .8, {'kind': 'grid', 'origin': [-440, 336, -34], 'n': [50, 5, 4], 'step': [17.5, 10.5, 18], 'jitter': .05}, {'type': 'cell'}),
     pop('dermis', 'Dermis', 'dog_skin_dermis', 'rbox', [900, 300, 80], '#e6b9a4', .42, L([{'at': [0, 180, 0]}])),
     pop('fat', 'Fat cell (adipocyte)', 'adipocyte', 'ellipsoid', [42, 40, 42], '#f5e6a0', .8, {'kind': 'random', 'n': 22, 'min': [-420, -140, -34], 'max': [420, 0, 34], 'gap': 2, 'seed': 4}),
     pop('guard', 'Guard hair', 'dog_fur', 'cylinder', [18, 520, 18], '#caa05a', .95, L([{'at': [x, 220, 0]} for x in xs])),
@@ -32,7 +34,7 @@ write('dog_muscle', {'id': 'dog_muscle', 'title': 'Inside a dog muscle', 'node':
   'note': 'The fibre width is drawn from a measured average cross-section of dog thigh muscle fibres (about 1,700-1,800 square micrometres, about 47 micrometres if round; vastus lateralis, 16 breeds, a thesis summary). The layout, the capillaries, the nuclei and the nerve ending are illustrative, as are their sizes.',
   'labels': [{'text': 'Muscle fibre (one long cell)', 'at': [-190, 110, 210], 'pop': 'fibre'}, {'text': 'Capillary', 'at': [128, 33, 210], 'pop': 'capillary'}, {'text': 'Nerve ending: the neuromuscular junction', 'at': [-150, 150, 210], 'pop': 'nmj'}],
   'populations': [
-    pop('fibre', 'Muscle fibre', 'dog_muscle_fibre', 'tube_z', [47, 47, 400], '#c0574b', .92, L([{'at': [x, y, 0]} for x, y in fib])),
+    pop('fibre', 'Muscle fibre', 'dog_muscle_fibre', 'tube_z', [47, 47, 400], '#c0574b', .92, L([{'at': [x, y, 0]} for x, y in fib]), {'type': 'cell'}),
     pop('capillary', 'Capillary', 'capillary', 'tube_z', [8, 8, 400], '#8fb4d8', .9, L([{'at': [x, y, 0]} for x, y in caps])),
     pop('rbc', 'Red blood cell', 'red_blood_cell', 'ellipsoid', [7, 7, 3], '#c9302c', 1, L([{'at': [x, y, z]} for (x, y), z in zip(caps, [60, -80, 120, -30, 10, -140])])),
     pop('nuclei', 'Muscle cell nucleus', 'dog_muscle_fibre', 'ellipsoid', [9, 6, 18], '#4d3a63', .95, L([{'at': [x + 21, y, z]} for (x, y), z in zip(fib[::5], [-120, 60, 150, -40, 100, 0, -90, 30])])),
@@ -63,7 +65,7 @@ write('dog_retina', {'id': 'dog_retina', 'title': 'Inside the retina and tapetum
   'note': 'A schematic of the order of the layers in a dog\'s eye. The cell numbers and thicknesses are illustrative. The rod-to-cone ratio is the only measured number: about 23 rods per cone at the sharpest spot in a beagle retina; the scene draws about 20 to 1. The tapetum has 9-20 cell layers in a real dog and 3 are drawn.',
   'labels': [{'text': 'Ganglion cells (their fibres form the optic nerve)', 'at': [-135, 168, 30], 'pop': 'gang'}, {'text': 'Bipolar cells', 'at': [-135, 128, 30], 'pop': 'bip'}, {'text': 'Rods (dim light)', 'at': [-135, 80, 30], 'pop': 'rods'}, {'text': 'Cones (colour)', 'at': [-135, 96, 30], 'pop': 'cones'}, {'text': 'Pigment layer', 'at': [-135, 44, 30], 'pop': 'rpe'}, {'text': 'Tapetum lucidum (shiny layer)', 'at': [-135, 28, 30], 'pop': 'tap'}, {'text': 'Choroid (dark)', 'at': [-135, 4, 30], 'pop': 'choroid'}, {'text': 'Sclera', 'at': [-135, -12, 30], 'pop': 'sclera'}],
   'populations': [
-    pop('gang', 'Ganglion cell', 'neuron', 'ellipsoid', [14, 14, 14], '#d6a7a0', .9, {'kind': 'grid', 'origin': [-130, 160, -20], 'n': [14, 1, 3], 'step': [19, 0, 14], 'jitter': .1}),
+    pop('gang', 'Ganglion cell', 'neuron', 'ellipsoid', [14, 14, 14], '#d6a7a0', .9, {'kind': 'grid', 'origin': [-130, 160, -20], 'n': [14, 1, 3], 'step': [19, 0, 14], 'jitter': .1}, {'type': 'cell'}),
     pop('bip', 'Bipolar cell', 'neuron', 'ellipsoid', [10, 14, 10], '#cba0c9', .9, {'kind': 'grid', 'origin': [-130, 120, -20], 'n': [18, 1, 3], 'step': [14.5, 0, 14], 'jitter': .1}),
     pop('rods', 'Rod cell', 'dog_rod', 'cylinder', [3, 42, 3], '#7da7b8', .95, L([{'at': [x, 70, z]} for x, z in rx]), {'type': 'mol', 'mol': 'retinal', 'name': 'Retinal, the light-catching molecule in a rod'}),
     pop('cones', 'Cone cell', 'dog_cone', 'cylinder', [5, 52, 5], '#e0a050', .95, L([{'at': [x, 74, z]} for x, z in cones])),

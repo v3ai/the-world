@@ -61,6 +61,6 @@ export function limbBones() {
       return smoothS(.006, ...sh); };
     const both = L.merge(meshS(half(1), .0036), meshS(half(-1), .0036)); meshes.pelvis = both; }
   // ---- baculum (os penis): a grooved rod in the penis under the abdomen ----
-  meshes.baculum = bone(P(-17, 32, 0), P(-25.5, 33.4, 0), .0034, .0045, .0034, { sides: 7, e: .25, n: 6 });
+  meshes.baculum = bone(P(-12.5, 32.2, 0), P(-21.5, 34.6, 0), .0034, .0045, .0034, { sides: 7, e: .25, n: 6 });
   return meshes;
 }

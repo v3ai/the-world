@@ -10,8 +10,6 @@
  ],
  "D_um": 1100,
  "blurb": "A slice through dog skin: a thin barrier layer on top, the thick dermis with three compound hair follicles, and fat below. Drag to turn it; click a layer, a hair or a gland.",
- "tag": "In a dog's skin",
- "cell": "animal",
  "note": "A schematic, not a micrograph. The order of the layers, the compound follicles (a thick guard hair with fine undercoat hairs through one opening) and the gland types are as described for dog skin; every size here is illustrative, because no measured dog hair diameters, follicle depths or layer thicknesses were found.",
  "labels": [
   {
@@ -159,7 +157,10 @@
     ],
     "jitter": 0.05
    },
-   "ink": 1
+   "ink": 1,
+   "deeper": {
+    "type": "cell"
+   }
   },
   {
    "id": "dermis",
@@ -501,5 +502,7 @@
    },
    "ink": 1
   }
- ]
+ ],
+ "tag": "Inside dog skin",
+ "cell": "animal"
 }

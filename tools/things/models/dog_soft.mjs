@@ -120,11 +120,12 @@ export function vessels() {
   m.arteries = L.merge(...art); m.veins = L.merge(...vein);
   return m;
 }
+const HLpt = (x, y) => { const p = H.HLcm(x, y, 0); return [p[0], p[1], 0]; };
 export function nerves() {
   const m = {}; const T = (pts, r, o) => L.tube(L.spline(pts.map(p => P(wx(p[0]), p[1], p[2]))).sample(o && o.n || 24), r, { sides: 5 });
   // spinal cord in the vertebral canal, with the cervical and lumbar swellings
-  const cord = [[31, 60.6], [24, 58.2], [17.5, 54.2], [12, 50.6], [4, 49.5], [-6, 48.2], [-13, 47.6], [-24, 46.8], [-32, 46.2], [-36, 45.8]].map(p => [...p, 0]);
-  m.spinal_cord = T(cord, .0042, { n: 60 });
+  const cord = [HLpt(.8, .6), ...SPINE.cerv, ...SPINE.thor, ...SPINE.lum, ...SPINE.sac].map((p, i) => i === 0 ? p : [p[0], p[1] + .9, 0]);
+  m.spinal_cord = L.tube(L.spline(cord.map(p => P(...p))).sample(90), .0042, { sides: 5 });
   // brachial plexus and the main nerves of the foreleg; lumbosacral plexus and sciatic nerve of the hindleg; vagus; optic nerves
   const nn = [];
   for (const s of SIDES) { nn.push(T([[16, 53, 0.4], [18, 46, s * 3.5], [18.5, 40.5, s * 6.5]], .0032)); nn.push(T([[16, 53, 0.4], [14, 44, s * 3.5], [14.5, 38, s * 6.6]], .0032));
@@ -133,6 +134,6 @@ export function nerves() {
     nn.push(T([[24, 56.8, s * 2.2], [18, 51, s * 2.2], [12, 46.5, s * 2], [8, 44.4, s * 1.8]], .0022)); }   // vagus nerves
   m.nerves_fore = L.merge(...nn.filter((_, i) => i % 5 < 3 && i % 5 !== 3)); m.nerves_hind = L.merge(...nn.filter((_, i) => i % 5 === 3)); m.vagus = L.merge(...nn.filter((_, i) => i % 5 === 4));
   m.optic = L.merge(...SIDES.map(s => T([[42.2, 63.6, s * 1.5], [42.8, 63.8, s * 3], [43.6, 64, s * 4.2]], .0022, { n: 6 })));
-  m.tail_nerves = T([[-41, 45, 0], [-52, 43.2, 0], [-62, 34, 0]], .0014, { n: 10 });
+  m.tail_nerves = L.tube(L.spline(TAIL.slice(0, 5).map(p => P(p[0], p[1], 0))).sample(10), .0014, { sides: 5 });
   return m;
 }

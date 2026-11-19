@@ -44,8 +44,8 @@ export function skull() { return meshS(skullShape(), .0036); }
 export function mandible() {
   const parts = [];
   for (const s of SIDES) {
-    parts.push(hrod([18.4, -4.9, s * 1], [6.5, -4.6, s * 3.2], .75, .95), hell([10.5, -4.7, s * 2.6], [1, 0], 5.8, 1.35, .45), hell([4.9, -1.3, s * 3.9], [.15, 1], 3.7, .9, .45),
-      D.sphereS(HL(3.9, -2.4, s * 3.9), .006), hrod([4.2, -4.6, s * 3.7], [2.6, -4.2, s * 3.6], .5));
+    parts.push(hrod([18.4, -4.9, s * 1], [6.5, -4.6, s * 2.7], .65, .8), hell([10.5, -4.7, s * 2.4], [1, 0], 5.8, 1.3, .4), hell([4.9, -1.3, s * 3.5], [.15, 1], 3.7, .9, .4),
+      D.sphereS(HL(3.9, -2.4, s * 3.5), .0058), hrod([4.2, -4.6, s * 3.3], [2.6, -4.2, s * 3.2], .45));
   }
   parts.push(hrod([18.6, -4.8, -.9], [18.6, -4.8, .9], .8));
   return meshS(smoothS(.004, ...parts), .0035);
@@ -87,11 +87,13 @@ export function headSkinParts() {
   sh.push(hell([1.2, 2.2, 0], [1, 0], 2.6, 3.9, 3.7));          // occiput
   sh.push(hell([10.2, 3.5, 0], [1, 0], 2.7, 3.1, 4.9));         // brow and frontal region
   sh.push(hell([5.5, .6, 0], [1, 0], 3.9, 3.3, 5.9));            // temple and cheek (the broad skull; no fleshy cheek)
+  sh.push(hell([9, .4, 0], [1, 0], 2.6, 2.4, 5.6));                // zygomatic arches and the orbits
   sh.push(hell([5.8, -2.6, 0], [1, 0], 3.6, 2.8, 5.0));          // jaw muscles and the angle of the jaw
   sh.push(hell([14.8, 1.0, 0], [1, 0], 6.8, 3.1, 4.3));         // muzzle (upper jaw with its flews)
   sh.push(hell([15.2, -1.5, 0], [1, 0], 5.6, 2.1, 3.7));        // the upper lip (flews)
-  sh.push(hell([11.5, -4.6, 0], [1, 0], 7.6, 1.7, 3.1));        // lower jaw
+  sh.push(hell([11.5, -4.6, 0], [1, 0], 7.6, 1.7, 3.5));        // lower jaw
   sh.push(hell([4.2, -3.6, 0], [1, 0], 4.2, 3.2, 3.4));         // throat and the angle of the jaw
+  sh.push(hell([18.4, -4.5, 0], [1, 0], 2.8, 1.9, 2.4));          // chin
   sh.push(hell([20.4, 1.8, 0], [1, 0], 1.4, 1.7, 2.6));         // the nose leather lies on the muzzle tip
   for (const s of SIDES) sh.push(hell([10.6, 5.9, s * 3.7], [1, 0], 1.6, .9, 1.2));   // brow ridges over the eyes
   return sh;

@@ -21,7 +21,7 @@ export const SPINE = {
   lum: [48.4, 48.3, 48.2, 48.1, 48.0, 47.9, 47.8].map((y, i) => [-14.6 - i * 2.35, y]),   // L1..L7 (short-coupled loin)
   sac: [[-31.1, 47.6], [-33.3, 47.3], [-35.5, 46.9]],       // S1..S3 (fused)
 };
-export const TAIL = [[-38, 47.3], [-44.5, 45.8], [-51, 42.5], [-57, 37.5], [-61, 31], [-63, 24]];   // caudal centres: path, 20 vertebrae along it
+export const TAIL = [[-38, 47.3], [-44, 45.9], [-50, 43], [-55.5, 38.5], [-59, 33], [-61, 27.5]];   // caudal centres: path, 20 vertebrae along it
 
 // limbs (cm). Fore: scapula dorsal end, shoulder (glenoid), elbow, carpus, metacarpophalangeal joint; toe points
 export const FORE = { sc0: [10.5, 54], sc1: [20.5, 37.5], glen: [20.5, 37.5], elbow: [4.5, 30.5], carpus: [7.5, 11.5], mcp: [10.2, 4.3], zS: 7.6, zE: 8.8, zC: 7, zP: 6.4 };
@@ -35,14 +35,15 @@ export function tailPath() { return L.spline(TAIL.map(p => P(...p))).sample(14);
 export function skinShape() {
   const s = [];
   // trunk
-  s.push(ell(P(4, 42.8, 0), [1, 0, 0], .2, .139, .108));            // rib cage
+  s.push(ell(P(4, 42.4, 0), [1, 0, 0], .2, .137, .108));            // rib cage
   s.push(ell(P(20, 38.5, 0), [1, -.3, 0], .055, .07, .068));      // forechest (the point of the breastbone)
   s.push(ell(P(-13, 46.2, 0), [1, 0, 0], .125, .103, .092));       // loin and flank
   s.push(ell(P(-29.5, 47.8, 0), [1, -.1, 0], .115, .088, .1));        // croup and hindquarters
-  s.push(ell(P(13, 49.5, 0), [1, -.2, 0], .1, .078, .074));       // withers
+  s.push(ell(P(13, 48.3, 0), [1, -.2, 0], .1, .078, .074));       // withers
+  s.push(ell(P(-33.5, 42.5, 0), [1, -.3, 0], .06, .055, .066));     // buttocks (the ischial tuberosities lie under the root of the tail)
   s.push(ell(P(-12, 38.3, 0), [1, .06, 0], .115, .086, .096));    // belly (moderate tuck-up behind the ribs)
   // neck and head
-  s.push(rod(P(13, 49, 0), HL(2, 1, 0), .1, .07));
+  s.push(rod(P(13, 48.2, 0), HL(2, 1, 0), .095, .07));
   s.push(rod(P(15, 46.5, 0), HL(1, -4.5, 0), .08, .045));          // under the neck
   // tail: thick at the base, tapering, with a rounded tip
   const tp = tailPath(), n = tp.length - 1;

@@ -1,6 +1,4 @@
 {
- "tag": "Inside a dog",
- "cell": "animal",
  "id": "dog_muscle",
  "title": "Inside a dog muscle",
  "node": "dog_muscle_scene",
@@ -340,7 +338,10 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "deeper": {
+    "type": "cell"
+   }
   },
   {
    "id": "capillary",
@@ -596,5 +597,7 @@
     "name": "Acetylcholine, the messenger that tells muscle to contract"
    }
   }
- ]
+ ],
+ "tag": "Inside a dog muscle",
+ "cell": "animal"
 }
