@@ -705,7 +705,7 @@
    ],
    [
     "Confirmed exoplanets",
-    "> 5,500"
+    "more than 6,000 (passed 6,000 in September 2025; the count keeps growing)"
    ]
   ],
   "certainty": "C3",
@@ -713,13 +713,7 @@
    "Whether life exists or ever existed beyond Earth is unknown.",
    "How to reliably distinguish biosignatures from abiotic false positives is unresolved."
   ],
-  "refs": [
-   [
-    "BIO",
-    "20.3",
-    "20-3-perspectives-on-the-phylogenetic-tree"
-   ]
-  ],
+  "refs": [],
   "kn": [
    "habitability",
    "exoplanets",

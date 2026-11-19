@@ -24,17 +24,25 @@ let TRACKS = null;
 function loadTracks() { if (!TRACKS) TRACKS = getJSON('data/tracks/manifest.json').then(fs => Promise.all(fs.map(f => getJSON('data/tracks/' + f)))).catch(() => []); return TRACKS; }
 let TRACK_CTX = null;
 function trackNav(id) { if (!TRACK_CTX) return ''; const i = TRACK_CTX.ids.indexOf(id); if (i < 0) return ''; const p = TRACK_CTX.ids[i - 1], n = TRACK_CTX.ids[i + 1]; return `<div class="trnav"><button ${p ? `data-n="${p}"` : 'disabled'}>${p ? (NODE[p] ? NODE[p].title : p) : ''}</button><span>${i + 1} of ${TRACK_CTX.ids.length}</span><button ${n ? `data-n="${n}"` : 'disabled'}>${n ? (NODE[n] ? NODE[n].title : n) : ''}</button></div>`; }
-function wireTrackNav() { infoEl.querySelectorAll('.trnav button[data-n]').forEach(b => b.onclick = () => { goToNode(b.dataset.n); const cur = document.querySelector(`#tracks .trk[data-n="${b.dataset.n}"]`); if (cur) { document.querySelectorAll('#tracks .trk.cur').forEach(x => x.classList.remove('cur')); cur.classList.add('cur', 'seen'); cur.scrollIntoView({ block: 'nearest' }); } }); }
+function wireTrackNav() { infoEl.querySelectorAll('.trnav button[data-n]').forEach(b => b.onclick = () => { goToNode(b.dataset.n); const cur = document.querySelector(`#tracks .trk[data-n="${b.dataset.n}"]`); if (cur) { trackProgress(); document.querySelectorAll('#tracks .trk.cur').forEach(x => x.classList.remove('cur')); cur.classList.add('cur', 'seen'); cur.scrollIntoView({ block: 'nearest' }); } }); }
+/* the visited counts and meters in the track headers follow the steps you open */
+function trackProgress() {
+  const el = $('#tracks'); if (!el || !TRACKS) return; const seenS = new Set(store.get('seen', []));
+  el.querySelectorAll(':scope > #trList > details').forEach((d, i) => { const t = TRACK_LIST && TRACK_LIST[i]; if (!t) return; const all = t.sections.flatMap(s => s.nodes), done = all.filter(id => seenS.has(id)).length; const m = d.querySelector('summary .mini'); if (m) m.textContent = done + '/' + all.length + ' visited'; const bar = d.querySelector('.meter i'); if (bar) bar.style.width = (done / Math.max(all.length, 1) * 100).toFixed(1) + '%'; });
+}
+let TRACK_LIST = null;
 function openTracks() {
   let el = $('#tracks'); const was = el && el.classList.contains('open'); closePops(); if (el) el.classList.remove('open'); document.body.classList.toggle('trackOpen', !was); if (was) return;
   if (!el) { el = document.createElement('div'); el.id = 'tracks'; el.className = 'pop glass'; document.body.appendChild(el); }
-  el.classList.add('open'); el.innerHTML = '<h3>Tracks</h3><div class="sub">Guided paths through a whole degree, in the order ideas build on each other. Nothing is graded; open any step.</div><div id="trList">Loading…</div>';
+  el.classList.add('open'); el.innerHTML = '<button class="px" aria-label="Close the tracks">Close</button><h3>Tracks</h3><div class="sub">Guided paths through a whole degree, in the order ideas build on each other. Nothing is graded; open any step.</div><div id="trList">Loading…</div>';
+  el.querySelector('.px').onclick = () => closePops();
   Promise.all([loadTracks(), loadNodes()]).then(([ts]) => {
-    const seenS = new Set(store.get('seen', []));
+    TRACK_LIST = ts; const seenS = new Set(store.get('seen', []));
     $('#trList').innerHTML = ts.map((t, ti) => {
       const all = t.sections.flatMap(s => s.nodes), done = all.filter(id => seenS.has(id)).length;
       return `<details${ts.length === 1 ? ' open' : ''}><summary><b>${t.title}</b> <span class="mini">${done}/${all.length} visited</span></summary><div class="meter"><i style="width:${(done / Math.max(all.length, 1) * 100).toFixed(1)}%"></i></div>${t.description ? `<div class="sub">${t.description}</div>` : ''}${t.sections.map((s, si) => `<details><summary>${si + 1}. ${s.title} <span class="mini">(${s.nodes.length})</span></summary><div class="trn">${s.nodes.map(id => `<button class="trk${seenS.has(id) ? ' seen' : ''}" data-n="${id}">${NODE[id] ? NODE[id].title : id}${NODE[id] && NODE[id].lab && labAvailable(NODE[id].lab.id) ? ' <span class="lb">lab</span>' : ''}</button>`).join('')}</div></details>`).join('')}</details>`;
     }).join('') || '<div class="sub">No tracks yet.</div>';
-    el.querySelectorAll('.trk').forEach(b => b.onclick = () => { const di = [...el.querySelectorAll('details')].indexOf(b.closest('details')), t = ts[di] && ts[di].sections.some(s => s.nodes.includes(b.dataset.n)) ? ts[di] : ts.find(t => t.sections.some(s => s.nodes.includes(b.dataset.n))); TRACK_CTX = t ? { title: t.title, ids: t.sections.flatMap(s => s.nodes) } : null; goToNode(b.dataset.n); b.classList.add('seen'); el.querySelectorAll('.trk.cur').forEach(x => x.classList.remove('cur')); b.classList.add('cur'); });
+    el.querySelectorAll('.trk').forEach(b => b.onclick = () => { const di = [...el.querySelectorAll('details')].indexOf(b.closest('details')), t = ts[di] && ts[di].sections.some(s => s.nodes.includes(b.dataset.n)) ? ts[di] : ts.find(t => t.sections.some(s => s.nodes.includes(b.dataset.n))); TRACK_CTX = t ? { title: t.title, ids: t.sections.flatMap(s => s.nodes) } : null; if (matchMedia('(max-width: 860px)').matches) { el.classList.remove('open'); document.body.classList.remove('trackOpen'); } /* a phone has room for one panel: the step's card takes over; Tracks opens again where it was */ goToNode(b.dataset.n); b.classList.add('seen'); el.querySelectorAll('.trk.cur').forEach(x => x.classList.remove('cur')); b.classList.add('cur'); trackProgress(); });
+    trackProgress();
   });
 }

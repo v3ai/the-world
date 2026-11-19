@@ -1609,7 +1609,7 @@
   "layers": {
    "basics": "An ADC samples a voltage and turns it into a binary number; more bits, finer steps.",
    "deeper": "Architectures: flash (fast), SAR (balanced), sigma-delta (precise), pipeline.",
-   "expert": "LSB=V_ref/2ᴺ; ideal SNR=6.02N+1.76 dB; INL/DNL; aperture jitter limits SNR at high input frequency; oversampling gains 3 dB/octave in sigma-delta."
+   "expert": "LSB=V_ref/2ᴺ; ideal SNR=6.02N+1.76 dB; INL/DNL; aperture jitter limits SNR at high input frequency; plain oversampling gains 3 dB per octave of oversampling; sigma-delta noise shaping gains (6L+3) dB per octave for an order-L modulator."
   },
   "facts": [],
   "formula": "SNR = 6.02N + 1.76 dB",

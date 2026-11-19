@@ -28,10 +28,10 @@
 <section id="caption" aria-live="polite">
   <nav id="crumbs" aria-label="Where you are" aria-live="off"><button class="back" id="navBack" disabled title="Return to the previous place and card">Back</button><ol id="crumbList"></ol></nav>
   <div class="n" id="capN"></div><div class="d" id="capD"></div><div class="nt" id="capNote"></div>
-  <div class="meta"><span class="k" id="capK"></span><span id="timebar"><span id="timeT"></span><button id="timeS" title="Change how fast time runs">1×</button><button id="timeNow" title="Jump to the present moment">Now</button></span></div>
+  <div class="meta"><span class="k" id="capK"></span><button class="fold" id="capFold" title="Fold the description away, or open it again">Hide details</button><span id="timebar"><span id="timeT"></span><button id="timeS" title="Change how fast time runs">Real time</button><button id="timeNow" title="Jump to the present moment">Now</button></span></div>
 </section>
 <aside id="info" aria-live="polite"></aside>
-<div id="library" class="pop"><h3>Library</h3><div class="sub">Search places, elements, molecules, every topic in the explorer, the knowledge map and 51 open textbooks.<span class="kb"> Press / from anywhere.</span></div><div class="tours2"><span>Guided tours, one stop at a time:</span><button id="tourIn2">Tour in</button><button id="tourOut2">Tour out</button></div><input id="libQ" type="search" placeholder="Try heart, gold, caffeine, London or mitosis" autocomplete="off"><div id="libRes"></div><div class="lic">Section titles and key terms are indexed from OpenStax textbooks (CC BY and CC BY-NC-SA 4.0); links open the full text on openstax.org. The explanations in this explorer are original.</div></div>
+<div id="library" class="pop"><button class="px" aria-label="Close the library">Close</button><h3>Library</h3><div class="sub">Search places, elements, molecules, every topic in the explorer, the knowledge map and 51 open textbooks.<span class="kb"> Press / from anywhere.</span></div><div class="tours2"><span>Guided tours, one stop at a time:</span><button id="tourIn2">Tour in</button><button id="tourOut2">Tour out</button></div><input id="libQ" type="search" placeholder="Try heart, gold, caffeine, London or mitosis" autocomplete="off"><div id="libRes"></div><div class="lic">Section titles and key terms are indexed from OpenStax textbooks (CC BY and CC BY-NC-SA 4.0); links open the full text on openstax.org. The explanations in this explorer are original.</div></div>
 <div id="controls"></div>
 <div id="zoombtns"><button id="zin" title="Zoom in (hold)" aria-label="Zoom in">+</button><button id="zout" title="Zoom out (hold)" aria-label="Zoom out">−</button></div>
 <div id="push" class="glass"><span id="pushT"></span></div>
@@ -45,7 +45,7 @@
     <ol class="steps">
       <li><b>Scroll to zoom.</b><span>Scroll, or pinch on a phone, to move toward whatever is under the pointer. You can keep going in or out across more than 40 powers of ten. Drag to look around.</span></li>
       <li><b>Click anything.</b><span>Click or tap an object and a card opens: what it is, what it is made of, how it works. Choose Basics, Deeper or Expert. Double-click to fly to it.</span></li>
-      <li><b>Watch the ruler.</b><span>The scale down the left edge shows how big your view is. Click a place on it, such as Your skin, London or the Milky Way, to fly there.</span></li>
+      <li><b>Watch the ruler.</b><span>The scale down the left edge shows how big your view is. Click a place on it, such as Your skin, London or the Milky Way, to fly there. On a phone, tap the strip, or choose Library and open Places on the scale.</span></li>
     </ol>
     <div class="grid">
       <span class="key">Where am I?</span><span>The path at the bottom left (Universe, Milky Way, Earth and so on) shows where you are. Click a step to fly out to it, or press Back to return.</span>

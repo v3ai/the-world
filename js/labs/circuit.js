@@ -710,7 +710,7 @@ if (typeof document === 'undefined') return;
 
 const LABS = root.LABS = root.LABS || {};
 const CSS = `
-.cl-root{position:absolute;inset:0;display:flex;flex-direction:column;background:#060914;color:var(--text,#e8ecf5);font:13px Inter,system-ui,sans-serif;overflow:hidden;outline:none;-webkit-user-select:none;user-select:none}
+.cl-root{--text:#e8ecf5;--dim:#98a2b8;--line:rgba(255,255,255,.12);--accent:#6ee7ff;--gold:#ffd166;--panel:rgba(10,14,26,.78);position:absolute;inset:0;display:flex;flex-direction:column;background:#060914;color:var(--text,#e8ecf5);font:13px Inter,system-ui,sans-serif;overflow:hidden;outline:none;-webkit-user-select:none;user-select:none}
 .cl-root *{box-sizing:border-box}
 .cl-root button,.cl-root select,.cl-root input{font:inherit;color:inherit}
 .cl-bar{display:flex;align-items:center;gap:8px;padding:6px 10px;border-bottom:1px solid var(--line,rgba(255,255,255,.12));background:rgba(10,14,26,.92);flex-wrap:wrap;flex:none}
@@ -750,7 +750,7 @@ const CSS = `
 .cl-row input[type=range]{flex:1;min-width:0;accent-color:#6ee7ff}
 .cl-read{font-size:12px;color:#c5cde0;line-height:1.55;margin-top:6px;border-top:1px solid rgba(255,255,255,.08);padding-top:6px}
 .cl-read b{color:var(--accent,#6ee7ff);font-weight:500}
-.cl-banner{position:absolute;left:50%;top:8px;transform:translateX(-50%);max-width:min(620px,60%);padding:7px 12px;border-radius:11px;font-size:12.5px;display:none;z-index:3;text-align:center}
+.cl-banner{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);max-width:min(620px,60%);padding:7px 12px;border-radius:11px;font-size:12.5px;display:none;z-index:3;text-align:center}
 .cl-banner.err{background:rgba(255,77,94,.16);border:1px solid rgba(255,77,94,.5);color:#ffc9cf}
 .cl-banner.info{background:rgba(110,231,255,.14);border:1px solid rgba(110,231,255,.45);color:#cdf5ff}
 .cl-tip{position:absolute;pointer-events:none;padding:5px 8px;border-radius:8px;background:rgba(8,12,24,.92);border:1px solid var(--line,rgba(255,255,255,.18));font-size:12px;line-height:1.4;white-space:nowrap;display:none;z-index:4}
@@ -941,13 +941,13 @@ function createLab(container, presetId) {
     A.expNode = p.explainNode || null; A.running = true; A.speed = 1; E.speed.value = 0;
     E.preset.value = p.id; fitView(); buildTry(); syncUI(); recompile(false);
     setTab(A.mode === 'ac' ? 'bode' : A.mode === 'tran' ? 'scope' : 'values'); buildScopeCtl(); buildBodeCtl(); buildMeter();
-    A.expOn = true; E.exp.style.display = ''; E.explain.classList.add('on'); A.lastExp = 0;
+    A.expOn = window.innerWidth > 860; E.exp.style.display = A.expOn ? '' : 'none'; E.explain.classList.toggle('on', A.expOn); A.lastExp = 0; // on a phone the explanation starts folded; the What's happening button opens it
   }
   function loadPreset(id) {
     return loadPresets().then(function (list) {
       A.presets = list; fillPresetSelect();
       const p = list.find(function (x) { return x.id === id; });
-      if (p) loadPresetData(p); else { clearAll(); }
+      if (p) loadPresetData(p); else { clearAll(); if (id && typeof toast === 'function') toast('There is no example called "' + id + '" yet. Pick one from the Examples menu, or build your own.'); }
     });
   }
   function fillPresetSelect() {
@@ -1572,11 +1572,11 @@ function createLab(container, presetId) {
     A.bd = { f: f, m: m, p: p }; A.bdMsg = ''; A.dirty = true;
     // readout
     let pk = 0; m.forEach(function (v, i) { if (v > m[pk]) pk = i; });
-    const cross = function (target, from, dir) { for (let i = from; i + dir >= 0 && i + dir < m.length; i += dir) { const a = m[i], b = m[i + dir]; if ((a - target) * (b - target) <= 0 && a !== b) { const t = (target - a) / (b - a); return Math.pow(10, Math.log10(f[i]) + t * (Math.log10(f[i + dir]) - Math.log10(f[i]))); } } return null; };
+    const cross = function (target, from, dir) { for (let i = from; i + dir >= 0 && i + dir < m.length; i += dir) { const a = m[i], b = m[i + dir]; if ((a - target) * (b - target) <= 0 && a !== b) { let lo = Math.log10(f[i]), hi = Math.log10(f[i + dir]); for (let k = 0; k < 24; k++) { const mid = (lo + hi) / 2, tt = sim.tf(Math.pow(10, mid), ni, no), g = tt ? 20 * Math.log10(Math.max(tt[0], 1e-12)) : null; if (g === null) break; if ((g - target) * (a - target) <= 0) hi = mid; else lo = mid; } return Math.pow(10, (lo + hi) / 2); } } return null; }; // the corner is refined by bisection between the two sweep points that bracket it
     const fl = cross(m[pk] - 3, pk, -1), fh = cross(m[pk] - 3, pk, 1);
     let s = 'Peak ' + m[pk].toFixed(1) + ' dB at ' + fmt(f[pk], 'Hz');
     if (fl && fh) s += '<br>&minus;3 dB band ' + fmt(fl, 'Hz') + ' &ndash; ' + fmt(fh, 'Hz') + '<br>Q &asymp; ' + (f[pk] / (fh - fl)).toFixed(1);
-    else if (fh) s += '<br>&minus;3 dB corner (low-pass): <b>' + fmt(fh, 'Hz') + '</b>'; else if (fl) s += '<br>&minus;3 dB corner (high-pass): <b>' + fmt(fl, 'Hz') + '</b>';
+    else if (fh) s += '<br>&minus;3 dB corner (low-pass): <b>' + fmt(+fh.toPrecision(3), 'Hz') + '</b>'; else if (fl) s += '<br>&minus;3 dB corner (high-pass): <b>' + fmt(fl, 'Hz') + '</b>';
     A.bdTxt = s;
   }
   function drawBode() {

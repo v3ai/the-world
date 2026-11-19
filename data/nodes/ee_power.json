@@ -523,10 +523,7 @@
   "facts": [],
   "certainty": "C1",
   "refs": [],
-  "lab": {
-   "id": "circuit",
-   "preset": "inverter_bridge"
-  },
+  "lab": {"id": "circuit", "preset": "bridge_rectifier"},
   "ext": [
    {
     "title": "Wikipedia: Power inverter",
@@ -563,10 +560,7 @@
   "formula": "Vout = D Vin",
   "certainty": "C1",
   "refs": [],
-  "lab": {
-   "id": "circuit",
-   "preset": "buck_converter"
-  },
+  "lab": null,
   "ext": [
    {
     "title": "Wikipedia: Buck converter",
@@ -603,10 +597,7 @@
   "formula": "Vout = Vin/(1−D)",
   "certainty": "C1",
   "refs": [],
-  "lab": {
-   "id": "circuit",
-   "preset": "boost_converter"
-  },
+  "lab": null,
   "ext": [
    {
     "title": "Wikipedia: Boost converter",
@@ -642,10 +633,7 @@
   "facts": [],
   "certainty": "C1",
   "refs": [],
-  "lab": {
-   "id": "circuit",
-   "preset": "flyback_converter"
-  },
+  "lab": null,
   "ext": [
    {
     "title": "Wikipedia: Switched-mode power supply",

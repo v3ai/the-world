@@ -395,7 +395,7 @@
   "layers": {
    "basics": "The membrane is a double layer of fat-like molecules that controls what enters and leaves.",
    "deeper": "Proteins in it act as gates, pumps and receptors.",
-   "expert": "Fluid mosaic bilayer ≈ 5-7 nm thick; phospholipids, cholesterol (up to ≈ 40 mol% in some), lipid rafts; Na+/K+-ATPase uses ≈ 20-30% of cell ATP in many cells."
+   "expert": "Fluid mosaic bilayer ≈ 4-5 nm thick (oily core ≈ 3 nm); phospholipids, cholesterol (up to ≈ 40 mol% in some), lipid rafts; Na+/K+-ATPase uses ≈ 20-30% of cell ATP in many cells."
   },
   "facts": [
    [

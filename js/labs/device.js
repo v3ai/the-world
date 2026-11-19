@@ -923,7 +923,7 @@ var TAB_CMOS = {
     /* F: dynamic power */
     var F = R[5]; card(g, F, 'Dynamic power  P = α·C·V²·f'); var f = Math.pow(10, s.lf) * 1e6, Pg = function (v) { return s.alpha * s.C * 1e-15 * v * v * f; }, ymx = Pg(1.8);
     var PF = plot(g, F, { xmin: 0.4, xmax: 1.8, ymin: 0, ymax: ymx * 1.05, xl: 'V_DD (V)', yl: 'power per gate', fy: function (v) { return eng(v, 'W', 2).replace(' ', ''); }, pl: 52 }); curve(g, PF, Pg, C.gold, 2.2, null, 0.4, 1.8, 80); dot(g, PF.X(VDD), PF.Y(Pg(VDD)), '#fff', 5, true);
-    txt(g, 'P/gate = ' + eng(Pg(VDD), 'W', 3), PF.x + 8, PF.y + 14, { s: 10.5, c: C.gold, w: 600 }); txt(g, 'chip (' + sci(Math.pow(10, s.lN), 1) + ' gates): ' + eng(Pg(VDD) * Math.pow(10, s.lN), 'W', 3), PF.x + 8, PF.y + 28, { s: 10, c: C.text });
+    txt(g, 'P/gate = ' + eng(Pg(VDD), 'W', 3), PF.x + 8, PF.y + 14, { s: 10.5, c: C.gold, w: 600 }); txt(g, 'toy estimate, chip (' + sci(Math.pow(10, s.lN), 1) + ' gates, all switching): ' + eng(Pg(VDD) * Math.pow(10, s.lN), 'W', 3), PF.x + 8, PF.y + 28, { s: 10, c: C.text });
     txt(g, 'E/cycle = C·V² = ' + eng(s.C * 1e-15 * VDD * VDD, 'J', 3) + '  —  halve V, ¼ the power', PF.x + PF.w - 6, PF.y + PF.h - 8, { a: 'right', s: 9.5, c: C.dim });
   }
 };
@@ -1032,7 +1032,7 @@ var TAB_FAB = {
 /* ================= UI shell ================= */
 var TABS = [TAB_BANDS, TAB_DOPING, TAB_PN, TAB_DIODES, TAB_BJT, TAB_MOS, TAB_CMOS, TAB_FAB];
 TAB_DIODES.onset = function (s, k) { if (k === 'mat' && MATS[s.mat].xr) s.mx = MATS[s.mat].xr[2]; };
-var CSS = '.dl-root{position:absolute;inset:0;display:flex;flex-direction:column;background:radial-gradient(1200px 700px at 30% 0%,#0d1428 0%,#070b16 60%);color:var(--text,#e8ecf5);font:13px Inter,system-ui,sans-serif;overflow:hidden;user-select:none}' +
+var CSS = '.dl-root{--text:#e8ecf5;--dim:#98a2b8;--line:rgba(255,255,255,.12);--accent:#6ee7ff;--gold:#ffd166;--panel:rgba(10,14,26,.78);position:absolute;inset:0;display:flex;flex-direction:column;background:radial-gradient(1200px 700px at 30% 0%,#0d1428 0%,#070b16 60%);color:var(--text,#e8ecf5);font:13px Inter,system-ui,sans-serif;overflow:hidden;user-select:none}' +
   '.dl-root *{box-sizing:border-box}.dl-tabs{display:flex;gap:4px;padding:6px 10px;border-bottom:1px solid var(--line,rgba(255,255,255,.12));background:rgba(10,14,26,.78);backdrop-filter:blur(14px);overflow-x:auto;flex:none;align-items:center;height:44px}' +
   '.dl-tab{border:1px solid transparent;background:none;color:var(--dim,#98a2b8);padding:6px 11px;border-radius:9px;cursor:pointer;font:500 12.5px "Space Grotesk",Inter,sans-serif;white-space:nowrap;transition:all .15s}.dl-tab:hover{color:#fff;background:rgba(255,255,255,.06)}' +
   '.dl-tab.on{color:#fff;background:rgba(110,231,255,.14);border-color:rgba(110,231,255,.4)}.dl-tab b{color:var(--accent,#6ee7ff);font-weight:600;margin-right:5px}' +
@@ -1123,7 +1123,7 @@ function open(container, presetId) {
   loadPresets().then(function (list) {
     if (!alive) return; presets = list || [];
     TABS.forEach(function (T) { var items = presets.filter(function (p) { return p.tab === T.id; }); if (!items.length) return; var og = document.createElement('optgroup'); og.label = T.name; items.forEach(function (p) { var o = document.createElement('option'); o.value = p.id; o.textContent = p.title; og.appendChild(o); }); sel.appendChild(og); });
-    if (presetId) loadPreset(presetId);
+    if (presetId && !loadPreset(presetId) && typeof toast === 'function') toast('There is no example called "' + presetId + '" yet. Pick one from the Presets menu.');
   });
   return {
     close: function () { alive = false; cancelAnimationFrame(raf); if (ro) ro.disconnect(); window.removeEventListener('resize', resize); if (root.parentNode) root.parentNode.removeChild(root); },

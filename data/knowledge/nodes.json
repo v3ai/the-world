@@ -211,12 +211,7 @@
 "Underpins every GR test"
 ],
 "frontier": [],
-"refs": [
-[
-"UP3",
-"5.1"
-]
-],
+"refs": [],
 "sim": []
 },
 {
@@ -365,18 +360,6 @@
 ],
 "frontier": [],
 "refs": [
-[
-"IST",
-"7.1"
-],
-[
-"IST",
-"8.1"
-],
-[
-"IST",
-"9.1"
-],
 [
 "DSC",
 "4.1"
@@ -1593,8 +1576,8 @@
 "5.1"
 ],
 [
-"HSP",
-"18.1"
+"UP2",
+"5.3"
 ]
 ],
 "sim": []
@@ -3315,8 +3298,8 @@
 "21.3"
 ],
 [
-"AST",
-"14.1"
+"HSP",
+"22.3"
 ]
 ],
 "sim": []
@@ -3512,7 +3495,7 @@
 "domain": "Atomic physics",
 "basics": "Air molecules scatter short wavelengths far more than long ones, so the sky is blue and sunsets are red. Clouds look white because droplets scatter all colours equally.",
 "deeper": "Rayleigh scattering applies when particles are far smaller than the wavelength; larger drops give Mie scattering.",
-"expert": "Rayleigh I∝λ⁻⁴; blue (450 nm) scatters ~5.5× more than red (700 nm).",
+"expert": "Rayleigh I∝λ⁻⁴; blue (450 nm) scatters ≈6× more than red (700 nm), since (700/450)⁴ ≈ 5.9.",
 "regime": "Single-scattering limit; multiple scattering in thick clouds.",
 "emerges_from": [
 "electromagnetic_waves",
@@ -5517,7 +5500,7 @@
 "domain": "Cell biology",
 "basics": "All living things are made of cells, cells come from other cells, and a cell is the smallest unit that can live on its own. Cells range from bacteria to neurons.",
 "deeper": "Prokaryotic cells lack a nucleus; eukaryotic cells contain organelles. Cells keep their internal chemistry different from outside by controlling what crosses the membrane.",
-"expert": "Bacterium 1–5 μm, animal cell 10–30 μm, human egg ≈100 μm; ≈3.7×10¹³ human cells.",
+"expert": "Bacterium 1–5 μm, animal cell 10–30 μm, human egg ≈100 μm; ≈3×10¹³ human cells (reference adult; older estimates ≈3.7×10¹³).",
 "regime": "Viruses are not cells.",
 "emerges_from": [
 "biomolecules_overview",
@@ -5566,7 +5549,7 @@
 "domain": "Cell biology",
 "basics": "Eukaryotic cells divide work among compartments: the nucleus stores DNA, the ER and Golgi build and ship proteins, and lysosomes recycle waste.",
 "deeper": "Proteins are labelled with signal sequences that route them to the right place. Vesicles carry cargo between compartments.",
-"expert": "Nucleus ≈6 μm; nuclear pore ≈120 MDa complex; ribosomes ≈20–25 nm; lysosome pH≈4.5–5.",
+"expert": "Nucleus ≈6 μm; nuclear pore ≈120 MDa complex; ribosomes ≈20 nm (bacteria) to ≈25–30 nm (eukaryotes); lysosome pH≈4.5–5.",
 "regime": "Details differ among kingdoms.",
 "emerges_from": [
 "cell_biology_intro",
@@ -6138,16 +6121,7 @@
 "Fossil diversity curves"
 ],
 "frontier": [],
-"refs": [
-[
-"BIO",
-"20.1"
-],
-[
-"AST",
-"14.1"
-]
-],
+"refs": [],
 "sim": []
 },
 {
@@ -6324,9 +6298,9 @@
 ],
 "certainty": "C1",
 "domain": "Biology",
-"basics": "Humans have about 200 cell types arranged in four tissue kinds: epithelial, connective, muscle and nervous. They differ in which genes are active, not in their DNA.",
+"basics": "Humans have about 200 classically named cell types (the Human Cell Atlas has already told apart more than 500, and the true number is still being worked out), arranged in four tissue kinds: epithelial, connective, muscle and nervous. They differ in which genes are active, not in their DNA.",
 "deeper": "Stem cells can renew themselves and give rise to specialised cells. Induced pluripotent stem cells show that adult cells can be reprogrammed.",
-"expert": "≈37×10¹² cells in a human; iPSC via Oct4, Sox2, Klf4, c-Myc (Yamanaka 2006).",
+"expert": "≈30×10¹² cells in a human (Sender et al. 2016; older estimates ≈37×10¹²); iPSC via Oct4, Sox2, Klf4, c-Myc (Yamanaka 2006).",
 "regime": "Cell-type counts depend on the classification scheme.",
 "emerges_from": [
 "gene_regulation",
@@ -6435,7 +6409,7 @@
 "refs": [
 [
 "ANP",
-"28.1"
+"4.6"
 ]
 ],
 "sim": []
@@ -6959,7 +6933,7 @@
 "domain": "Medicine",
 "basics": "Cancer arises when accumulated mutations let cells ignore growth controls and spread. It is many diseases, not one.",
 "deeper": "Mutations in oncogenes and tumour-suppressor genes such as p53 combine over years. Immunotherapy releases immune cells against tumours.",
-"expert": "Typically 2–8 driver mutations; ≈10¹² cells in a 1 cm³ tumour; p53 mutated in ≈50 % of cancers.",
+"expert": "Typically 2–8 driver mutations; ≈10⁹ cells in a 1 cm³ (≈1 g) tumour; a tumour first detectable on a scan already holds about this many; p53 mutated in ≈50 % of cancers.",
 "regime": "Risk rises steeply with age.",
 "emerges_from": [
 "cell_cycle",
@@ -7143,7 +7117,7 @@
 ],
 [
 "PSY",
-"3.1"
+"8.2"
 ]
 ],
 "sim": [
@@ -7248,7 +7222,7 @@
 "certainty": "C1",
 "domain": "Neuroscience",
 "basics": "Sensory cells convert physical signals (light, pressure waves, molecules) into electrical signals the brain interprets.",
-"deeper": "The retina has about 120 million rods and 6 million cones; hair cells in the cochlea sense vibrations; olfactory receptors detect molecules.",
+"deeper": "The retina has about 92 million rods and 4.6 million cones (Curcio et al. 1990, eight retinas; individuals vary by about 15 %); hair cells in the cochlea sense vibrations; olfactory receptors detect molecules.",
 "expert": "Human vision 380–750 nm; hearing 20 Hz–20 kHz; ≈400 olfactory receptor genes; a rod can respond to a single photon.",
 "regime": "Perception is a constructive process, not a recording.",
 "emerges_from": [
@@ -7755,12 +7729,7 @@
 "Sulfur isotope signals"
 ],
 "frontier": [],
-"refs": [
-[
-"BIO",
-"8.3"
-]
-],
+"refs": [],
 "sim": []
 },
 {
@@ -8128,11 +8097,11 @@
 "refs": [
 [
 "AST",
-"14.1"
+"8.2"
 ],
 [
-"AST",
-"8.2"
+"HSP",
+"22.3"
 ]
 ],
 "sim": [],
@@ -8249,10 +8218,6 @@
 [
 "AST",
 "4.6"
-],
-[
-"AST",
-"3.1"
 ]
 ],
 "sim": [
@@ -9071,10 +9036,6 @@
 [
 "AST",
 "9.4"
-],
-[
-"AST",
-"14.1"
 ]
 ],
 "sim": [
@@ -9984,7 +9945,7 @@
 "basics": "Two ways of measuring how fast the universe expands, one from the early universe and one from nearby objects, give different answers. Whether this is new physics or measurement error is unresolved.",
 "deeper": "Proposed fixes include early dark energy or extra relativistic particles, none confirmed.",
 "expert": "Planck 2018 ΛCDM: H₀=67.4±0.5 km/s/Mpc; SH0ES Cepheid-SN ladder ≈73 km/s/Mpc (≈5σ gap).",
-"regime": "Pre-2024 numbers shown; current status in frontier file.",
+"regime": "Numbers from before 2024 are shown here; the open-questions list below has the newer measurements.",
 "emerges_from": [
 "expansion_hubble",
 "cmb",
@@ -10364,7 +10325,7 @@
 ],
 "certainty": "C1",
 "domain": "Cosmology",
-"basics": "We can only see as far as light has had time to reach us. The observable universe is about 93 billion light-years across and contains hundreds of billions of galaxies.",
+"basics": "We can only see as far as light has had time to reach us. The observable universe is about 93 billion light-years across and contains hundreds of billions to a couple of trillion galaxies (estimates differ).",
 "deeper": "Beyond is unseen but probably similar. Because space expands, the edge is farther than 13.8 billion light-years.",
 "expert": "Comoving radius ≈14.26 Gpc (46.5 Gly); ≈2×10¹¹ to 2×10¹² galaxies (estimates differ; Lauer et al. 2021 favour the low end); ≈10⁸⁰ baryons.",
 "regime": "Galaxy count estimates uncertain.",
@@ -10608,12 +10569,7 @@
 "All practical computers"
 ],
 "frontier": [],
-"refs": [
-[
-"DSC",
-"1.1"
-]
-],
+"refs": [],
 "sim": []
 },
 {
@@ -10642,12 +10598,7 @@
 "as_of": "2023-12"
 }
 ],
-"refs": [
-[
-"DSC",
-"1.1"
-]
-],
+"refs": [],
 "sim": []
 },
 {
@@ -10680,16 +10631,7 @@
 "as_of": "2023-12"
 }
 ],
-"refs": [
-[
-"UP3",
-"7.4"
-],
-[
-"DSC",
-"7.1"
-]
-],
+"refs": [],
 "sim": [],
 "frontier_ref": [
 "willow_qec"
@@ -11081,7 +11023,7 @@
 ],
 [
 "UP3",
-"2.1"
+"1.4"
 ]
 ],
 "sim": []
@@ -11289,10 +11231,6 @@
 [
 "MIE",
 "5.1"
-],
-[
-"MAC",
-"20.3"
 ]
 ],
 "sim": []
@@ -11323,7 +11261,7 @@
 "refs": [
 [
 "MIE",
-"10.1"
+"10.2"
 ]
 ],
 "sim": []
@@ -11659,7 +11597,7 @@
 "domain": "Quantum field theory",
 "basics": "A photon is a single quantum of electromagnetic radiation, massless and travelling at light speed. Detectors register light as individual clicks.",
 "deeper": "Photons carry momentum p=h/λ, enabling radiation pressure and solar sails. Their spin is 1, giving two polarisations.",
-"expert": "E=hf=pc; m_γ<10⁻¹⁸ eV (limit); sun: ≈4×10²¹ photons/(m² s) in 400–700 nm.",
+"expert": "E=hf=pc; m_γ<10⁻¹⁸ eV (limit); full sun: ≈1.2×10²¹ photons/(m² s) in 400–700 nm (≈2000 µmol m⁻² s⁻¹ at peak summer noon).",
 "regime": "Wave model suffices when many photons.",
 "emerges_from": [
 "qed",
@@ -11712,8 +11650,12 @@
 "frontier": [],
 "refs": [
 [
-"UP3",
-"5.1"
+"AST",
+"24.1"
+],
+[
+"AST",
+"24.3"
 ]
 ],
 "sim": []
@@ -11910,7 +11852,7 @@
 "domain": "Planetary science",
 "basics": "Jupiter and Saturn are mostly hydrogen and helium with deep layers of metallic hydrogen, banded clouds and strong winds. Jupiter's mass is 318 Earths.",
 "deeper": "Jupiter's Great Red Spot is a centuries-old storm. Uranus and Neptune have more ices and are tilted or windy.",
-"expert": "M_J=1.898×10²⁷ kg=318 M_E; R_J=69 911 km; Saturn density 0.69 g/cm³; wind speeds up to ≈500 m/s (Jupiter) and ≈2000 km/h (Neptune).",
+"expert": "M_J=1.898×10²⁷ kg=318 M_E; R_J=69 911 km; Saturn density 0.69 g/cm³; wind speeds ≈150 m/s (≈500 km/h; JWST measured ≈515 km/h) in Jupiter's fastest jet, ≈400–500 m/s (≈1,350–1,800 km/h) at Saturn's equator, ≈2,000 km/h on Neptune.",
 "regime": "Interior structure inferred from gravity data.",
 "emerges_from": [
 "planet_types"
@@ -12308,7 +12250,7 @@
 "domain": "Social science",
 "basics": "Human population is about eight billion, fed largely thanks to the Green Revolution, synthetic fertiliser and irrigation. Growth is slowing as fertility falls.",
 "deeper": "Agriculture uses about half of habitable land and large amounts of fresh water, and drives habitat loss and emissions.",
-"expert": "Doubling time=ln2/r; total fertility rate replacement ≈2.1; ≈1/3 of ice-free land cropland+pasture ≈ 50 %.",
+"expert": "Doubling time=ln2/r; total fertility rate replacement ≈2.1; agriculture (cropland plus pasture) uses about half of the world's habitable land (about 38 % of ice-free land, FAO).",
 "regime": "Projections depend on assumptions about fertility.",
 "emerges_from": [
 "haber_bosch",
@@ -12394,12 +12336,7 @@
 "as_of": "2023-12"
 }
 ],
-"refs": [
-[
-"UP3",
-"11.1"
-]
-],
+"refs": [],
 "sim": []
 },
 {

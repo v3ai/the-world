@@ -1109,10 +1109,7 @@
   "kn": [
    "power_grid"
   ],
-  "lab": {
-   "id": "circuit",
-   "preset": "three_phase"
-  },
+  "lab": null,
   "ext": [
    {
     "title": "Wikipedia: Three-phase electric power",

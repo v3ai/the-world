@@ -583,10 +583,7 @@
   "kn": [
    "tunneling"
   ],
-  "lab": {
-   "id": "device",
-   "preset": "flash_cell"
-  },
+  "lab": null,
   "ext": [
    {
     "title": "Wikipedia: Flash memory",
