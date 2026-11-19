@@ -7222,7 +7222,7 @@
 "certainty": "C1",
 "domain": "Neuroscience",
 "basics": "Sensory cells convert physical signals (light, pressure waves, molecules) into electrical signals the brain interprets.",
-"deeper": "The retina has about 120 million rods and 6 million cones; hair cells in the cochlea sense vibrations; olfactory receptors detect molecules.",
+"deeper": "The retina has about 92 million rods and 4.6 million cones (Curcio et al. 1990, eight retinas; individuals vary by about 15 %); hair cells in the cochlea sense vibrations; olfactory receptors detect molecules.",
 "expert": "Human vision 380–750 nm; hearing 20 Hz–20 kHz; ≈400 olfactory receptor genes; a rod can respond to a single photon.",
 "regime": "Perception is a constructive process, not a recording.",
 "emerges_from": [
