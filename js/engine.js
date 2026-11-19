@@ -175,7 +175,7 @@ function pickChild(A) {
 }
 function trySpawn(A) {
   let hint = null;
-  if (lastZoomHit && lastZoomHit.frame === A && lastZoomHit.point.distanceTo(cam.T) < Math.max(cam.D / A.unit * 4, A.radius * 1e-4)) hint = lastZoomHit;
+  if (lastZoomHit && lastZoomHit.frame === A && lastZoomHit.point.distanceTo(cam.T) < Math.max(cam.D / A.unit * 10, A.radius * 1e-4)) hint = lastZoomHit;
   if (A.children.some(c => c.dynamic && c.containsP(cam.T))) return null;
   // a pending (not yet visible) child near the view follows the zoom target until it appears
   const pend = A.children.find(c => c.dynamic && !c.entered && c.pos.distanceTo(cam.T) < cam.D / A.unit * 3);
