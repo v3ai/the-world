@@ -497,111 +497,169 @@ BUILD.molecule = (c, opts) => {
 };
 
 /* ================= LEVEL: DNA ================= */
+/* A one-line statement of what the picture is, shown in the caption's note slot. The builders set it; world_matter's wrappers set the blurb. */
+function sceneNote(c, note, blurb) {
+  const F = c.frame; if (!F) return;
+  F.note = note || ''; if (blurb != null) F.blurb = blurb;
+  if (typeof capFrame !== 'undefined' && capFrame === F) { const a = document.getElementById('capNote'), b = document.getElementById('capD'); if (a) a.textContent = F.note; if (b && blurb != null) b.textContent = F.blurb; }
+}
 BUILD.dna = (c) => {
-  c.scene.background = new THREE.Color(0x040b14); c.scene.fog = new THREE.Fog(0x040b14, 34, 90);
+  // No fog: the helix is only 13 nm long, so a fog tied to the camera distance hid it from the moment you arrived.
+  c.scene.background = new THREE.Color(0x040b14);
   const g = c.group;
-  g.add(new THREE.HemisphereLight(0xcfe0ff, 0x221133, .6));
+  g.add(new THREE.HemisphereLight(0xcfe0ff, 0x221133, .75));
   const dl = new THREE.DirectionalLight(0xffffff, 1.0); dl.position.set(8, 10, 10); g.add(dl);
   const dl2 = new THREE.DirectionalLight(0x7799ff, .45); dl2.position.set(-8, -4, -6); g.add(dl2);
-  // floating particles
+  const NM = 2.4;                                   // builder units per nanometre (this frame draws 1 unit = 1/2.4 nm)
+  // floating particles (water and ions around the DNA; decoration only)
   const r = rng(5), pp = [], pc = [], ps = [];
   for (let i = 0; i < 900; i++) { pp.push(gauss(r) * 25, gauss(r) * 25, gauss(r) * 25); pc.push(.3, .5, .8); ps.push(.25 + r() * .3); }
   g.add(makePoints(pp, pc, ps, { opacity: .5 }));
+  // ---- B-DNA geometry: 0.34 nm rise, 10.5 base pairs per turn, right-handed, backbone 2.0 nm across
   const SEQ = 'ATGGCTAGCTTACGGATCCGTAAGCTTGCATGCCTGTAA', COMP = { A: 'T', T: 'A', G: 'C', C: 'G' };
-  const n = SEQ.length, rise = .64, R = 2.4, twist = TAU / 10.5, off = Math.PI * .78;
+  const n = SEQ.length, rise = .34 * NM, twist = TAU / 10.5, off = 125 * Math.PI / 180;   // off: angle from strand 1's sugar to strand 2's at the same level (the minor-groove side)
+  const Rs = .6 * NM, Rp = .87 * NM;                // sugar ring centres 0.6 nm from the axis, phosphorus 0.87 nm (outer edge of the phosphate group 1.0 nm: the 2 nm width)
+  const spos = (a, rad, y, out) => out.set(rad * Math.cos(a), y, -rad * Math.sin(a));   // a grows with height and the point turns x towards -z: a right-handed screw
   const tilt = new THREE.Group(); tilt.rotation.z = .42; g.add(tilt);
   const helix = new THREE.Group(); tilt.add(helix);
   const BC = { A: 0x4ade80, T: 0xf87171, G: 0xfacc15, C: 0x60a5fa };
-  const bMat = {}; for (const k in BC) bMat[k] = smat(BC[k], { roughness: .35, emissive: new THREE.Color(BC[k]).multiplyScalar(.12) });
-  const sugarMat = smat(0xe9e2c6, { roughness: .5 }), phosMat = smat(0xff9f43, { emissive: 0x2a1400, roughness: .35 }), hbMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .85 });
-  const sG = new THREE.SphereGeometry(.36, 20, 14), pG = new THREE.SphereGeometry(.31, 18, 12), bG = new THREE.CylinderGeometry(.22, .22, 1, 14), hG = new THREE.SphereGeometry(.075, 8, 6);
+  const bMat = {}; for (const k in BC) bMat[k] = smat(BC[k], { roughness: .35, emissive: new THREE.Color(BC[k]).multiplyScalar(.14) });
+  const sugarMat = smat(0xe9e2c6, { roughness: .5, emissive: 0x1c1a10 }), phosMat = smat(0xff9f43, { emissive: 0x2a1400, roughness: .35 });
+  const sugarNew = smat(0xbfe6ff, { roughness: .5, emissive: 0x0c1c28 }), phosNew = smat(0x38bdf8, { emissive: 0x04202e, roughness: .35 });
+  const hbMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: .85 });
+  const sG = new THREE.SphereGeometry(.5, 20, 14), pG = new THREE.SphereGeometry(.38, 18, 12), bG = new THREE.CylinderGeometry(.24, .24, 1, 14), hG = new THREE.SphereGeometry(.08, 8, 6);
+  const mkNuc = (letter, sm, pm, withPhos) => {
+    const sugar = new THREE.Mesh(sG, sm); sugar.userData = { id: 'sugar' };
+    const base = new THREE.Mesh(bG, bMat[letter]); base.userData = { id: 'base_' + letter };
+    const phos = withPhos ? new THREE.Mesh(pG, pm) : null; if (phos) phos.userData = { id: 'phosphate' };
+    [sugar, base, phos].forEach(m => { if (m) { helix.add(m); c.pickables.push(m); } });
+    return { sugar, base, phos };
+  };
+  const mkHb = (cnt) => { const hb = new THREE.Group(); hb.userData = { id: 'hbond', priority: 1.2 }; for (let k = 0; k < cnt; k++) { const d = new THREE.Mesh(hG, hbMat); d.position.y = (k - (cnt - 1) / 2) * .17; hb.add(d); } helix.add(hb); c.pickables.push(hb); return hb; };
   const bp = [];
   for (let i = 0; i < n; i++) {
-    const y = (i - (n - 1) / 2) * rise, th = i * twist, letters = [SEQ[i], COMP[SEQ[i]]];
-    const e = { y, th, s: [] };
-    for (let s = 0; s < 2; s++) {
-      const sugar = new THREE.Mesh(sG, sugarMat); sugar.userData = { id: 'sugar' };
-      const base = new THREE.Mesh(bG, bMat[letters[s]]); base.userData = { id: 'base_' + letters[s] };
-      const phos = i < n - 1 ? new THREE.Mesh(pG, phosMat) : null; if (phos) phos.userData = { id: 'phosphate' };
-      [sugar, base, phos].forEach(m => { if (m) { helix.add(m); c.pickables.push(m); } });
-      e.s.push({ sugar, base, phos });
-    }
-    const hb = new THREE.Group(); hb.userData = { id: 'hbond', priority: 1.2 };
-    const cnt = (SEQ[i] === 'G' || SEQ[i] === 'C') ? 3 : 2;
-    for (let k = 0; k < cnt; k++) { const d = new THREE.Mesh(hG, hbMat); d.position.y = (k - (cnt - 1) / 2) * .17; hb.add(d); }
-    helix.add(hb); c.pickables.push(hb); e.hb = hb;
+    const L0 = SEQ[i], L1 = COMP[SEQ[i]], cnt = (L0 === 'G' || L0 === 'C') ? 3 : 2;
+    const e = { y: (i - (n - 1) / 2) * rise, a: i * twist, s: [mkNuc(L0, sugarMat, phosMat, i < n - 1), mkNuc(L1, sugarMat, phosMat, i < n - 1)], hb: mkHb(cnt), hb2: mkHb(cnt) };
+    // the new strands made during replication: strand 1's partner sits in slot 2 and vice versa
+    e.nw = [mkNuc(L0, sugarNew, phosNew, i < n - 1), mkNuc(L1, sugarNew, phosNew, i < n - 1)];   // nw[0]: new partner of old strand 2 (slot 1); nw[1]: new partner of old strand 1 (slot 2)
+    e.nw.forEach(o => { [o.sugar, o.base, o.phos].forEach(m => { if (m) m.visible = false; }); }); e.hb2.visible = false;
     bp.push(e);
   }
   const tubeMat = smat(0xf2c38b, { roughness: .4, emissive: 0x1a0d00 }); tubeMat.userData.noHL = true;
-  const tubes = [null, null];
-  const _a = new V3(), _b = new V3();
+  const tubeNew = smat(0x7dd3fc, { roughness: .4, emissive: 0x06202e }); tubeNew.userData.noHL = true;
+  const tubes = [null, null, null, null];     // old strand 1, old strand 2, new partner of 2 (leading), new partner of 1 (lagging)
+  const SHIFT = 1.45 * NM;                    // each daughter helix ends up 1.45 nm to its side: centres 2.9 nm apart for 2.0 nm wide helices
+  const fork = new THREE.Object3D(); helix.add(fork);
+  const _p = new V3(), _q = new V3(), _m = new V3(), _d = new V3(), UP = new V3(0, 1, 0);
+  function placeBase(o, sp, mid) { _d.subVectors(mid, sp); const len = Math.max(.01, _d.length() - .35); _d.normalize(); o.base.position.copy(sp).addScaledVector(_d, .35 + len / 2); o.base.scale.set(1, len, 1); o.base.quaternion.setFromUnitVectors(UP, _d); }
   function layout(u) {
-    const pts = [[], []];
+    const pts = [[], [], [], []];
+    let forkI = -1;
     for (let i = 0; i < n; i++) {
       const e = bp[i];
       const k = smooth(0, 1, (u * (n + 10) - (n - 1 - i)) / 10);
-      const angs = [e.th, e.th + off];
-      const orig = angs.map(a => new V3(R * Math.cos(a), e.y, R * Math.sin(a)));
-      const mid = new V3().addVectors(orig[0], orig[1]).multiplyScalar(.5);
-      for (let s = 0; s < 2; s++) {
-        const o = e.s[s], a = angs[s], rr = R + k * 2.4;
-        o.sugar.position.set(rr * Math.cos(a), e.y, rr * Math.sin(a));
-        const dir = new V3().subVectors(mid, orig[s]); const len = dir.length() - .3; dir.normalize();
-        const start = o.sugar.position.clone().addScaledVector(dir, .3);
-        o.base.position.copy(start).addScaledVector(dir, len / 2);
-        o.base.scale.set(1, len, 1); o.base.quaternion.setFromUnitVectors(new V3(0, 1, 0), dir);
-        pts[s].push(o.sugar.position.clone());
-        if (o.phos) {
-          const kn = smooth(0, 1, (u * (n + 10) - (n - 2 - i)) / 10), ra = R + .3 + (k + kn) * 1.2, pa = a + twist / 2;
-          o.phos.position.set(ra * Math.cos(pa), e.y + rise / 2, ra * Math.sin(pa)); pts[s].push(o.phos.position.clone());
-        }
+      if (k > .5 && forkI < 0) forkI = i;
+      const sx = SHIFT * k, kn = smooth(.1, .55, k), kp = i < n - 1 ? smooth(0, 1, (u * (n + 10) - (n - 2 - i)) / 10) : k, sxp = SHIFT * kp;
+      const aS = [e.a, e.a + off];
+      const p0 = spos(aS[0], Rs, e.y, new V3()), p1 = spos(aS[1], Rs, e.y, new V3()), mid0 = p0.add(p1).multiplyScalar(.5);
+      for (let s = 0; s < 2; s++) {                // old strand 1 goes with the left daughter (-x), old strand 2 with the right (+x)
+        const o = e.s[s], dir = s === 0 ? -1 : 1;
+        const sp = spos(aS[s], Rs, e.y, new V3()); sp.x += dir * sx; o.sugar.position.copy(sp); placeBase(o, sp, _m.set(mid0.x + dir * sx, mid0.y, mid0.z));
+        pts[s].push(sp.clone());
+        if (o.phos) { spos(aS[s] + twist / 2, Rp, e.y + rise / 2, _p); _p.x += dir * sxp; o.phos.position.copy(_p); pts[s].push(_p.clone()); }
       }
-      e.hb.visible = k < .05;
-      e.hb.position.copy(mid);
+      // new strands: nw[0] sits in slot 0 and pairs with old strand 2 (right daughter); nw[1] sits in slot 1 and pairs with old strand 1 (left daughter)
+      for (let s = 0; s < 2; s++) {
+        const o = e.nw[s], dirD = s === 0 ? 1 : -1, vis = kn > .02;
+        [o.sugar, o.base, o.phos].forEach(m => { if (m) m.visible = vis; });
+        if (!vis) continue;
+        const sp = spos(aS[s], Rs, e.y, new V3()); sp.x += dirD * sx; o.sugar.position.copy(sp); o.sugar.scale.setScalar(kn);
+        placeBase(o, sp, _m.set(mid0.x + dirD * sx, mid0.y, mid0.z)); o.base.scale.set(kn, o.base.scale.y * kn, kn);
+        pts[s === 0 ? 2 : 3].push(sp.clone());
+        if (o.phos) { spos(aS[s] + twist / 2, Rp, e.y + rise / 2, _q); _q.x += dirD * sxp; o.phos.position.copy(_q); o.phos.scale.setScalar(kn); pts[s === 0 ? 2 : 3].push(_q.clone()); }
+      }
+      // hydrogen bonds: the left daughter keeps hb, the right one gets hb2
+      e.hb.position.set(mid0.x - sx, mid0.y, mid0.z);
+      e.hb2.visible = kn > .02; e.hb2.position.set(mid0.x + sx, mid0.y, mid0.z); e.hb2.scale.setScalar(Math.max(.001, kn));
     }
-    for (let s = 0; s < 2; s++) {
-      if (tubes[s]) { helix.remove(tubes[s]); tubes[s].geometry.dispose(); }
-      const curve = new THREE.CatmullRomCurve3(pts[s]);
-      tubes[s] = new THREE.Mesh(new THREE.TubeGeometry(curve, n * 8, .12, 8, false), tubeMat); helix.add(tubes[s]);
+    const ft = forkI < 0 ? n - 1 : Math.max(0, forkI - 1); fork.position.set(0, bp[ft].y, 0);
+    for (let s = 0; s < 4; s++) {
+      if (tubes[s]) { helix.remove(tubes[s]); tubes[s].geometry.dispose(); tubes[s] = null; }
+      if (pts[s].length < 3) continue;
+      tubes[s] = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts[s]), pts[s].length * 3, .13, 6, false), s < 2 ? tubeMat : tubeNew); helix.add(tubes[s]);
     }
   }
   let unzip = 0, target = 0, built = false;
   layout(0);
-  // codon strip
-  const AA = { ATG: 'Met (start)', GCT: 'Ala', AGC: 'Ser', TTA: 'Leu', CGG: 'Arg', ATC: 'Ile', CGT: 'Arg', AAG: 'Lys', CTT: 'Leu', GCA: 'Ala', TGC: 'Cys', CTG: 'Leu', TAA: 'STOP' };
+  // ---- scale bar (2 nm) under the helix
+  const bar = new THREE.Group(); g.add(bar); bar.position.set(0, -(n * rise / 2 + 3.2), 0);
+  const barM = new THREE.MeshBasicMaterial({ color: 0xdbeafe }); const barMesh = new THREE.Mesh(new THREE.BoxGeometry(2 * NM, .09, .09), barM); bar.add(barMesh);
+  [-1, 1].forEach(sd => { const t = new THREE.Mesh(new THREE.BoxGeometry(.09, .5, .09), barM); t.position.x = sd * NM; bar.add(t); });
+  c.addLabel(bar, '2 nm', { offset: new V3(0, .2, 0), always: true });
+  // ---- codon strip: an invented example, shown as DNA letters
+  const AA = { ATG: 'Met (start)', GCT: 'Ala', AGC: 'Ser', TTA: 'Leu', CGG: 'Arg', ATC: 'Ile', CGT: 'Arg', AAG: 'Lys', CTT: 'Leu', GCA: 'Ala', TGC: 'Cys', CTG: 'Leu', TAA: 'Stop' };
   const strip = document.createElement('div'); strip.id = 'seq';
-  strip.innerHTML = '<span id="seqLbl">Gene recipe →</span>' + SEQ.match(/.{3}/g).map(cd => `<div class="codon"><span class="l">${cd.split('').map(ch => `<span style="color:#${BC[ch].toString(16).padStart(6, '0')}">${ch}</span>`).join('')}</span><span class="aa">${AA[cd]}</span></div>`).join('');
-  strip.title = 'Each 3-letter codon codes for one amino acid';
+  strip.innerHTML = '<span id="seqLbl">Invented example, read three letters at a time →</span>' + SEQ.match(/.{3}/g).map(cd => `<div class="codon"><span class="l">${cd.split('').map(ch => `<span style="color:#${BC[ch].toString(16).padStart(6, '0')}">${ch}</span>`).join('')}</span><span class="aa">${AA[cd]}</span></div>`).join('');
+  strip.title = 'These 39 letters are made up, not a real gene. A cell first copies a gene into messenger RNA (T becomes U), and the ribosome reads that copy three letters (one codon) at a time; each codon names one amino acid.';
   uiEl(strip);
-  const ub = actBtn('🧬 Unzip & copy', () => { target = target ? 0 : 1; ub.innerHTML = target ? '🧬 Zip back up' : '🧬 Unzip & copy'; });
+  const ub = actBtn('Show replication', () => { target = target ? 0 : 1; ub.textContent = target ? 'Zip back up' : 'Show replication'; sceneNote(c, target ? NOTE.rep : NOTE.helix); });
+  // ---- labels: the ends of each strand, the grooves, the fork
+  const endLbl = (o, t) => c.addLabel(o, t, { offset: new V3(0, .15, 0), always: true });
+  endLbl(bp[0].s[0].sugar, "5′"); endLbl(bp[n - 1].s[0].sugar, "3′"); endLbl(bp[n - 1].s[1].sugar, "5′"); endLbl(bp[0].s[1].sugar, "3′");
+  const grooveAnchor = (a, y, t) => { const o = new THREE.Object3D(); spos(a, Rp + 1.6, y, o.position); helix.add(o); c.addLabel(o, t, { offset: new V3(0, .1, 0) }); return o; };
+  const gA = [grooveAnchor(bp[12].a + off / 2, bp[12].y, 'Minor groove'), grooveAnchor(bp[22].a + off / 2 + Math.PI, bp[22].y, 'Major groove')];
   c.addLabel(bp[n - 4].s[0].base, 'Base pair', { offset: new V3(0, .3, 0) });
   c.addLabel(bp[6].s[0].phos, 'Sugar-phosphate backbone', { offset: new V3(0, .5, 0) });
+  c.addLabel(fork, 'Replication fork', { offset: new V3(2.6, 0, 0) });
+  const NOTE = {
+    helix: 'Schematic ball-and-stick model of B-DNA, drawn to scale in length and width: 2.0 nm wide, 0.34 nm per base pair, 10.5 base pairs (3.6 nm) per turn, right-handed. Spheres and rods are symbols, not atoms. 39 base pairs, an invented sequence.',
+    rep: 'Schematic of replication. Each new double helix keeps one old strand (tan) and gets one new strand (blue). In a cell, helicase opens the fork and DNA polymerase builds each new strand. The lagging strand is made in short pieces (drawn here as one). Not a real simulation.',
+    fiber: 'Schematic at true size: 4 nucleosomes of the beaded 10 nm form of chromatin. Each wraps 147 base pairs (1.65 turns) round 8 histone proteins and is about 11 nm across; DNA is 2 nm thick. Histone shapes are simplified. Inside a living nucleus the next level of folding is irregular, not a neat 30 nm fibre.',
+  };
+  sceneNote(c, NOTE.helix);
   c.update = (dt) => {
-    // (no spin in v3)
     if (Math.abs(unzip - target) > .001) {
-      unzip += Math.sign(target - unzip) * Math.min(Math.abs(target - unzip), dt / 3.2);
+      unzip += Math.sign(target - unzip) * Math.min(Math.abs(target - unzip), dt / 6);
       layout(unzip);
       if (unzip >= .999 && !built) { built = true; fire('unzip'); showInfo('unzip'); }
       if (unzip < .5) built = false;
     }
+    const open = unzip > .03;
+    gA.forEach(o => { o.visible = !open; }); fork.visible = open && unzip < .995;
   };
-  // chromatin packing view: nucleosomes on a 30-nm-style fiber
+  // ---- chromatin: beads on a string, at true size (nm), see NOTE.fiber
   const chrom = new THREE.Group(); chrom.visible = false; g.add(chrom);
-  const HC = [0xf472b6, 0xfb923c, 0x60a5fa, 0x34d399], fiberPts = [], cores = [];
-  const nNuc = 10;
-  for (let k = 0; k < nNuc; k++) {
-    const ctr = new V3(Math.cos(k * 1.15) * 6.5, (k - (nNuc - 1) / 2) * 2.7, Math.sin(k * 1.15) * 6.5);
-    const core = new THREE.Group(); core.position.copy(ctr); core.lookAt(new V3(0, ctr.y, 0)); core.rotateX(Math.PI / 2); core.userData = { id: 'histone', priority: 1.2 };
-    for (let j = 0; j < 8; j++) { const a = (j % 4) / 4 * TAU + (j < 4 ? 0 : .4), m = new THREE.Mesh(new THREE.SphereGeometry(.85, 18, 14), smat(HC[j % 4], { roughness: .55 })); m.position.set(Math.cos(a) * .85, j < 4 ? -.45 : .45, Math.sin(a) * .85); core.add(m); }
-    chrom.add(core); c.pickables.push(core); cores.push(core); core.updateMatrixWorld(true);
-    for (let i = 0; i <= 40; i++) { const t = i / 40, a = t * 1.65 * TAU; fiberPts.push(new V3(Math.cos(a) * 2.05, (t - .5) * 1.7, Math.sin(a) * 2.05).applyMatrix4(core.matrix)); }
-  }
-  const fiber = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(fiberPts), nNuc * 70, .3, 8), smat(0x7dd3fc, { emissive: 0x0b3a52, roughness: .35 }));
+  const HC = [0xf472b6, 0xfb923c, 0x60a5fa, 0x34d399], cores = [], dnaPts = [];
+  const sup = (s, ctr, Q) => { const a = -s * TAU, rr = 4.4 * NM; return new V3(rr * Math.cos(a), (s - .825) * 2.4 * NM, rr * Math.sin(a)).applyQuaternion(Q).add(ctr); };   // 1.65 left-handed turns, 2.4 nm pitch, 4.4 nm radius
+  const NUC = [[-19, 5, 0, .3, 0, .4], [-5, -6, 6, 1.4, .8, 0], [9, 5, -4, 2.2, 0, 1.1], [23, -4, 2, .6, 1.4, .2]];
+  const prevExit = { p: null, t: null };
+  NUC.forEach((d, k) => {
+    const ctr = new V3(d[0], d[1], d[2]).multiplyScalar(NM), Q = new THREE.Quaternion().setFromEuler(new THREE.Euler(d[3], d[4], d[5]));
+    const core = new THREE.Group(); core.position.copy(ctr); core.quaternion.copy(Q); core.userData = { id: 'histone', priority: 1.2 };
+    for (let j = 0; j < 8; j++) { const a = (j % 4) / 4 * TAU + (j < 4 ? 0 : .78), m = new THREE.Mesh(new THREE.SphereGeometry(1.65 * NM, 20, 14), smat(HC[j % 4], { roughness: .55, emissive: new THREE.Color(HC[j % 4]).multiplyScalar(.25) })); m.position.set(Math.cos(a) * 1.55 * NM, (j < 4 ? -1 : 1) * 1.5 * NM, Math.sin(a) * 1.55 * NM); core.add(m); }
+    chrom.add(core); c.pickables.push(core); cores.push(core);
+    const s0 = sup(0, ctr, Q), s1 = sup(1.65, ctr, Q), t0 = sup(.02, ctr, Q).sub(s0).normalize(), t1 = s1.clone().sub(sup(1.63, ctr, Q)).normalize();
+    if (k === 0) dnaPts.push(s0.clone().addScaledVector(t0, -9 * NM), s0.clone().addScaledVector(t0, -4 * NM));
+    else { dnaPts.push(prevExit.p.clone().addScaledVector(prevExit.t, 4 * NM), s0.clone().addScaledVector(t0, -4 * NM)); }
+    for (let i = 0; i <= 60; i++) dnaPts.push(sup(i / 60 * 1.65, ctr, Q));
+    prevExit.p = s1; prevExit.t = t1;
+    if (k === NUC.length - 1) dnaPts.push(s1.clone().addScaledVector(t1, 4 * NM), s1.clone().addScaledVector(t1, 9 * NM));
+  });
+  const fiber = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(dnaPts), dnaPts.length * 2, 1 * NM, 10), smat(0x7dd3fc, { emissive: 0x0b3a52, roughness: .35 }));
   fiber.userData = { id: 'nucleosome' }; chrom.add(fiber); c.pickables.push(fiber);
-  c.addLabel(cores[4], 'Histone core', { offset: new V3(0, 1.8, 0) });
-  const fAnchor = new THREE.Object3D(); fAnchor.position.copy(fiberPts[Math.floor(fiberPts.length * .78)]); chrom.add(fAnchor); c.addLabel(fAnchor, 'DNA wrapped into nucleosomes', { pick: fiber });
-  seg([['helix', 'Double helix'], ['fiber', 'Chromatin packing']], 'helix', k => { const f = k === 'fiber'; chrom.visible = f; tilt.visible = !f; strip.style.display = f ? 'none' : ''; ub.style.display = f ? 'none' : ''; if (f) showInfo('nucleosome'); });
-  const upd0 = c.update; c.update = (dt, t) => { upd0(dt, t); };
+  c.addLabel(cores[1], 'Histone core (8 proteins)', { offset: new V3(0, 5 * NM, 0) });
+  const fAnchor = new THREE.Object3D(); fAnchor.position.copy(dnaPts[dnaPts.length - 12]); chrom.add(fAnchor); c.addLabel(fAnchor, 'DNA, 2 nm thick', { pick: fiber });
+  const lAnchor = new THREE.Object3D(); lAnchor.position.copy(dnaPts[dnaPts.length - 70 * 1]); chrom.add(lAnchor);
+  const bar2 = new THREE.Group(); chrom.add(bar2); bar2.position.set(-8 * NM, -15 * NM, 0);
+  bar2.add(new THREE.Mesh(new THREE.BoxGeometry(10 * NM, .12, .12), barM)); [-1, 1].forEach(sd => { const t = new THREE.Mesh(new THREE.BoxGeometry(.12, .7, .12), barM); t.position.x = sd * 5 * NM; bar2.add(t); });
+  c.addLabel(bar2, '10 nm', { offset: new V3(0, .3, 0), always: true });
+  const view = k => {
+    const f = k === 'fiber'; chrom.visible = f; tilt.visible = !f; bar.visible = !f; strip.style.display = f ? 'none' : ''; ub.style.display = f ? 'none' : '';
+    sceneNote(c, f ? NOTE.fiber : (target ? NOTE.rep : NOTE.helix));
+    if (f) showInfo('nucleosome');
+    if (typeof flyTo === 'function' && c.frame) flyTo(c.frame, new V3(), f ? 6.5e-8 : 2.6e-8);
+  };
+  seg([['helix', 'Double helix'], ['fiber', 'Chromatin packing']], 'helix', view);
   c.focusIn = () => new V3();
   c.focusFor = () => ({ pos: bp[Math.floor(n / 2)].s[0].base.getWorldPosition(new V3()), r: .5 });
   c.zoomInTarget = () => ({ key: 'molecule', opts: { mol: 'H2O' } });
@@ -622,77 +680,124 @@ function chloroTex() {
     for (let i = 0; i < 70; i++) { const x = r() * w, y = 15 + r() * (h - 30); for (let k = 0; k < 4; k++) { g.fillStyle = k % 2 ? '#1f6b23' : '#2e8a2f'; g.fillRect(x, y + k * 3, 14, 2.5); } }
   });
 }
+/* A rod-shaped bacterium (about 2 µm long) for the cell frame: builder units are 0.1 µm. */
+function buildBacterium(c) {
+  const bg = 0x07100c; c.scene.background = new THREE.Color(bg);
+  const g = c.group, r = rng(31);
+  g.add(new THREE.HemisphereLight(0xf2fff0, 0x112211, .7));
+  const dl = new THREE.DirectionalLight(0xffffff, .95); dl.position.set(10, 14, 12); g.add(dl);
+  const dl2 = new THREE.DirectionalLight(0x99aaff, .35); dl2.position.set(-10, -6, -8); g.add(dl2);
+  const cell = new THREE.Group(); g.add(cell);
+  const L = 20, RO = 3.5, RI = 3.2, hl = L / 2 - RO;          // 2.0 µm long, 0.7 µm wide
+  const capsule = (rad, half) => { const pts = []; for (let i = 0; i <= 12; i++) { const a = -Math.PI / 2 + i / 12 * Math.PI / 2; pts.push(new V3(Math.cos(a) * rad, -half + Math.sin(a) * rad, 0)); } for (let i = 0; i <= 12; i++) { const a = i / 12 * Math.PI / 2; pts.push(new V3(Math.cos(a) * rad, half + Math.sin(a) * rad, 0)); } const geo = new THREE.LatheGeometry(pts.map(p => new THREE.Vector2(Math.max(p.x, 0.0001), p.y)), 40); geo.rotateZ(Math.PI / 2); return geo; };
+  const wall = new THREE.Mesh(capsule(RO, hl), new THREE.MeshStandardMaterial({ color: 0xb6e36f, transparent: true, opacity: .16, roughness: .5, depthWrite: false, side: THREE.DoubleSide }));
+  wall.material.userData.noHL = true; wall.userData = { id: 'bacwall', priority: 0 }; cell.add(wall); c.pickables.push(wall);
+  const mem = new THREE.Mesh(capsule(RI, hl), fresnelMat(0xff8fb1, 2.2, 1.0, { base: .05 })); mem.userData = { id: 'membrane', priority: .1 }; cell.add(mem); c.pickables.push(mem);
+  const fill = new THREE.Mesh(capsule(RI - .05, hl), new THREE.MeshBasicMaterial({ color: 0x1d3a26, transparent: true, opacity: .4, side: THREE.BackSide, depthWrite: false })); fill.userData = { id: 'cytoplasm', priority: -1 }; cell.add(fill); c.pickables.push(fill);
+  const inCell = (p, m) => { const q = Math.max(0, Math.abs(p.x) - hl); return Math.hypot(q, p.y, p.z) < RI - m; };
+  // nucleoid: one long DNA thread folded into a tangle (thickened for visibility)
+  const nucP = new V3(0, 0, 0); c.nucPos = nucP.clone(); c.cellPlant = false; c.cellKind = 'bacterium';
+  const nuc = new THREE.Group(); nuc.userData = { id: 'nucleoid', priority: 1.5 }; cell.add(nuc); c.pickables.push(nuc);
+  const pts = []; let p = new V3((r() - .5) * 4, (r() - .5) * 2, (r() - .5) * 2);
+  for (let i = 0; i < 160; i++) { p = p.clone().add(new V3(gauss(r) * .9, gauss(r) * .6, gauss(r) * .6)); p.x *= .985; p.y *= .93; p.z *= .93; if (Math.abs(p.x) > 5.5) p.x *= .9; pts.push(p); }
+  nuc.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, true), 600, .13, 6, true), smat(0xd8b4fe, { emissive: 0x3b1a66, roughness: .5 })));
+  const nucHalo = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 16), new THREE.MeshBasicMaterial({ color: 0x6d28d9, transparent: true, opacity: .1, depthWrite: false })); nucHalo.scale.set(6, 2.3, 2.3); nuc.add(nucHalo);
+  // 70S ribosomes, about 20 nm across: true size, so only visible up close
+  const N = 2600, rib = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(.1, 1), smat(0xe0e7ff, { emissive: 0x333366 }), N), m4 = new THREE.Matrix4();
+  for (let i = 0; i < N; i++) { let q; for (let t = 0; t < 60; t++) { q = new V3((r() - .5) * L, (r() - .5) * 2 * RI, (r() - .5) * 2 * RI); if (inCell(q, .4) && ((q.x / 6.2) ** 2 + (q.y / 2.6) ** 2 + (q.z / 2.6) ** 2 > 1)) break; } m4.makeTranslation(q.x, q.y, q.z); rib.setMatrixAt(i, m4); }
+  rib.userData = { id: 'ribosome', priority: .8 }; cell.add(rib); c.pickables.push(rib);
+  // flagellum: a thin helical filament from one end (about 20 nm thick)
+  const fp = []; for (let i = 0; i <= 90; i++) { const x = L / 2 + i * .75, a = i * .26; fp.push(new V3(x, Math.sin(a) * Math.min(1, i / 8) * 1.2, Math.cos(a) * Math.min(1, i / 8) * 1.2)); }
+  const fl = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(fp), 240, .1, 6), smat(0xfde68a, { emissive: 0x2a2000, roughness: .5 })); fl.userData = { id: 'flagellum', priority: 1 }; cell.add(fl); c.pickables.push(fl);
+  c.addLabel(wall, 'Cell wall', { offset: new V3(0, RO + 1.4, 0) });
+  c.addLabel(mem, 'Cell membrane', { offset: new V3(3, -RO - 1.6, 0) });
+  c.addLabel(nuc, 'Nucleoid: DNA, no nucleus', { offset: new V3(0, 3.4, 0) });
+  const ra = new THREE.Object3D(); ra.position.set(-7.5, 0, 1); cell.add(ra); c.addLabel(ra, 'Ribosomes (70S)', { pick: rib });
+  c.addLabel(fl, 'Flagellum', { offset: new V3(0, 1.4, 0) });
+  c.update = (dt, t) => { };
+  sceneNote(c, 'Schematic rod-shaped bacterium, drawn at true size: about 2 µm long and 0.7 µm wide. Ribosomes (about 20 nm) are true size, so they show only when you zoom in; the DNA thread is drawn about 10 times too thick, and the real cell holds far more ribosomes. Layers of the envelope are simplified.');
+  c.focusIn = () => new V3(); c.focusFor = () => ({ pos: new V3(), r: RO });
+  seg([['animal', 'Animal cell'], ['plant', 'Plant cell'], ['bacterium', 'Bacterium']], 'bacterium', k => { const F = c.frame; swapTo('cell', { type: k }); if (typeof flyTo === 'function') flyTo(F, new V3(), k === 'bacterium' ? 6e-6 : 4e-5); });
+}
 BUILD.cell = (c, opts) => {
-  const plant = opts.type === 'plant'; c.opts.type = plant ? 'plant' : 'animal'; c.intro = plant ? 'cell_plant' : 'cell_animal';
+  if (opts.type === 'bacterium') return buildBacterium(c);
+  const plant = opts.type === 'plant'; c.opts.type = plant ? 'plant' : 'animal'; c.intro = plant ? 'cell_plant' : 'cell_animal'; c.cellKind = c.opts.type;
   const bg = plant ? 0x04100a : 0x0c0510;
   c.scene.background = new THREE.Color(bg); c.scene.fog = new THREE.Fog(bg, 50, 120);
   const g = c.group, r = rng(plant ? 21 : 12);
   g.add(new THREE.HemisphereLight(0xfff0f5, 0x221133, .65));
   const dl = new THREE.DirectionalLight(0xffffff, .95); dl.position.set(10, 14, 12); g.add(dl);
   const dl2 = new THREE.DirectionalLight(0x99aaff, .35); dl2.position.set(-10, -6, -8); g.add(dl2);
-  const cell = new THREE.Group(); g.add(cell);
+  const cell = new THREE.Group(); g.add(cell);                    // the cell does not rotate: the nucleus anchor the DNA frame hangs from must stay put
   let inside;
+  const PW = 36, PH = 20, PD = 20;                                 // plant cell box in builder units (0.833 µm each): 30 x 17 x 17 µm
   if (!plant) {
     const sc = new V3(1, .82, .92);
     const mem = new THREE.Mesh(new THREE.SphereGeometry(12, 64, 48), fresnelMat(0xff8fb1, 2.4, 1.15, { base: .035 }));
     mem.scale.copy(sc); mem.userData = { id: 'membrane', priority: 0 }; cell.add(mem); c.pickables.push(mem);
     const fill = new THREE.Mesh(new THREE.SphereGeometry(11.9, 48, 32), new THREE.MeshBasicMaterial({ color: 0x3a1428, transparent: true, opacity: .35, side: THREE.BackSide, depthWrite: false }));
-    fill.scale.copy(sc); cell.add(fill);
+    fill.scale.copy(sc); fill.userData = { id: 'cytoplasm', priority: -1 }; cell.add(fill); c.pickables.push(fill);
     inside = (p, m) => (p.x / (12 * sc.x - m)) ** 2 + (p.y / (12 * sc.y - m)) ** 2 + (p.z / (12 * sc.z - m)) ** 2 < 1;
     c.addLabel(mem, 'Cell membrane', { offset: new V3(0, 10.4, 0) });
   } else {
-    const W = 26, H = 18, D = 18;
+    const W = PW, H = PH, D = PD;
     const wallG = new THREE.BoxGeometry(W, H, D);
     const wall = new THREE.Mesh(wallG, new THREE.MeshStandardMaterial({ color: 0x7cc46a, transparent: true, opacity: .09, depthWrite: false, side: THREE.DoubleSide }));
     wall.material.userData.noHL = true; wall.userData = { id: 'cellwall', priority: 0 }; cell.add(wall); c.pickables.push(wall);
     const edges = new THREE.LineSegments(new THREE.EdgesGeometry(wallG), new THREE.LineBasicMaterial({ color: 0x9be37f, transparent: true, opacity: .8 })); cell.add(edges);
-    const inner = new THREE.Mesh(new THREE.BoxGeometry(W - .8, H - .8, D - .8), new THREE.MeshBasicMaterial({ color: 0x0f3a1c, transparent: true, opacity: .35, side: THREE.BackSide, depthWrite: false })); cell.add(inner);
+    const inner = new THREE.Mesh(new THREE.BoxGeometry(W - .8, H - .8, D - .8), new THREE.MeshBasicMaterial({ color: 0x0f3a1c, transparent: true, opacity: .35, side: THREE.BackSide, depthWrite: false })); inner.userData = { id: 'cytoplasm', priority: -1 }; cell.add(inner); c.pickables.push(inner);
     inside = (p, m) => Math.abs(p.x) < W / 2 - m && Math.abs(p.y) < H / 2 - m && Math.abs(p.z) < D / 2 - m;
-    c.addLabel(wall, 'Cell wall', { offset: new V3(0, 9.6, 0) });
+    c.addLabel(wall, 'Cell wall', { offset: new V3(0, H / 2 + .9, 0) });
   }
-  // nucleus
-  const nucPos = plant ? new V3(-7.5, 2.5, 3) : new V3(-1.5, .6, 0);
+  // nucleus (animal: 5.7 µm across; plant: 5 µm)
+  const nucPos = plant ? new V3(-11, 3, 3.5) : new V3(-1.5, .6, 0);
   const NR = plant ? 3.0 : 3.4;
   const nucleus = new THREE.Group(); nucleus.position.copy(nucPos); cell.add(nucleus); c.nucPos = nucPos.clone(); c.cellPlant = plant;
   const env = new THREE.Mesh(new THREE.SphereGeometry(NR, 48, 32), smat(0x8b5cf6, { transparent: true, opacity: .4, roughness: .6, depthWrite: false }));
-  env.userData = { id: 'nucleus', priority: .5 }; env.add(new THREE.Mesh(new THREE.SphereGeometry(NR * 1.01, 48, 32), fresnelMat(0xc4b5fd, 2, 1)));
+  env.userData = { id: 'nucleus', priority: .5 }; env.add(new THREE.Mesh(new THREE.SphereGeometry(NR * 1.01, 48, 32), fresnelMat(0xc4b5fd, 2.4, .6)));
   nucleus.add(env); c.pickables.push(env);
   for (let i = 0; i < 46; i++) { const v = new V3(gauss(r), gauss(r), gauss(r)).normalize().multiplyScalar(NR); const d = new THREE.Mesh(new THREE.SphereGeometry(.09, 8, 6), smat(0xddd6fe)); d.position.copy(v); env.add(d); }
-  const nucleolus = new THREE.Mesh(new THREE.SphereGeometry(NR * .32, 32, 24), smat(0x4c1d95, { roughness: .7 })); nucleolus.position.set(NR * .25, NR * .12, NR * .1);
+  const nucleolus = new THREE.Mesh(new THREE.SphereGeometry(NR * .2, 32, 24), smat(0x4c1d95, { roughness: .7 })); nucleolus.position.set(NR * .25, NR * .12, NR * .1);
   nucleolus.userData = { id: 'nucleolus', priority: 2 }; nucleus.add(nucleolus); c.pickables.push(nucleolus);
   const chromG = new THREE.Group(); chromG.userData = { id: 'chromatin', priority: 1.5 }; nucleus.add(chromG); c.pickables.push(chromG);
-  const chMat = smat(0xd8b4fe, { emissive: 0x3b1a66, roughness: .5 });
+  const chMat = smat(0xd8b4fe, { emissive: 0x2a1250, roughness: .5 });
   for (let k = 0; k < 9; k++) {
     let p = new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(NR * .3); const pts = [];
     for (let s = 0; s < 26; s++) { p = p.clone().add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(.45)); if (p.length() > NR * .82) p.multiplyScalar(NR * .75 / p.length()); pts.push(p); }
     chromG.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 90, .07, 6), chMat));
   }
   c.addLabel(env, 'Nucleus', { offset: new V3(0, NR + .4, 0) });
-  // ER
+  // ER: flattened sheets stacked round the nucleus (rough, dotted with ribosomes) plus a net of thin tubes (smooth)
   const erG = new THREE.Group(); erG.position.copy(nucPos); erG.userData = { id: 'er' }; cell.add(erG); c.pickables.push(erG);
-  const erMat = smat(0x38bdf8, { roughness: .5, emissive: 0x05202c });
+  const erMat = new THREE.MeshStandardMaterial({ color: 0x38bdf8, roughness: .5, emissive: 0x05202c, transparent: true, opacity: .75, side: THREE.DoubleSide });
   const ribPts = [];
-  for (let k = 0; k < 6; k++) {
-    const rad = NR + (plant ? .8 + k * .38 : 1 + k * .55), arc = Math.PI * (.75 + r() * .5);
-    const m = new THREE.Mesh(new THREE.TorusGeometry(rad, .17, 8, 64, arc), erMat);
-    m.rotation.set(Math.PI / 2 + (r() - .5) * .9, (r() - .5) * .6, r() * TAU); m.scale.z = .7; erG.add(m);
-    m.updateMatrix();
-    for (let j = 0; j < 26; j++) { const a = r() * arc; const v = new V3(Math.cos(a) * (rad + .22), Math.sin(a) * (rad + .22), (r() - .5) * .2).applyMatrix4(m.matrix).add(nucPos); ribPts.push(v); }
+  const sheetN = plant ? 4 : 6;
+  for (let k = 0; k < sheetN; k++) {
+    const rad = NR + .5 + k * .5, th0 = .4 + r() * 1.6, thL = .7 + r() * .6, ph0 = r() * TAU, phL = 1.1 + r() * 1.1;
+    const geo = new THREE.SphereGeometry(rad, 40, 20, ph0, phL, th0, thL), pa = geo.attributes.position;
+    for (let i = 0; i < pa.count; i++) { const v = new V3().fromBufferAttribute(pa, i), w = 1 + .07 * Math.sin(v.x * 2.1 + v.y * 1.7 + k) * Math.cos(v.z * 1.9 + k * 2); v.multiplyScalar(w); pa.setXYZ(i, v.x, v.y, v.z); }
+    geo.computeVertexNormals(); erG.add(new THREE.Mesh(geo, erMat));
+    for (let j = 0; j < 30; j++) { const th = th0 + r() * thL, ph = ph0 + r() * phL, rr = rad * 1.02; ribPts.push(new V3(rr * Math.sin(th) * Math.cos(ph), rr * Math.cos(th), -rr * Math.sin(th) * Math.sin(ph)).add(nucPos)); }
   }
-  const erAnchor = new THREE.Object3D(); erAnchor.position.copy(ribPts[30]).sub(nucPos); erG.add(erAnchor);
+  for (let k = 0; k < (plant ? 6 : 10); k++) {
+    const pts = []; let p = new V3(gauss(r), gauss(r), gauss(r)).normalize().multiplyScalar(NR + 1.6 + r() * 2), d = new V3(gauss(r), gauss(r), gauss(r)).normalize();
+    for (let s = 0; s < 8; s++) { pts.push(p.clone()); d.add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(.7)).normalize(); p = p.clone().addScaledVector(d, 1.1); }
+    erG.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 24, .1, 6), erMat));
+  }
+  const erAnchor = new THREE.Object3D(); erAnchor.position.copy(ribPts[10]).sub(nucPos); erG.add(erAnchor);
   c.addLabel(erAnchor, 'Endoplasmic reticulum', { pick: erG });
-  // golgi
-  const golgi = new THREE.Group(); golgi.position.copy(plant ? new V3(-7.5, -4.5, -4.5) : new V3(5.5, -2.8, 2.6)); golgi.rotation.set(.4, r() * TAU, .6);
+  // golgi: a stack of curved flattened sacs and a few vesicles
+  const golgi = new THREE.Group(); golgi.position.copy(plant ? new V3(-10, -5, -4.5) : new V3(5.5, -2.8, 2.6)); golgi.rotation.set(.4, r() * TAU, .6);
   golgi.userData = { id: 'golgi' }; cell.add(golgi); c.pickables.push(golgi);
-  const gMat = smat(0xfbbf24, { roughness: .45, emissive: 0x2a1a00 });
-  for (let k = 0; k < 5; k++) { const m = new THREE.Mesh(new THREE.TorusGeometry(1.1 + k * .22, .2, 8, 40, Math.PI * .85), gMat); m.position.y = k * .5; m.rotation.x = Math.PI / 2; m.scale.z = .5; golgi.add(m); }
-  for (let k = 0; k < 7; k++) { const v = new THREE.Mesh(new THREE.SphereGeometry(.22 + r() * .12, 12, 8), gMat); v.position.set((r() - .5) * 4, r() * 2.5, 1.8 + r() * 1.2); golgi.add(v); }
-  c.addLabel(golgi, 'Golgi apparatus', { offset: new V3(0, 2.2, 0) });
+  const gMat = new THREE.MeshStandardMaterial({ color: 0xfbbf24, roughness: .45, emissive: 0x2a1a00, side: THREE.DoubleSide });
+  for (let k = 0; k < 5; k++) { const m = new THREE.Mesh(new THREE.SphereGeometry(3.4 - k * .06, 32, 8, 0, TAU, 0, .42 - k * .02), gMat); m.position.y = k * .34 - 3.4; golgi.add(m); }
+  for (let k = 0; k < 7; k++) { const v = new THREE.Mesh(new THREE.SphereGeometry(.11 + r() * .08, 12, 8), gMat); const a = r() * TAU, d = 1.4 + r() * .7; v.position.set(Math.cos(a) * d, r() * 1.6 - 1.7, Math.sin(a) * d); golgi.add(v); }
+  c.addLabel(golgi, 'Golgi apparatus', { offset: new V3(0, 1.4, 0) });
   // placement helper
   const placed = [];
   function place(minGap, avoidFn) {
     for (let tries = 0; tries < 400; tries++) {
-      const p = plant ? new V3((r() - .5) * 24, (r() - .5) * 16, (r() - .5) * 16) : new V3((r() - .5) * 22, (r() - .5) * 18, (r() - .5) * 20);
+      const p = plant ? new V3((r() - .5) * PW, (r() - .5) * PH, (r() - .5) * PD) : new V3((r() - .5) * 22, (r() - .5) * 18, (r() - .5) * 20);
       if (!inside(p, 1.6)) continue;
       if (p.distanceTo(nucPos) < NR + 2.2) continue;
       if (p.distanceTo(golgi.position) < 3) continue;
@@ -704,19 +809,25 @@ BUILD.cell = (c, opts) => {
   }
   let vac = null;
   if (plant) {
-    const vc = new V3(3.5, .5, -.5), vs = new V3(7.5, 5.8, 5.8);
-    vac = new THREE.Mesh(new THREE.SphereGeometry(1, 48, 32), smat(0x7dd3fc, { transparent: true, opacity: .26, depthWrite: false, roughness: .2 }));
+    // a central vacuole filling about 45% of the cell, squarish like the cell it sits in
+    const vc = new V3(2.5, 0, 0), vs = new V3(15, 8, 8);
+    const vg = new THREE.SphereGeometry(1, 48, 32), va = vg.attributes.position;
+    for (let i = 0; i < va.count; i++) { const v = new V3().fromBufferAttribute(va, i), s = Math.pow(Math.pow(Math.abs(v.x), 4) + Math.pow(Math.abs(v.y), 4) + Math.pow(Math.abs(v.z), 4), .25) || 1; va.setXYZ(i, v.x / s, v.y / s, v.z / s); }
+    vg.computeVertexNormals();
+    vac = new THREE.Mesh(vg, smat(0x7dd3fc, { transparent: true, opacity: .26, depthWrite: false, roughness: .2 }));
     vac.position.copy(vc); vac.scale.copy(vs); vac.userData = { id: 'vacuole', priority: .6 };
-    vac.add(new THREE.Mesh(new THREE.SphereGeometry(1.01, 48, 32), fresnelMat(0xbae6fd, 2.2, .9)));
+    vac.add(new THREE.Mesh(vg, fresnelMat(0xbae6fd, 2.2, .7)));
     cell.add(vac); c.pickables.push(vac);
     c.addLabel(vac, 'Vacuole', { offset: new V3(0, 0, 0) });
-    vac.userData.inVac = p => ((p.x - vc.x) / (vs.x + 1.5)) ** 2 + ((p.y - vc.y) / (vs.y + 1.5)) ** 2 + ((p.z - vc.z) / (vs.z + 1.5)) ** 2 < 1;
+    vac.userData.inVac = p => (Math.pow(Math.abs(p.x - vc.x) / (vs.x + 1.2), 4) + Math.pow(Math.abs(p.y - vc.y) / (vs.y + 1.2), 4) + Math.pow(Math.abs(p.z - vc.z) / (vs.z + 1.2), 4)) < 1;
   }
   const avoid = vac ? vac.userData.inVac : null;
-  // mitochondria
-  const mitos = [], mMat = smat(0xffffff, { map: mitoTex(), roughness: .55, emissive: 0x220a00 });
+  // mitochondria: about 2 µm long, a smooth outer membrane round a folded inner one (cristae)
+  const mitos = [], mOut = new THREE.MeshStandardMaterial({ color: 0xff8a3d, transparent: true, opacity: .42, roughness: .5, emissive: 0x220a00, depthWrite: false, side: THREE.DoubleSide }), mIn = new THREE.MeshStandardMaterial({ color: 0xb8461a, roughness: .6, side: THREE.DoubleSide, emissive: 0x1a0800 });
+  const mitoGeo = new THREE.SphereGeometry(1, 28, 16);
   for (let k = 0; k < (plant ? 5 : 9); k++) {
-    const m = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 16), mMat); m.scale.set(1.5, .62, .62);
+    const m = new THREE.Group(); const sh = new THREE.Mesh(mitoGeo, mOut); sh.scale.set(1.2, .5, .5); m.add(sh);
+    for (let j = 0; j < 8; j++) { const x = -.9 + j * .26, rr = .5 * Math.sqrt(Math.max(.02, 1 - (x / 1.2) ** 2)) * .9; const cr = new THREE.Mesh(new THREE.CircleGeometry(rr, 18, (j % 2) * Math.PI, Math.PI * 1.45), mIn); cr.position.x = x; cr.rotation.y = Math.PI / 2; m.add(cr); }
     m.position.copy(place(3, avoid)); m.rotation.set(r() * 6, r() * 6, r() * 6); m.userData = { id: 'mito', ph: r() * 6 };
     cell.add(m); c.pickables.push(m); mitos.push(m);
   }
@@ -724,27 +835,29 @@ BUILD.cell = (c, opts) => {
   // lysosomes / chloroplasts
   const chloros = [];
   if (!plant) {
-    for (let k = 0; k < 6; k++) { const m = new THREE.Mesh(new THREE.SphereGeometry(.5 + r() * .2, 20, 14), smat(0x84cc16, { roughness: .4, emissive: 0x0d1a00 })); m.position.copy(place(2)); m.userData = { id: 'lysosome' }; cell.add(m); c.pickables.push(m); if (k === 0) c.addLabel(m, 'Lysosome', { offset: new V3(0, .8, 0) }); }
+    for (let k = 0; k < 6; k++) { const m = new THREE.Mesh(new THREE.SphereGeometry(.25 + r() * .2, 20, 14), smat(0x84cc16, { roughness: .4, emissive: 0x0d1a00 })); m.position.copy(place(2)); m.userData = { id: 'lysosome' }; cell.add(m); c.pickables.push(m); if (k === 0) c.addLabel(m, 'Lysosome', { offset: new V3(0, .8, 0) }); }
   } else {
     const cMat = smat(0xffffff, { map: chloroTex(), roughness: .5, emissive: 0x041a04 });
     for (let k = 0; k < 14; k++) {
-      const m = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 16), cMat); m.scale.set(1.45, .55, .95);
-      const p = place(2.8, avoid); m.position.copy(p); m.rotation.set(r() * 6, r() * 6, r() * 6); m.userData = { id: 'chloroplast', base: p.clone(), ph: r() * TAU };
+      const m = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 16), cMat); m.scale.set(2.2, .8, 1.4);
+      const p = place(3.4, avoid); m.position.copy(p); m.rotation.set(r() * 6, r() * 6, r() * 6); m.userData = { id: 'chloroplast', base: p.clone(), ph: r() * TAU };
       cell.add(m); c.pickables.push(m); chloros.push(m);
     }
-    c.addLabel(chloros[0], 'Chloroplast', { offset: new V3(0, 1, 0) });
+    c.addLabel(chloros[0], 'Chloroplast', { offset: new V3(0, 1.2, 0) });
   }
-  // ribosomes (instanced)
-  const ribCount = ribPts.length + 420;
-  const rib = new THREE.InstancedMesh(new THREE.SphereGeometry(.1, 8, 6), smat(0xe0e7ff, { emissive: 0x222244 }), ribCount);
+  // ribosomes: true size (about 27 nm), so they only show up close; far fewer than the millions in a real cell
+  const ribCount = ribPts.length + 700;
+  const rib = new THREE.InstancedMesh(new THREE.SphereGeometry(.0165, 8, 6), smat(0xe0e7ff, { emissive: 0x222244 }), ribCount);
   const mtx = new THREE.Matrix4();
   for (let i = 0; i < ribCount; i++) {
     let p;
     if (i < ribPts.length) p = ribPts[i];
-    else { for (let t = 0; t < 50; t++) { p = new V3((r() - .5) * 24, (r() - .5) * 18, (r() - .5) * 20); if (inside(p, .8) && p.distanceTo(nucPos) > NR + .4 && !(avoid && avoid(p))) break; } }
+    else { for (let t = 0; t < 50; t++) { p = plant ? new V3((r() - .5) * PW, (r() - .5) * PH, (r() - .5) * PD) : new V3((r() - .5) * 24, (r() - .5) * 18, (r() - .5) * 20); if (inside(p, .8) && p.distanceTo(nucPos) > NR + .4 && !(avoid && avoid(p))) break; } }
     mtx.makeTranslation(p.x, p.y, p.z); rib.setMatrixAt(i, mtx);
   }
   rib.userData = { id: 'ribosome', priority: .8 }; cell.add(rib); c.pickables.push(rib);
+  // a few ribosomes shown large enough to click: none. Instead the ribosome label points at a lone marker at true size (see the note).
+  const ribA = new THREE.Object3D(); ribA.position.copy(ribPts[4]); cell.add(ribA); c.addLabel(ribA, 'Ribosomes (27 nm, tiny)', { pick: rib });
   // cytoskeleton
   const cl = [];
   for (let k = 0; k < 60; k++) { let a, b; for (let t = 0; t < 40; t++) { a = new V3((r() - .5) * 22, (r() - .5) * 17, (r() - .5) * 18); if (inside(a, 1)) break; } b = a.clone().add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(4)); for (let t = 0; t < 8 && !inside(b, 1); t++) b.lerp(a, .5); if (!inside(a, 1)) continue; cl.push(a.x, a.y, a.z, b.x, b.y, b.z); }
@@ -753,38 +866,53 @@ BUILD.cell = (c, opts) => {
   c.update = (dt, t) => {
     mitos.forEach(m => { m.rotation.y += dt * .1; m.position.y += Math.sin(t + m.userData.ph) * dt * .08; });
     chloros.forEach(m => { const u = m.userData; m.position.set(u.base.x + Math.sin(t * .4 + u.ph) * .6, u.base.y + Math.sin(t * .3 + u.ph) * .3, u.base.z + Math.cos(t * .4 + u.ph) * .6); m.rotation.y += dt * .05; });
-    cell.rotation.y += dt * .02;
   };
-  // membrane close-up: phospholipid bilayer with proteins
-  const patch = new THREE.Group(); patch.visible = false; g.add(patch);
-  const NL = 22, SP = .92, half = (NL - 1) * SP / 2, prot = [new V3(2.2, 0, 1.4), new V3(-4.2, 0, -3.2)];
+  // membrane close-up: a patch of phospholipid bilayer with proteins, drawn at true size (the group is 1/1000 of a builder unit per unit)
+  const patch = new THREE.Group(); patch.visible = false; g.add(patch); patch.scale.setScalar(.001);
+  const NL = 22, SP = .92, half = (NL - 1) * SP / 2, YH = 2.35, prot = [new V3(2.2, 0, 1.4), new V3(-4.2, 0, -3.2)];
   const lip = []; for (let i = 0; i < NL; i++) for (let j = 0; j < NL; j++) { const x = i * SP - half + (j % 2) * .3, z = j * SP - half; if (prot.some(p => Math.hypot(p.x - x, p.z - z) < (p === prot[0] ? 1.9 : 2.2))) continue; lip.push([x, z]); }
   const headG = new THREE.InstancedMesh(new THREE.SphereGeometry(.42, 12, 10), smat(0xf59e0b, { roughness: .45, emissive: 0x2a1500 }), lip.length * 2);
-  const tailG = new THREE.InstancedMesh(new THREE.CylinderGeometry(.1, .08, 2.1, 6), smat(0xfde68a, { roughness: .7 }), lip.length * 4);
+  const tailG = new THREE.InstancedMesh(new THREE.CylinderGeometry(.1, .08, 2.3, 6), smat(0xfde68a, { roughness: .7 }), lip.length * 4);
   const mm = new THREE.Matrix4(), qq = new THREE.Quaternion(), rr = rng(8); let hi = 0, ti = 0;
   lip.forEach(([x, z]) => [1, -1].forEach(sd => {
-    const yH = sd * 2.75 + (rr() - .5) * .15; mm.makeTranslation(x, yH, z); headG.setMatrixAt(hi++, mm);
-    [-.17, .17].forEach(o => { qq.setFromEuler(new THREE.Euler((rr() - .5) * .25, 0, (rr() - .5) * .25)); mm.compose(new V3(x + o, yH - sd * 1.4, z), qq, new V3(1, 1, 1)); tailG.setMatrixAt(ti++, mm); });
+    const yH = sd * YH + (rr() - .5) * .15; mm.makeTranslation(x, yH, z); headG.setMatrixAt(hi++, mm);
+    [-.17, .17].forEach(o => { qq.setFromEuler(new THREE.Euler((rr() - .5) * .25, 0, (rr() - .5) * .25)); mm.compose(new V3(x + o, yH - sd * 1.15, z), qq, new V3(1, 1, 1)); tailG.setMatrixAt(ti++, mm); });
   }));
   headG.userData = { id: 'phospholipid' }; tailG.userData = { id: 'phospholipid' }; patch.add(headG); patch.add(tailG); c.pickables.push(headG, tailG);
   const chan = new THREE.Group(); chan.position.copy(prot[0]); chan.userData = { id: 'channel', priority: 2 };
-  for (let k = 0; k < 7; k++) { const a = k / 7 * TAU, m = new THREE.Mesh(new THREE.CylinderGeometry(.42, .42, 6.6, 14), smat(0x8b5cf6, { roughness: .4, emissive: 0x1a0a33 })); m.position.set(Math.cos(a) * .95, 0, Math.sin(a) * .95); m.rotation.z = .12 * Math.cos(a); chan.add(m); }
-  const ions = []; for (let k = 0; k < 4; k++) { const io = new THREE.Mesh(new THREE.SphereGeometry(.22, 12, 8), new THREE.MeshBasicMaterial({ color: 0x67e8f9 })); chan.add(io); ions.push(io); }
+  for (let k = 0; k < 7; k++) { const a = k / 7 * TAU, m = new THREE.Mesh(new THREE.CylinderGeometry(.42, .42, 6.2, 14), smat(0x8b5cf6, { roughness: .4, emissive: 0x1a0a33 })); m.position.set(Math.cos(a) * .95, 0, Math.sin(a) * .95); m.rotation.z = .12 * Math.cos(a); chan.add(m); }
+  const ions = []; for (let k = 0; k < 4; k++) { const io = new THREE.Mesh(new THREE.SphereGeometry(.2, 12, 8), new THREE.MeshBasicMaterial({ color: 0x67e8f9 })); chan.add(io); ions.push(io); }
   patch.add(chan); c.pickables.push(chan);
   const gly = new THREE.Group(); gly.position.copy(prot[1]); gly.userData = { id: 'glycoprotein', priority: 2 };
-  const blob = new THREE.Mesh(new THREE.IcosahedronGeometry(1.7, 1), smat(0x22c55e, { roughness: .6, flatShading: true })); blob.scale.set(1, 2.1, 1); gly.add(blob);
-  const sugM = smat(0xf0abfc, { roughness: .5 }); let tip = new V3(0, 3.6, 0);
-  for (let k = 0; k < 6; k++) { const sgm = new THREE.Mesh(new THREE.SphereGeometry(.32, 12, 8), sugM); tip = tip.clone().add(new V3((rr() - .5) * .7, .62, (rr() - .5) * .7)); sgm.position.copy(tip); gly.add(sgm); if (k === 3) { const br = new THREE.Mesh(new THREE.SphereGeometry(.28, 12, 8), sugM); br.position.copy(tip).add(new V3(.6, .2, 0)); gly.add(br); } }
+  const blob = new THREE.Mesh(new THREE.IcosahedronGeometry(1.5, 1), smat(0x22c55e, { roughness: .6, flatShading: true })); blob.scale.set(1, 2.0, 1); gly.add(blob);
+  const sugM = smat(0xf0abfc, { roughness: .5 }); let tip = new V3(0, 3.3, 0);
+  for (let k = 0; k < 6; k++) { const sgm = new THREE.Mesh(new THREE.SphereGeometry(.3, 12, 8), sugM); tip = tip.clone().add(new V3((rr() - .5) * .7, .6, (rr() - .5) * .7)); sgm.position.copy(tip); gly.add(sgm); if (k === 3) { const br = new THREE.Mesh(new THREE.SphereGeometry(.26, 12, 8), sugM); br.position.copy(tip).add(new V3(.6, .2, 0)); gly.add(br); } }
   patch.add(gly); c.pickables.push(gly);
-  const aH = new THREE.Object3D(); aH.position.set(-half, 2.75, half); patch.add(aH); c.addLabel(aH, 'Water-loving heads', { pick: headG });
+  const aH = new THREE.Object3D(); aH.position.set(-half, YH, half); patch.add(aH); c.addLabel(aH, 'Water-loving heads', { pick: headG });
   const aT = new THREE.Object3D(); aT.position.set(-half, 0, half); patch.add(aT); c.addLabel(aT, 'Oily tails', { pick: tailG });
-  c.addLabel(chan, 'Channel protein', { offset: new V3(0, 4, 0) }); c.addLabel(gly, 'Glycoprotein (ID tag)', { offset: new V3(0, 8, 0) });
+  c.addLabel(chan, 'Channel protein', { offset: new V3(0, 4e-3, 0) }); c.addLabel(gly, 'Glycoprotein (ID tag)', { offset: new V3(0, 8e-3, 0) });
+  // 5 nm scale bar across the bilayer
+  const nmU = 1 / (.001 * .8333);                              // patch units per nanometre... 1 unit = 0.833 nm
+  const sb = new THREE.Group(); sb.position.set(half + 1.5, 0, half); patch.add(sb);
+  const sbM = new THREE.MeshBasicMaterial({ color: 0xffffff }); sb.add(new THREE.Mesh(new THREE.BoxGeometry(.1, 5 / .8333, .1), sbM)); [-1, 1].forEach(sd => { const t = new THREE.Mesh(new THREE.BoxGeometry(.7, .1, .1), sbM); t.position.y = sd * 2.5 / .8333; sb.add(t); });
+  c.addLabel(sb, '5 nm', { offset: new V3(2e-3, 0, 0), always: true }); void nmU;
   const upd0 = c.update;
-  c.update = (dt, t) => { upd0(dt, t); ions.forEach((io, k) => { const y = ((t * 1.6 + k * 2.2) % 8.8) - 4.4; io.position.set(Math.sin(t * 3 + k) * .15, -y, Math.cos(t * 3 + k) * .15); io.visible = patch.visible; }); patch.rotation.y += dt * .04; };
+  c.update = (dt, t) => { upd0(dt, t); ions.forEach((io, k) => { const y = ((t * 1.6 + k * 2.2) % 8.8) - 4.4; io.position.set(Math.sin(t * 3 + k) * .15, -y, Math.cos(t * 3 + k) * .15); io.visible = patch.visible; }); };
   c.focusIn = () => nucleus.getWorldPosition(new V3());
   c.focusFor = () => ({ pos: nucleus.getWorldPosition(new V3()), r: NR });
-  seg([['animal', 'Animal cell (yours)'], ['plant', 'Plant cell (leaf)']], c.opts.type, k => swapTo('cell', { type: k }));
-  seg([['cell', 'Whole cell'], ['mem', 'Membrane up close']], 'cell', k => { const m = k === 'mem'; patch.visible = m; cell.visible = !m; if (m) showInfo('phospholipid'); });
+  const PRE = opts.note ? opts.note + ' ' : '';
+  const NOTES = {
+    animal: PRE + 'Schematic animal cell at true overall size (about 20 µm across; nucleus about 6 µm; mitochondria about 2 µm long). Shapes are simplified and counts are far too low (a real cell has hundreds to thousands of mitochondria and millions of ribosomes). Ribosomes are drawn at true size (27 nm), so they appear only close up.',
+    plant: PRE + 'Schematic plant cell at true overall size (about 30 µm long). Shapes are simplified and counts are far too low (a real leaf cell has dozens of chloroplasts). Ribosomes are drawn at true size (27 nm), so they appear only close up. In a mature plant cell the vacuole fills most of it; here about 45%, to leave room to see the rest.',
+    mem: 'Schematic patch of membrane at true size, about 17 nm across: the bilayer is about 4 to 5 nm thick and the lipid heads about 0.8 nm apart. Cholesterol, most proteins and the constant sideways motion of lipids are left out; the channel and sugar chain are simplified shapes, not real structures.',
+  };
+  sceneNote(c, NOTES[c.opts.type]);
+  seg([['animal', 'Animal cell'], ['plant', 'Plant cell'], ['bacterium', 'Bacterium']], c.opts.type, k => { const F = c.frame; swapTo('cell', { type: k }); if (typeof flyTo === 'function') flyTo(F, new V3(), k === 'bacterium' ? 6e-6 : 4e-5); });
+  seg([['cell', 'Whole cell'], ['mem', 'Membrane up close']], 'cell', k => {
+    const m = k === 'mem'; c.patchOn = m; patch.visible = m; cell.visible = !m; sceneNote(c, m ? NOTES.mem : NOTES[c.opts.type]);
+    if (typeof flyTo === 'function' && c.frame) flyTo(c.frame, new V3(), m ? 3.2e-8 : (plant ? 4.5e-5 : 4e-5));
+    if (m) showInfo('phospholipid');
+  });
 };
 
 /* ================= LEVEL: LIFE ================= */
