@@ -72,6 +72,8 @@ function crumbGo(f) {
 function updateCrumbs(cur) {
   const ol = $('#crumbList'); if (!ol) return;
   const chain = chainOf(cur).reverse(); // root ... current
+  // the patch of skin (and the cell, DNA and atoms in it) sits on the person standing in the park: say so, and let "You" be a way out
+  { const i = typeof FR !== 'undefined' && FR.skin ? chain.indexOf(FR.skin) : -1; if (i > 0 && FR.body && !chain.includes(FR.body)) chain.splice(i, 0, FR.body); }
   const short = f => { const n = CRUMB_NAME[humanName(f)] || humanName(f); return n.length > 26 ? n.slice(0, 25) + '…' : n; };
   let items = chain.map((f, i) => ({ f, last: i === chain.length - 1 }));
   let cut = 0; if (chain.length > 11 && !crumbsAll) { cut = chain.length - 7; items = [items[0], { more: cut - 1 }].concat(items.slice(cut)); }
@@ -130,9 +132,17 @@ function openPanel(h, desc) {
   const key = desc && desc.key || '';
   if (!navQuiet && key && (!curCard || curCard.key !== key)) navStack.push({ card: curCard, cam: curCard ? curCard.cam : camSnap() }), navStack.length > 60 && navStack.shift();
   curCard = key ? { key, reopen: desc.reopen, cam: camSnap() } : null;
-  document.body.classList.add('cardOpen'); infoEl.innerHTML = `<button class="x" aria-label="Close">×</button>` + h; infoEl.classList.add('open'); infoEl.scrollTop = 0; infoEl.querySelector('.x').onclick = closeInfo; wireTabs(); wireCardLinks(); navUpdate();
+  document.body.classList.add('cardOpen'); infoEl.innerHTML = `<button class="x" aria-label="Close">×</button><div class="grab" role="button" tabindex="0" aria-label="Drag up to make this card taller, down to make it shorter"></div>` + h; infoEl.classList.remove('tall'); wireGrab(); infoEl.classList.add('open'); infoEl.scrollTop = 0; infoEl.querySelector('.x').onclick = closeInfo; wireTabs(); wireCardLinks(); navUpdate();
 }
-function closeInfo() { infoEl.classList.remove('open'); document.body.classList.remove('cardOpen'); infoState = null; curCard = null; if (typeof FR !== 'undefined' && FR.body) FR.body.sel = null; }
+/* Phone: the card is a sheet that starts low (about a third of the screen, so what you tapped stays in view) and is dragged up for the rest. */
+function wireGrab() {
+  const g = infoEl.querySelector('.grab'); if (!g) return; let y0 = null, moved = false;
+  g.onpointerdown = e => { y0 = e.clientY; moved = false; try { g.setPointerCapture(e.pointerId); } catch (_) { } };
+  g.onpointermove = e => { if (y0 === null) return; const dy = e.clientY - y0; if (Math.abs(dy) > 24) { moved = true; infoEl.classList.toggle('tall', dy < 0); y0 = e.clientY; } };
+  g.onpointerup = () => { if (y0 !== null && !moved) infoEl.classList.toggle('tall'); y0 = null; };
+  g.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); infoEl.classList.toggle('tall'); } };
+}
+function closeInfo() { infoEl.classList.remove('open'); document.body.classList.remove('cardOpen'); infoState = null; curCard = null; if (typeof FR !== 'undefined' && FR.body) { FR.body.sel = null; FR.body.reveal = null; } }
 function closePops() { ['#library', '#tourPop', '#tracks'].forEach(s => { const e = $(s); if (e) e.classList.remove('open'); }); document.body.classList.remove('trackOpen'); }
 function scienceSection(simIds) {
   const nodes = []; simIds.forEach(s => (KN_BY_SIM[s] || []).forEach(n => { if (!nodes.includes(n)) nodes.push(n); }));
@@ -224,7 +234,7 @@ function libSearch(q) {
   const goHits = searchGoHits(q);
   if (goHits.length) h += '<div class="jl">Take me there</div>' + goHits.map((r, i) => `<button class="kn gohit" data-g="${i}"><b>${r.title}</b><span>${r.sub || ''}</span></button>`).join('');
   libGo = goHits;
-  if (KN) { const ks = KN.filter(n => n.title.toLowerCase().includes(q) || (n.basics || '').toLowerCase().includes(q)).slice(0, 8); if (ks.length) h += '<div class="jl">Knowledge map</div>' + ks.map(n => `<button class="kn simhit" data-k="${n.id}"><b>${n.title}</b><span>${n.certainty} · level ${n.level}</span></button>`).join(''); }
+  if (KN) { const wre = q.length > 2 ? new RegExp('\\b' + q.replace(/[^a-z0-9 ]/g, '') + '\\b') : null, ti = KN.filter(n => n.title.toLowerCase().includes(q)), ks = ti.concat(wre && ti.length < 4 ? KN.filter(n => !ti.includes(n) && wre.test((n.basics || '').toLowerCase())) : []).slice(0, 8); if (ks.length) h += '<div class="jl">Knowledge map</div>' + ks.map(n => `<button class="kn simhit" data-k="${n.id}"><b>${n.title}</b><span>${n.certainty} · level ${n.level}</span></button>`).join(''); }
   const L = /[a-z]/.test(q[0]) ? q[0] : '0';
   const sh = termShards[L];
   if (!sh) { termShards[L] = 'loading'; fetch(`data/library/terms_${L}.json`).then(r => r.json()).then(j => { termShards[L] = j; libSearch($('#libQ').value); }).catch(() => { termShards[L] = []; }); h += '<div class="sub">Searching the textbooks…</div>'; }
@@ -233,34 +243,96 @@ function libSearch(q) {
     if (terms.length) h += '<div class="jl">Key terms</div>' + terms.map(t => `<div class="term"><div class="tt">${t[0]}</div>${t[1].slice(0, 8).map(r => { const b = BOOKS[r[0]]; return b ? `<a class="mini" href="${b.base || ('https://openstax.org/books/' + b.s + '/pages/')}${r[2]}" target="_blank" rel="noopener">${b.t} ${r[1]}</a>` : ''; }).join('')}</div>`).join('');
   }
   if (BOOKS) { const secs = []; for (const b of BOOKS) for (const c of b.ch) for (const s of c[2]) if (s[0] && s[1].toLowerCase().includes(q)) { secs.push([b, s]); if (secs.length >= 12) break; } if (secs.length) h += '<div class="jl">Sections</div>' + secs.map(([b, s]) => `<a class="ref" href="${b.base || ('https://openstax.org/books/' + b.s + '/pages/')}${s[2]}" target="_blank" rel="noopener"><b>${b.t} ${s[0]}</b> ${s[1]}</a>`).join(''); }
-  box.innerHTML = h || '<div class="sub">No matches.</div>'; wireLib();
+  if (!h) { h = noMatchHtml(q); }
+  box.innerHTML = h; wireLib();
 }
-function wireLib() { $('#libRes').querySelectorAll('.kn').forEach(b => b.onclick = () => b.dataset.g !== undefined ? libPick(+b.dataset.g) : showNode(b.dataset.k)); }
+/* Nothing matched: say so, and offer the nearest topics: the longer words of the query searched one by one, then a few places to start. */
+const STOPWORDS = new Set('a an the of is are was were why how what when where who which does do did can could would should work works about and or to in on for with it its this that from into like make made'.split(' '));
+function noMatchHtml(q) {
+  const words = q.split(/[^a-z0-9α-ω]+/).filter(w => w.length > 2 && !STOPWORDS.has(w)), sug = [], seenT = new Set();
+  words.forEach(w => { const gh = searchGoHits(w).slice(0, 3); gh.forEach(r => { if (!seenT.has(r.title)) { seenT.add(r.title); sug.push({ r }); } });
+    if (KN) KN.filter(n => n.title.toLowerCase().includes(w)).slice(0, 2).forEach(n => { if (!seenT.has(n.title)) { seenT.add(n.title); sug.push({ k: n }); } }); });
+  libGo = sug.filter(x => x.r).map(x => x.r); let gi = 0;
+  const btns = sug.slice(0, 8).map(x => x.r ? `<button class="kn gohit" data-g="${gi++}"><b>${x.r.title}</b><span>${x.r.sub || ''}</span></button>` : `<button class="kn simhit" data-k="${x.k.id}"><b>${x.k.title}</b><span>${x.k.certainty} · level ${x.k.level}</span></button>`).join('');
+  if (btns) return `<div class="sub">Nothing is called "${q.replace(/[<>&]/g, '')}". The closest topics to the words in it:</div>${btns}`;
+  const start = ['Heart', 'DNA', 'Gold', 'Saturn', 'The Sun', 'Proton', 'Caffeine', 'Black hole'].map(t => `<button class="chip" data-q="${t}">${t}</button>`).join('');
+  return `<div class="sub">Nothing is called "${q.replace(/[<>&]/g, '')}". Search works on names (a body part, an element or its symbol, a molecule, a planet, a place on the scale), so try one word, for example:</div><div class="chips">${start}</div>`;
+}
+function wireLib() { $('#libRes').querySelectorAll('.chip[data-q]').forEach(b => b.onclick = () => { $('#libQ').value = b.dataset.q; libSearch(b.dataset.q); }); $('#libRes').querySelectorAll('.kn').forEach(b => b.onclick = () => b.dataset.g !== undefined ? libPick(+b.dataset.g) : showNode(b.dataset.k)); }
 let libGo = [];
 function libPick(i) { const r = libGo[i]; if (!r) return; cancelTour(); closePops(); r.go(); canvas.focus(); }
-/* Search sources. Anything that can be found by name registers here:
-     SEARCH_SOURCES.push(q => [{ title, sub, go, rank? }])
-   q is the lower-case query (at least one character). go() takes the user somewhere: a flight, or a card. rank (lower is
-   better) defaults to 0 for an exact title, 1 for a title that starts with the query, 2 for one that contains it.
-   Results that go somewhere are listed first; textbook terms and sections follow. A source must be fast and must not throw. */
+/* Search sources. Anything that can be found by name registers here. A source is one of:
+     1. a function:  q => [{ title, sub, go, rank?, prio? }]            q is the lower-case query (at least one character)
+     2. an object with search:  { id, label, search(q) => [result] }     (js/particles.js)
+     3. an object with items:   { id, title, items() => [{ id, title, sub, go? }] }   (js/atom.js); items() is called once and the
+        list is filtered by title and sub. An item without go whose id is a node id (NODE[id]) opens that node with goToNode;
+        an item with neither is ignored (it cannot take you anywhere).
+   A result needs a title; go() takes the user somewhere (a flight, or a card). rank (lower is better) defaults from the title:
+   0 exact, 1 starts with the query, 2 a word in it starts with the query, 3 contains it; anything else is not a match.
+   prio orders results of the same kind of match: 0 places you can fly to (landmarks, planets, park objects), 1 topics, elements,
+   molecules, 2 the rest. Results that go somewhere are listed first; textbook terms and sections follow.
+   A source that throws is reported once on the console, never per keystroke; a malformed source is reported once and skipped. */
 const SEARCH_SOURCES = [];
-function matchRank(title, q) { const t = String(title).toLowerCase(); return t === q ? 0 : t.startsWith(q) ? 1 : t.includes(q) ? 2 : 9; }
+const _srcState = new WeakMap(); // per source: {fn, warned, cache}
+function matchRank(title, q) {
+  const t = String(title).toLowerCase(); if (t === q) return 0; if (t.startsWith(q)) return 1;
+  if (t.split(/[^a-z0-9α-ω]+/).some(w => w.startsWith(q))) return 2; return t.includes(q) ? 3 : 9;
+}
+function searchSourceFn(src) {
+  if (!src || (typeof src !== 'object' && typeof src !== 'function')) return null;
+  let st = _srcState.get(src); if (!st) { st = { warned: false }; _srcState.set(src, st); }
+  const bad = why => { if (!st.warned) { st.warned = true; console.warn('search source ignored:', why, src && (src.id || src.label || src.title)); } return null; };
+  if (typeof src === 'function') return src;
+  if (!src || typeof src !== 'object') return bad('not a function or an object');
+  if (typeof src.search === 'function') return q => src.search(q);
+  if (typeof src.items === 'function') return q => {
+    if (!st.cache) st.cache = (src.items() || []).map(it => ({ it, t: String(it.title || '').toLowerCase(), u: String(it.sub || '').toLowerCase() }));
+    return st.cache.filter(x => x.t.includes(q) || x.u.includes(q)).map(x => {
+      const it = x.it, go = it.go || (typeof NODE !== 'undefined' && NODE[it.id] ? () => goToNode(it.id) : null); if (!go) return null;
+      return { title: it.title, sub: it.sub, go, rank: it.rank };
+    }).filter(Boolean);
+  };
+  return bad('needs a function, a search(q) method or an items() method');
+}
 function searchGoHits(q) {
   const out = [];
-  SEARCH_SOURCES.forEach(fn => { try { (fn(q) || []).forEach(r => { if (r.rank === undefined) r.rank = matchRank(r.title, q); if (r.rank < 9) out.push(r); }); } catch (e) { console.warn('search source failed', e); } });
-  return out.map((r, i) => [r, i]).sort((a, b) => a[0].rank - b[0].rank || a[1] - b[1]).map(x => x[0]).slice(0, 14);
+  SEARCH_SOURCES.forEach(src => {
+    const fn = searchSourceFn(src); if (!fn) return;
+    try { (fn(q) || []).forEach(r => { if (!r || !r.title || typeof r.go !== 'function') return; if (r.rank === undefined) r.rank = matchRank(r.title, q); if (r.rank < 9) out.push(Object.assign({ prio: 1 }, r)); }); }
+    catch (e) { const st = _srcState.get(src); if (st && !st.warned) { st.warned = true; console.warn('search source failed:', e && e.message, src && (src.id || src.label || src.title)); } }
+  });
+  const bucket = r => r.rank <= 0 ? 0 : r.rank <= 2 ? 1 : 2; // exact, then prefix or word start, then contains
+  const seenT = new Set(), uniq = [];
+  out.map((r, i) => [r, i]).sort((a, b) => bucket(a[0]) - bucket(b[0]) || a[0].prio - b[0].prio || a[0].rank - b[0].rank || a[1] - b[1]).forEach(([r]) => { const k = r.title.toLowerCase() + '|' + (r.prio === 0 ? 'f' : ''); if (!seenT.has(k)) { seenT.add(k); uniq.push(r); } });
+  return uniq.slice(0, 14);
 }
-SEARCH_SOURCES.push(q => LANDMARKS.filter(L => L.label.toLowerCase().includes(q)).map(L => ({ title: L.label, sub: `Fly there: about ${fmtLen(L.D)} across`, go: () => L.go() })));
+SEARCH_SOURCES.push(q => LANDMARKS.filter(L => L.label.toLowerCase().includes(q)).map(L => ({ title: L.label, sub: `Fly there: about ${fmtLen(L.D)} across`, prio: 0, go: () => L.go() })));
 SEARCH_SOURCES.push(q => {
   if (typeof ELJ === 'undefined') return [];
-  return Object.values(ELJ).filter(e => e.symbol.toLowerCase() === q || e.name.toLowerCase().includes(q)).map(e => ({ title: `${e.name} (${e.symbol})`, sub: `Element ${e.Z}: its card, and a way to fly to its atoms`, rank: e.symbol.toLowerCase() === q ? 0 : matchRank(e.name, q), go: () => showElement(e.symbol) }));
+  return Object.values(ELJ).filter(e => e.symbol.toLowerCase() === q || e.name.toLowerCase().includes(q)).map(e => ({ title: `${e.name} (${e.symbol})`, sub: `Element ${e.Z}: its card, and a way to fly to its atoms`, rank: e.symbol.toLowerCase() === q ? 0 : matchRank(e.name, q), go: () => showElement(e.symbol) })); // a symbol typed exactly ("Fe") puts that element first
 });
 let MOL_INDEX = null;
 SEARCH_SOURCES.push(q => {
   if (!MOL_INDEX) { if (MOL_INDEX !== 0 && typeof getJSON === 'function') { MOL_INDEX = 0; getJSON('data/molecules_all.json').then(A => { MOL_INDEX = A.index; libSearch($('#libQ').value); }).catch(() => { MOL_INDEX = []; }); } return []; }
-  return MOL_INDEX.filter(m => m.name.toLowerCase().includes(q) || m.formula.toLowerCase() === q).map(m => ({ title: m.name, sub: `Molecule, ${m.formula}: fly to it at true size`, go: () => placeGo('mol:' + m.id) }));
+  return MOL_INDEX.filter(m => m.name.toLowerCase().includes(q) || m.formula.toLowerCase() === q).map(m => ({ title: m.name, sub: `Molecule, ${m.formula}: fly to it at true size`, rank: m.formula.toLowerCase() === q ? 0 : undefined, go: () => placeGo('mol:' + m.id) }));
 });
 SEARCH_SOURCES.push(q => typeof NODE === 'undefined' ? [] : Object.values(NODE).filter(n => n.title.toLowerCase().includes(q)).map(n => ({ title: n.title, sub: `${(n.kind || '').replace(/_/g, ' ')}${n.summary ? ': ' + n.summary : ''}`.slice(0, 110), go: () => goToNode(n.id) })));
+/* The Sun, the planets, the Moon and the things in the park: places you can fly to. Built when first searched, from the frames in FR. */
+let _bodyPlaces = null;
+function bodyPlaces() {
+  if (_bodyPlaces || !FR.solar || !FR.park) return _bodyPlaces || [];
+  const P = [], fmt = (D) => `Fly there: about ${fmtLen(D)} across`;
+  const planet = (name, key) => { const f = FR[key]; if (!f) return; P.push({ title: name, sub: `Planet. ${fmt(1)}`.replace(/Fly there.*/, 'Planet: fly there'), go: () => { f.ensure(); const o = f.pickables.find(x => x.userData && x.userData.id && x.userData.id.toLowerCase() === name.toLowerCase()), r = (o && objRadiusLocal(o)) || f.radius * .01; flyTo(f, new V3(), r * f.unit * 4.5); } }); };
+  ['Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'].forEach(n => planet(n, n));
+  P.push({ title: 'The Sun', sub: 'Our star: fly there', alias: 'sun', go: () => flyTo(FR.solar, new V3(), 4e9) });
+  P.push({ title: 'The Moon', sub: 'Earth\'s moon: fly there', alias: 'moon', go: () => { FR.earth.ensure(); const m = FR.earth.pickables.find(x => x.userData && x.userData.id === 'moon'); if (m) flyTo(FR.earth, m.position.clone(), 1.2e7); else flyTo(FR.earth, new V3(), 1.4e9); } });
+  P.push({ title: 'International Space Station', sub: 'Fly there', alias: 'iss', go: () => { FR.earth.ensure(); const m = FR.earth.pickables.find(x => x.userData && x.userData.id === 'iss'); if (m) flyTo(FR.earth, m.position.clone(), 2e3); } });
+  const park = { dog: 'Dog', tree: 'Tree', pond: 'Pond', flower: 'Flowers', bee: 'Honeybee', mushroom: 'Mushroom', bird: 'Bird', cloud: 'Cloud' };
+  for (const id in park) P.push({ title: (INFO[id] && INFO[id].title) || park[id], sub: 'In Greenwich Park: fly there', go: () => { FR.park.ensure(); const o = FR.park.pickables.find(x => x.userData && x.userData.id === id); if (!o) { placeGo('place:park'); return; } const p = parkPointOf(id, new V3(0, 1, 0)), r = objRadiusLocal(o) || 1; flyTo(FR.park, p, Math.max(Math.min(r * 3.5, 30), 1.2)); } });
+  P.push({ title: 'Air', sub: 'In Greenwich Park: what the air is made of', go: () => placeGo('place:air') }, { title: 'Soil and rock', sub: 'In Greenwich Park: down into the soil', alias: 'soil ground', go: () => placeGo('place:soil') });
+  return _bodyPlaces = P;
+}
+SEARCH_SOURCES.push(q => bodyPlaces().filter(b => b.title.toLowerCase().includes(q) || (b.alias && b.alias.split(' ').some(a => a.startsWith(q)))).map(b => ({ title: b.title, sub: b.sub, go: b.go, prio: 0, rank: b.alias && b.alias.split(' ').some(a => a === q) ? 0 : undefined })));
 function showElement(sym) {
   const dummy = new THREE.Object3D(); dummy.userData.id = 'el_' + sym; dummy.userData.info = INFO['el_' + sym] || elInfo(sym);
   showInfoFor({ id: 'el_' + sym, obj: dummy, frame: cam.A, pointLocal: cam.T.clone(), noZoom: true, elSym: sym });
@@ -358,7 +430,8 @@ function humanName(f) {
 }
 function updateCaption() {
   let f = active[active.length - 1];
-  for (let i = active.length - 1; i >= 0; i--) if (active[i].alpha > .6) { f = active[i]; break; }
+  if (active.includes(cam.A)) f = cam.A; // the caption and the path name the frame the camera is in as soon as it is the anchor, not once it has faded in
+  else for (let i = active.length - 1; i >= 0; i--) if (active[i].alpha > .6) { f = active[i]; break; }
   const view = cam.D * 2 * Math.tan(25 * Math.PI / 180), e = Math.log10(view);
   const nm = humanName(f);
   if (f !== capFrame || $('#capN').textContent !== nm) {
@@ -412,6 +485,7 @@ async function startApp() {
   $('#bHelp').onclick = () => $('#help').classList.remove('hide');
   $('#goBtn').onclick = () => { $('#help').classList.add('hide'); store.set('seenHelp', true); canvas.focus(); };
   $('#tourIn').onclick = () => startTour(true); $('#tourOut').onclick = () => startTour(false);
+  $('#tourIn2').onclick = () => { closePops(); startTour(true); }; $('#tourOut2').onclick = () => { closePops(); startTour(false); }; // the same tours, from the Library panel (the ruler's buttons have no room on a phone)
   const speeds = [[1, '1×'], [60, '1 min/s'], [3600, '1 h/s'], [86400, '1 day/s'], [86400 * 30, '1 month/s'], [0, '⏸']];
   let si = 0; $('#timeS').onclick = () => { si = (si + 1) % speeds.length; timeSpeed = speeds[si][0]; $('#timeS').textContent = speeds[si][1]; };
   $('#timeNow').onclick = () => { simTime = Date.now(); };

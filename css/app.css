@@ -105,7 +105,7 @@ body.cardOpen #controls { right: 432px }
 #tip { position: fixed; z-index: 9; pointer-events: none; padding: 5px 9px; font-size: 12.5px; border-radius: var(--r-ctl); background: var(--paper); color: var(--ink); border: 1px solid rgba(23,32,42,.2); box-shadow: var(--lift); opacity: 0; transition: opacity .12s; white-space: nowrap }
 #tip.show { opacity: 1 }
 #tip small { color: var(--muted); margin-left: 6px }
-#toasts { position: fixed; top: 64px; left: calc(50% + var(--ruler-w) / 2); transform: translateX(-50%); z-index: 12; display: flex; flex-direction: column; gap: 6px; align-items: center; pointer-events: none }
+#toasts { position: fixed; bottom: 22px; left: calc(50% + var(--ruler-w) / 2); transform: translateX(-50%); z-index: 12; display: flex; flex-direction: column; gap: 6px; align-items: center; pointer-events: none }
 .toast { background: var(--ink); color: var(--paper); padding: 8px 14px; border-radius: var(--r-panel); font-size: 13px; box-shadow: var(--lift); max-width: 440px; text-align: center }
 .toast.m { background: var(--paper); color: var(--ink); border: 1px solid var(--rule) }
 #push { position: fixed; left: calc(50% + var(--ruler-w) / 2); bottom: 76px; transform: translateX(-50%); z-index: 6; padding: 9px 16px 11px; font-size: 13px; text-align: center; opacity: 0; transition: opacity .25s; pointer-events: none; min-width: 250px }
@@ -308,7 +308,11 @@ details[open] > summary::before { content: '−' }
   #controls { left: calc(var(--ruler-w) + 8px); right: 8px; top: 52px; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap }
   #tourbtns { display: none }
   #zoombtns { right: 8px; bottom: 10px }
-  #info { left: 8px; right: 8px; top: auto; bottom: 8px; width: auto; max-width: none; max-height: 72vh; transform: translateY(calc(100% + 40px)) }
+  #info { left: 8px; right: 8px; top: auto; bottom: 8px; width: auto; max-width: none; height: 36vh; max-height: none; transform: translateY(calc(100% + 40px)); transition: transform .25s, height .2s; padding-top: 26px }
+  #info.tall { height: 82vh }
+  #info .grab { display: block !important }
+  #controls { flex-wrap: wrap !important; overflow: visible !important; row-gap: 4px }
+  #library.open ~ #controls, #tracks.open ~ #controls { display: none }
   #topright { right: 8px; top: 8px }
   .tb { padding: 7px 10px; font-size: 12.5px }
   .pop { left: calc(var(--ruler-w) + 8px); right: 8px; width: auto }
@@ -332,7 +336,9 @@ details[open] > summary::before { content: '−' }
 .core li .core-go:hover { text-decoration: underline; }
 .core li.cur .core-go { color: var(--ink); font-weight: 600; }
 .core li.cur::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); align-self: center; }
-.core li.off .core-go { color: var(--muted); text-decoration: line-through; }
+.core li.off .core-go { color: var(--muted); }
+.core li.off .core-go::after { content: ' (hidden)'; font-size: 11px; }
+.core .gap { color: var(--muted); font-size: 12.5px; margin: 4px 0 8px; font-style: italic; }
 .core li .dp { color: var(--muted); font-size: 12px; white-space: nowrap; }
 .core li .core-peel { font: 12px var(--sans); color: var(--muted); background: none; border: 1px solid var(--rule); border-radius: 5px; padding: 1px 6px; cursor: pointer; }
 .core li .core-peel:hover { color: var(--accent); border-color: var(--accent); }
@@ -377,3 +383,13 @@ details[open] > summary::before { content: '−' }
   #help h1 { font-size: 27px }
   #help .grid { grid-template-columns: 96px 1fr }
 }
+
+@media (pointer: coarse), (max-width: 860px) { .kb { display: none } }
+.tours2 { display: none; align-items: center; gap: 8px; margin: 8px 0 4px; font-size: 12.5px; color: var(--muted); flex-wrap: wrap }
+.tours2 button { font: inherit; padding: 5px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); color: var(--ink); cursor: pointer }
+@media (max-width: 860px) { .tours2 { display: flex } }
+
+#info .grab { display: none; position: absolute; left: 0; right: 0; top: 0; height: 26px; cursor: ns-resize; touch-action: none; z-index: 2 }
+#info .grab::after { content: ''; position: absolute; left: 50%; top: 9px; width: 44px; height: 4px; margin-left: -22px; border-radius: 2px; background: var(--rule) }
+body.trackOpen #caption { left: 376px }
+@media (max-width: 860px) { body.trackOpen #caption { display: none } }

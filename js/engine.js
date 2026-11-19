@@ -124,6 +124,7 @@ const anchored = [];  // extra points that live in anchor coords and must follow
 function rotAnchored(fn) { fn(cam.T, 'p'); fn(cam.dir, 'd'); fn(cam.up, 'd'); anchored.forEach(a => fn(a.p, 'p')); }
 function ascend() { const f = cam.A; rotAnchored((v, k) => k === 'p' ? toParentP(f, v) : toParentD(f, v)); cam.A = f.parent; }
 function descend(c) { rotAnchored((v, k) => k === 'p' ? fromParentP(c, v) : fromParentD(c, v)); cam.A = c; c.entered = true; }
+let camHold = null; // the frame the last flight was sent to: its children are not entered on landing (only by scrolling in, or by being on a flight's path)
 let lastZoomHit = null; // {frame, obj, point (frame-local), normal (frame-local)}
 let _fp = null;
 function reanchor() {
@@ -161,6 +162,9 @@ function pickChild(A) {
   for (const c of A.children) {
     safePlace(c);
     if (cam.D > c.r1 || !c.containsP(cam.T)) continue;
+    if (camHold === A && !(path && path.includes(c))) continue;
+    if (c.enterOnly && !(path && path.includes(c))) continue; // entered on purpose only (a flight to it), never by scroll-zoom
+    if (path && !path.includes(c) && path.includes(A) && chainOf(c).includes(fly.frame)) continue; // flying out to a frame: do not dive back into one of its children on the way
     if (path && path.includes(c)) return c;
     const k = c.unit / A.unit, dist = cam.T.distanceTo(c.pos), rad = c.radius === Infinity ? Infinity : c.radius * k;
     const core = (c.core ?? c.radius) * k;
@@ -171,12 +175,12 @@ function pickChild(A) {
 }
 function trySpawn(A) {
   let hint = null;
-  if (lastZoomHit && lastZoomHit.frame === A && lastZoomHit.point.distanceTo(cam.T) < Math.max(cam.D / A.unit * 4, A.radius * 1e-4)) hint = lastZoomHit;
+  if (lastZoomHit && lastZoomHit.frame === A && lastZoomHit.point.distanceTo(cam.T) < Math.max(cam.D / A.unit * 10, A.radius * 1e-4)) hint = lastZoomHit;
   if (A.children.some(c => c.dynamic && c.containsP(cam.T))) return null;
   // a pending (not yet visible) child near the view follows the zoom target until it appears
   const pend = A.children.find(c => c.dynamic && !c.entered && c.pos.distanceTo(cam.T) < cam.D / A.unit * 3);
   if (pend) { if (cam.D > pend.r1 && !pend.pinned) pend.pos.copy(cam.T); return pend.containsP(cam.T) && cam.D <= pend.r1 ? pend : null; }
-  if (A._spawnFail && A._spawnFail.distanceTo(cam.T) < cam.D / A.unit * .5) return null;
+  if (!hint && A._spawnFail && A._spawnFail.distanceTo(cam.T) < cam.D / A.unit * .5) return null; // a failure without a surface under the cursor must not block a spawn that now has one
   const c = A.spawn(cam.T.clone(), hint);
   if (!c) { A._spawnFail = cam.T.clone(); return null; }
   A._spawnFail = null; c.dynamic = true; A.addChild(c);
@@ -293,7 +297,7 @@ function pivotAt(x, y) {
   return p;
 }
 function zoomBy(lnDelta, x, y) {
-  lastInput = performance.now(); fly = null; cancelTour();
+  lastInput = performance.now(); fly = null; cancelTour(); if (lnDelta < 0) camHold = null;
   if (lnDelta < 0 && x !== undefined) { const p = pivotAt(x, y); zoom.pivot = zoom.pivot || { p }; zoom.pivot.p.copy(p); if (!anchored.includes(zoom.pivot)) anchored.push(zoom.pivot); }
   else if (lnDelta > 0) { zoom.pivot = null; anchored.length = 0; }
   zoom.pending += lnDelta;
@@ -303,7 +307,10 @@ function applyZoom(dt) {
   const step = zoom.pending * (1 - Math.exp(-dt * 12));
   zoom.pending -= step;
   let lam = Math.exp(step);
-  const nd = clamp(cam.D * lam, MIN_D, MAX_D); lam = nd / cam.D;
+  let nd = clamp(cam.D * lam, MIN_D, MAX_D);
+  if (lam < 1 && cam.A.floorD) nd = Math.max(nd, Math.min(cam.D, cam.A.floorD)); // a floor, so the camera cannot sink into an empty region
+  lam = nd / cam.D;
+  mouse.dirty = true; // the view moves under a resting cursor: its tooltip and highlight must follow
   if (zoom.pivot && lam < 1) { // scale camera rig about the pivot: keeps the point under the cursor fixed
     const P = zoom.pivot.p;
     cam.T.sub(P).multiplyScalar(lam).add(P);
@@ -333,9 +340,10 @@ function orthoUp() { cam.dir.normalize(); cam.up.sub(cam.dir.clone().multiplySca
 // fly to a point in a frame, ending at distance Dgoal (meters). Zooms out, travels, zooms in as needed.
 function flyTo(frame, pointLocal, Dgoal, then) {
   if (typeof navFlyHook === 'function') navFlyHook(); // remember where we were, for Back
-  zoom.pending = 0; zoom.pivot = null; anchored.length = 0;
+  zoom.pending = 0; zoom.pivot = null; anchored.length = 0; camHold = null;
   chainOf(frame).reverse().forEach(f => { f.ensure(); if (f.place) f.place(); }); // the whole path must exist and be in position
   fly = { frame, p: pointLocal.clone(), Dg: Dgoal, then, t: 0 };
+  camHold = frame; // a flight lands in the frame it names, not in a child that happens to sit under the landing point; scrolling in again lifts this
 }
 function safeThen(t) { if (t) try { t(); } catch (e) { console.error('flight callback failed', e); } } // a throwing callback must not abort the frame
 function stepFly(dt) {
@@ -475,6 +483,9 @@ function objRadiusLocal(obj) {
 }
 function zoomIntoHit(h) {
   const f = h.frame; let p, r;
+  if (h.obj.userData.id === 'air' && f === FR.park && typeof placeGo === 'function') { placeGo('place:air'); return; } // the sky is not a place to fly to: go into the air itself
+  const og = f.children && h.obj.userData.node && f.children.find(c => c.enterOnly && c.opts && c.opts.organ === h.obj.userData.node); // an organ you can see has a cut-open view: double-click goes inside, on purpose
+  if (og) { flyTo(og, new V3(), og.opts.R * 2.2); return; }
   if (h.obj.userData.center) { p = h.obj.userData.center(h); r = (typeof h.obj.userData.radius === 'function' ? h.obj.userData.radius(h) : h.obj.userData.radius) || 1; }
   else {
     const rr = objRadiusLocal(h.obj);
