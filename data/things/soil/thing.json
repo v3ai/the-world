@@ -47,6 +47,10 @@
    "label": "Animals"
   },
   {
+   "id": "worm_out",
+   "label": "Earthworm and its burrow"
+  },
+  {
    "id": "worm_in",
    "label": "Inside the earthworm"
   }
@@ -63,6 +67,7 @@
     "roots": 0,
     "fungi": 0,
     "animals": 1,
+    "worm_out": 0,
     "worm_in": 0
    }
   },
@@ -91,6 +96,7 @@
     "roots": 1,
     "fungi": 1,
     "animals": 1,
+    "worm_out": 1,
     "worm_in": 1
    }
   },
@@ -119,6 +125,7 @@
     "roots": 1,
     "fungi": 0.4,
     "animals": 1,
+    "worm_out": 1,
     "worm_in": 0
    }
   },
@@ -147,6 +154,7 @@
     "roots": 1,
     "fungi": 1,
     "animals": 1,
+    "worm_out": 1,
     "worm_in": 1
    },
    "legend": {
@@ -198,6 +206,7 @@
     "roots": 1,
     "fungi": 1,
     "animals": 1,
+    "worm_out": 1,
     "worm_in": 0
    }
   },
@@ -226,6 +235,7 @@
     "roots": 0.4,
     "fungi": 0.3,
     "animals": 1,
+    "worm_out": 1,
     "worm_in": 1
    },
    "legend": {
@@ -564,7 +574,7 @@
     -0.012
    ],
    "label": "Soil crumbs and the pores between them",
-   "r": 0.011,
+   "r": 0.007,
    "modes": [
     "topsoil",
     "profile"
@@ -588,8 +598,7 @@
    "r": 0.006,
    "modes": [
     "topsoil",
-    "profile",
-    "worm"
+    "profile"
    ]
   },
   {
@@ -629,7 +638,7 @@
     -0.1
    ],
    "label": "Fungal threads in the litter",
-   "r": 0.011,
+   "r": 0.008,
    "modes": [
     "topsoil",
     "profile"
@@ -644,7 +653,7 @@
     -0.001
    ],
    "label": "An oak root cut across",
-   "r": 0.011,
+   "r": 0.008,
    "modes": [
     "subsoil",
     "profile"
@@ -665,7 +674,7 @@
     -0.01
    ],
    "label": "Clay: the finest particles",
-   "r": 0.014,
+   "r": 0.01,
    "modes": [
     "subsoil",
     "profile"
@@ -686,7 +695,7 @@
     -0.01
    ],
    "label": "The pebble bed below",
-   "r": 0.018,
+   "r": 0.012,
    "modes": [
     "subsoil",
     "profile"
@@ -1172,7 +1181,7 @@
   {
    "id": "burrow",
    "name": "Earthworm burrow",
-   "system": "animals",
+   "system": "worm_out",
    "node": "soil_worm_burrow",
    "color": "#2c211a",
    "mesh": "burrow",
@@ -1192,7 +1201,7 @@
   {
    "id": "worm_head",
    "name": "Earthworm: head lobe and mouth",
-   "system": "animals",
+   "system": "worm_out",
    "node": "soil_worm_head",
    "color": "#b87563",
    "mesh": "worm_head",
@@ -1209,7 +1218,7 @@
   {
    "id": "worm_skin",
    "name": "Earthworm: body with its segments",
-   "system": "animals",
+   "system": "worm_out",
    "node": "soil_worm_segments",
    "color": "#c98672",
    "mesh": "worm_skin",
@@ -1227,7 +1236,7 @@
   {
    "id": "worm_clitellum",
    "name": "Earthworm: clitellum (the saddle)",
-   "system": "animals",
+   "system": "worm_out",
    "node": "soil_worm_clitellum",
    "color": "#dca27a",
    "mesh": "worm_clitellum",
@@ -1245,7 +1254,7 @@
   {
    "id": "worm_setae",
    "name": "Earthworm: bristles (setae)",
-   "system": "animals",
+   "system": "worm_out",
    "node": "soil_worm_setae",
    "color": "#e8d9a8",
    "instances": "worm_setae",
@@ -1257,7 +1266,7 @@
    ],
    "radius": 0.0825,
    "count": 1168,
-   "tris": 14016
+   "tris": 7008
   },
   {
    "id": "worm_circ",
@@ -1745,7 +1754,7 @@
    ],
    "radius": 0.296,
    "count": 16,
-   "tris": 23040
+   "tris": 10240
   },
   {
    "id": "springtail_legs",
@@ -1819,7 +1828,7 @@
  "stats": {
   "parts": 55,
   "uniqueMeshTris": 104754,
-  "nearTris": 121976,
+  "nearTris": 69596,
   "midTris": 6196,
   "farTris": 1400
  }

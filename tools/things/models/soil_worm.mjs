@@ -17,7 +17,7 @@ const sm = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a)));
 export default function worm(R) {
   const meshes = {}, instances = {}, { len: Ln, segs: N } = WORM, seg = Ln / N, rBody = WORM.diam / 2;
   const R0 = s => { const front = .3 + .7 * sm(0, 16, s), rear = 1 - .78 * Math.pow(sm(Ln - 38, Ln, s), 1.1); return rBody * Math.min(front, rear) * (1 + .03 * Math.sin(s / Ln * 6.28)); };
-  const groove = s => { const u = (s / seg) % 1; return 1 - .06 * Math.pow(.5 + .5 * Math.cos(u * 6.2832), 7); };
+  const groove = s => { const u = (s / seg) % 1; return 1 - .04 * Math.pow(.5 + .5 * Math.cos(u * 6.2832), 5); };
   const clitBump = s => 1 + .07 * sm(WORM.clit[0], WORM.clit[0] + 2, s) * (1 - sm(WORM.clit[1] - 2, WORM.clit[1], s));
   const lat = (rf, s0, s1, ns, sides = 16) => { const prof = []; for (let i = 0; i <= ns; i++) { const s = s1 - (s1 - s0) * i / ns; prof.push([Math.max(rf(s), 1e-4), -s]); } let m = L.lathe(prof, { segments: sides, caps: true }); m = L.weld(m, 1e-7); return L.signedVolume(m) < 0 ? L.flip(m) : m; };
   const put = m => place(L.scaleMesh(m, .001), [BURROW_X, WORM.y0, 0]);
@@ -29,7 +29,7 @@ export default function worm(R) {
     meshes.worm_head = L.bakeShade(put(L.translateMesh(head, [0, -.6, 0])), dorsalShade); }
   { const [c0, c1] = WORM.clit; meshes.worm_clitellum = L.bakeShade(put(lat(s => R0(s) * clitBump(s) * 1.035 * (.88 + .12 * sm(c0, c0 + 1.5, s) * (1 - sm(c1 - 1.5, c1, s))), c0, c1, 24, 20)), (p, n) => .78 + .22 * (.5 + .5 * n[0])); }
   { // seta: a short curved bristle, 3 sides, 0.5 mm long
-    meshes.seta = L.tube([[0, 0, 0], [0, -.0001, .00028], [0, -.0004, .0005]], t => .00007 * (1 - .8 * t), { sides: 3, caps: false });
+    meshes.seta = L.tube([[0, 0, 0], [0, -.0003, .0005]], .00006, { sides: 3, caps: false });
     const si = new L.Instances('seta'), ang = [10, 26, 58, 76].flatMap(a => [a, -a]).map(a => a * Math.PI / 180);
     for (let n = 1; n < N; n++) { const s = (n + .55) * seg; if (s > Ln - 3) break; const r = R0(s) * clitBump(s) * .985 / 1000;
       for (const a of ang) { // a = 0 points to the underside (-x); the bristle leans backwards (toward the tail, -y)

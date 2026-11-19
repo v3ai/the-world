@@ -9,7 +9,7 @@ export const FAUNA = {
   beetle: { len: 16 },                // Pterostichus madidus, a common ground beetle, 14-20 mm (Wikipedia)
 };
 const S = [1, -1];
-const E = (c, r) => L.translateMesh(L.scaleMesh(uvSphere(1, 12, 7), r), c);
+const E = (c, r, nu = 12, nv = 7) => L.translateMesh(L.scaleMesh(uvSphere(1, nu, nv), r), c);
 
 export default function fauna(R) {
   const m = {};
@@ -29,13 +29,13 @@ export default function fauna(R) {
     m.woodlouse_ant = L.merge(...ant); }
 
   // ===================== springtail: a soil springtail 1.8 mm long =====================
-  { const body = L.merge(E([.62, .0, 0], [.2, .17, .16]), ...Array.from({ length: 9 }, (_, i) => E([.38 - i * .17, .0, 0], [.17 + .0 * i, .15 - .006 * i, .14 - .006 * i])));
+  { const body = L.merge(E([.62, .0, 0], [.2, .17, .16], 8, 5), ...Array.from({ length: 9 }, (_, i) => E([.38 - i * .17, .0, 0], [.17, .15 - .006 * i, .14 - .006 * i], 8, 5)));
     m.springtail_body = L.bakeShade(L.translateMesh(L.scaleMesh(body, 1), [0, .12, 0]), (p, n) => .75 + .25 * n[1]);
     const ant = [], legs = []; for (const s of S) { ant.push(tubeM([[.8, .2, s * .06], [1.0, .3, s * .12], [1.17, .36, s * .17], [1.3, .36, s * .22]], .018, 4, 0, true));
       for (const x of [.3, .05, -.2]) legs.push(tubeM([[x, .05, s * .1], [x + .02, -.04, s * .2], [x - .1, -.14, s * .24]], .02, 4, 0, true)); }
     m.springtail_legs = L.merge(...ant, ...legs);
     // the spring (furca): folded forward under the tail end and held by a catch; it snaps back to launch the animal
-    m.springtail_furca = L.merge(...S.map(s => tubeM([[-.85, .06, s * .035], [-.55, -.02, s * .04], [-.28, -.06, s * .045]], .022, 4, 0, true))); }
+    m.springtail_furca = L.merge(...S.map(s => tubeM([[-.85, .06, s * .035], [-.55, -.02, s * .04], [-.28, -.06, s * .045]], .045, 4, 0, true))); }
 
   // ===================== oribatid mite: a hard, domed body 0.7 mm long with eight legs =====================
   { const body = [E([0, .15, 0], [.34, .26, .27]), E([.34, .08, 0], [.12, .1, .1])];
