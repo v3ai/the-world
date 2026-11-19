@@ -796,7 +796,14 @@ function thFlyToNode(id, t) {
     const T = F.T; if (!T) return;
     if (t.inst && !t.rep) { const r = thRepInstance(t.def, t.pl, t.part); if (r && fly && fly.frame === F) { const x = thPlacement(t.def, t.pl), u = thUnit(t.def, x.k); fly.p.copy(thLocalToFrame(t.def, t.pl, r.p)); fly.Dg = Math.min(Math.max(r.size * x.k * 6, .25 * u), (t.def.radius_m || 1) * x.k * .5); } }
     if (t.part) { const mid = thModeFor(T, t.part); if (mid) { T.setMode(mid); thUpdateControls(F); } F.sel = t.part.id; if (T.parts[t.part.id] && T.parts[t.part.id].rank !== undefined) F.reveal = { id: t.part.id }; }
-    else if (t.hs) { const mid = (t.hs.modes || [])[0]; if (mid && T.modeDef(mid) && T.modeId !== mid) { T.setMode(mid); thUpdateControls(F); } }
+    else if (t.hs) {
+      const mid = (t.hs.modes || [])[0]; if (mid && T.modeDef(mid) && T.modeId !== mid) { T.setMode(mid); thUpdateControls(F); }
+      if (!mid) {   // a marker that is never drawn (a card about a tissue scene inside the thing): peel what is in front of the nearest part that lies below the surface layer
+        const a = new V3(...t.hs.at); let best = null, bd = 1e9;
+        for (const rec of T.list) { if (rec.rank === undefined || !(rec.rank > 0) || rec.pd.parent || rec.instanced || !rec.pd.center) continue; const d = a.distanceTo(new V3(...rec.pd.center)) - (rec.pd.radius || 0); if (d < bd) { bd = d; best = rec; } }
+        if (best) F.reveal = { id: best.pd.id };
+      }
+    }
   });
 }
 GOTO_HOOKS.push(id => { const t = thFindNode(id); if (!t) return false; thFlyToNode(id, t); return true; });
