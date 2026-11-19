@@ -967,7 +967,7 @@ function pickFrame(f, forZoom) { // best candidate inside one frame: highest pri
   const cands = [];
   for (const h of hits) {
     let o = h.object; while (o && !o.userData.id && !o.userData.resolve) o = o.parent;
-    if (!o) continue;
+    if (!o || o.userData.noPick) continue;   // noPick: a thing has made it see-through (the ground over the pond's water and the oak's roots)
     if (forZoom && o.userData.noZoom && hits.length > 1) continue;
     cands.push({ frame: f, obj: o, hit: h, pri: o.userData.priority ?? 1 });
   }

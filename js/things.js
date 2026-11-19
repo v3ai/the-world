@@ -408,7 +408,7 @@ class ThingObj {
       for (const fm of this.faceMats) { const u = fm.uniforms; u.uPlane.value.set(nC.x, nC.y, nC.z, this.plane.constant); u.uCam.value.copy(this.camW || new V3()); u.uOff.value.copy(off); u.uInv.value.copy(inv); }
     }
     const planes = cut ? this.planes : [];
-    this.clock += dt; TH_SWAY.uTime.value = (performance.now() / 1000) % 3600; this.seeThrough = !!(md && md.groundSeeThrough);
+    this.clock += dt; TH_SWAY.uTime.value = (performance.now() / 1000) % 3600; this.seeThrough = !!(md && md.groundSeeThrough) || !!this.autoGround;
     // pivot groups: the mode's pivot turns (once per choice) so that its opening faces the camera; the others stay where they are
     if (md && md.pivot) {
       const pv = this.pivots[md.pivot] || (this._pivot(md.pivot), this.pivots[md.pivot]);
@@ -504,7 +504,7 @@ function thBindFrame(F, T, def) {
       priority: pd.priority ?? (pd.parent ? 2 : 1.5), shown: 0,
       madeOf: pd.deeper ? 'thing' : undefined,
       center: h => (h && h.pointLocal) ? h.pointLocal.clone() : partCenter(),
-      radius: h => Math.max(.015 * u, Math.min((pd.radius || .1) * k * .3, thingR * .2))
+      radius: h => Math.max(pd.fly_m !== undefined ? pd.fly_m * k * .5 : Math.min(.015 * u, (pd.radius || .1) * k * 1.2), Math.min((pd.radius || .1) * k * .3, thingR * .2))   /* the smallest distance a double-click goes to: part.fly_m, else the default for a hand-sized thing but no larger than 1.2 radii of a tiny part */
     });
     if (rec.instanced) g.userData.resolve = hit => pd.id;
     g.userData.main.userData.pickRoot = g;
@@ -544,6 +544,7 @@ let _thGround = null, _thFaded = false;
 function thGroundFade(on) {
   if (on === _thFaded) return; const P = FR.park && FR.park.v2 && FR.park.v2.parts; if (!P || !P.ground) return;
   _thFaded = on; const m = P.ground.material; m.transparent = on; m.opacity = on ? .16 : 1; m.depthWrite = !on; m.needsUpdate = true; if (P.grass) P.grass.visible = !on;
+  P.ground.userData.noPick = on; if (P.grass) P.grass.userData.noPick = on;   // see-through ground cannot be clicked: what is below it can (it used to open "Ground and soil")
 }
 let _thPark = null;
 function thFrameUpdate(F, dt, t) {
@@ -613,17 +614,17 @@ function thPeel(T, rows, tgt, near = 0) {   // near: how close the camera is (0 
     if (tgt) op = k < tgt.rank ? l.ghost : k === tgt.rank ? 1 : .5;
     (l.systems || []).forEach(s => ops[s] = op);
   }
-  const fl = L[focus] || {}; return { ops, focus: fl.label || fl.id || (fl.systems || [])[0] || '' };
+  const fl = L[focus] || {}; return { ops, rank: focus, focus: fl.label || fl.id || (fl.systems || [])[0] || '' };
 }
 function thAutoUpdate(F, dt) {
   const T = F.T, a = T.def.auto, useAuto = !!(a && a.layers && T.modeId === 'auto'), rv = F.reveal && T.parts[F.reveal.id] && T.parts[F.reveal.id].rank !== undefined ? F.reveal : null;
-  if (!useAuto && !rv) { T.revealOp = T.revealId = T.revealFront = null; return; }
+  if (!useAuto && !rv) { T.revealOp = T.revealId = T.revealFront = null; T.autoGround = false; return; }
   if (!T.peelScale) T.peelScale = a && a.scale || Math.max(.15, (T.def.height_m || 1) * T.k / 1.75);
   const S = F._pk = F._pk || { t: -1, key: '' }, now = performance.now();
   camPosIn(F, _tpo); const dist = _tpo.distanceTo(_tpc.set(0, (T.def.radius_m || 1) * T.k * .5, 0)), active = (a && a.active_m) || (T.def.radius_m || 1) * T.k * 2.5;
   if (useAuto && !rv && dist > active) {   // far: the outermost layer, solid
     const ops = {}; T.layers.forEach((l, i) => (l.systems || []).forEach(s => ops[s] = i === 0 ? 1 : 0)); Object.assign(ops, a.always || {});
-    T.peelMode.show = ops; T.layerName = (T.layers[0].label || T.layers[0].id || ''); T.revealOp = T.revealId = T.revealFront = null; S.key = ''; return;
+    T.peelMode.show = ops; T.layerName = (T.layers[0].label || T.layers[0].id || ''); T.revealOp = T.revealId = T.revealFront = null; T.autoGround = false; S.key = ''; return;
   }
   const key = [_tpo.x, _tpo.y, _tpo.z, cam.T.x, cam.T.y, cam.T.z, F.hidden.size, rv ? rv.id : '', T.tier].map(v => typeof v === 'number' ? v.toFixed(4) : v).join();
   if (key === S.key || now - S.t < 110) return; S.key = key; S.t = now;
@@ -632,6 +633,8 @@ function thAutoUpdate(F, dt) {
   if (rv) { let k = rows.findIndex(r => r.id === rv.id); if (k < 0) { const dc = _tpo.distanceTo(tl); k = rows.filter(r => r.e < dc * .97).length; } tgt = { n: k, rank: T.parts[rv.id].rank }; T.revealFront = new Set(rows.slice(0, k).filter(r => r.rank >= tgt.rank).map(r => r.id)); }
   const P = thPeel(T, rows, tgt, 1 - smooth(active * .35, active * .6, dist));
   if (useAuto) { const ops = Object.assign({}, P.ops, a.always || {}); T.peelMode.show = ops; T.layerName = P.focus; }
+  // `auto.ground_see_through`: the layer rank (true = 1) from which the park's ground is drawn see-through, so that what lies below it can be seen and clicked
+  T.autoGround = a && a.ground_see_through !== undefined && a.ground_see_through !== false ? P.rank >= (a.ground_see_through === true ? 1 : a.ground_see_through) : false;
   if (rv) { T.revealOp = P.ops; T.revealId = rv.id; } else { T.revealOp = T.revealId = T.revealFront = null; }
 }
 /* The zoom floor of a thing: where a part has a closer view (its `deeper`) the tissue scene has already taken over; where it has none, the view stops here. Say so, and
@@ -690,10 +693,11 @@ function thDeepFrame(d, T0, dflt) {
   if (d.type === 'tissue') return tissueFrame(d.id, T0, d.organ);
   if (d.type === 'tissue2') return tissue2Frame(d.id, T0);
   if (d.type === 'cell') return thCellFrame(d.cell || dflt || 'plant', T0);
+  if (d.type === 'liquid') return new Frame({ type: 'liquid', name: d.name || 'Liquid water', unit: 1e-10, radius: 18, r1: 2e-8, spawnD: 1e-9, pos: T0.clone() });   // the 3 nm ball of liquid water (a tissue scene's water, a film of pond water)
   if (d.type === 'mol') return new Frame({ type: 'mol', name: d.name || d.mol, unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: T0.clone(), opts: { mol: d.mol, fixed: false } });
   return null;
 }
-const TH_DEEP_D = { crystal: 4e-9, mol: 2.5e-9, cell: 4e-5, tissue2: 4e-4, micro: 1.2e-3, tissue: 4e-4 };
+const TH_DEEP_D = { liquid: 5e-9, crystal: 4e-9, mol: 2.5e-9, cell: 4e-5, tissue2: 4e-4, micro: 1.2e-3, tissue: 4e-4 };
 function thGoDeeper(F, h, d, dflt) {
   closeInfo(); const p = h && h.pointLocal ? h.pointLocal.clone() : new V3(); const f = thDeepFrame(d, p, dflt); if (!f) return;
   f.dynamic = true; f.keep = performance.now() + 60000; F.addChild(f); f.ensure(); flyTo(f, new V3(), d.D || TH_DEEP_D[d.type] || 4e-9);
@@ -739,14 +743,24 @@ function thRepInstance(def, pl, pd) {
   const q = (def.height_m || def.radius_m || 1), geo = thGeo(def.id, b, inst.mesh), br = geo && geo.boundingSphere ? geo.boundingSphere.radius : .02, sc = st === 8 ? t[best * st + 7] : Math.max(t[best * st + 7], t[best * st + 8], t[best * st + 9]);
   return _thRepCache[ck] = { p: [t[best * st], t[best * st + 1], t[best * st + 2]], size: Math.max(br * sc, 1e-4), i: best };
 }
+/* The nearest a flight to a part goes: `part.fly_m` (metres) if it says, else 0.4 m for a hand-sized thing (scaled down with the thing, `u`), but never more than 4 radii of a small part itself:
+   a 2.5 mm water flea or a 9 mm pond skater is brought properly into view, not left a speck at 0.4 m. */
+function thMinFly(part, k, u) { if (!part) return .4 * u; if (part.fly_m !== undefined) return part.fly_m * k; return part.radius ? Math.min(.4 * u, Math.max(part.radius * k * 4, 1e-3)) : .4 * u; }
+/* a flow part (sap in the xylem) has no mesh and its stored centre is a stand-in: its true centre is the middle of the box that holds its paths */
+function thFlowCentre(def, part) {
+  const b = TH.done && TH.done[def.id], fl = b && b.flows && b.flows[part.flow]; if (!fl) return null;
+  const lo = [1e9, 1e9, 1e9], hi = [-1e9, -1e9, -1e9]; for (const P of fl.paths) for (let i = 0; i < P.p.length; i += 3) for (let a = 0; a < 3; a++) { lo[a] = Math.min(lo[a], P.p[i + a]); hi[a] = Math.max(hi[a], P.p[i + a]); }
+  return { c: [0, 1, 2].map(a => (lo[a] + hi[a]) / 2), r: Math.hypot(hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2]) / 2 };
+}
 function thFindNode(id) {
   for (const f of FR.things || []) {
     const def = TH.loaded[f.opts.thing]; if (!def) continue; const pl = f.opts.placement || {}, x = thPlacement(def, pl);
     const hit = def.parts.find(p => p.node === id && p.lod !== 'far') || def.parts.find(p => p.node === id), hs = (def.hotspots || []).find(h => h.node === id);
-    const at = hit ? hit.center : hs ? hs.at : id === def.node ? (def.parts.find(p => p.id === def.main_part) || {}).center : null;
+    const fc = hit && hit.flow ? thFlowCentre(def, hit) : null;
+    const at = fc ? fc.c : hit ? hit.center : hs ? hs.at : id === def.node ? (def.parts.find(p => p.id === def.main_part) || {}).center : null;
     if (!at) continue;
     const u = thUnit(def, x.k), rep = hit && hit.instances ? thRepInstance(def, pl, hit) : null, p = thLocalToFrame(def, pl, rep ? rep.p : at);
-    const D = rep ? Math.min(Math.max(rep.size * x.k * 6, .25 * u), (def.radius_m || 1) * x.k * .5) : Math.max(((hit && hit.radius) || (def.radius_m || 1) * .5) * x.k * 3.2, .4 * u);
+    const D = rep ? Math.min(Math.max(rep.size * x.k * 6, .25 * u), (def.radius_m || 1) * x.k * .5) : Math.max((fc ? fc.r : (hit && hit.radius) || (def.radius_m || 1) * .5) * x.k * 3.2, thMinFly(hit, x.k, u));
     return { f, p, D, part: hit || null, hs: hs && !hit ? hs : null, def, pl, inst: !!(hit && hit.instances), rep };
   }
   return null;
