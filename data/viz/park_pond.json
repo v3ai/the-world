@@ -1,0 +1,868 @@
+{
+ "park_pond": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "bacterium (≈ 2 µm)",
+    "value": 2
+   },
+   {
+    "label": "Chlamydomonas alga (10 µm)",
+    "value": 10
+   },
+   {
+    "label": "diatom (70 µm as drawn)",
+    "value": 70
+   },
+   {
+    "label": "Volvox colony (250 µm as drawn)",
+    "value": 250
+   },
+   {
+    "label": "duckweed frond (3 mm)",
+    "value": 3000
+   },
+   {
+    "label": "water flea (2.5 mm)",
+    "value": 2500
+   },
+   {
+    "label": "pond skater body (9 mm)",
+    "value": 9000
+   },
+   {
+    "label": "tadpole, body and tail (34 mm)",
+    "value": 34000
+   },
+   {
+    "label": "great pond snail shell (50 mm)",
+    "value": 50000
+   },
+   {
+    "label": "pond width (6 m)",
+    "value": 6000000
+   }
+  ],
+  "ylabel": "size in micrometres (log scale)",
+  "logy": true,
+  "caption": "Sizes in the pond, from a bacterium to the pond itself, as drawn: each organism is within the size range quoted on its own card."
+ },
+ "pond_surface_film": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "w",
+    "label": "weight of skater (down)",
+    "x": 20,
+    "y": 18
+   },
+   {
+    "id": "l",
+    "label": "hairy leg tip on the surface",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "d",
+    "label": "dimple: surface stretched, area larger",
+    "x": 50,
+    "y": 78
+   },
+   {
+    "id": "s",
+    "label": "surface tension pulls the film flat again: pushes the leg up",
+    "x": 82,
+    "y": 18
+   },
+   {
+    "id": "h",
+    "label": "hydrogen bonds hold the film together",
+    "x": 82,
+    "y": 78
+   }
+  ],
+  "edges": [
+   {
+    "from": "w",
+    "to": "l",
+    "label": "pushes down"
+   },
+   {
+    "from": "l",
+    "to": "d",
+    "label": "makes"
+   },
+   {
+    "from": "d",
+    "to": "s",
+    "label": "produces"
+   },
+   {
+    "from": "h",
+    "to": "s",
+    "label": "cause"
+   },
+   {
+    "from": "s",
+    "to": "l",
+    "label": "holds up"
+   }
+  ],
+  "caption": "The balance under a skater's foot, in words: weight pushes the foot down and makes a dimple; the stretched surface pulls back and holds the foot up. A diagram of the idea, not a measurement."
+ },
+ "pond_water": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "0 °C",
+    "value": 14.6
+   },
+   {
+    "label": "10 °C",
+    "value": 11.3
+   },
+   {
+    "label": "20 °C",
+    "value": 9.1
+   },
+   {
+    "label": "30 °C",
+    "value": 7.6
+   },
+   {
+    "label": "typical summer surface water (USGS, a floor)",
+    "value": 8
+   },
+   {
+    "label": "hypoxic below (USGS)",
+    "value": 2
+   }
+  ],
+  "ylabel": "dissolved oxygen, mg per litre",
+  "logy": false,
+  "caption": "Fresh water can hold less dissolved oxygen as it warms (Engineering ToolBox), and the USGS puts typical summer surface water above 8 mg/L and hypoxia below 2."
+ },
+ "pond_oxygen": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "air at 20 °C (calculated)",
+    "value": 278
+   },
+   {
+    "label": "fresh water at 20 °C, saturated",
+    "value": 9.1
+   }
+  ],
+  "ylabel": "oxygen, mg per litre",
+  "logy": false,
+  "caption": "A litre of air holds about 30 times more oxygen than a litre of water at 20 °C. Water value: Engineering ToolBox; air value: 20.9 % oxygen by volume, converted with the molar volume of a gas at 20 °C (calculated)."
+ },
+ "pond_oxygen_day_night": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "s",
+    "label": "sunlight",
+    "x": 15,
+    "y": 20
+   },
+   {
+    "id": "p",
+    "label": "photosynthesis adds oxygen",
+    "x": 45,
+    "y": 20
+   },
+   {
+    "id": "r",
+    "label": "breathing uses oxygen (all day and night)",
+    "x": 45,
+    "y": 80
+   },
+   {
+    "id": "d",
+    "label": "day: oxygen rises",
+    "x": 82,
+    "y": 20
+   },
+   {
+    "id": "n",
+    "label": "night: oxygen falls",
+    "x": 82,
+    "y": 80
+   }
+  ],
+  "edges": [
+   {
+    "from": "s",
+    "to": "p",
+    "label": "drives"
+   },
+   {
+    "from": "p",
+    "to": "d",
+    "label": "wins in the light"
+   },
+   {
+    "from": "r",
+    "to": "n",
+    "label": "wins in the dark"
+   }
+  ],
+  "caption": "Why the oxygen in a pond swings between day and night: breathing never stops, photosynthesis only works in the light. A diagram of the balance, with no measured numbers."
+ },
+ "pond_green_water": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "n",
+    "label": "extra phosphorus and nitrogen (fertiliser, droppings, sewage)",
+    "x": 18,
+    "y": 20
+   },
+   {
+    "id": "a",
+    "label": "algae multiply: green water",
+    "x": 50,
+    "y": 20
+   },
+   {
+    "id": "d",
+    "label": "bloom dies and sinks",
+    "x": 82,
+    "y": 20
+   },
+   {
+    "id": "b",
+    "label": "bacteria decompose it",
+    "x": 82,
+    "y": 55
+   },
+   {
+    "id": "o",
+    "label": "oxygen used up: hypoxic water",
+    "x": 50,
+    "y": 80
+   },
+   {
+    "id": "f",
+    "label": "animals may suffocate",
+    "x": 18,
+    "y": 80
+   }
+  ],
+  "edges": [
+   {
+    "from": "n",
+    "to": "a",
+    "label": "feed"
+   },
+   {
+    "from": "a",
+    "to": "d"
+   },
+   {
+    "from": "d",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "o",
+    "label": "use oxygen"
+   },
+   {
+    "from": "o",
+    "to": "f"
+   }
+  ],
+  "caption": "How a pond goes from clear to green to short of oxygen. A chain of causes, from the eutrophication literature; no numbers."
+ },
+ "pond_gas_bubbles": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "l",
+    "label": "dead leaves and plant matter",
+    "x": 14,
+    "y": 20
+   },
+   {
+    "id": "f",
+    "label": "fermenting bacteria (no oxygen)",
+    "x": 38,
+    "y": 55
+   },
+   {
+    "id": "a",
+    "label": "acetate, hydrogen, carbon dioxide",
+    "x": 62,
+    "y": 20
+   },
+   {
+    "id": "m",
+    "label": "methanogens (archaea)",
+    "x": 84,
+    "y": 55
+   },
+   {
+    "id": "g",
+    "label": "methane bubbles rise",
+    "x": 62,
+    "y": 85
+   }
+  ],
+  "edges": [
+   {
+    "from": "l",
+    "to": "f",
+    "label": "eaten"
+   },
+   {
+    "from": "f",
+    "to": "a",
+    "label": "make"
+   },
+   {
+    "from": "a",
+    "to": "m",
+    "label": "feed"
+   },
+   {
+    "from": "m",
+    "to": "g",
+    "label": "make methane"
+   }
+  ],
+  "caption": "The chain from a dead leaf to a bubble of methane, as described for anoxic mud (Methanogenesis article)."
+ },
+ "pond_mud_grains": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "clay (upper limit)",
+    "value": 2
+   },
+   {
+    "label": "silt (upper limit)",
+    "value": 63
+   },
+   {
+    "label": "sand (upper limit)",
+    "value": 2000
+   }
+  ],
+  "ylabel": "grain size, micrometres",
+  "logy": true,
+  "caption": "The upper size limit of each class of mineral grain (ISO 14688-1:2017)."
+ },
+ "pond_duckweed": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "duckweed frond: length (model)",
+    "value": 3
+   },
+   {
+    "label": "frond length: smallest recorded",
+    "value": 1
+   },
+   {
+    "label": "frond length: largest recorded",
+    "value": 8
+   },
+   {
+    "label": "root (model)",
+    "value": 12
+   },
+   {
+    "label": "root: longest recorded",
+    "value": 20
+   }
+  ],
+  "ylabel": "millimetres",
+  "logy": false,
+  "caption": "A duckweed frond and its root against the recorded ranges (Wikipedia, Lemna minor): fronds 1 to 8 mm, roots 1 to 2 cm."
+ },
+ "pond_hornwort": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "leaf length: shortest",
+    "value": 8
+   },
+   {
+    "label": "leaf length: longest",
+    "value": 40
+   },
+   {
+    "label": "model leaf (smaller whorl)",
+    "value": 17
+   },
+   {
+    "label": "model leaf (larger whorl)",
+    "value": 22
+   }
+  ],
+  "ylabel": "millimetres",
+  "logy": false,
+  "caption": "Hornwort leaf length against the model: leaves are 8 to 40 mm long (Wikipedia, Ceratophyllum demersum)."
+ },
+ "pond_iris": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "leaf length (max)",
+    "value": 900
+   },
+   {
+    "label": "leaf length (model)",
+    "value": 800
+   },
+   {
+    "label": "flower diameter, smallest (7 cm)",
+    "value": 70
+   },
+   {
+    "label": "flower diameter, largest (10 cm)",
+    "value": 100
+   },
+   {
+    "label": "flower diameter (model)",
+    "value": 85
+   }
+  ],
+  "ylabel": "millimetres",
+  "logy": false,
+  "caption": "Leaf length and flower width of yellow flag against the model (Wikipedia, Iris pseudacorus)."
+ },
+ "pond_skater": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "body length (model)",
+    "value": 9
+   },
+   {
+    "label": "body length: smallest quoted",
+    "value": 8
+   },
+   {
+    "label": "body length: largest quoted",
+    "value": 10
+   },
+   {
+    "label": "leg span across the water (model, about)",
+    "value": 21
+   }
+  ],
+  "ylabel": "millimetres",
+  "logy": false,
+  "caption": "The pond skater drawn at its quoted body length (8 to 10 mm); the leg span is the model's and is not a measurement."
+ },
+ "pond_daphnia": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "Daphnia genus: smallest",
+    "value": 0.2
+   },
+   {
+    "label": "typical: smallest",
+    "value": 1
+   },
+   {
+    "label": "model",
+    "value": 2.5
+   },
+   {
+    "label": "typical: largest",
+    "value": 5
+   },
+   {
+    "label": "genus: largest",
+    "value": 6
+   }
+  ],
+  "ylabel": "millimetres",
+  "logy": false,
+  "caption": "Size of Daphnia: the model against the recorded ranges (Wikipedia, Daphnia)."
+ },
+ "pond_daphnia_eggs": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "small species (e.g. D. cucullata), at most",
+    "value": 2
+   },
+   {
+    "label": "model",
+    "value": 4
+   },
+   {
+    "label": "larger species (e.g. D. magna), more than",
+    "value": 100
+   }
+  ],
+  "ylabel": "eggs in one clutch",
+  "logy": false,
+  "caption": "How many eggs a Daphnia may carry (Wikipedia, Daphnia): a few in small species, over a hundred in large ones; the model shows four."
+ },
+ "pond_snail": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "shell height: smallest adult",
+    "value": 45
+   },
+   {
+    "label": "shell height (model)",
+    "value": 50
+   },
+   {
+    "label": "shell height: largest typical",
+    "value": 60
+   },
+   {
+    "label": "shell width (model, about)",
+    "value": 27
+   }
+  ],
+  "ylabel": "millimetres",
+  "logy": false,
+  "caption": "Great pond snail shell size: adults are 45 to 60 mm tall and 20 to 30 mm wide (Wikipedia, Lymnaea stagnalis)."
+ },
+ "pond_dragonfly_larva": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "larva, smallest",
+    "value": 38
+   },
+   {
+    "label": "larva (model)",
+    "value": 42
+   },
+   {
+    "label": "larva, largest",
+    "value": 48
+   },
+   {
+    "label": "adult body length",
+    "value": 70
+   },
+   {
+    "label": "adult wingspan, up to",
+    "value": 110
+   }
+  ],
+  "ylabel": "millimetres",
+  "logy": false,
+  "caption": "A southern hawker larva against the adult: larva 38 to 48 mm; adult about 70 mm with a wingspan up to 110 mm (British Dragonfly Society; Wikipedia)."
+ },
+ "pond_tadpole": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "body, smallest in the study",
+    "value": 10
+   },
+   {
+    "label": "body (model)",
+    "value": 14
+   },
+   {
+    "label": "body, largest",
+    "value": 17.5
+   },
+   {
+    "label": "tail, smallest",
+    "value": 15
+   },
+   {
+    "label": "tail (model)",
+    "value": 20
+   },
+   {
+    "label": "tail, largest",
+    "value": 27.5
+   }
+  ],
+  "ylabel": "millimetres",
+  "logy": false,
+  "caption": "Tadpoles with hind legs from a Perthshire study (Bland): body 10 to 17.5 mm and tail 15 to 27.5 mm; the model sits inside both ranges."
+ },
+ "pond_food_web": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "sun",
+    "label": "sunlight",
+    "x": 6,
+    "y": 12
+   },
+   {
+    "id": "prod",
+    "label": "algae, duckweed, hornwort",
+    "x": 28,
+    "y": 12
+   },
+   {
+    "id": "det",
+    "label": "dead leaves and matter",
+    "x": 20,
+    "y": 52
+   },
+   {
+    "id": "bac",
+    "label": "bacteria (recyclers)",
+    "x": 20,
+    "y": 88
+   },
+   {
+    "id": "daph",
+    "label": "water flea",
+    "x": 50,
+    "y": 28
+   },
+   {
+    "id": "snail",
+    "label": "great pond snail",
+    "x": 50,
+    "y": 62
+   },
+   {
+    "id": "tad",
+    "label": "tadpole",
+    "x": 72,
+    "y": 12
+   },
+   {
+    "id": "larva",
+    "label": "dragonfly larva",
+    "x": 76,
+    "y": 40
+   },
+   {
+    "id": "frog",
+    "label": "frog (adult)",
+    "x": 94,
+    "y": 62
+   },
+   {
+    "id": "skater",
+    "label": "pond skater",
+    "x": 72,
+    "y": 86
+   },
+   {
+    "id": "out",
+    "label": "insects that land on the water (not modelled)",
+    "x": 94,
+    "y": 92
+   }
+  ],
+  "edges": [
+   {
+    "from": "sun",
+    "to": "prod",
+    "label": "light"
+   },
+   {
+    "from": "prod",
+    "to": "daph"
+   },
+   {
+    "from": "prod",
+    "to": "tad"
+   },
+   {
+    "from": "prod",
+    "to": "snail"
+   },
+   {
+    "from": "det",
+    "to": "bac",
+    "label": "broken down by"
+   },
+   {
+    "from": "bac",
+    "to": "daph"
+   },
+   {
+    "from": "det",
+    "to": "daph"
+   },
+   {
+    "from": "daph",
+    "to": "larva"
+   },
+   {
+    "from": "tad",
+    "to": "larva"
+   },
+   {
+    "from": "snail",
+    "to": "frog"
+   },
+   {
+    "from": "out",
+    "to": "skater"
+   }
+  ],
+  "caption": "Who eats whom among the organisms in this pond. An arrow points from the food to the animal that eats it. Each link is from the source on that organism's card; it is a small sample, not the whole food web."
+ },
+ "pond_life_cycles": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "f1",
+    "label": "frog spawn in the pond (January to June)",
+    "x": 12,
+    "y": 14
+   },
+   {
+    "id": "f2",
+    "label": "tadpoles: gills, tail, eat algae",
+    "x": 38,
+    "y": 14
+   },
+   {
+    "id": "f3",
+    "label": "hind legs, then front legs (about 16 weeks)",
+    "x": 64,
+    "y": 14
+   },
+   {
+    "id": "f4",
+    "label": "froglet leaves the pond (early summer to September)",
+    "x": 90,
+    "y": 14
+   },
+   {
+    "id": "f5",
+    "label": "adult frog on land; returns to breed",
+    "x": 90,
+    "y": 40
+   },
+   {
+    "id": "d1",
+    "label": "eggs laid in plants at the water's edge",
+    "x": 12,
+    "y": 66
+   },
+   {
+    "id": "d2",
+    "label": "larva in the pond: 2 to 3 years, 6 to 15 moults",
+    "x": 38,
+    "y": 66
+   },
+   {
+    "id": "d3",
+    "label": "climbs a plant at night, adult emerges (July and August)",
+    "x": 64,
+    "y": 66
+   },
+   {
+    "id": "d4",
+    "label": "adult flies (June to October); returns to breed",
+    "x": 90,
+    "y": 66
+   }
+  ],
+  "edges": [
+   {
+    "from": "f1",
+    "to": "f2"
+   },
+   {
+    "from": "f2",
+    "to": "f3"
+   },
+   {
+    "from": "f3",
+    "to": "f4"
+   },
+   {
+    "from": "f4",
+    "to": "f5"
+   },
+   {
+    "from": "d1",
+    "to": "d2"
+   },
+   {
+    "from": "d2",
+    "to": "d3"
+   },
+   {
+    "from": "d3",
+    "to": "d4"
+   }
+  ],
+  "caption": "Two life cycles that link pond and land. Timings are from Froglife, Wikipedia and the British Dragonfly Society; they vary with weather and place."
+ },
+ "pond_drop": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "bacterium",
+    "value": 2
+   },
+   {
+    "label": "Chlamydomonas",
+    "value": 10
+   },
+   {
+    "label": "round diatom",
+    "value": 40
+   },
+   {
+    "label": "pennate diatom",
+    "value": 70
+   },
+   {
+    "label": "Paramecium",
+    "value": 200
+   },
+   {
+    "label": "Volvox colony",
+    "value": 250
+   },
+   {
+    "label": "rotifer",
+    "value": 250
+   },
+   {
+    "label": "100 µm scale bar",
+    "value": 100
+   }
+  ],
+  "ylabel": "size in micrometres",
+  "logy": false,
+  "caption": "The organisms in the drop at the sizes drawn (each within its published range) beside the 100 µm bar."
+ },
+ "pond_volvox": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "smallest spheroids",
+    "value": 100
+   },
+   {
+    "label": "typical (centre of one sample)",
+    "value": 225
+   },
+   {
+    "label": "drawn",
+    "value": 250
+   },
+   {
+    "label": "largest",
+    "value": 500
+   }
+  ],
+  "ylabel": "colony diameter, micrometres",
+  "logy": false,
+  "caption": "Size of Volvox carteri colonies (PMC10923841): 100 to 500 µm, with most between 150 and 300 µm."
+ }
+}
