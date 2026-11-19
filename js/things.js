@@ -759,9 +759,9 @@ function thFindNode(id) {
     const fc = hit && hit.flow ? thFlowCentre(def, hit) : null;
     const at = fc ? fc.c : hit ? hit.center : hs ? hs.at : id === def.node ? (def.parts.find(p => p.id === def.main_part) || {}).center : null;
     if (!at) continue;
-    const u = thUnit(def, x.k), rep = hit && hit.instances ? thRepInstance(def, pl, hit) : null, p = thLocalToFrame(def, pl, rep ? rep.p : at);
+    const u = thUnit(def, x.k), rep = hit && hit.instances && hit.lod !== 'far' ? thRepInstance(def, pl, hit) : null, p = thLocalToFrame(def, pl, rep ? rep.p : at);
     const D = rep ? Math.min(Math.max(rep.size * x.k * 6, .25 * u), (def.radius_m || 1) * x.k * .5) : Math.max((fc ? fc.r : (hit && hit.radius) || (def.radius_m || 1) * .5) * x.k * 3.2, thMinFly(hit, x.k, u));
-    return { f, p, D, part: hit || null, hs: hs && !hit ? hs : null, def, pl, inst: !!(hit && hit.instances), rep };
+    return { f, p, D, part: hit || null, hs: hs && !hit ? hs : null, def, pl, inst: !!(hit && hit.instances && hit.lod !== 'far'), rep };
   }
   return null;
 }
