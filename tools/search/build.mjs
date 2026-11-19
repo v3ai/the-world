@@ -51,7 +51,7 @@ crystals.forEach(x => add({ id: 'crystal:' + x.id, c: 'crystal', g: 'model', t: 
 // topic cards
 const modelKind = k => !k ? '' : k === 'tear' ? 'phone' : /^via:/.test(k) ? modelKind(k.slice(4)) : k === 'place' ? 'place' : k === 'mol' ? 'molecule' : k === 'crystal' ? 'crystal' : k === 'thing' ? 'park' : k === 'atom' ? 'atom' : 'body';
 const PLACE_NAME = { park: 'Greenwich Park', human: 'the human body', skin: 'your skin', cell: 'a cell', dna: 'DNA', base_pair: 'a base pair', atom: 'an atom', earth: 'Earth', leaf: 'a leaf', pond: 'the pond', soil: 'the soil', air: 'the air' };
-const MOLT = Object.fromEntries(mols.map(m => [m.id, m.name.replace(/\s*\([^)]*\)/g, '')])), CRT = Object.fromEntries(crystals.map(c => [c.id, c.name.replace(/\s*\([^)]*\)/g, '')]));
+const MOLT = Object.fromEntries(mols.map(m => [m.id, ({ glucose_alpha: 'glucose (alpha form)', glucose_beta: 'glucose (beta form)', fructose: 'fructose', galactose: 'galactose' })[m.id] || m.name.replace(/\s*\([^)]*\)/g, '')])), CRT = Object.fromEntries(crystals.map(c => [c.id, c.name.replace(/\s*\([^)]*\)/g, '')]));
 const tearSet = new Set(snap.tear);
 nodes.forEach(n => {
   if (/^at_el_/.test(n.id)) return; // elements come from elements.json
