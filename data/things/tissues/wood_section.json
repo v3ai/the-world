@@ -1,0 +1,165 @@
+{
+ "id": "wood_section",
+ "title": "Inside oak wood",
+ "node": "oak_growth_rings",
+ "blurb": "A small block of oak wood seen end-on, across one year's growth. The big pores are vessels from the spring wood; the small dense cells are fibres. Click a cell type.",
+ "note": "The vessel width (about 0.5 mm) is from the species description of English oak; every other size, the number of cells and their positions are illustrative, and much simpler than real wood. Not a micrograph.",
+ "bg": "#f3efe6",
+ "center": [
+  1500,
+  600,
+  0
+ ],
+ "D_um": 4200,
+ "labels": [
+  {
+   "text": "Earlywood: wide vessels (spring)",
+   "at": [
+    -200,
+    250,
+    160
+   ],
+   "pop": "vessel"
+  },
+  {
+   "text": "Latewood: dense fibres (summer)",
+   "at": [
+    -200,
+    1000,
+    160
+   ],
+   "pop": "fibre"
+  },
+  {
+   "text": "Ray: living cells running outwards",
+   "at": [
+    2200,
+    1000,
+    160
+   ],
+   "pop": "ray"
+  }
+ ],
+ "populations": [
+  {
+   "id": "vessel",
+   "name": "Xylem vessel (earlywood)",
+   "node": "bio_water_transport",
+   "shape": "tube_z",
+   "size": [
+    450,
+    450,
+    300
+   ],
+   "color": "#4aa3df",
+   "opacity": 0.7,
+   "ink": 1,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     0,
+     250,
+     0
+    ],
+    "n": [
+     6,
+     1,
+     1
+    ],
+    "step": [
+     520,
+     1,
+     1
+    ],
+    "jitter": 0.25,
+    "seed": 5
+   }
+  },
+  {
+   "id": "fibre",
+   "name": "Wood fibre",
+   "node": "oak_lignin_cellulose",
+   "shape": "tube_z",
+   "size": [
+    44,
+    44,
+    300
+   ],
+   "color": "#b9824a",
+   "opacity": 0.95,
+   "ink": 1,
+   "deeper": {
+    "type": "mol",
+    "mol": "cellotriose",
+    "name": "Cellulose, the main fibre of the cell wall"
+   },
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     0,
+     600,
+     0
+    ],
+    "n": [
+     70,
+     16,
+     1
+    ],
+    "step": [
+     48,
+     48,
+     1
+    ],
+    "stagger": 0.5,
+    "jitter": 0.1,
+    "skip": [
+     {
+      "x": [
+       960,
+       1050
+      ]
+     },
+     {
+      "x": [
+       2260,
+       2350
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "ray",
+   "name": "Wood ray",
+   "node": "oak_pith_rays",
+   "shape": "rbox",
+   "size": [
+    70,
+    780,
+    300
+   ],
+   "color": "#f1e3bd",
+   "opacity": 0.95,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       1005,
+       990,
+       0
+      ]
+     },
+     {
+      "at": [
+       2305,
+       990,
+       0
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}

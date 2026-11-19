@@ -1,0 +1,272 @@
+{
+ "id": "boulder",
+ "title": "Boulder",
+ "label": "Boulder",
+ "scientific": null,
+ "node": "boulder",
+ "main_part": "rock",
+ "blurb": "A weathered boulder in the park: bare rock with moss and lichen growing on it, and loose stones at its foot. Click any part.",
+ "model_note": "A model built from typical features of a coarse-grained rock, not a scan of one particular boulder. Sizes are about right for a large boulder; the grain pattern shown when cut open is illustrative.",
+ "size_m": {
+  "height": 0.67,
+  "width": 1.53,
+  "depth": 1
+ },
+ "height_m": 0.67,
+ "radius_m": 1.7,
+ "draw_m": 500,
+ "seed": 1701,
+ "systems": [
+  {
+   "id": "rock",
+   "label": "Rock"
+  },
+  {
+   "id": "growth",
+   "label": "Living on it"
+  },
+  {
+   "id": "debris",
+   "label": "Loose stones"
+  }
+ ],
+ "modes": [
+  {
+   "id": "whole",
+   "label": "Whole",
+   "show": {
+    "*": 1
+   }
+  },
+  {
+   "id": "living",
+   "label": "What lives on it",
+   "show": {
+    "growth": 1,
+    "rock": 0.3,
+    "debris": 0.3
+   }
+  },
+  {
+   "id": "rock",
+   "label": "Bare rock",
+   "show": {
+    "rock": 1,
+    "debris": 1,
+    "growth": 0
+   }
+  },
+  {
+   "id": "cut",
+   "label": "Cut open",
+   "cut": true,
+   "show": {
+    "*": 1
+   }
+  }
+ ],
+ "lod": {
+  "near_m": 40
+ },
+ "shadow": {
+  "radius_m": 1.35,
+  "opacity": 0.8
+ },
+ "cut": {
+  "default": "granite",
+  "at": [
+   0,
+   0.3,
+   0
+  ],
+  "faces": {
+   "moss": {
+    "kind": "plain",
+    "palette": [
+     [
+      3958054,
+      1
+     ]
+    ]
+   },
+   "granite": {
+    "kind": "grains",
+    "cell": 0.04,
+    "edge": 0.5,
+    "palette": [
+     [
+      10133411,
+      0.27
+     ],
+     [
+      14202012,
+      0.3
+     ],
+     [
+      15656662,
+      0.28
+     ],
+     [
+      2763312,
+      0.15
+     ]
+    ],
+    "legend": [
+     {
+      "name": "Quartz (grey, glassy)",
+      "color": "#9a9fa3",
+      "node": "rock_grains"
+     },
+     {
+      "name": "Feldspar (pink or white)",
+      "color": "#d8b49c",
+      "node": "rock_grains"
+     },
+     {
+      "name": "Dark minerals (mica and others)",
+      "color": "#2a2a30",
+      "node": "rock_grains"
+     }
+    ],
+    "note": "Illustrative grain pattern for a coarse-grained rock; the real arrangement in any one rock differs."
+   }
+  }
+ },
+ "hotspots": [
+  {
+   "id": "lichen_contact",
+   "node": "lichen_on_rock",
+   "at": [
+    0.134,
+    0.649,
+    0.016
+   ],
+   "label": "Where lichen meets rock"
+  }
+ ],
+ "parts": [
+  {
+   "id": "rock",
+   "name": "Rock",
+   "system": "rock",
+   "node": "boulder",
+   "color": "#7f7c75",
+   "mesh": "rock",
+   "lod": "near",
+   "ink_w": 0.0012,
+   "priority": 1.4,
+   "deeper": {
+    "type": "crystal",
+    "id": "quartz",
+    "D": 4e-9,
+    "button": "See a crystal of quartz, one of its minerals"
+   },
+   "center": [
+    -0.0046,
+    0.3129,
+    -0.0099
+   ],
+   "radius": 0.7969,
+   "tris": 27500
+  },
+  {
+   "id": "rock_far",
+   "name": "Rock",
+   "system": "rock",
+   "node": "boulder",
+   "color": "#7f7c75",
+   "mesh": "rock_far",
+   "lod": "far",
+   "solid": true,
+   "priority": 1.4,
+   "far_of": "rock",
+   "center": [
+    -0.0028,
+    0.3164,
+    -0.0055
+   ],
+   "radius": 0.788,
+   "tris": 955
+  },
+  {
+   "id": "moss",
+   "name": "Moss",
+   "system": "growth",
+   "node": "bio_bryophytes_seedless",
+   "color": "#5f8d3a",
+   "mesh": "moss",
+   "cutFace": "moss",
+   "priority": 2,
+   "ink_w": 0.0014,
+   "center": [
+    -0.0881,
+    0.5664,
+    0.0234
+   ],
+   "radius": 0.507,
+   "tris": 9104
+  },
+  {
+   "id": "lichen",
+   "name": "Lichen",
+   "system": "growth",
+   "node": "bio_lichens_fungal_biotech",
+   "color": "#a9b08c",
+   "instances": "lichen",
+   "tint": 0.25,
+   "priority": 2,
+   "lod": "near",
+   "center": [
+    0.1061,
+    0.4929,
+    -0.0359
+   ],
+   "radius": 0.8669,
+   "count": 275,
+   "tris": 19800
+  },
+  {
+   "id": "lichen_yellow",
+   "name": "Lichen",
+   "system": "growth",
+   "node": "bio_lichens_fungal_biotech",
+   "color": "#d1a53c",
+   "instances": "lichen_y",
+   "tint": 0.2,
+   "priority": 2,
+   "lod": "near",
+   "center": [
+    -0.3906,
+    0.4593,
+    0.163
+   ],
+   "radius": 0.5704,
+   "count": 66,
+   "tris": 4752
+  },
+  {
+   "id": "stones",
+   "name": "Loose stones",
+   "system": "debris",
+   "node": "boulder_debris",
+   "color": "#7d7a73",
+   "instances": "stones",
+   "tint": 0.12,
+   "priority": 1.8,
+   "center": [
+    -0.1931,
+    0.0099,
+    0.0873
+   ],
+   "radius": 1.5081,
+   "count": 46,
+   "tris": 9752
+  }
+ ],
+ "stats": {
+  "parts": 6,
+  "uniqueMeshTris": 37559,
+  "nearTris": 70908,
+  "farTris": 19811
+ }
+}

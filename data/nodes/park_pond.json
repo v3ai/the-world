@@ -1,1 +1,35 @@
-[]
+[
+ {
+  "id": "park_pond",
+  "title": "Pond",
+  "kind": "habitat",
+  "template": "thing",
+  "scale_m": 5,
+  "area": "bio_ecology",
+  "parents": [
+   "park_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A small pond: still fresh water that holds a community of tiny plants, animals and microbes.",
+  "layers": {
+   "basics": "A pond is a shallow patch of still water. Sunlight reaches the bottom, so plants and algae grow, and they feed snails, insects and fish. Most of the living things in it are too small to see. Zoom in and you meet some of them.",
+   "deeper": "The water is crowded with algae that make sugar from light, bacteria that break down dead material, and tiny animals that eat both. Unlike a lake, a pond is shallow enough that light usually reaches the bottom everywhere.",
+   "expert": "Pond life is a food web: light energy enters through photosynthesis in algae and plants, and passes to grazers and then predators; microbes recycle what dies. The park is a simplified scene, not a scan of a real place."
+  },
+  "facts": [
+   [
+    "What is real",
+    "The kinds of life shown at the close-up are typical pond organisms; the picture is a simplified model"
+   ],
+   [
+    "Scale of the scene",
+    "a few metres across"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [],
+  "ext": []
+ }
+]

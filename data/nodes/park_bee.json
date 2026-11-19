@@ -1,1 +1,40 @@
-[]
+[
+ {
+  "id": "park_bee",
+  "title": "Bee",
+  "kind": "organism",
+  "template": "thing",
+  "scale_m": 0.015,
+  "area": "bio_ecology",
+  "parents": [
+   "park_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "summary": "A bee: a flying insect that feeds on nectar and pollen and pollinates flowers as it goes.",
+  "layers": {
+   "basics": "The bee flits between flowers. Its body is covered in branched hairs that catch pollen. Its big eyes are not like ours: each is made of thousands of tiny lenses packed side by side. Zoom in to see a simplified picture of that.",
+   "deeper": "Each of the two big eyes is a compound eye: a mosaic of many separate light-sensing units called ommatidia, each with its own lens. Together they give the bee a coarse image but very quick reaction to movement.",
+   "expert": "In an ommatidium a lens (cornea and crystalline cone) focuses light on a bundle of photoreceptor cells. The size and number of facets in the close-up are illustrative, not measured on a particular species."
+  },
+  "facts": [
+   [
+    "Compound eye",
+    "thousands of ommatidia per eye (the number depends on the species)"
+   ],
+   [
+    "Close-up shown",
+    "a schematic pattern of facets, sizes illustrative"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Compound eye (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Compound_eye"
+   }
+  ]
+ }
+]

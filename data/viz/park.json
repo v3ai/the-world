@@ -1,1 +1,1139 @@
-{}
+{
+ "oak_english": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "r",
+    "label": "Roots",
+    "x": 15,
+    "y": 82
+   },
+   {
+    "id": "t",
+    "label": "Trunk",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "b",
+    "label": "Branches",
+    "x": 50,
+    "y": 30
+   },
+   {
+    "id": "l",
+    "label": "Leaves",
+    "x": 85,
+    "y": 15,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "r",
+    "to": "t",
+    "label": "water and minerals up"
+   },
+   {
+    "from": "t",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "l"
+   },
+   {
+    "from": "l",
+    "to": "r",
+    "label": "sugar down"
+   }
+  ],
+  "flow": true,
+  "caption": "Two flows run through the whole tree: water and minerals rise from the roots to the leaves, and sugar made in the leaves is sent down and out to where it is used."
+ },
+ "oak_trunk": {
+  "type": "plot",
+  "x": [
+   0,
+   1
+  ],
+  "y": [
+   0,
+   2
+  ],
+  "params": [
+   {
+    "id": "r1",
+    "label": "limb 1 radius",
+    "min": 2,
+    "max": 30,
+    "value": 12,
+    "unit": "cm"
+   },
+   {
+    "id": "r2",
+    "label": "limb 2 radius",
+    "min": 2,
+    "max": 30,
+    "value": 16,
+    "unit": "cm"
+   }
+  ],
+  "fns": [
+   {
+    "f": "sqrt(r1^2+r2^2)/10",
+    "label": "trunk radius by the pipe model (×10 cm)"
+   }
+  ],
+  "readouts": [
+   {
+    "label": "Trunk radius if the pipe model holds",
+    "value": "sqrt(r1^2+r2^2)",
+    "unit": "cm"
+   },
+   {
+    "label": "Cross-section of the two limbs",
+    "value": "pi*(r1^2+r2^2)",
+    "unit": "cm²"
+   }
+  ],
+  "caption": "The pipe model: the trunk below a fork has about the same cross-section as the limbs above it added together, so its radius is the square root of the sum of the squares. An approximation, not an exact law."
+ },
+ "oak_bark": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "o",
+    "label": "Dead outer bark and cork",
+    "x": 15,
+    "y": 20
+   },
+   {
+    "id": "c",
+    "label": "Cork cambium makes cork",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "p",
+    "label": "Inner bark (phloem), living",
+    "x": 55,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "v",
+    "label": "Vascular cambium",
+    "x": 55,
+    "y": 80,
+    "color": "green"
+   },
+   {
+    "id": "w",
+    "label": "Wood",
+    "x": 15,
+    "y": 80
+   }
+  ],
+  "edges": [
+   {
+    "from": "c",
+    "to": "o",
+    "label": "cork outwards"
+   },
+   {
+    "from": "v",
+    "to": "p",
+    "label": "phloem outwards"
+   },
+   {
+    "from": "v",
+    "to": "w",
+    "label": "wood inwards"
+   }
+  ],
+  "flow": false,
+  "caption": "Bark is everything outside the vascular cambium. Two thin sheets of dividing cells make it: one makes cork, one makes sugar-carrying phloem."
+ },
+ "oak_cork": {
+  "type": "plot",
+  "x": [
+   0,
+   10
+  ],
+  "y": [
+   0,
+   20
+  ],
+  "params": [
+   {
+    "id": "k",
+    "label": "years of trunk widening",
+    "min": 1,
+    "max": 10,
+    "value": 5,
+    "unit": "yr"
+   }
+  ],
+  "fns": [
+   {
+    "f": "2*pi*0.3*x",
+    "label": "extra trunk circumference (cm) for 3 mm rings"
+   }
+  ],
+  "vlines": [
+   {
+    "x": "k",
+    "label": "now"
+   }
+  ],
+  "readouts": [
+   {
+    "label": "Circumference gained by the trunk",
+    "value": "2*pi*0.3*k",
+    "unit": "cm"
+   }
+  ],
+  "caption": "As the trunk gets wider, the outer bark must stretch or crack. Each year of 3 mm of wood adds about 1.9 cm to the circumference, which the cork cannot stretch to match: the furrows open."
+ },
+ "oak_phloem": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "s",
+    "label": "Leaf (source): sugar loaded in",
+    "x": 80,
+    "y": 15,
+    "color": "green"
+   },
+   {
+    "id": "t",
+    "label": "Sieve tubes carry the solution",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "k1",
+    "label": "Roots (sink)",
+    "x": 15,
+    "y": 85
+   },
+   {
+    "id": "k2",
+    "label": "Buds and acorns (sink)",
+    "x": 85,
+    "y": 85
+   }
+  ],
+  "edges": [
+   {
+    "from": "s",
+    "to": "t",
+    "label": "water follows sugar in"
+   },
+   {
+    "from": "t",
+    "to": "k1",
+    "label": "flow to low pressure"
+   },
+   {
+    "from": "t",
+    "to": "k2"
+   }
+  ],
+  "flow": true,
+  "caption": "Pressure flow: sugar loaded at the leaves raises the pressure there, and the solution flows toward the places where sugar is being taken out."
+ },
+ "oak_cambium": {
+  "type": "plot",
+  "x": [
+   1,
+   6
+  ],
+  "y": [
+   0,
+   4
+  ],
+  "params": [
+   {
+    "id": "w",
+    "label": "ring width",
+    "min": 1,
+    "max": 6,
+    "value": 3,
+    "unit": "mm"
+   }
+  ],
+  "fns": [
+   {
+    "f": "2*pi*x*0.1",
+    "label": "extra circumference (cm)"
+   }
+  ],
+  "vlines": [
+   {
+    "x": "w",
+    "label": "chosen ring"
+   }
+  ],
+  "readouts": [
+   {
+    "label": "Circumference added in a year",
+    "value": "2*pi*w*0.1",
+    "unit": "cm"
+   },
+   {
+    "label": "Diameter added in a year",
+    "value": "2*w*0.1",
+    "unit": "cm"
+   }
+  ],
+  "xlabel": "ring width (mm)",
+  "ylabel": "cm gained",
+  "caption": "The cambium adds a ring of wood one ring-width thick all round the trunk. A ring of width w makes the circumference grow by 2πw. Slide w."
+ },
+ "oak_sapwood": {
+  "type": "plot",
+  "x": [
+   1,
+   6
+  ],
+  "y": [
+   0,
+   8
+  ],
+  "params": [
+   {
+    "id": "n",
+    "label": "sapwood rings",
+    "min": 5,
+    "max": 32,
+    "value": 13,
+    "step": 1
+   }
+  ],
+  "fns": [
+   {
+    "f": "n*x/10",
+    "label": "sapwood thickness (cm)"
+   }
+  ],
+  "readouts": [
+   {
+    "label": "Sapwood thickness at 2.7 mm per ring",
+    "value": "n*0.27",
+    "unit": "cm"
+   }
+  ],
+  "xlabel": "ring width (mm)",
+  "ylabel": "sapwood thickness (cm)",
+  "caption": "Sapwood is a fixed number of recent rings (5 to 32 in a study of English oaks, 13 on average), so its thickness is the number of rings times the ring width."
+ },
+ "oak_heartwood": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "a",
+    "label": "Living sapwood: carries water, stores food",
+    "x": 20,
+    "y": 20,
+    "color": "blue"
+   },
+   {
+    "id": "b",
+    "label": "Cells die, chemicals deposited",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "c",
+    "label": "Heartwood: support, decay resistance",
+    "x": 80,
+    "y": 80
+   }
+  ],
+  "edges": [
+   {
+    "from": "a",
+    "to": "b",
+    "label": "as the ring gets older"
+   },
+   {
+    "from": "b",
+    "to": "c"
+   }
+  ],
+  "flow": false,
+  "caption": "A ring starts as sapwood. After about a dozen years in oak it changes into heartwood: a planned process, not damage."
+ },
+ "oak_growth_rings": {
+  "type": "plot",
+  "x": [
+   0,
+   200
+  ],
+  "y": [
+   0,
+   80
+  ],
+  "params": [
+   {
+    "id": "w",
+    "label": "average ring width",
+    "min": 1,
+    "max": 6,
+    "value": 2.7,
+    "step": 0.1,
+    "unit": "mm"
+   }
+  ],
+  "fns": [
+   {
+    "f": "x*w/10",
+    "label": "trunk radius (cm)"
+   }
+  ],
+  "vlines": [
+   {
+    "x": 150,
+    "label": "model log: 150 rings"
+   }
+  ],
+  "readouts": [
+   {
+    "label": "Radius of wood after 150 rings",
+    "value": "150*w/10",
+    "unit": "cm"
+   }
+  ],
+  "xlabel": "rings counted (years)",
+  "ylabel": "wood radius (cm)",
+  "caption": "The number of rings is the age; the width of a ring is how well that year went. 150 rings at 2.7 mm each give about 40 cm of wood radius, as in the model log."
+ },
+ "oak_pith_rays": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "p",
+    "label": "Pith (centre)",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "r",
+    "label": "Ray: living cells running outwards",
+    "x": 50,
+    "y": 50,
+    "color": "green"
+   },
+   {
+    "id": "b",
+    "label": "Inner bark (sugar supply)",
+    "x": 85,
+    "y": 50,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "b",
+    "to": "r",
+    "label": "sugar in"
+   },
+   {
+    "from": "r",
+    "to": "p",
+    "label": "to inner rings"
+   }
+  ],
+  "flow": true,
+  "caption": "Rays are the tree's side streets: they carry sugar from the bark sideways to living cells in the wood."
+ },
+ "oak_branches": {
+  "type": "plot",
+  "x": [
+   1,
+   400
+  ],
+  "y": [
+   0,
+   30
+  ],
+  "params": [
+   {
+    "id": "rt",
+    "label": "twig-end radius",
+    "min": 0.2,
+    "max": 1,
+    "value": 0.5,
+    "step": 0.05,
+    "unit": "cm"
+   }
+  ],
+  "fns": [
+   {
+    "f": "rt*sqrt(x)",
+    "label": "limb radius (cm)"
+   }
+  ],
+  "xlabel": "number of twig ends the limb carries",
+  "ylabel": "limb radius (cm)",
+  "caption": "If every twig end has the same size, a limb carrying N of them has radius r×√N under the pipe model: a limb carrying 400 twig ends is 20 times as wide as one twig."
+ },
+ "oak_twigs_buds": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "w",
+    "label": "Winter: bud scales close",
+    "x": 15,
+    "y": 20
+   },
+   {
+    "id": "s",
+    "label": "Spring: bud swells and opens",
+    "x": 50,
+    "y": 20,
+    "color": "green"
+   },
+   {
+    "id": "g",
+    "label": "Shoot grows, new leaves",
+    "x": 85,
+    "y": 50,
+    "color": "green"
+   },
+   {
+    "id": "n",
+    "label": "Summer: new buds form at the tip",
+    "x": 50,
+    "y": 80
+   }
+  ],
+  "edges": [
+   {
+    "from": "w",
+    "to": "s"
+   },
+   {
+    "from": "s",
+    "to": "g"
+   },
+   {
+    "from": "g",
+    "to": "n"
+   },
+   {
+    "from": "n",
+    "to": "w"
+   }
+  ],
+  "flow": true,
+  "caption": "The yearly cycle of a twig: next year's growth is already folded inside the bud before winter."
+ },
+ "oak_leaf": {
+  "type": "geometry",
+  "range": [
+   -5,
+   5,
+   -1,
+   11
+  ],
+  "params": [
+   {
+    "id": "d",
+    "label": "how deep the cuts go (0 = smooth)",
+    "min": 0,
+    "max": 0.5,
+    "value": 0.4,
+    "step": 0.05
+   }
+  ],
+  "shapes": [
+   {
+    "k": "curve",
+    "x": "(3.4*pow(s,.85)*pow(1-s,.55)*(1-d*(.5-.5*cos(25.13*s)))*(1.0))*1.0/0.55",
+    "y": "10*s",
+    "s": [
+     0,
+     1
+    ],
+    "color": "green"
+   },
+   {
+    "k": "curve",
+    "x": "-(3.4*pow(s,.85)*pow(1-s,.55)*(1-d*(.5-.5*cos(25.13*s))))/0.55",
+    "y": "10*s",
+    "s": [
+     0,
+     1
+    ],
+    "color": "green"
+   },
+   {
+    "k": "line",
+    "x1": 0,
+    "y1": 0,
+    "x2": 0,
+    "y2": 10,
+    "color": "dim"
+   },
+   {
+    "k": "text",
+    "x": 0,
+    "y": 10.6,
+    "text": "about 10 cm",
+    "align": "center"
+   }
+  ],
+  "caption": "An English oak leaf: rounded lobes cut in no deeper than halfway to the midrib (cut depth up to 0.5). A drawing from a formula, not a tracing of a real leaf."
+ },
+ "oak_leaf_epidermis": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "c",
+    "label": "Cuticle: wax, stops water loss",
+    "x": 50,
+    "y": 15,
+    "color": "orange"
+   },
+   {
+    "id": "e",
+    "label": "Epidermis: clear, flat cells",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "m",
+    "label": "Mesophyll: light is used here",
+    "x": 50,
+    "y": 85,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "c",
+    "to": "e",
+    "label": "light passes through"
+   },
+   {
+    "from": "e",
+    "to": "m"
+   }
+  ],
+  "flow": false,
+  "caption": "The leaf's skin lets light through to the cells beneath while holding water in."
+ },
+ "oak_leaf_palisade": {
+  "type": "plot",
+  "x": [
+   0,
+   200
+  ],
+  "y": [
+   0,
+   1
+  ],
+  "params": [
+   {
+    "id": "k",
+    "label": "absorption (per 100 µm)",
+    "min": 0.2,
+    "max": 3,
+    "value": 1.2,
+    "step": 0.1
+   }
+  ],
+  "fns": [
+   {
+    "f": "exp(-k*x/100)",
+    "label": "light left at depth x"
+   }
+  ],
+  "xlabel": "depth below the top surface (µm)",
+  "ylabel": "fraction of light left",
+  "caption": "Light fades as it goes down through a leaf, so the top layer does most of the work. The absorption rate here is a chosen example, not a measurement of oak."
+ },
+ "oak_leaf_spongy": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "s",
+    "label": "Stoma (underside)",
+    "x": 15,
+    "y": 80
+   },
+   {
+    "id": "a",
+    "label": "Air spaces between cells",
+    "x": 50,
+    "y": 50,
+    "color": "blue"
+   },
+   {
+    "id": "c",
+    "label": "Cells: CO₂ dissolves into wall water",
+    "x": 85,
+    "y": 20,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "s",
+    "to": "a",
+    "label": "CO₂ in"
+   },
+   {
+    "from": "a",
+    "to": "c"
+   },
+   {
+    "from": "c",
+    "to": "a",
+    "label": "O₂, water vapour out"
+   },
+   {
+    "from": "a",
+    "to": "s"
+   }
+  ],
+  "flow": true,
+  "caption": "Gas takes the route of least resistance: through open pores, along the air gaps, into the cells."
+ },
+ "oak_leaf_stoma": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "t",
+    "label": "Water flows into guard cells",
+    "x": 15,
+    "y": 20,
+    "color": "blue"
+   },
+   {
+    "id": "o",
+    "label": "Guard cells swell and bend apart: pore open",
+    "x": 50,
+    "y": 50,
+    "color": "green"
+   },
+   {
+    "id": "i",
+    "label": "CO₂ in, water vapour out",
+    "x": 85,
+    "y": 80
+   },
+   {
+    "id": "d",
+    "label": "Drought hormone: guard cells lose water, pore closes",
+    "x": 15,
+    "y": 80,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "t",
+    "to": "o"
+   },
+   {
+    "from": "o",
+    "to": "i"
+   },
+   {
+    "from": "d",
+    "to": "o"
+   }
+  ],
+  "flow": false,
+  "caption": "Opening and closing of a stoma is osmosis: guard cells swell with water to open and shrink to close."
+ },
+ "oak_leaf_vein": {
+  "type": "plot",
+  "x": [
+   5,
+   100
+  ],
+  "y": [
+   0,
+   1
+  ],
+  "params": [
+   {
+    "id": "D",
+    "label": "reference vessel diameter",
+    "min": 10,
+    "max": 100,
+    "value": 50,
+    "unit": "µm"
+   }
+  ],
+  "fns": [
+   {
+    "f": "pow(x/D,4)",
+    "label": "relative flow in a vessel of diameter x"
+   }
+  ],
+  "logy": false,
+  "xlabel": "vessel diameter (µm)",
+  "ylabel": "flow relative to a 50 µm vessel",
+  "caption": "Flow through a tube rises with the fourth power of its diameter: a vessel twice as wide carries sixteen times as much water. This is why oak's wide vessels carry so much."
+ },
+ "oak_acorn": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "c",
+    "label": "Male catkins shed pollen",
+    "x": 15,
+    "y": 20
+   },
+   {
+    "id": "f",
+    "label": "Female flower pollinated by wind",
+    "x": 50,
+    "y": 20
+   },
+   {
+    "id": "a",
+    "label": "Acorn grows, ripens in the cup",
+    "x": 85,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "d",
+    "label": "Animals bury some acorns",
+    "x": 50,
+    "y": 80
+   },
+   {
+    "id": "s",
+    "label": "Seedling",
+    "x": 15,
+    "y": 80,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "c",
+    "to": "f"
+   },
+   {
+    "from": "f",
+    "to": "a"
+   },
+   {
+    "from": "a",
+    "to": "d"
+   },
+   {
+    "from": "d",
+    "to": "s"
+   }
+  ],
+  "flow": true,
+  "caption": "An oak's life cycle: wind carries the pollen, the fertilised flower becomes an acorn, and a few acorns survive to become seedlings."
+ },
+ "oak_roots": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "s",
+    "label": "Soil water and minerals",
+    "x": 15,
+    "y": 50,
+    "color": "blue"
+   },
+   {
+    "id": "f",
+    "label": "Fine roots and fungal partners",
+    "x": 45,
+    "y": 50
+   },
+   {
+    "id": "t",
+    "label": "Big roots",
+    "x": 70,
+    "y": 50
+   },
+   {
+    "id": "k",
+    "label": "Trunk, xylem upward",
+    "x": 90,
+    "y": 20,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "s",
+    "to": "f",
+    "label": "uptake"
+   },
+   {
+    "from": "f",
+    "to": "t"
+   },
+   {
+    "from": "t",
+    "to": "k"
+   }
+  ],
+  "flow": true,
+  "caption": "Uptake happens at the thinnest roots; the thick roots are for transport, storage and anchorage."
+ },
+ "oak_root_hairs": {
+  "type": "plot",
+  "x": [
+   0,
+   200
+  ],
+  "y": [
+   0,
+   20
+  ],
+  "params": [
+   {
+    "id": "L",
+    "label": "root hair length",
+    "min": 0.2,
+    "max": 1.5,
+    "value": 0.8,
+    "step": 0.1,
+    "unit": "mm"
+   }
+  ],
+  "fns": [
+   {
+    "f": "(1+x*(pi*0.012*L)/(pi*0.4))",
+    "label": "surface area compared with bare root"
+   }
+  ],
+  "xlabel": "root hairs per mm of root",
+  "ylabel": "area ÷ area of a bare root",
+  "caption": "Example arithmetic (example sizes, not oak measurements): a root 0.4 mm across with hairs 12 µm across gains surface with every hair it grows. Slide the hair length."
+ },
+ "oak_mycorrhiza": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "t",
+    "label": "Oak leaves: sugar",
+    "x": 85,
+    "y": 15,
+    "color": "green"
+   },
+   {
+    "id": "r",
+    "label": "Oak root tip with fungal sheath",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "f",
+    "label": "Fungal threads in soil",
+    "x": 15,
+    "y": 85,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "t",
+    "to": "r",
+    "label": "sugar down"
+   },
+   {
+    "from": "r",
+    "to": "f",
+    "label": "sugar to fungus"
+   },
+   {
+    "from": "f",
+    "to": "r",
+    "label": "water, phosphorus, nitrogen"
+   }
+  ],
+  "flow": true,
+  "caption": "A trade: the tree pays in sugar and the fungus delivers water and minerals from a far larger volume of soil than the roots reach."
+ },
+ "oak_lignin_cellulose": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "g",
+    "label": "Glucose",
+    "x": 15,
+    "y": 20
+   },
+   {
+    "id": "c",
+    "label": "Cellulose fibres",
+    "x": 15,
+    "y": 80,
+    "color": "green"
+   },
+   {
+    "id": "p",
+    "label": "Phenolic alcohols",
+    "x": 85,
+    "y": 20
+   },
+   {
+    "id": "l",
+    "label": "Lignin glue",
+    "x": 85,
+    "y": 80,
+    "color": "orange"
+   },
+   {
+    "id": "w",
+    "label": "Wood cell wall",
+    "x": 50,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "g",
+    "to": "c"
+   },
+   {
+    "from": "p",
+    "to": "l"
+   },
+   {
+    "from": "c",
+    "to": "w"
+   },
+   {
+    "from": "l",
+    "to": "w"
+   }
+  ],
+  "flow": false,
+  "caption": "Wood is a composite: strong cellulose fibres embedded in a rigid lignin matrix."
+ },
+ "oak_water_lift": {
+  "type": "plot",
+  "x": [
+   0,
+   40
+  ],
+  "y": [
+   0,
+   0.5
+  ],
+  "fns": [
+   {
+    "f": "0.0098*x",
+    "label": "pressure needed to hold up water against gravity (MPa)"
+   }
+  ],
+  "vlines": [
+   {
+    "x": 20,
+    "label": "model oak, 20 m"
+   }
+  ],
+  "xlabel": "height (m)",
+  "ylabel": "pressure difference (MPa)",
+  "readouts": [
+   {
+    "label": "Gravity alone at 20 m",
+    "value": "0.0098*20",
+    "unit": "MPa"
+   }
+  ],
+  "caption": "Holding a column of water up costs 9.8 kPa for every metre: about 0.2 MPa at 20 m. This is only the gravity part; friction in the narrow tubes adds more."
+ },
+ "oak_growth": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "a",
+    "label": "Apical meristems at shoot and root tips",
+    "x": 20,
+    "y": 25,
+    "color": "green"
+   },
+   {
+    "id": "v",
+    "label": "Vascular cambium under the bark",
+    "x": 20,
+    "y": 75,
+    "color": "orange"
+   },
+   {
+    "id": "l",
+    "label": "Longer shoots and roots",
+    "x": 80,
+    "y": 25
+   },
+   {
+    "id": "w",
+    "label": "Wider trunk: one ring a year",
+    "x": 80,
+    "y": 75
+   }
+  ],
+  "edges": [
+   {
+    "from": "a",
+    "to": "l"
+   },
+   {
+    "from": "v",
+    "to": "w"
+   }
+  ],
+  "flow": false,
+  "caption": "Two sets of dividing cells: tips for length, cambium for width."
+ },
+ "oak_ecosystem": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "species associated with oak (UK)",
+    "value": 2300
+   },
+   {
+    "label": "plant-eating insect species (at least)",
+    "value": 400
+   },
+   {
+    "label": "gall-forming species",
+    "value": 35
+   }
+  ],
+  "ylabel": "species",
+  "logy": true,
+  "caption": "Estimates for English oak in the UK (2019): over 2,300 associated species, at least 400 insects that eat it, and about 35 that make galls. A log scale is used."
+ },
+ "oak_lifespan": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "typical old oak",
+    "value": 500
+   },
+   {
+    "label": "believed oldest",
+    "value": 1000
+   },
+   {
+    "label": "estimates for two named oaks",
+    "value": 1500
+   }
+  ],
+  "ylabel": "years",
+  "caption": "Estimated ages, in years, for English oak: often over 500, some believed over 1,000, and two trees estimated at over 1,500. For hollow trees these are estimates, not counted rings."
+ }
+}

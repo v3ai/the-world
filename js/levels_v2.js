@@ -871,11 +871,8 @@ BUILD.life = (c) => {
   c.addLabel(human, 'You', { offset: new V3(0, 2.05, 0), cls: 'you' });
   const { d: dog, tail } = makeDog(); dog.position.set(1.25, 0, 1.0); dog.rotation.y = Math.atan2(1.0, -1.25) + .2; dog.userData = { id: 'dog' }; g.add(dog); c.pickables.push(dog);
   c.addLabel(dog, 'Dog', { offset: new V3(0, .95, 0) });
-  // trees
-  const mainTree = makeTree(r, 1.25); mainTree.position.set(-5, 0, -3.2); mainTree.userData = { id: 'tree' }; g.add(mainTree); c.pickables.push(mainTree);
-  c.addLabel(mainTree, 'Tree', { offset: new V3(0, 6.6, 0) });
-  c.parts = { arms, human, mainTree, sky, sun, sunHit, sg };
-  for (let i = 0; i < 18; i++) { const a = r() * TAU, d = 13 + r() * 30; const t = makeTree(r, .9 + r() * .8); t.position.set(Math.cos(a) * d, 0, Math.sin(a) * d - 6); t.userData = { id: 'tree' }; g.add(t); c.pickables.push(t); }
+  // trees: the English oaks are things built from data (data/things/oak, placed by data/things/index.json), not made here
+  c.parts = { arms, human, sky, sun, sunHit, sg, ground, grass: gm };
   // pond
   const pond = new THREE.Mesh(new THREE.CircleGeometry(1, 48), smat(0x2a78b8, { roughness: .08, metalness: .35, emissive: 0x06233a }));
   pond.rotation.x = -Math.PI / 2; pond.position.set(5, .03, -4); pond.scale.set(3, 2.3, 1); pond.userData = { id: 'pond' }; g.add(pond); c.pickables.push(pond);
@@ -924,6 +921,9 @@ BUILD.life = (c) => {
     g.add(b); c.pickables.push(b); birds.push({ b, ws, r: 9 + i * 3, h: 8 + i * 1.5, sp: .25 + i * .05, ph: i * 2 });
   }
   c.addLabel(birds[0].b, 'Bird', { offset: new V3(0, .5, 0) });
+  // every clickable park object opens its own card (data/nodes/park_*.json); objects that have no card yet keep the old INFO text
+  { const PN = { pond: 'park_pond', flower: 'park_flower', bee: 'park_bee', mushroom: 'park_mushroom', cloud: 'park_cloud', bird: 'park_bird', sunSky: 'park_sun', air: 'park_sky', ground: 'park_ground' };
+    c.pickables.forEach(o => o.traverse(m => { const n = m.userData && PN[m.userData.id]; if (n) m.userData.node = n; })); }
   c.update = (dt, t) => {
     const wave = false;
     arms[1].piv.rotation.z = lerp(arms[1].piv.rotation.z, wave ? 2.7 : .12, dt * 5);
@@ -938,7 +938,7 @@ BUILD.life = (c) => {
     birds.forEach(B => { const a = t * B.sp + B.ph; B.b.position.set(Math.cos(a) * B.r, B.h + Math.sin(t * .7 + B.ph) * .6, Math.sin(a) * B.r - 4); B.b.rotation.y = -a; B.ws.forEach(w => w.piv.rotation.x = Math.sin(t * 8 + B.ph) * .55 * w.s); });
   };
   c.focusIn = () => new V3(0, 1.2, 0);
-  c.focusFor = (k, o) => (o && o.type === 'plant') ? { pos: mainTree.localToWorld(new V3(0, 4.2, 0)), r: 1.4 } : { pos: new V3(0, 1.2, 0), r: .45 };
+  c.focusFor = (k, o) => (o && o.type === 'plant') ? { pos: new V3(-13, 4.2, -9), r: 1.4 } : { pos: new V3(0, 1.2, 0), r: .45 };
   c.zoomInTarget = () => ({ key: 'cell', opts: { type: 'animal' } });
 };
 
