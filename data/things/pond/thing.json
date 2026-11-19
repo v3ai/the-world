@@ -1035,13 +1035,15 @@
    "mesh": "snail_shell",
    "lod": "near",
    "ink_w": 0.0012,
+   "solid": false,
+   "double": true,
    "center": [
-    -0.5508,
-    -0.5665,
-    -0.3011
+    -0.5447,
+    -0.583,
+    -0.3029
    ],
-   "radius": 0.0325,
-   "tris": 15112
+   "radius": 0.0267,
+   "tris": 7200
   },
   {
    "id": "snail_body",
@@ -1070,12 +1072,12 @@
    "lod": "near",
    "ink_w": 0.0006,
    "center": [
-    -0.5693,
-    -0.5921,
-    -0.3165
+    -0.5676,
+    -0.5945,
+    -0.316
    ],
-   "radius": 0.0068,
-   "tris": 32
+   "radius": 0.0038,
+   "tris": 16
   },
   {
    "id": "snail_eyes",
@@ -1087,11 +1089,11 @@
    "lod": "near",
    "noink": true,
    "center": [
-    -0.568,
-    -0.5911,
-    -0.3165
+    -0.5671,
+    -0.5935,
+    -0.3157
    ],
-   "radius": 0.0046,
+   "radius": 0.0026,
    "tris": 128
   },
   {
@@ -1320,7 +1322,7 @@
  ],
  "stats": {
   "parts": 51,
-  "uniqueMeshTris": 72156,
+  "uniqueMeshTris": 64228,
   "nearTris": 48332,
   "midTris": 14300,
   "farTris": 10866

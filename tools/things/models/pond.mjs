@@ -55,7 +55,7 @@ export default function build() {
     part('daphnia_limbs', 'Water flea: filtering limbs', 'animals', 'pond_daphnia_limbs', '#d9c9a0', { mesh: 'daphnia_limbs', lod: 'near', ink_w: .0002 }),
     part('daphnia_swarm', 'Water fleas (more of them)', 'animals', 'pond_daphnia', '#d8c8a0', { instances: 'daphnia_swarm', lod: 'near' }),
     // ---- great pond snail ----
-    part('snail_shell', 'Great pond snail: shell', 'animals', 'pond_snail', '#a07a45', { mesh: 'snail_shell', lod: 'near', ink_w: .0012 }),
+    part('snail_shell', 'Great pond snail: shell', 'animals', 'pond_snail', '#a07a45', { mesh: 'snail_shell', lod: 'near', ink_w: .0012, solid: false, double: true }),
     part('snail_body', 'Great pond snail: foot and head', 'animals', 'pond_snail_body', '#6e6a55', { mesh: 'snail_body', lod: 'near', ink_w: .0008 }),
     part('snail_tentacles', 'Great pond snail: tentacles', 'animals', 'pond_snail_senses', '#7b7660', { mesh: 'snail_tentacles', lod: 'near', ink_w: .0006 }),
     part('snail_eyes', 'Great pond snail: eyes', 'animals', 'pond_snail_senses', '#101010', { mesh: 'snail_eyes', lod: 'near', noink: true }),

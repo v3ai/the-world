@@ -63,8 +63,8 @@ export const sphereMesh = (r, n = 8) => L.meshSDF(L.sphere(r), { min: [-r * 1.2,
 export function uvSphere(r, nu = 8, nv = 5) {
   const m = L.newMesh();
   for (let j = 0; j <= nv; j++) { const v = j / nv * Math.PI; for (let i = 0; i < nu; i++) { const u = i / nu * Math.PI * 2; m.pos.push(r * Math.sin(v) * Math.cos(u), r * Math.cos(v), r * Math.sin(v) * Math.sin(u)); } }
-  for (let j = 0; j < nv; j++) for (let i = 0; i < nu; i++) { const a = j * nu + i, b = j * nu + (i + 1) % nu, c = a + nu, d = b + nu; if (j > 0) m.idx.push(a, c, b); if (j < nv - 1) m.idx.push(b, c, d); }
-  return m;
+  for (let j = 0; j < nv; j++) for (let i = 0; i < nu; i++) { const a = j * nu + i, b = j * nu + (i + 1) % nu, c = a + nu, d = b + nu; if (j > 0) m.idx.push(a, b, c); if (j < nv - 1) m.idx.push(b, d, c); }
+  const w = L.weld(m, 1e-9); return L.signedVolume(w) < 0 ? L.flip(w) : w;
 }
 export const E = (c, r, yaw = 0) => { let s = L.ellipsoid(r[0], r[1], r[2]); if (yaw) s = L.rotate(s, [0, 1, 0], yaw); return L.translate(s, c); };
 export const sp = (pts, n = 12) => L.spline(pts).sample(n);

@@ -70,40 +70,36 @@ function daphnia() {
 // =============== great pond snail (Lymnaea stagnalis): crawling along +x on the mud, shell on its back ===============
 function snail() {
   const m = {}, H = LIFE_M.snail.h, W = LIFE_M.snail.w;
-  // shell: a chain of spheres along a conical spiral (growth 1.45 per half turn... fixed below), six whorls, the last one large
-  const turns = 5.4, N = 84, pts = [];
-  const g = th => Math.exp(.42 * th / (2 * Math.PI));
-  for (let i = 0; i <= N; i++) { const th = i / N * turns * 2 * Math.PI, gg = g(th); pts.push({ th, rc: 1.45 * gg, rt: .72 * gg, z: 3.1 * gg }); }   // coil radius, tube radius, advance along the axis
-  const raw = pts.map(p => ({ c: [p.rc * Math.cos(p.th), p.z, p.rc * Math.sin(p.th)], r: Math.max(p.rt, .5) }));
-  // scale so that the shell is H tall (apex to the lowest point of the aperture) along its axis
-  const ys = raw.map(p => p.c[1] - p.r), ye = raw.map(p => p.c[1] + p.r), ext = Math.max(...ye) - Math.min(...ys), k = H / ext, sph = raw.map(p => ({ c: p.c.map(v => v * k), r: p.r * k }));
-  let shellS = L.smoothUnion(1.1, ...sph.map(s => L.translate(L.sphere(s.r), s.c)));
-  const bb = sph.reduce((b, s) => ({ lo: b.lo.map((v, i) => Math.min(v, s.c[i] - s.r)), hi: b.hi.map((v, i) => Math.max(v, s.c[i] + s.r)) }), { lo: [1e9, 1e9, 1e9], hi: [-1e9, -1e9, -1e9] });
-  const last = sph[sph.length - 1];
-  shellS = L.noiseDisplace(shellS, { amp: .12, freq: .5, octaves: 2, seed: 4 });   // growth lines
-  const mesh = bnd(shellS, bb.lo.map(v => v - 1.5), bb.hi.map(v => v + 1.5), 1.3, 1, 1);
-  // orient: shell axis (+y here, apex at the bottom of the y range -> flip so the apex is up), then tilt the apex back (-x) by 40 degrees
-  const ymin = bb.lo[1], ymax = bb.hi[1];
-  const apexUp = L.transform(mesh, p => [p[0], ymax - p[1], -p[2]]);   // flip the axis so the apex (small end) points up; mirror z to keep the right-hand coil
-  const bbSz = L.bounds(apexUp);
-  const tilted = L.transform(apexUp, p => { const q = L.rotAxis([p[0], p[1], p[2]], [0, 0, 1], rad(38)); return q; });
-  const b2 = L.bounds(tilted);
-  m.shell = L.bakeShade(L.translateMesh(tilted, [-(b2.min[0] + b2.max[0]) * .5 + 1, 7.5 - b2.min[1], -(b2.min[2] + b2.max[2]) * .5]), (p, n) => .65 + .35 * (.5 + .5 * n[1]));
+  // shell: a Raup-style spiral: an oval aperture swept along a logarithmic coil. W = growth per turn (3: the last whorl is about two thirds of the height),
+  // D = how close the coil runs to the axis, T = how far it slides down the axis (tall spire). Six turns; the last section is the open mouth.
+  const Wg = 2.5, Dd = .03, Tt = 4.0, turns = 6.2, ns = 180, np = 20, ay = 1.28;
+  const rawPts = [];
+  for (let i = 0; i <= ns; i++) { const t = i / ns * turns * 2 * Math.PI, g = Math.pow(Wg, t / (2 * Math.PI)), ra = .02 * g, Rc = ra * (1 + Dd) / (1 - Dd), Yc = -Tt * Rc, ring = [];
+    for (let k = 0; k < np; k++) { const f = k / np * 2 * Math.PI, cr = Math.cos(f) * ra, cy = Math.sin(f) * ra * ay; ring.push([(Rc + cr) * Math.cos(t), Yc + cy, (Rc + cr) * Math.sin(t)]); }
+    rawPts.push({ ring, t, c: [Rc * Math.cos(t), Yc, Rc * Math.sin(t)] }); }
+  const sh = L.newMesh(); for (const r of rawPts) for (const q of r.ring) sh.pos.push(...q);
+  for (let i = 0; i < ns; i++) for (let k = 0; k < np; k++) { const a = i * np + k, b = i * np + (k + 1) % np, c = a + np, d = b + np; sh.idx.push(a, c, b, b, c, d); }
+  const te = turns * 2 * Math.PI, endC = rawPts[ns].c;
+  // scale to the true height along the shell's own axis: apex to the lowest point of the last whorl
+  const sb = L.bounds(sh), kS = H / (sb.max[1] - sb.min[1]);
+  console.log('snail shell: height', H, 'width x', ((sb.max[0] - sb.min[0]) * kS).toFixed(1), 'width z', ((sb.max[2] - sb.min[2]) * kS).toFixed(1));
+  // orientation: apex up and back, mouth facing forward, down and to the right (the coil is right-handed)
+  const nrm = v => L.norm(v); let A = nrm([-.6, .8, .1]), Nn = nrm([.85, -.2, .45]); Nn = nrm(L.sub(Nn, L.mul(A, L.dot(A, Nn))));
+  const Rr = L.cross(A, Nn), Tn = [-Math.sin(te), 0, Math.cos(te)], Rend = [Math.cos(te), 0, Math.sin(te)];
+  const rot = p => { const x = L.dot(p, Rend), y = p[1], z = L.dot(p, Tn); return [Rr[0] * x + A[0] * y + Nn[0] * z, Rr[1] * x + A[1] * y + Nn[1] * z, Rr[2] * x + A[2] * y + Nn[2] * z]; };
+  let shR = L.transform(sh, p => rot([p[0] * kS, p[1] * kS, p[2] * kS]));
+  const mouth = rot([endC[0] * kS, endC[1] * kS, endC[2] * kS]);
+  m.shell = L.bakeShade(L.translateMesh(shR, [8 - mouth[0], 9.5 - mouth[1], 3.2 - mouth[2]]), (p, n) => .62 + .38 * (.5 + .5 * n[1]));
   m._shellBounds = L.bounds(m.shell);
   // foot and head: a long foot with a flat sole, a rounded head, a mantle collar at the shell's mouth
   const bodyS = L.smoothUnion(2.2, E([0, 4.0, 0], [18, 4.2, 6.2]), E([16, 5.2, 0], [7, 4, 4.2]), E([6, 9, 2.5], [8, 4.5, 5]));
   const cutBottom = L.intersect(bodyS, L.halfSpace([0, -1, 0], -.0));
   m.body = L.bakeShade(bnd(cutBottom, [-20, -.1, -8], [26, 14, 9], .9, 1, 1), (p) => .55 + .45 * Math.min(1, p[1] / 6));
-  // two broad, flat, triangular tentacles with the eyes at their base on the inner side
-  const tent = [], eyes = [];
-  for (const s of S) {
-    const pts = [[0, 0, 0], [1.1, .4, s * 1.3], [2.0, .8, s * 3.4]];   // base, tip direction: out and forward
-    tent.push(L.transform(L.extrudeOutline([[0, 0], [5.4, -.2], [5.2, -2.1], [4.2, -2.9], [0, -2.6]], .7), p => [p[0], p[1], p[2]]));
-    eyes.push(uvSphere(.62, 8, 5));
-  }
-  const place2 = (mesh, s) => L.transform(mesh, p => { const q = L.rotAxis(L.rotAxis([p[0], p[1], p[2]], [1, 0, 0], rad(90)), [0, 1, 0], rad(s * -38)); return [q[0] + 22.5, q[1] + 8.4, q[2] + s * 2.6]; });
-  m.tentacles = L.merge(place2(tent[0], 1), place2(tent[1], -1));
-  m.eyes = L.merge(L.translateMesh(eyes[0], [24.4, 9.4, 4.0]), L.translateMesh(eyes[1], [24.4, 9.4, -4.0]));
+  // two broad, flat, triangular tentacles (a pond snail's tentacles are flattened, unlike a land snail's round ones); the eyes sit at their base on the inner side
+  const tentM = L.extrudeOutline([[0, -1.9], [0, 1.9], [5.6, 0]], .8);
+  const tpl = s => L.transform(tentM, p => { const q = L.rotAxis(L.rotAxis([p[0], p[1], p[2]], [1, 0, 0], rad(90)), [0, 1, 0], rad(s * 38)); return [q[0] + 22.2, q[1] + 6.0, q[2] + s * 2.2]; });
+  m.tentacles = L.merge(tpl(1), tpl(-1));
+  m.eyes = L.merge(...S.map(s => L.translateMesh(uvSphere(.62, 8, 5), [23.2, 7.0, s * 2.0])));
   return m;
 }
 
