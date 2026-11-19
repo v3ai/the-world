@@ -659,11 +659,8 @@ BUILD.life = (c) => {
   // the dog is a thing built from data (data/things/dog), placed by data/things/index.json
   // trees: the English oaks are things built from data (data/things/oak, placed by data/things/index.json), not made here
   c.parts = { arms, human, sky, sun, sunHit, sg, ground, grass: gm };
-  // pond
-  const pond = new THREE.Mesh(new THREE.CircleGeometry(1, 48), smat(0x2a78b8, { roughness: .08, metalness: .35, emissive: 0x06233a }));
-  pond.rotation.x = -Math.PI / 2; pond.position.set(5, .03, -4); pond.scale.set(3, 2.3, 1); pond.userData = { id: 'pond' }; g.add(pond); c.pickables.push(pond);
-  for (let i = 0; i < 22; i++) { const a = i / 22 * TAU; const s = new THREE.Mesh(new THREE.DodecahedronGeometry(.18 + r() * .14, 0), smat(0x8a8a86, { roughness: .9 })); s.position.set(5 + Math.cos(a) * 3.05, .05, -4 + Math.sin(a) * 2.35); s.castShadow = true; g.add(s); }
-  c.addLabel(pond, 'Pond', { offset: new V3(0, .5, 0) });
+  // pond: a data thing now (data/things/pond, placed by data/things/index.json). This tiny invisible marker keeps the old pick id `pond` (library, search, "Show where it is" for the pond topics) at the pond's position.
+  const pond = new THREE.Mesh(new THREE.SphereGeometry(.01, 4, 3), new THREE.MeshBasicMaterial({ visible: false })); pond.position.set(5, .02, -4); pond.userData = { id: 'pond', node: 'park_pond' }; g.add(pond); c.pickables.push(pond);
   // the honey bee is a data thing now (data/things/bee, placed on a buttercup flower from data/things/index.json); its label and ruler stop come from its own data (label, label_m, ruler)
   // mushroom: now a data-driven thing (data/things/mushroom, FT.thing); this empty group keeps the old click id 'mushroom' as a place to fly to
   const mush = new THREE.Group(); mush.position.set(-3.4, .1, -1.6); mush.userData = { id: 'mushroom', node: 'park_mushroom' }; g.add(mush);
