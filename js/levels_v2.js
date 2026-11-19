@@ -809,7 +809,7 @@ BUILD.cell = (c, opts) => {
   }
   let vac = null;
   if (plant) {
-    // a central vacuole filling about 45% of the cell (typically 30 to 80%), squarish like the cell it sits in
+    // a central vacuole filling about 45% of the cell, squarish like the cell it sits in
     const vc = new V3(2.5, 0, 0), vs = new V3(15, 8, 8);
     const vg = new THREE.SphereGeometry(1, 48, 32), va = vg.attributes.position;
     for (let i = 0; i < va.count; i++) { const v = new V3().fromBufferAttribute(va, i), s = Math.pow(Math.pow(Math.abs(v.x), 4) + Math.pow(Math.abs(v.y), 4) + Math.pow(Math.abs(v.z), 4), .25) || 1; va.setXYZ(i, v.x / s, v.y / s, v.z / s); }
@@ -903,7 +903,7 @@ BUILD.cell = (c, opts) => {
   const PRE = opts.note ? opts.note + ' ' : '';
   const NOTES = {
     animal: PRE + 'Schematic animal cell at true overall size (about 20 µm across; nucleus about 6 µm; mitochondria about 2 µm long). Shapes are simplified and counts are far too low (a real cell has hundreds to thousands of mitochondria and millions of ribosomes). Ribosomes are drawn at true size (27 nm), so they appear only close up.',
-    plant: PRE + 'Schematic plant cell at true overall size (about 30 µm long). Shapes are simplified and counts are far too low (a real leaf cell has dozens of chloroplasts). Ribosomes are drawn at true size (27 nm), so they appear only close up. Vacuoles fill 30 to 80% of a cell; here about 45%.',
+    plant: PRE + 'Schematic plant cell at true overall size (about 30 µm long). Shapes are simplified and counts are far too low (a real leaf cell has dozens of chloroplasts). Ribosomes are drawn at true size (27 nm), so they appear only close up. In a mature plant cell the vacuole fills most of it; here about 45%, to leave room to see the rest.',
     mem: 'Schematic patch of membrane at true size, about 17 nm across: the bilayer is about 4 to 5 nm thick and the lipid heads about 0.8 nm apart. Cholesterol, most proteins and the constant sideways motion of lipids are left out; the channel and sugar chain are simplified shapes, not real structures.',
   };
   sceneNote(c, NOTES[c.opts.type]);
