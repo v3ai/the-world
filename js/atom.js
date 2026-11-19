@@ -707,10 +707,10 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
     const nucTrue = new THREE.Mesh(new THREE.SphereGeometry(1, 20, 14), smat(0xc0453a, { roughness: 0.5 })); F.add(nucTrue);
     F.pickables.push(hitMain, nucHit);
     /* a click on the cloud or on the nucleus selects it and brings it to the middle (the nucleus is far too small to frame: its pick target is a stand-in);
-       a double click on either, or "Look inside", goes into the nucleus (lookInside, js/engine.js) */
+       a double click on either, or "Look inside", goes into the nucleus: `inner` is this scene's entry point for lookInside (js/engine.js) when the descent module is not loaded */
     nucHit.userData.extent = () => ({ p: new V3(), r: null });
     const intoNucleus = () => { let c = F.children.find(k => k.type === 'nucleus'); if (!c) { c = F.spawn(new V3()); if (!c) return false; c.dynamic = true; c.keep = performance.now() + 60000; F.addChild(c); } c.ensure(); flyTo(c, new V3(), frameOverviewD(c)); return 'nucleus'; };
-    nucHit.userData.lookInside = intoNucleus; hitMain.userData.lookInside = intoNucleus;
+    nucHit.userData.inner = intoNucleus; hitMain.userData.inner = intoNucleus;
     const nucAnchor = mkAnchor(); const nucLbl = F.label(nucAnchor, 'Nucleus (true size, far too small to see)', { offset: new V3(0, 0, 0) });
     // ---------- interface ----------
     const btnEl = actBtn('', () => ATM.openPicker(F));

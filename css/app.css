@@ -526,7 +526,7 @@ body.panelOpen #controls { right: calc(var(--panel-w) + 32px) }
 body.panelOpen #zoombtns { right: calc(var(--panel-w) + 28px) }
 body.panelOpen #perf { right: calc(var(--panel-w) + 78px) }
 @media (max-width: 860px) {
-  #panel { left: 8px; right: 8px; top: auto; bottom: 8px; width: auto; max-width: none; height: 36vh; transition: transform .25s, height .2s, visibility 0s }
+  #panel { left: calc(var(--ruler-w) + 6px); right: 6px; top: auto; bottom: 8px; width: auto; max-width: none; height: 36vh; transition: transform .25s, height .2s, visibility 0s }
   #panel.min { transform: translateY(calc(100% + 40px)); transition: transform .25s, height .2s, visibility 0s .25s }
   #panel.tall { height: 82vh }
   #panel .grab { display: block }

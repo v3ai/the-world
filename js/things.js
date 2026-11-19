@@ -471,7 +471,7 @@ FT.thing = {
     F.update = (dt, t) => thFrameUpdate(F, dt, t);
     F.chooseHit = cands => thChooseHit(F, cands);
     F.cardMadeOf = (h, n) => thCardMadeOf(F, h, n);
-    F.lookInside = h => thLookInside(F, h);   // a double click, or the card's "Look inside" (lookInside, js/engine.js)
+    F.cutOpen = (h, peek) => thCutOpen(F, h, peek);   // a double click, or the card's "Look inside": the thing's cut-open view first (cutOpenOf, js/engine.js)
     F.spawnD = .006; F.spawn = (T0, hint) => thSpawn(F, T0, hint);
     F.coreIds = () => F.T ? F.T.coreRecs().map(r => r.pd.id) : [];
     F.coreClip = p => !!F.T && F.T.isClipped(p);
@@ -713,27 +713,25 @@ function thInstSize(T, rec, h) {
   if (m && m.isInstancedMesh && i !== undefined && m.geometry) { if (!m.geometry.boundingSphere) m.geometry.computeBoundingSphere(); m.getMatrixAt(i, _thIM); _thIS.setFromMatrixScale(_thIM); return Math.max(m.geometry.boundingSphere.radius * Math.max(_thIS.x, _thIS.y, _thIS.z) * T.k, 1e-5); }
   return null;
 }
-/* A double click on a part of a thing, or its card's "Look inside". First the thing's cut-open view, when it has one near the part and no cut
-   is showing yet: the cut or sample mode whose cut passes nearest the point clicked (the dog's eye opens "Inside the eye", its chest "Inside the
-   heart" or "Cut in half"; the oak's trunk the wood sample). Then the part's own closer view (its `deeper`: a tissue scene, a crystal, a cell).
-   With neither, the engine says that no closer view has been built (notBuilt). */
-function thLookInside(F, h) {
-  const T = F.T; if (!T) return false;
-  const ud = h.obj.userData, rec = T.parts[ud.id], pd = rec && rec.pd, d = ud.hotspot ? ud.hotspot.deeper : pd && pd.deeper;
-  const cur = T.modeId === 'auto' ? null : T.modeDef(T.modeId), cutNow = !!(cur && (cur.cut || cur.pivot));
-  if (!cutNow && !ud.hotspot && h.pointLocal) {
-    const p = h.pointLocal.clone().applyMatrix4(_thIM.copy(T.group.matrix).invert()), R = T.def.radius_m || 1, reach = Math.max((pd && pd.radius) || 0, R * .35);
-    let best = null, bd = reach;
-    for (const m of T.def.modes) {
-      if (!m.cut && !m.pivot) continue;
-      const at = m.cut ? (m.cut.at || (T.def.cut && T.def.cut.at)) : ((T.def.pivots || {})[m.pivot] || {}).at; if (!at) continue;
-      const dd = at.length === 2 ? Math.hypot(at[0] - p.x, at[1] - p.z) : Math.hypot(at[0] - p.x, at[1] - p.y, at[2] - p.z);
-      if (dd < bd - 1e-9) { bd = dd; best = m; }
-    }
-    if (best) { T.setMode(best.id); thUpdateControls(F); toast(`${best.label}: a cut-open view. Double-click a part again to go on in.`); return 'cut'; }
+/* The cut-open view of a thing, for a double click on one of its parts or its card's "Look inside": when the thing has a cut or sample mode near the
+   part and no cut is showing yet, the mode whose cut passes nearest the point clicked (the dog's eye opens "Inside the eye", its chest "Inside the
+   heart" or "Cut in half"; the oak's trunk the wood sample). Returns 'cut', or false when there is none to open (the next level down is then the
+   part's own closer view: thGoDeeper, called by the engine). peek: only say whether there is one. */
+function thCutOpen(F, h, peek) {
+  const T = F.T; if (!T || !h.pointLocal) return false;
+  const ud = h.obj.userData, rec = T.parts[ud.id], pd = rec && rec.pd; if (ud.hotspot) return false;
+  const cur = T.modeId === 'auto' ? null : T.modeDef(T.modeId); if (cur && (cur.cut || cur.pivot)) return false;
+  const p = h.pointLocal.clone().applyMatrix4(_thIM.copy(T.group.matrix).invert()), R = T.def.radius_m || 1, reach = Math.max((pd && pd.radius) || 0, R * .35);
+  let best = null, bd = reach;
+  for (const m of T.def.modes) {
+    if (!m.cut && !m.pivot) continue;
+    const at = m.cut ? (m.cut.at || (T.def.cut && T.def.cut.at)) : ((T.def.pivots || {})[m.pivot] || {}).at; if (!at) continue;
+    const dd = at.length === 2 ? Math.hypot(at[0] - p.x, at[1] - p.z) : Math.hypot(at[0] - p.x, at[1] - p.y, at[2] - p.z);
+    if (dd < bd - 1e-9) { bd = dd; best = m; }
   }
-  if (d) { thGoDeeper(F, h, d); return 'deeper'; }
-  notBuilt(h); return 'not-built';
+  if (!best) return false;
+  if (!peek) { T.setMode(best.id); thUpdateControls(F); toast(`${best.label}: a cut-open view. Double-click a part again to go further in.`); }
+  return 'cut';
 }
 /* the card's "See what it is made of" button: a part's or a marker's own `deeper`; (a frame's cardMadeOf: see CARD_HOOKS in nodes.js) */
 function thCardMadeOf(F, h, n) {

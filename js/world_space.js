@@ -415,7 +415,7 @@ FT.sun = {
     const rc = THREE.Mesh.prototype.raycast, loc = new V3();
     shell.raycast = function (ray, hits) { const tmp = []; rc.call(shell, ray, tmp); tmp.forEach(h => { loc.copy(h.point).add(F.C); if (!(cutOn && loc.x * sg.x > 0 && loc.y * sg.y > 0 && loc.z * sg.z > 0)) hits.push(h); }); };
     F.pick(shell, 'sunPhoto', 2); shell.userData.madeOf = 'plasma';
-    shell.userData.lookInside = () => { if (cutOn) return false; userCut = true; flyTo(F, new V3(.1, .08, .08), 1.2e9); return 'cut'; }; // a double click (or "Look inside"): the cut-away first; with it open, the plasma at the point (F.spawn)
+    shell.userData.cutOpen = (h, peek) => { if (cutOn) return false; if (peek) return 'cut'; userCut = true; flyTo(F, new V3(.1, .08, .08), 1.2e9); return 'cut'; }; // a double click (or "Look inside"): the cut-away first (cutOpenOf, js/engine.js); with it open, the next level down at the point
     const cm = sunCutMat(), faces = [[new V3(0, 1, 0), new V3(0, 0, 1)], [new V3(1, 0, 0), new V3(0, 0, 1)], [new V3(1, 0, 0), new V3(0, 1, 0)]].map(([u, v]) => { const m = new THREE.Mesh(sunQuarter(u, v), cm); m.visible = false; cutGrp.add(m); return m; });
     const layerOf = h => { const p = h.point.clone().add(F.C); const l = sunAt(p.length()).layer; return l === 'core' ? 'sunCore' : l === 'radiative' ? 'sunRadiative' : l === 'convective' ? 'sunConvective' : 'sunPhoto'; };
     faces.forEach(m => { m.userData = { resolve: layerOf, priority: 2.2, madeOf: 'plasma' }; const r0 = m.raycast.bind(m); m.raycast = (ray, hits) => { if (cutOn) r0(ray, hits); }; F.pickables.push(m); });

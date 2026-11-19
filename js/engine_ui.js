@@ -75,7 +75,10 @@ function crumbChain(cur) {
   return chain;
 }
 /* "See it from further out": one level back up, which is what the step before the last one in the path does. */
-function goFurtherOut() { const ch = crumbChain(capFrame || cam.A); if (ch.length > 1) crumbGo(ch[ch.length - 2]); else message('This is the widest view there is.'); }
+function goFurtherOut() {
+  if (typeof DESCENT !== 'undefined' && DESCENT && DESCENT.up) { DESCENT.up(); return; }   // the descent module (js/descent.js) knows the way back out of what it built
+  const ch = crumbChain(capFrame || cam.A); if (ch.length > 1) crumbGo(ch[ch.length - 2]); else message('This is the widest view there is.');
+}
 function updateCrumbs(cur) {
   const ol = $('#crumbList'); if (!ol) return;
   const chain = crumbChain(cur); // root ... current
@@ -135,7 +138,15 @@ function cardHtml(s) {
 /* The two controls every card of a clicked thing has. "Look inside" does exactly what a double click on the thing does (lookInside, js/engine.js);
    "See it from further out" goes one level back up, which is what the step before the last one in the path does. */
 const LOOK_BTNS = '<button class="zoom" id="zoomBtn" title="The same as double-clicking it: its cut-open view if it has one, otherwise the next level down">Look inside</button><button class="zoom alt" id="outBtn" title="Fly out one level, to the place this is part of">See it from further out</button>';
-function wireLookBtns(h) { const zb = $('#zoomBtn'); if (zb) zb.onclick = () => lookInside(h); const ob = $('#outBtn'); if (ob) ob.onclick = goFurtherOut; }
+function wireLookBtns(h) {
+  const zb = $('#zoomBtn'); if (zb) zb.onclick = () => lookInside(h); const ob = $('#outBtn'); if (ob) ob.onclick = goFurtherOut;
+  /* where the answer is the next level down (no cut-open view to show first), the descent module can say what that level is: the button names it, and a stand-in is admitted under the buttons */
+  if (zb && h && h.obj && h.frame && h.frame.built && typeof DESCENT !== 'undefined' && DESCENT && DESCENT.describe && !h.obj.userData.lookInside) {
+    let d = null; try { if (!cutOpenOf(h, true)) d = DESCENT.describe(h); } catch (e) { d = null; }
+    if (d && d.title) zb.textContent = 'Look inside: ' + d.title;
+    if (d && d.note) { const n = document.createElement('p'); n.className = 'cnote lookNote'; n.textContent = d.note; const row = zb.closest('.btnrow'); if (row) row.insertAdjacentElement('afterend', n); }
+  }
+}
 function chipsHtml(items) { return items.length ? `<div class="chips">${items.join('')}</div>` : ''; }
 /* A card opened in this same run of code and then a flight started (goToNode, search, a trail stop, a chip) is a deliberate jump: the card describes where
    the flight is going, so it stays open (with whatever the jump highlighted or peeled). A flight started on its own closes a card left over from where you were.
@@ -232,15 +243,19 @@ function showNoParts(text) {
   $('#panelBody').scrollTop = 0;
 }
 const NOT_BUILT = 'No closer view of this has been built yet';
-function showNotBuilt(h) {
-  toast(NOT_BUILT + '.');
+/* reason: the sentence to show (the descent module gives its own; the default is NOT_BUILT). card: the node whose card goes with it (default: what the thing is made of, when that has a card). */
+function showNotBuilt(h, reason, card) {
+  const say = reason || NOT_BUILT + '.';
+  toast(say);
   const pn = $('#placeNote'); if (pn) pn.textContent = '';
-  if (!h) { if (pn) pn.textContent = NOT_BUILT + '. This is as far in as the model of this place goes.'; return; }
-  const ud = h.obj.userData, n = typeof NODE !== 'undefined' && NODE[ud.node || h.id], made = n && (n.made_of || []).find(i => NODE[i] && i !== n.id);
+  if (!h) { if (pn) pn.textContent = reason || NOT_BUILT + '. This is as far in as the model of this place goes.'; $('#panelBody').scrollTop = 0; return; }
+  const ud = h.obj.userData, n = typeof NODE !== 'undefined' && NODE[ud.node || h.id];
+  const made = card !== undefined ? (card && typeof NODE !== 'undefined' && NODE[card] ? card : null) : n && (n.made_of || []).find(i => NODE[i] && i !== n.id);
   const title = (infoState && infoEl.querySelector('h2') ? infoEl.querySelector('h2').textContent : '') || (n && n.title) || 'this';
-  let txt = NOT_BUILT + '.';
-  if (made) { showBodyNode(made, null); txt = `${NOT_BUILT}. ${title} is as far in as the model goes here; this card is about what it is made of.`; }
-  if (!infoEl.querySelector('.nobuilt')) { const d = document.createElement('div'); d.className = 'nobuilt'; d.textContent = txt; const hd = infoEl.querySelector('.cardhead'); if (hd) hd.insertAdjacentElement('beforebegin', d); else infoEl.prepend(d); }
+  let txt = say;
+  if (made && !(infoState && infoState.node === made)) { showBodyNode(made, null); txt = `${say} ${title} is as far in as the model goes here; this card is about what it is made of.`; }
+  infoEl.querySelectorAll('.nobuilt').forEach(e => e.remove());
+  const d = document.createElement('div'); d.className = 'nobuilt'; d.textContent = txt; const hd = infoEl.querySelector('.cardhead'); if (hd) hd.insertAdjacentElement('beforebegin', d); else infoEl.prepend(d);
   $('#panelBody').scrollTop = 0;
 }
 function closePops() { ['#library', '#tourPop', '#tracks'].forEach(s => { const e = $(s); if (e) e.classList.remove('open'); }); document.body.classList.remove('trackOpen'); }
@@ -573,7 +588,7 @@ function updateCaption() {
   const tn = f.timeNote || ''; if ($('#capT').textContent !== tn) $('#capT').textContent = tn;
   const k = `Field of view ${fmtLen(view)}`; if ($('#capK').textContent !== k) $('#capK').textContent = k;
   // a thing you looked inside: when the camera arrives in the new place (or the flight is over), the place takes the panel
-  if (selLeave) { const L = selLeave; if (!curCard || curCard.key !== L.key) selLeave = null; else if (chainOf(cam.A).includes(L.frame) || (!fly && performance.now() - L.t > 400)) { selLeave = null; closeInfo(); } }
+  if (selLeave) { const L = selLeave; if (!curCard || curCard.key !== L.key) selLeave = null; else if (chainOf(cam.A).includes(L.frame) || (!fly && performance.now() - L.t > 400)) { const arrived = chainOf(cam.A).includes(L.frame); selLeave = null; closeInfo(); if (arrived && L.note) $('#placeNote').textContent = L.note; } } // L.note: what the descent module said about the level it built (a stand-in, say)
   panelSync(performance.now());
 }
 /* The ring round a selected thing that has no glow of its own (a star, a marker, one of a crowd). One projection a frame, no picking. */

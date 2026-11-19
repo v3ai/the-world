@@ -1109,7 +1109,10 @@ function frameSelected(h) {
   const v = e.p.clone().sub(f.C).project(f.cam), sx = (v.x + 1) / 2 * W, sy = (1 - v.y) / 2 * H;
   const off = Math.hypot(sx - c.x, sy - c.y), tol = Math.min(A.w, A.h) * .2;
   let D = cam.D;
-  if (e.r) { const want = Math.max(fitD(f, e.r), f.floorD || 0, MIN_D * 10); if (want > cam.D * 2.5) return; if (want < cam.D * .62 || want > cam.D * 1.25) D = want; }
+  if (e.r) {
+    const dive = f.spawn ? (f.spawnD || f.r0 * 1.6) * 1.15 : 0;   // never so close that the engine takes it for a descent into the next level: a click frames, it does not go in
+    const want = Math.max(fitD(f, e.r), f.floorD || 0, dive, MIN_D * 10); if (want > cam.D * 2.5) return; if (want < cam.D * .62 || want > cam.D * 1.25) D = want;
+  }
   if (D === cam.D && off < tol && v.z < 1) return;
   h.framed = { p: e.p, D };
   flyKeep(f, e.p, D);
@@ -1118,40 +1121,61 @@ function frameSelected(h) {
 function flyKeep(frame, p, D, then) { const was = typeof CARD_FRESH !== 'undefined' && CARD_FRESH; if (typeof CARD_FRESH !== 'undefined') CARD_FRESH = true; try { flyTo(frame, p, D, then); } finally { if (typeof CARD_FRESH !== 'undefined') CARD_FRESH = was; } }
 
 /* ================= LOOK INSIDE =================
-   What a double click, and the panel's "Look inside" button, do with a thing. In order of preference:
-     1. the object's own answer:  userData.lookInside(h)   (return false to pass)     the Sun's cut-away, a Standard Model particle, the atom's nucleus
-     2. the frame's own answer:   frame.lookInside(h)      (return false to pass)     a thing's cut view, then the part's closer view; the phone opened to a part
-     3. a cut-open view of it (an organ of the body)
-     4. the frame it stands for:  userData.zoomTo(h)                                  a star, a planet, Sgr A*, the processor on the phone's board
-     5. what the frame says it is made of (cardMadeOf: a part of a thing with a closer view)
-     6. the engine's own descent: frame.spawn(point, hit) builds the next level down at the clicked point (a body part's tissue, a tissue's
-        cell, a cell's DNA or molecules, a molecule's atom, an atom's nucleus, a nucleus's proton or neutron, a proton's quarks)
-     7. a frame that already sits inside the object, at the point (the processor die under the phone's chip, the transistor in the inverter)
-     8. the object's material (userData.madeOf: diveMaterial)
-   If none of these has anything, the camera goes as close as the view allows and the panel says, in these words, "No closer view of
-   this has been built yet" (notBuilt). It never does nothing. Returns what it did, for the tests: {how, frame?}.
-   A view that is a new place (a frame) takes over the panel when the camera arrives: the selection is dropped then (selLeave). */
+   What a double click, and the panel's "Look inside" button, do with a thing.
+   1. A cut-open view of it, where one exists and is not showing yet (cutOpenOf):
+        userData.cutOpen(h, peek) / frame.cutOpen(h, peek)   the Sun's cut-away, a thing's cut or sample mode, the phone opened to the part
+                                                             (peek: say whether there is one, without opening it; return false to pass)
+        an organ of the body with a cut-open view (an enterOnly organ frame)
+      or the scene's own whole answer, userData.lookInside(h): a Standard Model particle plays its decay or says it has no known parts.
+   2. Otherwise the next level down at the point clicked. That is the descent module's job when it is loaded:
+        DESCENT.inside(h)  ->  {ok: true, title, note}  or  {ok: false, reason, card}     (js/descent.js)
+      It flies there itself; a refusal's reason is shown in the panel, with the card it names.
+   3. Without that module (insideFallback), the entry points that exist today, in this order: userData.zoomTo(h) (the frame the object stands
+      for: a star, a planet, Sgr A*; skipped when the camera is already there), userData.inner(h) (the atom's nucleus), frame.cardMadeOf (a
+      part of a thing with a closer view: thGoDeeper), frame.spawn(point, hit) (the engine's descent at the clicked point), a frame that
+      already sits inside the object at the point, diveMaterial (userData.madeOf). If none has anything, the camera goes as close as the
+      view allows and the panel says "No closer view of this has been built yet" (notBuilt).
+   It never does nothing. lastInside records what happened, for the tests: {how, frame}. When the answer is another frame, the card stays
+   for the flight and the place takes the panel on arrival (selLeave). */
 let selLeave = null, lastInside = null;
-function lookInside(h, opt) {
+function organViewOf(h) { const f = h.frame, n = h.obj.userData.node; return (f.children && n && f.children.find(c => c.enterOnly && c.opts && c.opts.organ === n)) || null; }
+/* the cut-open view of the thing: opens it (returns what it did) or, with peek, only says whether there is one to open */
+function cutOpenOf(h, peek) {
+  const ud = h.obj.userData, f = h.frame; let r = false;
+  if (ud.cutOpen) { if (peek) r = ud.cutOpen(h, true); else flyKeepDo(() => { r = ud.cutOpen(h, false); }); if (r) return typeof r === 'string' ? r : 'cut'; }
+  if (f.cutOpen) { if (peek) r = f.cutOpen(h, true); else flyKeepDo(() => { r = f.cutOpen(h, false); }); if (r) return typeof r === 'string' ? r : 'cut'; }
+  const og = organViewOf(h); if (og && cam.A !== og) { if (!peek) { selLeaveFor(og); flyKeep(og, new V3(), og.opts.R * 2.2); } return 'cut'; }
+  return null;
+}
+function selLeaveFor(frame, note) { selLeave = { frame, key: typeof curCard !== 'undefined' && curCard ? curCard.key : null, t: performance.now(), note: note || '' }; }
+function lookInside(h) {
   cancelTour(); if (typeof panelHintDone === 'function') panelHintDone();
   if (!h || !h.obj || !h.frame || !h.frame.built) return lastInside = { how: 'none' };
   if (selHit !== h && !(selHit && selHit.obj === h.obj)) selectHit(h); // the card of what you are looking into, until the new place takes over
-  const ud = h.obj.userData, f = h.frame;
-  const enter = (how, frame, p, D) => { selLeave = { frame, key: typeof curCard !== 'undefined' && curCard ? curCard.key : null, t: performance.now() }; flyKeep(frame, p || new V3(), D); return lastInside = { how, frame }; };
-  const same = how => lastInside = { how, frame: f };
-  const before = { A: cam.A, fly };
-  const went = how => { if (fly && fly !== before.fly) { if (fly.frame !== f) selLeave = { frame: fly.frame, key: typeof curCard !== 'undefined' && curCard ? curCard.key : null, t: performance.now() }; return lastInside = { how, frame: fly.frame }; } return same(how); };
-  let r;
+  const ud = h.obj.userData, f = h.frame, fly0 = fly;
+  const went = (how, note) => { const moved = fly && fly !== fly0; if (moved && fly.frame !== f) selLeaveFor(fly.frame, note); return lastInside = { how, frame: moved ? fly.frame : f }; };
+  let r = cutOpenOf(h, false);
+  if (r) return went(r);
   if (ud.lookInside) { flyKeepDo(() => { r = ud.lookInside(h); }); if (r !== false) return went(typeof r === 'string' ? r : 'own'); }
-  if (f.lookInside) { flyKeepDo(() => { r = f.lookInside(h); }); if (r !== false) return went(typeof r === 'string' ? r : 'frame'); }
-  const og = f.children && ud.node && f.children.find(c => c.enterOnly && c.opts && c.opts.organ === ud.node); // an organ you can see has a cut-open view
-  if (og) return enter('cut', og, new V3(), og.opts.R * 2.2);
-  if (ud.zoomTo) {
-    const st = { fly, T: cam.T.clone(), D: cam.D, A: cam.A }; flyKeepDo(() => { r = ud.zoomTo(h); });
-    // a destination that is where the camera already is (the Moon you have flown to) is no answer: go on to what is inside it
-    const there = fly && fly !== st.fly && fly.frame === st.A && fly.p.distanceTo(st.T) * st.A.unit < st.D * .2 && Math.abs(Math.log(fly.Dg / st.D)) < .35;
-    if (there) fly = st.fly; else if (r !== false) return went('stands-for');
+  if (typeof DESCENT !== 'undefined' && DESCENT && DESCENT.inside) { // the next level down: the descent module's
+    flyKeepDo(() => { r = DESCENT.inside(h); });
+    if (r && r.ok) return went('descent', r.note);
+    if (typeof showNotBuilt === 'function') showNotBuilt(h, r && r.reason, r && r.card);
+    return lastInside = { how: 'not-built', frame: f };
   }
+  return insideFallback(h, went);
+}
+/* The next level down without the descent module: today's entry points, called as they are. */
+function insideFallback(h, went) {
+  const ud = h.obj.userData, f = h.frame, fly0 = fly; let r;
+  const enter = (how, frame, p, D) => { selLeaveFor(frame); flyKeep(frame, p || new V3(), D); return lastInside = { how, frame }; };
+  if (ud.zoomTo) {
+    const st = { T: cam.T.clone(), D: cam.D, A: cam.A }; flyKeepDo(() => { r = ud.zoomTo(h); });
+    // a destination that is where the camera already is (the Moon you have flown to) is no answer: go on to what is inside it
+    const there = fly && fly !== fly0 && fly.frame === st.A && fly.p.distanceTo(st.T) * st.A.unit < st.D * .2 && Math.abs(Math.log(fly.Dg / st.D)) < .35;
+    if (there) fly = fly0; else if (r !== false) return went('stands-for');
+  }
+  if (ud.inner) { flyKeepDo(() => { r = ud.inner(h); }); if (r !== false) return went(typeof r === 'string' ? r : 'inner'); }
   const node = typeof NODE !== 'undefined' && NODE[ud.node || h.id];
   const mo = f.cardMadeOf && node ? f.cardMadeOf(h, node) : null;
   if (mo) { flyKeepDo(() => mo.go()); return went('made-of'); }
@@ -1161,12 +1185,12 @@ function lookInside(h, opt) {
     if (!c) { c = f.spawn(P, { frame: f, obj: h.obj, point: P.clone(), normal: h.normalLocal, id: h.id, hit: h.hit }); if (c) { c.dynamic = true; c.keep = performance.now() + 60000; f.addChild(c); } }
     if (c) { c.ensure(); return enter('descent', c, c.center ? c.center.clone() : new V3(), frameOverviewD(c)); }
   }
-  { // a frame that already sits inside the object: the nearest one whose centre the object's extent holds (or that holds the point)
+  { // a frame that already sits inside the object, at the point (the processor die under the phone's chip, a planet's frame under its dot)
     const e = hitExtent(h); let best = null, bd = Infinity;
-    for (const c of f.children) { if (c.coRender || c.enterOnly) continue; safePlace(c); const d = c.pos.distanceTo(e.p), d2 = c.pos.distanceTo(P), cr = c.radius === Infinity ? 0 : c.radius * c.unit / f.unit; if ((e.r && d <= e.r * 1.05 && d2 <= Math.max(cr * 2, e.r * .35)) || c.containsP(P)) { if (d2 < bd) { bd = d2; best = c; } } }
+    for (const c of f.children) { if (c.coRender || c.enterOnly) continue; safePlace(c); const d = c.pos.distanceTo(e.p), d2 = c.pos.distanceTo(P), cr = c.radius === Infinity ? 0 : c.radius * c.unit / f.unit; if ((e.r && d <= e.r * 1.05 && d2 <= Math.max(cr * 2, e.r * .35)) || c.containsP(P) || (!e.r && c.containsP(e.p))) { if (d2 < bd) { bd = d2; best = c; } } }
     if (best) { best.ensure(); return enter('inner', best, best.center ? best.center.clone() : new V3(), frameOverviewD(best)); }
   }
-  if (ud.madeOf && typeof diveMaterial === 'function') { flyKeepDo(() => diveMaterial(h, true)); if (fly && fly !== before.fly) return went('material'); }
+  if (ud.madeOf && typeof diveMaterial === 'function') { flyKeepDo(() => diveMaterial(h, true)); if (fly && fly !== fly0) return went('material'); }
   return notBuilt(h);
 }
 function flyKeepDo(fn) { const was = typeof CARD_FRESH !== 'undefined' && CARD_FRESH; if (typeof CARD_FRESH !== 'undefined') CARD_FRESH = true; try { fn(); } finally { if (typeof CARD_FRESH !== 'undefined') CARD_FRESH = was; } }
@@ -1185,15 +1209,18 @@ function notBuilt(h) {
   if (typeof showNotBuilt === 'function') showNotBuilt(h);
   return lastInside = { how: 'not-built', frame: f };
 }
-/* "Look inside" with nothing selected (the place card's button): the thing in the middle of the free area; with nothing there, the place's own descent at the camera's target. */
+/* "Look inside" with nothing selected (the place card's button): the thing in the middle of the free area. With nothing there, and without the
+   descent module, the place's own next level at the camera's target (frame.spawn, or the frame that sits nearest inside it). */
 function lookInsidePlace() {
   const c = viewCentre(), h0 = pickAt(c.x, c.y), h = h0 && !isBackdrop(h0) ? h0 : null;
   if (h) return lookInside(h);
   const f = cam.A;
-  if (f.spawn) { const k = f.spawn(cam.T.clone(), null); if (k) { k.dynamic = true; k.keep = performance.now() + 60000; f.addChild(k); k.ensure(); flyTo(k, k.center ? k.center.clone() : new V3(), frameOverviewD(k)); return lastInside = { how: 'descent', frame: k }; } }
-  const ch = f.children.filter(k => !k.coRender && !k.enterOnly).sort((a, b) => a.pos.distanceTo(cam.T) - b.pos.distanceTo(cam.T))[0];
-  if (ch) { ch.ensure(); flyTo(ch, ch.center ? ch.center.clone() : new V3(), frameOverviewD(ch)); return lastInside = { how: 'inner', frame: ch }; }
-  if (typeof showNotBuilt === 'function') showNotBuilt(null);
+  if (typeof DESCENT === 'undefined' || !DESCENT) {
+    if (f.spawn) { const k = f.spawn(cam.T.clone(), null); if (k) { k.dynamic = true; k.keep = performance.now() + 60000; f.addChild(k); k.ensure(); flyTo(k, k.center ? k.center.clone() : new V3(), frameOverviewD(k)); return lastInside = { how: 'descent', frame: k }; } }
+    const ch = f.children.filter(k => !k.coRender && !k.enterOnly).sort((a, b) => a.pos.distanceTo(cam.T) - b.pos.distanceTo(cam.T))[0];
+    if (ch) { ch.ensure(); flyTo(ch, ch.center ? ch.center.clone() : new V3(), frameOverviewD(ch)); return lastInside = { how: 'inner', frame: ch }; }
+  }
+  if (typeof showNotBuilt === 'function') showNotBuilt(null, 'Nothing is in the middle of the view to look into. Click a thing, then choose Look inside, or double-click it.');
   return lastInside = { how: 'not-built', frame: f };
 }
 function objRadiusLocal(obj) {
