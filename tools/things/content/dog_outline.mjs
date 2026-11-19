@@ -3,7 +3,7 @@
 import fs from 'fs';
 import { skinShape } from '../models/dog_rig.mjs';
 const f = skinShape().f, step = .5, ZS = [-9, -7.5, -6, -4.5, -3, -1.5, 0, 1.5, 3, 4.5, 6, 7.5, 9];     // the silhouette: the union of sections across the body
-const X0 = -45, X1 = 56, Y0 = 0, Y1 = 71, nx = Math.round((X1 - X0) / step), ny = Math.round((Y1 - Y0) / step);
+const X0 = -68, X1 = 56, Y0 = 0, Y1 = 71, nx = Math.round((X1 - X0) / step), ny = Math.round((Y1 - Y0) / step);
 const inside = (i, j) => ZS.some(z => f([(X0 + i * step) * .01, (Y0 + j * step) * .01, z * .01]) < 0);
 // boundary cells -> ordered outline by walking the silhouette column by column (top edge then bottom edge): the shape has no overhangs in this view except the legs, so use a contour follow
 const grid = []; for (let j = 0; j <= ny; j++) { grid.push([]); for (let i = 0; i <= nx; i++) grid[j].push(inside(i, j)); }

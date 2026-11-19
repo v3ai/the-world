@@ -108,11 +108,11 @@ def bars2(id, items, ylabel, caption, logy=False): bars(id, items, ylabel, capti
 # proportions (the silhouette is the model's own side view)
 o = json.load(open(os.path.join(os.path.dirname(__file__), 'dog_outline.json')))['pts']
 S = [{'k': 'poly', 'pts': [[round(x, 1), round(y, 1)] for x, y in o], 'fill': '#d9b36f', 'alpha': .35, 'closed': True, 'color': 'dim'},
-     {'k': 'line', 'x1': -44, 'y1': 58, 'x2': 22, 'y2': 58, 'color': 'accent', 'dash': 4}, {'k': 'text', 'x': -44, 'y': 61, 'text': 'height at the withers ≈ 57 cm', 'size': 11, 'align': 'left'},
-     {'k': 'line', 'x1': -20, 'y1': 29, 'x2': 20, 'y2': 29, 'color': 'orange', 'dash': 4}, {'k': 'text', 'x': -44, 'y': 31.5, 'text': 'brisket and elbow ≈ 29 cm: half the height (0.51)', 'size': 11, 'align': 'left'},
+     {'k': 'line', 'x1': -66, 'y1': 58, 'x2': 22, 'y2': 58, 'color': 'accent', 'dash': 4}, {'k': 'text', 'x': -66, 'y': 61, 'text': 'height at the withers ≈ 57 cm', 'size': 11, 'align': 'left'},
+     {'k': 'line', 'x1': -66, 'y1': 29, 'x2': 22, 'y2': 29, 'color': 'orange', 'dash': 4}, {'k': 'text', 'x': -66, 'y': 31.5, 'text': 'brisket and elbow ≈ 29 cm: half the height (0.51)', 'size': 11, 'align': 'left'},
      {'k': 'arrow', 'x1': 25.5, 'y1': -5, 'x2': -41.5, 'y2': -5, 'color': 'green'}, {'k': 'arrow', 'x1': -41.5, 'y1': -5, 'x2': 25.5, 'y2': -5, 'color': 'green'}, {'k': 'text', 'x': -8, 'y': -9, 'text': 'point of shoulder to buttock ≈ 67 cm (1.18 × the height)', 'size': 11, 'align': 'center'},
      {'k': 'line', 'x1': -4, 'y1': 0, 'x2': -4, 'y2': 58, 'color': 'dim', 'dash': 2}]
-FIGS['dog_coat_group'] = {'type': 'geometry', 'range': [-48, 62, -13, 72], 'shapes': S, 'caption': 'The model\'s own side view with the breed standard\'s proportions: a dog a little longer than tall, with the elbow at half the height. Heights and lengths are measured on the model (a 3-D reconstruction from typical proportions); the standard says "equal to or slightly longer than" and "elbow to ground equal to one half of the height" (AKC) and 56-57 cm (UK Kennel Club).', 'aspect': .62}
+FIGS['dog_coat_group'] = {'type': 'geometry', 'range': [-70, 62, -13, 72], 'shapes': S, 'caption': 'The model\'s own side view with the breed standard\'s proportions: a dog a little longer than tall, with the elbow at half the height. Heights and lengths are measured on the model (a 3-D reconstruction from typical proportions); the standard says "equal to or slightly longer than" and "elbow to ground equal to one half of the height" (AKC) and 56-57 cm (UK Kennel Club).', 'aspect': .62}
 
 # footfalls: walk (lateral sequence) and trot (diagonal pairs), idealised
 def stance(y, start, duty, col):
