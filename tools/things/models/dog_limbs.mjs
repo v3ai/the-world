@@ -37,7 +37,7 @@ export function limbBones() {
     // ---- hindlimb ----
     const hip = z(H.hip, s, H.zH), kn = z(H.stifle, s, H.zK), hk = z(H.hock, s, H.zT), mt = z(H.mtp, s, H.zP);
     meshes['femur_' + k] = bone(hip, kn, .0105, .018, .017, { sides: 10, e: .2, bow: .04, bowDir: [1, 0, 0] });
-    meshes['patella_' + k] = D.meshS(D.ell(L.add(kn, [.012, .006, 0]), [0, 1, 0], .008, .0055, .004), .0025);
+    meshes['patella_' + k] = D.meshS(D.ell(L.add(kn, [.021, .004, 0]), [0, 1, 0], .009, .0065, .0045), .0025);
     { const t = bone(kn, hk, .0085, .015, .011, { sides: 9, e: .18, bow: .03, bowDir: [1, 0, 0] }), f = bone(L.add(kn, [-.006, -.01, s * .006]), L.add(hk, [.003, .008, s * .006]), .0025, .004, .004, { sides: 5, n: 8 });
       meshes['tibia_fibula_' + k] = L.merge(t, f); }
     { const cal = bone(L.add(hk, [-.003, .0, 0]), z(H.heel, s, H.zT + .2), .0072, .008, .0105, { sides: 8, e: .25, n: 6 });

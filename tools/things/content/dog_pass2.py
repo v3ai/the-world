@@ -70,6 +70,8 @@ ext('dog_optic', OPTICSRC)
 # ear
 fix('dog_ear', 'deeper', 'Eighteen or more muscles move a dog\'s ear (according to a standard reference), so a dog with prick ears can swivel them toward a sound.', 'Many small muscles move a dog\'s ear (a popular source says 18; I could not check the number in a veterinary anatomy text), so a dog with prick ears can swivel them toward a sound.')
 fact('dog_ear', 'Ear muscles', 'many (18 is often quoted; not checked in a veterinary text)')
+fix('dog_ear', 'deeper', 'Floppy ears like the Labrador\'s are a trait selected during domestication; the cartilage of the flap is the same.', 'Floppy ears like the Labrador\'s are common in domesticated animals and are thought to be a by-product of domestication (an idea that is still debated); the cartilage of the flap is the same.')
+fix('dog_radius_ulna', 'deeper', 'The radius and ulna are fixed together so the dog\'s forearm twists very little, unlike yours; the two bones lock into one stiff post for running.', 'The radius and ulna are tied together by a tough ligament so the dog\'s forearm can twist only a little, unlike yours; the two bones act as one stiff post for running.')
 # smell genes
 GENES = '≈ 870 intact genes in the dog (1,094 genes, about 20 % of them pseudogenes) against ≈ 330 in a person (about 900 genes, about 63 % pseudogenes); calculated from the two papers'
 for i in ('dog_turb_olf', 'dog_osn'):

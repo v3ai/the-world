@@ -17,6 +17,7 @@ export const hrod = (a, b, r1, r2 = r1) => rod(HL(...a), HL(...b), r1 * .01 * SC
 const sd = (s, f) => SIDES.map(f);
 const z = (s, v) => s * v;
 
+const JU = .8;   // the closed mouth: the lower jaw sits this much (head-frame cm) higher than the first draft, so the teeth meet
 export const EYE_L = [11.3, 2.7, 4.2];                 // head frame, right eye
 export const EYE_C = HLcm(...EYE_L);                    // body frame (cm)
 export const eyeAxis = s => { const a = HD(Math.cos(.35), 0, 0); return L.norm([a[0], a[1], s * Math.sin(.35)]); };
@@ -48,18 +49,19 @@ export function mandible() {
       D.sphereS(HL(3.9, -2.4, s * 3.5), .0058), hrod([4.2, -4.6, s * 3.3], [2.6, -4.2, s * 3.2], .45));
   }
   parts.push(hrod([18.6, -4.8, -.9], [18.6, -4.8, .9], .8));
-  return meshS(smoothS(.004, ...parts), .0035);
+  const jaw = smoothS(.004, ...parts), up = HD(0, JU * SC);
+  return meshS(D.translateS(jaw, [up[0] * .01, up[1] * .01, 0]), .0035);
 }
 // 42 teeth: upper I3 C1 P4 M2, lower I3 C1 P4 M3, each side; all crowns meet in the occlusal plane
 export function teeth() {
   const T = []; // [x, z, up?, kind, rootY]
   const U = [['i', 19.4, .55], ['i', 19.2, 1.35], ['i', 18.8, 2.1], ['c', 17.2, 2.55], ['p', 15.4, 2.5], ['p', 14.1, 2.6], ['p', 12.5, 2.75], ['P', 10.4, 3.05], ['m', 8.5, 3.0], ['m', 7.2, 2.7]];
   const Lw = [['i', 18.9, .4], ['i', 18.7, 1], ['i', 18.4, 1.6], ['c', 17.9, 1.75], ['p', 15.3, 1.95], ['p', 14, 2.1], ['p', 12.7, 2.2], ['p', 11.4, 2.3], ['M', 9, 2.45], ['m', 7.4, 2.3], ['t', 6.2, 2]];
-  const sz = { i: [.38, 1.0, .9], c: [.55, 2.3, .9], p: [.4, 1.1, 1.0], P: [.45, 1.5, 1.9], m: [.55, 1.0, 1.1], M: [.55, 1.5, 1.8], t: [.3, .6, .7] };
+  const sz = { i: [.38, 1.0, .9], c: [.55, 2.3, .9], p: [.4, 1.3, 1.0], P: [.45, 1.7, 1.9], m: [.55, 1.2, 1.1], M: [.55, 1.7, 1.8], t: [.3, .8, .7] };
   const meshes = [];
   for (const s of SIDES) {
     for (const [k, x, zz] of U) meshes.push(tooth(sz[k], x, -1.3 + .3, s * zz, true));
-    for (const [k, x, zz] of Lw) meshes.push(tooth(sz[k], x, -4.0 - .3, s * zz, false));
+    for (const [k, x, zz] of Lw) meshes.push(tooth(sz[k], x, -4.0 - .3 + JU, s * zz, false));
   }
   return { mesh: L.merge(...meshes), count: meshes.length };
 }
@@ -76,7 +78,7 @@ export function brain() {
   return meshS(smoothS(.004, ...hem, cb, bs), .0028);
 }
 export const bulbs = () => D.bothSides(s => hell([12.3, 3, s * 1], [1, 0], 1.4, 1.1, .9), .0022);
-export function tongue() { return meshS(smoothS(.004, hrod([5, -4, 0], [10, -3.7, 0], 1.5, 1.25), hell([13, -3.5, 0], [1, 0], 4.6, .75, 1.5), hrod([16, -3.5, 0], [18, -3.4, 0], .9, .6)), .0028); }
+export function tongue() { return meshS(smoothS(.004, hrod([5, -3.4, 0], [10, -3, 0], 1.1, .9), hell([13, -2.9, 0], [1, 0], 4.6, .6, 1.4), hrod([16, -2.9, 0], [18, -2.8, 0], .7, .5)), .0028); }
 export const larynxAt = () => HL(1.5, -5.6, 0);
 
 // ---------------- the skin of the head ----------------
@@ -91,9 +93,10 @@ export function headSkinParts() {
   sh.push(hell([5.8, -2.6, 0], [1, 0], 3.6, 2.8, 5.0));          // jaw muscles and the angle of the jaw
   sh.push(hell([14.8, 1.0, 0], [1, 0], 6.8, 3.1, 4.3));         // muzzle (upper jaw with its flews)
   sh.push(hell([15.2, -1.5, 0], [1, 0], 5.6, 2.1, 3.7));        // the upper lip (flews)
-  sh.push(hell([11.5, -4.6, 0], [1, 0], 7.6, 1.7, 3.5));        // lower jaw
+  sh.push(hell([10.6, -1.3, 0], [1, 0], 4.2, 1.6, 4.1));        // the upper lip over the cheek teeth
+  sh.push(hell([11.5, -3.9, 0], [1, 0], 7.6, 1.7, 3.5));        // lower jaw
   sh.push(hell([4.2, -3.6, 0], [1, 0], 4.2, 3.2, 3.4));         // throat and the angle of the jaw
-  sh.push(hell([18.4, -4.5, 0], [1, 0], 2.8, 1.9, 2.4));          // chin
+  sh.push(hell([18.4, -3.8, 0], [1, 0], 2.8, 1.9, 2.4));          // chin
   sh.push(hell([20.4, 1.8, 0], [1, 0], 1.4, 1.7, 2.6));         // the nose leather lies on the muzzle tip
   for (const s of SIDES) sh.push(hell([10.6, 5.9, s * 3.7], [1, 0], 1.6, .9, 1.2));   // brow ridges over the eyes
   return sh;
