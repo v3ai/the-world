@@ -4648,7 +4648,7 @@
     "size": 10
    }
   ],
-  "caption": "A proton is two up quarks and a down quark (charge ⅔+⅔−⅓ = +1); a neutron is one up and two down (⅔−⅓−⅓ = 0). Quarks make up only ~1% of the mass; the rest is the energy of the gluon field.",
+  "caption": "A proton is two up quarks and a down quark (charge ⅔+⅔−⅓ = +1); a neutron is one up and two down (⅔−⅓−⅓ = 0). Quarks make up only ~1% of the mass; the rest is mostly the energy of the strong-force field and the motion of the quarks, not their own masses (the exact split is a subtle calculation).",
   "aspect": 0.5
  },
  "nuclear_force": {
@@ -9263,7 +9263,7 @@
     "k": "text",
     "x": 0,
     "y": 0,
-    "text": "hydrophobic tails (~4 nm thick bilayer)",
+    "text": "oily tails (whole bilayer ≈ 4–5 nm thick)",
     "color": "dim",
     "size": 10
    },
@@ -9286,7 +9286,7 @@
     "align": "left"
    }
   ],
-  "caption": "The cell membrane is a double layer of lipids with water-loving heads (circles) outside and oily tails inside, about 4 nm thick. It is fluid: lipids jiggle sideways. Raise the temperature for more motion.",
+  "caption": "The cell membrane is a double layer of lipids with water-loving heads (circles) outside and oily tails inside, about 4–5 nm thick in all. It is fluid: lipids jiggle sideways. Raise the temperature for more motion.",
   "params": [
    {
     "id": "fl",

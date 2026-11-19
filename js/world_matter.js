@@ -402,7 +402,7 @@ v2frame('cell', 'cell', (c) => c.opts.type === 'bacterium' ? .1 : 10 / 12, (F, c
   const kind = c.cellKind || 'animal';
   const NAMES = { animal: 'Animal cell', plant: 'Plant cell', bacterium: 'Bacterium' };
   const BLURBS = {
-    animal: 'A generic animal cell, about 20 µm across (a skin cell is one example). A human body has about 37 trillion cells of more than 200 types.',
+    animal: 'A generic animal cell, about 20 µm across (a skin cell is one example). A human body has about 30 trillion cells of several hundred types.',
     plant: 'A plant cell, here about 30 µm long, as in a leaf. Chloroplasts capture sunlight.',
     bacterium: 'A rod-shaped bacterium, about 2 µm long. It has no nucleus: its DNA floats in the cell as a tangle called the nucleoid.',
   };
@@ -669,7 +669,7 @@ v2frame('park', 'life', () => 1, (F, c) => {
   F.spawnD = 3e-3;
 });
 /* ---------- black hole at the galactic center (unit 1e10 m) ---------- */
-v2frame('sgrA', 'blackhole', () => .6, (F) => { F.blurb = 'Sagittarius A*: 4.3 million Suns of mass inside an event horizon 24 million km across. (Accretion flow shown brighter than reality.)'; });
+v2frame('sgrA', 'blackhole', () => .6, (F) => { F.blurb = 'Sagittarius A*: 4.3 million Suns of mass inside an event horizon about 25 million km across (radius 12.7 million km). (Accretion flow shown brighter than reality.)'; });
 /* "See what it is made of" on a cell-bearing thing opens the right kind of cell (plant, bacterium, ...), which world_build's diveMaterial cannot tell apart. */
 WORLD_EXT.push(async () => {
   const CRY = await getJSON('data/crystals.json').catch(() => []);

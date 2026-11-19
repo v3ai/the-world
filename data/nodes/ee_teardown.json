@@ -404,7 +404,7 @@
   "layers": {
    "basics": "Radio waves go in and out through thin metal strips and gaps in the phone’s frame.",
    "deeper": "Multiple antennas cover cellular, Wi-Fi, Bluetooth, GPS; tunable matching networks keep each efficient when a hand touches it.",
-   "expert": "Inverted-F/loop antennas; aperture tuners; MIMO 4×4; mmWave patch arrays in packages with beamforming ICs; SAR limits ≈ 1.6 W/kg (US) / 2.0 W/kg (EU)."
+   "expert": "Inverted-F/loop antennas; aperture tuners; MIMO 4×4; mmWave patch arrays in packages with beamforming ICs; SAR limits ≈ 1.6 W/kg averaged over 1 g of tissue (US, FCC) and 2.0 W/kg averaged over 10 g (EU, ICNIRP); the averaging masses differ, so the numbers are not directly comparable."
   },
   "facts": [],
   "certainty": "C1",
@@ -493,7 +493,7 @@
   "layers": {
    "basics": "A small weight oscillates to make the phone buzz.",
    "deeper": "Linear resonant actuators (LRA) are driven at their resonance (~170–250 Hz) by a haptic driver.",
-   "expert": "Resonance f₀=½π√(k/m); drive waveforms tuned for ‘click’ feel; Q and ring-down braking pulses."
+   "expert": "Resonance f₀ = (1/2π)·√(k/m); drive waveforms tuned for ‘click’ feel; Q and ring-down braking pulses."
   },
   "facts": [],
   "certainty": "C1",
@@ -912,9 +912,9 @@
    "inductor_ee",
    "ohms_law_node"
   ],
-  "summary": "Tens of billions made each year, hundreds per phone.",
+  "summary": "Trillions made each year, roughly a thousand per phone.",
   "layers": {
-   "basics": "Hundreds of tiny capacitors, inductors and resistors smooth power and filter signals.",
+   "basics": "Around a thousand tiny capacitors, inductors and resistors smooth power and filter signals.",
    "deeper": "Most are surface-mount parts as small as 0.4×0.2 mm; ceramic capacitors decouple supply noise near chips.",
    "expert": "MLCC capacitance falls with DC bias (up to −80%); inductors in DC-DC converters (≈ 0.47 µH); a phone has ~1000 MLCCs."
   },
@@ -1051,7 +1051,7 @@
    "neural_accelerator_hw",
    "alu_design"
   ],
-  "summary": "Thousands of simple units for graphics.",
+  "summary": "Hundreds to thousands of simple units for graphics.",
   "layers": {
    "basics": "Draws the pixels of games and the interface by doing many simple calculations in parallel.",
    "deeper": "Shader cores execute the same program on many pixels; tile-based rendering saves bandwidth.",
@@ -1376,7 +1376,7 @@
   "layers": {
    "basics": "Pulls the next instructions from memory using the program counter.",
    "deeper": "Fetches several instructions per cycle from the instruction cache.",
-   "expert": "Fetch width 8–16 bytes; uop cache; next-line prefetch; steered by branch predictor."
+   "expert": "Fetch 24–32 bytes (6–8 fixed 4-byte instructions) per cycle; uop cache; next-line prefetch; steered by branch predictor."
   },
   "facts": [],
   "certainty": "C1",
@@ -1512,7 +1512,7 @@
   ],
   "summary": "Fastest storage in the machine.",
   "layers": {
-   "basics": "A few dozen super-fast storage slots that hold the numbers being worked on.",
+   "basics": "31 programmer-visible super-fast storage slots (backed by a few hundred physical ones) that hold the numbers being worked on.",
    "deeper": "Multi-ported SRAM allowing many reads/writes each cycle.",
    "expert": "31 architectural 64-bit registers (ARMv8) mapped to ≈ 300+ physical; ≈ 10 read ports."
   },
