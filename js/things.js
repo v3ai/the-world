@@ -791,7 +791,7 @@ function thFlyToNode(id, t) {
   const F = t.f; showBodyNode(id, null); F.selNode = id; F.ensure();
   const R = (t.def.radius_m || 1) * (F.T ? F.T.k : 1), d = new V3(t.p.x, 0, t.p.z);
   if (d.length() > R * .06) { d.y = d.length() * .12; d.normalize(); const u = new V3(0, 1, 0); convertD(d, F, cam.A); convertD(u, F, cam.A); cam.dir.copy(d); cam.up.copy(u); }   // look at it from the side it is on
-  flyTo(F, t.p, t.D, () => { thClearView(F, id, false); setTimeout(() => { if (cam.A === F && infoState && infoState.node === id && !fly) thClearView(F, id, true); }, 1500); }); camHold = F;
+  flyTo(F, t.p, t.D, () => { if (F.T && F.T.cutActive) F.T.faceCut(); /* the cut was aimed when the flight began, from far away: aim it again from where the camera has landed */ setTimeout(() => thClearView(F, id, false), 350); setTimeout(() => { if (cam.A === F && infoState && infoState.node === id && !fly) thClearView(F, id, true); }, 1500); }); camHold = F;
   F.ready.then(() => {
     const T = F.T; if (!T) return;
     if (t.inst && !t.rep) { const r = thRepInstance(t.def, t.pl, t.part); if (r && fly && fly.frame === F) { const x = thPlacement(t.def, t.pl), u = thUnit(t.def, x.k); fly.p.copy(thLocalToFrame(t.def, t.pl, r.p)); fly.Dg = Math.min(Math.max(r.size * x.k * 6, .25 * u), (t.def.radius_m || 1) * x.k * .5); } }
