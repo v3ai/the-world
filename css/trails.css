@@ -38,7 +38,7 @@ body.trailOn #caption { display: none }
 #trail .tr-away { font: 13px/1.45 var(--sans); background: var(--paper-2); border-radius: var(--r-ctl); padding: 7px 9px; margin: 8px 0 2px; display: none; align-items: center; justify-content: space-between; gap: 8px }
 #trail .tr-away.on { display: flex }
 #trail .tr-away button { flex: none; border: 1px solid var(--accent); background: var(--accent); color: #fff; border-radius: var(--r-ctl); padding: 5px 10px; font: 500 12.5px var(--sans); cursor: pointer }
-#trail .tr-nav { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--rule) }
+#trail .tr-nav { position: sticky; bottom: -12px; background: var(--paper); padding-bottom: 10px; margin-bottom: -10px; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--rule) }
 #trail .tr-nav button.b { border: 1px solid var(--rule); background: var(--paper); border-radius: var(--r-panel); padding: 7px 14px; font: 500 13.5px var(--sans); cursor: pointer; color: var(--ink) }
 #trail .tr-nav button.b:hover:not(:disabled) { border-color: var(--accent); color: var(--accent) }
 #trail .tr-nav button.b:disabled { opacity: .4; cursor: default }

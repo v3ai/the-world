@@ -16,7 +16,7 @@
    "expect": {"frame": "Greenwich Park"},
    "text": ["Nearly all the energy that living things use arrives as sunlight. Plants and algae turn some of it into sugar, and animals eat the plants.", "That light left the Sun about 8 minutes and 20 seconds before it reaches the park. So where was the energy made?"],
    "model": "The Sun in the park's sky is a drawn disc, not to scale.",
-   "notice": "Look for the Sun in the sky, and for the shadows it makes.",
+   "notice": "Look at the shadows under the trees. They point away from the Sun, which is the source of all this light.",
    "deeper": [{"label": "The Sun", "node": "park_sun"}]
   },
   {

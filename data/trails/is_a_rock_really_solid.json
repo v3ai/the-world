@@ -83,6 +83,9 @@
     {
      "mode": "cut",
      "thing": "boulder"
+    },
+    {
+     "press": "Turn the cut to face me"
     }
    ],
    "expect": {
@@ -125,7 +128,7 @@
     "The bonds hold the atoms in fixed places, and that is why the rock keeps its shape."
    ],
    "model": "The lattice is drawn from the quartz crystal structure data, and the atom sizes are drawn for visibility.",
-   "notice": "Look for a repeating pattern, a unit that appears again and again.",
+   "notice": "The red atoms are oxygen and the tan ones are silicon. Look for a repeating pattern, a unit that appears again and again; the yellow outline marks one such unit.",
    "deeper": [],
    "do": [
     {
