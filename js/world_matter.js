@@ -60,7 +60,7 @@ function atomSet(F, parent, atoms, bonds, o = {}) {
       center: h => { const a = atoms[idx[h.hit.instanceId]]; return new V3(a[1], a[2], a[3]).applyMatrix4(grp.matrixWorld).add(h.frame.C); },
       radius: () => rad
     };
-    mesh.userData.atomAt = id => atoms[idx[id]];
+    mesh.userData.atomAt = id => atoms[idx[id]]; mesh.userData.atomIx = id => idx[id];
     grp.add(mesh); F.pickables.push(mesh); meshes.push(mesh);
   }
   if (bonds && bonds.length && style !== 'sf' && !o.noBonds) {
@@ -85,7 +85,28 @@ function atomSet(F, parent, atoms, bonds, o = {}) {
     bm.userData = { id: 'bond', priority: 1, infoFn: h => bondCard(atoms, bonds[bondOf[h.hit.instanceId] || 0], o) }; F.pickables.push(bm);
   }
   grp.userData.meshes = meshes;
+  F.atomSet = { grp, atoms };   // the atoms a zoom in this frame can end on (atomAtt)
   return grp;
+}
+/* The atoms of a molecule, crystal or liquid frame as attractors (engine.js, "attractors"): scrolling in converges on the atom under the pointer, or on the atom
+   nearest the pointer when it is between atoms, so the descent never runs on into the empty space between them. Positions are those of the frame's current atomSet,
+   through whatever turn its holder has. */
+const _atM = new THREE.Matrix4(), _atI = new THREE.Matrix4(), _atP = new V3();
+function atomSetMatrix(F) { const S = F.atomSet; _atM.identity(); if (S) for (let o = S.grp; o && o !== F.root; o = o.parent) { o.updateMatrix(); _atM.premultiply(o.matrix); } return _atM; }
+function atomAtt(F, D) {
+  F.att = {
+    D, tol: .3,
+    find(P, hint) {
+      const S = F.atomSet; if (!S || !S.atoms.length) return -1;
+      const u = hint && hint.obj && hint.obj.userData;
+      if (u && u.atomIx && hint.hit && hint.hit.instanceId != null && S.atoms[u.atomIx(hint.hit.instanceId)] === u.atomAt(hint.hit.instanceId)) return u.atomIx(hint.hit.instanceId);   // the atom the pointer is on
+      _atP.copy(P).applyMatrix4(_atI.copy(atomSetMatrix(F)).invert());
+      let best = -1, bd = Infinity; const A = S.atoms;
+      for (let i = 0; i < A.length; i++) { const a = A[i], dx = a[1] - _atP.x, dy = a[2] - _atP.y, dz = a[3] - _atP.z, d = dx * dx + dy * dy + dz * dz; if (d < bd) { bd = d; best = i; } }
+      return best;
+    },
+    pos(id, out) { const S = F.atomSet, a = S && S.atoms[id]; return a ? out.set(a[1], a[2], a[3]).applyMatrix4(atomSetMatrix(F)) : null; }
+  };
 }
 function bondCard(atoms, b, o) {
   const [i, j, ord] = b, sa = atoms[i][0], sb = atoms[j][0], L = Math.hypot(atoms[i][1] - atoms[j][1], atoms[i][2] - atoms[j][2], atoms[i][3] - atoms[j][3]);
@@ -101,15 +122,11 @@ function bondCard(atoms, b, o) {
   return { title: kind === 'contact' ? 'Neighbouring atoms in a crystal' : `${kind[0].toUpperCase() + kind.slice(1)} bond`, tag: `Chemical bond · ${sa}–${sb}`, body: `<p>${TXT[kind]}</p>`, facts: [['Atoms', names], ['Length in this model', `${L.toFixed(2)} Å (${(L / 10).toFixed(3)} nm)`], ['Bond order', ord]] };
 }
 function spawnAtomFrom(F, T, hint, unitScale) {
-  if (!hint || !hint.obj || !hint.obj.userData.sym || hint.hit == null || hint.hit.instanceId == null) {
-    // nearest atom to T among this frame's atom meshes: never run on into empty space
-    let best = null, bd = Infinity;
-    F.pickables.forEach(m => { if (!m.isInstancedMesh || !m.userData.sym) return; const p = new V3(), M = new THREE.Matrix4(); for (let i = 0; i < m.count; i++) { m.getMatrixAt(i, M); p.setFromMatrixPosition(M).applyMatrix4(m.parent.matrixWorld).add(F.C || new V3()); const d = p.distanceTo(T); if (d < bd) { bd = d; best = { sym: m.userData.sym, p: p.clone() }; } } });
-    if (!best || bd > 5) return null;
-    return atomFrame(best.sym, best.p, unitScale);
-  }
-  const p = hint.obj.userData.center({ hit: hint.hit, frame: F });
-  return atomFrame(hint.obj.userData.sym, p, unitScale);
+  // the atom the zoom has converged on; else the atom the pointer is on; else the nearest atom to the target, however far: never run on into empty space
+  const a = F.att, S = F.atomSet; if (!a || !S) return null;
+  let id = attId(F); if (id < 0) id = a.find(T, hint);
+  const p = id >= 0 && a.pos(id, new V3()); if (!p) return null;
+  return atomFrame(S.atoms[id][0], p, unitScale);
 }
 function atomFrame(sym, pos, unitScale) { // unitScale: parent units per Å
   return new Frame({ type: 'atom', pinned: true, name: `${(ELJ[sym] || {}).name || sym} atom`, unit: 1e-12, radius: 600, r0: 0, r1: 2.5e-9, spawnD: 2e-13, pos: pos.clone(), opts: { el: sym } });
@@ -164,8 +181,8 @@ FT.mol = {
       uiEl(sel);
     }
     seg([['bs', 'Ball and stick'], ['sf', 'Space-filling']], style, k => { style = k; store.set('molStyle', k); load(F.opts.mol); });
-    F.spawn = (T, hint) => spawnAtomFrom(F, T, hint, 1e-2);
-    F.update = (dt) => { holder.rotation.y += dt * .05 * (cam.D > 3e-9 ? 1 : 0); };
+    atomAtt(F, 2.5e-9); F.spawn = (T, hint) => spawnAtomFrom(F, T, hint, 1e-2);
+    F.update = (dt) => { holder.rotation.y += dt * .05 * smooth(3e-9, 5e-9, cam.D); };   // the slow turn comes to rest before the zoom starts to close on an atom
   }
 };
 /* ---------- crystal lattice (unit Å) ---------- */
@@ -216,7 +233,7 @@ FT.crystal = {
       const mg = seg([['cell', 'One unit cell'], ['small', 'Small crystal'], ['big', 'Larger crystal']], mode, k => { mode = k; draw(); });
       uiEl(sl); uiEl(mg); if (typeof uiFrame !== 'undefined' && uiFrame === F) { uiFrame = null; }
     });
-    F.spawn = (T, hint) => spawnAtomFrom(F, T, hint, 1e-2);
+    atomAtt(F, 2.5e-9); F.spawn = (T, hint) => spawnAtomFrom(F, T, hint, 1e-2);
   }
 };
 /* ---------- liquid water (unit Å) ---------- */
@@ -261,7 +278,7 @@ FT.liquid = {
     g.userData.meshes.forEach(m => m.userData.molInfo = info); F.info = info;
     F.blurb = 'Liquid water: a ball about 3 nm across cut from the bulk, every atom shown.';
     F.note = 'Model, not a simulation: random positions at the true density (33 molecules per nm³), orientations tuned to form hydrogen bonds. Real molecules never stop moving. Atoms are drawn at a quarter of their true size so the bonds show.';
-    F.spawn = (T, hint) => spawnAtomFrom(F, T, hint, 1e-2);
+    atomAtt(F, 2.5e-9); F.spawn = (T, hint) => spawnAtomFrom(F, T, hint, 1e-2);
   }
 };
 /* ---------- gas (air, or a gas giant's hydrogen and helium) — unit nm ---------- */
@@ -305,18 +322,24 @@ FT.gas = {
     const info = giant
       ? { title: 'Hydrogen and helium gas', tag: 'The air of a gas giant', body: `<p>The air of Jupiter and Saturn is mostly hydrogen and helium: about 90% H₂ molecules and 10% helium atoms by number in Jupiter (NASA planetary fact sheet). Uranus and Neptune also hold a few percent methane (CH₄), not drawn here.</p><p class="mini">Model: random positions and orientations, drawn at the same number density as air at sea level on Earth (0.025 molecules per nm³) so the pictures can be compared. The real density at a giant's cloud tops is different. Molecules are drawn at true size; motion is slowed about a trillion times.</p>`, facts: [['Molecules shown', n], ['H₂ : He', `${cs('H2')} : ${cs('He')}`], ['Mean spacing (as drawn)', '≈ 3.4 nm']] }
       : { title: 'Air', tag: 'A gas mixture at sea level', body: `<p>Air is mostly empty space. At sea level and 25 °C a cubic nanometer holds on average just 0.025 molecules, so neighbours are about 3.4 nm apart, ten times the size of a molecule. About 78% nitrogen (N₂), 21% oxygen (O₂), 0.9% argon, about 1% water vapour in humid air, and a trace of CO₂ (about 0.04%, so usually none in a view this small).</p><p class="mini">Model: random positions and orientations at the true density, a frozen snapshot. Molecules are drawn at true size. A real N₂ molecule moves about 475 m/s (calculated for 25 °C) and travels about 68 nm between collisions; motion here is slowed about a trillion times.</p>`, facts: [['Molecules shown', n], ['N₂ : O₂ : Ar : H₂O : CO₂', `${cs('N2')} : ${cs('O2')} : ${cs('Ar')} : ${cs('H2O')} : ${cs('CO2')}`], ['Mean spacing', '≈ 3.4 nm'], ['Mean free path', '≈ 68 nm']] };
-    for (const s in meshes) { const m = meshes[s]; m.userData = { id: 'gasmol', priority: 3, sym: s, infoFn: () => info, madeOf: 'molecule', center: h => { const M = new THREE.Matrix4(); m.getMatrixAt(h.hit.instanceId, M); return new V3().setFromMatrixPosition(M).add(h.frame.C); }, radius: () => .3 }; F.pickables.push(m); }
+    for (const s in meshes) { const m = meshes[s]; m.userData = { id: 'gasmol', priority: 3, sym: s, infoFn: () => info, madeOf: 'molecule', center: h => { const M = new THREE.Matrix4(); m.getMatrixAt(h.hit.instanceId, M); return new V3().setFromMatrixPosition(M); }, radius: () => .3 }   /* the instance matrix is already in the frame's own coordinates */; F.pickables.push(m); }
     F.info = info; F.name = giant ? 'Hydrogen and helium gas' : 'Air molecules';
     F.blurb = giant ? 'Hydrogen and helium, the gas of a giant planet, at the scale of molecules.' : 'Air at the scale of molecules: mostly empty space.';
     F.note = 'Model: random snapshot at true density and true molecule size, motion slowed about a trillion times. Colours are the CPK convention.' + (giant ? ' Density drawn is that of air on Earth, for comparison.' : '');
     F.update = dt => {
-      if (cam.D < 6e-9) return; // freeze when you're looking closely
-      const s = dt * .25;
+      if (cam.D < 9e-9) return; // freeze when you're looking closely (before the zoom starts to close on one molecule)
+      const s = dt * .25 * smooth(9e-9, 2e-8, cam.D);
       mols.forEach(m => { m.p.addScaledVector(m.v, s); if (m.p.length() > R) m.p.multiplyScalar(-.98); m.d.applyAxisAngle(new V3(0, 1, 0), dt * .3); m.q.setFromUnitVectors(new V3(0, 1, 0), m.d); });
       place();
     };
+    // the molecules are what a zoom ends on: below 8 nm (when only a handful are in view) it converges on the one nearest the pointer, however empty the gas between
+    F.att = {
+      D: 8e-9,
+      find(P) { let best = -1, bd = Infinity; for (let i = 0; i < mols.length; i++) { const d = mols[i].p.distanceToSquared(P); if (d < bd) { bd = d; best = i; } } return best; },
+      pos(id, out) { const m = mols[id]; return m ? out.copy(m.p) : null; }
+    };
     F.spawn = (T, hint) => {
-      let best = null, bd = Infinity; mols.forEach(m => { const d = m.p.distanceTo(T); if (d < bd) { bd = d; best = m; } }); if (!best || bd > .8) return null;
+      let i = attId(F); if (i < 0) i = F.att.find(T); const best = mols[i]; if (!best) return null;
       const id = { N2: 'nitrogen', O2: 'oxygen', CO2: 'carbon_dioxide', H2O: 'water', H2: 'hydrogen' }[best.kind];
       if (!id) return atomFrame(best.kind, best.p);
       return new Frame({ type: 'mol', pinned: true, name: { N2: 'Nitrogen, N₂', O2: 'Oxygen, O₂', CO2: 'Carbon dioxide, CO₂', H2O: 'Water, H₂O', H2: 'Hydrogen, H₂' }[best.kind], unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: best.p.clone(), opts: { mol: id, fixed: true } });
@@ -359,17 +382,29 @@ FT.plasma = {
     } else { F.blurb = F.blurb || 'Stellar plasma at nanometer scale: free electrons and bare nuclei.'; F.note = 'Schematic: a patch of stellar plasma drawn at random; the conditions of any particular star are not modelled.'; }
     const vel = new Float32Array(P.length), sp = { p: 1, he: .5, e: 6 }; for (let i = 0; i < K.length; i++) { const k = sp[K[i]] * (T ? Math.sqrt(T / 1.57e7) : 1) * .8; vel[3 * i] = gauss(rg) * k; vel[3 * i + 1] = gauss(rg) * k; vel[3 * i + 2] = gauss(rg) * k; }
     const pos = pts.geometry.attributes.position;
+    const _yAx = new V3(0, 1, 0), uk = F.unit / 1e-9;   // uk: the patch is drawn in the frame's own unit (nanometres inside the Sun, ångströms for a star)
     F.update = (dt, t) => {
-      pts.rotation.y += dt * .04; const d = Math.min(dt, .05); // thermal motion, slowed down enormously: electrons move fastest, helium nuclei slowest
+      const mv = smooth(1.2e-8 * uk, 4e-8 * uk, cam.D); if (!mv) return;   // everything comes to rest as you close in, so that the particle you are heading for is still there when you arrive
+      pts.rotation.y += dt * .04 * mv; const d = Math.min(dt, .05) * mv; // thermal motion, slowed down enormously: electrons move fastest, helium nuclei slowest
       if (ionised) for (let i = 0; i < K.length; i++) { let x = pos.array[3 * i] + vel[3 * i] * d, y = pos.array[3 * i + 1] + vel[3 * i + 1] * d, z = pos.array[3 * i + 2] + vel[3 * i + 2] * d; if (x * x + y * y + z * z > Rp * Rp) { vel[3 * i] *= -1; vel[3 * i + 1] *= -1; vel[3 * i + 2] *= -1; x = pos.array[3 * i]; y = pos.array[3 * i + 1]; z = pos.array[3 * i + 2]; } pos.array[3 * i] = x; pos.array[3 * i + 1] = y; pos.array[3 * i + 2] = z; }
       pos.needsUpdate = true;
     };
     // zooming into a nucleus goes on down: a hydrogen nucleus is a proton; a helium nucleus is two protons and two neutrons
+    // the nuclei are what a zoom ends on (an electron has nothing inside it to go on to): below 10 nm it converges on the nucleus nearest the pointer
+    const _pp = new V3();
+    F.att = {
+      D: 1e-8 * uk,
+      find(P, hint) {
+        const A = pos.array; _pp.copy(P).applyAxisAngle(_yAx, -pts.rotation.y);
+        if (hint && hint.obj === pts && hint.hit && hint.hit.index != null && K[hint.hit.index] !== 'e') return hint.hit.index;
+        let bi = -1, bd = Infinity; for (let i = 0; i < K.length; i++) { if (K[i] === 'e') continue; const dx = A[i * 3] - _pp.x, dy = A[i * 3 + 1] - _pp.y, dz = A[i * 3 + 2] - _pp.z, d = dx * dx + dy * dy + dz * dz; if (d < bd) { bd = d; bi = i; } }
+        return bi;
+      },
+      pos(id, out) { const A = pos.array; return id >= 0 && id < K.length ? out.set(A[id * 3], A[id * 3 + 1], A[id * 3 + 2]).applyAxisAngle(_yAx, pts.rotation.y) : null; }
+    };
     F.spawn = (T) => {
-      const A = pos.array; let bi = -1, bd = Infinity; for (let i = 0; i < K.length; i++) { const d = Math.hypot(A[i * 3] - T.x, A[i * 3 + 1] - T.y, A[i * 3 + 2] - T.z); if (d < bd) { bd = d; bi = i; } }
-      if (bi < 0 || bd > 1.2) return null;
-      const at = new V3(A[bi * 3], A[bi * 3 + 1], A[bi * 3 + 2]);
-      if (K[bi] === 'e') { message('An electron has no known smaller parts: it is a point, as far as any experiment can tell.'); return null; }
+      let bi = attId(F); if (bi < 0) bi = F.att.find(T, null); if (bi < 0) return null;
+      const at = F.att.pos(bi, new V3());
       if (K[bi] === 'he') return new Frame({ type: 'nucleus', pinned: true, name: 'Helium-4 nucleus', unit: 1e-15, radius: 40, r0: 1.5e-15, r1: 3e-13, spawnD: 4e-15, pos: at, opts: { Z: 2, N: 2, el: 'He' } });
       return new Frame({ type: 'proton', pinned: true, name: 'Proton', unit: 1e-15, radius: 4, r1: 1.2e-14, pos: at, opts: { kind: 'proton' } });
     };

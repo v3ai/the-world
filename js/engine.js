@@ -290,10 +290,12 @@ function reanchor() {
 function safePlace(c) { if (!c.place) return; try { c.place(); } catch (e) { if (!c._placeErr) { c._placeErr = 1; console.warn('place() failed before the frame was built:', c.name, e.message); } } }
 function pickChild(A) {
   const path = fly && fly.frame ? chainOf(fly.frame) : null;
+  const lk = !path && att.f === A && att.id >= 0 && A.att && A.att.tol ? att.p : null;   // the zoom is closing on one of this frame's attractors: only a child that sits on that one is the way down
   let best = null, bs = Infinity;
   for (const c of A.children) {
     safePlace(c);
     if (cam.D > c.r1 || !c.containsP(cam.T)) continue;
+    if (lk && c.pos.distanceTo(lk) > A.att.tol) continue;
     if (camHold === A && !(path && path.includes(c))) continue;
     if (c.enterOnly && !(path && path.includes(c))) continue; // entered on purpose only (a flight to it), never by scroll-zoom
     if (path && !path.includes(c) && path.includes(A) && chainOf(c).includes(fly.frame)) continue; // flying out to a frame: do not dive back into one of its children on the way
@@ -623,13 +625,40 @@ function applyZoom(dt) {
   if (lam < 1 && cam.A.floorD) nd = Math.max(nd, Math.min(cam.D, cam.A.floorD)); // a floor, so the camera cannot sink into an empty region
   lam = nd / cam.D;
   mouse.dirty = true; // the view moves under a resting cursor: its tooltip and highlight must follow
+  const A = cam.A, a = lam < 1 ? attLock(A) : null;   // the attractor this zoom is locked on, if the frame names any (below)
+  if (a && zoom.pivot) zoom.pivot.p.copy(a);          // from here on the zoom is centred on it
   if (zoom.pivot && lam < 1) { // scale camera rig about the pivot: keeps the point under the cursor fixed
     const P = zoom.pivot.p;
     cam.T.sub(P).multiplyScalar(lam).add(P);
   }
-  const A = cam.A; // some frames gently pull the zoom toward a key point (e.g. the invisible nucleus)
+  // some frames gently pull the zoom toward one key point (the park in its region, the Galactic Centre)
   if (lam < 1 && A.attract && cam.D < A.attractD && cam.T.distanceTo(A.attract) < A.attractR) { cam.T.sub(A.attract).multiplyScalar(lam).add(A.attract); if (zoom.pivot) zoom.pivot.p.copy(A.attract); }
+  if (a) cam.T.sub(a).multiplyScalar(zoom.pivot ? lam : lam * lam).add(a);   // and the target closes on it as the square of the zoom
   cam.D = nd;
+}
+/* ---- attractors: a descent ends ON something ----
+   A frame may name the points a zoom can end on: the nucleus of an atom, the nucleons of a nucleus, the atoms of a molecule or crystal,
+   the molecules of a gas, the nuclei of a plasma, the valence quarks of a proton.
+     F.att = { D,                    metres: the convergence starts once the camera is nearer than this (the view is then small enough that only one of them can be meant)
+               find(P, hint) -> id,  the attractor nearest the point P (frame coordinates), or the one the pointer is on (hint = lastZoomHit in this frame, or null); -1 for none
+               pos(id, out) -> out,  where it is now (frame coordinates); a falsy value when the id is no longer valid
+               tol }                 optional, frame units: while the zoom is locked on an attractor, a child frame further than this from it is not entered (a fixed
+                                     child that happens to sit on a neighbouring atom must not capture a zoom that is closing on this one)
+   Below D the zoom locks on to the attractor nearest the pointer's pivot. From then on the camera is scaled about that point instead of about the pivot, and the
+   target closes on it as the square of the zoom, so the target is drawn onto it smoothly: nothing jumps, only the point the zoom is centred on changes. The lock
+   holds while the pointer rests and the camera stays in the frame; moving the pointer chooses again. Spawn functions ask attId(F) for the attractor the zoom is
+   locked on, so the frame that opens is the one the zoom converged on. Nothing is allocated here, and find() runs once per lock, not per frame. */
+const att = { f: null, id: -1, p: new V3(), px: 0, py: 0 };
+function attId(F) { return att.f === F ? att.id : -1; }
+function attLock(A) {
+  const a = A.att;
+  if (!a || cam.D >= a.D) { att.f = null; att.id = -1; return null; }
+  if (att.f !== A || att.id < 0 || Math.abs(zoom.px - att.px) > 8 || Math.abs(zoom.py - att.py) > 8) {
+    att.f = A; att.px = zoom.px; att.py = zoom.py;
+    att.id = a.find(zoom.pivot ? zoom.pivot.p : cam.T, lastZoomHit && lastZoomHit.frame === A ? lastZoomHit : null);
+  }
+  if (att.id < 0 || !a.pos(att.id, att.p)) { att.f = null; att.id = -1; return null; }
+  return att.p;
 }
 function orbit(dx, dy) {
   viewGen++;

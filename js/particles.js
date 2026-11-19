@@ -194,6 +194,12 @@ FT.proton = {
     F.blurb = kind === 'proton' ? 'Inside a proton: two up quarks and a down quark, trading gluons, in a sea of quark–antiquark pairs.' : 'Inside a neutron: one up quark and two down quarks, trading gluons, in a sea of quark–antiquark pairs.';
     F.note = 'A cartoon, not a photograph. Quarks have no measured size (no structure found down to about 10⁻¹⁹ m), nothing here has a definite position, and the sizes are not to scale. The share of momentum carried by gluons depends on the energy scale: at 2 GeV one lattice calculation gives 51 ± 3%, while global fits to scattering data give about 40% (the neutron should match, by symmetry).';
     F.spawnD = 2.4e-16;
+    // the three valence quarks are what a zoom ends on: it closes on the one nearest the pointer, and the Standard Model view opens at that quark
+    F.att = {
+      D: Infinity,
+      find(P, hint) { const u = hint && hint.obj && hint.obj.userData; let best = -1, bd = Infinity; for (let i = 0; i < S.Q.length; i++) { if (u && S.Q[i].orb === hint.obj) return i; const d = S.Q[i].p.distanceToSquared(P); if (d < bd) { bd = d; best = i; } } return best; },
+      pos(id, out) { const q = S.Q[id]; return q ? out.copy(q.p) : null; }
+    };
     F.spawn = (T, hint) => PX.smFrame(F, T, hint, S);
     F.proto = S;
     // controls: switch between proton and neutron, plus two doors to the ideas
@@ -327,8 +333,15 @@ FT.nucleus = {
     F.blurb = `${Z} proton${Z === 1 ? '' : 's'} and ${N} neutron${N === 1 ? '' : 's'}, packed at about the real density. Click one to open it and look inside.`;
     F.note = 'Schematic. Nucleons are drawn as touching balls the size of a proton (0.84 fm); in truth each is a fuzzy quantum state, the neighbours overlap, and the arrangement here is random. Red balls marked p are protons, pale balls marked n are neutrons.';
     F.spawnD = 4e-15;
+    // the nucleons are what a zoom ends on: it closes on the one under the pointer, or on the one nearest the pointer when it is beside the nucleus (engine.js, "attractors").
+    // From the moment the camera is in this frame: the nucleus is a speck in the view then, and a target left to drift toward the pointer would wander out of it again.
+    F.att = {
+      D: Infinity, tol: .5,
+      find(P, hint) { const N = F.nucleons; if (hint && hint.obj) { const k = N.indexOf(hint.obj); if (k >= 0) return k; } let best = -1, bd = Infinity; for (let i = 0; i < N.length; i++) { const d = N[i].position.distanceToSquared(P); if (d < bd) { bd = d; best = i; } } return best; },
+      pos(id, out) { const m = F.nucleons[id]; return m ? out.copy(m.userData.base) : null; }
+    };
     F.spawn = (T, hint) => {
-      let best = null, bd = Infinity; F.nucleons.forEach(m => { const d = m.position.distanceTo(T); if (d < bd) { bd = d; best = m; } }); if (!best || bd > 1.6) return null;
+      let i = attId(F); if (i < 0) i = F.att.find(T, hint); const best = F.nucleons[i]; if (!best) return null;
       return new Frame({ type: 'proton', pinned: true, name: best.userData.kind === 'proton' ? 'Proton' : 'Neutron', unit: 1e-15, radius: 4, r1: 1.2e-14, pos: best.position.clone(), opts: { kind: best.userData.kind } });
     };
     uiEl(PX.el(`<div class="pxh">Key</div><div class="pxk"><i class="b p"></i> red ball marked p: a proton (${Z})</div><div class="pxk"><i class="b n"></i> pale ball marked n: a neutron (${N})</div><div class="pxk">The dashed ring is the textbook nuclear radius, 1.2·A^⅓ = ${Rn.toFixed(1)} fm.</div>`, 'pxp pxkey'));
@@ -791,7 +804,8 @@ PX.smFocus = (f, id) => {                       // put particle `id` at the fram
 PX.smPos = (f, id, out) => { out = out || new V3(); if (!f.built || !f.sm) return out.set(0, 0, 0); const p = id && f.sm.P[id]; if (p) return out.copy(p.pos).add(f.board.position); return out.set(0, 0, 0); };
 PX.smFrame = (host, T, hint) => {
   if (!PX.D) return null;
-  const sm = hint && hint.obj && hint.obj.userData && hint.obj.userData.sm;
+  let sm = hint && hint.obj && hint.obj.userData && hint.obj.userData.sm;
+  if (!sm && host && host.proto) { const i = attId(host), q = host.proto.Q[i >= 0 ? i : -1]; sm = q ? q.orb.userData.sm : PX.nearestQuark(host, T); }   // the quark the zoom closed on
   const f = new Frame({ type: 'sm', name: 'The Standard Model', unit: 1e-18, radius: 1e5, r1: 3e-16, pos: T.clone(), pinned: true, opts: { focus: PX.META[sm] ? sm : null } });
   return f;
 };
