@@ -47,6 +47,12 @@ export default function build() {
   const cfm = [['sk_', 'bone'], ['mu_skin', 'skin'], ['mu_fill', 'fill'], ['mu_', 'muscle'], ['og_heart', 'muscle'], ['og_liver', 'organ'], ['og_brain', 'brain'], ['og_spinal', 'nerve'], ['og_gizzard', 'muscle'], ['og_oesoph', 'gut'], ['og_intest', 'gut'], ['og_trachea', 'tract'], ['og_sac', 'air'], ['og_', 'organ']];
   for (const p of parts) if (!p.cutFace) for (const [k, v] of cfm) if (p.id.startsWith(k)) { p.cutFace = v; break; }
   for (const p of parts) if (p.id === 'mu_skin') p.system = 'skin'; else if (p.id === 'mu_fill') p.system = 'fill';
+  // ---- cards shared between parts, and the next level down (tissue scenes) ----
+  const NM = { robin_back_muscles: 'robin_neck_muscles', robin_coracoid: 'robin_shoulder_girdle', robin_scapula: 'robin_shoulder_girdle', robin_gcov: 'robin_coverts', robin_lcov: 'robin_coverts', robin_mcov: 'robin_coverts', robin_pcov: 'robin_coverts', robin_utc: 'robin_tail_coverts', robin_undertc: 'robin_tail_coverts', robin_ribs: 'robin_ribs', robin_femur: 'robin_femur' };
+  for (const p of parts) if (NM[p.node]) p.node = NM[p.node];
+  const FEATH = { type: 'tissue2', id: 'robin_feather', D: 4.3e-4, button: 'Look inside a feather' }, MUSC = { type: 'tissue2', id: 'robin_flight_muscle', D: 3.3e-4, button: 'Look inside the flight muscle' }, BONE = { type: 'tissue2', id: 'robin_bone', D: 1.4e-3, button: 'Look inside a hollow bone' };
+  for (const p of parts) { if (/^f_(prim|sec|tert|pcov|gcov|mcov|lcov|alula|tail|utc|undertc|rach)$/.test(p.id) || (/^r_[a-z]+$/.test(p.id) && !/_mid$/.test(p.id)) || /^r_[a-z]+_mid$/.test(p.id)) p.deeper = FEATH;
+    if (p.id === 'mu_pectoralis' || p.id === 'mu_supracoracoideus') p.deeper = MUSC; if (/^sk_(humerus|radius|ulna|carpometacarpus|femur|tibiotarsus|tarsometatarsus|sternum|scapula|coracoid)$/.test(p.id)) p.deeper = BONE; }
   // ---- hotspots (thing-local metres) ----
   const BP = N.Bp, hs = (id, node, at, label, modes, extra = {}) => ({ id, node, at: at.map(v => +(v * MM).toFixed(6)), label, modes, r: .0022, ...extra });
   const SYa = N.SYR.at, W = sy.frame.W, EW = ey.frame.W, wR = N.wingPts(1);

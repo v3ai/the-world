@@ -38,7 +38,7 @@ export function skeleton() {
   { const th = sp(back.slice(0, 4), 40); o.thoracic = L.tube(th, t => 1.25 + .3 * Math.abs(Math.sin(t * Math.PI * 5)), { sides: 8, caps: true });
     const sy = sp(back.slice(3), 40); o.synsacrum = L.tube(sy, t => 1.7 - .3 * t, { sides: 8, caps: true }); }
   { const base = Bp([-24, 11.3, 0]), tb = fitIn([TAIL.base[0] - 1, TAIL.base[1] + 3.5, 0], 2.5);
-    o.caudal = L.tube(sp([base, lerp3(base, tb, .5), tb], 22), t => .95 + .2 * Math.abs(Math.sin(t * Math.PI * 5)), { sides: 7, caps: true });
+    o.caudal = L.tube(sp([base, lerp3(base, tb, .5), tb], 22), t => .95 + .2 * Math.abs(Math.sin(t * Math.PI * 6)), { sides: 7, caps: true });
     // pygostyle: a small upright plate at the end of the tail vertebrae, where the tail feathers are anchored
     o.pygostyle = bnd(L.translate(L.rotate(L.ellipsoid(2.7, 2.3, .7), [0, 0, 1], -TAIL.dirDeg * D2R + Math.PI), add(tb, [-1.6, -.8, 0])), [tb[0] - 8, tb[1] - 6, -2], [tb[0] + 5, tb[1] + 5, 2], .3, 1, 0); o.pyg = tb; }
   // sternum (breastbone) with its keel, furcula, coracoids, scapulae
@@ -82,7 +82,7 @@ export function skeleton() {
     fib.push(L.tube([add(knee, [.5, -2, s * -1.1]), add(lerp3(knee, ank, .45), [.6, 0, s * -1.2])], .26, { sides: 4, caps: true }));
     tms.push(L.tube([ank, mtp], .85, { sides: 7, caps: true }));
     const bone = (pts, r) => { for (let i = 0; i < pts.length - 1; i++) toe.push(L.tube([add(pts[i], [0, 0, 0]), pts[i + 1]], r, { sides: 5, caps: true })); };
-    const F = [[[1, 3.2, 11], [6, 1.9, 8.5], [10.5, 1.2, 7.2], [14.5, .8, 6.6]], [[1, 3.2, 11], [5.8, 2.1, 11], [10.5, 1.4, 11], [14.8, .9, 11], [18.5, .8, 11]], [[1, 3.2, 11], [4.6, 2.1, 12.4], [8, 1.5, 13.8], [11.6, 1.2, 14.9], [15.5, .8, 15.9]]];
+    const F = [[[1, 3.2, 11], [6, 1.9, 8.5], [10.5, 1.2, 7.2], [14.5, .8, 6.6]], [[1, 3.2, 11], [5.8, 2.1, 11], [10.5, 1.4, 11], [14.8, .9, 11], [18.5, .8, 11]], [[1, 3.2, 11], [3.8, 2.3, 12], [6.6, 1.8, 13.1], [9.4, 1.4, 14.2], [12.4, 1.1, 15.1], [15.5, .8, 15.9]]];
     for (const f of F) bone(f.map(p => W3(p, s)), .52);   // forward toes: 3, 4 and 5 bones as drawn, counting along each toe
     bone([[1, 3.2, 11], [-3.2, 2.2, 10.7], [-9.6, .9, 10.5]].map(p => W3(p, s)), .6);
   }

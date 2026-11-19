@@ -1,0 +1,1185 @@
+{
+ "robin": {
+  "type": "table",
+  "cols": [
+   "Measurement",
+   "Value",
+   "Source"
+  ],
+  "rows": [
+   [
+    "Length",
+    "12.5 to 14.0 cm",
+    "Wikipedia"
+   ],
+   [
+    "Mass",
+    "16 to 22 g (adult mean ≈ 19 g)",
+    "Wikipedia; BTO"
+   ],
+   [
+    "Wingspan",
+    "20 to 22 cm",
+    "Wikipedia"
+   ],
+   [
+    "Feathers drawn",
+    "10 primaries, 9 secondaries (6 + 3 tertials), 12 tail",
+    "Pyle 2008"
+   ]
+  ],
+  "caption": "The sizes used for the model. The proportions of the parts are drawn by eye; the feather counts are the published counts for passerines."
+ },
+ "robin_prim": {
+  "type": "table",
+  "cols": [
+   "Feather group",
+   "Number in a passerine wing or tail",
+   "Where it is attached"
+  ],
+  "rows": [
+   [
+    "Primaries",
+    "10 per wing (outermost tiny; some families 9)",
+    "hand"
+   ],
+   [
+    "Secondaries",
+    "9 per wing, including 3 tertials",
+    "forearm and elbow"
+   ],
+   [
+    "Tail feathers",
+    "12 (6 pairs)",
+    "pygostyle"
+   ]
+  ],
+  "caption": "Counts from Pyle 2008 (nine or ten functional primaries, nine secondaries including three tertials, twelve rectrices) and the Flight feather and Passerine pages."
+ },
+ "robin_sec": {
+  "type": "table",
+  "cols": [
+   "Feather group",
+   "Number in a passerine wing or tail",
+   "Where it is attached"
+  ],
+  "rows": [
+   [
+    "Primaries",
+    "10 per wing (outermost tiny; some families 9)",
+    "hand"
+   ],
+   [
+    "Secondaries",
+    "9 per wing, including 3 tertials",
+    "forearm and elbow"
+   ],
+   [
+    "Tail feathers",
+    "12 (6 pairs)",
+    "pygostyle"
+   ]
+  ],
+  "caption": "Counts from Pyle 2008 (nine or ten functional primaries, nine secondaries including three tertials, twelve rectrices) and the Flight feather and Passerine pages."
+ },
+ "robin_tail": {
+  "type": "table",
+  "cols": [
+   "Feather group",
+   "Number in a passerine wing or tail",
+   "Where it is attached"
+  ],
+  "rows": [
+   [
+    "Primaries",
+    "10 per wing (outermost tiny; some families 9)",
+    "hand"
+   ],
+   [
+    "Secondaries",
+    "9 per wing, including 3 tertials",
+    "forearm and elbow"
+   ],
+   [
+    "Tail feathers",
+    "12 (6 pairs)",
+    "pygostyle"
+   ]
+  ],
+  "caption": "Counts from Pyle 2008 (nine or ten functional primaries, nine secondaries including three tertials, twelve rectrices) and the Flight feather and Passerine pages."
+ },
+ "robin_temperature": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "resting phase",
+    "value": 38.54
+   },
+   {
+    "label": "active phase",
+    "value": 41.02
+   },
+   {
+    "label": "high activity",
+    "value": 43.85
+   }
+  ],
+  "ylabel": "body temperature (°C)",
+  "caption": "Mean body temperatures of birds in general in the three phases (Prinzinger, Pressmar and Schleucher 1991: 203, 724 and 74 birds). Passerines run slightly high in the active phase."
+ },
+ "robin_lifespan": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "average life expectancy",
+    "value": 1.1
+   },
+   {
+    "label": "typical, if it reaches breeding age",
+    "value": 2
+   },
+   {
+    "label": "ringing record (BTO)",
+    "value": 8.4
+   },
+   {
+    "label": "longer record quoted by Wikipedia",
+    "value": 19
+   }
+  ],
+  "ylabel": "years",
+  "caption": "How long robins live: the average (Wikipedia) and the typical age of breeders and the British ringing record, 8 years 4 months 30 days ≈ 8.4 years (BTO). The two sources disagree on the record."
+ },
+ "robin_night_song": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "daytime noise at day-only sites",
+    "value": 53
+   },
+   {
+    "label": "daytime noise at night-singing sites",
+    "value": 63
+   }
+  ],
+  "ylabel": "average daytime noise (dB)",
+  "caption": "Sheffield, 121 locations: robins sang at night at 18 of the 67 sites where they sang by day, and those sites were louder by day (≈ 63 dB against ≈ 53 dB). Fuller, Warren and Gaston 2007."
+ },
+ "robin_territory": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "a",
+    "label": "Stuffed robin placed in a territory",
+    "x": 15,
+    "y": 25
+   },
+   {
+    "id": "b",
+    "label": "Bundle of red feathers alone",
+    "x": 15,
+    "y": 75
+   },
+   {
+    "id": "c",
+    "label": "The resident robin attacks",
+    "x": 70,
+    "y": 50,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "a",
+    "to": "c",
+    "label": "attacked"
+   },
+   {
+    "from": "b",
+    "to": "c",
+    "label": "attacked, in some birds"
+   }
+  ],
+  "flow": true,
+  "caption": "David Lack's experiments at Dartington, as reported in The Life of the Robin: red feathers alone could release an attack (Great British Life)."
+ },
+ "robin_migration": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "s",
+    "label": "Scandinavia and Russia",
+    "x": 12,
+    "y": 20
+   },
+   {
+    "id": "b",
+    "label": "Britain and western Europe",
+    "x": 62,
+    "y": 20,
+    "color": "green"
+   },
+   {
+    "id": "r",
+    "label": "British and Irish robins: mostly resident",
+    "x": 62,
+    "y": 55
+   },
+   {
+    "id": "m",
+    "label": "A small minority, usually females",
+    "x": 12,
+    "y": 80
+   },
+   {
+    "id": "e",
+    "label": "Southern Europe, some to Spain",
+    "x": 62,
+    "y": 85,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "s",
+    "to": "b",
+    "label": "winter"
+   },
+   {
+    "from": "m",
+    "to": "e",
+    "label": "winter"
+   }
+  ],
+  "flow": true,
+  "caption": "Where robins go (Wikipedia, European robin; BTO)."
+ },
+ "robin_dinosaur": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "t",
+    "label": "Theropod dinosaurs",
+    "x": 12,
+    "y": 20
+   },
+   {
+    "id": "m",
+    "label": "Maniraptorans: many with feathers",
+    "x": 45,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "a",
+    "label": "Archaeopteryx, ≈ 155 million years ago",
+    "x": 78,
+    "y": 20
+   },
+   {
+    "id": "b",
+    "label": "Living birds, over 11,000 species",
+    "x": 78,
+    "y": 80,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "t",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "a"
+   },
+   {
+    "from": "m",
+    "to": "b"
+   }
+  ],
+  "flow": true,
+  "caption": "Birds are maniraptoran theropod dinosaurs (Wikipedia: Origin of birds; Bird). The order of events within the group is debated."
+ },
+ "robin_compass": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "l",
+    "label": "Light reaches the retina",
+    "x": 8,
+    "y": 30
+   },
+   {
+    "id": "c",
+    "label": "Cryptochrome 4 with FAD",
+    "x": 32,
+    "y": 30
+   },
+   {
+    "id": "r",
+    "label": "Electron jumps along four tryptophans: a radical pair forms",
+    "x": 58,
+    "y": 30,
+    "color": "orange"
+   },
+   {
+    "id": "f",
+    "label": "Earth's field might change how long the pair lasts",
+    "x": 58,
+    "y": 75,
+    "color": "orange"
+   },
+   {
+    "id": "s",
+    "label": "A signal to the brain? (not shown)",
+    "x": 85,
+    "y": 55
+   }
+  ],
+  "edges": [
+   {
+    "from": "l",
+    "to": "c"
+   },
+   {
+    "from": "c",
+    "to": "r",
+    "label": "in vitro"
+   },
+   {
+    "from": "r",
+    "to": "f",
+    "label": "hypothesis"
+   },
+   {
+    "from": "f",
+    "to": "s",
+    "label": "unproven"
+   }
+  ],
+  "flow": true,
+  "caption": "The radical-pair hypothesis. The first steps are measured in purified robin cryptochrome 4 (Xu et al. 2021; Wong et al. 2021); the last two are not shown in a living bird."
+ },
+ "robin_breathing": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "t",
+    "label": "Breathe in: windpipe",
+    "x": 8,
+    "y": 50
+   },
+   {
+    "id": "p",
+    "label": "Rear air sacs",
+    "x": 32,
+    "y": 50,
+    "color": "blue"
+   },
+   {
+    "id": "l",
+    "label": "Lung tubes (parabronchi)",
+    "x": 58,
+    "y": 50,
+    "color": "green"
+   },
+   {
+    "id": "a",
+    "label": "Front air sacs",
+    "x": 82,
+    "y": 50,
+    "color": "blue"
+   },
+   {
+    "id": "o",
+    "label": "Out through the windpipe",
+    "x": 82,
+    "y": 15
+   }
+  ],
+  "edges": [
+   {
+    "from": "t",
+    "to": "p",
+    "label": "in"
+   },
+   {
+    "from": "p",
+    "to": "l"
+   },
+   {
+    "from": "l",
+    "to": "a"
+   },
+   {
+    "from": "a",
+    "to": "o",
+    "label": "out"
+   }
+  ],
+  "flow": true,
+  "caption": "The one-way route of air through a bird (from the tracer-gas study of zebra finches and blackbirds). A breath stays in for two breath cycles."
+ },
+ "robin_lungs": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "t",
+    "label": "Breathe in: windpipe",
+    "x": 8,
+    "y": 50
+   },
+   {
+    "id": "p",
+    "label": "Rear air sacs",
+    "x": 32,
+    "y": 50,
+    "color": "blue"
+   },
+   {
+    "id": "l",
+    "label": "Lung tubes (parabronchi)",
+    "x": 58,
+    "y": 50,
+    "color": "green"
+   },
+   {
+    "id": "a",
+    "label": "Front air sacs",
+    "x": 82,
+    "y": 50,
+    "color": "blue"
+   },
+   {
+    "id": "o",
+    "label": "Out through the windpipe",
+    "x": 82,
+    "y": 15
+   }
+  ],
+  "edges": [
+   {
+    "from": "t",
+    "to": "p",
+    "label": "in"
+   },
+   {
+    "from": "p",
+    "to": "l"
+   },
+   {
+    "from": "l",
+    "to": "a"
+   },
+   {
+    "from": "a",
+    "to": "o",
+    "label": "out"
+   }
+  ],
+  "flow": true,
+  "caption": "The one-way route of air through a bird (from the tracer-gas study of zebra finches and blackbirds). A breath stays in for two breath cycles."
+ },
+ "robin_air_sacs": {
+  "type": "table",
+  "cols": [
+   "Air-sac group",
+   "Sacs",
+   "Role"
+  ],
+  "rows": [
+   [
+    "Front (anterior)",
+    "interclavicular, cervical, anterior thoracic",
+    "empty through the windpipe"
+   ],
+   [
+    "Rear (posterior)",
+    "posterior thoracic, abdominal",
+    "receive most of the breathed-in air"
+   ]
+  ],
+  "caption": "The two functional groups of air sacs (the tracer-gas study). Nine sacs are usual in birds; descriptions of passerines differ (Wikipedia gives seven)."
+ },
+ "robin_flight": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "d",
+    "label": "Downstroke: wing pushes air down",
+    "x": 12,
+    "y": 25
+   },
+   {
+    "id": "l",
+    "label": "Lift (up) and thrust (forward)",
+    "x": 55,
+    "y": 25,
+    "color": "green"
+   },
+   {
+    "id": "u",
+    "label": "Upstroke: wing folded a little",
+    "x": 12,
+    "y": 75
+   },
+   {
+    "id": "a",
+    "label": "Alula keeps air attached at low speed",
+    "x": 55,
+    "y": 75
+   }
+  ],
+  "edges": [
+   {
+    "from": "d",
+    "to": "l",
+    "label": "most of the force"
+   },
+   {
+    "from": "u",
+    "to": "l",
+    "label": "some thrust"
+   },
+   {
+    "from": "a",
+    "to": "l",
+    "label": "when landing"
+   }
+  ],
+  "flow": true,
+  "caption": "What the wing does in a beat (Wikipedia: Bird flight). The lift comes from air flowing over the wing, not only from pushing down."
+ },
+ "robin_song": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "lg",
+    "label": "Air from the lungs",
+    "x": 8,
+    "y": 50
+   },
+   {
+    "id": "b",
+    "label": "Two bronchi",
+    "x": 30,
+    "y": 50
+   },
+   {
+    "id": "m",
+    "label": "Membranes vibrate: left and right sides tuned separately",
+    "x": 58,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "t",
+    "label": "Windpipe and mouth shape the sound",
+    "x": 85,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "lg",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "t"
+   }
+  ],
+  "flow": true,
+  "caption": "Where the song is made. The two sides of the syrinx can be controlled separately (Suthers 1990, cited by Wikipedia: Syrinx)."
+ },
+ "robin_syrinx": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "lg",
+    "label": "Air from the lungs",
+    "x": 8,
+    "y": 50
+   },
+   {
+    "id": "b",
+    "label": "Two bronchi",
+    "x": 30,
+    "y": 50
+   },
+   {
+    "id": "m",
+    "label": "Membranes vibrate: left and right sides tuned separately",
+    "x": 58,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "t",
+    "label": "Windpipe and mouth shape the sound",
+    "x": 85,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "lg",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "t"
+   }
+  ],
+  "flow": true,
+  "caption": "Where the song is made. The two sides of the syrinx can be controlled separately (Suthers 1990, cited by Wikipedia: Syrinx)."
+ },
+ "robin_supracoracoideus": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "m",
+    "label": "Supracoracoideus on the breast",
+    "x": 10,
+    "y": 70
+   },
+   {
+    "id": "t",
+    "label": "Tendon",
+    "x": 35,
+    "y": 70
+   },
+   {
+    "id": "c",
+    "label": "Triosseal canal: the pulley",
+    "x": 60,
+    "y": 30,
+    "color": "orange"
+   },
+   {
+    "id": "h",
+    "label": "Top of the humerus: wing goes up",
+    "x": 85,
+    "y": 70,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "m",
+    "to": "t",
+    "label": "contracts"
+   },
+   {
+    "from": "t",
+    "to": "c",
+    "label": "pulled down"
+   },
+   {
+    "from": "c",
+    "to": "h",
+    "label": "turned up"
+   }
+  ],
+  "flow": true,
+  "caption": "The pulley that lets a breast muscle lift the wing."
+ },
+ "robin_cervical": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "human",
+    "value": 7
+   },
+   {
+    "label": "songbirds (nearly all)",
+    "value": 14
+   },
+   {
+    "label": "swans (the most)",
+    "value": 25
+   }
+  ],
+  "ylabel": "neck vertebrae",
+  "caption": "Neck vertebrae: 7 in a person, 14 in all but 2 of 159 songbirds (Webster and Goff) and as many as 25 in some swans (Wikipedia, Bird anatomy)."
+ },
+ "robin_leg_toes": {
+  "type": "table",
+  "cols": [
+   "Toe",
+   "Points",
+   "Bones"
+  ],
+  "rows": [
+   [
+    "I (hind toe)",
+    "back",
+    "2"
+   ],
+   [
+    "II (inner)",
+    "forward",
+    "3"
+   ],
+   [
+    "III (middle)",
+    "forward",
+    "4"
+   ],
+   [
+    "IV (outer)",
+    "forward",
+    "5"
+   ]
+  ],
+  "caption": "Toe bones in a typical perching bird (Wikipedia, Bird feet and legs)."
+ },
+ "robin_toe_bones": {
+  "type": "table",
+  "cols": [
+   "Toe",
+   "Points",
+   "Bones"
+  ],
+  "rows": [
+   [
+    "I (hind toe)",
+    "back",
+    "2"
+   ],
+   [
+    "II (inner)",
+    "forward",
+    "3"
+   ],
+   [
+    "III (middle)",
+    "forward",
+    "4"
+   ],
+   [
+    "IV (outer)",
+    "forward",
+    "5"
+   ]
+  ],
+  "caption": "Toe bones in a typical perching bird (Wikipedia, Bird feet and legs)."
+ },
+ "robin_keratin": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "c",
+    "label": "Cysteine",
+    "x": 10,
+    "y": 50
+   },
+   {
+    "id": "s",
+    "label": "Cystine: two cysteines joined by a sulfur bridge",
+    "x": 40,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "k",
+    "label": "Beta-keratin sheets",
+    "x": 70,
+    "y": 25
+   },
+   {
+    "id": "f",
+    "label": "Feather, bill, claw",
+    "x": 88,
+    "y": 75,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "c",
+    "to": "s",
+    "label": "oxidation"
+   },
+   {
+    "from": "s",
+    "to": "k",
+    "label": "cross-link"
+   },
+   {
+    "from": "k",
+    "to": "f"
+   }
+  ],
+  "flow": true,
+  "caption": "How keratin is held together. Keratin itself is not in the molecule data; cysteine and cystine are."
+ },
+ "robin_pigment": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "t",
+    "label": "Tyrosine",
+    "x": 10,
+    "y": 50
+   },
+   {
+    "id": "d",
+    "label": "L-DOPA",
+    "x": 35,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "m",
+    "label": "Melanin",
+    "x": 60,
+    "y": 50,
+    "color": "green"
+   },
+   {
+    "id": "g",
+    "label": "Pigment granules in the feather",
+    "x": 85,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "t",
+    "to": "d"
+   },
+   {
+    "from": "d",
+    "to": "m",
+    "label": "more steps"
+   },
+   {
+    "from": "m",
+    "to": "g"
+   }
+  ],
+  "flow": true,
+  "caption": "The route to melanin. Whether the orange breast is melanin-based is not settled (Delhey et al. 2010 classed it so without a chemical test)."
+ },
+ "robin_heart": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "b",
+    "label": "Body",
+    "x": 8,
+    "y": 50
+   },
+   {
+    "id": "ra",
+    "label": "Right atrium",
+    "x": 28,
+    "y": 20,
+    "color": "blue"
+   },
+   {
+    "id": "rv",
+    "label": "Right ventricle",
+    "x": 50,
+    "y": 20,
+    "color": "blue"
+   },
+   {
+    "id": "lu",
+    "label": "Lungs",
+    "x": 72,
+    "y": 20
+   },
+   {
+    "id": "la",
+    "label": "Left atrium",
+    "x": 72,
+    "y": 80,
+    "color": "orange"
+   },
+   {
+    "id": "lv",
+    "label": "Left ventricle",
+    "x": 40,
+    "y": 80,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "b",
+    "to": "ra",
+    "label": "oxygen-poor"
+   },
+   {
+    "from": "ra",
+    "to": "rv"
+   },
+   {
+    "from": "rv",
+    "to": "lu"
+   },
+   {
+    "from": "lu",
+    "to": "la",
+    "label": "oxygen-rich"
+   },
+   {
+    "from": "la",
+    "to": "lv"
+   },
+   {
+    "from": "lv",
+    "to": "b"
+   }
+  ],
+  "flow": true,
+  "caption": "The two circuits of a four-chambered heart."
+ },
+ "robin_wing": {
+  "type": "table",
+  "cols": [
+   "",
+   "Human arm",
+   "Robin wing"
+  ],
+  "rows": [
+   [
+    "Upper arm",
+    "humerus",
+    "humerus"
+   ],
+   [
+    "Forearm",
+    "radius and ulna",
+    "radius and ulna"
+   ],
+   [
+    "Wrist and palm",
+    "8 wrist bones and 5 palm bones",
+    "fused into one hand bone"
+   ],
+   [
+    "Fingers",
+    "5",
+    "3 (identity debated)"
+   ]
+  ],
+  "caption": "The wing is an arm. The human column is standard anatomy; the bird column is from Wikipedia (Bird anatomy; Origin of birds)."
+ },
+ "robin_carpometacarpus": {
+  "type": "table",
+  "cols": [
+   "",
+   "Human arm",
+   "Robin wing"
+  ],
+  "rows": [
+   [
+    "Upper arm",
+    "humerus",
+    "humerus"
+   ],
+   [
+    "Forearm",
+    "radius and ulna",
+    "radius and ulna"
+   ],
+   [
+    "Wrist and palm",
+    "8 wrist bones and 5 palm bones",
+    "fused into one hand bone"
+   ],
+   [
+    "Fingers",
+    "5",
+    "3 (identity debated)"
+   ]
+  ],
+  "caption": "The wing is an arm. The human column is standard anatomy; the bird column is from Wikipedia (Bird anatomy; Origin of birds)."
+ },
+ "robin_humerus": {
+  "type": "table",
+  "cols": [
+   "",
+   "Human arm",
+   "Robin wing"
+  ],
+  "rows": [
+   [
+    "Upper arm",
+    "humerus",
+    "humerus"
+   ],
+   [
+    "Forearm",
+    "radius and ulna",
+    "radius and ulna"
+   ],
+   [
+    "Wrist and palm",
+    "8 wrist bones and 5 palm bones",
+    "fused into one hand bone"
+   ],
+   [
+    "Fingers",
+    "5",
+    "3 (identity debated)"
+   ]
+  ],
+  "caption": "The wing is an arm. The human column is standard anatomy; the bird column is from Wikipedia (Bird anatomy; Origin of birds)."
+ },
+ "robin_feather_scene": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "barbule spacing, closest (µm)",
+    "value": 8
+   },
+   {
+    "label": "as drawn (µm)",
+    "value": 12
+   },
+   {
+    "label": "barbule spacing, widest (µm)",
+    "value": 16
+   }
+  ],
+  "ylabel": "micrometres",
+  "caption": "The only published size in the scene: barbules on flight feathers of birds from a hummingbird to a condor are 8 to 16 micrometres apart (J. R. Soc. Interface 2025)."
+ },
+ "robin_barbule": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "barbule spacing, closest (µm)",
+    "value": 8
+   },
+   {
+    "label": "as drawn (µm)",
+    "value": 12
+   },
+   {
+    "label": "barbule spacing, widest (µm)",
+    "value": 16
+   }
+  ],
+  "ylabel": "micrometres",
+  "caption": "The only published size in the scene: barbules on flight feathers of birds from a hummingbird to a condor are 8 to 16 micrometres apart (J. R. Soc. Interface 2025)."
+ },
+ "robin_hollow_bones": {
+  "type": "table",
+  "cols": [
+   "Bird",
+   "Hollow, air-filled bones?"
+  ],
+  "rows": [
+   [
+    "Robin and most flying birds",
+    "many"
+   ],
+   [
+    "Ostrich, emu",
+    "some (femur; emu neck)"
+   ],
+   [
+    "Penguins, loons, puffins, kiwis",
+    "none"
+   ]
+  ],
+  "caption": "Which birds have pneumatic bones (Wikipedia, Bird anatomy). A bird's plumage can weigh two or three times as much as its skeleton (Wikipedia, Feather)."
+ },
+ "robin_scleral_ring": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "fewest plates",
+    "value": 12
+   },
+   {
+    "label": "most common",
+    "value": 14
+   },
+   {
+    "label": "most plates",
+    "value": 18
+   }
+  ],
+  "ylabel": "plates per ring",
+  "caption": "Scleral ossicles in birds: most rings have 12 to 18 plates, 14 the most common (Wikipedia, Scleral ring)."
+ },
+ "robin_pecten": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "fewest",
+    "value": 5
+   },
+   {
+    "label": "most",
+    "value": 30
+   }
+  ],
+  "ylabel": "pleats",
+  "caption": "The pleated pecten has 5 to 30 pleats overall (Wikipedia, Pecten oculi)."
+ },
+ "robin_gizzard": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "muscular bands in the gizzard",
+    "value": 4
+   }
+  ],
+  "ylabel": "bands",
+  "caption": "The gizzard is made of four muscular bands (Wikipedia, Bird anatomy)."
+ },
+ "robin_pygostyle": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "fewest counted",
+    "value": 4
+   },
+   {
+    "label": "most counted",
+    "value": 10
+   }
+  ],
+  "ylabel": "fused tail vertebrae",
+  "caption": "The pygostyle is formed from the last four caudal vertebrae, though some sources say up to ten (Wikipedia, Bird anatomy)."
+ },
+ "robin_synsacrum": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "thoracic",
+    "value": 1
+   },
+   {
+    "label": "lumbar",
+    "value": 6
+   },
+   {
+    "label": "sacral",
+    "value": 2
+   },
+   {
+    "label": "sacro-caudal",
+    "value": 5
+   }
+  ],
+  "ylabel": "vertebrae fused",
+  "caption": "Vertebrae in the synsacrum of birds in general (Wikipedia, Bird anatomy): 1 + 6 + 2 + 5 = 14."
+ }
+}

@@ -1,0 +1,172 @@
+{
+ "cell": "animal",
+ "id": "robin_bone",
+ "tag": "Inside a bone",
+ "title": "Inside a hollow bird bone",
+ "node": "robin_bone_scene",
+ "blurb": "A slice across the hollow of a bird bone: two thin walls of dense bone, the air-filled space between them, struts across it and bone cells in the wall. Click a part.",
+ "note": "Schematic. The thickness of the wall, the width of the hollow, the number and thickness of struts and the size and number of bone cells are illustrative, not measurements on a robin. The air-filled space is shown empty.",
+ "bg": "#f2eee6",
+ "center": [
+  0,
+  0,
+  0
+ ],
+ "D_um": 1400,
+ "labels": [
+  {
+   "text": "Wall of compact bone",
+   "at": [
+    -420,
+    260,
+    60
+   ],
+   "pop": "wall"
+  },
+  {
+   "text": "Air-filled space",
+   "at": [
+    -420,
+    0,
+    60
+   ],
+   "pop": "wall"
+  },
+  {
+   "text": "Strut",
+   "at": [
+    -120,
+    60,
+    60
+   ],
+   "pop": "strut"
+  },
+  {
+   "text": "Bone cell",
+   "at": [
+    200,
+    300,
+    60
+   ],
+   "pop": "cell"
+  }
+ ],
+ "populations": [
+  {
+   "id": "wall",
+   "name": "Wall of compact bone",
+   "node": "robin_bone_wall",
+   "shape": "rbox",
+   "size": [
+    1000,
+    110,
+    160
+   ],
+   "color": "#e6dcc3",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 2,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       235,
+       0
+      ]
+     },
+     {
+      "at": [
+       0,
+       -235,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "strut",
+   "name": "Strut",
+   "node": "robin_bone_strut",
+   "shape": "rbox",
+   "size": [
+    14,
+    400,
+    90
+   ],
+   "color": "#ddd2b6",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -250,
+       0,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       20
+      ]
+     },
+     {
+      "at": [
+       -20,
+       0,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -25
+      ]
+     },
+     {
+      "at": [
+       220,
+       0,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       15
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "cell",
+   "name": "Bone cell (osteocyte)",
+   "node": "robin_osteocyte",
+   "shape": "ellipsoid",
+   "size": [
+    26,
+    12,
+    12
+   ],
+   "color": "#9a7c56",
+   "opacity": 1,
+   "ink": 0,
+   "priority": 5,
+   "arrange": {
+    "kind": "inside",
+    "of": "wall",
+    "per": 7,
+    "margin": 0.8,
+    "seed": 9
+   },
+   "deeper": {
+    "type": "cell",
+    "cell": "animal"
+   }
+  }
+ ]
+}

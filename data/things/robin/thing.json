@@ -1163,10 +1163,16 @@
    "name": "Belly",
    "system": "outside",
    "node": "robin_belly",
-   "color": "#ebe5d6",
+   "color": "#e6dfcc",
    "mesh": "r_belly",
    "solid": false,
    "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     0.0015,
     0.0451,
@@ -1180,10 +1186,16 @@
    "name": "Flank",
    "system": "outside",
    "node": "robin_flank",
-   "color": "#a89472",
+   "color": "#9a8662",
    "mesh": "r_flank",
    "solid": false,
    "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     -0.0015,
     0.0654,
@@ -1197,10 +1209,16 @@
    "name": "Breast",
    "system": "outside",
    "node": "robin_breast",
-   "color": "#dd6e2b",
+   "color": "#d6661f",
    "mesh": "r_breast",
    "solid": false,
    "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     0.0165,
     0.0653,
@@ -1214,10 +1232,16 @@
    "name": "Rump",
    "system": "outside",
    "node": "robin_rump",
-   "color": "#8a7650",
+   "color": "#7c6842",
    "mesh": "r_rump",
    "solid": false,
    "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     -0.0237,
     0.0468,
@@ -1231,10 +1255,16 @@
    "name": "Vent and undertail area",
    "system": "outside",
    "node": "robin_vent",
-   "color": "#ddd3bd",
+   "color": "#d6ccb2",
    "mesh": "r_vent",
    "solid": false,
    "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     -0.0117,
     0.0358,
@@ -1248,10 +1278,16 @@
    "name": "Grey border of the breast",
    "system": "outside",
    "node": "robin_grey",
-   "color": "#98a0a2",
+   "color": "#7e8991",
    "mesh": "r_grey",
    "solid": false,
    "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     0.019,
     0.0693,
@@ -1265,10 +1301,16 @@
    "name": "Back (mantle and scapulars)",
    "system": "outside",
    "node": "robin_back",
-   "color": "#7a6844",
+   "color": "#6d5b3a",
    "mesh": "r_back",
    "solid": false,
    "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     -0.0008,
     0.069,
@@ -1282,10 +1324,16 @@
    "name": "Nape and neck",
    "system": "outside",
    "node": "robin_nape",
-   "color": "#8a7a58",
+   "color": "#7c6c4a",
    "mesh": "r_nape",
    "solid": false,
    "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     0.0034,
     0.0876,
@@ -1299,10 +1347,16 @@
    "name": "Face and throat",
    "system": "outside",
    "node": "robin_face",
-   "color": "#d9692a",
+   "color": "#d2621f",
    "mesh": "r_face",
    "solid": false,
    "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     0.0277,
     0.0931,
@@ -1316,10 +1370,16 @@
    "name": "Crown",
    "system": "outside",
    "node": "robin_crown",
-   "color": "#7c6a46",
+   "color": "#6f5e3c",
    "mesh": "r_crown",
    "solid": false,
    "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     0.0195,
     0.0984,
@@ -1397,7 +1457,7 @@
    "name": "Eye ring",
    "system": "outside",
    "node": "robin_eye_ring",
-   "color": "#a89a78",
+   "color": "#8f8264",
    "mesh": "eye_ring",
    "lod": "near+mid",
    "center": [
@@ -1413,10 +1473,16 @@
    "name": "Primaries",
    "system": "outside",
    "node": "robin_prim",
-   "color": "#5e4c33",
+   "color": "#54442d",
    "instances": "prim",
    "double": true,
    "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     0.0057,
     0.0573,
@@ -1431,10 +1497,16 @@
    "name": "Secondaries",
    "system": "outside",
    "node": "robin_sec",
-   "color": "#66523a",
+   "color": "#5c4a33",
    "instances": "sec",
    "double": true,
    "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     0.0039,
     0.0614,
@@ -1449,10 +1521,16 @@
    "name": "Tertials",
    "system": "outside",
    "node": "robin_tert",
-   "color": "#6b583c",
+   "color": "#614f35",
    "instances": "tert",
    "double": true,
    "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     -0.0103,
     0.0604,
@@ -1466,11 +1544,17 @@
    "id": "f_pcov",
    "name": "Primary coverts",
    "system": "outside",
-   "node": "robin_pcov",
-   "color": "#7b6946",
+   "node": "robin_coverts",
+   "color": "#6f5d3d",
    "instances": "pcov",
    "double": true,
    "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     0.0077,
     0.0587,
@@ -1484,11 +1568,17 @@
    "id": "f_gcov",
    "name": "Greater coverts",
    "system": "outside",
-   "node": "robin_gcov",
-   "color": "#7b6946",
+   "node": "robin_coverts",
+   "color": "#6f5d3d",
    "instances": "gcov",
    "double": true,
    "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     -0.0023,
     0.0604,
@@ -1502,11 +1592,17 @@
    "id": "f_mcov",
    "name": "Median coverts",
    "system": "outside",
-   "node": "robin_mcov",
-   "color": "#7b6946",
+   "node": "robin_coverts",
+   "color": "#6f5d3d",
    "instances": "mcov",
    "double": true,
    "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     -0.0036,
     0.0632,
@@ -1520,11 +1616,17 @@
    "id": "f_lcov",
    "name": "Lesser coverts",
    "system": "outside",
-   "node": "robin_lcov",
-   "color": "#7b6946",
+   "node": "robin_coverts",
+   "color": "#6f5d3d",
    "instances": "lcov",
    "double": true,
    "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     -0.0049,
     0.0665,
@@ -1543,6 +1645,12 @@
    "instances": "alula",
    "double": true,
    "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     0.0139,
     0.0631,
@@ -1561,6 +1669,12 @@
    "instances": "tail",
    "double": true,
    "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     -0.033,
     0.0411,
@@ -1574,11 +1688,17 @@
    "id": "f_utc",
    "name": "Upper tail coverts",
    "system": "outside",
-   "node": "robin_utc",
+   "node": "robin_tail_coverts",
    "color": "#7d6c48",
    "instances": "utc",
    "double": true,
    "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     -0.0306,
     0.0443,
@@ -1592,11 +1712,17 @@
    "id": "f_undertc",
    "name": "Under tail coverts",
    "system": "outside",
-   "node": "robin_undertc",
+   "node": "robin_tail_coverts",
    "color": "#d6ccb4",
    "instances": "undertc",
    "double": true,
    "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     -0.0287,
     0.0363,
@@ -1615,6 +1741,12 @@
    "instances": "rach",
    "double": true,
    "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     -0.0061,
     0.0549,
@@ -1865,6 +1997,12 @@
    "mesh": "sk_sternum",
    "lod": "near+mid",
    "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
    "center": [
     0.008,
     0.0502,
@@ -1894,11 +2032,17 @@
    "id": "sk_coracoid",
    "name": "Coracoids",
    "system": "skeleton",
-   "node": "robin_coracoid",
+   "node": "robin_shoulder_girdle",
    "color": "#eadfc8",
    "mesh": "sk_coracoid",
    "lod": "near+mid",
    "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
    "center": [
     0.0154,
     0.0651,
@@ -1911,11 +2055,17 @@
    "id": "sk_scapula",
    "name": "Shoulder blades",
    "system": "skeleton",
-   "node": "robin_scapula",
+   "node": "robin_shoulder_girdle",
    "color": "#eadfc8",
    "mesh": "sk_scapula",
    "lod": "near+mid",
    "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
    "center": [
     -0.0018,
     0.0668,
@@ -1984,6 +2134,12 @@
    "mesh": "sk_humerus",
    "lod": "near+mid",
    "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
    "center": [
     -0.0071,
     0.0662,
@@ -2001,6 +2157,12 @@
    "mesh": "sk_radius",
    "lod": "near+mid",
    "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
    "center": [
     -0.0015,
     0.0615,
@@ -2018,6 +2180,12 @@
    "mesh": "sk_ulna",
    "lod": "near+mid",
    "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
    "center": [
     -0.0015,
     0.0614,
@@ -2035,6 +2203,12 @@
    "mesh": "sk_carpometacarpus",
    "lod": "near+mid",
    "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
    "center": [
     0.006,
     0.0576,
@@ -2069,6 +2243,12 @@
    "mesh": "sk_femur",
    "lod": "near+mid",
    "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
    "center": [
     0.0051,
     0.0469,
@@ -2086,6 +2266,12 @@
    "mesh": "sk_tibiotarsus",
    "lod": "near+mid",
    "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
    "center": [
     0.0062,
     0.0382,
@@ -2120,6 +2306,12 @@
    "mesh": "sk_tarsometatarsus",
    "lod": "near+mid",
    "cutFace": "bone",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_bone",
+    "D": 0.0014,
+    "button": "Look inside a hollow bone"
+   },
    "center": [
     -0.0015,
     0.0151,
@@ -2142,8 +2334,8 @@
     0.002,
     0
    ],
-   "radius": 0.0198,
-   "tris": 520
+   "radius": 0.0197,
+   "tris": 560
   },
   {
    "id": "mu_skin",
@@ -2188,6 +2380,12 @@
    "mesh": "mu_pectoralis",
    "lod": "near+mid",
    "cutFace": "muscle",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_flight_muscle",
+    "D": 0.00033,
+    "button": "Look inside the flight muscle"
+   },
    "center": [
     0.006,
     0.0571,
@@ -2205,6 +2403,12 @@
    "mesh": "mu_supracoracoideus",
    "lod": "near+mid",
    "cutFace": "muscle",
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_flight_muscle",
+    "D": 0.00033,
+    "button": "Look inside the flight muscle"
+   },
    "center": [
     0.0138,
     0.0531,
@@ -2268,7 +2472,7 @@
    "id": "mu_back_muscles",
    "name": "Back muscles",
    "system": "muscles",
-   "node": "robin_back_muscles",
+   "node": "robin_neck_muscles",
    "color": "#a84a3f",
    "mesh": "mu_back_muscles",
    "lod": "near+mid",
@@ -3225,10 +3429,16 @@
    "name": "Belly",
    "system": "outside",
    "node": "robin_belly",
-   "color": "#ebe5d6",
+   "color": "#e6dfcc",
    "mesh": "r_belly_mid",
    "lod": "mid",
    "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     0.0016,
     0.0452,
@@ -3242,10 +3452,16 @@
    "name": "Flank",
    "system": "outside",
    "node": "robin_flank",
-   "color": "#a89472",
+   "color": "#9a8662",
    "mesh": "r_flank_mid",
    "lod": "mid",
    "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     -0.0014,
     0.0653,
@@ -3259,10 +3475,16 @@
    "name": "Breast",
    "system": "outside",
    "node": "robin_breast",
-   "color": "#dd6e2b",
+   "color": "#d6661f",
    "mesh": "r_breast_mid",
    "lod": "mid",
    "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     0.0167,
     0.0653,
@@ -3276,10 +3498,16 @@
    "name": "Rump",
    "system": "outside",
    "node": "robin_rump",
-   "color": "#8a7650",
+   "color": "#7c6842",
    "mesh": "r_rump_mid",
    "lod": "mid",
    "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     -0.0236,
     0.0469,
@@ -3293,10 +3521,16 @@
    "name": "Vent and undertail area",
    "system": "outside",
    "node": "robin_vent",
-   "color": "#ddd3bd",
+   "color": "#d6ccb2",
    "mesh": "r_vent_mid",
    "lod": "mid",
    "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     -0.0117,
     0.0356,
@@ -3310,10 +3544,16 @@
    "name": "Grey border of the breast",
    "system": "outside",
    "node": "robin_grey",
-   "color": "#98a0a2",
+   "color": "#7e8991",
    "mesh": "r_grey_mid",
    "lod": "mid",
    "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     0.019,
     0.0694,
@@ -3327,10 +3567,16 @@
    "name": "Back (mantle and scapulars)",
    "system": "outside",
    "node": "robin_back",
-   "color": "#7a6844",
+   "color": "#6d5b3a",
    "mesh": "r_back_mid",
    "lod": "mid",
    "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     -0.0009,
     0.0689,
@@ -3344,10 +3590,16 @@
    "name": "Nape and neck",
    "system": "outside",
    "node": "robin_nape",
-   "color": "#8a7a58",
+   "color": "#7c6c4a",
    "mesh": "r_nape_mid",
    "lod": "mid",
    "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     0.0032,
     0.0873,
@@ -3361,10 +3613,16 @@
    "name": "Face and throat",
    "system": "outside",
    "node": "robin_face",
-   "color": "#d9692a",
+   "color": "#d2621f",
    "mesh": "r_face_mid",
    "lod": "mid",
    "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     0.0277,
     0.0933,
@@ -3378,10 +3636,16 @@
    "name": "Crown",
    "system": "outside",
    "node": "robin_crown",
-   "color": "#7c6a46",
+   "color": "#6f5e3c",
    "mesh": "r_crown_mid",
    "lod": "mid",
    "solid": false,
+   "deeper": {
+    "type": "tissue2",
+    "id": "robin_feather",
+    "D": 0.00043,
+    "button": "Look inside a feather"
+   },
    "center": [
     0.0194,
     0.0984,
@@ -3411,7 +3675,7 @@
  ],
  "stats": {
   "parts": 130,
-  "uniqueMeshTris": 345877,
+  "uniqueMeshTris": 345917,
   "nearTris": 62818,
   "midTris": 34889,
   "farTris": 1322

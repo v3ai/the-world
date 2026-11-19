@@ -354,6 +354,25 @@
      "scale": 1
     }
    ]
+  },
+  {
+   "id": "robin",
+   "placements": [
+    {
+     "on": {
+      "thing": "boulder",
+      "placement": 0,
+      "at": [
+       0.02,
+       0.686,
+       -0.05
+      ],
+      "note": "a flat spot near the top of the boulder (the highest point of the rock mesh, found from the baked mesh: surface within 5 mm over a 10 cm patch)"
+     },
+     "rot": -30,
+     "scale": 1
+    }
+   ]
   }
  ]
 }

@@ -3,9 +3,9 @@ import { L, ball, EZ, S2, add, sub, mul, norm, cross, dot, len, lerp3, bnd, sp, 
 import { bodySdf, headSdf, HC, HB, headLocal, headInv, LEG, WING, TAIL, surfZ } from './robin_shape.mjs';
 
 export const COL = {
-  crown: '#7c6a46', nape: '#8a7a58', face: '#d9692a', breast: '#dd6e2b', grey: '#98a0a2', back: '#7a6844', rump: '#8a7650', flank: '#a89472', belly: '#ebe5d6', vent: '#ddd3bd',
-  bill: '#2b2622', eye: '#0f0d0c', ring: '#a89a78', leg: '#8d6a58', claw: '#4a3a32',
-  prim: '#5e4c33', sec: '#66523a', tert: '#6b583c', covert: '#7b6946', alula: '#4a3d2b', tail: '#5f4f38', utc: '#7d6c48', undertc: '#d6ccb4',
+  crown: '#6f5e3c', nape: '#7c6c4a', face: '#d2621f', breast: '#d6661f', grey: '#7e8991', back: '#6d5b3a', rump: '#7c6842', flank: '#9a8662', belly: '#e6dfcc', vent: '#d6ccb2',
+  bill: '#2b2622', eye: '#0f0d0c', ring: '#8f8264', leg: '#8d6a58', claw: '#4a3a32',
+  prim: '#54442d', sec: '#5c4a33', tert: '#614f35', covert: '#6f5d3d', alula: '#4a3d2b', tail: '#5f4f38', utc: '#7d6c48', undertc: '#d6ccb4',
 };
 // ---- plumage regions of the body shell (the shell is the outline of the body plumage; each region is its own clickable piece) ----
 export function bodyRegions(R) {
