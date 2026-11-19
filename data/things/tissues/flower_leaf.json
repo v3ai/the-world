@@ -1,0 +1,233 @@
+{
+ "id": "flower_leaf",
+ "title": "The surface of a buttercup leaf",
+ "node": "rn_leaf_epidermis",
+ "blurb": "The skin of a leaf seen from above and a little to the side: flat cells, pairs of guard cells around pores (stomata), and hairs standing up. Drag to turn it. Click a cell, a pore or a hair.",
+ "note": "Illustrative. The species is described as hairy and, like other leaves, has stomata, but I did not find measured cell sizes, stomatal density or hair dimensions for it. The cells here are drawn about 40 micrometres across, the guard-cell pairs about 25 micrometres long, the hairs 15 micrometres wide and 400 to 800 micrometres long.",
+ "bg": "#f3efe6",
+ "center": [
+  0,
+  150,
+  0
+ ],
+ "D_um": 900,
+ "labels": [
+  {
+   "text": "Hair (trichome)",
+   "at": [
+    -260,
+    430,
+    40
+   ],
+   "pop": "hair"
+  },
+  {
+   "text": "Stoma: two guard cells around a pore",
+   "at": [
+    -240,
+    40,
+    120
+   ],
+   "pop": "guard"
+  },
+  {
+   "text": "Skin cell (epidermis)",
+   "at": [
+    260,
+    20,
+    120
+   ],
+   "pop": "cell"
+  }
+ ],
+ "populations": [
+  {
+   "id": "cell",
+   "name": "Epidermis cell",
+   "node": "rn_leaf_epidermis",
+   "shape": "rbox",
+   "size": [
+    40,
+    12,
+    40
+   ],
+   "color": "#cfe6b4",
+   "opacity": 0.55,
+   "ink": 1,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -300,
+     0,
+     -200
+    ],
+    "n": [
+     14,
+     1,
+     10
+    ],
+    "step": [
+     43,
+     0,
+     43
+    ],
+    "stagger": 0.5,
+    "jitter": 0.06,
+    "skip": [
+     {
+      "x": [
+       -215,
+       -165
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "guard",
+   "name": "Guard cell",
+   "node": "rn_stoma",
+   "shape": "bean",
+   "size": [
+    26,
+    12,
+    9
+   ],
+   "color": "#7fc45a",
+   "opacity": 0.9,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -190,
+       8,
+       -4
+      ],
+      "rotY": 0
+     },
+     {
+      "at": [
+       -190,
+       8,
+       5
+      ],
+      "rotY": 3.14159
+     },
+     {
+      "at": [
+       30,
+       8,
+       60
+      ],
+      "rotY": 0
+     },
+     {
+      "at": [
+       30,
+       8,
+       69
+      ],
+      "rotY": 3.14159
+     },
+     {
+      "at": [
+       150,
+       8,
+       -110
+      ],
+      "rotY": 0
+     },
+     {
+      "at": [
+       150,
+       8,
+       -101
+      ],
+      "rotY": 3.14159
+     }
+    ]
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "hair",
+   "name": "Hair",
+   "node": "rn_hairs",
+   "shape": "cylinder",
+   "size": [
+    15,
+    500,
+    15
+   ],
+   "color": "#efe9cf",
+   "opacity": 0.95,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -120,
+       250,
+       -60
+      ]
+     },
+     {
+      "at": [
+       -250,
+       300,
+       80
+      ]
+     },
+     {
+      "at": [
+       110,
+       300,
+       30
+      ]
+     },
+     {
+      "at": [
+       220,
+       400,
+       -100
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "chloro",
+   "name": "Chloroplast",
+   "node": "bio_chloroplasts_plastids",
+   "shape": "lens",
+   "size": [
+    6,
+    3,
+    6
+   ],
+   "color": "#2f8f3a",
+   "opacity": 1,
+   "ink": 1,
+   "arrange": {
+    "kind": "inside",
+    "of": "cell",
+    "per": 2,
+    "margin": 0.6,
+    "seed": 41
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "chlorophyll_a",
+    "name": "Chlorophyll a, the green pigment"
+   }
+  }
+ ]
+}

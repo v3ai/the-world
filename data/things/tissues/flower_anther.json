@@ -1,0 +1,205 @@
+{
+ "id": "flower_anther",
+ "title": "Inside a buttercup anther",
+ "node": "rn_anther",
+ "blurb": "A slice across an anther: a wall around four pollen sacs, each full of pollen grains. The grains are drawn at their real size (about 27 micrometres); the anther is about half a millimetre wide. Click a part.",
+ "note": "The pollen grain size (about 27 by 26 micrometres) is from a pollen reference collection. The anther width, the shape of the sacs and the number of grains drawn are illustrative: a real sac holds far more grains than are shown, and I did not find measured anther dimensions for this species.",
+ "bg": "#f3efe6",
+ "center": [
+  0,
+  0,
+  0
+ ],
+ "D_um": 800,
+ "labels": [
+  {
+   "text": "Anther wall (skin, endothecium, tapetum)",
+   "at": [
+    -300,
+    175,
+    100
+   ],
+   "pop": "wall"
+  },
+  {
+   "text": "Pollen sac (one of four)",
+   "at": [
+    -340,
+    70,
+    100
+   ],
+   "pop": "sac"
+  },
+  {
+   "text": "Pollen grain, about 27 \u00b5m",
+   "at": [
+    150,
+    -60,
+    100
+   ],
+   "pop": "grain"
+  },
+  {
+   "text": "Connective with a vascular strand",
+   "at": [
+    10,
+    -190,
+    100
+   ],
+   "pop": "strand"
+  }
+ ],
+ "populations": [
+  {
+   "id": "wall",
+   "name": "Anther wall",
+   "node": "rn_anther_wall",
+   "shape": "tube_z",
+   "size": [
+    540,
+    340,
+    420
+   ],
+   "color": "#e59d14",
+   "opacity": 0.28,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       0,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "sac",
+   "name": "Pollen sac",
+   "node": "rn_pollen_sac",
+   "shape": "tube_z",
+   "size": [
+    190,
+    130,
+    380
+   ],
+   "color": "#f6d84a",
+   "opacity": 0.5,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -115,
+       75,
+       0
+      ]
+     },
+     {
+      "at": [
+       115,
+       75,
+       0
+      ]
+     },
+     {
+      "at": [
+       -115,
+       -75,
+       0
+      ]
+     },
+     {
+      "at": [
+       115,
+       -75,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "connective",
+   "name": "Connective tissue",
+   "node": "rn_anther",
+   "shape": "tube_z",
+   "size": [
+    60,
+    230,
+    390
+   ],
+   "color": "#f2e5a0",
+   "opacity": 0.9,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       0,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "strand",
+   "name": "Vascular strand",
+   "node": "bio_water_transport",
+   "shape": "tube_z",
+   "size": [
+    26,
+    26,
+    410
+   ],
+   "color": "#4aa3df",
+   "opacity": 0.95,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       0,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "cellotriose",
+    "name": "Cellulose, the main material of plant cell walls"
+   }
+  },
+  {
+   "id": "grain",
+   "name": "Pollen grain",
+   "node": "rn_pollen_grain",
+   "shape": "ellipsoid",
+   "size": [
+    27,
+    26,
+    27
+   ],
+   "color": "#f9e24a",
+   "opacity": 1,
+   "ink": 1,
+   "arrange": {
+    "kind": "inside",
+    "of": "sac",
+    "per": 26,
+    "margin": 0.8,
+    "seed": 31
+   }
+  }
+ ]
+}
