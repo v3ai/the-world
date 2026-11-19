@@ -96,6 +96,7 @@ FT.cosmos = {
     // the last-scattering surface: about 13,900 Mpc (≈ 45 billion light-years) from us in today's distances
     const cmb = new THREE.Mesh(new THREE.SphereGeometry(13900, 64, 32), new THREE.MeshBasicMaterial({ map: spaceCmbTex(), side: THREE.BackSide, transparent: true, opacity: .5, depthWrite: false }));
     F.add(cmb); F.pick(cmb, 'cmb', -1); cmb.userData.noZoom = true;
+    { const base = cmb.raycast; cmb.raycast = function (rc, out) { if (cam.D < 2e25) return; base.call(this, rc, out); }; } // the shell is only a thing to click when seen from far outside; from inside the galaxy empty sky is just empty
     const cl = spaceLabel(F, cmb, 'Where the oldest light came from (illustrative colours)', 60, { offset: new V3(0, 9000, 0) }); cl.minSizeFn = () => cam.D > 2e25;
     // cosmic web: ILLUSTRATIVE. Random nodes joined to their neighbours, to 650 Mpc. Not a map of real galaxies.
     const nodes = [new V3()];
@@ -136,7 +137,8 @@ FT.cosmos = {
 FT.localgroup = {
   build(F) {
     F.scene.background = new THREE.Color(0); const sprites = [];
-    F.update = () => { const k = smooth(2e20, 4e21, cam.D); sprites.forEach(s => s.material.opacity = (.12 + .88 * k) * F.alpha); };
+    // far galaxies fade out when the view is zoomed in on the Milky Way, so Andromeda does not sit over our own disc
+    F.update = () => { const k = smooth(2e20, 4e21, cam.D), dl = F.dLoc || 1; sprites.forEach(s => s.material.opacity = (.12 + .88 * k) * F.alpha * (F.C ? 1 - smooth(4 * dl, 10 * dl, s.position.distanceTo(F.C)) : 1)); };
     getJSON('data/galaxies.json').then(G => {
       if (!F.built) return;
       G.filter(g => g.dist_mpc <= 3.1 && g.name !== 'Milky Way').forEach(g => {
@@ -151,7 +153,7 @@ FT.localgroup = {
         const info = INFO[id] ? Object.assign({}, INFO[id], { facts, note }) : { title: g.name, tag: `${g.type} · ${g.group}`, body: `<p>${g.note || 'A galaxy near the Local Group.'}</p>`, facts, note };
         const hs = spaceHit(Math.max(sz * .4, .2), { id, priority: 2, info, sim: ['localgroup'], radius: sz, center: () => p.clone() }, { px: 12 });
         hs.position.copy(p); F.add(hs); F.pickables.push(hs);
-        if (member ? (g.diam_kpc > 3 || /Magellan/.test(g.name)) : g.diam_kpc >= 10) { const L = spaceLabel(F, hs, g.name, member ? 30 + Math.min(g.diam_kpc, 40) / 4 : 12, { offset: new V3(0, sz * .6, 0) }); L.minSizeFn = () => cam.D > (member ? 1.5e21 : 1e22); }
+        if (member ? (g.diam_kpc > 3 || /Magellan/.test(g.name)) : g.diam_kpc >= 10) { const L = spaceLabel(F, hs, g.name, member ? 30 + Math.min(g.diam_kpc, 40) / 4 : 12, { offset: new V3(0, sz * .6, 0) }); L.minSizeFn = () => cam.D > (member ? 1.5e21 : 1e22) && (!F.C || p.distanceTo(F.C) < 6 * F.dLoc); }
       });
     });
     const ml = spaceLabel(F, F.add(new THREE.Object3D()), 'Milky Way', 90, { cls: 'you', offset: new V3(0, 18, 0) }); ml.minSizeFn = () => cam.D > 8e21;
@@ -179,7 +181,7 @@ FT.milkyway = {
     for (let i = 0; i < 9000; i++) { const rr = Math.min(18, -Math.log(1 - r() * .99) * 3.6), th = r() * TAU, b = .15 + r() * .2; push(rr * Math.cos(th), gauss(r) * .15, rr * Math.sin(th), b * .95, b * .9, b * .85, .12); }
     for (let k = 0; k < 150; k++) { const v = new V3(gauss(r), gauss(r) * .8, gauss(r)).normalize().multiplyScalar(2 + Math.pow(r(), 1.6) * 30); for (let i = 0; i < 25; i++) push(v.x + gauss(r) * .06, v.y + gauss(r) * .06, v.z + gauss(r) * .06, 1, .88, .7, .1); }
     const gal = makePoints(P, C, S); F.add(gal); F.pick(gal, 'spiralArm', .2);
-    F.add(glowSprite(0xffd9a0, 6, .7)); F.add(glowSprite(0xfff3dc, 2, 1));
+    const cg1 = glowSprite(0xffd9a0, 6, .7), cg2 = glowSprite(0xfff3dc, 2, 1); F.add(cg1); F.add(cg2); // magnified from inside, their texture shows as blocks: fade them out when the camera is close
     // Sagittarius A*: a click, a double-click, a card button and scrolling onto it all lead into the black-hole scene
     const sgr = spaceHit(.0004, { id: 'sgrA', priority: 2.5, radius: 3e-9, center: () => new V3(), zoomTo: () => { flyTo(FR.sgr, new V3(), 3e11); } }, { px: 16, off: () => chainOf(cam.A).includes(FR.sgr) });
     F.add(sgr); F.pickables.push(sgr); spaceLabel(F, sgr, 'Sagittarius A* (black hole)', 90, { offset: new V3(0, .6, 0) });
@@ -190,14 +192,14 @@ FT.milkyway = {
     // dark-matter halo (toggle): schematic, a smooth glow about 250 kpc in radius with a cloud of points that thins outward
     const halo = new THREE.Group(); halo.visible = false; F.add(halo);
     const hP = [], hC = [], hS = [];
-    for (let i = 0; i < 6000; i++) { const v = new V3(gauss(r), gauss(r), gauss(r)).normalize().multiplyScalar(250 * Math.pow(r(), 1.7)); hP.push(v.x, v.y, v.z); hC.push(.42, .2, .8); hS.push(3 + r() * 3); }
+    for (let i = 0; i < 6000; i++) { const v = new V3(gauss(r), gauss(r), gauss(r)).normalize().multiplyScalar(230 * Math.pow(r(), 1.7)); hP.push(v.x, v.y, v.z); hC.push(.42, .2, .8); hS.push(3 + r() * 3); }
     halo.add(makePoints(hP, hC, hS, { opacity: .5 }));
-    const hg = glowSprite(0x7a4cd8, 520, .5); halo.add(hg); const hg2 = glowSprite(0x9a6cf0, 200, .45); halo.add(hg2);
-    const hl = new THREE.Object3D(); hl.position.set(0, 250, 0); halo.add(hl); spaceLabel(F, hl, 'Dark matter halo (schematic): extends to roughly 250 kpc', 70, {});
+    const hg = glowSprite(0x7a4cd8, 460, .5); halo.add(hg); const hg2 = glowSprite(0x9a6cf0, 200, .45); halo.add(hg2);
+    const hl = new THREE.Object3D(); hl.position.set(0, 230, 0); halo.add(hl); spaceLabel(F, hl, 'Dark matter halo (schematic): extends roughly 200 kpc', 70, {});
     seg([['vis', 'Visible galaxy'], ['dm', 'Dark matter halo']], 'vis', k => { halo.visible = k === 'dm'; if (k === 'dm') { showInfo('darkhalo'); if (cam.D < 6e21) flyTo(FR.mw, new V3(), 1.2e22); } else if (cam.D > 6e21) flyTo(FR.mw, new V3(), 2e21); });
     F.blurb = 'Our galaxy: 100–400 billion stars. The Sun is about 27,000 light-years (8.2 kpc) from the centre.';
-    F.note = 'What is real: the positions of the Sun and of Sagittarius A*. What is illustrative: every other star here is generated. The number of arms, their winding and the bar angle are an artist\'s impression, not the measured arms, and the dark-matter halo (about 250 kpc, schematic) is a smooth glow, not a map.';
-    F.update = () => { const k = smooth(1e19, 6e20, cam.D); gal.material.uniforms.uMaxPx.value = lerp(1.7, 64, k); gal.material.uniforms.uOpacity.value = lerp(.55, 1, k) * F.alpha; };
+    F.note = 'What is real: the positions of the Sun and of Sagittarius A*. What is illustrative: every other star here is generated. The number of arms, their winding and the bar angle are an artist\'s impression, not the measured arms, and the dark-matter halo (roughly 200 kpc across its radius, schematic) is a smooth glow, not a map.';
+    F.update = () => { const k = smooth(1e19, 6e20, cam.D), gk = smooth(3e17, 3e19, cam.D); cg1.material.opacity = .7 * gk; cg2.material.opacity = gk; cg1.visible = cg2.visible = gk > .01; gal.material.uniforms.uMaxPx.value = lerp(1.7, 64, k); gal.material.uniforms.uOpacity.value = lerp(.55, 1, k) * F.alpha; };
   }
 };
 /* ---------- solar neighborhood: real stars (HYG), parsecs, equatorial three ---------- */

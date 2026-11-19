@@ -9711,7 +9711,7 @@
 ],
 "certainty": "C1",
 "domain": "Galactic astronomy",
-"basics": "Our galaxy is a spiral of a few hundred billion stars about 100,000 light-years across, with the Sun about 26,000 light-years from the centre.",
+"basics": "Our galaxy is a spiral of a few hundred billion stars about 100,000 light-years across, with the Sun about 27,000 light-years from the centre.",
 "deeper": "Stars orbit the centre once every ~230 million years. A supermassive black hole, Sgr A*, sits at the centre.",
 "expert": "Disk diameter ≈30 kpc; R☉≈8.2 kpc; v_circ≈230 km/s; M_stars≈6×10¹⁰ M☉; Sgr A* ≈4.3×10⁶ M☉; halo mass ≈10¹² M☉.",
 "regime": "Mass of halo depends on dark matter modelling.",
@@ -10327,7 +10327,7 @@
 "domain": "Cosmology",
 "basics": "If dark energy stays constant, the universe will keep expanding forever, growing cold and dark. Ideas about other universes (multiverse) are speculative and untested.",
 "deeper": "Fine-tuning arguments ask why constants allow life; anthropic and multiverse answers are not testable so far.",
-"expert": "de Sitter horizon ≈17 Gpc proper; Hawking decay of BHs ≈10⁶⁷–10¹⁰⁰ yr; Λ-dominated ⇒ a∝e^{Ht}.",
+"expert": "de Sitter (cosmic event) horizon ≈5 Gpc proper (≈16 Gly); Hawking decay of BHs ≈10⁶⁷–10¹⁰⁰ yr; Λ-dominated ⇒ a∝e^{Ht}.",
 "regime": "Speculative extrapolation.",
 "emerges_from": [
 "dark_energy_node",
@@ -10366,7 +10366,7 @@
 "domain": "Cosmology",
 "basics": "We can only see as far as light has had time to reach us. The observable universe is about 93 billion light-years across and contains hundreds of billions of galaxies.",
 "deeper": "Beyond is unseen but probably similar. Because space expands, the edge is farther than 13.8 billion light-years.",
-"expert": "Comoving radius ≈14.4 Gpc (46.5 Gly); ≈2×10¹² galaxies (estimate); ≈10⁸⁰ baryons.",
+"expert": "Comoving radius ≈14.26 Gpc (46.5 Gly); ≈2×10¹¹ to 2×10¹² galaxies (estimates differ; Lauer et al. 2021 favour the low end); ≈10⁸⁰ baryons.",
 "regime": "Galaxy count estimates uncertain.",
 "emerges_from": [
 "big_bang",

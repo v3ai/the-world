@@ -1291,41 +1291,48 @@ BUILD.galaxy = (c) => {
 
 /* ================= LEVEL: BLACK HOLE ================= */
 BUILD.blackhole = (c) => {
-  const g = c.group, r = rng(66);
+  /* Scale: one unit = 6 x 10^9 m (the frame scales this group by 0.6 x 10^10 m). RS is the Schwarzschild radius of 4.3 million Suns,
+     2GM/c^2 = 1.27 x 10^10 m (GM_sun = 1.32712 x 10^20 m^3/s^2). To scale: horizon RS, photon sphere 1.5 RS, shadow edge and photon ring
+     (3 sqrt(3)/2 RS = 2.6 RS for a non-spinning hole), innermost stable orbit 3 RS. NOT to scale: the S-star orbits, the disc's shape and
+     brightness, the probe's stretching. */
+  const g = c.group, r = rng(66), RS = 1.2698e10 / 6e9, SH = 2.598 * RS;
   g.add(starfield(6000, 300, 900, 23));
   const sys = new THREE.Group(); sys.rotation.z = .18; sys.rotation.x = .05; g.add(sys);
-  const hole = new THREE.Mesh(new THREE.SphereGeometry(2, 64, 48), new THREE.MeshBasicMaterial({ color: 0x000000 })); hole.userData = { id: 'horizon', priority: 2 }; sys.add(hole); c.pickables.push(hole);
+  const hole = new THREE.Mesh(new THREE.SphereGeometry(RS, 64, 48), new THREE.MeshBasicMaterial({ color: 0x000000 })); hole.userData = { id: 'horizon', priority: .8 }; sys.add(hole); c.pickables.push(hole);
+  // the shadow: what the eye sees as black. Larger than the horizon because gravity bends light into the hole from outside it.
+  const shadow = new THREE.Mesh(new THREE.CircleGeometry(SH, 96), new THREE.MeshBasicMaterial({ color: 0x000000 })); shadow.userData = { id: 'horizon', priority: .9 }; g.add(shadow); c.pickables.push(shadow);
   const diskMat = new THREE.ShaderMaterial({
-    uniforms: { uTime: { value: 0 }, uCam: { value: new THREE.Vector2() }, uIn: { value: 2.6 }, uOut: { value: 11 } },
+    uniforms: { uTime: { value: 0 }, uCam: { value: new THREE.Vector2() }, uIn: { value: 3 * RS }, uOut: { value: 9 * RS } },
     vertexShader: LDV(`varying vec2 vP; void main(){ vP=position.xy; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }`),
     fragmentShader: LDF(NOISE_GLSL + `uniform float uTime; uniform vec2 uCam; uniform float uIn; uniform float uOut; varying vec2 vP;
       void main(){ float rr=length(vP); float a=atan(vP.y,vP.x); float t=(rr-uIn)/(uOut-uIn);
         float sw=a+uTime*1.8/pow(rr/uIn,1.5);
-        float n=fbm3(vec3(cos(sw)*1.4,sin(sw)*1.4,rr*1.6)); float n2=noise3(vec3(cos(sw)*5.,sin(sw)*5.,rr*6.));
+        float n=fbm3(vec3(cos(sw)*1.4,sin(sw)*1.4,rr*.8)); float n2=noise3(vec3(cos(sw)*5.,sin(sw)*5.,rr*3.));
         vec3 hot=vec3(1.,.96,.88), mid=vec3(1.,.62,.22), cool=vec3(.75,.18,.05);
         vec3 col=mix(hot,mid,smoothstep(0.,.3,t)); col=mix(col,cool,smoothstep(.3,1.,t));
-        float br=(.35+1.1*n+.25*n2)*(1.-smoothstep(.6,1.,t))*smoothstep(0.,.05,t)*(1.6-t);
+        float br=(.35+1.1*n+.25*n2)*(1.-smoothstep(.6,1.,t))*smoothstep(0.,.05,t)*(1.6-t)*.75;
         vec2 v=vec2(-sin(a),cos(a)); float dop=1.+.75*dot(v,uCam);
         br*=dop; gl_FragColor=vec4(col*br,clamp(br,0.,1.)); }`),
     transparent: true, depthWrite: false, side: THREE.DoubleSide, blending: THREE.AdditiveBlending
   });
-  const disk = new THREE.Mesh(new THREE.RingGeometry(2.6, 11, 256, 8), diskMat); disk.rotation.x = -Math.PI / 2; disk.userData = { id: 'disk', priority: 1 }; sys.add(disk); c.pickables.push(disk);
+  const disk = new THREE.Mesh(new THREE.RingGeometry(3 * RS, 9 * RS, 256, 8), diskMat); disk.rotation.x = -Math.PI / 2; disk.userData = { id: 'disk', priority: 1 }; sys.add(disk); c.pickables.push(disk);
+  // the photon ring: a thin bright ring at the edge of the shadow, with a softer glow of bent light outside it (schematic brightness)
   const haloMatl = new THREE.ShaderMaterial({
-    uniforms: { uTime: { value: 0 }, uDop: { value: 0 } },
+    uniforms: { uTime: { value: 0 }, uDop: { value: 0 }, uSH: { value: SH } },
     vertexShader: LDV(`varying vec2 vP; void main(){ vP=position.xy; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }`),
-    fragmentShader: LDF(NOISE_GLSL + `uniform float uTime; uniform float uDop; varying vec2 vP;
-      void main(){ float rr=length(vP); float a=atan(vP.y,vP.x);
-        float ring=exp(-pow((rr-2.3)/.05,2.))*.9+exp(-pow((rr-2.38)/.18,2.))*.35;
-        float n=fbm3(vec3(cos(a+uTime*.6)*2.,sin(a+uTime*.6)*2.,rr*2.));
-        float lens=exp(-pow((rr-2.95)/.6,2.))*(.45+1.2*n)*(.5+.5*abs(sin(a)));
+    fragmentShader: LDF(NOISE_GLSL + `uniform float uTime; uniform float uDop; uniform float uSH; varying vec2 vP;
+      void main(){ float rr=length(vP); float x=rr/uSH; float a=atan(vP.y,vP.x);
+        float ring=exp(-pow((x-1.015)/.022,2.))*.9+exp(-pow((x-1.05)/.1,2.))*.3;
+        float n=fbm3(vec3(cos(a+uTime*.6)*2.,sin(a+uTime*.6)*2.,x*2.));
+        float lens=exp(-pow((x-1.3)/.3,2.))*(.4+1.1*n)*(.5+.5*abs(sin(a)));
         float dop=1.+.6*uDop*(vP.x/max(rr,.001));
         vec3 col=vec3(1.,.66,.32)*lens*dop+vec3(1.,.86,.62)*ring*dop;
         float al=clamp(lens+ring,0.,1.); gl_FragColor=vec4(col,al); }`),
     transparent: true, depthWrite: false, side: THREE.DoubleSide, blending: THREE.AdditiveBlending
   });
-  const halo = new THREE.Mesh(new THREE.RingGeometry(2.05, 4.6, 256, 4), haloMatl); halo.userData = { id: 'photonRing', priority: 1.5 }; g.add(halo); c.pickables.push(halo);
-  c.addLabel(hole, 'Event horizon', { offset: new V3(0, -3.2, 0) });
-  // S2 + cluster
+  const halo = new THREE.Mesh(new THREE.RingGeometry(SH * .97, SH * 2.4, 256, 4), haloMatl); halo.userData = { id: 'photonRing', priority: 1.5 }; g.add(halo); c.pickables.push(halo);
+  c.addLabel(shadow, 'Shadow of the black hole', { offset: new V3(0, -SH * 1.15, 0), pick: shadow });
+  // S2 + cluster: orbit sizes are NOT to scale (the real S2 orbit is about 1,000 AU across, far larger than this whole scene) and the periods are sped up
   const orbits = [];
   const mkOrbit = (a, e, P, rx, rz, id, color, size, ph) => {
     const piv = new THREE.Group(); piv.rotation.set(rx, 0, rz); g.add(piv);
@@ -1334,16 +1341,16 @@ BUILD.blackhole = (c) => {
     const star = new THREE.Group(); star.userData = { id, priority: 3 }; star.add(glowSprite(color, size, 1)); star.add(new THREE.Mesh(new THREE.SphereGeometry(size * .08, 12, 8), new THREE.MeshBasicMaterial({ color: 0xffffff }))); star.add(hitSphere(Math.max(1, size * .4), id, 3));
     piv.add(star); c.pickables.push(star); orbits.push({ star, a, e, b, P, ph }); return star;
   };
-  const s2 = mkOrbit(24, .6, 26, .55, .25, 's2', 0xbfd8ff, 3, 0);
-  c.addLabel(s2, 'Star S2', { offset: new V3(0, 1.4, 0) });
-  for (let i = 0; i < 6; i++) mkOrbit(16 + r() * 22, .2 + r() * .6, 18 + r() * 20, r() * 3, r() * 3, 'scluster', [0xffe0b0, 0xbfd8ff, 0xffffff][i % 3], 1.6 + r(), r() * TAU);
+  const s2 = mkOrbit(64, .88, 26, .55, .25, 's2', 0xbfd8ff, 3, 0);
+  c.addLabel(s2, 'Star S2 (orbit not to scale)', { offset: new V3(0, 1.4, 0) });
+  for (let i = 0; i < 6; i++) mkOrbit(40 + r() * 30, .2 + r() * .6, 18 + r() * 20, r() * 3, r() * 3, 'scluster', [0xffe0b0, 0xbfd8ff, 0xffffff][i % 3], 1.6 + r(), r() * TAU);
   // jets
   const JN = 1400, jp = new Float32Array(JN * 3), jc = [], js = [], jv = [];
   for (let i = 0; i < JN; i++) { jc.push(.6, .55, 1); js.push(.5 + r() * .7); jv.push({ y: r() * 40, s: r() < .5 ? 1 : -1, a: r() * TAU, w: r() }); }
   const jg = new THREE.BufferGeometry(); jg.setAttribute('position', new THREE.BufferAttribute(jp, 3)); jg.setAttribute('aColor', new THREE.Float32BufferAttribute(jc, 3)); jg.setAttribute('aSize', new THREE.Float32BufferAttribute(js, 1));
   const jets = new THREE.Points(jg, pointsMaterial({ opacity: .8 })); jets.frustumCulled = false; jets.visible = false; sys.add(jets);
-  // probe
-  let probe = null;
+  // probe (the stretching is exaggerated: for a hole this heavy the tides at the horizon are gentle)
+  let probe = null; const RMIN = RS * 1.03, RSTART = 22;
   function dropProbe() {
     if (probe) return;
     const p = new THREE.Group(); p.userData = { id: 'probe', priority: 4 };
@@ -1352,28 +1359,29 @@ BUILD.blackhole = (c) => {
     const nose = new THREE.Mesh(new THREE.ConeGeometry(.14, .25, 12), pm); nose.rotation.x = Math.PI / 2; nose.position.z = .37; p.add(nose);
     const gl = glowSprite(0x9ff3ff, 1.6, .9); p.add(gl); p.add(hitSphere(.8, 'probe', 4));
     sys.add(p); c.pickables.push(p);
-    probe = { obj: p, mats: [pm], gl, t: 0, r: 22, a: Math.PI * .15, done: false };
-    toast('🚀 Probe away! Watch what happens as it nears the horizon…', 'm');
+    probe = { obj: p, mats: [pm], gl, t: 0, r: RSTART, a: Math.PI * .15, done: false };
+    toast('Probe away. Watch it near the horizon. (The stretching is drawn exaggerated: at this hole\'s horizon the real tides are gentle.)', 'm');
   }
   const camLocal = new V3(), tmpM = new THREE.Matrix4(), _w = new V3();
+  const radiiB = new THREE.Group(); radiiB.visible = false; g.add(radiiB); // rings that must face the viewer
   c.update = (dt, t) => {
     diskMat.uniforms.uTime.value = t; haloMatl.uniforms.uTime.value = t;
     tmpM.copy(disk.matrixWorld).invert(); camLocal.copy(c.camera.position).applyMatrix4(tmpM);
     const cl = camLocal.length() || 1; diskMat.uniforms.uCam.value.set(camLocal.x / cl, camLocal.y / cl);
     const v2 = new THREE.Vector2(camLocal.x, camLocal.y); if (v2.length() > 1e-4) { v2.normalize(); _w.set(v2.y, -v2.x, 0).applyMatrix4(disk.matrixWorld).sub(_w.clone().set(0, 0, 0).applyMatrix4(disk.matrixWorld)).applyMatrix4(c.camera.matrixWorldInverse.clone().setPosition(0, 0, 0)); haloMatl.uniforms.uDop.value = clamp(_w.x / (_w.length() || 1), -1, 1) * Math.min(1, v2.length()); }
-    halo.quaternion.copy(c.camera.quaternion);
-    orbits.forEach(o => { const M = (t / o.P) * TAU + o.ph; let E = M; for (let k = 0; k < 6; k++) E = M + o.e * Math.sin(E); o.star.position.set(o.a * (Math.cos(E) - o.e), 0, o.b * Math.sin(E)); });
+    halo.quaternion.copy(c.camera.quaternion); shadow.quaternion.copy(c.camera.quaternion); radiiB.quaternion.copy(c.camera.quaternion);
+    orbits.forEach(o => { const M = (t / o.P) * TAU + o.ph; let E = M; for (let k = 0; k < 8; k++) E = M + o.e * Math.sin(E); o.star.position.set(o.a * (Math.cos(E) - o.e), 0, o.b * Math.sin(E)); });
     if (jets.visible) { for (let i = 0; i < JN; i++) { const q = jv[i]; q.y += dt * (14 + q.w * 10); if (q.y > 45) q.y = 2.2; const rad = .15 + q.y * .045 * q.w; jp[i * 3] = Math.cos(q.a + q.y * .2) * rad; jp[i * 3 + 1] = q.s * q.y; jp[i * 3 + 2] = Math.sin(q.a + q.y * .2) * rad; } jg.attributes.position.needsUpdate = true; }
     if (probe) {
       const p = probe; p.t += dt;
-      p.r = 2.06 + (22 - 2.06) * Math.exp(-p.t * .38);
-      p.a += dt * 2.2 / Math.pow(p.r / 4, 1.5) * clamp((p.r - 2.06) / 1.2, 0, 1);
-      const y = 1.2 * clamp((p.r - 2.06) / 18, 0, 1);
+      p.r = RMIN + (RSTART - RMIN) * Math.exp(-p.t * .38);
+      p.a += dt * 2.2 / Math.pow(p.r / 4, 1.5) * clamp((p.r - RMIN) / 1.2, 0, 1);
+      const y = 1.2 * clamp((p.r - RMIN) / 18, 0, 1);
       p.obj.position.set(Math.cos(p.a) * p.r, y, Math.sin(p.a) * p.r);
       p.obj.lookAt(_w.set(0, 0, 0).applyMatrix4(sys.matrixWorld));
-      const s = clamp((9 - p.r) / 6.5, 0, 1);
+      const s = clamp((3 * RS - p.r) / (1.8 * RS), 0, 1);
       p.obj.scale.set(1 - .75 * s, 1 - .75 * s, 1 + 6 * s);
-      const fade = clamp((p.r - 2.06) / 1.6, 0, 1);
+      const fade = clamp((p.r - RMIN) / 1.6, 0, 1);
       p.mats.forEach(m => { m.color.setRGB(lerp(1, .62, 1 - s), lerp(.25, .95, 1 - s), lerp(.1, 1, 1 - s)); m.opacity = fade; });
       p.gl.material.color.copy(p.mats[0].color); p.gl.material.opacity = .9 * fade;
       if (p.t > 4 && !p.done) { p.done = true; fire('probe'); showInfo('probe'); }
@@ -1382,12 +1390,16 @@ BUILD.blackhole = (c) => {
   };
   c.canZoomIn = () => false;
   const radii = new THREE.Group(); radii.visible = false; radii.userData = { id: 'radii', priority: 2.5 }; sys.add(radii); c.pickables.push(radii);
-  [[2, 0xffffff, 'Event horizon · rₛ'], [3, 0xffd166, 'Photon sphere · 1.5 rₛ'], [6, 0x6ee7ff, 'ISCO (no spin) · 3 rₛ']].forEach(([rad, col, t], i) => {
-    const m = new THREE.Mesh(new THREE.RingGeometry(rad - .035, rad + .035, 160), new THREE.MeshBasicMaterial({ color: col, side: THREE.DoubleSide, transparent: true, opacity: .9, depthTest: false })); m.rotation.x = -Math.PI / 2; m.renderOrder = 6; radii.add(m);
-    const a = new THREE.Object3D(); a.position.set(rad * Math.cos(.9 + i * .5), 0, rad * Math.sin(.9 + i * .5)); radii.add(a); c.addLabel(a, t, { pick: radii });
+  const ringMat = col => new THREE.MeshBasicMaterial({ color: col, side: THREE.DoubleSide, transparent: true, opacity: .9, depthTest: false });
+  [[RS, 0xffffff, 'Event horizon · rₛ'], [1.5 * RS, 0xffd166, 'Photon sphere · 1.5 rₛ'], [3 * RS, 0x6ee7ff, 'Innermost stable orbit (no spin) · 3 rₛ']].forEach(([rad, col, t], i) => {
+    const m = new THREE.Mesh(new THREE.RingGeometry(rad - .035, rad + .035, 160), ringMat(col)); m.rotation.x = -Math.PI / 2; m.renderOrder = 6; radii.add(m);
+    const a = new THREE.Object3D(); a.position.set(rad * Math.cos(.9 + i * .9), 0, rad * Math.sin(.9 + i * .9)); radii.add(a); c.addLabel(a, t, { pick: radii });
   });
-  actBtn('◎ Key radii', () => { radii.visible = !radii.visible; if (radii.visible) showInfo('radii'); });
-  actBtn('🚀 Drop a probe', dropProbe);
+  { const m = new THREE.Mesh(new THREE.RingGeometry(SH - .035, SH + .035, 160), ringMat(0xff9ec0)); m.renderOrder = 6; radiiB.add(m);
+    const a = new THREE.Object3D(); a.position.set(0, -SH, 0); radiiB.add(a); c.addLabel(a, 'Shadow edge · 2.6 rₛ (as seen on the sky)', { pick: radii }); }
+  const dl = new THREE.Object3D(); dl.position.set(8 * RS * .7, 0, 8 * RS * .7); sys.add(dl); c.addLabel(dl, 'Stylised accretion disc', { pick: disk });
+  actBtn('Show key radii', () => { radii.visible = !radii.visible; radiiB.visible = radii.visible; if (radii.visible) showInfo('radii'); });
+  actBtn('Drop a probe', dropProbe);
   seg([['off', 'No jets'], ['on', 'Show jets (like M87*)']], 'off', k => { jets.visible = k === 'on'; if (jets.visible) showInfo('jets'); });
 };
 
