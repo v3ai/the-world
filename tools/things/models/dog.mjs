@@ -41,8 +41,8 @@ export const thing = {
   auto: { label: 'Auto', layers: true, always: { eyes: 1 } },
   layers: [{ id: 'coat', label: 'coat', systems: ['coat'], ghost: .06 }, { id: 'muscles', label: 'muscles', systems: ['muscles'], ghost: .08 }, { id: 'skeleton', label: 'bones', systems: ['skeleton'], ghost: .12, see_through: .3 }, { id: 'inside', label: 'organs', systems: ['organs', 'vessels', 'nervous', 'cord'], ghost: .1 }],
   // the tail wags a little (the whole coat is one mesh, so the bend is done in the shader on every part of the tail); an illustration, not a measured wag
-  anim: [{ kind: 'breathe', parts: ['lung_r', 'lung_l', 'lung_r_v', 'lung_l_v'], pivot: [.02, .4, 0], amp: .035, hz: .33, shown_hz: .33, label: 'Breathing at a resting rate of about 20 breaths a minute (the size of the movement is an illustration)' },
-    { kind: 'pulse', parts: ['heart', 'heart_v'], pivot: [.09, .385, 0], amp: .05, hz: 1.5, shown_hz: .75, label: 'Heartbeat at about 90 beats a minute (an illustration)' },
+  anim: [{ kind: 'breathe', parts: ['lung_r', 'lung_l', 'lung_r_v', 'lung_l_v'], pivot: [.02, .4, 0], amp: .035, hz: .33, shown_hz: .33, label: 'Breathing', illustrative: true },
+    { kind: 'pulse', parts: ['heart', 'heart_v'], pivot: [.09, .385, 0], amp: .05, hz: 1.5, shown_hz: .75, label: 'Heartbeat', illustrative: true },
     { kind: 'swing', systems: ['coat', 'muscles', 'skeleton', 'nervous'], pivot: [-.38, .45, 0], dir: [-1, 0, 0], from: .07, to: .22, axis: [0, 1, 0], amp_deg: 16, shown_hz: 1.6, lat_axis: [0, 0, 1], lat: [.06, .11], label: 'Tail wag' }],
   lod: { near_m: 9, far_m: 40 }, shadow: { radius_m: .85, opacity: .8 },
   cut: { default: 'muscle', at: [0, .4, 0], faces: { fill: { kind: 'plain', palette: [['#d9c3b8', 1]] }, muscle: { kind: 'plain', palette: [['#a8433a', 1]] }, bone: { kind: 'plain', palette: [['#e8dcc0', 1]] }, organ: { kind: 'plain', palette: [['#c9776e', 1]] }, blood_l: { kind: 'plain', palette: [['#e0463c', 1]] }, blood_r: { kind: 'plain', palette: [['#4f6fb5', 1]] }, brain: { kind: 'plain', palette: [['#d9c3bd', 1]] } } },

@@ -1354,5 +1354,535 @@
   ],
   "flow": true,
   "caption": "Arteries carry blood away from the heart, veins carry it back; the capillaries between them are where the exchange happens."
+ },
+ "dog_eye": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "c",
+    "label": "Cornea",
+    "x": 8,
+    "y": 50
+   },
+   {
+    "id": "i",
+    "label": "Pupil (iris)",
+    "x": 26,
+    "y": 50
+   },
+   {
+    "id": "l",
+    "label": "Lens",
+    "x": 44,
+    "y": 50
+   },
+   {
+    "id": "v",
+    "label": "Vitreous gel",
+    "x": 62,
+    "y": 50
+   },
+   {
+    "id": "r",
+    "label": "Retina (and tapetum behind)",
+    "x": 80,
+    "y": 25,
+    "color": "orange"
+   },
+   {
+    "id": "n",
+    "label": "Optic nerve to the brain",
+    "x": 90,
+    "y": 78,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "c",
+    "to": "i",
+    "label": "light"
+   },
+   {
+    "from": "i",
+    "to": "l"
+   },
+   {
+    "from": "l",
+    "to": "v"
+   },
+   {
+    "from": "v",
+    "to": "r"
+   },
+   {
+    "from": "r",
+    "to": "n",
+    "label": "signals"
+   }
+  ],
+  "flow": true,
+  "caption": "The path of light through a dog's eye: the same order of parts as in a human eye."
+ },
+ "dog_bulbs": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "r",
+    "label": "Receptor cells of one type",
+    "x": 12,
+    "y": 25
+   },
+   {
+    "id": "g",
+    "label": "One cluster (glomerulus)",
+    "x": 40,
+    "y": 25,
+    "color": "orange"
+   },
+   {
+    "id": "m",
+    "label": "Relay neurons of the bulb",
+    "x": 66,
+    "y": 25
+   },
+   {
+    "id": "b",
+    "label": "Brain: smell areas",
+    "x": 88,
+    "y": 25,
+    "color": "green"
+   },
+   {
+    "id": "x",
+    "label": "Many receptor types, many clusters: a pattern for each smell",
+    "x": 50,
+    "y": 75
+   }
+  ],
+  "edges": [
+   {
+    "from": "r",
+    "to": "g",
+    "label": "same-type fibres converge"
+   },
+   {
+    "from": "g",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "b"
+   },
+   {
+    "from": "g",
+    "to": "x"
+   }
+  ],
+  "flow": true,
+  "caption": "How the olfactory bulb sorts smells: fibres from receptor cells of the same type meet in the same cluster, so each smell makes its own pattern of clusters."
+ },
+ "dog_trachea": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "n",
+    "label": "Nose and mouth",
+    "x": 8,
+    "y": 50
+   },
+   {
+    "id": "p",
+    "label": "Throat and larynx",
+    "x": 28,
+    "y": 50
+   },
+   {
+    "id": "t",
+    "label": "Windpipe (trachea)",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "b",
+    "label": "Two bronchi",
+    "x": 70,
+    "y": 50
+   },
+   {
+    "id": "a",
+    "label": "Air sacs (alveoli): gas exchange",
+    "x": 90,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "n",
+    "to": "p",
+    "label": "air in"
+   },
+   {
+    "from": "p",
+    "to": "t"
+   },
+   {
+    "from": "t",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "a"
+   }
+  ],
+  "flow": true,
+  "caption": "The path of breathed air from the nose to the air sacs of the lungs."
+ },
+ "dog_kidneys": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "a",
+    "label": "Blood from the renal artery",
+    "x": 10,
+    "y": 30,
+    "color": "red"
+   },
+   {
+    "id": "f",
+    "label": "Filtered in the nephrons",
+    "x": 38,
+    "y": 30,
+    "color": "orange"
+   },
+   {
+    "id": "u",
+    "label": "Urine in the ureters",
+    "x": 66,
+    "y": 30
+   },
+   {
+    "id": "b",
+    "label": "Bladder stores it",
+    "x": 88,
+    "y": 30
+   },
+   {
+    "id": "v",
+    "label": "Cleaned blood to the renal vein",
+    "x": 38,
+    "y": 75,
+    "color": "blue"
+   },
+   {
+    "id": "e",
+    "label": "Urethra: leaves the body",
+    "x": 88,
+    "y": 75
+   }
+  ],
+  "edges": [
+   {
+    "from": "a",
+    "to": "f"
+   },
+   {
+    "from": "f",
+    "to": "u"
+   },
+   {
+    "from": "u",
+    "to": "b"
+   },
+   {
+    "from": "f",
+    "to": "v"
+   },
+   {
+    "from": "b",
+    "to": "e"
+   }
+  ],
+  "flow": true,
+  "caption": "What a kidney does with blood: filter it, return what is needed, and send the waste as urine to the bladder."
+ },
+ "dog_stomach": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "m",
+    "label": "Mouth",
+    "x": 6,
+    "y": 50
+   },
+   {
+    "id": "o",
+    "label": "Gullet",
+    "x": 24,
+    "y": 50
+   },
+   {
+    "id": "s",
+    "label": "Stomach",
+    "x": 42,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "i",
+    "label": "Small intestine",
+    "x": 62,
+    "y": 50
+   },
+   {
+    "id": "l",
+    "label": "Large intestine",
+    "x": 80,
+    "y": 50
+   },
+   {
+    "id": "r",
+    "label": "Rectum and anus",
+    "x": 94,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "m",
+    "to": "o",
+    "label": "swallow"
+   },
+   {
+    "from": "o",
+    "to": "s"
+   },
+   {
+    "from": "s",
+    "to": "i"
+   },
+   {
+    "from": "i",
+    "to": "l",
+    "label": "nutrients absorbed"
+   },
+   {
+    "from": "l",
+    "to": "r",
+    "label": "water taken back"
+   }
+  ],
+  "flow": true,
+  "caption": "The path of food through a dog's gut."
+ },
+ "dog_spinal_cord": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "s",
+    "label": "Sensory nerve ending",
+    "x": 8,
+    "y": 50
+   },
+   {
+    "id": "d",
+    "label": "Sensory fibre to the cord",
+    "x": 30,
+    "y": 50
+   },
+   {
+    "id": "c",
+    "label": "Spinal cord: connection",
+    "x": 52,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "m",
+    "label": "Motor fibre",
+    "x": 72,
+    "y": 50
+   },
+   {
+    "id": "u",
+    "label": "Muscle contracts",
+    "x": 92,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "s",
+    "to": "d"
+   },
+   {
+    "from": "d",
+    "to": "c"
+   },
+   {
+    "from": "c",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "u"
+   }
+  ],
+  "flow": true,
+  "caption": "A reflex: the simplest route through the spinal cord, from a sensing ending to a muscle, without waiting for the brain."
+ },
+ "dog_turb_resp": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "n",
+    "label": "Cold, dry air in",
+    "x": 10,
+    "y": 50
+   },
+   {
+    "id": "t",
+    "label": "Maxilloturbinates warm and wet it",
+    "x": 36,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "l",
+    "label": "Warm, moist air to the lungs",
+    "x": 66,
+    "y": 25
+   },
+   {
+    "id": "s",
+    "label": "A share goes to the smell region",
+    "x": 66,
+    "y": 78,
+    "color": "green"
+   },
+   {
+    "id": "o",
+    "label": "Exhaled air returns some heat and water",
+    "x": 90,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "n",
+    "to": "t"
+   },
+   {
+    "from": "t",
+    "to": "l"
+   },
+   {
+    "from": "t",
+    "to": "s"
+   },
+   {
+    "from": "l",
+    "to": "o"
+   }
+  ],
+  "flow": true,
+  "caption": "What the front scrolls of the nose do to the air on its way in (a schematic of the flow; the real folds are far finer)."
+ },
+ "dog_tongue": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "h",
+    "label": "Dog is hot",
+    "x": 10,
+    "y": 50
+   },
+   {
+    "id": "p",
+    "label": "Panting: fast, shallow breaths",
+    "x": 32,
+    "y": 50
+   },
+   {
+    "id": "e",
+    "label": "Water evaporates from tongue and nose lining",
+    "x": 60,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "c",
+    "label": "Heat leaves with the vapour: blood cools",
+    "x": 86,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "h",
+    "to": "p"
+   },
+   {
+    "from": "p",
+    "to": "e"
+   },
+   {
+    "from": "e",
+    "to": "c"
+   }
+  ],
+  "flow": true,
+  "caption": "How a dog cools by panting: a dog has sweat glands only on its pads, so evaporation from the wet surfaces of the mouth and nose does most of the work."
+ },
+ "dog_diaphragm": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "d",
+    "label": "Diaphragm contracts and flattens",
+    "x": 14,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "v",
+    "label": "Chest space grows",
+    "x": 40,
+    "y": 50
+   },
+   {
+    "id": "p",
+    "label": "Air pressure in the lungs falls",
+    "x": 64,
+    "y": 50
+   },
+   {
+    "id": "a",
+    "label": "Air flows in",
+    "x": 88,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "d",
+    "to": "v"
+   },
+   {
+    "from": "v",
+    "to": "p"
+   },
+   {
+    "from": "p",
+    "to": "a"
+   }
+  ],
+  "flow": true,
+  "caption": "How the diaphragm draws a breath in; the ribs help, and the diaphragm relaxes to let the air out."
  }
 }

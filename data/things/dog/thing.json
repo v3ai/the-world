@@ -403,7 +403,8 @@
    "amp": 0.035,
    "hz": 0.33,
    "shown_hz": 0.33,
-   "label": "Breathing at a resting rate of about 20 breaths a minute (the size of the movement is an illustration)"
+   "label": "Breathing",
+   "illustrative": true
   },
   {
    "kind": "pulse",
@@ -419,7 +420,8 @@
    "amp": 0.05,
    "hz": 1.5,
    "shown_hz": 0.75,
-   "label": "Heartbeat at about 90 beats a minute (an illustration)"
+   "label": "Heartbeat",
+   "illustrative": true
   },
   {
    "kind": "swing",
