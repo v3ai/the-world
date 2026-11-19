@@ -1,12 +1,14 @@
 # tools/atom: element data
 
-Regenerates `data/elements.json` (118 elements) and `data/atomic/{zeff,isotopes,lines,sources}.json`.
+Regenerates `data/elements.json` (118 elements) and `data/atomic/{zeff,isotopes,lines,scf}.json` (`sources.json` is hand-written).
 
 ```
 pip install mendeleev                       # basic per-element properties and Clementi-Raimondi screening constants
 python3 tools/atom/fetch_sources.py CACHE   # downloads NIST, NUBASE2020, CIAAW, PubChem and ~100 NIST line lists into CACHE
 ATOM_CACHE=CACHE python3 tools/atom/build_elements.py
 python3 tools/atom/check_elements.py CACHE  # must print "all checks passed"
+PYTHONPATH=<numpy+scipy> python3 tools/atom/build_scf.py   # cloud sizes (needs numpy and scipy), after build_elements.py
+python3 tools/atom/build_nodes.py           # cards and figures, after both
 ```
 
 Downloaded files are untrusted data: they are parsed, never executed. `CACHE` defaults to `tools/atom/.cache` (git-ignored).
@@ -44,3 +46,17 @@ the downloaded NIST table.
 `python3 tools/atom/build_nodes.py` writes `data/nodes/phys_atom.json` (19 topic cards with ids `at_*` and one card `at_el_<Symbol>` per element,
 generated from `data/elements.json` and `data/atomic/*.json`) and `data/viz/atom.json` (one figure per topic card). Validate the figures with
 `node tools/viz/validate.mjs data/viz/atom.json`.
+
+## Cloud sizes (data/atomic/scf.json) and their validation
+
+`scf.py` is a spherical, non-relativistic, self-consistent central-field atom (Hartree potential of the whole spherical density plus the
+local exchange potential -(3 rho/pi)^(1/3); no correlation, no relativity, one-electron hydrogen solved exactly). `build_scf.py` runs it for the
+ground-state configuration of all 118 elements and stores the mean radius <r>, the radius of maximum density and the orbital energy of every
+occupied subshell. `js/atom.js` draws each subshell as a hydrogen-like function with its n-l-1 nodes, rescaled so that <r> equals the stored value
+(Z' = (3n^2 - l(l+1)) / (2 <r>)). The Clementi-Raimondi/Slater table `zeff.json` is kept only for the effective-nuclear-charge card.
+
+Validation, stored in scf.json under `validation` and asserted by `check_elements.py`: hydrogenic test of the solver, grid test, and a comparison
+with numerical Hartree-Fock <r> from Table 11 of J. B. Mann, Los Alamos report LA-3691 (1968) (https://www.osti.gov/biblio/4553157).
+`parse_mann.py` reads that table from the OCR text layer of the scanned PDF (rows that fail consistency tests are dropped; the result is
+`reference/mann1968_raw.json`). To redo it: download https://www.osti.gov/servlets/purl/4553157 into an empty folder, extract the text of all pages
+(pypdf), then `python3 parse_mann.py text.txt reference/mann1968_raw.json data/elements.json`.
