@@ -54,14 +54,14 @@ export default function build() {
   const t0 = Date.now(), parts = [], meshes = {}, instances = {}; const log = s => console.log(s, ((Date.now() - t0) / 1000).toFixed(0) + 's');
   const add = (id, name, system, node, color, mesh, o = {}) => { parts.push({ id, name, system, node, color, mesh, ...o }); };
   const skin = skinShape(), coat = D.meshS(skin, .01); meshes.coat = coat; log('coat');
-  add('coat', 'Skin and coat', 'coat', 'dog_coat', '#dcb468', 'coat', { lod: 'near', priority: 1.2, cutFace: 'muscle', deeper: { type: 'tissue2', id: 'dog_skin', D: 1.6e-3, button: 'Look inside the skin and coat' } });
+  add('coat', 'Skin and coat', 'coat', 'dog_coat', '#e8cd8a', 'coat', { lod: 'near', priority: 1.2, cutFace: 'muscle', deeper: { type: 'tissue2', id: 'dog_skin', D: 1.6e-3, button: 'Look inside the skin and coat' } });
   // the same surface for the middle and far distances: a dog 20 m away does not need 37,000 triangles (vertex clustering at 3 cm: a few thousand)
   meshes.coat_mid = L.simplify(coat, .016); meshes.coat_far = L.simplify(coat, .045);
   { const sh = (p, n) => .86 + .14 * D.ss(-.6, .7, n[1]); for (const k of ['coat', 'coat_mid', 'coat_far']) L.bakeShade(meshes[k], sh); }
-  add('coat_mid', 'Skin and coat', 'coat', 'dog_coat', '#dcb468', 'coat_mid', { lod: 'mid', priority: 1.2, solid: false }); add('coat_far', 'Skin and coat', 'coat', 'dog_coat', '#dcb468', 'coat_far', { lod: 'far', priority: 1.2, solid: false });
+  add('coat_mid', 'Skin and coat', 'coat', 'dog_coat', '#e8cd8a', 'coat_mid', { lod: 'mid', priority: 1.2, solid: false }); add('coat_far', 'Skin and coat', 'coat', 'dog_coat', '#e8cd8a', 'coat_far', { lod: 'far', priority: 1.2, solid: false });
   { const inner = D.S(p => skin.f(p) + .024, skin.lo, skin.hi); meshes.fill = D.meshS(inner, .017, 1); add('fill', 'Soft tissue (a stand-in for fat, connective tissue and glands)', 'fill', 'dog_fill', '#d9c3b8', 'fill', { cutFace: 'fill', priority: 1.1, noink: true }); }
   // fur blades
-  meshes.fur_blade = X.furBladeMesh(); instances.fur = X.fur(coat, 9000); parts.push({ id: 'fur', name: 'Fur', system: 'coat', node: 'dog_fur', color: '#dcb86d', instances: 'fur', tint: .22, double: true, lod: 'near', priority: 1.3, deeper: { type: 'tissue2', id: 'dog_skin', D: 1.6e-3, button: 'Look inside the skin and coat' } }); log('fur');
+  meshes.fur_blade = X.furBladeMesh(); instances.fur = X.fur(coat, 9000); parts.push({ id: 'fur', name: 'Fur', system: 'coat', node: 'dog_fur', color: '#ebd596', instances: 'fur', tint: .22, double: true, lod: 'near', priority: 1.3, deeper: { type: 'tissue2', id: 'dog_skin', D: 1.6e-3, button: 'Look inside the skin and coat' } }); log('fur');
   meshes.ears = H.ears(skin.f); meshes.nose = H.nose(); Object.assign(meshes, X.paws());
   add('ears', 'Ears', 'coat', 'dog_ear', '#bb9050', 'ears', { lod: 'near+mid', priority: 1.6, noink: false, solid: false, double: true });
   add('nose', 'Nose (rhinarium)', 'coat', 'dog_nose', '#231d1b', 'nose', { lod: 'near+mid', priority: 1.8 });
