@@ -9,7 +9,7 @@ import json, os, re, sys, math
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(os.path.dirname(HERE))
 CACHE = sys.argv[1] if len(sys.argv) > 1 else os.environ.get('ATOM_CACHE', os.path.join(HERE, '.cache'))
 D = lambda p: json.load(open(os.path.join(ROOT, 'data', p), encoding='utf-8'))
-E = D('elements.json'); ZF = D('atomic/zeff.json')['elements']; ISO = D('atomic/isotopes.json'); LN = D('atomic/lines.json')
+E = D('elements.json'); ZF = D('atomic/zeff.json')['elements']; ISO = D('atomic/isotopes.json'); LN = D('atomic/lines.json'); SC = D('atomic/scf.json'); CARDS = D('nodes/phys_atom.json')
 fails = []
 def check(cond, msg):
     if not cond: fails.append(msg)
@@ -51,10 +51,22 @@ for i, e in enumerate(E, 1):
         rest = m.group(2).split()
     else:
         rest = cfg.split()
+    check(len(rest) > 0, f'{s}: config string {cfg!r} lists no subshell after the core')            # '[Ne] ' alone is not a configuration
     n_rest = sum(int(re.fullmatch(r'\d[spdfg](\d+)', t).group(1)) for t in rest)
     check(n_rest + (core if m else 0) == Z, f'{s}: config string electron count')
+    # the string must expand to exactly the stored subshells (core by the Madelung order of the noble gas, then the listed subshells)
+    exp = {}
+    if m:
+        left = core
+        for n_, l_ in sorted(((n, l) for n in range(1, 9) for l in range(0, min(n, 5))), key=lambda t: (t[0] + t[1], t[0])):
+            c_ = min(2 * (2 * l_ + 1), left)
+            if c_: exp[f'{n_}{"spdfg"[l_]}'] = c_
+            left -= c_
+            if not left: break
+    for t in rest:
+        mm = re.fullmatch(r'(\d[spdfg])(\d+)', t); exp[mm.group(1)] = exp.get(mm.group(1), 0) + int(mm.group(2))
+    check(exp == subs, f'{s}: config string {cfg!r} expands to {exp} but subshells are {subs}')
     # table geometry
-    check(e['period'] == [1, 1] + [2] * 8 + [3] * 8 + [4] * 18 + [5] * 18 + [6] * 32 + [7] * 32 and False or True, '')
     P = [0] + [1] * 2 + [2] * 8 + [3] * 8 + [4] * 18 + [5] * 18 + [6] * 32 + [7] * 32
     check(e['period'] == P[Z], f'{s}: period {e["period"]} expected {P[Z]}')
     g, b = e['group'], e['block']
@@ -83,6 +95,9 @@ for i, e in enumerate(E, 1):
         check(e['mostAbundantA'] == max(iso, key=lambda t: t[1])[0], f'{s}: mostAbundantA')
         avg = sum(A * a for A, a in iso) / tot
         check(abs(avg - e['mass']) / e['mass'] < 0.01, f'{s}: mass {e["mass"]} vs abundance-weighted {avg:.3f}')
+        nat = ISO[s]['natural']
+        mavg = sum(x['abundance'] * x['mass_u'] for x in nat) / sum(x['abundance'] for x in nat)       # true isotope masses (NUBASE)
+        check(abs(mavg - e['mass']) / e['mass'] < 4e-4, f'{s}: abundance-weighted mean mass {mavg:.4f} u differs from the standard atomic weight {e["mass"]}')
     else:
         ll = ISO[s]['longest_lived']
         check(ll is not None and ll['A'] == e['mostAbundantA'], f'{s}: longest-lived isotope missing')
@@ -108,8 +123,8 @@ for i, e in enumerate(E, 1):
         ie, aw = SPOT[Z]
         if ie is not None: check(abs(e['ionization_eV'] - ie) < 1e-6 * max(1, ie) + 1e-9, f'{s}: IE {e["ionization_eV"]} != NIST {ie}')
         if aw is not None: check(abs(e['mass'] - aw) < 0.0006 * aw, f'{s}: mass {e["mass"]} != CIAAW {aw}')
-check(cats == {'Transition metals': 40, 'Lanthanides': 14, 'Actinides': 14, 'Poor metals': 11, 'Nonmetals': 7, 'Noble gases': 7,
-               'Metalloids': 7, 'Alkali metals': 6, 'Alkaline earth metals': 6, 'Halogens': 6}, f'category counts {cats}')
+check(cats == {'Transition metals': 40, 'Lanthanides': 14, 'Actinides': 14, 'Poor metals': 12, 'Nonmetals': 7, 'Noble gases': 7,
+               'Metalloids': 6, 'Alkali metals': 6, 'Alkaline earth metals': 6, 'Halogens': 6}, f'category counts {cats}')
 check(sum(1 for e in E if e['config_anomaly']) == len(ANOMALIES), 'anomaly count differs from reference table of %d' % len(ANOMALIES))
 for s, k in (('Hg', 'liquid'), ('Br', 'liquid'), ('Fe', 'solid'), ('O', 'gas')):
     check(next(e for e in E if e['symbol'] == s)['phase_stp'] == k, f'{s} phase')
@@ -157,6 +172,57 @@ if os.path.exists(gp):
         if len(c) > 10 and c[0].isdigit() and c[9]:
             e = E[int(c[0]) - 1]
             check(abs(e['ionization_eV'] - float(c[9])) < 1e-8, f'{e["symbol"]}: IE differs from NIST table')
+# noble gases have no empirical atomic radius (He 120 / Ne 160 are unsourced, Ar 71 is a calculated value)
+for e in E:
+    if e['symbol'] in ('He', 'Ne', 'Ar', 'Kr', 'Xe', 'Rn'): check(e['radius_atomic_pm'] is None, f'{e["symbol"]}: noble gas should have no empirical atomic radius')
+check(next(e for e in E if e['symbol'] == 'Po')['category'] == 'Poor metals', 'Po category')
+check(next(e for e in E if e['symbol'] == 'Nd')['discovered'] == 1885, 'Nd discovery year')
+li = ISO['Li']['natural']; check(abs(li[0]['abundance'] - 0.0759) < 1e-9 and abs(li[1]['abundance'] - 0.9241) < 1e-9, 'Li abundance')
+for e in E:
+    if e['block'] != e['block_by_config']: check(e['symbol'] in ('La', 'Ac', 'Th', 'Lr', 'Ce', 'Gd', 'Pa', 'U', 'Np', 'Cm', 'Lu'), f'{e["symbol"]}: unexpected block / configuration mismatch')
+
+# ---- cloud sizes (data/atomic/scf.json): present for every occupied subshell, sane, and validated against Hartree-Fock
+SCE = SC['elements']; Hn = lambda n, l, Zc: (3 * n * n - l * (l + 1)) / (2 * Zc)
+for e in E:
+    s_ = e['symbol']; d = SCE.get(s_)
+    check(d is not None and set(d) == set(e['subshells']), f'{s_}: scf.json subshells differ from the configuration')
+    if not d: continue
+    for k, v in d.items():
+        n_, l_ = int(k[0]), 'spdfg'.index(k[1])
+        check(v['r_mean'] > 0 and v['r_max'] > 0 and v['r_max'] < v['r_mean'] * 1.5 + 1e-9 and v['eps'] < 0, f'{s_} {k}: scf values {v}')
+        # a many-electron subshell cannot be smaller than the fully unscreened hydrogen-like one (charge Z) nor larger than the one with charge 1
+        check(Hn(n_, l_, e['Z']) * 0.98 <= v['r_mean'] <= Hn(n_, l_, 1) * 1.02, f'{s_} {k}: r_mean {v["r_mean"]} outside the hydrogen-like bounds')
+    for l_ in range(4):                      # for a given l the shells are ordered: 1s < 2s < 3s ...
+        ks = sorted((k for k in d if 'spdfg'.index(k[1]) == l_), key=lambda k: int(k[0]))
+        check(all(d[a]['r_mean'] < d[b]['r_mean'] for a, b in zip(ks, ks[1:])), f'{s_}: radii not increasing with n for l={l_}')
+check(abs(SCE['H']['1s']['r_mean'] - 1.5) < 1e-3, 'hydrogen 1s <r> must be 1.5 bohr')
+V = SC['validation']
+check(V['hydrogenic_test']['max_rel_error'] < 1e-2 and V['grid_test']['max_rel_difference'] < 1e-3, 'scf solver tests')
+check(V['reference']['n_atoms'] >= 10, 'fewer than 10 atoms in the Hartree-Fock comparison')
+check(V['all_subshells']['median_abs'] < 0.01 and V['all_subshells']['mean_abs'] < 0.02 and V['all_subshells']['max_abs'] < 0.25 and V['outermost_subshell']['max_abs'] < 0.10,
+      f'scf accuracy against Hartree-Fock out of the stated range: {V["all_subshells"]} {V["outermost_subshell"]}')
+for z, name in ((26, 'Fe'),):
+    check(SCE[name]['4s']['r_mean'] > 2 * SCE[name]['3d']['r_mean'], 'Fe 4s should be far outside 3d')
+
+# ---- element cards: a template must never say something false for a particular element
+import collections
+for n in CARDS:
+    if not n['id'].startswith('at_el_'): continue
+    s_ = n['id'][6:]; e = next(x for x in E if x['symbol'] == s_); txt = ' '.join(n['layers'].values()) + ' ' + ' '.join(f"{a} {b}" for a, b in n['facts'])
+    nat = ISO[s_]['natural']
+    check(not re.search(r'\[[A-Z][a-z]?\]\s*(\.|<|$)', txt), f'{s_}: empty noble-gas configuration on the card')
+    check('Pick an isotope' not in txt or len(nat) > 1, f'{s_}: offers an isotope choice but has {len(nat)} natural isotope(s)')
+    check('single isotope' not in txt or len(nat) == 1, f'{s_}: says single isotope but has {len(nat)}')
+    check('mixture of' not in txt or len(nat) > 1, f'{s_}: says mixture but has {len(nat)}')
+    if e['Z'] <= 2: check('screened by inner' not in txt and 'electrons in the inner shells' not in txt, f'{s_}: has no inner electrons to screen it')
+    if e['Z'] == 1: check('full nuclear charge' in txt, 'H card must say the electron feels the full nuclear charge')
+    check(len(re.findall(r'f block', n['layers']['basics'])) <= 1, f'{s_}: f block named twice in the placement sentence')
+    check(('no group number' in n['layers']['basics']) == (e['group'] is None), f'{s_}: group wording does not match the data')
+    check(f"{e['name']} is element {e['Z']}" in n['layers']['basics'], f'{s_}: first sentence')
+    check('shrunk' not in txt, f'{s_}: card still describes clouds as shrunk by an effective nuclear charge')
+for n in CARDS:       # the topic cards must not keep the retired sizing method
+    if n['id'] in ('at_zeff', 'at_trends', 'at_orbital'): check('drawn as a hydrogen-like cloud shrunk' not in ' '.join(n['layers'].values()), f'{n["id"]}: describes the retired sizing')
+    check(all(len(r) == 3 for r in n['refs']), f'{n["id"]}: refs')
 print('elements checked:', len(E), '| anomalies:', sum(1 for e in E if e['config_anomaly']))
 if fails:
     print('FAILURES (%d):' % len(fails)); [print(' -', f) for f in fails[:60]]; sys.exit(1)

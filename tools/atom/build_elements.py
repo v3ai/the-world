@@ -63,6 +63,11 @@ def madelung(Z):
         if not left: break
     return sort_sub(out)
 
+def block_by_config(subs):
+    """Type (s, p, d or f) of the subshell that comes last in the Madelung order among the occupied ones."""
+    rank = lambda k: (int(k[0]) + LETTER.index(k[1]), int(k[0]))
+    return max(subs, key=rank)[1]
+
 def load_nist_ground():
     txt = rd('nist_ground.csv')
     notes = dict(re.findall(r'\[(\w+)\] = ([\w.]+)', txt))
@@ -79,7 +84,8 @@ def load_nist_ground():
 def noble_notation(subs):
     for Zc, sym in reversed(NOBLE):
         core = madelung(Zc)
-        if all(subs.get(k) == v for k, v in core.items()):
+        # the core must be a proper part of the atom: [He] alone is not the configuration of helium, [Ne] is not neon's
+        if sum(subs.values()) > Zc and all(subs.get(k) == v for k, v in core.items()):
             rest = {k: v for k, v in subs.items() if k not in core or subs[k] != core[k]}
             return f'[{sym}] ' + ' '.join(f'{k}{v}' for k, v in rest.items())
     return ' '.join(f'{k}{v}' for k, v in subs.items())
@@ -164,6 +170,11 @@ def load_nubase():
         by_z.setdefault(Z, []).append(rec)
     return by_z
 
+# Representative abundances used instead of the NUBASE 'IS' value where CIAAW gives only a wide interval and the NUBASE value
+# is not representative (it does not reproduce the standard atomic weight).
+LI_NIST = 'NIST Atomic Weights and Isotopic Compositions (physics.nist.gov/cgi-bin/Compositions/stand_alone.pl?ele=Li): 0.0759(4) and 0.9241(4); CIAAW gives only the interval 0.019-0.078 for Li-6 because lithium varies in nature'
+ABUNDANCE_OVERRIDE = {(3, 6): (0.0759, LI_NIST), (3, 7): (0.9241, LI_NIST)}
+
 # ---------------------------------------------------------------- CIAAW
 def parse_ciaaw_abund():
     h = rd('ciaaw_abundances.html')
@@ -219,7 +230,13 @@ def load_lines(sym, n=12):
                          upper=f"{c.get('conf_k','')} {c.get('term_k','')} J={c.get('J_k','')}".strip(),
                          Aki=c.get('Aki(s^-1)') or None, ref=c.get('line_ref', '')))
     rows.sort(key=lambda d: -d['_i'])
-    rows = rows[:n]
+    # fine-structure components share one observed wavelength: keep the strongest row for each wavelength (to 0.001 nm)
+    seen, uniq = set(), []
+    for d in rows:
+        k = round(d['wl_nm'], 3)
+        if k in seen: continue
+        seen.add(k); uniq.append(d)
+    rows = uniq[:n]
     for d in rows: d.pop('_i')
     rows.sort(key=lambda d: d['wl_nm'])
     return rows
@@ -279,7 +296,7 @@ def main():
         anomaly = subs != mad
         predicted = Z >= 103
         cnote = None
-        if Z >= 103: cnote = 'Not measured spectroscopically; NIST (Z<=108) or the cited prediction (Z>=109). Relativistic effects are large here.'
+        if Z >= 103: cnote = ('NIST lists a configuration for Z up to 108, but for Lr to Hs it is a prediction (NIST brackets the ionisation energies of Rf to Hs as interpolated or theoretical, and no spectrum of these neutral atoms has been measured); ' if Z <= 108 else 'Not in NIST: a prediction from calculations (Wikipedia data page citing the CRC Handbook). ') + 'Relativistic effects are large here.'
         if Z in (110, 111): cnote = (cnote or '') + ' Calculations disagree: the CRC Handbook gives ' + ('6d9 7s1' if Z == 110 else '6d10 7s1') + '.'
         # --- Z_eff
         zeffs[sym] = compute_zeff(Z, subs, clem_all.get(Z, {}))
@@ -291,7 +308,11 @@ def main():
         for x in sorted(natural, key=lambda t: t['A']):
             ab_nub = x['is_pct'] / 100
             c = cia.get(x['A'])
-            if c and 'value' in c:
+            if (Z, x['A']) in ABUNDANCE_OVERRIDE:
+                ab, basis_ab = ABUNDANCE_OVERRIDE[(Z, x['A'])]
+                lo, hi = c['interval']
+                assert lo - 0.001 <= ab <= hi + 0.001, (sym, x['A'], ab, lo, hi)
+            elif c and 'value' in c:
                 ab, basis_ab = c['value'], 'CIAAW representative composition'
                 assert abs(ab - ab_nub) < max(0.003, 0.05 * ab), (sym, x['A'], ab, ab_nub)
             elif c and 'interval' in c:
@@ -301,7 +322,7 @@ def main():
             else:
                 ab, basis_ab = ab_nub, 'NUBASE2020'
                 assert not cia or True
-            iso_list.append(dict(A=x['A'], abundance=round(ab, 6), abundance_basis=basis_ab, stable=x['stable'],
+            iso_list.append(dict(A=x['A'], mass_u=round(x['A'] + x['mass_excess_keV'] / AMU_KEV, 6), abundance=round(ab, 6), abundance_basis=basis_ab, stable=x['stable'],
                                  half_life=x.get('half_life_nubase'), half_life_s=x['half_life_s'], half_life_text=x.get('half_life_text'),
                                  decay=x['decay'] if not x['stable'] else None))
         # stable isotopes without natural abundance flag are not listed as natural
@@ -363,12 +384,17 @@ def main():
         block = e.block
         if 57 <= Z <= 70 or 89 <= Z <= 102: grp = None; block = 'f'
         if Z in (71, 103): grp = 3; block = 'd'
+        ra = e.atomic_radius
+        if str(Z) in ov['radius_atomic_pm']: ra = ov['radius_atomic_pm'][str(Z)]
+        bc = block_by_config(subs)
         rec = dict(Z=Z, symbol=sym, name=e.name, mass=mass, mass_uncertainty=mass_unc, mass_note=mass_note,
-                   category=e.series, group=grp, period=e.period, block=block,
+                   category=ov['category'].get(str(Z), e.series), group=grp, period=e.period, block=block, block_by_config=bc,
                    config=noble_notation(subs), subshells=subs, config_anomaly=anomaly, config_predicted=predicted,
                    config_source=basis, config_note=cnote, ground_level=ground[Z]['level'] if Z in ground else None,
                    electronegativity=en, radius_covalent_pm=round(e.covalent_radius_cordero or e.covalent_radius_pyykko),
-                   radius_vdw_pm=vdw, radius_vdw_source=vdw_src, radius_atomic_pm=e.atomic_radius,
+                   radius_covalent_source='Cordero 2008 (measured bond lengths)' if e.covalent_radius_cordero else 'Pyykko 2009 (calculated, not measured)',
+                   radius_covalent_note=ov['covalent_note'].get(str(Z)), density_note=ov['density_note'].get(str(Z)),
+                   radius_vdw_pm=vdw, radius_vdw_source=vdw_src, radius_atomic_pm=ra,
                    ionization_eV=ion['ie'] if ion else None, ionization_unc_eV=ion['ie_unc'] if ion else None,
                    ionization_status=({'(': 'interpolated or extrapolated', '[': 'theoretical', '': 'measured'}.get(ion['prefix'], 'measured') if ion else 'not listed by NIST'),
                    density=density, melt_K=melt, boil_K=boil, phase_stp=phase,
@@ -385,7 +411,7 @@ def main():
             json.dump(obj, f, ensure_ascii=False, indent=indent, separators=(',', ':') if indent is None else None)
             f.write('\n')
     dump('elements.json', elements)
-    dump('atomic/zeff.json', dict(note='Effective nuclear charge per occupied subshell. src C = Clementi-Raimondi SCF values (Z<=86; Clementi & Raimondi 1963, Clementi, Raimondi & Reinhardt 1967), S = Slater (1930) rules. Used only to set the size of each drawn cloud.', elements=zeffs))
+    dump('atomic/zeff.json', dict(note='Effective nuclear charge per occupied subshell. src C = Clementi-Raimondi screening constants (Z<=86; Clementi & Raimondi 1963, Clementi, Raimondi & Reinhardt 1967), S = Slater (1930) rules. These belong to single Slater-type orbitals (nodeless, with effective quantum number n*). NOT used to draw the clouds: cloud sizes come from data/atomic/scf.json. Kept for the effective-nuclear-charge card only.', elements=zeffs))
     dump('atomic/isotopes.json', isos)
     h = hydrogen_series()
     dump('atomic/lines.json', dict(

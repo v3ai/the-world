@@ -113,8 +113,8 @@
    "Johan Gadolin found yttrium oxide in a mineral; the metal was isolated later."
   ],
   "60": [
-   1841,
-   "Mosander found 'didymium'; Auer von Welsbach split it into neodymium and praseodymium later."
+   1885,
+   "Mosander found 'didymium' in 1841, which was a mixture; Carl Auer von Welsbach separated it into neodymium and praseodymium in 1885 (Wikipedia 'Neodymium')."
   ],
   "76": [
    1803,
@@ -155,6 +155,14 @@
   "9": [
    1886,
    "Isolated by Moissan in 1886; fluorspar and its acid were known earlier."
+  ],
+  "100": [
+   1952,
+   "Formed in the Ivy Mike thermonuclear test on 1 November 1952 and identified in December 1952 (Ghiorso and colleagues); kept secret until 1955 (Wikipedia 'Fermium')."
+  ],
+  "30": [
+   "antiquity",
+   "Zinc ores were used to make brass since antiquity, but the metal itself was recognised in India by about 1300 and isolated in Europe by Marggraf in 1746 (Wikipedia 'Zinc'); 'antiquity' here refers to its use in brass."
   ]
  },
  "phase_stp_unknown": [
@@ -179,5 +187,26 @@
   116,
   117,
   118
- ]
+ ],
+ "radius_atomic_pm": {
+  "_source": "Wikipedia 'Atomic radii of the elements (data page)': the empirical (Slater 1964) column has no value for the noble gases; the He 120 and Ne 160 entries there are marked 'citation needed' and Ar 71 is a calculated (Clementi, Raimondi and Reinhardt 1967) value, so they are not empirical radii. Removed (null) rather than shown under the wrong label. Kr and Xe have none.",
+  "2": null,
+  "10": null,
+  "18": null
+ },
+ "category": {
+  "_source": "Po is a post-transition ('poor') metal: its summary calls it a radioactive metal and it is metallic in the solid (Wikipedia 'Polonium'); mendeleev lists it as a metalloid.",
+  "84": "Poor metals"
+ },
+ "covalent_note": {
+  "_source": "Cordero et al., Dalton Trans. 2008, 2832, as tabulated on Wikipedia 'Covalent radius' (single-bond column): Mn l.s. 139 / h.s. 161, Fe 132 / 152, Co 126 / 150, C sp3 76 / sp2 73 / sp 69 pm. mendeleev stores one number per element, an average or one choice.",
+  "6": "Cordero's radius depends on the bonding: sp³ 76 pm, sp² 73 pm (the value shown), sp 69 pm.",
+  "25": "Cordero lists 139 pm (low-spin) and 161 pm (high-spin); the value shown is their average.",
+  "26": "Cordero lists 132 pm (low-spin) and 152 pm (high-spin); the value shown is their average.",
+  "27": "Cordero lists 126 pm (low-spin) and 150 pm (high-spin); the value shown is their average."
+ },
+ "density_note": {
+  "_source": "Wikipedia 'Densities of the elements (data page)' marks the astatine value with a question mark: no macroscopic sample exists.",
+  "85": "estimate: no sample large enough to measure"
+ }
 }

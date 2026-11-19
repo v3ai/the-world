@@ -86,3 +86,4 @@ body.cardOpen .atomNote { display: none }
 @media (max-width: 860px) {
   .atomOpts { position: fixed; left: 58px; right: 8px; top: 108px; width: auto; max-height: 36vh; overflow: auto; z-index: 4 }
 }
+.atomNote .warn { border-left: 3px solid var(--index); padding-left: 8px }

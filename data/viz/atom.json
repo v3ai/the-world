@@ -50,10 +50,6 @@
    0,
    14
   ],
-  "y": [
-   0,
-   0.8
-  ],
   "xlabel": "distance r from the nucleus (Bohr radii)",
   "ylabel": "probability per Bohr radius",
   "fns": [
@@ -80,7 +76,7 @@
     "step": 1
    }
   ],
-  "caption": "Radial probability for hydrogen-like states. Each curve has area 1. The 1s peak sits at r = 1/Z; raise Z and the cloud shrinks."
+  "caption": "Radial probability for hydrogen-like states. Each curve has area 1. The 1s peak sits at r = 1/Z; raise Z and the cloud shrinks and its peak grows (the vertical scale follows)."
  },
  "at_quantum_numbers": {
   "type": "table",
@@ -328,7 +324,7 @@
  "at_zeff": {
   "type": "bars",
   "ylabel": "Z_eff of the outermost subshell",
-  "caption": "Effective nuclear charge felt by the outermost electrons across period 2, from Clementi and Raimondi’s calculation. The actual nuclear charge grows from 3 to 10; the electrons feel a smaller, slower-growing pull.",
+  "caption": "Clementi and Raimondi’s effective nuclear charge for the outermost subshell across period 2 (single Slater-type orbitals; these values are not used to draw the clouds). The actual nuclear charge grows from 3 to 10; the electrons feel a smaller, slower-growing pull.",
   "bars": [
    {
     "label": "Li",
@@ -361,6 +357,42 @@
    {
     "label": "Ne",
     "value": 5.76
+   }
+  ]
+ },
+ "at_cloud_sizes": {
+  "type": "bars",
+  "ylabel": "mean radius, pm (logarithmic)",
+  "logy": true,
+  "caption": "Computed mean radius of each occupied subshell of iron (non-relativistic self-consistent field). The 4s cloud lies far outside the 3d cloud even though 3d is the subshell being filled across the row.",
+  "bars": [
+   {
+    "label": "1s",
+    "value": 3.14
+   },
+   {
+    "label": "2s",
+    "value": 14.35
+   },
+   {
+    "label": "2p",
+    "value": 12.54
+   },
+   {
+    "label": "3s",
+    "value": 43.53
+   },
+   {
+    "label": "3p",
+    "value": 45.66
+   },
+   {
+    "label": "3d",
+    "value": 60.38
+   },
+   {
+    "label": "4s",
+    "value": 162.51
    }
   ]
  },

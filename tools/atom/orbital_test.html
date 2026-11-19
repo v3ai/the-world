@@ -105,8 +105,8 @@ const LTR = 'spdfghi', sgn = m => (m > 0 ? '+' : m < 0 ? '−' : '') + Math.abs(
 
 function shellsFor(Z) {
   const e = Object.values(ELJ).find(x => x.Z === Z); if (!e) return null;
-  const z = (ZEFF.elements[e.symbol] || {}).zeff || {};
-  return { e, shells: Object.entries(e.subshells).map(([k, occ]) => ({ n: +k[0], l: 'spdfgh'.indexOf(k[1]), e: occ, zeff: z[k] || Math.max(1, Z - 0), key: k })) };
+  const z = ZEFF.elements[e.symbol] || {};   // ZEFF holds data/atomic/scf.json: computed mean radii; Z' = (3n^2 - l(l+1)) / (2 <r>) keeps <r> and the n-l-1 nodes
+  return { e, shells: Object.entries(e.subshells).map(([k, occ]) => { const n = +k[0], l = 'spdfgh'.indexOf(k[1]); return { n, l, e: occ, zeff: (3 * n * n - l * (l + 1)) / (2 * z[k].r_mean), key: k }; }) };
 }
 function apply() {
   const Z = S.Z; let spec, tip = null;
@@ -150,7 +150,7 @@ function orbitalTip(spec) {
 }
 function shellsTip(sf) {
   return `<p>Dots are coloured by shell (one hue for each principal quantum number n). Filled subshells are exactly spherical and a free atom has no preferred direction, so each subshell is shown averaged over orientation, with no flow.</p>` +
-    `<p><b>This is the orbital approximation.</b> Each subshell is a hydrogen-like cloud shrunk by an effective nuclear charge (${sf.e.symbol}: ${(ZEFF.elements[sf.e.symbol] || {}).method || 'Slater'}), so sizes are approximate. Real electrons avoid each other in ways this picture leaves out, and in heavy atoms relativity changes the inner shells. Each shell is given a minimum number of dots so tiny inner shells stay visible, so dot counts are not to scale between shells.</p>` + CERT;
+    `<p><b>This is the orbital approximation.</b> Each subshell is a hydrogen-like cloud rescaled to the mean radius computed for it by a non-relativistic self-consistent-field model (data/atomic/scf.json), so sizes are approximate and relativity is left out. Real electrons avoid each other in ways this picture leaves out, and in heavy atoms relativity changes the inner shells. Each shell is given a minimum number of dots so tiny inner shells stay visible, so dot counts are not to scale between shells.</p>` + CERT;
 }
 function superTip(spec) {
   const Z = spec.Z, n1 = 1, n2 = 2, dE = 0.375 * Z * Z, f = dE * AQ.HARTREE_HZ / (Z === 1 ? 1 + AQ.ME_OVER_MP : 1), lam = 299792458 / f * 1e9;
@@ -201,7 +201,7 @@ function tick(now) {
   requestAnimationFrame(tick);
 }
 window.AT = { S, cloud, view, apply, syncNLM, renderer, camera, scene, set(o) { Object.assign(S, o); if (o.Z) $('#Z').value = o.Z; syncNLM(); apply(); }, cut(b) { if (cloud.cut !== b) $('#cut').click(); } };
-Promise.all([fetch('../../data/elements.json').then(r => r.json()), fetch('../../data/atomic/zeff.json').then(r => r.json())]).then(([e, z]) => {
+Promise.all([fetch('../../data/elements.json').then(r => r.json()), fetch('../../data/atomic/scf.json').then(r => r.json())]).then(([e, z]) => {
   e.forEach(x => ELJ[x.symbol] = x); ZEFF = z;
   const q = k => url.get(k);
   if (q('mode')) S.mode = q('mode'); if (q('z')) S.Z = +q('z'); if (q('n')) S.n = +q('n'); if (q('l')) S.l = +q('l'); if (q('m')) S.m = +q('m'); if (q('fam')) S.fam = q('fam'); if (q('sup')) S.sup = q('sup');

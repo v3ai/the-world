@@ -501,14 +501,14 @@ var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
    Frame unit is the picometre: one Bohr radius = AQ.A0_PM scene units.
    =================================================================================================================== */
 function atomShellsFor(sym) {
+  /* Each subshell is a hydrogen-like cloud (its n-l-1 radial nodes kept) whose scale is chosen so that its mean radius equals the
+     one computed for this element by the self-consistent-field calculation in data/atomic/scf.json (tools/atom/scf.py):
+     <r> = (3 n^2 - l(l+1)) / (2 Z') for a hydrogen-like function of charge Z', so Z' = (3 n^2 - l(l+1)) / (2 <r>). */
   const e = (typeof ELJ !== 'undefined' && ELJ[sym]); if (!e || !e.subshells) return null;
-  const zf = (ATOM_ZEFF && ATOM_ZEFF.elements && ATOM_ZEFF.elements[sym] && ATOM_ZEFF.elements[sym].zeff) || {};
-  const sr = (ATOM_ZEFF && ATOM_ZEFF.elements && ATOM_ZEFF.elements[sym] && ATOM_ZEFF.elements[sym].src) || {}, NS = [0, 1, 2, 3, 3.7, 4.0, 4.2, 4.2];
-  // Slater's rules give a charge that belongs to a Slater orbital of effective quantum number n* (1, 2, 3, 3.7, 4.0, 4.2 for n = 1..6; n = 7 uses 4.2, an extension),
-  // so for those subshells the hydrogenic cloud is shrunk as if n were n*: <r> = 3 n*^2 / (2 Zeff). Clementi-Raimondi values are used with the true n.
-  return { e, shells: Object.entries(e.subshells).map(([k, occ]) => { const n = +k[0], z0 = zf[k] || Math.max(1, e.Z - occ), z = sr[k] === 'S' ? z0 * Math.pow(n / NS[n], 2) : z0; return { n, l: 'spdfgh'.indexOf(k[1]), e: occ, zeff: z, zeffRaw: z0, key: k }; }) };
+  const sc = ATOM_SCF && ATOM_SCF.elements && ATOM_SCF.elements[sym]; if (!sc) return null;
+  return { e, shells: Object.entries(e.subshells).map(([k, occ]) => { const n = +k[0], l = 'spdfgh'.indexOf(k[1]), q = sc[k], z = (3 * n * n - l * (l + 1)) / (2 * q.r_mean); return { n, l, e: occ, zeff: z, rMean: q.r_mean, rMax: q.r_max, key: k }; }) };
 }
-var ATOM_ZEFF = null;
+var ATOM_SCF = null;
 if (typeof FT !== 'undefined' && AtomCloud) {
   FT.atomq = {
     build(F, o) {
@@ -521,7 +521,7 @@ if (typeof FT !== 'undefined' && AtomCloud) {
         if (o.el) { const sf = atomShellsFor(o.el); if (!sf) return; spec = { kind: 'shells', shells: sf.shells, name: `${sf.e.name}, Z = ${sf.e.Z}` }; }
         cloud.setState(spec); F.extent = cloud.extent * AQ.A0_PM;
       };
-      if (o.el && !ATOM_ZEFF) getJSON('data/atomic/zeff.json').then(z => { ATOM_ZEFF = z; if (F.built) start(); }); else start();
+      if (o.el && !ATOM_SCF) getJSON('data/atomic/scf.json').then(z => { ATOM_SCF = z; if (F.built) start(); }); else start();
       F.update = dt => { const v = new THREE.Vector2(); renderer.getDrawingBufferSize(v); cloud.setView(v.y, 50); cloud.update(dt); };
       F.onDispose = () => cloud.dispose();
     }
@@ -537,8 +537,8 @@ var ATM = { data: {}, A: {}, ready: null, frames: new Set(), picker: null };
 ATM.load = function () {
   if (ATM.ready) return ATM.ready;
   const g = p => getJSON(p).catch(() => null);
-  return ATM.ready = Promise.all([g('data/atomic/zeff.json'), g('data/atomic/isotopes.json'), g('data/atomic/lines.json'), g('data/atomic/sources.json')])
-    .then(([z, i, l, s]) => { ATOM_ZEFF = z; ATM.data = { zeff: z, iso: i, lines: l, src: s }; });
+  return ATM.ready = Promise.all([g('data/atomic/scf.json'), g('data/atomic/isotopes.json'), g('data/atomic/lines.json'), g('data/atomic/sources.json')])
+    .then(([z, i, l, s]) => { ATOM_SCF = z; ATM.data = { scf: z, iso: i, lines: l, src: s }; });
 };
 ATM.name = s => (ELJ[s] || {}).name || s;
 ATM.lc = s => ATM.name(s).toLowerCase();
@@ -588,27 +588,40 @@ ATM.defaultPick = (l, fam) => { const L = ATM.pickList(l, fam); if (fam === 'com
 
 /* --- wording (shared with tools/atom/orbital_test.html) --- */
 ATM.MEANS = '<p>Every dot is one place this single electron could be found. Dots are crowded where it is likely to be. They are not many electrons, and the dot size is not the electron’s size.</p>';
-ATM.CERT = '<p><span class="ctag">C1</span> The wavefunction and every number it predicts are settled. <span class="ctag">C4</span> What the wavefunction <em>is</em> (a real wave, knowledge, many worlds, a pilot wave) is an open question.</p>';
+ATM.CERT = '<p><span class="ctag">C1</span> For a one-electron atom the Schrödinger wavefunction and the probabilities and energies it gives are settled (relativistic corrections aside; they grow with the nuclear charge). <span class="ctag">C4</span> What the wavefunction <em>is</em> (a real wave, knowledge, many worlds, a pilot wave) is an open question.</p>';
+ATM.CERT_ATOM = '<p><span class="ctag">C2</span> The orbital picture of a many-electron atom is well supported but approximate: the sizes are computed to the accuracy stated above and the shapes inside each shell are stand-ins. It is not settled in the way a one-electron wavefunction is. <span class="ctag">C4</span> What the wavefunction <em>is</em> (a real wave, knowledge, many worlds, a pilot wave) is an open question.</p>';
 ATM.slowHTML = cloud => { const k = cloud.slowText().replace('^', ''); return `10<sup>${k.slice(2)}</sup>`; };
+/* accuracy of the computed sizes, measured against Hartree-Fock (numbers come from data/atomic/scf.json) */
+ATM.accText = () => { const v = ATOM_SCF && ATOM_SCF.validation; if (!v) return 'accurate to a few percent'; const p = x => (100 * x).toFixed(x < 0.01 ? 1 : 0) + '%'; return `compared with published Hartree–Fock radii for ${v.reference.n_atoms} atoms, a typical subshell is within ${p(v.all_subshells.median_abs)}, the outermost subshell within ${p(v.outermost_subshell.median_abs)}, and the worst case is ${p(v.all_subshells.max_abs)} off`; };
+/* how much larger the exact (Dirac, point nucleus) 1s binding energy of a one-electron ion is than the non-relativistic one: E_D = mc^2 (sqrt(1 - (Z alpha)^2) - 1) against -(Z alpha)^2 mc^2 / 2 */
+ATM.relFactor = Z => { const x = Z / 137.035999084; return (1 - Math.sqrt(1 - x * x)) / (x * x / 2) - 1; };
+ATM.relWarn = Z => {
+  if (Z < 20) return '';
+  const f = ATM.relFactor(Z), E = 0.5 * Z * Z * 27.211386 / 1000;
+  return `<p class="warn"><b>Relativity.</b> The inner electron of a heavy ion moves at a large fraction of the speed of light (roughly ${(100 * Z / 137.036).toFixed(0)}% of it for 1s, by the Bohr-model estimate Zα), which this non-relativistic picture leaves out. For a nucleus with Z = ${Z} the exact (Dirac) 1s binding energy is ${(100 * f).toFixed(0)}% larger than the ${E.toFixed(E < 10 ? 2 : 1)} keV this theory gives (point nucleus), and the real clouds are a little tighter. The effect grows roughly as Z².</p>`;
+};
 ATM.tipOrbital = function (spec, cloud) {
   let t = ATM.MEANS;
   if (spec.real) t += `<p>This is a chemist’s orbital: an equal mixture of m = +${spec.m} and m = −${spec.m}. The two circulations cancel, so the dots have no net flow and sit still.</p>`;
-  else if (spec.m === 0) t += '<p>The dots are still because this state has no circulation about the vertical axis. That does not mean the electron is at rest: its kinetic energy is not zero.</p>';
-  else t += `<p>The dots drift along the flow of probability, circling the vertical axis ${spec.m > 0 ? 'anticlockwise' : 'clockwise'} as seen from above, faster near the axis. In standard quantum mechanics only the probabilities are defined; in the pilot-wave (de Broglie–Bohm) reading these would be the electron’s actual paths. Both readings predict exactly the same measurements. The motion is slowed about ${ATM.slowHTML(cloud)} times.</p>`;
+  else if (spec.m === 0) t += '<p>The dots are still because this state has no circulation about the vertical axis. In standard quantum mechanics that does not mean the electron is at rest: its kinetic energy is not zero. (In the pilot-wave reading the electron would be at rest in such a state and the energy sits in the wave’s “quantum potential”; the readings differ in words, not in predictions.)</p>';
+  else t += `<p>The dots drift along the flow of probability, circling the vertical axis ${spec.m > 0 ? 'anticlockwise' : 'clockwise'} as seen from above, faster near the axis. In standard quantum mechanics only the probabilities are defined; in the pilot-wave (de Broglie–Bohm) reading these would be the electron’s actual paths. Both readings predict exactly the same measurements. The motion is slowed about ${ATM.slowHTML(cloud)} times. For display, dots closer to the axis than 0.12 of the mean radius turn at the rate they would have at that distance (the true rate grows without limit at the axis); fewer than 1.5% of the dots are affected.</p>`;
   return t + ATM.CERT;
 };
-ATM.tipShells = function (e, method) {
+ATM.tipShells = function (e) {
+  const heavy = e.Z >= 55;
+  if (e.Z === 1) return ATM.MEANS + '<p>Hydrogen has one electron, so this is exactly its 1s state (the state of lowest energy), a round cloud with a mean radius of 1.5 Bohr radii (79 pm), densest at the centre. Nothing here is approximate in the non-relativistic theory.</p>' + ATM.CERT;
   return `<p>Dots are coloured by shell (one hue for each principal quantum number n). A free atom has no preferred direction, and filled subshells are exactly spherical, so each subshell is shown averaged over orientation, with no flow.</p>` +
-    `<p><b>This is the orbital approximation.</b> Each subshell is a hydrogen-like cloud shrunk by an effective nuclear charge (${e.name}: ${method === 'slater' ? 'Slater’s rules' : method === 'clementi-raimondi' ? 'Clementi–Raimondi values' : 'Clementi–Raimondi where tabulated, Slater’s rules otherwise'}), so sizes are approximate. Real electrons avoid each other in ways this picture leaves out, and in heavy atoms relativity changes the inner shells. Inner shells get a minimum number of dots so that they stay visible, so dot counts are not to scale between shells.</p>` + ATM.CERT;
+    `<p><b>What this picture is.</b> <u>Sizes</u> come from a computed model of the whole atom: a non-relativistic self-consistent-field calculation (every electron moves in the average field of the nucleus and all the others, with a local approximation for the exchange between electrons; see “Electron cloud sizes”). It gives each occupied subshell a mean radius; ${ATM.accText()}. <u>Shapes</u>: inside each subshell the radial shape is a hydrogen-like stand-in with the right number of nodes, rescaled to that mean radius; it is not the true many-electron orbital. Electrons also avoid each other in ways this picture leaves out.</p>` +
+    `<p><b>What it leaves out.</b> Relativity. In heavy atoms it shrinks s and p shells and expands d and f shells; for gold published calculations find the 6s mean radius about 15% smaller (about 3.4 to 2.9 Bohr radii) than without relativity, so for ${heavy ? 'this atom the s and p clouds drawn here are probably too big and the d and f clouds too small' : 'heavy atoms such as gold the s and p clouds drawn here would be too big and the d and f clouds too small'}. Inner shells get a minimum number of dots so that they stay visible, so dot counts are not to scale between shells.</p>` + ATM.CERT_ATOM;
 };
 ATM.tipSuper = function (spec, cloud, which) {
   const Z = spec.Z, dE = 0.375 * Z * Z, f = dE * AQ.HARTREE_HZ / (Z === 1 ? 1 + AQ.ME_OVER_MP : 1), lam = 299792458 / f * 1e9;
   const ex = n => { const e = n.toExponential(3).split('e+'); return `${e[0]}×10<sup>${e[1]}</sup>`; };
   let t = ATM.MEANS;
   if (which === '1s2s') t += '<p>This mixture breathes: the cloud swells and shrinks, but its centre does not move, so it makes no oscillating dipole and cannot emit a single photon this way. The beat still has frequency (E₂ − E₁)/h.</p>';
-  else if (which === '1s2p0') t += `<p>Mix the 1s and 2p states and the cloud stops being still: its density sloshes up and down at (E₂ − E₁)/h ≈ ${ex(f)} Hz. That is the frequency of the ${lam.toFixed(1)} nm ultraviolet light the atom emits when it drops from 2p to 1s${Z === 1 ? ' (the Lyman-α line, observed at 121.567 nm)' : ''}. This is the link between orbitals and spectral lines.</p>`;
+  else if (which === '1s2p0') t += `<p>Mix the 1s and 2p states and the cloud stops being still: its density sloshes up and down at (E₂ − E₁)/h ≈ ${ex(f)} Hz. That is the frequency of the ${lam < 1 ? lam.toPrecision(3) : lam.toFixed(1)} nm ${lam < 10 ? 'X-ray' : lam < 100 ? 'extreme ultraviolet' : 'ultraviolet'} light ${Z === 1 ? 'the atom emits when it drops from 2p to 1s (the Lyman-α line, observed at 121.567 nm)' : 'this non-relativistic theory gives for a one-electron ion of this nucleus (the real ion differs, see the relativity note)'}. This is the link between orbitals and spectral lines.</p>`;
   else t += `<p>Mixing 1s with 2p (m = +1) makes the whole cloud circle the axis at (E₂ − E₁)/h ≈ ${ex(f)} Hz, the Lyman-α frequency again.</p>`;
-  t += `<p>The dots move along the probability current. In standard quantum mechanics only the probabilities are defined; in the pilot-wave reading these would be the electron’s actual paths. Both predict the same measurements. The motion is slowed about ${ATM.slowHTML(cloud)} times. Only hydrogen-like atoms have exactly known energies, so only they are offered here.</p>`;
+  t += `<p>The dots move along the probability current. In standard quantum mechanics only the probabilities are defined; in the pilot-wave reading these would be the electron’s actual paths. Both predict the same measurements. The motion is slowed about ${ATM.slowHTML(cloud)} times; if your screen draws fewer than about 17 frames a second the slowing is larger, because each step of the calculation is limited in size. Only one-electron atoms have energies that can be found exactly in this simple theory (it leaves out fine structure, the Lamb shift and relativity), so only they are offered here.</p>`;
   return t + ATM.CERT;
 };
 ATM.MODELS = {
@@ -629,7 +642,7 @@ ATM.MODELS = {
     scale: 'The nucleus is at its true size, so it is too small to see (the ring marks where it is). Electron paths here are only a classical picture; Rutherford’s model did not say how electrons move. Electron balls are exaggerated.' },
   bohr: { year: 1913, title: 'Bohr, 1913', node: 'at_model_bohr',
     what: 'Electrons move on circles with only certain allowed energies; light is emitted or absorbed when an electron jumps between them.',
-    evidence: 'For hydrogen it reproduced the measured colours of the spectrum (the Rydberg formula) from fundamental constants, and explained why atoms are stable.',
+    evidence: 'For hydrogen it reproduced the measured colours of the spectrum (the Rydberg formula) from fundamental constants. It did not explain why atoms are stable: it simply postulated that an electron on an allowed circle does not radiate.',
     killed: 'It fails for atoms with more than one electron (even helium), predicts a ground state with angular momentum where there is none, cannot give the brightness of lines or their splitting in a magnetic field, and has no way to say why only certain orbits are allowed. Quantum mechanics (1925–26) replaced it.',
     scale: '' },
   quantum: { year: 1926, title: 'Quantum, 1926', node: 'at_orbital', what: '', evidence: '', killed: '', scale: '' }
@@ -722,7 +735,7 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
     const bfSel = ATM.selEl('', 'to n', v => { S.bf = +v; syncBohr(); });
     const emitBtn = document.createElement('button'); emitBtn.className = 'act'; emitBtn.textContent = 'Let it jump and emit light'; emitBtn.onclick = () => bohrEmit();
     bohrBar.append(biSel, bfSel, emitBtn);
-    const note = document.createElement('div'); note.className = 'atomNote glass'; document.body.appendChild(note); if (window.innerWidth <= 860) note.classList.add('shut');
+    const note = document.createElement('div'); note.className = 'atomNote glass'; document.body.appendChild(note); if (window.innerWidth <= 860 || store.get('atomNoteSeen', 0)) note.classList.add('shut');   // open on the very first view only; collapsed once it has been read
     const noteTimer = setInterval(() => { note.classList.toggle('on', typeof capFrame !== 'undefined' && capFrame === F); }, 250);   // F.update does not run while the frame is faded out
     F.onDispose = () => { clearInterval(noteTimer); cloud.dispose(); note.remove(); ATM.frames.delete(F); clearModel(); };
     note.addEventListener('click', ev => { const b = ev.target.closest('[data-n]'); if (b) { showBodyNode(b.dataset.n, null); } const t = ev.target.closest('.noteHead'); if (t) note.classList.toggle('shut'); });
@@ -842,7 +855,7 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
       }
       const key = S.sub, zf = (sf.shells.find(q => q.key === key) || {}).zeff || Z, occ = e.subshells[key] || 0;
       const lab = S.fam === 'complex' ? `m = ${ATM.sgn(pk.m)}` : `${pk.label} (real orbital)`;
-      return { spec: { kind: 'orbital', Z, zeff: zf, n: S.n, l: S.l, m: pk.m, real: pk.real, name: `${nm} ${key}, ${lab}` }, html: `${e.name}, ${key} subshell (${occ} electron${occ > 1 ? 's' : ''}), ${lab}`, kind: 'orbital', pk, key, zf, occ, zfShow: (sf.shells.find(q => q.key === key) || {}).zeffRaw || zf };
+      return { spec: { kind: 'orbital', Z, zeff: zf, n: S.n, l: S.l, m: pk.m, real: pk.real, name: `${nm} ${key}, ${lab}` }, html: `${e.name}, ${key} subshell (${occ} electron${occ > 1 ? 's' : ''}), ${lab}`, kind: 'orbital', pk, key, zf, occ, rMean: (sf.shells.find(q => q.key === key) || {}).rMean };
     }
     function buildStrip(e) {
       strip.innerHTML = '';
@@ -888,12 +901,13 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
       if (S.model === 'quantum') {
         const cs = S.cs || (S.cs = currentSpec()); if (!cs) { note.innerHTML = ''; return; }
         head = cs.html; const sp = cs.spec;
-        if (cs.kind === 'shells') { h = ATM.tipShells(e, (ATOM_ZEFF.elements[S.el] || {}).method); links = [['at_orbital', 'Electron cloud and orbitals'], ['at_configuration', 'Electron configuration'], ['at_zeff', 'Effective nuclear charge']]; }
+        if (cs.kind === 'shells') { h = ATM.tipShells(e); links = [['at_orbital', 'Electron cloud and orbitals'], ['at_cloud_sizes', 'Electron cloud sizes'], ['at_configuration', 'Electron configuration'], ['at_zeff', 'Effective nuclear charge']]; }
         else if (cs.kind === 'orbital') {
           h = ATM.tipOrbital(sp, cloud); links = [['at_orbital', 'Electron cloud and orbitals'], ['at_quantum_numbers', 'Quantum numbers'], ['at_probability_current', 'The flow of probability']];
-          if (!cs.free) h = `<p>${cs.key} holds ${cs.occ} electron${cs.occ > 1 ? 's' : ''} here (at most ${2 * (2 * sp.l + 1)}: two for each of the ${2 * sp.l + 1} orbitals, with opposite spins). One orbital is shown, as a hydrogen-like cloud shrunk by an effective nuclear charge of ${cs.zfShow.toFixed(2)}${ATOM_ZEFF.elements[S.el].src[cs.key] === 'S' ? ' (from Slater’s rules, which also set the size through an effective quantum number)' : ''}, so its size is approximate. In a many-electron atom the occupied orbitals together make a spherical atom; this is one piece of it.</p>` + h;
-          else if (e.Z > 1) h = `<p>This is not the ${ATM.lc(S.el)} atom but a hydrogen-like ion: the ${ATM.lc(S.el)} nucleus with a single electron. For one electron the mathematics is exact (apart from relativity, which matters more as Z grows), so the shapes and sizes are exact, and the cloud is ${e.Z}× tighter than in hydrogen.</p>` + h;
-        } else { h = ATM.tipSuper(sp, cloud, S.sup); links = [['at_spectra', 'Atomic spectra'], ['at_wavefunction', 'Wavefunction and probability']]; if (e.Z > 1) h = `<p>A hydrogen-like ion of ${ATM.lc(S.el)} (one electron).</p>` + h; }
+          if (!cs.free) { links.splice(1, 0, ['at_cloud_sizes', 'Electron cloud sizes']); h = h.replace(ATM.CERT, ATM.CERT_ATOM); }
+          if (!cs.free) h = `<p>${cs.key} holds ${cs.occ} electron${cs.occ > 1 ? 's' : ''} here (at most ${2 * (2 * sp.l + 1)}: two for each of the ${2 * sp.l + 1} orbitals, with opposite spins). One orbital is shown, as a hydrogen-like cloud (its ${sp.n - sp.l - 1} radial node${sp.n - sp.l - 1 === 1 ? '' : 's'} kept) rescaled so that its mean radius, ${ATM.fmt(cs.rMean * AQ.A0_PM, 3)} pm (${ATM.fmt(cs.rMean, 3)} Bohr radii), is the value computed for this subshell by a self-consistent-field model of the whole atom (non-relativistic; ${ATM.accText()}). The shape inside is a hydrogen-like stand-in. In a many-electron atom the occupied orbitals together make a spherical atom; this is one piece of it.</p>` + h;
+          else if (e.Z > 1) h = `<p>This is not the ${ATM.lc(S.el)} atom but a hydrogen-like ion: the ${ATM.lc(S.el)} nucleus with a single electron. In the non-relativistic Schrödinger theory the shapes and sizes for one electron are exact, and the cloud is ${e.Z}× tighter than in hydrogen.</p>${ATM.relWarn(e.Z)}` + h;
+        } else { h = ATM.tipSuper(sp, cloud, S.sup); links = [['at_spectra', 'Atomic spectra'], ['at_wavefunction', 'Wavefunction and probability']]; if (e.Z > 1) h = `<p>A hydrogen-like ion of ${ATM.lc(S.el)} (one electron).</p>${ATM.relWarn(e.Z)}` + h; }
       } else {
         head = M.title; h = `<p><b>The idea.</b> ${M.what}</p><p><b>What it explained.</b> ${M.evidence}</p><p><b>What ended it.</b> ${M.killed}</p>`;
         if (S.model === 'bohr') h += e.Z === 1 ? '<p><b>What is exact.</b> This is hydrogen, where the model’s ring radii n²a₀ and its line colours are correct (the radii as mean distances are not: the true electron has no orbit). Choose two levels and press the button to see the light the jump would give, computed from the Rydberg formula.</p><p class="scale">Electron and photon sizes are exaggerated; the photon wave is a drawing, not a measurement.</p>' : `<p><b>What this shows.</b> A shell diagram: the number of electrons in each shell n, added up from the real configuration of ${ATM.lc(S.el)}. The ring spacing is not to scale and these are not orbits: Bohr’s picture only works for one-electron atoms. For this element the quantum view is the better description.</p>`;
@@ -924,7 +938,7 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
       // spectrum widget
       if (isB || isQ && S.qmode === 'super') specBox.innerHTML = specHTML();
       F.blurb = `${e.name} atom, drawn with ${isQ ? 'the quantum model' : ATM.MODELS[S.model].title + '’s model'}. The nucleus is at its true size: invisible at this zoom.`;
-      F.note = isQ ? 'Sizes in the many-electron cloud are approximate (orbital approximation).' : 'A historical model, drawn to show the idea, not the truth.';
+      F.note = isQ ? 'Whole-atom cloud: shell sizes are computed without relativity (typically within a few percent of non-relativistic Hartree–Fock, so heavy atoms are off by more) and the shapes are hydrogen-like stand-ins. See “What this picture is”.' : 'A historical model, drawn to show the idea, not the truth.';
       if (typeof capFrame !== 'undefined' && capFrame === F) { const n = document.getElementById('capN'), d = document.getElementById('capD'), t = document.getElementById('capNote'); if (n) n.textContent = F.name; if (d) d.textContent = F.blurb; if (t) t.textContent = F.note; }
     }
     function specHTML() {
@@ -951,7 +965,7 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
       F.pickables.length = 0; F.pickables.push(hitMain, nucHit);
       if (S.model === 'quantum') {
         gModel.visible = false; cloud.group.visible = true;
-        if (!ATOM_ZEFF) { ATM.load().then(() => { if (F.built) refresh(); }); return; }
+        if (!ATOM_SCF) { ATM.load().then(() => { if (F.built) refresh(); }); return; }
         const cs = S.cs = currentSpec(); if (!cs) return;
         cloud.setCut(S.cut); cloud.setFlow(S.flow); cloud.setState(cs.spec); S.extentPm = cloud.extent * AQ.A0_PM;
         if (cs.kind === 'orbital' && cloud.flows === false) S.flowNote = 0;
@@ -977,11 +991,30 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
       const e = ELJ[S.el], A = ATM.curA(S.el);
       return new Frame({ type: 'nucleus', pinned: true, name: `${ATM.isoName(S.el, A)} nucleus`, unit: 1e-15, radius: 40, r0: 1.5e-15, r1: 3e-13, spawnD: 4e-15, pos: new V3(), opts: { Z: e.Z, N: A - e.Z, el: S.el } });
     };
+    /* Keep the picture centred in the part of the screen that the panels leave free: the ruler on the left, the controls on top and
+       the explanation on the right (when it is open). Done by shifting the camera's view window, so nothing in the scene moves. */
+    function centreCloud(dt) {
+      let tx = 0, ty = 0;
+      if (cam.A === F && innerWidth > 860) {
+        const rl = document.getElementById('ruler'), left = rl ? rl.getBoundingClientRect().right : 0;
+        const nr = note.classList.contains('on') && !note.classList.contains('shut') ? note.getBoundingClientRect() : null;
+        const right = nr ? nr.left - 8 : innerWidth;
+        let top = 0; document.querySelectorAll('#controls > *, .atomOpts, .atomSpec').forEach(el => { if (el.offsetParent !== null) { const b = el.getBoundingClientRect(); if (b.width > 0 && b.top < innerHeight * 0.5) top = Math.max(top, b.bottom + 6); } });
+        tx = Math.max(-0.2 * innerWidth, Math.min(0.2 * innerWidth, (left + right) / 2 - innerWidth / 2));
+        ty = Math.max(0, Math.min(0.2 * innerHeight, top / 2));
+      }
+      const k = 1 - Math.exp(-Math.min(dt, 0.2) * 6); S.vx = (S.vx || 0) + (tx - (S.vx || 0)) * k; S.vy = (S.vy || 0) + (ty - (S.vy || 0)) * k;
+      if (Math.abs(S.vx) + Math.abs(S.vy) < 0.5 && tx === 0 && ty === 0) { if (F.cam.view && F.cam.view.enabled) F.cam.clearViewOffset(); }
+      else F.cam.setViewOffset(W, H, -Math.round(S.vx), -Math.round(S.vy), W, H);
+    }
     F.update = dt => {
       const v = new THREE.Vector2(); renderer.getDrawingBufferSize(v); cloud.setView(v.y, 50);
       if (S.model === 'quantum') cloud.update(dt);
       if (S.anim) S.anim(dt);
       const on = typeof capFrame !== 'undefined' && capFrame === F; note.classList.toggle('on', on);
+      // the explanation is open the first time only: it collapses itself after it has been on screen for a while and stays collapsed next time
+      if (on && !note.classList.contains('shut') && !store.get('atomNoteSeen', 0)) { S.noteT = (S.noteT || 0) + dt; if (S.noteT > 30) { store.set('atomNoteSeen', 1); note.classList.add('shut'); } }
+      centreCloud(dt);
       // arriving by a landmark flight that ends too close for this atom: ease back so the whole atom is in view
       if (cam.A !== F) S.fitDone = false;
       else if (!S.fitDone && !fly) { S.fitDone = true; if (cam.D < S.extentPm * 2.6e-12 * Math.max(1, innerHeight / innerWidth * 0.9)) fit(); }
@@ -1000,11 +1033,11 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
 ATM.PT = {
   metrics: {
     family: { label: 'Family', cat: true },
-    block: { label: 'Block (which subshell fills last)', cat: true },
+    block: { label: 'Block (where the element sits in the table)', cat: true },
     state: { label: 'State at room temperature', cat: true },
     en: { label: 'Electronegativity', f: 'electronegativity', unit: 'Pauling scale', dec: 2, src: 'electronegativity' },
     ie: { label: 'First ionisation energy', f: 'ionization_eV', unit: 'eV', dec: 2, src: 'ionization_eV, ionization_unc_eV, ionization_status' },
-    rad: { label: 'Atomic radius (empirical)', f: 'radius_atomic_pm', unit: 'pm', dec: 0, src: 'radius_atomic_pm' },
+    rad: { label: 'Atomic radius (empirical)', f: 'radius_atomic_pm', unit: 'pm', dec: 0, src: 'radius_atomic_pm', note: 'Grey: no empirical value. The noble gases have none (the figures sometimes quoted for them are calculated or unsourced).' },
     dens: { label: 'Density', f: 'density', unit: 'g/cm³', log: true, dec: 3, src: 'density', note: 'Gases are at 0 °C and 1 atm; the scale is logarithmic.' },
     melt: { label: 'Melting point', f: 'melt_K', unit: 'K', dec: 0, src: 'melt_K, boil_K', note: 'Helium and carbon do not melt at normal pressure, so they have no value here.' },
     year: { label: 'Year discovered', f: 'discovered', unit: '', dec: 0, src: 'discovered', note: 'Discovery is partly a matter of definition: first recognised, first isolated or first confirmed. Elements known since ancient times are shown in grey-brown.' }
@@ -1090,7 +1123,7 @@ ATM.PT.paint = function () {
   // legend
   let h = '';
   if (key === 'family') h = '<div>' + ATM.FAMILY.map(f => `<span class="sw"><i style="background:${f[1]}"></i>${f[2]}</span>`).join('') + '</div><div class="pn">Lutetium and lawrencium are placed in group 3, so the rows below hold lanthanum to ytterbium and actinium to nobelium. Family names follow common textbook use.</div>';
-  else if (key === 'block') h = '<div>' + Object.values(P.BLOCK).map(f => `<span class="sw"><i style="background:${f[0]}"></i>${f[1]}</span>`).join('') + '</div><div class="pn">The block is the type of subshell that holds the highest-energy electron in the ground-state pattern (s, p, d or f).</div>';
+  else if (key === 'block') h = '<div>' + Object.values(P.BLOCK).map(f => `<span class="sw"><i style="background:${f[0]}"></i>${f[1]}</span>`).join('') + '</div><div class="pn">The block is the layout of the table: s, p, d and f columns, with the f block drawn as the two rows below the main table (lanthanum to ytterbium and actinium to nobelium; lutetium and lawrencium are in group 3, the d block). For most elements it is also the subshell that fills last, but not for all: lanthanum, actinium and thorium have a d electron where the layout says f, and the cards say so.</div>';
   else if (key === 'state') h = '<div>' + Object.values(P.STATE).map(f => `<span class="sw"><i style="background:${f[0]}"></i>${f[1]}</span>`).join('') + '</div>';
   else {
     const stops = Array.from({ length: 7 }, (_, i) => `rgb(${P.ramp(i / 6)})`).join(',');
