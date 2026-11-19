@@ -1093,7 +1093,7 @@ BUILD.blackhole = (c) => {
   });
   const halo = new THREE.Mesh(new THREE.RingGeometry(SH * .97, SH * 2.4, 256, 4), haloMatl); halo.userData = { id: 'photonRing', priority: 1.5 }; g.add(halo); c.pickables.push(halo);
   c.addLabel(shadow, 'Shadow of the black hole', { offset: new V3(0, -SH * 1.15, 0), pick: shadow });
-  // S2 + cluster: orbit sizes are NOT to scale (the real S2 orbit is about 1,000 AU across, far larger than this whole scene) and the periods are sped up
+  // S2 + cluster: orbit sizes are NOT to scale (the real S2 orbit is about 2,000 AU along its long axis, far larger than this whole scene) and the periods are sped up
   const orbits = [];
   const mkOrbit = (a, e, P, rx, rz, id, color, size, ph) => {
     const piv = new THREE.Group(); piv.rotation.set(rx, 0, rz); g.add(piv);

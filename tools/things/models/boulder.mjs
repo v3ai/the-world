@@ -70,7 +70,7 @@ export default function build(_L) {
   const thing = {
     id: 'boulder', title: 'Boulder', label: 'Boulder', scientific: null, node: 'boulder', main_part: 'rock',
     blurb: 'A weathered boulder in the park: bare rock with moss and lichen growing on it, and loose stones at its foot. Click any part.',
-    model_note: 'A model built from typical features of a coarse-grained rock, not a scan of one particular boulder. Sizes are about right for a large boulder; the grain pattern shown when cut open is illustrative.',
+    model_note: 'A model built from typical features of a coarse-grained rock (granite), not a scan of one particular boulder. Sizes are about right for a large boulder; the grain pattern shown when cut open is illustrative.',
     size_m: { height: .67, width: 1.53, depth: 1.0 }, height_m: .67, radius_m: 1.7, draw_m: 500,
     seed: 1701,
     systems: SYSTEMS, modes: MODES,
