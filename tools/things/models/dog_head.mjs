@@ -5,7 +5,7 @@ import * as L from '../lib/index.mjs';
 import * as D from './dog_lib.mjs';
 import { P, S, ell, rod, smoothS, unionS, subS, meshS, SIDES } from './dog_lib.mjs';
 
-export const HEAD = { o: [30, 60.6], deg: -8, sc: 1.07 };   // sc: the head is drawn 7 % larger than the first-draft sizes (a Labrador's head is broad and big)       // origin in the body frame (cm); the muzzle points 8 degrees below the palate-level line
+export const HEAD = { o: [30, 60.6], deg: -8, sc: .97 };   // sc: scale of the whole head. Set so the lower jaw (condyle to chin) is about 15.5 cm, the Labrador reference of 154.5 mm in a CT study of 146 Labrador heads (Wylie-analysis paper); it was 1.07, which drew the jaw about 10 % too long       // origin in the body frame (cm); the muzzle points 8 degrees below the palate-level line
 const th = HEAD.deg * Math.PI / 180, C = Math.cos(th), Sn = Math.sin(th), SC = HEAD.sc;
 export const HLcm = (x, y, z = 0) => [HEAD.o[0] + (x * C - y * Sn) * SC, HEAD.o[1] + (x * Sn + y * C) * SC, z * SC];
 export const HL = (x, y, z = 0) => { const p = HLcm(x, y, z); return [p[0] * .01, p[1] * .01, p[2] * .01]; };

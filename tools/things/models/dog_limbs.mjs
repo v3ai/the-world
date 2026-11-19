@@ -43,6 +43,7 @@ export function limbBones() {
     { const cal = bone(L.add(hk, [-.003, .0, 0]), z(H.heel, s, H.zT + .2), .0072, .008, .0105, { sides: 8, e: .25, n: 6 });
       const tal = D.meshS(D.ell(L.add(hk, [.011, .004, 0]), [1, 0, 0], .011, .0095, .008), .0028);
       const oth = []; for (let i = 0; i < 4; i++) oth.push(D.meshS(D.sphereS(L.add(hk, [.004 + (i % 2) * .008, -.014 - Math.floor(i / 2) * .006, (i - 1.5) * .0045 * s]), .0045), .0024));
+      oth.push(D.meshS(D.sphereS(L.add(hk, [.012, -.0075, 0]), .0042), .0024));   // the central tarsal bone: calcaneus + talus + central + four distal tarsals = 7
       meshes['tarsus_' + k] = L.merge(cal, tal, ...oth); }
     { const m = []; for (let d = 0; d < 4; d++) { const zo = (d - 1.5) * 1.5; m.push(bone([hk[0] + .0, hk[1] - .016, s * (H.zT + zo * .8) * .01], [mt[0], mt[1] + .0, s * (H.zP + zo) * .01], .0036, .005, .0055, { sides: 7, e: .22, n: 5 })); }
       meshes['metatarsals_' + k] = L.merge(...m); }

@@ -6,10 +6,10 @@
  "node": "dog",
  "main_part": "coat",
  "blurb": "A Labrador-type dog, with its body, muscles, bones, organs, nerves and blood vessels. Click any part, or use the layer buttons.",
- "model_note": "A model built from typical proportions of a medium-sized dog (a Labrador-type male, 30 kg, 57 cm at the withers), not a scan of one animal. Bone shapes, muscle outlines and organ sizes are schematic; the counts (7 neck, 13 chest, 7 lower-back vertebrae, 13 pairs of ribs, 42 teeth) are real.",
+ "model_note": "A model built from typical proportions of a Labrador-type male (57 cm at the withers, 30 kg, about 1.15 m from nose to tail tip, 67 cm from the point of the shoulder to the point of the buttock), not a scan of one animal. Bone shapes, muscle outlines and organ sizes are schematic. The counts of neck, chest and lower-back vertebrae (7, 13, 7), rib pairs (13) and teeth (42) are real; the hock has its 7 bones; the head is scaled so the lower jaw is about 16 cm long, a Labrador reference; the liver is drawn as three fused lobes where a dog has six; the intestines are a short schematic coil.",
  "size_m": {
   "height_at_withers": 0.57,
-  "body_length": 1,
+  "body_length": 1.15,
   "mass_kg": 30
  },
  "height_m": 0.66,
@@ -259,9 +259,9 @@
    "label": "Inside the eye",
    "cut": {
     "at": [
-     0.42375402307827953,
-     0.6177814248688624,
-     0.04494000000000001
+     0.41218822652890763,
+     0.616680357124109,
+     0.04074
     ],
     "normal": [
      0.34586627587008306,
@@ -344,8 +344,8 @@
    "label": "Inside the ear",
    "cut": {
     "at": [
-     0.33178760500660437,
-     0.601532543459182,
+     0.32881680080037967,
+     0.6019500627620621,
      0
     ],
     "normal": [
@@ -631,9 +631,9 @@
    "id": "hs_tap",
    "node": "dog_tapetum",
    "at": [
-    0.4165,
-    0.6238,
-    0.0423
+    0.4049,
+    0.6227,
+    0.0381
    ],
    "label": "Tapetum lucidum",
    "modes": [
@@ -651,9 +651,9 @@
    "id": "hs_lens",
    "node": "dog_lens",
    "at": [
-    0.4263,
-    0.6174,
-    0.0459
+    0.4147,
+    0.6163,
+    0.0417
    ],
    "label": "Lens",
    "modes": [
@@ -665,9 +665,9 @@
    "id": "hs_ret",
    "node": "dog_retina",
    "at": [
-    0.4152,
-    0.617,
-    0.0418
+    0.4036,
+    0.6159,
+    0.0376
    ],
    "label": "Retina",
    "modes": [
@@ -685,8 +685,8 @@
    "id": "hs_olf",
    "node": "dog_turb_olf",
    "at": [
-    0.4439205335305209,
-    0.5998199896205411,
+    0.43047001637813576,
+    0.6003975606840419,
     0
    ],
    "label": "Smell lining",
@@ -705,8 +705,8 @@
    "id": "hs_resp",
    "node": "dog_turb_resp",
    "at": [
-    0.4840359179875259,
-    0.5931016245019514,
+    0.4668362994840187,
+    0.5943070801559747,
     0
    ],
    "label": "Airway scrolls",
@@ -719,9 +719,9 @@
    "id": "hs_ear_canal",
    "node": "dog_ear_canal",
    "at": [
-    0.34433655148385633,
-    0.6062519970622028,
-    0.05136
+    0.3401929485414399,
+    0.6062284459348942,
+    0.04656
    ],
    "label": "Ear canal",
    "modes": [
@@ -733,9 +733,9 @@
    "id": "hs_drum",
    "node": "dog_eardrum",
    "at": [
-    0.326234791171189,
-    0.5812428882499573,
-    0.042800000000000005
+    0.3237829415290218,
+    0.5835566370116435,
+    0.0388
    ],
    "label": "Eardrum",
    "modes": [
@@ -747,9 +747,9 @@
    "id": "hs_cochlea",
    "node": "dog_cochlea",
    "at": [
-    0.32494324135691327,
-    0.5835854347441051,
-    0.023540000000000005
+    0.3226120973048653,
+    0.585680253926899,
+    0.021339999999999998
    ],
    "label": "Cochlea",
    "modes": [
@@ -761,8 +761,8 @@
    "id": "hs_brain",
    "node": "dog_brain",
    "at": [
-    0.3771150220945638,
-    0.631899717514964,
+    0.3699080106838569,
+    0.6294791831677711,
     0
    ],
    "label": "Brain",
@@ -789,8 +789,8 @@
    "id": "hs_tongue",
    "node": "dog_tongue",
    "at": [
-    0.44947046476049113,
-    0.5547388620465484,
+    0.4355012624464265,
+    0.5595296226029458,
     0
    ],
    "label": "Tongue",
@@ -935,8 +935,8 @@
    "id": "at_dog_olfactory_epithelium",
    "node": "dog_olfactory_epithelium",
    "at": [
-    0.4503,
-    0.5989,
+    0.4362,
+    0.5996,
     0
    ],
    "label": "",
@@ -947,8 +947,8 @@
    "id": "at_dog_osn",
    "node": "dog_osn",
    "at": [
-    0.4503,
-    0.5989,
+    0.4362,
+    0.5996,
     0
    ],
    "label": "",
@@ -959,8 +959,8 @@
    "id": "at_dog_sustentacular",
    "node": "dog_sustentacular",
    "at": [
-    0.4503,
-    0.5989,
+    0.4362,
+    0.5996,
     0
    ],
    "label": "",
@@ -971,8 +971,8 @@
    "id": "at_dog_basal",
    "node": "dog_basal",
    "at": [
-    0.4503,
-    0.5989,
+    0.4362,
+    0.5996,
     0
    ],
    "label": "",
@@ -983,8 +983,8 @@
    "id": "at_dog_bowman",
    "node": "dog_bowman",
    "at": [
-    0.4503,
-    0.5989,
+    0.4362,
+    0.5996,
     0
    ],
    "label": "",
@@ -995,8 +995,8 @@
    "id": "at_dog_axons",
    "node": "dog_axons",
    "at": [
-    0.4503,
-    0.5989,
+    0.4362,
+    0.5996,
     0
    ],
    "label": "",
@@ -1043,9 +1043,9 @@
    "id": "at_dog_retina_scene",
    "node": "dog_retina_scene",
    "at": [
-    0.4238,
-    0.6178,
-    0.0449
+    0.4122,
+    0.6167,
+    0.0407
    ],
    "label": "",
    "r": 0.004,
@@ -1055,9 +1055,9 @@
    "id": "at_dog_rod",
    "node": "dog_rod",
    "at": [
-    0.4238,
-    0.6178,
-    0.0449
+    0.4122,
+    0.6167,
+    0.0407
    ],
    "label": "",
    "r": 0.004,
@@ -1067,9 +1067,9 @@
    "id": "at_dog_cone",
    "node": "dog_cone",
    "at": [
-    0.4238,
-    0.6178,
-    0.0449
+    0.4122,
+    0.6167,
+    0.0407
    ],
    "label": "",
    "r": 0.004,
@@ -1079,9 +1079,9 @@
    "id": "at_dog_tapetal_cells",
    "node": "dog_tapetal_cells",
    "at": [
-    0.4238,
-    0.6178,
-    0.0449
+    0.4122,
+    0.6167,
+    0.0407
    ],
    "label": "",
    "r": 0.004,
@@ -1091,9 +1091,9 @@
    "id": "at_dog_rpe",
    "node": "dog_rpe",
    "at": [
-    0.4238,
-    0.6178,
-    0.0449
+    0.4122,
+    0.6167,
+    0.0407
    ],
    "label": "",
    "r": 0.004,
@@ -1118,12 +1118,12 @@
     "button": "Look inside the skin and coat"
    },
    "center": [
-    -0.0497,
-    0.3434,
+    -0.0604,
+    0.342,
     0
    ],
-   "radius": 0.6379,
-   "tris": 33004
+   "radius": 0.6277,
+   "tris": 32596
   },
   {
    "id": "coat_mid",
@@ -1136,12 +1136,12 @@
    "priority": 1.2,
    "solid": false,
    "center": [
-    -0.0495,
-    0.3433,
+    -0.0595,
+    0.3419,
     -0.0002
    ],
-   "radius": 0.6366,
-   "tris": 10558
+   "radius": 0.626,
+   "tris": 10470
   },
   {
    "id": "coat_far",
@@ -1154,12 +1154,12 @@
    "priority": 1.2,
    "solid": false,
    "center": [
-    -0.058,
-    0.3413,
+    -0.0633,
+    0.3404,
     0.0005
    ],
-   "radius": 0.6314,
-   "tris": 1520
+   "radius": 0.6251,
+   "tris": 1514
   },
   {
    "id": "fill",
@@ -1172,12 +1172,12 @@
    "priority": 1.1,
    "noink": true,
    "center": [
-    -0.0497,
-    0.3425,
+    -0.0667,
+    0.3411,
     0.0003
    ],
-   "radius": 0.6049,
-   "tris": 6828
+   "radius": 0.589,
+   "tris": 6696
   },
   {
    "id": "fur",
@@ -1197,13 +1197,13 @@
     "button": "Look inside the skin and coat"
    },
    "center": [
-    -0.0674,
-    0.3684,
+    -0.0745,
+    0.3655,
     0.0001
    ],
-   "radius": 0.6519,
-   "count": 15898,
-   "tris": 31796
+   "radius": 0.6393,
+   "count": 15693,
+   "tris": 31386
   },
   {
    "id": "ears",
@@ -1218,11 +1218,11 @@
    "solid": false,
    "double": true,
    "center": [
-    0.365,
-    0.6215,
+    0.3589,
+    0.62,
     0
    ],
-   "radius": 0.1004,
+   "radius": 0.0918,
    "tris": 1488
   },
   {
@@ -1235,12 +1235,12 @@
    "lod": "near+mid",
    "priority": 1.8,
    "center": [
-    0.522,
-    0.5943,
+    0.5013,
+    0.5953,
     0.0001
    ],
-   "radius": 0.0283,
-   "tris": 1976
+   "radius": 0.0256,
+   "tris": 1664
   },
   {
    "id": "paw_pads",
@@ -1289,11 +1289,11 @@
    "double": true,
    "deeper": null,
    "center": [
-    0.4235,
-    0.6178,
+    0.412,
+    0.6167,
     0
    ],
-   "radius": 0.0557,
+   "radius": 0.0515,
    "tris": 400
   },
   {
@@ -1308,11 +1308,11 @@
    "solid": false,
    "double": true,
    "center": [
-    0.4319,
-    0.6167,
+    0.4203,
+    0.6156,
     0
    ],
-   "radius": 0.0542,
+   "radius": 0.05,
    "tris": 240
   },
   {
@@ -1325,12 +1325,12 @@
    "cutFace": "bone",
    "priority": 1.5,
    "center": [
-    0.407,
-    0.6232,
-    0
+    0.397,
+    0.6214,
+    -0.0001
    ],
-   "radius": 0.1161,
-   "tris": 18624
+   "radius": 0.1053,
+   "tris": 15296
   },
   {
    "id": "mandible",
@@ -1342,12 +1342,12 @@
    "cutFace": "bone",
    "priority": 1.5,
    "center": [
-    0.4086,
-    0.579,
-    -0.0001
+    0.3985,
+    0.5813,
+    0.0001
    ],
-   "radius": 0.102,
-   "tris": 5824
+   "radius": 0.0924,
+   "tris": 4744
   },
   {
    "id": "teeth",
@@ -1359,11 +1359,11 @@
    "cutFace": "bone",
    "priority": 1.8,
    "center": [
-    0.4329,
-    0.5629,
+    0.4204,
+    0.5669,
     0
    ],
-   "radius": 0.0782,
+   "radius": 0.0709,
    "tris": 2016
   },
   {
@@ -1721,7 +1721,7 @@
     0.082
    ],
    "radius": 0.0457,
-   "tris": 960
+   "tris": 1056
   },
   {
    "id": "metatarsals_r",
@@ -1942,7 +1942,7 @@
     -0.082
    ],
    "radius": 0.0458,
-   "tris": 960
+   "tris": 1056
   },
   {
    "id": "metatarsals_l",
@@ -1995,12 +1995,12 @@
     "button": "Look inside the muscle"
    },
    "center": [
-    0.3768,
-    0.6393,
+    0.3665,
+    0.6377,
     0
    ],
-   "radius": 0.0752,
-   "tris": 1268
+   "radius": 0.0703,
+   "tris": 1124
   },
   {
    "id": "m_masseter",
@@ -2019,12 +2019,12 @@
     "button": "Look inside the muscle"
    },
    "center": [
-    0.353,
-    0.5786,
-    -0.0001
+    0.3525,
+    0.5775,
+    -0.0002
    ],
-   "radius": 0.0762,
-   "tris": 1024
+   "radius": 0.0753,
+   "tris": 968
   },
   {
    "id": "m_face_muscles",
@@ -2043,12 +2043,12 @@
     "button": "Look inside the muscle"
    },
    "center": [
-    0.4532,
-    0.5758,
-    -0.0005
+    0.4376,
+    0.5798,
+    0
    ],
-   "radius": 0.0802,
-   "tris": 2168
+   "radius": 0.0737,
+   "tris": 1616
   },
   {
    "id": "m_neck_dorsal",
@@ -2067,12 +2067,12 @@
     "button": "Look inside the muscle"
    },
    "center": [
-    0.2454,
-    0.6044,
+    0.2444,
+    0.6034,
     -0.0005
    ],
-   "radius": 0.1383,
-   "tris": 4300
+   "radius": 0.1371,
+   "tris": 4180
   },
   {
    "id": "m_brachiocephalicus",
@@ -2091,12 +2091,12 @@
     "button": "Look inside the muscle"
    },
    "center": [
-    0.2499,
+    0.2484,
     0.5005,
     0.0011
    ],
-   "radius": 0.1448,
-   "tris": 3264
+   "radius": 0.1445,
+   "tris": 3244
   },
   {
    "id": "m_neck_ventral",
@@ -2115,12 +2115,12 @@
     "button": "Look inside the muscle"
    },
    "center": [
-    0.2489,
-    0.4772,
+    0.2487,
+    0.4775,
     -0.0006
    ],
-   "radius": 0.1229,
-   "tris": 2496
+   "radius": 0.1223,
+   "tris": 2512
   },
   {
    "id": "m_trapezius",
@@ -2709,12 +2709,12 @@
    "priority": 1.6,
    "solid": true,
    "center": [
-    0.3584,
-    0.6263,
+    0.3529,
+    0.6243,
     0
    ],
-   "radius": 0.066,
-   "tris": 8948
+   "radius": 0.0598,
+   "tris": 7352
   },
   {
    "id": "bulbs",
@@ -2727,12 +2727,12 @@
    "priority": 1.6,
    "solid": true,
    "center": [
-    0.4348,
-    0.6195,
+    0.4222,
+    0.6182,
     0
    ],
-   "radius": 0.0205,
-   "tris": 2232
+   "radius": 0.0186,
+   "tris": 1840
   },
   {
    "id": "tongue",
@@ -2745,12 +2745,12 @@
    "priority": 1.6,
    "solid": true,
    "center": [
-    0.4141,
-    0.5591,
+    0.4033,
+    0.5634,
     0
    ],
-   "radius": 0.0783,
-   "tris": 3476
+   "radius": 0.071,
+   "tris": 2872
   },
   {
    "id": "larynx",
@@ -3069,12 +3069,12 @@
    "cutFace": "brain",
    "priority": 1.6,
    "center": [
-    0.3584,
-    0.6263,
+    0.3529,
+    0.6243,
     0
    ],
-   "radius": 0.066,
-   "tris": 8948
+   "radius": 0.0598,
+   "tris": 7352
   },
   {
    "id": "bulbs_n",
@@ -3085,12 +3085,12 @@
    "mesh": "bulbs",
    "priority": 1.7,
    "center": [
-    0.4348,
-    0.6195,
+    0.4222,
+    0.6182,
     0
    ],
-   "radius": 0.0205,
-   "tris": 2232
+   "radius": 0.0186,
+   "tris": 1840
   },
   {
    "id": "spinal_cord",
@@ -3101,11 +3101,11 @@
    "mesh": "spinal_cord",
    "priority": 1.6,
    "center": [
-    -0.0197,
-    0.5485,
+    0.0143,
+    0.5529,
     -0.0004
    ],
-   "radius": 0.3432,
+   "radius": 0.3092,
    "tris": 910
   },
   {
@@ -3169,11 +3169,11 @@
    "priority": 1.7,
    "solid": false,
    "center": [
-    0.4262,
-    0.6393,
-    0.0001
+    0.4223,
+    0.6387,
+    0
    ],
-   "radius": 0.0412,
+   "radius": 0.0376,
    "tris": 140
   },
   {
@@ -3401,11 +3401,11 @@
    "opacity_max": 1,
    "noink": true,
    "center": [
-    0.4215,
-    0.6178,
+    0.4099,
+    0.6167,
     0
    ],
-   "radius": 0.0557,
+   "radius": 0.0515,
    "tris": 1728
   },
   {
@@ -3423,11 +3423,11 @@
    "opacity_max": 1,
    "noink": true,
    "center": [
-    0.4199,
-    0.6133,
+    0.4083,
+    0.6122,
     0
    ],
-   "radius": 0.0546,
+   "radius": 0.0504,
    "tris": 1008
   },
   {
@@ -3451,11 +3451,11 @@
    "opacity_max": 1,
    "noink": true,
    "center": [
-    0.4195,
-    0.6237,
+    0.4079,
+    0.6226,
     0
    ],
-   "radius": 0.0539,
+   "radius": 0.0497,
    "tris": 1008
   },
   {
@@ -3479,11 +3479,11 @@
    "opacity_max": 1,
    "noink": true,
    "center": [
-    0.4217,
-    0.6178,
+    0.4102,
+    0.6167,
     0
    ],
-   "radius": 0.0552,
+   "radius": 0.051,
    "tris": 1728
   },
   {
@@ -3501,11 +3501,11 @@
    "opacity_max": 0.45,
    "noink": true,
    "center": [
-    0.4237,
-    0.6178,
+    0.4122,
+    0.6167,
     0
    ],
-   "radius": 0.0546,
+   "radius": 0.0504,
    "tris": 2760
   },
   {
@@ -3523,11 +3523,11 @@
    "opacity_max": 1,
    "noink": false,
    "center": [
-    0.4262,
-    0.6174,
+    0.4146,
+    0.6163,
     0
    ],
-   "radius": 0.051,
+   "radius": 0.0468,
    "tris": 1184
   },
   {
@@ -3545,11 +3545,11 @@
    "opacity_max": 0.35,
    "noink": true,
    "center": [
-    0.432,
-    0.6167,
+    0.4204,
+    0.6156,
     0
    ],
-   "radius": 0.0542,
+   "radius": 0.05,
    "tris": 240
   },
   {
@@ -3567,11 +3567,11 @@
    "opacity_max": 1,
    "noink": true,
    "center": [
-    0.4298,
-    0.6169,
+    0.4182,
+    0.6158,
     0
    ],
-   "radius": 0.0535,
+   "radius": 0.0493,
    "tris": 88
   },
   {
@@ -3591,11 +3591,11 @@
     "button": "Look inside the smell lining"
    },
    "center": [
-    0.4429,
-    0.5984,
+    0.4295,
+    0.5992,
     0.0002
    ],
-   "radius": 0.0302,
+   "radius": 0.0291,
    "count": 28,
    "tris": 3696
   },
@@ -3610,11 +3610,11 @@
    "parent": "skull",
    "priority": 2.2,
    "center": [
-    0.4875,
-    0.5931,
+    0.47,
+    0.5943,
     -0.0001
    ],
-   "radius": 0.0356,
+   "radius": 0.0337,
    "count": 18,
    "tris": 2376
   },
@@ -3630,11 +3630,11 @@
    "parent": "skull",
    "priority": 2.2,
    "center": [
-    0.3427,
-    0.6161,
+    0.3387,
+    0.6151,
     0
    ],
-   "radius": 0.064,
+   "radius": 0.0584,
    "tris": 760
   },
   {
@@ -3649,11 +3649,11 @@
    "parent": "skull",
    "priority": 2.2,
    "center": [
-    0.3262,
-    0.5812,
+    0.3238,
+    0.5836,
     0
    ],
-   "radius": 0.0431,
+   "radius": 0.0391,
    "tris": 56
   },
   {
@@ -3668,11 +3668,11 @@
    "parent": "skull",
    "priority": 2.2,
    "center": [
-    0.3244,
-    0.5799,
+    0.3221,
+    0.5823,
     0
    ],
-   "radius": 0.0409,
+   "radius": 0.038,
    "tris": 2592
   },
   {
@@ -3687,11 +3687,11 @@
    "parent": "skull",
    "priority": 2.2,
    "center": [
-    0.3253,
-    0.5849,
+    0.3229,
+    0.5869,
     0.0003
    ],
-   "radius": 0.0287,
+   "radius": 0.0261,
    "tris": 1220
   },
   {
@@ -3706,19 +3706,19 @@
    "parent": "skull",
    "priority": 2.2,
    "center": [
-    0.3235,
-    0.6048,
+    0.3213,
+    0.605,
     0
    ],
-   "radius": 0.027,
+   "radius": 0.0246,
    "tris": 1860
   }
  ],
  "stats": {
   "parts": 134,
-  "uniqueMeshTris": 361070,
-  "nearTris": 75064,
-  "midTris": 15202,
-  "farTris": 1520
+  "uniqueMeshTris": 352440,
+  "nearTris": 73934,
+  "midTris": 14802,
+  "farTris": 1514
  }
 }

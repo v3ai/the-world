@@ -4,7 +4,7 @@
   "nodes": [
    {
     "id": "w",
-    "label": "Wolf-like ancestor",
+    "label": "Extinct wolf-like ancestor",
     "x": 15,
     "y": 20
    },
@@ -46,7 +46,7 @@
    }
   ],
   "flow": false,
-  "caption": "One species, a huge range of sizes. The model stands for a medium, athletic breed; the body plan is the same in all."
+  "caption": "One species, a huge range of sizes. The model stands for a medium, athletic breed; the body plan is the same in all. Dogs descend from an extinct wolf-like population that no living wolf represents exactly; the date, place and number of domestication events are debated."
  },
  "dog_skeleton": {
   "type": "bars",
@@ -88,7 +88,7 @@
    },
    {
     "label": "human: lowest sound (Hz)",
-    "value": 20
+    "value": 64
    },
    {
     "label": "dog: highest sound (Hz)",
@@ -96,11 +96,11 @@
    },
    {
     "label": "human: highest sound (Hz)",
-    "value": 20000
+    "value": 23000
    }
   ],
   "ylabel": "frequency (Hz)",
-  "caption": "Range of hearing from the Hearing range reference. Dogs hear much higher sounds than people but lose out at the very low end.",
+  "caption": "Approximate range of hearing from one comparison table that applies the same cut-off criteria to every species (LSU School of Veterinary Medicine). Dogs hear higher sounds than people; the low end is about the same. Ranges depend on the loudness of the test tone and on the individual.",
   "logy": true
  },
  "dog_teeth": {
@@ -222,11 +222,11 @@
    },
    {
     "label": "human (intact genes, ≈)",
-    "value": 330
+    "value": 339
    }
   ],
   "ylabel": "intact smell-receptor genes",
-  "caption": "Calculated from the gene counts and pseudogene fractions in Quignon et al. 2003 and 2005: dog about 1,094 genes with about 20 % broken copies, human about 900 with about 63 %. The lining area (about 170 cm² in a dog, about 10 cm² in a person) is in the text."
+  "caption": "Dog: about 870, calculated from Quignon et al. 2005 (1,094 genes, 20.3 % of them pseudogenes). Human: 339 intact genes counted directly by Malnic et al. 2004; Quignon et al. 2003 give about 900 genes with 63 % pseudogenes, which is about 330 intact. The dog and human counts come from different genomes and methods, so treat them as approximate. The lining area is in the text."
  },
  "dog_coat_group": {
   "type": "geometry",
@@ -297,64 +297,56 @@
       56
      ],
      [
-      13,
-      58.5
+      10.5,
+      57.5
      ],
      [
-      31,
+      27,
+      66.5
+     ],
+     [
+      32.5,
       68.5
      ],
      [
-      38.5,
+      36,
       68
      ],
      [
-      43.5,
+      41.5,
       65.5
      ],
      [
-      45,
+      43.5,
       62.5
      ],
      [
-      47.5,
-      62.5
-     ],
-     [
-      53,
+      51,
       60.5
      ],
      [
-      53,
-      58
+      51,
+      58.5
      ],
      [
-      51.5,
-      56.5
+      49.5,
+      57
      ],
      [
-      51.5,
+      49,
       53
      ],
      [
-      50.5,
-      52
-     ],
-     [
-      48,
-      52
-     ],
-     [
-      46,
+      45.5,
       53
      ],
      [
-      37,
-      53.5
+      38,
+      54.5
      ],
      [
-      31.5,
-      50.5
+      33,
+      52
      ],
      [
       25.5,
@@ -362,7 +354,7 @@
      ],
      [
       25,
-      43
+      43.5
      ],
      [
       25.5,
@@ -702,7 +694,7 @@
     "k": "text",
     "x": 0,
     "y": 67,
-    "text": "Walk (lateral sequence): stance about 65 % of the stride",
+    "text": "Walk (lateral sequence): stance about 58 % of the stride",
     "size": 11,
     "align": "left"
    },
@@ -715,36 +707,12 @@
     "align": "right"
    },
    {
-    "k": "rect",
-    "x": 25.0,
-    "y": 62.0,
-    "w": 65.0,
-    "h": 4,
-    "fill": "accent"
-   },
-   {
     "k": "text",
     "x": -2,
     "y": 57.599999999999994,
     "text": "right front",
     "size": 9,
     "align": "right"
-   },
-   {
-    "k": "rect",
-    "x": 75.0,
-    "y": 56.8,
-    "w": 25.0,
-    "h": 4,
-    "fill": "accent"
-   },
-   {
-    "k": "rect",
-    "x": 0,
-    "y": 56.8,
-    "w": 40.0,
-    "h": 4,
-    "fill": "accent"
    },
    {
     "k": "text",
@@ -755,14 +723,6 @@
     "align": "right"
    },
    {
-    "k": "rect",
-    "x": 0,
-    "y": 51.6,
-    "w": 65.0,
-    "h": 4,
-    "fill": "orange"
-   },
-   {
     "k": "text",
     "x": -2,
     "y": 47.199999999999996,
@@ -771,26 +731,10 @@
     "align": "right"
    },
    {
-    "k": "rect",
-    "x": 50.0,
-    "y": 46.4,
-    "w": 50.0,
-    "h": 4,
-    "fill": "orange"
-   },
-   {
-    "k": "rect",
-    "x": 0,
-    "y": 46.4,
-    "w": 15.0,
-    "h": 4,
-    "fill": "orange"
-   },
-   {
     "k": "text",
     "x": 0,
     "y": 35,
-    "text": "Trot (diagonal pairs): stance about 45 % of the stride",
+    "text": "Fast trot (diagonal pairs): stance about 45 % (illustrative)",
     "size": 11,
     "align": "left"
    },
@@ -857,9 +801,57 @@
     "w": 45.0,
     "h": 4,
     "fill": "orange"
+   },
+   {
+    "k": "rect",
+    "x": 25.0,
+    "y": 62.0,
+    "w": 58.0,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "rect",
+    "x": 75.0,
+    "y": 56.8,
+    "w": 25.0,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "rect",
+    "x": 0,
+    "y": 56.8,
+    "w": 33.0,
+    "h": 4,
+    "fill": "accent"
+   },
+   {
+    "k": "rect",
+    "x": 0,
+    "y": 51.6,
+    "w": 58.0,
+    "h": 4,
+    "fill": "orange"
+   },
+   {
+    "k": "rect",
+    "x": 50.0,
+    "y": 46.4,
+    "w": 50.0,
+    "h": 4,
+    "fill": "orange"
+   },
+   {
+    "k": "rect",
+    "x": 0,
+    "y": 46.4,
+    "w": 8.0,
+    "h": 4,
+    "fill": "orange"
    }
   ],
-  "caption": "Idealised footfall timing over one stride (left to right, 0-100 %); a bar is a foot on the ground. Only the order (lateral walk, diagonal trot) and \"stance over half the stride at the walk, under half at the trot\" come from the study cited; the exact percentages and even spacing are illustrative.",
+  "caption": "Idealised footfall timing over one stride (left to right, 0-100 %); a bar is a foot on the ground. Only the order of the footfalls (lateral walk, diagonal trot) and the walking stance of about 58 % come from the study cited; the even spacing and the trot's 45 % are illustrative. The gallop is described on the card but not drawn.",
   "aspect": 0.62
  },
  "dog_lungs": {
@@ -898,7 +890,7 @@
    },
    {
     "label": "human",
-    "value": 20000
+    "value": 23000
    },
    {
     "label": "dog",
@@ -906,15 +898,15 @@
    },
    {
     "label": "cat",
-    "value": 79000
+    "value": 64000
    },
    {
     "label": "mouse",
-    "value": 70000
+    "value": 91000
    }
   ],
   "ylabel": "highest audible sound (Hz)",
-  "caption": "Upper limit of hearing from the Hearing range reference (elephant 12 kHz, human 20 kHz, dog 45 kHz, cat 79 kHz, mouse 70 kHz). The ranges depend on how they were measured and on the individual.",
+  "caption": "Upper limit of hearing from one comparison table that applies the same cut-off criteria to every species (LSU School of Veterinary Medicine: elephant 12 kHz, human 23 kHz, dog 45 kHz, cat 64 kHz, mouse 91 kHz). The limits depend on the loudness of the test tone, the method and the individual.",
   "logy": true
  },
  "dog_small_intestine": {
@@ -1836,7 +1828,7 @@
    },
    {
     "id": "e",
-    "label": "Water evaporates from tongue and nose lining",
+    "label": "Water evaporates from tongue, mouth and nose lining",
     "x": 60,
     "y": 50,
     "color": "orange"
@@ -1864,7 +1856,7 @@
    }
   ],
   "flow": true,
-  "caption": "How a dog cools by panting: a dog has sweat glands only on its pads, so evaporation from the wet surfaces of the mouth and nose does most of the work."
+  "caption": "How a dog cools by panting: sweating plays at most a minor part in a dog, so evaporation from the wet surfaces of the mouth and nose does most of the work."
  },
  "dog_diaphragm": {
   "type": "blocks",
