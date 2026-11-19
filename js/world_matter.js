@@ -1,8 +1,8 @@
 'use strict';
 /* ================= MATTER & LIFE FRAMES (true sizes) ================= */
 const ELJ = {}; // symbol → elements.json record
-const SUBD = '₀₁₂₃₄₅₆₇₈₉', SUPD = '⁰¹²³⁴⁵⁶⁷⁸⁹';
-const toSub = s => String(s).replace(/\d/g, d => SUBD[d]), toSup = s => String(s).replace(/\d/g, d => SUPD[d]);
+const SUBCH = '₀₁₂₃₄₅₆₇₈₉', SUPCH = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+const toSub = s => String(s).replace(/\d/g, d => SUBCH[d]), toSup = s => String(s).replace(/\d/g, d => SUPCH[d]);
 /* electron configuration with superscripts and the count written out: "1s" -> 1s¹, "[He] 2s2 2p2" -> [He] 2s² 2p² */
 function fmtConfig(c) { return String(c || '—').replace(/(\d[spdf])(\d*)/g, (m, o, n) => o + toSup(n || '1')); }
 function elInfo(sym) {
@@ -257,7 +257,7 @@ FT.liquid = {
     const lg = new THREE.BufferGeometry(); lg.setAttribute('position', new THREE.Float32BufferAttribute(lp, 3));
     const hb = new THREE.LineSegments(lg, new THREE.LineDashedMaterial({ color: 0x7fd8ff, dashSize: .2, gapSize: .15, transparent: true, opacity: .8 })); hb.computeLineDistances(); F.add(hb); F.pick(hb, 'hbond_water', 1.5);
     F.label(hb, 'Hydrogen bonds (dashed)', { offset: new V3(0, R + 1, 0) });
-    const info = { title: 'Liquid water', tag: 'H₂O · about 1 g/cm³', body: `<p>Each water molecule is a bent H–O–H unit about 0.28 nm across. In the liquid they are packed almost shoulder to shoulder (33 molecules per cubic nanometer) and keep forming and breaking hydrogen bonds, each lasting only about ten trillionths of a second.</p><p class="mini">This is a model, not a snapshot of a simulation: positions are random at the right density, and each molecule was turned to make as many hydrogen bonds as it can. In this picture the molecules away from the edge average about ${perMol.toFixed(1)} hydrogen bonds each (counting a bond for both partners). Simulations of real water give about 3.5, so the real network is denser and more tetrahedral. Pure water is shown; pond, sea and cell water also hold dissolved salts and molecules.</p>`, facts: [['Molecules shown', N], ['Density', '≈ 33.4 molecules/nm³'], ['O–H bond', '0.957 Å'], ['H–O–H angle', '104.5°'], ['Hydrogen bonds drawn', nbond]] };
+    const info = { title: 'Liquid water', tag: 'H₂O · about 1 g/cm³', body: `<p>Each water molecule is a bent H–O–H unit about 0.28 nm across. In the liquid they are packed almost shoulder to shoulder (33 molecules per cubic nanometer) and keep forming and breaking hydrogen bonds, each lasting only about ten trillionths of a second.</p><p class="mini">This is a model, not a snapshot of a simulation: positions are random at the right density, and each molecule was turned to make as many hydrogen bonds as it can. In this picture the molecules away from the edge average about ${perMol.toFixed(1)} hydrogen bonds each (counting a bond for both partners). For comparison, simulations of real water give about 3.5 (the counting rules differ, so compare only roughly); real water also has a tetrahedral order that this random arrangement lacks. Pure water is shown; pond, sea and cell water also hold dissolved salts and molecules.</p>`, facts: [['Molecules shown', N], ['Density', '≈ 33.4 molecules/nm³'], ['O–H bond', '0.957 Å'], ['H–O–H angle', '104.5°'], ['Hydrogen bonds drawn', nbond]] };
     g.userData.meshes.forEach(m => m.userData.molInfo = info); F.info = info;
     F.blurb = 'Liquid water: a ball about 3 nm across cut from the bulk, every atom shown.';
     F.note = 'Model, not a simulation: random positions at the true density (33 molecules per nm³), orientations tuned to form hydrogen bonds. Real molecules never stop moving. Atoms are drawn at a quarter of their true size so the bonds show.';
