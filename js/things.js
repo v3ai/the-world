@@ -768,7 +768,7 @@ function thFindNode(id) {
     const def = TH.loaded[f.opts.thing]; if (!def) continue; const pl = f.opts.placement || {}, x = thPlacement(def, pl);
     const hit = def.parts.find(p => p.node === id && p.lod !== 'far') || def.parts.find(p => p.node === id), hs = (def.hotspots || []).find(h => h.node === id);
     const fc = hit && hit.flow ? thFlowCentre(def, hit) : null;
-    const sp = hit && !fc && !hit.instances ? thSurfacePoint(def, hit) : null;
+    const sp = hit && !fc && !hit.instances && (hit.radius || 0) * x.k > .03 ? thSurfacePoint(def, hit) : null;   // only for parts of a hand's size or more: a tiny part's centre is on it
     const at = fc ? fc.c : sp ? sp : hit ? hit.center : hs ? hs.at : id === def.node ? (def.parts.find(p => p.id === def.main_part) || {}).center : null;
     if (!at) continue;
     const u = thUnit(def, x.k), rep = hit && hit.instances && hit.lod !== 'far' ? thRepInstance(def, pl, hit) : null, p = thLocalToFrame(def, pl, rep ? rep.p : at);
@@ -806,7 +806,7 @@ function thFlyToNode(id, t) {
   const F = t.f; showBodyNode(id, null); F.selNode = id; F.ensure(); F.spawnHold = t.D;
   const R = (t.def.radius_m || 1) * (F.T ? F.T.k : 1), d = new V3(t.p.x, 0, t.p.z);
   if (d.length() > R * .06) { d.y = d.length() * .12; d.normalize(); const u = new V3(0, 1, 0); convertD(d, F, cam.A); convertD(u, F, cam.A); cam.dir.copy(d); cam.up.copy(u); }   // look at it from the side it is on
-  flyTo(F, t.p, t.D, () => { if (F.T && (F.T.cutActive || (F.T.curMode && F.T.curMode.pivot))) F.T.faceCut(); /* the cut was aimed when the flight began, from far away: aim it again from where the camera has landed */ const t0 = performance.now(), tries = [350, 1100, 2000, 3000]; let k = 0; const again = () => { if (cam.A !== F || fly || lastInput > t0 + 200 || !(infoState && infoState.node === id)) return; const clear = thClearView(F, id, k >= 1, t.pc); if (!clear && ++k < tries.length) setTimeout(again, tries[k] - tries[k - 1]); }; setTimeout(again, tries[0]); }); camHold = F;
+  flyTo(F, t.p, t.D, () => { if (F.T && (F.T.cutActive || (F.T.curMode && F.T.curMode.pivot))) F.T.faceCut(); /* the cut was aimed when the flight began, from far away: aim it again from where the camera has landed */ const t0 = performance.now(), tries = [350, 1100, 2000, 3000]; let k = 0; const again = () => { if (cam.A !== F || fly || lastInput > t0 + 200 || !(infoState && infoState.node === id)) return; const clear = thClearView(F, id, k >= 1); if (!clear && ++k < tries.length) setTimeout(again, tries[k] - tries[k - 1]); }; setTimeout(again, tries[0]); }); camHold = F;
   F.ready.then(() => {
     const T = F.T; if (!T) return;
     if (t.inst && !t.rep) { const r = thRepInstance(t.def, t.pl, t.part); if (r && fly && fly.frame === F) { const x = thPlacement(t.def, t.pl), u = thUnit(t.def, x.k); fly.p.copy(thLocalToFrame(t.def, t.pl, r.p)); fly.Dg = Math.min(Math.max(r.size * x.k * 6, .25 * u), (t.def.radius_m || 1) * x.k * .5); } }
