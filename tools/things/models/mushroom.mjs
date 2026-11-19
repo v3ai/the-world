@@ -17,7 +17,7 @@ const M = {
   ringY: .118, ringR: .034,   // ring: height on the stipe, skirt radius (chosen)
   gillsLong: 56,      // full-length gills in the model (chosen; real counts vary), plus shorter gills in two tiers between them
   warts: 150,         // warts on the cap (chosen; real number varies and falls with age and rain)
-  cordMm: 3.5,        // drawn thickness of the thickest mycelial cord, mm (real hyphae are about 2-10 um: drawn about 500x too thick)
+  cordMm: 3.5,        // drawn thickness of the thickest mycelial cord, mm (real hyphae are about 2-10 um: drawn several hundred times too thick)
 };
 const ST = {
   mature: { cx: 0, cz: 0, R: M.capD / 2, H: M.stipeH, rTop: M.stipeD / 2, droop: .012, thickC: .028, tm: .003 },

@@ -1,0 +1,1359 @@
+{
+ "park_mushroom": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "s",
+    "label": "Spore lands",
+    "x": 12,
+    "y": 20
+   },
+   {
+    "id": "h",
+    "label": "Thread (hypha) grows",
+    "x": 38,
+    "y": 20
+   },
+   {
+    "id": "m",
+    "label": "Mycelium: threads of two mating types join",
+    "x": 62,
+    "y": 20,
+    "color": "green"
+   },
+   {
+    "id": "b",
+    "label": "Button",
+    "x": 88,
+    "y": 20
+   },
+   {
+    "id": "f",
+    "label": "Mature fruit body",
+    "x": 62,
+    "y": 80,
+    "color": "orange"
+   },
+   {
+    "id": "r",
+    "label": "Spores released from gills",
+    "x": 25,
+    "y": 80
+   }
+  ],
+  "edges": [
+   {
+    "from": "s",
+    "to": "h"
+   },
+   {
+    "from": "h",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "b",
+    "label": "a fruit body forms"
+   },
+   {
+    "from": "b",
+    "to": "f",
+    "label": "expands"
+   },
+   {
+    "from": "f",
+    "to": "r"
+   },
+   {
+    "from": "r",
+    "to": "s",
+    "label": "carried by air"
+   }
+  ],
+  "flow": true,
+  "caption": "The fungus lives on as threads in the soil; the mushroom is only its spore-making stage. The loop is simplified: what triggers fruiting, and where in the soil a given mycelium extends, varies."
+ },
+ "fa_cap": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "smallest cap (species range)",
+    "value": 5
+   },
+   {
+    "label": "model cap",
+    "value": 14
+   },
+   {
+    "label": "largest cap (species range)",
+    "value": 30
+   }
+  ],
+  "ylabel": "cap diameter (cm)",
+  "logy": false,
+  "caption": "Fly agaric caps range from about 5 to 30 cm across; the park model is 14 cm, a chosen value inside that range."
+ },
+ "fa_cuticle": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "c",
+    "label": "Red skin (cuticle)",
+    "x": 50,
+    "y": 15,
+    "color": "orange"
+   },
+   {
+    "id": "y",
+    "label": "Yellowish layer",
+    "x": 50,
+    "y": 45
+   },
+   {
+    "id": "f",
+    "label": "White flesh of tight threads",
+    "x": 50,
+    "y": 75
+   }
+  ],
+  "edges": [
+   {
+    "from": "c",
+    "to": "y"
+   },
+   {
+    "from": "y",
+    "to": "f"
+   }
+  ],
+  "flow": false,
+  "caption": "Layers of the cap from the outside in. Thicknesses are not to scale."
+ },
+ "fa_cap_flesh": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "thinnest hypha (typical range)",
+    "value": 2
+   },
+   {
+    "label": "thickest hypha (typical range)",
+    "value": 10
+   },
+   {
+    "label": "spore length (A. muscaria, mid)",
+    "value": 11
+   }
+  ],
+  "ylabel": "micrometres",
+  "logy": true,
+  "caption": "Fungal threads are 2 to 10 micrometres across, similar to a spore (9 to 13 µm long in this species)."
+ },
+ "fa_hypha": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "g",
+    "label": "N-acetylglucosamine (a sugar unit)",
+    "x": 15,
+    "y": 20
+   },
+   {
+    "id": "c",
+    "label": "Chitin: long chains of the unit",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "w",
+    "label": "Wall of the thread, with glucans",
+    "x": 85,
+    "y": 20
+   },
+   {
+    "id": "h",
+    "label": "Thread (hypha) 2–10 µm wide",
+    "x": 50,
+    "y": 85,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "g",
+    "to": "c",
+    "label": "linked"
+   },
+   {
+    "from": "c",
+    "to": "w"
+   },
+   {
+    "from": "w",
+    "to": "h",
+    "label": "encloses"
+   }
+  ],
+  "flow": false,
+  "caption": "From a sugar unit to a thread: the chitin in the wall is a chain of one repeating unit."
+ },
+ "fa_warts": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "e",
+    "label": "Button: veil covers everything",
+    "x": 12,
+    "y": 25
+   },
+   {
+    "id": "t",
+    "label": "Veil breaks as the cap swells",
+    "x": 45,
+    "y": 25
+   },
+   {
+    "id": "w",
+    "label": "Bits left on the cap: warts",
+    "x": 80,
+    "y": 25,
+    "color": "orange"
+   },
+   {
+    "id": "v",
+    "label": "Bits left at the base: scales",
+    "x": 80,
+    "y": 80
+   }
+  ],
+  "edges": [
+   {
+    "from": "e",
+    "to": "t"
+   },
+   {
+    "from": "t",
+    "to": "w"
+   },
+   {
+    "from": "t",
+    "to": "v"
+   }
+  ],
+  "flow": false,
+  "caption": "The universal veil splits as the mushroom grows. What remains on the cap is the warts; what remains at the base is the volva."
+ },
+ "fa_gills": {
+  "type": "geometry",
+  "range": [
+   -0.1,
+   1.1,
+   -0.1,
+   1.1
+  ],
+  "shapes": [
+   {
+    "k": "circle",
+    "x": 0,
+    "y": 0,
+    "r": 1
+   },
+   {
+    "k": "circle",
+    "x": 0,
+    "y": 0,
+    "r": 0.18
+   },
+   {
+    "k": "line",
+    "x1": 0.18,
+    "y1": 0.0,
+    "x2": 0.985,
+    "y2": 0.0
+   },
+   {
+    "k": "line",
+    "x1": 0.453,
+    "y1": 0.0254,
+    "x2": 0.9835,
+    "y2": 0.0552
+   },
+   {
+    "k": "line",
+    "x1": 0.6627,
+    "y1": 0.0186,
+    "x2": 0.9846,
+    "y2": 0.0276
+   },
+   {
+    "k": "line",
+    "x1": 0.6607,
+    "y1": 0.0557,
+    "x2": 0.9815,
+    "y2": 0.0828
+   },
+   {
+    "k": "line",
+    "x1": 0.1789,
+    "y1": 0.0202,
+    "x2": 0.9788,
+    "y2": 0.1103
+   },
+   {
+    "k": "line",
+    "x1": 0.4473,
+    "y1": 0.076,
+    "x2": 0.9711,
+    "y2": 0.165
+   },
+   {
+    "k": "line",
+    "x1": 0.6565,
+    "y1": 0.0927,
+    "x2": 0.9753,
+    "y2": 0.1377
+   },
+   {
+    "k": "line",
+    "x1": 0.6503,
+    "y1": 0.1293,
+    "x2": 0.9661,
+    "y2": 0.1922
+   },
+   {
+    "k": "line",
+    "x1": 0.1755,
+    "y1": 0.0401,
+    "x2": 0.9603,
+    "y2": 0.2192
+   },
+   {
+    "k": "line",
+    "x1": 0.436,
+    "y1": 0.1256,
+    "x2": 0.9465,
+    "y2": 0.2727
+   },
+   {
+    "k": "line",
+    "x1": 0.642,
+    "y1": 0.1656,
+    "x2": 0.9538,
+    "y2": 0.246
+   },
+   {
+    "k": "line",
+    "x1": 0.6317,
+    "y1": 0.2013,
+    "x2": 0.9385,
+    "y2": 0.2991
+   },
+   {
+    "k": "line",
+    "x1": 0.1699,
+    "y1": 0.0595,
+    "x2": 0.9297,
+    "y2": 0.3253
+   },
+   {
+    "k": "line",
+    "x1": 0.4192,
+    "y1": 0.1736,
+    "x2": 0.91,
+    "y2": 0.3769
+   },
+   {
+    "k": "line",
+    "x1": 0.6194,
+    "y1": 0.2364,
+    "x2": 0.9202,
+    "y2": 0.3513
+   },
+   {
+    "k": "line",
+    "x1": 0.6052,
+    "y1": 0.2708,
+    "x2": 0.8991,
+    "y2": 0.4023
+   },
+   {
+    "k": "line",
+    "x1": 0.1622,
+    "y1": 0.0781,
+    "x2": 0.8875,
+    "y2": 0.4274
+   },
+   {
+    "k": "line",
+    "x1": 0.3971,
+    "y1": 0.2195,
+    "x2": 0.8621,
+    "y2": 0.4765
+   },
+   {
+    "k": "line",
+    "x1": 0.589,
+    "y1": 0.3043,
+    "x2": 0.8751,
+    "y2": 0.4521
+   },
+   {
+    "k": "line",
+    "x1": 0.5711,
+    "y1": 0.3369,
+    "x2": 0.8484,
+    "y2": 0.5005
+   },
+   {
+    "k": "line",
+    "x1": 0.1524,
+    "y1": 0.0958,
+    "x2": 0.834,
+    "y2": 0.5241
+   },
+   {
+    "k": "line",
+    "x1": 0.37,
+    "y1": 0.2625,
+    "x2": 0.8033,
+    "y2": 0.57
+   },
+   {
+    "k": "line",
+    "x1": 0.5513,
+    "y1": 0.3683,
+    "x2": 0.819,
+    "y2": 0.5472
+   },
+   {
+    "k": "line",
+    "x1": 0.5297,
+    "y1": 0.3987,
+    "x2": 0.787,
+    "y2": 0.5923
+   },
+   {
+    "k": "line",
+    "x1": 0.1407,
+    "y1": 0.1122,
+    "x2": 0.7701,
+    "y2": 0.6141
+   },
+   {
+    "k": "line",
+    "x1": 0.3383,
+    "y1": 0.3023,
+    "x2": 0.7345,
+    "y2": 0.6564
+   },
+   {
+    "k": "line",
+    "x1": 0.5066,
+    "y1": 0.4277,
+    "x2": 0.7526,
+    "y2": 0.6355
+   },
+   {
+    "k": "line",
+    "x1": 0.4818,
+    "y1": 0.4555,
+    "x2": 0.7158,
+    "y2": 0.6767
+   },
+   {
+    "k": "line",
+    "x1": 0.1273,
+    "y1": 0.1273,
+    "x2": 0.6965,
+    "y2": 0.6965
+   },
+   {
+    "k": "line",
+    "x1": 0.3023,
+    "y1": 0.3383,
+    "x2": 0.6564,
+    "y2": 0.7345
+   },
+   {
+    "k": "line",
+    "x1": 0.4555,
+    "y1": 0.4818,
+    "x2": 0.6767,
+    "y2": 0.7158
+   },
+   {
+    "k": "line",
+    "x1": 0.4277,
+    "y1": 0.5066,
+    "x2": 0.6355,
+    "y2": 0.7526
+   },
+   {
+    "k": "line",
+    "x1": 0.1122,
+    "y1": 0.1407,
+    "x2": 0.6141,
+    "y2": 0.7701
+   },
+   {
+    "k": "line",
+    "x1": 0.2625,
+    "y1": 0.37,
+    "x2": 0.57,
+    "y2": 0.8033
+   },
+   {
+    "k": "line",
+    "x1": 0.3987,
+    "y1": 0.5297,
+    "x2": 0.5923,
+    "y2": 0.787
+   },
+   {
+    "k": "line",
+    "x1": 0.3683,
+    "y1": 0.5513,
+    "x2": 0.5472,
+    "y2": 0.819
+   },
+   {
+    "k": "line",
+    "x1": 0.0958,
+    "y1": 0.1524,
+    "x2": 0.5241,
+    "y2": 0.834
+   },
+   {
+    "k": "line",
+    "x1": 0.2195,
+    "y1": 0.3971,
+    "x2": 0.4765,
+    "y2": 0.8621
+   },
+   {
+    "k": "line",
+    "x1": 0.3369,
+    "y1": 0.5711,
+    "x2": 0.5005,
+    "y2": 0.8484
+   },
+   {
+    "k": "line",
+    "x1": 0.3043,
+    "y1": 0.589,
+    "x2": 0.4521,
+    "y2": 0.8751
+   },
+   {
+    "k": "line",
+    "x1": 0.0781,
+    "y1": 0.1622,
+    "x2": 0.4274,
+    "y2": 0.8875
+   },
+   {
+    "k": "line",
+    "x1": 0.1736,
+    "y1": 0.4192,
+    "x2": 0.3769,
+    "y2": 0.91
+   },
+   {
+    "k": "line",
+    "x1": 0.2708,
+    "y1": 0.6052,
+    "x2": 0.4023,
+    "y2": 0.8991
+   },
+   {
+    "k": "line",
+    "x1": 0.2364,
+    "y1": 0.6194,
+    "x2": 0.3513,
+    "y2": 0.9202
+   },
+   {
+    "k": "line",
+    "x1": 0.0595,
+    "y1": 0.1699,
+    "x2": 0.3253,
+    "y2": 0.9297
+   },
+   {
+    "k": "line",
+    "x1": 0.1256,
+    "y1": 0.436,
+    "x2": 0.2727,
+    "y2": 0.9465
+   },
+   {
+    "k": "line",
+    "x1": 0.2013,
+    "y1": 0.6317,
+    "x2": 0.2991,
+    "y2": 0.9385
+   },
+   {
+    "k": "line",
+    "x1": 0.1656,
+    "y1": 0.642,
+    "x2": 0.246,
+    "y2": 0.9538
+   },
+   {
+    "k": "line",
+    "x1": 0.0401,
+    "y1": 0.1755,
+    "x2": 0.2192,
+    "y2": 0.9603
+   },
+   {
+    "k": "line",
+    "x1": 0.076,
+    "y1": 0.4473,
+    "x2": 0.165,
+    "y2": 0.9711
+   },
+   {
+    "k": "line",
+    "x1": 0.1293,
+    "y1": 0.6503,
+    "x2": 0.1922,
+    "y2": 0.9661
+   },
+   {
+    "k": "line",
+    "x1": 0.0927,
+    "y1": 0.6565,
+    "x2": 0.1377,
+    "y2": 0.9753
+   },
+   {
+    "k": "line",
+    "x1": 0.0202,
+    "y1": 0.1789,
+    "x2": 0.1103,
+    "y2": 0.9788
+   },
+   {
+    "k": "line",
+    "x1": 0.0254,
+    "y1": 0.453,
+    "x2": 0.0552,
+    "y2": 0.9835
+   },
+   {
+    "k": "line",
+    "x1": 0.0557,
+    "y1": 0.6607,
+    "x2": 0.0828,
+    "y2": 0.9815
+   },
+   {
+    "k": "line",
+    "x1": 0.0186,
+    "y1": 0.6627,
+    "x2": 0.0276,
+    "y2": 0.9846
+   },
+   {
+    "k": "line",
+    "x1": 0.0,
+    "y1": 0.18,
+    "x2": 0.0,
+    "y2": 0.985
+   }
+  ],
+  "caption": "The cap seen from below, one quarter of it, with the gills of the model: long ones reach in towards the stem, shorter ones fill the gaps near the rim. The inner circle is the stem."
+ },
+ "fa_gill_inside": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "t",
+    "label": "Core of threads (trama)",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "s",
+    "label": "Supporting cells (subhymenium)",
+    "x": 40,
+    "y": 50
+   },
+   {
+    "id": "b",
+    "label": "Basidia: club-shaped cells (hymenium)",
+    "x": 70,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "p",
+    "label": "Four spores per basidium",
+    "x": 88,
+    "y": 20
+   },
+   {
+    "id": "a",
+    "label": "Air between gills",
+    "x": 88,
+    "y": 85
+   }
+  ],
+  "edges": [
+   {
+    "from": "t",
+    "to": "s"
+   },
+   {
+    "from": "s",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "p"
+   },
+   {
+    "from": "p",
+    "to": "a",
+    "label": "launched, then fall"
+   }
+  ],
+  "flow": false,
+  "caption": "A gill in cross-section, from the core to the air. Not to scale."
+ },
+ "fa_spores": {
+  "type": "plot",
+  "x": [
+   0,
+   24
+  ],
+  "y": [
+   0,
+   3
+  ],
+  "params": [
+   {
+    "id": "rate",
+    "label": "spores per second",
+    "min": 5000,
+    "max": 50000,
+    "value": 30000,
+    "step": 1000
+   }
+  ],
+  "fns": [
+   {
+    "f": "rate*3600*x/1e9",
+    "label": "billions of spores released"
+   }
+  ],
+  "xlabel": "hours",
+  "ylabel": "billions of spores",
+  "readouts": [
+   {
+    "label": "In one day",
+    "value": "rate*86400/1e9",
+    "unit": "billion"
+   }
+  ],
+  "caption": "About 30,000 per second (a figure for gilled mushrooms in general) is billions per day. Move the slider to see how the total depends on the rate."
+ },
+ "fa_stipe": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "stipe height, species lower end",
+    "value": 5
+   },
+   {
+    "label": "model stipe height",
+    "value": 14
+   },
+   {
+    "label": "stipe height, species upper end",
+    "value": 20
+   }
+  ],
+  "ylabel": "height (cm)",
+  "logy": false,
+  "caption": "The stipe of a fly agaric is 5 to 20 cm tall; the model is 14 cm, a chosen value."
+ },
+ "fa_ring": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "p",
+    "label": "Partial veil stretches from rim to stem",
+    "x": 20,
+    "y": 25
+   },
+   {
+    "id": "o",
+    "label": "Cap opens, veil tears at the rim",
+    "x": 50,
+    "y": 55
+   },
+   {
+    "id": "r",
+    "label": "Remnant on the stem: the ring",
+    "x": 80,
+    "y": 85,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "p",
+    "to": "o"
+   },
+   {
+    "from": "o",
+    "to": "r"
+   }
+  ],
+  "flow": false,
+  "caption": "The partial veil protects the young gills; the ring is what remains on the stem."
+ },
+ "fa_volva": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "u",
+    "label": "Universal veil around the button",
+    "x": 15,
+    "y": 25
+   },
+   {
+    "id": "b",
+    "label": "Tears as the stem lengthens",
+    "x": 50,
+    "y": 55
+   },
+   {
+    "id": "s",
+    "label": "Rings of scales around the bulb",
+    "x": 85,
+    "y": 85,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "u",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "s"
+   }
+  ],
+  "flow": false,
+  "caption": "The universal veil leaves rings on the base of this species."
+ },
+ "fa_button": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "primordium (upper limit)",
+    "value": 2
+   },
+   {
+    "label": "model button height",
+    "value": 47
+   },
+   {
+    "label": "model mature cap width",
+    "value": 140
+   }
+  ],
+  "ylabel": "millimetres",
+  "logy": true,
+  "caption": "Sizes in mm: a primordium is under 2 mm; the model button is 47 mm tall and the mature cap 140 mm wide (chosen). Log scale."
+ },
+ "fa_expanding": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "1",
+    "label": "Button: all in the egg",
+    "x": 12,
+    "y": 50
+   },
+   {
+    "id": "2",
+    "label": "Veils splitting, cap domed",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "3",
+    "label": "Cap flat, ring on stem",
+    "x": 88,
+    "y": 50
+   }
+  ],
+  "edges": [
+   {
+    "from": "1",
+    "to": "2"
+   },
+   {
+    "from": "2",
+    "to": "3"
+   }
+  ],
+  "flow": true,
+  "caption": "Three stages of one kind of fruit body. The park shows three fruit bodies, not one over time."
+ },
+ "fa_cut_half": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "c",
+    "label": "Cap: skin, yellow layer, flesh",
+    "x": 50,
+    "y": 12,
+    "color": "orange"
+   },
+   {
+    "id": "g",
+    "label": "Gills hang free",
+    "x": 50,
+    "y": 38
+   },
+   {
+    "id": "r",
+    "label": "Ring on the stem",
+    "x": 50,
+    "y": 62
+   },
+   {
+    "id": "b",
+    "label": "Swollen base with scales",
+    "x": 50,
+    "y": 88
+   }
+  ],
+  "edges": [
+   {
+    "from": "c",
+    "to": "g"
+   },
+   {
+    "from": "g",
+    "to": "r"
+   },
+   {
+    "from": "r",
+    "to": "b"
+   }
+  ],
+  "flow": false,
+  "caption": "From the top of a fly agaric to the soil: what the cut shows, in order."
+ },
+ "fa_mycelium": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "real thread width, typical (µm)",
+    "value": 5
+   },
+   {
+    "label": "thinnest drawn thread (µm)",
+    "value": 2200
+   },
+   {
+    "label": "thickest drawn cord (µm)",
+    "value": 4550
+   }
+  ],
+  "ylabel": "micrometres",
+  "logy": true,
+  "caption": "A real hypha is about 5 µm across (range 2–10). The threads drawn in the underground view are 2,200 to 4,550 µm: several hundred times too thick. Log scale."
+ },
+ "fa_host_root": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "t",
+    "label": "Tree: makes sugar in leaves",
+    "x": 15,
+    "y": 20,
+    "color": "green"
+   },
+   {
+    "id": "r",
+    "label": "Root and fine root tips",
+    "x": 50,
+    "y": 55
+   },
+   {
+    "id": "f",
+    "label": "Fungus: threads in the soil",
+    "x": 85,
+    "y": 85,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "t",
+    "to": "r",
+    "label": "sugar down"
+   },
+   {
+    "from": "r",
+    "to": "f",
+    "label": "sugar to fungus"
+   },
+   {
+    "from": "f",
+    "to": "r",
+    "label": "minerals and water to root"
+   }
+  ],
+  "flow": true,
+  "caption": "The partnership at its simplest: sugar one way, minerals and water the other."
+ },
+ "fa_ecm": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "hypha width, typical (µm)",
+    "value": 5
+   },
+   {
+    "label": "spore length, A. muscaria (µm)",
+    "value": 11
+   },
+   {
+    "label": "mantle thickness, up to (µm)",
+    "value": 40
+   }
+  ],
+  "ylabel": "micrometres",
+  "logy": true,
+  "caption": "The fungal sheath around a root tip is up to about 40 µm thick, only a few times the width of a hypha or the length of a spore."
+ },
+ "fa_mantle": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "s",
+    "label": "Soil threads",
+    "x": 50,
+    "y": 15
+   },
+   {
+    "id": "m",
+    "label": "Mantle: woven sleeve",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "r",
+    "label": "Root cells",
+    "x": 50,
+    "y": 85,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "s",
+    "to": "m",
+    "label": "water, minerals in"
+   },
+   {
+    "from": "m",
+    "to": "r"
+   }
+  ],
+  "flow": false,
+  "caption": "The mantle sits between the soil and the root."
+ },
+ "fa_hartig": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "f",
+    "label": "Fungal threads",
+    "x": 15,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "i",
+    "label": "Interface between the cells",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "t",
+    "label": "Tree root cells",
+    "x": 85,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "f",
+    "to": "i",
+    "label": "minerals"
+   },
+   {
+    "from": "i",
+    "to": "f",
+    "label": "sugar"
+   }
+  ],
+  "flow": true,
+  "caption": "The Hartig net is the contact surface where the swap takes place."
+ },
+ "fa_trade": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "l",
+    "label": "Leaves make sugar",
+    "x": 15,
+    "y": 15,
+    "color": "green"
+   },
+   {
+    "id": "r",
+    "label": "Roots",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "f",
+    "label": "Fungal threads in soil",
+    "x": 85,
+    "y": 85,
+    "color": "orange"
+   },
+   {
+    "id": "p",
+    "label": "Soil: nitrogen, phosphate, water",
+    "x": 85,
+    "y": 15
+   }
+  ],
+  "edges": [
+   {
+    "from": "l",
+    "to": "r",
+    "label": "sugar (sucrose) down"
+   },
+   {
+    "from": "r",
+    "to": "f",
+    "label": "about 15 % of the host's food product"
+   },
+   {
+    "from": "p",
+    "to": "f"
+   },
+   {
+    "from": "f",
+    "to": "r",
+    "label": "nitrogen up to 86 %, phosphate, water"
+   }
+  ],
+  "flow": true,
+  "caption": "The swap at a mycorrhizal root tip, with the figures from the sources used."
+ },
+ "fa_ways_of_life": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "d",
+    "label": "Decomposer: digests dead matter",
+    "x": 25,
+    "y": 25
+   },
+   {
+    "id": "m",
+    "label": "Partner: trades with a living tree",
+    "x": 75,
+    "y": 25,
+    "color": "orange"
+   },
+   {
+    "id": "s",
+    "label": "Soil nutrients cycle back",
+    "x": 25,
+    "y": 80
+   },
+   {
+    "id": "t",
+    "label": "Tree gets minerals and water",
+    "x": 75,
+    "y": 80,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "d",
+    "to": "s"
+   },
+   {
+    "from": "m",
+    "to": "t"
+   }
+  ],
+  "flow": false,
+  "caption": "Two lifestyles of fungi. The fly agaric is a partner."
+ },
+ "fa_chitin": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "f",
+    "label": "Fungi",
+    "x": 50,
+    "y": 20,
+    "color": "orange"
+   },
+   {
+    "id": "a",
+    "label": "Animals",
+    "x": 25,
+    "y": 60
+   },
+   {
+    "id": "p",
+    "label": "Plants",
+    "x": 75,
+    "y": 60,
+    "color": "green"
+   },
+   {
+    "id": "c",
+    "label": "Fungi and animals share a closer ancestor than either shares with plants",
+    "x": 50,
+    "y": 90
+   }
+  ],
+  "edges": [
+   {
+    "from": "f",
+    "to": "a",
+    "label": "closer kin"
+   },
+   {
+    "from": "f",
+    "to": "p",
+    "label": "more distant"
+   }
+  ],
+  "flow": false,
+  "caption": "Fungi are genetically closer to animals than to plants. Branch lengths are not to scale."
+ },
+ "fa_toxins": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "i",
+    "label": "Ibotenic acid: glutamate-like, excites",
+    "x": 20,
+    "y": 25,
+    "color": "orange"
+   },
+   {
+    "id": "m",
+    "label": "Muscimol: GABA-like, calms",
+    "x": 80,
+    "y": 25,
+    "color": "orange"
+   },
+   {
+    "id": "g",
+    "label": "Glutamate receptors (NMDA)",
+    "x": 20,
+    "y": 80
+   },
+   {
+    "id": "a",
+    "label": "GABA-A receptors",
+    "x": 80,
+    "y": 80
+   }
+  ],
+  "edges": [
+   {
+    "from": "i",
+    "to": "m",
+    "label": "loses CO₂"
+   },
+   {
+    "from": "i",
+    "to": "g",
+    "label": "acts on"
+   },
+   {
+    "from": "m",
+    "to": "a",
+    "label": "acts on"
+   }
+  ],
+  "flow": false,
+  "caption": "Two chemicals, two targets in the brain. This shows the idea, not doses."
+ },
+ "fa_poisoning": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "e",
+    "label": "Eaten by accident or on purpose",
+    "x": 15,
+    "y": 20
+   },
+   {
+    "id": "o",
+    "label": "Symptoms begin ≈ 30–90 min",
+    "x": 50,
+    "y": 40,
+    "color": "orange"
+   },
+   {
+    "id": "p",
+    "label": "Peak within ≈ 3 hours",
+    "x": 80,
+    "y": 65
+   },
+   {
+    "id": "r",
+    "label": "Most recover within ≈ 12–24 h",
+    "x": 50,
+    "y": 90,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "e",
+    "to": "o"
+   },
+   {
+    "from": "o",
+    "to": "p"
+   },
+   {
+    "from": "p",
+    "to": "r",
+    "label": "treatment is supportive"
+   }
+  ],
+  "flow": false,
+  "caption": "The usual time course. No antidote exists. If someone may have eaten one, call a poison centre or emergency services."
+ }
+}
