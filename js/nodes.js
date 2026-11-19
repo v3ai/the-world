@@ -69,7 +69,49 @@ function loadAnatomyIndex() {
   }).catch(() => null);
   return ANAT;
 }
+/* Meshes are fetched and decoded in a worker (js/mesh_worker.js): JSON parsing, unpacking and vertex normals happen off the main
+   thread and the typed arrays are transferred, not copied. meshWorker(msg) resolves with the worker's answer; if workers are not
+   available or the worker fails, callers fall back to decoding here, as before. loadNote(label, promise) names what is still
+   arriving in a small line at the bottom of the view, so a half-loaded park is not mistaken for a finished one. */
+const MESHW = { url: (() => { try { return new URL('mesh_worker.js', document.currentScript.src).href; } catch (e) { return 'js/mesh_worker.js'; } })(), w: null, n: 0, wait: {}, ok: typeof Worker !== 'undefined' };
+function meshWorker(msg) {
+  return new Promise((res, rej) => {
+    if (!MESHW.ok) { rej(new Error('no worker')); return; }
+    try {
+      if (!MESHW.w) {
+        MESHW.w = new Worker(MESHW.url);
+        MESHW.w.onmessage = e => { const p = MESHW.wait[e.data.id]; delete MESHW.wait[e.data.id]; if (p) (e.data.ok ? p.res(e.data) : p.rej(new Error(e.data.error))); };
+        MESHW.w.onerror = e => { if (e && e.preventDefault) e.preventDefault(); MESHW.ok = false; const w = MESHW.wait; MESHW.wait = {}; Object.values(w).forEach(p => p.rej(new Error('mesh worker failed'))); };
+      }
+      const id = ++MESHW.n; MESHW.wait[id] = { res, rej }; MESHW.w.postMessage(Object.assign({ id }, msg));
+    } catch (e) { MESHW.ok = false; rej(e); }
+  });
+}
+const absURL = path => new URL(path, document.baseURI).href;
+function geoFromArrays(d, copyPos) { // a geometry from arrays the worker decoded (copyPos: the caller will move the vertices, so it gets its own positions)
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(copyPos ? d.pos.slice() : d.pos, 3));
+  g.setIndex(new THREE.BufferAttribute(d.idx, 1)); g.setAttribute('normal', new THREE.BufferAttribute(d.nrm, 3));
+  g.boundingSphere = new THREE.Sphere(new THREE.Vector3(d.bs[0], d.bs[1], d.bs[2]), d.bs[3]); return g;
+}
+const ANAT_FILES = {};
+function loadAnatomyFile(file) { // {parts: [...]}: each part already decoded (part.dec) when the worker did it, raw (part.pos, part.idx) otherwise
+  return ANAT_FILES[file] || (ANAT_FILES[file] = meshWorker({ op: 'anatomy', url: absURL('data/anatomy/' + file) }).catch(() => getJSON('data/anatomy/' + file)));
+}
+const LOADING = new Map(); let _loadEl = null;
+function loadNote(label, promise) {
+  if (typeof document === 'undefined' || !promise || !promise.then) return promise;
+  const key = {}; LOADING.set(key, label);
+  const draw = () => {
+    if (!_loadEl) { _loadEl = document.createElement('div'); _loadEl.id = 'loadNote'; _loadEl.setAttribute('role', 'status'); document.body.appendChild(_loadEl); }
+    const names = [...new Set(LOADING.values())];
+    _loadEl.textContent = names.length ? 'Still loading: ' + names.slice(0, 4).join(', ') + (names.length > 4 ? ` and ${names.length - 4} more` : '') : '';
+    _loadEl.classList.toggle('on', names.length > 0);
+  };
+  const done = () => { LOADING.delete(key); draw(); };
+  draw(); promise.then(done, done); return promise;
+}
 function decodePart(p) {
+  if (p.dec) return geoFromArrays(p.dec, true);
   const n = p.pos.length / 3, pos = new Float32Array(p.pos.length), s = p.scale, o = p.offset;
   for (let i = 0; i < n; i++) { pos[i * 3] = p.pos[i * 3] * s[0] + o[0]; pos[i * 3 + 1] = p.pos[i * 3 + 1] * s[1] + o[1]; pos[i * 3 + 2] = p.pos[i * 3 + 2] * s[2] + o[2]; }
   const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
@@ -110,7 +152,8 @@ FT.body = {
       /* Parts are painted in the order of the anatomy index (skeleton, muscles, nerves, vessels, organs ...), so a ghosted skull never veils the
          brain. It used to be the order in which the files happened to arrive, which changed from one page load to the next. */
       const rank = {}; A.parts.forEach((p, i) => { rank[p.id] = i; });
-      Promise.all(files.map(file => getJSON('data/anatomy/' + file).then(S => {
+      loadNote('the human body', F.readyP);
+      Promise.all(files.map(file => loadAnatomyFile(file).then(S => {
         if (!F.built) return;
         S.parts.forEach(p => {
           if (p.parent) { (F.detail = F.detail || {})[p.parent] = (F.detail[p.parent] || []).concat([p]); return; }

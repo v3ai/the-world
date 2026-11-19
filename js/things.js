@@ -14,10 +14,14 @@ function thLoadIndex() { return TH.index || (TH.index = getJSON('data/things/ind
 TH.loaded = {};
 function thLoadDef(id) { return TH.defs[id] || (TH.defs[id] = getJSON('data/things/' + id + '/thing.json').then(d => TH.loaded[id] = d)); }
 function thLoadBundle(id) {   // format 1: everything in mesh.json; format 2: mesh.json is the index and mesh.bin holds the numbers (tools/things/lib/export.mjs, pack)
-  return TH.bundles[id] || (TH.bundles[id] = getJSON('data/things/' + id + '/mesh.json').then(async j => {
+  if (TH.bundles[id]) return TH.bundles[id];
+  const here = () => getJSON('data/things/' + id + '/mesh.json').then(async j => {   // on the main thread, as before: used when the worker is not available
     if (j.format === 2) { const r = await fetch('data/things/' + id + '/' + j.bin); if (!r.ok) throw new Error('data/things/' + id + '/' + j.bin + ' ' + r.status); j.buf = await r.arrayBuffer(); }
     return j;
-  }));
+  });
+  // in the worker (js/mesh_worker.js): every mesh arrives decoded, with normals and bounding sphere (bundle.dec[key]); mesh.bin is handed back for the instance lists and shade bytes
+  const w = typeof meshWorker === 'function' ? meshWorker({ op: 'thing', json: absURL('data/things/' + id + '/mesh.json'), bin: absURL('data/things/' + id + '/mesh.bin') }).then(r => { const j = r.json; j.buf = r.buf; j.dec = r.meshes; return j; }).catch(here) : here();
+  return TH.bundles[id] = w;
 }
 function thDecodeV2(bundle, q) {   // int16 positions, delta/zigzag/varint triangle indices, optional uint8 shade
   const buf = bundle.buf, p16 = new Int16Array(buf, q.pos[0], q.nv * 3), pos = new Float32Array(q.nv * 3), s = q.scale, o = q.offset;
@@ -35,7 +39,7 @@ function thInst(bundle, key) {   // {mesh, stride, n, t: flat x y z qx qy qz qw 
 function thGeo(id, bundle, key) {   // one shared BufferGeometry per mesh key
   const k = id + '/' + key; if (TH.geos[k]) return TH.geos[k];
   const q = bundle.meshes[key]; if (!q) return null;
-  const g = bundle.format === 2 ? thDecodeV2(bundle, q) : decodePart(q);
+  const g = bundle.dec && bundle.dec[key] ? geoFromArrays(bundle.dec[key]) : bundle.format === 2 ? thDecodeV2(bundle, q) : decodePart(q);
   if (q.shade) { const sh = bundle.format === 2 ? new Uint8Array(bundle.buf, q.shade[0], q.nv) : q.shade, c = new Float32Array(sh.length * 3); for (let i = 0; i < sh.length; i++) c[i * 3] = c[i * 3 + 1] = c[i * 3 + 2] = sh[i] / 255; g.setAttribute('color', new THREE.BufferAttribute(c, 3)); }   // baked brightness (occlusion, staining)
   return TH.geos[k] = g;
 }
@@ -557,7 +561,8 @@ function thFrameUpdate(F, dt, t) {
   if (F.sel || F.reveal) { const st = infoState, keep = st && ((st.h && st.h.frame === F && st.h.obj && st.h.obj.userData.id === F.sel) || (!st.h && st.node === F.selNode)); if (!keep) { F.sel = null; F.reveal = null; } }
   T.sel = F.sel; thAutoUpdate(F, dt);
   T.olK = T.tier === 2 && PERF.flags.outline !== 'all' ? 0 : outlineAmt(2 * (T.def.radius_m || 1) * T.k / Math.max(T.dist || 1e-6, 1e-6) * PX_PER_RAD()); T.hovId = hovered && hovered.userData.frame === F ? hovered.userData.id : null;   // outline=near: no ink on the far detail tier, and it fades out as the thing gets small on screen
-  T.update(dt, C, _thOff, F.alpha);
+  if (F._arr === undefined) F._arr = 0; if (F._arr < 1) F._arr = Math.min(1, F._arr + dt / .4);   // a thing that has just loaded fades in over 0.4 s
+  T.update(dt, C, _thOff, F.alpha * F._arr);
   if (T.shownSig !== F._vs) { F._vs = T.shownSig; viewChanged(); }   // the parts that can be seen have changed: the hover under a resting pointer is worked out again
   thGroundFade(FR.things.some(f => f.T && f.T.seeThrough && f.alpha > .5));
   if (F._lastModeId !== T.modeId) { F._lastModeId = T.modeId; thUpdateControls(F); F.mode = T.modeId; }
@@ -742,7 +747,7 @@ WORLD_EXT.push(async FR => {
   for (const e of ix.things || []) { try { defs[e.id] = await thLoadDef(e.id); } catch (err) { console.error('thing data missing', e.id, err); } }
   for (const e of ix.things || []) {
     const def = defs[e.id]; if (!def) continue;
-    thLoadBundle(e.id); def.parts.forEach(p => { if (p.deeper && p.deeper.type === 'tissue2') thLoadTissue(p.deeper.id); });
+    loadNote(def.label || def.title || e.id, thLoadBundle(e.id)); def.parts.forEach(p => { if (p.deeper && p.deeper.type === 'tissue2') thLoadTissue(p.deeper.id); });
     (e.placements || []).forEach((pl0, i) => {
       const pl = thResolvePlacement(pl0, ix, defs), x = thPlacement(def, pl), R = (def.radius_m || 1) * x.k * 1.15;
       const f = FR.park.addChild(new Frame({ type: 'thing', name: def.title, unit: 1, radius: R, r0: 0, r1: Math.max(R * 12, 8), up: new V3(0, 1, 0), pos: new V3(pl.at[0], pl.y || 0, pl.at[1]), opts: { thing: e.id, placement: pl, n: i } }));
