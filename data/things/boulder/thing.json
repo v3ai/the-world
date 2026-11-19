@@ -6,7 +6,7 @@
  "node": "boulder",
  "main_part": "rock",
  "blurb": "A weathered boulder in the park: bare rock with moss and lichen growing on it, and loose stones at its foot. Click any part.",
- "model_note": "A model built from typical features of a coarse-grained rock, not a scan of one particular boulder. Sizes are about right for a large boulder; the grain pattern shown when cut open is illustrative.",
+ "model_note": "A model built from typical features of a coarse-grained rock (granite), not a scan of one particular boulder. Sizes are about right for a large boulder; the grain pattern shown when cut open is illustrative.",
  "size_m": {
   "height": 0.67,
   "width": 1.53,

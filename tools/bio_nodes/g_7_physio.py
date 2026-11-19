@@ -111,7 +111,7 @@ n('bio_vision_photoreception','Vision and photoreception','process','bio_sensory
  'Light hits rods and cones in the retina. A pigment molecule changes shape and starts a signal that travels via the optic nerve to the brain.',
  'Rods work in dim light; cones give colour (three types in humans). The fovea has the sharpest vision.',
  'Retinal isomerises from 11-cis to all-trans in ≈ 200 fs; the cascade (rhodopsin → transducin → PDE) amplifies a single photon response ≈ 10⁵-fold. Rods can respond to single photons.',
- 'Rods / cones|≈ 120 M / 6 M;Isomerisation time|≈ 200 fs', 'BIO:36.5 ANP:14.1', k='vision_eye', w='retina', mol='retinal', rel='vision')
+ 'Rods / cones|≈ 92 M / 4.6 M (Curcio et al. 1990);Isomerisation time|≈ 200 fs', 'BIO:36.5 ANP:14.1', k='vision_eye', w='retina', mol='retinal', rel='vision')
 n('bio_hearing_chemosense','Hearing, balance, taste and smell','concept','bio_sensory_transduction','Other senses.',
  'Hair cells in the cochlea turn sound vibrations into signals. Taste and smell detect molecules with chemical receptors.',
  'Humans have ≈ 400 functional olfactory receptor genes and five basic tastes. The vestibular system senses head motion.',

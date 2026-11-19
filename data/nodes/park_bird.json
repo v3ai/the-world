@@ -11,11 +11,11 @@
   ],
   "parts": [],
   "processes": [],
-  "summary": "A bird: a feathered animal that flies by flapping its wings.",
+  "summary": "A bird: a feathered animal; most birds fly by flapping their wings.",
   "layers": {
-   "basics": "The three dark shapes circling over the park are birds. A bird's wings push air downwards and backwards, and the air pushes the bird up and forwards. Zoom in and you move into the air around it.",
+   "basics": "The three dark shapes circling over the park are birds. In a flying bird the wings push air downwards and backwards, and the air pushes the bird up and forwards (not every bird flies). Zoom in and you move into the air around it.",
    "deeper": "Flight needs a light body and strong wing muscles, and feathers that are both stiff and very light. The close-up here is of the air, which is mostly nitrogen and oxygen molecules.",
-   "expert": "The bird is a placeholder model; a fuller bird, with feathers and bones, is planned. The park is a simplified scene, not a scan of a real place."
+   "expert": "The birds in the park are simple dark shapes, not a model of any species. The park is a simplified scene, not a scan of a real place."
   },
   "facts": [
    [

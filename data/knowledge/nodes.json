@@ -9509,9 +9509,9 @@
 ],
 "certainty": "C2",
 "domain": "Astrophysics",
-"basics": "The Big Bang made hydrogen, helium and a little lithium; stars forged carbon through iron; heavier elements come from neutron-rich events like supernovae and neutron-star mergers.",
+"basics": "The Big Bang made hydrogen, helium and a little lithium; stars forged carbon through iron; most heavier elements are built by capturing neutrons, either slowly (the s-process, in giant stars late in their lives) or rapidly (the r-process, in neutron-rich events such as neutron-star mergers and possibly some supernovae).",
 "deeper": "We are made of star-processed material. How much of the heaviest elements comes from mergers versus other supernovae is still debated.",
-"expert": "Abundance by mass: H 74 %, He 24 %, O 0.8 %, C 0.3 %; BBN D/H≈2.5×10⁻⁵, ⁷Li shortfall ≈3×; r-process peaks A≈80, 130, 195.",
+"expert": "Abundance by mass: H 74 %, He 24 %, O 0.8 %, C 0.3 %; BBN D/H≈2.5×10⁻⁵, ⁷Li shortfall ≈3×; r-process peaks A≈80, 130, 195. The s-process in low- and intermediate-mass asymptotic-giant-branch stars and the r-process together produce the bulk of the heavy elements in the solar system (review in IAU Symposium 343, 2019).",
 "regime": "Sources of r-process elements debated.",
 "emerges_from": [
 "fusion_stars",

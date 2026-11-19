@@ -1037,12 +1037,12 @@
   "layers": {
    "basics": "Rods let you see at night, but only in shades of gray.",
    "deeper": "They contain a light-catching pigment (rhodopsin) stacked in discs.",
-   "expert": "≈ 1.2×10^8 per eye; single-photon sensitivity; rhodopsin with 11-cis-retinal; phototransduction via transducin-PDE6 cascade; hyperpolarizes in light."
+   "expert": "≈ 9.2×10^7 per eye (78–107 million; Curcio et al. 1990); single-photon sensitivity; rhodopsin with 11-cis-retinal; phototransduction via transducin-PDE6 cascade; hyperpolarizes in light."
   },
   "facts": [
    [
     "Number",
-    "≈ 1.2×10^8 per eye"
+    "≈ 9.2×10^7 per eye"
    ],
    [
     "Length",
@@ -1088,12 +1088,12 @@
   "layers": {
    "basics": "Cones detect color and fine detail in bright light.",
    "deeper": "Three kinds respond best to short, medium or long (blue, green, red) wavelengths.",
-   "expert": "≈ 6×10^6 per eye, concentrated at the fovea; S, M, L opsins; faster, less sensitive than rods."
+   "expert": "≈ 4.6×10^6 per eye (4.1–5.3 million; Curcio et al. 1990), concentrated at the fovea; S, M, L opsins; faster, less sensitive than rods."
   },
   "facts": [
    [
     "Number",
-    "≈ 6×10^6 per eye"
+    "≈ 4.6×10^6 per eye"
    ],
    [
     "Types",

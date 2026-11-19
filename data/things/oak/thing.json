@@ -7,7 +7,7 @@
  "node": "oak_english",
  "main_part": "trunk",
  "blurb": "A mature English oak. Click the trunk, a branch, a leaf or an acorn. Use the layer buttons for the wood, the roots, and the water and sugar flow.",
- "model_note": "A model built from typical measurements of the species, not a scan of one individual. It has about 18,500 leaves; a real oak this size carries many times more.",
+ "model_note": "A model built from typical measurements of the species, not a scan of one individual. It has about 18,700 leaves, a number set by the model.",
  "size_m": {
   "height": 20,
   "crown_width": 20,
@@ -187,7 +187,7 @@
    },
    "flowOn": true,
    "legend": {
-    "title": "Two one-way streets",
+    "title": "Two flows",
     "items": [
      {
       "name": "Water and minerals, rising in the xylem",

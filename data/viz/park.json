@@ -328,14 +328,14 @@
   ],
   "xlabel": "ring width (mm)",
   "ylabel": "sapwood thickness (cm)",
-  "caption": "Sapwood is a fixed number of recent rings (5 to 32 in a study of English oaks, 13 on average), so its thickness is the number of rings times the ring width."
+  "caption": "Sapwood is a band of recent rings, so its width is the number of rings times the ring width. Ring counts differ by region (regional means of about 11 to 15; single trees about 6 to 31) and 13 is the model log's chosen value. The band that actually carries most of the water is only the outermost ring or two."
  },
  "oak_heartwood": {
   "type": "blocks",
   "nodes": [
    {
     "id": "a",
-    "label": "Living sapwood: carries water, stores food",
+    "label": "Sapwood: outer rings carry water, living cells store food",
     "x": 20,
     "y": 20,
     "color": "blue"
@@ -366,7 +366,7 @@
    }
   ],
   "flow": false,
-  "caption": "A ring starts as sapwood. After about a dozen years in oak it changes into heartwood: a planned process, not damage."
+  "caption": "A ring starts as sapwood and later changes into heartwood: a programmed process, not damage. How many sapwood rings lie outside the heartwood varies with region and tree (about 6 to 31 in one study)."
  },
  "oak_growth_rings": {
   "type": "plot",
@@ -782,7 +782,7 @@
   "logy": false,
   "xlabel": "vessel diameter (µm)",
   "ylabel": "flow relative to a 50 µm vessel",
-  "caption": "Flow through a tube rises with the fourth power of its diameter: a vessel twice as wide carries sixteen times as much water. This is why oak's wide vessels carry so much."
+  "caption": "Flow through a tube rises with the fourth power of its diameter: a vessel twice as wide carries sixteen times as much water. This is why a few wide vessels in the wood can carry so much more than many narrow ones. The plot is the ideal-tube law; real vessels carry somewhat less."
  },
  "oak_acorn": {
   "type": "blocks",
@@ -962,7 +962,7 @@
    }
   ],
   "flow": true,
-  "caption": "A trade: the tree pays in sugar and the fungus delivers water and minerals from a far larger volume of soil than the roots reach."
+  "caption": "An exchange: the tree supplies sugar and the fungus supplies water and minerals gathered from a larger volume of soil than the roots reach. How much each gains varies."
  },
  "oak_lignin_cellulose": {
   "type": "blocks",
@@ -1096,26 +1096,6 @@
   ],
   "flow": false,
   "caption": "Two sets of dividing cells: tips for length, cambium for width."
- },
- "oak_ecosystem": {
-  "type": "bars",
-  "bars": [
-   {
-    "label": "species associated with oak (UK)",
-    "value": 2300
-   },
-   {
-    "label": "plant-eating insect species (at least)",
-    "value": 400
-   },
-   {
-    "label": "gall-forming species",
-    "value": 35
-   }
-  ],
-  "ylabel": "species",
-  "logy": true,
-  "caption": "Estimates for English oak in the UK (2019): over 2,300 associated species, at least 400 insects that eat it, and about 35 that make galls. A log scale is used."
  },
  "oak_lifespan": {
   "type": "bars",

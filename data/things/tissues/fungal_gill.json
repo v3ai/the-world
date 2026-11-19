@@ -4,8 +4,8 @@
  "id": "fungal_gill",
  "title": "Under a mushroom cap",
  "node": "park_mushroom",
- "blurb": "The underside of a gilled mushroom cap, magnified about 200 times. Thin gills hang down; each is lined with club-shaped cells that make spores. Click a part.",
- "note": "Hypha width (4 to 6 micrometres) and spore length (5 to 10 micrometres) are published typical values for fungi; the number of cells, the gill spacing and the layout are illustrative, and a real gill carries millions of basidia.",
+ "blurb": "The underside of a gilled mushroom cap, much enlarged. Thin gills hang down; each is lined with club-shaped cells that make spores. Click a part.",
+ "note": "Hypha width (4 to 6 micrometres) and spore length (5 to 10 micrometres) are published typical values for fungi; the number of cells, the gill spacing and the layout are illustrative, and a real gill carries far more basidia than drawn.",
  "bg": "#f3efe6",
  "center": [
   0,

@@ -134,7 +134,7 @@ n("connectome","Connectomics and neural wiring","7",(1e-8,1e-2),"C2","Neuroscien
  em="brain_organization graph_theory",ev="Electron-microscopy reconstructions",refs="ANP 13",fref="flywire_connectome",sim="tissue")
 n("sensory_systems","Senses: vision, hearing, touch, taste and smell","7",(1e-9,1),"C1","Neuroscience",
  "Sensory cells convert physical signals (light, pressure waves, molecules) into electrical signals the brain interprets.",
- "The retina has about 120 million rods and 6 million cones; hair cells in the cochlea sense vibrations; olfactory receptors detect molecules.",
+ "The retina has about 92 million rods and 4.6 million cones (Curcio et al. 1990, eight retinas; individuals vary by about 15 %); hair cells in the cochlea sense vibrations; olfactory receptors detect molecules.",
  "Human vision 380–750 nm; hearing 20 Hz–20 kHz; ≈400 olfactory receptor genes; a rod can respond to a single photon.",
  "Perception is a constructive process, not a recording.",
  em="action_potential electromagnetic_waves waves",ev="Psychophysics|Electrophysiology",refs="BIO 36; PSY 5",ex="vision_eye sound_hearing",sim="human")

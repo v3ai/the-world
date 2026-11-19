@@ -4,8 +4,8 @@
  "id": "leaf_section",
  "title": "Inside an oak leaf",
  "node": "oak_leaf",
- "blurb": "A thin slice through a leaf blade, drawn at true scale (the whole slice is about 0.2 mm thick). Drag to turn it. Click a layer or a cell.",
- "note": "An illustration of the layers of a typical broadleaf leaf, not a micrograph of an oak leaf. The order of the layers is as in real leaves; the thickness of each layer, the cell sizes and the number of chloroplasts per cell are simplified (real palisade cells hold many more chloroplasts than drawn).",
+ "blurb": "A thin slice through a leaf blade (the whole slice is about 0.2 mm thick). Drag to turn it. Click a layer or a cell.",
+ "note": "An illustration of the layers of a typical broadleaf leaf, not a micrograph of an oak leaf. The cuticle is drawn about 3 micrometres thick for visibility. The order of the layers is as in real leaves; the thickness of each layer, the cell sizes and the number of chloroplasts per cell are simplified (real palisade cells hold many more chloroplasts than drawn).",
  "bg": "#f3efe6",
  "center": [
   0,

@@ -498,12 +498,16 @@
   "layers": {
    "basics": "A sarcomere is a tiny stack of sliding filaments that shortens to generate force.",
    "deeper": "Thin actin filaments slide past thick myosin filaments, pulling Z-discs together.",
-   "expert": "≈ 2.2 µm at rest; thick filament ≈ 1.6 µm, thin ≈ 1 µm; titin spans Z-disc to M-line; force-length relation peaks at ≈ 2.0-2.2 µm."
+   "expert": "Skeletal muscle: isometric force is highest on a plateau at sarcomere lengths of about 2.05–2.2 µm (frog fibres, Gordon, Huxley and Julian 1966); thick filament ≈ 1.6 µm, thin ≈ 1 µm; titin spans Z-disc to M-line. In human hearts the sarcomere length ranges from about 1.6 to 2.2 µm (CV Physiology)."
   },
   "facts": [
    [
-    "Resting length",
-    "≈ 2.2-2.5 µm"
+    "Length of peak force, skeletal muscle",
+    "≈ 2.05–2.2 µm"
+   ],
+   [
+    "Working range, heart muscle",
+    "≈ 1.6–2.2 µm"
    ],
    [
     "Shortening",

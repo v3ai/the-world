@@ -23,7 +23,7 @@
   "summary": "The English oak (Quercus robur) is a broad-leaved tree of European woods and parks; a mature one is a living tower of wood that stands for hundreds of years.",
   "layers": {
    "basics": "An oak is a plant that has turned into a tree: it keeps its stem year after year and adds a new layer of wood to it every growing season. Roots below hold it up and drink; the trunk and branches lift the leaves into the light; the leaves make sugar from air, water and sunlight. Click any part of the tree to meet it. The layer buttons show the wood inside the trunk, the roots under the ground, and the water and sugar that flow through the tree.",
-   "deeper": "It is a flowering plant (an angiosperm), in the beech family. Each spring it opens new leaves in about the middle of May in Britain, flowers with long yellow catkins, and in autumn drops acorns, each in a shallow cup. It is deciduous: the leaves fall in autumn and the tree rests through winter. Its wood is dense and long-lasting, which is why oak was used for ships and buildings.",
+   "deeper": "It is a flowering plant (an angiosperm), in the beech family. Each spring it opens new leaves (the date varies from year to year and has moved earlier as springs have warmed), flowers with long yellow catkins, and in autumn drops acorns, each in a shallow cup. It is deciduous: the leaves fall in autumn and the tree rests through winter. Its wood is dense and long-lasting, which is why oak was used for ships and buildings.",
    "expert": "As a tree with secondary growth, its trunk widens through the vascular cambium and its crown extends through apical meristems at the shoot tips. The tree supports a very large community of insects, fungi, birds and mammals."
   },
   "facts": [
@@ -75,7 +75,7 @@
     "url": "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/a-z-of-british-trees/english-oak/"
    }
   ],
-  "did_you_know": "Oaks \"mast\": in some years a tree drops a huge crop of acorns and in others very few. Q. robur is described as bearing a big crop about every other year."
+  "did_you_know": "Oaks \"mast\": in some years a tree drops a huge crop of acorns and in others very few. Q. robur crops are irregular: a 27-year record from 12 trees in southern England shows large crops in some years and small ones in others, linked to the weather."
  },
  {
   "id": "oak_trunk",
@@ -99,7 +99,7 @@
    "oak_branches"
   ],
   "processes": [],
-  "summary": "The trunk holds the crown up and carries water and sugar between roots and leaves. At the base it flares out into buttresses that spread the load.",
+  "summary": "The trunk holds the crown up and carries water and sugar between roots and leaves. At the base it flares out into a root flare that spreads the load.",
   "layers": {
    "basics": "The trunk is the tree's mast and its pipework. The outside is rough bark. Inside, almost all of it is wood: old, dead wood in the middle that only holds things up, and a thin ring of younger wood near the surface that carries water. Choose \"Wood\" to see a log cut open.",
    "deeper": "Where the trunk meets the ground it widens into root flares. The widening spreads the load of a heavy crown over more ground and joins the trunk to the big roots. Higher up, the trunk forks into limbs. The total cross-section of the limbs above a fork is roughly the same as the cross-section of the trunk below it, as if the tree were built from a bundle of pipes of fixed size.",
@@ -247,7 +247,7 @@
   "layers": {
    "basics": "Right under the dead outer bark is a thin living layer. Its tubes carry a sweet liquid made in the leaves down the trunk to the roots, and up to buds and acorns. If a ring of bark is cut all the way round the trunk, the tree can no longer send sugar to its roots, and it will eventually die.",
    "deeper": "The tubes are made of sieve tube elements, long cells joined end to end, with pores in the end walls. They have no nucleus when mature, so each one is kept alive by a small neighbour called a companion cell. Sugar, mostly sucrose, is pushed along by pressure: the leaves load sugar in, water follows by osmosis, the pressure rises, and the solution flows towards places where sugar is being used.",
-   "expert": "Phloem transport is described by the pressure-flow (Münch) hypothesis: loading raises sugar concentration and turgor pressure at the source, unloading lowers it at the sink, and bulk flow follows the pressure gradient. Phloem pressure can reach several megapascals. Flow speeds are far lower than in the xylem, and the exact rates vary with tree, season and method. The figure here is drawn thicker than a real trunk's inner bark so it can be seen in the cut log."
+   "expert": "Phloem transport is described by the pressure-flow (Münch) hypothesis: loading raises sugar concentration and turgor pressure at the source, unloading lowers it at the sink, and bulk flow follows the pressure gradient. Sieve-tube pressures measured so far are of the order of 1 MPa (about 1.1 MPa in the leaves of a climbing vine, Knoblauch et al. 2016); direct measurements in tall trees are scarce. Flow speeds are far lower than in the xylem, and the exact rates vary with tree, season and method. The figure here is drawn thicker than a real trunk's inner bark so it can be seen in the cut log."
   },
   "facts": [
    [
@@ -260,7 +260,7 @@
    ],
    [
     "Pressure",
-    "positive, up to several MPa"
+    "positive; ≈ 1 MPa where measured (in a vine)"
    ]
   ],
   "certainty": "C1",
@@ -278,6 +278,10 @@
    {
     "title": "Phloem (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Phloem"
+   },
+   {
+    "title": "Knoblauch et al. 2016: Testing the Muench hypothesis of long distance phloem transport (eLife)",
+    "url": "https://doi.org/10.7554/eLife.15341"
    }
   ]
  },
@@ -345,16 +349,20 @@
    "bio_water_transport"
   ],
   "processes": [],
-  "summary": "Sapwood is the younger, outer wood of a trunk. It carries water up from the roots and stores food.",
+  "summary": "Sapwood is the younger, outer wood of a trunk. In oak most of the water moves through its outermost ring or two, and the rest of the sapwood stores food.",
   "layers": {
-   "basics": "The pale wood near the outside of a log is the sapwood. Water rises through it from the roots to the leaves. It also stores sugar and starch that the tree draws on in spring, before new leaves can make food.",
-   "deeper": "The water travels through dead, empty tubes (vessels) that are open like pipes. The living cells among them store food. In oak only the youngest rings do the carrying. A study of 344 samples from 13 sites of the English oak in south-eastern Europe found on average about 13 sapwood rings, with a range of 5 to 32, so the water-carrying zone is a thin outer layer of an old oak. The model log has 13 rings of sapwood.",
-   "expert": "Oak is ring-porous: the vessels formed in early spring, the earlywood, are very wide (about 0.5 mm across) and carry most of the water, while the narrow vessels of later wood carry less. A vessel is formed from a stack of cells whose end walls break down and whose living contents die, leaving a pipe. Sapwood width depends on the tree: crown size, site and position in the stand all matter. Open-grown trees tend to have wider sapwood for their size."
+   "basics": "The pale wood near the outside of a log is the sapwood. Water rises through the outer part of it from the roots to the leaves. The living cells in the sapwood also store sugar and starch that the tree draws on in spring, before new leaves can make food.",
+   "deeper": "The water travels through dead, hollow tubes (vessels) that are full of water and held under tension, like a rope of water. A vessel that fills with air has failed and no longer carries water. Sapwood and the water-carrying zone are not the same thing. Sapwood is the whole band of wood outside the heartwood, set by colour and by whether the vessels are plugged with tyloses, and in oak it is several rings wide. In the oak that has been measured, most of the flow is in the newest ring (in one veteran English oak the crown's water use needed only the current ring). How many rings the sapwood has depends on where the oak grew: regional studies find averages of about 11 to 15 rings, and single trees range from about 6 to 31. The model log has 13 rings of sapwood, a chosen number inside that range.",
+   "expert": "Oak is ring-porous: the vessels formed in early spring, the earlywood, are very wide (about 0.5 mm across) and carry most of the water, while the narrow vessels of later wood carry less. A vessel is formed from a stack of cells whose end walls break down and whose living contents die, leaving a pipe. Sapwood ring counts are regional samples and fall from west to east across Europe (means: eastern Baltic 11.5, Pannonian Basin 13.3, Romania 13.1, Czech Republic 14.6, Poland 15; Roibu et al. 2021 summarise them). They are used to estimate the felling date of old timbers, and they rise with tree age. In the sapwood the living cells (parenchyma) store starch."
   },
   "facts": [
    [
-    "Sapwood rings (English oak)",
-    "mean ≈ 13, range ≈ 5–32 (344 samples from 13 sites)"
+    "Sapwood rings (oak, regional means)",
+    "≈ 11.5–15 in five European studies; single trees ≈ 6–31 in the Romanian sample"
+   ],
+   [
+    "Conducting zone",
+    "mostly the outermost ring or two"
    ],
    [
     "Earlywood vessel width",
@@ -362,7 +370,7 @@
    ],
    [
     "Model sapwood",
-    "13 rings, ≈ 2.4 cm thick"
+    "13 rings, ≈ 2.4 cm thick (chosen)"
    ]
   ],
   "certainty": "C1",
@@ -389,8 +397,24 @@
     "url": "https://en.wikipedia.org/wiki/Xylem"
    },
    {
+    "title": "Roibu et al. 2021: The Suceava oak chronology (sapwood ring counts compared across Europe)",
+    "url": "https://iris.unito.it/bitstream/2318/1968063/1/Roibu%20et%20al.%20Suceava%20oak%20chrono.pdf"
+   },
+   {
     "title": "Sapwood estimates of Quercus robur, SW Pannonian Basin (dataset)",
     "url": "https://data.mendeley.com/datasets/8fyrzzg66d"
+   },
+   {
+    "title": "Zajaczkowska et al.: sap flow in the veteran oak Bartek (Silva Fennica)",
+    "url": "https://silvafennica.fi/article/10561"
+   },
+   {
+    "title": "Venturas, Sperry and Hacke 2017: Plant xylem hydraulics (J. Integrative Plant Biology)",
+    "url": "https://sperry.biology.utah.edu/publications/Venturas_et_al_2017_JIPB.pdf"
+   },
+   {
+    "title": "Taylor, Gartner and Morrell 2002: Heartwood formation and natural durability, a review (Wood and Fiber Science 34)",
+    "url": "https://wfs.swst.org/index.php/wfs/article/view/539"
    }
   ]
  },
@@ -410,12 +434,16 @@
   "layers": {
    "basics": "The deep, darker wood in the middle of a log is heartwood. It is not the \"living heart\" its name suggests. Its job is to hold the tree up. It is darker because the tree stores chemicals in it that make it harder for fungi and insects to feed on it, which is one reason oak timber lasts so long.",
    "deeper": "As rings get older, the living cells inside them die in a planned process and the wood fills with protective chemicals. A tree can survive with a rotted heart: the active layers are near the surface. Many old oaks are hollow and still alive for centuries.",
-   "expert": "Heartwood formation is genetically programmed and happens without injury; the transition zone shows the final death of the living cells and the build-up of extractives such as phenolic compounds. Oak heartwood is reported to contain triterpene saponins and is classed as durable. The timber of English oak has a density of about 720 kg per cubic metre."
+   "expert": "Heartwood formation is genetically programmed and happens without injury; the transition zone shows the final death of the living cells and the build-up of extractives such as phenolic compounds. The heartwood of English and sessile oak contains roughly 10 per cent of its dry weight as ellagitannins, water-soluble phenolic compounds that are regarded as the main source of its resistance to rot (Vivas et al. 2004). How much a given tree holds varies widely between trees and is under strong genetic control, so oak heartwood is durable on average, not in every tree. The timber of English oak has a density of about 720 kg per cubic metre."
   },
   "facts": [
    [
     "Oak timber density",
     "≈ 720 kg/m³"
+   ],
+   [
+    "Ellagitannins in heartwood",
+    "≈ 10 % by weight (Q. robur and Q. petraea)"
    ],
    [
     "Role",
@@ -443,6 +471,14 @@
    {
     "title": "Quercus robur (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Quercus_robur"
+   },
+   {
+    "title": "Vivas et al. 2004: ellagitannins in Quercus petraea and Q. robur wood (Comptes Rendus Chimie)",
+    "url": "https://doi.org/10.1016/j.crci.2004.06.004"
+   },
+   {
+    "title": "Taylor, Gartner and Morrell 2002: Heartwood formation and natural durability, a review (Wood and Fiber Science 34)",
+    "url": "https://wfs.swst.org/index.php/wfs/article/view/539"
    }
   ]
  },
@@ -510,17 +546,21 @@
   "summary": "The pith is the soft core where the shoot began. Rays are thin sheets of living cells that run across the wood from the centre outwards.",
   "layers": {
    "basics": "At the very middle of a trunk is the pith, a small core of soft tissue that was the centre of the tiny seedling stem. Fine lines run outwards from the middle like the spokes of a wheel. These are rays, sheets of living cells that carry food sideways across the rings and store it.",
-   "deeper": "Rays are the one part of the wood that runs radially (outwards) and not up and down. They let sugar from the inner bark reach the living cells deep in the sapwood, and they let the tree send water sideways. In oak some rays are broad enough to see without a lens, and they make the silvery \"fleck\" pattern in quarter-sawn oak boards.",
-   "expert": "Wood rays are made by the ray initials of the cambium. Oak has two kinds, narrow rays about 0.1 mm thick and a few wide aggregate rays. In the model log the rays are drawn as pale radial streaks on the cut faces; their number, length and spacing are illustrative."
+   "deeper": "Rays are the one part of the wood that runs radially (outwards) and not up and down. They let sugar from the inner bark reach the living cells deep in the sapwood. In oak some rays are broad enough to see without a lens, and they make the silvery \"fleck\" pattern in quarter-sawn oak boards.",
+   "expert": "Wood rays are made by the ray initials of the cambium. Oak has two kinds: many narrow rays one cell wide, and fewer wide rays that are about 10 to 30 cells wide (the standard wood-anatomy description of the genus). In the model log the rays are drawn as pale radial streaks on the cut faces; their number, length and spacing are illustrative."
   },
   "facts": [
    [
-    "Narrow ray thickness",
-    "≈ 0.1 mm"
+    "Narrow rays",
+    "one cell wide"
+   ],
+   [
+    "Wide rays",
+    "≈ 10–30 cells wide"
    ],
    [
     "Pith in the model",
-    "≈ 1.2 cm across (drawn, real pith is a few mm)"
+    "≈ 1.2 cm across (drawn larger than real, for visibility)"
    ]
   ],
   "certainty": "C1",
@@ -536,6 +576,10 @@
    {
     "title": "Quercus robur (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Quercus_robur"
+   },
+   {
+    "title": "Wood anatomy of Quercus (IAWA description, Richter and Dallwitz)",
+    "url": "https://www1.biologie.uni-hamburg.de/b-online/wood/english/fagqu-wh.htm"
    }
   ]
  },
@@ -605,7 +649,7 @@
   "layers": {
    "basics": "A twig is a young branch. At its tip sits a bud: a tiny package of unopened leaves wrapped in scales. In winter the tree is bare and the buds wait. In spring they swell and open. Oaks have buds grouped in a cluster at the end of each twig.",
    "deeper": "Each bud holds a miniature shoot with leaves already formed, which is why a tree can open its leaves in days. Buds at the tip carry on the main shoot; buds along the side make branches. Scars left where bud scales fell away mark the year's boundary on the twig, so you can read the age of a twig.",
-   "expert": "Buds contain apical meristems. Dormancy is set by day length and temperature: a tree needs enough cold in winter and then warmth in spring before it breaks bud, which is why a warming climate changes the date of leaf-out. Bud burst for oak in Britain is reported around mid-May. The leaves, buds and twigs in the model are drawn to typical sizes and are placed by a rule, not copied from a real branch."
+   "expert": "Buds contain apical meristems. Dormancy is set by day length and temperature: a tree needs enough cold in winter and then warmth in spring before it breaks bud, which is why a warming climate changes the date of leaf-out. In a UK study of eleven tree species, bud burst in nine of them followed the average March temperature, coming earlier after a warmer March (Met Office, 2017). The leaves, buds and twigs in the model are drawn to typical sizes and are placed by a rule, not copied from a real branch."
   },
   "facts": [
    [
@@ -613,8 +657,8 @@
     "clustered at the shoot tip"
    ],
    [
-    "Leaf-burst (Britain)",
-    "mid-May"
+    "Date of bud burst",
+    "varies with the year and the place; earlier after a warm March"
    ]
   ],
   "certainty": "C1",
@@ -635,6 +679,10 @@
    {
     "title": "English oak (Woodland Trust)",
     "url": "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/a-z-of-british-trees/english-oak/"
+   },
+   {
+    "title": "Met Office 2017: Earlier budburst linked to warmer springs",
+    "url": "https://www.metoffice.gov.uk/about-us/news-and-media/media-centre/weather-and-climate-news/2017/phenology-report"
    }
   ]
  },
@@ -663,7 +711,7 @@
   "layers": {
    "basics": "An oak leaf is shaped like a long paddle with rounded lobes along each side. It is about 10 cm long and held on a very short stalk. Its flat shape catches light. Its green colour comes from chlorophyll, the molecule that captures sunlight. Inside, the leaf is only a fraction of a millimetre thick. Choose \"Look inside the leaf\" to go there.",
    "deeper": "The leaf takes in carbon dioxide through tiny pores, mostly on its underside, and uses light energy to join the carbon to water, making sugar and releasing oxygen. A network of veins brings water in and carries sugar out. The lobes of the English oak's leaf are rounded and cut in no deeper than halfway to the midrib. It drops its leaves in autumn.",
-   "expert": "English oak leaves are about 10–12 cm long and 7–8 cm wide, with 3–6 rounded lobes, and a leaf stalk (petiole) of only 2–3 mm. The leaf is hypostomatous, meaning the stomata are on the underside; one study of 17 genotypes counted 530–791 per square millimetre. The model has about 9,500 leaves; a real oak this size has many more, but no count was found, so none is stated here."
+   "expert": "English oak leaves are about 10–12 cm long and 7–8 cm wide, with 3–6 rounded lobes, and a leaf stalk (petiole) of only 2–3 mm. The leaf is hypostomatous, meaning the stomata are on the underside; one study of 17 genotypes counted 530–791 per square millimetre. The model has about 18,700 leaves, a number set by the model, not a count of a real tree."
   },
   "facts": [
    [
@@ -925,7 +973,7 @@
   "layers": {
    "basics": "Veins are the leaf's plumbing. Each one holds two kinds of tubes side by side. The ones on the top side bring in water from the twig. The ones on the underside carry the sugar made in the leaf out to the rest of the tree. Veins branch into a fine net so that no cell is far from one.",
    "deeper": "The xylem sits on the upper side of the bundle and the phloem on the lower side. A sheath of cells around the bundle controls what passes between the veins and the leaf cells. Water leaving the vein spreads through the cell walls to the cells that need it.",
-   "expert": "The xylem conduits are dead, empty tubes, so water in them flows by the pull of evaporation at the leaf, not by pushing. Phloem sieve tubes are living but lack a nucleus and are served by companion cells. A vessel's capacity to carry water rises with the fourth power of its diameter, so a few wide tubes carry a great deal."
+   "expert": "The xylem conduits are dead, hollow tubes filled with water, so water in them flows by the pull of evaporation at the leaf, not by pushing. Phloem sieve tubes are living but lack a nucleus and are served by companion cells. For an ideal smooth tube the flow rises with the fourth power of its diameter (the Hagen-Poiseuille law), so a few wide tubes carry a great deal; real vessels carry somewhat less than this ideal."
   },
   "facts": [
    [
@@ -937,7 +985,7 @@
     "lower side of the bundle"
    ],
    [
-    "Vessel flow",
+    "Vessel flow (ideal tube)",
     "rises with diameter to the 4th power"
    ]
   ],
@@ -981,8 +1029,8 @@
   "summary": "An acorn is an oak's fruit: a single nut holding one seed, sitting in a scaly cup. Each one could grow into a new tree.",
   "layers": {
    "basics": "In spring an oak makes two kinds of flowers on the same tree. Long yellow catkins hang down and shed pollen on the wind. Tiny female flowers further up the twig receive it. By autumn the fertilised flowers have become acorns, each in a cup. Most acorns are eaten by animals, and a few are buried and forgotten, and sprout.",
-   "deeper": "The wind-blown pollen is the male half of the cell's genes; the female flower holds the egg. After fertilisation the seed forms inside the nut, with a store of food that feeds the seedling. Jays and squirrels bury acorns and help the oak spread. English oak acorns are 1.5–4 cm long and hang on a stalk of 4–8 cm, two or three together. Some years the tree makes many acorns, and some years almost none.",
-   "expert": "The oak is monoecious and wind-pollinated. Mast seeding (large synchronised crops) swamps seed predators so that some seeds survive. The species is described as alternate bearing, with a big crop about every other year. Acorn length reported on one page is 1.5–4 cm and on another 2–2.5 cm, and the model uses a nut about 2.5 cm long."
+   "deeper": "The wind-blown pollen carries the male sex cells; the female flower holds the egg cell. After fertilisation the seed forms inside the nut, with a store of food that feeds the seedling. Jays and squirrels bury acorns and help the oak spread. English oak acorns are 1.5–4 cm long and hang on a stalk of 4–8 cm, two or three together. Some years the tree makes many acorns, and some years few.",
+   "expert": "The oak is monoecious and wind-pollinated. Mast seeding (large synchronised crops) swamps seed predators so that some seeds survive. Large crops come at irregular intervals: in a 27-year record of acorn yield from 12 trees in southern England, mast years were linked to the weather (Hanley, Cook and Fenner 2019). Acorn length varies; the model uses a nut about 2.5 cm long."
   },
   "facts": [
    [
@@ -995,7 +1043,7 @@
    ],
    [
     "Model acorns",
-    "a few hundred, hung on the sprigs"
+    "105, hung on the sprigs (a model choice)"
    ]
   ],
   "certainty": "C1",
@@ -1020,6 +1068,10 @@
    {
     "title": "English oak (Woodland Trust)",
     "url": "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/a-z-of-british-trees/english-oak/"
+   },
+   {
+    "title": "Hanley, Cook and Fenner 2019: Climate variation, reproductive frequency and acorn yield in English oaks (J. Plant Ecology)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7787049"
    }
   ],
   "did_you_know": "A single acorn contains an entire oak: a small root, shoot and a store of food, packaged in a nut."
@@ -1089,8 +1141,8 @@
   "summary": "Root hairs are tiny tubes growing from the cells of a young root that multiply its surface for taking up water.",
   "layers": {
    "basics": "Just behind the tip of a young root, some skin cells grow a thin, hair-like tube out into the soil. Each is a single cell. A root covered in hairs touches far more soil than a bare root could, so it can reach more water in the soil between grains.",
-   "deeper": "The root tip is protected by a cap and has a growing zone behind it where cells divide and then lengthen. Root hairs form a little further back in the zone where cells mature. They live only days to weeks. Oaks, like most trees, rely heavily on a fungus partner to do part of this job.",
-   "expert": "Root hairs are outgrowths of epidermal cells. They greatly increase the root surface area and so the uptake of water and mineral ions, particularly phosphate that moves slowly in soil. In many trees, ectomycorrhizal roots form short, branched tips that are covered with fungus and produce few or no root hairs."
+   "deeper": "The root tip is protected by a cap and has a growing zone behind it where cells divide and then lengthen. Root hairs form a little further back in the zone where cells mature. They live only days to weeks. Oak is one of the trees whose fine root tips are wrapped in a fungal sleeve (see the mycorrhiza card), and the fungus does part of this job.",
+   "expert": "Root hairs are outgrowths of epidermal cells. They greatly increase the root surface area and so the uptake of water and mineral ions, particularly phosphate that moves slowly in soil. Ectomycorrhizal root tips are covered with fungus and produce few or no root hairs, so the root-hair scene shows the general case of a bare fine root, not the usual oak tip."
   },
   "facts": [
    [
@@ -1129,15 +1181,13 @@
    "oak_roots",
    "bio_roots_mycorrhiza"
   ],
-  "parts": [
-   "fa_ecm"
-  ],
+  "parts": [],
   "processes": [],
-  "summary": "Oaks trade sugar with underground fungi that act as extensions of their roots.",
+  "summary": "Oak roots partner with underground fungi: the tree supplies sugar, and the fungal threads gather water and minerals from the soil.",
   "layers": {
-   "basics": "Oak roots are wrapped in a sheath of fungus. The fungus sends fine white threads out into the soil, far beyond the root, where they collect water and minerals. The tree pays for this with sugar made in its leaves. Neither side could do as well alone.",
-   "deeper": "This kind of partnership is called ectomycorrhiza. The fungus makes a mantle around the root tip and grows between the root cells without entering them. The oak family and the pine family are among the plants that do this. A tree typically has 15 or more fungal partners at once. Some of them make the mushrooms you find under oaks in autumn.",
-   "expert": "The fungus supplies water and minerals such as phosphorus, nitrogen and zinc and receives photosynthetic carbon. Ectomycorrhizal fungi total an estimated 20,000–25,000 species, about 2% of plant species form this partnership, and most of those are dominant trees. How much carbon and information moves between trees through shared fungal networks is under active debate."
+   "basics": "Oak roots are wrapped in a sheath of fungus. The fungus sends fine white threads out into the soil, far beyond the root, where they collect water and minerals. In return the tree gives the fungus sugar made in its leaves. How much each side gains depends on the soil and the conditions.",
+   "deeper": "This kind of partnership is called ectomycorrhiza. The fungus makes a mantle around the root tip and grows between the root cells without entering them. The oak family and the pine family are among the plants that do this. A single tree usually hosts more than one fungal species at once. Some of them make the mushrooms you find under oaks in autumn.",
+   "expert": "The fungus supplies water and minerals such as phosphorus and nitrogen and receives photosynthetic carbon. Only about 2% of plant species form ectomycorrhiza (72% form the arbuscular kind; Brundrett and Tedersoo 2018), though many of them are dominant trees. The wider claim that trees are joined into forest-wide \"common mycorrhizal networks\" that share carbon and warning signals is contested. Karst, Jones and Hoeksema (2023) reviewed the evidence: the claims that such networks are widespread in forests and that they pass resources to improve seedling growth are insufficiently supported, because field results vary too widely or have other explanations; the claim that mature trees preferentially send resources and defence signals to their offspring through them has no peer-reviewed evidence; and they found that unsupported claims in the citing literature have doubled in 25 years. Researchers who defend carbon transfer between trees have replied, so this is an active dispute."
   },
   "facts": [
    [
@@ -1145,17 +1195,17 @@
     "ectomycorrhiza (fungus around and between root cells)"
    ],
    [
-    "Fungal partners per tree",
-    "≈ 15 or more"
+    "Plants that form it",
+    "≈ 2 % of species (Brundrett and Tedersoo 2018)"
    ],
    [
-    "Trade",
+    "Exchange",
     "sugar from the tree; water and minerals from the fungus"
    ]
   ],
   "certainty": "C2",
   "open_questions": [
-   "Do trees share meaningful amounts of carbon and chemical signals through the fungal networks that join them? Experiments exist, but how much it matters in a real forest is still being argued."
+   "Do trees share meaningful amounts of carbon and chemical signals through fungal networks that join them in real forests? Karst and colleagues (2023) judge the evidence too sparse and unsettled; others disagree, and the question is open."
   ],
   "refs": [
    [
@@ -1173,6 +1223,14 @@
    {
     "title": "Mycorrhiza (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Mycorrhiza"
+   },
+   {
+    "title": "Brundrett and Tedersoo 2018: Evolutionary history of mycorrhizal symbioses and global host plant diversity (New Phytologist)",
+    "url": "https://doi.org/10.1111/nph.14976"
+   },
+   {
+    "title": "Karst, Jones and Hoeksema 2023: Positive citation bias and overinterpreted results lead to misinformation on common mycorrhizal networks in forests (Nature Ecology and Evolution 7)",
+    "url": "https://doi.org/10.1038/s41559-023-01986-1"
    }
   ]
  },
@@ -1192,7 +1250,7 @@
   "summary": "Wood is mainly cellulose fibres glued and stiffened by lignin.",
   "layers": {
    "basics": "The strength of wood comes from two materials. Cellulose is long chains of sugar molecules bundled into tough fibres. Lignin is a hard, brown, glue-like substance that fills the spaces between the fibres and makes the wall rigid and waterproof. It is rather like steel rods set in concrete.",
-   "deeper": "Every plant cell wall has cellulose. Wood cells, after they finish growing, build a thick second wall with lignin and then usually die, leaving a hard empty shell. Lignin makes vessels strong enough to hold water under strong pull without collapsing.",
+   "deeper": "Every plant cell wall has cellulose. Wood cells, after they finish growing, build a thick second wall with lignin and then usually die, leaving a hard hollow shell. Lignin makes vessels strong enough to hold water under strong pull without collapsing.",
    "expert": "Cellulose is a polymer of β-glucose units, shown in the molecule viewer as the three-sugar fragment cellotriose; microfibrils of many chains are held by hydrogen bonds. Lignin is a cross-linked polymer built from phenolic alcohols and is one of the most abundant organic polymers on Earth after cellulose."
   },
   "facts": [
@@ -1249,7 +1307,7 @@
   "layers": {
    "basics": "Water evaporates from the leaves. Because water molecules stick to each other, the evaporation pulls the whole column of water in the wood upwards, like sucking a drink through a straw. The tree does not push the water from below; it is pulled from above, using the energy of sunlight that drives the evaporation.",
    "deeper": "The pulling puts the water in the wood under tension, a negative pressure. This is possible because the narrow tubes are lined with wall that water sticks to and water molecules cohere strongly. Lifting a column 20 m against gravity alone needs a pressure difference of about 0.2 MPa; the real pull is bigger, because the water also has to be forced through the narrow tubes.",
-   "expert": "The weight of a water column is about 9.8 kPa per metre of height (density times gravitational acceleration), so 20 m needs about 0.2 MPa: this is a calculation, not a measurement of an oak. Real xylem tensions in trees are several times larger because of friction. A study of 18 mature English oaks at a UK site found daily water use of about 2.4 litres per millimetre of stem radius, with peak sap flow around 0.04 litres per second."
+   "expert": "The weight of a water column is about 9.8 kPa per metre of height (density times gravitational acceleration), so 20 m needs about 0.2 MPa: this is a calculation, not a measurement of an oak. Real xylem tensions in trees are several times larger because of friction. A conference abstract on mature English oaks at a UK site reports a daily water use of about 2.4 litres per millimetre of trunk radius across trees of 274 to 465 mm radius, with peak sap flux around 0.04 litres per second. In oak the cohesion-tension picture requires the water to stay liquid under tension in vessels that are full of water; a vessel that fills with air is out of action (Venturas et al. 2017)."
   },
   "facts": [
    [
@@ -1257,16 +1315,12 @@
     "≈ 0.2 MPa (calculated: 9.8 kPa per m × 20 m)"
    ],
    [
-    "Daily water use, mature oak (UK study)",
-    "≈ 2.4 L per mm of trunk radius"
+    "Daily water use, mature oaks (UK abstract)",
+    "≈ 2.4 L per mm of trunk radius (radius 274–465 mm)"
    ],
    [
-    "Peak sap flow (UK study)",
+    "Peak sap flux (UK abstract)",
     "≈ 0.04 L/s"
-   ],
-   [
-    "Typical tension in xylem",
-    "≈ −1 to −3 MPa (existing card)"
    ]
   ],
   "certainty": "C2",
@@ -1288,6 +1342,10 @@
    {
     "title": "Xylem (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Xylem"
+   },
+   {
+    "title": "Venturas, Sperry and Hacke 2017: Plant xylem hydraulics (J. Integrative Plant Biology)",
+    "url": "https://sperry.biology.utah.edu/publications/Venturas_et_al_2017_JIPB.pdf"
    }
   ]
  },
@@ -1306,7 +1364,7 @@
   "summary": "A tree grows taller from the tips of its shoots and wider from a thin layer under the bark.",
   "layers": {
    "basics": "An oak gets taller and longer-limbed because the tips of its shoots and roots keep growing. It gets wider because the layer just under the bark, the cambium, keeps adding a new ring of wood each year. Taller growth happens in spring and early summer; wider growth continues until autumn.",
-   "deeper": "The two kinds of growth use two different groups of dividing cells. At the tips are apical meristems, which add length. Along the trunk, branches and roots is the vascular cambium, which adds width. In Britain the tree breaks bud in mid-May. Wood laid down in earlier years does not move: a nail hammered into the trunk stays at the same height as the tree grows taller.",
+   "deeper": "The two kinds of growth use two different groups of dividing cells. At the tips are apical meristems, which add length. Along the trunk, branches and roots is the vascular cambium, which adds width. Wood laid down in earlier years does not move: a nail hammered into the trunk stays at the same height as the tree grows taller.",
    "expert": "Primary growth (from apical meristems) makes the new shoots and roots; secondary growth (from the vascular and cork cambia) thickens them. The share of the year's carbon spent on wood, leaves, roots and acorns is a balance the tree adjusts with the season and with stress, and is not the same every year."
   },
   "facts": [
@@ -1355,21 +1413,13 @@
   "summary": "A single oak is a whole community: insects, fungi, lichens, birds and mammals live in or on it.",
   "layers": {
    "basics": "An old oak is like a small town. Caterpillars and beetles eat the leaves and wood. Birds nest in its holes and eat the insects. Jays and squirrels bury its acorns. Lichens and mosses grow on the bark. Fungi live in its roots and rot its dead heartwood, making cavities for bats and owls.",
-   "deeper": "Estimates for Britain say that over 2,300 species are associated with the English oak, and at least 400 of them are plant-eating insects, about 35 of them gall-formers: insects that trick the leaf into growing a ball around their egg. Dead and dying oak wood is also a habitat in its own right.",
-   "expert": "Counts of \"associated species\" depend on how association is defined and on how well each group has been surveyed, and Britain's figures cannot be transferred to other parts of Europe without caution. A 2019 estimate gave about 2,300 associated species in the UK."
+   "deeper": "A database of oak-associated life in the UK lists about 2,300 species of birds, mosses, fungi, invertebrates, lichens and mammals that use oak, with each one classed from oak-only to found on many trees. Among the insects are gall-formers, which trick the leaf into growing a ball around their egg. Dead and dying oak wood is also a habitat in its own right.",
+   "expert": "Counts of \"associated species\" depend on how association is defined and on how well each group has been surveyed, and Britain's figures cannot be transferred to other parts of Europe without caution. The 2019 OakEcol database gave about 2,300 associated species in the UK."
   },
   "facts": [
    [
-    "Species associated (UK estimate, 2019)",
+    "Species associated (UK database, 2019)",
     "≈ 2,300"
-   ],
-   [
-    "Plant-eating insects",
-    "≥ 400"
-   ],
-   [
-    "Gall-forming species",
-    "≈ 35"
    ]
   ],
   "certainty": "C2",
@@ -1377,8 +1427,8 @@
   "refs": [
    [
     "BIO",
-    "24.3",
-    "24-3-ecology-of-fungi"
+    "45.6",
+    "45-6-community-ecology"
    ]
   ],
   "ext": [
@@ -1389,6 +1439,10 @@
    {
     "title": "English oak (Woodland Trust)",
     "url": "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/a-z-of-british-trees/english-oak/"
+   },
+   {
+    "title": "OakEcol: a database of oak-associated biodiversity within the UK (Data in Brief 2019)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6600707"
    }
   ]
  },
@@ -1424,13 +1478,7 @@
   "open_questions": [
    "How old is the oldest oak? For a hollow tree the answer is an estimate, and different methods disagree."
   ],
-  "refs": [
-   [
-    "BIO",
-    "30.1",
-    "30-1-the-plant-body"
-   ]
-  ],
+  "refs": [],
   "ext": [
    {
     "title": "Quercus robur (Wikipedia)",
