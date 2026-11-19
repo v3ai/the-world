@@ -514,7 +514,7 @@ function loop(now) {
   if (sig !== pickSig) { pickSig = sig; viewChanged(); lastChange = tA; }
   const camMoving = !!fly || Math.abs(zoom.pending) > 2e-3 || pointers.size > 0 || !!holdZoom; // the last 0.2% of a zoom ease no longer moves anything under the pointer
   if (mouse.dirty) { if (camMoving || tour) tipEl.classList.remove('show'); else if (performance.now() - mouse.t >= HOVER_REST_MS) doHover(); }
-  if (!camMoving) pkIdle(4, performance.now() - lastInput > 1500); // trees for picking, a few milliseconds at a time, never while the camera moves
+  if (!camMoving) pkIdle(clamp(dtMs * .1, 4, 12), performance.now() - lastInput > 1500); // trees for picking, a few milliseconds at a time (a tenth of the frame when frames are slow), never while the camera moves
   if ((clock * 4 | 0) !== ((clock - dt) * 4 | 0)) updateTimeUI();
   const pe = $('#push'); if (now - msg.t < 2600 && msg.text) { $('#pushT').textContent = msg.text; pe.classList.add('show'); } else pe.classList.remove('show');
   PERF.endFrame(dtMs, performance.now() - tA); PERF.tick(now);
