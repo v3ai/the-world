@@ -249,7 +249,7 @@ function lungShellGeo(tree, heart) {
   }
   const hc = heart ? new V3(...heart.center) : null, hr = heart ? heart.radius * 1.12 : 0, q = new V3();
   for (let i = 0; i < m; i++) {
-    d.set(P.getX(i), P.getY(i), P.getZ(i)); const L = r[i] * 1.1 + .008; q.copy(d).multiplyScalar(L).add(c);
+    d.set(P.getX(i), P.getY(i), P.getZ(i)); const L = r[i] * 1.05 + .004; q.copy(d).multiplyScalar(L).add(c);
     if (hc && q.distanceTo(hc) < hr) q.sub(hc).setLength(hr).add(hc); // the heart is not inside the lung
     P.setXYZ(i, q.x, q.y, q.z);
   }

@@ -235,7 +235,7 @@ FT.organ = {
           for (let i = 0; i < ix.length; i += 3) { t.set(0, 0, 0); for (let k = 0; k < 3; k++) t.add(new V3(pa.getX(ix[i + k]), pa.getY(ix[i + k]), pa.getZ(ix[i + k]))); t.divideScalar(3); if (t.distanceTo(c) < o.R * 1.15 && (t.y < c.y + o.R * 1.05)) keep.push(ix[i], ix[i + 1], ix[i + 2]); }
           if (!keep.length) return; const g = new THREE.BufferGeometry(); g.setAttribute('position', pa.clone()); g.setIndex(keep); g.computeVertexNormals(); g.translate(-c.x, -c.y, -c.z); addMesh(g, 0x9fb7d6, nodeForMesh(src.p.id) || o.organ, 1, src.p.name); });
       }
-      const dotG = new THREE.SphereGeometry(P.radius * .045, 16, 12);
+      const dotG = new THREE.SphereGeometry(P.radius * (o.hotspots.length > 6 ? .026 : .045), 16, 12); // many markers (the brain has 12) are drawn smaller so they do not pile up
       o.hotspots.forEach(hid => {
         const n = NODE[hid]; if (!n || !n.hotspot || !n.hotspot.at) return;
         const at = new V3(...n.hotspot.at); at.x *= mir; if (at.length() > P.radius * 1.6) at.setLength(P.radius * .8);
