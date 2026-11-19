@@ -145,7 +145,7 @@ FT.body = {
     F.readyP = new Promise(res => { F._ready = res; });
     F.chooseHit = cands => bodyChooseHit(F, cands);
     const grp = new THREE.Group(); F.add(grp); F.grp = grp;
-    F.blurb = 'You, as an anatomical model at true size. Click anywhere to see what is under that spot. Zoom in and the skin turns see-through: first muscles, then bones and organs.';
+    F.blurb = 'You, as an anatomical model at true size. Click anywhere to see what is under that spot; double-click a part to look inside it. Zoom in and the skin turns see-through: first muscles, then bones and organs.';
     Promise.all([loadAnatomyIndex(), loadNodes()]).then(([A]) => {
       if (!A || !F.built) return;
       const files = [...new Set(A.parts.map(p => p.file))];
@@ -166,7 +166,8 @@ FT.body = {
             id: p.id, node: nodeForMesh(p.id), part: p, priority: 1, madeOf: 'tissue', title: p.name, op: 1, shown: 1, rank: (rank[p.id] ?? 0) * 1e-4,
             tipFn: h => bodyTip(F, p, h),
             // a large part (skin, a long muscle) is zoomed at the clicked point; a small one at its centre
-            center: h => (h && h.pointLocal && big() ? h.pointLocal.clone() : new V3(...p.center)), radius: h => (h && h.pointLocal && big() ? .05 : p.radius)
+            center: h => (h && h.pointLocal && big() ? h.pointLocal.clone() : new V3(...p.center)), radius: h => (h && h.pointLocal && big() ? .05 : p.radius),
+            extent: () => ({ p: new V3(...p.center), r: p.radius })   // the whole part: what a click frames
           });
           g.userData.main.userData.pickRoot = g; g.userData.main.material.userData.noHL = true;
           if (p.id === 'lung_l' || p.id === 'lung_r') { // the data is the airway tree only: wrap it in a schematic lung outline (see lungShellGeo)
@@ -393,6 +394,7 @@ FT.tissue = {
     const n = NODE[o.node];
     F.info = n; F.name = n ? n.title : nodeTitle(o.node);
     F.blurb = n ? n.summary : 'Tissue: cells of a few kinds working together.';
+    F.note = 'An illustration of this kind of tissue, not a microscope image: the shapes and the arrangement of the cells are simplified.';
     F.spawn = (T, hint) => { const id = hint && hint.obj && hint.obj.userData.id || cellId; return new Frame({ type: 'cell', name: nodeTitle(id), unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T.clone(), opts: { type: 'animal', node: id } }); };
   }
 };
@@ -429,9 +431,9 @@ function showBodyNode(id, h) {
   const spec = {
     tag: kindLine(n), title: n.title, figure: '<div class="vzh" id="vizHost"></div>', core: BF && h.stack ? coreHtml(BF, h) : '', track: trackNav(id),
     basics, deeper: L.deeper, expert: L.expert, facts: n.facts,
-    buttons: (h ? `<button class="zoom" id="zoomBtn">${canLook ? 'Look inside' : 'Zoom in'}</button>` : '') + (mo !== undefined ? (mo ? `<button class="zoom alt" id="madeBtn"><span>${mo.label}</span><span>▾</span></button>` : '') : h && n.made_of && n.made_of.length ? `<button class="zoom alt" id="madeBtn"><span>${BF && BF.type === 'body' ? 'Look at its tissue' : 'See what it is made of'}</span><span>▾</span></button>` : '') + (hideable ? `<button class="zoom alt" id="hideBtn">Hide this</button>` : '')
+    buttons: (h ? LOOK_BTNS : '') + (mo !== undefined ? (mo ? `<button class="zoom alt" id="madeBtn">${mo.label}</button>` : '') : h && n.made_of && n.made_of.length && !(BF && BF.type === 'body' && !canLook) ? `<button class="zoom alt" id="madeBtn">${BF && BF.type === 'body' ? 'Look at its tissue' : 'See what it is made of'}</button>` : '') + (hideable ? `<button class="zoom alt" id="hideBtn">Hide this</button>` : '')
       + (n.lab ? `<button class="zoom lab" id="labBtn">${labAvailable(n.lab.id) ? 'Open in the ' : 'Planned: '}${LAB_NAMES[n.lab.id] || n.lab.id}</button>` : '') + (tw && !h ? `<button class="zoom alt" id="whereBtn">Show where it is</button>` : ''),
-    after: (/^lung_[lr]$/.test(id) && (BF && BF.type === 'body' || canLook || (h && h.frame && h.frame.type === 'organ')) ? `<p class="cnote">${LUNG_NOTE}</p>` : '') + (BF && BF.type === 'body' && mo === undefined && n.made_of && n.made_of.length && !canLook ? `<p class="cnote">There is no cut-open view of this part yet. "Look at its tissue" shows an illustration of the kind of tissue it is made of, not a microscope image.</p>` : ''),
+    after: (/^lung_[lr]$/.test(id) && (BF && BF.type === 'body' || canLook || (h && h.frame && h.frame.type === 'organ')) ? `<p class="cnote">${LUNG_NOTE}</p>` : '') + (BF && BF.type === 'body' && mo === undefined && n.made_of && n.made_of.length && !canLook ? `<p class="cnote">There is no cut-open view of this part yet. "Look inside" (or a double click) shows an illustration of the kind of tissue it is made of, not a microscope image.</p>` : ''),
     made: (n.parts && n.parts.length ? '<div class="rs">Parts</div>' + chips(n.parts) : '') + (n.made_of && n.made_of.length ? (n.parts && n.parts.length ? '<div class="rs">Made of</div>' : '') + chips(n.made_of) : ''),
     part: chips(n.parents),
     how: n.processes && n.processes.length ? chips(n.processes, 'chip pr', 'data-p') : '',
@@ -445,7 +447,7 @@ function showBodyNode(id, h) {
   };
   openPanel(cardHtml(spec), { key: 'node:' + id, reopen: () => showBodyNode(id, h) });
   mountViz($('#vizHost'), id); wireTrackNav();
-  const zb = $('#zoomBtn'); if (zb) zb.onclick = () => { const ch = h.frame.children.find(c => c.type === 'organ' && c.opts.organ === id); if (ch) flyTo(ch, new V3(), ch.opts.R * 2.2); else zoomIntoHit(h); };
+  wireLookBtns(h);
   const mb = $('#madeBtn'); if (mb && mo) mb.onclick = () => { closeInfo(); mo.go(); };
   else if (mb) mb.onclick = () => { closeInfo(); const f = tissueFrame(n.made_of[0], h.pointLocal || h.frame.C, id); f.dynamic = true; f.keep = performance.now() + 60000; h.frame.addChild(f); f.ensure(); flyTo(f, new V3(), 4e-4); };
   if (BF && h.stack) wireCore(BF, h);
@@ -474,10 +476,10 @@ function startProcess(id) {
   PROC.active = n; PROC.i = 0; renderProc();
 }
 function renderProc() {
-  let el = $('#proc'); if (!el) { el = document.createElement('div'); el.id = 'proc'; el.className = 'glass'; document.body.appendChild(el); }
+  let el = $('#proc'); if (!el) { el = document.createElement('section'); el.id = 'proc'; el.setAttribute('aria-label', 'How it works, step by step'); ($('#procSlot') || document.body).appendChild(el); } // a section of the one panel, above the card
   const n = PROC.active; if (!n) { el.classList.remove('open'); PROC.focus = []; return; }
   const s = n.steps[PROC.i]; PROC.focus = s.focus || [];
-  el.innerHTML = `<div class="ph"><b>${n.title}</b><span>Step ${PROC.i + 1} of ${n.steps.length}</span><button class="x" id="procX" aria-label="Close">×</button></div><h3>${s.title}</h3><p>${s.text}</p><div class="pb"><button id="procP" ${PROC.i ? '' : 'disabled'}>Back</button><div class="dots">${n.steps.map((_, i) => `<i class="${i === PROC.i ? 'on' : ''}"></i>`).join('')}</div><button id="procN">${PROC.i < n.steps.length - 1 ? 'Next step' : 'Finish'}</button></div>`;
+  el.innerHTML = `<div class="ph"><b>${n.title}</b><span>Step ${PROC.i + 1} of ${n.steps.length}</span><button class="x" id="procX" title="Close these steps">Close</button></div><h3>${s.title}</h3><p>${s.text}</p><div class="pb"><button id="procP" ${PROC.i ? '' : 'disabled'}>Back</button><div class="dots">${n.steps.map((_, i) => `<i class="${i === PROC.i ? 'on' : ''}"></i>`).join('')}</div><button id="procN">${PROC.i < n.steps.length - 1 ? 'Next step' : 'Finish'}</button></div>`;
   el.classList.add('open');
   $('#procX').onclick = () => { PROC.active = null; renderProc(); };
   $('#procP').onclick = () => { PROC.i = Math.max(0, PROC.i - 1); renderProc(); };

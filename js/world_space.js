@@ -414,7 +414,8 @@ FT.sun = {
     let cutOn = false, userCut = false; const sg = new V3(1, 1, 1), cutGrp = new THREE.Group(); F.add(cutGrp);
     const rc = THREE.Mesh.prototype.raycast, loc = new V3();
     shell.raycast = function (ray, hits) { const tmp = []; rc.call(shell, ray, tmp); tmp.forEach(h => { loc.copy(h.point).add(F.C); if (!(cutOn && loc.x * sg.x > 0 && loc.y * sg.y > 0 && loc.z * sg.z > 0)) hits.push(h); }); };
-    F.pick(shell, 'sunPhoto', 2); shell.userData.madeOf = 'plasma'; shell.userData.zoomTo = h => { flyTo(F, h.pointLocal.clone(), 1.5e8); }; // to the surface point you chose, to see granules
+    F.pick(shell, 'sunPhoto', 2); shell.userData.madeOf = 'plasma';
+    shell.userData.lookInside = () => { if (cutOn) return false; userCut = true; flyTo(F, new V3(.1, .08, .08), 1.2e9); return 'cut'; }; // a double click (or "Look inside"): the cut-away first; with it open, the plasma at the point (F.spawn)
     const cm = sunCutMat(), faces = [[new V3(0, 1, 0), new V3(0, 0, 1)], [new V3(1, 0, 0), new V3(0, 0, 1)], [new V3(1, 0, 0), new V3(0, 1, 0)]].map(([u, v]) => { const m = new THREE.Mesh(sunQuarter(u, v), cm); m.visible = false; cutGrp.add(m); return m; });
     const layerOf = h => { const p = h.point.clone().add(F.C); const l = sunAt(p.length()).layer; return l === 'core' ? 'sunCore' : l === 'radiative' ? 'sunRadiative' : l === 'convective' ? 'sunConvective' : 'sunPhoto'; };
     faces.forEach(m => { m.userData = { resolve: layerOf, priority: 2.2, madeOf: 'plasma' }; const r0 = m.raycast.bind(m); m.raycast = (ray, hits) => { if (cutOn) r0(ray, hits); }; F.pickables.push(m); });
@@ -631,7 +632,7 @@ FT.earth = {
           gl_FragColor=vec4(col,uOpacity); }`),
     });
     const globe = new THREE.Mesh(new THREE.SphereGeometry(R, 160, 96), mat); spin.add(globe);
-    globe.userData = { priority: 1, zoomTo: h => { flyTo(F, h.pointLocal.clone(), Math.max(cam.D * .35, 3e6)); }, resolve: h => { if (!h || !h.uv || !EARTH_PIX) return 'earth'; const b = biomeAtUV(h.uv.x, h.uv.y); return b === 'ocean' ? 'ocean' : b === 'ice' ? 'ice' : 'land'; } }; F.pickables.push(globe);
+    globe.userData = { priority: 1, /* no interior view of the Earth is built: a double click goes down to the land or sea at that point (F.spawn) */ resolve: h => { if (!h || !h.uv || !EARTH_PIX) return 'earth'; const b = biomeAtUV(h.uv.x, h.uv.y); return b === 'ocean' ? 'ocean' : b === 'ice' ? 'ice' : 'land'; } }; F.pickables.push(globe);
     const clouds = new THREE.Mesh(new THREE.SphereGeometry(R * 1.006, 128, 64), new THREE.MeshStandardMaterial({ map: tex('earth_clouds.png'), transparent: true, depthWrite: false, roughness: 1 })); spin.add(clouds);
     F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.0157, 96, 64), fresnelMat(0x6ab8ff, 3.2, 1.3))); // the glow is drawn about 100 km thick (the conventional edge of space)
     F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.03, 96, 64), haloMat(0x4aa0ff, 2.4)));

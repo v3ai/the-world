@@ -69,7 +69,7 @@
     "An oak leaf is about 10 to 12 centimetres long, with rounded lobes along its sides. Its flat shape gives it a large surface for catching light.",
     "The green colour comes from a molecule called chlorophyll. To see where it sits, we have to look inside."
    ],
-   "notice": "Find one lobed leaf among the branches, click it, and choose \"Look inside the leaf\" on its card.",
+   "notice": "Find one lobed leaf among the branches and double-click it to look inside. (A single click selects it; its card has the same \"Look inside\" button.)",
    "deeper": [
     {
      "label": "Oak leaf",

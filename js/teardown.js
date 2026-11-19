@@ -81,6 +81,7 @@ FT.phone = {
     const ex = { mode: 'auto', k: 0 };
     const sg = seg([['auto', 'Auto'], ['closed', 'Closed'], ['open', 'Exploded']], 'auto', k => ex.mode = k);
     /* a result that targets a part inside the phone (search, a chip, "Show where it is"): open the phone and highlight the part while its card is open */
+    F.lookInside = h => { if ((F.exK || 0) > .5 || ex.mode === 'open') return false; F.showPart(h.id, (h.obj.userData.node || h.id)); return 'cut'; };   // a double click on a part (or "Look inside"): the phone opens to that part; with it open, the next level down (the processor die under the chip, silicon)
     F.showPart = (id, card) => { ex.mode = 'open'; sg.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === 'open')); F.selId = id; F.selCard = card || id; F._selObj = null; };
     F.update = (dt) => {
       if (F.selId) { const sel = infoState && infoState.node === F.selCard ? (F.pickables.find(o => o.userData.id === F.selId) || null) : null; if (sel !== F._selObj) { setHighlight(F._selObj, false); setHighlight(sel, true); F._selObj = sel; if (!sel) F.selId = null; } }

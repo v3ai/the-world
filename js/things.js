@@ -471,6 +471,7 @@ FT.thing = {
     F.update = (dt, t) => thFrameUpdate(F, dt, t);
     F.chooseHit = cands => thChooseHit(F, cands);
     F.cardMadeOf = (h, n) => thCardMadeOf(F, h, n);
+    F.lookInside = h => thLookInside(F, h);   // a double click, or the card's "Look inside" (lookInside, js/engine.js)
     F.spawnD = .006; F.spawn = (T0, hint) => thSpawn(F, T0, hint);
     F.coreIds = () => F.T ? F.T.coreRecs().map(r => r.pd.id) : [];
     F.coreClip = p => !!F.T && F.T.isClipped(p);
@@ -489,7 +490,7 @@ function thBindFrame(F, T, def) {
     F.uiRow = row; row.classList.add('thModes');
     F.cutBtn = actBtn('Turn the cut to face me', () => { T.faceCut(); }); F.cutBtn.style.display = 'none';
     F.showAllBtn = actBtn('Show everything', () => { F.hidden.clear(); F.reveal = null; F.sel = null; toast('Everything is back.'); }); F.showAllBtn.style.display = 'none';
-    F.legend = uiEl(document.createElement('div')); F.legend.className = 'thLegend'; F.legend.style.display = 'none';
+    F.legend = uiEl(document.createElement('div')); F.legend.className = 'thLegend'; F.legend.style.display = 'none'; F.legend.dataset.sec = 'Legend'; F.legend.dataset.secKey = 'legend:' + def.id; F.legend.dataset.secOpen = 'always';   // data-sec: a section of the one panel, not a box over the scene (updateControls, js/engine.js)
   } finally { building = null; }
   uiFrame = null; capFrame = null;
   // pickable parts, following the conventions of the body (userData.part / center / radius / madeOf)
@@ -504,7 +505,9 @@ function thBindFrame(F, T, def) {
       priority: pd.priority ?? (pd.parent ? 2 : 1.5), shown: 0,
       madeOf: pd.deeper ? 'thing' : undefined,
       center: h => (h && h.pointLocal) ? h.pointLocal.clone() : partCenter(),
-      radius: h => Math.max(pd.fly_m !== undefined ? pd.fly_m * k * .5 : Math.min(.015 * u, (pd.radius || .1) * k * 1.2), Math.min((pd.radius || .1) * k * .3, thingR * .2))   /* the smallest distance a double-click goes to: part.fly_m, else the default for a hand-sized thing but no larger than 1.2 radii of a tiny part */
+      radius: h => Math.max(pd.fly_m !== undefined ? pd.fly_m * k * .5 : Math.min(.015 * u, (pd.radius || .1) * k * 1.2), Math.min((pd.radius || .1) * k * .3, thingR * .2)),   /* the smallest distance a flight to the part goes to: part.fly_m, else the default for a hand-sized thing but no larger than 1.2 radii of a tiny part */
+      /* what a click frames: the whole part; for one of a crowd (a leaf, a hair) the point clicked, at the size of one instance */
+      extent: h => rec.instanced || rec.flow ? { p: h && h.pointLocal ? h.pointLocal.clone() : partCenter(), r: thInstSize(T, rec, h) } : { p: partCenter(), r: Math.max((pd.radius || .1) * k, 1e-5) }
     });
     if (rec.instanced) g.userData.resolve = hit => pd.id;
     g.userData.main.userData.pickRoot = g;
@@ -512,7 +515,7 @@ function thBindFrame(F, T, def) {
   }
   for (const g of T.hot) {
     const h = g.userData.hotspot, node = NODE[h.node] ? h.node : null, at = new V3(...h.at).applyMatrix4(T.group.matrix);
-    Object.assign(g.userData, { id: h.id || h.node, node, priority: 4, thing: def.id, frame: F, hotspot: h, madeOf: h.deeper ? 'thing' : undefined, info: { title: h.label || nodeTitle(h.node), tag: 'Marker', body: '' }, center: () => at.clone(), radius: () => (def.radius_m || 1) * k * .05 });
+    Object.assign(g.userData, { id: h.id || h.node, node, priority: 4, thing: def.id, frame: F, hotspot: h, madeOf: h.deeper ? 'thing' : undefined, info: { title: h.label || nodeTitle(h.node), tag: 'Marker', body: '' }, center: () => at.clone(), radius: () => (def.radius_m || 1) * k * .05, extent: () => ({ p: at.clone(), r: (def.radius_m || 1) * k * .12 }) });
     g.userData.main.userData.pickRoot = g; F.pickables.push(g); regMesh(h.node, g);
     const hl = F.label(g, h.label || nodeTitle(h.node), { offset: new V3(0, (def.radius_m || 1) * k * .05, 0) });
     hl.minSizeFn = () => hovered === g || (F.selNode === h.node && !!infoState && infoState.node === h.node);   // a marker's name shows only while it is pointed at (or its card is open): a label above each marker covered its neighbours, and a click on one opened another's card
@@ -536,7 +539,7 @@ function thUpdateControls(F) {
       F.legend.querySelectorAll('.thLg').forEach(b => b.onclick = () => showBodyNode(b.dataset.n, null));
     }
   }
-  F.legend.style.display = lg ? '' : 'none';
+  F.legend.style.display = lg ? '' : 'none'; if (lg) F.legend.dataset.sec = lg.title || 'Legend';
 }
 const _thV = new V3(), _thOff = new V3();
 // the Roots view makes the park's ground see-through (and hides the grass) so the roots can be seen below it
@@ -702,6 +705,35 @@ const TH_DEEP_D = { liquid: 5e-9, crystal: 4e-9, mol: 2.5e-9, cell: 4e-5, tissue
 function thGoDeeper(F, h, d, dflt) {
   closeInfo(); const p = h && h.pointLocal ? h.pointLocal.clone() : new V3(); const f = thDeepFrame(d, p, dflt, F.unit); if (!f) return;
   f.dynamic = true; f.keep = performance.now() + 60000; F.addChild(f); f.ensure(); flyTo(f, new V3(), d.D || TH_DEEP_D[d.type] || 4e-9);
+}
+/* the size (frame units) of the one instance that was clicked, for framing it: the instance's scale times its mesh's radius */
+const _thIM = new THREE.Matrix4(), _thIS = new V3();
+function thInstSize(T, rec, h) {
+  const m = h && h.hit && h.hit.object, i = h && h.hit ? h.hit.instanceId : undefined;
+  if (m && m.isInstancedMesh && i !== undefined && m.geometry) { if (!m.geometry.boundingSphere) m.geometry.computeBoundingSphere(); m.getMatrixAt(i, _thIM); _thIS.setFromMatrixScale(_thIM); return Math.max(m.geometry.boundingSphere.radius * Math.max(_thIS.x, _thIS.y, _thIS.z) * T.k, 1e-5); }
+  return null;
+}
+/* A double click on a part of a thing, or its card's "Look inside". First the thing's cut-open view, when it has one near the part and no cut
+   is showing yet: the cut or sample mode whose cut passes nearest the point clicked (the dog's eye opens "Inside the eye", its chest "Inside the
+   heart" or "Cut in half"; the oak's trunk the wood sample). Then the part's own closer view (its `deeper`: a tissue scene, a crystal, a cell).
+   With neither, the engine says that no closer view has been built (notBuilt). */
+function thLookInside(F, h) {
+  const T = F.T; if (!T) return false;
+  const ud = h.obj.userData, rec = T.parts[ud.id], pd = rec && rec.pd, d = ud.hotspot ? ud.hotspot.deeper : pd && pd.deeper;
+  const cur = T.modeId === 'auto' ? null : T.modeDef(T.modeId), cutNow = !!(cur && (cur.cut || cur.pivot));
+  if (!cutNow && !ud.hotspot && h.pointLocal) {
+    const p = h.pointLocal.clone().applyMatrix4(_thIM.copy(T.group.matrix).invert()), R = T.def.radius_m || 1, reach = Math.max((pd && pd.radius) || 0, R * .35);
+    let best = null, bd = reach;
+    for (const m of T.def.modes) {
+      if (!m.cut && !m.pivot) continue;
+      const at = m.cut ? (m.cut.at || (T.def.cut && T.def.cut.at)) : ((T.def.pivots || {})[m.pivot] || {}).at; if (!at) continue;
+      const dd = at.length === 2 ? Math.hypot(at[0] - p.x, at[1] - p.z) : Math.hypot(at[0] - p.x, at[1] - p.y, at[2] - p.z);
+      if (dd < bd - 1e-9) { bd = dd; best = m; }
+    }
+    if (best) { T.setMode(best.id); thUpdateControls(F); toast(`${best.label}: a cut-open view. Double-click a part again to go on in.`); return 'cut'; }
+  }
+  if (d) { thGoDeeper(F, h, d); return 'deeper'; }
+  notBuilt(h); return 'not-built';
 }
 /* the card's "See what it is made of" button: a part's or a marker's own `deeper`; (a frame's cardMadeOf: see CARD_HOOKS in nodes.js) */
 function thCardMadeOf(F, h, n) {

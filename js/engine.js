@@ -391,31 +391,36 @@ function applyFade(f) {
 }
 const _cp = new V3(), _tp = new V3(), _dv = new V3(), _uv = new V3();
 /* The part of the screen that is not under a panel is where the scene's centre of interest belongs. viewOff (pixels) shifts the
-   projection so the camera's target appears in the middle of that free area (card open on the right, Tracks on the left; on a
-   phone the card is a sheet at the bottom). It eases in and out, and everything that projects through f.cam (picking, labels) follows. */
+   projection so the camera's target appears in the middle of that free area (the panel open on the right, Tracks on the left; on a
+   phone the panel is a sheet at the bottom). It eases in and out, and everything that projects through f.cam (picking, labels) follows.
+   freeArea() is that part of the screen, in CSS pixels: between the ruler (or Tracks) and the open panel, below the top controls; on a
+   phone, between the top buttons and the sheet. It is read from layout positions, not from the panel's rectangle while it slides. */
 const viewOff = { x: 0, y: 0 };
 let _voT = performance.now();
+function freeArea() {
+  const A = { l: 0, r: W, t: 0, b: H }, pn = document.getElementById('panel'), open = pn && document.body.classList.contains('panelOpen');
+  const tr = document.getElementById('tracks'), rl = document.getElementById('ruler');
+  if (tr && tr.classList.contains('open') && W > 860) A.l = tr.getBoundingClientRect().right; else if (rl && rl.offsetWidth) A.l = rl.getBoundingClientRect().right;
+  if (W > 860) { A.t = 56; if (open) A.r = Math.min(W, pn.offsetLeft); }
+  else { A.t = 96; if (open) A.b = Math.min(H, pn.offsetTop); }
+  A.tracks = !!(tr && tr.classList.contains('open')); A.panel = !!open;
+  A.cx = (A.l + A.r) / 2; A.cy = (W > 860 ? H / 2 : (A.t + A.b) / 2); A.w = A.r - A.l; A.h = A.b - A.t;
+  return A;
+}
 function updateViewOffset() {
   const now = performance.now(), dt = Math.min(.3, (now - _voT) / 1000); _voT = now; // real time, so it settles in about half a second even at a low frame rate
   let tx = 0, ty = 0;
-  const vis = e => e && e.classList.contains('open') ? e.getBoundingClientRect() : null;
-  const L = vis(document.getElementById('tracks')), I = vis(document.getElementById('info'));
-  if (!L && !I) { /* no panel open: the view is centred as ever */ }
-  else if (W > 860) {
-    let lo = 0, hi = W;
-    if (L) lo = Math.max(lo, L.right); else { const rl = document.getElementById('ruler'); if (rl && rl.offsetWidth) lo = rl.getBoundingClientRect().right; }
-    if (I) hi = Math.min(hi, I.left);
-    tx = (lo + hi) / 2 - W / 2; // the free area's centre, relative to the screen's centre
-    tx = clamp(tx, -W * .3, W * .3);
-  } else if (I) {
-    const top = 96, bot = Math.min(H, I.top);
-    ty = clamp((top + bot) / 2 - H / 2, -H * .3, 0);
-  }
+  const A = freeArea();
+  if (!A.tracks && !A.panel) { /* no panel open: the view is centred as ever */ }
+  else if (W > 860) tx = clamp(A.cx - W / 2, -W * .3, W * .3); // the free area's centre, relative to the screen's centre
+  else if (A.panel) ty = clamp(A.cy - H / 2, -H * .3, 0);
   // setViewOffset moves the window over the full image: a window shifted right shows content that sits further right, so the scene moves left by +x
   const k = 1 - Math.exp(-dt * 9), nx = -tx, ny = -ty;
   viewOff.x += (nx - viewOff.x) * k; viewOff.y += (ny - viewOff.y) * k;
   if (Math.abs(viewOff.x - nx) < .5) viewOff.x = nx; if (Math.abs(viewOff.y - ny) < .5) viewOff.y = ny;
 }
+/* Where the camera's target is drawn on the screen (CSS pixels): the centre of the free area once the shift has settled. */
+function viewCentre() { return { x: W / 2 - viewOff.x, y: H / 2 - viewOff.y }; }
 /* A scene is shifted so that the eye sits at its origin, and three.js takes a hemisphere light's direction (and the direction of a directional light whose target
    is not in the scene) from the light's position in the scene: so the shading used to depend on where the camera was. Here each such light is moved by the opposite
    of the shift, so that its direction is the one the frame gave it (a hemisphere light: up) wherever the camera is. A light that casts a shadow is left alone (its
@@ -712,13 +717,13 @@ canvas.addEventListener('pointermove', e => {
 function endPointer(e, click) {
   if (!pointers.has(e.pointerId)) return;
   pointers.delete(e.pointerId);
-  if (click && pointers.size === 0 && !dragMoved) onClick(e.clientX, e.clientY);
+  if (click && pointers.size === 0 && !dragMoved) onClick(e.clientX, e.clientY, e.pointerType === 'touch', e.timeStamp);
   if (pointers.size < 2) pinchD = 0;
 }
 canvas.addEventListener('pointerup', e => endPointer(e, true));
 canvas.addEventListener('pointercancel', e => endPointer(e, false));
 canvas.addEventListener('pointerleave', () => { mouse.has = false; setHover(null); });
-canvas.addEventListener('dblclick', e => { cancelTour(); const h = pickAt(e.clientX, e.clientY); if (h) zoomIntoHit(h); });
+canvas.addEventListener('dblclick', e => e.preventDefault()); // a double click is recognised in onClick (two clicks close together, mouse or touch); the browser's own event is not used
 ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(t => addEventListener(t, () => { lastInput = performance.now(); }, { capture: true, passive: true })); // any input, anywhere on the page, ends the resting frame rate at once
 let holdZoom = 0;
 function bindHold(el, dir) {
@@ -1003,11 +1008,12 @@ function pickAt(x, y, forZoom) {
 function visibleChain(o) { while (o) { if (!o.visible) return false; o = o.parent; } return true; }
 let hovered = null;
 const _hc = new THREE.Color(.22, .24, .3);
-function setHighlight(obj, on) {
-  if (!obj) return;
-  obj.traverse(o => { const m = o.material; if (!o.isMesh || !m || !m.emissive || m.userData.noHL) return; if (m.userData.baseEm === undefined) m.userData.baseEm = m.emissive.getHex(); if (on) m.emissive.setHex(m.userData.baseEm).add(_hc); else m.emissive.setHex(m.userData.baseEm); });
+function setHighlight(obj, on) { // returns how many materials took the glow
+  if (!obj) return 0; let n = 0;
+  obj.traverse(o => { const m = o.material; if (!o.isMesh || !m || !m.emissive || m.userData.noHL) return; n++; if (m.userData.baseEm === undefined) m.userData.baseEm = m.emissive.getHex(); if (on) m.emissive.setHex(m.userData.baseEm).add(_hc); else m.emissive.setHex(m.userData.baseEm); });
+  return n;
 }
-function setHover(o) { if (o === hovered) return; setHighlight(hovered, false); hovered = o; setHighlight(hovered, true); canvas.style.cursor = o ? 'pointer' : 'grab'; }
+function setHover(o) { if (o === hovered) return; setHighlight(hovered, false); hovered = o; setHighlight(hovered, true); if (typeof selHit !== 'undefined' && selHit && selHit.obj !== o) setHighlight(selHit.obj, true); canvas.style.cursor = o ? 'pointer' : 'grab'; } // the selected thing keeps its glow when the pointer leaves it
 const tipEl = $('#tip');
 const HOVER_REST_MS = 70;
 /* The hover (highlight and tooltip) is worked out once the pointer has moved and then rested for HOVER_REST_MS, or when the view under a
@@ -1023,13 +1029,172 @@ function doHover() {
     if (d) { tipEl.textContent = d.title; tipEl.classList.add('show'); tipEl.style.left = (mouse.x + 14) + 'px'; tipEl.style.top = (mouse.y + 14) + 'px'; } else tipEl.classList.remove('show');
   } else { setHover(null); tipEl.classList.remove('show'); }
 }
-let lastPick = null;
-function onClick(x, y) {
-  const h = pickAt(x, y);
-  if (!h) { closeInfo(); return; }
-  lastPick = h;
+/* ================= CLICK AND DOUBLE-CLICK =================
+   One click (or tap) on a thing selects it: it is highlighted and its card is drawn at once, and the camera flies to frame it once the
+   double-click window (DBL_MS) has passed, so a single click answers at once and a double click never starts two flights. A second click
+   inside the window, near the first, is a double click: it looks inside the thing (lookInside); so is a slower one, up to DBL_LATE_MS,
+   when it lands on the same thing. A click on nothing, or on the sky (isBackdrop: the park's sky dome, the
+   microwave background, which the hover does not name either), deselects and does not move the camera; a double click there does nothing. A drag is not a
+   click (the 6 px threshold in the pointer handlers). The panel's "Look inside" button calls lookInside with the same hit.
+   While the panel is minimised a single click opens it (after the window, so a double click does not); nothing else here does. */
+const DBL_MS = 300, DBL_LATE_MS = 480, DBL_PX = 22, DBL_PX_TOUCH = 40;   // the flight waits DBL_MS; a slower second click (up to DBL_LATE_MS) on the same thing still counts as a double click
+let lastPick = null, clickPend = null, selHit = null, lastClick = null;
+const SKY_IDS = new Set(['air', 'cmb']);   // the park's sky dome and the microwave background: where you click when you click on nothing
+const isBackdrop = h => !!h.obj.userData.backdrop || ((h.obj.userData.priority ?? 1) < 0 && SKY_IDS.has(h.id));
+/* ts: when the click happened (the event's own time stamp), so that two clicks 200 ms apart are a double click even when a slow frame delivers the second one late */
+function onClick(x, y, touch, ts) {
+  const now = ts || performance.now(), lc = lastClick;
+  const near = lc && Math.hypot(x - lc.x, y - lc.y) < (touch ? DBL_PX_TOUCH : DBL_PX);
+  if (near && now - lc.t < DBL_MS) { // the second click of a double click: the thing the first click found
+    if (clickPend) { clearTimeout(clickPend.timer); clickPend = null; } lastClick = null;
+    if (lc.h) lookInside(lc.h); return;
+  }
+  const h0 = pickAt(x, y), h = h0 && !isBackdrop(h0) ? h0 : null;
+  if (near && lc.h && h && h.obj === lc.h.obj && now - lc.t < DBL_LATE_MS) { // a slow double click: the framing flight has only just begun, and the same thing is still under the pointer
+    if (clickPend) { clearTimeout(clickPend.timer); clickPend = null; } lastClick = null; lookInside(selHit && selHit.obj === h.obj ? selHit : lc.h); return;
+  }
+  flushClick();
+  lastClick = { h, x, y, t: now };
+  if (!h) { deselect(); return; }
+  clickThing(h);
+}
+function flushClick() { const cp = clickPend; if (!cp) return; clearTimeout(cp.timer); clickPend = null; if (selHit === cp.h) frameSelected(cp.h); }
+function onLabelClick(h, x, y, ts) {
+  const now = ts || performance.now(), lc = lastClick;
+  if (lc && lc.h && lc.h.obj === h.obj && now - lc.t < DBL_MS) { if (clickPend) { clearTimeout(clickPend.timer); clickPend = null; } lastClick = null; lookInside(lc.h); return; }
+  flushClick(); lastClick = { h, x, y, t: now }; clickThing(h);
+}
+function clickThing(h) {
+  cancelTour(); lastPick = h;
+  selectHit(h);
+  clickPend = { h, timer: setTimeout(() => { const p = clickPend; clickPend = null; if (p && selHit === p.h) { frameSelected(p.h); if (typeof panelShow === 'function') panelShow('click'); } }, DBL_MS) };
+}
+/* select: highlight, card. The card is the thing's own (showInfoFor); the highlight is the frame's own where it has one (the body and things outline
+   the selected part), a soft glow on the object's materials where they can glow, and otherwise a ring drawn round the point (#selMark). */
+function selectHit(h) {
   if (h.obj.userData.onPick) h.obj.userData.onPick(h);
   showInfoFor(h);
+  setSelected(h);
+  if (typeof panelHintDone === 'function') panelHintDone();
+}
+function setSelected(h) {
+  if (selHit && selHit.obj !== (h && h.obj)) setHighlight(selHit.obj, false);
+  selHit = h || null;
+  if (h) { h.glow = setHighlight(h.obj, true) > 0 || !!(h.frame && h.frame.layered); const e = hitExtent(h); h.selP = e.p; }
+  if (hovered && (!h || hovered !== h.obj)) setHighlight(hovered, true);
+}
+function deselect() { if (typeof closeInfo === 'function') closeInfo(); }
+/* The thing's own centre and radius (in its frame's units). r is null for something with no size of its own on screen: a point, a marker
+   that stands for a far smaller thing, one of a crowd of instances. An object may give its own (userData.extent). */
+const _exB = new THREE.Box3(), _exS = new V3();
+function hitExtent(h) {
+  const ud = h.obj.userData, f = h.frame, o = h.obj;
+  if (ud.extent) { const e = ud.extent(h); if (e) return e; }
+  const crowd = o.isPoints || o.isInstancedMesh;
+  if (ud.center && !crowd) { const r = typeof ud.radius === 'function' ? ud.radius(h) : ud.radius; return { p: ud.center(h), r: ud.zoomTo || !r ? null : r }; } // with zoomTo the radius is that of a destination elsewhere
+  if (crowd || !h.hit) return { p: h.pointLocal.clone(), r: null };
+  if (o.isSprite || (o.isMesh && o.material && o.material.visible === false)) return { p: o.getWorldPosition(new V3()).add(f.C), r: null }; // a marker, or an unseen pick target round something too small to hit
+  _exB.setFromObject(o); if (_exB.isEmpty()) return { p: h.pointLocal.clone(), r: null };
+  _exB.getSize(_exS); const r = Math.max(_exS.x, _exS.y, _exS.z) / 2;
+  return isFinite(r) && r > 0 ? { p: _exB.getCenter(new V3()).add(f.C), r } : { p: h.pointLocal.clone(), r: null };
+}
+/* The viewing distance (metres) at which a ball of radius r (frame units) fills about four fifths of the free area. */
+function fitD(f, r) { const A = freeArea(); return r * f.unit / (Math.tan(25 * Math.PI / 180) * Math.max(.2, Math.min(A.w, A.h) / H) * .8); }
+/* Fly to frame the selected thing: its whole extent in the free area. Already framed (its centre near the middle of the free area and its size
+   comfortable): no move. Far larger than the view (the skin, the ground, a wall you are close to): no move either, a click never throws you
+   far back. A thing with no size of its own is brought to the middle at the distance you are at. */
+function frameSelected(h) {
+  const f = h.frame; if (!f || !f.built || !chainOf(cam.A).concat(drawn).includes(f)) return;
+  const e = hitExtent(h), A = freeArea(), c = viewCentre();
+  const v = e.p.clone().sub(f.C).project(f.cam), sx = (v.x + 1) / 2 * W, sy = (1 - v.y) / 2 * H;
+  const off = Math.hypot(sx - c.x, sy - c.y), tol = Math.min(A.w, A.h) * .2;
+  let D = cam.D;
+  if (e.r) { const want = Math.max(fitD(f, e.r), f.floorD || 0, MIN_D * 10); if (want > cam.D * 2.5) return; if (want < cam.D * .62 || want > cam.D * 1.25) D = want; }
+  if (D === cam.D && off < tol && v.z < 1) return;
+  h.framed = { p: e.p, D };
+  flyKeep(f, e.p, D);
+}
+/* a flight that belongs to the open card (framing what was selected, looking inside it): the card stays */
+function flyKeep(frame, p, D, then) { const was = typeof CARD_FRESH !== 'undefined' && CARD_FRESH; if (typeof CARD_FRESH !== 'undefined') CARD_FRESH = true; try { flyTo(frame, p, D, then); } finally { if (typeof CARD_FRESH !== 'undefined') CARD_FRESH = was; } }
+
+/* ================= LOOK INSIDE =================
+   What a double click, and the panel's "Look inside" button, do with a thing. In order of preference:
+     1. the object's own answer:  userData.lookInside(h)   (return false to pass)     the Sun's cut-away, a Standard Model particle, the atom's nucleus
+     2. the frame's own answer:   frame.lookInside(h)      (return false to pass)     a thing's cut view, then the part's closer view; the phone opened to a part
+     3. a cut-open view of it (an organ of the body)
+     4. the frame it stands for:  userData.zoomTo(h)                                  a star, a planet, Sgr A*, the processor on the phone's board
+     5. what the frame says it is made of (cardMadeOf: a part of a thing with a closer view)
+     6. the engine's own descent: frame.spawn(point, hit) builds the next level down at the clicked point (a body part's tissue, a tissue's
+        cell, a cell's DNA or molecules, a molecule's atom, an atom's nucleus, a nucleus's proton or neutron, a proton's quarks)
+     7. a frame that already sits inside the object, at the point (the processor die under the phone's chip, the transistor in the inverter)
+     8. the object's material (userData.madeOf: diveMaterial)
+   If none of these has anything, the camera goes as close as the view allows and the panel says, in these words, "No closer view of
+   this has been built yet" (notBuilt). It never does nothing. Returns what it did, for the tests: {how, frame?}.
+   A view that is a new place (a frame) takes over the panel when the camera arrives: the selection is dropped then (selLeave). */
+let selLeave = null, lastInside = null;
+function lookInside(h, opt) {
+  cancelTour(); if (typeof panelHintDone === 'function') panelHintDone();
+  if (!h || !h.obj || !h.frame || !h.frame.built) return lastInside = { how: 'none' };
+  if (selHit !== h && !(selHit && selHit.obj === h.obj)) selectHit(h); // the card of what you are looking into, until the new place takes over
+  const ud = h.obj.userData, f = h.frame;
+  const enter = (how, frame, p, D) => { selLeave = { frame, key: typeof curCard !== 'undefined' && curCard ? curCard.key : null, t: performance.now() }; flyKeep(frame, p || new V3(), D); return lastInside = { how, frame }; };
+  const same = how => lastInside = { how, frame: f };
+  const before = { A: cam.A, fly };
+  const went = how => { if (fly && fly !== before.fly) { if (fly.frame !== f) selLeave = { frame: fly.frame, key: typeof curCard !== 'undefined' && curCard ? curCard.key : null, t: performance.now() }; return lastInside = { how, frame: fly.frame }; } return same(how); };
+  let r;
+  if (ud.lookInside) { flyKeepDo(() => { r = ud.lookInside(h); }); if (r !== false) return went(typeof r === 'string' ? r : 'own'); }
+  if (f.lookInside) { flyKeepDo(() => { r = f.lookInside(h); }); if (r !== false) return went(typeof r === 'string' ? r : 'frame'); }
+  const og = f.children && ud.node && f.children.find(c => c.enterOnly && c.opts && c.opts.organ === ud.node); // an organ you can see has a cut-open view
+  if (og) return enter('cut', og, new V3(), og.opts.R * 2.2);
+  if (ud.zoomTo) {
+    const st = { fly, T: cam.T.clone(), D: cam.D, A: cam.A }; flyKeepDo(() => { r = ud.zoomTo(h); });
+    // a destination that is where the camera already is (the Moon you have flown to) is no answer: go on to what is inside it
+    const there = fly && fly !== st.fly && fly.frame === st.A && fly.p.distanceTo(st.T) * st.A.unit < st.D * .2 && Math.abs(Math.log(fly.Dg / st.D)) < .35;
+    if (there) fly = st.fly; else if (r !== false) return went('stands-for');
+  }
+  const node = typeof NODE !== 'undefined' && NODE[ud.node || h.id];
+  const mo = f.cardMadeOf && node ? f.cardMadeOf(h, node) : null;
+  if (mo) { flyKeepDo(() => mo.go()); return went('made-of'); }
+  const P = h.pointLocal.clone();
+  if (f.spawn) {
+    let c = f.children.find(c => c.dynamic && c.containsP(P));
+    if (!c) { c = f.spawn(P, { frame: f, obj: h.obj, point: P.clone(), normal: h.normalLocal, id: h.id, hit: h.hit }); if (c) { c.dynamic = true; c.keep = performance.now() + 60000; f.addChild(c); } }
+    if (c) { c.ensure(); return enter('descent', c, c.center ? c.center.clone() : new V3(), frameOverviewD(c)); }
+  }
+  { // a frame that already sits inside the object: the nearest one whose centre the object's extent holds (or that holds the point)
+    const e = hitExtent(h); let best = null, bd = Infinity;
+    for (const c of f.children) { if (c.coRender || c.enterOnly) continue; safePlace(c); const d = c.pos.distanceTo(e.p), d2 = c.pos.distanceTo(P), cr = c.radius === Infinity ? 0 : c.radius * c.unit / f.unit; if ((e.r && d <= e.r * 1.05 && d2 <= Math.max(cr * 2, e.r * .35)) || c.containsP(P)) { if (d2 < bd) { bd = d2; best = c; } } }
+    if (best) { best.ensure(); return enter('inner', best, best.center ? best.center.clone() : new V3(), frameOverviewD(best)); }
+  }
+  if (ud.madeOf && typeof diveMaterial === 'function') { flyKeepDo(() => diveMaterial(h, true)); if (fly && fly !== before.fly) return went('material'); }
+  return notBuilt(h);
+}
+function flyKeepDo(fn) { const was = typeof CARD_FRESH !== 'undefined' && CARD_FRESH; if (typeof CARD_FRESH !== 'undefined') CARD_FRESH = true; try { fn(); } finally { if (typeof CARD_FRESH !== 'undefined') CARD_FRESH = was; } }
+/* a comfortable first view of a frame: its widest landmark if it has one, else a little outside its content */
+function frameOverviewD(f) {
+  const lms = typeof LANDMARKS !== 'undefined' ? LANDMARKS.filter(l => l.frame === f).sort((a, b) => b.D - a.D) : [];
+  if (lms.length) return lms[0].D;
+  const byR = f.radius !== Infinity ? f.radius * f.unit * 2.2 : Infinity, byR1 = f.r1 !== Infinity ? f.r1 * .3 : Infinity;
+  return Math.max(Math.min(byR, byR1, f.r1 !== Infinity ? f.r1 * .8 : Infinity), f.floorD || 0, MIN_D * 10);
+}
+/* Nothing closer exists: go as close as the view allows, and say so in the panel (and in a toast, which is seen when the panel is minimised). */
+function notBuilt(h) {
+  const f = h.frame, e = hitExtent(h);
+  const D = Math.max(f.floorD || 0, (f.spawnD || 0) * 1.5, e.r ? Math.min(fitD(f, e.r) * .45, cam.D) : cam.D * .5, MIN_D * 10);
+  if (D < cam.D * .9 && chainOf(cam.A).concat(drawn).includes(f)) flyKeep(f, e.r ? e.p : h.pointLocal.clone(), D);
+  if (typeof showNotBuilt === 'function') showNotBuilt(h);
+  return lastInside = { how: 'not-built', frame: f };
+}
+/* "Look inside" with nothing selected (the place card's button): the thing in the middle of the free area; with nothing there, the place's own descent at the camera's target. */
+function lookInsidePlace() {
+  const c = viewCentre(), h0 = pickAt(c.x, c.y), h = h0 && !isBackdrop(h0) ? h0 : null;
+  if (h) return lookInside(h);
+  const f = cam.A;
+  if (f.spawn) { const k = f.spawn(cam.T.clone(), null); if (k) { k.dynamic = true; k.keep = performance.now() + 60000; f.addChild(k); k.ensure(); flyTo(k, k.center ? k.center.clone() : new V3(), frameOverviewD(k)); return lastInside = { how: 'descent', frame: k }; } }
+  const ch = f.children.filter(k => !k.coRender && !k.enterOnly).sort((a, b) => a.pos.distanceTo(cam.T) - b.pos.distanceTo(cam.T))[0];
+  if (ch) { ch.ensure(); flyTo(ch, ch.center ? ch.center.clone() : new V3(), frameOverviewD(ch)); return lastInside = { how: 'inner', frame: ch }; }
+  if (typeof showNotBuilt === 'function') showNotBuilt(null);
+  return lastInside = { how: 'not-built', frame: f };
 }
 function objRadiusLocal(obj) {
   if (obj.userData.radius && typeof obj.userData.radius === 'number') return obj.userData.radius;
@@ -1061,7 +1226,7 @@ function addLabelTo(f, obj, text, o = {}) {
   labelLayer.appendChild(el);
   const L = { el, obj, off: o.offset || new V3(), always: !!o.always, maxPx: o.maxPx, minPx: o.minPx };
   f.labels.push(L);
-  el.addEventListener('click', ev => { ev.stopPropagation(); const target = o.pick || obj; const h = { frame: f, obj: target, id: target.userData.id, pointLocal: target.getWorldPosition(new V3()).add(f.C), hit: null }; if (target.userData.onPick) target.userData.onPick(h); showInfoFor(h); });
+  el.addEventListener('click', ev => { ev.stopPropagation(); const target = o.pick || obj; const h = { frame: f, obj: target, id: target.userData.id, pointLocal: target.getWorldPosition(new V3()).add(f.C), hit: null }; onLabelClick(h, ev.clientX, ev.clientY, ev.timeStamp); }); // a label is its thing: one click selects it, two look inside
   return L;
 }
 // labels sit above the canvas: pass the mouse wheel through, so scroll-zoom works over a label too (stopImmediatePropagation: a second forwarder, if any, must not zoom twice)
@@ -1106,9 +1271,14 @@ function seg(items, activeK, onSel) {
 function actBtn(label, onClick) { const b = document.createElement('button'); b.className = 'act'; b.innerHTML = label; b.onclick = onClick; if (building) building.uiEls.push(b); return b; }
 function uiEl(el) { if (building) building.uiEls.push(el); return el; }
 let uiFrame = null;
+/* A frame's interface elements: buttons and selectors go to the control row at the top of the scene; anything that is there to be read
+   (an element with data-sec="its title": "What this picture is", a key, a legend, the Standard Model's panel) becomes a section of the
+   one panel (panelSection, js/engine_ui.js). Nothing a scene builds floats over the view as a second box. */
 function updateControls(f) {
   if (f === uiFrame) return; uiFrame = f;
-  ctrlEl.innerHTML = ''; (f.uiEls || []).forEach(e => ctrlEl.appendChild(e));
+  const secs = document.getElementById('sceneSecs'), sec = typeof panelSection === 'function' && secs;
+  ctrlEl.innerHTML = ''; if (secs) secs.innerHTML = '';
+  (f.uiEls || []).forEach(e => { if (sec && e.dataset && e.dataset.sec !== undefined) secs.appendChild(panelSection(e)); else ctrlEl.appendChild(e); });
 }
 function toast(html, cls = '') {
   const el = document.createElement('div'); el.className = 'toast ' + cls; el.innerHTML = html;

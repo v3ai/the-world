@@ -103,7 +103,7 @@ function startView() {
   cam.A = park; cam.T.set(0, 1.1, 0); cam.D = 7; cam.dir.set(.35, .28, 1).normalize(); cam.up.set(0, 1, 0);
 }
 /* "What is it made of?" — jump straight to the material, wherever you are */
-function diveMaterial(h) {
+function diveMaterial(h, quiet) {   // returns the frame it flies into, or null when there is none for this material (quiet: say nothing then)
   const kind = h.obj.userData.madeOf, F = h.frame, P = h.pointLocal.clone();
   let f = null, D = null;
   const metersPerLocal = F.unit, ud = h.obj.userData;
@@ -124,8 +124,9 @@ function diveMaterial(h) {
   else if (kind === 'protein') { f = new Frame({ type: 'mol', name: 'Example molecule: cysteine, an amino acid (stands in for the protein)', unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: P, opts: { mol: 'aa_cys' } }); D = 3e-9; }
   else if (kind === 'atom') { const c = h.obj.userData.center ? h.obj.userData.center(h) : P; f = atomFrame(h.obj.userData.sym || 'O', c); D = 7e-10; }
   else if (kind === 'quarks') { f = new Frame({ type: 'proton', name: 'Nucleon', unit: 1e-15, radius: 4, r1: 4e-15, pos: h.obj.position.clone(), opts: { kind: h.id } }); D = 3.5e-15; }
-  if (!f) { message('Keep zooming in to see what this is made of.'); return; }
+  if (!f) { if (!quiet) message('Keep zooming in to see what this is made of.'); return null; }
   f.dynamic = true; f.keep = performance.now() + 60000; F.addChild(f); f.ensure();
   flyTo(f, new V3(), D);
+  return f;
 }
 function jumpTo(f, p, D) { chainOf(f).reverse().forEach(x => { x.ensure(); if (x.place) x.place(); }); cam.A = f; cam.T.copy(p || new V3()); cam.D = D; fly = null; zoom.pending = 0; anchored.length = 0; }
