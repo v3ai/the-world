@@ -487,6 +487,7 @@ async function startApp() {
   $('#bTracks').onclick = e => { e.stopPropagation(); openTracks(); };
   $('#libQ').addEventListener('input', e => libSearch(e.target.value));
   $('#libQ').addEventListener('keydown', e => { if (e.key === 'Enter') libPick(0); else if (e.key === 'Escape') { closePops(); canvas.focus(); } });
+  document.querySelectorAll('.pop .px').forEach(b => b.onclick = () => closePops());
   $('#navBack').onclick = navBack; $('#capFold').onclick = () => { capPref = !$('#caption').classList.contains('min'); };
   $('#bLabels').classList.toggle('off', !labelsOn);
   $('#bLabels').onclick = () => { labelsOn = !labelsOn; store.set('labels', labelsOn); $('#bLabels').classList.toggle('off', !labelsOn); };
