@@ -505,8 +505,7 @@ v2frame('park', 'life', () => 1, (F, c) => {
   };
   F.spawn = (T, hint) => {
     const id = hint && hint.id || '';
-    const kind = id === 'human' ? 'skin' : /tree|flower|leaf/.test(id) ? 'leaf' : id === 'pond' ? 'pond' : /air|cloud|bird|sunSky/.test(id) ? 'air' : id === 'bee' ? 'fur' : 'soil';
-    if (id === 'bee' && typeof tissue2Frame === 'function') return tissue2Frame('bee_eye', T);              // a bee opens into its compound eye
+    const kind = id === 'human' ? 'skin' : /tree|flower|leaf/.test(id) ? 'leaf' : id === 'pond' ? 'pond' : /air|cloud|bird|sunSky/.test(id) ? 'air' : 'soil';
     if (kind === 'air') { const n = hint ? hint.point.clone() : T.clone(); return microFrame('air', n); }
     return microFrame(kind, T);
   };

@@ -1,0 +1,225 @@
+{
+ "id": "bee_crop",
+ "title": "Inside the honey stomach",
+ "node": "bee_crop",
+ "blurb": "The wall of the crop and the nectar it carries. Nectar is mostly water with dissolved sugars: sucrose, glucose and fructose. Click a droplet to meet its sugar.",
+ "note": "Schematic. Nectar fills the crop as a liquid, not as separate droplets; droplets are drawn so that the sugars can be told apart. Sizes and numbers are illustrative. The sugars named are the main ones in nectar; their proportions vary from plant to plant.",
+ "bg": "#f3efe6",
+ "center": [
+  0,
+  0,
+  0
+ ],
+ "D_um": 450,
+ "labels": [
+  {
+   "text": "Sucrose",
+   "at": [
+    -170,
+    90,
+    60
+   ],
+   "pop": "sucrose"
+  },
+  {
+   "text": "Glucose",
+   "at": [
+    -170,
+    60,
+    60
+   ],
+   "pop": "glucose"
+  },
+  {
+   "text": "Fructose",
+   "at": [
+    -170,
+    30,
+    60
+   ],
+   "pop": "fructose"
+  },
+  {
+   "text": "Crop wall: thin lining and living cells",
+   "at": [
+    -170,
+    -40,
+    60
+   ],
+   "pop": "crop_cell"
+  }
+ ],
+ "populations": [
+  {
+   "id": "lining",
+   "name": "Inner lining of the crop (cuticle)",
+   "node": "bee_crop",
+   "shape": "rbox",
+   "size": [
+    380,
+    3,
+    120
+   ],
+   "color": "#d9c07a",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       -12,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "crop_cell",
+   "name": "Cell of the crop wall",
+   "node": "bee_crop",
+   "shape": "rbox",
+   "size": [
+    28,
+    18,
+    28
+   ],
+   "color": "#cfe0b8",
+   "opacity": 0.65,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -180,
+     -34,
+     -50
+    ],
+    "n": [
+     13,
+     1,
+     4
+    ],
+    "step": [
+     29,
+     1,
+     29
+    ]
+   }
+  },
+  {
+   "id": "sucrose",
+   "name": "Sucrose droplet",
+   "node": "bee_nectar",
+   "shape": "ellipsoid",
+   "size": [
+    30,
+    30,
+    30
+   ],
+   "color": "#f6dc7a",
+   "opacity": 0.8,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "random",
+    "n": 9,
+    "min": [
+     -170,
+     10,
+     -45
+    ],
+    "max": [
+     170,
+     120,
+     45
+    ],
+    "gap": 4,
+    "seed": 3
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "sucrose",
+    "name": "Sucrose",
+    "button": "See the molecule: sucrose"
+   }
+  },
+  {
+   "id": "glucose",
+   "name": "Glucose droplet",
+   "node": "bee_nectar",
+   "shape": "ellipsoid",
+   "size": [
+    26,
+    26,
+    26
+   ],
+   "color": "#f3c26a",
+   "opacity": 0.8,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "random",
+    "n": 7,
+    "min": [
+     -170,
+     10,
+     -45
+    ],
+    "max": [
+     170,
+     120,
+     45
+    ],
+    "gap": 4,
+    "seed": 8
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "glucose_alpha",
+    "name": "Glucose",
+    "button": "See the molecule: glucose"
+   }
+  },
+  {
+   "id": "fructose",
+   "name": "Fructose droplet",
+   "node": "bee_nectar",
+   "shape": "ellipsoid",
+   "size": [
+    26,
+    26,
+    26
+   ],
+   "color": "#eda35c",
+   "opacity": 0.8,
+   "ink": 1,
+   "priority": 3,
+   "arrange": {
+    "kind": "random",
+    "n": 7,
+    "min": [
+     -170,
+     10,
+     -45
+    ],
+    "max": [
+     170,
+     120,
+     45
+    ],
+    "gap": 4,
+    "seed": 12
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "fructose",
+    "name": "Fructose",
+    "button": "See the molecule: fructose"
+   }
+  }
+ ]
+}
