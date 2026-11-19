@@ -789,7 +789,7 @@ function pkInstHit(im, i, rc, out) { // the exact test of one instance, as three
   for (let k = 0; k < _pkTmp.length; k++) { const h = _pkTmp[k]; h.instanceId = i; h.object = im; out.push(h); }
   _pkTmp.length = 0;
 }
-const _pkStack = new Int32Array(512), _pkCand = [], PK_INST_HITS = 4;
+const _pkStack = new Int32Array(512), _pkCand = [], PK_INST_HITS = 4, _pkIM = new THREE.Matrix4(), _pkRay2 = new THREE.Ray();
 /* An instanced crowd is tested nearest instance first, and the test stops once four hits that are not cut away have been found and
    no remaining instance can be nearer than the last of them. A ray along a dog's back crosses the bounding spheres of hundreds of
    hairs; every pick rule in the app needs only the nearest hit of a part that is showing and not clipped (thChooseHit, the core
@@ -825,13 +825,16 @@ THREE.InstancedMesh.prototype.raycast = function (rc, out) {
   if (m <= PK_INST_HITS * 2) { for (let k = 0; k < m; k++) pkInstHit(this, C[k * 2], rc, out); return; }
   // many candidates: nearest first
   const ord = new Array(m); for (let k = 0; k < m; k++) ord[k] = k; ord.sort((p, q) => C[p * 2 + 1] - C[q * 2 + 1]);
-  const planes = this.material.clippingPlanes, base = out.length; let good = 0, far = -Infinity;
+  const planes = this.material.clippingPlanes, g = this.geometry; if (g.boundingBox === null) g.computeBoundingBox(); const gbox = g.boundingBox; let good = 0, far = -Infinity;
   for (let k = 0; k < m; k++) {
     const i = C[ord[k] * 2], te = C[ord[k] * 2 + 1];
     if (good >= PK_INST_HITS) { // can this instance still hold a nearer hit than the ones found? (its sphere's entry point, measured in the world)
       _pkV.copy(_pkRay.direction).multiplyScalar(Math.max(te, 0)).add(_pkRay.origin).applyMatrix4(this.matrixWorld);
       if (_pkV.distanceTo(rc.ray.origin) > far) break;
     }
+    // most candidates are near misses (a thin card inside a fat sphere): the ray against the instance's own bounding box first, which costs a fifth of the exact test
+    this.getMatrixAt(i, _pkLM); _pkIM.copy(_pkLM).invert(); _pkRay2.copy(_pkRay).applyMatrix4(_pkIM);
+    if (!_pkRay2.intersectsBox(gbox)) continue;
     const h0 = out.length; pkInstHit(this, i, rc, out);
     for (let j = h0; j < out.length; j++) {
       const h = out[j]; let cut = false; if (planes) for (let q = 0; q < planes.length; q++) if (planes[q].distanceToPoint(h.point) < 0) { cut = true; break; }
