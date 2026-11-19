@@ -205,7 +205,7 @@ N('bee_leg', 'Legs', 'structure', .008, ['bee_thorax'],
   'The muscles that bend each joint are inside the leg, pulling on the inner side of the hard cuticle. Each pair of legs is a little different: the hind leg is the longest and its tibia and first tarsal segment are broad and flat. Her feet have claws to grip rough surfaces and a soft pad that sticks to smooth ones.',
   'The model\'s hind tibia is 2.9 mm long; the measured range is 2.7 to 3.0 mm in one study. Other segment lengths are proportions chosen by eye, and the three leg pairs share one card.',
   [['Legs', '6'], ['Segments', 'coxa, trochanter, femur, tibia, tarsus, pretarsus'], ['Hind tibia', '≈ 2.7 to 3.0 mm']],
-  refs=[R_ART], ext=[W_IM, PRB], parts=['bee_foot', 'bee_pollen_basket', 'bee_antenna_cleaner'], related=['femur_r', 'tibia_r'])
+  refs=[R_ART], ext=[W_IM, PRB], parts=['bee_foot', 'bee_pollen_basket', 'bee_antenna_cleaner'])
 
 N('bee_foot', 'Foot: tarsus, claws and pad', 'structure', 1e-3, ['bee_leg'],
   'The end of each leg: a chain of small tarsal segments, two claws, and a soft pad between them.',
@@ -352,7 +352,7 @@ N('bee_mushroom_bodies', 'Mushroom bodies', 'structure', 1e-3, ['bee_brain'],
   'These are mushroom-shaped clumps of nerve cells in the upper part of the brain. In a bee they are where she learns which flower colours and scents mean food, and where she keeps her memory of them.',
   'Each mushroom body has cups (calyces) that receive input from the senses, and stalks that carry output to lobes. They are large in bees and wasps, which is linked to their rich learning and navigation.',
   'In the model the mushroom bodies are drawn as two cups and a stalk per side, a simplified outline.',
-  [['Role', 'learning and memory']], cert='C2', refs=[R_CNS], ext=[BUZ], related=['hippocampus', 'brain'])
+  [['Role', 'learning and memory']], cert='C2', refs=[R_CNS], ext=[BUZ], related=['brain'])
 
 N('bee_nerve_cord', 'Ventral nerve cord and ganglia', 'structure', .01, ['bee_brain'],
   'A chain of nerve knots (ganglia) joined by paired cords along the belly, from the head to the tip of the abdomen. Each ganglion runs the part of the body it sits in.',
@@ -517,6 +517,17 @@ F['bee_lifespan'] = blocks([('h', 'In the hive: clean, nurse', 15, 25, None), ('
 F['bee_wing_note'] = None
 F.pop('bee_wing_note')
 F['bee_compound_eye']['caption'] = F['bee_compound_eye']['caption']
+import glob
+TITLE = {}
+for fn in glob.glob('data/nodes/*.json'):
+    if fn.endswith('park_bee.json'): continue
+    for x in json.load(open(fn)):
+        if isinstance(x, dict) and 'id' in x: TITLE[x['id']] = x['title']
+# homology links: the node's `related` list is not drawn by the card yet (see the report), so the same links are also written as a fact line in words
+for n in NODES:
+    rel = [r for r in n.get('related', []) if r in TITLE]
+    n['related'] = rel
+    if rel: n['facts'].append(['Compare with the human', '; '.join(TITLE[r] for r in rel) + ' (open these cards from Library search)'])
 for n in NODES:
     if n['id'] not in F: print('no figure for', n['id'])
 os.makedirs('data/nodes', exist_ok=True)

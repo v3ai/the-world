@@ -50,6 +50,10 @@
    [
     "Model",
     "built from the measurements named on each card; proportions otherwise by eye"
+   ],
+   [
+    "Compare with the human",
+    "Brain; Heart; Vision (phototransduction); Muscle contraction (sliding filament); Respiratory system; Digestive system (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -149,7 +153,8 @@
     "title": "Honey bee anatomy (Buzz About Bees)",
     "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_compound_eye",
@@ -196,6 +201,10 @@
    [
     "Colour channels",
     "3: ultraviolet, blue, green"
+   ],
+   [
+    "Compare with the human",
+    "Left eye; Vision (phototransduction); Vision and photoreception (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -269,9 +278,7 @@
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
    }
   ],
-  "related": [
-   "bee_chitin"
-  ]
+  "related": []
  },
  {
   "id": "bee_ommatidium",
@@ -298,6 +305,10 @@
    [
     "Receptor peaks",
     "≈ 344, 436, 544 nm"
+   ],
+   [
+    "Compare with the human",
+    "Vision (phototransduction) (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -345,6 +356,10 @@
    [
     "Types",
     "ultraviolet, blue, green (trichromatic)"
+   ],
+   [
+    "Compare with the human",
+    "Vision (phototransduction); Vision and photoreception (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -389,6 +404,10 @@
    [
     "Chromophore",
     "retinal (from vitamin A)"
+   ],
+   [
+    "Compare with the human",
+    "Vision (phototransduction) (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -457,7 +476,8 @@
     "title": "Honey bee anatomy (Buzz About Bees)",
     "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_antenna",
@@ -507,7 +527,8 @@
     "title": "Honey bee anatomy (Buzz About Bees)",
     "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_mandibles",
@@ -552,9 +573,7 @@
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
    }
   ],
-  "related": [
-   "masseter"
-  ]
+  "related": []
  },
  {
   "id": "bee_proboscis",
@@ -603,7 +622,8 @@
     "title": "Honey bee anatomy (Buzz About Bees)",
     "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_thorax",
@@ -657,7 +677,8 @@
     "title": "Honey bee anatomy (Buzz About Bees)",
     "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_wings",
@@ -710,9 +731,7 @@
     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1312389"
    }
   ],
-  "related": [
-   "bee_flight"
-  ]
+  "related": []
  },
  {
   "id": "bee_hamuli",
@@ -756,7 +775,8 @@
     "title": "Collison 2016: Wings and flight (honey bee wing coupling and wingbeat)",
     "url": "https://static1.squarespace.com/static/522b22f2e4b04879e6b51037/t/6161b093d301b565753367ca/1633792151834/Wings+and+Flight++-++Clarence+Collison++-++2016.pdf"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_wing_hinge",
@@ -797,7 +817,8 @@
     "title": "Insect morphology (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_flight",
@@ -870,7 +891,8 @@
     "url": "https://www.nature.com/articles/35000564"
    }
   ],
-  "did_you_know": "A beat every 4 milliseconds: in the time it takes you to blink, her wings have gone round about 70 times."
+  "did_you_know": "A beat every 4 milliseconds: in the time it takes you to blink, her wings have gone round about 70 times.",
+  "related": []
  },
  {
   "id": "bee_flight_muscles",
@@ -902,6 +924,10 @@
    [
     "Energy",
     "sugar, burned in mitochondria"
+   ],
+   [
+    "Compare with the human",
+    "Skeletal muscle tissue; Muscle contraction (sliding filament); Sarcomere; Mitochondrion (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -962,6 +988,10 @@
    [
     "Mechanism",
     "sliding filaments: actin and myosin"
+   ],
+   [
+    "Compare with the human",
+    "Skeletal muscle fiber; Sarcomere; Muscle contraction (sliding filament) (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -1012,6 +1042,10 @@
    [
     "Product",
     "ATP"
+   ],
+   [
+    "Compare with the human",
+    "Mitochondrion; Cellular respiration (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -1078,7 +1112,8 @@
     "title": "Insect morphology (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_leg",
@@ -1135,10 +1170,7 @@
     "url": "https://jppp.journals.ekb.eg/article_376650_73741fbc699d2723e243700581b85765.pdf"
    }
   ],
-  "related": [
-   "femur_r",
-   "tibia_r"
-  ]
+  "related": []
  },
  {
   "id": "bee_foot",
@@ -1178,7 +1210,8 @@
     "title": "Insect morphology (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_pollen_basket",
@@ -1225,7 +1258,8 @@
     "title": "Western honey bee (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_pollen_load",
@@ -1249,6 +1283,10 @@
    [
     "Adult pollen intake",
     "≈ 3.4 to 4.3 mg per day"
+   ],
+   [
+    "Compare with the human",
+    "Flower patch (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -1309,7 +1347,8 @@
     "title": "Honey bee anatomy (Buzz About Bees)",
     "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_abdomen",
@@ -1361,7 +1400,8 @@
     "title": "Honey bee anatomy (Buzz About Bees)",
     "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_wax_glands",
@@ -1401,7 +1441,8 @@
     "title": "Western honey bee (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_nasonov",
@@ -1441,7 +1482,8 @@
     "title": "Nasonov gland (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Nasonov_gland"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_sting",
@@ -1506,7 +1548,8 @@
     "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
    }
   ],
-  "did_you_know": "Only the workers that sting mammals die. A queen's sting is not barbed, so she can sting again."
+  "did_you_know": "Only the workers that sting mammals die. A queen's sting is not barbed, so she can sting again.",
+  "related": []
  },
  {
   "id": "bee_venom_sac",
@@ -1550,7 +1593,8 @@
     "title": "Bee stingers work like saws to pump venom (Popular Science)",
     "url": "https://www.popsci.com/?p=788953"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_ovaries",
@@ -1590,7 +1634,8 @@
     "title": "Honey bee (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Honey_bee"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_oesophagus",
@@ -1614,6 +1659,10 @@
    [
     "Part of",
     "foregut"
+   ],
+   [
+    "Compare with the human",
+    "Digestive system (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -1665,6 +1714,10 @@
    [
     "Adult sugar need",
     "≈ 4 mg per day"
+   ],
+   [
+    "Compare with the human",
+    "Digestive system; Stomach (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -1729,7 +1782,8 @@
     "title": "Insect morphology (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_midgut",
@@ -1753,6 +1807,10 @@
    [
     "Function",
     "digestion and absorption"
+   ],
+   [
+    "Compare with the human",
+    "Small intestine; Digestive system (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -1801,6 +1859,10 @@
    [
     "Number in insects",
     "2 to over 100 depending on species"
+   ],
+   [
+    "Compare with the human",
+    "Excretory systems and nitrogenous wastes (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -1819,7 +1881,6 @@
    }
   ],
   "related": [
-   "kidney",
    "bio_excretion_nitrogen"
   ]
  },
@@ -1845,6 +1906,10 @@
    [
     "Function",
     "water recovery and waste"
+   ],
+   [
+    "Compare with the human",
+    "Large intestine (colon) (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -1897,6 +1962,10 @@
    [
     "Oxygen",
     "not carried by the blood; supplied by tracheae"
+   ],
+   [
+    "Compare with the human",
+    "Heart; Comparative circulation (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -1963,9 +2032,7 @@
     "url": "https://buzzaboutbees.net/honey-bee-anatomy.html"
    }
   ],
-  "related": [
-   "salivary_glands"
-  ]
+  "related": []
  },
  {
   "id": "bee_brain",
@@ -1993,6 +2060,10 @@
    [
     "Position",
     "head, above the oesophagus"
+   ],
+   [
+    "Compare with the human",
+    "Brain; Organisation of the central nervous system; Neuron (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -2042,6 +2113,10 @@
    [
     "Role",
     "learning and memory"
+   ],
+   [
+    "Compare with the human",
+    "Brain (open these cards from Library search)"
    ]
   ],
   "certainty": "C2",
@@ -2060,7 +2135,6 @@
    }
   ],
   "related": [
-   "hippocampus",
    "brain"
   ]
  },
@@ -2086,6 +2160,10 @@
    [
     "Position",
     "belly (ventral)"
+   ],
+   [
+    "Compare with the human",
+    "Neuron; Spinal cord (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -2137,6 +2215,10 @@
    [
     "Entry",
     "spiracles"
+   ],
+   [
+    "Compare with the human",
+    "Trachea (windpipe); Respiratory system; Gas exchange across animals (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -2207,7 +2289,8 @@
     "title": "Insect morphology (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_air_sacs",
@@ -2247,7 +2330,8 @@
     "title": "Insect morphology (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_cuticle",
@@ -2277,6 +2361,10 @@
    [
     "Main polymer",
     "chitin"
+   ],
+   [
+    "Compare with the human",
+    "Skin; Nematodes and arthropods (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -2346,7 +2434,8 @@
     "title": "Insect morphology (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Insect_morphology"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_hairs",
@@ -2395,7 +2484,8 @@
     "title": "Western honey bee (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_nectar",
@@ -2440,7 +2530,8 @@
     "title": "Western honey bee (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_honey",
@@ -2495,7 +2586,8 @@
     "title": "Honey bee (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Honey_bee"
    }
-  ]
+  ],
+  "related": []
  },
  {
   "id": "bee_vision",
@@ -2526,6 +2618,10 @@
    [
     "Red",
     "no red receptor"
+   ],
+   [
+    "Compare with the human",
+    "Vision (phototransduction); Vision and photoreception (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -2605,7 +2701,8 @@
     "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
    }
   ],
-  "did_you_know": "The dance is performed in the dark on a vertical comb, so \"up\" stands for \"toward the sun\"."
+  "did_you_know": "The dance is performed in the dark on a vertical comb, so \"up\" stands for \"toward the sun\".",
+  "related": []
  },
  {
   "id": "bee_colony",
@@ -2643,6 +2740,10 @@
    [
     "Winter cluster",
     "centre ≈ 27 °C, edge ≈ 8 to 9 °C"
+   ],
+   [
+    "Compare with the human",
+    "Learning, foraging and social behaviour; Plant–animal interaction networks (open these cards from Library search)"
    ]
   ],
   "certainty": "C1",
@@ -2715,6 +2816,7 @@
     "title": "Western honey bee (Wikipedia)",
     "url": "https://en.wikipedia.org/wiki/Western_honey_bee"
    }
-  ]
+  ],
+  "related": []
  }
 ]
