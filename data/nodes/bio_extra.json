@@ -21,7 +21,7 @@
   "layers": {
    "basics": "Genomes range from ≈ 160 kb in small bacterial symbionts to > 100 Gb in some plants. Bacteria have compact, gene-dense genomes; eukaryotes carry large amounts of noncoding DNA.",
    "deeper": "The \"C-value paradox\" notes that genome size does not track organismal complexity: onions have ≈ 5× more DNA than humans.",
-   "expert": "Genome size correlates with cell size and division time and is shaped by transposon expansion and drift (Lynch). Human genome: ≈ 1.5% coding, ≈ 45% transposon-derived, ≈ 8% from retroviral insertions."
+   "expert": "Genome size correlates with cell size and division time, and one influential view (Lynch) holds that it is shaped largely by transposon expansion and drift. Human genome: ≈ 1.5% coding and ≈ 45% transposon-derived, including ≈ 8% from retroviral (LTR) elements."
   },
   "facts": [
    [
@@ -33,7 +33,10 @@
     "≈ 4.6 Mb"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How much of the variation in genome size is due to drift and how much to selection is still debated."
+  ],
   "refs": [
    [
     "BIO",
@@ -72,9 +75,9 @@
   ],
   "summary": "The small genome inside mitochondria.",
   "layers": {
-   "basics": "Mitochondria carry their own circular DNA, inherited almost entirely from the mother. Human mtDNA codes for 13 proteins, 22 tRNAs and 2 rRNAs.",
+   "basics": "Mitochondria carry their own circular DNA, inherited almost entirely from the mother (rare paternal transmission has been reported but is contested). Human mtDNA codes for 13 proteins, 22 tRNAs and 2 rRNAs.",
    "deeper": "Cells hold many copies; a mix of normal and mutant copies is called heteroplasmy. Mitochondrial diseases appear when mutant copies exceed a threshold (often ≈ 60–90%).",
-   "expert": "mtDNA has a higher mutation rate (≈ 10–20× nuclear) and slightly different genetic code. mtDNA is used for maternal-lineage studies and ancient DNA (e.g., Neanderthal mtDNA)."
+   "expert": "mtDNA mutates roughly 10 times faster than nuclear DNA in pedigree studies (the ratio varies with region and method), and it uses a slightly different genetic code. mtDNA is used for maternal-lineage studies and ancient DNA (e.g., Neanderthal mtDNA)."
   },
   "facts": [
    [
@@ -92,11 +95,6 @@
     "BIO",
     "4.3",
     "4-3-eukaryotic-cells"
-   ],
-   [
-    "BIO",
-    "13.2",
-    "13-2-chromosomal-basis-of-inherited-disorders"
    ]
   ],
   "kn": [
@@ -127,7 +125,7 @@
   "layers": {
    "basics": "Riboswitches are RNA segments in mRNAs that change shape when they bind a small molecule, turning a gene on or off. Ribozymes are RNAs that act as enzymes.",
    "deeper": "Examples: the thiamine pyrophosphate riboswitch in bacteria; self-splicing introns and RNase P. Cech and Altman won the 1989 Nobel.",
-   "expert": "Riboswitch aptamers reach nanomolar affinity and discriminate close analogues. They are targets for antibiotics and support the RNA-world idea that RNA once combined genotype and phenotype roles."
+   "expert": "Riboswitch aptamers reach nanomolar affinity and discriminate close analogues. They are targets for antibiotics and are cited as evidence for the RNA-world idea that RNA once combined genotype and phenotype roles."
   },
   "facts": [
    [
@@ -139,12 +137,15 @@
     "> 50"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Whether an RNA world preceded DNA and protein life is a hypothesis, not established."
+  ],
   "refs": [
    [
     "BIO",
-    "16.5",
-    "16-5-eukaryotic-post-transcriptional-gene-regulation"
+    "16.2",
+    "16-2-prokaryotic-gene-regulation"
    ]
   ],
   "kn": [
@@ -176,16 +177,16 @@
   "layers": {
    "basics": "The ribosome assembles at a start codon, adds amino acids one by one as tRNAs match codons, and stops at a stop codon.",
    "deeper": "Initiation uses Shine–Dalgarno (bacteria) or the 5′ cap and scanning (eukaryotes). Elongation cycles through A-site binding, peptide bond formation and translocation.",
-   "expert": "EF-Tu delivers tRNAs and GTP hydrolysis proofreads; error rate ≈ 10⁻⁴ per codon. Release factors recognise stop codons. Polysomes allow many ribosomes per mRNA."
+   "expert": "EF-Tu delivers tRNAs and GTP hydrolysis proofreads; error rate ≈ 10⁻³–10⁻⁴ per codon. Release factors recognise stop codons. Polysomes allow many ribosomes per mRNA."
   },
   "facts": [
    [
     "Translation error rate",
-    "≈ 10⁻⁴ per codon"
+    "≈ 10⁻³–10⁻⁴ per codon"
    ],
    [
     "Ribosomes per polysome",
-    "≈ 5–10"
+    "several to dozens, depending on mRNA length"
    ]
   ],
   "certainty": "C1",
@@ -232,7 +233,7 @@
   "summary": "Enzymes that read and rewrite chromatin.",
   "layers": {
    "basics": "Writer enzymes add marks to histones, eraser enzymes remove them and reader proteins recognise them, so chromatin can be opened or closed.",
-   "deeper": "ATP-driven remodelers slide or evict nucleosomes. Together they make genes accessible to transcription machinery.",
+   "deeper": "ATP-driven remodelers use the energy of ATP to slide nucleosomes along DNA or evict them, exposing or hiding promoters.",
    "expert": "The \"histone code\" hypothesis proposes combinatorial marks encode regulatory states; how instructive versus consequential marks are is debated. Polycomb and Trithorax complexes maintain repressed and active states."
   },
   "facts": [
@@ -241,8 +242,8 @@
     "SWI/SNF, ISWI, CHD, INO80"
    ],
    [
-    "Histone acetyltransferases",
-    "writers of H3K27ac"
+    "H3K27ac writers",
+    "p300/CBP (histone acetyltransferases)"
    ]
   ],
   "certainty": "C2",
@@ -284,17 +285,17 @@
   "summary": "Using genetics to inform health decisions.",
   "layers": {
    "basics": "Genetic tests check for carrier status, risk of disease, or conditions in embryos and newborns. Counsellors explain what the results mean.",
-   "deeper": "Newborn screening tests for dozens of treatable conditions (PKU, CF). Polygenic scores give modest risk predictions for common diseases.",
+   "deeper": "Newborn screening tests for a set of treatable conditions (for example PKU and CF), and the list differs between countries and states. Polygenic scores give modest risk predictions for common diseases.",
    "expert": "Test performance (sensitivity, specificity, PPV) depends on prevalence; variants of uncertain significance (VUS) are common. Ethical issues include privacy, discrimination and embryo selection."
   },
   "facts": [
    [
     "PKU newborn screening",
-    "since 1960s"
+    "since the 1960s (Guthrie blood-spot test)"
    ],
    [
-    "Typical VUS rate in panel tests",
-    "≈ 10–40%"
+    "VUS rate in multigene cancer panels",
+    "≈ 6% (BRCA1/2 only) to ≈ 32% (BRCA1/2 plus more than 10 genes) in one cohort; rises with panel size"
    ]
   ],
   "certainty": "C1",
@@ -335,8 +336,8 @@
   ],
   "summary": "Separating genes from environment.",
   "layers": {
-   "basics": "Identical twins share all genes; fraternal twins share half. Comparing them estimates how much of a trait's variation is genetic.",
-   "deeper": "Falconer's formula h² ≈ 2(r_MZ − r_DZ). Twin studies suggest high heritability for height and moderate for many behaviours.",
+   "basics": "Identical twins share essentially all their DNA variants; fraternal twins share, on average, half of the variants that differ between people. Comparing them estimates how much of a trait's variation is genetic.",
+   "deeper": "Falconer's formula h² ≈ 2(r_MZ − r_DZ) estimates heritability from the identical-twin (MZ) and fraternal-twin (DZ) correlations; it describes variance in one population, not any individual. Twin studies suggest high heritability for height and moderate for many behaviours.",
    "expert": "Assumptions (equal environments, no assortative mating) can fail; gene–environment correlation and interaction complicate interpretation. Molecular methods (GREML, GWAS) now complement twin designs."
   },
   "facts": [
@@ -349,15 +350,12 @@
     "≈ 0.9"
    ]
   ],
-  "formula": "h² ≈ 2(r_MZ − r_DZ)",
-  "certainty": "C1",
-  "refs": [
-   [
-    "BIO",
-    "19.3",
-    "19-3-adaptive-evolution"
-   ]
+  "formula": "h² ≈ 2(r_MZ − r_DZ), valid only if genetic effects are additive, MZ and DZ twins share environments equally and mating is random",
+  "certainty": "C2",
+  "open_questions": [
+   "Why molecular (SNP-based) heritability estimates are often lower than twin-based estimates is still being worked out."
   ],
+  "refs": [],
   "where": "place:dna"
  },
  {
@@ -482,17 +480,13 @@
   "summary": "Defensive and attractive chemicals.",
   "layers": {
    "basics": "Plants make compounds not needed for basic growth but useful for defence and signalling: caffeine, nicotine, morphine, capsaicin and pigments.",
-   "deeper": "Many human medicines come from plants (aspirin, taxol, artemisinin, digitoxin).",
-   "expert": "Three main classes: terpenoids, phenolics and alkaloids. Metabolic gene clusters and coevolutionary arms races with herbivores shape diversity; ≈ 200,000 plant natural products are known."
+   "deeper": "Many medicines began as plant compounds: willow salicin led to aspirin, Pacific yew gave taxol, sweet wormwood gave artemisinin and foxglove gave digitoxin. Today taxol is made by semi-synthesis or cell culture.",
+   "expert": "Three main classes: terpenoids, phenolics and alkaloids. Metabolic gene clusters and coevolutionary arms races with herbivores shape diversity; a very large number of plant natural products are known."
   },
   "facts": [
    [
-    "Plant natural products",
-    "≈ 200,000"
-   ],
-   [
-    "Taxol source",
-    "Pacific yew bark"
+    "Taxol, original source",
+    "Pacific yew bark (now semi-synthesis or cell culture)"
    ]
   ],
   "certainty": "C1",
@@ -542,21 +536,24 @@
   ],
   "summary": "Drought, cold, salt and pathogens.",
   "layers": {
-   "basics": "Under drought, roots signal leaves, hormone abscisic acid builds up and stomata close to save water.",
+   "basics": "Under drought, the plant senses falling water status, the hormone abscisic acid builds up and stomata close to save water. Whether the key signal comes mainly from the roots or from the leaf's own water status is still debated.",
    "deeper": "Plants also respond to cold with antifreeze proteins and to salt by sequestering ions in vacuoles.",
    "expert": "Osmolytes (proline, sucrose) lower water potential; heat shock proteins protect proteins. Breeding and engineering of stress tolerance is a major agricultural goal under climate change."
   },
   "facts": [
    [
-    "ABA rise in drought",
-    "≈ 10–30×"
+    "Leaf ABA rise under water stress",
+    "many-fold; varies widely with species, tissue and stress level"
    ],
    [
-    "Wilting point",
-    "≈ −1.5 MPa"
+    "Permanent wilting point (conventional, crops)",
+    "≈ −1.5 MPa; some species tolerate much lower"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Whether the main drought signal to the leaves is carried from the roots or arises from the leaf's own hydraulics is still being worked out."
+  ],
   "refs": [
    [
     "BIO",
@@ -592,7 +589,7 @@
   "layers": {
    "basics": "Farmers selected wild plants over ≈ 10,000 years to make crops like wheat, rice and maize with larger seeds and less shattering.",
    "deeper": "Modern breeding uses crosses, mutation breeding, marker-assisted selection and genome editing. Green Revolution dwarf wheat boosted yields.",
-   "expert": "Domestication syndrome genes (e.g., teosinte branched1 in maize, Rht in wheat) were identified by QTL mapping. Crop diversity narrows risk (Irish potato famine, banana TR4)."
+   "expert": "Genes behind domestication traits, such as teosinte branched1 in maize, were located by QTL mapping. The Green Revolution Rht genes of wheat encode DELLA proteins, which restrain growth. Low genetic diversity raises risk, as in the Irish potato famine and in banana disease TR4 on Cavendish clones."
   },
   "facts": [
    [
@@ -600,17 +597,12 @@
     "≈ 9,000 y ago (Mexico)"
    ],
    [
-    "Rice, wheat, maize share of calories",
-    "≈ 50%"
+    "Crops dominating world food supplies",
+    "wheat, rice and maize (FAO data, Khoury et al. 2014)"
    ]
   ],
   "certainty": "C1",
   "refs": [
-   [
-    "BIO",
-    "32.3",
-    "32-3-asexual-reproduction"
-   ],
    [
     "COB",
     "10.2",
@@ -649,12 +641,12 @@
   },
   "facts": [
    [
-    "Crop losses to pests and disease",
-    "≈ 20–40%"
+    "Crop losses to pests and diseases",
+    "up to ≈ 40% of food crops per year (FAO)"
    ],
    [
-    "Rust spore travel",
-    "continents"
+    "Wheat stem rust Ug99",
+    "first found in Uganda (1998); spread across Africa to the Middle East"
    ]
   ],
   "certainty": "C1",
@@ -698,12 +690,12 @@
   "layers": {
    "basics": "Many plants have extra sets of chromosomes. Bread wheat has six sets and strawberries have eight.",
    "deeper": "Polyploidy can instantly create new species and often gives larger organs; breeders use colchicine to double chromosomes.",
-   "expert": "Allopolyploids combine genomes of two species (e.g., Brassica napus). Roughly 30% of living plant species are recent polyploids and all flowering plants show ancient duplications."
+   "expert": "Allopolyploids combine genomes of two species (e.g., Brassica napus). Roughly 35% of vascular plant species in sampled genera are polyploid, and about 15% of flowering-plant speciation events (31% in ferns) involved an increase in ploidy. All flowering plants show ancient duplications."
   },
   "facts": [
    [
-    "Polyploid fraction of plants",
-    "≈ 30%"
+    "Polyploid species, vascular plants (sampled genera)",
+    "≈ 35% (Wood et al. 2009)"
    ],
    [
     "Wheat ploidy",
@@ -750,16 +742,16 @@
   "layers": {
    "basics": "Arachnids (spiders, scorpions, mites, ticks) have eight legs and two body regions. Crustaceans (crabs, shrimp, barnacles) mostly live in water and have two pairs of antennae.",
    "deeper": "Ticks and mites spread diseases; krill form a keystone food source in the Southern Ocean.",
-   "expert": "Spider silk is a protein with tensile strength ≈ 1 GPa. Antarctic krill biomass is estimated at 100–500 million tonnes. Pancrustacean phylogeny places insects within crustaceans."
+   "expert": "Spider silk is a protein with tensile strength ≈ 1 GPa. Antarctic krill biomass estimates depend on method and period: net-based data gave about 379 million tonnes as a 1926–2004 mean, and about 133 million tonnes for January–February 2000. Pancrustacean phylogeny places insects within crustaceans."
   },
   "facts": [
    [
-    "Spider species",
-    "≈ 51,000"
+    "Described spider species (World Spider Catalog, v27)",
+    "≈ 54,000"
    ],
    [
-    "Krill biomass",
-    "≈ 100–500 Mt"
+    "Antarctic krill biomass (net-based estimates)",
+    "≈ 133–379 Mt"
    ]
   ],
   "certainty": "C1",
@@ -797,8 +789,8 @@
   "summary": "Life on and in other animals.",
   "layers": {
    "basics": "Parasites such as tapeworms, flukes and roundworms live in hosts and take nutrients. Some have complex life cycles with multiple hosts.",
-   "deeper": "About 1.5 billion people are infected with soil-transmitted worms. Schistosomiasis affects ≈ 240 million.",
-   "expert": "Parasites make up a large share of biodiversity, perhaps 40% of animal species. They manipulate host behaviour and immune responses; the hygiene hypothesis links reduced helminth exposure to allergy risk (still debated)."
+   "deeper": "About 1.5 billion people are infected with soil-transmitted worms. At least 253.7 million people needed preventive treatment for schistosomiasis in 2024 (WHO).",
+   "expert": "Parasites may make up a large share of animal species, but this is poorly measured because most are undescribed; one estimate puts helminth species of vertebrates alone at 75,000–300,000. They manipulate host behaviour and immune responses; the hygiene hypothesis links reduced helminth exposure to allergy risk (still debated)."
   },
   "facts": [
    [
@@ -806,8 +798,8 @@
     "≈ 1.5 billion"
    ],
    [
-    "Schistosomiasis",
-    "≈ 240 million"
+    "Schistosomiasis, people needing preventive treatment (2024)",
+    "≥ 253.7 million"
    ]
   ],
   "certainty": "C1",
@@ -850,7 +842,7 @@
   "layers": {
    "basics": "Flight evolved independently in insects, pterosaurs, birds and bats. Each used different wing structures.",
    "deeper": "Feathered dinosaurs show feathers came before flight; Archaeopteryx (≈ 150 Ma) shows a mix of reptile and bird features.",
-   "expert": "Hypotheses for bird flight origin include ground-up (running) and trees-down (gliding); evidence from wing-assisted incline running supports a mix. Flight requires high power-to-weight and efficient lungs."
+   "expert": "Hypotheses for bird flight origin include ground-up (running) and trees-down (gliding); wing-assisted incline running by living ground birds is usually cited as evidence for a ground-up route, while gliding fossils support a trees-down route, and the question stays open. Flight requires high power-to-weight and efficient lungs."
   },
   "facts": [
    [
@@ -858,8 +850,8 @@
     "≈ 150 Ma"
    ],
    [
-    "Independent origins of flight",
-    "4 (vertebrates + insects)"
+    "Independent origins of flight (surviving lineages and pterosaurs)",
+    "4: insects, pterosaurs, birds, bats"
    ]
   ],
   "certainty": "C2",
@@ -1012,12 +1004,12 @@
   },
   "facts": [
    [
-    "Max efficiency concurrent",
+    "Maximum fraction transferred, concurrent flow",
     "50%"
    ],
    [
-    "Human medullary osmolality",
-    "up to ≈ 1,200 mOsm/L"
+    "Human renal medulla maximum osmolality",
+    "≈ 1,200 mOsm/kg"
    ]
   ],
   "certainty": "C1",
@@ -1125,7 +1117,7 @@
   "layers": {
    "basics": "Blood pressure depends on heart output and resistance in vessels. Nerves and hormones adjust both.",
    "deeper": "Baroreceptors sense stretch and change heart rate; the kidneys regulate volume through the renin–angiotensin–aldosterone system.",
-   "expert": "MAP ≈ CO × SVR; CO = HR × SV. Normal adult values: ≈ 120/80 mmHg, CO ≈ 5 L/min. Hypertension affects ≈ 30% of adults and is controlled with drugs targeting RAAS, calcium channels or diuresis."
+   "expert": "MAP ≈ CO × SVR (neglecting central venous pressure, about 2–5 mmHg); CO = HR × SV. Normal adult values: below ≈ 120/80 mmHg, CO ≈ 5 L/min. Hypertension (≥ 140/90 mmHg) affects about 33% of adults aged 30–79 worldwide (WHO, 2024), more with lower thresholds, and is controlled with drugs targeting RAAS, calcium channels or diuresis."
   },
   "facts": [
    [
@@ -1137,7 +1129,7 @@
     "≈ 5 L/min"
    ]
   ],
-  "formula": "MAP = CO × SVR;  CO = HR × SV",
+  "formula": "MAP ≈ CO × SVR;  CO = HR × SV  (SVR in mmHg·min/L: 5 L/min × 18 ≈ 90 mmHg)",
   "certainty": "C1",
   "refs": [
    [
@@ -1184,7 +1176,7 @@
   "layers": {
    "basics": "Muscles use stored ATP and creatine phosphate for seconds, glycolysis for minutes and aerobic metabolism for long efforts.",
    "deeper": "Fast-twitch fibres suit sprinting and slow-twitch fibres suit endurance. Training raises mitochondria number and capillary density.",
-   "expert": "VO₂max (≈ 35–45 mL/kg/min untrained, > 80 in elite endurance athletes) is limited by cardiac output. Lactate threshold, oxygen debt and muscle fibre types predict performance."
+   "expert": "VO₂max (≈ 35–45 mL/kg/min in untrained adults, differing between men and women, and > 80 in elite endurance athletes) is widely thought to be limited mainly by oxygen delivery (cardiac output), though the role of muscle oxygen use is debated. Lactate threshold, running economy and muscle fibre types help predict performance."
   },
   "facts": [
    [
@@ -1196,7 +1188,10 @@
     "> 80 mL/kg/min"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How much VO₂max is limited by oxygen delivery (central) versus oxygen use in muscle (peripheral) is still debated."
+  ],
   "refs": [
    [
     "ANP",
@@ -1240,19 +1235,22 @@
   "layers": {
    "basics": "Some animals lower their metabolism and body temperature to save energy: bears, ground squirrels and hummingbirds.",
    "deeper": "Arctic ground squirrels can cool to below 0 °C; wood frogs freeze solid and thaw. Tardigrades survive near-total dehydration.",
-   "expert": "Hibernators suppress metabolism to ≈ 2–5% of normal and preserve muscle by unknown mechanisms. Antifreeze proteins and cryoprotectants (glucose, glycerol) protect cells."
+   "expert": "Small deep hibernators such as ground squirrels cut their metabolic rate to about 2% of the basal rate, whereas bears fall only to about 25% and keep a body temperature near 34 °C. How hibernators avoid muscle wasting is only partly understood. Antifreeze proteins and cryoprotectants (glucose, glycerol) protect cells."
   },
   "facts": [
    [
-    "Hibernation metabolic rate",
-    "≈ 2–5% of basal"
+    "Lowest metabolic rate, ground squirrel",
+    "≈ 2% of basal; bears ≈ 25%"
    ],
    [
     "Arctic ground squirrel min. body temp.",
-    "≈ −2.9 °C"
+    "≈ −2 °C"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How hibernators suppress metabolism so deeply, and how they spare muscle and other tissues during months of inactivity, is only partly understood."
+  ],
   "refs": [
    [
     "BIO",
@@ -1287,7 +1285,7 @@
   "layers": {
    "basics": "Cytokines are small proteins that immune cells use to talk, such as interleukins and interferons. Chemokines guide cells to sites of infection.",
    "deeper": "Too much cytokine release causes a \"cytokine storm\" in severe infections. Drugs that block TNF or IL-6 treat autoimmune disease.",
-   "expert": "Cytokines signal through JAK–STAT pathways; receptors share common chains. Interferons induce hundreds of antiviral genes. Pleiotropy and redundancy complicate therapeutic targeting."
+   "expert": "Many cytokines (interleukins, interferons, haematopoietic factors) signal through JAK–STAT pathways, and their receptors often share common chains. TNF and IL-1 use NF-κB and MAPK pathways, TGF-β uses SMAD proteins, and chemokines act through G-protein-coupled receptors. Interferons induce hundreds of antiviral genes. Pleiotropy and redundancy complicate therapeutic targeting."
   },
   "facts": [
    [
@@ -1345,7 +1343,7 @@
   "layers": {
    "basics": "Blood cells are made in bone marrow from haematopoietic stem cells. These make red cells, platelets and all white cells.",
    "deeper": "Erythropoietin from the kidney boosts red blood cell production; G-CSF boosts neutrophils. Bone marrow transplants replace diseased stem cells.",
-   "expert": "The tree splits into myeloid and lymphoid lineages; cell fate is controlled by transcription factors (GATA1, PU.1) and cytokines. About 2×10¹¹ red cells are made daily."
+   "expert": "The classical model splits into myeloid and lymphoid lineages, though single-cell studies suggest a more continuous hierarchy with early lineage bias; cell fate is controlled by transcription factors (GATA1, PU.1) and cytokines. About 2×10¹¹ red cells are made daily."
   },
   "facts": [
    [
@@ -1357,7 +1355,10 @@
     "≈ 120 days"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How discrete the early lineage branches of blood-cell development are, versus a continuous hierarchy, is still being refined."
+  ],
   "refs": [
    [
     "ANP",
@@ -1388,7 +1389,7 @@
  },
  {
   "id": "bio_complement_system",
-  "title": "Complement and acute-phase defences",
+  "title": "Complement system",
   "kind": "concept",
   "template": "concept",
   "scale_m": null,
@@ -1406,7 +1407,7 @@
   ],
   "summary": "A cascade of blood proteins.",
   "layers": {
-   "basics": "Complement proteins in blood coat microbes so phagocytes eat them, and can punch holes in bacterial membranes.",
+   "basics": "Complement proteins in blood coat microbes so phagocytes eat them, and can punch holes in the membranes of some bacteria, mainly Gram-negative ones.",
    "deeper": "Three pathways (classical, lectin, alternative) converge on C3 cleavage. Inflammation signals C3a and C5a attract immune cells.",
    "expert": "The membrane attack complex (C5b–C9) forms ≈ 10 nm pores. Complement deficiencies increase infections; excessive activation contributes to autoimmune and eye diseases (complement inhibitors approved)."
   },
@@ -1559,7 +1560,7 @@
   "summary": "Establishing front, back and left, right.",
   "layers": {
    "basics": "Early embryos need to know up from down and left from right. Maternal molecules and early signals break the initial symmetry.",
-   "deeper": "In flies, Bicoid and Nanos mRNAs are placed at opposite ends of the egg. In vertebrates, cilia generate flow that sets left–right asymmetry.",
+   "deeper": "In flies, Bicoid and Nanos mRNAs are placed at opposite ends of the egg. In mice, zebrafish and frogs, rotating cilia in the embryonic node create a leftward flow that sets left–right asymmetry; some vertebrates, such as chick, appear to use other mechanisms.",
    "expert": "Nodal signalling and cilia-driven flow in the node break left–right symmetry; defects cause situs inversus. Symmetry breaking uses reaction–diffusion and mechanical feedback."
   },
   "facts": [
@@ -1572,7 +1573,10 @@
     "≈ 1 in 10,000"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How the cilia-driven flow is sensed (mechanical sensing or chemical signalling) is still open."
+  ],
   "refs": [
    [
     "BIO",
@@ -1608,7 +1612,7 @@
   "layers": {
    "basics": "Cells stream one by one past lasers, and detectors record scattered and fluorescent light. This counts cell types and can sort them.",
    "deeper": "Fluorescent antibodies label markers such as CD4 or CD8. Clinical uses include blood cell counts, leukaemia diagnosis and CD4 counts in HIV.",
-   "expert": "Instruments measure ≈ 10⁴ cells per second across ≥ 10–40 parameters; compensation corrects for spectral overlap. Gating strategies and controls (FMO) drive correct interpretation."
+   "expert": "Fluorescence cytometers measure thousands to tens of thousands of cells per second and routinely 10–30 parameters, spectral instruments 40 or more, while mass cytometry is slower; compensation corrects for spectral overlap. Gating strategies and controls (FMO) drive correct interpretation."
   },
   "facts": [
    [
@@ -1617,7 +1621,7 @@
    ],
    [
     "Parameters measured",
-    "10–40"
+    "≈ 10–30 routinely; spectral instruments 40+"
    ]
   ],
   "certainty": "C1",
@@ -1661,19 +1665,19 @@
   "layers": {
    "basics": "To turn a signal into a concentration, you measure known standards, draw a calibration curve, and read unknowns from it.",
    "deeper": "Include a blank and replicates. Keep unknowns within the linear range, or dilute them.",
-   "expert": "Limit of detection ≈ 3.3σ/slope and limit of quantitation ≈ 10σ/slope. Weighted regression handles heteroscedastic errors; four-parameter logistic fits are standard for ELISA."
+   "expert": "Under the ICH Q2 convention, limit of detection ≈ 3.3σ/S and limit of quantitation ≈ 10σ/S, where S is the calibration slope and σ is the standard deviation of the blank response, of the regression residuals, or of the intercept; the choice changes the result, and the limits hold only at low concentration within the linear range. Weighted regression handles heteroscedastic errors; four-parameter logistic fits are standard for ELISA."
   },
   "facts": [
    [
     "LOD",
-    "≈ 3.3 σ/slope"
+    "≈ 3.3 σ/S"
    ],
    [
     "LOQ",
-    "≈ 10 σ/slope"
+    "≈ 10 σ/S"
    ]
   ],
-  "formula": "LOD ≈ 3.3·σ/slope",
+  "formula": "LOD ≈ 3.3·σ/S;  LOQ ≈ 10·σ/S  (S = slope; σ = SD of blank or regression residuals)",
   "certainty": "C1",
   "refs": [
    [
@@ -1710,17 +1714,17 @@
   "summary": "From lysate to a quantified band or well.",
   "layers": {
    "basics": "In a Western blot, proteins are separated on a gel, moved onto a membrane and detected with antibodies. In an ELISA, antibodies capture and detect the target in a plate well.",
-   "deeper": "Loading controls (actin, tubulin) check equal loading. Validation of antibodies with knockout controls prevents false conclusions.",
+   "deeper": "Loading controls (actin, tubulin) or, increasingly, total-protein stains are used to check equal loading, but a saturated or varying control gives false normalisation. Validation of antibodies with knockout controls prevents false conclusions.",
    "expert": "Quantitation requires signals in the linear range; saturated bands cannot be compared. Many published antibodies fail specificity tests, a recognised reproducibility problem."
   },
   "facts": [
    [
     "Gel-to-membrane transfer",
-    "≈ 1–2 h"
+    "≈ 10 min to overnight; semi-dry ≈ 10–30 min, wet tank ≈ 30–120 min"
    ],
    [
-    "ELISA typical range",
-    "≈ 1 pg–100 ng/mL"
+    "ELISA working range",
+    "set per kit and analyte; the sigmoidal standard curve is usable only in its middle part"
    ]
   ],
   "certainty": "C1",
@@ -1779,8 +1783,8 @@
   "refs": [
    [
     "BIO",
-    "44.1",
-    "44-1-the-scope-of-ecology"
+    "45.6",
+    "45-6-community-ecology"
    ],
    [
     "BIO",
@@ -1817,7 +1821,7 @@
   "layers": {
    "basics": "Plants and animals form webs of mutual benefit: bees pollinate flowers, birds and mammals disperse seeds.",
    "deeper": "Networks tend to be nested: specialists interact with subsets of what generalists use, which may buffer against loss.",
-   "expert": "Network metrics (nestedness, modularity) link structure to robustness. Declines in pollinators (habitat loss, pesticides, disease) threaten ≈ 75% of leading crops to some degree."
+   "expert": "Network metrics (nestedness, modularity) are used to link structure to robustness, though how well they predict robustness is debated. About 75% of leading food crops benefit to some degree from animal pollination, and these crops make up about 35% of global crop production by volume. Honeybee colony losses are losses of managed hives, which beekeepers replace, so they do not measure the decline of wild pollinators."
   },
   "facts": [
    [
@@ -1825,11 +1829,14 @@
     "≈ 87%"
    ],
    [
-    "Honeybee colony loss (US, annual)",
-    "≈ 30–40%"
+    "US managed honeybee colony loss, annual",
+    "≈ 40% average over 13 years; 55% in 2023–24"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Whether nestedness and modularity actually make pollination networks more robust to species loss is debated."
+  ],
   "refs": [
    [
     "BIO",
@@ -1869,7 +1876,7 @@
   "layers": {
    "basics": "A handful of soil holds billions of microbes plus fungi, worms and mites. They break down organic matter and make nutrients available.",
    "deeper": "Earthworms mix soil; fungi bind particles; bacteria fix nitrogen. Soil carbon is the largest terrestrial carbon store.",
-   "expert": "Soil holds ≈ 1,500–2,400 Pg C, about 2–3× atmospheric carbon. Soil carbon persistence depends more on mineral association and microbial processing than on chemical recalcitrance (the microbial carbon pump view)."
+   "expert": "Soils hold about 1,500 Pg C (petagrams, 10¹⁵ g) in the top metre and about 2,400 Pg C in the top two metres, roughly twice to three times the carbon in the atmosphere. Many researchers now think soil carbon persists mainly through mineral association and microbial processing rather than chemical recalcitrance, but this is still debated."
   },
   "facts": [
    [
@@ -1881,7 +1888,10 @@
     "≈ 10⁸–10⁹"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Whether soil carbon persists mainly because of mineral association and microbial processing, or because of the chemical resistance of the molecules, is debated."
+  ],
   "refs": [
    [
     "BIO",

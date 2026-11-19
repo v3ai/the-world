@@ -10,9 +10,7 @@
    "ee_devices"
   ],
   "parts": [],
-  "made_of": [
-   "silicon"
-  ],
+  "made_of": [],
   "processes": [],
   "related": [],
   "mesh": null,
@@ -21,9 +19,9 @@
   ],
   "summary": "Atoms in a repeating lattice.",
   "layers": {
-   "basics": "Silicon forms a diamond-cubic crystal where each atom bonds with four neighbours; lattice order is what creates bands.",
+   "basics": "Silicon forms a diamond-cubic crystal in which each atom bonds with four neighbours. The overlap of the atoms' orbitals spreads their energy levels into bands. The regular lattice makes the band edges sharp, although amorphous silicon still has a blurred gap.",
    "deeper": "Miller indices label planes; wafer orientation (100) affects interface quality; GaAs is zincblende.",
-   "expert": "Lattice constant 5.431 Å for Si; Brillouin zone and Bloch’s theorem; defects (vacancies, dislocations) affect lifetimes."
+   "expert": "Lattice constant of Si ≈ 5.431 Å at 22.5 °C (CODATA 2018: 5.43102 Å); Brillouin zone and Bloch’s theorem; defects (vacancies, dislocations) affect lifetimes."
   },
   "facts": [],
   "certainty": "C1",
@@ -69,14 +67,20 @@
   ],
   "summary": "How many carriers at what temperature.",
   "layers": {
-   "basics": "The Fermi–Dirac distribution tells the probability that an energy state is occupied; the Fermi level shows where this drops to ½.",
+   "basics": "The Fermi–Dirac distribution tells the probability that an energy state is occupied; the Fermi level is the energy at which that probability is exactly ½. Well below it states are almost all full; well above it they are almost all empty.",
    "deeper": "In n-type material E_F moves toward the conduction band; in p-type toward the valence band.",
-   "expert": "f(E)=1/(1+e^{(E−E_F)/kT}); n=N_c e^{−(E_c−E_F)/kT}; N_c≈2.8×10¹⁹ cm⁻³ for Si; non-degenerate approximation."
+   "expert": "f(E)=1/(1+e^{(E−E_F)/kT}); n=N_c e^{−(E_c−E_F)/kT}; N_c≈2.8–3.2×10¹⁹ cm⁻³ for Si at 300 K (published values differ slightly with the effective mass used); the exponential form holds only in the non-degenerate case, E_c−E_F ≫ kT."
   },
   "facts": [],
   "formula": "f(E) = 1/(1 + e^{(E−E_F)/kT})",
   "certainty": "C1",
-  "refs": [],
+  "refs": [
+   [
+    "UP3",
+    "9.6",
+    "9-6-semiconductors-and-doping"
+   ]
+  ],
   "kn": [
    "band_theory",
    "statistical_mechanics"
@@ -113,14 +117,20 @@
   ],
   "summary": "Inside the junction.",
   "layers": {
-   "basics": "The depletion region has no free carriers and acts like a capacitor whose width changes with voltage; at high reverse voltage the junction breaks down.",
-   "deeper": "Depletion width W=√(2ε(V_bi−V)/q·(1/N_a+1/N_d)); junction capacitance basis of varactors.",
-   "expert": "Breakdown by avalanche (impact ionisation) or Zener tunnelling; Shockley equation from minority-carrier diffusion; generation–recombination currents."
+   "basics": "The depletion region is almost emptied of free carriers (an idealisation), leaving fixed charged dopant ions, and it acts like a capacitor whose width changes with voltage; at high reverse voltage the junction breaks down.",
+   "deeper": "Depletion width W=√(2ε(V_bi−V)/q·(1/N_a+1/N_d)) for an abrupt junction in the depletion approximation (V positive in forward bias, ε the semiconductor permittivity); junction capacitance is the basis of varactors.",
+   "expert": "Breakdown by avalanche (impact ionisation) or Zener tunnelling (in silicon diodes Zener tunnelling dominates below about 5.6 V and avalanche above); Shockley equation from minority-carrier diffusion; generation–recombination currents."
   },
   "facts": [],
-  "formula": "W = √(2ε(V_bi−V)(1/N_a+1/N_d)/q)",
+  "formula": "W = √(2ε(V_bi−V)(1/N_a+1/N_d)/q), abrupt junction, depletion approximation",
   "certainty": "C1",
-  "refs": [],
+  "refs": [
+   [
+    "UP3",
+    "9.7",
+    "9-7-semiconductor-devices"
+   ]
+  ],
   "kn": [
    "semiconductors_pn"
   ],
@@ -156,8 +166,8 @@
   "summary": "Why β is large and what limits it.",
   "layers": {
    "basics": "Carriers injected from emitter cross a thin base; few recombine, so most reach the collector.",
-   "deeper": "Gain β depends on emitter and base doping; Early effect and high-level injection limit it.",
-   "expert": "β≈D_nW_E N_E/(D_pW_B N_B)-type expressions; base transit time τ_B=W_B²/2D_n sets f_T; heterojunction BJTs (SiGe) reach >300 GHz."
+   "deeper": "Gain β is set by how well the emitter injects carriers into the base and how few of them recombine there, so a heavily doped emitter and a thin, lightly doped base give high β. At high current, high-level injection makes β fall. The Early effect is separate: a larger collector voltage narrows the base and raises collector current.",
+   "expert": "For an npn device β≈(D_n/D_p)(N_E/N_B)(W_E/W_B), ignoring base recombination. For a uniformly doped npn base the base transit time is τ_B=W_B²/(2D_n); it is one term in the total emitter-to-collector delay τ_EC, which sets f_T=1/(2πτ_EC). SiGe heterojunction BJTs operate at hundreds of GHz."
   },
   "facts": [],
   "certainty": "C1",
@@ -195,12 +205,15 @@
   "summary": "Charge control in the channel.",
   "layers": {
    "basics": "Gate voltage inverts the surface charge to form a channel; the oxide thickness sets gate control.",
-   "deeper": "Charge-sheet and gradual-channel models yield the I–V; subthreshold swing ≥60 mV/dec at 300 K.",
+   "deeper": "Charge-sheet and gradual-channel models yield the I–V; for a conventional thermionic MOSFET the subthreshold swing cannot go below (kT/q)ln10 ≈ 59.5 mV/dec at 300 K. Tunnelling and negative-capacitance devices aim to beat it.",
    "expert": "S=(kT/q)ln10(1+C_d/C_ox); capacitances C_gs, C_gd; f_T≈g_m/2π(C_gs+C_gd); gate tunnelling and high-k/metal-gate."
   },
   "facts": [],
-  "formula": "S ≥ (kT/q) ln10 ≈ 60 mV/dec",
-  "certainty": "C1",
+  "formula": "S = (kT/q) ln10 (1 + C_d/C_ox) ≥ (kT/q) ln10 ≈ 59.5 mV/dec at 300 K (thermionic MOSFET)",
+  "certainty": "C2",
+  "open_questions": [
+   "Can tunnel FETs or negative-capacitance FETs beat the thermionic 60 mV/dec limit in practice, at useful current and in manufacturable devices?"
+  ],
   "refs": [],
   "lab": {
    "id": "device",
@@ -235,8 +248,8 @@
   "summary": "When transistors get tiny.",
   "layers": {
    "basics": "As channels shorten, the drain starts to control the barrier: threshold falls, leakage rises, and current saturates through velocity limits.",
-   "deeper": "DIBL, velocity saturation, hot carriers, and gate leakage. FinFETs and nanosheets restore gate control.",
-   "expert": "DIBL (mV/V), V_T roll-off, subthreshold leakage ∝10^{−V_T/S}; scaling rules (Dennard) broke down near 90 nm as voltage stopped scaling."
+   "deeper": "DIBL, velocity saturation, hot carriers, and gate leakage. FinFETs and nanosheet (gate-all-around) transistors wrap the gate around the channel, which greatly improves gate control and reduces DIBL, though short-channel effects do not vanish.",
+   "expert": "DIBL (mV/V), V_T roll-off, subthreshold leakage ∝10^{−V_T/S}; Dennard scaling broke down in the mid-2000s (about 2005–2007) because leakage current and threshold voltage stopped shrinking with feature size, so power density rose."
   },
   "facts": [],
   "certainty": "C1",
@@ -276,7 +289,7 @@
   "layers": {
    "basics": "Semiconductors can emit light (LED, laser) and detect it (photodiode, solar cell) through band-gap transitions.",
    "deeper": "Lasers add an optical cavity and population inversion to give coherent light; solar cells are large photodiodes.",
-   "expert": "Radiative efficiency; internal quantum efficiency; threshold current; Shockley–Queisser limit ≈33% for single-junction at 1.34 eV."
+   "expert": "Radiative efficiency; internal quantum efficiency; threshold current; Shockley–Queisser detailed-balance limit for a single junction in unconcentrated sunlight: 33.16% at a band gap of 1.34 eV (about 32% for silicon at 1.1 eV); the original 1961 calculation gave about 30%."
   },
   "facts": [],
   "certainty": "C1",
@@ -285,6 +298,16 @@
     "UP3",
     "8.6",
     "8-6-lasers"
+   ],
+   [
+    "UP3",
+    "9.6",
+    "9-6-semiconductors-and-doping"
+   ],
+   [
+    "UP3",
+    "9.7",
+    "9-7-semiconductor-devices"
    ]
   ],
   "kn": [
@@ -318,8 +341,8 @@
   "summary": "Coherent light from a diode.",
   "layers": {
    "basics": "A laser diode amplifies light bouncing between mirrored facets through stimulated emission.",
-   "deeper": "Above a threshold current, output becomes coherent; used in fibre links and Lidar.",
-   "expert": "Rate equations; VCSELs emit upward (used in face ID); DFB lasers give single-wavelength telecom light at 1310/1550 nm."
+   "deeper": "Above a threshold current, the gain from population inversion exceeds the losses in the cavity, so stimulated emission dominates and the output becomes coherent. Below threshold the diode emits mostly spontaneous light. Used in fibre links and lidar.",
+   "expert": "Rate equations describe carrier and photon numbers; VCSELs emit perpendicular to the wafer surface (used in face ID); DFB lasers give single-wavelength telecom light at 1310/1550 nm."
   },
   "facts": [],
   "certainty": "C1",
@@ -360,7 +383,7 @@
   "layers": {
    "basics": "Photons create electron–hole pairs; a built-in field separates them to produce current.",
    "deeper": "PIN photodiodes and avalanche photodiodes for speed and sensitivity; solar cells for energy.",
-   "expert": "Responsivity R=ηqλ/hc (A/W); dark current; open-circuit voltage V_oc and fill factor; tandem cells beat single-junction limit."
+   "expert": "Responsivity R=ηqλ/(hc) in A/W, with η the external quantum efficiency, q the elementary charge, λ the wavelength in metres, h Planck's constant and c the speed of light (in practice R≈η·λ[µm]/1.24 A/W); dark current; open-circuit voltage V_oc and fill factor; tandem cells beat single-junction limit."
   },
   "facts": [],
   "formula": "R = ηqλ/(hc)",
@@ -402,8 +425,8 @@
   "summary": "Printing circuits with light.",
   "layers": {
    "basics": "Light projects a pattern through a mask onto photosensitive resist on the wafer.",
-   "deeper": "Resolution ≈k₁λ/NA; EUV (13.5 nm) reached 3–5 nm-class nodes.",
-   "expert": "Rayleigh resolution; depth of focus; multi-patterning; EUV needs reflective optics and tin-plasma sources; overlay accuracy <2 nm."
+   "deeper": "Resolution ≈k₁λ/NA. EUV light (13.5 nm; numerical aperture 0.33 in current tools) entered volume production around 2019 and is used at the 5 and 3 nm nodes, but these node names are marketing labels, not measured sizes. High-NA (0.55) EUV tools are the next step.",
+   "expert": "Rayleigh resolution; depth of focus; multi-patterning; EUV needs reflective optics and tin-plasma sources; overlay (how closely one layer lines up with the previous) is budgeted at about 1–2 nm in current EUV scanners; 1.4 nm for the NXE:3400."
   },
   "facts": [],
   "formula": "CD = k₁ λ/NA",
@@ -442,7 +465,7 @@
   "layers": {
    "basics": "Chips are made by repeating cycles of depositing, patterning and etching thin layers on a polished silicon wafer.",
    "deeper": "Steps: crystal growth → wafer → oxidation → lithography → etch → doping → deposition → metallisation → test and packaging.",
-   "expert": "Czochralski growth; cleanroom class ISO 1–5; yield Y=e^{−AD}; hundreds of steps, ~3 months, >1000 individual processes."
+   "expert": "Czochralski growth; cleanroom air is filtered to very low particle counts, with mini-environments around wafers at ISO class 1; a modern chip with eleven or more metal levels takes over 300 sequenced processing steps and about 11–15 weeks at advanced nodes; Poisson yield model Y=e^{−AD} (A die area, D defect density, defects random and independent), while clustered defects are better fitted by Seeds, Murphy or similar models."
   },
   "facts": [],
   "certainty": "C1",
@@ -481,8 +504,8 @@
   ],
   "summary": "Placing dopants.",
   "layers": {
-   "basics": "Ions fired into the wafer, then annealed, provide precise dopant profiles.",
-   "deeper": "Dose and energy set depth and concentration; annealing repairs damage.",
+   "basics": "Ions accelerated to keV–MeV energies are implanted into the wafer; a later anneal repairs the crystal damage and moves the dopants onto lattice sites so they become electrically active. Dopants can also be introduced by thermal diffusion at high temperature.",
+   "deeper": "Dose sets concentration and energy sets depth (typical implant energies are 10–500 keV, reaching from about 10 nm to 1 µm); annealing repairs damage and activates the dopants.",
    "expert": "Gaussian range profile; channelling; rapid thermal annealing; diffusion D=D₀e^{−E_a/kT}."
   },
   "facts": [],
@@ -521,7 +544,7 @@
   "layers": {
    "basics": "Heating silicon in oxygen or steam grows a high-quality SiO₂ insulating layer.",
    "deeper": "Thermal oxide forms gate dielectrics and isolation; Deal–Grove model describes growth.",
-   "expert": "x²+Ax=B(t+τ); linear then parabolic regimes; modern gates use high-k HfO₂ rather than SiO₂."
+   "expert": "x²+Ax=B(t+τ); linear then parabolic regimes; Deal–Grove under-predicts growth for very thin dry oxides; modern gate stacks use Hf-based high-k dielectrics (first shipped at 45 nm in 2007), grown on a thin SiO₂ interfacial layer, while thermal oxide is still used for isolation."
   },
   "facts": [],
   "formula": "x² + A x = B (t + τ)",
@@ -560,7 +583,7 @@
   "layers": {
    "basics": "Wet chemicals or plasmas remove material where resist leaves it exposed.",
    "deeper": "Anisotropic plasma etching makes vertical walls; selectivity protects layers underneath.",
-   "expert": "RIE and DRIE (Bosch process); atomic-layer etching; etch rate, selectivity, aspect ratio."
+   "expert": "DRIE (the Bosch process) alternates a plasma etch step with a passivation step to cut deep, nearly vertical trenches; atomic-layer etching removes material in near-single-layer steps; etch rate, selectivity and aspect ratio describe performance. Wet etches are usually isotropic, but some, such as KOH on silicon, are selective to crystal planes."
   },
   "facts": [],
   "certainty": "C1",
@@ -597,8 +620,8 @@
   "summary": "Adding thin films.",
   "layers": {
    "basics": "CVD, PVD and atomic layer deposition lay down films of metals, oxides and silicon.",
-   "deeper": "Copper is deposited electrochemically into etched trenches (damascene).",
-   "expert": "ALD gives monolayer-level control; epitaxy grows crystal layers; stress and step coverage issues."
+   "deeper": "Copper is electroplated into etched trenches (damascene), onto a thin seed layer put down by PVD.",
+   "expert": "ALD deposits at most about one monolayer per cycle through self-limiting surface reactions. Epitaxy, usually done by CVD, grows a crystalline layer that matches the substrate. Film stress and step coverage over steep features are common problems."
   },
   "facts": [],
   "certainty": "C1",

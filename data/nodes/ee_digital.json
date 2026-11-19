@@ -21,7 +21,7 @@
   "layers": {
    "basics": "Computers use binary (0/1); hexadecimal is shorthand grouping four bits. Two’s complement represents negative numbers so addition works the same.",
    "deeper": "An n-bit two’s-complement word spans −2ⁿ⁻¹…2ⁿ⁻¹−1; overflow is detected when carry into and out of the top bit differ.",
-   "expert": "Also BCD, Gray code (single-bit changes), fixed-point Qm.n, IEEE-754 floating point (sign, exponent, mantissa)."
+   "expert": "Other encodings include BCD (one decimal digit per four bits), Gray code (adjacent values differ in one bit), fixed-point Qm.n, and IEEE-754 floating point (sign, exponent, mantissa)."
   },
   "facts": [],
   "formula": "−x = ~x + 1",
@@ -37,6 +37,10 @@
    {
     "title": "All About Circuits: Digital",
     "url": "https://www.allaboutcircuits.com/textbook/digital/"
+   },
+   {
+    "title": "Wikipedia: Two’s complement",
+    "url": "https://en.wikipedia.org/wiki/Two%27s_complement"
    }
   ],
   "lab": {
@@ -146,7 +150,7 @@
   "summary": "Minimise logic visually.",
   "layers": {
    "basics": "A K-map arranges a truth table so neighbours differ by one bit; circle groups of 1s to get simple terms.",
-   "deeper": "Works up to ~4–5 variables; don’t-cares enlarge groups; watch for hazards.",
+   "deeper": "Practical for up to 4 variables (5 or 6 with stacked maps); rows and columns are in Gray-code order so adjacent cells differ in one variable; don’t-cares enlarge groups; watch for hazards.",
    "expert": "Prime implicants and essential prime implicants; static-1 hazards removed by redundant terms."
   },
   "facts": [],
@@ -183,8 +187,8 @@
   ],
   "summary": "Algorithmic logic minimisation.",
   "layers": {
-   "basics": "A tabular algorithm that finds minimal logic for any number of variables; the idea behind synthesis tools.",
-   "deeper": "Step 1: find prime implicants; step 2: pick minimal cover.",
+   "basics": "A tabular algorithm that finds an exact minimal two-level (sum-of-products) form of a Boolean function. It is guaranteed correct but too slow for large functions, so synthesis tools use heuristics such as Espresso.",
+   "deeper": "Step 1 merges terms that differ in exactly one bit, round after round, until only prime implicants remain. Step 2 chooses the fewest primes that cover every minterm, starting with the essential ones; this is a set-cover problem and NP-hard.",
    "expert": "Complexity grows exponentially; Espresso heuristic and BDDs are used in practice; ABC for multi-level."
   },
   "facts": [],
@@ -261,7 +265,7 @@
   "summary": "Adding binary numbers in hardware.",
   "layers": {
    "basics": "A half adder adds two bits; a full adder includes carry in. Chain them for multi-bit addition.",
-   "deeper": "Ripple-carry is simple but slow; carry-lookahead and prefix adders reduce delay to O(log n).",
+   "deeper": "Ripple-carry is simple but slow; hierarchical carry-lookahead and parallel-prefix adders (such as Kogge–Stone) reduce delay from O(n) to O(log n) gate levels, at the cost of more area and wiring.",
    "expert": "Sum=A⊕B⊕C, Cout=AB+C(A⊕B); Kogge–Stone prefix adder; subtraction via two’s complement; multipliers (array, Booth, Wallace)."
   },
   "facts": [],
@@ -494,11 +498,11 @@
   "summary": "Making sure signals arrive in time.",
   "layers": {
    "basics": "A signal must be stable for a short time before (setup) and after (hold) the clock edge; the slowest path sets the maximum clock.",
-   "deeper": "T_clk ≥ t_cq + t_logic + t_setup + t_skew; hold violations are fixed by adding delay, not by slowing the clock.",
+   "deeper": "For a launch flip-flop feeding a capture flip-flop on one clock, the slowest path must satisfy T_clk ≥ t_cq,max + t_logic,max + t_setup + t_skew + t_jitter, where skew is the adverse case (capture clock early). Hold needs t_cq,min + t_logic,min ≥ t_hold + t_skew. Hold violations are fixed by adding delay, not by slowing the clock.",
    "expert": "Static timing analysis, clock domain crossing (two-flop synchroniser), clock trees, jitter, on-chip variation; PVT corners."
   },
   "facts": [],
-  "formula": "T_clk ≥ t_cq + t_logic + t_setup + t_skew",
+  "formula": "T_clk ≥ t_cq,max + t_logic,max + t_setup + t_skew + t_jitter",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -533,9 +537,9 @@
   ],
   "summary": "Storing many bits.",
   "layers": {
-   "basics": "ROM keeps data without power; SRAM uses six transistors per bit and is fast; DRAM uses one transistor plus a capacitor, is dense but needs refreshing.",
+   "basics": "ROM keeps data without power; SRAM typically uses six transistors per bit and is fast; DRAM uses one transistor plus a capacitor, is dense but needs refreshing.",
    "deeper": "Address decoders select rows/columns; sense amplifiers read tiny charges.",
-   "expert": "SRAM 6T cell stability (SNM); DRAM cell ~6F², refresh every 64 ms; DDR5 transfer rates >6 Gb/s/pin."
+   "expert": "SRAM 6T cell stability (SNM); Modern commodity DRAM cells are about 6F² (F is the minimum feature size; older layouts used 8F²). The refresh window was 64 ms for DDR3 and DDR4. For DDR5 it is 32 ms at or below 85 °C and shorter when hotter. JEDEC DDR5 speed grades run from about 4.0 to 8.8 GT/s per pin."
   },
   "facts": [],
   "certainty": "C1",
@@ -548,6 +552,14 @@
    {
     "title": "Wikipedia: Static random-access memory",
     "url": "https://en.wikipedia.org/wiki/Static_random-access_memory"
+   },
+   {
+    "title": "Wikipedia: Dynamic random-access memory",
+    "url": "https://en.wikipedia.org/wiki/Dynamic_random-access_memory"
+   },
+   {
+    "title": "Wikipedia: Read-only memory",
+    "url": "https://en.wikipedia.org/wiki/Read-only_memory"
    }
   ],
   "where": "phone_ram"
@@ -571,11 +583,11 @@
    "memory_rom_ram",
    "mosfet_physics_ee"
   ],
-  "summary": "Charge trapped on a floating gate.",
+  "summary": "Bits stored as trapped charge.",
   "layers": {
    "basics": "Flash stores bits as charge trapped in a floating gate or charge-trap layer in a transistor; it remains without power.",
-   "deeper": "Writes use Fowler–Nordheim tunnelling and cause wear; NAND flash is stacked in 3D to hundreds of layers.",
-   "expert": "SLC/MLC/TLC/QLC store 1–4 bits per cell using 2ⁿ threshold levels; endurance falls from 100k to ~1k cycles; wear levelling and ECC in controllers."
+   "deeper": "NAND flash is written and erased by Fowler–Nordheim tunnelling through a thin oxide, and repeated tunnelling gradually damages that oxide. NOR flash usually programs by hot-electron injection and erases by tunnelling. Modern NAND is stacked in many vertical layers.",
+   "expert": "SLC/MLC/TLC/QLC store 1–4 bits per cell using 2ⁿ threshold levels; rated program/erase endurance falls as more bits are stored per cell, and it depends on vendor and process; wear levelling and ECC in controllers."
   },
   "facts": [],
   "certainty": "C1",
@@ -614,8 +626,8 @@
   "summary": "Reconfigurable hardware.",
   "layers": {
    "basics": "An FPGA contains many small lookup tables and flip-flops joined by programmable wiring; you configure it to be any digital circuit.",
-   "deeper": "CPLDs are smaller, simpler and non-volatile; FPGAs add block RAM, DSP slices and transceivers.",
-   "expert": "LUT-4/6 implements any function of its inputs; configuration SRAM bitstream; place-and-route, timing closure."
+   "deeper": "CPLDs are smaller, simpler and typically built on non-volatile flash; FPGAs add block RAM, DSP slices and transceivers.",
+   "expert": "LUT-4/6 implements any function of its inputs; most FPGAs hold their configuration in SRAM cells loaded from a bitstream at power-up (flash-based and antifuse FPGAs also exist); place-and-route, timing closure."
   },
   "facts": [],
   "certainty": "C1",
@@ -654,7 +666,7 @@
   "summary": "From code to gates.",
   "layers": {
    "basics": "Write RTL in Verilog/VHDL, simulate it, synthesize it to gates, place and route, then program the chip.",
-   "deeper": "Testbenches and waveforms verify before hardware; constraints supply clocks and pins.",
+   "deeper": "Synthesis infers registers and combinational logic from the RTL and maps it onto the device’s LUTs and flip-flops. Place-and-route then checks the result against constraints (clock periods, pin locations, I/O standards). Testbenches and waveforms verify the design before hardware.",
    "expert": "Synthesis → mapping → P&R → bitstream; timing closure iterations; formal verification and coverage-driven testbenches for ASICs."
   },
   "facts": [],

@@ -69,16 +69,16 @@
   "layers": {
    "basics": "Bigger animals have lower surface-area-to-volume ratios, so they lose less heat per gram and need special structures for exchange.",
    "deeper": "Metabolic rate rises with mass, but less than proportionally: a shrew burns far more energy per gram than an elephant.",
-   "expert": "Kleiber's law: BMR ∝ M^0.75. The origin of the 3/4 exponent (fractal supply networks vs other models) is debated. Heart rate scales ≈ M^−0.25, so most mammals have ≈ 10⁹ lifetime heartbeats."
+   "expert": "Kleiber's law: across mammals, BMR scales roughly as M^0.75. Both the exact exponent (some analyses favour 2/3 or group-specific values) and its origin (fractal supply networks vs other models) are debated. Heart rate scales roughly as M^−0.25, giving of order 10⁹ lifetime heartbeats for many mammals; humans get 2–3 times more."
   },
   "facts": [
    [
     "Kleiber exponent",
-    "≈ 0.75"
+    "≈ 0.75 (debated; ≈ 0.67–0.75)"
    ],
    [
     "Shrew heart rate",
-    "≈ 800–1,000 bpm"
+    "several hundred bpm or more, many times a human's"
    ]
   ],
   "formula": "B ∝ M^(3/4)",
@@ -124,7 +124,7 @@
   "summary": "Intake, expenditure and storage.",
   "layers": {
    "basics": "Animals get energy from food: carbohydrates, fats and proteins, and need vitamins, minerals and water.",
-   "deeper": "Basal metabolic rate is the minimum energy at rest. Ectotherms use ≈ 10× less energy than endotherms of the same size.",
+   "deeper": "Basal metabolic rate is the minimum energy at rest. At the same body mass and temperature, a resting ectotherm uses several times less energy than an endotherm.",
    "expert": "Respiratory quotient (CO₂/O₂) is ≈ 1.0 for carbohydrate, ≈ 0.7 for fat. Energy balance relates intake, work, heat and storage. Obesity and undernutrition are major public-health issues."
   },
   "facts": [
@@ -133,8 +133,8 @@
     "≈ 1.0 / 0.7"
    ],
    [
-    "Human BMR",
-    "≈ 1,400–1,800 kcal/day"
+    "Human BMR (adults)",
+    "≈ 1,400–1,800 kcal/day (varies with sex, size, age)"
    ]
   ],
   "certainty": "C1",
@@ -179,12 +179,12 @@
   "layers": {
    "basics": "Animals have sac-like or tube-like guts. Herbivores have long guts or fermentation chambers, carnivores shorter ones.",
    "deeper": "Ruminants (cows) ferment plant material in a rumen with microbes. Birds use a muscular gizzard with grit in place of teeth.",
-   "expert": "Hindgut fermenters (horses, rabbits) differ from foregut fermenters; microbial fermentation yields short-chain fatty acids that supply ≈ 60–70% of a cow's energy."
+   "expert": "Hindgut fermenters (horses, rabbits) differ from foregut fermenters; microbial fermentation yields short-chain fatty acids that supply most of a cow's energy."
   },
   "facts": [
    [
-    "Ruminant energy from SCFAs",
-    "≈ 60–70%"
+    "Ruminant energy from short-chain fatty acids",
+    "most (diet dependent)"
    ],
    [
     "Cow stomach chambers",
@@ -236,7 +236,7 @@
   "layers": {
    "basics": "Insects have open circulation; fish have a single circuit with a two-chambered heart; birds and mammals have two circuits with a four-chambered heart.",
    "deeper": "Double circulation keeps oxygenated and deoxygenated blood separate and allows high pressure systemic flow, supporting endothermy.",
-   "expert": "Amphibian and reptile three-chambered hearts allow shunting; crocodilians have a four-chambered heart with a foramen of Panizza. Blood pressure scales little with body size, except in giraffes (≈ 250 mmHg at heart level)."
+   "expert": "Most amphibians and non-crocodilian reptiles have three-chambered hearts that allow shunting; crocodilians have a four-chambered heart with a foramen of Panizza. Blood pressure scales little with body size across most mammals; giraffes are the well-known exception, with much higher arterial pressure at the heart."
   },
   "facts": [
    [
@@ -350,7 +350,7 @@
   "summary": "Oxygen carriers and extreme adaptations.",
   "layers": {
    "basics": "Myoglobin stores oxygen in muscle. Diving mammals have high myoglobin, large blood volume and slow their heart rate.",
-   "deeper": "Elephant seals dive > 1 h; sperm whales over 2 h. Bar-headed geese fly over the Himalayas with hemoglobin of high O₂ affinity.",
+   "deeper": "Deep-diving mammals can stay under for a very long time: a satellite-tagged Cuvier's beaked whale once dived for 137.5 min, a mammal record when it was reported in 2014. Bar-headed geese fly over the Himalayas with hemoglobin of high O₂ affinity.",
    "expert": "Myoglobin has a hyperbolic binding curve with P₅₀ ≈ 2.8 mmHg, versus Hb ≈ 26 mmHg. Antarctic icefish have no hemoglobin at all, relying on dissolved O₂ in cold water."
   },
   "facts": [
@@ -523,7 +523,7 @@
   "layers": {
    "basics": "Endotherms (birds, mammals) make heat internally; ectotherms (most reptiles, fish, insects) rely on environmental heat and behaviour.",
    "deeper": "Insulation, sweating, shivering, vasodilation and countercurrent heat exchange help control temperature. Hibernation and torpor save energy.",
-   "expert": "Endothermy costs ≈ 5–10× more energy but extends activity to cold and night. Bluefin tuna and some sharks are regionally endothermic using retia mirabilia. Brown fat uncoupling protein (UCP1) produces heat without ATP."
+   "expert": "Endothermy costs several times more energy but extends activity to cold and night. Bluefin tuna and some sharks are regionally endothermic using retia mirabilia. Brown fat uncoupling protein (UCP1) produces heat without ATP."
   },
   "facts": [
    [
@@ -580,12 +580,12 @@
   },
   "facts": [
    [
-    "Bee wingbeat",
+    "Honeybee wingbeat",
     "≈ 230 Hz"
    ],
    [
     "Muscle shortening speed",
-    "≈ 5–10 lengths/s"
+    "several muscle lengths/s in fast fibres; much slower in slow fibres"
    ]
   ],
   "certainty": "C1",
@@ -701,16 +701,16 @@
   "layers": {
    "basics": "Animals reproduce sexually or asexually, with external or internal fertilisation, and lay eggs, give live birth or both.",
    "deeper": "Parthenogenesis occurs in some insects, lizards and sharks. Hormones tightly control human cycles.",
-   "expert": "Reproductive strategies lie on an r/K continuum. Placental mammals nourish embryos via a placenta; marsupials give birth early; monotremes lay eggs."
+   "expert": "Life histories reflect trade-offs between growth, survival and reproduction; the older r/K scheme is a rough sketch that modern life-history theory treats as too simple. Placental mammals nourish embryos via a placenta; marsupials give birth early; monotremes lay eggs."
   },
   "facts": [
    [
     "Human gestation",
-    "≈ 38 weeks"
+    "≈ 38 weeks from conception (≈ 40 weeks from last period)"
    ],
    [
     "Menstrual cycle",
-    "≈ 28 days"
+    "≈ 28 days (normal range varies, roughly 21–35)"
    ]
   ],
   "certainty": "C1",
@@ -817,13 +817,13 @@
   "summary": "Cells of the nervous system.",
   "layers": {
    "basics": "Neurons have dendrites that receive input, a cell body and an axon that sends output. Glia (astrocytes, oligodendrocytes, microglia) support them.",
-   "deeper": "Myelin from oligodendrocytes and Schwann cells speeds conduction. The brain has ≈ 86 billion neurons and about as many glia.",
-   "expert": "Neuron types are classified by shape, transmitter and gene expression (hundreds of types by single-cell RNA-seq). Axon lengths reach 1 m or more in humans."
+   "deeper": "Myelin from oligodendrocytes and Schwann cells speeds conduction. The human brain has about 86 billion neurons (±8 billion) and roughly as many non-neuronal cells, which include glia and other cell types.",
+   "expert": "Neuron types are classified by shape, transmitter and gene expression (a 2023 single-cell RNA-seq atlas of the mouse brain defines 5,322 clusters, and where to draw the boundaries between types is still debated). Axon lengths reach 1 m or more in humans."
   },
   "facts": [
    [
     "Human brain neurons",
-    "≈ 86 billion"
+    "≈ 86 billion (±8 billion)"
    ],
    [
     "Myelinated conduction speed",
@@ -946,7 +946,7 @@
    ],
    [
     "Synapses in human brain",
-    "≈ 10¹⁴"
+    "≈ 10¹⁴–10¹⁵ (estimates vary)"
    ]
   ],
   "certainty": "C1",
@@ -1007,7 +1007,7 @@
    ],
    [
     "Memory consolidation",
-    "hours to years"
+    "from minutes (cellular) to years (systems); timescales debated"
    ]
   ],
   "certainty": "C2",
@@ -1015,11 +1015,6 @@
    "How long-term memory is physically encoded and maintained across molecular turnover is unresolved."
   ],
   "refs": [
-   [
-    "BIO",
-    "35.3",
-    "35-3-the-central-nervous-system"
-   ],
    [
     "ANP",
     "14.2",
@@ -1065,7 +1060,7 @@
   "facts": [
    [
     "Weber fraction",
-    "ΔI/I ≈ constant"
+    "ΔI/I ≈ constant over mid-range intensities; the constant differs by sense"
    ],
    [
     "Nobel for TRPV1/Piezo",
@@ -1119,7 +1114,7 @@
   "layers": {
    "basics": "Light hits rods and cones in the retina. A pigment molecule changes shape and starts a signal that travels via the optic nerve to the brain.",
    "deeper": "Rods work in dim light; cones give colour (three types in humans). The fovea has the sharpest vision.",
-   "expert": "Retinal isomerises from 11-cis to all-trans in ≈ 200 fs; the cascade (rhodopsin → transducin → PDE) amplifies a single photon response ≈ 10⁵-fold. Rods can respond to single photons."
+   "expert": "Retinal isomerises from 11-cis to all-trans in ≈ 200 fs; the cascade (rhodopsin → transducin → PDE) amplifies the effect of one absorbed photon into a measurable electrical response (the gain depends on species and measurement). Rods can respond to single photons."
   },
   "facts": [
    [
@@ -1173,7 +1168,7 @@
   "summary": "Other senses.",
   "layers": {
    "basics": "Hair cells in the cochlea turn sound vibrations into signals. Taste and smell detect molecules with chemical receptors.",
-   "deeper": "Humans have ≈ 400 functional olfactory receptor genes and five basic tastes. The vestibular system senses head motion.",
+   "deeper": "Humans have ≈ 400 functional olfactory receptor genes and five widely accepted basic tastes (sweet, sour, salty, bitter, umami; fat is a candidate sixth). The vestibular system senses head motion.",
    "expert": "The cochlea performs a frequency analysis along the basilar membrane (≈ 20 Hz–20 kHz). Olfactory receptors are GPCRs; Buck and Axel won the 2004 Nobel."
   },
   "facts": [
@@ -1227,7 +1222,7 @@
   "layers": {
    "basics": "The brain's major regions are the cerebrum (thinking, senses, movement), cerebellum (coordination) and brainstem (vital functions).",
    "deeper": "The cerebral cortex has four lobes. Hippocampus is key for memory, amygdala for emotion and hypothalamus for homeostasis.",
-   "expert": "Brain mass ≈ 1.4 kg (2% of body mass, ≈ 20% of resting energy). Functional specialisation coexists with distributed networks; connectomics maps wiring (fly connectome 2023, ≈ 140,000 neurons)."
+   "expert": "Brain mass ≈ 1.4 kg (2% of body mass, ≈ 20% of resting energy). Functional specialisation coexists with distributed networks; connectomics maps wiring (adult fruit-fly brain connectome, 139,255 neurons, Nature 2024; larval connectome, 3,016 neurons, Science 2023)."
   },
   "facts": [
    [
@@ -1280,12 +1275,12 @@
   "layers": {
    "basics": "The sympathetic system prepares the body for action (\"fight or flight\") and the parasympathetic system promotes rest and digestion.",
    "deeper": "A reflex arc (sensor, spinal circuit, effector) gives fast responses without the brain, such as the knee jerk.",
-   "expert": "Sympathetic postganglionic fibres use noradrenaline and parasympathetic use acetylcholine. Baroreflex adjusts heart rate within 1–2 beats of blood-pressure change."
+   "expert": "All preganglionic fibres release acetylcholine. Most sympathetic postganglionic fibres release noradrenaline (those to sweat glands release acetylcholine), and parasympathetic postganglionic fibres release acetylcholine. The baroreflex adjusts heart rate within seconds of a change in blood pressure."
   },
   "facts": [
    [
-    "Knee-jerk latency",
-    "≈ 50 ms"
+    "Knee-jerk latency (tap to EMG onset)",
+    "≈ 17–21 ms (young vs older adults)"
    ],
    [
     "Parasympathetic nerve",
@@ -1353,13 +1348,7 @@
   "open_questions": [
    "The core biological function of sleep is not settled."
   ],
-  "refs": [
-   [
-    "ANP",
-    "15.3",
-    "15-3-central-control"
-   ]
-  ],
+  "refs": [],
   "kn": [
    "sleep_circadian"
   ],
@@ -1394,12 +1383,12 @@
   },
   "facts": [
    [
-    "Dementia prevalence worldwide",
-    "≈ 55 million"
+    "People living with dementia worldwide (WHO, 2021)",
+    "≈ 57 million"
    ],
    [
     "Parkinson's dopamine neuron loss",
-    "≈ 60–80% at diagnosis"
+    "substantial by the time of diagnosis; estimates vary"
    ]
   ],
   "certainty": "C2",
@@ -1411,11 +1400,6 @@
     "BIO",
     "35.5",
     "35-5-nervous-system-disorders"
-   ],
-   [
-    "ANP",
-    "16.1",
-    "16-1-overview-of-the-neurological-exam"
    ]
   ],
   "kn": [
@@ -1464,11 +1448,6 @@
     "BIO",
     "45.7",
     "45-7-behavioral-biology-proximate-and-ultimate-causes-of-behavior"
-   ],
-   [
-    "COB",
-    "19.4",
-    "19-4-community-ecology"
    ]
   ],
   "kn": [
@@ -1517,11 +1496,6 @@
     "BIO",
     "45.7",
     "45-7-behavioral-biology-proximate-and-ultimate-causes-of-behavior"
-   ],
-   [
-    "COB",
-    "19.4",
-    "19-4-community-ecology"
    ]
   ],
   "kn": [
@@ -1550,20 +1524,20 @@
   "summary": "Long journeys with built-in compasses.",
   "layers": {
    "basics": "Birds, turtles, salmon and butterflies migrate thousands of kilometres using the Sun, stars, magnetic fields and smell.",
-   "deeper": "Arctic terns migrate ≈ 70,000 km a year. Salmon return to natal streams using odour cues.",
-   "expert": "Magnetoreception may involve cryptochromes (radical-pair mechanism) and magnetite. Evidence for specifics remains incomplete."
+   "deeper": "Tracked Arctic terns have flown more than 80,000 km in a year. Salmon return to natal streams using odour cues.",
+   "expert": "Magnetoreception may involve cryptochromes (radical-pair mechanism) and magnetite. The mechanism is not settled, and evidence for the specifics remains incomplete."
   },
   "facts": [
    [
-    "Arctic tern migration",
-    "≈ 70,000 km/yr"
+    "Arctic tern yearly migration (tracked)",
+    "> 80,000 km for some individuals"
    ],
    [
-    "Bar-tailed godwit nonstop flight",
-    "≈ 11,000 km"
+    "Bar-tailed godwit nonstop flight (tracked)",
+    "≈ 8,000–11,700 km"
    ]
   ],
-  "certainty": "C2",
+  "certainty": "C3",
   "open_questions": [
    "The molecular basis of magnetoreception in animals is not established."
   ],
@@ -1598,7 +1572,7 @@
   "layers": {
    "basics": "Neuroscientists record electrical activity (EEG, patch clamp), image the brain (fMRI, PET) and manipulate circuits with light (optogenetics).",
    "deeper": "EEG has ms resolution but poor spatial detail; fMRI has mm resolution but is slow (seconds).",
-   "expert": "fMRI measures BOLD, an indirect proxy for neural activity. Two-photon calcium imaging records hundreds of neurons; Neuropixels probes record from thousands. Statistical issues in neuroimaging (cluster inflation, small samples) are known concerns."
+   "expert": "fMRI measures BOLD, an indirect proxy for neural activity. Two-photon calcium imaging can record from thousands to over ten thousand neurons at once; a single Neuropixels probe has 384 recording channels, so recording thousands of neurons takes several probes. Statistical issues in neuroimaging (cluster inflation, small samples) are known concerns."
   },
   "facts": [
    [
@@ -1616,11 +1590,6 @@
     "ANP",
     "1.7",
     "1-7-medical-imaging"
-   ],
-   [
-    "BIO",
-    "35.3",
-    "35-3-the-central-nervous-system"
    ]
   ],
   "kn": [

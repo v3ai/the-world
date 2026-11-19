@@ -36,9 +36,14 @@
   "layers": {
    "basics": "Electives let you go deeper in an area you like: oceans, cancer, medicine, public health, engineering life or searching for it elsewhere.",
    "deeper": "Each elective applies core ideas (evolution, cell biology, ecology, statistics) to a specialised problem, often with open scientific questions.",
-   "expert": "Frontier topics have partly settled and partly unsettled science, so uncertainty is flagged. Skills such as modelling, computing and ethics are as important as facts here."
+   "expert": "Some electives rest on mostly settled science, such as ADME pharmacology and the SIR epidemic model. Others sit on open questions: whether life exists elsewhere, how common non-monotonic dose responses are, and whether biological networks are scale-free. Each card carries a certainty tag so the difference is visible."
   },
-  "facts": [],
+  "facts": [
+   [
+    "Elective topics in this group",
+    "16"
+   ]
+  ],
   "certainty": "C1",
   "refs": [],
   "kn": [
@@ -67,9 +72,9 @@
   ],
   "summary": "Life in the ocean.",
   "layers": {
-   "basics": "The ocean covers ≈ 71% of Earth and contains most of its living space. Plankton make about half of the world's oxygen-producing photosynthesis.",
+   "basics": "The ocean covers ≈ 71% of Earth and contains most of its living space. Plankton account for very roughly half of the photosynthesis on Earth, though the exact share is uncertain.",
    "deeper": "Zones: intertidal, pelagic, benthic and deep sea. Coral reefs, kelp forests and hydrothermal vents host distinct communities.",
-   "expert": "Marine food webs are driven by phytoplankton (turnover days) and mesopelagic fish. Chemosynthetic symbioses at vents (tubeworms) were discovered in 1977. Overfishing, warming and acidification are key threats; ≈ 35% of fish stocks are overfished (FAO)."
+   "expert": "Marine food webs are fuelled mainly by phytoplankton, which turn over in days; zooplankton and, in the twilight zone, mesopelagic fish move that energy and carbon down and up the water column. Hydrothermal vent communities were discovered in 1977; the chemosynthetic bacteria living inside tubeworms were identified in 1981. Overfishing, warming and acidification are key threats: about 38% of FAO-assessed marine fish stocks were fished at unsustainable levels in 2021."
   },
   "facts": [
    [
@@ -77,8 +82,8 @@
     "≈ 71%"
    ],
    [
-    "Overfished stocks (FAO)",
-    "≈ 35%"
+    "Assessed stocks overfished (FAO, 2021)",
+    "≈ 38%"
    ]
   ],
   "certainty": "C1",
@@ -122,20 +127,23 @@
   "summary": "How cells escape normal control.",
   "layers": {
    "basics": "Cancer is uncontrolled cell growth caused by accumulated gene changes. Tumours can invade tissues and spread (metastasis).",
-   "deeper": "Hallmarks include sustained proliferation, evading suppressors, resisting death, immortality, angiogenesis, invasion, altered metabolism and immune evasion.",
-   "expert": "Clonal evolution within a tumour drives drug resistance. Targeted therapies (imatinib for BCR-ABL, trastuzumab for HER2) and immunotherapy have improved outcomes. About 1 in 5 people develop cancer in a lifetime; ≈ 10 million deaths yearly worldwide."
+   "deeper": "Hallmarks include sustained proliferation, evading suppressors, resisting death, immortality, angiogenesis, invasion, altered metabolism and immune evasion. Genome instability and tumour-promoting inflammation enable these traits. Recent proposals add phenotypic plasticity, nonmutational epigenetic reprogramming, polymorphic microbiomes and senescent cells; these are candidate additions.",
+   "expert": "Clonal evolution within a tumour drives drug resistance. Targeted therapies (imatinib for BCR-ABL, trastuzumab for HER2) and immunotherapy have improved outcomes. About 1 in 5 people develop cancer in a lifetime, and there were about 9.7 million cancer deaths worldwide in 2022 (GLOBOCAN, IARC). The hallmarks are a conceptual framework that is still being revised."
   },
   "facts": [
    [
-    "Global cancer deaths",
-    "≈ 10 million/yr"
+    "Global cancer deaths (2022)",
+    "≈ 9.7 million/yr"
    ],
    [
     "Imatinib approval",
     "2001"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Which of the proposed new hallmarks (plasticity, epigenetic reprogramming, microbiomes, senescent cells) are general across cancers?"
+  ],
   "refs": [
    [
     "BIO",
@@ -156,6 +164,10 @@
    {
     "title": "Wikipedia: Hallmarks of cancer",
     "url": "https://en.wikipedia.org/wiki/Hallmarks_of_cancer"
+   },
+   {
+    "title": "Hanahan 2022, Hallmarks of cancer: new dimensions (Cancer Discovery)",
+    "url": "https://doi.org/10.1158/2159-8290.CD-21-1059"
    }
   ]
  },
@@ -182,27 +194,21 @@
   "layers": {
    "basics": "Drugs bind targets (receptors, enzymes, channels) and change their activity. The body absorbs, distributes, metabolises and excretes them (ADME).",
    "deeper": "Dose–response curves give potency (EC₅₀) and efficacy. The liver's cytochrome P450 enzymes metabolise most drugs.",
-   "expert": "Half-life t½ = 0.693·Vd/CL determines dosing intervals. Drug–drug interactions via CYP3A4 are clinically important. Pharmacogenomics (e.g. CYP2C19 and clopidogrel) personalises therapy."
+   "expert": "For first-order elimination in a one-compartment model, half-life t½ = ln 2·Vd/CL ≈ 0.693·Vd/CL, where Vd is the volume of distribution and CL is clearance; half-life helps set dosing intervals. Drugs with saturable elimination (phenytoin, ethanol) or several body compartments do not follow this simple form. Drug–drug interactions via CYP3A4 are clinically important. Pharmacogenomics (e.g. CYP2C19 and clopidogrel) personalises therapy."
   },
   "facts": [
    [
-    "Steady state reached after",
-    "≈ 5 half-lives"
+    "Steady state reached after (first-order kinetics)",
+    "≈ 5 half-lives (≈ 97%)"
    ],
    [
     "Drug-metabolising enzyme family",
     "CYP450"
    ]
   ],
-  "formula": "t½ = 0.693·Vd/CL",
+  "formula": "t½ = ln 2·Vd/CL ≈ 0.693·Vd/CL (first-order, one compartment)",
   "certainty": "C1",
-  "refs": [
-   [
-    "ANP",
-    "24.5",
-    "24-5-metabolic-states-of-the-body"
-   ]
-  ],
+  "refs": [],
   "kn": [
    "pharmacology"
   ],
@@ -236,9 +242,9 @@
   ],
   "summary": "The dose makes the poison.",
   "layers": {
-   "basics": "Substances are harmful above some dose. LD₅₀ is the dose that kills half of test animals; NOAEL is the highest dose with no observed harm.",
+   "basics": "Substances are harmful above some dose. LD₅₀ is the dose that kills half of test animals; NOAEL (no observed adverse effect level) is the highest dose tested at which no adverse effect was seen in a given study, so it depends on how sensitive that study was.",
    "deeper": "Paracelsus: \"the dose makes the poison\". Heavy metals, pesticides and drugs have different mechanisms and thresholds.",
-   "expert": "Some toxicants show hormesis (low-dose benefit) or non-monotonic dose responses. Regulators use safety factors (often 100×) from NOAEL to set reference doses. Bioaccumulation and biomagnification (DDT, mercury) raise exposure up the food web."
+   "expert": "Some studies report hormesis (a low-dose beneficial effect) or non-monotonic dose responses; how general these are, and whether regulation should assume them, is disputed. Regulators use safety factors (often 100×) from NOAEL to set reference doses. Bioaccumulation and biomagnification (DDT, mercury) raise exposure up the food web."
   },
   "facts": [
    [
@@ -246,18 +252,15 @@
     "≈ 100×"
    ],
    [
-    "DDT in top predators",
-    "biomagnified ≈ 10⁶×"
+    "DDT in a Long Island salt-marsh food chain",
+    "fish-eating birds held far more than fish (Woodwell 1967); factors vary widely by ecosystem"
    ]
   ],
-  "certainty": "C1",
-  "refs": [
-   [
-    "CHE",
-    "21.6",
-    "21-6-biological-effects-of-radiation"
-   ]
+  "certainty": "C2",
+  "open_questions": [
+   "How common are non-monotonic and hormetic dose responses, and do they change safe-dose limits?"
   ],
+  "refs": [],
   "kn": [
    "pharmacology"
   ],
@@ -267,6 +270,12 @@
    "nicotine",
    "hydrogen_cyanide",
    "carbon_monoxide"
+  ],
+  "ext": [
+   {
+    "title": "Woodwell et al. 1967, DDT residues in an East Coast estuary (Science)",
+    "url": "https://doi.org/10.1126/science.156.3776.821"
+   }
   ]
  },
  {
@@ -292,7 +301,7 @@
   "layers": {
    "basics": "Epidemiologists measure how often disease occurs and what raises or lowers risk. Key measures are incidence, prevalence and relative risk.",
    "deeper": "Designs: cohort, case–control, cross-sectional and randomised trials. John Snow's 1854 Broad Street map linked cholera to a water pump.",
-   "expert": "Confounding, selection bias and measurement error threaten causal inference; Bradford Hill criteria and causal diagrams help. Relative risk RR = [a/(a+b)]/[c/(c+d)], odds ratio OR = ad/bc."
+   "expert": "Confounding, selection bias and measurement error threaten causal inference; Bradford Hill criteria and causal diagrams help. For a 2×2 table (a = exposed with disease, b = exposed without, c = unexposed with disease, d = unexposed without), relative risk RR = [a/(a+b)]/[c/(c+d)] and odds ratio OR = ad/bc. OR approximates RR only when the disease is rare; case–control studies can estimate OR but not RR."
   },
   "facts": [
    [
@@ -300,8 +309,8 @@
     "1854"
    ],
    [
-    "Relative risk",
-    "ratio of risks"
+    "Relative risk example",
+    "RR 2.0 means exposed people have twice the risk"
    ]
   ],
   "formula": "OR = (a·d)/(b·c)",
@@ -355,7 +364,7 @@
   "layers": {
    "basics": "The SIR model splits a population into susceptible, infected and recovered groups and tracks flows between them.",
    "deeper": "An epidemic grows when R₀ > 1. Vaccination, distancing and treatment aim to bring the effective reproduction number R below 1.",
-   "expert": "dS/dt = −βSI/N, dI/dt = βSI/N − γI, dR/dt = γI; R₀ = β/γ. Final size solves ln(S∞/S₀) = R₀(S∞ − 1). Extensions: SEIR, age structure, networks and stochastic effects; parameter uncertainty is considerable."
+   "expert": "dS/dt = −βSI/N, dI/dt = βSI/N − γI, dR/dt = γI; R₀ = β/γ in this simple closed model. With S, I, R written as fractions of the population, and nobody recovered at the start (s₀ + i₀ = 1), the final size solves ln(s∞/s₀) = R₀(s∞ − 1). Extensions: SEIR, age structure, networks and stochastic effects; parameter uncertainty is considerable."
   },
   "facts": [
    [
@@ -363,8 +372,8 @@
     "β/γ"
    ],
    [
-    "Herd immunity threshold",
-    "1 − 1/R₀"
+    "Herd immunity threshold (simple model)",
+    "≈ 1 − 1/R₀ for homogeneous mixing and a fully protective vaccine; real thresholds differ"
    ]
   ],
   "formula": "dI/dt = βSI/N − γI;  R₀ = β/γ",
@@ -387,6 +396,10 @@
    {
     "title": "Wikipedia: Compartmental models in epidemiology",
     "url": "https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology"
+   },
+   {
+    "title": "Hethcote 2000, The mathematics of infectious diseases (SIAM Review)",
+    "url": "https://doi.org/10.1137/S0036144500371907"
    }
   ]
  },
@@ -412,20 +425,24 @@
   "summary": "When hormone systems go wrong.",
   "layers": {
    "basics": "Diabetes, thyroid disease and Cushing's syndrome involve hormones out of balance. Many are treated by replacing or blocking hormones.",
-   "deeper": "Type 1 diabetes lacks insulin; type 2 has insulin resistance. Hypothyroidism slows metabolism; hyperthyroidism speeds it.",
+   "deeper": "Type 1 diabetes is autoimmune loss of insulin-making beta cells; type 2 combines insulin resistance with insufficient beta-cell insulin output. Hypothyroidism slows metabolism; hyperthyroidism speeds it.",
    "expert": "Hormone axes (HPA, HPT, HPG) use negative feedback; set-point dysregulation shows in lab ratios such as TSH/T4. Endocrine disruptors (BPA) are studied for low-dose effects; evidence is mixed and debated."
   },
   "facts": [
    [
-    "Diabetes prevalence (adults, global)",
-    "≈ 10–11%"
+    "Diabetes prevalence (adults 20–79, 2021, IDF)",
+    "≈ 10.5%"
    ],
    [
     "Thyroid hormones",
-    "T3, T4"
+    "T3 (triiodothyronine) and T4 (thyroxine)"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Do low doses of BPA and similar chemicals cause harm in humans at real-world exposures?",
+   "How should non-monotonic dose responses be handled in risk assessment?"
+  ],
   "refs": [
    [
     "ANP",
@@ -475,17 +492,17 @@
   "summary": "Virus evolution and control.",
   "layers": {
    "basics": "Antivirals block steps of the viral cycle: entry, copying or release. RNA viruses mutate fast, so drugs and vaccines may need updating.",
-   "deeper": "Flu drifts every season (antigenic drift) and occasionally shifts by swapping gene segments (shift). Combination therapy limits resistance in HIV and hepatitis C (cure rates > 95%).",
-   "expert": "RNA virus mutation rates ≈ 10⁻⁶–10⁻⁴ per base per replication; error catastrophe limits viability. Deep mutational scanning maps escape. Viral metagenomics has revealed ≈ 10⁵ new viral species."
+   "deeper": "Flu drifts every season (antigenic drift) and occasionally shifts by swapping gene segments (shift). Combination therapy limits resistance in HIV, where it suppresses the virus but does not cure, and in hepatitis C, where direct-acting antiviral regimens cure over 95% of treated patients.",
+   "expert": "RNA virus mutation rates ≈ 10⁻⁶–10⁻⁴ substitutions per nucleotide per cell infection (Sanjuán et al. 2010); error catastrophe limits viability. Deep mutational scanning maps escape. Viral metagenomics has revealed vast numbers of previously unknown viruses, far more than the viruses formally named and classified."
   },
   "facts": [
    [
     "RNA virus mutation rate",
-    "≈ 10⁻⁶–10⁻⁴ per base"
+    "≈ 10⁻⁶–10⁻⁴ substitutions per nucleotide per cell infection"
    ],
    [
-    "HCV cure rate",
-    "> 95%"
+    "HCV cure rate (direct-acting antivirals)",
+    "> 95% of treated patients"
    ]
   ],
   "certainty": "C1",
@@ -494,11 +511,6 @@
     "MIC",
     "14.4",
     "14-4-mechanisms-of-other-antimicrobial-drugs"
-   ],
-   [
-    "MIC",
-    "6.3",
-    "6-3-isolation-culture-and-identification-of-viruses"
    ],
    [
     "BIO",
@@ -535,12 +547,12 @@
   "layers": {
    "basics": "Machine learning finds patterns in sequences, images and expression data. AlphaFold-type networks predict protein structure from sequence.",
    "deeper": "Tools include clustering of single-cell data, variant-effect predictors and image segmentation of microscopy. Models need careful validation to avoid overfitting.",
-   "expert": "Protein language models learn evolutionary constraints from sequence alone. Pitfalls: data leakage, batch effects, ancestry bias and interpretability. AlphaFold 2 was recognised with the 2024 Nobel Prize in Chemistry."
+   "expert": "Protein language models learn evolutionary constraints from sequence alone. Pitfalls: data leakage, batch effects, ancestry bias and interpretability. The 2024 Nobel Prize in Chemistry was shared: half to Demis Hassabis and John Jumper for AlphaFold protein structure prediction, half to David Baker for computational protein design."
   },
   "facts": [
    [
-    "AlphaFold Nobel",
-    "2024 (Hassabis, Jumper, Baker)"
+    "2024 Chemistry Nobel",
+    "AlphaFold: Hassabis, Jumper; protein design: Baker"
    ],
    [
     "Single-cell atlases",
@@ -551,14 +563,20 @@
   "refs": [
    [
     "DSC",
-    "1.1",
-    "1-1-what-is-data-science"
+    "7.1",
+    "7-1-introduction-to-neural-networks"
    ]
   ],
   "kn": [
    "neural_nets"
   ],
-  "where": "place:dna"
+  "where": "place:dna",
+  "ext": [
+   {
+    "title": "Jumper et al. 2021, Highly accurate protein structure prediction with AlphaFold (Nature)",
+    "url": "https://doi.org/10.1038/s41586-021-03819-2"
+   }
+  ]
  },
  {
   "id": "bio_conservation_genomics",
@@ -584,7 +602,7 @@
   "layers": {
    "basics": "Genetic data show how diverse and how related individuals in small populations are, guiding breeding and relocation.",
    "deeper": "Tools: microsatellites, SNP arrays, eDNA monitoring and genomic assessment of inbreeding. Genetic rescue helped Florida panthers.",
-   "expert": "The 50/500 rule (now 100/1,000) is a rough guide to minimum Ne for short- and long-term viability. Genomic load can be measured directly. De-extinction proposals (woolly mammoth, thylacine) are scientifically and ethically contested."
+   "expert": "The 50/500 rule was revised by Frankham and colleagues in 2014 to an effective population size Ne of at least 100 to limit inbreeding depression in the short term and at least 1,000 to keep evolutionary potential; Ne is the effective population size, usually far smaller than the head count, and these are rough guides. Genomic load can be measured directly. De-extinction proposals (woolly mammoth, thylacine) are scientifically and ethically contested."
   },
   "facts": [
    [
@@ -592,11 +610,14 @@
     "100 (short), 1,000 (long term)"
    ],
    [
-    "Thylacine extinction",
-    "1936"
+    "Thylacine",
+    "last known (captive) animal died 7 September 1936; declared extinct in 1986"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How well do rule-of-thumb Ne thresholds predict the long-term survival of real populations?"
+  ],
   "refs": [
    [
     "BIO",
@@ -631,13 +652,17 @@
   "summary": "Engineering organisms with designed parts.",
   "layers": {
    "basics": "Synthetic biologists design genetic circuits, pathways and even whole genomes using standard parts, and build them in cells.",
-   "deeper": "Examples: yeast making artemisinin precursor, engineered bacteria sensing molecules, and a minimal bacterial genome (JCVI-syn3.0, 473 genes). Biosecurity and ethics need attention.",
+   "deeper": "Examples: yeast making artemisinin precursor, engineered bacteria sensing molecules, and a minimal bacterial genome (JCVI-syn3.0: 473 genes in 531 kb, about 149 of them of unknown function). Biosecurity and ethics need attention.",
    "expert": "Design–build–test–learn cycles are accelerated by DNA synthesis and automation. Genetic toggle switch (2000) and repressilator (2000) were early circuits. Orthogonal ribosomes and expanded genetic alphabets (unnatural base pairs) extend the code."
   },
   "facts": [
    [
     "JCVI-syn3.0 genes",
     "473"
+   ],
+   [
+    "JCVI-syn3.0 genes of unknown function",
+    "≈ 149 of 473 (Hutchison et al. 2016)"
    ],
    [
     "Repressilator",
@@ -650,11 +675,6 @@
     "MIC",
     "12.1",
     "12-1-microbes-and-the-tools-of-genetic-engineering"
-   ],
-   [
-    "MIC",
-    "12.4",
-    "12-4-gene-therapy"
    ]
   ],
   "kn": [
@@ -695,8 +715,8 @@
   "summary": "Life beyond Earth.",
   "layers": {
    "basics": "Astrobiology asks where life might exist elsewhere. Targets include Mars, Europa and Enceladus and planets orbiting other stars.",
-   "deeper": "Habitable zones are where water could be liquid. Biosignatures include oxygen with methane, or organic patterns in rocks.",
-   "expert": "No confirmed extraterrestrial life exists. Perseverance is collecting Mars samples; the 1996 Martian meteorite ALH84001 claim and the 2020 Venus phosphine claim remain unconfirmed or disputed. Extremophile limits (e.g., ≈ 122 °C, pH 0, high radiation) widen possible habitats."
+   "deeper": "The habitable zone is the orbital range where a planet's surface could hold liquid water. Europa and Enceladus have subsurface oceans far outside it. Biosignatures include oxygen with methane, or organic patterns in rocks.",
+   "expert": "No confirmed extraterrestrial life exists. Perseverance has collected and cached rock samples on Mars since 2021; when or whether they will be returned to Earth is unsettled. The 1996 Martian meteorite ALH84001 claim and the 2020 Venus phosphine claim remain unconfirmed or disputed. Extremophile limits (e.g., ≈ 122 °C, pH 0, high radiation) widen possible habitats."
   },
   "facts": [
    [
@@ -705,7 +725,7 @@
    ],
    [
     "Confirmed exoplanets",
-    "more than 6,000 (passed 6,000 in September 2025; the count keeps growing)"
+    "more than 6,000 (NASA Exoplanet Archive; the count keeps growing)"
    ]
   ],
   "certainty": "C3",
@@ -750,19 +770,22 @@
   "layers": {
    "basics": "Systems biology studies how many parts interact to produce cell behaviour. Networks of genes, proteins and metabolites are mapped and modelled.",
    "deeper": "Network motifs (feedback, feed-forward loops) give circuits functions like switching, oscillation and noise filtering.",
-   "expert": "Flux balance analysis predicts metabolic flows from stoichiometry. Gene-expression noise is both a nuisance and a feature (bet-hedging in bacteria). Scale-free claims for networks are controversial."
+   "expert": "Flux balance analysis predicts metabolic flows from stoichiometry. Gene-expression noise is both a nuisance and a feature (bet-hedging in bacteria). Whether real networks are scale-free is disputed: a 2019 survey of many networks found strictly scale-free structure to be rare."
   },
   "facts": [
    [
-    "E. coli metabolic model",
-    "≈ 2,700 reactions"
+    "E. coli K-12 model iML1515",
+    "1,515 genes, 2,719 reactions (Monk et al. 2017)"
    ],
    [
     "Network motif example",
     "feed-forward loop"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Are real biological networks scale-free?"
+  ],
   "refs": [
    [
     "BIO",
@@ -800,7 +823,7 @@
   "summary": "Physics applied to living matter.",
   "layers": {
    "basics": "Biophysics uses physical laws to explain life: diffusion in cells, forces from motor proteins, and electrical signals in nerves.",
-   "deeper": "Single-molecule techniques (optical tweezers, AFM) measure forces of ≈ 1–100 pN. Motor proteins like kinesin work near thermal-noise limits.",
+   "deeper": "Single-molecule techniques (optical tweezers, AFM) measure forces on single molecules in the piconewton range and above. Motor proteins like kinesin work amid strong Brownian fluctuations: each 8 nm step is powered by one ATP, worth roughly 25 kBT, well above the thermal scale yet still noisy.",
    "expert": "At low Reynolds number (Re ≈ 10⁻⁵ for bacteria), inertia is negligible; flagella use non-reciprocal motion. Thermal energy kBT ≈ 4.1 pN·nm sets the scale of molecular events."
   },
   "facts": [
@@ -813,13 +836,13 @@
     "≈ 6 pN"
    ]
   ],
-  "formula": "kBT ≈ 4.1 pN·nm",
+  "formula": "kBT ≈ 4.1 pN·nm at T = 298 K",
   "certainty": "C1",
   "refs": [
    [
-    "UP1",
-    "1.1",
-    "1-1-the-scope-and-scale-of-physics"
+    "BIO",
+    "4.5",
+    "4-5-the-cytoskeleton"
    ]
   ],
   "kn": [
@@ -852,7 +875,7 @@
   "layers": {
    "basics": "Microbes drive the carbon, nitrogen and sulfur cycles. In soil and oceans they decompose, fix nitrogen and produce or consume greenhouse gases.",
    "deeper": "Nitrification, denitrification and anammox shape the nitrogen budget; methanogens and methanotrophs control methane.",
-   "expert": "Marine Prochlorococcus (≈ 10²⁷ cells) is the most abundant photosynthesiser. Microbial loop and viral shunt shape ocean carbon export. Soil microbial carbon-use efficiency is a key uncertain parameter in climate models."
+   "expert": "Marine Prochlorococcus (≈ 3×10²⁷ cells) is the most abundant photosynthesiser. Microbial loop and viral shunt shape ocean carbon export. Soil microbial carbon-use efficiency is a key uncertain parameter in climate models."
   },
   "facts": [
    [
@@ -860,11 +883,14 @@
     "≈ 3×10²⁷"
    ],
    [
-    "Marine microbes share of ocean respiration",
-    "≈ 70–90%"
+    "Bacterial share of plankton respiration",
+    "≈ 12–59% in published estimates (algae 8–70%); total uncertain"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How much of the carbon that soil microbes take up is stored as biomass rather than respired, and how will warming change it?"
+  ],
   "refs": [
    [
     "MIC",
@@ -918,14 +944,11 @@
     "2008"
    ]
   ],
-  "certainty": "C1",
-  "refs": [
-   [
-    "BET",
-    "1.1",
-    "1-1-being-a-professional-of-integrity"
-   ]
+  "certainty": "C2",
+  "open_questions": [
+   "Should heritable human genome editing ever be allowed, and under what oversight?"
   ],
+  "refs": [],
   "kn": [
    "medicine_evidence"
   ]

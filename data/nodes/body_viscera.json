@@ -142,7 +142,7 @@
     "≈ 2-4 h"
    ]
   ],
-  "did_you_know": "The stomach lining replaces itself every few days, and the lining cells are renewed so fast it avoids digesting itself.",
+  "did_you_know": "The stomach lining is shielded from its own acid by a thick layer of bicarbonate-rich mucus and by tight junctions between its cells, and the surface cells are also replaced every 3 to 6 days.",
   "certainty": "C1",
   "refs": [
    [
@@ -191,14 +191,14 @@
   "facts": [
    [
     "Pits",
-    "≈ 3-4 million"
+    "a vast number (millions; estimates vary)"
    ],
    [
-    "Pit depth",
-    "≈ 0.3 mm"
+    "Lumen pH",
+    "≈ 1.5-3.5"
    ]
   ],
-  "did_you_know": "The proton pump in these cells can create a 1,000,000-fold H+ gradient.",
+  "did_you_know": "Parietal cell proton pumps push acid into the stomach against a gradient of many thousand-fold or more in H+ concentration, because the cell interior stays near neutral pH.",
   "certainty": "C1",
   "refs": [
    [
@@ -237,20 +237,20 @@
   "layers": {
    "basics": "This is where most food becomes usable nutrients, absorbed through a huge folded lining.",
    "deeper": "It has three parts: duodenum, jejunum and ileum. Bile and pancreatic enzymes enter the duodenum.",
-   "expert": "Circular folds, villi and microvilli amplify surface ≈ 600-fold; brush border enzymes finish digestion; segmentation and migrating motor complexes mix and move contents."
+   "expert": "Circular folds, villi and microvilli multiply the surface; modern measurements give villi plus microvilli about 60-120-fold and about 30 m² for the small intestine (older texts quote 200-300 m²); brush border enzymes finish digestion; segmentation and migrating motor complexes mix and move contents."
   },
   "facts": [
    [
     "Length",
-    "≈ 3-6 m"
+    "≈ 3-3.5 m in life"
    ],
    [
     "Diameter",
-    "≈ 2.5-3 cm"
+    "≈ 2.5 cm"
    ],
    [
-    "Effective area",
-    "≈ 30-40 m²"
+    "Mucosal surface area",
+    "≈ 30 m² (older texts: 200-300 m²)"
    ]
   ],
   "did_you_know": "Despite the name 'small', it is the longest part of your digestive tube.",
@@ -307,7 +307,7 @@
    ],
    [
     "Density",
-    "≈ 10-40 per mm²"
+    "≈ 20-40 per mm²"
    ]
   ],
   "did_you_know": "The intestinal lining is replaced every 3 to 5 days, one of the fastest turnover rates in the body.",
@@ -348,7 +348,7 @@
   "layers": {
    "basics": "The large intestine turns leftovers into stool and hosts trillions of helpful bacteria.",
    "deeper": "It includes cecum, colon and rectum. Gut microbes ferment fiber into useful fatty acids.",
-   "expert": "Colonic transit ≈ 20-50 h; microbial fermentation gives short-chain fatty acids (acetate, propionate, butyrate) used by colonocytes; microbial density ≈ 10^11-10^12 per gram."
+   "expert": "Colonic transit ≈ 20-50 h; microbial fermentation gives short-chain fatty acids (acetate, propionate, butyrate) used by colonocytes; microbial density in colon contents is very high, on the order of 10^11 cells per gram."
   },
   "facts": [
    [
@@ -357,14 +357,14 @@
    ],
    [
     "Water absorbed",
-    "≈ 1-1.5 L/day"
+    "most of the ≈ 10% that reaches the colon"
    ],
    [
     "Microbes",
     "≈ 4×10^13 (whole body)"
    ]
   ],
-  "did_you_know": "About half of stool dry weight is bacterial biomass.",
+  "did_you_know": "Bacteria make up a large share of stool, and the share depends on diet.",
   "certainty": "C1",
   "refs": [
    [
@@ -397,16 +397,16 @@
   "layers": {
    "basics": "Your gut hosts bacteria, archaea, fungi and viruses that help digest fiber, train the immune system and make vitamins.",
    "deeper": "Their composition varies between people and over time, shaped by diet, age and environment.",
-   "expert": "Metagenomic sequencing reveals ≈ 10^3 species per person; causal links to obesity, mood or disease are actively researched, and many associations remain correlational."
+   "expert": "Metagenomic sequencing of 124 Europeans (2010) found at least 160 bacterial species in each person and 1,000-1,150 prevalent species across the whole group; causal links to obesity, mood or disease are actively researched, and many associations remain correlational."
   },
   "facts": [
    [
-    "Microbial cells",
-    "≈ 3.8×10^13"
+    "Bacterial cells (70 kg reference man)",
+    "≈ 4×10^13 (≈ 25% uncertainty); human cells ≈ 3×10^13"
    ],
    [
-    "Genes (microbial)",
-    "≈ 10^6-10^7"
+    "Gene catalogue (pooled across people)",
+    "≈ 3.3×10^6 (2010 study, 124 people)"
    ]
   ],
   "did_you_know": "The ratio of microbial to human cells is closer to 1:1 than the older 10:1 estimate.",
@@ -420,6 +420,11 @@
     "ANP",
     "23.5",
     "23-5-the-small-and-large-intestines"
+   ],
+   [
+    "MIC",
+    "24.1",
+    "24-1-anatomy-and-normal-microbiota-of-the-digestive-system"
    ]
   ],
   "kn": [
@@ -452,7 +457,7 @@
   "layers": {
    "basics": "The liver is a chemical factory that cleans blood, stores energy and makes bile to digest fats.",
    "deeper": "It receives blood both from the gut (portal vein) and from the heart (hepatic artery), and can regrow after partial removal.",
-   "expert": "Performs >500 functions: glycogen storage, gluconeogenesis, albumin and clotting factor synthesis, urea cycle, cytochrome P450 drug metabolism and bile acid production."
+   "expert": "Performs a very wide range of functions, including glycogen storage, gluconeogenesis, albumin and clotting-factor synthesis, the urea cycle, cytochrome P450 drug metabolism and bile-acid production."
   },
   "facts": [
    [
@@ -508,7 +513,7 @@
    ],
    "label": "Liver lobule"
   },
-  "summary": "A hexagonal unit of liver tissue where blood is processed.",
+  "summary": "Roughly hexagonal units of liver tissue, only faintly outlined in humans, where blood is processed.",
   "layers": {
    "basics": "Blood flows through each lobule, passing liver cells that clean it.",
    "deeper": "Blood flows from the corners (portal triads) toward a central vein.",
@@ -520,8 +525,8 @@
     "≈ 1-2 mm"
    ],
    [
-    "Number",
-    "≈ 10^5"
+    "Hepatocyte share of liver volume",
+    "≈ 80%"
    ]
   ],
   "did_you_know": "Each lobule is about as wide as a grain of sand.",
@@ -559,8 +564,8 @@
   "summary": "A small sac that stores and concentrates bile.",
   "layers": {
    "basics": "The gallbladder holds bile until fatty food arrives, then squeezes it into the intestine.",
-   "deeper": "Bile helps break fats into tiny droplets.",
-   "expert": "CCK triggers gallbladder contraction and sphincter of Oddi relaxation; bile concentrates 5-10×; cholesterol stones are common."
+   "deeper": "Bile salts break fat into small droplets so that lipase can reach it; between meals the gallbladder removes water and concentrates bile.",
+   "expert": "CCK triggers gallbladder contraction and sphincter of Oddi relaxation; bile is concentrated by up to about 10-fold; cholesterol stones are common."
   },
   "facts": [
    [
@@ -568,8 +573,8 @@
     "≈ 30-50 mL"
    ],
    [
-    "Bile stored",
-    "≈ 50 mL"
+    "Length",
+    "≈ 8-10 cm"
    ]
   ],
   "did_you_know": "People can live normally without a gallbladder.",
@@ -706,6 +711,9 @@
    "urinary_system"
   ],
   "parts": [
+   "renal_cortex",
+   "renal_medulla",
+   "renal_pelvis",
    "nephron"
   ],
   "made_of": [
@@ -722,12 +730,12 @@
   "layers": {
    "basics": "Kidneys are bean-shaped organs that clean your blood and control water, salt and acid levels.",
    "deeper": "Each has about a million nephrons. Blood enters via the renal artery, filtered fluid becomes urine collected in the renal pelvis.",
-   "expert": "Receives ≈ 20-25% of cardiac output; GFR ≈ 120 mL/min; also secretes renin, erythropoietin and activates vitamin D (calcitriol)."
+   "expert": "Receives ≈ 25% of cardiac output at rest; GFR ≈ 105-125 mL/min; also secretes renin, erythropoietin and activates vitamin D (calcitriol)."
   },
   "facts": [
    [
     "Length",
-    "≈ 11 cm"
+    "≈ 11-14 cm"
    ],
    [
     "Mass",
@@ -738,7 +746,7 @@
     "≈ 10^6"
    ]
   ],
-  "did_you_know": "Each kidney is only about the size of a fist, but together they handle a fifth of your blood flow.",
+  "did_you_know": "Each kidney is only about the size of a fist, but together they receive about a quarter of the blood the heart pumps at rest.",
   "certainty": "C1",
   "refs": [
    [
@@ -780,12 +788,12 @@
   "layers": {
    "basics": "Kidneys are bean-shaped organs that clean your blood and control water, salt and acid levels.",
    "deeper": "Each has about a million nephrons. Blood enters via the renal artery, filtered fluid becomes urine collected in the renal pelvis.",
-   "expert": "Receives ≈ 20-25% of cardiac output; GFR ≈ 120 mL/min; also secretes renin, erythropoietin and activates vitamin D (calcitriol)."
+   "expert": "Receives ≈ 25% of cardiac output at rest; GFR ≈ 105-125 mL/min; also secretes renin, erythropoietin and activates vitamin D (calcitriol)."
   },
   "facts": [
    [
     "Length",
-    "≈ 11 cm"
+    "≈ 11-14 cm"
    ],
    [
     "Mass",
@@ -796,7 +804,7 @@
     "≈ 10^6"
    ]
   ],
-  "did_you_know": "Each kidney is only about the size of a fist, but together they handle a fifth of your blood flow.",
+  "did_you_know": "Each kidney is only about the size of a fist, but together they receive about a quarter of the blood the heart pumps at rest.",
   "certainty": "C1",
   "refs": [
    [
@@ -816,6 +824,7 @@
   "template": "anatomy",
   "scale_m": 0.01,
   "parents": [
+   "kidney_l",
    "kidney_r"
   ],
   "parts": [],
@@ -840,15 +849,15 @@
   "layers": {
    "basics": "The outer shell where blood is first filtered.",
    "deeper": "It contains glomeruli and most of the tubules.",
-   "expert": "Cortical labyrinth and medullary rays; ≈ 85% of nephrons are cortical."
+   "expert": "Cortical labyrinth and medullary rays; most nephrons are cortical, with a minority lying close to the medulla (juxtamedullary)."
   },
   "facts": [
    [
-    "Role",
-    "The outer layer of the kidney holding the filters"
+    "Contains",
+    "all glomeruli, plus the first parts of the tubules"
    ]
   ],
-  "did_you_know": "Only about a fifth of the kidney's blood flow ends up as filtrate.",
+  "did_you_know": "About a fifth of the plasma flowing through the kidney is filtered.",
   "certainty": "C1",
   "refs": [
    [
@@ -868,6 +877,7 @@
   "template": "anatomy",
   "scale_m": 0.03,
   "parents": [
+   "kidney_l",
    "kidney_r"
   ],
   "parts": [],
@@ -896,11 +906,11 @@
   },
   "facts": [
    [
-    "Role",
-    "Inner region with cone-shaped pyramids that concentrate urine"
+    "Osmolality range",
+    "≈ 300 to ≈ 1200 mOsm/kg"
    ]
   ],
-  "did_you_know": "Only about a fifth of the kidney's blood flow ends up as filtrate.",
+  "did_you_know": "The salt gradient of the medulla rises from about 300 mOsm/kg near the cortex to about 1200 mOsm/kg deep inside, roughly four times the osmolality of blood.",
   "certainty": "C1",
   "refs": [
    [
@@ -920,6 +930,7 @@
   "template": "anatomy",
   "scale_m": 0.02,
   "parents": [
+   "kidney_l",
    "kidney_r"
   ],
   "parts": [],
@@ -948,8 +959,8 @@
   },
   "facts": [
    [
-    "Role",
-    "The funnel where urine collects before flowing to the ureter"
+    "Receives urine from",
+    "the minor and major calyces"
    ]
   ],
   "did_you_know": "A kidney stone often gets stuck where the pelvis meets the ureter.",
@@ -1002,20 +1013,20 @@
   "summary": "The kidney's microscopic filtering and processing unit.",
   "layers": {
    "basics": "Each nephron filters blood and then takes back the water and nutrients your body wants to keep.",
-   "deeper": "It consists of a glomerulus, a long tubule with several regions, and drains into a collecting duct.",
+   "deeper": "It consists of a glomerulus and a long tubule with several regions; the tubule drains into a collecting duct, which is continuous with the nephron but usually counted as a separate structure.",
    "expert": "Segments: Bowman's capsule, proximal convoluted tubule (≈ 65% reabsorption), loop of Henle, distal tubule, connecting tubule; juxtaglomerular apparatus regulates GFR via tubuloglomerular feedback."
   },
   "facts": [
    [
-    "Length",
-    "≈ 3-5 cm tubule (up to ~5)"
+    "Tubule length",
+    "a few cm per nephron"
    ],
    [
     "Per kidney",
     "≈ 10^6"
    ]
   ],
-  "did_you_know": "If all the kidney tubules were stretched out, they would be roughly 80 km long.",
+  "did_you_know": "Each kidney holds more than a million of these filter-and-tube units, all working side by side.",
   "certainty": "C1",
   "refs": [
    [
@@ -1063,11 +1074,11 @@
   },
   "facts": [
    [
-    "Role",
-    "A tuft of capillaries where blood plasma is filtered"
+    "Net filtration pressure",
+    "≈ 10 mmHg"
    ]
   ],
-  "did_you_know": "Urine concentration can swing about 24-fold, from roughly 50 to 1200 mOsm/kg.",
+  "did_you_know": "The kidneys filter about 150-180 L of plasma a day (GFR ≈ 105-125 mL/min) yet make only 1-2 L of urine.",
   "certainty": "C1",
   "refs": [
    [
@@ -1115,11 +1126,11 @@
   },
   "facts": [
    [
-    "Role",
-    "The first long tube segment that reclaims most water, salt and all glucose"
+    "Na+ and water reabsorbed here",
+    "≈ 65%"
    ]
   ],
-  "did_you_know": "Urine concentration can swing about 24-fold, from roughly 50 to 1200 mOsm/kg.",
+  "did_you_know": "Normally nearly all filtered glucose is reabsorbed here, so none appears in urine.",
   "certainty": "C1",
   "refs": [
    [
@@ -1163,21 +1174,26 @@
   "layers": {
    "basics": "The loop of Henle dips into the kidney's inner zone, building a salty gradient so the body can make concentrated urine.",
    "deeper": "Descending limb is water-permeable, ascending thick limb pumps out salt (NKCC2).",
-   "expert": "Countercurrent multiplier; loop diuretics block NKCC2; vasa recta maintain gradient."
+   "expert": "The thick ascending limb pumps Na+, K+ and Cl- out through the NKCC2 symporter but is nearly impermeable to water, so the surrounding tissue grows saltier; the hairpin shape multiplies this effect (countercurrent multiplication); loop diuretics block NKCC2; vasa recta capillaries preserve the gradient."
   },
   "facts": [
    [
-    "Role",
-    "A hairpin that builds the salt gradient used to concentrate urine"
+    "Peak filtrate osmolality",
+    "≈ 1200 mOsmol/kg (deep medulla)"
    ]
   ],
-  "did_you_know": "Urine concentration can swing about 24-fold, from roughly 50 to 1200 mOsm/kg.",
+  "did_you_know": "Deep in the medulla the filtrate can reach about 1200 mOsmol/kg, roughly four times the osmolality of blood.",
   "certainty": "C1",
   "refs": [
    [
     "ANP",
     "25.4",
     "25-4-microscopic-anatomy-of-the-kidney"
+   ],
+   [
+    "ANP",
+    "25.6",
+    "25-6-tubular-reabsorption"
    ]
   ],
   "kn": [
@@ -1215,15 +1231,15 @@
   "layers": {
    "basics": "Hormones adjust the final salt and calcium balance here.",
    "deeper": "Aldosterone and PTH act on segments here.",
-   "expert": "NCC transporter (thiazide target); regulated by aldosterone and PTH; macula densa sensor."
+   "expert": "NCC transporter (thiazide target); PTH raises Ca2+ reabsorption here; aldosterone acts mainly on the late distal tubule and the collecting duct; the macula densa, at the start of the distal tubule where it touches the glomerular arterioles, belongs to the juxtaglomerular apparatus."
   },
   "facts": [
    [
-    "Role",
-    "The fine-tuning segment that adjusts salt and calcium"
+    "Hormones acting here",
+    "aldosterone and PTH"
    ]
   ],
-  "did_you_know": "Urine concentration can swing about 24-fold, from roughly 50 to 1200 mOsm/kg.",
+  "did_you_know": "Thiazide diuretics block the NCC salt transporter in this segment.",
   "certainty": "C1",
   "refs": [
    [
@@ -1271,11 +1287,11 @@
   },
   "facts": [
    [
-    "Role",
-    "The final tube that gathers urine and sets its water content"
+    "Main hormone control",
+    "ADH (inserts aquaporin-2 water channels)"
    ]
   ],
-  "did_you_know": "Urine concentration can swing about 24-fold, from roughly 50 to 1200 mOsm/kg.",
+  "did_you_know": "With ADH present, water leaves the collecting duct and urine becomes concentrated; without it, urine stays dilute.",
   "certainty": "C1",
   "refs": [
    [
@@ -1310,7 +1326,7 @@
   "summary": "Two muscular tubes carrying urine from the kidneys to the bladder.",
   "layers": {
    "basics": "Waves of muscle squeeze urine down these thin tubes, even if you're lying down.",
-   "deeper": "Peristalsis every 10 to 60 seconds pushes urine along.",
+   "deeper": "Waves of peristalsis push urine along; the pace depends on how much urine is flowing.",
    "expert": "Urothelium; three constrictions (pelviureteric junction, pelvic brim, vesicoureteric junction) are common stone-lodging sites."
   },
   "facts": [
@@ -1320,7 +1336,7 @@
    ],
    [
     "Diameter",
-    "≈ 3-4 mm"
+    "a few mm, narrower at its three constrictions"
    ]
   ],
   "did_you_know": "They enter the bladder at an angle, forming a one-way valve.",
@@ -1358,17 +1374,17 @@
   "summary": "A stretchy muscular bag that stores urine.",
   "layers": {
    "basics": "The bladder fills like a balloon and signals when it's time to go.",
-   "deeper": "It typically holds 400-600 mL, with the urge starting at about 200-300 mL.",
+   "deeper": "It can hold up to about 500-600 mL; the first urge is sensed at about 150 mL and is easily overridden, and control becomes hard to keep as the volume nears 300-400 mL.",
    "expert": "Detrusor smooth muscle and transitional epithelium (urothelium); micturition reflex coordinated by sacral cord (S2-S4) and pontine micturition center; internal and external sphincters."
   },
   "facts": [
    [
     "Capacity",
-    "≈ 400-600 mL"
+    "up to ≈ 500-600 mL"
    ],
    [
-    "Urge threshold",
-    "≈ 200-300 mL"
+    "First urge",
+    "≈ 150 mL"
    ]
   ],
   "did_you_know": "The bladder wall can stretch to many times its relaxed size without pressure rising much.",
@@ -1420,7 +1436,7 @@
     "≈ 20 cm"
    ]
   ],
-  "did_you_know": "Its length difference explains why urinary infections are more common in females.",
+  "did_you_know": "The shorter female urethra, together with its position near the anus, is one reason urinary infections are more common in women.",
   "certainty": "C1",
   "refs": [
    [
@@ -1474,8 +1490,8 @@
     "≈ 0.5 g"
    ],
    [
-    "Hormones",
-    "≈ 8 major"
+    "Major hormones",
+    "8 (6 anterior, 2 released from the posterior lobe)"
    ]
   ],
   "did_you_know": "It sits in a small bony pocket of the skull called the sella turcica.",
@@ -1577,7 +1593,7 @@
     "≈ 6 mm each"
    ]
   ],
-  "did_you_know": "They were the last major organs identified in humans.",
+  "did_you_know": "They were not described in humans until 1880, much later than most other organs.",
   "certainty": "C1",
   "refs": [
    [
@@ -1726,7 +1742,7 @@
   "layers": {
    "basics": "The spleen removes old red blood cells and helps fight infections.",
    "deeper": "It has red pulp (filtering) and white pulp (immune cells).",
-   "expert": "Marginal zone B cells respond to blood-borne encapsulated bacteria; red pulp macrophages recycle iron; stores ≈ 200 mL blood."
+   "expert": "Marginal zone B cells respond to blood-borne encapsulated bacteria; red pulp macrophages recycle iron; the red pulp holds a blood reservoir from which contraction can release some red cells."
   },
   "facts": [
    [
@@ -1770,16 +1786,16 @@
   ],
   "related": [],
   "mesh": "thymus",
-  "summary": "Where T cells mature; largest in children.",
+  "summary": "Where T cells mature; largest relative to body size in infants and children.",
   "layers": {
    "basics": "T cells go to school in the thymus, learning to ignore your own body.",
    "deeper": "It is most active in childhood and shrinks with age.",
-   "expert": "Positive and negative selection of thymocytes; thymic involution begins in adolescence; AIRE expression enables central tolerance."
+   "expert": "Positive and negative selection of thymocytes; thymic involution (shrinkage and fat replacement) is described as beginning after puberty, though T-cell output may start to fall earlier; AIRE expression enables central tolerance."
   },
   "facts": [
    [
-    "Peak mass",
-    "≈ 30-40 g (puberty)"
+    "Peak size",
+    "around puberty"
    ],
    [
     "Adult",
@@ -1828,7 +1844,7 @@
   "facts": [
    [
     "Number",
-    "≈ 600-700"
+    "≈ 500-600"
    ],
    [
     "Size",
@@ -1871,12 +1887,12 @@
   "layers": {
    "basics": "They drain extra fluid from tissues and carry it back toward the heart.",
    "deeper": "Valves keep lymph flowing one way.",
-   "expert": "Initial lymphatics (lymphatic capillaries) with overlapping endothelial flaps; ≈ 2-4 L/day returned; thoracic duct drains most of the body."
+   "expert": "Initial lymphatics (lymphatic capillaries) with overlapping endothelial flaps; ≈ 3 L/day returned; thoracic duct drains most of the body."
   },
   "facts": [
    [
     "Fluid returned/day",
-    "≈ 2-4 L"
+    "≈ 3 L"
    ]
   ],
   "did_you_know": "Lymph is also how dietary fats reach the blood after a meal.",
@@ -1923,7 +1939,7 @@
   "summary": "The body's largest organ: a waterproof, sensitive, self-renewing covering.",
   "layers": {
    "basics": "Skin protects you from germs, UV light and water loss, helps control body temperature and lets you feel.",
-   "deeper": "Three layers: epidermis (outer), dermis (middle), hypodermis (fat).",
+   "deeper": "Two layers: the epidermis (outer) and the dermis (middle). Beneath them lies the hypodermis, a fatty layer that anchors the skin but is not strictly part of it.",
    "expert": "Keratinocyte differentiation produces the stratum corneum; epidermal turnover ≈ 28-40 days; melanocytes, Langerhans cells and Merkel cells reside in the epidermis."
   },
   "facts": [
@@ -1936,11 +1952,11 @@
     "≈ 0.5-4 mm"
    ],
    [
-    "Mass",
-    "≈ 4-5 kg"
+    "Stratum corneum",
+    "15-30 cell layers"
    ]
   ],
-  "did_you_know": "Skin is the heaviest organ of the body, around 15% of body weight.",
+  "did_you_know": "Skin is the largest organ of the body, weighing several kilograms in an adult.",
   "certainty": "C1",
   "refs": [
    [
@@ -1988,8 +2004,8 @@
   },
   "facts": [
    [
-    "Role",
-    "The thin, outer, waterproof layer of skin"
+    "Cell layers",
+    "4 or 5, depending on body site"
    ]
   ],
   "did_you_know": "The surface layer you see is dead cells.",
@@ -2041,8 +2057,8 @@
   },
   "facts": [
    [
-    "Role",
-    "The thick middle layer with fibers, vessels and nerves"
+    "Main fibres",
+    "collagen and elastin"
    ]
   ],
   "did_you_know": "Tattoo ink sits in the dermis, which is why it doesn't wash away.",
@@ -2089,15 +2105,15 @@
   "layers": {
    "basics": "Each hair grows from a root in a follicle.",
    "deeper": "A hair has a living bulb at the base and a dead keratin shaft.",
-   "expert": "Growth cycle: anagen, catagen, telogen; dermal papilla signaling; ≈ 5 million follicles, ≈ 100,000 on scalp."
+   "expert": "Growth cycle: anagen, catagen, telogen; dermal papilla signaling; follicles cover most of the body surface, with the densest cover on the scalp."
   },
   "facts": [
    [
-    "Role",
-    "A pocket in the skin that grows a hair"
+    "Hairs lost and replaced per day",
+    "≈ 50 (average)"
    ]
   ],
-  "did_you_know": "Humans have about as many hair follicles as chimpanzees, but most hairs are fine and short.",
+  "did_you_know": "On average about 50 hairs are lost and replaced every day.",
   "certainty": "C1",
   "refs": [
    [
@@ -2140,16 +2156,16 @@
   "summary": "A coiled tube that releases sweat to cool the body.",
   "layers": {
    "basics": "Sweat evaporates and cools you down.",
-   "deeper": "Eccrine glands cover most of the body; apocrine glands are in armpits.",
-   "expert": "≈ 2-4 million eccrine glands; sweat is ≈ 99% water with Na+, Cl-; cholinergic sympathetic control."
+   "deeper": "Eccrine glands cover most of the body and are most abundant on the palms, soles and forehead; apocrine glands sit mainly in the armpits and genital region.",
+   "expert": "Millions of eccrine glands; sweat is mostly water with Na+ and Cl-; cholinergic sympathetic control."
   },
   "facts": [
    [
-    "Role",
-    "A coiled tube that releases sweat to cool the body"
+    "Most abundant on",
+    "palms, soles and forehead (eccrine glands)"
    ]
   ],
-  "did_you_know": "Humans have more sweat glands than any other primate, helping cooling.",
+  "did_you_know": "Human skin has by far the highest density of eccrine sweat glands among primates, which is generally linked to cooling by sweat.",
   "certainty": "C1",
   "refs": [
    [
@@ -2193,15 +2209,15 @@
   "layers": {
    "basics": "It cushions and insulates.",
    "deeper": "Made of fat cells and loose tissue.",
-   "expert": "Subcutaneous adipose tissue stores energy."
+   "expert": "Subcutaneous fat also acts as an endocrine organ (it releases leptin and adiponectin), and its thickness and distribution differ by sex and body site."
   },
   "facts": [
    [
-    "Role",
-    "The fatty layer under the skin"
+    "Connects",
+    "skin to the fascia beneath"
    ]
   ],
-  "did_you_know": "This layer insulates and stores energy.",
+  "did_you_know": "It anchors the skin to the tissue beneath it while cushioning and insulating the body.",
   "certainty": "C1",
   "refs": [
    [
@@ -2226,11 +2242,14 @@
   "parts": [],
   "made_of": [
    "epithelial_tissue",
-   "connective_tissue_loose",
+   "connective_tissue_loose"
+  ],
+  "processes": [
+   "hormone_signaling"
+  ],
+  "related": [
    "sperm"
   ],
-  "processes": [],
-  "related": [],
   "mesh": null,
   "summary": "The male gonads, making sperm and testosterone.",
   "layers": {
@@ -2245,7 +2264,7 @@
    ],
    [
     "Sperm made",
-    "≈ 10^7-10^8/day"
+    "≈ 10^8 per day (≈ 45-300 million, both testes, healthy adult)"
    ]
   ],
   "did_you_know": "Sperm production works best a few degrees below core body temperature.",
@@ -2350,7 +2369,7 @@
     "≈ 10-15× in pregnancy"
    ]
   ],
-  "did_you_know": "It is one of the strongest muscular organs relative to size during labor.",
+  "did_you_know": "During pregnancy the uterus grows many-fold, as its smooth-muscle cells both multiply and enlarge.",
   "certainty": "C1",
   "refs": [
    [

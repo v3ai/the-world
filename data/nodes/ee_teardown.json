@@ -32,9 +32,9 @@
   "needs": [],
   "summary": "A pocket computer, radio, camera and sensor suite.",
   "layers": {
-   "basics": "A smartphone packs a screen, battery, a main circuit board with the processor and radios, a camera, speaker, and sensors into a slab 7 mm thick.",
+   "basics": "A smartphone packs a screen, battery, a main circuit board with the processor and radios, a camera, speaker, and sensors into a slab about 7–8 mm thick.",
    "deeper": "Most of the volume is battery and display; the circuit board is only about the size of a few postage stamps, folded into layers to save area.",
-   "expert": "Typical flagship: 6.1-inch OLED, 4,000–5,000 mAh (≈15–19 Wh) Li-ion cell, 3-nm-class SoC with ~15–20 billion transistors, multiple RF bands from 600 MHz to 6 GHz plus mmWave, ~7–8 mm thick, ~170–200 g."
+   "expert": "Typical flagship: 6.1-inch OLED, ≈ 3,300–4,000 mAh (≈ 12–15 Wh) Li-ion cell (4,000–5,000 mAh in 6.7-inch phones), 3–5 nm-class SoC with ≈ 10–20 billion transistors (not every vendor publishes a count), multiple RF bands from 600 MHz to 6 GHz plus mmWave, ~7–8 mm thick, ~170–200 g."
   },
   "facts": [
    [
@@ -43,11 +43,11 @@
    ],
    [
     "Battery",
-    "≈ 15–19 Wh"
+    "≈ 12–15 Wh (6.1-inch phone); ≈ 17–20 Wh (large 6.7-inch phone)"
    ],
    [
     "Transistors in SoC",
-    "≈ 10¹⁰ – 2×10¹⁰"
+    "≈ 10–20 billion (not all vendors publish a count)"
    ]
   ],
   "did_you_know": "A modern phone has more computing power than the computers that guided the Apollo missions, by factors of millions.",
@@ -93,8 +93,8 @@
   ],
   "summary": "An array of millions of light-emitting pixels.",
   "layers": {
-   "basics": "The screen is a grid of tiny coloured light sources, each controlled by its own transistor.",
-   "deeper": "OLED pixels emit light when current flows through organic layers; a thin-film transistor backplane switches each pixel row by row.",
+   "basics": "The screen is a grid of tiny coloured light sources, each switched by a small circuit of transistors and a storage capacitor.",
+   "deeper": "In an OLED, injected electrons and holes meet in an organic emissive layer, and their recombination forms excitons that give off light (electroluminescence); a thin-film transistor backplane sets each pixel's current, scanned row by row.",
    "expert": "AMOLED: LTPO TFT backplane, 120 Hz adaptive refresh; PWM dimming at ≥240 Hz; MIPI DSI link at several Gb/s; sub-pixel layouts (PenTile)."
   },
   "facts": [
@@ -104,7 +104,7 @@
    ],
    [
     "Peak brightness",
-    "≈ 1000–2000 nits"
+    "≈ 1000–2000+ nits (small bright areas or HDR highlights; full-screen sustained brightness is lower)"
    ]
   ],
   "certainty": "C1",
@@ -149,12 +149,12 @@
   "summary": "A transparent grid that senses where fingers are.",
   "layers": {
    "basics": "A fine grid of transparent electrodes over the display senses the tiny change in electric field when a finger comes near.",
-   "deeper": "Projected-capacitive sensing: a finger adds capacitance at an electrode crossing; a controller scans the grid hundreds of times per second.",
-   "expert": "Mutual-capacitance Tx/Rx grid ~4–5 mm pitch; ΔC ~ 0.1–1 pF of a ~1–2 pF node; sigma-delta readout, noise rejection near charger frequency; interpolation gives sub-mm position."
+   "deeper": "Projected-capacitive sensing: a finger steals some of the field between a drive electrode and a sense electrode, so the mutual capacitance at that crossing drops slightly; a controller scans the whole grid many times per second.",
+   "expert": "Mutual-capacitance Tx/Rx grid with a pitch of a few millimetres; a finger lowers each node's mutual capacitance by only a small fraction (typically well under half), so signals are tiny; sigma-delta readout, noise rejection near charger frequency; interpolation gives sub-mm position."
   },
   "facts": [],
   "certainty": "C1",
-  "refs": [],
+  "refs": [["UP2", "8.1", "8-1-capacitors-and-capacitance"]],
   "lab": {
    "id": "field",
    "preset": "touch_grid"
@@ -194,16 +194,16 @@
    "battery_storage_systems",
    "batteries_electrochem"
   ],
-  "summary": "Stores about 15–19 Wh of energy.",
+  "summary": "Stores roughly 12–20 Wh of energy, depending on phone size.",
   "layers": {
    "basics": "A lithium-ion pouch cell stores chemical energy that is released as electricity; it takes up half the phone.",
    "deeper": "Li⁺ ions move between graphite and a lithium-metal-oxide electrode; protection electronics guard against over-charge and heat.",
-   "expert": "Nominal 3.85 V, up to 4.45 V (high-voltage); energy density ≈ 700 Wh/L; ≈ 500–1000 cycles to 80%; BMS handles cell protection, coulomb counting."
+   "expert": "Nominal 3.85 V, up to 4.45 V (high-voltage); energy density of several hundred Wh/L; ≈ 500–1000 cycles to 80%; BMS handles cell protection, coulomb counting."
   },
   "facts": [
    [
     "Capacity",
-    "≈ 4000–5000 mAh"
+    "≈ 3300–5000 mAh"
    ],
    [
     "Nominal voltage",
@@ -211,7 +211,7 @@
    ]
   ],
   "certainty": "C1",
-  "refs": [],
+  "refs": [["UP2", "10.1", "10-1-electromotive-force"]],
   "kn": [
    "batteries_tech"
   ],
@@ -545,7 +545,7 @@
   "layers": {
    "basics": "One chip contains the processor cores, graphics, AI engine, image processor and memory controllers.",
    "deeper": "A die of ~100 mm² in a 3–5 nm-class process is stacked under the RAM package.",
-   "expert": "~10–20 billion transistors; power budget ≈ 5–10 W peak, ≈ 1–3 W sustained; DVFS and thermal throttling manage heat."
+   "expert": "~10–20 billion transistors; power budget of several watts at peak and less when sustained; DVFS and thermal throttling manage heat."
   },
   "facts": [
    [
@@ -554,7 +554,7 @@
    ],
    [
     "Process",
-    "≈ 3–5 nm-class"
+    "≈ 3–5 nm-class (a marketing node name, not a feature size)"
    ]
   ],
   "certainty": "C1",
@@ -597,7 +597,7 @@
   "layers": {
    "basics": "Short-term memory that holds the apps currently running.",
    "deeper": "Low-power DRAM stacked on top of the SoC with tiny solder balls to save space.",
-   "expert": "LPDDR5X up to ≈ 8.5 Gb/s/pin; 8–16 GB; 1T1C cells refreshed every ≈ 32–64 ms."
+   "expert": "LPDDR5X: 8.533 Gb/s/pin at its 2021 launch, up to 9.6 Gb/s in the current JEDEC standard (some vendor parts run to 10.7 Gb/s); commonly 8–16 GB in flagships; 1T1C cells are refreshed every few tens of milliseconds."
   },
   "facts": [],
   "certainty": "C1",
@@ -640,7 +640,7 @@
   "layers": {
    "basics": "Holds your photos, apps and files even when the phone is off.",
    "deeper": "NAND flash in a package with a controller; talks to the SoC over UFS.",
-   "expert": "256 GB–1 TB; 3D NAND ≥200 layers; UFS 4.0 ≈ 4 GB/s; wear levelling and ECC in controller."
+   "expert": "256 GB–1 TB; 3D NAND ≥200 layers; UFS 4.0: 2 lanes × 23.2 Gb/s (5.8 GB/s interface maximum), with real sequential reads nearer 4 GB/s; wear levelling and ECC in controller."
   },
   "facts": [],
   "certainty": "C1",
@@ -685,8 +685,8 @@
   "summary": "Creates every supply voltage the chips need.",
   "layers": {
    "basics": "Converts battery voltage into many steady voltages, and manages charging.",
-   "deeper": "Contains buck converters, LDOs and a charger; dynamically adjusts voltage to save energy.",
-   "expert": "Multi-phase buck for SoC core (≈ 0.5–1 V, up to ≈ 10 A), switching 2–5 MHz; separate charger IC (≥ 100 W-class fast charging)."
+   "deeper": "Contains buck converters and LDOs, with charging handled by the PMIC or a companion charger IC; dynamically adjusts voltage to save energy.",
+   "expert": "Multi-phase buck for SoC core (≈ 0.5–1 V, up to ≈ 10 A), switching ≈ 2–5 MHz; battery charging is often a separate charger IC or charge pump (many phones charge at tens of watts, a few at 100 W or more)."
   },
   "facts": [],
   "certainty": "C1",
@@ -823,7 +823,7 @@
   "layers": {
    "basics": "Connects to Wi-Fi routers, headphones and watches.",
    "deeper": "Wi-Fi uses OFDM in 2.4/5/6 GHz bands; Bluetooth uses frequency-hopping GFSK or π/4-DQPSK.",
-   "expert": "Wi-Fi 6E/7 up to 4096-QAM and 320 MHz channels; BLE LE Audio; coexistence arbitration between radios."
+   "expert": "Wi-Fi 6E (802.11ax) tops out at 1024-QAM and 160 MHz channels; Wi-Fi 7 (802.11be) adds 4096-QAM and 320 MHz channels in the 6 GHz band; Bluetooth LE adds LE Audio; coexistence arbitration shares the antennas between radios."
   },
   "facts": [],
   "certainty": "C1",
@@ -867,7 +867,7 @@
   "layers": {
    "basics": "Tiny silicon structures sense acceleration and rotation, so the screen can rotate and games can use tilt.",
    "deeper": "A suspended mass changes capacitance when accelerated; gyros use vibrating structures and Coriolis force.",
-   "expert": "Typical noise density ≈ 100 µg/√Hz; ±16 g range; gyro bias stability °/h; fused with magnetometer and barometer by the SoC."
+   "expert": "Accelerometer noise density roughly 100 µg/√Hz (datasheet values vary by part); selectable ranges up to about ±16 g; gyro bias instability is quoted in °/h and is far poorer than in navigation-grade gyros; sensor fusion with magnetometer and barometer runs on a low-power sensor hub or the SoC."
   },
   "facts": [],
   "certainty": "C1",
@@ -912,11 +912,11 @@
    "inductor_ee",
    "ohms_law_node"
   ],
-  "summary": "Trillions made each year, roughly a thousand per phone.",
+  "summary": "Roughly a thousand tiny parts in each phone.",
   "layers": {
-   "basics": "Around a thousand tiny capacitors, inductors and resistors smooth power and filter signals.",
+   "basics": "A thousand or so tiny capacitors, inductors and resistors smooth power and filter signals.",
    "deeper": "Most are surface-mount parts as small as 0.4×0.2 mm; ceramic capacitors decouple supply noise near chips.",
-   "expert": "MLCC capacitance falls with DC bias (up to −80%); inductors in DC-DC converters (≈ 0.47 µH); a phone has ~1000 MLCCs."
+   "expert": "MLCC capacitance falls with DC bias (up to −80%); inductors in DC-DC converters (≈ 0.47 µH); a flagship phone has several hundred to about a thousand MLCCs."
   },
   "facts": [
    [
@@ -925,7 +925,7 @@
    ]
   ],
   "certainty": "C1",
-  "refs": [],
+  "refs": [["UP2", "8.1", "8-1-capacitors-and-capacitance"]],
   "ext": [
    {
     "title": "Wikipedia: Surface-mount technology",
@@ -963,9 +963,9 @@
   ],
   "summary": "A quartz heartbeat.",
   "layers": {
-   "basics": "A tiny quartz crystal vibrates at a very precise frequency, giving every chip a reliable time reference.",
+   "basics": "A tiny quartz crystal vibrates at a very precise frequency, giving the chips a precise frequency reference.",
    "deeper": "The SoC’s 38.4/19.2 MHz clock and a 32.768 kHz real-time clock both use crystals.",
-   "expert": "Series-resonant quartz with Q ≈ 10⁴–10⁶; ±10 ppm typical, TCXO ±0.5 ppm; PLLs multiply it to GHz."
+   "expert": "Quartz with Q ≈ 10⁴–10⁶, usually run in a Pierce oscillator between its series and parallel resonance with a specified load capacitance; ±10 ppm typical, TCXO ±0.5 ppm; PLLs multiply it to GHz."
   },
   "facts": [],
   "certainty": "C1",
@@ -1055,7 +1055,7 @@
   "layers": {
    "basics": "Draws the pixels of games and the interface by doing many simple calculations in parallel.",
    "deeper": "Shader cores execute the same program on many pixels; tile-based rendering saves bandwidth.",
-   "expert": "≈ 1–2 TFLOPS FP32; ray-tracing units; shared LPDDR memory."
+   "expert": "a few TFLOPS FP32 peak on recent flagships (vendor figures vary and many are unpublished); ray-tracing units; shared LPDDR memory."
   },
   "facts": [],
   "certainty": "C1",
@@ -1187,7 +1187,7 @@
   "layers": {
    "basics": "Schedules reads and writes to the RAM chip.",
    "deeper": "Reorders requests to keep DRAM rows open and bus busy.",
-   "expert": "64-bit LPDDR5X interface ≈ 60–100 GB/s; training and calibration of PHY at boot."
+   "expert": "64-bit LPDDR5X interface ≈ 68–77 GB/s peak (64 bits × 8.5–9.6 Gb/s ÷ 8); real sustained bandwidth is lower; training and calibration of the PHY at boot."
   },
   "facts": [],
   "certainty": "C1",
@@ -1276,7 +1276,7 @@
   "layers": {
    "basics": "Wires and switches that let the processor, GPU and memory talk to each other.",
    "deeper": "Packet-switched networks-on-chip with quality-of-service for real-time blocks.",
-   "expert": "AMBA AXI/CHI coherence; ≈ TB/s aggregate; arbitration and power gating of idle blocks."
+   "expert": "AMBA CHI (coherent) and AXI/ACE-Lite (non-coherent or I/O-coherent) links; ≈ TB/s aggregate; arbitration and power gating of idle blocks."
   },
   "facts": [],
   "certainty": "C1",
@@ -1329,8 +1329,8 @@
   "summary": "One processor core: fetch, decode, execute.",
   "layers": {
    "basics": "A single core executes instructions one after another, but many at once inside via pipelining.",
-   "deeper": "Out-of-order superscalar cores decode 6–8 instructions per cycle and track hundreds in flight.",
-   "expert": "ARMv9-A; ROB ≈ 500 entries; ≈ 6–10 execution ports; L1 64 KB; IPC ≈ 4–8 on favourable code."
+   "deeper": "Out-of-order superscalar cores decode 6–10 instructions per cycle and track hundreds in flight.",
+   "expert": "AArch64 (ARMv8.x or ARMv9-A, depending on vendor); reorder buffer of several hundred entries (384 in Arm Cortex-X4); ≈ 6–10+ execution ports; L1 of 64 KB or more per cache; sustained IPC typically 1–3, with peaks of 4–8 on favourable code."
   },
   "facts": [],
   "certainty": "C1",
@@ -1376,7 +1376,7 @@
   "layers": {
    "basics": "Pulls the next instructions from memory using the program counter.",
    "deeper": "Fetches several instructions per cycle from the instruction cache.",
-   "expert": "Fetch 24–32 bytes (6–8 fixed 4-byte instructions) per cycle; uop cache; next-line prefetch; steered by branch predictor."
+   "expert": "Fetch 24–32 bytes (6–8 fixed 4-byte instructions) per cycle; some cores add a decoded-op cache; next-line prefetch; steered by branch predictor."
   },
   "facts": [],
   "certainty": "C1",
@@ -1422,7 +1422,7 @@
   "layers": {
    "basics": "Works out what each instruction means: which operation and which registers.",
    "deeper": "Breaks into micro-operations and renames registers to find parallelism.",
-   "expert": "Register renaming removes WAR/WAW hazards; decode width up to 8; macro-op fusion."
+   "expert": "Register renaming removes WAR/WAW hazards; decode width up to 10 on recent big cores; macro-op fusion."
   },
   "facts": [],
   "certainty": "C1",
@@ -1603,7 +1603,7 @@
   "summary": "Guesses where the program goes next.",
   "layers": {
    "basics": "Guesses which way an if-statement will go so the pipeline stays full.",
-   "deeper": "Uses history of past branches; wrong guesses flush work (≈ 15–20 cycle penalty).",
+   "deeper": "Uses history of past branches; wrong guesses flush work (≈ 10–20 cycle penalty on modern cores).",
    "expert": "TAGE-like predictors with ≥ 95–99% accuracy; BTB, return-address stack; speculation side channels (Spectre)."
   },
   "facts": [],
@@ -1798,10 +1798,10 @@
   "layers": {
    "basics": "When the input is high the NMOS conducts and pulls the output low; when low the PMOS pulls it high. Hardly any current flows between switches.",
    "deeper": "Voltage transfer curve is very steep around V_DD/2, giving high gain that restores digital levels.",
-   "expert": "Switching energy ≈ C V_DD²; short-circuit current during transitions; V_M=(V_DD−|V_Tp|+r V_Tn)/(1+r); leakage grows as V_T falls."
+   "expert": "Switching energy ≈ C V_DD² drawn from the supply per full charge-and-discharge cycle (half dissipated on each transition); short-circuit current during transitions; V_M=(V_DD−|V_Tp|+r·V_Tn)/(1+r) with r=√(k_n/k_p), both transistors in saturation; leakage grows as V_T falls."
   },
   "facts": [],
-  "formula": "E_sw ≈ C·V_DD²",
+  "formula": "E ≈ C·V_DD² drawn from the supply per full output cycle (charge and discharge); ½·C·V_DD² is dissipated on each transition",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -1850,7 +1850,7 @@
   "layers": {
    "basics": "The channel is a thin vertical fin of silicon with the gate wrapping around three sides for better control.",
    "deeper": "Wrapped gates reduce leakage at short channel lengths; designers pick the number of fins for drive strength.",
-   "expert": "Fin pitch ≈ 25–30 nm, fin width ≈ 5–7 nm, gate pitch ≈ 45–55 nm; successors: gate-all-around nanosheets from the ≈ 3-nm era."
+   "expert": "Fin pitch ≈ 25–30 nm, fin width ≈ 5–7 nm, gate pitch ≈ 45–55 nm; successors: gate-all-around nanosheets (Samsung from 2022 at 3 nm; TSMC and Intel at their 2 nm-class nodes from about 2025); TSMC's 3 nm-class process still uses FinFETs."
   },
   "facts": [],
   "certainty": "C1",
@@ -1901,7 +1901,7 @@
   "layers": {
    "basics": "The part of the transistor where current actually flows is a sliver of near-perfect silicon crystal.",
    "deeper": "Doped source and drain on both ends, an undoped channel between; the gate oxide just a few atoms thick.",
-   "expert": "Si diamond lattice a=0.543 nm; channel width ≈ 5–7 nm ≈ 10–13 lattice cells; strain engineering (SiGe) lifts hole mobility."
+   "expert": "Si diamond lattice a=0.543 nm; channel width ≈ 5–7 nm ≈ 9–13 lattice cells; strain engineering (SiGe) lifts hole mobility."
   },
   "facts": [],
   "certainty": "C1",
@@ -1952,7 +1952,7 @@
   "layers": {
    "basics": "The charger turns 120/230 V AC mains into low-voltage DC, using a high-frequency switching converter instead of a heavy transformer.",
    "deeper": "The chain: mains rectifier → switching MOSFET chopping at 50–150 kHz → small flyback transformer for isolation → optocoupler feedback → output stage.",
-   "expert": "GaN-based chargers reach ≈ 95% efficiency at 65–140 W with power density ≈ 1 W/cm³; USB-PD chip negotiates voltage over CC wire; QR (quasi-resonant) flyback or ACF topologies."
+   "expert": "good GaN-based chargers at 65–140 W exceed 90% efficiency at full load (efficiency varies with load and mains voltage); output is typically 5–20 V, up to 48 V with USB PD EPR; USB-PD chip negotiates voltage over CC wire; QR (quasi-resonant) flyback or ACF topologies."
   },
   "facts": [],
   "certainty": "C1",
@@ -1993,13 +1993,13 @@
   ],
   "summary": "Four diodes that flip AC into pulsating DC.",
   "layers": {
-   "basics": "The bridge makes both halves of the AC wave flow the same way; a big capacitor smooths it into ~325 V DC.",
+   "basics": "The bridge makes both halves of the AC wave flow the same way; a big capacitor smooths it into DC near the mains peak (≈ 325 V from 230 V mains, ≈ 170 V from 120 V mains).",
    "deeper": "Four diodes conduct in pairs; the bulk capacitor sets ripple.",
-   "expert": "V_pk=√2·V_rms; bulk capacitor ripple ≈ I/(2fC); inrush limiter (NTC)."
+   "expert": "V_pk=√2·V_rms; bulk capacitor ripple ≈ I/(2fC), f = mains frequency; inrush limiter (NTC)."
   },
   "facts": [],
   "certainty": "C1",
-  "refs": [],
+  "refs": [["UP2", "15.1", "15-1-ac-sources"]],
   "lab": {
    "id": "circuit",
    "preset": "bridge_rectifier"
@@ -2047,7 +2047,7 @@
   },
   "facts": [],
   "certainty": "C1",
-  "refs": [],
+  "refs": [["UP2", "15.6", "15-6-transformers"]],
   "lab": null,
   "ext": [
    {
@@ -2182,12 +2182,12 @@
   "summary": "Trims the output to the requested voltage.",
   "layers": {
    "basics": "A buck stage steps the voltage down efficiently when the phone asks for a lower voltage.",
-   "deeper": "Programmable power supply (PPS) uses buck regulation for fine voltage steps of 20 mV.",
+   "deeper": "USB PD Programmable Power Supply lets the phone request the output voltage in 20 mV steps; chargers realise it with secondary-side flyback control or a buck stage.",
    "expert": "Synchronous buck with MOSFET bridge, L ≈ 1–4.7 µH, fsw 300 kHz–1 MHz."
   },
   "facts": [],
   "certainty": "C1",
-  "refs": [],
+  "refs": [["UP2", "14.2", "14-2-self-inductance-and-inductors"]],
   "lab": null,
   "ext": [
    {
@@ -2276,12 +2276,12 @@
   "summary": "Where fuel, wind, water or sunlight becomes mechanical or electrical power.",
   "layers": {
    "basics": "A power plant converts energy from fuel, flowing water, wind or sunlight into electricity.",
-   "deeper": "Thermal plants boil water to drive a steam turbine; hydro and wind turn turbines directly; solar skips the spin.",
-   "expert": "Carnot limit η≤1−T_c/T_h; combined-cycle gas ≈ 60%; nuclear ≈ 33–37%; typical unit ratings 100 MW–1.4 GW."
+   "deeper": "Thermal plants boil water to drive a steam turbine; concentrating solar power does the same with sunlight, hydro and wind turn turbines directly, and photovoltaic solar skips the spin entirely.",
+   "expert": "Carnot limit η≤1−T_c/T_h (temperatures in kelvin); combined-cycle gas ≈ 60%; nuclear ≈ 33–37%; typical unit ratings 100 MW–1.4 GW."
   },
   "facts": [],
   "certainty": "C1",
-  "refs": [],
+  "refs": [["UP2", "4.5", "4-5-the-carnot-cycle"]],
   "ext": [
    {
     "title": "Wikipedia: Power station",
@@ -2326,7 +2326,7 @@
   },
   "facts": [],
   "certainty": "C1",
-  "refs": [],
+  "refs": [["UP2", "13.6", "13-6-electric-generators-and-back-emf"]],
   "ext": [
    {
     "title": "Wikipedia: Electric generator",
@@ -2369,7 +2369,7 @@
   },
   "facts": [],
   "certainty": "C1",
-  "refs": [],
+  "refs": [["UP2", "15.6", "15-6-transformers"]],
   "ext": [
    {
     "title": "Wikipedia: Transformer",
@@ -2539,13 +2539,13 @@
   ],
   "summary": "The user’s end of the grid.",
   "layers": {
-   "basics": "The wall socket delivers 120 V/60 Hz or 230 V/50 Hz AC with a protective earth connection.",
+   "basics": "Nominal mains is about 100–127 V in some countries (60 Hz, or 50/60 Hz in Japan) and 220–240 V in most others (50 Hz), usually with a protective earth connection.",
    "deeper": "Breakers and RCD/GFCI devices protect against overload and shock; plug types vary worldwide.",
-   "expert": "RMS voltage tolerances ±5–10%; circuit breakers trip magnetically at ≈ 5–10×I_rated; GFCI trips at ≈ 5 mA imbalance."
+   "expert": "RMS voltage tolerances ±5–10%; circuit breakers trip magnetically at ≈ 3–20×I_rated depending on type (B, C or D); US GFCIs trip at ≈ 5 mA imbalance, European home RCDs typically at 30 mA."
   },
   "facts": [],
   "certainty": "C1",
-  "refs": [],
+  "refs": [["UP2", "10.6", "10-6-household-wiring-and-electrical-safety"]],
   "ext": [
    {
     "title": "Wikipedia: AC power plugs and sockets",
@@ -2577,7 +2577,7 @@
   "layers": {
    "basics": "Mains AC is converted to DC, stepped down, and pushed into the battery by the phone’s charger chip, which watches current, voltage and temperature.",
    "deeper": "Constant-current phase until about 4.2–4.45 V, then constant-voltage phase while current tapers; fast charging uses higher voltage to keep current manageable.",
-   "expert": "USB PD negotiation over CC lines sets the voltage (e.g., 9 V/3 A); charge pumps (2:1/3:1) convert at ≈ 97% efficiency; cell protection and temperature limits dominate the final stages."
+   "expert": "USB PD negotiation over CC lines sets the voltage (e.g., 9 V/3 A); charge pumps (2:1/3:1) convert at high efficiency (vendor datasheets quote peaks above 95%, lower at light load); cell protection and temperature limits dominate the final stages."
   },
   "facts": [],
   "certainty": "C1",
@@ -2619,7 +2619,7 @@
     "text": "The phone’s charger IC and PMIC convert to the battery voltage and apply constant current, then constant voltage.",
     "focus": [
      "phone_pmic",
-     "buck_converter"
+     "phone_battery"
     ]
    },
    {
@@ -2660,7 +2660,7 @@
   "layers": {
    "basics": "In an NMOS, raising the gate voltage above threshold attracts electrons to the surface, forming a conducting channel between source and drain.",
    "deeper": "Below threshold, a depletion region isolates source from drain; above it an inversion layer forms and current flows.",
-   "expert": "Switching delay is limited by charging the gate and load capacitance: t≈0.69RC; subthreshold leakage ∝ 10^{(V_GS−V_T)/S}; short-channel devices need gate-all-around geometry for control."
+   "expert": "Switching delay is limited by charging the gate and load capacitance: t≈0.69RC; subthreshold leakage ∝ 10^{(V_GS−V_T)/S}; short-channel devices need multi-gate geometries (FinFET, now gate-all-around) for electrostatic control."
   },
   "facts": [],
   "certainty": "C1",
@@ -2992,7 +2992,7 @@
   "layers": {
    "basics": "A silicon wafer goes through hundreds of cycles of adding a layer, printing a pattern and etching it, building billions of transistors.",
    "deeper": "Cleanroom steps: grow oxide, coat resist, expose, develop, etch, implant, deposit metal, repeat; then dice and package.",
-   "expert": "Front-end (transistors, ≈ 1000+ steps) and back-end (≈ 10–15 copper metal layers); EUV layers ≈ 20; yield learning; test, binning and packaging with TSVs and hybrid bonding."
+   "expert": "The whole flow is ≈ 1000+ steps: the front-end builds the transistors and the back-end adds ≈ 10–15 copper metal layers; EUV is used on ≈ 20 critical layers at leading nodes; yield learning; test, binning and packaging with TSVs and hybrid bonding."
   },
   "facts": [],
   "certainty": "C1",
@@ -3018,7 +3018,7 @@
    },
    {
     "title": "Pattern",
-    "text": "Light through a mask exposes resist; UV or EUV prints features smaller than 20 nm.",
+    "text": "Light through a mask exposes resist; deep-UV with multi-patterning or EUV prints features below 20 nm.",
     "focus": [
      "finfet_transistor"
     ]
@@ -3160,11 +3160,11 @@
   "layers": {
    "basics": "A grid of electrodes lies under the glass; a finger nearby changes the electric field, and the controller finds where.",
    "deeper": "The controller drives rows and senses columns; a touch reduces the mutual capacitance at the crossing.",
-   "expert": "ΔC/C ≈ 10–30%; noise from display and charger is filtered; palm rejection; hover sensing; stylus uses active signalling."
+   "expert": "ΔC/C is a small fraction of the node capacitance; noise from display and charger is filtered; palm rejection; hover sensing; stylus uses active signalling."
   },
   "facts": [],
   "certainty": "C1",
-  "refs": [],
+  "refs": [["UP2", "8.1", "8-1-capacitors-and-capacitance"]],
   "lab": {
    "id": "field",
    "preset": "touch_grid"

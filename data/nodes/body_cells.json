@@ -88,20 +88,24 @@
   "layers": {
    "basics": "Astrocytes feed neurons, tidy up chemicals, and help form the blood-brain barrier.",
    "deeper": "They wrap synapses and regulate extracellular K+ and glutamate.",
-   "expert": "Express GFAP, AQP4 at endfeet; take up glutamate via EAAT1/2; contribute to the glymphatic system; ≈ 1:1 with neurons overall."
+   "expert": "Express GFAP, AQP4 at endfeet; take up glutamate via EAAT1/2; AQP4 at endfeet is implicated in the debated glymphatic clearance model. One of several glial types: all glia together are roughly as many as neurons in the human brain (ratio at or below about 1:1), and astrocytes are only a fraction of them."
   },
   "facts": [
    [
-    "Size",
-    "≈ 50 µm"
+    "Human vs rodent size",
+    "protoplasmic astrocytes ≈ 2.6× wider in humans"
    ],
    [
-    "Synapses contacted",
-    "up to ≈ 2×10^6 (human)"
+    "Primary processes",
+    "≈ 10× more in human cortex than in rodent"
    ]
   ],
-  "did_you_know": "A single human astrocyte can touch around two million synapses.",
-  "certainty": "C1",
+  "did_you_know": "Astrocytes in human cortex are about 2.6 times wider than those of mice and rats, and they extend about ten times more main branches.",
+  "certainty": "C2",
+  "open_questions": [
+   "Does the glymphatic system move fluid by bulk flow, and what role does AQP4 at astrocyte endfeet play?",
+   "How much do astrocytes actively shape synaptic signalling?"
+  ],
   "refs": [
    [
     "ANP",
@@ -196,7 +200,7 @@
   "summary": "The most common white blood cell and a first responder to bacteria.",
   "layers": {
    "basics": "Neutrophils race to infections and engulf germs.",
-   "deeper": "They live only hours to days. Pus is largely dead neutrophils.",
+   "deeper": "They live only hours to days; measurements of how long vary a lot. Pus is a mix of dead neutrophils, microbes, debris and fluid.",
    "expert": "Multilobed nucleus; granules with myeloperoxidase; NETosis; chemotaxis toward IL-8 and fMLP; ≈ 50-70% of leukocytes."
   },
   "facts": [
@@ -210,11 +214,14 @@
    ],
    [
     "Lifespan",
-    "≈ hours-days"
+    "hours to days (measurements disagree)"
    ]
   ],
   "did_you_know": "You make about 100 billion neutrophils each day.",
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How long do human neutrophils actually live in blood and in tissue?"
+  ],
   "refs": [
    [
     "ANP",
@@ -302,7 +309,7 @@
   "layers": {
    "basics": "T cells recognize specific invaders, and some kill infected cells directly.",
    "deeper": "They mature in the thymus. Helper T cells coordinate; cytotoxic T cells kill; memory T cells remember.",
-   "expert": "TCR recognizes peptide-MHC; CD4+ helper vs CD8+ cytotoxic; costimulation via CD28; regulatory T cells maintain tolerance; repertoire ≈ 10^15-10^18 potential TCRs."
+   "expert": "TCR recognizes peptide-MHC; CD4+ helper vs CD8+ cytotoxic; costimulation via CD28; regulatory T cells maintain tolerance; rearrangement could in principle make far more receptor types than a person carries at one time."
   },
   "facts": [
    [
@@ -310,11 +317,11 @@
     "≈ 8 µm"
    ],
    [
-    "Potential receptor types",
-    "≈ 10^15+"
+    "Receptor diversity",
+    "far more possible than any person carries at once"
    ]
   ],
-  "did_you_know": "The potential diversity of T-cell receptors exceeds the number of cells you own by far.",
+  "did_you_know": "The number of receptors that rearrangement could in principle produce is far larger than the number of T cells you carry, so most receptor types are present in only a few copies.",
   "certainty": "C1",
   "refs": [
    [
@@ -352,7 +359,7 @@
   "layers": {
    "basics": "When a B cell recognizes a germ, it multiplies and its descendants release antibodies.",
    "deeper": "Memory B cells make later responses faster and stronger.",
-   "expert": "BCR diversity from V(D)J recombination; somatic hypermutation and class switching in germinal centers; plasma cells secrete ≈ 2,000 antibodies per second."
+   "expert": "BCR diversity from V(D)J recombination; somatic hypermutation and class switching in germinal centers; plasma cells secrete antibodies at a very high rate that varies widely between cells and methods."
   },
   "facts": [
    [
@@ -361,7 +368,7 @@
    ],
    [
     "Antibody secretion",
-    "≈ 2,000/s per plasma cell"
+    "very high; varies widely"
    ]
   ],
   "did_you_know": "A single plasma cell is one of the most prolific protein-secreting cells in the body.",
@@ -449,7 +456,7 @@
   "layers": {
    "basics": "Heart cells contract in unison to pump blood.",
    "deeper": "They are rich in mitochondria and linked end to end by intercalated discs.",
-   "expert": "Ca2+-induced Ca2+ release via L-type channels and ryanodine receptors; T-tubules; one or two nuclei; limited regeneration (≈ 0.5-1%/yr)."
+   "expert": "Ca2+-induced Ca2+ release via L-type channels and ryanodine receptors; T-tubules; one or two nuclei; limited renewal: carbon-14 dating gave ≈ 1%/yr at age 25, falling to ≈ 0.45%/yr at 75 (Bergmann 2009), though other studies differ."
   },
   "facts": [
    [
@@ -461,8 +468,11 @@
     "≈ 30-35% of volume"
    ]
   ],
-  "did_you_know": "Your heart muscle cells are mostly the ones you were born with.",
-  "certainty": "C1",
+  "did_you_know": "Carbon-14 dating suggests fewer than half of your heart muscle cells are replaced during a normal life, so most are as old as you are.",
+  "certainty": "C2",
+  "open_questions": [
+   "How much do adult human cardiomyocytes renew, and can this be boosted after a heart attack?"
+  ],
   "refs": [
    [
     "ANP",
@@ -511,10 +521,10 @@
    ],
    [
     "Length",
-    "up to ≈ 30 cm"
+    "up to many centimetres in the longest muscles"
    ]
   ],
-  "did_you_know": "A single muscle fiber can be as long as a ruler.",
+  "did_you_know": "A single muscle fiber is a giant cell that can be many centimetres long, though in long muscles it is often shorter than the muscle itself.",
   "certainty": "C1",
   "refs": [
    [
@@ -602,7 +612,7 @@
   "summary": "The main liver cell, a versatile chemical worker.",
   "layers": {
    "basics": "Hepatocytes process nutrients, make proteins and bile, and neutralize toxins.",
-   "deeper": "They make up about 80% of liver cells and have lots of mitochondria and smooth ER.",
+   "deeper": "They are the main cell type of the liver and have lots of mitochondria and smooth ER.",
    "expert": "Express CYP450 enzymes, albumin, clotting factors; glycogen storage; polyploid (often tetraploid); can re-enter the cell cycle after injury."
   },
   "facts": [
@@ -615,7 +625,7 @@
     "≈ 1,000-2,000 per cell"
    ]
   ],
-  "did_you_know": "Hepatocytes live about 200-300 days and are among the few cells in adults that can regrow organs.",
+  "did_you_know": "Radiocarbon dating shows human liver cells are replaced continuously, so the average age of liver cells is under 3 years. Liver cells with extra chromosome sets divide much less often than ordinary ones.",
   "certainty": "C1",
   "refs": [
    [
@@ -668,10 +678,10 @@
    ],
    [
     "Microvilli per cell",
-    "≈ 3,000"
+    "hundreds to thousands (varies)"
    ]
   ],
-  "did_you_know": "Each enterocyte has about 3,000 microvilli.",
+  "did_you_know": "The surface of each absorptive cell carries a great many microvilli; together with villi and folds this multiplies the gut's absorptive area many times over.",
   "certainty": "C1",
   "refs": [
    [
@@ -705,7 +715,7 @@
   "mesh": null,
   "summary": "A mature bone cell living inside the bone it built.",
   "layers": {
-   "basics": "Osteocytes are trapped in tiny pockets inside bone and sense strain.",
+   "basics": "Osteocytes are trapped in tiny pockets inside bone and are thought to sense mechanical load, although exactly how is still debated.",
    "deeper": "They talk to each other through thin channels.",
    "expert": "Dendritic network in canaliculi; secrete sclerostin and FGF23; ≈ 90-95% of bone cells; lifespan of decades."
   },
@@ -720,7 +730,10 @@
    ]
   ],
   "did_you_know": "Osteocytes are the longest-lived bone cells, living for decades.",
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How do osteocytes detect load: fluid flow in their channels, strain in the matrix, or both?"
+  ],
   "refs": [
    [
     "ANP",
@@ -815,7 +828,7 @@
     "≈ 100 µm"
    ]
   ],
-  "did_you_know": "Together with osteoblasts they renew the whole skeleton about every ten years.",
+  "did_you_know": "In adults the skeleton as a whole is remodelled over roughly ten years, with spongy bone renewed faster than dense bone.",
   "certainty": "C1",
   "refs": [
    [
@@ -893,7 +906,7 @@
   "summary": "The main skin cell, which fills with tough keratin protein.",
   "layers": {
    "basics": "Keratinocytes are made deep in the epidermis, rise to the surface, flatten and die as a waterproof shield.",
-   "deeper": "They take about 4 weeks to travel from bottom to top.",
+   "deeper": "They take about 4 weeks or more to travel from bottom to top, depending on age and body site.",
    "expert": "Differentiation: basal (K5/K14) to spinous (K1/K10) to granular (filaggrin, loricrin) to cornified envelope; desmosomal adhesion."
   },
   "facts": [
@@ -903,7 +916,7 @@
    ],
    [
     "Travel time",
-    "≈ 28-40 days"
+    "about 4 weeks or more (varies with age and site)"
    ]
   ],
   "did_you_know": "Your outermost skin cells are dead keratin-filled flakes.",
@@ -992,7 +1005,7 @@
   "summary": "The cell that builds the connective-tissue fibers.",
   "layers": {
    "basics": "Fibroblasts make collagen and repair wounds.",
-   "deeper": "They help form scars.",
+   "deeper": "When a wound forms they divide, migrate in, lay down collagen and pull the edges together; the repaired tissue is denser and less organized than the original.",
    "expert": "Activated to myofibroblasts in wound healing; collagen I/III synthesis; ECM remodeling by MMPs."
   },
   "facts": [
@@ -1087,7 +1100,7 @@
   "summary": "A retinal cell for color and sharp daylight vision.",
   "layers": {
    "basics": "Cones detect color and fine detail in bright light.",
-   "deeper": "Three kinds respond best to short, medium or long (blue, green, red) wavelengths.",
+   "deeper": "Three kinds respond best to short (blue-violet), medium (green) and long (yellow-green) wavelengths; the long kind is often called \"red\", which is a simplification. The brain compares the three signals to see all colours, including red.",
    "expert": "≈ 4.6×10^6 per eye (4.1–5.3 million; Curcio et al. 1990), concentrated at the fovea; S, M, L opsins; faster, less sensitive than rods."
   },
   "facts": [
@@ -1136,8 +1149,8 @@
   "summary": "The male gamete, a tiny swimming cell carrying half a set of chromosomes.",
   "layers": {
    "basics": "A sperm swims with a whip-like tail to reach an egg.",
-   "deeper": "It carries 23 chromosomes and little else beyond energy machinery.",
-   "expert": "Head with nucleus and acrosome, midpiece packed with mitochondria, flagellum; ≈ 45-60 µm long; ≈ 15-200×10^6 per mL."
+   "deeper": "It carries 23 chromosomes, an acrosome of enzymes for entering the egg, and mitochondria in the midpiece to power its tail.",
+   "expert": "Head with nucleus and acrosome, midpiece packed with mitochondria, flagellum; ≈ 45-60 µm long; typical semen holds tens of millions per mL; WHO reference limits are 5th centiles of fertile men, not an infertility cutoff."
   },
   "facts": [
    [
@@ -1184,7 +1197,7 @@
   "layers": {
    "basics": "The egg carries half the genetic instructions and nutrients that start a new person.",
    "deeper": "It is surrounded by a protective coat and cells.",
-   "expert": "Arrested in prophase I (primary oocyte) until ovulation and in metaphase II until fertilization; zona pellucida; ≈ 120 µm."
+   "expert": "Arrested in prophase I from before birth (for years to decades) until the LH surge just before ovulation, then arrested in metaphase II until fertilization; zona pellucida; ≈ 120 µm."
   },
   "facts": [
    [
@@ -1193,7 +1206,7 @@
    ],
    [
     "Chromosomes",
-    "23 after meiosis"
+    "23 at ovulation (each still two chromatids); meiosis II finishes only at fertilization"
    ]
   ],
   "did_you_know": "It is just visible to the naked eye.",
@@ -1228,8 +1241,8 @@
   "summary": "A cell that can renew itself and produce all blood cell types.",
   "layers": {
    "basics": "Stem cells in your marrow are the source of every blood cell.",
-   "deeper": "They divide rarely to protect their DNA.",
-   "expert": "Defined by CD34+ CD38- markers; niches in marrow; transplant therapy; clonal hematopoiesis rises with age."
+   "deeper": "They spend most of their time dormant. A leading idea is that rare division limits copying errors and damage, but that is a hypothesis.",
+   "expert": "Defined by function (long-term self-renewal and engraftment), not by markers; CD34+ CD38- enriches them but most such cells are not long-term stem cells; niches in marrow; transplant therapy; clonal hematopoiesis rises with age."
   },
   "facts": [
    [
@@ -1241,10 +1254,11 @@
     "few per year"
    ]
   ],
-  "did_you_know": "Your blood system descends from only a few tens of thousands of active stem cells.",
+  "did_you_know": "One estimate puts the stem cells actively making your white blood cells at about 50,000 to 200,000.",
   "certainty": "C2",
   "open_questions": [
-   "How do stem-cell niches regulate self-renewal versus differentiation in aging?"
+   "How do stem-cell niches regulate self-renewal versus differentiation in aging?",
+   "How many stem cells actively contribute to human blood at any time, and how often does each divide?"
   ],
   "refs": [
    [
@@ -1284,8 +1298,8 @@
   },
   "facts": [
    [
-    "Pigment",
-    "melanin"
+    "Pigment passed to",
+    "≈ 36 keratinocytes per melanocyte"
    ]
   ],
   "did_you_know": "People of all skin tones have roughly the same number of melanocytes; they differ in how much pigment is made.",
@@ -1316,8 +1330,7 @@
    "endoplasmic_reticulum",
    "golgi_apparatus",
    "cell_membrane",
-   "cytoskeleton",
-   "golgi_apparatus"
+   "cytoskeleton"
   ],
   "processes": [
    "hormone_signaling"
@@ -1328,7 +1341,7 @@
   "layers": {
    "basics": "Beta cells sense blood sugar and release insulin.",
    "deeper": "They store insulin in granules ready to release.",
-   "expert": "Glucose uptake via GLUT, glucokinase, ATP-sensitive K+ channels close, depolarization, Ca2+ influx, insulin exocytosis (biphasic)."
+   "expert": "Glucose enters through GLUT transporters (GLUT2 in rodents; mainly GLUT1/GLUT3 in humans) and is phosphorylated by glucokinase, ATP-sensitive K+ channels close, depolarization, Ca2+ influx, insulin exocytosis (biphasic)."
   },
   "facts": [
    [
@@ -1336,8 +1349,8 @@
     "≈ 15 µm"
    ],
    [
-    "Product",
-    "insulin"
+    "Location",
+    "pancreatic islets (islets of Langerhans)"
    ]
   ],
   "did_you_know": "Beta cells sit in islets and work like glucose sensors.",

@@ -43,6 +43,10 @@
   },
   "facts": [],
   "certainty": "C1",
+  "open_questions": [
+   "How important non-genetic inheritance and developmental bias are in adaptation is debated.",
+   "How the tempo of large-scale change (gradual versus punctuated) varies among lineages is still being studied."
+  ],
   "refs": [],
   "kn": [
    "natural_selection",
@@ -81,8 +85,8 @@
     "1859"
    ],
    [
-    "Peppered moth melanic frequency",
-    "≈ 2% to ≈ 95% (1848–1895)"
+    "Peppered moth, Manchester",
+    "dark form first recorded 1848; it became the common form by the late 1800s"
    ]
   ],
   "formula": "R = h²·S",
@@ -140,13 +144,13 @@
   "summary": "Directional, stabilising, disruptive.",
   "layers": {
    "basics": "Directional selection favours one extreme, stabilising favours the middle and disruptive favours both extremes.",
-   "deeper": "Human birth weight is under stabilising selection; beak size in Galápagos finches changed during droughts (Grants' studies).",
+   "deeper": "Human birth weight is under stabilising selection; beak size in Galápagos finches shifted after a severe drought, because large-beaked birds survived best (Grants' studies).",
    "expert": "Frequency-dependent and balancing selection maintain variation (MHC, sickle-cell). Adaptations differ from exaptations, and not every trait is an adaptation (Gould & Lewontin \"spandrels\")."
   },
   "facts": [
    [
     "Finch beak change in drought",
-    "≈ 4–5% in one generation"
+    "a few percent deeper in the next generation (Daphne Major, 1977)"
    ],
    [
     "Balancing example",
@@ -198,14 +202,17 @@
   "facts": [
    [
     "Proposed by",
-    "Darwin, 1871"
+    "Darwin (1859), developed in 1871"
    ],
    [
     "Peacock train length",
     "≈ 1.5 m"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How much female choice reflects indirect genetic benefits versus runaway or sensory-bias processes is debated."
+  ],
   "refs": [
    [
     "BIO",
@@ -241,7 +248,7 @@
   "summary": "Fossils, anatomy, DNA and observation.",
   "layers": {
    "basics": "Fossils show change over time, homologous structures (the forelimb of a bat and a whale) show common ancestry, and DNA sequences nest into a tree.",
-   "deeper": "Vestigial structures and shared pseudogenes (e.g., the broken vitamin C gene in primates) fit descent. Observed evolution includes antibiotic resistance and Lenski's E. coli.",
+   "deeper": "Vestigial structures and shared pseudogenes (e.g., the broken vitamin C gene GULO in humans, apes, monkeys and tarsiers, but not in lemurs) fit descent. Observed evolution includes antibiotic resistance and Lenski's E. coli.",
    "expert": "Independent trees from morphology and molecules agree; transitional fossils (Tiktaalik, Archaeopteryx) fill predicted gaps. Lenski's experiment has run since 1988 (> 75,000 generations)."
   },
   "facts": [
@@ -250,8 +257,8 @@
     "1988"
    ],
    [
-    "Human–chimp DNA similarity",
-    "≈ 98.8%"
+    "Human–chimp DNA identity",
+    "≈ 98.8% for aligned single-base differences (lower when insertions and deletions are counted)"
    ]
   ],
   "certainty": "C1",
@@ -295,16 +302,16 @@
   "layers": {
    "basics": "The biological species concept defines a species as interbreeding populations reproductively isolated from others.",
    "deeper": "Alternatives include morphological, phylogenetic and ecological concepts. Bacteria and asexual organisms fit poorly with the biological concept.",
-   "expert": "Ring species and hybrid zones show that speciation is gradual. About 8.7 million eukaryotic species are estimated, with only ≈ 1.2–2 million described."
+   "expert": "Ring species and hybrid zones show that reproductive isolation can build up in degrees, so species boundaries are often blurry. One model-based estimate (Mora et al. 2011) puts the number of eukaryotic species at about 8.7 million (± 1.3 million), with only ≈ 1.2–2 million described."
   },
   "facts": [
    [
     "Estimated eukaryotic species",
-    "≈ 8.7 million"
+    "≈ 8.7 million (± 1.3 million; one model-based estimate)"
    ],
    [
     "Described",
-    "≈ 2 million"
+    "≈ 1.2–2 million (depends on the catalogue)"
    ]
   ],
   "certainty": "C2",
@@ -425,7 +432,7 @@
    ],
    [
     "Darwin's finches",
-    "≈ 15 species"
+    "≈ 18 species (17 on the Galápagos, 1 on Cocos Island)"
    ]
   ],
   "certainty": "C1",
@@ -540,27 +547,24 @@
   "summary": "Dating splits using sequence change.",
   "layers": {
    "basics": "If mutations accumulate at a steady rate, the number of differences between species estimates how long ago they split.",
-   "deeper": "Clocks are calibrated with fossils. Human and chimp lineages split about 6–7 million years ago.",
+   "deeper": "Clocks are calibrated with fossils. Human and chimp lineages split about 6–8 million years ago (estimates vary).",
    "expert": "Rates vary between lineages (relaxed clocks) and with generation time; Bayesian dating (BEAST) integrates calibrations. Rate heterogeneity gives wide credible intervals."
   },
   "facts": [
    [
     "Human–chimp split",
-    "≈ 6–7 Ma"
+    "≈ 6–8 Ma (estimates vary)"
    ],
    [
     "Substitution rate (human)",
-    "≈ 10⁻⁹ per bp per year"
+    "≈ 0.5–1 × 10⁻⁹ per site per year (depends on method)"
    ]
   ],
-  "certainty": "C1",
-  "refs": [
-   [
-    "BIO",
-    "20.3",
-    "20-3-perspectives-on-the-phylogenetic-tree"
-   ]
+  "certainty": "C2",
+  "open_questions": [
+   "Pedigree-based mutation rates and fossil-calibrated substitution rates differ by about a factor of two, so deep divergence dates remain uncertain."
   ],
+  "refs": [],
   "kn": [
    "radiometric_dating",
    "common_descent"
@@ -604,11 +608,6 @@
   "certainty": "C1",
   "refs": [
    [
-    "BIO",
-    "20.3",
-    "20-3-perspectives-on-the-phylogenetic-tree"
-   ],
-   [
     "COB",
     "11.3",
     "11-3-evidence-of-evolution"
@@ -646,31 +645,29 @@
   ],
   "summary": "Five great die-offs.",
   "layers": {
-   "basics": "Five mass extinctions wiped out most species, including the end-Permian event (≈ 252 Ma, ≈ 90% of marine species) and the end-Cretaceous event (≈ 66 Ma).",
+   "basics": "Five mass extinctions wiped out most species, including the end-Permian event (≈ 252 Ma), which killed roughly 80–95% of marine species (estimates vary), and the end-Cretaceous event (≈ 66 Ma). The others were end-Ordovician, Late Devonian and end-Triassic.",
    "deeper": "Causes include volcanism, climate change, ocean anoxia and, for the dinosaurs, an asteroid impact at Chicxulub.",
-   "expert": "Recovery takes ≈ 5–10 million years. Many scientists argue we are entering a sixth mass extinction; current rates are ≈ 100–1,000× background."
+   "expert": "Recovery takes ≈ 5–10 million years. Many scientists argue we are entering a sixth mass extinction, but this is debated: estimates of current extinction rates run from about 100 to 1,000 times the background rate."
   },
   "facts": [
    [
     "End-Permian loss",
-    "≈ 90% marine species"
+    "≈ 80–95% of marine species (estimates vary)"
    ],
    [
-    "Current extinction rate",
-    "≈ 100–1000× background"
+    "Current extinction rate (estimates)",
+    "≈ 100–1,000× background"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Whether current extinctions amount to a sixth mass extinction depends on how background rates and undescribed species are estimated; published multipliers range from about 100 to about 1,000."
+  ],
   "refs": [
    [
     "BIO",
     "47.1",
     "47-1-the-biodiversity-crisis"
-   ],
-   [
-    "BIO",
-    "20.3",
-    "20-3-perspectives-on-the-phylogenetic-tree"
    ]
   ],
   "kn": [
@@ -711,25 +708,23 @@
   },
   "facts": [
    [
-    "Hox clusters in vertebrates",
-    "4 (≈ 39 genes)"
+    "Hox clusters in mammals",
+    "4 (39 genes in humans); most teleost fishes have 7–8"
    ],
    [
     "Pax6 homologue",
     "eye development in flies and mice"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "How often large body-plan changes come from regulatory versus protein changes, and how common punctuated patterns are, is still being worked out."
+  ],
   "refs": [
    [
     "BIO",
     "27.2",
     "27-2-features-used-to-classify-animals"
-   ],
-   [
-    "BIO",
-    "43.7",
-    "43-7-organogenesis-and-vertebrate-axis-formation"
    ]
   ],
   "kn": [
@@ -759,7 +754,7 @@
   "layers": {
    "basics": "Most mutations that persist in a genome are effectively neutral and spread through drift rather than selection.",
    "deeper": "Kimura proposed the neutral theory in 1968. It underlies molecular clocks.",
-   "expert": "Substitution rate for neutral mutations equals the mutation rate (k = μ). Nearly neutral dynamics depend on Ne·s; how much of genome evolution is selected remains actively debated."
+   "expert": "For strictly neutral mutations the substitution rate equals the neutral mutation rate (k = μ), independent of population size, because the 2N·μ new mutants per generation each fix with probability 1/(2N). Nearly neutral dynamics depend on Ne·s; how much of genome evolution is selected remains actively debated."
   },
   "facts": [
    [
@@ -767,7 +762,7 @@
     "1968"
    ],
    [
-    "Neutral substitution rate",
+    "Neutral substitution rate (strictly neutral mutations)",
     "k = μ"
    ]
   ],
@@ -810,7 +805,7 @@
   "layers": {
    "basics": "Animals may help relatives because relatives share genes. Worker bees and meerkat helpers are examples.",
    "deeper": "Hamilton's rule says altruism evolves when relatedness × benefit exceeds cost.",
-   "expert": "rb > c, where r is relatedness. Haplodiploidy gives full sisters r = 0.75, a historical explanation for eusociality, though other factors matter. Group selection models remain debated."
+   "expert": "rb > c, where r is relatedness. Haplodiploidy makes full sisters r = 0.75 if the queen mated once. It is no longer seen as the main driver of eusociality: many eusocial species are diploid, and queens of many haplodiploid species mate with several males. The role of kin selection versus group selection is still debated."
   },
   "facts": [
    [
@@ -818,12 +813,15 @@
     "0.5"
    ],
    [
-    "Relatedness cousins",
+    "Relatedness, first cousins",
     "0.125"
    ]
   ],
   "formula": "r·b > c",
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Whether kin selection or group selection better explains the evolution of eusociality is debated."
+  ],
   "refs": [
    [
     "BIO",
@@ -876,7 +874,7 @@
   ],
   "certainty": "C2",
   "open_questions": [
-   "Exact branching of early Homo lineages and the geography of H. sapiens origins (multiregional African model) are debated."
+   "Whether H. sapiens arose in one part of Africa or from several interconnected African populations (African multiregionalism) is debated, as is the branching of early Homo lineages."
   ],
   "refs": [
    [
@@ -921,8 +919,8 @@
     "1953"
    ],
    [
-    "Earliest accepted evidence of life",
-    "≈ 3.5–3.8 Ga"
+    "Earliest widely accepted fossil evidence of life",
+    "≈ 3.5 Ga (older claims up to ≈ 4.1 Ga are disputed)"
    ]
   ],
   "certainty": "C3",
@@ -931,13 +929,7 @@
    "Where it began (vents, ponds, clay surfaces) is not settled.",
    "How information-bearing polymers first arose without enzymes is unknown."
   ],
-  "refs": [
-   [
-    "BIO",
-    "20.3",
-    "20-3-perspectives-on-the-phylogenetic-tree"
-   ]
-  ],
+  "refs": [],
   "kn": [
    "origin_of_life",
    "rna_world",
@@ -978,13 +970,13 @@
   "summary": "Early life's likely machinery.",
   "layers": {
    "basics": "The RNA world hypothesis proposes that RNA both stored information and catalysed reactions before DNA and proteins.",
-   "deeper": "Ribozymes support the idea: the ribosome itself is an RNA enzyme. LUCA, the last universal common ancestor of bacteria, archaea and eukaryotes, lived ≈ 3.5–4.2 billion years ago.",
-   "expert": "Reconstructions suggest LUCA was a anaerobic, hydrogen-using cell possibly with a Wood–Ljungdahl pathway, though estimates differ. In vitro evolution has produced RNA polymerase ribozymes that copy short templates."
+   "deeper": "Ribozymes support the idea: the ribosome itself is an RNA enzyme. LUCA, the last common ancestor of all living cells (bacteria and archaea, with eukaryotes arising later from within the archaea), is estimated at roughly 4.2 billion years ago in one recent study (4.09–4.33 billion years, Moody et al. 2024); other estimates are younger.",
+   "expert": "Reconstructions suggest LUCA was probably an anaerobic, hydrogen-using cell, possibly with a Wood–Ljungdahl pathway, though reconstructions differ. In vitro evolution has produced RNA polymerase ribozymes that copy short templates."
   },
   "facts": [
    [
-    "LUCA age (est.)",
-    "≈ 3.5–4.2 Ga"
+    "LUCA age (one recent estimate)",
+    "≈ 4.2 Ga (4.09–4.33; other estimates younger)"
    ],
    [
     "Ribozyme discovery Nobel",
@@ -996,13 +988,7 @@
    "Whether an RNA world preceded DNA/protein life is unproven.",
    "The complexity and habitat of LUCA are contested."
   ],
-  "refs": [
-   [
-    "BIO",
-    "20.3",
-    "20-3-perspectives-on-the-phylogenetic-tree"
-   ]
-  ],
+  "refs": [],
   "kn": [
    "rna_world",
    "luca"
@@ -1035,12 +1021,8 @@
   },
   "facts": [
    [
-    "Theory status",
-    "well-supported explanatory framework"
-   ],
-   [
     "Chimp–human common ancestor",
-    "≈ 6–7 Ma"
+    "≈ 6–8 Ma (estimates vary)"
    ]
   ],
   "certainty": "C1",
@@ -1078,8 +1060,8 @@
   "summary": "Watching evolution in the lab.",
   "layers": {
    "basics": "Researchers grow microbes or flies for hundreds or thousands of generations under controlled conditions and watch them adapt.",
-   "deeper": "Lenski's E. coli lines evolved the ability to use citrate after ≈ 31,000 generations.",
-   "expert": "Frozen fossil records allow replay experiments to test contingency. Repeatability of outcomes tells us how deterministic adaptation is."
+   "deeper": "In Lenski's experiment, one of the 12 E. coli populations evolved the ability to use citrate at about 31,500 generations. The other 11 did not, which shows the role of chance and history.",
+   "expert": "Samples of each population are frozen every 500 generations, so researchers can restart evolution from an earlier point and replay it. In replays, the citrate trait arose far more often from later samples than from early ones, which suggests that an earlier \"potentiating\" mutation made it possible (Blount 2008)."
   },
   "facts": [
    [
@@ -1172,8 +1154,8 @@
   "summary": "Absorptive heterotrophs with chitin walls.",
   "layers": {
    "basics": "Fungi are mostly made of threads (hyphae) forming a mycelium. They absorb food from their surroundings after digesting it with enzymes.",
-   "deeper": "Major groups: chytrids, zygomycetes, ascomycetes (yeasts, molds, morels) and basidiomycetes (mushrooms). Fungi are more closely related to animals than to plants.",
-   "expert": "The largest known organism is an Armillaria mycelium in Oregon (≈ 9 km², perhaps 2,000+ years old). Fungi reproduce both sexually and asexually, and many have long dikaryotic stages."
+   "deeper": "Major groups: chytrids, the former \"zygomycetes\" (now split into several lineages), ascomycetes (yeasts, molds, morels) and basidiomycetes (mushrooms). Fungi are more closely related to animals than to plants.",
+   "expert": "The largest known organism by area is an Armillaria ostoyae mycelium in Oregon's Malheur National Forest (≈ 9.6 km²; at least 2,400 years old and possibly much older). Fungi reproduce both sexually and asexually, and many have long dikaryotic stages."
   },
   "facts": [
    [
@@ -1234,13 +1216,13 @@
   "summary": "Decomposers, partners and pathogens.",
   "layers": {
    "basics": "Fungi decompose dead matter, form mycorrhizae with plant roots, and make lichens with algae or cyanobacteria. Some cause disease in plants and animals.",
-   "deeper": "About 90% of land plants have mycorrhizal partners that trade soil minerals for sugar. Yeasts bring us bread, beer and antibiotics (penicillin).",
-   "expert": "Chytrid fungus Batrachochytrium has caused amphibian declines in > 500 species. White-nose syndrome has killed millions of bats. Fungal infections kill ≈ 1.5 million people yearly."
+   "deeper": "Most land plant species (roughly 70–90%, depending on the survey) form mycorrhizae, partnerships with fungi that trade soil minerals for sugar. Yeasts bring us bread and beer, and the mould Penicillium gave us penicillin, the first widely used antibiotic.",
+   "expert": "Chytrid fungus Batrachochytrium has caused amphibian declines in > 500 species. White-nose syndrome has killed millions of bats. Fungal disease is estimated to be involved in about 3.8 million deaths a year (Denning 2024), though often alongside another serious illness, so the number caused by the fungus alone is smaller."
   },
   "facts": [
    [
-    "Plants with mycorrhizae",
-    "≈ 80–90%"
+    "Plant species with mycorrhizae",
+    "≈ 70–90% (varies with survey)"
    ],
    [
     "Amphibian species hit by chytrid",
@@ -1295,21 +1277,24 @@
   ],
   "summary": "Green algae are the closest relatives of land plants.",
   "layers": {
-   "basics": "Land plants descended from freshwater green algae (charophytes) about 470 million years ago.",
+   "basics": "Land plants descended from streptophyte green algae (charophytes). The oldest fossil land-plant spores are about 470 million years old, and molecular clocks place the split from the algae earlier.",
    "deeper": "Moving onto land needed protection from drying (cuticle), support, and water transport.",
-   "expert": "Streptophyte algae share cell-division and cell-wall features with plants; Zygnematophyceae may be the sister group. Key innovations: sporopollenin, embryos, vascular tissue."
+   "expert": "Streptophyte algae share cell-division and cell-wall features with plants; Most genome-scale analyses favour Zygnematophyceae as the sister group, though some studies recover other groups. Key innovations: sporopollenin, embryos, vascular tissue."
   },
   "facts": [
    [
-    "Land plant origin",
+    "Oldest land-plant spores",
     "≈ 470 Ma"
    ],
    [
     "Closest algal relatives",
-    "charophytes"
+    "streptophyte algae; Zygnematophyceae probable"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Which streptophyte algal group is the sister of land plants, and when land plants arose, are still tested with new genomes."
+  ],
   "refs": [
    [
     "BIO",
@@ -1404,9 +1389,9 @@
   ],
   "summary": "Seeds, pollen and flowers.",
   "layers": {
-   "basics": "Seeds protect and feed the embryo. Gymnosperms (conifers) have \"naked\" seeds in cones; angiosperms (flowering plants) enclose seeds in fruit.",
+   "basics": "Seeds protect and feed the embryo. Gymnosperms (conifers, cycads, ginkgo, gnetophytes) have \"naked\" seeds, often in cones; angiosperms (flowering plants) enclose seeds in fruit.",
    "deeper": "Angiosperms are ≈ 300,000 species. Double fertilisation produces an embryo and nutritive endosperm. Flowers attract animals for pollination.",
-   "expert": "Angiosperms diversified in the Cretaceous, which Darwin called an \"abominable mystery\". Basal lineages include Amborella. Monocots and eudicots differ in cotyledons, vascular arrangement and pollen apertures."
+   "expert": "Flowering plants appear in the fossil record in the Early Cretaceous and diversified rapidly, which Darwin called an \"abominable mystery\". Molecular clocks suggest an older origin, and the timing is still debated. Basal lineages include Amborella. Monocots and eudicots differ in cotyledons, vascular arrangement and pollen apertures."
   },
   "facts": [
    [
@@ -1418,7 +1403,10 @@
     "≈ 600–700"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "When flowering plants first arose is debated: the fossil record and molecular clocks give different answers."
+  ],
   "refs": [
    [
     "BIO",
@@ -1483,7 +1471,7 @@
    ],
    [
     "Animal phyla",
-    "≈ 35"
+    "≈ 35 (the count depends on the classification)"
    ]
   ],
   "certainty": "C2",
@@ -1538,13 +1526,13 @@
   "summary": "The simplest animals.",
   "layers": {
    "basics": "Sponges filter water through pores and have no true tissues. Cnidarians (jellyfish, corals, anemones) have stinging cells and radial symmetry.",
-   "deeper": "Coral reefs, built by cnidarians with symbiotic algae, cover < 1% of the sea floor but host ≈ 25% of marine species.",
+   "deeper": "Coral reefs, built by cnidarians with symbiotic algae, cover well under 1% of the sea floor but host a disproportionate share of marine species (a quarter is a widely quoted but uncertain figure, and many reef species are undescribed).",
    "expert": "Cnidocytes fire nematocysts in ≈ 700 ns, among the fastest cellular events. Coral bleaching occurs when symbionts are expelled under heat stress."
   },
   "facts": [
    [
     "Reef share of marine species",
-    "≈ 25%"
+    "≈ 25% (widely quoted, uncertain)"
    ],
    [
     "Nematocyst discharge",
@@ -1596,7 +1584,7 @@
   "layers": {
    "basics": "Flatworms include free-living planarians and parasitic tapeworms and flukes. Mollusks have a muscular foot, mantle and often a shell; annelids are segmented worms.",
    "deeper": "Octopuses are mollusks with large brains and ≈ 500 million neurons. Earthworms aerate soil.",
-   "expert": "Cephalopods have closed circulatory systems and camera-type eyes arising independently of vertebrates. Annelid segmentation parallels but evolved separately from arthropods' and vertebrates'."
+   "expert": "Cephalopods have closed circulatory systems and camera-type eyes arising independently of vertebrates. Whether segmentation in annelids, arthropods and vertebrates evolved independently or descends from a segmented ancestor is unresolved; some shared genetic machinery may be deeply homologous."
   },
   "facts": [
    [
@@ -1608,7 +1596,10 @@
     "≈ 500 million"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Whether body segmentation evolved once or several times in animals is unresolved."
+  ],
   "refs": [
    [
     "BIO",
@@ -1715,7 +1706,7 @@
   "layers": {
    "basics": "Insects have three body regions, six legs and usually wings. They pollinate crops, spread diseases and decompose waste.",
    "deeper": "Complete metamorphosis (egg, larva, pupa, adult) occurs in beetles, flies, butterflies and bees; incomplete metamorphosis in grasshoppers.",
-   "expert": "Beetles alone are ≈ 400,000 described species. Social insects (ants, termites, bees) show eusociality with castes. Insect declines of ≈ 1–2% per year in some regions are a concern."
+   "expert": "Beetles alone are ≈ 400,000 described species. Social insects (ants, termites, bees) show eusociality with castes. Long-term monitoring finds land insect abundance falling by about 9% per decade on average in one large analysis (van Klink 2020), though trends vary a lot by place and group."
   },
   "facts": [
    [
@@ -1723,8 +1714,8 @@
     "≈ 400,000"
    ],
    [
-    "Insects pollinate",
-    "≈ 75% of crop types"
+    "Leading crop types that benefit from animal pollination",
+    "≈ 75% (87 of 115; Klein et al. 2007)"
    ]
   ],
   "certainty": "C1",
@@ -1767,7 +1758,7 @@
   "layers": {
    "basics": "Echinoderms (sea stars, urchins) have radial adult symmetry; chordates have a notochord, dorsal nerve cord, pharyngeal slits and a post-anal tail at some stage.",
    "deeper": "Tunicates and lancelets are invertebrate chordates. Vertebrates add a backbone and a skull.",
-   "expert": "Echinoderms and chordates are both deuterostomes, sharing ancestry; hemichordates link them. Vertebrate genomes show two whole-genome duplications."
+   "expert": "Echinoderms and hemichordates form a clade (Ambulacraria) that is the sister group of the chordates. Vertebrate genomes show two rounds of whole-genome duplication near the origin of vertebrates, though details of their number and timing are still debated."
   },
   "facts": [
    [
@@ -1779,7 +1770,10 @@
     "2 rounds"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "The number and timing of whole-genome duplications near the origin of vertebrates are still debated."
+  ],
   "refs": [
    [
     "BIO",
@@ -1822,9 +1816,9 @@
   ],
   "summary": "Fins to legs.",
   "layers": {
-   "basics": "Fishes (jawless, cartilaginous, ray-finned, lobe-finned) are the oldest vertebrates. Amphibians moved to land but still need water to breed.",
+   "basics": "Fishes (jawless, cartilaginous, ray-finned, lobe-finned) are the oldest vertebrates. Amphibians moved to land but most still need water or damp places to breed.",
    "deeper": "Tetrapods evolved from lobe-finned fishes ≈ 375 Ma (Tiktaalik). Amphibian skin breathes and is sensitive to pollution.",
-   "expert": "Ray-finned fish are ≈ 99% of fish species (≈ 35,000). Frogs' decline is among the fastest of any vertebrate group (≈ 40% of species threatened)."
+   "expert": "Ray-finned fishes are the great majority (about 96–99%, depending on the count) of fish species (≈ 35,000); the rest are sharks and rays, jawless fishes and lobe-finned fishes. Frogs' decline is among the fastest of any vertebrate group (≈ 40% of species threatened)."
   },
   "facts": [
    [
@@ -1879,7 +1873,7 @@
   ],
   "summary": "Amniotes and feathered dinosaurs.",
   "layers": {
-   "basics": "Reptiles have scaly skin and lay shelled eggs on land. Birds, descended from theropod dinosaurs, have feathers and lay hard-shelled eggs.",
+   "basics": "Reptiles have scaly skin and mostly lay shelled eggs on land. Birds, descended from theropod dinosaurs, have feathers, a beak and hard-shelled eggs.",
    "deeper": "The amniotic egg freed vertebrates from water. Bird bones are light and air-sacs give efficient breathing.",
    "expert": "Birds (≈ 11,000 species) are a clade within Reptilia as phylogenetically defined. Feathers evolved before flight, probably for insulation and display."
   },
@@ -1938,7 +1932,7 @@
   "layers": {
    "basics": "Mammals have hair, three middle-ear bones and mammary glands. The three groups are monotremes (egg-laying), marsupials and placentals.",
    "deeper": "Primates have grasping hands, forward-facing eyes and large brains; they include lemurs, monkeys, apes and humans.",
-   "expert": "Mammals radiated after the end-Cretaceous extinction. There are ≈ 6,500 mammal species and ≈ 500 primates; ≈ 25% of mammals are threatened."
+   "expert": "Most living placental orders diversified after the end-Cretaceous extinction, though the timing is debated. There are about 6,500–6,700 mammal species (the count depends on the checklist) and ≈ 500 primates; roughly a quarter of assessed mammals are threatened."
   },
   "facts": [
    [
@@ -1996,7 +1990,7 @@
   "layers": {
    "basics": "Zoologists identify species with keys, specimens, photos and DNA barcodes, and count animals with transects, traps and cameras.",
    "deeper": "The COI gene is the standard animal barcode (≈ 650 bp). Mark–recapture estimates population size.",
-   "expert": "Lincoln–Petersen: N ≈ (M·C)/R. Occupancy models separate detection from presence. Specimen collection follows permits, ethics and museum curation standards."
+   "expert": "Lincoln–Petersen: N ≈ (M·C)/R, where M is the number of animals marked on the first visit, C the number caught on the second visit and R the number of marked animals among them. It assumes a closed population, equal catchability and no mark loss. Occupancy models separate detection from presence. Specimen collection follows permits, ethics and museum curation standards."
   },
   "facts": [
    [
@@ -2208,19 +2202,19 @@
   "layers": {
    "basics": "Water evaporating from leaves pulls a continuous column of water up through the xylem from the roots.",
    "deeper": "Cohesion between water molecules and adhesion to xylem walls support the column. Water flows from high to low water potential.",
-   "expert": "Cohesion–tension theory predicts xylem pressures of −1 to −3 MPa; cavitation (embolism) is a risk in drought. Water potential Ψ = Ψs + Ψp."
+   "expert": "Cohesion–tension theory predicts negative xylem pressures, typically around −1 to −3 MPa depending on species and dryness; cavitation (embolism) is a risk in drought. Water potential Ψ = Ψs + Ψp, plus a gravity term Ψg ≈ 0.01 MPa per metre of height that matters in tall trees."
   },
   "facts": [
    [
-    "Xylem tension",
-    "≈ −1 to −3 MPa"
+    "Xylem pressure",
+    "≈ −1 to −3 MPa (typical; varies with species and dryness)"
    ],
    [
     "Redwood water rise",
     "≈ 100 m"
    ]
   ],
-  "formula": "Ψ = Ψs + Ψp",
+  "formula": "Ψ = Ψs + Ψp (+ Ψg)",
   "certainty": "C1",
   "refs": [
    [
@@ -2262,7 +2256,7 @@
   "layers": {
    "basics": "Phloem carries sugars from leaves (sources) to roots, fruits and growing tips (sinks).",
    "deeper": "Sugar loading raises osmotic pressure at the source so water enters; at the sink sugar leaves and water follows, driving bulk flow (Münch pressure-flow).",
-   "expert": "Phloem sap flows ≈ 0.5–1 m/h in sieve tubes; companion cells load sucrose using H⁺-coupled symporters. Aphid stylets sample phloem sap."
+   "expert": "Phloem sap flows ≈ 0.5–1 m/h in sieve tubes; in apoplastic loaders, companion cells load sucrose using H⁺-coupled symporters; many other plants load through plasmodesmata instead. Aphid stylets sample phloem sap."
   },
   "facts": [
    [
@@ -2314,7 +2308,7 @@
   "facts": [
    [
     "Essential plant elements",
-    "17"
+    "17 in the common list (lists differ)"
    ],
    [
     "Legume N fixation",
@@ -2367,7 +2361,7 @@
   "summary": "Ways to avoid photorespiration.",
   "layers": {
    "basics": "In hot, dry places some plants concentrate CO2 around Rubisco. C4 plants (corn, sugarcane) separate steps in space; CAM plants (cacti, pineapple) separate them in time.",
-   "deeper": "Photorespiration wastes up to ≈ 25–30% of fixed carbon in C3 plants at high temperature. C4 uses PEP carboxylase in mesophyll and the Calvin cycle in bundle sheath.",
+   "deeper": "Photorespiration, a wasteful side reaction of Rubisco with oxygen, costs C3 plants a notable share of their fixed carbon, more so at high temperature. C4 uses PEP carboxylase in mesophyll and the Calvin cycle in bundle sheath.",
    "expert": "C4 evolved independently > 60 times; ≈ 3% of plant species, ≈ 25% of terrestrial primary production. CAM opens stomata at night. Engineering C4 rice is an active project."
   },
   "facts": [
@@ -2382,11 +2376,6 @@
   ],
   "certainty": "C1",
   "refs": [
-   [
-    "BIO",
-    "8.3",
-    "8-3-using-light-energy-to-make-organic-molecules"
-   ],
    [
     "BIO",
     "30.4",
@@ -2473,8 +2462,8 @@
   ],
   "summary": "How plants sense and respond.",
   "layers": {
-   "basics": "Plants bend toward light (phototropism) and roots grow down (gravitropism). Flowering time is set by day length via photoreceptors such as phytochrome.",
-   "deeper": "Plants defend with thorns, toxins and signals; attacked plants release volatile compounds warning neighbours.",
+   "basics": "Plants bend toward light (phototropism) and roots grow down (gravitropism). Flowering time in many plants is set by the length of day and night (the uninterrupted dark period), sensed by photoreceptors such as phytochrome and cryptochrome.",
+   "deeper": "Plants defend with thorns, toxins and signals; attacked plants release volatile compounds; neighbours can detect them and prime their own defences, although whether this evolved as a signal to neighbours is debated.",
    "expert": "Phytochromes switch between Pr and Pfr forms by red/far-red light; the FT protein is the mobile \"florigen\". Systemic acquired resistance involves salicylic acid."
   },
   "facts": [
@@ -2487,7 +2476,10 @@
     "FT protein"
    ]
   ],
-  "certainty": "C1",
+  "certainty": "C2",
+  "open_questions": [
+   "Whether plant volatile signals evolved to warn neighbours, and how common the effect is outside controlled experiments, is debated."
+  ],
   "refs": [
    [
     "BIO",
@@ -2526,17 +2518,17 @@
   "summary": "Flowers, pollination, fertilisation and seeds.",
   "layers": {
    "basics": "Flowers are reproductive organs. Pollen carries sperm to the ovule; after double fertilisation the ovule becomes a seed and the ovary becomes a fruit.",
-   "deeper": "Pollinators include insects, birds, bats and wind. Fruits aid seed dispersal; plants can also reproduce asexually (runners, cloning).",
+   "deeper": "Pollen is moved by animals (insects, birds, bats) or by wind. Fruits aid seed dispersal; plants can also reproduce asexually (runners, cloning).",
    "expert": "Self-incompatibility systems prevent selfing. Seed dormancy and germination are controlled by abscisic acid and gibberellin. Agriculture exploits vegetative propagation and grafting."
   },
   "facts": [
    [
-    "Pollinator-dependent crops",
-    "≈ 35% of global crop production"
+    "Share of global crop production from animal-pollinated crop types",
+    "≈ 35% by volume (Klein et al. 2007)"
    ],
    [
     "Orchid seed size",
-    "≈ 0.3 mm"
+    "dust-like; about 0.3 mm long in one Orchis species"
    ]
   ],
   "certainty": "C1",
@@ -2584,7 +2576,7 @@
   "layers": {
    "basics": "A seedling grows from a seed by cell division at meristems, and flowers form when a shoot meristem switches to reproductive development.",
    "deeper": "In the ABC model, combinations of three gene classes decide sepals, petals, stamens and carpels.",
-   "expert": "Arabidopsis mutants (apetala2, pistillata, agamous) led to the model; MADS-box genes are central. Plant development is plastic and modular, with indeterminate growth."
+   "expert": "Arabidopsis and snapdragon mutants (apetala2, pistillata, agamous, deficiens) led to the model; the B, C and E functions are MADS-box genes, and the class A function is clear only in Arabidopsis. Plant development is plastic and modular, with indeterminate growth."
   },
   "facts": [
    [

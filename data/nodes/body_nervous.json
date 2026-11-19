@@ -21,7 +21,9 @@
    "amygdala",
    "basal_ganglia",
    "pituitary_gland",
-   "pineal_gland"
+   "pineal_gland",
+   "cerebellum",
+   "brainstem"
   ],
   "made_of": [
    "nervous_tissue"
@@ -39,7 +41,7 @@
   "layers": {
    "basics": "Your brain handles everything you sense, think, feel and do. It is soft, wrinkled and floats in protective fluid inside the skull.",
    "deeper": "It has a cerebrum (two hemispheres joined by the corpus callosum), cerebellum and brainstem. The outer folded layer, the cortex, handles complex functions; deeper structures regulate emotion, memory and body state.",
-   "expert": "Gray matter holds neuronal cell bodies and synapses; white matter is myelinated tracts. The cortex has six layers in most regions and is organized into functionally specialized but interconnected networks. Cerebrospinal fluid, the blood-brain barrier and the glymphatic system protect and clear it."
+   "expert": "Gray matter holds neuronal cell bodies and synapses; white matter is myelinated tracts. The cortex has six layers in most regions and is organized into functionally specialized but interconnected networks. Cerebrospinal fluid and the blood-brain barrier protect it. A proposed 'glymphatic' route along blood vessels may help clear waste, but it rests mainly on animal work and its mechanism is still debated."
   },
   "facts": [
    [
@@ -48,7 +50,7 @@
    ],
    [
     "Neurons",
-    "≈ 8.6×10^10"
+    "≈ 8.6×10^10 (86.1 ± 8.1 billion; Azevedo et al. 2009, 4 adult male brains)"
    ],
    [
     "Power use",
@@ -63,7 +65,8 @@
   "certainty": "C1",
   "open_questions": [
    "How do patterns of neural activity give rise to subjective experience (the 'hard problem')?",
-   "How does the brain represent and store memories at the level of circuits and synapses?"
+   "How does the brain represent and store memories at the level of circuits and synapses?",
+   "Does the 'glymphatic' perivascular clearance route work in humans as it appears to in rodents, and what drives the fluid flow?"
   ],
   "refs": [
    [
@@ -106,7 +109,7 @@
   "layers": {
    "basics": "The frontal lobe helps you plan, make choices, control impulses and start movements. Speech production relies on regions here (usually left).",
    "deeper": "Contains the primary motor cortex, premotor areas and the prefrontal cortex. Broca's area supports speech production.",
-   "expert": "Prefrontal cortex matures into the mid-twenties; dorsolateral PFC supports working memory and executive control, orbitofrontal PFC value computation. Motor homunculus is a somatotopic map along the precentral gyrus."
+   "expert": "Prefrontal cortex continues to mature (thinning, myelination) into the twenties, and the end point varies by measure and person; dorsolateral PFC supports working memory and executive control, orbitofrontal PFC value computation. Motor homunculus is a somatotopic map along the precentral gyrus."
   },
   "facts": [
    [
@@ -266,7 +269,7 @@
   "layers": {
    "basics": "The back of your brain is wired to turn signals from your eyes into what you see.",
    "deeper": "Primary visual cortex (V1) receives input from the thalamus and maps the visual field.",
-   "expert": "V1 is retinotopic with cortical magnification of the fovea; later areas V2-V5 handle orientation, color, motion."
+   "expert": "V1 is retinotopic with cortical magnification of the fovea; later areas contribute to orientation, form, colour (notably V4) and motion (notably V5/MT), with substantial overlap between them."
   },
   "facts": [
    [
@@ -274,7 +277,7 @@
     "V1-V5"
    ]
   ],
-  "did_you_know": "A blow to the back of the head can make people 'see stars' because it stimulates this region.",
+  "did_you_know": "Electrically stimulating the visual cortex of awake patients produces small spots of light called phosphenes. A blow to the head can also make people 'see stars', but how it does so is not settled.",
   "certainty": "C1",
   "refs": [
    [
@@ -328,7 +331,7 @@
     "≈ 0.2 m²"
    ]
   ],
-  "did_you_know": "If you unfolded the cortex it would be about the size of a pillowcase.",
+  "did_you_know": "If you unfolded the cortex it would cover roughly 0.2 m², about the area of a large dinner napkin.",
   "certainty": "C1",
   "refs": [
    [
@@ -498,7 +501,7 @@
     "≈ 10 cm"
    ]
   ],
-  "did_you_know": "Some people are born without it and live nearly normal lives.",
+  "did_you_know": "About 1 in 4,000 people are born without it (agenesis) and can seem normal in daily life, though testing often finds subtler difficulties with social and higher-order thinking.",
   "certainty": "C1",
   "refs": [
    [
@@ -546,11 +549,11 @@
   },
   "facts": [
    [
-    "Size",
-    "≈ 3 cm per side"
+    "Structure",
+    "a collection of nuclei that relay signals between cortex and the rest of the nervous system"
    ]
   ],
-  "did_you_know": "Smell is the only major sense that skips the thalamus's usual relay.",
+  "did_you_know": "Smell is the one major sense whose signals reach the cortex without first passing through the thalamus.",
   "certainty": "C1",
   "refs": [
    [
@@ -596,12 +599,16 @@
   },
   "facts": [
    [
-    "Size",
-    "≈ 2 cm"
+    "Location",
+    "medial temporal lobe, next to the hippocampus"
    ]
   ],
   "did_you_know": "The name is Greek for almond.",
   "certainty": "C2",
+  "open_questions": [
+   "How much of the amygdala's role is specific to fear, and how much is general emotional or salience processing?",
+   "How well do findings from rodent fear-conditioning circuits carry over to the human amygdala?"
+  ],
   "refs": [
    [
     "ANP",
@@ -647,10 +654,10 @@
   "facts": [
    [
     "Parts",
-    "caudate, putamen, globus pallidus"
+    "caudate, putamen, globus pallidus (closely linked to the subthalamic nucleus and the substantia nigra)"
    ]
   ],
-  "did_you_know": "The disease-causing loss in Parkinson's affects the substantia nigra.",
+  "did_you_know": "In a post-mortem study of Parkinson's disease, pigmented dopamine neurons of the substantia nigra were lost fastest early on, about 45% in the first decade of illness.",
   "certainty": "C1",
   "refs": [
    [
@@ -670,7 +677,8 @@
   "template": "anatomy",
   "scale_m": 0.1,
   "parents": [
-   "nervous_system"
+   "nervous_system",
+   "brain"
   ],
   "parts": [],
   "made_of": [
@@ -717,7 +725,8 @@
   "template": "anatomy",
   "scale_m": 0.1,
   "parents": [
-   "nervous_system"
+   "nervous_system",
+   "brain"
   ],
   "parts": [],
   "made_of": [
@@ -829,8 +838,8 @@
   "summary": "Cables of axons that connect the CNS to every part of the body.",
   "layers": {
    "basics": "Nerves are bundles of long nerve fibers that carry commands out and sensations in.",
-   "deeper": "12 cranial and 31 spinal nerve pairs, with myelin sheaths made by Schwann cells for speed.",
-   "expert": "Fibers classified A-alpha to C by diameter and myelination; conduction velocities from 0.5 to 120 m/s; regeneration is possible in the PNS but not the CNS."
+   "deeper": "12 cranial and 31 spinal nerve pairs, and many fibers are wrapped in myelin by Schwann cells for speed, while others (such as C fibers) are unmyelinated and slow.",
+   "expert": "Fibers classified A-alpha to C by diameter and myelination; conduction velocities from 0.5 to 120 m/s; axons can regrow in the PNS (about 1 mm per day, often incompletely), whereas adult CNS axons regenerate very poorly."
   },
   "facts": [
    [
@@ -877,8 +886,8 @@
   "summary": "The left eye focuses light onto the retina, where it becomes nerve signals.",
   "layers": {
    "basics": "The eye is a living camera: light enters through the clear front, is focused, and strikes light-sensing cells at the back.",
-   "deeper": "The cornea does most of the focusing and the lens fine-tunes it. The retina contains rods and cones.",
-   "expert": "The eye's optical power is ≈ 60 D (cornea ≈ 43 D, lens ≈ 17-20 D at rest); photoreceptors transduce light via the rhodopsin-transducin-PDE cascade, and retinal ganglion cells project to the LGN and superior colliculus."
+   "deeper": "The cornea does most of the focusing and the lens fine-tunes it. The retina contains rods and cones. A left eye has the same structures as a right eye (cornea, iris, lens, vitreous humor, retina, fovea, optic nerve); descend through the right eye to explore them.",
+   "expert": "In a simple thin-lens model with a 2.0 cm lens-to-retina distance the eye's optical power is ≈ 50 D (D = dioptre, 1/m), about two-thirds of it from the cornea; photoreceptors transduce light via the rhodopsin-transducin-PDE cascade, and retinal ganglion cells project to the LGN and superior colliculus."
   },
   "facts": [
    [
@@ -887,11 +896,11 @@
    ],
    [
     "Rods",
-    "≈ 9.2×10^7 (Curcio et al. 1990)"
+    "≈ 9.2×10^7 (7.8-10.7×10^7 between retinas; Curcio et al. 1990)"
    ],
    [
     "Cones",
-    "≈ 4.6×10^6 (Curcio et al. 1990)"
+    "≈ 4.6×10^6 (4.1-5.3×10^6 between retinas; Curcio et al. 1990)"
    ]
   ],
   "did_you_know": "The eye's retina is technically part of the brain, grown out from the embryonic forebrain.",
@@ -901,6 +910,11 @@
     "ANP",
     "14.1",
     "14-1-sensory-perception"
+   ],
+   [
+    "CPH",
+    "26.1",
+    "26-1-physics-of-the-eye"
    ]
   ],
   "kn": [
@@ -938,7 +952,7 @@
   "layers": {
    "basics": "The eye is a living camera: light enters through the clear front, is focused, and strikes light-sensing cells at the back.",
    "deeper": "The cornea does most of the focusing and the lens fine-tunes it. The retina contains rods and cones.",
-   "expert": "The eye's optical power is ≈ 60 D (cornea ≈ 43 D, lens ≈ 17-20 D at rest); photoreceptors transduce light via the rhodopsin-transducin-PDE cascade, and retinal ganglion cells project to the LGN and superior colliculus."
+   "expert": "In a simple thin-lens model with a 2.0 cm lens-to-retina distance the eye's optical power is ≈ 50 D (D = dioptre, 1/m), about two-thirds of it from the cornea; photoreceptors transduce light via the rhodopsin-transducin-PDE cascade, and retinal ganglion cells project to the LGN and superior colliculus."
   },
   "facts": [
    [
@@ -947,11 +961,11 @@
    ],
    [
     "Rods",
-    "≈ 9.2×10^7 (Curcio et al. 1990)"
+    "≈ 9.2×10^7 (7.8-10.7×10^7 between retinas; Curcio et al. 1990)"
    ],
    [
     "Cones",
-    "≈ 4.6×10^6 (Curcio et al. 1990)"
+    "≈ 4.6×10^6 (4.1-5.3×10^6 between retinas; Curcio et al. 1990)"
    ]
   ],
   "did_you_know": "The eye's retina is technically part of the brain, grown out from the embryonic forebrain.",
@@ -961,6 +975,11 @@
     "ANP",
     "14.1",
     "14-1-sensory-perception"
+   ],
+   [
+    "CPH",
+    "26.1",
+    "26-1-physics-of-the-eye"
    ]
   ],
   "kn": [
@@ -1002,17 +1021,22 @@
   },
   "facts": [
    [
-    "Role",
-    "The clear dome at the front of the eye that does most of its focusing"
+    "Share of the eye's focusing power",
+    "≈ 2/3 (the lens supplies the rest)"
    ]
   ],
-  "did_you_know": "Corneas can be transplanted with minimal rejection because they have no blood vessels.",
+  "did_you_know": "Corneal grafts are rarely rejected in low-risk eyes, helped by the cornea having no blood vessels and sitting in an immune-privileged eye. Rejection is still a problem in high-risk eyes where vessels have grown into the cornea.",
   "certainty": "C1",
   "refs": [
    [
     "ANP",
     "14.1",
     "14-1-sensory-perception"
+   ],
+   [
+    "CPH",
+    "26.1",
+    "26-1-physics-of-the-eye"
    ]
   ],
   "kn": [
@@ -1054,11 +1078,11 @@
   },
   "facts": [
    [
-    "Role",
-    "The colored ring that controls pupil size"
+    "Muscles",
+    "sphincter (narrows the pupil) and dilator (widens it)"
    ]
   ],
-  "did_you_know": "Iris patterns are as unique as fingerprints and used in biometric ID.",
+  "did_you_know": "Iris texture is so distinctive that it is used for biometric identification; a person's left and right irises differ from each other as much as unrelated irises do.",
   "certainty": "C1",
   "refs": [
    [
@@ -1101,13 +1125,13 @@
   "summary": "A clear flexible disc that fine-tunes focus.",
   "layers": {
    "basics": "The lens changes shape so you can switch between near and far objects.",
-   "deeper": "Ciliary muscles relax or tighten the zonules, making the lens thinner or rounder (accommodation).",
-   "expert": "Lens fibers lose organelles and contain crystallins at ≈ 35% by weight; presbyopia arises from stiffening and loss of accommodation after ≈ 45."
+   "deeper": "For near focus the ciliary muscle contracts and the lens becomes thicker and more powerful; for distance the muscle relaxes and the lens is thinner (accommodation).",
+   "expert": "Lens fibers lose their organelles and are packed with crystallin proteins; presbyopia, the loss of near focus with age, arises as the lens stiffens."
   },
   "facts": [
    [
-    "Role",
-    "A clear flexible disc that fine-tunes focus"
+    "Share of the eye's focusing power",
+    "≈ 1/3, and the only part that adjusts"
    ]
   ],
   "did_you_know": "Lens crystallin proteins last a lifetime without replacement.",
@@ -1117,6 +1141,11 @@
     "ANP",
     "14.1",
     "14-1-sensory-perception"
+   ],
+   [
+    "CPH",
+    "26.1",
+    "26-1-physics-of-the-eye"
    ]
   ],
   "kn": [
@@ -1133,9 +1162,7 @@
    "eye_r"
   ],
   "parts": [],
-  "made_of": [
-   "dense_connective_tissue"
-  ],
+  "made_of": [],
   "processes": [
    "vision"
   ],
@@ -1153,13 +1180,13 @@
   "summary": "A clear gel filling the main chamber of the eye.",
   "layers": {
    "basics": "A jelly that keeps the eyeball round.",
-   "deeper": "About 99% water with collagen and hyaluronan.",
+   "deeper": "Mostly water, held in a sparse network of collagen fibrils and hyaluronan.",
    "expert": "Age-related syneresis leads to 'floaters' and posterior vitreous detachment."
   },
   "facts": [
    [
-    "Role",
-    "A clear gel filling the main chamber of the eye"
+    "Location",
+    "the posterior cavity, behind the lens"
    ]
   ],
   "did_you_know": "Floaters are shadows of vitreous fibers on your retina.",
@@ -1206,14 +1233,14 @@
   },
   "summary": "The light-sensitive layer at the back of the eye.",
   "layers": {
-   "basics": "The retina turns images into nerve signals using millions of light-sensing cells.",
+   "basics": "The retina turns images into nerve signals using about a hundred million light-sensing cells.",
    "deeper": "Contains rods, cones, and neurons that begin image processing before the signal leaves the eye.",
-   "expert": "Layers: photoreceptors, bipolar, horizontal, amacrine and ganglion cells; image is inverted; thickness ≈ 0.2-0.5 mm."
+   "expert": "Layers: photoreceptors, bipolar, horizontal, amacrine and ganglion cells; image is inverted."
   },
   "facts": [
    [
-    "Role",
-    "The light-sensitive layer at the back of the eye"
+    "Photoreceptors",
+    "≈ 9.2×10^7 rods + ≈ 4.6×10^6 cones (Curcio et al. 1990, 8 retinas)"
    ]
   ],
   "did_you_know": "The retina processes information before sending it to the brain.",
@@ -1260,12 +1287,16 @@
   "layers": {
    "basics": "Where you look directly, light lands on the fovea, packed with cones.",
    "deeper": "It supplies the high-resolution color vision you use for reading.",
-   "expert": "Foveola has ≈ 150,000-200,000 cones/mm² with no rods; one-to-one connections to ganglion cells."
+   "expert": "Peak cone density averages ≈ 2×10^5 cones/mm² (about 1.0-3.2×10^5 between people) and the central ≈ 0.35 mm has no rods (Curcio et al. 1990). Cones there connect mainly through the midget pathway, roughly one cone to one midget bipolar cell to one midget ganglion cell."
   },
   "facts": [
    [
-    "Role",
-    "The tiny pit in the retina with the sharpest vision"
+    "Rod-free zone",
+    "≈ 0.35 mm across"
+   ],
+   [
+    "Peak cone density",
+    "≈ 2×10^5 per mm² (1.0-3.2×10^5 between people)"
    ]
   ],
   "did_you_know": "Only about 1-2 degrees of your visual field is truly sharp.",
@@ -1312,12 +1343,12 @@
   "layers": {
    "basics": "The cable from the eye to the brain.",
    "deeper": "It leaves at the optic disc, which has no photoreceptors, creating the blind spot.",
-   "expert": "Myelinated by oligodendrocytes (CNS tract); ≈ 1.2×10^6 axons; partial decussation at the optic chiasm."
+   "expert": "Myelinated by oligodendrocytes (CNS tract); about 10^6 axons (the count varies between people and falls by roughly 4,000 per year with age); partial decussation at the optic chiasm."
   },
   "facts": [
    [
-    "Role",
-    "The bundle of about a million fibers carrying visual signals to the brain"
+    "Axons",
+    "≈ 10^6, varying between people (Jonas et al. 1992)"
    ]
   ],
   "did_you_know": "Each of your eyes has a blind spot your brain fills in.",

@@ -37,9 +37,9 @@
   "needs": [],
   "summary": "The discipline of making electricity and information do useful work.",
   "layers": {
-   "basics": "Electrical engineers design everything from power grids to phone chips by understanding voltage, current, fields and signals.",
+   "basics": "Electrical engineers design everything from power grids to phone chips by understanding voltage (the push on charge, such as the emf of a battery), current, fields and signals.",
    "deeper": "The curriculum climbs from maths and physics through circuits, electronics, digital logic, signals, fields and control to specialised applications.",
-   "expert": "Unifying ideas: linearity and superposition, frequency-domain thinking, feedback, energy conservation and abstraction layers from devices to systems."
+   "expert": "Unifying ideas are linearity and superposition, frequency-domain thinking, feedback, energy conservation and layers of abstraction from devices to systems. Linearity is an approximation that holds for small signals. Transistors, diodes and magnetic cores are nonlinear, and much of design is deciding when the linear model is good enough."
   },
   "facts": [],
   "certainty": "C1",
@@ -48,6 +48,16 @@
     "UP2",
     "10.1",
     "10-1-electromotive-force"
+   ],
+   [
+    "UP2",
+    "10.3",
+    "10-3-kirchhoffs-rules"
+   ],
+   [
+    "UP2",
+    "16.1",
+    "16-1-maxwells-equations-and-electromagnetic-waves"
    ]
   ],
   "kn": [
@@ -117,9 +127,9 @@
   "needs": [],
   "summary": "Calculus, differential equations, linear algebra, probability, complex analysis, discrete math and numerical methods: the language in which circuits, signals and fields are written.",
   "layers": {
-   "basics": "Calculus, differential equations, linear algebra, probability, complex analysis, discrete math and numerical methods: the language in which circuits, signals and fields are written.",
-   "deeper": "This hub groups the concept nodes for the area; follow the prerequisite arrows (needs) from the left of the track to the right.",
-   "expert": "Prerequisite structure is a directed acyclic graph; each node links to textbooks (refs) and interactive labs where available."
+   "basics": "Circuits are described by equations, so engineers need maths. Calculus and differential equations say how voltages and currents change in time. Linear algebra handles many unknowns at once. Complex numbers make alternating signals easy to calculate with. Probability describes noise.",
+   "deeper": "Calculus and differential equations describe how circuit voltages and currents change in time. Linear algebra solves for many unknowns at once. Complex numbers turn sinusoids into simple arithmetic. Probability describes noise and uncertainty. Numerical methods give answers when no tidy formula exists.",
+   "expert": "Most EE analysis rests on linear operators. Eigen-decomposition, the Laplace and Fourier transforms and phasors all use linearity to turn differential equations into algebra. The main limit is that real devices are nonlinear, which is where numerical simulation takes over."
   },
   "facts": [],
   "certainty": "C1",
@@ -163,9 +173,9 @@
   "needs": [],
   "summary": "Mechanics, electricity and magnetism, waves, quantum ideas and the chemistry of materials that make electronics possible.",
   "layers": {
-   "basics": "Mechanics, electricity and magnetism, waves, quantum ideas and the chemistry of materials that make electronics possible.",
-   "deeper": "This hub groups the concept nodes for the area; follow the prerequisite arrows (needs) from the left of the track to the right.",
-   "expert": "Prerequisite structure is a directed acyclic graph; each node links to textbooks (refs) and interactive labs where available."
+   "basics": "Electronics works because of a few physical facts. Charges push on each other, moving charges make magnetic fields, and a changing magnetic field pushes charges in turn. Materials such as silicon let engineers control how easily charges move.",
+   "deeper": "Mechanics gives energy, force and oscillation, which also describe springs, pendulums and electrical resonance. Electricity and magnetism give voltage, current and fields. Wave ideas explain signals travelling through cables and space. Quantum ideas and materials chemistry explain why semiconductors conduct only under controlled conditions.",
+   "expert": "Classical field theory describes most circuit behaviour, but device physics needs quantum mechanics: electron energy bands, tunnelling and carrier statistics. Circuit theory is the low-frequency, small-size limit of Maxwell's equations, valid when a circuit is much smaller than the wavelength of its signals."
   },
   "facts": [],
   "certainty": "C1",
@@ -199,9 +209,9 @@
   "needs": [],
   "summary": "Programming languages, algorithms, embedded C, hardware description languages and simulation tools.",
   "layers": {
-   "basics": "Programming languages, algorithms, embedded C, hardware description languages and simulation tools.",
-   "deeper": "This hub groups the concept nodes for the area; follow the prerequisite arrows (needs) from the left of the track to the right.",
-   "expert": "Prerequisite structure is a directed acyclic graph; each node links to textbooks (refs) and interactive labs where available."
+   "basics": "Modern electronics is controlled by software. Engineers write programs to run chips, to test designs and to simulate circuits before building them. They also write code that describes hardware itself.",
+   "deeper": "Algorithms are step-by-step methods for solving problems, and their cost depends on how the work grows with input size. Embedded C is used to program small chips that sit inside devices. Hardware description languages describe logic circuits, which are then simulated and turned into real hardware. Simulation tools predict circuit behaviour before anything is built.",
+   "expert": "Embedded code works under limits that desktop programs rarely face, such as small memory, hard deadlines and direct access to hardware registers. A hardware description language describes concurrent hardware rather than sequential instructions, so the same text can be simulated or synthesised into gates. Simulators solve approximate models, and their results are only as good as those models."
   },
   "facts": [],
   "certainty": "C1",
@@ -263,9 +273,9 @@
   "needs": [],
   "summary": "Circuits I and II: Ohm and Kirchhoff, analysis techniques, transients, AC power, frequency response and filters.",
   "layers": {
-   "basics": "Circuits I and II: Ohm and Kirchhoff, analysis techniques, transients, AC power, frequency response and filters.",
-   "deeper": "This hub groups the concept nodes for the area; follow the prerequisite arrows (needs) from the left of the track to the right.",
-   "expert": "Prerequisite structure is a directed acyclic graph; each node links to textbooks (refs) and interactive labs where available."
+   "basics": "A circuit is a closed path that carries current. Voltage pushes charge round the path, resistance limits the flow, and a few rules relate them. Circuit analysis uses those rules to predict every voltage and current in a network.",
+   "deeper": "Ohm's law and Kirchhoff's laws are the starting point for finding unknown voltages and currents. Systematic methods such as nodal and mesh analysis scale them to larger networks. Capacitors and inductors store energy and cause transients, where voltages change gradually after a switch. Sinusoidal steady state, power and frequency response lead to filters.",
+   "expert": "Circuit theory models real components as ideal lumped elements, assuming the circuit is small compared with the signal wavelength. Thevenin and Norton equivalents and superposition apply only to linear circuits. Phasors and the Laplace transform convert differential equations into algebra. Real components add parasitic resistance, capacitance and inductance that the ideal model leaves out."
   },
   "facts": [],
   "certainty": "C1",
@@ -335,9 +345,9 @@
   "needs": [],
   "summary": "Diodes, transistors, amplifiers, op-amps, feedback, oscillators and data converters.",
   "layers": {
-   "basics": "Diodes, transistors, amplifiers, op-amps, feedback, oscillators and data converters.",
-   "deeper": "This hub groups the concept nodes for the area; follow the prerequisite arrows (needs) from the left of the track to the right.",
-   "expert": "Prerequisite structure is a directed acyclic graph; each node links to textbooks (refs) and interactive labs where available."
+   "basics": "Electronics uses devices that can control current with a small signal. A transistor can switch current on and off or make a small signal larger. Combining a few such devices gives amplifiers, oscillators and converters between analogue and digital signals.",
+   "deeper": "Diodes let current pass mainly one way. Transistors act as controlled switches or amplifiers once they are biased to the right operating point. Op-amps are high-gain building blocks that become predictable when negative feedback is added. Oscillators produce repeating signals, and data converters link analogue signals to digital numbers.",
+   "expert": "Small-signal analysis replaces a nonlinear device by a linear model around its bias point. Negative feedback trades gain for accuracy and bandwidth, but too much delay in the loop can turn it into oscillation. Noise, distortion, temperature drift and component tolerance set the practical limits on every analogue design."
   },
   "facts": [],
   "certainty": "C1",
@@ -381,9 +391,9 @@
   "needs": [],
   "summary": "From Boolean algebra to gates, flip-flops, state machines, memories and FPGAs.",
   "layers": {
-   "basics": "From Boolean algebra to gates, flip-flops, state machines, memories and FPGAs.",
-   "deeper": "This hub groups the concept nodes for the area; follow the prerequisite arrows (needs) from the left of the track to the right.",
-   "expert": "Prerequisite structure is a directed acyclic graph; each node links to textbooks (refs) and interactive labs where available."
+   "basics": "Digital circuits represent information as two levels, usually called 0 and 1. Because only two levels must be told apart, digital circuits tolerate noise well. Gates combine bits, and many gates together can add, store and decide.",
+   "deeper": "Boolean algebra describes how gates combine bits, and logic design simplifies those expressions. Flip-flops store a bit and make circuits that remember. State machines use stored bits to step through a sequence. Memories hold many bits, and FPGAs are chips whose connections can be reprogrammed to build custom logic.",
+   "expert": "Synchronous design uses a clock so that stored values change only at clock edges. Signals must settle before each edge, which sets the maximum clock speed through setup and hold timing. Signals crossing between unrelated clocks can cause metastability, a brief undefined state that designers reduce but cannot remove entirely."
   },
   "facts": [],
   "certainty": "C1",
@@ -432,9 +442,9 @@
   "needs": [],
   "summary": "Instruction sets, pipelines, caches, microcontrollers, buses and embedded systems.",
   "layers": {
-   "basics": "Instruction sets, pipelines, caches, microcontrollers, buses and embedded systems.",
-   "deeper": "This hub groups the concept nodes for the area; follow the prerequisite arrows (needs) from the left of the track to the right.",
-   "expert": "Prerequisite structure is a directed acyclic graph; each node links to textbooks (refs) and interactive labs where available."
+   "basics": "A computer is built from a processor that follows instructions, memory that holds data and buses that link them. A microcontroller puts a small processor, memory and input and output pins on one chip. Embedded systems use such chips inside machines and appliances.",
+   "deeper": "An instruction set is the list of operations a processor understands. Pipelines overlap the steps of several instructions to finish more work per second. Caches keep recently used data in small fast memory close to the processor. Buses carry data between the processor, memory and peripherals.",
+   "expert": "Processor design balances speed, power and cost. Pipelines and caches help most when programs behave predictably, and mispredicted branches or cache misses cost extra time. Embedded systems often need real-time behaviour, where a result that arrives late is a wrong result."
   },
   "facts": [],
   "certainty": "C1",
@@ -471,9 +481,9 @@
   "needs": [],
   "summary": "Signals, LTI systems, convolution, Fourier, Laplace and z transforms, sampling.",
   "layers": {
-   "basics": "Signals, LTI systems, convolution, Fourier, Laplace and z transforms, sampling.",
-   "deeper": "This hub groups the concept nodes for the area; follow the prerequisite arrows (needs) from the left of the track to the right.",
-   "expert": "Prerequisite structure is a directed acyclic graph; each node links to textbooks (refs) and interactive labs where available."
+   "basics": "A signal is a quantity that varies with time, such as the voltage from a microphone. A system takes a signal in and produces another. Signals and systems gives tools to describe, predict and change how signals are transformed.",
+   "deeper": "Linear time-invariant systems respond the same way whenever an input arrives, and their output to a sum of inputs is the sum of outputs. Convolution gives the output from the input and the system's impulse response. The Fourier, Laplace and z transforms express signals in terms of frequency. Sampling turns a continuous signal into numbers.",
+   "expert": "The LTI model makes frequency-domain analysis possible, because complex exponentials pass through such systems unchanged in shape. Sampling is lossless only when the signal contains no frequencies above half the sampling rate; otherwise aliasing mixes frequencies together. Real systems are only approximately linear and time-invariant."
   },
   "facts": [],
   "certainty": "C1",
@@ -507,9 +517,9 @@
   "needs": [],
   "summary": "DFT/FFT, digital filters, multirate, quantisation and applications.",
   "layers": {
-   "basics": "DFT/FFT, digital filters, multirate, quantisation and applications.",
-   "deeper": "This hub groups the concept nodes for the area; follow the prerequisite arrows (needs) from the left of the track to the right.",
-   "expert": "Prerequisite structure is a directed acyclic graph; each node links to textbooks (refs) and interactive labs where available."
+   "basics": "Digital signal processing changes signals after they have been turned into numbers. A computer or chip can filter noise, compress sound or find a pattern with arithmetic alone. The results are repeatable and do not drift with temperature.",
+   "deeper": "The discrete Fourier transform finds the frequencies in a block of samples, and the FFT is a fast algorithm for computing it. Digital filters combine delayed samples to keep some frequencies and remove others. Multirate methods change the sampling rate. Quantisation rounds values to a fixed number of bits, which adds a small error.",
+   "expert": "Digital filters are usually grouped into finite impulse response and infinite impulse response types, which trade exact linear phase against efficiency and possible instability. Finite word length causes rounding error, overflow and limit cycles. Choosing bit width, sampling rate and arithmetic format is a central design trade-off."
   },
   "facts": [],
   "certainty": "C1",
@@ -550,9 +560,9 @@
   "needs": [],
   "summary": "Fields, Maxwell, waves, transmission lines, antennas and EMC.",
   "layers": {
-   "basics": "Fields, Maxwell, waves, transmission lines, antennas and EMC.",
-   "deeper": "This hub groups the concept nodes for the area; follow the prerequisite arrows (needs) from the left of the track to the right.",
-   "expert": "Prerequisite structure is a directed acyclic graph; each node links to textbooks (refs) and interactive labs where available."
+   "basics": "Electric charges create electric fields, and moving charges create magnetic fields. Changing fields can travel through space as waves, which is how radio, light and wireless signals move. Electromagnetics explains how energy is carried along wires and through the air.",
+   "deeper": "Maxwell's equations link electric and magnetic fields to charges and currents. Waves carry energy through space, and their wavelength decides which antenna sizes work well. Transmission lines carry signals along cables and circuit-board traces where wire length matters. Electromagnetic compatibility (EMC) is about stopping devices from disturbing one another.",
+   "expert": "Circuit theory fails once conductor lengths approach a significant fraction of a wavelength, and then wires behave as transmission lines with a characteristic impedance. Mismatched impedance causes reflections. Antenna and EMC design rely on field solutions that are usually computed numerically for realistic shapes."
   },
   "facts": [],
   "certainty": "C1",
@@ -596,9 +606,9 @@
   "needs": [],
   "summary": "Bands, junctions, transistors, optoelectronics and chip fabrication.",
   "layers": {
-   "basics": "Bands, junctions, transistors, optoelectronics and chip fabrication.",
-   "deeper": "This hub groups the concept nodes for the area; follow the prerequisite arrows (needs) from the left of the track to the right.",
-   "expert": "Prerequisite structure is a directed acyclic graph; each node links to textbooks (refs) and interactive labs where available."
+   "basics": "Semiconductor devices are the tiny parts inside chips. A semiconductor such as silicon conducts only a little, but adding small amounts of other atoms changes this in a controlled way. Joining differently treated regions makes diodes and transistors.",
+   "deeper": "Energy bands describe which energies electrons in a crystal can have, and this explains why materials are conductors, insulators or semiconductors. A p-n junction forms where two differently doped regions meet, and it lets current pass mainly one way. Transistors build on junctions or electric fields to control current. Chip fabrication builds these structures in layers on a wafer.",
+   "expert": "Device behaviour comes from carrier drift and diffusion in electric fields, together with quantum effects in the smallest structures. Models used in circuit simulators are fitted approximations of this physics. As transistors shrink, leakage current, variability between devices and heat removal become dominant design limits."
   },
   "facts": [],
   "certainty": "C1",
@@ -635,9 +645,9 @@
   "needs": [],
   "summary": "Modelling, stability, PID, state space and digital control.",
   "layers": {
-   "basics": "Modelling, stability, PID, state space and digital control.",
-   "deeper": "This hub groups the concept nodes for the area; follow the prerequisite arrows (needs) from the left of the track to the right.",
-   "expert": "Prerequisite structure is a directed acyclic graph; each node links to textbooks (refs) and interactive labs where available."
+   "basics": "A control system makes a quantity follow a target, such as a motor holding a set speed. It measures the result, compares it with the target and corrects the difference. This loop is called feedback.",
+   "deeper": "A model of the system, often built from differential equations, predicts how it responds. Stability means the system settles instead of growing without limit, and it is checked with tools such as pole locations and frequency response. A PID controller combines the present error, its accumulated sum and its rate of change. State-space methods handle several variables at once, and digital control runs the loop in a computer.",
+   "expert": "Feedback can reduce the effect of disturbances and model errors, but delay and limited actuator range can make a loop unstable or sluggish. Linear design methods are exact only near an operating point, so nonlinear systems need extra analysis or gain scheduling. Robust control designs for a range of possible plant models rather than one."
   },
   "facts": [],
   "certainty": "C1",
@@ -671,9 +681,9 @@
   "needs": [],
   "summary": "Modulation, noise, information theory, coding, multiple access, channels and networks.",
   "layers": {
-   "basics": "Modulation, noise, information theory, coding, multiple access, channels and networks.",
-   "deeper": "This hub groups the concept nodes for the area; follow the prerequisite arrows (needs) from the left of the track to the right.",
-   "expert": "Prerequisite structure is a directed acyclic graph; each node links to textbooks (refs) and interactive labs where available."
+   "basics": "Communication systems send information from one place to another over wires, fibre or radio. The message is placed on a signal, sent through a channel that adds noise, and recovered at the other end. Good systems make errors rare even when the channel is poor.",
+   "deeper": "Modulation places information on a carrier wave by changing its amplitude, frequency or phase. Noise limits how reliably the receiver can tell signals apart. Information theory sets limits on how much data a channel can carry, and error-correcting codes add structured redundancy to approach those limits. Multiple-access methods let many users share one channel, and networks link many channels.",
+   "expert": "Shannon's channel capacity theorem gives the highest rate at which error-free communication is possible for a given bandwidth and signal-to-noise ratio. Practical codes come close to this limit at the price of complexity and delay. Real channels fade, reflect and interfere, so receivers estimate the channel and adapt to it."
   },
   "facts": [],
   "certainty": "C1",
@@ -717,9 +727,9 @@
   "needs": [],
   "summary": "Machines, transformers, the grid, power electronics and power semiconductors.",
   "layers": {
-   "basics": "Machines, transformers, the grid, power electronics and power semiconductors.",
-   "deeper": "This hub groups the concept nodes for the area; follow the prerequisite arrows (needs) from the left of the track to the right.",
-   "expert": "Prerequisite structure is a directed acyclic graph; each node links to textbooks (refs) and interactive labs where available."
+   "basics": "Power systems generate, move and use large amounts of electrical energy. Generators turn motion into electricity, transformers change voltage levels, and lines carry power to homes and factories. Power electronics then convert it to the form each device needs.",
+   "deeper": "Machines such as generators and motors convert between mechanical and electrical energy using magnetic fields. Transformers change AC voltage, which lets long-distance lines run at high voltage and low current to reduce losses. The grid must keep supply and demand balanced at all times. Power electronics use fast switching semiconductors to convert and control power efficiently.",
+   "expert": "Grid operation depends on balancing generation and load moment by moment while keeping frequency and voltage within limits. Growing shares of inverter-based sources such as solar and wind change how the grid responds to disturbances, which is an active engineering area. Power semiconductors face limits from switching loss, conduction loss and heat."
   },
   "facts": [],
   "certainty": "C1",
@@ -757,9 +767,9 @@
   "needs": [],
   "summary": "Instruments, building circuits, PCB design, reports, measurement and safety.",
   "layers": {
-   "basics": "Instruments, building circuits, PCB design, reports, measurement and safety.",
-   "deeper": "This hub groups the concept nodes for the area; follow the prerequisite arrows (needs) from the left of the track to the right.",
-   "expert": "Prerequisite structure is a directed acyclic graph; each node links to textbooks (refs) and interactive labs where available."
+   "basics": "Electronics is learned by building and measuring as well as by calculation. Lab work trains engineers to use instruments, build working circuits and write down what they find. Safety habits matter because mains voltage and large stored charge can injure people.",
+   "deeper": "Common instruments include the multimeter, the oscilloscope and the signal generator, and each has limits on accuracy and bandwidth. Circuits are built on breadboards for trials and on printed circuit boards (PCBs) for finished designs. Reports state what was measured, how, and how large the uncertainty is. Safety practice covers grounding, discharging capacitors and safe handling of power.",
+   "expert": "Every measurement has uncertainty from the instrument, from the way it connects to the circuit and from noise. A probe adds capacitance and can change the circuit it measures. PCB layout affects behaviour at high speed or low noise, because traces carry unwanted resistance, inductance and capacitance."
   },
   "facts": [],
   "certainty": "C1",
@@ -810,9 +820,9 @@
   "needs": [],
   "summary": "RF, VLSI, photonics, wireless, robotics, ML, imaging, biomedical, energy, EVs, MEMS, quantum hardware, IoT and security.",
   "layers": {
-   "basics": "RF, VLSI, photonics, wireless, robotics, ML, imaging, biomedical, energy, EVs, MEMS, quantum hardware, IoT and security.",
-   "deeper": "This hub groups the concept nodes for the area; follow the prerequisite arrows (needs) from the left of the track to the right.",
-   "expert": "Prerequisite structure is a directed acyclic graph; each node links to textbooks (refs) and interactive labs where available."
+   "basics": "After the core subjects, students choose specialisations that apply them. These include radio-frequency design, chip design, optics, wireless, robotics, machine learning, medical devices, energy systems and security. Each one builds on circuits, signals and fields.",
+   "deeper": "Radio-frequency, wireless and photonics electives extend electromagnetics and communications to higher frequencies and light. VLSI covers designing chips with very many transistors. Robotics, machine learning and imaging apply control and signal processing. Biomedical, energy, electric vehicle, MEMS, quantum hardware, IoT and security electives apply the core to specific industries and technologies.",
+   "expert": "Specialisations change as technology changes. Fields such as quantum hardware and some machine-learning accelerators are still developing, so their best designs and limits are not settled, while the underlying circuit, signal and field principles stay the same."
   },
   "facts": [],
   "certainty": "C1",

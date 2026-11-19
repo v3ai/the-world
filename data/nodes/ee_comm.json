@@ -20,11 +20,11 @@
   "summary": "Encoding signals on a carrier.",
   "layers": {
    "basics": "AM varies carrier amplitude, FM varies frequency, PM phase. FM resists amplitude noise.",
-   "deeper": "AM bandwidth 2B; FM Carson’s rule B≈2(Δf+f_m); broadcast radio and TV audio use them.",
-   "expert": "Modulation index β=Δf/f_m; SNR improvement of FM above threshold ∝3β²; envelope and quadrature detectors; SSB and VSB save bandwidth."
+   "deeper": "Double-sideband AM needs 2B for a message of bandwidth B. FM bandwidth is about 2(Δf + f_m), where Δf is the peak frequency deviation and f_m the highest modulating frequency (Carson’s rule, an approximation). Broadcast radio uses both.",
+   "expert": "Modulation index β=Δf/f_m; above its noise threshold, FM output SNR grows with β² (for tone modulation, about (3/2)β² times that of baseband transmission with the same power and noise bandwidth); envelope and quadrature detectors; SSB and VSB save bandwidth."
   },
   "facts": [],
-  "formula": "B_FM ≈ 2(Δf + f_m)",
+  "formula": "B_FM ≈ 2(Δf + f_m), Δf = peak deviation, f_m = highest modulating frequency (Carson’s rule)",
   "certainty": "C1",
   "refs": [],
   "kn": [
@@ -62,11 +62,11 @@
   "summary": "Bits to waveforms.",
   "layers": {
    "basics": "Digital modulation switches amplitude, frequency or phase between a few states; QAM mixes amplitude and phase to send many bits per symbol.",
-   "deeper": "Constellation diagrams display the states; OFDM splits the data across many narrow subcarriers to resist multipath.",
+   "deeper": "A constellation plots each symbol as a point in the in-phase/quadrature plane; points that sit closer together are more easily confused by noise. OFDM sends many slow, narrow subcarriers in parallel, each carrying its own PSK or QAM symbols, so a multipath echo shorter than the guard interval does not smear one symbol into the next.",
    "expert": "16-QAM carries 4 bits/symbol; OFDM implemented with IFFT, cyclic prefix; peak-to-average power ratio problem; spectral efficiency vs SNR trade-off."
   },
   "facts": [],
-  "formula": "bits/symbol = log₂M",
+  "formula": "bits per symbol = log₂M for an alphabet of M distinct symbols (16-QAM: 4)",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -103,11 +103,11 @@
   "summary": "How noise causes errors.",
   "layers": {
    "basics": "Noise blurs received symbols; the bit error rate depends on signal-to-noise ratio and modulation type.",
-   "deeper": "BPSK BER=Q(√(2E_b/N₀)); higher-order modulations need more SNR.",
+   "deeper": "For coherent BPSK in additive white Gaussian noise, BER = Q(√(2E_b/N₀)), where E_b is energy per bit, N₀ the noise power spectral density and Q(x) the Gaussian tail probability. Higher-order modulations need more SNR.",
    "expert": "E_b/N₀ vs SNR relation SNR=(E_b/N₀)(R_b/B); Q-function tail of Gaussian; waterfall curves."
   },
   "facts": [],
-  "formula": "BER_BPSK = Q(√(2Eb/N₀))",
+  "formula": "BER = Q(√(2E_b/N₀)) for coherent BPSK in additive white Gaussian noise (E_b = energy per bit, N₀ = noise power spectral density, Q = Gaussian tail probability)",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -143,11 +143,11 @@
   "summary": "The ultimate limits of communication.",
   "layers": {
    "basics": "Entropy measures information in bits; Shannon showed that every noisy channel has a capacity below which errors can be made arbitrarily small.",
-   "deeper": "C=B log₂(1+SNR); more bandwidth or more power raises capacity, with diminishing returns.",
+   "deeper": "C = B·log₂(1+S/N) bits per second for a band-limited channel with additive white Gaussian noise, S/N a linear power ratio (not dB) and N = N₀B. Capacity grows only logarithmically with power. With fixed signal power, widening the bandwidth also admits more noise, so capacity levels off near 1.44·S/N₀ bits per second.",
    "expert": "H=−Σp log p; channel coding theorem; Shannon limit −1.59 dB on E_b/N₀ as bandwidth → ∞; turbo and LDPC codes approach it."
   },
   "facts": [],
-  "formula": "C = B log₂(1 + S/N)",
+  "formula": "C = B·log₂(1 + S/N) bits/s, band-limited AWGN channel, S/N a linear power ratio",
   "certainty": "C1",
   "refs": [],
   "kn": [
@@ -185,12 +185,12 @@
   ],
   "summary": "Adding redundancy to fix errors.",
   "layers": {
-   "basics": "Extra check bits let a receiver detect and fix errors; Hamming codes fix single-bit errors; CRCs detect them.",
+   "basics": "Extra check bits let a receiver detect and fix errors; Hamming codes correct any single-bit error; CRCs detect (but do not correct) most burst and multi-bit errors.",
    "deeper": "Block codes work on fixed chunks; convolutional codes work on streams, decoded with the Viterbi algorithm.",
-   "expert": "Minimum distance d_min corrects ⌊(d−1)/2⌋ errors; Reed–Solomon (QR codes, CDs); LDPC and polar codes in 5G; coding gain."
+   "expert": "A code with minimum distance d_min can correct ⌊(d_min−1)/2⌋ errors or detect up to d_min−1; Reed–Solomon (QR codes, CDs); LDPC and polar codes in 5G; coding gain."
   },
   "facts": [],
-  "formula": "t = ⌊(d_min−1)/2⌋",
+  "formula": "t = ⌊(d_min−1)/2⌋ correctable errors (or d_min−1 detectable)",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -207,7 +207,7 @@
  },
  {
   "id": "multiplexing_access",
-  "title": "Multiplexing: TDM, FDM, CDMA",
+  "title": "Multiplexing and multiple access: FDM, TDM, CDMA, OFDMA",
   "kind": "concept",
   "template": "concept",
   "scale_m": null,
@@ -226,8 +226,8 @@
   "summary": "Sharing a channel.",
   "layers": {
    "basics": "FDM gives each user a frequency slot, TDM a time slot, CDMA a code; OFDMA mixes slots in time and frequency.",
-   "deeper": "Cell phones have used all of these across generations.",
-   "expert": "Orthogonal codes (Walsh); processing gain=chip rate/bit rate; near–far problem; OFDMA in 4G/5G."
+   "deeper": "Mobile networks moved through them: analog 1G (AMPS) used FDMA, GSM added TDMA on top of FDMA, IS-95 and 3G WCDMA used CDMA, and 4G uses OFDMA.",
+   "expert": "Orthogonal codes (Walsh); processing gain=chip rate/bit rate; near–far problem; OFDMA on the LTE downlink (SC-FDMA on its uplink) and in 5G NR."
   },
   "facts": [],
   "certainty": "C1",
@@ -265,13 +265,19 @@
   "summary": "What happens between antennas.",
   "layers": {
    "basics": "Signals weaken with distance, bounce off buildings (multipath) and fade in and out as you move.",
-   "deeper": "Link budget adds transmit power, antenna gains, losses and noise to find received SNR.",
-   "expert": "Free-space path loss (4πd/λ)²; Rayleigh/Rician fading; delay spread and coherence bandwidth; Doppler; shadowing; Friis & noise figure."
+   "deeper": "A link budget works in dB: transmit power plus antenna gains minus path loss and other losses gives received power; subtracting the noise power (kTB plus the receiver noise figure) gives the received SNR.",
+   "expert": "Free-space path loss (4πd/λ)² between isotropic antennas in the far field; Rayleigh/Rician fading; delay spread and coherence bandwidth; Doppler; shadowing; the Friis transmission equation P_r = P_t·G_t·G_r·(λ/4πd)² and the Friis cascade formula for the noise figure of chained stages."
   },
   "facts": [],
-  "formula": "FSPL = (4πd/λ)²",
+  "formula": "FSPL = P_t/P_r = (4πd/λ)² between isotropic antennas in the far field (in dB: 20·log₁₀(4πd/λ)); real links add antenna gains G_t·G_r (Friis)",
   "certainty": "C1",
-  "refs": [],
+  "refs": [
+   [
+    "UP2",
+    "16.3",
+    "16-3-energy-carried-by-electromagnetic-waves"
+   ]
+  ],
   "lab": {
    "id": "signal",
    "preset": "link_budget"
@@ -296,16 +302,18 @@
   "parts": [],
   "made_of": [],
   "processes": [],
-  "related": [],
+  "related": [
+   "digital_modulation"
+  ],
   "mesh": null,
   "needs": [
-   "digital_modulation"
+   "error_correcting_codes"
   ],
   "summary": "Layers that let computers talk.",
   "layers": {
-   "basics": "Networks are organised in layers: physical, link, network (IP), transport (TCP/UDP), application. Each layer handles one job.",
-   "deeper": "Packets carry addresses; routers forward them; TCP gives reliable delivery, UDP quick delivery.",
-   "expert": "Ethernet/Wi-Fi at layer 2; IPv4/v6; congestion control (AIMD, BBR); NAT; TLS; latency-bandwidth product."
+   "basics": "Networks are organised in layers. The OSI reference model has seven (physical, data link, network, transport, session, presentation, application). The Internet’s TCP/IP suite uses four: link, internet (IP), transport (TCP/UDP) and application; the physical layer is often drawn separately as a fifth. Each layer handles one job.",
+   "deeper": "Packets carry addresses; routers forward them; TCP gives reliable, ordered delivery by retransmitting lost packets; UDP just sends datagrams with no such guarantees, which suits latency-sensitive uses.",
+   "expert": "Ethernet/Wi-Fi at layer 2; IPv4/v6; congestion control (AIMD, BBR); NAT; TLS; bandwidth-delay product."
   },
   "facts": [],
   "certainty": "C1",

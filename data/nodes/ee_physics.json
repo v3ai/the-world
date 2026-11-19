@@ -15,14 +15,19 @@
   "related": [],
   "mesh": null,
   "needs": [],
-  "summary": "The shared language of measurement.",
+  "summary": "Units, prefixes and dimensions let everyone state and check measurements the same way.",
   "layers": {
    "basics": "Volts, amps, ohms, farads and henries are units; prefixes like milli- and mega- scale them. Checking units catches many mistakes.",
    "deeper": "Dimensional analysis shows that RC has units of seconds and that √(L/C) has units of ohms.",
    "expert": "SI base units include the ampere (defined via the elementary charge e=1.602176634×10⁻¹⁹ C since 2019); decibels express ratios logarithmically: dB=20log₁₀(V₂/V₁)."
   },
-  "facts": [],
-  "formula": "dB = 20 log₁₀(V₂/V₁)",
+  "facts": [
+   [
+    "Elementary charge",
+    "1.602176634×10⁻¹⁹ C (exact since 2019)"
+   ]
+  ],
+  "formula": "dB = 20 log₁₀(V₂/V₁) for voltage ratios at equal impedance; 10 log₁₀(P₂/P₁) for power",
   "certainty": "C1",
   "refs": [
    [
@@ -61,11 +66,11 @@
   "summary": "Describing motion and what causes it.",
   "layers": {
    "basics": "Position, velocity and acceleration describe motion; Newton’s laws link acceleration to force.",
-   "deeper": "Mechanical systems (motors, MEMS springs, loudspeaker cones) are modelled with the same equations as circuits.",
+   "deeper": "For constant acceleration, x=x₀+v₀t+½at² and v=v₀+at. Mechanical systems (motors, MEMS springs, loudspeaker cones) are modelled with the same equations as circuits.",
    "expert": "F=ma; the mass–spring–damper mẍ+bẋ+kx=F is the mechanical twin of series RLC (m↔L, b↔R, k↔1/C)."
   },
   "facts": [],
-  "formula": "F = m a",
+  "formula": "F_net = m a (constant mass, speeds much less than c; in general F = dp/dt)",
   "certainty": "C1",
   "refs": [
    [
@@ -108,9 +113,9 @@
   ],
   "summary": "Conserved bookkeeping of motion.",
   "layers": {
-   "basics": "Energy cannot be created or destroyed, only moved; power is energy per time; momentum is conserved in collisions.",
+   "basics": "Energy cannot be created or destroyed, only moved; power is energy per time; the momentum of a system is conserved whenever no net external force acts, as in collisions.",
    "deeper": "Electric power P=VI is the same idea as mechanical power P=Fv, and electromagnetic fields carry energy and momentum too.",
-   "expert": "Work–energy theorem W=ΔKE; potential energy of conservative forces; ∮ Poynting vector gives field energy flow."
+   "expert": "Work–energy theorem W_net=ΔKE; potential energy of conservative forces; the Poynting vector S=E×B/μ₀ integrated over a closed surface (∯S·dA) gives the net rate at which field energy flows out."
   },
   "facts": [],
   "formula": "P = dE/dt",
@@ -163,7 +168,7 @@
   "layers": {
    "basics": "Torque twists things the way force pushes them; moment of inertia is rotational mass.",
    "deeper": "Electric motors and generators convert between electrical power and torque×speed.",
-   "expert": "τ=Iα; rotational power P=τω; angular momentum L=Iω conserved without external torque; gyroscopic effects underlie MEMS gyros."
+   "expert": "τ=Iα; rotational power P=τω; angular momentum L=Iω conserved without external torque; spinning-rotor gyroscopes rely on conserved angular momentum, while MEMS gyros sense rotation by the Coriolis force on a vibrating proof mass. L=Iω holds for rotation about a principal axis."
   },
   "facts": [],
   "formula": "P = τ ω",
@@ -183,6 +188,16 @@
     "UP1",
     "11.2",
     "11-2-angular-momentum"
+   ],
+   [
+    "UP1",
+    "10.7",
+    "10-7-newtons-second-law-for-rotation"
+   ],
+   [
+    "UP1",
+    "10.8",
+    "10-8-work-and-power-for-rotational-motion"
    ]
   ],
   "kn": [
@@ -210,11 +225,16 @@
   "summary": "Charges push or pull with an inverse-square force.",
   "layers": {
    "basics": "Like charges repel, unlike attract, and the force falls with the square of distance.",
-   "deeper": "Charge is conserved and quantised in units of e. Electric field is force per unit charge.",
-   "expert": "F=kq₁q₂/r², k=1/(4πε₀)≈8.99×10⁹ N·m²/C². Superposition holds, which is why fields of many charges add as vectors."
+   "deeper": "Charge is conserved, and any isolated charge is a whole multiple of e (quarks carry thirds of e but are never found alone). Electric field is force per unit charge.",
+   "expert": "F=kq₁q₂/r², k=1/(4πε₀)≈8.988×10⁹ N·m²/C². Superposition holds, which is why fields of many charges add as vectors."
   },
-  "facts": [],
-  "formula": "F = q₁q₂ / (4πε₀ r²)",
+  "facts": [
+   [
+    "Coulomb constant k=1/(4πε₀)",
+    "≈8.988×10⁹ N·m²/C² (computed from the CODATA 2022 value of ε₀)"
+   ]
+  ],
+  "formula": "F = q₁q₂ / (4πε₀ r²) (static point charges, vacuum; positive = repulsion)",
   "certainty": "C1",
   "refs": [
    [
@@ -263,12 +283,12 @@
   ],
   "summary": "Electric flux out of a closed surface counts the enclosed charge.",
   "layers": {
-   "basics": "Surround any region with an imaginary surface: the total electric field passing out is proportional to the charge inside.",
-   "deeper": "For symmetric charge shapes it gives fields instantly, and shows why the field inside a conductor is zero.",
+   "basics": "Surround any region with an imaginary surface: the net electric flux passing out is proportional to the charge inside.",
+   "deeper": "For symmetric charge shapes it gives the field directly. In electrostatic equilibrium the field inside a conductor is zero, and Gauss’s law then shows that any net charge sits on its surface.",
    "expert": "∯E·dA=Q_enc/ε₀ ⇔ ∇·E=ρ/ε₀ (first Maxwell equation)."
   },
   "facts": [],
-  "formula": "∯ E·dA = Q/ε₀",
+  "formula": "∯ E·dA = Q_enc/ε₀ (closed surface, vacuum)",
   "certainty": "C1",
   "refs": [
    [
@@ -285,6 +305,11 @@
     "UP2",
     "6.3",
     "6-3-applying-gausss-law"
+   ],
+   [
+    "UP2",
+    "6.4",
+    "6-4-conductors-in-electrostatic-equilibrium"
    ]
   ],
   "kn": [
@@ -318,7 +343,7 @@
   "layers": {
    "basics": "Voltage is the energy a unit charge gains moving between two points; a battery maintains a voltage.",
    "deeper": "Potential is a scalar map of the field; equipotential surfaces are perpendicular to field lines. Ground is a chosen zero.",
-   "expert": "V=−∫E·dl; point charge V=q/4πε₀r; Poisson ∇²V=−ρ/ε₀. In circuits voltage differences are path independent as long as flux is static."
+   "expert": "V=−∫E·dl; point charge V=q/4πε₀r; Poisson ∇²V=−ρ/ε₀. Voltage differences are path independent only while the magnetic flux through the loop is constant; with changing flux (inductors, transformers) the electric field is not conservative and ∮E·dl=−dΦ_B/dt."
   },
   "facts": [],
   "formula": "V = −∫ E·dl",
@@ -368,9 +393,9 @@
   ],
   "summary": "Storing charge in an electric field.",
   "layers": {
-   "basics": "Two conductors separated by an insulator store charge when a voltage is applied; the ratio is capacitance.",
-   "deeper": "A dielectric between the plates increases capacitance by εr; energy is stored in the field.",
-   "expert": "C=εA/d for parallel plates; U=½CV²; series 1/C=Σ1/Cᵢ; parallel C=ΣCᵢ. Molecular polarisation explains εr; dielectric breakdown limits voltage."
+   "basics": "Two conductors separated by an insulator hold equal and opposite charges +Q and −Q when a voltage is applied; the ratio Q/V is capacitance.",
+   "deeper": "A dielectric between the plates increases capacitance by the factor εr at fixed geometry; energy is stored in the field.",
+   "expert": "C=εA/d for parallel plates with d much smaller than the plate size (fringing neglected); U=½CV²; series 1/C=Σ1/Cᵢ; parallel C=ΣCᵢ. Molecular polarisation explains εr; dielectric breakdown limits voltage."
   },
   "facts": [],
   "formula": "C = εA/d;  U = ½CV²",
@@ -390,6 +415,16 @@
     "UP2",
     "8.4",
     "8-4-capacitor-with-a-dielectric"
+   ],
+   [
+    "UP2",
+    "8.2",
+    "8-2-capacitors-in-series-and-in-parallel"
+   ],
+   [
+    "UP2",
+    "8.5",
+    "8-5-molecular-model-of-a-dielectric"
    ]
   ],
   "lab": {
@@ -418,8 +453,8 @@
   "summary": "Moving charge through materials.",
   "layers": {
    "basics": "Current is charge flowing per second; resistivity says how much a material opposes it.",
-   "deeper": "In metals electrons collide with the lattice, giving Ohm’s law; semiconductors have far fewer carriers that can be controlled.",
-   "expert": "J=σE microscopic Ohm’s law; Drude model σ=nq²τ/m; R=ρL/A; resistivity rises with T in metals, falls in semiconductors."
+   "deeper": "In metals, resistance comes from electrons scattering off lattice vibrations, impurities and defects (Drude’s collision picture is the simple model), and many metals follow Ohm’s law over a wide range, though many devices, such as diodes, do not; semiconductors have far fewer carriers that can be controlled.",
+   "expert": "J=σE microscopic Ohm’s law; Drude model σ=nq²τ/m; R=ρL/A; resistivity rises with temperature in metals (above their superconducting transition, if any) and falls with temperature in intrinsic or lightly doped semiconductors, where thermal excitation of carriers dominates."
   },
   "facts": [],
   "formula": "J = σE;  R = ρL/A",
@@ -477,11 +512,14 @@
   "layers": {
    "basics": "Moving charges and currents create magnetic fields and feel forces in them, which is how motors turn.",
    "deeper": "Biot–Savart and Ampère’s law give fields of wires and coils; force on a wire is I L × B; Hall effect senses fields.",
-   "expert": "F=q(E+v×B); ∮B·dl=μ₀I_enc; B of a solenoid μ₀nI; ∇·B=0 (no monopoles)."
+   "expert": "F=q(E+v×B); ∮B·dl=μ₀(I_enc+ε₀ dΦ_E/dt), which reduces to μ₀I_enc for steady currents; inside a long ideal solenoid B≈μ₀nI; ∇·B=0, because no magnetic monopole has ever been observed (some unified theories predict they exist)."
   },
   "facts": [],
   "formula": "F = q v × B",
   "certainty": "C1",
+  "open_questions": [
+   "Do magnetic monopoles exist? None has been found; some unification theories predict them."
+  ],
   "refs": [
    [
     "UP2",
@@ -541,7 +579,7 @@
   "layers": {
    "basics": "Changing the magnetic flux through a loop creates an electromotive force; the induced current opposes the change.",
    "deeper": "This one law explains generators, transformers, inductors and wireless charging.",
-   "expert": "ε=−dΦ_B/dt ⇔ ∇×E=−∂B/∂t; motional EMF ε=Blv; eddy currents arise in solid conductors."
+   "expert": "ε=−N dΦ_B/dt for a coil of N turns; for a stationary loop this matches ∇×E=−∂B/∂t; motional EMF ε=Blv when B, l and v are mutually perpendicular; eddy currents arise in solid conductors."
   },
   "facts": [],
   "formula": "ε = −dΦ/dt",
@@ -640,7 +678,7 @@
   ],
   "summary": "Superposition, standing waves, resonance.",
   "layers": {
-   "basics": "Waves add: peaks meeting peaks reinforce, peaks meeting troughs cancel. Confined waves form standing patterns.",
+   "basics": "In ordinary (linear) media waves simply add: peaks meeting peaks reinforce, and peaks meeting troughs cancel, fully so when their sizes match. Confined waves form standing patterns, and a standing wave resonates when the wavelength fits the confined space.",
    "deeper": "Transmission lines, antennas, optical cavities and acoustic resonators all rely on the same ideas.",
    "expert": "y=A sin(kx−ωt), v=fλ; standing waves with nodes at fixed ends: fₙ=nv/2L; phase velocity vs group velocity."
   },
@@ -700,7 +738,7 @@
   "layers": {
    "basics": "Light reflects, refracts and diffracts. Lenses and mirrors focus it.",
    "deeper": "Snell’s law n₁sinθ₁=n₂sinθ₂ governs fibre guiding; diffraction limits resolution of photolithography.",
-   "expert": "Rayleigh limit θ=1.22λ/D; thin-film interference; Fresnel equations for reflectance; light is EM waves from ~400 to 700 nm."
+   "expert": "Rayleigh limit θ=1.22λ/D; thin-film interference; Fresnel equations for reflectance; visible light is electromagnetic radiation of roughly 380–750 nm (the limits vary between sources); the Rayleigh limit applies to a circular aperture at small angles."
   },
   "facts": [],
   "formula": "n₁ sinθ₁ = n₂ sinθ₂",
@@ -747,13 +785,16 @@
   ],
   "summary": "Light delivers energy in packets.",
   "layers": {
-   "basics": "Light knocks electrons out of metal only if its frequency is high enough, no matter how bright; this shows light comes in photons.",
+   "basics": "Below a threshold frequency no electrons are ejected at ordinary light intensities, however bright the light; above it, electrons come out at once. Einstein explained this with energy packets of size hf. Later work showed that a treatment with classical light acting on quantised matter also reproduces it, so other experiments, such as photon antibunching, are the stronger evidence for photons.",
    "deeper": "Photon energy E=hf; the same physics runs solar cells and photodiodes.",
    "expert": "K_max=hf−φ; h=6.626×10⁻³⁴ J·s; absorption of a photon with E>E_g creates an electron–hole pair."
   },
   "facts": [],
   "formula": "E = h f",
   "certainty": "C1",
+  "open_questions": [
+   "How much of the photoelectric effect can be explained with classical light and quantised matter, and which experiments are needed to establish photons, is a long-running question in the foundations of optics."
+  ],
   "refs": [
    [
     "UP3",
@@ -790,7 +831,7 @@
    "photoelectric_effect",
    "integration_techniques"
   ],
-  "summary": "Matter behaves as waves with discrete energies.",
+  "summary": "Matter has wave properties; when confined, its allowed energies are discrete, and in crystals they merge into bands.",
   "layers": {
    "basics": "Electrons confined in atoms or crystals have only certain allowed energies. This explains why materials differ as conductors, insulators and semiconductors.",
    "deeper": "Wave functions, the uncertainty principle and tunnelling are the intro to band theory and to why tiny transistors leak.",
@@ -858,9 +899,9 @@
   ],
   "summary": "Electrons arranged in shells.",
   "layers": {
-   "basics": "Atoms have a nucleus and electron shells. Elements in the same column share valence electron counts and so behave alike.",
-   "deeper": "Silicon (group 14) has four valence electrons, forming a tetrahedral crystal; boron (3) and phosphorus (5) neighbours are the classic dopants.",
-   "expert": "Electron configuration, ionisation energy and electronegativity trends explain which elements make good conductors, dopants and dielectrics. Si: [Ne]3s²3p²."
+   "basics": "Atoms have a nucleus and electron shells. Main-group elements in the same column share valence electron counts and so behave alike.",
+   "deeper": "Silicon (group 14) has four valence electrons and bonds tetrahedrally in a diamond-cubic crystal; boron (group 13, three valence electrons) and phosphorus (group 15, five) are the classic p-type and n-type dopants.",
+   "expert": "Electron configuration, ionisation energy and electronegativity trends help explain which elements make good conductors, dopants and dielectrics. Silicon is [Ne]3s²3p²: the four outer electrons fill the 3s and 3p subshells, and an atom with one more or one fewer outer electron can donate or accept a carrier when it replaces silicon in the lattice."
   },
   "facts": [],
   "certainty": "C1",
@@ -908,11 +949,24 @@
   ],
   "summary": "Why materials conduct, insulate or flex.",
   "layers": {
-   "basics": "Metallic bonds leave electrons free to move (conductors); covalent and ionic bonds lock them in place (insulators, semiconductors).",
-   "deeper": "Silicon’s covalent diamond-cubic lattice gives a small band gap; SiO₂ is a strong insulator, which is why MOS gates and chip isolation work.",
-   "expert": "Bond strength and bond angles set band gaps and mechanical behaviour; lattice types (diamond, zincblende) matter for III-V devices; thermal conductivity and expansion drive packaging."
+   "basics": "Metallic bonds leave electrons free to move (conductors); in many covalent and ionic solids the valence electrons are held in bonds, so the material insulates or conducts weakly (set by its band gap, and in ionic solids by mobile ions). Some covalent solids, such as graphite, still conduct.",
+   "deeper": "Silicon’s covalent diamond-cubic lattice has a band gap of about 1.12 eV at 300 K, small enough for doping to control conduction. Carbon in the same lattice (diamond) is a wide-gap insulator, so the gap comes from bond strength and atom size, not from the lattice type alone. SiO₂ is a strong insulator, which is why MOS gates and chip isolation work.",
+   "expert": "Bond strength and bond angles set band gaps and mechanical behaviour; lattice types (diamond, zincblende) matter for III-V devices; thermal conductivity and expansion drive packaging: silicon conducts heat at about 150 W/(m·K) and expands about 2.6 ppm/K at 300 K, and package materials are chosen to match."
   },
-  "facts": [],
+  "facts": [
+   [
+    "Silicon band gap at 300 K",
+    "≈1.12 eV"
+   ],
+   [
+    "Silicon thermal conductivity at 300 K",
+    "≈150 W/(m·K)"
+   ],
+   [
+    "Silicon linear thermal expansion at 300 K",
+    "≈2.6×10⁻⁶ per K"
+   ]
+  ],
   "certainty": "C1",
   "refs": [
    [
@@ -963,8 +1017,8 @@
   "summary": "Voltage from chemical reactions.",
   "layers": {
    "basics": "A battery turns chemical energy into electricity via oxidation at one electrode and reduction at the other.",
-   "deeper": "Cell voltage depends on the electrode materials; lithium-ion cells shuttle Li⁺ ions between graphite and an oxide.",
-   "expert": "Nernst equation E=E°−(RT/nF)ln Q; capacity in Ah, internal resistance and C-rate set practical performance; degradation by SEI growth."
+   "deeper": "Cell voltage depends on the electrode materials; lithium-ion cells shuttle Li⁺ ions between a host anode (usually graphite) and a metal-oxide or phosphate cathode.",
+   "expert": "Nernst equation E=E°−(RT/nF)ln Q; capacity in Ah, internal resistance and C-rate set practical performance; degradation has several mechanisms, including growth of the solid–electrolyte interphase (SEI), lithium plating and electrode cracking. The Nernst equation gives the open-circuit voltage near equilibrium, where Q is the reaction quotient."
   },
   "facts": [],
   "formula": "E = E° − (RT/nF) ln Q",

@@ -17,14 +17,23 @@
   "needs": [
    "sinusoids_ac"
   ],
-  "summary": "See voltages vs time.",
+  "summary": "A scope draws a graph of voltage against time, so you can see a waveform's shape, size and repetition rate.",
   "layers": {
    "basics": "The oscilloscope plots voltage against time, showing waveform shape, amplitude and frequency.",
    "deeper": "Key controls: timebase, volts/div, trigger. Use a 10× probe with proper compensation.",
-   "expert": "Bandwidth ≥5× signal; rise time t_r=0.35/BW; sample rate vs memory depth; probe loading C≈10 pF; ground lead inductance causes ringing."
+   "expert": "Rise time (10–90%) and bandwidth are linked by t_r ≈ 0.35/BW for a single-pole response, so a 1 ns rise time needs about 350 MHz. Manufacturers often advise a scope bandwidth of about five times the highest signal frequency; a digital scope should also sample at about ten times the highest frequency of interest. A compensated 10× passive probe loads the circuit with about 10 MΩ in parallel with about 12 pF, and the inductance of a long ground lead can ring with that capacitance on fast edges."
   },
-  "facts": [],
-  "formula": "t_r ≈ 0.35/BW",
+  "facts": [
+   [
+    "Rise time and bandwidth",
+    "bandwidth × 10–90% rise time = 0.35, so 1 ns corresponds to about 350 MHz"
+   ],
+   [
+    "Compensated 10× probe load",
+    "about 10 MΩ in parallel with about 12 pF"
+   ]
+  ],
+  "formula": "t_r ≈ 0.35/BW (t_r = 10–90% rise time, BW = −3 dB bandwidth; 0.35 holds for a single-pole, roughly Gaussian response, and the constant is about 0.4–0.45 for sharper roll-off)",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -58,8 +67,8 @@
   ],
   "summary": "Measure V, I and R.",
   "layers": {
-   "basics": "A multimeter measures voltage, current and resistance; always connect it correctly (current meters in series, voltmeters in parallel).",
-   "deeper": "Meters have finite input resistance (10 MΩ) that can load high-impedance circuits.",
+   "basics": "A multimeter measures voltage, current and resistance. Voltage is measured across a component (meter in parallel). Current is measured by breaking the circuit and putting the meter in series. Resistance should be measured only with the circuit unpowered, because the meter supplies its own test current.",
+   "deeper": "A digital multimeter has a fixed input resistance on its voltage ranges, often 1 MΩ or 10 MΩ, and any meter loads the circuit a little. A source with 10 MΩ of resistance read by a 10 MΩ meter would show half its true voltage. In current mode the meter instead adds a small series voltage drop, called the burden voltage.",
    "expert": "True-RMS vs average-responding; CAT safety ratings; accuracy in % of reading + digits; four-wire resistance measurements."
   },
   "facts": [],
@@ -97,10 +106,19 @@
   "summary": "Create test signals.",
   "layers": {
    "basics": "Produces sine, square, triangle and pulse signals at set frequency and amplitude.",
-   "deeper": "Output impedance is usually 50 Ω, which affects the load voltage unless matched.",
-   "expert": "Direct digital synthesis, phase accumulator, frequency resolution f_clk/2ᴺ; arbitrary waveforms."
+   "deeper": "Most function generators have a 50 Ω output impedance, so the output forms a voltage divider with the load. A 50 Ω load receives half the open-circuit voltage, and a high-impedance load receives nearly all of it. Generators usually let the user choose whether the displayed amplitude assumes a 50 Ω or a high-impedance load.",
+   "expert": "In direct digital synthesis (DDS) an N-bit phase accumulator adds a tuning word on every clock cycle of frequency f_clk. The output frequency can then be set in steps of f_clk/2ᴺ, for example about 0.023 Hz for a 100 MHz clock and a 32-bit accumulator. The usable output frequency is limited to below f_clk/2. DDS can also play back arbitrary stored waveforms."
   },
-  "facts": [],
+  "facts": [
+   [
+    "Typical output impedance",
+    "50 Ω"
+   ],
+   [
+    "DDS maximum output frequency",
+    "limited to f_clk/2"
+   ]
+  ],
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -135,8 +153,8 @@
   "summary": "Adjustable DC power.",
   "layers": {
    "basics": "A bench supply gives adjustable voltage with a current limit to protect circuits.",
-   "deeper": "Set the current limit before connecting; constant-voltage vs constant-current modes.",
-   "expert": "Linear vs switching; remote sense; programmable supplies; ripple and load regulation specs."
+   "deeper": "Set the current limit before connecting a circuit. In constant-voltage mode the supply holds its set voltage while the load draws less than the limit. If the load tries to draw more, the supply switches to constant-current mode and lets the voltage fall to hold the limit.",
+   "expert": "A linear supply regulates by dropping the excess voltage across a pass transistor, which gives low noise but wastes heat. A switching supply chops the input and filters it, which is efficient but leaves switching ripple. Remote sense uses two extra wires to measure voltage at the load, so the drop in the output cables is compensated. Load regulation is the change in output voltage as the load current goes from zero to full."
   },
   "facts": [],
   "certainty": "C1",
@@ -173,7 +191,7 @@
   "summary": "See many digital lines at once.",
   "layers": {
    "basics": "Captures dozens of digital channels and shows timing diagrams; decodes buses such as I²C and SPI.",
-   "deeper": "Trigger on patterns; sample rate must exceed the fastest edges.",
+   "deeper": "Triggers can wait for a pattern across several lines. In timing mode the analyzer samples on its own clock, so the sample rate should be several times the fastest signal frequency, and the sample period sets how precisely edge times can be read. In state mode samples are taken on edges of a clock signal from the circuit instead.",
    "expert": "State vs timing mode; setup/hold checks; threshold selection; protocol decoders."
   },
   "facts": [],
@@ -212,7 +230,7 @@
   "layers": {
    "basics": "Shows signal strength vs frequency, revealing carriers, harmonics and noise.",
    "deeper": "Resolution bandwidth sets frequency detail and noise floor; swept or FFT-based.",
-   "expert": "Dynamic range, displayed average noise level, phase noise; VNAs measure S-parameters with a source and receivers."
+   "expert": "The displayed average noise level (DANL) is the noise floor of the display. A narrower resolution bandwidth lowers it, because less noise passes the filter (by 10 dB for each tenfold narrowing). Phase noise of the analyzer's own local oscillator limits how close to a strong carrier a small signal can be seen."
   },
   "facts": [],
   "certainty": "C1",
@@ -247,8 +265,8 @@
   "summary": "Building circuits without solder.",
   "layers": {
    "basics": "A solderless breadboard connects parts through spring contacts in rows; wires link them.",
-   "deeper": "Good for low-frequency prototypes; avoid for high-speed or RF because of stray capacitance.",
-   "expert": "Contact resistance, ~2–10 pF between rows, power rail splits; ground discipline; modular dev boards."
+   "deeper": "Solderless breadboards suit low-frequency prototypes. Their stray capacitance, inductance and contact resistance generally limit them to signals below about 10 MHz, depending on the circuit.",
+   "expert": "Adjacent contact strips have a stray capacitance of about 2 pF, and more over long parallel runs. Contact resistance is relatively high and not very reproducible, which can matter even in DC or very low-frequency circuits. On some boards the power rails are split in the middle, so a jumper may be needed to make a rail continuous. Keeping ground connections short and consistent helps."
   },
   "facts": [],
   "certainty": "C1",
@@ -279,10 +297,19 @@
   "summary": "Joining parts permanently.",
   "layers": {
    "basics": "A hot iron melts solder that wets the pad and lead, forming a metal bond.",
-   "deeper": "Heat both pad and lead; use flux; shiny, concave joint is good. Wear eye protection and ventilate.",
-   "expert": "Leaded (Sn63/Pb37 183 °C) vs lead-free SAC305 (217 °C); reflow profiles, tombstoning, cold joints; ESD-safe handling."
+   "deeper": "Heat both pad and lead, then feed solder to the joint. Flux is a chemical that cleans oxide off the metal so the solder can wet it. A good joint has solder flowed smoothly into a concave fillet over pad and lead. Leaded solder looks shiny, while good lead-free joints are often duller. Wear eye protection and ventilate.",
+   "expert": "Eutectic Sn63Pb37 melts at 183 °C. Lead-free SAC305 (96.5% tin, 3% silver, 0.5% copper) starts to melt at about 217 °C and is fully liquid by about 220 °C, with datasheets differing by a degree or two. Iron tip temperatures are therefore set well above these, typically 300–350 °C. Other topics: reflow profiles, tombstoning, cold joints, ESD-safe handling."
   },
-  "facts": [],
+  "facts": [
+   [
+    "Sn63Pb37 melting point",
+    "183 °C (eutectic)"
+   ],
+   [
+    "SAC305 melting range",
+    "about 217–220 °C"
+   ]
+  ],
   "certainty": "C1",
   "refs": [],
   "ext": [
@@ -315,7 +342,7 @@
   "layers": {
    "basics": "Check power first, then signals stage by stage; compare against expectations; change one thing at a time.",
    "deeper": "Divide and conquer; look at the simplest causes first; document each test.",
-   "expert": "Half-split method; injecting known signals; thermal imaging; comparing with a known-good board."
+   "expert": "Half-split: measure the signal at the midpoint of a chain of stages. If it is good, the fault is downstream; if bad, upstream. Repeat, halving the suspect region each time. Other aids: injecting a known signal, thermal imaging and comparing with a known-good board."
   },
   "facts": [],
   "certainty": "C1",
@@ -350,7 +377,7 @@
   "layers": {
    "basics": "Draw the schematic in a tool like KiCad, assign footprints, place parts, route traces, and export Gerber files for the manufacturer.",
    "deeper": "Design rules (trace width, spacing), ground planes, decoupling close to ICs, controlled impedance for fast signals.",
-   "expert": "Stack-up design; return-path continuity; differential pairs; DFM/DFA; IPC-2221 current capacity; ERC/DRC checks."
+   "expert": "Stack-up design; return-path continuity; differential pairs; design for manufacture and assembly (DFM/DFA); electrical and design rule checks (ERC/DRC). Trace current capacity is estimated from the older IPC-2221 charts or, more accurately, from IPC-2152, which replaced those charts using newer test data and accounts for effects such as copper planes and board thickness."
   },
   "facts": [],
   "certainty": "C1",
@@ -389,7 +416,7 @@
   "layers": {
    "basics": "A good lab report states purpose, method, data, analysis and conclusion so others can reproduce it.",
    "deeper": "Plot data with error bars; compare measurement with theory and explain differences.",
-   "expert": "Uncertainty budgets per GUM; propagation; fitting with confidence intervals; reproducibility."
+   "expert": "An uncertainty budget lists each source of uncertainty with its standard uncertainty and sensitivity coefficient, then combines them as set out in the Guide to the Expression of Uncertainty in Measurement (JCGM 100:2008). Uncertainty propagation, curve fits with confidence intervals and reproducibility checks build on this."
   },
   "facts": [],
   "certainty": "C1",
@@ -398,11 +425,6 @@
     "IST",
     "2.8",
     "2-8-descriptive-statistics"
-   ],
-   [
-    "IST",
-    "8.1",
-    "8-1-a-single-population-mean-using-the-normal-distribution"
    ]
   ]
  },
@@ -428,11 +450,11 @@
   "summary": "No measurement is exact.",
   "layers": {
    "basics": "Every instrument has accuracy limits; repeated readings reveal random scatter, calibration reveals bias.",
-   "deeper": "Quote results with uncertainty; combine independent errors in quadrature.",
-   "expert": "Type A vs type B uncertainty; u_c=√Σ(∂f/∂xᵢ uᵢ)²; resolution vs accuracy; traceability to SI."
+   "deeper": "Quote results with uncertainty. Independent (uncorrelated) uncertainties combine in quadrature, for example u = √(u₁² + u₂²) for a sum. Correlated inputs need extra covariance terms.",
+   "expert": "Type A uncertainty is evaluated statistically from repeated readings. Type B is estimated from other information such as calibration reports and manufacturer specifications. For a function y of several inputs the combined uncertainty follows the formula above, to first order. Resolution is the smallest step a meter shows, which is not the same as accuracy. Traceability links a calibration to SI units through an unbroken chain."
   },
   "facts": [],
-  "formula": "u_c = √Σ(∂f/∂xᵢ·uᵢ)²",
+  "formula": "u_c(y) = √[ Σ (∂f/∂xᵢ)² u²(xᵢ) ] for uncorrelated inputs xᵢ, to first order (y = f(x₁, x₂, …))",
   "certainty": "C1",
   "refs": [
    [
@@ -462,9 +484,9 @@
   ],
   "summary": "Respect energy.",
   "layers": {
-   "basics": "Mains voltage can kill; currents of ~10 mA through the body cause muscle lock and ~100 mA can stop the heart.",
-   "deeper": "Use isolated supplies, GFCI protection, one hand rule for high voltage, and discharge capacitors before touching.",
-   "expert": "Body resistance 1 kΩ–100 kΩ depending on skin; arc-flash energy; lockout–tagout; lithium battery hazards; laser safety classes."
+   "basics": "Mains voltage can kill. For a 1 s, 60 Hz shock through the trunk, about 1 mA is felt, 10–20 mA can lock the muscles so you cannot let go, and roughly 100–300 mA can send the heart into ventricular fibrillation, a chaotic quivering instead of pumping. Real thresholds depend on the current path, duration, frequency and the person.",
+   "deeper": "A GFCI compares the current in the live and neutral wires and trips at about 5 mA of difference. That protects against current leaking through a person to ground, but not against touching live and neutral together. Isolation transformers also reduce shock risk, because touching one output wire gives no return path. When probing high voltage, keep one hand away from the circuit so current has no path across the chest, and discharge large capacitors through a resistor before touching.",
+   "expert": "Skin dominates the body's resistance: about 200 kΩ when dry and about 10 kΩ when wet. Breaching the skin, as with an IV, makes a person far more sensitive to current. For example, 120 V across 10 kΩ drives about 12 mA, above the let-go threshold. Other hazards: arc-flash energy and lockout–tagout procedures."
   },
   "facts": [],
   "certainty": "C1",

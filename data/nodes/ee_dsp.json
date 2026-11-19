@@ -21,11 +21,11 @@
   "summary": "Spectra of sampled signals.",
   "layers": {
    "basics": "The DFT turns N samples into N frequency values; it is what computers calculate.",
-   "deeper": "DTFT is continuous in frequency and periodic; DFT samples it at N points. Circular convolution.",
-   "expert": "X[k]=Σx[n]e^{−j2πkn/N}; zero-padding interpolates the spectrum, it does not improve resolution; leakage unless periods fit exactly."
+   "deeper": "The DTFT of a sequence is continuous in frequency and repeats every 2π. The N-point DFT of a length-N sequence equals the DTFT sampled at N evenly spaced frequencies. Because of this, multiplying DFTs gives circular rather than linear convolution; zero-pad both signals to avoid wrap-around.",
+   "expert": "X[k]=Σx[n]e^{−j2πkn/N}; zero-padding interpolates the spectrum, it does not improve resolution; leakage is absent only if the N-sample window holds a whole number of periods of every component; otherwise energy spreads into neighbouring bins."
   },
   "facts": [],
-  "formula": "X[k] = Σ x[n] e^{−j2πkn/N}",
+  "formula": "X[k] = Σ_{n=0}^{N−1} x[n] e^{−j2πkn/N},  k = 0, 1, …, N−1",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -62,11 +62,19 @@
   "layers": {
    "basics": "The FFT computes the DFT far faster by reusing partial results.",
    "deeper": "Radix-2 butterflies halve the problem repeatedly; makes real-time spectrum analysis and OFDM feasible.",
-   "expert": "Cooley–Tukey: O(N log₂N) vs O(N²); N=1024 saves ~100×; real-FFT tricks; Bluestein for prime N."
+   "expert": "Cooley–Tukey (1965): O(N log₂N) against O(N²) for the direct sum; for N=1024 the operation-count ratio is roughly 100:1 (N²/(N log₂N) ≈ 102), not a measured speed-up. Real-input FFTs save about half the work. Bluestein's chirp-z algorithm handles any length N, including primes, in O(N log N); Rader's algorithm is another prime-length method."
   },
-  "facts": [],
+  "facts": [
+   [
+    "Cooley–Tukey paper",
+    "1965"
+   ]
+  ],
   "formula": "O(N log N)",
   "certainty": "C1",
+  "open_questions": [
+   "Whether N log N operations are necessary for the DFT is unproven: no algorithm is known with lower complexity, but no lower bound has been shown either."
+  ],
   "refs": [],
   "lab": {
    "id": "signal",
@@ -100,9 +108,9 @@
   ],
   "summary": "Finite impulse response filters.",
   "layers": {
-   "basics": "FIR filters average recent samples with chosen weights; always stable and can have perfect linear phase.",
+   "basics": "FIR filters output a weighted sum of the most recent input samples. With no feedback they are always stable, and symmetric weights give exactly linear phase (every frequency delayed equally).",
    "deeper": "Windowing a sinc impulse response, or Parks–McClellan optimisation, designs them.",
-   "expert": "y[n]=Σb_k x[n−k]; linear phase if symmetric; order estimate N≈(−20log√(δ₁δ₂)−13)/(14.6Δf)."
+   "expert": "y[n]=Σb_k x[n−k]; linear phase if the coefficients are symmetric or antisymmetric about the centre. Kaiser's estimate of the order is N ≈ (−20·log₁₀√(δ₁δ₂) − 13)/(14.6·Δf), with δ₁, δ₂ the passband and stopband ripples (linear) and Δf the transition width divided by the sampling rate; it is an estimate, not a design rule."
   },
   "facts": [],
   "formula": "y[n] = Σ b_k x[n−k]",
@@ -142,7 +150,7 @@
   "layers": {
    "basics": "IIR filters reuse past outputs, giving sharp responses with few coefficients but risking instability.",
    "deeper": "Design by transforming analog prototypes (bilinear transform) such as Butterworth or Chebyshev.",
-   "expert": "Bilinear s=(2/T)(1−z⁻¹)/(1+z⁻¹) warps frequency; biquad cascades reduce coefficient sensitivity; limit cycles."
+   "expert": "The bilinear transform s=(2/T)(1−z⁻¹)/(1+z⁻¹) maps the whole analogue frequency axis onto the unit circle, with Ω=(2/T)tan(ω/2). This compresses (warps) frequency, so critical frequencies are pre-warped before design; biquad cascades reduce coefficient sensitivity; limit cycles."
   },
   "facts": [],
   "formula": "s = (2/T)(1−z⁻¹)/(1+z⁻¹)",
@@ -175,13 +183,14 @@
   "related": [],
   "mesh": null,
   "needs": [
+   "dtft_dft",
    "fir_filters"
   ],
   "summary": "Taming spectral leakage.",
   "layers": {
    "basics": "Cutting a signal abruptly smears its spectrum; tapering with a window reduces the smear.",
    "deeper": "Hann, Hamming, Blackman trade main-lobe width against side-lobe level.",
-   "expert": "Rectangular −13 dB sidelobes; Hamming −43 dB; Kaiser window β controls the trade-off."
+   "expert": "Highest sidelobe relative to the main lobe: rectangular about −13 dB, Hann about −31 dB, Hamming about −42 dB (tables quote −41 to −43), Blackman about −58 dB. Lower sidelobes come with a wider main lobe. The Kaiser window's parameter β sets this trade-off continuously."
   },
   "facts": [],
   "certainty": "C1",
@@ -218,8 +227,8 @@
   "summary": "Changing the sampling rate.",
   "layers": {
    "basics": "Decimation lowers the sample rate (after filtering); interpolation raises it (inserting zeros then filtering).",
-   "deeper": "Saves computation when only a narrow band matters; sample-rate converters in audio.",
-   "expert": "Polyphase structures; CIC filters in sigma-delta and digital radios; noble identities."
+   "deeper": "Decimating by M without lowpass filtering folds frequencies above fs/(2M) back into the band as aliasing. Interpolating by L inserts zeros and creates spectral images, which a lowpass filter then removes. Sample-rate converters (for example 44.1 to 48 kHz) combine both steps using a rational factor L/M.",
+   "expert": "Polyphase decomposition splits an FIR filter into M sub-filters so that only the output samples that are kept get computed, which cuts the work by M. The noble identities allow a decimator or expander to be moved past a filter. A CIC filter uses only adders and delays, so it suits high-rate decimation in sigma-delta converters and digital radios."
   },
   "facts": [],
   "certainty": "C1",
@@ -257,11 +266,16 @@
   "summary": "The cost of finite word length.",
   "layers": {
    "basics": "Rounding to a finite number of bits adds noise and, in filters, can produce small oscillations.",
-   "deeper": "Quantisation noise power Δ²/12; coefficient rounding shifts poles.",
-   "expert": "SQNR=6.02B+1.76 dB; dither linearises; noise shaping in sigma-delta; overflow handling (saturate vs wrap)."
+   "deeper": "For a uniform rounding quantiser whose step Δ is small compared with the signal's variation (and which does not overload), the error behaves like noise spread evenly between −Δ/2 and +Δ/2, with mean-square value ≈ Δ²/12. The model fails for very low-level or simple signals, where the error follows the signal, and for few-bit converters; dither (added noise) breaks that link and makes the error noise-like. Rounding filter coefficients also moves the poles and zeros.",
+   "expert": "For an ideal B-bit uniform quantiser driven by a full-scale sine wave, SQNR ≈ 6.02B + 1.76 dB; each extra bit adds about 6 dB, and a signal below full scale loses SQNR dB for dB. Dither linearises; noise shaping in sigma-delta; overflow handling (saturate vs wrap)."
   },
-  "facts": [],
-  "formula": "σ² = Δ²/12",
+  "facts": [
+   [
+    "SQNR gain per extra bit",
+    "≈ 6 dB"
+   ]
+  ],
+  "formula": "σ² ≈ Δ²/12",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -296,9 +310,9 @@
   ],
   "summary": "Cheap vs flexible number formats.",
   "layers": {
-   "basics": "Fixed-point is cheaper and faster on small chips; floating-point handles a huge range automatically.",
+   "basics": "Fixed-point needs less silicon and power, so it is common on small chips. Floating-point keeps the exponent for you, giving a huge range at constant relative precision, at the cost of more hardware.",
    "deeper": "Choose Q-format and scaling to avoid overflow; floats cost more power.",
-   "expert": "IEEE-754 binary32: 24-bit significand, 8-bit exponent; bfloat16 and int8 for ML accelerators."
+   "expert": "IEEE-754 binary32: 1 sign bit, 8-bit exponent, 23 stored fraction bits (24-bit significand with the implicit leading 1). bfloat16 keeps the same 8-bit exponent but only 7 stored fraction bits, trading precision for range. int8 formats use a scale factor to map integers to real values."
   },
   "facts": [],
   "certainty": "C1",
@@ -329,11 +343,11 @@
    "fft_algorithm",
    "fir_filters"
   ],
-  "summary": "Where DSP is used.",
+  "summary": "Filtering, spectrum analysis and adaptive processing turn sampled numbers into audio effects, sharper images, radar detections and radio links.",
   "layers": {
    "basics": "DSP powers audio equalisers, noise cancelling, camera pipelines, radar signal processing and software radios.",
    "deeper": "Typical blocks: FIR/IIR filters, FFT, correlators, adaptive filters (LMS).",
-   "expert": "Matched filter maximises SNR; pulse compression; adaptive beamforming; DSP slices in FPGAs, SIMD in CPUs."
+   "expert": "For a known pulse in additive white Gaussian noise, the matched filter (the time-reversed pulse) gives the highest possible output SNR at the sampling instant. Pulse compression applies the same idea to long coded radar pulses to get fine range resolution. Adaptive beamforming steers array gain toward a source; DSP slices in FPGAs and SIMD units in CPUs run these loops."
   },
   "facts": [],
   "certainty": "C1",
