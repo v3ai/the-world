@@ -1,0 +1,3144 @@
+{
+ "id": "dog",
+ "title": "Dog",
+ "label": "Dog",
+ "scientific": "Canis familiaris",
+ "node": "dog",
+ "main_part": "coat",
+ "blurb": "A Labrador-type dog, with its body, muscles, bones, organs, nerves and blood vessels. Click any part, or use the layer buttons.",
+ "model_note": "A model built from typical proportions of a medium-sized dog (a Labrador-type male, 30 kg, 57 cm at the withers), not a scan of one animal. Bone shapes, muscle outlines and organ sizes are schematic; the counts (7 neck, 13 chest, 7 lower-back vertebrae, 13 pairs of ribs, 42 teeth) are real.",
+ "size_m": {
+  "height_at_withers": 0.57,
+  "body_length": 1,
+  "mass_kg": 30
+ },
+ "height_m": 0.66,
+ "radius_m": 0.85,
+ "draw_m": 400,
+ "seed": 2027,
+ "systems": [
+  {
+   "id": "coat",
+   "label": "Coat"
+  },
+  {
+   "id": "muscles",
+   "label": "Muscles"
+  },
+  {
+   "id": "skeleton",
+   "label": "Skeleton"
+  },
+  {
+   "id": "organs",
+   "label": "Organs"
+  },
+  {
+   "id": "eyes",
+   "label": "Eyes"
+  },
+  {
+   "id": "nervous",
+   "label": "Nerves"
+  },
+  {
+   "id": "cord",
+   "label": "Spinal cord"
+  },
+  {
+   "id": "vessels",
+   "label": "Heart and vessels"
+  },
+  {
+   "id": "d_heart",
+   "label": "Inside the heart"
+  },
+  {
+   "id": "d_eye",
+   "label": "Inside the eye"
+  },
+  {
+   "id": "d_nose",
+   "label": "Inside the nose"
+  },
+  {
+   "id": "d_ear",
+   "label": "Inside the ear"
+  }
+ ],
+ "modes": [
+  {
+   "id": "coat",
+   "label": "Coat",
+   "show": {
+    "coat": 1,
+    "eyes": 1
+   }
+  },
+  {
+   "id": "muscles",
+   "label": "Muscles",
+   "show": {
+    "muscles": 1,
+    "eyes": 1
+   }
+  },
+  {
+   "id": "skeleton",
+   "label": "Skeleton",
+   "show": {
+    "skeleton": 1
+   }
+  },
+  {
+   "id": "organs",
+   "label": "Organs",
+   "show": {
+    "organs": 1,
+    "eyes": 1,
+    "skeleton": 0.16
+   }
+  },
+  {
+   "id": "nerves",
+   "label": "Nerves",
+   "show": {
+    "nervous": 1,
+    "cord": 1,
+    "eyes": 1,
+    "skeleton": 0.2
+   }
+  },
+  {
+   "id": "vessels",
+   "label": "Heart and vessels",
+   "show": {
+    "vessels": 1,
+    "skeleton": 0.16
+   }
+  },
+  {
+   "id": "cut_half",
+   "label": "Cut in half",
+   "cut": {
+    "at": [
+     0,
+     0.4,
+     0
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "muscles": 1,
+    "skeleton": 1,
+    "organs": 1,
+    "cord": 1,
+    "eyes": 1
+   },
+   "legend": {
+    "title": "On the cut face",
+    "items": [
+     {
+      "name": "Muscle and soft tissue",
+      "color": "#a8433a",
+      "node": "dog_muscles"
+     },
+     {
+      "name": "Bone",
+      "color": "#e8dcc0",
+      "node": "dog_skeleton"
+     },
+     {
+      "name": "Organs",
+      "color": "#c9776e",
+      "node": "dog_organs"
+     }
+    ],
+    "note": "The dog is cut along its midline: look at it from the side first, then press the button. A schematic section: the pale blue-grey is sketched, not a scan."
+   }
+  },
+  {
+   "id": "cut_heart",
+   "label": "Inside the heart",
+   "cut": {
+    "at": [
+     0.085,
+     0.36,
+     0.003
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "d_heart": 1
+   },
+   "legend": {
+    "title": "In the heart",
+    "items": [
+     {
+      "name": "Heart muscle (myocardium)",
+      "color": "#b9524a",
+      "node": "dog_heart"
+     },
+     {
+      "name": "Blood in the left side (oxygen-rich)",
+      "color": "#e0463c",
+      "node": "dog_lv"
+     },
+     {
+      "name": "Blood in the right side (oxygen-poor)",
+      "color": "#4f6fb5",
+      "node": "dog_rv"
+     }
+    ],
+    "note": "A simplified cut through a model heart: the wall thicknesses, the chamber shapes and the valve positions are schematic, not measured."
+   }
+  },
+  {
+   "id": "cut_eye",
+   "label": "Inside the eye",
+   "cut": {
+    "at": [
+     0.416,
+     0.634,
+     0.045
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "d_eye": 1
+   },
+   "legend": {
+    "title": "In the eye",
+    "items": [
+     {
+      "name": "Tapetum lucidum (shiny layer)",
+      "color": "#7fb98a",
+      "node": "dog_tapetum"
+     },
+     {
+      "name": "Retina",
+      "color": "#d99a9a",
+      "node": "dog_retina"
+     },
+     {
+      "name": "Lens",
+      "color": "#f0dfa0",
+      "node": "dog_lens"
+     },
+     {
+      "name": "Choroid (dark layer)",
+      "color": "#3b2f2a",
+      "node": "dog_choroid"
+     }
+    ],
+    "note": "A model eye with a schematic layout. Look at the dog from the side, then press the button; the cut passes through the middle of the eye."
+   }
+  },
+  {
+   "id": "cut_nose",
+   "label": "Inside the nose",
+   "cut": {
+    "at": [
+     0,
+     0.4,
+     0
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "skeleton": 1,
+    "organs": 1,
+    "cord": 1,
+    "d_nose": 1
+   },
+   "legend": {
+    "title": "In the nose",
+    "items": [
+     {
+      "name": "Scrolls at the back: the smell lining",
+      "color": "#e3a58e",
+      "node": "dog_turb_olf"
+     },
+     {
+      "name": "Scrolls at the front: the airway lining",
+      "color": "#d9c9ce",
+      "node": "dog_turb_resp"
+     }
+    ],
+    "note": "The turbinate scrolls are drawn as a schematic: the real ones are far more finely folded and branched. Look from the side, then press the button."
+   }
+  },
+  {
+   "id": "cut_ear",
+   "label": "Inside the ear",
+   "cut": {
+    "at": [
+     0.355,
+     0.6,
+     0
+    ]
+   },
+   "hotspots": true,
+   "show": {
+    "skeleton": 1,
+    "d_ear": 1
+   },
+   "legend": {
+    "title": "In the ear",
+    "items": [
+     {
+      "name": "Ear canal and eardrum",
+      "color": "#e8b3a0",
+      "node": "dog_ear_canal"
+     },
+     {
+      "name": "Middle ear (bulla)",
+      "color": "#d8ccb0",
+      "node": "dog_bulla"
+     },
+     {
+      "name": "Cochlea and balance canals",
+      "color": "#9cc1d9",
+      "node": "dog_cochlea"
+     }
+    ],
+    "note": "A schematic of the ear, not to scale in the inner ear. Look at the dog from the front, then press the button; the cut passes across the head."
+   }
+  }
+ ],
+ "auto": {
+  "label": "Auto",
+  "near_m": 2.2,
+  "near": "muscles",
+  "far": "coat"
+ },
+ "lod": {
+  "near_m": 14,
+  "far_m": 60
+ },
+ "shadow": {
+  "radius_m": 0.85,
+  "opacity": 0.8
+ },
+ "cut": {
+  "default": "muscle",
+  "at": [
+   0,
+   0.4,
+   0
+  ],
+  "faces": {
+   "muscle": {
+    "kind": "plain",
+    "palette": [
+     [
+      "#a8433a",
+      1
+     ]
+    ]
+   },
+   "bone": {
+    "kind": "plain",
+    "palette": [
+     [
+      "#e8dcc0",
+      1
+     ]
+    ]
+   },
+   "organ": {
+    "kind": "plain",
+    "palette": [
+     [
+      "#c9776e",
+      1
+     ]
+    ]
+   },
+   "blood_l": {
+    "kind": "plain",
+    "palette": [
+     [
+      "#e0463c",
+      1
+     ]
+    ]
+   },
+   "blood_r": {
+    "kind": "plain",
+    "palette": [
+     [
+      "#4f6fb5",
+      1
+     ]
+    ]
+   },
+   "brain": {
+    "kind": "plain",
+    "palette": [
+     [
+      "#d9c3bd",
+      1
+     ]
+    ]
+   }
+  }
+ },
+ "hotspots": [
+  {
+   "id": "hs_lv",
+   "node": "dog_lv",
+   "at": [
+    0.079,
+    0.35,
+    -0.006
+   ],
+   "label": "Left ventricle: the strong pump",
+   "modes": [
+    "cut_heart"
+   ],
+   "r": 0.011
+  },
+  {
+   "id": "hs_rv",
+   "node": "dog_rv",
+   "at": [
+    0.094,
+    0.358,
+    0.022
+   ],
+   "label": "Right ventricle: pumps to the lungs",
+   "modes": [
+    "cut_heart"
+   ],
+   "r": 0.009
+  },
+  {
+   "id": "hs_valves",
+   "node": "dog_valves",
+   "at": [
+    0.102,
+    0.384,
+    -0.009
+   ],
+   "label": "Valves keep the blood moving one way",
+   "modes": [
+    "cut_heart"
+   ],
+   "r": 0.008
+  },
+  {
+   "id": "hs_tap",
+   "node": "dog_tapetum",
+   "at": [
+    0.4075,
+    0.648,
+    0.0435
+   ],
+   "label": "Tapetum lucidum: the dog has it, people do not",
+   "modes": [
+    "cut_eye"
+   ],
+   "r": 0.0018
+  },
+  {
+   "id": "hs_lens",
+   "node": "dog_lens",
+   "at": [
+    0.4215,
+    0.634,
+    0.0455
+   ],
+   "label": "Lens",
+   "modes": [
+    "cut_eye"
+   ],
+   "r": 0.0018
+  },
+  {
+   "id": "hs_ret",
+   "node": "dog_retina",
+   "at": [
+    0.4065,
+    0.634,
+    0.0425
+   ],
+   "label": "Retina: two kinds of cones",
+   "modes": [
+    "cut_eye"
+   ],
+   "r": 0.0018
+  },
+  {
+   "id": "hs_olf",
+   "node": "dog_turb_olf",
+   "at": [
+    0.435,
+    0.593,
+    0
+   ],
+   "label": "Smell lining on the scrolls at the back",
+   "modes": [
+    "cut_nose"
+   ],
+   "r": 0.008
+  },
+  {
+   "id": "hs_resp",
+   "node": "dog_turb_resp",
+   "at": [
+    0.48,
+    0.592,
+    0
+   ],
+   "label": "Scrolls that warm and moisten air",
+   "modes": [
+    "cut_nose"
+   ],
+   "r": 0.008
+  },
+  {
+   "id": "hs_ear_canal",
+   "node": "dog_ear_canal",
+   "at": [
+    0.3595,
+    0.625,
+    0.0645
+   ],
+   "label": "Ear canal: an L-shaped tube",
+   "modes": [
+    "cut_ear"
+   ],
+   "r": 0.005
+  },
+  {
+   "id": "hs_drum",
+   "node": "dog_eardrum",
+   "at": [
+    0.355,
+    0.602,
+    0.043
+   ],
+   "label": "Eardrum",
+   "modes": [
+    "cut_ear"
+   ],
+   "r": 0.004
+  },
+  {
+   "id": "hs_cochlea",
+   "node": "dog_cochlea",
+   "at": [
+    0.354,
+    0.607,
+    0.029
+   ],
+   "label": "Cochlea: hearing from 67 Hz to about 45 kHz",
+   "modes": [
+    "cut_ear"
+   ],
+   "r": 0.004
+  },
+  {
+   "id": "hs_brain",
+   "node": "dog_brain",
+   "at": [
+    0.365,
+    0.634,
+    0
+   ],
+   "label": "Brain with its big olfactory bulbs",
+   "modes": [
+    "cut_half"
+   ],
+   "r": 0.015
+  },
+  {
+   "id": "hs_heart_c",
+   "node": "dog_heart",
+   "at": [
+    0.083,
+    0.358,
+    0
+   ],
+   "label": "Heart",
+   "modes": [
+    "cut_half"
+   ],
+   "r": 0.015
+  },
+  {
+   "id": "hs_tongue",
+   "node": "dog_tongue",
+   "at": [
+    0.4,
+    0.54,
+    0
+   ],
+   "label": "Tongue",
+   "modes": [
+    "cut_half"
+   ],
+   "r": 0.012
+  }
+ ],
+ "parts": [
+  {
+   "id": "coat",
+   "name": "Skin and coat",
+   "system": "coat",
+   "node": "dog_coat",
+   "color": "#d9b36f",
+   "mesh": "coat",
+   "priority": 1.2,
+   "cutFace": "muscle",
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_skin",
+    "D": 0.003,
+    "button": "Look inside the skin and coat"
+   },
+   "center": [
+    -0.0636,
+    0.352,
+    0
+   ],
+   "radius": 0.6646,
+   "tris": 37304
+  },
+  {
+   "id": "fur",
+   "name": "Fur",
+   "system": "coat",
+   "node": "dog_fur",
+   "color": "#cfa65f",
+   "instances": "fur",
+   "tint": 0.22,
+   "double": true,
+   "lod": "near",
+   "priority": 1.3,
+   "center": [
+    -0.085,
+    0.3829,
+    0
+   ],
+   "radius": 0.6831,
+   "count": 8981,
+   "tris": 17962
+  },
+  {
+   "id": "ears",
+   "name": "Ears",
+   "system": "coat",
+   "node": "dog_ear",
+   "color": "#c99f58",
+   "mesh": "ears",
+   "priority": 1.6,
+   "noink": false,
+   "solid": false,
+   "center": [
+    0.3584,
+    0.62,
+    0
+   ],
+   "radius": 0.1204,
+   "tris": 264
+  },
+  {
+   "id": "nose",
+   "name": "Nose (rhinarium)",
+   "system": "coat",
+   "node": "dog_nose",
+   "color": "#231d1b",
+   "mesh": "nose",
+   "priority": 1.8,
+   "center": [
+    0.522,
+    0.562,
+    0
+   ],
+   "radius": 0.0299,
+   "tris": 4524
+  },
+  {
+   "id": "paw_pads",
+   "name": "Paw pads",
+   "system": "coat",
+   "node": "dog_pads",
+   "color": "#2b2220",
+   "mesh": "paw_pads",
+   "priority": 1.8,
+   "center": [
+    -0.1303,
+    0.0549,
+    -0.0001
+   ],
+   "radius": 0.2883,
+   "tris": 7156
+  },
+  {
+   "id": "claws",
+   "name": "Claws",
+   "system": "coat",
+   "node": "dog_claws",
+   "color": "#3a302b",
+   "mesh": "claws",
+   "priority": 1.8,
+   "center": [
+    -0.0847,
+    0.0324,
+    0.0003
+   ],
+   "radius": 0.2776,
+   "tris": 540
+  },
+  {
+   "id": "eyes",
+   "name": "Eyes",
+   "system": "eyes",
+   "node": "dog_eye",
+   "color": "#6b4a2a",
+   "mesh": "eye_globe",
+   "priority": 1.9,
+   "solid": false,
+   "double": true,
+   "deeper": null,
+   "center": [
+    0.4158,
+    0.634,
+    0
+   ],
+   "radius": 0.0558,
+   "tris": 400
+  },
+  {
+   "id": "eye_front",
+   "name": "Eyes (front)",
+   "system": "eyes",
+   "node": "dog_eye",
+   "color": "#3b2a1c",
+   "mesh": "eye_front",
+   "priority": 1.9,
+   "solid": false,
+   "double": true,
+   "center": [
+    0.4243,
+    0.634,
+    0
+   ],
+   "radius": 0.0542,
+   "tris": 240
+  },
+  {
+   "id": "skull",
+   "name": "Skull",
+   "system": "skeleton",
+   "node": "dog_skull",
+   "color": "#ecdfc6",
+   "mesh": "skull",
+   "cutFace": "bone",
+   "priority": 1.5,
+   "center": [
+    0.4119,
+    0.6115,
+    -0.0001
+   ],
+   "radius": 0.1266,
+   "tris": 16604
+  },
+  {
+   "id": "mandible",
+   "name": "Lower jaw (mandible)",
+   "system": "skeleton",
+   "node": "dog_mandible",
+   "color": "#ecdfc6",
+   "mesh": "mandible",
+   "cutFace": "bone",
+   "priority": 1.5,
+   "center": [
+    0.4251,
+    0.576,
+    0
+   ],
+   "radius": 0.0916,
+   "tris": 3568
+  },
+  {
+   "id": "teeth",
+   "name": "Teeth (42)",
+   "system": "skeleton",
+   "node": "dog_teeth",
+   "color": "#fbf6e8",
+   "mesh": "teeth",
+   "cutFace": "bone",
+   "priority": 1.8,
+   "center": [
+    0.4404,
+    0.5375,
+    0
+   ],
+   "radius": 0.0841,
+   "tris": 2016
+  },
+  {
+   "id": "cervical",
+   "name": "Neck vertebrae (7)",
+   "system": "skeleton",
+   "node": "dog_cervical",
+   "color": "#ecdfc6",
+   "mesh": "cervical",
+   "cutFace": "bone",
+   "priority": 1.5,
+   "center": [
+    0.2199,
+    0.5544,
+    0
+   ],
+   "radius": 0.1226,
+   "tris": 1204
+  },
+  {
+   "id": "thoracic",
+   "name": "Chest vertebrae (13)",
+   "system": "skeleton",
+   "node": "dog_thoracic",
+   "color": "#ecdfc6",
+   "mesh": "thoracic",
+   "cutFace": "bone",
+   "priority": 1.5,
+   "center": [
+    0.0039,
+    0.4807,
+    0
+   ],
+   "radius": 0.1362,
+   "tris": 2236
+  },
+  {
+   "id": "lumbar",
+   "name": "Lower-back vertebrae (7)",
+   "system": "skeleton",
+   "node": "dog_lumbar",
+   "color": "#ecdfc6",
+   "mesh": "lumbar",
+   "cutFace": "bone",
+   "priority": 1.5,
+   "center": [
+    -0.241,
+    0.4545,
+    0
+   ],
+   "radius": 0.1132,
+   "tris": 1204
+  },
+  {
+   "id": "sacrum",
+   "name": "Sacrum (3 fused)",
+   "system": "skeleton",
+   "node": "dog_sacrum",
+   "color": "#ecdfc6",
+   "mesh": "sacrum",
+   "cutFace": "bone",
+   "priority": 1.5,
+   "center": [
+    -0.388,
+    0.4566,
+    0
+   ],
+   "radius": 0.0383,
+   "tris": 516
+  },
+  {
+   "id": "caudal",
+   "name": "Tail vertebrae (about 20)",
+   "system": "skeleton",
+   "node": "dog_caudal",
+   "color": "#ecdfc6",
+   "mesh": "caudal",
+   "cutFace": "bone",
+   "priority": 1.5,
+   "center": [
+    -0.5459,
+    0.3566,
+    0
+   ],
+   "radius": 0.1622,
+   "tris": 2260
+  },
+  {
+   "id": "ribs",
+   "name": "Ribs (13 pairs)",
+   "system": "skeleton",
+   "node": "dog_ribs",
+   "color": "#ecdfc6",
+   "mesh": "ribs",
+   "cutFace": "bone",
+   "priority": 1.5,
+   "center": [
+    0.024,
+    0.4229,
+    0
+   ],
+   "radius": 0.1666,
+   "tris": 6384
+  },
+  {
+   "id": "costal",
+   "name": "Costal cartilages",
+   "system": "skeleton",
+   "node": "dog_costal",
+   "color": "#cfe0d8",
+   "mesh": "costal",
+   "cutFace": "bone",
+   "priority": 1.5,
+   "center": [
+    0.0426,
+    0.3543,
+    0
+   ],
+   "radius": 0.1719,
+   "tris": 2880
+  },
+  {
+   "id": "sternum",
+   "name": "Breastbone (sternum)",
+   "system": "skeleton",
+   "node": "dog_sternum",
+   "color": "#ecdfc6",
+   "mesh": "sternum",
+   "cutFace": "bone",
+   "priority": 1.5,
+   "center": [
+    0.035,
+    0.3235,
+    0
+   ],
+   "radius": 0.1762,
+   "tris": 676
+  },
+  {
+   "id": "pelvis",
+   "name": "Pelvis",
+   "system": "skeleton",
+   "node": "dog_pelvis",
+   "color": "#ecdfc6",
+   "mesh": "pelvis",
+   "cutFace": "bone",
+   "priority": 1.5,
+   "center": [
+    -0.3429,
+    0.4347,
+    0
+   ],
+   "radius": 0.1332,
+   "tris": 12140
+  },
+  {
+   "id": "baculum",
+   "name": "Penis bone (baculum)",
+   "system": "skeleton",
+   "node": "dog_baculum",
+   "color": "#ecdfc6",
+   "mesh": "baculum",
+   "cutFace": "bone",
+   "priority": 1.5,
+   "center": [
+    -0.2424,
+    0.2885,
+    -0.0002
+   ],
+   "radius": 0.0533,
+   "tris": 98
+  },
+  {
+   "id": "scapula_r",
+   "name": "Shoulder blade (scapula) (right)",
+   "system": "skeleton",
+   "node": "dog_scapula",
+   "color": "#ecdfc6",
+   "mesh": "scapula_r",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    0.1543,
+    0.4587,
+    0.0537
+   ],
+   "radius": 0.1083,
+   "tris": 126
+  },
+  {
+   "id": "humerus_r",
+   "name": "Upper arm bone (humerus) (right)",
+   "system": "skeleton",
+   "node": "dog_humerus",
+   "color": "#ecdfc6",
+   "mesh": "humerus_r",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    0.1252,
+    0.3406,
+    0.0805
+   ],
+   "radius": 0.0911,
+   "tris": 300
+  },
+  {
+   "id": "radius_ulna_r",
+   "name": "Forearm bones (radius and ulna) (right)",
+   "system": "skeleton",
+   "node": "dog_radius_ulna",
+   "color": "#ecdfc6",
+   "mesh": "radius_ulna_r",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    0.0488,
+    0.2267,
+    0.0806
+   ],
+   "radius": 0.1178,
+   "tris": 510
+  },
+  {
+   "id": "carpus_r",
+   "name": "Carpus (the dog's wrist) (right)",
+   "system": "skeleton",
+   "node": "dog_carpus",
+   "color": "#ecdfc6",
+   "mesh": "carpus_r",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    0.0753,
+    0.115,
+    0.0685
+   ],
+   "radius": 0.0137,
+   "tris": 1344
+  },
+  {
+   "id": "metacarpals_r",
+   "name": "Metacarpals (palm bones) (right)",
+   "system": "skeleton",
+   "node": "dog_metacarpals",
+   "color": "#ecdfc6",
+   "mesh": "metacarpals_r",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    0.0908,
+    0.0739,
+    0.0658
+   ],
+   "radius": 0.0443,
+   "tris": 336
+  },
+  {
+   "id": "phalanges_f_r",
+   "name": "Toe bones of the forefoot (right)",
+   "system": "skeleton",
+   "node": "dog_phalanges",
+   "color": "#ecdfc6",
+   "mesh": "phalanges_f_r",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    0.1355,
+    0.025,
+    0.064
+   ],
+   "radius": 0.0491,
+   "tris": 576
+  },
+  {
+   "id": "dewclaw_r",
+   "name": "Dewclaw (first toe) (right)",
+   "system": "skeleton",
+   "node": "dog_dewclaw",
+   "color": "#ecdfc6",
+   "mesh": "dewclaw_r",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    0.0882,
+    0.0841,
+    0.0444
+   ],
+   "radius": 0.0221,
+   "tris": 72
+  },
+  {
+   "id": "femur_r",
+   "name": "Thigh bone (femur) (right)",
+   "system": "skeleton",
+   "node": "dog_femur",
+   "color": "#ecdfc6",
+   "mesh": "femur_r",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    -0.292,
+    0.3118,
+    0.0875
+   ],
+   "radius": 0.1045,
+   "tris": 300
+  },
+  {
+   "id": "patella_r",
+   "name": "Kneecap (patella) (right)",
+   "system": "skeleton",
+   "node": "dog_patella",
+   "color": "#ecdfc6",
+   "mesh": "patella_r",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    -0.228,
+    0.2311,
+    0.096
+   ],
+   "radius": 0.0078,
+   "tris": 184
+  },
+  {
+   "id": "tibia_fibula_r",
+   "name": "Shin bones (tibia and fibula) (right)",
+   "system": "skeleton",
+   "node": "dog_tibia",
+   "color": "#ecdfc6",
+   "mesh": "tibia_fibula_r",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    -0.3237,
+    0.1916,
+    0.0906
+   ],
+   "radius": 0.0953,
+   "tris": 360
+  },
+  {
+   "id": "tarsus_r",
+   "name": "Tarsus (the hock, with the heel bone) (right)",
+   "system": "skeleton",
+   "node": "dog_tarsus",
+   "color": "#ecdfc6",
+   "mesh": "tarsus_r",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    -0.4165,
+    0.1723,
+    0.0827
+   ],
+   "radius": 0.0465,
+   "tris": 960
+  },
+  {
+   "id": "metatarsals_r",
+   "name": "Metatarsals (sole bones) (right)",
+   "system": "skeleton",
+   "node": "dog_metatarsals",
+   "color": "#ecdfc6",
+   "mesh": "metatarsals_r",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    -0.4023,
+    0.0905,
+    0.0718
+   ],
+   "radius": 0.0588,
+   "tris": 336
+  },
+  {
+   "id": "phalanges_h_r",
+   "name": "Toe bones of the hind foot (right)",
+   "system": "skeleton",
+   "node": "dog_phalanges",
+   "color": "#ecdfc6",
+   "mesh": "phalanges_h_r",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    -0.363,
+    0.0245,
+    0.066
+   ],
+   "radius": 0.0464,
+   "tris": 576
+  },
+  {
+   "id": "scapula_l",
+   "name": "Shoulder blade (scapula) (left)",
+   "system": "skeleton",
+   "node": "dog_scapula",
+   "color": "#ecdfc6",
+   "mesh": "scapula_l",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    0.1551,
+    0.4587,
+    -0.0537
+   ],
+   "radius": 0.1079,
+   "tris": 126
+  },
+  {
+   "id": "humerus_l",
+   "name": "Upper arm bone (humerus) (left)",
+   "system": "skeleton",
+   "node": "dog_humerus",
+   "color": "#ecdfc6",
+   "mesh": "humerus_l",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    0.1252,
+    0.3406,
+    -0.0805
+   ],
+   "radius": 0.0911,
+   "tris": 300
+  },
+  {
+   "id": "radius_ulna_l",
+   "name": "Forearm bones (radius and ulna) (left)",
+   "system": "skeleton",
+   "node": "dog_radius_ulna",
+   "color": "#ecdfc6",
+   "mesh": "radius_ulna_l",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    0.0488,
+    0.2267,
+    -0.0803
+   ],
+   "radius": 0.1179,
+   "tris": 510
+  },
+  {
+   "id": "carpus_l",
+   "name": "Carpus (the dog's wrist) (left)",
+   "system": "skeleton",
+   "node": "dog_carpus",
+   "color": "#ecdfc6",
+   "mesh": "carpus_l",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    0.0753,
+    0.115,
+    -0.0715
+   ],
+   "radius": 0.0147,
+   "tris": 1344
+  },
+  {
+   "id": "metacarpals_l",
+   "name": "Metacarpals (palm bones) (left)",
+   "system": "skeleton",
+   "node": "dog_metacarpals",
+   "color": "#ecdfc6",
+   "mesh": "metacarpals_l",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    0.0908,
+    0.0739,
+    -0.0654
+   ],
+   "radius": 0.0444,
+   "tris": 336
+  },
+  {
+   "id": "phalanges_f_l",
+   "name": "Toe bones of the forefoot (left)",
+   "system": "skeleton",
+   "node": "dog_phalanges",
+   "color": "#ecdfc6",
+   "mesh": "phalanges_f_l",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    0.1355,
+    0.025,
+    -0.064
+   ],
+   "radius": 0.0491,
+   "tris": 576
+  },
+  {
+   "id": "dewclaw_l",
+   "name": "Dewclaw (first toe) (left)",
+   "system": "skeleton",
+   "node": "dog_dewclaw",
+   "color": "#ecdfc6",
+   "mesh": "dewclaw_l",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    0.0882,
+    0.0841,
+    -0.0444
+   ],
+   "radius": 0.0221,
+   "tris": 72
+  },
+  {
+   "id": "femur_l",
+   "name": "Thigh bone (femur) (left)",
+   "system": "skeleton",
+   "node": "dog_femur",
+   "color": "#ecdfc6",
+   "mesh": "femur_l",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    -0.292,
+    0.3118,
+    -0.0875
+   ],
+   "radius": 0.1045,
+   "tris": 300
+  },
+  {
+   "id": "patella_l",
+   "name": "Kneecap (patella) (left)",
+   "system": "skeleton",
+   "node": "dog_patella",
+   "color": "#ecdfc6",
+   "mesh": "patella_l",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    -0.228,
+    0.2311,
+    -0.096
+   ],
+   "radius": 0.0078,
+   "tris": 184
+  },
+  {
+   "id": "tibia_fibula_l",
+   "name": "Shin bones (tibia and fibula) (left)",
+   "system": "skeleton",
+   "node": "dog_tibia",
+   "color": "#ecdfc6",
+   "mesh": "tibia_fibula_l",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    -0.3239,
+    0.1917,
+    -0.0913
+   ],
+   "radius": 0.0952,
+   "tris": 360
+  },
+  {
+   "id": "tarsus_l",
+   "name": "Tarsus (the hock, with the heel bone) (left)",
+   "system": "skeleton",
+   "node": "dog_tarsus",
+   "color": "#ecdfc6",
+   "mesh": "tarsus_l",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    -0.4165,
+    0.1723,
+    -0.0827
+   ],
+   "radius": 0.0465,
+   "tris": 960
+  },
+  {
+   "id": "metatarsals_l",
+   "name": "Metatarsals (sole bones) (left)",
+   "system": "skeleton",
+   "node": "dog_metatarsals",
+   "color": "#ecdfc6",
+   "mesh": "metatarsals_l",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    -0.4023,
+    0.0904,
+    -0.0713
+   ],
+   "radius": 0.0589,
+   "tris": 336
+  },
+  {
+   "id": "phalanges_h_l",
+   "name": "Toe bones of the hind foot (left)",
+   "system": "skeleton",
+   "node": "dog_phalanges",
+   "color": "#ecdfc6",
+   "mesh": "phalanges_h_l",
+   "cutFace": "bone",
+   "priority": 1.6,
+   "center": [
+    -0.363,
+    0.0245,
+    -0.066
+   ],
+   "radius": 0.0464,
+   "tris": 576
+  },
+  {
+   "id": "m_temporalis",
+   "name": "Temporalis (chewing)",
+   "system": "muscles",
+   "node": "dog_m_temporalis",
+   "color": "#b0463b",
+   "mesh": "m_temporalis",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    0.378,
+    0.647,
+    0
+   ],
+   "radius": 0.0924,
+   "tris": 2072
+  },
+  {
+   "id": "m_masseter",
+   "name": "Masseter (chewing)",
+   "system": "muscles",
+   "node": "dog_m_masseter",
+   "color": "#a23d35",
+   "mesh": "m_masseter",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    0.3711,
+    0.5789,
+    0
+   ],
+   "radius": 0.0976,
+   "tris": 1620
+  },
+  {
+   "id": "m_face_muscles",
+   "name": "Muscles of the muzzle and lips",
+   "system": "muscles",
+   "node": "dog_m_face_muscles",
+   "color": "#bb5144",
+   "mesh": "m_face_muscles",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    0.4642,
+    0.5679,
+    0.0001
+   ],
+   "radius": 0.0939,
+   "tris": 2852
+  },
+  {
+   "id": "m_neck_dorsal",
+   "name": "Splenius and neck extensors",
+   "system": "muscles",
+   "node": "dog_m_neck_dorsal",
+   "color": "#9a3a33",
+   "mesh": "m_neck_dorsal",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    0.2401,
+    0.6033,
+    -0.0001
+   ],
+   "radius": 0.1428,
+   "tris": 5256
+  },
+  {
+   "id": "m_brachiocephalicus",
+   "name": "Brachiocephalicus (draws the foreleg forward)",
+   "system": "muscles",
+   "node": "dog_m_brachiocephalicus",
+   "color": "#b84e41",
+   "mesh": "m_brachiocephalicus",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    0.2525,
+    0.5069,
+    0.0002
+   ],
+   "radius": 0.1654,
+   "tris": 4296
+  },
+  {
+   "id": "m_neck_ventral",
+   "name": "Sternocephalicus and neck flexors",
+   "system": "muscles",
+   "node": "dog_m_neck_ventral",
+   "color": "#b0463b",
+   "mesh": "m_neck_ventral",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    0.2277,
+    0.4765,
+    -0.0002
+   ],
+   "radius": 0.1376,
+   "tris": 3960
+  },
+  {
+   "id": "m_trapezius",
+   "name": "Trapezius",
+   "system": "muscles",
+   "node": "dog_m_trapezius",
+   "color": "#a23d35",
+   "mesh": "m_trapezius",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    0.1284,
+    0.5377,
+    0.0004
+   ],
+   "radius": 0.1088,
+   "tris": 1172
+  },
+  {
+   "id": "m_latissimus",
+   "name": "Latissimus dorsi",
+   "system": "muscles",
+   "node": "dog_m_latissimus",
+   "color": "#bb5144",
+   "mesh": "m_latissimus",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    -0.0368,
+    0.4513,
+    0
+   ],
+   "radius": 0.1655,
+   "tris": 4160
+  },
+  {
+   "id": "m_chest_wall",
+   "name": "Serratus ventralis and the chest wall (intercostal muscles)",
+   "system": "muscles",
+   "node": "dog_m_chest_wall",
+   "color": "#9a3a33",
+   "mesh": "m_chest_wall",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    0.0745,
+    0.411,
+    0.0018
+   ],
+   "radius": 0.1963,
+   "tris": 9936
+  },
+  {
+   "id": "m_pectorals",
+   "name": "Pectoral muscles",
+   "system": "muscles",
+   "node": "dog_m_pectorals",
+   "color": "#b84e41",
+   "mesh": "m_pectorals",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    0.1488,
+    0.3509,
+    0
+   ],
+   "radius": 0.1042,
+   "tris": 2168
+  },
+  {
+   "id": "m_back_extensors",
+   "name": "Longissimus and the back extensors",
+   "system": "muscles",
+   "node": "dog_m_back_extensors",
+   "color": "#b0463b",
+   "mesh": "m_back_extensors",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    -0.1113,
+    0.5152,
+    -0.0018
+   ],
+   "radius": 0.2923,
+   "tris": 10884
+  },
+  {
+   "id": "m_external_oblique",
+   "name": "External oblique (flank)",
+   "system": "muscles",
+   "node": "dog_m_external_oblique",
+   "color": "#a23d35",
+   "mesh": "m_external_oblique",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    -0.1767,
+    0.3604,
+    0.0006
+   ],
+   "radius": 0.1647,
+   "tris": 4996
+  },
+  {
+   "id": "m_rectus_abdominis",
+   "name": "Rectus abdominis",
+   "system": "muscles",
+   "node": "dog_m_rectus_abdominis",
+   "color": "#bb5144",
+   "mesh": "m_rectus_abdominis",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    -0.1883,
+    0.3155,
+    0.0002
+   ],
+   "radius": 0.1673,
+   "tris": 4356
+  },
+  {
+   "id": "m_supraspinatus",
+   "name": "Supraspinatus and infraspinatus (shoulder)",
+   "system": "muscles",
+   "node": "dog_m_supraspinatus",
+   "color": "#9a3a33",
+   "mesh": "m_supraspinatus",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    0.1492,
+    0.4665,
+    0
+   ],
+   "radius": 0.1311,
+   "tris": 3472
+  },
+  {
+   "id": "m_deltoid",
+   "name": "Deltoideus",
+   "system": "muscles",
+   "node": "dog_m_deltoid",
+   "color": "#b84e41",
+   "mesh": "m_deltoid",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    0.1651,
+    0.3866,
+    -0.0004
+   ],
+   "radius": 0.1383,
+   "tris": 1152
+  },
+  {
+   "id": "m_triceps",
+   "name": "Triceps brachii",
+   "system": "muscles",
+   "node": "dog_m_triceps",
+   "color": "#b0463b",
+   "mesh": "m_triceps",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    0.1076,
+    0.3759,
+    0.0005
+   ],
+   "radius": 0.1709,
+   "tris": 5028
+  },
+  {
+   "id": "m_biceps",
+   "name": "Biceps brachii",
+   "system": "muscles",
+   "node": "dog_m_biceps",
+   "color": "#a23d35",
+   "mesh": "m_biceps",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    0.1404,
+    0.3224,
+    0.0004
+   ],
+   "radius": 0.1383,
+   "tris": 2084
+  },
+  {
+   "id": "m_fore_extensors",
+   "name": "Forearm extensors (carpus and toes)",
+   "system": "muscles",
+   "node": "dog_m_fore_extensors",
+   "color": "#bb5144",
+   "mesh": "m_fore_extensors",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    0.06,
+    0.2231,
+    -0.0005
+   ],
+   "radius": 0.1615,
+   "tris": 1964
+  },
+  {
+   "id": "m_fore_flexors",
+   "name": "Forearm flexors (carpus and toes)",
+   "system": "muscles",
+   "node": "dog_m_fore_flexors",
+   "color": "#9a3a33",
+   "mesh": "m_fore_flexors",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    0.0438,
+    0.2306,
+    0
+   ],
+   "radius": 0.1257,
+   "tris": 2236
+  },
+  {
+   "id": "m_fore_tendons",
+   "name": "Tendons of the lower foreleg",
+   "system": "muscles",
+   "node": "dog_m_fore_tendons",
+   "color": "#b84e41",
+   "mesh": "m_fore_tendons",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    0.1087,
+    0.0845,
+    0
+   ],
+   "radius": 0.1278,
+   "tris": 2416
+  },
+  {
+   "id": "m_gluteals",
+   "name": "Gluteal muscles (hip extensors)",
+   "system": "muscles",
+   "node": "dog_m_gluteals",
+   "color": "#b0463b",
+   "mesh": "m_gluteals",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    -0.3099,
+    0.4753,
+    0.0002
+   ],
+   "radius": 0.1487,
+   "tris": 4292
+  },
+  {
+   "id": "m_tensor",
+   "name": "Tensor fasciae latae and sartorius",
+   "system": "muscles",
+   "node": "dog_m_tensor",
+   "color": "#a23d35",
+   "mesh": "m_tensor",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    -0.254,
+    0.3983,
+    0
+   ],
+   "radius": 0.1766,
+   "tris": 1896
+  },
+  {
+   "id": "m_biceps_femoris",
+   "name": "Biceps femoris",
+   "system": "muscles",
+   "node": "dog_m_biceps_femoris",
+   "color": "#bb5144",
+   "mesh": "m_biceps_femoris",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    -0.3334,
+    0.3389,
+    0.0001
+   ],
+   "radius": 0.2034,
+   "tris": 7276
+  },
+  {
+   "id": "m_hamstrings",
+   "name": "Semitendinosus and semimembranosus (hamstrings)",
+   "system": "muscles",
+   "node": "dog_m_hamstrings",
+   "color": "#9a3a33",
+   "mesh": "m_hamstrings",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    -0.3772,
+    0.3381,
+    0
+   ],
+   "radius": 0.1676,
+   "tris": 5356
+  },
+  {
+   "id": "m_quadriceps",
+   "name": "Quadriceps femoris",
+   "system": "muscles",
+   "node": "dog_m_quadriceps",
+   "color": "#b84e41",
+   "mesh": "m_quadriceps",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    -0.2488,
+    0.3278,
+    0
+   ],
+   "radius": 0.1763,
+   "tris": 5476
+  },
+  {
+   "id": "m_adductors",
+   "name": "Gracilis and adductors (inner thigh)",
+   "system": "muscles",
+   "node": "dog_m_adductors",
+   "color": "#b0463b",
+   "mesh": "m_adductors",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    -0.2832,
+    0.3216,
+    0
+   ],
+   "radius": 0.1337,
+   "tris": 3844
+  },
+  {
+   "id": "m_gastrocnemius",
+   "name": "Gastrocnemius (calf)",
+   "system": "muscles",
+   "node": "dog_m_gastrocnemius",
+   "color": "#a23d35",
+   "mesh": "m_gastrocnemius",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    -0.3074,
+    0.2023,
+    0
+   ],
+   "radius": 0.1339,
+   "tris": 1928
+  },
+  {
+   "id": "m_shin_muscles",
+   "name": "Cranial tibial and toe extensors (shin)",
+   "system": "muscles",
+   "node": "dog_m_shin_muscles",
+   "color": "#bb5144",
+   "mesh": "m_shin_muscles",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    -0.2947,
+    0.1873,
+    0
+   ],
+   "radius": 0.1569,
+   "tris": 2288
+  },
+  {
+   "id": "m_hind_tendons",
+   "name": "Calcaneal (Achilles) and lower hindleg tendons",
+   "system": "muscles",
+   "node": "dog_m_hind_tendons",
+   "color": "#9a3a33",
+   "mesh": "m_hind_tendons",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    -0.3833,
+    0.1072,
+    0
+   ],
+   "radius": 0.1424,
+   "tris": 2976
+  },
+  {
+   "id": "m_tail_muscles",
+   "name": "Tail muscles",
+   "system": "muscles",
+   "node": "dog_m_tail_muscles",
+   "color": "#b84e41",
+   "mesh": "m_tail_muscles",
+   "cutFace": "muscle",
+   "priority": 1.5,
+   "ink_w": 0.0016,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_muscle",
+    "D": 0.0014,
+    "button": "Look inside the muscle"
+   },
+   "center": [
+    -0.5145,
+    0.3862,
+    0
+   ],
+   "radius": 0.2079,
+   "tris": 4692
+  },
+  {
+   "id": "brain",
+   "name": "Brain",
+   "system": "organs",
+   "node": "dog_brain",
+   "color": "#d8b5ad",
+   "mesh": "brain",
+   "cutFace": "brain",
+   "priority": 1.6,
+   "solid": true,
+   "center": [
+    0.349,
+    0.6251,
+    0
+   ],
+   "radius": 0.0617,
+   "tris": 9024
+  },
+  {
+   "id": "bulbs",
+   "name": "Olfactory bulbs",
+   "system": "organs",
+   "node": "dog_bulbs",
+   "color": "#e8cfa0",
+   "mesh": "bulbs",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "center": [
+    0.412,
+    0.626,
+    0
+   ],
+   "radius": 0.0225,
+   "tris": 2328
+  },
+  {
+   "id": "tongue",
+   "name": "Tongue",
+   "system": "organs",
+   "node": "dog_tongue",
+   "color": "#d8766f",
+   "mesh": "tongue",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "center": [
+    0.3965,
+    0.543,
+    0
+   ],
+   "radius": 0.086,
+   "tris": 4584
+  },
+  {
+   "id": "larynx",
+   "name": "Larynx",
+   "system": "organs",
+   "node": "dog_larynx",
+   "color": "#c9b6a6",
+   "mesh": "larynx",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "center": [
+    0.307,
+    0.5734,
+    0
+   ],
+   "radius": 0.0313,
+   "tris": 1648
+  },
+  {
+   "id": "trachea",
+   "name": "Windpipe (trachea)",
+   "system": "organs",
+   "node": "dog_trachea",
+   "color": "#c9c3d0",
+   "mesh": "trachea",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "center": [
+    0.1756,
+    0.4957,
+    0
+   ],
+   "radius": 0.1332,
+   "tris": 600
+  },
+  {
+   "id": "bronchi",
+   "name": "Main bronchi",
+   "system": "organs",
+   "node": "dog_bronchi",
+   "color": "#c9c3d0",
+   "mesh": "bronchi",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "center": [
+    0.049,
+    0.4186,
+    0
+   ],
+   "radius": 0.04,
+   "tris": 96
+  },
+  {
+   "id": "esophagus",
+   "name": "Gullet (esophagus)",
+   "system": "organs",
+   "node": "dog_esophagus",
+   "color": "#c88f86",
+   "mesh": "esophagus",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "center": [
+    0.0803,
+    0.4899,
+    -0.0049
+   ],
+   "radius": 0.2197,
+   "tris": 432
+  },
+  {
+   "id": "lung_r",
+   "name": "Right lung",
+   "system": "organs",
+   "node": "dog_lungs",
+   "color": "#d98a86",
+   "mesh": "lung_r",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "opacity_max": 0.5,
+   "center": [
+    0.0378,
+    0.3854,
+    0.0495
+   ],
+   "radius": 0.1427,
+   "tris": 9068
+  },
+  {
+   "id": "lung_l",
+   "name": "Left lung",
+   "system": "organs",
+   "node": "dog_lungs",
+   "color": "#d98a86",
+   "mesh": "lung_l",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "opacity_max": 0.5,
+   "center": [
+    0.0379,
+    0.3853,
+    -0.0495
+   ],
+   "radius": 0.1427,
+   "tris": 8996
+  },
+  {
+   "id": "heart",
+   "name": "Heart",
+   "system": "organs",
+   "node": "dog_heart",
+   "color": "#b04a45",
+   "mesh": "heart",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "center": [
+    0.0933,
+    0.3613,
+    0.0015
+   ],
+   "radius": 0.0726,
+   "tris": 7336
+  },
+  {
+   "id": "diaphragm",
+   "name": "Diaphragm",
+   "system": "organs",
+   "node": "dog_diaphragm",
+   "color": "#c97c6b",
+   "mesh": "diaphragm",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": false,
+   "center": [
+    -0.1428,
+    0.4099,
+    0
+   ],
+   "radius": 0.1412,
+   "tris": 16612
+  },
+  {
+   "id": "liver",
+   "name": "Liver",
+   "system": "organs",
+   "node": "dog_liver",
+   "color": "#7a3a2a",
+   "mesh": "liver",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "center": [
+    -0.165,
+    0.387,
+    0.0025
+   ],
+   "radius": 0.1114,
+   "tris": 14304
+  },
+  {
+   "id": "stomach",
+   "name": "Stomach",
+   "system": "organs",
+   "node": "dog_stomach",
+   "color": "#d7a58b",
+   "mesh": "stomach",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "center": [
+    -0.2151,
+    0.3649,
+    -0.0175
+   ],
+   "radius": 0.0815,
+   "tris": 8252
+  },
+  {
+   "id": "spleen",
+   "name": "Spleen",
+   "system": "organs",
+   "node": "dog_spleen",
+   "color": "#7d3b4a",
+   "mesh": "spleen",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "center": [
+    -0.2175,
+    0.3775,
+    -0.0725
+   ],
+   "radius": 0.0938,
+   "tris": 3868
+  },
+  {
+   "id": "small_intestine",
+   "name": "Small intestine",
+   "system": "organs",
+   "node": "dog_small_intestine",
+   "color": "#e0aa98",
+   "mesh": "small_intestine",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "center": [
+    -0.245,
+    0.339,
+    -0.0011
+   ],
+   "radius": 0.0968,
+   "tris": 2576
+  },
+  {
+   "id": "large_intestine",
+   "name": "Large intestine and rectum",
+   "system": "organs",
+   "node": "dog_large_intestine",
+   "color": "#c18a73",
+   "mesh": "large_intestine",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "center": [
+    -0.328,
+    0.3899,
+    0.0054
+   ],
+   "radius": 0.1149,
+   "tris": 1918
+  },
+  {
+   "id": "kidney_r",
+   "name": "Right kidney",
+   "system": "organs",
+   "node": "dog_kidneys",
+   "color": "#8d4a3c",
+   "mesh": "kidney_r",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "center": [
+    -0.145,
+    0.44,
+    0.036
+   ],
+   "radius": 0.033,
+   "tris": 2856
+  },
+  {
+   "id": "kidney_l",
+   "name": "Left kidney",
+   "system": "organs",
+   "node": "dog_kidneys",
+   "color": "#8d4a3c",
+   "mesh": "kidney_l",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "center": [
+    -0.19,
+    0.436,
+    -0.038
+   ],
+   "radius": 0.033,
+   "tris": 2844
+  },
+  {
+   "id": "bladder",
+   "name": "Urinary bladder",
+   "system": "organs",
+   "node": "dog_bladder",
+   "color": "#e6c7a0",
+   "mesh": "bladder",
+   "cutFace": "organ",
+   "priority": 1.6,
+   "solid": true,
+   "center": [
+    -0.335,
+    0.338,
+    0
+   ],
+   "radius": 0.042,
+   "tris": 4824
+  },
+  {
+   "id": "tracheal_rings",
+   "name": "Tracheal cartilage rings",
+   "system": "organs",
+   "node": "dog_trachea",
+   "color": "#e9e4ee",
+   "mesh": "tracheal_rings",
+   "priority": 1.7,
+   "solid": false,
+   "center": [
+    0.1734,
+    0.4946,
+    0
+   ],
+   "radius": 0.1292,
+   "tris": 2800
+  },
+  {
+   "id": "brain_n",
+   "name": "Brain",
+   "system": "nervous",
+   "node": "dog_brain",
+   "color": "#e3c6c0",
+   "mesh": "brain",
+   "cutFace": "brain",
+   "priority": 1.6,
+   "center": [
+    0.349,
+    0.6251,
+    0
+   ],
+   "radius": 0.0617,
+   "tris": 9024
+  },
+  {
+   "id": "bulbs_n",
+   "name": "Olfactory bulbs",
+   "system": "nervous",
+   "node": "dog_bulbs",
+   "color": "#f0d896",
+   "mesh": "bulbs",
+   "priority": 1.7,
+   "center": [
+    0.412,
+    0.626,
+    0
+   ],
+   "radius": 0.0225,
+   "tris": 2328
+  },
+  {
+   "id": "spinal_cord",
+   "name": "Spinal cord",
+   "system": "cord",
+   "node": "dog_spinal_cord",
+   "color": "#f3e9c7",
+   "mesh": "spinal_cord",
+   "priority": 1.6,
+   "center": [
+    -0.0246,
+    0.5319,
+    -0.0004
+   ],
+   "radius": 0.3439,
+   "tris": 610
+  },
+  {
+   "id": "nerves_fore",
+   "name": "Nerves of the foreleg (brachial plexus)",
+   "system": "nervous",
+   "node": "dog_nerves_fore",
+   "color": "#efd66a",
+   "mesh": "nerves_fore",
+   "priority": 1.6,
+   "solid": false,
+   "center": [
+    0.1222,
+    0.2803,
+    0
+   ],
+   "radius": 0.2602,
+   "tris": 1500
+  },
+  {
+   "id": "nerves_hind",
+   "name": "Sciatic nerve and nerves of the hindleg",
+   "system": "nervous",
+   "node": "dog_nerves_hind",
+   "color": "#efd66a",
+   "mesh": "nerves_hind",
+   "priority": 1.6,
+   "solid": false,
+   "center": [
+    -0.355,
+    0.271,
+    0.0001
+   ],
+   "radius": 0.2097,
+   "tris": 500
+  },
+  {
+   "id": "vagus",
+   "name": "Vagus nerves",
+   "system": "nervous",
+   "node": "dog_vagus",
+   "color": "#e8c14e",
+   "mesh": "vagus",
+   "priority": 1.6,
+   "solid": false,
+   "center": [
+    0.1603,
+    0.5058,
+    0.0002
+   ],
+   "radius": 0.1041,
+   "tris": 500
+  },
+  {
+   "id": "optic",
+   "name": "Optic nerves",
+   "system": "nervous",
+   "node": "dog_optic",
+   "color": "#f0d896",
+   "mesh": "optic",
+   "priority": 1.7,
+   "solid": false,
+   "center": [
+    0.4289,
+    0.638,
+    -0.0001
+   ],
+   "radius": 0.0436,
+   "tris": 140
+  },
+  {
+   "id": "tail_nerves",
+   "name": "Tail nerves",
+   "system": "nervous",
+   "node": "dog_nerves_hind",
+   "color": "#efd66a",
+   "mesh": "tail_nerves",
+   "priority": 1.6,
+   "solid": false,
+   "center": [
+    -0.5154,
+    0.3952,
+    -0.0001
+   ],
+   "radius": 0.1193,
+   "tris": 110
+  },
+  {
+   "id": "eyes_n",
+   "name": "Eyes",
+   "system": "nervous",
+   "node": "dog_eye",
+   "color": "#6b4a2a",
+   "mesh": "eye_globe",
+   "priority": 1.9,
+   "solid": false,
+   "double": true,
+   "center": [
+    0.4158,
+    0.634,
+    0
+   ],
+   "radius": 0.0558,
+   "tris": 400
+  },
+  {
+   "id": "arteries",
+   "name": "Arteries (carry blood away from the heart)",
+   "system": "vessels",
+   "node": "dog_arteries",
+   "color": "#d6362d",
+   "mesh": "arteries",
+   "priority": 1.6,
+   "solid": false,
+   "center": [
+    -0.0203,
+    0.3488,
+    0
+   ],
+   "radius": 0.4809,
+   "tris": 3492
+  },
+  {
+   "id": "veins",
+   "name": "Veins (carry blood back to the heart)",
+   "system": "vessels",
+   "node": "dog_veins",
+   "color": "#3f63b8",
+   "mesh": "veins",
+   "priority": 1.6,
+   "solid": false,
+   "center": [
+    -0.0494,
+    0.3329,
+    0
+   ],
+   "radius": 0.4407,
+   "tris": 2772
+  },
+  {
+   "id": "heart_v",
+   "name": "Heart",
+   "system": "vessels",
+   "node": "dog_heart",
+   "color": "#b04a45",
+   "mesh": "heart",
+   "priority": 1.7,
+   "cutFace": "organ",
+   "center": [
+    0.0933,
+    0.3613,
+    0.0015
+   ],
+   "radius": 0.0726,
+   "tris": 7336
+  },
+  {
+   "id": "lung_r_v",
+   "name": "Right lung",
+   "system": "vessels",
+   "node": "dog_lungs",
+   "color": "#e8a8a4",
+   "mesh": "lung_r",
+   "priority": 1.5,
+   "opacity_max": 0.35,
+   "center": [
+    0.0378,
+    0.3854,
+    0.0495
+   ],
+   "radius": 0.1427,
+   "tris": 9068
+  },
+  {
+   "id": "lung_l_v",
+   "name": "Left lung",
+   "system": "vessels",
+   "node": "dog_lungs",
+   "color": "#e8a8a4",
+   "mesh": "lung_l",
+   "priority": 1.5,
+   "opacity_max": 0.35,
+   "center": [
+    0.0379,
+    0.3853,
+    -0.0495
+   ],
+   "radius": 0.1427,
+   "tris": 8996
+  },
+  {
+   "id": "heart_d",
+   "name": "Heart muscle (cut open)",
+   "system": "d_heart",
+   "node": "dog_heart",
+   "color": "#b9524a",
+   "mesh": "heart",
+   "priority": 1.6,
+   "cutFace": "muscle",
+   "center": [
+    0.0933,
+    0.3613,
+    0.0015
+   ],
+   "radius": 0.0726,
+   "tris": 7336
+  },
+  {
+   "id": "h_lv",
+   "name": "Left ventricle (cavity)",
+   "system": "d_heart",
+   "node": "dog_lv",
+   "color": "#e0463c",
+   "mesh": "h_lv",
+   "parent": "heart",
+   "cutFace": "blood_l",
+   "priority": 2.2,
+   "center": [
+    0.079,
+    0.35,
+    -0.0051
+   ],
+   "radius": 0.044,
+   "tris": 6340
+  },
+  {
+   "id": "h_rv",
+   "name": "Right ventricle (cavity)",
+   "system": "d_heart",
+   "node": "dog_rv",
+   "color": "#4f6fb5",
+   "mesh": "h_rv",
+   "parent": "heart",
+   "cutFace": "blood_r",
+   "priority": 2.2,
+   "center": [
+    0.093,
+    0.3589,
+    0.022
+   ],
+   "radius": 0.0399,
+   "tris": 2664
+  },
+  {
+   "id": "h_la",
+   "name": "Left atrium (cavity)",
+   "system": "d_heart",
+   "node": "dog_la",
+   "color": "#e0463c",
+   "mesh": "h_la",
+   "parent": "heart",
+   "cutFace": "blood_l",
+   "priority": 2.2,
+   "center": [
+    0.11,
+    0.406,
+    -0.014
+   ],
+   "radius": 0.0149,
+   "tris": 1632
+  },
+  {
+   "id": "h_ra",
+   "name": "Right atrium (cavity)",
+   "system": "d_heart",
+   "node": "dog_ra",
+   "color": "#4f6fb5",
+   "mesh": "h_ra",
+   "parent": "heart",
+   "cutFace": "blood_r",
+   "priority": 2.2,
+   "center": [
+    0.114,
+    0.402,
+    0.024
+   ],
+   "radius": 0.0149,
+   "tris": 1584
+  },
+  {
+   "id": "h_valves",
+   "name": "Heart valves",
+   "system": "d_heart",
+   "node": "dog_valves",
+   "color": "#f1ecd9",
+   "mesh": "h_valves",
+   "parent": "heart",
+   "solid": false,
+   "double": true,
+   "priority": 2.3,
+   "center": [
+    0.0955,
+    0.3895,
+    0.007
+   ],
+   "radius": 0.0284,
+   "tris": 240
+  },
+  {
+   "id": "eye_sclera",
+   "name": "Sclera (white of the eye)",
+   "system": "d_eye",
+   "node": "dog_sclera",
+   "color": "#d6c9ae",
+   "mesh": "eye_sclera",
+   "solid": false,
+   "double": true,
+   "priority": 2,
+   "parent": "eyes",
+   "cutFace": "organ",
+   "opacity_max": 1,
+   "noink": true,
+   "center": [
+    0.4136,
+    0.634,
+    0
+   ],
+   "radius": 0.0558,
+   "tris": 1728
+  },
+  {
+   "id": "eye_choroid",
+   "name": "Choroid (dark layer)",
+   "system": "d_eye",
+   "node": "dog_choroid",
+   "color": "#2a201c",
+   "mesh": "eye_choroid",
+   "solid": false,
+   "double": true,
+   "priority": 2,
+   "parent": "eyes",
+   "cutFace": "organ",
+   "opacity_max": 1,
+   "noink": true,
+   "center": [
+    0.4122,
+    0.6287,
+    0
+   ],
+   "radius": 0.0548,
+   "tris": 1008
+  },
+  {
+   "id": "eye_tapetum",
+   "name": "Tapetum lucidum",
+   "system": "d_eye",
+   "node": "dog_tapetum",
+   "color": "#3fae6a",
+   "mesh": "eye_tapetum",
+   "solid": false,
+   "double": true,
+   "priority": 2.2,
+   "parent": "eyes",
+   "cutFace": "organ",
+   "opacity_max": 1,
+   "noink": true,
+   "center": [
+    0.4115,
+    0.6392,
+    0
+   ],
+   "radius": 0.0539,
+   "tris": 1008
+  },
+  {
+   "id": "eye_retina",
+   "name": "Retina",
+   "system": "d_eye",
+   "node": "dog_retina",
+   "color": "#c4585a",
+   "mesh": "eye_retina",
+   "solid": false,
+   "double": true,
+   "priority": 2,
+   "parent": "eyes",
+   "cutFace": "organ",
+   "opacity_max": 1,
+   "noink": true,
+   "center": [
+    0.4139,
+    0.634,
+    0
+   ],
+   "radius": 0.0553,
+   "tris": 1728
+  },
+  {
+   "id": "eye_vitreous",
+   "name": "Vitreous body",
+   "system": "d_eye",
+   "node": "dog_vitreous",
+   "color": "#8db6d6",
+   "mesh": "eye_vitreous",
+   "solid": true,
+   "double": true,
+   "priority": 2,
+   "parent": "eyes",
+   "cutFace": "organ",
+   "opacity_max": 0.45,
+   "noink": true,
+   "center": [
+    0.416,
+    0.634,
+    0
+   ],
+   "radius": 0.0547,
+   "tris": 2760
+  },
+  {
+   "id": "eye_lens",
+   "name": "Lens",
+   "system": "d_eye",
+   "node": "dog_lens",
+   "color": "#e9c860",
+   "mesh": "eye_lens",
+   "solid": true,
+   "double": true,
+   "priority": 2,
+   "parent": "eyes",
+   "cutFace": "bone",
+   "opacity_max": 1,
+   "noink": false,
+   "center": [
+    0.4184,
+    0.634,
+    0
+   ],
+   "radius": 0.0511,
+   "tris": 1184
+  },
+  {
+   "id": "eye_cornea",
+   "name": "Cornea",
+   "system": "d_eye",
+   "node": "dog_cornea",
+   "color": "#dfeef5",
+   "mesh": "eye_cornea",
+   "solid": false,
+   "double": true,
+   "priority": 2,
+   "parent": "eyes",
+   "cutFace": "organ",
+   "opacity_max": 0.35,
+   "noink": true,
+   "center": [
+    0.4243,
+    0.634,
+    0
+   ],
+   "radius": 0.0542,
+   "tris": 240
+  },
+  {
+   "id": "eye_iris",
+   "name": "Iris and pupil",
+   "system": "d_eye",
+   "node": "dog_iris",
+   "color": "#8a5a2b",
+   "mesh": "eye_iris",
+   "solid": false,
+   "double": true,
+   "priority": 2,
+   "parent": "eyes",
+   "cutFace": "organ",
+   "opacity_max": 1,
+   "noink": true,
+   "center": [
+    0.4221,
+    0.634,
+    0
+   ],
+   "radius": 0.0535,
+   "tris": 88
+  },
+  {
+   "id": "turb_olf",
+   "name": "Ethmoturbinates (smell lining)",
+   "system": "d_nose",
+   "node": "dog_turb_olf",
+   "color": "#e3a58e",
+   "instances": "turb_olf",
+   "double": true,
+   "parent": "skull",
+   "priority": 2.2,
+   "deeper": {
+    "type": "tissue2",
+    "id": "dog_olfactory_epithelium",
+    "D": 0.00022,
+    "button": "Look inside the smell lining"
+   },
+   "center": [
+    0.4324,
+    0.5923,
+    0.0002
+   ],
+   "radius": 0.0344,
+   "count": 28,
+   "tris": 3696
+  },
+  {
+   "id": "turb_resp",
+   "name": "Maxilloturbinates (airway lining)",
+   "system": "d_nose",
+   "node": "dog_turb_resp",
+   "color": "#d9c9ce",
+   "instances": "turb_resp",
+   "double": true,
+   "parent": "skull",
+   "priority": 2.2,
+   "center": [
+    0.4837,
+    0.593,
+    -0.0001
+   ],
+   "radius": 0.0473,
+   "count": 18,
+   "tris": 2376
+  },
+  {
+   "id": "ear_canal",
+   "name": "Ear canal",
+   "system": "d_ear",
+   "node": "dog_ear_canal",
+   "color": "#e8b3a0",
+   "mesh": "ear_canal",
+   "solid": false,
+   "double": true,
+   "parent": "skull",
+   "priority": 2.2,
+   "center": [
+    0.3594,
+    0.6291,
+    0
+   ],
+   "radius": 0.0734,
+   "tris": 760
+  },
+  {
+   "id": "ear_drum",
+   "name": "Eardrum",
+   "system": "d_ear",
+   "node": "dog_eardrum",
+   "color": "#f4e3d0",
+   "mesh": "ear_drum",
+   "solid": false,
+   "double": true,
+   "parent": "skull",
+   "priority": 2.2,
+   "center": [
+    0.355,
+    0.602,
+    0
+   ],
+   "radius": 0.0434,
+   "tris": 56
+  },
+  {
+   "id": "ear_bulla",
+   "name": "Middle ear (bulla)",
+   "system": "d_ear",
+   "node": "dog_bulla",
+   "color": "#d8ccb0",
+   "mesh": "ear_bulla",
+   "solid": false,
+   "double": true,
+   "parent": "skull",
+   "priority": 2.2,
+   "center": [
+    0.354,
+    0.596,
+    0
+   ],
+   "radius": 0.0466,
+   "tris": 2896
+  },
+  {
+   "id": "ear_cochlea",
+   "name": "Cochlea",
+   "system": "d_ear",
+   "node": "dog_cochlea",
+   "color": "#9cc1d9",
+   "mesh": "ear_cochlea",
+   "solid": false,
+   "double": true,
+   "parent": "skull",
+   "priority": 2.2,
+   "center": [
+    0.3544,
+    0.6095,
+    0.0004
+   ],
+   "radius": 0.0343,
+   "tris": 1220
+  },
+  {
+   "id": "ear_canals",
+   "name": "Balance canals",
+   "system": "d_ear",
+   "node": "dog_cochlea",
+   "color": "#7fa6c4",
+   "mesh": "ear_canals",
+   "solid": false,
+   "double": true,
+   "parent": "skull",
+   "priority": 2.2,
+   "center": [
+    0.3498,
+    0.609,
+    0
+   ],
+   "radius": 0.0247,
+   "tris": 1860
+  }
+ ],
+ "stats": {
+  "parts": 132,
+  "uniqueMeshTris": 373864,
+  "nearTris": 68390,
+  "midTris": 50428,
+  "farTris": 50428
+ }
+}

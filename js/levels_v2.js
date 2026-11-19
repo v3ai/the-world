@@ -810,20 +810,6 @@ function makeHuman() {
   });
   return { h, arms };
 }
-function makeDog() {
-  const d = new THREE.Group(); const fur = smat(0xb5793a, { roughness: .9 }), light = smat(0xf1e3cf, { roughness: .9 }), dark = smat(0x1a1a1a);
-  const add = (geo, mat, x, y, z, p = d) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = true; p.add(m); return m; };
-  add(new THREE.SphereGeometry(1, 20, 14), fur, 0, .42, 0).scale.set(.38, .19, .17);
-  add(new THREE.SphereGeometry(1, 16, 12), light, .12, .38, 0).scale.set(.2, .13, .14);
-  add(new THREE.SphereGeometry(.15, 18, 14), fur, .4, .62, 0);
-  add(new THREE.SphereGeometry(1, 12, 10), light, .53, .58, 0).scale.set(.1, .065, .075);
-  add(new THREE.SphereGeometry(.03, 8, 6), dark, .63, .6, 0);
-  [-1, 1].forEach(s => { add(new THREE.SphereGeometry(1, 10, 8), smat(0x7a4d22, { roughness: .9 }), .36, .7, s * .11).scale.set(.04, .09, .05); add(new THREE.SphereGeometry(.02, 6, 4), dark, .51, .67, s * .06); });
-  [[.24, .09], [.24, -.09], [-.24, .09], [-.24, -.09]].forEach(([x, z]) => add(new THREE.CylinderGeometry(.04, .035, .32, 8), fur, x, .16, z));
-  const tail = new THREE.Group(); tail.position.set(-.36, .48, 0); d.add(tail);
-  add(new THREE.CylinderGeometry(.025, .015, .26, 8), fur, 0, .12, 0, tail); tail.rotation.z = .7;
-  return { d, tail };
-}
 function makeTree(r, s = 1) {
   const t = new THREE.Group();
   const trunk = new THREE.Mesh(new THREE.CylinderGeometry(.16, .28, 2.6, 8), smat(0x6b4a2b, { roughness: .95 })); trunk.position.y = 1.3; trunk.castShadow = true; t.add(trunk);
@@ -869,8 +855,7 @@ BUILD.life = (c) => {
   // human
   const { h: human, arms } = makeHuman(); human.userData = { id: 'human' }; g.add(human); c.pickables.push(human);
   c.addLabel(human, 'You', { offset: new V3(0, 2.05, 0), cls: 'you' });
-  const { d: dog, tail } = makeDog(); dog.position.set(1.25, 0, 1.0); dog.rotation.y = Math.atan2(1.0, -1.25) + .2; dog.userData = { id: 'dog' }; g.add(dog); c.pickables.push(dog);
-  c.addLabel(dog, 'Dog', { offset: new V3(0, .95, 0) });
+  // the dog is a thing built from data (data/things/dog), placed by data/things/index.json
   // trees: the English oaks are things built from data (data/things/oak, placed by data/things/index.json), not made here
   c.parts = { arms, human, sky, sun, sunHit, sg, ground, grass: gm };
   // pond
@@ -930,7 +915,6 @@ BUILD.life = (c) => {
     arms[1].fore.rotation.z = wave ? Math.sin(t * 9) * .35 : lerp(arms[1].fore.rotation.z, 0, dt * 5);
     arms[0].piv.rotation.z = -.12 - Math.sin(t * 1.3) * .02;
     human.scale.y = 1 + Math.sin(t * 2) * .006;
-    tail.rotation.x = Math.sin(t * 14) * .5;
     const bt = t * 1.4; bee.position.set(2.6 + Math.sin(bt) * .7, .55 + Math.sin(bt * 3) * .12, 2.6 + Math.sin(bt * 2) * .5);
     bee.rotation.y = -Math.atan2(Math.cos(bt * 2) * 1.0, Math.cos(bt) * .7);
     wings.forEach((w, i) => w.rotation.x = Math.sin(t * 60) * .6 * (i ? 1 : -1));
