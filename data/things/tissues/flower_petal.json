@@ -1,0 +1,254 @@
+{
+ "id": "flower_petal",
+ "title": "Inside a buttercup petal",
+ "node": "rn_gloss",
+ "blurb": "A slice through a petal, about 0.18 mm thick, with every layer at its published thickness. The shiny top skin is the thin flat sheet at the top. Drag to turn it. Click a layer.",
+ "note": "Layer thicknesses are from the optical model of van der Kooi and colleagues (2017): upper epidermis 2.7 micrometres (measured in R. acris), starch layer 38, mesophyll 100, lower epidermis 40. The air gap is drawn 4 micrometres and in life it varies. Cell widths, the size and number of starch grains and the cell layout are illustrative, not measured.",
+ "bg": "#f3efe6",
+ "center": [
+  0,
+  92,
+  0
+ ],
+ "D_um": 300,
+ "labels": [
+  {
+   "text": "Flat upper skin with yellow pigment: 2.7 \u00b5m (the mirror)",
+   "at": [
+    -300,
+    186,
+    40
+   ],
+   "pop": "epi_top"
+  },
+  {
+   "text": "Air gap",
+   "at": [
+    -300,
+    180,
+    40
+   ],
+   "pop": "airgap"
+  },
+  {
+   "text": "Starch layer: 38 \u00b5m (scatters light)",
+   "at": [
+    -300,
+    159,
+    40
+   ],
+   "pop": "starch_cell"
+  },
+  {
+   "text": "Spongy middle: 100 \u00b5m",
+   "at": [
+    -300,
+    90,
+    40
+   ],
+   "pop": "meso"
+  },
+  {
+   "text": "Lower skin: 40 \u00b5m (not glossy)",
+   "at": [
+    -300,
+    20,
+    40
+   ],
+   "pop": "epi_bottom"
+  }
+ ],
+ "populations": [
+  {
+   "id": "epi_top",
+   "name": "Upper epidermis cell (pigment, mirror)",
+   "node": "rn_petal_epidermis",
+   "shape": "rbox",
+   "size": [
+    25,
+    2.7,
+    25
+   ],
+   "color": "#f6c40b",
+   "opacity": 0.95,
+   "ink": 1,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -250,
+     182,
+     -25
+    ],
+    "n": [
+     20,
+     1,
+     2
+    ],
+    "step": [
+     25.6,
+     0,
+     25.6
+    ]
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "beta_carotene",
+    "name": "Beta-carotene, an example of the carotenoid class that colours the petal"
+   }
+  },
+  {
+   "id": "airgap",
+   "name": "Air gap under the upper skin",
+   "node": "rn_gloss",
+   "shape": "rbox",
+   "size": [
+    520,
+    4,
+    60
+   ],
+   "color": "#ffffff",
+   "opacity": 0.35,
+   "ink": 0,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       180,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "starch_cell",
+   "name": "Starch-layer cell",
+   "node": "rn_starch_layer",
+   "shape": "rbox",
+   "size": [
+    22,
+    38,
+    22
+   ],
+   "color": "#fbf2c7",
+   "opacity": 0.5,
+   "ink": 1,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -250,
+     159,
+     -22
+    ],
+    "n": [
+     22,
+     1,
+     2
+    ],
+    "step": [
+     23,
+     0,
+     23
+    ],
+    "jitter": 0.03
+   }
+  },
+  {
+   "id": "starch_grain",
+   "name": "Starch grain",
+   "node": "rn_starch",
+   "shape": "ellipsoid",
+   "size": [
+    5,
+    4,
+    5
+   ],
+   "color": "#ffffff",
+   "opacity": 1,
+   "ink": 1,
+   "arrange": {
+    "kind": "inside",
+    "of": "starch_cell",
+    "per": 5,
+    "margin": 0.8,
+    "seed": 21
+   },
+   "deeper": {
+    "type": "mol",
+    "mol": "glucose_alpha",
+    "name": "Alpha-glucose, the unit starch is built from"
+   }
+  },
+  {
+   "id": "meso",
+   "name": "Mesophyll cell",
+   "node": "rn_petal_mesophyll",
+   "shape": "ellipsoid",
+   "size": [
+    30,
+    20,
+    26
+   ],
+   "color": "#f3e7a0",
+   "opacity": 0.5,
+   "ink": 1,
+   "arrange": {
+    "kind": "random",
+    "n": 52,
+    "min": [
+     -250,
+     44,
+     -28
+    ],
+    "max": [
+     250,
+     136,
+     28
+    ],
+    "gap": 4,
+    "seed": 5
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "epi_bottom",
+   "name": "Lower epidermis cell (convex)",
+   "node": "rn_petal_mesophyll",
+   "shape": "ellipsoid",
+   "size": [
+    26,
+    40,
+    26
+   ],
+   "color": "#f0dc78",
+   "opacity": 0.6,
+   "ink": 1,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -250,
+     20,
+     -26
+    ],
+    "n": [
+     19,
+     1,
+     2
+    ],
+    "step": [
+     27,
+     0,
+     27
+    ],
+    "jitter": 0.03
+   },
+   "deeper": {
+    "type": "cell"
+   }
+  }
+ ]
+}

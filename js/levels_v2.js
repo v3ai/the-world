@@ -878,18 +878,6 @@ BUILD.life = (c) => {
   pond.rotation.x = -Math.PI / 2; pond.position.set(5, .03, -4); pond.scale.set(3, 2.3, 1); pond.userData = { id: 'pond' }; g.add(pond); c.pickables.push(pond);
   for (let i = 0; i < 22; i++) { const a = i / 22 * TAU; const s = new THREE.Mesh(new THREE.DodecahedronGeometry(.18 + r() * .14, 0), smat(0x8a8a86, { roughness: .9 })); s.position.set(5 + Math.cos(a) * 3.05, .05, -4 + Math.sin(a) * 2.35); s.castShadow = true; g.add(s); }
   c.addLabel(pond, 'Pond', { offset: new V3(0, .5, 0) });
-  // flowers
-  const flowers = new THREE.Group(); flowers.position.set(2.6, 0, 2.6); flowers.userData = { id: 'flower' }; g.add(flowers); c.pickables.push(flowers);
-  const pcols = [0xff6fa8, 0xb07cff, 0xffffff, 0xff5a5a, 0xffa53a];
-  for (let i = 0; i < 16; i++) {
-    const f = new THREE.Group(); f.position.set(gauss(r) * .55, 0, gauss(r) * .55); const hgt = .25 + r() * .18;
-    const st = new THREE.Mesh(new THREE.CylinderGeometry(.012, .012, hgt, 5), smat(0x3f8a2a)); st.position.y = hgt / 2; f.add(st);
-    const pm = smat(pcols[i % 5], { roughness: .6 });
-    for (let k = 0; k < 5; k++) { const p = new THREE.Mesh(new THREE.SphereGeometry(.045, 8, 6), pm); p.scale.y = .35; p.position.set(Math.cos(k / 5 * TAU) * .055, hgt, Math.sin(k / 5 * TAU) * .055); f.add(p); }
-    const ce = new THREE.Mesh(new THREE.SphereGeometry(.03, 8, 6), smat(0xffd23a)); ce.position.y = hgt + .01; f.add(ce);
-    flowers.add(f);
-  }
-  c.addLabel(flowers, 'Flowers', { offset: new V3(0, .8, 0) });
   // bee
   const bee = new THREE.Group(); bee.userData = { id: 'bee', priority: 3 };
   const bb = new THREE.Mesh(new THREE.SphereGeometry(1, 12, 8), smat(0xffc21a)); bb.scale.set(.05, .035, .035); bee.add(bb);
@@ -922,7 +910,7 @@ BUILD.life = (c) => {
   }
   c.addLabel(birds[0].b, 'Bird', { offset: new V3(0, .5, 0) });
   // every clickable park object opens its own card (data/nodes/park_*.json); objects that have no card yet keep the old INFO text
-  { const PN = { pond: 'park_pond', flower: 'park_flower', bee: 'park_bee', mushroom: 'park_mushroom', cloud: 'park_cloud', bird: 'park_bird', sunSky: 'park_sun', air: 'park_sky', ground: 'park_ground' };
+  { const PN = { pond: 'park_pond', bee: 'park_bee', mushroom: 'park_mushroom', cloud: 'park_cloud', bird: 'park_bird', sunSky: 'park_sun', air: 'park_sky', ground: 'park_ground' };
     c.pickables.forEach(o => o.traverse(m => { const n = m.userData && PN[m.userData.id]; if (n) m.userData.node = n; })); }
   c.update = (dt, t) => {
     const wave = false;

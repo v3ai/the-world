@@ -1,0 +1,1312 @@
+{
+ "id": "flower",
+ "title": "Meadow buttercup",
+ "label": "Meadow buttercup",
+ "scientific": "Ranunculus acris",
+ "node": "rn_acris",
+ "main_part": "stems",
+ "label_first_only": true,
+ "blurb": "A meadow buttercup plant. Click a leaf, a stem, a bud, a petal, a stamen or a fruit. The layer buttons show one flower, a flower cut in half, the fruit, and the roots.",
+ "model_note": "A procedural model built from typical measurements of the species, not a scan of one plant. A real plant has more leaves and more flowers; the half flower is drawn at life size, with its cut faces as flat sections.",
+ "size_m": {
+  "height": 0.6,
+  "flower_width": 0.022
+ },
+ "height_m": 0.6,
+ "radius_m": 0.45,
+ "draw_m": 120,
+ "seed": 2031,
+ "systems": [
+  {
+   "id": "leaves",
+   "label": "Leaves"
+  },
+  {
+   "id": "stems",
+   "label": "Stems"
+  },
+  {
+   "id": "flowers",
+   "label": "Flowers"
+  },
+  {
+   "id": "buds",
+   "label": "Buds"
+  },
+  {
+   "id": "fruit",
+   "label": "Fruit"
+  },
+  {
+   "id": "roots",
+   "label": "Roots"
+  },
+  {
+   "id": "soil",
+   "label": "Soil"
+  },
+  {
+   "id": "half",
+   "label": "Half flower"
+  }
+ ],
+ "lod": {
+  "near_m": 3.2,
+  "far_m": 16
+ },
+ "sites": {
+  "open": [
+   [
+    0.1603,
+    0.3931,
+    0.063
+   ],
+   [
+    -0.1446,
+    0.44,
+    0.0761
+   ],
+   [
+    0.0361,
+    0.5016,
+    0.0919
+   ],
+   [
+    -0.064,
+    0.5455,
+    -0.0448
+   ]
+  ],
+  "bud": [
+   [
+    -0.0065,
+    0.5516,
+    0.1062
+   ],
+   [
+    0.0534,
+    0.5849,
+    -0.0191
+   ]
+  ],
+  "fruit": [
+   [
+    0.0396,
+    0.4774,
+    -0.1048
+   ],
+   [
+    0,
+    0.6,
+    0
+   ]
+  ]
+ },
+ "shadow": {
+  "radius_m": 0.2,
+  "opacity": 0.55
+ },
+ "modes": [
+  {
+   "id": "whole",
+   "label": "Whole plant",
+   "show": {
+    "leaves": 1,
+    "stems": 1,
+    "flowers": 1,
+    "buds": 1,
+    "fruit": 1
+   }
+  },
+  {
+   "id": "flower",
+   "label": "One flower",
+   "show": {
+    "leaves": 0.1,
+    "stems": 0.3,
+    "flowers": 1,
+    "buds": 0.25,
+    "fruit": 0.25
+   }
+  },
+  {
+   "id": "half",
+   "label": "Cut in half",
+   "pivot": "wood",
+   "show": {
+    "half": 1
+   },
+   "hotspots": true,
+   "legend": {
+    "title": "Half a flower, at life size",
+    "items": [
+     {
+      "name": "Petal (cut along its middle)",
+      "color": "#f4c20d",
+      "node": "rn_petal"
+     },
+     {
+      "name": "Sepal",
+      "color": "#8fb64a",
+      "node": "rn_sepal"
+     },
+     {
+      "name": "Stamen: filament and anther",
+      "color": "#e8a416",
+      "node": "rn_stamen"
+     },
+     {
+      "name": "Carpel: ovary, ovule",
+      "color": "#8eb44a",
+      "node": "rn_carpel"
+     },
+     {
+      "name": "Receptacle",
+      "color": "#b9d68a",
+      "node": "rn_receptacle"
+     }
+    ],
+    "note": "The flower is cut down its middle. Parts behind the cut are drawn whole; the cut faces are flat coloured sections. Life size: about 2 cm across. The ovule and the pollen sacs are drawn from typical anatomy, not from one measured flower."
+   }
+  },
+  {
+   "id": "fruit",
+   "label": "Fruit",
+   "show": {
+    "leaves": 0.1,
+    "stems": 0.3,
+    "flowers": 0.15,
+    "buds": 0.15,
+    "fruit": 1
+   }
+  },
+  {
+   "id": "underground",
+   "label": "Underground",
+   "show": {
+    "roots": 1,
+    "soil": 1,
+    "stems": 1,
+    "leaves": 0.1,
+    "flowers": 0.05,
+    "buds": 0.05,
+    "fruit": 0.05
+   },
+   "groundSeeThrough": true,
+   "hotspots": true,
+   "legend": {
+    "title": "Underground",
+    "items": [
+     {
+      "name": "Stock (short thick stem base)",
+      "color": "#a98a5c",
+      "node": "rn_stock"
+     },
+     {
+      "name": "Fibrous roots",
+      "color": "#d6c28f",
+      "node": "rn_roots"
+     }
+    ],
+    "note": "The soil is drawn see-through. The root system is a schematic of a fibrous system: the number and course of real roots differ from plant to plant."
+   }
+  }
+ ],
+ "hotspots": [
+  {
+   "id": "hs_half",
+   "node": "rn_receptacle",
+   "at": [
+    0,
+    0.7212,
+    0.0012
+   ],
+   "label": "Receptacle: where all the parts are attached",
+   "r": 0.0006,
+   "modes": [
+    "wood",
+    "half"
+   ]
+  },
+  {
+   "id": "hs_anther",
+   "node": "rn_anther",
+   "at": [
+    -0.00568,
+    0.72413,
+    0.0006
+   ],
+   "label": "Anther: pollen sacs (click it, then look inside)",
+   "r": 0.0003,
+   "modes": [
+    "wood",
+    "half"
+   ]
+  },
+  {
+   "id": "hs_carpel",
+   "node": "rn_ovule",
+   "at": [
+    0.00221,
+    0.72386,
+    0.0004
+   ],
+   "label": "Carpel: ovary with one ovule (click it, then look inside)",
+   "r": 0.0003,
+   "modes": [
+    "wood",
+    "half"
+   ]
+  },
+  {
+   "id": "hs_nectary",
+   "node": "rn_nectary",
+   "at": [
+    0.00264,
+    0.72149,
+    0.0007
+   ],
+   "label": "Nectary: pit and scale at the petal base",
+   "r": 0.0004,
+   "modes": [
+    "wood",
+    "half"
+   ]
+  },
+  {
+   "id": "hs_petal",
+   "node": "rn_gloss",
+   "at": [
+    0.00796,
+    0.72413,
+    0.0008
+   ],
+   "label": "Petal: why it shines (click it, then look inside)",
+   "r": 0.0006,
+   "modes": [
+    "wood",
+    "half"
+   ]
+  },
+  {
+   "id": "hs_stock",
+   "node": "rn_stock",
+   "at": [
+    0,
+    -0.015,
+    0
+   ],
+   "label": "Stock: the short, thick base of the stem",
+   "r": 0.012,
+   "modes": [
+    "underground"
+   ]
+  },
+  {
+   "id": "hs_fibrous",
+   "node": "rn_roots",
+   "at": [
+    -0.066,
+    -0.134,
+    -0.082
+   ],
+   "label": "Fibrous root",
+   "r": 0.012,
+   "modes": [
+    "underground"
+   ]
+  }
+ ],
+ "parts": [
+  {
+   "id": "stems",
+   "name": "Stem and branches",
+   "system": "stems",
+   "node": "rn_stem",
+   "color": "#86a24c",
+   "mesh": "stems",
+   "priority": 1.5,
+   "solid": false,
+   "noink": true,
+   "center": [
+    0.0078,
+    0.3059,
+    0.0009
+   ],
+   "radius": 0.2943,
+   "tris": 684
+  },
+  {
+   "id": "hairs",
+   "name": "Stem hairs",
+   "system": "stems",
+   "node": "rn_hairs",
+   "color": "#e9edd2",
+   "instances": "hairs",
+   "lod": "near",
+   "priority": 1.8,
+   "tint": 0.1,
+   "center": [
+    0.0047,
+    0.4062,
+    0.0051
+   ],
+   "radius": 0.3817,
+   "count": 402,
+   "tris": 2412
+  },
+  {
+   "id": "petioles",
+   "name": "Leaf stalks",
+   "system": "leaves",
+   "node": "rn_basal_leaf",
+   "color": "#7a9a44",
+   "mesh": "petioles",
+   "priority": 1.6,
+   "solid": false,
+   "noink": true,
+   "center": [
+    0.0024,
+    0.1188,
+    0.0247
+   ],
+   "radius": 0.1855,
+   "tris": 600
+  },
+  {
+   "id": "basal_leaves",
+   "name": "Basal leaf",
+   "system": "leaves",
+   "node": "rn_basal_leaf",
+   "color": "#4f8f2d",
+   "mesh": "basal_leaves",
+   "lod": "near",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "flower_leaf",
+    "D": 0.0004,
+    "button": "Look at the leaf surface"
+   },
+   "center": [
+    0.0014,
+    0.1235,
+    0.02
+   ],
+   "radius": 0.238,
+   "tris": 4680
+  },
+  {
+   "id": "basal_leaves_mid",
+   "name": "Basal leaf",
+   "system": "leaves",
+   "node": "rn_basal_leaf",
+   "color": "#4f8f2d",
+   "mesh": "basal_leaves_mid",
+   "lod": "mid+far",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "center": [
+    0.0013,
+    0.1233,
+    0.0193
+   ],
+   "radius": 0.2418,
+   "tris": 1080
+  },
+  {
+   "id": "stem_leaves",
+   "name": "Stem leaf",
+   "system": "leaves",
+   "node": "rn_stem_leaf",
+   "color": "#5a9a33",
+   "mesh": "stem_leaves",
+   "lod": "near",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "flower_leaf",
+    "D": 0.0004,
+    "button": "Look at the leaf surface"
+   },
+   "center": [
+    0.0054,
+    0.304,
+    0.0077
+   ],
+   "radius": 0.2405,
+   "tris": 2896
+  },
+  {
+   "id": "stem_leaves_mid",
+   "name": "Stem leaf",
+   "system": "leaves",
+   "node": "rn_stem_leaf",
+   "color": "#5a9a33",
+   "mesh": "stem_leaves_mid",
+   "lod": "mid+far",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "center": [
+    0.0056,
+    0.304,
+    0.0079
+   ],
+   "radius": 0.2407,
+   "tris": 744
+  },
+  {
+   "id": "sepals",
+   "name": "Sepal",
+   "system": "flowers",
+   "node": "rn_sepal",
+   "color": "#9cbc50",
+   "instances": "sepals",
+   "lod": "near",
+   "tint": 0.12,
+   "double": true,
+   "priority": 1.9,
+   "center": [
+    -0.003,
+    0.47,
+    0.0465
+   ],
+   "radius": 0.1864,
+   "count": 20,
+   "tris": 960
+  },
+  {
+   "id": "petals",
+   "name": "Petal",
+   "system": "flowers",
+   "node": "rn_petal",
+   "color": "#f6c40b",
+   "instances": "petals",
+   "lod": "near",
+   "tint": 0.08,
+   "double": true,
+   "priority": 1.9,
+   "deeper": {
+    "type": "tissue2",
+    "id": "flower_petal",
+    "D": 0.0003,
+    "button": "Look inside the petal"
+   },
+   "center": [
+    -0.0031,
+    0.4703,
+    0.0466
+   ],
+   "radius": 0.1891,
+   "count": 20,
+   "tris": 3840
+  },
+  {
+   "id": "nectary_scales",
+   "name": "Nectary scale",
+   "system": "flowers",
+   "node": "rn_nectary",
+   "color": "#b9cf6a",
+   "instances": "scales",
+   "lod": "near",
+   "double": true,
+   "priority": 2.1,
+   "center": [
+    -0.0031,
+    0.4711,
+    0.0467
+   ],
+   "radius": 0.1847,
+   "count": 20,
+   "tris": 640
+  },
+  {
+   "id": "nectary_pits",
+   "name": "Nectary pit",
+   "system": "flowers",
+   "node": "rn_nectary",
+   "color": "#7f9f33",
+   "instances": "pits",
+   "lod": "near",
+   "double": true,
+   "priority": 2.1,
+   "center": [
+    -0.0031,
+    0.471,
+    0.0467
+   ],
+   "radius": 0.1848,
+   "count": 20,
+   "tris": 720
+  },
+  {
+   "id": "filaments",
+   "name": "Filament",
+   "system": "flowers",
+   "node": "rn_filament",
+   "color": "#ece08c",
+   "instances": "filaments",
+   "lod": "near",
+   "priority": 2,
+   "double": true,
+   "center": [
+    -0.0031,
+    0.4712,
+    0.0467
+   ],
+   "radius": 0.186,
+   "count": 200,
+   "tris": 1600
+  },
+  {
+   "id": "anthers",
+   "name": "Anther",
+   "system": "flowers",
+   "node": "rn_anther",
+   "color": "#e59d14",
+   "instances": "anthers",
+   "lod": "near",
+   "tint": 0.1,
+   "priority": 2,
+   "double": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "flower_anther",
+    "D": 0.0016,
+    "button": "Look inside the anther"
+   },
+   "center": [
+    -0.0032,
+    0.474,
+    0.047
+   ],
+   "radius": 0.1892,
+   "count": 200,
+   "tris": 9600
+  },
+  {
+   "id": "ovaries",
+   "name": "Carpel (ovary)",
+   "system": "flowers",
+   "node": "rn_carpel",
+   "color": "#8ab34a",
+   "instances": "ovaries",
+   "lod": "near",
+   "tint": 0.08,
+   "priority": 2,
+   "double": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "flower_carpel",
+    "D": 0.0016,
+    "button": "Look inside the carpel"
+   },
+   "center": [
+    -0.0032,
+    0.4731,
+    0.0469
+   ],
+   "radius": 0.1853,
+   "count": 100,
+   "tris": 8400
+  },
+  {
+   "id": "styles",
+   "name": "Style and stigma",
+   "system": "flowers",
+   "node": "rn_style_stigma",
+   "color": "#c7d77a",
+   "instances": "styles",
+   "lod": "near",
+   "priority": 2.1,
+   "double": true,
+   "center": [
+    -0.0033,
+    0.4743,
+    0.0471
+   ],
+   "radius": 0.186,
+   "count": 100,
+   "tris": 2400
+  },
+  {
+   "id": "receptacles",
+   "name": "Receptacle",
+   "system": "flowers",
+   "node": "rn_receptacle",
+   "color": "#a9c870",
+   "instances": "receptacles",
+   "lod": "near",
+   "priority": 1.6,
+   "double": true,
+   "center": [
+    -0.003,
+    0.47,
+    0.0465
+   ],
+   "radius": 0.1842,
+   "count": 4,
+   "tris": 720
+  },
+  {
+   "id": "flower_discs",
+   "name": "Open flower",
+   "system": "flowers",
+   "node": "rn_flower",
+   "color": "#f6c40b",
+   "instances": "discs",
+   "lod": "mid+far",
+   "priority": 1.8,
+   "double": true,
+   "center": [
+    -0.003,
+    0.47,
+    0.0465
+   ],
+   "radius": 0.1934,
+   "count": 4,
+   "tris": 80
+  },
+  {
+   "id": "buds",
+   "name": "Flower bud",
+   "system": "buds",
+   "node": "rn_bud",
+   "color": "#93b24d",
+   "instances": "buds",
+   "tint": 0.1,
+   "priority": 1.8,
+   "double": true,
+   "center": [
+    0.0234,
+    0.5683,
+    0.0436
+   ],
+   "radius": 0.0768,
+   "count": 2,
+   "tris": 192
+  },
+  {
+   "id": "fruit_recs",
+   "name": "Fruiting head (receptacle)",
+   "system": "fruit",
+   "node": "rn_fruit",
+   "color": "#a2bb62",
+   "instances": "fruit_recs",
+   "lod": "near",
+   "priority": 1.7,
+   "double": true,
+   "center": [
+    0.0198,
+    0.5387,
+    -0.0524
+   ],
+   "radius": 0.0871,
+   "count": 2,
+   "tris": 160
+  },
+  {
+   "id": "achenes",
+   "name": "Achene",
+   "system": "fruit",
+   "node": "rn_achene",
+   "color": "#9aa43c",
+   "instances": "achenes",
+   "lod": "near",
+   "tint": 0.15,
+   "priority": 1.9,
+   "double": true,
+   "center": [
+    0.0201,
+    0.5433,
+    -0.0531
+   ],
+   "radius": 0.0874,
+   "count": 48,
+   "tris": 2880
+  },
+  {
+   "id": "beaks",
+   "name": "Achene beak",
+   "system": "fruit",
+   "node": "rn_achene",
+   "color": "#8a9334",
+   "instances": "beaks",
+   "lod": "near",
+   "priority": 1.9,
+   "double": true,
+   "center": [
+    0.0203,
+    0.5456,
+    -0.0535
+   ],
+   "radius": 0.0884,
+   "count": 48,
+   "tris": 576
+  },
+  {
+   "id": "fruit_balls",
+   "name": "Fruiting head",
+   "system": "fruit",
+   "node": "rn_fruit",
+   "color": "#96a548",
+   "instances": "fruit_balls",
+   "lod": "mid+far",
+   "priority": 1.7,
+   "double": true,
+   "center": [
+    0.0201,
+    0.5439,
+    -0.0532
+   ],
+   "radius": 0.0896,
+   "count": 2,
+   "tris": 80
+  },
+  {
+   "id": "stock",
+   "name": "Stock",
+   "system": "roots",
+   "node": "rn_stock",
+   "color": "#a98a5c",
+   "mesh": "stock",
+   "priority": 1.6,
+   "solid": false,
+   "noink": true,
+   "center": [
+    0.0003,
+    -0.0088,
+    0
+   ],
+   "radius": 0.0231,
+   "tris": 84
+  },
+  {
+   "id": "fibrous_roots",
+   "name": "Fibrous roots",
+   "system": "roots",
+   "node": "rn_roots",
+   "color": "#d6c28f",
+   "mesh": "fibrous_roots",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "center": [
+    -0.0037,
+    -0.1184,
+    -0.0322
+   ],
+   "radius": 0.1685,
+   "tris": 2400
+  },
+  {
+   "id": "lateral_roots",
+   "name": "Fine lateral roots",
+   "system": "roots",
+   "node": "rn_roots",
+   "color": "#e4d6ae",
+   "mesh": "lateral_roots",
+   "priority": 1.8,
+   "solid": false,
+   "noink": true,
+   "center": [
+    -0.0086,
+    -0.1044,
+    -0.0262
+   ],
+   "radius": 0.1563,
+   "tris": 1080
+  },
+  {
+   "id": "soil",
+   "name": "Soil",
+   "system": "soil",
+   "node": "bio_plant_nutrition_soil",
+   "color": "#6b4c32",
+   "mesh": "soil",
+   "priority": 0.5,
+   "solid": false,
+   "noink": true,
+   "opacity_max": 0.32,
+   "center": [
+    0,
+    -0.17,
+    0
+   ],
+   "radius": 0.3448,
+   "tris": 144
+  },
+  {
+   "id": "h_receptacle",
+   "name": "Receptacle (back half)",
+   "system": "half",
+   "node": "rn_receptacle",
+   "color": "#a9c870",
+   "mesh": "h_receptacle",
+   "pivot": "wood",
+   "solid": false,
+   "priority": 1.6,
+   "noink": true,
+   "center": [
+    0,
+    0.7216,
+    -0.001
+   ],
+   "radius": 0.0031,
+   "tris": 336
+  },
+  {
+   "id": "s_receptacle",
+   "name": "Receptacle (cut face)",
+   "system": "half",
+   "node": "rn_receptacle",
+   "color": "#b5d47c",
+   "mesh": "s_receptacle",
+   "pivot": "wood",
+   "solid": false,
+   "priority": 1.7,
+   "noink": true,
+   "center": [
+    0,
+    0.7216,
+    0
+   ],
+   "radius": 0.0029,
+   "tris": 96
+  },
+  {
+   "id": "h_pedicel",
+   "name": "Flower stalk (back half)",
+   "system": "half",
+   "node": "rn_stem",
+   "color": "#86a24c",
+   "mesh": "h_pedicel",
+   "pivot": "wood",
+   "solid": false,
+   "priority": 1.6,
+   "noink": true,
+   "center": [
+    0,
+    0.7136,
+    -0.0004
+   ],
+   "radius": 0.0057,
+   "tris": 16
+  },
+  {
+   "id": "s_pedicel",
+   "name": "Flower stalk (cut face)",
+   "system": "half",
+   "node": "rn_stem",
+   "color": "#dfe9b8",
+   "mesh": "s_pedicel",
+   "pivot": "wood",
+   "solid": false,
+   "priority": 1.7,
+   "noink": true,
+   "center": [
+    0,
+    0.7136,
+    0
+   ],
+   "radius": 0.0057,
+   "tris": 12
+  },
+  {
+   "id": "h_petal0",
+   "name": "Petal (cut along its middle)",
+   "system": "half",
+   "node": "rn_petal",
+   "color": "#f6c40b",
+   "mesh": "h_petal0",
+   "pivot": "wood",
+   "solid": false,
+   "priority": 1.9,
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "flower_petal",
+    "D": 0.0003,
+    "button": "Look inside the petal"
+   },
+   "center": [
+    0.0061,
+    0.7247,
+    0
+   ],
+   "radius": 0.0068,
+   "tris": 96
+  },
+  {
+   "id": "h_sepal0",
+   "name": "Sepal (cut along its middle)",
+   "system": "half",
+   "node": "rn_sepal",
+   "color": "#9cbc50",
+   "mesh": "h_sepal0",
+   "pivot": "wood",
+   "solid": false,
+   "priority": 1.9,
+   "noink": true,
+   "center": [
+    -0.0035,
+    0.7229,
+    0
+   ],
+   "radius": 0.0032,
+   "tris": 24
+  },
+  {
+   "id": "h_petals",
+   "name": "Petal",
+   "system": "half",
+   "node": "rn_petal",
+   "color": "#f6c40b",
+   "instances": "h_petals",
+   "pivot": "wood",
+   "double": true,
+   "priority": 1.8,
+   "deeper": {
+    "type": "tissue2",
+    "id": "flower_petal",
+    "D": 0.0003,
+    "button": "Look inside the petal"
+   },
+   "center": [
+    -0.0005,
+    0.7203,
+    -0.0016
+   ],
+   "radius": 0.0081,
+   "count": 2,
+   "tris": 384
+  },
+  {
+   "id": "h_sepals",
+   "name": "Sepal",
+   "system": "half",
+   "node": "rn_sepal",
+   "color": "#9cbc50",
+   "instances": "h_sepals",
+   "pivot": "wood",
+   "double": true,
+   "priority": 1.8,
+   "center": [
+    0.0005,
+    0.72,
+    -0.0016
+   ],
+   "radius": 0.0044,
+   "count": 2,
+   "tris": 96
+  },
+  {
+   "id": "h_scales",
+   "name": "Nectary scale",
+   "system": "half",
+   "node": "rn_nectary",
+   "color": "#b9cf6a",
+   "instances": "h_scales",
+   "pivot": "wood",
+   "double": true,
+   "priority": 2.1,
+   "center": [
+    0.001,
+    0.7212,
+    -0.001
+   ],
+   "radius": 0.0039,
+   "count": 4,
+   "tris": 128
+  },
+  {
+   "id": "h_pits",
+   "name": "Nectary pit",
+   "system": "half",
+   "node": "rn_nectary",
+   "color": "#7f9f33",
+   "instances": "h_pits",
+   "pivot": "wood",
+   "double": true,
+   "priority": 2.1,
+   "center": [
+    0.0011,
+    0.721,
+    -0.0011
+   ],
+   "radius": 0.0042,
+   "count": 4,
+   "tris": 144
+  },
+  {
+   "id": "h_filaments",
+   "name": "Filament",
+   "system": "half",
+   "node": "rn_filament",
+   "color": "#ece08c",
+   "instances": "h_filaments",
+   "pivot": "wood",
+   "double": true,
+   "priority": 2,
+   "center": [
+    0.0001,
+    0.7213,
+    -0.0015
+   ],
+   "radius": 0.0044,
+   "count": 22,
+   "tris": 176
+  },
+  {
+   "id": "h_anthers",
+   "name": "Anther",
+   "system": "half",
+   "node": "rn_anther",
+   "color": "#e59d14",
+   "instances": "h_anthers",
+   "pivot": "wood",
+   "double": true,
+   "priority": 2,
+   "deeper": {
+    "type": "tissue2",
+    "id": "flower_anther",
+    "D": 0.0016,
+    "button": "Look inside the anther"
+   },
+   "center": [
+    0.0003,
+    0.7244,
+    -0.0032
+   ],
+   "radius": 0.0063,
+   "count": 22,
+   "tris": 1056
+  },
+  {
+   "id": "h_ovaries",
+   "name": "Carpel (ovary)",
+   "system": "half",
+   "node": "rn_carpel",
+   "color": "#8ab34a",
+   "instances": "h_ovaries",
+   "pivot": "wood",
+   "double": true,
+   "priority": 2,
+   "deeper": {
+    "type": "tissue2",
+    "id": "flower_carpel",
+    "D": 0.0016,
+    "button": "Look inside the carpel"
+   },
+   "center": [
+    0.0001,
+    0.7231,
+    -0.0015
+   ],
+   "radius": 0.0022,
+   "count": 6,
+   "tris": 504
+  },
+  {
+   "id": "h_styles",
+   "name": "Style and stigma",
+   "system": "half",
+   "node": "rn_style_stigma",
+   "color": "#c7d77a",
+   "instances": "h_styles",
+   "pivot": "wood",
+   "double": true,
+   "priority": 2.1,
+   "center": [
+    0.0001,
+    0.7243,
+    -0.0021
+   ],
+   "radius": 0.0023,
+   "count": 6,
+   "tris": 144
+  },
+  {
+   "id": "s_filament",
+   "name": "Filament (cut)",
+   "system": "half",
+   "node": "rn_filament",
+   "color": "#f3e9a6",
+   "mesh": "s_filament",
+   "pivot": "wood",
+   "solid": false,
+   "priority": 2.2,
+   "noink": true,
+   "center": [
+    -0.0003,
+    0.7225,
+    0.0002
+   ],
+   "radius": 0.0049,
+   "tris": 56
+  },
+  {
+   "id": "s_anther_wall",
+   "name": "Anther wall (cut)",
+   "system": "half",
+   "node": "rn_anther",
+   "color": "#e59d14",
+   "mesh": "s_anther_wall",
+   "pivot": "wood",
+   "solid": false,
+   "priority": 2.2,
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "flower_anther",
+    "D": 0.0016,
+    "button": "Look inside the anther"
+   },
+   "center": [
+    -0.0004,
+    0.7244,
+    0.0002
+   ],
+   "radius": 0.0061,
+   "tris": 152
+  },
+  {
+   "id": "s_pollen_sacs",
+   "name": "Pollen sacs (cut)",
+   "system": "half",
+   "node": "rn_pollen_sac",
+   "color": "#fbe24a",
+   "mesh": "s_pollen_sacs",
+   "pivot": "wood",
+   "solid": false,
+   "priority": 2.3,
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "flower_anther",
+    "D": 0.0016,
+    "button": "Look inside the anther"
+   },
+   "center": [
+    -0.0004,
+    0.7244,
+    0.0003
+   ],
+   "radius": 0.006,
+   "tris": 240
+  },
+  {
+   "id": "s_carpel_wall",
+   "name": "Carpel wall (cut)",
+   "system": "half",
+   "node": "rn_carpel",
+   "color": "#7aa63c",
+   "mesh": "s_carpel_wall",
+   "pivot": "wood",
+   "solid": false,
+   "priority": 2.2,
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "flower_carpel",
+    "D": 0.0016,
+    "button": "Look inside the carpel"
+   },
+   "center": [
+    -0.0003,
+    0.7244,
+    0.0002
+   ],
+   "radius": 0.0028,
+   "tris": 672
+  },
+  {
+   "id": "s_carpel_cavity",
+   "name": "Ovary cavity (cut)",
+   "system": "half",
+   "node": "rn_carpel",
+   "color": "#d8ecb0",
+   "mesh": "s_carpel_cavity",
+   "pivot": "wood",
+   "solid": false,
+   "priority": 2.3,
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "flower_carpel",
+    "D": 0.0016,
+    "button": "Look inside the carpel"
+   },
+   "center": [
+    -0.0003,
+    0.7241,
+    0.0003
+   ],
+   "radius": 0.0025,
+   "tris": 408
+  },
+  {
+   "id": "s_ovule",
+   "name": "Ovule (cut)",
+   "system": "half",
+   "node": "rn_ovule",
+   "color": "#f1d98a",
+   "mesh": "s_ovule",
+   "pivot": "wood",
+   "solid": false,
+   "priority": 2.4,
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "flower_carpel",
+    "D": 0.0016,
+    "button": "Look inside the carpel"
+   },
+   "center": [
+    -0.0003,
+    0.724,
+    0.0004
+   ],
+   "radius": 0.0024,
+   "tris": 360
+  },
+  {
+   "id": "s_embryosac",
+   "name": "Embryo sac (cut)",
+   "system": "half",
+   "node": "rn_embryo_sac",
+   "color": "#fffdf0",
+   "mesh": "s_embryosac",
+   "pivot": "wood",
+   "solid": false,
+   "priority": 2.5,
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "flower_carpel",
+    "D": 0.0016,
+    "button": "Look inside the carpel"
+   },
+   "center": [
+    -0.0003,
+    0.724,
+    0.0005
+   ],
+   "radius": 0.0023,
+   "tris": 264
+  }
+ ],
+ "stats": {
+  "parts": 47,
+  "uniqueMeshTris": 17124,
+  "nearTris": 43960,
+  "midTris": 3460,
+  "farTris": 3460
+ }
+}

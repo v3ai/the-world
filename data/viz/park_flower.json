@@ -1,0 +1,1296 @@
+{
+ "rn_acris": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "plant height, shortest",
+    "value": 30
+   },
+   {
+    "label": "model plant",
+    "value": 60
+   },
+   {
+    "label": "plant height, tallest",
+    "value": 100
+   }
+  ],
+  "ylabel": "cm",
+  "caption": "Height of the meadow buttercup: floras give about 30 to 100 cm. The model plant is 60 cm, a chosen value within that range."
+ },
+ "rn_stem": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "m",
+    "label": "Main stem: first flower opens and sets fruit",
+    "x": 50,
+    "y": 15
+   },
+   {
+    "id": "b",
+    "label": "Side branches: next flowers open",
+    "x": 25,
+    "y": 50,
+    "color": "green"
+   },
+   {
+    "id": "f",
+    "label": "Forks of the branches: youngest buds",
+    "x": 75,
+    "y": 85,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "m",
+    "to": "b",
+    "label": "branches arise below"
+   },
+   {
+    "from": "b",
+    "to": "f"
+   }
+  ],
+  "flow": false,
+  "caption": "The flowering shoot branches. Flowers of the earlier branching order are older, so a plant shows buds, open flowers and fruit at the same time."
+ },
+ "rn_hairs": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "e",
+    "label": "Epidermis cell",
+    "x": 50,
+    "y": 85
+   },
+   {
+    "id": "h",
+    "label": "Hair (trichome) grows out of it",
+    "x": 50,
+    "y": 50,
+    "color": "green"
+   },
+   {
+    "id": "a",
+    "label": "Still air held near the surface",
+    "x": 80,
+    "y": 30,
+    "color": "blue"
+   }
+  ],
+  "edges": [
+   {
+    "from": "e",
+    "to": "h"
+   },
+   {
+    "from": "h",
+    "to": "a"
+   }
+  ],
+  "flow": false,
+  "caption": "A hair is an outgrowth of one skin cell. A coat of hairs holds a thin layer of still air against the surface."
+ },
+ "rn_basal_leaf": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "segments, fewest (floras)",
+    "value": 3
+   },
+   {
+    "label": "primary lobes in the model",
+    "value": 5
+   },
+   {
+    "label": "segments, most (floras)",
+    "value": 7
+   }
+  ],
+  "ylabel": "segments of the blade",
+  "caption": "Basal blades are described as divided into about 3 to 7 wedge-shaped segments; the model blade has 5 primary lobes, each cut into 3."
+ },
+ "rn_stem_leaf": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "basal leaf blade (model)",
+    "value": 9
+   },
+   {
+    "label": "stem leaf low on stem (model)",
+    "value": 7
+   },
+   {
+    "label": "stem leaf under top branch (model)",
+    "value": 3
+   }
+  ],
+  "ylabel": "cm across (model values)",
+  "caption": "Leaves get smaller up the stem. The sizes shown are the model's chosen values, not measurements."
+ },
+ "rn_flower": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "sepals",
+    "value": 5
+   },
+   {
+    "label": "petals",
+    "value": 5
+   },
+   {
+    "label": "stamens (model)",
+    "value": 50
+   },
+   {
+    "label": "carpels (model)",
+    "value": 25
+   }
+  ],
+  "ylabel": "number of parts",
+  "caption": "Parts of the model flower. Floras give 5 sepals and 5 petals; stamens are reported as about 30 to 70 and carpels as about 15 to 40, and the model picks 50 and 25."
+ },
+ "rn_sepal": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "b",
+    "label": "Bud: sepals enclose the petals",
+    "x": 20,
+    "y": 50
+   },
+   {
+    "id": "o",
+    "label": "Open flower: sepals stand against the petals",
+    "x": 50,
+    "y": 50,
+    "color": "green"
+   },
+   {
+    "id": "a",
+    "label": "Older flower: sepals yellow, then fall",
+    "x": 80,
+    "y": 50,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "b",
+    "to": "o"
+   },
+   {
+    "from": "o",
+    "to": "a"
+   }
+  ],
+  "flow": false,
+  "caption": "The life of a sepal."
+ },
+ "rn_petal": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "upper epidermis",
+    "value": 2.7
+   },
+   {
+    "label": "starch layer",
+    "value": 38
+   },
+   {
+    "label": "mesophyll",
+    "value": 100
+   },
+   {
+    "label": "lower epidermis",
+    "value": 40
+   }
+  ],
+  "ylabel": "micrometres",
+  "caption": "Thickness of the layers of a buttercup petal, as used in the optical model of van der Kooi and colleagues (2017); the upper epidermis value is measured in R. acris. The petal is about 0.18 mm thick in all.",
+  "logy": true
+ },
+ "rn_nectary": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "s",
+    "label": "Sugar made in the leaves",
+    "x": 15,
+    "y": 20,
+    "color": "green"
+   },
+   {
+    "id": "p",
+    "label": "Carried in the phloem",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "n",
+    "label": "Nectary pit at the petal base",
+    "x": 85,
+    "y": 80
+   }
+  ],
+  "edges": [
+   {
+    "from": "s",
+    "to": "p"
+   },
+   {
+    "from": "p",
+    "to": "n",
+    "label": "sugar delivered"
+   }
+  ],
+  "flow": true,
+  "caption": "Nectar sugar starts as photosynthesis in the leaves, travels in the phloem and is released by the gland cells of the nectary."
+ },
+ "rn_stamen": {
+  "type": "plot",
+  "x": [
+   0,
+   80
+  ],
+  "y": [
+   0,
+   30
+  ],
+  "params": [
+   {
+    "id": "n",
+    "label": "stamens per flower",
+    "min": 30,
+    "max": 70,
+    "value": 50,
+    "step": 1
+   }
+  ],
+  "fns": [
+   {
+    "f": "x*137.5/360",
+    "label": "turns of the spiral for x stamens"
+   }
+  ],
+  "readouts": [
+   {
+    "label": "Turns of the spiral at the golden angle (137.5 degrees each)",
+    "value": "n*137.5/360",
+    "unit": "turns"
+   },
+   {
+    "label": "Pollen sacs in all (4 per anther)",
+    "value": "4*n",
+    "unit": "sacs"
+   }
+  ],
+  "xlabel": "stamens",
+  "ylabel": "",
+  "caption": "Slide the number of stamens across the reported range (about 30 to 70): each one adds 137.5 degrees to the spiral and four pollen sacs."
+ },
+ "rn_filament": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "filament, model",
+    "value": 4.0
+   },
+   {
+    "label": "petal, model",
+    "value": 11.6
+   },
+   {
+    "label": "flower width, model",
+    "value": 22
+   }
+  ],
+  "ylabel": "mm",
+  "caption": "The filament is shorter than the petal, so the anthers sit inside the bowl of the flower. Sizes are the model's chosen values."
+ },
+ "rn_anther": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "w",
+    "label": "Wall: skin, endothecium, tapetum",
+    "x": 20,
+    "y": 20
+   },
+   {
+    "id": "s",
+    "label": "Four pollen sacs",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "g",
+    "label": "Pollen grains, about 27 µm",
+    "x": 80,
+    "y": 80,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "w",
+    "to": "s",
+    "label": "encloses"
+   },
+   {
+    "from": "s",
+    "to": "g",
+    "label": "make and hold"
+   }
+  ],
+  "flow": false,
+  "caption": "An anther in outline: the wall encloses four sacs that make and hold the pollen."
+ },
+ "rn_pollen_sac": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "m",
+    "label": "Cells divide by meiosis",
+    "x": 15,
+    "y": 20
+   },
+   {
+    "id": "s",
+    "label": "Four spores from each",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "p",
+    "label": "Each spore becomes a pollen grain",
+    "x": 85,
+    "y": 80,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "m",
+    "to": "s"
+   },
+   {
+    "from": "s",
+    "to": "p"
+   }
+  ],
+  "flow": false,
+  "caption": "How a pollen sac makes pollen."
+ },
+ "rn_anther_wall": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "t",
+    "label": "Tapetum feeds the pollen, then breaks down",
+    "x": 20,
+    "y": 80,
+    "color": "orange"
+   },
+   {
+    "id": "e",
+    "label": "Endothecium: ring-thickened cells",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "s",
+    "label": "Skin protects",
+    "x": 80,
+    "y": 20
+   }
+  ],
+  "edges": [
+   {
+    "from": "t",
+    "to": "e",
+    "label": "dries"
+   },
+   {
+    "from": "e",
+    "to": "s",
+    "label": "pulls the wall open"
+   }
+  ],
+  "flow": false,
+  "caption": "Layers of the anther wall, inside to outside, and what each one does."
+ },
+ "rn_pollen_grain": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "buttercup pollen, length",
+    "value": 27.4
+   },
+   {
+    "label": "buttercup pollen, width",
+    "value": 25.7
+   },
+   {
+    "label": "human red blood cell, width (about)",
+    "value": 7.5
+   }
+  ],
+  "ylabel": "micrometres",
+  "caption": "Size of a meadow buttercup pollen grain (27.4 × 25.7 µm in one reference collection) beside a red blood cell, which is about 7 to 8 µm across."
+ },
+ "rn_carpel": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "carpels, lowest reported",
+    "value": 15
+   },
+   {
+    "label": "model",
+    "value": 25
+   },
+   {
+    "label": "carpels, highest reported",
+    "value": 40
+   }
+  ],
+  "ylabel": "carpels per flower",
+  "caption": "Reported range of carpels per flower (about 15 to 40, a secondary source) and the model's choice."
+ },
+ "rn_style_stigma": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "g",
+    "label": "Pollen grain lands on the stigma",
+    "x": 50,
+    "y": 15,
+    "color": "orange"
+   },
+   {
+    "id": "t",
+    "label": "Pollen tube grows down the style",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "o",
+    "label": "Tube reaches the ovule",
+    "x": 50,
+    "y": 85,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "g",
+    "to": "t"
+   },
+   {
+    "from": "t",
+    "to": "o"
+   }
+  ],
+  "flow": false,
+  "caption": "The route of a pollen tube."
+ },
+ "rn_ovule": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "o",
+    "label": "Ovule",
+    "x": 20,
+    "y": 50
+   },
+   {
+    "id": "f",
+    "label": "Fertilised",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "s",
+    "label": "Seed",
+    "x": 80,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "o",
+    "to": "f",
+    "label": "pollen tube arrives"
+   },
+   {
+    "from": "f",
+    "to": "s",
+    "label": "matures"
+   }
+  ],
+  "flow": false,
+  "caption": "An ovule becomes a seed after fertilisation. A buttercup carpel has one ovule, so it makes one seed."
+ },
+ "rn_embryo_sac": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "cells in a typical embryo sac",
+    "value": 7
+   },
+   {
+    "label": "nuclei in a typical embryo sac",
+    "value": 8
+   },
+   {
+    "label": "sperm cells that reach it",
+    "value": 2
+   }
+  ],
+  "ylabel": "count",
+  "caption": "The typical (seven-celled, eight-nucleus) embryo sac and the two sperm cells that take part in double fertilisation. Typical plan; not confirmed for R. acris."
+ },
+ "rn_receptacle": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "s",
+    "label": "Flower stalk tip swells",
+    "x": 20,
+    "y": 80
+   },
+   {
+    "id": "r",
+    "label": "Receptacle dome",
+    "x": 50,
+    "y": 50,
+    "color": "green"
+   },
+   {
+    "id": "p",
+    "label": "Stamens low, carpels on top",
+    "x": 80,
+    "y": 20,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "s",
+    "to": "r"
+   },
+   {
+    "from": "r",
+    "to": "p",
+    "label": "carries"
+   }
+  ],
+  "flow": false,
+  "caption": "The receptacle is the base that carries all the flower parts."
+ },
+ "rn_bud": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "d",
+    "label": "Late summer: bud begins to form",
+    "x": 20,
+    "y": 20
+   },
+   {
+    "id": "w",
+    "label": "Winter: low temperatures help",
+    "x": 50,
+    "y": 50,
+    "color": "blue"
+   },
+   {
+    "id": "o",
+    "label": "Flowering",
+    "x": 80,
+    "y": 80,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "d",
+    "to": "w"
+   },
+   {
+    "from": "w",
+    "to": "o"
+   }
+  ],
+  "flow": false,
+  "caption": "Flower buds start to form in late summer of the year before flowering; cold winters promote flower development (as described for the species)."
+ },
+ "rn_fruit": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "carpels in the flower (model)",
+    "value": 25
+   },
+   {
+    "label": "achenes in the model fruiting head",
+    "value": 24
+   }
+  ],
+  "ylabel": "count",
+  "caption": "Each fertilised carpel becomes one achene, so the fruiting head carries up to about as many fruits as the flower had carpels. Model values."
+ },
+ "rn_achene": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "achene length, low",
+    "value": 2
+   },
+   {
+    "label": "achene length, high",
+    "value": 3
+   },
+   {
+    "label": "pinhead (about)",
+    "value": 2
+   }
+  ],
+  "ylabel": "mm",
+  "caption": "Achene length is about 2 to 3 mm (garden flora page); a pinhead is about 2 mm across for scale."
+ },
+ "rn_fruit_development": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "p",
+    "label": "Pollen lands on stigma",
+    "x": 15,
+    "y": 15
+   },
+   {
+    "id": "t",
+    "label": "Pollen tube grows to the ovule",
+    "x": 50,
+    "y": 15
+   },
+   {
+    "id": "d",
+    "label": "Double fertilisation",
+    "x": 85,
+    "y": 15,
+    "color": "orange"
+   },
+   {
+    "id": "s",
+    "label": "Ovule becomes seed",
+    "x": 15,
+    "y": 80,
+    "color": "green"
+   },
+   {
+    "id": "a",
+    "label": "Carpel wall becomes achene wall",
+    "x": 50,
+    "y": 80,
+    "color": "green"
+   },
+   {
+    "id": "l",
+    "label": "Petals and stamens fall",
+    "x": 85,
+    "y": 80
+   }
+  ],
+  "edges": [
+   {
+    "from": "p",
+    "to": "t"
+   },
+   {
+    "from": "t",
+    "to": "d"
+   },
+   {
+    "from": "d",
+    "to": "s"
+   },
+   {
+    "from": "d",
+    "to": "a"
+   },
+   {
+    "from": "d",
+    "to": "l"
+   }
+  ],
+  "flow": true,
+  "caption": "From flower to fruit."
+ },
+ "rn_pollination": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "bees",
+    "value": 1
+   },
+   {
+    "label": "flies",
+    "value": 1
+   },
+   {
+    "label": "beetles",
+    "value": 1
+   },
+   {
+    "label": "butterflies and moths",
+    "value": 1
+   }
+  ],
+  "ylabel": "listed as visitors (not ranked)",
+  "caption": "Groups of insects listed as visitors of the meadow buttercup in a plant database. The bars are all equal because the source gives a list, not numbers: no ranking is implied."
+ },
+ "rn_nectar": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "g",
+    "label": "Glucose",
+    "x": 15,
+    "y": 30
+   },
+   {
+    "id": "f",
+    "label": "Fructose",
+    "x": 15,
+    "y": 70
+   },
+   {
+    "id": "s",
+    "label": "Sucrose: glucose joined to fructose",
+    "x": 60,
+    "y": 50,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "g",
+    "to": "s"
+   },
+   {
+    "from": "f",
+    "to": "s"
+   }
+  ],
+  "flow": false,
+  "caption": "Sucrose is one glucose joined to one fructose; it is the sugar carried in the phloem and a common nectar sugar."
+ },
+ "rn_gloss": {
+  "type": "plot",
+  "x": [
+   400,
+   700
+  ],
+  "y": [
+   0,
+   1.6
+  ],
+  "params": [
+   {
+    "id": "p",
+    "label": "peak wavelength of the pigment",
+    "min": 430,
+    "max": 460,
+    "value": 448,
+    "step": 2,
+    "unit": "nm"
+   }
+  ],
+  "fns": [
+   {
+    "f": "1.4*exp(-((x-p)/30)^2)",
+    "label": "pigment absorbance (illustrative shape, peak 1.4 as measured at 448 nm)"
+   }
+  ],
+  "xlabel": "wavelength (nm)",
+  "ylabel": "absorbance",
+  "vlines": [
+   {
+    "x": 448,
+    "label": "448 nm measured peak"
+   }
+  ],
+  "caption": "The petal pigment absorbs blue light (peaks at about 425, 448 and 478 nm; peak absorbance 1.4 at 448 nm in the study). The curve is a smooth illustration of one peak, not the measured spectrum, and it shows why blue is taken out and yellow is left."
+ },
+ "rn_petal_epidermis": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "upper epidermis, R. acris",
+    "value": 2.7
+   },
+   {
+    "label": "upper epidermis, R. repens",
+    "value": 2.3
+   },
+   {
+    "label": "upper epidermis, R. lingua",
+    "value": 3.1
+   }
+  ],
+  "ylabel": "micrometres",
+  "caption": "Measured thickness of the flat upper epidermis in three glossy buttercups (cryo-SEM, van der Kooi et al. 2017): 2.7, 2.3 and 3.1 micrometres."
+ },
+ "rn_starch_layer": {
+  "type": "plot",
+  "x": [
+   0,
+   100
+  ],
+  "y": [
+   0,
+   1
+  ],
+  "params": [
+   {
+    "id": "k",
+    "label": "scattering coefficient",
+    "min": 2,
+    "max": 12,
+    "value": 10,
+    "step": 1,
+    "unit": "/mm"
+   }
+  ],
+  "fns": [
+   {
+    "f": "exp(-k*x/1000)",
+    "label": "light that has not been scattered after depth x"
+   }
+  ],
+  "vlines": [
+   {
+    "x": 38,
+    "label": "layer thickness 38 µm"
+   }
+  ],
+  "xlabel": "depth into the layer (µm)",
+  "ylabel": "fraction not yet scattered",
+  "caption": "A simple exponential for the fraction of light not scattered in a layer, using the optical model's coefficient for the starch layer (about 10 per mm). It is arithmetic on the paper's number, not the paper's full model."
+ },
+ "rn_starch": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "g",
+    "label": "Glucose units",
+    "x": 20,
+    "y": 50
+   },
+   {
+    "id": "c",
+    "label": "Amylose: unbranched chain",
+    "x": 55,
+    "y": 25,
+    "color": "orange"
+   },
+   {
+    "id": "b",
+    "label": "Amylopectin: branched chain",
+    "x": 55,
+    "y": 75,
+    "color": "orange"
+   },
+   {
+    "id": "s",
+    "label": "Starch grain",
+    "x": 90,
+    "y": 50,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "g",
+    "to": "c"
+   },
+   {
+    "from": "g",
+    "to": "b"
+   },
+   {
+    "from": "c",
+    "to": "s"
+   },
+   {
+    "from": "b",
+    "to": "s"
+   }
+  ],
+  "flow": false,
+  "caption": "Starch grains are made of two kinds of glucose polymer."
+ },
+ "rn_petal_mesophyll": {
+  "type": "plot",
+  "x": [
+   0,
+   150
+  ],
+  "y": [
+   0,
+   1
+  ],
+  "params": [
+   {
+    "id": "k",
+    "label": "scattering coefficient",
+    "min": 2,
+    "max": 12,
+    "value": 5,
+    "step": 1,
+    "unit": "/mm"
+   }
+  ],
+  "fns": [
+   {
+    "f": "exp(-k*x/1000)",
+    "label": "light not yet scattered at depth x"
+   }
+  ],
+  "vlines": [
+   {
+    "x": 100,
+    "label": "mesophyll 100 µm"
+   }
+  ],
+  "xlabel": "depth into the layer (µm)",
+  "ylabel": "fraction not yet scattered",
+  "caption": "Same simple exponential for the mesophyll, whose coefficient in the optical model is about 5 per mm, half that of the starch layer."
+ },
+ "rn_carotenoid": {
+  "type": "plot",
+  "x": [
+   380,
+   560
+  ],
+  "y": [
+   0,
+   1.6
+  ],
+  "params": [
+   {
+    "id": "p",
+    "label": "main absorption peak",
+    "min": 430,
+    "max": 460,
+    "value": 448,
+    "step": 2,
+    "unit": "nm"
+   }
+  ],
+  "fns": [
+   {
+    "f": "1.4*exp(-((x-p)/22)^2)",
+    "label": "absorbance of a blue-absorbing carotenoid (illustrative)"
+   }
+  ],
+  "xlabel": "wavelength (nm)",
+  "ylabel": "absorbance",
+  "caption": "Carotenoids take out blue light: a smooth peak near 448 nm (the measured main peak in the petals) with the blue and violet removed. Illustrative curve."
+ },
+ "rn_cellulose": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "g",
+    "label": "beta-glucose units",
+    "x": 15,
+    "y": 50
+   },
+   {
+    "id": "c",
+    "label": "Cellulose chain",
+    "x": 45,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "m",
+    "label": "Microfibril of many chains",
+    "x": 75,
+    "y": 30,
+    "color": "green"
+   },
+   {
+    "id": "w",
+    "label": "Cell wall",
+    "x": 85,
+    "y": 80
+   }
+  ],
+  "edges": [
+   {
+    "from": "g",
+    "to": "c"
+   },
+   {
+    "from": "c",
+    "to": "m"
+   },
+   {
+    "from": "m",
+    "to": "w"
+   }
+  ],
+  "flow": false,
+  "caption": "Cellulose chains bundle into fibrils that make the cell wall."
+ },
+ "rn_poison": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "r",
+    "label": "Ranunculin stored in the cell",
+    "x": 15,
+    "y": 20
+   },
+   {
+    "id": "b",
+    "label": "Bite or crush: cells break",
+    "x": 50,
+    "y": 20,
+    "color": "orange"
+   },
+   {
+    "id": "p",
+    "label": "Protoanemonin: blistering irritant",
+    "x": 85,
+    "y": 20,
+    "color": "orange"
+   },
+   {
+    "id": "d",
+    "label": "Drying or standing: pairs up to anemonin",
+    "x": 85,
+    "y": 80,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "r",
+    "to": "b"
+   },
+   {
+    "from": "b",
+    "to": "p",
+    "label": "enzyme acts"
+   },
+   {
+    "from": "p",
+    "to": "d",
+    "label": "hay"
+   }
+  ],
+  "flow": true,
+  "caption": "What happens to the chemical defence of a buttercup when it is damaged, and then dried."
+ },
+ "rn_leaf_epidermis": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "c",
+    "label": "Cuticle (wax)",
+    "x": 50,
+    "y": 15,
+    "color": "orange"
+   },
+   {
+    "id": "e",
+    "label": "Epidermis: one layer of cells",
+    "x": 50,
+    "y": 50
+   },
+   {
+    "id": "m",
+    "label": "Mesophyll below",
+    "x": 50,
+    "y": 85,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "c",
+    "to": "e"
+   },
+   {
+    "from": "e",
+    "to": "m"
+   }
+  ],
+  "flow": false,
+  "caption": "The skin of a leaf: wax film, one layer of cells, then the working tissue."
+ },
+ "rn_stoma": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "w",
+    "label": "Guard cells fill with water",
+    "x": 15,
+    "y": 20,
+    "color": "blue"
+   },
+   {
+    "id": "o",
+    "label": "Pore opens",
+    "x": 50,
+    "y": 50,
+    "color": "green"
+   },
+   {
+    "id": "g",
+    "label": "CO2 in, water vapour out",
+    "x": 85,
+    "y": 80
+   },
+   {
+    "id": "d",
+    "label": "Short of water: pore closes",
+    "x": 15,
+    "y": 80,
+    "color": "orange"
+   }
+  ],
+  "edges": [
+   {
+    "from": "w",
+    "to": "o"
+   },
+   {
+    "from": "o",
+    "to": "g"
+   },
+   {
+    "from": "d",
+    "to": "o"
+   }
+  ],
+  "flow": false,
+  "caption": "A stoma opens and closes by osmosis in its two guard cells."
+ },
+ "rn_roots": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "s",
+    "label": "Soil water and minerals",
+    "x": 15,
+    "y": 50,
+    "color": "blue"
+   },
+   {
+    "id": "f",
+    "label": "Fine roots and root hairs",
+    "x": 45,
+    "y": 50
+   },
+   {
+    "id": "k",
+    "label": "Stock and stem upward",
+    "x": 85,
+    "y": 20,
+    "color": "green"
+   }
+  ],
+  "edges": [
+   {
+    "from": "s",
+    "to": "f",
+    "label": "uptake"
+   },
+   {
+    "from": "f",
+    "to": "k",
+    "label": "xylem"
+   }
+  ],
+  "flow": true,
+  "caption": "Uptake happens at the finest roots; the water then travels up the stem."
+ },
+ "rn_stock": {
+  "type": "blocks",
+  "nodes": [
+   {
+    "id": "a",
+    "label": "Leaves make sugar",
+    "x": 85,
+    "y": 15,
+    "color": "green"
+   },
+   {
+    "id": "s",
+    "label": "Stock stores food over winter",
+    "x": 50,
+    "y": 50,
+    "color": "orange"
+   },
+   {
+    "id": "n",
+    "label": "New shoots and roots in spring",
+    "x": 15,
+    "y": 85
+   }
+  ],
+  "edges": [
+   {
+    "from": "a",
+    "to": "s",
+    "label": "sugar down"
+   },
+   {
+    "from": "s",
+    "to": "n",
+    "label": "food used"
+   }
+  ],
+  "flow": true,
+  "caption": "The stock is a storage and growth base."
+ },
+ "park_flower": {
+  "type": "bars",
+  "bars": [
+   {
+    "label": "plants in the patch",
+    "value": 12
+   },
+   {
+    "label": "open flowers per model plant",
+    "value": 4
+   },
+   {
+    "label": "buds per model plant",
+    "value": 2
+   },
+   {
+    "label": "fruiting heads per model plant",
+    "value": 2
+   }
+  ],
+  "ylabel": "count",
+  "caption": "The flower patch: 12 copies of one modelled plant."
+ }
+}

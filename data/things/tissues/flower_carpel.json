@@ -1,0 +1,386 @@
+{
+ "id": "flower_carpel",
+ "title": "Inside a buttercup carpel",
+ "node": "rn_carpel",
+ "blurb": "One carpel opened lengthwise: the ovary wall, the single ovule, and inside the ovule the embryo sac with its egg cell. A pollen tube is shown growing from the stigma down the style to the ovule. Click a part.",
+ "note": "A diagram built from the usual flowering-plant plan. Sizes are illustrative (a carpel about 1.5 millimetres tall; the ovule about 0.5 mm; the embryo sac about 0.15 mm); the embryo sac drawn is the typical seven-celled pattern, which I could not confirm for this species. The pollen tube is drawn thicker than a real one so you can see it.",
+ "bg": "#f3efe6",
+ "center": [
+  0,
+  650,
+  0
+ ],
+ "D_um": 1700,
+ "labels": [
+  {
+   "text": "Stigma (catches pollen)",
+   "at": [
+    -300,
+    1330,
+    100
+   ],
+   "pop": "stigma"
+  },
+  {
+   "text": "Style",
+   "at": [
+    -300,
+    1100,
+    100
+   ],
+   "pop": "style"
+  },
+  {
+   "text": "Ovary wall",
+   "at": [
+    -520,
+    700,
+    100
+   ],
+   "pop": "wall"
+  },
+  {
+   "text": "Ovule (becomes the seed)",
+   "at": [
+    -520,
+    330,
+    100
+   ],
+   "pop": "ovule"
+  },
+  {
+   "text": "Embryo sac",
+   "at": [
+    230,
+    460,
+    100
+   ],
+   "pop": "sac"
+  },
+  {
+   "text": "Pollen tube",
+   "at": [
+    160,
+    950,
+    100
+   ],
+   "pop": "tube"
+  }
+ ],
+ "populations": [
+  {
+   "id": "wall",
+   "name": "Ovary wall",
+   "node": "rn_carpel",
+   "shape": "ellipsoid",
+   "size": [
+    820,
+    960,
+    700
+   ],
+   "color": "#8ab34a",
+   "opacity": 0.28,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       450,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "ovule",
+   "name": "Ovule",
+   "node": "rn_ovule",
+   "shape": "ellipsoid",
+   "size": [
+    420,
+    540,
+    380
+   ],
+   "color": "#f1d98a",
+   "opacity": 0.7,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       320,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "sac",
+   "name": "Embryo sac",
+   "node": "rn_embryo_sac",
+   "shape": "ellipsoid",
+   "size": [
+    120,
+    190,
+    110
+   ],
+   "color": "#fffdf0",
+   "opacity": 0.95,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       410,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "egg",
+   "name": "Egg cell",
+   "node": "egg_cell",
+   "shape": "ellipsoid",
+   "size": [
+    26,
+    34,
+    26
+   ],
+   "color": "#ffb347",
+   "opacity": 1,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       470,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "syn",
+   "name": "Helper cell (synergid)",
+   "node": "rn_embryo_sac",
+   "shape": "ellipsoid",
+   "size": [
+    20,
+    30,
+    20
+   ],
+   "color": "#fcd29a",
+   "opacity": 1,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -24,
+       490,
+       0
+      ]
+     },
+     {
+      "at": [
+       24,
+       490,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "central",
+   "name": "Central cell",
+   "node": "rn_embryo_sac",
+   "shape": "ellipsoid",
+   "size": [
+    70,
+    70,
+    70
+   ],
+   "color": "#e9f2c8",
+   "opacity": 1,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       410,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "anti",
+   "name": "Antipodal cell",
+   "node": "rn_embryo_sac",
+   "shape": "ellipsoid",
+   "size": [
+    22,
+    22,
+    22
+   ],
+   "color": "#d7e3a8",
+   "opacity": 1,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -26,
+       340,
+       0
+      ]
+     },
+     {
+      "at": [
+       26,
+       340,
+       0
+      ]
+     },
+     {
+      "at": [
+       0,
+       332,
+       22
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "style",
+   "name": "Style",
+   "node": "rn_style_stigma",
+   "shape": "cylinder",
+   "size": [
+    70,
+    380,
+    70
+   ],
+   "color": "#b9d36a",
+   "opacity": 0.4,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       1090,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "stigma",
+   "name": "Stigma",
+   "node": "rn_style_stigma",
+   "shape": "ellipsoid",
+   "size": [
+    150,
+    90,
+    120
+   ],
+   "color": "#dbe58a",
+   "opacity": 0.95,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       1320,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "pollen",
+   "name": "Pollen grain on the stigma",
+   "node": "rn_pollen_grain",
+   "shape": "ellipsoid",
+   "size": [
+    27,
+    26,
+    27
+   ],
+   "color": "#f9e24a",
+   "opacity": 1,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -30,
+       1355,
+       20
+      ]
+     },
+     {
+      "at": [
+       30,
+       1350,
+       -15
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "tube",
+   "name": "Pollen tube",
+   "node": "rn_fruit_development",
+   "shape": "cylinder",
+   "size": [
+    9,
+    860,
+    9
+   ],
+   "color": "#fff1a8",
+   "opacity": 1,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       830,
+       0
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}
