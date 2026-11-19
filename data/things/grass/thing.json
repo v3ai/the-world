@@ -1,0 +1,1951 @@
+{
+ "id": "grass",
+ "title": "A grass plant",
+ "label": "Perennial ryegrass",
+ "scientific": "Lolium perenne",
+ "node": "grass_plant",
+ "main_part": "blade_up",
+ "label_first_only": true,
+ "blurb": "A tussock of perennial ryegrass, the commonest park lawn grass, at true size. Click a blade, a sheath, the base of a stem, a flower or a root. The layers pull one shoot apart, open the flowers, and show the roots.",
+ "model_note": "A procedural model built from typical measurements of the species, not a scan of one plant. Counts of tillers, leaves and spikelets are choices within the ranges on the cards; real tussocks are larger and untidier.",
+ "size_m": {
+  "height": 0.5,
+  "leaf_blade": 0.19
+ },
+ "height_m": 0.66,
+ "radius_m": 0.8,
+ "draw_m": 90,
+ "seed": 7771,
+ "systems": [
+  {
+   "id": "blades",
+   "label": "Leaf blades"
+  },
+  {
+   "id": "sheaths",
+   "label": "Sheaths"
+  },
+  {
+   "id": "stems",
+   "label": "Stems"
+  },
+  {
+   "id": "flowers",
+   "label": "Flowers"
+  },
+  {
+   "id": "roots",
+   "label": "Roots"
+  },
+  {
+   "id": "soil",
+   "label": "Soil"
+  },
+  {
+   "id": "tiller",
+   "label": "Tiller pulled apart"
+  },
+  {
+   "id": "base",
+   "label": "Growing point cut open"
+  },
+  {
+   "id": "leafsec",
+   "label": "Leaf blade cut across"
+  },
+  {
+   "id": "floret",
+   "label": "Floret opened"
+  }
+ ],
+ "lod": {
+  "near_m": 2.5,
+  "far_m": 14
+ },
+ "shadow": {
+  "radius_m": 0.16,
+  "opacity": 0.5
+ },
+ "pivots": {
+  "tiller": {
+   "at": [
+    0.32,
+    0
+   ]
+  },
+  "base": {
+   "at": [
+    0.32,
+    0
+   ]
+  },
+  "leafsec": {
+   "at": [
+    0.32,
+    0
+   ]
+  },
+  "floret": {
+   "at": [
+    0.32,
+    0
+   ]
+  }
+ },
+ "anim": [
+  {
+   "kind": "sway",
+   "systems": [
+    "blades",
+    "stems",
+    "flowers"
+   ],
+   "from_y": 0.02,
+   "to_y": 0.6,
+   "amp_m": 0.01,
+   "hz": 0.5,
+   "label": "Leaves and flowering stems"
+  }
+ ],
+ "layers": [
+  {
+   "id": "above",
+   "label": "Blades and flowers",
+   "systems": [
+    "blades",
+    "flowers"
+   ]
+  },
+  {
+   "id": "sheaths",
+   "label": "Sheaths",
+   "systems": [
+    "sheaths"
+   ]
+  },
+  {
+   "id": "stem",
+   "label": "Stems and growing points",
+   "systems": [
+    "stems"
+   ]
+  },
+  {
+   "id": "soil",
+   "label": "Soil",
+   "systems": [
+    "soil"
+   ]
+  },
+  {
+   "id": "roots",
+   "label": "Roots",
+   "systems": [
+    "roots"
+   ]
+  }
+ ],
+ "auto": {
+  "label": "Auto",
+  "layers": true,
+  "always": {}
+ },
+ "modes": [
+  {
+   "id": "whole",
+   "label": "Whole plant",
+   "show": {
+    "blades": 1,
+    "sheaths": 1,
+    "stems": 1,
+    "flowers": 1
+   }
+  },
+  {
+   "id": "tiller",
+   "label": "One tiller pulled apart",
+   "pivot": "tiller",
+   "show": {
+    "blades": 0.12,
+    "sheaths": 0.12,
+    "stems": 0.12,
+    "flowers": 0.12,
+    "tiller": 1
+   },
+   "hotspots": true,
+   "legend": {
+    "title": "One tiller, pulled apart (life size)",
+    "items": [
+     {
+      "name": "Sheath (opened out)",
+      "color": "#9ec06a",
+      "node": "grass_sheath"
+     },
+     {
+      "name": "Blade",
+      "color": "#4d8a2e",
+      "node": "grass_blade"
+     },
+     {
+      "name": "Ligule",
+      "color": "#f1efe2",
+      "node": "grass_ligule"
+     },
+     {
+      "name": "Stem base with nodes",
+      "color": "#c4ab74",
+      "node": "grass_crown"
+     },
+     {
+      "name": "Growing point",
+      "color": "#f0c94c",
+      "node": "grass_meristem"
+     }
+    ],
+    "note": "Three leaves of one shoot are drawn pulled away from the stem, each with its sheath opened out. Life size. In a real tiller the sheaths stay wrapped round the stem and round each other. Look to the right of the plant."
+   }
+  },
+  {
+   "id": "flower",
+   "label": "In flower",
+   "show": {
+    "blades": 0.35,
+    "sheaths": 0.35,
+    "stems": 1,
+    "flowers": 1
+   },
+   "hotspots": true,
+   "legend": {
+    "title": "In flower",
+    "items": [
+     {
+      "name": "Flowering stem (culm)",
+      "color": "#8cae52",
+      "node": "grass_culm"
+     },
+     {
+      "name": "Spike",
+      "color": "#b0c06a",
+      "node": "grass_spike"
+     },
+     {
+      "name": "Anthers",
+      "color": "#e8d35a",
+      "node": "grass_anther"
+     },
+     {
+      "name": "Stigmas",
+      "color": "#d9d6e6",
+      "node": "grass_stigma"
+     }
+    ],
+    "note": "The leaves fade so that the flowering stems stand out. The numbers of spikes, spikelets and open florets are choices within ranges on the cards."
+   }
+  },
+  {
+   "id": "under",
+   "label": "Underground",
+   "show": {
+    "roots": 1,
+    "soil": 1,
+    "stems": 0.9,
+    "sheaths": 0.2,
+    "blades": 0.08,
+    "flowers": 0.05
+   },
+   "groundSeeThrough": true,
+   "hotspots": true,
+   "legend": {
+    "title": "Underground",
+    "items": [
+     {
+      "name": "Fibrous roots",
+      "color": "#d9c796",
+      "node": "grass_roots"
+     },
+     {
+      "name": "Root cap and tip",
+      "color": "#f2e8c4",
+      "node": "grass_root_tip"
+     },
+     {
+      "name": "Root hairs",
+      "color": "#f6f1dc",
+      "node": "grass_root_hairs"
+     },
+     {
+      "name": "Stem base",
+      "color": "#b9a06a",
+      "node": "grass_crown"
+     }
+    ],
+    "note": "The soil is drawn see-through. The roots are a schematic of a fibrous system: the number and course of real roots differ from plant to plant. Root hairs are drawn at an illustrative length."
+   }
+  },
+  {
+   "id": "base",
+   "label": "Growing point cut open",
+   "pivot": "base",
+   "show": {
+    "blades": 0.1,
+    "sheaths": 0.1,
+    "stems": 0.1,
+    "flowers": 0.05,
+    "base": 1
+   },
+   "hotspots": true,
+   "legend": {
+    "title": "The base of a shoot, cut lengthwise (life size)",
+    "items": [
+     {
+      "name": "Growing point",
+      "color": "#f0c94c",
+      "node": "grass_meristem"
+     },
+     {
+      "name": "Leaf growth zone",
+      "color": "#f2b84a",
+      "node": "grass_growth_zone"
+     },
+     {
+      "name": "Sheaths",
+      "color": "#8fb85a",
+      "node": "grass_sheath"
+     },
+     {
+      "name": "Stem and nodes",
+      "color": "#e3cf9a",
+      "node": "grass_crown"
+     }
+    ],
+    "note": "The stem base is about 3 mm wide. Flat coloured faces show the cut. Positions are drawn from the general layout of a vegetative grass shoot; the exact sizes of the zones are illustrative. Look to the right of the plant."
+   }
+  },
+  {
+   "id": "leafsec",
+   "label": "Leaf blade cut across",
+   "pivot": "leafsec",
+   "show": {
+    "blades": 0.1,
+    "sheaths": 0.1,
+    "stems": 0.1,
+    "flowers": 0.05,
+    "leafsec": 1
+   },
+   "hotspots": true,
+   "legend": {
+    "title": "A leaf blade cut across (drawn 25 times life size)",
+    "items": [
+     {
+      "name": "Vascular bundle",
+      "color": "#e8e0a0",
+      "node": "grass_bundle"
+     },
+     {
+      "name": "Bundle sheath",
+      "color": "#4f9a52",
+      "node": "grass_bundle_sheath"
+     },
+     {
+      "name": "Bulliform cells",
+      "color": "#e9f3c9",
+      "node": "grass_bulliform"
+     },
+     {
+      "name": "Stoma",
+      "color": "#2f6b3a",
+      "node": "grass_stoma"
+     },
+     {
+      "name": "Silica body",
+      "color": "#ffffff",
+      "node": "grass_silica_body"
+     }
+    ],
+    "note": "Drawn 25 times life size: the real blade is about 3 mm wide and a fraction of a millimetre thick. The number of bundles, ribs and the sizes of the cell groups are illustrative, drawn from the general pattern of a temperate grass leaf. Look above and to the right of the plant."
+   }
+  },
+  {
+   "id": "floret",
+   "label": "A floret opened",
+   "pivot": "floret",
+   "show": {
+    "blades": 0.1,
+    "sheaths": 0.1,
+    "stems": 0.1,
+    "flowers": 0.05,
+    "floret": 1
+   },
+   "hotspots": true,
+   "legend": {
+    "title": "A floret opened out (life size)",
+    "items": [
+     {
+      "name": "Lemma and palea",
+      "color": "#b3c46a",
+      "node": "grass_lemma"
+     },
+     {
+      "name": "Anthers",
+      "color": "#e8d35a",
+      "node": "grass_anther"
+     },
+     {
+      "name": "Ovary and stigmas",
+      "color": "#8cb34a",
+      "node": "grass_ovary"
+     },
+     {
+      "name": "Lodicules",
+      "color": "#f4f1dc",
+      "node": "grass_lodicule"
+     }
+    ],
+    "note": "A floret is about 6 mm long. Its parts are drawn separated so that each can be seen: in a real floret the lemma and palea close over the rest. The shapes are simplified. Look above and to the right of the plant."
+   }
+  }
+ ],
+ "hotspots": [
+  {
+   "id": "h_sheath",
+   "node": "grass_sheath",
+   "at": [
+    0.33732,
+    0.02,
+    -0.02059
+   ],
+   "label": "Leaf sheath, opened out",
+   "r": 0.003,
+   "modes": [
+    "tiller"
+   ],
+   "pivot": "tiller"
+  },
+  {
+   "id": "h_lig",
+   "node": "grass_ligule",
+   "at": [
+    0.29374,
+    0.043,
+    0.03608
+   ],
+   "label": "Ligule and auricles: where the blade meets the sheath",
+   "r": 0.0012,
+   "modes": [
+    "tiller"
+   ],
+   "pivot": "tiller"
+  },
+  {
+   "id": "h_apex",
+   "node": "grass_meristem",
+   "at": [
+    0.32,
+    0.0145,
+    0
+   ],
+   "label": "Growing point: where new leaves begin",
+   "r": 0.0009,
+   "modes": [
+    "tiller"
+   ],
+   "pivot": "tiller"
+  },
+  {
+   "id": "h_node",
+   "node": "grass_node",
+   "at": [
+    0.3223,
+    0.0055,
+    0
+   ],
+   "label": "Nodes, packed close together at the base",
+   "r": 0.0008,
+   "modes": [
+    "tiller"
+   ],
+   "pivot": "tiller"
+  },
+  {
+   "id": "h_b_apex",
+   "node": "grass_meristem",
+   "at": [
+    0.32,
+    0.0142,
+    0.0012
+   ],
+   "label": "Growing point: the shoot apex sits low, inside the sheaths",
+   "r": 0.0007,
+   "modes": [
+    "base"
+   ],
+   "pivot": "base"
+  },
+  {
+   "id": "h_b_gz",
+   "node": "grass_growth_zone",
+   "at": [
+    0.3208,
+    0.0125,
+    0.0012
+   ],
+   "label": "Leaf growth zone: the blade lengthens from its base",
+   "r": 0.0007,
+   "modes": [
+    "base"
+   ],
+   "pivot": "base"
+  },
+  {
+   "id": "h_b_sheath",
+   "node": "grass_sheath",
+   "at": [
+    0.3231,
+    0.03,
+    0.0012
+   ],
+   "label": "Sheaths: tubes of older leaves that enclose the younger ones",
+   "r": 0.0009,
+   "modes": [
+    "base"
+   ],
+   "pivot": "base"
+  },
+  {
+   "id": "h_b_blade",
+   "node": "grass_blade",
+   "at": [
+    0.3213,
+    0.045,
+    0.0012
+   ],
+   "label": "The youngest blade, still folded inside the tube",
+   "r": 0.0009,
+   "modes": [
+    "base"
+   ],
+   "pivot": "base"
+  },
+  {
+   "id": "h_l_bundle",
+   "node": "grass_bundle",
+   "at": [
+    0.3047,
+    0.25,
+    0.0035
+   ],
+   "label": "Vascular bundle with its sheath of cells",
+   "r": 0.004,
+   "modes": [
+    "leafsec"
+   ],
+   "pivot": "leafsec"
+  },
+  {
+   "id": "h_l_bull",
+   "node": "grass_bulliform",
+   "at": [
+    0.30852,
+    0.25205,
+    0.0035
+   ],
+   "label": "Bulliform cells: they lose water and fold the blade",
+   "r": 0.004,
+   "modes": [
+    "leafsec"
+   ],
+   "pivot": "leafsec"
+  },
+  {
+   "id": "h_l_stoma",
+   "node": "grass_stoma",
+   "at": [
+    0.31698,
+    0.2477,
+    0.0042
+   ],
+   "label": "A stoma: a pore in the epidermis",
+   "r": 0.004,
+   "modes": [
+    "leafsec"
+   ],
+   "pivot": "leafsec"
+  },
+  {
+   "id": "h_l_silica",
+   "node": "grass_silica_body",
+   "at": [
+    0.32765,
+    0.2535,
+    0.0042
+   ],
+   "label": "Silica body in the epidermis",
+   "r": 0.0035,
+   "modes": [
+    "leafsec"
+   ],
+   "pivot": "leafsec"
+  },
+  {
+   "id": "h_l_scl",
+   "node": "grass_sclerenchyma",
+   "at": [
+    0.3047,
+    0.2513,
+    0.0035
+   ],
+   "label": "Fibres that stiffen the blade",
+   "r": 0.004,
+   "modes": [
+    "leafsec"
+   ],
+   "pivot": "leafsec"
+  },
+  {
+   "id": "h_f_ovary",
+   "node": "grass_ovary",
+   "at": [
+    0.32,
+    0.2515,
+    0.0007
+   ],
+   "label": "Ovary: one seed develops here",
+   "r": 0.0005,
+   "modes": [
+    "floret"
+   ],
+   "pivot": "floret"
+  },
+  {
+   "id": "h_f_stigma",
+   "node": "grass_stigma",
+   "at": [
+    0.3209,
+    0.2542,
+    0
+   ],
+   "label": "Feathery stigmas: they catch pollen from the air",
+   "r": 0.0005,
+   "modes": [
+    "floret"
+   ],
+   "pivot": "floret"
+  },
+  {
+   "id": "h_f_anther",
+   "node": "grass_anther",
+   "at": [
+    0.3205,
+    0.251,
+    0.0003
+   ],
+   "label": "Anthers: hang out on thread-like filaments",
+   "r": 0.0006,
+   "modes": [
+    "floret"
+   ],
+   "pivot": "floret"
+  },
+  {
+   "id": "h_f_lodicule",
+   "node": "grass_lodicule",
+   "at": [
+    0.3194,
+    0.2512,
+    0.0014
+   ],
+   "label": "Lodicules: swell and push the floret open",
+   "r": 0.0004,
+   "modes": [
+    "floret"
+   ],
+   "pivot": "floret"
+  },
+  {
+   "id": "h_f_lemma",
+   "node": "grass_lemma",
+   "at": [
+    0.3155,
+    0.253,
+    0.0012
+   ],
+   "label": "Lemma: the outer scale",
+   "r": 0.0006,
+   "modes": [
+    "floret"
+   ],
+   "pivot": "floret"
+  }
+ ],
+ "parts": [
+  {
+   "id": "blade_up",
+   "name": "Leaf blade, upper surface",
+   "system": "blades",
+   "node": "grass_blade_upper",
+   "color": "#4d8a2e",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "blade_up",
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "grass_leaf_section",
+    "D": 0.0006,
+    "button": "Look inside the leaf blade"
+   },
+   "center": [
+    -0.0101,
+    0.1096,
+    0.0147
+   ],
+   "radius": 0.1777,
+   "tris": 8232
+  },
+  {
+   "id": "blade_down",
+   "name": "Leaf blade, underside",
+   "system": "blades",
+   "node": "grass_blade_under",
+   "color": "#74b04a",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "blade_down",
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "grass_leaf_section",
+    "D": 0.0006,
+    "button": "Look inside the leaf blade"
+   },
+   "center": [
+    -0.0101,
+    0.1094,
+    0.0147
+   ],
+   "radius": 0.1777,
+   "tris": 8232
+  },
+  {
+   "id": "blade_up_mid",
+   "name": "Leaf blade, upper surface",
+   "system": "blades",
+   "node": "grass_blade_upper",
+   "color": "#4d8a2e",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "blade_up_mid",
+   "lod": "mid",
+   "center": [
+    -0.0122,
+    0.1077,
+    0.0122
+   ],
+   "radius": 0.1781,
+   "tris": 496
+  },
+  {
+   "id": "blade_down_mid",
+   "name": "Leaf blade, underside",
+   "system": "blades",
+   "node": "grass_blade_under",
+   "color": "#74b04a",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "blade_down_mid",
+   "lod": "mid",
+   "center": [
+    -0.0122,
+    0.1075,
+    0.0123
+   ],
+   "radius": 0.1781,
+   "tris": 496
+  },
+  {
+   "id": "far_blades",
+   "name": "Leaf blades",
+   "system": "blades",
+   "node": "grass_blade",
+   "color": "#5c9a3a",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "far_blades",
+   "lod": "far",
+   "double": true,
+   "center": [
+    -0.013,
+    0.1074,
+    0.0133
+   ],
+   "radius": 0.1806,
+   "tris": 248
+  },
+  {
+   "id": "culm_blade_up",
+   "name": "Stem leaf blade, upper surface",
+   "system": "blades",
+   "node": "grass_blade_upper",
+   "color": "#4d8a2e",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "culm_blade_up",
+   "lod": "near",
+   "center": [
+    -0.0009,
+    0.3017,
+    0.048
+   ],
+   "radius": 0.1326,
+   "tris": 1440
+  },
+  {
+   "id": "culm_blade_down",
+   "name": "Stem leaf blade, underside",
+   "system": "blades",
+   "node": "grass_blade_under",
+   "color": "#74b04a",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "culm_blade_down",
+   "lod": "near",
+   "center": [
+    -0.0009,
+    0.3016,
+    0.048
+   ],
+   "radius": 0.1324,
+   "tris": 1440
+  },
+  {
+   "id": "culm_blade_mid",
+   "name": "Stem leaf blade",
+   "system": "blades",
+   "node": "grass_blade",
+   "color": "#5c9a3a",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "culm_blade_mid",
+   "lod": "mid+far",
+   "double": true,
+   "center": [
+    -0.0009,
+    0.3017,
+    0.048
+   ],
+   "radius": 0.1325,
+   "tris": 108
+  },
+  {
+   "id": "dead_leaves",
+   "name": "Dead leaves",
+   "system": "blades",
+   "node": "grass_dead_leaf",
+   "color": "#a8935a",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "dead_leaves",
+   "double": true,
+   "lod": "near+mid",
+   "center": [
+    -0.0086,
+    0.0176,
+    0.009
+   ],
+   "radius": 0.1197,
+   "tris": 480
+  },
+  {
+   "id": "sheaths",
+   "name": "Leaf sheaths",
+   "system": "sheaths",
+   "node": "grass_sheath",
+   "color": "#9ec06a",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "sheaths",
+   "double": true,
+   "lod": "near",
+   "center": [
+    0.0035,
+    0.0253,
+    -0.0081
+   ],
+   "radius": 0.0947,
+   "tris": 2976
+  },
+  {
+   "id": "sheaths_mid",
+   "name": "Leaf sheaths",
+   "system": "sheaths",
+   "node": "grass_sheath",
+   "color": "#9ec06a",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "sheaths_mid",
+   "double": true,
+   "lod": "mid",
+   "center": [
+    0.0037,
+    0.0253,
+    -0.0081
+   ],
+   "radius": 0.0949,
+   "tris": 992
+  },
+  {
+   "id": "culm_sheaths",
+   "name": "Stem leaf sheaths",
+   "system": "sheaths",
+   "node": "grass_sheath",
+   "color": "#a4c46f",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "culm_sheaths",
+   "double": true,
+   "lod": "near",
+   "center": [
+    0.001,
+    0.2305,
+    0.0381
+   ],
+   "radius": 0.1519,
+   "tris": 720
+  },
+  {
+   "id": "culm_sheaths_mid",
+   "name": "Stem leaf sheaths",
+   "system": "sheaths",
+   "node": "grass_sheath",
+   "color": "#a4c46f",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "culm_sheaths_mid",
+   "double": true,
+   "lod": "mid+far",
+   "center": [
+    0.001,
+    0.2308,
+    0.0382
+   ],
+   "radius": 0.1517,
+   "tris": 108
+  },
+  {
+   "id": "ligules",
+   "name": "Ligule",
+   "system": "sheaths",
+   "node": "grass_ligule",
+   "color": "#f1efe2",
+   "priority": 2.2,
+   "solid": false,
+   "noink": true,
+   "mesh": "ligules",
+   "double": true,
+   "lod": "near",
+   "center": [
+    0.0038,
+    0.0387,
+    -0.0071
+   ],
+   "radius": 0.0786,
+   "tris": 432
+  },
+  {
+   "id": "culm_ligules",
+   "name": "Ligule",
+   "system": "sheaths",
+   "node": "grass_ligule",
+   "color": "#f1efe2",
+   "priority": 2.2,
+   "solid": false,
+   "noink": true,
+   "mesh": "culm_ligules",
+   "double": true,
+   "lod": "near",
+   "center": [
+    0.0001,
+    0.2761,
+    0.0456
+   ],
+   "radius": 0.1124,
+   "tris": 108
+  },
+  {
+   "id": "auricles",
+   "name": "Auricles",
+   "system": "sheaths",
+   "node": "grass_auricle",
+   "color": "#e8e3c8",
+   "priority": 2.2,
+   "solid": false,
+   "noink": true,
+   "mesh": "auricles",
+   "lod": "near",
+   "center": [
+    0.0036,
+    0.0387,
+    -0.0072
+   ],
+   "radius": 0.0783,
+   "tris": 648
+  },
+  {
+   "id": "crowns",
+   "name": "Stem base (crown)",
+   "system": "stems",
+   "node": "grass_crown",
+   "color": "#b9a06a",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "crowns",
+   "lod": "near",
+   "center": [
+    0.0039,
+    0.0039,
+    -0.0057
+   ],
+   "radius": 0.068,
+   "tris": 324
+  },
+  {
+   "id": "meristems",
+   "name": "Growing point (shoot apex)",
+   "system": "stems",
+   "node": "grass_meristem",
+   "color": "#e8c96a",
+   "priority": 2.5,
+   "solid": false,
+   "noink": true,
+   "instances": "meristems",
+   "lod": "near",
+   "center": [
+    0.002,
+    0.0134,
+    0.0012
+   ],
+   "radius": 0.0643,
+   "count": 9,
+   "tris": 504
+  },
+  {
+   "id": "culms",
+   "name": "Flowering stem (culm)",
+   "system": "stems",
+   "node": "grass_culm",
+   "color": "#8cae52",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "culms",
+   "lod": "near+mid+far",
+   "center": [
+    0.0011,
+    0.2301,
+    0.0339
+   ],
+   "radius": 0.24,
+   "tris": 360
+  },
+  {
+   "id": "culm_nodes",
+   "name": "Node",
+   "system": "stems",
+   "node": "grass_node",
+   "color": "#6f8a3a",
+   "priority": 2.1,
+   "solid": false,
+   "noink": true,
+   "mesh": "culm_nodes",
+   "lod": "near+mid",
+   "center": [
+    0.0025,
+    0.1958,
+    0.0347
+   ],
+   "radius": 0.1188,
+   "tris": 378
+  },
+  {
+   "id": "rachis",
+   "name": "Spike axis (rachis)",
+   "system": "flowers",
+   "node": "grass_rachis",
+   "color": "#9cba5c",
+   "priority": 1.8,
+   "solid": false,
+   "noink": true,
+   "mesh": "rachis",
+   "lod": "near",
+   "center": [
+    -0.0065,
+    0.5243,
+    0.0592
+   ],
+   "radius": 0.1025,
+   "tris": 456
+  },
+  {
+   "id": "glumes",
+   "name": "Glume",
+   "system": "flowers",
+   "node": "grass_glume",
+   "color": "#9db75a",
+   "priority": 1.9,
+   "solid": false,
+   "noink": true,
+   "instances": "glumes",
+   "lod": "near",
+   "double": true,
+   "center": [
+    -0.0101,
+    0.5262,
+    0.0642
+   ],
+   "radius": 0.0989,
+   "count": 54,
+   "tris": 2160
+  },
+  {
+   "id": "lemmas",
+   "name": "Lemma",
+   "system": "flowers",
+   "node": "grass_lemma",
+   "color": "#b3c46a",
+   "priority": 1.9,
+   "solid": false,
+   "noink": true,
+   "instances": "lemmas",
+   "lod": "near",
+   "double": true,
+   "tint": 0.15,
+   "center": [
+    -0.0102,
+    0.5272,
+    0.0643
+   ],
+   "radius": 0.1025,
+   "count": 378,
+   "tris": 30240
+  },
+  {
+   "id": "spikelet_lens",
+   "name": "Spikelet",
+   "system": "flowers",
+   "node": "grass_spikelet",
+   "color": "#b0c06a",
+   "priority": 1.8,
+   "solid": false,
+   "noink": true,
+   "instances": "spikelet_lens",
+   "lod": "mid+far",
+   "double": true,
+   "center": [
+    -0.0102,
+    0.5265,
+    0.0643
+   ],
+   "radius": 0.0994,
+   "count": 54,
+   "tris": 2700
+  },
+  {
+   "id": "filaments",
+   "name": "Filament",
+   "system": "flowers",
+   "node": "grass_filament",
+   "color": "#f0ecc8",
+   "priority": 2.1,
+   "solid": false,
+   "noink": true,
+   "instances": "filaments",
+   "lod": "near",
+   "double": true,
+   "center": [
+    -0.0152,
+    0.5327,
+    0.0613
+   ],
+   "radius": 0.104,
+   "count": 375,
+   "tris": 2250
+  },
+  {
+   "id": "anthers",
+   "name": "Anther",
+   "system": "flowers",
+   "node": "grass_anther",
+   "color": "#e8d35a",
+   "priority": 2.2,
+   "solid": false,
+   "noink": true,
+   "instances": "anthers",
+   "lod": "near",
+   "double": true,
+   "tint": 0.1,
+   "deeper": {
+    "type": "tissue2",
+    "id": "grass_pollen",
+    "D": 0.00025,
+    "button": "Look at grass pollen"
+   },
+   "center": [
+    -0.0152,
+    0.5294,
+    0.0613
+   ],
+   "radius": 0.1047,
+   "count": 375,
+   "tris": 15000
+  },
+  {
+   "id": "stigmas",
+   "name": "Stigma",
+   "system": "flowers",
+   "node": "grass_stigma",
+   "color": "#d9d6e6",
+   "priority": 2.1,
+   "solid": false,
+   "noink": true,
+   "instances": "stigmas",
+   "lod": "near",
+   "double": true,
+   "center": [
+    -0.0152,
+    0.5327,
+    0.0613
+   ],
+   "radius": 0.104,
+   "count": 250,
+   "tris": 6000
+  },
+  {
+   "id": "roots",
+   "name": "Fibrous roots",
+   "system": "roots",
+   "node": "grass_roots",
+   "color": "#d9c796",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "roots",
+   "lod": "near+mid",
+   "deeper": {
+    "type": "tissue2",
+    "id": "grass_root_tip",
+    "D": 0.0004,
+    "button": "Look at a root tip"
+   },
+   "center": [
+    0.0191,
+    -0.1428,
+    0.0141
+   ],
+   "radius": 0.176,
+   "tris": 6480
+  },
+  {
+   "id": "lateral_roots",
+   "name": "Lateral roots",
+   "system": "roots",
+   "node": "grass_roots",
+   "color": "#e6d9b2",
+   "priority": 1.7,
+   "solid": false,
+   "noink": true,
+   "mesh": "lateral_roots",
+   "lod": "near",
+   "center": [
+    0.0217,
+    -0.1384,
+    0.0159
+   ],
+   "radius": 0.1792,
+   "tris": 7560
+  },
+  {
+   "id": "root_tips",
+   "name": "Root cap",
+   "system": "roots",
+   "node": "grass_root_tip",
+   "color": "#f2e8c4",
+   "priority": 2.1,
+   "solid": false,
+   "noink": true,
+   "instances": "root_tips",
+   "lod": "near",
+   "deeper": {
+    "type": "tissue2",
+    "id": "grass_root_tip",
+    "D": 0.0004,
+    "button": "Look at a root tip"
+   },
+   "center": [
+    0.0034,
+    -0.1081,
+    -0.0038
+   ],
+   "radius": 0.2162,
+   "count": 675,
+   "tris": 24300
+  },
+  {
+   "id": "root_hairs",
+   "name": "Root hairs",
+   "system": "roots",
+   "node": "grass_root_hairs",
+   "color": "#f6f1dc",
+   "priority": 2,
+   "solid": false,
+   "noink": true,
+   "instances": "root_hairs",
+   "lod": "near",
+   "double": true,
+   "center": [
+    0.0051,
+    -0.1748,
+    -0.0065
+   ],
+   "radius": 0.1838,
+   "count": 1620,
+   "tris": 9720
+  },
+  {
+   "id": "soil",
+   "name": "Soil",
+   "system": "soil",
+   "node": "grass_soil",
+   "color": "#6b4c32",
+   "priority": 0.5,
+   "solid": false,
+   "noink": true,
+   "mesh": "soil",
+   "opacity_max": 0.32,
+   "center": [
+    0,
+    -0.16,
+    0
+   ],
+   "radius": 0.34,
+   "tris": 144
+  },
+  {
+   "id": "t_sheaths",
+   "name": "Leaf sheath (opened)",
+   "system": "tiller",
+   "node": "grass_sheath",
+   "color": "#9ec06a",
+   "priority": 2,
+   "solid": false,
+   "noink": true,
+   "mesh": "t_sheaths",
+   "double": true,
+   "pivot": "tiller",
+   "center": [
+    0.3163,
+    0.025,
+    0.0052
+   ],
+   "radius": 0.0454,
+   "tris": 336
+  },
+  {
+   "id": "t_blade_up",
+   "name": "Leaf blade, upper surface",
+   "system": "tiller",
+   "node": "grass_blade_upper",
+   "color": "#4d8a2e",
+   "priority": 2,
+   "solid": false,
+   "noink": true,
+   "mesh": "t_blade_up",
+   "pivot": "tiller",
+   "center": [
+    0.3154,
+    0.1228,
+    0.0098
+   ],
+   "radius": 0.1406,
+   "tris": 1008
+  },
+  {
+   "id": "t_blade_down",
+   "name": "Leaf blade, underside",
+   "system": "tiller",
+   "node": "grass_blade_under",
+   "color": "#74b04a",
+   "priority": 2,
+   "solid": false,
+   "noink": true,
+   "mesh": "t_blade_down",
+   "pivot": "tiller",
+   "center": [
+    0.3154,
+    0.1227,
+    0.0098
+   ],
+   "radius": 0.1407,
+   "tris": 1008
+  },
+  {
+   "id": "t_ligules",
+   "name": "Ligule",
+   "system": "tiller",
+   "node": "grass_ligule",
+   "color": "#f1efe2",
+   "priority": 2.3,
+   "solid": false,
+   "noink": true,
+   "mesh": "t_ligules",
+   "double": true,
+   "pivot": "tiller",
+   "center": [
+    0.3162,
+    0.0416,
+    0.005
+   ],
+   "radius": 0.039,
+   "tris": 48
+  },
+  {
+   "id": "t_auricles",
+   "name": "Auricles",
+   "system": "tiller",
+   "node": "grass_auricle",
+   "color": "#e8e3c8",
+   "priority": 2.3,
+   "solid": false,
+   "noink": true,
+   "mesh": "t_auricles",
+   "pivot": "tiller",
+   "center": [
+    0.3161,
+    0.0417,
+    0.0051
+   ],
+   "radius": 0.0404,
+   "tris": 72
+  },
+  {
+   "id": "t_stem",
+   "name": "Stem base with nodes",
+   "system": "tiller",
+   "node": "grass_crown",
+   "color": "#c4ab74",
+   "priority": 2.1,
+   "solid": false,
+   "noink": true,
+   "mesh": "t_stem",
+   "pivot": "tiller",
+   "center": [
+    0.32,
+    0.0033,
+    0
+   ],
+   "radius": 0.0104,
+   "tris": 234
+  },
+  {
+   "id": "t_apex",
+   "name": "Growing point (shoot apex)",
+   "system": "tiller",
+   "node": "grass_meristem",
+   "color": "#f0c94c",
+   "priority": 2.6,
+   "solid": false,
+   "noink": true,
+   "mesh": "t_apex",
+   "pivot": "tiller",
+   "center": [
+    0.32,
+    0.014,
+    0
+   ],
+   "radius": 0.0007,
+   "tris": 64
+  },
+  {
+   "id": "t_roots",
+   "name": "Roots from the base of the tiller",
+   "system": "tiller",
+   "node": "grass_roots",
+   "color": "#d9c796",
+   "priority": 2,
+   "solid": false,
+   "noink": true,
+   "mesh": "t_roots",
+   "pivot": "tiller",
+   "center": [
+    0.3198,
+    -0.0365,
+    -0.0001
+   ],
+   "radius": 0.0357,
+   "tris": 320
+  },
+  {
+   "id": "b_stem",
+   "name": "Stem base (cut)",
+   "system": "base",
+   "node": "grass_crown",
+   "color": "#e3cf9a",
+   "priority": 2,
+   "solid": false,
+   "noink": true,
+   "mesh": "b_stem",
+   "pivot": "base",
+   "center": [
+    0.32,
+    0.0038,
+    0.0001
+   ],
+   "radius": 0.0099,
+   "tris": 12
+  },
+  {
+   "id": "b_nodes",
+   "name": "Nodes (cut)",
+   "system": "base",
+   "node": "grass_node",
+   "color": "#a88c52",
+   "priority": 2.1,
+   "solid": false,
+   "noink": true,
+   "mesh": "b_nodes",
+   "pivot": "base",
+   "center": [
+    0.32,
+    0.0073,
+    0.0002
+   ],
+   "radius": 0.006,
+   "tris": 48
+  },
+  {
+   "id": "b_sheaths",
+   "name": "Leaf sheaths (cut)",
+   "system": "base",
+   "node": "grass_sheath",
+   "color": "#8fb85a",
+   "priority": 2.2,
+   "solid": false,
+   "noink": true,
+   "mesh": "b_sheaths",
+   "pivot": "base",
+   "center": [
+    0.32,
+    0.025,
+    0.0005
+   ],
+   "radius": 0.0232,
+   "tris": 72
+  },
+  {
+   "id": "b_leaf_in",
+   "name": "Youngest leaf, folded inside (cut)",
+   "system": "base",
+   "node": "grass_blade",
+   "color": "#6aa83c",
+   "priority": 2.3,
+   "solid": false,
+   "noink": true,
+   "mesh": "b_leaf_in",
+   "pivot": "base",
+   "center": [
+    0.32,
+    0.0313,
+    0.0007
+   ],
+   "radius": 0.0208,
+   "tris": 24
+  },
+  {
+   "id": "b_growth_zone",
+   "name": "Leaf growth zone (cut)",
+   "system": "base",
+   "node": "grass_growth_zone",
+   "color": "#f2b84a",
+   "priority": 2.4,
+   "solid": false,
+   "noink": true,
+   "mesh": "b_growth_zone",
+   "pivot": "base",
+   "center": [
+    0.32,
+    0.0135,
+    0.0008
+   ],
+   "radius": 0.0033,
+   "tris": 12
+  },
+  {
+   "id": "b_apex",
+   "name": "Growing point (cut)",
+   "system": "base",
+   "node": "grass_meristem",
+   "color": "#f0c94c",
+   "priority": 2.5,
+   "solid": false,
+   "noink": true,
+   "mesh": "b_apex",
+   "pivot": "base",
+   "deeper": {
+    "type": "tissue2",
+    "id": "grass_apex",
+    "D": 0.0005,
+    "button": "Look inside the growing point"
+   },
+   "center": [
+    0.32,
+    0.015,
+    0.0008
+   ],
+   "radius": 0.0016,
+   "tris": 52
+  },
+  {
+   "id": "b_roots",
+   "name": "Roots (cut)",
+   "system": "base",
+   "node": "grass_roots",
+   "color": "#d9c796",
+   "priority": 2,
+   "solid": false,
+   "noink": true,
+   "mesh": "b_roots",
+   "pivot": "base",
+   "center": [
+    0.32,
+    -0.0337,
+    0.0005
+   ],
+   "radius": 0.0364,
+   "tris": 48
+  },
+  {
+   "id": "l_body",
+   "name": "Mesophyll (leaf blade, cut)",
+   "system": "leafsec",
+   "node": "grass_mesophyll",
+   "color": "#8fc060",
+   "priority": 1.6,
+   "solid": false,
+   "noink": true,
+   "mesh": "l_body",
+   "pivot": "leafsec",
+   "deeper": {
+    "type": "tissue2",
+    "id": "grass_leaf_section",
+    "D": 0.0006,
+    "button": "Look inside the leaf blade"
+   },
+   "center": [
+    0.32,
+    0.2495,
+    0.0007
+   ],
+   "radius": 0.0426,
+   "tris": 964
+  },
+  {
+   "id": "l_epidermis",
+   "name": "Epidermis (cut)",
+   "system": "leafsec",
+   "node": "grass_epidermis",
+   "color": "#cfe6a8",
+   "priority": 1.9,
+   "solid": false,
+   "noink": true,
+   "mesh": "l_epidermis",
+   "pivot": "leafsec",
+   "center": [
+    0.32,
+    0.2495,
+    0.0014
+   ],
+   "radius": 0.0426,
+   "tris": 1846
+  },
+  {
+   "id": "l_sheaths",
+   "name": "Bundle sheath (cut)",
+   "system": "leafsec",
+   "node": "grass_bundle_sheath",
+   "color": "#4f9a52",
+   "priority": 2.2,
+   "solid": false,
+   "noink": true,
+   "mesh": "l_sheaths",
+   "pivot": "leafsec",
+   "center": [
+    0.3196,
+    0.2501,
+    0.0021
+   ],
+   "radius": 0.0409,
+   "tris": 748
+  },
+  {
+   "id": "l_bundles",
+   "name": "Vascular bundle: xylem and phloem (cut)",
+   "system": "leafsec",
+   "node": "grass_bundle",
+   "color": "#e8e0a0",
+   "priority": 2.4,
+   "solid": false,
+   "noink": true,
+   "mesh": "l_bundles",
+   "pivot": "leafsec",
+   "center": [
+    0.3197,
+    0.2498,
+    0.0028
+   ],
+   "radius": 0.0394,
+   "tris": 880
+  },
+  {
+   "id": "l_sclerenchyma",
+   "name": "Sclerenchyma fibres (cut)",
+   "system": "leafsec",
+   "node": "grass_sclerenchyma",
+   "color": "#b79b6a",
+   "priority": 2.3,
+   "solid": false,
+   "noink": true,
+   "mesh": "l_sclerenchyma",
+   "pivot": "leafsec",
+   "center": [
+    0.3162,
+    0.2501,
+    0.0021
+   ],
+   "radius": 0.0367,
+   "tris": 352
+  },
+  {
+   "id": "l_bulliform",
+   "name": "Bulliform cells (cut)",
+   "system": "leafsec",
+   "node": "grass_bulliform",
+   "color": "#e9f3c9",
+   "priority": 2.3,
+   "solid": false,
+   "noink": true,
+   "mesh": "l_bulliform",
+   "pivot": "leafsec",
+   "center": [
+    0.32,
+    0.252,
+    0.0021
+   ],
+   "radius": 0.0361,
+   "tris": 640
+  },
+  {
+   "id": "l_stomata",
+   "name": "Stomata (cut)",
+   "system": "leafsec",
+   "node": "grass_stoma",
+   "color": "#2f6b3a",
+   "priority": 2.5,
+   "solid": false,
+   "noink": true,
+   "mesh": "l_stomata",
+   "pivot": "leafsec",
+   "center": [
+    0.3204,
+    0.2502,
+    0.0035
+   ],
+   "radius": 0.0354,
+   "tris": 240
+  },
+  {
+   "id": "l_silica",
+   "name": "Silica bodies (cut)",
+   "system": "leafsec",
+   "node": "grass_silica_body",
+   "color": "#ffffff",
+   "priority": 2.6,
+   "solid": false,
+   "noink": true,
+   "mesh": "l_silica",
+   "pivot": "leafsec",
+   "center": [
+    0.3199,
+    0.2535,
+    0.0035
+   ],
+   "radius": 0.0389,
+   "tris": 308
+  },
+  {
+   "id": "f_lemma",
+   "name": "Lemma (the outer scale, opened out)",
+   "system": "floret",
+   "node": "grass_lemma",
+   "color": "#b3c46a",
+   "priority": 2,
+   "solid": false,
+   "noink": true,
+   "mesh": "f_lemma",
+   "pivot": "floret",
+   "double": true,
+   "center": [
+    0.3155,
+    0.253,
+    0.0009
+   ],
+   "radius": 0.003,
+   "tris": 216
+  },
+  {
+   "id": "f_palea",
+   "name": "Palea (the inner scale)",
+   "system": "floret",
+   "node": "grass_palea",
+   "color": "#c9d68a",
+   "priority": 2,
+   "solid": false,
+   "noink": true,
+   "mesh": "f_palea",
+   "pivot": "floret",
+   "double": true,
+   "center": [
+    0.3206,
+    0.2528,
+    -0.0003
+   ],
+   "radius": 0.0028,
+   "tris": 112
+  },
+  {
+   "id": "f_lodicules",
+   "name": "Lodicules",
+   "system": "floret",
+   "node": "grass_lodicule",
+   "color": "#f4f1dc",
+   "priority": 2.4,
+   "solid": false,
+   "noink": true,
+   "mesh": "f_lodicules",
+   "pivot": "floret",
+   "double": true,
+   "center": [
+    0.32,
+    0.2514,
+    0.0012
+   ],
+   "radius": 0.0009,
+   "tris": 72
+  },
+  {
+   "id": "f_ovary",
+   "name": "Ovary",
+   "system": "floret",
+   "node": "grass_ovary",
+   "color": "#8cb34a",
+   "priority": 2.4,
+   "solid": false,
+   "noink": true,
+   "mesh": "f_ovary",
+   "pivot": "floret",
+   "double": true,
+   "center": [
+    0.32,
+    0.252,
+    0
+   ],
+   "radius": 0.0012,
+   "tris": 80
+  },
+  {
+   "id": "f_stigmas",
+   "name": "Feathery stigmas",
+   "system": "floret",
+   "node": "grass_stigma",
+   "color": "#d9d6e6",
+   "priority": 2.4,
+   "solid": false,
+   "noink": true,
+   "mesh": "f_stigmas",
+   "pivot": "floret",
+   "double": true,
+   "center": [
+    0.3201,
+    0.2542,
+    0.0002
+   ],
+   "radius": 0.0033,
+   "tris": 200
+  },
+  {
+   "id": "f_filaments",
+   "name": "Filaments",
+   "system": "floret",
+   "node": "grass_filament",
+   "color": "#f0ecc8",
+   "priority": 2.3,
+   "solid": false,
+   "noink": true,
+   "mesh": "f_filaments",
+   "pivot": "floret",
+   "double": true,
+   "center": [
+    0.3207,
+    0.2527,
+    0
+   ],
+   "radius": 0.0031,
+   "tris": 36
+  },
+  {
+   "id": "f_anthers",
+   "name": "Anthers",
+   "system": "floret",
+   "node": "grass_anther",
+   "color": "#e8d35a",
+   "priority": 2.5,
+   "solid": false,
+   "noink": true,
+   "mesh": "f_anthers",
+   "pivot": "floret",
+   "double": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "grass_pollen",
+    "D": 0.00025,
+    "button": "Look at grass pollen"
+   },
+   "center": [
+    0.3207,
+    0.2494,
+    0
+   ],
+   "radius": 0.0029,
+   "tris": 144
+  }
+ ],
+ "stats": {
+  "parts": 62,
+  "uniqueMeshTris": 53054,
+  "nearTris": 82380,
+  "midTris": 6118,
+  "farTris": 3524
+ }
+}
