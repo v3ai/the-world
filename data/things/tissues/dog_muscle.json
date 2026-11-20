@@ -339,9 +339,7 @@
     ]
    },
    "ink": 1,
-   "deeper": {
-    "type": "cell"
-   }
+   "material": "muscle_fibre"
   },
   {
    "id": "capillary",

@@ -76,7 +76,7 @@
     ],
     "jitter": 0.02
    },
-   "material": "animal_cells"
+   "material": "muscle_fibre"
   },
   {
    "id": "mito",
@@ -139,7 +139,7 @@
     ],
     "jitter": 0.01
    },
-   "material": "animal_cells"
+   "material": "insect_air_tube"
   }
  ]
 }

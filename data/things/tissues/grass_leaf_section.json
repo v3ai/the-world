@@ -992,9 +992,7 @@
      }
     ]
    },
-   "deeper": {
-    "type": "cell"
-   }
+   "material": "plant_cells"
   }
  ]
 }

@@ -34,7 +34,7 @@ write({'id': 'robin_flight_muscle', 'tag': 'Inside a flight muscle', 'title': "I
   'bg': '#f2eee6', 'center': [0, 0, 0], 'D_um': 330,
   'labels': [{'text': 'Muscle fibre', 'at': [-120, 70, 80], 'pop': 'fibre'}, {'text': 'Mitochondria', 'at': [-120, 0, 80], 'pop': 'mito'}, {'text': 'Capillary (blood vessel)', 'at': [-120, -70, 80], 'pop': 'capillary'}],
   'populations': [
-    pop('fibre', 'Flight muscle fibre', 'robin_muscle_fibre', 'tube_z', [34, 34, 220], '#d9776a', grid([-100, -50, -110], [5, 4, 1], [40, 40, 1], 0, .02), .55, priority=1, deeper={'type': 'cell', 'cell': 'animal'}),
+    pop('fibre', 'Flight muscle fibre', 'robin_muscle_fibre', 'tube_z', [34, 34, 220], '#d9776a', grid([-100, -50, -110], [5, 4, 1], [40, 40, 1], 0, .02), .55, priority=1),
     pop('mito', 'Mitochondrion', 'robin_mito', 'ellipsoid', [8, 6, 14], '#e8a04a', {'kind': 'inside', 'of': 'fibre', 'per': 9, 'margin': .75, 'seed': 5}, 1, ink=0, deeper={'type': 'mol', 'mol': 'atp', 'name': 'ATP', 'button': 'See the molecule: ATP, the energy currency'}, priority=4),
     pop('capillary', 'Capillary', 'robin_flight_muscle_scene', 'tube_z', [6, 6, 230], '#c0504a', grid([-80, -30, -115], [4, 3, 1], [40, 40, 1], 0, .01), .9),
   ]})

@@ -46,7 +46,7 @@ write({'id': 'grass_leaf_section', 'tag': 'Inside a grass leaf', 'title': 'Insid
     pop('bsheath', 'Bundle sheath cell', 'grass_bundle_sheath', 'tube_z', [14, 14, 50], '#a9d68a', lst(*[[x, y, 0] for b in BX for x, y, _ in ring(b, 75, 28, 9)]), .6, deeper={'type': 'cell'}),
     pop('xylem', 'Xylem vessel', 'bio_water_transport', 'tube_z', [11, 11, 50], '#4aa3df', lst(*[[b + dx, 84, 0] for b in BX for dx in (-9, 9)]), .85, deeper=mol('water', 'Water', 'See a water molecule')),
     pop('phloem', 'Phloem sieve tube', 'bio_phloem_transport', 'tube_z', [7, 7, 50], '#e0a526', lst(*[[b + dx, 64, 0] for b in BX for dx in (-7, 7)]), .9, deeper=mol('sucrose', 'Sucrose', 'See the molecule: sucrose, the sugar carried in the phloem')),
-    pop('scl', 'Sclerenchyma fibre', 'grass_sclerenchyma', 'tube_z', [8, 8, 50], '#b79b6a', lst(*[[b + dx, y, 0] for b in BX for dx in (-9, 0, 9) for y in (122, 28)]), .9, deeper={'type': 'cell'}),
+    pop('scl', 'Sclerenchyma fibre', 'grass_sclerenchyma', 'tube_z', [8, 8, 50], '#b79b6a', lst(*[[b + dx, y, 0] for b in BX for dx in (-9, 0, 9) for y in (122, 28)]), .9),
   ]})
 
 # ---------------------------------------------------------------- a grass stoma

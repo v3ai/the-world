@@ -149,7 +149,7 @@
      }
     ]
    },
-   "material": "plant_cells"
+   "material": "embryo_sac"
   },
   {
    "id": "egg",
@@ -237,7 +237,7 @@
      }
     ]
    },
-   "material": "plant_cells"
+   "material": "embryo_sac"
   },
   {
    "id": "anti",
