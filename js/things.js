@@ -117,11 +117,6 @@ void main(){
   c*=.86+.28*h1(id+9.1);
   float edge=smoothstep(0.0,uEdge*.35,f2-f1);
   c=mix(c*.35,c,mix(edge,1.0,uPlain));
-#if defined( USE_LOGDEPTHBUF ) && defined( USE_LOGDEPTHBUF_EXT )
-  // the cut face lies on the cut plane, not on the back face it is painted on: its depth is that of the plane, so a thin layer's cut face does not flicker
-  // against the neighbouring layer's surface just behind it (the layers of a battery cell are less than a micrometre apart)
-  float L=length(vW-uCam); if(nd>1e-4 && t>0.0 && t<L) gl_FragDepthEXT=log2(1.0+(vFragDepth-1.0)*t/L)*logDepthBufFC*0.5;
-#endif
   gl_FragColor=vec4(c,uOpacity); }`),
     side: THREE.BackSide, transparent: true, clipping: true
   });
