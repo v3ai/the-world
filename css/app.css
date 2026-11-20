@@ -390,7 +390,8 @@ details[open] > summary::before { content: '−' }
   #panelHint { align-items: center } #panelHint button { min-height: 40px; padding: 0 8px }
   /* and the rest the tester measured on a phone: Back 23 px, Minimise 23, Time 21, Close 28 x 28, the zoom buttons 38 x 36, Leave trail 20 */
   #navBack, #panelMin { min-height: 40px; padding: 0 12px }
-  #clockBtn { min-height: 40px; display: inline-flex; align-items: center; pointer-events: auto }
+  #clockBtn { position: relative; pointer-events: auto }   /* the field of view stays one small line: the Time button's tap area reaches past its box */
+  #clockBtn::before { content: ''; position: absolute; left: -4px; right: -4px; top: -14px; bottom: -14px }
   #info .x { min-height: 40px; min-width: 44px }
   #zoombtns button { width: 44px; height: 44px }
   .tr-leave, #trail .tr-btns button { min-height: 40px; padding: 0 10px }
