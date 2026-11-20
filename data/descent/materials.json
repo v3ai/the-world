@@ -16,6 +16,7 @@
   "grass",
   "inverter",
   "landscape",
+  "li_cell",
   "localgroup",
   "micro",
   "milkyway",
@@ -2421,6 +2422,118 @@
     }
    ],
    "src": "card robin_keratin; Wikipedia \"Keratin\" (https://en.wikipedia.org/wiki/Keratin: beta-keratins in the feathers, beaks and claws of birds)"
+  },
+  "pouch_laminate": {
+   "title": "Pouch film",
+   "desc": "A laminate about a tenth of a millimetre thick: nylon outside, aluminium foil in the middle, polypropylene inside.",
+   "card": "licell_pouch",
+   "inside": [
+    {
+     "name": "aluminium foil, the middle layer",
+     "material": "aluminium",
+     "note": "{What}: a film of three layers, nylon outside, aluminium foil in the middle and polypropylene inside. Shown: the aluminium, which is what keeps air and moisture out. The two plastic layers are not built yet."
+    },
+    {
+     "name": "nylon (polyamide), the outer layer"
+    },
+    {
+     "name": "polypropylene, the inner layer that is welded"
+    }
+   ],
+   "src": "card licell_pouch (batterydesign.net trade reference on pouch laminate)"
+  },
+  "cell_tab": {
+   "title": "Tab of a cell",
+   "desc": "A metal strip welded to the foils of one electrode.",
+   "card": "licell_tabs",
+   "stop": "Not built: the metal of {what}. No source opened for this model names the metals of a phone cell's tabs (trade sources give aluminium for the positive one and nickel or nickel-plated copper for the negative one), so no crystal is shown."
+  },
+  "lithiated_graphite": {
+   "title": "Graphite with lithium in it",
+   "desc": "Carbon sheets with lithium between them: LiC6 when the cell is full.",
+   "card": "licell_graphite",
+   "inside": [
+    {
+     "name": "LiC6, graphite full of lithium",
+     "scene": "crystal:lic6",
+     "note": "{What}: shown as it is in a fully charged cell, with lithium between all the carbon sheets (LiC6). In an empty cell the lithium is gone and the sheets lie closer, as in plain graphite."
+    }
+   ],
+   "src": "card licell_graphite; data/crystals.json lic6 (PSI in-situ diffraction: P6/mmm, a 4.32, c 3.70)"
+  },
+  "lithium_cobalt_oxide": {
+   "title": "Lithium cobalt oxide",
+   "desc": "Sheets of cobalt and oxygen with lithium between them.",
+   "card": "licell_lco",
+   "inside": [
+    {
+     "name": "LiCoO2 crystal",
+     "scene": "crystal:licoo2",
+     "note": "{What}: shown full of lithium (LiCoO2), as in an empty cell. In a charged cell about half of the lithium sites are vacant."
+    }
+   ],
+   "src": "card licell_lco; data/crystals.json licoo2 (Hertz et al. 2008, neutron diffraction)"
+  },
+  "conductive_carbon": {
+   "title": "Conducting carbon",
+   "desc": "Fine carbon mixed into the oxide coating to carry electrons between the grains.",
+   "card": "licell_cathode",
+   "inside": [
+    {
+     "name": "graphite, a stand-in for the carbon",
+     "material": "graphite",
+     "standIn": true,
+     "note": "{What}: carbon added to carry the electrons (carbon nanotubes were seen in a phone cell). A nanotube is a sheet of carbon rings rolled into a tube; shown instead: flat sheets of the same rings, as in graphite. No nanotube model has been built."
+    }
+   ],
+   "src": "card licell_cathode (Loveridge et al. 2018: carbon nanotubes on the Note 7 cathode)"
+  },
+  "separator_polymer": {
+   "title": "Separator plastic",
+   "desc": "Polyethylene (or polypropylene): long chains of carbon and hydrogen.",
+   "card": "licell_separator",
+   "inside": [
+    {
+     "name": "a short piece of a polyethylene chain",
+     "scene": "mol:polyethylene_c20",
+     "standIn": true,
+     "title": "Polyethylene (20 carbons of a chain thousands long)",
+     "note": "{What}: polyethylene, chains of thousands of CH2 units. Shown: a piece 20 carbons long. Some separators are polypropylene or layers of both, and many carry a ceramic coating, which is not built."
+    }
+   ],
+   "src": "card licell_separator (Li et al. 2021 review); data/molecules_all.json polyethylene_c20"
+  },
+  "battery_electrolyte": {
+   "title": "Electrolyte of a lithium-ion cell",
+   "desc": "A lithium salt dissolved in organic carbonate solvents.",
+   "card": "licell_electrolyte",
+   "stop": "Not built yet: the molecules of the electrolyte. It is a lithium salt (lithium hexafluorophosphate, LiPF6, about one mole per litre) dissolved in organic carbonates such as ethylene carbonate; no models of these molecules exist here yet."
+  },
+  "lithium_ion_marker": {
+   "title": "A lithium ion",
+   "desc": "A lithium atom that has given up its one outer electron.",
+   "card": "at_el_Li",
+   "inside": [
+    {
+     "name": "the lithium atom",
+     "scene": "atom:Li",
+     "standIn": true,
+     "note": "The marker stands for one lithium ion, enlarged about three million times. An ion is the atom without its outer electron; shown: the whole neutral atom, with that electron."
+    }
+   ],
+   "src": "card licell_ion_shuttle; the atom scene"
+  },
+  "electron_marker": {
+   "title": "An electron (marker)",
+   "desc": "A marker for one electron going round the outside circuit.",
+   "card": "sm_electron",
+   "stop": "This marker stands for an electron. No parts are known inside an electron: experiments find no structure down to about 10⁻¹⁹ m, which is a limit of measurement."
+  },
+  "schematic_part": {
+   "title": "A schematic part",
+   "desc": "A stand-in drawn to complete a diagram.",
+   "card": null,
+   "stop": "{What} is a schematic stand-in, not a part of the cell: there is nothing true to show inside it."
   }
  }
 }

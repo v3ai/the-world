@@ -1,0 +1,175 @@
+{
+ "tag": "Inside the negative electrode",
+ "cell": "animal",
+ "id": "licell_anode",
+ "title": "Inside the graphite coating",
+ "node": "licell_anode",
+ "blurb": "A slice through one coating of a negative sheet: copper foil at the bottom, graphite grains packed above it, the separator on top. The pores between the grains are full of liquid electrolyte. Click a grain, then look inside it.",
+ "note": "To scale: the thickness of the foil (10 µm), of the coating (76.5 µm) and of the separator (25 µm), and the size of the grains (10 µm across), all from the parameter set of a measured consumer pouch cell (Ai et al. 2020). Illustrative: the shapes of the grains (real ones are irregular flakes and lumps), their number and their packing; the binder that glues them and the skin on each grain (the SEI, a few nanometres) are not drawn.",
+ "bg": "#f1ede4",
+ "center": [
+  70,
+  55,
+  0
+ ],
+ "D_um": 150,
+ "labels": [
+  {
+   "text": "Graphite grains: lithium is stored inside them",
+   "at": [
+    20,
+    70,
+    32
+   ],
+   "pop": "graphite"
+  },
+  {
+   "text": "Copper foil, 10 µm",
+   "at": [
+    120,
+    5,
+    32
+   ],
+   "pop": "foil"
+  },
+  {
+   "text": "Separator",
+   "at": [
+    118,
+    99,
+    32
+   ],
+   "pop": "separator"
+  },
+  {
+   "text": "Liquid electrolyte fills the pores",
+   "at": [
+    70,
+    40,
+    34
+   ],
+   "pop": "electrolyte"
+  }
+ ],
+ "populations": [
+  {
+   "id": "foil",
+   "name": "Copper foil",
+   "node": "licell_cu_foil",
+   "shape": "rbox",
+   "size": [
+    140,
+    10,
+    60
+   ],
+   "color": "#c8793a",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "material": "copper",
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       70,
+       5.0,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "graphite",
+   "name": "Graphite grain",
+   "node": "licell_graphite",
+   "shape": "ellipsoid",
+   "size": [
+    11,
+    8,
+    11
+   ],
+   "color": "#3a4047",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "material": "lithiated_graphite",
+   "arrange": {
+    "kind": "random",
+    "n": 230,
+    "min": [
+     5,
+     14.5,
+     -24
+    ],
+    "max": [
+     135,
+     82.0,
+     24
+    ],
+    "gap": -1.2,
+    "seed": 11,
+    "orient": "free"
+   }
+  },
+  {
+   "id": "electrolyte",
+   "name": "Electrolyte in the pores",
+   "node": "licell_electrolyte",
+   "shape": "rbox",
+   "size": [
+    139,
+    76.0,
+    59
+   ],
+   "color": "#9fc3d6",
+   "opacity": 0.16,
+   "priority": 1,
+   "material": "battery_electrolyte",
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       70,
+       48.25,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "separator",
+   "name": "Separator",
+   "node": "licell_separator",
+   "shape": "rbox",
+   "size": [
+    140,
+    25,
+    60
+   ],
+   "color": "#efe9d8",
+   "opacity": 0.95,
+   "ink": 1,
+   "priority": 3,
+   "deeper": {
+    "type": "none"
+   },
+   "material": "separator_polymer",
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       70,
+       99.0,
+       0
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}

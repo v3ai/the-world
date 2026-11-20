@@ -1,0 +1,206 @@
+{
+ "tag": "Inside the positive electrode",
+ "cell": "animal",
+ "id": "licell_cathode",
+ "title": "Inside the oxide coating",
+ "node": "licell_cathode",
+ "blurb": "A slice through one coating of a positive sheet: aluminium foil at the bottom, grains of lithium cobalt oxide above it, with threads of carbon between them to carry the electrons. The pores are full of liquid electrolyte. Click a grain, then look inside it.",
+ "note": "To scale: the thickness of the foil (15 µm), of the coating (68 µm) and of the separator (25 µm), and the size of the grains (6 µm across), from the parameter set of a measured consumer pouch cell (Ai et al. 2020). Illustrative: the round shape of the grains, their single size (real powders mix many sizes), their number and packing, and the carbon threads, which are drawn far thicker than the nanotubes seen in a phone cell; the binder is not drawn.",
+ "bg": "#f1ede4",
+ "center": [
+  36,
+  50,
+  0
+ ],
+ "D_um": 140,
+ "labels": [
+  {
+   "text": "Lithium cobalt oxide grains",
+   "at": [
+    12,
+    66,
+    17
+   ],
+   "pop": "lco"
+  },
+  {
+   "text": "Aluminium foil, 15 µm",
+   "at": [
+    58,
+    7,
+    17
+   ],
+   "pop": "foil"
+  },
+  {
+   "text": "Carbon threads carry the electrons",
+   "at": [
+    38,
+    36,
+    17
+   ],
+   "pop": "carbon"
+  },
+  {
+   "text": "Separator",
+   "at": [
+    58,
+    95,
+    17
+   ],
+   "pop": "separator"
+  }
+ ],
+ "populations": [
+  {
+   "id": "foil",
+   "name": "Aluminium foil",
+   "node": "licell_al_foil",
+   "shape": "rbox",
+   "size": [
+    72,
+    15,
+    30
+   ],
+   "color": "#cfd4da",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "material": "aluminium",
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       36,
+       7.5,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "lco",
+   "name": "Lithium cobalt oxide grain",
+   "node": "licell_lco",
+   "shape": "ellipsoid",
+   "size": [
+    6,
+    6,
+    6
+   ],
+   "color": "#2a4170",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "material": "lithium_cobalt_oxide",
+   "arrange": {
+    "kind": "random",
+    "n": 250,
+    "min": [
+     3.5,
+     18.2,
+     -11.5
+    ],
+    "max": [
+     68.5,
+     79.8,
+     11.5
+    ],
+    "gap": -0.5,
+    "seed": 5
+   }
+  },
+  {
+   "id": "carbon",
+   "name": "Conducting carbon",
+   "node": "licell_cathode",
+   "shape": "cylinder",
+   "size": [
+    0.5,
+    9,
+    0.5
+   ],
+   "color": "#15171c",
+   "opacity": 1,
+   "priority": 2,
+   "material": "conductive_carbon",
+   "arrange": {
+    "kind": "random",
+    "n": 150,
+    "min": [
+     3,
+     17,
+     -12
+    ],
+    "max": [
+     69,
+     81,
+     12
+    ],
+    "gap": -8,
+    "seed": 9,
+    "orient": "free"
+   }
+  },
+  {
+   "id": "electrolyte",
+   "name": "Electrolyte in the pores",
+   "node": "licell_electrolyte",
+   "shape": "rbox",
+   "size": [
+    71,
+    67.5,
+    29
+   ],
+   "color": "#9fc3d6",
+   "opacity": 0.16,
+   "priority": 1,
+   "material": "battery_electrolyte",
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       36,
+       49.0,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "separator",
+   "name": "Separator",
+   "node": "licell_separator",
+   "shape": "rbox",
+   "size": [
+    72,
+    25,
+    30
+   ],
+   "color": "#efe9d8",
+   "opacity": 0.95,
+   "ink": 1,
+   "priority": 3,
+   "deeper": {
+    "type": "none"
+   },
+   "material": "separator_polymer",
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       36,
+       95.5,
+       0
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}
