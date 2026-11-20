@@ -110,7 +110,7 @@
   "layers": {
    "basics": "FIR filters output a weighted sum of the most recent input samples. With no feedback they are always stable, and symmetric weights give exactly linear phase (every frequency delayed equally).",
    "deeper": "Windowing a sinc impulse response, or Parks–McClellan optimisation, designs them.",
-   "expert": "y[n]=Σb_k x[n−k]; linear phase if the coefficients are symmetric or antisymmetric about the centre. Kaiser's estimate of the order is N ≈ (−20·log₁₀√(δ₁δ₂) − 13)/(14.6·Δf), with δ₁, δ₂ the passband and stopband ripples (linear) and Δf the transition width divided by the sampling rate; it is an estimate, not a design rule."
+   "expert": "y[n]=Σb_k x[n−k]; linear phase if the coefficients are symmetric or antisymmetric about the centre. For a window design, Kaiser's estimate of the filter order is n ≈ (α − 8)/(2.285·Δω), where α = −20·log₁₀δ is the stopband attenuation in dB (δ the ripple) and Δω is the transition width in radians per sample (the same as (α − 8)/(14.36·Δf) with Δf = Δω/2π, the transition width divided by the sampling rate); it is an estimate, not a design rule."
   },
   "facts": [],
   "formula": "y[n] = Σ b_k x[n−k]",
@@ -190,7 +190,7 @@
   "layers": {
    "basics": "Cutting a signal abruptly smears its spectrum; tapering with a window reduces the smear.",
    "deeper": "Hann, Hamming, Blackman trade main-lobe width against side-lobe level.",
-   "expert": "Highest sidelobe relative to the main lobe: rectangular about −13 dB, Hann about −31 dB, Hamming about −42 dB (tables quote −41 to −43), Blackman about −58 dB. Lower sidelobes come with a wider main lobe. The Kaiser window's parameter β sets this trade-off continuously."
+   "expert": "Highest sidelobe relative to the main lobe: rectangular about −13 dB, Hann about −31 dB, Hamming about −42 dB (tables quote −41 to −43), Blackman about −58 dB (tables quote −57 to −58). Lower sidelobes come with a wider main lobe. The Kaiser window's parameter β sets this trade-off continuously."
   },
   "facts": [],
   "certainty": "C1",

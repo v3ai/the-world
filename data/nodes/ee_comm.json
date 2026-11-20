@@ -187,7 +187,7 @@
   "layers": {
    "basics": "Extra check bits let a receiver detect and fix errors; Hamming codes correct any single-bit error; CRCs detect (but do not correct) most burst and multi-bit errors.",
    "deeper": "Block codes work on fixed chunks; convolutional codes work on streams, decoded with the Viterbi algorithm.",
-   "expert": "A code with minimum distance d_min can correct ⌊(d_min−1)/2⌋ errors or detect up to d_min−1; Reed–Solomon (QR codes, CDs); LDPC and polar codes in 5G; coding gain."
+   "expert": "A code with minimum distance d_min can correct ⌊(d_min−1)/2⌋ errors or detect up to d_min−1; Reed–Solomon (QR codes, CDs); 5G NR uses LDPC codes for data channels and polar codes for control channels; coding gain."
   },
   "facts": [],
   "formula": "t = ⌊(d_min−1)/2⌋ correctable errors (or d_min−1 detectable)",
