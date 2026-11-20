@@ -1290,13 +1290,13 @@ function notBuilt(h) {
    of things too small or too sparse to hit. Where the frame names the points a zoom can end on (its attractors), the nearest one to the pointer is what was meant:
    go into it. Anywhere else (the sky, the space between planets) a double click on nothing still does nothing. */
 function lookInsideNear(x, y) {
-  const A = cam.A, a = A && A.att; if (!a || !A.spawn) return lastInside = { how: 'none' };
+  const none = { how: 'none' }, A = cam.A, a = A && A.att; if (!a || !A.spawn) return none; // nothing was looked into: lastInside is left alone
   const P = pivotAt(x, y).clone(), id = a.find(P, null), Q = new V3();
-  if (id < 0 || !a.pos(id, Q)) return lastInside = { how: 'none' };
+  if (id < 0 || !a.pos(id, Q)) return none;
   cancelTour(); att.f = A; att.id = id; att.p.copy(Q); att.px = zoom.px; att.py = zoom.py; // spawn functions ask attId(A) for the one that was meant
   let c = A.children.find(k => k.dynamic && k.containsP(Q));
   if (!c) { try { c = A.spawn(Q.clone(), null); } catch (e) { c = null; } if (c) { c.dynamic = true; c.keep = performance.now() + 60000; A.addChild(c); } }
-  if (!c) return lastInside = { how: 'none' };
+  if (!c) return none;
   c.ensure(); selLeaveFor(c); flyKeep(c, c.center ? c.center.clone() : new V3(), frameOverviewD(c)); return lastInside = { how: 'descent', frame: c };
 }
 function lookInsidePlace() {
