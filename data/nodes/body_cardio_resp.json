@@ -163,7 +163,7 @@
     "Upper left chamber that receives oxygen-rich blood from the lungs"
    ]
   ],
-  "did_you_know": "The left atrium's appendage is where most atrial-fibrillation clots form.",
+  "did_you_know": "Blood clots have a tendency to form in the left atrial appendage, a small pouch off the left atrium, which is one reason atrial fibrillation raises stroke risk.",
   "certainty": "C1",
   "refs": [
    [
@@ -258,7 +258,7 @@
   "summary": "The strongest chamber: it pumps blood to the whole body.",
   "layers": {
    "basics": "The thick-walled chamber that sends blood out to the body at high pressure.",
-   "deeper": "Its muscle wall is about 1 cm thick and generates around 120 mmHg in systole when blood pressure is a normal 120/80.",
+   "deeper": "Its muscle wall is about 1 cm thick in diastole in healthy adults and generates around 120 mmHg in systole when blood pressure is a normal 120/80.",
    "expert": "Conical with helical fiber orientation producing twist; ejection fraction normally above half of the filled volume; its inner muscle layers are perfused mostly in diastole, when relaxation lets aortic pressure drive blood into the coronary arteries."
   },
   "facts": [
@@ -319,7 +319,7 @@
     "The muscular wall separating the left and right ventricles"
    ]
   ],
-  "did_you_know": "Both ventricles share this wall and push against each other slightly with each beat.",
+  "did_you_know": "This wall is much thicker than the one between the two atria, because the ventricles generate far more pressure than the atria.",
   "certainty": "C1",
   "refs": [
    [
@@ -791,16 +791,12 @@
   "layers": {
    "basics": "The superior vena cava drains the upper body; the inferior drains the lower.",
    "deeper": "The superior vena cava collects blood from the head, neck and arms, and the inferior vena cava from the legs, abdomen and pelvis. Both empty into the right atrium, helped by the pressure changes in the chest as you breathe.",
-   "expert": "IVC lacks valves except a rudimentary Eustachian valve; ≈ 2 cm diameter; venous return influenced by respiratory pump."
+   "expert": "IVC lacks valves except a rudimentary Eustachian valve; transverse diameter of the infrarenal part about 2-2.5 cm (varies with breathing and blood volume); venous return influenced by respiratory pump."
   },
   "facts": [
    [
-    "Diameter",
-    "≈ 2-3 cm"
-   ],
-   [
-    "Length (IVC)",
-    "≈ 22 cm"
+    "Diameter (IVC, below the kidneys)",
+    "≈ 2-2.5 cm (CT mean transverse 24 mm, range 14-33 mm)"
    ]
   ],
   "did_you_know": "The inferior vena cava is the largest vein.",
@@ -1137,11 +1133,11 @@
   "facts": [
    [
     "Vocal fold length",
-    "≈ 1.2-2.5 cm"
+    "≈ 1-2.3 cm (shorter in women; varies with method)"
    ],
    [
-    "Voice pitch (typical)",
-    "≈ 85-255 Hz"
+    "Speaking pitch (average)",
+    "≈ 120 Hz men, ≈ 200 Hz women"
    ]
   ],
   "did_you_know": "Your voice pitch is set by vocal-fold length and tension, not by 'size of the throat'.",
@@ -1448,7 +1444,7 @@
   ],
   "parts": [],
   "made_of": [
-   "epithelial_tissue",
+   "simple_squamous_epithelium",
    "connective_tissue_loose"
   ],
   "processes": [
@@ -1469,7 +1465,7 @@
   "layers": {
    "basics": "Each lung has hundreds of millions of tiny sacs wrapped in capillaries.",
    "deeper": "Between the air and the blood lie only a very thin alveolar cell, a capillary cell and the thin membrane they share, so oxygen can diffuse across in a fraction of a second.",
-   "expert": "Roughly 300-500 million alveoli in total (one stereology study of six adult lungs found a mean of 480 million, range 274-790 million), diameter ≈ 200 µm; type I cells for exchange, type II cells make surfactant; blood-gas barrier ≈ 0.2-0.6 µm."
+   "expert": "Roughly 300-500 million alveoli in total (one stereology study of six adult lungs found a mean of 480 million, range 274-790 million), diameter ≈ 200-250 µm; type I cells for exchange, type II cells make surfactant; blood-gas barrier harmonic mean thickness ≈ 0.6 µm (thinnest parts ≈ 0.3 µm)."
   },
   "facts": [
    [
@@ -1478,11 +1474,11 @@
    ],
    [
     "Diameter",
-    "≈ 0.2 mm"
+    "≈ 0.2-0.25 mm"
    ],
    [
     "Barrier thickness",
-    "≈ 0.2-0.6 µm"
+    "≈ 0.6 µm (harmonic mean); ≈ 0.3 µm thinnest"
    ]
   ],
   "did_you_know": "The alveolar surface is often compared to a tennis court, but measured values are about 70-140 m², depending on the method used.",
@@ -1522,12 +1518,12 @@
   "layers": {
    "basics": "When you breathe in, the diaphragm flattens and pulls air into the lungs.",
    "deeper": "It separates chest from abdomen. Hiccups are spasms of this muscle.",
-   "expert": "Innervated by the phrenic nerves (C3-C5); is the main muscle of quiet breathing; excursion ≈ 1.5 cm quiet, up to 10 cm deep."
+   "expert": "Innervated by the phrenic nerves (C3-C5); is the main muscle of quiet breathing; excursion in seated adults averages about 1.7-2 cm in quiet breathing and about 5-7 cm in a maximal deep breath."
   },
   "facts": [
    [
     "Excursion (quiet)",
-    "≈ 1-2 cm"
+    "≈ 1.7-2 cm (seated adults, mean)"
    ],
    [
     "Nerve",

@@ -4377,7 +4377,7 @@
 "domain": "Chemistry",
 "basics": "Plants need fixed nitrogen, which is scarce because N₂ has a very strong triple bond. The Haber-Bosch process makes ammonia from nitrogen and hydrogen and feeds roughly half of humanity.",
 "deeper": "It runs at ~400–500 °C and 150–300 atm over an iron catalyst. Industrial fixation now rivals natural land fixation.",
-"expert": "N₂+3H₂⇌2NH₃, ΔH=−92 kJ/mol; N≡N 945 kJ/mol; global ammonia output ≈1.5×10⁸ t of nitrogen per year (≈1.8–1.9×10⁸ t as NH₃), recent USGS estimates.",
+"expert": "N₂+3H₂⇌2NH₃, ΔH=−92 kJ/mol; N≡N 945 kJ/mol; global ammonia output ≈1.6×10⁸ t of nitrogen per year in 2024–2025 (≈1.9×10⁸ t as NH₃), USGS estimates.",
 "regime": "Energy-intensive; catalysts working at mild conditions are an active research target.",
 "emerges_from": [
 "reaction_kinetics",
@@ -4753,7 +4753,7 @@
 "domain": "Condensed matter",
 "basics": "Some materials have conduction that is protected by the global shape of their electron states. Quantum-Hall systems are the classic example. Graphene, one atom-thick carbon, is the best-known 2D material and shows the quantum Hall effect, though by itself it is not a topological insulator.",
 "deeper": "Quantum-Hall resistance is quantised to extreme precision, now used in electrical standards. Twisted layers (moiré materials) show correlated and superconducting phases.",
-"expert": "R_H=h/(νe²), h/e²=25 812.807 Ω; graphene mobility up to ~10⁵ cm²/V s at room temperature in clean encapsulated samples (≈10⁴ on SiO₂).",
+"expert": "R_H=h/(νe²), h/e²=25 812.807 Ω; graphene mobility up to ≈1.4×10⁵ cm²/V s at room temperature in samples encapsulated in boron nitride with edge contacts, and much lower on SiO₂ substrates.",
 "regime": "Active research; practical devices still emerging.",
 "emerges_from": [
 "band_theory",
@@ -5703,7 +5703,7 @@
 "domain": "Cell biology",
 "basics": "Cells copy their DNA and split into two identical daughters by mitosis. Meiosis halves the chromosome number to make eggs and sperm and shuffles genes.",
 "deeper": "Checkpoint proteins stop division if DNA is damaged. Loss of these controls is a hallmark of cancer.",
-"expert": "Human cell cycle ≈24 h in fast-dividing cultured cells; M phase ≈1 h; meiosis I recombination ≈1–3 crossovers per chromosome pair (≈30–50 per human meiosis, more in females than males).",
+"expert": "Human cell cycle ≈24 h in fast-dividing cultured cells; M phase ≈0.5–1 h; meiosis I recombination ≈1–3 crossovers per chromosome pair (on average ≈27 per male and ≈42 per female meiosis).",
 "regime": "Bacteria divide by binary fission.",
 "emerges_from": [
 "dna_structure",
@@ -6242,7 +6242,7 @@
 "domain": "Origin of life",
 "basics": "RNA can both store information and catalyse reactions, so it may have preceded DNA and proteins. The ribosome's core is made of RNA, a clue.",
 "deeper": "It leaves open how RNA first formed and how the shift to DNA and proteins occurred.",
-"expert": "Hammerhead and RNase P ribozymes; peptidyl transferase is rRNA; non-enzymatic copying of RNA templates is slow and error-prone (errors of order a few percent per nucleotide in typical experiments), far below what is needed to maintain long genomes.",
+"expert": "Hammerhead and RNase P ribozymes; peptidyl transferase is rRNA; non-enzymatic copying of RNA templates is slow and error-prone (errors of roughly 10 % per nucleotide, 7–26 % in one study depending on the system), far below what is needed to maintain long genomes.",
 "regime": "Plausible stage, not a proven origin.",
 "emerges_from": [
 "origin_of_life",
@@ -6288,7 +6288,7 @@
 "domain": "Origin of life",
 "basics": "All present life descends from one ancestral population, the last universal common ancestor, which lived billions of years ago.",
 "deeper": "Shared genes across bacteria and archaea hint at what LUCA needed, but its age and lifestyle are estimated indirectly.",
-"expert": "Molecular-clock estimates place LUCA around 4.2 Ga (a 2024 study; uncertainty several hundred Myr), with a few hundred universal gene families; disputed microfossil and stromatolite evidence for life reaches back ≈3.5 Ga.",
+"expert": "Molecular-clock estimates place LUCA around 4.2 Ga (4.09–4.33 Ga in a 2024 study, with a genome of at least 2.5 Mb encoding about 2,600 proteins); disputed microfossil and stromatolite evidence for life reaches back ≈3.5 Ga.",
 "regime": "Dates depend on molecular-clock calibration.",
 "emerges_from": [
 "origin_of_life"
@@ -7054,7 +7054,7 @@
 "domain": "Technology",
 "basics": "MRI aligns the spins of hydrogen nuclei with a strong magnetic field, nudges them with radio pulses, and listens to the signals they emit as they relax.",
 "deeper": "Superconducting magnets give the field. Contrast comes from differences in how fast different tissues relax.",
-"expert": "ω_L=γB₀, γ/2π=42.58 MHz/T; at 1.5 T: T₁≈0.25–0.5 s for fat, ≈0.6–1.0 s for white and grey matter, ≈4 s for CSF, longer at higher field; T₂≈40–100 ms in most soft tissue.",
+"expert": "ω_L=γB₀, γ/2π=42.58 MHz/T; T₁ is of order 0.1–1 s in solid tissues and several seconds in fluids such as CSF, and lengthens with field strength; T₂ is tens of ms in most solid tissue, much longer in fluids, and changes little between 1.5 T and 3 T.",
 "regime": "Contraindicated with some metal implants.",
 "emerges_from": [
 "spectroscopy_methods",
@@ -7216,7 +7216,7 @@
 "domain": "Neuroscience",
 "basics": "Connectomics maps every neuron and synapse in a brain using electron microscopy. Complete maps exist for small animals and growing parts of mammal brains.",
 "deeper": "Wiring maps provide constraints for circuit models, but they do not give the strengths, chemistry or dynamics by themselves.",
-"expert": "C. elegans: 302 neurons, ≈7,000 synapses; adult Drosophila brain (FlyWire) ≈1.4×10⁵ neurons and ≈5×10⁷ synapses; MICrONS mouse cortex 1 mm³ ≈7×10⁴ neurons (≈2×10⁵ cells) and ≈5×10⁸ synapses.",
+"expert": "C. elegans: 302 neurons, ≈7,000 synapses; adult Drosophila brain (FlyWire) ≈1.4×10⁵ neurons and ≈5×10⁷ synapses; MICrONS mouse cortex ≈1 mm³ with more than 2×10⁵ cells and ≈5×10⁸ synapses.",
 "regime": "Structure alone does not determine function.",
 "emerges_from": [
 "brain_organization",
@@ -7505,7 +7505,7 @@
 "domain": "Neuroscience",
 "basics": "Why brain activity comes with subjective experience is unsolved. Rival theories include integrated information, global neuronal workspace, higher-order and predictive-processing views.",
 "deeper": "Experiments compare brain activity for stimuli that are seen versus unseen. No consensus theory exists, and no test settles whether a machine could be conscious.",
-"expert": "Integrated information Φ (IIT); global workspace theory predicts a late \"ignition\" (≈300–500 ms after the stimulus, often linked to the P3b), but whether the P3b marks conscious access or later report-related processing is itself disputed.",
+"expert": "Integrated information Φ (IIT); global workspace theory predicts a late \"ignition\" (from about 200–300 ms after the stimulus, often linked to the P3b), but whether the P3b marks conscious access or later report-related processing is itself disputed.",
 "regime": "Measurement problem: reports versus experience.",
 "emerges_from": [
 "brain_organization"
@@ -8097,7 +8097,7 @@
 "domain": "Ecology",
 "basics": "A handful of soil holds billions of microbes, fungi and tiny animals that recycle nutrients and feed plants. Fungal networks physically connect many plant roots; whether they carry significant nutrients or signals between plants in nature is debated.",
 "deeper": "Nitrogen-fixing bacteria in root nodules supply plants with ammonia. Soil carbon is a major store.",
-"expert": "≈10⁸–10⁹ bacteria per gram; fungal hyphae ≈10–1000 m per gram of soil depending on soil type; soil pH 4–9.",
+"expert": "≈10⁸–10⁹ bacteria per gram; fungal hyphae from a few metres to several hundred metres per gram of soil depending on soil type; soil pH 4–9.",
 "regime": "Complex, hard to model at ecosystem scale.",
 "emerges_from": [
 "weathering_erosion",
@@ -8532,7 +8532,7 @@
 "domain": "Meteorology",
 "basics": "Hurricanes draw energy from warm ocean water (above ~26.5 °C) and spin because of Earth's rotation. Thunderstorms form when warm moist air rises rapidly.",
 "deeper": "Wind strength, rain and storm surge cause damage. Warmer seas favour more intense storms, though trends in frequency are uncertain.",
-"expert": "Wind ≥119 km/h for hurricane; latent-heat release ≈6×10¹⁴ W (≈5×10¹⁹ J/day), of which wind kinetic energy is ≈10¹² W (about 0.25 %); storm surge several metres for major landfalls, with records above 8 m (Katrina 2005 ≈8.5 m); SST threshold ≈26.5 °C.",
+"expert": "Wind ≥119 km/h for hurricane; latent-heat release ≈6×10¹⁴ W (≈5×10¹⁹ J/day), of which wind kinetic energy is ≈1.5×10¹² W (about 0.25 %); storm surge several metres for major landfalls, with records above 8 m (Katrina 2005 ≈8.5 m); SST threshold ≈26.5 °C.",
 "regime": "Link to climate change is robust for intensity, less certain for frequency.",
 "emerges_from": [
 "atmospheric_circulation",
@@ -8607,7 +8607,7 @@
 "domain": "Earth system",
 "basics": "Elements circulate between rock, ocean, air and living things. These cycles connect geology to biology and set climate over long times.",
 "deeper": "Carbon moves between air, oceans, plants and rocks; nitrogen is fixed by microbes and human industry; phosphorus comes mainly from rock weathering and limits growth in many places.",
-"expert": "Atmospheric C ≈ 850 Pg; ocean ≈38 000 Pg; land plants ≈450–650 Pg; fossil-fuel emissions ≈ 10 Pg C/yr in recent decades; N fixation by industry ≈ natural land fixation.",
+"expert": "Atmospheric C ≈ 850 Pg; ocean ≈38 000 Pg; land plants ≈450–650 Pg; fossil-fuel emissions ≈ 10 Pg C/yr in recent decades; N fixation by industry ≈ twice natural land fixation (≈120 versus ≈63 Tg N/yr in 2010).",
 "regime": "Atmospheric stocks and fossil emissions are known to a few %, but many natural fluxes (biological N fixation, the land sink, phosphorus) are uncertain by 30 % to a factor of 2.",
 "emerges_from": [
 "ecology_energy",
@@ -8644,7 +8644,7 @@
 "domain": "Earth system",
 "basics": "Nitrogen gas is turned into usable ammonia by bacteria and lightning, then cycles through plants and animals and is returned to air by denitrifying microbes.",
 "deeper": "Fertiliser runoff causes eutrophication. Humans have roughly doubled the amount of reactive nitrogen entering ecosystems.",
-"expert": "N fixation: terrestrial natural ≈58 (range 40–100) Tg N/yr plus lightning ≈5; industrial (Haber–Bosch) ≈120 Tg N/yr in 2010, ≈150 Tg N/yr in recent years; nitrogenase requires 16 ATP per N₂.",
+"expert": "N fixation: terrestrial natural ≈58 (range 40–100) Tg N/yr plus lightning ≈5; industrial (Haber–Bosch) ≈120 Tg N/yr in 2010, ≈160 Tg N/yr of ammonia production in 2025; nitrogenase requires 16 ATP per N₂.",
 "regime": "Budgets uncertain.",
 "emerges_from": [
 "biogeochemical_cycles",
@@ -8759,7 +8759,7 @@
 ],
 "certainty": "C1",
 "domain": "Climate",
-"basics": "Earth's climate is set by sunlight, atmosphere, oceans, ice and life. Human activity has unequivocally warmed the planet: about 1.1 °C by 2011–2020 (IPCC AR6) and about 1.2 °C over 2015–2024 relative to 1850–1900, with 2024 the first calendar year about 1.5 °C above that baseline.",
+"basics": "Earth's climate is set by sunlight, atmosphere, oceans, ice and life. Human activity has unequivocally warmed the planet: about 1.1 °C by 2011–2020 relative to 1850–1900 (IPCC AR6), with each of the years 2015–2024 among the ten warmest on record and 2024 likely the first calendar year about 1.5 °C above that baseline (WMO).",
 "deeper": "Energy imbalance mostly goes into the oceans (about 90 %). Feedbacks like melting ice and water vapour amplify warming, while aerosols cool by about −1.3 W/m² (−2.0 to −0.6), masking part of the greenhouse forcing. Equilibrium climate sensitivity is likely 2.5–4 °C per CO₂ doubling, best estimate 3 °C (IPCC AR6).",
 "expert": "Radiative forcing F; ΔT=λF with equilibrium sensitivity λ; Earth energy imbalance ≈0.5–1 W/m²; global mean sea-level rise ≈3.3 mm/yr over 1993–2018 and ≈4–5 mm/yr in the most recent decade.",
 "regime": "Physics solid; regional details and tipping thresholds uncertain.",
@@ -9625,7 +9625,7 @@
 "domain": "Astrophysics",
 "basics": "When two neutron stars merge, they emit gravitational waves, a burst of gamma rays and a glow powered by freshly made heavy elements such as gold.",
 "deeper": "GW170817 was seen in both gravitational waves and light, confirming such events create r-process elements.",
-"expert": "GW170817: 1.17–1.60 M☉ components, d≈40 Mpc, ejecta ≈0.05 M☉; AT2017gfo (the kilonova) peak bolometric luminosity ≈ a few 10⁴¹ to 10⁴² erg/s (≈10³⁵ W) within about 1 day, depending on the reconstruction.",
+"expert": "GW170817: 1.17–1.60 M☉ components, d≈40 Mpc, ejecta ≈0.05 M☉; AT2017gfo (the kilonova) bolometric luminosity ≈5×10⁴¹ erg/s (≈5×10³⁴ W) about 0.6 days after the merger, fading rapidly afterwards.",
 "regime": "Event rate and yields uncertain.",
 "emerges_from": [
 "gravitational_waves",
@@ -9654,7 +9654,7 @@
 ],
 "certainty": "C1",
 "domain": "Stellar astrophysics",
-"basics": "About half of Sun-like stars (≈44 ± 2 %) have at least one stellar companion. Variable stars such as Cepheids pulse in a way that reveals their true brightness, used as cosmic distance markers.",
+"basics": "Nearly half of Sun-like stars have at least one companion star or brown dwarf: 44 ± 2 % counting the companions found so far, about 46 % once the few still undiscovered are allowed for. Variable stars such as Cepheids pulse in a way that reveals their true brightness, used as cosmic distance markers.",
 "deeper": "Binaries let astronomers weigh stars directly. Type Ia supernovae from white dwarfs in binaries act as standard candles.",
 "expert": "Cepheid P-L: M_V≈−2.43(log P−1)−4.05; SN Ia peak M_B≈−19.3 (after light-curve standardisation; raw spread about 0.4 mag).",
 "regime": "Calibration of standard candles underlies the Hubble tension.",
@@ -10666,7 +10666,7 @@
 "domain": "Information",
 "basics": "Quantum computers use superposition and entanglement to tackle certain problems faster, such as factoring large numbers. Errors are the main obstacle.",
 "deeper": "Quantum error correction spreads one logical qubit over many physical qubits; useful machines need extremely low error rates.",
-"expert": "Shor: O((log N)³); Grover √N speed-up; error-correction threshold ≈10⁻²–10⁻³ for the surface code (model-dependent); best two-qubit gate errors ≈10⁻³; Google's 2024 Willow experiment showed logical error falling as the code distance grew.",
+"expert": "Shor: O((log N)³); Grover √N speed-up; error-correction threshold ≈1 % per operation for the surface code (≈0.6–0.75 % in detailed models); best two-qubit gate errors ≈10⁻³ (99.9 % fidelity in trapped ions); Google's 2024 Willow experiment showed logical error falling as the code distance grew.",
 "regime": "No large fault-tolerant machine yet.",
 "emerges_from": [
 "entanglement",
@@ -11065,7 +11065,7 @@
 "domain": "Technology",
 "basics": "Light travels along glass fibres by total internal reflection. Lasers send pulses carrying data at terabits per second across oceans.",
 "deeper": "Glass with attenuation of about 0.2 dB/km made modern internet cables possible.",
-"expert": "θ_c=arcsin(n₂/n₁); attenuation ≈0.2 dB/km at 1550 nm; capacity is bounded by the nonlinear Shannon limit, which depends on bandwidth used and fibre type; single-core fibre demonstrations now exceed 300 Tb/s over a ~37 THz band (NICT 2024: 402 Tb/s estimated, 378 Tb/s decoded, 50 km).",
+"expert": "θ_c=arcsin(n₂/n₁); attenuation ≈0.2 dB/km at 1550 nm; capacity is bounded by the nonlinear Shannon limit, which depends on bandwidth used and fibre type; single-core standard-cladding fibre demonstrations now exceed 300 Tb/s over a ~37 THz band (NICT 2024: 402 Tb/s estimated, 378 Tb/s decoded, 50 km).",
 "regime": "Nonlinear effects limit power in fibre.",
 "emerges_from": [
 "optics_geometric",
@@ -11162,7 +11162,7 @@
 "domain": "Technology",
 "basics": "Fusion could provide energy from hydrogen isotopes, but holding plasma hotter than the Sun's core is hard. In 2022 a laser shot at the NIF produced more fusion energy than the laser delivered to the target, but not a power plant.",
 "deeper": "Tokamaks use magnetic confinement; NIF uses lasers to compress fuel pellets.",
-"expert": "Lawson: nTτ≳3×10²¹ keV s m⁻³; D-T 150 million K; NIF target gain ≈1.5 in Dec 2022 (3.15 MJ from 2.05 MJ) and a record 4.13 in Apr 2025 (8.6 MJ from 2.08 MJ); the lasers draw about 300 MJ from the grid per shot, so the whole system is far from net energy.",
+"expert": "Lawson: nTτ≳3×10²¹ keV s m⁻³; D-T 150 million K; NIF target gain ≈1.5 in Dec 2022 (3.15 MJ from 2.05 MJ) and a record 4.13 in Apr 2025 (8.6 MJ from 2.08 MJ); the lasers draw roughly 300 MJ or more from the grid per shot (reports range 300–400 MJ), so the whole system is far from net energy.",
 "regime": "No net-power reactor yet.",
 "emerges_from": [
 "fusion_stars",
@@ -12350,7 +12350,7 @@
 ],
 "frontier": [
 {
-"text": "When will world population peak, and at what level (UN and IHME projections differ)?",
+"text": "When will world population peak, and at what level (projections differ; the UN medium scenario peaks in the mid-2080s)?",
 "status": "open",
 "as_of": "2026-11"
 }
