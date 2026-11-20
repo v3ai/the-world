@@ -386,7 +386,7 @@
   "summary": "A few species studied intensely to learn general rules.",
   "layers": {
    "basics": "Scientists often work on organisms that are easy to grow and breed, such as E. coli, yeast, fruit flies, roundworms, zebrafish, mice and Arabidopsis.",
-   "deeper": "Deep conservation of cell biology and genes means findings transfer: yeast revealed the cell-cycle checkpoints, flies revealed Hox genes, worms revealed apoptosis.",
+   "deeper": "Deep conservation of cell biology and genes means findings transfer: yeast revealed core cell-cycle control genes, flies revealed genes that set the body plan (including the Hox genes), worms revealed programmed cell death.",
    "expert": "Choice of model involves generation time, genetic tools and genome size, and brings a bias towards lab-friendly species. Conservation does not guarantee transfer of every trait, especially for complex physiology and immunity."
   },
   "facts": [
@@ -441,7 +441,7 @@
    ],
    [
     "Described species",
-    "≈ 2 million (2020s); the total number of living species is unknown"
+    "≈ 2.4 million accepted species in the Catalogue of Life (2026 release); the total number of living species is unknown"
    ]
   ],
   "certainty": "C2",
@@ -743,7 +743,7 @@
   "layers": {
    "basics": "In an ionic bond one atom hands electrons to another and the resulting charged ions attract. In a covalent bond atoms share electrons.",
    "deeper": "Covalent bonds hold biomolecules together and are strong (≈ 350 kJ/mol for C–C). In water, salts like NaCl dissociate because ions are stabilised by the solvent.",
-   "expert": "Bond polarity lies on a continuum set by electronegativity difference. Bond energies enter the thermodynamics of metabolism, but ATP hydrolysis is favourable mainly because its products (ADP and phosphate) are better stabilised by solvation, resonance and reduced charge repulsion, not because the phosphoanhydride bond is unusually strong or strained."
+   "expert": "Bond polarity lies on a continuum set by electronegativity difference. Bond energies enter the thermodynamics of metabolism, but ATP hydrolysis is favourable mainly because its products (ADP and phosphate) are better stabilised, with phosphate having several resonance forms, and hydrolysis relieves charge repulsion between the adjacent phosphate groups, not because the phosphoanhydride bond is unusually strong or strained."
   },
   "facts": [
    [
@@ -978,12 +978,12 @@
   "layers": {
    "basics": "A solution is a solute dissolved in a solvent. Concentration tells how much solute per volume, as mass/volume or moles/litre (molarity).",
    "deeper": "Osmolarity counts dissolved particles, because osmosis depends on the number of particles. Whether a cell swells or shrinks depends on tonicity, the concentration of solutes that cannot cross its membrane: cells swell in a hypotonic solution and shrink in a hypertonic one.",
-   "expert": "Colligative properties (osmotic pressure Π = iMRT, valid for dilute ideal solutions) depend on particle count, not identity. Blood plasma is ≈ 275–295 mOsm/kg, and cells use compatible osmolytes to resist drying."
+   "expert": "Colligative properties (osmotic pressure Π = iMRT, valid for dilute ideal solutions) depend on particle count, not identity. Blood plasma is ≈ 275–300 mOsm/kg, and cells use compatible osmolytes to resist drying."
   },
   "facts": [
    [
     "Plasma osmolality",
-    "≈ 275–295 mOsm/kg"
+    "≈ 275–300 mOsm/kg"
    ],
    [
     "Normal saline",
@@ -1336,16 +1336,16 @@
   "layers": {
    "basics": "Energy cannot be created or destroyed, only changed in form. Every conversion loses some energy as heat and increases disorder overall.",
    "deeper": "Cells are open systems: they stay ordered by taking in energy (light or food) and exporting heat and waste. Life does not violate the second law.",
-   "expert": "Entropy production in the surroundings exceeds local entropy decrease. About a third to 40% of the free energy of glucose is captured as ATP, depending on the ATP yield and conditions assumed, with the rest lost as heat that also warms endotherms."
+   "expert": "Entropy production in the surroundings exceeds local entropy decrease. Counting 30.5 kJ per ATP (standard conditions), 30–36 ATP capture about a third to 40% of the free energy of glucose; with the roughly 57 kJ per ATP of real cells the captured share comes out higher, around 60% or more. The rest is lost as heat that also warms endotherms."
   },
   "facts": [
    [
     "Glucose oxidation, free energy change",
-    "≈ −2,870 kJ/mol (varies ≈ −2,840 to −2,910 with conditions)"
+    "≈ −2,880 kJ/mol (standard conditions, from enthalpy and entropy data; cellular conditions shift it)"
    ],
    [
     "Human power at rest",
-    "≈ 80 W"
+    "≈ 80 W (a resting energy use near 1,700 kcal per day; varies with body size)"
    ]
   ],
   "certainty": "C1",
@@ -1575,7 +1575,7 @@
   "layers": {
    "basics": "Ions like Na+, K+, Ca2+ and Cl− dissolve in body fluids and carry electric charge. Cells keep different amounts inside and outside.",
    "deeper": "The K+ gradient together with the membrane's high K+ permeability sets most of the resting voltage, and the Na+/K+ pump maintains the gradients. Calcium is a ubiquitous signal.",
-   "expert": "Typical mammalian concentrations: [K+] ≈ 140 mM inside vs 5 mM outside; [Na+] ≈ 12 mM inside vs 145 mM outside. The Nernst equation gives the equilibrium potential for each ion."
+   "expert": "Typical mammalian concentrations: [K+] ≈ 140 mM inside vs 5 mM outside; [Na+] ≈ 12 mM inside vs ≈ 140 mM outside. The Nernst equation gives the equilibrium potential for each ion."
   },
   "facts": [
    [
@@ -1965,7 +1965,7 @@
    ],
    [
     "Open-chain form",
-    "≈ 0.002%"
+    "less than 0.02%"
    ]
   ],
   "certainty": "C1",
@@ -2554,16 +2554,16 @@
   "layers": {
    "basics": "Mass spectrometry weighs molecules, infrared spectroscopy identifies bond types, NMR maps the carbon–hydrogen framework, and UV–visible spectroscopy detects conjugated systems.",
    "deeper": "Biologists use MS in proteomics and metabolomics, NMR and X-ray crystallography for protein structure, and UV–vis for nucleic-acid and protein concentration.",
-   "expert": "NMR depends on nuclear spin in a magnetic field (chemical shift, coupling). Cryo-EM and X-ray diffraction give atomic models of large complexes; resolution varies: X-ray structures often reach ≈ 1.5–3 Å, while most cryo-EM maps fall in the 3–5 Å range, with a growing number better than 3 Å."
+   "expert": "NMR depends on nuclear spin in a magnetic field (chemical shift, coupling). Cryo-EM and X-ray diffraction give atomic models of large complexes; resolution varies: X-ray structures of well-ordered crystals can resolve individual atoms, while most deposited cryo-EM maps fall in the 3–5 Å range, with a growing number better than 3 Å."
   },
   "facts": [
    [
-    "Typical protein MS accuracy",
-    "< 5 ppm"
+    "High-resolution MS mass accuracy",
+    "low ppm to below 1 ppm on the best instruments"
    ],
    [
-    "Protein NMR size limit",
-    "traditionally ≈ 30–50 kDa"
+    "Protein NMR size",
+    "routine for small proteins; specialised labelling methods reach up to about 1 MDa"
    ]
   ],
   "certainty": "C1",

@@ -69,7 +69,7 @@
   "layers": {
    "basics": "The Fermi–Dirac distribution tells the probability that an energy state is occupied; the Fermi level is the energy at which that probability is exactly ½. Well below it states are almost all full; well above it they are almost all empty.",
    "deeper": "In n-type material E_F moves toward the conduction band; in p-type toward the valence band.",
-   "expert": "f(E)=1/(1+e^{(E−E_F)/kT}); n=N_c e^{−(E_c−E_F)/kT}; N_c≈2.8–3.2×10¹⁹ cm⁻³ for Si at 300 K (published values differ slightly with the effective mass used); the exponential form holds only in the non-degenerate case, E_c−E_F ≫ kT."
+   "expert": "f(E)=1/(1+e^{(E−E_F)/kT}); n=N_c e^{−(E_c−E_F)/kT}; N_c≈2.9×10¹⁹ cm⁻³ for Si at 300 K (calculated from N_c=2(2πm*kT/h²)^{3/2} with density-of-states mass m*≈1.09m₀; tabulated values differ slightly with the mass used); the exponential form holds only in the non-degenerate case, E_c−E_F ≫ kT."
   },
   "facts": [],
   "formula": "f(E) = 1/(1 + e^{(E−E_F)/kT})",
@@ -426,7 +426,7 @@
   "layers": {
    "basics": "Light projects a pattern through a mask onto photosensitive resist on the wafer.",
    "deeper": "Resolution ≈k₁λ/NA. EUV light (13.5 nm; numerical aperture 0.33 in current tools) entered volume production around 2019 and is used at the 5 and 3 nm nodes, but these node names are marketing labels, not measured sizes. High-NA (0.55) EUV tools are the next step.",
-   "expert": "Rayleigh resolution; depth of focus; multi-patterning; EUV needs reflective optics and tin-plasma sources; overlay (how closely one layer lines up with the previous) is budgeted at about 1–2 nm in current EUV scanners; 1.4 nm for the NXE:3400."
+   "expert": "Rayleigh resolution; depth of focus; multi-patterning; EUV needs reflective optics and tin-plasma sources; overlay (how closely one layer lines up with the previous) has a budget of 1.4 nm for the NXE:3400 EUV scanner."
   },
   "facts": [],
   "formula": "CD = k₁ λ/NA",
@@ -544,7 +544,7 @@
   "layers": {
    "basics": "Heating silicon in oxygen or steam grows a high-quality SiO₂ insulating layer.",
    "deeper": "Thermal oxide forms gate dielectrics and isolation; Deal–Grove model describes growth.",
-   "expert": "x²+Ax=B(t+τ); linear then parabolic regimes; Deal–Grove under-predicts growth for very thin dry oxides; modern gate stacks use Hf-based high-k dielectrics (first shipped at 45 nm in 2007), grown on a thin SiO₂ interfacial layer, while thermal oxide is still used for isolation."
+   "expert": "x²+Ax=B(t+τ); linear then parabolic regimes; Deal–Grove under-predicts growth for very thin dry oxides; modern gate stacks use Hf-based high-k dielectrics (Intel announced them for its 45 nm products in early 2007), grown on a thin SiO₂ interfacial layer, while thermal oxide is still used for isolation."
   },
   "facts": [],
   "formula": "x² + A x = B (t + τ)",

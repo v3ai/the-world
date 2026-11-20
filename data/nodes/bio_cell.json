@@ -85,7 +85,7 @@
   "layers": {
    "basics": "Prokaryotes (bacteria and archaea) lack a nucleus and membrane-bound organelles. Eukaryotes keep their DNA in a nucleus and have compartments.",
    "deeper": "Prokaryotes are typically 0.5–5 µm and eukaryotes 10–100 µm. Both have ribosomes, DNA and a plasma membrane.",
-   "expert": "Eukaryotes arose from an archaeal host that acquired a bacterial endosymbiont. Eukaryotic cell volume is ≈ 1,000–10,000× that of a bacterium. One influential hypothesis is that mitochondria supplied the energy per gene needed to support large genomes; later analyses question how large that energy gap really is, so the idea is debated."
+   "expert": "Eukaryotes arose from an archaeal host that acquired a bacterial endosymbiont. A eukaryotic cell of 10 µm diameter has about 1,000 times the volume of a 1 µm bacterium (calculated for spheres); larger cells exceed that. One influential hypothesis is that mitochondria supplied the energy per gene needed to support large genomes; later analyses question how large that energy gap really is, so the idea is debated."
   },
   "facts": [
    [
@@ -204,11 +204,11 @@
   "facts": [
    [
     "Membrane thickness",
-    "≈ 5 nm"
+    "≈ 4–5 nm"
    ],
    [
     "Protein share of mass",
-    "≈ 50% in a typical plasma membrane (about 18–75% across membranes)"
+    "≈ 50% in a typical plasma membrane (about 20–76% across membranes)"
    ]
   ],
   "certainty": "C2",
@@ -324,7 +324,7 @@
   "facts": [
    [
     "K+ channel selectivity",
-    "at least ≈ 1000:1 over Na⁺ (varies by channel)"
+    "≈ 100–1000:1 over Na⁺ (varies by channel and by how it is measured)"
    ],
    [
     "GLUT1 rate",
@@ -480,7 +480,7 @@
   "layers": {
    "basics": "Cells are electrically polarised, with the inside negative. Ion gradients and selective channels create this resting voltage.",
    "deeper": "Resting potential is ≈ −70 mV in neurons, set mainly by K+ leak channels. Changes in this voltage are the basis of nerve signals.",
-   "expert": "The Goldman–Hodgkin–Katz equation weights each ion by permeability. Mitochondria keep the matrix roughly 150–180 mV negative of the intermembrane space, depending on cell state."
+   "expert": "The Goldman–Hodgkin–Katz equation weights each ion by permeability. Mitochondria keep the matrix roughly 170 mV negative of the intermembrane space (it varies with cell state)."
   },
   "facts": [
    [
@@ -489,7 +489,7 @@
    ],
    [
     "Mitochondrial inner membrane",
-    "≈ −150 to −180 mV (matrix side negative)"
+    "≈ −170 mV (matrix side negative; varies with cell state)"
    ]
   ],
   "formula": "Vm = (RT/F)·ln[(P_K[K⁺]ₒ + P_Na[Na⁺]ₒ + P_Cl[Cl⁻]ᵢ)/(P_K[K⁺]ᵢ + P_Na[Na⁺]ᵢ + P_Cl[Cl⁻]ₒ)]",
@@ -533,7 +533,7 @@
   "layers": {
    "basics": "The nucleus holds chromosomes inside a double membrane with pores. The nucleolus inside builds ribosome parts.",
    "deeper": "Nuclear pore complexes regulate traffic between nucleus and cytoplasm; mRNA exits while transcription factors enter.",
-   "expert": "A vertebrate pore is ≈ 110–125 MDa (a yeast pore is about half that) and is built from about 30 different nucleoporins; one pore can handle on the order of 10³ translocations per second (an estimate). The lamina gives mechanical support; mutations in lamin A cause progeria."
+   "expert": "A vertebrate pore is ≈ 110–125 MDa (a yeast pore is ≈ 66 MDa) and is built from about 30–35 different nucleoporins; one pore can handle up to about 10³ translocations per second (an estimate). The lamina gives mechanical support; mutations in lamin A cause progeria."
   },
   "facts": [
    [
@@ -542,7 +542,7 @@
    ],
    [
     "Pores per nucleus",
-    "≈ 2,000–4,000"
+    "≈ 2,000 (typical vertebrate nucleus; varies with cell type)"
    ]
   ],
   "certainty": "C1",
@@ -1297,7 +1297,7 @@
    ],
    [
     "S phase",
-    "≈ 8 h"
+    "≈ 8–10 h (varies with cell type)"
    ]
   ],
   "certainty": "C1",
@@ -1569,7 +1569,7 @@
   "layers": {
    "basics": "Telomeres are repeated DNA caps at chromosome ends that shorten with each division. When short, cells stop dividing (senescence).",
    "deeper": "Telomerase rebuilds telomeres in stem and germ cells and is reactivated in most cancers. Hayflick and Moorhead found that cultured human fetal fibroblasts stop after about 50 ± 10 doublings.",
-   "expert": "The human telomere repeat is TTAGGG; telomeres are several to about 15 kb long at birth, vary between people and cell types, and shorten with age. Senescent cells secrete inflammatory factors (SASP); clearing them extends healthspan in mice. How much telomere loss drives human ageing is still being studied."
+   "expert": "The human telomere repeat is TTAGGG; telomeres averaged about 16 kb in newborn blood in one classic study (values depend on the method), vary between people and cell types, and shorten with age, by more than 1 kb per year in young children. Senescent cells secrete inflammatory factors (SASP); clearing them extends healthspan in mice. How much telomere loss drives human ageing is still being studied."
   },
   "facts": [
    [

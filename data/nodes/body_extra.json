@@ -178,7 +178,7 @@
   "summary": "A tough cord of collagen joining muscle to bone.",
   "layers": {
    "basics": "Tendons transmit the pull of muscles to bones.",
-   "deeper": "Tendon is dense connective tissue with its collagen fibres lying parallel to the pull. At the muscle end its collagen intertwines with the muscle's connective-tissue wrappings; at the far end it fuses with the covering of the bone. It is strong but poorly supplied with blood, so it heals slowly.",
+   "deeper": "Tendon is dense connective tissue with its collagen fibres lying parallel to the pull. At the muscle end its collagen intertwines with the muscle's connective-tissue wrappings; at the far end it fuses with the covering of the bone. It is very strong, and how well it heals after injury depends partly on how it is loaded.",
    "expert": "Parallel type I collagen with sparse tendon cells (tenocytes). Tendons stretch and recoil, so the Achilles tendon stores and returns part of the energy of each running stride; the share depends on speed and method of measurement."
   },
   "facts": [
@@ -269,7 +269,7 @@
   "summary": "A muscular organ that moves food around the mouth, helps you swallow and speak, and carries your taste buds.",
   "layers": {
    "basics": "Your tongue is made almost entirely of muscle. It pushes food between your teeth, shapes the sounds of speech, and its surface holds the taste buds.",
-   "deeper": "Four muscles inside the tongue change its shape; four more start on nearby bones and move it as a whole. Small bumps called papillae cover the top. Taste buds sit in the mushroom-shaped ones (and in some other kinds of papillae); the thin, pointed ones sense touch and have no taste buds. A fold called the lingual frenulum ties it to the floor of the mouth.",
+   "deeper": "Four muscles inside the tongue change its shape; four more start on nearby bones and move it as a whole. Small bumps called papillae cover the top. Taste buds sit in the mushroom-shaped, leaf-like and wall-ringed kinds of papillae; the thin, pointed ones sense touch and have no taste buds. A fold called the lingual frenulum ties it to the floor of the mouth.",
    "expert": "Intrinsic muscles: superior and inferior longitudinal, transverse and vertical. Extrinsic: genioglossus, hyoglossus, styloglossus and palatoglossus (the last is often grouped with the palate). A frenulum that is too short restricts movement (ankyloglossia, 'tongue tie'). The model shows the tongue's outer shape only."
   },
   "facts": [
@@ -283,7 +283,7 @@
    ],
    [
     "Taste buds in",
-    "Fungiform papillae (and others)"
+    "Fungiform, foliate and circumvallate papillae"
    ]
   ],
   "did_you_know": "The rough feel of your tongue comes from thousands of tiny filiform papillae, which grip food and carry touch receptors.",
@@ -363,7 +363,7 @@
   "summary": "Tough, springy pads between the bones of your spine that absorb shock and let it bend.",
   "layers": {
    "basics": "Between most pairs of spine bones lies a disc, like a jelly-filled cushion with a strong skin. Discs soften the load of walking and jumping and let your back bend and twist.",
-   "deeper": "A disc has a tough fibrous outer ring (the anulus fibrosus) and a softer, gel-like centre (the nucleus pulposus) that resists compression because it holds so much water. Discs make up about a quarter of the height between the pelvis and the base of the skull, and are thinnest in the neck and thickest in the lower back.",
+   "deeper": "A disc has a tough fibrous outer ring (the anulus fibrosus) and a softer, gel-like centre (the nucleus pulposus) that resists compression because it holds so much water. Discs make up about a quarter of the height between the pelvis and the base of the skull, and are thickest in the lower back; discs in the neck and lower back are thicker than those in the chest.",
    "expert": "The anulus is a fibrocartilage ring firmly anchored to the rims of the neighbouring vertebral bodies, and the water-holding nucleus spreads compression sideways into it. If the ring tears, the gel can bulge or leak (a herniated disc) and press on a nerve root. The model shows all the discs as one merged shape."
   },
   "facts": [

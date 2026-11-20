@@ -150,7 +150,7 @@
   "facts": [
    [
     "Finch beak change in drought",
-    "a few percent deeper in the next generation (Daphne Major, 1977)"
+    "beaks of the large ground finch grew deeper after the 1976–77 drought and shifted back after heavy rain in 1983 (Daphne Major)"
    ],
    [
     "Balancing example",
@@ -547,17 +547,17 @@
   "summary": "Dating splits using sequence change.",
   "layers": {
    "basics": "If mutations accumulate at a steady rate, the number of differences between species estimates how long ago they split.",
-   "deeper": "Clocks are calibrated with fossils. Human and chimp lineages split about 6–8 million years ago (estimates vary).",
+   "deeper": "Clocks are calibrated with fossils. Estimates of when the human and chimp lineages split range widely, from about 5 to 13 million years ago.",
    "expert": "Rates vary between lineages (relaxed clocks) and with generation time; Bayesian dating (BEAST) integrates calibrations. Rate heterogeneity gives wide credible intervals."
   },
   "facts": [
    [
     "Human–chimp split",
-    "≈ 6–8 Ma (estimates vary)"
+    "estimates range from ≈ 5 to 13 Ma"
    ],
    [
     "Substitution rate (human)",
-    "≈ 0.5–1 × 10⁻⁹ per site per year (depends on method)"
+    "≈ 0.4–1 × 10⁻⁹ per site per year (pedigree-based ≈ 0.4 from 1.1 × 10⁻⁸ per generation assuming 25–30 y; fossil-calibrated about twice that)"
    ]
   ],
   "certainty": "C2",
@@ -859,7 +859,7 @@
   "summary": "The primate lineage leading to us.",
   "layers": {
    "basics": "Humans share ancestors with the African apes. The hominin line includes Australopithecus (e.g. \"Lucy\", ≈ 3.2 Ma), early Homo (≈ 2.8 Ma) and Homo sapiens (≈ 300,000 years ago in Africa).",
-   "deeper": "Bipedalism came early, large brains later. Neanderthals and Denisovans interbred with modern humans; most non-Africans carry ≈ 1–2% Neanderthal DNA.",
+   "deeper": "Bipedalism came early, large brains later. Neanderthals and Denisovans interbred with modern humans; most non-Africans carry ≈ 1.5–2% Neanderthal DNA.",
    "expert": "Ancient DNA has reshaped the story: multiple dispersals, admixture and local adaptation (lactase persistence, high altitude EPAS1). Details of the Out-of-Africa timing and the role of archaic admixture in Africa remain under active study."
   },
   "facts": [
@@ -869,7 +869,7 @@
    ],
    [
     "Neanderthal DNA in non-Africans",
-    "≈ 1–2%"
+    "≈ 1.5–2% (1.5–2.1% in a 2014 genome study)"
    ]
   ],
   "certainty": "C2",
@@ -1022,7 +1022,7 @@
   "facts": [
    [
     "Chimp–human common ancestor",
-    "≈ 6–8 Ma (estimates vary)"
+    "estimates range from ≈ 5 to 13 Ma"
    ]
   ],
   "certainty": "C1",
@@ -1160,11 +1160,11 @@
   "facts": [
    [
     "Described fungal species",
-    "≈ 150,000"
+    "≈ 175,000 accepted (Catalogue of Life, 2026 release)"
    ],
    [
     "Estimated total",
-    "2–5 million"
+    "≈ 2.2–3.8 million (2017 estimate)"
    ]
   ],
   "certainty": "C1",
@@ -1526,13 +1526,13 @@
   "summary": "The simplest animals.",
   "layers": {
    "basics": "Sponges filter water through pores and have no true tissues. Cnidarians (jellyfish, corals, anemones) have stinging cells and radial symmetry.",
-   "deeper": "Coral reefs, built by cnidarians with symbiotic algae, cover well under 1% of the sea floor but host a disproportionate share of marine species (a quarter is a widely quoted but uncertain figure, and many reef species are undescribed).",
+   "deeper": "Coral reefs, built by cnidarians with symbiotic algae, cover well under 1% of the sea floor but host a disproportionate share of marine species (the number of reef species is highly uncertain, and many are undescribed).",
    "expert": "Cnidocytes fire nematocysts in ≈ 700 ns, among the fastest cellular events. Coral bleaching occurs when symbionts are expelled under heat stress."
   },
   "facts": [
    [
-    "Reef share of marine species",
-    "≈ 25% (widely quoted, uncertain)"
+    "Reef species (multicellular)",
+    "≈ 830,000 (95% credible limits 550,000–1,330,000; one 2015 expert-based estimate)"
    ],
    [
     "Nematocyst discharge",
@@ -1818,7 +1818,7 @@
   "layers": {
    "basics": "Fishes (jawless, cartilaginous, ray-finned, lobe-finned) are the oldest vertebrates. Amphibians moved to land but most still need water or damp places to breed.",
    "deeper": "Tetrapods evolved from lobe-finned fishes ≈ 375 Ma (Tiktaalik). Amphibian skin breathes and is sensitive to pollution.",
-   "expert": "Ray-finned fishes are the great majority (about 96–99%, depending on the count) of fish species (≈ 35,000); the rest are sharks and rays, jawless fishes and lobe-finned fishes. Frogs' decline is among the fastest of any vertebrate group (≈ 40% of species threatened)."
+   "expert": "Ray-finned fishes are the great majority (about 96–99%, depending on the count) of fish species (≈ 35,000); the rest are sharks and rays, jawless fishes and lobe-finned fishes. Frogs' decline is among the fastest of any vertebrate group (more than a third of amphibian species assessed are threatened)."
   },
   "facts": [
    [
@@ -1827,7 +1827,7 @@
    ],
    [
     "Amphibian species threatened",
-    "≈ 40%"
+    "more than a third (33.6% of 4,035 in the 2006 assessment)"
    ]
   ],
   "certainty": "C1",
@@ -1932,12 +1932,12 @@
   "layers": {
    "basics": "Mammals have hair, three middle-ear bones and mammary glands. The three groups are monotremes (egg-laying), marsupials and placentals.",
    "deeper": "Primates have grasping hands, forward-facing eyes and large brains; they include lemurs, monkeys, apes and humans.",
-   "expert": "Most living placental orders diversified after the end-Cretaceous extinction, though the timing is debated. There are about 6,500–6,700 mammal species (the count depends on the checklist) and ≈ 500 primates; roughly a quarter of assessed mammals are threatened."
+   "expert": "Most living placental orders diversified after the end-Cretaceous extinction, though the timing is debated. There are about 6,800 living mammal species (the count depends on the checklist) and ≈ 500 primates; many assessed mammals are threatened."
   },
   "facts": [
    [
     "Mammal species",
-    "≈ 6,500"
+    "≈ 6,800 living (Mammal Diversity Database v2.5, 2026)"
    ],
    [
     "Primate species",
@@ -2202,12 +2202,12 @@
   "layers": {
    "basics": "Water evaporating from leaves pulls a continuous column of water up through the xylem from the roots.",
    "deeper": "Cohesion between water molecules and adhesion to xylem walls support the column. Water flows from high to low water potential.",
-   "expert": "Cohesion–tension theory predicts negative xylem pressures, typically around −1 to −3 MPa depending on species and dryness; cavitation (embolism) is a risk in drought. Water potential Ψ = Ψs + Ψp, plus a gravity term Ψg ≈ 0.01 MPa per metre of height that matters in tall trees."
+   "expert": "Cohesion–tension theory predicts negative xylem pressures, strongly negative values (tension) that become more negative as drought deepens; cavitation (embolism) is a risk in drought. Water potential Ψ = Ψs + Ψp, plus a gravity term Ψg ≈ 0.01 MPa per metre of height that matters in tall trees."
   },
   "facts": [
    [
     "Xylem pressure",
-    "≈ −1 to −3 MPa (typical; varies with species and dryness)"
+    "negative (under tension); more negative as drought deepens"
    ],
    [
     "Redwood water rise",
@@ -2362,7 +2362,7 @@
   "layers": {
    "basics": "In hot, dry places some plants concentrate CO2 around Rubisco. C4 plants (corn, sugarcane) separate steps in space; CAM plants (cacti, pineapple) separate them in time.",
    "deeper": "Photorespiration, a wasteful side reaction of Rubisco with oxygen, costs C3 plants a notable share of their fixed carbon, more so at high temperature. C4 uses PEP carboxylase in mesophyll and the Calvin cycle in bundle sheath.",
-   "expert": "C4 evolved independently > 60 times; ≈ 3% of plant species, ≈ 25% of terrestrial primary production. CAM opens stomata at night. Engineering C4 rice is an active project."
+   "expert": "C4 evolved independently > 60 times; ≈ 3% of plant species, ≈ 23% of terrestrial carbon fixation. CAM opens stomata at night. Engineering C4 rice is an active project."
   },
   "facts": [
    [

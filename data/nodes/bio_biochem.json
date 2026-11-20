@@ -221,7 +221,7 @@
   "layers": {
    "basics": "Starch (plants) and glycogen (animals) store glucose; cellulose and chitin build cell walls and exoskeletons.",
    "deeper": "Glycogen is highly branched so many ends can be cleaved at once, giving rapid glucose release. Cellulose chains line up in hydrogen-bonded microfibrils that are very strong.",
-   "expert": "Cellulose is the most abundant biopolymer on Earth, but no vertebrate makes its own cellulase, so ruminants and other plant-eaters rely on gut microbes. Some invertebrates, including termites, make their own cellulases, usually working together with gut symbionts. Chitin contains N-acetylglucosamine."
+   "expert": "Cellulose is the most abundant biopolymer on Earth, but most animals, mammals included, make no cellulase of their own, so ruminants and other plant-eaters rely on gut microbes. A few invertebrates, such as some termites, snails and earthworms, make their own cellulases. Chitin contains N-acetylglucosamine."
   },
   "facts": [
    [
@@ -334,7 +334,7 @@
   "facts": [
    [
     "Fat energy density",
-    "≈ 38 kJ/g (9 kcal/g)"
+    "≈ 37 kJ/g (9 kcal/g)"
    ],
    [
     "Typical chain length",
@@ -1097,16 +1097,16 @@
   "layers": {
    "basics": "RNA is usually single-stranded and can fold into shapes. mRNA carries the message, tRNA brings amino acids, rRNA forms ribosomes.",
    "deeper": "Ribozymes are RNAs that catalyse reactions, including the ribosome's peptide bond formation. Small RNAs (miRNA, siRNA) silence genes.",
-   "expert": "Only ≈ 1–2% of the human genome codes for protein. ENCODE reported that most of the genome is transcribed at some level, but how much of that transcription is functional is debated. rRNA makes ≈ 80% of total cellular RNA."
+   "expert": "Only ≈ 1–2% of the human genome codes for protein. ENCODE reported that most of the genome is transcribed at some level, but how much of that transcription is functional is debated. rRNA makes ≈ 80% of total RNA in budding yeast (the share differs between cell types)."
   },
   "facts": [
    [
     "rRNA share of RNA",
-    "≈ 80%"
+    "≈ 80% (budding yeast; varies by cell type)"
    ],
    [
     "mRNA share",
-    "≈ 2–5%"
+    "≈ 5% (budding yeast; varies by cell type)"
    ]
   ],
   "certainty": "C2",
@@ -2056,7 +2056,7 @@
   "layers": {
    "basics": "Protons flow back through ATP synthase, spinning a rotor that drives ATP formation. This is chemiosmosis.",
    "deeper": "The proton-motive force combines a pH difference and a membrane voltage. The same principle works in chloroplasts and in bacteria.",
-   "expert": "ATP synthase has an F₀ rotor (c-ring of 8–15 subunits) and an F₁ head with three catalytic sites cycling through binding-change states. About 3–4 H⁺ are needed per ATP, giving ≈ 2.5 ATP/NADH and 1.5 ATP/FADH2."
+   "expert": "ATP synthase has an F₀ rotor (c-ring of about 8–17 subunits, fixed within a species) and an F₁ head with three catalytic sites cycling through binding-change states. One ATP needs the c-ring size divided by three in H⁺ (8 to 17 subunits gives about 2.7 to 5.7), and phosphate transport adds one more; about 4 H⁺ per ATP overall is a common working figure, giving ≈ 2.5 ATP/NADH and 1.5 ATP/FADH2."
   },
   "facts": [
    [
@@ -2674,7 +2674,7 @@
   "facts": [
    [
     "Ketone adaptation",
-    "ketone levels rise over the first days of fasting; brain use keeps growing for weeks"
+    "ketone levels rise over the first days of fasting; the brain uses more ketones as fasting continues"
    ],
    [
     "Diabetes prevalence",

@@ -69,7 +69,7 @@
   "layers": {
    "basics": "Bigger animals have lower surface-area-to-volume ratios, so they lose less heat per gram and need special structures for exchange.",
    "deeper": "Metabolic rate rises with mass, but less than proportionally: a shrew burns far more energy per gram than an elephant.",
-   "expert": "Kleiber's law: across mammals, BMR scales roughly as M^0.75. Both the exact exponent (some analyses favour 2/3 or group-specific values) and its origin (fractal supply networks vs other models) are debated. Heart rate scales roughly as M^−0.25, giving of order 10⁹ lifetime heartbeats for many mammals; humans get 2–3 times more."
+   "expert": "Kleiber's law: across mammals, BMR scales roughly as M^0.75. Both the exact exponent (reported values depend on the data and method, and some analyses favour 2/3 or group-specific values) and its origin (fractal supply networks vs other models) are debated. Resting heart rate falls with body mass roughly as a quarter power (reported exponents vary), so smaller mammals have much faster hearts; a human lifetime holds about 2–3 billion heartbeats."
   },
   "facts": [
    [
@@ -124,7 +124,7 @@
   "summary": "Intake, expenditure and storage.",
   "layers": {
    "basics": "Animals get energy from food: carbohydrates, fats and proteins, and need vitamins, minerals and water.",
-   "deeper": "Basal metabolic rate is the minimum energy at rest. At the same body mass and temperature, a resting ectotherm uses several times less energy than an endotherm.",
+   "deeper": "Basal metabolic rate is the minimum energy at rest. At the same body mass and temperature, a resting ectotherm uses far less energy than an endotherm (the ratio depends on species and conditions).",
    "expert": "Respiratory quotient (CO₂/O₂) is ≈ 1.0 for carbohydrate, ≈ 0.7 for fat. Energy balance relates intake, work, heat and storage. Obesity and undernutrition are major public-health issues."
   },
   "facts": [
@@ -134,7 +134,7 @@
    ],
    [
     "Human BMR (adults)",
-    "≈ 1,400–1,800 kcal/day (varies with sex, size, age)"
+    "≈ 1,300–1,800 kcal/day (roughly 1,600–1,800 for males, 1,300–1,500 for females)"
    ]
   ],
   "certainty": "C1",
@@ -184,7 +184,7 @@
   "facts": [
    [
     "Ruminant energy from short-chain fatty acids",
-    "most (diet dependent)"
+    "≈ 70% (estimates vary with diet)"
    ],
    [
     "Cow stomach chambers",
@@ -236,7 +236,7 @@
   "layers": {
    "basics": "Insects have open circulation; fish have a single circuit with a two-chambered heart; birds and mammals have two circuits with a four-chambered heart.",
    "deeper": "Double circulation keeps oxygenated and deoxygenated blood separate and allows high pressure systemic flow, supporting endothermy.",
-   "expert": "Most amphibians and non-crocodilian reptiles have three-chambered hearts that allow shunting; crocodilians have a four-chambered heart with a foramen of Panizza. Blood pressure scales little with body size across most mammals; giraffes are the well-known exception, with much higher arterial pressure at the heart."
+   "expert": "Most amphibians and non-crocodilian reptiles have three-chambered hearts that allow shunting; crocodilians have a four-chambered heart with a foramen of Panizza. Blood pressure scales little with body size across most mammals; giraffes are the well-known exception: adults have mean arterial pressure of about 200–250 mmHg at heart level, more than twice that of most mammals, linked to the long neck."
   },
   "facts": [
    [
@@ -523,7 +523,7 @@
   "layers": {
    "basics": "Endotherms (birds, mammals) make heat internally; ectotherms (most reptiles, fish, insects) rely on environmental heat and behaviour.",
    "deeper": "Insulation, sweating, shivering, vasodilation and countercurrent heat exchange help control temperature. Hibernation and torpor save energy.",
-   "expert": "Endothermy costs several times more energy but extends activity to cold and night. Bluefin tuna and some sharks are regionally endothermic using retia mirabilia. Brown fat uncoupling protein (UCP1) produces heat without ATP."
+   "expert": "Endothermy costs much more energy but extends activity to cold and night. Bluefin tuna and some sharks are regionally endothermic using retia mirabilia. Brown fat uncoupling protein (UCP1) produces heat without ATP."
   },
   "facts": [
    [
@@ -581,7 +581,7 @@
   "facts": [
    [
     "Honeybee wingbeat",
-    "≈ 230 Hz"
+    "≈ 200–230 Hz"
    ],
    [
     "Muscle shortening speed",
@@ -706,11 +706,11 @@
   "facts": [
    [
     "Human gestation",
-    "≈ 38 weeks from conception (≈ 40 weeks from last period)"
+    "≈ 38 weeks from conception (≈ 40 weeks counted from the last period, as ovulation falls about two weeks after it in a 28-day cycle)"
    ],
    [
     "Menstrual cycle",
-    "≈ 28 days (normal range varies, roughly 21–35)"
+    "≈ 28 days in the standard textbook cycle (varies between people and between cycles)"
    ]
   ],
   "certainty": "C1",
@@ -945,8 +945,8 @@
     "≈ 0.5–1 ms"
    ],
    [
-    "Synapses in human brain",
-    "≈ 10¹⁴–10¹⁵ (estimates vary)"
+    "Synapse density, one human cortex sample",
+    "≈ 1.5×10⁸ per mm³ (temporal cortex of one patient; whole-brain totals are extrapolations and uncertain)"
    ]
   ],
   "certainty": "C1",
@@ -1168,7 +1168,7 @@
   "summary": "Other senses.",
   "layers": {
    "basics": "Hair cells in the cochlea turn sound vibrations into signals. Taste and smell detect molecules with chemical receptors.",
-   "deeper": "Humans have ≈ 400 functional olfactory receptor genes and five widely accepted basic tastes (sweet, sour, salty, bitter, umami; fat is a candidate sixth). The vestibular system senses head motion.",
+   "deeper": "Humans have ≈ 400 functional olfactory receptor genes and five widely accepted basic tastes (sweet, sour, salty, bitter, umami; fat taste is under study but is not counted as a basic taste). The vestibular system senses head motion.",
    "expert": "The cochlea performs a frequency analysis along the basilar membrane (≈ 20 Hz–20 kHz). Olfactory receptors are GPCRs; Buck and Axel won the 2004 Nobel."
   },
   "facts": [
@@ -1275,7 +1275,7 @@
   "layers": {
    "basics": "The sympathetic system prepares the body for action (\"fight or flight\") and the parasympathetic system promotes rest and digestion.",
    "deeper": "A reflex arc (sensor, spinal circuit, effector) gives fast responses without the brain, such as the knee jerk.",
-   "expert": "All preganglionic fibres release acetylcholine. Most sympathetic postganglionic fibres release noradrenaline (those to sweat glands release acetylcholine), and parasympathetic postganglionic fibres release acetylcholine. The baroreflex adjusts heart rate within seconds of a change in blood pressure."
+   "expert": "All preganglionic fibres release acetylcholine. Most sympathetic postganglionic fibres release noradrenaline (those to sweat glands release acetylcholine), and parasympathetic postganglionic fibres release acetylcholine. The baroreceptor reflex continuously adjusts heart rate in response to changes in blood pressure."
   },
   "facts": [
    [
@@ -1478,7 +1478,7 @@
   "layers": {
    "basics": "Animals learn through habituation, conditioning and imitation. They also forage, defend territories, form groups and sometimes cooperate.",
    "deeper": "Optimal foraging models predict diet choice. Honeybees communicate food location by the waggle dance (von Frisch).",
-   "expert": "Marginal value theorem predicts when to leave a patch. Eusocial insects and naked mole-rats have reproductive division of labour; cooperative breeding is common in birds."
+   "expert": "Marginal value theorem predicts when to leave a patch. Eusocial insects and naked mole-rats have reproductive division of labour; cooperative breeding occurs in some birds."
   },
   "facts": [
    [

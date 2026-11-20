@@ -122,11 +122,11 @@
   "facts": [
    [
     "Tensile strength",
-    "tens of MPa (tendon; varies with tendon, age and test method)"
+    "≈ 100–150 MPa at failure for energy-storing tendons (varies with tendon, age and test method)"
    ],
    [
     "Collagen content",
-    "≈ 70-80% dry mass"
+    "≈ 60–85% of dry mass"
    ]
   ],
   "did_you_know": "Tendons act as springs: in running, the Achilles tendon stores energy as it stretches and returns part of it as it recoils.",
@@ -169,7 +169,7 @@
    ],
    [
     "Energy density",
-    "≈ 30-34 kJ/g of adipose tissue (pure fat is ≈ 37 kJ/g)"
+    "≈ 33 kJ/g of adipose tissue (pure fat is ≈ 37 kJ/g)"
    ]
   ],
   "did_you_know": "Brown fat, once thought only in infants, is also found in adults.",
@@ -394,7 +394,7 @@
   "layers": {
    "basics": "The heart muscle contracts about once a second for a whole lifetime, resting only briefly between beats, and is built to resist fatigue.",
    "deeper": "Cells are joined end to end at intercalated discs, so electrical signals spread.",
-   "expert": "Gap junctions (connexin 43) enable syncytium-like conduction; desmosomes bear force; ≈ 25-35% of volume is mitochondria."
+   "expert": "Gap junctions (connexin 43) enable syncytium-like conduction; desmosomes bear force; mitochondria fill roughly 20–35% of the cell volume, depending on species and method."
   },
   "facts": [
    [
@@ -403,7 +403,7 @@
    ],
    [
     "Mitochondria",
-    "≈ 25-35% of cell volume"
+    "≈ 20–35% of cell volume (depends on species and method)"
    ]
   ],
   "did_you_know": "Carbon-14 dating suggests human heart muscle cells are replaced very slowly, about 1% a year in young adults and less in old age, though other studies report faster renewal.",
@@ -535,7 +535,7 @@
   "facts": [
    [
     "Thickness",
-    "air-blood barrier of the lung well under 1 µm in thin regions"
+    "≈ 0.6 µm for the tissue barrier of the human lung (harmonic mean; thin regions are thinner)"
    ]
   ],
   "did_you_know": "The air-blood barrier that gases cross is far thinner than a human hair.",
@@ -621,10 +621,10 @@
    ],
    [
     "Turnover (skin)",
-    "≈ 4-6 weeks in adults; slower with age"
+    "≈ 4–7 weeks (estimates from about 28 to about 48 days)"
    ]
   ],
-  "did_you_know": "The lining of your cheek is replaced faster than your skin, in days to a few weeks depending on the study.",
+  "did_you_know": "The lining of your cheek is replaced faster than your skin: one estimate gives about 14 days for oral epithelium against about 28 days for the epidermis.",
   "certainty": "C1",
   "refs": [
    [

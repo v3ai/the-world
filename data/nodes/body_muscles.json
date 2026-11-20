@@ -117,7 +117,7 @@
   "layers": {
    "basics": "Your biceps bends the elbow and also twists the palm up, as when you turn a screwdriver.",
    "deeper": "It attaches to the shoulder blade and the radius. It is a strong supinator when the elbow is bent.",
-   "expert": "Musculocutaneous nerve (C5-C6); crosses both shoulder and elbow, so it is biarticular. Rupture of the long head tendon at the shoulder produces a 'Popeye' bulge in the upper arm; rupture of the distal tendon at the elbow produces a 'reverse Popeye' deformity, with the muscle retracted toward the shoulder."
+   "expert": "Musculocutaneous nerve (spinal roots given as C5-C6 in many textbooks and C5-C7 in others); crosses both shoulder and elbow, so it is biarticular. Rupture of the long head tendon at the shoulder produces a 'Popeye' bulge in the upper arm; rupture of the distal tendon at the elbow produces a 'reverse Popeye' deformity, with the muscle retracted toward the shoulder."
   },
   "facts": [
    [
@@ -126,7 +126,7 @@
    ],
    [
     "Nerve",
-    "Musculocutaneous C5-C6"
+    "Musculocutaneous (roots C5-C6 or C5-C7, sources differ)"
    ]
   ],
   "did_you_know": "It does two jobs: it bends the elbow, and with the elbow bent it is a strong supinator, turning the palm upward.",
@@ -165,7 +165,7 @@
   "layers": {
    "basics": "The triceps pushes your arm straight. It is the opposing partner of the biceps.",
    "deeper": "Its long head also helps extend the shoulder.",
-   "expert": "Radial nerve (C6-C8); the long head originates on the infraglenoid tubercle, lateral and medial heads from the humeral shaft."
+   "expert": "Radial nerve; the long head originates on the infraglenoid tubercle, lateral and medial heads from the humeral shaft."
   },
   "facts": [
    [
@@ -174,7 +174,7 @@
    ],
    [
     "Nerve",
-    "Radial C6-C8"
+    "Radial"
    ]
   ],
   "did_you_know": "Its long head crosses the shoulder joint as well as the elbow, so the triceps can act at both.",
@@ -309,7 +309,7 @@
   "layers": {
    "basics": "The biggest muscle on the front of your thigh, used to stand up, climb stairs and kick.",
    "deeper": "Rectus femoris, vastus lateralis, medialis and intermedius share one tendon around the patella.",
-   "expert": "Femoral nerve (L2-L4); rectus femoris also flexes the hip. It is commonly described as the largest muscle group in the body."
+   "expert": "Femoral nerve (L2-L4); rectus femoris also flexes the hip. All four parts are powerful extensors of the knee."
   },
   "facts": [
    [
@@ -362,7 +362,7 @@
   "layers": {
    "basics": "These muscles pull your heel toward your buttock and help you run.",
    "deeper": "Biceps femoris (long head), semitendinosus and semimembranosus cross both hip and knee; the short head of biceps femoris crosses only the knee.",
-   "expert": "Tibial and common fibular divisions of the sciatic nerve (L5-S2); injury is common during sprinting in late swing phase."
+   "expert": "Tibial and common fibular divisions of the sciatic nerve; injury is common during sprinting in late swing phase."
   },
   "facts": [
    [
@@ -371,10 +371,10 @@
    ],
    [
     "Nerve",
-    "Sciatic L5-S2"
+    "Sciatic (tibial and common fibular divisions)"
    ]
   ],
-  "did_you_know": "The name joins 'ham', an old word for the back of the thigh and knee, to 'string', meaning tendon. A popular story says butchers hung hams by these tendons.",
+  "did_you_know": "The name joins 'ham', from an Old English word for the hollow or bend of the knee, to 'string', meaning tendon. A popular story says butchers hung hams by these tendons.",
   "certainty": "C1",
   "refs": [
    [
@@ -456,7 +456,7 @@
   "mesh": "gluteus_maximus",
   "summary": "The big buttock muscle that extends the hip.",
   "layers": {
-   "basics": "The largest of the gluteal muscles and generally ranked the largest single muscle in the body; it powers climbing, standing up and running.",
+   "basics": "The largest of the gluteal muscles and generally ranked the largest single muscle in the body; it extends the hip and is strongly active in running.",
    "deeper": "It extends and rotates the thigh outward and steadies the pelvis.",
    "expert": "Inferior gluteal nerve (L5-S2). Insertion into the iliotibial tract and gluteal tuberosity. A leading hypothesis (Bramble and Lieberman, 2004) links its size to endurance running in the human lineage; when and why it enlarged is still debated."
   },
@@ -470,7 +470,7 @@
     "Largest gluteal muscle; generally ranked largest muscle overall"
    ]
   ],
-  "did_you_know": "Its large size is often linked to the demands of running, since it is strongly active in running and climbing but little used in level walking; researchers still debate how much of it arose from running versus other uses.",
+  "did_you_know": "Its large size is often linked to the demands of running, since it is strongly active in running but only weakly active in level and uphill walking; researchers still debate how much of it arose from running versus other uses.",
   "certainty": "C2",
   "open_questions": [
    "When and why the human gluteus maximus enlarged, and how much of that was driven by running rather than other uses, remains debated."
@@ -509,7 +509,7 @@
   "layers": {
    "basics": "It lets you shrug and pull your shoulder blades together.",
    "deeper": "Upper, middle and lower fibers move the scapula up, back and down.",
-   "expert": "Spinal accessory nerve (CN XI) plus C3-C4. Its embryological origin is mixed: it shares cranial (pharyngeal arch) mesoderm with sternocleidomastoid and also has somite-derived parts, and the exact contribution is still being worked out."
+   "expert": "Spinal accessory nerve (CN XI) plus C3-C4. Its embryological origin is unusual: in mouse lineage tracing it arises, together with sternocleidomastoid, from cranial pharyngeal mesoderm rather than from somites, sharing progenitors with parts of the heart; whether some somite-derived cells contribute, and how closely humans match the mouse, is still being worked out."
   },
   "facts": [
    [

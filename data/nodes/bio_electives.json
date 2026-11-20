@@ -74,7 +74,7 @@
   "layers": {
    "basics": "The ocean covers ≈ 71% of Earth and contains most of its living space. Plankton account for very roughly half of the photosynthesis on Earth, though the exact share is uncertain.",
    "deeper": "Zones: intertidal, pelagic, benthic and deep sea. Coral reefs, kelp forests and hydrothermal vents host distinct communities.",
-   "expert": "Marine food webs are fuelled mainly by phytoplankton, which turn over in days; zooplankton and, in the twilight zone, mesopelagic fish move that energy and carbon down and up the water column. Hydrothermal vent communities were discovered in 1977; the chemosynthetic bacteria living inside tubeworms were identified in 1981. Overfishing, warming and acidification are key threats: about 38% of FAO-assessed marine fish stocks were fished at unsustainable levels in 2021."
+   "expert": "Marine food webs are fuelled mainly by phytoplankton, which turn over in days; zooplankton and, in the twilight zone, mesopelagic fish move that energy and carbon down and up the water column. Hydrothermal vent communities were discovered in 1977; the chemosynthetic bacteria living inside tubeworms were first proposed in 1981 on histological and enzymatic evidence. Overfishing, warming and acidification are key threats: about 38% of FAO-assessed marine fish stocks were fished at unsustainable levels in 2021."
   },
   "facts": [
    [
@@ -199,7 +199,7 @@
   "facts": [
    [
     "Steady state reached after (first-order kinetics)",
-    "≈ 5 half-lives (≈ 97%)"
+    "≈ 4-5 half-lives (≈ 94-97% of the final level)"
    ],
    [
     "Drug-metabolising enzyme family",
@@ -253,7 +253,7 @@
    ],
    [
     "DDT in a Long Island salt-marsh food chain",
-    "fish-eating birds held far more than fish (Woodwell 1967); factors vary widely by ecosystem"
+    "DDT rose from 0.04 ppm in plankton to 75 ppm in a ring-billed gull, and birds held 10 to 100 times more than fish (Woodwell et al. 1967); factors differ between ecosystems"
    ]
   ],
   "certainty": "C2",
@@ -611,7 +611,7 @@
    ],
    [
     "Thylacine",
-    "last known (captive) animal died 7 September 1936; declared extinct in 1986"
+    "last known (captive) animal died 7 September 1936; declared extinct in the 1980s (IUCN 1982, Tasmanian government 1986)"
    ]
   ],
   "certainty": "C2",
@@ -716,7 +716,7 @@
   "layers": {
    "basics": "Astrobiology asks where life might exist elsewhere. Targets include Mars, Europa and Enceladus and planets orbiting other stars.",
    "deeper": "The habitable zone is the orbital range where a planet's surface could hold liquid water. Europa and Enceladus have subsurface oceans far outside it. Biosignatures include oxygen with methane, or organic patterns in rocks.",
-   "expert": "No confirmed extraterrestrial life exists. Perseverance has collected and cached rock samples on Mars since 2021; when or whether they will be returned to Earth is unsettled. The 1996 Martian meteorite ALH84001 claim and the 2020 Venus phosphine claim remain unconfirmed or disputed. Extremophile limits (e.g., ≈ 122 °C, pH 0, high radiation) widen possible habitats."
+   "expert": "No confirmed extraterrestrial life exists. Perseverance has collected and cached rock samples on Mars since 2021; NASA's proposed Mars Sample Return campaign, meant to bring them to Earth, is no longer planned, so whether and when they will be returned is unsettled. The 1996 Martian meteorite ALH84001 claim and the 2020 Venus phosphine claim remain unconfirmed or disputed. Extremophile limits (e.g., ≈ 122 °C, pH 0, high radiation) widen possible habitats."
   },
   "facts": [
    [
@@ -823,7 +823,7 @@
   "summary": "Physics applied to living matter.",
   "layers": {
    "basics": "Biophysics uses physical laws to explain life: diffusion in cells, forces from motor proteins, and electrical signals in nerves.",
-   "deeper": "Single-molecule techniques (optical tweezers, AFM) measure forces on single molecules in the piconewton range and above. Motor proteins like kinesin work amid strong Brownian fluctuations: each 8 nm step is powered by one ATP, worth roughly 25 kBT, well above the thermal scale yet still noisy.",
+   "deeper": "Single-molecule techniques (optical tweezers, AFM) measure forces on single molecules in the piconewton range and above. Motor proteins like kinesin work amid strong Brownian fluctuations: each 8 nm step is powered by one ATP, worth roughly 20-25 kBT under cell conditions (free energy about −57 kJ/mol), well above the thermal scale yet still noisy.",
    "expert": "At low Reynolds number (Re ≈ 10⁻⁵ for bacteria), inertia is negligible; flagella use non-reciprocal motion. Thermal energy kBT ≈ 4.1 pN·nm sets the scale of molecular events."
   },
   "facts": [
@@ -833,7 +833,7 @@
    ],
    [
     "Kinesin stall force",
-    "≈ 6 pN"
+    "≈ 5-6 pN (depends on ATP concentration and conditions)"
    ]
   ],
   "formula": "kBT ≈ 4.1 pN·nm at T = 298 K",
