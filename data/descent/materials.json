@@ -191,7 +191,7 @@
      "name": "cystine, the sulfur bridge of keratin",
      "scene": "mol:cystine",
      "standIn": true,
-     "note": "{What}: made of keratin, a tough protein whose chains are tied to one another by sulfur bridges. Hair, fur and the claws of mammals are made of alpha-keratin; the feathers, beaks and claws of birds are made of beta-keratin, a different family of proteins. A keratin chain is hundreds of amino acids long: too large to show whole. Shown: cystine, two cysteine units joined by one such bridge. A bill is a keratin sheath over a bony core.",
+     "note": "{What}: made of keratin, a tough protein whose chains are tied to one another by sulfur bridges. Hair, fur and the claws of mammals are made of alpha-keratin; the feathers, beaks and claws of birds are made of beta-keratin, a different family of proteins. A keratin chain is hundreds of amino acids long: too large to show whole. Shown: cystine, two cysteine units joined by one such bridge.",
      "title": "Cystine (stands in for keratin)"
     }
    ],
@@ -2246,7 +2246,7 @@
     {
      "name": "a living epithelial cell",
      "material": "animal_cells",
-     "note": "The flat top layer of this picture is dead skin, which a lining inside the body does not have. The surface cells of the lining of {what} are living cells. A generic cell stands in for them."
+     "note": "The flat top layer of the skin picture is dead skin, which a lining inside the body does not have. The surface cells of this lining are living cells. A generic cell stands in for them."
     }
    ],
    "src": "cards epithelial_tissue, skin; js/nodes.js (the skin epithelium scene)"
@@ -2314,7 +2314,7 @@
     {
      "name": "a generic animal cell",
      "material": "animal_cells",
-     "note": "{What}: a muscle fibre is one very long cell, not a small round one. In the skeletal muscle of a vertebrate it has many nuclei, because it forms when many young muscle cells fuse. The generic animal cell shown is one small cell with a single nucleus.",
+     "note": "{What}: a muscle fibre is one very long cell, not a small round one. In the skeletal muscle of a vertebrate it has many nuclei, because it forms when many young muscle cells fuse.",
      "standIn": true
     }
    ],
@@ -2408,6 +2408,19 @@
     }
    ],
    "src": "Penn State Meteo 300 lecture 14 (https://personal.ems.psu.edu/~brune/m300f99/m300l14.html: continental clouds droplets under 20 micrometres in radius, hundreds per cm3; marine clouds fewer than 100 per cm3, radius about 30 micrometres); card park_sky"
+  },
+  "bill": {
+   "title": "Bird bill",
+   "desc": "A thin sheath of keratin over a bony core.",
+   "card": "robin_keratin",
+   "inside": [
+    {
+     "name": "the keratin sheath",
+     "material": "keratin",
+     "note": "{What}: a bill is a sheath of keratin over a core of bone. Shown: the keratin of the sheath; the bone beneath is not drawn."
+    }
+   ],
+   "src": "card robin_keratin; Wikipedia \"Keratin\" (https://en.wikipedia.org/wiki/Keratin: beta-keratins in the feathers, beaks and claws of birds)"
   }
  }
 }
