@@ -150,7 +150,7 @@ NODES = [
  node('licell_tabs', 'Tabs', 'structure',
   'Two metal strips that bring the current out through the seal.',
   'All the copper foils are welded to one strip of metal and all the aluminium foils to another. These two tabs are the cell\'s terminals: they pass out through the sealed edge of the pouch and are joined to the small protection board. The weld is made by ultrasound: the metals are rubbed together so fast that they bond without melting.',
-  'The tabs are places where things can go wrong. The Galaxy Note 7 investigations named a missing insulating tape on the positive tab, and welding burrs that pierced the tape and the separator, among the causes of the fires. In this model the foil tongues run straight up to the tabs; in a real cell they are gathered and bent together before welding.',
+  'The tabs are places where things can go wrong. The Galaxy Note 7 investigations named a missing insulating tape on the positive tab, and welding burrs that pierced the tape and the separator, among the causes of the fires. In this model the foil tongues run straight up to the tabs (in a real cell they are gathered and bent together before welding), and the tabs are drawn bent forward onto the face of the protection board; how they are really joined to the board was not sourced.',
   'No source opened for this model names the tab metals of a phone cell. Trade sources (not checked further) give aluminium for the positive tab and nickel or nickel-plated copper for the negative one. The thickness drawn (0.1 mm) and the width (8 mm) are choices of the model.',
   [['Welding', 'ultrasonic, tab to the bundle of foils'], ['Size drawn', '8 mm wide, 0.1 mm thick (not sourced)']],
   'C2', [], related=['licell_cu_foil', 'licell_al_foil', 'licell_pcm'], scale=.008, ex=ext('note7')),
@@ -229,33 +229,33 @@ VIZ = {
 VIZ['licell_stack']['caption'] = VIZ['licell_stack']['caption'].replace(' For comparison, a human hair is roughly 70 µm across.', '')
 
 # ---------------------------------------------------------------- close-up scenes (micrometres)
+# The two electrode scenes have the cell's own axes (x across the sheet, y along it, z through the layers), so that arriving from the cut face (looking along y)
+# shows the layers in section, foil at the bottom, and arriving from the face of a sheet (looking along z) shows the grains from above.
 def scene_anode():
     return {'tag': 'Inside the negative electrode', 'cell': 'animal', 'id': 'licell_anode', 'title': 'Inside the graphite coating', 'node': 'licell_anode',
-      'blurb': 'A slice through one coating of a negative sheet: copper foil at the bottom, graphite grains packed above it, the separator on top. The pores between the grains are full of liquid electrolyte. Click a grain, then look inside it.',
-      'note': f'To scale: the thickness of the foil ({CU} µm), of the coating ({AN} µm) and of the separator ({SEP} µm), and the size of the grains (10 µm across), all from the parameter set of a measured consumer pouch cell (Ai et al. 2020). Illustrative: the shapes of the grains (real ones are irregular flakes and lumps), their number and their packing; the binder that glues them and the skin on each grain (the SEI, a few nanometres) are not drawn.',
-      'bg': '#f1ede4', 'center': [70, 55, 0], 'D_um': 150,
-      'labels': [{'text': 'Graphite grains: lithium is stored inside them', 'at': [20, 70, 32], 'pop': 'graphite'}, {'text': f'Copper foil, {CU} µm', 'at': [120, 5, 32], 'pop': 'foil'}, {'text': 'Separator', 'at': [118, 99, 32], 'pop': 'separator'}, {'text': 'Liquid electrolyte fills the pores', 'at': [70, 40, 34], 'pop': 'electrolyte'}],
+      'blurb': 'A piece of one coating of a negative sheet: copper foil underneath, graphite grains packed on it. The pores between the grains are full of liquid electrolyte; the separator, not drawn, lies on top. Click a grain, then look inside it.',
+      'note': f'To scale: the thickness of the foil ({CU} µm) and of the coating ({AN} µm), and the size of the grains (10 µm across), all from the parameter set of a measured consumer pouch cell (Ai et al. 2020). Illustrative: the shapes of the grains (real ones are irregular flakes and lumps), their number and their packing; the binder that glues them and the skin on each grain (the SEI, a few nanometres) are not drawn.',
+      'bg': '#f1ede4', 'center': [70, 0, 44], 'D_um': 150,
+      'labels': [{'text': 'Graphite grains: lithium is stored inside them', 'at': [22, 32, 70], 'pop': 'graphite'}, {'text': f'Copper foil, {CU} µm', 'at': [118, 32, 5], 'pop': 'foil'}, {'text': 'Liquid electrolyte fills the pores', 'at': [72, 32, 40], 'pop': 'electrolyte'}],
       'populations': [
-        {'id': 'foil', 'name': 'Copper foil', 'node': 'licell_cu_foil', 'shape': 'rbox', 'size': [140, CU, 60], 'color': '#c8793a', 'opacity': 1, 'ink': 1, 'priority': 3, 'material': 'copper', 'arrange': {'kind': 'list', 'items': [{'at': [70, CU / 2, 0]}]}},
-        {'id': 'graphite', 'name': 'Graphite grain', 'node': 'licell_graphite', 'shape': 'ellipsoid', 'size': [11, 8, 11], 'color': '#3a4047', 'opacity': 1, 'ink': 1, 'priority': 3, 'material': 'lithiated_graphite',
-         'arrange': {'kind': 'random', 'n': 230, 'min': [5, CU + 4.5, -24], 'max': [135, CU + AN - 4.5, 24], 'gap': -1.2, 'seed': 11, 'orient': 'free'}},
-        {'id': 'electrolyte', 'name': 'Electrolyte in the pores', 'node': 'licell_electrolyte', 'shape': 'rbox', 'size': [139, AN - .5, 59], 'color': '#9fc3d6', 'opacity': .16, 'priority': 1, 'material': 'battery_electrolyte', 'arrange': {'kind': 'list', 'items': [{'at': [70, CU + AN / 2, 0]}]}},
-        {'id': 'separator', 'name': 'Separator', 'node': 'licell_separator', 'shape': 'rbox', 'size': [140, SEP, 60], 'color': '#efe9d8', 'opacity': .95, 'ink': 1, 'priority': 3, 'deeper': {'type': 'none'}, 'material': 'separator_polymer', 'arrange': {'kind': 'list', 'items': [{'at': [70, CU + AN + SEP / 2, 0]}]}},
+        {'id': 'foil', 'name': 'Copper foil', 'node': 'licell_cu_foil', 'shape': 'rbox', 'size': [140, 60, CU], 'color': '#c8793a', 'opacity': 1, 'ink': 1, 'priority': 3, 'material': 'copper', 'arrange': {'kind': 'list', 'items': [{'at': [70, 0, CU / 2]}]}},
+        {'id': 'graphite', 'name': 'Graphite grain', 'node': 'licell_graphite', 'shape': 'ellipsoid', 'size': [11, 11, 8], 'color': '#3a4047', 'opacity': 1, 'ink': 1, 'priority': 3, 'material': 'lithiated_graphite',
+         'arrange': {'kind': 'random', 'n': 230, 'min': [5, -24, CU + 4.5], 'max': [135, 24, CU + AN - 4.5], 'gap': -1.2, 'seed': 11}},
+        {'id': 'electrolyte', 'name': 'Electrolyte in the pores', 'node': 'licell_electrolyte', 'shape': 'rbox', 'size': [139, 59, AN - .5], 'color': '#9fc3d6', 'opacity': .16, 'priority': 1, 'material': 'battery_electrolyte', 'arrange': {'kind': 'list', 'items': [{'at': [70, 0, CU + AN / 2]}]}},
       ]}
 def scene_cathode():
     return {'tag': 'Inside the positive electrode', 'cell': 'animal', 'id': 'licell_cathode', 'title': 'Inside the oxide coating', 'node': 'licell_cathode',
-      'blurb': 'A slice through one coating of a positive sheet: aluminium foil at the bottom, grains of lithium cobalt oxide above it, with threads of carbon between them to carry the electrons. The pores are full of liquid electrolyte. Click a grain, then look inside it.',
-      'note': f'To scale: the thickness of the foil ({AL} µm), of the coating ({CA} µm) and of the separator ({SEP} µm), and the size of the grains (6 µm across), from the parameter set of a measured consumer pouch cell (Ai et al. 2020). Illustrative: the round shape of the grains, their single size (real powders mix many sizes), their number and packing, and the carbon threads, which are drawn far thicker than the nanotubes seen in a phone cell; the binder is not drawn.',
-      'bg': '#f1ede4', 'center': [36, 50, 0], 'D_um': 140,
-      'labels': [{'text': 'Lithium cobalt oxide grains', 'at': [12, 66, 17], 'pop': 'lco'}, {'text': f'Aluminium foil, {AL} µm', 'at': [58, 7, 17], 'pop': 'foil'}, {'text': 'Carbon threads carry the electrons', 'at': [38, 36, 17], 'pop': 'carbon'}, {'text': 'Separator', 'at': [58, 95, 17], 'pop': 'separator'}],
+      'blurb': 'A piece of one coating of a positive sheet: aluminium foil underneath, grains of lithium cobalt oxide on it, with threads of carbon between them to carry the electrons. The pores are full of liquid electrolyte; the separator, not drawn, lies on top. Click a grain, then look inside it.',
+      'note': f'To scale: the thickness of the foil ({AL} µm) and of the coating ({CA} µm), and the size of the grains (6 µm across), from the parameter set of a measured consumer pouch cell (Ai et al. 2020). Illustrative: the round shape of the grains, their single size (real powders mix many sizes), their number and packing, and the carbon threads, which are drawn far thicker than the nanotubes seen in a phone cell; the binder is not drawn.',
+      'bg': '#f1ede4', 'center': [36, 0, 42], 'D_um': 140,
+      'labels': [{'text': 'Lithium cobalt oxide grains', 'at': [14, 17, 62], 'pop': 'lco'}, {'text': f'Aluminium foil, {AL} µm', 'at': [58, 17, 7], 'pop': 'foil'}, {'text': 'Carbon threads carry the electrons', 'at': [38, 17, 36], 'pop': 'carbon'}],
       'populations': [
-        {'id': 'foil', 'name': 'Aluminium foil', 'node': 'licell_al_foil', 'shape': 'rbox', 'size': [72, AL, 30], 'color': '#cfd4da', 'opacity': 1, 'ink': 1, 'priority': 3, 'material': 'aluminium', 'arrange': {'kind': 'list', 'items': [{'at': [36, AL / 2, 0]}]}},
+        {'id': 'foil', 'name': 'Aluminium foil', 'node': 'licell_al_foil', 'shape': 'rbox', 'size': [72, 30, AL], 'color': '#cfd4da', 'opacity': 1, 'ink': 1, 'priority': 3, 'material': 'aluminium', 'arrange': {'kind': 'list', 'items': [{'at': [36, 0, AL / 2]}]}},
         {'id': 'lco', 'name': 'Lithium cobalt oxide grain', 'node': 'licell_lco', 'shape': 'ellipsoid', 'size': [6, 6, 6], 'color': '#2a4170', 'opacity': 1, 'ink': 1, 'priority': 3, 'material': 'lithium_cobalt_oxide',
-         'arrange': {'kind': 'random', 'n': 250, 'min': [3.5, AL + 3.2, -11.5], 'max': [68.5, AL + CA - 3.2, 11.5], 'gap': -.5, 'seed': 5}},
+         'arrange': {'kind': 'random', 'n': 250, 'min': [3.5, -11.5, AL + 3.2], 'max': [68.5, 11.5, AL + CA - 3.2], 'gap': -.5, 'seed': 5}},
         {'id': 'carbon', 'name': 'Conducting carbon', 'node': 'licell_cathode', 'shape': 'cylinder', 'size': [.5, 9, .5], 'color': '#15171c', 'opacity': 1, 'priority': 2, 'material': 'conductive_carbon',
-         'arrange': {'kind': 'random', 'n': 150, 'min': [3, AL + 2, -12], 'max': [69, AL + CA - 2, 12], 'gap': -8, 'seed': 9, 'orient': 'free'}},
-        {'id': 'electrolyte', 'name': 'Electrolyte in the pores', 'node': 'licell_electrolyte', 'shape': 'rbox', 'size': [71, CA - .5, 29], 'color': '#9fc3d6', 'opacity': .16, 'priority': 1, 'material': 'battery_electrolyte', 'arrange': {'kind': 'list', 'items': [{'at': [36, AL + CA / 2, 0]}]}},
-        {'id': 'separator', 'name': 'Separator', 'node': 'licell_separator', 'shape': 'rbox', 'size': [72, SEP, 30], 'color': '#efe9d8', 'opacity': .95, 'ink': 1, 'priority': 3, 'deeper': {'type': 'none'}, 'material': 'separator_polymer', 'arrange': {'kind': 'list', 'items': [{'at': [36, AL + CA + SEP / 2, 0]}]}},
+         'arrange': {'kind': 'random', 'n': 150, 'min': [3, -12, AL + 2], 'max': [69, 12, AL + CA - 2], 'gap': -8, 'seed': 9, 'orient': 'free'}},
+        {'id': 'electrolyte', 'name': 'Electrolyte in the pores', 'node': 'licell_electrolyte', 'shape': 'rbox', 'size': [71, 29, CA - .5], 'color': '#9fc3d6', 'opacity': .16, 'priority': 1, 'material': 'battery_electrolyte', 'arrange': {'kind': 'list', 'items': [{'at': [36, 0, AL + CA / 2]}]}},
       ]}
 def scene_separator():
     return {'tag': 'Inside the separator', 'cell': 'animal', 'id': 'licell_separator', 'title': 'Inside the separator', 'node': 'licell_separator',

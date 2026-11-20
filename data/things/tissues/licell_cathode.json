@@ -4,22 +4,22 @@
  "id": "licell_cathode",
  "title": "Inside the oxide coating",
  "node": "licell_cathode",
- "blurb": "A slice through one coating of a positive sheet: aluminium foil at the bottom, grains of lithium cobalt oxide above it, with threads of carbon between them to carry the electrons. The pores are full of liquid electrolyte. Click a grain, then look inside it.",
- "note": "To scale: the thickness of the foil (15 µm), of the coating (68 µm) and of the separator (25 µm), and the size of the grains (6 µm across), from the parameter set of a measured consumer pouch cell (Ai et al. 2020). Illustrative: the round shape of the grains, their single size (real powders mix many sizes), their number and packing, and the carbon threads, which are drawn far thicker than the nanotubes seen in a phone cell; the binder is not drawn.",
+ "blurb": "A piece of one coating of a positive sheet: aluminium foil underneath, grains of lithium cobalt oxide on it, with threads of carbon between them to carry the electrons. The pores are full of liquid electrolyte; the separator, not drawn, lies on top. Click a grain, then look inside it.",
+ "note": "To scale: the thickness of the foil (15 µm) and of the coating (68 µm), and the size of the grains (6 µm across), from the parameter set of a measured consumer pouch cell (Ai et al. 2020). Illustrative: the round shape of the grains, their single size (real powders mix many sizes), their number and packing, and the carbon threads, which are drawn far thicker than the nanotubes seen in a phone cell; the binder is not drawn.",
  "bg": "#f1ede4",
  "center": [
   36,
-  50,
-  0
+  0,
+  42
  ],
  "D_um": 140,
  "labels": [
   {
    "text": "Lithium cobalt oxide grains",
    "at": [
-    12,
-    66,
-    17
+    14,
+    17,
+    62
    ],
    "pop": "lco"
   },
@@ -27,8 +27,8 @@
    "text": "Aluminium foil, 15 µm",
    "at": [
     58,
-    7,
-    17
+    17,
+    7
    ],
    "pop": "foil"
   },
@@ -36,19 +36,10 @@
    "text": "Carbon threads carry the electrons",
    "at": [
     38,
-    36,
-    17
+    17,
+    36
    ],
    "pop": "carbon"
-  },
-  {
-   "text": "Separator",
-   "at": [
-    58,
-    95,
-    17
-   ],
-   "pop": "separator"
   }
  ],
  "populations": [
@@ -59,8 +50,8 @@
    "shape": "rbox",
    "size": [
     72,
-    15,
-    30
+    30,
+    15
    ],
    "color": "#cfd4da",
    "opacity": 1,
@@ -73,8 +64,8 @@
      {
       "at": [
        36,
-       7.5,
-       0
+       0,
+       7.5
       ]
      }
     ]
@@ -100,13 +91,13 @@
     "n": 250,
     "min": [
      3.5,
-     18.2,
-     -11.5
+     -11.5,
+     18.2
     ],
     "max": [
      68.5,
-     79.8,
-     11.5
+     11.5,
+     79.8
     ],
     "gap": -0.5,
     "seed": 5
@@ -131,13 +122,13 @@
     "n": 150,
     "min": [
      3,
-     17,
-     -12
+     -12,
+     17
     ],
     "max": [
      69,
-     81,
-     12
+     12,
+     81
     ],
     "gap": -8,
     "seed": 9,
@@ -151,8 +142,8 @@
    "shape": "rbox",
    "size": [
     71,
-    67.5,
-    29
+    29,
+    67.5
    ],
    "color": "#9fc3d6",
    "opacity": 0.16,
@@ -164,39 +155,8 @@
      {
       "at": [
        36,
-       49.0,
-       0
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "id": "separator",
-   "name": "Separator",
-   "node": "licell_separator",
-   "shape": "rbox",
-   "size": [
-    72,
-    25,
-    30
-   ],
-   "color": "#efe9d8",
-   "opacity": 0.95,
-   "ink": 1,
-   "priority": 3,
-   "deeper": {
-    "type": "none"
-   },
-   "material": "separator_polymer",
-   "arrange": {
-    "kind": "list",
-    "items": [
-     {
-      "at": [
-       36,
-       95.5,
-       0
+       0,
+       49.0
       ]
      }
     ]

@@ -785,7 +785,7 @@
   "summary": "Two metal strips that bring the current out through the seal.",
   "layers": {
    "basics": "All the copper foils are welded to one strip of metal and all the aluminium foils to another. These two tabs are the cell's terminals: they pass out through the sealed edge of the pouch and are joined to the small protection board. The weld is made by ultrasound: the metals are rubbed together so fast that they bond without melting.",
-   "deeper": "The tabs are places where things can go wrong. The Galaxy Note 7 investigations named a missing insulating tape on the positive tab, and welding burrs that pierced the tape and the separator, among the causes of the fires. In this model the foil tongues run straight up to the tabs; in a real cell they are gathered and bent together before welding.",
+   "deeper": "The tabs are places where things can go wrong. The Galaxy Note 7 investigations named a missing insulating tape on the positive tab, and welding burrs that pierced the tape and the separator, among the causes of the fires. In this model the foil tongues run straight up to the tabs (in a real cell they are gathered and bent together before welding), and the tabs are drawn bent forward onto the face of the protection board; how they are really joined to the board was not sourced.",
    "expert": "No source opened for this model names the tab metals of a phone cell. Trade sources (not checked further) give aluminium for the positive tab and nickel or nickel-plated copper for the negative one. The thickness drawn (0.1 mm) and the width (8 mm) are choices of the model."
   },
   "facts": [

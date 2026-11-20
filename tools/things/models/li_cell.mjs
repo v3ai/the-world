@@ -52,8 +52,8 @@ export default function build() {
   const outer = prism(roundRect(-W / 2, 0, W / 2, bodyH, mm(2.2)), -T / 2, T / 2);
   const inner = L.flip(prism(roundRect(-W / 2 + film, film, W / 2 - film, bodyH - film, mm(2.1)), -T / 2 + film, T / 2 - film));
   meshes.pouch = merge(outer, inner);
-  meshes.seal = box([-W / 2, bodyH - mm(.2), -film], [W / 2, H, film]);                                  // two films welded face to face: 0.226 mm
-  meshes.cell_far = merge(prism(roundRect(-W / 2, 0, W / 2, bodyH, mm(2.2), 3), -T / 2, T / 2), box([-W / 2, bodyH - mm(.2), -film], [W / 2, H, film]));
+  meshes.seal = box([-W / 2, bodyH - mm(.2), -film], [W / 2, H - mm(1.6), film]);                                  // two films welded face to face: 0.226 mm
+  meshes.cell_far = merge(prism(roundRect(-W / 2, 0, W / 2, bodyH, mm(2.2), 3), -T / 2, T / 2), box([-W / 2, bodyH - mm(.2), -film], [W / 2, H - mm(1.6), film]));
   // ---- the stack: 12 x (separator, anode sheet, separator, cathode sheet), every layer at its true thickness ----
   const x0 = -M.sheetW / 2, x1 = M.sheetW / 2, y0 = M.sheetY0, y1 = M.sheetY0 + M.sheetH;
   const parts = { cu: [], anode: [], sep: [], cathode: [], al: [] };
@@ -71,14 +71,15 @@ export default function build() {
   }
   for (const k in parts) meshes[k] = merge(...parts[k]);
   // ---- the tabs: metal strips welded to the gathered foil tongues, passing out through the seal ----
-  const tabT = mm(.1), tabY1 = H - mm(.3);   // 0.1 mm thick: drawn, not sourced
-  meshes.tab_neg = merge(box([-M.tabX - mm(4), M.tabTop - mm(1.5), -tabT / 2], [-M.tabX + mm(4), tabY1, tabT / 2]));
-  meshes.tab_pos = merge(box([M.tabX - mm(4), M.tabTop - mm(1.5), -tabT / 2], [M.tabX + mm(4), tabY1, tabT / 2]));
   // ---- the protection circuit: a small board lying on the terrace, with one control chip, a pair of switches and a connector tail ----
-  const bz0 = film + mm(.15), bz1 = bz0 + mm(.6), by0 = bodyH + mm(.8), by1 = H - mm(.5);
+  const bz0 = film + mm(.15), bz1 = bz0 + mm(.6), by0 = bodyH + mm(.6), by1 = H - mm(1.9);
+  // each tab comes out past the sealed edge and is bent forward and down onto the face of the board (the bend and the join are drawn, not sourced; 0.1 mm thick: drawn)
+  const tabT = mm(.1), tabY1 = H;
+  const tab = x => merge(box([x - mm(4), M.tabTop - mm(1.5), -tabT / 2], [x + mm(4), tabY1, tabT / 2]), box([x - mm(4), tabY1 - tabT, -tabT / 2], [x + mm(4), tabY1, bz1 + tabT]), box([x - mm(4), by0 + mm(.5), bz1], [x + mm(4), tabY1, bz1 + tabT]));
+  meshes.tab_neg = tab(-M.tabX); meshes.tab_pos = tab(M.tabX);
   meshes.pcm_board = box([-mm(23), by0, bz0], [mm(23), by1, bz1]);
-  meshes.pcm_ic = box([-mm(4.5), by0 + mm(1.4), bz1], [-mm(1.6), by0 + mm(3.0), bz1 + mm(1.1)]);
-  meshes.pcm_fet = box([mm(1.5), by0 + mm(1.0), bz1], [mm(4.5), by0 + mm(3.6), bz1 + mm(.6)]);
+  meshes.pcm_ic = box([-mm(4.5), by0 + mm(1.0), bz1], [-mm(1.6), by0 + mm(2.6), bz1 + mm(1.1)]);
+  meshes.pcm_fet = box([mm(1.5), by0 + mm(.6), bz1], [mm(4.5), by0 + mm(3.0), bz1 + mm(.6)]);
   meshes.pcm_flex = merge(box([mm(23), by0 + mm(.6), bz0], [mm(29.5), by1 - mm(.6), bz0 + mm(.15)]), box([mm(26.5), by0 + mm(.3), bz0 + mm(.15)], [mm(29.5), by1 - mm(.3), bz0 + mm(1.0)]));
 
   // ---- one electrode pair, opened: the same sheets at their true thickness, lifted 7 mm apart and stepped sideways so each can be seen ----

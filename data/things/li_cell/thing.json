@@ -553,10 +553,10 @@
    "material": "pouch_laminate",
    "center": [
     0,
-    0.0749,
+    0.0741,
     0
    ],
-   "radius": 0.0312,
+   "radius": 0.0311,
    "tris": 12
   },
   {
@@ -571,10 +571,10 @@
    "material": "pouch_laminate",
    "center": [
     0,
-    0.039,
+    0.0382,
     0
    ],
-   "radius": 0.0498,
+   "radius": 0.0492,
    "tris": 72
   },
   {
@@ -590,11 +590,11 @@
    "material": "cell_tab",
    "center": [
     -0.017,
-    0.0734,
-    0
+    0.0735,
+    0.0005
    ],
-   "radius": 0.0059,
-   "tris": 12
+   "radius": 0.006,
+   "tris": 36
   },
   {
    "id": "tab_pos",
@@ -609,11 +609,11 @@
    "material": "cell_tab",
    "center": [
     0.017,
-    0.0734,
-    0
+    0.0735,
+    0.0005
    ],
-   "radius": 0.0059,
-   "tris": 12
+   "radius": 0.006,
+   "tris": 36
   },
   {
    "id": "pcm_board",
@@ -628,7 +628,7 @@
    "material": "circuit_copper",
    "center": [
     0,
-    0.0752,
+    0.0744,
     0.0006
    ],
    "radius": 0.0231,
@@ -647,7 +647,7 @@
    "material": "chip_silicon",
    "center": [
     -0.0031,
-    0.075,
+    0.0744,
     0.0014
    ],
    "radius": 0.0017,
@@ -666,10 +666,10 @@
    "material": "chip_silicon",
    "center": [
     0.003,
-    0.0751,
+    0.0744,
     0.0012
    ],
-   "radius": 0.002,
+   "radius": 0.0019,
    "tris": 12
   },
   {
@@ -685,10 +685,10 @@
    "material": "circuit_copper",
    "center": [
     0.0263,
-    0.0752,
+    0.0744,
     0.0008
    ],
-   "radius": 0.0039,
+   "radius": 0.0036,
    "tris": 24
   },
   {
@@ -959,10 +959,10 @@
    "material": "lithium_ion_marker",
    "center": [
     0,
-    8,
-    0
+    0.0335,
+    0.000003
    ],
-   "radius": 10,
+   "radius": 0.028463,
    "tris": 0
   },
   {
@@ -976,10 +976,10 @@
    "material": "electron_marker",
    "center": [
     0,
-    8,
+    0.0605,
     0
    ],
-   "radius": 10,
+   "radius": 0.032299,
    "tris": 0
   },
   {
@@ -993,10 +993,10 @@
    "material": "lithium_ion_marker",
    "center": [
     0,
-    8,
-    0
+    0.0335,
+    0.000003
    ],
-   "radius": 10,
+   "radius": 0.028463,
    "tris": 0
   },
   {
@@ -1010,10 +1010,10 @@
    "material": "electron_marker",
    "center": [
     0,
-    8,
+    0.0605,
     0
    ],
-   "radius": 10,
+   "radius": 0.032299,
    "tris": 0
   }
  ],
@@ -1032,8 +1032,8 @@
  },
  "stats": {
   "parts": 25,
-  "uniqueMeshTris": 2040,
-  "nearTris": 1752,
+  "uniqueMeshTris": 2088,
+  "nearTris": 1800,
   "midTris": 72,
   "farTris": 72
  }
