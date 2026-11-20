@@ -63,11 +63,23 @@ A frame may name the points a zoom can end on: `F.att = { D, find(P, hint) -> id
 | molecule, crystal, liquid water (`atomAtt`, `js/world_matter.js`) | every atom | 2.5 nm |
 | gas | every molecule | 8 nm |
 | plasma | every nucleus (not the electrons) | 10 nm; the particles come to rest as you close in |
-| atom (`js/atom.js`) | the nucleus | 120 pm |
+| atom (`js/atom.js`) | the nucleus | as soon as the camera is in the atom (it waited until 120 pm, and a pointer off the middle took the zoom out of the cloud) |
 | nucleus (`js/particles.js`) | every nucleon | as soon as the camera is in the frame |
 | proton or neutron | the three valence quarks; the Standard Model view opens at the one the zoom closed on | as soon as the camera is in the frame |
 
 The older single-point form (`F.attract`, `attractD`, `attractR`) still works (the park in its region, the Galactic Centre). Spawn functions of these frames never return null for want of precision: a molecule returns the nearest atom however far the target is from it.
+
+### 1b. The zoom's target (`ztg`, `js/engine.js`)
+
+A wheel burst, a pinch or a held zoom button that begins on a thing keeps that thing as the zoom's **target** until the pointer moves more than `ZT_PX`
+(6 px), a drag, a zoom out or a flight. Every frame of the zoom the pivot is moved to the thing (never the camera): its centre while it is under a
+tenth of the view, the point picked on it from a fifth up, blended between; the point is kept in the coordinates of the object hit, so a moving thing
+is followed. Later picks only refine the point on the same thing (in a thing that peels its layers, also a deeper part inside its extent; a layer in
+front never takes it back). `lastZoomHit` names the target, so the descent goes into it, and a dot that stands for a frame leads into that frame.
+Rules on top: `ztUnder` (a small organ within the forgiving pick's ring, under the surface the pointer is on, is the target: the eye, not the brain
+behind the brow), `ztHandOn` (a thing with `aimHolds` hands the aim to the layer an Auto stage shows), `ztg.carry` (a scene that is one material
+throughout, `DESCENT.fills`, goes on into that material at the same point). A frame's attractors still decide inside it. Empty space has a material
+too: `empty` and `emptyD` in an assign file (the solar wind, interstellar gas) are where a zoom aimed at nothing goes.
 
 ### 2. The table: `data/descent/materials.json`
 
