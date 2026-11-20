@@ -1121,7 +1121,7 @@ function onClick(x, y, touch, ts) {
   const near = lc && Math.hypot(x - lc.x, y - lc.y) < (touch ? DBL_PX_TOUCH : DBL_PX);
   if (near && now - lc.t < DBL_MS) { // the second click of a double click: the thing the first click found
     if (clickPend) { clearTimeout(clickPend.timer); clickPend = null; } lastClick = null;
-    if (lc.h) lookInside(lc.h); return;
+    if (lc.h) lookInside(lc.h); else lookInsideNear(lc.x, lc.y); return;
   }
   const h0 = pickAt(x, y), h = h0 && !isBackdrop(h0) ? h0 : null;
   if (near && lc.h && h && h.obj === lc.h.obj && now - lc.t < DBL_LATE_MS) { // a slow double click: the framing flight has only just begun, and the same thing is still under the pointer
@@ -1286,9 +1286,23 @@ function notBuilt(h) {
 }
 /* "Look inside" with nothing selected (the place card's button): the thing in the middle of the free area. With nothing there, and without the
    descent module, the place's own next level at the camera's target (frame.spawn, or the frame that sits nearest inside it). */
+/* A double click between the atoms of a molecule, in the cloud of an atom, between the nucleons of a nucleus: nothing is under the pointer, yet the place is made
+   of things too small or too sparse to hit. Where the frame names the points a zoom can end on (its attractors), the nearest one to the pointer is what was meant:
+   go into it. Anywhere else (the sky, the space between planets) a double click on nothing still does nothing. */
+function lookInsideNear(x, y) {
+  const A = cam.A, a = A && A.att; if (!a || !A.spawn) return lastInside = { how: 'none' };
+  const P = pivotAt(x, y).clone(), id = a.find(P, null), Q = new V3();
+  if (id < 0 || !a.pos(id, Q)) return lastInside = { how: 'none' };
+  cancelTour(); att.f = A; att.id = id; att.p.copy(Q); att.px = zoom.px; att.py = zoom.py; // spawn functions ask attId(A) for the one that was meant
+  let c = A.children.find(k => k.dynamic && k.containsP(Q));
+  if (!c) { try { c = A.spawn(Q.clone(), null); } catch (e) { c = null; } if (c) { c.dynamic = true; c.keep = performance.now() + 60000; A.addChild(c); } }
+  if (!c) return lastInside = { how: 'none' };
+  c.ensure(); selLeaveFor(c); flyKeep(c, c.center ? c.center.clone() : new V3(), frameOverviewD(c)); return lastInside = { how: 'descent', frame: c };
+}
 function lookInsidePlace() {
   const c = viewCentre(), h0 = pickAt(c.x, c.y), h = h0 && !isBackdrop(h0) ? h0 : null;
   if (h) return lookInside(h);
+  if (lookInsideNear(c.x, c.y).how !== 'none') return lastInside;
   const f = cam.A;
   if (typeof DESCENT === 'undefined' || !DESCENT) {
     if (f.spawn) { const k = f.spawn(cam.T.clone(), null); if (k) { k.dynamic = true; k.keep = performance.now() + 60000; f.addChild(k); k.ensure(); flyTo(k, k.center ? k.center.clone() : new V3(), frameOverviewD(k)); return lastInside = { how: 'descent', frame: k }; } }
