@@ -467,6 +467,9 @@ FT.sm = {
     F.blurb = 'The seventeen kinds of particle that, as far as experiments have reached, everything else is made of. Click any one.';
     F.note = 'This is not a place. It is the list of everything matter and the forces (except gravity) are made of, as far as experiments have reached.';
     F.r1 = F.r1 || 3e-16;
+    /* the view's floor: at 1 am a ball is already a hundred times larger than anything resolved inside a particle; below it the wheel used to run on for 36
+       notches with nothing changing. It stops here and says why. */
+    F.floorD = 1e-18; F.floorNote = 'This is as far in as anything is known: no structure has been found inside these particles down to about 10⁻¹⁹ m, so there is nothing further to zoom into.';
     if (!D) { F.blurb = 'The particle data did not load.'; return; }
     const SM = PX.SM, board = new THREE.Group(); F.add(board); F.board = board;
     const P = {}; F.parts = P;

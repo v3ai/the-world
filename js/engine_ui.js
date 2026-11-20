@@ -634,8 +634,9 @@ function updateCaption() {
   const k = `Field of view ${fmtLen(view)}`; if ($('#capK').textContent !== k) $('#capK').textContent = k;
   // an empty stretch of a descent (zoomStretch, js/engine.js): say what is happening, so that a picture that does not change is not taken for a hang
   { const zs = !fly && cam.A.built ? zoomStretch(cam.A) : null, g = $('#capG'); let t = '';
-    if (zs) { const nm = zs.f ? (typeof DESCENT !== 'undefined' && DESCENT.nameOf ? DESCENT.nameOf(zs.f) : humanName(zs.f)) : zs.name;
-      t = `Nothing new to draw here: zooming ${fmtTimes(zs.ratio)} further in${nm ? ' to reach ' + nm : ''}` + (W > 860 && zs.f ? '. Double-click jumps there.' : ''); }
+    /* it does not name the place it leads to: a waiting scene's name is not final until it is built ("Inside the tissue" became "Inside a dog's skin and
+       coat"), and the panel names each place as it is entered */
+    if (zs) t = `Nothing new to draw here: the next level is ${fmtTimes(zs.ratio)} further in` + (zs.f ? (W > 860 ? '. Double-click jumps there.' : '. Double-tap jumps there.') : '.');
     if (g && g.textContent !== t) { g.textContent = t; g.hidden = !t; } }
   // a thing you looked inside: when the camera arrives in the new place (or the flight is over), the place takes the panel
   if (selLeave) { const L = selLeave; if (!curCard || curCard.key !== L.key) selLeave = null; else if (chainOf(cam.A).includes(L.frame) || (!fly && performance.now() - L.t > 400)) { const arrived = chainOf(cam.A).includes(L.frame); selLeave = null; closeInfo(); if (arrived && L.note) $('#placeNote').textContent = L.note; } } // L.note: what the descent module said about the level it built (a stand-in, say)

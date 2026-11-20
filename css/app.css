@@ -549,6 +549,11 @@ body.panelMin #panelTab { display: flex }
 #fov .k, #clockBtn { background: rgba(237,240,240,.82); padding: 2px 8px; border-radius: var(--r-ctl) }
 #fov .k.g { color: var(--ink); background: rgba(237,240,240,.92) }   /* what an empty stretch of a descent is doing (zoomStretch) */
 #fov .k.g[hidden] { display: none }
+@media (min-width: 861px) {   /* the stretch line wraps inside the free area: never under the panel or the zoom buttons */
+  #fov { right: 84px; flex-wrap: wrap; row-gap: 4px }
+  body.panelOpen #fov { right: calc(var(--panel-w) + 84px) }
+  #fov .k.g { white-space: normal; flex: 0 1 auto; min-width: 0 }
+}
 #clockBtn { pointer-events: auto; border: 0; font-size: 12px; color: var(--accent); cursor: pointer }
 #clockBtn:hover { background: var(--paper) ; text-decoration: underline }
 #clockBtn[hidden] { display: none }

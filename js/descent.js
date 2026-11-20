@@ -191,7 +191,7 @@ const DESCENT = (() => {
   Z.floorSay = F => {
     if (F.type === 'thing' || F._dzStop || !Z.ready) return;   // a thing says it itself (thAtFloor); a stop has been explained already
     const now = performance.now(); if (lastFloor && lastFloor.f === F && now - lastFloor.t < 15000) return;
-    lastFloor = { f: F, t: now }; if (typeof message === 'function') message('No closer view has been built here yet: this picture ends at this distance.');
+    lastFloor = { f: F, t: now }; if (typeof message === 'function') message(F.floorNote || 'No closer view has been built here yet: this picture ends at this distance.');   // floorNote: a frame's own sentence for its floor (the Standard Model: nothing smaller is known)
   };
   Z.materialOf = (F, hint) => { const r = Z.ready ? materialOf(F, queryOf(F, hint)) : null; return r ? r.id : null; };
   Z.resolve = resolve; Z.queryOf = queryOf; Z.nameOf = f => nameOf(f);   // the name a waiting scene will have (the scale line names what an empty stretch leads to)
