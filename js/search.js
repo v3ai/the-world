@@ -90,9 +90,10 @@
   /* ---------- the index ---------- */
   /* the cards of the parts of a creature in the park carry its name in a result ("European robin: Heart"), and rank below the human part of the same name */
   const PREFIX = { dog: 'Dog', bee: 'Honey bee', oak: 'English oak', rn: 'Meadow buttercup', fa: 'Fly agaric', robin: 'European robin', pond: 'Pond', grass: 'Ryegrass', soil: 'Soil' }, PREFIX_RE = /^(dog|bee|oak|rn|fa|robin|pond|grass|soil)_/;
+  const PREFIX_WORD = { dog: 'dog', bee: 'bee', oak: 'oak', rn: 'buttercup', fa: 'agaric', robin: 'robin', pond: 'pond', grass: 'grass', soil: 'soil' };
   function displayTitle(e) {
     if (e.dn) return e.dn;
-    if (e.c === 'node') { const m = PREFIX_RE.exec(e.id.slice(5)); if (m && !/^(dog|bee|oak|buttercup|fly agaric|robin|pond|grass|ryegrass|soil)/i.test(e.t) && !/(robin|pond|grass|soil)/i.test(e.t)) return PREFIX[m[1]] + ': ' + e.t; }
+    if (e.c === 'node') { const m = PREFIX_RE.exec(e.id.slice(5)); if (m && !e.t.toLowerCase().includes(PREFIX_WORD[m[1]])) return PREFIX[m[1]] + ': ' + e.t; }   // unless the title already says whose part it is
     if (e.c === 'el') return `${e.t} (${e.sy})`;
     return e.t;
   }

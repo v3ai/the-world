@@ -1232,7 +1232,7 @@ const SKY_IDS = new Set(['air', 'cmb']);   // the park's sky dome and the microw
 const isBackdrop = h => !!h.obj.userData.backdrop || ((h.obj.userData.priority ?? 1) < 0 && SKY_IDS.has(h.id));
 /* ts: when the click happened (the event's own time stamp), so that two clicks 200 ms apart are a double click even when a slow frame delivers the second one late */
 function onClick(x, y, touch, ts) {
-  const now = ts || performance.now(), lc = lastClick; _fsTok++;
+  const now = ts || performance.now(), lc = lastClick; _fsTok++; _fsPend = false;
   const near = lc && Math.hypot(x - lc.x, y - lc.y) < (touch ? DBL_PX_TOUCH : DBL_PX);
   if (near && now - lc.t < DBL_MS) { // the second click of a double click: the thing the first click found
     if (clickPend) { clearTimeout(clickPend.timer); clickPend = null; } lastClick = null;
@@ -1311,12 +1311,14 @@ function frameSelected(h) {
    from the part that was clicked: its centre may now be empty air, and the next double click in the middle of the view went into the lawn behind. So once the
    view has changed (the parts fade over about half a second of the app's clock), the camera frames what the frame is now showing: the bound of its pickable parts that are drawn
    solid (userData.shown), markers left out. Only for frames that say what they show (things); skipped if the visitor has moved on meanwhile. */
-let _fsTok = 0;
+let _fsTok = 0, _fsPend = false;   // _fsPend: a reframing is still to come (the tests wait for it)
 function frameShownSoon(f) {
-  const tok = ++_fsTok, c0 = clock, t0 = performance.now();
+  const tok = ++_fsTok, c0 = clock, t0 = performance.now(); _fsPend = true;
   const go = () => {
+    if (tok !== _fsTok) return;   // a later click has taken over (and has cleared or re-set _fsPend)
     if (clock - c0 < .7 && performance.now() - t0 < 20000) { setTimeout(go, 150); return; }   // the parts fade on the app's clock, which runs slow when frames are slow: wait for that, not for the wall clock
-    if (tok !== _fsTok || pointers.size || Math.abs(zoom.pending) > 1e-3 || (fly && fly.frame !== f) || !f.built || !f.C || !chainOf(cam.A).concat(drawn).includes(f)) return;   // the visitor has clicked, scrolled or gone elsewhere meanwhile
+    _fsPend = false;
+    if (pointers.size || Math.abs(zoom.pending) > 1e-3 || (fly && fly.frame !== f) || !f.built || !f.C || !chainOf(cam.A).concat(drawn).includes(f)) return;   // the visitor has clicked, scrolled or gone elsewhere meanwhile
     _pkBox.makeEmpty(); let n = 0;
     for (const p of f.pickables) { const u = p.userData; if (u.shown === undefined || u.shown < .35 || u.hotspot || !visibleChain(p)) continue; if (pkExpand(p, _pkBox)) n++; }
     if (!n || _pkBox.isEmpty()) return;
