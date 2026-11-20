@@ -88,10 +88,11 @@
   }
 
   /* ---------- the index ---------- */
-  const PREFIX = { dog: 'Dog', bee: 'Honey bee', oak: 'English oak', rn: 'Meadow buttercup', fa: 'Fly agaric' };
+  /* the cards of the parts of a creature in the park carry its name in a result ("European robin: Heart"), and rank below the human part of the same name */
+  const PREFIX = { dog: 'Dog', bee: 'Honey bee', oak: 'English oak', rn: 'Meadow buttercup', fa: 'Fly agaric', robin: 'European robin', pond: 'Pond', grass: 'Ryegrass', soil: 'Soil' }, PREFIX_RE = /^(dog|bee|oak|rn|fa|robin|pond|grass|soil)_/;
   function displayTitle(e) {
     if (e.dn) return e.dn;
-    if (e.c === 'node') { const m = /^(dog|bee|oak|rn|fa)_/.exec(e.id.slice(5)); if (m && !/^(dog|bee|oak|buttercup|fly agaric)/i.test(e.t)) return PREFIX[m[1]] + ': ' + e.t; }
+    if (e.c === 'node') { const m = PREFIX_RE.exec(e.id.slice(5)); if (m && !/^(dog|bee|oak|buttercup|fly agaric|robin|pond|grass|ryegrass|soil)/i.test(e.t) && !/(robin|pond|grass|soil)/i.test(e.t)) return PREFIX[m[1]] + ': ' + e.t; }
     if (e.c === 'el') return `${e.t} (${e.sy})`;
     return e.t;
   }
@@ -199,8 +200,9 @@
     // build results
     const list = [];
     best.forEach((b, ei) => {
-      const e = idx.E[ei]; let s = b.s; if (e.c === 'node' && /^(dog|bee|oak|rn|fa)_/.test(e.id.slice(5))) s -= 8;
+      const e = idx.E[ei]; let s = b.s;
       const k = b.ki >= 0 ? idx.keys[b.ki] : null, a = k && k.alias !== undefined ? idx.aliases[k.alias] : null;
+      if (e.c === 'node' && PREFIX_RE.test(e.id.slice(5)) && !(k && k.kind === 'alias' && k.b >= 6)) s -= 8;   // (not when the everyday word names this very card first: "buttercup" is the buttercup's own card)
       list.push({ e, id: e.id, score: s, why: b.why, key: k ? k.p : '', note: a && a.note || '', near: !!(k && k.near), alias: a, band: s >= 64 ? 0 : 1 });
     });
     // good matches first; among those that are about equally good, things you can fly to before cards before trails; a much weaker match never jumps the queue
@@ -261,6 +263,7 @@
     if (c === 'kn') return ['Card', 'No 3D model yet; here is what it is'];
     const m = e.m;
     if (!m) return ['Card', 'No 3D model yet; here is what it is'];
+    if (e.fc) return ['Card', 'No 3D model of it yet; here is what it is'];   // its place in the app is only loosely related (tools/search/force_card.txt): the card opens, the camera stays
     if (m === 'place' || (m === 'via' && !e.wh)) return ['Card', 'No 3D model of it yet' + (e.wh ? '; it also flies to ' + e.wh : '')];
     const to = e.wh ? 'Fly to ' + e.wh + ', with its card' : 'Fly to where it happens, with its card';
     return [{ phone: 'Part of your phone', particle: 'Particle', place: 'Topic with a place', molecule: 'Topic with a molecule', crystal: 'Topic with a crystal', atom: 'Element', park: 'In the park', body: 'Body part', via: 'Topic with a place' }[m] || 'Topic',
@@ -299,7 +302,7 @@
     if (c === 'mol') { placeGo('mol:' + key); afterFlight(() => { const F = cam.A; if (F && F.info && F.type === 'mol') openInfoOf(F.info, F); }); }
     else if (c === 'crystal') { placeGo('crystal:' + key); afterFlight(() => { const F = cam.A; if (F && F.info && F.type === 'crystal') openInfoOf(F.info, F); }); }
     else if (c === 'el') { goToNode('at_el_' + key); }
-    else if (c === 'node') { goToNode(key); }
+    else if (c === 'node') { if (e.fc && typeof showBodyNode === 'function') showBodyNode(key, null); else goToNode(key); }   // "the genetic code" opened its card and flew to a methionine molecule, the amino acid of the start codon: a card whose place is only loosely related does not move the camera
     else if (c === 'kn') { (typeof loadKnowledge === 'function' ? loadKnowledge() : Promise.resolve()).then(() => showNode(key)); }
     else if (c === 'lm') { const L = LANDMARKS.find(l => l.label === key); if (L) { L.go(); if (e.card) afterFlight(() => openCardById(e.card)); } }
     else if (c === 'pl') { if (planetFlight(e)) afterFlight(() => openCardById(e.card)); }

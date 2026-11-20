@@ -136,7 +136,8 @@ twins, identical twins => node:bio_twin_family_studies // src: openstax-bio
 inheritance, heredity, genes, genetics, inherited, gene, mendel, punnett => node:bio_mendel_laws, kn:genetics_inheritance, node:bio_alleles_genotype, node:bio_genetics // src: openstax-bio
 
 # ---------------- cells and DNA ----------------
-dna, my dna, deoxyribonucleic acid, double helix, genetic code => lm:DNA, node:bio_dna_structure, kn:dna_structure, node:bio_genetic_code, node:bio_chromatin_packaging, mol:bp_AT // src: openstax-bio
+dna, my dna, deoxyribonucleic acid, double helix => lm:DNA, node:bio_dna_structure, kn:dna_structure, node:bio_genetic_code, node:bio_chromatin_packaging, mol:bp_AT // src: openstax-bio
+genetic code, the genetic code, codon, codons, triplet code => node:bio_genetic_code, lm:DNA, node:bio_dna_structure, kn:dna_structure // src: openstax-bio
 genome, genomes, human genome, genomics => node:bio_genome_organization, kn:chromatin_genome, node:bio_comparative_human_genomics // src: openstax-bio
 chromosome, chromosomes => node:bio_chromatin_packaging, kn:chromatin_genome, node:bio_meiosis_variation // src: openstax-bio
 rna, mrna, messenger rna => node:bio_rna_types, node:transcription_process, node:bio_rna_processing // src: openstax-bio
@@ -164,7 +165,7 @@ life, what is life, alive, living things, living => node:bio_characteristics_lif
 
 # ---------------- animals in the park and beyond ----------------
 dog, dogs, puppy, canine, labrador, pet dog, my dog, hound => pl:Dog, node:dog, trail:how_does_a_dog_smell_so_well, node:dog_skeleton, node:dog_muscles, node:dog_organs // The dog is a full anatomical model in the park: coat, skeleton, muscles, organs. // src: app-card
-bee, bees, honeybee, honey bee, bumblebee, bumble bee, insect, insects => pl:Honeybee, node:park_bee, trail:why_does_a_bee_visit_a_flower, node:bee_flight, node:bee_vision, node:bee_colony // Bees are a full model in the park; other insects are described on the insects card. // src: app-card
+bee, bees, honeybee, honey bee, bumblebee, bumble bee, insect, insects => node:park_bee, pl:Honeybee, trail:why_does_a_bee_visit_a_flower, node:bee_flight, node:bee_vision, node:bee_colony // Bees are a full model in the park; other insects are described on the insects card. // src: app-card
 bee sting, sting, stinger => node:bee_sting, node:bee_venom_sac // src: app-card
 bird, birds, pigeon, sparrow, robin, feathers, wings of a bird => pl:Bird, node:park_bird, node:bio_reptiles_birds, node:bio_evolution_of_flight // src: app-card
 tree, trees, oak, oak tree, a tree, forest tree, woods => pl:Tree, node:oak_english, trail:how_does_a_tree_lift_water, node:oak_trunk, node:oak_leaf, node:oak_roots // src: app-card
@@ -173,7 +174,8 @@ bark, tree bark, tree rings, growth rings, annual rings, how old is a tree => no
 root, roots, plant roots, how plants drink => node:oak_roots, node:oak_root_hairs, node:bio_water_transport, node:bio_roots_mycorrhiza // src: app-card
 sap, xylem, phloem, how does water get up a tree, water in plants => trail:how_does_a_tree_lift_water, node:bio_water_transport, node:oak_water_lift, node:bio_phloem_transport // src: openstax-bio app-card
 acorn, acorns, seed, seeds, nut, nuts => node:oak_acorn, node:bio_plant_reproduction, node:bio_seed_plants // src: app-card
-flower, flowers, buttercup, petal, petals, blossom, bloom, daisy, rose, tulip => pl:Flowers, node:rn_acris, node:rn_flower, node:rn_petal, node:bio_plant_reproduction, trail:why_does_a_bee_visit_a_flower // The flower in the park is a meadow buttercup. // src: app-card
+flower, flowers, petal, petals, blossom, bloom, daisy, rose, tulip => pl:Flowers, node:rn_acris, node:rn_flower, node:rn_petal, node:bio_plant_reproduction, trail:why_does_a_bee_visit_a_flower // The flower in the park is a meadow buttercup. // src: app-card
+buttercup, buttercups, meadow buttercup, ranunculus => node:rn_acris, node:rn_flower, node:rn_petal, pl:Flowers, trail:why_does_a_bee_visit_a_flower // src: app-card
 pollen, pollination, pollinator, pollinators, hay fever pollen => node:rn_pollen_grain, node:rn_pollination, node:bio_pollination_networks, node:bee_pollen_basket, trail:why_does_a_bee_visit_a_flower // src: app-card
 nectar => node:rn_nectar, node:bee_nectar, mol:sucrose, node:rn_nectary // src: app-card openstax-bio
 mushroom, mushrooms, toadstool, fungus, fungi, fly agaric, amanita, poisonous mushroom, magic mushroom => pl:Mushroom, node:park_mushroom, trail:what_is_a_mushroom, node:bio_fungi_basics, node:fa_mycelium // src: app-card
