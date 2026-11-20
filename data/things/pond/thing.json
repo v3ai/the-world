@@ -714,13 +714,13 @@
     "button": "See the green pigment: chlorophyll a"
    },
    "center": [
-    -0.0604,
-    -0.3142,
-    -0.1502
+    -0.0385,
+    -0.2617,
+    -0.1775
    ],
-   "radius": 1.9398,
-   "count": 77,
-   "tris": 12012
+   "radius": 1.8975,
+   "count": 94,
+   "tris": 14664
   },
   {
    "id": "hornwort_b",
@@ -739,13 +739,13 @@
     "button": "See the green pigment: chlorophyll a"
    },
    "center": [
-    -0.0896,
-    -0.2971,
-    -0.2758
+    -0.0257,
+    -0.276,
+    -0.3036
    ],
-   "radius": 1.8465,
-   "count": 92,
-   "tris": 14352
+   "radius": 1.878,
+   "count": 94,
+   "tris": 14664
   },
   {
    "id": "hornwort_stems",
@@ -757,11 +757,11 @@
    "lod": "near",
    "noink": true,
    "center": [
-    -0.1285,
-    -0.312,
-    -0.2014
+    -0.0803,
+    -0.3122,
+    -0.2198
    ],
-   "radius": 1.8381,
+   "radius": 1.8503,
    "tris": 1024
   },
   {
@@ -796,13 +796,13 @@
     "button": "See the molecule: oxygen"
    },
    "center": [
-    -0.0733,
-    -0.2823,
-    -0.304
+    -0.082,
+    -0.2813,
+    -0.1288
    ],
-   "radius": 1.815,
-   "count": 45,
-   "tris": 1620
+   "radius": 1.892,
+   "count": 44,
+   "tris": 1584
   },
   {
    "id": "iris_leaves",
@@ -815,11 +815,11 @@
    "tint": 0.15,
    "lod": "near+mid",
    "center": [
-    0.7166,
+    0.7174,
     0,
-    -0.3344
+    -0.3336
    ],
-   "radius": 3.8647,
+   "radius": 3.8571,
    "count": 27,
    "tris": 1836
   },
@@ -834,11 +834,11 @@
    "lod": "near+mid",
    "solid": false,
    "center": [
-    2.4051,
+    2.4237,
     0.9935,
-    -0.8083
+    -0.8111
    ],
-   "radius": 0.4606,
+   "radius": 0.4682,
    "tris": 1728
   },
   {
@@ -850,11 +850,11 @@
    "mesh": "iris_stalks",
    "lod": "near+mid",
    "center": [
-    2.3987,
+    2.4101,
     0.4076,
-    -0.8131
+    -0.8157
    ],
-   "radius": 0.7264,
+   "radius": 0.7357,
    "tris": 404
   },
   {
@@ -900,11 +900,11 @@
    "lod": "near",
    "double": true,
    "center": [
-    0.7218,
+    0.7235,
     -0.1961,
-    -0.3282
+    -0.3274
    ],
-   "radius": 3.7197,
+   "radius": 3.721,
    "count": 78,
    "tris": 1872
   },
@@ -1067,11 +1067,11 @@
    "instances": "daphnia_swarm",
    "lod": "near",
    "center": [
-    0.2695,
-    -0.2221,
-    -0.3052
+    0.2729,
+    -0.2328,
+    -0.3484
    ],
-   "radius": 1.1308,
+   "radius": 1.2822,
    "count": 20,
    "tris": 4440
   },
@@ -1361,10 +1361,10 @@
    "lod": "near",
    "center": [
     -2.29,
-    -0.1065,
+    -0.1282,
     -0.47
    ],
-   "radius": 0.504,
+   "radius": 0.5033,
    "count": 5,
    "tris": 820
   }

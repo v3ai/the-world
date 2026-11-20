@@ -7,7 +7,7 @@ const MM = .001;
 const M = {
   frond: { len: 3.0, wid: 2.4 },    // Lemna minor fronds are 1-8 mm long and 0.6-5 mm broad (Wikipedia, Lemna minor); the model draws a typical 3 x 2.4 mm frond
   root: 12,                         // each frond has one root, 1-2 cm long (same page); 12 mm drawn
-  hornwort: { whorl: 8, leaf: [8, 40], stemLen: .5 },   // leaves in whorls of 6-12, each 8-40 mm and forked once or twice into thread-like segments (Wikipedia, Ceratophyllum demersum); stems reach 1-3 m (the model stem is 0.5 m: the pond is 0.6 m deep)
+  hornwort: { whorl: 8, leaf: [8, 40], stemLen: .62 },   // leaves in whorls of 6-12, each 8-40 mm and forked once or twice into thread-like segments (Wikipedia, Ceratophyllum demersum); stems reach 1-3 m (the model stem is at most about 0.55 m because it stops 5 cm below the surface of a pond that is 0.6 m deep)
   iris: { leafLen: .8, leafWid: .026, flower: .085, rhizomeR: .014 },   // leaves up to 90 cm long and 3 cm wide, flowers 7-10 cm across, 100-150 cm tall (Wikipedia, Iris pseudacorus); drawn: 80 cm x 2.2 cm leaves, 8.5 cm flowers
 };
 export { M as PLANT_M };

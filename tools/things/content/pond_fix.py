@@ -107,7 +107,7 @@ fix('pond_duckweed', facts=[('Frond size', 'typically 1 to 8 mm long, 0.6 to 5 m
 sub('pond_hornwort', 'deeper', 'Hornwort releases substances that inhibit algae and cyanobacteria, and it can crowd out other submerged plants.', 'Laboratory experiments report that hornwort can slow the growth of some algae and cyanobacteria; how much it does so in a real pond is less certain. It can also crowd out other submerged plants.')
 sub('pond_hornwort', 'basics', 'Stems of a real plant can reach 1 to 3 m.', 'Stems of a real plant are commonly a metre or more long.')
 sub('pond_hornwort', 'expert', 'stems 1 to 3 m (Wikipedia, Ceratophyllum demersum).', 'stems often 1 m or more, up to about 3 m (general descriptions).')
-fix('pond_hornwort', facts=[('Roots', 'none'), ('Leaves per whorl', 'typically 6 to 12 (model: 6)'), ('Leaf length', 'typically 8 to 40 mm'), ('Stem length', 'a metre or more (model: up to 0.5 m, shortened to fit the pond)'), ('Winter', 'turions sink and sprout in spring')])
+fix('pond_hornwort', facts=[('Roots', 'none'), ('Leaves per whorl', 'typically 6 to 12 (model: 6)'), ('Leaf length', 'typically 8 to 40 mm'), ('Stem length', 'a metre or more (model: up to about 0.55 m, shortened to fit the pond)'), ('Winter', 'turions sink and sprout in spring')])
 sub('pond_iris', 'expert', 'Height 100 to 150 cm (rarely 2 m); leaves up to 90 cm long and 3 cm wide; flowers 7 to 10 cm across (Wikipedia, Iris pseudacorus).', 'Typical height 100 to 150 cm; leaves up to 90 cm long and 3 cm wide; flowers 7 to 10 cm across (general descriptions).')
 fix('pond_iris_flower',
     summary='A yellow flag flower is a large iris bloom, 7 to 10 cm across, held above the water on a tall stalk.',
