@@ -1715,11 +1715,13 @@ function addLabelTo(f, obj, text, o = {}) {
   return L;
 }
 // labels sit above the canvas: pass the mouse wheel through, so scroll-zoom works over a label too (stopImmediatePropagation: a second forwarder, if any, must not zoom twice)
-/* A wheel turned with the pointer on a name's text zooms to that thing (the name is the thing); anywhere else on the label box (its padding, the gap above the
+/* A wheel turned with the pointer on a name's text zooms to that thing (the name is the thing: the Moon's name stands in space above it); anywhere else on the label box (its padding, the gap above the
    thing it names) the zoom goes to what is drawn under the pointer, as it would without the label. */
 const _lblRange = document.createRange();
+/* as for a click (above): a name over a model of the park (the bee's name over the dog's back) is an annotation, and the wheel goes to the model */
+function lblOverModel(x, y) { const u = pickAt(x, y); return !!(u && u.frame.coRender && !pickWeak(u)); }
 function onLabelText(el, x, y) { if (!el || !el._lblHit || !el.firstChild) return false; _lblRange.selectNodeContents(el); for (const r of _lblRange.getClientRects()) if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) return true; return false; }
-labelLayer.addEventListener('wheel', e => { e.preventDefault(); e.stopImmediatePropagation(); const el = e.target && e.target.closest ? e.target.closest('.lbl') : null; zoomLabel = el && e.deltaY < 0 && onLabelText(el, e.clientX, e.clientY) ? { h: el._lblHit(), t: performance.now() } : null; canvas.dispatchEvent(new WheelEvent('wheel', { deltaX: e.deltaX, deltaY: e.deltaY, deltaMode: e.deltaMode, clientX: e.clientX, clientY: e.clientY, shiftKey: e.shiftKey, bubbles: true, cancelable: true })); }, { passive: false });
+labelLayer.addEventListener('wheel', e => { e.preventDefault(); e.stopImmediatePropagation(); const el = e.target && e.target.closest ? e.target.closest('.lbl') : null; zoomLabel = el && e.deltaY < 0 && onLabelText(el, e.clientX, e.clientY) && !lblOverModel(e.clientX, e.clientY) ? { h: el._lblHit(), t: performance.now() } : null; canvas.dispatchEvent(new WheelEvent('wheel', { deltaX: e.deltaX, deltaY: e.deltaY, deltaMode: e.deltaMode, clientX: e.clientX, clientY: e.clientY, shiftKey: e.shiftKey, bubbles: true, cancelable: true })); }, { passive: false });
 // where labels collide, the one with the higher data-pri stays (then the upper one); the rest hide until there is room. Re-evaluated every 160 ms, in every scene.
 let lblClashT = 0;
 function declutterLabels(now) {
