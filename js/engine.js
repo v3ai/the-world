@@ -285,7 +285,7 @@ function reanchor() {
   for (let g = 0; g < 60; g++) {
     const A = cam.A; A.ensure(); let next = null;
     next = pickChild(A);
-    if (!next && !fly && (A.spawn || (typeof DESCENT !== 'undefined' && DESCENT.covers(A))) && cam.D < spawnDOf(A) && !(A.spawnHold && cam.D > A.spawnHold * .5)) next = trySpawn(A);   // spawnHold: a flight that was asked to end this close (a 2.5 mm water flea) does not dive into what it is made of until you zoom in further // a flight heads for a frame that already exists: never spawn stand-ins on the way
+    if (!next && !fly && (A.spawn || (typeof DESCENT !== 'undefined' && DESCENT.covers(A))) && (cam.D < spawnDOf(A) || cam.D < emptyDOf(A)) && !(A.spawnHold && cam.D > A.spawnHold * .5)) next = trySpawn(A, !(cam.D < spawnDOf(A)));   // spawnHold: a flight that was asked to end this close (a 2.5 mm water flea) does not dive into what it is made of until you zoom in further // a flight heads for a frame that already exists: never spawn stand-ins on the way
     if (!next) break;
     A._dzStop = null;   // there is a way down here after all: a stop said in this frame (js/descent.js) no longer holds the camera
     descend(next);
@@ -309,6 +309,9 @@ function safePlace(c) { if (!c.place) return; try { c.place(); } catch (e) { if 
 function zoomAim() { return lastZoomHit && zoom.pivot && anchored.includes(zoom.pivot) ? lastZoomHit : null; }
 function frameWithin(f, A) { for (; f; f = f.parent) if (f === A) return true; return false; }
 /* below this camera distance a frame is asked for what lies under the target: its own spawnD, else the materials table's (js/descent.js) */
+/* a zoom aimed at nothing (no surface under the pivot, no attractor locked) goes into what the frame's space is filled with from this distance (js/descent.js, `emptyD`):
+   the gas between the planets or the stars, with the scale line saying so, rather than running on into empty space in silence */
+function emptyDOf(A) { return !zoomAim() && !(att.f === A && att.id >= 0) && zoom.pivot && anchored.includes(zoom.pivot) && typeof DESCENT !== 'undefined' && DESCENT.emptyD ? DESCENT.emptyD(A) : 0; }
 function spawnDOf(A) { return A.spawnD || A.r0 * 1.6 || (typeof DESCENT !== 'undefined' ? DESCENT.spawnD(A) : 0); }
 function pickChild(A) {
   const path = fly && fly.frame ? chainOf(fly.frame) : null, aim = path ? null : zoomAim();
@@ -331,7 +334,7 @@ function pickChild(A) {
   }
   return best;
 }
-function trySpawn(A) {
+function trySpawn(A, emptyOnly) {   // emptyOnly: above the frame's own spawn distance, only the filling of its empty space is asked for (emptyDOf)
   let hint = null;
   if (lastZoomHit && lastZoomHit.frame === A && lastZoomHit.point.distanceTo(cam.T) < Math.max(cam.D / A.unit * 10, A.radius * 1e-4)) hint = lastZoomHit;
   // a pending (not yet entered) child near the view follows the zoom target until the camera goes into it (it used to stop following once the camera was close
@@ -341,15 +344,16 @@ function trySpawn(A) {
   // (a waiting child that was made for the thing the pointer is still on is found again however far the target has moved: it is not made twice)
   for (let i = 0; i < A.children.length; i++) { const c = A.children[i]; if (c.dynamic && !c.entered && (c.pos.distanceTo(cam.T) < lim || (!c.pinned && !c.built && c._for !== undefined && c._for === ho))) { pend = c; break; } }
   // a child that was made while the pointer was on nothing (a frame-wide default) gives way when the pointer is now on a thing: that thing decides what lies below
-  if (pend && ho && pend._for === null && !pend.pinned && !pend.built) { A.children.splice(A.children.indexOf(pend), 1); pend = null; }
+  if (pend && pend._for === null && !pend.pinned && !pend.built && (ho || (att.f === A && att.id >= 0))) { A.children.splice(A.children.indexOf(pend), 1); pend = null; }   // (or when the zoom has locked on one of the frame's attractors: the ground below the Earth's glow, not the gas in front of it)
   if (pend) { if (!pend.pinned) pend.pos.copy(cam.T); return cam.D <= pend.r1 && pend.containsP(cam.T) ? pend : null; }
   for (let i = 0; i < A.children.length; i++) { const c = A.children[i]; if (c.dynamic && c.containsP(cam.T)) return null; }
   // A failure is not tried again on every frame: only when the target has moved by half a view, the camera has come a sixth closer, the pointer is on something
   // else (a failure without a surface under the cursor must not block a spawn that now has one), or a little time has passed (layers peel, data arrives).
   const sf = A._spawnFail, now = performance.now();
   if (sf && sf.obj === ho && now - sf.t < 400 && cam.D > sf.D * .85 && sf.p.distanceTo(cam.T) < cam.D / A.unit * .5) return null;
-  let c = hint && hint.held && typeof DESCENT !== 'undefined' && DESCENT.spawnHeld ? DESCENT.spawnHeld(A, hint, cam.T.clone()) : null;   // the part the zoom has kept as its aim (zoomBy) decides, though it is see-through now
-  if (!c) c = A.spawn ? A.spawn(cam.T.clone(), hint) : null;
+  let c = !emptyOnly && hint && hint.held && typeof DESCENT !== 'undefined' && DESCENT.spawnHeld ? DESCENT.spawnHeld(A, hint, cam.T.clone()) : null;   // the part the zoom has kept as its aim (zoomBy) decides, though it is see-through now
+  if (!c && !emptyOnly && !hint && typeof DESCENT !== 'undefined' && DESCENT.fills && DESCENT.fills(A)) c = DESCENT.spawn(A, cam.T, null);   // pointed at nothing in a scene that is one material throughout: that material, not the nearest thing in it
+  if (!c && !emptyOnly) c = A.spawn ? A.spawn(cam.T.clone(), hint) : null;
   if (!c && typeof DESCENT !== 'undefined') c = DESCENT.spawn(A, cam.T, hint);   // nothing of its own here: what the thing under the zoom point is made of (the materials table)
   if (!c) { const f = sf || (A._spawnFail = { p: new V3(), obj: null, t: 0, D: 0 }); f.p.copy(cam.T); f.obj = ho; f.t = now; f.D = cam.D; return null; }
   for (let i = A.children.length - 1; i >= 0; i--) { const o = A.children[i]; if (o.dynamic && !o.entered && !o.pinned && !o.built && o._for !== undefined && !(o.keep > now)) A.children.splice(i, 1); }   // one waiting child at a time: an earlier one, made for something else, goes
@@ -627,14 +631,15 @@ let viewGen = 0;
 function viewChanged() { viewGen++; mouse.dirty = true; }
 const PIVOT_MIN_MS = 150, PIVOT_MAX_MS = 400;
 const MIN_D = 1e-20, MAX_D = 3e27; // 1e-20 m: below every length that has been probed; nothing is known to have structure there
+let _pvHit = null;   // the pick the last pivot came from (the zoom's target is set from it)
 function pivotAt(x, y) {
-  const h = pickAt(x, y, true);
+  const h = pickAt(x, y, true); _pvHit = null;
   // a marker that floats above the place it stands for (the park's dot over the globe) says where a zoom aimed at it ends: userData.zoomPoint(h), in its frame's coordinates
   const zp = h && h.obj.userData.zoomPoint ? h.obj.userData.zoomPoint(h) : null;
-  if (zp) { lastZoomHit = { frame: h.frame, obj: h.obj, point: zp.clone(), normal: null, id: h.id, hit: h.hit }; return convertP(zp.clone(), h.frame, cam.A); }
+  if (zp) { _pvHit = h; lastZoomHit = { frame: h.frame, obj: h.obj, point: zp.clone(), normal: null, id: h.id, hit: h.hit }; return convertP(zp.clone(), h.frame, cam.A); }
   if (h && !h.obj.userData.noZoom && h.meters < cam.D * 40 && (!h.obj.isSprite || h.frame === cam.A)) {
     const p = h.pointLocal.clone(); convertP(p, h.frame, cam.A);
-    lastZoomHit = { frame: h.frame, obj: h.obj, point: h.pointLocal.clone(), normal: h.normalLocal, id: h.id, hit: h.hit };
+    _pvHit = h; lastZoomHit = { frame: h.frame, obj: h.obj, point: h.pointLocal.clone(), normal: h.normalLocal, id: h.id, hit: h.hit };
     return p;
   }
   // no surface: a point along the ray at the current focus distance
@@ -644,9 +649,156 @@ function pivotAt(x, y) {
   lastZoomHit = null;
   return p;
 }
+/* THE ZOOM'S TARGET. A wheel burst (or a pinch, or a held zoom button) that begins on a thing homes in on that thing. Scaling the camera about the
+   point under the pointer keeps that point still, but the point a pick returns on a small thing is not on the thing (a planet's dot is a pick
+   target many times its size; a pond animal or a star is a speck): one burst magnifies about three times, and a target a few pixels off slid out
+   of view after two bursts, after which the zoom ran on into empty space. So the thing picked when the zoom begins is its target until the pointer
+   moves by more than ZT_PX or the visitor drags, zooms out or flies:
+   - the pivot follows the thing: its centre while it is smaller than about a fifth of the view, the point picked on it once it is larger than the
+     view, and a blend between (so the pivot moves smoothly; moving the pivot never moves the camera). The point is kept in the thing's own
+     coordinates, so a moving thing (the Moon, a pond skater) is followed. Where the pick was on a stand-in target (an enlarged dot), the point is
+     where the pointer's ray meets the thing's true sphere until a pick on the thing itself gives a real one;
+   - the target stays the target: a later pick under the pointer replaces its point only when it is on the same thing (or, in a thing that peels
+     its layers, a part inside the target's extent, or the thing's own frame below it: a planet's globe under its dot);
+   - lastZoomHit names it, so the descent (trySpawn, js/descent.js) goes into what that thing is made of.
+   The frame's own attractors (an atom's nucleus, a molecule's atoms) still decide inside a frame that has them (attLock); they are asked from this pivot. */
+const ZT_PX = 6;
+const ztg = { f: null, obj: null, lo: null, id: null, hit: null, ud: null, x: 0, y: 0, loc: new V3(), real: false, c: new V3(), r: 0, p: new V3(), s: 0, t: 0, held: false, why: '' };
+const _ztRc = new THREE.Raycaster(), _ztN = new THREE.Vector2(), _ztV = new V3(), _ztW = new V3(), _ztP = new V3();
+function ztDrop(why) { if (ztg.f) { ztg.why = why || ''; } ztg.carry = null; ztg.f = null; ztg.obj = null; ztg.lo = null; ztg.hit = null; }
+function ztInfo() { return ztg.f ? { id: String(ztg.id), frame: ztg.f.name || ztg.f.type, s: +ztg.s.toFixed(3), real: ztg.real } : { none: ztg.why }; }
+const zoomTgtInfo = ztInfo;
+/* the thing's centre (frame coordinates, into ztg.c) and radius (frame units; 0: a point) */
+function ztExtent() {
+  const u = ztg.ud, h = ztg.h;
+  if (u.zoomPoint) { const p = u.zoomPoint(h); if (p) { ztg.c.copy(p); ztg.r = 0; return; } }
+  let e = null; try { e = hitExtent(h); } catch (err) { e = null; }
+  if (u.center && (!e || !e.r)) { try { ztg.c.copy(u.center(h)); } catch (err) { } const r = typeof u.radius === 'function' ? u.radius(h) : u.radius; ztg.r = u.zoomTo ? 0 : (r || 0); return; }
+  if (e) { ztg.c.copy(e.p); ztg.r = e.r || 0; }
+}
+/* is a pick on the target? the same object (or one inside it, or the one it is inside); a part of a layered thing inside the target's extent; or the frame below the thing */
+function ztOn(h) {
+  if (!h || !ztg.f) return false;
+  if (h.obj === ztg.obj || isUnderObj(h.obj, ztg.obj) || isUnderObj(ztg.obj, h.obj)) return true;
+  if (!ztg.r || !frameWithin(h.frame, ztg.f)) return false;
+  if (h.frame === ztg.f && (!ztg.f.layered || ztg.f.aimHolds)) return false;
+  if (h.frame === ztg.f && typeof peelRank === 'function' && ztg.ud.part && h.obj.userData.part && peelRank(h.obj.userData.part) < peelRank(ztg.ud.part)) return false;   // a layer in front of the target (the skin over the eye) never takes it back   // another part of the same thing: the target stays (pond water is not a skater's leg, nor the mud that shows through it); only a thing that peels its layers hands the aim on to what it uncovers
+  const p = convertP(h.pointLocal.clone(), h.frame, ztg.f);
+  return p.distanceTo(ztg.c) <= ztg.r * 1.25 + 1e-12;
+}
+/* A small part under a covering layer, next to the pointer: on a body seen whole, the eye is a few pixels across under the skin, and a pointer on the brow a few
+   pixels from it, which a hand cannot tell apart, means the eye (the brain behind the brow is not what anyone points at the face for). Within the forgiving
+   pick's outer ring (PICK_NEAR_PX) of the pointer, an organ-rank part (not skin, muscle, bone or vessel) that is at most that ring's size on screen and lies
+   just under the picked surface becomes the zoom's target; the nearest to the pointer wins. Only on a thing that peels its layers. */
+const _zuS = new THREE.Sphere(), _zuV = new V3();
+function ztUnder(h, x, y) {
+  const F = h && h.frame; if (!F || !F.layered || !F.parts || !F.cam || typeof peelRank !== 'function' || !h.obj.userData.part || peelRank(h.obj.userData.part) >= 3 || !h.hit) return null;
+  const R = PICK_NEAR_PX[PICK_NEAR_PX.length - 1], ppr = PX_PER_RAD(); let best = null, bd = Infinity;
+  for (const id in F.parts) {
+    const P = F.parts[id], g = P.g, m = g && g.userData.main; if (!m || !m.geometry || !P.p || peelRank(P.p) < 3 || (F.hidden && F.hidden.has(id))) continue;
+    if (!m.geometry.boundingSphere) m.geometry.computeBoundingSphere();
+    _zuS.copy(m.geometry.boundingSphere).applyMatrix4(m.matrixWorld);
+    const dc = _zuV.copy(_zuS.center).sub(F.cam.position).length(), rp = _zuS.radius / dc * ppr; if (rp > R || rp <= 0) continue;
+    if (_zuS.center.distanceTo(h.hit.point) > _zuS.radius * 4) continue;   // just under the surface the pointer is on
+    _zuV.copy(_zuS.center).project(F.cam); if (_zuV.z > 1) continue;
+    const d = Math.hypot((_zuV.x + 1) / 2 * W - x, (1 - _zuV.y) / 2 * H - y); if (d > R + rp || d >= bd || !ztFirstOrgan(F, id, _zuS.center)) continue;
+    bd = d; best = { frame: F, obj: g, id, hit: null, pointLocal: _zuS.center.clone().add(F.C), normalLocal: null, under: true };
+  }
+  return best;
+}
+/* is this part the first organ-rank part on the line of sight to its centre (what shows there once skin, muscle and bone are peeled: the eye, not the cerebellum behind it)? */
+function ztFirstOrgan(F, id, c) {
+  _ztRc.ray.origin.copy(F.cam.position); _ztRc.ray.direction.copy(c).sub(F.cam.position); const L = _ztRc.ray.direction.length(); _ztRc.ray.direction.divideScalar(L); _ztRc.near = 0; _ztRc.far = L;
+  for (const k in F.parts) { if (k === id) continue; const P = F.parts[k], m = P.g && P.g.userData.main; if (!m || !P.p || peelRank(P.p) < 3 || (F.hidden && F.hidden.has(k))) continue; if (_ztRc.intersectObject(m, false).length) { _ztRc.far = Infinity; return false; } }
+  _ztRc.far = Infinity; return true;
+}
+function isUnderObj(o, root) { while (o) { if (o === root) return true; o = o.parent; } return false; }
+function ztSet(h, x, y) {
+  ztDrop();
+  if (!h || !h.obj || isBackdrop(h) || pickWeak(h) || h.obj.userData.noZoom) return false;
+  const ho = h.hit && h.hit.object;
+  ztg.f = h.frame; ztg.obj = h.obj; ztg.id = h.id; ztg.hit = h.hit; ztg.ud = h.obj.userData; ztg.x = x; ztg.y = y; ztg.t = performance.now(); ztg.why = '';
+  ztg.h = { frame: h.frame, obj: h.obj, id: h.id, hit: h.hit, pointLocal: (h.pointLocal || h.point).clone(), normalLocal: h.normalLocal || h.normal || null };
+  ztg.held = !!h.frame.aimHolds; ztg.mode = null; ztg.under = !!h.under;   // under: a part still covered by the layers in front of it (ztUnder): it is the target before the peel shows it
+  ztReal(ho, h.hit);
+  ztExtent();
+  return true;
+}
+/* the picked point, kept in the coordinates of the object that was hit: unless it was a stand-in pick target (an enlarged dot, a marker, a point) */
+function ztReal(ho, hit) {
+  const proxy = !ho || !hit || !hit.face || ho.isSprite || ho.isPoints || ho.isLine || (ho.material && ho.material.visible === false) || !ho.matrixWorld;
+  ztg.real = !proxy;
+  if (!proxy) { ztg.lo = ho; ztg.loc.copy(hit.point); ho.worldToLocal(ztg.loc); }
+}
+/* a pick made while the target holds: a better point on the target, or nothing */
+function ztRefine(h) {
+  if (!h || !ztOn(h)) return false;
+  const ho = h.hit && h.hit.object;
+  if (h.frame !== ztg.f || h.obj !== ztg.obj) {   // the thing's frame below it (a planet's globe under its dot) or a part a layered thing has uncovered: that is the target now
+    if (h.frame !== ztg.f || ztg.f.layered) { const keep = ztg.held; ztg.f = h.frame; ztg.obj = h.obj; ztg.id = h.id; ztg.hit = h.hit; ztg.ud = h.obj.userData; ztg.h = { frame: h.frame, obj: h.obj, id: h.id, hit: h.hit, pointLocal: h.pointLocal.clone(), normalLocal: h.normalLocal }; ztg.held = keep && !!h.frame.aimHolds; ztExtent(); }
+  }
+  ztReal(ho, h.hit);
+  return true;
+}
+/* A thing that shows other parts by distance (`aimHolds`: the pond's Auto stages) keeps the part first pointed at as the aim; but when the stage now shown is a
+   layer of its own that the aimed part is not in, and the aimed part is drawn see-through by it, the stage's own first part takes over the aim (the water surface
+   seen from 7 m gives way, close up, to "the open water" that stage shows: the descent goes into a drop of pond water, not into the film's skater). */
+function ztHandOn(f) {
+  const T = f.T, md = T && T.curMode, pd = ztg.ud && ztg.ud.part; if (!md || !pd || ztg.mode === md.id) return; ztg.mode = md.id;
+  const sh = md.show && md.show[pd.system]; if (sh === undefined || sh >= .35) return;
+  const L = (T.layers || []).find(l => l.id === md.id); if (!L || !L.systems || !L.systems.length || L.systems.includes(pd.system)) return;
+  const np = (T.def.parts || []).find(p => p.system === L.systems[0] && f.parts && f.parts[p.id]); const g = np && f.parts[np.id].g; if (!g || !visibleChain(g)) return;
+  _ztN.set(ztg.x / W * 2 - 1, -(ztg.y / H) * 2 + 1); _ztRc.setFromCamera(_ztN, f.cam);
+  const hs = _ztRc.intersectObject(g, true); if (!hs.length) return;
+  let o = hs[0].object; while (o && !o.userData.id) o = o.parent; if (!o) return;
+  const keep = ztg.mode;
+  ztSet({ frame: f, obj: o, id: o.userData.id, hit: hs[0], pointLocal: hs[0].point.clone().add(f.C), normalLocal: null }, ztg.x, ztg.y); ztg.mode = keep;
+}
+/* where the pivot is now (cam.A coordinates, into out), or null when there is no target any more */
+function ztPivot(out) {
+  const f = ztg.f; if (!f) return null;
+  if (!zoom.pivot || !anchored.includes(zoom.pivot) || fly) { ztDrop('pivot gone'); return null; }
+  if (!f.built || !f.C || !(chainOf(cam.A).includes(f) || drawn.includes(f)) || (!ztg.under && !visibleChain(ztg.obj))) { ztDrop('thing gone'); return null; }
+  if (ztg.held) ztHandOn(f);
+  ztExtent();
+  // the descent has gone into something inside the thing (a scene of what it is made of, smaller than the thing): from here the new place decides
+  if (cam.A !== f && frameWithin(cam.A, f) && cam.A.radius !== Infinity && (!ztg.r || cam.A.radius * cam.A.unit < ztg.r * f.unit * .5)) {
+    const x = ztg.x, y = ztg.y; ztDrop('went in');
+    /* a scene that is one material throughout, with things in it (a drop of pond water and what swims in it): the zoom goes on into that material, at the same
+       point, until the visitor points at one of the things in it; it does not take whatever happens to drift under the resting pointer */
+    if (typeof DESCENT !== 'undefined' && DESCENT.fills && DESCENT.fills(cam.A)) { ztg.carry = { x, y, f: cam.A }; lastZoomHit = null; }
+    return null;
+  }
+  const cp = camPosIn(f, _ztV), dist = Math.max(cp.distanceTo(ztg.c), 1e-30);
+  ztg.s = ztg.r / (2 * Math.tan(25 * Math.PI / 180) * dist);
+  const w = ztg.r ? smooth(.05, .1, ztg.s) : 0;   // s is the radius over the view: the centre below a tenth of the view across, the picked point from a fifth up
+  out.copy(ztg.c);
+  if (w > 0) {
+    if (ztg.real && ztg.lo && ztg.lo.parent) { ztg.lo.localToWorld(_ztW.copy(ztg.loc)).add(f.C); }
+    else {   // where the pointer's ray meets the thing's sphere (or comes nearest to it)
+      _ztN.set(ztg.x / W * 2 - 1, -(ztg.y / H) * 2 + 1); _ztRc.setFromCamera(_ztN, f.cam);
+      const d = _ztRc.ray.direction, oc = _ztW.copy(ztg.c).sub(cp), t = oc.dot(d), q2 = oc.lengthSq() - t * t, r2 = ztg.r * ztg.r;
+      if (q2 <= r2 && t > 0) _ztW.copy(d).multiplyScalar(t - Math.sqrt(r2 - q2)).add(cp);
+      else { _ztW.copy(d).multiplyScalar(Math.max(t, 0)).add(cp).sub(ztg.c); const L = _ztW.length(); if (L > 0) _ztW.multiplyScalar(ztg.r / L); _ztW.add(ztg.c); }
+    }
+    out.lerp(_ztW, w);
+  }
+  if (lastZoomHit && lastZoomHit.obj === ztg.obj) lastZoomHit.point.copy(out);
+  else lastZoomHit = { frame: f, obj: ztg.obj, point: out.clone(), normal: null, id: ztg.id, hit: ztg.hit, held: ztg.held };
+  return convertP(out, f, cam.A);
+}
 function zoomBy(lnDelta, x, y) {
   lastInput = performance.now(); fly = null; cancelTour(); if (lnDelta < 0) camHold = null;
-  if (lnDelta < 0 && x !== undefined) {
+  if (lnDelta < 0 && x !== undefined && ztg.f && (Math.abs(x - ztg.x) > ZT_PX || Math.abs(y - ztg.y) > ZT_PX)) ztDrop('pointer moved');
+  if (lnDelta < 0 && x !== undefined && ztg.f && zoom.pivot && anchored.includes(zoom.pivot)) {
+    /* the target holds: a pick now and then only looks for a better point on it (a real surface once the thing is big enough to be hit itself) */
+    const now = performance.now();
+    if (now - zoom.pt > (ztg.real ? PIVOT_MAX_MS : PIVOT_MIN_MS) || zoom.gen !== viewGen) { ztRefine(pickAt(x, y, true)); zoom.pt = now; zoom.gen = viewGen; }
+    zoom.px = x; zoom.py = y;
+  }
+  else if (lnDelta < 0 && x !== undefined && ztg.carry && zoom.pivot && anchored.includes(zoom.pivot) && Math.abs(x - ztg.carry.x) <= ZT_PX && Math.abs(y - ztg.carry.y) <= ZT_PX && chainOf(cam.A).includes(ztg.carry.f)) { zoom.px = x; zoom.py = y; }   // carried on into a scene's own material (ztPivot)
+  else if (lnDelta < 0 && x !== undefined) {
+    ztg.carry = null;
     /* A wheel burst keeps the pivot it has. Scaling the camera about the pivot leaves the pivot under the pointer, so picking again
        returns the same point unless the pointer moved or the view changed (viewGen): then it is picked again, at most every 150 ms;
        and in any case after 400 ms, so a slow change that nothing announced (a detail tier swapping) cannot leave it stale. */
@@ -663,13 +815,18 @@ function zoomBy(lnDelta, x, y) {
          in the mud that shows through it. (A layered thing's Auto peel is different: there the descent ends in what the peel uncovers, as before.) */
       const stays = held && now2 && held.frame === now2.frame && held.frame.aimHolds && held.obj !== now2.obj && (held.obj.userData.shown || 0) > .05 && visibleChain(held.obj);
       if (held && (!now2 || stays)) { lastZoomHit = held; if (stays) held.held = true; }
-      else { zoom.pivot = zoom.pivot || { p }; zoom.pivot.p.copy(p); if (!anchored.includes(zoom.pivot)) anchored.push(zoom.pivot); }
+      else {
+        zoom.pivot = zoom.pivot || { p }; zoom.pivot.p.copy(p); if (!anchored.includes(zoom.pivot)) anchored.push(zoom.pivot);
+        if (zoomLabel && zoomLabel.t > now - 50) { ztSet(zoomLabel.h, x, y); zoomLabel = null; }   // the pointer is on a name's text: that thing is the target
+        else if (now2 && _pvHit) ztSet(ztUnder(_pvHit, x, y) || _pvHit, x, y);
+      }
       zoom.pt = now; zoom.px = x; zoom.py = y; zoom.gen = viewGen;
     }
   }
-  else if (lnDelta > 0) { zoom.pivot = null; anchored.length = 0; }
+  else if (lnDelta > 0) { zoom.pivot = null; anchored.length = 0; ztDrop('zoom out'); }
   zoom.pending += lnDelta;
 }
+let zoomLabel = null;   // {h, t}: a wheel turned over a name label's text (addLabelTo)
 function applyZoom(dt) {
   if (Math.abs(zoom.pending) < 1e-5) { zoom.pending = 0; return; }
   const step = zoom.pending * (1 - Math.exp(-dt * 12));
@@ -680,6 +837,7 @@ function applyZoom(dt) {
   if (lam < 1) { const fl = zoomFloor(cam.A); if (fl && nd < fl) { nd = Math.max(nd, Math.min(cam.D, fl)); if (nd >= cam.D && typeof DESCENT !== 'undefined') DESCENT.floorSay(cam.A); } } // a floor, so the camera cannot sink into an empty region
   lam = nd / cam.D;
   mouse.dirty = true; // the view moves under a resting cursor: its tooltip and highlight must follow
+  if (lam < 1 && zoom.pivot && ztg.f) { const tp = ztPivot(_ztP); if (tp) zoom.pivot.p.copy(tp); }   // the zoom's target: the pivot follows the thing (above)
   const A = cam.A, a = lam < 1 ? attLock(A) : null;   // the attractor this zoom is locked on, if the frame names any (below)
   if (a && zoom.pivot) zoom.pivot.p.copy(a);          // from here on the zoom is centred on it
   if (zoom.pivot && lam < 1) { // scale camera rig about the pivot: keeps the point under the cursor fixed
@@ -779,7 +937,7 @@ function orthoUp() { cam.dir.normalize(); cam.up.sub(cam.dir.clone().multiplySca
    above: the planets' orbits were seen edge-on, as crossing lines, when the camera happened to arrive in their plane). The view turns as it flies. */
 function flyTo(frame, pointLocal, Dgoal, then, dir) {
   if (typeof navFlyHook === 'function') navFlyHook(); // remember where we were, for Back
-  zoom.pending = 0; zoom.pivot = null; anchored.length = 0; camHold = null;
+  zoom.pending = 0; zoom.pivot = null; anchored.length = 0; camHold = null; ztDrop('flight');
   chainOf(frame).reverse().forEach(f => { f.ensure(); if (f.place) f.place(); }); // the whole path must exist and be in position
   fly = { frame, p: pointLocal.clone(), Dg: Dgoal, then, t: 0, dir: dir ? dir.clone().normalize() : null };
   camHold = frame; // a flight lands in the frame it names, not in a child that happens to sit under the landing point; scrolling in again lifts this
@@ -830,6 +988,22 @@ canvas.addEventListener('wheel', e => {
   whBoost = sg && sg === whSign && now - whT < 200 ? Math.min(WHEEL_BOOST_MAX, whBoost + Math.abs(d) * .004) : 1; whT = now; whSign = sg;
   zoomBy(d * WHEEL_K * whBoost * (e.shiftKey ? 4 : 1), e.clientX, e.clientY);
 }, { passive: false });
+/* A wheel turned over a scene's own controls (the atom's options box, a layer toolbar, the zoom buttons, the field-of-view line) zooms the scene. These boxes
+   sit over the picture, and one could come to lie under a resting pointer as a new scene arrived: the zoom then stopped dead, with nothing said (inside an
+   atom the options box appeared under the pointer). The wheel scrolls only what is there to be read and scrolled: the panel, the ruler, the lists. */
+const WHEEL_OWN = '#panel, #panelTab, #ruler, #library, #help, #topright, #tracks, #lab, #vizModal, .pop, #labels';
+function wheelScrolls(t) {
+  for (let e = t; e && e !== document.body && e !== document.documentElement; e = e.parentElement) {
+    if (e.matches(WHEEL_OWN)) return true;
+    if (e.scrollHeight > e.clientHeight + 1 && /(auto|scroll)/.test(getComputedStyle(e).overflowY)) return true;
+  }
+  return false;
+}
+addEventListener('wheel', e => {
+  const t = e.target; if (t === canvas || !(t instanceof Element) || wheelScrolls(t)) return;
+  e.preventDefault(); e.stopPropagation();
+  canvas.dispatchEvent(new WheelEvent('wheel', { deltaX: e.deltaX, deltaY: e.deltaY, deltaMode: e.deltaMode, clientX: e.clientX, clientY: e.clientY, shiftKey: e.shiftKey, bubbles: true, cancelable: true }));
+}, { passive: false, capture: true });
 canvas.addEventListener('pointerdown', e => {
   try { canvas.setPointerCapture(e.pointerId); } catch (_) { }
   pointers.set(e.pointerId, { x: e.clientX, y: e.clientY }); mouse.touch = e.pointerType === 'touch';
@@ -842,7 +1016,7 @@ canvas.addEventListener('pointermove', e => {
   if (Math.abs(mouse.x - mouse.tipX) > 5 || Math.abs(mouse.y - mouse.tipY) > 5) tipEl.classList.remove('show'); // the tooltip belongs to where the pointer rested: it does not trail behind a moving pointer
   const p = pointers.get(e.pointerId); if (!p) return;
   const dx = e.clientX - p.x, dy = e.clientY - p.y; p.x = e.clientX; p.y = e.clientY;
-  if (pointers.size === 1) { if (Math.hypot(e.clientX - downPos.x, e.clientY - downPos.y) > 6) dragMoved = true; if (dragMoved) { orbit(dx, dy); fly = null; cancelTour(); } }
+  if (pointers.size === 1) { if (Math.hypot(e.clientX - downPos.x, e.clientY - downPos.y) > 6) dragMoved = true; if (dragMoved) { orbit(dx, dy); fly = null; cancelTour(); ztDrop('drag'); } }
   else if (pointers.size === 2) { const [a, b] = [...pointers.values()]; const d = Math.hypot(a.x - b.x, a.y - b.y); if (pinchD > 0 && d > 0) zoomBy(Math.log(pinchD / d), (a.x + b.x) / 2, (a.y + b.y) / 2); pinchD = d; }
   lastInput = performance.now();
 });
@@ -1504,6 +1678,7 @@ function addLabelTo(f, obj, text, o = {}) {
   labelLayer.appendChild(el);
   const L = { el, obj, off: o.offset || new V3(), always: !!o.always, maxPx: o.maxPx, minPx: o.minPx };
   f.labels.push(L);
+  el._lblHit = () => { const target = o.pick || obj; return { frame: f, obj: target, id: target.userData.id, pointLocal: target.getWorldPosition(new V3()).add(f.C), hit: null }; };
   el.addEventListener('click', ev => {   // a label is its thing: one click selects it, two look inside
     ev.stopPropagation(); const target = o.pick || obj;
     /* ... unless the label lies over something else that is drawn solid there. The names of the buttercup and of the bee float over the dog's back in the start
@@ -1516,7 +1691,11 @@ function addLabelTo(f, obj, text, o = {}) {
   return L;
 }
 // labels sit above the canvas: pass the mouse wheel through, so scroll-zoom works over a label too (stopImmediatePropagation: a second forwarder, if any, must not zoom twice)
-labelLayer.addEventListener('wheel', e => { e.preventDefault(); e.stopImmediatePropagation(); canvas.dispatchEvent(new WheelEvent('wheel', { deltaX: e.deltaX, deltaY: e.deltaY, deltaMode: e.deltaMode, clientX: e.clientX, clientY: e.clientY, shiftKey: e.shiftKey, bubbles: true, cancelable: true })); }, { passive: false });
+/* A wheel turned with the pointer on a name's text zooms to that thing (the name is the thing); anywhere else on the label box (its padding, the gap above the
+   thing it names) the zoom goes to what is drawn under the pointer, as it would without the label. */
+const _lblRange = document.createRange();
+function onLabelText(el, x, y) { if (!el || !el._lblHit || !el.firstChild) return false; _lblRange.selectNodeContents(el); for (const r of _lblRange.getClientRects()) if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) return true; return false; }
+labelLayer.addEventListener('wheel', e => { e.preventDefault(); e.stopImmediatePropagation(); const el = e.target && e.target.closest ? e.target.closest('.lbl') : null; zoomLabel = el && e.deltaY < 0 && onLabelText(el, e.clientX, e.clientY) ? { h: el._lblHit(), t: performance.now() } : null; canvas.dispatchEvent(new WheelEvent('wheel', { deltaX: e.deltaX, deltaY: e.deltaY, deltaMode: e.deltaMode, clientX: e.clientX, clientY: e.clientY, shiftKey: e.shiftKey, bubbles: true, cancelable: true })); }, { passive: false });
 // where labels collide, the one with the higher data-pri stays (then the upper one); the rest hide until there is room. Re-evaluated every 160 ms, in every scene.
 let lblClashT = 0;
 function declutterLabels(now) {
@@ -1550,6 +1729,8 @@ function updateLabels() {
 
 /* ================= UI HELPERS (controls belong to frames) ================= */
 const ctrlEl = $('#controls');
+/* A row of choices (a thing's layers and cut views, the body's systems). On a phone a long row covered the thing it is about (eleven buttons over the dog), so
+   there it folds: the choice in force and one "Views" button that opens the whole list (css/app.css, .seg.fold); choosing closes it again. */
 function seg(items, activeK, onSel) {
   const d = document.createElement('div'); d.className = 'seg';
   items.forEach(([k, label]) => { const b = document.createElement('button'); b.innerHTML = label; b.dataset.k = k; if (k === activeK) b.classList.add('on'); b.onclick = () => { d.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); onSel(k); }; d.appendChild(b); });

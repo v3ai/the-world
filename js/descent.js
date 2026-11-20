@@ -82,13 +82,16 @@ const DESCENT = (() => {
     let m = rowOf(s, q); if (m === undefined) m = rowOf(a, q);
     if (m === undefined && typeof u.madeOf === 'string' && Z.M[u.madeOf]) return { id: u.madeOf, via: 'madeOf' };
     if (!a) return null;
+    if (m === undefined && !q.obj && !explicit && a.empty) { const e = emptyOf(a, F); if (e && Z.M[e]) return { id: e, via: 'empty' }; }   // `empty`: what the space of the frame is filled with, where the pointer is on nothing (the gas between the planets, between the stars)
     if (m === undefined && (u.hotspot || (u.info && u.info.tag === 'Marker')) && Z.M.marker) m = 'marker';   // a yellow dot that no row speaks for: it is a pointer, not a part
     if (m === undefined && explicit) return null;
-    if (m === undefined && !q.obj && !a.everywhere) return null;   // a default speaks for the things of the frame, not for the empty space between them (unless the whole frame is one material: `everywhere`)
+    if (m === undefined && !q.obj && !a.everywhere && !(s && s.everywhere)) return null;   // a default speaks for the things of the frame, not for the empty space between them (unless the whole frame is one material: `everywhere`)
     if (m === undefined && s && s.default !== undefined) m = s.default;
     if (m === undefined) m = a.default;
     return m && Z.M[m] ? { id: m, via: 'assign' } : null;
   }
+  /* `empty` is one material, or a list [[r, material], ...]: the first whose r (frame units, from the frame's origin) reaches the zoom target */
+  function emptyOf(a, F) { const e = a.empty; if (!Array.isArray(e)) return e; const d = cam.T && cam.A === F ? cam.T.length() : 0; for (const [r, m] of e) if (d <= r) return m; return e.length ? e[e.length - 1][1] : null; }
   /* follow a material to the scene that shows it: {id, title, scene, standIn, note, card, also} or {id, stop, card, title} */
   const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s, fill = (s, what) => s ? s.replace(/\{What\}/g, cap(what || 'this part')).replace(/\{what\}/g, (what || 'this part').toLowerCase()) : s;
   function resolve(id, what, depth = 0) {
@@ -171,6 +174,9 @@ const DESCENT = (() => {
   /* does the table name this very part (a row for its id, node or system, not just the frame's default)? A frame with a spawn of its own asks this first. */
   Z.known = (F, q) => Z.ready && !!materialOf(F, q, true);
   Z.covers = F => Z.ready && !!Z.A[tableKey(F)];
+  /* is this scene one material throughout, with things in it (a sub-table with `everywhere` and a default: a drop of pond water), so that a pointer between
+     the things is on that material? (A whole file marked `everywhere`, a chip or a galaxy, keeps its own spawn: it has places of its own to lead to.) */
+  Z.fills = F => { const a = Z.ready && Z.A[tableKey(F)]; if (!a) return false; const s = subOf(a, F); return !!(s && s.everywhere && s.default); };
   /* The camera distance below which a frame without a spawn function of its own asks the table: the file's `spawnD` (else four times the frame's floor), and never
      less than one and a half times the size of the object the zoom is aimed at: once the camera is inside a galaxy's glow there is nothing left to point at. */
   Z.spawnD = F => {
@@ -178,6 +184,8 @@ const DESCENT = (() => {
     const z = lastZoomHit; if (z && z.frame === F && z.obj && typeof z.obj.userData.radius === 'number') d = Math.max(d, z.obj.userData.radius * F.unit * 1.5);
     return d;
   };
+  /* below this camera distance (metres) a zoom aimed at nothing in frame F goes into what the frame's space is filled with (`emptyD`, with `empty`) */
+  Z.emptyD = F => { const a = Z.ready && Z.A[tableKey(F)]; return a && a.empty ? (a.emptyD || 0) : 0; };
   /* the camera is held at a floor and nothing is known below it: say so (once per place), rather than stop without a word */
   let lastFloor = null;
   Z.floorSay = F => {

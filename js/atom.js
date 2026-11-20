@@ -990,7 +990,7 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
       ATM.retargetNucleus(F); ATM.relabel(F); refresh(!(o2 && o2.noFit));
     };
     F.spawnD = 2e-13;
-    F.att = { D: 1.2e-10, find: () => 0, pos: (id, out) => out.set(0, 0, 0) };   // the nucleus, far too small to see or to aim at: from 120 pm in, the zoom closes on it from anywhere in the atom (engine.js, "attractors")
+    F.att = { D: Infinity, find: () => 0, pos: (id, out) => out.set(0, 0, 0) };   // the nucleus, far too small to see or to aim at: as soon as the camera is in the atom, the zoom closes on it from anywhere in the cloud (engine.js, "attractors"); it used to wait until 120 pm, and a pointer off the middle took the zoom out of the cloud first
     F.spawn = T => {
       const e = ELJ[S.el], A = ATM.curA(S.el);
       return new Frame({ type: 'nucleus', pinned: true, name: `${ATM.isoName(S.el, A)} nucleus`, unit: 1e-15, radius: 40, r0: 1.5e-15, r1: 3e-13, spawnD: 4e-15, pos: new V3(), opts: { Z: e.Z, N: A - e.Z, el: S.el } });
