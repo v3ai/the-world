@@ -2,3 +2,4 @@
 # Search shows them as cards ("No 3D model yet") instead of promising a model; the card itself still opens normally.
 # One node id per line.
 photodetectors_solar
+bio_genetic_code
