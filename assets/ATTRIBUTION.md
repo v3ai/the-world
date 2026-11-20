@@ -50,3 +50,17 @@ Human anatomy meshes are derived from **BodyParts3D** (Mitsuhashi et al. 2009, "
 - Changes made for this project: selected and merged individual BodyParts3D meshes into ~120 named structures, welded duplicate vertices/faces, further simplified each structure (quadric decimation), split the cerebrum into left/right hemispheres and the ventricular wall into left/right ventricles by geometry, rescaled to a 1.75 m adult, re-centred (feet at y=0, x/z centred, +Z front, +X body left) and quantized to int16. These are simplified, merged derivative meshes (share-alike applies); they are for education/illustration only and are not a clinical tool.
 - Suggested credit line: "Anatomy: BodyParts3D, (c) The Database Center for Life Science (CC BY 4.0 / CC BY-SA 2.1 JP), simplified and merged."
 - data/particles.json, data/particles_binding.json and the particle cards: masses, lifetimes, widths and branching fractions from the Particle Data Group, Review of Particle Physics, 2026 edition (https://pdg.lbl.gov, CC BY 4.0), read from the PDG's own database; details in tools/particles/SOURCES.md.
+
+## Surfaces and light for the second look (assets/look/, used only with `?look=2`)
+
+All CC0 1.0; no attribution is required, and each is credited here. Licence pages read: https://polyhaven.com/license ("Our assets are all licensed as CC0"; redistribution allowed) and https://docs.ambientcg.com/license/ ("provided under the Creative Commons CC0 1.0 Universal License"). 12.7 MB in all.
+
+- white_studio_06_1k.hdr: White Studio 06 HDRI by Grzegorz Wronkowski, Poly Haven, CC0 (https://polyhaven.com/a/white_studio_06). Halved by us from the 2k file (2x2 texels averaged in linear light, written as flat RGBE), 1024 x 512, 2,097,202 bytes. The light of the model scenes (cell, atom models, molecules, crystals).
+- Grass004_color_1k.jpg, Grass004_normal_gl_1k.jpg: Grass 004 by ambientCG, CC0 (https://ambientcg.com/a/Grass004). Unchanged. A procedural turf, not a photograph of a lawn; used as surface detail on the park's lawn, whose own colour is kept.
+- jolcham_oak_bark_01_color_1k.jpg, jolcham_oak_bark_01_normal_gl_1k.jpg: Jolcham Oak Bark 01 by Charlotte Baglioni, Poly Haven, CC0 (https://polyhaven.com/a/jolcham_oak_bark_01). Unchanged. Photographed bark of a Korean oak, standing in for English oak; used as surface detail on trunks and limbs.
+- rock_boulder_dry_color_1k.jpg, rock_boulder_dry_normal_gl_1k.jpg: Rock Boulder Dry by Dimitrios Savva (photography) and Rico Cilliers (processing), Poly Haven, CC0 (https://polyhaven.com/a/rock_boulder_dry). Unchanged. Used as surface detail on boulders and stones (a weathered sandstone, not granite: the boulder's card says granite, so this is a stand-in).
+
+## Software for the second look
+
+- js/vendor/RGBELoader.js: the Radiance .hdr loader from three.js r128 (`examples/js/loaders/RGBELoader.js`, 12,572 bytes, from https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/RGBELoader.js), copied unchanged. MIT, copyright 2010-2021 three.js authors (https://github.com/mrdoob/three.js/blob/r128/LICENSE). Loaded only with `?look=2`.
+- The sky in js/look.js follows Preetham, Shirley and Smits, "A practical analytic model for daylight" (1999), as implemented in three.js r128 `examples/js/objects/Sky.js` (MIT; credits there: Simon Wallner, Martin Upitis, zz85), rewritten into one fragment shader.
