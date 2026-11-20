@@ -351,6 +351,10 @@ function trySpawn(A, emptyOnly) {   // emptyOnly: above the frame's own spawn di
   // else (a failure without a surface under the cursor must not block a spawn that now has one), or a little time has passed (layers peel, data arrives).
   const sf = A._spawnFail, now = performance.now();
   if (sf && sf.obj === ho && now - sf.t < 400 && cam.D > sf.D * .85 && sf.p.distanceTo(cam.T) < cam.D / A.unit * .5) return null;
+  /* a marker that stands for a place built in advance (`zoomPoint`: the park's dot over the globe, the place being the London region) is reached by going into that
+     place, which the zoom enters when its target comes inside it: no patch of generic land is made on the way (one was made where the view's target still was,
+     tens of km short of the place, and the zoom went down into it beside London) */
+  if (!emptyOnly && hint && hint.obj && hint.obj.userData.zoomPoint) return null;
   let c = !emptyOnly && hint && hint.held && typeof DESCENT !== 'undefined' && DESCENT.spawnHeld ? DESCENT.spawnHeld(A, hint, cam.T.clone()) : null;   // the part the zoom has kept as its aim (zoomBy) decides, though it is see-through now
   if (!c && !emptyOnly && !hint && typeof DESCENT !== 'undefined' && DESCENT.fills && DESCENT.fills(A)) c = DESCENT.spawn(A, cam.T, null);   // pointed at nothing in a scene that is one material throughout: that material, not the nearest thing in it
   if (!c && !emptyOnly) c = A.spawn ? A.spawn(cam.T.clone(), hint) : null;
