@@ -1,0 +1,22 @@
+{
+ "about": "Tissue scenes of data/things/tissues (FT.thing, type tissue2), by scene id (sub). `over` names a structure whose own `material` in the scene file is replaced by a truer one (js/descent.js, materialOf).",
+ "sub": {
+  "bee_crop": {
+   "over": {
+    "lining": "gut_cuticle"
+   }
+  },
+  "bee_flight_muscle": {
+   "over": {
+    "tracheole": "insect_air_tube",
+    "fibre": "muscle_fibre"
+   }
+  },
+  "flower_carpel": {
+   "over": {
+    "sac": "embryo_sac",
+    "central": "embryo_sac"
+   }
+  }
+ }
+}

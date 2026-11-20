@@ -11,7 +11,15 @@
  },
  "match": [
   [
-   "^cluster_.*(Cluster|Supercluster)",
+   "^cluster_.*Group$",
+   "galaxy_group"
+  ],
+  [
+   "^cluster_.*Supercluster",
+   "supercluster"
+  ],
+  [
+   "^cluster_.*Cluster",
    "cluster_gas"
   ],
   [
