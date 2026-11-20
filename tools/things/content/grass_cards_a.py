@@ -72,7 +72,7 @@ N('grass_growth_zone', 'The leaf growth zone', 'structure', 0.03, ['grass_base_g
   "The base of each growing blade, inside the sheaths, where new cells are made and then stretch. This is why a leaf keeps growing after its tip is cut.",
   "Only the bottom few centimetres of a growing leaf are growing. Cells are made in the lowest millimetre; above that they swell and lengthen, and the blade is pushed up and out of the tube. Higher up, the blade is finished and does not grow any more. Cutting the top off does no harm to the zone.",
   "This is an intercalary meristem: growth in the middle of an organ rather than at its tip. In perennial ryegrass cell division is confined to the basal 0.6-0.9 mm of a growing leaf and cell lengthening occurs over the basal 31-36 mm (Plant Physiology, kinematic study). The collar region includes the zone that accounts for blade growth (Oregon State). A cut through the sheath below the collar removes this zone and the blade cannot regrow.",
-  "Measured values are for one cultivar (Condesa) in controlled conditions; the drawn zone in the cut-open view (about 6 mm tall) is a visible simplification of a zone that is really 31-36 mm long.",
+  "Measured values are for one cultivar (Condesa) in controlled conditions; the zone in the cut-open view is drawn 34 mm tall, inside the 31-36 mm measured for that cultivar; where exactly it starts and how its edges look are drawn by eye, and the dividing part (under 1 mm) is too small to show separately.",
   [('Cell division', 'basal 0.6-0.9 mm'), ('Cell lengthening', 'basal 31-36 mm'), ('Cells produced by one cell file (high and low phosphorus)', '1.91 and 1.52 per hour')],
   'C1', [R_LEAF], [PMC_GZ, OSU], related=['grass_base_growth', 'grass_meristem'])
 
@@ -86,10 +86,10 @@ N('grass_crown', 'The stem base (crown) and its nodes', 'structure', 0.004, ['gr
 
 N('grass_node', 'A node: where a leaf joins the stem', 'structure', 0.003, ['grass_crown', 'grass_culm'],
   "A node is a swelling on a stem where a leaf is attached. On the flowering stem the nodes are visible as dark rings; at the base they are crowded together.",
-  "A grass stem is divided into nodes, the points where leaves are attached, and the lengths of stem between them (internodes). On the tall flowering stem one or two nodes may show as dark swellings; often they are hidden inside the sheaths. The model draws three rings so that you can find them. At the base of the plant the nodes are too close to tell apart.",
-  "The Grasses of North America flora describes the culm nodes of Lolium perenne as 'never exposed or becoming exposed, 1 or 2 (when visible)', so the model's three exposed rings are more than a real stem usually shows.",
-  "Three rings are drawn on each flowering stem at 20, 42 and 66 per cent of its height (a choice).",
-  [('Exposed nodes on the flowering stem', '1 or 2, when visible'), ('Drawn', '3 rings (more than a real stem usually shows)')],
+  "A grass stem is divided into nodes, the points where leaves are attached, and the lengths of stem between them (internodes). On the tall flowering stem one or two nodes may show as dark swellings; often they are hidden inside the sheaths. The model draws two rings so that you can find them. At the base of the plant the nodes are too close to tell apart.",
+  "The Grasses of North America flora describes the culm nodes of Lolium perenne as 'never exposed or becoming exposed, 1 or 2 (when visible)', so the model's two exposed rings are within what a real stem shows.",
+  "Two rings are drawn on each flowering stem at 24 and 55 per cent of its height (a choice).",
+  [('Exposed nodes on the flowering stem', '1 or 2, when visible'), ('Drawn', '2 rings')],
   'C1', [R_STEM], [DELTA], related=['grass_culm', 'grass_crown'])
 
 N('grass_blade', 'A leaf blade', 'structure', 0.15, ['grass_plant', 'grass_tiller'],

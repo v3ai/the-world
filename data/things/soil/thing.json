@@ -1116,18 +1116,18 @@
    "lod": "near",
    "deeper": {
     "type": "tissue2",
-    "id": "root_tip",
-    "D": 0.003,
-    "button": "Look at root hairs"
+    "id": "oak_ecm_tip",
+    "D": 0.0026,
+    "button": "Look at a root tip wrapped in fungus"
    },
    "center": [
     -0.0179,
     -0.1464,
     -0.152
    ],
-   "radius": 0.7994,
+   "radius": 0.8035,
    "count": 640,
-   "tris": 25600
+   "tris": 213760
   },
   {
    "id": "ecm_tips",
@@ -1741,7 +1741,7 @@
   },
   {
    "id": "springtail_body",
-   "name": "Springtails (about 1.8 mm)",
+   "name": "Springtails: litter form (about 1.8 mm)",
    "system": "animals",
    "node": "soil_springtail",
    "color": "#e4dccb",

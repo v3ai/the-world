@@ -11,9 +11,9 @@ const TAU = Math.PI * 2, GA = L.GOLDEN_ANGLE;
 const M = {
   height: 0.60,          // m. src: plant 30-100 cm (Wikipedia, Ranunculus acris); chosen 60 cm
   flowerD: 0.022,        // m across the open flower. src: about 2 cm / 25 mm (Wikipedia; Wildlife Watch); chosen 22 mm
-  petals: 5, sepals: 5,  // src: Ranunculus flowers usually 5 + 5 (Wikipedia, Ranunculus)
-  stamens: 50,           // src: 30 to 70 per flower (garden flora page, secondary); chosen 50
-  carpels: 25,           // src: 15 to 40 carpels (same page); chosen 25
+  petals: 5, sepals: 5,  // 5 + 5 is the usual count (Wikipedia, Ranunculus; Burren Flora, Go Botany: sepals 5, petals 5)
+  stamens: 50,           // model choice: floras only say 'numerous' (Burren Flora: numerous, indefinite, free); no count source was opened
+  carpels: 25,           // model choice: floras say 'many'; no count source was opened
   achene: [0.0028, 0.0021], // m long x wide. src: 2-3 x 1.8-2.4 mm (same page)
   petalLen: 0.0116, petalW: 0.0118, sepalLen: 0.0065,   // chosen so that the open flower is about 22 mm across (not separately sourced)
   petalThick: 0.00018,   // m. src: van der Kooi et al. 2017 layer thicknesses: 2.7 + 38 + 100 + 40 um (model values) = about 0.18 mm
@@ -77,8 +77,8 @@ function flowerData(r, az0 = 0, grow = 1) {
     d.scales.push({ p: L.add(O, L.add(L.mul(Y, .0009), L.mul(Z, .00045))), X, Y, Z, th });
     d.pits.push({ p: L.add(O, L.add(L.mul(Y, .0011), L.mul(Z, .0001))), X, Y, Z, th });
   }
-  for (let k = 0; k < M.sepals; k++) {   // sepals alternate with the petals; held up against them
-    const th = az0 + (k + .5) * TAU / 5, rh = [Math.cos(th), 0, Math.sin(th)], phi = .62, Y = [rh[0] * Math.sin(phi), Math.cos(phi), rh[2] * Math.sin(phi)], Z = [-rh[0] * Math.cos(phi), Math.sin(phi), -rh[2] * Math.cos(phi)], X = L.cross(Y, Z);
+  for (let k = 0; k < M.sepals; k++) {   // sepals alternate with the petals; spread outward, about 72 degrees from the axis (floras: sepals spreading; Burren Flora, Go Botany, Britton and Brown)
+    const th = az0 + (k + .5) * TAU / 5, rh = [Math.cos(th), 0, Math.sin(th)], phi = 1.25, Y = [rh[0] * Math.sin(phi), Math.cos(phi), rh[2] * Math.sin(phi)], Z = [-rh[0] * Math.cos(phi), Math.sin(phi), -rh[2] * Math.cos(phi)], X = L.cross(Y, Z);
     d.sepals.push({ p: [rh[0] * .0021, .0, rh[2] * .0021], X, Y, Z, th, s: grow });
   }
   for (let i = 0; i < M.stamens; i++) {   // stamens in a spiral (golden angle) on the receptacle below the carpels; outer = older = lower and more spread
@@ -267,7 +267,7 @@ export default function build() {
   const thing = {
     id: 'flower', title: 'Meadow buttercup', label: 'Meadow buttercup', scientific: 'Ranunculus acris', node: 'rn_acris', main_part: 'stems', label_first_only: true,
     blurb: 'A meadow buttercup plant. Click a leaf, a stem, a bud, a petal, a stamen or a fruit. The layer buttons show one flower, a flower cut in half, the fruit, and the roots.',
-    model_note: 'A procedural model built from typical measurements of the species, not a scan of one plant. A real plant has more leaves and more flowers; the half flower is drawn at life size, with its cut faces as flat sections.',
+    model_note: 'A procedural model built from typical measurements of the species, not a scan of one plant. The counts of stamens (50), carpels (25) and leaf lobes (5, each cut into 3) are the model's own choices within what floras describe as numerous, many and variable. A real plant has more leaves and more flowers; the half flower is drawn at life size, with its cut faces as flat sections.',
     size_m: { height: M.height, flower_width: M.flowerD }, height_m: M.height, radius_m: .8, draw_m: 120, seed: 2031,
     systems: [{ id: 'leaves', label: 'Leaves' }, { id: 'stems', label: 'Stems' }, { id: 'flowers', label: 'Flowers' }, { id: 'buds', label: 'Buds' }, { id: 'fruit', label: 'Fruit' }, { id: 'roots', label: 'Roots' }, { id: 'soil', label: 'Soil' }, { id: 'half', label: 'Half flower' }],
     lod: { near_m: 3.2, far_m: 16 },

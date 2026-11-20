@@ -243,12 +243,12 @@
     -2.23,
     0.78
    ],
-   "label": "Root tip with root hairs",
+   "label": "Root tip sheathed in fungus",
    "deeper": {
     "type": "tissue2",
-    "id": "root_tip",
-    "D": 0.003,
-    "button": "Look at root hairs"
+    "id": "oak_ecm_tip",
+    "D": 0.0026,
+    "button": "Look at a root tip wrapped in fungus"
    },
    "r": 0.12,
    "modes": [
@@ -566,9 +566,9 @@
    "mesh": "fine_roots",
    "deeper": {
     "type": "tissue2",
-    "id": "root_tip",
-    "D": 0.003,
-    "button": "Look at root hairs"
+    "id": "oak_ecm_tip",
+    "D": 0.0026,
+    "button": "Look at a root tip wrapped in fungus"
    },
    "priority": 1.8,
    "solid": false,

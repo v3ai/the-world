@@ -92,8 +92,8 @@ N('rn_sepal', 'Sepals', 'structure', .0065, ['rn_flower'],
   "The five sepals are small, green, hairy leaf-like parts that covered the bud and spread out beneath the open petals; they turn yellow as the flower ages.",
   "Before the flower opens, the sepals wrap the bud like a green coat. In the open flower they are the small green parts just below the petals, spreading outward. As the flower ages they turn yellowish.",
   "Sepals are modified leaves. They are the outermost ring of the flower and are shed or wither when the fruit forms. Together they are called the calyx.",
-  "In some buttercups the sepals bend backward (reflexed), which helps tell species apart; in the meadow buttercup floras describe them as spreading, not reflexed. The model draws them held up against the petals, which is a simplification. Their size in the model (6.5 mm) is a chosen value that makes the flower about 22 mm wide.",
-  [['Number', '5, alternating with the petals'], ['Position', 'spreading (floras); drawn upright in the model']], cert='C2', refs=[R321], ext=[W_RA, GOBOT, BURREN])
+  "In some buttercups the sepals bend backward (reflexed), which helps tell species apart; in the meadow buttercup floras describe them as spreading, not reflexed. The model draws them spreading outward, about 72 degrees from the stalk's axis, between and just beneath the petals; the angle is a chosen value. Their size in the model (6.5 mm) is a chosen value that makes the flower about 22 mm wide.",
+  [['Number', '5, alternating with the petals'], ['Position', 'spreading (floras); drawn spreading in the model']], cert='C2', refs=[R321], ext=[W_RA, GOBOT, BURREN])
 
 N('rn_petal', 'Petal', 'structure', .0116, ['rn_flower', 'rn_gloss'],
   "Each of the five petals is a thin, rounded, bright yellow sheet with a mirror-smooth upper surface; at its base is a nectary.",

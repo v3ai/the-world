@@ -166,5 +166,9 @@
  "wood_section": {
   "vessel": "cellulose",
   "ray": "plant_cells"
+ },
+ "oak_ecm_tip": {
+  "mantle": "fungal_cells",
+  "grain": "rock_grain"
  }
 }

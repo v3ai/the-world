@@ -6,7 +6,7 @@
  "node": "park_bee",
  "main_part": "mesothorax",
  "blurb": "A western honey bee worker, about 14 mm long, drinking from a flower. Zoom right in: she is modelled at about her real size. Click any part.",
- "model_note": "A model built from published measurements and typical proportions of a worker, not a scan of one bee. The overall length, eye, ocelli and wing sizes come from sources named on the cards; the rest, including the legs, mouthparts and organs, are proportions drawn by eye from photographs and anatomical drawings. Some counts are simplified: the model draws fewer ganglia, spiracle pairs and Malpighian tubules than a real worker has, and the cards say by how many. The bee is shown still, wings folded, as she stands on a flower; internal organs are placed and sized approximately. Where the wing beat is animated it is slowed about 100 times (a real wing beats about 230 times a second).",
+ "model_note": "A model built from published measurements and typical proportions of a worker, not a scan of one bee. The overall length, eye, ocelli and wing sizes come from sources named on the cards; the rest, including the legs, mouthparts and organs, are proportions drawn by eye from photographs and anatomical drawings. One count is simplified: the model draws 22 Malpighian tubules where a worker has about 100. The bee is shown still, wings folded, as she stands on a flower; internal organs are placed and sized approximately. Where the wing beat is animated it is slowed about 100 times (a real wing beats about 230 times a second) and each wing swings through about 90 degrees about the long axis of the body, the hovering stroke amplitude, as an illustration of the size of the stroke, not of its real path.",
  "size_m": {
   "length": 0.0139,
   "width": 0.0094,
@@ -1488,7 +1488,7 @@
   },
   {
    "id": "ganglia",
-   "name": "Ganglia of the nerve cord (a worker has one more abdominal ganglion than drawn)",
+   "name": "Ganglia of the nerve cord (2 thoracic and 5 abdominal, as in a worker)",
    "system": "nerves",
    "node": "bee_nerve_cord",
    "color": "#eadcb8",
@@ -1497,12 +1497,12 @@
    "priority": 1.9,
    "cutFace": "nerve",
    "center": [
-    0.0004,
+    0.0002,
     0.0037,
     0
    ],
-   "radius": 0.0061,
-   "tris": 4640
+   "radius": 0.0063,
+   "tris": 4840
   },
   {
    "id": "nerves",
@@ -1516,12 +1516,12 @@
    "solid": true,
    "cutFace": "nerve",
    "center": [
-    0.001,
+    0.0007,
     0.0043,
     0
    ],
-   "radius": 0.0062,
-   "tris": 640
+   "radius": 0.0064,
+   "tris": 680
   },
   {
    "id": "oesophagus",
@@ -1792,12 +1792,12 @@
    "priority": 2.1,
    "cutFace": "air",
    "center": [
-    -0.0001,
+    -0.0002,
     0.0052,
     0
    ],
-   "radius": 0.0063,
-   "tris": 2168
+   "radius": 0.0064,
+   "tris": 2228
   },
   {
    "id": "air_sacs",
@@ -1820,7 +1820,7 @@
   },
   {
    "id": "spiracles",
-   "name": "Spiracles (9 pairs drawn; a worker has 10)",
+   "name": "Spiracles (10 pairs, as in a worker)",
    "system": "tracheal",
    "node": "bee_spiracles",
    "color": "#2a2018",
@@ -1828,13 +1828,13 @@
    "lod": "near+mid",
    "priority": 2.5,
    "center": [
-    -0.0014,
+    -0.0016,
     0.0043,
     0
    ],
-   "radius": 0.0057,
-   "count": 18,
-   "tris": 864
+   "radius": 0.0059,
+   "count": 20,
+   "tris": 960
   }
  ],
  "label_m": 40,
@@ -1874,7 +1874,7 @@
     0,
     0
    ],
-   "amp_deg": 18,
+   "amp_deg": 45,
    "hz": 230,
    "shown_hz": 2.3,
    "label": "Wing beat"
@@ -1926,7 +1926,7 @@
  ],
  "stats": {
   "parts": 68,
-  "uniqueMeshTris": 171270,
+  "uniqueMeshTris": 171570,
   "nearTris": 176966,
   "midTris": 114158,
   "farTris": 6772

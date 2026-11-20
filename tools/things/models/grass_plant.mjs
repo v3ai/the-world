@@ -9,7 +9,7 @@ export const M = {
   bladeW: [0.0034, 0.0038, 0.0030],  // m; sourced 2-4 mm (DELTA)
   sheathTop: [0.034, 0.042, 0.048],  // m above the stem base (chosen)
   culmH: 0.50,                       // m; sourced 30-90 cm (DELTA), chosen
-  spikeLen: 0.15, nSpikelets: 18, spikeletLen: 0.011, florets: 8, lemmaLen: 0.0060, antherLen: 0.0031,   // sourced: spike 8-25 cm, spikelet 5-20 mm, florets 4-14, lemma 4-8.5 mm, anther 2.9-3.4 mm
+  spikeLen: 0.15, nSpikelets: 18, spikeletLen: 0.011, florets: 9, lemmaLen: 0.0060, antherLen: 0.0031,   // sourced: spike 8-25 cm, spikelet 5-20 mm, florets 4-14 (the model draws 5 to 9, shrinking toward the spike tip), lemma 4-8.5 mm, anther 2.9-3.4 mm
   ligule: 0.0015,                    // m; sourced 1-2 mm
   rootDepth: 0.26,
 };
@@ -69,7 +69,7 @@ export function buildPlant(ctx) {
     const kb = R.range(.012, .02) / H, wr = p => [p[0] + kb * p[1] * p[1] * H, p[1], p[2]];   // gentle bend in x
     const culmPath = Array.from({ length: 13 }, (_, i) => [0, H * i / 12, 0]);
     const parts = [L.tube(culmPath, q => .0012 - .0005 * q, { sides: 5, caps: false })];
-    const nodesY = [.2, .42, .66].map(f => f * H), place2 = m => place(L.transform(m, wr), t.base, F.X, F.Y, F.Z);
+    const nodesY = [.24, .55].map(f => f * H)   /* two nodes: floras give one or two visible */, place2 = m => place(L.transform(m, wr), t.base, F.X, F.Y, F.Z);
     for (const m of parts) cul.push(place2(m));
     nodesY.forEach((ny, k) => { nodeM.push(place2(L.transform(ringM, p => [p[0], p[1] + ny, p[2]]))); });
     nodesY.forEach((ny, k) => {   // culm leaf: a long sheath up the internode and a short blade
@@ -109,7 +109,7 @@ export function buildPlant(ctx) {
   for (const s of spikeletData) {
     const { O, X, Y, Z } = s, sc = s.shrink;
     iS.add(O, basisQuat(X, Y, Z), sc); iG.add(L.add(O, L.mul(X, s.side * 0 + .0012 * (s.side))), basisQuat(Z, Y, X), sc);
-    const nF = Math.max(3, Math.round(M.florets * sc));
+    const nF = Math.max(5, Math.round(M.florets * sc));
     for (let j = 0; j < nF; j++) {
       const rank = j % 2 ? 1 : -1, sj = .0035 + j * (LL * .26) * sc, P = L.add(O, L.add(L.mul(Y, sj), L.mul(Z, rank * .0008 * sc)));
       const q = rank > 0 ? basisQuat(L.mul(X, -1), Y, L.mul(Z, -1)) : basisQuat(X, Y, Z);

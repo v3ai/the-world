@@ -85,7 +85,11 @@ export default function ground(R) {
     roots.push(tube([[.4, -.34, -.12], [.5, -.42, -.2], [.62, -.5, -.26], [.75, -.58, -.3]], .004, .0013, 6, 16));
     meshes.roots_coarse = L.bakeShade(L.merge(...roots), (p, n) => .8 + .2 * n[1]);
     // fine roots (under 2 mm across): short curved tubes, mostly in the topsoil, density falling with depth
-    const fr = L.tube(spl([[0, 0, 0], [.004, .003, .012], [.002, .001, .026], [.006, -.002, .04]], 5), t => .00045 * (1 - .6 * t), { sides: 4, caps: false });
+    // one fine-root unit: a tapering axis with short tapering side roots (first-order laterals) alternating along it, ending at [.006, -.002, .04] where the fungal tips are placed
+    const mainP = t => [.006 * t + .0035 * Math.sin(t * 5), -.002 * t + .002 * Math.sin(t * 4 + 1), .04 * t], frs = [L.tube(spl([0, .2, .4, .6, .8, 1].map(mainP), 8), t => .00055 * (1 - .65 * t), { sides: 4, caps: false })];
+    for (let k = 0; k < 9; k++) { const t0 = .1 + k * .095, o = mainP(t0), ang = k * 2.4 + .5, ln = .013 * (1 - .35 * t0) * (1 + .25 * Math.sin(k * 3.1)), d = [Math.cos(ang), Math.sin(ang), 0];
+      frs.push(L.tube(spl([o, [o[0] + d[0] * ln * .35, o[1] + d[1] * ln * .35, o[2] + ln * .2], [o[0] + d[0] * ln * .8, o[1] + d[1] * ln * .8 - .001, o[2] + ln * .6], [o[0] + d[0] * ln, o[1] + d[1] * ln - .002, o[2] + ln * 1.0]], 5), t => .00026 * (1 - .75 * t), { sides: 3, caps: false })); }
+    const fr = L.merge(...frs);
     meshes.froot = L.bakeShade(fr, () => .9); const FI = new L.Instances('froot'), TI = new L.Instances('ecm'), RH = new L.Instances('rhair');
     const tip = L.tube([[0, 0, 0], [0, 0, .0035]], .0006, { sides: 5, caps: true }); meshes.ecm = L.bakeShade(L.merge(tip, L.translateMesh(L.scaleMesh(uvSphere(.0007, 6, 3), [1, 1, 1]), [0, 0, .0035])), () => .95);
     const hair = L.newMesh(); hair.pos.push(-.00004, 0, 0, .00004, 0, 0, 0, .001, .0003); hair.idx.push(0, 1, 2, 0, 2, 1); meshes.rhair = hair;
