@@ -348,7 +348,8 @@ function trySpawn(A) {
   // else (a failure without a surface under the cursor must not block a spawn that now has one), or a little time has passed (layers peel, data arrives).
   const sf = A._spawnFail, now = performance.now();
   if (sf && sf.obj === ho && now - sf.t < 400 && cam.D > sf.D * .85 && sf.p.distanceTo(cam.T) < cam.D / A.unit * .5) return null;
-  let c = A.spawn ? A.spawn(cam.T.clone(), hint) : null;
+  let c = hint && hint.held && typeof DESCENT !== 'undefined' && DESCENT.spawnHeld ? DESCENT.spawnHeld(A, hint, cam.T.clone()) : null;   // the part the zoom has kept as its aim (zoomBy) decides, though it is see-through now
+  if (!c) c = A.spawn ? A.spawn(cam.T.clone(), hint) : null;
   if (!c && typeof DESCENT !== 'undefined') c = DESCENT.spawn(A, cam.T, hint);   // nothing of its own here: what the thing under the zoom point is made of (the materials table)
   if (!c) { const f = sf || (A._spawnFail = { p: new V3(), obj: null, t: 0, D: 0 }); f.p.copy(cam.T); f.obj = ho; f.t = now; f.D = cam.D; return null; }
   for (let i = A.children.length - 1; i >= 0; i--) { const o = A.children[i]; if (o.dynamic && !o.entered && !o.pinned && !o.built && o._for !== undefined && !(o.keep > now)) A.children.splice(i, 1); }   // one waiting child at a time: an earlier one, made for something else, goes
@@ -656,8 +657,12 @@ function zoomBy(lnDelta, x, y) {
          now on a gap between them): the zoom keeps the point it had. The place where the surface was is still where the visitor is going; a zoom that was on
          a thing must not turn into a zoom into the air behind it. */
       const held = pv && anchored.includes(pv) && lastZoomHit && Math.abs(x - zoom.px) <= 1.5 && Math.abs(y - zoom.py) <= 1.5 ? lastZoomHit : null;
-      const p = pivotAt(x, y);
-      if (held && !lastZoomHit) lastZoomHit = held;
+      const p = pivotAt(x, y), now2 = lastZoomHit;
+      /* ... and where a thing changes what it shows by distance (`aimHolds`: the pond draws its water see-through once you are close, so that what swims in it
+         can be seen), the part first pointed at stays the aim while it is still drawn under the pointer: scrolling at the pond's water ends in water, not
+         in the mud that shows through it. (A layered thing's Auto peel is different: there the descent ends in what the peel uncovers, as before.) */
+      const stays = held && now2 && held.frame === now2.frame && held.frame.aimHolds && held.obj !== now2.obj && (held.obj.userData.shown || 0) > .05 && visibleChain(held.obj);
+      if (held && (!now2 || stays)) { lastZoomHit = held; if (stays) held.held = true; }
       else { zoom.pivot = zoom.pivot || { p }; zoom.pivot.p.copy(p); if (!anchored.includes(zoom.pivot)) anchored.push(zoom.pivot); }
       zoom.pt = now; zoom.px = x; zoom.py = y; zoom.gen = viewGen;
     }
@@ -695,7 +700,7 @@ function applyZoom(dt) {
    wheel through that must not think the app has hung. zoomStretch says when the camera is in such a stretch: the next level is waiting under the target
    (a child made by trySpawn, entered when the view is down to its size, `r1`) and is still more than four times smaller than the view; or the frame says
    where its own picture runs out of detail (`fineD`, metres) and the next level has not been asked for yet (spawnDOf). While it lasts
-   - the zoom runs faster, by up to eight times for the longest stretches, easing back to the wheel's own speed on arrival (boost), and never past the entry;
+   - the zoom runs faster, by up to four times for the longest stretches (on top of the wheel's own speed-up while you keep scrolling), easing back on arrival (boost), and never past the entry;
    - the scale line says what is happening (`#capG`, written by updateCaption in js/engine_ui.js): "Zooming 1,000 times further in to reach Alpha quartz".
    A double click still jumps there in one move. Nothing here is per frame type; a frame only has to give `fineD` (and `fineNext`, a few words for what
    comes next) when its picture ends well above the distance at which it hands over. */
@@ -706,7 +711,7 @@ function zoomStretch(A) {
   for (let i = 0; i < A.children.length; i++) { const c = A.children[i]; if (c.dynamic && !c.entered && c.r1 !== Infinity && (c.pos.distanceTo(cam.T) < lim || (!c.pinned && !c.built && c._for !== undefined && c._for === ho))) { to = c.r1; f = c; break; } }
   if (!f && A.fineD && cam.D < A.fineD) { to = spawnDOf(A) || 0; name = A.fineNext || ''; }
   if (!(to > 0) || cam.D < to * 4) return null;
-  _zs.to = to; _zs.ratio = cam.D / to; _zs.boost = Math.min(1 + Math.log(_zs.ratio / 4) / 2.2, 8); _zs.f = f; _zs.name = name; return _zs;
+  _zs.to = to; _zs.ratio = cam.D / to; _zs.boost = Math.min(1 + Math.log(_zs.ratio / 4) / 3, 4); _zs.f = f; _zs.name = name; return _zs;
 }
 /* A frame's floor (`floorD`, metres) is where its own picture ends: the camera cannot sink below it by scrolling. It holds only where nothing lies below:
    a child frame waiting under the target (spawned by the frame itself or from the materials table, js/descent.js) lifts it, so the zoom runs on into that
@@ -1227,7 +1232,7 @@ const SKY_IDS = new Set(['air', 'cmb']);   // the park's sky dome and the microw
 const isBackdrop = h => !!h.obj.userData.backdrop || ((h.obj.userData.priority ?? 1) < 0 && SKY_IDS.has(h.id));
 /* ts: when the click happened (the event's own time stamp), so that two clicks 200 ms apart are a double click even when a slow frame delivers the second one late */
 function onClick(x, y, touch, ts) {
-  const now = ts || performance.now(), lc = lastClick;
+  const now = ts || performance.now(), lc = lastClick; _fsTok++;
   const near = lc && Math.hypot(x - lc.x, y - lc.y) < (touch ? DBL_PX_TOUCH : DBL_PX);
   if (near && now - lc.t < DBL_MS) { // the second click of a double click: the thing the first click found
     if (clickPend) { clearTimeout(clickPend.timer); clickPend = null; } lastClick = null;
@@ -1304,12 +1309,14 @@ function frameSelected(h) {
 }
 /* A cut-open view shows a part of the thing only (the dog's "Inside the eye" is one eyeball, the rest of the dog is gone), and where that is cannot be known
    from the part that was clicked: its centre may now be empty air, and the next double click in the middle of the view went into the lawn behind. So once the
-   view has changed (the parts fade over about half a second), the camera frames what the frame is now showing: the bound of its pickable parts that are drawn
+   view has changed (the parts fade over about half a second of the app's clock), the camera frames what the frame is now showing: the bound of its pickable parts that are drawn
    solid (userData.shown), markers left out. Only for frames that say what they show (things); skipped if the visitor has moved on meanwhile. */
+let _fsTok = 0;
 function frameShownSoon(f) {
-  const t0 = performance.now();
-  setTimeout(() => {
-    if (lastInput > t0 + 120 || !f.built || !f.C || !chainOf(cam.A).concat(drawn).includes(f)) return;
+  const tok = ++_fsTok, c0 = clock, t0 = performance.now();
+  const go = () => {
+    if (clock - c0 < .7 && performance.now() - t0 < 20000) { setTimeout(go, 150); return; }   // the parts fade on the app's clock, which runs slow when frames are slow: wait for that, not for the wall clock
+    if (tok !== _fsTok || pointers.size || Math.abs(zoom.pending) > 1e-3 || (fly && fly.frame !== f) || !f.built || !f.C || !chainOf(cam.A).concat(drawn).includes(f)) return;   // the visitor has clicked, scrolled or gone elsewhere meanwhile
     _pkBox.makeEmpty(); let n = 0;
     for (const p of f.pickables) { const u = p.userData; if (u.shown === undefined || u.shown < .35 || u.hotspot || !visibleChain(p)) continue; if (pkExpand(p, _pkBox)) n++; }
     if (!n || _pkBox.isEmpty()) return;
@@ -1318,7 +1325,8 @@ function frameShownSoon(f) {
     const at = g ? g.p : convertP(cam.T.clone(), cam.A, f), Dn = g ? g.Dg : cam.D;
     if (at.distanceTo(c) * f.unit < D * .12 && Math.abs(Math.log(D / Dn)) < .3) return;   // already on it
     flyKeep(f, c, D);
-  }, 650);
+  };
+  setTimeout(go, 150);
 }
 /* a flight that belongs to the open card (framing what was selected, looking inside it): the card stays */
 function flyKeep(frame, p, D, then) { const was = typeof CARD_FRESH !== 'undefined' && CARD_FRESH; if (typeof CARD_FRESH !== 'undefined') CARD_FRESH = true; try { flyTo(frame, p, D, then); } finally { if (typeof CARD_FRESH !== 'undefined') CARD_FRESH = was; } }
@@ -1499,7 +1507,7 @@ function declutterLabels(now) {
 }
 const _lv = new V3(), _lo = new V3();
 function updateLabels() {
-  const shown = new Set();
+  const shown = new Set(), topY = W <= 860 ? freeArea().t / H : 0;   // on a phone the top of the screen belongs to the buttons: a name is not drawn under them (the Search button sat on "Storage" in the battery view)
   for (const f of drawn) {
     if (f.alpha < .6 || !f.labels || f._culled) continue;
     if (f !== cam.A && f.dLoc < f.radius * 1e-3) continue; // outer frames: only when their structure is in view
@@ -1508,6 +1516,7 @@ function updateLabels() {
       L.obj.getWorldPosition(_lv).add(_lo.copy(L.off).multiplyScalar(L.scaleRef ? L.scaleRef.k || 1 : 1));
       _lv.project(f.cam);
       if (_lv.z > 1 || Math.abs(_lv.x) > 1.05 || Math.abs(_lv.y) > 1.05) continue;
+      if (topY && (-_lv.y * .5 + .5) < topY + 22 / H) continue;
       if (L.minSizeFn && !L.minSizeFn(f)) continue;
       shown.add(L.el);
       L.el.style.display = 'block';

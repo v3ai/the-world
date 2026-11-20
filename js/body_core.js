@@ -259,8 +259,12 @@ function layerNext(h) {
   const rk = layerRank(F, h.id); if (rk === undefined) return null;
   const S = h.stack || (h.ndc ? bodyCoreSample(F, h) : null); if (!S) return null;
   const i = S.rows.findIndex(r => r.id === h.id); if (i < 0) return null;
-  const next = S.rows.slice(i + 1).find(r => { const q = layerRank(F, r.id); return q !== undefined && q > rk && !F.hidden.has(r.id); });
-  return next ? { kind, F, next, rank: layerRank(F, next.id), name: next.name, stack: S } : null;
+  /* the next layer is the one Auto shows once this one has peeled, not simply the next surface on the ray: under the skin the muscles show before the vessels
+     that run through them (an artery of the belly wall lies in front of the muscle, and is drawn only when the muscle has gone), and a thing's layers come
+     strictly in their order. So: the lowest deeper rank on the ray, and its nearest part; among the body's inner parts (vessels, bones, organs) the nearest. */
+  const cand = S.rows.slice(i + 1).filter(r => { const q = layerRank(F, r.id); return q !== undefined && q > rk && !F.hidden.has(r.id); }); if (!cand.length) return null;
+  const minR = Math.min(...cand.map(r => layerRank(F, r.id))), next = F.type === 'body' && minR > 1 ? cand[0] : cand.find(r => layerRank(F, r.id) === minR);
+  return { kind, F, next, rank: layerRank(F, next.id), name: next.name, stack: S };
 }
 /* what Auto would bring into focus with the camera looking at P (frame coordinates) from D metres, along the direction it looks now: {id, rank} */
 const _lsT = new V3(), _lsD = new V3(), _lsU = new V3(), _lsC = new V3(), _lsM = new V3();

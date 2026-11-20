@@ -96,6 +96,8 @@ async function buildWorld() {
   ].filter(Boolean).concat(EXT_LANDMARKS);
   // a ruler stop of a thing in the park (the robin, the bee, the pond, the soil block) is at that thing: without its frame the ruler named it wherever the view was 24 cm wide
   LANDMARKS.forEach(L => { if (L.frame || !FR.things || typeof TH === 'undefined') return; const f = FR.things.find(t => { const d = TH.loaded[t.opts.thing]; return (t.opts.n || 0) === 0 && d && d.ruler && d.ruler.label === L.label; }); if (f) L.frame = f; });
+  // a thing whose Auto makes parts see-through by distance (the pond: its stages are views, not cuts) keeps the part first pointed at as the aim of a zoom (js/engine.js, zoomBy)
+  if (FR.things && typeof TH !== 'undefined') FR.things.forEach(f => { const d = TH.loaded[f.opts.thing]; if (d && d.auto && d.auto.stages && d.auto.stages.every(st => { const m = d.modes.find(x => x.id === st.mode); return m && !m.cut; })) f.aimHolds = true; });
   return root;
 }
 function startView() {
@@ -103,6 +105,7 @@ function startView() {
   // make sure the chain down to the park exists and is placed
   chainOf(park).reverse().forEach(f => { f.ensure(); if (f.place) f.place(); });
   cam.A = park; cam.T.set(0, 1.1, 0); cam.D = 7; cam.dir.set(.35, .28, 1).normalize(); cam.up.set(0, 1, 0);
+  if (innerWidth <= 860 && innerHeight > innerWidth) { cam.T.set(.62, .95, .3); cam.D = 8.4; }   // a phone held upright sees a narrow strip: stand a little further back and look between the person and the dog, so the dog is not cut off at the edge
 }
 /* "What is it made of?" — jump straight to the material, wherever you are */
 function diveMaterial(h, quiet) {   // returns the frame it flies into, or null when there is none for this material (quiet: say nothing then)

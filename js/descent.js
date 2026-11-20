@@ -158,6 +158,12 @@ const DESCENT = (() => {
     if (x.stop) { sayStop(F, x.stop); return null; }
     F._dzStop = null; return x.f;
   };
+  /* the scene of a part the zoom has kept as its aim although the thing now draws it see-through (js/engine.js, zoomBy): the part's own closer view if it has one, else its material */
+  Z.spawnHeld = (F, hint, T) => {
+    const u = hint.obj && hint.obj.userData, rec = u && u.part && F.T && F.T.parts[u.id]; if (!rec) return null;
+    if (rec.pd.deeper && typeof thDeepFrame === 'function') return thDeepFrame(rec.pd.deeper, T, undefined, F.unit);
+    return Z.spawnFor(F, { id: rec.pd.id, node: rec.pd.node, system: rec.pd.system, what: rec.pd.name, obj: hint.obj, u }, T);
+  };
   /* the scene of a named material at T (a micro scene that was opened for a material asks for it by name) */
   Z.spawnMat = (F, id, T, q) => { if (!Z.ready) return null; const x = make(F, id, T, q || {}); if (!x) return null; if (x.stop) { sayStop(F, x.stop); return null; } return x.f; };
   /* is there a way down from this part of F (a scene, not a stop)? Used for zoom floors and "no closer view" notes. */
