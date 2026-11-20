@@ -2446,7 +2446,7 @@
    "title": "Tab of a cell",
    "desc": "A metal strip welded to the foils of one electrode.",
    "card": "licell_tabs",
-   "stop": "Not built: the metal of {what}. No source opened for this model names the metals of a phone cell's tabs (trade sources give aluminium for the positive one and nickel or nickel-plated copper for the negative one), so no crystal is shown."
+   "stop": "Not built: the metal of {what}. Battery tabs are usually aluminium (positive) and nickel-plated copper (negative), as a 2025 review of tab welding gives it, but no source opened for this model names the tabs of a phone cell, so no crystal is shown."
   },
   "lithiated_graphite": {
    "title": "Graphite with lithium in it",
