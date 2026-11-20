@@ -15,7 +15,7 @@ const M = {
   crownRx: 10, crownCy: 12.2, crownRy: 7.4,   // crown half-width, centre height, half-height
   forkY: 2.7,            // where the limbs begin
   rings: 150,            // annual rings drawn in the cut log
-  sapRings: 13,          // sapwood rings (mean about 13, range about 5-32 in 344 samples from 13 sites, Jevsenak et al. 2019 of Q. robur)
+  sapRings: 13,          // sapwood rings: 13 is a value chosen for the model (published sapwood ring counts differ by region and tree; the oak cards quote the study they use)
   barkT: .030, phloemT: .008, cambT: .005, pith: .006,  // m; bark and phloem typical, cambium drawn thicker than real
   logTop: 1.7, notchY: .75,
 };
@@ -289,7 +289,7 @@ export default function build() {
     hotspots: [
       { id: 'hs_rings', node: 'oak_growth_rings', at: [.08, M.logTop, -.18], label: 'Count the rings', r: .03, pivot: 'wood', modes: ['wood'] },
       { id: 'hs_cambium', node: 'oak_cambium', at: [Math.cos(th0 + .12) * (trunkR(th0 + .12, M.logTop) - M.barkT - M.phloemT - .003), M.logTop, Math.sin(th0 + .12) * (trunkR(th0 + .12, M.logTop) - M.barkT - M.phloemT - .003)], label: 'Cambium: where the tree grows wider', r: .025, pivot: 'wood', modes: ['wood'] },
-      { id: 'hs_roottip', node: 'oak_root_hairs', at: rs[rtips[3]].p.map(v => +v.toFixed(2)), label: 'Root tip with root hairs', deeper: { type: 'tissue2', id: 'root_tip', D: .003, button: 'Look at root hairs' }, r: .12, modes: ['roots'] },
+      { id: 'hs_roottip', node: 'oak_root_hairs', at: rs[rtips[3]].p.map(v => +v.toFixed(2)), label: 'Root tip sheathed in fungus', deeper: { type: 'tissue2', id: 'oak_ecm_tip', D: .0026, button: 'Look at a root tip wrapped in fungus' }, r: .12, modes: ['roots'] },
       { id: 'hs_myc', node: 'oak_mycorrhiza', at: rs[rtips[9]].p.map(v => +v.toFixed(2)), label: 'Fungal partner', r: .12, modes: ['roots'] },
     ],
     parts: [
@@ -307,7 +307,7 @@ export default function build() {
       { id: 'trunk_far', name: 'Trunk', system: 'trunk', node: 'oak_trunk', color: '#6a6054', mesh: 'far_trunk', lod: 'far', priority: 1.4, solid: false, far_of: 'trunk' },
       { id: 'limbs_far', name: 'Branches', system: 'branches', node: 'oak_branches', color: '#6a5d4f', mesh: 'far_limbs', lod: 'far', priority: 1.5, solid: false, far_of: 'branches' },
       { id: 'roots', name: 'Roots', system: 'roots', node: 'oak_roots', color: '#8a6a44', mesh: 'roots', priority: 1.5, solid: false, ink_w: .0014 },
-      { id: 'fine_roots', name: 'Fine roots', system: 'roots', node: 'oak_root_hairs', color: '#d7c294', mesh: 'fine_roots', deeper: { type: 'tissue2', id: 'root_tip', D: 3e-3, button: 'Look at root hairs' }, priority: 1.8, solid: false, noink: true },
+      { id: 'fine_roots', name: 'Fine roots', system: 'roots', node: 'oak_root_hairs', color: '#d7c294', mesh: 'fine_roots', deeper: { type: 'tissue2', id: 'oak_ecm_tip', D: 2.6e-3, button: 'Look at a root tip wrapped in fungus' }, priority: 1.8, solid: false, noink: true },
       { id: 'hyphae', name: 'Fungal threads', system: 'roots', node: 'oak_mycorrhiza', color: '#f4f0e4', mesh: 'hyphae', priority: 1.9, solid: false, noink: true },
       { id: 'soil', name: 'Soil', system: 'soil', node: 'bio_plant_nutrition_soil', color: '#6b4c32', mesh: 'soil', priority: 0.5, solid: false, noink: true, opacity_max: .32 },
       { id: 'log_bark', name: 'Outer bark', system: 'wood', node: 'oak_bark', color: '#6e6256', mesh: 'log_bark', pivot: 'wood', noink: true, priority: 1.6, solid: false },

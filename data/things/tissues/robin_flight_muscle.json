@@ -76,10 +76,7 @@
     ],
     "jitter": 0.02
    },
-   "deeper": {
-    "type": "cell",
-    "cell": "animal"
-   }
+   "material": "muscle_fibre"
   },
   {
    "id": "mito",

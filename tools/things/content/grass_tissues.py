@@ -2,6 +2,7 @@
 #   /home/rhett/projects/how/.devtools/venv/bin/python tools/things/content/grass_tissues.py
 # All lengths are micrometres. Sizes with a source are named in each scene note (shown on screen); everything else is declared illustrative there.
 import json, math, random
+import tissue_material as TM
 def pop(id, name, node, shape, size, color, arrange, opacity=1, ink=1, deeper=None, priority=3, rot=None):
     p = {'id': id, 'name': name, 'node': node, 'shape': shape, 'size': size, 'color': color, 'opacity': opacity, 'ink': ink, 'priority': priority, 'arrange': arrange}
     if deeper: p['deeper'] = deeper
@@ -15,7 +16,7 @@ mol = lambda m, name, button=None: {'type': 'mol', 'mol': m, 'name': name, 'butt
 NONE = {'type': 'none'}
 def write(d):
     d = {'cell': 'plant', **d}
-    json.dump(d, open('data/things/tissues/%s.json' % d['id'], 'w'), indent=1, ensure_ascii=False)
+    json.dump(TM.apply(d), open('data/things/tissues/%s.json' % d['id'], 'w'), indent=1, ensure_ascii=False)
 
 # ---------------------------------------------------------------- a ryegrass leaf blade, cut across
 BX = [-220, 0, 220]   # three vascular bundles
@@ -45,7 +46,7 @@ write({'id': 'grass_leaf_section', 'tag': 'Inside a grass leaf', 'title': 'Insid
     pop('bsheath', 'Bundle sheath cell', 'grass_bundle_sheath', 'tube_z', [14, 14, 50], '#a9d68a', lst(*[[x, y, 0] for b in BX for x, y, _ in ring(b, 75, 28, 9)]), .6, deeper={'type': 'cell'}),
     pop('xylem', 'Xylem vessel', 'bio_water_transport', 'tube_z', [11, 11, 50], '#4aa3df', lst(*[[b + dx, 84, 0] for b in BX for dx in (-9, 9)]), .85, deeper=mol('water', 'Water', 'See a water molecule')),
     pop('phloem', 'Phloem sieve tube', 'bio_phloem_transport', 'tube_z', [7, 7, 50], '#e0a526', lst(*[[b + dx, 64, 0] for b in BX for dx in (-7, 7)]), .9, deeper=mol('sucrose', 'Sucrose', 'See the molecule: sucrose, the sugar carried in the phloem')),
-    pop('scl', 'Sclerenchyma fibre', 'grass_sclerenchyma', 'tube_z', [8, 8, 50], '#b79b6a', lst(*[[b + dx, y, 0] for b in BX for dx in (-9, 0, 9) for y in (122, 28)]), .9, deeper={'type': 'cell'}),
+    pop('scl', 'Sclerenchyma fibre', 'grass_sclerenchyma', 'tube_z', [8, 8, 50], '#b79b6a', lst(*[[b + dx, y, 0] for b in BX for dx in (-9, 0, 9) for y in (122, 28)]), .9),
   ]})
 
 # ---------------------------------------------------------------- a grass stoma

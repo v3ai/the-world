@@ -1571,7 +1571,7 @@
    }
   ],
   "flow": false,
-  "caption": "The chain of ganglia from head to sting in a real worker. The model draws four abdominal ganglia."
+  "caption": "The chain of ganglia from head to sting in a real worker. The model draws the same: two thoracic and five abdominal."
  },
  "bee_tracheae": {
   "type": "blocks",
@@ -1638,12 +1638,12 @@
    },
    {
     "label": "model: abdomen",
-    "value": 6
+    "value": 7
    }
   ],
   "ylabel": "pairs of spiracles",
   "logy": false,
-  "caption": "A worker has 10 pairs (Snodgrass 1910): 3 on the apparent thorax (2 true thoracic and 1 on the propodeum) and 7 on the abdomen. The model draws 9."
+  "caption": "A worker has 10 pairs (Snodgrass 1910): 3 on the apparent thorax (2 true thoracic and 1 on the propodeum) and 7 on the abdomen. The model draws all 10."
  },
  "bee_air_sacs": {
   "type": "blocks",

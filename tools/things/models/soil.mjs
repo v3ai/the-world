@@ -47,7 +47,7 @@ export default function build() {
     part('pore_water', 'Water held in the pores', 'topsoil', 'soil_pore_water', '#6fb3e0', { instances: 'pore_water', lod: 'near', opacity_max: .75, deeper: { type: 'mol', mol: 'water', name: 'Water', button: 'See a water molecule' } }),
     // ---- roots and fungi ----
     part('roots_coarse', 'Oak roots (coarse)', 'roots', 'soil_coarse_root', ROOT, { mesh: 'roots_coarse', cutFace: 'root', lod: 'near', deeper: { type: 'tissue2', id: 'wood_section', D: 4.2e-3, button: 'Look inside oak wood' } }),
-    part('froots', 'Oak fine roots', 'roots', 'soil_fine_roots', '#d6b98a', { instances: 'froots', tint: .3, lod: 'near', deeper: { type: 'tissue2', id: 'root_tip', D: 3e-3, button: 'Look at root hairs' } }),
+    part('froots', 'Oak fine roots', 'roots', 'soil_fine_roots', '#d6b98a', { instances: 'froots', tint: .3, lod: 'near', deeper: { type: 'tissue2', id: 'oak_ecm_tip', D: 2.6e-3, button: 'Look at a root tip wrapped in fungus' } }),
     part('ecm_tips', 'Fungus-covered root tips (ectomycorrhiza)', 'roots', 'soil_ecm_tips', '#e3d2a8', { instances: 'ecm_tips', tint: .3, lod: 'near', deeper: { type: 'tissue2', id: 'mushroom_ecm', D: 1e-3, button: 'Look inside the root-fungus partnership' } }),
     part('hyphae', 'Fungal threads (hyphae)', 'fungi', 'soil_hyphae', '#f1ebdc', { instances: 'hyphae', tint: .25, lod: 'near', double: true, deeper: { type: 'tissue2', id: 'mushroom_ecm', D: 1e-3, button: 'Look inside the root-fungus partnership' } }),
     // ---- earthworm: outside ----
@@ -83,7 +83,7 @@ export default function build() {
     part('beetle_pronotum', 'Ground beetle: thorax shield (pronotum)', 'animals', 'soil_beetle', '#171512', { mesh: 'beetle_pronotum', lod: 'near', ink_w: .0005 }),
     part('beetle_elytra', 'Ground beetle: wing cases (elytra)', 'animals', 'soil_beetle', '#13110f', { mesh: 'beetle_elytra', lod: 'near', ink_w: .0005, deeper: { type: 'mol', mol: 'n_acetylglucosamine', name: 'N-acetylglucosamine', button: 'See the unit of chitin' } }),
     part('beetle_legs', 'Ground beetle: legs', 'animals', 'soil_beetle_legs', '#4d3524', { mesh: 'beetle_legs', lod: 'near', ink_w: .0004 }),
-    part('springtail_body', 'Springtails (about 1.8 mm)', 'animals', 'soil_springtail', '#e4dccb', { instances: 'springtail_bodys', lod: 'near' }),
+    part('springtail_body', 'Springtails: litter form (about 1.8 mm)', 'animals', 'soil_springtail', '#e4dccb', { instances: 'springtail_bodys', lod: 'near' }),
     part('springtail_legs', 'Springtails: legs and antennae', 'animals', 'soil_springtail', '#cfc6b3', { instances: 'springtail_legss', lod: 'near' }),
     part('springtail_furca', 'Springtails: the spring (furca)', 'animals', 'soil_springtail_furca', '#bfb49a', { instances: 'springtail_furcas', lod: 'near' }),
     part('mite_body', 'Oribatid mites (about 0.7 mm)', 'animals', 'soil_mite', '#7a3f1f', { instances: 'mite_bodys', lod: 'near' }),

@@ -1337,7 +1337,7 @@
   "ext": [
    {
     "title": "Crailsheim et al. 1992: Pollen consumption and utilization in worker honeybees (Apis mellifera carnica): dependence on individual age and function (J. Insect Physiol. 38; abstract)",
-    "url": "https://doi.org/10.1016/0022-1910(92)90014-D"
+    "url": "https://agris.fao.org/search/en/records/65dff4ca6eef00c2cea35efe"
    },
    {
     "title": "Honey bee (Wikipedia)",
@@ -2256,7 +2256,7 @@
   "layers": {
    "basics": "Instead of a spinal cord along her back, as you have, a bee has a nerve cord along her belly. It has swellings, ganglia, in each region. Each controls its own legs, wings or segments with some independence, with the brain giving the orders.",
    "deeper": "The first ganglion under the oesophagus, the suboesophageal ganglion, controls the mouthparts. The thoracic ganglia run legs and wings. The last abdominal ganglion runs the sting.",
-   "expert": "A real worker has, behind the head, two ganglia in the thorax (the second is a compound of the mesothoracic and metathoracic ganglia and the first two abdominal ones, because the first abdominal segment is fused to the thorax) and five in the abdomen, the last a compound of several segments' ganglia (Snodgrass 1910). The model draws a suboesophageal, two thoracic and four abdominal ganglia: one abdominal ganglion fewer than a real worker."
+   "expert": "A real worker has, behind the head, two ganglia in the thorax (the second is a compound of the mesothoracic and metathoracic ganglia and the first two abdominal ones, because the first abdominal segment is fused to the thorax) and five in the abdomen, the last a compound of several segments' ganglia (Snodgrass 1910). The model draws a suboesophageal, two thoracic and five abdominal ganglia, the same pattern as a real worker; their sizes and spacing are proportions."
   },
   "facts": [
    [
@@ -2269,7 +2269,7 @@
    ],
    [
     "Drawn in the model",
-    "2 in the thorax + 4 in the abdomen"
+    "2 in the thorax + 5 in the abdomen"
    ],
    [
     "Compare with the human",
@@ -2377,7 +2377,7 @@
   "layers": {
    "basics": "These are the doors to her air tubes. Each has a valve that can close it to save water. In the model, small dark rings along her sides mark them.",
    "deeper": "Insects usually have ten pairs of spiracles. In the honey bee two pairs lie on the true thorax (one in front of the mesothorax, one between mesothorax and metathorax) and eight on the abdomen, the first of them on the propodeum, which looks like part of the thorax, and the last on the eighth tergite (Snodgrass 1910). So the apparent thorax carries three pairs, and the visible abdomen seven.",
-   "expert": "The model draws 3 pairs on the thorax and 6 on the abdomen (9 pairs, 18 pores): one pair fewer than a real worker. Closing the spiracles reduces water loss through breathing."
+   "expert": "The model draws 3 pairs on the thorax (counting the propodeum) and 7 on the abdomen (10 pairs, 20 pores), as in a real worker; the positions are approximate. Closing the spiracles reduces water loss through breathing."
   },
   "facts": [
    [
@@ -2823,7 +2823,7 @@
    },
    {
     "title": "Gruter and Farina 2009: The honeybee waggle dance: can we follow the steps? (Trends Ecol. Evol. 24)",
-    "url": "https://doi.org/10.1016/j.tree.2008.12.003"
+    "url": "https://doi.org/10.1016/j.tree.2008.12.007"
    },
    {
     "title": "Waggle dance (Wikipedia)",

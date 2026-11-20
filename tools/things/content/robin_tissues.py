@@ -2,6 +2,7 @@
 #   /home/rhett/projects/how/.devtools/venv/bin/python tools/things/content/robin_tissues.py
 # All lengths are micrometres. Only the barbule spacing (8 to 16 um, J. R. Soc. Interface 2025) is a published size; every other size is declared illustrative in each scene's note.
 import json
+import tissue_material as TM
 def pop(id, name, node, shape, size, color, arrange, opacity=1, ink=1, deeper=None, priority=3, **kw):
     p = {'id': id, 'name': name, 'node': node, 'shape': shape, 'size': size, 'color': color, 'opacity': opacity, 'ink': ink, 'priority': priority, 'arrange': arrange, **kw}
     if deeper: p['deeper'] = deeper
@@ -10,7 +11,7 @@ grid = lambda origin, n, step, stagger=0, jitter=0: {'kind': 'grid', 'origin': o
 lst = lambda *items: {'kind': 'list', 'items': [({'at': i} if isinstance(i, list) else i) for i in items]}
 def write(d):
     d = {'cell': 'animal', **d}
-    json.dump(d, open('data/things/tissues/%s.json' % d['id'], 'w'), indent=1, ensure_ascii=False)
+    json.dump(TM.apply(d), open('data/things/tissues/%s.json' % d['id'], 'w'), indent=1, ensure_ascii=False)
 
 # ---- feather: shaft, barbs, barbules and their hooks (rachis up the left; barbs run right; barbules run up and down between barbs) ----
 write({'id': 'robin_feather', 'tag': 'Inside a feather', 'title': "Inside a robin's flight feather", 'node': 'robin_feather_scene',
@@ -33,7 +34,7 @@ write({'id': 'robin_flight_muscle', 'tag': 'Inside a flight muscle', 'title': "I
   'bg': '#f2eee6', 'center': [0, 0, 0], 'D_um': 330,
   'labels': [{'text': 'Muscle fibre', 'at': [-120, 70, 80], 'pop': 'fibre'}, {'text': 'Mitochondria', 'at': [-120, 0, 80], 'pop': 'mito'}, {'text': 'Capillary (blood vessel)', 'at': [-120, -70, 80], 'pop': 'capillary'}],
   'populations': [
-    pop('fibre', 'Flight muscle fibre', 'robin_muscle_fibre', 'tube_z', [34, 34, 220], '#d9776a', grid([-100, -50, -110], [5, 4, 1], [40, 40, 1], 0, .02), .55, priority=1, deeper={'type': 'cell', 'cell': 'animal'}),
+    pop('fibre', 'Flight muscle fibre', 'robin_muscle_fibre', 'tube_z', [34, 34, 220], '#d9776a', grid([-100, -50, -110], [5, 4, 1], [40, 40, 1], 0, .02), .55, priority=1),
     pop('mito', 'Mitochondrion', 'robin_mito', 'ellipsoid', [8, 6, 14], '#e8a04a', {'kind': 'inside', 'of': 'fibre', 'per': 9, 'margin': .75, 'seed': 5}, 1, ink=0, deeper={'type': 'mol', 'mol': 'atp', 'name': 'ATP', 'button': 'See the molecule: ATP, the energy currency'}, priority=4),
     pop('capillary', 'Capillary', 'robin_flight_muscle_scene', 'tube_z', [6, 6, 230], '#c0504a', grid([-80, -30, -115], [4, 3, 1], [40, 40, 1], 0, .01), .9),
   ]})

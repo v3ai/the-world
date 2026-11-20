@@ -5,7 +5,7 @@ N('grass_culm', 'The flowering stem (culm)', 'structure', 0.5, ['grass_plant'],
   "The tall, slender, jointed stem that some shoots send up in early summer to carry the flower spike.",
   "Most of the shoots in a lawn stay short and make only leaves. Some, left unmown, stretch up a hollow, jointed stem. The stem has a few leaves along it, each with a long sheath round the stem, and ends in the flower spike. Mowing regularly cuts these stems down before the flowers open, which is why a lawn rarely flowers.",
   "Flowering stems of perennial ryegrass are 30-90 cm tall (DELTA); floras give 10-50 cm (NZ Flora) up to 90 cm (Wikipedia). When a shoot flowers its stem lengthens and lifts the growing point; after that the shoot makes no more leaves (Missouri Extension). The stem leaves are shorter than the leaves at the base.",
-  "The three flowering stems of the model are 41-52 cm tall and lean slightly; the three nodes drawn are more than the 'one or two (when visible)' that the flora gives. Counts and curvature are choices.",
+  "The three flowering stems of the model are 41-52 cm tall and lean slightly; the two nodes drawn on each are within the 'one or two (when visible)' that the flora gives. Counts and curvature are choices.",
   [('Height of flowering stems', '30-90 cm (DELTA)'), ('After flowering starts', 'the shoot stops making leaves (Missouri)')],
   'C1', [R_STEM], [DELTA, NZF, W_LP, MO], parts=['grass_node', 'grass_spike', 'grass_sheath'], related=['grass_base_growth', 'rn_stem'])
 
@@ -29,8 +29,8 @@ N('grass_spikelet', 'A spikelet: a cluster of florets', 'structure', 0.011, ['gr
   "The basic unit of a grass flower head: a small, flattened cluster of florets with scales at its base. In ryegrass each spikelet has about 5 to 11 florets in one flora, and up to 14 in other descriptions.",
   "A spikelet is a miniature spike of its own: a short axis with florets arranged in two rows, overlapping like roof tiles, and at the base a single scale called the glume. In the model a spikelet is about 11 mm long. Click the spikelet in the middle distance, or a floret close up, to open the parts; the layer 'A floret opened' separates one floret into its parts.",
   "Spikelet length is (5-)7-15(-20) mm and 3-5 mm wide (DELTA), 6-15 mm (NZ Flora), 5-22 mm (Minnesota Wildflowers). Florets per spikelet: four to 14 (Wikipedia), 5-11 (DELTA), 4-10 (Minnesota Wildflowers). In Lolium there is one glume per spikelet, except that the terminal spikelet has two. The single glume is the upper one and it sits on the outer side of the spikelet, away from the axis; the inner edge, against the axis, has none.",
-  "The model's spikelets have 3 to 8 florets, shrinking toward the tip of the spike: at or below the low end of the 5-11 of the flora (and of the 4-14 of other descriptions), so real spikelets are fuller. The glume is drawn on the outer side, as in the flora. About 38 per cent of the florets are drawn open: a choice, not a measurement.",
-  [('Spikelet length', '(5-)7-15(-20) mm (DELTA)'), ('Florets per spikelet', '5-11 in one flora; 4-14 in another description (model: 3-8)'), ('Glumes', '1 (terminal spikelet: 2)')],
+  "The model's spikelets have 5 to 9 florets, fewer toward the tip of the spike: inside the 5-11 of the flora and the 4-14 of other descriptions. The glume is drawn on the outer side, as in the flora. About 38 per cent of the florets are drawn open: a choice, not a measurement.",
+  [('Spikelet length', '(5-)7-15(-20) mm (DELTA)'), ('Florets per spikelet', '5-11 in one flora; 4-14 in another description (model: 5-9)'), ('Glumes', '1 (terminal spikelet: 2)')],
   'C1', [R_POLL], [DELTA, NZF, MNW, W_LP, GGW, COLINHERB], parts=['grass_glume', 'grass_lemma', 'grass_palea', 'grass_lodicule', 'grass_anther', 'grass_stigma', 'grass_ovary'], related=['grass_spike'],
   fig=bars([('lemma length, lower (4 mm)', 4), ('lemma length, upper (8.5 mm)', 8.5), ('spikelet length, typical lower (7 mm)', 7), ('spikelet length, typical upper (15 mm)', 15), ('anther length (about 3 mm)', 3.1)], 'millimetres', 'Sizes in a ryegrass spikelet from floras: lemma 4-8.5 mm, spikelet 7-15 mm (typical range), anther 2.9-3.4 mm (DELTA).'))
 
@@ -54,7 +54,7 @@ N('grass_palea', 'The palea: the inner scale', 'structure', 0.0055, ['grass_spik
   "A thin scale tucked against the stem side of the floret, opposite the lemma.",
   "Inside the lemma sits the palea, a smaller, thinner scale. Together the two enclose the real flower parts: the stamens and the ovary.",
   "The flora gives the palea as about as long as the lemma, with two rough keels. Together lemma and palea close round the stamens and the ovary, and the lodicules between them open the pair apart when the floret flowers.",
-  "The model draws the palea slightly shorter and narrower than the lemma, a choice that departs from the floras, which describe the two as about equal in length. Its size is not measured.",
+  "The model draws the palea as long as the lemma but narrower, as the floras describe (about as long as the lemma). Its width is a choice, not a measurement.",
   [('Position', 'inner bract of the floret')],
   'C1', [R_POLL], [W_POACEAE], related=['grass_lemma', 'grass_lodicule'])
 

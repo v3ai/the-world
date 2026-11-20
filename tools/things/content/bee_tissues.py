@@ -2,6 +2,7 @@
 #   /home/rhett/projects/how/.devtools/venv/bin/python tools/things/content/bee_tissues.py
 # All lengths are micrometres.  Only the facet width (25.2 um, Streinzer et al. 2013) is a measured size; every other size is declared illustrative in each scene's note.
 import json
+import tissue_material as TM
 def pop(id, name, node, shape, size, color, arrange, opacity=1, ink=1, deeper=None, priority=3):
     p = {'id': id, 'name': name, 'node': node, 'shape': shape, 'size': size, 'color': color, 'opacity': opacity, 'ink': ink, 'priority': priority, 'arrange': arrange}
     if deeper: p['deeper'] = deeper
@@ -11,7 +12,7 @@ lst = lambda *items: {'kind': 'list', 'items': [{'at': i} for i in items]}
 TAGS = {'bee_eye': "Inside a honey bee's eye"}
 def write(d):
     d = {'tag': TAGS.get(d['id'], 'Inside a honey bee'), 'cell': 'animal', **d}   # scene tag shown in front of each card's kind line; cell type of the scene
-    json.dump(d, open('data/things/tissues/%s.json' % d['id'], 'w'), indent=1, ensure_ascii=False)
+    json.dump(TM.apply(d), open('data/things/tissues/%s.json' % d['id'], 'w'), indent=1, ensure_ascii=False)
 
 # ---- compound eye: a vertical slice through a patch of ommatidia ----
 P = 25.2; N = 13; x0 = -P * N / 2

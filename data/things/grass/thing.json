@@ -7,7 +7,7 @@
  "main_part": "blade_up",
  "label_first_only": true,
  "blurb": "A tussock of perennial ryegrass, a grass of many British lawns and pastures, at true size. Click a blade, a sheath, the base of a stem, a flower or a root. The layers pull one shoot apart, open the flowers, and show the roots.",
- "model_note": "A procedural model built from typical measurements of the species, not a scan of one plant. Counts of tillers, leaves and spikelets are choices within the ranges on the cards; real tussocks are larger and untidier.",
+ "model_note": "A procedural model built from typical measurements of the species, not a scan of one plant. Counts of tillers, leaves, spikelets, florets per spikelet (5 to 9) and nodes on the flowering stem (2) are choices within the ranges on the cards; real tussocks are larger and untidier.",
  "size_m": {
   "height": 0.5,
   "leaf_blade": 0.19
@@ -320,7 +320,7 @@
       "node": "grass_crown"
      }
     ],
-    "note": "The stem base is about 3 mm wide. Flat coloured faces show the cut. This is a schematic of the general layout of a vegetative grass shoot: only the overall width is true to life, and the sizes of the zones, including the growing point and the leaf growth zone, are illustrative (the real growth zone is 31-36 mm long). Look to the right of the plant."
+    "note": "The stem base is about 3 mm wide. Flat coloured faces show the cut. This is a schematic of the general layout of a vegetative grass shoot: only the overall width is true to life, and the sizes of the zones and the growing point are illustrative. The leaf growth zone is drawn 34 mm tall, inside the 31-36 mm measured in one ryegrass cultivar, but the cell division part of it (the lowest 0.6-0.9 mm) is too small to show. Look to the right of the plant."
    }
   },
   {
@@ -488,7 +488,7 @@
    "node": "grass_growth_zone",
    "at": [
     0.3208,
-    0.0925,
+    0.102,
     0.0012
    ],
    "label": "Leaf growth zone: the blade lengthens from its base",
@@ -762,12 +762,12 @@
    "mesh": "culm_blade_up",
    "lod": "near",
    "center": [
-    -0.0009,
-    0.3017,
-    0.048
+    -0.0025,
+    0.3031,
+    0.0481
    ],
-   "radius": 0.1326,
-   "tris": 1440
+   "radius": 0.1366,
+   "tris": 960
   },
   {
    "id": "culm_blade_down",
@@ -781,12 +781,12 @@
    "mesh": "culm_blade_down",
    "lod": "near",
    "center": [
-    -0.0009,
-    0.3016,
-    0.048
+    -0.0025,
+    0.3029,
+    0.0481
    ],
-   "radius": 0.1324,
-   "tris": 1440
+   "radius": 0.1367,
+   "tris": 960
   },
   {
    "id": "culm_blade_mid",
@@ -801,12 +801,12 @@
    "lod": "mid+far",
    "double": true,
    "center": [
-    -0.0009,
-    0.3017,
-    0.048
+    -0.0025,
+    0.303,
+    0.0481
    ],
-   "radius": 0.1325,
-   "tris": 108
+   "radius": 0.1369,
+   "tris": 72
   },
   {
    "id": "dead_leaves",
@@ -821,11 +821,11 @@
    "double": true,
    "lod": "near",
    "center": [
-    -0.0086,
-    0.0176,
-    0.009
+    -0.0155,
+    0.0186,
+    0.0045
    ],
-   "radius": 0.1197,
+   "radius": 0.1168,
    "tris": 480
   },
   {
@@ -861,12 +861,12 @@
    "double": true,
    "lod": "near",
    "center": [
-    0.001,
-    0.2305,
+    0.0014,
+    0.2214,
     0.0381
    ],
-   "radius": 0.1519,
-   "tris": 720
+   "radius": 0.1269,
+   "tris": 480
   },
   {
    "id": "ligules",
@@ -901,12 +901,12 @@
    "double": true,
    "lod": "near",
    "center": [
-    0.0001,
-    0.2761,
-    0.0456
+    0.0011,
+    0.2671,
+    0.0444
    ],
-   "radius": 0.1124,
-   "tris": 108
+   "radius": 0.0893,
+   "tris": 72
   },
   {
    "id": "auricles",
@@ -997,12 +997,12 @@
    "mesh": "culm_nodes",
    "lod": "near",
    "center": [
-    0.0025,
-    0.1958,
-    0.0347
+    0.0032,
+    0.1792,
+    0.034
    ],
-   "radius": 0.1188,
-   "tris": 378
+   "radius": 0.0881,
+   "tris": 252
   },
   {
    "id": "rachis",
@@ -1059,12 +1059,12 @@
    "tint": 0.15,
    "center": [
     -0.0102,
-    0.5272,
-    0.0643
+    0.5276,
+    0.0644
    ],
-   "radius": 0.1025,
-   "count": 378,
-   "tris": 9072
+   "radius": 0.103,
+   "count": 423,
+   "tris": 10152
   },
   {
    "id": "spikelet_lens",
@@ -1100,13 +1100,13 @@
    "lod": "near",
    "double": true,
    "center": [
-    -0.0152,
-    0.5327,
-    0.0613
+    -0.0109,
+    0.531,
+    0.0631
    ],
-   "radius": 0.104,
-   "count": 375,
-   "tris": 2250
+   "radius": 0.1037,
+   "count": 417,
+   "tris": 2502
   },
   {
    "id": "anthers",
@@ -1128,13 +1128,13 @@
     "button": "Look at grass pollen"
    },
    "center": [
-    -0.0152,
-    0.5294,
-    0.0613
+    -0.0109,
+    0.5277,
+    0.0632
    ],
-   "radius": 0.1047,
-   "count": 375,
-   "tris": 15000
+   "radius": 0.104,
+   "count": 417,
+   "tris": 16680
   },
   {
    "id": "stigmas",
@@ -1149,13 +1149,13 @@
    "lod": "near",
    "double": true,
    "center": [
-    -0.0152,
-    0.5327,
-    0.0613
+    -0.0109,
+    0.531,
+    0.0631
    ],
-   "radius": 0.104,
-   "count": 250,
-   "tris": 6000
+   "radius": 0.1037,
+   "count": 278,
+   "tris": 6672
   },
   {
    "id": "roots",
@@ -1175,11 +1175,11 @@
     "button": "Look at a root tip"
    },
    "center": [
-    0.0191,
-    -0.1428,
-    0.0141
+    -0.0197,
+    -0.1389,
+    0.0132
    ],
-   "radius": 0.176,
+   "radius": 0.208,
    "tris": 6480
   },
   {
@@ -1194,11 +1194,11 @@
    "mesh": "lateral_roots",
    "lod": "near",
    "center": [
-    0.0217,
-    -0.1384,
-    0.0159
+    -0.0033,
+    -0.1249,
+    -0.0016
    ],
-   "radius": 0.1792,
+   "radius": 0.2023,
    "tris": 7560
   },
   {
@@ -1219,11 +1219,11 @@
     "button": "Look at a root tip"
    },
    "center": [
-    0.0034,
-    -0.1081,
-    -0.0038
+    -0.0005,
+    -0.1141,
+    0.0013
    ],
-   "radius": 0.2162,
+   "radius": 0.225,
    "count": 675,
    "tris": 10800
   },
@@ -1240,11 +1240,11 @@
    "lod": "near",
    "double": true,
    "center": [
-    0.0051,
-    -0.1748,
-    -0.0065
+    -0.0002,
+    -0.1825,
+    0.0033
    ],
-   "radius": 0.1838,
+   "radius": 0.1925,
    "count": 1620,
    "tris": 9720
   },
@@ -1510,10 +1510,10 @@
    "pivot": "base",
    "center": [
     0.32,
-    0.0935,
+    0.1075,
     0.0008
    ],
-   "radius": 0.0033,
+   "radius": 0.017,
    "tris": 12
   },
   {
@@ -1758,10 +1758,10 @@
    "double": true,
    "center": [
     0.3206,
-    0.2528,
+    0.253,
     -0.0003
    ],
-   "radius": 0.0028,
+   "radius": 0.003,
    "tris": 112
   },
   {
@@ -1873,9 +1873,9 @@
  ],
  "stats": {
   "parts": 58,
-  "uniqueMeshTris": 51210,
-  "nearTris": 61212,
-  "midTris": 2584,
-  "farTris": 2584
+  "uniqueMeshTris": 49812,
+  "nearTris": 63534,
+  "midTris": 2548,
+  "farTris": 2548
  }
 }

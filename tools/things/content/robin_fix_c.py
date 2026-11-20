@@ -5,6 +5,7 @@ from robin_fix_b import *
 from robin_figs import FIGS, blocks, bars, table
 
 GOLLER = src('Goller and Larsen 1997: A new mechanism of sound generation in songbirds (PNAS 94: 14787-14791)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC25115/')
+LEG24 = src('Legendre et al. 2024: Evolution of the syrinx of Apodiformes, including the vocal-learning Trochilidae (abstract)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC11574727')
 ZOLL = src('Zollinger, Riede and Suthers 2008: Two-voice complexity from a single side of the syrinx in northern mockingbird song (PMC2569999)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2569999')
 IOC = src('Suthers: Vocal mechanisms in birds and the control of the two sides of the syrinx (International Ornithological Congress 2010)', 'https://internationalornithology.org/PROCEEDINGS_Durban/Symposium/S09/S09.2.htm')
 EURING = src('EURING longevity list for European birds, September 2023 (Fransson, Kolehmainen, Moss and Robinson)', 'https://web.archive.org/web/20250827084335/https://euring.org/files/documents/EURING_longevity_list_20230901.pdf')
@@ -51,8 +52,15 @@ fix('robin_pessulus', basics='The pessulus stands in the middle of the fork like
     facts=[['Material', 'bony in passerines'], ['Job', 'a structural support at the fork, not a sound source']], cert='C2', ext=[SYR, GOLLER])
 fix('robin_tympaniform', basics='The tympaniform membranes are thin sheets in the walls of each bronchus. Air from the lungs flows past them. For a long time they were thought to be the part that vibrates to make the sound, like the reed of a clarinet.',
     deeper='Experiments disproved the simple version of that idea: songbirds whose medial membranes were put out of action could still sing nearly normally. The membranes may still shape or help the sound; the soft lips (labia) in the bronchus are the likely sound source.',
-    expert='In Goller and Larsen\'s experiment the membrane area was replaced by a hole in four zebra finches and three cardinals; calls and song stayed nearly intact but were generally quieter, with small changes in pitch. The model draws the membranes as small discs and does not draw the labia.',
+    expert='In Goller and Larsen\'s experiment the membrane area was replaced by a hole in four zebra finches and three cardinals; calls and song stayed nearly intact but were generally quieter, with small changes in pitch. The model draws the membranes as small discs; the labia are drawn separately, as plain lumps.',
     facts=[['Position', 'medial wall of each bronchus'], ['Job', 'not the principal sound source; may help shape the sound']], cert='C2', ext=[SYR, GOLLER])
+N('robin_labia', 'Labia (the soft lips of the syrinx)', 'structure', .001, ['robin_syrinx'],
+    'Two soft lips in each bronchus, the medial and lateral labia, that in experiments on songbirds moved into the airway and vibrated whenever sound was made.',
+    'In each side of the syrinx two soft lumps of tissue sit opposite each other. When the bird sings they move together, narrowing the airway, and shake as air pushes through, a little like lips being buzzed. In experiments on other songbirds these lips are the most likely source of the sound. This has not been tested in the robin.',
+    'Goller and Larsen (1997) filmed the inside of the syrinx of songbirds through an endoscope and saw the medial and lateral labia move into the bronchial lumen before the sound and move in a vibrating way while it lasted; the thin tympaniform membranes could be put out of action without stopping song. The film was too slow to show the frequency of the vibration, so the labia are a strong candidate for the sound source, not a proven one. Their form differs between bird groups (in swifts and hummingbirds a lateral labium lies on the first bronchial half-rings).',
+    'The model draws each labium as a plain smooth lump, two per bronchus, just beyond the end of the membranes: their number and rough place follow the songbird description, but their shape, size and movement are not from a measurement of a robin. They do not move in the model.',
+    [['Position', 'inside each bronchus, medial and lateral wall'], ['Job', 'the likely vibrating parts (songbird experiments)'], ['Shown for the robin', 'no; shown in zebra finches and cardinals']], cert='C2', refs=[R_ARESP], ext=[SYR, GOLLER, LEG24])
+[n for n in NODES if n['id'] == 'robin_syrinx'][0]['parts'].insert(2, 'robin_labia')
 fix('robin_syr_muscles', cert='C1', basics='Muscles on the outside of each bronchus tighten the vibrating tissues and change the pitch. Songbirds have the finest control of these muscles of any bird, which allows their wide range of songs.')
 sub('robin_syr_muscles', 'basics', 'tighten the vibrating tissues', 'tighten the syrinx')
 sub('robin_syr_muscles', 'basics', 'tighten the syrinx', 'change the tension of the syrinx')

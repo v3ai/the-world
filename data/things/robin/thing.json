@@ -263,12 +263,17 @@
       "node": "robin_tympaniform"
      },
      {
+      "name": "Labia (soft lips)",
+      "color": "#d9798f",
+      "node": "robin_labia"
+     },
+     {
       "name": "Muscles",
       "color": "#b34a3e",
       "node": "robin_syr_muscles"
      }
     ],
-    "note": "Drawn at the size of an adult (the windpipe is a few millimetres wide), simplified: the real membranes, rings and muscles are more complex, and the soft lips (labia) that are the likely sound source are not drawn. Look at the bird from the front, then press the button."
+    "note": "Drawn at the size of an adult (the windpipe is a few millimetres wide), simplified: the real membranes, rings and muscles are more complex, and the labia are drawn as two plain lumps per side in their rough place; their real shape, size and movement are not known from the model. Look at the bird from the front, then press the button."
    }
   },
   {
@@ -885,6 +890,20 @@
     0.0005
    ],
    "label": "Tympaniform membranes",
+   "modes": [
+    "cut_syrinx"
+   ],
+   "r": 0.0005
+  },
+  {
+   "id": "hs_sy_lab",
+   "node": "robin_labia",
+   "at": [
+    0.008761,
+    0.067894,
+    0.00231
+   ],
+   "label": "Labia (soft lips)",
    "modes": [
     "cut_syrinx"
    ],
@@ -3450,6 +3469,23 @@
    "tris": 3464
   },
   {
+   "id": "sy_labia",
+   "name": "Labia (soft lips): the likely vibrating parts",
+   "system": "d_syrinx",
+   "node": "robin_labia",
+   "color": "#d9798f",
+   "mesh": "sy_labia",
+   "parent": "og_trachea",
+   "lod": "near+mid",
+   "center": [
+    0.0088,
+    0.0679,
+    0
+   ],
+   "radius": 0.0034,
+   "tris": 6864
+  },
+  {
    "id": "sy_muscles",
    "name": "Syringeal muscles",
    "system": "d_syrinx",
@@ -4040,8 +4076,8 @@
   }
  ],
  "stats": {
-  "parts": 130,
-  "uniqueMeshTris": 359137,
+  "parts": 131,
+  "uniqueMeshTris": 366001,
   "nearTris": 62818,
   "midTris": 34889,
   "farTris": 1322

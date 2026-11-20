@@ -8,12 +8,12 @@ const FLOWER_Y = 0;   // metres: the bee stands at the origin; the park index pu
 // ---- measurements (sources in tools/things/content/bee_nodes.py and the report) ----
 const M = {
   bodyLen: 14,          // worker body length 12-15 mm (life-cycle table, Wikipedia "Honey bee life cycle"); model ~14 mm head to abdomen tip, proboscis folded out of count
-  forewing: 9.7,        // average wing length 9.7 mm (PNAS-related study quoted in search summary; see report)
+  forewing: 9.7,        // wing length 9.7 mm (Altshuler et al. 2005, PNAS 102, hovering honey bees; the same paper gives about 90 degrees stroke amplitude at about 230 Hz, which the wing animation uses as +-45 degrees)
   facet: .0252,         // facet diameter 25.2 um (Streinzer et al. 2013, PLOS ONE, Table 1)
   eyeLen: 2.4,          // eye length 2.4 mm (same table)
   ocellus: .3,          // median ocellus 0.30 mm, lateral 0.28 mm (same table)
-  hindTibia: [2.7, 3.0],// tibia length 2.7-3.0 mm (Egyptian morphometric study, search summary)
-  proboscis: 5.7,       // proboscis length ~5.4-5.9 mm in one population (same study); drawn partly extended (~3.9 mm)
+  hindTibia: [2.7, 3.0],// hind tibia drawn about 2.9 mm: a chosen size, no source opened for it (the earlier 2.7-3.0 mm came from a search summary)
+  proboscis: 5.7,       // drawn partly extended (~3.9 mm): a chosen size, no source opened for it (the earlier 5.4-5.9 mm came from a search summary)
   nAbd: 6,              // visible abdominal segments in a worker (first abdominal segment is fused into the thorax)
   nHamuli: 20,          // the model draws 20 hooks; the real number varies and was not confirmed
 };
@@ -198,8 +198,8 @@ export default function build() {
     const mb = []; for (const s of S) { for (const dz of [.28, .62]) mb.push(bnd(L.subtract(E([5.82, 6.3, s * dz], [.2, .16, .2]), E([5.82, 6.42, s * dz], [.12, .1, .12])), [5.4, 5.9, s > 0 ? 0 : -1], [6.3, 6.8, s > 0 ? 1 : 0], .03, 1, 0));
       mb.push(tubeM([[5.82, 6.2, s * .45], [6.0, 5.7, s * .4], [6.25, 5.55, s * .32], [6.55, 5.4, s * .28]], .09, 6, 16)); mb.push(tubeM([[6.25, 5.55, s * .32], [6.3, 6.15, s * .26]], .07, 6, 0)); }
     meshes.mushroom_bodies = fin(L.merge(...mb));
-    // ventral nerve cord: suboesophageal ganglion, thoracic ganglia, abdominal ganglia (the number drawn is schematic), joined by paired connectives
-    const gang = [[6.05, 4.3, 0, .42, .28, .42], [4.25, 3.95, 0, .4, .24, .42], [1.9, 3.75, 0, .75, .28, .5], [-1.2, 3.2, 0, .3, .2, .3], [-2.6, 3.1, 0, .3, .2, .3], [-4.0, 3.0, 0, .3, .2, .3], [-5.3, 3.0, 0, .32, .2, .32]];
+    // ventral nerve cord: suboesophageal ganglion, thoracic ganglia, five abdominal ganglia as in a worker (Snodgrass 1910: seven ganglia behind the head, 2 thoracic + 5 abdominal; the second is compounded with the first two abdominal ganglia), joined by paired connectives
+    const gang = [[6.05, 4.3, 0, .42, .28, .42], [4.25, 3.95, 0, .4, .24, .42], [1.9, 3.75, 0, .75, .28, .5], [-1.1, 3.2, 0, .27, .2, .3], [-2.3, 3.1, 0, .27, .2, .3], [-3.5, 3.0, 0, .27, .2, .3], [-4.7, 3.0, 0, .27, .2, .3], [-5.8, 3.0, 0, .3, .2, .3]];
     const gm = gang.map(g => bnd(E([g[0], g[1], g[2]], [g[3], g[4], g[5]]), [g[0] - g[3] - .1, g[1] - g[4] - .1, -g[5] - .1], [g[0] + g[3] + .1, g[1] + g[4] + .1, g[5] + .1], .08, 1, 0));
     meshes.ganglia = fin(L.merge(...gm));
     const cn = []; for (let i = 0; i < gang.length - 1; i++) for (const s of S) cn.push(tubeM([[gang[i][0] - gang[i][3] * .8, gang[i][1], s * .1], [gang[i + 1][0] + gang[i + 1][3] * .8, gang[i + 1][1], s * .1]], .05, 5, 0));
@@ -248,7 +248,7 @@ export default function build() {
     const spPos = []; const tr = [], rings = new L.Instances('spiracle');
     for (const s of S) {
       const sprs = [[3.95, 5.45], [2.0, 4.3], [.7, 4.9]].map(([x, y]) => { const h = L.surfaceHit(thoraxAll, [x, y, s * 4], [0, 0, -s], 6); return h ? h.p : [x, y, s * 1.6]; });
-      for (let i = 0; i < 6; i++) { const x = (segX[i] + segX[i + 1]) / 2, h = L.surfaceHit(abdS, [x, 4.15, s * 4], [0, 0, -s], 6); sprs.push(h ? [h.p[0], h.p[1] - .1, h.p[2]] : [x, 4.1, s * 1.7]); }
+      for (let i = 0; i < 7; i++) { const x = -.25 - i * (6.1 / 6), h = L.surfaceHit(abdS, [x, 4.15, s * 4], [0, 0, -s], 6); sprs.push(h ? [h.p[0], h.p[1] - .1, h.p[2]] : [x, 4.1, s * 1.7]); }
       sprs.forEach((p, i) => { const nn = i < 3 ? L.normalAt(thoraxAll, p) : L.normalAt(abdS, p); rings.add(p.map(v => v * MM), L.quatFromTo([0, 1, 0], nn), 1); spPos.push(p); tr.push(tubeM([p, [p[0], p[1] - .02, s * (Math.abs(p[2]) - .45)], [p[0] + .05, Math.max(3.9, p[1] - .2), s * 1.05]], .045, 5, 0)); });
       // longitudinal trunk on each side, with the head tube and the lateral branches into the legs and wings
       tr.push(tubeM([[5.6, 6.0, s * .8], [4.4, 5.3, s * 1.2], [2.8, 4.6, s * 1.3], [1.3, 4.5, s * 1.1], [-.4, 4.6, s * 1.1], [-2.2, 4.55, s * 1.2], [-4.0, 4.4, s * 1.05], [-5.4, 4.1, s * .85]], .1, 7, 40));
@@ -290,7 +290,7 @@ export default function build() {
     P('ant_flagellum', 'Antenna: flagellum', 'cuticle', 'bee_antenna', '#4a3524', 'ant_flagellum', { priority: 2 }),
     P('mandibles', 'Mandibles', 'cuticle', 'bee_mandibles', '#6b4a2a', 'mandibles', { priority: 2.2 }),
     P('glossa', 'Proboscis: tongue (glossa)', 'cuticle', 'bee_proboscis', '#a9814d', 'glossa', { priority: 2.2 }),
-    P('sheath', 'Proboscis: sheath (maxillae and labial palps)', 'cuticle', 'bee_proboscis', '#7a5a35', 'sheath', { priority: 2.2 }),
+    P('sheath', 'Proboscis: sheath (galeae and labial palps)', 'cuticle', 'bee_proboscis', '#7a5a35', 'sheath', { priority: 2.2 }),
     P('prothorax', 'Thorax: prothorax', 'cuticle', 'bee_thorax', '#3a2a1c', 'prothorax', { priority: 1.7 }),
     P('mesothorax', 'Thorax: mesothorax', 'cuticle', 'bee_thorax', '#3a2a1c', 'mesothorax', { priority: 1.6, deeper: { type: 'tissue2', id: 'bee_cuticle', D: 9e-5, button: 'Look inside the exoskeleton' } }),
     P('metathorax', 'Thorax: metathorax and propodeum', 'cuticle', 'bee_thorax', '#3a2a1c', 'metathorax', { priority: 1.7 }),
@@ -313,7 +313,7 @@ export default function build() {
     I('fringe', 'Pollen basket: fringe hairs', 'cuticle', 'bee_pollen_basket', '#9a7a48', 'fringe', { priority: 2.5 }),
     P('pollen', 'Pollen load', 'cuticle', 'bee_pollen_load', '#d79a22', 'pollen', { priority: 2.2 }),
     P('cleaner', 'Antenna cleaner (foreleg notch and spur)', 'cuticle', 'bee_antenna_cleaner', '#a2733f', 'cleaner', { priority: 2.6 }),
-    ...Array.from({ length: M.nAbd }, (_, i) => P('abd' + (i + 1), `Abdomen: segment ${i + 1} of 6 (visible)`, 'cuticle', 'bee_abdomen', abdCol[i], 'abd' + (i + 1), { priority: 1.6, deeper: i === 2 ? { type: 'tissue2', id: 'bee_cuticle', D: 9e-5, button: 'Look inside the exoskeleton' } : undefined })),
+    ...Array.from({ length: M.nAbd }, (_, i) => P('abd' + (i + 1), `Abdomen: visible segment ${i + 1} of 6 (abdominal segment ${i + 2})`, 'cuticle', 'bee_abdomen', abdCol[i], 'abd' + (i + 1), { priority: 1.6, deeper: i === 2 ? { type: 'tissue2', id: 'bee_cuticle', D: 9e-5, button: 'Look inside the exoskeleton' } : undefined })),
     I('hairs', 'Body hairs (branched)', 'hairs', 'bee_hairs', col.hairc, 'hairs', { lod: 'near', tint: .25, priority: 2.4 }),
     I('hairs_mid', 'Body hairs (branched)', 'hairs', 'bee_hairs', col.hairc, 'hairs_mid', { lod: 'mid', tint: .2, priority: 2.4 }),
     P('body_far', 'Honey bee', 'cuticle', 'park_bee', '#7c5a2b', 'body_far', { lod: 'far', far_of: 'head', priority: 1.5 }),
@@ -327,14 +327,14 @@ export default function build() {
     P('optic_lobes', 'Optic lobes', 'nerves', 'bee_brain', '#dccfae', 'optic_lobes', { priority: 1.9 }),
     P('antennal_lobes', 'Antennal lobes', 'nerves', 'bee_brain', '#f0e4c8', 'antennal_lobes', { priority: 2.1 }),
     P('mushroom_bodies', 'Mushroom bodies', 'nerves', 'bee_mushroom_bodies', '#e29a52', 'mushroom_bodies', { priority: 2 }),
-    P('ganglia', 'Ganglia of the nerve cord', 'nerves', 'bee_nerve_cord', '#eadcb8', 'ganglia', { priority: 1.9 }),
+    P('ganglia', 'Ganglia of the nerve cord (2 thoracic and 5 abdominal, as in a worker)', 'nerves', 'bee_nerve_cord', '#eadcb8', 'ganglia', { priority: 1.9 }),
     P('nerves', 'Nerve cord and nerves', 'nerves', 'bee_nerve_cord', '#e0d2ac', 'nerves', { priority: 2, solid: true }),
     // organs
     P('oesophagus', 'Oesophagus', 'organs', 'bee_oesophagus', '#d9b97c', 'oesophagus', { priority: 2 }),
     P('crop', 'Crop (honey stomach)', 'organs', 'bee_crop', '#e8c474', 'crop', { priority: 1.7, opacity_max: .85, deeper: { type: 'tissue2', id: 'bee_crop', D: 5e-4, button: 'Look at what the crop carries' } }),
     P('proventriculus', 'Proventriculus', 'organs', 'bee_proventriculus', '#c99a58', 'proventriculus', { priority: 2.1 }),
     P('midgut', 'Midgut', 'organs', 'bee_midgut', '#c68d4a', 'midgut', { priority: 1.8 }),
-    P('malpighian', 'Malpighian tubules', 'organs', 'bee_malpighian', '#e9e2a8', 'malpighian', { priority: 2.2, solid: false }),
+    P('malpighian', 'Malpighian tubules (22 drawn as a sample; a worker has about 100)', 'organs', 'bee_malpighian', '#e9e2a8', 'malpighian', { priority: 2.2, solid: false }),
     P('hindgut', 'Hindgut and rectum', 'organs', 'bee_hindgut', '#9a7a4a', 'hindgut', { priority: 2 }),
     P('heart', 'Dorsal vessel (heart and aorta)', 'organs', 'bee_heart', '#d86a5a', 'heart', { priority: 1.9 }),
     P('hpg', 'Hypopharyngeal glands', 'organs', 'bee_hypopharyngeal_gland', '#f0d9a2', 'hpg', { priority: 2 }),
@@ -342,19 +342,19 @@ export default function build() {
     P('venom_sac', 'Venom sac', 'organs', 'bee_venom_sac', '#d8c25a', 'venom_sac', { priority: 2 }),
     P('sting', 'Sting (stylet and lancets)', 'organs', 'bee_sting', '#5a3a1e', 'sting', { priority: 1.9 }),
     I('barbs', 'Sting barbs', 'organs', 'bee_sting', '#3a2412', 'barbs', { priority: 2.4 }),
-    P('wax', 'Wax glands (wax mirrors)', 'organs', 'bee_wax_glands', '#efe6c8', 'wax', { priority: 2.1 }),
+    P('wax', 'Wax glands (wax mirrors, abdominal segments 4 to 7)', 'organs', 'bee_wax_glands', '#efe6c8', 'wax', { priority: 2.1 }),
     P('nasonov', 'Nasonov gland', 'organs', 'bee_nasonov', '#f3b13c', 'nasonov', { priority: 2.2 }),
     // breathing
     P('trachea', 'Tracheae (breathing tubes)', 'tracheal', 'bee_tracheae', '#cfe6ef', 'trachea', { priority: 2.1 }),
     P('air_sacs', 'Air sacs', 'tracheal', 'bee_air_sacs', '#e6f1f6', 'air_sacs', { priority: 1.9, opacity_max: .75 }),
-    I('spiracles', 'Spiracles (breathing pores)', 'tracheal', 'bee_spiracles', '#2a2018', 'spiracles', { priority: 2.5 }),
+    I('spiracles', 'Spiracles (10 pairs, as in a worker)', 'tracheal', 'bee_spiracles', '#2a2018', 'spiracles', { priority: 2.5 }),
   ];
   // spiracles sit on the outer surface: they belong to the cuticle visually, but are listed under breathing tubes (shown faintly in the shell view)
   const hs = (id, node, at, label, modes) => ({ id, node, at: at.map(v => +(v * MM).toFixed(6)), label, r: .00018, modes });
   const thing = {
     id: 'bee', title: 'Honey bee worker', label: 'Honey bee', scientific: 'Apis mellifera', node: 'park_bee', main_part: 'mesothorax',
-    blurb: 'A western honey bee worker, about 14 mm long, drinking from a flower. Zoom right in: she is built to true size. Click any part.',
-    model_note: 'A model built from published measurements and typical proportions of a worker, not a scan of one bee. Sizes of the whole body, eye, wing, ocelli, tibia and proboscis come from sources named on the cards; the rest are proportions drawn by eye from photographs and anatomical drawings. The bee is shown still, wings folded, as she stands on a flower; internal organs are placed and sized approximately.',
+    blurb: 'A western honey bee worker, about 14 mm long, drinking from a flower. Zoom right in: she is modelled at about her real size. Click any part.',
+    model_note: 'A model built from published measurements and typical proportions of a worker, not a scan of one bee. The overall length, eye, ocelli and wing sizes come from sources named on the cards; the rest, including the legs, mouthparts and organs, are proportions drawn by eye from photographs and anatomical drawings. One count is simplified: the model draws 22 Malpighian tubules where a worker has about 100. The bee is shown still, wings folded, as she stands on a flower; internal organs are placed and sized approximately. Where the wing beat is animated it is slowed about 100 times (a real wing beats about 230 times a second) and each wing swings through about 90 degrees about the long axis of the body, the hovering stroke amplitude, as an illustration of the size of the stroke, not of its real path.',
     size_m: { length: .0139, width: .0094, height: .0072 }, height_m: .0075, radius_m: .0125, draw_m: 40,
     seed: 4242, systems: SYS, modes, lod: { near_m: .25, far_m: 1.5 },
     cut: { default: 'cuticle', at: [2, 5, 0], faces: {
@@ -382,7 +382,7 @@ export default function build() {
   thing.auto = { label: 'Auto', layers: true, scale: .01 };
   // The wings beat (230 per second is the figure on the wing-beat card: shown 100 times slower, and the screen says so); the heart pulse is an illustration of the dorsal vessel.
   // The two wings turn opposite ways about the body's long axis (an illustration: a real wing stroke is a sweep back and forth with a twist, not a rotation about one line).
-  thing.anim = [{ kind: 'swing', system: 'wings', pivot: [.0029, .00695, 0], dir: [0, 0, 1], sym: true, from: .0008, to: .003, axis: [1, 0, 0], amp_deg: 18, hz: 230, shown_hz: 2.3, label: 'Wing beat' },
+  thing.anim = [{ kind: 'swing', system: 'wings', pivot: [.0029, .00695, 0], dir: [0, 0, 1], sym: true, from: .0008, to: .003, axis: [1, 0, 0], amp_deg: 45, hz: 230, shown_hz: 2.3, label: 'Wing beat' },
     { kind: 'pulse', part: 'heart', pivot: [0, .0058, 0], amp: .12, shown_hz: 1.3, illustrative: true, label: 'Heart (dorsal vessel)' }];
   thing.layers = [{ id: 'shell', label: 'exoskeleton', systems: ['cuticle', 'wings', 'hairs'], ghost: .08 }, { id: 'muscles', label: 'muscles', systems: ['muscles'], ghost: .1, see_through: .4 }, { id: 'inside', label: 'organs', systems: ['organs', 'nerves', 'tracheal'], ghost: .1 }];
   console.log(log.join('\n'));

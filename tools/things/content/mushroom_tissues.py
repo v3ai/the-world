@@ -1,6 +1,7 @@
 # Writes the three tissue scenes of the fly agaric: data/things/tissues/mushroom_{gill,flesh,ecm}.json  (all lengths in micrometres).
 # Run from the repo root:  /home/rhett/projects/how/.devtools/venv/bin/python tools/things/content/mushroom_tissues.py
 import json, math, random
+import tissue_material as TM
 HALF = math.pi / 2
 rnd = random.Random(5)
 NAG = {'type': 'mol', 'mol': 'n_acetylglucosamine', 'name': 'N-acetylglucosamine, the unit of chitin'}
@@ -98,5 +99,5 @@ ecm = {
         pop('phosphate', 'Phosphate going to the tree (illustrative)', 'fa_trade', 'ellipsoid', [9, 9, 9], '#4aa3df', phos, {'type': 'mol', 'mol': 'phosphate', 'name': 'Phosphate ion'}),
     ]}
 for d in (gill, fl, ecm):
-    json.dump(d, open(f"data/things/tissues/{d['id']}.json", 'w'), indent=1)
+    json.dump(TM.apply(d), open(f"data/things/tissues/{d['id']}.json", 'w'), indent=1)
 print({d['id']: sum(len(p['arrange']['items']) for p in d['populations']) for d in (gill, fl, ecm)})

@@ -1,5 +1,6 @@
 # Writes data/things/tissues/dog_{skin,muscle,olfactory_epithelium,retina}.json.  Run from the repo root.
 import json
+import tissue_material as TM
 def pop(id, name, node, shape, size, color, opacity, arrange, deeper=None, ink=1):
     p = {'id': id, 'name': name, 'node': node, 'shape': shape, 'size': size, 'color': color, 'opacity': opacity, 'arrange': arrange}
     if ink: p['ink'] = 1
@@ -9,7 +10,7 @@ L = lambda items: {'kind': 'list', 'items': items}
 TAGS = {'dog_skin': 'Inside dog skin', 'dog_muscle': 'Inside a dog muscle', 'dog_olfactory_epithelium': 'Inside the smell lining', 'dog_retina': 'Inside the retina'}
 def write(id, d):
     d['tag'] = TAGS[id]; d['cell'] = 'animal'
-    json.dump(d, open(f'data/things/tissues/{id}.json', 'w'), indent=1); print(id, len(d['populations']), 'populations')
+    json.dump(TM.apply(d), open(f'data/things/tissues/{id}.json', 'w'), indent=1); print(id, len(d['populations']), 'populations')
 # ---------------- skin ----------------
 xs = [-250, 0, 250]
 write('dog_skin', {'id': 'dog_skin', 'title': 'Inside a dog\'s skin and coat', 'node': 'dog_skin_scene', 'bg': '#f3efe6', 'center': [0, 190, 0], 'D_um': 1100,
@@ -34,7 +35,7 @@ write('dog_muscle', {'id': 'dog_muscle', 'title': 'Inside a dog muscle', 'node':
   'note': 'The fibre width is drawn from the mean fibre cross-section measured in 35 adult dogs of 16 breeds (about 1,760 square micrometres, about 47 micrometres across if round; triceps brachii and vastus lateralis, Van Boom et al. 2023). The layout, the capillaries, the nuclei and the nerve ending are illustrative, as are their sizes.',
   'labels': [{'text': 'Muscle fibre (one long cell)', 'at': [-190, 110, 210], 'pop': 'fibre'}, {'text': 'Capillary', 'at': [128, 33, 210], 'pop': 'capillary'}, {'text': 'Nerve ending: the neuromuscular junction', 'at': [-60, 150, -230], 'pop': 'nmj'}],
   'populations': [
-    pop('fibre', 'Muscle fibre', 'dog_muscle_fibre', 'tube_z', [47, 47, 400], '#c0574b', .92, L([{'at': [x, y, 0]} for x, y in fib]), {'type': 'cell'}),
+    pop('fibre', 'Muscle fibre', 'dog_muscle_fibre', 'tube_z', [47, 47, 400], '#c0574b', .92, L([{'at': [x, y, 0]} for x, y in fib])),
     pop('capillary', 'Capillary', 'capillary', 'tube_z', [8, 8, 400], '#8fb4d8', .9, L([{'at': [x, y, 0]} for x, y in caps])),
     pop('rbc', 'Red blood cell', 'red_blood_cell', 'ellipsoid', [7, 7, 3], '#c9302c', 1, L([{'at': [x, y, z]} for (x, y), z in zip(caps, [60, -80, 120, -30, 10, -140])])),
     pop('nuclei', 'Muscle cell nucleus', 'dog_muscle_fibre', 'ellipsoid', [9, 6, 18], '#4d3a63', .95, L([{'at': [x + 21, y, z]} for (x, y), z in zip(fib[::5], [-120, 60, 150, -40, 100, 0, -90, 30])])),
