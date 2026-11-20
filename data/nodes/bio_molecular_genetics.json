@@ -283,16 +283,16 @@
   "layers": {
    "basics": "Each new double helix has one old and one new strand (semiconservative). Helicase unwinds the DNA and DNA polymerase builds new strands from the 5′ to 3′ direction.",
    "deeper": "The leading strand is made continuously, the lagging strand in short Okazaki fragments joined by ligase. Primase lays RNA primers.",
-   "expert": "E. coli replicates ≈ 1,000 nt/s with an error rate ≈ 10⁻¹⁰ per base after proofreading and mismatch repair; human forks move much more slowly than bacterial ones and start from many thousands of origins in each S phase. Meselson–Stahl confirmed semiconservative replication in 1958."
+   "expert": "E. coli replicates at up to ≈ 600–1,000 nt/s with a net mutation rate of ≈ 10⁻¹⁰ per base per generation (≈ 10⁻³ per genome) after proofreading and mismatch repair; human forks move far more slowly (maximum ≈ 28 nt/s in one measurement in human cells) and start from an estimated 30,000–50,000 active origins in each S phase. Meselson–Stahl confirmed semiconservative replication in 1958."
   },
   "facts": [
    [
     "E. coli fork speed",
-    "≈ 1,000 nt/s"
+    "≈ 600–1,000 nt/s (up to)"
    ],
    [
     "Final error rate after proofreading and mismatch repair",
-    "≈ 10⁻⁹–10⁻¹⁰ per base per replication"
+    "≈ 10⁻¹⁰ per base per generation in E. coli (≈ 10⁻³ per genome)"
    ]
   ],
   "certainty": "C1",
@@ -396,7 +396,7 @@
   "summary": "Shuffling and moving DNA.",
   "layers": {
    "basics": "Cells can swap segments between DNA molecules (recombination) and some DNA sequences can move around the genome (transposons).",
-   "deeper": "Crossing over in meiosis is recombination; transposons make up ≈ 45% of the human genome, mostly inactive remnants.",
+   "deeper": "Crossing over in meiosis is recombination; transposon-derived sequence makes up ≈ 45% of the human genome in the first analysis (2001) and more in later, more complete assemblies (≈ 54% for repeats and transposon-derived DNA), mostly inactive remnants.",
    "expert": "Barbara McClintock discovered mobile elements in maize. Retrotransposons (LINEs, Alus) copy via RNA; V(D)J recombination uses the RAG1 and RAG2 proteins to cut and join gene segments, which builds antibody and T-cell receptor genes."
   },
   "facts": [
@@ -570,7 +570,7 @@
    ],
    [
     "Transcription speed",
-    "≈ 1–4 kb/min"
+    "≈ 1–6 kb/min (published estimates differ)"
    ]
   ],
   "certainty": "C1",
@@ -954,16 +954,16 @@
   "layers": {
    "basics": "In female placental mammals one X chromosome is mostly silenced in each cell. Which one is random, and a minority of genes on it escape silencing. Some genes are expressed only from the maternal or only the paternal copy (imprinting).",
    "deeper": "Tortoiseshell and calico cats show X-inactivation as a patchwork of coat colours. Imprinting disorders include Prader–Willi and Angelman syndromes.",
-   "expert": "Xist RNA coats the inactive X and recruits silencing complexes. Imprinted genes (on the order of 100 well established in humans, with more candidates) are regulated by differentially methylated regions set in the germline."
+   "expert": "Xist RNA coats the inactive X and recruits silencing complexes. Imprinted genes (roughly 100–200 in humans, depending on the catalogue; many candidates are not confirmed on testing) are regulated by differentially methylated regions set in the germline."
   },
   "facts": [
    [
     "Imprinted genes in humans",
-    "≈ 100 or more (catalogues differ)"
+    "≈ 100–200 (catalogues differ)"
    ],
    [
     "Xist RNA length",
-    "≈ 17 kb"
+    "≈ 17–19 kb (reports differ; ≈ 17 kb for mouse Xist)"
    ]
   ],
   "certainty": "C1",
@@ -1007,7 +1007,7 @@
   "layers": {
    "basics": "Small RNAs (microRNA, siRNA) bind mRNAs and reduce their expression. Long noncoding RNAs act as scaffolds and guides.",
    "deeper": "RNA interference was discovered in C. elegans (Fire and Mello, Nobel 2006). Annotation databases list well over 1,000 human miRNAs, but a curated 2015 analysis found fewer than a third of the 1,881 human entries then listed to be robustly supported. Conserved target sites suggest that more than 60% of human protein-coding genes are regulated by miRNAs.",
-   "expert": "Argonaute proteins load guide RNAs into RISC and cleave or repress targets. piRNAs defend germ cells against transposons. Many lncRNAs have unknown function and their number (≈ 20,000+) is debated."
+   "expert": "Argonaute proteins load guide RNAs into RISC and cleave or repress targets. piRNAs defend germ cells against transposons. Many lncRNAs have unknown function and their number (tens of thousands in current catalogues) is debated."
   },
   "facts": [
    [
@@ -2040,7 +2040,7 @@
   "layers": {
    "basics": "Cystic fibrosis, sickle-cell disease and Huntington's disease are caused by changes in single genes. Mitochondrial DNA is inherited almost entirely from the mother.",
    "deeper": "Autosomal recessive diseases need two mutant copies; dominant ones need one. Mitochondrial diseases show maternal inheritance and heteroplasmy.",
-   "expert": "CFTR ΔF508 is the most common cystic fibrosis allele; Huntington's disease is a CAG repeat expansion in HTT. OMIM catalogues thousands of single-gene phenotypes, and the count keeps growing."
+   "expert": "CFTR ΔF508 is the most common cystic fibrosis allele; Huntington's disease is a CAG repeat expansion in HTT. OMIM listed over 6,000 phenotypes with a known molecular basis by 2018, and the count keeps growing."
   },
   "facts": [
    [
@@ -2049,7 +2049,7 @@
    ],
    [
     "Known Mendelian phenotypes with a known molecular basis",
-    "thousands (count grows; see OMIM statistics)"
+    "over 6,000 in 2018 (OMIM; the count grows)"
    ]
   ],
   "certainty": "C1",
@@ -2089,7 +2089,7 @@
   "layers": {
    "basics": "Height, weight and yield vary continuously because many genes and the environment contribute.",
    "deeper": "Heritability is the fraction of variation in a population due to genetic differences; it is not the same as genetic determination and applies to a population, not an individual.",
-   "expert": "Broad-sense H² = VG/VP; narrow-sense h² = VA/VP predicts response to selection (breeder's equation R = h²S). R is the response to selection and S the selection differential. Human height has a narrow-sense heritability of ≈ 0.8 in twin and family studies. A 2022 GWAS of 5.4 million people found ≈ 12,000 common variants that together explain ≈ 40% of height variation in people of European ancestry (only about 10–20% in other ancestries), roughly half the heritability. The rest is thought to lie in rarer variants and effects not yet captured."
+   "expert": "Broad-sense H² = VG/VP; narrow-sense h² = VA/VP predicts response to selection (breeder's equation R = h²S). R is the response to selection and S the selection differential. Human height has a narrow-sense heritability of ≈ 0.8 in twin and family studies. A 2022 GWAS of 5.4 million people found ≈ 12,000 common variants that together explain ≈ 40% of height variation in people of European ancestry (only about 10–20% in other ancestries), which is nearly all of the variation that common variants can account for. The remaining gap to the twin and family estimate is thought to lie partly in rarer variants: whole-genome sequencing of 25,465 unrelated Europeans gave a height heritability of ≈ 0.68."
   },
   "facts": [
    [

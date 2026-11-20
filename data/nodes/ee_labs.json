@@ -33,7 +33,7 @@
     "about 10 MΩ in parallel with about 12 pF"
    ]
   ],
-  "formula": "t_r ≈ 0.35/BW (t_r = 10–90% rise time, BW = −3 dB bandwidth; 0.35 holds for a single-pole, roughly Gaussian response, and the constant is about 0.4–0.45 for sharper roll-off)",
+  "formula": "t_r ≈ 0.35/BW (t_r = 10–90% rise time, BW = −3 dB bandwidth; 0.35 holds for a single-pole, roughly Gaussian response, and the constant differs for scopes with a sharper roll-off, so the instrument's own specification should be used)",
   "certainty": "C1",
   "refs": [],
   "lab": {
@@ -266,7 +266,7 @@
   "layers": {
    "basics": "A solderless breadboard connects parts through spring contacts in rows; wires link them.",
    "deeper": "Solderless breadboards suit low-frequency prototypes. Their stray capacitance, inductance and contact resistance generally limit them to signals below about 10 MHz, depending on the circuit.",
-   "expert": "Adjacent contact strips have a stray capacitance of about 2 pF, and more over long parallel runs. Contact resistance is relatively high and not very reproducible, which can matter even in DC or very low-frequency circuits. On some boards the power rails are split in the middle, so a jumper may be needed to make a rail continuous. Keeping ground connections short and consistent helps."
+   "expert": "Adjacent contact columns have a stray capacitance of about 2 pF. Contact resistance is relatively high and not very reproducible, which can matter even in DC or very low-frequency circuits. On some boards the power rails are split in the middle, so a jumper may be needed to make a rail continuous. Keeping ground connections short and consistent helps."
   },
   "facts": [],
   "certainty": "C1",
@@ -298,7 +298,7 @@
   "layers": {
    "basics": "A hot iron melts solder that wets the pad and lead, forming a metal bond.",
    "deeper": "Heat both pad and lead, then feed solder to the joint. Flux is a chemical that cleans oxide off the metal so the solder can wet it. A good joint has solder flowed smoothly into a concave fillet over pad and lead. Leaded solder looks shiny, while good lead-free joints are often duller. Wear eye protection and ventilate.",
-   "expert": "Eutectic Sn63Pb37 melts at 183 °C. Lead-free SAC305 (96.5% tin, 3% silver, 0.5% copper) starts to melt at about 217 °C and is fully liquid by about 220 °C, with datasheets differing by a degree or two. Iron tip temperatures are therefore set well above these, typically 300–350 °C. Other topics: reflow profiles, tombstoning, cold joints, ESD-safe handling."
+   "expert": "Eutectic Sn63Pb37 melts at 183 °C. Lead-free SAC305 (96.5% tin, 3% silver, 0.5% copper) starts to melt at about 217 °C and is fully liquid by about 220 °C, with datasheets differing by a degree or two. Iron tip temperatures are therefore set well above these; soldering irons are made to run from about 200 to 480 °C, and lead-free work needs a hotter setting than leaded because of its higher melting point. Other topics: reflow profiles, tombstoning, cold joints, ESD-safe handling."
   },
   "facts": [
    [
