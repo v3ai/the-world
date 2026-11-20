@@ -1111,6 +1111,9 @@ function pickFrame(f, forZoom) { // best candidate inside one frame: highest pri
   let fb = null;
   if (f.chooseHit) fb = f.chooseHit(cands, forZoom); // a frame may apply its own rule (the body: nearest part you can actually see)
   else { let bp = -Infinity; for (const c of cands) if (c.pri > bp) { fb = c; bp = c.pri; } }
+  /* a hit on what a cut-open view has cut away is no hit: nothing is drawn there (the dog's "Inside the eye" cuts the near eyeball away whole, and the
+     frame's own rule, finding nothing left on the ray, fell back to it; clicks and the reframing of the cut view then went to an eyeball nobody could see) */
+  if (fb && f.coreClip && f.coreClip(fb.hit.point)) fb = null;
   if (fb) fb.meters = fb.hit.distance * f.unit;
   return fb;
 }
@@ -1310,19 +1313,22 @@ function frameSelected(h) {
 /* A cut-open view shows a part of the thing only (the dog's "Inside the eye" is one eyeball, the rest of the dog is gone), and where that is cannot be known
    from the part that was clicked: its centre may now be empty air, and the next double click in the middle of the view went into the lawn behind. So once the
    view has changed (the parts fade over about half a second of the app's clock) and the flight to the part has ended, the camera frames what of the frame can
-   now be seen: a 24 by 24 grid of picks over the free area finds it, the point on it nearest the middle of what shows becomes the target,
+   now be seen: a 16 by 16 grid of picks over the free area finds it, the point on it nearest the middle of what shows becomes the target,
    and the distance is set so that it fills about two thirds of the view. Skipped if the visitor has clicked, scrolled or gone elsewhere meanwhile. */
-let _fsTok = 0, _fsPend = false;   // _fsPend: a reframing is still to come (the tests wait for it)
+let _fsTok = 0, _fsPend = false, _fsWhy = '';   // _fsPend: a reframing is still to come (the tests wait for it); _fsWhy: what the last one did
 function frameShownSoon(f) {
-  const tok = ++_fsTok, c0 = clock, t0 = performance.now(); _fsPend = true;
+  const tok = ++_fsTok, c0 = clock, t0 = performance.now(), fly0 = fly; _fsPend = true; _fsWhy = 'waiting';
   const go = () => {
     if (tok !== _fsTok) return;   // a later click has taken over (and has cleared or re-set _fsPend)
-    if ((clock - c0 < .7 || (fly && fly.frame === f)) && performance.now() - t0 < 20000) { setTimeout(go, 150); return; }   // the parts fade on the app's clock, which runs slow when frames are slow: wait for that, not for the wall clock; and for the flight to the part to end
+    /* the parts fade on the app's clock, which runs slow when frames are slow: wait for that, not for the wall clock; and for the flight to the part to end,
+       however long it takes on a slow machine (a flight the visitor replaced is another flight: then this is skipped below) */
+    const wall = performance.now() - t0;
+    if ((clock - c0 < .7 && wall < 20000) || (fly && fly === fly0 && wall < 120000)) { setTimeout(go, 150); return; }
     _fsPend = false;
-    if (pointers.size || Math.abs(zoom.pending) > 1e-3 || fly || !f.built || !f.C || !chainOf(cam.A).concat(drawn).includes(f)) return;   // the visitor has clicked, scrolled or gone elsewhere meanwhile
+    if (pointers.size || Math.abs(zoom.pending) > 1e-3 || fly || !f.built || !f.C || !chainOf(cam.A).concat(drawn).includes(f)) { _fsWhy = 'skipped'; return; }   // the visitor has clicked, scrolled or gone elsewhere meanwhile
     /* what of the frame can be seen now: a grid of picks over the free area (a pick knows what a cut has removed; a bounding box does not: "Inside the eye"
        keeps both eyeballs in its parts and cuts one of them away) */
-    const A = freeArea(), N = 24, H2 = []; let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9, sx = 0, sy = 0;
+    const A = freeArea(), N = 16, H2 = []; let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9, sx = 0, sy = 0;
     for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) {
       const x = A.l + (i + .5) / N * A.w, y = A.t + (j + .5) / N * A.h, h = pickAt(x, y);
       if (h && h.frame === f) { H2.push([x, y, h]); sx += x; sy += y; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
@@ -1330,14 +1336,14 @@ function frameShownSoon(f) {
     if (H2.length) {
       const cx = sx / H2.length, cy = sy / H2.length, cell = Math.max(A.w, A.h) / N, ext = Math.max(x1 - x0, y1 - y0) + cell, fill = ext / Math.min(A.w, A.h), vc = viewCentre();
       let best = H2[0], bd = Infinity; for (const q of H2) { const d = Math.hypot(q[0] - cx, q[1] - cy) + (q[2].obj.userData.hotspot ? 1e4 : 0); if (d < bd) { bd = d; best = q; } }   // a point that is on the thing (on a part rather than on a marker), nearest the middle of what shows
-      if (fill >= .95 || (fill > .45 && Math.hypot(best[0] - vc.x, best[1] - vc.y) < Math.min(A.w, A.h) * .12)) return;   // it covers the view, or fills it with its middle in the middle
+      if (fill >= .95 || (fill > .45 && Math.hypot(best[0] - vc.x, best[1] - vc.y) < Math.min(A.w, A.h) * .12)) { _fsWhy = 'framed already'; return; }   // it covers the view, or fills it with its middle in the middle
       const D = Math.max(cam.D * clamp(fill / .7, .05, 1), (f.floorD || 0) * 2, (f.spawnD || 0) * 1.3, MIN_D * 10);   // closer, never further out: this is a look inside
-      flyKeep(f, best[2].pointLocal.clone(), D); return;
+      flyKeep(f, best[2].pointLocal.clone(), D); _fsWhy = 'reframed'; return;
     }
     // nothing of it in view: the bound of its parts that are drawn solid
     _pkBox.makeEmpty(); let n = 0;
     for (const p of f.pickables) { const u = p.userData; if (u.shown === undefined || u.shown < .35 || u.hotspot || !visibleChain(p)) continue; if (pkExpand(p, _pkBox)) n++; }
-    if (!n || _pkBox.isEmpty()) return;
+    if (!n || _pkBox.isEmpty()) { _fsWhy = 'nothing shown'; return; }
     const c = _pkBox.getCenter(new V3()).add(f.C), r = _pkBox.min.distanceTo(_pkBox.max) / 2 * .62;   // the box's corners reach further than the content does
     flyKeep(f, c, Math.max(fitD(f, r), (f.floorD || 0) * 2, (f.spawnD || 0) * 1.3, MIN_D * 10));
   };
