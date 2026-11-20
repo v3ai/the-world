@@ -723,7 +723,8 @@ function thSpawn(F, T0, hint) {
   if (!rec) return null;
   /* The scene of one part is larger than a thin part (a tissue scene's frame is 3 mm, a coating of the cell 0.07 mm). Once it has been entered and left, a zoom
      that is aimed at another part of the thing must not fall into it again: it is entered again only with the pointer on the part it was made for. */
-  const own = f => { if (f) f.enterIf = aim => !f.entered || aim.frame !== F || aim.obj === rec.g; return f; };
+  const forObj = hint && hint.obj;   // what the pointer was on when the scene was made (a peeled layer in front of the part, or a marker, is not the part itself)
+  const own = f => { if (f && forObj) f.enterIf = aim => !f.entered || aim.frame !== F || aim.obj === rec.g || aim.obj === forObj; return f; };
   if (rec.pd.deeper) return own(thDeepFrame(rec.pd.deeper, T0, undefined, F.unit));
   return own(typeof DESCENT !== 'undefined' ? DESCENT.spawnFor(F, thQuery(rec), T0) : null);
 }
@@ -1060,7 +1061,7 @@ TH_HOSTS.orbit = (pl, def, R) => {
   const host = FR.earth; if (!host || !pl.period_min) return null;
   const r = (6371 + (pl.alt_km || 0)) * 1e3 / host.unit, T = pl.period_min * 60000, inc = (pl.incl_deg || 0) * Math.PI / 180, ph = (pl.phase_deg || 0) * Math.PI / 180, ax = new V3(1, 0, 0);
   const at = out => { const a = (simTime / T) % 1 * Math.PI * 2 + ph; return out.set(Math.cos(a) * r, 0, Math.sin(a) * r).applyAxisAngle(ax, inc); };
-  return { host, pos: at(new V3()), up: null, env: 'sun', merge: false, ground: false, coMax: def.draw_m || R * 4000, r1: Math.max(R * 40, 50), place: f => { at(f.pos); }, note: 'Its place on the orbit is illustrative: the orbit has the right height, tilt and period, but not the real position for this moment.' };
+  return { host, pos: at(new V3()), up: null, env: 'sun', merge: false, ground: false, coMax: def.draw_m || R * 4000, r1: Math.max(R * 40, 50), place: f => { at(f.pos); if (!fly && camHold === f && cam.A === host) cam.T.copy(f.pos); /* it moves several kilometres between two frames: a flight that has just ended at it is held on it until the camera is inside its frame, which then carries the camera along */ }, note: 'Its place on the orbit is illustrative: the orbit has the right height, tilt and period, but not the real position for this moment.' };
 };
 /* Nowhere: a thing with no home in the world model yet stands alone on a neutral ground with a scale bar (FT.thstage). Reached by search or a link only. */
 TH_HOSTS.floating = (pl, def, R) => {
