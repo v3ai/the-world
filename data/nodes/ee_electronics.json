@@ -22,7 +22,7 @@
   "layers": {
    "basics": "In a crystal, allowed electron energies merge into bands separated by gaps. Silicon’s gap is 1.12 eV, small enough to control electrically.",
    "deeper": "A completely full valence band cannot carry net current; electrons lifted to the conduction band move freely and leave mobile holes behind.",
-   "expert": "E_g(Si)=1.12 eV, Ge 0.66, GaAs 1.42 (direct), SiC ≈3.0–3.3 depending on polytype (4H ≈3.2, 6H ≈3.05), GaN 3.4; intrinsic concentration nᵢ≈10¹⁰ cm⁻³ for Si at 300 K, varying roughly as T^{3/2}e^{−E_g/2kT} (E_g itself shrinks as T rises)."
+   "expert": "E_g(Si)≈1.12 eV at 300 K (one table lists 1.14 eV at 302 K), Ge ≈0.66–0.67, GaAs ≈1.42–1.43 (direct), SiC ≈3.0–3.3 depending on polytype (4H ≈3.2, 6H ≈3.05), GaN 3.4; intrinsic concentration nᵢ≈10¹⁰ cm⁻³ for Si at 300 K, varying roughly as T^{3/2}e^{−E_g/2kT} (E_g itself shrinks as T rises)."
   },
   "facts": [],
   "formula": "nᵢ ∝ T^{3/2} e^{−E_g/2kT}",
@@ -64,7 +64,7 @@
   "summary": "Adding impurities to set carrier type.",
   "layers": {
    "basics": "Adding a few phosphorus atoms gives free electrons (n-type); boron gives holes (p-type). Doping can change the conductivity of silicon by many orders of magnitude.",
-   "deeper": "Dopants of ~10¹⁵–10²⁰ cm⁻³ dominate over intrinsic carriers; in equilibrium, for non-degenerate material, the mass-action law np=nᵢ² ties electrons and holes.",
+   "deeper": "Dopants of ~10¹³–10¹⁸ cm⁻³ in typical silicon (heavier in degenerate regions) dominate over intrinsic carriers; in equilibrium, for non-degenerate material, the mass-action law np=nᵢ² ties electrons and holes.",
    "expert": "Donor/acceptor levels sit ~45 meV from band edges for P/B in Si, essentially fully ionised at room temperature at moderate doping; at very heavy (degenerate) doping ionisation is incomplete and np=nᵢ² no longer holds; compensation also matters."
   },
   "facts": [],
@@ -384,7 +384,7 @@
   "summary": "A transistor where a small base current goes with a much larger collector current.",
   "layers": {
    "basics": "A bipolar transistor has three layers (NPN or PNP). A small base current controls a much larger collector current.",
-   "deeper": "Regions: cutoff (off), active (amplifier), saturation (switch on); β=I_C/I_B is typically about 50–300 for small-signal parts and varies with current and temperature. Active region: base–emitter forward-biased, base–collector reverse-biased.",
+   "deeper": "Regions: cutoff (off), active (amplifier), saturation (switch on); β=I_C/I_B is typically above 50 for small-signal parts (often 100 or more) and spreads widely between devices and varies with current and temperature. Active region: base–emitter forward-biased, base–collector reverse-biased.",
    "expert": "I_C=I_s e^{V_BE/V_T}(1+V_CE/V_A); Ebers–Moll model; transconductance g_m=I_C/V_T."
   },
   "facts": [],
@@ -1066,7 +1066,7 @@
   "layers": {
    "basics": "With negative feedback, an op-amp adjusts its output so its two inputs are at the same voltage and draw no current.",
    "deeper": "Infinite gain, infinite input resistance, zero output resistance: analysis becomes simple algebra.",
-   "expert": "Virtual short and zero input current; A_OL≈10⁵–10⁶ gives closed-loop gain 1/β."
+   "expert": "Virtual short and zero input current; A_OL of 10⁵ or more gives closed-loop gain 1/β."
   },
   "facts": [],
   "formula": "V₊ = V₋;  i₊ = i₋ = 0",
