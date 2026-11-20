@@ -544,15 +544,18 @@ FT.solarsystem = {
         const b = F.bodies[nm]; b.grp.position.copy(helioAt(nm, simTime));
         b.mesh.rotation.y = (simTime / 3600000 / (b.d.rotation_period_h || 24)) % 1 * TAU; // rotation follows the simulated clock: it stops when time is paused
         const dd = Math.max(PX.copy(b.grp.position).distanceTo(CP), 1e-9); b.hs.scale.setScalar(Math.max(b.rAU * 1.5, dd * PXK * 12));
-        if (!b.L.hooked) { b.L.hooked = 1; b.L.minSizeFn = () => { if (FR.sun && FR.sun.alpha > .3) return false; const v = _w.copy(b.grp.position).sub(CP), dist = v.length(); v.normalize(); const behind = dist > SD0 && v.angleTo(SUND) < SUNHALF * 1.15; return !behind && b.grp.position.length() / dist / PXK > 22; }; }
+        if (!b.L.hooked) { b.L.hooked = 1; b.L.minSizeFn = () => { if (sunShown()) return false; const v = _w.copy(b.grp.position).sub(CP), dist = v.length(); v.normalize(); const behind = dist > SD0 && v.angleTo(SUND) < SUNHALF * 1.15; return !behind && b.grp.position.length() / dist / PXK > 22; }; }
       }
-      if (!F._sunLbl) { F._sunLbl = 1; F.labels.forEach(L => { if (L.el.textContent === 'Sun') L.minSizeFn = () => !(FR.sun && FR.sun.alpha > .3); else if (/^Heliopause/.test(L.el.textContent)) L.minSizeFn = () => !(FR.sun && FR.sun.alpha > .3) && cam.D < 6e13; }); }
+      if (!F._sunLbl) { F._sunLbl = 1; F.labels.forEach(L => { if (L.el.textContent === 'Sun') L.minSizeFn = () => !(sunShown()); else if (/^Heliopause/.test(L.el.textContent)) L.minSizeFn = () => !(sunShown()) && cam.D < 6e13; }); }
       oortRings.forEach(l => { l.visible = cam.D > 2e13; }); helH.visible = cd0 > 125; // the heliopause can be picked from outside it, never from the inner solar system
       const sc = avg => Math.min(40, Math.max(1, 1.6 * (cam.D / F.unit) / (300 * avg))); belt.material.uniforms.uScale.value = PIXR_BASE * sc(.007); kb.material.uniforms.uScale.value = PIXR_BASE * sc(.075);
-      vgs.forEach(o => { voyagerAt(o.V, simTime, o.g.position); const dd = Math.max(o.g.position.distanceTo(CP), 1e-9); o.hs.scale.setScalar(dd * PXK * 12); if (performance.now() - o.t > 400) { o.t = performance.now(); o.L.el.textContent = `${o.V.name} (${Math.round(o.g.position.length())} AU from the Sun)`; } if (!o.L.hooked) { o.L.hooked = 1; o.L.minSizeFn = () => !(FR.sun && FR.sun.alpha > .3) && o.g.position.length() / Math.max(o.g.position.distanceTo(CP), 1e-9) / PXK > 14; } });
+      vgs.forEach(o => { voyagerAt(o.V, simTime, o.g.position); const dd = Math.max(o.g.position.distanceTo(CP), 1e-9); o.hs.scale.setScalar(dd * PXK * 12); if (performance.now() - o.t > 400) { o.t = performance.now(); o.L.el.textContent = `${o.V.name} (${Math.round(o.g.position.length())} AU from the Sun)`; } if (!o.L.hooked) { o.L.hooked = 1; o.L.minSizeFn = () => !(sunShown()) && o.g.position.length() / Math.max(o.g.position.distanceTo(CP), 1e-9) / PXK > 14; } });
     };
   }
 };
+/* is the Sun's own frame on screen? (its alpha is worked out only while it is on the camera's chain: after a visit to the Sun it kept its last value, and every
+   planet's and the Sun's name stayed hidden in the solar system for good) */
+function sunShown() { return !!(FR.sun && active.includes(FR.sun) && FR.sun.alpha > .3); }
 /* ---------- generic planet (unit 1000 km) ---------- */
 const MOON_TEXT = {
   Phobos: 'The larger and closer of Mars\'s two small moons, a lumpy body about 27 by 22 by 18 km. It circles Mars in under 8 hours and is slowly spiralling inward.',
