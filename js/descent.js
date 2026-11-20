@@ -107,7 +107,7 @@ const DESCENT = (() => {
     const what = q && q.what;
     switch (sc.type) {
       case 'tissue2': return tissue2Frame(sc.id, T);
-      case 'tissue': { const f = tissueFrame(sc.node || TISSUE_NODE[sc.kind] || sc.kind, T, q && q.id); f.opts.kind = sc.kind; if (sc.variant) f.opts.variant = sc.variant; return f;   // variant: the same scene with another assignment table (assign/tissue.json sub) }
+      case 'tissue': { const f = tissueFrame(sc.node || TISSUE_NODE[sc.kind] || sc.kind, T, q && q.id); f.opts.kind = sc.kind; if (sc.variant) f.opts.variant = sc.variant; return f; }   // variant: the same scene with another assignment table (assign/tissue.json sub)
       case 'cell': {
         const fungal = sc.cell === 'fungal', type = fungal ? 'animal' : sc.cell, base = { animal: 'Animal cell', plant: 'Plant cell', bacterium: 'Bacterium' }[type] || 'Cell';
         const f = new Frame({ type: 'cell', name: base, unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T.clone(), opts: { type, cname: fill(sc.cname, what) || (R.standIn && what ? `${cap(what)}: drawn as a generic ${type === 'bacterium' ? 'bacterium' : type + ' cell'}` : undefined), blurb: fill(sc.blurb, what) || undefined, node: q && q.node || undefined, stands: what || undefined } });
