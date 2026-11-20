@@ -79,7 +79,7 @@ async function buildWorld() {
     LM('Your skin', skin, null, 1.5e-3),
     ...devLM, bodyLM('cerebrum_r', 'Your brain', .5, 'brain'), bodyLM('heart', 'Your heart', .4, 'heart'),
     LM('You', park, new V3(0, 1, 0), 6),
-    LM('Greenwich Park', park, new V3(0, 0, 0), 700),
+    LM('Greenwich Park', park, new V3(0, 0, 0), 450),   // near enough that the oaks (drawn out to 700 m) are all there, far enough to see the park whole
     LM('London', region, null, 8e4),
     LM('Earth', FR.earth, null, 3e7),
     LM('Earth & Moon', FR.earth, null, 1.4e9),

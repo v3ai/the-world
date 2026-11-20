@@ -92,6 +92,7 @@ function bloomTarget() {
   if (!bloom || PERF.flags.bloom === '0') return 0;
   const f0 = drawn[0];
   if (f0 && f0.env && f0.env.opaque && f0.alpha > .995 && (f0.daylight || (f0.illo && cam.D < 6))) return 0;
+  if (cam.A && cam.A.daylight && cam.A.alpha > .995) return 0;   // a daylight scene seen from above it (the park from 450 m, before its sky closes over the view): its clouds and lawn are not lamps
   return drawn.some(f => f.illo && f.alpha > .3 && cam.D < 6) ? 0 : .55;
 }
 function bloomRender() {
@@ -627,6 +628,9 @@ const PIVOT_MIN_MS = 150, PIVOT_MAX_MS = 400;
 const MIN_D = 1e-20, MAX_D = 3e27; // 1e-20 m: below every length that has been probed; nothing is known to have structure there
 function pivotAt(x, y) {
   const h = pickAt(x, y, true);
+  // a marker that floats above the place it stands for (the park's dot over the globe) says where a zoom aimed at it ends: userData.zoomPoint(h), in its frame's coordinates
+  const zp = h && h.obj.userData.zoomPoint ? h.obj.userData.zoomPoint(h) : null;
+  if (zp) { lastZoomHit = { frame: h.frame, obj: h.obj, point: zp.clone(), normal: null, id: h.id, hit: h.hit }; return convertP(zp.clone(), h.frame, cam.A); }
   if (h && !h.obj.userData.noZoom && h.meters < cam.D * 40 && (!h.obj.isSprite || h.frame === cam.A)) {
     const p = h.pointLocal.clone(); convertP(p, h.frame, cam.A);
     lastZoomHit = { frame: h.frame, obj: h.obj, point: h.pointLocal.clone(), normal: h.normalLocal, id: h.id, hit: h.hit };
@@ -648,7 +652,13 @@ function zoomBy(lnDelta, x, y) {
     const now = performance.now(), age = now - zoom.pt, pv = zoom.pivot;
     const moved = Math.abs(x - zoom.px) > 1.5 || Math.abs(y - zoom.py) > 1.5 || zoom.gen !== viewGen;
     if (!pv || !anchored.includes(pv) || age > PIVOT_MAX_MS || (moved && age >= PIVOT_MIN_MS)) {
-      const p = pivotAt(x, y); zoom.pivot = zoom.pivot || { p }; zoom.pivot.p.copy(p); if (!anchored.includes(zoom.pivot)) anchored.push(zoom.pivot);
+      /* The pointer has not moved and the surface the zoom was closing on is no longer under it (a tree's far shape gave way to its leaves and the pointer is
+         now on a gap between them): the zoom keeps the point it had. The place where the surface was is still where the visitor is going; a zoom that was on
+         a thing must not turn into a zoom into the air behind it. */
+      const held = pv && anchored.includes(pv) && lastZoomHit && Math.abs(x - zoom.px) <= 1.5 && Math.abs(y - zoom.py) <= 1.5 ? lastZoomHit : null;
+      const p = pivotAt(x, y);
+      if (held && !lastZoomHit) lastZoomHit = held;
+      else { zoom.pivot = zoom.pivot || { p }; zoom.pivot.p.copy(p); if (!anchored.includes(zoom.pivot)) anchored.push(zoom.pivot); }
       zoom.pt = now; zoom.px = x; zoom.py = y; zoom.gen = viewGen;
     }
   }
@@ -670,9 +680,13 @@ function applyZoom(dt) {
     const P = zoom.pivot.p;
     cam.T.sub(P).multiplyScalar(lam).add(P);
   }
-  // some frames gently pull the zoom toward one key point (the park in its region, the Galactic Centre)
-  if (lam < 1 && A.attract && cam.D < A.attractD && cam.T.distanceTo(A.attract) < A.attractR) { cam.T.sub(A.attract).multiplyScalar(lam).add(A.attract); if (zoom.pivot) zoom.pivot.p.copy(A.attract); }
+  // some frames gently pull the zoom toward one key point (the park in its region, the middle of the park while it is still seen from high above, the Galactic Centre); attractMin: only above this distance
+  if (lam < 1 && A.attract && cam.D < A.attractD && cam.D > (A.attractMin || 0) && cam.T.distanceTo(A.attract) < A.attractR) { cam.T.sub(A.attract).multiplyScalar(lam).add(A.attract); if (zoom.pivot) zoom.pivot.p.copy(A.attract); }
   if (a) cam.T.sub(a).multiplyScalar(zoom.pivot ? lam : lam * lam).add(a);   // and the target closes on it as the square of the zoom
+  /* A frame that is ground (a map tile, a landscape: `landOn`, the ground at y = 0) is never left hanging in the air: with no surface under the pointer (the
+     pointer on the sky, or on the haze at the globe's edge when the tile was entered) the target sinks to the ground in step with the zoom, so the descent ends
+     on the ground below the place pointed at and not at a point of air that then opens as soil or sea water. */
+  if (lam < 1 && A.landOn && !zoomAim() && cam.T.y > 0) { cam.T.y *= lam; if (zoom.pivot) zoom.pivot.p.y *= lam; }
   cam.D = nd;
 }
 /* A frame's floor (`floorD`, metres) is where its own picture ends: the camera cannot sink below it by scrolling. It holds only where nothing lies below:

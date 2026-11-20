@@ -657,7 +657,7 @@ FT.earth = {
     F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.0157, 96, 64), fresnelMat(0x6ab8ff, 3.2, 1.3))); // the glow is drawn about 100 km thick (the conventional edge of space)
     F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.03, 96, 64), haloMat(0x4aa0ff, 2.4)));
     const atm = hitSphere(R * 1.03, 'atmosphere', .5); atm.userData.noZoom = true; F.add(atm); F.pickables.push(atm); const eLbl = F.label(atm, 'Earth', { offset: new V3(0, R * 1.2, 0) }); eLbl.minSizeFn = () => cam.D > 3e8;
-    const pk = markerSprite(0xffd166, 11); pk.position.copy(latLon3(PARK.lat, PARK.lon, R * 1.001)); spin.add(pk); pk.userData = Object.assign(pk.userData, { id: 'parkMarker', priority: 3, zoomTo: () => { flyTo(FR.park, new V3(0, 0, 0), 700); } }); F.pickables.push(pk); const pkL = F.label(pk, 'Greenwich Park', { cls: 'you', always: true }); pkL.minSizeFn = () => cam.D < 1.5e8;
+    const pk = markerSprite(0xffd166, 11); pk.position.copy(latLon3(PARK.lat, PARK.lon, R * 1.001)); spin.add(pk); pk.userData = Object.assign(pk.userData, { id: 'parkMarker', priority: 3, zoomTo: () => { flyTo(FR.park, new V3(0, 0, 0), 450); }, zoomPoint: () => { if (FR.region.place) FR.region.place(); return FR.region.pos.clone(); } }); /* the dot floats 6 km above the ground: a scroll aimed at it ends on the park itself */ F.pickables.push(pk); const pkL = F.label(pk, 'Greenwich Park', { cls: 'you', always: true }); pkL.minSizeFn = () => cam.D < 1.5e8;
     const moon = new THREE.Mesh(new THREE.SphereGeometry(1.7374, 96, 64), new THREE.MeshStandardMaterial({ map: tex('moon.jpg'), color: 0xd8d8d8, roughness: 1 })); F.add(moon);
     moon.userData = { id: 'moon', priority: 2, madeOf: 'regolith', sim: ['moon'] }; F.pickables.push(moon); F.label(moon, 'Moon', { offset: new V3(0, 2.6, 0) }); const mkM = markerSprite(0xffffff, 6); moon.add(mkM); const mh = hitSphere(1, 'moon', 3); mh.userData.zoomTo = () => { flyTo(F, moon.position.clone(), 6e6); }; moon.add(mh); // a pick target a few pixels wide, so the Moon dot can be hit
     moon.userData.zoomTo = mh.userData.zoomTo;
@@ -710,7 +710,7 @@ function biomeAtUV(u, v) {
 function biomeAtLatLon(lat, lon) { return biomeAtUV((lon + 180) / 360, (lat + 90) / 180); }
 function regionFrame(earthF, lat, lon, biome, isPark) {
   const f = new Frame({ type: 'region', name: isPark ? 'Greenwich, London' : `Earth's surface (${lat.toFixed(1)}°, ${lon.toFixed(1)}°)`, unit: 1e3, radius: 40, r0: 0, r1: 1.5e6, up: new V3(0, 1, 0), maxPolar: Math.PI / 2 - .02, opts: { lat, lon, biome, isPark } });
-  f.faceUp = true;
+  f.faceUp = true; f.landOn = true;
   f.place = () => { const sp = gmst(); const q = new THREE.Quaternion().setFromAxisAngle(new V3(0, 1, 0), sp); f.pos.copy(latLon3(lat, lon, 6.371)).applyQuaternion(q); f.quat.copy(q).multiply(enuQuat(lat, lon)); };
   f.place();
   return f;

@@ -630,7 +630,7 @@ function skyDome(F, kind, R) {
   }));
   F.add(m); return m;
 }
-function landscapeFrame(biome, pos, quat, body) { return new Frame({ type: 'landscape', name: biome === 'cloudtops' ? `${body} cloud tops (no solid surface)` : body ? `${body} surface` : 'Landscape', unit: 1, radius: 4000, r0: 2e-4, r1: 4e4, spawnD: .02, up: new V3(0, 1, 0), maxPolar: Math.PI / 2 - .02, pos: pos.clone(), quat: quat || new THREE.Quaternion(), opts: { biome, body } }); }
+function landscapeFrame(biome, pos, quat, body) { return new Frame({ landOn: true, type: 'landscape', name: biome === 'cloudtops' ? `${body} cloud tops (no solid surface)` : body ? `${body} surface` : 'Landscape', unit: 1, radius: 4000, r0: 2e-4, r1: 4e4, spawnD: .02, up: new V3(0, 1, 0), maxPolar: Math.PI / 2 - .02, pos: pos.clone(), quat: quat || new THREE.Quaternion(), opts: { biome, body } }); }
 FT.landscape = {
   build(F, o) {
     const B = BIOME[o.biome] || BIOME.grass, r = rng(o.biome.length * 31 + 3);
@@ -716,12 +716,16 @@ FT.region = {
     const dome = skyDome(F, 1, 1500); dome.geometry.dispose(); dome.geometry = new THREE.SphereGeometry(1500, 32, 16, 0, TAU, 0, Math.PI / 2 + .09); dome.renderOrder = -1;
     const baseUp = F.update; F.update = () => { baseUp(); const s = sunDirIn(F); dome.material.uniforms.uSun.value.copy(s); dome.material.uniforms.uOpacity.value = (1 - smooth(3e4, 1.2e5, cam.D)) * F.alpha; dome.visible = cam.D < 1.3e5; };
     if (o.isPark) { F.attract = new V3(); F.attractD = 4000; F.attractR = 1.5; } // scrolling toward the park pulls the target onto it: you land in the park, not in generic grass
-    F.spawn = (T) => landscapeFrame(o.isPark ? 'grass' : o.biome, T.clone().setY(0), null, 'Earth');
+    F.spawn = (T) => {
+      // a zoom that is aimed at the park (its pivot is in the park, though the middle of the view is still a little way off) is on its way into the park: no generic grassland is put in its way
+      if (o.isPark) { const pv = zoom.pivot && anchored.includes(zoom.pivot) ? zoom.pivot.p : T; if (Math.hypot(pv.x, pv.z) < .52) return null; }
+      return landscapeFrame(o.isPark ? 'grass' : o.biome, T.clone().setY(0), null, 'Earth');
+    };
     F.spawnD = 2500;
   }
 };
 /* ---------- the park (unit m): v2 park, real sun ---------- */
-v2frame('park', 'life', () => 1, (F, c) => {
+v2frame('park', 'life', () => 1, (F, c, g) => {
   F.env = { opaque: true, bg: 0x000000 }; F.daylight = true; // a daylight scene takes no glow while it fills the view (engine.js bloomTarget)
   F.blurb = 'Greenwich Park, London — you, a dog, trees and a pond, lit by the real Sun for this date and time.';
   const P = c.parts, up0 = F.update;
@@ -738,10 +742,45 @@ v2frame('park', 'life', () => 1, (F, c) => {
     if (!sh.wait && now - sh.t > 100 && (!sh.have || sh.dir.distanceToSquared(P.sun.position) > 1.6e-3 || hv || hv !== sh.hv)) { sh.hv = hv; sh.t = now; sh.dir.copy(P.sun.position); sh.root.copy(F.root.position); SH.needsUpdate = true; sh.wait = true; sh.have = false; }
     else if (sh.have) { sh.d.makeTranslation(sh.root.x - F.root.position.x, sh.root.y - F.root.position.y, sh.root.z - F.root.position.z); SH.matrix.multiplyMatrices(sh.M, sh.d); }
   };
+  /* The park from its edge and from above. The painted lawn is a disc 170 m in radius and the sky a ball 420 m in radius round the middle: scrolling in from the
+     park's ruler stop with the pointer just off the disc found no ground, took the sky ball's underside for the place to go, and ended below the lawn inside the
+     sky's colour (a blank pale-blue view all the way down). So:
+     - the lawn goes on to 520 m as a plain ring that fades out at its rim (the park is about a kilometre across), and beyond that an unseen ring to 3 km still
+       answers a pointer: below the horizon there is ground wherever you point, and a zoom ends on it;
+     - the hills are cut off at the ground (their undersides hung below the disc when seen from outside) and are ground to a click and a zoom;
+     - the sky is where you look, never where a zoom goes (noZoom: with the pointer on the sky the zoom closes on the point of air in front of the camera), and it
+       is centred on the camera, so the camera is inside it wherever it stands in the park;
+     - the Sun's glow belongs to the sky: it is hidden with it when the park is seen from far above. */
+  const gud = () => ({ id: 'ground', priority: 0, node: P.ground.userData.node, extent: h => ({ p: h.pointLocal.clone(), r: 170 }) });
+  for (const h of g.children) if (h.isMesh && h.geometry.type === 'SphereGeometry' && h.position.y === -18 && !h.userData.id) {
+    const R = h.geometry.parameters.radius; h.geometry.dispose(); h.geometry = new THREE.SphereGeometry(R, 24, 8, 0, TAU, 0, Math.acos(Math.min(1, 30 / R)) + .05);   // the cap that stands above the ground (centre 18 m down, flattened to 0.6)
+    // and they are lawn, like the ground they rise from: the same painted blades, laid on from above (a plain green ball was a blank screen to arrive on)
+    const hp = h.geometry.attributes.position, hu = h.geometry.attributes.uv; for (let i = 0; i < hp.count; i++) hu.setXY(i, ((hp.getX(i) + h.position.x) / 170 + 1) / 2, ((hp.getZ(i) + h.position.z) / 170 + 1) / 2);
+    h.material.dispose(); h.material = smat(0xf2ffe6, { map: P.ground.material.map, roughness: 1 });
+    h.userData = gud(); h.material.userData.noHL = true; F.pickables.push(h);
+  }
+  {
+    const rg = new THREE.RingGeometry(170, 520, 96, 7), rp = rg.attributes.position, uv = rg.attributes.uv, col = new Float32Array(rp.count * 3), tone = new THREE.Color();
+    for (let i = 0; i < rp.count; i++) { lawnTone(rp.getX(i), -rp.getY(i), tone); col[i * 3] = tone.r; col[i * 3 + 1] = tone.g; col[i * 3 + 2] = tone.b; uv.setXY(i, (rp.getX(i) / 170 + 1) / 2, (rp.getY(i) / 170 + 1) / 2); }   // the same metre-wide tiles as the disc inside it
+    rg.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    const rm = smat(0xffffff, { map: P.ground.material.map, roughness: 1, vertexColors: true, transparent: true });   // always see-through at its rim
+    rm.onBeforeCompile = sh => { sh.fragmentShader = sh.fragmentShader.replace('#include <dithering_fragment>', '#include <dithering_fragment>\n gl_FragColor.a *= 1. - smoothstep(400., 520., length(vUv - 170.));'); };   // vUv is in metres from the disc's corner (340 tiles across 340 m)
+    rm.customProgramCacheKey = () => 'parkrim';
+    rm.userData.noHL = true; const ring = new THREE.Mesh(rg, rm); ring.rotation.x = -Math.PI / 2; ring.userData = gud(); ring.updateMatrix(); ring.matrixAutoUpdate = false; g.add(ring); F.pickables.push(ring);
+    const far = new THREE.Mesh(new THREE.RingGeometry(520, 3000, 48, 1), hitMat()); far.rotation.x = -Math.PI / 2; far.userData = gud(); far.updateMatrix(); far.matrixAutoUpdate = false; g.add(far); F.pickables.push(far);
+    P.rim = ring; P.farGround = far;
+  }
+  P.sky.userData.noZoom = true; P.sky.renderOrder = -10;
+  // coming down from London the camera enters the park frame half a kilometre from its middle: while the park is still a patch seen from above, the zoom homes in on the middle, where the things are; below 300 m the pointer decides
+  F.attract = new V3(); F.attractD = 3500; F.attractMin = 300; F.attractR = 600;
+  // the lawn is far larger than any view of it: resting the pointer on it, or selecting it, does not light up the whole park (the ring marks the place clicked)
+  P.ground.material.userData.noHL = true; P.ground.userData.extent = h => ({ p: h.pointLocal.clone(), r: 170 });
   F.update = (dt, t) => {
     up0(dt, t);
     const s = sunDirIn(F); c.setSun(s); const day = smooth(-.12, .12, s.y); shadowStep();
     F.env.opaque = cam.D < 300 && day > .2; P.sky.visible = cam.D < 380 && F.alpha > .6;
+    if (F.C) { const cx = F.C.x, cz = F.C.z; P.sky.position.set(cx, 0, cz); P.sunHit.position.x += cx; P.sunHit.position.z += cz; P.sg.position.copy(P.sunHit.position); }
+    P.sunHit.visible = P.sky.visible; if (!P.sky.visible) P.sg.visible = false;
     if (c.scene.fog) { c.scene.fog.near = Math.max(45, cam.D * .6); c.scene.fog.far = Math.max(170, cam.D * 4); }
   };
   F.spawn = (T, hint) => {
