@@ -296,7 +296,7 @@ def main():
         anomaly = subs != mad
         predicted = Z >= 103
         cnote = None
-        if Z >= 103: cnote = ('NIST lists a configuration for Z up to 108, but for Lr to Hs it is a prediction (NIST brackets the ionisation energies of Rf to Hs as interpolated or theoretical, and no spectrum of these neutral atoms has been measured); ' if Z <= 108 else 'Not in NIST: a prediction from calculations (Wikipedia data page citing the CRC Handbook). ') + 'Relativistic effects are large here.'
+        if Z >= 103: cnote = ('NIST lists a configuration for Z up to 108, but for Lr to Hs it is a prediction (NIST brackets the ionisation energies of Rf to Hs as interpolated or theoretical, and no spectrum of these neutral atoms has been measured); ' if Z <= 108 else 'Not in NIST: a prediction from calculations (as given in the CRC Handbook). ') + 'Relativistic effects are large here.'
         if Z in (110, 111): cnote = (cnote or '') + ' Calculations disagree: the CRC Handbook gives ' + ('6d9 7s1' if Z == 110 else '6d10 7s1') + '.'
         # --- Z_eff
         zeffs[sym] = compute_zeff(Z, subs, clem_all.get(Z, {}))

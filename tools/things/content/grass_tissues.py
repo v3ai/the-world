@@ -52,7 +52,7 @@ write({'id': 'grass_leaf_section', 'tag': 'Inside a grass leaf', 'title': 'Insid
 # ---------------------------------------------------------------- a grass stoma
 write({'id': 'grass_stoma_scene', 'tag': 'On a grass leaf surface', 'title': 'A grass stoma (leaf pore), seen from above', 'node': 'grass_stoma',
   'blurb': 'A patch of grass leaf surface about 280 micrometres wide: a pore between two dumbbell-shaped guard cells, with a lens-shaped subsidiary cell on each side. Compare the oak leaf stoma, with its two bean-shaped guard cells and no subsidiary cells. Click a cell.',
-  'note': 'Schematic. The dumbbell guard cells (bulbous ends, narrow middle) and the two flanking subsidiary cells follow published descriptions of the grass type of stoma; the lengths and widths drawn (a pore about 30 µm long) are illustrative, within the 10 to 80 µm that stomata span across species (Wikipedia: Stoma), and not measured on ryegrass. The elongated epidermal cells and the line of stomata are simplified. In a real leaf the guard cells swell and shrink to open and close the pore; nothing moves here.',
+  'note': 'Schematic. The dumbbell guard cells (bulbous ends, narrow middle) and the two flanking subsidiary cells follow published descriptions of the grass type of stoma; the lengths and widths drawn (a pore about 30 µm long) are illustrative, within the 10 to 80 µm that stomata span across species, and not measured on ryegrass. The elongated epidermal cells and the line of stomata are simplified. In a real leaf the guard cells swell and shrink to open and close the pore; nothing moves here.',
   'bg': '#eef3e6', 'center': [0, 0, 0], 'D_um': 150,
   'labels': [
     {'text': 'Pore (stoma)', 'at': [-28, 0, 30], 'pop': 'pore'},

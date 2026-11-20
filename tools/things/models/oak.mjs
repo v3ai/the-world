@@ -273,7 +273,7 @@ export default function build() {
   const thing = {
     id: 'oak', label_first_only: true, title: 'English oak', label: 'English oak', scientific: 'Quercus robur', node: 'oak_english', main_part: 'trunk',
     blurb: 'A mature English oak. Click the trunk, a branch, a leaf or an acorn. Use the layer buttons for the wood, the roots, and the water and sugar flow.',
-    model_note: 'A model built from typical measurements of the species, not a scan of one individual. It has about ' + (Math.round(leaves.count / 100) * 100).toLocaleString('en') + ' leaves, a number set by the model.',
+    model_note: 'A model built from typical measurements of the species, not a scan of one individual. It has about ' + (Math.round(leaves.count / 100) * 100).toLocaleString('en') + ' leaves; that count is illustrative.',
     size_m: { height: M.height, crown_width: M.crownRx * 2, trunk_diameter: M.dbh }, height_m: M.height, radius_m: 12, draw_m: 700,
     seed: 2026,
     systems: [{ id: 'trunk', label: 'Trunk' }, { id: 'branches', label: 'Branches' }, { id: 'twigs', label: 'Twigs' }, { id: 'leaves', label: 'Leaves' }, { id: 'acorns', label: 'Acorns' }, { id: 'roots', label: 'Roots' }, { id: 'soil', label: 'Soil' }, { id: 'wood', label: 'Wood' }, { id: 'flow', label: 'Flow' }, { id: 'crown_far', label: 'Distant crown' }],

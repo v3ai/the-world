@@ -1961,7 +1961,7 @@
   ],
   "logy": true,
   "ylabel": "strength relative to gravity (log scale)",
-  "caption": "The electric repulsion between two protons compared with their gravitational attraction (a ratio independent of distance); my calculation from G, e, ε₀ and the proton mass. Gravity is not part of the Standard Model."
+  "caption": "The electric repulsion between two protons compared with their gravitational attraction (a ratio independent of distance); calculated from G, e, ε₀ and the proton mass. Gravity is not part of the Standard Model."
  },
  "sm_beyond": {
   "type": "table",

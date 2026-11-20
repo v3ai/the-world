@@ -76,7 +76,7 @@ quark('bottom', 'b', 'Bottom quark', 3, '-1/3', '-1/2', mass('Q005M', 'MS-bar sc
 topmass = mass('Q007TP', 'Direct measurements: reconstructed from the decay products of top–antitop pairs (Tevatron and LHC average)')
 quark('top', 't', 'Top quark', 3, '2/3', '+1/2', topmass,
       'This is the one quark mass measured directly from the energies of the particles it decays into. Because the top decays before it can bind into a hadron, it is the only quark we can study "almost bare". The PDG notes that turning this number into a precise theoretical mass (pole or MS-bar) carries a theory uncertainty that is hard to quantify.', None,
-      {'kind': 'width', 'text': 'About 5×10⁻²⁵ s, from the measured decay width of 1.42 GeV (lifetime = ħ / width; my calculation). It decays before it can form a hadron.',
+      {'kind': 'width', 'text': 'About 5×10⁻²⁵ s, from the measured decay width of 1.42 GeV (lifetime = ħ / width; calculated). It decays before it can form a hadron.',
        'width': pdg('Q007W'), 'lifetime_s_calc': life_from_width(pdg('Q007W')['value'])},
       [dec('t → W⁺ + b', ['t'], ['W+', 'b'], br('Q007R6'), 'PDG gives the ratio Γ(Wb)/Γ(Wq) = 0.957 ± 0.034, consistent with 1: essentially every top decays to a W and a bottom quark; no other decay has been seen.')],
       anti_q('t̄', 'Anti-top quark'),
@@ -113,7 +113,7 @@ lepton('muon', 'μ⁻', 'Muon', 2, mass('S004M', 'Measured directly'),
        'Cosmic-ray muons pass through you all the time: roughly one per square centimetre of horizontal surface per minute at sea level (PDG cosmic-ray review, 2000 edition).',
        ['S004M', 'S004T'])
 lepton('tau', 'τ⁻', 'Tau lepton', 3, mass('S035M', 'Measured directly'),
-       'A directly measured rest mass, about 3,477 times the electron\'s (a ratio: my calculation). The heaviest charged lepton, heavy enough to decay into hadrons.',
+       'A directly measured rest mass, about 3,477 times the electron\'s (a ratio). The heaviest charged lepton, heavy enough to decay into hadrons.',
        {'kind': 'unstable', 'text': 'Mean life 2.903×10⁻¹³ s (PDG).', 'ref': pdg('S035T')},
        [dec('τ⁻ → e⁻ + ν̄ₑ + ν_τ', ['tau-'], ['e-', 'nubar_e', 'nu_tau'], br('S035.2')),
         dec('τ⁻ → μ⁻ + ν̄_μ + ν_τ', ['tau-'], ['mu-', 'nubar_mu', 'nu_tau'], br('S035.1')),
@@ -139,7 +139,7 @@ def neutrino(id_, sym, name, gen, partner, disc, everyday, sources, anti_sym):
              discovery=disc, everyday=everyday, sources=sources))
 neutrino('nu_e', 'νₑ', 'Electron neutrino', 1, 'electron',
          'Clyde Cowan and Frederick Reines detected (anti)neutrinos from a nuclear reactor at the Savannah River Plant, South Carolina, in 1956, by the flash from inverse beta decay.',
-         'The Sun\'s fusion makes of order 10³⁸ of them every second (my estimate from its luminosity); roughly 6×10¹⁰ of the most common (pp) kind pass through each square centimetre of Earth per second, and you notice none (PDG, solar-neutrino section of the neutrino-mixing review).', ['S066MAE'], 'ν̄ₑ')
+         'The Sun\'s fusion makes of order 10³⁸ of them every second (estimated from its luminosity); roughly 6×10¹⁰ of the most common (pp) kind pass through each square centimetre of Earth per second, and you notice none (PDG, solar-neutrino section of the neutrino-mixing review).', ['S066MAE'], 'ν̄ₑ')
 neutrino('nu_mu', 'ν_μ', 'Muon neutrino', 2, 'muon',
          'Leon Lederman, Melvin Schwartz and Jack Steinberger at Brookhaven\'s Alternating Gradient Synchrotron in 1962 showed that the neutrino made with a muon is a different kind from the one made with an electron.',
          'Made when cosmic rays hit the upper atmosphere (pions decay to muons and muon neutrinos); studied by the Super-Kamiokande detector.', ['S066MNM'], 'ν̄_μ')
@@ -248,11 +248,11 @@ interactions = [
  dict(id='em', name='Electromagnetic force', carriers=['photon'], couples_to='electric charge', feels=['up', 'down', 'strange', 'charm', 'bottom', 'top', 'electron', 'muon', 'tau', 'w_boson'],
       text='Acts on everything with electric charge; carried by the photon. Holds electrons around nuclei and shapes all of chemistry.'),
  dict(id='weak', name='Weak force', carriers=['w_boson', 'z_boson'], couples_to='weak isospin (the W) and a mix of weak isospin and electric charge (the Z); mass comes from the Higgs field, not from the weak coupling', feels=['up', 'down', 'strange', 'charm', 'bottom', 'top', 'electron', 'muon', 'tau', 'nu_e', 'nu_mu', 'nu_tau', 'w_boson', 'z_boson', 'higgs'],
-      text='Changes one flavour of quark or lepton into another (beta decay) and acts on neutrinos. Carried by the heavy W and Z bosons, which is why it has such a short range, about 2.5×10⁻¹⁸ m (ħc divided by the W mass: 197.327 MeV fm / 80,362 MeV = 2.46×10⁻¹⁸ m; my calculation).'),
+      text='Changes one flavour of quark or lepton into another (beta decay) and acts on neutrinos. Carried by the heavy W and Z bosons, which is why it has such a short range, about 2.5×10⁻¹⁸ m (ħc divided by the W mass: 197.327 MeV fm / 80,362 MeV = 2.46×10⁻¹⁸ m; calculated).'),
  dict(id='higgs', name='Higgs field', carriers=['higgs'], couples_to='mass (the Yukawa couplings)', feels=['up', 'down', 'strange', 'charm', 'bottom', 'top', 'electron', 'muon', 'tau', 'w_boson', 'z_boson', 'higgs'],
       text='Not a force in the usual sense. The Higgs field has a nonzero value everywhere; particles that interact with it get a rest mass. The Higgs boson is a ripple in that field.'),
  dict(id='gravity', name='Gravity', carriers=[], couples_to='energy and momentum', feels=[], in_standard_model=False,
-      text='Not part of the Standard Model. It acts on everything, but no quantum theory of it has been confirmed, and at particle scales it is about 10³⁶ times weaker than electromagnetism (a rough comparison for two protons; my calculation from the constants).'),
+      text='Not part of the Standard Model. It acts on everything, but no quantum theory of it has been confirmed, and at particle scales it is about 10³⁶ times weaker than electromagnetism (a rough comparison for two protons; calculated from the constants).'),
 ]
 # NOTE the 10^36 number is checked in check_particles.py (computed from G, e, m_p).
 
@@ -268,9 +268,9 @@ neutrinos = dict(
 import math
 dm21 = neutrinos['mass_squared']['dm21']['value']; dm32n = neutrinos['mass_squared']['dm32_normal']['value']; dm32i = abs(neutrinos['mass_squared']['dm32_inverted']['value'])
 neutrinos['mass_state_bounds_eV'] = {'heaviest_at_least_normal': math.sqrt(dm32n), 'heaviest_at_least_inverted': math.sqrt(dm32i), 'second_at_least': math.sqrt(dm21), 'each_below_direct': 0.45, 'sum_below_cosmology': 0.064,
-   'text': 'Oscillations show the heaviest of the three mass states is at least about 0.05 eV (square root of the atmospheric Δm²; my arithmetic) and the second at least about 0.009 eV (square root of the solar Δm²); the lightest could be anywhere down to zero. The direct KATRIN bound applies to an effective electron-neutrino mass, below 0.45 eV (90% CL). The cosmological bound on the sum, below 0.064 eV (95% CL), assumes the standard ΛCDM model. A flavour neutrino (νₑ, ν_μ, ν_τ) is a mixture of mass states and has no single mass.'}
+   'text': 'Oscillations show the heaviest of the three mass states is at least about 0.05 eV (square root of the atmospheric Δm²) and the second at least about 0.009 eV (square root of the solar Δm²); the lightest could be anywhere down to zero. The direct KATRIN bound applies to an effective electron-neutrino mass, below 0.45 eV (90% CL). The cosmological bound on the sum, below 0.064 eV (95% CL), assumes the standard ΛCDM model. A flavour neutrino (νₑ, ν_μ, ν_τ) is a mixture of mass states and has no single mass.'}
 neutrinos['minimum_mass_sum_eV_calc'] = {'normal': math.sqrt(dm21) + math.sqrt(dm32n), 'inverted': math.sqrt(dm32i) + math.sqrt(dm32i - dm21),
-   'text': 'The oscillation data alone force the sum of masses to be at least about 0.058 eV if the ordering is normal and about 0.10 eV if inverted (my arithmetic from the PDG Δm² values, taking the lightest neutrino to be massless).'}
+   'text': 'The oscillation data alone force the sum of masses to be at least about 0.058 eV if the ordering is normal and about 0.10 eV if inverted (calculated from the PDG Δm² values, taking the lightest neutrino to be massless).'}
 
 # ---- what the Standard Model leaves out ------------------------------------------------------
 open_questions = [
@@ -295,7 +295,7 @@ compositeness = dict(
   text='PDG 2026 "Searches for Quark and Lepton Compositeness" reports limits on a contact-interaction scale Λ between about 9 and 29.5 TeV for quark models (ATLAS and CMS dijet data) and 24 to 36 TeV for electron- and muon-quark contact interactions. A scale Λ corresponds to a length of ħc/Λ.',
   low_TeV=9.2, high_TeV=36.4, hbar_c_MeV_fm=197.3269804,
   length_m_range=[197.3269804e-15 / 36.4e6, 197.3269804e-15 / 9.2e6],
-  note='ħc/Λ gives about 5×10⁻²¹ m to 2×10⁻²⁰ m (my calculation). These limits are model dependent, so the safe statement is "no structure found down to roughly 10⁻¹⁹ m".')
+  note='ħc/Λ gives about 5×10⁻²¹ m to 2×10⁻²⁰ m (calculated). These limits are model dependent, so the safe statement is "no structure found down to roughly 10⁻¹⁹ m".')
 
 momentum = dict(
   text='Lattice QCD (chiQCD collaboration, 2022, MS-bar scheme at 2 GeV): quarks and antiquarks together carry about 49% of the proton\'s momentum and gluons about 51% (⟨x⟩q = 0.491(20)(23), ⟨x⟩g = 0.509(20)(23)). The split depends on the energy scale at which the proton is probed. Global fits to scattering data at the same scale give a smaller gluon share, about 0.40 to 0.41 (CT18: 0.413(8); JAM19: 0.403(2); as quoted by Fan, Lin and Zeilbeck 2022, arXiv:2208.00980); lattice results sit higher, and the difference is not yet understood.',
@@ -308,7 +308,7 @@ mass_origin = dict(
   ref='Y.-B. Yang et al. (chiQCD), arXiv:1808.08677',
   rest_mass_sum_MeV=2 * pdg('Q002M')['value'] + pdg('Q001M')['value'],
   rest_mass_fraction=(2 * pdg('Q002M')['value'] + pdg('Q001M')['value']) / pdg('S016M')['value'],
-  note='Adding the rest masses of the two up quarks and one down quark (PDG, MS-bar 2 GeV) gives about 9 MeV, roughly 1% of the proton mass of 938.27 MeV (my calculation). That is only the valence quarks: the lattice sigma terms (about 9%, including the strange sea) are the part of the mass that responds to the quark masses. The other terms are energies of the quark-gluon system; how the total is divided depends on scheme and scale.')
+  note='Adding the rest masses of the two up quarks and one down quark (PDG, MS-bar 2 GeV) gives about 9 MeV, roughly 1% of the proton mass of 938.27 MeV (calculated). That is only the valence quarks: the lattice sigma terms (about 9%, including the strange sea) are the part of the mass that responds to the quark masses. The other terms are energies of the quark-gluon system; how the total is divided depends on scheme and scale.')
 
 out = dict(
   meta=dict(title='Standard Model particle data', pdg_edition='2026', pdg_citation=EX['_meta']['citation'], pdg_release=EX['_meta']['release'], licence_of_source=EX['_meta']['licence'],
@@ -320,7 +320,7 @@ out = dict(
      others=[dict(id='muon', text='Cosmic-ray muons: roughly one per square centimetre of horizontal surface per minute at sea level (PDG cosmic-ray review, 2000 edition; this is the figure for muons above 1 GeV/c).'),
              dict(id='nu_e', text='Solar neutrinos: about 6×10¹⁰ per square centimetre per second of the pp kind (PDG neutrino-mixing review, 2026).'),
              dict(id='others', text='Strange, charm, bottom and top quarks, the tau, the W, Z and Higgs bosons: made in accelerators and cosmic-ray collisions, and abundant in the early universe.')]),
-  mass_axis=dict(note='Masses on a logarithmic axis in eV. Neutrinos have no measured mass and the flavour states have no single mass, so they are not placed on the axis. What is known is drawn as a band: the heaviest mass state is at least ≈0.05 eV (oscillations; my calculation from PDG Δm²) and every mass is below 0.45 eV (KATRIN, direct, 90% CL); a line marks the cosmological bound on the sum of all three, 0.064 eV, which holds only in the standard cosmological model.',
+  mass_axis=dict(note='Masses on a logarithmic axis in eV. Neutrinos have no measured mass and the flavour states have no single mass, so they are not placed on the axis. What is known is drawn as a band: the heaviest mass state is at least ≈0.05 eV (oscillations; calculated from PDG Δm²) and every mass is below 0.45 eV (KATRIN, direct, 90% CL); a line marks the cosmological bound on the sum of all three, 0.064 eV, which holds only in the standard cosmological model.',
      top_over_electron=pdg('Q007TP')['value'] * 1e9 / mass('S003M', '')['eV'], electron_over_neutrino_at_least=mass('S003M', '')['eV'] / 0.45),
 )
 dst = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'data', 'particles.json')

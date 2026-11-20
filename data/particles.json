@@ -507,7 +507,7 @@
    },
    "lifetime": {
     "kind": "width",
-    "text": "About 5×10⁻²⁵ s, from the measured decay width of 1.42 GeV (lifetime = ħ / width; my calculation). It decays before it can form a hadron.",
+    "text": "About 5×10⁻²⁵ s, from the measured decay width of 1.42 GeV (lifetime = ħ / width; calculated). It decays before it can form a hadron.",
     "width": {
      "pdgid": "Q007W",
      "edition": 2026,
@@ -751,7 +751,7 @@
     "scheme": "Measured directly",
     "eV": 1776932465.1340902,
     "err_eV": 84914.95391323055,
-    "note": "A directly measured rest mass, about 3,477 times the electron's (a ratio: my calculation). The heaviest charged lepton, heavy enough to decay into hadrons."
+    "note": "A directly measured rest mass, about 3,477 times the electron's (a ratio). The heaviest charged lepton, heavy enough to decay into hadrons."
    },
    "lifetime": {
     "kind": "unstable",
@@ -904,7 +904,7 @@
     "note": "OPEN QUESTION: is the antineutrino a different particle (Dirac neutrino) or the same particle as the neutrino (Majorana)? Not yet known; experiments searching for neutrinoless double-beta decay test this."
    },
    "discovery": "Clyde Cowan and Frederick Reines detected (anti)neutrinos from a nuclear reactor at the Savannah River Plant, South Carolina, in 1956, by the flash from inverse beta decay.",
-   "everyday": "The Sun's fusion makes of order 10³⁸ of them every second (my estimate from its luminosity); roughly 6×10¹⁰ of the most common (pp) kind pass through each square centimetre of Earth per second, and you notice none (PDG, solar-neutrino section of the neutrino-mixing review).",
+   "everyday": "The Sun's fusion makes of order 10³⁸ of them every second (estimated from its luminosity); roughly 6×10¹⁰ of the most common (pp) kind pass through each square centimetre of Earth per second, and you notice none (PDG, solar-neutrino section of the neutrino-mixing review).",
    "sources": [
     "S066MAE"
    ]
@@ -2475,7 +2475,7 @@
     "z_boson",
     "higgs"
    ],
-   "text": "Changes one flavour of quark or lepton into another (beta decay) and acts on neutrinos. Carried by the heavy W and Z bosons, which is why it has such a short range, about 2.5×10⁻¹⁸ m (ħc divided by the W mass: 197.327 MeV fm / 80,362 MeV = 2.46×10⁻¹⁸ m; my calculation)."
+   "text": "Changes one flavour of quark or lepton into another (beta decay) and acts on neutrinos. Carried by the heavy W and Z bosons, which is why it has such a short range, about 2.5×10⁻¹⁸ m (ħc divided by the W mass: 197.327 MeV fm / 80,362 MeV = 2.46×10⁻¹⁸ m; calculated)."
   },
   {
    "id": "higgs",
@@ -2507,7 +2507,7 @@
    "couples_to": "energy and momentum",
    "feels": [],
    "in_standard_model": false,
-   "text": "Not part of the Standard Model. It acts on everything, but no quantum theory of it has been confirmed, and at particle scales it is about 10³⁶ times weaker than electromagnetism (a rough comparison for two protons; my calculation from the constants)."
+   "text": "Not part of the Standard Model. It acts on everything, but no quantum theory of it has been confirmed, and at particle scales it is about 10³⁶ times weaker than electromagnetism (a rough comparison for two protons; calculated from the constants)."
   }
  ],
  "neutrinos": {
@@ -2640,12 +2640,12 @@
    "second_at_least": 0.008715705256251281,
    "each_below_direct": 0.45,
    "sum_below_cosmology": 0.064,
-   "text": "Oscillations show the heaviest of the three mass states is at least about 0.05 eV (square root of the atmospheric Δm²; my arithmetic) and the second at least about 0.009 eV (square root of the solar Δm²); the lightest could be anywhere down to zero. The direct KATRIN bound applies to an effective electron-neutrino mass, below 0.45 eV (90% CL). The cosmological bound on the sum, below 0.064 eV (95% CL), assumes the standard ΛCDM model. A flavour neutrino (νₑ, ν_μ, ν_τ) is a mixture of mass states and has no single mass."
+   "text": "Oscillations show the heaviest of the three mass states is at least about 0.05 eV (square root of the atmospheric Δm²) and the second at least about 0.009 eV (square root of the solar Δm²); the lightest could be anywhere down to zero. The direct KATRIN bound applies to an effective electron-neutrino mass, below 0.45 eV (90% CL). The cosmological bound on the sum, below 0.064 eV (95% CL), assumes the standard ΛCDM model. A flavour neutrino (νₑ, ν_μ, ν_τ) is a mixture of mass states and has no single mass."
   },
   "minimum_mass_sum_eV_calc": {
    "normal": 0.058160598454962326,
    "inverted": 0.09956670599528564,
-   "text": "The oscillation data alone force the sum of masses to be at least about 0.058 eV if the ordering is normal and about 0.10 eV if inverted (my arithmetic from the PDG Δm² values, taking the lightest neutrino to be massless)."
+   "text": "The oscillation data alone force the sum of masses to be at least about 0.058 eV if the ordering is normal and about 0.10 eV if inverted (calculated from the PDG Δm² values, taking the lightest neutrino to be massless)."
   }
  },
  "open_questions": [
@@ -2758,7 +2758,7 @@
    5.42107089010989e-21,
    2.1448584826086957e-20
   ],
-  "note": "ħc/Λ gives about 5×10⁻²¹ m to 2×10⁻²⁰ m (my calculation). These limits are model dependent, so the safe statement is \"no structure found down to roughly 10⁻¹⁹ m\"."
+  "note": "ħc/Λ gives about 5×10⁻²¹ m to 2×10⁻²⁰ m (calculated). These limits are model dependent, so the safe statement is \"no structure found down to roughly 10⁻¹⁹ m\"."
  },
  "proton_momentum": {
   "text": "Lattice QCD (chiQCD collaboration, 2022, MS-bar scheme at 2 GeV): quarks and antiquarks together carry about 49% of the proton's momentum and gluons about 51% (⟨x⟩q = 0.491(20)(23), ⟨x⟩g = 0.509(20)(23)). The split depends on the energy scale at which the proton is probed. Global fits to scattering data at the same scale give a smaller gluon share, about 0.40 to 0.41 (CT18: 0.413(8); JAM19: 0.403(2); as quoted by Fan, Lin and Zeilbeck 2022, arXiv:2208.00980); lattice results sit higher, and the difference is not yet understood.",
@@ -2806,7 +2806,7 @@
   "ref": "Y.-B. Yang et al. (chiQCD), arXiv:1808.08677",
   "rest_mass_sum_MeV": 9.02,
   "rest_mass_fraction": 0.009613416088588594,
-  "note": "Adding the rest masses of the two up quarks and one down quark (PDG, MS-bar 2 GeV) gives about 9 MeV, roughly 1% of the proton mass of 938.27 MeV (my calculation). That is only the valence quarks: the lattice sigma terms (about 9%, including the strange sea) are the part of the mass that responds to the quark masses. The other terms are energies of the quark-gluon system; how the total is divided depends on scheme and scale."
+  "note": "Adding the rest masses of the two up quarks and one down quark (PDG, MS-bar 2 GeV) gives about 9 MeV, roughly 1% of the proton mass of 938.27 MeV (calculated). That is only the valence quarks: the lattice sigma terms (about 9%, including the strange sea) are the part of the mass that responds to the quark masses. The other terms are energies of the quark-gluon system; how the total is divided depends on scheme and scale."
  },
  "everyday_matter": {
   "ids": [
@@ -2833,7 +2833,7 @@
   ]
  },
  "mass_axis": {
-  "note": "Masses on a logarithmic axis in eV. Neutrinos have no measured mass and the flavour states have no single mass, so they are not placed on the axis. What is known is drawn as a band: the heaviest mass state is at least ≈0.05 eV (oscillations; my calculation from PDG Δm²) and every mass is below 0.45 eV (KATRIN, direct, 90% CL); a line marks the cosmological bound on the sum of all three, 0.064 eV, which holds only in the standard cosmological model.",
+  "note": "Masses on a logarithmic axis in eV. Neutrinos have no measured mass and the flavour states have no single mass, so they are not placed on the axis. What is known is drawn as a band: the heaviest mass state is at least ≈0.05 eV (oscillations; calculated from PDG Δm²) and every mass is below 0.45 eV (KATRIN, direct, 90% CL); a line marks the cosmological bound on the sum of all three, 0.064 eV, which holds only in the standard cosmological model.",
   "top_over_electron": 337776.7397651372,
   "electron_over_neutrino_at_least": 1135553.2237555557
  }

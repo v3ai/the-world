@@ -944,7 +944,7 @@
     "3 (identity debated)"
    ]
   ],
-  "caption": "The wing is an arm. The human column is standard anatomy; the bird column is from Wikipedia (Bird anatomy; Origin of birds)."
+  "caption": "The wing is an arm. The human column is standard anatomy; the bird column follows standard references on bird anatomy and the origin of birds."
  },
  "robin_carpometacarpus": {
   "type": "table",
@@ -975,7 +975,7 @@
     "3 (identity debated)"
    ]
   ],
-  "caption": "The wing is an arm. The human column is standard anatomy; the bird column is from Wikipedia (Bird anatomy; Origin of birds)."
+  "caption": "The wing is an arm. The human column is standard anatomy; the bird column follows standard references on bird anatomy and the origin of birds."
  },
  "robin_humerus": {
   "type": "table",
@@ -3525,7 +3525,7 @@
     "3 (identity debated)"
    ]
   ],
-  "caption": "The wing is an arm. The human column is standard anatomy; the bird column is from Wikipedia (Bird anatomy; Origin of birds)."
+  "caption": "The wing is an arm. The human column is standard anatomy; the bird column follows standard references on bird anatomy and the origin of birds."
  },
  "robin_ulna": {
   "type": "table",
@@ -3556,7 +3556,7 @@
     "3 (identity debated)"
    ]
   ],
-  "caption": "The wing is an arm. The human column is standard anatomy; the bird column is from Wikipedia (Bird anatomy; Origin of birds)."
+  "caption": "The wing is an arm. The human column is standard anatomy; the bird column follows standard references on bird anatomy and the origin of birds."
  },
  "robin_shoulder_girdle": {
   "type": "blocks",

@@ -49,7 +49,7 @@ for i in ('dog_caudal',):
     ext(i, COVASA)
 fix('dog_ribs', 'summary', 'form the dog\'s deep, narrow chest', 'form the dog\'s deep chest')
 fix('dog_mandible', 'summary', 'The lower jaw is a single hinge of bone that opens and closes to bite and carry.', 'The lower jaw is a pair of long bones, joined at the chin, that hinge on the skull to open and close the mouth for biting and carrying.')
-fix('dog_mandible', 'deeper', 'The jaw is the same bone as the human mandible;', 'Each half is the same bone as the human mandible (in people the two halves fuse in the first year of life; in dogs the joint at the chin, the mandibular symphysis, is described as a fibrous or cartilage joint with only rare bony fusion, and the sources disagree on its class);')
+fix('dog_mandible', 'deeper', 'The jaw is the same bone as the human mandible;', 'Each half is the same bone as the human mandible (in people the two halves fuse in the first year of life; in dogs the joint at the chin, the mandibular symphysis, is described as a fibrous or cartilage joint with only rare bony fusion, and descriptions of its class differ);')
 ext('dog_mandible', MANDSYM)
 fix('dog_mandible', 'expert', 'The model draws the jaw as a rod and a ramus on each side, a simplified outline.', 'The model draws each half as a rod with a rising branch (the ramus, with the coronoid process and the condyle) and joins them at the chin; the lower teeth sit in a ridge along the top of the body of the jaw and meet the upper teeth in a scissor bite.')
 # skull: measured against a published mean

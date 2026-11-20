@@ -1678,7 +1678,7 @@
      "name": "forsterite, a silicate mineral",
      "scene": "crystal:forsterite",
      "standIn": true,
-     "note": "Shown: forsterite, a magnesium silicate, the nearest crystal we have. It stands for silicate rock in general, not for the commonest minerals of the body you came from, which are not built yet (the Moon's highlands, for example, are rich in feldspar)."
+     "note": "Shown: forsterite, a magnesium silicate, the nearest crystal available here. It stands for silicate rock in general, not for the commonest minerals of the body you came from, which are not built yet (the Moon's highlands, for example, are rich in feldspar)."
     }
    ],
    "src": "data/crystals.json forsterite; OpenStax Astronomy 2e 9.2, 9.5"
@@ -2062,7 +2062,7 @@
      "name": "calcite, a crystal form of calcium carbonate",
      "scene": "crystal:calcite",
      "standIn": true,
-     "note": "A mollusc's shell is 95 to 99% calcium carbonate by weight, under a thin organic outer layer. Shells use two crystal forms of it, calcite and aragonite. Calcite is the one that is built, and is shown; which form this snail's shell is mostly made of is not checked here, and may be the other."
+     "note": "A mollusc's shell is 95 to 99% calcium carbonate by weight, under a thin organic outer layer. Shells use two crystal forms of it, calcite and aragonite. Calcite is the one that is built, and is shown; this picture does not show which form this snail's shell is mostly made of, and it may be the other."
     }
    ],
    "src": "Checa 2018, Frontiers in Marine Science 5:353"

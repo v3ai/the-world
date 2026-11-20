@@ -331,7 +331,7 @@
   ],
   "ylabel": "petagrams of carbon (PgC)",
   "logy": false,
-  "caption": "Carbon reservoirs in the IPCC Fifth Assessment Report: the atmosphere, plants and soils (ranges shown as a low and a high bar). Source: Working Group I, chapter 6, Figure 6.1."
+  "caption": "Carbon reservoirs in the IPCC Fifth Assessment Report (Working Group I, chapter 6, Figure 6.1): the atmosphere, plants and soils, with ranges shown as a low and a high bar."
  },
  "soil_nitrogen": {
   "type": "blocks",

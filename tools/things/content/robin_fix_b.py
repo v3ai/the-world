@@ -24,7 +24,7 @@ fix('robin_back', cert='C1')
 # ---- bill and keratin
 fix('robin_bill',
     deeper='The horn sheath (the rhamphotheca) is made of keratin, which is dead material, but it grows continuously from living tissue at the base of each half of the bill and wears away at the tip. Inside, the upper jaw is a slender bone core (the premaxilla), and the lower jaw hinges at the quadrate bone. The nostrils open on the top of the upper mandible near its base.',
-    expert='The sheath is beta-keratin, like feathers and claws. All living birds can move the upper jaw relative to the braincase (cranial kinesis), most obviously in parrots; how far a robin\'s bill flexes is not measured here.',
+    expert='The sheath is beta-keratin, like feathers and claws. All living birds can move the upper jaw relative to the braincase (cranial kinesis), most obviously in parrots.',
     ext=[WR, WBA, KINESIS], related=['robin_keratin', 'robin_upper_jaw'])
 fix('robin_keratin',
     deeper='Beta-keratins are found only in birds and reptiles. In feathers, beaks and claws they are formed mainly as beta-pleated sheets, stabilised by disulfide bridges between cysteine residues. Birds also have alpha-keratins, the family that makes up hair and horn in mammals, for example in parts of the skin. Because a bridge cannot be undone without a chemical reaction, a feather is a long-lived, heat-stable material.',
