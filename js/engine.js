@@ -1309,24 +1309,37 @@ function frameSelected(h) {
 }
 /* A cut-open view shows a part of the thing only (the dog's "Inside the eye" is one eyeball, the rest of the dog is gone), and where that is cannot be known
    from the part that was clicked: its centre may now be empty air, and the next double click in the middle of the view went into the lawn behind. So once the
-   view has changed (the parts fade over about half a second of the app's clock), the camera frames what the frame is now showing: the bound of its pickable parts that are drawn
-   solid (userData.shown), markers left out. Only for frames that say what they show (things); skipped if the visitor has moved on meanwhile. */
+   view has changed (the parts fade over about half a second of the app's clock) and the flight to the part has ended, the camera frames what of the frame can
+   now be seen: a 14 by 14 grid of picks over the free area finds it (markers left out), the point on it nearest the middle of what shows becomes the target,
+   and the distance is set so that it fills about two thirds of the view. Skipped if the visitor has clicked, scrolled or gone elsewhere meanwhile. */
 let _fsTok = 0, _fsPend = false;   // _fsPend: a reframing is still to come (the tests wait for it)
 function frameShownSoon(f) {
   const tok = ++_fsTok, c0 = clock, t0 = performance.now(); _fsPend = true;
   const go = () => {
     if (tok !== _fsTok) return;   // a later click has taken over (and has cleared or re-set _fsPend)
-    if (clock - c0 < .7 && performance.now() - t0 < 20000) { setTimeout(go, 150); return; }   // the parts fade on the app's clock, which runs slow when frames are slow: wait for that, not for the wall clock
+    if ((clock - c0 < .7 || (fly && fly.frame === f)) && performance.now() - t0 < 20000) { setTimeout(go, 150); return; }   // the parts fade on the app's clock, which runs slow when frames are slow: wait for that, not for the wall clock; and for the flight to the part to end
     _fsPend = false;
-    if (pointers.size || Math.abs(zoom.pending) > 1e-3 || (fly && fly.frame !== f) || !f.built || !f.C || !chainOf(cam.A).concat(drawn).includes(f)) return;   // the visitor has clicked, scrolled or gone elsewhere meanwhile
+    if (pointers.size || Math.abs(zoom.pending) > 1e-3 || fly || !f.built || !f.C || !chainOf(cam.A).concat(drawn).includes(f)) return;   // the visitor has clicked, scrolled or gone elsewhere meanwhile
+    /* what of the frame can be seen now: a grid of picks over the free area (a pick knows what a cut has removed; a bounding box does not: "Inside the eye"
+       keeps both eyeballs in its parts and cuts one of them away) */
+    const A = freeArea(), N = 14, H2 = []; let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9, sx = 0, sy = 0;
+    for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) {
+      const x = A.l + (i + .5) / N * A.w, y = A.t + (j + .5) / N * A.h, h = pickAt(x, y);
+      if (h && h.frame === f && !h.obj.userData.hotspot) { H2.push([x, y, h]); sx += x; sy += y; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+    }
+    if (H2.length) {
+      const cx = sx / H2.length, cy = sy / H2.length, cell = Math.max(A.w, A.h) / N, ext = Math.max(x1 - x0, y1 - y0) + cell, fill = ext / Math.min(A.w, A.h), vc = viewCentre();
+      let best = H2[0], bd = Infinity; for (const q of H2) { const d = Math.hypot(q[0] - cx, q[1] - cy); if (d < bd) { bd = d; best = q; } }   // a point that is on the thing, nearest the middle of what shows
+      if (fill >= .95 || (fill > .45 && Math.hypot(best[0] - vc.x, best[1] - vc.y) < Math.min(A.w, A.h) * .12)) return;   // it covers the view, or fills it with its middle in the middle
+      const D = Math.max(cam.D * clamp(fill / .7, .05, 1), (f.floorD || 0) * 2, (f.spawnD || 0) * 1.3, MIN_D * 10);   // closer, never further out: this is a look inside
+      flyKeep(f, best[2].pointLocal.clone(), D); return;
+    }
+    // nothing of it in view: the bound of its parts that are drawn solid
     _pkBox.makeEmpty(); let n = 0;
     for (const p of f.pickables) { const u = p.userData; if (u.shown === undefined || u.shown < .35 || u.hotspot || !visibleChain(p)) continue; if (pkExpand(p, _pkBox)) n++; }
     if (!n || _pkBox.isEmpty()) return;
     const c = _pkBox.getCenter(new V3()).add(f.C), r = _pkBox.min.distanceTo(_pkBox.max) / 2 * .62;   // the box's corners reach further than the content does
-    const D = Math.max(fitD(f, r), (f.floorD || 0) * 2, (f.spawnD || 0) * 1.3, MIN_D * 10), g = fly && fly.frame === f ? fly : null;
-    const at = g ? g.p : convertP(cam.T.clone(), cam.A, f), Dn = g ? g.Dg : cam.D;
-    if (at.distanceTo(c) * f.unit < D * .12 && Math.abs(Math.log(D / Dn)) < .3) return;   // already on it
-    flyKeep(f, c, D);
+    flyKeep(f, c, Math.max(fitD(f, r), (f.floorD || 0) * 2, (f.spawnD || 0) * 1.3, MIN_D * 10));
   };
   setTimeout(go, 150);
 }
