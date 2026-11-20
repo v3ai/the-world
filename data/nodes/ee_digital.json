@@ -150,7 +150,7 @@
   "summary": "Minimise logic visually.",
   "layers": {
    "basics": "A K-map arranges a truth table so neighbours differ by one bit; circle groups of 1s to get simple terms.",
-   "deeper": "Practical for up to 4 variables (5 or 6 with stacked maps); rows and columns are in Gray-code order so adjacent cells differ in one variable; don’t-cares enlarge groups; watch for hazards.",
+   "deeper": "Practical for up to about four variables (five or more need more complicated maps); rows and columns are in Gray-code order so adjacent cells differ in one variable; don’t-cares enlarge groups; watch for hazards.",
    "expert": "Prime implicants and essential prime implicants; static-1 hazards removed by redundant terms."
   },
   "facts": [],
@@ -539,7 +539,7 @@
   "layers": {
    "basics": "ROM keeps data without power; SRAM typically uses six transistors per bit and is fast; DRAM uses one transistor plus a capacitor, is dense but needs refreshing.",
    "deeper": "Address decoders select rows/columns; sense amplifiers read tiny charges.",
-   "expert": "SRAM 6T cell stability (SNM); Modern commodity DRAM cells are about 6F² (F is the minimum feature size; older layouts used 8F²). The refresh window was 64 ms for DDR3 and DDR4. For DDR5 it is 32 ms at or below 85 °C and shorter when hotter. JEDEC DDR5 speed grades run from about 4.0 to 8.8 GT/s per pin."
+   "expert": "SRAM 6T cell stability (SNM); DRAM cells typically occupy about 6–8F² (F is the minimum feature size). Each row is generally refreshed every 64 ms or less. DDR5 shortens this to 32 ms up to 85 °C, and to 16 ms between 85 and 95 °C. DDR5 speed grades start at about 4 GT/s per pin and extend beyond 8 GT/s."
   },
   "facts": [],
   "certainty": "C1",
@@ -666,7 +666,7 @@
   "summary": "From code to gates.",
   "layers": {
    "basics": "Write RTL in Verilog/VHDL, simulate it, synthesize it to gates, place and route, then program the chip.",
-   "deeper": "Synthesis infers registers and combinational logic from the RTL and maps it onto the device’s LUTs and flip-flops. Place-and-route then checks the result against constraints (clock periods, pin locations, I/O standards). Testbenches and waveforms verify the design before hardware.",
+   "deeper": "Synthesis converts the RTL into a gate-level design; for an FPGA the logic is mapped onto the device’s lookup tables and flip-flops. Place-and-route then positions and wires it, with timing checked against constraints such as clock periods. Testbenches and waveforms verify the design before hardware.",
    "expert": "Synthesis → mapping → P&R → bitstream; timing closure iterations; formal verification and coverage-driven testbenches for ASICs."
   },
   "facts": [],

@@ -449,20 +449,20 @@
   "layers": {
    "basics": "A nerve signal causes calcium to flood the muscle fiber, letting tiny protein motors pull and the muscle tighten.",
    "deeper": "Calcium binds troponin, uncovering binding sites on actin; myosin heads attach, pivot and release, powered by ATP.",
-   "expert": "Excitation-contraction coupling: ACh at the neuromuscular junction → sarcolemma AP → T-tubules → DHPR/RyR1 → Ca2+ release from SR; cross-bridge cycle with ≈ 5-10 nm power stroke; ATP binding detaches heads (rigor mortis lacks ATP)."
+   "expert": "Excitation-contraction coupling: ACh at the neuromuscular junction → sarcolemma AP → T-tubules → DHPR/RyR1 → Ca2+ release from SR; cross-bridge cycle with a power stroke of about 10 nm; ATP binding detaches heads (rigor mortis lacks ATP)."
   },
   "facts": [
    [
     "Power stroke",
-    "≈ 5-10 nm"
+    "≈ 10 nm (single-molecule steps averaged 11 nm in one optical-trap study)"
    ],
    [
     "Ca2+ rise",
-    "≈ 0.1 to 10 µM"
+    "from ≈ 0.1 µM at rest to many times higher during contraction"
    ],
    [
     "Force per head",
-    "≈ 3-5 pN"
+    "≈ 3-4 pN (single-molecule measurement)"
    ]
   ],
   "did_you_know": "Rigor mortis happens because dead muscle cannot make ATP to release myosin heads.",
@@ -1191,7 +1191,7 @@
    ],
    [
     "RNA pol II speed",
-    "≈ 20-70 nt/s"
+    "≈ 8 nt/s near the start of a gene, rising to ≈ 30-80 nt/s later (varies by gene)"
    ]
   ],
   "did_you_know": "Almost all life uses essentially the same genetic code.",
@@ -1277,7 +1277,7 @@
   "layers": {
    "basics": "Before dividing a cell copies its DNA. Mitosis then sorts the copies equally into two new cells.",
    "deeper": "DNA is copied in S phase. In mitosis the spindle attaches to each chromosome, the nuclear envelope breaks down, the chromosomes line up, and the sister chromatids are separated and pulled to opposite ends before the cell is cut in two.",
-   "expert": "Cyclin-CDK control; spindle assembly checkpoint; cohesin cleavage by separase triggers anaphase; centrosomes and microtubules segregate 46 chromosomes; M-phase ≈ 1 h in a ≈ 24 h cycle."
+   "expert": "Cyclin-CDK control; spindle assembly checkpoint; cohesin cleavage by separase triggers anaphase; centrosomes and microtubules segregate 46 chromosomes; M-phase is a small part (on the order of an hour) of a cycle that often lasts about a day (varies widely with cell type)."
   },
   "facts": [
    [
@@ -1286,7 +1286,7 @@
    ],
    [
     "M-phase",
-    "≈ 1 h"
+    "a small part of the cycle, on the order of an hour (varies)"
    ],
    [
     "Cell cycle",

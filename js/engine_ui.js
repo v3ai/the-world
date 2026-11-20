@@ -660,7 +660,7 @@ function loop(now) {
   if (!PERF.idle && !restedLast) rsFeed(dtMs); restedLast = PERF.idle; // the render scale follows the frame time (engine.js, RENDER SCALE)
   const dt = Math.min(.05, dtMs / 1000); lastT = now; clock += dt;
   simTime += dt * 1000 * timeSpeed;
-  if (holdZoom) zoomBy(holdZoom * dt * 1.6, holdZoom < 0 ? W / 2 : undefined, H / 2);
+  if (holdZoom) { holdT += dt; zoomBy(holdZoom * dt * Math.min(6, 2.2 + holdT * 2.4), holdZoom < 0 ? W / 2 : undefined, H / 2); } else holdT = 0; // a held + or - starts gently and speeds up
   if (fly) stepFly(dt);
   applyZoom(dt);
   if (!pointers.size && !fly) levelUp(dt);

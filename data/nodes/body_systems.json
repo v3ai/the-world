@@ -105,11 +105,11 @@
   "facts": [
    [
     "Surface area",
-    "≈ 1.7-2 m²"
+    "≈ 1.5-2 m²"
    ],
    [
-    "Epidermis thickness",
-    "≈ 0.05-1.5 mm"
+    "Skin thickness",
+    "≈ 0.5 mm (eyelids) to ≈ 4 mm (palms and soles), epidermis plus dermis"
    ]
   ],
   "did_you_know": "The outermost layer of your skin, the stratum corneum, is replaced about every 4 weeks.",
@@ -195,7 +195,7 @@
     "≈ 99% of body calcium"
    ]
   ],
-  "did_you_know": "Newborns have roughly 270-300 bony elements that fuse down to about 206 in adulthood.",
+  "did_you_know": "Newborns have around 270 bones that fuse down to about 206 in adulthood.",
   "certainty": "C1",
   "refs": [
    [
@@ -313,7 +313,7 @@
    ],
    [
     "Brain mass",
-    "≈ 1.3-1.4 kg"
+    "≈ 1.2-1.4 kg (adult average; individuals vary widely)"
    ],
    [
     "Nerve conduction",
@@ -492,7 +492,7 @@
   "facts": [
    [
     "Lymph returned daily",
-    "≈ 2-4 L"
+    "≈ 3 L"
    ],
    [
     "Lymph nodes",
@@ -500,7 +500,7 @@
    ],
    [
     "Lymphocytes",
-    "≈ 4-5×10^11 (classic estimate from 1974; uncertain)"
+    "≈ 7×10^11 (about 40% of ≈ 1.8×10^12 immune cells in a 73 kg reference man; older estimates were lower)"
    ]
   ],
   "did_you_know": "The thymus is largest in childhood. It starts shrinking after puberty and its tissue is gradually replaced by fat, though some thymus tissue remains in old age.",
@@ -628,7 +628,7 @@
     "≈ 30-40 m² (effective)"
    ]
   ],
-  "did_you_know": "The surface lining of your stomach is replaced every few days, which helps keep the layer facing the acid intact.",
+  "did_you_know": "The surface lining of your stomach is replaced every 3 to 6 days, which helps keep the layer facing the acid intact.",
   "certainty": "C1",
   "refs": [
    [
@@ -740,7 +740,7 @@
     "≈ 28 days (typical, varies)"
    ]
   ],
-  "did_you_know": "A human egg is one of the largest cells in the body by volume, about 0.1 mm across and just visible to the naked eye. Muscle fibres and neurons are longer but much thinner.",
+  "did_you_know": "A human egg is one of the largest cells in the body by volume, about 0.12 mm across and just visible to the naked eye. Muscle fibres and neurons are longer but much thinner.",
   "certainty": "C1",
   "refs": [
    [

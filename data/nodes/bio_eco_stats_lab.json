@@ -1966,7 +1966,7 @@
    ],
    [
     "Loggerhead key rate",
-    "large-juvenile survival (then adults)"
+    "large-juvenile survival (then small juveniles and adults)"
    ]
   ],
   "formula": "n(t+1) = L·n(t)",
@@ -2011,8 +2011,8 @@
     "2016"
    ],
    [
-    "Nature survey of ~1,500 researchers (Baker 2016)",
-    "> 70% had tried and failed to reproduce another scientist's experiment"
+    "Nature survey of 1,576 researchers (Baker 2016)",
+    "≈ 70% had tried and failed to reproduce another scientist's experiment; more than half failed to reproduce their own"
    ]
   ],
   "certainty": "C1",
@@ -2258,12 +2258,12 @@
   "layers": {
    "basics": "Electron microscopes use electron beams to see detail far smaller than light microscopes: TEM shows interior slices, SEM shows surfaces.",
    "deeper": "The beam path must be in vacuum, so conventional samples are chemically fixed, dehydrated and stained; cryo-EM instead flash-freezes samples in vitreous ice, but they are still imaged in vacuum. Images are grey-scale.",
-   "expert": "Instrument resolution reaches ≈ 0.05–0.2 nm for TEM (aberration-corrected, robust physical samples), while biological specimens are limited to much coarser detail by preparation and radiation damage; cryo-EM reconstructs structures to near-atomic resolution from thousands of frozen particle images (Nobel 2017)."
+   "expert": "Instrument resolution of aberration-corrected electron microscopes is below 0.1 nm (atomic columns 45 pm apart have been resolved in crystalline physical samples), while biological specimens are limited to much coarser detail by preparation and radiation damage; cryo-EM reconstructs structures to near-atomic resolution from thousands of frozen particle images (Nobel 2017)."
   },
   "facts": [
    [
     "TEM instrument resolution",
-    "≈ 0.05–0.2 nm (aberration-corrected, physical specimens); biological specimens much coarser"
+    "below 0.1 nm (aberration-corrected, crystalline physical specimens); biological specimens much coarser"
    ],
    [
     "Cryo-EM Nobel",

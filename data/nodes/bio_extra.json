@@ -76,8 +76,8 @@
   "summary": "The small genome inside mitochondria.",
   "layers": {
    "basics": "Mitochondria carry their own circular DNA, inherited almost entirely from the mother (rare paternal transmission has been reported but is contested). Human mtDNA codes for 13 proteins, 22 tRNAs and 2 rRNAs.",
-   "deeper": "Cells hold many copies; a mix of normal and mutant copies is called heteroplasmy. Mitochondrial diseases appear when mutant copies exceed a threshold (often ≈ 60–90%).",
-   "expert": "mtDNA mutates roughly 10 times faster than nuclear DNA in pedigree studies (the ratio varies with region and method), and it uses a slightly different genetic code. mtDNA is used for maternal-lineage studies and ancient DNA (e.g., Neanderthal mtDNA)."
+   "deeper": "Cells hold many copies; a mix of normal and mutant copies is called heteroplasmy. Mitochondrial diseases appear when mutant copies exceed a threshold, which depends on the mutation and the tissue and is usually a high fraction of the copies.",
+   "expert": "mtDNA evolves roughly 10 times faster than single-copy nuclear DNA in primates (a 1979 comparison; the ratio varies with region and method), and pedigree-based mutation rates for the control region are higher still than phylogeny-based estimates, and it uses a slightly different genetic code. mtDNA is used for maternal-lineage studies and ancient DNA (e.g., Neanderthal mtDNA)."
   },
   "facts": [
    [
@@ -86,7 +86,7 @@
    ],
    [
     "Copies per cell",
-    "≈ 100–10,000"
+    "none in mature red blood cells; many in most other cells; 50,000–1,500,000 in a mature egg"
    ]
   ],
   "certainty": "C1",
@@ -346,8 +346,8 @@
     "h² ≈ 2(r_MZ − r_DZ)"
    ],
    [
-    "Identical twin height correlation",
-    "≈ 0.9"
+    "Adult height heritability in twin studies",
+    "≈ 0.7–0.9; 0.87–0.93 in men and 0.68–0.84 in women across eight countries"
    ]
   ],
   "formula": "h² ≈ 2(r_MZ − r_DZ), valid only if genetic effects are additive, MZ and DZ twins share environments equally and mating is random",
@@ -546,7 +546,7 @@
     "many-fold; varies widely with species, tissue and stress level"
    ],
    [
-    "Permanent wilting point (conventional, crops)",
+    "Permanent wilting point (conventional, soil water potential)",
     "≈ −1.5 MPa; some species tolerate much lower"
    ]
   ],
@@ -1720,7 +1720,7 @@
   "facts": [
    [
     "Gel-to-membrane transfer",
-    "≈ 10 min to overnight; semi-dry ≈ 10–30 min, wet tank ≈ 30–120 min"
+    "≈ 10 min to overnight; semi-dry from a few minutes to ≈ 30 min, wet tank ≈ 30–120 min or longer"
    ],
    [
     "ELISA working range",

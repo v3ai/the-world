@@ -145,7 +145,7 @@
   "layers": {
    "basics": "VLSI design builds chips from standard cells synthesised from HDL, placed and routed by tools.",
    "deeper": "Flow: RTL → logic synthesis → floorplan → place → clock tree → route → timing signoff → tape-out.",
-   "expert": "Power, performance, area (PPA) trade-offs; clock gating; multi-Vt cells; in modern deep-submicron nodes interconnect RC often dominates delay on long wires; design-for-test (scan chains)."
+   "expert": "Power, performance, area (PPA) trade-offs; clock gating; multi-Vt cells; parasitic wire resistance and capacitance add delay, most on long wires; design-for-test (scan chains)."
   },
   "facts": [],
   "certainty": "C1",
@@ -351,7 +351,7 @@
   "layers": {
    "basics": "5G uses wider bandwidths, millimetre waves and massive antenna arrays; 6G research covers upper mid-band, millimetre-wave and sub-THz spectrum, plus AI-native design and integrated sensing.",
    "deeper": "NR air interface uses OFDM with flexible numerology; slicing and edge computing serve latency-sensitive services.",
-   "expert": "5G NR: 410 MHz–7.125 GHz (FR1) and 24.25–52.6 GHz (FR2-1, with FR2-2 extending to 71 GHz); 6G (≈2030) is not yet standardised and its bands are not fixed: a range around 7 GHz is a leading candidate, 10–15 GHz is under study, and sub-THz links remain research; other topics are integrated sensing and communication, reconfigurable intelligent surfaces."
+   "expert": "5G NR: 410 MHz–7.125 GHz (FR1) and 24.25–52.6 GHz (FR2-1, with FR2-2 extending to 71 GHz); 6G is not yet standardised (3GPP studies are under way, tied to the IMT-2030 vision) and its bands are not fixed: a range around 7 GHz is a leading candidate, 10–15 GHz is under study, and sub-THz links remain research; other topics are integrated sensing and communication, reconfigurable intelligent surfaces."
   },
   "facts": [],
   "certainty": "C2",
@@ -651,7 +651,7 @@
   "summary": "Measuring the body.",
   "layers": {
    "basics": "Electrodes pick up microvolt-to-millivolt signals from heart and brain; amplifiers must reject mains hum and motion noise.",
-   "deeper": "ECG ~1 mV, EEG ~10–100 µV; differential amplification, filtering (the diagnostic ECG band is about 0.05–150 Hz; EEG is filtered to its own, lower band), isolation for safety.",
+   "deeper": "ECG ~1 mV, EEG ~10–100 µV; differential amplification, filtering (diagnostic ECG needs a band reaching from well below 1 Hz to above 100 Hz; EEG is filtered to its own, lower band), isolation for safety.",
    "expert": "Right-leg drive reduces common-mode; electrode half-cell potentials; patient leakage limit for cardiac-contact (CF) applied parts is 10 µA in normal condition and 50 µA with a single fault; IEC 60601; pulse oximetry uses two wavelengths."
   },
   "facts": [],
@@ -853,7 +853,7 @@
   "layers": {
    "basics": "An EV has a battery pack, inverter and motor; the inverter controls torque, and braking recovers energy.",
    "deeper": "Permanent-magnet synchronous motors with field-oriented control; 400 V or 800 V pack architectures.",
-   "expert": "Efficiency maps; SiC inverters lose less energy than Si IGBT inverters, with reported savings from about 16% over a simulated drive cycle to as much as ~70% in manufacturer claims at favourable load points; onboard charger and DC fast charging (CCS commonly up to 350 kW, with higher-power liquid-cooled variants emerging); thermal management."
+   "expert": "Efficiency maps; SiC inverters lose less energy than Si IGBT inverters, with simulated savings of up to about 40% of inverter losses over the WLTP cycle (650 V SiC MOSFET against Si IGBT, plug-in hybrid) and up to about 16% of accumulated driveline losses over the WLTC cycle; onboard charger and DC fast charging (CCS is specified for up to 500 kW (1000 V, 500 A), with 350 kW stations deployed and some liquid-cooled chargers rated near 1 MW); thermal management."
   },
   "facts": [],
   "certainty": "C1",

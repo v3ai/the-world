@@ -843,6 +843,10 @@
    {
     "title": "Wikipedia: Sequence alignment",
     "url": "https://en.wikipedia.org/wiki/Sequence_alignment"
+   },
+   {
+    "title": "Needleman and Wunsch 1970, J Mol Biol 48:443",
+    "url": "https://doi.org/10.1016/0022-2836(70)90057-4"
    }
   ]
  },
@@ -868,7 +872,7 @@
   "layers": {
    "basics": "BLAST quickly searches huge databases for sequences similar to yours. Databases like GenBank, UniProt and the PDB store sequences and structures.",
    "deeper": "The E-value says how many matches of that score you would expect by chance; smaller is more significant. Annotated databases link sequences to function.",
-   "expert": "BLAST uses seeds (short words, a few amino acids or some nucleotides depending on the program and settings) extended into high-scoring pairs. GenBank release 274 (October 2026) holds ≈ 9×10¹² bases in its traditional divisions and ≈ 5×10¹³ more in whole-genome-shotgun records; AlphaFold DB provides > 200 million predicted structures."
+   "expert": "BLAST uses seeds (short words, typically 3 amino acids in protein searches and 11 nucleotides in DNA searches, adjustable by program and settings) extended into high-scoring pairs. GenBank release 274 (October 2026) holds ≈ 9×10¹² bases in its traditional divisions and ≈ 5×10¹³ more in whole-genome-shotgun records; AlphaFold DB provides > 200 million predicted structures."
   },
   "facts": [
    [

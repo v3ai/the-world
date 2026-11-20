@@ -20,7 +20,7 @@
   "summary": "Flux through iron paths.",
   "layers": {
    "basics": "Iron cores guide magnetic flux like wires guide current, with turns×current acting as the push (mmf).",
-   "deeper": "Reluctance ℜ=ℓ/μA; where a path has an air gap, the gap usually dominates the reluctance; silicon steel saturates at roughly 2 T, and designs normally run somewhat below that.",
+   "deeper": "Reluctance ℜ=ℓ/μA; where a path has an air gap, the gap usually dominates the reluctance; transformer-grade iron alloys such as silicon steel saturate at roughly 1.6–2.2 T, and designs normally run somewhat below that.",
    "expert": "Core loss = hysteresis + eddy (laminations cut eddy); B–H curves; fringing; inductance L=N²/ℜ."
   },
   "facts": [],
@@ -254,7 +254,7 @@
   "layers": {
    "basics": "Steam, gas, water or wind turn turbines that spin generators; solar panels make DC directly.",
    "deeper": "Base-load, peaking and variable plants; efficiency limited by heat-engine (Carnot) theory for thermal plants.",
-   "expert": "Modern combined-cycle gas plants reach roughly 55–64% at best (most large units peak at 55–59% on a lower-heating-value basis, and in-service averages are lower); hydro turbines convert a larger share of their input energy than any thermal plant; capacity factor; inertia from rotating mass stabilises frequency."
+   "expert": "Modern combined-cycle gas plants reach roughly 55–64% at best (most large units peak at 55–59% on a lower-heating-value basis, and in-service averages are lower); modern hydro turbine-generator units typically exceed 90% at peak efficiency, well above thermal plants; capacity factor; inertia from rotating mass stabilises frequency."
   },
   "facts": [],
   "certainty": "C1",
@@ -721,7 +721,7 @@
   "layers": {
    "basics": "Power MOSFETs, IGBTs and wide-band-gap SiC and GaN devices handle high voltage and current with low loss.",
    "deeper": "IGBT: MOS gate with BJT conduction for 600 V–6.5 kV; SiC MOSFET and GaN HEMT switch faster with lower loss.",
-   "expert": "Wide band gap raises breakdown field (4H-SiC roughly 2–3 MV/cm vs Si about 0.3 MV/cm, depending on doping and source), allowing thinner drift layers; figure of merit R_on·Q_g; thermal limits and packaging."
+   "expert": "Wide band gap raises breakdown field (4H-SiC roughly 2.5–3.2 MV/cm vs Si about 0.3 MV/cm, depending on source), allowing thinner drift layers; figure of merit R_on·Q_g; thermal limits and packaging."
   },
   "facts": [],
   "formula": "V_BR ≈ ε E_crit² / (2 q N_D)  (abrupt one-sided junction, drift layer sized to the breakdown width)",

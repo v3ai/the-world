@@ -37,7 +37,7 @@
    "brainstem"
   ],
   "mesh": "brain",
-  "summary": "The brain is the body's control center, a 1.3-1.4 kg organ of about 86 billion neurons.",
+  "summary": "The brain is the body's control center, a 1.4 kg organ of about 86 billion neurons.",
   "layers": {
    "basics": "Your brain handles everything you sense, think, feel and do. It is soft, wrinkled and floats in protective fluid inside the skull.",
    "deeper": "It has a cerebrum (two hemispheres joined by the corpus callosum), cerebellum and brainstem. The outer folded layer, the cortex, handles complex functions; deeper structures regulate emotion, memory and body state.",
@@ -46,7 +46,7 @@
   "facts": [
    [
     "Mass",
-    "≈ 1.3-1.4 kg"
+    "≈ 1.4 kg (average adult)"
    ],
    [
     "Neurons",
@@ -58,7 +58,7 @@
    ],
    [
     "Cortex thickness",
-    "≈ 2-4 mm"
+    "≈ 2.5 mm on average (1-4.5 mm)"
    ]
   ],
   "did_you_know": "The brain's power draw is about that of a dim light bulb.",
@@ -109,7 +109,7 @@
   "layers": {
    "basics": "The frontal lobe helps you plan, make choices, control impulses and start movements. Speech production relies on regions here (usually left).",
    "deeper": "Contains the primary motor cortex, premotor areas and the prefrontal cortex. Broca's area supports speech production.",
-   "expert": "Prefrontal cortex continues to mature (thinning, myelination) into the twenties, and the end point varies by measure and person; dorsolateral PFC supports working memory and executive control, orbitofrontal PFC value computation. Motor homunculus is a somatotopic map along the precentral gyrus."
+   "expert": "Prefrontal cortex continues to mature (thinning, myelination) through adolescence into early adulthood, and the end point varies by measure and person; dorsolateral PFC supports working memory and executive control, orbitofrontal PFC value computation. Motor homunculus is a somatotopic map along the precentral gyrus."
   },
   "facts": [
    [
@@ -318,7 +318,7 @@
   "summary": "The wrinkled outer sheet of the brain where much of perception, thought and voluntary action is computed.",
   "layers": {
    "basics": "The thin, folded outer layer of your brain. The folds let a large sheet fit inside the skull.",
-   "deeper": "About 16 billion neurons sit in a sheet 2-4 mm thick; folds (gyri and sulci) give it an area of roughly 2,000 cm².",
+   "deeper": "About 16 billion neurons sit in a sheet about 2.5 mm thick on average (1-4.5 mm); folds (gyri and sulci) give it an area of roughly 2,600 cm² in one standard MRI-based estimate.",
    "expert": "Six-layer neocortical architecture with canonical microcircuits; layer 5 pyramidal neurons project subcortically; cortical areas defined by cytoarchitecture (Brodmann) and multimodal parcellations."
   },
   "facts": [
@@ -328,10 +328,10 @@
    ],
    [
     "Area (unfolded)",
-    "≈ 0.2 m²"
+    "≈ 0.26 m² (≈ 2,600 cm²; varies between studies)"
    ]
   ],
-  "did_you_know": "If you unfolded the cortex it would cover roughly 0.2 m², about the area of a large dinner napkin.",
+  "did_you_know": "If you unfolded the cortex it would cover roughly a quarter of a square metre, about the area of a large dinner napkin.",
   "certainty": "C1",
   "refs": [
    [
@@ -378,7 +378,7 @@
   "facts": [
    [
     "Length",
-    "≈ 4-5 cm"
+    "A few centimetres, varying with how the ends are defined"
    ],
    [
     "Shape",
@@ -494,7 +494,7 @@
   "facts": [
    [
     "Axons",
-    "≈ 2×10^8"
+    "≈ 2-3×10^8"
    ],
    [
     "Length",
@@ -746,7 +746,7 @@
   "facts": [
    [
     "Length",
-    "≈ 7-10 cm"
+    "A few centimetres, tapering into the spinal cord"
    ],
    [
     "Parts",
@@ -801,7 +801,7 @@
    ],
    [
     "Diameter",
-    "≈ 1-1.5 cm"
+    "≈ 0.6-1.3 cm (widest in the neck)"
    ]
   ],
   "did_you_know": "The spinal cord is only as thick as a finger.",
@@ -839,7 +839,7 @@
   "layers": {
    "basics": "Nerves are bundles of long nerve fibers that carry commands out and sensations in.",
    "deeper": "12 cranial and 31 spinal nerve pairs, and many fibers are wrapped in myelin by Schwann cells for speed, while others (such as C fibers) are unmyelinated and slow.",
-   "expert": "Fibers classified A-alpha to C by diameter and myelination; conduction velocities from 0.5 to 120 m/s; axons can regrow in the PNS (about 1 mm per day, often incompletely), whereas adult CNS axons regenerate very poorly."
+   "expert": "Fibers classified A-alpha to C by diameter and myelination; conduction velocities from under 3 m/s in unmyelinated C fibres (≈ 0.4-2.8 m/s) to about 120 m/s in the largest myelinated fibres; axons can regrow in the PNS (about 1 mm per day, often incompletely), whereas adult CNS axons regenerate very poorly."
   },
   "facts": [
    [
@@ -848,7 +848,7 @@
    ],
    [
     "Speed range",
-    "≈ 0.5-120 m/s"
+    "≈ 0.4-120 m/s"
    ]
   ],
   "did_you_know": "The longest single nerve cells can have axons about a meter long.",
@@ -1287,7 +1287,7 @@
   "layers": {
    "basics": "Where you look directly, light lands on the fovea, packed with cones.",
    "deeper": "It supplies the high-resolution color vision you use for reading.",
-   "expert": "Peak cone density averages ≈ 2×10^5 cones/mm² (about 1.0-3.2×10^5 between people) and the central ≈ 0.35 mm has no rods (Curcio et al. 1990). Cones there connect mainly through the midget pathway, roughly one cone to one midget bipolar cell to one midget ganglion cell."
+   "expert": "Peak cone density averages ≈ 2×10^5 cones/mm² (about 1.0-3.2×10^5 between people) and the central ≈ 0.35 mm has no rods (Curcio et al. 1990). Cones there connect mainly through the midget pathway, signals from a single cone are largely conveyed to one ON and one OFF midget bipolar cell, each of which contacts a single midget ganglion cell."
   },
   "facts": [
    [

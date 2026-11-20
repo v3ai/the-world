@@ -1391,7 +1391,7 @@
   "layers": {
    "basics": "Red marrow makes blood cells; yellow marrow stores fat. In adults the shaft cavity of a long bone holds yellow marrow, while red marrow fills the spaces in spongy bone, such as at the bone ends.",
    "deeper": "Hematopoietic stem cells in marrow niches give rise to red cells, white cells and platelets.",
-   "expert": "Adults produce ≈ 2×10^11 red cells and ≈ 10^11 platelets and neutrophils daily; niches involve CXCL12-abundant reticular cells and osteoblasts."
+   "expert": "Adults produce more than 2 million red cells per second (≈ 2×10^11 a day) along with platelets and white cells; niches involve CXCL12-abundant reticular cells and osteoblasts."
   },
   "facts": [
    [
@@ -1399,7 +1399,7 @@
     "≈ 2×10^11"
    ]
   ],
-  "did_you_know": "Your marrow makes about 2 million red blood cells every second.",
+  "did_you_know": "Your marrow makes more than 2 million red blood cells every second.",
   "certainty": "C1",
   "refs": [
    [

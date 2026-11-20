@@ -134,7 +134,7 @@
    "deeper": "FFT turns an O(N²) DFT into O(N log N), which is why spectrum analysers and OFDM radios are practical.",
    "expert": "Big-O bounds growth from above, Ω from below and Θ from both sides. Any comparison sort must tell apart the n! possible orderings, and each comparison has two outcomes, so it needs at least log₂(n!) ≈ n log₂ n comparisons in the worst case, giving Ω(n log n); non-comparison sorts such as radix sort work differently and are not bound by this. Divide-and-conquer running times are analysed with the master theorem. Whether every problem whose answer can be checked in polynomial time can also be solved in polynomial time (P vs NP) is unresolved."
   },
-  "facts": [],
+  "facts": [["FFT versus direct DFT", "O(N log N) operations against O(N²) for direct evaluation"]],
   "formula": "T(n) = 2T(n/2) + Θ(n) ⇒ Θ(n log n)  (merge sort, radix-2 FFT: two half-size problems plus linear combine work)",
   "certainty": "C1",
   "refs": [],

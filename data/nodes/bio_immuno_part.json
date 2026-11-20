@@ -148,7 +148,7 @@
    ],
    [
     "Peptide length on MHC I",
-    "short peptides, typically about 9 aa"
+    "short peptides, mostly 8–11 aa (MHC class II binds longer ones, about 13–25 aa)"
    ]
   ],
   "certainty": "C1",
@@ -205,7 +205,7 @@
    ],
    [
     "CD4 count healthy",
-    "≈ 500–1,500/µL (healthy adult blood; lab-dependent)"
+    "≈ 500–1,200/µL (MedlinePlus, healthy adults; labs differ)"
    ]
   ],
   "certainty": "C1",

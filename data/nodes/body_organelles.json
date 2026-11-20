@@ -15,7 +15,7 @@
   "layers": {
    "basics": "The nucleus is the cell's control room: it stores DNA and decides which genes are read.",
    "deeper": "DNA is wrapped around histone proteins to form chromatin; pores in the double membrane control traffic.",
-   "expert": "In a typical human cell, ≈ 6.1×10^9 bp of DNA (diploid, ≈ 2 m end to end) is packed into a nucleus roughly 5-10 µm wide with a few thousand nuclear pores; the nuclear lamina supports the envelope; the nucleolus makes ribosomal RNA and assembles ribosome subunits."
+   "expert": "In a typical human cell, ≈ 6.1×10^9 bp of DNA (diploid, ≈ 2 m end to end) is packed into a nucleus roughly 5-10 µm wide with roughly two thousand or more nuclear pores (the number varies with cell type and cell-cycle stage); the nuclear lamina supports the envelope; the nucleolus makes ribosomal RNA and assembles ribosome subunits."
   },
   "facts": [
    [
@@ -138,7 +138,7 @@
   "layers": {
    "basics": "Ribosomes read genetic messages and string amino acids together into proteins.",
    "deeper": "They are made of RNA and protein and exist free or attached to the rough ER.",
-   "expert": "Mammalian 80S ribosome (60S + 40S) ≈ 4.3 MDa (yeast ≈ 3.3 MDa); the peptidyl transferase center is RNA-catalyzed (a ribozyme); ≈ 3-6 amino acids added per second in mammalian cells, versus ≈ 15-20 in bacteria."
+   "expert": "Mammalian 80S ribosome (60S + 40S) ≈ 4.3 MDa (yeast ≈ 3.3 MDa); the peptidyl transferase center is RNA-catalyzed (a ribozyme); amino acids are added at a few per second in eukaryotes (measured ≈ 3-10 per second in yeast) versus ≈ 12-21 per second in E. coli, depending on growth conditions."
   },
   "facts": [
    [
@@ -151,7 +151,7 @@
    ],
    [
     "Speed",
-    "≈ 3-6 aa/s (mammalian)"
+    "≈ 3-10 aa/s (yeast); ≈ 12-21 aa/s (E. coli)"
    ]
   ],
   "did_you_know": "The catalytic core of the ribosome is RNA, not protein.",
@@ -206,7 +206,7 @@
    ],
    [
     "Lumen Ca2+ (free)",
-    "≈ 0.05-1 mM depending on cell type and method, vs ≈ 0.1 µM in the cytosol at rest"
+    "≈ 0.1-0.6 mM in reported measurements (varies with cell type and method), vs ≈ 0.05-0.1 µM in the cytosol at rest"
    ]
   ],
   "did_you_know": "In muscle cells a specialized ER called the sarcoplasmic reticulum stores the calcium that triggers contraction.",
@@ -390,7 +390,7 @@
   "layers": {
    "basics": "The membrane is a double layer of fat-like molecules that controls what enters and leaves.",
    "deeper": "Proteins in it act as gates, pumps and receptors.",
-   "expert": "Fluid mosaic bilayer ≈ 4-5 nm thick for the lipids alone (oily core ≈ 3 nm); whole membranes with their proteins look thicker, roughly 7-10 nm, in electron micrographs; phospholipids and cholesterol (a large share, often tens of mol% in animal plasma membranes); transient lipid nanodomains ('rafts') whose size, lifetime and even existence in living cells remain debated; Na+/K+-ATPase uses a large share of a cell's ATP (on the order of 20-30% in many cells)."
+   "expert": "Fluid mosaic bilayer ≈ 4-5 nm thick for the lipids alone (oily core ≈ 3-4 nm); whole membranes with their proteins look thicker, roughly 7-10 nm, in electron micrographs; phospholipids and cholesterol (a large share, often tens of mol% in animal plasma membranes); transient lipid nanodomains ('rafts') whose size, lifetime and even existence in living cells remain debated; Na+/K+-ATPase uses a large share of a cell's ATP, with the fraction varying widely by cell type and highest in nerve cells."
   },
   "facts": [
    [
@@ -493,7 +493,7 @@
   "layers": {
    "basics": "A sarcomere is a tiny stack of sliding filaments that shortens to generate force.",
    "deeper": "Ca2+ binding to troponin uncovers myosin-binding sites on actin; myosin heads then bind, swing and release using ATP, pulling the thin filaments toward the M-line and the Z-discs together.",
-   "expert": "Skeletal muscle: isometric force is highest on a plateau at sarcomere lengths of about 2.05–2.2 µm (frog fibres, Gordon, Huxley and Julian 1966); thick filament ≈ 1.6 µm, thin ≈ 1 µm; titin spans Z-disc to M-line. Force depends on how many myosin heads overlap thin filaments: it is highest on the plateau, falls at longer lengths as overlap is lost, and falls at lengths below about 1.67 µm."
+   "expert": "Skeletal muscle: isometric force is highest on a plateau at sarcomere lengths of about 2.05–2.2 µm (frog fibres, Gordon, Huxley and Julian 1966); the A-band (the length of a thick filament) is ≈ 1.85 µm in mammalian skeletal muscle; titin spans Z-disc to M-line. Force depends on how many myosin heads overlap thin filaments: it is highest on the plateau, falls at longer lengths as overlap is lost, and falls at lengths below about 1.67 µm."
   },
   "facts": [
    [

@@ -796,14 +796,18 @@ function stepFly(dt) {
   const distM = g.distanceTo(cam.T) * cam.A.unit;
   const wantD = Math.max(F.Dg, distM * (distM > cam.D * .6 ? 2.2 : 3)); // never zoom in faster than the target is being centred
   const lnD = Math.log(cam.D), lnW = Math.log(wantD);
-  let dl = (lnW - lnD) * (1 - Math.exp(-dt * 2.6)); dl = clamp(dl, -dt * 4.2, dt * 4.2);
+  /* How fast a flight zooms: a short hop at up to about three powers of ten a second; a long one faster, so that no trip spends much more than two and a half
+     seconds zooming (quarks to the cosmic web is 44 powers of ten), up to about eight powers of ten a second. It settles in under a second. */
+  if (!F.rate) F.rate = clamp(Math.abs(Math.log(Math.max(F.Dg, 1e-30)) - lnD) / 2.5, 7.5, 18);
+  let dl = (lnW - lnD) * (1 - Math.exp(-dt * 4)); dl = clamp(dl, -dt * F.rate, dt * F.rate);
   cam.D = Math.exp(lnD + dl);
-  if (distM > cam.D * .6) { const stepM = Math.min(distM, cam.D * dt * 1.6); cam.T.add(g.sub(cam.T).multiplyScalar(stepM / distM)); }
-  else cam.T.lerp(g, 1 - Math.exp(-dt * 4));
+  if (distM > cam.D * .6) { const stepM = Math.min(distM, cam.D * dt * Math.max(2.6, F.rate * .5)); cam.T.add(g.sub(cam.T).multiplyScalar(stepM / distM)); } // the slide keeps pace with the zoom, or it would be what limits a flight inward
+  else cam.T.lerp(g, 1 - Math.exp(-dt * Math.max(6, F.rate * 1.25))); // centring keeps ahead of the zoom, which may never outrun it (wantD above)
   let turned = true;
-  if (F.dir) {   // turn toward the asked direction, with the frame's own up (its y) kept up
+  if (F.dir) {   // turn toward the asked direction, with the frame's own up (its y) kept up; the turn keeps pace with the flight
+    const kt = 1 - Math.exp(-dt * Math.max(2.4, F.rate * .5));
     _fsV.copy(F.dir); convertD(_fsV, F.frame, cam.A); turned = cam.dir.dot(_fsV) > .9995;
-    if (!turned) { cam.dir.lerp(_fsV, 1 - Math.exp(-dt * 2.4)).normalize(); _fsU.set(0, 1, 0); convertD(_fsU, F.frame, cam.A); _fsU.addScaledVector(cam.dir, -_fsU.dot(cam.dir)); if (_fsU.lengthSq() > .02) cam.up.lerp(_fsU.normalize(), 1 - Math.exp(-dt * 2.4)).normalize(); }
+    if (!turned) { cam.dir.lerp(_fsV, kt).normalize(); _fsU.set(0, 1, 0); convertD(_fsU, F.frame, cam.A); _fsU.addScaledVector(cam.dir, -_fsU.dot(cam.dir)); if (_fsU.lengthSq() > .02) cam.up.lerp(_fsU.normalize(), kt).normalize(); }
   }
   if (turned && distM < cam.D * .02 && Math.abs(lnW - Math.log(cam.D)) < .03) { const t = F.then; fly = null; faceSurface(F.frame); safeThen(t); }
   if (fly === F && F.t > 60) { const t = F.then, d = F.dir; jumpTo(F.frame, F.p, F.Dg); if (d) setCamDir(convertD(d.clone(), F.frame, cam.A), convertD(new V3(0, 1, 0), F.frame, cam.A)); safeThen(t); } // never strand a tour: finish the trip
@@ -811,7 +815,16 @@ function stepFly(dt) {
 // pointer handlers
 const pointers = new Map(); let dragMoved = false, downPos = null, pinchD = 0;
 const mouse = { x: 0, y: 0, has: false, dirty: false, touch: false, t: 0, tipX: 0, tipY: 0 }; // dirty: the hover must be worked out again; t: when the pointer last moved
-canvas.addEventListener('wheel', e => { e.preventDefault(); let d = e.deltaY; if (e.deltaMode === 1) d *= 16; d = clamp(d, -240, 240); zoomBy(d * .0016 * (e.shiftKey ? 4 : 1), e.clientX, e.clientY); }, { passive: false });
+/* Wheel zoom. One notch (deltaY 100) changes the view by about a third, fine enough to place a view exactly. A scroll that keeps going in one direction speeds up,
+   to about two and a half times that within a few notches (a trackpad swipe ramps the same way over about a second), so crossing many powers of ten takes a few
+   swipes, not hundreds of notches; a pause of a fifth of a second, or a change of direction, drops back to the fine step. Shift still multiplies by four. */
+const WHEEL_K = .003, WHEEL_BOOST_MAX = 2.5; let whT = 0, whSign = 0, whBoost = 1;
+canvas.addEventListener('wheel', e => {
+  e.preventDefault(); let d = e.deltaY; if (e.deltaMode === 1) d *= 16; d = clamp(d, -240, 240);
+  const now = performance.now(), sg = Math.sign(d);
+  whBoost = sg && sg === whSign && now - whT < 200 ? Math.min(WHEEL_BOOST_MAX, whBoost + Math.abs(d) * .004) : 1; whT = now; whSign = sg;
+  zoomBy(d * WHEEL_K * whBoost * (e.shiftKey ? 4 : 1), e.clientX, e.clientY);
+}, { passive: false });
 canvas.addEventListener('pointerdown', e => {
   try { canvas.setPointerCapture(e.pointerId); } catch (_) { }
   pointers.set(e.pointerId, { x: e.clientX, y: e.clientY }); mouse.touch = e.pointerType === 'touch';
@@ -839,7 +852,7 @@ canvas.addEventListener('pointercancel', e => endPointer(e, false));
 canvas.addEventListener('pointerleave', () => { mouse.has = false; setHover(null); tipEl.classList.remove('show'); });
 canvas.addEventListener('dblclick', e => e.preventDefault()); // a double click is recognised in onClick (two clicks close together, mouse or touch); the browser's own event is not used
 ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(t => addEventListener(t, () => { lastInput = performance.now(); }, { capture: true, passive: true })); // any input, anywhere on the page, ends the resting frame rate at once
-let holdZoom = 0;
+let holdZoom = 0, holdT = 0;
 function bindHold(el, dir) {
   const start = e => { e.preventDefault(); holdZoom = dir; }, stop = () => { holdZoom = 0; };
   el.addEventListener('pointerdown', start); el.addEventListener('pointerup', stop); el.addEventListener('pointerleave', stop); el.addEventListener('pointercancel', stop);
@@ -847,8 +860,8 @@ function bindHold(el, dir) {
 addEventListener('keydown', e => {
   if (/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName) || e.ctrlKey || e.metaKey || e.altKey) return;
   const k = e.key;
-  if (k === '+' || k === '=') zoomBy(-.25, W / 2, H / 2);
-  else if (k === '-' || k === '_') zoomBy(.25);
+  if (k === '+' || k === '=') zoomBy(-.5, W / 2, H / 2);
+  else if (k === '-' || k === '_') zoomBy(.5);
   else if (k === 'Escape') { const vm = document.getElementById('vizModal'); if (vm && vm.classList.contains('open')) { vm.classList.remove('open'); return; } closeInfo(); closePops(); fly = null; cancelTour(); $('#help').classList.add('hide'); }
   else if (k === 'ArrowLeft') orbit(-25, 0); else if (k === 'ArrowRight') orbit(25, 0);
   else if (k === 'ArrowUp') orbit(0, -17); else if (k === 'ArrowDown') orbit(0, 17);

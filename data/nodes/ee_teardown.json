@@ -597,7 +597,7 @@
   "layers": {
    "basics": "Short-term memory that holds the apps currently running.",
    "deeper": "Low-power DRAM stacked on top of the SoC with tiny solder balls to save space.",
-   "expert": "LPDDR5X: 8.533 Gb/s/pin at its 2021 launch, up to 9.6 Gb/s in the current JEDEC standard (some vendor parts run to 10.7 Gb/s); commonly 8–16 GB in flagships; 1T1C cells are refreshed every few tens of milliseconds."
+   "expert": "LPDDR5X: 8.533 Gb/s/pin at its 2021 launch, up to 9.6 Gb/s in the current JEDEC standard (some vendor parts run to 10.7 Gb/s); commonly 8–16 GB in flagships; 1T1C cells are refreshed continually, each row at least every 64 ms or so in the usual DRAM convention."
   },
   "facts": [],
   "certainty": "C1",
@@ -640,7 +640,7 @@
   "layers": {
    "basics": "Holds your photos, apps and files even when the phone is off.",
    "deeper": "NAND flash in a package with a controller; talks to the SoC over UFS.",
-   "expert": "256 GB–1 TB; 3D NAND ≥200 layers; UFS 4.0: 2 lanes × 23.2 Gb/s (5.8 GB/s interface maximum), with real sequential reads nearer 4 GB/s; wear levelling and ECC in controller."
+   "expert": "256 GB–1 TB; 3D NAND ≥200 layers; UFS 4.0: 2 lanes × 23.2 Gb/s (5.8 GB/s interface maximum), with the vendor-quoted sequential read of Samsung's UFS 4.0 at 4.2 GB/s, below the interface maximum; wear levelling and ECC in controller."
   },
   "facts": [],
   "certainty": "C1",
@@ -867,7 +867,7 @@
   "layers": {
    "basics": "Tiny silicon structures sense acceleration and rotation, so the screen can rotate and games can use tilt.",
    "deeper": "A suspended mass changes capacitance when accelerated; gyros use vibrating structures and Coriolis force.",
-   "expert": "Accelerometer noise density roughly 100 µg/√Hz (datasheet values vary by part); selectable ranges up to about ±16 g; gyro bias instability is quoted in °/h and is far poorer than in navigation-grade gyros; sensor fusion with magnetometer and barometer runs on a low-power sensor hub or the SoC."
+   "expert": "Accelerometer noise density is quoted in µg/√Hz and varies by part and mode; selectable ranges up to about ±16 g; gyro bias instability is quoted in °/h and is far poorer than in navigation-grade gyros; sensor fusion with magnetometer and barometer runs on a low-power sensor hub or the SoC."
   },
   "facts": [],
   "certainty": "C1",
@@ -1952,7 +1952,7 @@
   "layers": {
    "basics": "The charger turns 120/230 V AC mains into low-voltage DC, using a high-frequency switching converter instead of a heavy transformer.",
    "deeper": "The chain: mains rectifier → switching MOSFET chopping at 50–150 kHz → small flyback transformer for isolation → optocoupler feedback → output stage.",
-   "expert": "good GaN-based chargers at 65–140 W exceed 90% efficiency at full load (efficiency varies with load and mains voltage); output is typically 5–20 V, up to 48 V with USB PD EPR; USB-PD chip negotiates voltage over CC wire; QR (quasi-resonant) flyback or ACF topologies."
+   "expert": "GaN-based chargers are highly efficient at full load, with most losses as heat in the switch, transformer and rectifier (efficiency varies with load and mains voltage); output is typically 5–20 V, up to 48 V with USB PD EPR; USB-PD chip negotiates voltage over CC wire; QR (quasi-resonant) flyback or ACF topologies."
   },
   "facts": [],
   "certainty": "C1",
@@ -2577,7 +2577,7 @@
   "layers": {
    "basics": "Mains AC is converted to DC, stepped down, and pushed into the battery by the phone’s charger chip, which watches current, voltage and temperature.",
    "deeper": "Constant-current phase until about 4.2–4.45 V, then constant-voltage phase while current tapers; fast charging uses higher voltage to keep current manageable.",
-   "expert": "USB PD negotiation over CC lines sets the voltage (e.g., 9 V/3 A); charge pumps (2:1/3:1) convert at high efficiency (vendor datasheets quote peaks above 95%, lower at light load); cell protection and temperature limits dominate the final stages."
+   "expert": "USB PD negotiation over CC lines sets the voltage (e.g., 9 V/3 A); charge pumps (2:1/3:1) convert at high efficiency (vendor datasheets quote high peaks, for example 98.6% for one TI switched-capacitor charger, with lower efficiency at light load); cell protection and temperature limits dominate the final stages."
   },
   "facts": [],
   "certainty": "C1",
@@ -2992,7 +2992,7 @@
   "layers": {
    "basics": "A silicon wafer goes through hundreds of cycles of adding a layer, printing a pattern and etching it, building billions of transistors.",
    "deeper": "Cleanroom steps: grow oxide, coat resist, expose, develop, etch, implant, deposit metal, repeat; then dice and package.",
-   "expert": "The whole flow is ≈ 1000+ steps: the front-end builds the transistors and the back-end adds ≈ 10–15 copper metal layers; EUV is used on ≈ 20 critical layers at leading nodes; yield learning; test, binning and packaging with TSVs and hybrid bonding."
+   "expert": "The whole flow is a very long sequence of hundreds of steps: the front-end builds the transistors and the back-end adds many copper metal layers; EUV is used only on the finest critical layers (published tool-planning scenarios range from 5 to 25 EUV layers); yield learning; test, binning and packaging with TSVs and hybrid bonding."
   },
   "facts": [],
   "certainty": "C1",

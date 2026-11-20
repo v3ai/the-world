@@ -517,7 +517,7 @@
   "needs": [],
   "summary": "DFT/FFT, digital filters, multirate, quantisation and applications.",
   "layers": {
-   "basics": "Digital signal processing changes signals after they have been turned into numbers. A computer or chip can filter noise, compress sound or find a pattern with arithmetic alone. The results are repeatable and do not drift with temperature.",
+   "basics": "Digital signal processing changes signals after they have been turned into numbers. A computer or chip can filter noise, compress sound or find a pattern with arithmetic alone. The arithmetic is repeatable and does not drift with temperature, although the converters at the input and output still can.",
    "deeper": "The discrete Fourier transform finds the frequencies in a block of samples, and the FFT is a fast algorithm for computing it. Digital filters combine delayed samples to keep some frequencies and remove others. Multirate methods change the sampling rate. Quantisation rounds values to a fixed number of bits, which adds a small error.",
    "expert": "Digital filters are usually grouped into finite impulse response and infinite impulse response types, which trade exact linear phase against efficiency and possible instability. Finite word length causes rounding error, overflow and limit cycles. Choosing bit width, sampling rate and arithmetic format is a central design trade-off."
   },

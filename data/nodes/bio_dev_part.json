@@ -431,7 +431,7 @@
    ],
    [
     "Colorectal tumours with a Wnt pathway alteration",
-    "≈ 93% (TCGA 2012)"
+    "≈ 93% of non-hypermutated tumours, 97% of hypermutated (TCGA 2012)"
    ]
   ],
   "certainty": "C2",
@@ -479,7 +479,7 @@
   "layers": {
    "basics": "Some animals regrow lost parts: salamanders limbs, planarians whole bodies. Insects and amphibians undergo metamorphosis.",
    "deeper": "Mammals regenerate livers and fingertips but not limbs. Metamorphosis is controlled by hormones: in insects, ecdysone triggers each moult and juvenile hormone decides whether the result stays larval or becomes pupal and adult; in amphibians, thyroid hormone drives it.",
-   "expert": "Blastema formation, dedifferentiation and positional memory underlie limb regeneration. Up to about 30% of planarian cells are neoblasts, the dividing stem cells that rebuild the body; they are not all alike, and only some can give rise to every cell type. Organoids derived from stem cells mimic organ structures in vitro."
+   "expert": "Blastema formation, dedifferentiation and positional memory underlie limb regeneration. Roughly 20–30% of the cells of an adult planarian are neoblasts, the dividing stem cells that rebuild the body; they are not all alike, and only some can give rise to every cell type. Organoids derived from stem cells mimic organ structures in vitro."
   },
   "facts": [
    [
@@ -534,14 +534,14 @@
   ],
   "summary": "From zygote to newborn.",
   "layers": {
-   "basics": "Pregnancy lasts about 38 weeks counted from conception (about 40 weeks counted from the last menstrual period). The embryo forms its organs in the first 8 weeks after conception; from the ninth week it is called a fetus and grows.",
+   "basics": "Pregnancy lasts about 38 to 39 weeks counted from conception (about 40 weeks counted from the last menstrual period). The embryo forms its organs in the first 8 weeks after conception; from the ninth week it is called a fetus and grows.",
    "deeper": "The placenta supplies nutrients and oxygen and removes waste. Hormones (hCG, progesterone, oxytocin) regulate pregnancy and birth.",
    "expert": "Teratogens (thalidomide, alcohol, rubella) act during sensitive windows. Fetal hemoglobin has higher O₂ affinity than adult Hb. Fetal programming of adult disease (Barker hypothesis) is supported by epidemiology but mechanisms are partly unclear."
   },
   "facts": [
    [
     "Full-term gestation",
-    "≈ 38 weeks (from conception)"
+    "≈ 38.5 weeks, 270 days (from conception)"
    ],
    [
     "Newborn weight",
@@ -602,7 +602,7 @@
   "layers": {
    "basics": "In plants the zygote becomes a seed embryo with a root and shoot tip and cotyledons; it can wait for years before germinating.",
    "deeper": "Germination starts when the dry seed takes up water (imbibition). Abscisic acid holds seeds dormant, and gibberellins break dormancy and promote germination.",
-   "expert": "Seed dormancy can be broken by cues such as light, a long cold spell or fire. A Judean date palm seed about 2,000 years old was grown into a plant, a record for a seed that germinated directly. Separately, plants were regenerated in 2012 from about 32,000-year-old fruit tissue of Silene stenophylla; that was tissue regrown, not a seed germinating."
+   "expert": "Seed dormancy can be broken by cues such as light, a long cold spell or fire. A Judean date palm seed about 2,000 years old was grown into a plant, the oldest directly dated viable seed reported when it was published in 2008. Separately, plants were regenerated in 2012 from about 32,000-year-old fruit tissue of Silene stenophylla; that was tissue regrown, not a seed germinating."
   },
   "facts": [
    [

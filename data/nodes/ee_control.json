@@ -258,7 +258,7 @@
   ],
   "summary": "Proportional, integral, derivative control.",
   "layers": {
-   "basics": "PID looks at the error now (P), its accumulated past (I) and its trend (D) to decide the correction; it is by far the most common controller in industry, used in the large majority of control loops (surveys have reported about 90% or more).",
+   "basics": "PID looks at the error now (P), its accumulated past (I) and its trend (D) to decide the correction; it is by far the most common controller in industry, used in the large majority of industrial control loops (reviews cite about 90% of process industries using it).",
    "deeper": "P speeds response, I removes steady error, D adds damping; tuning methods: Ziegler–Nichols, loop-shaping.",
    "expert": "u=K_p e+K_i∫e+K_d de/dt; anti-windup, derivative filter; digital form with sample time; 2-DOF structures."
   },

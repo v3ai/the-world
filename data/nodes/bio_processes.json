@@ -75,7 +75,7 @@
   "facts": [
    [
     "Human origins",
-    "tens of thousands used per S phase (mapping methods report from ≈ 25,000 to > 100,000 sites; varies by cell type)"
+    "≈ 25,000–50,000 initiation events estimated per S phase; mapping methods list from ≈ 25,000 to ≈ 250,000 candidate origin sites, and only a fraction fire in a given cell"
    ],
    [
     "Okazaki fragment length",
@@ -182,7 +182,7 @@
    ],
    [
     "TATA box (when present)",
-    "≈ 25–30 bp upstream of the start; only a minority of human promoters have one (roughly 10% canonical, about a quarter if TATA-like elements count)"
+    "≈ 25–30 bp upstream of the start in mammals; only a minority of human promoters have one (about a quarter have a TATA-like element, and only about a tenth of those, so a few percent overall, match the canonical TATAWAWR box)"
    ]
   ],
   "certainty": "C1",
@@ -479,7 +479,7 @@
   "layers": {
    "basics": "Electrons from NADH and FADH₂ flow to oxygen, pumping protons that power ATP synthase.",
    "deeper": "The proton-motive force, a combined pH difference and voltage across the inner mitochondrial membrane, is the energy store. The total of ≈ 30–32 ATP per glucose counts all stages of respiration; oxidative phosphorylation gives most of it.",
-   "expert": "≈ 10 H⁺ pumped per NADH; ≈ 4 H⁺ per ATP including phosphate transport; P/O ≈ 2.5 for NADH."
+   "expert": "≈ 10 H⁺ pumped per NADH; ≈ 4 H⁺ per ATP including phosphate transport; P/O ≈ 2.5 for NADH (about 2.3 if the ATP synthase needs 10/3 H⁺ per ATP)."
   },
   "facts": [
    [
@@ -580,7 +580,7 @@
   "layers": {
    "basics": "Light energy excites electrons in chlorophyll; the electrons make ATP and NADPH and water is split to oxygen.",
    "deeper": "Two photosystems work in series in the thylakoid membrane.",
-   "expert": "The Z-scheme traces the electron path from PSII (P680) through plastoquinone, cytochrome b6f and plastocyanin to PSI (P700) and ferredoxin; the proton gradient it builds drives ATP synthase. The minimum is ≈ 8 photons per O₂."
+   "expert": "The Z-scheme traces the electron path from PSII (P680) through plastoquinone, cytochrome b6f and plastocyanin to PSI (P700) and ferredoxin; the proton gradient it builds drives ATP synthase. The minimum is ≈ 8 photons per O₂: four electrons are removed from two water molecules, and each is lifted once in each photosystem."
   },
   "facts": [
    [
@@ -785,7 +785,7 @@
    ],
    [
     "Human crossovers",
-    "a few tens per meiosis; more in female than in male meiosis"
+    "≈ 22–28 per sperm in 20 donors; more in female meiosis"
    ]
   ],
   "certainty": "C1",

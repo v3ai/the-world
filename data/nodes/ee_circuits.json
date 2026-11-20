@@ -552,7 +552,7 @@
   "layers": {
    "basics": "A voltage source in series with a resistor behaves the same as a current source in parallel with it, so you can swap them to simplify.",
    "deeper": "The transformation is a quick pencil-and-paper way to combine sources; only the outside terminals match.",
-   "expert": "I_s=V_s/R_s with the same R_s in parallel (R_s must be non-zero and finite); only the terminal behaviour matches, not internal dissipation; with dependent sources it works only while the controlling variable stays in the circuit."
+   "expert": "I_s=V_s/R_s with the same R_s in parallel (R_s must be non-zero and finite); only the terminal behaviour matches, not internal dissipation; with dependent sources it needs care, because the controlling variable must not be lost in the transformation."
   },
   "facts": [],
   "formula": "I_s = V_s/R_s",

@@ -206,7 +206,7 @@
   "facts": [
    [
     "Diameter",
-    "≈ 12 µm"
+    "≈ 10-12 µm"
    ],
    [
     "Share of WBC",
@@ -521,7 +521,7 @@
    ],
    [
     "Length",
-    "up to many centimetres in the longest muscles"
+    "≈ 4–20 cm in human sartorius and gracilis (fibres often end within the muscle)"
    ]
   ],
   "did_you_know": "A single muscle fiber is a giant cell that can be many centimetres long, though in long muscles it is often shorter than the muscle itself.",
@@ -717,7 +717,7 @@
   "layers": {
    "basics": "Osteocytes are trapped in tiny pockets inside bone and are thought to sense mechanical load, although exactly how is still debated.",
    "deeper": "They talk to each other through thin channels.",
-   "expert": "Dendritic network in canaliculi; secrete sclerostin and FGF23; ≈ 90-95% of bone cells; lifespan of decades."
+   "expert": "Dendritic network in canaliculi; secrete sclerostin and FGF23; ≈ 90-95% of bone cells; lifespan up to about 25 years."
   },
   "facts": [
    [
@@ -726,10 +726,10 @@
    ],
    [
     "Lifespan",
-    "up to decades"
+    "up to about 25 years"
    ]
   ],
-  "did_you_know": "Osteocytes are the longest-lived bone cells, living for decades.",
+  "did_you_know": "Osteocytes are the longest-lived bone cells, surviving up to about 25 years.",
   "certainty": "C2",
   "open_questions": [
    "How do osteocytes detect load: fluid flow in their channels, strain in the matrix, or both?"
@@ -821,14 +821,14 @@
   "facts": [
    [
     "Nuclei",
-    "≈ 3-20"
+    "several to many (varies; more nuclei, greater resorption)"
    ],
    [
-    "Size",
-    "≈ 100 µm"
+    "Share of bone cells",
+    "≈ 1–4%"
    ]
   ],
-  "did_you_know": "In adults the skeleton as a whole is remodelled over roughly ten years, with spongy bone renewed faster than dense bone.",
+  "did_you_know": "On average about 10% of the adult skeleton is remodelled each year, so the whole skeleton is renewed over roughly ten years.",
   "certainty": "C1",
   "refs": [
    [
@@ -1150,12 +1150,12 @@
   "layers": {
    "basics": "A sperm swims with a whip-like tail to reach an egg.",
    "deeper": "It carries 23 chromosomes, an acrosome of enzymes for entering the egg, and mitochondria in the midpiece to power its tail.",
-   "expert": "Head with nucleus and acrosome, midpiece packed with mitochondria, flagellum; ≈ 45-60 µm long; typical semen holds tens of millions per mL; WHO reference limits are 5th centiles of fertile men, not an infertility cutoff."
+   "expert": "Head with nucleus and acrosome, midpiece packed with mitochondria, flagellum; head about 5 µm long with a much longer tail; a typical ejaculate holds tens of millions to over a hundred million sperm per mL; WHO reference limits are 5th centiles of fertile men, not an infertility cutoff."
   },
   "facts": [
    [
-    "Length",
-    "≈ 50 µm"
+    "Head length",
+    "≈ 5 µm (tail much longer)"
    ],
    [
     "Chromosomes",
@@ -1197,19 +1197,19 @@
   "layers": {
    "basics": "The egg carries half the genetic instructions and nutrients that start a new person.",
    "deeper": "It is surrounded by a protective coat and cells.",
-   "expert": "Arrested in prophase I from before birth (for years to decades) until the LH surge just before ovulation, then arrested in metaphase II until fertilization; zona pellucida; ≈ 120 µm."
+   "expert": "Arrested in prophase I from before birth (for years to decades) until the LH surge just before ovulation, then arrested in metaphase II until fertilization; zona pellucida; far larger than a sperm."
   },
   "facts": [
    [
-    "Diameter",
-    "≈ 0.1-0.12 mm"
+    "Size compared with sperm",
+    "a sperm cell has about 1/85,000 of the egg's volume"
    ],
    [
     "Chromosomes",
     "23 at ovulation (each still two chromatids); meiosis II finishes only at fertilization"
    ]
   ],
-  "did_you_know": "It is just visible to the naked eye.",
+  "did_you_know": "A sperm cell's volume is about 85,000 times smaller than that of the egg it fertilizes.",
   "certainty": "C1",
   "refs": [
    [
@@ -1247,11 +1247,11 @@
   "facts": [
    [
     "Frequency",
-    "≈ 1 in 10^4-10^5 marrow cells"
+    "rare: a very small fraction of marrow cells"
    ],
    [
     "Divisions",
-    "few per year"
+    "≈ once a year on average (once every 25–50 weeks, inferred)"
    ]
   ],
   "did_you_know": "One estimate puts the stem cells actively making your white blood cells at about 50,000 to 200,000.",
@@ -1294,15 +1294,15 @@
   "layers": {
    "basics": "Melanocytes shade your skin against UV light.",
    "deeper": "They pass pigment packages to neighbouring cells.",
-   "expert": "Melanosomes with eumelanin/pheomelanin transferred to ≈ 36 keratinocytes each; density roughly similar across skin tones."
+   "expert": "Melanosomes with eumelanin/pheomelanin transferred to about 30–40 keratinocytes each (the epidermal melanin unit)."
   },
   "facts": [
    [
     "Pigment passed to",
-    "≈ 36 keratinocytes per melanocyte"
+    "≈ 30–40 keratinocytes per melanocyte"
    ]
   ],
-  "did_you_know": "People of all skin tones have roughly the same number of melanocytes; they differ in how much pigment is made.",
+  "did_you_know": "Skin colour depends largely on how much melanin the melanocytes make and pass to neighbouring keratinocytes.",
   "certainty": "C1",
   "refs": [
    [
@@ -1341,7 +1341,7 @@
   "layers": {
    "basics": "Beta cells sense blood sugar and release insulin.",
    "deeper": "They store insulin in granules ready to release.",
-   "expert": "Glucose enters through GLUT transporters (GLUT2 in rodents; mainly GLUT1/GLUT3 in humans) and is phosphorylated by glucokinase, ATP-sensitive K+ channels close, depolarization, Ca2+ influx, insulin exocytosis (biphasic)."
+   "expert": "Glucose enters through GLUT transporters (GLUT2 in rodents; predominantly GLUT1 in humans) and is phosphorylated by glucokinase, ATP-sensitive K+ channels close, depolarization, Ca2+ influx, insulin exocytosis (biphasic)."
   },
   "facts": [
    [

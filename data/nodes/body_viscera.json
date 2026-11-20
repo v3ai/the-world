@@ -348,12 +348,12 @@
   "layers": {
    "basics": "The large intestine turns leftovers into stool and hosts trillions of helpful bacteria.",
    "deeper": "It includes cecum, colon and rectum. Gut microbes ferment fiber into useful fatty acids.",
-   "expert": "Colonic transit ≈ 20-50 h; microbial fermentation gives short-chain fatty acids (acetate, propionate, butyrate) used by colonocytes; microbial density in colon contents is very high, on the order of 10^11 cells per gram."
+   "expert": "Colonic transit is far slower than the 3-5 hours chyme spends in the small intestine; microbial fermentation gives short-chain fatty acids (acetate, propionate, butyrate) used by colonocytes; microbial density in colon contents is very high, on the order of 10^11 bacterial cells per millilitre of content (roughly per gram)."
   },
   "facts": [
    [
     "Length",
-    "≈ 1.5 m"
+    "≈ 1.5-1.7 m (about a third of the ≈ 5 m gut; varies widely)"
    ],
    [
     "Water absorbed",
@@ -466,11 +466,11 @@
    ],
    [
     "Blood flow",
-    "≈ 1.5 L/min"
+    "≈ 1.2 L/min (about 25% of cardiac output)"
    ],
    [
     "Hepatocytes",
-    "≈ 2×10^11"
+    "≈ 1.5×10^11 (from ≈ 10^8 per gram, range 0.65-1.85×10^8)"
    ]
   ],
   "did_you_know": "The liver can regenerate to full size from as little as a quarter of its mass.",
@@ -529,7 +529,7 @@
     "≈ 80%"
    ]
   ],
-  "did_you_know": "Each lobule is about as wide as a grain of sand.",
+  "did_you_know": "Each lobule is only about 1-2 mm across, and in humans its edges are barely visible in ordinary stained sections.",
   "certainty": "C1",
   "refs": [
    [
@@ -569,8 +569,8 @@
   },
   "facts": [
    [
-    "Capacity",
-    "≈ 30-50 mL"
+    "Fasting volume",
+    "≈ 17-22 mL (mean in healthy adults, ultrasound)"
    ],
    [
     "Length",
@@ -739,7 +739,7 @@
    ],
    [
     "Mass",
-    "≈ 150 g"
+    "≈ 115-175 g each (men about 125-175, women 115-155)"
    ],
    [
     "Nephrons",
@@ -797,7 +797,7 @@
    ],
    [
     "Mass",
-    "≈ 150 g"
+    "≈ 115-175 g each (men about 125-175, women 115-155)"
    ],
    [
     "Nephrons",
@@ -1590,10 +1590,10 @@
    ],
    [
     "Size",
-    "≈ 6 mm each"
+    "≈ 6 mm long, 3-4 mm wide"
    ]
   ],
-  "did_you_know": "They were not described in humans until 1880, much later than most other organs.",
+  "did_you_know": "Ivar Sandström, a Swedish medical student, first demonstrated them in humans around 1880; the gland had been noticed in a rhinoceros in 1850.",
   "certainty": "C1",
   "refs": [
    [
@@ -1940,23 +1940,23 @@
   "layers": {
    "basics": "Skin protects you from germs, UV light and water loss, helps control body temperature and lets you feel.",
    "deeper": "Two layers: the epidermis (outer) and the dermis (middle). Beneath them lies the hypodermis, a fatty layer that anchors the skin but is not strictly part of it.",
-   "expert": "Keratinocyte differentiation produces the stratum corneum; epidermal turnover ≈ 28-40 days; melanocytes, Langerhans cells and Merkel cells reside in the epidermis."
+   "expert": "Keratinocyte differentiation produces the stratum corneum; the horny surface layer is replaced about every 4 weeks; melanocytes, Langerhans cells and Merkel cells reside in the epidermis."
   },
   "facts": [
    [
     "Area",
-    "≈ 1.7-2 m²"
+    "≈ 1.8 m² (70 kg reference adult)"
    ],
    [
     "Thickness",
-    "≈ 0.5-4 mm"
+    "varies by site; thickest on palms and soles"
    ],
    [
     "Stratum corneum",
     "15-30 cell layers"
    ]
   ],
-  "did_you_know": "Skin is the largest organ of the body, weighing several kilograms in an adult.",
+  "did_you_know": "Skin is the largest organ of the body by surface area.",
   "certainty": "C1",
   "refs": [
    [
@@ -2209,7 +2209,7 @@
   "layers": {
    "basics": "It cushions and insulates.",
    "deeper": "Made of fat cells and loose tissue.",
-   "expert": "Subcutaneous fat also acts as an endocrine organ (it releases leptin and adiponectin), and its thickness and distribution differ by sex and body site."
+   "expert": "Fat tissue also acts as an endocrine organ (it releases leptin and adiponectin), and the thickness and distribution of the hypodermis differ by sex and body site."
   },
   "facts": [
    [

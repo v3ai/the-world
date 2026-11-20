@@ -223,7 +223,7 @@
   "summary": "Registers → cache → DRAM → flash.",
   "layers": {
    "basics": "Fast memory is small and costly; big memory is slow. The hierarchy gives the illusion of fast and large.",
-   "deeper": "Each level is slower than the one above it. Registers and L1 cache respond within a few clock cycles, lower cache levels take progressively longer, DRAM takes tens of nanoseconds or more, and flash storage takes tens of microseconds or more. Exact values vary with the processor design.",
+   "deeper": "Each level is slower than the one above it. Registers are the fastest, small on-chip caches come next, lower cache levels take progressively longer, DRAM random access takes tens of nanoseconds or more, and flash storage reads take tens of microseconds or more. Exact values vary with the processor design.",
    "expert": "Bandwidth, latency and the memory wall; prefetching; NUMA."
   },
   "facts": [],
@@ -297,7 +297,7 @@
   "summary": "A computer on a chip.",
   "layers": {
    "basics": "A microcontroller bundles a CPU, memory and peripherals (timers, ADC, serial) in one chip for controlling devices.",
-   "deeper": "Arm Cortex-M cores are widely used in 32-bit microcontrollers and have replaced many 8-bit parts. 8-bit AVR (Arduino) and PIC parts, and families such as the 8051, remain common in education and low-cost designs. A phone system-on-chip is a much larger relative: it is an application processor running an operating system, though it contains small microcontroller-class cores.",
+   "deeper": "Arm Cortex-M cores are widely used in 32-bit microcontrollers and have been shipped in tens of billions of devices. 8-bit AVR (Arduino) and PIC parts, and families such as the 8051, remain common in education and low-cost designs. A phone system-on-chip is a much larger relative: it is an application processor running an operating system, though it contains small microcontroller-class cores.",
    "expert": "Harvard vs von Neumann, NVIC interrupt controller, memory map, flash wait states, clock tree, debug via SWD/JTAG."
   },
   "facts": [],
@@ -717,7 +717,7 @@
   ],
   "summary": "Making batteries last.",
   "layers": {
-   "basics": "Sleep modes, slower clocks and turning off unused parts reduce power by factors of thousands.",
+   "basics": "Sleep modes, slower clocks and turning off unused parts can reduce power by factors of hundreds or more in some parts.",
    "deeper": "Duty-cycled devices spend most time asleep at µA; energy per task matters.",
    "expert": "Dynamic voltage and frequency scaling P ∝ α·C·V²·f; leakage in deep sleep; energy harvesting; battery life ≈ usable capacity / average current, an ideal estimate because real capacity falls with low temperature, high drain and ageing."
   },
