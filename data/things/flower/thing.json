@@ -7,7 +7,7 @@
  "main_part": "stems",
  "label_first_only": true,
  "blurb": "A meadow buttercup plant. Click a leaf, a stem, a bud, a petal, a stamen or a fruit. The layer buttons show one flower, a flower cut in half, the fruit, and the roots.",
- "model_note": "A procedural model built from typical measurements of the species, not a scan of one plant. A real plant has more leaves and more flowers; the half flower is drawn at life size, with its cut faces as flat sections.",
+ "model_note": "A procedural model built from typical measurements of the species, not a scan of one plant. The counts of stamens (50), carpels (25) and leaf lobes (5, each cut into 3) are choices made for the model, within what floras describe as numerous, many and variable. A real plant has more leaves and more flowers; the half flower is drawn at life size, with its cut faces as flat sections.",
  "size_m": {
   "height": 0.6,
   "flower_width": 0.022

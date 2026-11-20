@@ -21,6 +21,11 @@ export function syrinx(trachPath) {
   o.pessulus = L.transform(L.extrudeOutline([[-.9, -.95], [.15, -.95], [1.1, 0], [.15, .95], [-.9, .95], [-1.45, 0]].map(([x, y]) => [x + .2, y * .9]), .34), p => W([p[0], p[1], p[2]]));
   // internal tympaniform membranes: thin sheets in the medial wall of each bronchus, just below the fork, that vibrate when air passes
   o.membranes = L.merge(...S2.map(s => L.transform(bnd(L.translate(L.ellipsoid(1.4, .72, .08), [1.5 * Math.cos(A), 0, s * (1.5 * Math.sin(A) - .62)]), [-.5, -1, s > 0 ? -.3 : -1.6], [3.5, 1, s > 0 ? 1.6 : .3], .09, 1, 0), W)));
+  // labia: the two soft lips (medial and lateral) in the lumen of each bronchus, just above the tympaniform membranes; in songbirds they move into the lumen and vibrate when sound is made (Goller and Larsen 1997). Drawn as two ellipsoidal masses per side; their size and exact place are schematic.
+  o.labia = L.merge(...S2.map((s, i) => { const d = dirs[i], nn = [-s * Math.sin(A), 0, Math.cos(A)], med = mul(nn, -s), tc = 3.6, parts = [];
+    for (const sg of [1, -1]) { const v = sg * .5, c = add(mul(d, tc), mul(med, v)), ru = .95, rv = .27, ry = .62, sdf = p => { const q = sub(p, c), a = dot(q, d) / ru, b = dot(q, med) / rv, y = q[1] / ry; return (Math.sqrt(a * a + b * b + y * y) - 1) * .27; };
+      parts.push(bnd(sdf, [c[0] - 1.4, c[1] - 1, c[2] - 1.4], [c[0] + 1.4, c[1] + 1, c[2] + 1.4], .09, 1, 0)); }
+    return L.merge(...parts.map(m => L.transform(m, W))); }));
   // intrinsic syringeal muscles: a small band on the outside of each bronchus; the extrinsic muscle (sternotrachealis) runs down the side of the trachea
   o.muscles = L.merge(...S2.map((s, i) => { const d = dirs[i]; const pts = [[1.5, 1.45, s * .1], [3.5, 1.3, s * 1.5], [5.2, 1.25, s * 2.6]]; return L.merge(L.tube(pts.map(W), .36, { sides: 6, caps: true }), L.tube([[-9, 1.35, s * .8], [-5, 1.45, s * .9], [-1, 1.35, s * .8]].map(W), .3, { sides: 6, caps: true })); }));
   // rings: complete rings round the windpipe, C-shaped half rings round the bronchi
@@ -32,7 +37,7 @@ export function syrinx(trachPath) {
   for (let i = 0; i < 9; i++) ri.add(W([-10.2 + i * 1.05, 0, 0]), qa, 1);
   for (let k = 0; k < 2; k++) for (let i = 0; i < 8; i++) { const d = dirs[k], p0 = mul(d, .8 + i * 1.0); hi.add(W(p0), L.quatFromTo([0, 1, 0], sub(W(add(p0, d)), W(p0))), 1); }
   I.rings = ri; I.halves = hi;
-  const out = {}; for (const k of ['wall', 'pessulus', 'membranes', 'muscles', 'ring_mesh', 'half_mesh']) out[k] = fin(shade(o[k], 1));
+  const out = {}; for (const k of ['wall', 'pessulus', 'membranes', 'labia', 'muscles', 'ring_mesh', 'half_mesh']) out[k] = fin(shade(o[k], 1));
   return { meshes: out, instances: I, frame: fr };
 }
 // ------------------------------------------------------------------------------------------------ eye (right eye, drawn about 8 mm across)

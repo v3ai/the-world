@@ -267,7 +267,7 @@ export default function build() {
   const thing = {
     id: 'flower', title: 'Meadow buttercup', label: 'Meadow buttercup', scientific: 'Ranunculus acris', node: 'rn_acris', main_part: 'stems', label_first_only: true,
     blurb: 'A meadow buttercup plant. Click a leaf, a stem, a bud, a petal, a stamen or a fruit. The layer buttons show one flower, a flower cut in half, the fruit, and the roots.',
-    model_note: 'A procedural model built from typical measurements of the species, not a scan of one plant. The counts of stamens (50), carpels (25) and leaf lobes (5, each cut into 3) are the model's own choices within what floras describe as numerous, many and variable. A real plant has more leaves and more flowers; the half flower is drawn at life size, with its cut faces as flat sections.',
+    model_note: 'A procedural model built from typical measurements of the species, not a scan of one plant. The counts of stamens (50), carpels (25) and leaf lobes (5, each cut into 3) are choices made for the model, within what floras describe as numerous, many and variable. A real plant has more leaves and more flowers; the half flower is drawn at life size, with its cut faces as flat sections.',
     size_m: { height: M.height, flower_width: M.flowerD }, height_m: M.height, radius_m: .8, draw_m: 120, seed: 2031,
     systems: [{ id: 'leaves', label: 'Leaves' }, { id: 'stems', label: 'Stems' }, { id: 'flowers', label: 'Flowers' }, { id: 'buds', label: 'Buds' }, { id: 'fruit', label: 'Fruit' }, { id: 'roots', label: 'Roots' }, { id: 'soil', label: 'Soil' }, { id: 'half', label: 'Half flower' }],
     lod: { near_m: 3.2, far_m: 16 },
