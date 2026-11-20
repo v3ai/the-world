@@ -265,7 +265,8 @@ function reanchor() {
     const A = cam.A;
     const aim = fly ? null : zoomAim();
     // outside the frame's nominal sphere, unless the zoom is aimed at something of this very frame (a cell's wall may reach past the radius its frame was given)
-    const outside = A.radius !== Infinity && (A.center ? _cc.copy(cam.T).sub(A.center) : cam.T).length() > A.radius * 1.08 && !(aim && A.dynamic && frameWithin(aim.frame, A));
+    // (and a camera that is already deep inside a spawned scene, the view a fraction of the scene's size, is not thrown out of it for being a little past its nominal edge)
+    const outside = A.radius !== Infinity && (A.center ? _cc.copy(cam.T).sub(A.center) : cam.T).length() > A.radius * (A.dynamic && cam.D < A.radius * A.unit * .6 ? 3 : 1.08) && !(aim && A.dynamic && frameWithin(aim.frame, A));
     // a flight heading for a frame that A is not on the way to (a sibling, or a cousin such as the skin from inside the lung): step back out
     const offPath = fly && fly.frame && A.parent && (_fp = chainOf(fly.frame), !_fp.includes(A));
     const offAim = aim && ((A.coRender && !frameWithin(aim.frame, A)) || (A.enterIf && !frameWithin(aim.frame, A) && !A.enterIf(aim)));   // the zoom is aimed at something that is not in this co-rendered thing (the ground beside it, another thing): this is not the frame to go down in
