@@ -16,7 +16,7 @@
    }
   ],
   "ylabel": "cm",
-  "caption": "Height of the meadow buttercup: floras and Wikipedia give about 30 to 100 cm. The model plant is 60 cm, a chosen value within that range."
+  "caption": "Height of the meadow buttercup: floras give about 30 to 100 cm. The model plant is 60 cm, a chosen value within that range."
  },
  "rn_stem": {
   "type": "blocks",

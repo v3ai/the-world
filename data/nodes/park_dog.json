@@ -811,7 +811,7 @@
   "summary": "The lower jaw is a pair of long bones, joined at the chin, that hinge on the skull to open and close the mouth for biting and carrying.",
   "layers": {
    "basics": "The two halves of the lower jaw are joined at the chin. They swing on a hinge joint in front of the ear. A dog's jaw moves mainly up and down like a pair of scissors, with little sideways grinding.",
-   "deeper": "Each half is the same bone as the human mandible (in people the two halves fuse in the first year of life; in dogs the joint at the chin, the mandibular symphysis, is described as a fibrous or cartilage joint with only rare bony fusion, and the sources disagree on its class); the dog's is long and narrow and carries 22 teeth, with a tall flange (the coronoid process) where the strong temporalis muscle attaches. In people: the mandible; same bone, shorter, with a chin.",
+   "deeper": "Each half is the same bone as the human mandible (in people the two halves fuse in the first year of life; in dogs the joint at the chin, the mandibular symphysis, is described as a fibrous or cartilage joint with only rare bony fusion, and descriptions of its class differ); the dog's is long and narrow and carries 22 teeth, with a tall flange (the coronoid process) where the strong temporalis muscle attaches. In people: the mandible; same bone, shorter, with a chin.",
    "expert": "The model draws each half as a rod with a rising branch (the ramus, with the coronoid process and the condyle) and joins them at the chin; the model's jaw is about 16 cm long from the hinge to the chin (a CT reference for Labradors: about 15.5 cm), and the lower teeth sit in a ridge along the top of the body of the jaw and meet the upper teeth in a scissor bite."
   },
   "facts": [
@@ -4226,7 +4226,7 @@
   "layers": {
    "basics": "The valves open and close with every heartbeat. The \"lub-dub\" sound is the valves closing.",
    "deeper": "The mitral valve (left) and tricuspid valve (right) lie between atrium and ventricle, and the aortic and pulmonary valves lie at the exits. Same set as in people. In older dogs the mitral valve may thicken and leak. In people: the same four valves. Compare the human aortic valve.",
-   "expert": "The model draws four rings at the approximate positions; they are placeholders for the valves, not valve shapes."
+   "expert": "The model draws four rings at the approximate positions; they mark where the valves lie and are not valve shapes."
   },
   "facts": [
    [
@@ -4642,7 +4642,7 @@
   "summary": "At the back of a dog's nose, thin scrolls of bone folded up like parchment are covered with a smell-sensing lining that is far larger than yours.",
   "layers": {
    "basics": "Air breathed in flows through the nose; some of it goes to the back where the smell-sensing scrolls are. The folding packs a large surface into a small space. Press the button to look inside the lining.",
-   "deeper": "The area of a dog's smell lining depends on the breed: about 95-126 cm² is quoted for German shepherds in a 2021 review and about 170 cm² for some dogs, against about 5 cm² (OpenStax) to 10 cm² (Wikipedia) in a person. The number of receptor cells is uncertain: the review gives 200-300 million for dogs, a textbook about 1 billion for most dogs and about 12 million for people. A dog has about 870 intact smell-receptor genes (1,094 genes in the sequenced boxer genome, of which 20.3 % are pseudogenes, broken copies; an earlier estimate was about 1,300 genes). People have about 330-340 intact genes: one paper counted about 900 genes with 63 % pseudogenes, another counted 339 intact genes directly. The dog and human counts come from different genomes and methods, so they are approximate. The folding itself is more intricate in the real nose than the schematic scrolls drawn here. In people: the lining is on the roof of the nose, a patch of about 5 cm² (OpenStax) and the scrolls (turbinates) are small.",
+   "deeper": "The area of a dog's smell lining depends on the breed: about 95-126 cm² is quoted for German shepherds in a 2021 review and about 170 cm² for some dogs, against about 5 to 10 cm² in a person (textbook and encyclopedia values). The number of receptor cells is uncertain: the review gives 200-300 million for dogs, a textbook about 1 billion for most dogs and about 12 million for people. A dog has about 870 intact smell-receptor genes (1,094 genes in the sequenced boxer genome, of which 20.3 % are pseudogenes, broken copies; an earlier estimate was about 1,300 genes). People have about 330-340 intact genes: one paper counted about 900 genes with 63 % pseudogenes, another counted 339 intact genes directly. The dog and human counts come from different genomes and methods, so they are approximate. The folding itself is more intricate in the real nose than the schematic scrolls drawn here. In people: the lining is on the roof of the nose, a patch of about 5 cm² (OpenStax) and the scrolls (turbinates) are small.",
    "expert": "Dogs sniff in short bursts, and the nasal passage divides the air into a route for smell and a route to the lungs."
   },
   "facts": [

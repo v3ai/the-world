@@ -69,7 +69,7 @@ sub('robin_syr_muscles', 'basics', 'tighten the syrinx', 'change the tension of 
 fix('robin_lifespan', title='How long a robin lives', summary='Many robins die in their first year; one that reaches breeding age typically lives about two years, and ringing records are far longer.',
     basics='Robins have a short average life because so many die in their first year: the BTO gives first-year survival of about 41 %. A robin that reaches breeding age typically lives about two years. The oldest ringed wild robin in Britain reached 8 years, 4 months and 30 days (ringed bird, 1977), and the longest record in the European ringing records is a Czech bird of 19 years 4 months.',
     deeper='Records depend on the ringing scheme that holds them: the BTO record is for birds ringed in Britain and Ireland, and the EURING list of European records holds a longer one (a Czech robin found dead at 19 years 4 months, and a Dutch one at 17 years 11 months). A bird ringed as an adult has a minimum age only. Heavy first-year mortality is why the average is far below the maximum.',
-    expert='The adult annual survival given by the BTO is about 0.42 and first-year survival about 0.41. A figure of about 1.1 years for average life expectancy is repeated in popular accounts but was not found in a BTO or RSPB source here, so it is not used. Territorial fights are reported to cause a share of adult male deaths in some studies; the size of that share is not established on this card.',
+    expert='The adult annual survival given by the BTO is about 0.42 and first-year survival about 0.41. A figure of about 1.1 years for average life expectancy is repeated in popular accounts but is not given by the BTO or RSPB, so it is not used. Territorial fights are reported to cause a share of adult male deaths in some studies; the size of that share is not established on this card.',
     facts=[['Typical life once breeding age is reached', '≈ 2 years (BTO)'], ['First-year survival', '≈ 41 % (BTO)'], ['UK ringing record', '8 years 4 months 30 days (BTO, set in 1977)'], ['European ringing record', '19 years 4 months (EURING list 2023, Czech Republic)'], ['Broods', 'usually 2 a year, 4 to 5 eggs (2 to 9), incubation 14 to 16 days, fledging at 12.5 to 16 days (BTO)']],
     cert='C1', openq=[], ext=[BTO, EURING, WR])
 FIGS['robin_lifespan'] = bars([('typical, once breeding age is reached', 2), ('UK ringing record (BTO)', 8.4), ('European ringing record (EURING)', 19.3)], 'years', 'How long robins live: a typical breeder (BTO), the British record, 8 years 4 months 30 days ≈ 8.4 years (BTO), and the longest European ringing record, 19 years 4 months ≈ 19.3 years (EURING list, 2023). The records come from different ringing schemes and do not conflict.')
@@ -78,7 +78,7 @@ FIGS['robin_lifespan'] = bars([('typical, once breeding age is reached', 2), ('U
 fix('robin_night_song', title='Robins, noise and light: when they sing', summary='In a Sheffield survey, robins sang at night at the places that were noisiest by day; in other studies artificial light made robins start their dawn song earlier.',
     basics='A robin that sings at night near a street light is a familiar puzzle. Two sets of studies give two parts of the answer. A survey in the English city of Sheffield found that the places where robins sang at night were much noisier by day, and light did not explain the pattern once the noise was counted. Studies in Germany and Finland found that light at night, not traffic noise, made robins and other songbirds start their dawn song earlier.',
     deeper='The Sheffield study (Fuller, Warren and Gaston 2007) visited 121 locations once by day and once at night. Robins sang by day at 67 and at night at 18 of those; the night-singing places were louder by day (about 63 dB against about 53 dB), and the light effect vanished once daytime noise was included. Da Silva and colleagues (2014) compared woodland plots with light, noise, both or neither and found that artificial light, but not noise, led to earlier dawn singing in five of six species. In the 2015 study of six species at lit and unlit sites in Germany the robin\'s dawn song began earlier with light, and a study in Finland found robins starting earlier as the natural night brightness rose.',
-    expert='The studies measured different things: night singing in Sheffield, and the time dawn song starts in the others. So they do not contradict each other, and they leave the cause of true night singing open. In the 2015 model the light effect for the robin on the start of dawn song was positive and clear (coefficient 3.5, standard error 0.8, p below 0.001); the size in minutes is not given there for the robin. A summary of the 2014 paper gives about 10 to 20 minutes earlier, with about 20 minutes for the robin, which was not checked in the full text.',
+    expert='The studies measured different things: night singing in Sheffield, and the time dawn song starts in the others. So they do not contradict each other, and they leave the cause of true night singing open. In the 2015 model the light effect for the robin on the start of dawn song was positive and clear (coefficient 3.5, standard error 0.8, p below 0.001); the size in minutes is not given there for the robin. A summary of the 2014 paper gives about 10 to 20 minutes earlier, with about 20 minutes for the robin, a figure from the summary only.',
     facts=[['Sheffield sites surveyed', '121 (12 April to 16 June)'], ['Day singing', '67 sites'], ['Night singing', '18 of those sites'], ['Daytime noise', '≈ 63 dB at night-singing sites, ≈ 53 dB at day-only sites (light not significant once noise was counted: p = 0.947, noise p = 0.002)'], ['Dawn song and light', 'earlier start in lit sites in five of six species (Da Silva et al. 2014); in the robin too (2015)']],
     cert='C3', ext=[FUL, DS14, DS15, DS17, WR],
     openq=['Is singing at night in towns a response to daytime noise, to artificial light, or both? Light is clearly linked to earlier dawn song, but true night singing is still debated.'], related=['robin_song'])
@@ -98,7 +98,7 @@ sub('robin_breast', 'basics', 'Rivals read it as a threat, and a bundle of red f
 # ---------------------------------------------------------------- hollow bones and plumage weight
 fix('robin_hollow_bones', cert='C2',
     basics='A bird\'s skeleton has to be light enough to fly. Many of its bones are hollow tubes filled with air, with thin struts across the inside like the braces in a bridge. The air comes from the air sacs, which reach into some bones. The whole skeleton is only about 5 % of a bird\'s weight, and in many birds the feathers probably weigh more than the skeleton. Not every bird has hollow bones: penguins, loons, puffins and kiwis do not.',
-    expert='The statement about feathers comes from a rough estimate (Brodkorb 1955) from feather counts, not from weighing a robin; no figure is given for a robin. The extent of hollow bone differs between species and between bones, and how far it reaches in a small songbird varies bone by bone. The tissue scene is a general picture of a hollow bird bone, not a measurement on a robin.',
+    expert='The statement about feathers comes from a rough estimate (Brodkorb 1955) from feather counts, not from weighing a robin. The extent of hollow bone differs between species and between bones, and how far it reaches in a small songbird varies bone by bone. The tissue scene is a general picture of a hollow bird bone, not a measurement on a robin.',
     facts=[['Skeleton share of body weight', 'about 5 % in birds (Bird anatomy)'], ['Feathers versus skeleton', 'in many birds the feathers probably outweigh the skeleton (an estimate, Brodkorb 1955)'], ['No hollow bones', 'penguins, loons, puffins, kiwis']], ext=[WBA, BROD, ORI])
 FIGS['robin_hollow_bones'] = table(['Bird', 'Hollow, air-filled bones?'], [['Most flying birds', 'many bones'], ['Ostrich, emu', 'some (femur; emu neck)'], ['Penguins, loons, puffins, kiwis', 'none']], 'Which birds have hollow, air-filled (pneumatic) bones (Bird anatomy). The skeleton is only about 5 % of a bird\'s weight.')
 
@@ -130,7 +130,7 @@ fix('robin_retina_scene', facts=[['Light-catching molecule', 'retinal'], ['Magne
 
 # ---------------------------------------------------------------- the bill and the jaw
 fix('robin_upper_jaw',
-    deeper='All living birds can move the upper jaw relative to the braincase (cranial kinesis); it is easiest to see in parrots. In sparrows the upper jaw rotates about a kinetic joint with the braincase (Hoese and Westneat 1996), so songbirds are not rigid-skulled. How far a robin\'s bill moves is not measured here.',
+    deeper='All living birds can move the upper jaw relative to the braincase (cranial kinesis); it is easiest to see in parrots. In sparrows the upper jaw rotates about a kinetic joint with the braincase (Hoese and Westneat 1996), so songbirds are not rigid-skulled.',
     expert='The premaxilla has enlarged to form the bill while the maxilla has shrunk. The bill is covered by the rhamphotheca, a thin keratin layer. The model draws a thin cone, with no joint.',
     ext=[WBA, KINESIS, HOESE])
 
@@ -140,7 +140,7 @@ sub('robin_temperature', 'expert', ' and published heart rates for passerines ar
 n = [x for x in NODES if x['id'] == 'robin_temperature'][0]; n['ext'] = n['ext'] + [LASI]
 
 # ---------------------------------------------------------------- the pancreas and sugar
-sub('robin_pancreas', 'expert', 'FASTING_PLACEHOLDER', 'Birds keep higher blood glucose than other vertebrates of similar size (Braun and Sweazea 2008), and a later review puts it at nearly double that of mammals of similar size. A figure of 150 to 300 % higher in one encyclopedia page is not confirmed here. These are general bird values, not measured on a robin.')
+sub('robin_pancreas', 'expert', 'FASTING_PLACEHOLDER', 'Birds keep higher blood glucose than other vertebrates of similar size (Braun and Sweazea 2008), and a later review puts it at nearly double that of mammals of similar size. A figure of 150 to 300 % higher in one encyclopedia page is not confirmed. These are general bird values, not measured on a robin.')
 fix('robin_pancreas', facts=[['Hormones', 'insulin and glucagon (and others)'], ['Blood glucose', 'higher than in mammals of similar size; nearly double in one review'], ['Position', 'between the limbs of the duodenum']], ext=[WBA, BRAUN])
 
 # ---------------------------------------------------------------- air sacs: sources for the naming convention
@@ -169,3 +169,25 @@ def _soften(s):
 for _n in NODES:
     for _k in ('basics', 'deeper', 'expert'): _n['layers'][_k] = _soften(_n['layers'][_k])
     _n['summary'] = _soften(_n['summary'])
+
+# ---------------------------------------------------------------- reader-voice pass: limits of the model stated plainly, no workshop wording (after the softening above)
+sub('robin_temperature', 'expert', 's a measurement on robins,', 's a measurement on robins')
+sub('robin_nostrils', 'expert', 'ption, not an explanation: the reason for the position is not stated', 'ption, not an explanation')
+sub('robin_leg_claws', 'expert', "ype of a robin's claw is not stated: the Keratin page says", "ype of a robin's claw is uncertain:")
+sub('robin_jaw_muscle', 'expert', 'e ellipsoid on each side. Its mass is not stated.', 'e ellipsoid on each side.')
+sub('robin_thigh_muscles', 'expert', 'psule from hip to knee. Its mass is not stated; i', 'psule from hip to knee. I')
+sub('robin_caudal', 'basics', "eight free tail vertebrae; the robin's own number is not stated", 'eight free tail vertebrae')
+sub('robin_humerus', 'deeper', " on a crest of the bone. Whether a robin's humerus is air-filled is not stated: it is the bone shown in the hollow-bone scene as a general picture", ' on a crest of the bone. The hollow-bone scene shows this bone as a general picture of a bird bone, not a measurement on a robin')
+sub('robin_radius', 'expert', 's, the radius the slimmer; the real thicknesses are not stated', 's, the radius the slimmer')
+sub('robin_rv', 'expert', 'l drawing of a bird heart; the real wall thickness is not stated', 'l drawing of a bird heart')
+sub('robin_ra', 'expert', "he upper body is double. Whether a robin's is double is not stated. ", 'he upper body is double. ')
+sub('robin_liver', 'expert', "heir size is drawn by eye; the liver's mass is not stated", 'heir size is drawn by eye')
+sub('robin_gizzard', 'deeper', 'tone, called gastroliths. Whether a robin keeps grit is not stated.', 'tone, called gastroliths.')
+sub('robin_sac_cervical', 'deeper', " reach the neck vertebrae; which bones a robin's sacs enter is not stated", ' reach the neck vertebrae')
+sub('robin_brain', 'expert', ' typical songbird brain. Its mass and the sizes of its parts are not stated; Only a large brain-to-body-mass ratio is stat', ' typical songbird brain. Only one fact is us')
+sub('robin_brachial', 'expert', 'rs between bird species. Which spinal nerves form the plexus in a robin is not stated. ', 'rs between bird species. ')
+sub('robin_cornea', 'expert', 'n thickness in the model. Whether a robin has those muscles is not stated.', 'n thickness in the model.')
+sub('robin_optic_nerve', 'expert', 'The model draws a cable. The real fibre count is not stated.', 'The model draws a cable.')
+for _n in NODES:
+    if _n['id'] == 'robin_gizzard':
+        _n['facts'] = [[a, b.replace(' (not stated for the robin)', '')] for a, b in _n['facts']]

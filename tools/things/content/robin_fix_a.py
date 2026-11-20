@@ -39,7 +39,7 @@ fix('robin_leg_bones', summary='A bird\'s leg has three long segments: the thigh
 fix('robin_femur', summary='The thigh bone, from the hip socket to the knee, hidden inside the body feathers.',
   basics='The femur runs from the hip socket in the fused pelvis to the knee. The knee points forward, as yours does, but it is hidden in the feathers, so the joint you see bending backward lower down is the ankle and not the knee.',
   deeper='This is the same bone as the human thigh bone. At the knee it meets the tibiotarsus and the fibula. Because it sits inside the body outline, a robin looks as if its leg starts at the belly.',
-  expert='The femur fits into the hip socket (acetabulum), where the ilium, ischium and pubis meet; in some flightless birds (ostrich, emu) the femur is hollow and air-filled, but this is not stated for songbirds. The model draws it as a rod whose length and angle are chosen by eye.',
+  expert='The femur fits into the hip socket (acetabulum), where the ilium, ischium and pubis meet; in some flightless birds (ostrich, emu) the femur is hollow and air-filled. The model draws it as a rod whose length and angle are chosen by eye.',
   facts=[['Hip end', 'hip socket (acetabulum) of the pelvis'], ['Knee end', 'joins the tibiotarsus and fibula; the knee points forward, hidden in feathers'], ['Human match', 'femur']],
   ext=[WBA, FEET], related=['femur_r', 'robin_pelvis', 'robin_thigh_muscles'])
 fix('robin_tibiotarsus', summary='The shin bone: the tibia fused with the upper ankle bones, the longest bare-looking segment of the leg.',
@@ -174,7 +174,7 @@ fix('robin_ulna', basics='The ulna is the larger forearm bone. The secondary fli
   facts=[['Carries', 'the secondary flight feathers'], ['Human match', 'ulna']], ext=[PYLE, WFF], related=['radius_ulna_r', 'robin_radius'])
 fix('robin_carpometacarpus', basics='In your hand the wrist has eight small bones and the palm has five long bones. In a bird the wrist and palm bones are fused into one bone, the carpometacarpus, which carries the main flight feathers (the primaries).',
   deeper='The fusion makes a stiff, light support for the long feathers. A few small wrist bones stay free, as in the bird\'s two bones at the wrist joint (the radiale and ulnare).',
-  expert='The wrist and palm bones form the bird\'s wrist and hand, and the finger bones are fused together. The model draws the carpometacarpus as one rod and the free wrist bones are not drawn. The statement that two wrist bones stay free is general anatomy of birds and not checked on a robin.',
+  expert='The wrist and palm bones form the bird\'s wrist and hand, and the finger bones are fused together. The model draws the carpometacarpus as one rod and the free wrist bones are not drawn. The statement that two wrist bones stay free is general anatomy of birds and not measured on a robin.',
   facts=[['Human match', 'wrist bones (carpals) and palm bones (metacarpals), partly fused in the bird']], cert='C2', ext=[WBA, FLY], related=['hand_bones_r'])
 fix('robin_digits', basics='A bird\'s hand has three digits. The short thumb carries the alula, and the longest finger holds the outer primary feathers. Which three of the original five digits these are is still debated.',
   deeper='The fossils of theropod dinosaurs suggest digits I, II and III, while the embryos of living birds suggest II, III and IV. This is one of the real open problems in the origin of birds.',
@@ -273,7 +273,7 @@ fix('robin_proventriculus', basics='A bird\'s stomach has two parts. The first, 
 fix('robin_gizzard', basics='Birds have no teeth; they grind food in the gizzard, a thick-walled muscular stomach. Some birds swallow grit to help.',
   deeper='The gizzard is made of four muscular bands that rotate and crush the food, passing it from one area to another. In seed-eating birds such as turkeys and quails it holds swallowed grit or stone, called gastroliths. Whether a robin keeps grit is not stated here.',
   expert='Gastroliths have also been found as trace fossils with other dinosaurs, so using gizzard stones is a similarity between birds and some dinosaurs; it is not a feature of every theropod. The model draws a rounded disc.',
-  facts=[['Muscle bands', '4'], ['Grit', 'swallowed by some birds (not stated for the robin)']], ext=[WBA, GIZ], related=['stomach'])
+  facts=[['Muscle bands', '4'], ['Grit', 'swallowed by some birds']], ext=[WBA, GIZ], related=['stomach'])
 fix('robin_spleen', basics='The spleen is a small round organ near the stomach. It filters the blood and is part of the immune system, which makes and stores immune cells.',
   deeper='Birds also have an immune organ at the cloaca, the bursa of Fabricius, which helps make B lymphocytes.',
   expert='The model draws a small ball next to the stomach; its size is drawn by eye.',
@@ -312,7 +312,7 @@ fix('robin_brain', basics='Much of the bird brain deals with sight: the optic lo
   facts=[['Parts drawn', 'cerebrum, cerebellum, optic lobes']], ext=[WBA], related=['brain', 'bio_brain_organization'])
 fix('robin_optic_lobes', basics='The optic lobes are two bulges at the sides of the midbrain. They receive most of the signals from the optic nerves, and they are large in birds.',
   deeper='They are the bird\'s main visual centre in the midbrain, and are called the optic tectum. The visual centres in a mammal\'s cerebral cortex do much of the same work.',
-  expert='The model draws two ellipsoids. The sizes are drawn by eye. This card does not give a measured size for a robin.',
+  expert='The model draws two ellipsoids. The sizes are drawn by eye.',
   facts=[['Receives', 'the optic nerves'], ['Human match', 'the optic tectum is the superior colliculus in mammals']], ext=[WBA, VIS], related=['optic_nerve'])
 fix('robin_optic_nerves', basics='Each optic nerve leaves the back of the eye and runs to the brain. It carries the signals of all the retina\'s ganglion cells.',
   deeper='Birds have a high number of neurons in the optic nerve, which is one reason their eyesight is acute. In a bird the nerve leaves the eye where the pecten stands.',
@@ -361,7 +361,7 @@ fix('robin_lens', basics='The lens sits behind the pupil and focuses light on th
   expert='The lens is drawn as an ellipsoid. In a bird the lens is pushed far forward, which increases the size of the image on the retina.', facts=[['Job', 'focuses light'], ['Human match', 'lens']], ext=[VIS], related=['lens'])
 fix('robin_vitreous', basics='The vitreous is the clear jelly that fills most of the eyeball behind the lens. It holds the retina in place and light passes through it.',
   deeper='The eye is divided by the lens into a front part, filled with a watery fluid, and a back part filled with the vitreous. The pecten reaches into the vitreous.',
-  expert='The model draws a translucent sphere. The volume is not given.', facts=[['Filling', 'clear jelly'], ['Human match', 'vitreous humour']], ext=[VIS], related=['robin_pecten'])
+  expert='The model draws a translucent sphere.', facts=[['Filling', 'clear jelly'], ['Human match', 'vitreous humour']], ext=[VIS], related=['robin_pecten'])
 fix('robin_choroid', basics='The choroid is a dark layer between the retina and the sclera that is rich in blood vessels. The vessels feed the outer retina, and the dark pigment (melanin) cuts down reflections inside the eye.',
   deeper='A bird\'s retina is largely free of its own blood vessels, so it depends on the choroid and the pecten for supply.',
   expert='The model draws a thin dark shell. The thickness is not drawn to scale.', facts=[['Feeds', 'the outer retina'], ['Pigment', 'melanin']], ext=[VIS, PECT])

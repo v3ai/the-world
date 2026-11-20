@@ -78,7 +78,7 @@ N('soil_carbon', 'Carbon in the soil, in the air and in plants', 'concept', 1, [
   [('Atmosphere', '≈ 828 PgC (2011)'), ('Vegetation', '≈ 450 to 650 PgC'), ('Litter and soils', '≈ 1,500 to 2,400 PgC'), ('Permafrost soils (extra, overlaps)', '≈ 1,700 PgC'), ('Photosynthesis', '123 ± 8 PgC a year')],
   'C2', [R_CYC], [IPCC], parts=['soil_decomposition'], related=['carbon_cycle_process', 'bio_soil_ecology', 'cellular_respiration'],
   openq=['How much of the carbon in soils will be released as the climate warms, and how fast, is still being studied.'],
-  fig=bars([('Atmosphere (2011)', 828), ('Vegetation: low estimate', 450), ('Vegetation: high estimate', 650), ('Litter and soils: low estimate', 1500), ('Litter and soils: high estimate', 2400), ('Permafrost soils (extra)', 1700)], 'petagrams of carbon (PgC)', 'Carbon reservoirs in the IPCC Fifth Assessment Report: the atmosphere, plants and soils (ranges shown as a low and a high bar). Source: Working Group I, chapter 6, Figure 6.1.'))
+  fig=bars([('Atmosphere (2011)', 828), ('Vegetation: low estimate', 450), ('Vegetation: high estimate', 650), ('Litter and soils: low estimate', 1500), ('Litter and soils: high estimate', 2400), ('Permafrost soils (extra)', 1700)], 'petagrams of carbon (PgC)', 'Carbon reservoirs in the IPCC Fifth Assessment Report (Working Group I, chapter 6, Figure 6.1): the atmosphere, plants and soils, with ranges shown as a low and a high bar.'))
 
 N('soil_nitrogen', 'Nitrogen in the soil: fixation, recycling and uptake', 'process', 1, ['soil_block'],
   "Plants need nitrogen, but the air's nitrogen gas is useless to them until microbes change it: in soil, fixation, ammonification, nitrification and uptake form a cycle driven mostly by microbes.",

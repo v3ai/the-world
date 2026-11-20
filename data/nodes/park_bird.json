@@ -31,7 +31,7 @@
   "layers": {
    "basics": "This is the robin of British gardens and parks: a plump little bird with an orange-red face and breast, a brown back, a pale belly and thin legs. It stands here, alert, on a boulder. Use the layer buttons to peel it: feathers, skin, muscles, skeleton, organs, air sacs and lungs, nerves. Click any part for its card. The bird is drawn at the size of a typical adult and the organs are drawn by eye, so zoom right in and read each card's note on what is measured and what is drawn.",
    "deeper": "A robin is a passerine, a perching bird. Its body is built for flight with very little weight: hollow bones, a big keel on the breastbone to hold the flight muscles, a fused hand, feathers, and a lung that works with air sacs. Its song, its territory and the orange breast that rivals read as a signal are all part of how it lives. The cards link each part to the human structure it matches (a wing is an arm) and to the molecules at the bottom of the scale.",
-   "expert": "The model is a procedural reconstruction. Overall size and the published feather counts (10 primaries, 9 secondaries including 3 tertials, 12 tail feathers) are used; the proportions of every part and the size and place of every organ are drawn by eye from photographs and anatomical drawings and are approximate. Colours follow the plumage description in the sources. The bird stands still; breathing and the heartbeat are illustrations, not measured movements."
+   "expert": "The model is a procedural reconstruction. Overall size and the published feather counts (10 primaries, 9 secondaries including 3 tertials, 12 tail feathers) are used; the proportions of every part and the size and place of every organ are drawn by eye from photographs and anatomical drawings and are approximate. Colours follow published plumage descriptions. The bird stands still; breathing and the heartbeat are illustrations, not measured movements."
   },
   "facts": [
    [
@@ -263,7 +263,7 @@
   "layers": {
    "basics": "A robin that sings at night near a street light is a familiar puzzle. Two sets of studies give two parts of the answer. A survey in the English city of Sheffield found that the places where robins sang at night were much noisier by day, and light did not explain the pattern once the noise was counted. Studies in Germany and Finland found that light at night, not traffic noise, made robins and other songbirds start their dawn song earlier.",
    "deeper": "The Sheffield study (Fuller, Warren and Gaston 2007) visited 121 locations once by day and once at night. Robins sang by day at 67 and at night at 18 of those; the night-singing places were louder by day (about 63 dB against about 53 dB), and the light effect vanished once daytime noise was included. Da Silva and colleagues (2014) compared woodland plots with light, noise, both or neither and found that artificial light, but not noise, led to earlier dawn singing in five of six species. In the 2015 study of six species at lit and unlit sites in Germany the robin's dawn song began earlier with light, and a study in Finland found robins starting earlier as the natural night brightness rose.",
-   "expert": "The studies measured different things: night singing in Sheffield, and the time dawn song starts in the others. So they do not contradict each other, and they leave the cause of true night singing open. In the 2015 model the light effect for the robin on the start of dawn song was positive and clear (coefficient 3.5, standard error 0.8, p below 0.001); the size in minutes is not given there for the robin. A summary of the 2014 paper gives about 10 to 20 minutes earlier, with about 20 minutes for the robin, which was not checked in the full text."
+   "expert": "The studies measured different things: night singing in Sheffield, and the time dawn song starts in the others. So they do not contradict each other, and they leave the cause of true night singing open. In the 2015 model the light effect for the robin on the start of dawn song was positive and clear (coefficient 3.5, standard error 0.8, p below 0.001); the size in minutes is not given there for the robin. A summary of the 2014 paper gives about 10 to 20 minutes earlier, with about 20 minutes for the robin, a figure from the summary only."
   },
   "facts": [
    [
@@ -447,7 +447,7 @@
   "layers": {
    "basics": "A robin is warm-blooded and runs hotter than you: birds in general average about 38.5 °C at rest and about 41 °C when active. Its heart is small and very fast. For scale, a similar-sized songbird, the tropical spotted antbird of about 17 g, was measured in the wild at between 260 beats a minute at night and 824 a minute by day.",
    "deeper": "In a review of body temperatures in birds, the mean was 38.54 ± 0.96 °C in the resting phase (203 birds), 41.02 ± 1.29 °C in the active phase (724) and 43.85 ± 0.94 °C in high activity (74). Passerines run slightly high in the active phase. The animation of the heart in this model is an illustration with no real rate. For scale, hummingbirds have been recorded with heart rates up to 1,200 beats a minute (Lasiewski 1964).",
-   "expert": "Heart rate and oxygen use rise together, so a heart-rate record can stand in for the energy a bird spends. Many birds lower their body temperature a little at night as a way to save energy. The antbird numbers are for another species in a rain forest, and the temperatures are means over many bird species: neither is a measurement on robins,."
+   "expert": "Heart rate and oxygen use rise together, so a heart-rate record can stand in for the energy a bird spends. Many birds lower their body temperature a little at night as a way to save energy. The antbird numbers are for another species in a rain forest, and the temperatures are means over many bird species: neither is a measurement on robins."
   },
   "facts": [
    [
@@ -518,7 +518,7 @@
   "layers": {
    "basics": "Robins have a short average life because so many die in their first year: the BTO gives first-year survival of about 41 %. A robin that reaches breeding age typically lives about two years. The oldest ringed wild robin in Britain reached 8 years, 4 months and 30 days (ringed bird, 1977), and the longest record in the European ringing records is a Czech bird of 19 years 4 months.",
    "deeper": "Records depend on the ringing scheme that holds them: the BTO record is for birds ringed in Britain and Ireland, and the EURING list of European records holds a longer one (a Czech robin found dead at 19 years 4 months, and a Dutch one at 17 years 11 months). A bird ringed as an adult has a minimum age only. Heavy first-year mortality is why the average is far below the maximum.",
-   "expert": "The adult annual survival given by the BTO is about 0.42 and first-year survival about 0.41. A figure of about 1.1 years for average life expectancy is repeated in popular accounts but was not found in a BTO or RSPB source here, so it is not used. Territorial fights are reported to cause a share of adult male deaths in some studies; the size of that share is not established."
+   "expert": "The adult annual survival given by the BTO is about 0.42 and first-year survival about 0.41. A figure of about 1.1 years for average life expectancy is repeated in popular accounts but is not given by the BTO or RSPB, so it is not used. Territorial fights are reported to cause a share of adult male deaths in some studies; the size of that share is not established."
   },
   "facts": [
    [
@@ -1016,7 +1016,7 @@
   "layers": {
    "basics": "A bird's skeleton has to be light enough to fly. Many of its bones are hollow tubes filled with air, with thin struts across the inside like the braces in a bridge. The air comes from the air sacs, which reach into some bones. The whole skeleton is only about 5 % of a bird's weight, and in many birds the feathers probably weigh more than the skeleton. Not every bird has hollow bones: penguins, loons, puffins and kiwis do not.",
    "deeper": "Pneumatised bones are shared with the theropod dinosaurs that birds came from. In a tube, strength comes from the wall and from the distance of material from the axis, so a thin hollow wall can match a solid rod of much greater mass.",
-   "expert": "The statement about feathers comes from a rough estimate (Brodkorb 1955) from feather counts, not from weighing a robin; no figure is given for a robin. The extent of hollow bone differs between species and between bones, and how far it reaches in a small songbird varies bone by bone. The tissue scene is a general picture of a hollow bird bone, not a measurement on a robin."
+   "expert": "The statement about feathers comes from a rough estimate (Brodkorb 1955) from feather counts, not from weighing a robin. The extent of hollow bone differs between species and between bones, and how far it reaches in a small songbird varies bone by bone. The tissue scene is a general picture of a hollow bird bone, not a measurement on a robin."
   },
   "facts": [
    [
@@ -1530,7 +1530,7 @@
   "layers": {
    "basics": "The bill has two halves, the upper and lower mandible. They are covered with a hard, horny sheath of keratin and are black in a robin. A robin uses its bill like tweezers to pick up small food. Birds have no teeth: the bill and the gizzard do the work.",
    "deeper": "The horn sheath (the rhamphotheca) is made of keratin, which is dead material, but it grows continuously from living tissue at the base of each half of the bill and wears away at the tip. Inside, the upper jaw is a slender bone core (the premaxilla), and the lower jaw hinges at the quadrate bone. The nostrils open on the top of the upper mandible near its base.",
-   "expert": "The sheath is beta-keratin, like feathers and claws. All living birds can move the upper jaw relative to the braincase (cranial kinesis), most obviously in parrots; how far a robin's bill flexes is not measured here."
+   "expert": "The sheath is beta-keratin, like feathers and claws. All living birds can move the upper jaw relative to the braincase (cranial kinesis), most obviously in parrots."
   },
   "facts": [
    [
@@ -1585,7 +1585,7 @@
   "layers": {
    "basics": "Birds breathe in through two small openings, the nares, near the base of the upper bill. They lead into the nasal passages, then down the windpipe.",
    "deeper": "Air entering through the nostrils is warmed, moistened and filtered in the nasal passages and the upper windpipe before it reaches the lungs. Many birds have a feather-covered flap over the opening; a robin has none that matters here.",
-   "expert": "The nostrils open on the upper bill, not at its tip as in a mammal, which is a description, not an explanation: the reason for the position is not stated. The model draws two small ovals."
+   "expert": "The nostrils open on the upper bill, not at its tip as in a mammal, which is a description, not an explanation. The model draws two small ovals."
   },
   "facts": [
    [
@@ -2416,7 +2416,7 @@
   "layers": {
    "basics": "Each toe ends in a claw: a sheath of keratin over the last toe bone, strong enough to grip bark and rock. A human nail covers the end of a finger in the same way, but a claw curves round the toe.",
    "deeper": "Bird claws, bills and the scales of the lower leg are all made of keratin; bird scales are beta-keratin, and some foot structures once thought to be scales are alpha-keratin. Claws grow and wear down in use.",
-   "expert": "The exact keratin type of a robin's claw is not stated: the Keratin page says beta-keratin is found in the feathers, beaks and claws of birds and reptiles, while alpha-keratin also occurs in birds. The curve in the model is drawn by eye."
+   "expert": "The exact keratin type of a robin's claw is uncertain: beta-keratin is found in the feathers, beaks and claws of birds and reptiles, while alpha-keratin also occurs in birds. The curve in the model is drawn by eye."
   },
   "facts": [
    [
@@ -2936,7 +2936,7 @@
   "layers": {
    "basics": "The jaw muscle lies on the side of the head, behind the eye, and pulls the lower jaw shut. The muscles that close the jaws attach on the skull behind the eye.",
    "deeper": "The muscles that move the jaws attach on the skull behind the eyes. A bird has no teeth to power, so the jaw muscles are small beside the flight muscles.",
-   "expert": "In birds the space for jaw muscles in the skull has been reduced. The model draws one ellipsoid on each side. Its mass is not stated."
+   "expert": "In birds the space for jaw muscles in the skull has been reduced. The model draws one ellipsoid on each side."
   },
   "facts": [
    [
@@ -3017,7 +3017,7 @@
   "layers": {
    "basics": "The thigh muscles are hidden under the belly feathers. They swing the leg for hopping and for take-off, and long tendons run from them down the leg to the toes.",
    "deeper": "Putting the leg muscles high and close to the body leaves the lower leg thin and light, which is why a bird's leg looks so slim below the feathers.",
-   "expert": "The model draws one capsule from hip to knee. Its mass is not stated; in a bird the pectoral muscles are the largest muscles and the leg muscles are much smaller."
+   "expert": "The model draws one capsule from hip to knee. In a bird the pectoral muscles are the largest muscles and the leg muscles are much smaller."
   },
   "facts": [
    [
@@ -3246,7 +3246,7 @@
   "summary": "The bone inside the upper half of the bill: the premaxilla, with the horny sheath over it.",
   "layers": {
    "basics": "The upper bill has a bone core, the premaxilla, with a sheath of horn over it. The nostrils open at its base. In birds this one bone has grown large and become the upper bill, while the upper jaw bone behind it (the maxilla) is small.",
-   "deeper": "All living birds can move the upper jaw relative to the braincase (cranial kinesis); it is easiest to see in parrots. In sparrows the upper jaw rotates about a kinetic joint with the braincase (Hoese and Westneat 1996), so songbirds are not rigid-skulled. How far a robin's bill moves is not measured here.",
+   "deeper": "All living birds can move the upper jaw relative to the braincase (cranial kinesis); it is easiest to see in parrots. In sparrows the upper jaw rotates about a kinetic joint with the braincase (Hoese and Westneat 1996), so songbirds are not rigid-skulled.",
    "expert": "The premaxilla has enlarged to form the bill while the maxilla has shrunk. The bill is covered by the rhamphotheca, a thin keratin layer. The model draws a thin cone, with no joint."
   },
   "facts": [
@@ -3505,7 +3505,7 @@
   "processes": [],
   "summary": "A short chain of free tail bones between the hip and the pygostyle.",
   "layers": {
-   "basics": "A bird has a short chain of free tail bones between the fused hip and the pygostyle. Birds have between five and eight free tail vertebrae; the robin's own number is not stated.",
+   "basics": "A bird has a short chain of free tail bones between the fused hip and the pygostyle. Birds have between five and eight free tail vertebrae.",
    "deeper": "These free vertebrae give the tail some movement near its root. They are the bird version of the human coccyx, the remains of a tail.",
    "expert": "The model draws six beads, matching the six free tail vertebrae that Webster and Goff figure for a house sparrow; this is a drawing choice, not a count on a robin."
   },
@@ -3900,7 +3900,7 @@
   "summary": "The upper arm bone of the wing, the same bone as in your upper arm.",
   "layers": {
    "basics": "The humerus runs from the shoulder to the elbow. It is the bone you feel in your upper arm, and a bird's is light because many bird bones are hollow and braced with struts. In a folded wing it lies back along the body.",
-   "deeper": "The tendon of the upstroke muscle ends on its upper end, and the big breast muscle pulls on a crest of the bone. Whether a robin's humerus is air-filled is not stated: it is the bone shown in the hollow-bone scene as a general picture.",
+   "deeper": "The tendon of the upstroke muscle ends on its upper end, and the big breast muscle pulls on a crest of the bone. The hollow-bone scene shows this bone as a general picture of a bird bone, not a measurement on a robin.",
    "expert": "The shoulder is made of the scapula, coracoid and humerus, and the humerus meets the radius and ulna at the elbow. The model draws a rod with swollen ends."
   },
   "facts": [
@@ -3951,7 +3951,7 @@
   "layers": {
    "basics": "The wing's forearm has two bones, the radius and the ulna, as yours does. The radius is the slimmer one and lies on the front edge of the wing.",
    "deeper": "In a human the radius is the forearm bone on the thumb side. The secondary flight feathers attach to the ulna, not the radius.",
-   "expert": "The model draws two thin rods, the radius the slimmer; the real thicknesses are not stated."
+   "expert": "The model draws two thin rods, the radius the slimmer."
   },
   "facts": [
    [
@@ -4049,7 +4049,7 @@
   "layers": {
    "basics": "In your hand the wrist has eight small bones and the palm has five long bones. In a bird the wrist and palm bones are fused into one bone, the carpometacarpus, which carries the main flight feathers (the primaries).",
    "deeper": "The fusion makes a stiff, light support for the long feathers. A few small wrist bones stay free, as in the bird's two bones at the wrist joint (the radiale and ulnare).",
-   "expert": "The wrist and palm bones form the bird's wrist and hand, and the finger bones are fused together. The model draws the carpometacarpus as one rod and the free wrist bones are not drawn. The statement that two wrist bones stay free is general anatomy of birds and not checked on a robin."
+   "expert": "The wrist and palm bones form the bird's wrist and hand, and the finger bones are fused together. The model draws the carpometacarpus as one rod and the free wrist bones are not drawn. The statement that two wrist bones stay free is general anatomy of birds and not measured on a robin."
   },
   "facts": [
    [
@@ -4205,7 +4205,7 @@
   "layers": {
    "basics": "The femur runs from the hip socket in the fused pelvis to the knee. The knee points forward, as yours does, but it is hidden in the feathers, so the joint you see bending backward lower down is the ankle and not the knee.",
    "deeper": "This is the same bone as the human thigh bone. At the knee it meets the tibiotarsus and the fibula. Because it sits inside the body outline, a robin looks as if its leg starts at the belly.",
-   "expert": "The femur fits into the hip socket (acetabulum), where the ilium, ischium and pubis meet; in some flightless birds (ostrich, emu) the femur is hollow and air-filled, but this is not stated for songbirds. The model draws it as a rod whose length and angle are chosen by eye."
+   "expert": "The femur fits into the hip socket (acetabulum), where the ilium, ischium and pubis meet; in some flightless birds (ostrich, emu) the femur is hollow and air-filled. The model draws it as a rod whose length and angle are chosen by eye."
   },
   "facts": [
    [
@@ -4578,7 +4578,7 @@
   "layers": {
    "basics": "The right ventricle wraps round part of the left one and sends oxygen-poor blood to the lungs. Its wall is thinner than that of the left ventricle, because the lung circuit needs less pressure than the body circuit.",
    "deeper": "In the bird the right ventricle is crescent-shaped when cut across. Blood leaves it by the pulmonary artery to the lungs.",
-   "expert": "The crescent in the model follows the usual drawing of a bird heart; the real wall thickness is not stated."
+   "expert": "The crescent in the model follows the usual drawing of a bird heart."
   },
   "facts": [
    [
@@ -4670,7 +4670,7 @@
   "layers": {
    "basics": "The right atrium receives oxygen-poor blood from the body and passes it to the right ventricle. Its wall is thin.",
    "deeper": "In chickens and some other birds the great vein that brings blood from the upper body is double, so there are two openings into the right atrium instead of one.",
-   "expert": "In chickens the great vein from the upper body is double. Whether a robin's is double is not stated. The model draws one ellipsoid."
+   "expert": "In chickens the great vein from the upper body is double. The model draws one ellipsoid."
   },
   "facts": [
    [
@@ -4716,7 +4716,7 @@
   "layers": {
    "basics": "The liver is the largest gland of the body. It makes bile, which helps digest fat, stores sugar and cleans the blood. In birds it has two lobes.",
    "deeper": "It lies just behind the heart, in front of the stomach.",
-   "expert": "The model draws two lobes, the right slightly bigger. Their size is drawn by eye; the liver's mass is not stated."
+   "expert": "The model draws two lobes, the right slightly bigger. Their size is drawn by eye."
   },
   "facts": [
    [
@@ -4849,7 +4849,7 @@
   "summary": "The gizzard is the muscle that grinds food, doing the work of teeth.",
   "layers": {
    "basics": "Birds have no teeth; they grind food in the gizzard, a thick-walled muscular stomach. Some birds swallow grit to help.",
-   "deeper": "The gizzard is made of four muscular bands that rotate and crush the food, passing it from one area to another. In seed-eating birds such as turkeys and quails it holds swallowed grit or stone, called gastroliths. Whether a robin keeps grit is not stated.",
+   "deeper": "The gizzard is made of four muscular bands that rotate and crush the food, passing it from one area to another. In seed-eating birds such as turkeys and quails it holds swallowed grit or stone, called gastroliths.",
    "expert": "Gastroliths have also been found as trace fossils with other dinosaurs, so using gizzard stones is a similarity between birds and some dinosaurs; it is not a feature of every theropod. The model draws a rounded disc."
   },
   "facts": [
@@ -4859,7 +4859,7 @@
    ],
    [
     "Grit",
-    "swallowed by some birds (not stated for the robin)"
+    "swallowed by some birds"
    ]
   ],
   "certainty": "C1",
@@ -4942,7 +4942,7 @@
   "layers": {
    "basics": "The pancreas makes digestive enzymes that go into the gut and hormones such as insulin and glucagon. In a bird it hangs between the limbs of the first loop of the small intestine (the duodenum).",
    "deeper": "Compared with a mammal, a bird's blood sugar is high and its pancreas makes much more glucagon, which raises blood sugar, than insulin. Birds do not use glucose to trigger insulin release in the same way.",
-   "expert": "Birds keep higher blood glucose than other vertebrates of similar size (Braun and Sweazea 2008), and a later review puts it at nearly double that of mammals of similar size. A figure of 150 to 300 % higher in one encyclopedia page is not confirmed here. These are general bird values, not measured on a robin."
+   "expert": "Birds keep higher blood glucose than other vertebrates of similar size (Braun and Sweazea 2008), and a later review puts it at nearly double that of mammals of similar size. A figure of 150 to 300 % higher in one encyclopedia page is not confirmed. These are general bird values, not measured on a robin."
   },
   "facts": [
    [
@@ -5402,7 +5402,7 @@
   "summary": "A pair of air sacs at the base of the neck, in the front group.",
   "layers": {
    "basics": "The cervical sacs are small sacs at the base of the neck. They belong to the front group of air sacs, which fill with air that has already passed through the lungs and empty out through the windpipe.",
-   "deeper": "Air sacs form air pockets inside the semi-hollow bones in many birds, so a sac at the base of the neck can reach the neck vertebrae; which bones a robin's sacs enter is not stated. The sacs have poor blood supply and so do not exchange gas themselves.",
+   "deeper": "Air sacs form air pockets inside the semi-hollow bones in many birds, so a sac at the base of the neck can reach the neck vertebrae. The sacs have poor blood supply and so do not exchange gas themselves.",
    "expert": "The model draws two small bags. Whether a robin has separate cervical sacs is part of the naming and counting convention explained on the Air sacs card."
   },
   "facts": [
@@ -5666,7 +5666,7 @@
   "layers": {
    "basics": "Much of the bird brain deals with sight: the optic lobes at the sides are large because vision matters to a bird. The cerebellum at the back helps control balance and movement.",
    "deeper": "A bird has a large brain for its body mass, and its surface is smooth, without the deep folds of a human brain.",
-   "expert": "The brain is drawn by eye from a typical songbird brain. Its mass and the sizes of its parts are not stated; Only a large brain-to-body-mass ratio is stated for birds in general: a large brain-to-body-mass ratio."
+   "expert": "The brain is drawn by eye from a typical songbird brain. Only one fact is used for birds in general: a large brain-to-body-mass ratio."
   },
   "facts": [
    [
@@ -5709,7 +5709,7 @@
   "layers": {
    "basics": "The optic lobes are two bulges at the sides of the midbrain. They receive most of the signals from the optic nerves, and they are large in birds.",
    "deeper": "They are the bird's main visual centre in the midbrain, and are called the optic tectum. The visual centres in a mammal's cerebral cortex do much of the same work.",
-   "expert": "The model draws two ellipsoids. The sizes are drawn by eye. This card does not give a measured size for a robin."
+   "expert": "The model draws two ellipsoids. The sizes are drawn by eye."
   },
   "facts": [
    [
@@ -5908,7 +5908,7 @@
   "layers": {
    "basics": "The nerves to the wing come from a network near the shoulder called the brachial plexus. Its branches carry movement commands to the wing muscles and bring back touch signals from the wing.",
    "deeper": "In birds the forelimb is mostly supplied by two nerves, the radial nerve and the median-ulnar nerve, which are main branches of the plexus. Humans also have a brachial plexus, supplying the arm.",
-   "expert": "The branching pattern differs between bird species. Which spinal nerves form the plexus in a robin is not stated. There is no separate card for that nerve in the human body, so the human match is the general Peripheral nerves card."
+   "expert": "The branching pattern differs between bird species. There is no separate card for that nerve in the human body, so the human match is the general Peripheral nerves card."
   },
   "facts": [
    [
@@ -6428,7 +6428,7 @@
   "layers": {
    "basics": "The cornea is the clear front window of the eye. Light passes through it first, and it bends the light as it enters the eye.",
    "deeper": "Some birds also have a second set of muscles that change the curve of the cornea, giving them a wider range of focus than mammals have.",
-   "expert": "The shell of the cornea is exaggerated in thickness in the model. Whether a robin has those muscles is not stated."
+   "expert": "The shell of the cornea is exaggerated in thickness in the model."
   },
   "facts": [
    [
@@ -6566,7 +6566,7 @@
   "layers": {
    "basics": "The vitreous is the clear jelly that fills most of the eyeball behind the lens. It holds the retina in place and light passes through it.",
    "deeper": "The eye is divided by the lens into a front part, filled with a watery fluid, and a back part filled with the vitreous. The pecten reaches into the vitreous.",
-   "expert": "The model draws a translucent sphere. The volume is not given."
+   "expert": "The model draws a translucent sphere."
   },
   "facts": [
    [
@@ -6761,7 +6761,7 @@
   "layers": {
    "basics": "The optic nerve is the cable of nerve fibres that carries signals from the retina to the brain. It leaves the back of the eye where the pecten stands.",
    "deeper": "Birds have a high number of neurons in the optic nerve. The place where it leaves the retina has no photoreceptors, the blind spot.",
-   "expert": "The model draws a cable. The real fibre count is not stated."
+   "expert": "The model draws a cable."
   },
   "facts": [
    [
