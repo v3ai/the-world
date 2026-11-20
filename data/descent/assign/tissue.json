@@ -5,6 +5,15 @@
   "platelet": "platelet",
   "stratum_corneum": "corneocytes",
   "hyaline_cartilage": "cartilage_matrix",
-  "osteon": "bone_mineral"
+  "osteon": "bone_mineral",
+  "adipocyte": "fat",
+  "skeletal_muscle_fiber": "muscle_fibre"
+ },
+ "sub": {
+  "lining": {
+   "ids": {
+    "stratum_corneum": "living_lining_cells"
+   }
+  }
  }
 }

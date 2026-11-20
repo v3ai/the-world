@@ -12,14 +12,14 @@
  "ids": {
   "skin": "epithelium",
   "teeth": "tooth",
-  "intervertebral_discs": "cartilage",
+  "intervertebral_discs": "spinal_disc",
   "heart": "cardiac_muscle",
   "lung_l": "lung_tissue",
   "lung_r": "lung_tissue",
   "trachea": "lining",
   "bronchi": "lining",
   "larynx": "cartilage",
-  "esophagus": "organ_wall",
+  "esophagus": "esophagus_human",
   "stomach": "organ_wall",
   "small_intestine": "organ_wall",
   "colon": "organ_wall",
@@ -34,7 +34,7 @@
   "ureter_l": "organ_wall",
   "ureter_r": "organ_wall",
   "bladder": "organ_wall",
-  "eyeball_l": "collagen",
-  "eyeball_r": "collagen"
+  "eyeball_l": "eyeball",
+  "eyeball_r": "eyeball"
  }
 }

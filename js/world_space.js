@@ -358,10 +358,10 @@ FT.star = {
 };
 /* ---------- the Sun: photosphere and cut-away interior (unit = 1 solar radius, 6.957e8 m) ---------- */
 const SUN_R_M = 6.957e8; // IAU 2015 nominal solar radius, 695,700 km
-// Anchor points of a standard solar model (r/R, temperature K, density kg/m3, hydrogen mass fraction):
+// Anchor points of a standard solar model (r/R, temperature K, density kg/m3, hydrogen mass fraction; the core's 0.38 gives helium about 60% with 2% heavier elements: Wikipedia "Sun", helium in the core risen from 24% to about 60%):
 // centre 15.7 MK and 150 g/cm3 (Fiorentini and Ricci, via Wikipedia "Standard solar model" and "Solar core"); 0.19 R 10 MK, 40 g/cm3 and 0.25 R 7 MK, 20,000 kg/m3 (Solar core; Sun);
 // base of the convection zone 0.713 R, about 2 MK and 200 kg/m3 (Sun); photosphere 5,772 K and about 2e-4 kg/m3 (about 1e23 particles per m3). Values between anchors are interpolated in log space: a diagram, not a model run.
-const SUN_TBL = [[0, 1.57e7, 1.5e5, .34], [.19, 1e7, 4e4, .5], [.25, 7e6, 2e4, .7], [.713, 2e6, 200, .735], [1, 5772, 2e-4, .735]];
+const SUN_TBL = [[0, 1.57e7, 1.5e5, .38], [.19, 1e7, 4e4, .5], [.25, 7e6, 2e4, .7], [.713, 2e6, 200, .735], [1, 5772, 2e-4, .735]];
 function sunAt(r) {
   r = clamp(r, 0, 1); let i = 0; while (i < SUN_TBL.length - 2 && r > SUN_TBL[i + 1][0]) i++;
   const a = SUN_TBL[i], b = SUN_TBL[i + 1], u = (r - a[0]) / (b[0] - a[0]), L = (x, y) => Math.exp(lerp(Math.log(x), Math.log(y), u));

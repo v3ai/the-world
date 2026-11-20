@@ -10,7 +10,7 @@
   "pore_back": "soil_air",
   "burrow": "soil_air",
   "cast": "soil",
-  "grass_mid": "plant_wall",
+  "grass_mid": "grass_leaf",
   "worm_head": "animal_cells",
   "worm_skin": "animal_cells",
   "worm_clitellum": "animal_cells",
@@ -19,6 +19,7 @@
   "hs_gut": "marker",
   "hs_hearts": "marker",
   "hs_hyphae": "marker",
-  "hs_pebbles": "marker"
+  "hs_pebbles": "marker",
+  "worm_coelom": "coelomic_fluid"
  }
 }

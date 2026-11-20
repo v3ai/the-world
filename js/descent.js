@@ -16,7 +16,7 @@
 
    An ASSIGNMENT file says which material each pickable thing of a frame is made of:
      { default, ids: {pickId: material}, nodes: {nodeId: material}, match: [[regex on the pick id, material], ...], systems: {system: material},
-       sub: {<tissue kind | cell type | micro kind | biome | body>: {...the same...}}, spawnD: metres, everywhere: true }
+       sub: {<tissue kind or variant | cell type | micro kind | biome | body | tissue2 scene id>: {...the same, and over: {structure id: material}}}, spawnD: metres, everywhere: true }
    looked up in that order (the sub-table of the frame's own kind first). A row may be null: "nothing is assigned to this part" (the default does not apply to it).
    `default` speaks for whatever of the frame is pointed at; with `everywhere` it also holds where the pointer is on nothing (a chip is silicon throughout).
 
@@ -54,7 +54,7 @@ const DESCENT = (() => {
   /* ---------- which table, which row ---------- */
   const tableKey = F => F.type === 'thing' ? (F.opts && F.opts.thing) : F.type;
   /* the sub-table of a frame's own kind (a landscape: the body it is on, else its biome) */
-  const subOf = (a, F) => { if (!a.sub) return null; const o = F.opts || {}; const k = F.type === 'tissue' ? o.kind : F.type === 'cell' ? (o.type || 'animal') : F.type === 'micro' ? o.kind : F.type === 'landscape' ? (o.body && a.sub[o.body] ? o.body : o.biome) : F.type === 'region' ? o.biome : F.type === 'planet' || F.type === 'earth' || F.type === 'star' ? o.body : F.type === 'organ' ? o.organ : F.type === 'tissue2' ? o.id : null; return k != null ? a.sub[k] || null : null; };
+  const subOf = (a, F) => { if (!a.sub) return null; const o = F.opts || {}; const k = F.type === 'tissue' ? (o.variant || o.kind) : F.type === 'cell' ? (o.type || 'animal') : F.type === 'micro' ? o.kind : F.type === 'landscape' ? (o.body && a.sub[o.body] ? o.body : o.biome) : F.type === 'region' ? o.biome : F.type === 'planet' || F.type === 'earth' || F.type === 'star' ? o.body : F.type === 'organ' ? o.organ : F.type === 'tissue2' ? o.id : null; return k != null ? a.sub[k] || null : null; };
   function rowOf(a, q) {
     if (!a) return undefined;
     if (q.id != null && a.ids && a.ids[q.id] !== undefined) return a.ids[q.id];
@@ -75,8 +75,10 @@ const DESCENT = (() => {
   /* the material of the thing a query names, in frame F: {id, via} or null */
   function materialOf(F, q, explicit) {   // explicit: only a row that names this part (not the frame's default)
     const u = q.u || {};
-    if (u.material && Z.M[u.material]) return { id: u.material, via: 'part' };
     const a = Z.A[tableKey(F)], s = a ? subOf(a, F) : null;
+    const ov = s && s.over && q.id != null ? s.over[q.id] : undefined;   // `over`: a structure of a scene whose own `material` is replaced by a truer one (assign/tissue2.json)
+    if (ov && Z.M[ov]) return { id: ov, via: 'over' };
+    if (u.material && Z.M[u.material]) return { id: u.material, via: 'part' };
     let m = rowOf(s, q); if (m === undefined) m = rowOf(a, q);
     if (m === undefined && typeof u.madeOf === 'string' && Z.M[u.madeOf]) return { id: u.madeOf, via: 'madeOf' };
     if (!a) return null;
@@ -105,7 +107,7 @@ const DESCENT = (() => {
     const what = q && q.what;
     switch (sc.type) {
       case 'tissue2': return tissue2Frame(sc.id, T);
-      case 'tissue': { const f = tissueFrame(sc.node || TISSUE_NODE[sc.kind] || sc.kind, T, q && q.id); f.opts.kind = sc.kind; return f; }
+      case 'tissue': { const f = tissueFrame(sc.node || TISSUE_NODE[sc.kind] || sc.kind, T, q && q.id); f.opts.kind = sc.kind; if (sc.variant) f.opts.variant = sc.variant; return f;   // variant: the same scene with another assignment table (assign/tissue.json sub) }
       case 'cell': {
         const fungal = sc.cell === 'fungal', type = fungal ? 'animal' : sc.cell, base = { animal: 'Animal cell', plant: 'Plant cell', bacterium: 'Bacterium' }[type] || 'Cell';
         const f = new Frame({ type: 'cell', name: base, unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T.clone(), opts: { type, cname: fill(sc.cname, what) || (R.standIn && what ? `${cap(what)}: drawn as a generic ${type === 'bacterium' ? 'bacterium' : type + ' cell'}` : undefined), blurb: fill(sc.blurb, what) || undefined, node: q && q.node || undefined, stands: what || undefined } });

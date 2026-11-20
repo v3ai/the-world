@@ -24,6 +24,7 @@
   "flow_sugar": "phloem_sap",
   "hs_rings": "wood",
   "hs_cambium": "plant_cells",
-  "hs_myc": "mycorrhiza"
+  "hs_myc": "mycorrhiza",
+  "log_pith": "plant_cells"
  }
 }

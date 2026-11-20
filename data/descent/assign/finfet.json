@@ -1,5 +1,8 @@
 {
- "about": "The FinFET transistor (FT.finfet). Everything here leads into the silicon of the channel, as the fixed chain does (js/teardown.js pulls the zoom there).",
+ "about": "The FinFET transistor (FT.finfet). The silicon fin, source and drain lead into silicon; the metal gate is its own stop.",
  "default": "chip_block",
- "everywhere": true
+ "everywhere": true,
+ "ids": {
+  "finfet_transistor": "chip_metal"
+ }
 }

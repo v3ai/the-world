@@ -4,13 +4,19 @@
  "systems": {
   "cuticle": "insect_cuticle",
   "wings": "insect_wing",
-  "hairs": "insect_cuticle"
+  "hairs": "insect_cuticle",
+  "tracheal": "insect_air_tube",
+  "muscles": "muscle_fibre"
  },
  "ids": {
   "pollen": "pollen",
   "sting": "insect_cuticle",
   "barbs": "insect_cuticle",
-  "trachea": "chitin"
+  "trachea": "insect_air_tube",
+  "oesophagus": "gut_cuticle",
+  "crop": "gut_cuticle",
+  "proventriculus": "gut_cuticle",
+  "hindgut": "gut_cuticle"
  },
  "match": [
   [
