@@ -2,6 +2,7 @@
 #   /home/rhett/projects/how/.devtools/venv/bin/python tools/things/content/pond_tissues.py
 # All lengths are micrometres.  Sizes with a source are named in the scene note (shown on screen); everything else is declared illustrative there.
 import json
+import tissue_material as TM
 def pop(id, name, node, shape, size, color, arrange, opacity=1, ink=1, deeper=None, priority=3, rot=None):
     p = {'id': id, 'name': name, 'node': node, 'shape': shape, 'size': size, 'color': color, 'opacity': opacity, 'ink': ink, 'priority': priority, 'arrange': arrange}
     if deeper: p['deeper'] = deeper
@@ -13,7 +14,7 @@ rnd = lambda n, mn, mx, seed, gap=3, exclude=None, orient=None: {'kind': 'random
 mol = lambda m, name, button=None: {'type': 'mol', 'mol': m, 'name': name, 'button': button or 'See the molecule: ' + name.lower()}
 def write(d):
     d = {'cell': 'plant', **d}
-    json.dump(d, open('data/things/tissues/%s.json' % d['id'], 'w'), indent=1, ensure_ascii=False)
+    json.dump(TM.apply(d), open('data/things/tissues/%s.json' % d['id'], 'w'), indent=1, ensure_ascii=False)
 
 # ---------------------------------------------------------------- a drop of pond water
 write({'id': 'pond_drop', 'tag': 'In a drop of pond water', 'title': 'A drop of pond water', 'node': 'pond_drop',

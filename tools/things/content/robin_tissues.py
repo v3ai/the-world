@@ -2,6 +2,7 @@
 #   /home/rhett/projects/how/.devtools/venv/bin/python tools/things/content/robin_tissues.py
 # All lengths are micrometres. Only the barbule spacing (8 to 16 um, J. R. Soc. Interface 2025) is a published size; every other size is declared illustrative in each scene's note.
 import json
+import tissue_material as TM
 def pop(id, name, node, shape, size, color, arrange, opacity=1, ink=1, deeper=None, priority=3, **kw):
     p = {'id': id, 'name': name, 'node': node, 'shape': shape, 'size': size, 'color': color, 'opacity': opacity, 'ink': ink, 'priority': priority, 'arrange': arrange, **kw}
     if deeper: p['deeper'] = deeper
@@ -10,7 +11,7 @@ grid = lambda origin, n, step, stagger=0, jitter=0: {'kind': 'grid', 'origin': o
 lst = lambda *items: {'kind': 'list', 'items': [({'at': i} if isinstance(i, list) else i) for i in items]}
 def write(d):
     d = {'cell': 'animal', **d}
-    json.dump(d, open('data/things/tissues/%s.json' % d['id'], 'w'), indent=1, ensure_ascii=False)
+    json.dump(TM.apply(d), open('data/things/tissues/%s.json' % d['id'], 'w'), indent=1, ensure_ascii=False)
 
 # ---- feather: shaft, barbs, barbules and their hooks (rachis up the left; barbs run right; barbules run up and down between barbs) ----
 write({'id': 'robin_feather', 'tag': 'Inside a feather', 'title': "Inside a robin's flight feather", 'node': 'robin_feather_scene',

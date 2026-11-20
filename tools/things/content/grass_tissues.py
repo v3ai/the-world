@@ -2,6 +2,7 @@
 #   /home/rhett/projects/how/.devtools/venv/bin/python tools/things/content/grass_tissues.py
 # All lengths are micrometres. Sizes with a source are named in each scene note (shown on screen); everything else is declared illustrative there.
 import json, math, random
+import tissue_material as TM
 def pop(id, name, node, shape, size, color, arrange, opacity=1, ink=1, deeper=None, priority=3, rot=None):
     p = {'id': id, 'name': name, 'node': node, 'shape': shape, 'size': size, 'color': color, 'opacity': opacity, 'ink': ink, 'priority': priority, 'arrange': arrange}
     if deeper: p['deeper'] = deeper
@@ -15,7 +16,7 @@ mol = lambda m, name, button=None: {'type': 'mol', 'mol': m, 'name': name, 'butt
 NONE = {'type': 'none'}
 def write(d):
     d = {'cell': 'plant', **d}
-    json.dump(d, open('data/things/tissues/%s.json' % d['id'], 'w'), indent=1, ensure_ascii=False)
+    json.dump(TM.apply(d), open('data/things/tissues/%s.json' % d['id'], 'w'), indent=1, ensure_ascii=False)
 
 # ---------------------------------------------------------------- a ryegrass leaf blade, cut across
 BX = [-220, 0, 220]   # three vascular bundles

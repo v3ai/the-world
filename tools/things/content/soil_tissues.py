@@ -2,6 +2,7 @@
 #   /home/rhett/projects/how/.devtools/venv/bin/python tools/things/content/soil_tissues.py
 # All lengths are micrometres.  Sizes with a source are named in the scene note (shown on screen); everything else is declared illustrative there.
 import json, math, random
+import tissue_material as TM
 def pop(id, name, node, shape, size, color, arrange, opacity=1, ink=1, deeper=None, priority=3, rot=None):
     p = {'id': id, 'name': name, 'node': node, 'shape': shape, 'size': size, 'color': color, 'opacity': opacity, 'ink': ink, 'priority': priority, 'arrange': arrange}
     if deeper: p['deeper'] = deeper
@@ -12,7 +13,7 @@ rnd = lambda n, mn, mx, seed, gap=3, exclude=None, orient=None: {'kind': 'random
 mol = lambda m, name, button=None: {'type': 'mol', 'mol': m, 'name': name, 'button': button or 'See the molecule: ' + name.lower()}
 def write(d):
     d = {'cell': 'plant', **d}
-    json.dump(d, open('data/things/tissues/%s.json' % d['id'], 'w'), indent=1, ensure_ascii=False)
+    json.dump(TM.apply(d), open('data/things/tissues/%s.json' % d['id'], 'w'), indent=1, ensure_ascii=False)
 
 # ---------------------------------------------------------------- one soil crumb (a window about 2 mm wide)
 SAND = [((-480, 110, 0), (650, 560, 600)), ((230, -260, 0), (420, 380, 400)), ((470, 290, 0), (500, 430, 450))]

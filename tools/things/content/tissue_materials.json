@@ -1,0 +1,170 @@
+{
+ "bee_crop": {
+  "lining": "animal_cells",
+  "crop_cell": "animal_cells"
+ },
+ "bee_cuticle": {
+  "epi": "insect_wax",
+  "exo": "chitin",
+  "endo_matrix": "chitin",
+  "epidermis": "animal_cells"
+ },
+ "bee_eye": {
+  "cone": "animal_cells",
+  "pigment": "animal_cells",
+  "axon": "animal_cells"
+ },
+ "bee_flight_muscle": {
+  "fibre": "animal_cells",
+  "tracheole": "animal_cells"
+ },
+ "dog_muscle": {
+  "capillary": "animal_cells",
+  "rbc": "red_blood_cell",
+  "nuclei": "cell_nucleus",
+  "axon": "animal_cells"
+ },
+ "dog_olfactory_epithelium": {
+  "dendrite": "animal_cells",
+  "sust": "animal_cells",
+  "basal": "animal_cells",
+  "lamina": "animal_cells",
+  "gland": "animal_cells",
+  "axons": "animal_cells"
+ },
+ "dog_retina": {
+  "bip": "animal_cells",
+  "cones": "animal_cells",
+  "rpe": "animal_cells",
+  "tap": "animal_cells",
+  "choroid": "animal_cells",
+  "sclera": "collagen"
+ },
+ "dog_skin": {
+  "dermis": "collagen",
+  "fat": "fat",
+  "guard": "keratin",
+  "under": "keratin",
+  "bulb": "animal_cells",
+  "sebaceous": "animal_cells",
+  "apocrine": "animal_cells"
+ },
+ "flower_anther": {
+  "wall": "plant_cells",
+  "sac": "pollen",
+  "connective": "plant_cells",
+  "grain": "pollen"
+ },
+ "flower_carpel": {
+  "wall": "plant_cells",
+  "ovule": "plant_cells",
+  "sac": "plant_cells",
+  "egg": "plant_cells",
+  "syn": "plant_cells",
+  "central": "plant_cells",
+  "anti": "plant_cells",
+  "style": "plant_cells",
+  "stigma": "plant_cells",
+  "pollen": "pollen",
+  "tube": "plant_cells"
+ },
+ "flower_leaf": {
+  "cell": "plant_cells"
+ },
+ "flower_petal": {
+  "airgap": "air",
+  "starch_cell": "plant_cells"
+ },
+ "fungal_gill": {
+  "gill": "fungal_cells",
+  "hypha": "fungal_cells",
+  "basidium": "fungal_cells",
+  "spore": "fungal_cells"
+ },
+ "grass_leaf_section": {
+  "guard": "plant_cells"
+ },
+ "grass_pollen": {
+  "grain": "pollen",
+  "pore": "pollen"
+ },
+ "leaf_section": {
+  "cuticle_top": "plant_wax",
+  "cuticle_bottom": "plant_wax"
+ },
+ "mushroom_ecm": {
+  "hartig": "fungal_cells",
+  "hartig_h": "fungal_cells",
+  "mantle": "fungal_cells",
+  "soil_grain": "rock_grain"
+ },
+ "mushroom_flesh": {
+  "cuticle": "fungal_cells",
+  "subcuticle": "fungal_cells"
+ },
+ "mushroom_gill": {
+  "subhymenium": "fungal_cells",
+  "basidium": "fungal_cells",
+  "sterigma": "fungal_cells",
+  "spore": "fungal_cells"
+ },
+ "pond_drop": {
+  "scale": "model_edge",
+  "volvox": "algal_cells",
+  "paramecium": "single_cell",
+  "paramecium_nucleus": "cell_nucleus",
+  "rotifer": "animal_cells",
+  "rotifer_corona": "animal_cells",
+  "bacteria": "bacteria",
+  "detritus": "debris"
+ },
+ "pond_film": {
+  "leg": "arthropod_shell"
+ },
+ "pond_mud": {
+  "sand": "rock_grain",
+  "silt": "rock_grain"
+ },
+ "robin_bone": {
+  "wall": "bone_mineral",
+  "strut": "bone_mineral"
+ },
+ "robin_feather": {
+  "rachis": "keratin",
+  "barb": "keratin",
+  "hooklet": "keratin"
+ },
+ "robin_flight_muscle": {
+  "capillary": "animal_cells"
+ },
+ "robin_retina": {
+  "fibre": "animal_cells"
+ },
+ "root_tip": {
+  "cortex": "plant_cells",
+  "hair_s": "plant_cells",
+  "hair_m": "plant_cells",
+  "hair_l": "plant_cells"
+ },
+ "soil_clay_ions": {
+  "scale": "model_edge",
+  "ion_Ca": "ion_ca",
+  "ion_Mg": "ion_mg",
+  "ion_K": "ion_k"
+ },
+ "soil_crumb": {
+  "scale": "model_edge",
+  "humus": "humus",
+  "humus2": "humus",
+  "humus3": "humus",
+  "sand": "sand_grain",
+  "sand2": "sand_grain",
+  "sand3": "sand_grain",
+  "silt": "rock_grain",
+  "nematode": "animal_cells"
+ },
+ "wood_section": {
+  "vessel": "cellulose",
+  "ray": "plant_cells"
+ }
+}

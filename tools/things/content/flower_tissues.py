@@ -1,5 +1,6 @@
 # Writes the buttercup tissue scenes (data/things/tissues/flower_*.json). Lengths in micrometres. Run from the repo root.
 import json, random
+import tissue_material as TM
 OUT = 'data/things/tissues/'
 def pop(id, name, node, shape, size, color, opacity, arrange, ink=1, deeper=None, priority=None):
     d = {'id': id, 'name': name, 'node': node, 'shape': shape, 'size': size, 'color': color, 'opacity': opacity, 'ink': ink, 'arrange': arrange}
@@ -10,7 +11,7 @@ L = lambda *items: {'kind': 'list', 'items': [{'at': list(i[:3]), **({'rotY': i[
 TAGS = {'flower_anther': 'Inside an anther', 'flower_carpel': 'Inside a carpel', 'flower_leaf': 'On a leaf surface', 'flower_petal': 'Inside a petal'}
 def write(id, d):
     d = {'tag': TAGS[id], 'cell': 'plant', **d}   # scene tag shown in front of each card's kind line; cell type of the scene
-    json.dump(d, open(OUT + id + '.json', 'w'), indent=1); print(id, len(d['populations']), 'populations')
+    json.dump(TM.apply(d), open(OUT + id + '.json', 'w'), indent=1); print(id, len(d['populations']), 'populations')
 
 # ---------- petal: cross-section through the four layers, true layer thicknesses ----------
 # stack from the bottom: lower epidermis 0-40, mesophyll 40-140, starch layer 140-178, air gap 178-182, upper epidermis 182-184.7 (thicknesses from van der Kooi et al. 2017, model values)

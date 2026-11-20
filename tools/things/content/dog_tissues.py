@@ -1,5 +1,6 @@
 # Writes data/things/tissues/dog_{skin,muscle,olfactory_epithelium,retina}.json.  Run from the repo root.
 import json
+import tissue_material as TM
 def pop(id, name, node, shape, size, color, opacity, arrange, deeper=None, ink=1):
     p = {'id': id, 'name': name, 'node': node, 'shape': shape, 'size': size, 'color': color, 'opacity': opacity, 'arrange': arrange}
     if ink: p['ink'] = 1
@@ -9,7 +10,7 @@ L = lambda items: {'kind': 'list', 'items': items}
 TAGS = {'dog_skin': 'Inside dog skin', 'dog_muscle': 'Inside a dog muscle', 'dog_olfactory_epithelium': 'Inside the smell lining', 'dog_retina': 'Inside the retina'}
 def write(id, d):
     d['tag'] = TAGS[id]; d['cell'] = 'animal'
-    json.dump(d, open(f'data/things/tissues/{id}.json', 'w'), indent=1); print(id, len(d['populations']), 'populations')
+    json.dump(TM.apply(d), open(f'data/things/tissues/{id}.json', 'w'), indent=1); print(id, len(d['populations']), 'populations')
 # ---------------- skin ----------------
 xs = [-250, 0, 250]
 write('dog_skin', {'id': 'dog_skin', 'title': 'Inside a dog\'s skin and coat', 'node': 'dog_skin_scene', 'bg': '#f3efe6', 'center': [0, 190, 0], 'D_um': 1100,
