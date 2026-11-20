@@ -230,6 +230,85 @@ function bodyAutoUpdate(F, dt) {
 }
 const V3Z = new V3();
 
+/* ---------- double click on a layered thing in Auto: one step in, at that spot ----------
+   A visitor who double-clicks the belly wants to see what is inside the belly, not the tissue of the skin. In Auto, "Look inside" (a double click, or
+   the card's button) on a part that has a deeper layer under the pointer takes the step that scrolling would take: the camera flies to the next layer
+   under that point (skin, then muscle, then the bone or organ behind it), to the distance at which the Auto peel shows exactly that layer, and the card
+   of the part now shown opens. Nothing here decides what peels: the step is found by asking the frame's own peel what it would show from each candidate
+   distance (bodyRayStack and bodyPeel for the body; thRayStack and thPeel for a thing with `auto.layers`, js/things.js), with the camera put there
+   for the question and put back. A thing whose Auto goes by distance (`auto.stages`: the pond, the soil block) takes its next stage instead.
+   When the part pointed at is the innermost there (an organ, a bone with nothing behind it) there is no step: lookInside goes on to its cut-open view
+   or its tissue, as before. In a fixed layer view (Skin, Muscles ...) nothing changes: a double click on the skin still opens the skin's own tissue. */
+function layerRank(F, id) {   // the body's peel rank (skin 0, muscle 1, vessels 1.5, bone 2, organs 3), a thing's layer index; undefined: the part is in no layer
+  if (F.type === 'body') { const p = F.parts[id]; return p ? peelRank(p.p) : undefined; }
+  const r = F.T && F.T.parts[id]; return r ? r.rank : undefined;
+}
+function layerAuto(F) {       // 'layers', 'stages', or null when Auto is not what decides which layers show
+  if (!F || !F.layered || !F.parts || (F.hidden && F.hidden.size) || F.reveal) return null;
+  if (F.type === 'body') return F.mode === 'auto' && !bodyFocus(F) ? 'layers' : null;
+  const T = F.T, a = T && T.def.auto; if (!a || T.modeId !== 'auto') return null;
+  return a.layers ? 'layers' : a.stages ? 'stages' : null;
+}
+/* the step a "Look inside" on this pick would take, without the camera distance (cheap: the card's button asks it): {kind, name, ...} or null */
+function layerNext(h) {
+  const F = h && h.frame, kind = layerAuto(F); if (!kind || !h.obj || !h.obj.userData.part) return null;
+  if (kind === 'stages') {
+    const T = F.T, st = T.def.auto.stages, cur = T.curMode && T.curMode.id, i = st.findIndex(x => x.mode === cur); if (i <= 0) return null;
+    const md = T.modeDef(st[i - 1].mode); return md ? { kind, F, stage: i - 1, name: md.label || md.id } : null;
+  }
+  const rk = layerRank(F, h.id); if (rk === undefined) return null;
+  const S = h.stack || (h.ndc ? bodyCoreSample(F, h) : null); if (!S) return null;
+  const i = S.rows.findIndex(r => r.id === h.id); if (i < 0) return null;
+  // (for the card's button: the nearest deeper part on the ray. The step itself asks the peel what it really shows next: layerStep)
+  const next = S.rows.slice(i + 1).find(r => { const q = layerRank(F, r.id); return q !== undefined && q > rk && !F.hidden.has(r.id); }); if (!next) return null;
+  return { kind, F, next, rank: layerRank(F, next.id), name: next.name, stack: S };
+}
+/* what Auto would bring into focus with the camera looking at P (frame coordinates) from D metres, along the direction it looks now: {id, rank} */
+const _lsT = new V3(), _lsD = new V3(), _lsU = new V3(), _lsC = new V3(), _lsM = new V3();
+function layerFocusAt(F, P, D) {
+  const A0 = cam.A, D0 = cam.D; _lsT.copy(cam.T); _lsD.copy(cam.dir); _lsU.copy(cam.up);
+  try {
+    convertD(cam.dir, A0, F); cam.A = F; cam.T.copy(P); cam.D = D; camPosIn(F, _lsC);
+    if (F.type === 'body') {
+      if (_lsC.distanceTo(F.center || V3Z) > 4) return { id: 'skin', rank: 0 };
+      const rows = bodyRayStack(F, null); bodyPeel(F, rows); const f = rows.find(r => r.pi < .5) || rows[rows.length - 1]; return f ? { id: f.id, rank: f.rank } : null;
+    }
+    const T = F.T, a = T.def.auto, R = (T.def.radius_m || 1) * T.k, active = a.active_m || R * 2.5, dist = _lsC.distanceTo(_lsM.set(0, R * .5, 0));
+    if (dist > active) return { id: null, rank: 0 };
+    if (!T.peelScale) T.peelScale = a.scale || Math.max(.15, (T.def.height_m || 1) * T.k / 1.75);
+    const rows = thRayStack(F, null), pe = thPeel(T, rows, null, 1 - smooth(active * .35, active * .6, dist)), f = rows.find(r => r.rank === pe.rank);
+    return { id: f ? f.id : null, rank: pe.rank };
+  } finally { cam.A = A0; cam.T.copy(_lsT); cam.D = D0; cam.dir.copy(_lsD); cam.up.copy(_lsU); }
+}
+/* take the step: fly there, and open the card of what is now shown. Returns false when there is no step to take (lookInside then goes on). */
+function layerStep(h) {
+  const n = layerNext(h); if (!n) return false;
+  const F = n.F, T = F.T, size = F.type === 'body' ? 1.75 : (T.def.radius_m || 1) * T.k * 2, lo = Math.max((F.floorD || 0) * 6, (F.spawnD || 0) * 2.5, size * .004);
+  if (n.kind === 'stages') {   // the camera within the next stage's distance of the thing's middle (and not yet within the one after it), looking at the point clicked, else at the thing's middle
+    const st = T.def.auto.stages, R = (T.def.radius_m || 1) * T.k, mid = new V3(0, R * .5, 0), dir = convertD(cam.dir.clone(), cam.A, F), max = st[n.stage].max_m * .92, min = n.stage > 0 ? st[n.stage - 1].max_m * 1.08 : 0;
+    for (const P of [h.pointLocal.clone(), new V3(0, 0, 0)]) for (let D = Math.min(cam.D, max); D > lo; D *= .86) {
+      const d = _lsC.copy(dir).multiplyScalar(D).add(P).distanceTo(mid); if (d > max || d < min) continue;
+      flyKeep(F, P, D); if (typeof showStepNote === 'function') showStepNote(`${n.name}: one step in. Double-click again to go further.`); return true;
+    }
+    return false;
+  }
+  /* Which layer comes next is the peel's own business (under the skin of the belly the body's Auto brings up the vessels and organs, not the muscle that lies a
+     little deeper on the ray; a thing's layers come strictly in order). So the camera is brought in toward the point clicked, in thought, until the peel's focus
+     moves to a deeper part: that part is the next layer, and that distance shows it. The flight then aims at that part's own surface under the click when the
+     peel still shows it from there. */
+  const rk = layerRank(F, h.id), P0 = (h.pointLocal || n.next.point).clone(); let id = null, D1 = 0;
+  for (let D = Math.min(cam.D, size * 1.2); D > lo; D *= .88) { const fo = layerFocusAt(F, P0, D); if (fo && fo.id && fo.id !== h.id && fo.rank > rk && F.parts[fo.id]) { id = fo.id; D1 = D; break; } }
+  if (!id) return false;
+  const row = n.stack.rows.find(r => r.id === id); let P = P0, D = D1 * .94;
+  if (row) for (const k of [.94, .82, 1.06, .7]) { const fo = layerFocusAt(F, row.point, D1 * k); if (fo && fo.id === id) { P = row.point.clone(); D = D1 * k; break; } }
+  const part = F.parts[id], name = (part.p && part.p.name) || id;
+  const h2 = { frame: F, obj: part.g, id, pointLocal: P.clone(), normalLocal: row ? row.normal : null, hit: row ? row.hit : null, ndc: h.ndc, stack: n.stack };
+  selectHit(h2);                // the panel names what is now shown
+  flyKeep(F, P, D);
+  if (typeof showStepNote === 'function') showStepNote(`One layer in: ${name.charAt(0).toLowerCase() + name.slice(1)} is what shows under ${(h.obj.userData.part.name || 'that').toLowerCase()} at the spot you chose. Double-click again to go further in.`);
+  return true;
+}
+
 /* ---------- lung outline ----------
    The anatomy data holds each lung as its airway tree only (branches, no lung tissue). A lung that is only branches reads as a
    floating bush and has nothing to click, so the lung is drawn as a smooth outline wrapped around the tree. This is a schematic

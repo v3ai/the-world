@@ -62,7 +62,7 @@ async function buildWorld() {
 
   for (const ext of WORLD_EXT) { try { await ext(FR); } catch (e) { console.error('world extension failed', e); } }
   // A landmark: {label, D, frame, go(then)}. `frame` is where the camera must be anchored (or inside) after the flight.
-  const LM = (label, f, p, D, extra) => Object.assign({ label, D, frame: f, go: then => flyTo(f, p || new V3(), D, then) }, extra || {});
+  const LM = (label, f, p, D, extra) => Object.assign({ label, D, frame: f, at: p || null, go: then => flyTo(f, p || new V3(), D, then, extra && extra.dir) }, extra || {});   // at: the place in the frame, where it is not the frame's middle (the ruler names a landmark only when the camera is there)
   const organ = (id, fallback) => body.children.find(c => c.type === 'organ' && c.opts.organ === id) || fallback;
   const bodyLM = (id, label, D, organId) => {
     const p = AN && AN.byId[id]; if (!p) return null;
@@ -79,12 +79,12 @@ async function buildWorld() {
     LM('Your skin', skin, null, 1.5e-3),
     ...devLM, bodyLM('cerebrum_r', 'Your brain', .5, 'brain'), bodyLM('heart', 'Your heart', .4, 'heart'),
     LM('You', park, new V3(0, 1, 0), 6),
-    LM('Greenwich Park', park, new V3(0, 0, 0), 700),
+    LM('Greenwich Park', park, new V3(0, 0, 0), 450),   // near enough that the oaks (drawn out to 700 m) are all there, far enough to see the park whole
     LM('London', region, null, 8e4),
     LM('Earth', FR.earth, null, 3e7),
     LM('Earth & Moon', FR.earth, null, 1.4e9),
-    LM('Inner planets', ss, null, 7e11),
-    LM('Solar system', ss, null, 1.5e13),
+    LM('Inner planets', ss, null, 7e11, { dir: new V3(.25, .8, .55) }),   // seen from well above the plane of the orbits (y is its north), so the planets are apart and can be named
+    LM('Solar system', ss, null, 1.5e13, { dir: new V3(.25, .8, .55) }),
     LM('Oort cloud', nb, null, 5e16),
     LM('Nearest stars', nb, null, 5e17),
     LM('Local stars', nb, null, 6e18),
@@ -94,6 +94,10 @@ async function buildWorld() {
     LM('Cosmic web', root, null, 4e24),
     LM('Observable universe', root, null, 2e27),
   ].filter(Boolean).concat(EXT_LANDMARKS);
+  // a ruler stop of a thing in the park (the robin, the bee, the pond, the soil block) is at that thing: without its frame the ruler named it wherever the view was 24 cm wide
+  LANDMARKS.forEach(L => { if (L.frame || !FR.things || typeof TH === 'undefined') return; const f = FR.things.find(t => { const d = TH.loaded[t.opts.thing]; return (t.opts.n || 0) === 0 && d && d.ruler && d.ruler.label === L.label; }); if (f) L.frame = f; });
+  // a thing whose Auto makes parts see-through by distance (the pond: its stages are views, not cuts) keeps the part first pointed at as the aim of a zoom (js/engine.js, zoomBy)
+  if (FR.things && typeof TH !== 'undefined') FR.things.forEach(f => { const d = TH.loaded[f.opts.thing]; if (d && d.auto && d.auto.stages && d.auto.stages.every(st => { const m = d.modes.find(x => x.id === st.mode); return m && !m.cut; })) f.aimHolds = true; });
   return root;
 }
 function startView() {
@@ -101,6 +105,7 @@ function startView() {
   // make sure the chain down to the park exists and is placed
   chainOf(park).reverse().forEach(f => { f.ensure(); if (f.place) f.place(); });
   cam.A = park; cam.T.set(0, 1.1, 0); cam.D = 7; cam.dir.set(.35, .28, 1).normalize(); cam.up.set(0, 1, 0);
+  if (innerWidth <= 860 && innerHeight > innerWidth) { cam.T.set(.62, .95, .3); cam.D = 8.4; }   // a phone held upright sees a narrow strip: stand a little further back and look between the person and the dog, so the dog is not cut off at the edge
 }
 /* "What is it made of?" — jump straight to the material, wherever you are */
 function diveMaterial(h, quiet) {   // returns the frame it flies into, or null when there is none for this material (quiet: say nothing then)

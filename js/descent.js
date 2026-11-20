@@ -158,6 +158,12 @@ const DESCENT = (() => {
     if (x.stop) { sayStop(F, x.stop); return null; }
     F._dzStop = null; return x.f;
   };
+  /* the scene of a part the zoom has kept as its aim although the thing now draws it see-through (js/engine.js, zoomBy): the part's own closer view if it has one, else its material */
+  Z.spawnHeld = (F, hint, T) => {
+    const u = hint.obj && hint.obj.userData, rec = u && u.part && F.T && F.T.parts[u.id]; if (!rec) return null;
+    if (rec.pd.deeper && typeof thDeepFrame === 'function') return thDeepFrame(rec.pd.deeper, T, undefined, F.unit);
+    return Z.spawnFor(F, { id: rec.pd.id, node: rec.pd.node, system: rec.pd.system, what: rec.pd.name, obj: hint.obj, u }, T);
+  };
   /* the scene of a named material at T (a micro scene that was opened for a material asks for it by name) */
   Z.spawnMat = (F, id, T, q) => { if (!Z.ready) return null; const x = make(F, id, T, q || {}); if (!x) return null; if (x.stop) { sayStop(F, x.stop); return null; } return x.f; };
   /* is there a way down from this part of F (a scene, not a stop)? Used for zoom floors and "no closer view" notes. */
@@ -180,7 +186,7 @@ const DESCENT = (() => {
     lastFloor = { f: F, t: now }; if (typeof message === 'function') message('No closer view has been built here yet: this picture ends at this distance.');
   };
   Z.materialOf = (F, hint) => { const r = Z.ready ? materialOf(F, queryOf(F, hint)) : null; return r ? r.id : null; };
-  Z.resolve = resolve; Z.queryOf = queryOf;
+  Z.resolve = resolve; Z.queryOf = queryOf; Z.nameOf = f => nameOf(f);   // the name a waiting scene will have (the scale line names what an empty stretch leads to)
 
   /* ---------- the contract ---------- */
   const hintOf = h => ({ frame: h.frame, obj: h.obj, point: (h.pointLocal || h.point || new V3()).clone(), normal: h.normalLocal || null, id: h.id, hit: h.hit || null });
@@ -210,7 +216,7 @@ const DESCENT = (() => {
     } finally { var said = asking.stop; asking = null; }
     if (!f && said) return { ok: false, reason: said.stop, card: said.card || q.node || null };
     // a fixed frame that sits at the picked point (a planet in the solar system, the park in its region, the DNA in the cell's nucleus) is the inside of what marks it
-    if (!f) { const ch = (F.children || []).find(c => !c.dynamic && !c.enterOnly && !c.coRender && (c.proxy === h.obj || c.containsP(P))); if (ch) return { ok: true, title: nameOf(ch), kind: KIND_WORD[ch.type] || 'place', standIn: false, note: '', go: () => flyTo(ch, new V3(), Math.min(ch.r1 !== Infinity ? ch.r1 * .5 : Infinity, VIEW_D[ch.type] || ch.radius * ch.unit * 2.5)) }; }
+    if (!f) { const ch = (F.children || []).find(c => !c.dynamic && !c.enterOnly && !c.coRender && (c.proxy === h.obj || (c.proxy && typeof isUnder === 'function' && isUnder(h.obj, c.proxy)) || c.containsP(P))); if (ch) return { ok: true, title: nameOf(ch), kind: KIND_WORD[ch.type] || 'place', standIn: false, note: '', go: () => flyTo(ch, new V3(), Math.min(ch.r1 !== Infinity ? ch.r1 * .5 : Infinity, VIEW_D[ch.type] || ch.radius * ch.unit * 2.5)) }; }
     if (f) return { ok: true, title: nameOf(f), kind: KIND_WORD[f.type] || f.type, standIn: !!(R && R.standIn) || /stand-in|stands in|generic/i.test(f.name || ''), note: (R && R.note) || (typeof f.note === 'string' ? f.note : '') || '', go: () => flyInto(F, f) };
     // 3. the older "See what it is made of" kinds
     if (typeof u.madeOf === 'string' && typeof diveMaterial === 'function' && LEGACY[u.madeOf]) return { ok: true, title: LEGACY[u.madeOf], kind: 'material', standIn: u.madeOf === 'protein', note: '', go: () => diveMaterial(h) };
@@ -220,7 +226,12 @@ const DESCENT = (() => {
   Z.inside = h => {
     // an object that names its own destination (the Sun: "to the surface point you chose") is flown to; once the camera is already there, what is inside it comes next
     const zt = h && h.obj && h.obj.userData && h.obj.userData.zoomTo, there = h && h.frame === cam.A && cam.D < 8 * (spawnDOf(cam.A) || 0);
-    if (zt && !there && zt(h) !== false) return { ok: true, title: (h.obj.userData.title || ''), note: '' };
+    if (zt && !there) {
+      const f0 = fly, st = { A: cam.A, T: cam.T.clone(), D: cam.D }, r = zt(h);
+      // a destination that is where the camera already is (the Moon you have just flown to) is no answer: a second double click would do nothing. Go on to what is inside it.
+      const same = fly && fly !== f0 && fly.frame === st.A && fly.p.distanceTo(st.T) * st.A.unit < st.D * .2 && Math.abs(Math.log(fly.Dg / st.D)) < .35;
+      if (same) fly = f0; else if (r !== false) return { ok: true, title: (h.obj.userData.title || ''), note: '' };
+    }
     const p = plan(h); if (!p.ok) { if (typeof message === 'function') message(p.reason); return { ok: false, reason: p.reason, card: p.card || null }; }
     if (typeof cancelTour === 'function') cancelTour();
     lastZoomHit = hintOf(h); p.go(); return { ok: true, title: p.title, note: p.note };
