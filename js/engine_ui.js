@@ -51,8 +51,14 @@ function navFlyHook() {
   navStack.push(e); if (navStack.length > 60) navStack.shift(); navUpdate();
 }
 function navUpdate() { const b = $('#navBack'); if (b) b.disabled = !navStack.length; }
+/* the same view, to the eye: the same frame, the distance within a fifth, the target within a tenth of the view */
+function nearSnap(a, b) { return a && b && a.A === b.A && Math.abs(Math.log(a.D / b.D)) < .2 && a.T.distanceTo(b.T) < a.D * .1 / a.A.unit; }
 function navBack() {
-  const e = navStack.pop(); navUpdate(); if (!e) return;
+  /* Back goes to the previous place that looks different: steps that would leave the view as it is (a card opened and closed at the same place, a framing
+     that did not move: three Backs from the Sun's plasma gave the Sun at 3.0 and 3.01 million km) are passed over */
+  let e = navStack.pop(); const now = camSnap();
+  while (e && navStack.length && e.cam && nearSnap(e.cam, now) && !fly) e = navStack.pop();
+  navUpdate(); if (!e) return;
   cancelTour(); navQuiet++;
   try {
     if (e.cam) flyTo(e.cam.A, e.cam.T, e.cam.D);
@@ -736,6 +742,20 @@ async function startApp() {
   $('#panelMin').onclick = panelMinimise; $('#panelTabB').onclick = () => panelShow('tab');
   $('#panelHintX').onclick = panelHintDone;
   if (matchMedia('(pointer: coarse)').matches) $('#panelHint').firstChild.textContent = 'Tap a thing to read about it here. Double-tap it to look inside.';
+  /* On a touch screen every sentence the app shows says tap and double-tap, not click: the place's text, the cards, the step notes, the messages
+     ("Click anywhere to see what is under that spot; double-click a part to look inside it" stood under the hint "Double-tap it to look inside").
+     Text is written in click words once, here it is turned into touch words as it appears. */
+  if (matchMedia('(pointer: coarse)').matches) {
+    const TW = { 'double-click': 'double-tap', 'double-clicks': 'double-taps', 'double-clicked': 'double-tapped', 'double-clicking': 'double-tapping', click: 'tap', clicks: 'taps', clicked: 'tapped', clicking: 'tapping' };
+    const RE = /\b(double-click(?:s|ed|ing)?|click(?:s|ed|ing)?)\b/gi;
+    const fix = t => t.replace(RE, w => { const r = TW[w.toLowerCase()]; return w[0] === w[0].toUpperCase() ? r[0].toUpperCase() + r.slice(1) : r; });
+    const walk = root => { const it = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); let n; while ((n = it.nextNode())) { const v = n.nodeValue; if (RE.test(v)) { RE.lastIndex = 0; n.nodeValue = fix(v); } RE.lastIndex = 0; }
+      if (root.querySelectorAll) root.querySelectorAll('[title]').forEach(e => { if (/click/i.test(e.title)) e.title = fix(e.title); }); };
+    const roots = ['#panel', '#panelTab', '#toasts', '#push', '#fov', '#tip', '#help'].map(q => $(q)).filter(Boolean);
+    roots.forEach(walk);
+    const mo = new MutationObserver(ms => { for (const m of ms) { if (m.type === 'characterData') { const n = m.target; if (/click/i.test(n.nodeValue)) n.nodeValue = fix(n.nodeValue); } else m.addedNodes.forEach(n => { if (n.nodeType === 3) { if (/click/i.test(n.nodeValue)) n.nodeValue = fix(n.nodeValue); } else if (n.nodeType === 1) walk(n); }); } });
+    roots.forEach(r => mo.observe(r, { childList: true, subtree: true, characterData: true }));
+  }
   $('#tabShow').onclick = () => panelShow('trail-show-text'); $('#tabPrev').onclick = () => TRAILS.back(); $('#tabNext').onclick = () => TRAILS.next();
   $('#clockBtn').onclick = () => { panelShow('clock'); const t = $('#timeSec'); t.open = true; t.scrollIntoView({ block: 'nearest' }); };
   $('#placeIn').onclick = () => lookInsidePlace(); $('#placeOut').onclick = goFurtherOut;

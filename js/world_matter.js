@@ -711,7 +711,8 @@ FT.region = {
     if (o.isPark) { const pk = markerSprite(0xffd166, 10); pk.position.y = .01; F.add(pk); F.label(pk, 'Greenwich Park', { cls: 'you', always: true }); }
     F.update = () => { const s = sunDirIn(F); sun.position.copy(s).multiplyScalar(100); };
     F.blurb = o.isPark ? 'Above London and Greenwich Park, where your journey started. The ground picture is a schematic tile, not a map.' : `Earth's surface at ${o.lat.toFixed(1)}°, ${o.lon.toFixed(1)}° (${o.biome}). The ground picture is an illustrative tile, not a map.`;
-    F.note = 'Schematic: the blocks, river and park are a generated pattern, not real streets or buildings. The sky colour follows the Sun and altitude. The globe\'s own map is blurry below about 100 km (4096 by 2048 pixels for the whole Earth).';
+    // the blocks, the river and the park are drawn on London's tile only: elsewhere (open sea, a desert) the note must not speak of them
+    F.note = (o.isPark ? 'Schematic: the blocks, river and park are a generated pattern, not real streets or buildings.' : `Illustrative: the ${B.water ? 'sea' : 'ground'} is a generated pattern of patches in the colours of this kind of surface, not a map or a photograph.`) + ' The sky colour follows the Sun and altitude. The globe\'s own map is blurry below about 100 km (4096 by 2048 pixels for the whole Earth).';
     // a sky above the tile: blue by day, black above about 100 km and at night; the stars of the parent frames show through at night and from high up
     const dome = skyDome(F, 1, 1500); dome.geometry.dispose(); dome.geometry = new THREE.SphereGeometry(1500, 32, 16, 0, TAU, 0, Math.PI / 2 + .09); dome.renderOrder = -1;
     const baseUp = F.update; F.update = () => { baseUp(); const s = sunDirIn(F); dome.material.uniforms.uSun.value.copy(s); dome.material.uniforms.uOpacity.value = (1 - smooth(3e4, 1.2e5, cam.D)) * F.alpha; dome.visible = cam.D < 1.3e5; };
