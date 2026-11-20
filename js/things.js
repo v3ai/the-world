@@ -117,6 +117,11 @@ void main(){
   c*=.86+.28*h1(id+9.1);
   float edge=smoothstep(0.0,uEdge*.35,f2-f1);
   c=mix(c*.35,c,mix(edge,1.0,uPlain));
+#if defined( USE_LOGDEPTHBUF ) && defined( USE_LOGDEPTHBUF_EXT )
+  // the cut face lies on the cut plane, not on the back face it is painted on: its depth is that of the plane, so a thin layer's cut face does not flicker
+  // against the neighbouring layer's surface just behind it (the layers of a battery cell are less than a micrometre apart)
+  float L=length(vW-uCam); if(nd>1e-4 && t>0.0 && t<L) gl_FragDepthEXT=log2(1.0+(vFragDepth-1.0)*t/L)*logDepthBufFC*0.5;
+#endif
   gl_FragColor=vec4(c,uOpacity); }`),
     side: THREE.BackSide, transparent: true, clipping: true
   });
@@ -1054,14 +1059,18 @@ TH_HOSTS.earth = (pl, def, R) => {
     TH.places[key] = L; L.region = reg;
   }
   const a = pl.at || [0, 0];
-  return { host: L, pos: new V3(a[0], pl.y || 0, a[1]), up: new V3(0, 1, 0), env: 'sun', ground: true, merge: true, coMax: def.draw_m || 400, r1: Math.max(R * 12, 8) };
+  return { host: L, pos: new V3(a[0], pl.y || 0, a[1]), up: new V3(0, 1, 0), env: 'sun', ground: true, faceUp: true, merge: true, coMax: def.draw_m || 400, r1: Math.max(R * 12, 8) };
 };
 /* A circular orbit round the Earth, drawn in the Earth's frame the way the ISS marker is: the period comes from the data (a sourced figure), not from a formula here. */
 TH_HOSTS.orbit = (pl, def, R) => {
   const host = FR.earth; if (!host || !pl.period_min) return null;
   const r = (6371 + (pl.alt_km || 0)) * 1e3 / host.unit, T = pl.period_min * 60000, inc = (pl.incl_deg || 0) * Math.PI / 180, ph = (pl.phase_deg || 0) * Math.PI / 180, ax = new V3(1, 0, 0);
   const at = out => { const a = (simTime / T) % 1 * Math.PI * 2 + ph; return out.set(Math.cos(a) * r, 0, Math.sin(a) * r).applyAxisAngle(ax, inc); };
-  return { host, pos: at(new V3()), up: null, env: 'sun', merge: false, ground: false, coMax: def.draw_m || R * 4000, r1: Math.max(R * 40, 50), place: f => { at(f.pos); if (!fly && camHold === f && cam.A === host) cam.T.copy(f.pos); /* it moves several kilometres between two frames: a flight that has just ended at it is held on it until the camera is inside its frame, which then carries the camera along */ }, note: 'Its place on the orbit is illustrative: the orbit has the right height, tilt and period, but not the real position for this moment.' };
+  /* It moves at several kilometres a second. While a flight is heading for it (or has just ended at it) and the camera is still in the Earth's frame, the camera's
+     target is carried along by the same step, so the flight closes in as on a thing that stands still; once inside its frame, the frame carries the camera. */
+  const last = new V3();
+  const place = f => { last.copy(f.pos); at(f.pos); if (cam.A === host && (fly ? fly.frame && chainOf(fly.frame).includes(f) : camHold === f)) cam.T.add(last.sub(f.pos).negate()); };
+  return { host, pos: at(new V3()), up: null, env: 'sun', merge: false, ground: false, coMax: def.draw_m || R * 4000, r1: Math.max(R * 40, 50), place, note: 'Its place on the orbit is illustrative: the orbit has the right height, tilt and period, but not the real position for this moment.' };
 };
 /* Nowhere: a thing with no home in the world model yet stands alone on a neutral ground with a scale bar (FT.thstage). Reached by search or a link only. */
 TH_HOSTS.floating = (pl, def, R) => {
@@ -1104,6 +1113,7 @@ function thPlace(id, def, pl0, i, ix, defs) {
   const host = h.host, pl = Object.assign({}, pl1, { unit: host.unit });
   const f = host.addChild(new Frame({ type: 'thing', name: def.title, unit: host.unit, radius: Rm / host.unit, r0: 0, r1: h.r1 || Rm * 12, up: h.up || null, pos: h.pos, quat: h.quat || new THREE.Quaternion(),
     opts: { thing: id, placement: pl, n: i || 0, env: h.env || 'studio', ground: !!h.ground, merge: !!h.merge, note: h.note || '', view: h.view || null, labelIf: h.labelIf || null, labelAt: h.labelAt || null } }));
+  if (h.faceUp) f.faceUp = true;   // it stands on one-sided ground (a landscape): a flight to it does not end with the camera under that ground (faceSurface, js/engine.js)
   if (h.center) f.center = h.center; if (h.radius) f.radius = h.radius;   // a resolver may give the ball that holds the thing (its middle, in frame units from the base point, and its radius) when the default, a ball about the base point, would take in too much of the host
   f.noFade = true; f.coRender = true; f.coMax = h.coMax || Rm * 800; f.pinned = true; f.isThing = true; f.proxy = null; f.thHost = h; f.thFar = !h.keep;
   if (h.place) f.place = () => h.place(f);
