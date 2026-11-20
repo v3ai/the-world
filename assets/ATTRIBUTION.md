@@ -2,7 +2,7 @@
 ## Astronomy & Earth (workstream "astro")
 
 ### Star data
-- data/stars/stars.bin, stars_meta.json: derived from the HYG Database v4.1 (hygdata_v41.csv), David Nash / astronexus,
+- data/stars/stars_bin.json, stars_meta.json: derived from the HYG Database v4.1 (hygdata_v41.csv), David Nash / astronexus,
   https://github.com/astronexus/HYG-Database . License: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Derived data is shared under the same license.
   HYG itself compiles Hipparcos, Yale Bright Star and Gliese catalogs.
 - data/stars/constellations.json: constellation line segments from Stellarium's "modern" sky culture
@@ -31,7 +31,7 @@ Other sources:
 
 ## Molecules, materials, elements (workstream "chem")
 - data/elements.json: numeric element properties from the Python package `mendeleev` 1.3.0 (https://github.com/lmmentel/mendeleev, MIT license; it compiles values from published sources such as NIST). Summaries are original text.
-- data/molecules/*.json: 3D geometries computed locally with RDKit 2026.09 (BSD-3-Clause, https://www.rdkit.org; ETKDGv3 + MMFF94, Gasteiger charges). Structures are written from standard chemical knowledge (SMILES); no third-party structure files. Small inorganic molecules use experimental bond lengths/angles (textbook values).
+- data/molecules_all.json: 3D geometries computed locally with RDKit 2026.09 (BSD-3-Clause, https://www.rdkit.org; ETKDGv3 + MMFF94, Gasteiger charges). Structures are written from standard chemical knowledge (SMILES); no third-party structure files. Small inorganic molecules use experimental bond lengths/angles (textbook values).
 - data/crystals.json: built with ASE 3.29 (LGPL-2.1+, used as a tool only; https://wiki.fysik.dtu.dk/ase) from published lattice parameters and Wyckoff positions (facts from standard crystallographic literature, e.g. Levien et al. 1980 for quartz, Birle et al. 1968 for olivine).
 - data/proteins/*.json: atomic coordinates from the wwPDB (CC0 1.0 public domain dedication, https://www.wwpdb.org/about/usage-policies), entries 1UBQ, 1CRN, 1BNA, 1EMA, 4HHB. Files were obtained from GitHub test-data folders of: NGL (nglviewer/ngl, MIT) for 1CRN and 1EMA; 3Dmol.js (3dmol/3Dmol.js, BSD-3-Clause) for 1UBQ and 4HHB; Mol* (molstar/molstar, MIT) for 1BNA. Only parsing/reduction (waters and hydrogens removed) was applied.
 
@@ -49,3 +49,4 @@ Human anatomy meshes are derived from **BodyParts3D** (Mitsuhashi et al. 2009, "
 - Obtained via npm redistributions of the DBCLS data prepared for the web (all CC BY 4.0, themselves crediting BodyParts3D): `@dagno/anatomy-model` 0.1.2 (https://github.com/dagno-labs/anatomy-model, gitHead d3b47239f1038041bb550a1cfb6bfe40a62c4970; prepared by Human Atlas, https://github.com/vinaysingh-05/human-atlas commit f5d5b74; BodyParts3D 4.0 isa_BP3D_4.0_obj_99, millimetres/Z-up converted to metres/Y-up, meshoptimizer simplification at 0.2% error) and `open-anatomy-3d` 0.1.0 (https://github.com/MervinR07/open-anatomy-3d, gitHead 534c0e1c3173b91af828904b9d06fecccd55ec15; BodyParts3D isa+partof classified into 128 named structures). open-anatomy-3d was used only for structures absent from the first package (liver, lungs, cerebrum, skin-adjacent grouped muscles and vessels).
 - Changes made for this project: selected and merged individual BodyParts3D meshes into ~120 named structures, welded duplicate vertices/faces, further simplified each structure (quadric decimation), split the cerebrum into left/right hemispheres and the ventricular wall into left/right ventricles by geometry, rescaled to a 1.75 m adult, re-centred (feet at y=0, x/z centred, +Z front, +X body left) and quantized to int16. These are simplified, merged derivative meshes (share-alike applies); they are for education/illustration only and are not a clinical tool.
 - Suggested credit line: "Anatomy: BodyParts3D, (c) The Database Center for Life Science (CC BY 4.0 / CC BY-SA 2.1 JP), simplified and merged."
+- data/particles.json, data/particles_binding.json and the particle cards: masses, lifetimes, widths and branching fractions from the Particle Data Group, Review of Particle Physics, 2026 edition (https://pdg.lbl.gov, CC BY 4.0), read from the PDG's own database; details in tools/particles/SOURCES.md.

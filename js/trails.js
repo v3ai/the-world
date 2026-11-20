@@ -4,7 +4,7 @@
    A trail is a question, five to nine stops (a real place in the simulation, a few plain sentences, one thing to
    notice), an answer in one sentence, and where to go next. The player knows nothing about any one trail.
 
-   Stop schema (data/trails/README in tools/trails/SCHEMA.md):
+   Stop schema (the fields are described in docs/CONTENT.md and checked by tools/trails/check_trails.mjs):
      where: ONE of
        {landmark: "Your heart"}                      the ruler landmark with that label
        {node: "sm_top"}                              goToNode(id)
