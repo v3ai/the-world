@@ -1,0 +1,14 @@
+{
+ "about": "The cell scene (animal, plant, bacterium), by pick id. Parts not listed are handled in js/world_matter.js (membrane, nucleus, mitochondrion, chloroplast, vacuole, wall, cytoplasm).",
+ "ids": {
+  "ribosome": "rna",
+  "nucleolus": "rna",
+  "er": "membrane",
+  "golgi": "membrane",
+  "lysosome": "membrane",
+  "channel": "protein",
+  "glycoprotein": "protein",
+  "flagellum": "protein",
+  "bacwall": "peptidoglycan"
+ }
+}

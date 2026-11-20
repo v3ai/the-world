@@ -1,0 +1,2165 @@
+{
+ "about": "What everything is made of: one row per material. See docs/DEVELOPMENT.md (\"What everything is made of\") and js/descent.js. Check with: node tools/descent/check.mjs",
+ "assign": [
+  "bee",
+  "body",
+  "boulder",
+  "cell",
+  "cells",
+  "core",
+  "cosmos",
+  "die",
+  "dog",
+  "earth",
+  "finfet",
+  "flower",
+  "grass",
+  "inverter",
+  "landscape",
+  "localgroup",
+  "micro",
+  "milkyway",
+  "mushroom",
+  "oak",
+  "organ",
+  "park",
+  "phone",
+  "pond",
+  "robin",
+  "sgrA",
+  "soil",
+  "solarsystem",
+  "tissue"
+ ],
+ "materials": {
+  "water": {
+   "title": "Water",
+   "desc": "Liquid water: H₂O molecules packed close together and always on the move.",
+   "card": "bio_water_properties",
+   "inside": [
+    {
+     "name": "water molecules",
+     "scene": "liquid"
+    }
+   ],
+   "src": "the liquid-water scene (js/world_matter.js)"
+  },
+  "air": {
+   "title": "Air",
+   "desc": "A thin mixture of gases, mostly nitrogen and oxygen, with a little argon, water vapour and carbon dioxide.",
+   "card": "park_sky",
+   "inside": [
+    {
+     "name": "nitrogen, oxygen and the other gas molecules of air",
+     "scene": "gas"
+    }
+   ],
+   "src": "the air scene (js/world_matter.js): N2 78.08%, O2 20.95%, Ar 0.93% of dry air"
+  },
+  "dusty_air": {
+   "title": "Air with what floats in it",
+   "desc": "Air seen a millimetre across: almost empty, with a few dust grains, pollen grains and water droplets.",
+   "card": "park_sky",
+   "inside": [
+    {
+     "name": "air with dust, pollen and droplets",
+     "scene": "micro:air"
+    }
+   ],
+   "src": "the aerosol scene (js/world_matter.js)"
+  },
+  "ice": {
+   "title": "Ice",
+   "desc": "Frozen water: H₂O molecules locked into a six-sided lattice (ice Ih).",
+   "card": "bio_water_properties",
+   "inside": [
+    {
+     "name": "ice crystal",
+     "scene": "crystal:ice_ih"
+    }
+   ],
+   "src": "data/crystals.json ice_ih"
+  },
+  "quartz": {
+   "title": "Quartz",
+   "desc": "Silicon dioxide, SiO₂: one of the commonest minerals of rocks, sand and soil.",
+   "card": "rock_grains",
+   "inside": [
+    {
+     "name": "quartz crystal",
+     "scene": "crystal:quartz"
+    }
+   ],
+   "src": "data/crystals.json quartz"
+  },
+  "silicon": {
+   "title": "Silicon",
+   "desc": "A single crystal of silicon, the material chips are built in.",
+   "card": "silicon_channel",
+   "inside": [
+    {
+     "name": "silicon crystal",
+     "scene": "crystal:silicon"
+    }
+   ],
+   "src": "data/crystals.json silicon; card silicon_channel"
+  },
+  "copper": {
+   "title": "Copper",
+   "desc": "Copper metal: atoms in a close-packed cubic lattice, sharing their outer electrons.",
+   "card": "at_el_Cu",
+   "inside": [
+    {
+     "name": "copper grains",
+     "scene": {
+      "type": "micro",
+      "kind": "metal",
+      "title": "Copper, magnified",
+      "blurb": "A metal is made of grains, each one a single crystal. Here: copper, about 1 mm across. The picture is the generic polished-metal scene; the grain shapes are schematic.",
+      "crystal": "copper_fcc"
+     },
+     "note": "The grain picture is the generic metal scene; the crystal below it is copper's own."
+    }
+   ],
+   "src": "data/crystals.json copper_fcc"
+  },
+  "aluminium": {
+   "title": "Aluminium",
+   "desc": "Aluminium metal: atoms in a close-packed cubic lattice.",
+   "card": "at_el_Al",
+   "inside": [
+    {
+     "name": "aluminium grains",
+     "scene": {
+      "type": "micro",
+      "kind": "metal",
+      "title": "Aluminium, magnified",
+      "blurb": "A metal is made of grains, each one a single crystal. Here: aluminium, about 1 mm across. The picture is the generic polished-metal scene; the grain shapes are schematic.",
+      "crystal": "aluminium_fcc"
+     },
+     "note": "The grain picture is the generic metal scene; the crystal below it is aluminium's own. Real phone frames are alloys: aluminium with a few per cent of other metals, which are not drawn."
+    }
+   ],
+   "src": "data/crystals.json aluminium_fcc"
+  },
+  "gold": {
+   "title": "Gold",
+   "desc": "Gold metal: atoms in a close-packed cubic lattice.",
+   "card": "at_el_Au",
+   "inside": [
+    {
+     "name": "gold crystal",
+     "scene": "crystal:gold_fcc"
+    }
+   ],
+   "src": "data/crystals.json gold_fcc"
+  },
+  "graphite": {
+   "title": "Graphite",
+   "desc": "Carbon in flat sheets of six-sided rings, stacked loosely.",
+   "card": "at_el_C",
+   "inside": [
+    {
+     "name": "graphite crystal",
+     "scene": "crystal:graphite"
+    }
+   ],
+   "src": "data/crystals.json graphite"
+  },
+  "iron": {
+   "title": "Iron",
+   "desc": "Iron metal: atoms in a body-centred cubic lattice.",
+   "card": "at_el_Fe",
+   "inside": [
+    {
+     "name": "iron grains",
+     "scene": "micro:metal"
+    }
+   ],
+   "src": "the metal scene (js/world_matter.js), data/crystals.json iron_bcc"
+  },
+  "protein": {
+   "title": "Protein",
+   "desc": "A chain of hundreds of amino acids, folded into a shape of its own.",
+   "card": "bio_protein_structure",
+   "inside": [
+    {
+     "name": "a short chain of amino acids",
+     "scene": "mol:polyglycine_5",
+     "standIn": true,
+     "note": "{What}: made of protein, a chain of hundreds of amino acids of twenty kinds, folded into its own shape. No whole protein is built yet. Shown: five units of the simplest amino acid, glycine, joined the way every protein chain is joined.",
+     "title": "A five-unit chain of glycine (stands in for a protein)"
+    }
+   ],
+   "src": "card bio_protein_structure; data/molecules_all.json polyglycine_5"
+  },
+  "keratin": {
+   "title": "Keratin",
+   "desc": "The tough protein of hair, fur, claws, horn, feathers and the outer skin.",
+   "card": "robin_keratin",
+   "inside": [
+    {
+     "name": "cystine, the sulfur bridge of keratin",
+     "scene": "mol:cystine",
+     "standIn": true,
+     "note": "{What}: made of keratin, a tough protein whose chains are tied to one another by sulfur bridges. A keratin chain is hundreds of amino acids long: too large to show whole. Shown: cystine, two cysteine units joined by one such bridge.",
+     "title": "Cystine (stands in for keratin)"
+    }
+   ],
+   "src": "cards robin_keratin, dog_fur, dog_claws, robin_leg_claws"
+  },
+  "chitin": {
+   "title": "Chitin",
+   "desc": "A tough sugar polymer: the main structural material of insect and crustacean shells and of fungal walls.",
+   "card": "bee_chitin",
+   "inside": [
+    {
+     "name": "N-acetylglucosamine, the unit of chitin",
+     "scene": "mol:n_acetylglucosamine",
+     "standIn": true,
+     "note": "{What}: built of chitin, long chains of one sugar unit repeated, bundled into fibres and set in protein. Shown: a single unit, N-acetylglucosamine. The protein is not shown.",
+     "title": "N-acetylglucosamine (one unit of chitin)"
+    }
+   ],
+   "src": "cards bee_chitin, bee_cuticle, fa_chitin, soil_woodlouse"
+  },
+  "cellulose": {
+   "title": "Cellulose",
+   "desc": "Long chains of glucose: the fibres that plant cell walls are woven from.",
+   "card": "oak_lignin_cellulose",
+   "inside": [
+    {
+     "name": "cellotriose, a short piece of cellulose",
+     "scene": "mol:cellotriose",
+     "standIn": true,
+     "note": "{What}: mostly plant cell wall, and cell walls are woven from cellulose, chains of thousands of glucose units. Shown: cellotriose, three units of such a chain. The other materials of the wall (in wood, lignin) are not built yet.",
+     "title": "Cellotriose (three units of a cellulose chain)"
+    }
+   ],
+   "src": "cards oak_lignin_cellulose, rn_cellulose, bio_cell_wall_ecm"
+  },
+  "membrane": {
+   "title": "Cell membrane",
+   "desc": "A double layer of lipid molecules with proteins set in it.",
+   "card": "cell_membrane",
+   "inside": [
+    {
+     "name": "a membrane lipid",
+     "scene": "mol:popc",
+     "note": "{What}: built of membrane, a double layer of lipids with proteins set in it. Shown: one lipid of that layer, POPC. The proteins are not shown.",
+     "title": "POPC, a common membrane phospholipid"
+    }
+   ],
+   "src": "cards cell_membrane, endoplasmic_reticulum, golgi_apparatus, lysosome"
+  },
+  "rna": {
+   "title": "RNA",
+   "desc": "A chain of nucleotides, a close relative of DNA.",
+   "card": "ribosome",
+   "inside": [
+    {
+     "name": "an RNA nucleotide",
+     "scene": "mol:ump",
+     "standIn": true,
+     "note": "{What}: made of RNA and protein. RNA is a chain of thousands of nucleotides of four kinds. Shown: one of them, uridine monophosphate (UMP). The protein is not shown.",
+     "title": "UMP (one unit of RNA)"
+    }
+   ],
+   "src": "card ribosome (\"They are made of RNA and protein\")"
+  },
+  "fat": {
+   "title": "Fat",
+   "desc": "The oil a fat cell stores: a mixture of triglycerides.",
+   "card": "adipocyte",
+   "inside": [
+    {
+     "name": "a triglyceride",
+     "scene": "mol:tripalmitin",
+     "standIn": true,
+     "note": "A fat molecule is a triglyceride: three fatty acids on a glycerol. Stored fat is a mixture of many of them. Shown: one, tripalmitin.",
+     "title": "Tripalmitin (one kind of fat molecule)"
+    }
+   ],
+   "src": "card adipocyte (\"mostly one huge oil droplet\"); OpenStax Biology 2e 3.3 (fats are triglycerides); data/molecules_all.json tripalmitin"
+  },
+  "haemoglobin": {
+   "title": "Haemoglobin",
+   "desc": "The red protein that carries oxygen in blood.",
+   "card": "bio_hemoglobin_cooperativity",
+   "inside": [
+    {
+     "name": "haem, the iron-holding part of haemoglobin",
+     "scene": "mol:heme_b",
+     "standIn": true,
+     "note": "Haemoglobin is a protein of four chains, too large to show whole. Shown: haem, the flat ring with an iron atom at its centre that sits in each chain and holds the oxygen.",
+     "title": "Haem (the oxygen-holding part of haemoglobin)"
+    }
+   ],
+   "src": "card red_blood_cell, bio_hemoglobin_cooperativity; data/molecules_all.json heme_b"
+  },
+  "bone_mineral": {
+   "title": "Bone mineral",
+   "desc": "Tiny crystals of a calcium phosphate that make bone and teeth hard.",
+   "card": "bone_tissue",
+   "inside": [
+    {
+     "name": "phosphate, one building block of the mineral",
+     "scene": "mol:phosphate",
+     "standIn": true,
+     "note": "{What}: collagen fibres stiffened by tiny crystals of a calcium phosphate mineral, hydroxyapatite. Neither the crystal nor collagen is built yet. Shown: one phosphate ion, a building block of the mineral, without its calcium.",
+     "title": "Phosphate ion (a building block of bone mineral)"
+    }
+   ],
+   "src": "card bone_tissue (\"mostly collagen strengthened with calcium phosphate crystals\"); OpenStax Anatomy and Physiology 2e 6.3 (hydroxyapatite)"
+  },
+  "collagen": {
+   "title": "Collagen",
+   "desc": "The rope-like protein of tendons, skin, bone and the white of the eye.",
+   "card": "tendon",
+   "inside": [
+    {
+     "name": "a short chain of amino acids",
+     "scene": "mol:polyglycine_5",
+     "standIn": true,
+     "note": "{What}: made mostly of collagen, three protein chains wound into a tight triple helix, with glycine at every third place along each chain. No protein is built yet. Shown: five units of glycine joined the way a protein chain is joined.",
+     "title": "A five-unit chain of glycine (stands in for collagen)"
+    }
+   ],
+   "src": "cards tendon, dense_connective_tissue, cornea; PDB-101 Molecule of the Month: Collagen (triple helix, every third amino acid glycine)"
+  },
+  "animal_cells": {
+   "title": "Animal cells",
+   "desc": "The living cells an animal tissue is made of.",
+   "card": "bio_prokaryote_eukaryote",
+   "inside": [
+    {
+     "name": "a generic animal cell",
+     "scene": {
+      "type": "cell",
+      "cell": "animal"
+     },
+     "standIn": true,
+     "note": "A generic animal cell stands in for the cells of {what}. What it shows (membrane, nucleus, mitochondria and the other organelles) is common to animal cells; the shape and the special equipment of this cell type are not drawn."
+    }
+   ],
+   "src": "the animal-cell scene"
+  },
+  "plant_cells": {
+   "title": "Plant cells",
+   "desc": "The living cells a plant tissue is made of.",
+   "card": "bio_prokaryote_eukaryote",
+   "inside": [
+    {
+     "name": "a generic plant cell",
+     "scene": {
+      "type": "cell",
+      "cell": "plant"
+     },
+     "standIn": true,
+     "note": "A generic plant cell (drawn as a leaf cell, with chloroplasts) stands in for the cells of {what}. The wall, nucleus, vacuole and mitochondria are common to plant cells; cells that are not green have no chloroplasts."
+    }
+   ],
+   "src": "the plant-cell scene"
+  },
+  "fungal_cells": {
+   "title": "Fungal cells",
+   "desc": "The thread-like cells (hyphae) a fungus is made of.",
+   "card": "fa_hypha",
+   "inside": [
+    {
+     "name": "a generic cell standing in for a fungal cell",
+     "scene": {
+      "type": "cell",
+      "cell": "fungal"
+     },
+     "standIn": true,
+     "note": "No fungal-cell scene is built yet: the generic animal-type cell stands in. A fungal cell also has a nucleus and mitochondria, but it is a long thread inside a rigid wall of chitin, which is not drawn."
+    }
+   ],
+   "src": "card fa_hypha, fa_chitin"
+  },
+  "bacteria": {
+   "title": "Bacteria",
+   "desc": "Single cells without a nucleus, about a thousandth of a millimetre long.",
+   "card": "bio_bacterial_structure",
+   "inside": [
+    {
+     "name": "a bacterium",
+     "scene": {
+      "type": "cell",
+      "cell": "bacterium"
+     }
+    }
+   ],
+   "src": "the bacterium scene"
+  },
+  "red_blood_cell": {
+   "title": "Red blood cell",
+   "desc": "A disc-shaped cell with no nucleus, packed with haemoglobin.",
+   "card": "red_blood_cell",
+   "inside": [
+    {
+     "name": "haemoglobin",
+     "material": "haemoglobin",
+     "note": "A red blood cell has no nucleus: it is packed with haemoglobin instead."
+    }
+   ],
+   "src": "card red_blood_cell"
+  },
+  "platelet": {
+   "title": "Platelet",
+   "desc": "A fragment pinched off a larger cell: a membrane bag with no nucleus.",
+   "card": "platelet",
+   "inside": [
+    {
+     "name": "its membrane",
+     "material": "membrane",
+     "note": "A platelet is a fragment of a much larger cell: it has a membrane, granules and mitochondria, but no nucleus, so there is no DNA to go on to."
+    }
+   ],
+   "src": "card platelet"
+  },
+  "corneocytes": {
+   "title": "Dead skin cells",
+   "desc": "The outermost skin: flat, dead cells with no nucleus, filled with keratin.",
+   "card": "keratinocyte",
+   "inside": [
+    {
+     "name": "keratin",
+     "material": "keratin",
+     "note": "The surface of skin is dead cells: flat scales with no nucleus, filled with keratin."
+    }
+   ],
+   "src": "the skin micro scene (\"flattened dead cells (corneocytes)\"), card dog_fur"
+  },
+  "skeletal_muscle": {
+   "title": "Skeletal muscle",
+   "desc": "Bundles of long muscle fibres, each one a giant cell with many nuclei.",
+   "card": "skeletal_muscle_tissue",
+   "inside": [
+    {
+     "name": "muscle fibres",
+     "scene": "tissue:skeletal",
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
+    }
+   ],
+   "src": "card skeletal_muscle_tissue"
+  },
+  "cardiac_muscle": {
+   "title": "Heart muscle",
+   "desc": "Short, branching muscle cells joined end to end, which beat on their own.",
+   "card": "cardiac_muscle_tissue",
+   "inside": [
+    {
+     "name": "heart muscle cells",
+     "scene": "tissue:cardiac",
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
+    }
+   ],
+   "src": "card cardiac_muscle_tissue"
+  },
+  "smooth_muscle": {
+   "title": "Smooth muscle",
+   "desc": "Spindle-shaped muscle cells without stripes, in the walls of vessels and hollow organs.",
+   "card": "smooth_muscle_tissue",
+   "inside": [
+    {
+     "name": "smooth muscle cells",
+     "scene": "tissue:smooth",
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
+    }
+   ],
+   "src": "card smooth_muscle_tissue"
+  },
+  "organ_wall": {
+   "title": "Wall of a hollow organ",
+   "desc": "Layers: a lining of epithelium inside, smooth muscle around it, connective tissue outside.",
+   "card": "smooth_muscle_tissue",
+   "inside": [
+    {
+     "name": "smooth muscle",
+     "scene": "tissue:smooth",
+     "note": "The wall of {what} is layered: a lining of epithelium, smooth muscle around it, and connective tissue. Shown: the smooth muscle. Schematic."
+    },
+    {
+     "name": "the epithelial lining"
+    },
+    {
+     "name": "connective tissue"
+    }
+   ],
+   "src": "cards stomach, small_intestine, bladder, esophagus (made_of: epithelial_tissue, smooth_muscle_tissue)"
+  },
+  "vessel_wall": {
+   "title": "Blood vessel wall",
+   "desc": "Smooth muscle and elastic tissue around a one-cell-thick lining.",
+   "card": "blood_vessels",
+   "inside": [
+    {
+     "name": "smooth muscle",
+     "scene": "tissue:smooth",
+     "note": "The wall of a blood vessel is smooth muscle and connective tissue around a lining one cell thick. Shown: the smooth muscle. Schematic."
+    },
+    {
+     "name": "the lining (endothelium)"
+    },
+    {
+     "name": "elastic and collagen fibres"
+    }
+   ],
+   "src": "cards aorta, coronary_arteries (made_of: smooth_muscle_tissue, dense_connective_tissue, epithelial_tissue)"
+  },
+  "bone": {
+   "title": "Bone",
+   "desc": "Living tissue: cells walled into collagen that is hardened with calcium phosphate crystals.",
+   "card": "bone_tissue",
+   "inside": [
+    {
+     "name": "compact bone (osteons)",
+     "scene": "tissue:bone",
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
+    }
+   ],
+   "src": "cards bone_tissue, compact_bone"
+  },
+  "tooth": {
+   "title": "Tooth",
+   "desc": "Enamel over dentine around a soft pulp: the hardest material in the body.",
+   "card": "teeth",
+   "inside": [
+    {
+     "name": "the mineral of enamel and dentine",
+     "material": "bone_mineral",
+     "note": "A tooth is enamel over dentine. Both are hardened by the same calcium phosphate mineral as bone."
+    }
+   ],
+   "src": "cards teeth, dog_teeth"
+  },
+  "cartilage": {
+   "title": "Cartilage",
+   "desc": "Firm, flexible tissue: scattered cells in a gel of collagen and water-holding molecules.",
+   "card": "cartilage_tissue",
+   "inside": [
+    {
+     "name": "cartilage cells in their matrix",
+     "scene": "tissue:cartilage",
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
+    }
+   ],
+   "src": "card cartilage_tissue"
+  },
+  "cartilage_matrix": {
+   "title": "Cartilage matrix",
+   "desc": "A gel of collagen fibres and large sugar-rich molecules that hold water.",
+   "card": "cartilage_tissue",
+   "inside": [
+    {
+     "name": "the water it holds",
+     "material": "water",
+     "note": "The matrix of cartilage is a gel: collagen fibres and large sugar-rich molecules that hold a great deal of water. Shown: the water. The collagen and the sugar-rich molecules are not built yet."
+    }
+   ],
+   "src": "card cartilage_tissue (\"matrix rich in collagen II and proteoglycans\", \"aggrecan holds water\")"
+  },
+  "epithelium": {
+   "title": "Skin epithelium",
+   "desc": "Sheets of cells stacked in layers: living cells below, flat dead ones on top.",
+   "card": "epithelial_tissue",
+   "inside": [
+    {
+     "name": "layered epithelium",
+     "scene": "tissue:epithelium",
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
+    }
+   ],
+   "src": "cards skin, epithelial_tissue, stratified_squamous_epithelium"
+  },
+  "lining": {
+   "title": "Lining epithelium",
+   "desc": "A sheet of cells packed side by side that lines a surface inside the body.",
+   "card": "epithelial_tissue",
+   "inside": [
+    {
+     "name": "an epithelium",
+     "scene": "tissue:epithelium",
+     "standIn": true,
+     "note": "The lining of {what} is an epithelium: a sheet of cells packed side by side. The picture is the many-layered epithelium of skin, standing in: the lining here differs in how many layers it has and in the shape of its cells."
+    }
+   ],
+   "src": "cards trachea, bronchi, kidney_r (made_of: epithelial_tissue)"
+  },
+  "gut_lining": {
+   "title": "Lining of the small intestine",
+   "desc": "Finger-like villi, each covered in one layer of absorbing cells.",
+   "card": "villi",
+   "inside": [
+    {
+     "name": "villi",
+     "scene": "tissue:villi",
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
+    }
+   ],
+   "src": "card villi, small_intestine"
+  },
+  "liver_tissue": {
+   "title": "Liver tissue",
+   "desc": "Liver cells in plates that radiate from a central vein.",
+   "card": "liver_lobule",
+   "inside": [
+    {
+     "name": "liver cells around a central vein",
+     "scene": "tissue:liver",
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
+    }
+   ],
+   "src": "cards liver, liver_lobule"
+  },
+  "lung_tissue": {
+   "title": "Lung tissue",
+   "desc": "Air sacs with walls one cell thick, wrapped in blood capillaries.",
+   "card": "alveoli",
+   "inside": [
+    {
+     "name": "air sacs and blood cells",
+     "scene": "tissue:alveoli",
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
+    }
+   ],
+   "src": "card alveoli"
+  },
+  "nervous_tissue": {
+   "title": "Nervous tissue",
+   "desc": "Nerve cells with long branching fibres, and the glial cells that support them.",
+   "card": "nervous_tissue",
+   "inside": [
+    {
+     "name": "nerve cells and glia",
+     "scene": "tissue:nervous",
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
+    }
+   ],
+   "src": "cards nervous_tissue, neuron"
+  },
+  "adipose": {
+   "title": "Fat tissue",
+   "desc": "Large round cells, each almost filled by one droplet of oil.",
+   "card": "adipose_tissue",
+   "inside": [
+    {
+     "name": "fat cells",
+     "scene": "tissue:adipose",
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
+    }
+   ],
+   "src": "card adipose_tissue, adipocyte"
+  },
+  "blood": {
+   "title": "Blood",
+   "desc": "Cells afloat in a watery liquid, the plasma: mostly red cells, a few white cells, and platelets.",
+   "card": "blood",
+   "inside": [
+    {
+     "name": "blood cells in plasma",
+     "scene": "tissue:blood",
+     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
+    }
+   ],
+   "src": "cards blood, blood_tissue"
+  },
+  "gland_tissue": {
+   "title": "Gland tissue",
+   "desc": "Cells that make and release a product: a hormone, an enzyme, a fluid.",
+   "card": "epithelial_tissue",
+   "inside": [
+    {
+     "name": "gland cells",
+     "material": "animal_cells",
+     "note": "A gland is made of cells that make and release its product."
+    }
+   ],
+   "src": "cards pancreas, thymus (made_of: epithelial_tissue)"
+  },
+  "lymphoid": {
+   "title": "Lymphoid tissue",
+   "desc": "A mesh of connective tissue crowded with white blood cells.",
+   "card": "spleen",
+   "inside": [
+    {
+     "name": "white blood cells",
+     "material": "animal_cells",
+     "note": "This tissue is a mesh crowded with white blood cells."
+    }
+   ],
+   "src": "cards spleen, thymus (made_of: lymphocyte_b, macrophage, lymphocyte_t)"
+  },
+  "kidney_tissue": {
+   "title": "Kidney tissue",
+   "desc": "About a million tiny tubes (nephrons), each lined by one layer of cells, with blood vessels between them.",
+   "card": "nephron",
+   "inside": [
+    {
+     "name": "the cells that line the tubes",
+     "material": "lining",
+     "note": "The kidney is made of about a million tiny tubes, each lined by one layer of cells. No scene of them is built yet."
+    }
+   ],
+   "src": "cards kidney_r, nephron"
+  },
+  "lens_protein": {
+   "title": "Lens of the eye",
+   "desc": "Long clear cells with no organelles, packed with crystallin proteins.",
+   "card": "lens",
+   "inside": [
+    {
+     "name": "crystallin protein",
+     "material": "protein",
+     "note": "The cells of the lens have lost their nucleus and organelles and are packed with clear proteins, the crystallins."
+    }
+   ],
+   "src": "card lens (\"Lens fibers lose their organelles and are packed with crystallin proteins\")"
+  },
+  "vitreous": {
+   "title": "Vitreous body",
+   "desc": "The clear jelly that fills the eye: almost all water.",
+   "card": "vitreous_humor",
+   "inside": [
+    {
+     "name": "water",
+     "material": "water",
+     "note": "The jelly that fills the eye is mostly water, held in a sparse network of collagen fibrils. Shown: the water."
+    }
+   ],
+   "src": "card vitreous_humor (\"Mostly water, held in a sparse network of collagen fibrils and hyaluronan\")"
+  },
+  "leaf": {
+   "title": "Leaf tissue",
+   "desc": "A sandwich: a skin of clear cells around green cells full of chloroplasts, with air spaces and veins.",
+   "card": "oak_leaf",
+   "inside": [
+    {
+     "name": "a slice through a leaf",
+     "scene": "tissue2:leaf_section"
+    }
+   ],
+   "src": "tissue scene leaf_section (oak leaf)"
+  },
+  "broadleaf": {
+   "title": "Leaf tissue",
+   "desc": "A skin of clear cells, some of them hairs and pores, over green cells.",
+   "card": "rn_leaf_epidermis",
+   "inside": [
+    {
+     "name": "the surface cells of a leaf",
+     "scene": "tissue2:flower_leaf"
+    }
+   ],
+   "src": "tissue scene flower_leaf (meadow buttercup)"
+  },
+  "grass_leaf": {
+   "title": "Grass leaf tissue",
+   "desc": "A slice through a grass blade: skin, green cells, veins and stiffening fibres.",
+   "card": "grass_blade",
+   "inside": [
+    {
+     "name": "a slice through a grass blade",
+     "scene": "tissue2:grass_leaf_section"
+    }
+   ],
+   "src": "tissue scene grass_leaf_section"
+  },
+  "wood": {
+   "title": "Wood",
+   "desc": "Dead, hollow, thick-walled cells: wide vessels that carry water and narrow fibres that carry the load.",
+   "card": "oak_lignin_cellulose",
+   "inside": [
+    {
+     "name": "a slice of oak wood",
+     "scene": "tissue2:wood_section"
+    }
+   ],
+   "src": "tissue scene wood_section; card oak_lignin_cellulose"
+  },
+  "root": {
+   "title": "Root tissue",
+   "desc": "The young end of a root: soft cells, some of them grown out into root hairs.",
+   "card": "oak_root_hairs",
+   "inside": [
+    {
+     "name": "a root tip with root hairs",
+     "scene": "tissue2:root_tip"
+    }
+   ],
+   "src": "tissue scene root_tip (oak)"
+  },
+  "grass_root": {
+   "title": "Grass root tissue",
+   "desc": "The tip of a grass root: a cap, a zone of dividing cells, and root hairs behind it.",
+   "card": "grass_root_tip",
+   "inside": [
+    {
+     "name": "a grass root tip",
+     "scene": "tissue2:grass_root_tip"
+    }
+   ],
+   "src": "tissue scene grass_root_tip"
+  },
+  "petal": {
+   "title": "Petal tissue",
+   "desc": "A glossy skin over a layer of starch-filled cells: the buttercup's mirror.",
+   "card": "rn_petal",
+   "inside": [
+    {
+     "name": "a slice through a buttercup petal",
+     "scene": "tissue2:flower_petal"
+    }
+   ],
+   "src": "tissue scene flower_petal"
+  },
+  "anther": {
+   "title": "Anther tissue",
+   "desc": "The wall of a pollen sac and the pollen grains inside it.",
+   "card": "rn_anther",
+   "inside": [
+    {
+     "name": "a slice through an anther",
+     "scene": "tissue2:flower_anther"
+    }
+   ],
+   "src": "tissue scene flower_anther"
+  },
+  "carpel": {
+   "title": "Carpel tissue",
+   "desc": "The wall of the seed chamber, the ovule inside it, and the tip that catches pollen.",
+   "card": "rn_carpel",
+   "inside": [
+    {
+     "name": "a slice through a carpel",
+     "scene": "tissue2:flower_carpel"
+    }
+   ],
+   "src": "tissue scene flower_carpel"
+  },
+  "plant_wall": {
+   "title": "Plant cell walls",
+   "desc": "What is left of a plant part when its cells have died: their walls.",
+   "card": "bio_cell_wall_ecm",
+   "inside": [
+    {
+     "name": "cellulose",
+     "material": "cellulose"
+    }
+   ],
+   "src": "card bio_cell_wall_ecm; soil thing (litter > cellotriose)"
+  },
+  "xylem_sap": {
+   "title": "Xylem sap",
+   "desc": "The water a plant draws up from its roots.",
+   "card": "bio_water_transport",
+   "inside": [
+    {
+     "name": "water",
+     "material": "water",
+     "note": "The sap that rises in the wood is water drawn up from the roots, with what is dissolved in it. Shown: the water."
+    }
+   ],
+   "src": "card bio_water_transport; tissue scene grass_leaf_section (xylem > water)"
+  },
+  "phloem_sap": {
+   "title": "Phloem sap",
+   "desc": "The sugary liquid a plant sends from its leaves to the rest of its body.",
+   "card": "bio_phloem_transport",
+   "inside": [
+    {
+     "name": "sucrose, the sugar it carries",
+     "scene": "mol:sucrose",
+     "note": "Phloem sap is water with a great deal of dissolved sugar, mostly sucrose. Shown: one sucrose molecule; the water is not drawn."
+    }
+   ],
+   "src": "card bio_phloem_transport; tissue scenes leaf_section, grass_leaf_section (phloem > sucrose)"
+  },
+  "pollen": {
+   "title": "Pollen",
+   "desc": "Tiny, tough-walled grains that carry a plant's male cells.",
+   "card": "rn_pollen_grain",
+   "inside": [
+    {
+     "name": "a pollen grain",
+     "scene": {
+      "type": "cell",
+      "cell": "plant",
+      "cname": "Pollen grain (drawn as a generic plant-type cell)",
+      "blurb": "A pollen grain is a tiny plant body inside a tough wall of sporopollenin; it carries the male cells. The scene shows a generic plant cell, not its real structure."
+     },
+     "standIn": true,
+     "note": "A pollen grain is not like a leaf cell: the generic plant cell stands in for it. Its tough outer wall, made of sporopollenin, is not drawn."
+    }
+   ],
+   "src": "card rn_pollen_grain; the air micro scene (POLLEN)"
+  },
+  "fungal_flesh": {
+   "title": "Mushroom flesh",
+   "desc": "Not cells in blocks like a plant, but a felt of fine threads (hyphae) packed together.",
+   "card": "fa_cap_flesh",
+   "inside": [
+    {
+     "name": "woven hyphae",
+     "scene": "tissue2:mushroom_flesh"
+    }
+   ],
+   "src": "tissue scene mushroom_flesh; card fa_hypha"
+  },
+  "fungal_gill": {
+   "title": "Gill tissue",
+   "desc": "Threads in the middle of each gill, and on its faces the club-shaped cells that make spores.",
+   "card": "fa_gill_inside",
+   "inside": [
+    {
+     "name": "a slice through a gill",
+     "scene": "tissue2:mushroom_gill"
+    }
+   ],
+   "src": "tissue scene mushroom_gill"
+  },
+  "mycorrhiza": {
+   "title": "Fungus and root",
+   "desc": "Fungal threads wrapped round a tree's root tip and growing between its outer cells.",
+   "card": "fa_ecm",
+   "inside": [
+    {
+     "name": "a root tip in its coat of fungus",
+     "scene": "tissue2:mushroom_ecm"
+    }
+   ],
+   "src": "tissue scene mushroom_ecm"
+  },
+  "lichen": {
+   "title": "Lichen",
+   "desc": "A fungus with green algae or bacteria living inside it: two kinds of life in one body.",
+   "card": "lichen_on_rock",
+   "inside": [
+    {
+     "name": "the fungal threads",
+     "material": "fungal_cells",
+     "note": "Most of a lichen's body is fungus; the algae live in a thin layer inside it. Shown: a cell standing in for the fungal part."
+    },
+    {
+     "name": "the algae inside"
+    }
+   ],
+   "src": "card lichen_on_rock, bio_lichens_fungal_biotech"
+  },
+  "insect_cuticle": {
+   "title": "Insect cuticle",
+   "desc": "The hard outer skin: layers of chitin and protein with a waxy film on top, made by one layer of living cells below.",
+   "card": "bee_cuticle",
+   "inside": [
+    {
+     "name": "a slice through the cuticle",
+     "scene": "tissue2:bee_cuticle"
+    }
+   ],
+   "src": "tissue scene bee_cuticle; card bee_cuticle"
+  },
+  "insect_wing": {
+   "title": "Insect wing",
+   "desc": "A thin, clear sheet of cuticle stiffened by hollow veins.",
+   "card": "bee_wings",
+   "inside": [
+    {
+     "name": "cuticle",
+     "material": "insect_cuticle",
+     "standIn": true,
+     "note": "A wing is an outgrowth of the exoskeleton: two thin layers of it pressed together, with hollow veins where they stay apart. Shown: a slice of the body's cuticle; the wing's own is not drawn separately."
+    }
+   ],
+   "src": "card bee_wings (\"Wings are outgrowths of the exoskeleton\")"
+  },
+  "arthropod_shell": {
+   "title": "Arthropod exoskeleton",
+   "desc": "The jointed outer skeleton of insects, crustaceans, spiders and their kin.",
+   "card": "bee_chitin",
+   "inside": [
+    {
+     "name": "chitin",
+     "material": "chitin"
+    }
+   ],
+   "src": "cards bee_chitin, soil_woodlouse, soil_beetle; thing data (woodlouse_body, beetle_elytra, skater_body, daphnia_carapace > n_acetylglucosamine)"
+  },
+  "flight_muscle": {
+   "title": "Insect flight muscle",
+   "desc": "Muscle fibres packed with mitochondria and fed by air tubes.",
+   "card": "bee_flight_muscles",
+   "inside": [
+    {
+     "name": "flight muscle fibres",
+     "scene": "tissue2:bee_flight_muscle"
+    }
+   ],
+   "src": "tissue scene bee_flight_muscle"
+  },
+  "granite": {
+   "title": "Granite",
+   "desc": "A coarse rock: a tight mosaic of mineral grains, mostly quartz, feldspar and mica.",
+   "card": "rock_grains",
+   "inside": [
+    {
+     "name": "quartz grains",
+     "scene": {
+      "type": "micro",
+      "kind": "rock"
+     },
+     "note": "Granite is a mosaic of quartz, feldspar and mica grains. Zooming on leads into quartz, the only one of the three whose crystal is built."
+    },
+    {
+     "name": "feldspar"
+    },
+    {
+     "name": "mica"
+    }
+   ],
+   "src": "cards boulder, rock_grains"
+  },
+  "flint": {
+   "title": "Flint",
+   "desc": "A hard, dark stone made of quartz in crystals too small to see.",
+   "card": "soil_flints",
+   "inside": [
+    {
+     "name": "quartz",
+     "material": "quartz",
+     "note": "Flint is quartz in crystals far too small to see, with a little water and impurity. Shown: the quartz crystal itself."
+    }
+   ],
+   "src": "card soil_flints (\"lumps of quartz that formed in chalk\")"
+  },
+  "soil": {
+   "title": "Soil",
+   "desc": "Mineral grains, rotting plant matter, water, air and a great deal of life.",
+   "card": "soil_crumb",
+   "inside": [
+    {
+     "name": "a crumb of soil",
+     "scene": "tissue2:soil_crumb"
+    }
+   ],
+   "src": "tissue scene soil_crumb; cards soil_crumb, soil_block"
+  },
+  "sand_grain": {
+   "title": "Sand grain",
+   "desc": "A grain of rock between a sixteenth of a millimetre and two millimetres across; in soils like this one, mostly quartz.",
+   "card": "soil_sand",
+   "inside": [
+    {
+     "name": "quartz",
+     "material": "quartz",
+     "note": "In most inland soils the sand is mostly quartz. Shown: the quartz crystal."
+    }
+   ],
+   "src": "card soil_sand (\"in soils like this one they are mostly quartz\")"
+  },
+  "clay": {
+   "title": "Clay",
+   "desc": "The smallest soil particles: flat plates built of layers of silicon, aluminium and oxygen.",
+   "card": "soil_clay",
+   "inside": [
+    {
+     "name": "a silicate unit",
+     "scene": "mol:silicate_orthosilicate",
+     "standIn": true,
+     "note": "A clay particle is a stack of sheets of silicon, aluminium and oxygen atoms. The sheet is not built yet. Shown: one silicon atom with its four oxygens, the unit the silicon layer is made of.",
+     "title": "A silicate unit (one building block of a clay sheet)"
+    }
+   ],
+   "src": "card soil_clay; tissue scenes soil_crumb, soil_clay_ions (clay > silicate_orthosilicate)"
+  },
+  "humus": {
+   "title": "Humus",
+   "desc": "The dark, long-lived remains of dead plants and microbes in soil.",
+   "card": "soil_humus",
+   "stop": "Humus is the dark remains of dead plants and microbes: a mixture of a great many carbon compounds with no single structure. No molecule of it can honestly be drawn, so the zoom stops here.",
+   "src": "card soil_humus"
+  },
+  "silica": {
+   "title": "Biological silica",
+   "desc": "Glass made by a living thing: a grass's silica bodies, a diatom's shell.",
+   "card": "grass_silica_body",
+   "inside": [
+    {
+     "name": "silicic acid, the form silica is taken up in",
+     "scene": "mol:silicic_acid",
+     "standIn": true,
+     "note": "This silica is a glass, with no regular crystal to draw. Shown: silicic acid, the dissolved form in which the plant or diatom takes silicon up before turning it into glass.",
+     "title": "Silicic acid (what the silica is made from)"
+    }
+   ],
+   "src": "tissue scenes grass_leaf_section, pond_drop (silica > silicic_acid); card grass_silica_body"
+  },
+  "soil_air": {
+   "title": "Air in the soil",
+   "desc": "The air that fills the pores of soil when they are not full of water.",
+   "card": "soil_air_pore",
+   "inside": [
+    {
+     "name": "air",
+     "material": "air",
+     "note": "The pores of soil that are not full of water hold air. The picture is ordinary air, as above the ground."
+    }
+   ],
+   "src": "card soil_air_pore; tissue scene soil_crumb (air > carbon_dioxide)"
+  },
+  "pond_water": {
+   "title": "Pond water",
+   "desc": "Water with life in every drop: algae, bacteria and tiny animals.",
+   "card": "pond_water",
+   "inside": [
+    {
+     "name": "a drop of pond water",
+     "scene": "tissue2:pond_drop"
+    }
+   ],
+   "src": "tissue scene pond_drop"
+  },
+  "pond_mud": {
+   "title": "Pond mud",
+   "desc": "Rock grains, rotting leaves and the microbes that live without oxygen.",
+   "card": "pond_mud",
+   "inside": [
+    {
+     "name": "pond mud, magnified",
+     "scene": "tissue2:pond_mud"
+    }
+   ],
+   "src": "tissue scene pond_mud"
+  },
+  "water_surface": {
+   "title": "Water surface",
+   "desc": "The top layer of water molecules, which hold on to each other and so act like a thin skin.",
+   "card": "pond_surface_film",
+   "inside": [
+    {
+     "name": "the surface film",
+     "scene": "tissue2:pond_film"
+    }
+   ],
+   "src": "tissue scene pond_film"
+  },
+  "chip_silicon": {
+   "title": "A silicon chip",
+   "desc": "A thin slice of one silicon crystal with billions of transistors built into its top layer, inside a plastic package.",
+   "card": "phone_soc",
+   "inside": [
+    {
+     "name": "silicon",
+     "material": "silicon",
+     "note": "{What}: a chip, which is a thin slice of a single silicon crystal, with its circuits built into the top few thousandths of a millimetre, sealed in a plastic package. Shown: the silicon crystal. For the circuits themselves, zoom into the processor."
+    }
+   ],
+   "src": "cards phone_soc, silicon_channel; js/teardown.js SILICON_PARTS"
+  },
+  "quartz_resonator": {
+   "title": "Quartz resonator",
+   "desc": "A thin plate cut from a quartz crystal, which rings at a precise frequency.",
+   "card": "phone_crystal_osc",
+   "inside": [
+    {
+     "name": "quartz",
+     "material": "quartz"
+    }
+   ],
+   "src": "card phone_crystal_osc (\"A tiny quartz crystal vibrates at a very precise frequency\")"
+  },
+  "circuit_copper": {
+   "title": "Copper wiring",
+   "desc": "The copper tracks and wires that carry current between parts.",
+   "card": "phone_pcb",
+   "inside": [
+    {
+     "name": "copper",
+     "material": "copper",
+     "note": "{What}: copper on a board of glass fibre and epoxy resin. Shown: the copper. The board material and the solder are not built yet."
+    }
+   ],
+   "src": "cards phone_pcb (\"copper layers connect the processor, memory and radios\"), phone_speaker (\"A coil in a magnetic field\"), phone_antenna"
+  },
+  "phone_frame": {
+   "title": "Phone frame",
+   "desc": "The metal band round the edge of the phone, which also serves as its antennas.",
+   "card": "phone_antenna",
+   "inside": [
+    {
+     "name": "aluminium",
+     "material": "aluminium",
+     "note": "The frame of a phone is metal. It is drawn here as aluminium, one of the metals used for it."
+    }
+   ],
+   "src": "card phone_antenna (\"Metal parts of the frame act as antennas\")"
+  },
+  "battery_graphite": {
+   "title": "Lithium-ion cell",
+   "desc": "Two electrodes rolled up with a separator and soaked in liquid electrolyte: graphite on one side, a lithium metal oxide on the other.",
+   "card": "phone_battery",
+   "inside": [
+    {
+     "name": "graphite, the negative electrode",
+     "material": "graphite",
+     "note": "A lithium-ion cell has a graphite electrode and a lithium metal oxide electrode (in phones, commonly lithium cobalt oxide), with a liquid electrolyte between them; lithium ions move from one to the other. Shown: graphite, the only one of the three that is built."
+    },
+    {
+     "name": "lithium cobalt oxide (the positive electrode)"
+    },
+    {
+     "name": "the liquid electrolyte"
+    }
+   ],
+   "src": "card phone_battery (\"Li⁺ ions move between graphite and a lithium-metal-oxide\"); Battery University BU-205 (cobalt oxide cathode, graphite anode in phones)"
+  },
+  "glass": {
+   "title": "Glass",
+   "desc": "Silicon and oxygen, with other oxides mixed in, frozen without any regular crystal order.",
+   "card": "phone_touchscreen",
+   "stop": "Not built yet: glass. A phone's cover glass is an aluminosilicate glass: silicon, aluminium and oxygen atoms linked into a network with no regular order, toughened by swapping sodium ions near the surface for larger potassium ions. With no crystal order there is no lattice to show; quartz would be wrong in just the way that matters.",
+   "src": "card phone_touchscreen; Wikipedia \"Gorilla Glass\" (alkali-aluminosilicate, chemically strengthened; fallback source)"
+  },
+  "oled": {
+   "title": "OLED display",
+   "desc": "A stack of very thin layers on glass: transistors, then carbon-based molecules that give off light.",
+   "card": "phone_display",
+   "stop": "Not built yet: the layers of an OLED display. Each pixel is a stack of thin films of carbon-based (organic) molecules between two electrodes, on a sheet of glass with a transistor circuit. None of these molecules is in the collection yet.",
+   "src": "card phone_display"
+  },
+  "marker": {
+   "title": "A marker",
+   "desc": "A yellow dot or a label put on the picture to point something out.",
+   "card": null,
+   "stop": "This is a marker, not a thing: it points at {what}. Point at the part itself to go deeper."
+  },
+  "sky": {
+   "title": "The sky",
+   "desc": "Not a thing: the blue is sunlight scattered by the air.",
+   "card": "park_sky",
+   "stop": "The sky is not a thing you can go into: its blue is sunlight scattered by the air. To see what air is made of, zoom into the air just in front of you."
+  },
+  "sun_in_sky": {
+   "title": "The Sun in the sky",
+   "desc": "The disc in the park's sky is a picture of the Sun, which is 150 million kilometres away.",
+   "card": "park_sun",
+   "stop": "The disc in the sky is only a picture of the Sun, which is about 150 million kilometres away. Fly to the Sun itself (search for \"Sun\") to go into it."
+  },
+  "far_bird": {
+   "title": "A bird in the distance",
+   "desc": "A bird too far away to open.",
+   "card": "park_bird",
+   "stop": "This bird is drawn as a far-off shape with nothing inside it. The robin by the pond can be opened all the way down."
+  },
+  "model_edge": {
+   "title": "The edge of the model",
+   "desc": "A part of the picture that is there for orientation only.",
+   "card": null,
+   "stop": "{What}: part of the drawing, not a thing with an inside. There is nothing below it to show."
+  },
+  "dog_skin": {
+   "title": "Dog skin",
+   "desc": "Thin outer skin over a thick fibrous layer, set with hair follicles and glands.",
+   "card": "dog_skin_scene",
+   "inside": [
+    {
+     "name": "a slice through dog skin",
+     "scene": "tissue2:dog_skin"
+    }
+   ],
+   "src": "tissue scene dog_skin"
+  },
+  "bird_bone": {
+   "title": "Bird bone",
+   "desc": "A thin-walled tube of bone braced inside by fine struts.",
+   "card": "robin_bone_scene",
+   "inside": [
+    {
+     "name": "inside a hollow bone",
+     "scene": "tissue2:robin_bone"
+    }
+   ],
+   "src": "tissue scene robin_bone; card robin_hollow_bones"
+  },
+  "feather": {
+   "title": "Feather",
+   "desc": "A shaft with barbs, and barbules that hook the barbs together: all of it dead keratin.",
+   "card": "robin_feather_scene",
+   "inside": [
+    {
+     "name": "a feather, magnified",
+     "scene": "tissue2:robin_feather"
+    }
+   ],
+   "src": "tissue scene robin_feather"
+  },
+  "bark": {
+   "title": "Bark",
+   "desc": "The dead, cracked outer layer of a tree: cork cells whose walls are sealed with a waxy material.",
+   "card": "oak_bark",
+   "inside": [
+    {
+     "name": "cellulose",
+     "material": "cellulose",
+     "standIn": true,
+     "note": "The outer bark is cork: dead cells whose walls are mostly suberin, a waxy polyester, and lignin. Neither is built yet. Shown instead: cellulose, the material of ordinary plant cell walls."
+    }
+   ],
+   "src": "cards oak_bark, oak_cork; Pereira 2013, BioResources 8(2) (cork: suberin about 40%, lignin 22%)"
+  },
+  "camera_sensor": {
+   "title": "Camera module",
+   "desc": "A stack of small lenses over an image sensor: a silicon chip of millions of light-sensing pixels.",
+   "card": "phone_camera",
+   "inside": [
+    {
+     "name": "the silicon of the image sensor",
+     "material": "silicon",
+     "note": "A camera module is a stack of small lenses over an image sensor, a silicon chip of millions of light-sensing pixels. Shown: the silicon crystal of the sensor. The lenses are not built yet."
+    }
+   ],
+   "src": "card phone_camera"
+  },
+  "chip_block": {
+   "title": "A block of the chip",
+   "desc": "One region of the silicon die: transistors built into the crystal, wired by metal layers above.",
+   "card": "phone_soc",
+   "inside": [
+    {
+     "name": "silicon",
+     "scene": "crystal:silicon",
+     "note": "Every block of the chip is the same single crystal of silicon, with transistors built into its surface. Shown: the silicon. To see the transistors, zoom into the CPU core and on into its logic gates."
+    }
+   ],
+   "src": "cards phone_soc, silicon_channel, silicon_substrate"
+  },
+  "chip_copper": {
+   "title": "Copper interconnect",
+   "desc": "The copper wires, a few tens of nanometres wide, that join the transistors of a chip.",
+   "card": "at_el_Cu",
+   "inside": [
+    {
+     "name": "copper crystal",
+     "scene": "crystal:copper_fcc"
+    }
+   ],
+   "src": "js/teardown.js (\"wired together by copper above them\"); data/crystals.json copper_fcc"
+  },
+  "chip_metal": {
+   "title": "Metal of a chip's wiring and gates",
+   "desc": "Thin metal lines and gates laid down on the silicon.",
+   "card": null,
+   "stop": "Not built yet: the metal of {what}. Chips use several metals for their gates and wires, depending on the layer and the maker, and this model does not say which."
+  },
+  "not_built": {
+   "title": "Not built yet",
+   "desc": "A part with no closer view.",
+   "card": null,
+   "stop": "No closer view of {what} has been built yet. Its card says what is known about it."
+  },
+  "cell_nucleus": {
+   "title": "Cell nucleus",
+   "desc": "The compartment that holds a cell's DNA.",
+   "card": "nucleus",
+   "inside": [
+    {
+     "name": "DNA",
+     "scene": "dna",
+     "note": "A nucleus holds the cell's DNA, wound round proteins. Shown: a stretch of the DNA."
+    }
+   ],
+   "src": "card nucleus; the DNA scene"
+  },
+  "algal_cells": {
+   "title": "Algal cells",
+   "desc": "Single green cells, close kin of the cells of land plants.",
+   "card": "pond_volvox",
+   "inside": [
+    {
+     "name": "a generic plant cell standing in for an alga",
+     "scene": {
+      "type": "cell",
+      "cell": "plant",
+      "cname": "{What}: drawn as a generic plant-type cell",
+      "blurb": "A green alga's cell is close kin to a plant cell: nucleus, chloroplast and a wall. The scene is the generic plant cell."
+     },
+     "standIn": true,
+     "note": "The generic plant cell stands in for a green alga's cell. A real algal cell is often rounder and has one large chloroplast; the swimming kinds have two whip-like flagella, which are not drawn."
+    }
+   ],
+   "src": "the pond micro scene (ALGA); cards pond_volvox, pond_chlamydomonas"
+  },
+  "single_cell": {
+   "title": "A single-celled creature",
+   "desc": "A whole living thing that is one cell with a nucleus, neither plant nor animal.",
+   "card": "pond_paramecium",
+   "inside": [
+    {
+     "name": "a generic cell standing in for it",
+     "scene": {
+      "type": "cell",
+      "cell": "animal",
+      "cname": "{What}: drawn as a generic animal-type cell"
+     },
+     "standIn": true,
+     "note": "{What}: a single cell, though not an animal's. The generic animal-type cell stands in, because it too has a nucleus and mitochondria; the creature's own parts (its cilia, mouth groove and pumping vacuoles) are not drawn."
+    }
+   ],
+   "src": "card pond_paramecium"
+  },
+  "rock_grain": {
+   "title": "A grain of rock",
+   "desc": "A particle broken from rock by weather and carried by water.",
+   "card": "pond_mud_grains",
+   "inside": [
+    {
+     "name": "quartz",
+     "material": "quartz",
+     "standIn": true,
+     "note": "A grain broken from rock. Which mineral it is depends on the rock it came from; in sand it is most often quartz, and quartz is what is shown."
+    }
+   ],
+   "src": "cards pond_mud_grains, soil_sand, soil_silt"
+  },
+  "plant_wax": {
+   "title": "Leaf cuticle",
+   "desc": "The thin waxy coat that waterproofs a leaf.",
+   "card": "oak_leaf_epidermis",
+   "stop": "Not built yet: the leaf's waxy coat. It is made of cutin and wax; neither is in the collection of molecules yet.",
+   "src": "card oak_leaf_epidermis"
+  },
+  "insect_wax": {
+   "title": "Outer film of the cuticle",
+   "desc": "The thin waxy skin on top of an insect's cuticle, which keeps water in.",
+   "card": "bee_cuticle",
+   "stop": "Not built yet: the waxy outer film of the cuticle. None of the molecules of its waxes is in the collection yet.",
+   "src": "card bee_cuticle (\"with a waxy skin on top\")"
+  },
+  "debris": {
+   "title": "Detritus",
+   "desc": "Flecks of dead plant and animal matter in every stage of decay.",
+   "card": "pond_detritus",
+   "stop": "Detritus is bits of dead plants and animals in every stage of decay: a mixture with no one material to show.",
+   "src": "card pond_detritus"
+  },
+  "ion_ca": {
+   "title": "Calcium ion",
+   "desc": "A calcium atom that has given up two of its electrons, so it carries a positive charge.",
+   "card": "soil_cations",
+   "inside": [
+    {
+     "name": "a calcium atom",
+     "scene": "atom:Ca",
+     "note": "An ion is an atom with electrons missing or added. Shown: the neutral calcium atom; the ion in the soil has two electrons fewer."
+    }
+   ],
+   "src": "card soil_cations; data/elements.json"
+  },
+  "ion_mg": {
+   "title": "Magnesium ion",
+   "desc": "A magnesium atom that has given up two of its electrons, so it carries a positive charge.",
+   "card": "soil_cations",
+   "inside": [
+    {
+     "name": "a magnesium atom",
+     "scene": "atom:Mg",
+     "note": "An ion is an atom with electrons missing or added. Shown: the neutral magnesium atom; the ion in the soil has two electrons fewer."
+    }
+   ],
+   "src": "card soil_cations; data/elements.json"
+  },
+  "ion_k": {
+   "title": "Potassium ion",
+   "desc": "A potassium atom that has given up one of its electrons, so it carries a positive charge.",
+   "card": "soil_cations",
+   "inside": [
+    {
+     "name": "a potassium atom",
+     "scene": "atom:K",
+     "note": "An ion is an atom with electrons missing or added. Shown: the neutral potassium atom; the ion in the soil has one electron fewer."
+    }
+   ],
+   "src": "card soil_cations; data/elements.json"
+  },
+  "stellar_plasma": {
+   "title": "Stellar plasma",
+   "desc": "What a star is made of: gas so hot that its atoms have come apart into bare nuclei and free electrons.",
+   "card": null,
+   "inside": [
+    {
+     "name": "hydrogen and helium nuclei and free electrons",
+     "scene": {
+      "type": "plasma",
+      "title": "Plasma of a star",
+      "blurb": "What a star is made of: gas so hot that its atoms have come apart into bare nuclei and free electrons. By mass about 73% is hydrogen, 25% helium and 2% everything else, in the Sun and in stars in general.",
+      "note": "Schematic: a patch of plasma drawn at random. The temperature and density of this particular place are not modelled, and the dots are far larger than real nuclei."
+     }
+    }
+   ],
+   "src": "OpenStax Astronomy 2e 15.1 (73% hydrogen, 25% helium by mass; the Sun is typical of stars)"
+  },
+  "far_star": {
+   "title": "A distant star",
+   "desc": "A star: a ball of plasma held together by its own gravity.",
+   "card": null,
+   "inside": [
+    {
+     "name": "stellar plasma",
+     "material": "stellar_plasma",
+     "note": "{What}: a star, a ball of hot plasma. Shown: stellar plasma in general, not the conditions of this star."
+    }
+   ],
+   "src": "OpenStax Astronomy 2e 15.1"
+  },
+  "galaxy": {
+   "title": "A galaxy",
+   "desc": "Millions to hundreds of billions of stars held together by gravity, with gas and dust between them.",
+   "card": null,
+   "inside": [
+    {
+     "name": "the stars: stellar plasma",
+     "material": "stellar_plasma",
+     "note": "{What}: made of stars, far too distant here to be drawn one by one, with thin gas and dust between them. Shown: the plasma that stars are made of."
+    },
+    {
+     "name": "thin gas between the stars"
+    },
+    {
+     "name": "dust"
+    }
+   ],
+   "src": "OpenStax Astronomy 2e 15.1, 20.1"
+  },
+  "interstellar_gas": {
+   "title": "Interstellar gas",
+   "desc": "The space between the stars: nearly empty, but not quite.",
+   "card": null,
+   "inside": [
+    {
+     "name": "a hydrogen atom",
+     "scene": {
+      "type": "gas",
+      "mix": [
+       [
+        "H",
+        1
+       ]
+      ],
+      "count": 1,
+      "title": "Interstellar gas",
+      "blurb": "The space between the stars holds, on average, about one atom in each cubic centimetre. The air you breathe holds about 10¹⁹. Nine atoms in ten are hydrogen and nearly all the rest are helium.",
+      "body": "Between the stars of a galaxy there is gas, extremely thin: on average about one atom per cubic centimetre, against about 10¹⁹ in air. By number about 91% of the atoms are hydrogen and about 9% helium. In the densest clouds, where stars form, there are hundreds to thousands per cubic centimetre: still a far better vacuum than any made on Earth.",
+      "note": "Not to scale in number: at the true density a view this size (44 nanometres across) would almost never hold an atom. One hydrogen atom is drawn so that there is something to go on to. About 1% of the matter between the stars is dust, grains of rock-like or soot-like material 10 to 100 nanometres across, which are not drawn."
+     }
+    }
+   ],
+   "src": "OpenStax Astronomy 2e 20.1 (about one atom per cm3; 99% gas, 1% dust), 20.2, 20.3 (grains 1e-8 to 1e-7 m); Wikipedia \"Interstellar medium\" (91% H, 8.9% He by number; fallback source)"
+  },
+  "intergalactic_gas": {
+   "title": "Intergalactic space",
+   "desc": "The space between the galaxies: the emptiest places there are.",
+   "card": null,
+   "inside": [
+    {
+     "name": "a hydrogen atom",
+     "scene": {
+      "type": "gas",
+      "mix": [
+       [
+        "H",
+        1
+       ]
+      ],
+      "count": 1,
+      "title": "Intergalactic space",
+      "blurb": "Between the galaxies there are only a few hydrogen atoms in each cubic metre.",
+      "body": "The space between the galaxies holds only a few hydrogen atoms per cubic metre: a million times thinner still than the gas between the stars of a galaxy.",
+      "note": "Not to scale in number: at the true density a view this size would practically never hold an atom. One hydrogen atom is drawn so that there is something to go on to."
+     }
+    }
+   ],
+   "src": "Wikipedia \"Outer space\" (a few hydrogen atoms per cubic metre; fallback source); OpenStax Astronomy 2e 20.1 for the interstellar figure"
+  },
+  "cluster_gas": {
+   "title": "A cluster of galaxies",
+   "desc": "Hundreds or thousands of galaxies bound by gravity, in a vast cloud of very hot gas.",
+   "card": null,
+   "inside": [
+    {
+     "name": "the hot gas between the galaxies",
+     "scene": {
+      "type": "plasma",
+      "title": "Hot gas of a galaxy cluster",
+      "blurb": "A cluster of galaxies sits in a vast cloud of gas at 30 to 100 million degrees, so hot that it is a plasma of bare nuclei and electrons. This gas holds more mass than all the cluster's galaxies together.",
+      "note": "Schematic: the number of particles drawn says nothing about the real density, which is extremely low. The galaxies themselves are far too distant here to draw."
+     }
+    }
+   ],
+   "src": "Chandra X-ray Center field guide, Groups and Clusters of Galaxies (gas at 30-100 million degrees, more mass than the galaxies)"
+  },
+  "accretion_plasma": {
+   "title": "Gas falling toward a black hole",
+   "desc": "Gas heated until it glows as it spirals inward.",
+   "card": null,
+   "inside": [
+    {
+     "name": "hot plasma",
+     "scene": {
+      "type": "plasma",
+      "title": "Hot gas near the black hole",
+      "blurb": "Gas spiralling toward a black hole is heated until its atoms come apart: a plasma of nuclei and electrons.",
+      "note": "Schematic: a patch of plasma drawn at random; the real temperature and density here are not modelled. The bright thin disc of the scene above is itself an illustration: Sgr A* has no such disc today."
+     }
+    }
+   ],
+   "src": "the black-hole scene's own note (js/world_space.js)"
+  },
+  "solar_wind": {
+   "title": "The solar wind",
+   "desc": "A thin stream of protons and electrons blowing outward from the Sun.",
+   "card": null,
+   "inside": [
+    {
+     "name": "protons and electrons",
+     "scene": {
+      "type": "plasma",
+      "title": "The solar wind",
+      "blurb": "The space between the planets is filled with the solar wind: mainly protons and electrons streaming out from the Sun at 300 to 700 kilometres a second. Near Earth there are about 7 ions in each cubic centimetre, about 95% of them protons and 5% helium nuclei.",
+      "note": "Not to scale in number: thousands of particles are drawn where the real wind would have none in a view this small."
+     }
+    }
+   ],
+   "src": "NASA NTRS 19990071284 \"The Solar Wind\"; NOAA Space Weather Prediction Center, Solar Wind"
+  },
+  "cmb": {
+   "title": "The cosmic microwave background",
+   "desc": "Light, not matter: the glow left from the hot early universe.",
+   "card": null,
+   "stop": "The cosmic microwave background is light, not matter: the glow left over from the hot early universe. There is nothing in it to go into."
+  },
+  "cosmic_web": {
+   "title": "The cosmic web",
+   "desc": "The pattern galaxies make on the largest scale: strings and sheets around great voids.",
+   "card": null,
+   "stop": "A filament of the cosmic web is a string of galaxies and thin gas. It is drawn here as a pattern, not as real galaxies: point at a named galaxy or cluster to go on."
+  },
+  "region_of_space": {
+   "title": "A region of space",
+   "desc": "A name for a place or a direction, not for a body.",
+   "card": null,
+   "stop": "{What}: the name of a region, not of a body. There is no one thing here to go into."
+  },
+  "horizon": {
+   "title": "Event horizon",
+   "desc": "The surface around a black hole from inside which nothing, not even light, comes out.",
+   "card": null,
+   "stop": "Nothing can be shown inside the event horizon. No light or signal comes out of it, and what becomes of matter there is not known."
+  },
+  "light": {
+   "title": "Light",
+   "desc": "Light, not matter.",
+   "card": null,
+   "stop": "{What}: light bent by gravity, not a thing made of matter. There is nothing in it to go into."
+  },
+  "small_bodies": {
+   "title": "A belt of small bodies",
+   "desc": "Dots standing for a very large number of bodies too small to draw.",
+   "card": null,
+   "stop": "These dots stand for bodies too small and too many to draw one by one, so there is no single one to open. Asteroids are rock and metal (clay and silicate rock, or nickel-iron); bodies of the Kuiper belt are rock and water ice with other frozen compounds such as ammonia and methane.",
+   "src": "NASA Asteroid Facts; NASA Kuiper Belt Facts"
+  },
+  "spacecraft": {
+   "title": "A spacecraft",
+   "desc": "A machine, drawn here as a marker.",
+   "card": null,
+   "stop": "{What}: drawn as a marker. No model of the spacecraft itself has been built."
+  },
+  "silicate_rock": {
+   "title": "Silicate rock",
+   "desc": "Rock made of minerals built from silicon and oxygen with metals: what the rocky planets and moons are mostly made of.",
+   "card": null,
+   "inside": [
+    {
+     "name": "forsterite, a silicate mineral",
+     "scene": "crystal:forsterite",
+     "standIn": true,
+     "note": "Shown: forsterite, a magnesium silicate, the nearest crystal we have. It stands for silicate rock in general, not for this body's own commonest minerals, which are not built yet."
+    }
+   ],
+   "src": "data/crystals.json forsterite; OpenStax Astronomy 2e 9.2, 9.5"
+  },
+  "rocky_regolith": {
+   "title": "Regolith",
+   "desc": "The surface of an airless rocky body: rock broken by impacts into dust and sharp fragments.",
+   "card": null,
+   "inside": [
+    {
+     "name": "crushed rock",
+     "scene": {
+      "type": "micro",
+      "kind": "regolith",
+      "title": "Crushed rock (regolith)",
+      "blurb": "The ground of an airless rocky world, about 1 mm across: dust and sharp fragments of rock shattered by impacts, never rounded by wind or water.",
+      "material": "silicate_rock"
+     },
+     "note": "{What}: rock broken by impacts into dust and fragments. The picture of the grains is generic."
+    }
+   ],
+   "src": "NASA Mercury Facts; NASA Moon Facts; OpenStax Astronomy 2e 9.2; NASA Ceres Facts; NASA Phobos"
+  },
+  "lunar_regolith": {
+   "title": "Lunar regolith",
+   "desc": "Moon dust: powdery, charcoal-grey rubble of shattered rock.",
+   "card": null,
+   "inside": [
+    {
+     "name": "crushed rock",
+     "scene": {
+      "type": "micro",
+      "kind": "regolith",
+      "title": "Lunar regolith",
+      "material": "silicate_rock"
+     },
+     "note": "The Moon's crust is mostly pale feldspar-rich rock (anorthosite); the dark maria are basalt, which is old lava. Both are silicate rocks, broken at the surface into fine, sharp-edged soil."
+    }
+   ],
+   "src": "OpenStax Astronomy 2e 9.2 (83% anorthosites; maria mostly basalt); NASA Moon Facts"
+  },
+  "water_ice_surface": {
+   "title": "Water-ice surface",
+   "desc": "Ground made of frozen water, on a world too cold for it ever to melt.",
+   "card": null,
+   "inside": [
+    {
+     "name": "grains of water ice",
+     "scene": {
+      "type": "micro",
+      "kind": "ice",
+      "title": "Water ice",
+      "blurb": "The ground of an icy world, about 1 mm across: grains of frozen water.",
+      "material": "ice"
+     },
+     "note": "{What}: mostly water ice, mixed with darker material (rock, salts) that is not drawn. The grain picture is the generic snow-and-ice scene, and the crystal below is ordinary ice (ice Ih)."
+    }
+   ],
+   "src": "NASA Europa Facts; NASA Enceladus; NASA Rhea, Iapetus; NASA Ganymede; NASA Titan Facts; NASA Haumea Facts; Wikipedia \"Callisto\", \"Charon\", \"Moons of Uranus\" (fallback sources)"
+  },
+  "n2_molecule": {
+   "title": "Frozen nitrogen",
+   "desc": "Nitrogen molecules frozen into a soft ice.",
+   "card": null,
+   "inside": [
+    {
+     "name": "a nitrogen molecule",
+     "scene": "mol:nitrogen",
+     "standIn": true,
+     "note": "Frozen nitrogen is a crystal of N₂ molecules, which is not built yet. Shown: one nitrogen molecule.",
+     "title": "Nitrogen, N₂ (one molecule of the ice)"
+    }
+   ],
+   "src": "data/molecules_all.json nitrogen"
+  },
+  "ch4_molecule": {
+   "title": "Frozen methane",
+   "desc": "Methane molecules frozen into ice.",
+   "card": null,
+   "inside": [
+    {
+     "name": "a methane molecule",
+     "scene": "mol:methane",
+     "standIn": true,
+     "note": "Frozen methane is a crystal of CH₄ molecules, which is not built yet. Shown: one methane molecule.",
+     "title": "Methane, CH₄ (one molecule of the ice)"
+    }
+   ],
+   "src": "data/molecules_all.json methane"
+  },
+  "so2_molecule": {
+   "title": "Sulfur dioxide frost",
+   "desc": "Sulfur dioxide frozen onto the ground.",
+   "card": null,
+   "inside": [
+    {
+     "name": "a sulfur dioxide molecule",
+     "scene": "mol:sulfur_dioxide",
+     "standIn": true,
+     "note": "The frost is a crystal of SO₂ molecules, which is not built yet. Shown: one sulfur dioxide molecule.",
+     "title": "Sulfur dioxide, SO₂ (one molecule of the frost)"
+    }
+   ],
+   "src": "data/molecules_all.json sulfur_dioxide"
+  },
+  "triton_surface": {
+   "title": "Surface of Triton",
+   "desc": "Ices at 35 to 40 kelvin: frozen nitrogen, water, methane and carbon monoxide.",
+   "card": null,
+   "inside": [
+    {
+     "name": "grains of ice",
+     "scene": {
+      "type": "micro",
+      "kind": "ice",
+      "title": "Ices of Triton",
+      "blurb": "The ground, about 1 mm across: grains of ice. The picture is the generic snow-and-ice scene.",
+      "material": "n2_molecule"
+     },
+     "note": "The surface of Triton is made of frozen water, nitrogen, methane and carbon monoxide, at 35 to 40 kelvin. Zooming on leads into the nitrogen."
+    }
+   ],
+   "src": "OpenStax Astronomy 2e 12.3"
+  },
+  "pluto_surface": {
+   "title": "Surface of Pluto",
+   "desc": "Frozen nitrogen, methane and carbon monoxide over mountains of water ice.",
+   "card": null,
+   "inside": [
+    {
+     "name": "grains of ice",
+     "scene": {
+      "type": "micro",
+      "kind": "ice",
+      "title": "Ices of Pluto",
+      "blurb": "The ground, about 1 mm across: grains of ice. The picture is the generic snow-and-ice scene.",
+      "material": "n2_molecule"
+     },
+     "note": "Pluto's surface is frozen nitrogen, methane and carbon monoxide; its mountains are water ice. Zooming on leads into the nitrogen."
+    }
+   ],
+   "src": "OpenStax Astronomy 2e 12.4"
+  },
+  "eris_surface": {
+   "title": "Surface of Eris",
+   "desc": "Bright methane ice, with nitrogen ice mixed in.",
+   "card": null,
+   "inside": [
+    {
+     "name": "grains of ice",
+     "scene": {
+      "type": "micro",
+      "kind": "ice",
+      "title": "Ices of Eris",
+      "blurb": "The ground, about 1 mm across: grains of ice. The picture is the generic snow-and-ice scene.",
+      "material": "ch4_molecule"
+     },
+     "note": "The surface of Eris is methane ice with some nitrogen ice. Zooming on leads into the methane."
+    }
+   ],
+   "src": "Wikipedia \"Eris (dwarf planet)\" (fallback source)"
+  },
+  "makemake_surface": {
+   "title": "Surface of Makemake",
+   "desc": "Frozen methane and ethane.",
+   "card": null,
+   "inside": [
+    {
+     "name": "grains of ice",
+     "scene": {
+      "type": "micro",
+      "kind": "ice",
+      "title": "Ices of Makemake",
+      "blurb": "The ground, about 1 mm across: grains of ice. The picture is the generic snow-and-ice scene.",
+      "material": "ch4_molecule"
+     },
+     "note": "Makemake has frozen methane and ethane on its surface. Zooming on leads into the methane."
+    }
+   ],
+   "src": "NASA Makemake Facts"
+  },
+  "io_surface": {
+   "title": "Surface of Io",
+   "desc": "A thin coat of sulfur and sulfur dioxide frost over silicate lava.",
+   "card": null,
+   "inside": [
+    {
+     "name": "grains of ice",
+     "scene": {
+      "type": "micro",
+      "kind": "ice",
+      "title": "Sulfur dioxide frost on Io",
+      "blurb": "The ground, about 1 mm across: grains of ice. The picture is the generic snow-and-ice scene.",
+      "material": "so2_molecule"
+     },
+     "note": "Io is covered by a thin coat of sulfur compounds over silicate lava: the orange is sulfur, the white is sulfur dioxide frost. Zooming on leads into the sulfur dioxide. The grain picture is the generic ice scene."
+    }
+   ],
+   "src": "OpenStax Astronomy 2e 12.2"
+  },
+  "jupiter_gas": {
+   "title": "The gas of Jupiter",
+   "desc": "Jupiter's atmosphere at the scale of molecules: hydrogen and helium with a little methane.",
+   "card": null,
+   "inside": [
+    {
+     "name": "hydrogen, helium and methane",
+     "scene": {
+      "type": "gas",
+      "mix": [
+       [
+        "H2",
+        0.89
+       ],
+       [
+        "He",
+        0.1
+       ],
+       [
+        "CH4",
+        0.003
+       ]
+      ],
+      "title": "The gas of Jupiter",
+      "blurb": "Jupiter's atmosphere at the scale of molecules. By volume: 89% hydrogen, 10% helium, 0.3% methane and a trace of ammonia (not drawn).",
+      "body": "Jupiter has no solid surface: its atmosphere just gets denser with depth. By volume it is 89% hydrogen, 10% helium, 0.3% methane and a trace of ammonia (not drawn).",
+      "note": "Model: random positions, molecules at true size, drawn at the number density of air at sea level on Earth so that the pictures can be compared; the real density depends on the depth. Motion is slowed about a trillion times."
+     }
+    }
+   ],
+   "src": "Wikipedia \"Jupiter\" infobox, atmosphere by volume (fallback: the NASA fact sheet could not be reached)"
+  },
+  "jupiter_clouds": {
+   "title": "Cloud tops of Jupiter",
+   "desc": "The upper atmosphere of Jupiter: gas, with the cloud particles that colour the planet.",
+   "card": null,
+   "inside": [
+    {
+     "name": "the gas",
+     "scene": {
+      "type": "micro",
+      "kind": "cloudtops",
+      "title": "Cloud tops of Jupiter",
+      "material": "jupiter_gas"
+     }
+    }
+   ],
+   "src": "Wikipedia \"Jupiter\" infobox, atmosphere by volume (fallback: the NASA fact sheet could not be reached)"
+  },
+  "saturn_gas": {
+   "title": "The gas of Saturn",
+   "desc": "Saturn's atmosphere at the scale of molecules: hydrogen and helium with a little methane.",
+   "card": null,
+   "inside": [
+    {
+     "name": "hydrogen, helium and methane",
+     "scene": {
+      "type": "gas",
+      "mix": [
+       [
+        "H2",
+        0.963
+       ],
+       [
+        "He",
+        0.0325
+       ],
+       [
+        "CH4",
+        0.0045
+       ]
+      ],
+      "title": "The gas of Saturn",
+      "blurb": "Saturn's atmosphere at the scale of molecules. By volume: 96.3% hydrogen, 3.25% helium, 0.45% methane.",
+      "body": "Saturn has no solid surface: its atmosphere just gets denser with depth. By volume it is 96.3% hydrogen, 3.25% helium, 0.45% methane.",
+      "note": "Model: random positions, molecules at true size, drawn at the number density of air at sea level on Earth so that the pictures can be compared; the real density depends on the depth. Motion is slowed about a trillion times."
+     }
+    }
+   ],
+   "src": "Wikipedia \"Saturn\" infobox (fallback source)"
+  },
+  "saturn_clouds": {
+   "title": "Cloud tops of Saturn",
+   "desc": "The upper atmosphere of Saturn: gas, with the cloud particles that colour the planet.",
+   "card": null,
+   "inside": [
+    {
+     "name": "the gas",
+     "scene": {
+      "type": "micro",
+      "kind": "cloudtops",
+      "title": "Cloud tops of Saturn",
+      "material": "saturn_gas"
+     }
+    }
+   ],
+   "src": "Wikipedia \"Saturn\" infobox (fallback source)"
+  },
+  "uranus_gas": {
+   "title": "The gas of Uranus",
+   "desc": "Uranus's atmosphere at the scale of molecules: hydrogen and helium with a little methane.",
+   "card": null,
+   "inside": [
+    {
+     "name": "hydrogen, helium and methane",
+     "scene": {
+      "type": "gas",
+      "mix": [
+       [
+        "H2",
+        0.83
+       ],
+       [
+        "He",
+        0.15
+       ],
+       [
+        "CH4",
+        0.023
+       ]
+      ],
+      "title": "The gas of Uranus",
+      "blurb": "Uranus's atmosphere at the scale of molecules. By volume: 83% hydrogen, 15% helium, 2.3% methane.",
+      "body": "Uranus has no solid surface: its atmosphere just gets denser with depth. By volume it is 83% hydrogen, 15% helium, 2.3% methane.",
+      "note": "Model: random positions, molecules at true size, drawn at the number density of air at sea level on Earth so that the pictures can be compared; the real density depends on the depth. Motion is slowed about a trillion times."
+     }
+    }
+   ],
+   "src": "Wikipedia \"Uranus\" infobox (fallback source)"
+  },
+  "uranus_clouds": {
+   "title": "Cloud tops of Uranus",
+   "desc": "The upper atmosphere of Uranus: gas, with the cloud particles that colour the planet.",
+   "card": null,
+   "inside": [
+    {
+     "name": "the gas",
+     "scene": {
+      "type": "micro",
+      "kind": "cloudtops",
+      "title": "Cloud tops of Uranus",
+      "material": "uranus_gas"
+     }
+    }
+   ],
+   "src": "Wikipedia \"Uranus\" infobox (fallback source)"
+  },
+  "neptune_gas": {
+   "title": "The gas of Neptune",
+   "desc": "Neptune's atmosphere at the scale of molecules: hydrogen and helium with a little methane.",
+   "card": null,
+   "inside": [
+    {
+     "name": "hydrogen, helium and methane",
+     "scene": {
+      "type": "gas",
+      "mix": [
+       [
+        "H2",
+        0.8
+       ],
+       [
+        "He",
+        0.19
+       ],
+       [
+        "CH4",
+        0.015
+       ]
+      ],
+      "title": "The gas of Neptune",
+      "blurb": "Neptune's atmosphere at the scale of molecules. By volume: 80% hydrogen, 19% helium, 1.5% methane.",
+      "body": "Neptune has no solid surface: its atmosphere just gets denser with depth. By volume it is 80% hydrogen, 19% helium, 1.5% methane.",
+      "note": "Model: random positions, molecules at true size, drawn at the number density of air at sea level on Earth so that the pictures can be compared; the real density depends on the depth. Motion is slowed about a trillion times."
+     }
+    }
+   ],
+   "src": "Wikipedia \"Neptune\" infobox (fallback source)"
+  },
+  "neptune_clouds": {
+   "title": "Cloud tops of Neptune",
+   "desc": "The upper atmosphere of Neptune: gas, with the cloud particles that colour the planet.",
+   "card": null,
+   "inside": [
+    {
+     "name": "the gas",
+     "scene": {
+      "type": "micro",
+      "kind": "cloudtops",
+      "title": "Cloud tops of Neptune",
+      "material": "neptune_gas"
+     }
+    }
+   ],
+   "src": "Wikipedia \"Neptune\" infobox (fallback source)"
+  },
+  "upper_air": {
+   "title": "Earth's atmosphere",
+   "desc": "The same gases as at the ground, thinning out with height.",
+   "card": "park_sky",
+   "inside": [
+    {
+     "name": "air",
+     "material": "air",
+     "note": "The picture is air as it is at sea level. High above the ground, where you are pointing, the same gases are there but far thinner."
+    }
+   ],
+   "src": "the air scene"
+  },
+  "shell_carbonate": {
+   "title": "Snail shell",
+   "desc": "Almost all calcium carbonate, laid down as crystals under a thin organic skin.",
+   "card": "pond_snail",
+   "inside": [
+    {
+     "name": "calcite, a crystal form of calcium carbonate",
+     "scene": "crystal:calcite",
+     "standIn": true,
+     "note": "A mollusc's shell is 95 to 99% calcium carbonate by weight, under a thin organic outer layer. Shells use two crystal forms of it, calcite and aragonite. Calcite is the one that is built, and is shown; this shell's own form may be the other."
+    }
+   ],
+   "src": "Checa 2018, Frontiers in Marine Science 5:353"
+  },
+  "peptidoglycan": {
+   "title": "Bacterial cell wall",
+   "desc": "A mesh of sugar chains tied together by short peptides.",
+   "card": "bio_bacterial_structure",
+   "inside": [
+    {
+     "name": "N-acetylglucosamine, one of its two sugars",
+     "scene": "mol:n_acetylglucosamine",
+     "standIn": true,
+     "note": "The wall of a bacterium is peptidoglycan: long chains of two alternating sugars, N-acetylglucosamine (shown) and N-acetylmuramic acid, joined to one another by short peptide bridges.",
+     "title": "N-acetylglucosamine (one sugar of the wall)"
+    }
+   ],
+   "src": "OpenStax Microbiology 3.3"
+  },
+  "titan_surface": {
+   "title": "Surface of Titan",
+   "desc": "A crust of water ice, with dunes of dark hydrocarbon sand and lakes of liquid methane and ethane.",
+   "card": null,
+   "inside": [
+    {
+     "name": "grains of ice",
+     "scene": {
+      "type": "micro",
+      "kind": "ice",
+      "title": "Water ice of Titan",
+      "blurb": "The ground, about 1 mm across: grains of ice. The picture is the generic snow-and-ice scene.",
+      "material": "ice"
+     },
+     "note": "Titan has an outer crust of water ice, with dunes of dark hydrocarbon sand and lakes of liquid methane and ethane on it. Zooming on leads into the water ice (the crystal shown is ordinary ice, ice Ih)."
+    }
+   ],
+   "src": "NASA Titan Facts"
+  },
+  "ice_rock_surface": {
+   "title": "Ice and rock",
+   "desc": "Ground that is a mixture of water ice and dark rocky material.",
+   "card": null,
+   "inside": [
+    {
+     "name": "grains of ice",
+     "scene": {
+      "type": "micro",
+      "kind": "ice",
+      "title": "Ice and rock",
+      "blurb": "The ground, about 1 mm across: grains of ice. The picture is the generic snow-and-ice scene.",
+      "material": "ice"
+     },
+     "note": "{What}: a mixture of water ice and dark rocky material. Zooming on leads into the ice (the crystal shown is ordinary ice, ice Ih); the rocky part is not drawn."
+    }
+   ],
+   "src": "NASA Ganymede; Wikipedia \"Callisto (moon)\", \"Moons of Uranus\" (fallback sources)"
+  }
+ }
+}

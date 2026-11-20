@@ -192,7 +192,9 @@ FT.body = {
     F.update = (dt, t) => { F._k = 1 - Math.exp(-Math.min(dt, .25) * 9); bodyAutoUpdate(F, dt); applyMode(F); pulse(F, t); F.env.opaque = cam.D < .75 && chainOf(cam.A).includes(F) && !chainOf(cam.A).some(f => f.type === 'tissue' || f.type === 'cell'); };
     F.spawn = (T, hint) => {
       if (!hint || !hint.obj || !hint.obj.userData.part) return null;
-      const id = hint.obj.userData.id, n = NODE[nodeForMesh(id)], tis = n && n.made_of && n.made_of[0];
+      const u = hint.obj.userData, id = u.id, nid = nodeForMesh(id), n = NODE[nid], tis = n && n.made_of && n.made_of[0];
+      const q = { id, node: nid, system: u.part.system, what: u.part.name, u };
+      if (typeof DESCENT !== 'undefined' && DESCENT.known(F, q)) return DESCENT.spawnFor(F, q, T);   // the tissue this part is made of, from the materials table (data/descent/assign/body.json)
       return tissueFrame(tis || id, T, id);
     };
     F.spawnD = .012; F.floorD = .0015; // no zooming into an empty gap: a part's tissue takes over at spawnD, otherwise the view stops here
@@ -277,6 +279,8 @@ FT.organ = {
     F.onDispose = () => { dead = true; if (body.focus === F) body.focus = null; };
     F.spawn = (T, hint) => {
       const id = hint && hint.obj && hint.obj.userData.node || o.organ, n = NODE[id];
+      const q = { id, node: id, what: nodeTitle(id), u: (hint && hint.obj && hint.obj.userData) || {} };
+      if (typeof DESCENT !== 'undefined' && DESCENT.known(F, q)) return DESCENT.spawnFor(F, q, T);   // data/descent/assign/organ.json
       return tissueFrame((n && n.made_of && n.made_of[0]) || (NODE[o.organ] && NODE[o.organ].made_of && NODE[o.organ].made_of[0]) || o.organ, T, id);
     };
     body.focus = F;
@@ -333,7 +337,7 @@ function tissueKind(id) {
   return 'epithelium';
 }
 function tissueFrame(nodeId, T, organId) {
-  return new Frame({ type: 'tissue', name: nodeTitle(nodeId), unit: 1e-6, radius: 400, r0: 1e-6, r1: 2e-3, spawnD: 3e-5, pos: T.clone(), opts: { node: nodeId, organ: organId, kind: tissueKind(nodeId + ' ' + (organId || '')) } });
+  return new Frame({ type: 'tissue', name: nodeTitle(nodeId), unit: 1e-6, radius: 600,   /* 600: the villi, osteons and blood cells of these scenes reach past 400 µm, and a zoom aimed at an outer one used to leave the frame */ r0: 1e-6, r1: 2e-3, spawnD: 3e-5, pos: T.clone(), opts: { node: nodeId, organ: organId, kind: tissueKind(nodeId + ' ' + (organId || '')) } });
 }
 const TISSUE_CELL = { cardiac: 'cardiomyocyte', skeletal: 'skeletal_muscle_fiber', smooth: 'smooth_muscle_cell', blood: 'red_blood_cell', bone: 'osteocyte', cartilage: 'chondrocyte', adipose: 'adipocyte', nervous: 'neuron', alveoli: 'red_blood_cell', villi: 'enterocyte', liver: 'hepatocyte', epithelium: 'keratinocyte' };
 FT.tissue = {
@@ -395,7 +399,11 @@ FT.tissue = {
     F.info = n; F.name = n ? n.title : nodeTitle(o.node);
     F.blurb = n ? n.summary : 'Tissue: cells of a few kinds working together.';
     F.note = 'An illustration of this kind of tissue, not a microscope image: the shapes and the arrangement of the cells are simplified.';
-    F.spawn = (T, hint) => { const id = hint && hint.obj && hint.obj.userData.id || cellId; return new Frame({ type: 'cell', name: nodeTitle(id), unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T.clone(), opts: { type: 'animal', node: id } }); };
+    F.spawn = (T, hint) => {
+      const id = hint && hint.obj && hint.obj.userData.id || cellId, q = { id, node: NODE[id] ? id : null, what: nodeTitle(id), u: (hint && hint.obj && hint.obj.userData) || {} };
+      if (typeof DESCENT !== 'undefined' && DESCENT.known(F, q)) return DESCENT.spawnFor(F, q, T);   // a red blood cell, a platelet, bone matrix ...: data/descent/assign/tissue.json
+      return new Frame({ type: 'cell', name: nodeTitle(id), unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T.clone(), opts: { type: 'animal', node: id, cname: `${nodeTitle(id)}: drawn as a generic animal cell` } });   // no scene of this very cell exists: the generic one, and its name says so
+    };
   }
 };
 

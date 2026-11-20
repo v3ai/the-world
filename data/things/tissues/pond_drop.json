@@ -98,7 +98,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "model_edge"
   },
   {
    "id": "volvox",
@@ -128,7 +129,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "algal_cells"
   },
   {
    "id": "volvox_cell",
@@ -354,7 +356,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "single_cell"
   },
   {
    "id": "paramecium_nucleus",
@@ -389,7 +392,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "cell_nucleus"
   },
   {
    "id": "rotifer",
@@ -424,7 +428,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "animal_cells"
   },
   {
    "id": "rotifer_corona",
@@ -459,7 +464,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "animal_cells"
   },
   {
    "id": "bacteria",
@@ -493,7 +499,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "bacteria"
   },
   {
    "id": "detritus",
@@ -527,7 +534,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "debris"
   }
  ]
 }

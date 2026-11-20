@@ -186,7 +186,8 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "material": "collagen"
   },
   {
    "id": "fat",
@@ -216,7 +217,8 @@
     "gap": 2,
     "seed": 4
    },
-   "ink": 1
+   "ink": 1,
+   "material": "fat"
   },
   {
    "id": "guard",
@@ -256,7 +258,8 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "material": "keratin"
   },
   {
    "id": "under",
@@ -380,7 +383,8 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "material": "keratin"
   },
   {
    "id": "bulb",
@@ -420,7 +424,8 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "material": "animal_cells"
   },
   {
    "id": "sebaceous",
@@ -460,7 +465,8 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "material": "animal_cells"
   },
   {
    "id": "apocrine",
@@ -500,7 +506,8 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "material": "animal_cells"
   }
  ],
  "tag": "Inside dog skin",

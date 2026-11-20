@@ -1,0 +1,22 @@
+{
+ "about": "The observable universe (FT.cosmos).",
+ "spawnD": 3e+21,
+ "default": "intergalactic_gas",
+ "everywhere": true,
+ "ids": {
+  "cmb": "cmb",
+  "filament": "cosmic_web",
+  "localgroup": "marker",
+  "cluster_Great Attractor": "region_of_space"
+ },
+ "match": [
+  [
+   "^cluster_.*(Cluster|Supercluster)",
+   "cluster_gas"
+  ],
+  [
+   "^cluster_",
+   "galaxy"
+  ]
+ ]
+}

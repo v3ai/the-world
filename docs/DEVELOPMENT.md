@@ -24,6 +24,7 @@
 | `teardown.js` | Phone, then processor die, CPU core, gates, inverter, FinFET and silicon. |
 | `viz.js` | Figure language and renderer. The spec is in `docs/VIZ_SPEC.md`; validate with `node tools/viz/validate.mjs <file>`, preview with `tools/viz/viztest.html?file=<file>`. |
 | `labs/host.js` | Lab overlay, plus Tracks with previous/next navigation. Labs register `LABS.<id>.open(container, preset)`. |
+| `descent.js` | What everything is made of: the materials table, the assignment files, the rule that spawns a material's scene, and the `DESCENT` contract (inside, describe, up). |
 | `world_build.js` | Assembles frames and landmarks; `startView()`. |
 | `perf.js` | Loaded first. URL switches, always-on counters, and the performance meter (`?stats=1`, Shift+P). |
 | `mesh_worker.js` | A worker that fetches and decodes anatomy files and thing bundles (positions, indices, normals). |
@@ -45,6 +46,92 @@ Styles are all in `css/app.css`. Design tokens are at the top: porcelain panels,
 - **Layered frames (things).** Any frame with `layered = true`, `parts`, `hidden`, `sel`, `reveal` gets the body's core sample, "Hide this", "Peel to here" and "Show everything" (`showBodyNode` reads `h.frame.layered`); `F.coreIds()` / `F.coreClip(point)` / `F.coreText` narrow the sample to what is in the current detail tier and not cut away. `js/things.js` (`FT.thing`) is the user: its Auto peel (`thPeel`, `thAutoUpdate`) is `bodyPeel` over the thing's `layers`; its pick rule is `thChooseHit`. Extension points in `js/nodes.js`: `CARD_HOOKS`, `GOTO_HOOKS`, `frame.cardMadeOf`. The hover tooltip is worked out with `PICK_HOVER` set (`js/body_core.js`): when only see-through layers are under the cursor it names nothing instead of the nearest ghost. Details: `tools/things/SCHEMA.md` section 9.
 - **Going to a part of a thing** (`thFindNode`, `thFlyToNode`, js/things.js). The flight aims at the part's centre (a point on the part when its centre is off the surface; the middle of its paths for a flow part), or, for an instanced part (a leaf, a petal, a hair), at ONE representative instance chosen the same way every time (`thRepInstance`: within reach, outermost). The nearest it goes is `part.fly_m`, else 0.4 m scaled with the thing but at most 4 radii of a small part. `F.spawnHold` stops a flight that ends very close from diving into what the part is made of until you zoom in further. On landing a cut or pivoted view is turned to face the camera, and `thClearView` looks from another side if something of another frame (or, a moment later, a solid part of the thing's own) hides the target. A card about something inside a thing that has no visible marker peels what is in front of the nearest inner part. `noPick` on an object's `userData` makes it unpickable (the park's ground and grass while a thing has made them see-through); `auto.ground_see_through` lets the ray-based Auto do that.
 - **Tests:** `/home/rhett/projects/how/.devtools/harness/core/` (`t_body_core.py`, `t_body_cards.py`, `t_organ_views.py`, `t_tours.py`, `t_all_landmarks.py`, `run_landmarks_parallel.py`, `t_descent.py`, `t_goto_all.py`, `run_goto_parallel.py`, `t_review_fixes.py`). Run with the venv Python; `base.py` sets `WT_URL` and `WT_SHOTS`.
+
+## What everything is made of (the descent)
+
+The aim: point at anything, keep zooming, and arrive at what it is made of, level by level, down to the quarks. Three pieces make that work, and none of them is per-thing code.
+
+### 1. A descent ends ON something (attractors, `js/engine.js`)
+
+A frame may name the points a zoom can end on: `F.att = { D, find(P, hint) -> id, pos(id, out) -> out, tol? }` (the comment above `attLock` has the contract). Below the camera distance `D` the zoom locks on to the attractor nearest the pointer's pivot (or the one the pointer is on). From then on the camera is scaled about that point, and the target closes on it as the square of the zoom: nothing jumps, only the centre of the zoom changes. `attId(F)` tells a spawn function which attractor the zoom is locked on, so the frame that opens is the one it converged on. While a zoom is locked, a fixed child frame further than `tol` from the attractor is not entered (the fixed oxygen atom of the DNA scene does not capture a zoom that is closing on its neighbour).
+
+| frame | attractors | from |
+|---|---|---|
+| molecule, crystal, liquid water (`atomAtt`, `js/world_matter.js`) | every atom | 2.5 nm |
+| gas | every molecule | 8 nm |
+| plasma | every nucleus (not the electrons) | 10 nm; the particles come to rest as you close in |
+| atom (`js/atom.js`) | the nucleus | 120 pm |
+| nucleus (`js/particles.js`) | every nucleon | as soon as the camera is in the frame |
+| proton or neutron | the three valence quarks; the Standard Model view opens at the one the zoom closed on | as soon as the camera is in the frame |
+
+The older single-point form (`F.attract`, `attractD`, `attractR`) still works (the park in its region, the Galactic Centre). Spawn functions of these frames never return null for want of precision: a molecule returns the nearest atom however far the target is from it.
+
+### 2. The table: `data/descent/materials.json`
+
+A **material** is a reusable description of matter at one level:
+
+```json
+"bone": { "title": "Bone", "desc": "one plain line", "card": "bone_tissue",
+          "inside": [ { "name": "compact bone (osteons)", "scene": "tissue:bone", "note": "what is to scale and what is not" } ],
+          "src": "where the statement comes from" }
+```
+
+- `inside` lists what you find one level down. The first entry with a `scene` (or a `material`) is the way down; entries with neither name what else is in it and has no scene yet (they are listed on screen as "Also in it, not built yet").
+- `scene` names an existing reusable scene: `tissue2:<id>` (a file in `data/things/tissues`), `tissue:<kind>` (the twelve `FT.tissue` kinds), `cell:<animal|plant|bacterium|fungal>`, `micro:<kind>`, `mol:<id>`, `crystal:<id>`, `liquid`, `gas`, `gas:giant`, `plasma`, `atom:<El>`, `dna`; or the object form with parameters (`{"type":"micro","kind":"metal","title":"Copper, magnified","crystal":"copper_fcc"}`; `{"type":"gas","mix":[["H2",0.9],["He",0.1]],"title":...,"note":...}`; `{"type":"cell","cell":"plant","cname":"..."}`; a micro scene may carry `material`: what its grains, surface, water or gas lead into).
+- `material` instead of `scene` goes on through another material ("sap" is "water", with a note).
+- `standIn: true` with a `note` says what is shown in place of what. `{what}` / `{What}` in a `title` or `note` is replaced by the name of the part that was pointed at. The caption of the scene starts with "A stand-in." and the note.
+- `stop: "sentence"` instead of `inside`: nothing true can be shown below (a marker, the sky, a far bird, glass, the leaf's wax). The camera stays at the frame's floor and the sentence is shown.
+- `card` is the node that explains the material (`null` when there is none yet).
+
+`node tools/descent/check.mjs` proves the table: every card and scene exists; every material resolves, through other materials and through the structures of the tissue scenes it opens, to a molecule, crystal, liquid, gas, plasma or atom, or is an honest stop; no cycle; no dangling id; a stand-in has a note; every structure of every tissue scene has a `deeper` or a `material`. Run it after every change to the table, an assignment file or a tissue scene.
+
+### 3. Assignment files: `data/descent/assign/<frame type or thing id>.json`
+
+They say which material each pickable thing of a frame is made of (the file must be listed under `assign` in `materials.json`):
+
+```json
+{ "default": "animal_cells",
+  "systems": { "skeleton": "bone", "muscles": "skeletal_muscle" },
+  "ids":     { "claws": "keratin", "teeth": "tooth", "mu_canal": null },
+  "nodes":   { "dog_costal": "cartilage" },
+  "match":   [ ["^(hs_|at_)", "marker"] ],
+  "sub":     { "skin": { "ids": { "microsurface": "corneocytes" } } },
+  "spawnD": 0.008, "everywhere": true }
+```
+
+Looked up in this order: the part's pick id (`ids`), its card (`nodes`), the first regular expression that matches its id (`match`), its system (`systems`), then `default`. `sub` holds the same structure per kind of the frame (a tissue kind, a cell type, a micro kind, a landscape's body or biome) and is tried first. `null` means "nothing is assigned to this part" (the default does not apply). `default` speaks for whatever of the frame is pointed at; `everywhere: true` makes it hold where the pointer is on nothing too (a chip is silicon throughout). `spawnD` (metres) is the camera distance below which a frame without a spawn function of its own asks the table (default: four times its floor).
+
+### 4. The rule (`js/descent.js`, hooks in `js/engine.js`)
+
+When the camera descends at a point and the frame it is in has nothing more specific there (no child frame; its own `spawn` returns null), `trySpawn` asks `DESCENT.spawn(frame, T, hint)`. The material of the thing under the zoom point is, in this order: the part's own `material` (a thing part or a tissue-scene structure may carry one in its data); the row of the assignment file that names it; `userData.madeOf` when that is a material id; the file's default. The material's scene is created at that point and follows the zoom target until the camera reaches it. Frames that have a spawn function of their own ask the table first, but only for rows that name the part (`DESCENT.known`): the body (`assign/body.json`), cut-open organs (`organ.json`), `FT.tissue` scenes (`tissue.json`), the cell (`cell.json`), micro scenes (`micro.json`), the park (`park.json`), landscapes (`landscape.json`); a thing's part with its own `deeper` keeps it, every other part goes through the thing's file.
+
+- **Which part.** A thing: the part the pointer is on while it is still showing, else the part that is visibly under the target (`thPartAt`); a peeled, see-through layer never answers. A tissue scene: the structure the pointer is on, else the nearest structure, so a descent never ends in the gap between two cells. A cell: the organelle pointed at; being near the nucleus counts only when the pointer is on nothing.
+- **Which frame.** A co-rendered child (a thing in the park, the body) is drawn and picked with its parent, so when the zoom's pivot is on the parent's own content or on another thing, the camera does not go down into it (`zoomAim`): the grass beside the oak leads into soil, not into the oak. A frame may add its own condition with `enterIf(aim)` (the phone lies in the hand: the skin leads to it, a hand bone does not).
+- **Floors.** `Frame.floorD` holds only where nothing lies below: a child frame waiting under the target lifts it (`zoomFloor`), so the zoom runs on into that frame. A `stop` makes the place where it was said a floor, also in a frame that has none; where a floor holds and nothing has been said, `DESCENT.floorSay` says that the picture ends there. A failed spawn is tried again at most every 0.4 s, or when the target or the pointed object changes or the camera has come a sixth closer (nothing here runs per frame).
+- **Waiting frames.** A scene made at the zoom target waits, following the target, until the camera is close enough to enter it (`trySpawn`); it is dropped only when the camera has pulled back threefold from where it was made. One made while the pointer was on nothing (a frame-wide default) gives way when the pointer comes to rest on a thing. After the camera has entered a scene that is still a detail in the view, the scene keeps following the target until the view is down to its own size (`reanchor`), so a target that is still gliding toward the pointer does not leave it and make it again; and once the view is a fraction of a spawned scene's size, the camera leaves it only when the target is three radii out (a plant cell reaches past the radius its frame is given). Between a scene and the much smaller one below it (a landscape and a crystal, a galaxy and its gas) there is nothing to draw: the zoom simply runs on through the larger picture until the smaller one is reached, and double-click (`DESCENT.inside`) flies there directly.
+- **Scroll and double-click differ on layered things.** Scrolling toward a thing with an Auto peel (the body, the dog, the bee) peels its layers, and the descent goes into the part that is visibly under the pointer when the camera arrives, as before. `DESCENT.inside(hit)` goes into the part that was picked, whatever lies behind it.
+- **Honesty.** `decorate` puts the stand-in line in front of the scene's own note. A cell opened from a tissue is named for what it stands for ("Hepatocyte (liver cell): drawn as a generic animal cell").
+
+### 5. The contract for the pointer and card code
+
+`js/descent.js` exports the global `DESCENT`:
+
+- `DESCENT.inside(hit)` flies into the next level down at the picked point (`hit` is what `pickAt` returns). It chooses among: the object's own `zoomTo` while the camera is still far from it; the cut-open view of a body organ; the frame's own answer at that point (a part's `deeper`, the atom of a molecule, the nucleon of a nucleus, the tissue of a body part); the table; the older `diveMaterial` kinds. Returns `{ok: true, title, note}` or `{ok: false, reason, card}`.
+- `DESCENT.describe(hit)` gives the same answer without moving: `{title, kind, standIn, note}`; `kind` is `'stop'` (with the sentence in `note`) when nothing deeper exists.
+- `DESCENT.up()` flies one level back out, to the place the current frame sits in its parent.
+
+`thGoDeeper`, `diveMaterial` and the organ views still work on their own.
+
+### 6. Adding things
+
+- **A new material:** add a row to `materials.json` (title, one-line `desc`, `card`, `inside` or `stop`, `src`), run `node tools/descent/check.mjs`. Compositions must be true: take them from a card that has been refereed or from a source you opened, and record it in `src`.
+- **A new thing in the park:** leave `deeper` for the parts that have a scene of their own, and write `data/descent/assign/<thing id>.json` for the rest (a `default` for the kind of creature, `systems`, then the exceptions by id). List the file under `assign` in `materials.json`. Parts you are not sure of get `null` and a line in your notes.
+- **A new tissue scene:** every population needs a `deeper` or a `material`; the checker lists the ones that have neither.
+- **A new frame type:** give it `F.att` if a zoom in it should end on particular points; ask `DESCENT.known` / `DESCENT.spawnFor` in its `spawn` if the table should be able to override it; otherwise the generic fallback in `trySpawn` already covers it once an assignment file with its type name exists.
+
+### 7. The crawler: the acceptance test
+
+`/home/rhett/projects/how/.devtools/harness/descent/` (`dc.js`, `recipes.js`, `crawl.py`, `build.py`, `analyze.py`, `validate.py`) starts on every pickable thing of every frame and scrolls down with the engine's own zoom, recording each frame entered. `DC_TMP=<dir> WT_URL=<url> python crawl.py --all --budget 470` is resumable; `python build.py` classifies each start (reaches quarks, nucleus, atom, molecule; stops at a cell, a tissue, a floor) and lists wrong turns. `harness/core/t_descent_cover.py` runs a fixed sample of about 150 starts from all areas and fails if coverage drops; `tmp/descent2/scripts/wheel.py` does the same descents with real wheel events and measures how far the target moves on screen per frame.
 
 ## Co-rendering, fades, extension hooks
 

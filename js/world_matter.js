@@ -60,7 +60,7 @@ function atomSet(F, parent, atoms, bonds, o = {}) {
       center: h => { const a = atoms[idx[h.hit.instanceId]]; return new V3(a[1], a[2], a[3]).applyMatrix4(grp.matrixWorld).add(h.frame.C); },
       radius: () => rad
     };
-    mesh.userData.atomAt = id => atoms[idx[id]];
+    mesh.userData.atomAt = id => atoms[idx[id]]; mesh.userData.atomIx = id => idx[id];
     grp.add(mesh); F.pickables.push(mesh); meshes.push(mesh);
   }
   if (bonds && bonds.length && style !== 'sf' && !o.noBonds) {
@@ -85,7 +85,28 @@ function atomSet(F, parent, atoms, bonds, o = {}) {
     bm.userData = { id: 'bond', priority: 1, infoFn: h => bondCard(atoms, bonds[bondOf[h.hit.instanceId] || 0], o) }; F.pickables.push(bm);
   }
   grp.userData.meshes = meshes;
+  F.atomSet = { grp, atoms };   // the atoms a zoom in this frame can end on (atomAtt)
   return grp;
+}
+/* The atoms of a molecule, crystal or liquid frame as attractors (engine.js, "attractors"): scrolling in converges on the atom under the pointer, or on the atom
+   nearest the pointer when it is between atoms, so the descent never runs on into the empty space between them. Positions are those of the frame's current atomSet,
+   through whatever turn its holder has. */
+const _atM = new THREE.Matrix4(), _atI = new THREE.Matrix4(), _atP = new V3();
+function atomSetMatrix(F) { const S = F.atomSet; _atM.identity(); if (S) for (let o = S.grp; o && o !== F.root; o = o.parent) { o.updateMatrix(); _atM.premultiply(o.matrix); } return _atM; }
+function atomAtt(F, D) {
+  F.att = {
+    D, tol: .3,
+    find(P, hint) {
+      const S = F.atomSet; if (!S || !S.atoms.length) return -1;
+      const u = hint && hint.obj && hint.obj.userData;
+      if (u && u.atomIx && hint.hit && hint.hit.instanceId != null && S.atoms[u.atomIx(hint.hit.instanceId)] === u.atomAt(hint.hit.instanceId)) return u.atomIx(hint.hit.instanceId);   // the atom the pointer is on
+      _atP.copy(P).applyMatrix4(_atI.copy(atomSetMatrix(F)).invert());
+      let best = -1, bd = Infinity; const A = S.atoms;
+      for (let i = 0; i < A.length; i++) { const a = A[i], dx = a[1] - _atP.x, dy = a[2] - _atP.y, dz = a[3] - _atP.z, d = dx * dx + dy * dy + dz * dz; if (d < bd) { bd = d; best = i; } }
+      return best;
+    },
+    pos(id, out) { const S = F.atomSet, a = S && S.atoms[id]; return a ? out.set(a[1], a[2], a[3]).applyMatrix4(atomSetMatrix(F)) : null; }
+  };
 }
 function bondCard(atoms, b, o) {
   const [i, j, ord] = b, sa = atoms[i][0], sb = atoms[j][0], L = Math.hypot(atoms[i][1] - atoms[j][1], atoms[i][2] - atoms[j][2], atoms[i][3] - atoms[j][3]);
@@ -101,15 +122,11 @@ function bondCard(atoms, b, o) {
   return { title: kind === 'contact' ? 'Neighbouring atoms in a crystal' : `${kind[0].toUpperCase() + kind.slice(1)} bond`, tag: `Chemical bond · ${sa}–${sb}`, body: `<p>${TXT[kind]}</p>`, facts: [['Atoms', names], ['Length in this model', `${L.toFixed(2)} Å (${(L / 10).toFixed(3)} nm)`], ['Bond order', ord]] };
 }
 function spawnAtomFrom(F, T, hint, unitScale) {
-  if (!hint || !hint.obj || !hint.obj.userData.sym || hint.hit == null || hint.hit.instanceId == null) {
-    // nearest atom to T among this frame's atom meshes: never run on into empty space
-    let best = null, bd = Infinity;
-    F.pickables.forEach(m => { if (!m.isInstancedMesh || !m.userData.sym) return; const p = new V3(), M = new THREE.Matrix4(); for (let i = 0; i < m.count; i++) { m.getMatrixAt(i, M); p.setFromMatrixPosition(M).applyMatrix4(m.parent.matrixWorld).add(F.C || new V3()); const d = p.distanceTo(T); if (d < bd) { bd = d; best = { sym: m.userData.sym, p: p.clone() }; } } });
-    if (!best || bd > 5) return null;
-    return atomFrame(best.sym, best.p, unitScale);
-  }
-  const p = hint.obj.userData.center({ hit: hint.hit, frame: F });
-  return atomFrame(hint.obj.userData.sym, p, unitScale);
+  // the atom the zoom has converged on; else the atom the pointer is on; else the nearest atom to the target, however far: never run on into empty space
+  const a = F.att, S = F.atomSet; if (!a || !S) return null;
+  let id = attId(F); if (id < 0) id = a.find(T, hint);
+  const p = id >= 0 && a.pos(id, new V3()); if (!p) return null;
+  return atomFrame(S.atoms[id][0], p, unitScale);
 }
 function atomFrame(sym, pos, unitScale) { // unitScale: parent units per Å
   return new Frame({ type: 'atom', pinned: true, name: `${(ELJ[sym] || {}).name || sym} atom`, unit: 1e-12, radius: 600, r0: 0, r1: 2.5e-9, spawnD: 2e-13, pos: pos.clone(), opts: { el: sym } });
@@ -164,8 +181,8 @@ FT.mol = {
       uiEl(sel);
     }
     seg([['bs', 'Ball and stick'], ['sf', 'Space-filling']], style, k => { style = k; store.set('molStyle', k); load(F.opts.mol); });
-    F.spawn = (T, hint) => spawnAtomFrom(F, T, hint, 1e-2);
-    F.update = (dt) => { holder.rotation.y += dt * .05 * (cam.D > 3e-9 ? 1 : 0); };
+    atomAtt(F, 2.5e-9); F.spawn = (T, hint) => spawnAtomFrom(F, T, hint, 1e-2);
+    F.update = (dt) => { holder.rotation.y += dt * .05 * smooth(3e-9, 5e-9, cam.D); };   // the slow turn comes to rest before the zoom starts to close on an atom
   }
 };
 /* ---------- crystal lattice (unit Å) ---------- */
@@ -216,7 +233,7 @@ FT.crystal = {
       const mg = seg([['cell', 'One unit cell'], ['small', 'Small crystal'], ['big', 'Larger crystal']], mode, k => { mode = k; draw(); });
       uiEl(sl); uiEl(mg); if (typeof uiFrame !== 'undefined' && uiFrame === F) { uiFrame = null; }
     });
-    F.spawn = (T, hint) => spawnAtomFrom(F, T, hint, 1e-2);
+    atomAtt(F, 2.5e-9); F.spawn = (T, hint) => spawnAtomFrom(F, T, hint, 1e-2);
   }
 };
 /* ---------- liquid water (unit Å) ---------- */
@@ -261,7 +278,7 @@ FT.liquid = {
     g.userData.meshes.forEach(m => m.userData.molInfo = info); F.info = info;
     F.blurb = 'Liquid water: a ball about 3 nm across cut from the bulk, every atom shown.';
     F.note = 'Model, not a simulation: random positions at the true density (33 molecules per nm³), orientations tuned to form hydrogen bonds. Real molecules never stop moving. Atoms are drawn at a quarter of their true size so the bonds show.';
-    F.spawn = (T, hint) => spawnAtomFrom(F, T, hint, 1e-2);
+    atomAtt(F, 2.5e-9); F.spawn = (T, hint) => spawnAtomFrom(F, T, hint, 1e-2);
   }
 };
 /* ---------- gas (air, or a gas giant's hydrogen and helium) — unit nm ---------- */
@@ -269,20 +286,23 @@ FT.gas = {
   build(F, o) {
     F.env = { opaque: true, bg: 0x061022 };
     F.add(new THREE.HemisphereLight(0xdfe8ff, 0x203050, .9)); const dl = new THREE.DirectionalLight(0xffffff, .8); dl.position.set(5, 8, 6); F.add(dl);
-    const giant = o.air === 'giant';
-    const r = rng(3), R = 22, n = Math.floor(4 / 3 * Math.PI * R ** 3 * .0246);
+    /* o.mix (from the materials table, js/descent.js): [[kind, share by number], ...] with kinds N2 O2 Ar CO2 H2O H2 He H CH4, drawn like air: the number density of
+       sea-level air unless o.count says how many to draw; o.gasTitle, o.gasBlurb, o.gasBody and o.gasNote are its name and its honesty line. */
+    const giant = o.air === 'giant', custom = Array.isArray(o.mix) && o.mix.length ? o.mix : null;
+    const r = rng(3), R = 22, n = o.count || Math.floor(4 / 3 * Math.PI * R ** 3 * .0246);
     // humid air at sea level: about 1% water vapour, the rest dry air (N2 78.08%, O2 20.95%, Ar 0.93%, CO2 about 0.04%)
-    const mix = giant ? [['H2', .898], ['He', .102]] : [['N2', .7808 * .99], ['O2', .2095 * .99], ['Ar', .0093 * .99], ['CO2', .0004 * .99], ['H2O', .01]];
+    const mix = custom || (giant ? [['H2', .898], ['He', .102]] : [['N2', .7808 * .99], ['O2', .2095 * .99], ['Ar', .0093 * .99], ['CO2', .0004 * .99], ['H2O', .01]]);
     const mols = [], sumW = mix.reduce((s, m) => s + m[1], 0);
     for (let i = 0; i < n; i++) {
       let u = r() * sumW, k = 0; while (k < mix.length - 1 && u > mix[k][1]) { u -= mix[k][1]; k++; }
-      const p = new V3(gauss(r), gauss(r), gauss(r)).normalize().multiplyScalar(R * Math.cbrt(r())), d = new V3(gauss(r), gauss(r), gauss(r)).normalize(), v = new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(.3);
+      const p = new V3(gauss(r), gauss(r), gauss(r)).normalize().multiplyScalar((n < 8 ? 3 : R) * Math.cbrt(r())), d = new V3(gauss(r), gauss(r), gauss(r)).normalize(), v = new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(.3);
       mols.push({ kind: mix[k][0], p, d, v, q: new THREE.Quaternion().setFromUnitVectors(new V3(0, 1, 0), d) });
     }
-    const counts = {}; mols.forEach(m => counts[m.kind] = (counts[m.kind] || 0) + 1);
+    const counts = {}; mols.forEach(m => counts[m.kind] = (counts[m.kind] || 0) + 1); const cs = k => counts[k] || 0;
     const sg = new THREE.SphereGeometry(1, 12, 8), meshes = {};
     const mk = (s, cnt) => { const m = new THREE.InstancedMesh(sg, new THREE.MeshStandardMaterial({ color: elColor(s), emissive: elColor(s).multiplyScalar(.35), roughness: .5 }), Math.max(cnt, 1)); m.count = 0; F.add(m); meshes[s] = m; return m; };
-    const need = { N: (counts.N2 || 0) * 2, O: (counts.O2 || 0) * 2 + (counts.CO2 || 0) * 2 + (counts.H2O || 0), Ar: counts.Ar || 0, C: counts.CO2 || 0, H: (counts.H2O || 0) * 2 + (counts.H2 || 0) * 2, He: counts.He || 0 };
+    const need = { N: (counts.N2 || 0) * 2, O: (counts.O2 || 0) * 2 + (counts.CO2 || 0) * 2 + (counts.H2O || 0), Ar: counts.Ar || 0, C: (counts.CO2 || 0) + (counts.CH4 || 0), H: (counts.H2O || 0) * 2 + (counts.H2 || 0) * 2 + (counts.H || 0) + (counts.CH4 || 0) * 4, He: counts.He || 0 };
+    const CH4_H = [[-.633, -.782, -.426], [-.39, .98, -.284], [.005, -.088, 1.089], [1.018, -.11, -.379]].map(v => new V3(v[0], v[1], v[2]).multiplyScalar(.1));   // the four C-H bonds of methane (nm), from data/molecules_all.json
     for (const s in need) if (need[s] > 0) mk(s, need[s]);
     const hA = [new V3(Math.sin(52.26 * Math.PI / 180) * .0957, Math.cos(52.26 * Math.PI / 180) * .0957, 0), new V3(-Math.sin(52.26 * Math.PI / 180) * .0957, Math.cos(52.26 * Math.PI / 180) * .0957, 0)];
     const m4 = new THREE.Matrix4(), place = () => {
@@ -295,31 +315,40 @@ FT.gas = {
         else if (m.kind === 'H2') { put('H', m.p.clone().addScaledVector(h, .037), .11); put('H', m.p.clone().addScaledVector(h, -.037), .11); }
         else if (m.kind === 'Ar') put('Ar', m.p, .188);
         else if (m.kind === 'He') put('He', m.p, .14);
+        else if (m.kind === 'H') put('H', m.p, .11);
+        else if (m.kind === 'CH4') { put('C', m.p, .17); for (const v of CH4_H) put('H', m.p.clone().add(v.clone().applyQuaternion(m.q)), .11); }
         else if (m.kind === 'CO2') { put('C', m.p, .17); put('O', m.p.clone().addScaledVector(h, .116), .152); put('O', m.p.clone().addScaledVector(h, -.116), .152); }
         else { put('O', m.p, .152); put('H', m.p.clone().add(hA[0].clone().applyQuaternion(m.q)), .11); put('H', m.p.clone().add(hA[1].clone().applyQuaternion(m.q)), .11); }
       });
       for (const s in meshes) { meshes[s].instanceMatrix.needsUpdate = true; meshes[s].computeBoundingSphere && meshes[s].computeBoundingSphere(); }
     };
     place();
-    const cs = k => counts[k] || 0;
-    const info = giant
+    const KN = { N2: 'N₂', O2: 'O₂', Ar: 'Ar', CO2: 'CO₂', H2O: 'H₂O', H2: 'H₂', He: 'He', H: 'H', CH4: 'CH₄' };
+    const info = custom ? { title: o.gasTitle || 'Gas', tag: 'A gas, at the scale of molecules', body: `<p>${o.gasBody || o.gasBlurb || ''}</p>${o.gasNote ? `<p class="mini">${o.gasNote}</p>` : ''}`, facts: [['Drawn', n === 1 ? 'one atom or molecule' : `${n} atoms or molecules`], [mix.map(m => KN[m[0]] || m[0]).join(' : '), mix.map(m => cs(m[0])).join(' : ')]] }
+      : giant
       ? { title: 'Hydrogen and helium gas', tag: 'The air of a gas giant', body: `<p>The air of Jupiter and Saturn is mostly hydrogen and helium: about 90% H₂ molecules and 10% helium atoms by number in Jupiter (NASA planetary fact sheet). Uranus and Neptune also hold a few percent methane (CH₄), not drawn here.</p><p class="mini">Model: random positions and orientations, drawn at the same number density as air at sea level on Earth (0.025 molecules per nm³) so the pictures can be compared. The real density at a giant's cloud tops is different. Molecules are drawn at true size; motion is slowed about a trillion times.</p>`, facts: [['Molecules shown', n], ['H₂ : He', `${cs('H2')} : ${cs('He')}`], ['Mean spacing (as drawn)', '≈ 3.4 nm']] }
       : { title: 'Air', tag: 'A gas mixture at sea level', body: `<p>Air is mostly empty space. At sea level and 25 °C a cubic nanometer holds on average just 0.025 molecules, so neighbours are about 3.4 nm apart, ten times the size of a molecule. About 78% nitrogen (N₂), 21% oxygen (O₂), 0.9% argon, about 1% water vapour in humid air, and a trace of CO₂ (about 0.04%, so usually none in a view this small).</p><p class="mini">Model: random positions and orientations at the true density, a frozen snapshot. Molecules are drawn at true size. A real N₂ molecule moves about 475 m/s (calculated for 25 °C) and travels about 68 nm between collisions; motion here is slowed about a trillion times.</p>`, facts: [['Molecules shown', n], ['N₂ : O₂ : Ar : H₂O : CO₂', `${cs('N2')} : ${cs('O2')} : ${cs('Ar')} : ${cs('H2O')} : ${cs('CO2')}`], ['Mean spacing', '≈ 3.4 nm'], ['Mean free path', '≈ 68 nm']] };
-    for (const s in meshes) { const m = meshes[s]; m.userData = { id: 'gasmol', priority: 3, sym: s, infoFn: () => info, madeOf: 'molecule', center: h => { const M = new THREE.Matrix4(); m.getMatrixAt(h.hit.instanceId, M); return new V3().setFromMatrixPosition(M).add(h.frame.C); }, radius: () => .3 }; F.pickables.push(m); }
-    F.info = info; F.name = giant ? 'Hydrogen and helium gas' : 'Air molecules';
-    F.blurb = giant ? 'Hydrogen and helium, the gas of a giant planet, at the scale of molecules.' : 'Air at the scale of molecules: mostly empty space.';
-    F.note = 'Model: random snapshot at true density and true molecule size, motion slowed about a trillion times. Colours are the CPK convention.' + (giant ? ' Density drawn is that of air on Earth, for comparison.' : '');
+    for (const s in meshes) { const m = meshes[s]; m.userData = { id: 'gasmol', priority: 3, sym: s, infoFn: () => info, madeOf: 'molecule', center: h => { const M = new THREE.Matrix4(); m.getMatrixAt(h.hit.instanceId, M); return new V3().setFromMatrixPosition(M); }, radius: () => .3 }   /* the instance matrix is already in the frame's own coordinates */; F.pickables.push(m); }
+    F.info = info; F.name = custom ? (o.gasTitle || 'Gas') : giant ? 'Hydrogen and helium gas' : 'Air molecules';
+    F.blurb = custom ? (o.gasBlurb || '') : giant ? 'Hydrogen and helium, the gas of a giant planet, at the scale of molecules.' : 'Air at the scale of molecules: mostly empty space.';
+    F.note = custom ? (o.gasNote || 'Model: a random snapshot; molecules at true size. Colours are the CPK convention.') : 'Model: random snapshot at true density and true molecule size, motion slowed about a trillion times. Colours are the CPK convention.' + (giant ? ' Density drawn is that of air on Earth, for comparison.' : '');
     F.update = dt => {
-      if (cam.D < 6e-9) return; // freeze when you're looking closely
-      const s = dt * .25;
+      if (cam.D < 9e-9) return; // freeze when you're looking closely (before the zoom starts to close on one molecule)
+      const s = dt * .25 * smooth(9e-9, 2e-8, cam.D);
       mols.forEach(m => { m.p.addScaledVector(m.v, s); if (m.p.length() > R) m.p.multiplyScalar(-.98); m.d.applyAxisAngle(new V3(0, 1, 0), dt * .3); m.q.setFromUnitVectors(new V3(0, 1, 0), m.d); });
       place();
     };
+    // the molecules are what a zoom ends on: below 8 nm (when only a handful are in view) it converges on the one nearest the pointer, however empty the gas between
+    F.att = {
+      D: 8e-9,
+      find(P) { let best = -1, bd = Infinity; for (let i = 0; i < mols.length; i++) { const d = mols[i].p.distanceToSquared(P); if (d < bd) { bd = d; best = i; } } return best; },
+      pos(id, out) { const m = mols[id]; return m ? out.copy(m.p) : null; }
+    };
     F.spawn = (T, hint) => {
-      let best = null, bd = Infinity; mols.forEach(m => { const d = m.p.distanceTo(T); if (d < bd) { bd = d; best = m; } }); if (!best || bd > .8) return null;
-      const id = { N2: 'nitrogen', O2: 'oxygen', CO2: 'carbon_dioxide', H2O: 'water', H2: 'hydrogen' }[best.kind];
+      let i = attId(F); if (i < 0) i = F.att.find(T); const best = mols[i]; if (!best) return null;
+      const id = { N2: 'nitrogen', O2: 'oxygen', CO2: 'carbon_dioxide', H2O: 'water', H2: 'hydrogen', CH4: 'methane' }[best.kind];
       if (!id) return atomFrame(best.kind, best.p);
-      return new Frame({ type: 'mol', pinned: true, name: { N2: 'Nitrogen, N₂', O2: 'Oxygen, O₂', CO2: 'Carbon dioxide, CO₂', H2O: 'Water, H₂O', H2: 'Hydrogen, H₂' }[best.kind], unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: best.p.clone(), opts: { mol: id, fixed: true } });
+      return new Frame({ type: 'mol', pinned: true, name: { N2: 'Nitrogen, N₂', O2: 'Oxygen, O₂', CO2: 'Carbon dioxide, CO₂', H2O: 'Water, H₂O', H2: 'Hydrogen, H₂', CH4: 'Methane, CH₄' }[best.kind], unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: best.p.clone(), opts: { mol: id, fixed: true } });
     };
   }
 };
@@ -327,7 +356,7 @@ FT.gas = {
 const PLASMA_SUP = '⁰¹²³⁴⁵⁶⁷⁸⁹';
 const plasmaSci = x => { const e = Math.floor(Math.log10(x)), m = x / Math.pow(10, e); return `${m.toFixed(1)} × 10${e < 0 ? '⁻' : ''}${String(Math.abs(e)).split('').map(c => PLASMA_SUP[+c]).join('')}`; };
 FT.plasma = {
-  build(F) {
+  build(F, o = {}) {   // o.title, o.blurb, o.note: a plasma somewhere other than the Sun, named and qualified by the materials table (js/descent.js)
     F.env = { opaque: true, bg: 0x04070f };
     const par = F.parent, AUSUN = 695700 / 1.495978707e8; let r = null;
     if (par && par.type === 'sun') r = F.pos.length(); else if (par && par.type === 'solarsystem' && F.pos.length() < 2 * AUSUN) r = F.pos.length() / AUSUN;
@@ -356,20 +385,32 @@ FT.plasma = {
       F.name = ionised ? `Plasma inside the Sun (${r < .001 ? 'centre' : r.toFixed(2) + ' R'})` : 'Gas at the Sun\'s surface';
       if (!F.blurb || r > .001) F.blurb = `Inside the Sun, at ${place}: a patch ${Rp * 2} nm wide, ${tK}, density ${rho}. ${ionised ? 'Bare hydrogen and helium nuclei and free electrons.' : 'Mostly neutral hydrogen and helium atoms.'}`;
       F.note = `Schematic: ${N.toLocaleString('en-US')} particles are drawn${Nreal && Nreal > N * 1.5 ? ` of the roughly ${plasmaSci(Nreal)} that would fill this view (at this density the real spacing is about ${(Math.cbrt(1 / perM3) * 1e9).toFixed(3)} nm)` : Nreal ? ' (about the true number for this density)' : ''}; positions are random and the dots are far larger than real nuclei (about 10⁻¹⁵ m). Composition: ${comp} (rounded); the heavier elements (about 2%) are left out. Conditions come from a standard solar model, interpolated.`;
-    } else { F.blurb = F.blurb || 'Stellar plasma at nanometer scale: free electrons and bare nuclei.'; F.note = 'Schematic: a patch of stellar plasma drawn at random; the conditions of any particular star are not modelled.'; }
+    } else { F.blurb = o.blurb || F.blurb || 'Stellar plasma at nanometer scale: free electrons and bare nuclei.'; F.note = o.note || 'Schematic: a patch of stellar plasma drawn at random; the conditions of any particular star are not modelled.'; if (o.title) F.name = o.title; }
     const vel = new Float32Array(P.length), sp = { p: 1, he: .5, e: 6 }; for (let i = 0; i < K.length; i++) { const k = sp[K[i]] * (T ? Math.sqrt(T / 1.57e7) : 1) * .8; vel[3 * i] = gauss(rg) * k; vel[3 * i + 1] = gauss(rg) * k; vel[3 * i + 2] = gauss(rg) * k; }
     const pos = pts.geometry.attributes.position;
+    const _yAx = new V3(0, 1, 0), uk = F.unit / 1e-9;   // uk: the patch is drawn in the frame's own unit (nanometres inside the Sun, ångströms for a star)
     F.update = (dt, t) => {
-      pts.rotation.y += dt * .04; const d = Math.min(dt, .05); // thermal motion, slowed down enormously: electrons move fastest, helium nuclei slowest
+      const mv = smooth(1.2e-8 * uk, 4e-8 * uk, cam.D); if (!mv) return;   // everything comes to rest as you close in, so that the particle you are heading for is still there when you arrive
+      pts.rotation.y += dt * .04 * mv; const d = Math.min(dt, .05) * mv; // thermal motion, slowed down enormously: electrons move fastest, helium nuclei slowest
       if (ionised) for (let i = 0; i < K.length; i++) { let x = pos.array[3 * i] + vel[3 * i] * d, y = pos.array[3 * i + 1] + vel[3 * i + 1] * d, z = pos.array[3 * i + 2] + vel[3 * i + 2] * d; if (x * x + y * y + z * z > Rp * Rp) { vel[3 * i] *= -1; vel[3 * i + 1] *= -1; vel[3 * i + 2] *= -1; x = pos.array[3 * i]; y = pos.array[3 * i + 1]; z = pos.array[3 * i + 2]; } pos.array[3 * i] = x; pos.array[3 * i + 1] = y; pos.array[3 * i + 2] = z; }
       pos.needsUpdate = true;
     };
     // zooming into a nucleus goes on down: a hydrogen nucleus is a proton; a helium nucleus is two protons and two neutrons
+    // the nuclei are what a zoom ends on (an electron has nothing inside it to go on to): below 10 nm it converges on the nucleus nearest the pointer
+    const _pp = new V3();
+    F.att = {
+      D: 1e-8 * uk,
+      find(P, hint) {
+        const A = pos.array; _pp.copy(P).applyAxisAngle(_yAx, -pts.rotation.y);
+        if (hint && hint.obj === pts && hint.hit && hint.hit.index != null && K[hint.hit.index] !== 'e') return hint.hit.index;
+        let bi = -1, bd = Infinity; for (let i = 0; i < K.length; i++) { if (K[i] === 'e') continue; const dx = A[i * 3] - _pp.x, dy = A[i * 3 + 1] - _pp.y, dz = A[i * 3 + 2] - _pp.z, d = dx * dx + dy * dy + dz * dz; if (d < bd) { bd = d; bi = i; } }
+        return bi;
+      },
+      pos(id, out) { const A = pos.array; return id >= 0 && id < K.length ? out.set(A[id * 3], A[id * 3 + 1], A[id * 3 + 2]).applyAxisAngle(_yAx, pts.rotation.y) : null; }
+    };
     F.spawn = (T) => {
-      const A = pos.array; let bi = -1, bd = Infinity; for (let i = 0; i < K.length; i++) { const d = Math.hypot(A[i * 3] - T.x, A[i * 3 + 1] - T.y, A[i * 3 + 2] - T.z); if (d < bd) { bd = d; bi = i; } }
-      if (bi < 0 || bd > 1.2) return null;
-      const at = new V3(A[bi * 3], A[bi * 3 + 1], A[bi * 3 + 2]);
-      if (K[bi] === 'e') { message('An electron has no known smaller parts: it is a point, as far as any experiment can tell.'); return null; }
+      let bi = attId(F); if (bi < 0) bi = F.att.find(T, null); if (bi < 0) return null;
+      const at = F.att.pos(bi, new V3());
       if (K[bi] === 'he') return new Frame({ type: 'nucleus', pinned: true, name: 'Helium-4 nucleus', unit: 1e-15, radius: 40, r0: 1.5e-15, r1: 3e-13, spawnD: 4e-15, pos: at, opts: { Z: 2, N: 2, el: 'He' } });
       return new Frame({ type: 'proton', pinned: true, name: 'Proton', unit: 1e-15, radius: 4, r1: 1.2e-14, pos: at, opts: { kind: 'proton' } });
     };
@@ -439,8 +480,10 @@ v2frame('cell', 'cell', (c) => c.opts.type === 'bacterium' ? .1 : 10 / 12, (F, c
     if (c.patchOn) id = /phospholipid|channel|glyco/.test(id) ? id : 'phospholipid';   // the membrane patch sits at the cell centre in the drawing, but it is a patch of membrane
     const nucP = nuc0.clone().multiplyScalar(c.k);
     const dnaF = () => new Frame({ type: 'dna', name: kind === 'bacterium' ? 'DNA of the bacterium' : 'DNA', unit: 1e-9, radius: 30, r1: 2.5e-7, pos: T.clone() });
-    if (kind === 'bacterium') { if (/nucleoid/.test(id) || T.distanceTo(nucP) < 3 * c.k) return dnaF(); }
-    else if (!c.patchOn && (/nucle|chromatin/.test(id) || T.distanceTo(nucP) < 3.4 * c.k)) return dnaF();
+    // The part the pointer is on decides. Being close to the nucleus counts only when the pointer is on nothing (it used to send a membrane protein into DNA).
+    if (id && typeof DESCENT !== 'undefined') { const q = { id, node: hint.obj && hint.obj.userData.node, what: hint.obj && hint.obj.userData.info && hint.obj.userData.info.title, u: (hint.obj && hint.obj.userData) || {} }; if (DESCENT.known(F, q)) return DESCENT.spawnFor(F, q, T); }   // data/descent/assign/cell.json: ribosome, nucleolus, ER ...
+    if (kind === 'bacterium') { if (/nucleoid/.test(id) || (!id && T.distanceTo(nucP) < 3 * c.k)) return dnaF(); }
+    else if (!c.patchOn && (/^nucleus$|chromatin/.test(id) || (!id && T.distanceTo(nucP) < 3.4 * c.k))) return dnaF();
     const molF = (mol, name) => new Frame({ type: 'mol', name, unit: 1e-10, radius: 30, r1: 2e-8, spawnD: 1e-9, pos: T.clone(), opts: { mol, fixed: false, cname: name } });
     if (/membrane|phospholipid|channel|glyco/.test(id)) return molF('popc', 'POPC, a common membrane phospholipid (one lipid of the bilayer)');
     if (/mito/.test(id)) return molF('atp', 'ATP, the molecule mitochondria make (the inside of a mitochondrion is not built yet)');
@@ -448,9 +491,7 @@ v2frame('cell', 'cell', (c) => c.opts.type === 'bacterium' ? .1 : 10 / 12, (F, c
     if (/cellwall/.test(id)) return molF('cellotriose', 'Cellotriose: three glucose units of cellulose, the stuff of plant cell walls');
     if (/vacuole/.test(id)) return new Frame({ type: 'liquid', name: 'Water, the main ingredient of a vacuole (dissolved sugars and salts not drawn)', unit: 1e-10, radius: 18, r1: 2e-8, spawnD: 1e-9, pos: T.clone() });
     if (/^(cytoplasm|bacwall)$/.test(id) || !id) return new Frame({ type: 'liquid', name: 'Water, the main ingredient of cytoplasm (dissolved molecules not drawn)', unit: 1e-10, radius: 18, r1: 2e-8, spawnD: 1e-9, pos: T.clone() });
-    const NONE = { ribosome: 'ribosome', er: 'endoplasmic reticulum', golgi: 'Golgi apparatus', lysosome: 'lysosome', nucleolus: 'nucleolus', flagellum: 'flagellum' };
-    for (const k in NONE) if (id === k) { message(`No deeper view of the ${NONE[k]} has been built yet.`); return null; }
-    return null;
+    return null;   // anything else: the materials table's default for a cell (js/descent.js)
   };
   F.spawnD = kind === 'bacterium' ? 6e-6 : 1.2e-6;
 });
@@ -488,10 +529,12 @@ const MICRO = {
   basalt: { title: 'Basalt', blurb: 'Basalt is a dark volcanic rock made of tiny crystals (mostly pyroxene and feldspar). Landers on Venus measured rock compositions similar to basalts, and radar maps show lava plains across most of the planet.', ground: ['#4f4a44', '#5d5750', '#3f3b37', '#6b645b'], cells: 40, crystal: 'forsterite' },
   metal: { title: 'Metal surface', blurb: 'Polished iron under a microscope shows grains — each a single crystal of atoms in a cubic lattice.', ground: ['#9aa3ad', '#8c96a1', '#a7b0b9'], cells: 26, crystal: 'iron_bcc' },
 };
-function microFrame(kind, pos, quat) { const M = MICRO[kind] || MICRO.soil; return new Frame({ type: 'micro', name: M.title, unit: 1e-6, radius: 800, r0: 1.5e-4, r1: 6e-3, spawnD: 1.5e-4, pos: pos.clone(), quat: quat || new THREE.Quaternion(), up: new V3(0, 1, 0), opts: { kind } }); }
+/* over (optional): {title, blurb, crystal, material} from the materials table: the same picture standing for another material of the same kind (aluminium grains drawn
+   with the metal scene; ice grains on Europa), named as what it is. `material`: what its grains, its surface, its water or its gas lead into, instead of the scene's own. */
+function microFrame(kind, pos, quat, over) { const M = MICRO[kind] || MICRO.soil; return new Frame({ type: 'micro', name: (over && over.title) || M.title, unit: 1e-6, radius: M.air || M.water ? 1100 : 800,   /* what drifts in air or water is scattered through a box that reaches past 800 µm */ r0: 1.5e-4, r1: 6e-3, spawnD: 1.5e-4, pos: pos.clone(), quat: quat || new THREE.Quaternion(), up: new V3(0, 1, 0), opts: Object.assign({ kind }, over && (over.title || over.blurb || over.crystal || over.material) ? { over: { title: over.title, blurb: over.blurb, crystal: over.crystal, material: over.material } } : {}) }); }
 FT.micro = {
   build(F, o) {
-    const M = MICRO[o.kind] || MICRO.soil, r = rng(o.kind.length * 13 + 5);
+    const M = Object.assign({}, MICRO[o.kind] || MICRO.soil, o.over || {}), r = rng(o.kind.length * 13 + 5);
     F.env = { opaque: true, bg: 0x0d0f14 }; F.daylight = true; // a lit close-up of pale grains: glow only burned them out to white
     F.add(new THREE.HemisphereLight(0xf2f6ff, 0x404040, .5)); const dl = new THREE.DirectionalLight(0xffffff, .5); dl.position.set(3, 8, 4); F.add(dl);
     F.name = M.title; F.blurb = M.blurb;
@@ -532,7 +575,7 @@ FT.micro = {
       const am = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 16, 12), smat(0x3fa34d, { roughness: .4 }), M.algae), m4 = new THREE.Matrix4();
       for (let i = 0; i < M.algae; i++) { const s = 4 + r() * 8; m4.makeScale(s, s, s).setPosition((r() - .5) * 1100, (r() - .5) * 600, (r() - .5) * 1100); am.setMatrixAt(i, m4); }
       F.add(am); F.pick(am, 'algae', 2); am.userData.info = { title: 'Green algae', tag: 'Single-celled plants, ~5–20 µm', body: '<p>Single-celled green algae (like Chlorella) photosynthesize with the same chlorophyll as land plants — which evolved from green algae.</p>' }; am.userData.madeOf = 'cell'; am.userData.cellOpts = ALGA;
-      const wv = hitSphere(900, 'water', -1); wv.userData.info = { title: 'Liquid water', tag: 'H₂O', body: '<p>At this scale water looks perfectly smooth. Zoom another 100,000 times to see individual molecules.</p>' }; wv.userData.madeOf = 'molecule'; wv.material.side = THREE.BackSide; F.add(wv); F.pickables.push(wv);
+      const wv = hitSphere(900, 'water', -1); wv.userData.info = { title: 'Liquid water', tag: 'H₂O', body: '<p>At this scale water looks perfectly smooth. Zoom another 100,000 times to see individual molecules.</p>' }; wv.userData.madeOf = 'molecule'; wv.userData.noZoom = true; wv.material.side = THREE.BackSide; F.add(wv); F.pickables.push(wv);   // noZoom: a zoom is not aimed at the far wall of the backdrop (the target used to glide out of the scene toward it)
     }
     if (M.air) {
       F.env = { bg: 0x9cc8ef, opaque: true };
@@ -540,11 +583,13 @@ FT.micro = {
       add(10, 0xa58e6e, 1, 6, 'dust', { title: 'Dust particle', tag: '1–10 µm', body: '<p>Mineral dust, soot and sea salt: aerosols. They seed cloud droplets and scatter sunlight. Dust is a mix, so "what it is made of" shows quartz only as one common example.</p>' });
       add(6, 0xf2c94c, 12, 18, 'pollen', { title: 'Pollen grain', tag: '~25 µm', body: '<p>A pollen grain carries a plant\'s male gametes inside a tough, often spiky shell.</p>' });
       add(14, 0xdff1ff, 5, 12, 'droplet', { title: 'Cloud droplet', tag: '≈ 20 µm across (10 µm radius)', body: '<p>A cloud droplet is about a million times smaller in volume than a raindrop. It takes about a million of them merging to make one raindrop.</p>' });
-      const av = hitSphere(900, 'airvol', -1); av.material.side = THREE.BackSide; av.userData.info = { title: M.air === 'giant' ? 'Hydrogen and helium gas' : 'Air', tag: 'Gas mixture', body: M.air === 'giant' ? '<p>Zoom about 10,000× more to see individual hydrogen molecules and helium atoms.</p>' : '<p>Zoom about 10,000× more to see individual nitrogen and oxygen molecules.</p>' }; av.userData.madeOf = 'molecule'; F.add(av); F.pickables.push(av);
+      const av = hitSphere(900, 'airvol', -1); av.material.side = THREE.BackSide; av.userData.info = { title: M.air === 'giant' ? 'Hydrogen and helium gas' : 'Air', tag: 'Gas mixture', body: M.air === 'giant' ? '<p>Zoom about 10,000× more to see individual hydrogen molecules and helium atoms.</p>' : '<p>Zoom about 10,000× more to see individual nitrogen and oxygen molecules.</p>' }; av.userData.madeOf = 'molecule'; av.userData.noZoom = true; F.add(av); F.pickables.push(av);
     }
     F.info = info;
     F.spawn = (T, hint) => {
       const id = hint && hint.id || '';
+      if (id && typeof DESCENT !== 'undefined') { const u = (hint.obj && hint.obj.userData) || {}, q = { id, what: u.info && u.info.title, u }; if (DESCENT.known(F, q)) return DESCENT.spawnFor(F, q, T); }   // data/descent/assign/micro.json (dead skin cells are not living cells ...)
+      if (M.material && typeof DESCENT !== 'undefined' && !/stoma|diatom|algae|hypha|bacterium|pollen|hair|dust|droplet/.test(id)) return DESCENT.spawnMat(F, M.material, T, { id, what: M.title });   // the scene was opened for a material: its grains, surface, water or gas are that material
       if (/microsurface/.test(id) || (!hint && M.ground)) {
         if (M.child === 'cell' || M.child === 'plantcell') return new Frame({ type: 'cell', name: M.child === 'plantcell' ? 'Plant cell' : 'Animal cell', unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T.clone().add(new V3(0, -10, 0)), opts: { type: M.child === 'plantcell' ? 'plant' : 'animal' } });
         if (M.crystal) return crystalFrame(M.crystal, T);
@@ -568,6 +613,7 @@ const BIOME = {
   rock: { g: ['#8f8a84', '#a19a90', '#7b746c'], sky: 1, micro: 'rock', h: 120 },
   ocean: { water: true, sky: 1, micro: 'ocean' },
   moonrock: { g: ['#7d7d7d', '#8c8c8c', '#6c6c6c'], craters: true, sky: 0, micro: 'regolith', h: 15 },
+  icemoon: { g: ['#c9d3dc', '#dbe3ea', '#b4c0cb'], craters: true, sky: 0, micro: 'ice', h: 15 },   // an airless icy body (the colours are illustrative)
   mars: { g: ['#9a4f2c', '#a85a33', '#8a4426'], rocks: true, sky: 2, micro: 'mars', h: 40 },
   venus: { g: ['#6b5a45', '#5d4e3b', '#7a6850'], sky: 3, micro: 'basalt', h: 20 },
   cloudtops: { water: true, cloud: true, sky: 4, micro: 'cloudtops' },
@@ -627,15 +673,16 @@ FT.landscape = {
     const bn = o.body || 'Earth', GAS = { Jupiter: ' and the temperature is about 165 K (−108 °C)', Saturn: ' and the temperature is about 134 K (−139 °C)' };
     if (o.biome === 'cloudtops') { F.blurb = `${bn} has no solid surface. This is an illustration of its cloud tops, at the level where the pressure is about 1 bar (Earth's sea-level air pressure)${GAS[bn] || ''}. Going down, the gas only gets denser and hotter: there is no ground to stand on.`; F.note = 'Illustration only: a made-up cloud deck, not an image. The real clouds lie in layers, with ammonia ice highest, then ammonium hydrosulfide, then water.'; }
     else if (o.biome === 'venus') { F.blurb = 'Venus\'s surface: about 740 K (467 °C) and 93 bar, under a thick cloud deck, on volcanic plains of basalt. Lit by the real Sun for the date shown, though very little sunlight actually reaches the ground.'; F.note = 'Illustrative: the ground, the sky and the light are generic. Known: the temperature and pressure, and that the plains are basalt (measured by Venera and Vega landers).'; }
-    else if (o.body && o.body !== 'Earth') { F.blurb = `A generic rocky landscape standing in for ${bn}. Lit by the real Sun for the date shown.`; F.note = `Illustrative: this is generic procedural terrain, not a map or photograph of ${bn}. Its real surface is not drawn.`; }
+    else if (o.body && o.body !== 'Earth') { F.blurb = `A generic ${o.biome === 'icemoon' ? 'icy' : 'rocky'} landscape standing in for ${bn}. Lit by the real Sun for the date shown.`; F.note = `Illustrative: this is generic procedural terrain, not a map or photograph of ${bn}. Its real surface is not drawn.`; }
     else F.blurb = 'Earth\'s surface, lit by the real Sun for this place and time.';
     F.update = () => {
       const s = sunDirIn(F); sun.position.copy(s).multiplyScalar(100); const day = smooth(-.1, .15, s.y); sun.intensity = (o.body && o.body !== 'Earth' ? .95 : 1.25) * day; hemi.intensity = .08 + .55 * day;
       if (sky) { sky.material.uniforms.uSun.value.copy(s); F.env.opaque = day > .25; }
     };
     F.spawn = (T, hint) => {
-      const id = hint && hint.id || 'ground';
-      const kind = id === 'tree' ? 'leaf' : id === 'ocean' ? 'ocean' : id === 'cloudtop' ? 'air' : id === 'rock' ? (o.biome === 'mars' ? 'mars' : 'rock') : B.micro;
+      const id = hint && hint.id || (B.cloud ? 'cloudtop' : B.water ? 'ocean' : 'ground');
+      if (typeof DESCENT !== 'undefined') { const q = { id, what: o.body ? `the surface of ${o.body}` : 'the ground', u: {} }; if (DESCENT.known(F, q)) return DESCENT.spawnFor(F, q, T); }   // what this body's surface is made of: data/descent/assign/landscape.json
+      const kind = id === 'tree' ? 'leaf' : id === 'ocean' ? 'ocean' : id === 'cloudtop' ? 'cloudtops' : id === 'rock' ? (o.biome === 'mars' ? 'mars' : 'rock') : B.micro;   // cloud tops lead into the giant's own gas (they used to lead into Earth's air)
       return microFrame(kind, T);
     };
   }
@@ -699,7 +746,8 @@ v2frame('park', 'life', () => 1, (F, c) => {
   };
   F.spawn = (T, hint) => {
     const id = hint && hint.id || '';
-    const kind = id === 'human' ? 'skin' : /tree|flower|leaf/.test(id) ? 'leaf' : /air|cloud|sunSky/.test(id) ? 'air' : 'soil';
+    if (id && typeof DESCENT !== 'undefined') { const u = (hint.obj && hint.obj.userData) || {}, q = { id, node: u.node, what: u.info && u.info.title, u }; if (DESCENT.known(F, q)) return DESCENT.spawnFor(F, q, hint.point ? hint.point.clone() : T); }   // data/descent/assign/park.json (the sky, a far bird, a cloud ...)
+    const kind = id === 'human' ? 'skin' : /tree|flower|leaf/.test(id) ? 'leaf' : /air|cloud|sunSky/.test(id) || (!id && T.y > .05) ? 'air' : 'soil';   // with the pointer on nothing (the far sky), a target above the ground is in the air, not in soil
     if (kind === 'air') { const n = hint ? hint.point.clone() : T.clone(); return microFrame('air', n); }
     return microFrame(kind, T);
   };

@@ -99,7 +99,7 @@
    }
   },
   {
-   "id": "airgap",
+   "id": "airgap", "material": "air",
    "name": "Air gap under the upper skin",
    "node": "rn_gloss",
    "shape": "rbox",
@@ -125,7 +125,7 @@
    }
   },
   {
-   "id": "starch_cell",
+   "id": "starch_cell", "material": "plant_cells",
    "name": "Starch-layer cell",
    "node": "rn_starch_layer",
    "shape": "rbox",

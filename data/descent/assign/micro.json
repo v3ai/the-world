@@ -1,0 +1,17 @@
+{
+ "about": "Micro scenes (FT.micro), by kind (sub) and pick id. Anything not listed is handled in js/world_matter.js.",
+ "sub": {
+  "skin": {
+   "ids": {
+    "microsurface": "corneocytes",
+    "hair": "keratin"
+   }
+  },
+  "fur": {
+   "ids": {
+    "microsurface": "corneocytes",
+    "hair": "keratin"
+   }
+  }
+ }
+}

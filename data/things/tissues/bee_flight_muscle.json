@@ -75,7 +75,8 @@
      1
     ],
     "jitter": 0.02
-   }
+   },
+   "material": "animal_cells"
   },
   {
    "id": "mito",
@@ -137,7 +138,8 @@
      1
     ],
     "jitter": 0.01
-   }
+   },
+   "material": "animal_cells"
   }
  ]
 }

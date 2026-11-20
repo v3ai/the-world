@@ -1,0 +1,12 @@
+{
+ "about": "Sagittarius A* (FT.sgrA).",
+ "spawnD": 3000000000.0,
+ "ids": {
+  "horizon": "horizon",
+  "disk": "accretion_plasma",
+  "photonRing": "light",
+  "s2": "far_star",
+  "scluster": "far_star",
+  "radii": "marker"
+ }
+}

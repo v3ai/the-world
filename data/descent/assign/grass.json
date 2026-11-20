@@ -1,0 +1,25 @@
+{
+ "about": "The grass plant.",
+ "default": "plant_cells",
+ "systems": {
+  "blades": "grass_leaf",
+  "roots": "grass_root",
+  "soil": "soil",
+  "leafsec": "grass_leaf"
+ },
+ "ids": {
+  "dead_leaves": "plant_wall",
+  "t_blade_up": "grass_leaf",
+  "t_blade_down": "grass_leaf",
+  "b_leaf_in": "grass_leaf",
+  "t_roots": "grass_root",
+  "b_roots": "grass_root",
+  "l_silica": "silica"
+ },
+ "match": [
+  [
+   "^h_",
+   "marker"
+  ]
+ ]
+}

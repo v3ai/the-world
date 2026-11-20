@@ -1,0 +1,193 @@
+{
+ "about": "Landscapes (FT.landscape): what the ground is made of, by the body the landscape is on (sub), else by biome in js/world_matter.js.",
+ "sub": {
+  "Moon": {
+   "ids": {
+    "ground": "lunar_regolith",
+    "rock": "lunar_regolith"
+   }
+  },
+  "Mercury": {
+   "ids": {
+    "ground": "rocky_regolith",
+    "rock": "rocky_regolith"
+   }
+  },
+  "Ceres": {
+   "ids": {
+    "ground": "rocky_regolith",
+    "rock": "rocky_regolith"
+   }
+  },
+  "Phobos": {
+   "ids": {
+    "ground": "rocky_regolith",
+    "rock": "rocky_regolith"
+   }
+  },
+  "Deimos": {
+   "ids": {
+    "ground": "rocky_regolith",
+    "rock": "rocky_regolith"
+   }
+  },
+  "Io": {
+   "ids": {
+    "ground": "io_surface",
+    "rock": "io_surface"
+   }
+  },
+  "Europa": {
+   "ids": {
+    "ground": "water_ice_surface",
+    "rock": "water_ice_surface"
+   }
+  },
+  "Ganymede": {
+   "ids": {
+    "ground": "ice_rock_surface",
+    "rock": "ice_rock_surface"
+   }
+  },
+  "Callisto": {
+   "ids": {
+    "ground": "ice_rock_surface",
+    "rock": "ice_rock_surface"
+   }
+  },
+  "Titan": {
+   "ids": {
+    "ground": "titan_surface",
+    "rock": "titan_surface"
+   }
+  },
+  "Enceladus": {
+   "ids": {
+    "ground": "water_ice_surface",
+    "rock": "water_ice_surface"
+   }
+  },
+  "Tethys": {
+   "ids": {
+    "ground": "water_ice_surface",
+    "rock": "water_ice_surface"
+   }
+  },
+  "Dione": {
+   "ids": {
+    "ground": "water_ice_surface",
+    "rock": "water_ice_surface"
+   }
+  },
+  "Rhea": {
+   "ids": {
+    "ground": "water_ice_surface",
+    "rock": "water_ice_surface"
+   }
+  },
+  "Iapetus": {
+   "ids": {
+    "ground": "water_ice_surface",
+    "rock": "water_ice_surface"
+   }
+  },
+  "Mimas": {
+   "ids": {
+    "ground": "not_built",
+    "rock": "not_built"
+   }
+  },
+  "Proteus": {
+   "ids": {
+    "ground": "not_built",
+    "rock": "not_built"
+   }
+  },
+  "Miranda": {
+   "ids": {
+    "ground": "water_ice_surface",
+    "rock": "water_ice_surface"
+   }
+  },
+  "Ariel": {
+   "ids": {
+    "ground": "ice_rock_surface",
+    "rock": "ice_rock_surface"
+   }
+  },
+  "Umbriel": {
+   "ids": {
+    "ground": "ice_rock_surface",
+    "rock": "ice_rock_surface"
+   }
+  },
+  "Titania": {
+   "ids": {
+    "ground": "ice_rock_surface",
+    "rock": "ice_rock_surface"
+   }
+  },
+  "Oberon": {
+   "ids": {
+    "ground": "ice_rock_surface",
+    "rock": "ice_rock_surface"
+   }
+  },
+  "Triton": {
+   "ids": {
+    "ground": "triton_surface",
+    "rock": "triton_surface"
+   }
+  },
+  "Pluto": {
+   "ids": {
+    "ground": "pluto_surface",
+    "rock": "pluto_surface"
+   }
+  },
+  "Charon": {
+   "ids": {
+    "ground": "water_ice_surface",
+    "rock": "water_ice_surface"
+   }
+  },
+  "Eris": {
+   "ids": {
+    "ground": "eris_surface",
+    "rock": "eris_surface"
+   }
+  },
+  "Makemake": {
+   "ids": {
+    "ground": "makemake_surface",
+    "rock": "makemake_surface"
+   }
+  },
+  "Haumea": {
+   "ids": {
+    "ground": "water_ice_surface",
+    "rock": "water_ice_surface"
+   }
+  },
+  "Jupiter": {
+   "ids": {
+    "cloudtop": "jupiter_clouds"
+   }
+  },
+  "Saturn": {
+   "ids": {
+    "cloudtop": "saturn_clouds"
+   }
+  },
+  "Uranus": {
+   "ids": {
+    "cloudtop": "uranus_clouds"
+   }
+  },
+  "Neptune": {
+   "ids": {
+    "cloudtop": "neptune_clouds"
+   }
+  }
+ }
+}

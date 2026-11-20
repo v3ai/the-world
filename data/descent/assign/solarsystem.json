@@ -1,0 +1,12 @@
+{
+ "about": "The solar system (FT.solarsystem).",
+ "spawnD": 3000000000.0,
+ "ids": {
+  "asteroids": "small_bodies",
+  "kuiper": "small_bodies",
+  "oort": "small_bodies",
+  "heliosphere": "solar_wind",
+  "voyager1": "spacecraft",
+  "voyager2": "spacecraft"
+ }
+}

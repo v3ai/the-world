@@ -1,0 +1,8 @@
+{
+ "about": "The Earth frame (FT.earth): what is not the surface.",
+ "ids": {
+  "atmosphere": "upper_air",
+  "iss": "spacecraft",
+  "parkMarker": "marker"
+ }
+}

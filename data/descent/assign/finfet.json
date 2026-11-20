@@ -1,0 +1,5 @@
+{
+ "about": "The FinFET transistor (FT.finfet). Everything here leads into the silicon of the channel, as the fixed chain does (js/teardown.js pulls the zoom there).",
+ "default": "chip_block",
+ "everywhere": true
+}

@@ -153,7 +153,8 @@
     ],
     "jitter": 0.1
    },
-   "ink": 1
+   "ink": 1,
+   "material": "animal_cells"
   },
   {
    "id": "rods",
@@ -1372,7 +1373,8 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "material": "animal_cells"
   },
   {
    "id": "rpe",
@@ -1398,7 +1400,8 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "material": "animal_cells"
   },
   {
    "id": "tap",
@@ -1431,7 +1434,8 @@
     ],
     "jitter": 0.03
    },
-   "ink": 1
+   "ink": 1,
+   "material": "animal_cells"
   },
   {
    "id": "choroid",
@@ -1457,7 +1461,8 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "material": "animal_cells"
   },
   {
    "id": "sclera",
@@ -1483,7 +1488,8 @@
      }
     ]
    },
-   "ink": 1
+   "ink": 1,
+   "material": "collagen"
   }
  ],
  "tag": "Inside the retina",

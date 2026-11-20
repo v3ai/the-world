@@ -340,7 +340,8 @@ FT.star = {
     const P = o.P || starEstimate(o.M, o.bv), c = bvColor(o.bv), R = P.R, T = P.T;
     // the colour is the blackbody colour of the star's own temperature
     const tc = P.measured ? (() => { let best = c, bd = 1e9; for (let b = -.4; b <= 2; b += .02) { const k = bvColor(b), d = Math.abs(k[3] - T); if (d < bd) { bd = d; best = k; } } return best; })() : c;
-    const mat = starSurfaceMaterial(tc, R > 100 ? 1.6 : R > 10 ? 2.4 : 3.2); mat.transparent = true; mat.depthTest = false; const m = new THREE.Mesh(new THREE.SphereGeometry(R, 64, 48), mat); m.renderOrder = 10; F.add(m); // drawn after the glow sprites, which would otherwise show through it F.pick(m, 'starbody');
+    const mat = starSurfaceMaterial(tc, R > 100 ? 1.6 : R > 10 ? 2.4 : 3.2); mat.transparent = true; mat.depthTest = false; const m = new THREE.Mesh(new THREE.SphereGeometry(R, 64, 48), mat); m.renderOrder = 10; F.add(m); // drawn after the glow sprites, which would otherwise show through it
+    F.pick(m, 'starbody');   // (this call had slipped into the comment above: the star could not be clicked, and a zoom had no surface to aim at)
     const km = R * 695700, fmtL = L => L >= 100 ? Math.round(L).toLocaleString('en-US') : L >= 1 ? L.toPrecision(3) : L.toPrecision(2), a = P.measured ? '' : '≈ ';
     m.userData.info = {
       title: o.name || 'A star', tag: 'Star' + (o.sp && o.sp.text ? ` · spectral type ${o.sp.text}` : ''),
@@ -351,6 +352,7 @@ FT.star = {
     m.userData.sim = ['star']; m.userData.madeOf = 'plasma';
     F.add(glowSprite(new THREE.Color(tc[0], tc[1], tc[2]).getHex(), R * 6, .7)); F.add(glowSprite(0xffffff, R * 2.2, .5));
     F.update = (dt, t) => { mat.uniforms.uTime.value = t; m.rotation.y += dt * .02; };
+    surfaceAtt(F, (i, c) => i ? 0 : (c.set(0, 0, 0), R));
     F.spawn = (T2) => T2.length() < R * 1.2 ? new Frame({ type: 'plasma', name: 'Stellar plasma', unit: 1e-10, radius: 60, r0: 1e-14, r1: 1e-7, pos: T2.clone() }) : null;
   }
 };
@@ -425,8 +427,9 @@ FT.sun = {
     const cutSeg = seg([['whole', 'Whole Sun'], ['cut', 'Cut-away']], 'whole', k => { userCut = k === 'cut'; });
     F.blurb = 'The Sun at its true size: a ball of plasma 1.39 million km across. Zoom in to the surface, or open the cut-away to see its layers.';
     F.note = 'To scale: the Sun\'s size, its limb darkening and the granule size (about 1,000 km). Interior: radii, temperatures and densities come from standard solar models; the cut-away colours are a temperature diagram, not what you would see. Sunspots are not drawn.';
-    F.spawnD = 3e3;
+    F.spawnD = 6e5;   // above the floor: the patch of gas is waiting when the camera reaches the floor, and so lifts it (js/engine.js zoomFloor)
     Object.defineProperty(F, 'floorD', { get: () => cam.T.length() > .95 ? 2e5 : 0 }); // the Sun has no solid surface to land on: the view stops 200 km above the photosphere; use "See what it is made of" for the gas itself
+    surfaceAtt(F, (i, c) => i ? 0 : (c.set(0, 0, 0), 1));   // aimed at the corona or the glow: the zoom lands on the photosphere
     F.spawn = T => T.length() < 1.02 ? new Frame({ type: 'plasma', name: 'Plasma inside the Sun', unit: 1e-9, radius: 40, r1: 3e-7, pos: T.clone() }) : null;
     F.update = (dt, t) => {
       const inside = cam.A === F && cam.T.length() < .5 && cam.D < 2e9, was = cutOn; cutOn = userCut || inside;
@@ -601,12 +604,29 @@ FT.planet = {
     F.note = [map ? 'The surface colours come from a published map; brightness is scaled for display.' : 'No surface map is drawn: the colour is an approximate tint.',
       F.moons.length ? 'Moon sizes and distances are true; where each moon sits on its orbit is illustrative. Smaller moons are not drawn.' : '',
       d.ring ? (d.ring.texture ? 'The ring is drawn flat, with no thickness (the real main rings are about 10 to 20 metres thick) and no shadow; its fainter parts are not drawn.' : 'The planet\'s faint rings are not drawn.') : ''].filter(Boolean).join(' ');
-    F.spawn = (T) => { if (T.length() < R * 1.05) return spaceBodySurface(() => new V3(), () => body.getWorldQuaternion(new THREE.Quaternion()), R, T, /Jupiter|Saturn|Uranus|Neptune/.test(o.body) ? 'cloudtops' : /Mars/.test(o.body) ? 'mars' : /Venus/.test(o.body) ? 'venus' : 'moonrock', o.body);
-      for (const m of F.moons) if (T.distanceTo(m.mm.position.clone().applyQuaternion(spin.quaternion)) < m.mm.geometry.parameters.radius * 1.05) { const mm = m.mm; return spaceBodySurface(() => mm.position.clone().applyQuaternion(spin.quaternion), () => spin.quaternion.clone(), mm.geometry.parameters.radius, T, 'moonrock', mm.userData.info.title); }
+    surfaceAtt(F, (i, c) => { if (!i) { c.set(0, 0, 0); return R; } const m = F.moons[i - 1]; if (!m) return 0; c.copy(m.mm.position).applyQuaternion(spin.quaternion); return m.mm.geometry.parameters.radius; });
+    F.spawn = (T) => { if (T.length() < R * 1.05) return spaceBodySurface(() => new V3(), () => body.getWorldQuaternion(new THREE.Quaternion()), R, T, surfaceBiome(o.body), o.body);
+      for (const m of F.moons) if (T.distanceTo(m.mm.position.clone().applyQuaternion(spin.quaternion)) < m.mm.geometry.parameters.radius * 1.05) { const mm = m.mm; return spaceBodySurface(() => mm.position.clone().applyQuaternion(spin.quaternion), () => spin.quaternion.clone(), mm.geometry.parameters.radius, T, surfaceBiome(mm.userData.info.title), mm.userData.info.title); }
       return null; };
     F.spawnD = 3e5;
   }
 };
+/* The surface of a round body as an attractor (js/engine.js, "attractors"): a zoom that is aimed just off the body, at its glow or beside its limb, closes on the
+   nearest point of the surface, so the descent lands on the body instead of stopping in the empty space beside it. bodies(i, c) writes the centre of body i into c
+   (frame coordinates) and returns its radius, or 0 when there is no body i. It acts only while the target is outside a body, within `reach` radii of its surface,
+   and the view is within about six radii of it. */
+function surfaceAtt(F, bodies, reach = 1.5) {
+  const c = new V3(), v = new V3();
+  F.att = {
+    D: Infinity,
+    find(P) { let best = -1, bs = Infinity; for (let i = 0; ; i++) { const r = bodies(i, c); if (!r) break; const d = (P.distanceTo(c) - r) / r; if (d > 0 && d < reach && d < bs && cam.D < r * F.unit * 6) { bs = d; best = i; } } return best; },
+    pos(id, out) { const r = bodies(id, c); if (!r) return null; v.copy(cam.T).sub(c); const L = v.length(); return L <= r * 1.0002 ? null : out.copy(v).multiplyScalar(r * 1.00005 / L).add(c); }
+  };
+}
+/* How the ground of a body is drawn when you land on it: a generic landscape of the right kind (cloud tops, Mars, Venus, an icy surface, bare rock). What that ground
+   is made of, body by body, is in data/descent/assign/landscape.json; the icy bodies are the ones whose surfaces are ices there. */
+const ICY_BODIES = /^(Europa|Ganymede|Callisto|Enceladus|Mimas|Tethys|Dione|Rhea|Iapetus|Titan|Miranda|Ariel|Umbriel|Titania|Oberon|Triton|Pluto|Charon|Eris|Makemake|Haumea)$/;
+function surfaceBiome(body) { return /^(Jupiter|Saturn|Uranus|Neptune)$/.test(body) ? 'cloudtops' : body === 'Mars' ? 'mars' : body === 'Venus' ? 'venus' : ICY_BODIES.test(body) ? 'icemoon' : 'moonrock'; }
 function spaceBodySurface(getC, getQ, R, T, biome, body) { // landscape frame glued to a rotating/moving body (parent unit = 1000 km)
   const q0 = getQ(), nl = T.clone().sub(getC()).applyQuaternion(q0.clone().invert()).normalize();
   const f = landscapeFrame(biome, new V3(), null, body); f.r1 = 2e5;
@@ -666,6 +686,7 @@ FT.earth = {
     F.blurb = 'Earth at its true size, turning in real time, lit by the Sun from its true direction. The Moon is at its true size, distance and position for the date shown.';
     F.note = 'True: sizes, the Sun\'s direction, the day and night line, the Moon\'s position and phase. Illustrative: the clouds are a fixed sample image, not today\'s weather; the ISS position; the blue glow, drawn about 100 km thick (the conventional edge of space), where the air really thins out gradually.';
     F.spawnD = 2e5;
+    surfaceAtt(F, (i, c) => i === 0 ? (c.set(0, 0, 0), R) : i === 1 ? (c.copy(moon.position), 1.7374) : 0);   // aimed at the blue glow: the zoom lands on the ground below it
     F.spawn = (T) => {
       if (T.distanceTo(moon.position) < 1.7374 * 1.05) return spaceBodySurface(() => moon.position.clone(), () => moon.quaternion.clone(), 1.7374, T, 'moonrock', 'Moon');
       if (T.length() > R * 1.03) return null;
@@ -699,6 +720,9 @@ function regionFrame(earthF, lat, lon, biome, isPark) {
 WORLD_EXT.push(async FR2 => {
   // scrolling toward the Galactic Centre pulls the zoom target onto it, so the black-hole scene is reached by scrolling
   FR2.mw.attract = new V3(); FR2.mw.attractD = 3e21; FR2.mw.attractR = .5;
+  // The Local Group frame draws the galaxies out to 3.1 Mpc; the cosmos frame draws those beyond. Its sphere ends between the two (it reached 3.5 Mpc, so a scroll
+  // toward NGC 253 or M82, which belong to the cosmos frame, went down into the Local Group, where they are not drawn).
+  if (FR2.mw.parent && FR2.mw.parent.type === 'localgroup') FR2.mw.parent.radius = 3060;
   // the black-hole scene says what is to scale and what is not (the blurb itself is in world_matter.js; only this note is added here)
   if (FT.sgrA && !FT.sgrA._spaceNote) {
     const b = FT.sgrA.build; FT.sgrA._spaceNote = true;

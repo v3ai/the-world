@@ -1,0 +1,29 @@
+{
+ "about": "The English oak.",
+ "default": "plant_cells",
+ "systems": {
+  "trunk": "bark",
+  "branches": "bark",
+  "twigs": "bark",
+  "leaves": "leaf",
+  "crown_far": "leaf",
+  "roots": "wood",
+  "soil": "soil",
+  "wood": "wood"
+ },
+ "ids": {
+  "buds": "plant_cells",
+  "acorn_nuts": "plant_cells",
+  "acorn_cups": "plant_wall",
+  "fine_roots": "root",
+  "hyphae": "mycorrhiza",
+  "log_bark": "bark",
+  "log_phloem": "plant_cells",
+  "log_cambium": "plant_cells",
+  "flow_water": "xylem_sap",
+  "flow_sugar": "phloem_sap",
+  "hs_rings": "wood",
+  "hs_cambium": "plant_cells",
+  "hs_myc": "mycorrhiza"
+ }
+}

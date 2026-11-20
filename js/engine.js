@@ -259,26 +259,40 @@ function descend(c) { rotAnchored((v, k) => k === 'p' ? fromParentP(c, v) : from
 let camHold = null; // the frame the last flight was sent to: its children are not entered on landing (only by scrolling in, or by being on a flight's path)
 let lastZoomHit = null; // {frame, obj, point (frame-local), normal (frame-local)}
 let _fp = null;
+const _rs = new V3(), _rt = new V3();
 function reanchor() {
   for (let g = 0; g < 60 && cam.A.parent; g++) {
     const A = cam.A;
-    const outside = A.radius !== Infinity && (A.center ? _cc.copy(cam.T).sub(A.center) : cam.T).length() > A.radius * 1.08;
+    const aim = fly ? null : zoomAim();
+    // outside the frame's nominal sphere, unless the zoom is aimed at something of this very frame (a cell's wall may reach past the radius its frame was given)
+    // (and a camera that is already deep inside a spawned scene, the view a fraction of the scene's size, is not thrown out of it for being a little past its nominal edge)
+    const outside = A.radius !== Infinity && (A.center ? _cc.copy(cam.T).sub(A.center) : cam.T).length() > A.radius * (A.dynamic && cam.D < A.radius * A.unit * .6 ? 3 : 1.08) && !(aim && A.dynamic && frameWithin(aim.frame, A));
     // a flight heading for a frame that A is not on the way to (a sibling, or a cousin such as the skin from inside the lung): step back out
     const offPath = fly && fly.frame && A.parent && (_fp = chainOf(fly.frame), !_fp.includes(A));
-    if (cam.D > A.r1 || outside || offPath) { ascend(); continue; }
+    const offAim = aim && ((A.coRender && !frameWithin(aim.frame, A)) || (A.enterIf && !frameWithin(aim.frame, A) && !A.enterIf(aim)));   // the zoom is aimed at something that is not in this co-rendered thing (the ground beside it, another thing): this is not the frame to go down in
+    /* A frame that was made at the zoom target (a tissue, a cell, a molecule of a material) is still a detail in the view when the camera enters it, and the target
+       is still gliding toward the pointer. While that is so, its place is wherever the zoom is heading: it moves with the target instead of being left behind and
+       made again (it flickered in and out). Once the view is down to its own size it stays put. */
+    if (outside && !offPath && !offAim && cam.D <= A.r1 && A.dynamic && !A.pinned && !fly && cam.D > A.radius * A.unit * .6) {
+      _rs.copy(cam.T); A.pos.add(_rt.copy(_rs).multiplyScalar(A.unit / A.parent.unit).applyQuaternion(A.quat));
+      cam.T.set(0, 0, 0); for (let i = 0; i < anchored.length; i++) anchored[i].p.sub(_rs);
+      break;
+    }
+    if (cam.D > A.r1 || outside || offPath || offAim) { ascend(); continue; }
     break;
   }
   for (let g = 0; g < 60; g++) {
     const A = cam.A; A.ensure(); let next = null;
     next = pickChild(A);
-    if (!next && A.spawn && !fly && cam.D < (A.spawnD || A.r0 * 1.6) && !(A.spawnHold && cam.D > A.spawnHold * .5)) next = trySpawn(A);   // spawnHold: a flight that was asked to end this close (a 2.5 mm water flea) does not dive into what it is made of until you zoom in further // a flight heads for a frame that already exists: never spawn stand-ins on the way
+    if (!next && !fly && (A.spawn || (typeof DESCENT !== 'undefined' && DESCENT.covers(A))) && cam.D < spawnDOf(A) && !(A.spawnHold && cam.D > A.spawnHold * .5)) next = trySpawn(A);   // spawnHold: a flight that was asked to end this close (a 2.5 mm water flea) does not dive into what it is made of until you zoom in further // a flight heads for a frame that already exists: never spawn stand-ins on the way
     if (!next) break;
+    A._dzStop = null;   // there is a way down here after all: a stop said in this frame (js/descent.js) no longer holds the camera
     descend(next);
   }
   // dispose dynamic frames we've left far behind
   forEachFrame(f => {
     if (f.dynamic && f.parent && !drawn.includes(f) && !chainOf(cam.A).includes(f) && cam.D > f.r1 * 3 && !(f.keep > performance.now()) && !(fly && fly.frame === f)
-      && (f.entered || !chainOf(cam.A).includes(f.parent) || cam.D > (f.parent.spawnD || f.parent.r0 * 1.6) * 3)) {
+      && (f.entered || !chainOf(cam.A).includes(f.parent) || cam.D > (f._bornD || spawnDOf(f.parent)) * 3)) {   // a child that is still waiting goes only when the camera has pulled back threefold from where it was made
       f.dispose(); f.parent.children.splice(f.parent.children.indexOf(f), 1); if (f.proxy) f.proxy.visible = true;
     }
   });
@@ -288,12 +302,23 @@ function reanchor() {
 // (a heart sits inside the chest volume of a lung); failing that, the best fit: smallest distance from its centre relative to its radius.
 // place() of a frame that is not built yet may depend on things that do not exist: a failure leaves it where it was and is reported once
 function safePlace(c) { if (!c.place) return; try { c.place(); } catch (e) { if (!c._placeErr) { c._placeErr = 1; console.warn('place() failed before the frame was built:', c.name, e.message); } } }
+/* What the zoom is aimed at: the surface its pivot was picked on, for as long as that pivot is in use (a zoom out, a flight or a jump drops it). A co-rendered
+   child (a thing in the park, the body) is drawn and picked together with its parent, so a pivot on the parent's own content, or on another thing, means the
+   pointer is NOT on that child: the camera does not go down into it, however close its bounding sphere is (the grass beside the oak leads into soil, not into the oak). */
+function zoomAim() { return lastZoomHit && zoom.pivot && anchored.includes(zoom.pivot) ? lastZoomHit : null; }
+function frameWithin(f, A) { for (; f; f = f.parent) if (f === A) return true; return false; }
+/* below this camera distance a frame is asked for what lies under the target: its own spawnD, else the materials table's (js/descent.js) */
+function spawnDOf(A) { return A.spawnD || A.r0 * 1.6 || (typeof DESCENT !== 'undefined' ? DESCENT.spawnD(A) : 0); }
 function pickChild(A) {
-  const path = fly && fly.frame ? chainOf(fly.frame) : null;
+  const path = fly && fly.frame ? chainOf(fly.frame) : null, aim = path ? null : zoomAim();
+  const lk = !path && att.f === A && att.id >= 0 && A.att && A.att.tol ? att.p : null;   // the zoom is closing on one of this frame's attractors: only a child that sits on that one is the way down
   let best = null, bs = Infinity;
   for (const c of A.children) {
     safePlace(c);
     if (cam.D > c.r1 || !c.containsP(cam.T)) continue;
+    if (lk && c.pos.distanceTo(lk) > A.att.tol) continue;
+    if (aim && c.coRender && !frameWithin(aim.frame, c)) continue;
+    if (aim && c.enterIf && !frameWithin(aim.frame, c) && !c.enterIf(aim)) continue;   // a frame may say what the pointer must be on for a scroll to enter it (the phone in the hand: the skin, not a bone)
     if (camHold === A && !(path && path.includes(c))) continue;
     if (c.enterOnly && !(path && path.includes(c))) continue; // entered on purpose only (a flight to it), never by scroll-zoom
     if (path && !path.includes(c) && path.includes(A) && chainOf(c).includes(fly.frame)) continue; // flying out to a frame: do not dive back into one of its children on the way
@@ -308,14 +333,25 @@ function pickChild(A) {
 function trySpawn(A) {
   let hint = null;
   if (lastZoomHit && lastZoomHit.frame === A && lastZoomHit.point.distanceTo(cam.T) < Math.max(cam.D / A.unit * 10, A.radius * 1e-4)) hint = lastZoomHit;
-  if (A.children.some(c => c.dynamic && c.containsP(cam.T))) return null;
-  // a pending (not yet visible) child near the view follows the zoom target until it appears
-  const pend = A.children.find(c => c.dynamic && !c.entered && c.pos.distanceTo(cam.T) < cam.D / A.unit * 3);
-  if (pend) { if (cam.D > pend.r1 && !pend.pinned) pend.pos.copy(cam.T); return pend.containsP(cam.T) && cam.D <= pend.r1 ? pend : null; }
-  if (!hint && A._spawnFail && A._spawnFail.distanceTo(cam.T) < cam.D / A.unit * .5) return null; // a failure without a surface under the cursor must not block a spawn that now has one
-  const c = A.spawn(cam.T.clone(), hint);
-  if (!c) { A._spawnFail = cam.T.clone(); return null; }
-  A._spawnFail = null; c.dynamic = true; A.addChild(c);
+  // a pending (not yet entered) child near the view follows the zoom target until the camera goes into it (it used to stop following once the camera was close
+  // enough to enter, so a target still gliding toward the pointer could leave it behind for good)
+  const lim = cam.D / A.unit * 3; let pend = null;
+  const ho = hint ? hint.obj : null;
+  // (a waiting child that was made for the thing the pointer is still on is found again however far the target has moved: it is not made twice)
+  for (let i = 0; i < A.children.length; i++) { const c = A.children[i]; if (c.dynamic && !c.entered && (c.pos.distanceTo(cam.T) < lim || (!c.pinned && !c.built && c._for !== undefined && c._for === ho))) { pend = c; break; } }
+  // a child that was made while the pointer was on nothing (a frame-wide default) gives way when the pointer is now on a thing: that thing decides what lies below
+  if (pend && ho && pend._for === null && !pend.pinned && !pend.built) { A.children.splice(A.children.indexOf(pend), 1); pend = null; }
+  if (pend) { if (!pend.pinned) pend.pos.copy(cam.T); return cam.D <= pend.r1 && pend.containsP(cam.T) ? pend : null; }
+  for (let i = 0; i < A.children.length; i++) { const c = A.children[i]; if (c.dynamic && c.containsP(cam.T)) return null; }
+  // A failure is not tried again on every frame: only when the target has moved by half a view, the camera has come a sixth closer, the pointer is on something
+  // else (a failure without a surface under the cursor must not block a spawn that now has one), or a little time has passed (layers peel, data arrives).
+  const sf = A._spawnFail, now = performance.now();
+  if (sf && sf.obj === ho && now - sf.t < 400 && cam.D > sf.D * .85 && sf.p.distanceTo(cam.T) < cam.D / A.unit * .5) return null;
+  let c = A.spawn ? A.spawn(cam.T.clone(), hint) : null;
+  if (!c && typeof DESCENT !== 'undefined') c = DESCENT.spawn(A, cam.T, hint);   // nothing of its own here: what the thing under the zoom point is made of (the materials table)
+  if (!c) { const f = sf || (A._spawnFail = { p: new V3(), obj: null, t: 0, D: 0 }); f.p.copy(cam.T); f.obj = ho; f.t = now; f.D = cam.D; return null; }
+  for (let i = A.children.length - 1; i >= 0; i--) { const o = A.children[i]; if (o.dynamic && !o.entered && !o.pinned && !o.built && o._for !== undefined && !(o.keep > now)) A.children.splice(i, 1); }   // one waiting child at a time: an earlier one, made for something else, goes
+  A._spawnFail = null; c.dynamic = true; c._bornD = cam.D; c._for = ho; A.addChild(c);
   return c.containsP(cam.T) && cam.D <= c.r1 ? c : null;
 }
 function camPosIn(f, out) { out.copy(cam.dir).multiplyScalar(cam.D / cam.A.unit).add(cam.T); return convertP(out, cam.A, f); }
@@ -625,16 +661,54 @@ function applyZoom(dt) {
   zoom.pending -= step;
   let lam = Math.exp(step);
   let nd = clamp(cam.D * lam, MIN_D, MAX_D);
-  if (lam < 1 && cam.A.floorD) nd = Math.max(nd, Math.min(cam.D, cam.A.floorD)); // a floor, so the camera cannot sink into an empty region
+  if (lam < 1) { const fl = zoomFloor(cam.A); if (fl && nd < fl) { nd = Math.max(nd, Math.min(cam.D, fl)); if (nd >= cam.D && typeof DESCENT !== 'undefined') DESCENT.floorSay(cam.A); } } // a floor, so the camera cannot sink into an empty region
   lam = nd / cam.D;
   mouse.dirty = true; // the view moves under a resting cursor: its tooltip and highlight must follow
+  const A = cam.A, a = lam < 1 ? attLock(A) : null;   // the attractor this zoom is locked on, if the frame names any (below)
+  if (a && zoom.pivot) zoom.pivot.p.copy(a);          // from here on the zoom is centred on it
   if (zoom.pivot && lam < 1) { // scale camera rig about the pivot: keeps the point under the cursor fixed
     const P = zoom.pivot.p;
     cam.T.sub(P).multiplyScalar(lam).add(P);
   }
-  const A = cam.A; // some frames gently pull the zoom toward a key point (e.g. the invisible nucleus)
+  // some frames gently pull the zoom toward one key point (the park in its region, the Galactic Centre)
   if (lam < 1 && A.attract && cam.D < A.attractD && cam.T.distanceTo(A.attract) < A.attractR) { cam.T.sub(A.attract).multiplyScalar(lam).add(A.attract); if (zoom.pivot) zoom.pivot.p.copy(A.attract); }
+  if (a) cam.T.sub(a).multiplyScalar(zoom.pivot ? lam : lam * lam).add(a);   // and the target closes on it as the square of the zoom
   cam.D = nd;
+}
+/* A frame's floor (`floorD`, metres) is where its own picture ends: the camera cannot sink below it by scrolling. It holds only where nothing lies below:
+   a child frame waiting under the target (spawned by the frame itself or from the materials table, js/descent.js) lifts it, so the zoom runs on into that
+   frame. Where the table says that nothing true can be shown (`stop`), the place where that was said becomes a floor too, also in a frame that has none. */
+function zoomFloor(A) {
+  let f = A.floorD || 0; const st = A._dzStop;
+  if (st) { if (cam.D > st.D * 4 || st.p.distanceTo(cam.T) > st.D / A.unit * 2) A._dzStop = null; else f = Math.max(f, st.D * .6); }
+  if (!f) return 0;
+  const lim = cam.D / A.unit * 3, ho = lastZoomHit && lastZoomHit.frame === A ? lastZoomHit.obj : null;   // the same test as trySpawn's: a child waiting near the target, or one made for the thing the pointer is still on
+  for (let i = 0; i < A.children.length; i++) { const c = A.children[i]; if (c.dynamic && !c.entered && (c.pos.distanceTo(cam.T) < lim || (!c.pinned && !c.built && c._for !== undefined && c._for === ho))) return 0; }
+  return f;
+}
+/* ---- attractors: a descent ends ON something ----
+   A frame may name the points a zoom can end on: the nucleus of an atom, the nucleons of a nucleus, the atoms of a molecule or crystal,
+   the molecules of a gas, the nuclei of a plasma, the valence quarks of a proton.
+     F.att = { D,                    metres: the convergence starts once the camera is nearer than this (the view is then small enough that only one of them can be meant)
+               find(P, hint) -> id,  the attractor nearest the point P (frame coordinates), or the one the pointer is on (hint = lastZoomHit in this frame, or null); -1 for none
+               pos(id, out) -> out,  where it is now (frame coordinates); a falsy value when the id is no longer valid
+               tol }                 optional, frame units: while the zoom is locked on an attractor, a child frame further than this from it is not entered (a fixed
+                                     child that happens to sit on a neighbouring atom must not capture a zoom that is closing on this one)
+   Below D the zoom locks on to the attractor nearest the pointer's pivot. From then on the camera is scaled about that point instead of about the pivot, and the
+   target closes on it as the square of the zoom, so the target is drawn onto it smoothly: nothing jumps, only the point the zoom is centred on changes. The lock
+   holds while the pointer rests and the camera stays in the frame; moving the pointer chooses again. Spawn functions ask attId(F) for the attractor the zoom is
+   locked on, so the frame that opens is the one the zoom converged on. Nothing is allocated here, and find() runs once per lock, not per frame. */
+const att = { f: null, id: -1, p: new V3(), px: 0, py: 0 };
+function attId(F) { return att.f === F ? att.id : -1; }
+function attLock(A) {
+  const a = A.att;
+  if (!a || cam.D >= a.D) { att.f = null; att.id = -1; return null; }
+  if (att.f !== A || att.id < 0 || Math.abs(zoom.px - att.px) > 8 || Math.abs(zoom.py - att.py) > 8) {
+    att.f = A; att.px = zoom.px; att.py = zoom.py;
+    att.id = a.find(zoom.pivot ? zoom.pivot.p : cam.T, lastZoomHit && lastZoomHit.frame === A ? lastZoomHit : null);
+  }
+  if (att.id < 0 || !a.pos(att.id, att.p)) { att.f = null; att.id = -1; return null; }
+  return att.p;
 }
 function orbit(dx, dy) {
   viewGen++;

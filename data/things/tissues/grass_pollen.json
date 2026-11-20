@@ -89,7 +89,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "pollen"
   },
   {
    "id": "pore",
@@ -126,7 +127,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "pollen"
   },
   {
    "id": "stig",

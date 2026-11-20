@@ -1,0 +1,18 @@
+{
+ "about": "The Local Group (FT.localgroup): its galaxies, and the space between them.",
+ "spawnD": 3e+19,
+ "default": "intergalactic_gas",
+ "everywhere": true,
+ "ids": {
+  "andromeda": "galaxy",
+  "lmc": "galaxy",
+  "smc": "galaxy",
+  "galaxy": "galaxy"
+ },
+ "match": [
+  [
+   "^lg_",
+   "galaxy"
+  ]
+ ]
+}

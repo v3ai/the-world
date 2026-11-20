@@ -1,0 +1,14 @@
+{
+ "about": "The boulder.",
+ "default": "granite",
+ "systems": {
+  "rock": "granite",
+  "debris": "granite"
+ },
+ "ids": {
+  "moss": "plant_cells",
+  "lichen": "lichen",
+  "lichen_yellow": "lichen",
+  "lichen_contact": "marker"
+ }
+}

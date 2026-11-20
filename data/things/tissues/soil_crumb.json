@@ -125,7 +125,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "model_edge"
   },
   {
    "id": "humus",
@@ -155,7 +156,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "humus"
   },
   {
    "id": "humus2",
@@ -185,7 +187,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "humus"
   },
   {
    "id": "humus3",
@@ -215,7 +218,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "humus"
   },
   {
    "id": "film",
@@ -316,7 +320,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "sand_grain"
   },
   {
    "id": "sand2",
@@ -351,7 +356,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "sand_grain"
   },
   {
    "id": "sand3",
@@ -386,7 +392,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "sand_grain"
   },
   {
    "id": "silt",
@@ -471,7 +478,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "rock_grain"
   },
   {
    "id": "clay",
@@ -744,7 +752,8 @@
    },
    "deeper": {
     "type": "none"
-   }
+   },
+   "material": "animal_cells"
   },
   {
    "id": "hypha",

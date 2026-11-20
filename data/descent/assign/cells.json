@@ -1,0 +1,8 @@
+{
+ "about": "Logic gates (FT.cells).",
+ "default": "chip_block",
+ "everywhere": true,
+ "ids": {
+  "metal_interconnect": "chip_copper"
+ }
+}

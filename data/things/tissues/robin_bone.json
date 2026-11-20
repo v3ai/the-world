@@ -84,7 +84,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "bone_mineral"
   },
   {
    "id": "strut",
@@ -140,7 +141,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "bone_mineral"
   },
   {
    "id": "cell",

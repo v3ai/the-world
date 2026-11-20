@@ -1,0 +1,10 @@
+{
+ "about": "FT.tissue scenes, by tissue kind (sub) and pick id. A structure not listed opens the generic animal cell, named as the cell it stands for.",
+ "ids": {
+  "red_blood_cell": "red_blood_cell",
+  "platelet": "platelet",
+  "stratum_corneum": "corneocytes",
+  "hyaline_cartilage": "cartilage_matrix",
+  "osteon": "bone_mineral"
+ }
+}

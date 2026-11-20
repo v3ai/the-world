@@ -53,7 +53,7 @@
  ],
  "populations": [
   {
-   "id": "wall",
+   "id": "wall", "material": "plant_cells",
    "name": "Anther wall",
    "node": "rn_anther_wall",
    "shape": "tube_z",
@@ -79,7 +79,7 @@
    }
   },
   {
-   "id": "sac",
+   "id": "sac", "material": "pollen",
    "name": "Pollen sac",
    "node": "rn_pollen_sac",
    "shape": "tube_z",
@@ -126,7 +126,7 @@
    }
   },
   {
-   "id": "connective",
+   "id": "connective", "material": "plant_cells",
    "name": "Connective tissue",
    "node": "rn_anther",
    "shape": "tube_z",
@@ -183,7 +183,7 @@
    }
   },
   {
-   "id": "grain",
+   "id": "grain", "material": "pollen",
    "name": "Pollen grain",
    "node": "rn_pollen_grain",
    "shape": "ellipsoid",

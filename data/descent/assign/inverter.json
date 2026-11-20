@@ -1,0 +1,11 @@
+{
+ "about": "The CMOS inverter (FT.inverter).",
+ "default": "chip_block",
+ "everywhere": true,
+ "ids": {
+  "cmos_vdd": "chip_metal",
+  "cmos_gnd": "chip_metal",
+  "cmos_out": "chip_metal",
+  "cmos_inverter": "chip_metal"
+ }
+}

@@ -1388,7 +1388,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "fungal_cells"
   },
   {
    "id": "hartig_h",
@@ -1839,7 +1840,8 @@
       "rotY": 1.5707963267948966
      }
     ]
-   }
+   },
+   "material": "fungal_cells"
   },
   {
    "id": "mantle",
@@ -2434,7 +2436,8 @@
       "rotY": 1.5707963267948966
      }
     ]
-   }
+   },
+   "material": "fungal_cells"
   },
   {
    "id": "soil_hypha",
@@ -2575,7 +2578,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "rock_grain"
   },
   {
    "id": "sugar",
