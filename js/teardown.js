@@ -52,7 +52,7 @@ const PHONE_PARTS = [ // id, name, pos(mm), size(mm), color, layer z (exploded),
 ];
 FT.phone = {
   build(F) {
-    F.device = true; F.illo = true; tearLights(F);
+    F.device = true; F.illo = true; tearLights(F); F.env = { bg: 0x0b1018, opaque: false };   // opaque only while the camera is in a thing inside the phone (below): then the hand is not drawn behind it
     F.blurb = 'Your phone, at true size. Zoom in and it opens up; click any part. Aim at the processor chip and keep zooming to reach a single transistor.';
     F.note = 'The outer size is a current flagship phone. The layout of the parts inside is illustrative: real phones differ in where each part sits.';
     const exp = new THREE.Group(); F.add(exp); F.layers = [];
@@ -85,12 +85,29 @@ FT.phone = {
     F.showPart = (id, card) => { ex.mode = 'open'; sg.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === 'open')); F.selId = id; F.selCard = card || id; F._selObj = null; };
     F.update = (dt) => {
       if (F.selId) { const sel = infoState && infoState.node === F.selCard ? (F.pickables.find(o => o.userData.id === F.selId) || null) : null; if (sel !== F._selObj) { setHighlight(F._selObj, false); setHighlight(sel, true); F._selObj = sel; if (!sel) F.selId = null; } }
-      const want = ex.mode === 'open' ? 1 : ex.mode === 'closed' ? 0 : 1 - smooth(.09, .32, cam.D);
+      /* A thing that lives inside the phone (the cell that takes the battery's place: data/things/index.json, `in: "phone"`) can only be seen with the phone
+         opened up: on Auto the phone opens while the camera is in such a thing, or on a flight to it. */
+      const inside = typeof FR !== 'undefined' ? (FR.things || []).filter(f => f.parent === F) : [], inner = inside.some(f => frameWithin(cam.A, f) || (fly && fly.frame && frameWithin(fly.frame, f)));
+      const want = ex.mode === 'open' || inner ? 1 : ex.mode === 'closed' ? 0 : 1 - smooth(.09, .32, cam.D);
+      /* ...and while the camera is in that thing, it is the subject: the rest of the phone goes faint and cannot be clicked, and the hand behind the phone is not
+         drawn (the same getting-out-of-the-way that the park's things do for one another). inK eases between the two states. */
+      ex.inK = (ex.inK || 0) + ((frameWithin(cam.A, F) && inside.some(f => frameWithin(cam.A, f)) ? 1 : 0) - (ex.inK || 0)) * Math.min(1, dt * 3); if (ex.inK < .002) ex.inK = 0; F.inK = ex.inK; F.env.opaque = ex.inK > .5;
       ex.k += (want - ex.k) * Math.min(1, dt * 4); F.exK = ex.k;
       F.layers.forEach(o => { o.position.z = o.userData.z0 + o.userData.zz * ex.k * 2.6; });
       frame.userData.main.material.opacity = 1 - .85 * ex.k; frame.userData.main.material.depthWrite = ex.k < .5;
+      frame.userData.noPick = disp.userData.noPick = glass.userData.noPick = ex.k > .5;   // opened up, the shell, the display and the glass are ghosts: a click goes through them to the part behind (and to a thing that stands inside the phone, which is picked by the nearest surface)
       [disp, glass].forEach(o => { o.visible = ex.k < .97; o.traverse(m => { if (m.material && m.material.opacity !== undefined && !m.userData.outline) { if (m.userData.op0 === undefined) m.userData.op0 = m.material.opacity; m.material.opacity = m.userData.op0 * (1 - ex.k); m.material.transparent = true; } }); });
       back.userData.main.material.opacity = 1 - .7 * ex.k;
+      if (ex.inK > 0 || F._inWas) {
+        const g = 1 - .94 * ex.inK, dyn = [frame, back, disp, glass]; F._inWas = ex.inK > 0;
+        F.layers.forEach(o => {
+          if (inside.some(f => f.proxy === o)) return;   // the part a thing stands in for is hidden by the engine while the thing is shown
+          const isDyn = dyn.includes(o);
+          o.traverse(m => { const mt = m.material; if (!mt) return; const u = mt.uniforms && mt.uniforms.uOpacity; if (u) { if (m.userData.inU === undefined) m.userData.inU = u.value; u.value = m.userData.inU * g; } else if (mt.opacity !== undefined) { if (isDyn) { mt.opacity *= g; if (g <= .5) mt.depthWrite = false; } else { if (m.userData.inOp === undefined) { m.userData.inOp = mt.opacity; m.userData.inDw = mt.depthWrite; } mt.opacity = m.userData.inOp * g; mt.depthWrite = g > .5 ? m.userData.inDw : false; } } });
+          if (!isDyn || o === back) o.userData.noPick = ex.inK > .5;
+        });
+        frame.userData.noPick = disp.userData.noPick = glass.userData.noPick = ex.k > .5 || ex.inK > .5;
+      }
     };
   }
 };
