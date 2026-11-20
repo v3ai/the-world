@@ -29,7 +29,8 @@
   "sgrA",
   "soil",
   "solarsystem",
-  "tissue"
+  "tissue",
+  "tissue2"
  ],
  "materials": {
   "water": {
@@ -55,18 +56,6 @@
     }
    ],
    "src": "the air scene (js/world_matter.js): N2 78.08%, O2 20.95%, Ar 0.93% of dry air"
-  },
-  "dusty_air": {
-   "title": "Air with what floats in it",
-   "desc": "Air seen a millimetre across: almost empty, with a few dust grains, pollen grains and water droplets.",
-   "card": "park_sky",
-   "inside": [
-    {
-     "name": "air with dust, pollen and droplets",
-     "scene": "micro:air"
-    }
-   ],
-   "src": "the aerosol scene (js/world_matter.js)"
   },
   "ice": {
    "title": "Ice",
@@ -195,22 +184,22 @@
   },
   "keratin": {
    "title": "Keratin",
-   "desc": "The tough protein of hair, fur, claws, horn, feathers and the outer skin.",
+   "desc": "The tough protein of hair, fur, claws, horn, feathers, beaks and the outer skin.",
    "card": "robin_keratin",
    "inside": [
     {
      "name": "cystine, the sulfur bridge of keratin",
      "scene": "mol:cystine",
      "standIn": true,
-     "note": "{What}: made of keratin, a tough protein whose chains are tied to one another by sulfur bridges. A keratin chain is hundreds of amino acids long: too large to show whole. Shown: cystine, two cysteine units joined by one such bridge.",
+     "note": "{What}: made of keratin, a tough protein whose chains are tied to one another by sulfur bridges. Hair, fur and the claws of mammals are made of alpha-keratin; the feathers, beaks and claws of birds are made of beta-keratin, a different family of proteins. A keratin chain is hundreds of amino acids long: too large to show whole. Shown: cystine, two cysteine units joined by one such bridge.",
      "title": "Cystine (stands in for keratin)"
     }
    ],
-   "src": "cards robin_keratin, dog_fur, dog_claws, robin_leg_claws"
+   "src": "cards robin_keratin, dog_fur, dog_claws, robin_leg_claws; Wikipedia \"Keratin\" (https://en.wikipedia.org/wiki/Keratin: alpha-keratins in all vertebrates, in the hair, nails and claws of mammals; beta-keratins only in sauropsids, in the feathers, beaks and claws of birds)"
   },
   "chitin": {
    "title": "Chitin",
-   "desc": "A tough sugar polymer: the main structural material of insect and crustacean shells and of fungal walls.",
+   "desc": "A tough sugar polymer: the main structural material of insect and crustacean shells, and an important material of fungal walls.",
    "card": "bee_chitin",
    "inside": [
     {
@@ -306,7 +295,7 @@
      "name": "phosphate, one building block of the mineral",
      "scene": "mol:phosphate",
      "standIn": true,
-     "note": "{What}: collagen fibres stiffened by tiny crystals of a calcium phosphate mineral, hydroxyapatite. Neither the crystal nor collagen is built yet. Shown: one phosphate ion, a building block of the mineral, without its calcium.",
+     "note": "{What}: made hard by tiny crystals of a calcium phosphate mineral, hydroxyapatite. In bone the crystals are set in collagen fibres. Neither the crystal nor any collagen is built yet. Shown: one phosphate ion, a building block of the mineral, without its calcium.",
      "title": "Phosphate ion (a building block of bone mineral)"
     }
    ],
@@ -339,10 +328,10 @@
       "cell": "animal"
      },
      "standIn": true,
-     "note": "A generic animal cell stands in for the cells of {what}. What it shows (membrane, nucleus, mitochondria and the other organelles) is common to animal cells; the shape and the special equipment of this cell type are not drawn."
+     "note": "A generic animal cell stands in for the cells of {what}. What it shows (membrane, nucleus, mitochondria and the other organelles) is common to animal cells; the shape and the special equipment of this cell type are not drawn. One cell with one nucleus is drawn. Some animal cells are different: red blood cells have no nucleus, and muscle fibres have many."
     }
    ],
-   "src": "the animal-cell scene"
+   "src": "the animal-cell scene; OpenStax Anatomy and Physiology 2e 10.2 (muscle fibres: many nuclei)"
   },
   "plant_cells": {
    "title": "Plant cells",
@@ -356,10 +345,10 @@
       "cell": "plant"
      },
      "standIn": true,
-     "note": "A generic plant cell (drawn as a leaf cell, with chloroplasts) stands in for the cells of {what}. The wall, nucleus, vacuole and mitochondria are common to plant cells; cells that are not green have no chloroplasts."
+     "note": "A generic plant cell (drawn as a leaf cell, with chloroplasts) stands in for the cells of {what}. The wall, nucleus, vacuole and mitochondria are common to plant cells; cells that are not green have no chloroplasts. Some plant cells are very different: the conducting cells of the phloem (sieve elements) usually have no nucleus, the water-carrying vessels of the wood are dead, and the stiffening fibres (sclerenchyma) are often dead when mature. One cell with one nucleus is drawn."
     }
    ],
-   "src": "the plant-cell scene"
+   "src": "the plant-cell scene; OpenStax Biology 2e 30.1 (xylem cells dead at functional maturity); Wikipedia \"Sieve tube element\" (https://en.wikipedia.org/wiki/Sieve_tube_element: sieve elements typically lack a nucleus); Wikipedia \"Sclerenchyma\" (https://en.wikipedia.org/wiki/Sclerenchyma: often die when mature)"
   },
   "fungal_cells": {
    "title": "Fungal cells",
@@ -373,10 +362,10 @@
       "cell": "fungal"
      },
      "standIn": true,
-     "note": "No fungal-cell scene is built yet: the generic animal-type cell stands in. A fungal cell also has a nucleus and mitochondria, but it is a long thread inside a rigid wall of chitin, which is not drawn."
+     "note": "No fungal-cell scene is built yet: the generic animal-type cell stands in. A fungal cell also has a nucleus and mitochondria, but it is a long thread inside a rigid wall of chitin, which is not drawn. Some fungal threads have no cross-walls, so many nuclei share one thread; the picture has one nucleus."
     }
    ],
-   "src": "card fa_hypha, fa_chitin"
+   "src": "card fa_hypha, fa_chitin; Wikipedia \"Hypha\" (https://en.wikipedia.org/wiki/Hypha: aseptate or coenocytic hyphae)"
   },
   "bacteria": {
    "title": "Bacteria",
@@ -447,7 +436,7 @@
   },
   "cardiac_muscle": {
    "title": "Heart muscle",
-   "desc": "Short, branching muscle cells joined end to end, which beat on their own.",
+   "desc": "Short, branching muscle cells joined end to end, which contract together as the heart beats.",
    "card": "cardiac_muscle_tissue",
    "inside": [
     {
@@ -473,7 +462,7 @@
   },
   "organ_wall": {
    "title": "Wall of a hollow organ",
-   "desc": "Layers: a lining of epithelium inside, smooth muscle around it, connective tissue outside.",
+   "desc": "Layers: a lining of epithelium inside, muscle around it (smooth in most hollow organs), connective tissue outside.",
    "card": "smooth_muscle_tissue",
    "inside": [
     {
@@ -530,10 +519,10 @@
     {
      "name": "the mineral of enamel and dentine",
      "material": "bone_mineral",
-     "note": "A tooth is enamel over dentine. Both are hardened by the same calcium phosphate mineral as bone."
+     "note": "A tooth is enamel over dentine. Enamel is about 96% mineral, a calcium phosphate like that of bone, and has no collagen. Dentine is about 70% mineral, about 20% organic matter, nearly all of it collagen, and the rest water. Shown: the mineral that hardens both."
     }
    ],
-   "src": "cards teeth, dog_teeth"
+   "src": "cards teeth, dog_teeth; Wikipedia \"Tooth enamel\" (https://en.wikipedia.org/wiki/Tooth_enamel: 96% mineral, no collagen); Wikipedia \"Dentin\" (https://en.wikipedia.org/wiki/Dentin: about 70-72% mineral, 20% organic, 8-10% water by weight; about 90% of the organic part is type I collagen)"
   },
   "cartilage": {
    "title": "Cartilage",
@@ -563,7 +552,7 @@
   },
   "epithelium": {
    "title": "Skin epithelium",
-   "desc": "Sheets of cells stacked in layers: living cells below, flat dead ones on top.",
+   "desc": "Sheets of cells stacked in layers: living cells below, flat dead ones on top (as in skin).",
    "card": "epithelial_tissue",
    "inside": [
     {
@@ -581,9 +570,13 @@
    "inside": [
     {
      "name": "an epithelium",
-     "scene": "tissue:epithelium",
+     "scene": {
+      "type": "tissue",
+      "kind": "epithelium",
+      "variant": "lining"
+     },
      "standIn": true,
-     "note": "The lining of {what} is an epithelium: a sheet of cells packed side by side. The picture is the many-layered epithelium of skin, standing in: the lining here differs in how many layers it has and in the shape of its cells."
+     "note": "The lining of {what} is an epithelium: a sheet of cells packed side by side. The picture is the many-layered epithelium of skin, standing in: the lining here differs in how many layers it has and in the shape of its cells. The flat, dead top layer of the picture belongs to skin only: the lining of {what} has no such layer."
     }
    ],
    "src": "cards trachea, bronchi, kidney_r (made_of: epithelial_tissue)"
@@ -687,23 +680,23 @@
     {
      "name": "white blood cells",
      "material": "animal_cells",
-     "note": "This tissue is a mesh crowded with white blood cells."
+     "note": "This tissue is a mesh crowded with white blood cells. In the spleen a good part of it (the red pulp) is instead filled with blood."
     }
    ],
-   "src": "cards spleen, thymus (made_of: lymphocyte_b, macrophage, lymphocyte_t)"
+   "src": "cards spleen, thymus (made_of: lymphocyte_b, macrophage, lymphocyte_t); Wikipedia \"Spleen\" (https://en.wikipedia.org/wiki/Spleen: red pulp of blood-filled sinuses and cords; white pulp of lymphoid follicles)"
   },
   "kidney_tissue": {
    "title": "Kidney tissue",
-   "desc": "About a million tiny tubes (nephrons), each lined by one layer of cells, with blood vessels between them.",
+   "desc": "Tiny tubes (nephrons), each lined by one layer of cells, with blood vessels between them.",
    "card": "nephron",
    "inside": [
     {
      "name": "the cells that line the tubes",
      "material": "lining",
-     "note": "The kidney is made of about a million tiny tubes, each lined by one layer of cells. No scene of them is built yet."
+     "note": "The kidney is made of tiny tubes called nephrons, each lined by one layer of cells. A person has 1 to 1.5 million in each kidney; other animals have other numbers. No scene of them is built yet."
     }
    ],
-   "src": "cards kidney_r, nephron"
+   "src": "cards kidney_r, nephron; Wikipedia \"Nephron\" (https://en.wikipedia.org/wiki/Nephron: a healthy adult has 1 to 1.5 million nephrons in each kidney; no counts for other species were found, so none is given)"
   },
   "lens_protein": {
    "title": "Lens of the eye",
@@ -716,7 +709,7 @@
      "note": "The cells of the lens have lost their nucleus and organelles and are packed with clear proteins, the crystallins."
     }
    ],
-   "src": "card lens (\"Lens fibers lose their organelles and are packed with crystallin proteins\")"
+   "src": "card lens (\"Lens fibers lose their organelles and are packed with crystallin proteins\"); red blood cells and lens fibres have no nucleus (cards red_blood_cell, lens)"
   },
   "vitreous": {
    "title": "Vitreous body",
@@ -765,7 +758,7 @@
      "scene": "tissue2:grass_leaf_section"
     }
    ],
-   "src": "tissue scene grass_leaf_section"
+   "src": "tissue scene grass_leaf_section; soil thing part grass_mid (\"Lawn grass\", the living blades of the turf; card soil_turf)"
   },
   "wood": {
    "title": "Wood",
@@ -891,7 +884,7 @@
       "blurb": "A pollen grain is a tiny plant body inside a tough wall of sporopollenin; it carries the male cells. The scene shows a generic plant cell, not its real structure."
      },
      "standIn": true,
-     "note": "A pollen grain is not like a leaf cell: the generic plant cell stands in for it. Its tough outer wall, made of sporopollenin, is not drawn."
+     "note": "A pollen grain is not like a leaf cell: the generic plant cell stands in for it, and unlike that cell a pollen grain has no chloroplasts. Its tough outer wall, made of sporopollenin, is not drawn."
     }
    ],
    "src": "card rn_pollen_grain; the air micro scene (POLLEN)"
@@ -981,10 +974,11 @@
    "inside": [
     {
      "name": "chitin",
-     "material": "chitin"
+     "material": "chitin",
+     "note": "{What}: a shell built largely of chitin, long chains of one sugar unit, set in protein. In crustaceans, such as woodlice and water fleas, it is also stiffened with calcium carbonate; in insects it is hardened by cross-linked protein. Shown: one unit of chitin. The protein and the mineral are not shown."
     }
    ],
-   "src": "cards bee_chitin, soil_woodlouse, soil_beetle; thing data (woodlouse_body, beetle_elytra, skater_body, daphnia_carapace > n_acetylglucosamine)"
+   "src": "cards bee_chitin, soil_woodlouse, soil_beetle; thing data (woodlouse_body, beetle_elytra, skater_body, daphnia_carapace > n_acetylglucosamine); Wikipedia \"Arthropod cuticle\" (https://en.wikipedia.org/wiki/Arthropod_cuticle: crustacean cuticle often hardened with calcium carbonate; insect cuticle by sclerotization)"
   },
   "flight_muscle": {
    "title": "Insect flight muscle",
@@ -1000,7 +994,7 @@
   },
   "granite": {
    "title": "Granite",
-   "desc": "A coarse rock: a tight mosaic of mineral grains, mostly quartz, feldspar and mica.",
+   "desc": "A coarse rock: a tight mosaic of mineral grains, mostly feldspar and quartz with a little mica.",
    "card": "rock_grains",
    "inside": [
     {
@@ -1009,7 +1003,7 @@
       "type": "micro",
       "kind": "rock"
      },
-     "note": "Granite is a mosaic of quartz, feldspar and mica grains. Zooming on leads into quartz, the only one of the three whose crystal is built."
+     "note": "Granite is a mosaic of feldspar, quartz and mica grains. Zooming on leads into quartz, the only one of the three whose crystal is built."
     },
     {
      "name": "feldspar"
@@ -1146,13 +1140,13 @@
   },
   "chip_silicon": {
    "title": "A silicon chip",
-   "desc": "A thin slice of one silicon crystal with billions of transistors built into its top layer, inside a plastic package.",
+   "desc": "A thin slice of silicon crystal with billions of transistors built into its top layer, inside a plastic package.",
    "card": "phone_soc",
    "inside": [
     {
      "name": "silicon",
      "material": "silicon",
-     "note": "{What}: a chip, which is a thin slice of a single silicon crystal, with its circuits built into the top few thousandths of a millimetre, sealed in a plastic package. Shown: the silicon crystal. For the circuits themselves, zoom into the processor."
+     "note": "{What}: a chip, which is a thin slice of silicon crystal with its circuits built into the top few thousandths of a millimetre, sealed in a plastic package. Shown: the silicon crystal. For the circuits themselves, zoom into the processor."
     }
    ],
    "src": "cards phone_soc, silicon_channel; js/teardown.js SILICON_PARTS"
@@ -1190,14 +1184,14 @@
     {
      "name": "aluminium",
      "material": "aluminium",
-     "note": "The frame of a phone is metal. It is drawn here as aluminium, one of the metals used for it."
+     "note": "The frame of a phone is metal: aluminium, steel or titanium, depending on the phone. It is drawn here as aluminium. Real frames are alloys."
     }
    ],
    "src": "card phone_antenna (\"Metal parts of the frame act as antennas\")"
   },
   "battery_graphite": {
    "title": "Lithium-ion cell",
-   "desc": "Two electrodes rolled up with a separator and soaked in liquid electrolyte: graphite on one side, a lithium metal oxide on the other.",
+   "desc": "Two electrodes with a separator between them, soaked in liquid electrolyte: graphite on one side, a lithium metal oxide on the other.",
    "card": "phone_battery",
    "inside": [
     {
@@ -1212,7 +1206,7 @@
      "name": "the liquid electrolyte"
     }
    ],
-   "src": "card phone_battery (\"Li⁺ ions move between graphite and a lithium-metal-oxide\"); Battery University BU-205 (cobalt oxide cathode, graphite anode in phones)"
+   "src": "card phone_battery (\"Li⁺ ions move between graphite and a lithium-metal-oxide\"); Battery University BU-205 (cobalt oxide cathode, graphite anode in phones); Wikipedia \"Lithium-ion battery\" (https://en.wikipedia.org/wiki/Lithium-ion_battery: pouch cells, flat and soft-bodied, are used in cell phones; cylindrical cells are wound)"
   },
   "glass": {
    "title": "Glass",
@@ -1223,10 +1217,10 @@
   },
   "oled": {
    "title": "OLED display",
-   "desc": "A stack of very thin layers on glass: transistors, then carbon-based molecules that give off light.",
+   "desc": "A stack of very thin layers on a glass or plastic backing: transistors, then carbon-based molecules that give off light.",
    "card": "phone_display",
-   "stop": "Not built yet: the layers of an OLED display. Each pixel is a stack of thin films of carbon-based (organic) molecules between two electrodes, on a sheet of glass with a transistor circuit. None of these molecules is in the collection yet.",
-   "src": "card phone_display"
+   "stop": "Not built yet: the layers of an OLED display. Each pixel is a stack of thin films of carbon-based (organic) molecules between two electrodes, on a backing with a transistor circuit. The backing is glass in a rigid screen and a flexible plastic film in a bendable one. None of these molecules is in the collection yet.",
+   "src": "card phone_display; Wikipedia \"OLED\" (https://en.wikipedia.org/wiki/OLED: flexible OLEDs on plastic films, rigid ones on glass)"
   },
   "marker": {
    "title": "A marker",
@@ -1272,7 +1266,7 @@
   },
   "bird_bone": {
    "title": "Bird bone",
-   "desc": "A thin-walled tube of bone braced inside by fine struts.",
+   "desc": "A bone with thin walls; in many birds the large bones are hollow tubes braced inside by fine struts.",
    "card": "robin_bone_scene",
    "inside": [
     {
@@ -1303,7 +1297,7 @@
      "name": "cellulose",
      "material": "cellulose",
      "standIn": true,
-     "note": "The outer bark is cork: dead cells whose walls are mostly suberin, a waxy polyester, and lignin. Neither is built yet. Shown instead: cellulose, the material of ordinary plant cell walls."
+     "note": "The outer bark is cork: dead cells whose walls are mostly suberin, a waxy polyester, and lignin. The figures come from the cork oak, whose cork is the best studied; the English oak's bark also has much dead phloem and other substances. Neither suberin nor lignin is built yet. Shown instead: cellulose, the material of ordinary plant cell walls."
     }
    ],
    "src": "cards oak_bark, oak_cork; Pereira 2013, BioResources 8(2) (cork: suberin about 40%, lignin 22%)"
@@ -1392,7 +1386,7 @@
   },
   "single_cell": {
    "title": "A single-celled creature",
-   "desc": "A whole living thing that is one cell with a nucleus, neither plant nor animal.",
+   "desc": "A whole living thing that is one cell with at least one nucleus, neither plant nor animal.",
    "card": "pond_paramecium",
    "inside": [
     {
@@ -1403,7 +1397,7 @@
       "cname": "{What}: drawn as a generic animal-type cell"
      },
      "standIn": true,
-     "note": "{What}: a single cell, though not an animal's. The generic animal-type cell stands in, because it too has a nucleus and mitochondria; the creature's own parts (its cilia, mouth groove and pumping vacuoles) are not drawn."
+     "note": "{What}: a single cell, though not an animal's. The generic animal-type cell stands in, because it too has a nucleus and mitochondria; the creature's own parts (its cilia, mouth groove and pumping vacuoles) are not drawn. Some of these creatures, Paramecium for example, have more than one kind of nucleus; the picture has one."
     }
    ],
    "src": "card pond_paramecium"
@@ -1484,7 +1478,7 @@
   },
   "stellar_plasma": {
    "title": "Stellar plasma",
-   "desc": "What a star is made of: gas so hot that its atoms have come apart into bare nuclei and free electrons.",
+   "desc": "What stars are made of: gas so hot that its atoms have come apart into nuclei and free electrons. Only the cooler outer layers keep some atoms whole.",
    "card": null,
    "inside": [
     {
@@ -1492,12 +1486,12 @@
      "scene": {
       "type": "plasma",
       "title": "Plasma of a star",
-      "blurb": "What a star is made of: gas so hot that its atoms have come apart into bare nuclei and free electrons. By mass about 73% is hydrogen, 25% helium and 2% everything else, in the Sun and in stars in general.",
-      "note": "Schematic: a patch of plasma drawn at random. The temperature and density of this particular place are not modelled, and the dots are far larger than real nuclei."
+      "blurb": "What stars are made of: gas so hot that its atoms have come apart into nuclei and free electrons. The mix of elements differs from star to star and from the surface to the core. The Sun's surface layer is by mass about 73% hydrogen and 25% helium, and its core, after billions of years of fusion, is about 60% helium. The coolest outer layers of a star are only partly ionised.",
+      "note": "Schematic: a patch of plasma drawn at random. The temperature, density and composition of this particular place are not modelled, and the dots are far larger than real nuclei."
      }
     }
    ],
-   "src": "OpenStax Astronomy 2e 15.1 (73% hydrogen, 25% helium by mass; the Sun is typical of stars)"
+   "src": "Wikipedia \"Sun\" (https://en.wikipedia.org/wiki/Sun: photosphere about 73% hydrogen and 25% helium by mass; helium in the core risen from about 24% to about 60%; photosphere ionised only about 3%); NASA, the Sun (https://science.nasa.gov/sun/facts/: a ball of plasma; core about 15 million C, photosphere 5,500 C, corona up to 2 million C)"
   },
   "far_star": {
    "title": "A distant star",
@@ -1507,14 +1501,14 @@
     {
      "name": "stellar plasma",
      "material": "stellar_plasma",
-     "note": "{What}: a star, a ball of hot plasma. Shown: stellar plasma in general, not the conditions of this star."
+     "note": "{What}: a star, a ball of hot plasma. Shown: stellar plasma in general, not the conditions or the composition of this star."
     }
    ],
    "src": "OpenStax Astronomy 2e 15.1"
   },
   "galaxy": {
    "title": "A galaxy",
-   "desc": "Millions to hundreds of billions of stars held together by gravity, with gas and dust between them.",
+   "desc": "From under a thousand stars in the smallest dwarf galaxies to about a hundred trillion in the largest, held together by gravity, with gas and dust between them.",
    "card": null,
    "inside": [
     {
@@ -1529,7 +1523,7 @@
      "name": "dust"
     }
    ],
-   "src": "OpenStax Astronomy 2e 15.1, 20.1"
+   "src": "Wikipedia \"Galaxy\" (https://en.wikipedia.org/wiki/Galaxy: dwarf galaxies with fewer than a thousand stars, the largest with about one hundred trillion); OpenStax Astronomy 2e 15.1, 20.1"
   },
   "interstellar_gas": {
    "title": "Interstellar gas",
@@ -1550,11 +1544,11 @@
       "title": "Interstellar gas",
       "blurb": "The space between the stars holds, on average, about one atom in each cubic centimetre. The air you breathe holds about 10¹⁹. Nine atoms in ten are hydrogen and nearly all the rest are helium.",
       "body": "Between the stars of a galaxy there is gas, extremely thin: on average about one atom per cubic centimetre, against about 10¹⁹ in air. By number about 91% of the atoms are hydrogen and about 9% helium. In the densest clouds, where stars form, there are hundreds to thousands per cubic centimetre: still a far better vacuum than any made on Earth.",
-      "note": "Not to scale in number: at the true density a view this size (44 nanometres across) would almost never hold an atom. One hydrogen atom is drawn so that there is something to go on to. About 1% of the matter between the stars is dust, grains of rock-like or soot-like material 10 to 100 nanometres across, which are not drawn."
+      "note": "Not to scale in number: at the true density a view this size (44 nanometres across) would almost never hold an atom. One hydrogen atom is drawn so that there is something to go on to. In the densest clouds the hydrogen is in H₂ molecules, and in hot regions much of the gas is ionised. About 1% of the matter between the stars is dust, grains of rock-like or soot-like material 10 to 100 nanometres across, which are not drawn."
      }
     }
    ],
-   "src": "OpenStax Astronomy 2e 20.1 (about one atom per cm3; 99% gas, 1% dust), 20.2, 20.3 (grains 1e-8 to 1e-7 m); Wikipedia \"Interstellar medium\" (91% H, 8.9% He by number; fallback source)"
+   "src": "OpenStax Astronomy 2e 20.1 (about one atom per cm3; 99% gas, 1% dust), 20.2, 20.3 (grains 1e-8 to 1e-7 m); Wikipedia \"Interstellar medium\" (91% H, 8.9% He by number; fallback source); Wikipedia \"Interstellar medium\" (https://en.wikipedia.org/wiki/Interstellar_medium: H2 the most common molecule in molecular clouds; hot diffuse gas highly ionised)"
   },
   "intergalactic_gas": {
    "title": "Intergalactic space",
@@ -1573,17 +1567,17 @@
       ],
       "count": 1,
       "title": "Intergalactic space",
-      "blurb": "Between the galaxies there are only a few hydrogen atoms in each cubic metre.",
-      "body": "The space between the galaxies holds only a few hydrogen atoms per cubic metre: a million times thinner still than the gas between the stars of a galaxy.",
+      "blurb": "Between the galaxies the gas is thinner than anywhere else: on average over the whole universe, ordinary matter amounts to about one proton in every four cubic metres, and in the gas between galaxies there is often less than one hydrogen atom per cubic metre. It is denser near galaxies and along the filaments of the cosmic web.",
+      "body": "The space between the galaxies is the emptiest there is. Averaged over the whole universe, ordinary matter amounts to about 0.25 protons per cubic metre (calculated from the baryon density measured by the Planck satellite), and the gas between the galaxies is often thinner than one hydrogen atom per cubic metre. That is several million times thinner than the gas between the stars of a galaxy, which holds about a million particles per cubic metre.",
       "note": "Not to scale in number: at the true density a view this size would practically never hold an atom. One hydrogen atom is drawn so that there is something to go on to."
      }
     }
    ],
-   "src": "Wikipedia \"Outer space\" (a few hydrogen atoms per cubic metre; fallback source); OpenStax Astronomy 2e 20.1 for the interstellar figure"
+   "src": "Planck 2018 results VI, arXiv:1807.06209 (baryon density Omega_b h^2 = 0.0224 +/- 0.0001; with the critical density 1.878e-26 h^2 kg/m3 and the proton mass this gives about 0.25 baryons per m3, calculated); Wikipedia \"Intergalactic medium\" (https://en.wikipedia.org/wiki/Intergalactic_medium: less than one hydrogen atom per cubic metre in the warm-hot gas; about one proton per four cubic metres on average; interstellar medium about 1e6 particles per m3)"
   },
   "cluster_gas": {
    "title": "A cluster of galaxies",
-   "desc": "Hundreds or thousands of galaxies bound by gravity, in a vast cloud of very hot gas.",
+   "desc": "A hundred to a thousand galaxies bound by gravity, in a vast cloud of very hot gas.",
    "card": null,
    "inside": [
     {
@@ -1591,12 +1585,12 @@
      "scene": {
       "type": "plasma",
       "title": "Hot gas of a galaxy cluster",
-      "blurb": "A cluster of galaxies sits in a vast cloud of gas at 30 to 100 million degrees, so hot that it is a plasma of bare nuclei and electrons. This gas holds more mass than all the cluster's galaxies together.",
+      "blurb": "A cluster of galaxies sits in a vast cloud of gas at 30 to 100 million degrees, so hot that it is a plasma of bare nuclei and electrons. The gas holds several times more mass than all the cluster's galaxies together, and dark matter more still.",
       "note": "Schematic: the number of particles drawn says nothing about the real density, which is extremely low. The galaxies themselves are far too distant here to draw."
      }
     }
    ],
-   "src": "Chandra X-ray Center field guide, Groups and Clusters of Galaxies (gas at 30-100 million degrees, more mass than the galaxies)"
+   "src": "Wikipedia \"Galaxy cluster\" (https://en.wikipedia.org/wiki/Galaxy_cluster: 100 to 1,000 galaxies; gas peak temperature 30 to 100 million degrees; about 9% of the mass in gas, 1% in galaxies, 90% dark matter); Chandra X-ray Center field guide, Groups and Clusters of Galaxies"
   },
   "accretion_plasma": {
    "title": "Gas falling toward a black hole",
@@ -1684,29 +1678,10 @@
      "name": "forsterite, a silicate mineral",
      "scene": "crystal:forsterite",
      "standIn": true,
-     "note": "Shown: forsterite, a magnesium silicate, the nearest crystal we have. It stands for silicate rock in general, not for this body's own commonest minerals, which are not built yet."
+     "note": "Shown: forsterite, a magnesium silicate, the nearest crystal we have. It stands for silicate rock in general, not for the commonest minerals of the body you came from, which are not built yet (the Moon's highlands, for example, are rich in feldspar)."
     }
    ],
    "src": "data/crystals.json forsterite; OpenStax Astronomy 2e 9.2, 9.5"
-  },
-  "rocky_regolith": {
-   "title": "Regolith",
-   "desc": "The surface of an airless rocky body: rock broken by impacts into dust and sharp fragments.",
-   "card": null,
-   "inside": [
-    {
-     "name": "crushed rock",
-     "scene": {
-      "type": "micro",
-      "kind": "regolith",
-      "title": "Crushed rock (regolith)",
-      "blurb": "The ground of an airless rocky world, about 1 mm across: dust and sharp fragments of rock shattered by impacts, never rounded by wind or water.",
-      "material": "silicate_rock"
-     },
-     "note": "{What}: rock broken by impacts into dust and fragments. The picture of the grains is generic."
-    }
-   ],
-   "src": "NASA Mercury Facts; NASA Moon Facts; OpenStax Astronomy 2e 9.2; NASA Ceres Facts; NASA Phobos"
   },
   "lunar_regolith": {
    "title": "Lunar regolith",
@@ -1721,7 +1696,7 @@
       "title": "Lunar regolith",
       "material": "silicate_rock"
      },
-     "note": "The Moon's crust is mostly pale feldspar-rich rock (anorthosite); the dark maria are basalt, which is old lava. Both are silicate rocks, broken at the surface into fine, sharp-edged soil."
+     "note": "The Moon's crust is mostly pale feldspar-rich rock (anorthosite); the dark maria are basalt, which is old lava. Both are silicate rocks, broken at the surface into fine, sharp-edged soil. The crystal shown at the next level is forsterite, a stand-in: it is not a mineral the Moon is known for."
     }
    ],
    "src": "OpenStax Astronomy 2e 9.2 (83% anorthosites; maria mostly basalt); NASA Moon Facts"
@@ -1740,10 +1715,10 @@
       "blurb": "The ground of an icy world, about 1 mm across: grains of frozen water.",
       "material": "ice"
      },
-     "note": "{What}: mostly water ice, mixed with darker material (rock, salts) that is not drawn. The grain picture is the generic snow-and-ice scene, and the crystal below is ordinary ice (ice Ih)."
+     "note": "{What}: mostly water ice, mixed with darker material (rock, salts) that is not drawn. On Iapetus one hemisphere is as dark as coal, probably from dark dust, and that is not drawn either. The grain picture is the generic snow-and-ice scene, and the crystal below is ordinary ice (ice Ih)."
     }
    ],
-   "src": "NASA Europa Facts; NASA Enceladus; NASA Rhea, Iapetus; NASA Ganymede; NASA Titan Facts; NASA Haumea Facts; Wikipedia \"Callisto\", \"Charon\", \"Moons of Uranus\" (fallback sources)"
+   "src": "NASA Europa Facts; NASA Enceladus; NASA Rhea, Iapetus; NASA Ganymede; NASA Titan Facts; NASA Haumea Facts; Wikipedia \"Callisto\", \"Charon\", \"Moons of Uranus\" (fallback sources); NASA Mimas (https://science.nasa.gov/saturn/moons/mimas/: \"consists almost entirely of water ice, which is the only substance ever detected on Mimas\"); NASA Iapetus (https://science.nasa.gov/saturn/moons/iapetus/: a dark leading hemisphere, reflectivity 0.03 to 0.05, about three quarters ice)"
   },
   "n2_molecule": {
    "title": "Frozen nitrogen",
@@ -1887,35 +1862,31 @@
   },
   "jupiter_gas": {
    "title": "The gas of Jupiter",
-   "desc": "Jupiter's atmosphere at the scale of molecules: hydrogen and helium with a little methane.",
+   "desc": "Jupiter's atmosphere at the scale of molecules: mostly hydrogen and helium.",
    "card": null,
    "inside": [
     {
-     "name": "hydrogen, helium and methane",
+     "name": "hydrogen and helium",
      "scene": {
       "type": "gas",
       "mix": [
        [
         "H2",
-        0.89
+        0.864
        ],
        [
         "He",
-        0.1
-       ],
-       [
-        "CH4",
-        0.003
+        0.136
        ]
       ],
       "title": "The gas of Jupiter",
-      "blurb": "Jupiter's atmosphere at the scale of molecules. By volume: 89% hydrogen, 10% helium, 0.3% methane and a trace of ammonia (not drawn).",
-      "body": "Jupiter has no solid surface: its atmosphere just gets denser with depth. By volume it is 89% hydrogen, 10% helium, 0.3% methane and a trace of ammonia (not drawn).",
+      "blurb": "Jupiter's atmosphere at the scale of molecules, as measured by the Galileo probe between 0.5 and 21 bars: by number about 86% hydrogen molecules and 14% helium. Methane, ammonia and water are present in smaller amounts and are not drawn.",
+      "body": "Jupiter has no solid surface: its atmosphere just gets denser with depth. The Galileo probe sampled it between 0.5 and 21 bars of pressure and found about 0.157 helium atoms for each hydrogen molecule, which is about 86% hydrogen and 14% helium by number. Deeper still, the pressure compresses the hydrogen into a liquid. Methane, ammonia and water are present in smaller amounts and are not drawn.",
       "note": "Model: random positions, molecules at true size, drawn at the number density of air at sea level on Earth so that the pictures can be compared; the real density depends on the depth. Motion is slowed about a trillion times."
      }
     }
    ],
-   "src": "Wikipedia \"Jupiter\" infobox, atmosphere by volume (fallback: the NASA fact sheet could not be reached)"
+   "src": "Niemann et al. 1998, JGR 103, E10 (Galileo probe mass spectrometer; abstract at https://earthref.org/ERR/61038/: 4He/H2 = 0.157, sampled from 0.5 to 21.1 bars; the percentages are calculated from that ratio); NASA Jupiter facts (https://science.nasa.gov/jupiter/facts/: mostly hydrogen and helium; deeper the hydrogen is compressed into a liquid). The NSSDC fact sheet could not be reached from here."
   },
   "jupiter_clouds": {
    "title": "Cloud tops of Jupiter",
@@ -1932,39 +1903,35 @@
      }
     }
    ],
-   "src": "Wikipedia \"Jupiter\" infobox, atmosphere by volume (fallback: the NASA fact sheet could not be reached)"
+   "src": "Niemann et al. 1998, JGR 103, E10 (Galileo probe mass spectrometer; abstract at https://earthref.org/ERR/61038/: 4He/H2 = 0.157, sampled from 0.5 to 21.1 bars; the percentages are calculated from that ratio); NASA Jupiter facts (https://science.nasa.gov/jupiter/facts/: mostly hydrogen and helium; deeper the hydrogen is compressed into a liquid). The NSSDC fact sheet could not be reached from here."
   },
   "saturn_gas": {
    "title": "The gas of Saturn",
-   "desc": "Saturn's atmosphere at the scale of molecules: hydrogen and helium with a little methane.",
+   "desc": "Saturn's atmosphere at the scale of molecules: mostly hydrogen and helium.",
    "card": null,
    "inside": [
     {
-     "name": "hydrogen, helium and methane",
+     "name": "hydrogen and helium",
      "scene": {
       "type": "gas",
       "mix": [
        [
         "H2",
-        0.963
+        0.9
        ],
        [
         "He",
-        0.0325
-       ],
-       [
-        "CH4",
-        0.0045
+        0.1
        ]
       ],
       "title": "The gas of Saturn",
-      "blurb": "Saturn's atmosphere at the scale of molecules. By volume: 96.3% hydrogen, 3.25% helium, 0.45% methane.",
-      "body": "Saturn has no solid surface: its atmosphere just gets denser with depth. By volume it is 96.3% hydrogen, 3.25% helium, 0.45% methane.",
+      "blurb": "Saturn's atmosphere at the scale of molecules: mostly hydrogen, with helium and smaller amounts of methane and other gases. How much helium there is is poorly known: this picture shows about one helium atom for every ten hydrogen molecules as an illustration.",
+      "body": "Saturn has no solid surface: its atmosphere just gets denser with depth, until the pressure squeezes the gas into a liquid. It is mostly hydrogen and helium. Its helium share is poorly known and different measurements disagree, so the number drawn here is an illustration, not a measurement.",
       "note": "Model: random positions, molecules at true size, drawn at the number density of air at sea level on Earth so that the pictures can be compared; the real density depends on the depth. Motion is slowed about a trillion times."
      }
     }
    ],
-   "src": "Wikipedia \"Saturn\" infobox (fallback source)"
+   "src": "NASA Saturn facts (https://science.nasa.gov/saturn/facts/: mostly hydrogen and helium; pressure squeezes gas into a liquid); arXiv:2304.09215 \"Saturn's Interior After the Cassini Grand Finale\" (https://arxiv.org/abs/2304.09215: \"Saturn's poorly known atmospheric helium abundance\"). No measured value is quoted; the NSSDC fact sheet could not be reached."
   },
   "saturn_clouds": {
    "title": "Cloud tops of Saturn",
@@ -1981,39 +1948,35 @@
      }
     }
    ],
-   "src": "Wikipedia \"Saturn\" infobox (fallback source)"
+   "src": "NASA Saturn facts (https://science.nasa.gov/saturn/facts/: mostly hydrogen and helium; pressure squeezes gas into a liquid); arXiv:2304.09215 \"Saturn's Interior After the Cassini Grand Finale\" (https://arxiv.org/abs/2304.09215: \"Saturn's poorly known atmospheric helium abundance\"). No measured value is quoted; the NSSDC fact sheet could not be reached."
   },
   "uranus_gas": {
    "title": "The gas of Uranus",
-   "desc": "Uranus's atmosphere at the scale of molecules: hydrogen and helium with a little methane.",
+   "desc": "Uranus's atmosphere at the scale of molecules: mostly hydrogen and helium.",
    "card": null,
    "inside": [
     {
-     "name": "hydrogen, helium and methane",
+     "name": "hydrogen and helium",
      "scene": {
       "type": "gas",
       "mix": [
        [
         "H2",
-        0.83
+        0.85
        ],
        [
         "He",
         0.15
-       ],
-       [
-        "CH4",
-        0.023
        ]
       ],
       "title": "The gas of Uranus",
-      "blurb": "Uranus's atmosphere at the scale of molecules. By volume: 83% hydrogen, 15% helium, 2.3% methane.",
-      "body": "Uranus has no solid surface: its atmosphere just gets denser with depth. By volume it is 83% hydrogen, 15% helium, 2.3% methane.",
+      "blurb": "Uranus's atmosphere at the scale of molecules, near the level where the pressure is about a tenth of a bar (the tropopause): by number about 85% hydrogen molecules and the rest mostly helium. Deeper, below the methane clouds at about 1.2 bars, methane makes up about 2.3% of the gas; it is not drawn here.",
+      "body": "Uranus has no solid surface: its atmosphere just gets denser with depth. Voyager 2 found about 85% hydrogen by number near the tropopause (about 0.1 bar), the rest mostly helium. Below the methane cloud layer, at about 1.2 bars, methane is about 2.3% of the gas.",
       "note": "Model: random positions, molecules at true size, drawn at the number density of air at sea level on Earth so that the pictures can be compared; the real density depends on the depth. Motion is slowed about a trillion times."
      }
     }
    ],
-   "src": "Wikipedia \"Uranus\" infobox (fallback source)"
+   "src": "Lindal et al. 1987, JGR 92 (Voyager 2 radio occultation; abstract at http://earthref.org/ERR/30306/: gas about 85 +/- 3% hydrogen at the tropopause near 100 mbar, remainder mostly helium; methane 2.3% by number below the cloud base, methane cloud centred at 1.2 bar). NASA Uranus facts (https://science.nasa.gov/uranus/facts/). The NSSDC fact sheet could not be reached."
   },
   "uranus_clouds": {
    "title": "Cloud tops of Uranus",
@@ -2030,39 +1993,35 @@
      }
     }
    ],
-   "src": "Wikipedia \"Uranus\" infobox (fallback source)"
+   "src": "Lindal et al. 1987, JGR 92 (Voyager 2 radio occultation; abstract at http://earthref.org/ERR/30306/: gas about 85 +/- 3% hydrogen at the tropopause near 100 mbar, remainder mostly helium; methane 2.3% by number below the cloud base, methane cloud centred at 1.2 bar). NASA Uranus facts (https://science.nasa.gov/uranus/facts/). The NSSDC fact sheet could not be reached."
   },
   "neptune_gas": {
    "title": "The gas of Neptune",
-   "desc": "Neptune's atmosphere at the scale of molecules: hydrogen and helium with a little methane.",
+   "desc": "Neptune's atmosphere at the scale of molecules: mostly hydrogen and helium.",
    "card": null,
    "inside": [
     {
-     "name": "hydrogen, helium and methane",
+     "name": "hydrogen and helium",
      "scene": {
       "type": "gas",
       "mix": [
        [
         "H2",
-        0.8
+        0.81
        ],
        [
         "He",
         0.19
-       ],
-       [
-        "CH4",
-        0.015
        ]
       ],
       "title": "The gas of Neptune",
-      "blurb": "Neptune's atmosphere at the scale of molecules. By volume: 80% hydrogen, 19% helium, 1.5% methane.",
-      "body": "Neptune has no solid surface: its atmosphere just gets denser with depth. By volume it is 80% hydrogen, 19% helium, 1.5% methane.",
+      "blurb": "Neptune's atmosphere at the scale of molecules, near the level where the pressure is about a tenth of a bar (the tropopause): by number 77 to 85% hydrogen molecules and the rest mostly helium. Deeper, near 1.7 bars, methane is 1 to 2% of the gas; it is not drawn here.",
+      "body": "Neptune has no solid surface: its atmosphere just gets denser with depth. Voyager 2 found between 77 and 85% hydrogen by number near the tropopause (about 0.1 bar), the rest mostly helium. Near 1.7 bars methane is 1 to 2% of the gas.",
       "note": "Model: random positions, molecules at true size, drawn at the number density of air at sea level on Earth so that the pictures can be compared; the real density depends on the depth. Motion is slowed about a trillion times."
      }
     }
    ],
-   "src": "Wikipedia \"Neptune\" infobox (fallback source)"
+   "src": "Lindal 1992, Astron. J. 103 (Voyager 2 radio occultation; abstract at http://earthref.org/ERR/11978/: tropopause near 100 mbar, gas 77 to 85% hydrogen, remainder mostly helium; methane 1 to 2% by number at about 1.7 bar). NASA Neptune facts (https://science.nasa.gov/neptune/facts/). The drawn 81:19 split is within the measured range. The NSSDC fact sheet could not be reached."
   },
   "neptune_clouds": {
    "title": "Cloud tops of Neptune",
@@ -2079,20 +2038,20 @@
      }
     }
    ],
-   "src": "Wikipedia \"Neptune\" infobox (fallback source)"
+   "src": "Lindal 1992, Astron. J. 103 (Voyager 2 radio occultation; abstract at http://earthref.org/ERR/11978/: tropopause near 100 mbar, gas 77 to 85% hydrogen, remainder mostly helium; methane 1 to 2% by number at about 1.7 bar). NASA Neptune facts (https://science.nasa.gov/neptune/facts/). The drawn 81:19 split is within the measured range. The NSSDC fact sheet could not be reached."
   },
   "upper_air": {
    "title": "Earth's atmosphere",
-   "desc": "The same gases as at the ground, thinning out with height.",
+   "desc": "Below about 100 km the same gases as at the ground, thinning out with height; above that the mix changes.",
    "card": "park_sky",
    "inside": [
     {
      "name": "air",
      "material": "air",
-     "note": "The picture is air as it is at sea level. High above the ground, where you are pointing, the same gases are there but far thinner."
+     "note": "The picture is air as it is at sea level. Below about 100 km, where you are pointing the main gases are the same as at the ground, only far thinner. Above about 100 km the gases sort themselves by weight: the heavier ones stay low and hydrogen, the lightest, is almost all there is at the top. The picture does not fit up there."
     }
    ],
-   "src": "the air scene"
+   "src": "Wikipedia \"Atmosphere of Earth\" (https://en.wikipedia.org/wiki/Atmosphere_of_Earth: turbopause at about 100 km; above it the composition varies with height, the upper heterosphere almost completely hydrogen; exosphere mainly hydrogen with some helium); the air scene"
   },
   "shell_carbonate": {
    "title": "Snail shell",
@@ -2103,7 +2062,7 @@
      "name": "calcite, a crystal form of calcium carbonate",
      "scene": "crystal:calcite",
      "standIn": true,
-     "note": "A mollusc's shell is 95 to 99% calcium carbonate by weight, under a thin organic outer layer. Shells use two crystal forms of it, calcite and aragonite. Calcite is the one that is built, and is shown; this shell's own form may be the other."
+     "note": "A mollusc's shell is 95 to 99% calcium carbonate by weight, under a thin organic outer layer. Shells use two crystal forms of it, calcite and aragonite. Calcite is the one that is built, and is shown; which form this snail's shell is mostly made of is not checked here, and may be the other."
     }
    ],
    "src": "Checa 2018, Frontiers in Marine Science 5:353"
@@ -2160,6 +2119,308 @@
     }
    ],
    "src": "NASA Ganymede; Wikipedia \"Callisto (moon)\", \"Moons of Uranus\" (fallback sources)"
+  },
+  "galaxy_group": {
+   "title": "A group of galaxies",
+   "desc": "Up to about fifty galaxies held together by gravity.",
+   "card": null,
+   "inside": [
+    {
+     "name": "the stars of its galaxies: stellar plasma",
+     "material": "stellar_plasma",
+     "note": "{What}: a group of galaxies, about fifty or fewer held together by gravity. About half of the groups studied glow faintly in X-rays from hot gas between their galaxies; a group is much smaller than a cluster. Shown: the stars that make up its galaxies."
+    },
+    {
+     "name": "hot gas between the galaxies (in about half of groups)"
+    }
+   ],
+   "src": "Wikipedia \"Galaxy group\" (https://en.wikipedia.org/wiki/Galaxy_group: about 50 or fewer gravitationally bound members; about half of groups show diffuse X-ray emission)"
+  },
+  "supercluster": {
+   "title": "A supercluster of galaxies",
+   "desc": "A large chain or sheet of galaxy clusters and groups, mostly not held together by gravity.",
+   "card": null,
+   "stop": "{What}: a supercluster, a very large collection of clusters and groups of galaxies. Most superclusters are not held together by gravity as a cluster is: they are carried apart by the expansion of the universe. It is not one body and has no single cloud of gas. Point at a cluster, a group or a galaxy inside it to go on.",
+   "src": "Wikipedia \"Supercluster\" (https://en.wikipedia.org/wiki/Supercluster: a large group of smaller clusters or groups; most superclusters, unlike clusters, expand with the Hubble expansion)"
+  },
+  "mercury_regolith": {
+   "title": "Regolith of Mercury",
+   "desc": "Mercury's surface: rock broken by impacts, low in iron and rich in sulfur.",
+   "card": null,
+   "inside": [
+    {
+     "name": "crushed rock",
+     "scene": {
+      "type": "micro",
+      "kind": "regolith",
+      "title": "Regolith of Mercury",
+      "blurb": "The ground of an airless world, about 1 mm across: dust and fragments shattered by impacts. The grain shapes are generic.",
+      "material": "silicate_rock"
+     },
+     "note": "{What}: rock broken by impacts into dust and fragments. Mercury's crust is silicate rock (mostly pyroxene and olivine) that is low in iron and richer in sulfur than expected. The crystal shown at the next level is a stand-in (forsterite), not a mineral this body is known for."
+    }
+   ],
+   "src": "NASA Mercury facts (https://science.nasa.gov/mercury/facts/: rocky mantle and solid crust; impacts crush rock); Wikipedia \"Mercury (planet)\" (https://en.wikipedia.org/wiki/Mercury_(planet): crust low in iron, high in sulfur, iron-poor pyroxene and olivine; MESSENGER)"
+  },
+  "ceres_regolith": {
+   "title": "Surface of Ceres",
+   "desc": "Ceres's surface: a dark, dusty mix of clay-like minerals, carbonates and salts, with some water ice.",
+   "card": null,
+   "inside": [
+    {
+     "name": "crushed rock",
+     "scene": {
+      "type": "micro",
+      "kind": "regolith",
+      "title": "Surface of Ceres",
+      "blurb": "The ground of an airless world, about 1 mm across: dust and fragments shattered by impacts. The grain shapes are generic.",
+      "material": "silicate_rock"
+     },
+     "note": "{What}: Ceres has a rocky, dusty crust with large salt deposits. Its surface is rich in carbonates and in ammonia-bearing clay minerals changed by water, with water ice in places. It is not the kind of silicate rock of the rocky planets. The crystal shown at the next level is a stand-in (forsterite), not a mineral this body is known for."
+    }
+   ],
+   "src": "NASA Ceres facts (https://science.nasa.gov/dwarf-planets/ceres/facts/: crust rocky and dusty with large salt deposits such as magnesium sulfate; layers of ice just below); Wikipedia \"Ceres (dwarf planet)\" (https://en.wikipedia.org/wiki/Ceres_(dwarf_planet): surface rich in carbonates and ammoniated phyllosilicates altered by water; water ice in the regolith)"
+  },
+  "carbonaceous_regolith": {
+   "title": "Regolith of Phobos and Deimos",
+   "desc": "The dark surface of a Martian moon: rock like carbonaceous meteorites.",
+   "card": null,
+   "inside": [
+    {
+     "name": "crushed rock",
+     "scene": {
+      "type": "micro",
+      "kind": "regolith",
+      "title": "Regolith of Phobos and Deimos",
+      "blurb": "The ground of an airless world, about 1 mm across: dust and fragments shattered by impacts. The grain shapes are generic.",
+      "material": "silicate_rock"
+     },
+     "note": "{What}: rock broken by impacts into dust and fragments. Phobos and Deimos appear to be made of dark, carbon-rich rock like carbonaceous chondrite meteorites, not like the rock of Mars. The crystal shown at the next level is a stand-in (forsterite), not a mineral this body is known for."
+    }
+   ],
+   "src": "NASA Phobos (https://science.nasa.gov/mars/moons/phobos/: appear to be composed of C-type rock, similar to blackish carbonaceous chondrite asteroids); NASA Deimos (https://science.nasa.gov/mars/moons/deimos/)"
+  },
+  "esophagus_human": {
+   "title": "Wall of the human oesophagus",
+   "desc": "A lining of epithelium inside, then muscle that is striped in the upper third and smooth in the lower third.",
+   "card": "smooth_muscle_tissue",
+   "inside": [
+    {
+     "name": "smooth muscle (lower part)",
+     "scene": "tissue:smooth",
+     "note": "The wall of the oesophagus has a lining of epithelium, muscle around it, and connective tissue. The upper third of the muscle is skeletal (striped) muscle, the middle third a mixture and the lower third smooth muscle. Shown: smooth muscle, which is the lower part. Schematic."
+    },
+    {
+     "name": "the epithelial lining"
+    },
+    {
+     "name": "connective tissue"
+    }
+   ],
+   "src": "Wikipedia \"Esophagus\" (https://en.wikipedia.org/wiki/Esophagus: humans: upper third striated, middle mixed, lower third smooth)"
+  },
+  "esophagus_striated": {
+   "title": "Wall of the oesophagus of a dog",
+   "desc": "A lining of epithelium inside, then muscle that is striped along the whole length.",
+   "card": "skeletal_muscle_tissue",
+   "inside": [
+    {
+     "name": "striated muscle",
+     "scene": "tissue:skeletal",
+     "note": "In a dog the oesophagus is lined by epithelium and wrapped in striated (skeletal) muscle along its whole length, not the smooth muscle of the rest of the gut. Shown: skeletal muscle. Schematic."
+    },
+    {
+     "name": "the epithelial lining"
+    },
+    {
+     "name": "connective tissue"
+    }
+   ],
+   "src": "Wikipedia \"Esophagus\" (https://en.wikipedia.org/wiki/Esophagus: in the dog it is entirely striated; in birds entirely smooth muscle)"
+  },
+  "living_lining_cells": {
+   "title": "Living surface cells of a lining",
+   "desc": "The cells at the surface of a lining inside the body: alive, not dead scales.",
+   "card": "epithelial_tissue",
+   "inside": [
+    {
+     "name": "a living epithelial cell",
+     "material": "animal_cells",
+     "note": "The flat top layer of the skin picture is dead skin, which a lining inside the body does not have. The surface cells of this lining are living cells. A generic cell stands in for them."
+    }
+   ],
+   "src": "cards epithelial_tissue, skin; js/nodes.js (the skin epithelium scene)"
+  },
+  "rf_front_end": {
+   "title": "Radio front end",
+   "desc": "The chips that send and receive the phone's radio signals: amplifiers, switches and filters.",
+   "card": "phone_rf_frontend",
+   "inside": [
+    {
+     "name": "silicon",
+     "material": "silicon",
+     "note": "{What}: a phone's radio front end is several parts. The power amplifiers are often made of gallium arsenide, the switches often of silicon on an insulating layer, and the filters of other devices (surface-acoustic-wave and bulk-acoustic-wave filters). Shown: a silicon crystal, which is only part of it.",
+     "standIn": true
+    }
+   ],
+   "src": "compoundsemiconductor.net, \"GaAs will fend off silicon CMOS in handset front-ends\" (https://compoundsemiconductor.net/article/90899/GaAs_will_fend__off_silicon_CMOS_in_handset__front-ends: GaAs power amplifiers, SOI switches, SAW/BAW filters)"
+  },
+  "whole_device": {
+   "title": "A whole device",
+   "desc": "Made of many parts of different materials.",
+   "card": null,
+   "stop": "{What}: a whole phone is made of many parts of different materials: glass, metal, plastic, silicon chips and a battery. Point at one part to see what it is made of."
+  },
+  "touchscreen": {
+   "title": "Touchscreen",
+   "desc": "A glass cover over a thin transparent layer that senses touch.",
+   "card": "phone_touchscreen",
+   "stop": "Not built yet: a touchscreen. It is a sheet of glass coated with a thin transparent conducting layer (often indium tin oxide, sometimes silver) that senses a finger, and the display lies under it. The cover glass is an aluminosilicate glass with no crystal order, so there is no lattice to show.",
+   "src": "Wikipedia \"Touchscreen\" (https://en.wikipedia.org/wiki/Touchscreen: an insulator such as glass coated with a transparent conductor such as indium tin oxide; some use silver); Wikipedia \"Gorilla Glass\""
+  },
+  "insect_air_tube": {
+   "title": "Air tubes of an insect",
+   "desc": "The breathing tubes, air sacs and spiracle openings, lined with cuticle.",
+   "card": "bee_tracheae",
+   "inside": [
+    {
+     "name": "cuticle",
+     "material": "insect_cuticle",
+     "note": "{What}: the air tubes, air sacs and the openings to them (spiracles) are lined on the inside by cuticle, which is continuous with the cuticle of the outer skin. Shown: a slice of body cuticle, standing in for the thinner lining of the tube.",
+     "standIn": true
+    }
+   ],
+   "src": "Chapman, The Insects, \"Gaseous exchange\" (https://www.cambridge.org/core/books/insects/gaseous-exchange/FE19B6193C1C54F2485E52988476883C: tracheae lined by a cuticular intima continuous with the rest of the cuticle; spiracles)"
+  },
+  "gut_cuticle": {
+   "title": "Cuticle-lined gut",
+   "desc": "The front and back of an insect's gut are lined with cuticle, like its outer skin.",
+   "card": "bee_crop",
+   "inside": [
+    {
+     "name": "cuticle",
+     "material": "insect_cuticle",
+     "note": "{What}: the foregut (mouth, oesophagus, crop, proventriculus) and the hindgut of an insect are lined on the inside with cuticle, like the outer skin. The midgut is not. Behind the lining lie living cells and muscle. Shown: a slice of body cuticle, standing in for the lining.",
+     "standIn": true
+    }
+   ],
+   "src": "Wikipedia \"Insect physiology\" (https://en.wikipedia.org/wiki/Insect_physiology: stomatodeum and proctodeum lined with cuticle (intima); the mesenteron is not)"
+  },
+  "muscle_fibre": {
+   "title": "Muscle fibre",
+   "desc": "A muscle fibre is one very long cell, often with many nuclei.",
+   "card": "skeletal_muscle_fiber",
+   "inside": [
+    {
+     "name": "a generic animal cell",
+     "material": "animal_cells",
+     "note": "{What}: a muscle fibre is one very long cell, not a small round one. In the skeletal muscle of a vertebrate it has many nuclei, because it forms when many young muscle cells fuse.",
+     "standIn": true
+    }
+   ],
+   "src": "OpenStax Anatomy and Physiology 2e 10.2 (https://openstax.org/books/anatomy-and-physiology-2e/pages/10-2-skeletal-muscle: a fibre forms when myoblasts fuse; multiple nuclei)"
+  },
+  "embryo_sac": {
+   "title": "Embryo sac",
+   "desc": "The female part of a flowering plant's ovule: eight nuclei in seven cells.",
+   "card": "rn_carpel",
+   "inside": [
+    {
+     "name": "a generic plant cell",
+     "material": "plant_cells",
+     "note": "{What}: the embryo sac is not one cell. It has eight nuclei in seven cells, and its central cell has two nuclei. The generic plant cell shown has one nucleus and chloroplasts, which these cells do not have.",
+     "standIn": true
+    }
+   ],
+   "src": "OpenStax Biology 2e 32.1 (https://openstax.org/books/biology-2e/pages/32-1-reproductive-development-and-structure: an eight-nucleate, seven-cell female gametophyte; two polar nuclei form a diploid central cell)"
+  },
+  "coelomic_fluid": {
+   "title": "Coelom",
+   "desc": "The fluid-filled space along an earthworm's body: a cavity, not a cell.",
+   "card": "soil_worm_coelom",
+   "inside": [
+    {
+     "name": "water",
+     "material": "water",
+     "note": "{What}: a space filled with fluid, not a cell. The fluid works as the worm's hydrostatic skeleton. It is not pure water, but liquid water stands in for it.",
+     "standIn": true
+    }
+   ],
+   "src": "card soil_worm_coelom (\"a liquid-filled space running its whole length\")"
+  },
+  "oort_cloud": {
+   "title": "The Oort cloud",
+   "desc": "A theorised shell of icy bodies far beyond the planets.",
+   "card": null,
+   "stop": "The Oort cloud is a theorised shell of icy bodies far beyond the planets, perhaps hundreds of billions of them. No body has been seen there: the cloud is inferred from the long-period comets that fall in from it. The dots here stand for bodies that no one has observed, so there is nothing to go into.",
+   "src": "NASA Oort cloud (https://science.nasa.gov/solar-system/oort-cloud/facts/: a theorized group of icy objects; hundreds of billions, even trillions of icy bodies; inferred from comets)"
+  },
+  "eyeball": {
+   "title": "Eyeball",
+   "desc": "The eye: a wall of collagen round clear jelly and a clear lens.",
+   "card": "lens",
+   "inside": [
+    {
+     "name": "collagen",
+     "material": "collagen",
+     "note": "{What}: the tough white wall of the eyeball (the sclera) and the clear front window (the cornea) are mostly collagen. The inside of the eye is different: a clear lens packed with crystallin protein and a jelly of mostly water. Shown: collagen, the material of the wall."
+    }
+   ],
+   "src": "cards eye_sclera, cornea, lens, vitreous_humor"
+  },
+  "spinal_disc": {
+   "title": "Intervertebral disc",
+   "desc": "A tough ring of fibrocartilage around a soft gel core.",
+   "card": "cartilage_tissue",
+   "inside": [
+    {
+     "name": "cartilage",
+     "material": "cartilage",
+     "note": "{What}: a disc has an outer ring of fibrocartilage, rich in collagen, around a softer gel core. The picture is of hyaline cartilage, a related cartilage with a gel of collagen and water-holding molecules, standing in.",
+     "standIn": true
+    }
+   ],
+   "src": "Wikipedia \"Intervertebral disc\" (https://en.wikipedia.org/wiki/Intervertebral_disc: annulus fibrosus of fibrocartilage around a nucleus pulposus of loose fibres in a gel)"
+  },
+  "pituitary": {
+   "title": "Pituitary gland",
+   "desc": "A gland of two lobes: the front one makes hormones, the back one is an extension of the brain.",
+   "card": "pituitary_gland",
+   "inside": [
+    {
+     "name": "gland cells",
+     "material": "gland_tissue",
+     "note": "The front (anterior) lobe is glandular tissue that makes hormones; the back (posterior) lobe is nervous tissue, an extension of the brain that stores hormones made in the hypothalamus. Shown: gland cells, which make up the front lobe."
+    }
+   ],
+   "src": "Wikipedia \"Pituitary gland\" (https://en.wikipedia.org/wiki/Pituitary_gland: anterior lobe glandular; posterior lobe neural, originating from neuroectoderm)"
+  },
+  "cloud": {
+   "title": "A cloud",
+   "desc": "A mass of tiny droplets of liquid water (or ice crystals) hanging in the air.",
+   "card": "park_sky",
+   "inside": [
+    {
+     "name": "cloud droplets in air",
+     "scene": "micro:air",
+     "standIn": true,
+     "note": "{What}: a cloud is made of tiny droplets of liquid water, or ice crystals, a few hundredths of a millimetre across or less, with hundreds in each cubic centimetre in a continental cloud. Each droplet is liquid water. The picture is air with a few droplets, dust grains and pollen, standing in: it shows far fewer droplets than a cloud holds."
+    }
+   ],
+   "src": "Penn State Meteo 300 lecture 14 (https://personal.ems.psu.edu/~brune/m300f99/m300l14.html: continental clouds droplets under 20 micrometres in radius, hundreds per cm3; marine clouds fewer than 100 per cm3, radius about 30 micrometres); card park_sky"
+  },
+  "bill": {
+   "title": "Bird bill",
+   "desc": "A thin sheath of keratin over a bony core.",
+   "card": "robin_keratin",
+   "inside": [
+    {
+     "name": "the keratin sheath",
+     "material": "keratin",
+     "note": "{What}: a bill is a sheath of keratin over a core of bone. Shown: the keratin of the sheath; the bone beneath is not drawn."
+    }
+   ],
+   "src": "card robin_keratin; Wikipedia \"Keratin\" (https://en.wikipedia.org/wiki/Keratin: beta-keratins in the feathers, beaks and claws of birds)"
   }
  }
 }

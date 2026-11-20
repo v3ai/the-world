@@ -3,7 +3,7 @@
  "ids": {
   "bird": "far_bird",
   "sunSky": "sun_in_sky",
-  "cloud": "dusty_air",
+  "cloud": "cloud",
   "pond": "pond_water"
  }
 }

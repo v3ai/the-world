@@ -104,7 +104,7 @@ for (const k of onDisk) if (!listed.has(k)) err(`data/descent/assign/${k}.json i
 function checkTable(a, where) {
   const ref = (m, w) => { if (m === null) return; if (typeof m !== 'string' || !M[m]) err(`${where}: ${w} names material "${m}", which does not exist`); else used.add(m); };
   if (a.default !== undefined) ref(a.default, 'default');
-  for (const k of ['ids', 'nodes', 'systems']) for (const [i, m] of Object.entries(a[k] || {})) ref(m, `${k}.${i}`);
+  for (const k of ['ids', 'nodes', 'systems', 'over']) for (const [i, m] of Object.entries(a[k] || {})) ref(m, `${k}.${i}`);
   for (const [re, m] of a.match || []) { try { new RegExp(re); } catch (e) { err(`${where}: bad regular expression ${re}`); } ref(m, `match ${re}`); }
   for (const n of Object.keys(a.nodes || {})) if (!NODES.has(n)) warn(`${where}: nodes.${n} is not a node id`);
   for (const [s, t] of Object.entries(a.sub || {})) checkTable(t, `${where}, sub ${s}`);
