@@ -630,7 +630,7 @@ function skyDome(F, kind, R) {
   }));
   F.add(m); return m;
 }
-function landscapeFrame(biome, pos, quat, body) { return new Frame({ landOn: true, type: 'landscape', name: biome === 'cloudtops' ? `${body} cloud tops (no solid surface)` : body ? `${body} surface` : 'Landscape', unit: 1, radius: 4000, r0: 2e-4, r1: 4e4, spawnD: .02, up: new V3(0, 1, 0), maxPolar: Math.PI / 2 - .02, pos: pos.clone(), quat: quat || new THREE.Quaternion(), opts: { biome, body } }); }
+function landscapeFrame(biome, pos, quat, body) { return new Frame({ landOn: true, fineD: 4, fineNext: biome === 'cloudtops' ? 'the gas itself' : biome === 'ocean' ? 'a drop of the water' : 'a close-up of what the ground is made of', type: 'landscape', name: biome === 'cloudtops' ? `${body} cloud tops (no solid surface)` : body ? `${body} surface` : 'Landscape', unit: 1, radius: 4000, r0: 2e-4, r1: 4e4, spawnD: .02, up: new V3(0, 1, 0), maxPolar: Math.PI / 2 - .02, pos: pos.clone(), quat: quat || new THREE.Quaternion(), opts: { biome, body } }); }
 FT.landscape = {
   build(F, o) {
     const B = BIOME[o.biome] || BIOME.grass, r = rng(o.biome.length * 31 + 3);

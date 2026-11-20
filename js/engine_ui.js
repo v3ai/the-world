@@ -144,7 +144,8 @@ function wireLookBtns(h) {
   const zb = $('#zoomBtn'); if (zb) zb.onclick = () => lookInside(h); const ob = $('#outBtn'); if (ob) ob.onclick = goFurtherOut;
   /* where the answer is the next level down (no cut-open view to show first), the descent module can say what that level is: the button names it, and a stand-in is admitted under the buttons */
   if (zb && h && h.obj && h.frame && h.frame.built && typeof DESCENT !== 'undefined' && DESCENT && DESCENT.describe && !h.obj.userData.lookInside) {
-    let d = null; try { if (!cutOpenOf(h, true)) d = DESCENT.describe(h); } catch (e) { d = null; }
+    let d = null, ls = null; try { ls = typeof layerNext === 'function' ? layerNext(h) : null; if (!ls && !cutOpenOf(h, true)) d = DESCENT.describe(h); } catch (e) { d = null; }
+    if (ls) { zb.textContent = 'Look inside: ' + ls.name.charAt(0).toLowerCase() + ls.name.slice(1); zb.title = 'The same as double-clicking it: the next layer under this spot'; }
     if (d && d.title) zb.textContent = 'Look inside: ' + d.title;
     if (d && d.note) { const n = document.createElement('p'); n.className = 'cnote lookNote'; n.textContent = d.note; const row = zb.closest('.lookrow'); if (row) row.insertAdjacentElement('afterend', n); }
   }
@@ -243,6 +244,13 @@ function showNoParts(text) {
   infoEl.querySelectorAll('.nobuilt').forEach(e => e.remove());
   const d = document.createElement('div'); d.className = 'nobuilt noparts'; d.textContent = text; const hd = infoEl.querySelector('.cardhead'); if (hd) hd.insertAdjacentElement('beforebegin', d); else $('#placeNote').textContent = text;
   $('#panelBody').scrollTop = 0;
+}
+/* one line on top of the open card that says what a step inward has just shown (js/body_core.js, layerStep) */
+function showStepNote(text) {
+  infoEl.querySelectorAll('.nobuilt').forEach(e => e.remove());
+  const hd = infoEl.querySelector('.cardhead'); if (!hd) { toast(text); return; }
+  const d = document.createElement('div'); d.className = 'nobuilt stepnote'; d.textContent = text; hd.insertAdjacentElement('beforebegin', d);
+  if (PANEL.min) toast(text);   // the panel is folded away: say it where it can be seen
 }
 const NOT_BUILT = 'No closer view of this has been built yet';
 /* reason: the sentence to show (the descent module gives its own; the default is NOT_BUILT). card: the node whose card goes with it (default: what the thing is made of, when that has a card). */
@@ -452,7 +460,8 @@ function bodyPlaces() {
   const planet = (name, key) => { const f = FR[key]; if (!f) return; P.push({ title: name, sub: `Planet. ${fmt(1)}`.replace(/Fly there.*/, 'Planet: fly there'), go: () => { f.ensure(); const o = f.pickables.find(x => x.userData && x.userData.id && x.userData.id.toLowerCase() === name.toLowerCase()), r = (o && objRadiusLocal(o)) || f.radius * .01; flyTo(f, new V3(), r * f.unit * 4.5); } }); };
   ['Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'].forEach(n => planet(n, n));
   P.push({ title: 'The Sun', sub: 'Our star: fly there', alias: 'sun', go: () => flyTo(FR.sun || FR.solar, new V3(), 4e9) });
-  P.push({ title: 'The Moon', sub: 'Earth\'s moon: fly there', alias: 'moon', go: () => { FR.earth.ensure(); const m = FR.earth.pickables.find(x => x.userData && x.userData.id === 'moon'); if (m) flyTo(FR.earth, m.position.clone(), 1.2e7); else flyTo(FR.earth, new V3(), 1.4e9); } });
+  // (the Moon is put in its place by the Earth frame's update, which runs only while that frame is drawn: from the park its position was still the origin, and the flight ended at the Earth with no Moon in sight)
+  P.push({ title: 'The Moon', sub: 'Earth\'s moon: fly there', alias: 'moon', go: () => { const E = FR.earth; chainOf(E).reverse().forEach(f => { f.ensure(); if (f.place) f.place(); }); if (E.update) E.update(0, clock, E); const m = E.moon || E.pickables.find(x => x.userData && x.userData.id === 'moon'); if (m && m.position.lengthSq() > 0) flyTo(E, m.position.clone(), 1.2e7); else flyTo(E, new V3(), 1.4e9); } });
   P.push({ title: 'International Space Station', sub: 'Fly there', alias: 'iss', go: () => { FR.earth.ensure(); const m = FR.earth.pickables.find(x => x.userData && x.userData.id === 'iss'); if (m) flyTo(FR.earth, m.position.clone(), 2e3); } });
   const park = { dog: 'Dog', tree: 'Tree', pond: 'Pond', flower: 'Flowers', bee: 'Honeybee', mushroom: 'Mushroom', bird: 'Bird', cloud: 'Cloud' };
   const thingName = { dog: 'Dog', tree: 'English oak', flower: 'Meadow buttercup', bee: 'Honey bee worker', mushroom: 'Fly agaric' }; // the park's animals and plants are `thing` frames (js/things.js)
@@ -508,19 +517,27 @@ function buildRuler() {
 function openScalePop(y, hh, clientY) {
   let pop = $('#scalePop'); if (!pop) { pop = document.createElement('div'); pop.id = 'scalePop'; pop.setAttribute('role', 'dialog'); pop.setAttribute('aria-label', 'Places on the scale'); document.body.appendChild(pop); }
   const e = Math.log10(cam.D * 2 * Math.tan(25 * Math.PI / 180)), path = chainOf(cam.A);
-  let here = null, bd = .35; LANDMARKS.forEach(L => { const d = Math.abs(Math.log10(L.D) - e); if (d < bd && (!L.frame || path.includes(L.frame))) { bd = d; here = L; } });
+  let here = null, bd = .35; LANDMARKS.forEach(L => { const d = Math.abs(Math.log10(L.D) - e); if (d < bd && lmHere(L, path)) { bd = d; here = L; } });
   const near = LANDMARKS.map(L => ({ L, d: Math.abs(rulerY(Math.log10(L.D), hh) - y) })).sort((a, b) => a.d - b.d).slice(0, 7).sort((a, b) => b.L.D - a.L.D);
   pop.innerHTML = `<div class="sph">You are looking at about ${fmtLen(cam.D * 2 * Math.tan(25 * Math.PI / 180))} across${here ? ` (${here.label})` : ''}. Go to:</div>` + near.map(o => `<button data-i="${LANDMARKS.indexOf(o.L)}" class="${o.L === here ? 'near' : ''}"><b>${o.L.label}</b><span>${fmtLen(o.L.D)}</span></button>`).join('') + '<button class="spx" data-i="-1">Close</button>';
   pop.style.top = clamp(clientY - 120, 8, innerHeight - 330) + 'px'; pop.classList.add('open');
   pop.querySelectorAll('button').forEach(b => b.onclick = ev => { ev.stopPropagation(); const L = LANDMARKS[+b.dataset.i]; pop.classList.remove('open'); if (L) { cancelTour(); toast(`Flying to ${L.label}`); L.go(); } });
   if (!openScalePop._d) { openScalePop._d = 1; document.addEventListener('pointerdown', ev => { const p = $('#scalePop'); if (p && p.classList.contains('open') && !p.contains(ev.target) && !ev.target.closest('#rulerScale')) p.classList.remove('open'); }, true); }
 }
+/* Is the camera at this landmark? In its frame (or inside it), and, where the landmark is a place within a larger frame (You, in the park), near that place:
+   the view is as wide as the landmark, so "near" is within one landmark width. A landmark that names no frame is matched by size alone. */
+const _lmV = new V3();
+function lmHere(L, path) {
+  if (!L.frame) return true; if (!path.includes(L.frame)) return false;
+  if (!L.at || L.frame.radius === Infinity || L.frame.radius * L.frame.unit < L.D * 3) return true;
+  return convertP(_lmV.copy(cam.T), cam.A, L.frame).distanceTo(L.at) * L.frame.unit < L.D;
+}
 function updateRuler() {
   const box = $('#rulerScale'), m = $('#rulerMark'); if (!box || !m) return;
   const view = cam.D * 2 * Math.tan(25 * Math.PI / 180), e = Math.log10(view), h = box.clientHeight;
   m.style.top = clamp(rulerY(e, h), 0, h) + 'px'; const ro = $('#rulerRO'); const t = fmtLen(view); if (ro.textContent !== t) ro.textContent = t;
   // the name is bold only where the camera really is: a landmark whose frame is not on the camera's path (another cell, a surface you flew past) is not named, the scale tick still shows the size
-  const path = chainOf(cam.A); let best = null, bd = .35; LANDMARKS.forEach(L => { const d = Math.abs(Math.log10(L.D) - e); if (d < bd && (!L.frame || path.includes(L.frame))) { bd = d; best = L; } });
+  const path = chainOf(cam.A); let best = null, bd = .35; LANDMARKS.forEach(L => { const d = Math.abs(Math.log10(L.D) - e); if (d < bd && lmHere(L, path)) { bd = d; best = L; } });
   LANDMARKS.forEach(L => L._el && L._el.classList.toggle('near', L === best));
 }
 
@@ -592,9 +609,21 @@ function updateCaption() {
   }
   const tn = f.timeNote || ''; if ($('#capT').textContent !== tn) $('#capT').textContent = tn;
   const k = `Field of view ${fmtLen(view)}`; if ($('#capK').textContent !== k) $('#capK').textContent = k;
+  // an empty stretch of a descent (zoomStretch, js/engine.js): say what is happening, so that a picture that does not change is not taken for a hang
+  { const zs = !fly && cam.A.built ? zoomStretch(cam.A) : null, g = $('#capG'); let t = '';
+    if (zs) { const nm = zs.f ? (typeof DESCENT !== 'undefined' && DESCENT.nameOf ? DESCENT.nameOf(zs.f) : humanName(zs.f)) : zs.name;
+      t = `Nothing new to draw here: zooming ${fmtTimes(zs.ratio)} further in${nm ? ' to reach ' + nm : ''}` + (W > 860 && zs.f ? '. Double-click jumps there.' : ''); }
+    if (g && g.textContent !== t) { g.textContent = t; g.hidden = !t; } }
   // a thing you looked inside: when the camera arrives in the new place (or the flight is over), the place takes the panel
   if (selLeave) { const L = selLeave; if (!curCard || curCard.key !== L.key) selLeave = null; else if (chainOf(cam.A).includes(L.frame) || (!fly && performance.now() - L.t > 400)) { const arrived = chainOf(cam.A).includes(L.frame); selLeave = null; closeInfo(); if (arrived && L.note) $('#placeNote').textContent = L.note; } } // L.note: what the descent module said about the level it built (a stand-in, say)
   panelSync(performance.now());
+}
+/* "1,000 times", "30 million times", "10²⁶ times": how much further in, to one figure */
+function fmtTimes(r) {
+  const e = Math.floor(Math.log10(r)), m = Math.max(1, Math.round(r / Math.pow(10, e)));
+  if (e < 6) return (m * Math.pow(10, e)).toLocaleString('en-US') + ' times';
+  if (e < 12) { const w = e < 9 ? 'million' : 'billion', v = m * Math.pow(10, e - (e < 9 ? 6 : 9)); return v.toLocaleString('en-US') + ' ' + w + ' times'; }
+  return '10' + sup(e + (m >= 5 ? 1 : 0)) + ' times';
 }
 /* The ring round a selected thing that has no glow of its own (a star, a marker, one of a crowd). One projection a frame, no picking. */
 const _smV = new V3(); let _selMark = null;
@@ -660,7 +689,9 @@ function loop(now) {
   let sig = drawn.length; for (const f of drawn) sig = (sig * 31 + (f.pickables ? f.pickables.length : 0) * 2 + (f.alpha >= .5 ? 1 : 0)) | 0;
   if (sig !== pickSig) { pickSig = sig; viewChanged(); lastChange = tA; }
   const camMoving = !!fly || Math.abs(zoom.pending) > 2e-3 || pointers.size > 0 || !!holdZoom; // the last 0.2% of a zoom ease no longer moves anything under the pointer
-  if (mouse.dirty) { if (camMoving || tour) tipEl.classList.remove('show'); else if (performance.now() - mouse.t >= HOVER_REST_MS) doHover(); }
+  // (a flight moves the view under the pointer as a zoom does: the tooltip of where it was goes, and the hover is worked out again once the camera is still)
+  if (camMoving || tour) { if (tipEl.classList.contains('show')) tipEl.classList.remove('show'); mouse.dirty = true; }
+  else if (mouse.dirty && performance.now() - mouse.t >= HOVER_REST_MS) doHover();
   if (!camMoving) pkIdle(clamp(dtMs * .1, 4, 12), performance.now() - lastInput > 1500); // trees for picking, a few milliseconds at a time (a tenth of the frame when frames are slow), never while the camera moves
   if ((clock * 4 | 0) !== ((clock - dt) * 4 | 0)) updateTimeUI();
   const pe = $('#push'); if (now - msg.t < 2600 && msg.text) { $('#pushT').textContent = msg.text; pe.classList.add('show'); } else pe.classList.remove('show');

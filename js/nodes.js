@@ -436,12 +436,13 @@ function showBodyNode(id, h) {
   const chips = (ids, cls = 'chip nd', attr = 'data-n') => chipsHtml((ids || []).filter(Boolean).map(i => `<button class="${cls}" ${attr}="${i}">${nodeTitle(i)}</button>`));
   const mo = h && h.frame && h.frame.cardMadeOf ? h.frame.cardMadeOf(h, n) : undefined; // a frame may replace the made-of button (things: the part's own `deeper`)
   const tw = (typeof TEAR !== 'undefined' && (TEAR[id] || (n.where && TEAR[n.where]))) || (n.where && /^(place|mol|crystal):/.test(n.where));
+  const ls = BF && typeof layerNext === 'function' ? layerNext(h) : null;   // in Auto, "Look inside" goes one layer in at this spot: the part's own tissue then gets a button of its own
   const spec = {
     tag: kindLine(n), title: n.title, figure: '<div class="vzh" id="vizHost"></div>', core: BF && h.stack ? coreHtml(BF, h) : '', track: trackNav(id),
     basics, deeper: L.deeper, expert: L.expert, facts: n.facts,
-    look: !!h, buttons: (mo !== undefined ? (mo ? `<button class="zoom alt" id="madeBtn">${mo.label}</button>` : '') : h && n.made_of && n.made_of.length && !(BF && BF.type === 'body' && !canLook) ? `<button class="zoom alt" id="madeBtn">${BF && BF.type === 'body' ? 'Look at its tissue' : 'See what it is made of'}</button>` : '') + (hideable ? `<button class="zoom alt" id="hideBtn">Hide this</button>` : '')
+    look: !!h, buttons: (mo !== undefined ? (mo ? `<button class="zoom alt" id="madeBtn">${mo.label}</button>` : '') : h && n.made_of && n.made_of.length && !(BF && BF.type === 'body' && !canLook && !ls) ? `<button class="zoom alt" id="madeBtn">${BF && BF.type === 'body' ? 'Look at its tissue' : 'See what it is made of'}</button>` : '') + (hideable ? `<button class="zoom alt" id="hideBtn">Hide this</button>` : '')
       + (n.lab ? `<button class="zoom lab" id="labBtn">${labAvailable(n.lab.id) ? 'Open in the ' : 'Planned: '}${LAB_NAMES[n.lab.id] || n.lab.id}</button>` : '') + (tw && !h ? `<button class="zoom alt" id="whereBtn">Show where it is</button>` : ''),
-    after: (/^lung_[lr]$/.test(id) && (BF && BF.type === 'body' || canLook || (h && h.frame && h.frame.type === 'organ')) ? `<p class="cnote">${LUNG_NOTE}</p>` : '') + (BF && BF.type === 'body' && mo === undefined && n.made_of && n.made_of.length && !canLook ? `<p class="cnote">There is no cut-open view of this part yet. "Look inside" (or a double click) shows an illustration of the kind of tissue it is made of, not a microscope image.</p>` : ''),
+    after: (/^lung_[lr]$/.test(id) && (BF && BF.type === 'body' || canLook || (h && h.frame && h.frame.type === 'organ')) ? `<p class="cnote">${LUNG_NOTE}</p>` : '') + (BF && BF.type === 'body' && mo === undefined && n.made_of && n.made_of.length && !canLook ? `<p class="cnote">${ls ? 'In Auto, "Look inside" (or a double click) goes one layer in at the spot you chose. For this part\'s own tissue, choose "Look at its tissue" or the first entry under "What it is made of", or double-click the part in its own layer view (the buttons above the scene).' : 'There is no cut-open view of this part yet. "Look inside" (or a double click) shows an illustration of the kind of tissue it is made of, not a microscope image.'}</p>` : ''),
     made: (n.parts && n.parts.length ? '<div class="rs">Parts</div>' + chips(n.parts) : '') + (n.made_of && n.made_of.length ? (n.parts && n.parts.length ? '<div class="rs">Made of</div>' : '') + chips(n.made_of) : ''),
     part: chips(n.parents),
     how: n.processes && n.processes.length ? chips(n.processes, 'chip pr', 'data-p') : '',
@@ -458,6 +459,8 @@ function showBodyNode(id, h) {
   wireLookBtns(h);
   const mb = $('#madeBtn'); if (mb && mo) mb.onclick = () => { closeInfo(); mo.go(); };
   else if (mb) mb.onclick = () => { closeInfo(); const f = tissueFrame(n.made_of[0], h.pointLocal || h.frame.C, id); f.dynamic = true; f.keep = performance.now() + 60000; h.frame.addChild(f); f.ensure(); flyTo(f, new V3(), 4e-4); };
+  // the first entry of "What it is made of" on the card of a clicked body part goes into that tissue at the point clicked (in Auto a double click no longer does)
+  if (BF && BF.type === 'body' && h.pointLocal && n.made_of && n.made_of.length && typeof DESCENT !== 'undefined') { const ch = [...infoEl.querySelectorAll('.refs .chip.nd')].find(b => b.dataset.n === n.made_of[0]); if (ch) ch.onclick = () => flyKeepDo(() => DESCENT.inside(h)); }
   if (BF && h.stack) wireCore(BF, h);
   const hb = $('#hideBtn'); if (hb) hb.onclick = () => bodyHide(BF, h.obj.userData.id);
   const lb = $('#labBtn'); if (lb) lb.onclick = () => openLab(n.lab.id, n.lab.preset, n.title);

@@ -350,6 +350,9 @@ FT.star = {
       note: (P.measured ? `Measured values (${P.src}).` : 'Estimated from the star\'s colour and brightness (a bolometric correction, then L = 4πR²σT⁴); good to tens of per cent for ordinary stars, worse for giants and very red stars.') + ' The mottled surface is a schematic texture; real stars are not seen in this detail except the Sun.'
     };
     m.userData.sim = ['star']; m.userData.madeOf = 'plasma';
+    // the place card of a star (it had none: flying to a star showed a name and two buttons)
+    F.blurb = `${o.name || 'This star'}: a real star from the HYG catalogue, drawn at its own size and colour${o.sp && o.sp.text ? ` (spectral type ${o.sp.text})` : ''}. Radius ${a}${sig(R, 3)} times the Sun's, surface about ${sig(Math.round(T / 10) * 10, 3)} K. Click it for its card.`;
+    F.note = 'The mottled surface is a schematic texture, not an image: no star but the Sun has been seen in this detail. ' + (P.measured ? `Radius, temperature and luminosity are measured values (${P.src}).` : 'Radius, temperature and luminosity are estimates from the star\'s colour and brightness, good to tens of per cent for ordinary stars and worse for giants and very red stars.');
     F.add(glowSprite(new THREE.Color(tc[0], tc[1], tc[2]).getHex(), R * 6, .7)); F.add(glowSprite(0xffffff, R * 2.2, .5));
     F.update = (dt, t) => { mat.uniforms.uTime.value = t; m.rotation.y += dt * .02; };
     surfaceAtt(F, (i, c) => i ? 0 : (c.set(0, 0, 0), R));
@@ -479,6 +482,7 @@ FT.solarsystem = {
     if (FR.sun) FR.sun.proxy = sunGrp; // the stand-in disappears when the detailed Sun frame is fully shown
     const sunH = hitSphere(1, 'sun', 3); sunH.userData.zoomTo = toSun; sunH.userData.madeOf = 'plasma'; F.add(sunH); F.pickables.push(sunH);
     const sunMk = markerSprite(0xfff1c8, 16); F.add(sunMk); F.label(sunM, 'Sun', { offset: new V3(0, sunR * 2, 0) });
+    sunM.userData.extent = sunH.userData.extent = () => ({ p: new V3(), r: sunR });   // a click frames the Sun itself (its dot has no size: the click used to select it and leave the camera 4 AU away)
     const orbitMat = new THREE.LineBasicMaterial({ color: 0x7084b0, transparent: true, opacity: .35, depthWrite: false });
     F.bodies = {}; // a planet label shows only when it is not on top of the Sun's disc, not behind it, and far enough from the Sun on screen not to pile up
     getJSON('data/solar.json').then(SD => {
@@ -496,7 +500,8 @@ FT.solarsystem = {
         const id = name === 'Earth' ? 'earthPlanet' : name.toLowerCase();
         grp.userData.id = id; grp.userData.priority = 2; grp.userData.radius = rAU; if (!d.elements) grp.userData.sim = [name === 'Pluto' ? 'dwarf:pluto' : 'planet:' + name.toLowerCase()];
         F.pickables.push(grp); const hs = hitSphere(1, id, 3); hs.userData.radius = rAU; grp.add(hs);
-        const L = F.label(grp, name, { offset: new V3(0, rAU * 3, 0) });
+        grp.userData.extent = hs.userData.extent = () => ({ p: grp.position.clone(), r: rAU });   // a click frames the planet itself, not its enlarged dot
+        const L = F.label(grp, name, { offset: new V3(0, rAU * 3, 0) }); L.el.dataset.pri = d.elements ? 2 : 6;   // where names collide, a planet's stays and a dwarf planet's waits
         // orbit: sample the ephemeris over one period
         { const P = d.orbital_period_days || 365, pts = [], t0 = simTime;
           for (let k = 0; k <= 180; k++) pts.push(helioAt(name, t0 + k / 180 * P * 86400000));
@@ -661,6 +666,9 @@ FT.earth = {
     const moon = new THREE.Mesh(new THREE.SphereGeometry(1.7374, 96, 64), new THREE.MeshStandardMaterial({ map: tex('moon.jpg'), color: 0xd8d8d8, roughness: 1 })); F.add(moon);
     moon.userData = { id: 'moon', priority: 2, madeOf: 'regolith', sim: ['moon'] }; F.pickables.push(moon); F.label(moon, 'Moon', { offset: new V3(0, 2.6, 0) }); const mkM = markerSprite(0xffffff, 6); moon.add(mkM); const mh = hitSphere(1, 'moon', 3); mh.userData.zoomTo = () => { flyTo(F, moon.position.clone(), 6e6); }; moon.add(mh); // a pick target a few pixels wide, so the Moon dot can be hit
     moon.userData.zoomTo = mh.userData.zoomTo;
+    /* A click on the Moon's dot frames the Moon itself. It used to be slid to the middle of the view at the distance you were at (a dot has no size to frame),
+       so the next click or double click on the spot where it had been fell on a faint star behind, and a double click there flew to that star. */
+    moon.userData.extent = mh.userData.extent = () => ({ p: moon.position.clone(), r: 1.7374 });
     F.moon = moon;
     const moonCard = () => { const L = moon.userData.live, i = INFO.moon; if (!L) return i; const ph = L.phase, k = (1 - Math.cos(ph * Math.PI / 180)) / 2, nm = ph < 7.5 || ph >= 352.5 ? 'new Moon' : ph < 82.5 ? 'waxing crescent' : ph < 97.5 ? 'first quarter' : ph < 172.5 ? 'waxing gibbous' : ph < 187.5 ? 'full Moon' : ph < 262.5 ? 'waning gibbous' : ph < 277.5 ? 'last quarter' : 'waning crescent';
       return Object.assign({}, i, { facts: [['Distance on the date shown', `${Math.round(L.dist).toLocaleString('en-US')} km`], ['Phase on the date shown', `${nm}, about ${Math.round(k * 100)}% lit`]].concat(i.facts) }); };

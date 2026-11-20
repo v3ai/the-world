@@ -670,6 +670,7 @@ function applyZoom(dt) {
   const step = zoom.pending * (1 - Math.exp(-dt * 12));
   zoom.pending -= step;
   let lam = Math.exp(step);
+  if (lam < 1) { const st = zoomStretch(cam.A); if (st) lam = Math.max(Math.pow(lam, st.boost), st.to * 1.02 / cam.D); }   // an empty stretch is crossed faster, and never overshot
   let nd = clamp(cam.D * lam, MIN_D, MAX_D);
   if (lam < 1) { const fl = zoomFloor(cam.A); if (fl && nd < fl) { nd = Math.max(nd, Math.min(cam.D, fl)); if (nd >= cam.D && typeof DESCENT !== 'undefined') DESCENT.floorSay(cam.A); } } // a floor, so the camera cannot sink into an empty region
   lam = nd / cam.D;
@@ -688,6 +689,24 @@ function applyZoom(dt) {
      on the ground below the place pointed at and not at a point of air that then opens as soil or sea water. */
   if (lam < 1 && A.landOn && !zoomAim() && cam.T.y > 0) { cam.T.y *= lam; if (zoom.pivot) zoom.pivot.p.y *= lam; }
   cam.D = nd;
+}
+/* EMPTY STRETCHES. Between a scene and the much smaller one below it (grains of soil and the crystal they are made of, a cell and the water in it, a galaxy
+   and its gas) there is nothing new to draw: the picture stays as it is while the scale runs on, for thousands or billions of times. A visitor turning the
+   wheel through that must not think the app has hung. zoomStretch says when the camera is in such a stretch: the next level is waiting under the target
+   (a child made by trySpawn, entered when the view is down to its size, `r1`) and is still more than four times smaller than the view; or the frame says
+   where its own picture runs out of detail (`fineD`, metres) and the next level has not been asked for yet (spawnDOf). While it lasts
+   - the zoom runs faster, by up to eight times for the longest stretches, easing back to the wheel's own speed on arrival (boost), and never past the entry;
+   - the scale line says what is happening (`#capG`, written by updateCaption in js/engine_ui.js): "Zooming 1,000 times further in to reach Alpha quartz".
+   A double click still jumps there in one move. Nothing here is per frame type; a frame only has to give `fineD` (and `fineNext`, a few words for what
+   comes next) when its picture ends well above the distance at which it hands over. */
+const _zs = { to: 0, ratio: 1, boost: 1, f: null, name: '' };
+function zoomStretch(A) {
+  let to = 0, f = null, name = '';
+  const lim = cam.D / A.unit * 3, ho = lastZoomHit && lastZoomHit.frame === A ? lastZoomHit.obj : null;
+  for (let i = 0; i < A.children.length; i++) { const c = A.children[i]; if (c.dynamic && !c.entered && c.r1 !== Infinity && (c.pos.distanceTo(cam.T) < lim || (!c.pinned && !c.built && c._for !== undefined && c._for === ho))) { to = c.r1; f = c; break; } }
+  if (!f && A.fineD && cam.D < A.fineD) { to = spawnDOf(A) || 0; name = A.fineNext || ''; }
+  if (!(to > 0) || cam.D < to * 4) return null;
+  _zs.to = to; _zs.ratio = cam.D / to; _zs.boost = Math.min(1 + Math.log(_zs.ratio / 4) / 2.2, 8); _zs.f = f; _zs.name = name; return _zs;
 }
 /* A frame's floor (`floorD`, metres) is where its own picture ends: the camera cannot sink below it by scrolling. It holds only where nothing lies below:
    a child frame waiting under the target (spawned by the frame itself or from the materials table, js/descent.js) lifts it, so the zoom runs on into that
@@ -751,11 +770,13 @@ function setCamDir(d, upHint) {
 }
 function orthoUp() { cam.dir.normalize(); cam.up.sub(cam.dir.clone().multiplyScalar(cam.up.dot(cam.dir))).normalize(); }
 // fly to a point in a frame, ending at distance Dgoal (meters). Zooms out, travels, zooms in as needed.
-function flyTo(frame, pointLocal, Dgoal, then) {
+/* dir (optional): the direction to look from on arrival, from the target to the camera, in the frame's coordinates (a ruler stop that must show a plane from
+   above: the planets' orbits were seen edge-on, as crossing lines, when the camera happened to arrive in their plane). The view turns as it flies. */
+function flyTo(frame, pointLocal, Dgoal, then, dir) {
   if (typeof navFlyHook === 'function') navFlyHook(); // remember where we were, for Back
   zoom.pending = 0; zoom.pivot = null; anchored.length = 0; camHold = null;
   chainOf(frame).reverse().forEach(f => { f.ensure(); if (f.place) f.place(); }); // the whole path must exist and be in position
-  fly = { frame, p: pointLocal.clone(), Dg: Dgoal, then, t: 0 };
+  fly = { frame, p: pointLocal.clone(), Dg: Dgoal, then, t: 0, dir: dir ? dir.clone().normalize() : null };
   camHold = frame; // a flight lands in the frame it names, not in a child that happens to sit under the landing point; scrolling in again lifts this
 }
 /* A frame that is one-sided ground (the skin patch, a landscape or map tile) has `faceUp`: a flight must not end with the camera under it, looking up at its back
@@ -779,8 +800,13 @@ function stepFly(dt) {
   cam.D = Math.exp(lnD + dl);
   if (distM > cam.D * .6) { const stepM = Math.min(distM, cam.D * dt * 1.6); cam.T.add(g.sub(cam.T).multiplyScalar(stepM / distM)); }
   else cam.T.lerp(g, 1 - Math.exp(-dt * 4));
-  if (distM < cam.D * .02 && Math.abs(lnW - Math.log(cam.D)) < .03) { const t = F.then; fly = null; faceSurface(F.frame); safeThen(t); }
-  if (fly === F && F.t > 60) { const t = F.then; jumpTo(F.frame, F.p, F.Dg); safeThen(t); } // never strand a tour: finish the trip
+  let turned = true;
+  if (F.dir) {   // turn toward the asked direction, with the frame's own up (its y) kept up
+    _fsV.copy(F.dir); convertD(_fsV, F.frame, cam.A); turned = cam.dir.dot(_fsV) > .9995;
+    if (!turned) { cam.dir.lerp(_fsV, 1 - Math.exp(-dt * 2.4)).normalize(); _fsU.set(0, 1, 0); convertD(_fsU, F.frame, cam.A); _fsU.addScaledVector(cam.dir, -_fsU.dot(cam.dir)); if (_fsU.lengthSq() > .02) cam.up.lerp(_fsU.normalize(), 1 - Math.exp(-dt * 2.4)).normalize(); }
+  }
+  if (turned && distM < cam.D * .02 && Math.abs(lnW - Math.log(cam.D)) < .03) { const t = F.then; fly = null; faceSurface(F.frame); safeThen(t); }
+  if (fly === F && F.t > 60) { const t = F.then, d = F.dir; jumpTo(F.frame, F.p, F.Dg); if (d) setCamDir(convertD(d.clone(), F.frame, cam.A), convertD(new V3(0, 1, 0), F.frame, cam.A)); safeThen(t); } // never strand a tour: finish the trip
 }
 // pointer handlers
 const pointers = new Map(); let dragMoved = false, downPos = null, pinchD = 0;
@@ -810,7 +836,7 @@ function endPointer(e, click) {
 }
 canvas.addEventListener('pointerup', e => endPointer(e, true));
 canvas.addEventListener('pointercancel', e => endPointer(e, false));
-canvas.addEventListener('pointerleave', () => { mouse.has = false; setHover(null); });
+canvas.addEventListener('pointerleave', () => { mouse.has = false; setHover(null); tipEl.classList.remove('show'); });
 canvas.addEventListener('dblclick', e => e.preventDefault()); // a double click is recognised in onClick (two clicks close together, mouse or touch); the browser's own event is not used
 ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(t => addEventListener(t, () => { lastInput = performance.now(); }, { capture: true, passive: true })); // any input, anywhere on the page, ends the resting frame rate at once
 let holdZoom = 0;
@@ -1070,6 +1096,56 @@ function pickFrame(f, forZoom) { // best candidate inside one frame: highest pri
   if (fb) fb.meters = fb.hit.distance * f.unit;
   return fb;
 }
+/* A FAIR PICK. What the visitor sees under the pointer is what a click selects, the hover names and a zoom goes to. Two things made that untrue for the
+   small and thin things of the park, and both are settled here with a few extra rays that are cast only where they can matter:
+   1. A hairline in front of something large. A buttercup stem half a pixel wide stood in front of the dog and took the click meant for the dog. When the
+      nearest hit belongs to one co-rendered thing and another thing lies behind it on the same ray, the nearest one must really be under the pointer: eight
+      rays on a circle of PICK_THIN_PX round the pointer are cast at it alone, and if no more than three touch it (a line gives two, a speck none) the thing
+      behind wins. Asked only when the triangle that was hit is itself under a pixel and a half wide, so a solid thing is never doubted.
+   2. A near miss. A click one pixel beside a mushroom's stalk, or on a gap of sky between two boughs, found only the lawn or the sky. When the ray's answer is
+      nothing, the backdrop or the ground (priority 0 or less), rings of PICK_NEAR_PX round the pointer are tried against the co-rendered things whose bound
+      the ray passes: the first ring that touches one decides, and of its hits the one nearest the eye, provided it is in front of the ground that was hit.
+   The cost: nothing where no thing is near the ray; otherwise six to twelve rays against one or two frames' own trees. best.ndc is the ray that hit. */
+const PICK_NEAR_PX = [5, 10], PICK_NEAR_N = 6, PICK_THIN_PX = 3, PICK_THIN_TRI = 1.5;
+const _pkA = new V3(), _pkB3 = new V3(), _pkC = new V3(), _pkNear = [], _pkGroup = [];
+function pickWeak(c) { return !c || (c.obj.userData.priority ?? 1) <= 0 || isBackdrop(c); }
+/* the on-screen width, in pixels, of the triangle a ray hit (its shortest height): Infinity for a hit that is no triangle */
+function pickTriPx(c) {
+  const h = c.hit, o = h.object, g = o.geometry, fc = h.face, p = g && g.attributes && g.attributes.position; if (!fc || !p || fc.a === undefined) return Infinity;
+  _pkA.fromBufferAttribute(p, fc.a); _pkB3.fromBufferAttribute(p, fc.b); _pkC.fromBufferAttribute(p, fc.c);
+  if (o.isInstancedMesh && h.instanceId !== undefined) { o.getMatrixAt(h.instanceId, _pkLM); _pkA.applyMatrix4(_pkLM); _pkB3.applyMatrix4(_pkLM); _pkC.applyMatrix4(_pkLM); }
+  _pkA.applyMatrix4(o.matrixWorld); _pkB3.applyMatrix4(o.matrixWorld); _pkC.applyMatrix4(o.matrixWorld);
+  const ab = _pkA.distanceTo(_pkB3), bc = _pkB3.distanceTo(_pkC), ca = _pkC.distanceTo(_pkA), long = Math.max(ab, bc, ca); if (!(long > 0)) return 0;
+  const area2 = _pkB3.sub(_pkA).cross(_pkC.sub(_pkA)).length();
+  return area2 / long / Math.max(h.distance, 1e-30) * PX_PER_RAD();
+}
+/* is the thing that was hit only a hairline or a speck under the pointer? (rule 1) */
+function pickThin(c, x, y, forZoom) {
+  if (pickTriPx(c) >= PICK_THIN_TRI) return false;
+  let n = 0; const f = c.frame, x0 = ndc.x, y0 = ndc.y;
+  for (let i = 0; i < 8 && n < 4; i++) { const a = i * Math.PI / 4; ndc.set((x + Math.cos(a) * PICK_THIN_PX) / W * 2 - 1, -((y + Math.sin(a) * PICK_THIN_PX) / H) * 2 + 1); const k = pickFrame(f, forZoom); if (k && !pickWeak(k)) n++; }
+  ndc.set(x0, y0); return n < 4;
+}
+/* the near miss (rule 2): the co-rendered things near the ray, ring by ring */
+function pickNear(x, y, forZoom, weak) {
+  const C = _pkNear; C.length = 0;
+  for (let i = 0; i < drawn.length; i++) {
+    const f = drawn[i]; if (!f.coRender || f.alpha < .5 || f._culled || !f.pickables || !f.cam || !f.C) continue;
+    const B = f._pkB; if (!B || !B.ok || B.n !== f.pickables.length) continue;
+    raycaster.setFromCamera(ndc, f.cam); _pkSph.center.copy(B.c).sub(f.C); const d = _pkSph.center.length();
+    _pkSph.radius = B.r * 1.1 + PICK_NEAR_PX[PICK_NEAR_PX.length - 1] * d / PX_PER_RAD();
+    if (raycaster.ray.intersectsSphere(_pkSph)) C.push(f);
+  }
+  if (!C.length) return null;
+  const x0 = ndc.x, y0 = ndc.y, lim = weak ? weak.meters : Infinity; let best = null;
+  for (let r = 0; r < PICK_NEAR_PX.length && !best; r++) {
+    for (let i = 0; i < PICK_NEAR_N; i++) {
+      const a = (i + r * .5) * TAU / PICK_NEAR_N, nx = (x + Math.cos(a) * PICK_NEAR_PX[r]) / W * 2 - 1, ny = -((y + Math.sin(a) * PICK_NEAR_PX[r]) / H) * 2 + 1;
+      for (let k = 0; k < C.length; k++) { ndc.set(nx, ny); const c = pickFrame(C[k], forZoom); if (c && !pickWeak(c) && c.meters < lim && (!best || c.meters < best.meters)) { best = c; best.ndc = new THREE.Vector2(nx, ny); } }
+    }
+  }
+  ndc.set(x0, y0); return best;
+}
 function pickAt(x, y, forZoom) {
   const t0 = performance.now();
   ndc.set(x / W * 2 - 1, -(y / H) * 2 + 1);
@@ -1078,14 +1154,21 @@ function pickAt(x, y, forZoom) {
   // the nearest surface in the group wins; otherwise the innermost frame with a hit wins, since it is drawn on top.
   for (let i = drawn.length - 1; i >= 0 && !best;) {
     let j = i; while (j > 0 && drawn[j]._share) j--;
+    const G = _pkGroup; G.length = 0;
     for (let k = j; k <= i; k++) {
       const c = pickFrame(drawn[k], forZoom); if (!c) continue;
-      if (!best || c.meters < best.meters) best = c;
+      G.push(c); if (!best || c.meters < best.meters) best = c;
+    }
+    // a hairline of one thing in front of another thing: the one behind, unless the pointer is really on the hairline
+    if (best && G.length > 1 && best.frame.coRender && !pickWeak(best)) {
+      let behind = null; for (const c of G) if (c !== best && !pickWeak(c) && (!behind || c.meters < behind.meters)) behind = c;
+      if (behind && pickThin(best, x, y, forZoom)) best = behind;
     }
     i = j - 1;
   }
+  if (pickWeak(best)) { const n = pickNear(x, y, forZoom, best); if (n) best = n; }
   if (best) {
-    const f = best.frame; best.ndc = ndc.clone();
+    const f = best.frame; if (!best.ndc) best.ndc = ndc.clone();
     best.pointLocal = best.hit.point.clone().add(f.C);
     best.normalLocal = best.hit.face ? best.hit.face.normal.clone().transformDirection(best.hit.object.matrixWorld) : null;
     best.id = best.obj.userData.resolve ? best.obj.userData.resolve(best.hit) : best.obj.userData.id;
@@ -1206,12 +1289,33 @@ function frameSelected(h) {
   h.framed = { p: e.p, D };
   flyKeep(f, e.p, D);
 }
+/* A cut-open view shows a part of the thing only (the dog's "Inside the eye" is one eyeball, the rest of the dog is gone), and where that is cannot be known
+   from the part that was clicked: its centre may now be empty air, and the next double click in the middle of the view went into the lawn behind. So once the
+   view has changed (the parts fade over about half a second), the camera frames what the frame is now showing: the bound of its pickable parts that are drawn
+   solid (userData.shown), markers left out. Only for frames that say what they show (things); skipped if the visitor has moved on meanwhile. */
+function frameShownSoon(f) {
+  const t0 = performance.now();
+  setTimeout(() => {
+    if (lastInput > t0 + 120 || !f.built || !f.C || !chainOf(cam.A).concat(drawn).includes(f)) return;
+    _pkBox.makeEmpty(); let n = 0;
+    for (const p of f.pickables) { const u = p.userData; if (u.shown === undefined || u.shown < .35 || u.hotspot || !visibleChain(p)) continue; if (pkExpand(p, _pkBox)) n++; }
+    if (!n || _pkBox.isEmpty()) return;
+    const c = _pkBox.getCenter(new V3()).add(f.C), r = _pkBox.min.distanceTo(_pkBox.max) / 2 * .62;   // the box's corners reach further than the content does
+    const D = Math.max(fitD(f, r), (f.floorD || 0) * 2, (f.spawnD || 0) * 1.3, MIN_D * 10), g = fly && fly.frame === f ? fly : null;
+    const at = g ? g.p : convertP(cam.T.clone(), cam.A, f), Dn = g ? g.Dg : cam.D;
+    if (at.distanceTo(c) * f.unit < D * .12 && Math.abs(Math.log(D / Dn)) < .3) return;   // already on it
+    flyKeep(f, c, D);
+  }, 650);
+}
 /* a flight that belongs to the open card (framing what was selected, looking inside it): the card stays */
 function flyKeep(frame, p, D, then) { const was = typeof CARD_FRESH !== 'undefined' && CARD_FRESH; if (typeof CARD_FRESH !== 'undefined') CARD_FRESH = true; try { flyTo(frame, p, D, then); } finally { if (typeof CARD_FRESH !== 'undefined') CARD_FRESH = was; } }
 
 /* ================= LOOK INSIDE =================
    What a double click, and the panel's "Look inside" button, do with a thing.
-   1. A cut-open view of it, where one exists and is not showing yet (cutOpenOf):
+   0. On a layered thing whose Auto peel is on (the body, the dog, the robin, the bee; by stages the pond and the soil), one step in at that spot: the next
+      layer under the pointer, shown at the distance where Auto shows it, with the card of the part now shown (layerStep, js/body_core.js). No deeper
+      layer under the point: the steps below.
+   1. A cut-open view of it, where one exists and is not showing yet (cutOpenOf). If the camera is not yet at the thing it also flies to frame it:
         userData.cutOpen(h, peek) / frame.cutOpen(h, peek)   the Sun's cut-away, a thing's cut or sample mode, the phone opened to the part
                                                              (peek: say whether there is one, without opening it; return false to pass)
         an organ of the body with a cut-open view (an enterOnly organ frame)
@@ -1243,8 +1347,10 @@ function lookInside(h) {
   if (selHit !== h && !(selHit && selHit.obj === h.obj)) selectHit(h); // the card of what you are looking into, until the new place takes over
   const ud = h.obj.userData, f = h.frame, fly0 = fly;
   const went = (how, note) => { const moved = fly && fly !== fly0; if (moved && fly.frame !== f) selLeaveFor(fly.frame, note); return lastInside = { how, frame: moved ? fly.frame : f }; };
-  let r = cutOpenOf(h, false);
-  if (r) return went(r);
+  let r = false;
+  if (typeof layerStep === 'function') { flyKeepDo(() => { r = layerStep(h); }); if (r) return went('layer'); }   // a layered thing in Auto: one layer in at that spot (js/body_core.js)
+  r = cutOpenOf(h, false);
+  if (r) { if (!(fly && fly !== fly0)) { frameSelected(h); frameShownSoon(f); } return went(r); }   // a cut-open view of a thing the camera is not yet at: go to it as well (the view used to open seven metres away, where nothing could be seen to change)
   if (ud.lookInside) { flyKeepDo(() => { r = ud.lookInside(h); }); if (r !== false) return went(typeof r === 'string' ? r : 'own'); }
   if (typeof DESCENT !== 'undefined' && DESCENT && DESCENT.inside) { // the next level down: the descent module's
     flyKeepDo(() => { r = DESCENT.inside(h); });
@@ -1356,7 +1462,15 @@ function addLabelTo(f, obj, text, o = {}) {
   labelLayer.appendChild(el);
   const L = { el, obj, off: o.offset || new V3(), always: !!o.always, maxPx: o.maxPx, minPx: o.minPx };
   f.labels.push(L);
-  el.addEventListener('click', ev => { ev.stopPropagation(); const target = o.pick || obj; const h = { frame: f, obj: target, id: target.userData.id, pointLocal: target.getWorldPosition(new V3()).add(f.C), hit: null }; onLabelClick(h, ev.clientX, ev.clientY, ev.timeStamp); }); // a label is its thing: one click selects it, two look inside
+  el.addEventListener('click', ev => {   // a label is its thing: one click selects it, two look inside
+    ev.stopPropagation(); const target = o.pick || obj;
+    /* ... unless the label lies over something else that is drawn solid there. The names of the buttercup and of the bee float over the dog's back in the start
+       view, and a click on the dog there selected a buttercup stem or went into the bee. A name is an annotation: where a model of the park (a thing, the
+       body) is under the pointer, the click is on that; the name answers only over the lawn, the sky or empty space. */
+    const u = pickAt(ev.clientX, ev.clientY);
+    if (u && u.frame.coRender && !pickWeak(u)) { onClick(ev.clientX, ev.clientY, false, ev.timeStamp); return; }
+    const h = { frame: f, obj: target, id: target.userData.id, pointLocal: target.getWorldPosition(new V3()).add(f.C), hit: null }; onLabelClick(h, ev.clientX, ev.clientY, ev.timeStamp);
+  });
   return L;
 }
 // labels sit above the canvas: pass the mouse wheel through, so scroll-zoom works over a label too (stopImmediatePropagation: a second forwarder, if any, must not zoom twice)

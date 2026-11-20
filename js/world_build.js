@@ -62,7 +62,7 @@ async function buildWorld() {
 
   for (const ext of WORLD_EXT) { try { await ext(FR); } catch (e) { console.error('world extension failed', e); } }
   // A landmark: {label, D, frame, go(then)}. `frame` is where the camera must be anchored (or inside) after the flight.
-  const LM = (label, f, p, D, extra) => Object.assign({ label, D, frame: f, go: then => flyTo(f, p || new V3(), D, then) }, extra || {});
+  const LM = (label, f, p, D, extra) => Object.assign({ label, D, frame: f, at: p || null, go: then => flyTo(f, p || new V3(), D, then, extra && extra.dir) }, extra || {});   // at: the place in the frame, where it is not the frame's middle (the ruler names a landmark only when the camera is there)
   const organ = (id, fallback) => body.children.find(c => c.type === 'organ' && c.opts.organ === id) || fallback;
   const bodyLM = (id, label, D, organId) => {
     const p = AN && AN.byId[id]; if (!p) return null;
@@ -83,8 +83,8 @@ async function buildWorld() {
     LM('London', region, null, 8e4),
     LM('Earth', FR.earth, null, 3e7),
     LM('Earth & Moon', FR.earth, null, 1.4e9),
-    LM('Inner planets', ss, null, 7e11),
-    LM('Solar system', ss, null, 1.5e13),
+    LM('Inner planets', ss, null, 7e11, { dir: new V3(.25, .8, .55) }),   // seen from well above the plane of the orbits (y is its north), so the planets are apart and can be named
+    LM('Solar system', ss, null, 1.5e13, { dir: new V3(.25, .8, .55) }),
     LM('Oort cloud', nb, null, 5e16),
     LM('Nearest stars', nb, null, 5e17),
     LM('Local stars', nb, null, 6e18),
@@ -94,6 +94,8 @@ async function buildWorld() {
     LM('Cosmic web', root, null, 4e24),
     LM('Observable universe', root, null, 2e27),
   ].filter(Boolean).concat(EXT_LANDMARKS);
+  // a ruler stop of a thing in the park (the robin, the bee, the pond, the soil block) is at that thing: without its frame the ruler named it wherever the view was 24 cm wide
+  LANDMARKS.forEach(L => { if (L.frame || !FR.things || typeof TH === 'undefined') return; const f = FR.things.find(t => { const d = TH.loaded[t.opts.thing]; return (t.opts.n || 0) === 0 && d && d.ruler && d.ruler.label === L.label; }); if (f) L.frame = f; });
   return root;
 }
 function startView() {
