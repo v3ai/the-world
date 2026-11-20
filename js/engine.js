@@ -378,6 +378,7 @@ function frameAlpha(f) {
   return a;
 }
 let _coHost = null, _coHostR = 0;   // the co-rendered thing the camera is anchored in (or inside), and its size in metres
+const _proxyHid = new Set();   // frames whose stand-in computeActive hid
 function computeActive() {
   const ch = chainOf(cam.A).reverse(); // root ... A
   _coHost = null; for (let i = ch.length - 1; i >= 0; i--) { const f = ch[i]; if (f.coRender && f.parent && f.parent.unit === f.unit) { _coHost = f; _coHostR = (f.radius || 1) * f.unit; break; } }
@@ -394,6 +395,10 @@ function computeActive() {
   active = list.slice(start);
   // proxies: hide the parent's stand-in when its child frame is fully shown
   for (const f of ch) if (f.proxy) f.proxy.visible = !(f.alpha > .98 && active.includes(f));
+  // ... and a frame that has left the chain shows its stand-in again (the Sun's stand-in, and with it the Sun's name, stayed hidden in the solar system for
+  // good after a visit to the Sun: only frames on the chain were looked at here)
+  for (const f of _proxyHid) if (!ch.includes(f) && f.proxy && !(f.coRender && f.parent && f.parent.unit === f.unit)) f.proxy.visible = true;
+  _proxyHid.clear(); for (const f of ch) if (f.proxy && !f.proxy.visible) _proxyHid.add(f);
   // Neighbours. A child marked coRender (same unit as its parent) is drawn whenever its parent is, even when the camera
   // is not anchored inside it, and shares the parent's depth buffer so near things hide far things across frames.
   drawn = [];
