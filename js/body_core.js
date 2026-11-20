@@ -259,11 +259,8 @@ function layerNext(h) {
   const rk = layerRank(F, h.id); if (rk === undefined) return null;
   const S = h.stack || (h.ndc ? bodyCoreSample(F, h) : null); if (!S) return null;
   const i = S.rows.findIndex(r => r.id === h.id); if (i < 0) return null;
-  /* the next layer is the one Auto shows once this one has peeled, not simply the next surface on the ray: under the skin the muscles show before the vessels
-     that run through them (an artery of the belly wall lies in front of the muscle, and is drawn only when the muscle has gone), and a thing's layers come
-     strictly in their order. So: the lowest deeper rank on the ray, and its nearest part; among the body's inner parts (vessels, bones, organs) the nearest. */
-  const cand = S.rows.slice(i + 1).filter(r => { const q = layerRank(F, r.id); return q !== undefined && q > rk && !F.hidden.has(r.id); }); if (!cand.length) return null;
-  const minR = Math.min(...cand.map(r => layerRank(F, r.id))), next = F.type === 'body' && minR > 1 ? cand[0] : cand.find(r => layerRank(F, r.id) === minR);
+  // (for the card's button: the nearest deeper part on the ray. The step itself asks the peel what it really shows next: layerStep)
+  const next = S.rows.slice(i + 1).find(r => { const q = layerRank(F, r.id); return q !== undefined && q > rk && !F.hidden.has(r.id); }); if (!next) return null;
   return { kind, F, next, rank: layerRank(F, next.id), name: next.name, stack: S };
 }
 /* what Auto would bring into focus with the camera looking at P (frame coordinates) from D metres, along the direction it looks now: {id, rank} */
@@ -295,14 +292,20 @@ function layerStep(h) {
     }
     return false;
   }
-  const P = n.next.point; let best = 0, alt = 0;
-  for (let D = Math.min(cam.D, size * 1.2); D > lo; D *= .88) { const fo = layerFocusAt(F, P, D); if (!fo) continue; if (fo.id === n.next.id) { best = D; break; } if (!alt && fo.rank === n.rank) alt = D; if (fo.rank > n.rank) break; }
-  let D = best || alt; if (!D) return false;
-  if (best) { const fo = layerFocusAt(F, P, D * .9); if (fo && fo.id === n.next.id) D *= .9; }   // a little inside the range, so the layer in front is well out of the way
-  const h2 = { frame: F, obj: F.parts[n.next.id].g, id: n.next.id, pointLocal: P.clone(), normalLocal: n.next.normal, hit: n.next.hit, ndc: h.ndc, stack: n.stack };
+  /* Which layer comes next is the peel's own business (under the skin of the belly the body's Auto brings up the vessels and organs, not the muscle that lies a
+     little deeper on the ray; a thing's layers come strictly in order). So the camera is brought in toward the point clicked, in thought, until the peel's focus
+     moves to a deeper part: that part is the next layer, and that distance shows it. The flight then aims at that part's own surface under the click when the
+     peel still shows it from there. */
+  const rk = layerRank(F, h.id), P0 = (h.pointLocal || n.next.point).clone(); let id = null, D1 = 0;
+  for (let D = Math.min(cam.D, size * 1.2); D > lo; D *= .88) { const fo = layerFocusAt(F, P0, D); if (fo && fo.id && fo.id !== h.id && fo.rank > rk && F.parts[fo.id]) { id = fo.id; D1 = D; break; } }
+  if (!id) return false;
+  const row = n.stack.rows.find(r => r.id === id); let P = P0, D = D1 * .94;
+  if (row) for (const k of [.94, .82, 1.06, .7]) { const fo = layerFocusAt(F, row.point, D1 * k); if (fo && fo.id === id) { P = row.point.clone(); D = D1 * k; break; } }
+  const part = F.parts[id], name = (part.p && part.p.name) || id;
+  const h2 = { frame: F, obj: part.g, id, pointLocal: P.clone(), normalLocal: row ? row.normal : null, hit: row ? row.hit : null, ndc: h.ndc, stack: n.stack };
   selectHit(h2);                // the panel names what is now shown
   flyKeep(F, P, D);
-  if (typeof showStepNote === 'function') showStepNote(`One layer in: ${n.name.charAt(0).toLowerCase() + n.name.slice(1)} is what lies under ${(h.obj.userData.part.name || 'that').toLowerCase()} at the spot you chose. Double-click again to go further in.`);
+  if (typeof showStepNote === 'function') showStepNote(`One layer in: ${name.charAt(0).toLowerCase() + name.slice(1)} is what shows under ${(h.obj.userData.part.name || 'that').toLowerCase()} at the spot you chose. Double-click again to go further in.`);
   return true;
 }
 
