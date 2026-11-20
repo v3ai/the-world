@@ -100,12 +100,14 @@ function crumbMenuEl() {
   }
   return m;
 }
-function crumbMenuClose() { const m = document.getElementById('crumbMenu'); if (m) m.hidden = true; const b = document.querySelector('#crumbList .more'); if (b) b.setAttribute('aria-expanded', 'false'); crumbMenuFor = null; }
+let crumbMenuRaised = false;   // a phone's sheet is a third of the screen: the list raises it while open and lowers it again when it closes
+function crumbMenuClose() { const m = document.getElementById('crumbMenu'); if (m) m.hidden = true; if (crumbMenuRaised) { crumbMenuRaised = false; const p = document.getElementById('panel'); if (p) p.classList.remove('tall'); } const b = document.querySelector('#crumbList .more'); if (b) b.setAttribute('aria-expanded', 'false'); crumbMenuFor = null; }
 function crumbMenuOpen(chain) {
   const m = crumbMenuEl(), n = chain.length;
   m.innerHTML = chain.map((f, i) => i === n - 1 ? `<span class="cmi cur" role="menuitem" aria-current="location" aria-disabled="true">${crumbName(f)}</span>` : `<button class="cmi" type="button" role="menuitem" data-i="${i}" title="Fly out to ${humanName(f)}">${crumbName(f)}</button>`).join('');
   m.querySelectorAll('.cmi[data-i]').forEach(b => b.onclick = () => { crumbMenuClose(); crumbGo(chain[+b.dataset.i]); });
   m.hidden = false; crumbMenuFor = chain[n - 1];
+  const p = document.getElementById('panel'); if (p && matchMedia('(max-width: 860px)').matches && !p.classList.contains('tall')) { p.classList.add('tall'); crumbMenuRaised = true; }
   const b = document.querySelector('#crumbList .more'); if (b) b.setAttribute('aria-expanded', 'true');
   const first = m.querySelector('button'); if (first) first.focus({ preventScroll: true });
 }
