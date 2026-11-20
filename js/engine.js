@@ -1403,26 +1403,41 @@ function doHover() {
    microwave background, which the hover does not name either), deselects and does not move the camera; a double click there does nothing. A drag is not a
    click (the 6 px threshold in the pointer handlers). The panel's "Look inside" button calls lookInside with the same hit.
    While the panel is minimised a single click opens it (after the window, so a double click does not); nothing else here does. */
-const DBL_MS = 300, DBL_LATE_MS = 480, DBL_PX = 22, DBL_PX_TOUCH = 40;   // the flight waits DBL_MS; a slower second click (up to DBL_LATE_MS) on the same thing still counts as a double click
+const DBL_MS = 300, DBL_LATE_MS = 480, DBL_PX = 22, DBL_PX_TOUCH = 40;
+/* a finger is slower than a mouse button: two taps 330 ms apart (as a phone delivers them when it is busy) were two single taps, the second a framing of what the
+   first had framed, and the double tap on the person did nothing. On touch the window is longer, and so the framing waits a little longer. */
+const DBL_MS_TOUCH = 450, DBL_LATE_MS_TOUCH = 650;   // the flight waits DBL_MS; a slower second click (up to DBL_LATE_MS) on the same thing still counts as a double click
 let lastPick = null, clickPend = null, selHit = null, lastClick = null;
 const SKY_IDS = new Set(['air', 'cmb']);   // the park's sky dome and the microwave background: where you click when you click on nothing
 const isBackdrop = h => !!h.obj.userData.backdrop || ((h.obj.userData.priority ?? 1) < 0 && SKY_IDS.has(h.id));
 /* ts: when the click happened (the event's own time stamp), so that two clicks 200 ms apart are a double click even when a slow frame delivers the second one late */
 function onClick(x, y, touch, ts) {
   const now = ts || performance.now(), lc = lastClick; _fsTok++; _fsPend = false;
-  const near = lc && Math.hypot(x - lc.x, y - lc.y) < (touch ? DBL_PX_TOUCH : DBL_PX);
-  if (near && now - lc.t < DBL_MS) { // the second click of a double click: the thing the first click found
+  const near = lc && Math.hypot(x - lc.x, y - lc.y) < (touch ? DBL_PX_TOUCH : DBL_PX), dms = touch ? DBL_MS_TOUCH : DBL_MS, lms = touch ? DBL_LATE_MS_TOUCH : DBL_LATE_MS;
+  /* measured from when the app had finished answering the first click (lc.done): on a busy phone the card of the first tap took 700 ms to draw, and the second
+     tap, made as soon as the screen answered, came 850 ms after the first and was taken for a single tap */
+  const since = lc ? now - Math.max(lc.t, lc.done || 0) : Infinity;
+  if (near && since < dms) { // the second click of a double click: the thing the first click found
     if (clickPend) { clearTimeout(clickPend.timer); clickPend = null; } lastClick = null;
     if (lc.h) lookInside(lc.h); else lookInsideNear(lc.x, lc.y); return;
   }
-  const h0 = pickAt(x, y), h = h0 && !isBackdrop(h0) ? h0 : null;
-  if (near && lc.h && h && h.obj === lc.h.obj && now - lc.t < DBL_LATE_MS) { // a slow double click: the framing flight has only just begun, and the same thing is still under the pointer
+  const h0 = pickPast(pickAt(x, y), x, y), h = h0 && !isBackdrop(h0) ? h0 : null;
+  if (near && lc.h && h && h.obj === lc.h.obj && since < lms) { // a slow double click: the framing flight has only just begun, and the same thing is still under the pointer
     if (clickPend) { clearTimeout(clickPend.timer); clickPend = null; } lastClick = null; lookInside(selHit && selHit.obj === h.obj ? selHit : lc.h); return;
   }
   flushClick();
-  lastClick = { h, x, y, t: now };
-  if (!h) { deselect(); return; }
-  clickThing(h);
+  const lcN = lastClick = { h, x, y, t: now, touch };
+  if (!h) { deselect(); lcN.done = performance.now(); return; }
+  clickThing(h, dms); lcN.done = performance.now();
+}
+/* One of a crowd of tiny things (a tuft of the dog's fur, a few pixels or less on the screen) is not what a click on the dog from across the lawn is about: the
+   click goes to what that crowd lies on (the dog's coat), and frames that. Close enough to see the tufts, they are clicked as themselves. */
+function pickPast(h, x, y) {
+  if (!h || !(h.obj.isInstancedMesh || h.obj.isPoints || (h.hit && h.hit.object && h.hit.object.isInstancedMesh)) || !h.frame.cam || h.obj.userData.noPick) return h;
+  const e = hitExtent(h); if (!e || !e.r) return h;
+  const d = e.p.clone().sub(h.frame.C).distanceTo(h.frame.cam.position); if (!(d > 0) || e.r / d * PX_PER_RAD() >= 4) return h;
+  h.obj.userData.noPick = true; let h2 = null; try { h2 = pickAt(x, y); } finally { delete h.obj.userData.noPick; }
+  return h2 && h2.frame === h.frame && !isBackdrop(h2) ? h2 : h;
 }
 function flushClick() { const cp = clickPend; if (!cp) return; clearTimeout(cp.timer); clickPend = null; if (selHit === cp.h) frameSelected(cp.h); }
 function onLabelClick(h, x, y, ts) {
@@ -1430,10 +1445,10 @@ function onLabelClick(h, x, y, ts) {
   if (lc && lc.h && lc.h.obj === h.obj && now - lc.t < DBL_MS) { if (clickPend) { clearTimeout(clickPend.timer); clickPend = null; } lastClick = null; lookInside(lc.h); return; }
   flushClick(); lastClick = { h, x, y, t: now }; clickThing(h);
 }
-function clickThing(h) {
+function clickThing(h, dms) {
   cancelTour(); lastPick = h;
   selectHit(h);
-  clickPend = { h, timer: setTimeout(() => { const p = clickPend; clickPend = null; if (p && selHit === p.h) { frameSelected(p.h); if (typeof panelShow === 'function') panelShow('click'); } }, DBL_MS) };
+  clickPend = { h, timer: setTimeout(() => { const p = clickPend; clickPend = null; if (p && selHit === p.h) { frameSelected(p.h); if (typeof panelShow === 'function') panelShow('click'); } }, dms || DBL_MS) };
 }
 /* select: highlight, card. The card is the thing's own (showInfoFor); the highlight is the frame's own where it has one (the body and things outline
    the selected part), a soft glow on the object's materials where they can glow, and otherwise a ring drawn round the point (#selMark). */
@@ -1478,7 +1493,7 @@ function frameSelected(h) {
   let D = cam.D;
   if (e.r) {
     const dive = f.spawn ? (f.spawnD || f.r0 * 1.6) * 1.15 : 0;   // never so close that the engine takes it for a descent into the next level: a click frames, it does not go in
-    const want = Math.max(fitD(f, e.r), f.floorD || 0, dive, MIN_D * 10); if (want > cam.D * 2.5) return; if (want < cam.D * .62 || want > cam.D * 1.25) D = want;
+    const want = Math.max(fitD(f, e.r), f.floorD || 0, dive, MIN_D * 10); if (want > cam.D * 4) return; if (want < cam.D * .8 || want > cam.D * 1.25) D = want;   /* a click visibly frames: on a phone the person standing in the start view already filled 74 % of the free area's width, and the old 62 % threshold left the camera where it was; and the pond, 6 m across, needs the camera 3.2 times further out on a phone than the start view (the limit of 2.5 left it where it was) */
   }
   if (D === cam.D && off < tol && v.z < 1) return;
   h.framed = { p: e.p, D };
@@ -1733,9 +1748,25 @@ const ctrlEl = $('#controls');
    there it folds: the choice in force and one "Views" button that opens the whole list (css/app.css, .seg.fold); choosing closes it again. */
 function seg(items, activeK, onSel) {
   const d = document.createElement('div'); d.className = 'seg';
-  items.forEach(([k, label]) => { const b = document.createElement('button'); b.innerHTML = label; b.dataset.k = k; if (k === activeK) b.classList.add('on'); b.onclick = () => { d.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); onSel(k); }; d.appendChild(b); });
+  items.forEach(([k, label]) => { const b = document.createElement('button'); b.innerHTML = label; b.dataset.k = k; if (k === activeK) b.classList.add('on'); b.onclick = () => { d.querySelectorAll('button[data-k]').forEach(x => x.classList.toggle('on', x === b)); d.classList.remove('open'); const m = d.querySelector('.segMore'); if (m) m.setAttribute('aria-expanded', 'false'); onSel(k); }; d.appendChild(b); });
+  if (items.length > 3) {
+    d.classList.add('fold'); const m = document.createElement('button'); m.className = 'segMore'; m.type = 'button'; m.textContent = `Views (${items.length})`; m.setAttribute('aria-expanded', 'false'); m.title = 'Show every view of this';
+    m.onclick = () => { const o = d.classList.toggle('open'); m.setAttribute('aria-expanded', String(o)); }; d.appendChild(m);
+  }
   if (building) building.uiEls.push(d); return d;
 }
+/* A double tap (or click) whose second half lands on a control that appeared between the two (the dog's row of views comes up when the first tap selects
+   it) is the double tap the visitor meant: it goes to the scene, not to the button that slid under the finger. */
+let ctrlBuiltT = -1e9, canvasTapT = -1e9, canvasTapXY = null;
+new MutationObserver(() => { ctrlBuiltT = performance.now(); }).observe(ctrlEl, { childList: true, subtree: true });
+canvas.addEventListener('pointerup', e => { canvasTapT = performance.now(); canvasTapXY = { x: e.clientX, y: e.clientY, touch: e.pointerType === 'touch' }; }, true);
+function ctrlSwallow(e) {
+  const now = performance.now(), c = canvasTapXY;
+  if (!c || now - canvasTapT > (c.touch ? DBL_LATE_MS_TOUCH : DBL_LATE_MS) || ctrlBuiltT < canvasTapT - 50 || Math.hypot(e.clientX - c.x, e.clientY - c.y) > (c.touch ? DBL_PX_TOUCH : DBL_PX)) return false;
+  e.preventDefault(); e.stopPropagation(); return true;
+}
+ctrlEl.addEventListener('pointerdown', ctrlSwallow, true);
+ctrlEl.addEventListener('click', e => { if (ctrlSwallow(e)) { const c = canvasTapXY; canvasTapXY = null; onClick(e.clientX, e.clientY, c.touch, e.timeStamp); } }, true);
 function actBtn(label, onClick) { const b = document.createElement('button'); b.className = 'act'; b.innerHTML = label; b.onclick = onClick; if (building) building.uiEls.push(b); return b; }
 function uiEl(el) { if (building) building.uiEls.push(el); return el; }
 let uiFrame = null;

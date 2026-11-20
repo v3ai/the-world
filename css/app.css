@@ -75,6 +75,17 @@ body.trackOpen #ruler { visibility: hidden }
 .seg button:first-child { border-left: 0 }
 .seg button:hover { background: var(--paper-2); color: var(--ink) }
 .seg button.on { background: var(--ink); color: var(--paper) }
+.seg .segMore { display: none }
+@media (max-width: 860px) {
+  /* a phone: the choice in force and one button that opens the rest (js/engine.js, seg) */
+  .seg.fold { flex-wrap: nowrap }
+  .seg.fold:not(.open) > button[data-k]:not(.on) { display: none }
+  .seg.fold.open { flex-direction: column; flex-wrap: nowrap; max-height: 46vh; overflow-y: auto }
+  .seg.fold.open > button { border-left: 0; border-top: 1px solid var(--rule); text-align: left }
+  .seg.fold .segMore { display: block; color: var(--accent); font-weight: 600 }
+  .seg.fold.open .segMore { order: -1; border-top: 0 }
+  .seg button { min-height: 40px }
+}
 .act { border: 1px solid var(--accent); background: var(--accent); color: #fff; padding: 7px 13px; border-radius: var(--r-panel); font-size: 12.5px; font-weight: 500; cursor: pointer; white-space: nowrap; box-shadow: var(--lift) }
 .act:hover { background: #173f75 }
 .molsel { max-width: 240px; padding: 7px 10px; border-radius: var(--r-panel); background: var(--paper); color: var(--ink); border: 1px solid rgba(23,32,42,.14); font: 12.5px var(--sans); box-shadow: var(--lift) }
@@ -337,6 +348,7 @@ details[open] > summary::before { content: '−' }
 /* ---- one card: header, back, certainty row ---- */
 #info .cardhead { display: flex; align-items: baseline; gap: 10px; padding-right: 36px; min-height: 18px }
 #info .cardhead .tag { padding-right: 0 }
+#info .cardhead { flex-wrap: wrap } #info .cardhead .thNote { order: 2; flex: 1 1 100%; margin-top: 4px }   /* a thing's model note goes under the kind line, the panel's full width (it stood beside it, and the kind line read like a stray column) */
 .back { border: 1px solid var(--rule); background: #fff; border-radius: var(--r-ctl); padding: 2px 9px; font-size: 12px; cursor: pointer; color: var(--accent); flex: none }
 .back:hover:not(:disabled) { border-color: var(--accent) }
 .back:disabled { color: var(--muted); opacity: .55; cursor: default }
@@ -376,6 +388,12 @@ details[open] > summary::before { content: '−' }
   #crumbList .crumb { min-height: 40px; display: inline-flex; align-items: center; padding: 0 6px }
   #crumbMenu .cmi { min-height: 44px }
   #panelHint { align-items: center } #panelHint button { min-height: 40px; padding: 0 8px }
+  /* and the rest the tester measured on a phone: Back 23 px, Minimise 23, Time 21, Close 28 x 28, the zoom buttons 38 x 36, Leave trail 20 */
+  #navBack, #panelMin { min-height: 40px; padding: 0 12px }
+  #clockBtn { min-height: 40px; display: inline-flex; align-items: center; pointer-events: auto }
+  #info .x { min-height: 40px; min-width: 44px }
+  #zoombtns button { width: 44px; height: 44px }
+  .tr-leave, #trail .tr-btns button { min-height: 40px; padding: 0 10px }
   #help .card { padding: 20px 18px 18px }
   #help h1 { font-size: 27px }
   #help .grid { grid-template-columns: 96px 1fr }
