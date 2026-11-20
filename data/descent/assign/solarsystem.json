@@ -8,5 +8,16 @@
   "heliosphere": "solar_wind",
   "voyager1": "spacecraft",
   "voyager2": "spacecraft"
- }
+ },
+ "empty": [
+  [
+   120,
+   "solar_wind"
+  ],
+  [
+   1000000000.0,
+   "interstellar_gas"
+  ]
+ ],
+ "emptyD": 4e+16
 }

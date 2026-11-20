@@ -17,6 +17,10 @@
     "sac": "embryo_sac",
     "central": "embryo_sac"
    }
+  },
+  "pond_drop": {
+   "default": "water",
+   "everywhere": true
   }
  }
 }

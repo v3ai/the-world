@@ -81,6 +81,8 @@ add({ id: 'pl:ISS', c: 'pl', g: 'model', t: 'International Space Station', s: 'A
 [['Dog', 'dog'], ['Tree', 'tree'], ['Pond', 'pond'], ['Flowers', 'flower'], ['Honeybee', 'bee'], ['Mushroom', 'mushroom'], ['Bird', 'bird'], ['Cloud', 'cloud']].forEach(([t, k]) => add({ id: 'pl:' + t, c: 'pl', g: 'model', t, s: 'In Greenwich Park', card: [k] }));
 add({ id: 'pl:Air', c: 'pl', g: 'model', t: 'Air', s: 'In Greenwich Park: what the air is made of', card: ['air'] });
 add({ id: 'pl:Soil', c: 'pl', g: 'model', t: 'Soil and rock', s: 'In Greenwich Park: down into the soil', card: ['soil'] });
+// the galaxies the Local Group view draws at their catalogued places (js/world_space.js, FT.localgroup: within 3.1 Mpc): each can be flown to
+J('data/galaxies.json').filter(g => g.dist_mpc <= 3.1 && g.name !== 'Milky Way').forEach(g => add({ id: 'gx:' + g.name, c: 'gx', g: 'model', t: g.name, s: `A galaxy, ${g.group === 'Local Group' ? 'in the Local Group' : 'near the Local Group'}`, ra: g.ra_deg, dec: g.dec_deg, mpc: g.dist_mpc, kpc: g.diam_kpc }));
 add({ id: 'act:ptable', c: 'act', g: 'model', t: 'Periodic table of the elements', s: 'Choose any element and fly to its atom' });
 // trails and labs
 trails.forEach(t => add({ id: 'trail:' + t.id, c: 'trail', g: 'trail', t: t.question, kw: t.keywords || [], s: first(t.teaser), n: (t.stops || []).length, min: t.minutes }));

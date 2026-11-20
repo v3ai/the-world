@@ -51,8 +51,14 @@ function navFlyHook() {
   navStack.push(e); if (navStack.length > 60) navStack.shift(); navUpdate();
 }
 function navUpdate() { const b = $('#navBack'); if (b) b.disabled = !navStack.length; }
+/* the same view, to the eye: the same frame, the distance within a fifth, the target within a tenth of the view */
+function nearSnap(a, b) { return a && b && a.A === b.A && Math.abs(Math.log(a.D / b.D)) < .2 && a.T.distanceTo(b.T) < a.D * .1 / a.A.unit; }
 function navBack() {
-  const e = navStack.pop(); navUpdate(); if (!e) return;
+  /* Back goes to the previous place that looks different: steps that would leave the view as it is (a card opened and closed at the same place, a framing
+     that did not move: three Backs from the Sun's plasma gave the Sun at 3.0 and 3.01 million km) are passed over */
+  let e = navStack.pop(); const now = camSnap();
+  while (e && navStack.length && e.cam && nearSnap(e.cam, now) && !fly) e = navStack.pop();
+  navUpdate(); if (!e) return;
   cancelTour(); navQuiet++;
   try {
     if (e.cam) flyTo(e.cam.A, e.cam.T, e.cam.D);
@@ -61,7 +67,6 @@ function navBack() {
   navUpdate();
 }
 const CRUMB_NAME = { 'Observable universe': 'Universe', 'Human body': 'You', 'Greenwich, London': 'London' };
-let crumbsAll = false;
 function crumbGo(f) {
   cancelTour();
   const lms = LANDMARKS.filter(l => l.frame === f).sort((a, b) => b.D - a.D); // the widest landmark of that frame is its overview
@@ -79,16 +84,42 @@ function goFurtherOut() {
   if (typeof DESCENT !== 'undefined' && DESCENT && DESCENT.up) { DESCENT.up(); return; }   // the descent module (js/descent.js) knows the way back out of what it built
   const ch = crumbChain(capFrame || cam.A); if (ch.length > 1) crumbGo(ch[ch.length - 2]); else message('This is the widest view there is.');
 }
+/* The path, in the panel's head on a line of its own: the root, the place you are in and its parent are always there; the steps between them fold into one
+   "N more" control that opens the whole path as a list inside the panel. Every step is a whole button (a tap target), a name is never cut mid-word, and nothing
+   is laid out outside the panel (the old one-line path was scrolled so that "Universe" and "N more" sat to the left of the panel, out of reach). */
+function crumbName(f) { return CRUMB_NAME[humanName(f)] || humanName(f); }
+function crumbShort(f) { const s = crumbName(f); if (s.length <= 42) return s; const c = s.slice(0, 42), i = c.lastIndexOf(' '); return (i > 18 ? c.slice(0, i) : c).replace(/[\s,:;.(]+$/, '') + '\u2026'; }
+let crumbMenuFor = null;
+function crumbMenuEl() {
+  let m = document.getElementById('crumbMenu');
+  if (!m) {
+    m = document.createElement('div'); m.id = 'crumbMenu'; m.setAttribute('role', 'menu'); m.setAttribute('aria-label', 'The whole path'); m.hidden = true;
+    const head = document.getElementById('panelHead'); if (head) head.appendChild(m);
+    document.addEventListener('pointerdown', e => { if (!m.hidden && !m.contains(e.target) && !(e.target.closest && e.target.closest('.crumb.more'))) crumbMenuClose(); }, true);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !m.hidden) { crumbMenuClose(); const b = document.querySelector('#crumbList .more'); if (b) b.focus(); } });
+  }
+  return m;
+}
+let crumbMenuRaised = false;   // a phone's sheet is a third of the screen: the list raises it while open and lowers it again when it closes
+function crumbMenuClose() { const m = document.getElementById('crumbMenu'); if (m) m.hidden = true; if (crumbMenuRaised) { crumbMenuRaised = false; const p = document.getElementById('panel'); if (p) p.classList.remove('tall'); } const b = document.querySelector('#crumbList .more'); if (b) b.setAttribute('aria-expanded', 'false'); crumbMenuFor = null; }
+function crumbMenuOpen(chain) {
+  const m = crumbMenuEl(), n = chain.length;
+  m.innerHTML = chain.map((f, i) => i === n - 1 ? `<span class="cmi cur" role="menuitem" aria-current="location" aria-disabled="true">${crumbName(f)}</span>` : `<button class="cmi" type="button" role="menuitem" data-i="${i}" title="Fly out to ${humanName(f)}">${crumbName(f)}</button>`).join('');
+  m.querySelectorAll('.cmi[data-i]').forEach(b => b.onclick = () => { crumbMenuClose(); crumbGo(chain[+b.dataset.i]); });
+  m.hidden = false; crumbMenuFor = chain[n - 1];
+  const p = document.getElementById('panel'); if (p && matchMedia('(max-width: 860px)').matches && !p.classList.contains('tall')) { p.classList.add('tall'); crumbMenuRaised = true; }
+  const b = document.querySelector('#crumbList .more'); if (b) b.setAttribute('aria-expanded', 'true');
+  const first = m.querySelector('button'); if (first) first.focus({ preventScroll: true });
+}
 function updateCrumbs(cur) {
   const ol = $('#crumbList'); if (!ol) return;
-  const chain = crumbChain(cur); // root ... current
-  const short = f => { const n = CRUMB_NAME[humanName(f)] || humanName(f); return n.length > 26 ? n.slice(0, 25) + '…' : n; };
-  let items = chain.map((f, i) => ({ f, last: i === chain.length - 1 }));
-  let cut = 0; if (chain.length > 7 && !crumbsAll) { cut = chain.length - 4; items = [items[0], { more: cut - 1 }].concat(items.slice(cut)); } // one line in the panel's head: the root, the last four steps, and a way to see the rest
-  ol.innerHTML = items.map(it => it.more !== undefined ? `<li><button class="crumb more" title="Show the whole path">… ${it.more} more</button></li>` : `<li>${it.last ? `<span class="crumb cur" aria-current="location" title="${humanName(it.f)}">${short(it.f)}</span>` : `<button class="crumb" data-i="${chain.indexOf(it.f)}" title="Fly out to ${humanName(it.f)}">${short(it.f)}</button>`}</li>`).join('');
-  ol.querySelectorAll('.crumb[data-i]').forEach(b => b.onclick = () => crumbGo(chain[+b.dataset.i]));
-  const mo = ol.querySelector('.more'); if (mo) mo.onclick = () => { crumbsAll = true; updateCrumbs(cur); };
-  ol.classList.toggle('all', crumbsAll); ol.scrollLeft = ol.scrollWidth; ol.classList.toggle("clip", ol.scrollLeft > 2);
+  const chain = crumbChain(cur), n = chain.length; // root ... current
+  const show = n > 4 ? [0, -1, n - 2, n - 1] : chain.map((f, i) => i), hidden = n > 4 ? n - 3 : 0;
+  ol.innerHTML = show.map(i => i < 0 ? `<li><button class="crumb more" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="crumbMenu" title="Show the whole path">${hidden} more</button></li>`
+    : `<li>${i === n - 1 ? `<span class="crumb cur" aria-current="location" title="${humanName(chain[i])}">${crumbShort(chain[i])}</span>` : `<button class="crumb" type="button" data-i="${i}" title="Fly out to ${humanName(chain[i])}">${crumbShort(chain[i])}</button>`}</li>`).join('');
+  ol.querySelectorAll('.crumb[data-i]').forEach(b => b.onclick = () => { crumbMenuClose(); crumbGo(chain[+b.dataset.i]); });
+  const mo = ol.querySelector('.more'); if (mo) mo.onclick = () => { const m = crumbMenuEl(); if (!m.hidden) crumbMenuClose(); else crumbMenuOpen(chain); };
+  if (crumbMenuFor && crumbMenuFor !== cur) crumbMenuClose();
 }
 
 /* ================= ONE CARD =================
@@ -598,7 +629,7 @@ function updateCaption() {
   const view = cam.D * 2 * Math.tan(25 * Math.PI / 180);
   const nm = humanName(f);
   if (f !== capFrame || $('#capN').textContent !== nm) {
-    capFrame = f; crumbsAll = false; updateCrumbs(f);
+    capFrame = f; updateCrumbs(f);
     $('#capN').textContent = nm;
     $('#capD').textContent = f.blurb || '';
     $('#capNote').textContent = f.note || '';
@@ -611,8 +642,9 @@ function updateCaption() {
   const k = `Field of view ${fmtLen(view)}`; if ($('#capK').textContent !== k) $('#capK').textContent = k;
   // an empty stretch of a descent (zoomStretch, js/engine.js): say what is happening, so that a picture that does not change is not taken for a hang
   { const zs = !fly && cam.A.built ? zoomStretch(cam.A) : null, g = $('#capG'); let t = '';
-    if (zs) { const nm = zs.f ? (typeof DESCENT !== 'undefined' && DESCENT.nameOf ? DESCENT.nameOf(zs.f) : humanName(zs.f)) : zs.name;
-      t = `Nothing new to draw here: zooming ${fmtTimes(zs.ratio)} further in${nm ? ' to reach ' + nm : ''}` + (W > 860 && zs.f ? '. Double-click jumps there.' : ''); }
+    /* it does not name the place it leads to: a waiting scene's name is not final until it is built ("Inside the tissue" became "Inside a dog's skin and
+       coat"), and the panel names each place as it is entered */
+    if (zs) t = `Nothing new to draw here: the next level is ${fmtTimes(zs.ratio)} further in` + (zs.f ? (W > 860 ? '. Double-click jumps there.' : '. Double-tap jumps there.') : '.');
     if (g && g.textContent !== t) { g.textContent = t; g.hidden = !t; } }
   // a thing you looked inside: when the camera arrives in the new place (or the flight is over), the place takes the panel
   if (selLeave) { const L = selLeave; if (!curCard || curCard.key !== L.key) selLeave = null; else if (chainOf(cam.A).includes(L.frame) || (!fly && performance.now() - L.t > 400)) { const arrived = chainOf(cam.A).includes(L.frame); selLeave = null; closeInfo(); if (arrived && L.note) $('#placeNote').textContent = L.note; } } // L.note: what the descent module said about the level it built (a stand-in, say)
@@ -712,6 +744,20 @@ async function startApp() {
   $('#panelMin').onclick = panelMinimise; $('#panelTabB').onclick = () => panelShow('tab');
   $('#panelHintX').onclick = panelHintDone;
   if (matchMedia('(pointer: coarse)').matches) $('#panelHint').firstChild.textContent = 'Tap a thing to read about it here. Double-tap it to look inside.';
+  /* On a touch screen every sentence the app shows says tap and double-tap, not click: the place's text, the cards, the step notes, the messages
+     ("Click anywhere to see what is under that spot; double-click a part to look inside it" stood under the hint "Double-tap it to look inside").
+     Text is written in click words once, here it is turned into touch words as it appears. */
+  if (matchMedia('(pointer: coarse)').matches) {
+    const TW = { 'double-click': 'double-tap', 'double-clicks': 'double-taps', 'double-clicked': 'double-tapped', 'double-clicking': 'double-tapping', click: 'tap', clicks: 'taps', clicked: 'tapped', clicking: 'tapping' };
+    const RE = /\b(double-click(?:s|ed|ing)?|click(?:s|ed|ing)?)\b/gi;
+    const fix = t => t.replace(RE, w => { const r = TW[w.toLowerCase()]; return w[0] === w[0].toUpperCase() ? r[0].toUpperCase() + r.slice(1) : r; });
+    const walk = root => { const it = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); let n; while ((n = it.nextNode())) { const v = n.nodeValue; if (RE.test(v)) { RE.lastIndex = 0; n.nodeValue = fix(v); } RE.lastIndex = 0; }
+      if (root.querySelectorAll) root.querySelectorAll('[title]').forEach(e => { if (/click/i.test(e.title)) e.title = fix(e.title); }); };
+    const roots = ['#panel', '#panelTab', '#toasts', '#push', '#fov', '#tip', '#help'].map(q => $(q)).filter(Boolean);
+    roots.forEach(walk);
+    const mo = new MutationObserver(ms => { for (const m of ms) { if (m.type === 'characterData') { const n = m.target; if (/click/i.test(n.nodeValue)) n.nodeValue = fix(n.nodeValue); } else m.addedNodes.forEach(n => { if (n.nodeType === 3) { if (/click/i.test(n.nodeValue)) n.nodeValue = fix(n.nodeValue); } else if (n.nodeType === 1) walk(n); }); } });
+    roots.forEach(r => mo.observe(r, { childList: true, subtree: true, characterData: true }));
+  }
   $('#tabShow').onclick = () => panelShow('trail-show-text'); $('#tabPrev').onclick = () => TRAILS.back(); $('#tabNext').onclick = () => TRAILS.next();
   $('#clockBtn').onclick = () => { panelShow('clock'); const t = $('#timeSec'); t.open = true; t.scrollIntoView({ block: 'nearest' }); };
   $('#placeIn').onclick = () => lookInsidePlace(); $('#placeOut').onclick = goFurtherOut;

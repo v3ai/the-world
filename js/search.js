@@ -250,7 +250,7 @@
   }
 
   /* ----- what each kind of result will do, in plain words ----- */
-  const KIND_LABEL = { mol: 'Molecule', crystal: 'Crystal', el: 'Element', lm: 'Place', pl: 'Place', node: 'Topic', kn: 'Topic', trail: 'Question trail', lab: 'Interactive lab' };
+  const KIND_LABEL = { gx: 'Galaxy', mol: 'Molecule', crystal: 'Crystal', el: 'Element', lm: 'Place', pl: 'Place', node: 'Topic', kn: 'Topic', trail: 'Question trail', lab: 'Interactive lab' };
   function describe(r) {
     const e = r.e, c = e.c;
     if (c === 'mol') return ['Molecule', 'Fly to a 3D model'];
@@ -258,6 +258,7 @@
     if (c === 'el') return ['Element', 'Fly to its atom, with its card'];
     if (c === 'lm') return ['Place', 'Fly there'];
     if (c === 'pl') return [/^Moon of|planet/i.test(e.s) ? 'Moon' : e.s === 'Planet' || e.s === 'Dwarf planet' ? e.s : 'Place', 'Fly there, with its card'];
+    if (c === 'gx') return ['Galaxy', 'Fly there'];
     if (c === 'act') return ['Interactive', 'Open the periodic table; choose an element to fly to its atom'];
     if (c === 'trail') return ['Question trail', `A guided journey, ${e.n || 'a few'} stops`];
     if (c === 'lab') return ['Interactive lab', 'Opens the lab: ' + e.s];
@@ -295,6 +296,12 @@
     const f = FR[name]; if (!f) return false; f.ensure(); const o = f.pickables.find(x => x.userData && x.userData.id && x.userData.id.toLowerCase() === name.toLowerCase());
     flyTo(f, new V3(), ((o && typeof objRadiusLocal === 'function' && objRadiusLocal(o) * f.unit) || (e.rkm || 2000) * 1000) * K); return true;
   }
+  /* a galaxy of the Local Group view, at its catalogued place (the same sums as js/world_space.js, FT.localgroup), framed a few of its diameters away */
+  function galaxyFlight(e) {
+    const lg = FR.mw && FR.mw.parent; if (!lg || lg.type !== 'localgroup' || typeof raDec3 !== 'function') return false;
+    lg.ensure(); const p = raDec3(e.ra, e.dec, e.mpc * 1000).applyQuaternion(Q_EQ_TO_GAL).add(SUN_GAL);
+    flyTo(lg, p, Math.max(e.kpc, .3) * lg.unit * 2.6); return true;
+  }
   function go(r) {
     const e = r.e || r, id = e.id, c = e.c; const key = id.slice(id.indexOf(':') + 1);
     if (typeof cancelTour === 'function') cancelTour();
@@ -307,6 +314,7 @@
     else if (c === 'kn') { (typeof loadKnowledge === 'function' ? loadKnowledge() : Promise.resolve()).then(() => showNode(key)); }
     else if (c === 'lm') { const L = LANDMARKS.find(l => l.label === key); if (L) { L.go(); if (e.card) afterFlight(() => openCardById(e.card)); } }
     else if (c === 'pl') { if (planetFlight(e)) afterFlight(() => openCardById(e.card)); }
+    else if (c === 'gx') galaxyFlight(e);
     else if (c === 'act') { goToNode('at_el_H'); afterFlight(() => { if (typeof ATM !== 'undefined' && ATM.openPicker) ATM.openPicker(); }); }
     else if (c === 'trail') { TRAILS.load().then(() => TRAILS.start(key, 0)); }
     else if (c === 'lab') { const [lab, preset] = key.split('/'); openLab(lab, preset, 'Search'); }

@@ -4,5 +4,7 @@
   "atmosphere": "upper_air",
   "iss": "spacecraft",
   "parkMarker": "marker"
- }
+ },
+ "empty": "solar_wind",
+ "emptyD": 3000000000.0
 }

@@ -544,15 +544,18 @@ FT.solarsystem = {
         const b = F.bodies[nm]; b.grp.position.copy(helioAt(nm, simTime));
         b.mesh.rotation.y = (simTime / 3600000 / (b.d.rotation_period_h || 24)) % 1 * TAU; // rotation follows the simulated clock: it stops when time is paused
         const dd = Math.max(PX.copy(b.grp.position).distanceTo(CP), 1e-9); b.hs.scale.setScalar(Math.max(b.rAU * 1.5, dd * PXK * 12));
-        if (!b.L.hooked) { b.L.hooked = 1; b.L.minSizeFn = () => { if (FR.sun && FR.sun.alpha > .3) return false; const v = _w.copy(b.grp.position).sub(CP), dist = v.length(); v.normalize(); const behind = dist > SD0 && v.angleTo(SUND) < SUNHALF * 1.15; return !behind && b.grp.position.length() / dist / PXK > 22; }; }
+        if (!b.L.hooked) { b.L.hooked = 1; b.L.minSizeFn = () => { if (sunShown()) return false; const v = _w.copy(b.grp.position).sub(CP), dist = v.length(); v.normalize(); const behind = dist > SD0 && v.angleTo(SUND) < SUNHALF * 1.15; return !behind && b.grp.position.length() / dist / PXK > 22; }; }
       }
-      if (!F._sunLbl) { F._sunLbl = 1; F.labels.forEach(L => { if (L.el.textContent === 'Sun') L.minSizeFn = () => !(FR.sun && FR.sun.alpha > .3); else if (/^Heliopause/.test(L.el.textContent)) L.minSizeFn = () => !(FR.sun && FR.sun.alpha > .3) && cam.D < 6e13; }); }
+      if (!F._sunLbl) { F._sunLbl = 1; F.labels.forEach(L => { if (L.el.textContent === 'Sun') L.minSizeFn = () => !(sunShown()); else if (/^Heliopause/.test(L.el.textContent)) L.minSizeFn = () => !(sunShown()) && cam.D < 6e13; }); }
       oortRings.forEach(l => { l.visible = cam.D > 2e13; }); helH.visible = cd0 > 125; // the heliopause can be picked from outside it, never from the inner solar system
       const sc = avg => Math.min(40, Math.max(1, 1.6 * (cam.D / F.unit) / (300 * avg))); belt.material.uniforms.uScale.value = PIXR_BASE * sc(.007); kb.material.uniforms.uScale.value = PIXR_BASE * sc(.075);
-      vgs.forEach(o => { voyagerAt(o.V, simTime, o.g.position); const dd = Math.max(o.g.position.distanceTo(CP), 1e-9); o.hs.scale.setScalar(dd * PXK * 12); if (performance.now() - o.t > 400) { o.t = performance.now(); o.L.el.textContent = `${o.V.name} (${Math.round(o.g.position.length())} AU from the Sun)`; } if (!o.L.hooked) { o.L.hooked = 1; o.L.minSizeFn = () => !(FR.sun && FR.sun.alpha > .3) && o.g.position.length() / Math.max(o.g.position.distanceTo(CP), 1e-9) / PXK > 14; } });
+      vgs.forEach(o => { voyagerAt(o.V, simTime, o.g.position); const dd = Math.max(o.g.position.distanceTo(CP), 1e-9); o.hs.scale.setScalar(dd * PXK * 12); if (performance.now() - o.t > 400) { o.t = performance.now(); o.L.el.textContent = `${o.V.name} (${Math.round(o.g.position.length())} AU from the Sun)`; } if (!o.L.hooked) { o.L.hooked = 1; o.L.minSizeFn = () => !(sunShown()) && o.g.position.length() / Math.max(o.g.position.distanceTo(CP), 1e-9) / PXK > 14; } });
     };
   }
 };
+/* is the Sun's own frame on screen? (its alpha is worked out only while it is on the camera's chain: after a visit to the Sun it kept its last value, and every
+   planet's and the Sun's name stayed hidden in the solar system for good) */
+function sunShown() { return !!(FR.sun && active.includes(FR.sun) && FR.sun.alpha > .3); }
 /* ---------- generic planet (unit 1000 km) ---------- */
 const MOON_TEXT = {
   Phobos: 'The larger and closer of Mars\'s two small moons, a lumpy body about 27 by 22 by 18 km. It circles Mars in under 8 hours and is slowly spiralling inward.',
@@ -664,7 +667,7 @@ FT.earth = {
     const atm = hitSphere(R * 1.03, 'atmosphere', .5); atm.userData.noZoom = true; F.add(atm); F.pickables.push(atm); const eLbl = F.label(atm, 'Earth', { offset: new V3(0, R * 1.2, 0) }); eLbl.minSizeFn = () => cam.D > 3e8;
     const pk = markerSprite(0xffd166, 11); pk.position.copy(latLon3(PARK.lat, PARK.lon, R * 1.001)); spin.add(pk); pk.userData = Object.assign(pk.userData, { id: 'parkMarker', priority: 3, zoomTo: () => { flyTo(FR.park, new V3(0, 0, 0), 450); }, zoomPoint: () => { if (FR.region.place) FR.region.place(); return FR.region.pos.clone(); } }); /* the dot floats 6 km above the ground: a scroll aimed at it ends on the park itself */ F.pickables.push(pk); const pkL = F.label(pk, 'Greenwich Park', { cls: 'you', always: true }); pkL.minSizeFn = () => cam.D < 1.5e8;
     const moon = new THREE.Mesh(new THREE.SphereGeometry(1.7374, 96, 64), new THREE.MeshStandardMaterial({ map: tex('moon.jpg'), color: 0xd8d8d8, roughness: 1 })); F.add(moon);
-    moon.userData = { id: 'moon', priority: 2, madeOf: 'regolith', sim: ['moon'] }; F.pickables.push(moon); F.label(moon, 'Moon', { offset: new V3(0, 2.6, 0) }); const mkM = markerSprite(0xffffff, 6); moon.add(mkM); const mh = hitSphere(1, 'moon', 3); mh.userData.zoomTo = () => { flyTo(F, moon.position.clone(), 6e6); }; moon.add(mh); // a pick target a few pixels wide, so the Moon dot can be hit
+    moon.userData = { id: 'moon', priority: 2, madeOf: 'regolith', sim: ['moon'] }; F.pickables.push(moon); F.label(moon, 'Moon', { offset: new V3(0, 1.84, 0) });   /* the dot just above the Moon's north limb (radius 1.7374): at 2.6 it floated about 140 px above the sphere once the Moon was framed */ const mkM = markerSprite(0xffffff, 6); moon.add(mkM); const mh = hitSphere(1, 'moon', 3); mh.userData.zoomTo = () => { flyTo(F, moon.position.clone(), 6e6); }; moon.add(mh); // a pick target a few pixels wide, so the Moon dot can be hit
     moon.userData.zoomTo = mh.userData.zoomTo;
     /* A click on the Moon's dot frames the Moon itself. It used to be slid to the middle of the view at the distance you were at (a dot has no size to frame),
        so the next click or double click on the spot where it had been fell on a faint star behind, and a double click there flew to that star. */
