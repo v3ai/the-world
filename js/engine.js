@@ -973,6 +973,16 @@ function faceSurface(f) {
   _fsV.normalize().multiplyScalar(.89).addScaledVector(f.up, .45); convertD(_fsV, f, cam.A);
   setCamDir(_fsV);
 }
+/* A frame that is ground seen from one side (the park: `up` with a `maxPolar` limit that keeps orbiting above the lawn) must not be entered from below either.
+   A teleport keeps the view direction's numbers from the frame it left, which in the park's coordinates can point up from under the lawn: the lawn and the
+   pond are drawn one-sided, so the park then shows no ground and everything floats. Mirror such a view to the same angle from above. */
+function keepAbove(f) {
+  if (!f || !f.up || f.maxPolar === undefined || f.faceUp) return;
+  _fsV.copy(cam.dir); convertD(_fsV, cam.A, f); const k = _fsV.dot(f.up), lim = Math.cos(f.maxPolar);
+  if (k >= lim) return;
+  _fsV.addScaledVector(f.up, Math.max(-2 * k, lim - k + .02)); convertD(_fsV, f, cam.A); _fsU.copy(f.up); convertD(_fsU, f, cam.A);
+  setCamDir(_fsV, _fsU);
+}
 function safeThen(t) { if (t) try { t(); } catch (e) { console.error('flight callback failed', e); } } // a throwing callback must not abort the frame
 function stepFly(dt) {
   const F = fly; F.t += dt;
@@ -993,7 +1003,7 @@ function stepFly(dt) {
     _fsV.copy(F.dir); convertD(_fsV, F.frame, cam.A); turned = cam.dir.dot(_fsV) > .9995;
     if (!turned) { cam.dir.lerp(_fsV, kt).normalize(); _fsU.set(0, 1, 0); convertD(_fsU, F.frame, cam.A); _fsU.addScaledVector(cam.dir, -_fsU.dot(cam.dir)); if (_fsU.lengthSq() > .02) cam.up.lerp(_fsU.normalize(), kt).normalize(); }
   }
-  if (turned && distM < cam.D * .02 && Math.abs(lnW - Math.log(cam.D)) < .03) { const t = F.then; fly = null; faceSurface(F.frame); safeThen(t); }
+  if (turned && distM < cam.D * .02 && Math.abs(lnW - Math.log(cam.D)) < .03) { const t = F.then; fly = null; faceSurface(F.frame); keepAbove(cam.A); safeThen(t); }
   if (fly === F && F.t > 60) { const t = F.then, d = F.dir; jumpTo(F.frame, F.p, F.Dg); if (d) setCamDir(convertD(d.clone(), F.frame, cam.A), convertD(new V3(0, 1, 0), F.frame, cam.A)); safeThen(t); } // never strand a tour: finish the trip
 }
 // pointer handlers
