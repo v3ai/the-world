@@ -1,0 +1,323 @@
+[
+ {
+  "id": "cornea_layers_scene",
+  "title": "The cornea in section",
+  "kind": "structure",
+  "template": "tissue",
+  "scale_m": 0.0005,
+  "area": "bio_animals",
+  "parents": [],
+  "parts": [
+   "cornea_epithelium",
+   "cornea_bowman",
+   "cornea_stroma",
+   "cornea_keratocyte",
+   "cornea_descemet",
+   "cornea_endothelium"
+  ],
+  "processes": [],
+  "related": [],
+  "summary": "The cornea is the clear window at the front of the eye, a little over half a millimetre thick, built from five layers.",
+  "layers": {
+   "basics": "Light enters the eye through the cornea, and it does most of the bending of that light. From the outside in, the layers are a skin of cells (epithelium), a tough sheet (Bowman layer), a thick stack of collagen sheets (the stroma), a thin membrane (Descemet membrane) and a single layer of cells (endothelium).",
+   "deeper": "The cornea has no blood vessels, which is part of why it is clear. Most of its thickness is the stroma, whose collagen sheets are laid down in a regular way. The thin cell layers on either side protect it and keep it from swelling with water.",
+   "expert": "This scene is the human cornea, drawn as a flat slice 300 micrometres wide. The sizes of the layers are measured; the cell sizes inside the epithelium and the number of keratocytes are illustrative. The dog has no distinct Bowman layer, and the robin was not checked, so this scene is not for them."
+  },
+  "facts": [
+   [
+    "Total thickness, centre",
+    "\u2248 529 \u00b5m (range 473\u2013585) by optical coherence tomography; the layers below come from two sources and sum to about 541 \u00b5m"
+   ],
+   [
+    "Epithelium",
+    "\u2248 52.5 \u00b5m"
+   ],
+   [
+    "Bowman layer",
+    "\u2248 17.7 \u00b5m"
+   ],
+   [
+    "Stroma",
+    "\u2248 459 \u00b5m"
+   ],
+   [
+    "Descemet membrane",
+    "\u2248 7 \u00b5m"
+   ],
+   [
+    "Endothelium",
+    "\u2248 5 \u00b5m"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How the layers compare in the dog and in birds was not checked here, so the scene claims nothing about them.",
+   "Sources give different thicknesses for Bowman layer and Descemet membrane, because the layers thicken with age and the methods differ."
+  ],
+  "refs": [
+   [
+    "BIO",
+    "36.5",
+    "36-5-vision"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Anatomy of cornea and ocular surface (Indian Journal of Ophthalmology, 2018)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5819093/"
+   }
+  ]
+ },
+ {
+  "id": "cornea_epithelium",
+  "title": "Corneal epithelium",
+  "kind": "structure",
+  "template": "tissue",
+  "scale_m": 0.0005,
+  "area": "bio_animals",
+  "parents": [
+   "cornea_layers_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "The outer skin of the cornea: about five to seven layers of cells, roughly 50 micrometres deep.",
+  "layers": {
+   "basics": "The outer layer is a skin of cells a few cells thick. It keeps dust and germs out, and its surface cells are flat. Tears spread over it make a smooth surface for light.",
+   "deeper": "The cells form a stack: tall basal cells on the bottom, which divide to renew the layer, rounder wing cells above them, and flat surface cells on top (living, not keratinised as skin is). Cells move upward as they age and are shed from the surface.",
+   "expert": "In the scene the stack has five layers (the lower end of the real five to seven). The basal cell height and the surface cell width are from a source; the basal and wing cell widths are chosen for the picture."
+  },
+  "facts": [
+   [
+    "Thickness",
+    "\u2248 52.5 \u00b5m"
+   ],
+   [
+    "Cell layers",
+    "5\u20137 (5 drawn)"
+   ],
+   [
+    "Basal cell height",
+    "\u2248 20 \u00b5m"
+   ],
+   [
+    "Surface cell width",
+    "40\u201360 \u00b5m"
+   ],
+   [
+    "Surface cell thickness",
+    "\u2248 2\u20136 \u00b5m (5 drawn)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Anatomy of cornea and ocular surface (Indian Journal of Ophthalmology, 2018)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5819093/"
+   }
+  ]
+ },
+ {
+  "id": "cornea_bowman",
+  "title": "Bowman layer",
+  "kind": "structure",
+  "template": "tissue",
+  "scale_m": 0.0005,
+  "area": "bio_animals",
+  "parents": [
+   "cornea_layers_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "A tough, cell-free sheet just under the epithelium, about 12 to 18 micrometres thick.",
+  "layers": {
+   "basics": "Under the outer skin lies a thin sheet with no cells in it. It is made of tightly packed collagen fibres and gives the front of the cornea a firm base.",
+   "deeper": "Unlike the stroma below it, the sheet has no neat stack of layers. Measurements place it between about 12 and 18 micrometres depending on the method, and thicker toward the edge of the cornea than at the centre.",
+   "expert": "The scene uses 17.7 micrometres, the central value from a scan study. Another source gives 12 micrometres."
+  },
+  "facts": [
+   [
+    "Thickness, centre",
+    "\u2248 17.7 \u00b5m (another source: 12 \u00b5m)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Anatomy of cornea and ocular surface (Indian Journal of Ophthalmology, 2018)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5819093/"
+   }
+  ]
+ },
+ {
+  "id": "cornea_stroma",
+  "title": "Corneal stroma and its lamellae",
+  "kind": "structure",
+  "template": "tissue",
+  "scale_m": 0.0005,
+  "area": "bio_animals",
+  "parents": [
+   "cornea_layers_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "The bulk of the cornea: about 200 flat sheets of collagen, stacked like plywood, about 459 micrometres in all.",
+  "layers": {
+   "basics": "About 85 to 90 percent of the cornea (sources differ) is this layer. It is made of about 200 thin sheets (lamellae) of collagen fibres. Each sheet is about 2 micrometres thick and up to 0.2 millimetres broad.",
+   "deeper": "Within a sheet the fibres all point the same way and all have nearly the same width, about 31 nanometres, with a fixed spacing. That regular spacing is what lets light pass through instead of scattering. Neighbouring sheets run in different directions.",
+   "expert": "The scene draws 200 sheets in two alternating directions as a stand-in for the real mix of directions. The fibres themselves are far too thin to appear at this scale, and the drawn sheets are cut off at 300 micrometres."
+  },
+  "facts": [
+   [
+    "Thickness, centre",
+    "\u2248 459 \u00b5m"
+   ],
+   [
+    "Lamellae through the thickness",
+    "\u2248 200 (another count: 200\u2013250)"
+   ],
+   [
+    "Lamella size",
+    "up to 0.2 mm broad, 2 \u00b5m thick"
+   ],
+   [
+    "Collagen fibre width",
+    "\u2248 31 nm"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Anatomy of cornea and ocular surface (Indian Journal of Ophthalmology, 2018)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5819093/"
+   }
+  ]
+ },
+ {
+  "id": "cornea_keratocyte",
+  "title": "Keratocyte",
+  "kind": "structure",
+  "template": "tissue",
+  "scale_m": 0.0005,
+  "area": "bio_animals",
+  "parents": [
+   "cornea_layers_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "A flat cell lying between the collagen sheets of the stroma.",
+  "layers": {
+   "basics": "The cells in the stroma are keratocytes. They are flattened to fit between the sheets and look after the collagen around them.",
+   "deeper": "Together such cells could make up as much as 15 percent of the stromal volume. They repair the stroma after injury.",
+   "expert": "The scene draws 80 of them at 24 micrometres wide and 3 micrometres thick, both chosen for the picture; at the real share by volume there would be many more."
+  },
+  "facts": [
+   [
+    "Share of stromal volume",
+    "up to \u2248 15 %"
+   ],
+   [
+    "Size in scene",
+    "illustrative"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "The true size and number of keratocytes in a 300 by 100 micrometre slice was not taken from a source."
+  ],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Anatomy of cornea and ocular surface (Indian Journal of Ophthalmology, 2018)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5819093/"
+   }
+  ]
+ },
+ {
+  "id": "cornea_descemet",
+  "title": "Descemet membrane",
+  "kind": "structure",
+  "template": "tissue",
+  "scale_m": 0.0005,
+  "area": "bio_animals",
+  "parents": [
+   "cornea_layers_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "A thin membrane under the stroma, about 7 micrometres thick, that the endothelial cells rest on.",
+  "layers": {
+   "basics": "The inner cells of the cornea sit on this thin, strong membrane. It is the layer they build.",
+   "deeper": "It gets thicker through life. The value drawn is one review\u2019s figure for the adult cornea.",
+   "expert": "Sources give different values; together with the Bowman layer it is under 5 percent of the cornea\u2019s thickness. Its material is drawn here as protein; it is made mainly of type IV collagen and laminin."
+  },
+  "facts": [
+   [
+    "Thickness",
+    "\u2248 7 \u00b5m"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Anatomy of cornea and ocular surface (Indian Journal of Ophthalmology, 2018)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5819093/"
+   }
+  ]
+ },
+ {
+  "id": "cornea_endothelium",
+  "title": "Corneal endothelium",
+  "kind": "structure",
+  "template": "tissue",
+  "scale_m": 0.0005,
+  "area": "bio_animals",
+  "parents": [
+   "cornea_layers_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "A single layer of cells, about 5 micrometres thick, on the inner face of the cornea.",
+  "layers": {
+   "basics": "This one-cell layer pumps water out of the stroma, which keeps the cornea clear. Cells in it do not renew well, so their number falls through life.",
+   "deeper": "At birth there are about 3,500 cells in each square millimetre, and the density falls by about 0.6 percent a year in adults.",
+   "expert": "The scene draws cells 17 micrometres wide, which is the width of a cell at the birth density if each takes an equal share of the area (a calculation, not a measurement). Adult cells are larger and fewer."
+  },
+  "facts": [
+   [
+    "Thickness",
+    "\u2248 5 \u00b5m"
+   ],
+   [
+    "Cell density at birth",
+    "\u2248 3,500 per mm\u00b2"
+   ],
+   [
+    "Yearly loss, adult",
+    "\u2248 0.6 %"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Anatomy of cornea and ocular surface (Indian Journal of Ophthalmology, 2018)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5819093/"
+   }
+  ]
+ }
+]

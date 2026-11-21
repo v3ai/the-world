@@ -1,0 +1,451 @@
+[
+ {
+  "id": "lung_alveoli_scene",
+  "title": "Lung: alveoli and capillaries",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.0002,
+  "area": "body_systems",
+  "parents": [
+   "alveoli"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "alveoli",
+   "capillary"
+  ],
+  "summary": "Air sacs about 200 micrometres wide, each wall holding a blood capillary, so that air and blood are only about 0.5 to 0.6 micrometres apart.",
+  "layers": {
+   "basics": "The lung ends in hundreds of millions of tiny air sacs called alveoli. Their walls are shared between neighbours and are full of capillaries. Red blood cells squeeze through one at a time, less than a micrometre from the air, about a hundred times thinner than a hair. Click a part.",
+   "deeper": "The sizes of the alveolus, the red cell and the bronchiole are drawn at real size, and the barrier is drawn at its real thickness, which is too thin to see until you zoom in a long way. The picture is of a mammal lung, such as a person or a dog. Birds have no alveoli: their lungs exchange gas in narrow air capillaries instead. The shapes, the flat capillaries and the cell positions are schematic.",
+   "expert": "Human values are used for both species. The human barrier figure is a round value within the 0.5 to 0.6 micrometre range from the sources opened. Dog lungs have the same layers (alveolar lining cells, a thin layer of tissue and capillary lining), but the dog-specific dimensions were not read for this scene, so the dog may differ in alveolar size and barrier thickness."
+  },
+  "facts": [
+   [
+    "Alveolus diameter",
+    "≈ 200 µm"
+   ],
+   [
+    "Blood-air barrier",
+    "≈ 0.5-0.6 µm (harmonic mean; 0.57 µm in rat); drawn at 0.6"
+   ],
+   [
+    "Scene width",
+    "≈ 1.25 mm"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "The dog barrier thickness is not confirmed here; a secondary summary of Siegwart et al. 1971 suggests a harmonic mean near 0.5 µm."
+  ],
+  "refs": [
+   [
+    "ANP",
+    "22.1",
+    "22-1-organs-and-structures-of-the-respiratory-system"
+   ],
+   [
+    "ANP",
+    "22.4",
+    "22-4-gas-exchange"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Respiratory system: organs and structures (OpenStax Anatomy and Physiology 2e)",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-1-organs-and-structures-of-the-respiratory-system"
+   }
+  ]
+ },
+ {
+  "id": "lung_alveolus",
+  "title": "Alveolus (air sac)",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.0002,
+  "area": "body_systems",
+  "parents": [
+   "lung_alveoli_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "alveoli"
+  ],
+  "summary": "One air sac of the lung, about 200 micrometres across, where fresh air meets the blood.",
+  "layers": {
+   "basics": "Air flows in and out of each alveolus as you breathe. Its wall is thin and stretchy, and neighbouring sacs share walls.",
+   "deeper": "An alveolus is about 200 micrometres across, with elastic walls that stretch on breathing in. A human lung holds hundreds of millions of them, about 480 million in a typical pair of lungs, which gives a large surface for gas exchange. Small openings join neighbouring sacs.",
+   "expert": "Sizes quoted in the literature range from about 200 to 500 micrometres depending on the method and on how far the lung is inflated."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 200 µm (up to ≈ 500 µm in other sources)"
+   ],
+   [
+    "Number in a human lung pair",
+    "≈ 480 million"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Sizes vary with inflation of the lung and with species."
+  ],
+  "refs": [
+   [
+    "ANP",
+    "22.1",
+    "22-1-organs-and-structures-of-the-respiratory-system"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "OpenStax Anatomy and Physiology 2e, 22.1",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-1-organs-and-structures-of-the-respiratory-system"
+   }
+  ]
+ },
+ {
+  "id": "lung_septum",
+  "title": "Alveolar wall (septum)",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "body_systems",
+  "parents": [
+   "lung_alveoli_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "alveoli",
+   "capillary"
+  ],
+  "summary": "The shared wall between two air sacs: a thin sheet of tissue with a capillary net inside it.",
+  "layers": {
+   "basics": "Each wall has air on both sides. Between the two air-facing layers lie the capillaries, elastic fibres and a little connective tissue.",
+   "deeper": "A fine mesh of capillaries wraps each alveolus. Because the wall is shared, the blood in one capillary can exchange gas with the air on both sides. In the scene the wall is drawn 10 micrometres thick as an illustrative value.",
+   "expert": "The wall is protected from strain on breathing by its elastic fibre network and by the surfactant film."
+  },
+  "facts": [
+   [
+    "Wall thickness drawn",
+    "10 µm (illustrative)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [
+   "The drawn thickness is not a measurement."
+  ],
+  "refs": [
+   [
+    "ANP",
+    "22.1",
+    "22-1-organs-and-structures-of-the-respiratory-system"
+   ]
+  ],
+  "ext": []
+ },
+ {
+  "id": "lung_alveolar_capillary",
+  "title": "Alveolar capillary",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 8e-06,
+  "area": "body_systems",
+  "parents": [
+   "lung_alveoli_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "capillary"
+  ],
+  "summary": "A blood vessel only about as wide as one red cell, running in the wall of the air sacs.",
+  "layers": {
+   "basics": "The capillaries here are so narrow that red cells pass through in single file, close against the air-facing wall.",
+   "deeper": "Capillaries are about 5 to 10 micrometres wide (a general figure, OpenStax 20.1) and are lined by one layer of flat cells. In the lung they form a dense net across each wall instead of the branching tree seen in other organs. The scene draws straight tubes, 8 micrometres wide as an illustrative value.",
+   "expert": "The scene draws straight tubes; the real net is a mesh of short segments."
+  },
+  "facts": [
+   [
+    "Width",
+    "≈ 5-10 µm; 8 µm drawn"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "20.1",
+    "20-1-structure-and-function-of-blood-vessels"
+   ]
+  ],
+  "ext": []
+ },
+ {
+  "id": "lung_red_cell",
+  "title": "Red blood cell in a lung capillary",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 7.5e-06,
+  "area": "body_systems",
+  "parents": [
+   "lung_alveoli_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "red_blood_cell"
+  ],
+  "summary": "A disc-shaped red cell about 7.5 micrometres across, picking up oxygen as it passes the air sac.",
+  "layers": {
+   "basics": "Red cells are filled with haemoglobin, a red protein that binds oxygen. In the lung they take oxygen up, and later release it in the tissues.",
+   "deeper": "The mean diameter is about 7 to 8 micrometres. The thickness drawn (2 micrometres) is an illustrative value, and the cell is drawn as a plain disc rather than the dimpled shape of a real cell.",
+   "expert": "A real red cell is dimpled on both faces; the scene draws a plain disc."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "≈ 7-8 µm"
+   ],
+   [
+    "Thickness drawn",
+    "2 µm (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "18.3",
+    "18-3-erythrocytes"
+   ]
+  ],
+  "ext": []
+ },
+ {
+  "id": "lung_blood_air_barrier",
+  "title": "Blood-air barrier",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 6e-07,
+  "area": "body_systems",
+  "parents": [
+   "lung_alveoli_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "alveoli"
+  ],
+  "summary": "The layers between air and blood: together about 0.5 to 0.6 micrometres thick on a diffusion-weighted average.",
+  "layers": {
+   "basics": "Oxygen has only to cross a flat lining cell, a thin basement membrane and the capillary lining. That is why the lung exchanges gas so quickly.",
+   "deeper": "The figure of 0.5 to 0.6 micrometres is a harmonic mean, which is the thickness that matters for diffusion because thin spots carry most of the flow. The ordinary average is larger, about 2.2 micrometres (arithmetic mean, adult human lungs, Schierz et al. 2024), and the thinnest parts are only about 0.2 to 0.3 micrometres. OpenStax rounds the thickness to 0.5 micrometres. The scene draws the layer at 0.6 micrometres, a round value, not a measurement: 0.575 for the capillary lining and basement membrane, and 0.025 for the type I cell.",
+   "expert": "Measured values differ with species, with the method of preserving the lung and with how far it was inflated. A value measured in rat lungs, 0.57 micrometres, is close to the figure used for people; the dog value was not confirmed for this scene."
+  },
+  "facts": [
+   [
+    "Harmonic mean thickness",
+    "≈ 0.5-0.6 µm (≈ 0.57 µm in rat); drawn at 0.6"
+   ],
+   [
+    "Arithmetic mean",
+    "≈ 2.2 µm (adult human, Schierz et al. 2024)"
+   ],
+   [
+    "Thinnest parts",
+    "≈ 0.2-0.3 µm"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "The harmonic mean for the human and dog lung is not confirmed from an opened source."
+  ],
+  "refs": [
+   [
+    "ANP",
+    "22.4",
+    "22-4-gas-exchange"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Weibel and Knight 1964, thickness of the air-blood barrier (rat)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2106384"
+   }
+  ]
+ },
+ {
+  "id": "lung_type1_cell",
+  "title": "Type I alveolar cell",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 5e-05,
+  "area": "body_systems",
+  "parents": [
+   "lung_alveoli_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "alveoli"
+  ],
+  "summary": "A huge, ultra-thin cell that spreads over most of the air-facing surface of the wall.",
+  "layers": {
+   "basics": "These flat cells line almost the whole air sac and let gases pass through them.",
+   "deeper": "Type I cells cover about 95 to 97 per cent of the surface and are only about 25 nanometres thick where they cover a capillary. Their nuclei sit in thicker parts away from the capillaries. The widths drawn for each cell are illustrative.",
+   "expert": "The cell bodies and nuclei lie in the thicker parts of the wall, away from the capillaries."
+  },
+  "facts": [
+   [
+    "Thickness",
+    "≈ 25 nm"
+   ],
+   [
+    "Share of surface",
+    "≈ 95-97 %"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "22.1",
+    "22-1-organs-and-structures-of-the-respiratory-system"
+   ]
+  ],
+  "ext": []
+ },
+ {
+  "id": "lung_type2_cell",
+  "title": "Type II alveolar cell",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "body_systems",
+  "parents": [
+   "lung_alveoli_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "alveoli"
+  ],
+  "summary": "A small cube-shaped cell that makes surfactant, the film that keeps air sacs open.",
+  "layers": {
+   "basics": "Surfactant lowers the surface tension of the wet lining so that the sacs do not collapse. Type II cells sit in the corners where walls meet.",
+   "deeper": "They are cuboidal and much smaller than type I cells, and cover only about 5 per cent of the surface (Europe PMC PMC7151878). The 10 micrometre size is an illustrative value.",
+   "expert": "The three cells drawn are an illustrative number, not counted from a sample."
+  },
+  "facts": [
+   [
+    "Share of surface",
+    "≈ 5 %"
+   ],
+   [
+    "Size drawn",
+    "10 µm (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "22.1",
+    "22-1-organs-and-structures-of-the-respiratory-system"
+   ]
+  ],
+  "ext": []
+ },
+ {
+  "id": "lung_alveolar_macrophage",
+  "title": "Alveolar macrophage",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 2e-05,
+  "area": "body_systems",
+  "parents": [
+   "lung_alveoli_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "macrophage"
+  ],
+  "summary": "A roaming clean-up cell that eats dust and microbes in the air sac.",
+  "layers": {
+   "basics": "It crawls over the inside of the wall and swallows what the breath brings in.",
+   "deeper": "It is one of the few cells that live on the air side of the lining. It is drawn at 20 micrometres, an illustrative size; that figure and its placement here are not measured values.",
+   "expert": "Its size and the place it is drawn are not measured values."
+  },
+  "facts": [
+   [
+    "Size drawn",
+    "≈ 20 µm (illustrative)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [
+   "The size is not measured here."
+  ],
+  "refs": [
+   [
+    "ANP",
+    "21.2",
+    "21-2-barrier-defenses-and-the-innate-immune-response"
+   ],
+   [
+    "ANP",
+    "22.1",
+    "22-1-organs-and-structures-of-the-respiratory-system"
+   ]
+  ],
+  "ext": []
+ },
+ {
+  "id": "lung_bronchiole",
+  "title": "Small bronchiole",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.0005,
+  "area": "body_systems",
+  "parents": [
+   "lung_alveoli_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "bronchioles"
+  ],
+  "summary": "A small airway about half a millimetre wide, with no cartilage, that leads air to the sacs.",
+  "layers": {
+   "basics": "Bronchioles branch from the windpipe again and again. This one is cut across, and its wall can tighten to narrow the airway.",
+   "deeper": "A terminal bronchiole is 0.5 mm or less across, has no cartilage and is lined by ciliated cuboidal cells and club cells. It is drawn beside the sacs for scale only: in life it opens into them through respiratory bronchioles and alveolar ducts. The wall thickness and cell size in the scene are illustrative.",
+   "expert": "Beyond it, respiratory bronchioles are lined partly by air sacs and so take part in gas exchange."
+  },
+  "facts": [
+   [
+    "Terminal bronchiole",
+    "≤ 0.5 mm across"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "22.1",
+    "22-1-organs-and-structures-of-the-respiratory-system"
+   ]
+  ],
+  "ext": []
+ }
+]

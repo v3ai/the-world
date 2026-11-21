@@ -1,0 +1,1773 @@
+{
+ "id": "lung_alveoli",
+ "title": "Lung: alveoli and capillaries",
+ "node": "lung_alveoli_scene",
+ "tag": "Inside the lung",
+ "cell": "animal",
+ "bg": "#f3efe6",
+ "center": [
+  -290,
+  0,
+  0
+ ],
+ "D_um": 1250,
+ "blurb": "A slice through three air sacs (alveoli) of a lung and a small airway. The thin wall between air and blood holds a capillary with red cells in single file. Zoom into the wall to reach the barrier, drawn 0.6 micrometres thick. Click a part.",
+ "note": "A schematic, not a micrograph: three alveoli packed together, cut across, with a small bronchiole at the left edge, drawn there for scale only; in life it reaches the sacs through respiratory bronchioles and alveolar ducts, not directly. REAL sizes: the alveolus (about 200 micrometres across), the blood-air barrier (0.6 micrometres, drawn as a sheet of that thickness on each side of each capillary: 0.575 for the capillary lining and basement membrane plus 0.025 for the flat type I cell), the red cell diameter (7.5 micrometres) and the bronchiole (about 0.5 mm across, the upper limit given for a terminal bronchiole). The alveolar and barrier figures are human; no dog-specific size could be confirmed (a secondary summary of Siegwart et al. 1971 suggests a dog harmonic mean near 0.5 micrometres, not opened), so the dog lung is drawn with the same numbers and may differ. The 0.6 micrometre figure is drawn as a round value within the 0.5 to 0.6 range given by the sources opened (0.5 in OpenStax, 0.57 harmonic mean in rat, less than 1 in Knudsen 2023); a human harmonic mean of 0.6 was not confirmed from an opened source. A harmonic mean is the thickness that matters for diffusion; the average thickness is larger and the thinnest parts about 0.2-0.3 micrometres. ILLUSTRATIVE: the wall thickness (10), the capillary width (8), the red cell thickness (2), the type II cell size (10), the macrophage size (20), the bronchiole wall and lining thickness, the number and placement of cells, and the straight, flat capillaries (real ones form a net across the wall). NOT DRAWN: the surfactant film, the pores between neighbouring sacs, elastic fibres and the cells of the connective tissue in the wall. The sacs are drawn round and shallow (scene depth about 60 micrometres); real ones are many-sided. Birds have no alveoli: their lungs exchange gas in air capillaries a few micrometres wide, so this scene is for the lungs of mammals such as people and dogs, not for birds.",
+ "labels": [
+  {
+   "text": "Alveolus: about 200 micrometres across",
+   "at": [
+    105.0,
+    120,
+    40
+   ],
+   "pop": "air"
+  },
+  {
+   "text": "Alveolar wall with capillary",
+   "at": [
+    8.0,
+    116.622,
+    40
+   ],
+   "pop": "septum"
+  },
+  {
+   "text": "Red blood cell (7.5 micrometres)",
+   "at": [
+    12.0,
+    62.124,
+    40
+   ],
+   "pop": "rbc"
+  },
+  {
+   "text": "Type II cell",
+   "at": [
+    25.0,
+    -10.622,
+    40
+   ],
+   "pop": "type2"
+  },
+  {
+   "text": "Alveolar macrophage",
+   "at": [
+    38.0,
+    65.378,
+    40
+   ],
+   "pop": "macro"
+  },
+  {
+   "text": "Blood-air barrier: about 0.5 to 0.6 micrometres (drawn at 0.6; too thin to see at this zoom)",
+   "at": [
+    37.5,
+    -40.933,
+    40
+   ],
+   "pop": "barrier"
+  },
+  {
+   "text": "Small bronchiole (airway, 0.5 mm)",
+   "at": [
+    -620,
+    314.0,
+    30
+   ],
+   "pop": "bwall"
+  }
+ ],
+ "populations": [
+  {
+   "id": "air",
+   "name": "Alveolus (air space)",
+   "node": "lung_alveolus",
+   "shape": "tube_z",
+   "size": [
+    200,
+    200,
+    64
+   ],
+   "color": "#cfe4f0",
+   "opacity": 0.5,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -105.0,
+       50,
+       0
+      ]
+     },
+     {
+      "at": [
+       105.0,
+       50,
+       0
+      ]
+     },
+     {
+      "at": [
+       0,
+       -131.8653347947321,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "air"
+  },
+  {
+   "id": "septum",
+   "name": "Alveolar wall (septum)",
+   "node": "lung_septum",
+   "shape": "rbox",
+   "size": [
+    10,
+    121.24355652982142,
+    60
+   ],
+   "color": "#e9b9b0",
+   "opacity": 0.3,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0.0,
+       50.0,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       -52.5,
+       -40.933,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       120
+      ]
+     },
+     {
+      "at": [
+       52.5,
+       -40.933,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -120
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "lung_tissue"
+  },
+  {
+   "id": "capillary",
+   "name": "Capillary (blood-filled)",
+   "node": "lung_alveolar_capillary",
+   "shape": "cylinder",
+   "size": [
+    8,
+    109.24355652982142,
+    8
+   ],
+   "color": "#b5463f",
+   "opacity": 0.85,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0.0,
+       50.0,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       -52.5,
+       -40.933,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       120
+      ]
+     },
+     {
+      "at": [
+       52.5,
+       -40.933,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -120
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "blood"
+  },
+  {
+   "id": "rbc",
+   "name": "Red blood cell",
+   "node": "lung_red_cell",
+   "shape": "ellipsoid",
+   "size": [
+    7.5,
+    2,
+    7.5
+   ],
+   "color": "#d83a34",
+   "opacity": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0.4,
+       11.202,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       10
+      ]
+     },
+     {
+      "at": [
+       -0.5,
+       33.026,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -15
+      ]
+     },
+     {
+      "at": [
+       0.3,
+       62.124,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       20
+      ]
+     },
+     {
+      "at": [
+       -0.3,
+       86.373,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -5
+      ]
+     },
+     {
+      "at": [
+       -19.1,
+       -21.187,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       130
+      ]
+     },
+     {
+      "at": [
+       -37.55,
+       -32.879,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       105
+      ]
+     },
+     {
+      "at": [
+       -63.15,
+       -46.735,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       140
+      ]
+     },
+     {
+      "at": [
+       -83.85,
+       -59.379,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       115
+      ]
+     },
+     {
+      "at": [
+       18.7,
+       -21.88,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -110
+      ]
+     },
+     {
+      "at": [
+       38.05,
+       -32.013,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -135
+      ]
+     },
+     {
+      "at": [
+       62.85,
+       -47.255,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -100
+      ]
+     },
+     {
+      "at": [
+       84.15,
+       -58.859,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -125
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "red_blood_cell"
+  },
+  {
+   "id": "barrier",
+   "name": "Blood-air barrier: capillary lining and basement membrane (0.575 um)",
+   "node": "lung_blood_air_barrier",
+   "shape": "rbox",
+   "size": [
+    0.575,
+    113.24355652982142,
+    54
+   ],
+   "color": "#c98a80",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       4.287,
+       50.0,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       -4.287,
+       50.0,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       -54.644,
+       -37.22,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       120
+      ]
+     },
+     {
+      "at": [
+       -50.356,
+       -44.646,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       120
+      ]
+     },
+     {
+      "at": [
+       50.356,
+       -44.646,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -120
+      ]
+     },
+     {
+      "at": [
+       54.644,
+       -37.22,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -120
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "lung_tissue"
+  },
+  {
+   "id": "type1",
+   "name": "Type I cell (flat lining cell, 0.025 um thick)",
+   "node": "lung_type1_cell",
+   "shape": "rbox",
+   "size": [
+    0.025,
+    50,
+    54
+   ],
+   "color": "#f2d9a6",
+   "opacity": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       4.588,
+       21.689,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       4.588,
+       78.311,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       -4.588,
+       21.689,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       -4.588,
+       78.311,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       -30.276,
+       -22.804,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       120
+      ]
+     },
+     {
+      "at": [
+       -79.312,
+       -51.115,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       120
+      ]
+     },
+     {
+      "at": [
+       -25.688,
+       -30.75,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       120
+      ]
+     },
+     {
+      "at": [
+       -74.724,
+       -59.061,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       120
+      ]
+     },
+     {
+      "at": [
+       25.688,
+       -30.75,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -120
+      ]
+     },
+     {
+      "at": [
+       74.724,
+       -59.061,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -120
+      ]
+     },
+     {
+      "at": [
+       30.276,
+       -22.804,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -120
+      ]
+     },
+     {
+      "at": [
+       79.312,
+       -51.115,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -120
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "lining"
+  },
+  {
+   "id": "type2",
+   "name": "Type II cell (surfactant-making cell)",
+   "node": "lung_type2_cell",
+   "shape": "rbox",
+   "size": [
+    10,
+    10,
+    10
+   ],
+   "color": "#a79ad0",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       9.6,
+       3.378,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       -12.521,
+       -28.936,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       120
+      ]
+     },
+     {
+      "at": [
+       9.056,
+       -26.936,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -120
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "animal_cells"
+  },
+  {
+   "id": "macro",
+   "name": "Alveolar macrophage",
+   "node": "lung_alveolar_macrophage",
+   "shape": "ellipsoid",
+   "size": [
+    20,
+    18.0,
+    20
+   ],
+   "color": "#7fae6c",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       13.6,
+       51.378,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "animal_cells"
+  },
+  {
+   "id": "bwall",
+   "name": "Bronchiole wall",
+   "node": "lung_bronchiole",
+   "shape": "tube_z",
+   "size": [
+    560.0,
+    560.0,
+    40
+   ],
+   "color": "#d79c91",
+   "opacity": 0.9,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -500,
+       20,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "organ_wall"
+  },
+  {
+   "id": "blumen",
+   "name": "Bronchiole airway",
+   "node": "lung_bronchiole",
+   "shape": "tube_z",
+   "size": [
+    476.0,
+    476.0,
+    44
+   ],
+   "color": "#cfe4f0",
+   "opacity": 0.6,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -500,
+       20,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "air"
+  },
+  {
+   "id": "bepi",
+   "name": "Bronchiole lining cell",
+   "node": "lung_bronchiole",
+   "shape": "rbox",
+   "size": [
+    18.20552942755285,
+    12,
+    48
+   ],
+   "color": "#e3c07a",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -256.0,
+       20.0,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -90.0
+      ]
+     },
+     {
+      "at": [
+       -256.752,
+       39.144,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -85.5
+      ]
+     },
+     {
+      "at": [
+       -259.004,
+       58.17,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -81.0
+      ]
+     },
+     {
+      "at": [
+       -262.742,
+       76.961,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -76.5
+      ]
+     },
+     {
+      "at": [
+       -267.942,
+       95.4,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -72.0
+      ]
+     },
+     {
+      "at": [
+       -274.573,
+       113.375,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -67.5
+      ]
+     },
+     {
+      "at": [
+       -282.594,
+       130.774,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -63.0
+      ]
+     },
+     {
+      "at": [
+       -291.956,
+       147.49,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -58.5
+      ]
+     },
+     {
+      "at": [
+       -302.6,
+       163.42,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -54.0
+      ]
+     },
+     {
+      "at": [
+       -314.461,
+       178.465,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -49.5
+      ]
+     },
+     {
+      "at": [
+       -327.466,
+       192.534,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -45.0
+      ]
+     },
+     {
+      "at": [
+       -341.535,
+       205.539,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -40.5
+      ]
+     },
+     {
+      "at": [
+       -356.58,
+       217.4,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -36.0
+      ]
+     },
+     {
+      "at": [
+       -372.51,
+       228.044,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -31.5
+      ]
+     },
+     {
+      "at": [
+       -389.226,
+       237.406,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -27.0
+      ]
+     },
+     {
+      "at": [
+       -406.625,
+       245.427,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -22.5
+      ]
+     },
+     {
+      "at": [
+       -424.6,
+       252.058,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -18.0
+      ]
+     },
+     {
+      "at": [
+       -443.039,
+       257.258,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -13.5
+      ]
+     },
+     {
+      "at": [
+       -461.83,
+       260.996,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -9.0
+      ]
+     },
+     {
+      "at": [
+       -480.856,
+       263.248,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       -4.5
+      ]
+     },
+     {
+      "at": [
+       -500.0,
+       264.0,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       0.0
+      ]
+     },
+     {
+      "at": [
+       -519.144,
+       263.248,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       4.5
+      ]
+     },
+     {
+      "at": [
+       -538.17,
+       260.996,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       9.0
+      ]
+     },
+     {
+      "at": [
+       -556.961,
+       257.258,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       13.5
+      ]
+     },
+     {
+      "at": [
+       -575.4,
+       252.058,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       18.0
+      ]
+     },
+     {
+      "at": [
+       -593.375,
+       245.427,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       22.5
+      ]
+     },
+     {
+      "at": [
+       -610.774,
+       237.406,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       27.0
+      ]
+     },
+     {
+      "at": [
+       -627.49,
+       228.044,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       31.5
+      ]
+     },
+     {
+      "at": [
+       -643.42,
+       217.4,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       36.0
+      ]
+     },
+     {
+      "at": [
+       -658.465,
+       205.539,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       40.5
+      ]
+     },
+     {
+      "at": [
+       -672.534,
+       192.534,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       45.0
+      ]
+     },
+     {
+      "at": [
+       -685.539,
+       178.465,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       49.5
+      ]
+     },
+     {
+      "at": [
+       -697.4,
+       163.42,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       54.0
+      ]
+     },
+     {
+      "at": [
+       -708.044,
+       147.49,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       58.5
+      ]
+     },
+     {
+      "at": [
+       -717.406,
+       130.774,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       63.0
+      ]
+     },
+     {
+      "at": [
+       -725.427,
+       113.375,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       67.5
+      ]
+     },
+     {
+      "at": [
+       -732.058,
+       95.4,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       72.0
+      ]
+     },
+     {
+      "at": [
+       -737.258,
+       76.961,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       76.5
+      ]
+     },
+     {
+      "at": [
+       -740.996,
+       58.17,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       81.0
+      ]
+     },
+     {
+      "at": [
+       -743.248,
+       39.144,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       85.5
+      ]
+     },
+     {
+      "at": [
+       -744.0,
+       20.0,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       90.0
+      ]
+     },
+     {
+      "at": [
+       -743.248,
+       0.856,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       94.5
+      ]
+     },
+     {
+      "at": [
+       -740.996,
+       -18.17,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       99.0
+      ]
+     },
+     {
+      "at": [
+       -737.258,
+       -36.961,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       103.5
+      ]
+     },
+     {
+      "at": [
+       -732.058,
+       -55.4,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       108.0
+      ]
+     },
+     {
+      "at": [
+       -725.427,
+       -73.375,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       112.5
+      ]
+     },
+     {
+      "at": [
+       -717.406,
+       -90.774,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       117.0
+      ]
+     },
+     {
+      "at": [
+       -708.044,
+       -107.49,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       121.5
+      ]
+     },
+     {
+      "at": [
+       -697.4,
+       -123.42,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       126.0
+      ]
+     },
+     {
+      "at": [
+       -685.539,
+       -138.465,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       130.5
+      ]
+     },
+     {
+      "at": [
+       -672.534,
+       -152.534,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       135.0
+      ]
+     },
+     {
+      "at": [
+       -658.465,
+       -165.539,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       139.5
+      ]
+     },
+     {
+      "at": [
+       -643.42,
+       -177.4,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       144.0
+      ]
+     },
+     {
+      "at": [
+       -627.49,
+       -188.044,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       148.5
+      ]
+     },
+     {
+      "at": [
+       -610.774,
+       -197.406,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       153.0
+      ]
+     },
+     {
+      "at": [
+       -593.375,
+       -205.427,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       157.5
+      ]
+     },
+     {
+      "at": [
+       -575.4,
+       -212.058,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       162.0
+      ]
+     },
+     {
+      "at": [
+       -556.961,
+       -217.258,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       166.5
+      ]
+     },
+     {
+      "at": [
+       -538.17,
+       -220.996,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       171.0
+      ]
+     },
+     {
+      "at": [
+       -519.144,
+       -223.248,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       175.5
+      ]
+     },
+     {
+      "at": [
+       -500.0,
+       -224.0,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       180.0
+      ]
+     },
+     {
+      "at": [
+       -480.856,
+       -223.248,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       184.5
+      ]
+     },
+     {
+      "at": [
+       -461.83,
+       -220.996,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       189.0
+      ]
+     },
+     {
+      "at": [
+       -443.039,
+       -217.258,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       193.5
+      ]
+     },
+     {
+      "at": [
+       -424.6,
+       -212.058,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       198.0
+      ]
+     },
+     {
+      "at": [
+       -406.625,
+       -205.427,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       202.5
+      ]
+     },
+     {
+      "at": [
+       -389.226,
+       -197.406,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       207.0
+      ]
+     },
+     {
+      "at": [
+       -372.51,
+       -188.044,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       211.5
+      ]
+     },
+     {
+      "at": [
+       -356.58,
+       -177.4,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       216.0
+      ]
+     },
+     {
+      "at": [
+       -341.535,
+       -165.539,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       220.5
+      ]
+     },
+     {
+      "at": [
+       -327.466,
+       -152.534,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       225.0
+      ]
+     },
+     {
+      "at": [
+       -314.461,
+       -138.465,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       229.5
+      ]
+     },
+     {
+      "at": [
+       -302.6,
+       -123.42,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       234.0
+      ]
+     },
+     {
+      "at": [
+       -291.956,
+       -107.49,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       238.5
+      ]
+     },
+     {
+      "at": [
+       -282.594,
+       -90.774,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       243.0
+      ]
+     },
+     {
+      "at": [
+       -274.573,
+       -73.375,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       247.5
+      ]
+     },
+     {
+      "at": [
+       -267.942,
+       -55.4,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       252.0
+      ]
+     },
+     {
+      "at": [
+       -262.742,
+       -36.961,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       256.5
+      ]
+     },
+     {
+      "at": [
+       -259.004,
+       -18.17,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       261.0
+      ]
+     },
+     {
+      "at": [
+       -256.752,
+       0.856,
+       0
+      ],
+      "rot": [
+       0,
+       0,
+       265.5
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "lining"
+  }
+ ]
+}

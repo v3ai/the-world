@@ -1,0 +1,354 @@
+[
+ {
+  "id": "kidney_cortex_scene",
+  "title": "Inside the kidney cortex",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.0002,
+  "area": "bio_animals",
+  "parents": [
+   "renal_cortex"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "nephron",
+   "glomerulus",
+   "renal_cortex"
+  ],
+  "summary": "A thin slice of the outer part of a mammalian kidney: one renal corpuscle where blood is filtered, the tubules that carry the filtrate away, and the small blood vessels between them.",
+  "layers": {
+   "basics": "Blood is filtered in a tuft of capillaries called the glomerulus. The fluid that leaves it runs into a tubule, which changes it into urine. Click the tuft, the capsule, a tubule with a fuzzy edge or a small capillary.",
+   "deeper": "The scene is a mammalian cortex, drawn at human glomerulus size (the dog glomerulus is about half as wide, so the sizes do not fit the dog). A bird kidney differs: most of its nephrons are the loopless, reptilian type and only a minority have a loop of Henle, so a robin kidney would show fewer long loops running into the inner kidney. The glomerulus is drawn whole while the tubules are cut across so each looks like a ring. The first tubule section lies against the capsule at the end opposite the vessels, but no opening is drawn. Not drawn: the macula densa, the mesangium, the podocytes, the collecting ducts and the tissue between the tubules. Only a few sizes are measured; the rest are drawn to look right and are listed in the note on the scene.",
+   "expert": "The glomerulus size is the mean of adult men, from volume assuming a sphere; it is not a dog value. The tubule diameters are mouse values used as a stand-in, because a figure for the human or the dog was not found. Fowl is the only bird with a proportion of loopless nephrons on record here (about 75-80 percent; 70 to 90 percent across bird orders), and nothing was found for the robin itself."
+  },
+  "facts": [
+   [
+    "Glomerulus diameter",
+    "\u2248 201 \u00b5m (adult men, mean, SD 28; range 110-276)"
+   ],
+   [
+    "Proximal tubule, long outer diameter",
+    "\u2248 44 \u00b5m (mouse)"
+   ],
+   [
+    "Distal tubule, long outer diameter",
+    "\u2248 40 \u00b5m (mouse)"
+   ],
+   [
+    "Loopless nephrons in domestic fowl",
+    "\u2248 75-80 %"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How wide are the proximal and distal tubules in human and dog kidneys, measured the same way?",
+   "What do the glomeruli and tubules of a robin measure?",
+   "How wide is the dog glomerulus (reported near 120 micrometres for the whole corpuscle, unconfirmed)?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "25.4",
+    "25-4-microscopic-anatomy-of-the-kidney"
+   ]
+  ]
+ },
+ {
+  "id": "kidney_cortex_tuft",
+  "title": "Glomerulus",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0002,
+  "area": "bio_animals",
+  "parents": [
+   "kidney_cortex_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "nephron",
+   "glomerulus",
+   "renal_cortex"
+  ],
+  "summary": "A ball of looping capillaries, about 200 micrometres across in people, where a part of the blood plasma is pushed through a fine filter.",
+  "layers": {
+   "basics": "Blood enters the ball through one small vessel and leaves through another. The thin walls of the loops let water and small molecules out and keep blood cells and large proteins in.",
+   "deeper": "The wall of each loop has three layers: a capillary lining with pores, a thick jelly-like membrane, and cells with fine feet called podocytes. The pores are about 70 nanometres wide. The loops in the scene are drawn as short rods inside a translucent ball; real loops are a branching tangle. Descending shows the whole kidney tissue only if at all; the filter itself is not yet a scene.",
+   "expert": "The ball is drawn at the mean measured size of glomeruli in normal adult men (201 micrometres; the largest in the sample was 276 and the smallest 110). The loops, their number and their width are illustrative."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "\u2248 201 \u00b5m (adult men, mean)"
+   ],
+   [
+    "Pores in the filter",
+    "\u2248 70 nm"
+   ],
+   [
+    "Loops drawn",
+    "Illustrative, not measured"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "25.4",
+    "25-4-microscopic-anatomy-of-the-kidney"
+   ]
+  ]
+ },
+ {
+  "id": "kidney_cortex_capsule",
+  "title": "Bowman capsule and space",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0002,
+  "area": "bio_animals",
+  "parents": [
+   "kidney_cortex_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "nephron",
+   "glomerulus",
+   "renal_cortex"
+  ],
+  "summary": "A thin double-walled cup around the glomerulus; the narrow space inside it collects the filtered fluid and passes it on to the tubule.",
+  "layers": {
+   "basics": "The capsule is a thin skin of flat cells that wraps the glomerulus like a balloon around a fist. Fluid that is filtered out of the capillaries lands in the gap between the two layers.",
+   "deeper": "The gap is called Bowman space. It opens at one end into the first tubule, the proximal tubule. The vessels enter and leave at the opposite end (the urinary pole, where the tubule begins, is on the side away from the vessels; no opening is drawn). In the scene the capsule is drawn as a clear shell.",
+   "expert": "The width of the gap (15 micrometres on each side) and the size of the capsule are illustrative; the glomerulus inside is at its measured size."
+  },
+  "facts": [
+   [
+    "Space width",
+    "Illustrative, not measured"
+   ],
+   [
+    "Outer size drawn",
+    "\u2248 231 \u00b5m (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "25.4",
+    "25-4-microscopic-anatomy-of-the-kidney"
+   ]
+  ]
+ },
+ {
+  "id": "kidney_cortex_arterioles",
+  "title": "Afferent and efferent arterioles",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0002,
+  "area": "bio_animals",
+  "parents": [
+   "kidney_cortex_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "nephron",
+   "glomerulus",
+   "renal_cortex"
+  ],
+  "summary": "The two small vessels at the glomerulus: one brings blood in and one carries it out.",
+  "layers": {
+   "basics": "Blood flows into the glomerulus through the afferent arteriole and leaves through the efferent arteriole. The outgoing vessel then feeds the small capillaries around the tubules.",
+   "deeper": "Because the outgoing vessel is typically narrower, pressure stays high in the tuft and drives filtration; in the scene the efferent is drawn 12 and the afferent 16 micrometres wide, both illustrative. Muscle in their walls adjusts the flow.",
+   "expert": "Their size and position here are illustrative. They are drawn as two short straight tubes that stop at the capsule, not entering it."
+  },
+  "facts": [
+   [
+    "Size drawn",
+    "Illustrative, not measured"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "25.4",
+    "25-4-microscopic-anatomy-of-the-kidney"
+   ]
+  ]
+ },
+ {
+  "id": "kidney_cortex_pct",
+  "title": "Proximal convoluted tubule",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0002,
+  "area": "bio_animals",
+  "parents": [
+   "kidney_cortex_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "nephron",
+   "glomerulus",
+   "renal_cortex"
+  ],
+  "summary": "The first and longest winding tubule: it takes back most of the water, salts and sugar that the filter let through.",
+  "layers": {
+   "basics": "The tubule is a tube of one layer of cells. Because it is cut across in a slice, each section shows as a ring round a small clear space. Its inner surface carries a fuzzy brush border.",
+   "deeper": "Its cells are packed with mitochondria and take back most of the filtered water, sodium and all of the glucose. In the scene it is drawn 44 micrometres across; this is a mouse measurement used as a stand-in.",
+   "expert": "Tubule widths vary with the species, with the part of the tubule and with how the section is cut: a section across a winding tube is often an ellipse, which is why the long diameter is used. The clear space inside is illustrative."
+  },
+  "facts": [
+   [
+    "Outer diameter, long axis",
+    "\u2248 44 \u00b5m (mouse)"
+   ],
+   [
+    "Clear space",
+    "Illustrative, not measured"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What is the diameter of the human and dog proximal tubule?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "25.4",
+    "25-4-microscopic-anatomy-of-the-kidney"
+   ]
+  ]
+ },
+ {
+  "id": "kidney_cortex_brush",
+  "title": "Brush border",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0002,
+  "area": "bio_animals",
+  "parents": [
+   "kidney_cortex_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "nephron",
+   "glomerulus",
+   "renal_cortex"
+  ],
+  "summary": "A dense fringe of tiny finger-like folds on the inner surface of the proximal tubule cells.",
+  "layers": {
+   "basics": "The folds are called microvilli. They multiply the surface that touches the passing fluid, so more can be taken back into the cells.",
+   "deeper": "The distal tubule has few of them, which is one way to tell the two apart in a slice. In the scene a ring of short rods lines each proximal tubule.",
+   "expert": "Real microvilli are far thinner (about 0.1 micrometre) and, at about 1 to 2 micrometres, shorter than the 5 micrometres drawn (not measured here), and more numerous. The rods are drawn thick and long enough to be seen at this scale; their size and number are illustrative."
+  },
+  "facts": [
+   [
+    "Rod size drawn",
+    "Illustrative, not measured"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "25.4",
+    "25-4-microscopic-anatomy-of-the-kidney"
+   ]
+  ]
+ },
+ {
+  "id": "kidney_cortex_dct",
+  "title": "Distal convoluted tubule",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0002,
+  "area": "bio_animals",
+  "parents": [
+   "kidney_cortex_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "nephron",
+   "glomerulus",
+   "renal_cortex"
+  ],
+  "summary": "A shorter winding tubule after the loop of Henle that fine-tunes the salts and acidity of the fluid.",
+  "layers": {
+   "basics": "It looks like the proximal tubule in a slice, but it is a little narrower, its cells are smaller, and it has a clean inner edge with few microvilli.",
+   "deeper": "Hormones act here to set how much sodium and calcium is taken back. In the scene it is drawn 40 micrometres across; this is a mouse measurement used as a stand-in.",
+   "expert": "The clear space inside each section is illustrative. How many sections lie in one slice depends on the cut."
+  },
+  "facts": [
+   [
+    "Outer diameter, long axis",
+    "\u2248 40 \u00b5m (mouse)"
+   ],
+   [
+    "Clear space",
+    "Illustrative, not measured"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What is the diameter of the human and dog distal tubule?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "25.4",
+    "25-4-microscopic-anatomy-of-the-kidney"
+   ]
+  ]
+ },
+ {
+  "id": "kidney_cortex_peritubular",
+  "title": "Peritubular capillary",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 0.0002,
+  "area": "bio_animals",
+  "parents": [
+   "kidney_cortex_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "nephron",
+   "glomerulus",
+   "renal_cortex"
+  ],
+  "summary": "A small blood vessel wound between the tubules that takes up what the tubules give back.",
+  "layers": {
+   "basics": "Water, salts and sugar taken back from the tubule pass into these vessels and return to the blood. Their wall is a thin lining on a basement membrane, with no muscle. They are narrow that red cells go through in single file.",
+   "deeper": "They are fed by the vessel that leaves the glomerulus, so blood reaches them after it has already been filtered once.",
+   "expert": "The width drawn (9 micrometres) lies within the usual 5-10 micrometre range of capillaries but is illustrative for this vessel; their number and layout are illustrative."
+  },
+  "facts": [
+   [
+    "Width drawn",
+    "Illustrative, not measured"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "25.4",
+    "25-4-microscopic-anatomy-of-the-kidney"
+   ]
+  ]
+ }
+]
