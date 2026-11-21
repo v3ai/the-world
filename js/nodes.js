@@ -43,6 +43,7 @@ function paintedInOrder(m) {
   m.transparent = false; m.blending = op < .995 ? THREE.CustomBlending : THREE.NormalBlending; return m;
 }
 function illoMat(color, o = {}) {
+  if (LOOK.on && LOOK.part('pbr')) return LOOK.illoMat(color, o);   // the realistic look: a standard material of a kind (js/look.js)
   const m = new THREE.MeshToonMaterial(Object.assign({ color, gradientMap: toonGrad(), opacity: 1, side: o.double ? THREE.DoubleSide : THREE.FrontSide }, o.extra || {}));
   return o.extra && o.extra.transparent ? m : opaqueUnlessFading(m);
 }
@@ -171,7 +172,7 @@ FT.body = {
           });
           g.userData.main.userData.pickRoot = g; g.userData.main.material.userData.noHL = true;
           if (p.id === 'lung_l' || p.id === 'lung_r') { // the data is the airway tree only: wrap it in a schematic lung outline (see lungShellGeo)
-            const sh = new THREE.Mesh(lungShellGeo(g.userData.main.geometry, A.byId.heart), new THREE.MeshToonMaterial({ color: 0xf0b3c0, gradientMap: toonGrad(), transparent: true, opacity: .5, depthWrite: false, side: THREE.DoubleSide }));
+            const sh = new THREE.Mesh(lungShellGeo(g.userData.main.geometry, A.byId.heart), illoMat(0xf0b3c0, { extra: { transparent: true, opacity: .5, depthWrite: false, side: THREE.DoubleSide } }));
             sh.renderOrder = 3; g.add(sh); g.userData.shell = sh; sh.material.userData.noHL = true;
           }
           g.traverse(o => { o.matrixAutoUpdate = false; }); // body parts never move: their matrices are composed once (identity), not every frame
@@ -293,7 +294,7 @@ FT.organ = {
         const outer = new THREE.Mesh(geo, illoMat(col, { extra: { clippingPlanes: F.cut ? [plane] : [], transparent: true } }));
         if (shell) { outer.material.opacity = .38; outer.material.depthWrite = false; } // a see-through wall: what is inside it shows
         // the inside of the cut: lit from within so it reads as a hollow, not a black hole
-        const inner = new THREE.Mesh(geo, new THREE.MeshToonMaterial({ color: new THREE.Color(col).multiplyScalar(.75), emissive: new THREE.Color(col).multiplyScalar(.28), gradientMap: toonGrad(), side: THREE.BackSide, clippingPlanes: F.cut ? [plane] : [], transparent: true }));
+        const inner = new THREE.Mesh(geo, illoMat(new THREE.Color(col).multiplyScalar(.75), { extra: { emissive: new THREE.Color(col).multiplyScalar(.28), side: THREE.BackSide, clippingPlanes: F.cut ? [plane] : [], transparent: true } }));
         const ol = new THREE.Mesh(geo, outlineMat()); ol.material.clippingPlanes = F.cut ? [plane] : [];
         ol.renderOrder = 0; ol.material.depthWrite = false; inner.renderOrder = 1; outer.renderOrder = shell ? 4 : 2; // the ink never paints over the lit inside of the cut
         if (shell) { ol.visible = false; inner.material.opacity = .9; inner.material.emissive.multiplyScalar(1.6); }

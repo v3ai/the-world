@@ -583,8 +583,8 @@ function thFrameUpdate(F, dt, t) {
     let hl = P._thL; if (!hl || hl.scene !== P.scene) { hl = P._thL = { scene: P.scene, sun: null, hemi: null }; P.root.traverse(o => { if (o.isDirectionalLight && !hl.sun) hl.sun = o; if (o.isHemisphereLight && !hl.hemi) hl.hemi = o; }); }
     const L = env === 'park' ? TH_LIGHT : F.thL;
     // this frame's own lights are copies of the host's (used when it is drawn alone); the reduction to sun x 0.75 and sky x 0.55 (less at night) is in the shader (thPatch)
-    if (hl.sun) { T.lights.sun.position.copy(hl.sun.position).normalize().multiplyScalar(40); T.lights.sun.intensity = hl.sun.intensity; T.lights.sun.color.copy(hl.sun.color); L.uThSun.value = .75; }
-    if (hl.hemi) { const day = Math.min(1, hl.sun ? hl.sun.intensity / 1.15 : 1); T.lights.hemi.intensity = hl.hemi.intensity; T.lights.hemi.color.copy(hl.hemi.color); T.lights.hemi.groundColor.copy(hl.hemi.groundColor); /* the sky light's direction is up (the engine keeps a hemisphere light's direction independent of the camera: fixSceneLights) */ L.uThSky.value = .55 * (.18 + .82 * day); }
+    if (hl.sun) { T.lights.sun.position.subVectors(hl.sun.position, hl.sun.target.position).normalize().multiplyScalar(40); T.lights.sun.intensity = hl.sun.intensity; T.lights.sun.color.copy(hl.sun.color); L.uThSun.value = LOOK.on ? 1 : .75; }   // the realistic look (js/look.js) takes the light as it is
+    if (hl.hemi) { const day = Math.min(1, hl.sun ? hl.sun.intensity / 1.15 : 1); T.lights.hemi.intensity = hl.hemi.intensity; T.lights.hemi.color.copy(hl.hemi.color); T.lights.hemi.groundColor.copy(hl.hemi.groundColor); /* the sky light's direction is up (the engine keeps a hemisphere light's direction independent of the camera: fixSceneLights) */ L.uThSky.value = LOOK.on ? 1 : .55 * (.18 + .82 * day); }
     else if (env === 'sun') { T.lights.hemi.intensity = .12; L.uThSky.value = 1; }   // in space there is no sky: a little fill light so the night side is not black
     if (env === 'park' && P.scene.fog && F.scene.fog !== P.scene.fog) F.scene.fog = P.scene.fog;
   }

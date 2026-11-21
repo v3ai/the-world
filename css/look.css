@@ -299,3 +299,8 @@ html.look2 #lab .labbar b { font: 600 18px/24px var(--serif); letter-spacing: -.
   html.look2 body:has(.pop.open) #controls { display: none }   /* a sheet has the screen: the scene's own control waits */
   html.look2 #ruler svg .lead { display: none }   /* the names are hidden on a phone: so are the lines that led to them */
 }
+
+/* the note that says the sky over the park is a photograph (js/look.js, section 7) */
+#lkSkyNote { position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); max-width: min(560px, calc(100vw - 32px)); padding: 6px 10px; border-radius: 6px;
+  background: rgba(250, 251, 250, .9); color: #16191d; font: 12px/1.4 -apple-system, BlinkMacSystemFont, 'IBM Plex Sans', 'Segoe UI', sans-serif; z-index: 5; pointer-events: none }
+#lkSkyNote[hidden] { display: none }

@@ -709,6 +709,7 @@ function loop(now) {
     if (!f._culled) { f._skipDt = 0; f.update(dt, clock, f); }
     else { f._skipDt = (f._skipDt || 0) + dt; if (((PERF.frame + (f._phase ?? (f._phase = drawn.indexOf(f)))) & 7) === 0) { f.update(Math.min(f._skipDt, .25), clock, f); f._skipDt = 0; } } // out of view: every eighth frame is enough
   }
+  if (LOOK.on) LOOK.step(now);   // the realistic look: environments follow their Suns, rigs for late lights (js/look.js)
   compileStep();
   const tB = performance.now(); PERF.add('update', tB - tA - (PERF.acc.pick - pk0)); // picks made on the way (the zoom buttons' pivot) are counted as picking
   renderer.info.reset(); PERF.gpuBegin();
@@ -730,6 +731,7 @@ function loop(now) {
   PERF.endFrame(dtMs, performance.now() - tA); PERF.tick(now);
 }
 async function startApp() {
+  if (LOOK.on) LOOK.wire();
   ROOT = await buildWorld();
   setupBloom(); resize();
   buildRuler();

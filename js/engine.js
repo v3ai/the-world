@@ -90,6 +90,7 @@ PERF.on('bloom', bloomResize);
    daylight scene that fills the view (the park, a landscape), do not: there the glow only washed out the sky and the paper white. */
 function bloomTarget() {
   if (!bloom || PERF.flags.bloom === '0') return 0;
+  if (LOOK.on) { const g = LOOK.glowOf(); if (g !== undefined) return g ? .55 : 0; }   // realistic look: glow only where the frame says it holds things that emit light (frame.glow)
   const f0 = drawn[0];
   if (f0 && f0.env && f0.env.opaque && f0.alpha > .995 && (f0.daylight || (f0.illo && cam.D < 6))) return 0;
   if (cam.A && cam.A.daylight && cam.A.alpha > .995) return 0;   // a daylight scene seen from above it (the park from 450 m, before its sky closes over the view): its clouds and lawn are not lamps
@@ -206,6 +207,7 @@ class Frame {
     try { FT[this.type].build(this, this.opts); } catch (e) { console.error('build failed', this.type, e); }
     finally { building = prev; }
     this.built = true; compileQ.push(this);
+    if (LOOK.on) { const prev2 = building; building = this; try { LOOK.frameBuilt(this); } finally { building = prev2; } }   // the realistic look: the frame's rig, environment, exposure and glow (js/look.js)
   }
   add(o) { this.root.add(o); return o; }
   pick(o, id, priority) { o.userData.id = id; if (priority !== undefined) o.userData.priority = priority; this.pickables.push(o); return o; }
@@ -561,6 +563,7 @@ function renderFramesTight(r) {
           if (i > 0 || f !== drawn[0] || s < n - 1) f.scene.background = null;
           else if (f.env && f.env.bg !== undefined && !bg) { r.setClearColor(f.env.bg, 1); r.clear(true, true, true); }
           c.near = pn; c.far = pf; c.updateProjectionMatrix();
+          if (LOOK.on) r.toneMappingExposure = LOOK.exposureOf(f);
           r.render(f.scene, c); PERF._renders++; f._drawnOnce = true;
           c.near = n0; c.far = f0; c.updateProjectionMatrix(); f.scene.background = bg;
         }
@@ -580,7 +583,9 @@ function renderFrames(r) {
     if (i > 0) f.scene.background = null;
     else if (f.env && f.env.bg !== undefined && !bg) { r.setClearColor(f.env.bg, 1); r.clear(true, true, true); }
     if (!f._share) r.clearDepth();
+    if (LOOK.on) r.toneMappingExposure = LOOK.exposureOf(f);   // realistic look: the page's exposure times the frame's own
     r.render(f.scene, f.cam); PERF._renders++; f._drawnOnce = true;
+    if (f.postDraw) f.postDraw(r);   // a frame's own drawing after its scene (and in its depth), when it needs one
     f.scene.background = bg;
   });
   for (const f of mergedSet) if (!f._culled && f.parent._drawnOnce) f._drawnOnce = true; // its matrices were computed with the parent's
@@ -641,7 +646,7 @@ function compileStep() {
    whole thing gets small on screen, between 70 and 40 pixels tall (px = its height in pixels): at that size the ink no longer draws an
    edge, it only darkens the figure. A thing's far detail tier has none (js/things.js). Chosen from screenshots: notes/perf.md. */
 const OUTLINE_PX = [40, 70];
-function outlineAmt(px) { const o = PERF.flags.outline; return o === 'all' ? 1 : o === '0' ? 0 : smooth(OUTLINE_PX[0], OUTLINE_PX[1], px); }
+function outlineAmt(px) { if (LOOK.on && LOOK.part('pbr')) return 0; /* realistic look: no ink, only the hull of the part pointed at or selected */ const o = PERF.flags.outline; return o === 'all' ? 1 : o === '0' ? 0 : smooth(OUTLINE_PX[0], OUTLINE_PX[1], px); }
 
 /* ================= INPUT: zoom-to-cursor, orbit, fly ================= */
 const zoom = { pending: 0, pivot: null, pt: -1e9, px: 0, py: 0, gen: -1 }; // pending = remaining ln(D) change; pt, px, py, gen: when, where and in which state of the view the pivot was last picked
