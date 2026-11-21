@@ -1,0 +1,239 @@
+{
+ "li_cell": {
+  "type": "plot",
+  "x": [
+   0,
+   100
+  ],
+  "y": [
+   3.4,
+   4.3
+  ],
+  "xlabel": "state of charge (%)",
+  "ylabel": "cell voltage, nothing connected (V)",
+  "points": [
+   {
+    "x": "0",
+    "y": "3.6",
+    "label": "3.60 V"
+   },
+   {
+    "x": "10",
+    "y": "3.67",
+    "label": ""
+   },
+   {
+    "x": "20",
+    "y": "3.72",
+    "label": ""
+   },
+   {
+    "x": "30",
+    "y": "3.75",
+    "label": ""
+   },
+   {
+    "x": "40",
+    "y": "3.77",
+    "label": ""
+   },
+   {
+    "x": "50",
+    "y": "3.8",
+    "label": "3.80 V"
+   },
+   {
+    "x": "60",
+    "y": "3.85",
+    "label": ""
+   },
+   {
+    "x": "70",
+    "y": "3.92",
+    "label": ""
+   },
+   {
+    "x": "80",
+    "y": "4.0",
+    "label": ""
+   },
+   {
+    "x": "90",
+    "y": "4.09",
+    "label": ""
+   },
+   {
+    "x": "100",
+    "y": "4.18",
+    "label": "4.18 V"
+   }
+  ],
+  "hlines": [
+   {
+    "y": "3.86",
+    "label": "printed on a phone cell: 3.86 V"
+   }
+  ],
+  "caption": "The voltage of a lithium cobalt oxide and graphite cell rises as it fills. Calculated from the measured voltage curves of the two electrodes of a 2.28 Ah pouch cell charged to 4.2 V (Ai et al. 2020); phone cells charged higher end higher. Below the last tenth it drops steeply to the 3.0 V limit."
+ },
+ "licell_ion_shuttle": {
+  "type": "blocks",
+  "flow": true,
+  "caption": "Discharge. Inside the cell the lithium ion crosses through the liquid; its electron has to go round through the phone. Charging runs both arrows backwards.",
+  "nodes": [
+   {
+    "id": "g",
+    "label": "graphite (on copper)",
+    "x": 16,
+    "y": 62
+   },
+   {
+    "id": "s",
+    "label": "separator, soaked in electrolyte",
+    "x": 50,
+    "y": 62
+   },
+   {
+    "id": "o",
+    "label": "cobalt oxide (on aluminium)",
+    "x": 84,
+    "y": 62
+   },
+   {
+    "id": "p",
+    "label": "the phone",
+    "x": 50,
+    "y": 16
+   }
+  ],
+  "edges": [
+   {
+    "from": "g",
+    "to": "s",
+    "label": "Li⁺"
+   },
+   {
+    "from": "s",
+    "to": "o",
+    "label": "Li⁺"
+   },
+   {
+    "from": "g",
+    "to": "p",
+    "label": "e⁻"
+   },
+   {
+    "from": "p",
+    "to": "o",
+    "label": "e⁻"
+   }
+  ]
+ },
+ "licell_electrons": {
+  "type": "bars",
+  "logy": true,
+  "ylabel": "energy stored per kilogram (Wh/kg)",
+  "caption": "A lithium-ion cell stores far more per kilogram than older batteries, and still about fifty times less than petrol or body fat (which also use oxygen from the air, not counted in their weight). Values from a reference table (Wikipedia, Energy density), converted from MJ/kg; the cell bar is the top of the range given there.",
+  "bars": [
+   {
+    "label": "lead-acid battery",
+    "value": 47
+   },
+   {
+    "label": "nickel-metal hydride",
+    "value": 114
+   },
+   {
+    "label": "alkaline cell",
+    "value": 133
+   },
+   {
+    "label": "lithium-ion cell",
+    "value": 243,
+    "color": "#1e4e8f"
+   },
+   {
+    "label": "TNT",
+    "value": 1162
+   },
+   {
+    "label": "wood",
+    "value": 5000
+   },
+   {
+    "label": "body fat",
+    "value": 10556
+   },
+   {
+    "label": "petrol",
+    "value": 12889
+   },
+   {
+    "label": "hydrogen",
+    "value": 33314
+   }
+  ]
+ },
+ "licell_stack": {
+  "type": "bars",
+  "ylabel": "thickness (µm)",
+  "caption": "The five layers of the stack, as measured on a 2.28 Ah consumer pouch cell (Ai et al. 2020). The coatings that store the lithium are the thick ones; the foils and the separator are kept as thin as they can safely be.",
+  "bars": [
+   {
+    "label": "copper foil",
+    "value": 10,
+    "color": "#c8793a"
+   },
+   {
+    "label": "graphite coating",
+    "value": 76.5,
+    "color": "#474c55"
+   },
+   {
+    "label": "separator",
+    "value": 25,
+    "color": "#b9b29a"
+   },
+   {
+    "label": "oxide coating",
+    "value": 68,
+    "color": "#2d4a86"
+   },
+   {
+    "label": "aluminium foil",
+    "value": 15,
+    "color": "#9aa3ad"
+   }
+  ]
+ },
+ "licell_pcm": {
+  "type": "plot",
+  "x": [
+   2,
+   4.6
+  ],
+  "y": [
+   0,
+   1.2
+  ],
+  "xlabel": "cell voltage (V)",
+  "ylabel": "connected (1) or cut off (0)",
+  "fns": [
+   {
+    "f": "(x>2.4)*(x<4.3)",
+    "label": "cell connected"
+   }
+  ],
+  "vlines": [
+   {
+    "x": "2.4",
+    "label": "too empty: 2.40 V"
+   },
+   {
+    "x": "4.3",
+    "label": "too full: 4.30 V"
+   }
+  ],
+  "caption": "The window in which a typical protection chip (DW01 type) leaves the cell connected. Outside it, one of the two switches opens. Chips for cells charged to higher voltages have a higher upper limit."
+ }
+}

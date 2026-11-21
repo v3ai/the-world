@@ -170,6 +170,7 @@ function thUnit(def, k) { return Math.min(1, (def.radius_m || 1) * (k || 1) / .5
    A placement with a `seed` varies; one without stays exactly as written. */
 function thPlacement(def, pl) {
   const v = def.variation, out = { k: pl.scale || 1, rotY: (pl.rot || 0) * Math.PI / 180, lean: 0, keep: null };
+  out.fu = 1 / (pl.unit || 1);   // frame units per metre: a thing's frame has the unit of the frame it stands in (1 m in the park, 1 mm in the phone), set by thPlace
   if (v && pl.seed !== undefined) {
     const r = thRng(((pl.seed | 0) + 1) * 7919);
     const a = r(), b = r(), c = r(), d = r();
@@ -184,10 +185,12 @@ function thPlacement(def, pl) {
   }
   out.q = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), out.rotY);
   if (out.lean) out.q.premultiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(Math.cos(out.leanAz), 0, Math.sin(out.leanAz)), out.lean));
+  if (pl.tilt) out.q.multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(pl.tilt[0] * Math.PI / 180, pl.tilt[1] * Math.PI / 180, pl.tilt[2] * Math.PI / 180, 'XYZ')));   // `tilt` [rx, ry, rz] degrees: the model's own attitude (a thing lying on its side), applied before the heading
+  out.s = out.k * out.fu;   // frame units per model metre: the scale of the drawn group (k stays the true-size factor, in metres per model metre)
   return out;
 }
 /* thing-local point -> frame coordinates for a placement (the frame origin is the thing's base point) */
-function thLocalToFrame(def, pl, p) { const x = thPlacement(def, pl); return new THREE.Vector3(p[0], p[1], p[2]).multiplyScalar(x.k).applyQuaternion(x.q); }
+function thLocalToFrame(def, pl, p) { const x = thPlacement(def, pl); return new THREE.Vector3(p[0], p[1], p[2]).multiplyScalar(x.s).applyQuaternion(x.q); }
 
 /* ---------- animation as data (def.anim) ----------
    Entries: { part | parts | system, kind, ... }.
@@ -222,10 +225,11 @@ function thSwayUniforms(sp) {   // sp = { sway: entry|null, swing: entry|null }
    preview tool) both factors are 1.
    Sway (sp, optional): moves the thing-space position, after the instance matrix, in the vertex shader. */
 const TH_LIGHT = { uThSun: { value: 1 }, uThSky: { value: 1 } };
-function thPatch(mat, sp) {
+const TH_STUDIO = { uThSun: { value: 1 }, uThSky: { value: 1 } };   // a thing that does not stand under the park's sky (in the phone, on the neutral stage) takes its host's lights as they are
+function thPatch(mat, sp, L) {
   const u = sp ? thSwayUniforms(sp) : null; if (u) mat.userData.sway = u;
   mat.onBeforeCompile = sh => {
-    Object.assign(sh.uniforms, TH_LIGHT);
+    Object.assign(sh.uniforms, L || TH_LIGHT);
     sh.fragmentShader = 'uniform float uThSun; uniform float uThSky;\n' + sh.fragmentShader.replace('vec3 outgoingLight =', 'reflectedLight.directDiffuse *= uThSun; reflectedLight.indirectDiffuse *= uThSky;\n\tvec3 outgoingLight =');
     if (!u) return;
     Object.assign(sh.uniforms, { uTime: TH_SWAY.uTime }, u);
@@ -239,19 +243,22 @@ function thPatch(mat, sp) {
   mat.customProgramCacheKey = () => u ? 'thlit+sway' : 'thlit';
 }
 
+const TH_HOT_PX = 6;   // the largest radius, in screen pixels, at which a hotspot marker is drawn
 /* ---------- ThingObj: the meshes of one thing ---------- */
 class ThingObj {
   /* def: thing.json, bundle: mesh.json, o: { placement: {scale, rot (deg), seed}, or scale / rotY (radians) / seed; hidden: Set } */
   constructor(def, bundle, o = {}) {
     this.def = def; this.bundle = bundle; this.o = o;
     const pl = o.placement || { scale: o.scale, rot: (o.rotY || 0) * 180 / Math.PI, seed: o.seed }; this.pl = pl; this.xf = thPlacement(def, pl); this.qInv = this.xf.q.clone().invert(); this._camT = new V3(); this._c0 = new V3(); this.k = this.xf.k; this.u = thUnit(def, this.k);
-    this.group = new THREE.Group(); this.group.scale.setScalar(this.k); this.group.quaternion.copy(this.xf.q); this.group.updateMatrix();
+    this.s = this.xf.s; this.fu = this.xf.fu; this.unit = 1 / this.fu;   // s: frame units per model metre (the group's scale); fu: frame units per metre; k: the true-size factor
+    this.L = o.light || TH_LIGHT; this._hp = new V3();
+    this.group = new THREE.Group(); this.group.scale.setScalar(this.s); this.group.quaternion.copy(this.xf.q); this.group.updateMatrix();
     this.holder = new THREE.Group();             // what the frame adds to its scene: group + shadow + hotspots (not scaled)
     this.parts = {}; this.list = []; this.hot = []; this.hidden = o.hidden || new Set(); this.sel = null;
     this.plane = new THREE.Plane(new V3(0, 0, 1), 0); this.planes = [this.plane];
     this.faceMats = []; this.mode = null; this.near = true; this.tier = 0; this.cutN = new V3(0, 0, 1); this.tierNames = ['near'];
-    this.lights = { hemi: new THREE.HemisphereLight(0xcfe6ff, 0x4a6a2a, .75), sun: new THREE.DirectionalLight(0xfff1d6, 1.0) };
-    this.lights.sun.position.set(.4, 1, .5).multiplyScalar(40);
+    this.lights = o.light ? { hemi: new THREE.HemisphereLight(0xffffff, 0x8899aa, .6), sun: new THREE.DirectionalLight(0xffffff, .8) } : { hemi: new THREE.HemisphereLight(0xcfe6ff, 0x4a6a2a, .75), sun: new THREE.DirectionalLight(0xfff1d6, 1.0) };   // its own lights, used when it is drawn in a scene of its own: copies of the park's sun and sky, or (o.light) the plain pair the device and stage scenes use
+    if (o.light) this.lights.sun.position.set(1, 2, 3).multiplyScalar(20); else this.lights.sun.position.set(.4, 1, .5).multiplyScalar(40);
     this.holder.add(this.group);
     this.pivots = {}; this.clock = 0; this.pivotPending = true;
     // layers (outermost first): what Auto peels, what the core sample and "Peel to here" work on. Default: whatever the first mode shows is one layer.
@@ -261,7 +268,7 @@ class ThingObj {
     if (def.auto && def.auto.layers) { const ops = {}; this.layers.forEach((l, i) => (l.systems || []).forEach(sy => ops[sy] = i === 0 ? 1 : 0)); this.peelMode = { id: 'auto', show: Object.assign(ops, def.auto.always || {}) }; }
     this.autoOp = null; this.revealOp = null; this.revealId = null; this.revealFront = null; this.layerName = '';
     for (const pd of def.parts) this._addPart(pd);
-    if (def.shadow) this._addShadow(def.shadow);
+    if (def.shadow && o.ground !== false) this._addShadow(def.shadow);   // the contact shadow belongs to a thing that stands on a ground
     for (const h of def.hotspots || []) this._addHotspot(h);
     this._addAnims();
     // parts that no animation moves keep the matrix they have (identity): it is not composed again every frame
@@ -290,14 +297,14 @@ class ThingObj {
     if (pd.mesh) {
       geo = thGeo(def.id, this.bundle, pd.mesh); if (!geo) { console.warn('thing', def.id, 'part', pd.id, 'missing mesh', pd.mesh); return; }
       g = thInked(geo, color, { w: pd.ink_w || def.ink_w || .0018, double: !!pd.double, vc: !!geo.attributes.color, sway: sw });
-      g.userData.main.material.clippingPlanes = null; thPatch(g.userData.main.material, sw);
+      g.userData.main.material.clippingPlanes = null; thPatch(g.userData.main.material, sw, this.L);
       if (pd.solid !== false) {   // inside faces for the cut-open view, painted with the cut-face pattern
         const fm = thFaceMat(this._faceFor(pd), this.plane); fm.clippingPlanes = this.planes; const cap = new THREE.Mesh(geo, fm); cap.visible = false; cap.userData.cap = true; cap.renderOrder = 0; cap.matrixAutoUpdate = false; g.add(cap); g.userData.cap = cap; this.faceMats.push(fm);
       }
     } else if (pd.instances) {
       const inst = thInst(this.bundle, pd.instances); geo = thGeo(def.id, this.bundle, inst.mesh);
       const ex = geo.attributes.color ? { vertexColors: true } : {}; if (pd.card) { thCardUV(geo); ex.map = thCardTexture(pd.card); ex.alphaTest = .5; }
-      const mat = illoMat(color, { double: !!pd.double, extra: ex }); thPatch(mat, sw);
+      const mat = illoMat(color, { double: !!pd.double, extra: ex }); thPatch(mat, sw, this.L);
       const rj = pd.tint || 0, ck = def.id + ':' + pd.instances + ':' + rj;
       let sh = TH.inst[ck];
       if (!sh) {   // one master set of instance matrices per thing, shared by every placement (built once)
@@ -329,8 +336,8 @@ class ThingObj {
     (pd.pivot ? this._pivot(pd.pivot) : this.group).add(g); this.list.push(rec); this.parts[pd.id] = rec;
   }
   _addShadow(sh) {
-    const r = sh.radius_m * this.k, m = new THREE.Mesh(new THREE.PlaneGeometry(2 * r, 2 * r), new THREE.MeshBasicMaterial({ map: thShadowTex(), transparent: true, depthWrite: false, opacity: sh.opacity ?? 1, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }));
-    m.rotation.x = -Math.PI / 2; m.position.set(sh.offset ? sh.offset[0] * this.k : 0, .012 * this.u, sh.offset ? sh.offset[1] * this.k : 0); m.renderOrder = -1; m.userData.shadow = true; this.shadow = m; this.holder.add(m);
+    const r = sh.radius_m * this.s, m = new THREE.Mesh(new THREE.PlaneGeometry(2 * r, 2 * r), new THREE.MeshBasicMaterial({ map: thShadowTex(), transparent: true, depthWrite: false, opacity: sh.opacity ?? 1, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }));
+    m.rotation.x = -Math.PI / 2; m.position.set(sh.offset ? sh.offset[0] * this.s : 0, .012 * this.u * this.fu, sh.offset ? sh.offset[1] * this.s : 0); m.renderOrder = -1; m.userData.shadow = true; this.shadow = m; this.holder.add(m);
   }
   _hotPivot(h) {   // which pivot group a marker rides on: its own `pivot`, else the pivot of the first of its modes that has one
     if (h.pivot) return h.pivot;
@@ -340,8 +347,8 @@ class ThingObj {
   _addHotspot(h) {
     const R = this.def.radius_m || 1, geo = new THREE.SphereGeometry(h.r || Math.max(.01 * this.u, R * .02), 14, 10), g = inked(geo, 0xffd166, { w: .004, extra: { transparent: true } });
     g.children.forEach(m => { m.material.depthTest = false; m.renderOrder = m.userData.outline ? 9 : 10; });   // ink first, fill on top (both in the blended pass, where renderOrder decides)
-    thPatch(g.userData.main.material, null);
-    const pv = this._hotPivot(h); g.userData.hotspot = h; g.visible = false; g.position.set(...h.at); (pv ? this._pivot(pv) : this.group).add(g); this.hot.push(g);
+    thPatch(g.userData.main.material, null, this.L);
+    const pv = this._hotPivot(h); g.userData.hotspot = h; g.userData.r0 = geo.parameters.radius; g.userData.pv = pv || null; g.visible = false; g.position.set(...h.at); (pv ? this._pivot(pv) : this.group).add(g); this.hot.push(g);
   }
   _addAnims() {
     this.anims = []; this.notes = [];
@@ -391,8 +398,8 @@ class ThingObj {
   faceCut() { this.cutPending = true; this.pivotPending = true; }
   /* per-frame: dt seconds, camLocal = camera position in the group's parent coordinates (metres), off = world offset of the container (frame root position), alpha = frame alpha */
   update(dt, camLocal, off, alpha = 1) {
-    const def = this.def, camT = this._camT.copy(camLocal).applyQuaternion(this.qInv).divideScalar(this.k);   // camera in thing-local coordinates
-    const d = camLocal.distanceTo(this._c0.set(0, (def.radius_m || 1) * this.k * .5, 0));
+    const def = this.def, camT = this._camT.copy(camLocal).applyQuaternion(this.qInv).divideScalar(this.s);   // camera in thing-local coordinates (model metres)
+    const d = camLocal.distanceTo(this._c0.set(0, (def.radius_m || 1) * this.s * .5, 0).applyQuaternion(this.xf.q)) * this.unit;   // metres from the thing's middle
     this.dist = d; const md = this.resolveMode(d); this.curMode = md; const cut = md && md.cut; this.cutActive = !!cut;
     const lod = def.lod, t0 = this.tier;   // three tiers: 0 near (full detail), 1 mid, 2 far; without lod.far_m the mid tier is the far one
     if (this.lodForce) this.tier = this.lodForce === 'near' ? 0 : this.lodForce === 'mid' ? 1 : 2;
@@ -439,7 +446,17 @@ class ThingObj {
         const cap = g.userData.cap; if (cap) { cap.visible = !!cut && op > .5; cap.material.uniforms.uOpacity.value = op; cap.material.transparent = op < .995; }
       }
     }
-    for (const h of this.hot) { const hs = h.userData.hotspot; h.visible = (!!cut || !!(md && md.hotspots)) && (!hs.modes || (md && hs.modes.includes(md.id))); h.children.forEach(m => { if (m.material.uniforms && m.material.uniforms.uOpacity) m.material.uniforms.uOpacity.value = .85 * alpha; else m.material.opacity = alpha; }); }
+    const pxr = typeof PX_PER_RAD === 'function' ? PX_PER_RAD() : 860;
+    for (const h of this.hot) {
+      const hs = h.userData.hotspot; h.visible = (!!cut || !!(md && md.hotspots)) && (!hs.modes || (md && hs.modes.includes(md.id))); h.children.forEach(m => { if (m.material.uniforms && m.material.uniforms.uOpacity) m.material.uniforms.uOpacity.value = .85 * alpha; else m.material.opacity = alpha; });
+      if (!h.visible) continue;
+      /* A marker is a pointer, not a part: it has a size in the model (so it is not lost from afar) but is never drawn wider than about TH_HOT_PX * 2 pixels,
+         so that in a close view (a 13 mm syrinx) it does not cover what it points at. Its place: `at`, turned with the pivot it rides on. */
+      const p = this._hp.set(hs.at[0], hs.at[1], hs.at[2]), pv = h.userData.pv && this.pivots[h.userData.pv];
+      if (pv) { const a = pv.outer.rotation.y, x = p.x - pv.at[0], z = p.z - pv.at[1], c = Math.cos(a), sn = Math.sin(a); p.x = pv.at[0] + x * c + z * sn; p.z = pv.at[1] - x * sn + z * c; }
+      const sc = Math.min(1, TH_HOT_PX * p.distanceTo(camT) / (pxr * h.userData.r0));
+      if (Math.abs(sc - h.scale.x) > .02 * h.scale.x) { h.scale.setScalar(sc); h.updateMatrix(); }
+    }
     if (this.shadow) this.shadow.material.opacity = (def.shadow.opacity ?? 1) * alpha;
     this.shownSig = vs;
     return md;
@@ -452,22 +469,27 @@ const TH_PEEL = { K: 12, TMIN: .008, TMAX: .045 };   // the human's peel constan
 FT.thing = {
   build(F, o) {
     const id = o.thing, pl = o.placement || {}; F.illo = true; F.noFade = true;   // opacity is handled per part, like the body
-    F.mergeable = true;   // drawn inside the park's scene whenever the park is drawn (js/engine.js, "fewer scenes"); its own two lights are then switched off
+    const env = o.env || 'park';   // whose light it stands in: 'park' (the park's sun and sky), 'sun' (the sun and sky of the frame it stands in), 'studio' (the plain pair of the device and stage scenes)
+    F.mergeable = o.merge !== false;   // drawn inside its host's scene whenever the host is drawn (js/engine.js, "fewer scenes"); its own two lights are then switched off
     F.onMerge = on => { if (F.T) F.T.lights.hemi.visible = F.T.lights.sun.visible = !on; };
     renderer.localClippingEnabled = true;
     F.parts = {}; F.mode = null; F.layered = true; F.hidden = new Set(); F.sel = null; F.reveal = null;   // the body's click features (core sample, hide, peel) work on this frame too
     F.env = { bg: 0, opaque: false };
-    const fogSrc = FR.park && FR.park.scene;
+    const fogSrc = env === 'park' && FR.park && FR.park.scene;
     if (fogSrc && fogSrc.fog) F.scene.fog = fogSrc.fog;
+    if (env === 'sun') F.thL = { uThSun: { value: .75 }, uThSky: { value: .55 } };
     F.ready = Promise.all([thLoadDef(id), thLoadBundle(id), loadNodes()]).then(([def, bundle]) => {
       if (!F.built) return;
-      const T = new ThingObj(def, bundle, { placement: pl, hidden: F.hidden });
+      const T = new ThingObj(def, bundle, { placement: pl, hidden: F.hidden, light: env === 'park' ? null : env === 'sun' ? F.thL : TH_STUDIO, ground: o.ground !== false });
+      if (env === 'sun') { T.lights.hemi.color.setHex(0xcfe6ff); T.lights.hemi.groundColor.setHex(0x4a4a3a); T.lights.sun.color.setHex(0xfff1d6); }
       F.T = T; T.group.position.set(0, 0, 0); T.group.updateMatrix(); T.holder.position.set(0, 0, 0);
       F.add(T.holder); F.add(T.lights.hemi); F.add(T.lights.sun); F.add(T.lights.sun.target); F.onMerge(!!F._merged);
       const validModes = ['auto'].concat(def.modes.map(m => m.id)); if (!def.auto) validModes.shift();
       T.setMode(validModes.includes(F.mode) ? F.mode : validModes[0]);
       thBindFrame(F, T, def);
+      if (F.thHost && F.thHost.onBuilt) F.thHost.onBuilt(F);
     });
+    F.onDispose = () => { const mine = new Set(F.pickables); for (const k in PARTMESH) { const a = PARTMESH[k]; if (a.some(m => mine.has(m))) PARTMESH[k] = a.filter(m => !mine.has(m)); } if (F.T) F.T.dispose(); F.T = null; if (F.proxy) F.proxy.visible = true; F.proxy = null; F._vs = F._legendKey = F._lastModeId = undefined; };   // a thing that is far away gives its meshes back (thSweep); it is built again when the camera returns
     F.update = (dt, t) => thFrameUpdate(F, dt, t);
     F.chooseHit = cands => thChooseHit(F, cands);
     F.cardMadeOf = (h, n) => thCardMadeOf(F, h, n);
@@ -478,15 +500,15 @@ FT.thing = {
   }
 };
 function thBindFrame(F, T, def) {
-  const k = T.k, u = T.u;
-  F.blurb = def.blurb || ''; F.note = def.model_note || ''; F.timeNote = T.timeNote || '';
+  const k = T.s, u = T.u, fu = T.fu;   // k: frame units per model metre (in the park: the placement's scale); fu: frame units per metre
+  F.blurb = def.blurb || ''; F.note = (F.opts.note ? F.opts.note + ' ' : '') + (def.model_note || ''); F.timeNote = T.timeNote || '';
   F.coreText = { head: 'Under this point, from the outside inward', note: `Depths are on the model of this ${(def.title || 'thing').toLowerCase()}, not a measurement of a real one.` };
   F.spawnD = .006 * u; F.floorD = .0015 * u;   // no zooming into an empty gap: a part's tissue takes over at spawnD, otherwise the view stops here
   // controls: one button per layer mode, built now so the frame's control bar is ready when the camera arrives
   const modes = (def.auto ? [['auto', def.auto.label || 'Auto']] : []).concat(def.modes.map(m => [m.id, m.label]));
   building = F;
   try {
-    const row = seg(modes, T.modeId, m => { T.setMode(m); thUpdateControls(F); });
+    const row = seg(modes, T.modeId, m => thChooseMode(F, m));
     F.uiRow = row; row.classList.add('thModes');
     F.cutBtn = actBtn('Turn the cut to face me', () => { T.faceCut(); }); F.cutBtn.style.display = 'none';
     F.showAllBtn = actBtn('Show everything', () => { F.hidden.clear(); F.reveal = null; F.sel = null; toast('Everything is back.'); }); F.showAllBtn.style.display = 'none';
@@ -505,9 +527,9 @@ function thBindFrame(F, T, def) {
       priority: pd.priority ?? (pd.parent ? 2 : 1.5), shown: 0,
       madeOf: pd.deeper ? 'thing' : undefined, material: pd.material,
       center: h => (h && h.pointLocal) ? h.pointLocal.clone() : partCenter(),
-      radius: h => Math.max(pd.fly_m !== undefined ? pd.fly_m * k * .5 : Math.min(.015 * u, (pd.radius || .1) * k * 1.2), Math.min((pd.radius || .1) * k * .3, thingR * .2)),   /* the smallest distance a flight to the part goes to: part.fly_m, else the default for a hand-sized thing but no larger than 1.2 radii of a tiny part */
+      radius: h => Math.max(pd.fly_m !== undefined ? pd.fly_m * k * .5 : Math.min(.015 * u * fu, (pd.radius || .1) * k * 1.2), Math.min((pd.radius || .1) * k * .3, thingR * .2)),   /* the smallest distance a flight to the part goes to: part.fly_m, else the default for a hand-sized thing but no larger than 1.2 radii of a tiny part */
       /* what a click frames: the whole part; for one of a crowd (a leaf, a hair) the point clicked, at the size of one instance */
-      extent: h => rec.instanced || rec.flow ? { p: h && h.pointLocal ? h.pointLocal.clone() : partCenter(), r: thInstSize(T, rec, h) } : { p: partCenter(), r: Math.max((pd.radius || .1) * k, 1e-5) }
+      extent: h => rec.instanced || rec.flow ? { p: h && h.pointLocal ? h.pointLocal.clone() : partCenter(), r: thInstSize(T, rec, h) } : { p: partCenter(), r: Math.max((pd.radius || .1) * k, 1e-9) }
     });
     if (rec.instanced) g.userData.resolve = hit => pd.id;
     g.userData.main.userData.pickRoot = g;
@@ -520,11 +542,14 @@ function thBindFrame(F, T, def) {
     const hl = F.label(g, h.label || nodeTitle(h.node), { offset: new V3(0, (def.radius_m || 1) * k * .05, 0) });
     hl.minSizeFn = () => hovered === g || (F.selNode === h.node && !!infoState && infoState.node === h.node);   // a marker's name shows only while it is pointed at (or its card is open): a label above each marker covered its neighbours, and a click on one opened another's card
   }
-  F.labelObj = new THREE.Object3D(); F.labelObj.position.set(0, ((def.height_m || def.radius_m || 1) * k) + .12 * u, 0); F.add(F.labelObj);
+  F.labelObj = new THREE.Object3D(); if (F.opts.labelAt) F.labelObj.position.set(...F.opts.labelAt).multiplyScalar(k).applyQuaternion(T.xf.q); else F.labelObj.position.set(0, ((def.height_m || def.radius_m || 1) * k) + .12 * u * fu, 0).applyQuaternion(T.xf.q); F.add(F.labelObj);
   const mainRec = T.parts[def.main_part || (def.parts[0] || {}).id];
-  if ((F.opts.n || 0) === 0 || !def.label_first_only) { const nl = F.label(F.labelObj, def.label || def.title, { cls: 'thName', pick: mainRec && mainRec.g }); nl.minSizeFn = f => f.dLoc < (def.label_m || (def.radius_m || 1) * k * 25); }
+  if ((F.opts.n || 0) === 0 || !def.label_first_only) { const nl = F.label(F.labelObj, def.label || def.title, { cls: 'thName', pick: mainRec && mainRec.g }); nl.minSizeFn = f => f.dLoc < (def.label_m ? def.label_m * fu : (def.radius_m || 1) * k * 25) && (!F.opts.labelIf || F.opts.labelIf(F)); }
   thUpdateControls(F);
 }
+/* A view chosen by its button: the choice stands on its own, so a part that a card or a jump had revealed (kept showing through every view) is let go;
+   and the camera turns to where the view says it is best seen from (mode.view). */
+function thChooseMode(F, m) { const T = F.T; if (!T) return; F.reveal = null; F.sel = null; T.setMode(m); thUpdateControls(F); if (m !== 'auto') thModeView(F, T.modeDef(m)); }
 function thUpdateControls(F) {
   const T = F.T; if (!T) return;
   if (F.uiRow) F.uiRow.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === T.modeId)); const real = T.modeId === 'auto' ? null : T.modeDef(T.modeId);
@@ -549,17 +574,19 @@ function thGroundFade(on) {
   _thFaded = on; const m = P.ground.material; m.transparent = on; m.opacity = on ? .16 : 1; m.depthWrite = !on; m.needsUpdate = true; if (P.grass) P.grass.visible = !on;
   P.ground.userData.noPick = on; if (P.grass) P.grass.userData.noPick = on;   // see-through ground cannot be clicked: what is below it can (it used to open "Ground and soil")
 }
-let _thPark = null;
 function thFrameUpdate(F, dt, t) {
   const T = F.T; if (!T) return;
-  // sun and sky light copied from the park so shading and day/night agree
-  const P = FR.park;
+  F._seen = performance.now();
+  // sun and sky light copied from the park (or from the frame the thing stands in: a landscape, the Earth) so shading and day/night agree; a thing in a device or on the stage keeps its plain pair
+  const env = F.opts.env || 'park', P = env === 'park' ? FR.park : env === 'sun' ? F.parent : null;
   if (P && P.scene) {
-    if (!_thPark || _thPark.scene !== P.scene) { _thPark = { scene: P.scene, sun: null, hemi: null }; P.scene.traverse(o => { if (o.isDirectionalLight && !_thPark.sun) _thPark.sun = o; if (o.isHemisphereLight && !_thPark.hemi) _thPark.hemi = o; }); }
-    // this frame's own lights are copies of the park's (used when it is drawn alone); the reduction to sun x 0.75 and sky x 0.55 (less at night) is in the shader (thPatch)
-    if (_thPark.sun) { T.lights.sun.position.copy(_thPark.sun.position).normalize().multiplyScalar(40); T.lights.sun.intensity = _thPark.sun.intensity; T.lights.sun.color.copy(_thPark.sun.color); TH_LIGHT.uThSun.value = .75; }
-    if (_thPark.hemi) { const day = Math.min(1, _thPark.sun ? _thPark.sun.intensity / 1.15 : 1); T.lights.hemi.intensity = _thPark.hemi.intensity; T.lights.hemi.color.copy(_thPark.hemi.color); T.lights.hemi.groundColor.copy(_thPark.hemi.groundColor); /* the sky light's direction is up (the engine keeps a hemisphere light's direction independent of the camera: fixSceneLights) */ TH_LIGHT.uThSky.value = .55 * (.18 + .82 * day); }
-    if (P.scene.fog && F.scene.fog !== P.scene.fog) F.scene.fog = P.scene.fog;
+    let hl = P._thL; if (!hl || hl.scene !== P.scene) { hl = P._thL = { scene: P.scene, sun: null, hemi: null }; P.root.traverse(o => { if (o.isDirectionalLight && !hl.sun) hl.sun = o; if (o.isHemisphereLight && !hl.hemi) hl.hemi = o; }); }
+    const L = env === 'park' ? TH_LIGHT : F.thL;
+    // this frame's own lights are copies of the host's (used when it is drawn alone); the reduction to sun x 0.75 and sky x 0.55 (less at night) is in the shader (thPatch)
+    if (hl.sun) { T.lights.sun.position.copy(hl.sun.position).normalize().multiplyScalar(40); T.lights.sun.intensity = hl.sun.intensity; T.lights.sun.color.copy(hl.sun.color); L.uThSun.value = .75; }
+    if (hl.hemi) { const day = Math.min(1, hl.sun ? hl.sun.intensity / 1.15 : 1); T.lights.hemi.intensity = hl.hemi.intensity; T.lights.hemi.color.copy(hl.hemi.color); T.lights.hemi.groundColor.copy(hl.hemi.groundColor); /* the sky light's direction is up (the engine keeps a hemisphere light's direction independent of the camera: fixSceneLights) */ L.uThSky.value = .55 * (.18 + .82 * day); }
+    else if (env === 'sun') { T.lights.hemi.intensity = .12; L.uThSky.value = 1; }   // in space there is no sky: a little fill light so the night side is not black
+    if (env === 'park' && P.scene.fog && F.scene.fog !== P.scene.fog) F.scene.fog = P.scene.fog;
   }
   const C = F.C || _thV.set(0, 0, 0);   // camera position in frame coordinates; in the shifted frame root the camera sits at the world origin (T.camW stays 0)
   _thOff.copy(F.root.position);
@@ -572,7 +599,7 @@ function thFrameUpdate(F, dt, t) {
   if (F._arr === undefined) F._arr = 0; if (F._arr < 1) F._arr = Math.min(1, F._arr + dt / .4);   // a thing that has just loaded fades in over 0.4 s
   T.update(dt, C, _thOff, F.alpha * F._arr);
   if (T.shownSig !== F._vs) { F._vs = T.shownSig; viewChanged(); }   // the parts that can be seen have changed: the hover under a resting pointer is worked out again
-  thGroundFade(FR.things.some(f => f.T && f.T.seeThrough && f.alpha > .5));
+  if (env === 'park') thGroundFade(FR.things.some(f => f.T && f.T.seeThrough && f.alpha > .5 && f.parent === FR.park));
   if (F._lastModeId !== T.modeId) { F._lastModeId = T.modeId; thUpdateControls(F); F.mode = T.modeId; }
   const n = F.hidden.size, on = n || F.reveal, dsp = on ? '' : 'none'; if (F.showAllBtn.style.display !== dsp) F.showAllBtn.style.display = dsp;
   const txt = n ? `Show everything (${n} hidden)` : 'Show everything'; if (on && F.showAllBtn.textContent !== txt) F.showAllBtn.textContent = txt;
@@ -592,7 +619,7 @@ function thRayStack(F, targetFrame) {
   for (const rec of T.coreRecs()) {
     if (rec.instanced || rec.rank === undefined || T.hidden.has(rec.pd.id)) continue;
     const m = rec.g.userData.main; m.updateWorldMatrix(true, false);
-    const hit = raycaster.intersectObject(m, false).find(x => !T.isClipped(x.point)); if (hit) rows.push({ id: rec.pd.id, e: hit.distance, rank: rec.rank });
+    const hit = raycaster.intersectObject(m, false).find(x => !T.isClipped(x.point)); if (hit) rows.push({ id: rec.pd.id, e: hit.distance * T.unit, rank: rec.rank });   // e: metres along the ray (the peel constants are metres)
   }
   rows.sort((a, b) => a.e - b.e); return rows;
 }
@@ -625,7 +652,7 @@ function thAutoUpdate(F, dt) {
   if (!useAuto && !rv) { T.revealOp = T.revealId = T.revealFront = null; T.autoGround = false; return; }
   if (!T.peelScale) T.peelScale = a && a.scale || Math.max(.15, (T.def.height_m || 1) * T.k / 1.75);
   const S = F._pk = F._pk || { t: -1, key: '' }, now = performance.now();
-  camPosIn(F, _tpo); const dist = _tpo.distanceTo(_tpc.set(0, (T.def.radius_m || 1) * T.k * .5, 0)), active = (a && a.active_m) || (T.def.radius_m || 1) * T.k * 2.5;
+  camPosIn(F, _tpo); const dist = _tpo.distanceTo(_tpc.set(0, (T.def.radius_m || 1) * T.s * .5, 0).applyQuaternion(T.xf.q)) * T.unit, active = (a && a.active_m) || (T.def.radius_m || 1) * T.k * 2.5;
   if (useAuto && !rv && dist > active) {   // far: the outermost layer, solid
     const ops = {}; T.layers.forEach((l, i) => (l.systems || []).forEach(s => ops[s] = i === 0 ? 1 : 0)); Object.assign(ops, a.always || {});
     T.peelMode.show = ops; T.layerName = (T.layers[0].label || T.layers[0].id || ''); T.revealOp = T.revealId = T.revealFront = null; T.autoGround = false; S.key = ''; return;
@@ -634,7 +661,7 @@ function thAutoUpdate(F, dt) {
   if (key === S.key || now - S.t < 110) return; S.key = key; S.t = now;
   let tl = null, tgt = null; if (rv) tl = new V3(...T.parts[rv.id].pd.center).applyMatrix4(T.group.matrix);
   const rows = thRayStack(F, tl);
-  if (rv) { let k = rows.findIndex(r => r.id === rv.id); if (k < 0) { const dc = _tpo.distanceTo(tl); k = rows.filter(r => r.e < dc * .97).length; } tgt = { n: k, rank: T.parts[rv.id].rank }; T.revealFront = new Set(rows.slice(0, k).filter(r => r.rank >= tgt.rank).map(r => r.id)); }
+  if (rv) { let k = rows.findIndex(r => r.id === rv.id); if (k < 0) { const dc = _tpo.distanceTo(tl) * T.unit; k = rows.filter(r => r.e < dc * .97).length; } tgt = { n: k, rank: T.parts[rv.id].rank }; T.revealFront = new Set(rows.slice(0, k).filter(r => r.rank >= tgt.rank).map(r => r.id)); }
   const P = thPeel(T, rows, tgt, 1 - smooth(active * .35, active * .6, dist));
   if (useAuto) { const ops = Object.assign({}, P.ops, a.always || {}); T.peelMode.show = ops; T.layerName = P.focus; }
   // `auto.ground_see_through`: the layer rank (true = 1) from which the park's ground is drawn see-through, so that what lies below it can be seen and clicked
@@ -694,8 +721,12 @@ function thSpawn(F, T0, hint) {
     rec = F.T.list.find(r => r.pd.node === hu.hotspot.node && !r.flow) || null; if (!rec) return null;
   } else rec = thPartAt(F, hint);
   if (!rec) return null;
-  if (rec.pd.deeper) return thDeepFrame(rec.pd.deeper, T0, undefined, F.unit);
-  return typeof DESCENT !== 'undefined' ? DESCENT.spawnFor(F, thQuery(rec), T0) : null;
+  /* The scene of one part is larger than a thin part (a tissue scene's frame is 3 mm, a coating of the cell 0.07 mm). Once it has been entered and left, a zoom
+     that is aimed at another part of the thing must not fall into it again: it is entered again only with the pointer on the part it was made for. */
+  const forObj = hint && hint.obj;   // what the pointer was on when the scene was made (a peeled layer in front of the part, or a marker, is not the part itself)
+  const own = f => { if (f && forObj) f.enterIf = aim => !f.entered || aim.frame !== F || aim.obj === rec.g || aim.obj === forObj; return f; };
+  if (rec.pd.deeper) return own(thDeepFrame(rec.pd.deeper, T0, undefined, F.unit));
+  return own(typeof DESCENT !== 'undefined' ? DESCENT.spawnFor(F, thQuery(rec), T0) : null);
 }
 const TH_CELLS = {
   plant: { name: 'Plant cell', opts: { type: 'plant' }, off: -10 },
@@ -725,7 +756,7 @@ function thGoDeeper(F, h, d, dflt) {
 const _thIM = new THREE.Matrix4(), _thIS = new V3();
 function thInstSize(T, rec, h) {
   const m = h && h.hit && h.hit.object, i = h && h.hit ? h.hit.instanceId : undefined;
-  if (m && m.isInstancedMesh && i !== undefined && m.geometry) { if (!m.geometry.boundingSphere) m.geometry.computeBoundingSphere(); m.getMatrixAt(i, _thIM); _thIS.setFromMatrixScale(_thIM); return Math.max(m.geometry.boundingSphere.radius * Math.max(_thIS.x, _thIS.y, _thIS.z) * T.k, 1e-5); }
+  if (m && m.isInstancedMesh && i !== undefined && m.geometry) { if (!m.geometry.boundingSphere) m.geometry.computeBoundingSphere(); m.getMatrixAt(i, _thIM); _thIS.setFromMatrixScale(_thIM); return Math.max(m.geometry.boundingSphere.radius * Math.max(_thIS.x, _thIS.y, _thIS.z) * T.s, 1e-9); }
   return null;
 }
 /* The cut-open view of a thing, for a double click on one of its parts or its card's "Look inside": when the thing has a cut or sample mode near the
@@ -745,7 +776,10 @@ function thCutOpen(F, h, peek) {
     if (dd < bd - 1e-9) { bd = dd; best = m; }
   }
   if (!best) return false;
-  if (!peek) { T.setMode(best.id); thUpdateControls(F); toast(`${best.label}: a cut-open view. Double-click a part again to go further in.`); }
+  if (!peek) {
+    T.setMode(best.id); thUpdateControls(F); toast(`${best.label}: a cut-open view. Double-click a part again to go further in.`);
+    if (!thModeView(F, best) && cam.A !== F && R * T.k < cam.D * .22) { const c = thLocalToFrame(T.def, T.pl, [0, (T.def.height_m || 0) / 2, 0]); flyKeep(F, c, R * T.k * 2.6, () => { if (F.T) F.T.faceCut(); }); camHold = F; }   // a small thing seen from afar (the cell in the opened phone): come up to it
+  }
   return 'cut';
 }
 /* the card's "See what it is made of" button: a part's or a marker's own `deeper`; (a frame's cardMadeOf: see CARD_HOOKS in nodes.js) */
@@ -806,19 +840,65 @@ function thSurfacePoint(def, part) {
   const ck = def.id + ':' + part.id; if (ck in _thSurf) return _thSurf[ck];
   const g = thGeo(def.id, b, part.mesh), pos = g && g.attributes.position; if (!pos) return _thSurf[ck] = null;
   const c = part.center; let bd = 1e18, bi = -1; for (let i = 0; i < pos.count; i++) { const dx = pos.getX(i) - c[0], dy = pos.getY(i) - c[1], dz = pos.getZ(i) - c[2], d = dx * dx + dy * dy + dz * dz; if (d < bd) { bd = d; bi = i; } }
-  return _thSurf[ck] = bi >= 0 && Math.sqrt(bd) > .2 * (part.radius || 0) ? [pos.getX(bi), pos.getY(bi), pos.getZ(bi)] : null;
+  if (!(bi >= 0 && Math.sqrt(bd) > .2 * (part.radius || 0))) return _thSurf[ck] = null;
+  /* A mesh of a few large flat faces (a box, a pouch) has its corners far from the middle of its faces: there the nearest point of the surface itself is used,
+     not the nearest corner (which would aim the flight at an edge of the part). Only for small meshes; a dense organic mesh keeps its nearest vertex. */
+  const ix = g.index; let out = [pos.getX(bi), pos.getY(bi), pos.getZ(bi)];
+  if (ix && ix.count <= 6000) {
+    const P = new V3(c[0], c[1], c[2]), tri = new THREE.Triangle(), q = new V3(); let b2 = Infinity;
+    for (let t = 0; t < ix.count; t += 3) { tri.a.fromBufferAttribute(pos, ix.getX(t)); tri.b.fromBufferAttribute(pos, ix.getX(t + 1)); tri.c.fromBufferAttribute(pos, ix.getX(t + 2)); tri.closestPointToPoint(P, q); const d = q.distanceToSquared(P); if (d < b2 - 1e-18) { b2 = d; out = [q.x, q.y, q.z]; } }
+  }
+  return _thSurf[ck] = out;
 }
-function thFindNode(id) {
+/* The separate pieces of a part's mesh (several small bones or petals baked into one mesh): connected sets of triangles, found once per mesh by joining
+   triangles that share a corner (corners at the same place count as one); pieces whose bounds overlap are one piece (a ring of touching scales).
+   Returns [{c: [x, y, z], r}] with the largest first, or null (no bundle yet, or too large a mesh to be worth it). */
+const _thPieces = {};
+function thPieces(def, part) {
+  const b = TH.done && TH.done[def.id]; if (!b || !part.mesh) return null;
+  const ck = def.id + ':' + part.mesh; if (ck in _thPieces) return _thPieces[ck];
+  const g = thGeo(def.id, b, part.mesh), pos = g && g.attributes.position, idx = g && g.index; if (!pos || !idx || pos.count > 150000) return _thPieces[ck] = null;
+  const n = pos.count, par = new Int32Array(n), A = pos.array, I = idx.array; for (let i = 0; i < n; i++) par[i] = i;
+  const find = i => { while (par[i] !== i) { par[i] = par[par[i]]; i = par[i]; } return i; }, join = (a, b) => { a = find(a); b = find(b); if (a !== b) par[b] = a; };
+  const seen = new Map(), q = 1 / Math.max(1e-12, (part.radius || 1) * 2e-5);
+  for (let i = 0; i < n; i++) { const k = Math.round(A[i * 3] * q) + ',' + Math.round(A[i * 3 + 1] * q) + ',' + Math.round(A[i * 3 + 2] * q), j = seen.get(k); if (j === undefined) seen.set(k, i); else join(j, i); }
+  for (let t = 0; t < I.length; t += 3) { join(I[t], I[t + 1]); join(I[t], I[t + 2]); }
+  const comp = new Map();
+  for (let i = 0; i < n; i++) { const r = find(i); let c = comp.get(r); if (!c) comp.set(r, c = { lo: [1e30, 1e30, 1e30], hi: [-1e30, -1e30, -1e30] }); for (let a = 0; a < 3; a++) { const v = A[i * 3 + a]; if (v < c.lo[a]) c.lo[a] = v; if (v > c.hi[a]) c.hi[a] = v; } }
+  let P = [...comp.values()]; const ball = c => { c.c = [0, 1, 2].map(a => (c.lo[a] + c.hi[a]) / 2); c.r = Math.hypot(c.hi[0] - c.lo[0], c.hi[1] - c.lo[1], c.hi[2] - c.lo[2]) / 2; return c; }; P.forEach(ball);
+  if (P.length > 1 && P.length <= 1500) {   // overlapping pieces are one
+    const pp = P.map((_, i) => i), f2 = i => { while (pp[i] !== i) { pp[i] = pp[pp[i]]; i = pp[i]; } return i; };
+    for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) { const a = P[i], c = P[j]; if (Math.hypot(a.c[0] - c.c[0], a.c[1] - c.c[1], a.c[2] - c.c[2]) < .6 * (a.r + c.r)) { const x = f2(i), y = f2(j); if (x !== y) pp[y] = x; } }
+    const M = new Map(); P.forEach((c, i) => { const r = f2(i), m = M.get(r); if (!m) M.set(r, { lo: c.lo.slice(), hi: c.hi.slice() }); else for (let a = 0; a < 3; a++) { m.lo[a] = Math.min(m.lo[a], c.lo[a]); m.hi[a] = Math.max(m.hi[a], c.hi[a]); } });
+    P = [...M.values()].map(ball);
+  }
+  return _thPieces[ck] = P.map(c => ({ c: c.c, r: c.r })).sort((a, b) => b.r - a.r);
+}
+/* One representative piece of a part that is made of several separate small pieces, chosen as a representative instance is (thRepInstance): within reach,
+   then the outermost. null when the part is one piece, or its largest piece is most of it. */
+function thRepPiece(def, part) {
+  const P = thPieces(def, part); if (!P || P.length < 2 || !(part.radius > 0) || P[0].r > .45 * part.radius) return null;
+  const big = P.filter(p => p.r >= .3 * P[0].r); if (big.length < 2) return null;
+  let y0 = 1e30, y1 = -1e30, cx = 0, cz = 0; for (const p of big) { y0 = Math.min(y0, p.c[1]); y1 = Math.max(y1, p.c[1]); cx += p.c[0]; cz += p.c[2]; } cx /= big.length; cz /= big.length;
+  const tall = (def.height_m || def.radius_m || 1) > 2, lim = tall ? y0 + (y1 - y0) * .34 : 1e30;
+  let best = null, bs = -1; for (const p of big) { if (p.c[1] > lim) continue; const s = Math.hypot(p.c[0] - cx, p.c[2] - cz); if (s > bs + 1e-12) { bs = s; best = p; } }
+  best = best || big[0]; return { p: best.c, size: best.r };
+}
+/* where a flight to one of a crowd ends: about six sizes of the one instance or piece away, no nearer than a flight to a part of that size would go, and never further than half the thing */
+function thOneD(def, x, part, size) { const u = thUnit(def, x.k); return Math.min(Math.max(size * x.k * 6, thMinFly({ radius: size, fly_m: part.fly_m }, x.k, u)), (def.radius_m || 1) * x.k * .5); }
+function thFindNode(id0) {
   for (const f of FR.things || []) {
     const def = TH.loaded[f.opts.thing]; if (!def) continue; const pl = f.opts.placement || {}, x = thPlacement(def, pl);
+    const id = (def.answers || []).includes(id0) ? def.node : id0;   // `answers`: other cards this thing is the model of (the phone's short battery card): going to one of them leads to the thing, with its own card
     const hit = def.parts.find(p => p.node === id && p.lod !== 'far') || def.parts.find(p => p.node === id), hs = (def.hotspots || []).find(h => h.node === id);
     const fc = hit && hit.flow ? thFlowCentre(def, hit) : null;
-    const sp = hit && !fc && !hit.instances && (hit.radius || 0) * x.k > .03 ? thSurfacePoint(def, hit) : null;   // only for parts of a hand's size or more: a tiny part's centre is on it
-    const at = fc ? fc.c : sp ? sp : hit ? hit.center : hs ? hs.at : id === def.node ? (def.parts.find(p => p.id === def.main_part) || {}).center : null;
+    const pcs = hit && !fc && hit.mesh && hit.lod !== 'far' ? thRepPiece(def, hit) : null;   // a part made of several separate small pieces: one of them
+    const sp = hit && !fc && !pcs && !hit.instances && (hit.radius || 0) * x.k > .03 ? thSurfacePoint(def, hit) : null;   // only for parts of a hand's size or more: a tiny part's centre is on it
+    const at = fc ? fc.c : pcs ? pcs.p : sp ? sp : hit ? hit.center : hs ? hs.at : id === def.node ? (def.parts.find(p => p.id === def.main_part) || {}).center : null;
     if (!at) continue;
     const u = thUnit(def, x.k), rep = hit && hit.instances && hit.lod !== 'far' ? thRepInstance(def, pl, hit) : null, p = thLocalToFrame(def, pl, rep ? rep.p : at);
-    const D = rep ? Math.min(Math.max(rep.size * x.k * 6, .25 * u), (def.radius_m || 1) * x.k * .5) : Math.max((fc ? fc.r : (hit && hit.radius) || (def.radius_m || 1) * .5) * x.k * 3.2, thMinFly(hit, x.k, u));
-    return { f, p, pc: hit && !hit.instances ? thLocalToFrame(def, pl, hit.center) : null, D, part: hit || null, hs: hs && !hit ? hs : null, def, pl, inst: !!(hit && hit.instances && hit.lod !== 'far'), rep };
+    const D = rep ? thOneD(def, x, hit, rep.size) : pcs ? thOneD(def, x, hit, pcs.size) : Math.max((fc ? fc.r : (hit && hit.radius) || (def.radius_m || 1) * .5) * x.k * 3.2, thMinFly(hit, x.k, u));
+    return { id, f, p, pc: hit && !hit.instances && !pcs ? thLocalToFrame(def, pl, hit.center) : null, D, part: hit || null, hs: hs && !hit ? hs : null, def, pl, inst: !!(hit && hit.instances && hit.lod !== 'far'), rep, piece: pcs, one: !!(rep || pcs) };
   }
   return null;
 }
@@ -842,22 +922,57 @@ function thClearView(F, id, own, pc) {
   const az0 = Math.atan2(d0.z, d0.x);
   for (const el of [.45, .9, .1, -.3, -.7, -.95]) for (let k = 0; k < 8; k++) {
     const az = az0 + k * Math.PI / 4;
+    if (F.opts.ground && P.y + el * cam.D / F.unit < -F.pos.y + .1 * cam.D / F.unit) continue;   // never from beneath the ground
     cam.dir.set(Math.cos(az) * Math.sqrt(Math.max(0, 1 - el * el)), el, Math.sin(az) * Math.sqrt(Math.max(0, 1 - el * el)));
     setCamDir(cam.dir, up); if (!blocked()) { turned(); return true; }
   }
   setCamDir(d0, up); return false;
 }
+/* A thing that stands on a ground is never looked at from beneath it. dir: the direction from the target to the camera (frame coordinates, unit length), p: the
+   target, D: the viewing distance in metres. If the camera would end up under the ground plane (a root, a worm, a soil layer: the target itself is below it),
+   the view is lifted until the camera is a little above the ground, first by standing further back (up to three times), then by looking more steeply down.
+   Returns the distance to use; dir is changed in place. */
+function thAboveGround(F, p, D, dir) {
+  if (!F.opts.ground) return D;
+  const gy = -F.pos.y, need = () => (gy - p.y) / (D / F.unit) + .14;   // the least dir.y that keeps the camera above the ground, with a margin of a seventh of the distance
+  if (dir.y >= need()) return D;
+  const D0 = D; if (need() > .6) D = Math.min(D0 * 3, Math.max(D0, (gy - p.y) * F.unit / (.6 - .14)));
+  const y = Math.min(.94, need()), h = Math.hypot(dir.x, dir.z), k = Math.sqrt(1 - y * y);
+  if (h < 1e-6) dir.set(0, y, k); else dir.set(dir.x / h * k, y, dir.z / h * k);
+  return D;
+}
 function thFlyToNode(id, t) {
-  const F = t.f; showBodyNode(id, null); F.selNode = id; F.ensure(); F.spawnHold = t.D;
-  const R = (t.def.radius_m || 1) * (F.T ? F.T.k : 1), d = new V3(t.p.x, 0, t.p.z);
-  if (d.length() > R * .06) { d.y = d.length() * .12; d.normalize(); const u = new V3(0, 1, 0); convertD(d, F, cam.A); convertD(u, F, cam.A); cam.dir.copy(d); cam.up.copy(u); }   // look at it from the side it is on
+  const F = t.f; showBodyNode(id, null); F.selNode = id; F.ensure();
+  const R = (t.def.radius_m || 1) * thPlacement(t.def, t.pl).s, d = new V3(t.p.x, 0, t.p.z), up = F.up ? F.up.clone() : null;
+  const look = dv => { const d2 = dv.clone(); convertD(d2, F, cam.A); cam.dir.copy(d2); if (up) { const u = up.clone(); convertD(u, F, cam.A); cam.up.copy(u); } else orthoUp(); };
+  if (F.opts.view) look(new V3(...F.opts.view).normalize());   // a thing that lies in a device is looked at from the side that is open (the phone: from the screen side)
+  else if (d.length() > R * .06) { d.y = d.length() * .12; d.normalize(); look(d); }   // look at it from the side it is on
+  if (F.opts.ground) { const dv = cam.dir.clone(); convertD(dv, cam.A, F); dv.normalize(); const y0 = dv.y; t.D = thAboveGround(F, t.p, t.D, dv); if (dv.y !== y0) look(dv); }   // never from beneath the ground
+  F.spawnHold = t.D;
   flyTo(F, t.p, t.D, () => { if (F.T && (F.T.cutActive || (F.T.curMode && F.T.curMode.pivot))) F.T.faceCut(); /* the cut was aimed when the flight began, from far away: aim it again from where the camera has landed */ const t0 = performance.now(), tries = [350, 1100, 2000, 3200, 4500]; let k = 0; const again = () => { if (cam.A !== F || fly || lastInput > t0 + 200 || !(infoState && infoState.node === id)) return; thClearView(F, id, k >= 1); if (++k < tries.length) setTimeout(again, tries[k] - tries[k - 1]); }; /* every time: the picking trees of a crowd are built in idle time, so an early look can miss what is in front */ setTimeout(again, tries[0]); }); camHold = F;
   F.ready.then(() => {
     const T = F.T; if (!T) return;
-    if (t.inst && !t.rep) { const r = thRepInstance(t.def, t.pl, t.part); if (r && fly && fly.frame === F) { const x = thPlacement(t.def, t.pl), u = thUnit(t.def, x.k); fly.p.copy(thLocalToFrame(t.def, t.pl, r.p)); fly.Dg = Math.min(Math.max(r.size * x.k * 6, .25 * u), (t.def.radius_m || 1) * x.k * .5); } }
-    if (t.part) { const mid = thModeFor(T, t.part); if (mid) { T.setMode(mid); thUpdateControls(F); } F.sel = t.part.id; if (T.parts[t.part.id] && T.parts[t.part.id].rank !== undefined) F.reveal = { id: t.part.id }; }
+    if (t.part && !t.one && fly && fly.frame === F) {   // the meshes had not arrived when the flight began: now one instance, or one piece, can be chosen
+      const x = thPlacement(t.def, t.pl), r = t.inst ? thRepInstance(t.def, t.pl, t.part) : t.part.mesh && t.part.lod !== 'far' ? thRepPiece(t.def, t.part) : null;
+      if (r) { fly.p.copy(thLocalToFrame(t.def, t.pl, r.p)); fly.Dg = thOneD(t.def, x, t.part, r.size); t.p = fly.p.clone(); t.one = true; if (F.opts.ground) { const dv = cam.dir.clone(); convertD(dv, cam.A, F); dv.normalize(); const y0 = dv.y; fly.Dg = thAboveGround(F, fly.p, fly.Dg, dv); if (dv.y !== y0) look(dv); } F.spawnHold = fly.Dg; }
+    }
+    if (t.part) {
+      const mid = thModeFor(T, t.part); if (mid) { T.setMode(mid); thUpdateControls(F); } F.sel = t.part.id; if (T.parts[t.part.id] && T.parts[t.part.id].rank !== undefined) F.reveal = { id: t.part.id };
+      // a part below the ground, shown in a view that is cut along a fixed plane: stand in front of the cut face (on the side the camera is nearer to), above the ground
+      const md = T.modeId === 'auto' ? null : T.modeDef(T.modeId), cn = md && md.cut && md.cut.normal;
+      if (cn && F.opts.ground && fly && fly.frame === F && fly.p.y < -F.pos.y) {
+        const n = new V3(cn[0], 0, cn[2]).applyQuaternion(T.xf.q); n.y = 0;
+        if (n.lengthSq() > 1e-6) {
+          n.normalize(); const at = thLocalToFrame(t.def, t.pl, md.cut.at || (t.def.cut && t.def.cut.at) || [0, 0, 0]), side = n.dot(fly.p.clone().sub(at)), dv = cam.dir.clone(); convertD(dv, cam.A, F);
+          if (Math.abs(side) > 1e-6 * F.radius ? side > 0 : n.dot(dv) < 0) n.negate();   // the half beyond the plane is the one that is kept: stand on the side from which the part lies beyond it (a part on the plane: the side the camera is nearer to)
+          fly.Dg = thAboveGround(F, fly.p, fly.Dg, n); look(n); F.spawnHold = fly.Dg;
+        }
+      }
+      const mv = (md || T.curMode || {}).view; if (mv && mv.dir && t.part.parent) look(new V3(...mv.dir).applyQuaternion(T.xf.q).normalize());   // a detail of a cut view: from where the view shows its face
+    }
     else if (t.hs) {
       const mid = (t.hs.modes || [])[0]; if (mid && T.modeDef(mid) && T.modeId !== mid) { T.setMode(mid); thUpdateControls(F); }
+      const mv = mid && T.modeDef(mid) && T.modeDef(mid).view; if (mv && mv.dir) look(new V3(...mv.dir).applyQuaternion(T.xf.q).normalize());
       if (!mid) {   // a marker that is never drawn (a card about a tissue scene inside the thing): peel what is in front of the nearest part that lies below the surface layer
         const a = new V3(...t.hs.at); let best = null, bd = 1e9;
         for (const rec of T.list) { if (rec.rank === undefined || !(rec.rank > 0) || rec.pd.parent || rec.instanced || !rec.pd.center) continue; const d = a.distanceTo(new V3(...rec.pd.center)) - (rec.pd.radius || 0); if (d < bd) { bd = d; best = rec; } }
@@ -866,9 +981,141 @@ function thFlyToNode(id, t) {
     }
   });
 }
-GOTO_HOOKS.push(id => { const t = thFindNode(id); if (!t) return false; thFlyToNode(id, t); return true; });
+/* A view (a layer mode) may say where it is best seen from: mode.view = { dir: [x, y, z] (from the thing toward the camera, thing coordinates), at: [x, y, z], D: metres }.
+   Choosing the view (its button, a double click that opens it) turns the camera there: a cut along a fixed plane is seen face on, not edge on. */
+function thModeView(F, md) {
+  const T = F.T, v = md && md.view; if (!T || !v || !(frameWithin(cam.A, F) || drawn.includes(F))) return false;
+  const at = thLocalToFrame(T.def, T.pl, v.at || (md.cut && md.cut.at) || [0, (T.def.height_m || 0) / 2, 0]), dv = new V3(...(v.dir || [0, 0, 1])).applyQuaternion(T.xf.q).normalize();
+  let D = (v.D || (T.def.radius_m || 1) * 2.4) * T.k; D = thAboveGround(F, at, D, dv);
+  convertD(dv, F, cam.A); cam.dir.copy(dv); if (F.up) { const u = F.up.clone(); convertD(u, F, cam.A); cam.up.copy(u); } else orthoUp();
+  flyKeep(F, at, D, () => { if (F.T) F.T.faceCut(); }); camHold = F; F.spawnHold = D; return true;
+}
+GOTO_HOOKS.push(id => { const t = thFindNode(id); if (!t) return false; thFlyToNode(t.id, t); return true; });
 
-/* ---------- placing things in the park ---------- */
+/* ---------- placing things: in the park, and anywhere else ----------
+   A placement (data/things/index.json) says where one copy of a thing stands. `in` names the place; without it the thing stands in the park.
+
+     in            where                                                  the placement's other fields
+     (none) park   the park's lawn                                        at [x, z] metres, y, or on {thing, placement, at}
+     phone         the phone in the hand (js/teardown.js)                 part: a teardown part id (the thing takes that part's place), or at [x, y, z] in mm
+     body          the standing human                                     at [x, y, z] metres in the body's own coordinates (feet at the origin)
+     organ:<id>    the cut-open view of an organ                          at [x, y, z] metres from the organ's centre
+     earth         a spot on the Earth's surface                          lat, lon (degrees), place (its name), biome, at [x, z] metres from the spot
+     orbit         a circular orbit round the Earth                       alt_km, incl_deg, period_min, phase_deg
+     floating      nowhere: alone on a neutral ground with a scale bar    (nothing)
+     <FR key>      any fixed frame (skin, cell, region ...)               at [x, y, z] in that frame's own units; light, merge, ground
+   and for all of them: rot (degrees about the vertical), tilt [rx, ry, rz], scale, seed.
+
+   THE RULE. A thing is drawn at its true size in a frame of its own that takes the UNIT of the frame it stands in (its host: 1 m in the park, 1 mm in the
+   phone, 1000 km round the Earth) and is CO-RENDERED with it: drawn whenever the host is drawn, in the same depth buffer, picked together with it
+   (nearest surface wins), and, where it has the host's axes and can live with the host's lights, inside the host's scene (one render call). The model
+   itself stays in metres; the group that holds it is scaled by 1 / unit. So everything a park thing can do works unchanged: detail tiers, layers and
+   Auto, cut views, markers, picking and hover names, click and double click, goToNode and search flights, the core sample, tissue scenes and the
+   descent to atoms, neighbours fading out of a close-up.
+   HAND-OVER. Where the host already draws a plain stand-in for the thing (the phone's battery block), the resolver names it as the frame's `proxy`: the
+   engine hides it while the thing is shown, and the thing's far detail tier is what is seen from a distance.
+   FAR AWAY. A thing outside the park that has not been drawn for a while is disposed (its meshes and materials are freed) and built again on return.
+
+   A resolver is TH_HOSTS.<name>(pl, def, R, arg) -> { host: Frame, pos: V3 (host units, the thing's base point), quat?, up?, env: 'park' | 'sun' | 'studio',
+   ground?, merge?, coMax?, r1?, note?, view?, place?(f), onBuilt?(f), keep? } or null. R is the thing's radius in metres; `arg` is what follows the colon. */
+const TH_HOSTS = {};
+const thAt3 = (a, d) => new V3(...(a && a.length === 3 ? a : d || [0, 0, 0]));
+TH_HOSTS.park = (pl, def, R) => ({ host: FR.park, pos: new V3(pl.at[0], pl.y || 0, pl.at[1]), up: new V3(0, 1, 0), env: 'park', ground: true, merge: true, coMax: def.draw_m || 400, r1: Math.max(R * 12, 8), keep: true });
+/* any fixed frame, by its key in FR: `at` in the host's own units */
+TH_HOSTS.frame = (pl, def, R, key) => { const host = FR[key]; return host ? { host, pos: thAt3(pl.at), up: host.up ? host.up.clone() : null, env: pl.light || 'studio', merge: !!pl.merge, ground: !!pl.ground } : null; };
+TH_HOSTS.body = (pl, def, R) => FR.body ? { host: FR.body, pos: thAt3(pl.at), up: new V3(0, 1, 0), env: 'studio', merge: false, ground: false } : null;
+TH_HOSTS.organ = (pl, def, R, arg) => { const host = FR.body && FR.body.children.find(c => c.type === 'organ' && c.opts && c.opts.organ === arg); return host ? { host, pos: thAt3(pl.at), up: null, env: 'studio', merge: false, ground: false } : null; };
+/* In the phone, taking the place of one of its parts (the battery block): the thing's middle sits on the part's middle and follows it as the phone opens up;
+   the part itself is the stand-in the engine hides while the thing is shown. The model is written in the phone's own axes (y along the long edge, z out of the screen). */
+TH_HOSTS.phone = (pl, def, R) => {
+  const host = FR.phone; if (!host) return null;
+  const half = (def.height_m || 0) / 2 * (pl.scale || 1) / host.unit, P = typeof PHONE_PARTS !== 'undefined' && pl.part ? PHONE_PARTS.find(p => p[0] === pl.part) : null;
+  const pos = thAt3(pl.at, P ? P[2] : null); pos.y -= half;
+  const part = () => host.built && pl.part ? host.pickables.find(o => o.userData && o.userData.id === pl.part) || null : null;
+  return {
+    host, pos, up: null, env: 'studio', merge: true, ground: false, view: [.32, .3, 1],
+    /* The cell fills half the phone, so a sphere about its base point would hold the phone's own centre and the plain view of the phone would count as a view
+       of the cell. Its frame is therefore the ball about its middle (def.bound_m), and it is entered only from close by (2.6 sizes), where it fills the view. */
+    center: new V3(0, half, 0), radius: (def.bound_m || R) * (pl.scale || 1) / host.unit * 1.1, r1: (def.bound_m || R) * (pl.scale || 1) * 5,
+    labelAt: [0, (def.height_m || 0) * .5, (def.size_m && def.size_m.thickness || 0) * .5],
+    place: f => { const g = part(); if (!g) return; f.pos.copy(g.position); f.pos.y -= half; if (f.T && f.proxy !== g) f.proxy = g; },
+    labelIf: f => (host.exK || 0) > .5 && cam.A !== f   // its name shows when the phone is opened up, like the names of the phone's own parts (and not once the camera is in it)
+  };
+};
+/* A spot on the Earth's surface: a 40 km map tile at the latitude and longitude and a landscape of the biome there, both fixed, like Greenwich and its park.
+   Things placed at the same `place` (or the same latitude and longitude) share them. */
+TH_HOSTS.earth = (pl, def, R) => {
+  const E = FR.earth; if (!E || typeof regionFrame !== 'function' || typeof landscapeFrame !== 'function' || pl.lat === undefined || pl.lon === undefined) return null;
+  const key = pl.place || (pl.lat.toFixed(3) + ',' + pl.lon.toFixed(3)); TH.places = TH.places || {};
+  let L = TH.places[key];
+  if (!L) {
+    const biome = pl.biome || 'grass', reg = E.addChild(regionFrame(E, pl.lat, pl.lon, biome, false)); reg.pinned = true;
+    L = reg.addChild(landscapeFrame(biome, new V3(), null, 'Earth')); L.pinned = true; if (pl.place) { reg.name = pl.place + ' (map)'; L.name = pl.place; }
+    TH.places[key] = L; L.region = reg;
+  }
+  const a = pl.at || [0, 0];
+  return { host: L, pos: new V3(a[0], pl.y || 0, a[1]), up: new V3(0, 1, 0), env: 'sun', ground: true, faceUp: true, merge: true, coMax: def.draw_m || 400, r1: Math.max(R * 12, 8) };
+};
+/* A circular orbit round the Earth, drawn in the Earth's frame the way the ISS marker is: the period comes from the data (a sourced figure), not from a formula here. */
+TH_HOSTS.orbit = (pl, def, R) => {
+  const host = FR.earth; if (!host || !pl.period_min) return null;
+  const r = (6371 + (pl.alt_km || 0)) * 1e3 / host.unit, T = pl.period_min * 60000, inc = (pl.incl_deg || 0) * Math.PI / 180, ph = (pl.phase_deg || 0) * Math.PI / 180, ax = new V3(1, 0, 0);
+  const at = out => { const a = (simTime / T) % 1 * Math.PI * 2 + ph; return out.set(Math.cos(a) * r, 0, Math.sin(a) * r).applyAxisAngle(ax, inc); };
+  /* It moves at several kilometres a second. While a flight is heading for it (or has just ended at it) and the camera is still in the Earth's frame, the camera's
+     target is carried along by the same step, so the flight closes in as on a thing that stands still; once inside its frame, the frame carries the camera. */
+  const last = new V3();
+  const place = f => { last.copy(f.pos); at(f.pos); if (cam.A === host && (fly ? fly.frame && chainOf(fly.frame).includes(f) : camHold === f)) cam.T.add(last.sub(f.pos).negate()); };
+  return { host, pos: at(new V3()), up: null, env: 'sun', merge: false, ground: false, coMax: def.draw_m || R * 4000, r1: Math.max(R * 40, 50), place, note: 'Its place on the orbit is illustrative: the orbit has the right height, tilt and period, but not the real position for this moment.' };
+};
+/* Nowhere: a thing with no home in the world model yet stands alone on a neutral ground with a scale bar (FT.thstage). Reached by search or a link only. */
+TH_HOSTS.floating = (pl, def, R) => {
+  const unit = Math.pow(10, Math.floor(Math.log10(Math.max(R, 1e-12))));   // a round unit near the thing's own size, so a virus and a turbine both get sound numbers
+  const stage = FR.root.addChild(new Frame({ type: 'thstage', name: 'Shown out of context', unit, radius: R / unit * 9, r0: 0, r1: 4e24, up: new V3(0, 1, 0), maxPolar: Math.PI / 2 - .03, opts: { R: R / unit, title: def.title } }));
+  stage.pinned = true; stage.enterOnly = true; stage.floorD = R * .02; stage.ceilD = R * 60;
+  return { host: stage, pos: new V3(), up: new V3(0, 1, 0), env: 'studio', merge: true, ground: true, r1: R * 30, coMax: R * 4000, note: `Shown out of context: ${(def.title || 'this').toLowerCase()} has no place in the world model yet, so it stands alone on a neutral ground. It is drawn at its true size: the bar on the ground gives the scale.` };
+};
+/* the bar of a neutral stage: the round length (1, 2 or 5 times a power of ten) nearest the thing's width */
+function thNiceLen(m) { const e = Math.pow(10, Math.floor(Math.log10(m))), f = m / e; return (f < 1.5 ? 1 : f < 3.5 ? 2 : f < 7.5 ? 5 : 10) * e; }
+FT.thstage = {
+  build(F, o) {
+    F.illo = true; F.device = true; F.env = { bg: 0xf1ede4, opaque: true };
+    F.add(new THREE.HemisphereLight(0xffffff, 0x8899aa, .6)); const d = new THREE.DirectionalLight(0xffffff, .8); d.position.set(1, 2, 3); F.add(d);
+    const R = o.R, gr = new THREE.Mesh(new THREE.CircleGeometry(R * 7, 72).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: 0xe6e0d3 })); gr.position.y = -R * .004; gr.matrixAutoUpdate = false; gr.updateMatrix(); F.add(gr);
+    gr.userData = { id: 'th_stage', priority: 0, noZoom: true, info: { title: 'A neutral ground', tag: 'Not a place', body: `<p>${o.title || 'This thing'} has no place in the world model yet (no room, street or workshop has been built for it), so it is shown here alone. The ground and the bar are not part of it. Its size is true.</p>` } }; F.pickables.push(gr);
+    // the scale bar: alternating dark and light fifths, lying on the ground in front of the thing
+    const L = thNiceLen(R * 1.6 * F.unit) / F.unit, bar = new THREE.Group(), seg = L / 5, h = R * .012;
+    for (let i = 0; i < 5; i++) { const m = new THREE.Mesh(new THREE.BoxGeometry(seg, h, R * .05), new THREE.MeshBasicMaterial({ color: i % 2 ? 0xf7f4ec : 0x2b2f38 })); m.position.set(-L / 2 + seg * (i + .5), h / 2, 0); m.matrixAutoUpdate = false; m.updateMatrix(); bar.add(m); }
+    bar.position.set(0, 0, R * 1.9); F.add(bar);
+    bar.userData = { id: 'th_scalebar', priority: 1, noZoom: true, info: { title: 'Scale bar: ' + fmtLen(L * F.unit), tag: 'Not part of the thing', body: `<p>The bar is ${fmtLen(L * F.unit)} long, in five equal parts. The thing behind it is drawn at its true size.</p>` } }; F.pickables.push(bar);
+    const lo = new THREE.Object3D(); lo.position.set(0, h * 4, R * 1.9); F.add(lo); F.label(lo, fmtLen(L * F.unit), { cls: 'thName', pick: bar, always: true });
+    F.blurb = `${o.title || 'This thing'}, shown on its own.`;
+    F.note = `Out of context: it has no place in the world model yet, so it stands alone on a neutral ground. Its size is true: the bar is ${fmtLen(L * F.unit)} long.`;
+    let said = 0;
+    F.update = () => {   // there is no wider picture to zoom out into: the view stops a little way out
+      if (cam.D <= F.ceilD || !frameWithin(cam.A, F) || fly) return;
+      cam.D = F.ceilD; if (zoom.pending > 0) zoom.pending = 0;
+      const now = performance.now(); if (now - said > 15000) { said = now; message('This thing is shown out of context: there is no wider view of where it belongs. Search, the ruler or Back lead elsewhere.'); }
+    };
+  }
+};
+/* One placement -> one frame. Also usable from the console, to try a place before writing it into the index:
+   thLoadDef('boulder').then(d => thPlace('boulder', d, { in: 'floating' }, 9)) */
+function thPlace(id, def, pl0, i, ix, defs) {
+  const pl1 = ix ? thResolvePlacement(pl0, ix, defs) : pl0, key = pl1.in || 'park', c = key.indexOf(':'), name = c < 0 ? key : key.slice(0, c), arg = c < 0 ? '' : key.slice(c + 1);
+  const Rm = (def.radius_m || 1) * thPlacement(def, pl1).k * 1.15;
+  let h = null; try { h = TH_HOSTS[name] ? TH_HOSTS[name](pl1, def, Rm, arg) : FR[name] && FR[name] instanceof Frame ? TH_HOSTS.frame(pl1, def, Rm, name) : null; } catch (e) { console.error('thing', id, 'placement', i, e); }
+  if (!h || !h.host) { console.error('thing', id, 'placement', i, ': there is no such place to stand in:', key); return null; }
+  const host = h.host, pl = Object.assign({}, pl1, { unit: host.unit });
+  const f = host.addChild(new Frame({ type: 'thing', name: def.title, unit: host.unit, radius: Rm / host.unit, r0: 0, r1: h.r1 || Rm * 12, up: h.up || null, pos: h.pos, quat: h.quat || new THREE.Quaternion(),
+    opts: { thing: id, placement: pl, n: i || 0, env: h.env || 'studio', ground: !!h.ground, merge: !!h.merge, note: h.note || '', view: h.view || null, labelIf: h.labelIf || null, labelAt: h.labelAt || null } }));
+  if (h.faceUp) f.faceUp = true;   // it stands on one-sided ground (a landscape): a flight to it does not end with the camera under that ground (faceSurface, js/engine.js)
+  if (h.center) f.center = h.center; if (h.radius) f.radius = h.radius;   // a resolver may give the ball that holds the thing (its middle, in frame units from the base point, and its radius) when the default, a ball about the base point, would take in too much of the host
+  f.noFade = true; f.coRender = true; f.coMax = h.coMax || Rm * 800; f.pinned = true; f.isThing = true; f.proxy = null; f.thHost = h; f.thFar = !h.keep;
+  if (h.place) f.place = () => h.place(f);
+  FR.things.push(f);
+  if (!FR['thing_' + id]) { FR['thing_' + id] = f; if (def.ruler) EXT_LANDMARKS.push({ label: def.ruler.label, D: def.ruler.D, frame: f, side: true, go: then => flyTo(f, thLocalToFrame(def, pl, def.ruler.at || [0, (def.height_m || 0) * .5, 0]), def.ruler.D, then) }); }
+  return f;
+}
 /* A placement is {at:[x,z], y?, rot, scale, seed}. `on: {thing, placement, at:[x,y,z]}` instead of at/y puts it on another thing's placement, at a point given in that
    thing's own coordinates (the bee on a buttercup flower): the position follows the host's scale, heading, lean and variation. */
 function thResolvePlacement(pl, ix, defs) {
@@ -877,19 +1124,23 @@ function thResolvePlacement(pl, ix, defs) {
   const p = thLocalToFrame(hd, hp, pl.on.at);
   return Object.assign({}, pl, { at: [hp.at[0] + p.x, hp.at[1] + p.z], y: (hp.y || 0) + p.y });
 }
+/* A thing outside the park that has not been drawn for a while gives back its meshes and materials; the engine builds it again when its host is next drawn. */
+const TH_FAR_MS = 25000;
+function thSweep() {
+  const now = performance.now(), ch = chainOf(cam.A), path = fly && fly.frame ? chainOf(fly.frame) : [];
+  for (const f of FR.things || []) if (f.thFar && f.built && f.T && !drawn.includes(f) && !ch.includes(f) && !path.includes(f) && now - (f._seen || 0) > TH_FAR_MS) { f.dispose(); TH.swept = (TH.swept || 0) + 1; }
+}
 WORLD_EXT.push(async FR => {
   const ix = await thLoadIndex(); FR.things = FR.things || []; const defs = {};
   for (const e of ix.things || []) { try { defs[e.id] = await thLoadDef(e.id); } catch (err) { console.error('thing data missing', e.id, err); } }
   for (const e of ix.things || []) {
     const def = defs[e.id]; if (!def) continue;
-    loadNote(def.label || def.title || e.id, thLoadBundle(e.id)); def.parts.forEach(p => { if (p.deeper && p.deeper.type === 'tissue2') thLoadTissue(p.deeper.id); });
-    (e.placements || []).forEach((pl0, i) => {
-      const pl = thResolvePlacement(pl0, ix, defs), x = thPlacement(def, pl), R = (def.radius_m || 1) * x.k * 1.15;
-      const f = FR.park.addChild(new Frame({ type: 'thing', name: def.title, unit: 1, radius: R, r0: 0, r1: Math.max(R * 12, 8), up: new V3(0, 1, 0), pos: new V3(pl.at[0], pl.y || 0, pl.at[1]), opts: { thing: e.id, placement: pl, n: i } }));
-      f.noFade = true; f.coRender = true; f.coMax = def.draw_m || 400; f.pinned = true; f.isThing = true; f.proxy = null;
-      FR.things.push(f); if (i === 0) { FR['thing_' + e.id] = f; if (def.ruler) EXT_LANDMARKS.push({ label: def.ruler.label, D: def.ruler.D, side: true, go: then => flyTo(f, new V3(...(def.ruler.at || [0, (def.height_m || 0) * .5, 0])), def.ruler.D, then) }); }
-    });
+    const inPark = (e.placements || []).some(pl => !pl.in || pl.in === 'park');
+    if (inPark) loadNote(def.label || def.title || e.id, thLoadBundle(e.id));   // what stands in the park is fetched at once; a thing elsewhere when its frame is first built
+    def.parts.forEach(p => { if (p.deeper && p.deeper.type === 'tissue2') thLoadTissue(p.deeper.id); });
+    (e.placements || []).forEach((pl0, i) => thPlace(e.id, def, pl0, i, ix, defs));
   }
+  setInterval(thSweep, 4000);
 });
 
 /* =====================================================================

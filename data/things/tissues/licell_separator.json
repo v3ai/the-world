@@ -1,0 +1,98 @@
+{
+ "tag": "Inside the separator",
+ "cell": "animal",
+ "id": "licell_separator",
+ "title": "Inside the separator",
+ "node": "licell_separator",
+ "blurb": "A piece of the separator film 8 micrometres wide: a web of plastic strands with liquid-filled holes between them. Lithium ions pass through the holes; the web keeps the two electrodes apart.",
+ "note": "To scale: the holes are under 1 µm wide and take up roughly half the volume, as reviews of separators state (pore size below 1 µm, porosity 40 to 60 %). Illustrative: the strands are drawn as straight rods of one thickness lying at random; a real film is a lacy, connected web whose pattern depends on how it was stretched. Only a slab 3 µm thick is drawn, of a film 25 µm thick. The ceramic coating that many phone separators carry is not drawn.",
+ "bg": "#f1ede4",
+ "center": [
+  4,
+  4,
+  0
+ ],
+ "D_um": 12,
+ "labels": [
+  {
+   "text": "Plastic strands (polyethylene)",
+   "at": [
+    1.2,
+    6.8,
+    1.8
+   ],
+   "pop": "strand"
+  },
+  {
+   "text": "Holes under 1 µm, full of electrolyte",
+   "at": [
+    5.6,
+    1.4,
+    1.8
+   ],
+   "pop": "electrolyte"
+  }
+ ],
+ "populations": [
+  {
+   "id": "strand",
+   "name": "Plastic strand of the separator",
+   "node": "licell_separator",
+   "shape": "cylinder",
+   "size": [
+    0.22,
+    2.6,
+    0.22
+   ],
+   "color": "#e9e2cc",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "material": "separator_polymer",
+   "arrange": {
+    "kind": "random",
+    "n": 420,
+    "min": [
+     0.3,
+     0.3,
+     -1.4
+    ],
+    "max": [
+     7.7,
+     7.7,
+     1.4
+    ],
+    "gap": -2.2,
+    "seed": 3,
+    "orient": "free"
+   }
+  },
+  {
+   "id": "electrolyte",
+   "name": "Electrolyte in the holes",
+   "node": "licell_electrolyte",
+   "shape": "rbox",
+   "size": [
+    8,
+    8,
+    3
+   ],
+   "color": "#9fc3d6",
+   "opacity": 0.14,
+   "priority": 1,
+   "material": "battery_electrolyte",
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       4,
+       4,
+       0
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}
