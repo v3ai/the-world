@@ -1,0 +1,17 @@
+# Everyday words for things that are built as models outside the park (data/things, placed with `in`). Same format as aliases_src.txt.
+# The lithium-ion cell in the phone (tools/things/models/li_cell.mjs; cards data/nodes/thing_li_cell.json).
+
+@src li-cell | The explorer's own cards of the lithium-ion cell, which give their sources (the Nobel 2019 scientific background, Loveridge et al. 2018, Ai et al. 2020, Hertz et al. 2008) | data/nodes/thing_li_cell.json
+
+lithium ion cell, lithium-ion cell, li-ion cell, pouch cell, lithium polymer, lipo, lithium polymer battery, inside a battery, what is inside a battery, how do batteries work, how a battery works, how batteries store energy => node:li_cell, node:licell_ion_shuttle, node:licell_stack // The phone's battery is one lithium-ion pouch cell: it opens into its layers. // src: li-cell
+anode, negative electrode, graphite anode, battery anode => node:licell_anode, node:licell_graphite // In a lithium-ion cell the negative electrode is graphite on copper foil. // src: li-cell
+cathode, positive electrode, battery cathode, lithium cobalt oxide, licoo2, lco, cobalt oxide => node:licell_cathode, crystal:licoo2, node:licell_lco // In a phone cell the positive electrode is lithium cobalt oxide on aluminium foil. // src: li-cell
+lic6, lithiated graphite, lithium in graphite, intercalation => node:licell_graphite, crystal:lic6 // Lithium sits between the carbon sheets of graphite: LiC6 when full. // src: li-cell
+separator, battery separator => node:licell_separator // src: li-cell
+battery electrolyte, electrolyte of a battery, lipf6 => node:licell_electrolyte // src: li-cell
+current collector, copper foil => node:licell_cu_foil, node:licell_al_foil // src: li-cell
+battery protection, protection circuit, battery management, bms, overcharge => node:licell_pcm // src: li-cell
+sei, solid electrolyte interphase => node:licell_sei // src: li-cell
+dendrite, dendrites, lithium plating, why batteries catch fire, battery fire, fast charging => node:licell_plating, node:licell_separator // src: li-cell
+solid state battery, solid-state battery, solid state cell => node:licell_solid_state // No model of a solid-state cell exists; the card says what is known and what is not. // src: li-cell
+charging a battery, battery charging, discharging, charge and discharge => node:licell_ion_shuttle, node:licell_electrons, node:how_a_phone_charges // src: li-cell

@@ -1,0 +1,1040 @@
+{
+ "id": "li_cell",
+ "title": "Lithium-ion cell",
+ "label": "Battery",
+ "scientific": null,
+ "node": "li_cell",
+ "main_part": "pouch",
+ "answers": [
+  "phone_battery"
+ ],
+ "blurb": "The phone's battery: one lithium-ion pouch cell, at true size. Inside the foil pouch lie 12 pairs of coated metal sheets with a porous separator between them. Double-click it to cut it across, or choose a view above.",
+ "model_note": "A model built from published measurements, not a scan of one battery. The layer thicknesses are those measured on a 2.28 Ah consumer pouch cell of the same chemistry (lithium cobalt oxide and graphite); the outer size is the battery bay of the phone model; the sizes of the tabs, the sealed strip and the circuit board are drawn, not measured. A real phone cell differs in detail.",
+ "size_m": {
+  "width": 0.062,
+  "height": 0.078,
+  "thickness": 0.0046
+ },
+ "height_m": 0.078,
+ "radius_m": 0.085,
+ "bound_m": 0.052,
+ "draw_m": 30,
+ "label_m": 0.6,
+ "seed": 77,
+ "systems": [
+  {
+   "id": "pouch",
+   "label": "Pouch"
+  },
+  {
+   "id": "tabs",
+   "label": "Tabs"
+  },
+  {
+   "id": "pcm",
+   "label": "Protection circuit"
+  },
+  {
+   "id": "copper",
+   "label": "Negative current collector"
+  },
+  {
+   "id": "anode",
+   "label": "Negative electrode"
+  },
+  {
+   "id": "separator",
+   "label": "Separator"
+  },
+  {
+   "id": "cathode",
+   "label": "Positive electrode"
+  },
+  {
+   "id": "aluminium",
+   "label": "Positive current collector"
+  },
+  {
+   "id": "pair",
+   "label": "One electrode pair"
+  },
+  {
+   "id": "circuit",
+   "label": "Outside circuit (schematic)"
+  },
+  {
+   "id": "flow_dis",
+   "label": "Discharging"
+  },
+  {
+   "id": "flow_chg",
+   "label": "Charging"
+  }
+ ],
+ "modes": [
+  {
+   "id": "whole",
+   "label": "Whole cell",
+   "show": {
+    "pouch": 1,
+    "tabs": 1,
+    "pcm": 1,
+    "copper": 1,
+    "anode": 1,
+    "separator": 1,
+    "cathode": 1,
+    "aluminium": 1,
+    "pair": 0,
+    "circuit": 0,
+    "flow_dis": 0,
+    "flow_chg": 0
+   }
+  },
+  {
+   "id": "stack",
+   "label": "Without the pouch",
+   "show": {
+    "pouch": 0.1,
+    "tabs": 1,
+    "pcm": 1,
+    "copper": 1,
+    "anode": 1,
+    "separator": 1,
+    "cathode": 1,
+    "aluminium": 1,
+    "pair": 0,
+    "circuit": 0,
+    "flow_dis": 0,
+    "flow_chg": 0
+   }
+  },
+  {
+   "id": "cut",
+   "label": "Cut across: the layers",
+   "cut": {
+    "at": [
+     0,
+     0.036,
+     0
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   "view": {
+    "dir": [
+     0.18,
+     0.8,
+     0.57
+    ],
+    "at": [
+     0,
+     0.036,
+     0
+    ],
+    "D": 0.075
+   },
+   "hotspots": true,
+   "show": {
+    "pouch": 1,
+    "tabs": 1,
+    "pcm": 1,
+    "copper": 1,
+    "anode": 1,
+    "separator": 1,
+    "cathode": 1,
+    "aluminium": 1,
+    "pair": 0,
+    "circuit": 0,
+    "flow_dis": 0,
+    "flow_chg": 0
+   },
+   "legend": {
+    "title": "On the cut face",
+    "items": [
+     {
+      "name": "Copper foil, 10 µm",
+      "color": "#c8793a",
+      "node": "licell_cu_foil"
+     },
+     {
+      "name": "Graphite coating, 76.5 µm",
+      "color": "#474c55",
+      "node": "licell_anode"
+     },
+     {
+      "name": "Separator, 25 µm",
+      "color": "#efe9d8",
+      "node": "licell_separator"
+     },
+     {
+      "name": "Lithium cobalt oxide coating, 68 µm",
+      "color": "#2d4a86",
+      "node": "licell_cathode"
+     },
+     {
+      "name": "Aluminium foil, 15 µm",
+      "color": "#cfd4da",
+      "node": "licell_al_foil"
+     }
+    ],
+    "note": "Every layer is drawn at its true thickness (to within a micrometre), so the sheets only show as separate when you zoom in to a view about a millimetre wide. Thicknesses: a 2.28 Ah consumer pouch cell (Ai et al. 2020). 12 pairs of sheets fill the 4.6 mm."
+   }
+  },
+  {
+   "id": "pair",
+   "label": "One pair of sheets, opened",
+   "hotspots": true,
+   "view": {
+    "dir": [
+     0.72,
+     0.3,
+     0.62
+    ],
+    "at": [
+     0,
+     0.037,
+     0
+    ],
+    "D": 0.16
+   },
+   "show": {
+    "pouch": 0,
+    "tabs": 0,
+    "pcm": 0,
+    "copper": 0,
+    "anode": 0,
+    "separator": 0,
+    "cathode": 0,
+    "aluminium": 0,
+    "pair": 1,
+    "circuit": 0,
+    "flow_dis": 0,
+    "flow_chg": 0
+   },
+   "legend": {
+    "title": "One pair of sheets",
+    "items": [
+     {
+      "name": "Copper foil, 10 µm",
+      "color": "#c8793a",
+      "node": "licell_cu_foil"
+     },
+     {
+      "name": "Graphite coating, 76.5 µm",
+      "color": "#474c55",
+      "node": "licell_anode"
+     },
+     {
+      "name": "Separator, 25 µm",
+      "color": "#efe9d8",
+      "node": "licell_separator"
+     },
+     {
+      "name": "Lithium cobalt oxide coating, 68 µm",
+      "color": "#2d4a86",
+      "node": "licell_cathode"
+     },
+     {
+      "name": "Aluminium foil, 15 µm",
+      "color": "#cfd4da",
+      "node": "licell_al_foil"
+     }
+    ],
+    "note": "One negative sheet, one separator and one positive sheet, at their true thickness but lifted 7 mm apart and stepped sideways. In the cell they lie pressed together, soaked in liquid electrolyte."
+   }
+  },
+  {
+   "id": "discharge",
+   "label": "Discharging",
+   "hotspots": true,
+   "view": {
+    "dir": [
+     0.8,
+     0.28,
+     0.53
+    ],
+    "at": [
+     0,
+     0.05,
+     0
+    ],
+    "D": 0.2
+   },
+   "show": {
+    "pouch": 0,
+    "tabs": 0,
+    "pcm": 0,
+    "copper": 0,
+    "anode": 0,
+    "separator": 0,
+    "cathode": 0,
+    "aluminium": 0,
+    "pair": 1,
+    "circuit": 1,
+    "flow_dis": 1,
+    "flow_chg": 0
+   },
+   "legend": {
+    "title": "Discharging: the cell drives the device",
+    "items": [
+     {
+      "name": "Lithium ions: out of the graphite, through the separator, into the oxide",
+      "color": "#8fd3ff",
+      "node": "licell_ion_shuttle"
+     },
+     {
+      "name": "Electrons: out through the copper, round the outside, in through the aluminium",
+      "color": "#ffd166",
+      "node": "licell_electrons"
+     }
+    ],
+    "note": "A diagram of direction only. The markers are enormously enlarged and their speed means nothing; the sheets are at their true thickness but are drawn 7 mm apart, while in the cell they touch and an ion travels about 0.2 mm. The wire and the device are schematic."
+   }
+  },
+  {
+   "id": "charge",
+   "label": "Charging",
+   "hotspots": true,
+   "view": {
+    "dir": [
+     0.8,
+     0.28,
+     0.53
+    ],
+    "at": [
+     0,
+     0.05,
+     0
+    ],
+    "D": 0.2
+   },
+   "show": {
+    "pouch": 0,
+    "tabs": 0,
+    "pcm": 0,
+    "copper": 0,
+    "anode": 0,
+    "separator": 0,
+    "cathode": 0,
+    "aluminium": 0,
+    "pair": 1,
+    "circuit": 1,
+    "flow_dis": 0,
+    "flow_chg": 1
+   },
+   "legend": {
+    "title": "Charging: the charger pushes both back",
+    "items": [
+     {
+      "name": "Lithium ions: out of the oxide, through the separator, into the graphite",
+      "color": "#8fd3ff",
+      "node": "licell_ion_shuttle"
+     },
+     {
+      "name": "Electrons: pushed by the charger from the aluminium side round to the copper side",
+      "color": "#ffd166",
+      "node": "licell_electrons"
+     }
+    ],
+    "note": "A diagram of direction only. The markers are enormously enlarged and their speed means nothing; the sheets are at their true thickness but are drawn 7 mm apart, while in the cell they touch and an ion travels about 0.2 mm. The wire and the device are schematic."
+   }
+  }
+ ],
+ "layers": [
+  {
+   "id": "case",
+   "label": "pouch",
+   "systems": [
+    "pouch",
+    "tabs",
+    "pcm"
+   ],
+   "ghost": 0.08
+  },
+  {
+   "id": "stack",
+   "label": "electrode stack",
+   "systems": [
+    "copper",
+    "anode",
+    "separator",
+    "cathode",
+    "aluminium"
+   ]
+  }
+ ],
+ "auto": {
+  "label": "Auto",
+  "layers": true,
+  "always": {},
+  "scale": 0.06
+ },
+ "lod": {
+  "near_m": 0.7
+ },
+ "cut": {
+  "default": "graphite",
+  "at": [
+   0,
+   0.036,
+   0
+  ],
+  "faces": {
+   "film": {
+    "kind": "plain",
+    "palette": [
+     [
+      13225686,
+      1
+     ]
+    ]
+   },
+   "copper": {
+    "kind": "plain",
+    "palette": [
+     [
+      13138234,
+      1
+     ]
+    ]
+   },
+   "graphite": {
+    "kind": "plain",
+    "palette": [
+     [
+      4672597,
+      1
+     ]
+    ]
+   },
+   "sep": {
+    "kind": "plain",
+    "palette": [
+     [
+      15722968,
+      1
+     ]
+    ]
+   },
+   "lco": {
+    "kind": "plain",
+    "palette": [
+     [
+      2968198,
+      1
+     ]
+    ]
+   },
+   "alu": {
+    "kind": "plain",
+    "palette": [
+     [
+      13620442,
+      1
+     ]
+    ]
+   },
+   "board": {
+    "kind": "plain",
+    "palette": [
+     [
+      2060106,
+      1
+     ]
+    ]
+   },
+   "chip": {
+    "kind": "plain",
+    "palette": [
+     [
+      2764085,
+      1
+     ]
+    ]
+   }
+  }
+ },
+ "hotspots": [
+  {
+   "id": "hs_layers",
+   "node": "licell_stack",
+   "at": [
+    0,
+    0.036,
+    0.00010649999999999969
+   ],
+   "label": "The layers: zoom in here",
+   "modes": [
+    "cut"
+   ],
+   "r": 0.0006
+  },
+  {
+   "id": "hs_sei",
+   "node": "licell_sei",
+   "at": [
+    0.027000000000000003,
+    0.02,
+    -0.0069185
+   ],
+   "label": "On the graphite: the interphase (SEI)",
+   "modes": [
+    "pair",
+    "discharge",
+    "charge"
+   ],
+   "r": 0.0009
+  },
+  {
+   "id": "hs_plating",
+   "node": "licell_plating",
+   "at": [
+    0.027000000000000003,
+    0.046,
+    -0.0069185
+   ],
+   "label": "Where lithium metal can plate",
+   "modes": [
+    "pair",
+    "charge"
+   ],
+   "r": 0.0009
+  },
+  {
+   "id": "hs_electrolyte",
+   "node": "licell_electrolyte",
+   "at": [
+    0.022,
+    0.033,
+    0.0015
+   ],
+   "label": "Electrolyte fills the pores",
+   "modes": [
+    "pair",
+    "discharge",
+    "charge"
+   ],
+   "r": 0.0009
+  }
+ ],
+ "parts": [
+  {
+   "id": "pouch",
+   "name": "Pouch",
+   "system": "pouch",
+   "node": "li_cell",
+   "color": "#9aa3b0",
+   "mesh": "pouch",
+   "lod": "near",
+   "cutFace": "film",
+   "ink_w": 0.0016,
+   "material": "pouch_laminate",
+   "center": [
+    0,
+    0.036,
+    0
+   ],
+   "radius": 0.0467,
+   "tris": 216
+  },
+  {
+   "id": "seal",
+   "name": "Sealed edge of the pouch",
+   "system": "pouch",
+   "node": "licell_pouch",
+   "color": "#aab1ba",
+   "mesh": "seal",
+   "lod": "near",
+   "cutFace": "film",
+   "ink_w": 0.0014,
+   "material": "pouch_laminate",
+   "center": [
+    0,
+    0.0741,
+    0
+   ],
+   "radius": 0.0311,
+   "tris": 12
+  },
+  {
+   "id": "cell_far",
+   "name": "Battery",
+   "system": "pouch",
+   "node": "li_cell",
+   "color": "#9aa3b0",
+   "mesh": "cell_far",
+   "lod": "far",
+   "far_of": "pouch",
+   "material": "pouch_laminate",
+   "center": [
+    0,
+    0.0382,
+    0
+   ],
+   "radius": 0.0492,
+   "tris": 72
+  },
+  {
+   "id": "tab_neg",
+   "name": "Negative tab",
+   "system": "tabs",
+   "node": "licell_tabs",
+   "color": "#b9bcc0",
+   "mesh": "tab_neg",
+   "lod": "near",
+   "cutFace": "alu",
+   "ink_w": 0.0012,
+   "material": "cell_tab",
+   "center": [
+    -0.017,
+    0.0735,
+    0.0005
+   ],
+   "radius": 0.006,
+   "tris": 36
+  },
+  {
+   "id": "tab_pos",
+   "name": "Positive tab",
+   "system": "tabs",
+   "node": "licell_tabs",
+   "color": "#d6dade",
+   "mesh": "tab_pos",
+   "lod": "near",
+   "cutFace": "alu",
+   "ink_w": 0.0012,
+   "material": "cell_tab",
+   "center": [
+    0.017,
+    0.0735,
+    0.0005
+   ],
+   "radius": 0.006,
+   "tris": 36
+  },
+  {
+   "id": "pcm_board",
+   "name": "Protection circuit board",
+   "system": "pcm",
+   "node": "licell_pcm",
+   "color": "#1f6f4a",
+   "mesh": "pcm_board",
+   "lod": "near",
+   "cutFace": "board",
+   "ink_w": 0.0012,
+   "material": "circuit_copper",
+   "center": [
+    0,
+    0.0744,
+    0.0006
+   ],
+   "radius": 0.0231,
+   "tris": 12
+  },
+  {
+   "id": "pcm_ic",
+   "name": "Protection chip",
+   "system": "pcm",
+   "node": "licell_pcm",
+   "color": "#2a2d35",
+   "mesh": "pcm_ic",
+   "lod": "near",
+   "cutFace": "chip",
+   "ink_w": 0.001,
+   "material": "chip_silicon",
+   "center": [
+    -0.0031,
+    0.0744,
+    0.0014
+   ],
+   "radius": 0.0017,
+   "tris": 12
+  },
+  {
+   "id": "pcm_fet",
+   "name": "Two switching transistors",
+   "system": "pcm",
+   "node": "licell_pcm",
+   "color": "#30343d",
+   "mesh": "pcm_fet",
+   "lod": "near",
+   "cutFace": "chip",
+   "ink_w": 0.001,
+   "material": "chip_silicon",
+   "center": [
+    0.003,
+    0.0744,
+    0.0012
+   ],
+   "radius": 0.0019,
+   "tris": 12
+  },
+  {
+   "id": "pcm_flex",
+   "name": "Connector to the phone",
+   "system": "pcm",
+   "node": "licell_pcm",
+   "color": "#c9a24f",
+   "mesh": "pcm_flex",
+   "lod": "near",
+   "cutFace": "copper",
+   "ink_w": 0.001,
+   "material": "circuit_copper",
+   "center": [
+    0.0263,
+    0.0744,
+    0.0008
+   ],
+   "radius": 0.0036,
+   "tris": 24
+  },
+  {
+   "id": "cu",
+   "name": "Copper foil (negative current collector)",
+   "system": "copper",
+   "node": "licell_cu_foil",
+   "color": "#c8793a",
+   "mesh": "cu",
+   "lod": "near",
+   "cutFace": "copper",
+   "noink": true,
+   "material": "copper",
+   "center": [
+    0,
+    0.0368,
+    -0.0001
+   ],
+   "radius": 0.0439,
+   "tris": 288
+  },
+  {
+   "id": "anode",
+   "name": "Graphite coating (negative electrode)",
+   "system": "anode",
+   "node": "licell_anode",
+   "color": "#474c55",
+   "mesh": "anode",
+   "lod": "near",
+   "cutFace": "graphite",
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "licell_anode",
+    "D": 0.00011,
+    "button": "Look into the graphite coating"
+   },
+   "center": [
+    0,
+    0.035,
+    -0.0001
+   ],
+   "radius": 0.0426,
+   "tris": 288
+  },
+  {
+   "id": "sep",
+   "name": "Separator",
+   "system": "separator",
+   "node": "licell_separator",
+   "color": "#efe9d8",
+   "mesh": "sep",
+   "lod": "near",
+   "cutFace": "sep",
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "licell_separator",
+    "D": 0.000006,
+    "button": "Look into the separator"
+   },
+   "center": [
+    0,
+    0.035,
+    -0.0001
+   ],
+   "radius": 0.0426,
+   "tris": 288
+  },
+  {
+   "id": "cathode",
+   "name": "Lithium cobalt oxide coating (positive electrode)",
+   "system": "cathode",
+   "node": "licell_cathode",
+   "color": "#2d4a86",
+   "mesh": "cathode",
+   "lod": "near",
+   "cutFace": "lco",
+   "noink": true,
+   "deeper": {
+    "type": "tissue2",
+    "id": "licell_cathode",
+    "D": 0.0001,
+    "button": "Look into the oxide coating"
+   },
+   "center": [
+    0,
+    0.035,
+    0.0001
+   ],
+   "radius": 0.0426,
+   "tris": 288
+  },
+  {
+   "id": "al",
+   "name": "Aluminium foil (positive current collector)",
+   "system": "aluminium",
+   "node": "licell_al_foil",
+   "color": "#cfd4da",
+   "mesh": "al",
+   "lod": "near",
+   "cutFace": "alu",
+   "noink": true,
+   "material": "aluminium",
+   "center": [
+    0,
+    0.0368,
+    0.0001
+   ],
+   "radius": 0.0439,
+   "tris": 288
+  },
+  {
+   "id": "p_cu",
+   "name": "Copper foil (negative current collector)",
+   "system": "pair",
+   "node": "licell_cu_foil",
+   "color": "#c8793a",
+   "mesh": "p_cu",
+   "lod": "near",
+   "cutFace": "copper",
+   "ink_w": 0.0008,
+   "material": "copper",
+   "center": [
+    0.009,
+    0.0368,
+    -0.007
+   ],
+   "radius": 0.0439,
+   "tris": 24
+  },
+  {
+   "id": "p_an",
+   "name": "Graphite coating (negative electrode)",
+   "system": "pair",
+   "node": "licell_anode",
+   "color": "#474c55",
+   "mesh": "p_an",
+   "lod": "near",
+   "cutFace": "graphite",
+   "ink_w": 0.0008,
+   "deeper": {
+    "type": "tissue2",
+    "id": "licell_anode",
+    "D": 0.00011,
+    "button": "Look into the graphite coating"
+   },
+   "center": [
+    0.009,
+    0.035,
+    -0.007
+   ],
+   "radius": 0.0425,
+   "tris": 24
+  },
+  {
+   "id": "p_sep",
+   "name": "Separator",
+   "system": "pair",
+   "node": "licell_separator",
+   "color": "#efe9d8",
+   "mesh": "p_sep",
+   "lod": "near",
+   "cutFace": "sep",
+   "ink_w": 0.0008,
+   "deeper": {
+    "type": "tissue2",
+    "id": "licell_separator",
+    "D": 0.000006,
+    "button": "Look into the separator"
+   },
+   "center": [
+    0,
+    0.035,
+    0
+   ],
+   "radius": 0.0425,
+   "tris": 12
+  },
+  {
+   "id": "p_ca",
+   "name": "Lithium cobalt oxide coating (positive electrode)",
+   "system": "pair",
+   "node": "licell_cathode",
+   "color": "#2d4a86",
+   "mesh": "p_ca",
+   "lod": "near",
+   "cutFace": "lco",
+   "ink_w": 0.0008,
+   "deeper": {
+    "type": "tissue2",
+    "id": "licell_cathode",
+    "D": 0.0001,
+    "button": "Look into the oxide coating"
+   },
+   "center": [
+    -0.009,
+    0.035,
+    0.007
+   ],
+   "radius": 0.0425,
+   "tris": 24
+  },
+  {
+   "id": "p_al",
+   "name": "Aluminium foil (positive current collector)",
+   "system": "pair",
+   "node": "licell_al_foil",
+   "color": "#cfd4da",
+   "mesh": "p_al",
+   "lod": "near",
+   "cutFace": "alu",
+   "ink_w": 0.0008,
+   "material": "aluminium",
+   "center": [
+    -0.009,
+    0.0368,
+    0.007
+   ],
+   "radius": 0.0439,
+   "tris": 24
+  },
+  {
+   "id": "wire",
+   "name": "Wire of the outside circuit (schematic)",
+   "system": "circuit",
+   "node": "licell_electrons",
+   "color": "#b08850",
+   "mesh": "wire",
+   "lod": "near",
+   "cutFace": "copper",
+   "ink_w": 0.0008,
+   "material": "copper",
+   "center": [
+    0,
+    0.0809,
+    0
+   ],
+   "radius": 0.0151,
+   "tris": 96
+  },
+  {
+   "id": "load",
+   "name": "The device being powered, or the charger (schematic)",
+   "system": "circuit",
+   "node": "licell_electrons",
+   "color": "#6b7383",
+   "mesh": "load",
+   "lod": "near",
+   "ink_w": 0.001,
+   "material": "schematic_part",
+   "center": [
+    0,
+    0.091,
+    0
+   ],
+   "radius": 0.0062,
+   "tris": 12
+  },
+  {
+   "id": "ions_dis",
+   "name": "Lithium ions (markers)",
+   "system": "flow_dis",
+   "node": "licell_ion_shuttle",
+   "color": "#8fd3ff",
+   "flow": "ions_dis",
+   "lod": "near",
+   "material": "lithium_ion_marker",
+   "center": [
+    0,
+    0.0335,
+    0.000003
+   ],
+   "radius": 0.028463,
+   "tris": 0
+  },
+  {
+   "id": "e_dis",
+   "name": "Electrons (markers)",
+   "system": "flow_dis",
+   "node": "licell_electrons",
+   "color": "#ffd166",
+   "flow": "e_dis",
+   "lod": "near",
+   "material": "electron_marker",
+   "center": [
+    0,
+    0.0605,
+    0
+   ],
+   "radius": 0.032299,
+   "tris": 0
+  },
+  {
+   "id": "ions_chg",
+   "name": "Lithium ions (markers)",
+   "system": "flow_chg",
+   "node": "licell_ion_shuttle",
+   "color": "#8fd3ff",
+   "flow": "ions_chg",
+   "lod": "near",
+   "material": "lithium_ion_marker",
+   "center": [
+    0,
+    0.0335,
+    0.000003
+   ],
+   "radius": 0.028463,
+   "tris": 0
+  },
+  {
+   "id": "e_chg",
+   "name": "Electrons (markers)",
+   "system": "flow_chg",
+   "node": "licell_electrons",
+   "color": "#ffd166",
+   "flow": "e_chg",
+   "lod": "near",
+   "material": "electron_marker",
+   "center": [
+    0,
+    0.0605,
+    0
+   ],
+   "radius": 0.032299,
+   "tris": 0
+  }
+ ],
+ "numbers": {
+  "layers_um": {
+   "copper_foil": 10,
+   "graphite_coating": 76.5,
+   "separator": 25,
+   "oxide_coating": 68,
+   "aluminium_foil": 15,
+   "pouch_film": 113
+  },
+  "pairs": 12,
+  "stack_mm": 4.368,
+  "inside_mm": 4.374
+ },
+ "stats": {
+  "parts": 25,
+  "uniqueMeshTris": 2088,
+  "nearTris": 1800,
+  "midTris": 72,
+  "farTris": 72
+ }
+}

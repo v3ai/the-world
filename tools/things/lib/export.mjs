@@ -33,7 +33,10 @@ export function assemble(model) {
   for (const p of out.parts) {
     if (p.mesh) { const m = meshes[p.mesh]; if (!m) { problems.push(`part ${p.id}: unknown mesh ${p.mesh}`); continue; } Object.assign(p, centerRadius(m)); p.tris = m.idx.length / 3; if (!tc.has(p.mesh)) { tc.add(p.mesh); tris += p.tris; } }
     else if (p.instances) { const inst = instances[p.instances]; if (!inst) { problems.push(`part ${p.id}: unknown instances ${p.instances}`); continue; } Object.assign(p, instancedCenterRadius(meshes[inst.mesh], inst)); p.count = inst.count; p.tris = meshes[inst.mesh].idx.length / 3 * inst.count; }
-    else if (p.flow) { if (!flows[p.flow]) problems.push(`part ${p.id}: unknown flow ${p.flow}`); p.center = [0, 8, 0]; p.radius = 10; p.tris = 0; }
+    else if (p.flow) {   // a flow part has no mesh: its centre and radius are those of the box that holds its paths (a flow with no paths keeps the old stand-in)
+      const fl = flows[p.flow]; if (!fl) problems.push(`part ${p.id}: unknown flow ${p.flow}`); p.center = [0, 8, 0]; p.radius = 10; p.tris = 0;
+      if (fl && fl.paths && fl.paths.length) { const lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity]; for (const P of fl.paths) for (let i = 0; i < P.p.length; i += 3) for (let a = 0; a < 3; a++) { lo[a] = Math.min(lo[a], P.p[i + a]); hi[a] = Math.max(hi[a], P.p[i + a]); } p.center = [0, 1, 2].map(a => +((lo[a] + hi[a]) / 2).toFixed(6)); p.radius = +(Math.hypot(hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2]) / 2).toFixed(6); }
+    }
     else problems.push(`part ${p.id}: needs mesh or instances`);
   }
   const m0 = ((out.modes || [])[0] || {}).show || {}, inTier = (p, n) => (m0[p.system] > 0 || m0['*'] > 0) && (!p.lod || p.lod.split('+').includes(n) || (n === 'mid' && !out.parts.some(q => q.lod && q.lod.includes('mid')) && p.lod.split('+').includes('far')));

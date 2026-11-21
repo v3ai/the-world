@@ -1,0 +1,134 @@
+{
+ "tag": "Inside the negative electrode",
+ "cell": "animal",
+ "id": "licell_anode",
+ "title": "Inside the graphite coating",
+ "node": "licell_anode",
+ "blurb": "A piece of one coating of a negative sheet: copper foil underneath, graphite grains packed on it. The pores between the grains are full of liquid electrolyte; the separator, not drawn, lies on top. Click a grain, then look inside it.",
+ "note": "To scale: the thickness of the foil (10 µm) and of the coating (76.5 µm), and the size of the grains (10 µm across), all from the parameter set of a measured consumer pouch cell (Ai et al. 2020). Illustrative: the shapes of the grains (real ones are irregular flakes and lumps), their number and their packing; the binder that glues them and the skin on each grain (the SEI, a few nanometres) are not drawn.",
+ "bg": "#f1ede4",
+ "center": [
+  70,
+  0,
+  44
+ ],
+ "D_um": 150,
+ "labels": [
+  {
+   "text": "Graphite grains: lithium is stored inside them",
+   "at": [
+    22,
+    32,
+    70
+   ],
+   "pop": "graphite"
+  },
+  {
+   "text": "Copper foil, 10 µm",
+   "at": [
+    118,
+    32,
+    5
+   ],
+   "pop": "foil"
+  },
+  {
+   "text": "Liquid electrolyte fills the pores",
+   "at": [
+    72,
+    32,
+    40
+   ],
+   "pop": "electrolyte"
+  }
+ ],
+ "populations": [
+  {
+   "id": "foil",
+   "name": "Copper foil",
+   "node": "licell_cu_foil",
+   "shape": "rbox",
+   "size": [
+    140,
+    60,
+    10
+   ],
+   "color": "#c8793a",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "material": "copper",
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       70,
+       0,
+       5.0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "graphite",
+   "name": "Graphite grain",
+   "node": "licell_graphite",
+   "shape": "ellipsoid",
+   "size": [
+    11,
+    11,
+    8
+   ],
+   "color": "#3a4047",
+   "opacity": 1,
+   "ink": 1,
+   "priority": 3,
+   "material": "lithiated_graphite",
+   "arrange": {
+    "kind": "random",
+    "n": 230,
+    "min": [
+     5,
+     -24,
+     14.5
+    ],
+    "max": [
+     135,
+     24,
+     82.0
+    ],
+    "gap": -1.2,
+    "seed": 11
+   }
+  },
+  {
+   "id": "electrolyte",
+   "name": "Electrolyte in the pores",
+   "node": "licell_electrolyte",
+   "shape": "rbox",
+   "size": [
+    139,
+    59,
+    76.0
+   ],
+   "color": "#9fc3d6",
+   "opacity": 0.16,
+   "priority": 1,
+   "material": "battery_electrolyte",
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       70,
+       0,
+       48.25
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}

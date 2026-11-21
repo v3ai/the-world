@@ -411,8 +411,20 @@ function computeActive() {
       const a = coAlpha(c);
       c.alpha = a; c._share = true; c._nb = true;
       if (c.proxy) c.proxy.visible = !(a > .98);
-      if (a > .004) drawn.push(c);
+      if (a > .004) { drawn.push(c); coKids(c); }
     }
+  }
+}
+/* A co-rendered neighbour's own co-rendered children are drawn with it, one level down: a thing placed in the human body (js/things.js, `in: "body"`) is
+   seen from the park although the camera is anchored in neither. Same rules as above (same unit, the parent's depth buffer, picked with it). */
+function coKids(p) {
+  for (const c of p.children) {
+    if (!c.coRender || c.unit !== p.unit || active.includes(c)) continue;
+    safePlace(c);
+    const a = coAlpha(c);
+    c.alpha = a; c._share = true; c._nb = true;
+    if (c.proxy) c.proxy.visible = !(a > .98);
+    if (a > .004) drawn.push(c);
   }
 }
 const _cv = new V3();

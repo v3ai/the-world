@@ -452,6 +452,16 @@
      "scale": 1
     }
    ]
+  },
+  {
+   "id": "li_cell",
+   "placements": [
+    {
+     "in": "phone",
+     "part": "phone_battery",
+     "note": "takes the place of the phone's battery block (js/teardown.js PHONE_PARTS) and follows it as the phone opens up"
+    }
+   ]
   }
  ]
 }

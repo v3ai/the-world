@@ -1,0 +1,27 @@
+{
+ "about": "The lithium-ion cell in the phone (data/things/li_cell). Its parts carry their own material or a closer view; these rows say the same by layer, and name the markers.",
+ "default": null,
+ "spawnD": 0.001,
+ "systems": {
+  "pouch": "pouch_laminate",
+  "tabs": "cell_tab",
+  "copper": "copper",
+  "aluminium": "aluminium",
+  "circuit": "copper"
+ },
+ "ids": {
+  "pcm_board": "circuit_copper",
+  "pcm_flex": "circuit_copper",
+  "pcm_ic": "chip_silicon",
+  "pcm_fet": "chip_silicon",
+  "load": "schematic_part",
+  "ions_dis": "lithium_ion_marker",
+  "ions_chg": "lithium_ion_marker",
+  "e_dis": "electron_marker",
+  "e_chg": "electron_marker",
+  "hs_layers": "marker",
+  "hs_sei": "marker",
+  "hs_plating": "marker",
+  "hs_electrolyte": "marker"
+ }
+}

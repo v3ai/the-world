@@ -18,6 +18,7 @@ Run every command from the repository root. `node` is Node.js; the checks that n
 | a question trail | `data/trails/<id>.json`, `data/trails/manifest.json` | `node tools/trails/check_trails.mjs` |
 | a search alias | `tools/search/aliases_src*.txt` | `node tools/search/build.mjs`, then `node tools/search/test_search.mjs` |
 | a park thing | `tools/things/models/<id>.mjs`, `data/things/index.json`, cards | `node tools/things/bake.mjs <id>`, then the thing check below |
+| an object outside the park | the same, with `in` in its placement; `data/descent/assign/<id>.json`, close-up scenes | the same, then `node tools/descent/check.mjs` |
 | a molecule or crystal | `data/molecules_all.json`, `data/crystals.json` | the molecule check below |
 
 ## A topic card
@@ -285,6 +286,46 @@ EOF
 ```
 
 It prints `622 parts checked, 0 problems`. To see a thing, serve the repository and open `tools/things/preview.html?thing=<id>` (orbit, layers, detail tiers, click a part to see which card it names). A trail can name a thing's parts and modes, and `node tools/trails/check_trails.mjs` then checks them.
+
+## An object that lives outside the park
+
+A thing can stand anywhere, not only on the park's lawn: inside the phone, in the body or an organ view, at a latitude and longitude on the Earth, in orbit, in any fixed frame, or (when the world has no place for it yet) "floating" on a neutral ground with a scale bar. The model script, the bake and the cards are as for a park thing; only the placement differs. [tools/things/SCHEMA.md](../tools/things/SCHEMA.md) section 10 lists the places and their fields and gives the full recipe.
+
+**Example**, the lithium-ion cell that takes the place of the phone's battery block (`data/things/index.json`):
+
+```json
+{"id": "li_cell", "placements": [{"in": "phone", "part": "phone_battery"}]}
+```
+
+and three other placements, as they would be written (the first is how an object with no home yet is shown; the others are examples of the fields):
+
+```json
+{"in": "floating"}
+{"in": "earth", "lat": 27.99, "lon": 86.93, "place": "Everest base camp", "biome": "rock", "at": [3, 2], "rot": 40}
+{"in": "orbit", "alt_km": 400, "incl_deg": 51.6, "period_min": 92.9}
+```
+
+**Step by step** (the cell is the worked example: `tools/things/models/li_cell.mjs`, `tools/things/content/li_cell_content.py`):
+
+1. Open sources for every number and material; put the numbers, with their sources, in one object at the top of the model script. A number no source gives is said to be the model's choice, in the script and in `model_note`.
+2. Choose the place: the host and, inside a device, the part the object replaces. Write the model in the host's axes (for the phone: x across, y along the long edge, z out of the screen). If it has no home yet, use `floating`.
+3. Write the model script and bake it (`node tools/things/bake.mjs <id>`). Layers are drawn at their true thickness; a view that pulls things apart says so in its legend. Give cut views a `view` so they open face on, and give the thing a far detail tier that looks like the block it replaces.
+4. Declare motion as `flows` or `anim`, and say in the legend what a marker's size and speed do not mean.
+5. Write the close-up scenes (`data/things/tissues/<id>.json`), the materials (`data/descent/materials.json`), any missing crystals (`data/crystals.json`, with the structure and its source in `notes`) and the assignment file (`data/descent/assign/<id>.json`, listed under `assign`). Every part must lead to atoms or to an honest `stop` sentence.
+6. Write the cards and figures with a content script into `data/nodes/thing_<id>.json` and `data/viz/thing_<id>.json`, and list the two files in their manifests. Give the thing a card id of its own; if an older card already stands for it, name that card under `answers` in the thing, do not reuse its id (the search build refuses duplicate ids).
+7. Add the placement to `data/things/index.json`, everyday words to `tools/search/aliases_src_things.txt`, and rebuild the search index.
+
+**Checks.**
+
+```
+node tools/things/bake.mjs li_cell
+python3 tools/things/content/li_cell_content.py
+node tools/viz/validate.mjs data/viz/thing_li_cell.json
+node tools/descent/check.mjs
+node tools/search/build.mjs && node tools/search/test_search.mjs
+```
+
+The bake printed `li_cell: 25 parts, 2040 unique triangles`; the content script `18 cards, 5 figures, 3 scenes, 2 crystals, 10 materials written`; the figure check `5 specs, 0 errors`; the descent check `OK: every material resolves ...`. The thing check of the previous section also covers things outside the park (it reads `data/things/index.json`). In the app, `goToNode('li_cell')` flies there; `thLoadDef('boulder').then(d => thPlace('boulder', d, {in: 'floating'}, 9))` tries a placement from the console.
 
 ## A molecule or a crystal
 
