@@ -740,7 +740,8 @@ v2frame('park', 'life', () => 1, (F, c, g) => {
     const now = performance.now();
     if (sh.wait && !SH.needsUpdate) { sh.wait = false; sh.have = true; sh.M.copy(SH.matrix); } // the map was drawn in the last frame: keep its matrix and where the origin was
     const hv = P.human.visible; // the stand-in figure is the only caster that moves; when the body has loaded it is hidden, and its shadow must go with it
-    if (!sh.wait && now - sh.t > 100 && (!sh.have || sh.dir.distanceToSquared(P.sun.position) > 1.6e-3 || hv || hv !== sh.hv)) { sh.hv = hv; sh.t = now; sh.dir.copy(P.sun.position); sh.root.copy(F.root.position); SH.needsUpdate = true; sh.wait = true; sh.have = false; }
+    const fit = LOOK.on ? LOOK.shadowFit(F, P.sun, SH) : null;   // the realistic look fits the map to the view (js/look.js): true when it must be drawn again
+    if (!sh.wait && now - sh.t > 100 && (!sh.have || (fit === null ? sh.dir.distanceToSquared(P.sun.position) > 1.6e-3 : fit) || hv || hv !== sh.hv)) { sh.hv = hv; sh.t = now; sh.dir.copy(P.sun.position); sh.root.copy(F.root.position); SH.needsUpdate = true; sh.wait = true; sh.have = false; if (fit !== null) LOOK.shadowDrawn(); }
     else if (sh.have) { sh.d.makeTranslation(sh.root.x - F.root.position.x, sh.root.y - F.root.position.y, sh.root.z - F.root.position.z); SH.matrix.multiplyMatrices(sh.M, sh.d); }
   };
   /* The park from its edge and from above. The painted lawn is a disc 170 m in radius and the sky a ball 420 m in radius round the middle: scrolling in from the
@@ -778,7 +779,7 @@ v2frame('park', 'life', () => 1, (F, c, g) => {
   P.ground.material.userData.noHL = true; P.ground.userData.extent = h => ({ p: h.pointLocal.clone(), r: 170 });
   F.update = (dt, t) => {
     up0(dt, t);
-    const s = sunDirIn(F); c.setSun(s); const day = smooth(-.12, .12, s.y); shadowStep();
+    const s = sunDirIn(F); c.setSun(s); if (LOOK.on) LOOK.parkSunSet(F, P.sun); const day = smooth(-.12, .12, s.y); shadowStep();
     F.env.opaque = cam.D < 300 && day > .2; P.sky.visible = cam.D < 380 && F.alpha > .6;
     if (F.C) { const cx = F.C.x, cz = F.C.z; P.sky.position.set(cx, 0, cz); P.sunHit.position.x += cx; P.sunHit.position.z += cz; P.sg.position.copy(P.sunHit.position); }
     P.sunHit.visible = P.sky.visible; if (!P.sky.visible) P.sg.visible = false;
