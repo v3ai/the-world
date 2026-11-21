@@ -1,0 +1,462 @@
+[
+ {
+  "id": "tissue_igw_scene",
+  "title": "Honey bee midgut wall in section",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.0003,
+  "area": "bio_animals",
+  "parents": [
+   "bee_midgut"
+  ],
+  "parts": [
+   "tissue_igw_digestive_cell",
+   "tissue_igw_microvilli",
+   "tissue_igw_regenerative",
+   "tissue_igw_pm",
+   "tissue_igw_basal_lamina",
+   "tissue_igw_muscle",
+   "tissue_igw_tracheole",
+   "tissue_igw_food"
+  ],
+  "processes": [],
+  "related": [
+   "bee_midgut"
+  ],
+  "summary": "A slice through the wall of the midgut, where most digestion and absorption happens: a net round the food, one layer of tall cells, and thin muscle and air tubes below.",
+  "layers": {
+   "basics": "The midgut is the part of the gut where food is broken down and the products are taken up. Its wall is thin. A net-like lining wraps the food, a single layer of tall cells does the work, and two thin muscle layers squeeze the food along.",
+   "deeper": "From the gut cavity outwards the layers are: food, the peritrophic matrix, the brush border, one layer of columnar digestive cells with small nests of regenerative cells at their feet, the basal lamina, circular muscle, longitudinal muscle. Air tubes (tracheoles) run in the space outside the muscle and bring oxygen to it. Many other insects have a similar plan, with different sizes and, in some groups, a different arrangement.",
+   "expert": "In the honey bee the midgut epithelium is simple, with columnar digestive cells that have a well-developed brush border and basal nests of regenerative cells, and the matrix lies in the lumen as organised layers. Heights and lengths are known from other bees and are marked as such on the screen note. In flies the muscles and the epithelium share a basement membrane, and the muscles are a circular layer with longitudinal fibres over it."
+  },
+  "facts": [
+   [
+    "Layers",
+    "matrix, brush border, one cell layer, basal lamina, two muscle layers"
+   ],
+   [
+    "Epithelium height",
+    "\u2248 40 \u00b5m (stingless bee; not measured in honey bee)"
+   ],
+   [
+    "Brush border",
+    "\u2248 12 \u00b5m (stingless bee, rear midgut)"
+   ],
+   [
+    "Shown",
+    "schematic; sizes marked on the screen note"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "The height of the honey bee midgut epithelium, the length of its brush border and the thickness of its peritrophic matrix have not been published; the values shown come from other bees and a silkworm."
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Midgut of the honey bee after an insecticide, control bees (ACS Environ Au 2026)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13003356"
+   },
+   {
+    "title": "Morphology and morphometry of the midgut in the stingless bee Friesella schrottkyi (Insects 2019)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6468588"
+   },
+   {
+    "title": "Characteristics of the peritrophic matrix of the silkworm (Insects 2021)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8227122"
+   }
+  ]
+ },
+ {
+  "id": "tissue_igw_digestive_cell",
+  "title": "Digestive cell of the midgut",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 4e-05,
+  "area": "bio_animals",
+  "parents": [
+   "tissue_igw_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "bee_midgut"
+  ],
+  "summary": "The tall absorbing cell that forms the single cell layer of the midgut wall.",
+  "layers": {
+   "basics": "These cells are tall, narrow and packed side by side in one layer. The top faces the food and carries a dense fringe of fingers. They make digestive enzymes, take up the products and pass them on to the body fluid.",
+   "deeper": "Each cell has one large round nucleus about 14 to 17 micrometres across (bumble bee) and is about 40 micrometres tall (stingless and bumble bees). The cell is replaced over time by cells that grow from the regenerative nests at its base.",
+   "expert": "In bees the nucleus of a digestive cell is larger in the front of the midgut (area about 238 square micrometres) than in the rear (about 157), and the cells are more numerous per field in the rear. The diameter shown is worked out from the area, assuming a round section."
+  },
+  "facts": [
+   [
+    "Height",
+    "\u2248 38 to 40 \u00b5m (bumble and stingless bee)"
+   ],
+   [
+    "Nucleus",
+    "\u2248 14 to 17 \u00b5m across (from area, bumble bee)"
+   ],
+   [
+    "Width",
+    "18 \u00b5m (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Midgut of the honey bee after an insecticide, control bees (ACS Environ Au 2026)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13003356"
+   },
+   {
+    "title": "Morphology and morphometry of the midgut in the stingless bee Friesella schrottkyi (Insects 2019)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6468588"
+   },
+   {
+    "title": "Ultrastructure and immunofluorescence of the midgut of Bombus morio (C R Biologies 2014)",
+    "url": "https://comptes-rendus.academie-sciences.fr/biologies/articles/10.1016/j.crvi.2014.04.002/"
+   }
+  ]
+ },
+ {
+  "id": "tissue_igw_microvilli",
+  "title": "Brush border of microvilli",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 4e-05,
+  "area": "bio_animals",
+  "parents": [
+   "tissue_igw_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "bee_midgut"
+  ],
+  "summary": "The dense fringe of finger-like cell extensions that faces the food and multiplies the surface for absorption.",
+  "layers": {
+   "basics": "Each digestive cell is covered at the top with thousands of tiny fingers. Together they look like a brush, and they greatly enlarge the surface that touches the food.",
+   "deeper": "In a stingless bee the brush border is about 24 micrometres long in the front midgut and about 12 in the rear; in the bumble bee Bombus morio the rear brush border is about 8 micrometres. A stingless-bee study quotes an estimate of about a 200-fold increase in cell surface.",
+   "expert": "Here the fingers are drawn about ten times too thick and far too few, since true ones are only a fraction of a micrometre wide and would blur the picture. The length shown is the rear-midgut value of a stingless bee, not a honey bee measurement."
+  },
+  "facts": [
+   [
+    "Length",
+    "\u2248 12 \u00b5m (rear midgut), \u2248 24 \u00b5m (front), stingless bee"
+   ],
+   [
+    "Surface gain",
+    "about 200-fold (an estimate quoted in a stingless-bee study)"
+   ],
+   [
+    "Drawn width",
+    "1.2 \u00b5m (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "The front-to-rear difference in length has not been measured in the honey bee."
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Midgut of the honey bee after an insecticide, control bees (ACS Environ Au 2026)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13003356"
+   },
+   {
+    "title": "Morphology and morphometry of the midgut in the stingless bee Friesella schrottkyi (Insects 2019)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6468588"
+   }
+  ]
+ },
+ {
+  "id": "tissue_igw_regenerative",
+  "title": "Regenerative cell nest",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 4e-05,
+  "area": "bio_animals",
+  "parents": [
+   "tissue_igw_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "bee_midgut"
+  ],
+  "summary": "Small groups of unspecialised cells at the base of the epithelium that replace worn digestive cells.",
+  "layers": {
+   "basics": "Between the feet of the tall cells sit small clusters of small, rounded cells. They do not reach the gut cavity. When digestive cells wear out, these cells grow into new ones.",
+   "deeper": "In honey bee queens each nest was found to hold two central regenerative cells, and the number of nests seen per section fell from about 14 in young queens to about 5 at 25 months. Nests are found along the whole midgut of bees.",
+   "expert": "The nuclei of regenerative cells in a bumble bee are small, with an area of 26 to 44 square micrometres, which gives about 6 to 7.5 micrometres across if round; nests there held 4 to 20 nuclei. The count and layout drawn here are illustrative."
+  },
+  "facts": [
+   [
+    "Cells per nest",
+    "2 central cells (honey bee queens)"
+   ],
+   [
+    "Nest count",
+    "\u2248 14 to \u2248 5 per section, young to old queens"
+   ],
+   [
+    "Nucleus",
+    "\u2248 6 to 7.5 \u00b5m across (from area, bumble bee)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Midgut of the honey bee after an insecticide, control bees (ACS Environ Au 2026)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13003356"
+   },
+   {
+    "title": "Morphology and morphometry of the midgut in the stingless bee Friesella schrottkyi (Insects 2019)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6468588"
+   },
+   {
+    "title": "Regenerative cells in the midgut of honey bee queens of different ages (Braz Arch Biol Technol 2024)",
+    "url": "https://www.scielo.br/j/babt/a/z49MQyNxm5yCB4YSXVrPcPJ/?lang=en"
+   }
+  ]
+ },
+ {
+  "id": "tissue_igw_pm",
+  "title": "Peritrophic matrix",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 4e-05,
+  "area": "bio_animals",
+  "parents": [
+   "tissue_igw_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "bee_midgut"
+  ],
+  "summary": "A porous net of chitin and proteins that wraps the food inside the midgut and protects the cells.",
+  "layers": {
+   "basics": "The food in the midgut is wrapped in a thin, tough, porous bag. It lets small digested molecules through to the cells but keeps rough particles and many germs away from the wall.",
+   "deeper": "It is built from chitin fibres held together by proteins and sugar-rich proteins. In a silkworm it is about 9 to 12.6 micrometres thick and gets thicker as the larva grows. In honey bees it is seen as organised layers in the gut cavity.",
+   "expert": "Whether it is made along the whole midgut or in a ring at its front differs between insects. The thickness shown comes from a silkworm, not from a bee."
+  },
+  "facts": [
+   [
+    "Thickness",
+    "\u2248 9 to 12.6 \u00b5m (silkworm larvae, not bee)"
+   ],
+   [
+    "Made of",
+    "chitin fibres, proteins"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "The thickness of the honey bee peritrophic matrix is not known; the silkworm value is shown."
+  ],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Midgut of the honey bee after an insecticide, control bees (ACS Environ Au 2026)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13003356"
+   },
+   {
+    "title": "Morphology and morphometry of the midgut in the stingless bee Friesella schrottkyi (Insects 2019)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6468588"
+   },
+   {
+    "title": "Characteristics of the peritrophic matrix of the silkworm (Insects 2021)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8227122"
+   }
+  ]
+ },
+ {
+  "id": "tissue_igw_basal_lamina",
+  "title": "Basal lamina",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 4e-05,
+  "area": "bio_animals",
+  "parents": [
+   "tissue_igw_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "bee_midgut"
+  ],
+  "summary": "A thin sheet of fibrous protein under the epithelium, on which the cells sit.",
+  "layers": {
+   "basics": "Under the cell layer lies a very thin sheet of protein fibres. The cells rest on it and it separates them from the muscle below.",
+   "deeper": "In the fruit fly this sheet is made of type IV collagen, laminin, nidogen and perlecan; the same is expected, but not shown, for bees. In flies it lies between the epithelium and the muscle layers and surrounds the muscle fibres.",
+   "expert": "The thickness drawn (1 micrometre) is illustrative, not measured. Collagen is a stand-in material: this sheet holds type IV collagen, not rope-like fibres."
+  },
+  "facts": [
+   [
+    "Made of",
+    "collagen IV, laminin, nidogen, perlecan (fly)"
+   ],
+   [
+    "Thickness",
+    "1 \u00b5m drawn (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Epithelial cell polarity during Drosophila midgut development (Front Cell Dev Biol 2022)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9281564"
+   }
+  ]
+ },
+ {
+  "id": "tissue_igw_muscle",
+  "title": "Gut muscle layers",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 4e-05,
+  "area": "bio_animals",
+  "parents": [
+   "tissue_igw_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "bee_midgut"
+  ],
+  "summary": "Two thin muscle layers around the midgut that squeeze and mix the food.",
+  "layers": {
+   "basics": "Around the gut wall run thin muscle fibres: one layer circles the gut, another runs along its length. Their squeezing mixes the food and moves it on.",
+   "deeper": "In flies the circular fibres lie against the epithelium and the longitudinal fibres lie over them, and both share a sheet with the cell layer below. The honey bee gut is described with the same two layers, but the thickness of the honey bee gut muscle layers is not known.",
+   "expert": "Fibre sizes drawn here (4 to 5 micrometres) are illustrative."
+  },
+  "facts": [
+   [
+    "Layers",
+    "circular and longitudinal"
+   ],
+   [
+    "Fibre width",
+    "4 to 5 \u00b5m (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.4",
+    "4-4-muscle-tissue-and-motion"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Mmp2 and basement membrane remodeling of the visceral muscle in Drosophila (Sci Rep 2026)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12953612"
+   }
+  ]
+ },
+ {
+  "id": "tissue_igw_tracheole",
+  "title": "Tracheoles",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 4e-05,
+  "area": "bio_animals",
+  "parents": [
+   "tissue_igw_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "bee_midgut"
+  ],
+  "summary": "The finest air tubes of an insect, bringing oxygen to the gut wall and its muscle.",
+  "layers": {
+   "basics": "Insects breathe through a network of air tubes that branch finer and finer. The finest ones, tracheoles, reach the gut wall and carry air very near the cells that need it.",
+   "deeper": "Tracheoles are the thinnest, fluid-ended ends of the tubes. They are a side branch of the tubes that open to the outside through the body wall.",
+   "expert": "The width and positions drawn here are illustrative."
+  },
+  "facts": [
+   [
+    "Width",
+    "1.2 \u00b5m drawn (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "The width of the finest air tubes in the bee gut has not been measured; the width drawn is a stand-in."
+  ],
+  "refs": [],
+  "ext": []
+ },
+ {
+  "id": "tissue_igw_food",
+  "title": "Food in the gut cavity",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 4e-05,
+  "area": "bio_animals",
+  "parents": [
+   "tissue_igw_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "bee_midgut"
+  ],
+  "summary": "Pollen grains being digested, held inside the net-like matrix. Nectar and honey are not drawn.",
+  "layers": {
+   "basics": "A bee eats nectar and pollen. In the midgut the pollen grains are broken open and their contents are digested and taken up.",
+   "deeper": "The grains drawn are tens of micrometres across in real life; their size here is illustrative. Nectar and honey fill much of the gut of a bee but are not drawn.",
+   "expert": "The grain size and number drawn are illustrative."
+  },
+  "facts": [
+   [
+    "Shown",
+    "pollen grains only, illustrative sizes"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [],
+  "ext": []
+ }
+]

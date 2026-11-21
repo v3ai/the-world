@@ -1,0 +1,701 @@
+{
+ "id": "insect_gut_wall",
+ "title": "Inside the wall of a honey bee's midgut",
+ "node": "tissue_igw_scene",
+ "bg": "#f3efe6",
+ "center": [
+  0,
+  42,
+  0
+ ],
+ "D_um": 300,
+ "tag": "Inside a bee gut",
+ "cell": "animal",
+ "blurb": "A slice through the wall of the honey bee's midgut. Food and the net-like peritrophic matrix are at the top, one layer of tall absorbing cells with a brush border is in the middle, and two thin muscle layers with air tubes lie below. Click a layer.",
+ "note": "Schematic, not a micrograph. Real sizes: the epithelium is about 40 micrometres tall (a stingless bee, 40 um; a bumble bee, 38 um; not measured in the honey bee), the brush border about 12 micrometres (stingless bee, rear midgut), the digestive-cell nucleus about 14 to 17 micrometres across (rear to front) and the regenerative-cell nucleus 6 to 7.5 micrometres (worked out from nucleus areas in a bumble bee), two regenerative cells per nest (honey bee queens), and the peritrophic matrix about 10 micrometres (silkworm larvae, a different insect). Illustrative: cell width, the number of cells and nests, the microvilli (drawn about ten times too thick and far too few), the basal lamina, the muscle and air-tube sizes, the food grains, and the layout. Cells are drawn as separate boxes; real cells touch and are joined along their sides. Regenerative cells are drawn in the gaps between the feet of digestive cells. Other cell types (endocrine cells) are not shown. The food is shown as pollen grains only; nectar and honey fill much of the gut but are not drawn. The scene is the honey bee midgut; other insects have a similar plan but differ in size.",
+ "labels": [
+  {
+   "text": "Food in the gut cavity",
+   "at": [
+    -120,
+    96,
+    30
+   ],
+   "pop": "food"
+  },
+  {
+   "text": "Peritrophic matrix (chitin net round the food)",
+   "at": [
+    -120,
+    66,
+    30
+   ],
+   "pop": "pm"
+  },
+  {
+   "text": "Brush border (microvilli)",
+   "at": [
+    -120,
+    51.5,
+    30
+   ],
+   "pop": "mv"
+  },
+  {
+   "text": "Digestive cell (columnar)",
+   "at": [
+    -120,
+    35.5,
+    30
+   ],
+   "pop": "cells"
+  },
+  {
+   "text": "Nest of regenerative cells",
+   "at": [
+    -120,
+    9.5,
+    30
+   ],
+   "pop": "regen"
+  },
+  {
+   "text": "Basal lamina",
+   "at": [
+    -120,
+    3.5,
+    30
+   ],
+   "pop": "bl"
+  },
+  {
+   "text": "Circular muscle",
+   "at": [
+    -120,
+    -0.5,
+    30
+   ],
+   "pop": "cm"
+  },
+  {
+   "text": "Longitudinal muscle",
+   "at": [
+    -120,
+    -7.5,
+    30
+   ],
+   "pop": "lm"
+  },
+  {
+   "text": "Tracheoles (air tubes)",
+   "at": [
+    -120,
+    -14,
+    30
+   ],
+   "pop": "tr"
+  }
+ ],
+ "populations": [
+  {
+   "id": "food",
+   "name": "Pollen grains in the gut cavity",
+   "node": "tissue_igw_food",
+   "shape": "ellipsoid",
+   "size": [
+    16,
+    12,
+    16
+   ],
+   "color": "#e8c34a",
+   "opacity": 0.9,
+   "arrange": {
+    "kind": "random",
+    "n": 9,
+    "min": [
+     -100,
+     75.5,
+     -26
+    ],
+    "max": [
+     100,
+     103.5,
+     26
+    ],
+    "gap": 2,
+    "seed": 7
+   },
+   "ink": 1,
+   "material": "pollen"
+  },
+  {
+   "id": "pm",
+   "name": "Peritrophic matrix",
+   "node": "tissue_igw_pm",
+   "shape": "rbox",
+   "size": [
+    230,
+    10,
+    64
+   ],
+   "color": "#bfd8e0",
+   "opacity": 0.5,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       65.5,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "chitin",
+   "deeper": {
+    "type": "mol",
+    "mol": "n_acetylglucosamine",
+    "name": "N-acetylglucosamine, the unit that chitin chains are built from"
+   }
+  },
+  {
+   "id": "mv",
+   "name": "Microvilli (brush border)",
+   "node": "tissue_igw_microvilli",
+   "shape": "cylinder",
+   "size": [
+    1.2,
+    12,
+    1.2
+   ],
+   "color": "#e29a7a",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -106.0,
+     51.5,
+     -18
+    ],
+    "n": [
+     81,
+     1,
+     3
+    ],
+    "step": [
+     2.64,
+     0,
+     18
+    ],
+    "jitter": 0.15
+   },
+   "ink": 1,
+   "material": "membrane"
+  },
+  {
+   "id": "cells",
+   "name": "Digestive cell (columnar)",
+   "node": "tissue_igw_digestive_cell",
+   "shape": "rbox",
+   "size": [
+    17.4,
+    40,
+    26
+   ],
+   "color": "#f0c8b4",
+   "opacity": 0.55,
+   "arrange": {
+    "kind": "grid",
+    "origin": [
+     -99.0,
+     25.5,
+     -14
+    ],
+    "n": [
+     12,
+     1,
+     2
+    ],
+    "step": [
+     18,
+     0,
+     28
+    ],
+    "jitter": 0
+   },
+   "ink": 1,
+   "material": "animal_cells",
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "nuc",
+   "name": "Digestive-cell nucleus",
+   "node": "tissue_igw_digestive_cell",
+   "shape": "ellipsoid",
+   "size": [
+    14,
+    17,
+    14
+   ],
+   "color": "#6b4f86",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -99.0,
+       29.5,
+       -14
+      ]
+     },
+     {
+      "at": [
+       -99.0,
+       29.5,
+       14
+      ]
+     },
+     {
+      "at": [
+       -81.0,
+       29.5,
+       -14
+      ]
+     },
+     {
+      "at": [
+       -81.0,
+       29.5,
+       14
+      ]
+     },
+     {
+      "at": [
+       -63.0,
+       29.5,
+       -14
+      ]
+     },
+     {
+      "at": [
+       -63.0,
+       29.5,
+       14
+      ]
+     },
+     {
+      "at": [
+       -45.0,
+       29.5,
+       -14
+      ]
+     },
+     {
+      "at": [
+       -45.0,
+       29.5,
+       14
+      ]
+     },
+     {
+      "at": [
+       -27.0,
+       29.5,
+       -14
+      ]
+     },
+     {
+      "at": [
+       -27.0,
+       29.5,
+       14
+      ]
+     },
+     {
+      "at": [
+       -9.0,
+       29.5,
+       -14
+      ]
+     },
+     {
+      "at": [
+       -9.0,
+       29.5,
+       14
+      ]
+     },
+     {
+      "at": [
+       9.0,
+       29.5,
+       -14
+      ]
+     },
+     {
+      "at": [
+       9.0,
+       29.5,
+       14
+      ]
+     },
+     {
+      "at": [
+       27.0,
+       29.5,
+       -14
+      ]
+     },
+     {
+      "at": [
+       27.0,
+       29.5,
+       14
+      ]
+     },
+     {
+      "at": [
+       45.0,
+       29.5,
+       -14
+      ]
+     },
+     {
+      "at": [
+       45.0,
+       29.5,
+       14
+      ]
+     },
+     {
+      "at": [
+       63.0,
+       29.5,
+       -14
+      ]
+     },
+     {
+      "at": [
+       63.0,
+       29.5,
+       14
+      ]
+     },
+     {
+      "at": [
+       81.0,
+       29.5,
+       -14
+      ]
+     },
+     {
+      "at": [
+       81.0,
+       29.5,
+       14
+      ]
+     },
+     {
+      "at": [
+       99.0,
+       29.5,
+       -14
+      ]
+     },
+     {
+      "at": [
+       99.0,
+       29.5,
+       14
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "cell_nucleus"
+  },
+  {
+   "id": "regen",
+   "name": "Regenerative cell (in a nest)",
+   "node": "tissue_igw_regenerative",
+   "shape": "ellipsoid",
+   "size": [
+    7,
+    6,
+    7
+   ],
+   "color": "#7aa3c8",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -74.5,
+       8.5,
+       -2.5
+      ]
+     },
+     {
+      "at": [
+       -69.5,
+       8.5,
+       2.5
+      ]
+     },
+     {
+      "at": [
+       -38.5,
+       8.5,
+       -2.5
+      ]
+     },
+     {
+      "at": [
+       -33.5,
+       8.5,
+       2.5
+      ]
+     },
+     {
+      "at": [
+       -2.5,
+       8.5,
+       -2.5
+      ]
+     },
+     {
+      "at": [
+       2.5,
+       8.5,
+       2.5
+      ]
+     },
+     {
+      "at": [
+       51.5,
+       8.5,
+       -2.5
+      ]
+     },
+     {
+      "at": [
+       56.5,
+       8.5,
+       2.5
+      ]
+     },
+     {
+      "at": [
+       87.5,
+       8.5,
+       -2.5
+      ]
+     },
+     {
+      "at": [
+       92.5,
+       8.5,
+       2.5
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "animal_cells",
+   "deeper": {
+    "type": "cell"
+   }
+  },
+  {
+   "id": "bl",
+   "name": "Basal lamina",
+   "node": "tissue_igw_basal_lamina",
+   "shape": "rbox",
+   "size": [
+    230,
+    1,
+    64
+   ],
+   "color": "#8a6f4e",
+   "opacity": 0.9,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       4.5,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "collagen"
+  },
+  {
+   "id": "cm",
+   "name": "Circular muscle fibre",
+   "node": "tissue_igw_muscle",
+   "shape": "tube_x",
+   "size": [
+    230,
+    4,
+    4
+   ],
+   "color": "#c0574b",
+   "opacity": 0.92,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       1.5,
+       -22
+      ]
+     },
+     {
+      "at": [
+       0,
+       1.5,
+       -8
+      ]
+     },
+     {
+      "at": [
+       0,
+       1.5,
+       6
+      ]
+     },
+     {
+      "at": [
+       0,
+       1.5,
+       20
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "muscle_fibre"
+  },
+  {
+   "id": "lm",
+   "name": "Longitudinal muscle fibre",
+   "node": "tissue_igw_muscle",
+   "shape": "tube_z",
+   "size": [
+    5,
+    5,
+    64
+   ],
+   "color": "#a8463c",
+   "opacity": 0.92,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -96,
+       -4.5,
+       0
+      ]
+     },
+     {
+      "at": [
+       -66,
+       -4.5,
+       0
+      ]
+     },
+     {
+      "at": [
+       -36,
+       -4.5,
+       0
+      ]
+     },
+     {
+      "at": [
+       -6,
+       -4.5,
+       0
+      ]
+     },
+     {
+      "at": [
+       24,
+       -4.5,
+       0
+      ]
+     },
+     {
+      "at": [
+       54,
+       -4.5,
+       0
+      ]
+     },
+     {
+      "at": [
+       84,
+       -4.5,
+       0
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "muscle_fibre"
+  },
+  {
+   "id": "tr",
+   "name": "Tracheole (air tube)",
+   "node": "tissue_igw_tracheole",
+   "shape": "tube_x",
+   "size": [
+    161.0,
+    1.2,
+    1.2
+   ],
+   "color": "#7a8c6a",
+   "opacity": 0.95,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -10,
+       -9.0,
+       -10
+      ]
+     },
+     {
+      "at": [
+       20,
+       -8.0,
+       12
+      ]
+     },
+     {
+      "at": [
+       0,
+       3.0,
+       30
+      ]
+     }
+    ]
+   },
+   "ink": 1,
+   "material": "insect_air_tube"
+  }
+ ]
+}

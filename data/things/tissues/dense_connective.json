@@ -1,0 +1,1739 @@
+{
+ "id": "dense_connective",
+ "title": "Dense connective tissue (tendon)",
+ "node": "dense_connective_scene",
+ "tag": "Inside a tendon",
+ "cell": "animal",
+ "blurb": "A slice of one tendon bundle (fascicle): wavy collagen fibres lie side by side, with rows of flat fibroblasts, a few elastic fibres and little blood supply. Click a part.",
+ "note": "Schematic, not a micrograph. Drawn is a tendon-type arrangement: fibres parallel to each other and to the pull. In the sclera of the eye and in the dermis of the skin the same collagen is interwoven in bundles that run in many directions, so those tissues look different from this one. Real sizes: collagen fibrils 50-500 nm across (the 200 nm fibrils are drawn at that true width, so they look like hairlines until you zoom in), collagen fibres 10-50 um across (22 um drawn), fascicles 100-500 um across (about 290 um drawn), crimp wavelength about 100 um and fibroblast length about 27 um (both measured in mouse-tail tendon at 6 weeks, a small tendon of another species), and a capillary lumen 5-10 um across (drawn 10 um outer width, wall not drawn separately). Illustrative: the 10 degree lean of the crimp, the fibroblast width and thickness (8 um), the number and placement of cells (fewer than in mouse tail; cells sit in the gaps between fibre columns, as real tenocytes sit between bundles), the elastic fibre width (1.5 um) and count (three), the position of the capillary and of fibrils (37 shown of many thousands per fibre), the length of fibrils drawn, the depth of the slab and the colours. Ground substance is drawn as a pale slab and has no material; the fibres are drawn as plain rods although each is a bundle of fibrils, and as short straight pieces joined end to end, whereas real fibres are far longer. Elastic fibres are drawn straight; in real tendon they follow the crimp. The fibrils at the top are a separate inset showing a few of the fibrils inside one fibre, not part of the slab. The slab has no sheath of loose connective tissue (endotenon) around it, which real fascicles have, and in very small tendons such as mouse tail a fascicle may not exist as a distinct level. The capillary is drawn inside the slab for clarity; sources do not say where vessels lie, and in real tendon they run in the connective tissue sheaths. This tendon-type scene does not stand for the sclera, which is interwoven in lamellae.",
+ "bg": "#f3efe6",
+ "center": [
+  0,
+  10,
+  0
+ ],
+ "D_um": 420,
+ "labels": [
+  {
+   "text": "Collagen fibre (crimped)",
+   "at": [
+    -170,
+    90,
+    30
+   ],
+   "pop": "fibre"
+  },
+  {
+   "text": "Fibroblast (tenocyte)",
+   "at": [
+    -60,
+    -100,
+    30
+   ],
+   "pop": "tenocyte"
+  },
+  {
+   "text": "Elastic fibre",
+   "at": [
+    -170,
+    0,
+    30
+   ],
+   "pop": "elastic"
+  },
+  {
+   "text": "Inset: collagen fibrils (200 nm, to scale)",
+   "at": [
+    30,
+    165,
+    30
+   ],
+   "pop": "fibril"
+  },
+  {
+   "text": "Small blood vessel (capillary)",
+   "at": [
+    -170,
+    -120,
+    30
+   ],
+   "pop": "capillary"
+  }
+ ],
+ "populations": [
+  {
+   "id": "ground",
+   "name": "Ground substance",
+   "node": "dc_ground",
+   "shape": "rbox",
+   "size": [
+    288,
+    300,
+    64
+   ],
+   "color": "#e9dcc6",
+   "opacity": 0.28,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       0,
+       0,
+       0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "fibre",
+   "name": "Collagen fibre",
+   "node": "dc_fibre",
+   "shape": "cylinder",
+   "size": [
+    22,
+    50,
+    22
+   ],
+   "color": "#f3ece0",
+   "opacity": 0.95,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -132.34,
+       -123.38,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -132.34,
+       -74.14,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -132.34,
+       -24.9,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -132.34,
+       24.34,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -132.34,
+       73.58,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -132.34,
+       122.82,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -132.34,
+       -123.38,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -132.34,
+       -74.14,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -132.34,
+       -24.9,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -132.34,
+       24.34,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -132.34,
+       73.58,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -132.34,
+       122.82,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -100.34,
+       -123.38,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -100.34,
+       -74.14,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -100.34,
+       -24.9,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -100.34,
+       24.34,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -100.34,
+       73.58,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -100.34,
+       122.82,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -100.34,
+       -123.38,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -100.34,
+       -74.14,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -100.34,
+       -24.9,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -100.34,
+       24.34,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -100.34,
+       73.58,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -100.34,
+       122.82,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -68.34,
+       -123.38,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -68.34,
+       -74.14,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -68.34,
+       -24.9,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -68.34,
+       24.34,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -68.34,
+       73.58,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -68.34,
+       122.82,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -68.34,
+       -123.38,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -68.34,
+       -74.14,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -68.34,
+       -24.9,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -68.34,
+       24.34,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -68.34,
+       73.58,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -68.34,
+       122.82,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -36.34,
+       -123.38,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -36.34,
+       -74.14,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -36.34,
+       -24.9,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -36.34,
+       24.34,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -36.34,
+       73.58,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -36.34,
+       122.82,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -36.34,
+       -123.38,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -36.34,
+       -74.14,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -36.34,
+       -24.9,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -36.34,
+       24.34,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -36.34,
+       73.58,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -36.34,
+       122.82,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -4.34,
+       -123.38,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -4.34,
+       -74.14,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -4.34,
+       -24.9,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -4.34,
+       24.34,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -4.34,
+       73.58,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -4.34,
+       122.82,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -4.34,
+       -123.38,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -4.34,
+       -74.14,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -4.34,
+       -24.9,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -4.34,
+       24.34,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       -4.34,
+       73.58,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       -4.34,
+       122.82,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       27.66,
+       -123.38,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       27.66,
+       -74.14,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       27.66,
+       -24.9,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       27.66,
+       24.34,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       27.66,
+       73.58,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       27.66,
+       122.82,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       27.66,
+       -123.38,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       27.66,
+       -74.14,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       27.66,
+       -24.9,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       27.66,
+       24.34,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       27.66,
+       73.58,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       27.66,
+       122.82,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       59.66,
+       -123.38,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       59.66,
+       -74.14,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       59.66,
+       -24.9,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       59.66,
+       24.34,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       59.66,
+       73.58,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       59.66,
+       122.82,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       59.66,
+       -123.38,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       59.66,
+       -74.14,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       59.66,
+       -24.9,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       59.66,
+       24.34,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       59.66,
+       73.58,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       59.66,
+       122.82,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       91.66,
+       -123.38,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       91.66,
+       -74.14,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       91.66,
+       -24.9,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       91.66,
+       24.34,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       91.66,
+       73.58,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       91.66,
+       122.82,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       91.66,
+       -123.38,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       91.66,
+       -74.14,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       91.66,
+       -24.9,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       91.66,
+       24.34,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       91.66,
+       73.58,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       91.66,
+       122.82,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       123.66,
+       -123.38,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       123.66,
+       -74.14,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       123.66,
+       -24.9,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       123.66,
+       24.34,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       123.66,
+       73.58,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       123.66,
+       122.82,
+       -16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       123.66,
+       -123.38,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       123.66,
+       -74.14,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       123.66,
+       -24.9,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       123.66,
+       24.34,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     },
+     {
+      "at": [
+       123.66,
+       73.58,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       10.0
+      ]
+     },
+     {
+      "at": [
+       123.66,
+       122.82,
+       16
+      ],
+      "rot": [
+       0,
+       0,
+       -10.0
+      ]
+     }
+    ]
+   },
+   "material": "collagen"
+  },
+  {
+   "id": "fibril",
+   "name": "Collagen fibril",
+   "node": "dc_fibril",
+   "shape": "cylinder",
+   "size": [
+    0.2,
+    25,
+    0.2
+   ],
+   "color": "#d9b98a",
+   "opacity": 1,
+   "ink": 1,
+   "arrange": {
+    "kind": "random",
+    "n": 37,
+    "min": [
+     -12,
+     152,
+     -12
+    ],
+    "max": [
+     12,
+     172,
+     12
+    ],
+    "gap": 0.3,
+    "seed": 7
+   },
+   "material": "collagen"
+  },
+  {
+   "id": "tenocyte",
+   "name": "Fibroblast (tenocyte)",
+   "node": "dc_tenocyte",
+   "shape": "ellipsoid",
+   "size": [
+    8,
+    27,
+    8
+   ],
+   "color": "#a9737a",
+   "opacity": 0.95,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -80,
+       -135,
+       0
+      ]
+     },
+     {
+      "at": [
+       -80,
+       -106,
+       0
+      ]
+     },
+     {
+      "at": [
+       -80,
+       -77,
+       0
+      ]
+     },
+     {
+      "at": [
+       -80,
+       -48,
+       0
+      ]
+     },
+     {
+      "at": [
+       -80,
+       -19,
+       0
+      ]
+     },
+     {
+      "at": [
+       -80,
+       10,
+       0
+      ]
+     },
+     {
+      "at": [
+       -80,
+       39,
+       0
+      ]
+     },
+     {
+      "at": [
+       -80,
+       68,
+       0
+      ]
+     },
+     {
+      "at": [
+       -80,
+       97,
+       0
+      ]
+     },
+     {
+      "at": [
+       -80,
+       126,
+       0
+      ]
+     },
+     {
+      "at": [
+       -16,
+       -135,
+       0
+      ]
+     },
+     {
+      "at": [
+       -16,
+       -106,
+       0
+      ]
+     },
+     {
+      "at": [
+       -16,
+       -77,
+       0
+      ]
+     },
+     {
+      "at": [
+       -16,
+       -48,
+       0
+      ]
+     },
+     {
+      "at": [
+       -16,
+       -19,
+       0
+      ]
+     },
+     {
+      "at": [
+       -16,
+       10,
+       0
+      ]
+     },
+     {
+      "at": [
+       -16,
+       39,
+       0
+      ]
+     },
+     {
+      "at": [
+       -16,
+       68,
+       0
+      ]
+     },
+     {
+      "at": [
+       -16,
+       97,
+       0
+      ]
+     },
+     {
+      "at": [
+       -16,
+       126,
+       0
+      ]
+     },
+     {
+      "at": [
+       48,
+       -135,
+       0
+      ]
+     },
+     {
+      "at": [
+       48,
+       -106,
+       0
+      ]
+     },
+     {
+      "at": [
+       48,
+       -77,
+       0
+      ]
+     },
+     {
+      "at": [
+       48,
+       -48,
+       0
+      ]
+     },
+     {
+      "at": [
+       48,
+       -19,
+       0
+      ]
+     },
+     {
+      "at": [
+       48,
+       10,
+       0
+      ]
+     },
+     {
+      "at": [
+       48,
+       39,
+       0
+      ]
+     },
+     {
+      "at": [
+       48,
+       68,
+       0
+      ]
+     },
+     {
+      "at": [
+       48,
+       97,
+       0
+      ]
+     },
+     {
+      "at": [
+       48,
+       126,
+       0
+      ]
+     }
+    ]
+   },
+   "deeper": {
+    "type": "cell",
+    "cell": "animal"
+   }
+  },
+  {
+   "id": "elastic",
+   "name": "Elastic fibre",
+   "node": "dc_elastic",
+   "shape": "cylinder",
+   "size": [
+    1.5,
+    300,
+    1.5
+   ],
+   "color": "#d8b23c",
+   "opacity": 1,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -48,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       16,
+       0,
+       0
+      ]
+     },
+     {
+      "at": [
+       112,
+       0,
+       0
+      ]
+     }
+    ]
+   },
+   "material": "protein"
+  },
+  {
+   "id": "capillary",
+   "name": "Capillary",
+   "node": "dc_capillary",
+   "shape": "cylinder",
+   "size": [
+    10,
+    300,
+    10
+   ],
+   "color": "#c9544f",
+   "opacity": 0.95,
+   "ink": 1,
+   "arrange": {
+    "kind": "list",
+    "items": [
+     {
+      "at": [
+       -112,
+       0,
+       0
+      ]
+     }
+    ]
+   },
+   "material": "vessel_wall"
+  }
+ ]
+}

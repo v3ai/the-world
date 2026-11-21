@@ -1,0 +1,476 @@
+[
+ {
+  "id": "oak_bark_scene",
+  "title": "Bark of a young oak stem in section",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.001,
+  "area": "bio_ecology",
+  "parents": [
+   "oak_bark"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "oak_bark",
+   "oak_cambium"
+  ],
+  "summary": "A slice through oak bark from the outside in: dead cork, the cork-making layer, old phloem with tough fibres, the living phloem, the cambium and the first wood.",
+  "layers": {
+   "basics": "Bark is everything outside the wood. Its outer part is dead and protective; its inner part, the phloem, carries sugar down from the leaves. Between the phloem and the wood a thin layer of dividing cells, the cambium, adds wood inward and phloem outward. Click a layer.",
+   "deeper": "Oak bark is built in rings of time. The cork-making layer adds cork to the outside, and as the trunk swells the outer phloem is stretched, crushed and stiffened with fibres. In oaks the layer of working phloem is narrow, and a wide ray of living cells runs through the whole bark like a spoke, carrying sugar sideways.",
+   "expert": "Only some sizes in the scene are measured. The cork cell width, the number of cork layers, the layers of phelloderm, the width of the fibre bands, the sieve tube section and the ray width come from published work on oaks. All layer thicknesses, the height of cork cells and the wood cells are illustrative, and the whole slice is far thinner than the bark of an old trunk. It shows a young stem with one cork layer; old oak bark has several cork layers with dead phloem between them and is deeply furrowed. Cork cell size is from cork oak and the other numbers from Chinese oak species, none from English oak."
+  },
+  "facts": [
+   [
+    "Cork layers",
+    "typically 10 to 30 (Quercus, Chinese species study; some species have far more)"
+   ],
+   [
+    "Phelloderm layers",
+    "typically 2 to 5 (some species up to ten or more)"
+   ],
+   [
+    "Shown",
+    "schematic; sizes marked on the screen note"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.2",
+    "30-2-stems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Comparative anatomy of bark in 10 Quercus species (Plants 2024)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11244080/"
+   }
+  ]
+ },
+ {
+  "id": "oak_bark_phellem",
+  "title": "Cork cells (phellem)",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 4e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "oak_bark_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "oak_cork"
+  ],
+  "summary": "Dead, box-shaped cells stacked in radial rows, with walls sealed by a waxy polymer, forming the outer skin of the bark.",
+  "layers": {
+   "basics": "Each cork cell is dead and filled with air. Its wall is coated with suberin, a waxy material that keeps water and gases out, which is why cork floats and insulates.",
+   "deeper": "Every cell in one radial row came from a single cell of the cork cambium, so the rows are straight and the cells have no gaps between them. Seen from above they look like honeycomb hexagons; seen in section, like a brick wall. All the rows are drawn alike.",
+   "expert": "In cork oak the wall is about 1 micrometre thick and about 40 micrometres across tangentially; the wall is mostly suberin with lignin and polysaccharides. The radial height drawn here is illustrative."
+  },
+  "facts": [
+   [
+    "Width of a cell (tangential)",
+    "\u2248 40 \u00b5m (cork oak)"
+   ],
+   [
+    "Wall thickness",
+    "\u2248 1 \u00b5m (cork oak)"
+   ],
+   [
+    "Layers",
+    "typically 10 to 30 (some oaks far more)"
+   ],
+   [
+    "Height of a cell as drawn",
+    "20 \u00b5m (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.2",
+    "30-2-stems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Four hundred years of cork imaging (Sci Rep 2019)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6928211"
+   }
+  ]
+ },
+ {
+  "id": "oak_bark_cork_cambium",
+  "title": "Cork cambium (phellogen)",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "oak_bark_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "oak_cork"
+  ],
+  "summary": "A thin layer of dividing cells that makes cork outward and phelloderm inward.",
+  "layers": {
+   "basics": "These are the only living, dividing cells near the surface. They split to add dead cork cells on the outside and a few living cells on the inside.",
+   "deeper": "Because it divides in two directions, the cork cambium makes far more cork than phelloderm. When the bark cracks or a new cork layer starts deeper in the phloem, the old one is cut off with everything outside it, and that dead mass becomes the rough outer bark.",
+   "expert": "Drawn as two flat layers; the real number of layers and their height are illustrative."
+  },
+  "facts": [
+   [
+    "Layers drawn",
+    "2 (illustrative)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.2",
+    "30-2-stems"
+   ]
+  ]
+ },
+ {
+  "id": "oak_bark_phelloderm",
+  "title": "Phelloderm",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 3e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "oak_bark_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "A few layers of living, thin-walled cells on the inner side of the cork cambium.",
+  "layers": {
+   "basics": "Phelloderm cells are alive and look like ordinary round storage cells. They sit between the cork cambium and the phloem.",
+   "deeper": "They are the inward product of the cork cambium. They are living parenchyma cells, which may store starch.",
+   "expert": "Two to five layers are typical in Quercus, though some species have up to ten or more; three are drawn, each 25 micrometres tall as an illustrative height."
+  },
+  "facts": [
+   [
+    "Layers",
+    "typically 2 to 5 (some oaks more)"
+   ],
+   [
+    "Height of a layer as drawn",
+    "25 \u00b5m (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.2",
+    "30-2-stems"
+   ]
+  ]
+ },
+ {
+  "id": "oak_bark_phloem_fibres",
+  "title": "Phloem fibres",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 1.5e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "oak_bark_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "Long, thick-walled dead cells in tangential bands that stiffen the bark.",
+  "layers": {
+   "basics": "Fibres are like tiny ropes. In the old phloem they form bands that run around the trunk, making the bark tough and hard to tear.",
+   "deeper": "The bands are about five cells wide and are broken up as the trunk grows. The inner part of a fibre wall is a thick layer rich in cellulose. Each fibre is far longer than wide, so a section shows only its round end.",
+   "expert": "Fibres from oak bark are about 650 to 850 micrometres long; the diameter and the gaps in the bands drawn here are illustrative."
+  },
+  "facts": [
+   [
+    "Fibre length",
+    "650 to 850 \u00b5m (oaks)"
+   ],
+   [
+    "Band width",
+    "\u2248 5 cells (oaks)"
+   ],
+   [
+    "Fibre diameter as drawn",
+    "14 \u00b5m (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.2",
+    "30-2-stems"
+   ]
+  ]
+ },
+ {
+  "id": "oak_bark_crushed_sieve",
+  "title": "Crushed sieve tubes",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "oak_bark_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "Old sugar-carrying tubes that have been flattened and no longer work.",
+  "layers": {
+   "basics": "A sieve tube works for a short time. Once the bark behind it grows outward, the tube is squashed flat and its place is taken by newer tubes nearer the cambium.",
+   "deeper": "In oaks the working phloem is narrow, and collapsed sieve tubes lie close to the cambium. The flattened walls stay as thin dark lines between the fibre bands and parenchyma cells.",
+   "expert": "The flat shape and number drawn are illustrative."
+  },
+  "facts": [
+   [
+    "Thickness as drawn",
+    "\u2248 4 \u00b5m (illustrative)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.5",
+    "30-5-transport-of-water-and-solutes-in-plants"
+   ]
+  ]
+ },
+ {
+  "id": "oak_bark_phloem_parenchyma",
+  "title": "Phloem parenchyma",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 2e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "oak_bark_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "Living storage cells scattered between the tubes and fibres of the phloem.",
+  "layers": {
+   "basics": "These round cells store starch and other food and pass sugar sideways. They stay alive far longer than the tubes beside them.",
+   "deeper": "In the old phloem some of these cells swell and divide so that the bark can stretch around a thickening trunk.",
+   "expert": "Size and number drawn are illustrative."
+  },
+  "facts": [
+   [
+    "Size as drawn",
+    "\u2248 25 \u00b5m (illustrative)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.2",
+    "30-2-stems"
+   ]
+  ]
+ },
+ {
+  "id": "oak_bark_sieve_tube",
+  "title": "Sieve tubes and companion cells",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 1.6e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "oak_bark_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "Living tubes that carry sugar-rich sap down the trunk, each with a small helper cell beside it.",
+  "layers": {
+   "basics": "A sieve tube is a living cell with its inside emptied out to leave an open pipe. Its small companion cell keeps it running. Together they carry sugar from the leaves to the rest of the tree.",
+   "deeper": "Sieve tube elements are joined end to end through perforated plates. In oaks each element is about 200 to 350 micrometres long. Their cross-section is small, so the tubes are narrow compared with the vessels of the wood.",
+   "expert": "Sieve tube cross-section is 150 to 300 square micrometres in most oaks measured, which is about 14 to 20 micrometres across if round; 16 is drawn. Companion cells are drawn at 8 micrometres, which is illustrative."
+  },
+  "facts": [
+   [
+    "Length of a tube element",
+    "200 to 350 \u00b5m (oaks)"
+   ],
+   [
+    "Cross-section",
+    "150 to 300 \u00b5m\u00b2 (most oaks)"
+   ],
+   [
+    "Diameter if round (calculated)",
+    "\u2248 14 to 20 \u00b5m"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.5",
+    "30-5-transport-of-water-and-solutes-in-plants"
+   ]
+  ]
+ },
+ {
+  "id": "oak_bark_vascular_cambium",
+  "title": "Vascular cambium",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_ecology",
+  "parents": [
+   "oak_bark_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "oak_cambium"
+  ],
+  "summary": "The thin layer of dividing cells that makes new wood inward and new phloem outward.",
+  "layers": {
+   "basics": "The cambium is a ring of cells that never stop dividing. Cells it cuts off inward become wood; cells cut off outward become phloem. This is how a trunk gets thicker.",
+   "deeper": "The ray cells of the bark and wood come from the same cambial cells, so a ray is one continuous strip through the cambium. A single year's cambium makes much more wood than phloem.",
+   "expert": "The drawn thickness (four flat cell layers) is illustrative. In cork oak the average yearly growth is about 4.1 millimetres of wood and 0.43 millimetres of phloem."
+  },
+  "facts": [
+   [
+    "Wood made per year (cork oak)",
+    "\u2248 4.1 mm"
+   ],
+   [
+    "Phloem made per year (cork oak)",
+    "\u2248 0.43 mm"
+   ],
+   [
+    "Layers drawn",
+    "4 (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.2",
+    "30-2-stems"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Chemical characterization of cork, phloem and wood of Quercus suber (2019)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6909139"
+   }
+  ]
+ },
+ {
+  "id": "oak_bark_ray",
+  "title": "Ray",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.00012,
+  "area": "bio_ecology",
+  "parents": [
+   "oak_bark_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "A broad strip of living cells that runs sideways from the wood through the cambium into the bark.",
+  "layers": {
+   "basics": "Rays are the trunk's spokes. Living cells in them carry sugar and stored food sideways, between the phloem and the wood, and store food.",
+   "deeper": "In some oaks the rays are broad, more than ten cells across, and over a millimetre tall; the same study also found narrow one-cell-wide phloem rays. In the outer bark the ray widens like a fan to make room for the growing trunk, and many of its cells stiffen into stone cells.",
+   "expert": "The ray is drawn as a broad one, ten cells wide, the minimum for broad rays in some oaks, so it is not typical of every oak; the cell width of 12 micrometres, and the straight edge drawn, are illustrative."
+  },
+  "facts": [
+   [
+    "Width",
+    "more than 10 cells in some Chinese oak species (Plants 2024); the same paper also reports uniseriate phloem rays"
+   ],
+   [
+    "Height",
+    "more than 1 mm in broad rays of some oak species"
+   ],
+   [
+    "Cell width as drawn",
+    "12 \u00b5m (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.2",
+    "30-2-stems"
+   ]
+  ]
+ },
+ {
+  "id": "oak_bark_first_wood",
+  "title": "First wood: vessel and fibres",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.00012,
+  "area": "bio_ecology",
+  "parents": [
+   "oak_bark_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "oak_growth_rings"
+  ],
+  "summary": "The newest wood next to the cambium: wide water pipes among dense, thick-walled fibres.",
+  "layers": {
+   "basics": "Wood carries water up the tree. The wide holes are vessels, empty dead tubes that water rises in. The small thick-walled cells around them give strength.",
+   "deeper": "Oak is ring-porous: large vessels form in spring and sit in a ring next to smaller cells, so the first wood of a season has the widest pipes.",
+   "expert": "The vessel and fibre sizes and positions are illustrative here."
+  },
+  "facts": [
+   [
+    "Vessel width as drawn",
+    "120 \u00b5m (illustrative)"
+   ],
+   [
+    "Fibre width as drawn",
+    "13 \u00b5m (illustrative)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "30.5",
+    "30-5-transport-of-water-and-solutes-in-plants"
+   ]
+  ]
+ }
+]

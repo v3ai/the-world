@@ -534,11 +534,11 @@
    "inside": [
     {
      "name": "cartilage cells in their matrix",
-     "scene": "tissue:cartilage",
-     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
+     "scene": "tissue2:hyaline_cartilage",
+     "note": "Schematic. The cell volumes and densities are measured in healthy human knee cartilage; the same plan holds in windpipe, rib and nose cartilage, whose own sizes are not given here."
     }
    ],
-   "src": "card cartilage_tissue"
+   "src": "card cartilage_tissue; notes/tissues/hyaline_cartilage.md"
   },
   "cartilage_matrix": {
    "title": "Cartilage matrix",
@@ -616,12 +616,12 @@
    "card": "alveoli",
    "inside": [
     {
-     "name": "air sacs and blood cells",
-     "scene": "tissue:alveoli",
-     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
+     "name": "air sacs, their walls and the blood capillaries in them",
+     "scene": "tissue2:lung_alveoli",
+     "note": "Schematic. The air sac size (about 200 micrometres) and the thinness of the wall (about 0.6 micrometres) are for people; a dog's lung has the same plan, with sizes not given here."
     }
    ],
-   "src": "card alveoli"
+   "src": "card alveoli; notes/tissues/lung_alveoli.md"
   },
   "nervous_tissue": {
    "title": "Nervous tissue",
@@ -642,12 +642,12 @@
    "card": "adipose_tissue",
    "inside": [
     {
-     "name": "fat cells",
-     "scene": "tissue:adipose",
-     "note": "Schematic: an illustration of how this tissue is built. Sizes are approximate and the arrangement is simplified."
+     "name": "fat cells, collagen fibres and the small cells and vessels between them",
+     "scene": "tissue2:loose_connective_fat",
+     "note": "Schematic. Sizes are for lean adults (a fat cell about 78 micrometres across); the droplet takes about 90 percent of each cell. Other animals' fat cells differ in size."
     }
    ],
-   "src": "card adipose_tissue, adipocyte"
+   "src": "card adipose_tissue, adipocyte; notes/tissues/loose_connective_fat.md"
   },
   "blood": {
    "title": "Blood",
@@ -694,12 +694,12 @@
    "card": "nephron",
    "inside": [
     {
-     "name": "the cells that line the tubes",
-     "material": "lining",
-     "note": "The kidney is made of tiny tubes called nephrons, each lined by one layer of cells. A person has 1 to 1.5 million in each kidney; other animals have other numbers. No scene of them is built yet."
+     "name": "a patch of kidney cortex: filters and tubes",
+     "scene": "tissue2:kidney_cortex",
+     "note": "Schematic. The size of the filter (glomerulus, about 200 micrometres) is the human mean; the tubes are drawn at sizes measured in a mouse."
     }
    ],
-   "src": "cards kidney_r, nephron; Wikipedia \"Nephron\" (https://en.wikipedia.org/wiki/Nephron: a healthy adult has 1 to 1.5 million nephrons in each kidney; no counts for other species were found, so none is given)"
+   "src": "cards kidney_r, nephron; Wikipedia \"Nephron\" (https://en.wikipedia.org/wiki/Nephron: a healthy adult has 1 to 1.5 million nephrons in each kidney; no counts for other species were found, so none is given); notes/tissues/kidney_cortex.md"
   },
   "lens_protein": {
    "title": "Lens of the eye",
@@ -1297,13 +1297,12 @@
    "card": "oak_bark",
    "inside": [
     {
-     "name": "cellulose",
-     "material": "cellulose",
-     "standIn": true,
-     "note": "The outer bark is cork: dead cells whose walls are mostly suberin, a waxy polyester, and lignin. The figures come from the cork oak, whose cork is the best studied; the English oak's bark also has much dead phloem and other substances. Neither suberin nor lignin is built yet. Shown instead: cellulose, the material of ordinary plant cell walls."
+     "name": "a slice of young bark, from the cork inward",
+     "scene": "tissue2:oak_bark",
+     "note": "Schematic. A young stem with one layer of cork; the sizes are from oaks measured by others, the cork cell from the cork oak. Old bark of the English oak is thicker and more cracked."
     }
    ],
-   "src": "cards oak_bark, oak_cork; Pereira 2013, BioResources 8(2) (cork: suberin about 40%, lignin 22%)"
+   "src": "cards oak_bark, oak_cork; Pereira 2013, BioResources 8(2) (cork: suberin about 40%, lignin 22%); notes/tissues/oak_bark.md"
   },
   "camera_sensor": {
    "title": "Camera module",
@@ -2536,6 +2535,160 @@
    "desc": "A stand-in drawn to complete a diagram.",
    "card": null,
    "stop": "{What} is a schematic stand-in, not a part of the cell: there is nothing true to show inside it."
+  },
+  "tendon": {
+   "title": "Tendon",
+   "desc": "Cords of parallel collagen fibres, with rows of flattened cells between them.",
+   "card": "dense_connective_tissue",
+   "inside": [
+    {
+     "name": "collagen fibres, fibrils and the cells between them",
+     "scene": "tissue2:dense_connective",
+     "note": "Schematic. The sizes of the fibrils, fibres and fascicles are from tendon in general; the wavy crimp and the cell sizes come from a mouse tail tendon, a small tendon of another animal."
+    }
+   ],
+   "src": "notes/tissues/dense_connective.md (PMC6454883, PMC2408985, PMC4438642)"
+  },
+  "tendon_bird": {
+   "title": "Tendon of a bird",
+   "desc": "Cords of parallel collagen fibres, with rows of flattened cells between them.",
+   "card": "dense_connective_tissue",
+   "inside": [
+    {
+     "name": "collagen fibres, fibrils and the cells between them",
+     "scene": "tissue2:dense_connective",
+     "note": "{What}: a tendon of a bird. The picture shows a mammal's tendon, with sizes from tendon in general and from a mouse; no bird tendon was measured. It is not claimed that a robin's tendon looks just like this one.",
+     "standIn": true,
+     "title": "A tendon in general (stands in for {what})"
+    }
+   ],
+   "src": "notes/tissues/dense_connective.md; no bird source opened"
+  },
+  "adipose_mammal": {
+   "title": "Fat tissue of a mammal",
+   "desc": "Large round cells, each almost filled by one droplet of oil.",
+   "card": "adipose_tissue",
+   "inside": [
+    {
+     "name": "fat cells, collagen fibres and the small cells and vessels between them",
+     "scene": "tissue2:loose_connective_fat",
+     "note": "{What}: fat under the skin of a dog. Fat tissue has the same plan in other mammals, but the sizes drawn are those of people (a fat cell about 78 micrometres across); a dog's differ.",
+     "standIn": true,
+     "title": "Human-sized fat tissue (stands in for {what})"
+    }
+   ],
+   "src": "notes/tissues/loose_connective_fat.md"
+  },
+  "cornea": {
+   "title": "Cornea (human)",
+   "desc": "The clear front window of the eye: five layers, nine tenths of it stacked sheets of collagen.",
+   "card": "cornea",
+   "inside": [
+    {
+     "name": "the five layers of the cornea",
+     "scene": "tissue2:cornea_layers",
+     "note": "Schematic. The human cornea in a slice about 0.5 millimetres thick; the layer thicknesses are measured in people."
+    }
+   ],
+   "src": "notes/tissues/cornea_layers.md"
+  },
+  "cornea_stand_in": {
+   "title": "Cornea (other mammal)",
+   "desc": "The clear front window of the eye, mostly stacked sheets of collagen.",
+   "card": "cornea",
+   "inside": [
+    {
+     "name": "the layers of the cornea",
+     "scene": "tissue2:cornea_layers",
+     "note": "{What}: the cornea of a dog. The picture is the human cornea, standing in: a dog's has no distinct Bowman layer (the second layer drawn) and its thicknesses are different.",
+     "standIn": true,
+     "title": "The human cornea (stands in for {what})"
+    }
+   ],
+   "src": "notes/tissues/cornea_layers.md"
+  },
+  "kidney_tissue_other": {
+   "title": "Kidney tissue",
+   "desc": "Tiny tubes (nephrons), each lined by one layer of cells, with blood vessels between them.",
+   "card": "nephron",
+   "inside": [
+    {
+     "name": "the cells that line the tubes",
+     "material": "lining",
+     "note": "The kidney is made of tiny tubes called nephrons, each lined by one layer of cells. A person has 1 to 1.5 million in each kidney; other animals have other numbers. The cortex scene is not drawn for this part, so the lining cells stand for what is in it."
+    }
+   ],
+   "src": "cards kidney_r, nephron; Wikipedia \"Nephron\" (https://en.wikipedia.org/wiki/Nephron: a healthy adult has 1 to 1.5 million nephrons in each kidney; no counts for other species were found, so none is given)"
+  },
+  "kidney_tissue_dog": {
+   "title": "Kidney tissue of a dog",
+   "desc": "Tiny tubes (nephrons), each lined by one layer of cells, with blood vessels between them.",
+   "card": "nephron",
+   "inside": [
+    {
+     "name": "a patch of kidney cortex: filters and tubes",
+     "scene": "tissue2:kidney_cortex",
+     "note": "{What}: the kidney of a dog. The picture is of the kidney cortex with a human filter size and mouse tube sizes; no dog sizes were found, so it stands in.",
+     "standIn": true,
+     "title": "Kidney cortex (stands in for {what})"
+    }
+   ],
+   "src": "notes/tissues/kidney_cortex.md"
+  },
+  "alveolar_septum": {
+   "title": "Wall between air sacs",
+   "desc": "A thin sheet of cells and fibres between two air sacs, with capillaries in it.",
+   "card": "alveoli",
+   "inside": [
+    {
+     "name": "collagen",
+     "material": "collagen",
+     "standIn": true,
+     "note": "{What}: the wall between air sacs holds thin cells, blood capillaries and a thin web of fibres, among them collagen. Shown: collagen, one of those fibres."
+    }
+   ],
+   "src": "notes/tissues/lung_alveoli.md"
+  },
+  "blood_air_barrier": {
+   "title": "Blood-air barrier",
+   "desc": "The sheet, under a micrometre thick, that gas crosses between the air and the blood.",
+   "card": "alveoli",
+   "inside": [
+    {
+     "name": "a cell membrane",
+     "material": "membrane",
+     "standIn": true,
+     "note": "{What}: the barrier is made of the thin cell that lines the air sac, a basement membrane and the wall of the capillary cell. Shown: the lipid of a cell membrane, which stands for the membranes."
+    }
+   ],
+   "src": "notes/tissues/lung_alveoli.md"
+  },
+  "cork_wall": {
+   "title": "Cork",
+   "desc": "Dead cells, boxes with walls sealed by a waxy material.",
+   "card": "oak_cork",
+   "inside": [
+    {
+     "name": "cellulose",
+     "material": "cellulose",
+     "standIn": true,
+     "note": "{What}: cork cells are dead, their walls mostly suberin, a waxy polyester, with lignin. Neither is built yet. Shown instead: cellulose, the material of ordinary plant cell walls."
+    }
+   ],
+   "src": "Pereira 2013, BioResources 8(2) (cork: suberin about 40%, lignin 22%)"
+  },
+  "midgut_wall": {
+   "title": "Midgut wall of an insect",
+   "desc": "One layer of digestive cells with a brush border, resting on muscle, lining the middle of the gut where food is digested.",
+   "card": "bee_midgut",
+   "inside": [
+    {
+     "name": "the wall of the midgut of a honey bee",
+     "scene": "tissue2:insect_gut_wall",
+     "note": "Schematic. The cell sizes are from stingless bees and a bumble bee (not measured in the honey bee); the peritrophic matrix thickness is from a silkworm."
+    }
+   ],
+   "src": "notes/tissues/insect_gut_wall.md"
   }
  }
 }

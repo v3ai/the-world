@@ -1,0 +1,363 @@
+[
+ {
+  "id": "hc_scene",
+  "title": "Inside hyaline cartilage",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.001,
+  "area": "bio_animals",
+  "parents": [
+   "cartilage_tissue"
+  ],
+  "parts": [
+   "hc_matrix",
+   "hc_lacuna",
+   "hc_chondrocyte",
+   "hc_group",
+   "hc_perichondrium"
+  ],
+  "processes": [],
+  "related": [
+   "cartilage_tissue",
+   "chondrocyte"
+  ],
+  "summary": "Glassy cartilage as seen in a thin slice: round cells alone or in small groups, each in its own space, in a firm matrix with no blood vessels.",
+  "layers": {
+   "basics": "Hyaline cartilage lines the surfaces of moving joints and forms the rings of the windpipe, the ends of the ribs and the nose. Under the microscope it looks smooth and glassy because the matrix hides its fibres. The cells are few and far apart. Click a cell, a group, the matrix or the skin at the top.",
+   "deeper": "The cells (chondrocytes) make everything around them. Each sits in a small space called a lacuna. When a cell divides it stays close to its daughters, so cells often appear in small groups from one parent, called isogenous groups. In joint-surface cartilage there are no blood vessels in the matrix: food and oxygen soak in from the blood vessels of the perichondrium, or in a joint from the fluid in the joint, so cells live on little oxygen and the tissue heals slowly. In joint-surface cartilage the cells change with depth: flatter and smaller near the surface, rounder in the middle and larger deeper down. The slice drawn here shows that gradient in three bands but is only a thin piece; cartilage on a joint is 2 to 4 millimetres thick in people.",
+   "expert": "Sizes in the scene: single cells with their surrounding space take 3,500 to 6,400 cubic micrometres from the surface band to the deepest band, groups 6,600 to 13,600, and cells are 3,400 to 5,100 per cubic millimetre, from imaging healthy human knee cartilage; the axis ratios of the drawn shapes are illustrative. These figures were measured in human knee cartilage. They are not known for windpipe, rib or nose cartilage, where the cell sizes and numbers may differ. The perichondrium thickness, its cells, fibres and capillaries, the group sizes and the cell inside each space are illustrative."
+  },
+  "facts": [
+   [
+    "Cell with its space, single",
+    "about 3,465 to 6,354 cubic micrometres by depth (human knee cartilage, healthy)"
+   ],
+   [
+    "Cells in a cluster",
+    "about 6,589 to 13,576 cubic micrometres by depth"
+   ],
+   [
+    "Density",
+    "about 3,418 to 5,131 per cubic millimetre"
+   ],
+   [
+    "Cartilage thickness, joint surface",
+    "2 to 4 mm"
+   ],
+   [
+    "Water in the cartilage",
+    "about 65% to 80% of its weight"
+   ],
+   [
+    "Cells share of volume (joint-surface cartilage)",
+    "about 2%"
+   ],
+   [
+    "Blood vessels in the matrix",
+    "none"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Do windpipe, rib and nose cartilage have the same cell sizes and densities as joint cartilage?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": []
+ },
+ {
+  "id": "hc_matrix",
+  "title": "Cartilage matrix",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.0001,
+  "area": "bio_animals",
+  "parents": [
+   "hc_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "The firm, wet material between the cells, made of fine collagen fibres and large sugar-rich molecules that hold water.",
+  "layers": {
+   "basics": "The matrix is most of the tissue: in joint-surface cartilage the cells are only about 2% of it. It is mostly water held by large molecules, with thin collagen fibres that you cannot see in a normal slice, which is why the tissue looks glassy. In joint-surface cartilage it has no blood vessels.",
+   "deeper": "The matrix near each cell differs from the matrix between cells. A thin shell around the cell is the pericellular matrix, a wider shell around it the territorial matrix, and the rest, the interterritorial matrix, fills most of the space. Water makes up 65% to 80% of the weight, and the collagen and the large proteoglycan molecules make up the rest of the dry weight. The pores of the matrix are very small, about 6 nanometres on average, so only small molecules such as food and oxygen move through it, and slowly.",
+   "expert": "The water content falls from about 80% near the joint surface to about 65% in the deep zone. The drawn matrix is a plain translucent block; its collagen and proteoglycan content is not drawn."
+  },
+  "facts": [
+   [
+    "Water",
+    "65% to 80% of the weight (joint-surface cartilage)"
+   ],
+   [
+    "Average pore size",
+    "about 6 nm"
+   ],
+   [
+    "Blood vessels (joint-surface cartilage)",
+    "none"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": []
+ },
+ {
+  "id": "hc_lacuna",
+  "title": "Lacuna: the space around a cartilage cell",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 2.5e-05,
+  "area": "bio_animals",
+  "parents": [
+   "hc_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "chondrocyte"
+  ],
+  "summary": "A small cavity in the matrix that holds one cell.",
+  "layers": {
+   "basics": "Each lacuna is a small hollow in the matrix. A living cell fills it, with a thin layer of special matrix around the cell. In stained slices the cell often shrinks and leaves a gap, which can make the space look empty.",
+   "deeper": "In the scene the space has the measured volume of a cell with its surrounding matrix (a chondron): about 3,500 cubic micrometres near the surface, about 4,400 in the middle and about 6,400 deeper down for single ones. They are drawn as ellipsoids of that volume, a little squashed and flatter near the surface; the axis ratios are illustrative.",
+   "expert": "The volumes were measured in 3D on healthy human knee cartilage; the reported sphericity (0.81, 0.81 and 0.78 for single ones in the three depth zones) comes from a segmentation method and is not reproduced by the drawn shapes. Whether these numbers hold for other cartilage is not known from this source."
+  },
+  "facts": [
+   [
+    "Volume, single",
+    "about 3,465 / 4,410 / 6,354 cubic micrometres (surface / middle / deep zone)"
+   ],
+   [
+    "Sphericity as reported",
+    "0.78 to 0.81 (singles)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Are the spaces of windpipe and rib cartilage the same size as those of the knee?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": []
+ },
+ {
+  "id": "hc_chondrocyte",
+  "title": "Chondrocyte in its space",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 1.5e-05,
+  "area": "bio_animals",
+  "parents": [
+   "hc_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "chondrocyte"
+  ],
+  "summary": "The only kind of cell in cartilage: it makes and keeps the matrix around it.",
+  "layers": {
+   "basics": "A chondrocyte is a rounded cell that sits in its space and makes the collagen and the water-holding molecules of the matrix. It lives on little oxygen, because there are no vessels nearby. Click it to look inside the cell.",
+   "deeper": "In joint-surface cartilage, cells make up about 2% of the volume. There, cells near the surface are flatter and smaller and closer together, and deeper ones are larger and rounder. Without blood vessels, they get most of their energy without oxygen. When cartilage is damaged, the few cells and their slow supply of food are one reason it heals poorly.",
+   "expert": "The cell drawn in each space is three quarters of the width of its space, an illustrative choice; the measured volume is that of the cell together with its space."
+  },
+  "facts": [
+   [
+    "Share of the tissue volume (joint-surface cartilage)",
+    "about 2%"
+   ],
+   [
+    "Energy",
+    "mostly without oxygen (anaerobic)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": []
+ },
+ {
+  "id": "hc_group",
+  "title": "Isogenous group",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 3.5e-05,
+  "area": "bio_animals",
+  "parents": [
+   "hc_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "hc_chondrocyte"
+  ],
+  "summary": "A small cluster of cartilage cells that came from the division of one cell and share one space.",
+  "layers": {
+   "basics": "When a cartilage cell divides, its daughters cannot move far through the firm matrix, so they stay together and build a new wall of matrix between them. The result is a nest of two or more cells, called an isogenous group (from the Greek for the same origin).",
+   "deeper": "In the scene the whole nest has the measured volume of a cluster: about 6,600 cubic micrometres near the surface, about 7,200 in the middle and about 13,600 deeper down, which is roughly twice the volume of a single cell with its space. Two cells are drawn near the surface, three in the middle band and four in the deepest; the numbers of cells are illustrative.",
+   "expert": "Clusters were distinguished from single cells in 3D images of healthy human knee cartilage, and are larger and a little less spherical (sphericity 0.72 to 0.78) than single ones. The share of cells in groups is not taken from the source; one in five is illustrative."
+  },
+  "facts": [
+   [
+    "Volume of a cluster",
+    "about 6,589 / 7,244 / 13,576 cubic micrometres (surface / middle / deep zone)"
+   ],
+   [
+    "Cells per group in the scene",
+    "2 to 4 (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How many cells does a typical group hold, and does it depend on the cartilage?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": []
+ },
+ {
+  "id": "hc_perichondrium",
+  "title": "Perichondrium",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 4e-05,
+  "area": "bio_animals",
+  "parents": [
+   "hc_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "capillary"
+  ],
+  "summary": "The tough connective skin around most cartilage, which carries the blood vessels that feed it.",
+  "layers": {
+   "basics": "The perichondrium wraps the cartilage of the windpipe, ribs and nose. It is made of dense connective tissue with many collagen fibres, flat cells between them and small blood vessels. The cartilage itself has none in these kinds, so its food comes from here by seeping through the matrix. Cartilage on the surface of a moving joint has no perichondrium.",
+   "deeper": "The thickness of 40 micrometres drawn here is illustrative; the fibres, flat cells and capillaries are schematic.",
+   "expert": "The perichondrium is described as a layer of dense irregular connective tissue that encapsulates the cartilage. The thickness is not from the sources used for this scene."
+  },
+  "facts": [
+   [
+    "Tissue type",
+    "dense irregular connective tissue"
+   ],
+   [
+    "Thickness in the scene",
+    "40 micrometres (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What is the thickness of the perichondrium in the windpipe, rib and nose?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": []
+ },
+ {
+  "id": "hc_fibroblast",
+  "title": "Perichondrium fibroblast",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 3e-05,
+  "area": "bio_animals",
+  "parents": [
+   "hc_perichondrium"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "A flat cell lying between the collagen fibres of the perichondrium.",
+  "layers": {
+   "basics": "Fibroblasts make the collagen fibres of connective tissue. In the perichondrium they are flattened and lie parallel to the surface, along the fibres. Click to look inside the cell.",
+   "deeper": "The size and number drawn are illustrative.",
+   "expert": "Not measured here."
+  },
+  "facts": [
+   [
+    "Size in the scene",
+    "32 x 14 x 6 micrometres (illustrative)"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": []
+ },
+ {
+  "id": "hc_capillary",
+  "title": "Capillary beside the cartilage",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 8e-06,
+  "area": "bio_animals",
+  "parents": [
+   "hc_perichondrium"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "A tiny blood vessel in the perichondrium; nothing like it runs through the cartilage matrix.",
+  "layers": {
+   "basics": "The cartilage is fed from vessels like this one in the perichondrium. Oxygen and food seep from here through the matrix to the cells, which is slow, so cells deep in the cartilage live on very little.",
+   "deeper": "In the scene the vessels are 8 micrometres across, an illustrative width, and there are two of them. No vessel is drawn in the matrix, as in joint-surface cartilage.",
+   "expert": "Small vessels run in canals in the growing cartilage of young animals and in shark and ray cartilage. The blood supply of ordinary adult cartilage of the windpipe, ribs and nose lies in the perichondrium. The vessel wall shown on zooming in is that of a larger vessel: a real capillary wall is a single lining cell layer with no smooth muscle."
+  },
+  "facts": [
+   [
+    "Vessels inside the matrix (joint-surface cartilage)",
+    "none"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": []
+ }
+]

@@ -1,0 +1,613 @@
+[
+ {
+  "id": "lcf_scene",
+  "title": "Inside fat and loose connective tissue",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.0007,
+  "area": "bio_animals",
+  "parents": [
+   "adipose_tissue"
+  ],
+  "parts": [
+   "lcf_adipocyte",
+   "lcf_lipid_droplet",
+   "lcf_adipocyte_nucleus",
+   "lcf_collagen",
+   "lcf_elastic",
+   "lcf_fibroblast",
+   "lcf_capillary",
+   "lcf_rbc",
+   "lcf_mast",
+   "lcf_mast_granule",
+   "lcf_macrophage"
+  ],
+  "processes": [],
+  "related": [
+   "adipose_tissue",
+   "adipocyte",
+   "fibroblast",
+   "capillary",
+   "macrophage"
+  ],
+  "summary": "The layer under the skin and the padding round organs: big fat cells packed in lobes, and between them a thin web of fibres, small cells and blood vessels.",
+  "layers": {
+   "basics": "Most of this tissue is fat cells, each one almost entirely a single droplet of fat. They sit in lobes. Between the lobes runs a thin sheet of loose connective tissue, a web of fibres with a few cells and a blood vessel. The fat cells store energy and cushion and insulate; the web holds them in place and brings food and oxygen.",
+   "deeper": "Fat cells are about 20 percent of the cells in white fat but take up most of its volume, because each one is so big. The other cells are mostly the supporting kind (fibroblasts and their young forms), immune cells and cells of the vessels. Sizes are for people. The loose connective tissue between lobes is the same kind that fills spaces between muscles and organs: random, web-like and with all the usual cells and fibres. Fat tissue has many capillaries so that fat can be stored and released quickly.",
+   "expert": "In people the layer under the skin and the fat round many organs are mainly white fat, one big droplet per cell; the same plan is found in other mammals, but the sizes drawn are human. Brown fat, with many small droplets, is a different tissue and is not drawn. The scene is schematic: all fat cells are the same size and the fibres are straight. Real fat cells range from about 20 micrometres to several hundred, and size rises with body fat."
+  },
+  "facts": [
+   [
+    "Fat cell diameter",
+    "\u2248 75-80 \u00b5m (mean, lean people); drawn 78 \u00b5m"
+   ],
+   [
+    "Fat cells among cells",
+    "\u2248 20% of cells, most of the volume"
+   ],
+   [
+    "Lipid droplet",
+    "\u2248 90% of the cell volume"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [
+   "How many fat cells a body keeps through adult life, and how fast they turn over, differs between studies and between fat depots."
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Connective Tissue Supports and Protects (OpenStax Anatomy and Physiology 2e, 4.3)",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects"
+   },
+   {
+    "title": "Dissecting human adipose tissue heterogeneity (PMC11437900): fat cells are about 20% of cells but most of the volume",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11437900"
+   },
+   {
+    "title": "Adipocyte size: lean mean 75-80 um (Frontiers in Cell and Developmental Biology review, 2022)",
+    "url": "https://www.frontiersin.org/journals/cell-and-developmental-biology/articles/10.3389/fcell.2022.1003219/full"
+   }
+  ]
+ },
+ {
+  "id": "lcf_adipocyte",
+  "title": "Fat cell (white adipocyte)",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_animals",
+  "parents": [
+   "lcf_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "adipocyte"
+  ],
+  "summary": "A round cell filled almost entirely by one droplet of fat, with a thin rim of cytoplasm and a flattened nucleus at the edge.",
+  "layers": {
+   "basics": "A white fat cell stores energy as fat. It swells as it fills and shrinks as the fat is used. Nearly all of its inside is one large droplet.",
+   "deeper": "The droplet pushes the rest of the cell into a thin rim, so the nucleus ends up flattened against the edge. In a stained slice this looks like a ring with a small bead on it. The cell is about as wide as a muscle fibre.",
+   "expert": "Size depends on the body and the place: a mean of about 75-80 micrometres in lean people, rising with body fat to a plateau near 120. Size also differs between depots, and the cell can grow to several hundred micrometres. The scene draws every cell at 78 micrometres."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "\u2248 75-80 \u00b5m mean in lean people; range 20 to several hundred \u00b5m"
+   ],
+   [
+    "Drawn",
+    "78 \u00b5m, all cells equal (illustrative)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Adipocyte size: lean mean 75-80 um (Frontiers in Cell and Developmental Biology review, 2022)",
+    "url": "https://www.frontiersin.org/journals/cell-and-developmental-biology/articles/10.3389/fcell.2022.1003219/full"
+   },
+   {
+    "title": "Connective Tissue Supports and Protects (OpenStax Anatomy and Physiology 2e, 4.3)",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects"
+   }
+  ]
+ },
+ {
+  "id": "lcf_lipid_droplet",
+  "title": "Lipid droplet",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_animals",
+  "parents": [
+   "lcf_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "The single fat droplet that fills a white fat cell.",
+  "layers": {
+   "basics": "The droplet is the cell's fuel store. It is made of fats called triglycerides, and it takes up almost the whole cell.",
+   "deeper": "A triglyceride is three fatty acids joined to one glycerol. The droplet is a liquid at body temperature. When the body needs energy, enzymes at its surface release fatty acids into the blood.",
+   "expert": "About 90 percent of the volume of a white fat cell is the droplet. The scene draws a sphere of that volume share, about 96 percent of the cell diameter."
+  },
+  "facts": [
+   [
+    "Share of cell volume",
+    "\u2248 90%"
+   ],
+   [
+    "Drawn diameter",
+    "\u2248 75 \u00b5m (0.9 of the cell volume as a sphere)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "The Adipose Organ Is a Unitary Structure in Mice and Humans (PMC9496043): droplet about 90% of cell volume",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9496043/"
+   }
+  ]
+ },
+ {
+  "id": "lcf_adipocyte_nucleus",
+  "title": "Nucleus of a fat cell",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_animals",
+  "parents": [
+   "lcf_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "The cell nucleus, flattened and pushed to the edge of the cell by the droplet.",
+  "layers": {
+   "basics": "Every fat cell has one nucleus. The big droplet squeezes it against the cell edge, so it looks like a thin crescent.",
+   "deeper": "The nucleus holds the cell's DNA and directs how it stores and releases fat. Because the droplet takes the middle, the nucleus is a flat lens against the membrane.",
+   "expert": "Its position is the same in every cell of this kind; its size and shape in the scene (4 by 14 by 14 micrometres) are illustrative."
+  },
+  "facts": [
+   [
+    "Position",
+    "at the rim, against the membrane"
+   ],
+   [
+    "Drawn size",
+    "4 \u00d7 14 \u00d7 14 \u00b5m (illustrative)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Connective Tissue Supports and Protects (OpenStax Anatomy and Physiology 2e, 4.3)",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects"
+   },
+   {
+    "title": "Figure descriptions 4.12 and 4.13 on the same OpenStax 4.3 page (nucleus squeezed to one side, close to the cell membrane)",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects"
+   }
+  ]
+ },
+ {
+  "id": "lcf_collagen",
+  "title": "Collagen fibre",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_animals",
+  "parents": [
+   "lcf_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "A strong, flexible rope of protein that holds loose connective tissue together.",
+  "layers": {
+   "basics": "Collagen fibres are the main strong fibres of connective tissue. They resist stretching and hold tissues together as the body moves.",
+   "deeper": "Each fibre is a bundle of much thinner fibrils, 50 to 90 nanometres across, which are too small to draw. In loose tissue the fibres are thin, wavy and run in all directions, leaving spaces for fluid and cells.",
+   "expert": "Fibre width is variable, about 2 to 10 micrometres; the scene draws 5. Lengths, directions and the number of fibres are illustrative."
+  },
+  "facts": [
+   [
+    "Fibre width",
+    "\u2248 2-10 \u00b5m (drawn 5 \u00b5m)"
+   ],
+   [
+    "Fibril width inside",
+    "\u2248 50-90 nm (not drawn)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Connective Tissue Supports and Protects (OpenStax Anatomy and Physiology 2e, 4.3)",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects"
+   },
+   {
+    "title": "Connective tissue histology notes (howMed): fibre, cell and granule sizes",
+    "url": "https://howmed.net/anatomy/histology/connective-tissue/"
+   }
+  ]
+ },
+ {
+  "id": "lcf_elastic",
+  "title": "Elastic fibre",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_animals",
+  "parents": [
+   "lcf_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "A thin stretchy fibre that lets connective tissue spring back.",
+  "layers": {
+   "basics": "Elastic fibres are made mostly of a protein called elastin. After being stretched or squashed they return to their shape.",
+   "deeper": "They are thinner than collagen fibres and run among them. They are plentiful in skin, where they let it recoil.",
+   "expert": "The width in the scene (1.5 micrometres) is illustrative; real widths vary."
+  },
+  "facts": [
+   [
+    "Main protein",
+    "elastin"
+   ],
+   [
+    "Drawn width",
+    "1.5 \u00b5m (illustrative)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Connective Tissue Supports and Protects (OpenStax Anatomy and Physiology 2e, 4.3)",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects"
+   }
+  ]
+ },
+ {
+  "id": "lcf_fibroblast",
+  "title": "Fibroblast",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_animals",
+  "parents": [
+   "lcf_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "fibroblast"
+  ],
+  "summary": "The most common cell of connective tissue: it makes the fibres and the gel between them.",
+  "layers": {
+   "basics": "Fibroblasts are long thin cells that lie along the fibres. They build and repair the web.",
+   "deeper": "They make collagen, elastic and reticular fibres and the gel of sugars and proteins in which the fibres sit. Their long narrow nucleus is typical. A resting one is smaller than an active one.",
+   "expert": "The size and shape drawn (44 by 6 by 12 micrometres) are illustrative."
+  },
+  "facts": [
+   [
+    "Makes",
+    "collagen, elastic and reticular fibres"
+   ],
+   [
+    "Drawn size",
+    "44 \u00d7 6 \u00d7 12 \u00b5m (illustrative)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Connective Tissue Supports and Protects (OpenStax Anatomy and Physiology 2e, 4.3)",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects"
+   }
+  ]
+ },
+ {
+  "id": "lcf_capillary",
+  "title": "Capillary",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_animals",
+  "parents": [
+   "lcf_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "capillary"
+  ],
+  "summary": "The smallest blood vessel: a tube so narrow that red cells pass in single file.",
+  "layers": {
+   "basics": "Capillaries bring oxygen and food to the fat cells and carry fat and waste away. Fat tissue has many of them.",
+   "deeper": "The wall is a single thin layer of cells on a base layer, so gases and small molecules pass through. Red blood cells squeeze through one at a time.",
+   "expert": "The hollow is 5 to 10 micrometres across; the scene draws 8 with a wall of 1 (illustrative)."
+  },
+  "facts": [
+   [
+    "Hollow width",
+    "\u2248 5-10 \u00b5m (drawn 8 \u00b5m)"
+   ],
+   [
+    "Wall",
+    "one cell layer on a base layer; drawn 1 \u00b5m (illustrative)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "20.1",
+    "20-1-structure-and-function-of-blood-vessels"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Structure and Function of Blood Vessels (OpenStax Anatomy and Physiology 2e, 20.1)",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/20-1-structure-and-function-of-blood-vessels"
+   },
+   {
+    "title": "Connective Tissue Supports and Protects (OpenStax Anatomy and Physiology 2e, 4.3)",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects"
+   }
+  ]
+ },
+ {
+  "id": "lcf_rbc",
+  "title": "Red blood cell",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_animals",
+  "parents": [
+   "lcf_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "red_blood_cell"
+  ],
+  "summary": "A disc of haemoglobin that carries oxygen, drawn at true width inside the capillary.",
+  "layers": {
+   "basics": "Red blood cells carry oxygen. They are about as wide as the capillary they travel in.",
+   "deeper": "They are biconcave discs: plump at the rim and very thin in the middle. In the narrowest vessels they bend to pass.",
+   "expert": "Mean diameter is 7 to 8 micrometres; the scene draws 7.5 and a thickness of 2 (illustrative). Real ones fold and bend in a capillary; here they stay flat."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "\u2248 7-8 \u00b5m (drawn 7.5)"
+   ],
+   [
+    "Shape",
+    "biconcave disc"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "18.3",
+    "18-3-erythrocytes"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Erythrocytes (OpenStax Anatomy and Physiology 2e, 18.3)",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-3-erythrocytes"
+   }
+  ]
+ },
+ {
+  "id": "lcf_mast",
+  "title": "Mast cell",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_animals",
+  "parents": [
+   "lcf_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "A small immune cell full of granules that raises the alarm when tissue is hurt.",
+  "layers": {
+   "basics": "Mast cells are found in loose connective tissue, including around vessels. When irritated or damaged, they release histamine, which widens vessels and starts inflammation.",
+   "deeper": "Their granules hold histamine and heparin. Mast cells come from the same stem cells as blood cells and belong to the immune system.",
+   "expert": "About 10 to 13 micrometres across; the scene draws 11.5 and a few granules for clarity (the real number is far larger)."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "\u2248 10-13 \u00b5m (drawn 11.5)"
+   ],
+   [
+    "Granules drawn",
+    "14 per cell (illustrative)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Connective Tissue Supports and Protects (OpenStax Anatomy and Physiology 2e, 4.3)",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects"
+   },
+   {
+    "title": "Connective tissue histology notes (howMed): fibre, cell and granule sizes",
+    "url": "https://howmed.net/anatomy/histology/connective-tissue/"
+   },
+   {
+    "title": "Mast cells in human superficial fascia (PMC10380524): near vessel walls, among collagen bundles and elastic fibres, in loose connective tissue",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10380524/"
+   }
+  ]
+ },
+ {
+  "id": "lcf_mast_granule",
+  "title": "Mast cell granule",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_animals",
+  "parents": [
+   "lcf_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "A packet inside a mast cell that stores histamine and heparin.",
+  "layers": {
+   "basics": "The granules are small bags. When the cell is triggered they are released.",
+   "deeper": "They hold histamine, which widens vessels and makes them leaky, and heparin.",
+   "expert": "Granules are 0.3 to 2 micrometres; the scene draws 1.2. Their count is illustrative."
+  },
+  "facts": [
+   [
+    "Size",
+    "\u2248 0.3-2 \u00b5m (drawn 1.2)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Connective Tissue Supports and Protects (OpenStax Anatomy and Physiology 2e, 4.3)",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects"
+   },
+   {
+    "title": "Connective tissue histology notes (howMed): fibre, cell and granule sizes",
+    "url": "https://howmed.net/anatomy/histology/connective-tissue/"
+   }
+  ]
+ },
+ {
+  "id": "lcf_macrophage",
+  "title": "Macrophage",
+  "kind": "structure",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_animals",
+  "parents": [
+   "lcf_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "macrophage"
+  ],
+  "summary": "A large roaming cell that eats debris and germs.",
+  "layers": {
+   "basics": "Macrophages engulf germs and cell waste. Some move through the tissue; some stay in place.",
+   "deeper": "They come from a blood cell called a monocyte. When stimulated they release small signal proteins called cytokines. In fat tissue they are among the immune cells.",
+   "expert": "Size ranges from 10 to 30 micrometres; the scene draws about 20 by 14 by 16, and places two. The shape is illustrative."
+  },
+  "facts": [
+   [
+    "Diameter",
+    "\u2248 10-30 \u00b5m (drawn \u2248 20)"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "21.2",
+    "21-2-barrier-defenses-and-the-innate-immune-response"
+   ],
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Connective Tissue Supports and Protects (OpenStax Anatomy and Physiology 2e, 4.3)",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects"
+   },
+   {
+    "title": "Connective tissue histology notes (howMed): fibre, cell and granule sizes",
+    "url": "https://howmed.net/anatomy/histology/connective-tissue/"
+   }
+  ]
+ }
+]

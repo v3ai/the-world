@@ -1,0 +1,364 @@
+[
+ {
+  "id": "dense_connective_scene",
+  "title": "Dense connective tissue (tendon)",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.001,
+  "area": "bio_animals",
+  "parents": [
+   "tendon"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "tendon",
+   "dense_connective_tissue",
+   "dermis"
+  ],
+  "summary": "Tissue that is mostly collagen: in a tendon the collagen runs in parallel to carry a pull, in the white of the eye and the skin it is woven in many directions.",
+  "layers": {
+   "basics": "Tendons, ligaments, the white of the eye (sclera), the tough layer of skin (dermis) and the sheets around muscles are made mostly of collagen, a strong protein rope. Very few cells live in it. This scene shows a tendon, where the ropes lie side by side along the direction of the pull. Click a part to meet it.",
+   "deeper": "Collagen is built in steps. Molecules pack into fibrils, fibrils into fibres, fibres into bundles called fascicles. Between them lies a gel called ground substance, and flat cells called fibroblasts (tenocytes in a tendon) sit in rows along the fibres and make all of it. A tendon with parallel fibres is called dense regular tissue. The sclera and the dermis are dense irregular tissue: the same collagen, but the bundles cross and interweave, so they resist pulling from any direction. A tendon gets much less blood than muscle does.",
+   "expert": "Fibres are crimped, a regular zig-zag that straightens when the tendon is first stretched. Sizes at each level vary with species, age and the tendon chosen, and the ranges in the facts come from reviews that do not always name the species; several numbers are from mice. The drawn cell density and elastic fibre count are illustrative."
+  },
+  "facts": [
+   [
+    "Fibril width",
+    "50-500 nm"
+   ],
+   [
+    "Fibre width",
+    "10-50 um"
+   ],
+   [
+    "Fascicle width",
+    "100-500 um"
+   ],
+   [
+    "Arrangement drawn",
+    "parallel (tendon); sclera and dermis are interwoven"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What sets the final width of a collagen fibril in each tissue?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Review of tendon hierarchy: fibrils 50-500 nm, fibres 10-50 um, fascicles 100-500 um",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6454883"
+   }
+  ]
+ },
+ {
+  "id": "dc_fibre",
+  "title": "Collagen fibre",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.001,
+  "area": "bio_animals",
+  "parents": [
+   "dense_connective_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "tendon"
+  ],
+  "summary": "A collagen fibre is a wavy bundle of fibrils, 10 to 50 micrometres across.",
+  "layers": {
+   "basics": "Each rod is a collagen fibre, a bundle of many thinner fibrils. Collagen is very strong when pulled and hardly stretches. The fibres here lie side by side along the pull of the tendon, and they zig-zag a little.",
+   "deeper": "The zig-zag is called crimp. When a tendon is first stretched the crimp straightens before the collagen itself takes the load, which gives a soft start. In the mouse-tail tendon the crimp wavelength grew from about 14 micrometres at birth to nearly 100 micrometres at six weeks (it depends strongly on age); the drawn wavelength of about 100 micrometres copies the six-week value. Fibre width of 22 micrometres is a choice inside the reported range.",
+   "expert": "In the sclera and the dermis the fibres are not parallel but branch and intertwine, so the same fibre is drawn there with a wider spread of directions. The lean of the crimp in the picture (10 degrees) is illustrative. Crimp numbers in a tendon fall by nearly half on stretching in one reported case."
+  },
+  "facts": [
+   [
+    "Fibre width",
+    "10-50 um (drawn: 22 um)"
+   ],
+   [
+    "Crimp wavelength, mouse tail tendon at 6 weeks",
+    "≈ 100 um"
+   ],
+   [
+    "Crimp lean drawn",
+    "10 degrees (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How much does crimp length differ between human tendons?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Review of tendon hierarchy",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6454883"
+   },
+   {
+    "title": "Mouse tail tendon development, crimp wavelength about 100 um at 6 weeks (eLife 2015)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4438642"
+   }
+  ]
+ },
+ {
+  "id": "dc_fibril",
+  "title": "Collagen fibril",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.001,
+  "area": "bio_animals",
+  "parents": [
+   "dc_fibre"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "A fibril is a thread of collagen molecules, hundreds of times thinner than a fibre.",
+  "layers": {
+   "basics": "The finest threads in the tendon are fibrils. Hundreds of them make one fibre. At the true width they are far too thin to see at this zoom, so the few drawn here look like hairlines. Zoom in to see them.",
+   "deeper": "Fibrils are built of rope-like collagen molecules that overlap in a staggered pattern repeating every 67 nanometres. In tendon the fibrils are wide, 50 to 500 nanometres across; in the clear cornea they are narrow and uniform, about 25 to 31 nanometres, while in the sclera they range from 25 to 230 nanometres. Mouse tendon switches from thin fibrils (about 35 nm) to a mix of thin and thick (35 to 400 nm) soon after birth.",
+   "expert": "Sclera fibrils vary widely in width and the bundles are interwoven, so they scatter light and the sclera looks white. Cornea fibrils are narrow and even, and the cornea is clear. Drawn fibrils are 200 nanometres wide, a choice within the reported range; their number, 37, is illustrative: a real fibre holds a very large number."
+  },
+  "facts": [
+   [
+    "Fibril width, tendon",
+    "50-500 nm"
+   ],
+   [
+    "Axial repeat",
+    "≈ 67 nm"
+   ],
+   [
+    "Fibril width, human sclera",
+    "25-230 nm"
+   ],
+   [
+    "Fibril width, human cornea",
+    "≈ 25-31 nm"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Collagen structure of tendon relates to function: D-period about 67 nm",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5901217/"
+   },
+   {
+    "title": "Human cornea and sclera collagen organisation (1991): cornea fibrils about 25 nm, sclera 25-230 nm, bundles entangled",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/2071337/"
+   }
+  ]
+ },
+ {
+  "id": "dc_tenocyte",
+  "title": "Fibroblast (tenocyte)",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.001,
+  "area": "bio_animals",
+  "parents": [
+   "dense_connective_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "fibroblast"
+  ],
+  "summary": "The flat cell that makes and repairs the collagen of a tendon, lying in rows between the fibres.",
+  "layers": {
+   "basics": "The only cells in the tissue are fibroblasts. In a tendon they are called tenocytes. They are few, flat and long, and they sit in rows along the fibres. They make the collagen and the gel around it.",
+   "deeper": "In the adult mouse-tail tendon at six weeks the cell body is about 27 micrometres long (cells are about twice as long, 55 micrometres, in a newborn mouse), with thin wing-like extensions reaching between fibres, and the cells are stacked in rows on their blunt ends. Cells are far fewer than in a young tendon: about 0.14 cells per 1,000 cubic micrometres at six weeks, against 0.91 at birth. The scene draws fewer cells than that, as an illustration.",
+   "expert": "The cell width and thickness drawn are illustrative, and the real shape is stellate in cross-section. Values are from the mouse tail tendon; human tenocyte length has not been measured in these sources."
+  },
+  "facts": [
+   [
+    "Cell length, mouse tail tendon at 6 weeks",
+    "≈ 27 um"
+   ],
+   [
+    "Cell density, mouse tail tendon at 6 weeks",
+    "≈ 0.14 per 1,000 um3"
+   ],
+   [
+    "Distance between cell nuclei along a row, mouse tail tendon at 6 weeks",
+    "≈ 27.5 um"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How long are human tenocytes and how many lie in a given volume of adult tendon?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Mouse tail tendon development, cell length, density and stacking (eLife 2015)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4438642"
+   }
+  ]
+ },
+ {
+  "id": "dc_elastic",
+  "title": "Elastic fibre",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.001,
+  "area": "bio_animals",
+  "parents": [
+   "dense_connective_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "tendon"
+  ],
+  "summary": "A thin springy fibre of elastin that lets the tissue return to shape after stretching.",
+  "layers": {
+   "basics": "A few thin yellow fibres are elastic fibres. Collagen hardly stretches; elastin does, and springs back. A tendon has very little of it.",
+   "deeper": "Elastin is about 1 to 4 percent of the dry weight of tendon and 4 to 9 percent of a typical ligament, but more than 70 percent in some highly extensible ligaments. In the skin, elastic fibres run through the dermis among the collagen and help it spring back.",
+   "expert": "The fibre width drawn (1.5 micrometres) and the count of three are illustrative. The fibres are drawn straight; in real tendon they follow the crimp of the collagen."
+  },
+  "facts": [
+   [
+    "Elastin share of dry weight, tendon",
+    "≈ 1-4 %"
+   ],
+   [
+    "Elastin share of dry weight, typical ligament",
+    "≈ 4-9 %"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Review of tendon hierarchy and composition",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6454883"
+   }
+  ]
+ },
+ {
+  "id": "dc_ground",
+  "title": "Ground substance",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.001,
+  "area": "bio_animals",
+  "parents": [
+   "dense_connective_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [],
+  "summary": "The watery gel between the fibres, made of long sugar-chain molecules and proteins.",
+  "layers": {
+   "basics": "Between the fibres lies a clear gel, the ground substance. It is mostly water held by large molecules. It lets fibres slide a little against each other and carries nutrients to the cells.",
+   "deeper": "It is made by the fibroblasts from polysaccharides, especially hyaluronic acid, and proteins. In tendon, proteoglycans in this matrix are mainly responsible for how it flows and recovers (viscoelastic behaviour), and any sliding of fibrils or fascicles must take place within it.",
+   "expert": "Drawn as a pale slab; its thickness has no meaning."
+  },
+  "facts": [
+   [
+    "Main parts",
+    "water, hyaluronic acid, proteoglycans, proteins"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Anatomical review of tendon: proteoglycans and viscoelastic behaviour",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2408985"
+   }
+  ]
+ },
+ {
+  "id": "dc_capillary",
+  "title": "Small blood vessel",
+  "kind": "tissue",
+  "template": "thing",
+  "scale_m": 0.001,
+  "area": "bio_animals",
+  "parents": [
+   "dense_connective_scene"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "capillary"
+  ],
+  "summary": "A capillary: tendons have far less blood supply than muscle.",
+  "layers": {
+   "basics": "One small blood vessel is drawn among the fibres (its position is illustrative). A tendon is poorly supplied with blood compared with muscle, so it heals slowly. The skin dermis and the eye wall are different: the dermis is well supplied, and parts of the eye tissue are not.",
+   "deeper": "A capillary is a tube about 5 to 10 micrometres across, just wide enough for one red blood cell at a time, with a wall of one cell layer and a thin base layer. The number of vessels in the scene is illustrative.",
+   "expert": "Where the vessel lies in a real tendon is not given by the sources used for this card; position is illustrative. The drawn width of 10 micrometres is the outer width, with the wall not drawn separately."
+  },
+  "facts": [
+   [
+    "Capillary lumen",
+    "5-10 um (drawn outer width: 10 um)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ],
+   [
+    "ANP",
+    "5.1",
+    "5-1-layers-of-the-skin"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Anatomical review of tendon: blood supply less than muscle",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2408985"
+   }
+  ]
+ }
+]

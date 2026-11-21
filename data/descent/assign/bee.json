@@ -16,7 +16,8 @@
   "oesophagus": "gut_cuticle",
   "crop": "gut_cuticle",
   "proventriculus": "gut_cuticle",
-  "hindgut": "gut_cuticle"
+  "hindgut": "gut_cuticle",
+  "midgut": "midgut_wall"
  },
  "match": [
   [

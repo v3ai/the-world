@@ -42,18 +42,18 @@
   "bladder": "organ_wall",
   "liver": "liver_tissue",
   "spleen": "lymphoid",
-  "kidney_r": "kidney_tissue",
-  "kidney_l": "kidney_tissue",
+  "kidney_r": "kidney_tissue_dog",
+  "kidney_l": "kidney_tissue_dog",
   "arteries": "vessel_wall",
   "veins": "vessel_wall",
   "h_valves": "collagen",
   "eye_sclera": "collagen",
-  "eye_cornea": "collagen",
+  "eye_cornea": "cornea_stand_in",
   "eye_lens": "lens_protein",
   "eye_vitreous": "vitreous",
   "ear_bulla": "bone",
-  "m_fore_tendons": "collagen",
-  "m_hind_tendons": "collagen"
+  "m_fore_tendons": "tendon",
+  "m_hind_tendons": "tendon"
  },
  "match": [
   [
