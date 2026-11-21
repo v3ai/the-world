@@ -1308,7 +1308,7 @@ function pickFrame(f, forZoom) { // best candidate inside one frame: highest pri
   else { let bp = -Infinity; for (const c of cands) if (c.pri > bp) { fb = c; bp = c.pri; } }
   /* a hit on what a cut-open view has cut away is no hit: nothing is drawn there (the dog's "Inside the eye" cuts the near eyeball away whole, and the
      frame's own rule, finding nothing left on the ray, fell back to it; clicks and the reframing of the cut view then went to an eyeball nobody could see) */
-  if (fb && f.coreClip && f.coreClip(fb.hit.point)) fb = null;
+  if (fb && f.coreClip && fb.pri < 3 && f.coreClip(fb.hit.point)) fb = null;   // a marker (priority 3 or more) is drawn over the cut, never clipped: the cell's "The layers: zoom in here" sits on the cut face
   if (fb) fb.meters = fb.hit.distance * f.unit;
   return fb;
 }

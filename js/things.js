@@ -957,7 +957,7 @@ function thFlyToNode(id, t) {
       if (r) { fly.p.copy(thLocalToFrame(t.def, t.pl, r.p)); fly.Dg = thOneD(t.def, x, t.part, r.size); t.p = fly.p.clone(); t.one = true; if (F.opts.ground) { const dv = cam.dir.clone(); convertD(dv, cam.A, F); dv.normalize(); const y0 = dv.y; fly.Dg = thAboveGround(F, fly.p, fly.Dg, dv); if (dv.y !== y0) look(dv); } F.spawnHold = fly.Dg; }
     }
     if (t.part) {
-      const mid = thModeFor(T, t.part); if (mid) { T.setMode(mid); thUpdateControls(F); } F.sel = t.part.id; if (T.parts[t.part.id] && T.parts[t.part.id].rank !== undefined) F.reveal = { id: t.part.id };
+      const mid = thModeFor(T, t.part); if (mid) { T.setMode(mid); thUpdateControls(F); } F.sel = t.part.id; F.reveal = T.parts[t.part.id] && T.parts[t.part.id].rank !== undefined ? { id: t.part.id } : null;   // a reveal left from the part before would draw its layer in a view that does not show it
       // a part below the ground, shown in a view that is cut along a fixed plane: stand in front of the cut face (on the side the camera is nearer to), above the ground
       const md = T.modeId === 'auto' ? null : T.modeDef(T.modeId), cn = md && md.cut && md.cut.normal;
       if (cn && F.opts.ground && fly && fly.frame === F && fly.p.y < -F.pos.y) {
@@ -968,7 +968,12 @@ function thFlyToNode(id, t) {
           fly.Dg = thAboveGround(F, fly.p, fly.Dg, n); look(n); F.spawnHold = fly.Dg;
         }
       }
-      const mv = (md || T.curMode || {}).view; if (mv && mv.dir && t.part.parent) look(new V3(...mv.dir).applyQuaternion(T.xf.q).normalize());   // a detail of a cut view: from where the view shows its face
+      else if (cn && !F.opts.ground && fly && fly.frame === F) {   // a fixed cut keeps the half beyond the plane: if the camera would land on the part's side, the part's aim point is cut away, so come from the other side (the view's own direction, mirrored if need be)
+        const n = new V3(...cn).applyQuaternion(T.xf.q).normalize(), at = thLocalToFrame(t.def, t.pl, md.cut.at || (t.def.cut && t.def.cut.at) || [0, 0, 0]), side = n.dot(fly.p.clone().sub(at)), Dl = fly.Dg / F.unit;
+        const away = d => Math.sign(side + Dl * n.dot(d)) === Math.sign(side), cur = cam.dir.clone(); convertD(cur, cam.A, F); cur.normalize();
+        if (Math.abs(side) > 1e-6 * F.radius && away(cur)) { const dv = md.view && md.view.dir ? new V3(...md.view.dir).applyQuaternion(T.xf.q).normalize() : cur; if (away(dv)) dv.addScaledVector(n, -2 * n.dot(dv)); look(dv); }
+      }
+      const mv = (md || T.curMode || {}).view; if (mv && mv.dir && (t.part.parent || t.part.flow)) look(new V3(...mv.dir).applyQuaternion(T.xf.q).normalize());   // a detail of a cut view: from where the view shows its face; a flow (ions between the sheets): from where its view shows it
     }
     else if (t.hs) {
       const mid = (t.hs.modes || [])[0]; if (mid && T.modeDef(mid) && T.modeId !== mid) { T.setMode(mid); thUpdateControls(F); }
@@ -1054,7 +1059,15 @@ TH_HOSTS.earth = (pl, def, R) => {
     TH.places[key] = L; L.region = reg;
   }
   const a = pl.at || [0, 0];
-  return { host: L, pos: new V3(a[0], pl.y || 0, a[1]), up: new V3(0, 1, 0), env: 'sun', ground: true, faceUp: true, merge: true, coMax: def.draw_m || 400, r1: Math.max(R * 12, 8) };
+  return { host: L, pos: new V3(a[0], pl.y ?? thGroundY(L, a[0], a[1]), a[1]), up: new V3(0, 1, 0), env: 'sun', ground: true, faceUp: true, merge: true, coMax: def.draw_m || 400, r1: Math.max(R * 12, 8) };
+};
+/* The height of a landscape's ground as drawn at (x, z). It is not 0 there: the far terrain is a coarse mesh (cells 50 m wide) and, where the relief is high
+   (the rock biome rises 120 m), its faces stand metres above the fine "flat where you stand" mesh within the middle 60 m, which they hide. A thing placed at
+   y = 0 was sunk 1.2 m into the visible ground (and hidden by it seen from one side). It stands on whichever surface is on top. */
+const thGroundY = (L, x, z) => {
+  L.ensure(); L.root.updateMatrixWorld(true);
+  const o = L.root.position, rc = new THREE.Raycaster(new V3(x, 1e5, z).add(o), new V3(0, -1, 0)), g = L.pickables.filter(m => m.userData.id === 'ground');
+  const h = rc.intersectObjects(g, false)[0]; return h ? h.point.y - o.y : 0;
 };
 /* A circular orbit round the Earth, drawn in the Earth's frame the way the ISS marker is: the period comes from the data (a sourced figure), not from a formula here. */
 TH_HOSTS.orbit = (pl, def, R) => {
