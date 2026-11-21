@@ -308,12 +308,12 @@ Ship the first; move to the second when the illustration path is retired. The fo
 
 | kind of scene | environment | key | exposure |
 |---|---|---|---|
-| Outdoors (the park, the body in it, things, landscapes) | the sky, computed from the Sun's true direction for the date and time shown (Preetham's analytic daylight model, turbidity 2.2), with the lawn's bounce in the lower half | the Sun: `0xfff1d6`, in its true direction, casting the shadow map | 0.9 |
+| Outdoors (the park, the body in it, things, landscapes) | the sky, computed from the Sun's true direction for the date and time shown (Preetham's analytic daylight model, turbidity 2.2), with the lawn's bounce in the lower half | the Sun: `0xfff1d6`, in its true direction, casting the shadow map | 0.9 × the eye's adaptation (1 to 3) |
 | A model (cell, tissue, molecule, crystal, organ cut open, the phone's parts) | a photographed studio (White Studio 06, CC0) | one lamp over the viewer's left shoulder, 0.6 to 0.7, moving with the view | 0.9 × 0.8 |
 | Space (planets, moons) | none | the Sun only; night sides are dark | 1.0 |
 | A diagram or a plot (the atom's cloud, the proton, the Standard Model view) | none | none: unlit | 1.0 |
 
-- **The sky is computed, not photographed,** because the app shows the real Sun for any date and hour and a photograph shows one moment. It is a clear sky of moderate haze, and the park's note says it is not today's weather. A photographed HDR of the real Greenwich Park is staged for a fixed "showcase" time of day; it must never be used with a Sun in a different place.
+- **The sky is computed, not photographed,** because the app shows the real Sun for any date and hour and a photograph shows one moment. It is a clear sky of moderate haze, and the park's note says it is not today's weather. Two photographs of the real Greenwich Park are offered on choice (`looksky`, 3.12): the clear one only at an hour when the real Sun stands at its height, the cloudy one while the Sun is up; never with a Sun in a different place.
 - **The environment is redrawn only when the Sun has moved about a degree,** at most every two seconds. It is 14 small renders into an off-screen target (`PMREMGenerator.fromScene`), not a per-frame cost.
 - **The sky dome and the environment use the same shader,** so what lights a thing and what is seen behind it agree.
 - **Night:** the Sun's light falls to zero with its altitude; the environment darkens with it. The body keeps a weak lamp of its own so the model can be read, and its note says so.
@@ -364,15 +364,15 @@ Not done, and not possible at this cost: true subsurface scattering (ears and no
 
 ### 3.8 Shadows and occlusion
 
-- **The Sun's shadow** is one shadow map (`PCFSoftShadowMap`), drawn again only when the Sun or a caster has moved, as now. Its softness is constant; a real penumbra widens with distance from the caster, and r128 has nothing cheap for that.
-- **Contact:** everything that stands on the lawn and is too small for the shadow map (or does not cast into it) gets a soft dark ellipse under it, 30 percent, leaning away from the Sun. One draw call for all.
+- **The Sun's shadow** is one shadow map (`PCFSoftShadowMap`) fitted to the view (3.12), drawn again only when the view's square, the Sun or a caster has changed. The person, the dog and every oak cast their own shapes. Its softness is constant; a real penumbra widens with distance from the caster, and r128 has nothing cheap for that.
+- **Contact:** everything that stands on the lawn gets a small soft dark ellipse under it (the person 0.2 m, the dog 0.26 m, a boulder 0.45 m), 30 percent, leaning away from the Sun: the contact that a shadow map's bias leaves out. One draw call for all.
 - **Occlusion between parts** (the crotch of a branch, under a chin) is to be baked into vertex colours when a model is built (step 9). Until then the models lack it, and it shows.
 - **Screen-space ambient occlusion is not used:** it needs a second render of the scene, a full-screen pass and a blur, on every frame, and the start view's budget is zero passes. It may be offered at the highest quality level only (step 15).
 
 ### 3.9 Sky, air and water
 
 - **Sky:** Preetham's model as above. It has no clouds. The park's old clouds (white lumps) do not survive realism and are to be replaced by a noise-based cloud layer in the sky shader or removed (step 6).
-- **Air:** fog in the colour of the sky at the horizon, from 40 m to 260 m in the park. This is aerial perspective at no cost. It is one colour in every direction; real haze is brighter toward the Sun.
+- **Air:** fog in the colour of the sky at the horizon (or of the photograph's horizon), from 40 m to 260 m in the park. This is aerial perspective at no cost. It is one colour in every direction; real haze is brighter toward the Sun.
 - **Water** (the pond): the `water` kind reflects the environment, so it shows the sky and darkens when you look straight down. It does not yet reflect the trees, refract the bed or move. A planar reflection is one more render of the scene per frame (r128's `Reflector`), allowed only at the highest quality level; ripples from a normal map and a depth-tinted bed are cheap and come first (step 6).
 
 ### 3.10 Line and selection
@@ -388,51 +388,73 @@ Not done, and not possible at this cost: true subsurface scattering (ears and no
 
 ### 3.12 The realism foundation: what a scene calls
 
-`js/look.js` holds this today, behind `?look=2`. It moves into the engine with these names kept; they are the one vocabulary for every scene plan in `notes/realism` (where a plan says `ENV.get`, `lin()`, `shaderPatch` or `q=`, read the names below).
+`js/look.js` is part of the engine: it is loaded right after `js/engine.js`, and the engine calls it. It is on with `?look=2` and **off by default**; off, `LOOK` exists with inert members (`LOOK.on` is false) and nothing is drawn differently. `js/look_ui.js`, loaded last, holds only the interface prototype (root classes, label colour, the ruler's tiers, the card's lead, figures on a plate). The names below are the one vocabulary for every scene plan in `notes/realism` (where a plan says `ENV.get`, `lin()`, `shaderPatch` or `q=`, read these).
 
 **Decisions that every scene relies on**
 
 | question | answer |
 |---|---|
-| Colour pipeline | sRGB out and ACES, set once on the renderer. Colours and colour maps stay as authored (sRGB); lit built-in materials convert them in the shader (3.3). Normal, roughness and other data maps are never converted, and are never used as `map`. |
-| Both looks at once | The switch is for the whole page (`?look=2`), not per frame. In r128 the tone mapping and the output encoding are part of every program's key, so switching between frames would compile every material twice; it is possible and not built. |
-| Light units | `physicallyCorrectLights` stays **off** while the old look exists: all 22 rigs, the park's day measure (`sun.intensity / 1.15`) and the things' light shares are written for it, and turning it on changes every intensity by π and the fall-off of point lights. The convention is therefore display-referred: **a directional light of intensity 1 and colour white brings a white matte surface that faces it to 1.0 before the tone curve.** The Sun on the park's surfaces is 0.86 at noon. The sky environment is scaled (`SKY_GAIN` 0.5) to give an upward-facing surface about a quarter of that, the measured ratio of sky to Sun at midday (about 20 to 25 thousand lux against 100 thousand). |
-| Exposure | `renderer.toneMappingExposure` is the page's (0.9; `?lookexp=`). A frame multiplies it for its own scene with `frame.exposure` (a studio scene: 0.8). The foundation sets and restores it round each scene's render. |
-| The baked Sun of a photographed sky | r128 cannot turn an environment map. So the outdoor environment is **computed** from the Sun's real direction and re-prefiltered when the Sun has moved a degree. A photographed sky (`LOOK.envLoad`) is for a fixed showcase hour only, with the scene's Sun set to the direction recorded in its manifest. |
-| Glow | A frame says so: `frame.glow = true` (it holds things that emit light) or `false`. Unset, the engine's old rule applies. |
+| Colour pipeline | sRGB out and ACES, set once on the renderer. Colours and colour maps stay as authored (sRGB); lit built-in materials convert them in the shader (3.3). Unlit built-in materials (basic, points, sprite, dashed, background) skip the tone curve and the encoding. Normal and other data maps are never converted and never used as `map`. |
+| Both looks at once | The switch is for the whole page, not per frame. In r128 the tone mapping and the output encoding are part of every program's key, so switching between frames would compile every material twice; it is possible and not built. |
+| Light units | `physicallyCorrectLights` stays **off**. A directional light of intensity 1 and colour white shows a white matte surface that faces it at 1.0 before the tone curve; an environment shows it at the cosine-weighted mean of the environment's radiance. Both are the real irradiance over π, so they compare directly. The park's Sun is 1.15 (×sin elevation on level ground). The sky's gain (`SKY_GAIN` 0.08) is set by two measurements: at noon in June the Sun gives a level surface 4.7 times what the sky gives (measured 4 to 6), and the zenith is 0.15 of a white card facing the Sun (measured 0.16). |
+| Exposure | `renderer.toneMappingExposure` is set before each frame's scene is drawn to `LOOK.exposureOf(frame)`: the page's (`lookexp`, 0.9) × `frame.exposure` (the rig's; a studio 0.8) × the eye's adaptation outdoors on the Earth (the light on a level surface against a clear June noon, to the power 0.6, from 1 to 3; `LOOK.adaptation()`). |
+| Glow | A frame says so: `frame.glow`. The rig table sets it (true for the space frames that show light sources: stars, the Sun, galaxies, the accretion flow); `bloomTarget` asks `LOOK.glowOf()`, which takes the nearest frame up the camera's chain that has a value. |
+| The Sun of a photographed sky | r128 cannot turn an environment map, but an environment drawn from a turned sphere (`fromScene`) is turned. The outdoor environment is **computed** from the Sun's real direction (re-prefiltered when it has moved about a degree). Two photographs of Greenwich Park are offered on choice (`looksky`, below); the clear one only at an hour when the real Sun stands at its height. |
+
+**Rigs: which light every frame type has** (`LOOK.TYPES`, `LOOK.RIGS`, `LOOK.rigOf(F)`; set on `frame.rig` when the frame is built)
+
+| rig | environment | lights kept | frame types |
+|---|---|---|---|
+| `outdoor` | the sky of the place it stands in (the park's, or the region's or landscape's own) | the Sun (one directional light); hemisphere, ambient and spot lights off | park, body, region; landscape on the Earth or on a world with air; a thing in the park (or with no `env`), or on a world lit by the Sun when its parent is outdoor |
+| `studio` | the studio photograph (fetched when the first studio frame is built; the sky until then) | one lamp over the viewer's left shoulder (0.62; a cell 0.7, a molecule or crystal 0.66), moving with the view | cell, dna, mol, crystal, liquid, gas, plasma, micro, tissue, tissue2, organ, thstage, phone, die, core, cells, inverter, finfet; a thing with another `env` |
+| `space` | none | the Sun only (a point light where the frame has one, else one directional light); night sides dark | cosmos, localgroup, milkyway, neighborhood, star, sun, solarsystem, sgrA, planet, earth; a landscape on a world with no air (the Moon) |
+| `diagram` | none | none: one white ambient light of 1 and no tone curve, so every surface shows exactly its own colour | atom, atomq, nucleus, proton, sm |
+
+Lights that arrive later (a thing's model) get the rig within half a second; a light a frame switches back on (a thing leaving its parent's scene) is switched off again. `LOOK.audit()` lists every drawn frame's rig, environment, the lights still on, exposure and glow. A new frame type is added to `TYPES`; until it is, it keeps its own lights and the audit shows `rig: null`.
 
 **Calls**
 
 | call | gives |
 |---|---|
-| `LOOK.envFor(frame)` | the environment for that frame's `scene.environment`: the sky outdoors, the studio for a model, `null` in space. The foundation assigns it when a frame is built and when the sky is redrawn; a scene does not. |
-| `LOOK.env(name)` | an environment by name: `'sky'`, `'studio'`, or one loaded with `LOOK.envLoad(name, file)` (a `.hdr` in `assets/look`, prefiltered once with the one `PMREMGenerator`, cached; returns a promise). Until a photographed one has arrived the sky stands in, so no shader is built twice. |
-| `LOOK.material(kind, color, {double, extra, instanced})` | a `MeshStandardMaterial` of that kind. `illoMat(color, o)` keeps its signature and returns one too, choosing the kind from the part it is called for (`kindOf` in `js/look.js`). |
+| `LOOK.on` | whether the look is on (`?look=2`). Every engine hook tests it first. |
+| `LOOK.material(kind, color, {double, extra, instanced})` | a `MeshStandardMaterial` of that kind |
+| `smat(color, o)` (js/helpers.js) | under the look, `LOOK.smat`: the kind is `o.kind`, else metal for `metalness` ≥ 0.5, else the frame's default (skin in the body, wet in a cell, organ or tissue, plastic in a studio, matte elsewhere). Roughness and metalness passed in are the table's to decide; `emissive` is dropped unless the frame emits (`frame.glow`) or `o.emits`. Off, `kind` and `emits` are ignored and it is what it always was. |
+| `illoMat(color, o)` (js/nodes.js) | under the look, `LOOK.illoMat`: `o.kind`, else the kind of the part it is made for (`kindOf`, from the part's data `kind` or its name), else the frame's default |
 | `LOOK.dress(material, kind)` | gives an existing standard material the kind's roughness, light-through cues and surface detail |
 | `LOOK.KINDS` | the table of 3.5. A scene may add a kind; it never makes a one-off material. |
-| `LOOK.patch(material, key, fn)` | adds a shader patch that runs after the ones the material already has, and extends the program's cache key. Every `onBeforeCompile` goes through this; one assigned directly replaces all the others. |
-| `LOOK.light(frame, 'studio')` | sets that frame's own lights to the studio rig, with the studio environment and exposure |
-| `LOOK.sun()` | the park's Sun now: `{dir, day, color, intensity}`, for a scene that stands in the park |
-| `LOOK.lin(hex)` | a colour as linear light, for a shader of your own |
-| `LOOK.quality`, `LOOK.part(name)` | `'high'` or `'low'`; whether a part is on. Anything costly a scene adds asks first. |
-| `LOOK.ready` | resolved when the first environment exists; tests wait on it |
-| `frame.exposure`, `frame.glow` | see the decisions above |
+| `LOOK.patch(material, key, fn)` | adds a shader patch that runs after the ones the material already has, and extends the program's cache key. Works with the look on or off. |
+| `LOOK.light(frame, 'studio')` | puts a frame of another rig on the studio rig, with its environment and exposure |
+| `LOOK.envFor(frame)`, `LOOK.env(name)`, `LOOK.envLoad(name, file)` | the environment for a frame (the foundation assigns it; a scene does not); one by name (`'sky'`, `'studio'`, or one loaded from a `.hdr` in `assets/look`, prefiltered once and cached; a promise) |
+| `LOOK.sun()` | the park's Sun now: `{dir, day, color, intensity}` (park coordinates). The park's light is moved about with the shadow's square; read its direction here, never from the light's position. |
+| `LOOK.lin(hex)`, `LOOK.SKY_FRAG`, `LOOK.skyRGB(dir, sun)`, `LOOK.shown(rgb, exposure)` | a colour as linear light; the sky shader; the same sky in JavaScript; a linear colour as it will be shown (ACES and sRGB) |
+| `LOOK.quality`, `LOOK.part(name)` | `'high'` or `'low'`; whether a part is on (live). Anything costly a scene adds asks first. |
+| `LOOK.ready`, `LOOK.busy()` | a promise that resolves when nothing the look asked for is still loading (environments, photographs, textures), including what starts while it waits: read it again after each view change. Tests wait on it. |
+| `LOOK.shadowFit(F, sun, shadow)` | the park's fitted Sun shadow (below); called by the park's `shadowStep` |
+| `frame.rig`, `frame.exposure`, `frame.glow` | set from the rig table when the frame is built; a scene may set `exposure` or `glow` before that |
+| `frame.postDraw(renderer)` | optional: called right after the frame's scene is drawn, in its depth (for a pass of its own) |
 
-A scene engineer therefore writes, in a frame's `build`: materials through `LOOK.material` (or `illoMat`, `smat`); one directional light if the scene has a Sun or a lamp; `LOOK.light(F, 'studio')` if it is a model. Nothing about environments, tone mapping or encoding. A new frame type is added to one of two lists in the foundation (`OUTDOOR`, `STUDIO`) or to neither.
+**What the engine calls** (each guarded by `LOOK.on`): `LOOK.wire()` at the start of `startApp` (wraps `ThingObj._addPart` and `decodePart` so a material knows its part); `LOOK.frameBuilt(F)` at the end of `Frame.ensure` (rig, lights, environment, exposure, glow, then the scene's own dressing); `LOOK.exposureOf(F)` before each scene is drawn, in `renderFrames` and `renderFramesTight`; `LOOK.glowOf()` in `bloomTarget`; `LOOK.step(now)` once per frame in the main loop (skies follow their Suns, late lights, the person's light, contact shadows, casters, the photographed sky, fog colour, adaptation); `LOOK.parkSunSet(F, sun)` after the park sets its Sun; `LOOK.shadowFit` in the park's shadow step. Under the look `outlineAmt` is 0 (no ink; the hull of the part pointed at or selected stays).
 
-**Switches: one naming scheme.** `look=2` turns the look on. `lookq=low|high` is the quality level. `lookoff=` takes a list of parts: `pbr, tone, sky, env, tex, sss, rig, shadow, glow, ui, labels`. `lookexp=` is the exposure. They are read in `js/look.js` today. They belong in `js/perf.js` beside `fx`, `bloom` and `shadows`, shown in the meter and reloading the page as `depth` does; that file belongs to another branch and is not changed here.
+A scene engineer therefore writes, in a frame's `build`: materials through `LOOK.material`, `smat(color, {kind})` or `illoMat`; one directional light if the scene has a Sun or a lamp; `LOOK.light(F, 'studio')` if it is a model of another rig. Nothing about environments, tone mapping or encoding, and no hemisphere or ambient light (the rig switches them off).
+
+**The Sun's shadow, fitted to the view** (rollout step 7). One map, as before, drawn only when something changed (the park's `shadowStep`). The map's square is centred on the ground where the camera looks, 3.2 viewing distances wide (16 to 240 m, in steps of 25 percent), 2048 px (1024 at the low level). Its centre is snapped to whole texels in the light's own axes, so shadows do not crawl as the view moves; it is drawn again when the snapped centre has moved six texels, the square has changed size, the Sun has moved, or a caster has changed. Casters: every standard-material part of every thing in the park's scene (looked at every two seconds, as a thing builds the meshes of a detail tier when it first needs them), and the person: the body is a scene of its own and cannot cast into the park's map, so the skin's geometry is drawn into the map as a stand-in the camera never sees. Receivers: the lawn, its far ring, the hills and the turf. `PCFSoftShadowMap`, normal offset of 1.2 texels. Not done: a penumbra that widens with distance; parts that move (a wagging tail) cast where they were when the map was drawn.
+
+**The sky over the park: `looksky`.** `sky` (default): the computed sky, true for every hour. `photo`: the clear photograph (taken in winter, Sun 23.47° high); choosing it sets the clock to the afternoon of the nearest day when the Sun stands at that height and stops it, and the photograph is turned so that its Sun lies where the app's Sun is. If the clock is moved and the Sun is more than 4° from that height, the computed sky comes back and a note says why. `overcast`: the cloudy photograph while the Sun is up, with the Sun's direct light off. Each photograph is the sky that is seen and the environment, drawn from the same turned sphere; the fog takes its colour at the horizon; a note on screen names it as a photograph and credits it. The clear one is scaled to give the light the computed sky gives at the same height (its own Sun is clipped, as an HDR's usually is); the overcast one to give a level surface 0.9.
+
+**Switches** (read in `js/perf.js`, shown in the meter, Shift+P, only while `look=2`): `look=2` on (reloads). `lookq=high|low` (reloads; `fx=low` implies low). `lookoff=` a list of parts: `pbr, tone, sky, env, tex, sss, rig, shadow, glow, ui, labels`; `env`, `shadow`, `glow` and `labels` change at once, the others reload. `lookexp=` the page's exposure (live). `looksky=sky|photo|overcast` (reloads).
 
 **Built, and not built**
 
 | item | state |
 |---|---|
 | 1. Colour pipeline, legacy colours, colour against data textures | built (shader-side conversion). Per-frame switching: not built. |
-| 2. Exposure per frame; light-unit convention | built; convention as above |
-| 3. Environment service | built: one generator, the computed sky, a studio photograph, load by name, cache. `RoomEnvironment` is not used: the studio photograph does its job, and the computed sky is the fallback that needs no download. |
-| 4. Quality levels and switches | built in `js/look.js`; **not** in `js/perf.js`, not in the meter, not live (a reload is needed) |
-| 5. Glow as a frame's choice | built (`frame.glow`); only the planets and the model scenes use it so far |
-| 6. Material factory from a table; triplanar detail; patch composer | built. **Not built:** the per-vertex occlusion patch (needs the bake, plan step 9); `smat()` is not yet routed through the table (scenes that call it keep their own roughness). |
-| 7. A Sun shadow fitted to the view | **not built.** The park's shadow map is as it was: 1024 px over a fixed 32 m square. |
+| 2. Exposure per frame; light-unit convention; adaptation outdoors | built, in the engine's render loops |
+| 3. Environment service | built: one generator, the computed sky per outdoor place, the studio photograph, two park photographs on choice, load by name, cache, `LOOK.ready` |
+| 4. Quality levels and switches | built in `js/perf.js`, in the meter; `lookexp` and four parts live, the rest reload |
+| 5. Glow as a frame's choice | built: the rig table sets `frame.glow` for every type; `bloomTarget` honours it |
+| 6. Material factory from a table; triplanar detail; patch composer | built; `smat()` and `illoMat()` go through it, and the two toon materials made directly in `js/nodes.js` now go through `illoMat`. **Not built:** the per-vertex occlusion patch (needs the bake, plan step 9). Materials made directly in a scene's code (a `ShaderMaterial`, a `MeshBasicMaterial`, a `MeshStandardMaterial` written by hand) are not routed; the rig still lights the standard ones. |
+| 7. A Sun shadow fitted to the view | built for the park (above) |
+| Rigs for every frame type | built: all 38 types of `FT` and `sgrA` are in `TYPES` |
 
 ### 3.13 What r128 can and cannot do, with no build step
 
@@ -440,7 +462,7 @@ A scene engineer therefore writes, in a frame's `build`: materials through `LOOK
 |---|---|---|
 | Physically based materials | `MeshStandardMaterial`; `MeshPhysicalMaterial` adds clearcoat, sheen and `ior` | yes |
 | Environment light from an HDR | `PMREMGenerator.fromEquirectangular`, `fromScene`; `scene.environment` (standard materials only); `RGBELoader` in the examples (vendored, 12.6 kB) | yes |
-| Turning an environment | no `envMapRotation` | no: a photographed sky cannot follow the Sun. One reason the sky is computed. |
+| Turning an environment | no `envMapRotation` | yes, by drawing the photograph on a turned sphere and prefiltering that (`fromScene`). The Sun's height in a photograph still cannot change: one reason the sky is computed. |
 | Filmic tone curve, sRGB out | ACES; `outputEncoding` | yes, for built-in materials; the app's own shaders opt in by hand |
 | Soft Sun shadows | PCF soft, VSM | yes, one map; softness constant |
 | Contact shadows | no; the example redraws the scene and blurs it every frame | a blob per thing; later a baked or once-drawn map |
@@ -468,17 +490,19 @@ A scene engineer therefore writes, in a frame's `build`: materials through `LOOK
 
 Vendored now, used only with `?look=2` (all CC0; lines in `assets/ATTRIBUTION.md`):
 
-| file | what | bytes |
-|---|---|---|
-| `assets/look/white_studio_06_1k.hdr` | studio light (Poly Haven, Grzegorz Wronkowski), halved from 2k | 2,097,202 |
-| `assets/look/Grass004_color_1k.jpg`, `_normal_gl_1k.jpg` | turf detail (ambientCG) | 1,985,561 + 2,339,612 |
-| `assets/look/jolcham_oak_bark_01_color_1k.jpg`, `_normal_gl_1k.jpg` | oak bark (Poly Haven, Charlotte Baglioni) | 1,936,622 + 2,691,523 |
-| `assets/look/rock_boulder_dry_color_1k.jpg`, `_normal_gl_1k.jpg` | boulder (Poly Haven, Dimitrios Savva and Rico Cilliers) | 859,211 + 802,497 |
-| `js/vendor/RGBELoader.js` | three.js r128 loader (MIT) | 12,572 |
+| file | what | bytes | fetched |
+|---|---|---|---|
+| `assets/look/white_studio_06_1k.hdr` | studio light (Poly Haven, Grzegorz Wronkowski), halved from 2k | 2,097,202 | when the first studio frame is built |
+| `assets/look/greenwich_park_1k.hdr` | the park's clear sky, on choice (Poly Haven, Andreas Mischok), halved, Sun clamped | 2,097,202 | only with `looksky=photo` |
+| `assets/look/greenwich_park_03_1k.hdr` | the park's overcast sky, on choice (same) | 2,097,202 | only with `looksky=overcast` |
+| `assets/look/Grass004_color_1k.jpg`, `_normal_gl_1k.jpg` | turf detail (ambientCG), re-encoded (colour JPEG 80, normal 85 without chroma subsampling) | 308,397 + 725,669 | with the park |
+| `assets/look/jolcham_oak_bark_01_color_1k.jpg`, `_normal_gl_1k.jpg` | oak bark (Poly Haven, Charlotte Baglioni), re-encoded | 516,126 + 1,159,599 | with the first bark |
+| `assets/look/rock_boulder_dry_color_1k.jpg`, `_normal_gl_1k.jpg` | boulder (Poly Haven, Dimitrios Savva and Rico Cilliers), re-encoded | 211,832 + 244,411 | with the first rock |
+| `js/vendor/RGBELoader.js` | three.js r128 loader (MIT) | 12,572 | with the first `.hdr` |
 
-12.7 MB. That is too much to download for one view: the start view fetches 10.6 MB of it.
+9.47 MB in the repository. The start view (the park at high quality) fetches the three surface sets, 3.17 MB, within the budget below; the low level fetches none. A view of the park with a photographed sky fetches 5.3 MB, over the budget; it is a choice, not a default.
 
-**Budget proposed:** 25 MB of look assets in the repository for the first pass; at most 4 MB fetched for any one view at the high level and nothing at the low level; every set loaded only when a scene that uses it is built. To get there: re-encode the 1k maps (JPEG quality 80 brings a colour map to about 0.5 MB and a normal map to about 0.8 MB), and use 512 px on phones. No new CDN: everything is served from the repository.
+**Budget:** 25 MB of look assets in the repository for the first pass; at most 4 MB fetched for any one default view at the high level and nothing at the low level; every set loaded only when a scene that uses it is built. 512 px on phones is not built yet. No new CDN: everything is served from the repository.
 
 More sets, each checked by a second reader, wait in `/home/rhett/projects/how/.devtools/assets_staging/` (skies, ground, bark and rock, water, planets, deep space, models), with a manifest and licence quotes per file.
 
@@ -490,7 +514,7 @@ More sets, each checked by a second reader, wait in `/home/rhett/projects/how/.d
 | `high` (default with `?look=2`) | plus surface textures, light-through cues, the studio photograph | laptops and desktops |
 | top (not built) | plus planar reflection on the pond, screen-space occlusion | a discrete graphics card; behind `fx=high` |
 
-Every part has a switch (`?look=2&lookoff=tex,sss,env,sky,tone,rig,shadow,glow,pbr`), so each can be judged alone on a real graphics card. The existing switches (`shadows`, `bloom`, `dpr`, `outline`, `fx`) keep their meaning.
+Every part has a switch (`?look=2&lookoff=tex,sss,env,sky,tone,rig,shadow,glow,pbr,ui,labels`), so each can be judged alone on a real graphics card; the meter (Shift+P) has a toggle per part and rows for quality, sky and exposure. The existing switches (`shadows`, `bloom`, `dpr`, `outline`, `fx`) keep their meaning.
 
 **Measured and expected.** The test machine draws in software. Measured there: counts (scenes, passes, draw calls, triangles) and CPU time. Not measured: anything about a graphics card. Expected on one: the standard material costs more per fragment than the toon material it replaces (a specular term, two environment look-ups, one `pow`); bark and rock add six texture reads; the 880 thousand triangles of the dog's fur and the oaks' leaves are where that is paid most, because they overdraw. The first thing to look at on the owner's machine is the frame time at the dog and under an oak with `?look=2` against `?look=2&lookq=low`.
 
