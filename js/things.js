@@ -417,8 +417,8 @@ function thLkApplyLeaves(rec) {
 /* The dog's undercoat under the realistic look, at the high level only: twelve shells of the coat pushed out along its normal, each
    keeping the hairs that reach it (a hair's height is a hash of where it grows, hairs about 1.5 mm apart), darker at the root where
    less light gets in. 16 mm deep, as long as the model's fur blades (tools/things/models/dog_detail.mjs). One draw call of twelve
-   instances of the coat; shown only while the coat is fully opaque, and it casts no shadow of its own. */
-const TH_FUR_N = 12, TH_FUR_LEN = .016, TH_FUR_CELL = .0015;
+   instances of the coat, while the dog is what the view is of and within 4 m; shown only while the coat is fully opaque, and it casts no shadow of its own. */
+const TH_FUR_N = 12, TH_FUR_LEN = .016, TH_FUR_CELL = .0015, TH_FUR_NEAR = 4;   // drawn only within 4 m of the dog: further out a hair is under a pixel, and the shells would cost twelve coats' triangles
 function thLkFur(rec, geo, bare) {   // bare: geometries of bare parts the hair must not cover (the nose leather): it thins out to nothing over 4 cm round them
   const main = rec.g.userData.main, m0 = main.material;
   if (!geo.attributes.thHair) {
@@ -687,7 +687,7 @@ class ThingObj {
         const isSel = this.sel === pd.id;
         mat.opacity = op; mat.transparent = op < .99; mat.depthWrite = op > .9; if (mat.clippingPlanes !== planes) { mat.clippingPlanes = planes; mat.needsUpdate = true; }
         const ol = g.userData.ol, olK = isSel || this.hovId === pd.id ? 1 : this.olK; if (ol) { ol.visible = op > .5 && !pd.noink && olK > .02; ol.material.uniforms.uOpacity.value = .85 * op * olK; ol.material.uniforms.uColor.value.setHex(isSel ? 0x1e4e8f : 0x1a1f2b); if (ol.material.clippingPlanes !== planes) { ol.material.clippingPlanes = planes; ol.material.needsUpdate = true; } }
-        if (TH_LK.on) { const rim = mat.userData.thRim; if (mat.userData.thGhost) mat.userData.thGhost.value = op < .995 ? 1 : 0; if (rim) { const a = isSel ? 1.4 : this.hovId === pd.id ? .7 : 0; if (rim.value.w !== a * op) { const c = isSel ? TH_LK.rimSel : TH_LK.rimHov; rim.value.set(c.r, c.g, c.b, a * op); } } if (r.lkSet) thLkApplySet(r); if (r.lkLeaf) thLkApplyLeaves(r); if (r.lkFur) r.lkFur.visible = op > .95 && !cut; }
+        if (TH_LK.on) { const rim = mat.userData.thRim; if (mat.userData.thGhost) mat.userData.thGhost.value = op < .995 ? 1 : 0; if (rim) { const a = isSel ? 1.4 : this.hovId === pd.id ? .7 : 0; if (rim.value.w !== a * op) { const c = isSel ? TH_LK.rimSel : TH_LK.rimHov; rim.value.set(c.r, c.g, c.b, a * op); } } if (r.lkSet) thLkApplySet(r); if (r.lkLeaf) thLkApplyLeaves(r); if (r.lkFur) r.lkFur.visible = op > .95 && !cut && this.lkFocus && this.dist < TH_FUR_NEAR; }
         const cap = g.userData.cap; if (cap) { cap.visible = !!cut && op > .5; cap.material.uniforms.uOpacity.value = op; cap.material.transparent = op < .995; }
       }
     }
@@ -839,6 +839,7 @@ function thFrameUpdate(F, dt, t) {
   if (F.sel || F.reveal) { const st = infoState, keep = st && ((st.h && st.h.frame === F && st.h.obj && st.h.obj.userData.id === F.sel) || (!st.h && st.node === F.selNode)); if (!keep) { F.sel = null; F.reveal = null; } }
   T.sel = F.sel; thAutoUpdate(F, dt);
   if (F.spawnHold && cam.A !== F && !fly) F.spawnHold = 0;
+  if (F.T) F.T.lkFocus = cam.A === F;   // the realistic look keeps its costliest extras (the dog's undercoat) for the thing being looked at
   if (cam.A === F && cam.D <= F.floorD * 1.25) { const nw = performance.now(); if (nw - (F._flT || 0) > 600) { F._flT = nw; thAtFloor(F); } } else if (F.floorNode && cam.D > F.floorD * 3) F.floorNode = null;
   T.olK = T.tier === 2 && PERF.flags.outline !== 'all' ? 0 : outlineAmt(2 * (T.def.radius_m || 1) * T.k / Math.max(T.dist || 1e-6, 1e-6) * PX_PER_RAD()); T.hovId = hovered && hovered.userData.frame === F ? hovered.userData.id : null;   // outline=near: no ink on the far detail tier, and it fades out as the thing gets small on screen
   if (F._arr === undefined) F._arr = 0; if (F._arr < 1) F._arr = Math.min(1, F._arr + dt / .4);   // a thing that has just loaded fades in over 0.4 s
