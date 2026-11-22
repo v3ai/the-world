@@ -766,8 +766,8 @@ float bkN( vec3 p ) { vec3 i = floor( p ), f = fract( p ); f = f * f * ( 3.0 - 2
       if (l2 < 1e-12) continue; const kk = Math.max(0, ((N[i] - N[j]) * dx + (N[i + 1] - N[j + 1]) * dy + (N[i + 2] - N[j + 2]) * dz) / l2);
       k[i / 3] += kk; c[i / 3]++; k[j / 3] += kk; c[j / 3]++;
     }
-    const L = g.attributes.bkLid.array;
-    for (let i = 0; i < n; i++) { const want = Math.min(1, Math.max(.25, (c[i] ? k[i] / c[i] : 0) * .008)); L[i] = (1 - want) / .75; }
+    const L = g.attributes.bkLid.array, M = g.attributes.bkMask.array;   // the lids' margins are folded in by the model (a fold of no thickness): their curvature is not the skin's, so they wrap as the lid round them does
+    for (let i = 0; i < n; i++) { let want = Math.min(1, Math.max(.25, (c[i] ? k[i] / c[i] : 0) * .008)); if (M[i * 4 + 1] > 70) want = Math.min(want, .4); L[i] = (1 - want) / .75; }
     g.attributes.bkLid.needsUpdate = true;
   }
   function hdApply(F, D) {

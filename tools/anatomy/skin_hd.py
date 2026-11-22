@@ -17,18 +17,20 @@ that scale (lids, nostrils, lip edges) is 3.0's, its place on the skull is 4.0's
 Steps (all in the app's body metres: +x the body's left, +y up, +z its front, feet at y = 0):
   1. the transform from the atlas's millimetres to the app's metres, fitted against data/anatomy/integumentary.json;
   2. the outer face of each skin shell (the atlas's skin is a closed shell with an inside face): kept where rays leave it;
-  3. the 3.0 head fitted to the 4.0 surface; the eye openings cut where the head's surface lies on the eyeball, with a short
-     strip turned in from each lid edge (the lid's margin) so the cut has thickness;
-  4. head and body joined at a plane through the neck;
-  5. reduced region by region (borders kept, so the regions stay joined): head finest, then hands and feet, then the rest;
+  3. the 3.0 head fitted to the 4.0 surface (a screened Laplacian, FIT_LAMBDA); the eyes scaled to the average adult size; the lids
+     made again round 4.0's eyes and opened to average measurements (fit_lids), with a short strip turned in from each lid edge (the
+     lid's margin) so the opening has thickness;
+  4. head and body joined along a curve round the neck (y = 1.462 + 9 x^2), sharing one line of vertices; the 4.0 ears added;
+  5. reduced region by region (borders kept, so the regions stay joined): about 50,000 triangles in all;
   6. normals taken from the full-resolution surface, so the reduced mesh shades like the fine one;
-  7. occlusion baked per vertex (rays, as bake_ao.mjs);
-  8. written as one binary file.
+  7. what each vertex is: the red of the lips, the lids' margins, the brows, the hair of the head; on the hands, the fingernails;
+  8. occlusion baked per vertex (rays, as bake_ao.mjs); the eyes (sclera, iris, lens; the cornea apart) reduced and baked;
+  9. written as one binary file (write_bin has the layout); js/body_core.js (BLK.hd) reads it.
 
 usage: python tools/anatomy/skin_hd.py SRC WORK [--out data/anatomy/skin_hd.bin] [--preview]
-  SRC holds the atlas files: FJ2810.obj FJ2811.obj FJ2814.obj FJ1289.obj FJ1340.obj FJ1297.obj FJ1348.obj FJ1305.obj FJ1356.obj
+  SRC holds the atlas files: FJ2810.obj FJ2811.obj FJ2813.obj FJ2814.obj FJ1289.obj FJ1340.obj FJ1297.obj FJ1348.obj FJ1305.obj FJ1356.obj
   FJ1317.obj FJ1368.obj (from https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/isa_BP3D_4.0_obj_99.zip) and
-  FMA7163_95.obj (BodyParts3D_3.0_obj_95/FMA7163.obj from https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_95.zip).
+  FMA7163_95.obj, FMA12513_95.obj and FMA71098_95.obj (BodyParts3D_3.0_obj_95/FMA*.obj from https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_95.zip).
   WORK is a scratch folder for the stages (kept between runs). Needs numpy, scipy, pyfqmr; node for the ray queries.
 """
 import sys, os, json, struct, subprocess, argparse, time
@@ -335,7 +337,6 @@ def nails(SV, SF, SN):
                 if c5.sum() > 3 and c15.sum() > 3:
                     ax = P[c5].mean(0) - P[c15].mean(0); ax /= np.linalg.norm(ax)
             dv = -palm if rank else tdir - .5 * palm
-            if os.environ.get('NAILDBG'): log('   tip %s axis %s bone %s' % (np.round(T, 3), np.round(ax, 2), np.round(bc, 3)))
             dv = dv - ax * (dv @ ax); dv /= np.linalg.norm(dv); lat = np.cross(ax, dv)
             Q = P - T; s_ = Q @ ax; up = Q @ dv; la = Q @ lat
             ctr = near & (np.abs(s_ + .007) < .0015)
@@ -355,8 +356,6 @@ def nails(SV, SF, SN):
             v = np.clip(marg / .0006 + .5, 0, 1) * (up > u0) * near * (SN[idx] @ dv > .2)
             m[idx] = np.maximum(m[idx], v); co[idx] = np.where(v > 0, np.clip((s_ - sp_) / L, 0, 1), co[idx])
             log('nail: %s %s %d: %.1f x %.1f mm (%d vertices)' % (kind, sd, rank, nw * 1e3, L * 1e3, (v > .5).sum()))
-            if os.environ.get('NAILDBG'):
-                log('   near %d, s in range %d, lateral %d, up %d, facing %d; dv %s' % (near.sum(), (near & (s_ < sd_) & (s_ > sp_)).sum(), (near & (np.abs(ln) < 1)).sum(), (near & (up > u0)).sum(), (near & (SN[idx] @ dv > .2)).sum(), np.round(dv, 2)))
     return m, co
 
 
@@ -803,8 +802,6 @@ def loop_of(F, on):
 
 def join_neck(HV, HF, lid, BV, BF):
     """the head above the seam and the body below it, joined along one shared line of vertices"""
-    if os.environ.get('DUMP_NECK'):
-        np.savez(os.environ['DUMP_NECK'], HV=HV, HF=HF, lid=lid, BV=BV, BF=BF)
     hv, hf, hon, hlid = clip(HV, HF, neck_phi(HV), True, lid)
     bv, bf, bon, _ = clip(BV, BF, neck_phi(BV), False)
     lh, nh = loop_of(hf, hon); lb, nb = loop_of(bf, bon)
