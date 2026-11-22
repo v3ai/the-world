@@ -225,7 +225,7 @@ BUILD.dna = (c) => {
   const fork = new THREE.Object3D(); helix.add(fork);
   const _p = new V3(), _q = new V3(), _m = new V3(), _d = new V3(), UP = new V3(0, 1, 0);
   function placeBase(o, sp, mid) { _d.subVectors(mid, sp); const len = Math.max(.01, _d.length() - .35); _d.normalize(); o.base.position.copy(sp).addScaledVector(_d, .35 + len / 2); o.base.scale.set(1, len, 1); o.base.quaternion.setFromUnitVectors(UP, _d); }
-  function layout(u) {
+  let layout = function (u) {
     const pts = [[], [], [], []];
     let forkI = -1;
     for (let i = 0; i < n; i++) {
@@ -261,7 +261,26 @@ BUILD.dna = (c) => {
       if (pts[s].length < 3) continue;
       tubes[s] = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts[s]), pts[s].length * 3, .13, 6, false), s < 2 ? tubeMat : tubeNew); helix.add(tubes[s]);
     }
-  }
+  };
+  /* under the realistic look the helix is drawn as atoms (MD.dnaAtoms, js/world_matter.js); the symbols above stay as the frame of reference
+     (positions for labels and the camera) but are not drawn or picked */
+  const AT = typeof MD !== 'undefined' && MD.on ? MD.dnaAtoms(c.frame, helix, SEQ, COMP, NM, rise, twist) : null, anc = [];
+  if (AT) { const old = new Set(); bp.forEach(e => { [...e.s, ...e.nw].forEach(o => [o.sugar, o.base, o.phos].forEach(m => { if (m) old.add(m); })); old.add(e.hb); old.add(e.hb2); });
+    for (let k = c.pickables.length - 1; k >= 0; k--) if (old.has(c.pickables[k])) c.pickables.splice(k, 1); }
+  const ref = m => { if (!AT) return m; const o = new THREE.Object3D(); helix.add(o); anc.push([o, m]); o.position.copy(m.position); return o; };
+  const layout0 = layout;
+  layout = u => {
+    layout0(u); if (!AT) return;
+    let anyNew = false;
+    for (let i = 0; i < n; i++) {
+      const e = bp[i], k = smooth(0, 1, (u * (n + 10) - (n - 1 - i)) / 10), sx = SHIFT * k, kn = smooth(.1, .55, k);
+      AT.place(i, 0, 0, -sx, 1); AT.place(i, 1, 0, sx, 1);
+      if (kn > .02) { anyNew = true; AT.place(i, 0, 1, sx, kn); AT.place(i, 1, 1, -sx, kn); } else { AT.place(i, 0, 1, sx, 0); AT.place(i, 1, 1, -sx, 0); }
+      [...e.s, ...e.nw].forEach(o => [o.sugar, o.base, o.phos].forEach(m => { if (m) m.visible = false; })); e.hb.visible = false; e.hb2.visible = false;
+    }
+    for (let s = 0; s < 4; s++) if (tubes[s]) tubes[s].visible = false;
+    AT.showNew(anyNew); AT.commit(u === 0 || u === 1); anc.forEach(([o, m]) => o.position.copy(m.position));
+  };
   let unzip = 0, target = 0, built = false;
   layout(0);
   // ---- scale bar (2 nm) under the helix
@@ -278,19 +297,25 @@ BUILD.dna = (c) => {
   const ub = actBtn('Show replication', () => { target = target ? 0 : 1; ub.textContent = target ? 'Zip back up' : 'Show replication'; sceneNote(c, target ? NOTE.rep : NOTE.helix); });
   // ---- labels: the ends of each strand, the grooves, the fork
   const endLbl = (o, t) => c.addLabel(o, t, { offset: new V3(0, .15, 0), always: true });
-  endLbl(bp[0].s[0].sugar, "5′"); endLbl(bp[n - 1].s[0].sugar, "3′"); endLbl(bp[n - 1].s[1].sugar, "5′"); endLbl(bp[0].s[1].sugar, "3′");
+  endLbl(ref(bp[0].s[0].sugar), "5′"); endLbl(ref(bp[n - 1].s[0].sugar), "3′"); endLbl(ref(bp[n - 1].s[1].sugar), "5′"); endLbl(ref(bp[0].s[1].sugar), "3′");
   const grooveAnchor = (a, y, t) => { const o = new THREE.Object3D(); spos(a, Rp + 1.6, y, o.position); helix.add(o); c.addLabel(o, t, { offset: new V3(0, .1, 0) }); return o; };
-  const gA = [grooveAnchor(bp[12].a + off / 2, bp[12].y, 'Minor groove'), grooveAnchor(bp[22].a + off / 2 + Math.PI, bp[22].y, 'Major groove')];
-  c.addLabel(bp[n - 4].s[0].base, 'Base pair', { offset: new V3(0, .3, 0) });
-  c.addLabel(bp[6].s[0].phos, 'Sugar-phosphate backbone', { offset: new V3(0, .5, 0) });
+  const gOff = AT ? AT.minorAt(0) : off / 2;   // the middle of the minor groove, from the sugars' angle (the atoms' own, under the look)
+  const gA = [grooveAnchor(bp[12].a + gOff, bp[12].y, 'Minor groove'), grooveAnchor(bp[22].a + gOff + Math.PI, bp[22].y, 'Major groove')];
+  c.addLabel(ref(bp[n - 4].s[0].base), 'Base pair', { offset: new V3(0, .3, 0) });
+  c.addLabel(ref(bp[6].s[0].phos), 'Sugar-phosphate backbone', { offset: new V3(0, .5, 0) });
   c.addLabel(fork, 'Replication fork', { offset: new V3(2.6, 0, 0) });
   const NOTE = {
     helix: 'Schematic ball-and-stick model of B-DNA, drawn to scale in length and width: 2.0 nm wide, 0.34 nm per base pair, 10.5 base pairs (3.6 nm) per turn, right-handed. Spheres and rods are symbols, not atoms. 39 base pairs, an invented sequence.',
     rep: 'Schematic of replication. Each new double helix keeps one old strand (tan) and gets one new strand (blue). In a cell, helicase opens the fork and DNA polymerase builds each new strand. The lagging strand is made in short pieces (drawn here as one). Not a real simulation.',
     fiber: 'Schematic at true size: 4 nucleosomes of the beaded 10 nm form of chromatin. Each wraps 147 base pairs (1.65 turns) round 8 histone proteins and is about 11 nm across; DNA is 2 nm thick. Histone shapes are simplified. Inside a living nucleus the next level of folding is irregular, not a neat 30 nm fibre.',
   };
+  if (AT) {
+    NOTE.helix = 'Space-filling, atom by atom: B-DNA with every atom except hydrogen drawn at its van der Waals radius, the base pairs taken from a measured crystal structure (PDB 1BNA) and repeated along the helix: 2.0 nm wide, 0.34 nm per base pair, about 10.5 base pairs (3.6 nm) per turn in solution (10 per turn, 3.4 nm, in the fibres of the first X-ray pictures), right-handed. Hydrogens, about a third of the atoms, are left out. 39 base pairs, an invented sequence.';
+    NOTE.rep = NOTE.rep.replace('one old strand (tan)', 'one old strand (pale and ochre backbone)').replace('one new strand (blue)', 'one new strand (blue backbone)');
+  }
   sceneNote(c, NOTE.helix);
   c.update = (dt) => {
+    if (AT) AT.lod(cam.A === c.frame && cam.D < 1.4e-8);   // the finer spheres only where an atom is large on the screen
     if (Math.abs(unzip - target) > .001) {
       unzip += Math.sign(target - unzip) * Math.min(Math.abs(target - unzip), dt / 6);
       layout(unzip);
