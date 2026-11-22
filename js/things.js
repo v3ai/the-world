@@ -42,8 +42,10 @@ function thGeo(id, bundle, key) {   // one shared BufferGeometry per mesh key
   const q = bundle.meshes[key]; if (!q) return null;
   const g = bundle.dec && bundle.dec[key] ? geoFromArrays(bundle.dec[key]) : bundle.format === 2 ? thDecodeV2(bundle, q) : decodePart(q);
   if (q.shade) { const sh = bundle.format === 2 ? new Uint8Array(bundle.buf, q.shade[0], q.nv) : q.shade, c = new Float32Array(sh.length * 3); for (let i = 0; i < sh.length; i++) c[i * 3] = c[i * 3 + 1] = c[i * 3 + 2] = sh[i] / 255; g.setAttribute('color', new THREE.BufferAttribute(c, 3)); }   // baked brightness (occlusion, staining)
+  if (q.ao && TH_LK.on && bundle.buf) g.setAttribute('thAO', new THREE.BufferAttribute(thUnpack4(bundle.buf, q.ao, q.nv), 1, true));   // baked ambient occlusion (tools/things/lib/ao.mjs): the realistic look only
   return TH.geos[k] = g;
 }
+function thUnpack4(buf, at, n) { const by = new Uint8Array(buf, at[0], at[1]), a = new Uint8Array(n); for (let i = 0; i < n; i++) a[i] = ((by[i >> 1] >> ((i & 1) * 4)) & 15) * 17; return a; }
 
 /* ---------- alpha-cut cards: a flat quad with a picture of an outline (leaves, petals): cheap enough for tens of thousands of instances ---------- */
 const TH_CARDS = {};
@@ -94,6 +96,7 @@ gl_FragColor=vec4(uColor,uOpacity); }`),
 // evaluated where the view ray meets the cut plane, in the thing's own coordinates. kind 'grains' = Voronoi cells
 // (rock, wood fibres, flesh ...); 'plain' = one colour. A picture of the kind of structure, not of the real arrangement.
 function thFaceMat(face, plane) {
+  if (TH_LK.on && face.look) return thFaceSurf(face);
   const pal = (face.palette || [[0x888888, 1]]).slice(0, 4), cols = [], cum = []; let tot = pal.reduce((s, p) => s + p[1], 0), acc = 0;
   for (let i = 0; i < 4; i++) { const p = pal[Math.min(i, pal.length - 1)]; cols.push(new THREE.Color(p[0])); if (i < pal.length) acc += p[1] / tot; cum.push(i < pal.length ? acc : 2); }
   return new THREE.ShaderMaterial({
@@ -121,10 +124,50 @@ void main(){
     side: THREE.BackSide, transparent: true, clipping: true
   });
 }
+/* The same face under the realistic look: a lit surface of its kind (roughness and metalness from the kinds table), lit by the Sun and
+   the environment like the rest of the thing, its normal the cut plane's, turned to the viewer. Its pattern follows what is cut
+   (tools/things/lib/kinds.mjs FACE_LOOK): 'grain' cells of the palette parted by dark seams (rock, soil, flesh), 'fibre' bundles parted
+   by pale sheets (a muscle cut across: fascicles in their perimysium), 'pore' dense tissue with small holes (bone), 'plain' one colour
+   with a fine grain. A drawn pattern of the kind of structure at its own scale, not a photograph of a section. */
+function thFaceSurf(face) {
+  const lk = face.look, K = LOOK.KINDS[lk.kind] || {}, pal = (face.palette || [[0x888888, 1]]).slice(0, 4), cols = [], cum = []; let tot = pal.reduce((s, p) => s + p[1], 0), acc = 0;
+  for (let i = 0; i < 4; i++) { const p = pal[Math.min(i, pal.length - 1)]; cols.push(new THREE.Color(p[0])); if (i < pal.length) acc += p[1] / tot; cum.push(i < pal.length ? acc : 2); }
+  const pat = lk.pattern === 'grain' && face.kind === 'plain' ? 'plain' : lk.pattern;
+  const U = { uPlane: { value: new THREE.Vector4(0, 0, 1, 0) }, uCam: { value: new V3() }, uOff: { value: new V3() }, uInv: { value: new THREE.Matrix4() }, uCell: { value: face.cell || lk.cell || .02 }, uCols: { value: cols }, uCum: { value: cum }, uEdge: { value: face.edge ?? .35 }, uOpacity: { value: 1 } };
+  const m = new THREE.MeshStandardMaterial({ side: THREE.BackSide, transparent: true, roughness: K.rough ?? .8, metalness: K.metal || 0 });   // (clipping planes are set by the caller)
+  m.uniforms = U; m.userData.noHL = true;
+  LOOK.patch(m, 'thface_' + pat, sh => {
+    Object.assign(sh.uniforms, U);
+    sh.vertexShader = 'varying vec3 vThW;\n' + sh.vertexShader.replace('#include <project_vertex>', '#include <project_vertex>\n\tvThW = ( modelMatrix * vec4( transformed, 1.0 ) ).xyz;');
+    sh.fragmentShader = `varying vec3 vThW; uniform vec4 uPlane; uniform vec3 uCam; uniform vec3 uOff; uniform mat4 uInv; uniform float uCell; uniform vec3 uCols[4]; uniform float uCum[4]; uniform float uEdge; uniform float uOpacity;
+float thH1(vec3 p){ return fract(sin(dot(p,vec3(12.9898,78.233,45.164)))*43758.5453); }
+vec3 thH3(vec3 p){ p=vec3(dot(p,vec3(127.1,311.7,74.7)),dot(p,vec3(269.5,183.3,246.1)),dot(p,vec3(113.5,271.9,124.6))); return fract(sin(p)*43758.5453); }
+` + sh.fragmentShader.replace('#include <map_fragment>', `
+	vec3 thDir = normalize( vThW - uCam ); float thNd = dot( uPlane.xyz, thDir ); float thT = abs( thNd ) > 1e-4 ? -( dot( uPlane.xyz, uCam ) + uPlane.w ) / thNd : 0.0;
+	vec3 thPw = uCam + thDir * thT; vec3 thQ = ( uInv * vec4( thPw - uOff, 1.0 ) ).xyz / uCell;
+	vec3 thIp = floor( thQ ), thFp = fract( thQ ); float thF1 = 9.0, thF2 = 9.0; vec3 thId = thIp;
+	for ( int k = -1; k <= 1; k ++ ) for ( int j = -1; j <= 1; j ++ ) for ( int i = -1; i <= 1; i ++ ) { vec3 g = vec3( float( i ), float( j ), float( k ) ); float d = length( g + thH3( thIp + g ) - thFp ); if ( d < thF1 ) { thF2 = thF1; thF1 = d; thId = thIp + g; } else if ( d < thF2 ) thF2 = d; }
+	float thR = thH1( thId + 3.7 ); vec3 thC = uCols[3]; if ( thR < uCum[0] ) thC = uCols[0]; else if ( thR < uCum[1] ) thC = uCols[1]; else if ( thR < uCum[2] ) thC = uCols[2];
+	float thFine = thH1( floor( thQ * 9.0 ) );
+	#if ${pat === 'grain' ? 1 : 0}
+	thC *= .88 + .24 * thH1( thId + 9.1 ); thC = mix( thC * .45, thC, smoothstep( 0.0, uEdge * .35, thF2 - thF1 ) );
+	#elif ${pat === 'fibre' ? 1 : 0}
+	thC *= .9 + .14 * thH1( thId + 9.1 ) + .06 * thFine; thC = mix( mix( thC, vec3( .93, .87, .84 ), .55 ), thC, smoothstep( .015, .07, thF2 - thF1 ) );
+	#elif ${pat === 'pore' ? 1 : 0}
+	thC *= .95 + .08 * thFine; thC = mix( thC * vec3( .62, .45, .4 ), thC, smoothstep( .16, .24, thF1 ) );
+	#else
+	thC *= .96 + .08 * thFine;
+	#endif
+	diffuseColor = vec4( thC, uOpacity );`).replace('#include <normal_fragment_begin>', `
+	float faceDirection = 1.0; vec3 thPn = dot( uPlane.xyz, uCam - thPw ) < 0.0 ? -uPlane.xyz : uPlane.xyz;
+	vec3 normal = normalize( ( viewMatrix * vec4( thPn, 0.0 ) ).xyz ); vec3 geometryNormal = normal;`);
+  });
+  return m;
+}
 function thInked(geo, color, o = {}) {   // like inked(), but the outline respects clipping planes
   const g = new THREE.Group(), m = new THREE.Mesh(geo, illoMat(color, { double: o.double, extra: o.vc ? { vertexColors: true } : {} })); g.add(m);
-  const ol = new THREE.Mesh(geo, thOutlineMat(o.ink, o.w, o.sway)); ol.userData.outline = true; g.add(ol); g.userData.ol = ol; g.userData.main = m;
-  m.matrixAutoUpdate = ol.matrixAutoUpdate = false;   // the group is what moves (if anything does); the meshes inside it stay at identity
+  g.userData.main = m; m.matrixAutoUpdate = false;   // the group is what moves (if anything does); the meshes inside it stay at identity
+  if (!TH_LK.on) { const ol = new THREE.Mesh(geo, thOutlineMat(o.ink, o.w, o.sway)); ol.userData.outline = true; g.add(ol); g.userData.ol = ol; ol.matrixAutoUpdate = false; }   // under the realistic look there is no ink: edges come from light (DESIGN 3.10)
   return g;
 }
 let _thShadowTex = null;
@@ -243,6 +286,175 @@ function thPatch(mat, sp, L) {
   mat.customProgramCacheKey = () => u ? 'thlit+sway' : 'thlit';
 }
 
+/* ---------- the realistic look (?look=2; js/look.js, docs/DESIGN.md 3.5 to 3.10): what the park's things add to the foundation ----------
+   Without look=2 nothing here runs and every thing is drawn exactly as before. With it:
+   - every part is a material KIND named in its data (thing.json `kind`, written by the bake from tools/things/lib/kinds.mjs);
+     TH_KINDS adds the kinds the foundation's table lacks (LOOK.KINDS is the one table; a kind is never a one-off material);
+   - soil, mud and stone take a photographed surface laid on from three sides at its true size (TH_SETS), fetched when a part of that
+     kind is first shown; the oak's trunk takes its bark along texture coordinates that run round and up the trunk;
+   - the baked shade byte is kept only where it is true colour (`shade: 'tone'`); elsewhere it was drawn as light, and is left out;
+   - no ink: the part pointed at or selected takes a rim of light in the accent colour, and a see-through layer keeps its edges
+     (glass, not faded paint). Every term is one patch through LOOK.patch.
+   Roughness: the foundation's values where it has them; for the added kinds, chosen against photographs (no measured roughness of
+   these surfaces was found), except where a source is named. Albedo stays the part's own colour (its data); `alb` is the
+   linear-light range a colour of the kind should fall in, used by the bake's check (tools/things/lib/kinds.mjs), with its source. */
+const TH_KINDS = {
+  wing: { rough: .22, thin: [.5, .5, .5] },                    // an insect wing: a clear membrane
+  mucosa: { rough: .3, sss: [.26, .08, .05] },                 // a moist lining: smoother than skin (skin 0.5: physicallybased.info "Skin I-VI")
+  cap: { rough: .42, sss: [.24, .1, .06] },                    // the fly agaric's cap: a viscid, waxy skin that shines
+  gill: { rough: .85, sss: [.2, .18, .14] },                   // gills and the cap's underside: matte, thin plates
+  stone: { rough: .7 },                                        // pebbles and flints (surface: river pebbles)
+  root: { rough: .85, sss: [.12, .1, .06] },
+  stem: { rough: .55, sss: [.12, .16, .05] },                  // green stems and stalks: light enters but a stem is not a sheet
+  mud: { rough: .45 },                                         // wet mud: a little shine from its film of water
+  foil: { rough: .3, metal: 1 },                               // rolled copper and aluminium foil (colour = the metal's reflectance: physicallybased.info "Copper", "Aluminum")
+  polymer: { rough: .4 },                                      // the pouch laminate, the separator, a circuit board
+  powder: { rough: .95 },                                      // electrode coatings, pollen: a pressed powder (graphite near charcoal, albedo about 0.02 to 0.04: physicallybased.info "Charcoal"; Wikipedia "Albedo")
+  cartilage: { rough: .4, sss: [.22, .14, .1] },
+  shell: { rough: .4 },
+  moss: { rough: .9, sss: [.14, .18, .05] },
+  lichen: { rough: .85 },
+  marker: { rough: .9 },                                       // a sign drawn on the model (a flow, a schematic): unlit, see TH_LK.marker
+};
+const TH_SETS = {   // colour, normal (OpenGL), metres one picture covers, strength of the normal map. CC0: assets/ATTRIBUTION.md
+  soil: ['forest_ground_06_color_512.jpg', 'forest_ground_06_normal_gl_512.jpg', 2.11, .8],
+  mud: ['brown_mud_03_color_512.jpg', 'brown_mud_03_normal_gl_512.jpg', 1.3, .6],
+  pebble: ['dry_river_pebbles_color_512.jpg', 'dry_river_pebbles_normal_gl_512.jpg', 2.0, .9],
+};
+const TH_SET_OF = { soil: 'soil', mud: 'mud', stone: 'pebble' };
+const TH_LK = { on: !!(LOOK.on && LOOK.part('pbr')), sets: {}, pend: new Set(), ld: null, rimSel: new THREE.Color(0x4f86d6), rimHov: new THREE.Color(0x9fbfe8) };
+if (TH_LK.on) { for (const k in TH_KINDS) if (!LOOK.KINDS[k]) LOOK.KINDS[k] = TH_KINDS[k]; const b0 = LOOK.busy; LOOK.busy = () => b0() + TH_LK.pend.size; }
+function thLkTrack(pr) { TH_LK.pend.add(pr); const done = () => TH_LK.pend.delete(pr); pr.then(done, done); return pr; }
+/* what the things' surfaces still have to fetch (tests wait on it, with LOOK.ready) */
+function thLkReady() { return TH_LK.pend.size ? Promise.all([...TH_LK.pend].map(p => p.catch(() => null))).then(thLkReady) : Promise.resolve(true); }
+function thLkFlat(r, g, b) { const cv = document.createElement('canvas'); cv.width = cv.height = 2; const x = cv.getContext('2d'); x.fillStyle = `rgb(${r},${g},${b})`; x.fillRect(0, 0, 2, 2); const t = new THREE.CanvasTexture(cv); t.wrapS = t.wrapT = THREE.RepeatWrapping; return t; }
+function thLkImg(file) { return new Promise((res, rej) => (TH_LK.ld || (TH_LK.ld = new THREE.ImageLoader())).load('assets/look/' + file, res, undefined, () => { console.warn('look: texture', file); rej(); })); }
+/* a colour map as DETAIL, as the foundation's own sets are: each channel scaled to a mean of one half (the shader doubles it), so the
+   part keeps the colour its data gives and takes the photograph's variation (DESIGN 3.5). `mask`: only where it is opaque counts. */
+function thLkDetail(img, mask) {
+  const cv = document.createElement('canvas'); cv.width = img.width; cv.height = img.height; const x = cv.getContext('2d'); x.drawImage(img, 0, 0);
+  const d = x.getImageData(0, 0, cv.width, cv.height), a = d.data, m = [0, 0, 0]; let n = 0;
+  let mk = null; if (mask) { const c2 = document.createElement('canvas'); c2.width = cv.width; c2.height = cv.height; const y = c2.getContext('2d'); y.drawImage(mask, 0, 0, cv.width, cv.height); mk = y.getImageData(0, 0, cv.width, cv.height).data; }
+  for (let i = 0; i < a.length; i += 4) { if (mk && mk[i] < 128) continue; m[0] += a[i]; m[1] += a[i + 1]; m[2] += a[i + 2]; n++; }
+  const k = m.map(v => 127.5 / Math.max(1, v / Math.max(1, n)));
+  for (let i = 0; i < a.length; i += 4) { a[i] = Math.min(255, a[i] * k[0]); a[i + 1] = Math.min(255, a[i + 1] * k[1]); a[i + 2] = Math.min(255, a[i + 2] * k[2]); if (mk) a[i + 3] = mk[i]; }
+  x.putImageData(d, 0, 0); return cv;
+}
+function thLkSet(name) {
+  if (TH_LK.sets[name]) return TH_LK.sets[name];
+  const f = TH_SETS[name], s = TH_LK.sets[name] = { map: thLkFlat(128, 128, 128), normalMap: thLkFlat(128, 128, 255), size: f[2], bump: f[3] };
+  s.map.anisotropy = s.normalMap.anisotropy = 8;
+  thLkTrack(thLkImg(f[0]).then(im => { s.map.image = thLkDetail(im); s.map.needsUpdate = true; }).catch(() => { }));
+  thLkTrack(thLkImg(f[1]).then(im => { s.normalMap.image = im; s.normalMap.needsUpdate = true; }).catch(() => { }));
+  return s;
+}
+/* the photographed surface on one part, when it is first shown: laid on from three sides (the foundation's LK_TRI chunks) in the part's
+   own metres; an instanced part is in the units of its one instance, so the scale is that of a typical instance, and it takes the colour
+   detail only (DESIGN 3.6) */
+function thLkApplySet(rec) {
+  const name = rec.lkSet; rec.lkSet = null; const m = rec.g.userData.main.material; if (!m || !m.isMeshStandardMaterial || m.map) return;
+  const s = thLkSet(name); m.map = s.map; m.defines = m.defines || {}; m.defines.LK_TRI = ((rec.lkUnit || 1) / s.size).toFixed(5);
+  if (!rec.instanced) { m.normalMap = s.normalMap; m.normalScale.set(s.bump, s.bump); }
+  m.needsUpdate = true;
+}
+/* texture coordinates round and up a trunk built as a grid of `cols` vertices per ring (oak.mjs barkGrid): u in bark pictures round
+   the trunk (a whole number of them, so there is no seam), v in pictures up it. The bark's furrows then run along the trunk, as
+   they grow, not along the world's axes. */
+function thLkTrunkUV(geo, uvd, tile) {
+  if (geo.attributes.uv) return; const p = geo.attributes.position, n = p.count, uv = new Float32Array(n * 2), cols = uvd.grid, rings = Math.floor(n / cols);
+  for (let i = 0; i < n; i++) { const c = i % cols, r = Math.floor(i / cols); if (r < rings) { uv[i * 2] = c / (cols - 1) * uvd.round; } else { uv[i * 2] = uvd.round / 2; } uv[i * 2 + 1] = p.getY(i) / tile[1]; }
+  geo.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+}
+/* The oak's leaves: six photographed oak leaves (ambientCG LeafSet016, a 3 x 2 atlas, CC0) on the leaf cards, each card one of the six by
+   a hash of its number, so neighbours differ. The photograph is detail (its outline, veins and variation); the colour stays the
+   model's green. The middle distance's tufts are drawn from the same six leaves. Fetched when the first leaves are shown. */
+const TH_LEAF = { p: null, atlas: null, rosette: null };
+function thLkLeaves() {
+  if (TH_LEAF.p) return TH_LEAF.p;
+  TH_LEAF.atlas = thLkFlat(128, 128, 128); TH_LEAF.alpha = thLkFlat(255, 255, 255); TH_LEAF.normal = thLkFlat(128, 128, 255); TH_LEAF.rosette = thLkFlat(128, 128, 128); TH_LEAF.rosetteA = thLkFlat(255, 255, 255);
+  TH_LEAF.p = thLkTrack(Promise.all([thLkImg('LeafSet016_color_1k.jpg'), thLkImg('LeafSet016_opacity_1k.jpg'), thLkImg('LeafSet016_normal_gl_512.jpg')]).then(([c, o, n]) => {
+    /* colour and outline are two pictures: the colour opaque (round each leaf the mean grey, so filtering at the edge does not darken
+       it), the outline the alpha map. A colour picture with an alpha channel would lose its colour where it is clear, and the leaf's
+       edge would darken in the distance. */
+    const cv = thLkDetail(c, o), opaque = (src, w, h) => { const q = document.createElement('canvas'); q.width = w; q.height = h; const x = q.getContext('2d'); x.fillStyle = 'rgb(128,128,128)'; x.fillRect(0, 0, w, h); x.drawImage(src, 0, 0, w, h); return q; };
+    TH_LEAF.atlas.image = opaque(cv, cv.width, cv.height); TH_LEAF.atlas.needsUpdate = true; TH_LEAF.alpha.image = o; TH_LEAF.alpha.needsUpdate = true; TH_LEAF.normal.image = n; TH_LEAF.normal.needsUpdate = true;
+    const S = 256, rc = document.createElement('canvas'), ra = document.createElement('canvas'); rc.width = rc.height = ra.width = ra.height = S; const g = rc.getContext('2d'), ga = ra.getContext('2d'); let sd = 7; const rn = () => (sd = (sd * 1664525 + 1013904223) >>> 0) / 4294967296;
+    g.fillStyle = 'rgb(128,128,128)'; g.fillRect(0, 0, S, S); ga.fillStyle = '#000'; ga.fillRect(0, 0, S, S);
+    for (let k = 0; k < 15; k++) {   // the rosette of the old drawing, made of the photographed leaves
+      const a = (k / 15 - .5) * 3.1 + (rn() - .5) * .4, ring = k % 2 ? 0 : .1, cx = S * (.5 + (rn() - .5) * .18), cy = S * (.62 + ring + (rn() - .5) * .1), len = S * (.34 + .12 * rn()), cell = Math.floor(rn() * 6), cw = cv.width / 3, ch = cv.height / 2;
+      for (const [x, im] of [[g, cv], [ga, o]]) { x.save(); x.translate(cx, cy); x.rotate(a); x.drawImage(im, (cell % 3) * im.width / 3, (1 - Math.floor(cell / 3)) * im.height / 2, im.width / 3, im.height / 2, -len * .33, -len, len * .67, len); x.restore(); }
+    }
+    TH_LEAF.rosette.image = rc; TH_LEAF.rosette.needsUpdate = true; TH_LEAF.rosetteA.image = ra; TH_LEAF.rosetteA.needsUpdate = true;
+    for (const t of [TH_LEAF.atlas, TH_LEAF.alpha, TH_LEAF.normal, TH_LEAF.rosette, TH_LEAF.rosetteA]) t.anisotropy = 4;
+    TH_LEAF.ok = true;
+  }).catch(() => { }));
+  return TH_LEAF.p;
+}
+function thLkApplyLeaves(rec) {
+  thLkLeaves(); if (!TH_LEAF.ok) return;   // the drawn leaf stays until the photographs have arrived
+  rec.lkLeaf = null; const m = rec.g.userData.main.material, geo = rec.g.geometry, cluster = rec.pd.card.kind === 'leaf_cluster';
+  m.map = cluster ? TH_LEAF.rosette : TH_LEAF.atlas; m.alphaMap = cluster ? TH_LEAF.rosetteA : TH_LEAF.alpha; if (!m.userData.thx2) { m.userData.thx2 = true; m.color.multiplyScalar(2); }   // the detail's mean is one half: twice the colour keeps the leaf its own green (as the foundation's sets do)
+  if (!cluster) {
+    if (!geo.attributes.thCell) { const n = rec.g.count, c = new Float32Array(n); for (let i = 0; i < n; i++) { let h = Math.imul(i + 1, 2654435761) >>> 0; h ^= h >>> 15; c[i] = h % 6; } geo.setAttribute('thCell', new THREE.InstancedBufferAttribute(c, 1)); }
+    m.normalMap = TH_LEAF.normal; m.normalScale.set(.6, .6);
+    LOOK.patch(m, 'thleafatlas', sh => { sh.vertexShader = 'attribute float thCell;\n' + sh.vertexShader.replace('#include <uv_vertex>', '#include <uv_vertex>\n\tvUv = ( vec2( mod( thCell, 3.0 ), floor( thCell / 3.0 ) ) + vUv ) * vec2( 1.0 / 3.0, 0.5 );'); });
+  }
+  m.needsUpdate = true;
+}
+/* The dog's undercoat under the realistic look, at the high level only: twelve shells of the coat pushed out along its normal, each
+   keeping the hairs that reach it (a hair's height is a hash of where it grows, hairs about 1.5 mm apart), darker at the root where
+   less light gets in. 16 mm deep, as long as the model's fur blades (tools/things/models/dog_detail.mjs). One draw call of twelve
+   instances of the coat; shown only while the coat is fully opaque, and it casts no shadow of its own. */
+const TH_FUR_N = 12, TH_FUR_LEN = .016, TH_FUR_CELL = .0015;
+function thLkFur(rec, geo, bare) {   // bare: geometries of bare parts the hair must not cover (the nose leather): it thins out to nothing over 4 cm round them
+  const main = rec.g.userData.main, m0 = main.material;
+  if (!geo.attributes.thHair) {
+    const P = geo.attributes.position, h = new Uint8Array(P.count), S = bare.filter(Boolean).map(g => { g.computeBoundingSphere(); return g.boundingSphere; }), v = new V3();
+    for (let i = 0; i < P.count; i++) { v.fromBufferAttribute(P, i); let f = 1; for (const b of S) f = Math.min(f, Math.max(0, Math.min(1, (v.distanceTo(b.center) - b.radius) / .04))); h[i] = Math.round(f * 255); }
+    geo.setAttribute('thHair', new THREE.BufferAttribute(h, 1, true));
+  }
+  if (!geo.attributes.thLayer) { const a = new Float32Array(TH_FUR_N); for (let i = 0; i < TH_FUR_N; i++) a[i] = (i + 1) / TH_FUR_N; geo.setAttribute('thLayer', new THREE.InstancedBufferAttribute(a, 1)); }
+  const m = new THREE.MeshStandardMaterial({ color: m0.color, vertexColors: m0.vertexColors, roughness: m0.roughness, metalness: 0 });
+  m.clippingPlanes = m0.clippingPlanes;
+  LOOK.patch(m, 'thfur', sh => {
+    sh.vertexShader = 'attribute float thLayer;\nattribute float thHair;\nvarying float vThL;\nvarying vec3 vThP;\n' + sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>
+	vThL = thLayer / max( thHair, 1e-3 ); vThP = position; transformed += normalize( objectNormal ) * thLayer * thHair * ${TH_FUR_LEN.toFixed(4)};`);
+    sh.fragmentShader = `varying float vThL; varying vec3 vThP;
+float thFH(vec3 p){ return fract(sin(dot(p,vec3(12.9898,78.233,45.164)))*43758.5453); }
+` + sh.fragmentShader.replace('#include <map_fragment>', `#include <map_fragment>
+	{ vec3 q = vThP / ${TH_FUR_CELL.toFixed(4)}, c = floor( q ), f = fract( q ) - .5; float h = thFH( c ), r = length( f - ( vec3( thFH( c + 1.3 ), thFH( c + 2.9 ), thFH( c + 4.1 ) ) - .5 ) * .5 );
+	  if ( h < vThL || r > .5 * ( 1.0 - vThL ) + .08 ) discard;
+	  diffuseColor.rgb *= mix( .55, 1.08, vThL ); }`);
+  });
+  thLkAO(m, geo);
+  const im = new THREE.InstancedMesh(geo, m, TH_FUR_N), I = new THREE.Matrix4(); for (let i = 0; i < TH_FUR_N; i++) im.setMatrixAt(i, I);
+  im.matrixAutoUpdate = false; im.frustumCulled = false; im._lkNoCast = true; im.receiveShadow = LOOK.quality === 'high'; im.userData.lkFur = true; im.raycast = () => { };
+  rec.g.add(im); rec.lkFur = im;
+}
+/* baked ambient occlusion (per vertex, or per instance) multiplies the light from the environment only: the sky and the ground it
+   reflects, diffuse and specular. The Sun's light is shadowed by the shadow map, not by this. */
+function thLkAO(m, geo) {
+  if (!m || !m.isMeshStandardMaterial || !geo || !LOOK.part('ao')) return; const v = !!geo.attributes.thAO, iv = !!geo.attributes.thAOi; if (!v && !iv) return;
+  LOOK.patch(m, 'thao' + (v ? 'v' : '') + (iv ? 'i' : ''), sh => {
+    sh.vertexShader = (v ? 'attribute float thAO;\n' : '') + (iv ? 'attribute float thAOi;\n' : '') + 'varying float vThAO;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tvThAO = ' + (v && iv ? 'thAO * thAOi' : v ? 'thAO' : 'thAOi') + ';');
+    sh.fragmentShader = 'varying float vThAO;\n' + sh.fragmentShader.replace('#include <aomap_fragment>', `#include <aomap_fragment>
+	reflectedLight.indirectDiffuse *= vThAO;
+	reflectedLight.indirectSpecular *= mix( 1.0, vThAO, 0.85 );`);
+  });
+}
+/* the patches every lit material of a thing takes under the look: the rim that marks the part pointed at or selected, and a see-through
+   layer that keeps its edges (a ghost is brighter where it is seen edge-on, as a glass shell is) */
+function thLkMarks(m) {
+  if (!m || !m.isMeshStandardMaterial || m.userData.thRim) return; m.userData.noHL = true;
+  const rim = m.userData.thRim = { value: new THREE.Vector4(0, 0, 0, 0) };
+  LOOK.patch(m, 'thmarks', sh => {
+    sh.uniforms.uThRim = rim;
+    sh.fragmentShader = 'uniform vec4 uThRim;\n' + sh.fragmentShader
+      .replace('#include <emissivemap_fragment>', '#include <emissivemap_fragment>\n\ttotalEmissiveRadiance += uThRim.rgb * uThRim.a * pow( 1.0 - saturate( abs( dot( normal, normalize( vViewPosition ) ) ) ), 2.5 );')
+      .replace('#include <dithering_fragment>', '#include <dithering_fragment>\n\tif ( opacity < 0.999 ) { float thF = 1.0 - saturate( abs( dot( normal, normalize( vViewPosition ) ) ) ); gl_FragColor.a = min( 1.0, gl_FragColor.a * mix( 0.45, 2.2, thF * thF ) ); }');
+  });
+}
+
 const TH_HOT_PX = 6;   // the largest radius, in screen pixels, at which a hotspot marker is drawn
 /* ---------- ThingObj: the meshes of one thing ---------- */
 class ThingObj {
@@ -284,6 +496,7 @@ class ThingObj {
   }
   _faceFor(pd) {
     const key = pd.cutFace || (this.def.cut && this.def.cut.default), face = key && this.def.cut && this.def.cut.faces && this.def.cut.faces[key];
+    if (!face && TH_LK.on && pd.kind && pd.color) return { kind: 'plain', palette: [[pd.color, 1]], look: { kind: pd.kind, pattern: 'plain' } };   // no face named: under the look the cut shows the part's own material
     return face || { kind: 'plain', palette: [[0x6b5a48, 1]] };
   }
   _sway(pd) {   // the shader motions (sway, swing) that apply to this part
@@ -296,14 +509,15 @@ class ThingObj {
     let g, geo;
     if (pd.mesh) {
       geo = thGeo(def.id, this.bundle, pd.mesh); if (!geo) { console.warn('thing', def.id, 'part', pd.id, 'missing mesh', pd.mesh); return; }
-      g = thInked(geo, color, { w: pd.ink_w || def.ink_w || .0018, double: !!pd.double, vc: !!geo.attributes.color, sway: sw });
+      g = thInked(geo, color, { w: pd.ink_w || def.ink_w || .0018, double: !!pd.double, vc: !!geo.attributes.color && (!TH_LK.on || pd.shade === 'tone'), sway: sw });   // under the look a shade byte drawn as light is left out
+      if (TH_LK.on && pd.kind === 'marker') { const mm = g.userData.main; mm.material.dispose(); mm.material = opaqueUnlessFading(new THREE.MeshBasicMaterial({ color, side: pd.double ? THREE.DoubleSide : THREE.FrontSide })); }   // a sign drawn on the model, not a material: unlit
       g.userData.main.material.clippingPlanes = null; thPatch(g.userData.main.material, sw, this.L);
       if (pd.solid !== false) {   // inside faces for the cut-open view, painted with the cut-face pattern
         const fm = thFaceMat(this._faceFor(pd), this.plane); fm.clippingPlanes = this.planes; const cap = new THREE.Mesh(geo, fm); cap.visible = false; cap.userData.cap = true; cap.renderOrder = 0; cap.matrixAutoUpdate = false; g.add(cap); g.userData.cap = cap; this.faceMats.push(fm);
       }
     } else if (pd.instances) {
       const inst = thInst(this.bundle, pd.instances); geo = thGeo(def.id, this.bundle, inst.mesh);
-      const ex = geo.attributes.color ? { vertexColors: true } : {}; if (pd.card) { thCardUV(geo); ex.map = thCardTexture(pd.card); ex.alphaTest = .5; }
+      const ex = geo.attributes.color && (!TH_LK.on || pd.shade === 'tone') ? { vertexColors: true } : {}; if (pd.card) { thCardUV(geo); ex.map = thCardTexture(pd.card); ex.alphaTest = .5; }
       const mat = illoMat(color, { double: !!pd.double, extra: ex }); thPatch(mat, sw, this.L);
       const rj = pd.tint || 0, ck = def.id + ':' + pd.instances + ':' + rj;
       let sh = TH.inst[ck];
@@ -328,12 +542,29 @@ class ThingObj {
         im.userData.keptIdx = kept;
       } else { im = new THREE.InstancedMesh(geo, mat, sh.n); im.instanceMatrix = sh.mat; if (sh.col) im.instanceColor = sh.col; }
       im.frustumCulled = false; g = im; g.userData.main = im;
+      const BI = this.bundle.instances[pd.instances];   // occlusion per instance (a leaf deep in the crown): one attribute on the shared geometry, so not for a placement that keeps only some instances
+      if (TH_LK.on && BI && BI.ao && !kept && (!geo.userData.aoi || geo.userData.aoi === pd.instances)) { if (!geo.attributes.thAOi) geo.setAttribute('thAOi', new THREE.InstancedBufferAttribute(thUnpack4(this.bundle.buf, BI.ao, BI.n), 1, true)); geo.userData.aoi = pd.instances; }
     } else if (pd.flow) {
       g = thFlowMesh(def.id, this.bundle, pd, color);
     } else return;
     const rec = { pd, g, op: 0, tgt: 1, near: true, instanced: !!pd.instances, rank: this.rank[pd.system] };
+    if (TH_LK.on && !pd.flow) this._lkDress(rec, geo);
     g.userData.partRec = rec; g.visible = false; rec.flow = g.userData.flow || null;
     (pd.pivot ? this._pivot(pd.pivot) : this.group).add(g); this.list.push(rec); this.parts[pd.id] = rec;
+  }
+  _lkDress(rec, geo) {   // the realistic look's extras for one part (see TH_KINDS)
+    const pd = rec.pd, m = rec.g.userData.main.material; thLkMarks(m); thLkAO(m, geo);
+    const cap = rec.g.userData.cap; if (cap) { cap._lkNoCast = true; cap.receiveShadow = false; }   // the cut face is drawn on the solid's far inside: a shadow looked up there would be the solid's own, uncut
+    if (!LOOK.part('tex') || !m.isMeshStandardMaterial) return;
+    if (pd.uv && pd.uv.grid && pd.kind === 'bark' && LOOK.texSet) {   // the trunk: bark along its own coordinates, not laid on from three sides
+      const s = LOOK.texSet('bark'); thLkTrunkUV(geo, pd.uv, [1, 2]); if (m.defines) delete m.defines.LK_TRI; m.map = s.map; m.normalMap = s.normalMap; m.normalScale.set(s.bump, s.bump); m.needsUpdate = true;
+    }
+    if (pd.card && pd.kind === 'leaf' && (pd.card.kind === 'lobed_leaf' || pd.card.kind === 'leaf_cluster') && this.def.id === 'oak') rec.lkLeaf = true;
+    if (pd.kind === 'fur' && !rec.instanced && this.def.id === 'dog' && pd.mesh === 'coat' && LOOK.quality === 'high' && LOOK.part('fur')) thLkFur(rec, geo, [thGeo(this.def.id, this.bundle, 'nose')]);
+    if (TH_SET_OF[pd.kind]) {
+      rec.lkSet = TH_SET_OF[pd.kind];
+      if (rec.instanced) { const im = rec.g, M = new THREE.Matrix4(), s = new V3(), q = new THREE.Quaternion(), p = new V3(), sc = []; for (let i = 0; i < im.count; i += Math.max(1, Math.floor(im.count / 64))) { im.getMatrixAt(i, M); M.decompose(p, q, s); sc.push((s.x + s.y + s.z) / 3); } sc.sort((a, b) => a - b); rec.lkUnit = sc[sc.length >> 1] || 1; }
+    }
   }
   _addShadow(sh) {
     const r = sh.radius_m * this.s, m = new THREE.Mesh(new THREE.PlaneGeometry(2 * r, 2 * r), new THREE.MeshBasicMaterial({ map: thShadowTex(), transparent: true, depthWrite: false, opacity: sh.opacity ?? 1, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }));
@@ -443,6 +674,7 @@ class ThingObj {
         const isSel = this.sel === pd.id;
         mat.opacity = op; mat.transparent = op < .99; mat.depthWrite = op > .9; if (mat.clippingPlanes !== planes) { mat.clippingPlanes = planes; mat.needsUpdate = true; }
         const ol = g.userData.ol, olK = isSel || this.hovId === pd.id ? 1 : this.olK; if (ol) { ol.visible = op > .5 && !pd.noink && olK > .02; ol.material.uniforms.uOpacity.value = .85 * op * olK; ol.material.uniforms.uColor.value.setHex(isSel ? 0x1e4e8f : 0x1a1f2b); if (ol.material.clippingPlanes !== planes) { ol.material.clippingPlanes = planes; ol.material.needsUpdate = true; } }
+        if (TH_LK.on) { const rim = mat.userData.thRim; if (rim) { const a = isSel ? 1.4 : this.hovId === pd.id ? .7 : 0; if (rim.value.w !== a * op) { const c = isSel ? TH_LK.rimSel : TH_LK.rimHov; rim.value.set(c.r, c.g, c.b, a * op); } } if (r.lkSet) thLkApplySet(r); if (r.lkLeaf) thLkApplyLeaves(r); if (r.lkFur) r.lkFur.visible = op > .95 && !cut; }
         const cap = g.userData.cap; if (cap) { cap.visible = !!cut && op > .5; cap.material.uniforms.uOpacity.value = op; cap.material.transparent = op < .995; }
       }
     }

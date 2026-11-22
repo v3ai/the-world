@@ -319,7 +319,11 @@
       8017458,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "chitin",
+     "pattern": "plain"
+    }
    },
    "muscle": {
     "kind": "grains",
@@ -339,7 +343,12 @@
       0.2
      ]
     ],
-    "note": "Cut face colours are only a code for tissue type; they are not what the real tissue looks like."
+    "note": "Cut face colours are only a code for tissue type; they are not what the real tissue looks like.",
+    "look": {
+     "kind": "muscle",
+     "pattern": "fibre",
+     "cell": 0.004
+    }
    },
    "nerve": {
     "kind": "plain",
@@ -348,7 +357,11 @@
       15919311,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "fibre"
+    }
    },
    "gut": {
     "kind": "plain",
@@ -357,7 +370,11 @@
       14725722,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "grain"
+    }
    },
    "gland": {
     "kind": "plain",
@@ -366,7 +383,11 @@
       16180136,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "grain"
+    }
    },
    "air": {
     "kind": "plain",
@@ -375,7 +396,11 @@
       15398136,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "mucosa",
+     "pattern": "plain"
+    }
    },
    "heart": {
     "kind": "plain",
@@ -384,7 +409,12 @@
       13785674,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "muscle",
+     "pattern": "fibre",
+     "cell": 0.002
+    }
    }
   }
  },
@@ -608,7 +638,9 @@
     0
    ],
    "radius": 0.0019,
-   "tris": 8144
+   "tris": 8144,
+   "kind": "chitin",
+   "shade": "tone"
   },
   {
    "id": "eye_l",
@@ -631,7 +663,8 @@
     0.0013
    ],
    "radius": 0.0012,
-   "tris": 3856
+   "tris": 3856,
+   "kind": "eye"
   },
   {
    "id": "eye_r",
@@ -654,7 +687,8 @@
     -0.0013
    ],
    "radius": 0.0012,
-   "tris": 3828
+   "tris": 3828,
+   "kind": "eye"
   },
   {
    "id": "ocelli",
@@ -671,7 +705,8 @@
     0
    ],
    "radius": 0.0008,
-   "tris": 1112
+   "tris": 1112,
+   "kind": "eye"
   },
   {
    "id": "ant_scape",
@@ -688,7 +723,8 @@
     0
    ],
    "radius": 0.0015,
-   "tris": 288
+   "tris": 288,
+   "kind": "chitin"
   },
   {
    "id": "ant_pedicel",
@@ -705,7 +741,8 @@
     0
    ],
    "radius": 0.0014,
-   "tris": 64
+   "tris": 64,
+   "kind": "chitin"
   },
   {
    "id": "ant_flagellum",
@@ -722,7 +759,8 @@
     0
    ],
    "radius": 0.0035,
-   "tris": 1708
+   "tris": 1708,
+   "kind": "chitin"
   },
   {
    "id": "mandibles",
@@ -739,7 +777,8 @@
     0
    ],
    "radius": 0.0008,
-   "tris": 2920
+   "tris": 2920,
+   "kind": "chitin"
   },
   {
    "id": "glossa",
@@ -756,7 +795,8 @@
     0
    ],
    "radius": 0.0019,
-   "tris": 350
+   "tris": 350,
+   "kind": "chitin"
   },
   {
    "id": "sheath",
@@ -773,7 +813,8 @@
     0
    ],
    "radius": 0.0016,
-   "tris": 912
+   "tris": 912,
+   "kind": "chitin"
   },
   {
    "id": "prothorax",
@@ -790,7 +831,9 @@
     0
    ],
    "radius": 0.0014,
-   "tris": 3932
+   "tris": 3932,
+   "kind": "chitin",
+   "shade": "tone"
   },
   {
    "id": "mesothorax",
@@ -813,7 +856,9 @@
     0
    ],
    "radius": 0.0019,
-   "tris": 9748
+   "tris": 9748,
+   "kind": "chitin",
+   "shade": "tone"
   },
   {
    "id": "metathorax",
@@ -830,7 +875,9 @@
     0
    ],
    "radius": 0.0013,
-   "tris": 4176
+   "tris": 4176,
+   "kind": "chitin",
+   "shade": "tone"
   },
   {
    "id": "tegulae",
@@ -847,7 +894,8 @@
     0
    ],
    "radius": 0.0019,
-   "tris": 1208
+   "tris": 1208,
+   "kind": "chitin"
   },
   {
    "id": "wing_hinge",
@@ -864,7 +912,8 @@
     0
    ],
    "radius": 0.0017,
-   "tris": 1040
+   "tris": 1040,
+   "kind": "chitin"
   },
   {
    "id": "forewings",
@@ -884,7 +933,8 @@
     0
    ],
    "radius": 0.0062,
-   "tris": 104
+   "tris": 104,
+   "kind": "wing"
   },
   {
    "id": "hindwings",
@@ -904,7 +954,8 @@
     0
    ],
    "radius": 0.0047,
-   "tris": 80
+   "tris": 80,
+   "kind": "wing"
   },
   {
    "id": "veins",
@@ -923,7 +974,8 @@
     0
    ],
    "radius": 0.0059,
-   "tris": 1360
+   "tris": 1360,
+   "kind": "chitin"
   },
   {
    "id": "hamuli",
@@ -941,7 +993,8 @@
    ],
    "radius": 0.0019,
    "count": 40,
-   "tris": 1280
+   "tris": 1280,
+   "kind": "chitin"
   },
   {
    "id": "coxa",
@@ -958,7 +1011,8 @@
     0
    ],
    "radius": 0.0028,
-   "tris": 288
+   "tris": 288,
+   "kind": "chitin"
   },
   {
    "id": "trochanter",
@@ -975,7 +1029,8 @@
     0
    ],
    "radius": 0.003,
-   "tris": 192
+   "tris": 192,
+   "kind": "chitin"
   },
   {
    "id": "femur",
@@ -992,7 +1047,8 @@
     0
    ],
    "radius": 0.0047,
-   "tris": 192
+   "tris": 192,
+   "kind": "chitin"
   },
   {
    "id": "tibia",
@@ -1009,7 +1065,8 @@
     0
    ],
    "radius": 0.0045,
-   "tris": 128
+   "tris": 128,
+   "kind": "chitin"
   },
   {
    "id": "hind_tibia",
@@ -1026,7 +1083,8 @@
     0
    ],
    "radius": 0.0043,
-   "tris": 4988
+   "tris": 4988,
+   "kind": "chitin"
   },
   {
    "id": "basitarsus",
@@ -1043,7 +1101,8 @@
     0
    ],
    "radius": 0.0045,
-   "tris": 128
+   "tris": 128,
+   "kind": "chitin"
   },
   {
    "id": "hind_basitarsus",
@@ -1060,7 +1119,8 @@
     0
    ],
    "radius": 0.0046,
-   "tris": 2968
+   "tris": 2968,
+   "kind": "chitin"
   },
   {
    "id": "tarsomeres",
@@ -1077,7 +1137,8 @@
     0
    ],
    "radius": 0.0076,
-   "tris": 432
+   "tris": 432,
+   "kind": "chitin"
   },
   {
    "id": "claws",
@@ -1094,7 +1155,8 @@
     0
    ],
    "radius": 0.0078,
-   "tris": 1448
+   "tris": 1448,
+   "kind": "chitin"
   },
   {
    "id": "corbicula",
@@ -1111,7 +1173,8 @@
     0
    ],
    "radius": 0.0043,
-   "tris": 5208
+   "tris": 5208,
+   "kind": "chitin"
   },
   {
    "id": "fringe",
@@ -1129,7 +1192,8 @@
    ],
    "radius": 0.0048,
    "count": 52,
-   "tris": 1248
+   "tris": 1248,
+   "kind": "fur"
   },
   {
    "id": "pollen",
@@ -1146,7 +1210,8 @@
     0
    ],
    "radius": 0.0049,
-   "tris": 3624
+   "tris": 3624,
+   "kind": "powder"
   },
   {
    "id": "cleaner",
@@ -1163,7 +1228,8 @@
     0
    ],
    "radius": 0.0036,
-   "tris": 1216
+   "tris": 1216,
+   "kind": "chitin"
   },
   {
    "id": "abd1",
@@ -1180,7 +1246,9 @@
     0
    ],
    "radius": 0.0015,
-   "tris": 3180
+   "tris": 3180,
+   "kind": "chitin",
+   "shade": "tone"
   },
   {
    "id": "abd2",
@@ -1197,7 +1265,9 @@
     0
    ],
    "radius": 0.0017,
-   "tris": 3844
+   "tris": 3844,
+   "kind": "chitin",
+   "shade": "tone"
   },
   {
    "id": "abd3",
@@ -1220,7 +1290,9 @@
     0
    ],
    "radius": 0.0019,
-   "tris": 4836
+   "tris": 4836,
+   "kind": "chitin",
+   "shade": "tone"
   },
   {
    "id": "abd4",
@@ -1237,7 +1309,9 @@
     0
    ],
    "radius": 0.0019,
-   "tris": 5192
+   "tris": 5192,
+   "kind": "chitin",
+   "shade": "tone"
   },
   {
    "id": "abd5",
@@ -1254,7 +1328,9 @@
     0
    ],
    "radius": 0.0019,
-   "tris": 4592
+   "tris": 4592,
+   "kind": "chitin",
+   "shade": "tone"
   },
   {
    "id": "abd6",
@@ -1271,7 +1347,9 @@
     0
    ],
    "radius": 0.0015,
-   "tris": 2720
+   "tris": 2720,
+   "kind": "chitin",
+   "shade": "tone"
   },
   {
    "id": "hairs",
@@ -1290,7 +1368,8 @@
    ],
    "radius": 0.0083,
    "count": 3518,
-   "tris": 84432
+   "tris": 84432,
+   "kind": "fur"
   },
   {
    "id": "hairs_mid",
@@ -1309,7 +1388,8 @@
    ],
    "radius": 0.0087,
    "count": 901,
-   "tris": 21624
+   "tris": 21624,
+   "kind": "fur"
   },
   {
    "id": "body_far",
@@ -1327,7 +1407,8 @@
     0
    ],
    "radius": 0.0071,
-   "tris": 6772
+   "tris": 6772,
+   "kind": "chitin"
   },
   {
    "id": "dlm",
@@ -1351,7 +1432,8 @@
     0
    ],
    "radius": 0.0017,
-   "tris": 5784
+   "tris": 5784,
+   "kind": "muscle"
   },
   {
    "id": "dvm",
@@ -1375,7 +1457,8 @@
     0
    ],
    "radius": 0.0021,
-   "tris": 7088
+   "tris": 7088,
+   "kind": "muscle"
   },
   {
    "id": "leg_muscles",
@@ -1393,7 +1476,8 @@
     0
    ],
    "radius": 0.0023,
-   "tris": 3432
+   "tris": 3432,
+   "kind": "muscle"
   },
   {
    "id": "jaw_muscles",
@@ -1411,7 +1495,8 @@
     0
    ],
    "radius": 0.0013,
-   "tris": 2056
+   "tris": 2056,
+   "kind": "muscle"
   },
   {
    "id": "brain",
@@ -1430,7 +1515,9 @@
     0
    ],
    "radius": 0.0007,
-   "tris": 1788
+   "tris": 1788,
+   "kind": "wet",
+   "shade": "tone"
   },
   {
    "id": "optic_lobes",
@@ -1448,7 +1535,8 @@
     0
    ],
    "radius": 0.0015,
-   "tris": 2632
+   "tris": 2632,
+   "kind": "wet"
   },
   {
    "id": "antennal_lobes",
@@ -1466,7 +1554,8 @@
     0
    ],
    "radius": 0.0005,
-   "tris": 2592
+   "tris": 2592,
+   "kind": "wet"
   },
   {
    "id": "mushroom_bodies",
@@ -1484,7 +1573,8 @@
     0
    ],
    "radius": 0.001,
-   "tris": 6576
+   "tris": 6576,
+   "kind": "wet"
   },
   {
    "id": "ganglia",
@@ -1502,7 +1592,8 @@
     0
    ],
    "radius": 0.0063,
-   "tris": 4840
+   "tris": 4840,
+   "kind": "wet"
   },
   {
    "id": "nerves",
@@ -1521,7 +1612,8 @@
     0
    ],
    "radius": 0.0064,
-   "tris": 680
+   "tris": 680,
+   "kind": "wet"
   },
   {
    "id": "oesophagus",
@@ -1539,7 +1631,8 @@
     0
    ],
    "radius": 0.0038,
-   "tris": 518
+   "tris": 518,
+   "kind": "wet"
   },
   {
    "id": "crop",
@@ -1564,7 +1657,9 @@
     0
    ],
    "radius": 0.0015,
-   "tris": 3488
+   "tris": 3488,
+   "kind": "wet",
+   "shade": "tone"
   },
   {
    "id": "proventriculus",
@@ -1582,7 +1677,8 @@
     0
    ],
    "radius": 0.0004,
-   "tris": 1192
+   "tris": 1192,
+   "kind": "wet"
   },
   {
    "id": "midgut",
@@ -1600,7 +1696,8 @@
     0.0001
    ],
    "radius": 0.0014,
-   "tris": 738
+   "tris": 738,
+   "kind": "wet"
   },
   {
    "id": "malpighian",
@@ -1618,7 +1715,8 @@
     0
    ],
    "radius": 0.0029,
-   "tris": 4224
+   "tris": 4224,
+   "kind": "wet"
   },
   {
    "id": "hindgut",
@@ -1636,7 +1734,8 @@
     -0.0001
    ],
    "radius": 0.0015,
-   "tris": 3758
+   "tris": 3758,
+   "kind": "wet"
   },
   {
    "id": "heart",
@@ -1654,7 +1753,8 @@
     0
    ],
    "radius": 0.0062,
-   "tris": 1136
+   "tris": 1136,
+   "kind": "wet"
   },
   {
    "id": "hpg",
@@ -1672,7 +1772,8 @@
     0
    ],
    "radius": 0.001,
-   "tris": 1464
+   "tris": 1464,
+   "kind": "wet"
   },
   {
    "id": "ovaries",
@@ -1690,7 +1791,8 @@
     0
    ],
    "radius": 0.0011,
-   "tris": 1272
+   "tris": 1272,
+   "kind": "wet"
   },
   {
    "id": "venom_sac",
@@ -1708,7 +1810,8 @@
     0
    ],
    "radius": 0.001,
-   "tris": 1806
+   "tris": 1806,
+   "kind": "wet"
   },
   {
    "id": "sting",
@@ -1725,7 +1828,8 @@
     0
    ],
    "radius": 0.0009,
-   "tris": 2724
+   "tris": 2724,
+   "kind": "chitin"
   },
   {
    "id": "barbs",
@@ -1743,7 +1847,8 @@
    ],
    "radius": 0.0003,
    "count": 18,
-   "tris": 180
+   "tris": 180,
+   "kind": "chitin"
   },
   {
    "id": "wax",
@@ -1761,7 +1866,8 @@
     0
    ],
    "radius": 0.0025,
-   "tris": 2416
+   "tris": 2416,
+   "kind": "wax"
   },
   {
    "id": "nasonov",
@@ -1779,7 +1885,8 @@
     0
    ],
    "radius": 0.0007,
-   "tris": 968
+   "tris": 968,
+   "kind": "wet"
   },
   {
    "id": "trachea",
@@ -1797,7 +1904,8 @@
     0
    ],
    "radius": 0.0064,
-   "tris": 2228
+   "tris": 2228,
+   "kind": "wet"
   },
   {
    "id": "air_sacs",
@@ -1816,7 +1924,8 @@
     0
    ],
    "radius": 0.0059,
-   "tris": 9392
+   "tris": 9392,
+   "kind": "wet"
   },
   {
    "id": "spiracles",
@@ -1834,7 +1943,8 @@
    ],
    "radius": 0.0059,
    "count": 20,
-   "tris": 960
+   "tris": 960,
+   "kind": "wet"
   }
  ],
  "label_m": 40,

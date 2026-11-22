@@ -317,3 +317,13 @@ The worked example is the lithium-ion cell in the phone: `tools/things/models/li
 7. **Cards and figures** from a content script (`tools/things/content/<id>_content.py`): one card per part, three depths, facts with units, certainty tags, open questions that are really open; figures only from sourced or calculated numbers; write to new files `data/nodes/thing_<id>.json` and `data/viz/thing_<id>.json` and list them in the two manifests. Do not reuse the id of an existing card: give the thing its own and name the old one under `answers`.
 8. **Bake, place, find**: `node tools/things/bake.mjs <id>`; add the placement to `data/things/index.json`; add everyday words to `tools/search/aliases_src_things.txt` and run `node tools/search/build.mjs`.
 9. **Test**: `harness/core/t_things_anywhere.py` is the pattern (placement and true size, tiers, click, double click down to an atom, `goToNode` of every card, search, disposal, budgets). Take screenshots at 1280 x 800 and 390 x 844 of every view and look at them.
+
+## 11. The realistic look (?look=2): kinds, tone, surfaces, occlusion
+
+Written by the bake from `tools/things/lib/kinds.mjs` and `tools/things/lib/ao.mjs`; a model never sets them by hand (a part may set `kind` itself, which wins).
+
+- **`part.kind`**: what the part is made of, one of the kinds in `kinds.mjs` KIND_NAMES (the foundation's table in js/look.js plus the park's: wing, mucosa, cap, gill, stone, root, stem, mud, foil, polymer, powder, cartilage, shell, moss, lichen, marker). The bake fails a thing (a PROBLEM line) where a part has none. Roughness, metalness, light-through and the surface photograph come from the kind (js/things.js TH_KINDS, js/look.js KINDS); `marker` (flow arrows, circuit symbols) is drawn unlit.
+- **`part.shade = 'tone'`**: the per-vertex `shade` byte is the material's own tone (heartwood against sapwood) and stays under the look. Without it the byte is drawn light (brighter where a face looks up) and the look leaves it out, since the Sun and the sky light the model.
+- **`part.uv = { grid, round }`**: the mesh is a lathe of `grid` vertices round each ring; the look gives it coordinates along its length (u round it, `round` repeats a turn; v up it at the photograph's true size). Used for the oak's trunk bark.
+- **`cut.faces[k].look = { kind, pattern, cell? }`**: what a cut face shows under the look (`grain`, `fibre`, `pore`, `plain`; kinds.mjs FACE_LOOK).
+- **mesh.json `meshes[k].ao`, `instances[k].ao`**: baked ambient occlusion, 4 bits a vertex (or an instance), two a byte, low nibble first: how much of the sky a point sees (ao.mjs AO_OF names what is baked against what). The look multiplies it into the environment's light only. It counts toward the 3 MB budget, which the bake now checks.

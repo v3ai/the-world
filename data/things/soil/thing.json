@@ -347,7 +347,11 @@
       6048304,
       0.1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "soil",
+     "pattern": "grain"
+    }
    },
    "ha": {
     "kind": "grains",
@@ -370,7 +374,11 @@
       6968632,
       0.1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "soil",
+     "pattern": "grain"
+    }
    },
    "hb": {
     "kind": "grains",
@@ -393,7 +401,11 @@
       8019512,
       0.1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "soil",
+     "pattern": "grain"
+    }
    },
    "hc": {
     "kind": "grains",
@@ -416,7 +428,11 @@
       11113576,
       0.1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "soil",
+     "pattern": "grain"
+    }
    },
    "flint": {
     "kind": "plain",
@@ -425,7 +441,11 @@
       3816256,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "stone",
+     "pattern": "grain"
+    }
    },
    "root": {
     "kind": "plain",
@@ -434,7 +454,11 @@
       13215082,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "root",
+     "pattern": "grain"
+    }
    },
    "cast": {
     "kind": "plain",
@@ -443,7 +467,11 @@
       5916208,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "soil",
+     "pattern": "grain"
+    }
    },
    "skin": {
     "kind": "plain",
@@ -452,7 +480,11 @@
       13207154,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "skin",
+     "pattern": "plain"
+    }
    },
    "clit": {
     "kind": "plain",
@@ -461,7 +493,11 @@
       14459514,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "plain"
+    }
    },
    "circ": {
     "kind": "plain",
@@ -470,7 +506,11 @@
       9059115,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "muscle",
+     "pattern": "fibre"
+    }
    },
    "long": {
     "kind": "plain",
@@ -479,7 +519,11 @@
       15129807,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "muscle",
+     "pattern": "fibre"
+    }
    },
    "coel": {
     "kind": "plain",
@@ -488,7 +532,11 @@
       15852243,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "plain"
+    }
    },
    "pharynx": {
     "kind": "plain",
@@ -497,7 +545,11 @@
       13204330,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "muscle",
+     "pattern": "fibre"
+    }
    },
    "oes": {
     "kind": "plain",
@@ -506,7 +558,11 @@
       14726543,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "mucosa",
+     "pattern": "plain"
+    }
    },
    "crop": {
     "kind": "plain",
@@ -515,7 +571,11 @@
       15124900,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "mucosa",
+     "pattern": "plain"
+    }
    },
    "gizz": {
     "kind": "plain",
@@ -524,7 +584,11 @@
       10123866,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "muscle",
+     "pattern": "fibre"
+    }
    },
    "int": {
     "kind": "plain",
@@ -533,7 +597,11 @@
       12031080,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "mucosa",
+     "pattern": "grain"
+    }
    },
    "gutc": {
     "kind": "plain",
@@ -542,7 +610,11 @@
       4864554,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "soil",
+     "pattern": "grain"
+    }
    },
    "blood": {
     "kind": "plain",
@@ -551,7 +623,11 @@
       11740717,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "plain"
+    }
    },
    "nerve": {
     "kind": "plain",
@@ -560,7 +636,11 @@
       15919284,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "fibre"
+    }
    }
   }
  },
@@ -746,7 +826,8 @@
     -0.19
    ],
    "radius": 0.779,
-   "tris": 1360
+   "tris": 1360,
+   "kind": "soil"
   },
   {
    "id": "hor_a",
@@ -769,7 +850,8 @@
     -0.19
    ],
    "radius": 0.7879,
-   "tris": 1360
+   "tris": 1360,
+   "kind": "soil"
   },
   {
    "id": "hor_b",
@@ -792,7 +874,8 @@
     -0.19
    ],
    "radius": 0.8302,
-   "tris": 1360
+   "tris": 1360,
+   "kind": "soil"
   },
   {
    "id": "hor_c",
@@ -814,7 +897,8 @@
     -0.19
    ],
    "radius": 0.8077,
-   "tris": 1360
+   "tris": 1360,
+   "kind": "soil"
   },
   {
    "id": "grass",
@@ -839,7 +923,8 @@
    ],
    "radius": 0.8744,
    "count": 5000,
-   "tris": 25000
+   "tris": 25000,
+   "kind": "leaf"
   },
   {
    "id": "grass_mid",
@@ -858,7 +943,8 @@
    ],
    "radius": 0.845,
    "count": 700,
-   "tris": 1400
+   "tris": 1400,
+   "kind": "leaf"
   },
   {
    "id": "litter",
@@ -883,7 +969,8 @@
    ],
    "radius": 0.6509,
    "count": 46,
-   "tris": 1840
+   "tris": 1840,
+   "kind": "leaf"
   },
   {
    "id": "cast",
@@ -901,7 +988,8 @@
     0.0009
    ],
    "radius": 0.0337,
-   "tris": 1596
+   "tris": 1596,
+   "kind": "soil"
   },
   {
    "id": "flints_s",
@@ -923,7 +1011,8 @@
     -0.0172
    ],
    "radius": 0.5756,
-   "tris": 1360
+   "tris": 1360,
+   "kind": "stone"
   },
   {
    "id": "flints_a",
@@ -945,7 +1034,8 @@
     -0.209
    ],
    "radius": 0.2427,
-   "tris": 1352
+   "tris": 1352,
+   "kind": "stone"
   },
   {
    "id": "flints_b",
@@ -967,7 +1057,8 @@
     -0.2121
    ],
    "radius": 0.6436,
-   "tris": 6196
+   "tris": 6196,
+   "kind": "stone"
   },
   {
    "id": "flints_c",
@@ -989,7 +1080,8 @@
     -0.1882
    ],
    "radius": 0.7596,
-   "tris": 22696
+   "tris": 22696,
+   "kind": "stone"
   },
   {
    "id": "crumbs_a",
@@ -1013,7 +1105,8 @@
    ],
    "radius": 0.1871,
    "count": 668,
-   "tris": 28056
+   "tris": 28056,
+   "kind": "soil"
   },
   {
    "id": "crumbs_b",
@@ -1037,7 +1130,8 @@
    ],
    "radius": 0.1828,
    "count": 621,
-   "tris": 39744
+   "tris": 39744,
+   "kind": "soil"
   },
   {
    "id": "pore_back",
@@ -1056,7 +1150,8 @@
     -0.0225
    ],
    "radius": 0.184,
-   "tris": 40
+   "tris": 40,
+   "kind": "soil"
   },
   {
    "id": "pore_water",
@@ -1080,7 +1175,8 @@
    ],
    "radius": 0.1856,
    "count": 157,
-   "tris": 6594
+   "tris": 6594,
+   "kind": "water"
   },
   {
    "id": "roots_coarse",
@@ -1103,7 +1199,8 @@
     -0.0027
    ],
    "radius": 0.8334,
-   "tris": 1722
+   "tris": 1722,
+   "kind": "root"
   },
   {
    "id": "froots",
@@ -1127,7 +1224,8 @@
    ],
    "radius": 0.8035,
    "count": 640,
-   "tris": 213760
+   "tris": 213760,
+   "kind": "root"
   },
   {
    "id": "ecm_tips",
@@ -1151,7 +1249,8 @@
    ],
    "radius": 0.7317,
    "count": 304,
-   "tris": 13376
+   "tris": 13376,
+   "kind": "root"
   },
   {
    "id": "hyphae",
@@ -1176,7 +1275,8 @@
    ],
    "radius": 0.7954,
    "count": 508,
-   "tris": 18288
+   "tris": 18288,
+   "kind": "fungus"
   },
   {
    "id": "burrow",
@@ -1196,7 +1296,8 @@
     0
    ],
    "radius": 0.5046,
-   "tris": 336
+   "tris": 336,
+   "kind": "mud"
   },
   {
    "id": "worm_head",
@@ -1213,7 +1314,8 @@
     0
    ],
    "radius": 0.0025,
-   "tris": 196
+   "tris": 196,
+   "kind": "skin"
   },
   {
    "id": "worm_skin",
@@ -1231,7 +1333,8 @@
     0
    ],
    "radius": 0.0843,
-   "tris": 24032
+   "tris": 24032,
+   "kind": "skin"
   },
   {
    "id": "worm_clitellum",
@@ -1249,7 +1352,8 @@
     0
    ],
    "radius": 0.0059,
-   "tris": 1000
+   "tris": 1000,
+   "kind": "skin"
   },
   {
    "id": "worm_setae",
@@ -1266,7 +1370,8 @@
    ],
    "radius": 0.0825,
    "count": 1168,
-   "tris": 7008
+   "tris": 7008,
+   "kind": "horn"
   },
   {
    "id": "worm_circ",
@@ -1285,7 +1390,8 @@
     0
    ],
    "radius": 0.084,
-   "tris": 2272
+   "tris": 2272,
+   "kind": "wet"
   },
   {
    "id": "worm_long",
@@ -1304,7 +1410,8 @@
     0
    ],
    "radius": 0.0837,
-   "tris": 2272
+   "tris": 2272,
+   "kind": "wet"
   },
   {
    "id": "worm_coelom",
@@ -1323,7 +1430,8 @@
     0
    ],
    "radius": 0.0834,
-   "tris": 2272
+   "tris": 2272,
+   "kind": "wet"
   },
   {
    "id": "worm_pharynx",
@@ -1342,7 +1450,8 @@
     0
    ],
    "radius": 0.0019,
-   "tris": 420
+   "tris": 420,
+   "kind": "wet"
   },
   {
    "id": "worm_oesophagus",
@@ -1361,7 +1470,8 @@
     0
    ],
    "radius": 0.0042,
-   "tris": 660
+   "tris": 660,
+   "kind": "wet"
   },
   {
    "id": "worm_crop",
@@ -1380,7 +1490,8 @@
     0
    ],
    "radius": 0.0028,
-   "tris": 420
+   "tris": 420,
+   "kind": "wet"
   },
   {
    "id": "worm_gizzard",
@@ -1399,7 +1510,8 @@
     0
    ],
    "radius": 0.0025,
-   "tris": 308
+   "tris": 308,
+   "kind": "wet"
   },
   {
    "id": "worm_intestine",
@@ -1418,7 +1530,8 @@
     0
    ],
    "radius": 0.0713,
-   "tris": 1944
+   "tris": 1944,
+   "kind": "wet"
   },
   {
    "id": "worm_gutcontent",
@@ -1437,7 +1550,8 @@
     0
    ],
    "radius": 0.07,
-   "tris": 1420
+   "tris": 1420,
+   "kind": "soil"
   },
   {
    "id": "worm_dorsal_vessel",
@@ -1456,7 +1570,8 @@
     0
    ],
    "radius": 0.079,
-   "tris": 960
+   "tris": 960,
+   "kind": "wet"
   },
   {
    "id": "worm_ventral_vessel",
@@ -1475,7 +1590,8 @@
     0
    ],
    "radius": 0.08,
-   "tris": 960
+   "tris": 960,
+   "kind": "wet"
   },
   {
    "id": "worm_hearts",
@@ -1500,7 +1616,8 @@
     0
    ],
    "radius": 0.0029,
-   "tris": 2100
+   "tris": 2100,
+   "kind": "wet"
   },
   {
    "id": "worm_nerve_cord",
@@ -1519,7 +1636,8 @@
     0
    ],
    "radius": 0.0805,
-   "tris": 2240
+   "tris": 2240,
+   "kind": "wet"
   },
   {
    "id": "worm_brain",
@@ -1538,7 +1656,8 @@
     0
    ],
    "radius": 0.0024,
-   "tris": 516
+   "tris": 516,
+   "kind": "wet"
   },
   {
    "id": "woodlouse_body",
@@ -1561,7 +1680,8 @@
     -0.16
    ],
    "radius": 0.0091,
-   "tris": 4032
+   "tris": 4032,
+   "kind": "chitin"
   },
   {
    "id": "woodlouse_eyes",
@@ -1578,7 +1698,8 @@
     -0.1643
    ],
    "radius": 0.0019,
-   "tris": 288
+   "tris": 288,
+   "kind": "eye"
   },
   {
    "id": "woodlouse_legs",
@@ -1595,7 +1716,8 @@
     -0.1605
    ],
    "radius": 0.0056,
-   "tris": 560
+   "tris": 560,
+   "kind": "chitin"
   },
   {
    "id": "woodlouse_ant",
@@ -1612,7 +1734,8 @@
     -0.1621
    ],
    "radius": 0.0133,
-   "tris": 300
+   "tris": 300,
+   "kind": "chitin"
   },
   {
    "id": "beetle_head",
@@ -1629,7 +1752,8 @@
     -0.1168
    ],
    "radius": 0.0022,
-   "tris": 2252
+   "tris": 2252,
+   "kind": "chitin"
   },
   {
    "id": "beetle_eyes",
@@ -1646,7 +1770,8 @@
     -0.1167
    ],
    "radius": 0.0018,
-   "tris": 288
+   "tris": 288,
+   "kind": "eye"
   },
   {
    "id": "beetle_jaws",
@@ -1663,7 +1788,8 @@
     -0.1157
    ],
    "radius": 0.001,
-   "tris": 72
+   "tris": 72,
+   "kind": "chitin"
   },
   {
    "id": "beetle_antennae",
@@ -1680,7 +1806,8 @@
     -0.1132
    ],
    "radius": 0.0048,
-   "tris": 260
+   "tris": 260,
+   "kind": "chitin"
   },
   {
    "id": "beetle_pronotum",
@@ -1697,7 +1824,8 @@
     -0.1184
    ],
    "radius": 0.0028,
-   "tris": 3092
+   "tris": 3092,
+   "kind": "chitin"
   },
   {
    "id": "beetle_elytra",
@@ -1720,7 +1848,8 @@
     -0.1213
    ],
    "radius": 0.0059,
-   "tris": 7800
+   "tris": 7800,
+   "kind": "chitin"
   },
   {
    "id": "beetle_legs",
@@ -1737,7 +1866,8 @@
     -0.1198
    ],
    "radius": 0.0098,
-   "tris": 1080
+   "tris": 1080,
+   "kind": "chitin"
   },
   {
    "id": "springtail_body",
@@ -1754,7 +1884,8 @@
    ],
    "radius": 0.296,
    "count": 16,
-   "tris": 10240
+   "tris": 10240,
+   "kind": "chitin"
   },
   {
    "id": "springtail_legs",
@@ -1771,7 +1902,8 @@
    ],
    "radius": 0.2959,
    "count": 16,
-   "tris": 3328
+   "tris": 3328,
+   "kind": "chitin"
   },
   {
    "id": "springtail_furca",
@@ -1788,7 +1920,8 @@
    ],
    "radius": 0.2953,
    "count": 16,
-   "tris": 768
+   "tris": 768,
+   "kind": "chitin"
   },
   {
    "id": "mite_body",
@@ -1805,7 +1938,8 @@
    ],
    "radius": 0.3729,
    "count": 10,
-   "tris": 2880
+   "tris": 2880,
+   "kind": "chitin"
   },
   {
    "id": "mite_legs",
@@ -1822,7 +1956,8 @@
    ],
    "radius": 0.3734,
    "count": 10,
-   "tris": 2560
+   "tris": 2560,
+   "kind": "chitin"
   }
  ],
  "stats": {

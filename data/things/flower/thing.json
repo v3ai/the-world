@@ -383,7 +383,8 @@
     0.0009
    ],
    "radius": 0.2943,
-   "tris": 684
+   "tris": 684,
+   "kind": "stem"
   },
   {
    "id": "hairs",
@@ -402,7 +403,8 @@
    ],
    "radius": 0.3817,
    "count": 402,
-   "tris": 2412
+   "tris": 2412,
+   "kind": "stem"
   },
   {
    "id": "petioles",
@@ -420,7 +422,8 @@
     0.0247
    ],
    "radius": 0.1855,
-   "tris": 600
+   "tris": 600,
+   "kind": "stem"
   },
   {
    "id": "basal_leaves",
@@ -445,7 +448,8 @@
     0.02
    ],
    "radius": 0.238,
-   "tris": 4680
+   "tris": 4680,
+   "kind": "leaf"
   },
   {
    "id": "basal_leaves_mid",
@@ -464,7 +468,8 @@
     0.0193
    ],
    "radius": 0.2418,
-   "tris": 1080
+   "tris": 1080,
+   "kind": "leaf"
   },
   {
    "id": "stem_leaves",
@@ -489,7 +494,8 @@
     0.0077
    ],
    "radius": 0.2405,
-   "tris": 2896
+   "tris": 2896,
+   "kind": "leaf"
   },
   {
    "id": "stem_leaves_mid",
@@ -508,7 +514,8 @@
     0.0079
    ],
    "radius": 0.2407,
-   "tris": 744
+   "tris": 744,
+   "kind": "leaf"
   },
   {
    "id": "sepals",
@@ -528,7 +535,8 @@
    ],
    "radius": 0.1864,
    "count": 20,
-   "tris": 960
+   "tris": 960,
+   "kind": "leaf"
   },
   {
    "id": "petals",
@@ -554,7 +562,9 @@
    ],
    "radius": 0.1891,
    "count": 20,
-   "tris": 3840
+   "tris": 3840,
+   "kind": "petal",
+   "shade": "tone"
   },
   {
    "id": "nectary_scales",
@@ -573,7 +583,8 @@
    ],
    "radius": 0.1847,
    "count": 20,
-   "tris": 640
+   "tris": 640,
+   "kind": "wax"
   },
   {
    "id": "nectary_pits",
@@ -592,7 +603,8 @@
    ],
    "radius": 0.1848,
    "count": 20,
-   "tris": 720
+   "tris": 720,
+   "kind": "wax"
   },
   {
    "id": "filaments",
@@ -611,7 +623,8 @@
    ],
    "radius": 0.186,
    "count": 200,
-   "tris": 1600
+   "tris": 1600,
+   "kind": "stem"
   },
   {
    "id": "anthers",
@@ -637,7 +650,8 @@
    ],
    "radius": 0.1892,
    "count": 200,
-   "tris": 9600
+   "tris": 9600,
+   "kind": "wax"
   },
   {
    "id": "ovaries",
@@ -663,7 +677,8 @@
    ],
    "radius": 0.1853,
    "count": 100,
-   "tris": 8400
+   "tris": 8400,
+   "kind": "stem"
   },
   {
    "id": "styles",
@@ -682,7 +697,8 @@
    ],
    "radius": 0.186,
    "count": 100,
-   "tris": 2400
+   "tris": 2400,
+   "kind": "stem"
   },
   {
    "id": "receptacles",
@@ -701,7 +717,8 @@
    ],
    "radius": 0.1842,
    "count": 4,
-   "tris": 720
+   "tris": 720,
+   "kind": "stem"
   },
   {
    "id": "flower_discs",
@@ -720,7 +737,8 @@
    ],
    "radius": 0.1934,
    "count": 4,
-   "tris": 80
+   "tris": 80,
+   "kind": "stem"
   },
   {
    "id": "buds",
@@ -739,7 +757,8 @@
    ],
    "radius": 0.0768,
    "count": 2,
-   "tris": 192
+   "tris": 192,
+   "kind": "leaf"
   },
   {
    "id": "fruit_recs",
@@ -758,7 +777,8 @@
    ],
    "radius": 0.0871,
    "count": 2,
-   "tris": 160
+   "tris": 160,
+   "kind": "stem"
   },
   {
    "id": "achenes",
@@ -778,7 +798,8 @@
    ],
    "radius": 0.0874,
    "count": 48,
-   "tris": 2880
+   "tris": 2880,
+   "kind": "stem"
   },
   {
    "id": "beaks",
@@ -797,7 +818,8 @@
    ],
    "radius": 0.0884,
    "count": 48,
-   "tris": 576
+   "tris": 576,
+   "kind": "stem"
   },
   {
    "id": "fruit_balls",
@@ -816,7 +838,8 @@
    ],
    "radius": 0.0896,
    "count": 2,
-   "tris": 80
+   "tris": 80,
+   "kind": "stem"
   },
   {
    "id": "stock",
@@ -834,7 +857,8 @@
     0
    ],
    "radius": 0.0231,
-   "tris": 84
+   "tris": 84,
+   "kind": "root"
   },
   {
    "id": "fibrous_roots",
@@ -852,7 +876,8 @@
     -0.0322
    ],
    "radius": 0.1685,
-   "tris": 2400
+   "tris": 2400,
+   "kind": "root"
   },
   {
    "id": "lateral_roots",
@@ -870,7 +895,8 @@
     -0.0262
    ],
    "radius": 0.1563,
-   "tris": 1080
+   "tris": 1080,
+   "kind": "root"
   },
   {
    "id": "soil",
@@ -889,7 +915,8 @@
     0
    ],
    "radius": 0.3448,
-   "tris": 144
+   "tris": 144,
+   "kind": "soil"
   },
   {
    "id": "h_receptacle",
@@ -908,7 +935,8 @@
     -0.001
    ],
    "radius": 0.0031,
-   "tris": 336
+   "tris": 336,
+   "kind": "stem"
   },
   {
    "id": "s_receptacle",
@@ -927,7 +955,8 @@
     0
    ],
    "radius": 0.0029,
-   "tris": 96
+   "tris": 96,
+   "kind": "stem"
   },
   {
    "id": "h_pedicel",
@@ -946,7 +975,8 @@
     -0.0004
    ],
    "radius": 0.0057,
-   "tris": 16
+   "tris": 16,
+   "kind": "stem"
   },
   {
    "id": "s_pedicel",
@@ -965,7 +995,8 @@
     0
    ],
    "radius": 0.0057,
-   "tris": 12
+   "tris": 12,
+   "kind": "stem"
   },
   {
    "id": "h_petal0",
@@ -990,7 +1021,9 @@
     0
    ],
    "radius": 0.0068,
-   "tris": 96
+   "tris": 96,
+   "kind": "petal",
+   "shade": "tone"
   },
   {
    "id": "h_sepal0",
@@ -1009,7 +1042,8 @@
     0
    ],
    "radius": 0.0032,
-   "tris": 24
+   "tris": 24,
+   "kind": "leaf"
   },
   {
    "id": "h_petals",
@@ -1034,7 +1068,9 @@
    ],
    "radius": 0.0081,
    "count": 2,
-   "tris": 384
+   "tris": 384,
+   "kind": "petal",
+   "shade": "tone"
   },
   {
    "id": "h_sepals",
@@ -1053,7 +1089,8 @@
    ],
    "radius": 0.0044,
    "count": 2,
-   "tris": 96
+   "tris": 96,
+   "kind": "leaf"
   },
   {
    "id": "h_scales",
@@ -1072,7 +1109,8 @@
    ],
    "radius": 0.0039,
    "count": 4,
-   "tris": 128
+   "tris": 128,
+   "kind": "wax"
   },
   {
    "id": "h_pits",
@@ -1091,7 +1129,8 @@
    ],
    "radius": 0.0042,
    "count": 4,
-   "tris": 144
+   "tris": 144,
+   "kind": "wax"
   },
   {
    "id": "h_filaments",
@@ -1110,7 +1149,8 @@
    ],
    "radius": 0.0044,
    "count": 22,
-   "tris": 176
+   "tris": 176,
+   "kind": "stem"
   },
   {
    "id": "h_anthers",
@@ -1135,7 +1175,8 @@
    ],
    "radius": 0.0063,
    "count": 22,
-   "tris": 1056
+   "tris": 1056,
+   "kind": "wax"
   },
   {
    "id": "h_ovaries",
@@ -1160,7 +1201,8 @@
    ],
    "radius": 0.0022,
    "count": 6,
-   "tris": 504
+   "tris": 504,
+   "kind": "stem"
   },
   {
    "id": "h_styles",
@@ -1179,7 +1221,8 @@
    ],
    "radius": 0.0023,
    "count": 6,
-   "tris": 144
+   "tris": 144,
+   "kind": "stem"
   },
   {
    "id": "s_filament",
@@ -1198,7 +1241,8 @@
     0.0002
    ],
    "radius": 0.0049,
-   "tris": 56
+   "tris": 56,
+   "kind": "stem"
   },
   {
    "id": "s_anther_wall",
@@ -1223,7 +1267,8 @@
     0.0002
    ],
    "radius": 0.0061,
-   "tris": 152
+   "tris": 152,
+   "kind": "stem"
   },
   {
    "id": "s_pollen_sacs",
@@ -1248,7 +1293,8 @@
     0.0003
    ],
    "radius": 0.006,
-   "tris": 240
+   "tris": 240,
+   "kind": "powder"
   },
   {
    "id": "s_carpel_wall",
@@ -1273,7 +1319,8 @@
     0.0002
    ],
    "radius": 0.0028,
-   "tris": 672
+   "tris": 672,
+   "kind": "stem"
   },
   {
    "id": "s_carpel_cavity",
@@ -1298,7 +1345,8 @@
     0.0003
    ],
    "radius": 0.0025,
-   "tris": 408
+   "tris": 408,
+   "kind": "stem"
   },
   {
    "id": "s_ovule",
@@ -1323,7 +1371,8 @@
     0.0004
    ],
    "radius": 0.0024,
-   "tris": 360
+   "tris": 360,
+   "kind": "stem"
   },
   {
    "id": "s_embryosac",
@@ -1348,7 +1397,8 @@
     0.0005
    ],
    "radius": 0.0023,
-   "tris": 264
+   "tris": 264,
+   "kind": "stem"
   }
  ],
  "stats": {

@@ -196,7 +196,11 @@
       14340796,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "grain"
+    }
    },
    "water": {
     "kind": "plain",
@@ -205,7 +209,11 @@
       7317688,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "water",
+     "pattern": "plain"
+    }
    },
    "mud": {
     "kind": "grains",
@@ -228,7 +236,11 @@
       2958878,
       0.1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "mud",
+     "pattern": "grain"
+    }
    }
   }
  },
@@ -398,7 +410,8 @@
     0
    ],
    "radius": 3,
-   "tris": 4248
+   "tris": 4248,
+   "kind": "water"
   },
   {
    "id": "bank",
@@ -416,7 +429,8 @@
     0
    ],
    "radius": 3.66,
-   "tris": 1152
+   "tris": 1152,
+   "kind": "mud"
   },
   {
    "id": "stones",
@@ -433,7 +447,8 @@
    ],
    "radius": 3.4166,
    "count": 38,
-   "tris": 5320
+   "tris": 5320,
+   "kind": "stone"
   },
   {
    "id": "water",
@@ -456,7 +471,8 @@
     0
    ],
    "radius": 3.0165,
-   "tris": 5632
+   "tris": 5632,
+   "kind": "water"
   },
   {
    "id": "mud",
@@ -479,7 +495,8 @@
     0
    ],
    "radius": 3.6876,
-   "tris": 7200
+   "tris": 7200,
+   "kind": "mud"
   },
   {
    "id": "leaf_litter",
@@ -498,7 +515,8 @@
    ],
    "radius": 2.7652,
    "count": 90,
-   "tris": 2880
+   "tris": 2880,
+   "kind": "leaf"
   },
   {
    "id": "gas_pockets",
@@ -521,7 +539,8 @@
    ],
    "radius": 1.8564,
    "count": 16,
-   "tris": 1024
+   "tris": 1024,
+   "kind": "water"
   },
   {
    "id": "gas_bubbles",
@@ -537,12 +556,13 @@
     "button": "See the molecule: methane"
    },
    "center": [
-    0,
-    8,
-    0
+    0.1997,
+    -0.29085,
+    0.0756
    ],
-   "radius": 10,
-   "tris": 0
+   "radius": 1.951095,
+   "tris": 0,
+   "kind": "water"
   },
   {
    "id": "duckweed",
@@ -567,7 +587,8 @@
    ],
    "radius": 0.4485,
    "count": 2280,
-   "tris": 27360
+   "tris": 27360,
+   "kind": "leaf"
   },
   {
    "id": "duckweed_mat",
@@ -586,7 +607,8 @@
     0.8442
    ],
    "radius": 0.1951,
-   "tris": 20
+   "tris": 20,
+   "kind": "leaf"
   },
   {
    "id": "skater_body",
@@ -609,7 +631,8 @@
     0.5498
    ],
    "radius": 0.0049,
-   "tris": 4880
+   "tris": 4880,
+   "kind": "chitin"
   },
   {
    "id": "skater_front_legs",
@@ -627,7 +650,8 @@
     0.5475
    ],
    "radius": 0.0024,
-   "tris": 380
+   "tris": 380,
+   "kind": "chitin"
   },
   {
    "id": "skater_mid_legs",
@@ -651,7 +675,8 @@
     0.5482
    ],
    "radius": 0.0119,
-   "tris": 380
+   "tris": 380,
+   "kind": "chitin"
   },
   {
    "id": "skater_hind_legs",
@@ -669,7 +694,8 @@
     0.5544
    ],
    "radius": 0.0102,
-   "tris": 380
+   "tris": 380,
+   "kind": "chitin"
   },
   {
    "id": "film_dimples",
@@ -695,7 +721,8 @@
     0.5506
    ],
    "radius": 0.0149,
-   "tris": 672
+   "tris": 672,
+   "kind": "water"
   },
   {
    "id": "hornwort",
@@ -720,7 +747,8 @@
    ],
    "radius": 1.8975,
    "count": 94,
-   "tris": 14664
+   "tris": 14664,
+   "kind": "leaf"
   },
   {
    "id": "hornwort_b",
@@ -745,7 +773,8 @@
    ],
    "radius": 1.878,
    "count": 94,
-   "tris": 14664
+   "tris": 14664,
+   "kind": "leaf"
   },
   {
    "id": "hornwort_stems",
@@ -762,7 +791,8 @@
     -0.2198
    ],
    "radius": 1.8503,
-   "tris": 1024
+   "tris": 1024,
+   "kind": "stem"
   },
   {
    "id": "hornwort_far",
@@ -779,7 +809,8 @@
     -0.225
    ],
    "radius": 1.8284,
-   "tris": 400
+   "tris": 400,
+   "kind": "leaf"
   },
   {
    "id": "oxygen_bubbles",
@@ -802,7 +833,8 @@
    ],
    "radius": 1.892,
    "count": 44,
-   "tris": 1584
+   "tris": 1584,
+   "kind": "water"
   },
   {
    "id": "iris_leaves",
@@ -821,7 +853,9 @@
    ],
    "radius": 3.8571,
    "count": 27,
-   "tris": 1836
+   "tris": 1836,
+   "kind": "leaf",
+   "shade": "tone"
   },
   {
    "id": "iris_flowers",
@@ -839,7 +873,8 @@
     -0.8111
    ],
    "radius": 0.4682,
-   "tris": 1728
+   "tris": 1728,
+   "kind": "petal"
   },
   {
    "id": "iris_stalks",
@@ -855,7 +890,8 @@
     -0.8157
    ],
    "radius": 0.7357,
-   "tris": 404
+   "tris": 404,
+   "kind": "stem"
   },
   {
    "id": "iris_far",
@@ -872,7 +908,8 @@
     -0.25
    ],
    "radius": 2.9536,
-   "tris": 126
+   "tris": 126,
+   "kind": "leaf"
   },
   {
    "id": "iris_rhizome",
@@ -888,7 +925,8 @@
     -0.2448
    ],
    "radius": 2.894,
-   "tris": 462
+   "tris": 462,
+   "kind": "root"
   },
   {
    "id": "iris_roots",
@@ -906,7 +944,8 @@
    ],
    "radius": 3.721,
    "count": 78,
-   "tris": 1872
+   "tris": 1872,
+   "kind": "root"
   },
   {
    "id": "daphnia_carapace",
@@ -930,7 +969,8 @@
     -0.4
    ],
    "radius": 0.0018,
-   "tris": 598
+   "tris": 598,
+   "kind": "chitin"
   },
   {
    "id": "daphnia_head",
@@ -947,7 +987,8 @@
     -0.4005
    ],
    "radius": 0.0008,
-   "tris": 1408
+   "tris": 1408,
+   "kind": "chitin"
   },
   {
    "id": "daphnia_eye",
@@ -964,7 +1005,8 @@
     -0.4007
    ],
    "radius": 0.0002,
-   "tris": 100
+   "tris": 100,
+   "kind": "eye"
   },
   {
    "id": "daphnia_antennae",
@@ -982,7 +1024,8 @@
     -0.4001
    ],
    "radius": 0.0013,
-   "tris": 656
+   "tris": 656,
+   "kind": "chitin"
   },
   {
    "id": "daphnia_heart",
@@ -1005,7 +1048,8 @@
     -0.4001
    ],
    "radius": 0.0002,
-   "tris": 144
+   "tris": 144,
+   "kind": "wet"
   },
   {
    "id": "daphnia_gut",
@@ -1022,7 +1066,8 @@
     -0.4
    ],
    "radius": 0.0011,
-   "tris": 338
+   "tris": 338,
+   "kind": "wet"
   },
   {
    "id": "daphnia_eggs",
@@ -1039,7 +1084,8 @@
     -0.3998
    ],
    "radius": 0.0005,
-   "tris": 256
+   "tris": 256,
+   "kind": "wet"
   },
   {
    "id": "daphnia_limbs",
@@ -1056,7 +1102,8 @@
     -0.4
    ],
    "radius": 0.0011,
-   "tris": 420
+   "tris": 420,
+   "kind": "chitin"
   },
   {
    "id": "daphnia_swarm",
@@ -1073,7 +1120,8 @@
    ],
    "radius": 1.2822,
    "count": 20,
-   "tris": 4440
+   "tris": 4440,
+   "kind": "chitin"
   },
   {
    "id": "snail_shell",
@@ -1092,7 +1140,8 @@
     -0.3029
    ],
    "radius": 0.0267,
-   "tris": 7200
+   "tris": 7200,
+   "kind": "shell"
   },
   {
    "id": "snail_body",
@@ -1109,7 +1158,8 @@
     -0.3017
    ],
    "radius": 0.0207,
-   "tris": 4392
+   "tris": 4392,
+   "kind": "mucosa"
   },
   {
    "id": "snail_tentacles",
@@ -1126,7 +1176,8 @@
     -0.316
    ],
    "radius": 0.0038,
-   "tris": 16
+   "tris": 16,
+   "kind": "mucosa"
   },
   {
    "id": "snail_eyes",
@@ -1143,7 +1194,8 @@
     -0.3157
    ],
    "radius": 0.0026,
-   "tris": 128
+   "tris": 128,
+   "kind": "eye"
   },
   {
    "id": "larva_head",
@@ -1160,7 +1212,8 @@
     -0.5692
    ],
    "radius": 0.0034,
-   "tris": 1532
+   "tris": 1532,
+   "kind": "chitin"
   },
   {
    "id": "larva_eyes",
@@ -1177,7 +1230,8 @@
     -0.57
    ],
    "radius": 0.0044,
-   "tris": 1256
+   "tris": 1256,
+   "kind": "eye"
   },
   {
    "id": "larva_mask",
@@ -1196,7 +1250,8 @@
     -0.5672
    ],
    "radius": 0.0047,
-   "tris": 52
+   "tris": 52,
+   "kind": "chitin"
   },
   {
    "id": "larva_thorax",
@@ -1213,7 +1268,8 @@
     -0.5611
    ],
    "radius": 0.0055,
-   "tris": 2644
+   "tris": 2644,
+   "kind": "chitin"
   },
   {
    "id": "larva_wingpads",
@@ -1230,7 +1286,8 @@
     -0.5549
    ],
    "radius": 0.0066,
-   "tris": 256
+   "tris": 256,
+   "kind": "chitin"
   },
   {
    "id": "larva_legs",
@@ -1247,7 +1304,8 @@
     -0.5636
    ],
    "radius": 0.015,
-   "tris": 1080
+   "tris": 1080,
+   "kind": "chitin"
   },
   {
    "id": "larva_abdomen",
@@ -1264,7 +1322,8 @@
     -0.5461
    ],
    "radius": 0.012,
-   "tris": 4570
+   "tris": 4570,
+   "kind": "chitin"
   },
   {
    "id": "larva_cerci",
@@ -1281,7 +1340,8 @@
     -0.534
    ],
    "radius": 0.002,
-   "tris": 180
+   "tris": 180,
+   "kind": "chitin"
   },
   {
    "id": "tadpole_body",
@@ -1298,7 +1358,8 @@
     -0.5
    ],
    "radius": 0.0095,
-   "tris": 5296
+   "tris": 5296,
+   "kind": "skin"
   },
   {
    "id": "tadpole_eyes",
@@ -1315,7 +1376,8 @@
     -0.5032
    ],
    "radius": 0.004,
-   "tris": 144
+   "tris": 144,
+   "kind": "eye"
   },
   {
    "id": "tadpole_tail",
@@ -1332,7 +1394,8 @@
     -0.4872
    ],
    "radius": 0.0116,
-   "tris": 2258
+   "tris": 2258,
+   "kind": "skin"
   },
   {
    "id": "tadpole_legs",
@@ -1349,7 +1412,8 @@
     -0.4913
    ],
    "radius": 0.0054,
-   "tris": 216
+   "tris": 216,
+   "kind": "skin"
   },
   {
    "id": "tadpole_swarm",
@@ -1366,7 +1430,8 @@
    ],
    "radius": 0.5033,
    "count": 5,
-   "tris": 820
+   "tris": 820,
+   "kind": "skin"
   }
  ],
  "stats": {

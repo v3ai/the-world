@@ -390,7 +390,11 @@
       13225686,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "polymer",
+     "pattern": "plain"
+    }
    },
    "copper": {
     "kind": "plain",
@@ -399,7 +403,11 @@
       13138234,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "foil",
+     "pattern": "plain"
+    }
    },
    "graphite": {
     "kind": "plain",
@@ -408,7 +416,11 @@
       4672597,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "powder",
+     "pattern": "grain"
+    }
    },
    "sep": {
     "kind": "plain",
@@ -417,7 +429,11 @@
       15722968,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "polymer",
+     "pattern": "plain"
+    }
    },
    "lco": {
     "kind": "plain",
@@ -426,7 +442,11 @@
       2968198,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "powder",
+     "pattern": "grain"
+    }
    },
    "alu": {
     "kind": "plain",
@@ -435,7 +455,11 @@
       13620442,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "foil",
+     "pattern": "plain"
+    }
    },
    "board": {
     "kind": "plain",
@@ -444,7 +468,11 @@
       2060106,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "polymer",
+     "pattern": "grain"
+    }
    },
    "chip": {
     "kind": "plain",
@@ -453,7 +481,11 @@
       2764085,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "plastic",
+     "pattern": "plain"
+    }
    }
   }
  },
@@ -538,7 +570,8 @@
     0
    ],
    "radius": 0.0467,
-   "tris": 216
+   "tris": 216,
+   "kind": "polymer"
   },
   {
    "id": "seal",
@@ -557,7 +590,8 @@
     0
    ],
    "radius": 0.0311,
-   "tris": 12
+   "tris": 12,
+   "kind": "polymer"
   },
   {
    "id": "cell_far",
@@ -575,7 +609,8 @@
     0
    ],
    "radius": 0.0492,
-   "tris": 72
+   "tris": 72,
+   "kind": "polymer"
   },
   {
    "id": "tab_neg",
@@ -594,7 +629,8 @@
     0.0005
    ],
    "radius": 0.006,
-   "tris": 36
+   "tris": 36,
+   "kind": "foil"
   },
   {
    "id": "tab_pos",
@@ -613,7 +649,8 @@
     0.0005
    ],
    "radius": 0.006,
-   "tris": 36
+   "tris": 36,
+   "kind": "foil"
   },
   {
    "id": "pcm_board",
@@ -632,7 +669,8 @@
     0.0006
    ],
    "radius": 0.0231,
-   "tris": 12
+   "tris": 12,
+   "kind": "polymer"
   },
   {
    "id": "pcm_ic",
@@ -651,7 +689,8 @@
     0.0014
    ],
    "radius": 0.0017,
-   "tris": 12
+   "tris": 12,
+   "kind": "plastic"
   },
   {
    "id": "pcm_fet",
@@ -670,7 +709,8 @@
     0.0012
    ],
    "radius": 0.0019,
-   "tris": 12
+   "tris": 12,
+   "kind": "plastic"
   },
   {
    "id": "pcm_flex",
@@ -689,7 +729,8 @@
     0.0008
    ],
    "radius": 0.0036,
-   "tris": 24
+   "tris": 24,
+   "kind": "polymer"
   },
   {
    "id": "cu",
@@ -708,7 +749,8 @@
     -0.0001
    ],
    "radius": 0.0439,
-   "tris": 288
+   "tris": 288,
+   "kind": "foil"
   },
   {
    "id": "anode",
@@ -732,7 +774,8 @@
     -0.0001
    ],
    "radius": 0.0426,
-   "tris": 288
+   "tris": 288,
+   "kind": "powder"
   },
   {
    "id": "sep",
@@ -756,7 +799,8 @@
     -0.0001
    ],
    "radius": 0.0426,
-   "tris": 288
+   "tris": 288,
+   "kind": "polymer"
   },
   {
    "id": "cathode",
@@ -780,7 +824,8 @@
     0.0001
    ],
    "radius": 0.0426,
-   "tris": 288
+   "tris": 288,
+   "kind": "powder"
   },
   {
    "id": "al",
@@ -799,7 +844,8 @@
     0.0001
    ],
    "radius": 0.0439,
-   "tris": 288
+   "tris": 288,
+   "kind": "foil"
   },
   {
    "id": "p_cu",
@@ -818,7 +864,8 @@
     -0.007
    ],
    "radius": 0.0439,
-   "tris": 24
+   "tris": 24,
+   "kind": "foil"
   },
   {
    "id": "p_an",
@@ -842,7 +889,8 @@
     -0.007
    ],
    "radius": 0.0425,
-   "tris": 24
+   "tris": 24,
+   "kind": "powder"
   },
   {
    "id": "p_sep",
@@ -866,7 +914,8 @@
     0
    ],
    "radius": 0.0425,
-   "tris": 12
+   "tris": 12,
+   "kind": "polymer"
   },
   {
    "id": "p_ca",
@@ -890,7 +939,8 @@
     0.007
    ],
    "radius": 0.0425,
-   "tris": 24
+   "tris": 24,
+   "kind": "powder"
   },
   {
    "id": "p_al",
@@ -909,7 +959,8 @@
     0.007
    ],
    "radius": 0.0439,
-   "tris": 24
+   "tris": 24,
+   "kind": "foil"
   },
   {
    "id": "wire",
@@ -928,7 +979,8 @@
     0
    ],
    "radius": 0.0151,
-   "tris": 96
+   "tris": 96,
+   "kind": "foil"
   },
   {
    "id": "load",
@@ -946,7 +998,8 @@
     0
    ],
    "radius": 0.0062,
-   "tris": 12
+   "tris": 12,
+   "kind": "marker"
   },
   {
    "id": "ions_dis",
@@ -963,7 +1016,8 @@
     0.000003
    ],
    "radius": 0.028463,
-   "tris": 0
+   "tris": 0,
+   "kind": "marker"
   },
   {
    "id": "e_dis",
@@ -980,7 +1034,8 @@
     0
    ],
    "radius": 0.032299,
-   "tris": 0
+   "tris": 0,
+   "kind": "marker"
   },
   {
    "id": "ions_chg",
@@ -997,7 +1052,8 @@
     0.000003
    ],
    "radius": 0.028463,
-   "tris": 0
+   "tris": 0,
+   "kind": "marker"
   },
   {
    "id": "e_chg",
@@ -1014,7 +1070,8 @@
     0
    ],
    "radius": 0.032299,
-   "tris": 0
+   "tris": 0,
+   "kind": "marker"
   }
  ],
  "numbers": {
