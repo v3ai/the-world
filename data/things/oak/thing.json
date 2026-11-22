@@ -387,7 +387,8 @@
    "radius": 9.3118,
    "count": 18663,
    "tris": 74652,
-   "kind": "leaf"
+   "kind": "leaf",
+   "look_color": "#4c6436"
   },
   {
    "id": "acorn_nuts",
@@ -498,7 +499,8 @@
    "count": 2032,
    "tris": 4064,
    "kind": "leaf",
-   "look_lod": "mid+far"
+   "look_lod": "mid+far",
+   "look_color": "#4c6436"
   },
   {
    "id": "crown_far",
@@ -520,7 +522,8 @@
    "count": 250,
    "tris": 9000,
    "kind": "leaf",
-   "look_lod": "off"
+   "look_lod": "mid+far",
+   "look_color": "#34492a"
   },
   {
    "id": "trunk_far",

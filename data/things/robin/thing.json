@@ -1615,7 +1615,8 @@
    ],
    "radius": 0.0278,
    "tris": 6474,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#ddd2c0"
   },
   {
    "id": "r_flank",
@@ -1639,7 +1640,8 @@
    ],
    "radius": 0.029,
    "tris": 4707,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#a8957b"
   },
   {
    "id": "r_breast",
@@ -1663,7 +1665,8 @@
    ],
    "radius": 0.0225,
    "tris": 3265,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#bf6834"
   },
   {
    "id": "r_rump",
@@ -1687,7 +1690,8 @@
    ],
    "radius": 0.0207,
    "tris": 5107,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#7e6f58"
   },
   {
    "id": "r_vent",
@@ -1711,7 +1715,8 @@
    ],
    "radius": 0.0166,
    "tris": 1746,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#e0d6c4"
   },
   {
    "id": "r_grey",
@@ -1735,7 +1740,8 @@
    ],
    "radius": 0.0212,
    "tris": 2236,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#8a8d9c"
   },
   {
    "id": "r_back",
@@ -1759,7 +1765,8 @@
    ],
    "radius": 0.022,
    "tris": 2111,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#7b6e5c"
   },
   {
    "id": "r_nape",
@@ -1783,7 +1790,8 @@
    ],
    "radius": 0.0229,
    "tris": 4002,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#7f725f"
   },
   {
    "id": "r_face",
@@ -1807,7 +1815,8 @@
    ],
    "radius": 0.0155,
    "tris": 4139,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#bc6331"
   },
   {
    "id": "r_crown",
@@ -1831,7 +1840,8 @@
    ],
    "radius": 0.0139,
    "tris": 1533,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#7d705e"
   },
   {
    "id": "bill_up",
@@ -1941,7 +1951,8 @@
    "radius": 0.0459,
    "count": 20,
    "tris": 1760,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#5a4a3a"
   },
   {
    "id": "f_sec",
@@ -1966,7 +1977,8 @@
    "radius": 0.039,
    "count": 12,
    "tris": 1056,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#5e4d3c"
   },
   {
    "id": "f_tert",
@@ -1991,7 +2003,8 @@
    "radius": 0.0336,
    "count": 6,
    "tris": 528,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#64513f"
   },
   {
    "id": "f_pcov",
@@ -2016,7 +2029,8 @@
    "radius": 0.0269,
    "count": 18,
    "tris": 1584,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#7a6a55"
   },
   {
    "id": "f_gcov",
@@ -2041,7 +2055,8 @@
    "radius": 0.0329,
    "count": 18,
    "tris": 1584,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#7a6a55"
   },
   {
    "id": "f_mcov",
@@ -2066,7 +2081,8 @@
    "radius": 0.0298,
    "count": 20,
    "tris": 1760,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#7a6a55"
   },
   {
    "id": "f_lcov",
@@ -2091,7 +2107,8 @@
    "radius": 0.0276,
    "count": 32,
    "tris": 2816,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#7a6a55"
   },
   {
    "id": "f_alula",
@@ -2141,7 +2158,8 @@
    "radius": 0.0342,
    "count": 12,
    "tris": 1056,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#4f4234"
   },
   {
    "id": "f_utc",
@@ -2166,7 +2184,8 @@
    "radius": 0.0195,
    "count": 10,
    "tris": 880,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#7a6b57"
   },
   {
    "id": "f_undertc",
@@ -2191,7 +2210,8 @@
    "radius": 0.0185,
    "count": 10,
    "tris": 880,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#e0d6c4"
   },
   {
    "id": "f_rach",
@@ -4018,7 +4038,8 @@
    ],
    "radius": 0.0276,
    "tris": 1394,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#ddd2c0"
   },
   {
    "id": "r_flank_mid",
@@ -4042,7 +4063,8 @@
    ],
    "radius": 0.0291,
    "tris": 1000,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#a8957b"
   },
   {
    "id": "r_breast_mid",
@@ -4066,7 +4088,8 @@
    ],
    "radius": 0.0222,
    "tris": 673,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#bf6834"
   },
   {
    "id": "r_rump_mid",
@@ -4090,7 +4113,8 @@
    ],
    "radius": 0.0207,
    "tris": 1052,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#7e6f58"
   },
   {
    "id": "r_vent_mid",
@@ -4114,7 +4138,8 @@
    ],
    "radius": 0.0164,
    "tris": 377,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#e0d6c4"
   },
   {
    "id": "r_grey_mid",
@@ -4138,7 +4163,8 @@
    ],
    "radius": 0.0212,
    "tris": 466,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#8a8d9c"
   },
   {
    "id": "r_back_mid",
@@ -4162,7 +4188,8 @@
    ],
    "radius": 0.022,
    "tris": 410,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#7b6e5c"
   },
   {
    "id": "r_nape_mid",
@@ -4186,7 +4213,8 @@
    ],
    "radius": 0.0222,
    "tris": 863,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#7f725f"
   },
   {
    "id": "r_face_mid",
@@ -4210,7 +4238,8 @@
    ],
    "radius": 0.0153,
    "tris": 851,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#bc6331"
   },
   {
    "id": "r_crown_mid",
@@ -4234,7 +4263,8 @@
    ],
    "radius": 0.0138,
    "tris": 305,
-   "kind": "feather"
+   "kind": "feather",
+   "look_color": "#7d705e"
   },
   {
    "id": "body_far",
