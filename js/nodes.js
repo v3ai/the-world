@@ -162,7 +162,7 @@ FT.body = {
           const g = inked(decodePart(p), BLK.on ? BLK.colorOf(p) : atlas, { w: p.id === 'skin' ? .0012 : .0018, double: p.id === 'skin', extra: { transparent: true } });
           paintedInOrder(g.userData.main.material); // layers are painted in the order the parts were made, as before; a solid part is drawn without blending
           { const om = g.userData.ol.material; om.transparent = false; om.blending = THREE.CustomBlending; } // the ink too stays in that pass (render order 0: before every part, so ghost layers veil it as they always did)
-          if (BLK.on) { g.userData.atlas = atlas; BLK.part(g.userData.main.material, p); if (p.id === 'skin') BLK.skin(g.userData.main.material, g.userData.main.geometry); }   // the realistic look (js/body_core.js)
+          if (BLK.on) { g.userData.atlas = atlas; BLK.part(g.userData.main.material, p, g.userData.main.geometry); if (p.id === 'skin') BLK.skin(g.userData.main.material, g.userData.main.geometry); }   // the realistic look (js/body_core.js)
           else bodySurface(g.userData.main.material); // fine grain, so a close-up of a smooth part still has something to read
           const big = () => p.radius > .1;
           Object.assign(g.userData, {
@@ -244,7 +244,7 @@ function applyMode(F) {
     u.ol.material.uniforms.uColor.value.setHex(hl ? 0x1e4e8f : 0x1a1f2b);
     u.main.renderOrder = (s === 'skin' ? 2 : 1) + u.rank; u.ol.renderOrder = u.rank; // ink first, then the parts in index order, the skin last
   }
-  if (BLK.on) BLK.eyes(F, focus);   // the eyes show through the openings of the skin while it is shown
+  if (BLK.on) { BLK.eyes(F, focus); BLK.shadow(F); }   // the eyes show through the openings of the skin while it is shown; the park's shadow is cast by what is solid
   if (vs !== F._vs) { F._vs = vs; viewChanged(); }
   if (F.showAllBtn) { const n = F.hidden.size, on = n || F.reveal, d = on ? '' : 'none'; if (F.showAllBtn.style.display !== d) F.showAllBtn.style.display = d; const t = n ? `Show everything (${n} hidden)` : F.reveal ? 'Show everything' : ''; if (on && F.showAllBtn.textContent !== t) F.showAllBtn.textContent = t; }
 }
@@ -303,7 +303,7 @@ FT.organ = {
         const outer = new THREE.Mesh(geo, illoMat(col, { extra: { clippingPlanes: F.cut ? [plane] : [], transparent: true } }));
         if (shell) { outer.material.opacity = .38; outer.material.depthWrite = false; } // a see-through wall: what is inside it shows
         // the inside of the cut: lit from within so it reads as a hollow, not a black hole
-        const inner = new THREE.Mesh(geo, illoMat(new THREE.Color(col).multiplyScalar(BLK.on ? .82 : .75), { extra: Object.assign(BLK.on ? {} : { emissive: new THREE.Color(col).multiplyScalar(.28) }, { side: THREE.BackSide, clippingPlanes: F.cut ? [plane] : [], transparent: true }) }));   // the realistic look: the inside is lit by the studio through the cut, it does not glow
+        const inner = new THREE.Mesh(geo, illoMat(new THREE.Color(col).multiplyScalar(BLK.on ? .4 : .75), { extra: Object.assign(BLK.on ? { roughness: .8 } : { emissive: new THREE.Color(col).multiplyScalar(.28) }, { side: THREE.BackSide, clippingPlanes: F.cut ? [plane] : [], transparent: true }) }));   // the realistic look: the inside is lit by the studio through the cut, it does not glow; it is darker and matte, so a cut wall reads as a wall, not as two films
         const ol = new THREE.Mesh(geo, outlineMat()); ol.material.clippingPlanes = F.cut ? [plane] : [];
         if (BLK.on) { ol.visible = false; if (shell) BLK.part(outer.material, { id: 'shell' }); }   // no ink; a schematic wall is clear glass
         ol.renderOrder = 0; ol.material.depthWrite = false; inner.renderOrder = 1; outer.renderOrder = shell ? 4 : 2; // the ink never paints over the lit inside of the cut

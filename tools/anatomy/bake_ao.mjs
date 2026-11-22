@@ -10,17 +10,17 @@
      bones                      bones
      the eyes                   the eyes and the skin (the lids shade them: the eyes show only where the skin is shown)
      everything else            everything but the skin, the muscles and the bones (organs, vessels, nerves)
-   The result is smoothed once over each vertex's neighbours and written to data/anatomy/ao.json, {format, rays, parts: {id: base64}}:
+   The result is smoothed over each vertex's neighbours (--smooth rounds, 4 by default) and written to data/anatomy/ao.json, {format, rays, parts: {id: base64}}:
    one byte per vertex (255 open, 0 closed), in the same order as the part's vertices. The app fetches it only under the realistic look,
    so the anatomy files themselves, and what the app fetches without the look, do not change.
 
-   usage: node tools/anatomy/bake_ao.mjs [data/anatomy] [--rays 48] [--check]      (no dependencies)
+   usage: node tools/anatomy/bake_ao.mjs [data/anatomy] [--rays 48] [--smooth 4] [--check]      (no dependencies)
    --check reports without writing. Deterministic: the same data gives the same bytes. */
 import fs from 'fs';
 import path from 'path';
 
 const args = process.argv.slice(2), DIR = args.find(a => !a.startsWith('--')) || 'data/anatomy';
-const RAYS = +(args[args.indexOf('--rays') + 1] || 0) || 48, CHECK = args.includes('--check');
+const RAYS = +(args[args.indexOf('--rays') + 1] || 0) || 48, CHECK = args.includes('--check'), SMOOTH = +(args[args.indexOf('--smooth') + 1] || 0) || 4;
 const MAXD = { skin: .10, muscular: .05, skeletal: .04, other: .035, eye: .02 }, EPS = .0006;
 
 const ix = JSON.parse(fs.readFileSync(path.join(DIR, 'index.json'), 'utf8'));
@@ -106,7 +106,9 @@ for (const p of parts) {
     ao[i] = Math.max(openness(B, P, Nv, 1, rot, MAXD[g]), openness(B, P, Nv, -1, rot, MAXD[g]));
   }
   const nb = Array.from({ length: n }, () => new Set()); for (let t = 0; t < idx.length; t += 3) for (let k = 0; k < 3; k++) { const a = idx[t + k], b = idx[t + (k + 1) % 3]; nb[a].add(b); nb[b].add(a); }
-  const sm = new Uint8Array(n); for (let i = 0; i < n; i++) { let s = ao[i] * 2, c = 2; nb[i].forEach(j => { s += ao[j]; c++; }); sm[i] = Math.round(255 * s / c); }
+  // smoothed over each vertex's neighbours, SMOOTH rounds: the rays' noise from one vertex to the next showed on coarse meshes as a mosaic of lighter and darker triangles
+  let cur = ao; for (let r = 0; r < SMOOTH; r++) { const nx = new Float32Array(n); for (let i = 0; i < n; i++) { let s = cur[i] * 2, c = 2; nb[i].forEach(j => { s += cur[j]; c++; }); nx[i] = s / c; } cur = nx; }
+  const sm = new Uint8Array(n); for (let i = 0; i < n; i++) sm[i] = Math.round(255 * cur[i]);
   OUT.parts[p.id] = Buffer.from(sm).toString('base64'); total += n; bytes += OUT.parts[p.id].length;
   const mean = sm.reduce((a, b) => a + b, 0) / n / 255; console.log(p.id.padEnd(24), String(n).padStart(6), 'vertices, mean openness', mean.toFixed(2));
 }
