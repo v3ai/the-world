@@ -70,7 +70,7 @@ if (LOOK.on) {
   };
   /* the wiring side of a chip as a photograph shows it: a fine metal pattern over glassy layers that tint what they cover (thin-film interference).
      Packed map: G roughness, B metalness (r128 reads those channels); metal lines metalness 1, the gaps between them are dielectric. */
-  const DIE_PAL = { logic: ['#8a76a6', '#d6cfc4'], sram: ['#a39c64', '#dad2c2'], io: ['#5f8a99', '#ddd4c4'], bus: ['#9a8270', '#d9d2c6'], fill: ['#767982', '#c4c2bc'] };
+  const DIE_PAL = { logic: ['#8b879a', '#d6cfc4'], sram: ['#9b977f', '#dad2c2'], io: ['#7c9097', '#ddd4c4'], bus: ['#9b9087', '#d9d2c6'], fill: ['#85878f', '#c4c2bc'] };
   const dieDraw = (kind, pal, W, rm) => g => {
     const k = W / 512, r = rng(kind.length * 17 + 3), gap = rm ? '#001a00' : pal[0], mt = rm ? '#005a5a' : pal[1], R = (x, y, w, h) => g.fillRect(x * k, y * k, Math.max(w * k, rm ? 1 : .6), Math.max(h * k, rm ? 1 : .6));
     g.fillStyle = gap; g.fillRect(0, 0, W, W); g.fillStyle = mt;
@@ -139,7 +139,7 @@ function phoneBoardTex() {
     [[-29, 23], [29, 23], [-29, -23], [29, -23]].forEach(([x, y]) => { g.beginPath(); g.arc(X(x), Y(y), 1.5 * ppm, 0, 7); g.fillStyle = pal.pad; g.fill(); g.beginPath(); g.arc(X(x), Y(y), .9 * ppm, 0, 7); g.fillStyle = pal.hole; g.fill(); });
   };
   const A = (n, W, H, pal, srgb) => TL.tex('real:pcb:' + n, W, H, draw(pal, W, H), srgb);
-  const o = { map: A('a', 1024, 832, { mask: '#15553a', trace: '#1d6a47', pad: '#d9b25c', hole: '#050505', ao: true }, true) };
+  const o = { map: A('a', 1024, 832, { mask: '#2b8d57', trace: '#37a468', pad: '#e2bb63', hole: '#050505', ao: true }, true) };
   if (LOOK.quality !== 'low') {
     o.rm = A('rm', 512, 416, { mask: '#007400', trace: '#007400', pad: '#003cff', hole: '#00ff00' });
     o.bump = A('b', 512, 416, { mask: '#707070', trace: '#7c7c7c', pad: '#a8a8a8', hole: '#000' });
@@ -184,7 +184,7 @@ function phoneLook(F, layer) {
     else if (id === 'phone_charger_port') { geo = TL.slab(s[0], s[1], s[2], 1.4, .3); mat = T('steel', C.steel); }
     else if (id === 'phone_vibration_motor') { geo = TL.slab(s[0], s[1], s[2], 2.6, .4); mat = T('steel', C.steel); }
     else if (id === 'phone_crystal_osc') { geo = TL.chip(s[0], s[1], s[2]); mat = T('steel', C.nickel); }
-    else { geo = TL.chip(s[0], s[1], s[2]); const v = { phone_rf_frontend: .06, phone_sensors: .08 }[id] || .028; mat = T('mold', new THREE.Color().setRGB(v, v, v * 1.05)); mat.roughness = .5; }
+    else { geo = TL.chip(s[0], s[1], s[2]); const v = { phone_rf_frontend: .1, phone_sensors: .12 }[id] || .05; mat = T('mold', new THREE.Color().setRGB(v, v, v * 1.05)); mat.roughness = .5; }
     const g = tearPart(F, geo, 0, id, name, new V3(...p), { mat, text, r: Math.max(...s) / 2, madeOf: SILICON_PARTS.has(id) ? 'silicon' : id === 'phone_crystal_osc' ? 'crystal' : null });
     if (extra === 'lens') { const lg = new THREE.CircleGeometry(s[0] / 2 - 1.6, 40).rotateY(Math.PI), lm = new THREE.MeshPhysicalMaterial({ color: C.black, clearcoat: 1, clearcoatRoughness: 0 }); LOOK.dress(lm, 'blackglass'); lm.clearcoat = 1; lm.clearcoatRoughness = 0; opaqueUnlessFading(lm); const l = new THREE.Mesh(lg, lm); l.position.z = -s[2] / 2 - .02; g.add(l); }
     layer(g, z);
@@ -283,18 +283,18 @@ FT.die = {
     F.blurb = 'The processor die: about 10 × 10 mm of silicon holding roughly 15–20 billion transistors. Each coloured block is a different kind of engine.';
     F.note = 'Illustrative floorplan, not a real chip. The kinds of block are real; their sizes and positions are schematic, because chip makers do not publish theirs.';
     F.floorD = 1e-5;
-    const base = tearPart(F, LOOK.on ? TL.boxUV(DIE.w, DIE.h, 300, 400) : new THREE.BoxGeometry(DIE.w, DIE.h, 300), 0x5a6170, 'phone_soc', 'Silicon die', new V3(0, 0, -150), { pri: .3, r: 7000, mat: LOOK.on ? TL.dieMat('fill') : undefined });
+    const base = tearPart(F, LOOK.on ? TL.boxUV(DIE.w, DIE.h, 300, 1400) : new THREE.BoxGeometry(DIE.w, DIE.h, 300), 0x5a6170, 'phone_soc', 'Silicon die', new V3(0, 0, -150), { pri: .3, r: 7000, mat: LOOK.on ? TL.dieMat('fill') : undefined });
     if (!LOOK.on) base.userData.main.material.map = gridTex('die_base', '#5a6170', '#6b7383', 64);
     const blk = []; if (LOOK.on) F._lkKeyI = 1.7;   // a die is photographed in bright field: the lamp is nearly at the lens and strong
     const tex = { logic: gridTex('blk_logic', '#ffffff', 'rgba(0,0,0,.18)', 48, { dots: 'rgba(0,0,0,.25)' }), sram: gridTex('blk_sram', '#ffffff', 'rgba(0,0,0,.35)', 32, { lw: 2 }), io: gridTex('blk_io', '#ffffff', 'rgba(0,0,0,.4)', 16, { cols: true, lw: 3 }), bus: gridTex('blk_bus', '#ffffff', 'rgba(0,0,0,.3)', 8, { cols: true }) };
     DIE_BLOCKS.forEach(([id, name, c, s, col, tk, text]) => {
-      const g = tearPart(F, LOOK.on ? TL.boxUV(s[0], s[1], 6, 200) : new THREE.BoxGeometry(s[0], s[1], 60), col, id, name, new V3(c[0], c[1], LOOK.on ? 3 : 30), { text, r: Math.max(...s) / 2, mat: LOOK.on ? TL.dieMat(tk) : undefined });
+      const g = tearPart(F, LOOK.on ? TL.boxUV(s[0], s[1], 6, 700) : new THREE.BoxGeometry(s[0], s[1], 60), col, id, name, new V3(c[0], c[1], LOOK.on ? 3 : 30), { text, r: Math.max(...s) / 2, mat: LOOK.on ? TL.dieMat(tk) : undefined });
       if (LOOK.on) blk.push([g.userData.main.material, col]); else g.userData.main.material.map = tex[tk]; F.label(g, NODE[id] ? NODE[id].title : name, { offset: new V3(0, id === 'soc_cpu_cluster' ? -s[1] / 2 + 250 : s[1] / 2 - 300, 60) });
       tearReg(id, F, new V3(c[0], c[1], 30), Math.max(...s) * 2.2e-6);
     });
     // CPU cluster sub-blocks: 2 big cores + 4 small cores + L2
     [[-3500, 2700, 1500, 1100, 'Performance core'], [-1700, 2700, 1500, 1100, 'Performance core'], [-3900, 900, 700, 600, 'Efficiency core'], [-3100, 900, 700, 600, 'Efficiency core'], [-2300, 900, 700, 600, 'Efficiency core'], [-1500, 900, 700, 600, 'Efficiency core']].forEach(([x, y, w, h, nm], i) => {
-      const g = tearPart(F, LOOK.on ? TL.boxUV(w, h, 4, 200) : new THREE.BoxGeometry(w, h, 40), i < 2 ? 0x7aa2e8 : 0x9bb8ee, 'cpu_core', nm, new V3(x, y, LOOK.on ? 8 : 80), { text: 'One processor core.', r: w / 2, mat: LOOK.on ? TL.dieMat('logic') : undefined });
+      const g = tearPart(F, LOOK.on ? TL.boxUV(w, h, 4, 700) : new THREE.BoxGeometry(w, h, 40), i < 2 ? 0x7aa2e8 : 0x9bb8ee, 'cpu_core', nm, new V3(x, y, LOOK.on ? 8 : 80), { text: 'One processor core.', r: w / 2, mat: LOOK.on ? TL.dieMat('logic') : undefined });
       if (LOOK.on) blk.push([g.userData.main.material, i < 2 ? 0x7aa2e8 : 0x9bb8ee]); else g.userData.main.material.map = tex.logic; g.userData.zoomTo = () => { flyTo(FR.core, new V3(), 3e-3); }; if (i === 0) F.label(g, nm, { offset: new V3(0, h / 2, 40) });
     });
     if (LOOK.on) {   // a seal ring of copper inside the edge (a phone processor is flip-chip: no bond wires), a studio floor with the die's contact shadow
@@ -457,13 +457,13 @@ FT.finfet = {
     /* under the look the transistor is cut for real: every part is its own half, with a lit cut face (nothing hollow, no clipping). The faces of parts that overlap
        at the cut stand 0.3 nm apart so the innermost (fin, then oxide, then gate) shows. */
     const CUT = { 'Silicon fin (channel)': ['silicon', 'silicon', .9], 'Gate oxide (high-k)': ['oxide', 'oxide', .6], 'Metal gate': ['tungsten', 'tungsten', .3], 'Source': ['silicon', 'silicon', 0], 'Drain': ['silicon', 'silicon', 0], 'Spacer': ['nitride', 'nitride', 0] };
-    const half = (g, off) => { const q = g.parameters, h = q.height; return new THREE.BoxGeometry(q.width, h / 2 + off, q.depth).translate(0, (-h / 2 + off) / 2, 0); };
+    const half = (g, off) => { const q = g.parameters, h = q.height; return new THREE.BoxGeometry(q.width, h / 2 + off, q.depth).translate(0, (h / 2 - off) / 2, 0); };   // the half on the +y side: its cut face looks at the camera, which stands on the -y side of the frame
     const add = (geo, col, id, name, pos, text, clip = true, op) => { const cu = LOOK.on && CUT[name], g = tearPart(F, cu ? half(geo, cu[2]) : geo, col, id, name, pos, { text, pri: 3, mat: cu ? TL.mat(cu[0], TL.C[cu[1]]) : undefined }); parts[name] = g; if (clip && !LOOK.on) g.traverse(m => { if (m.material) m.material.clippingPlanes = [cut]; }); if (op && !LOOK.on) g.userData.main.material.opacity = op; return g; };
     add(new THREE.BoxGeometry(120, 6, 46), 0x8cb4d9, 'silicon_channel', 'Silicon fin (channel)', new V3(0, 0, 23), 'The channel: where the current flows when the transistor is on. Only a few dozen atoms across.');
     add(new THREE.BoxGeometry(18, 10, 52), 0xe6c84f, null, 'Gate oxide (high-k)', new V3(0, 0, 25), 'A ~1–2 nm layer of hafnium oxide insulates the gate from the channel.', true, .6);
     add(new THREE.BoxGeometry(16, 60, 62), 0x9aa0aa, 'finfet_transistor', 'Metal gate', new V3(0, 0, 31), 'The gate. Its voltage pulls electrons into the fin to switch the transistor on.', true, .85);
     [-1, 1].forEach(s => { add(new THREE.BoxGeometry(40, 22, 50), 0xa3c4e6, s < 0 ? 'finfet_source' : 'finfet_drain', s < 0 ? 'Source' : 'Drain', new V3(s * 40, 0, 26), 'Heavily doped silicon grown on the fin: where electrons enter (source) and leave (drain).'); add(new THREE.BoxGeometry(6, 64, 62), 0xd4d4d4, null, 'Spacer', new V3(s * 11, 0, 31), 'Insulating spacers separate the gate from source and drain.', true, .5); });
-    if (LOOK.on) { tearPart(F, new THREE.BoxGeometry(160, 60, 20).translate(0, -30, 0), 0, null, '', new V3(0, 0, -10), { mat: TL.mat('oxide', TL.C.oxide) }); TL.ground(F, 1600, -20.5, 160, 120); F.note = 'A model of one transistor, cut in half. The blue dots are markers for electrons: real electrons have no size, and in the channel they form a thin layer of charge. In the OFF state a voltage barrier, not an absence of electrons, holds them back, and a small leakage current still flows.'; }
+    if (LOOK.on) { tearPart(F, new THREE.BoxGeometry(160, 60, 20).translate(0, 30, 0), 0, null, '', new V3(0, 0, -10), { mat: TL.mat('oxide', TL.C.oxide) }); TL.ground(F, 1600, -20.5, 160, 120); F.note = 'A model of one transistor, cut in half. The blue dots are markers for electrons: real electrons have no size, and in the channel they form a thin layer of charge. In the OFF state a voltage barrier, not an absence of electrons, holds them back, and a small leakage current still flows.'; }
     else tearPart(F, new THREE.BoxGeometry(160, 120, 20), 0x6b7383, null, '', new V3(0, 0, -10));
     // electrons flowing source → drain through the channel
     const eG = new THREE.SphereGeometry(1.4, 10, 8), eIM = LOOK.on ? new THREE.InstancedMesh(eG, new THREE.MeshBasicMaterial({ color: 0x6ee7ff, toneMapped: false }), 30) : null, eM = new THREE.Matrix4();
