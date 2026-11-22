@@ -451,7 +451,8 @@
     (sp.shapes || []).forEach((g, i) => {
       if (g.when !== undefined && !num(g.when, s)) return;
       const color = col(g.color, i), N = k => num(g[k], s);
-      c.save(); c.strokeStyle = color; c.fillStyle = g.fill ? col(g.fill) : color; c.lineWidth = K.lw(g.width || 2); if (g.dash) c.setLineDash([5, 4]); if (g.alpha !== undefined) c.globalAlpha = N('alpha');
+      c.save(); if (sp.axes && g.k !== 'text') { c.beginPath(); c.rect(V.m.l, V.m.t, W - V.m.l - V.m.r, H - V.m.t - V.m.b); c.clip(); }   /* a line stops at the plot's edge, not at the plate's */
+      c.strokeStyle = color; c.fillStyle = g.fill ? col(g.fill) : color; c.lineWidth = K.lw(g.width || 2); if (g.dash) c.setLineDash([5, 4]); if (g.alpha !== undefined) c.globalAlpha = N('alpha');
       switch (g.k) {
         case 'line': c.beginPath(); c.moveTo(V.fx(N('x1')), V.fy(N('y1'))); c.lineTo(V.fx(N('x2')), V.fy(N('y2'))); c.stroke(); break;
         case 'arrow': arrow(c, V.fx(N('x1')), V.fy(N('y1')), V.fx(N('x2')), V.fy(N('y2')), color, K.lw(g.width || 2)); break;
