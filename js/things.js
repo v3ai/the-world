@@ -576,14 +576,15 @@ function thLkVolume(rec, geo, T) {
    outer leaves one sees more leaves, in their shade, not sky (photograph: "Baginton oak tree july06.JPG", Wikimedia Commons, CC BY-SA
    3.0, an English oak in July: the sky shows only through the crown's edge and a few gaps). The model's 2,032 tufts sit on its shoots
    and leave the space between them open, so a crown drawn from tufts alone looks like a young tree's. The far tier's clumps (one round
-   mass per 1.5 m of leafy shoots, the model's own grouping) are drawn inside the tufts, 22% smaller, in the colour of shaded leaves,
+   mass per 1.5 m of leafy shoots, the model's own grouping) are drawn inside the tufts, 30% smaller, in the colour of shaded leaves,
    lit by the crown's outer surface, with ragged edges: a stand-in for the leaves the model does not have, not a drawing of particular ones. */
-const TH_MASS = { shrink: .78, mix: .55 };
+const TH_MASS = { shrink: .7, mix: .55 };
 function thLkCrownMass(rec, geo) {
   const im = rec.g, n = im.count, M = im.instanceMatrix.array; if (!n) return; const c = new V3(), r = new V3();
   for (let i = 0; i < n; i++) c.x += M[i * 16 + 12] / n, c.y += M[i * 16 + 13] / n, c.z += M[i * 16 + 14] / n;
   for (let i = 0; i < n; i++) r.set(Math.max(r.x, Math.abs(M[i * 16 + 12] - c.x)), Math.max(r.y, Math.abs(M[i * 16 + 13] - c.y)), Math.max(r.z, Math.abs(M[i * 16 + 14] - c.z)));
   r.addScalar(1.2); const m = im.material, F = x => x.toFixed(4);
+  if (m.defines) { delete m.defines.LK_THIN; delete m.defines.LK_SSS; }   // a mass in the crown's shade passes no light through, and the leaf kind's light-through and wrap terms lit its far side white
   { /* twenty triangles a clump, not the far tier's 44: the outline is the ragged cut-out below, not the mesh's, and 19 oaks carry 250 each */
     const g0 = geo; g0.computeBoundingSphere(); const ico = new THREE.IcosahedronGeometry(g0.boundingSphere.radius * .92, 0), P = ico.attributes.position, N = ico.attributes.normal, v = new V3();
     for (let i = 0; i < P.count; i++) { v.fromBufferAttribute(P, i).normalize(); N.setXYZ(i, v.x, v.y, v.z); P.setXYZ(i, P.getX(i) + g0.boundingSphere.center.x, P.getY(i) + g0.boundingSphere.center.y, P.getZ(i) + g0.boundingSphere.center.z); }
@@ -604,9 +605,11 @@ function thLkCrownMass(rec, geo) {
     sh.fragmentShader = 'varying vec3 vThCp;\nvarying vec3 vThCn;\n' + sh.fragmentShader.replace('#include <map_fragment>', `#include <map_fragment>
 	{ vec3 q = vThCp * 2.3; float k = sin( q.x * 1.7 + sin( q.y * 2.3 ) * 1.3 ) * sin( q.y * 1.9 + sin( q.z * 1.6 ) * 1.2 ) * sin( q.z * 2.1 + sin( q.x * 1.4 ) );
 	  vec3 q2 = vThCp * 9.0; float f = fract( sin( dot( floor( q2 ), vec3( 12.9898, 78.233, 45.164 ) ) ) * 43758.5453 );
+	  vec3 q3 = vThCp * 14.0; float f3 = fract( sin( dot( floor( q3 ), vec3( 39.346, 11.135, 83.155 ) ) ) * 43758.5453 );
 	  float rim = 1.0 - abs( dot( normalize( vNormal ), normalize( vViewPosition ) ) );
-	  if ( 0.55 * k + 0.45 * f < rim * 1.1 - 0.35 ) discard;
-	  diffuseColor.rgb *= 0.8 + 0.3 * f; }`);
+	  if ( 0.4 * k + 0.3 * f + 0.3 * f3 < rim * 1.3 - 0.25 ) discard;   // ragged at the outline, in pieces about the size of a few leaves
+	  diffuseColor.rgb *= 0.75 + 0.2 * f + 0.15 * f3; }`).replace('#include <lights_physical_fragment>', `#include <lights_physical_fragment>
+	material.specularColor = vec3( 0.0 );   // a mass of leaves in shade has no single surface to give a sheen at its outline`);
   });
 }
 function thLkApplyLeaves(rec) {
@@ -620,7 +623,11 @@ function thLkApplyLeaves(rec) {
     LOOK.patch(m, 'thleafvol', sh => {
       sh.vertexShader = 'attribute vec3 thVolN;\nvarying vec3 vThVol;\n' + sh.vertexShader.replace('#include <defaultnormal_vertex>', '#include <defaultnormal_vertex>\n\tvThVol = normalize( normalMatrix * thVolN );');
       sh.fragmentShader = 'varying vec3 vThVol;\n' + sh.fragmentShader.replace('#include <normal_fragment_begin>', `#include <normal_fragment_begin>
-	normal = normalize( mix( normal, vThVol, ${W} ) );`);
+	{ float thBack = 0.0;   // a leaf lit from behind keeps its own normal: the light through it is the card's, not the crown's
+	#if NUM_DIR_LIGHTS > 0
+	  thBack = smoothstep( 0.0, 0.25, - dot( normal, directionalLights[ 0 ].direction ) );
+	#endif
+	  normal = normalize( mix( normal, vThVol, ${W} * ( 1.0 - thBack ) ) ); }`);
       if (spray) sh.vertexShader = sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>
 	#ifdef USE_INSTANCING
 	if ( mod( floor( thCell + 0.5 ), 2.0 ) > 0.5 ) { transformed.x = -transformed.x; }   // half the clusters mirrored, so they do not repeat
@@ -723,10 +730,12 @@ float thDogPig( vec3 p, vec3 n ) {   // pigment: 1 on the flank; darker and warm
 const TH_SHEEN = { k: .16, e: 48 };   // the sheen's strength and narrowness (judged against photographs of a yellow Labrador in sun)
 function thLkHairChunks(sh, field, o) {   // shared by the coat's skin and its shells: field direction, streaks, sheen, pigment (and the lips, where the geometry has them)
   const F = x => x.toFixed(4);
-  if (o.lip) {
-    sh.vertexShader = 'attribute float thLip;\nvarying float vThLip;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tvThLip = thLip;');
-    sh.fragmentShader = 'varying float vThLip;\n' + sh.fragmentShader.replace('#include <map_fragment>', `#include <map_fragment>
-	diffuseColor.rgb = mix( diffuseColor.rgb, vec3( 0.075, 0.045, 0.04 ), smoothstep( 0.2, 0.7, vThLip ) );`);
+  if (o.feet) {   // the lips' pigment and the parting between the toes, from the object position (see thLkDogFeet)
+    sh.uniforms.thToeG = { value: o.feet };
+    sh.fragmentShader = 'uniform vec4 thToeG[12];\n' + TH_DOGFEET + '\n' + sh.fragmentShader.replace('#include <map_fragment>', `#include <map_fragment>
+	diffuseColor.rgb = mix( diffuseColor.rgb, vec3( 0.075, 0.045, 0.04 ), thLipF( vThOp ) ) * ( 1.0 - 0.35 * thToeF( vThOp ) );`).replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
+	{ float h = -0.0025 * thToeF( vThOp ); vec3 sx = dFdx( -vViewPosition ), sy = dFdy( -vViewPosition ), thR1 = cross( sy, normal ), thR2 = cross( normal, sx ); float det = dot( sx, thR1 );
+	  vec2 dh = vec2( dFdx( h ), dFdy( h ) ); normal = normalize( abs( det ) * normal - sign( det ) * ( dh.x * thR1 + dh.y * thR2 ) ); }`);
   }
   sh.vertexShader = 'varying vec3 vThT;\nvarying vec3 vThB;\nvarying vec3 vThTv;\nvarying vec3 vThOp;\nvarying vec3 vThOn;\n' + field + '\n' + sh.vertexShader.replace('#include <defaultnormal_vertex>', `#include <defaultnormal_vertex>
 	{ vec3 thN0 = normalize( objectNormal ), thC0 = thComb( position ); vec3 thT0 = normalize( thC0 - thN0 * dot( thC0, thN0 ) + 1e-5 );
@@ -761,8 +770,7 @@ function thLkFur(rec, geo, o) {
   m.clippingPlanes = m0.clippingPlanes; if (m0.defines && m0.defines.LK_SSS) m.defines = { LK_SSS: m0.defines.LK_SSS };
   const c = o.comb ? new V3(...o.comb).normalize() : null, F = x => x.toFixed(4), st = o.comb ? o.stretch : 1;
   if (o.field) {   // the dog's coat: the hair follows a field over the body (see TH_DOGCOMB); its shells lie far over along it
-    o.lip = !!geo.attributes.thLip;
-    LOOK.patch(m, 'thfurf' + o.cell + (o.lip ? 'l' : ''), sh => {
+    LOOK.patch(m, 'thfurf' + o.cell + (o.feet ? 'f' : ''), sh => {
       thLkHairChunks(sh, o.field, o);
       sh.vertexShader = 'attribute float thLayer;\nattribute float thHair;\nvarying float vThL;\n' + sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>
 	{ float thA = abs( thLayer ); vThL = thA / max( thHair, 1e-3 ); vec3 thN = normalize( objectNormal ), thC = thComb( position ); thC = normalize( thC - thN * dot( thC, thN ) + 1e-5 );
@@ -770,7 +778,7 @@ function thLkFur(rec, geo, o) {
       sh.fragmentShader = 'varying float vThL;\n' + sh.fragmentShader.replace('#include <map_fragment>', `#include <map_fragment>
 	{ vec3 q = vec3( dot( vThOp, vThT ) / ${F(o.cell * o.stretch)}, dot( vThOp, vThB ) / ${F(o.cell)}, dot( vThOp, vThOn ) / ${F(o.cell * 3.0)} ), c = floor( q ), f = fract( q ) - .5;
 	  float h = thHH( c ), r = abs( f.y - ( thHH( c + 2.9 ) - .5 ) * .5 );
-	  if ( h < vThL || r > .45 * ( 1.0 - vThL ) + .06 ${o.lip ? '|| vThLip > 0.3' : ''} ) discard;
+	  if ( h < vThL || r > .45 * ( 1.0 - vThL ) + .06 ${o.feet ? '|| thLipF( vThOp ) > 0.3 || thToeF( vThOp ) > 0.6 + 0.3 * h' : ''} ) discard;
 	  diffuseColor.rgb *= mix( ${F(o.root)}, ${F(o.tip)}, vThL ); }`);
     });
   } else
@@ -791,49 +799,37 @@ float thFH(vec3 p){ return fract(sin(dot(p,vec3(12.9898,78.233,45.164)))*43758.5
   im.matrixAutoUpdate = false; im.frustumCulled = false; im._lkNoCast = true; im.receiveShadow = LOOK.quality === 'high'; im.userData.lkFur = true; im.userData.noHit = true; im.raycast = () => { };   // noHit: the frame keeps its bound, so it is still culled when out of view (an own raycast made the engine give up its bound, and the dog and the boulders were drawn behind the camera)
   rec.g.add(im); rec.lkFur = im; rec.lkFurNear = o.near; rec.lkFurAny = o.any || 0;   // near: drawn within this distance of the thing in view; any: also of a thing beside it (the moss under the robin)
 }
-/* The dog's feet under the look: "Round, compact; well-arched toes and well-developed pads" (breed standard, The Royal Kennel Club,
-   "Retriever (Labrador)"). The model's coat closes over each foot as one round shape, with the claws and the pads under it; the look
-   cuts the grooves between the four toes into its top and front (each toe a rounded knuckle ending at its claw), placed from the claws
-   themselves, so they always agree with the model: 4 mm deep at the front, fading out 3.5 cm behind the claws and toward the sole.
-   Only the coat's near tier, and only its shape: the parts, their names and the pads are untouched. */
-function thLkToes(geo, claws) {
-  if (!claws || geo.userData.thToes) return; geo.userData.thToes = true;
-  const Q = claws.attributes.position, base = [];
-  for (let i = 0; i < Q.count; i++) { const y = Q.getY(i); if (y < .0045 || y > .0075) continue; const x = Q.getX(i), z = Q.getZ(i); let c = base.find(b => Math.abs(b.x / b.n - x) < .006 && Math.abs(b.z / b.n - z) < .006); if (!c) base.push(c = { x: 0, z: 0, n: 0 }); c.x += x; c.z += z; c.n++; }
-  const toes = base.map(b => ({ x: b.x / b.n, z: b.z / b.n })), feet = [];
-  for (const t of toes) { let f = feet.find(f => Math.abs(f.x - t.x) < .02 && Math.sign(f.z) === Math.sign(t.z)); if (!f) feet.push(f = { x: t.x, z: Math.sign(t.z), t: [] }); f.t.push(t.z); }
-  const P = geo.attributes.position, N = geo.attributes.normal, v = new V3(), n = new V3(), moved = [];
-  for (const f of feet) {
-    if (f.t.length < 3) continue; f.t.sort((a, b) => a - b); const gr = []; for (let k = 1; k < f.t.length; k++) gr.push((f.t[k - 1] + f.t[k]) / 2);
-    for (let i = 0; i < P.count; i++) {
-      v.fromBufferAttribute(P, i); if (v.y > .05 || v.x < f.x - .045 || v.x > f.x + .03 || Math.abs(v.z - (f.t[0] + f.t[f.t.length - 1]) / 2) > .045) continue;
-      const along = Math.max(0, Math.min(1, (v.x - (f.x - .035)) / .02)), up = Math.max(0, Math.min(1, (v.y - .003) / .006)); if (along * up <= 0) continue;
-      let g = 0; for (const z of gr) g = Math.max(g, Math.exp(-Math.pow((v.z - z) / .0032, 2)));
-      let knuckle = 0; for (const z of f.t) knuckle = Math.max(knuckle, Math.exp(-Math.pow((v.z - z) / .005, 2)));
-      const d = along * up * (.004 * g - .0008 * knuckle); if (Math.abs(d) < 1e-5) continue;
-      n.fromBufferAttribute(N, i); v.addScaledVector(n, -d); P.setXYZ(i, v.x, v.y, v.z); moved.push(i);
-    }
-  }
-  if (!moved.length) return; const N0 = N.array.slice(); geo.computeVertexNormals(); const N1 = geo.attributes.normal.array, keep = new Uint8Array(P.count); for (const i of moved) keep[i] = 1;
-  for (let i = 0; i < P.count; i++) if (!keep[i]) { N1[i * 3] = N0[i * 3]; N1[i * 3 + 1] = N0[i * 3 + 1]; N1[i * 3 + 2] = N0[i * 3 + 2]; }
-  geo.attributes.normal.needsUpdate = true; P.needsUpdate = true; geo.computeBoundingSphere(); if (geo.boundsTree) geo.boundsTree = null;
-}
 /* The dog's lips and nose leather under the look. A Labrador's lip margins are pigmented, dark brown to black even on a yellow dog (photograph:
    "Afra 013.jpg", Wikimedia Commons, public domain: the lip line #513c39 against a pale coat), and bare of the coat's hairs. The lip line
    is the model's own mouth groove (tools/things/models/dog_head.mjs, mouthGroove: the same head frame and curve), widened to the lip's
-   margin, about 5 mm each side of it. The nose leather is not smooth: its surface is a mosaic of small raised polygons, each about a
+   margin, about 3 mm each side of it (thLipF, drawn per pixel: the coat is too coarse to carry it). The nose leather is not smooth: its surface is a mosaic of small raised polygons, each about a
    millimetre or two across (the planum nasale; a judgement from photographs, no measurement found), drawn as relief on the nose's own
    surface. */
-const TH_HEADF = { o: [.30, .606], deg: -8, sc: .97 };   // dog_head.mjs HEAD, in metres
-function thLkLips(geo) {
-  if (geo.attributes.thLip) return; const P = geo.attributes.position, a = new Float32Array(P.count), th = TH_HEADF.deg * Math.PI / 180, C = Math.cos(th), Sn = Math.sin(th), SC = TH_HEADF.sc;
-  for (let i = 0; i < P.count; i++) {
-    const x = P.getX(i) * 100 - TH_HEADF.o[0] * 100, y = P.getY(i) * 100 - TH_HEADF.o[1] * 100, xl = (x * C + y * Sn) / SC, yl = (-x * Sn + y * C) / SC, zl = Math.abs(P.getZ(i) * 100) / SC;
-    if (xl < 5.5 || xl > 21 || zl < 1) continue;
-    const ym = -2.75 + (xl < 9 ? .09 * (9 - xl) ** 2 : 0) + .02 * (xl - 13), w = Math.max(0, Math.min(1, 1.6 - Math.abs(yl - ym) / .5)), e = Math.min(1, (xl - 5.5) / 1.5) * Math.min(1, (21 - xl) / 1);
-    a[i] = w * e;
-  }
-  geo.setAttribute('thLip', new THREE.BufferAttribute(a, 1));
+/* The dog's feet: "Round, compact; well-arched toes and well-developed pads" (breed standard, The Royal Kennel Club, "Retriever
+   (Labrador)"). The model's coat closes over each foot as one round shape, with the claws and pads under it, and it is too coarse (16,000
+   vertices for the whole dog) to cut toes into. Under the look the coat parts between the four toes of each foot: a groove drawn as relief
+   and shade on its top and front, 2.5 mm deep at the front, fading out 1.2 to 3 cm behind the claws and above 3 cm, and the coat's hairs
+   thin out in it.
+   The grooves lie midway between neighbouring claws, found from the claws themselves, so they always agree with the model. */
+const TH_DOGFEET = `float thToeF( vec3 p ) { float g = 0.0;
+	for ( int i = 0; i < 12; i ++ ) { vec4 t = thToeG[ i ]; if ( t.w < 0.5 ) continue;
+	  float along = smoothstep( t.x - 0.03, t.x - 0.012, p.x ) * step( p.x, t.x + 0.025 ), up = clamp( ( p.y - 0.003 ) / 0.006, 0.0, 1.0 ) * smoothstep( 0.045, 0.03, p.y );
+	  g = max( g, along * up * exp( - pow( ( p.z - t.y ) / 0.0016, 2.0 ) ) ); }
+	return g; }
+float thLipF( vec3 p ) {   // the model's mouth groove (dog_head.mjs, mouthGroove), in its head frame: origin (30, 60.6) cm, turned -8 degrees, scale 0.97
+	vec2 d = p.xy * 100.0 - vec2( 30.0, 60.6 ); float C = 0.990268, S = -0.139173, xl = ( d.x * C + d.y * S ) / 0.97, yl = ( - d.x * S + d.y * C ) / 0.97, zl = abs( p.z * 100.0 ) / 0.97;
+	if ( xl < 5.5 || xl > 21.0 || zl < 1.0 ) return 0.0;
+	float ym = -2.75 + ( xl < 9.0 ? 0.09 * ( 9.0 - xl ) * ( 9.0 - xl ) : 0.0 ) + 0.02 * ( xl - 13.0 );
+	return clamp( 1.5 - abs( yl - ym ) / 0.2, 0.0, 1.0 ) * clamp( ( xl - 5.5 ) / 1.5, 0.0, 1.0 ) * clamp( 21.0 - xl, 0.0, 1.0 ); }`;
+function thLkDogFeet(claws) {   // groove lines from the claws' bases: [x of the claws' front, z of the groove, 0, 1] for each gap between two toes
+  if (TH_LK.feet) return TH_LK.feet; const out = []; for (let i = 0; i < 12; i++) out.push(new THREE.Vector4(0, 0, 0, 0));
+  if (!claws) return TH_LK.feet = out;
+  const Q = claws.attributes.position, base = [];
+  for (let i = 0; i < Q.count; i++) { const y = Q.getY(i); if (y < .0045 || y > .0075) continue; const x = Q.getX(i), z = Q.getZ(i); let c = base.find(b => Math.abs(b.x / b.n - x) < .006 && Math.abs(b.z / b.n - z) < .006); if (!c) base.push(c = { x: 0, z: 0, n: 0 }); c.x += x; c.z += z; c.n++; }
+  const feet = [];
+  for (const b of base) { const t = { x: b.x / b.n, z: b.z / b.n }; let f = feet.find(f => Math.abs(f.x - t.x) < .02 && Math.sign(f.s) === Math.sign(t.z)); if (!f) feet.push(f = { x: t.x, s: Math.sign(t.z), t: [] }); f.t.push(t.z); }
+  let k = 0; for (const f of feet) { if (f.t.length < 3) continue; f.t.sort((a, b) => a - b); for (let j = 1; j < f.t.length && k < 12; j++) out[k++].set(f.x, (f.t[j - 1] + f.t[j]) / 2, 0, 1); }
+  return TH_LK.feet = out;
 }
 function thLkNose(m) {
   LOOK.patch(m, 'thnosecobble', sh => {
@@ -849,8 +845,10 @@ function thLkNose(m) {
 }
 /* A robin's plumage is not a painted shell: it is contour feathers, each a rounded vane on a shaft, lying over the next like roof tiles,
    all pointing back toward the tail (down the breast, back over the crown). Under the realistic look, at the high level, each plumage
-   region of the model is covered with such feathers: cards placed over its surface (about one every 3.4 mm, so each overlaps its
-   neighbours by about half), lying back along the flow at a low angle, a little longer on the back and flanks than on the face, each a
+   region of the model is covered with such feathers: cards placed over its surface (spaced at 0.4 of a feather's length, so each overlaps
+   its neighbours by more than half), lying back along the flow at a low angle, 8 mm on the breast and belly, 9.5 mm on the back, nape
+   and flanks (the face and crown, whose feathers are a few millimetres long, keep their smooth shell), lit with the body's own surface
+   normal so that they read as one coat and not as scales, each a
    feather drawn as a picture (TH_FEATHER: a vane of barbs angled toward the tip, the shaft, a rounded and slightly ragged tip, a grey
    downy base hidden under the feathers in front). The feather takes the region's colour (its data, checked against a photograph: see
    tools/things/lib/kinds.mjs), so the orange breast stops where its feathers stop, overlapping the grey border, as on the bird.
@@ -872,7 +870,7 @@ function thLkFeatherTex(flight) {
       const w = .46 * Math.pow(Math.sin(Math.PI * Math.min(1, .08 + .9 * t)), .55) * (1 - .06 * jag[Math.floor(u * 90 + 45) & 63] * Math.pow(t, 6));
       if (au > w) a = 0;
       const bar = .5 + .5 * Math.sin((t * 70 - au * 60) * Math.PI), down = Math.max(0, Math.min(1, (.42 - t) / .25));
-      g = (.94 + .1 * bar) * (1 - .45 * down) + .06 * (jag[(i >> 2) & 63] - .5);   // the downy grey base, under the feathers in front
+      g = (.97 + .06 * bar) * (1 - .15 * down) + .04 * (jag[(i >> 2) & 63] - .5);   // the downy base, under the feathers in front (a little darker; a strong step would draw scales, not plumage)
       if (au < .01 && t < .88) g = 1.1;   // the shaft
       if (down > .6 && ((i * 7 + j * 3) % 5 === 0)) a = 0;   // the down is open
       a *= Math.min(1, Math.max(0, (w - au) * S / 2.5));
@@ -894,7 +892,7 @@ function thLkPlumage(rec, geo, o) {
   const P = geo.attributes.position, N = geo.attributes.normal, I = geo.index, nt = I ? I.count / 3 : P.count / 3, tri = [], a = new V3(), b = new V3(), c = new V3(), e = new V3();
   let area = 0; for (let i = 0; i < nt; i++) { const i0 = I ? I.getX(i * 3) : i * 3, i1 = I ? I.getX(i * 3 + 1) : i * 3 + 1, i2 = I ? I.getX(i * 3 + 2) : i * 3 + 2; a.fromBufferAttribute(P, i0); b.fromBufferAttribute(P, i1); c.fromBufferAttribute(P, i2); area += e.subVectors(b, a).cross(c.sub(a)).length() / 2; tri.push([i0, i1, i2, area]); }
   const n = Math.max(4, Math.round(area / (o.step * o.step))), rnd = thRng(o.seed || 7), M = new THREE.Matrix4(), X = new V3(), Y = new V3(), Z = new V3(), p = new V3(), nn = new V3(), tmp = new V3(), q = new THREE.Quaternion(), sc = new V3();
-  const im = new THREE.InstancedMesh(TH_FEATHER.card || (TH_FEATHER.card = (() => { const g = new THREE.PlaneGeometry(1, 1); g.translate(0, .5, 0); return g; })()), null, n);
+  const card = new THREE.PlaneGeometry(1, 1); card.translate(0, .5, 0); const sn = new Float32Array(n * 3), im = new THREE.InstancedMesh(card, null, n);
   for (let k = 0; k < n; k++) {
     const r = rnd() * area; let lo = 0, hi = tri.length - 1; while (lo < hi) { const m = (lo + hi) >> 1; if (tri[m][3] < r) lo = m + 1; else hi = m; }
     const [i0, i1, i2] = tri[lo]; let u = rnd(), v = rnd(); if (u + v > 1) { u = 1 - u; v = 1 - v; }
@@ -904,11 +902,13 @@ function thLkPlumage(rec, geo, o) {
     const lift = o.lift * (.7 + .6 * rnd()); Y.addScaledVector(nn, lift).normalize(); X.crossVectors(Y, nn).normalize(); Z.crossVectors(X, Y).normalize();
     const L = o.len * (.85 + .3 * rnd()), W = L * o.aspect * (.9 + .2 * rnd());
     M.makeBasis(X, Y, Z); q.setFromRotationMatrix(M); tmp.copy(p).addScaledVector(nn, o.off).addScaledVector(Y, -L * .35);   // the root sits under the feathers behind it
-    M.compose(tmp, q, sc.set(W, L, 1)); im.setMatrixAt(k, M);
+    M.compose(tmp, q, sc.set(W, L, 1)); im.setMatrixAt(k, M); sn[k * 3] = nn.x; sn[k * 3 + 1] = nn.y; sn[k * 3 + 2] = nn.z;
   }
-  const m0 = rec.g.userData.main.material, m = new THREE.MeshStandardMaterial({ color: m0.color, roughness: m0.roughness, metalness: 0, side: THREE.DoubleSide, map: thLkFeatherTex(false), alphaTest: .5 });
+  card.setAttribute('thSN', new THREE.InstancedBufferAttribute(sn, 3));
+  const m0 = rec.g.userData.main.material, m = new THREE.MeshStandardMaterial({ color: m0.color, roughness: m0.roughness, metalness: 0, side: THREE.FrontSide, map: thLkFeatherTex(false), alphaTest: .5 });
   if (m0.defines && m0.defines.LK_SSS) m.defines = { LK_SSS: m0.defines.LK_SSS }; m.envMapIntensity = m0.envMapIntensity; m.userData.kind = 'feather';
-  LOOK.selMark(m, m0); thLkFaceView(m);
+  LOOK.selMark(m, m0);
+  LOOK.patch(m, 'thfeathern', sh => { sh.vertexShader = 'attribute vec3 thSN;\n' + sh.vertexShader.replace('#include <defaultnormal_vertex>', '#include <defaultnormal_vertex>\n\ttransformedNormal = normalize( normalMatrix * thSN );'); });   // lit as the body's surface, so the plumage reads as one coat of feathers and not as scales
   LOOK.patch(m, 'thfeathermap', sh => { sh.fragmentShader = sh.fragmentShader.replace('#include <map_fragment>', '#ifdef USE_MAP\n\t{ vec4 thF = texture2D( map, vUv ); diffuseColor.rgb *= pow( 2.0 * thF.rgb, vec3( 0.4545 ) ); diffuseColor.a *= thF.a; }\n#endif'); });   // detail with a mean of one half, proportional in linear light; its alpha is the outline
   im.material = m; im.instanceMatrix.needsUpdate = true; im.matrixAutoUpdate = false; im.frustumCulled = false; im._lkNoCast = true; im.receiveShadow = true; im.userData.noHit = true; im.userData.lkFur = true;
   rec.g.add(im); rec.lkFur = im; rec.lkFurNear = o.near; rec.lkFurAny = 0;
@@ -1123,9 +1123,10 @@ class ThingObj {
     }
     if (pd.kind === 'moss' && !rec.instanced && LOOK.quality === 'high' && LOOK.part('fur'))   // a moss cushion is a turf of shoots a centimetre tall: shells, uneven in height (tufts), olive
       thLkFur(rec, geo, { n: 8, len: .01, cell: .0014, near: 8, any: 1.5, root: .4, tip: 1.15, lenAt: v => { const s = Math.sin(v.x * 61 + Math.sin(v.z * 47)) * Math.sin(v.z * 53 + Math.sin(v.y * 71)); return .35 + .65 * (.5 + .5 * s); } });
-    if (this.def.id === 'robin' && pd.kind === 'feather' && !rec.instanced && /^r_[a-z]+(_mid)?$/.test(pd.id) && LOOK.quality === 'high' && LOOK.part('fur')) {
+    if (this.def.id === 'robin' && pd.kind === 'feather' && !rec.instanced && /^r_[a-z]+(_mid)?$/.test(pd.id) && !/^r_(face|crown)/.test(pd.id) && LOOK.quality === 'high' && LOOK.part('fur')) {   // the face's and crown's feathers are a few millimetres long and read as a smooth surface: they keep the shell
       const mid = /_mid$/.test(pd.id), face = /^r_(face|crown)/.test(pd.id);
-      thLkPlumage(rec, geo, { step: mid ? .0042 : .0034, len: face ? .0075 : /^r_(back|flank|rump)/.test(pd.id) ? .0125 : .0105, aspect: .72, lift: .16, off: .0004, near: 7, seed: pd.id.length * 131 + pd.id.charCodeAt(2) });
+      const len = face ? .0055 : /^r_(back|flank|rump|nape)/.test(pd.id) ? .0095 : .008;   // small on the face and crown, longest on the back (judged from photographs)
+      thLkPlumage(rec, geo, { step: len * (mid ? .5 : .4), len, aspect: .72, lift: .12, off: .0004, near: 7, seed: pd.id.length * 131 + pd.id.charCodeAt(2) });
     }
     if (this.def.id === 'robin' && rec.instanced && pd.kind === 'feather' && pd.instances !== 'rach') {   // wing and tail feathers: barbs, shaft and a paler fringe on the blade
       thCardUV(geo); const m = rec.g.userData.main.material; m.map = thLkFeatherTex(true); m.needsUpdate = true;
@@ -1136,11 +1137,10 @@ class ThingObj {
     if (this.def.id === 'dog' && !rec.instanced && LOOK.quality === 'high' && LOOK.part('fur')) {
       /* a Labrador's coat is short and dense, lying nose to tail; shortest on the face and the lower legs and paws (about a third), short
          on the ears; the ears lie on the head, so the head's hairs stop short of them */
-      if (pd.mesh === 'coat') { thLkToes(geo, thGeo(this.def.id, this.bundle, 'claws')); thLkLips(geo); }
-      if (pd.mesh === 'coat') thLkFur(rec, geo, { field: TH_DOGCOMB, n: 8, len: .007, cell: .0009, stretch: 9, lean: 2.4, root: .74, tip: 1.06, bare: [thGeo(this.def.id, this.bundle, 'nose'), thGeo(this.def.id, this.bundle, 'ears')], bareR: .012, lenAt: v => (v.x > .27 && v.y > .42 ? .45 + .55 * Math.max(0, Math.min(1, (.36 - v.x) / .09)) : 1) * (v.y < .3 ? .5 + .5 * Math.max(0, Math.min(1, (v.y - .1) / .2)) : 1) });
+      if (pd.mesh === 'coat') thLkFur(rec, geo, { feet: thLkDogFeet(thGeo(this.def.id, this.bundle, 'claws')), field: TH_DOGCOMB, n: 8, len: .007, cell: .0009, stretch: 9, lean: 2.4, root: .74, tip: 1.06, bare: [thGeo(this.def.id, this.bundle, 'nose'), thGeo(this.def.id, this.bundle, 'ears')], bareR: .012, lenAt: v => (v.x > .27 && v.y > .42 ? .45 + .55 * Math.max(0, Math.min(1, (.36 - v.x) / .09)) : 1) * (v.y < .3 ? .5 + .5 * Math.max(0, Math.min(1, (v.y - .1) / .2)) : 1) });
       if (pd.mesh === 'ears') thLkFur(rec, geo, { n: 6, len: .004, cell: .0011, both: true, comb: [0, -1, 0], lean: .6 });
     }
-    if (this.def.id === 'dog' && /^coat/.test(pd.id)) { const lip = !!geo.attributes.thLip; LOOK.patch(m, 'thdogcoat' + (lip ? 'l' : ''), sh => thLkHairChunks(sh, TH_DOGCOMB, { cell: .0009, stretch: 9, lip })); }
+    if (this.def.id === 'dog' && /^coat/.test(pd.id)) LOOK.patch(m, 'thdogcoat', sh => thLkHairChunks(sh, TH_DOGCOMB, { cell: .0009, stretch: 9, feet: thLkDogFeet(thGeo(this.def.id, this.bundle, 'claws')) }));   // the coat's skin carries the same streaks, pigment and sheen as its shells, and the lips and toes
     if (this.def.id === 'dog' && pd.id === 'nose') thLkNose(m);   // the coat's skin carries the same streaks, pigment and sheen as its shells
     if (this.def.id === 'dog' && pd.id === 'fur') LOOK.patch(m, 'thdogblade', sh => {   // the coat's guard-hair blades: as short as the coat where it is short (face, legs), not a halo of spikes round the head
       sh.vertexShader = sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>
