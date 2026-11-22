@@ -72,9 +72,11 @@ for (const [id, m] of Object.entries(M)) {
 
 /* ---- resolution: each material to a molecule, crystal, liquid, gas, plasma or atom ---- */
 const state = {};   // id -> 'busy' | 'ok' | 'stop' | 'bad'
+const OVER = (id) => { try { return J('data/descent/assign/tissue2.json').sub?.[id]?.over || {}; } catch (e) { return {}; } };   // `over` of assign/tissue2.json: replaces a structure's own material (js/descent.js, materialOf)
 function tissueResolves(tid, chain) {
-  const d = TISSUE2[tid]; let ok = false;
-  for (const p of d.populations || []) {
+  const d = TISSUE2[tid]; let ok = false; const ov = OVER(tid);
+  for (const p0 of d.populations || []) {
+    const p = ov[p0.id] ? { ...p0, material: ov[p0.id] } : p0;
     if (p.material) { if (!M[p.material]) { err(`tissue scene ${tid}, ${p.id}: material "${p.material}" does not exist`); continue; } const r = res(p.material, chain); if (r === 'ok') ok = true; }
     else if (p.deeper && p.deeper.type !== 'none') { if (p.deeper.type === 'mol' && !MOLS.has(p.deeper.mol)) err(`tissue scene ${tid}, ${p.id}: molecule "${p.deeper.mol}" does not exist`); ok = true; }
   }
@@ -114,7 +116,8 @@ for (const k of onDisk) checkTable(J(`data/descent/assign/${k}.json`), `assign/$
 
 /* ---- tissue scenes: every structure leads on ---- */
 const deadPops = [];
-for (const [tid, d] of Object.entries(TISSUE2)) for (const p of d.populations || []) {
+for (const [tid, d] of Object.entries(TISSUE2)) for (const p0 of d.populations || []) {
+  const p = OVER(tid)[p0.id] ? { ...p0, material: OVER(tid)[p0.id] } : p0;
   if (p.material) { used.add(p.material); if (!M[p.material]) err(`tissue scene ${tid}, ${p.id}: material "${p.material}" does not exist`); }
   else if (!p.deeper || p.deeper.type === 'none') deadPops.push(`${tid}.${p.id}`);
 }

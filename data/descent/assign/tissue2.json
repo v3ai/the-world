@@ -21,6 +21,34 @@
   "pond_drop": {
    "default": "water",
    "everywhere": true
+  },
+  "oak_bark": {
+   "over": {
+    "cork": "cork_wall"
+   }
+  },
+  "lung_alveoli": {
+   "over": {
+    "septum": "alveolar_septum",
+    "barrier": "blood_air_barrier"
+   }
+  },
+  "dog_skin": {
+   "over": {
+    "fat": "adipose_mammal"
+   }
+  },
+  "kidney_cortex": {
+   "over": {
+    "tuft": "vessel_wall",
+    "loops": "vessel_wall",
+    "peri": "vessel_wall"
+   }
+  },
+  "loose_connective_fat": {
+   "over": {
+    "capillary": "vessel_wall"
+   }
   }
  }
 }
