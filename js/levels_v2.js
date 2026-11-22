@@ -1110,9 +1110,10 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
     sm.geometry.computeBoundingBox(); const c = sm.geometry.boundingBox.getCenter(new V3()).applyMatrix4(sm.matrixWorld);
     PC.cam.position.set(c.x, c.y + .03, c.z); PC.cam.updateMatrixWorld(true);
     const vis = sm.visible, rt0 = renderer.getRenderTarget(), ex = renderer.toneMappingExposure, au = renderer.shadowMap.autoUpdate;
-    sm.visible = false; renderer.shadowMap.autoUpdate = false; renderer.toneMappingExposure = LK.exposureOf(F);
+    const skm = F.v2 && F.v2.parts.sky && F.v2.parts.sky.material, bl = skm && skm.blending;   // the sky is see-through at night (the stars of the frames above show through it): in the cube there is nothing behind it, so it is drawn opaque there
+    sm.visible = false; renderer.shadowMap.autoUpdate = false; renderer.toneMappingExposure = LK.exposureOf(F); if (skm) skm.blending = THREE.NoBlending;
     try { PC.cam.update(renderer, F.scene); } catch (e) { console.warn('park look: pond reflection', e && e.message); }
-    renderer.setRenderTarget(rt0); renderer.toneMappingExposure = ex; renderer.shadowMap.autoUpdate = au; sm.visible = vis;
+    if (skm) skm.blending = bl; renderer.setRenderTarget(rt0); renderer.toneMappingExposure = ex; renderer.shadowMap.autoUpdate = au; sm.visible = vis;
     PC.on.value = 1; PC.t = now; PC.key = key; if (su) PC.sun.copy(su.dir);
   }
 
@@ -1159,6 +1160,7 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
     const bmat = bm.material;
     if (bmat && bmat.isMeshStandardMaterial && !bmat.userData.pkBank) {
       bmat.userData.pkBank = true;
+      if (bmat.defines && bmat.defines.LK_TRI) { delete bmat.defines.LK_TRI; bmat.map = null; bmat.normalMap = null; }   // the bank's mud is drawn here (below), not also by the things' mud set laid on from three sides
       LK.patch(bmat, 'pkbank', sh => {
         Object.assign(sh.uniforms, { uParkC: U.uParkC, uEarth: { value: TEX ? tx('brown_mud_color_512.jpg', { detail: true }) : flat([128, 128, 128]) }, uMudN: { value: TEX ? tx('brown_mud_normal_gl_512.jpg', { normal: true }) : flat([128, 128, 255]) }, uEll: PU.uEll, uPS: PU.uPS, uBankW: PU.uBankW, uNz: U.uNz });
         sh.vertexShader = 'uniform vec3 uParkC; varying vec3 lkPk; varying vec3 lkLoc;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tlkLoc = transformed; lkPk = ( modelMatrix * vec4( transformed, 1.0 ) ).xyz + uParkC;');
@@ -1191,7 +1193,7 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
         const g = .38 + pr() * .22, wet = e < 1.03 ? .7 : 1; im.setColorAt(n++, cc.setRGB(g * 1.04 * wet, g * wet, g * .9 * wet));   // grey-brown flint gravel; darker where wet
       }
       im.count = n; im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true;
-      im.userData.noPick = true; im.receiveShadow = true; im.castShadow = false; T.group.add(im); POND.pebbles = im;
+      im.userData.noPick = true; im.receiveShadow = true; im.castShadow = false; im.frustumCulled = false; T.group.add(im); POND.pebbles = im;   // (its geometry's bound is one pebble at the pond's middle, not the ring: the pond's own culling decides)
     }
     return true;
   }
@@ -1262,14 +1264,14 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
     F.scene.onBeforeRender = function (r, s, camr) { if (fog) { fog.near = 0; fog.far = 1 / HZ.uHazeK.value.x; } if (b0) b0.call(this, r, s, camr); };
     // the clouds made of lumps are not drawn: the sky has its own (their groups stay as the place that search and the cloud card point to)
     g.children.forEach(o => { if (o.userData && o.userData.id === 'cloud') o.visible = false; });
-    F.note = 'The sky is computed for the real Sun at this hour; its clouds are typical small fair-weather cumulus, not today\'s weather. Beyond the park the ground, its hills and the far trees are generic shapes, with no roads or buildings, and they fade into the haze of a hazy summer day (about 10 km of visibility), thicker than on a clear one.';
+    F.note = 'The sky is computed for the real Sun at this hour; its clouds are typical small fair-weather cumulus, not today\'s weather. Beyond the park the ground, its hills and the far trees are generic shapes, with no roads or buildings, and they fade into the haze of a hazy summer day (about 10 km of visibility), thicker than on a clear one. After sunset the light is the twilight sky, then the Moon at its real place, phase and brightness and the night sky\'s own faint glow; the picture is brightened as an eye adapts to the dark, far less than the light has fallen. London\'s own glow in the night sky is not drawn.';
     const up0 = F.update; let tMask = 0, tPond = 0;
     F.update = (dt, t) => {
       up0(dt, t);
       if (P.sky.visible && F.C) P.sky.position.y = F.C.y;   // the sky's dome round the eye, also above the ground: its horizon at the eye's level
       if (!P.sky.material.userData.pkClouds && P.sky.material.uniforms && P.sky.material.uniforms.uGain) K.skyClouds(P.sky.material);
       cloudStep(P.sky.material); if (P.sg) P.sg.visible = false;
-      { const su = LK.sun(); U.uSunUp.value = su ? smooth(-.01, .08, su.dir.y) : 1; if (su) hazeStep(su.dir); U.uSunVis.value = su ? smooth(-.012, .012, su.dir.y) : 1; HZ.uHazeK.value.z = LK.part('sky') ? 1 : 0; }   // the sky draws the Sun's glare itself (its aureole): no sprite over it
+      { const su = LK.sun(), ky = LK.key ? LK.key() : su; U.uSunUp.value = ky ? smooth(-.01, .08, ky.dir.y) : 1; if (su) hazeStep(su.dir); U.uSunVis.value = ky ? smooth(-.012, .012, ky.dir.y) : 1;   /* (the key light: the Moon at night) */ HZ.uHazeK.value.z = LK.part('sky') ? 1 : 0; }   // the sky draws the Sun's glare itself (its aureole): no sprite over it
       const now = performance.now();
       if (now - tMask > 2000) { tMask = now; maskDraw(F); }
       if (now - tPond > 1000) { tPond = now;   // the pond's parts can be rebuilt (a new level of detail, the thing built again): dress them again when they are
@@ -1404,7 +1406,7 @@ void main(){
     }
     /* the sky over the Earth's places: the same computed sky as the park's, with its clouds; a haze to the horizon (the sea's water reaches past it) */
     if (earth && L.sky && LK.part('sky')) {
-      const m = L.sky.material; Object.assign(m.uniforms, { uDisc: { value: 1 }, uEnv: { value: 0 }, uGain: { value: .08 }, uOpacity: { value: 1 } }); m.fragmentShader = LDF(LK.SKY_FRAG); m.needsUpdate = true; K.skyClouds(m);
+      const m = L.sky.material; Object.assign(m.uniforms, { uDisc: { value: 1 }, uEnv: { value: 0 }, uGain: { value: .08 }, uOpacity: { value: 1 } }, LK.skyUniforms ? LK.skyUniforms() : {}); m.fragmentShader = LDF(LK.SKY_FRAG); m.needsUpdate = true; K.skyClouds(m);
       F.scene.fog = new THREE.FogExp2(0xbfcbd6, B.water ? 4.5e-5 : 2.2e-4);
     }
     /* the sea: the water's own colour (about 1 percent of blue light comes back up out of deep open ocean, less of green, almost none of red:
@@ -1436,7 +1438,7 @@ void main(){
       up0(dt, t);
       if (K._seaT) K._seaT.value = typeof simTime !== 'undefined' ? (simTime / 1000) % 1e4 : t;
       if (F.scene.fog && F.scene.fog.isFogExp2) { const s = sunDirIn(F), c = LK.horizon(s, LK.exposureOf(F)); F.scene.fog.color.setRGB(c[0], c[1], c[2]); }
-      if (L.sky) cloudStep(L.sky.material);
+      if (L.sky) { cloudStep(L.sky.material); if (LK.skyNight) LK.skyNight(L.sky.material.uniforms, sunDirIn(F).y); }
       /* the shadow's square follows where the camera looks */
       const s = sunDirIn(F); if (s.y > 0 && typeof cam !== 'undefined') { fv.copy(cam.T); if (cam.A !== F && typeof convertP === 'function') convertP(fv, cam.A, F); const h = Math.max(12, Math.min(60, cam.D * 1.5));
         Object.assign(SH.camera, { left: -h, right: h, top: h, bottom: -h, near: 1, far: 400 + h * 2 }); SH.camera.updateProjectionMatrix(); sun.target.position.copy(fv); sun.position.copy(fv).addScaledVector(s, 200 + h); sun.target.updateMatrixWorld(); SH.normalBias = 2 * h / SH.mapSize.x * 1.2; }

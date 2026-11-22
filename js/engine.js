@@ -1245,6 +1245,7 @@ THREE.InstancedMesh.prototype.raycast = function (rc, out) {
 /* the bounding sphere of everything pickable in a frame, in the frame's own coordinates. It is worked out in idle slices (pkIdle, every half
    second while the camera rests), never inside a pick; until a frame has one, or after its content changed, the frame is simply not skipped. */
 function pkExpand(o, box) {
+  if (o.userData.noHit) return true;   // drawn, never hit and not part of the bound (a coat's shells hang off the part they cover: its own bound holds them)
   if (o.isInstancedMesh && o.count >= 16 && o.geometry.attributes.position) {
     const b = pkInstAccel(o).box; if (b.isEmpty()) return true;
     for (let i = 0; i < 8; i++) box.expandByPoint(_pkV.set(i & 1 ? b.max.x : b.min.x, i & 2 ? b.max.y : b.min.y, i & 4 ? b.max.z : b.min.z).applyMatrix4(o.matrixWorld));
@@ -1428,7 +1429,8 @@ let hovered = null;
 const _hc = new THREE.Color(.22, .24, .3);
 function setHighlight(obj, on) { // returns how many materials took the glow
   if (!obj) return 0; let n = 0;
-  obj.traverse(o => { const m = o.material; if (!o.isMesh || !m || !m.emissive || m.userData.noHL) return; n++; if (m.userData.baseEm === undefined) m.userData.baseEm = m.emissive.getHex(); if (on) m.emissive.setHex(m.userData.baseEm).add(_hc); else m.emissive.setHex(m.userData.baseEm); });
+  const LK = LOOK.on && LOOK.part('pbr');   // the realistic look: the one selection mark of the foundation (DESIGN 3.10), not a glow
+  obj.traverse(o => { const m = o.material; if (!o.isMesh || !m || !m.emissive || m.userData.noHL) return; n++; if (LK && LOOK.selSet(m, on ? 1 : 0)) return; if (m.userData.baseEm === undefined) m.userData.baseEm = m.emissive.getHex(); if (on) m.emissive.setHex(m.userData.baseEm).add(_hc); else m.emissive.setHex(m.userData.baseEm); });
   return n;
 }
 function setHover(o) { if (o === hovered) return; setHighlight(hovered, false); hovered = o; setHighlight(hovered, true); if (typeof selHit !== 'undefined' && selHit && selHit.obj !== o) setHighlight(selHit.obj, true); canvas.style.cursor = o ? 'pointer' : 'grab'; } // the selected thing keeps its glow when the pointer leaves it

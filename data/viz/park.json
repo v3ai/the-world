@@ -55,11 +55,11 @@
   "type": "plot",
   "x": [
    0,
-   1
+   30
   ],
   "y": [
    0,
-   2
+   60
   ],
   "params": [
    {
@@ -81,8 +81,14 @@
   ],
   "fns": [
    {
-    "f": "sqrt(r1^2+r2^2)/10",
-    "label": "trunk radius by the pipe model (×10 cm)"
+    "f": "sqrt(r1^2+x^2)",
+    "label": "trunk radius by the pipe model"
+   },
+   {
+    "f": "r1+x",
+    "label": "if the radii simply added (they do not)",
+    "dash": true,
+    "color": "dim"
    }
   ],
   "readouts": [
@@ -97,7 +103,16 @@
     "unit": "cm²"
    }
   ],
-  "caption": "The pipe model: the trunk below a fork has about the same cross-section as the limbs above it added together, so its radius is the square root of the sum of the squares. An approximation, not an exact law."
+  "caption": "The pipe model: the trunk below a fork has about the same cross-section as the limbs above it added together, so its radius is the square root of the sum of the squares. An approximation, not an exact law.",
+  "xlabel": "radius of limb 2 (cm)",
+  "ylabel": "trunk radius (cm)",
+  "points": [
+   {
+    "x": "r2",
+    "y": "sqrt(r1^2+r2^2)",
+    "label": "these two limbs"
+   }
+  ]
  },
  "oak_bark": {
   "type": "blocks",

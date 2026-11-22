@@ -75,6 +75,10 @@ const MD = {
     if (!MD.on) return; let n = F.note || '';
     const fix = v => { if (!v || /^(Model|Diagram|As it looks)\b/.test(v)) return v; v = String(v); const low = v.length > 1 && v[1] === v[1].toLowerCase() ? v[0].toLowerCase() + v.slice(1) : v;
       return (/^[^:.]{1,40}:\s/.test(v) ? word + ', ' : word + ': ') + low + (tail && !v.includes(tail) ? ' ' + tail : ''); };
+    const d0 = Object.getOwnPropertyDescriptor(F, 'note');
+    if (d0 && d0.get && d0.set) {   // a scene reached through the descent table already wraps its note with its honesty line ("A stand-in. ..."): that line stays first, the kind leads what follows it
+      let inner = ''; Object.defineProperty(F, 'note', { configurable: true, enumerable: true, get: d0.get, set: v => { inner = fix(v); d0.set.call(F, inner); } }); F.note = inner; return;
+    }
     Object.defineProperty(F, 'note', { configurable: true, enumerable: true, get: () => n, set: v => { n = fix(v); } }); F.note = n;
   },
   /* a model's stage: graphite ground, and fog in the ground's colour from just in front of the model to a few of its sizes behind,

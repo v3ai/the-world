@@ -19,6 +19,7 @@
                            (env, shadow, glow and labels change live; the others reload the page)
      lookexp=<number>      its exposure (default 0.9); live
      looksky=sky|photo|overcast  the sky over the park: computed (default), the photograph at its own hour, or the cloudy one; reloads
+     theme=dark|light      with look=2, the interface's dark or light tokens whatever the system says (read in js/look_ui.js)
    ===================================================================== */
 const PERF = (() => {
   const q = new URLSearchParams(location.search), get = (k, ok, d) => { const v = q.get(k); return v !== null && (!ok || ok.includes(v)) ? v : d; };

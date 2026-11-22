@@ -212,6 +212,9 @@ The target is 60 frames a second on a mid-range laptop GPU and a usable frame ra
 | `merge` | `1`, `0` | draw co-rendered things inside their parent's scene |
 | `idle` | `1`, `0` | about 30 frames a second when nothing moves |
 | `fx` | none, `low`, `high` | preset: `low` = no bloom, no shadow, outline 0, scale at most 1; `high` = full bloom, all outlines |
+| `stats` | none, `1` | show the meter from the start (as Shift+P does) |
+| `theme` | none, `dark`, `light` | with `look=2`: the interface's dark or light tokens, whatever the system setting says (for tests and pictures; without it the interface follows the system) |
+| `look`, `lookq`, `lookoff`, `lookexp`, `looksky` | see docs/DESIGN.md section 3 | the realistic picture and its parts |
 
 - The counters behind the meter are always on: `PERF.cpu`, `PERF.calls`, `PERF.tris`, `PERF.renders` (scenes drawn), `PERF.passes`, `PERF.pickPct()`, `PERF.report()`.
 - No GPU on the test machine: Chromium draws with SwiftShader there, so only counts and CPU times mean anything. Reason from counts, CPU time and passes, and say which numbers are measured and which are expected.
