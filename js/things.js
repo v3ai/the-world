@@ -299,7 +299,7 @@ function thPatch(mat, sp, L) {
    these surfaces was found), except where a source is named. Albedo stays the part's own colour (its data); `alb` is the
    linear-light range a colour of the kind should fall in, used by the bake's check (tools/things/lib/kinds.mjs), with its source. */
 const TH_KINDS = {
-  wing: { rough: .22, thin: [.5, .5, .5] },                    // an insect wing: a clear membrane
+  wing: { rough: .22 },                                         // an insect wing: a clear membrane (light goes straight through it, not scattered: no 'thin')
   mucosa: { rough: .3, sss: [.26, .08, .05] },                 // a moist lining: smoother than skin (skin 0.5: physicallybased.info "Skin I-VI")
   cap: { rough: .42, sss: [.24, .1, .06] },                    // the fly agaric's cap: a viscid, waxy skin that shines
   gill: { rough: .85, sss: [.2, .18, .14] },                   // gills and the cap's underside: matte, thin plates
@@ -386,6 +386,19 @@ function thLkLeaves() {
     }
     TH_LEAF.rosette.image = rc; TH_LEAF.rosette.needsUpdate = true; TH_LEAF.rosetteA.image = ra; TH_LEAF.rosetteA.needsUpdate = true;
     for (const t of [TH_LEAF.atlas, TH_LEAF.alpha, TH_LEAF.normal, TH_LEAF.rosette, TH_LEAF.rosetteA]) t.anisotropy = 4;
+    /* each card shows its leaf filling it, as the drawn outline did: the leaf's own box in its cell, widened to the card's shape (0.7
+       wide to 1 long), so the photograph is neither stretched nor left small in an empty margin */
+    const R = document.createElement('canvas'), RW = 192, RH = 128; R.width = RW; R.height = RH; const rg = R.getContext('2d'); rg.drawImage(o, 0, 0, RW, RH); const A = rg.getImageData(0, 0, RW, RH).data;
+    TH_LEAF.rects = [];
+    for (let c = 0; c < 6; c++) {
+      const cx = (c % 3) * RW / 3, cy = (1 - Math.floor(c / 3)) * RH / 2; let x0 = 1e9, x1 = -1, y0 = 1e9, y1 = -1;
+      for (let y = cy; y < cy + RH / 2; y++) for (let x = cx; x < cx + RW / 3; x++) if (A[(y * RW + x) * 4] > 127) { x0 = Math.min(x0, x); x1 = Math.max(x1, x + 1); y0 = Math.min(y0, y); y1 = Math.max(y1, y + 1); }
+      if (x1 < 0) { x0 = cx; x1 = cx + RW / 3; y0 = cy; y1 = cy + RH / 2; }
+      let w = x1 - x0, h = y1 - y0, mx = (x0 + x1) / 2, my = (y0 + y1) / 2;
+      if (w / h < .7) w = h * .7; else h = w / .7;
+      const u0 = Math.max(0, (mx - w / 2) / RW), u1 = Math.min(1, (mx + w / 2) / RW), vTop = Math.max(0, (my - h / 2) / RH), vBot = Math.min(1, (my + h / 2) / RH);
+      TH_LEAF.rects.push(new THREE.Vector4(u0, 1 - vBot, u1 - u0, vBot - vTop));
+    }
     TH_LEAF.ok = true;
   }).catch(() => { }));
   return TH_LEAF.p;
@@ -397,7 +410,7 @@ function thLkApplyLeaves(rec) {
   if (!cluster) {
     if (!geo.attributes.thCell) { const n = rec.g.count, c = new Float32Array(n); for (let i = 0; i < n; i++) { let h = Math.imul(i + 1, 2654435761) >>> 0; h ^= h >>> 15; c[i] = h % 6; } geo.setAttribute('thCell', new THREE.InstancedBufferAttribute(c, 1)); }
     m.normalMap = TH_LEAF.normal; m.normalScale.set(.6, .6);
-    LOOK.patch(m, 'thleafatlas', sh => { sh.vertexShader = 'attribute float thCell;\n' + sh.vertexShader.replace('#include <uv_vertex>', '#include <uv_vertex>\n\tvUv = ( vec2( mod( thCell, 3.0 ), floor( thCell / 3.0 ) ) + vUv ) * vec2( 1.0 / 3.0, 0.5 );'); });
+    LOOK.patch(m, 'thleafatlas', sh => { sh.uniforms.thRect = { value: TH_LEAF.rects }; sh.vertexShader = 'attribute float thCell;\nuniform vec4 thRect[6];\n' + sh.vertexShader.replace('#include <uv_vertex>', '#include <uv_vertex>\n\t{ vec4 r = thRect[int( thCell + 0.5 )]; vUv = r.xy + vUv * r.zw; }'); });
   }
   m.needsUpdate = true;
 }
@@ -446,12 +459,12 @@ function thLkAO(m, geo) {
    layer that keeps its edges (a ghost is brighter where it is seen edge-on, as a glass shell is) */
 function thLkMarks(m) {
   if (!m || !m.isMeshStandardMaterial || m.userData.thRim) return; m.userData.noHL = true;
-  const rim = m.userData.thRim = { value: new THREE.Vector4(0, 0, 0, 0) };
+  const rim = m.userData.thRim = { value: new THREE.Vector4(0, 0, 0, 0) }, ghost = m.userData.thGhost = { value: 0 };   // ghost: 1 while the part is faded to see through it (not a part that is clear by nature, like a wing)
   LOOK.patch(m, 'thmarks', sh => {
-    sh.uniforms.uThRim = rim;
-    sh.fragmentShader = 'uniform vec4 uThRim;\n' + sh.fragmentShader
+    sh.uniforms.uThRim = rim; sh.uniforms.uThGhost = ghost;
+    sh.fragmentShader = 'uniform vec4 uThRim;\nuniform float uThGhost;\n' + sh.fragmentShader
       .replace('#include <emissivemap_fragment>', '#include <emissivemap_fragment>\n\ttotalEmissiveRadiance += uThRim.rgb * uThRim.a * pow( 1.0 - saturate( abs( dot( normal, normalize( vViewPosition ) ) ) ), 2.5 );')
-      .replace('#include <dithering_fragment>', '#include <dithering_fragment>\n\tif ( opacity < 0.999 ) { float thF = 1.0 - saturate( abs( dot( normal, normalize( vViewPosition ) ) ) ); gl_FragColor.a = min( 1.0, gl_FragColor.a * mix( 0.45, 2.2, thF * thF ) ); }');
+      .replace('#include <dithering_fragment>', '#include <dithering_fragment>\n\tif ( uThGhost > 0.5 ) { float thF = 1.0 - saturate( abs( dot( normal, normalize( vViewPosition ) ) ) ); gl_FragColor.a = min( 1.0, gl_FragColor.a * mix( 0.45, 2.2, thF * thF ) ); }');
   });
 }
 
@@ -674,7 +687,7 @@ class ThingObj {
         const isSel = this.sel === pd.id;
         mat.opacity = op; mat.transparent = op < .99; mat.depthWrite = op > .9; if (mat.clippingPlanes !== planes) { mat.clippingPlanes = planes; mat.needsUpdate = true; }
         const ol = g.userData.ol, olK = isSel || this.hovId === pd.id ? 1 : this.olK; if (ol) { ol.visible = op > .5 && !pd.noink && olK > .02; ol.material.uniforms.uOpacity.value = .85 * op * olK; ol.material.uniforms.uColor.value.setHex(isSel ? 0x1e4e8f : 0x1a1f2b); if (ol.material.clippingPlanes !== planes) { ol.material.clippingPlanes = planes; ol.material.needsUpdate = true; } }
-        if (TH_LK.on) { const rim = mat.userData.thRim; if (rim) { const a = isSel ? 1.4 : this.hovId === pd.id ? .7 : 0; if (rim.value.w !== a * op) { const c = isSel ? TH_LK.rimSel : TH_LK.rimHov; rim.value.set(c.r, c.g, c.b, a * op); } } if (r.lkSet) thLkApplySet(r); if (r.lkLeaf) thLkApplyLeaves(r); if (r.lkFur) r.lkFur.visible = op > .95 && !cut; }
+        if (TH_LK.on) { const rim = mat.userData.thRim; if (mat.userData.thGhost) mat.userData.thGhost.value = op < .995 ? 1 : 0; if (rim) { const a = isSel ? 1.4 : this.hovId === pd.id ? .7 : 0; if (rim.value.w !== a * op) { const c = isSel ? TH_LK.rimSel : TH_LK.rimHov; rim.value.set(c.r, c.g, c.b, a * op); } } if (r.lkSet) thLkApplySet(r); if (r.lkLeaf) thLkApplyLeaves(r); if (r.lkFur) r.lkFur.visible = op > .95 && !cut; }
         const cap = g.userData.cap; if (cap) { cap.visible = !!cut && op > .5; cap.material.uniforms.uOpacity.value = op; cap.material.transparent = op < .995; }
       }
     }
