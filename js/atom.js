@@ -293,6 +293,14 @@ var AQ = (function () {
    =================================================================================================================== */
 var AQ_SHELL_HUE = { 1: [0.23, 0.50, 0.94], 2: [0.17, 0.71, 0.80], 3: [0.13, 0.84, 0.56], 4: [0.37, 0.82, 0.17], 5: [0.66, 0.85, 0.09], 6: [0.91, 0.69, 0.13], 7: [0.93, 0.48, 0.13] };
 var AQ_SHELL_CSS = { 1: '#3b82f0', 2: '#2bb5cc', 3: '#22d68f', 4: '#5ed12b', 5: '#a8d817', 6: '#e8b021', 7: '#ee7a21' };
+/* Under the realistic look (?look=2) the cloud is a plot on the interface's plate (docs/DESIGN.md 3.1, 4): the shells take the figure code's
+   colours in its order (blue, teal, green, ochre, red, violet, grey), the swatches of the configuration strip with them. Off, nothing changes. */
+var AQ_LOOK = typeof LOOK !== 'undefined' && LOOK.on;
+var AQ_PLATE = '#eef0ef';
+if (AQ_LOOK) {
+  AQ_SHELL_CSS = { 1: '#1e4e8f', 2: '#1f7a78', 3: '#3f7a3a', 4: '#96690a', 5: '#b4412f', 6: '#6b4a9c', 7: '#5d6670' };
+  AQ_SHELL_HUE = {}; for (const k in AQ_SHELL_CSS) { const h = parseInt(AQ_SHELL_CSS[k].slice(1), 16); AQ_SHELL_HUE[k] = [(h >> 16) / 255, (h >> 8 & 255) / 255, (h & 255) / 255]; }
+}
 var AQ_ELEMENT_NAMES = {};   // optional: symbol -> name, filled by the host for labels
 
 var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
@@ -326,6 +334,18 @@ var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
       col += vec3(0.30) * pow(max(dot(reflect(-L, n), vec3(0.0, 0.0, 1.0)), 0.0), 20.0) * (0.4 + 0.6 * vSh);
       gl_FragColor = vec4(col, uOpacity);
     }`);
+  /* the same samples drawn as a plot (the look): each dot a flat, round mark with a soft edge, no light and no highlight (a sample has no
+     surface). Two cues, both from the data: dots that lie behind much of the cloud are a little darker (the optical depth computed in
+     _shade), and dots further from the eye fade toward the plate, as far marks do in a printed stereo plot. */
+  const FRAG_PLOT = lf(`
+    uniform float uOpacity; uniform vec3 uPlate; varying vec3 vCol; varying float vSh; varying float vDepth;
+    void main(){
+      vec2 d = gl_PointCoord * 2.0 - 1.0; float r2 = dot(d, d); if (r2 > 1.0) discard;
+      float a = 1.0 - smoothstep(0.55, 1.0, r2);
+      vec3 col = vCol * (0.82 + 0.18 * vSh);
+      col = mix(col, uPlate, (1.0 - vDepth) * 0.5);
+      gl_FragColor = vec4(col, uOpacity * a);
+    }`);
 
   /* pale studio backdrop with a soft vignette (one texture, shared by the app frame and the test page) */
   let backdropTex = null;
@@ -333,7 +353,7 @@ var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
     if (backdropTex) return backdropTex;
     const c = document.createElement('canvas'); c.width = 256; c.height = 256; const g = c.getContext('2d');
     const gr = g.createRadialGradient(128, 118, 8, 128, 128, 190); gr.addColorStop(0, '#f6f6f4'); gr.addColorStop(0.55, '#e8e9ea'); gr.addColorStop(1, '#c3c7cc');
-    g.fillStyle = gr; g.fillRect(0, 0, 256, 256);
+    g.fillStyle = AQ_LOOK ? AQ_PLATE : gr; g.fillRect(0, 0, 256, 256);   // the look: a plain plate, no vignette
     backdropTex = new THREE.CanvasTexture(c); return backdropTex;
   }
   function ringTexture() {
@@ -352,8 +372,8 @@ var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
       this.slowAuto = true; this.slow = 1e16; this.flowOn = true; this.T = 0; this.spec = null; this.label = ''; this.extent = 10;
       this.view = { px: 800 * 1.0722, fov: 50 }; this.slowFrames = 0; this.ema = 0.016; this.onQuality = null;
       this.mat = new THREE.ShaderMaterial({
-        uniforms: { uT: { value: 0 }, uDyn: { value: 0 }, uCut: { value: this.cut ? 1 : 0 }, uSize: { value: 0.1 }, uPx: { value: 800 }, uMinPx: { value: 1.6 }, uRad: { value: 10 }, uFace: { value: 0.3 }, uOpacity: { value: 1 } },
-        vertexShader: VERT, fragmentShader: FRAG, transparent: true, depthTest: true, depthWrite: true
+        uniforms: { uT: { value: 0 }, uDyn: { value: 0 }, uCut: { value: this.cut ? 1 : 0 }, uSize: { value: 0.1 }, uPx: { value: 800 }, uMinPx: { value: 1.6 }, uRad: { value: 10 }, uFace: { value: 0.3 }, uOpacity: { value: 1 }, uPlate: { value: new THREE.Color(AQ_PLATE) } },
+        vertexShader: VERT, fragmentShader: AQ_LOOK ? FRAG_PLOT : FRAG, transparent: true, depthTest: true, depthWrite: true
       });
       this.points = null;
       const mg = new THREE.BufferGeometry(); mg.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0], 3));
@@ -694,7 +714,7 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
       count: store.get('atomCount', (window.innerWidth <= 860 || /Mobi|Android/i.test(navigator.userAgent)) ? 100000 : 200000), bi: 3, bf: 2, extentPm: 150, spec: null, anim: null, track: [], lbls: [], J: null };
     if (!ATM.MODELS[S.model]) S.model = 'quantum';
     S.home = sym0; ATM.frames.add(F);
-    F.illo = true; F.env = { opaque: true, bg: 0xe9eaec }; F.scene.background = AtomCloud.backdrop();
+    F.illo = true; F.env = { opaque: true, bg: AQ_LOOK ? 0xeef0ef : 0xe9eaec }; F.scene.background = AtomCloud.backdrop(); if (typeof MD !== 'undefined') MD.kind(F, 'Diagram', 'Each dot is one sample of where the electron could be found; colour marks the shell (n) and is not a real colour.');
     F.add(new THREE.AmbientLight(0xffffff, 0.72)); const dl = new THREE.DirectionalLight(0xffffff, 0.85); dl.position.set(-3, 5, 6); F.add(dl);
     const cloud = new AtomCloud({ unit: AQ.A0_PM, count: S.count, cut: false }); F.add(cloud.group); F.cloud = cloud;
     cloud.group.remove(cloud.marker); cloud.marker.scale.set(1, 1, 1); F.add(cloud.marker);
