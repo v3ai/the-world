@@ -534,6 +534,7 @@ function buildRuler() {
   if (n && items[n - 1].p > h - 6) { items[n - 1].p = h - 6; for (let k = n - 2; k >= 0; k--) items[k].p = Math.min(items[k].p, items[k + 1].p - gap); }
   items.forEach(it => { svg += `<path class="lead" d="M15 ${it.y} L48 ${it.y} L58 ${it.p}"/>`; });
   svg += '</svg>'; box.insertAdjacentHTML('beforeend', svg);
+  { const ld = box.querySelectorAll('path.lead'); items.forEach((it, k) => { it.L._lead = ld[k]; }); }   // the leader line of each name, so the name and its line can be shown and hidden together
   items.forEach(it => { const b = document.createElement('button'); b.className = 'lm'; b.style.top = it.p + 'px'; b.textContent = it.L.label; b.title = `Fly to ${it.L.label} (${fmtLen(it.L.D)} across)`; b.onclick = () => { cancelTour(); it.L.go(); }; it.L._el = b; box.appendChild(b); });
   const m = document.createElement('i'); m.id = 'rulerMark'; m.innerHTML = '<span class="ro" id="rulerRO"></span>'; box.appendChild(m);
   // on a phone the strip has no room for names: tapping it opens a small list of the places on the scale around where you tapped (and says where you are now); tap one to fly there
@@ -570,6 +571,8 @@ function updateRuler() {
   // the name is bold only where the camera really is: a landmark whose frame is not on the camera's path (another cell, a surface you flew past) is not named, the scale tick still shows the size
   const path = chainOf(cam.A); let best = null, bd = .35; LANDMARKS.forEach(L => { const d = Math.abs(Math.log10(L.D) - e); if (d < bd && lmHere(L, path)) { bd = d; best = L; } });
   LANDMARKS.forEach(L => L._el && L._el.classList.toggle('near', L === best));
+  /* the new look: a side stop (an organ, the phone) is named only within three decades of where you are, so that about twenty names are on the ruler at a time (docs/DESIGN.md 2.4) */
+  if (typeof LOOK !== 'undefined' && LOOK.on) LANDMARKS.forEach(L => { if (!L._el) return; const far = !!L.side && L !== best && Math.abs(Math.log10(L.D) - e) > 3; if (far !== !!L._far) { L._far = far; L._el.classList.toggle('lk-far', far); if (L._lead) L._lead.classList.toggle('lk-far', far); } });
 }
 
 /* ================= TOUR (continuous Powers-of-Ten flight) ================= */

@@ -1755,8 +1755,16 @@ function declutterLabels(now) {
   if (now - lblClashT < 160) return; lblClashT = now;
   const items = []; for (const el of labelLayer.children) if (el.style.display !== 'none') items.push({ e: el, pri: +el.dataset.pri || 0, r: el.getBoundingClientRect() }); else if (el.classList.contains('lblhide')) el.classList.remove('lblhide');
   items.sort((a, b) => b.pri - a.pri || a.r.top - b.r.top);
-  const kept = [];
-  for (const it of items) { const r = it.r, clash = kept.some(k => !(r.right + 4 < k.left || r.left - 4 > k.right || r.bottom + 2 < k.top || r.top - 2 > k.bottom)); it.e.classList.toggle('lblhide', clash); if (!clash) kept.push(r); }
+  const kept = [], look = typeof LOOK !== 'undefined' && LOOK.on;
+  /* under the new look (docs/DESIGN.md 2.4): a name does not run under the ruler, the main buttons, the search field or the open panel, and where names have priorities the lower ones are set at 60 percent */
+  const under = look ? ['#ruler', '#topright', '#srch', '#panel:not(.min)', '.pop.open'].map(q => document.querySelector(q)).filter(e => e && e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden').map(e => e.getBoundingClientRect()) : null;
+  const top = look && items.length ? items[0].pri : 0;
+  for (const it of items) {
+    const r = it.r; let clash = kept.some(k => !(r.right + 4 < k.left || r.left - 4 > k.right || r.bottom + 2 < k.top || r.top - 2 > k.bottom));
+    if (!clash && under) clash = under.some(k => !(r.right < k.left || r.left > k.right || r.bottom < k.top || r.top > k.bottom));
+    it.e.classList.toggle('lblhide', clash); if (!clash) kept.push(r);
+    if (look) it.e.classList.toggle('lk-sec', top > 0 && it.pri < top);
+  }
 }
 const _lv = new V3(), _lo = new V3();
 function updateLabels() {
