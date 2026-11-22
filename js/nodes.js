@@ -247,7 +247,7 @@ function applyMode(F) {
     }
     u.main.renderOrder = (s === 'skin' ? 2 : 1) + u.rank; u.ol.renderOrder = u.rank; // ink first, then the parts in index order, the skin last
   }
-  if (BLK.on) { BLK.eyes(F, focus); BLK.shadow(F); }   // the eyes show through the openings of the skin while it is shown; the park's shadow is cast by what is solid
+  if (BLK.on) { BLK.eyes(F, focus); BLK.shadow(F); BLK.hd(F); }   // the eyes show through the openings of the skin while it is shown; the park's shadow is cast by what is solid
   if (vs !== F._vs) { F._vs = vs; viewChanged(); }
   if (F.showAllBtn) { const n = F.hidden.size, on = n || F.reveal, d = on ? '' : 'none'; if (F.showAllBtn.style.display !== d) F.showAllBtn.style.display = d; const t = n ? `Show everything (${n} hidden)` : F.reveal ? 'Show everything' : ''; if (on && F.showAllBtn.textContent !== t) F.showAllBtn.textContent = t; }
 }
