@@ -267,7 +267,7 @@ BUILD.dna = (c) => {
   const AT = typeof MD !== 'undefined' && MD.on ? MD.dnaAtoms(c.frame, helix, SEQ, COMP, NM, rise, twist) : null, anc = [];
   if (AT) { const old = new Set(); bp.forEach(e => { [...e.s, ...e.nw].forEach(o => [o.sugar, o.base, o.phos].forEach(m => { if (m) old.add(m); })); old.add(e.hb); old.add(e.hb2); });
     for (let k = c.pickables.length - 1; k >= 0; k--) if (old.has(c.pickables[k])) c.pickables.splice(k, 1); }
-  const ref = m => { if (!AT) return m; const o = new THREE.Object3D(); helix.add(o); anc.push([o, m]); o.position.copy(m.position); return o; };
+  const ref = m => { if (!AT) return m; const o = new THREE.Object3D(); o.userData = Object.assign({}, m.userData); helix.add(o); anc.push([o, m]); o.position.copy(m.position); return o; };   // a name's anchor stands for its part (a click on the name)
   const layout0 = layout;
   layout = u => {
     layout0(u); if (!AT) return;
