@@ -793,6 +793,7 @@ v2frame('park', 'life', () => 1, (F, c, g) => {
     return microFrame(kind, T);
   };
   F.spawnD = 3e-3;
+  if (PKL.on) PKL.park(F, c, g);   // the realistic look: ground, hills, haze, clouds and the pond (js/levels_v2.js)
 });
 /* ---------- black hole at the galactic center (unit 1e10 m) ---------- */
 v2frame('sgrA', 'blackhole', () => .6, (F) => { F.blurb = 'Sagittarius A*: 4.3 million Suns of mass inside an event horizon about 25 million km across (radius 12.7 million km). (Accretion flow shown brighter than reality.)'; });
