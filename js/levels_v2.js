@@ -1267,9 +1267,9 @@ float pkCloudShade( vec2 p ) {
      Greenwich Park and the land round it are full of trees; without them the ground beyond the oaks was a bare green plain and, from eye
      height, met the sky in one hard line. These are simple shapes in the proportions of the park's English oak (data/things/oak: 20 m tall,
      a crown about as wide as it is tall and from a quarter to nearly the full height, a short trunk that forks low into limbs): a broad
-     crown of 13 overlapping clumps of foliage on three limbs and a flared trunk (the near set, within 430 m), and a cheaper crown of 4
+     crown of 10 overlapping clumps of foliage on three limbs and a flared trunk (the near set, within 430 m), and a cheaper crown of 3
      clumps beyond. The clumps are shaded as one crown (darker low down and inside, lighter on top), their edge is broken up by noise so
-     that the sky shows through the rim as it does through real foliage, and the near edge of the set fades in between 108 and 150 m.
+     that the sky shows through the rim as it does through real foliage.
      Hedgerows (a tree every 7 to 13 m) cross the land from 170 m out, longer ones beyond 1.2 km, and the same cheap tree stands in a few woods out to about 4.5 km, where
      it is only a few pixels wide: a dotted tree line in the haze. It is not a model of any real tree or wood (the park's note says so),
      and the real oaks, which are drawn out to 700 m, are the same colour and size. One click on one opens the card of a tree. */
@@ -1278,14 +1278,14 @@ float pkCloudShade( vec2 p ) {
     const pos = [], nor = [], col = [], r = rng(full ? 7 : 9), nv = new V3(), v = new V3();
     const leaf = RAW(0x4f8a2e), bark = RAW(0x6a6054);
     const ico = new THREE.IcosahedronGeometry(1, 0), ia = ico.attributes.position, GA = 2.39996;
-    const NL = full ? 13 : 4, CY = .62, RX = .5, RY = .36;
+    const NL = full ? 10 : 3, CY = .62, RX = .5, RY = .36;
     const lobes = [];
     for (let i = 0; i < NL; i++) {
       if (i === 0) { lobes.push([0, CY + .05, 0, .27]); continue; }
       const e = (i / NL) * 1.25 - .22, a = i * GA + r() * .5, ring = RX * Math.sqrt(Math.max(.1, 1 - e * e)) * (.72 + r() * .2);
       lobes.push([Math.cos(a) * ring, CY + RY * e * .92 + (r() - .5) * .05, Math.sin(a) * ring, (full ? .15 : .24) + r() * (full ? .08 : .08) + (e > .6 ? -.02 : .02)]);
     }
-    if (!full) { lobes.length = 0; [[0, .66, 0, .3], [.22, .58, .06, .25], [-.2, .6, -.1, .26], [.02, .52, -.22, .22]].forEach(q => lobes.push(q)); }
+    if (!full) { lobes.length = 0; [[0, .66, 0, .32], [.24, .57, .06, .26], [-.22, .59, -.1, .27]].forEach(q => lobes.push(q)); }
     lobes.forEach((lb, li) => {
       const sd = li * 3.7 + (full ? 0 : 50), ry = .82;
       for (let i = 0; i < ia.count; i++) {
@@ -1319,7 +1319,7 @@ float pkCloudShade( vec2 p ) {
   function farTrees(g, c) {
     nz();
     const treeMat = near => {
-      const mat = LK.material('leaf', 0xffffff, { instanced: true, extra: { vertexColors: true } }); if (near) mat.defines = Object.assign(mat.defines || {}, { PK_NEAR: '' });   // (the near set's own program: the dither at its near edge)
+      const mat = LK.material('leaf', 0xffffff, { instanced: true, extra: { vertexColors: true } });
       LK.patch(mat, 'pkfartree', sh => {
         sh.uniforms.uParkC = U.uParkC; sh.uniforms.uNz = U.uNz; sh.uniforms.uSunVis = U.uSunVis; Object.assign(sh.uniforms, CS);
         sh.vertexShader = PARKC + 'varying vec3 lkTl; varying vec3 lkTn;\n' + sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>
@@ -1327,16 +1327,13 @@ float pkCloudShade( vec2 p ) {
 	lkTl = ( instanceMatrix * vec4( transformed, 1.0 ) ).xyz - instanceMatrix[ 3 ].xyz * 0.63; lkTn = abs( normal );`);
         /* clumps of foliage: the noise's cell channel laid on from three sides in metres (bright clumps, dark gaps), stronger on the shaded
            side; the canopy shades its own reflection (a crown is not a smooth ball: no sheen at its edge); the rim of the crown is broken
-           up (the sky shows through it); the near set fades in at its near edge (a dither, so it needs no blending) */
+           up (the sky shows through it) */
         sh.fragmentShader = PARKC + 'uniform sampler2D uNz; uniform float uSunVis; ' + CS_DECL + 'float lkTc = 0.5; varying vec3 lkTl; varying vec3 lkTn;\n' + sh.fragmentShader
           .replace('#include <color_fragment>', `#include <color_fragment>
 	{ vec3 w = lkTn * lkTn; w /= w.x + w.y + w.z; vec3 p = lkTl * 0.42;
 	  float cl = texture2D( uNz, p.yz ).b * w.x + texture2D( uNz, p.xz + 0.37 ).b * w.y + texture2D( uNz, p.xy + 0.71 ).b * w.z;
 	  float lkFd = length( vViewPosition );
 	  diffuseColor.rgb *= mix( 1.0, 0.45 + 1.05 * cl, 1.0 - smoothstep( 300.0, 900.0, lkFd ) );
-	  #ifdef PK_NEAR
-	    if ( lkFd < 150.0 && fract( 52.9829189 * fract( dot( gl_FragCoord.xy, vec2( 0.06711056, 0.00583715 ) ) ) ) > smoothstep( 108.0, 150.0, lkFd ) ) discard;
-	  #endif
 	  lkTc = cl; }`)
           .replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
 	{ float rim = 1.0 - abs( dot( normal, normalize( vViewPosition ) ) ), lf = length( vViewPosition );
@@ -1352,22 +1349,22 @@ float pkCloudShade( vec2 p ) {
     const wood = (x, z) => Math.sin(x * .0061 + 1.7) * Math.sin(z * .0053 + .3) + .7 * Math.sin(x * .0143 - z * .011 + 2.4) + .45 * Math.sin(x * .031 + z * .027);   // where the woods are
     const avenues = [[-.31, .95, 180], [.88, .47, -140], [.2, -.98, 260]];   // lines of trees: direction and offset from the middle (m)
     const rr = rng(41), near = [], far = [];
-    const add = (arr, x, z, hgtT, wr) => { arr.push([x, z, hgtT, wr, rr() * TAU, .78 + rr() * .4, rr(), rr(), rr()]); };
+    const add = (arr, x, z, hgtT, wr) => { if (arr.length >= (arr === near ? 50 : 650)) return; arr.push([x, z, hgtT, wr, rr() * TAU, .78 + rr() * .4, rr(), rr(), rr()]); };
     // the near set and the middle: woods by a slow noise, trees along three avenues
-    for (let k = 0; k < 30000 && near.length + far.length < 380; k++) {
+    for (let k = 0; k < 30000 && near.length + far.length < 200; k++) {
       let x, z; const av = rr() < .12 ? avenues[Math.floor(rr() * avenues.length)] : null;
       if (av) { const t = (rr() - .5) * 1600; x = av[0] * t - av[1] * av[2] + (rr() - .5) * 3; z = av[1] * t + av[0] * av[2] + (rr() - .5) * 3; }
       else { const a = rr() * TAU, d = 140 + Math.pow(rr(), 1.4) * 1500; x = Math.cos(a) * d; z = Math.sin(a) * d; }
       const d = Math.hypot(x, z); if (d < 140 || d > 1650) continue;
       if (!av && wood(x, z) < .7 + (rr() - .5) * .6) continue;
       const H = 9 + rr() * 9 + Math.pow(rr(), 3) * 5;   // open-grown park oaks are 12 to 22 m here (the real one is 20)
-      if (d < 430) { if (near.length < 130) add(near, x, z, H, H * (.85 + rr() * .25)); } else add(far, x, z, H, H * (.75 + rr() * .25));
+      if (d < 430) { if (near.length < 50) add(near, x, z, H, H * (.85 + rr() * .25)); } else add(far, x, z, H, H * (.75 + rr() * .25));
     }
     // hedgerows: field edges with a tree every 7 to 13 m, 6 to 11 m tall, from 170 m out (the tall ones are the field trees of a hedge), and beyond 700 m a few longer ones
-    const hedge = (cx, cz, th, ln, st, h0, h1, minD) => { for (let t = -ln / 2; t < ln / 2; t += st * (.75 + rr() * .5)) { const x = cx + Math.cos(th) * t + (rr() - .5) * 3, z = cz + Math.sin(th) * t + (rr() - .5) * 3, d = Math.hypot(x, z); if (d < minD) continue; const H = h0 + rr() * (h1 - h0) + (rr() < .08 ? 5 : 0); if (d < 330 && near.length < 150) add(near, x, z, H, H * (.9 + rr() * .2)); else add(far, x, z, H, H * (.85 + rr() * .3)); } };
-    for (let h = 0; h < 15; h++) { const a = rr() * TAU, d = 220 + rr() * 1100; hedge(Math.cos(a) * d, Math.sin(a) * d, rr() * Math.PI, 160 + rr() * 380, 8 + rr() * 5, 6, 11, 175); }
-    for (let h = 0; h < 22; h++) { const a = rr() * TAU, d = 1200 + Math.pow(rr(), .8) * 3300; hedge(Math.cos(a) * d, Math.sin(a) * d, rr() * Math.PI, 250 + rr() * 800, 14 + rr() * 16, 8, 14, 650); }
-    for (let k = 0; k < 6000 && far.length < 1150; k++) { const a = rr() * TAU, d = 1500 + rr() * 3200, x = Math.cos(a) * d, z = Math.sin(a) * d; if (wood(x * .6, z * .6) < 1.0 + (rr() - .5) * .5) continue; const H = 12 + rr() * 10; add(far, x, z, H, H * (.6 + rr() * .3)); }
+    const hedge = (cx, cz, th, ln, st, h0, h1, minD) => { for (let t = -ln / 2; t < ln / 2; t += st * (.75 + rr() * .5)) { const x = cx + Math.cos(th) * t + (rr() - .5) * 3, z = cz + Math.sin(th) * t + (rr() - .5) * 3, d = Math.hypot(x, z); if (d < minD) continue; const H = h0 + rr() * (h1 - h0) + (rr() < .08 ? 5 : 0); if (d < 330 && near.length < 50) add(near, x, z, H, H * (.9 + rr() * .2)); else add(far, x, z, H, H * (.85 + rr() * .3)); } };
+    for (let h = 0; h < 12; h++) { const a = rr() * TAU, d = 220 + rr() * 1100; hedge(Math.cos(a) * d, Math.sin(a) * d, rr() * Math.PI, 160 + rr() * 380, 8 + rr() * 5, 6, 11, 175); }
+    for (let h = 0; h < 14; h++) { const a = rr() * TAU, d = 1200 + Math.pow(rr(), .8) * 3300; hedge(Math.cos(a) * d, Math.sin(a) * d, rr() * Math.PI, 250 + rr() * 800, 14 + rr() * 16, 8, 14, 650); }
+    for (let k = 0; k < 6000 && far.length < 650; k++) { const a = rr() * TAU, d = 1500 + rr() * 3200, x = Math.cos(a) * d, z = Math.sin(a) * d; if (wood(x * .6, z * .6) < 1.0 + (rr() - .5) * .5) continue; const H = 12 + rr() * 10; add(far, x, z, H, H * (.6 + rr() * .3)); }
     const mk = (geo, material, list) => {
       const im = new THREE.InstancedMesh(geo, material, Math.max(1, list.length)), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), cc = new THREE.Color(), up = new V3(0, 1, 0);
       list.forEach((t, i) => { q.setFromAxisAngle(up, t[4]); m4.compose(new V3(t[0], hgt(t[0], t[1]) - .3, t[1]), q, new V3(t[3], t[2], t[3] * (.9 + t[8] * .2))); im.setMatrixAt(i, m4);
@@ -1376,7 +1373,7 @@ float pkCloudShade( vec2 p ) {
       im.castShadow = true; im.receiveShadow = false; im.userData = { id: 'tree', priority: .3 }; im.matrixAutoUpdate = false; im.updateMatrix(); im.frustumCulled = false;
       g.add(im); c.pickables.push(im); return im;
     };
-    K.farTrees = mk(geoN, treeMat(true), near); K.farTreesFar = mk(geoF, treeMat(false), far);
+    K.farTrees = mk(geoN, treeMat(true), near); K.farTreesFar = mk(geoF, treeMat(false), far); K.farTreesFar.castShadow = false;   // (the Sun's shadow square does not reach them: the shadow pass would only draw them again)
   }
 
   /* ---------- 5. the park frame: hooks set up once, and its step ---------- */
@@ -1391,11 +1388,7 @@ float pkCloudShade( vec2 p ) {
     // haze: see HAZE (the ground and the far trees); the foundation sets the fog's colour each frame, its distances are set here just before drawing
     const fog = c.scene.fog, b0 = F.scene.onBeforeRender;
     // (three.js's fog, for everything but the ground, which takes the haze above: linear from the eye, as the haze is for its first few hundred metres)
-    F.scene.onBeforeRender = function (r, s, camr) { if (fog) { fog.near = 0; fog.far = 1 / HZ.uHazeK.value.x; } if (b0) b0.call(this, r, s, camr);
-      /* under the pond's surface everything in the water is seen through the water: it fades into the water's own colour within about 3 m (the absorption below, 1.2 and 0.6 and 1.0 a metre in
-         red, green and blue, each way). The things in the pond take three.js's fog; the ground and the trees, which are not in the water, do not. */
-      if (fog && camr && POND.ell && U.uSunUp) { const e = POND.ell, pc = U.uParkC.value, dx = camr.position.x + pc.x - e[0], dz = camr.position.z + pc.z - e[1];
-        if (camr.position.y + pc.y < .02 && (dx * dx) / (e[2] * e[2]) + (dz * dz) / (e[3] * e[3]) < 1) { const d = .35 + .65 * U.uSunUp.value; fog.color.setRGB(.07 * d, .15 * d, .10 * d); fog.near = 0; fog.far = 3.2; } } };
+    F.scene.onBeforeRender = function (r, s, camr) { if (fog) { fog.near = 0; fog.far = 1 / HZ.uHazeK.value.x; } if (b0) b0.call(this, r, s, camr); };
     // the clouds made of lumps are not drawn: the sky has its own (their groups stay as the place that search and the cloud card point to)
     g.children.forEach(o => { if (o.userData && o.userData.id === 'cloud') o.visible = false; });
     F.note = 'The sky is computed for the real Sun at this hour; its clouds are typical small fair-weather cumulus, not today\'s weather. Beyond the park the ground, its hills and ridges, and the trees (shaped like the park\'s oaks, in woods, rows and hedgerows) are generic and invented: the real park\'s setting (the Observatory on its hill, the Thames and the city to the north) is not drawn, and there are no roads or buildings. The clouds cast their shadows on the ground and drift with them. All of it fades into the haze of a hazy summer day (about 10 km of visibility), thicker than on a clear one. After sunset the light is the twilight sky, then the Moon at its real place, phase and brightness and the night sky\'s own faint glow; the picture is brightened as an eye adapts to the dark, far less than the light has fallen. London\'s own glow in the night sky is not drawn.';
