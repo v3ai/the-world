@@ -493,7 +493,7 @@ const MDC = {
     const rerL = [], rerD = [.3, .6, .92, 1.28, 1.7];
     const sheetPt = (d, k) => { const p = nucSurf(d, new V3()), nr = new V3(p.x / NA.x / NA.x, p.y / NA.y / NA.y, p.z / NA.z / NA.z).normalize();
       return p.addScaledVector(nr, rerD[k] * U * .9 + .18 * MDC.sn(d.x * 4 + k, d.y * 4, d.z * 4 - k)).add(C); };
-    rerD.forEach((dd, k) => { const g = new THREE.SphereGeometry(1, 56, 36), a = g.attributes.position;
+    rerD.forEach((dd, k) => { const g = new THREE.SphereGeometry(1, 48, 32), a = g.attributes.position;
       for (let i = 0; i < a.count; i++) { const p = sheetPt(new V3().fromBufferAttribute(a, i).normalize(), k); a.setXYZ(i, p.x, p.y, p.z); }
       g.computeVertexNormals(); rerL.push([g]); });
     // where a sheet meets the next, or the envelope: short necks (the sheets are continuous with each other and with the envelope)
@@ -525,32 +525,38 @@ const MDC = {
        bent a little, as they lie along microtubules, aligned outward from the centrosome. */
     const vCyto = (vCell - 4 / 3 * Math.PI * NA.x * NA.y * NA.z) / (U * U * U), nMitoAll = Math.round(.4 * vCyto);
     const c0 = Math.cbrt(.29 / (4 / 3 * Math.PI * 5 * 1.38)), MA = new V3(5 * c0, 1.38 * c0, c0).multiplyScalar(U);   // semi-axes in builder units
-    const occ = [], avoid = (p, R) => { const d = p.clone().sub(C); if (MDC.ell(new V3(NA.x + R + .35, NA.y + R + .35, NA.z + R + .35), d) < 1) return true; if (p.distanceTo(cs) < 2.4 * U) return true; for (const [o, ro] of occ) if (o.distanceToSquared(p) < (R + ro) ** 2) return true; return false; };
+    // what is already placed, in cubes of 2 units (no part is more than 1.8 units round), so a new part is tested only against its neighbours
+    const occ = [], occG = new Map(), ok3 = (x, y, z) => x + ',' + y + ',' + z;
+    occ.push = function (e) { const k = ok3(Math.floor(e[0].x / 2), Math.floor(e[0].y / 2), Math.floor(e[0].z / 2)); (occG.get(k) || occG.set(k, []).get(k)).push(e); return Array.prototype.push.call(this, e); };
+    const avoid = (p, R) => { const d = p.clone().sub(C); if (MDC.ell(new V3(NA.x + R + .35, NA.y + R + .35, NA.z + R + .35), d) < 1) return true; if (p.distanceTo(cs) < 2.4 * U) return true;
+      const gx = Math.floor(p.x / 2), gy = Math.floor(p.y / 2), gz = Math.floor(p.z / 2);
+      for (let a = -1; a <= 1; a++) for (let b = -1; b <= 1; b++) for (let e = -1; e <= 1; e++) for (const [o, ro] of occG.get(ok3(gx + a, gy + b, gz + e)) || []) if (o.distanceToSquared(p) < (R + ro) ** 2) return true; return false; };
     const mito = [];
-    for (let k = 0; k < nMitoAll * 3 && mito.length < nMitoAll; k++) {
+    // all of the cell's are placed (so the count is the cell's), those in the half taken away are then not drawn
+    for (let k = 0; k < nMitoAll * 40 && mito.length < nMitoAll; k++) {
       const p = new V3((r() * 2 - 1) * E.x, (r() * 2 - 1) * E.y, (r() * 2 - 1) * E.z); if (!inCell(p, .55)) continue;
       const dn = p.distanceTo(C) / 10; if (r() > .55 + .45 * Math.exp(-dn * dn)) continue;   // more of them round the nucleus
       if (MDC.ell(new V3(NA.x + .3, NA.y + .3, NA.z + .3), p.clone().sub(C)) < 1) continue;
-      if (_mdV.copy(p).sub(C).dot(nN) > .5) { mito.push(null); continue; }   // in the half taken away: counted, not drawn
       const s = .7 + r() * .7, R = MA.x * s * .5; if (avoid(p, R)) continue; occ.push([p, R]);
+      if (_mdV.copy(p).sub(C).dot(nN) > .5) { mito.push(null); continue; }   // in the half taken away: counted, not drawn
       const ax = p.clone().sub(cs).normalize().add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(.9)).normalize();
       mito.push({ p, ax, s, w: .85 + r() * .3, roll: r() * TAU2, bend: Math.floor(r() * 3) });
     }
     const mitoDrawn = mito.filter(Boolean);
     const bentGeo = (bend, segL, segR) => { const g = new THREE.SphereGeometry(1, segR, segL), a = g.attributes.position; g.rotateZ(Math.PI / 2);
       for (let i = 0; i < a.count; i++) { const v = new V3().fromBufferAttribute(a, i); const bb = [0, .55, 1.0][bend]; v.y += bb * (1 - v.x * v.x) - bb * .5; a.setXYZ(i, v.x, v.y, v.z); } g.computeVertexNormals(); return g; };
-    const mitoM = MDC.mat(S, K.mito, 'wet', 1, { dark: .62 }), mitoMesh = [0, 1, 2].map(b => { const L = mitoDrawn.filter(x => x.bend === b), im = new THREE.InstancedMesh(bentGeo(b, 6, 8), mitoM, L.length); im.userData = { id: 'mito', priority: 1 }; im.frustumCulled = false; L.forEach((x, i) => { x.inst = [im, i]; }); G.add(im); c.pickables.push(im); return im; });
+    const mitoM = MDC.mat(S, K.mito, 'wet', 1, { dark: .62 }), mitoMesh = [0, 1, 2].map(b => { const L = mitoDrawn.filter(x => x.bend === b), im = new THREE.InstancedMesh(bentGeo(b, 5, 7), mitoM, L.length); im.userData = { id: 'mito', priority: 1 }; im.frustumCulled = false; L.forEach((x, i) => { x.inst = [im, i]; }); G.add(im); c.pickables.push(im); return im; });
     const mxOf = (x, out) => { q.setFromUnitVectors(new V3(1, 0, 0), x.ax); const qr = new THREE.Quaternion().setFromAxisAngle(new V3(1, 0, 0), x.roll); q.multiply(qr); return out.compose(x.p, q, new V3(MA.x * x.s, MA.y * x.w, MA.z * x.w)); };
     mitoDrawn.forEach(x => { mxOf(x, m4); x.inst[0].setMatrixAt(x.inst[1], m4); });
     /* ---- lysosomes: 50 to 1,000 a cell, typically 0.5 µm across, 0.1 to 1.2 (BioNumbers 107483, 106072; 0.34 µm on average in HeLa);
        here 300 in the whole cell, 0.25 to 0.6 µm, more of them near the nucleus */
-    const lyso = []; for (let k = 0; k < 4000 && lyso.length < 300; k++) { const p = new V3((r() * 2 - 1) * E.x, (r() * 2 - 1) * E.y, (r() * 2 - 1) * E.z); if (!inCell(p, .5)) continue; const dn = p.distanceTo(C) / 9; if (r() > .35 + .65 * Math.exp(-dn * dn)) continue;
+    const lyso = []; for (let k = 0; k < 9000 && lyso.length < 300; k++) { const p = new V3((r() * 2 - 1) * E.x, (r() * 2 - 1) * E.y, (r() * 2 - 1) * E.z); if (!inCell(p, .5)) continue; const dn = p.distanceTo(C) / 9; if (r() > .35 + .65 * Math.exp(-dn * dn)) continue;
       if (MDC.ell(new V3(NA.x + .3, NA.y + .3, NA.z + .3), p.clone().sub(C)) < 1) continue;
-      if (_mdV.copy(p).sub(C).dot(nN) > .4) { lyso.push(null); continue; } const R = (.125 + r() * .175) * U; if (avoid(p, R)) continue; occ.push([p, R]); lyso.push({ p, R }); }
+      const R = (.125 + r() * .175) * U; if (avoid(p, R)) continue; occ.push([p, R]); lyso.push(_mdV.copy(p).sub(C).dot(nN) > .4 ? null : { p, R }); }
     const lysoD = lyso.filter(Boolean), lysoI = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(1, 1), MDC.mat(S, K.lysosome, 'matte', 1), lysoD.length);
     lysoD.forEach((x, i) => { m4.makeScale(x.R, x.R * (.85 + r() * .3), x.R).setPosition(x.p); lysoI.setMatrixAt(i, m4); }); lysoI.frustumCulled = false; lysoI.userData = { id: 'lysosome', priority: 1 }; G.add(lysoI); c.pickables.push(lysoI);
     /* ---- vesicles near the Golgi and through the cytoplasm (a choice of number and size: tens of nanometres to 0.15 µm) */
-    const ves = []; for (let k = 0; k < 3000 && ves.length < 420; k++) { const nearG = k % 2 === 0, p = nearG ? cs.clone().addScaledVector(gDir, .6 * U).add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(1.1 * U)) : new V3((r() * 2 - 1) * E.x, (r() * 2 - 1) * E.y, (r() * 2 - 1) * E.z);
+    const ves = []; for (let k = 0; k < 3000 && ves.length < 300; k++) { const nearG = k % 2 === 0, p = nearG ? cs.clone().addScaledVector(gDir, .6 * U).add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(1.1 * U)) : new V3((r() * 2 - 1) * E.x, (r() * 2 - 1) * E.y, (r() * 2 - 1) * E.z);
       if (!inCell(p, .3) || gone1(p)) continue; const R = (.035 + r() * .04) * U; if (avoid(p, R)) continue; ves.push([p, R]); }
     const vesI = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(1, 1), MDC.mat(S, K.vesicle, 'wet', 1), ves.length); ves.forEach(([p, R], i) => { m4.makeScale(R, R, R).setPosition(p); vesI.setMatrixAt(i, m4); });
     vesI.frustumCulled = false; vesI.userData = { id: 'vesicle', priority: 1, info: MDC.INFO.vesicle() }; G.add(vesI); c.pickables.push(vesI);
@@ -560,7 +566,7 @@ const MDC = {
     nodes.forEach((p, i) => { const nb = nodes.map((o, j) => [o.distanceToSquared(p), j]).filter(([d, j]) => j !== i && d < 7).sort((a, b) => a[0] - b[0]);
       for (const [, j] of nb) { if (deg[i] >= 3) break; if (deg[j] >= 3 || seen.has(Math.min(i, j) + ':' + Math.max(i, j))) continue; seen.add(Math.min(i, j) + ':' + Math.max(i, j)); deg[i]++; deg[j]++;
         const a = p, b = nodes[j], mid = a.clone().lerp(b, .5).add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(.25));
-        serL.push([new THREE.TubeGeometry(new THREE.CatmullRomCurve3([a, mid, b]), 6, .04 * U, 5, false)]); } });
+        serL.push([new THREE.TubeGeometry(new THREE.CatmullRomCurve3([a, mid, b]), 5, .04 * U, 4, false)]); } });
     const ser = new THREE.Mesh(MDC.merge(serL), MDC.mat(S, K.ser, 'matte', 1)); ser.userData = { id: 'er', priority: 1 }; G.add(ser); c.pickables.push(ser);
     /* ---- microtubules: from the centrosome outward to the cortex, 25 nm across (OpenStax Biology 2e, 4.5): drawn as lines one pixel wide
        from afar (far wider than they are), as tubes of their true width close in. How many a cell has is not sourced here: 140 are drawn. */
@@ -654,7 +660,7 @@ const MDC = {
     };
     if (F._mdcClip0 === undefined) F._mdcClip0 = F.coreClip || null;
     F.coreClip = p => { const l = G.worldToLocal(p.clone()); return l.clone().sub(C).dot(nN) > .12 && MDC.ell(new V3(NA.x + .1, NA.y + .1, NA.z + .1), l.clone().sub(C)) > 1; };
-    S.counts = { mitoAll: mito.length, mitoDrawn: mitoDrawn.length, lyso: lysoD.length, lysoAll: lyso.length, pores: pores.length, poresAll: nPore, ves: ves.length, ser: serL.length, mt: mtCurves.length, vCell: vCell / (U * U * U), vNuc: 4 / 3 * Math.PI * NA.x * NA.y * NA.z / (U * U * U) };
+    S.counts = { mitoAll: mito.length, vCyto, mitoDrawn: mitoDrawn.length, lyso: lysoD.length, lysoAll: lyso.length, pores: pores.length, poresAll: nPore, ves: ves.length, ser: serL.length, mt: mtCurves.length, vCell: vCell / (U * U * U), vNuc: 4 / 3 * Math.PI * NA.x * NA.y * NA.z / (U * U * U) };
     F._mdc = S; c.nucR = NA; return S;
   },
   /* the cut faces of the nucleus: chromatin as a texture of noise in two tones, heterochromatin (dense) at the envelope and round the
@@ -690,7 +696,7 @@ const MDC = {
      (set again whenever the cell's view is switched) is replaced by this one; the scene's kind (MD.kind) still leads it. */
   note(F, S) {
     const n = S.counts, f = x => Math.round(x).toLocaleString('en-GB'), r2 = x => Math.round(x / 100) * 100;
-    const text = `an animal cell cut open, at its true size (20 µm across), with counts and sizes from measurements of human HeLa cells. The nucleus is 10% of the cell's volume; ${f(n.pores)} pores are drawn on it, at the measured density (about 16 per µm²). ${f(n.mitoDrawn)} mitochondria of 0.29 µm³ are drawn in the half kept (about ${f(r2(n.mitoAll))} in the whole cell, 0.4 per µm³ of cytoplasm), and ${f(n.lyso)} lysosomes. The rough ER is drawn as sheets joined to the nuclear envelope, the smooth ER as tubules, the Golgi as a ribbon of five stacks beside the centrosome. Microtubules and the actin under the membrane are drawn as lines, far wider than they are, until close in. Ribosomes (3 to 10 million in a cell) are drawn only close in, in a thin layer behind the cut face. Not drawn: the cell's roughly 2 billion other protein molecules, the water and small molecules between, the intermediate filaments. The arrangement is invented and the shapes smoothed.`;
+    const text = `an animal cell cut open, at its true size (20 µm across), with counts and sizes from measurements of human HeLa cells. The nucleus is 10% of the cell's volume; ${f(n.pores)} pores are drawn on it, at the measured density (about 16 per µm²). ${f(n.mitoDrawn)} mitochondria of 0.29 µm³ are drawn in the half kept (about ${f(r2(n.mitoAll))} in the whole cell, ${(n.mitoAll / n.vCyto).toFixed(2)} per µm³ of cytoplasm; 0.35 to 0.43 measured), and ${f(n.lyso)} lysosomes. The rough ER is drawn as sheets joined to the nuclear envelope, the smooth ER as tubules, the Golgi as a ribbon of five stacks beside the centrosome. Microtubules and the actin under the membrane are drawn as lines, far wider than they are, until close in. Ribosomes (3 to 10 million in a cell) are drawn only close in, in a thin layer behind the cut face. Not drawn: the cell's roughly 2 billion other protein molecules, the water and small molecules between, the intermediate filaments. The arrangement is invented and the shapes smoothed.`;
     const d = Object.getOwnPropertyDescriptor(F, 'note'), get = d && d.get ? d.get : () => F._mdcN0, set = d && d.set ? d.set : v => { F._mdcN0 = v; };
     Object.defineProperty(F, 'note', { configurable: true, enumerable: true, get, set: v => set.call(F, /schematic animal cell/i.test(String(v)) ? text : v) });
     F.note = text;
