@@ -1006,7 +1006,7 @@ const PKL = (() => {
      a park pond is much darker and greener-brown from plankton and dissolved organic matter (Penn State Extension, water quality of ponds).
      The pond's figures are a starting value, not a measurement. Light crosses the depth twice (down, and up toward the eye). The deep water
      sends back almost nothing (about 1 percent): what is seen is the bed through the shallows and the sky reflected. */
-  const POND = { done: null, rip: null };
+  const POND = { pebbles: null };
   function pondDress(F) {
     const T = F.T, s = T && T.parts.surface, b = T && T.parts.bank, md = T && T.parts.mud; if (!s || !b || !md) return false;
     const sm = s.g.userData.main, bm = b.g.userData.main, mm = md.g.userData.main; if (!sm || !bm || !mm || !sm.geometry || !mm.geometry) return false;
@@ -1019,7 +1019,7 @@ const PKL = (() => {
     T.group.updateMatrixWorld(true); const sc = new V3().setFromMatrixScale(sm.matrixWorld).x;
     const ex = (bb.max.x - bb.min.x) / 2, ez = (bb.max.z - bb.min.z) / 2, cx = (bb.max.x + bb.min.x) / 2, cz = (bb.max.z + bb.min.z) / 2;
     const PU = { uParkC: U.uParkC, uRip: { value: TEX ? tx('pond_ripples_normal_512.jpg', { normal: true }) : flat([128, 128, 255]) }, uRipK: { value: TEX ? .32 : 0 }, uT: U.uT, uPS: { value: sc }, uBed: { value: new THREE.Color(md.pd.color || '#4a3c2d') }, uEll: { value: new THREE.Vector4(cx, cz, ex, ez) } };
-    const wm = sm.material; wm.envMapIntensity = 1;   // water reflects what the sky sends, no more (the kind's 1.5 brightened it)
+    const wm = sm.material; if (!wm.userData.pkWater) { wm.userData.pkWater = true; wm.envMapIntensity = 1;   // water reflects what the sky sends, no more (the kind's 1.5 brightened it)
     LK.patch(wm, 'pkwater', sh => {
       Object.assign(sh.uniforms, PU);
       sh.vertexShader = 'uniform vec3 uParkC; uniform float uPS; attribute float lkDepth; varying float lkD; varying vec3 lkPk;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tlkD = lkDepth * uPS; lkPk = ( modelMatrix * vec4( transformed, 1.0 ) ).xyz + uParkC;');
@@ -1036,9 +1036,11 @@ const PKL = (() => {
 	  vec2 sl = ( n1.xy + n2.xy * 0.6 ) * uRipK * ( 1.0 - smoothstep( 4.0, 40.0, length( vViewPosition ) ) * 0.7 );
 	  normal = normalize( ( viewMatrix * vec4( normalize( vec3( sl.x, 1.0, - sl.y ) ), 0.0 ) ).xyz ); }`);
     });
+    }
     // the bank: the mud's photographed surface, and wet (darker, glossy) within about 35 cm of the water's edge
     const bmat = bm.material;
-    if (bmat && bmat.isMeshStandardMaterial) {
+    if (bmat && bmat.isMeshStandardMaterial && !bmat.userData.pkBank) {
+      bmat.userData.pkBank = true;
       LK.patch(bmat, 'pkbank', sh => {
         Object.assign(sh.uniforms, { uParkC: U.uParkC, uEarth: { value: TEX ? tx('brown_mud_color_512.jpg', { detail: true }) : flat([128, 128, 128]) }, uMudN: { value: TEX ? tx('brown_mud_normal_gl_512.jpg', { normal: true }) : flat([128, 128, 255]) }, uEll: PU.uEll, uPS: PU.uPS });
         sh.vertexShader = 'uniform vec3 uParkC; varying vec3 lkPk; varying vec3 lkLoc;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tlkLoc = transformed; lkPk = ( modelMatrix * vec4( transformed, 1.0 ) ).xyz + uParkC;');
@@ -1054,7 +1056,7 @@ const PKL = (() => {
       });
     }
     // pebbles at the water's edge: rounded flint gravel, 1.5 to 4 cm, on the bank where it meets the water (a stand-in rock surface: DESIGN 3.2)
-    if (!POND.pebbles) {
+    if (!POND.pebbles || POND.pebbles.parent !== T.group) {
       const pg = new THREE.IcosahedronGeometry(1, 1), pa = pg.attributes.position, pr = rng(5);
       for (let i = 0; i < pa.count; i++) { const v = new V3().fromBufferAttribute(pa, i); v.y *= .55; v.multiplyScalar(.92 + .08 * Math.sin(v.x * 7 + v.z * 5)); pa.setXYZ(i, v.x, v.y, v.z); }
       pg.computeVertexNormals();
@@ -1096,7 +1098,9 @@ const PKL = (() => {
       { const su = LK.sun(); U.uSunUp.value = su ? smooth(-.01, .08, su.dir.y) : 1; }   // the sky draws the Sun's glare itself (its aureole): no sprite over it
       const now = performance.now();
       if (now - tMask > 2000) { tMask = now; maskDraw(F); }
-      if (!POND.done && now - tPond > 1000) { tPond = now; const pf = (FR.things || []).find(f => f.opts && f.opts.thing === 'pond' && f.T); if (pf && pondDress(pf)) POND.done = pf; }
+      if (now - tPond > 1000) { tPond = now;   // the pond's parts can be rebuilt (a new level of detail, the thing built again): dress them again when they are
+        const pf = (FR.things || []).find(f => f.opts && f.opts.thing === 'pond' && f.T), sp = pf && pf.T.parts.surface, sm = sp && sp.g.userData.main;
+        if (sm && sm.material && (!sm.material.userData.pkWater || !sm.geometry.attributes.lkDepth || !POND.pebbles || POND.pebbles.parent !== pf.T.group)) pondDress(pf); }
     };
   };
 
