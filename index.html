@@ -4,15 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>The World: everything at its true size</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/app.css">
 <link rel="stylesheet" href="css/atom.css">
 <link rel="stylesheet" href="css/particles.css">
 <link rel="stylesheet" href="css/things.css">
 <link rel="stylesheet" href="css/trails.css">
 <link rel="stylesheet" href="css/search.css">
+<link rel="stylesheet" href="css/look.css">
 </head>
 <body>
 <canvas id="c" tabindex="0" aria-label="The world, at true scale. Scroll to zoom, drag to look around, click a thing to select it, double-click it to look inside."></canvas>
@@ -87,6 +86,7 @@
 <script src="js/vendor/three-mesh-bvh.js"></script>
 <script src="js/perf.js"></script>
 <script src="js/engine.js"></script>
+<script src="js/look.js"></script>
 <script src="js/helpers.js"></script>
 <script src="js/content.js"></script>
 <script src="js/content_extra.js"></script>
@@ -108,6 +108,7 @@
 <script src="js/trails.js"></script>
 <script src="js/search.js"></script>
 <script src="js/world_build.js"></script>
+<script src="js/look_ui.js"></script>
 <script>startApp();</script>
 </body>
 </html>

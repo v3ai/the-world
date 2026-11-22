@@ -134,7 +134,9 @@ export default function build() {
     modes: [
       { id: 'whole', label: 'Whole cell', show: show(real) },
       { id: 'stack', label: 'Without the pouch', show: show(Object.assign({}, real, { pouch: .1 })) },
-      { id: 'cut', label: 'Cut across: the layers', cut: { at: [0, cutY, 0], normal: [0, 1, 0] }, view: { dir: [.18, .8, .57], at: [0, cutY, 0], D: .075 }, hotspots: true, show: show(real),
+      { id: 'cut', label: 'Cut across: the layers', cut: { at: [0, cutY, 0], normal: [0, 1, 0] }, view: { dir: [.18, .8, .57], at: [0, cutY, 0], D: .075 },
+        look_view: { dir: [.12, .96, .25], at: [0, cutY, 0], D: .006 },   // under the realistic look the camera goes onto the section, close enough (a view about 6 mm wide) for the layers to show apart
+        hotspots: true, show: show(real),
         legend: { title: 'On the cut face', items: layerLegend, note: `Every layer is drawn at its true thickness (to within a micrometre), so the sheets only show as separate when you zoom in to a view about a millimetre wide. Thicknesses: a 2.28 Ah consumer pouch cell (Ai et al. 2020). ${M.pairs} pairs of sheets fill the ${(M.T * 1e3).toFixed(1)} mm.` } },
       { id: 'pair', label: 'One pair of sheets, opened', hotspots: true, view: { dir: [.72, .3, .62], at: [0, .037, 0], D: .16 }, show: show({ pair: 1 }),
         legend: { title: 'One pair of sheets', items: layerLegend, note: 'One negative sheet, one separator and one positive sheet, at their true thickness but lifted 7 mm apart and stepped sideways. In the cell they lie pressed together, soaked in liquid electrolyte.' } },

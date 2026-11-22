@@ -13,6 +13,12 @@
      depth=log|tight|vert  depth buffer: logarithmic per fragment, fitted near and far planes, logarithmic per vertex
      merge=0|1             draw far things inside their parent's scene
      idle=0|1              drop to a low frame rate when nothing moves
+     look=2                the realistic picture (docs/DESIGN.md section 3; js/look.js). Off by default; reloads the page
+     lookq=high|low        its quality level (fx=low implies low); reloads the page
+     lookoff=a,b           parts of it switched off, to judge each alone: pbr tone sky env tex sss rig shadow glow ui labels
+                           (env, shadow, glow and labels change live; the others reload the page)
+     lookexp=<number>      its exposure (default 0.9); live
+     looksky=sky|photo|overcast  the sky over the park: computed (default), the photograph at its own hour, or the cloudy one; reloads
    ===================================================================== */
 const PERF = (() => {
   const q = new URLSearchParams(location.search), get = (k, ok, d) => { const v = q.get(k); return v !== null && (!ok || ok.includes(v)) ? v : d; };
@@ -31,9 +37,14 @@ const PERF = (() => {
     depth: get('depth', ['log', 'tight', 'vert'], 'log'),
     merge: get('merge', ['0', '1'], '1') === '1',
     idle: get('idle', ['0', '1'], '1') === '1',
+    look: get('look', ['1', '2'], '1'),
+    lookq: get('lookq', ['low', 'high'], fx === 'low' ? 'low' : 'high'),
+    lookoff: (q.get('lookoff') || '').split(',').map(s => s.trim()).filter(Boolean).sort().join(','),
+    looksky: get('looksky', ['sky', 'photo', 'overcast'], 'sky'),
+    lookexp: isFinite(+q.get('lookexp')) && +q.get('lookexp') > 0 ? clampN(+q.get('lookexp'), .1, 8) : .9,
     given: {}                                      // which switches the URL set explicitly
   };
-  ['fx', 'bloom', 'dpr', 'shadows', 'outline', 'depth', 'merge', 'idle', 'stats'].forEach(k => { if (q.get(k) !== null) flags.given[k] = q.get(k); });
+  ['fx', 'bloom', 'dpr', 'shadows', 'outline', 'depth', 'merge', 'idle', 'stats', 'look', 'lookq', 'lookoff', 'lookexp', 'looksky'].forEach(k => { if (q.get(k) !== null) flags.given[k] = q.get(k); });
 
   /* ---- measurements: cheap enough to stay on all the time ---- */
   const N = 240;
@@ -78,11 +89,22 @@ const PERF = (() => {
   P.on = (k, fn) => { (hooks[k] = hooks[k] || []).push(fn); };
   P.set = (k, v) => {
     flags[k] = v; flags.given[k] = v === true ? '1' : v === false ? '0' : String(v);
-    try { const u = new URL(location.href); u.searchParams.set(k, flags.given[k]); if (k === 'depth') { location.href = u.toString(); return; } history.replaceState(null, '', u.toString()); } catch (e) { }
+    try { const u = new URL(location.href); if (flags.given[k] === '') u.searchParams.delete(k); else u.searchParams.set(k, flags.given[k]); if (P.reloads(k, v)) { location.href = u.toString(); return; } history.replaceState(null, '', u.toString()); } catch (e) { }
     (hooks[k] || []).forEach(fn => { try { fn(v); } catch (e) { console.error('switch failed', k, e); } });
     if (P.meter) P.meter.sync();
   };
-  P.flagText = () => `bloom=${flags.bloom} dpr=${flags.dpr} shadows=${flags.shadows ? 1 : 0} outline=${flags.outline} depth=${flags.depth} merge=${flags.merge ? 1 : 0} idle=${flags.idle ? 1 : 0}` + (flags.fx ? ` fx=${flags.fx}` : '');
+  /* switches that are read only while the page loads (they change how every shader is built): changing one reloads the page */
+  const LIVE_PARTS = ['env', 'shadow', 'glow', 'labels'];
+  let offWas = flags.lookoff;
+  P.reloads = (k, v) => {
+    if (k === 'depth' || k === 'look' || k === 'lookq' || k === 'looksky') return true;
+    if (k !== 'lookoff') return false;
+    const a = new Set(offWas.split(',').filter(Boolean)), b = new Set(String(v).split(',').filter(Boolean)); offWas = String(v);
+    return flags.look === '2' && [...new Set([...a, ...b])].some(p => a.has(p) !== b.has(p) && !LIVE_PARTS.includes(p));
+  };
+  /* one part of the realistic look on or off (the meter's toggles; LOOK.part reads the same list) */
+  P.lookPart = (name, on) => { const s = new Set(flags.lookoff.split(',').filter(Boolean)); if (on) s.delete(name); else s.add(name); P.set('lookoff', [...s].sort().join(',')); };
+  P.flagText = () => `bloom=${flags.bloom} dpr=${flags.dpr} shadows=${flags.shadows ? 1 : 0} outline=${flags.outline} depth=${flags.depth} merge=${flags.merge ? 1 : 0} idle=${flags.idle ? 1 : 0}` + (flags.fx ? ` fx=${flags.fx}` : '') + (flags.look === '2' ? ` look=2 lookq=${flags.lookq} lookexp=${flags.lookexp}` + (flags.looksky !== 'sky' ? ` looksky=${flags.looksky}` : '') + (flags.lookoff ? ` lookoff=${flags.lookoff}` : '') : '');
 
   /* ---- the GPU: its name, and the time it spends on a frame where the browser lets us ask ---- */
   P.gpuName = () => {
@@ -156,6 +178,11 @@ const PERF = (() => {
       ['merge', 'Things in the park\'s scene', [['1', 'On'], ['0', 'Off']], v => v === '1'],
       ['depth', 'Depth (reloads the page)', [['log', 'Logarithmic'], ['tight', 'In slices'], ['vert', 'Per vertex (shows errors)']], v => v]
     ];
+    if (flags.look === '2') SW.push(   // the realistic picture is a prototype: its rows are shown only while it is on (?look=2)
+      ['look', 'Picture (reloads the page)', [['1', 'Illustrated'], ['2', 'Realistic']], v => v],
+      ['lookq', 'Realistic quality (reloads)', [['high', 'High'], ['low', 'Low']], v => v],
+      ['looksky', 'Sky outdoors (reloads)', [['sky', 'Computed'], ['photo', 'Photograph'], ['overcast', 'Overcast']], v => v],
+      ['lookexp', 'Exposure', [['0.6', '0.6'], ['0.75', '0.75'], ['0.9', '0.9'], ['1.05', '1.05'], ['1.2', '1.2']], v => +v]);
     const sw = el.querySelector('#pfSw');
     SW.forEach(([k, label, opts, conv]) => {
       const row = document.createElement('div'); row.className = 'pf-row'; row.innerHTML = `<span>${label}</span>`;
@@ -163,6 +190,13 @@ const PERF = (() => {
       opts.forEach(([v, t]) => { const b = document.createElement('button'); b.textContent = t; b.dataset.v = v; b.onclick = () => P.set(k, conv(v)); seg.appendChild(b); });
       row.appendChild(seg); sw.appendChild(row);
     });
+    if (flags.look === '2') {   // each part of the realistic picture alone: on (pressed) or off. Sky light, contact shadows, glow and label colour change at once; the rest reload the page
+      const PARTS = [['pbr', 'Materials'], ['tone', 'Tone curve'], ['sky', 'Sky'], ['env', 'Sky and room light'], ['tex', 'Surface detail'], ['sss', 'Light through'], ['rig', 'Light rigs'], ['shadow', 'Contact shadows'], ['glow', 'Glow rule'], ['ui', 'Interface'], ['labels', 'Label colour']];
+      const row = document.createElement('div'); row.className = 'pf-row pf-parts'; row.innerHTML = '<span>Realistic parts</span>';
+      const seg = document.createElement('span'); seg.className = 'pf-seg pf-multi'; seg.dataset.parts = '1';
+      PARTS.forEach(([k, t]) => { const b = document.createElement('button'); b.textContent = t; b.dataset.part = k; b.title = (LIVE_PARTS.includes(k) ? 'Changes at once' : 'Reloads the page'); b.onclick = () => P.lookPart(k, flags.lookoff.split(',').includes(k)); seg.appendChild(b); });
+      row.appendChild(seg); sw.appendChild(row);
+    }
     el.querySelector('#pfHide').onclick = () => P.show(false);
     el.querySelector('#pfCopy').onclick = () => {
       const t = P.report(), ta = el.querySelector('#pfText'), note = el.querySelector('#pfNote');
@@ -173,7 +207,7 @@ const PERF = (() => {
     const $$ = id => el.querySelector(id), val = f => f === true ? '1' : f === false ? '0' : String(f);
     const M = {
       el, t: 0,
-      sync() { el.querySelectorAll('.pf-seg').forEach(s => { const cur = val(flags[s.dataset.k]); s.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.v === cur)); }); },
+      sync() { el.querySelectorAll('.pf-seg').forEach(s => { if (s.dataset.parts) { const off = flags.lookoff.split(','); s.querySelectorAll('button').forEach(b => b.classList.toggle('on', !off.includes(b.dataset.part))); return; } const cur = val(flags[s.dataset.k]); s.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.v === cur)); }); },
       update(now) {
         if (now - M.t < 250) return; M.t = now;
         const p = P.pct(), c = P.cpu, G = P.gpu, sz = renderer.getDrawingBufferSize(new THREE.Vector2()), name = P.gpuName();

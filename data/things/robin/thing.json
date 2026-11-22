@@ -474,7 +474,12 @@
       11027258,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "muscle",
+     "pattern": "fibre",
+     "cell": 0.004
+    }
    },
    "bone": {
     "kind": "plain",
@@ -483,7 +488,12 @@
       15260864,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "bone",
+     "pattern": "pore",
+     "cell": 0.0015
+    }
    },
    "organ": {
     "kind": "plain",
@@ -492,7 +502,11 @@
       13203310,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "grain"
+    }
    },
    "fill": {
     "kind": "plain",
@@ -501,7 +515,11 @@
       15256509,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "grain"
+    }
    },
    "skin": {
     "kind": "plain",
@@ -510,7 +528,11 @@
       15317414,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "skin",
+     "pattern": "plain"
+    }
    },
    "gut": {
     "kind": "plain",
@@ -519,7 +541,11 @@
       14263691,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "grain"
+    }
    },
    "brain": {
     "kind": "plain",
@@ -528,7 +554,11 @@
       14271421,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "grain"
+    }
    },
    "nerve": {
     "kind": "plain",
@@ -537,7 +567,11 @@
       15786672,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "fibre"
+    }
    },
    "air": {
     "kind": "plain",
@@ -546,7 +580,11 @@
       13887728,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "mucosa",
+     "pattern": "plain"
+    }
    },
    "tract": {
     "kind": "plain",
@@ -555,7 +593,11 @@
       14209760,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "mucosa",
+     "pattern": "plain"
+    }
    },
    "blood_l": {
     "kind": "plain",
@@ -564,7 +606,11 @@
       14698044,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "plain"
+    }
    },
    "blood_r": {
     "kind": "plain",
@@ -573,7 +619,11 @@
       5205941,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "plain"
+    }
    }
   }
  },
@@ -1564,7 +1614,8 @@
     0
    ],
    "radius": 0.0278,
-   "tris": 6474
+   "tris": 6474,
+   "kind": "feather"
   },
   {
    "id": "r_flank",
@@ -1587,7 +1638,8 @@
     0
    ],
    "radius": 0.029,
-   "tris": 4707
+   "tris": 4707,
+   "kind": "feather"
   },
   {
    "id": "r_breast",
@@ -1610,7 +1662,8 @@
     0
    ],
    "radius": 0.0225,
-   "tris": 3265
+   "tris": 3265,
+   "kind": "feather"
   },
   {
    "id": "r_rump",
@@ -1633,7 +1686,8 @@
     0
    ],
    "radius": 0.0207,
-   "tris": 5107
+   "tris": 5107,
+   "kind": "feather"
   },
   {
    "id": "r_vent",
@@ -1656,7 +1710,8 @@
     0.0001
    ],
    "radius": 0.0166,
-   "tris": 1746
+   "tris": 1746,
+   "kind": "feather"
   },
   {
    "id": "r_grey",
@@ -1679,7 +1734,8 @@
     0
    ],
    "radius": 0.0212,
-   "tris": 2236
+   "tris": 2236,
+   "kind": "feather"
   },
   {
    "id": "r_back",
@@ -1702,7 +1758,8 @@
     0
    ],
    "radius": 0.022,
-   "tris": 2111
+   "tris": 2111,
+   "kind": "feather"
   },
   {
    "id": "r_nape",
@@ -1725,7 +1782,8 @@
     0
    ],
    "radius": 0.0229,
-   "tris": 4002
+   "tris": 4002,
+   "kind": "feather"
   },
   {
    "id": "r_face",
@@ -1748,7 +1806,8 @@
     0
    ],
    "radius": 0.0155,
-   "tris": 4139
+   "tris": 4139,
+   "kind": "feather"
   },
   {
    "id": "r_crown",
@@ -1771,7 +1830,8 @@
     -0.0001
    ],
    "radius": 0.0139,
-   "tris": 1533
+   "tris": 1533,
+   "kind": "feather"
   },
   {
    "id": "bill_up",
@@ -1787,7 +1847,8 @@
     0
    ],
    "radius": 0.0096,
-   "tris": 2510
+   "tris": 2510,
+   "kind": "horn"
   },
   {
    "id": "bill_lo",
@@ -1803,7 +1864,8 @@
     0
    ],
    "radius": 0.0092,
-   "tris": 2092
+   "tris": 2092,
+   "kind": "horn"
   },
   {
    "id": "nostrils",
@@ -1819,7 +1881,8 @@
     0
    ],
    "radius": 0.0029,
-   "tris": 456
+   "tris": 456,
+   "kind": "mucosa"
   },
   {
    "id": "eye",
@@ -1835,7 +1898,8 @@
     0
    ],
    "radius": 0.0135,
-   "tris": 1232
+   "tris": 1232,
+   "kind": "eye"
   },
   {
    "id": "eye_ring",
@@ -1851,7 +1915,8 @@
     0
    ],
    "radius": 0.0139,
-   "tris": 560
+   "tris": 560,
+   "kind": "skin"
   },
   {
    "id": "f_prim",
@@ -1875,7 +1940,8 @@
    ],
    "radius": 0.0459,
    "count": 20,
-   "tris": 1760
+   "tris": 1760,
+   "kind": "feather"
   },
   {
    "id": "f_sec",
@@ -1899,7 +1965,8 @@
    ],
    "radius": 0.039,
    "count": 12,
-   "tris": 1056
+   "tris": 1056,
+   "kind": "feather"
   },
   {
    "id": "f_tert",
@@ -1923,7 +1990,8 @@
    ],
    "radius": 0.0336,
    "count": 6,
-   "tris": 528
+   "tris": 528,
+   "kind": "feather"
   },
   {
    "id": "f_pcov",
@@ -1947,7 +2015,8 @@
    ],
    "radius": 0.0269,
    "count": 18,
-   "tris": 1584
+   "tris": 1584,
+   "kind": "feather"
   },
   {
    "id": "f_gcov",
@@ -1971,7 +2040,8 @@
    ],
    "radius": 0.0329,
    "count": 18,
-   "tris": 1584
+   "tris": 1584,
+   "kind": "feather"
   },
   {
    "id": "f_mcov",
@@ -1995,7 +2065,8 @@
    ],
    "radius": 0.0298,
    "count": 20,
-   "tris": 1760
+   "tris": 1760,
+   "kind": "feather"
   },
   {
    "id": "f_lcov",
@@ -2019,7 +2090,8 @@
    ],
    "radius": 0.0276,
    "count": 32,
-   "tris": 2816
+   "tris": 2816,
+   "kind": "feather"
   },
   {
    "id": "f_alula",
@@ -2043,7 +2115,8 @@
    ],
    "radius": 0.0227,
    "count": 6,
-   "tris": 528
+   "tris": 528,
+   "kind": "feather"
   },
   {
    "id": "f_tail",
@@ -2067,7 +2140,8 @@
    ],
    "radius": 0.0342,
    "count": 12,
-   "tris": 1056
+   "tris": 1056,
+   "kind": "feather"
   },
   {
    "id": "f_utc",
@@ -2091,7 +2165,8 @@
    ],
    "radius": 0.0195,
    "count": 10,
-   "tris": 880
+   "tris": 880,
+   "kind": "feather"
   },
   {
    "id": "f_undertc",
@@ -2115,7 +2190,8 @@
    ],
    "radius": 0.0185,
    "count": 10,
-   "tris": 880
+   "tris": 880,
+   "kind": "feather"
   },
   {
    "id": "f_rach",
@@ -2139,7 +2215,8 @@
    ],
    "radius": 0.0896,
    "count": 48,
-   "tris": 768
+   "tris": 768,
+   "kind": "feather"
   },
   {
    "id": "leg_shin",
@@ -2155,7 +2232,8 @@
     0
    ],
    "radius": 0.0184,
-   "tris": 448
+   "tris": 448,
+   "kind": "horn"
   },
   {
    "id": "leg_ankle",
@@ -2171,7 +2249,8 @@
     0
    ],
    "radius": 0.0127,
-   "tris": 504
+   "tris": 504,
+   "kind": "horn"
   },
   {
    "id": "leg_tarsus",
@@ -2187,7 +2266,8 @@
     0
    ],
    "radius": 0.0171,
-   "tris": 608
+   "tris": 608,
+   "kind": "horn"
   },
   {
    "id": "leg_toes",
@@ -2203,7 +2283,8 @@
     0
    ],
    "radius": 0.0175,
-   "tris": 2268
+   "tris": 2268,
+   "kind": "horn"
   },
   {
    "id": "leg_hallux",
@@ -2219,7 +2300,8 @@
     0
    ],
    "radius": 0.013,
-   "tris": 756
+   "tris": 756,
+   "kind": "horn"
   },
   {
    "id": "leg_claws",
@@ -2235,7 +2317,8 @@
     0
    ],
    "radius": 0.0227,
-   "tris": 864
+   "tris": 864,
+   "kind": "horn"
   },
   {
    "id": "sk_skull",
@@ -2252,7 +2335,8 @@
     0
    ],
    "radius": 0.0116,
-   "tris": 8896
+   "tris": 8896,
+   "kind": "bone"
   },
   {
    "id": "sk_upper_jaw",
@@ -2269,7 +2353,8 @@
     0
    ],
    "radius": 0.0083,
-   "tris": 3228
+   "tris": 3228,
+   "kind": "bone"
   },
   {
    "id": "sk_mandible",
@@ -2286,7 +2371,8 @@
     0
    ],
    "radius": 0.014,
-   "tris": 504
+   "tris": 504,
+   "kind": "bone"
   },
   {
    "id": "sk_cervical",
@@ -2303,7 +2389,8 @@
     0
    ],
    "radius": 0.0101,
-   "tris": 2256
+   "tris": 2256,
+   "kind": "bone"
   },
   {
    "id": "sk_thoracic",
@@ -2320,7 +2407,8 @@
     0
    ],
    "radius": 0.0108,
-   "tris": 656
+   "tris": 656,
+   "kind": "bone"
   },
   {
    "id": "sk_synsacrum",
@@ -2337,7 +2425,8 @@
     0
    ],
    "radius": 0.011,
-   "tris": 656
+   "tris": 656,
+   "kind": "bone"
   },
   {
    "id": "sk_caudal",
@@ -2354,7 +2443,8 @@
     0.0001
    ],
    "radius": 0.005,
-   "tris": 322
+   "tris": 322,
+   "kind": "bone"
   },
   {
    "id": "sk_pygostyle",
@@ -2371,7 +2461,8 @@
     0
    ],
    "radius": 0.0027,
-   "tris": 1312
+   "tris": 1312,
+   "kind": "bone"
   },
   {
    "id": "sk_sternum",
@@ -2394,7 +2485,8 @@
     0
    ],
    "radius": 0.0166,
-   "tris": 2468
+   "tris": 2468,
+   "kind": "bone"
   },
   {
    "id": "sk_furcula",
@@ -2411,7 +2503,8 @@
     0
    ],
    "radius": 0.0121,
-   "tris": 492
+   "tris": 492,
+   "kind": "bone"
   },
   {
    "id": "sk_coracoid",
@@ -2434,7 +2527,8 @@
     0
    ],
    "radius": 0.0112,
-   "tris": 420
+   "tris": 420,
+   "kind": "bone"
   },
   {
    "id": "sk_scapula",
@@ -2457,7 +2551,8 @@
     0
    ],
    "radius": 0.0161,
-   "tris": 504
+   "tris": 504,
+   "kind": "bone"
   },
   {
    "id": "sk_ribs",
@@ -2474,7 +2569,8 @@
     0
    ],
    "radius": 0.0197,
-   "tris": 2100
+   "tris": 2100,
+   "kind": "bone"
   },
   {
    "id": "sk_uncinate",
@@ -2491,7 +2587,8 @@
     0
    ],
    "radius": 0.018,
-   "tris": 160
+   "tris": 160,
+   "kind": "bone"
   },
   {
    "id": "sk_pelvis",
@@ -2508,7 +2605,8 @@
     0
    ],
    "radius": 0.0209,
-   "tris": 2868
+   "tris": 2868,
+   "kind": "bone"
   },
   {
    "id": "sk_humerus",
@@ -2531,7 +2629,8 @@
     0.0133
    ],
    "radius": 0.0125,
-   "tris": 420
+   "tris": 420,
+   "kind": "bone"
   },
   {
    "id": "sk_radius",
@@ -2554,7 +2653,8 @@
     0.0144
    ],
    "radius": 0.0158,
-   "tris": 260
+   "tris": 260,
+   "kind": "bone"
   },
   {
    "id": "sk_ulna",
@@ -2577,7 +2677,8 @@
     0.0128
    ],
    "radius": 0.0158,
-   "tris": 312
+   "tris": 312,
+   "kind": "bone"
   },
   {
    "id": "sk_carpometacarpus",
@@ -2600,7 +2701,8 @@
     0.0152
    ],
    "radius": 0.0099,
-   "tris": 264
+   "tris": 264,
+   "kind": "bone"
   },
   {
    "id": "sk_digits",
@@ -2617,7 +2719,8 @@
     0.0158
    ],
    "radius": 0.0167,
-   "tris": 160
+   "tris": 160,
+   "kind": "bone"
   },
   {
    "id": "sk_femur",
@@ -2640,7 +2743,8 @@
     0
    ],
    "radius": 0.0159,
-   "tris": 364
+   "tris": 364,
+   "kind": "bone"
   },
   {
    "id": "sk_tibiotarsus",
@@ -2663,7 +2767,8 @@
     0.0001
    ],
    "radius": 0.0192,
-   "tris": 476
+   "tris": 476,
+   "kind": "bone"
   },
   {
    "id": "sk_fibula",
@@ -2680,7 +2785,8 @@
     0
    ],
    "radius": 0.0115,
-   "tris": 32
+   "tris": 32,
+   "kind": "bone"
   },
   {
    "id": "sk_tarsometatarsus",
@@ -2703,7 +2809,8 @@
     0
    ],
    "radius": 0.017,
-   "tris": 56
+   "tris": 56,
+   "kind": "bone"
   },
   {
    "id": "sk_toe_bones",
@@ -2720,7 +2827,8 @@
     0
    ],
    "radius": 0.0197,
-   "tris": 560
+   "tris": 560,
+   "kind": "bone"
   },
   {
    "id": "mu_skin",
@@ -2737,7 +2845,8 @@
     0
    ],
    "radius": 0.0455,
-   "tris": 21380
+   "tris": 21380,
+   "kind": "skin"
   },
   {
    "id": "mu_fill",
@@ -2754,7 +2863,8 @@
     0
    ],
    "radius": 0.0438,
-   "tris": 14108
+   "tris": 14108,
+   "kind": "wet"
   },
   {
    "id": "mu_pectoralis",
@@ -2777,7 +2887,8 @@
     0
    ],
    "radius": 0.016,
-   "tris": 21296
+   "tris": 21296,
+   "kind": "muscle"
   },
   {
    "id": "mu_supracoracoideus",
@@ -2800,7 +2911,8 @@
     0
    ],
    "radius": 0.0092,
-   "tris": 2116
+   "tris": 2116,
+   "kind": "muscle"
   },
   {
    "id": "mu_sc_tendon",
@@ -2817,7 +2929,8 @@
     0
    ],
    "radius": 0.0146,
-   "tris": 420
+   "tris": 420,
+   "kind": "cartilage"
   },
   {
    "id": "mu_canal",
@@ -2834,7 +2947,8 @@
     0
    ],
    "radius": 0.0093,
-   "tris": 360
+   "tris": 360,
+   "kind": "muscle"
   },
   {
    "id": "mu_neck_muscles",
@@ -2851,7 +2965,8 @@
     0
    ],
    "radius": 0.0103,
-   "tris": 864
+   "tris": 864,
+   "kind": "muscle"
   },
   {
    "id": "mu_back_muscles",
@@ -2868,7 +2983,8 @@
     0.0001
    ],
    "radius": 0.0214,
-   "tris": 868
+   "tris": 868,
+   "kind": "muscle"
   },
   {
    "id": "mu_jaw_muscle",
@@ -2885,7 +3001,8 @@
     0
    ],
    "radius": 0.0108,
-   "tris": 3768
+   "tris": 3768,
+   "kind": "muscle"
   },
   {
    "id": "mu_wing_muscles",
@@ -2902,7 +3019,8 @@
     0
    ],
    "radius": 0.0235,
-   "tris": 676
+   "tris": 676,
+   "kind": "muscle"
   },
   {
    "id": "mu_thigh_muscles",
@@ -2919,7 +3037,8 @@
     0
    ],
    "radius": 0.018,
-   "tris": 7728
+   "tris": 7728,
+   "kind": "muscle"
   },
   {
    "id": "mu_shank_muscles",
@@ -2936,7 +3055,8 @@
     0
    ],
    "radius": 0.017,
-   "tris": 5656
+   "tris": 5656,
+   "kind": "muscle"
   },
   {
    "id": "mu_tail_muscles",
@@ -2953,7 +3073,8 @@
     0
    ],
    "radius": 0.0055,
-   "tris": 3072
+   "tris": 3072,
+   "kind": "muscle"
   },
   {
    "id": "mu_tendon",
@@ -2970,7 +3091,8 @@
     0
    ],
    "radius": 0.0266,
-   "tris": 1224
+   "tris": 1224,
+   "kind": "cartilage"
   },
   {
    "id": "og_heart",
@@ -2987,7 +3109,8 @@
     0
    ],
    "radius": 0.0061,
-   "tris": 5876
+   "tris": 5876,
+   "kind": "wet"
   },
   {
    "id": "og_liver",
@@ -3004,7 +3127,8 @@
     0.0004
    ],
    "radius": 0.0093,
-   "tris": 7028
+   "tris": 7028,
+   "kind": "wet"
   },
   {
    "id": "og_oesophagus",
@@ -3021,7 +3145,8 @@
     -0.0007
    ],
    "radius": 0.0165,
-   "tris": 1136
+   "tris": 1136,
+   "kind": "wet"
   },
   {
    "id": "og_proventriculus",
@@ -3038,7 +3163,8 @@
     -0.0016
    ],
    "radius": 0.0032,
-   "tris": 2124
+   "tris": 2124,
+   "kind": "wet"
   },
   {
    "id": "og_gizzard",
@@ -3055,7 +3181,8 @@
     -0.0026
    ],
    "radius": 0.005,
-   "tris": 3084
+   "tris": 3084,
+   "kind": "wet"
   },
   {
    "id": "og_spleen",
@@ -3072,7 +3199,8 @@
     0.0036
    ],
    "radius": 0.0015,
-   "tris": 1232
+   "tris": 1232,
+   "kind": "wet"
   },
   {
    "id": "og_pancreas",
@@ -3089,7 +3217,8 @@
     -0.0048
    ],
    "radius": 0.0048,
-   "tris": 1268
+   "tris": 1268,
+   "kind": "wet"
   },
   {
    "id": "og_intestines",
@@ -3106,7 +3235,8 @@
     -0.0002
    ],
    "radius": 0.0124,
-   "tris": 1554
+   "tris": 1554,
+   "kind": "wet"
   },
   {
    "id": "og_cloaca",
@@ -3123,7 +3253,8 @@
     0
    ],
    "radius": 0.0026,
-   "tris": 1404
+   "tris": 1404,
+   "kind": "wet"
   },
   {
    "id": "og_rectum",
@@ -3140,7 +3271,8 @@
     0
    ],
    "radius": 0.0017,
-   "tris": 126
+   "tris": 126,
+   "kind": "wet"
   },
   {
    "id": "og_kidneys",
@@ -3157,7 +3289,8 @@
     0
    ],
    "radius": 0.0092,
-   "tris": 10040
+   "tris": 10040,
+   "kind": "wet"
   },
   {
    "id": "og_eyeballs",
@@ -3174,7 +3307,8 @@
     0
    ],
    "radius": 0.0123,
-   "tris": 1536
+   "tris": 1536,
+   "kind": "eye"
   },
   {
    "id": "og_trachea",
@@ -3191,7 +3325,8 @@
     0
    ],
    "radius": 0.0141,
-   "tris": 1220
+   "tris": 1220,
+   "kind": "cartilage"
   },
   {
    "id": "og_lungs",
@@ -3208,7 +3343,8 @@
     0
    ],
    "radius": 0.0138,
-   "tris": 13680
+   "tris": 13680,
+   "kind": "mucosa"
   },
   {
    "id": "og_sac_interclav",
@@ -3225,7 +3361,8 @@
     0
    ],
    "radius": 0.0075,
-   "tris": 4692
+   "tris": 4692,
+   "kind": "glass"
   },
   {
    "id": "og_sac_cervical",
@@ -3242,7 +3379,8 @@
     0
    ],
    "radius": 0.005,
-   "tris": 3288
+   "tris": 3288,
+   "kind": "glass"
   },
   {
    "id": "og_sac_ant",
@@ -3259,7 +3397,8 @@
     0
    ],
    "radius": 0.012,
-   "tris": 7476
+   "tris": 7476,
+   "kind": "glass"
   },
   {
    "id": "og_sac_post",
@@ -3276,7 +3415,8 @@
     0
    ],
    "radius": 0.0126,
-   "tris": 8108
+   "tris": 8108,
+   "kind": "glass"
   },
   {
    "id": "og_sac_abd",
@@ -3293,7 +3433,8 @@
     0
    ],
    "radius": 0.0138,
-   "tris": 12816
+   "tris": 12816,
+   "kind": "glass"
   },
   {
    "id": "og_brain",
@@ -3310,7 +3451,8 @@
     0
    ],
    "radius": 0.0103,
-   "tris": 6944
+   "tris": 6944,
+   "kind": "wet"
   },
   {
    "id": "og_optic_lobes",
@@ -3327,7 +3469,8 @@
     0
    ],
    "radius": 0.0096,
-   "tris": 3952
+   "tris": 3952,
+   "kind": "wet"
   },
   {
    "id": "og_optic_nerves",
@@ -3344,7 +3487,8 @@
     0
    ],
    "radius": 0.0061,
-   "tris": 60
+   "tris": 60,
+   "kind": "wet"
   },
   {
    "id": "og_spinal_cord",
@@ -3361,7 +3505,8 @@
     0
    ],
    "radius": 0.0281,
-   "tris": 1452
+   "tris": 1452,
+   "kind": "wet"
   },
   {
    "id": "og_brachial",
@@ -3378,7 +3523,8 @@
     0
    ],
    "radius": 0.0205,
-   "tris": 600
+   "tris": 600,
+   "kind": "wet"
   },
   {
    "id": "og_sciatic",
@@ -3395,7 +3541,8 @@
     0
    ],
    "radius": 0.0197,
-   "tris": 580
+   "tris": 580,
+   "kind": "wet"
   },
   {
    "id": "og_vagus",
@@ -3412,7 +3559,8 @@
     0
    ],
    "radius": 0.0141,
-   "tris": 656
+   "tris": 656,
+   "kind": "wet"
   },
   {
    "id": "sy_wall",
@@ -3430,7 +3578,8 @@
     0
    ],
    "radius": 0.0094,
-   "tris": 26048
+   "tris": 26048,
+   "kind": "mucosa"
   },
   {
    "id": "sy_pessulus",
@@ -3447,7 +3596,8 @@
     0
    ],
    "radius": 0.0013,
-   "tris": 20
+   "tris": 20,
+   "kind": "mucosa"
   },
   {
    "id": "sy_membranes",
@@ -3466,7 +3616,8 @@
     0
    ],
    "radius": 0.0014,
-   "tris": 3464
+   "tris": 3464,
+   "kind": "mucosa"
   },
   {
    "id": "sy_labia",
@@ -3483,7 +3634,8 @@
     0
    ],
    "radius": 0.0034,
-   "tris": 6864
+   "tris": 6864,
+   "kind": "mucosa"
   },
   {
    "id": "sy_muscles",
@@ -3501,7 +3653,8 @@
     0
    ],
    "radius": 0.0076,
-   "tris": 144
+   "tris": 144,
+   "kind": "mucosa"
   },
   {
    "id": "sy_rings",
@@ -3519,7 +3672,8 @@
    ],
    "radius": 4.2012,
    "count": 9,
-   "tris": 1800
+   "tris": 1800,
+   "kind": "cartilage"
   },
   {
    "id": "sy_halves",
@@ -3537,7 +3691,8 @@
    ],
    "radius": 5.6867,
    "count": 16,
-   "tris": 2400
+   "tris": 2400,
+   "kind": "mucosa"
   },
   {
    "id": "ey_sclera",
@@ -3556,7 +3711,8 @@
     0.0095
    ],
    "radius": 0.004,
-   "tris": 4274
+   "tris": 4274,
+   "kind": "wet"
   },
   {
    "id": "ey_scleral_ring",
@@ -3575,7 +3731,8 @@
     0.0093
    ],
    "radius": 0.0031,
-   "tris": 3536
+   "tris": 3536,
+   "kind": "bone"
   },
   {
    "id": "ey_cornea",
@@ -3595,7 +3752,8 @@
     0.0094
    ],
    "radius": 0.003,
-   "tris": 11416
+   "tris": 11416,
+   "kind": "eye"
   },
   {
    "id": "ey_iris",
@@ -3614,7 +3772,8 @@
     0.0087
    ],
    "radius": 0.0026,
-   "tris": 11184
+   "tris": 11184,
+   "kind": "wet"
   },
   {
    "id": "ey_lens",
@@ -3633,7 +3792,8 @@
     0.0081
    ],
    "radius": 0.0015,
-   "tris": 3760
+   "tris": 3760,
+   "kind": "glass"
   },
   {
    "id": "ey_vitreous",
@@ -3653,7 +3813,8 @@
     0.0091
    ],
    "radius": 0.0034,
-   "tris": 3298
+   "tris": 3298,
+   "kind": "glass"
   },
   {
    "id": "ey_retina",
@@ -3678,7 +3839,8 @@
     0.0087
    ],
    "radius": 0.0035,
-   "tris": 1702
+   "tris": 1702,
+   "kind": "wet"
   },
   {
    "id": "ey_choroid",
@@ -3697,7 +3859,8 @@
     0.0089
    ],
    "radius": 0.0036,
-   "tris": 394
+   "tris": 394,
+   "kind": "wet"
   },
   {
    "id": "ey_pecten",
@@ -3716,7 +3879,8 @@
     0.0064
    ],
    "radius": 0.0017,
-   "tris": 112
+   "tris": 112,
+   "kind": "wet"
   },
   {
    "id": "ey_optic_nerve",
@@ -3735,7 +3899,8 @@
     0.0031
    ],
    "radius": 0.0021,
-   "tris": 36
+   "tris": 36,
+   "kind": "wet"
   },
   {
    "id": "hd_muscle",
@@ -3752,7 +3917,8 @@
     0
    ],
    "radius": 0.0061,
-   "tris": 5876
+   "tris": 5876,
+   "kind": "muscle"
   },
   {
    "id": "hd_lv",
@@ -3770,7 +3936,8 @@
     -0.0009
    ],
    "radius": 0.0035,
-   "tris": 5164
+   "tris": 5164,
+   "kind": "wet"
   },
   {
    "id": "hd_rv",
@@ -3788,7 +3955,8 @@
     0.002
    ],
    "radius": 0.0034,
-   "tris": 3784
+   "tris": 3784,
+   "kind": "wet"
   },
   {
    "id": "hd_la",
@@ -3806,7 +3974,8 @@
     -0.0023
    ],
    "radius": 0.0017,
-   "tris": 1584
+   "tris": 1584,
+   "kind": "wet"
   },
   {
    "id": "hd_ra",
@@ -3824,7 +3993,8 @@
     0.0023
    ],
    "radius": 0.0018,
-   "tris": 1796
+   "tris": 1796,
+   "kind": "wet"
   },
   {
    "id": "r_belly_mid",
@@ -3847,7 +4017,8 @@
     0
    ],
    "radius": 0.0276,
-   "tris": 1394
+   "tris": 1394,
+   "kind": "feather"
   },
   {
    "id": "r_flank_mid",
@@ -3870,7 +4041,8 @@
     0
    ],
    "radius": 0.0291,
-   "tris": 1000
+   "tris": 1000,
+   "kind": "feather"
   },
   {
    "id": "r_breast_mid",
@@ -3893,7 +4065,8 @@
     0
    ],
    "radius": 0.0222,
-   "tris": 673
+   "tris": 673,
+   "kind": "feather"
   },
   {
    "id": "r_rump_mid",
@@ -3916,7 +4089,8 @@
     0
    ],
    "radius": 0.0207,
-   "tris": 1052
+   "tris": 1052,
+   "kind": "feather"
   },
   {
    "id": "r_vent_mid",
@@ -3939,7 +4113,8 @@
     0
    ],
    "radius": 0.0164,
-   "tris": 377
+   "tris": 377,
+   "kind": "feather"
   },
   {
    "id": "r_grey_mid",
@@ -3962,7 +4137,8 @@
     -0.0001
    ],
    "radius": 0.0212,
-   "tris": 466
+   "tris": 466,
+   "kind": "feather"
   },
   {
    "id": "r_back_mid",
@@ -3985,7 +4161,8 @@
     0.0001
    ],
    "radius": 0.022,
-   "tris": 410
+   "tris": 410,
+   "kind": "feather"
   },
   {
    "id": "r_nape_mid",
@@ -4008,7 +4185,8 @@
     0
    ],
    "radius": 0.0222,
-   "tris": 863
+   "tris": 863,
+   "kind": "feather"
   },
   {
    "id": "r_face_mid",
@@ -4031,7 +4209,8 @@
     0
    ],
    "radius": 0.0153,
-   "tris": 851
+   "tris": 851,
+   "kind": "feather"
   },
   {
    "id": "r_crown_mid",
@@ -4054,7 +4233,8 @@
     -0.0003
    ],
    "radius": 0.0138,
-   "tris": 305
+   "tris": 305,
+   "kind": "feather"
   },
   {
    "id": "body_far",
@@ -4072,7 +4252,8 @@
     0
    ],
    "radius": 0.0483,
-   "tris": 1322
+   "tris": 1322,
+   "kind": "feather"
   }
  ],
  "stats": {

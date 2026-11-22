@@ -28,7 +28,13 @@ function glowSprite(color, size, opacity = 1) {
   const m = new THREE.SpriteMaterial({ map: glowTex(), color, transparent: true, opacity, blending: THREE.AdditiveBlending, depthWrite: false, fog: false });
   const s = new THREE.Sprite(m); s.scale.set(size, size, 1); return s;
 }
-function smat(color, o = {}) { return new THREE.MeshStandardMaterial(Object.assign({ color, roughness: .45, metalness: .05 }, o)); }
+/* The app's standard material. o.kind names a kind of LOOK.KINDS (docs/DESIGN.md 3.5); with the realistic look on (?look=2) the material
+   comes from that table (LOOK.smat), otherwise it is as it always was and the kind is ignored. */
+function smat(color, o = {}) {
+  if (LOOK.on && LOOK.part('pbr')) return LOOK.smat(color, o);
+  if (o.kind !== undefined || o.emits !== undefined) { o = Object.assign({}, o); delete o.kind; delete o.emits; }
+  return new THREE.MeshStandardMaterial(Object.assign({ color, roughness: .45, metalness: .05 }, o));
+}
 const hitMat = () => new THREE.MeshBasicMaterial({ visible: false, side: THREE.DoubleSide });
 function hitSphere(r, id, priority = 2) { const m = new THREE.Mesh(new THREE.SphereGeometry(r, 12, 8), hitMat()); m.userData = { id, priority }; return m; }
 function cylBetween(a, b, r, mat, seg = 14) {

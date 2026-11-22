@@ -104,3 +104,14 @@ test('format 2: pack() round-trips positions, indices, shade and instances (deco
   for (let i = 0; i < I.n; i++) { for (let a = 0; a < 3; a++) assert.ok(Math.abs(I.min[a] + P[i * 3 + a] * I.pscale[a] - t[i * 8 + a]) < 1e-4); assert.ok(Math.abs(S[i] - t[i * 8 + 7]) < 1e-6); }
   assert.ok(bin.length < JSON.stringify(out.mesh).length, 'binary is smaller than the JSON it replaces');
 });
+
+// the realistic look's ambient occlusion (ao.mjs)
+import { buildBVH, rayHit, occlusion, pack4 } from '../lib/ao.mjs';
+test('ao: a ray finds the nearest triangle; a point under a roof sees less sky than one in the open', () => {
+  const T = new Float64Array([-1, 1, -1, 1, 1, -1, 0, 1, 1]), B = buildBVH(T);
+  assert.ok(Math.abs(rayHit(B, [0, 0, 0], [0, 1, 0], 10) - 1) < 1e-9);
+  assert.equal(rayHit(B, [0, 0, 0], [0, -1, 0], 10), 10);
+  const [under, open] = occlusion(B, [0, 0, 0, 5, 0, 5], [0, 1, 0, 0, 1, 0], { rays: 32, dist: 3 });
+  assert.ok(under < .95 && open === 1, `${under} ${open}`);
+  assert.deepEqual(Array.from(pack4([0, 1, .5])), [15 << 4 | 0, 8]);
+});

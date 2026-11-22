@@ -90,6 +90,7 @@ PERF.on('bloom', bloomResize);
    daylight scene that fills the view (the park, a landscape), do not: there the glow only washed out the sky and the paper white. */
 function bloomTarget() {
   if (!bloom || PERF.flags.bloom === '0') return 0;
+  if (LOOK.on) { const g = LOOK.glowOf(); if (g !== undefined) return g ? .55 : 0; }   // realistic look: glow only where the frame says it holds things that emit light (frame.glow)
   const f0 = drawn[0];
   if (f0 && f0.env && f0.env.opaque && f0.alpha > .995 && (f0.daylight || (f0.illo && cam.D < 6))) return 0;
   if (cam.A && cam.A.daylight && cam.A.alpha > .995) return 0;   // a daylight scene seen from above it (the park from 450 m, before its sky closes over the view): its clouds and lawn are not lamps
@@ -206,6 +207,7 @@ class Frame {
     try { FT[this.type].build(this, this.opts); } catch (e) { console.error('build failed', this.type, e); }
     finally { building = prev; }
     this.built = true; compileQ.push(this);
+    if (LOOK.on) { const prev2 = building; building = this; try { LOOK.frameBuilt(this); } finally { building = prev2; } }   // the realistic look: the frame's rig, environment, exposure and glow (js/look.js)
   }
   add(o) { this.root.add(o); return o; }
   pick(o, id, priority) { o.userData.id = id; if (priority !== undefined) o.userData.priority = priority; this.pickables.push(o); return o; }
@@ -561,6 +563,7 @@ function renderFramesTight(r) {
           if (i > 0 || f !== drawn[0] || s < n - 1) f.scene.background = null;
           else if (f.env && f.env.bg !== undefined && !bg) { r.setClearColor(f.env.bg, 1); r.clear(true, true, true); }
           c.near = pn; c.far = pf; c.updateProjectionMatrix();
+          if (LOOK.on) r.toneMappingExposure = LOOK.exposureOf(f);
           r.render(f.scene, c); PERF._renders++; f._drawnOnce = true;
           c.near = n0; c.far = f0; c.updateProjectionMatrix(); f.scene.background = bg;
         }
@@ -580,7 +583,9 @@ function renderFrames(r) {
     if (i > 0) f.scene.background = null;
     else if (f.env && f.env.bg !== undefined && !bg) { r.setClearColor(f.env.bg, 1); r.clear(true, true, true); }
     if (!f._share) r.clearDepth();
+    if (LOOK.on) r.toneMappingExposure = LOOK.exposureOf(f);   // realistic look: the page's exposure times the frame's own
     r.render(f.scene, f.cam); PERF._renders++; f._drawnOnce = true;
+    if (f.postDraw) f.postDraw(r);   // a frame's own drawing after its scene (and in its depth), when it needs one
     f.scene.background = bg;
   });
   for (const f of mergedSet) if (!f._culled && f.parent._drawnOnce) f._drawnOnce = true; // its matrices were computed with the parent's
@@ -641,7 +646,7 @@ function compileStep() {
    whole thing gets small on screen, between 70 and 40 pixels tall (px = its height in pixels): at that size the ink no longer draws an
    edge, it only darkens the figure. A thing's far detail tier has none (js/things.js). Chosen from screenshots: notes/perf.md. */
 const OUTLINE_PX = [40, 70];
-function outlineAmt(px) { const o = PERF.flags.outline; return o === 'all' ? 1 : o === '0' ? 0 : smooth(OUTLINE_PX[0], OUTLINE_PX[1], px); }
+function outlineAmt(px) { if (LOOK.on && LOOK.part('pbr')) return 0; /* realistic look: no ink, only the hull of the part pointed at or selected */ const o = PERF.flags.outline; return o === 'all' ? 1 : o === '0' ? 0 : smooth(OUTLINE_PX[0], OUTLINE_PX[1], px); }
 
 /* ================= INPUT: zoom-to-cursor, orbit, fly ================= */
 const zoom = { pending: 0, pivot: null, pt: -1e9, px: 0, py: 0, gen: -1 }; // pending = remaining ln(D) change; pt, px, py, gen: when, where and in which state of the view the pivot was last picked
@@ -985,6 +990,16 @@ function faceSurface(f) {
   _fsV.normalize().multiplyScalar(.89).addScaledVector(f.up, .45); convertD(_fsV, f, cam.A);
   setCamDir(_fsV);
 }
+/* A frame that is ground seen from one side (the park: `up` with a `maxPolar` limit that keeps orbiting above the lawn) must not be entered from below either.
+   A teleport keeps the view direction's numbers from the frame it left, which in the park's coordinates can point up from under the lawn: the lawn and the
+   pond are drawn one-sided, so the park then shows no ground and everything floats. Mirror such a view to the same angle from above. */
+function keepAbove(f) {
+  if (!f || !f.up || f.maxPolar === undefined || f.faceUp) return;
+  _fsV.copy(cam.dir); convertD(_fsV, cam.A, f); const k = _fsV.dot(f.up), lim = Math.cos(f.maxPolar);
+  if (k >= lim) return;
+  _fsV.addScaledVector(f.up, Math.max(-2 * k, lim - k + .02)); convertD(_fsV, f, cam.A); _fsU.copy(f.up); convertD(_fsU, f, cam.A);
+  setCamDir(_fsV, _fsU);
+}
 function safeThen(t) { if (t) try { t(); } catch (e) { console.error('flight callback failed', e); } } // a throwing callback must not abort the frame
 function stepFly(dt) {
   const F = fly; F.t += dt;
@@ -1005,7 +1020,7 @@ function stepFly(dt) {
     _fsV.copy(F.dir); convertD(_fsV, F.frame, cam.A); turned = cam.dir.dot(_fsV) > .9995;
     if (!turned) { cam.dir.lerp(_fsV, kt).normalize(); _fsU.set(0, 1, 0); convertD(_fsU, F.frame, cam.A); _fsU.addScaledVector(cam.dir, -_fsU.dot(cam.dir)); if (_fsU.lengthSq() > .02) cam.up.lerp(_fsU.normalize(), kt).normalize(); }
   }
-  if (turned && distM < cam.D * .02 && Math.abs(lnW - Math.log(cam.D)) < .03) { const t = F.then; fly = null; faceSurface(F.frame); safeThen(t); }
+  if (turned && distM < cam.D * .02 && Math.abs(lnW - Math.log(cam.D)) < .03) { const t = F.then; fly = null; faceSurface(F.frame); keepAbove(cam.A); safeThen(t); }
   if (fly === F && F.t > 60) { const t = F.then, d = F.dir; jumpTo(F.frame, F.p, F.Dg); if (d) setCamDir(convertD(d.clone(), F.frame, cam.A), convertD(new V3(0, 1, 0), F.frame, cam.A)); safeThen(t); } // never strand a tour: finish the trip
 }
 // pointer handlers
@@ -1756,11 +1771,23 @@ function declutterLabels(now) {
   if (now - lblClashT < 160) return; lblClashT = now;
   const items = []; for (const el of labelLayer.children) if (el.style.display !== 'none') items.push({ e: el, pri: +el.dataset.pri || 0, r: el.getBoundingClientRect() }); else if (el.classList.contains('lblhide')) el.classList.remove('lblhide');
   items.sort((a, b) => b.pri - a.pri || a.r.top - b.r.top);
-  const kept = [];
-  for (const it of items) { const r = it.r, clash = kept.some(k => !(r.right + 4 < k.left || r.left - 4 > k.right || r.bottom + 2 < k.top || r.top - 2 > k.bottom)); it.e.classList.toggle('lblhide', clash); if (!clash) kept.push(r); }
+  const kept = [], look = typeof LOOK !== 'undefined' && LOOK.on;
+  /* under the new look (docs/DESIGN.md 2.4): a name does not run under the ruler, the main buttons, the search field or the open panel, and where names have priorities the lower ones are set at 60 percent */
+  const under = look ? ['#ruler', '#topright', '#srch', '#panel:not(.min)', '.pop.open', '#tracks.open', '#perf.open', '#controls > *'].flatMap(q => [...document.querySelectorAll(q)]).filter(e => e && e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden').map(e => e.getBoundingClientRect()) : null;
+  const top = look && items.length ? items[0].pri : 0;
+  for (const it of items) {
+    const r = it.r; let clash = kept.some(k => !(r.right + 4 < k.left || r.left - 4 > k.right || r.bottom + 2 < k.top || r.top - 2 > k.bottom));
+    if (!clash && under) clash = under.some(k => !(r.right + 8 < k.left || r.left - 8 > k.right || r.bottom + 8 < k.top || r.top - 8 > k.bottom)) || r.left < 8 || r.right > innerWidth - 8 || r.bottom > innerHeight - 8;   // 8 px of air round a control, and a name is never cut by the edge
+    it.e.classList.toggle('lblhide', clash); if (!clash) kept.push(r);
+    if (look) it.e.classList.toggle('lk-sec', top > 0 && it.pri < top);
+  }
 }
 const _lv = new V3(), _lo = new V3();
+const LBL_STEM = 9;   // length of the stem under a name, px (css/look.css .lbl::before)
+let _lkLbl = false;
+function lblSize(el) { const k = el.textContent + '|' + document.fonts.status; if (el._lsk !== k) { el._lsk = k; el._lsw = { w: el.offsetWidth, h: el.offsetHeight }; } return el._lsw; }
 function updateLabels() {
+  _lkLbl = typeof LOOK !== 'undefined' && !!LOOK.on;
   const shown = new Set(), topY = W <= 860 ? freeArea().t / H : 0;   // on a phone the top of the screen belongs to the buttons: a name is not drawn under them (the Search button sat on "Storage" in the battery view)
   for (const f of drawn) {
     if (f.alpha < .6 || !f.labels || f._culled) continue;
@@ -1774,6 +1801,10 @@ function updateLabels() {
       if (L.minSizeFn && !L.minSizeFn(f)) continue;
       shown.add(L.el);
       L.el.style.display = 'block';
+      if (_lkLbl) {   /* the new look: whole device pixels, centred by the measured width, so the letters are not set at a half pixel; the stem ends on the point the name is anchored to */
+        const w = lblSize(L.el), dpr = devicePixelRatio || 1, rd = v => Math.round(v * dpr) / dpr;
+        L.el.style.transform = `translate(${rd((_lv.x * .5 + .5) * W - w.w / 2)}px,${rd((-_lv.y * .5 + .5) * H - w.h - LBL_STEM)}px)`;
+      } else
       L.el.style.transform = `translate(${(_lv.x * .5 + .5) * W}px,${(-_lv.y * .5 + .5) * H}px) translate(-50%,-120%)`;
     }
   }
@@ -1797,7 +1828,11 @@ function seg(items, activeK, onSel) {
 /* A double tap (or click) whose second half lands on a control that appeared between the two (the dog's row of views comes up when the first tap selects
    it) is the double tap the visitor meant: it goes to the scene, not to the button that slid under the finger. */
 let ctrlBuiltT = -1e9, canvasTapT = -1e9, canvasTapXY = null;
-new MutationObserver(() => { ctrlBuiltT = performance.now(); }).observe(ctrlEl, { childList: true, subtree: true });
+/* the new look: a row of views that does not fit on one line folds to the choice in force and a "Views (n)" menu, instead of wrapping to a second row (css/look.css, .seg.folded) */
+function fitSegs() { if (typeof LOOK === 'undefined' || !LOOK.on) return; const cw = ctrlEl.clientWidth; for (const d of ctrlEl.querySelectorAll('.seg.fold')) { if (d.classList.contains('open')) continue; d.classList.remove('folded'); if (d.offsetWidth > cw - 4) d.classList.add('folded'); } }
+let _fitQ = 0; const fitSegsSoon = () => { if (!_fitQ) _fitQ = requestAnimationFrame(() => { _fitQ = 0; fitSegs(); }); };
+new ResizeObserver(fitSegsSoon).observe(ctrlEl);
+new MutationObserver(() => { ctrlBuiltT = performance.now(); fitSegsSoon(); }).observe(ctrlEl, { childList: true, subtree: true });
 canvas.addEventListener('pointerup', e => { canvasTapT = performance.now(); canvasTapXY = { x: e.clientX, y: e.clientY, touch: e.pointerType === 'touch' }; }, true);
 function ctrlSwallow(e) {
   const now = performance.now(), c = canvasTapXY;

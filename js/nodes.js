@@ -43,6 +43,7 @@ function paintedInOrder(m) {
   m.transparent = false; m.blending = op < .995 ? THREE.CustomBlending : THREE.NormalBlending; return m;
 }
 function illoMat(color, o = {}) {
+  if (LOOK.on && LOOK.part('pbr')) return LOOK.illoMat(color, o);   // the realistic look: a standard material of a kind (js/look.js)
   const m = new THREE.MeshToonMaterial(Object.assign({ color, gradientMap: toonGrad(), opacity: 1, side: o.double ? THREE.DoubleSide : THREE.FrontSide }, o.extra || {}));
   return o.extra && o.extra.transparent ? m : opaqueUnlessFading(m);
 }
@@ -153,14 +154,16 @@ FT.body = {
          brain. It used to be the order in which the files happened to arrive, which changed from one page load to the next. */
       const rank = {}; A.parts.forEach((p, i) => { rank[p.id] = i; });
       loadNote('the human body', F.readyP);
-      Promise.all(files.map(file => loadAnatomyFile(file).then(S => {
+      Promise.all((BLK.on ? [BLK.loadAO()] : []).concat(files.map(file => loadAnatomyFile(file).then(S => {
         if (!F.built) return;
         S.parts.forEach(p => {
           if (p.parent) { (F.detail = F.detail || {})[p.parent] = (F.detail[p.parent] || []).concat([p]); return; }
-          const g = inked(decodePart(p), (p.id === 'skin' ? 0xcf9f82 : 0) || PART_COL[p.id] || (p.color ? new THREE.Color(p.color).getHex() : 0) || SYS_COL[p.system] || 0xcccccc, { w: p.id === 'skin' ? .0012 : .0018, double: p.id === 'skin', extra: { transparent: true } });
+          const atlas = (p.id === 'skin' ? 0xcf9f82 : 0) || PART_COL[p.id] || (p.color ? new THREE.Color(p.color).getHex() : 0) || SYS_COL[p.system] || 0xcccccc;
+          const g = inked(decodePart(p), BLK.on ? BLK.colorOf(p) : atlas, { w: p.id === 'skin' ? .0012 : .0018, double: p.id === 'skin', extra: { transparent: true } });
           paintedInOrder(g.userData.main.material); // layers are painted in the order the parts were made, as before; a solid part is drawn without blending
           { const om = g.userData.ol.material; om.transparent = false; om.blending = THREE.CustomBlending; } // the ink too stays in that pass (render order 0: before every part, so ghost layers veil it as they always did)
-          bodySurface(g.userData.main.material); // fine grain, so a close-up of a smooth part still has something to read
+          if (BLK.on) { g.userData.atlas = atlas; BLK.part(g.userData.main.material, p, g.userData.main.geometry); if (p.id === 'skin') BLK.skin(g.userData.main.material, g.userData.main.geometry); }   // the realistic look (js/body_core.js)
+          else bodySurface(g.userData.main.material); // fine grain, so a close-up of a smooth part still has something to read
           const big = () => p.radius > .1;
           Object.assign(g.userData, {
             id: p.id, node: nodeForMesh(p.id), part: p, priority: 1, madeOf: 'tissue', title: p.name, op: 1, shown: 1, rank: (rank[p.id] ?? 0) * 1e-4,
@@ -171,14 +174,16 @@ FT.body = {
           });
           g.userData.main.userData.pickRoot = g; g.userData.main.material.userData.noHL = true;
           if (p.id === 'lung_l' || p.id === 'lung_r') { // the data is the airway tree only: wrap it in a schematic lung outline (see lungShellGeo)
-            const sh = new THREE.Mesh(lungShellGeo(g.userData.main.geometry, A.byId.heart), new THREE.MeshToonMaterial({ color: 0xf0b3c0, gradientMap: toonGrad(), transparent: true, opacity: .5, depthWrite: false, side: THREE.DoubleSide }));
+            const sh = new THREE.Mesh(lungShellGeo(g.userData.main.geometry, A.byId.heart), illoMat(BLK.on ? BLK.colorOf(p) : 0xf0b3c0, { extra: { transparent: true, opacity: .5, depthWrite: false, side: THREE.DoubleSide } }));
+            if (BLK.on) BLK.part(sh.material, { id: 'lung_shell' });
             sh.renderOrder = 3; g.add(sh); g.userData.shell = sh; sh.material.userData.noHL = true;
           }
           g.traverse(o => { o.matrixAutoUpdate = false; }); // body parts never move: their matrices are composed once (identity), not every frame
           grp.add(g); F.pickables.push(g); F.parts[p.id] = { g, p }; regMesh(p.id, g);
         });
-      }))).then(() => {
+      })))).then(() => {
         if (!F.built) return;
+        if (BLK.on) BLK.applyAO(F);
         F.mats = null; applyMode(F);
         if (FR.park && FR.park.v2 && F.parts.skin) FR.park.v2.parts.human.visible = false;
         F.partsReady = true; F._ready();
@@ -188,7 +193,8 @@ FT.body = {
     const modes = [['auto', 'Auto'], ['skin', 'Skin'], ['muscles', 'Muscles'], ['skeleton', 'Skeleton'], ['organs', 'Organs'], ['nervous', 'Nerves'], ['circulatory', 'Heart & vessels']];
     F.modeSeg = seg(modes, F.mode, k => { F.mode = k; store.set('bodyMode', k); applyMode(F); });
     F.showAllBtn = actBtn('Show everything', () => { F.hidden.clear(); F.reveal = null; applyMode(F); toast('Everything is back.'); }); F.showAllBtn.style.display = 'none';
-    F.env = { bg: 0x0e1422, opaque: false };
+    F.env = { bg: BLK.on ? BLK.BG : 0x0e1422, opaque: false };
+    if (BLK.on) F.note = BLK.NOTE;
     F.update = (dt, t) => { F._k = 1 - Math.exp(-Math.min(dt, .25) * 9); bodyAutoUpdate(F, dt); applyMode(F); pulse(F, t); F.env.opaque = cam.D < .75 && chainOf(cam.A).includes(F) && !chainOf(cam.A).some(f => f.type === 'tissue' || f.type === 'cell'); };
     F.spawn = (T, hint) => {
       if (!hint || !hint.obj || !hint.obj.userData.part) return null;
@@ -218,6 +224,7 @@ function applyMode(F) {
   if (F.modeSeg && F._layer !== layer) { F._layer = layer; const b = F.modeSeg.querySelector('[data-k=auto]'); if (b) b.textContent = layer ? 'Auto: ' + layer : 'Auto'; }
   const focus = bodyFocus(F), hov = hovered && hovered.userData && hovered.userData.part ? hovered : null;
   let vs = 0, vi = 0; // which parts can be seen (and so picked): when that changes, the hover under a resting pointer is worked out again
+  if (BLK.on) BLK.recolor(F);
   const olK = F.C ? outlineAmt(1.75 / Math.max(F.C.distanceTo(F.center || V3Z), 1e-6) * PX_PER_RAD()) : 1; // outlines fade out as the figure gets small on screen (outline=near)
   for (const id in F.parts) {
     const { g, p } = F.parts[id], u = g.userData, s = M.vessel !== undefined && isVessel(p) ? 'vessel' : sysOf(p);
@@ -230,12 +237,14 @@ function applyMode(F) {
     let ev = op; if (isSel) ev = Math.max(ev, .6); // the part a card is about is drawn solid enough to read; hovering never pulls a ghost layer back (it made a flat wall)
     const m = u.main.material; m.opacity = ev * F.alpha; m.depthWrite = ev > .9;
     if (u.shell) u.shell.material.opacity = .5 * ev * F.alpha;
+    if (BLK.on) { BLK.ghost(m, 1 - smooth(.3, .9, ev), F.alpha); if (u.shell) BLK.ghost(u.shell.material, .85, F.alpha); }   // a peeled layer is clear glass
     g.visible = ev > .01 && (!F.hidden.has(id) || isSel);
     u.shown = g.visible ? op : 0; vi++; if (u.shown >= BODY_VISIBLE_OP) vs = (vs * 31 + vi) | 0;
     u.ol.visible = (ev > .5 && olK > .02) || (hl && ev > .2); u.ol.material.uniforms.uOpacity.value = .85 * Math.max(ev * olK, hl ? .9 : 0) * F.alpha;
     u.ol.material.uniforms.uColor.value.setHex(hl ? 0x1e4e8f : 0x1a1f2b);
     u.main.renderOrder = (s === 'skin' ? 2 : 1) + u.rank; u.ol.renderOrder = u.rank; // ink first, then the parts in index order, the skin last
   }
+  if (BLK.on) { BLK.eyes(F, focus); BLK.shadow(F); }   // the eyes show through the openings of the skin while it is shown; the park's shadow is cast by what is solid
   if (vs !== F._vs) { F._vs = vs; viewChanged(); }
   if (F.showAllBtn) { const n = F.hidden.size, on = n || F.reveal, d = on ? '' : 'none'; if (F.showAllBtn.style.display !== d) F.showAllBtn.style.display = d; const t = n ? `Show everything (${n} hidden)` : F.reveal ? 'Show everything' : ''; if (on && F.showAllBtn.textContent !== t) F.showAllBtn.textContent = t; }
 }
@@ -276,6 +285,7 @@ FT.organ = {
     // a hit on the half that has been cut away does not count
     F.chooseHit = cands => { let best = null; for (const c of cands) { if (F.cut && plane.distanceToPoint(c.hit.point) < 0) continue; if (!best || c.pri > best.pri) best = c; } return best; };
     F.blurb = `${nodeTitle(o.organ)}, cut open. A model of a typical adult, simplified. Click a yellow marker or any part to learn what it does.${/^lung_/.test(o.organ) ? ' ' + LUNG_NOTE : ''}`;
+    if (BLK.on) F.note = 'Model: built from anatomical data (BodyParts3D), cut along one plane and lit as in a studio. Tissue colours are those of living tissue, approximately; the cut is drawn as the surfaces the data has, not as solid tissue.';
     F.onDispose = () => { dead = true; if (body.focus === F) body.focus = null; };
     F.spawn = (T, hint) => {
       const id = hint && hint.obj && hint.obj.userData.node || o.organ, n = NODE[id];
@@ -293,29 +303,31 @@ FT.organ = {
         const outer = new THREE.Mesh(geo, illoMat(col, { extra: { clippingPlanes: F.cut ? [plane] : [], transparent: true } }));
         if (shell) { outer.material.opacity = .38; outer.material.depthWrite = false; } // a see-through wall: what is inside it shows
         // the inside of the cut: lit from within so it reads as a hollow, not a black hole
-        const inner = new THREE.Mesh(geo, new THREE.MeshToonMaterial({ color: new THREE.Color(col).multiplyScalar(.75), emissive: new THREE.Color(col).multiplyScalar(.28), gradientMap: toonGrad(), side: THREE.BackSide, clippingPlanes: F.cut ? [plane] : [], transparent: true }));
+        const inner = new THREE.Mesh(geo, illoMat(new THREE.Color(col).multiplyScalar(BLK.on ? .4 : .75), { extra: Object.assign(BLK.on ? { roughness: .8 } : { emissive: new THREE.Color(col).multiplyScalar(.28) }, { side: THREE.BackSide, clippingPlanes: F.cut ? [plane] : [], transparent: true }) }));   // the realistic look: the inside is lit by the studio through the cut, it does not glow; it is darker and matte, so a cut wall reads as a wall, not as two films
         const ol = new THREE.Mesh(geo, outlineMat()); ol.material.clippingPlanes = F.cut ? [plane] : [];
+        if (BLK.on) { ol.visible = false; if (shell) BLK.part(outer.material, { id: 'shell' }); }   // no ink; a schematic wall is clear glass
         ol.renderOrder = 0; ol.material.depthWrite = false; inner.renderOrder = 1; outer.renderOrder = shell ? 4 : 2; // the ink never paints over the lit inside of the cut
-        if (shell) { ol.visible = false; inner.material.opacity = .9; inner.material.emissive.multiplyScalar(1.6); }
+        if (shell) { ol.visible = false; inner.material.opacity = .9; inner.material.emissive.multiplyScalar(1.6); if (BLK.on) { inner.visible = false; BLK.ghost(outer.material, .85, 1); } }
         const g = new THREE.Group(); g.add(outer, inner, ol); g.userData = { id: nodeId, node: NODE[nodeId] ? nodeId : null, priority: pri, madeOf: 'tissue', title: title || nodeTitle(nodeId) }; g.userData.main = outer;
         F.add(g); F.pickables.push(g); regMesh(nodeId, g); cutMats.push(outer.material, inner.material, ol.material);
       };
       const det = [];
       o.meshes.forEach(mid => (body.detail && body.detail[mid] || []).forEach(p => det.push(p)));
-      if (det.length) det.filter(p => !/cavity/.test(p.id)).forEach(p => { const g = decodePart(p); g.translate(-c.x, -c.y, -c.z); addMesh(g, p.color ? new THREE.Color(p.color).getHex() : 0xc0392b, nodeForMesh(p.id) || o.organ, 1, p.name); });
-      else o.meshes.forEach(mid => { const src = body.parts[mid]; if (!src) return; const g = src.g.userData.main.geometry.clone(); g.translate(-c.x, -c.y, -c.z); addMesh(g, PART_COL[mid] || (src.p.color ? new THREE.Color(src.p.color).getHex() : 0) || SYS_COL[src.p.system] || 0xcccccc, o.organ, 1, src.p.name); });
+      if (det.length) det.filter(p => !/cavity/.test(p.id)).forEach(p => { const g = decodePart(p); g.translate(-c.x, -c.y, -c.z); addMesh(g, BLK.on ? BLK.colorOf(p) : p.color ? new THREE.Color(p.color).getHex() : 0xc0392b, nodeForMesh(p.id) || o.organ, 1, p.name); });
+      else o.meshes.forEach(mid => { const src = body.parts[mid]; if (!src) return; const g = src.g.userData.main.geometry.clone(); g.translate(-c.x, -c.y, -c.z); addMesh(g, BLK.on ? BLK.colorOf(src.p) : PART_COL[mid] || (src.p.color ? new THREE.Color(src.p.color).getHex() : 0) || SYS_COL[src.p.system] || 0xcccccc, o.organ, 1, src.p.name); });
       if (/^lung_/.test(o.organ)) { // the lung: its wall (schematic, see lungShellGeo) around its airway tree and the main airways
-        o.meshes.forEach(mid => { const src = body.parts[mid], sh = src && src.g.userData.shell; if (!sh) return; const g = sh.geometry.clone(); g.translate(-c.x, -c.y, -c.z); addMesh(g, 0xf0b3c0, o.organ, 1, nodeTitle(o.organ), true); });
+        o.meshes.forEach(mid => { const src = body.parts[mid], sh = src && src.g.userData.shell; if (!sh) return; const g = sh.geometry.clone(); g.translate(-c.x, -c.y, -c.z); addMesh(g, BLK.on ? BLK.colorOf(src.p) : 0xf0b3c0, o.organ, 1, nodeTitle(o.organ), true); });
         const br = body.parts.bronchi, tr = body.parts.trachea;
         [br, tr].forEach(src => { if (!src) return; const g0 = src.g.userData.main.geometry, pa = g0.attributes.position, ix = g0.index.array, keep = [], t = new V3();
           for (let i = 0; i < ix.length; i += 3) { t.set(0, 0, 0); for (let k = 0; k < 3; k++) t.add(new V3(pa.getX(ix[i + k]), pa.getY(ix[i + k]), pa.getZ(ix[i + k]))); t.divideScalar(3); if (t.distanceTo(c) < o.R * 1.15 && (t.y < c.y + o.R * 1.05)) keep.push(ix[i], ix[i + 1], ix[i + 2]); }
-          if (!keep.length) return; const g = new THREE.BufferGeometry(); g.setAttribute('position', pa.clone()); g.setIndex(keep); g.computeVertexNormals(); g.translate(-c.x, -c.y, -c.z); addMesh(g, 0x9fb7d6, nodeForMesh(src.p.id) || o.organ, 1, src.p.name); });
+          if (!keep.length) return; const g = new THREE.BufferGeometry(); g.setAttribute('position', pa.clone()); g.setIndex(keep); g.computeVertexNormals(); g.translate(-c.x, -c.y, -c.z); addMesh(g, BLK.on ? BLK.colorOf(src.p) : 0x9fb7d6, nodeForMesh(src.p.id) || o.organ, 1, src.p.name); });
       }
       const dotG = new THREE.SphereGeometry(P.radius * (o.hotspots.length > 6 ? .026 : .045), 16, 12); // many markers (the brain has 12) are drawn smaller so they do not pile up
       o.hotspots.forEach(hid => {
         const n = NODE[hid]; if (!n || !n.hotspot || !n.hotspot.at) return;
         const at = new V3(...n.hotspot.at); at.x *= mir; if (at.length() > P.radius * 1.6) at.setLength(P.radius * .8);
         const g = inked(dotG, 0xffd166, { w: .004, extra: { transparent: true } }); g.position.copy(at); F.add(g); // a marker is painted over everything, ink first then fill: both stay in the blended pass, where renderOrder decides
+        if (BLK.on) { g.userData.main.material = new THREE.MeshBasicMaterial({ color: 0xffd166, transparent: true, toneMapped: false }); g.userData.ol.material.uniforms.uOpacity.value = 1; }   // the realistic look: a marker is interface, flat and unlit, never a glossy bead
         g.userData.main.renderOrder = 11; g.userData.ol.renderOrder = 10; // marker above its own outline
         g.children.forEach(m => { m.material.depthTest = false; });
         Object.assign(g.userData, { id: hid, node: hid, priority: 4, title: n.hotspot.label || n.title, center: () => at.clone(), radius: () => P.radius * .12, madeOf: 'tissue' }); g.userData.main.userData.pickRoot = g; F.pickables.push(g); regMesh(hid, g);
@@ -399,6 +411,7 @@ FT.tissue = {
     F.info = n; F.name = n ? n.title : nodeTitle(o.node);
     F.blurb = n ? n.summary : 'Tissue: cells of a few kinds working together.';
     F.note = 'An illustration of this kind of tissue, not a microscope image: the shapes and the arrangement of the cells are simplified.';
+    if (BLK.on) BLK.tissue(F, K);   // the realistic look: a studio model (js/body_core.js)
     F.spawn = (T, hint) => {
       const id = hint && hint.obj && hint.obj.userData.id || cellId, q = { id, node: NODE[id] ? id : null, what: nodeTitle(id), u: (hint && hint.obj && hint.obj.userData) || {} };
       if (typeof DESCENT !== 'undefined' && DESCENT.known(F, q)) return DESCENT.spawnFor(F, q, T);   // a red blood cell, a platelet, bone matrix ...: data/descent/assign/tissue.json

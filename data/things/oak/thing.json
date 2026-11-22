@@ -282,13 +282,18 @@
    "ink_w": 0.0016,
    "priority": 1.4,
    "solid": false,
+   "uv": {
+    "grid": 151,
+    "round": 3
+   },
    "center": [
     0.0805,
     1.8,
     -0.0283
    ],
    "radius": 2.3905,
-   "tris": 27150
+   "tris": 27150,
+   "kind": "bark"
   },
   {
    "id": "branches",
@@ -307,7 +312,8 @@
     1.298
    ],
    "radius": 8.2653,
-   "tris": 21642
+   "tris": 21642,
+   "kind": "bark"
   },
   {
    "id": "twigs",
@@ -326,7 +332,8 @@
     1.2958
    ],
    "radius": 8.9179,
-   "tris": 21240
+   "tris": 21240,
+   "kind": "bark"
   },
   {
    "id": "buds",
@@ -344,7 +351,8 @@
    ],
    "radius": 9.2565,
    "count": 3554,
-   "tris": 21324
+   "tris": 21324,
+   "kind": "horn"
   },
   {
    "id": "leaves",
@@ -378,7 +386,8 @@
    ],
    "radius": 9.3118,
    "count": 18663,
-   "tris": 74652
+   "tris": 74652,
+   "kind": "leaf"
   },
   {
    "id": "acorn_nuts",
@@ -398,7 +407,8 @@
    ],
    "radius": 7.5775,
    "count": 105,
-   "tris": 5040
+   "tris": 5040,
+   "kind": "wax"
   },
   {
    "id": "acorn_cups",
@@ -418,7 +428,8 @@
    ],
    "radius": 7.5761,
    "count": 105,
-   "tris": 5040
+   "tris": 5040,
+   "kind": "wood"
   },
   {
    "id": "trunk_mid",
@@ -431,13 +442,18 @@
    "ink_w": 0.0022,
    "priority": 1.4,
    "solid": false,
+   "uv": {
+    "grid": 73,
+    "round": 3
+   },
    "center": [
     0.0788,
     1.825,
     -0.0344
    ],
    "radius": 2.3702,
-   "tris": 4824
+   "tris": 4824,
+   "kind": "bark"
   },
   {
    "id": "limbs_mid",
@@ -456,7 +472,8 @@
     0.9778
    ],
    "radius": 7.6699,
-   "tris": 5770
+   "tris": 5770,
+   "kind": "bark"
   },
   {
    "id": "leaves_mid",
@@ -479,7 +496,9 @@
    ],
    "radius": 9.8209,
    "count": 2032,
-   "tris": 4064
+   "tris": 4064,
+   "kind": "leaf",
+   "look_lod": "mid+far"
   },
   {
    "id": "crown_far",
@@ -499,7 +518,9 @@
    ],
    "radius": 9.6277,
    "count": 250,
-   "tris": 9000
+   "tris": 9000,
+   "kind": "leaf",
+   "look_lod": "off"
   },
   {
    "id": "trunk_far",
@@ -518,7 +539,8 @@
     -0.0017
    ],
    "radius": 2.0707,
-   "tris": 192
+   "tris": 192,
+   "kind": "bark"
   },
   {
    "id": "limbs_far",
@@ -537,7 +559,8 @@
     0.7543
    ],
    "radius": 5.4634,
-   "tris": 590
+   "tris": 590,
+   "kind": "bark"
   },
   {
    "id": "roots",
@@ -555,7 +578,8 @@
     -0.1024
    ],
    "radius": 9.2852,
-   "tris": 29724
+   "tris": 29724,
+   "kind": "root"
   },
   {
    "id": "fine_roots",
@@ -579,7 +603,8 @@
     -0.0085
    ],
    "radius": 8.9855,
-   "tris": 35200
+   "tris": 35200,
+   "kind": "root"
   },
   {
    "id": "hyphae",
@@ -597,7 +622,8 @@
     0.6829
    ],
    "radius": 7.7601,
-   "tris": 16800
+   "tris": 16800,
+   "kind": "fungus"
   },
   {
    "id": "soil",
@@ -616,7 +642,8 @@
     0
    ],
    "radius": 10.6367,
-   "tris": 216
+   "tris": 216,
+   "kind": "soil"
   },
   {
    "id": "log_bark",
@@ -635,7 +662,8 @@
     -0.0291
    ],
    "radius": 1.4655,
-   "tris": 27272
+   "tris": 27272,
+   "kind": "bark"
   },
   {
    "id": "log_phloem",
@@ -654,7 +682,9 @@
     0.0393
    ],
    "radius": 0.7067,
-   "tris": 432
+   "tris": 432,
+   "kind": "wet",
+   "look_section": true
   },
   {
    "id": "log_cambium",
@@ -673,7 +703,9 @@
     0.0394
    ],
    "radius": 0.7007,
-   "tris": 432
+   "tris": 432,
+   "kind": "wet",
+   "look_section": true
   },
   {
    "id": "log_sapwood",
@@ -698,7 +730,10 @@
     0
    ],
    "radius": 0.6242,
-   "tris": 7488
+   "tris": 7488,
+   "kind": "wood",
+   "shade": "tone",
+   "look_section": true
   },
   {
    "id": "log_heartwood",
@@ -723,7 +758,10 @@
     0
    ],
    "radius": 0.6088,
-   "tris": 78912
+   "tris": 78912,
+   "kind": "wood",
+   "shade": "tone",
+   "look_section": true
   },
   {
    "id": "log_pith",
@@ -742,7 +780,9 @@
     0
    ],
    "radius": 0.475,
-   "tris": 288
+   "tris": 288,
+   "kind": "wood",
+   "look_section": true
   },
   {
    "id": "log_rays",
@@ -761,7 +801,9 @@
     -0.0526
    ],
    "radius": 0.6017,
-   "tris": 260
+   "tris": 260,
+   "kind": "wood",
+   "look_section": true
   },
   {
    "id": "flow_water",
@@ -772,12 +814,13 @@
    "flow": "water",
    "priority": 2.2,
    "center": [
-    0,
-    8,
-    0
+    -0.702,
+    5.1675,
+    -0.3545
    ],
-   "radius": 10,
-   "tris": 0
+   "radius": 13.67642,
+   "tris": 0,
+   "kind": "marker"
   },
   {
    "id": "flow_sugar",
@@ -788,12 +831,13 @@
    "flow": "sugar",
    "priority": 2.2,
    "center": [
-    0,
-    8,
-    0
+    -0.702,
+    5.1675,
+    -0.3545
    ],
-   "radius": 10,
-   "tris": 0
+   "radius": 13.67642,
+   "tris": 0,
+   "kind": "marker"
   }
  ],
  "stats": {

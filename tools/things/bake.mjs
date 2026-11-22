@@ -4,6 +4,7 @@
 import fs from 'fs'; import path from 'path'; import { fileURLToPath, pathToFileURL } from 'url';
 import * as L from './lib/index.mjs';
 import { assemble, pack } from './lib/export.mjs';
+import { bakeAO } from './lib/ao.mjs';
 import zlib from 'zlib';
 const here = path.dirname(fileURLToPath(import.meta.url)), root = path.resolve(here, '../..');
 const ids = process.argv.slice(2);
@@ -11,13 +12,15 @@ if (!ids.length) { console.error('usage: node tools/things/bake.mjs <id> ...'); 
 let bad = 0;
 for (const id of ids) {
   const mod = await import(pathToFileURL(path.join(here, 'models', id + '.mjs')).href);
-  const t0 = Date.now(), built = await mod.default(L), { thing, mesh, problems } = assemble({ ...built, thing: built.thing || mod.thing });
+  const t0 = Date.now(), built = await mod.default(L), aoLine = bakeAO(id, built), { thing, mesh, problems } = assemble({ ...built, thing: built.thing || mod.thing });
   const dir = path.join(root, 'data/things', id); fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'thing.json'), JSON.stringify(thing, null, 1));
   const packed = pack(mesh), jtxt = JSON.stringify(packed.json);
   fs.writeFileSync(path.join(dir, 'mesh.json'), jtxt); fs.writeFileSync(path.join(dir, 'mesh.bin'), packed.bin);
   const kb = n => Math.round(n / 1024), gz = kb(zlib.gzipSync(packed.bin).length + zlib.gzipSync(jtxt).length);
   console.log(`${id}: ${thing.parts.length} parts, ${thing.stats.uniqueMeshTris} unique triangles, mesh.bin ${kb(packed.bin.length)} kB + mesh.json ${kb(jtxt.length)} kB on disk (${kb(packed.bin.length + jtxt.length)} kB), gzip ${gz} kB, ${Date.now() - t0} ms`);
+  if (aoLine) console.log('  ' + aoLine);
+  const disk = packed.bin.length + jtxt.length; if (disk >= 3e6) problems.push(`mesh.bin + mesh.json is ${disk} bytes: over the budget of 3 MB a thing (tools/things/SCHEMA.md)`);
   for (const p of thing.parts) console.log(`  ${p.id.padEnd(18)} ${p.system.padEnd(10)} ${String(p.tris).padStart(7)} tris${p.count ? ' x' + p.count : ''}${p.lod ? ' [' + p.lod + ']' : ''}`);
   for (const p of problems) { console.error('  PROBLEM: ' + p); bad++; }
 }

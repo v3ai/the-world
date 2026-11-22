@@ -134,4 +134,4 @@ function diveMaterial(h, quiet) {   // returns the frame it flies into, or null 
   flyTo(f, new V3(), D);
   return f;
 }
-function jumpTo(f, p, D) { chainOf(f).reverse().forEach(x => { x.ensure(); if (x.place) x.place(); }); cam.A = f; cam.T.copy(p || new V3()); cam.D = D; fly = null; zoom.pending = 0; anchored.length = 0; }
+function jumpTo(f, p, D) { chainOf(f).reverse().forEach(x => { x.ensure(); if (x.place) x.place(); }); cam.A = f; cam.T.copy(p || new V3()); cam.D = D; fly = null; zoom.pending = 0; anchored.length = 0; for (const x of chainOf(f)) { if (x.unit > f.unit * 100) break; if (x.up && x.maxPolar !== undefined) { keepAbove(x); break; } } }   // never under the lawn (keepAbove, js/engine.js)

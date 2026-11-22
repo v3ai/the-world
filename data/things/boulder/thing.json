@@ -87,7 +87,11 @@
       3958054,
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "moss",
+     "pattern": "grain"
+    }
    },
    "granite": {
     "kind": "grains",
@@ -128,7 +132,11 @@
       "node": "rock_grains"
      }
     ],
-    "note": "Illustrative grain pattern for a coarse-grained rock; the real arrangement in any one rock differs."
+    "note": "Illustrative grain pattern for a coarse-grained rock; the real arrangement in any one rock differs.",
+    "look": {
+     "kind": "rock",
+     "pattern": "grain"
+    }
    }
   }
  },
@@ -167,7 +175,8 @@
     -0.0099
    ],
    "radius": 0.7969,
-   "tris": 27500
+   "tris": 27500,
+   "kind": "rock"
   },
   {
    "id": "rock_far",
@@ -186,7 +195,8 @@
     -0.0055
    ],
    "radius": 0.788,
-   "tris": 955
+   "tris": 955,
+   "kind": "rock"
   },
   {
    "id": "moss",
@@ -204,7 +214,9 @@
     0.0234
    ],
    "radius": 0.507,
-   "tris": 9104
+   "tris": 9104,
+   "kind": "moss",
+   "look_color": "#5b6a31"
   },
   {
    "id": "lichen",
@@ -223,7 +235,8 @@
    ],
    "radius": 0.8669,
    "count": 275,
-   "tris": 19800
+   "tris": 19800,
+   "kind": "lichen"
   },
   {
    "id": "lichen_yellow",
@@ -242,7 +255,8 @@
    ],
    "radius": 0.5704,
    "count": 66,
-   "tris": 4752
+   "tris": 4752,
+   "kind": "lichen"
   },
   {
    "id": "stones",
@@ -260,7 +274,8 @@
    ],
    "radius": 1.5081,
    "count": 46,
-   "tris": 9752
+   "tris": 9752,
+   "kind": "stone"
   }
  ],
  "stats": {

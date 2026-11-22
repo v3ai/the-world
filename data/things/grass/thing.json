@@ -703,7 +703,8 @@
     0.0147
    ],
    "radius": 0.1777,
-   "tris": 8232
+   "tris": 8232,
+   "kind": "leaf"
   },
   {
    "id": "blade_down",
@@ -728,7 +729,8 @@
     0.0147
    ],
    "radius": 0.1777,
-   "tris": 8232
+   "tris": 8232,
+   "kind": "leaf"
   },
   {
    "id": "far_blades",
@@ -748,7 +750,8 @@
     0.0122
    ],
    "radius": 0.1781,
-   "tris": 496
+   "tris": 496,
+   "kind": "leaf"
   },
   {
    "id": "culm_blade_up",
@@ -767,7 +770,8 @@
     0.0481
    ],
    "radius": 0.1366,
-   "tris": 960
+   "tris": 960,
+   "kind": "leaf"
   },
   {
    "id": "culm_blade_down",
@@ -786,7 +790,8 @@
     0.0481
    ],
    "radius": 0.1367,
-   "tris": 960
+   "tris": 960,
+   "kind": "leaf"
   },
   {
    "id": "culm_blade_mid",
@@ -806,7 +811,8 @@
     0.0481
    ],
    "radius": 0.1369,
-   "tris": 72
+   "tris": 72,
+   "kind": "leaf"
   },
   {
    "id": "dead_leaves",
@@ -826,7 +832,8 @@
     0.0045
    ],
    "radius": 0.1168,
-   "tris": 480
+   "tris": 480,
+   "kind": "matte"
   },
   {
    "id": "sheaths",
@@ -846,7 +853,8 @@
     -0.0081
    ],
    "radius": 0.0947,
-   "tris": 2976
+   "tris": 2976,
+   "kind": "leaf"
   },
   {
    "id": "culm_sheaths",
@@ -866,7 +874,8 @@
     0.0381
    ],
    "radius": 0.1269,
-   "tris": 480
+   "tris": 480,
+   "kind": "leaf"
   },
   {
    "id": "ligules",
@@ -886,7 +895,8 @@
     -0.0071
    ],
    "radius": 0.0786,
-   "tris": 432
+   "tris": 432,
+   "kind": "leaf"
   },
   {
    "id": "culm_ligules",
@@ -906,7 +916,8 @@
     0.0444
    ],
    "radius": 0.0893,
-   "tris": 72
+   "tris": 72,
+   "kind": "leaf"
   },
   {
    "id": "auricles",
@@ -925,7 +936,8 @@
     -0.0072
    ],
    "radius": 0.0783,
-   "tris": 648
+   "tris": 648,
+   "kind": "leaf"
   },
   {
    "id": "crowns",
@@ -944,7 +956,8 @@
     -0.0057
    ],
    "radius": 0.068,
-   "tris": 324
+   "tris": 324,
+   "kind": "stem"
   },
   {
    "id": "meristems",
@@ -964,7 +977,8 @@
    ],
    "radius": 0.0643,
    "count": 9,
-   "tris": 504
+   "tris": 504,
+   "kind": "stem"
   },
   {
    "id": "culms",
@@ -983,7 +997,8 @@
     0.0339
    ],
    "radius": 0.24,
-   "tris": 360
+   "tris": 360,
+   "kind": "stem"
   },
   {
    "id": "culm_nodes",
@@ -1002,7 +1017,8 @@
     0.034
    ],
    "radius": 0.0881,
-   "tris": 252
+   "tris": 252,
+   "kind": "stem"
   },
   {
    "id": "rachis",
@@ -1021,7 +1037,8 @@
     0.0592
    ],
    "radius": 0.1025,
-   "tris": 456
+   "tris": 456,
+   "kind": "stem"
   },
   {
    "id": "glumes",
@@ -1042,7 +1059,9 @@
    ],
    "radius": 0.0989,
    "count": 54,
-   "tris": 2160
+   "tris": 2160,
+   "kind": "leaf",
+   "shade": "tone"
   },
   {
    "id": "lemmas",
@@ -1064,7 +1083,9 @@
    ],
    "radius": 0.103,
    "count": 423,
-   "tris": 10152
+   "tris": 10152,
+   "kind": "leaf",
+   "shade": "tone"
   },
   {
    "id": "spikelet_lens",
@@ -1085,7 +1106,8 @@
    ],
    "radius": 0.0994,
    "count": 54,
-   "tris": 1620
+   "tris": 1620,
+   "kind": "stem"
   },
   {
    "id": "filaments",
@@ -1106,7 +1128,8 @@
    ],
    "radius": 0.1037,
    "count": 417,
-   "tris": 2502
+   "tris": 2502,
+   "kind": "stem"
   },
   {
    "id": "anthers",
@@ -1134,7 +1157,8 @@
    ],
    "radius": 0.104,
    "count": 417,
-   "tris": 16680
+   "tris": 16680,
+   "kind": "wax"
   },
   {
    "id": "stigmas",
@@ -1155,7 +1179,8 @@
    ],
    "radius": 0.1037,
    "count": 278,
-   "tris": 6672
+   "tris": 6672,
+   "kind": "stem"
   },
   {
    "id": "roots",
@@ -1180,7 +1205,8 @@
     0.0132
    ],
    "radius": 0.208,
-   "tris": 6480
+   "tris": 6480,
+   "kind": "root"
   },
   {
    "id": "lateral_roots",
@@ -1199,7 +1225,8 @@
     -0.0016
    ],
    "radius": 0.2023,
-   "tris": 7560
+   "tris": 7560,
+   "kind": "root"
   },
   {
    "id": "root_tips",
@@ -1225,7 +1252,8 @@
    ],
    "radius": 0.225,
    "count": 675,
-   "tris": 10800
+   "tris": 10800,
+   "kind": "root"
   },
   {
    "id": "root_hairs",
@@ -1246,7 +1274,8 @@
    ],
    "radius": 0.1925,
    "count": 1620,
-   "tris": 9720
+   "tris": 9720,
+   "kind": "root"
   },
   {
    "id": "soil",
@@ -1265,7 +1294,8 @@
     0
    ],
    "radius": 0.34,
-   "tris": 144
+   "tris": 144,
+   "kind": "soil"
   },
   {
    "id": "t_sheaths",
@@ -1285,7 +1315,8 @@
     0.0052
    ],
    "radius": 0.0454,
-   "tris": 336
+   "tris": 336,
+   "kind": "leaf"
   },
   {
    "id": "t_blade_up",
@@ -1304,7 +1335,8 @@
     0.0098
    ],
    "radius": 0.1406,
-   "tris": 1008
+   "tris": 1008,
+   "kind": "leaf"
   },
   {
    "id": "t_blade_down",
@@ -1323,7 +1355,8 @@
     0.0098
    ],
    "radius": 0.1407,
-   "tris": 1008
+   "tris": 1008,
+   "kind": "leaf"
   },
   {
    "id": "t_ligules",
@@ -1343,7 +1376,8 @@
     0.005
    ],
    "radius": 0.039,
-   "tris": 48
+   "tris": 48,
+   "kind": "leaf"
   },
   {
    "id": "t_auricles",
@@ -1362,7 +1396,8 @@
     0.0051
    ],
    "radius": 0.0404,
-   "tris": 72
+   "tris": 72,
+   "kind": "leaf"
   },
   {
    "id": "t_stem",
@@ -1381,7 +1416,8 @@
     0
    ],
    "radius": 0.0104,
-   "tris": 234
+   "tris": 234,
+   "kind": "stem"
   },
   {
    "id": "t_apex",
@@ -1400,7 +1436,8 @@
     0
    ],
    "radius": 0.0007,
-   "tris": 64
+   "tris": 64,
+   "kind": "stem"
   },
   {
    "id": "t_roots",
@@ -1419,7 +1456,8 @@
     -0.0001
    ],
    "radius": 0.0357,
-   "tris": 320
+   "tris": 320,
+   "kind": "root"
   },
   {
    "id": "b_stem",
@@ -1438,7 +1476,8 @@
     0.0001
    ],
    "radius": 0.0099,
-   "tris": 12
+   "tris": 12,
+   "kind": "stem"
   },
   {
    "id": "b_nodes",
@@ -1457,7 +1496,8 @@
     0.0002
    ],
    "radius": 0.006,
-   "tris": 48
+   "tris": 48,
+   "kind": "stem"
   },
   {
    "id": "b_sheaths",
@@ -1476,7 +1516,8 @@
     0.0005
    ],
    "radius": 0.0232,
-   "tris": 72
+   "tris": 72,
+   "kind": "leaf"
   },
   {
    "id": "b_leaf_in",
@@ -1495,7 +1536,8 @@
     0.0007
    ],
    "radius": 0.0208,
-   "tris": 24
+   "tris": 24,
+   "kind": "leaf"
   },
   {
    "id": "b_growth_zone",
@@ -1514,7 +1556,8 @@
     0.0008
    ],
    "radius": 0.017,
-   "tris": 12
+   "tris": 12,
+   "kind": "stem"
   },
   {
    "id": "b_apex",
@@ -1539,7 +1582,8 @@
     0.0008
    ],
    "radius": 0.0016,
-   "tris": 52
+   "tris": 52,
+   "kind": "stem"
   },
   {
    "id": "b_roots",
@@ -1558,7 +1602,8 @@
     0.0005
    ],
    "radius": 0.0364,
-   "tris": 48
+   "tris": 48,
+   "kind": "root"
   },
   {
    "id": "l_body",
@@ -1583,7 +1628,8 @@
     0.0007
    ],
    "radius": 0.0426,
-   "tris": 964
+   "tris": 964,
+   "kind": "wet"
   },
   {
    "id": "l_epidermis",
@@ -1602,7 +1648,8 @@
     0.0014
    ],
    "radius": 0.0426,
-   "tris": 1846
+   "tris": 1846,
+   "kind": "wet"
   },
   {
    "id": "l_sheaths",
@@ -1621,7 +1668,8 @@
     0.0021
    ],
    "radius": 0.0409,
-   "tris": 748
+   "tris": 748,
+   "kind": "wet"
   },
   {
    "id": "l_bundles",
@@ -1640,7 +1688,8 @@
     0.0028
    ],
    "radius": 0.0394,
-   "tris": 880
+   "tris": 880,
+   "kind": "wet"
   },
   {
    "id": "l_sclerenchyma",
@@ -1659,7 +1708,8 @@
     0.0021
    ],
    "radius": 0.0367,
-   "tris": 352
+   "tris": 352,
+   "kind": "wet"
   },
   {
    "id": "l_bulliform",
@@ -1678,7 +1728,8 @@
     0.0021
    ],
    "radius": 0.0361,
-   "tris": 640
+   "tris": 640,
+   "kind": "wet"
   },
   {
    "id": "l_stomata",
@@ -1703,7 +1754,8 @@
     0.0035
    ],
    "radius": 0.0354,
-   "tris": 240
+   "tris": 240,
+   "kind": "wet"
   },
   {
    "id": "l_silica",
@@ -1722,7 +1774,8 @@
     0.0035
    ],
    "radius": 0.0389,
-   "tris": 308
+   "tris": 308,
+   "kind": "glass"
   },
   {
    "id": "f_lemma",
@@ -1742,7 +1795,8 @@
     0.0009
    ],
    "radius": 0.003,
-   "tris": 216
+   "tris": 216,
+   "kind": "leaf"
   },
   {
    "id": "f_palea",
@@ -1762,7 +1816,8 @@
     -0.0003
    ],
    "radius": 0.003,
-   "tris": 112
+   "tris": 112,
+   "kind": "leaf"
   },
   {
    "id": "f_lodicules",
@@ -1782,7 +1837,8 @@
     0.0012
    ],
    "radius": 0.0009,
-   "tris": 72
+   "tris": 72,
+   "kind": "stem"
   },
   {
    "id": "f_ovary",
@@ -1802,7 +1858,8 @@
     0
    ],
    "radius": 0.0012,
-   "tris": 80
+   "tris": 80,
+   "kind": "stem"
   },
   {
    "id": "f_stigmas",
@@ -1822,7 +1879,8 @@
     0.0002
    ],
    "radius": 0.0033,
-   "tris": 200
+   "tris": 200,
+   "kind": "stem"
   },
   {
    "id": "f_filaments",
@@ -1842,7 +1900,8 @@
     0
    ],
    "radius": 0.0031,
-   "tris": 36
+   "tris": 36,
+   "kind": "stem"
   },
   {
    "id": "f_anthers",
@@ -1868,7 +1927,8 @@
     0
    ],
    "radius": 0.0029,
-   "tris": 144
+   "tris": 144,
+   "kind": "wax"
   }
  ],
  "stats": {
