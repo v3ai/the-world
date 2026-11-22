@@ -21,23 +21,33 @@ PX.COL = { quark: 0xa98bd9, lepton: 0x58b88a, neutrino: 0x8fd6c4, boson: 0xe58d5
 PX.CC = [0xe2533f, 0x3fae6b, 0x3f80e0];        // colour charge "red", "green", "blue" (a label, not a real colour)
 PX.ACC = [0x2bbfcf, 0xd24fae, 0xe8c23a];       // anticolours: anti-red = cyan, anti-green = magenta, anti-blue = yellow
 PX.CL = ['R', 'G', 'B']; PX.ACL = ['R̄', 'Ḡ', 'B̄'];
+/* Under the realistic look (?look=2) these three views are diagrams (docs/DESIGN.md 3.1, 3.2): drawn flat on the models' graphite ground, in the
+   figure code's colours (section 4), with symbols set upright in the interface's sans, as particle symbols are printed. Nothing glows: a halo
+   that marked a state becomes a hairline ring. Off, nothing changes. */
+PX.LOOK = typeof MD !== 'undefined' && MD.on;
+if (PX.LOOK) {
+  PX.COL = { quark: 0x6b4a9c, lepton: 0x3f7a3a, neutrino: 0x1f7a78, boson: 0xb4412f, higgs: 0x96690a, proton: 0xb4412f, neutron: 0x5d6670 };
+  PX.CC = [0xc0453a, 0x3f8a52, 0x3a68b8]; PX.ACC = [0x2f8f99, 0xa0467f, 0xa8862a];
+}
+PX.SANS = "-apple-system, BlinkMacSystemFont, 'IBM Plex Sans', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif";
+PX.ring = () => canvasTex('px|lkring', 256, 256, g => { g.clearRect(0, 0, 256, 256); g.strokeStyle = '#fff'; g.lineWidth = 3; g.beginPath(); g.arc(128, 128, 88, 0, TAU); g.stroke(); });
 PX.CSS = c => '#' + new THREE.Color(c).getHexString();
 const _px_v = new V3(), _px_v2 = new V3(), _px_q = new THREE.Quaternion();
 
 /* ---------- text glyphs drawn on the balls (so meaning never rests on colour alone) ---------- */
 PX.glyph = (main, o = {}) => {
-  const key = 'px|' + JSON.stringify([main, o.sub || '', o.sup || '', !!o.anti, o.line || '', o.fg || '']);
+  const key = 'px|' + (PX.LOOK ? 'lk|' : '') + JSON.stringify([main, o.sub || '', o.sup || '', !!o.anti, o.line || '', o.fg || '']);
   return canvasTex(key, 256, 256, g => {
     g.clearRect(0, 0, 256, 256); g.textBaseline = 'alphabetic'; g.fillStyle = o.fg || '#ffffff'; g.strokeStyle = o.fg || '#ffffff';
     const big = o.line ? 118 : 138, y0 = o.line ? 138 : 164;
-    g.font = `italic 600 ${big}px 'Source Serif 4', Georgia, 'Times New Roman', serif`;
+    g.font = PX.LOOK ? `600 ${big}px ${PX.SANS}` : `italic 600 ${big}px 'Source Serif 4', Georgia, 'Times New Roman', serif`;
     const w = g.measureText(main).width; let x = 128 - w / 2 - (o.sub || o.sup ? 16 : 0);
-    g.shadowColor = 'rgba(0,0,0,.45)'; g.shadowBlur = 6;
+    if (!PX.LOOK) { g.shadowColor = 'rgba(0,0,0,.45)'; g.shadowBlur = 6; }
     g.fillText(main, x, y0);
-    if (o.anti) { g.lineWidth = 9; g.lineCap = 'round'; g.beginPath(); g.moveTo(x + w * .1, y0 - big * .78); g.lineTo(x + w * .95, y0 - big * .78); g.stroke(); }
-    g.font = `italic 600 ${big * .5}px 'Source Serif 4', Georgia, serif`;
+    if (o.anti) { g.lineWidth = PX.LOOK ? 7 : 9; g.lineCap = PX.LOOK ? 'butt' : 'round'; g.beginPath(); g.moveTo(x + w * .1, y0 - big * .78); g.lineTo(x + w * .95, y0 - big * .78); g.stroke(); }
+    g.font = PX.LOOK ? `600 ${big * .5}px ${PX.SANS}` : `italic 600 ${big * .5}px 'Source Serif 4', Georgia, serif`;
     if (o.sub) g.fillText(o.sub, x + w + 2, y0 + big * .18);
-    if (o.sup) { g.font = `600 ${big * .5}px 'Source Serif 4', Georgia, serif`; g.fillText(o.sup, x + w + 2, y0 - big * .5); }
+    if (o.sup) { g.font = PX.LOOK ? `600 ${big * .5}px ${PX.SANS}` : `600 ${big * .5}px 'Source Serif 4', Georgia, serif`; g.fillText(o.sup, x + w + 2, y0 - big * .5); }
     if (o.line) { g.font = `600 ${big * .42}px 'IBM Plex Sans', system-ui, sans-serif`; const lw = g.measureText(o.line).width; g.fillText(o.line, 128 - lw / 2, 226); }
   });
 };
@@ -48,14 +58,14 @@ PX.orb = (r, color, o = {}) => {
   const body = new THREE.Mesh(new THREE.SphereGeometry(r, 40, 28), illoMat(color, o.hollow ? { extra: { opacity: .2 } } : {}));
   grp.add(body); parts.push({ m: body.material, base: o.hollow ? .2 : 1 });
   let ol = null;
-  if (!o.noOl) { ol = new THREE.Mesh(body.geometry, outlineMat(o.ink || (o.hollow ? color : 0x0a1020), o.hollow ? .0075 : .0042)); grp.add(ol); parts.push({ m: ol.material, base: o.hollow ? .95 : .9 }); }
+  if (!o.noOl) { ol = new THREE.Mesh(body.geometry, outlineMat(o.ink || (o.hollow ? color : 0x0a1020), o.hollow ? .0075 : PX.LOOK ? .0022 : .0042)); grp.add(ol); parts.push({ m: ol.material, base: o.hollow ? .95 : PX.LOOK ? .3 : .9 }); }   // the look: a hairline at 30%, not a dark ring
   let glyph = null;
   if (o.glyph) {
     glyph = new THREE.Sprite(new THREE.SpriteMaterial({ map: PX.glyph(o.glyph.main, o.glyph), transparent: true, depthWrite: false }));
     glyph.scale.set(r * 1.55, r * 1.55, 1); glyph.renderOrder = 5; grp.add(glyph); parts.push({ m: glyph.material, base: 1 });
   }
   let halo = null;
-  if (o.halo) { halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex(), color, transparent: true, depthWrite: false })); halo.scale.set(r * o.halo, r * o.halo, 1); grp.add(halo); parts.push({ m: halo.material, base: o.haloA || .3 }); }
+  if (o.halo) { halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: PX.LOOK ? PX.ring() : glowTex(), color, transparent: true, depthWrite: false })); halo.scale.set(r * o.halo, r * o.halo, 1); grp.add(halo); parts.push({ m: halo.material, base: o.haloA || .3 }); }
   let hit = null;
   if (o.hit !== false) { hit = new THREE.Mesh(new THREE.SphereGeometry(r * (o.hitK || 1.25), 12, 8), hitMat()); grp.add(hit); }
   Object.assign(grp.userData, { body, ol, glyph, halo, hit, parts, r, a: 1 });
@@ -85,8 +95,9 @@ PX.declutter = (F, items) => {
     L.obj.getWorldPosition(_px_v).add(_px_v2.copy(L.off)); _px_v.project(F.cam);
     if (_px_v.z > 1 || Math.abs(_px_v.x) > 1.02 || Math.abs(_px_v.y) > 1.02) { continue; }
     const text = typeof it.text === 'function' ? it.text() : it.text;
-    const x = (_px_v.x * .5 + .5) * W, y = (-_px_v.y * .5 + .5) * H, w = text.length * 6.9 + 22, h = 16;
-    live.push({ it, L, text, x0: x - w / 2, x1: x + w / 2, y0: y - h * 1.2, y1: y - h * .2 + 2 });
+    const x = (_px_v.x * .5 + .5) * W, y = (-_px_v.y * .5 + .5) * H, w = PX.LOOK ? PX.textW(text) + 12 : text.length * 6.9 + 22, h = 16;
+    if (L.right) { const ml = -Math.round(w / 2) + 'px'; if (L.el.style.marginLeft !== ml) L.el.style.marginLeft = ml; }   // set flush right against its anchor
+    live.push({ it, L, text, x0: L.right ? x - w : x - w / 2, x1: L.right ? x : x + w / 2, y0: L.below ? y + 4 : y - h * 1.2, y1: L.below ? y + 4 + h : y - h * .2 + 2 });
   }
   live.sort((a, b) => (b.it.pri || 0) - (a.it.pri || 0));
   for (const c of live) {
@@ -97,6 +108,10 @@ PX.declutter = (F, items) => {
   }
 };
 PX.lab = (F, obj, text, o = {}) => { const L = F.label(obj, text, o); return L; };
+/* the look: a label's width measured in its own face (12 px sans, css/look.css), not guessed from its length; and a name hung below
+   its anchor, with no stem (a name under a ball in a table) */
+PX._tw = null; PX.textW = t => { const c = PX._tw || (PX._tw = document.createElement('canvas').getContext('2d')); c.font = `500 12px ${PX.SANS}`; return c.measureText(t).width; };
+PX.below = L => { L.below = true; L.el.classList.add('pxhd'); L.el.style.marginTop = '26px'; return L; };
 
 /* ---------- small DOM panels (porcelain, per frame; the engine mounts and unmounts them with the frame) ---------- */
 PX.el = (html, cls) => { const d = document.createElement('div'); d.className = cls || 'pxp'; d.innerHTML = html; const hh = d.querySelector('.pxh'); d.dataset.sec = hh ? hh.textContent : 'About this view'; d.dataset.secKey = (cls || 'pxp') + ':' + d.dataset.sec; return d; };   // data-sec: shown as a section of the one panel, not as a box over the scene (updateControls, js/engine.js)
@@ -133,7 +148,7 @@ PX.dashRing = (key, col, lw) => canvasTex('px|ring|' + key, 512, 512, g => {
 FT.proton = {
   build(F, o) {
     let kind = o.kind === 'neutron' ? 'neutron' : 'proton';
-    F.illo = true; F.env = { bg: 0x0b1222, opaque: true };
+    F.illo = true; F.env = { bg: PX.LOOK ? MD.BG : 0x0b1222, opaque: true }; MD.kind(F, 'Diagram');
     F.add(new THREE.HemisphereLight(0xe3ebff, 0x40486e, .8)); const dl = new THREE.DirectionalLight(0xffffff, .85); dl.position.set(2, 3, 4); F.add(dl);
     const R = PX.PR, rnd = rng(kind === 'neutron' ? 91 : 17);
     const root = new THREE.Group(); F.add(root);
@@ -148,7 +163,7 @@ FT.proton = {
     const flav = PX.quarksOf(kind), cols = [0, 1, 2];
     const colOrder = shuffle(cols.slice(), rnd);
     flav.forEach((fl, i) => {
-      const orb = PX.orb(.17, PX.CC[colOrder[i]], { glyph: { main: fl, line: PX.CL[colOrder[i]] }, halo: 4.2, haloA: .32, hitK: 1.2 });
+      const orb = PX.orb(.17, PX.CC[colOrder[i]], { glyph: { main: fl, line: PX.CL[colOrder[i]] }, halo: PX.LOOK ? 0 : 4.2, haloA: .32, hitK: 1.2 });
       orb.userData.id = PX.FLAV[fl].node; orb.userData.node = PX.FLAV[fl].node; orb.userData.priority = 2; orb.userData.title = PX.FLAV[fl].name + ' (valence)'; orb.userData.sm = fl === 'u' ? 'up' : 'down';
       root.add(orb); F.pickables.push(orb);
       S.Q.push({ orb, fl, ci: colOrder[i], tgt: colOrder[i], col: new THREE.Color(PX.CC[colOrder[i]]), p: new V3(), ph: [rnd() * 6, rnd() * 6, rnd() * 6] });
@@ -162,7 +177,7 @@ FT.proton = {
     for (let i = 0; i < NH; i++) hseg.push({ k: i % 3, s: rnd(), off: new V3(gauss(rnd), gauss(rnd), gauss(rnd)).multiplyScalar(.075) });
     const hg = new THREE.BufferGeometry(); hg.setAttribute('position', new THREE.BufferAttribute(hpos, 3)); hg.setAttribute('color', new THREE.BufferAttribute(hcol, 3));
     const hazeMat = new THREE.PointsMaterial({ size: .1, map: glowTex(), vertexColors: true, transparent: true, opacity: .5, depthWrite: false, sizeAttenuation: true });
-    const haze = new THREE.Points(hg, hazeMat); haze.frustumCulled = false; root.add(haze);
+    const haze = new THREE.Points(hg, hazeMat); haze.frustumCulled = false; if (!PX.LOOK) root.add(haze);   // the look: no haze of glowing dots (the flux tubes stand for the field)
     const junction = new THREE.Object3D(); root.add(junction);
     // a gluon: a small ball in two halves, one half the colour it carries and the other its anticolour
     const halfGeo = [new THREE.SphereGeometry(.1, 18, 12, 0, Math.PI), new THREE.SphereGeometry(.1, 18, 12, Math.PI, Math.PI)];
@@ -175,24 +190,24 @@ FT.proton = {
     for (let i = 0; i < 6; i++) {
       const grp = new THREE.Group(), ci = i % 3;
       const fl = SF[i % SF.length];
-      const qo = PX.orb(.045, PX.CC[ci], { glyph: { main: fl }, hit: false, noOl: true }), ao = PX.orb(.045, PX.ACC[ci], { hollow: true, glyph: { main: fl, anti: true }, hit: false });
+      const sr = PX.LOOK ? .036 : .045, qo = PX.orb(sr, PX.CC[ci], { glyph: { main: fl }, hit: false, noOl: true }), ao = PX.orb(sr, PX.ACC[ci], { hollow: true, glyph: { main: fl, anti: true }, hit: false });
       const link = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 1, 6, 1), new THREE.MeshBasicMaterial({ color: 0xdfe6f5, transparent: true, opacity: .55, depthWrite: false }));
       const hit = new THREE.Mesh(new THREE.SphereGeometry(.2, 10, 8), hitMat());
       grp.add(qo, ao, link, hit); grp.userData = { id: 'sm_virtual_particles', node: 'sm_virtual_particles', priority: 1.6, title: 'A quark–antiquark pair from the sea' };
       root.add(grp); F.pickables.push(grp);
       const pr = .25 + rnd() * .5, pu = rnd() * 2 - 1, pt = rnd() * TAU, ps = Math.sqrt(1 - pu * pu);
-      S.pairs.push({ grp, qo, ao, link, ci, fl, t0: -rnd() * 2.5, life: 2.6 + rnd() * 1.8, c: new V3(pr * ps * Math.cos(pt), pr * pu, pr * ps * Math.sin(pt)), dir: new V3(rnd() - .5, rnd() - .5, rnd() - .5).normalize(), lab: i === 0 });
+      S.pairs.push({ grp, qo, ao, link, ci, fl, t0: PX.LOOK ? -1e3 - rnd() : -rnd() * 2.5, life: 2.6 + rnd() * 1.8, c: new V3(pr * ps * Math.cos(pt), pr * pu, pr * ps * Math.sin(pt)), dir: new V3(rnd() - .5, rnd() - .5, rnd() - .5).normalize(), lab: i === 0 });
     }
     // labels
     const labs = [];
-    S.Q.forEach((q, i) => { const L = F.label(q.orb, PX.FLAV[q.fl].name.replace(' quark', ' quark'), { offset: new V3(0, -.3, 0) }); labs.push({ L, text: () => PX.FLAV[q.fl].name, pri: 9 - i * .1 }); });
+    S.Q.forEach((q, i) => { const L = F.label(q.orb, PX.FLAV[q.fl].name.replace(' quark', ' quark'), { offset: new V3(0, PX.LOOK ? -.18 : -.3, 0) }); if (PX.LOOK) PX.below(L); labs.push({ L, text: () => PX.FLAV[q.fl].name, pri: 9 - i * .1 }); });
     labs.push({ L: F.label(junction, 'Gluon field', { offset: new V3(0, .12, 0) }), text: 'Gluon field', pri: 6 });
     labs.push({ L: F.label(S.pairs[0].grp, 'Sea pair', { offset: new V3(0, -.16, 0) }), text: 'Quark–antiquark pair', pri: 4 });
     labs.push({ L: F.label(S.gluon.g, 'Gluon', { offset: new V3(0, .15, 0) }), text: 'Gluon', pri: 8 });
     labs.push({ L: F.label(edge, 'Edge', { offset: new V3(0, 0, 0) }), text: () => S.kind === 'proton' ? 'Proton edge ≈ 0.84 fm (charge radius)' : 'Edge: drawn as for the proton (not measured the same way)', pri: 3 });
     F.name = kind === 'proton' ? 'Proton' : 'Neutron';
     F.blurb = kind === 'proton' ? 'Inside a proton: two up quarks and a down quark, trading gluons, in a sea of quark–antiquark pairs.' : 'Inside a neutron: one up quark and two down quarks, trading gluons, in a sea of quark–antiquark pairs.';
-    F.note = 'A cartoon, not a photograph. Quarks have no measured size (no structure found down to about 10⁻¹⁹ m), nothing here has a definite position, and the sizes are not to scale. The share of momentum carried by gluons depends on the energy scale: at 2 GeV one lattice calculation gives 51 ± 3%, while global fits to scattering data give about 40% (the neutron should match, by symmetry).';
+    F.note = (PX.LOOK ? 'Diagram: no picture of the inside of a proton is possible. ' : 'A cartoon, not a photograph. ') + 'Quarks have no measured size (no structure found down to about 10⁻¹⁹ m), nothing here has a definite position, and the sizes are not to scale. The share of momentum carried by gluons depends on the energy scale: at 2 GeV one lattice calculation gives 51 ± 3%, while global fits to scattering data give about 40% (the neutron should match, by symmetry).';
     F.spawnD = 2.4e-16;
     // the three valence quarks are what a zoom ends on: it closes on the one nearest the pointer, and the Standard Model view opens at that quark
     F.att = {
@@ -221,13 +236,15 @@ FT.proton = {
       S.t += dt; const T = S.t, zf = smooth(1.1e-16, 3.3e-16, cam.D), fa = PX.fa(F) * zf;   // below about 3e-16 m the cartoon dissolves, leaving room for the Standard Model view
       // quark positions: a slowly tumbling triangle plus a wander, so that no quark has a fixed place
       qa.setFromEuler(new THREE.Euler(T * .17, T * .11, T * .07)); e1.set(1, 0, 0).applyQuaternion(qa); e2.set(0, 1, 0).applyQuaternion(qa);
+      if (PX.LOOK) { e1.set(1, 0, 0).applyQuaternion(F.cam.quaternion); e2.set(0, 1, 0).applyQuaternion(F.cam.quaternion); }   // the look: a flat diagram, so the triangle turns in the picture's plane and the three discs never cover each other
       junction.position.set(0, 0, 0);
       S.Q.forEach((q, i) => {
         const a = T * .55 + i * TAU / 3; const wob = .075;
         q.p.set(0, 0, 0).addScaledVector(e1, Math.cos(a) * .36).addScaledVector(e2, Math.sin(a) * .36);
-        q.p.x += Math.sin(T * 1.7 + q.ph[0]) * wob; q.p.y += Math.sin(T * 1.3 + q.ph[1]) * wob; q.p.z += Math.sin(T * 1.9 + q.ph[2]) * wob;
+        if (PX.LOOK) q.p.addScaledVector(e1, Math.sin(T * 1.7 + q.ph[0]) * wob).addScaledVector(e2, Math.sin(T * 1.3 + q.ph[1]) * wob);
+        else { q.p.x += Math.sin(T * 1.7 + q.ph[0]) * wob; q.p.y += Math.sin(T * 1.3 + q.ph[1]) * wob; q.p.z += Math.sin(T * 1.9 + q.ph[2]) * wob; }
         q.orb.position.copy(q.p);
-        q.col.lerp(tc.setHex(PX.CC[q.tgt]), 1 - Math.exp(-dt * 7)); PX.setColor(q.orb, q.col);
+        if (PX.LOOK) q.col.setHex(PX.CC[q.tgt]); else q.col.lerp(tc.setHex(PX.CC[q.tgt]), 1 - Math.exp(-dt * 7)); PX.setColor(q.orb, q.col);   // the look: colour and letter change together (a fade passed through colours that mean nothing)
         q.ci = q.tgt; PX.setGlyph(q.orb, q.fl, { main: q.fl, line: PX.CL[q.tgt] });
         PX.setA(q.orb, 1, fa);
       });
@@ -263,8 +280,12 @@ FT.proton = {
           p.t0 = T; age = 0; p.life = 2.6 + rnd() * 1.8; const r = .25 + rnd() * .5; const u = rnd() * 2 - 1, th = rnd() * TAU, sq = Math.sqrt(1 - u * u);
           p.c.set(r * sq * Math.cos(th), r * u, r * sq * Math.sin(th)); p.dir.set(gauss(rnd), gauss(rnd), gauss(rnd)).normalize();
           if (p.lab) { p.c.set(.42 + rnd() * .1, .3 + rnd() * .15, .2); p.dir.set(.2, 1, .3).normalize(); }
+          if (PX.LOOK) {   // the look: in the picture's plane, in the ring between the three quarks and the edge, so a pair never covers a quark
+            const a = 2.5 + S.pairs.indexOf(p) * TAU / 6 + (rnd() - .5) * .4, rr = R * (.86 + rnd() * .06); _px_v.set(1, 0, 0).applyQuaternion(F.cam.quaternion); _px_v2.set(0, 1, 0).applyQuaternion(F.cam.quaternion);
+            p.c.copy(_px_v).multiplyScalar(Math.cos(a) * rr).addScaledVector(_px_v2, Math.sin(a) * rr); p.dir.copy(_px_v).multiplyScalar(-Math.sin(a)).addScaledVector(_px_v2, Math.cos(a));
+          }
         }
-        const u = age / p.life, env = Math.sin(Math.PI * Math.min(1, u)), sep = .06 + .1 * env, a = Math.pow(env, .6);
+        const u = age / p.life, env = Math.sin(Math.PI * Math.min(1, u)), sep = PX.LOOK ? .05 + .05 * env : .06 + .1 * env, a = PX.LOOK ? Math.min(1, env * 4) : Math.pow(env, .6);   // the look: a pair is there at full strength while it lives (smaller), not a dim smudge
         p.grp.position.copy(p.c); p.qo.position.copy(p.dir).multiplyScalar(sep); p.ao.position.copy(p.dir).multiplyScalar(-sep);
         p.link.position.set(0, 0, 0); p.link.scale.set(.012, Math.max(sep * 2 - .09, 1e-3), .012); p.link.quaternion.setFromUnitVectors(up, p.dir);
         PX.setA(p.qo, a, fa); PX.setA(p.ao, a, fa); p.link.material.opacity = .5 * a * fa; p.link.material.userData.baseOp = .5 * a; p.grp.visible = a * fa > .03;
@@ -304,7 +325,7 @@ PX.nucleonGlyph = (isP) => ({ main: isP ? 'p' : 'n' });
 FT.nucleus = {
   build(F, o) {
     const Z = Math.max(0, o.Z === undefined ? 8 : o.Z | 0), N = Math.max(0, o.N === undefined ? 8 : o.N | 0), A = Math.max(1, Z + N);
-    F.illo = true; F.env = { opaque: true, bg: 0x0b1222 };
+    F.illo = true; F.env = { opaque: true, bg: PX.LOOK ? MD.BG : 0x0b1222 }; MD.kind(F, 'Diagram');
     F.add(new THREE.HemisphereLight(0xe3ebff, 0x40486e, .8)); const dl = new THREE.DirectionalLight(0xffffff, .85); dl.position.set(5, 8, 6); F.add(dl);
     const rn = PX.PR, r = rng(A * 11 + Z), pts = PX.pack(A), small = A > 90;
     const types = shuffle([...Array(Z).fill(true), ...Array(N).fill(false)], r); if (!types.length) types.push(true);
@@ -316,7 +337,7 @@ FT.nucleus = {
       const u = orb.userData; u.id = isP ? 'proton' : 'neutron'; u.node = isP ? 'sm_proton' : 'sm_neutron'; u.kind = u.id; u.priority = 3; u.madeOf = 'quarks'; u.title = isP ? 'Proton' : 'Neutron';
       u.base = new V3(pts[i * 3], pts[i * 3 + 1], pts[i * 3 + 2]); orb.position.copy(u.base); u.seed = r() * 100;
       F.add(orb); F.pickables.push(orb); F.nucleons.push(orb);
-      if (isP) orb.userData.body.material.emissive.setHex(0x2a0a05);
+      if (isP && !PX.LOOK) orb.userData.body.material.emissive.setHex(0x2a0a05);
     });
     const Rn = PX.nuclearR(A);
     const whole = new THREE.Group(); whole.userData = { id: 'nucleus_all', node: 'sm_residual_strong', priority: 0, title: `Nucleus (${Z} protons, ${N} neutrons)` };
@@ -331,7 +352,7 @@ FT.nucleus = {
     const labE = F.label(edge, 'edge', {});
     F.name = F.name || `Nucleus${el ? ' of ' + el : ''}`;
     F.blurb = `${Z} proton${Z === 1 ? '' : 's'} and ${N} neutron${N === 1 ? '' : 's'}, packed at about the real density. Click one to open it and look inside.`;
-    F.note = 'Schematic. Nucleons are drawn as touching balls the size of a proton (0.84 fm); in truth each is a fuzzy quantum state, the neighbours overlap, and the arrangement here is random. Red balls marked p are protons, pale balls marked n are neutrons.';
+    F.note = (PX.LOOK ? 'Diagram: nucleons' : 'Schematic. Nucleons') + ' are drawn as touching balls the size of a proton (0.84 fm); in truth each is a fuzzy quantum state, the neighbours overlap, and the arrangement here is random. ' + (PX.LOOK ? 'Red discs marked p are protons, grey discs marked n are neutrons (the colours are a code).' : 'Red balls marked p are protons, pale balls marked n are neutrons.');
     F.spawnD = 4e-15;
     // the nucleons are what a zoom ends on: it closes on the one under the pointer, or on the one nearest the pointer when it is beside the nucleus (engine.js, "attractors").
     // From the moment the camera is in this frame: the nucleus is a speck in the view then, and a target left to drift toward the pointer would wander out of it again.
@@ -344,7 +365,13 @@ FT.nucleus = {
       let i = attId(F); if (i < 0) i = F.att.find(T, hint); const best = F.nucleons[i]; if (!best) return null;
       return new Frame({ type: 'proton', pinned: true, name: best.userData.kind === 'proton' ? 'Proton' : 'Neutron', unit: 1e-15, radius: 4, r1: 1.2e-14, pos: best.position.clone(), opts: { kind: best.userData.kind } });
     };
-    uiEl(PX.el(`<div class="pxh">Key</div><div class="pxk"><i class="b p"></i> red ball marked p: a proton (${Z})</div><div class="pxk"><i class="b n"></i> pale ball marked n: a neutron (${N})</div><div class="pxk">The dashed ring is the textbook nuclear radius, 1.2·A^⅓ = ${Rn.toFixed(1)} fm.</div>`, 'pxp pxkey'));
+    uiEl(PX.el(PX.LOOK ? `<div class="pxh">Key</div><div class="pxk"><i class="b" style="background:${PX.CSS(PX.COL.proton)};box-shadow:none"></i> red disc marked p: a proton (${Z})</div><div class="pxk"><i class="b" style="background:${PX.CSS(PX.COL.neutron)};box-shadow:none"></i> grey disc marked n: a neutron (${N})</div><div class="pxk">Discs further back are drawn closer to the ground's colour. The dashed ring is the textbook nuclear radius, 1.2·A^⅓ = ${Rn.toFixed(1)} fm.</div>`
+      : `<div class="pxh">Key</div><div class="pxk"><i class="b p"></i> red ball marked p: a proton (${Z})</div><div class="pxk"><i class="b n"></i> pale ball marked n: a neutron (${N})</div><div class="pxk">The dashed ring is the textbook nuclear radius, 1.2·A^⅓ = ${Rn.toFixed(1)} fm.</div>`, 'pxp pxkey'));   // the look: the key's swatches are the figure's own colours
+    /* the look: the two callouts stand outside the ring, the proton's to the left and the neutron's to the right, each joined to its disc by a
+       hairline leader; and the discs further back are drawn nearer the ground's colour, the one cue to depth a flat diagram keeps */
+    const lead = PX.LOOK ? new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(new Float32Array(12), 3)), new THREE.LineBasicMaterial({ color: 0xcfd3d8, transparent: true, opacity: .75, depthTest: false, depthWrite: false })) : null;
+    if (lead) { lead.frustumCulled = false; lead.renderOrder = 6; F.add(lead); }
+    const bgC = new THREE.Color(MD.BG), nCol = [new THREE.Color(PX.COL.neutron), new THREE.Color(PX.COL.proton)];
     let lab0 = 0; const labs = [{ L: labP, text: 'Proton', pri: 5 }, { L: labE, text: `radius ≈ ${Rn.toFixed(1)} fm (1.2·A^⅓)`, pri: 2 }]; if (labN) labs.push({ L: labN, text: 'Neutron', pri: 5 });
     F.update = (dt, t) => {
       const fa = PX.fa(F);
@@ -353,11 +380,26 @@ FT.nucleus = {
         m.position.set(u.base.x + Math.sin(t * 3 + s) * .035, u.base.y + Math.cos(t * 2.6 + s * 2) * .035, u.base.z + Math.sin(t * 2.2 + s * 3) * .035);
         PX.setA(m, 1, fa);
       }
+      if (PX.LOOK) {
+        const vd = _px_v.set(0, 0, 1).applyQuaternion(F.cam.quaternion), rt = _px_v2.set(1, 0, 0).applyQuaternion(F.cam.quaternion);
+        F.nucleons.forEach(m => { const k = .42 * Math.min(1, Math.max(0, .5 - m.position.dot(vd) / (2 * Math.max(Rn, 1)))); m.userData.body.material.color.copy(nCol[m.userData.kind === 'proton' ? 1 : 0]).lerp(bgC, k); });
+        if (t - lab0 > .5) { // the frontmost proton on the left half and neutron on the right half
+          lab0 = t; let bp = null, bn = null, dp = -1e9, dn = -1e9; F.nucleons.forEach(m => { const z = m.position.dot(vd), x = m.position.dot(rt), sp = z * .25 - x, sn = z * .25 + x; if (m.userData.kind === 'proton') { if (sp > dp) { dp = sp; bp = m; } } else if (sn > dn) { dn = sn; bn = m; } });   // near the front and near its own side, so the leader is short
+          if (bp) nP = bp; if (bn) nN = bn;
+        }
+        const up2 = new V3(0, 1, 0).applyQuaternion(F.cam.quaternion), arr = lead.geometry.attributes.position.array;
+        [[nP, ancP, -1, 0], [nN, ancN, 1, 6]].forEach(([m, anc, side, o]) => { if (!m) return; const y = Math.max(-Rn, Math.min(Rn, m.position.dot(up2)));
+          anc.position.copy(rt).multiplyScalar(side * (Rn + 2.2)).addScaledVector(up2, y);
+          const a = m.position.clone().addScaledVector(rt, side * rn * .95), b = anc.position.clone().addScaledVector(up2, .2);   // to the foot of the label's stem
+          arr[o] = a.x; arr[o + 1] = a.y; arr[o + 2] = a.z; arr[o + 3] = b.x; arr[o + 4] = b.y; arr[o + 5] = b.z; });
+        lead.geometry.attributes.position.needsUpdate = true; lead.geometry.setDrawRange(0, nN ? 4 : 2); lead.material.opacity = .75 * fa;
+      } else {
       if (t - lab0 > .5) { // label the proton and neutron nearest the camera, so labels never sit on hidden balls
         lab0 = t; let bp = null, bn = null, dp = 1e9, dn = 1e9; F.nucleons.forEach(m => { const d = m.position.distanceToSquared(F.C); if (m.userData.kind === 'proton') { if (d < dp) { dp = d; bp = m; } } else if (d < dn) { dn = d; bn = m; } });
         if (bp) nP = bp; if (bn) nN = bn;
       }
       _px_v.set(0, 0, 1).applyQuaternion(F.cam.quaternion); if (nP) ancP.position.copy(nP.position).addScaledVector(_px_v, rn * .9); if (nN) ancN.position.copy(nN.position).addScaledVector(_px_v, rn * .9);
+      }
       ring.material.opacity = .5 * fa; ring.material.userData.baseOp = .5; _px_v.set(1, 0, 0).applyQuaternion(F.cam.quaternion); _px_v2.set(0, 1, 0).applyQuaternion(F.cam.quaternion);
       edge.position.copy(_px_v).multiplyScalar((Rn + .6) * .72).addScaledVector(_px_v2, -(Rn + .6) * .72);
       PX.face(F, F.nucleons);
@@ -451,8 +493,9 @@ PX.fr3 = x => { const t = Math.round(x * 3); if (t % 3 === 0) return String(t / 
 PX.eVtext = ev => ev >= 1e9 ? (ev / 1e9).toPrecision(4).replace(/\.?0+$/, '') + ' GeV' : ev >= 1e6 ? (ev / 1e6).toPrecision(4).replace(/\.?0+$/, '') + ' MeV' : ev >= 1e3 ? (ev / 1e3).toPrecision(4) + ' keV' : ev.toPrecision(3) + ' eV';
 
 PX.famColor = d => d.id.startsWith('nu_') ? PX.COL.neutrino : d.family === 'quark' ? PX.COL.quark : d.family === 'lepton' ? PX.COL.lepton : d.id === 'higgs' ? PX.COL.higgs : PX.COL.boson;
-PX.glyphSpec = (id, anti) => { const M = PX.META[id], d = PX.P[id], g = Object.assign({}, anti ? M.a : M.m); let c = d.charge; g.line = anti && !M.self ? PX.chgText(c, true) : PX.chgText(c); return g; };
+PX.glyphSpec = (id, anti) => { const M = PX.META[id], d = PX.P[id], g = Object.assign({}, anti ? M.a : M.m); let c = d.charge; g.line = PX.LOOK ? '' : anti && !M.self ? PX.chgText(c, true) : PX.chgText(c); return g; };   // the look: the charge is set in the row's heading, at a size that can be read, not in the ball
 PX.accent = { strong: 0xe2533f, em: 0xf0c330, weak: 0x4aa3df, higgs: 0xe9c94f, gravity: 0xb9c2d3 };
+if (PX.LOOK) PX.accent = { strong: 0xd0614f, em: 0xd9b14a, weak: 0x5f8fd2, higgs: 0xc9a94a, gravity: 0x9aa3ad };   // the look: the index yellow means "you are here" only
 PX.ringTex = () => canvasTex('px|ring2', 256, 256, g => { g.clearRect(0, 0, 256, 256); g.strokeStyle = '#fff'; g.lineWidth = 7; g.beginPath(); g.arc(128, 128, 100, 0, TAU); g.stroke(); const gr = g.createRadialGradient(128, 128, 90, 128, 128, 128); gr.addColorStop(0, 'rgba(255,255,255,.45)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, 256, 256); });
 PX.hollow = (orb, h) => { // 0 = solid toon ball, 1 = hollow (antimatter) ball with a coloured ink edge
   const u = orb.userData; if (u.hol === h) return; u.hol = h;
@@ -461,7 +504,7 @@ PX.hollow = (orb, h) => { // 0 = solid toon ball, 1 = hollow (antimatter) ball w
 
 FT.sm = {
   build(F, o) {
-    const D = PX.D; F.illo = true; F.env = { bg: 0x0a1120, opaque: true };
+    const D = PX.D; F.illo = true; F.env = { bg: PX.LOOK ? MD.BG : 0x0a1120, opaque: true }; MD.kind(F, 'Diagram', PX.LOOK ? 'Colours group the particles (quarks violet, charged leptons green, neutrinos teal, force carriers red, the Higgs boson ochre); they are a code, not colours of the particles.' : '');
     F.add(new THREE.HemisphereLight(0xe3ebff, 0x40486e, .8)); const dl = new THREE.DirectionalLight(0xffffff, .85); dl.position.set(3, 5, 6); F.add(dl);
     F.name = 'The Standard Model';
     F.blurb = 'The seventeen kinds of particle that, as far as experiments have reached, everything else is made of. Click any one.';
@@ -481,7 +524,7 @@ FT.sm = {
       board.add(orb);
       P[id] = { id, d, M, orb, pos: PX.gridPos(id, new V3()), tgt: new V3(), scale: 1, ts: 1, dim: 1, td: 1, hol: 0, th: 0, glow: 0, tg: 0, gcol: new THREE.Color(1, 1, 1), anti: false, ghost: false };
       orb.position.copy(P[id].pos);
-      P[id].lab = F.label(orb, M.short, { offset: new V3(0, -1.55, 0) });
+      P[id].lab = F.label(orb, M.short, { offset: new V3(0, -1.55, 0) }); if (PX.LOOK) PX.below(P[id].lab);
     });
     // the antiparticle shown beside a selected particle
     const twin = PX.orb(.8, 0xffffff, { glyph: { main: 'u' }, hollow: true, hitK: 1.1 }); twin.visible = false; board.add(twin); twin.userData.id = 'sm_up'; twin.userData.priority = 1.9; twin.userData.node = 'sm_up'; F.pickables.push(twin);
@@ -497,6 +540,7 @@ FT.sm = {
     const addHdr = (text, x, y, node, w) => { const g = new THREE.Object3D(); g.position.set(x, y, 0); g.userData = { id: node, node, title: text, priority: 1 }; board.add(g); const L = F.label(g, text, { cls: 'pxhd', pick: g, always: false }); hdr.push({ g, L, text }); };
     ['Generation 1', 'Generation 2', 'Generation 3'].forEach((t, i) => addHdr(t, -5 + i * 5, 9.4, 'sm_generations'));
     addHdr('Up-type quarks', -9.6, 6.3, 'sm_strong_force'); addHdr('Down-type quarks', -9.6, 2.1, 'sm_strong_force'); addHdr('Charged leptons', -9.6, -2.1, 'sm_generations'); addHdr('Neutrinos', -9.6, -6.3, 'sm_neutrino_oscillation');
+    if (PX.LOOK) [['+⅔', '−⅔'], ['−⅓', '+⅓'], ['−1', '+1'], ['0', '0']].forEach(([c, ac], i) => { const h = hdr[3 + i], t0 = h.text; h.text = () => `${t0}, charge ${PX.SM.anti ? ac : c}`; h.L.right = true; h.g.position.x = -6.5; h.g.position.y -= .85; });   // the charge, which the balls no longer carry; the row's name ends just left of its first ball
     addHdr('Force carriers', 9.8, 9.4, 'sm_interactions');
     // mass-axis geometry
     const axisG = new THREE.Group(); axisG.visible = false; board.add(axisG);
@@ -523,7 +567,7 @@ FT.sm = {
     const lnMat = new THREE.LineBasicMaterial({ color: 0xf0c330, transparent: true, opacity: .45 }); const lines = new THREE.LineSegments(lnGeo, lnMat); lines.frustumCulled = false; board.add(lines);
     // decay stage
     const stage = new THREE.Group(); stage.visible = false; board.add(stage);
-    const dParent = PX.orb(1.1, 0xffffff, { glyph: { main: 'μ' }, hit: false }), dKids = [0, 1, 2, 3].map(() => PX.orb(.8, 0xffffff, { glyph: { main: 'e' }, hit: false })), flash = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex(), color: 0xfff1b0, transparent: true, depthWrite: false })); flash.scale.set(1, 1, 1);
+    const dParent = PX.orb(1.1, 0xffffff, { glyph: { main: 'μ' }, hit: false }), dKids = [0, 1, 2, 3].map(() => PX.orb(.8, 0xffffff, { glyph: { main: 'e' }, hit: false })), flash = new THREE.Sprite(new THREE.SpriteMaterial({ map: PX.LOOK ? PX.ring() : glowTex(), color: PX.LOOK ? 0xcfd3d8 : 0xfff1b0, transparent: true, depthWrite: false })); flash.scale.set(1, 1, 1);
     const vtx = new THREE.Object3D(); stage.add(vtx);
     stage.add(dParent, flash); dKids.forEach(k => stage.add(k));
     const dLabs = [F.label(dParent, 'parent', { offset: new V3(0, -1.5, 0) })].concat(dKids.map((k, i) => F.label(k, 'k' + i, { offset: new V3(0, -1.2, 0) })));
@@ -682,7 +726,8 @@ PX.smBind = F => {
     if (cam.A === F && !fly) { const cx = F._focus ? 0 : -S.board.position.x * 0, d = cam.T.length(); if (d > 40) { const kk = 1 - Math.exp(-dt * 3); cam.T.multiplyScalar(1 - kk * .9); if (zoom.pivot) zoom.pivot.p.set(0, 0, 0); } }   // never lose the board: if the zoom has carried the view far from it, bring it back
     if (cam.A === F && F.lvl > 0 && !pointers.size) { F.lvl -= dt; const kk = 1 - Math.exp(-dt * 2.2); cam.dir.lerp(tmp.set(0, .06, 1), kk).normalize(); }
     const showGrid = mode === 'overview' || mode === 'forces' || mode === 'everyday';
-    { const st = F._focus ? tmp.set(0, 0, 0) : mode === 'mass' ? tmp.set(0, 3, 0) : showGrid ? tmp.set(0, 2, 0) : tmp.set(0, 1, 0); S.shift.lerp(st, k); S.board.position.copy(F.boardBase).add(S.shift); if (W / H < 1) S.board.position.y -= 2.6; }
+    if (PX.LOOK && cam.A === F && !pointers.size) { cam.up.lerp(_px_v2.set(0, 1, 0), 1 - Math.exp(-dt * 3)); orthoUp(); }   // the look: a table is read level
+    { const st = F._focus ? tmp.set(0, 0, 0) : mode === 'mass' ? tmp.set(0, 3, 0) : showGrid ? (PX.LOOK ? tmp.set(3.8, -.6, 0) : tmp.set(0, 2, 0)) : tmp.set(0, 1, 0); S.shift.lerp(st, k); S.board.position.copy(F.boardBase).add(S.shift); if (W / H < 1) S.board.position.y -= 2.6; }
     const fint = mode === 'forces' ? FEEL() : null, carriers = fint ? fint.carriers : [], feels = fint ? fint.feels : [], ev = D.everyday_matter.ids;
     let nl = 0; const lp = lines.geometry.attributes.position.array;
     const backDir = tmp.set(0, 0, 1).applyQuaternion(F.cam.quaternion);
@@ -705,7 +750,7 @@ PX.smBind = F => {
       const hp = o.userData.haloPart; if (hp) { hp.base = p.glow * .75; o.userData.halo.material.color.copy(p.gcol); }
       { const dc = _px_v.copy(F.C).sub(_px_v2.copy(p.pos).add(S.board.position)).length(), r = 1.1 * p.scale, near = Math.min(1, Math.max(0, (dc - .7 * r) / (2.4 * r))); p.near = near; }
       PX.setA(o, p.dim * (.08 + .92 * p.near), fa);
-      p.lab.off.set(0, -(1.25 * p.scale + .3), 0);
+      p.lab.off.set(0, PX.LOOK ? -(p.scale + .05) : -(1.25 * p.scale + .3), 0);
       // coupling lines
       if (mode === 'forces' && SM.force !== 'gravity' && nl < 19 && !carriers.includes(id) && feels.includes(id)) {
         const c = P[carriers[0]]; if (c) { const b = nl * 6; lp[b] = c.pos.x; lp[b + 1] = c.pos.y; lp[b + 2] = c.pos.z - 1.6; lp[b + 3] = p.pos.x; lp[b + 4] = p.pos.y; lp[b + 5] = p.pos.z - 1.6; nl++; }

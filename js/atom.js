@@ -293,6 +293,16 @@ var AQ = (function () {
    =================================================================================================================== */
 var AQ_SHELL_HUE = { 1: [0.23, 0.50, 0.94], 2: [0.17, 0.71, 0.80], 3: [0.13, 0.84, 0.56], 4: [0.37, 0.82, 0.17], 5: [0.66, 0.85, 0.09], 6: [0.91, 0.69, 0.13], 7: [0.93, 0.48, 0.13] };
 var AQ_SHELL_CSS = { 1: '#3b82f0', 2: '#2bb5cc', 3: '#22d68f', 4: '#5ed12b', 5: '#a8d817', 6: '#e8b021', 7: '#ee7a21' };
+/* Under the realistic look (?look=2) the cloud is a plot (docs/DESIGN.md 3.1, 4) on the graphite ground every scene below the light's
+   wavelength shares: the shells take the figure code's colours for a dark ground, in its order (blue, teal, green, ochre, red, violet, grey),
+   the swatches of the configuration strip with them. Off, nothing changes. */
+var AQ_LOOK = typeof LOOK !== 'undefined' && LOOK.on;
+var AQ_PLATE = '#16191c';
+if (AQ_LOOK) {
+  // the inner shells pale, the outer ones deeper, so a core reads by its lightness as well as by its hue
+  AQ_SHELL_CSS = { 1: '#b9d0f5', 2: '#3aa59c', 3: '#7fb874', 4: '#d9ab4a', 5: '#e4836f', 6: '#a88dd9', 7: '#8d96a0' };
+  AQ_SHELL_HUE = {}; for (const k in AQ_SHELL_CSS) { const h = parseInt(AQ_SHELL_CSS[k].slice(1), 16); AQ_SHELL_HUE[k] = [(h >> 16) / 255, (h >> 8 & 255) / 255, (h & 255) / 255]; }
+}
 var AQ_ELEMENT_NAMES = {};   // optional: symbol -> name, filled by the host for labels
 
 var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
@@ -326,6 +336,26 @@ var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
       col += vec3(0.30) * pow(max(dot(reflect(-L, n), vec3(0.0, 0.0, 1.0)), 0.0), 20.0) * (0.4 + 0.6 * vSh);
       gl_FragColor = vec4(col, uOpacity);
     }`);
+  /* the same samples drawn as a plot (the look): a density plot, as a long exposure of the samples would be. Each dot is a round mark
+     with a smooth edge, laid over the ground with a little opacity, so where samples crowd the picture comes up to the shell's own
+     colour and where they are sparse the ground shows through: brightness reads as density, the way the data means it. No light, no
+     highlight (a sample has no surface), and no depth order (a plot is a projection) beyond the near half drawn a little stronger
+     than the far half; the faces of a cut are drawn at full strength, so the cut shows the density in its plane. The inner shells are drawn last (setState orders
+     the samples), so a core shows over the shells round it. A dot's opacity falls with its area, so the ink per unit area does not
+     change as the view closes in; close in, a dot stops growing at about 6 px (on a 1000 px view) and the cloud opens into its samples. */
+  const VERT_PLOT = VERT.replace('gl_PointSize = max(uSize * aRnd * uPx / max(max(-mv.z, 0.5 * (-c0.z)), 1e-6), uMinPx);',
+    'gl_PointSize = max(min(uSize * aRnd * uPx / max(max(-mv.z, 0.5 * (-c0.z)), 1e-6), uPx * 0.006), uMinPx); vInk = clamp(uInk / (gl_PointSize * gl_PointSize), 0.09, 0.55);')
+    .replace('varying float vDepth;', 'varying float vDepth; varying float vInk; uniform float uInk;')
+    .replace('{ vSh = 1.0; vDepth = 1.0; }', '{ vSh = 1.0; vDepth = 2.0; }');   // a dot on a cut face: marked for the fragment shader
+  const FRAG_PLOT = lf(`
+    uniform float uOpacity; varying vec3 vCol; varying float vInk; varying float vDepth;
+    void main(){
+      vec2 d = gl_PointCoord * 2.0 - 1.0; float r2 = dot(d, d); if (r2 > 1.0) discard;
+      // the near half of the cloud a little stronger than the far half (a depth cue for the shapes of single orbitals); dots on the faces
+      // of a cut are full strength, so a cut shows the density in the plane it opens
+      float a = vDepth > 1.5 ? 0.8 : vInk * mix(0.5, 1.0, vDepth);
+      gl_FragColor = vec4(vCol, uOpacity * a * (1.0 - smoothstep(0.55, 1.0, r2)));
+    }`);
 
   /* pale studio backdrop with a soft vignette (one texture, shared by the app frame and the test page) */
   let backdropTex = null;
@@ -333,13 +363,13 @@ var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
     if (backdropTex) return backdropTex;
     const c = document.createElement('canvas'); c.width = 256; c.height = 256; const g = c.getContext('2d');
     const gr = g.createRadialGradient(128, 118, 8, 128, 128, 190); gr.addColorStop(0, '#f6f6f4'); gr.addColorStop(0.55, '#e8e9ea'); gr.addColorStop(1, '#c3c7cc');
-    g.fillStyle = gr; g.fillRect(0, 0, 256, 256);
+    g.fillStyle = AQ_LOOK ? AQ_PLATE : gr; g.fillRect(0, 0, 256, 256);   // the look: a plain plate, no vignette
     backdropTex = new THREE.CanvasTexture(c); return backdropTex;
   }
   function ringTexture() {
     const c = document.createElement('canvas'); c.width = 64; c.height = 64; const g = c.getContext('2d');
-    g.lineWidth = 5; g.strokeStyle = '#1c2230'; g.beginPath(); g.arc(32, 32, 20, 0, 7); g.stroke();
-    g.fillStyle = '#1c2230'; g.beginPath(); g.arc(32, 32, 4, 0, 7); g.fill();
+    const ink = AQ_LOOK ? '#cfd3d8' : '#1c2230'; g.lineWidth = AQ_LOOK ? 3 : 5; g.strokeStyle = ink; g.beginPath(); g.arc(32, 32, 20, 0, 7); g.stroke();
+    g.fillStyle = ink; g.beginPath(); g.arc(32, 32, 4, 0, 7); g.fill();
     return new THREE.CanvasTexture(c);
   }
 
@@ -352,8 +382,8 @@ var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
       this.slowAuto = true; this.slow = 1e16; this.flowOn = true; this.T = 0; this.spec = null; this.label = ''; this.extent = 10;
       this.view = { px: 800 * 1.0722, fov: 50 }; this.slowFrames = 0; this.ema = 0.016; this.onQuality = null;
       this.mat = new THREE.ShaderMaterial({
-        uniforms: { uT: { value: 0 }, uDyn: { value: 0 }, uCut: { value: this.cut ? 1 : 0 }, uSize: { value: 0.1 }, uPx: { value: 800 }, uMinPx: { value: 1.6 }, uRad: { value: 10 }, uFace: { value: 0.3 }, uOpacity: { value: 1 } },
-        vertexShader: VERT, fragmentShader: FRAG, transparent: true, depthTest: true, depthWrite: true
+        uniforms: { uT: { value: 0 }, uDyn: { value: 0 }, uCut: { value: this.cut ? 1 : 0 }, uSize: { value: 0.1 }, uPx: { value: 800 }, uMinPx: { value: 1.6 }, uRad: { value: 10 }, uFace: { value: 0.3 }, uOpacity: { value: 1 }, uInk: { value: 1.4 } },
+        vertexShader: AQ_LOOK ? VERT_PLOT : VERT, fragmentShader: AQ_LOOK ? FRAG_PLOT : FRAG, transparent: true, depthTest: true, depthWrite: !AQ_LOOK
       });
       this.points = null;
       const mg = new THREE.BufferGeometry(); mg.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0], 3));
@@ -387,6 +417,11 @@ var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
         this.label = spec.name || `${spec.name0 || 'hydrogen'} ${AQ.stateLabel('', spec.n, spec.l, spec.m || 0).trim()}`;
       } else if (spec.kind === 'shells') {
         const d = AQ.sampleShells(spec.shells, N, { rng: rnd }); s = d.s; z = d.z; ph = d.phi; om = d.om; r = d.r; shellIdx = d.shell; this.hueN = spec.shells.map(q => q.n);
+        if (AQ_LOOK) {   // the plot draws in buffer order: outer shells first, the core last, so the core is not buried under the shells round it
+          const ord = Array.from({ length: N }, (_, i) => i).sort((a, b) => (spec.shells[shellIdx[b]].n - spec.shells[shellIdx[a]].n) || (a - b));
+          const re = A => { if (!A) return A; const B = new A.constructor(N); for (let i = 0; i < N; i++) B[i] = A[ord[i]]; return B; };
+          s = re(s); z = re(z); ph = re(ph); om = re(om); r = re(r); shellIdx = re(shellIdx);
+        }
         this.label = spec.name || 'atom';
       } else if (spec.kind === 'super') {
         isDyn = true; const Z = spec.Z || 1, d = AQ.sampleSuper(spec.comps, Z, N, 0, { rng: rnd });
@@ -421,6 +456,7 @@ var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
       // dot size: constant coverage, so fewer dots mean bigger dots
       const dotB = this.extent * 0.0108 * Math.min(2.2, Math.pow(2e5 / N, 0.4));
       this.mat.uniforms.uSize.value = dotB * u; this.mat.uniforms.uRad.value = this.extent * u; this.mat.uniforms.uFace.value = dotB * u * 1.4;
+      this.mat.uniforms.uInk.value = 1.8 * Math.min(10, 2e5 / N);   // the plot's ink: the same for the whole cloud whatever the number of dots
       // slow-down: about 1e16, lower for big slow orbitals so the motion stays visible (stated on screen)
       if (this.slowAuto) {
         if (this.flows) { const per = 2 * Math.PI * this.sTyp * this.sTyp / Math.abs(spec.m); const want = 22 / (per * AQ.AU_TIME_S); this.slow = Math.max(1e14, Math.min(1e16, Math.pow(10, Math.round(Math.log10(want) * 2) / 2))); }
@@ -694,7 +730,7 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
       count: store.get('atomCount', (window.innerWidth <= 860 || /Mobi|Android/i.test(navigator.userAgent)) ? 100000 : 200000), bi: 3, bf: 2, extentPm: 150, spec: null, anim: null, track: [], lbls: [], J: null };
     if (!ATM.MODELS[S.model]) S.model = 'quantum';
     S.home = sym0; ATM.frames.add(F);
-    F.illo = true; F.env = { opaque: true, bg: 0xe9eaec }; F.scene.background = AtomCloud.backdrop();
+    F.illo = true; F.env = { opaque: true, bg: AQ_LOOK ? 0x16191c : 0xe9eaec }; F.scene.background = AtomCloud.backdrop(); if (typeof MD !== 'undefined') MD.kind(F, 'Diagram', 'Each dot is one sample of where the electron could be found; colour marks the shell (n) and is not a real colour.');
     F.add(new THREE.AmbientLight(0xffffff, 0.72)); const dl = new THREE.DirectionalLight(0xffffff, 0.85); dl.position.set(-3, 5, 6); F.add(dl);
     const cloud = new AtomCloud({ unit: AQ.A0_PM, count: S.count, cut: false }); F.add(cloud.group); F.cloud = cloud;
     cloud.group.remove(cloud.marker); cloud.marker.scale.set(1, 1, 1); F.add(cloud.marker);
