@@ -526,7 +526,11 @@
       "#d9c3b8",
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "grain"
+    }
    },
    "muscle": {
     "kind": "plain",
@@ -535,7 +539,12 @@
       "#a8433a",
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "muscle",
+     "pattern": "fibre",
+     "cell": 0.004
+    }
    },
    "bone": {
     "kind": "plain",
@@ -544,7 +553,12 @@
       "#e8dcc0",
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "bone",
+     "pattern": "pore",
+     "cell": 0.0015
+    }
    },
    "organ": {
     "kind": "plain",
@@ -553,7 +567,11 @@
       "#c9776e",
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "grain"
+    }
    },
    "blood_l": {
     "kind": "plain",
@@ -562,7 +580,11 @@
       "#e0463c",
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "plain"
+    }
    },
    "blood_r": {
     "kind": "plain",
@@ -571,7 +593,11 @@
       "#4f6fb5",
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "plain"
+    }
    },
    "brain": {
     "kind": "plain",
@@ -580,7 +606,11 @@
       "#d9c3bd",
       1
      ]
-    ]
+    ],
+    "look": {
+     "kind": "wet",
+     "pattern": "grain"
+    }
    }
   }
  },
@@ -1123,7 +1153,8 @@
     0
    ],
    "radius": 0.6277,
-   "tris": 32596
+   "tris": 32596,
+   "kind": "fur"
   },
   {
    "id": "coat_mid",
@@ -1141,7 +1172,8 @@
     -0.0002
    ],
    "radius": 0.626,
-   "tris": 10470
+   "tris": 10470,
+   "kind": "fur"
   },
   {
    "id": "coat_far",
@@ -1159,7 +1191,8 @@
     0.0005
    ],
    "radius": 0.6251,
-   "tris": 1514
+   "tris": 1514,
+   "kind": "fur"
   },
   {
    "id": "fill",
@@ -1177,7 +1210,8 @@
     0.0003
    ],
    "radius": 0.589,
-   "tris": 6696
+   "tris": 6696,
+   "kind": "wet"
   },
   {
    "id": "fur",
@@ -1203,7 +1237,8 @@
    ],
    "radius": 0.6393,
    "count": 15693,
-   "tris": 31386
+   "tris": 31386,
+   "kind": "fur"
   },
   {
    "id": "ears",
@@ -1223,7 +1258,8 @@
     0
    ],
    "radius": 0.0918,
-   "tris": 1488
+   "tris": 1488,
+   "kind": "fur"
   },
   {
    "id": "nose",
@@ -1240,7 +1276,8 @@
     0.0001
    ],
    "radius": 0.0256,
-   "tris": 1664
+   "tris": 1664,
+   "kind": "mucosa"
   },
   {
    "id": "paw_pads",
@@ -1257,7 +1294,8 @@
     -0.0001
    ],
    "radius": 0.263,
-   "tris": 5620
+   "tris": 5620,
+   "kind": "skin"
   },
   {
    "id": "claws",
@@ -1274,7 +1312,8 @@
     0.0003
    ],
    "radius": 0.252,
-   "tris": 540
+   "tris": 540,
+   "kind": "horn"
   },
   {
    "id": "eyes",
@@ -1294,7 +1333,8 @@
     0
    ],
    "radius": 0.0515,
-   "tris": 400
+   "tris": 400,
+   "kind": "eye"
   },
   {
    "id": "eye_front",
@@ -1313,7 +1353,8 @@
     0
    ],
    "radius": 0.05,
-   "tris": 240
+   "tris": 240,
+   "kind": "eye"
   },
   {
    "id": "skull",
@@ -1330,7 +1371,8 @@
     -0.0001
    ],
    "radius": 0.1053,
-   "tris": 15296
+   "tris": 15296,
+   "kind": "bone"
   },
   {
    "id": "mandible",
@@ -1347,7 +1389,8 @@
     0.0001
    ],
    "radius": 0.0924,
-   "tris": 4744
+   "tris": 4744,
+   "kind": "bone"
   },
   {
    "id": "teeth",
@@ -1364,7 +1407,8 @@
     0
    ],
    "radius": 0.0709,
-   "tris": 2016
+   "tris": 2016,
+   "kind": "enamel"
   },
   {
    "id": "cervical",
@@ -1381,7 +1425,8 @@
     0
    ],
    "radius": 0.1226,
-   "tris": 1204
+   "tris": 1204,
+   "kind": "bone"
   },
   {
    "id": "thoracic",
@@ -1398,7 +1443,8 @@
     0
    ],
    "radius": 0.1349,
-   "tris": 2236
+   "tris": 2236,
+   "kind": "bone"
   },
   {
    "id": "lumbar",
@@ -1415,7 +1461,8 @@
     0
    ],
    "radius": 0.0853,
-   "tris": 1204
+   "tris": 1204,
+   "kind": "bone"
   },
   {
    "id": "sacrum",
@@ -1432,7 +1479,8 @@
     0
    ],
    "radius": 0.0385,
-   "tris": 516
+   "tris": 516,
+   "kind": "bone"
   },
   {
    "id": "caudal",
@@ -1449,7 +1497,8 @@
     0
    ],
    "radius": 0.163,
-   "tris": 2260
+   "tris": 2260,
+   "kind": "bone"
   },
   {
    "id": "ribs",
@@ -1466,7 +1515,8 @@
     0
    ],
    "radius": 0.1691,
-   "tris": 6384
+   "tris": 6384,
+   "kind": "bone"
   },
   {
    "id": "costal",
@@ -1483,7 +1533,8 @@
     0
    ],
    "radius": 0.1726,
-   "tris": 2880
+   "tris": 2880,
+   "kind": "cartilage"
   },
   {
    "id": "sternum",
@@ -1500,7 +1551,8 @@
     0
    ],
    "radius": 0.1762,
-   "tris": 676
+   "tris": 676,
+   "kind": "bone"
   },
   {
    "id": "pelvis",
@@ -1517,7 +1569,8 @@
     0
    ],
    "radius": 0.1313,
-   "tris": 12140
+   "tris": 12140,
+   "kind": "bone"
   },
   {
    "id": "baculum",
@@ -1534,7 +1587,8 @@
     -0.0002
    ],
    "radius": 0.047,
-   "tris": 98
+   "tris": 98,
+   "kind": "bone"
   },
   {
    "id": "scapula_r",
@@ -1551,7 +1605,8 @@
     0.0537
    ],
    "radius": 0.1083,
-   "tris": 126
+   "tris": 126,
+   "kind": "bone"
   },
   {
    "id": "humerus_r",
@@ -1568,7 +1623,8 @@
     0.0805
    ],
    "radius": 0.0911,
-   "tris": 300
+   "tris": 300,
+   "kind": "bone"
   },
   {
    "id": "radius_ulna_r",
@@ -1585,7 +1641,8 @@
     0.0806
    ],
    "radius": 0.1178,
-   "tris": 510
+   "tris": 510,
+   "kind": "bone"
   },
   {
    "id": "carpus_r",
@@ -1602,7 +1659,8 @@
     0.0685
    ],
    "radius": 0.0137,
-   "tris": 1344
+   "tris": 1344,
+   "kind": "bone"
   },
   {
    "id": "metacarpals_r",
@@ -1619,7 +1677,8 @@
     0.0658
    ],
    "radius": 0.0443,
-   "tris": 336
+   "tris": 336,
+   "kind": "bone"
   },
   {
    "id": "phalanges_f_r",
@@ -1636,7 +1695,8 @@
     0.064
    ],
    "radius": 0.0438,
-   "tris": 576
+   "tris": 576,
+   "kind": "bone"
   },
   {
    "id": "dewclaw_r",
@@ -1653,7 +1713,8 @@
     0.0463
    ],
    "radius": 0.0219,
-   "tris": 72
+   "tris": 72,
+   "kind": "bone"
   },
   {
    "id": "femur_r",
@@ -1670,7 +1731,8 @@
     0.0875
    ],
    "radius": 0.1067,
-   "tris": 300
+   "tris": 300,
+   "kind": "bone"
   },
   {
    "id": "patella_r",
@@ -1687,7 +1749,8 @@
     0.096
    ],
    "radius": 0.0089,
-   "tris": 256
+   "tris": 256,
+   "kind": "bone"
   },
   {
    "id": "tibia_fibula_r",
@@ -1704,7 +1767,8 @@
     0.091
    ],
    "radius": 0.0962,
-   "tris": 360
+   "tris": 360,
+   "kind": "bone"
   },
   {
    "id": "tarsus_r",
@@ -1721,7 +1785,8 @@
     0.082
    ],
    "radius": 0.0457,
-   "tris": 1056
+   "tris": 1056,
+   "kind": "bone"
   },
   {
    "id": "metatarsals_r",
@@ -1738,7 +1803,8 @@
     0.0717
    ],
    "radius": 0.0609,
-   "tris": 336
+   "tris": 336,
+   "kind": "bone"
   },
   {
    "id": "phalanges_h_r",
@@ -1755,7 +1821,8 @@
     0.066
    ],
    "radius": 0.0423,
-   "tris": 576
+   "tris": 576,
+   "kind": "bone"
   },
   {
    "id": "scapula_l",
@@ -1772,7 +1839,8 @@
     -0.0537
    ],
    "radius": 0.1079,
-   "tris": 126
+   "tris": 126,
+   "kind": "bone"
   },
   {
    "id": "humerus_l",
@@ -1789,7 +1857,8 @@
     -0.0805
    ],
    "radius": 0.0911,
-   "tris": 300
+   "tris": 300,
+   "kind": "bone"
   },
   {
    "id": "radius_ulna_l",
@@ -1806,7 +1875,8 @@
     -0.0803
    ],
    "radius": 0.1179,
-   "tris": 510
+   "tris": 510,
+   "kind": "bone"
   },
   {
    "id": "carpus_l",
@@ -1823,7 +1893,8 @@
     -0.0715
    ],
    "radius": 0.0147,
-   "tris": 1344
+   "tris": 1344,
+   "kind": "bone"
   },
   {
    "id": "metacarpals_l",
@@ -1840,7 +1911,8 @@
     -0.0654
    ],
    "radius": 0.0444,
-   "tris": 336
+   "tris": 336,
+   "kind": "bone"
   },
   {
    "id": "phalanges_f_l",
@@ -1857,7 +1929,8 @@
     -0.064
    ],
    "radius": 0.0438,
-   "tris": 576
+   "tris": 576,
+   "kind": "bone"
   },
   {
    "id": "dewclaw_l",
@@ -1874,7 +1947,8 @@
     -0.0463
    ],
    "radius": 0.0219,
-   "tris": 72
+   "tris": 72,
+   "kind": "bone"
   },
   {
    "id": "femur_l",
@@ -1891,7 +1965,8 @@
     -0.0875
    ],
    "radius": 0.1067,
-   "tris": 300
+   "tris": 300,
+   "kind": "bone"
   },
   {
    "id": "patella_l",
@@ -1908,7 +1983,8 @@
     -0.096
    ],
    "radius": 0.0089,
-   "tris": 256
+   "tris": 256,
+   "kind": "bone"
   },
   {
    "id": "tibia_fibula_l",
@@ -1925,7 +2001,8 @@
     -0.0909
    ],
    "radius": 0.0965,
-   "tris": 360
+   "tris": 360,
+   "kind": "bone"
   },
   {
    "id": "tarsus_l",
@@ -1942,7 +2019,8 @@
     -0.082
    ],
    "radius": 0.0458,
-   "tris": 1056
+   "tris": 1056,
+   "kind": "bone"
   },
   {
    "id": "metatarsals_l",
@@ -1959,7 +2037,8 @@
     -0.0713
    ],
    "radius": 0.061,
-   "tris": 336
+   "tris": 336,
+   "kind": "bone"
   },
   {
    "id": "phalanges_h_l",
@@ -1976,7 +2055,8 @@
     -0.066
    ],
    "radius": 0.0423,
-   "tris": 576
+   "tris": 576,
+   "kind": "bone"
   },
   {
    "id": "m_temporalis",
@@ -2000,7 +2080,8 @@
     0
    ],
    "radius": 0.0703,
-   "tris": 1124
+   "tris": 1124,
+   "kind": "muscle"
   },
   {
    "id": "m_masseter",
@@ -2024,7 +2105,8 @@
     -0.0002
    ],
    "radius": 0.0753,
-   "tris": 968
+   "tris": 968,
+   "kind": "muscle"
   },
   {
    "id": "m_face_muscles",
@@ -2048,7 +2130,8 @@
     0
    ],
    "radius": 0.0737,
-   "tris": 1616
+   "tris": 1616,
+   "kind": "muscle"
   },
   {
    "id": "m_neck_dorsal",
@@ -2072,7 +2155,8 @@
     -0.0005
    ],
    "radius": 0.1371,
-   "tris": 4180
+   "tris": 4180,
+   "kind": "muscle"
   },
   {
    "id": "m_brachiocephalicus",
@@ -2096,7 +2180,8 @@
     0.0011
    ],
    "radius": 0.1445,
-   "tris": 3244
+   "tris": 3244,
+   "kind": "muscle"
   },
   {
    "id": "m_neck_ventral",
@@ -2120,7 +2205,8 @@
     -0.0006
    ],
    "radius": 0.1223,
-   "tris": 2512
+   "tris": 2512,
+   "kind": "muscle"
   },
   {
    "id": "m_trapezius",
@@ -2144,7 +2230,8 @@
     -0.0012
    ],
    "radius": 0.0904,
-   "tris": 436
+   "tris": 436,
+   "kind": "muscle"
   },
   {
    "id": "m_latissimus",
@@ -2168,7 +2255,8 @@
     0
    ],
    "radius": 0.1604,
-   "tris": 2840
+   "tris": 2840,
+   "kind": "muscle"
   },
   {
    "id": "m_chest_wall",
@@ -2192,7 +2280,8 @@
     0.0006
    ],
    "radius": 0.1785,
-   "tris": 6256
+   "tris": 6256,
+   "kind": "muscle"
   },
   {
    "id": "m_pectorals",
@@ -2216,7 +2305,8 @@
     0
    ],
    "radius": 0.1093,
-   "tris": 2216
+   "tris": 2216,
+   "kind": "muscle"
   },
   {
    "id": "m_back_extensors",
@@ -2240,7 +2330,8 @@
     -0.001
    ],
    "radius": 0.2614,
-   "tris": 9632
+   "tris": 9632,
+   "kind": "muscle"
   },
   {
    "id": "m_external_oblique",
@@ -2264,7 +2355,8 @@
     -0.0016
    ],
    "radius": 0.1436,
-   "tris": 2248
+   "tris": 2248,
+   "kind": "muscle"
   },
   {
    "id": "m_rectus_abdominis",
@@ -2288,7 +2380,8 @@
     -0.0005
    ],
    "radius": 0.135,
-   "tris": 2188
+   "tris": 2188,
+   "kind": "muscle"
   },
   {
    "id": "m_supraspinatus",
@@ -2312,7 +2405,8 @@
     0
    ],
    "radius": 0.1239,
-   "tris": 3328
+   "tris": 3328,
+   "kind": "muscle"
   },
   {
    "id": "m_deltoid",
@@ -2336,7 +2430,8 @@
     0
    ],
    "radius": 0.1298,
-   "tris": 1000
+   "tris": 1000,
+   "kind": "muscle"
   },
   {
    "id": "m_triceps",
@@ -2360,7 +2455,8 @@
     0
    ],
    "radius": 0.1498,
-   "tris": 4244
+   "tris": 4244,
+   "kind": "muscle"
   },
   {
    "id": "m_biceps",
@@ -2384,7 +2480,8 @@
     0.0005
    ],
    "radius": 0.138,
-   "tris": 2264
+   "tris": 2264,
+   "kind": "muscle"
   },
   {
    "id": "m_fore_extensors",
@@ -2408,7 +2505,8 @@
     0
    ],
    "radius": 0.1572,
-   "tris": 1876
+   "tris": 1876,
+   "kind": "muscle"
   },
   {
    "id": "m_fore_flexors",
@@ -2432,7 +2530,8 @@
     0.0003
    ],
    "radius": 0.1259,
-   "tris": 2096
+   "tris": 2096,
+   "kind": "muscle"
   },
   {
    "id": "m_fore_tendons",
@@ -2456,7 +2555,8 @@
     0
    ],
    "radius": 0.1201,
-   "tris": 2588
+   "tris": 2588,
+   "kind": "cartilage"
   },
   {
    "id": "m_gluteals",
@@ -2480,7 +2580,8 @@
     0.0011
    ],
    "radius": 0.1231,
-   "tris": 3596
+   "tris": 3596,
+   "kind": "muscle"
   },
   {
    "id": "m_tensor",
@@ -2504,7 +2605,8 @@
     0
    ],
    "radius": 0.1186,
-   "tris": 872
+   "tris": 872,
+   "kind": "muscle"
   },
   {
    "id": "m_biceps_femoris",
@@ -2528,7 +2630,8 @@
     0
    ],
    "radius": 0.1807,
-   "tris": 5084
+   "tris": 5084,
+   "kind": "muscle"
   },
   {
    "id": "m_hamstrings",
@@ -2552,7 +2655,8 @@
     0
    ],
    "radius": 0.1659,
-   "tris": 3536
+   "tris": 3536,
+   "kind": "muscle"
   },
   {
    "id": "m_quadriceps",
@@ -2576,7 +2680,8 @@
     -0.0001
    ],
    "radius": 0.1599,
-   "tris": 4168
+   "tris": 4168,
+   "kind": "muscle"
   },
   {
    "id": "m_adductors",
@@ -2600,7 +2705,8 @@
     0
    ],
    "radius": 0.1351,
-   "tris": 3388
+   "tris": 3388,
+   "kind": "muscle"
   },
   {
    "id": "m_gastrocnemius",
@@ -2624,7 +2730,8 @@
     0.0007
    ],
    "radius": 0.1262,
-   "tris": 1784
+   "tris": 1784,
+   "kind": "muscle"
   },
   {
    "id": "m_shin_muscles",
@@ -2648,7 +2755,8 @@
     0
    ],
    "radius": 0.143,
-   "tris": 1336
+   "tris": 1336,
+   "kind": "muscle"
   },
   {
    "id": "m_hind_tendons",
@@ -2672,7 +2780,8 @@
     0
    ],
    "radius": 0.138,
-   "tris": 3064
+   "tris": 3064,
+   "kind": "cartilage"
   },
   {
    "id": "m_tail_muscles",
@@ -2696,7 +2805,8 @@
     0
    ],
    "radius": 0.2106,
-   "tris": 4172
+   "tris": 4172,
+   "kind": "muscle"
   },
   {
    "id": "brain",
@@ -2714,7 +2824,8 @@
     0
    ],
    "radius": 0.0598,
-   "tris": 7352
+   "tris": 7352,
+   "kind": "wet"
   },
   {
    "id": "bulbs",
@@ -2732,7 +2843,8 @@
     0
    ],
    "radius": 0.0186,
-   "tris": 1840
+   "tris": 1840,
+   "kind": "wet"
   },
   {
    "id": "tongue",
@@ -2750,7 +2862,8 @@
     0
    ],
    "radius": 0.071,
-   "tris": 2872
+   "tris": 2872,
+   "kind": "mucosa"
   },
   {
    "id": "larynx",
@@ -2768,7 +2881,8 @@
     0
    ],
    "radius": 0.0313,
-   "tris": 1648
+   "tris": 1648,
+   "kind": "cartilage"
   },
   {
    "id": "trachea",
@@ -2786,7 +2900,8 @@
     0
    ],
    "radius": 0.1332,
-   "tris": 600
+   "tris": 600,
+   "kind": "mucosa"
   },
   {
    "id": "bronchi",
@@ -2804,7 +2919,8 @@
     0
    ],
    "radius": 0.04,
-   "tris": 96
+   "tris": 96,
+   "kind": "mucosa"
   },
   {
    "id": "esophagus",
@@ -2822,7 +2938,8 @@
     -0.0049
    ],
    "radius": 0.2197,
-   "tris": 432
+   "tris": 432,
+   "kind": "mucosa"
   },
   {
    "id": "lung_r",
@@ -2841,7 +2958,8 @@
     0.0504
    ],
    "radius": 0.1424,
-   "tris": 9124
+   "tris": 9124,
+   "kind": "wet"
   },
   {
    "id": "lung_l",
@@ -2860,7 +2978,8 @@
     -0.0503
    ],
    "radius": 0.1424,
-   "tris": 8976
+   "tris": 8976,
+   "kind": "wet"
   },
   {
    "id": "heart",
@@ -2878,7 +2997,8 @@
     0.0015
    ],
    "radius": 0.0726,
-   "tris": 7336
+   "tris": 7336,
+   "kind": "wet"
   },
   {
    "id": "diaphragm",
@@ -2896,7 +3016,8 @@
     0
    ],
    "radius": 0.145,
-   "tris": 16612
+   "tris": 16612,
+   "kind": "wet"
   },
   {
    "id": "liver",
@@ -2914,7 +3035,8 @@
     0.0017
    ],
    "radius": 0.0981,
-   "tris": 13964
+   "tris": 13964,
+   "kind": "wet"
   },
   {
    "id": "stomach",
@@ -2932,7 +3054,8 @@
     -0.0175
    ],
    "radius": 0.0804,
-   "tris": 8252
+   "tris": 8252,
+   "kind": "wet"
   },
   {
    "id": "spleen",
@@ -2950,7 +3073,8 @@
     -0.0699
    ],
    "radius": 0.0868,
-   "tris": 3868
+   "tris": 3868,
+   "kind": "wet"
   },
   {
    "id": "small_intestine",
@@ -2968,7 +3092,8 @@
     -0.0011
    ],
    "radius": 0.0878,
-   "tris": 2576
+   "tris": 2576,
+   "kind": "wet"
   },
   {
    "id": "large_intestine",
@@ -2986,7 +3111,8 @@
     0.0054
    ],
    "radius": 0.1008,
-   "tris": 1918
+   "tris": 1918,
+   "kind": "wet"
   },
   {
    "id": "kidney_r",
@@ -3004,7 +3130,8 @@
     0.034
    ],
    "radius": 0.0255,
-   "tris": 2856
+   "tris": 2856,
+   "kind": "wet"
   },
   {
    "id": "kidney_l",
@@ -3022,7 +3149,8 @@
     -0.036
    ],
    "radius": 0.0255,
-   "tris": 2844
+   "tris": 2844,
+   "kind": "wet"
   },
   {
    "id": "bladder",
@@ -3040,7 +3168,8 @@
     0.0002
    ],
    "radius": 0.0523,
-   "tris": 4824
+   "tris": 4824,
+   "kind": "wet"
   },
   {
    "id": "tracheal_rings",
@@ -3057,7 +3186,8 @@
     0
    ],
    "radius": 0.1292,
-   "tris": 2800
+   "tris": 2800,
+   "kind": "cartilage"
   },
   {
    "id": "brain_n",
@@ -3074,7 +3204,8 @@
     0
    ],
    "radius": 0.0598,
-   "tris": 7352
+   "tris": 7352,
+   "kind": "wet"
   },
   {
    "id": "bulbs_n",
@@ -3090,7 +3221,8 @@
     0
    ],
    "radius": 0.0186,
-   "tris": 1840
+   "tris": 1840,
+   "kind": "wet"
   },
   {
    "id": "spinal_cord",
@@ -3106,7 +3238,8 @@
     -0.0004
    ],
    "radius": 0.3092,
-   "tris": 910
+   "tris": 910,
+   "kind": "wet"
   },
   {
    "id": "nerves_fore",
@@ -3123,7 +3256,8 @@
     0
    ],
    "radius": 0.2602,
-   "tris": 1500
+   "tris": 1500,
+   "kind": "wet"
   },
   {
    "id": "nerves_hind",
@@ -3140,7 +3274,8 @@
     0.0001
    ],
    "radius": 0.2089,
-   "tris": 500
+   "tris": 500,
+   "kind": "wet"
   },
   {
    "id": "vagus",
@@ -3157,7 +3292,8 @@
     0.0002
    ],
    "radius": 0.1041,
-   "tris": 500
+   "tris": 500,
+   "kind": "wet"
   },
   {
    "id": "optic",
@@ -3174,7 +3310,8 @@
     0
    ],
    "radius": 0.0376,
-   "tris": 140
+   "tris": 140,
+   "kind": "wet"
   },
   {
    "id": "tail_nerves",
@@ -3191,7 +3328,8 @@
     -0.0001
    ],
    "radius": 0.1277,
-   "tris": 110
+   "tris": 110,
+   "kind": "wet"
   },
   {
    "id": "arteries",
@@ -3208,7 +3346,8 @@
     0
    ],
    "radius": 0.4596,
-   "tris": 3492
+   "tris": 3492,
+   "kind": "wet"
   },
   {
    "id": "veins",
@@ -3225,7 +3364,8 @@
     0
    ],
    "radius": 0.4189,
-   "tris": 2772
+   "tris": 2772,
+   "kind": "wet"
   },
   {
    "id": "heart_v",
@@ -3242,7 +3382,8 @@
     0.0015
    ],
    "radius": 0.0726,
-   "tris": 7336
+   "tris": 7336,
+   "kind": "wet"
   },
   {
    "id": "lung_r_v",
@@ -3259,7 +3400,8 @@
     0.0504
    ],
    "radius": 0.1424,
-   "tris": 9124
+   "tris": 9124,
+   "kind": "wet"
   },
   {
    "id": "lung_l_v",
@@ -3276,7 +3418,8 @@
     -0.0503
    ],
    "radius": 0.1424,
-   "tris": 8976
+   "tris": 8976,
+   "kind": "wet"
   },
   {
    "id": "heart_d",
@@ -3293,7 +3436,8 @@
     0.0015
    ],
    "radius": 0.0726,
-   "tris": 7336
+   "tris": 7336,
+   "kind": "muscle"
   },
   {
    "id": "h_lv",
@@ -3311,7 +3455,8 @@
     -0.0051
    ],
    "radius": 0.044,
-   "tris": 6340
+   "tris": 6340,
+   "kind": "wet"
   },
   {
    "id": "h_rv",
@@ -3329,7 +3474,8 @@
     0.022
    ],
    "radius": 0.0399,
-   "tris": 2664
+   "tris": 2664,
+   "kind": "wet"
   },
   {
    "id": "h_la",
@@ -3347,7 +3493,8 @@
     -0.014
    ],
    "radius": 0.0149,
-   "tris": 1632
+   "tris": 1632,
+   "kind": "wet"
   },
   {
    "id": "h_ra",
@@ -3365,7 +3512,8 @@
     0.024
    ],
    "radius": 0.0149,
-   "tris": 1584
+   "tris": 1584,
+   "kind": "wet"
   },
   {
    "id": "h_valves",
@@ -3384,7 +3532,8 @@
     0.007
    ],
    "radius": 0.0284,
-   "tris": 240
+   "tris": 240,
+   "kind": "wet"
   },
   {
    "id": "eye_sclera",
@@ -3406,7 +3555,8 @@
     0
    ],
    "radius": 0.0515,
-   "tris": 1728
+   "tris": 1728,
+   "kind": "wet"
   },
   {
    "id": "eye_choroid",
@@ -3428,7 +3578,8 @@
     0
    ],
    "radius": 0.0504,
-   "tris": 1008
+   "tris": 1008,
+   "kind": "wet"
   },
   {
    "id": "eye_tapetum",
@@ -3456,7 +3607,8 @@
     0
    ],
    "radius": 0.0497,
-   "tris": 1008
+   "tris": 1008,
+   "kind": "wet"
   },
   {
    "id": "eye_retina",
@@ -3484,7 +3636,8 @@
     0
    ],
    "radius": 0.051,
-   "tris": 1728
+   "tris": 1728,
+   "kind": "wet"
   },
   {
    "id": "eye_vitreous",
@@ -3506,7 +3659,8 @@
     0
    ],
    "radius": 0.0504,
-   "tris": 2760
+   "tris": 2760,
+   "kind": "glass"
   },
   {
    "id": "eye_lens",
@@ -3528,7 +3682,8 @@
     0
    ],
    "radius": 0.0468,
-   "tris": 1184
+   "tris": 1184,
+   "kind": "glass"
   },
   {
    "id": "eye_cornea",
@@ -3550,7 +3705,8 @@
     0
    ],
    "radius": 0.05,
-   "tris": 240
+   "tris": 240,
+   "kind": "eye"
   },
   {
    "id": "eye_iris",
@@ -3572,7 +3728,8 @@
     0
    ],
    "radius": 0.0493,
-   "tris": 88
+   "tris": 88,
+   "kind": "wet"
   },
   {
    "id": "turb_olf",
@@ -3597,7 +3754,8 @@
    ],
    "radius": 0.0291,
    "count": 28,
-   "tris": 3696
+   "tris": 3696,
+   "kind": "mucosa"
   },
   {
    "id": "turb_resp",
@@ -3616,7 +3774,8 @@
    ],
    "radius": 0.0337,
    "count": 18,
-   "tris": 2376
+   "tris": 2376,
+   "kind": "mucosa"
   },
   {
    "id": "ear_canal",
@@ -3635,7 +3794,8 @@
     0
    ],
    "radius": 0.0584,
-   "tris": 760
+   "tris": 760,
+   "kind": "mucosa"
   },
   {
    "id": "ear_drum",
@@ -3654,7 +3814,8 @@
     0
    ],
    "radius": 0.0391,
-   "tris": 56
+   "tris": 56,
+   "kind": "mucosa"
   },
   {
    "id": "ear_bulla",
@@ -3673,7 +3834,8 @@
     0
    ],
    "radius": 0.038,
-   "tris": 2592
+   "tris": 2592,
+   "kind": "bone"
   },
   {
    "id": "ear_cochlea",
@@ -3692,7 +3854,8 @@
     0.0003
    ],
    "radius": 0.0261,
-   "tris": 1220
+   "tris": 1220,
+   "kind": "bone"
   },
   {
    "id": "ear_canals",
@@ -3711,7 +3874,8 @@
     0
    ],
    "radius": 0.0246,
-   "tris": 1860
+   "tris": 1860,
+   "kind": "bone"
   }
  ],
  "stats": {

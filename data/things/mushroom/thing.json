@@ -424,7 +424,9 @@
     0
    ],
    "radius": 0.0732,
-   "tris": 5248
+   "tris": 5248,
+   "kind": "cap",
+   "shade": "tone"
   },
   {
    "id": "cap_under",
@@ -444,7 +446,8 @@
     0
    ],
    "radius": 0.0707,
-   "tris": 5248
+   "tris": 5248,
+   "kind": "gill"
   },
   {
    "id": "warts",
@@ -463,7 +466,8 @@
    ],
    "radius": 0.0715,
    "count": 150,
-   "tris": 1200
+   "tris": 1200,
+   "kind": "fungus"
   },
   {
    "id": "gills",
@@ -489,7 +493,8 @@
     0
    ],
    "radius": 0.0693,
-   "tris": 11760
+   "tris": 11760,
+   "kind": "gill"
   },
   {
    "id": "stipe",
@@ -508,7 +513,8 @@
     0
    ],
    "radius": 0.0487,
-   "tris": 560
+   "tris": 560,
+   "kind": "fungus"
   },
   {
    "id": "ring",
@@ -527,7 +533,8 @@
     0.0003
    ],
    "radius": 0.0381,
-   "tris": 1120
+   "tris": 1120,
+   "kind": "fungus"
   },
   {
    "id": "bulb",
@@ -546,7 +553,8 @@
     0
    ],
    "radius": 0.0297,
-   "tris": 560
+   "tris": 560,
+   "kind": "fungus"
   },
   {
    "id": "volva_scales",
@@ -565,7 +573,8 @@
    ],
    "radius": 0.0297,
    "count": 38,
-   "tris": 304
+   "tris": 304,
+   "kind": "fungus"
   },
   {
    "id": "cap_far",
@@ -584,7 +593,8 @@
     0
    ],
    "radius": 0.073,
-   "tris": 392
+   "tris": 392,
+   "kind": "cap"
   },
   {
    "id": "stipe_far",
@@ -603,7 +613,8 @@
     0
    ],
    "radius": 0.0721,
-   "tris": 80
+   "tris": 80,
+   "kind": "fungus"
   },
   {
    "id": "h_cap",
@@ -622,7 +633,9 @@
     0.14
    ],
    "radius": 0.0438,
-   "tris": 5952
+   "tris": 5952,
+   "kind": "cap",
+   "shade": "tone"
   },
   {
    "id": "h_warts",
@@ -641,7 +654,8 @@
    ],
    "radius": 0.0417,
    "count": 150,
-   "tris": 1200
+   "tris": 1200,
+   "kind": "fungus"
   },
   {
    "id": "h_veil",
@@ -660,7 +674,8 @@
     0.14
    ],
    "radius": 0.0354,
-   "tris": 640
+   "tris": 640,
+   "kind": "fungus"
   },
   {
    "id": "h_stipe",
@@ -679,7 +694,8 @@
     0.14
    ],
    "radius": 0.0451,
-   "tris": 504
+   "tris": 504,
+   "kind": "fungus"
   },
   {
    "id": "h_scales",
@@ -698,7 +714,8 @@
    ],
    "radius": 0.022,
    "count": 20,
-   "tris": 160
+   "tris": 160,
+   "kind": "fungus"
   },
   {
    "id": "h_far",
@@ -717,7 +734,8 @@
     0.14
    ],
    "radius": 0.0437,
-   "tris": 36
+   "tris": 36,
+   "kind": "fungus"
   },
   {
    "id": "egg",
@@ -735,7 +753,8 @@
     0.12
    ],
    "radius": 0.0272,
-   "tris": 576
+   "tris": 576,
+   "kind": "fungus"
   },
   {
    "id": "egg_flakes",
@@ -754,7 +773,8 @@
    ],
    "radius": 0.0268,
    "count": 46,
-   "tris": 368
+   "tris": 368,
+   "kind": "fungus"
   },
   {
    "id": "c_cap",
@@ -773,7 +793,9 @@
     -0.0353
    ],
    "radius": 0.0812,
-   "tris": 2624
+   "tris": 2624,
+   "kind": "cap",
+   "shade": "tone"
   },
   {
    "id": "c_under",
@@ -793,7 +815,8 @@
     -0.0353
    ],
    "radius": 0.0791,
-   "tris": 2624
+   "tris": 2624,
+   "kind": "gill"
   },
   {
    "id": "c_warts",
@@ -812,7 +835,8 @@
    ],
    "radius": 0.0685,
    "count": 71,
-   "tris": 568
+   "tris": 568,
+   "kind": "fungus"
   },
   {
    "id": "c_gills",
@@ -832,7 +856,8 @@
     -0.0349
    ],
    "radius": 0.0769,
-   "tris": 5796
+   "tris": 5796,
+   "kind": "gill"
   },
   {
    "id": "c_stipe",
@@ -851,7 +876,8 @@
     -0.0067
    ],
    "radius": 0.0491,
-   "tris": 280
+   "tris": 280,
+   "kind": "fungus"
   },
   {
    "id": "c_bulb",
@@ -870,7 +896,8 @@
     -0.0102
    ],
    "radius": 0.0314,
-   "tris": 280
+   "tris": 280,
+   "kind": "fungus"
   },
   {
    "id": "c_scales",
@@ -889,7 +916,8 @@
    ],
    "radius": 0.0291,
    "count": 20,
-   "tris": 160
+   "tris": 160,
+   "kind": "fungus"
   },
   {
    "id": "c_ring",
@@ -908,7 +936,8 @@
     -0.0177
    ],
    "radius": 0.0412,
-   "tris": 560
+   "tris": 560,
+   "kind": "fungus"
   },
   {
    "id": "c_cuticle",
@@ -934,7 +963,9 @@
     0.0002
    ],
    "radius": 0.0726,
-   "tris": 176
+   "tris": 176,
+   "kind": "cap",
+   "look_section": true
   },
   {
    "id": "c_subcuticle",
@@ -954,7 +985,9 @@
     0.0002
    ],
    "radius": 0.0726,
-   "tris": 176
+   "tris": 176,
+   "kind": "fungus",
+   "look_section": true
   },
   {
    "id": "c_flesh",
@@ -980,7 +1013,9 @@
     0.0002
    ],
    "radius": 0.0723,
-   "tris": 176
+   "tris": 176,
+   "kind": "fungus",
+   "look_section": true
   },
   {
    "id": "c_gill",
@@ -1006,7 +1041,9 @@
     0.0004
    ],
    "radius": 0.0693,
-   "tris": 80
+   "tris": 80,
+   "kind": "gill",
+   "look_section": true
   },
   {
    "id": "c_stipe_sec",
@@ -1026,7 +1063,9 @@
     0
    ],
    "radius": 0.0737,
-   "tris": 80
+   "tris": 80,
+   "kind": "fungus",
+   "look_section": true
   },
   {
    "id": "c_ring_sec",
@@ -1046,7 +1085,9 @@
     0.0003
    ],
    "radius": 0.0363,
-   "tris": 16
+   "tris": 16,
+   "kind": "fungus",
+   "look_section": true
   },
   {
    "id": "e_outer",
@@ -1066,7 +1107,9 @@
     -0.0295
    ],
    "radius": 0.0288,
-   "tris": 288
+   "tris": 288,
+   "kind": "fungus",
+   "look_section": true
   },
   {
    "id": "e_veil",
@@ -1086,7 +1129,9 @@
     -0.02
    ],
    "radius": 0.0263,
-   "tris": 120
+   "tris": 120,
+   "kind": "fungus",
+   "look_section": true
   },
   {
    "id": "e_roof",
@@ -1106,7 +1151,9 @@
     -0.02
    ],
    "radius": 0.0098,
-   "tris": 24
+   "tris": 24,
+   "kind": "fungus",
+   "look_section": true
   },
   {
    "id": "e_stem",
@@ -1126,7 +1173,9 @@
     -0.02
    ],
    "radius": 0.0159,
-   "tris": 22
+   "tris": 22,
+   "kind": "fungus",
+   "look_section": true
   },
   {
    "id": "e_cap_cuticle",
@@ -1146,7 +1195,9 @@
     -0.0198
    ],
    "radius": 0.0156,
-   "tris": 64
+   "tris": 64,
+   "kind": "cap",
+   "look_section": true
   },
   {
    "id": "e_cap_sub",
@@ -1166,7 +1217,9 @@
     -0.0198
    ],
    "radius": 0.0143,
-   "tris": 64
+   "tris": 64,
+   "kind": "fungus",
+   "look_section": true
   },
   {
    "id": "e_cap_flesh",
@@ -1186,7 +1239,9 @@
     -0.0198
    ],
    "radius": 0.0132,
-   "tris": 64
+   "tris": 64,
+   "kind": "fungus",
+   "look_section": true
   },
   {
    "id": "e_gills",
@@ -1206,7 +1261,9 @@
     -0.0196
    ],
    "radius": 0.0119,
-   "tris": 28
+   "tris": 28,
+   "kind": "gill",
+   "look_section": true
   },
   {
    "id": "soil",
@@ -1225,7 +1282,8 @@
     0
    ],
    "radius": 0.8191,
-   "tris": 160
+   "tris": 160,
+   "kind": "soil"
   },
   {
    "id": "mycelium",
@@ -1249,7 +1307,8 @@
     -0.0748
    ],
    "radius": 0.8131,
-   "tris": 22898
+   "tris": 22898,
+   "kind": "fungus"
   },
   {
    "id": "root",
@@ -1267,7 +1326,8 @@
     0.3311
    ],
    "radius": 0.7833,
-   "tris": 984
+   "tris": 984,
+   "kind": "root"
   },
   {
    "id": "rootlets",
@@ -1285,7 +1345,8 @@
     0.3278
    ],
    "radius": 0.7031,
-   "tris": 1620
+   "tris": 1620,
+   "kind": "root"
   },
   {
    "id": "ecm_core",
@@ -1303,7 +1364,8 @@
     0.3289
    ],
    "radius": 0.7142,
-   "tris": 5040
+   "tris": 5040,
+   "kind": "root"
   },
   {
    "id": "ecm_sheath",
@@ -1327,7 +1389,8 @@
     0.3295
    ],
    "radius": 0.715,
-   "tris": 4800
+   "tris": 4800,
+   "kind": "fungus"
   }
  ],
  "stats": {
