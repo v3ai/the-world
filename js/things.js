@@ -355,6 +355,22 @@ function thLkRide(F, T) {
   _thRide.set(Math.sin(ph) + .35 * Math.sin(ph * 2.7 + p[2] * 5), .12 * Math.sin(ph * 1.3), Math.cos(ph * .83 + 1.3) + .35 * Math.sin(ph * 3.1 + p[0] * 5)).multiplyScalar(amp * H.s).applyQuaternion(H.xf.q);
   T.holder.position.copy(_thRide); T.holder.updateMatrix();
 }
+/* A thin curved sheet (a petal, a leaf card) seen near its edge: the smooth shading normal can point away from the viewer while the face
+   itself is toward them. The reflection then takes the full grazing-angle Fresnel and mirrors the bright sky, and the edge turns into a white
+   sliver. The normal is bent just far enough to face the viewer, which is what a real sheet's surface does where it is seen.
+   The same sheet lit from behind (the Sun on its far side, as when one looks up into a crown) shows the viewer its unlit face: the shading
+   normals of leaf cards are rounded over the crown and can still face the Sun there, which made a mirror glint of the Sun on the shaded
+   side and bleached the leaf white. The Sun's reflection is kept only where the face itself (its geometric normal) is toward the Sun. */
+function thLkFaceView(m) {
+  m.extensions = Object.assign(m.extensions || {}, { derivatives: true });
+  LOOK.patch(m, 'thfaceview', sh => { sh.fragmentShader = sh.fragmentShader.replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
+	{ vec3 thV = normalize( vViewPosition ); float thNv = dot( normal, thV ); if ( thNv < .12 ) normal = normalize( normal + ( .12 - thNv ) * thV ); }`)
+    .replace('#include <lights_fragment_end>', `#include <lights_fragment_end>
+	#if NUM_DIR_LIGHTS > 0
+	{ vec3 thG = normalize( cross( dFdx( vViewPosition ), dFdy( vViewPosition ) ) ); if ( dot( thG, vViewPosition ) < 0.0 ) thG = -thG;
+	  reflectedLight.directSpecular *= smoothstep( -.02, .08, dot( thG, directionalLights[ 0 ].direction ) ); }
+	#endif`); });
+}
 function thLkFillStep() {
   const t = performance.now(); if (t - TH_LK.fillT < 500) return; TH_LK.fillT = t;
   const s = LOOK.sun(); TH_LK.fill.value = .8 * Math.max(.35, s ? s.intensity * Math.max(0, s.dir.y) + .2 : 1);
@@ -451,7 +467,7 @@ function thLkApplyLeaves(rec) {
   thLkLeaves(); if (!TH_LEAF.ok) return;   // the drawn leaf stays until the photographs have arrived
   rec.lkLeaf = null; const m = rec.g.userData.main.material, geo = rec.g.geometry, cluster = rec.pd.card.kind === 'leaf_cluster';
   m.map = cluster ? TH_LEAF.rosette : TH_LEAF.atlas; m.alphaMap = cluster ? TH_LEAF.rosetteA : TH_LEAF.alpha; if (!m.userData.thx2) { m.userData.thx2 = true; m.color.multiplyScalar(2); }   // the detail's mean is one half: twice the colour keeps the leaf its own green (as the foundation's sets do)
-  thLkLeafLight(m, rec);
+  thLkLeafLight(m, rec); thLkFaceView(m);
   /* a cut-out seen from afar: the outline's mipmaps average leaf and gap, and with a fixed threshold the leaves thin away to nothing with
      distance (a crown turns to a few specks). The alpha is raised with the mip level the texture is read at, so a leaf keeps its share of
      the card at every distance (coverage-preserving alpha test). */
@@ -544,7 +560,7 @@ float thFH(vec3 p){ return fract(sin(dot(p,vec3(12.9898,78.233,45.164)))*43758.5
   thLkAO(m, geo);
   const im = new THREE.InstancedMesh(geo, m, N), I = new THREE.Matrix4(); for (let i = 0; i < N; i++) im.setMatrixAt(i, I);
   im.matrixAutoUpdate = false; im.frustumCulled = false; im._lkNoCast = true; im.receiveShadow = LOOK.quality === 'high'; im.userData.lkFur = true; im.raycast = () => { };
-  rec.g.add(im); rec.lkFur = im; rec.lkFurNear = o.near;
+  rec.g.add(im); rec.lkFur = im; rec.lkFurNear = o.near; rec.lkFurAny = o.any || 0;   // near: drawn within this distance of the thing in view; any: also of a thing beside it (the moss under the robin)
 }
 /* baked ambient occlusion (per vertex, or per instance) multiplies the light from the environment only: the sky and the ground it
    reflects, diffuse and specular. The Sun's light is shadowed by the shadow map, not by this. */
@@ -744,14 +760,14 @@ class ThingObj {
       const s = LOOK.texSet('bark'); thLkTrunkUV(geo, pd.uv, [1, 2]); if (m.defines) delete m.defines.LK_TRI; m.map = s.map; m.normalMap = s.normalMap; m.normalScale.set(s.bump * 1.6, s.bump * 1.6); m.needsUpdate = true;   // along its own coordinates the relief is not averaged over three projections, so it takes the photograph's slopes at nearer their full strength
     }
     if (pd.kind === 'wing') thLkWing(m);
-    if (pd.kind === 'gloss_petal') LOOK.patch(m, 'thglosspetal', sh => { sh.fragmentShader = sh.fragmentShader.replace('#include <lights_physical_fragment>', '#include <lights_physical_fragment>\n\tmaterial.specularColor = vec3( 0.08 );'); });
+    if (pd.kind === 'gloss_petal') { LOOK.patch(m, 'thglosspetal', sh => { sh.fragmentShader = sh.fragmentShader.replace('#include <lights_physical_fragment>', '#include <lights_physical_fragment>\n\tmaterial.specularColor = vec3( 0.08 );'); }); thLkFaceView(m); }
     if (pd.kind === 'lichen' && rec.instanced) thLkLichen(m);
     if (this.def.id === 'mushroom' && (pd.kind === 'cap' || pd.kind === 'gill') && pd.center && !rec.instanced) {   // the fly agaric's cap and gills, about the stem's axis
       const ax = [pd.center[0], /^c_/.test(pd.id) ? 0 : pd.center[2]], R = (pd.radius || .07) * (/^c_/.test(pd.id) ? .9 : 1);
       if (pd.kind === 'cap' && /cap/.test(pd.id) && !/cuticle/.test(pd.id)) thLkCap(m, ax, R); else if (pd.kind === 'gill') thLkGills(m, ax, R);
     }
     if (pd.kind === 'moss' && !rec.instanced && LOOK.quality === 'high' && LOOK.part('fur'))   // a moss cushion is a turf of shoots a centimetre tall: shells, uneven in height (tufts), olive
-      thLkFur(rec, geo, { n: 8, len: .01, cell: .0014, near: 8, root: .4, tip: 1.15, lenAt: v => { const s = Math.sin(v.x * 61 + Math.sin(v.z * 47)) * Math.sin(v.z * 53 + Math.sin(v.y * 71)); return .35 + .65 * (.5 + .5 * s); } });
+      thLkFur(rec, geo, { n: 8, len: .01, cell: .0014, near: 8, any: 1.5, root: .4, tip: 1.15, lenAt: v => { const s = Math.sin(v.x * 61 + Math.sin(v.z * 47)) * Math.sin(v.z * 53 + Math.sin(v.y * 71)); return .35 + .65 * (.5 + .5 * s); } });
     if (pd.card && pd.kind === 'leaf' && (pd.card.kind === 'lobed_leaf' || pd.card.kind === 'leaf_cluster') && this.def.id === 'oak') rec.lkLeaf = true;
     if (this.def.id === 'dog' && !rec.instanced && LOOK.quality === 'high' && LOOK.part('fur')) {
       /* a Labrador's coat is short and dense, lying nose to tail; shortest on the face and the lower legs and paws (about a third), short
@@ -879,7 +895,7 @@ class ThingObj {
         const isSel = this.sel === pd.id;
         mat.opacity = op; mat.transparent = op < .99; mat.depthWrite = op > .9; if (mat.clippingPlanes !== planes) { mat.clippingPlanes = planes; mat.needsUpdate = true; }
         const ol = g.userData.ol, olK = isSel || this.hovId === pd.id ? 1 : this.olK; if (ol) { ol.visible = op > .5 && !pd.noink && olK > .02; ol.material.uniforms.uOpacity.value = .85 * op * olK; ol.material.uniforms.uColor.value.setHex(isSel ? 0x1e4e8f : 0x1a1f2b); if (ol.material.clippingPlanes !== planes) { ol.material.clippingPlanes = planes; ol.material.needsUpdate = true; } }
-        if (TH_LK.on) { const rim = mat.userData.thRim; if (mat.userData.thGhost) mat.userData.thGhost.value = op < (pd.opacity_max ?? 1) * alpha - .005 ? 1 : 0; if (rim) { const a = isSel ? 1.4 : this.hovId === pd.id ? .7 : 0; if (rim.value.w !== a * op) { const c = isSel ? TH_LK.rimSel : TH_LK.rimHov; rim.value.set(c.r, c.g, c.b, a * op); } } if (r.lkSet) thLkApplySet(r); if (r.lkLeaf) thLkApplyLeaves(r); if (r.lkFur) r.lkFur.visible = op > .95 && !cut && this.lkFocus && this.dist < (r.lkFurNear || TH_FUR_NEAR); }
+        if (TH_LK.on) { const rim = mat.userData.thRim; if (mat.userData.thGhost) mat.userData.thGhost.value = op < (pd.opacity_max ?? 1) * alpha - .005 ? 1 : 0; if (rim) { const a = isSel ? 1.4 : this.hovId === pd.id ? .7 : 0; if (rim.value.w !== a * op) { const c = isSel ? TH_LK.rimSel : TH_LK.rimHov; rim.value.set(c.r, c.g, c.b, a * op); } } if (r.lkSet) thLkApplySet(r); if (r.lkLeaf) thLkApplyLeaves(r); if (r.lkFur) r.lkFur.visible = op > .95 && !cut && (this.lkFocus ? this.dist < (r.lkFurNear || TH_FUR_NEAR) : this.dist < r.lkFurAny); }
         const cap = g.userData.cap; if (cap) { cap.visible = !!cut && op > .5; cap.material.uniforms.uOpacity.value = op; cap.material.transparent = op < .995; }
       }
     }
