@@ -180,6 +180,17 @@ const MD = {
     }
     return out;
   },
+  /* points drawn as glowing blobs added into the picture (pointsMaterial, js/helpers.js) become opaque discs: a particle in a model is a
+     marker, and nothing in the scene gives off light */
+  discs(pts, k = .84) {
+    const m0 = pts.material;
+    pts.material = new THREE.ShaderMaterial({ uniforms: m0.uniforms, vertexShader: m0.vertexShader,
+      fragmentShader: `varying vec3 vColor; uniform float uOpacity;
+        void main(){ vec2 d = gl_PointCoord * 2.0 - 1.0; float r2 = dot(d, d); if (r2 > 1.0) discard;
+          gl_FragColor = vec4(vColor * ${k.toFixed(3)} * (1.0 - 0.16 * smoothstep(0.55, 1.0, r2)), uOpacity); }`,
+      transparent: true, depthWrite: true });   // transparent only so the frame's fade can pass through (engine.js applyFade); at rest it is opaque
+    m0.dispose(); return pts;
+  },
   occPatch(m) {
     return LOOK.patch(m, 'mdocc', sh => {
       sh.vertexShader = 'attribute vec4 aOcc;\nvarying vec4 vOcc;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tvOcc = vec4( normalize( normalMatrix * mat3( instanceMatrix ) * ( aOcc.xyz + vec3( 0.0, 0.0, 1e-4 ) ) ), aOcc.w );');
@@ -459,7 +470,7 @@ FT.gas = {
       mols.push({ kind: mix[k][0], p, d, v, q: new THREE.Quaternion().setFromUnitVectors(new V3(0, 1, 0), d) });
     }
     const counts = {}; mols.forEach(m => counts[m.kind] = (counts[m.kind] || 0) + 1); const cs = k => counts[k] || 0;
-    const sg = new THREE.SphereGeometry(1, MD.on ? 20 : 12, MD.on ? 14 : 8), meshes = {};
+    const sg = new THREE.SphereGeometry(1, 12, 8), meshes = {};   // about 2,000 molecules: kept at 12 x 8 (the look adds no triangles here)
     const mk = (s, cnt) => { const m = new THREE.InstancedMesh(sg, MD.on ? MD.mat(elColor(s), 'plastic') : new THREE.MeshStandardMaterial({ color: elColor(s), emissive: elColor(s).multiplyScalar(.35), roughness: .5 }), Math.max(cnt, 1)); m.count = 0; F.add(m); meshes[s] = m; return m; };
     const need = { N: (counts.N2 || 0) * 2, O: (counts.O2 || 0) * 2 + (counts.CO2 || 0) * 2 + (counts.H2O || 0), Ar: counts.Ar || 0, C: (counts.CO2 || 0) + (counts.CH4 || 0), H: (counts.H2O || 0) * 2 + (counts.H2 || 0) * 2 + (counts.H || 0) + (counts.CH4 || 0) * 4, He: counts.He || 0 };
     const CH4_H = [[-.633, -.782, -.426], [-.39, .98, -.284], [.005, -.088, 1.089], [1.018, -.11, -.379]].map(v => new V3(v[0], v[1], v[2]).multiplyScalar(.1));   // the four C-H bonds of methane (nm), from data/molecules_all.json
@@ -530,7 +541,7 @@ FT.plasma = {
     const add = (kind) => { const p = new V3(gauss(rg), gauss(rg), gauss(rg)).normalize().multiplyScalar(Rp * Math.cbrt(rg())); return p; };
     const species = ionised ? [['p', nH / tot, [1, .42, .3], 1.8], ['he', nHe / tot, [1, .82, .3], 3.2], ['e', ne / tot, [.5, .75, 1], 1.0]] : [['p', nH / tot, [1, .42, .3], 3], ['he', nHe / tot, [1, .82, .3], 5]];
     species.forEach(([k, f, c, sz]) => { const n = Math.round(N * f); for (let i = 0; i < n; i++) { const p = add(); P.push(p.x, p.y, p.z); C.push(...c); S.push(sz); K.push(k); if (!ionised) { const q = p.clone().add(new V3(gauss(rg), gauss(rg), gauss(rg)).multiplyScalar(.9)); P.push(q.x, q.y, q.z); C.push(.5, .75, 1); S.push(1.6); K.push('e'); if (k === 'he') { const q2 = p.clone().add(new V3(gauss(rg), gauss(rg), gauss(rg)).multiplyScalar(.9)); P.push(q2.x, q2.y, q2.z); C.push(.5, .75, 1); S.push(1.6); K.push('e'); } } } });
-    const pts = makePoints(P, C, S); F.add(pts); F.pick(pts, 'plasma', 1); pts.userData.madeOf = null;
+    const pts = makePoints(P, C, S); if (MD.on) MD.discs(pts); F.add(pts); F.pick(pts, 'plasma', 1); pts.userData.madeOf = null;
     const T = M ? M.T : null, vp = T ? Math.sqrt(3 * 1.380649e-23 * T / 1.67262e-27) / 1000 : null;
     const place = M ? (r > .999 ? 'the photosphere, the Sun\'s visible surface' : r < .001 ? 'the centre of the Sun (the core)' : `${(r * 100).toFixed(0)}% of the way out from the centre, in the Sun's ${M.layer} ${M.layer === 'core' ? '' : 'zone'}`.replace(' zone', ' zone').replace('core ', 'core')) : null;
     const tK = T ? (T >= 1e6 ? `${(T / 1e6).toFixed(T >= 1e7 ? 1 : 1)} million K` : `${Math.round(T).toLocaleString('en-US')} K`) : '';
@@ -556,6 +567,7 @@ FT.plasma = {
       if (ionised) for (let i = 0; i < K.length; i++) { let x = pos.array[3 * i] + vel[3 * i] * d, y = pos.array[3 * i + 1] + vel[3 * i + 1] * d, z = pos.array[3 * i + 2] + vel[3 * i + 2] * d; if (x * x + y * y + z * z > Rp * Rp) { vel[3 * i] *= -1; vel[3 * i + 1] *= -1; vel[3 * i + 2] *= -1; x = pos.array[3 * i]; y = pos.array[3 * i + 1]; z = pos.array[3 * i + 2]; } pos.array[3 * i] = x; pos.array[3 * i + 1] = y; pos.array[3 * i + 2] = z; }
       pos.needsUpdate = true;
     };
+    MD.kind(F, 'Model'); MD.stage(F, { near: .6, far: 3 });
     // zooming into a nucleus goes on down: a hydrogen nucleus is a proton; a helium nucleus is two protons and two neutrons
     // the nuclei are what a zoom ends on (an electron has nothing inside it to go on to): below 10 nm it converges on the nucleus nearest the pointer
     const _pp = new V3();
