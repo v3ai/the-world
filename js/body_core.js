@@ -362,3 +362,396 @@ float bgn(vec3 p){ vec3 i = floor(p), f = fract(p); f = f * f * (3. - 2. * f);
   };
   mat.customProgramCacheKey = () => 'bodysurface';
 }
+
+/* ---------- the person under the realistic look (?look=2; docs/DESIGN.md 3.5 to 3.7, rollout step 8) ----------
+   Off by default: with the look off BLK.on is false, nothing below runs, and the body is drawn exactly as before.
+   What it does, all in the shader of the body's own materials (no new pass, no new light, no texture to fetch):
+   - colour: living tissue instead of the atlas code (the atlas colours come back, named as a convention, in the Nerves and Heart &
+     vessels views); skin with the redder and paler zones a real body has, set once per vertex, and a mottling of blood and pigment;
+   - light through: the thin parts (ears, fingers, the tip of the nose) glow red when lit from behind (the foundation's LK_THIN term,
+     scaled per vertex); the wrapped terminator of the skin kind does the rest;
+   - surface: fine relief of the skin drawn from noise in the body's own space, only when the camera is within about a metre;
+   - eyes: the skin of the model has openings for the eyes; the eyeballs behind them are shown while the skin is, with an iris and pupil
+     drawn on the eyeball in its own frame (the iris colour is a choice, brown);
+   - lips and areolae: darker zones where they are on this model's skin (it has no separate geometry for them);
+   - peeled layers: a layer that is see-through is drawn as clear glass, its reflections and its edges, not as a milky film of its colour.
+   Measured on the test machine: no change in draw calls or triangles but the two eyeballs (2 calls, 1,514 triangles while the skin is
+   shown). Expected on a graphics card: about 60 more arithmetic operations per skin pixel, and fewer under a peel (no extra pass). */
+const BLK = (() => {
+  const B = { on: typeof LOOK !== 'undefined' && LOOK.on && LOOK.part('pbr') };
+  if (!B.on) return B;
+  B.BG = 0x141619;   // the neutral dark ground of a close-up, a cut-open organ and a tissue model
+  /* Living tissue, as fresh tissue and surgical photographs show it under neutral light: estimates, not measurements (the anatomy data
+     carries atlas colours only). Hex as sRGB, like every colour in the app. */
+  const REAL = {
+    skin: 0xc4a08a, teeth: 0xe6dcc6, intervertebral_discs: 0xd6d4c8, eyeball_l: 0xe9e3d8, eyeball_r: 0xe9e3d8,
+    heart: 0x8c3a32, left_atrium: 0x8e3832, right_atrium: 0x8e3832, left_ventricle: 0x84302b, right_ventricle: 0x84302b, papillary_muscles: 0x8a3530, heart_valves: 0xe2d5b6, liver: 0x7a3328, gallbladder: 0x56703e, spleen: 0x6a2c3a, pancreas: 0xd2ab86, stomach: 0xd2a08e,
+    small_intestine: 0xd6a294, colon: 0xc89c84, rectum: 0xc89c84, appendix: 0xc89c84, esophagus: 0xc98c7e, tongue: 0xbf6a62,
+    kidney_l: 0x7e322d, kidney_r: 0x7e322d, ureter_l: 0xd8b9a8, ureter_r: 0xd8b9a8, bladder: 0xd9b4a0, adrenal_l: 0xd3a24e, adrenal_r: 0xd3a24e,
+    pituitary: 0xcf9f8e, thymus: 0xd8b9a0, lung_l: 0xd59a92, lung_r: 0xd59a92, trachea: 0xdcc8bc, bronchi: 0xdcc8bc, larynx: 0xdcc8bc,
+    cerebrum_l: 0xcfa79a, cerebrum_r: 0xcfa79a, cerebellum: 0xc99c90, brainstem: 0xd4b2a4, spinal_cord: 0xe6dccb, diaphragm: 0x8a3a33,
+    aorta: 0xcf9c90, pulmonary_trunk: 0xcf9c90, coronary_arteries: 0xc4877c, superior_vena_cava: 0x5f4b6c, inferior_vena_cava: 0x5f4b6c,
+  };
+  const SYSREAL = { skeletal: 0xd8cbb0, muscular: 0x8e3a33, nervous: 0xe8dfcb, respiratory: 0xdcc8bc, digestive: 0xd2a08e, urinary: 0xd8b9a8,
+    endocrine: 0xd3a24e, lymphatic: 0xd8b9a0, sensory: 0xe9e3d8, integumentary: 0xc4a08a };
+  const realOf = p => REAL[p.id] || (/^arteries_|^carotid/.test(p.id) ? 0xc98f84 : /^veins_/.test(p.id) ? 0x5f4b6c : /^pulmonary_vessels/.test(p.id) ? 0xa6736e : 0) || SYSREAL[p.system] || 0xc8b8a8;
+  B.colorOf = p => realOf(p);
+  /* the convention a view of one system uses, and says it uses */
+  const ATLAS_MODE = { nervous: 'nervous', circulatory: 'cardiovascular' };
+  B.NOTE = 'Model: an average adult man, built from anatomical data (BodyParts3D) and lit by the real Sun and sky. Tissue colours are those of living tissue, approximately, and where each muscle turns into tendon is drawn approximately. The skin tone is one choice of many. The eyes are the model\'s eyeballs, with an iris drawn on; lips, brows and the short hair are colours on the skin, because the model\'s surface is too coarse for them. It has no nails.';
+  B.ATLAS_NOTE = { nervous: 'Nerves are drawn yellow, the colour anatomy atlases use; in life they are glistening white.', cardiovascular: 'Arteries red and veins blue, the colours anatomy atlases use; in life artery walls are pale pink and veins dark bluish purple.' };
+
+  const NOISE = `
+float bkH( vec3 p ) { return fract( sin( dot( p, vec3( 127.1, 311.7, 74.7 ) ) ) * 43758.5453 ); }
+float bkN( vec3 p ) { vec3 i = floor( p ), f = fract( p ); f = f * f * ( 3.0 - 2.0 * f );
+	return mix( mix( mix( bkH( i ), bkH( i + vec3( 1.0, 0.0, 0.0 ) ), f.x ), mix( bkH( i + vec3( 0.0, 1.0, 0.0 ) ), bkH( i + vec3( 1.0, 1.0, 0.0 ) ), f.x ), f.y ),
+	            mix( mix( bkH( i + vec3( 0.0, 0.0, 1.0 ) ), bkH( i + vec3( 1.0, 0.0, 1.0 ) ), f.x ), mix( bkH( i + vec3( 0.0, 1.0, 1.0 ) ), bkH( i + vec3( 1.0, 1.0, 1.0 ) ), f.x ), f.y ), f.z ); }
+`;
+  /* A peeled layer as clear glass: only what a clear sheet shows, the sky or the studio reflected in it, which is strong only where it is
+     seen edge-on (Fresnel), so the layer is a thin bright line at its outline and nothing across its face. None of its own colour, none of
+     its shade (a coloured or darkened film read as smoked glass), and only its near side: the far side of a closed shell drew a second
+     outline inside the first. The outermost pixel of the outline fades out, so a silhouette cannot sparkle. */
+  const GLASS = `
+	if ( uBkGhost.x > 0.001 ) {
+		if ( uBkGhost.x > 0.5 && ! gl_FrontFacing ) discard;
+		vec3 bkVd = normalize( vViewPosition ), bkNn = normalize( normal );
+		float bkNV = abs( dot( bkNn, bkVd ) ), bkF = ( 0.04 + 0.96 * pow( 1.0 - bkNV, 5.0 ) ) * smoothstep( 0.0, 0.07, bkNV );
+		vec3 bkRd = inverseTransformDirection( reflect( - bkVd, bkNn ), viewMatrix );
+		vec3 bkRad = radiance; bkRad = mix( bkRad, vec3( dot( bkRad, vec3( 0.2126, 0.7152, 0.0722 ) ) ), smoothstep( 0.15, -0.25, bkRd.y ) );   // the lawn's bounce is not green on glass either
+		float bkA = clamp( uBkGhost.y * bkF * 1.3, 0.0, 0.6 );
+		vec3 bkC = bkRad + reflectedLight.directSpecular * ( 0.5 / max( bkA, 0.08 ) );
+		gl_FragColor = vec4( mix( outgoingLight, bkC, uBkGhost.x ), mix( diffuseColor.a, bkA, uBkGhost.x ) );
+	} else gl_FragColor = vec4( outgoingLight, diffuseColor.a );
+`;
+  const OUT = 'gl_FragColor = vec4( outgoingLight, diffuseColor.a );';
+  /* Ambient occlusion baked per vertex (tools/anatomy/bake_ao.mjs, data/anatomy/ao.json, fetched only under this look): the light of the
+     sky or the studio does not reach into a crease, an armpit or the gap between two fingers. It darkens the environment's light fully
+     and the key's a little (the body has no shadow of its own on itself). Stored as occlusion, so a part whose bake has not arrived is open. */
+  /* Also here, two corrections to the light of the environment:
+     - the lower half of the park's sky is the lawn's bounce, drawn a saturated green: on a surface that faces down (under the chin, the
+       nose, the brows, a thumb) it made a green-black band. Grass reflects little and fairly evenly, so the light from below is kept at
+       its strength and loses its colour, for diffuse light by the way the surface faces and for reflections by the way they point;
+     - reflections are occluded with the rest of the indirect light, and fade out where a surface is seen exactly edge-on: there the
+       interpolated normal of a coarse mesh turns away from the eye and a single pixel caught the whole sky (white dots along the jaw,
+       a white fringe round the fingertips);
+     - what closes a crease is the body itself, and in sunlight that is lit skin: the occluded share of the sky is given back as light
+       reflected once by a surface of the same colour lit by the key at about a third of its strength (a third: the share of the
+       occluding surface that faces the light, roughly). Under the chin this is the light the sunlit chest sends up, the main light
+       there in life; without it the underside of the jaw was a black band. */
+  const AO = `
+	{ float bkO = 1.0 - 0.82 * vBkOcc;   // light that bounces between surfaces never lets a crease go black
+	  vec3 bkWN = inverseTransformDirection( geometry.normal, viewMatrix ), bkWR = inverseTransformDirection( reflect( - geometry.viewDir, geometry.normal ), viewMatrix );
+	  vec3 bkAlb = max( material.diffuseColor, vec3( 0.002 ) ), bkIrr = reflectedLight.indirectDiffuse / bkAlb;
+	  bkIrr = mix( bkIrr, vec3( dot( bkIrr, vec3( 0.2126, 0.7152, 0.0722 ) ) ), smoothstep( 0.35, -0.45, bkWN.y ) );
+	  vec3 bkSun = vec3( 0.0 );
+	  #if NUM_DIR_LIGHTS > 0
+	  bkSun = directionalLights[ 0 ].color * saturate( inverseTransformDirection( directionalLights[ 0 ].direction, viewMatrix ).y * 0.5 + 0.5 );
+	  #endif
+	  reflectedLight.indirectDiffuse = ( bkIrr * bkO + vBkOcc * bkAlb * bkSun * 0.35 ) * bkAlb; reflectedLight.directDiffuse *= mix( 1.0, bkO, 0.35 );
+	  float bkNV = saturate( dot( geometry.normal, geometry.viewDir ) ), bkEdge = smoothstep( 0.0, 0.18, bkNV );
+	  vec3 bkSp = reflectedLight.indirectSpecular; bkSp = mix( bkSp, vec3( dot( bkSp, vec3( 0.2126, 0.7152, 0.0722 ) ) ), smoothstep( 0.15, -0.25, bkWR.y ) );
+	  reflectedLight.indirectSpecular = bkSp * computeSpecularOcclusion( bkNV, bkO, material.specularRoughness ) * mix( 1.0, bkO, 0.6 ) * bkEdge;
+	  reflectedLight.directSpecular *= bkEdge; }
+`;
+  /* A closed shell drawn from both sides (the skin) has, along every fold that turns away from the eye (the side of the nose, under the
+     jaw), its inside face at the same depth as its outside: some pixels went to the inside face and showed as a dotted line of light.
+     The inside face is pushed back by a hair's breadth in depth, so the outside always wins a tie. */
+  const BACK = `
+	#if defined( USE_LOGDEPTHBUF ) && defined( USE_LOGDEPTHBUF_EXT )
+		if ( ! gl_FrontFacing ) gl_FragDepthEXT += 4e-5;
+	#endif
+`;
+  /* the normal a coarse mesh interpolates can face away from the eye near an outline; it is turned back to just face it */
+  const FACE = `
+	{ vec3 bkVd = normalize( vViewPosition ); float bkNd = dot( normal, bkVd ); if ( bkNd < 0.06 ) normal = normalize( normal + bkVd * ( 0.06 - bkNd ) ); }
+`;
+  let aoP = null;
+  B.loadAO = () => aoP || (aoP = (LOOK.part('ao') ? getJSON('data/anatomy/ao.json') : Promise.resolve(null)).then(j => (B.aoData = j && j.parts) || null, () => null));
+  B.applyAO = F => {
+    const D = B.aoData; if (!D) return;
+    for (const id in F.parts) { const s = D[id], g = F.parts[id].g.userData.main.geometry; if (!s || g.attributes.bkOcc) continue;
+      const b = atob(s), n = g.attributes.position.count; if (b.length !== n) continue; const o = new Uint8Array(n); for (let i = 0; i < n; i++) o[i] = 255 - b.charCodeAt(i);
+      g.setAttribute('bkOcc', new THREE.BufferAttribute(o, 1, true)); }
+  };
+  /* every body part: the baked occlusion and the glass peel. The peel's uniform is set each tick by applyMode: x how far the layer is peeled, y the frame's own opacity */
+  B.part = (m, p, g) => {
+    if (!m || !m.isMeshStandardMaterial) return m;
+    const u = m.userData.bkGhost = { value: new THREE.Vector2(0, 1) };
+    LOOK.patch(m, 'bkpart', sh => {
+      sh.uniforms.uBkGhost = u;
+      sh.vertexShader = 'attribute float bkOcc;\nvarying float vBkOcc;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tvBkOcc = bkOcc;');
+      sh.fragmentShader = 'varying float vBkOcc;\n' + sh.fragmentShader.replace('void main() {', 'uniform vec2 uBkGhost;\nvoid main() {').replace('#include <logdepthbuf_fragment>', '#include <logdepthbuf_fragment>' + BACK).replace('#include <normal_fragment_maps>', '#include <normal_fragment_maps>' + FACE).replace('#include <aomap_fragment>', '#include <aomap_fragment>' + AO).replace(OUT, GLASS);
+    });
+    if (/^eyeball_/.test(p.id)) eye(m, p, g);
+    else if (p.system === 'muscular' && g && LOOK.part('tex')) muscle(m, p, g);
+    return m;
+  };
+  B.ghost = (m, g, a) => { const u = m.userData.bkGhost; if (u) u.value.set(g, a); };
+  /* the eye: an iris 11.7 mm across and a pupil of 3.5 mm on the front of the eyeball, looking straight ahead (+z), drawn in the eye's
+     own frame; the eye kind makes it as smooth as a wet cornea is. The iris's angle is worked out from this eyeball's own radius (13.6 mm:
+     the model's eyeball is 27 mm across, at the top of the measured adult range of 21 to 27 mm; typical is 24.2, Bekerman et al. 2014).
+     While it is seen through the skin, only its front shows: the coarse skin has no real socket and passes inside the eyeball beside the
+     nose and under the brow, where the eyeball came through it as a dotted line of white. The upper lid's shade lies on its top. */
+  function eye(m, p, g) {
+    const c = new V3(...p.center); let r = .0136;
+    if (g) { g.computeBoundingBox(); const s = new V3(); g.boundingBox.getSize(s); r = s.x / 2; }
+    const cap = m.userData.bkCap = { value: new THREE.Vector2(0, Math.sign(c.x) || 1) };
+    LOOK.patch(m, 'bkeye', sh => {
+      sh.uniforms.uBkEye = { value: c }; sh.uniforms.uBkCap = cap;
+      sh.vertexShader = 'varying vec3 vBkP;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tvBkP = position;');
+      sh.fragmentShader = 'varying vec3 vBkP;\nuniform vec3 uBkEye;\nuniform vec2 uBkCap;\n' + NOISE + sh.fragmentShader.replace('#include <color_fragment>', `#include <color_fragment>
+	{ vec3 bkD = normalize( vBkP - uBkEye ); if ( uBkCap.x > 0.5 && ( bkD.z < 0.0 || length( vec2( ( bkD.x * uBkCap.y - 0.08 ) / 0.79, bkD.y / 0.59 ) ) > 1.0 ) ) discard;   // the almond the lids leave open: 45 degrees to the nose, 60 to the side, 36 up and down
+	  float bkR = acos( clamp( bkD.z, -1.0, 1.0 ) ) / ${Math.asin(Math.min(.9, .00585 / r)).toFixed(4)};   // 1 at the edge of the iris
+	  if ( bkR < 1.2 ) {
+		float bkAz = atan( bkD.y, bkD.x ), bkF1 = bkN( vec3( cos( bkAz ) * 14.0, sin( bkAz ) * 14.0, bkR * 3.0 ) ), bkF2 = bkN( vec3( cos( bkAz ) * 40.0, sin( bkAz ) * 40.0, bkR * 9.0 ) );
+		vec3 bkI = vec3( 0.40, 0.26, 0.15 ) * ( 0.72 + 0.4 * bkF1 + 0.2 * bkF2 );
+		bkI = mix( bkI * 1.45, bkI, smoothstep( 0.36, 0.55, bkR ) );              // the paler ring round the pupil
+		bkI *= mix( 1.0, 0.45, smoothstep( 0.82, 1.0, bkR ) );                     // the dark limbal ring
+		vec3 bkC = mix( bkI, vec3( 0.025 ), 1.0 - smoothstep( 0.28, 0.32, bkR ) );   // the pupil
+		diffuseColor.rgb = mix( diffuseColor.rgb, bkC, 1.0 - smoothstep( 0.99, 1.05, bkR ) );
+	  }
+	  diffuseColor.rgb *= mix( 1.0, 0.55, smoothstep( 0.2, 0.62, bkD.y ) * uBkCap.x );   // the upper lid's shade, while the lids are there
+	}`);
+    });
+  }
+  /* A muscle. Each mesh of the data is a whole muscle (or a group) with its tendons fused on, all one colour. In life a tendon and an
+     aponeurosis are white and silvery and shine, and they are where a dissection reads as one. Where they are on each mesh is set here
+     approximately, from the muscle's long axis (the main axis of its vertices) and where it attaches: [fraction of the length that is
+     tendon at the upper or inner end, at the lower or outer end]; the flat ones by rule (the linea alba down the middle of the abdomen,
+     the trapezius's aponeurosis at the midline of the neck and back, the central tendon at the top of the diaphragm).
+     Near the camera (within about a metre, `lookoff=tex` removes it) a fine relief runs along the axis: fascicles, bundles of fibres
+     about a millimetre across, so a muscle is not a smooth red rubber. */
+  const TEND = { biceps_brachii: [.14, .14], triceps_brachii: [0, .12], forearm_muscles: [0, .3], quadriceps: [0, .1], hamstrings: [.08, .1], gastrocnemius: [0, .3],
+    sternocleidomastoid: [.1, .1], deltoid: [0, .12], pectoralis_major: [0, .12] };
+  function muscle(m, p, g) {
+    const P = g.attributes.position, n = P.count, c = new V3(), v = new V3(), C = [0, 0, 0, 0, 0, 0];
+    for (let i = 0; i < n; i++) c.add(v.fromBufferAttribute(P, i)); c.divideScalar(n);
+    for (let i = 0; i < n; i++) { v.fromBufferAttribute(P, i).sub(c); C[0] += v.x * v.x; C[1] += v.y * v.y; C[2] += v.z * v.z; C[3] += v.x * v.y; C[4] += v.x * v.z; C[5] += v.y * v.z; }
+    const ax = new V3(.3, 1, .2).normalize(), t = new V3();
+    for (let k = 0; k < 40; k++) { t.set(C[0] * ax.x + C[3] * ax.y + C[4] * ax.z, C[3] * ax.x + C[1] * ax.y + C[5] * ax.z, C[4] * ax.x + C[5] * ax.y + C[2] * ax.z); ax.copy(t.normalize()); }
+    const base = p.id.replace(/_[lr]$/, ''), rule = TEND[base], w = new Float32Array(n);
+    let lo = Infinity, hi = -Infinity, ymax = -Infinity; for (let i = 0; i < n; i++) { v.fromBufferAttribute(P, i); const s = v.clone().sub(c).dot(ax); lo = Math.min(lo, s); hi = Math.max(hi, s); ymax = Math.max(ymax, v.y); }
+    // which end of the axis is the lower (for the pectoralis: the outer) one
+    const endV = new V3().copy(ax).multiplyScalar(hi).add(c), lowerIsHi = base === 'pectoralis_major' ? Math.abs(endV.x) > Math.abs(c.x) : endV.y < c.y;
+    for (let i = 0; i < n; i++) {
+      v.fromBufferAttribute(P, i); const x = Math.abs(v.x);
+      let k = 0;
+      if (rule) { const f = (v.clone().sub(c).dot(ax) - lo) / (hi - lo), up = lowerIsHi ? f : 1 - f, dn = 1 - up;   // 0 at the upper end, 0 at the lower end
+        if (rule[0]) k = Math.max(k, 1 - sm(rule[0] * .55, rule[0], up)); if (rule[1]) k = Math.max(k, 1 - sm(rule[1] * .55, rule[1], dn)); }
+      else if (base === 'abdominal_muscles') k = (1 - sm(.003, .0075, x)) * .85;   // the linea alba: about a centimetre wide above the navel
+      else if (base === 'trapezius') k = (1 - sm(.012, .028, x)) * sm(1.2, 1.3, v.y);
+      else if (base === 'diaphragm') k = sm(ymax - .03, ymax - .012, v.y) * (1 - sm(.045, .075, x));
+      w[i] = k;
+    }
+    g.setAttribute('bkTen', new THREE.BufferAttribute(w, 1));
+    if (LOOK.part('tex')) m.defines.BK_FIBRE = '1';
+    m.extensions = Object.assign(m.extensions || {}, { derivatives: true });
+    LOOK.patch(m, 'bkmuscle', sh => {
+      sh.uniforms.uBkAx = { value: ax };
+      sh.vertexShader = 'attribute float bkTen;\nvarying float vBkTen;\nvarying vec3 vBkM;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tvBkTen = bkTen; vBkM = position;');
+      sh.fragmentShader = 'varying float vBkTen;\nvarying vec3 vBkM;\nuniform vec3 uBkAx;\nfloat bkFib = 0.5;\n' + NOISE + sh.fragmentShader
+        .replace('#include <color_fragment>', `#include <color_fragment>
+	diffuseColor.rgb = mix( diffuseColor.rgb, vec3( 0.80, 0.76, 0.71 ), vBkTen );   // tendon: white, faintly yellow
+	#ifdef BK_FIBRE
+	{ vec3 bkB = normalize( cross( uBkAx, abs( uBkAx.y ) < 0.9 ? vec3( 0.0, 1.0, 0.0 ) : vec3( 1.0, 0.0, 0.0 ) ) ), bkC = cross( uBkAx, bkB );
+	  bkFib = bkN( vec3( dot( vBkM, uBkAx ) * 60.0, dot( vBkM, bkB ) * 1100.0, dot( vBkM, bkC ) * 1100.0 ) ); }
+	#endif`)
+        .replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\n\troughnessFactor = mix( roughnessFactor * ( 0.8 + 0.4 * bkFib ), 0.3, vBkTen );')
+        .replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
+	#ifdef BK_FIBRE
+	{ float bkDv = length( vViewPosition ), bkK = 1.0 - smoothstep( 0.3, 1.2, bkDv );
+	  if ( bkK > 0.0 ) {
+		float bkHt = bkFib * 9e-5 * bkK;
+		vec3 bkSx = dFdx( -vViewPosition ), bkSy = dFdy( -vViewPosition ), bkR1 = cross( bkSy, normal ), bkR2 = cross( normal, bkSx );
+		float bkDet = dot( bkSx, bkR1 ); vec3 bkGr = sign( bkDet ) * ( dFdx( bkHt ) * bkR1 + dFdy( bkHt ) * bkR2 );
+		normal = normalize( abs( bkDet ) * normal - bkGr );
+	  } }
+	#endif`);
+    });
+  }
+  /* The skin. Zones are set once per vertex from where they are on this model (body metres: +x the body's left, +y up, +z its front),
+     measured on the skin of data/anatomy: redder on the face, ears, hands, feet, knees and elbows, where blood is nearer the surface;
+     bkThin marks what is thin enough for light to come through (ears, fingers, the tip of the nose). */
+  const sm = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+  const blob = (x, y, z, cx, cy, cz, r) => 1 - sm(r * .4, r, Math.hypot(x - cx, y - cy, z - cz));
+  function skinZones(g) {
+    const P = g.attributes.position, n = P.count, col = new Float32Array(n * 3), thin = new Float32Array(n), lids = new Float32Array(n);
+    for (let i = 0; i < n; i++) {
+      const x = Math.abs(P.getX(i)), y = P.getY(i), z = P.getZ(i);
+      const face = sm(1.48, 1.54, y) * sm(-.03, .03, z) * (1 - sm(1.66, 1.72, y));
+      const cheek = blob(x, y, z, .046, 1.585, .074, .035), nose = blob(x, y, z, 0, 1.592, .1, .026), ear = blob(x, y, z, .076, 1.645, -.045, .034);
+      const hand = sm(.2, .23, x) * (1 - sm(.88, .93, y)), finger = hand * (1 - sm(.77, .815, y)), foot = 1 - sm(.06, .12, y);
+      const knee = blob(x, y, z, .083, .47, .04, .07), elbow = blob(x, y, z, .215, 1.13, -.045, .06);
+      const out = sm(.066, .075, x);   // the ear's own surface, not the side of the head behind it (the coarse ear has almost no shape to hold a colour)
+      const lid = blob(x, y, z, .031, 1.627, .052, .024);   // round the eyes: the face's flush is kept off the deep sockets, where it read as make-up
+      const red = Math.min(1, (.35 * face + .55 * cheek + .5 * nose + .55 * ear * out + .45 * hand + .35 * finger + .45 * foot + .35 * knee + .3 * elbow) * (1 - .6 * lid));
+      col[i * 3] = 1 + .02 * red; col[i * 3 + 1] = 1 - .09 * red; col[i * 3 + 2] = 1 - .1 * red;
+      thin[i] = Math.min(1, ear * sm(.07, .077, x) + finger + .6 * nose * sm(.095, .105, z));
+      lids[i] = lid;
+    }
+    g.setAttribute('color', new THREE.BufferAttribute(col, 3)); g.setAttribute('bkThin', new THREE.BufferAttribute(thin, 1)); g.setAttribute('bkLid', new THREE.BufferAttribute(lids, 1));
+    /* The skin is 20,000 triangles about 1.6 cm across, and its normals turn sharply from one vertex to the next: lit by a low Sun the
+       chest and belly showed as a mosaic of lighter and darker triangles. The normals (only they: the shape is the data's) are averaged
+       with their neighbours' a few times, as a smoother surface through the same points would have them. */
+    const N = g.attributes.normal, I = g.index && g.index.array; if (!N || !I) return;
+    let a = Float32Array.from(N.array); const b = new Float32Array(a.length);
+    for (let r = 0; r < 3; r++) {
+      b.set(a); for (let t = 0; t < I.length; t += 3) for (let e = 0; e < 3; e++) { const i = I[t + e] * 3, j = I[t + (e + 1) % 3] * 3; b[i] += a[j]; b[i + 1] += a[j + 1]; b[i + 2] += a[j + 2]; b[j] += a[i]; b[j + 1] += a[i + 1]; b[j + 2] += a[i + 2]; }
+      for (let i = 0; i < b.length; i += 3) { const l = Math.hypot(b[i], b[i + 1], b[i + 2]) || 1, k = P.getY(i / 3) > 1.45 ? .45 : 1;   // the head less: its nose and brows are most of the shape it has
+        a[i] += (b[i] / l - a[i]) * k; a[i + 1] += (b[i + 1] / l - a[i + 1]) * k; a[i + 2] += (b[i + 2] / l - a[i + 2]) * k; const m = Math.hypot(a[i], a[i + 1], a[i + 2]) || 1; a[i] /= m; a[i + 1] /= m; a[i + 2] /= m; }
+    }
+    N.array.set(a); N.needsUpdate = true;
+  }
+  B.skin = (m, g) => {
+    if (!m || !m.isMeshStandardMaterial) return;
+    skinZones(g); m.vertexColors = true;
+    const sss = LOOK.part('sss'), tex = LOOK.part('tex');
+    if (sss) { m.defines.LK_THIN = '( vec3( 0.55, 0.17, 0.07 ) * lkThinK )'; if (m.defines.LK_SSS) m.defines.LK_SSS = `( ${m.defines.LK_SSS} * lkSssK )`; }   // less wrap in the deep sockets round the eyes, where it read as red make-up
+    if (tex) m.defines.BK_RELIEF = '1';
+    if (LOOK.part('hair')) m.defines.BK_HAIR = '1';   // ?look=2&lookoff=hair leaves the head bare
+    m.extensions = Object.assign(m.extensions || {}, { derivatives: true });
+    LOOK.patch(m, 'bkskin', sh => {
+      sh.vertexShader = 'attribute float bkThin;\nattribute float bkLid;\nvarying float vBkThin;\nvarying float vBkLid;\nvarying vec3 vBkP;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tvBkP = position; vBkThin = bkThin; vBkLid = bkLid;');
+      sh.fragmentShader = 'varying float vBkThin;\nvarying float vBkLid;\nvarying vec3 vBkP;\nfloat lkThinK = 0.0;\nfloat lkSssK = 1.0;\nfloat bkHair = 0.0;\n' + NOISE + sh.fragmentShader
+        .replace('#include <color_fragment>', `#include <color_fragment>
+	lkThinK = vBkThin; lkSssK = 1.0 - 0.75 * vBkLid;
+	{ vec3 bkQ = vec3( abs( vBkP.x ), vBkP.yz ); float bkDv = length( vViewPosition );
+	  float bkM1 = bkN( vBkP * 40.0 ) - 0.5, bkM2 = bkN( vBkP * 230.0 + 7.0 ) - 0.5, bkNear = 1.0 - smoothstep( 0.5, 2.5, bkDv );
+	  diffuseColor.rgb *= 1.0 + vec3( 0.07, -0.03, -0.05 ) * bkM1 + vec3( -0.05, -0.07, -0.06 ) * bkM2 * bkNear;   // blood over centimetres, pigment over millimetres
+	  float bkLip = ( 1.0 - smoothstep( 0.55, 1.0, length( vec2( bkQ.x / 0.022, ( bkQ.y - 1.5645 ) / 0.0085 ) ) ) ) * smoothstep( 0.078, 0.086, bkQ.z );
+	  diffuseColor.rgb *= mix( vec3( 1.0 ), vec3( 0.93, 0.8, 0.8 ), bkLip );
+	  { float bkLx = bkQ.x / 0.022, bkLine = 1.5645 - 0.0012 * bkLx * bkLx;   // where the lips meet: a thin shadow, the corners a little lower
+	    float bkPart = exp( - pow( ( bkQ.y - bkLine ) / 0.0017, 2.0 ) ) * ( 1.0 - smoothstep( 0.45, 1.0, abs( bkLx ) ) ) * smoothstep( 0.074, 0.084, bkQ.z );
+	    diffuseColor.rgb *= ( 1.0 - 0.3 * bkPart ) * mix( 1.0, 0.93, bkLip * step( bkLine, bkQ.y ) ); }   // the upper lip, turned down from the light, a little darker
+	  float bkAr = 1.0 - smoothstep( 0.006, 0.013, length( bkQ - vec3( 0.066, 1.287, 0.123 ) ) );
+	  diffuseColor.rgb *= mix( vec3( 1.0 ), vec3( 0.86, 0.76, 0.74 ), bkAr );
+	  #ifdef BK_HAIR
+	  float bkHl = mix( 1.578, 1.702, smoothstep( -0.10, 0.04, bkQ.z ) ) + ( bkN( vBkP * 90.0 ) - 0.5 ) * 0.006;   // the hairline: the nape, over the ears, the forehead
+	  bkHl -= 0.03 * smoothstep( 0.052, 0.062, bkQ.x ) * smoothstep( -0.02, -0.013, bkQ.z ) * ( 1.0 - smoothstep( -0.003, 0.004, bkQ.z ) );   // sideburns, in front of the ear, to about its middle
+	  float bkEar = length( ( bkQ - vec3( 0.074, 1.646, -0.046 ) ) / vec3( 0.03, 0.05, 0.034 ) );
+	  float bkFe = ( bkQ.y - bkHl ) / 0.006 + ( bkN( vBkP * 1500.0 ) - 0.5 ) * 1.6;   // the edge thins out over about 5 mm, hair by hair rather than as a line
+	  diffuseColor.rgb *= 1.0 - 0.12 * smoothstep( -1.5, 0.5, bkFe ) * smoothstep( 0.95, 1.3, bkEar );   // the scalp under thin hair is a little darker than the forehead
+	  bkHair = smoothstep( -0.3, 1.0, bkFe ) * smoothstep( 0.95, 1.3, bkEar );
+	  float bkDx = bkQ.x - 0.029, bkBrow = ( 1.0 - smoothstep( 0.5, 1.0, length( vec2( bkDx / 0.021, ( bkQ.y - 1.6455 + 9.0 * bkDx * bkDx ) / ( 0.0034 - 0.04 * max( bkDx, 0.0 ) ) ) ) ) ) * smoothstep( 0.068, 0.076, bkQ.z );   // tapering outward
+	  bkHair = max( bkHair, 0.55 * bkBrow );
+	  float bkStr = bkN( vec3( vBkP.x * 1400.0, vBkP.y * 300.0, vBkP.z * 1400.0 ) );
+	  diffuseColor.rgb = mix( diffuseColor.rgb, vec3( 0.21, 0.15, 0.11 ) * ( 0.7 + 0.6 * bkStr ), bkHair );
+	  #endif
+	}`)
+        .replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\n\troughnessFactor = mix( roughnessFactor, 0.8, bkHair );')
+        .replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
+	#ifdef BK_RELIEF
+	{ float bkDv = length( vViewPosition ), bkK = 1.0 - smoothstep( 0.25, 1.1, bkDv );   // fine relief: within about a metre
+	  if ( bkK > 0.0 ) {
+		float bkHt = ( bkN( vBkP * 700.0 ) * 0.6 + bkN( vBkP * 2100.0 + 3.0 ) * 0.4 ) * 6e-5 * bkK;
+		vec3 bkSx = dFdx( -vViewPosition ), bkSy = dFdy( -vViewPosition ), bkR1 = cross( bkSy, normal ), bkR2 = cross( normal, bkSx );
+		float bkDet = dot( bkSx, bkR1 ); vec3 bkGr = sign( bkDet ) * ( dFdx( bkHt ) * bkR1 + dFdy( bkHt ) * bkR2 );
+		normal = normalize( abs( bkDet ) * normal - bkGr );
+	  } }
+	#endif`);
+    });
+  };
+  /* each tick (applyMode): the colour code of the view, and the eyes, which show while the skin does */
+  B.recolor = F => {
+    const sys = ATLAS_MODE[F.mode] || null, n = F.pickables.length; if (F._bkSys === sys && F._bkN === n) return; F._bkSys = sys; F._bkN = n;
+    for (const id in F.parts) { const { g, p } = F.parts[id], m = g.userData.main.material; if (m.color) m.color.setHex(sys && p.system === sys ? g.userData.atlas : realOf(p)); }
+    F.note = sys ? B.NOTE + ' ' + B.ATLAS_NOTE[sys] : B.NOTE;
+    const el = document.querySelector('#capNote'); if (el && typeof capFrame !== 'undefined' && capFrame === F && el.textContent !== F.note) el.textContent = F.note;
+  };
+  B.eyes = (F, focus) => {
+    const sk = F.parts.skin; if (!sk) return; const so = sk.g.userData.op, lids = !focus && so >= .9 && sk.g.visible;
+    for (const id of ['eyeball_l', 'eyeball_r']) { const e = F.parts[id], c = e && e.g.userData.main.material.userData.bkCap; if (c) c.value.x = lids ? 1 : 0; }
+    if (focus) return;
+    for (const id of ['eyeball_l', 'eyeball_r']) {
+      const e = F.parts[id]; if (!e || F.hidden.has(id) || so < .9) continue; const u = e.g.userData; if (u.op >= so) continue;
+      u.op = so; const m = u.main.material; m.opacity = so * F.alpha; m.depthWrite = so > .9; B.ghost(m, 0, F.alpha);
+      e.g.visible = so > .01; u.shown = so;
+    }
+  };
+  /* The person's shadow on the lawn. The foundation draws the skin's geometry into the park's shadow map as a stand-in (js/look.js,
+     personProxy), so the shadow was a whole person even when the skin was a clear outline round a skeleton. Here the stand-in's
+     geometry follows what is drawn solid: the skin while it is solid; otherwise every system that has a solid part (the bones in
+     Skeleton; muscles and bones in Muscles). Built once per set of systems (one position buffer of all parts but the skin, an index
+     per set) and only when the set changes; the map is then drawn again once (the same map the park would draw: its fit to the view
+     is unchanged). Measured: no draw call in the picture; the shadow pass draws the bones' 0.2 million triangles instead of the
+     skin's 20 thousand while the skeleton is shown. */
+  const SHD = { proxy: null, skin: null, all: null, start: {}, sets: new Map(), sig: 'skin', t: 0, sun: null };
+  B.shadow = F => {
+    const now = performance.now(); if (now - SHD.t < 250) return; SHD.t = now;
+    const pk = typeof FR !== 'undefined' && FR.park, sk = F.parts.skin; if (!pk || !pk.built || !sk || !F.partsReady) return;
+    const skG = sk.g.userData.main.geometry;
+    if (!SHD.proxy || !SHD.proxy.parent) {
+      SHD.proxy = null; SHD.sig = 'skin'; SHD.sun = null;
+      pk.root.traverse(o => { if (!SHD.proxy && o.isMesh && o.castShadow && o.geometry && o.geometry.attributes.position === skG.attributes.position) SHD.proxy = o; if (!SHD.sun && o.isDirectionalLight && o.castShadow) SHD.sun = o; });
+      if (!SHD.proxy) return; SHD.skin = { pos: skG.attributes.position, idx: skG.index };
+    }
+    const solid = {};
+    for (const id in F.parts) { const { g, p } = F.parts[id]; if (id !== 'skin' && g.visible && g.userData.op >= .5 && !F.hidden.has(id)) solid[sysOf(p)] = 1; }
+    const sig = sk.g.visible && sk.g.userData.op >= .5 && !F.hidden.has('skin') ? 'skin' : Object.keys(solid).sort().join(',') || 'none';
+    if (sig === SHD.sig) return; SHD.sig = sig;
+    const G = SHD.proxy.geometry;
+    if (sig === 'skin') { G.setAttribute('position', SHD.skin.pos); G.setIndex(SHD.skin.idx); }
+    else {
+      if (!SHD.all) {   // every part but the skin, in one buffer; per system, the indices into it
+        let nv = 0; const ids = Object.keys(F.parts).filter(id => id !== 'skin'); ids.forEach(id => nv += F.parts[id].g.userData.main.geometry.attributes.position.count);
+        const pos = new Float32Array(nv * 3), per = {}; let o = 0;
+        ids.forEach(id => { const { g, p } = F.parts[id], gg = g.userData.main.geometry, a = gg.attributes.position, s = sysOf(p), ix = gg.index ? gg.index.array : null;
+          pos.set(a.array.subarray(0, a.count * 3), o * 3); const L = per[s] || (per[s] = []);
+          if (ix) for (let i = 0; i < ix.length; i++) L.push(ix[i] + o); else for (let i = 0; i < a.count; i++) L.push(i + o); o += a.count; });
+        SHD.all = new THREE.BufferAttribute(pos, 3); SHD.per = per;
+      }
+      let idx = SHD.sets.get(sig);
+      if (!idx) { const L = []; sig.split(',').forEach(s => { const a = SHD.per[s]; if (a) for (let i = 0; i < a.length; i++) L.push(a[i]); }); idx = new THREE.BufferAttribute(new Uint32Array(L.length ? L : [0, 0, 0]), 1); SHD.sets.set(sig, idx); }
+      G.setAttribute('position', SHD.all); G.setIndex(idx);
+    }
+    if (SHD.sun && SHD.sun.shadow) SHD.sun.shadow.needsUpdate = true;
+  };
+  /* The tissue models (FT.tissue in js/nodes.js): a model on a bench in the studio rig, not an illustration on paper. No ink; colours
+     closer to fresh, unstained tissue (still a code where tissue has none: nuclei are tinted so they can be seen); a striated muscle
+     fibre's bands run across it, one dark A band and one light I band per sarcomere of 2.5 micrometres (the illustration's stripes ran
+     along it). */
+  const TISSUE_COL = { 0xd9737a: 0x8f3a35, 0xd96a6a: 0x93403a, 0xe08a8a: 0xb06a60, 0xd93030: 0xa8322c, 0xeee3c8: 0xd8ccb2, 0xe2d3ae: 0xcbbd9e,
+    0xc0392b: 0x8a2a26, 0xcfe3ee: 0xd3dbd6, 0xdfeef6: 0xdde3e0, 0xf6e7a8: 0xe6cf98, 0xf2d36b: 0xe2d8c6, 0xf7e3a0: 0xeee4d0, 0x8fc0e8: 0xc9cfd6,
+    0xf4b6c2: 0xd9a39c, 0xf0b98a: 0xe0a898, 0xb5584a: 0x8a3a2c, 0x3b6fd6: 0x5f4b6c, 0xf0c7a8: 0xd6a88c, 0x5b3a8c: 0x6a6380, 0xf4f0ff: 0xe8e2d8, 0xd6b8f0: 0xd9cfc0 };
+  /* A stripe of the band texture is 2.5 micrometres; at the view's own distance that is two or three pixels, which made a moire like
+     corduroy that would shimmer as the camera moves. Where a period is under about three to five pixels the stripes give way to their mean colour,
+     and they come back as the camera comes closer. */
+  const BAND_MEAN = 'vec3( 0.86, 0.83, 0.83 )';
+  const bandFade = m => { m.extensions = Object.assign(m.extensions || {}, { derivatives: true });
+    LOOK.patch(m, 'bkband', sh => { sh.fragmentShader = sh.fragmentShader.replace('#include <map_fragment>', `#ifdef USE_MAP
+	{ vec4 bkT = texture2D( map, vUv ); float bkW = fwidth( vUv.y );
+	  diffuseColor *= vec4( mix( bkT.rgb, ${BAND_MEAN}, smoothstep( 0.2, 0.36, bkW ) ), bkT.a ); }
+#endif`); }); };
+  B.tissue = (F, K) => {
+    F.env = Object.assign({}, F.env, { bg: B.BG });
+    F.note = 'Model: built from measured cell sizes and lit as in a studio. Not a microscope image: under a microscope, tissue is a thin, flat, usually stained slice. The shapes and the arrangement of the cells are simplified, and nuclei are tinted so they can be seen; in life they are nearly colourless.';
+    const ink = [], band = (K === 'skeletal' || K === 'cardiac') && canvasTex('bkband_' + K, 2, 16, (g, w, h) => { g.fillStyle = '#fff'; g.fillRect(0, 0, w, h); g.fillStyle = 'rgba(70,20,25,.3)'; g.fillRect(0, 0, w, 10); }, { wrap: true });   // 10 of 16 rows: the A band is 1.6 of 2.5 micrometres
+    F.root.traverse(o => {
+      if (!o.isMesh || !o.material) return; const m = o.material;
+      if (m.isShaderMaterial && m.uniforms && m.uniforms.uW) { ink.push(o); return; }
+      if (!m.isMeshStandardMaterial) return;
+      const h = m.color.getHex(); if (TISSUE_COL[h] !== undefined) m.color.setHex(TISSUE_COL[h]);
+      if (m.map && band && o.geometry.parameters && o.geometry.parameters.height) { m.map = band; band.repeat.set(1, o.geometry.parameters.height / 2.5); if (!m.defines || !m.defines.LK_TRI) bandFade(m); m.needsUpdate = true; }
+    });
+    ink.forEach(o => o.parent.remove(o));   // no outlines (DESIGN 3.10): half the draw calls of the scene go with them
+    /* Skeletal fibres: none passes through another (they were tilted at random by up to 1.4 degrees, enough for a 0.9 mm fibre to cut
+       into its neighbour 4 micrometres away), and their nuclei lie where they are in life, just under the cell's membrane all round it,
+       not buried at one depth where they showed as single pixels. */
+    if (K === 'skeletal') {
+      const hs = i => { const x = Math.sin(i * 91.7 + 7.3) * 43758.5453; return x - Math.floor(x); };
+      F.pickables.forEach((g, i) => {
+        const fm = g.userData.main; if (!fm || !fm.geometry.parameters || !fm.geometry.parameters.radiusTop) return; const R = fm.geometry.parameters.radiusTop;
+        g.rotation.set(0, 0, 0); g.position.x = (hs(i) - .5) * 160; g.position.y += (hs(i + 40) - .5) * 2; g.position.z += (hs(i + 80) - .5) * 2;
+        let k = 0; g.children.forEach(c => { const mm = c.userData && c.userData.main; if (!mm || mm === fm || !mm.geometry.parameters || mm.geometry.parameters.widthSegments !== 12) return;
+          const a = hs(i * 13 + k) * 6.2832; c.position.set(c.position.x + (hs(i * 7 + k + 3) - .5) * 40, Math.cos(a) * (R - 1.1), Math.sin(a) * (R - 1.1)); c.rotation.set(a, 0, 0); k++; });
+        g.updateMatrixWorld(true);
+      });
+    }
+    /* A neutral ground the whole way: the tissue fades in over the body as the camera closes in, and until it was fully in, the body's own
+       organ meshes, a thousand times too large, showed behind the fibres as faceted red shards (and the park's grass at the edge). A
+       dark sphere round the model fades in with it; it is not picked. */
+    const bd = new THREE.Mesh(new THREE.SphereGeometry(6000, 24, 12), new THREE.MeshBasicMaterial({ color: B.BG, side: THREE.BackSide, transparent: true, depthWrite: false, fog: false, toneMapped: false }));
+    bd.renderOrder = -10; bd.userData.noPick = true; bd.onBeforeRender = () => { bd.material.opacity = Math.min(1, F.alpha * 2.5); }; F.add(bd);   // opaque well before the fibres are: the body behind is gone by the time they are half in
+  };
+  return B;
+})();
