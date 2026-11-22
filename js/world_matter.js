@@ -504,7 +504,7 @@ const MDC = {
     const rerOn = p => MDC.fen(p.x, p.y, p.z, .62) <= .3 && MDC.sn(p.x * .55 + 7.3, p.y * .55 + 2.9, p.z * .55 + 4.1) <= .2;
     /* ---- the centrosome: two centrioles at right angles, each about 0.25 µm across and 0.5 µm long, nine triplets of microtubules
        (reviews of centriole structure), beside the nucleus; the Golgi ribbon round it */
-    const gDir = rt.clone().multiplyScalar(.82).addScaledVector(up, -.42).addScaledVector(nN, -.38).normalize();
+    const gDir = rt.clone().multiplyScalar(.78).addScaledVector(up, .5).addScaledVector(nN, -.38).normalize();
     const cs = C.clone().add(nucSurf(new V3(gDir.x / NA.x, gDir.y / NA.y, gDir.z / NA.z).normalize(), new V3()).multiplyScalar(1).addScaledVector(gDir, 1.35));
     const cenL = [], tri = new THREE.CylinderGeometry(.0125 * U, .0125 * U, .5 * U, 6, 1);
     [[new V3(0, 1, 0), 0], [new V3(1, 0, 0), .32]].forEach(([ax, off]) => { const qa = new THREE.Quaternion().setFromUnitVectors(new V3(0, 1, 0), ax);
@@ -624,7 +624,7 @@ const MDC = {
     lbl(anchor(C.clone().add(NUCL[0][0]).addScaledVector(up, NUCL[0][1])), 'Nucleolus', nlMesh);
     const rerA = C.clone().add(nucSurf(rt.clone().multiplyScalar(-.75).addScaledVector(up, .45).normalize(), new V3()).multiplyScalar(1.12)); lbl(anchor(rerA), 'Rough endoplasmic reticulum', rer);
     const fm = mitoDrawn.filter(x => x.p.clone().sub(C).dot(nN) > -1.6 && x.p.clone().sub(C).dot(rt) > 4).sort((a, b) => b.p.y - a.p.y)[0] || mitoDrawn[0]; if (fm) lbl(anchor(fm.p.clone().addScaledVector(up, MA.y * fm.w)), 'Mitochondrion', mitoMesh[fm.bend]);
-    lbl(anchor(cs.clone().addScaledVector(side, 2.2 * U).addScaledVector(gDir, .7 * U).addScaledVector(up, .6)), 'Golgi apparatus', gol);
+    lbl(anchor(cs.clone().addScaledVector(side, 1.55 * U).addScaledVector(gDir, .65 * U)), 'Golgi apparatus', gol);   // on the ribbon itself (a name over another part takes its clicks)
     lbl(anchor(cs.clone().addScaledVector(up, .35 * U)), 'Centrosome', cen);
     const fl = lysoD.filter(x => x.p.clone().sub(C).dot(nN) > -1.5).sort((a, b) => a.p.x - b.p.x)[0]; if (fl) lbl(anchor(fl.p.clone().addScaledVector(up, fl.R)), 'Lysosome', lysoI);
     const sn = nodes.filter(p => p.clone().sub(C).dot(nN) > -1.5).sort((a, b) => a.y - b.y)[0]; if (sn) lbl(anchor(sn), 'Smooth endoplasmic reticulum', ser);
@@ -646,6 +646,8 @@ const MDC = {
       const ok = cands.filter(k => { const p = G.worldToLocal(k.hit.point.clone()), id = k.obj.userData.id, d = p.clone().sub(C), eA = d.dot(uni.uMdA.value), eB = d.dot(uni.uMdB.value), eN = d.dot(nN);
         if (id === 'chromatin') return eA > -.03 && eB > -.03 && eN > -.03;                                           // a face of the cut-out eighth: only where it is drawn
         if (id === 'nucleus' || id === 'nucleolus' || id === 'pore') return !(eA > 0 && eB > 0 && eN > 0);
+        if (k.obj === rer && !rerOn(p)) return false;                                                                  // a hole in a sheet (the shader's, the same noise)
+        if (k.obj === gol && MDC.fen(p.x, p.y, p.z, 1.9) > .62) return false;
         return !gone1(p) || k.obj === rimM; });
       const solid = ok.filter(k => !/^(membrane|cytoplasm)$/.test(k.obj.userData.id)); if (solid.length) return solid.reduce((a, b) => a.hit.distance <= b.hit.distance ? a : b);
       return ok.find(k => k.obj.userData.id === 'cytoplasm') || ok[0] || null;
