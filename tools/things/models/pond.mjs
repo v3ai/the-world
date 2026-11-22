@@ -19,6 +19,9 @@ export default function build() {
     part('surface', 'Water surface', 'surface', 'pond_surface', '#3f7f7a', { mesh: 'surface', solid: false, double: true, noink: true, deeper: { type: 'tissue2', id: 'pond_film', D: 4e-4, button: 'Look at the surface film, close up' } }),
     part('bank', 'Bank and marginal zone', 'bank', 'pond_bank', '#6a5c3c', { mesh: 'bank', solid: false, double: true, noink: true }),
     part('stones', 'Edging stones', 'bank', 'pond_stones', '#8b8a84', { instances: 'stones', tint: .15 }),
+    part('stones_slab', 'Edging stones (flat)', 'bank', 'pond_stones', '#85847d', { instances: 'stones_slab', tint: .15, kind: 'stone' }),
+    part('bank_grass', 'Grass at the water\'s edge', 'bank', 'pond_bank', '#4a6e2c', { instances: 'bank_tufts', tint: .2, double: true, lod: 'near+mid' }),
+    part('floating_leaves', 'Fallen leaves floating', 'floating', 'pond_leaf_litter', '#6f6a2c', { instances: 'floating_leaves', tint: .3, double: true, lod: 'near+mid' }),
     part('water', 'Open water', 'water', 'pond_water', '#4a928d', { mesh: 'water', cutFace: 'water', noink: true, deeper: { type: 'tissue2', id: 'pond_drop', D: 6e-4, button: 'Look at a drop of pond water' } }),
     // ---- bed ----
     part('mud', 'Mud', 'bed', 'pond_mud', '#4a3c2d', { mesh: 'mud', cutFace: 'mud', noink: true, deeper: { type: 'tissue2', id: 'pond_mud', D: 3e-4, button: 'Look inside the mud' } }),
@@ -27,7 +30,7 @@ export default function build() {
     part('gas_bubbles', 'Bubbles rising from the mud', 'bed', 'pond_gas_bubbles', '#d9edf2', { flow: 'bubbles', deeper: { type: 'mol', mol: 'methane', name: 'Methane', button: 'See the molecule: methane' } }),
     // ---- floating and surface life ----
     part('duckweed', 'Common duckweed', 'floating', 'pond_duckweed', '#6aa83a', { instances: 'duckweed', tint: .25, double: true, lod: 'near', deeper: { type: 'mol', mol: 'chlorophyll_a', name: 'Chlorophyll a', button: 'See the green pigment: chlorophyll a' } }),
-    part('duckweed_mat', 'Common duckweed (raft)', 'floating', 'pond_duckweed', '#6aa83a', { mesh: 'duckweed_mat', solid: false, double: true, noink: true, lod: 'mid+far' }),
+    part('duckweed_mat', 'Common duckweed (raft)', 'floating', 'pond_duckweed', '#4f6d2b', { mesh: 'duckweed_mat', solid: false, double: true, noink: true, lod: 'mid+far' }),
     part('skater_body', 'Pond skater: body', 'floating', 'pond_skater', '#3a2e22', { mesh: 'skater_body', lod: 'near', ink_w: .0006, deeper: { type: 'mol', mol: 'n_acetylglucosamine', name: 'N-acetylglucosamine', button: 'See the molecule: the unit of chitin' } }),
     part('skater_front_legs', 'Pond skater: front legs', 'floating', 'pond_skater_legs', '#4a3b2c', { mesh: 'skater_front', lod: 'near', ink_w: .0005, solid: false }),
     part('skater_mid_legs', 'Pond skater: middle legs (rowing)', 'floating', 'pond_skater_legs', '#4a3b2c', { mesh: 'skater_mid', lod: 'near', ink_w: .0005, solid: false, deeper: { type: 'tissue2', id: 'pond_film', D: 4e-4, button: 'Look at the leg hairs on the surface film' } }),
