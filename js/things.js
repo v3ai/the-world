@@ -130,16 +130,16 @@ void main(){
    by pale sheets (a muscle cut across: fascicles in their perimysium), 'pore' dense tissue with small holes (bone), 'plain' one colour
    with a fine grain. A drawn pattern of the kind of structure at its own scale, not a photograph of a section. */
 function thFaceSurf(face) {
-  const lk = face.look, K = LOOK.KINDS[lk.kind] || {}, pal = (face.palette || [[0x888888, 1]]).slice(0, 4), cols = [], cum = []; let tot = pal.reduce((s, p) => s + p[1], 0), acc = 0;
+  const lk = face.look, K = LOOK.KINDS[lk.kind] || {}, pal = (lk.palette || face.palette || [[0x888888, 1]]).slice(0, 4), cols = [], cum = []; let tot = pal.reduce((s, p) => s + p[1], 0), acc = 0;   // lk.palette: the face's colours at measured albedo, where the drawn palette was not (kinds.mjs FACE_LOOK)
   for (let i = 0; i < 4; i++) { const p = pal[Math.min(i, pal.length - 1)]; cols.push(new THREE.Color(p[0])); if (i < pal.length) acc += p[1] / tot; cum.push(i < pal.length ? acc : 2); }
   const pat = lk.pattern === 'grain' && face.kind === 'plain' ? 'plain' : lk.pattern;
-  const U = { uPlane: { value: new THREE.Vector4(0, 0, 1, 0) }, uCam: { value: new V3() }, uOff: { value: new V3() }, uInv: { value: new THREE.Matrix4() }, uCell: { value: face.cell || lk.cell || .02 }, uCols: { value: cols }, uCum: { value: cum }, uEdge: { value: face.edge ?? .35 }, uOpacity: { value: 1 } };
+  const U = { uPlane: { value: new THREE.Vector4(0, 0, 1, 0) }, uCam: { value: new V3() }, uOff: { value: new V3() }, uInv: { value: new THREE.Matrix4() }, uCell: { value: face.cell || lk.cell || .02 }, uCols: { value: cols }, uCum: { value: cum }, uEdge: { value: face.edge ?? .35 }, uOpacity: { value: 1 }, uThFill: TH_LK.fill };
   const m = new THREE.MeshStandardMaterial({ side: THREE.BackSide, transparent: true, roughness: K.rough ?? .8, metalness: K.metal || 0 });   // (clipping planes are set by the caller)
   m.uniforms = U; m.userData.noHL = true;
   LOOK.patch(m, 'thface_' + pat, sh => {
     Object.assign(sh.uniforms, U);
     sh.vertexShader = 'varying vec3 vThW;\n' + sh.vertexShader.replace('#include <project_vertex>', '#include <project_vertex>\n\tvThW = ( modelMatrix * vec4( transformed, 1.0 ) ).xyz;');
-    sh.fragmentShader = `varying vec3 vThW; uniform vec4 uPlane; uniform vec3 uCam; uniform vec3 uOff; uniform mat4 uInv; uniform float uCell; uniform vec3 uCols[4]; uniform float uCum[4]; uniform float uEdge; uniform float uOpacity;
+    sh.fragmentShader = `varying vec3 vThW; uniform vec4 uPlane; uniform vec3 uCam; uniform vec3 uOff; uniform mat4 uInv; uniform float uCell; uniform vec3 uCols[4]; uniform float uCum[4]; uniform float uEdge; uniform float uOpacity; uniform float uThFill;
 float thH1(vec3 p){ return fract(sin(dot(p,vec3(12.9898,78.233,45.164)))*43758.5453); }
 vec3 thH3(vec3 p){ p=vec3(dot(p,vec3(127.1,311.7,74.7)),dot(p,vec3(269.5,183.3,246.1)),dot(p,vec3(113.5,271.9,124.6))); return fract(sin(p)*43758.5453); }
 ` + sh.fragmentShader.replace('#include <map_fragment>', `
@@ -161,6 +161,7 @@ vec3 thH3(vec3 p){ p=vec3(dot(p,vec3(127.1,311.7,74.7)),dot(p,vec3(269.5,183.3,2
 	diffuseColor = vec4( thC, uOpacity );`).replace('#include <normal_fragment_begin>', `
 	float faceDirection = 1.0; vec3 thPn = dot( uPlane.xyz, uCam - thPw ) < 0.0 ? -uPlane.xyz : uPlane.xyz;
 	vec3 normal = normalize( ( viewMatrix * vec4( thPn, 0.0 ) ).xyz ); vec3 geometryNormal = normal;`);
+    thLkFillChunk(sh);
   });
   return m;
 }
@@ -174,7 +175,9 @@ let _thShadowTex = null;
 function thShadowTex() {
   if (_thShadowTex) return _thShadowTex;
   const c = document.createElement('canvas'); c.width = c.height = 128; const g = c.getContext('2d'), gr = g.createRadialGradient(64, 64, 4, 64, 64, 62);
-  gr.addColorStop(0, 'rgba(10,14,8,.62)'); gr.addColorStop(.55, 'rgba(10,14,8,.28)'); gr.addColorStop(1, 'rgba(10,14,8,0)'); g.fillStyle = gr; g.fillRect(0, 0, 128, 128);
+  if (TH_LK.on) [[0, .5], [.25, .4], [.5, .2], [.75, .06], [.92, .01], [1, 0]].forEach(([s, a]) => gr.addColorStop(s, `rgba(10,14,8,${a})`));   // under the look: a soft falloff with no visible rim (the Sun's shadow and the baked occlusion carry the shape; this is only the contact)
+  else { gr.addColorStop(0, 'rgba(10,14,8,.62)'); gr.addColorStop(.55, 'rgba(10,14,8,.28)'); gr.addColorStop(1, 'rgba(10,14,8,0)'); }
+  g.fillStyle = gr; g.fillRect(0, 0, 128, 128);
   _thShadowTex = new THREE.CanvasTexture(c); return _thShadowTex;
 }
 
@@ -315,6 +318,11 @@ const TH_KINDS = {
   moss: { rough: .9, sss: [.14, .18, .05] },
   lichen: { rough: .85 },
   marker: { rough: .9 },                                       // a sign drawn on the model (a flow, a schematic): unlit, see TH_LK.marker
+  /* a buttercup's petal: its upper epidermis is extremely flat, with a second flat reflecting surface at an air gap under it, so it
+     reflects like a mirror (about twice a single surface's 4 percent, hence specular 0.08 in thLkGlossPetal) over a matte yellow
+     scattered from the starch layer beneath (Vignolini et al. 2012, J. R. Soc. Interface, doi:10.1098/rsif.2011.0759; van der Kooi et
+     al. 2017, J. R. Soc. Interface 14:20160933). Little light comes through it: no 'thin' (the starch layer scatters it back). */
+  gloss_petal: { rough: .14, sss: [.2, .18, .08] },
 };
 const TH_SETS = {   // colour, normal (OpenGL), metres one picture covers, strength of the normal map. CC0: assets/ATTRIBUTION.md
   soil: ['forest_ground_06_color_512.jpg', 'forest_ground_06_normal_gl_512.jpg', 2.11, .8],
@@ -322,7 +330,35 @@ const TH_SETS = {   // colour, normal (OpenGL), metres one picture covers, stren
   pebble: ['dry_river_pebbles_color_512.jpg', 'dry_river_pebbles_normal_gl_512.jpg', 2.0, .9],
 };
 const TH_SET_OF = { soil: 'soil', mud: 'mud', stone: 'pebble' };
-const TH_LK = { on: !!(LOOK.on && LOOK.part('pbr')), sets: {}, pend: new Set(), ld: null, rimSel: new THREE.Color(0x4f86d6), rimHov: new THREE.Color(0x9fbfe8) };
+const TH_LK = { on: !!(LOOK.on && LOOK.part('pbr')), sets: {}, pend: new Set(), ld: null, rimSel: new THREE.Color(0x4f86d6), rimHov: new THREE.Color(0x9fbfe8), fill: { value: .8 }, fillT: 0 };
+/* A cut face is a view made to be read, like a specimen held up to the light: a face turned away from the Sun would otherwise be lit by the
+   sky and the lawn alone, and its colours (the soil's horizons, white flesh) would merge into one dark tone. So the light on a cut face never
+   falls below 80 percent of what a level patch of open ground gets from the Sun and sky now (a floor, not a second light: a face that the Sun
+   already lights more keeps its light, and the floor follows the day down to a dusk minimum). Only cut faces take it. */
+function thLkFillChunk(sh) {
+  sh.uniforms.uThFill = TH_LK.fill;
+  sh.fragmentShader = sh.fragmentShader.replace('#include <lights_fragment_end>', `#include <lights_fragment_end>
+	{ vec3 thY = vec3( .2126, .7152, .0722 ); float thE = dot( reflectedLight.directDiffuse + reflectedLight.indirectDiffuse, thY ) / ( dot( material.diffuseColor, thY ) + 1e-4 );
+	  reflectedLight.indirectDiffuse += material.diffuseColor * max( 0.0, uThFill - thE ); }`);
+  if (!/uniform float uThFill;/.test(sh.fragmentShader)) sh.fragmentShader = 'uniform float uThFill;\n' + sh.fragmentShader;
+}
+function thLkFill(m) { if (m && m.isMeshStandardMaterial) LOOK.patch(m, 'thfill', thLkFillChunk); }
+/* A thing that stands on another (the bee on a buttercup) rides the host's sway: the same displacement the host's vertex shader gives the
+   point it stands on (thMove's breeze term, TH_SWAY_GLSL), so the flower does not swing through the bee's legs. */
+const _thRide = new V3();
+function thLkRide(F, T) {
+  const on = F.opts.placement.on, h = F._rideHost || (F._rideHost = (FR.things || []).find(f => f.opts.thing === on.thing && (f.opts.n || 0) === (on.placement || 0)));
+  const H = h && h.T; if (!H || !on.at) return;
+  const a = (H.def.anim || []).find(x => x.kind === 'sway'); if (!a) return;
+  const p = on.at, hh = Math.min(1, Math.max(0, (p[1] - (a.from_y ?? 0)) / Math.max((a.to_y ?? 1) - (a.from_y ?? 0), 1e-4))) ** 2, amp = (a.amp_m ?? .02) * hh;
+  const u = TH_SWAY.uTime.value, ph = u * (a.hz ?? .35) * 6.2832 + (p[0] * 1.7 + p[2] * 1.3) * (a.phase_k ?? 2.2);
+  _thRide.set(Math.sin(ph) + .35 * Math.sin(ph * 2.7 + p[2] * 5), .12 * Math.sin(ph * 1.3), Math.cos(ph * .83 + 1.3) + .35 * Math.sin(ph * 3.1 + p[0] * 5)).multiplyScalar(amp * H.s).applyQuaternion(H.xf.q);
+  T.holder.position.copy(_thRide); T.holder.updateMatrix();
+}
+function thLkFillStep() {
+  const t = performance.now(); if (t - TH_LK.fillT < 500) return; TH_LK.fillT = t;
+  const s = LOOK.sun(); TH_LK.fill.value = .8 * Math.max(.35, s ? s.intensity * Math.max(0, s.dir.y) + .2 : 1);
+}
 if (TH_LK.on) { for (const k in TH_KINDS) if (!LOOK.KINDS[k]) LOOK.KINDS[k] = TH_KINDS[k]; const b0 = LOOK.busy; LOOK.busy = () => b0() + TH_LK.pend.size; }
 function thLkTrack(pr) { TH_LK.pend.add(pr); const done = () => TH_LK.pend.delete(pr); pr.then(done, done); return pr; }
 /* what the things' surfaces still have to fetch (tests wait on it, with LOOK.ready) */
@@ -378,12 +414,20 @@ function thLkLeaves() {
        edge would darken in the distance. */
     const cv = thLkDetail(c, o), opaque = (src, w, h) => { const q = document.createElement('canvas'); q.width = w; q.height = h; const x = q.getContext('2d'); x.fillStyle = 'rgb(128,128,128)'; x.fillRect(0, 0, w, h); x.drawImage(src, 0, 0, w, h); return q; };
     TH_LEAF.atlas.image = opaque(cv, cv.width, cv.height); TH_LEAF.atlas.needsUpdate = true; TH_LEAF.alpha.image = o; TH_LEAF.alpha.needsUpdate = true; TH_LEAF.normal.image = n; TH_LEAF.normal.needsUpdate = true;
-    const S = 256, rc = document.createElement('canvas'), ra = document.createElement('canvas'); rc.width = rc.height = ra.width = ra.height = S; const g = rc.getContext('2d'), ga = ra.getContext('2d'); let sd = 7; const rn = () => (sd = (sd * 1664525 + 1013904223) >>> 0) / 4294967296;
+    /* A tuft: a spray of about forty photographed leaves, as an oak's leaves crowd at the tips of its shoots, so that a crown seen from the
+       middle distance has the mass of a real one and not a speckle with sky through every gap. The leaves are drawn back to front: those
+       underneath are darker (shaded by the ones over them), and each differs a little in brightness and hue, as real leaves do (age, sun
+       or shade leaf). Its outline stays ragged, made of leaf edges. */
+    const S = 512, rc = document.createElement('canvas'), ra = document.createElement('canvas'); rc.width = rc.height = ra.width = ra.height = S; const g = rc.getContext('2d'), ga = ra.getContext('2d'); let sd = 7; const rn = () => (sd = (sd * 1664525 + 1013904223) >>> 0) / 4294967296;
     g.fillStyle = 'rgb(128,128,128)'; g.fillRect(0, 0, S, S); ga.fillStyle = '#000'; ga.fillRect(0, 0, S, S);
-    for (let k = 0; k < 15; k++) {   // the rosette of the old drawing, made of the photographed leaves
-      const a = (k / 15 - .5) * 3.1 + (rn() - .5) * .4, ring = k % 2 ? 0 : .1, cx = S * (.5 + (rn() - .5) * .18), cy = S * (.62 + ring + (rn() - .5) * .1), len = S * (.34 + .12 * rn()), cell = Math.floor(rn() * 6), cw = cv.width / 3, ch = cv.height / 2;
-      for (const [x, im] of [[g, cv], [ga, o]]) { x.save(); x.translate(cx, cy); x.rotate(a); x.drawImage(im, (cell % 3) * im.width / 3, (1 - Math.floor(cell / 3)) * im.height / 2, im.width / 3, im.height / 2, -len * .33, -len, len * .67, len); x.restore(); }
+    const NL = 42;
+    for (let k = 0; k < NL; k++) {
+      const depth = k / (NL - 1), a = (rn() - .5) * 2 * Math.PI, rr = Math.sqrt(rn()) * .22, cx = S * (.5 + Math.cos(a) * rr), cy = S * (.55 + Math.sin(a) * rr * .85), len = S * (.26 + .1 * rn()), cell = Math.floor(rn() * 6);
+      const turn = Math.atan2(cy - S * .62, cx - S * .5) + Math.PI / 2 + (rn() - .5) * 1.2;   // leaves point outward from the shoot
+      g.filter = `brightness(${(.62 + .38 * depth) * (.9 + .2 * rn())}) hue-rotate(${Math.round((rn() - .5) * 16)}deg) saturate(${.85 + .3 * rn()})`;
+      for (const [x, im] of [[g, cv], [ga, o]]) { x.save(); x.translate(cx, cy); x.rotate(turn); x.drawImage(im, (cell % 3) * im.width / 3, (1 - Math.floor(cell / 3)) * im.height / 2, im.width / 3, im.height / 2, -len * .33, -len * .5, len * .67, len); x.restore(); }
     }
+    g.filter = 'none';
     TH_LEAF.rosette.image = rc; TH_LEAF.rosette.needsUpdate = true; TH_LEAF.rosetteA.image = ra; TH_LEAF.rosetteA.needsUpdate = true;
     for (const t of [TH_LEAF.atlas, TH_LEAF.alpha, TH_LEAF.normal, TH_LEAF.rosette, TH_LEAF.rosetteA]) t.anisotropy = 4;
     /* each card shows its leaf filling it, as the drawn outline did: the leaf's own box in its cell, widened to the card's shape (0.7
@@ -407,6 +451,17 @@ function thLkApplyLeaves(rec) {
   thLkLeaves(); if (!TH_LEAF.ok) return;   // the drawn leaf stays until the photographs have arrived
   rec.lkLeaf = null; const m = rec.g.userData.main.material, geo = rec.g.geometry, cluster = rec.pd.card.kind === 'leaf_cluster';
   m.map = cluster ? TH_LEAF.rosette : TH_LEAF.atlas; m.alphaMap = cluster ? TH_LEAF.rosetteA : TH_LEAF.alpha; if (!m.userData.thx2) { m.userData.thx2 = true; m.color.multiplyScalar(2); }   // the detail's mean is one half: twice the colour keeps the leaf its own green (as the foundation's sets do)
+  thLkLeafLight(m, rec);
+  /* a cut-out seen from afar: the outline's mipmaps average leaf and gap, and with a fixed threshold the leaves thin away to nothing with
+     distance (a crown turns to a few specks). The alpha is raised with the mip level the texture is read at, so a leaf keeps its share of
+     the card at every distance (coverage-preserving alpha test). */
+  m.extensions = Object.assign(m.extensions || {}, { derivatives: true });
+  LOOK.patch(m, 'thleafmip', sh => {
+    sh.fragmentShader = sh.fragmentShader.replace('#include <alphamap_fragment>', `#include <alphamap_fragment>
+	#ifdef USE_ALPHAMAP
+	{ vec2 thT = vUv * ${cluster ? '512.0' : '1024.0'}; vec2 thDx = dFdx( thT ), thDy = dFdy( thT ); float thMip = max( 0.0, 0.5 * log2( max( dot( thDx, thDx ), dot( thDy, thDy ) ) ) ); diffuseColor.a *= 1.0 + thMip * 0.3; }
+	#endif`);
+  });
   if (!cluster) {
     if (!geo.attributes.thCell) { const n = rec.g.count, c = new Float32Array(n); for (let i = 0; i < n; i++) { let h = Math.imul(i + 1, 2654435761) >>> 0; h ^= h >>> 15; c[i] = h % 6; } geo.setAttribute('thCell', new THREE.InstancedBufferAttribute(c, 1)); }
     m.normalMap = TH_LEAF.normal; m.normalScale.set(.6, .6);
@@ -414,35 +469,82 @@ function thLkApplyLeaves(rec) {
   }
   m.needsUpdate = true;
 }
-/* The dog's undercoat under the realistic look, at the high level only: twelve shells of the coat pushed out along its normal, each
-   keeping the hairs that reach it (a hair's height is a hash of where it grows, hairs about 1.5 mm apart), darker at the root where
-   less light gets in. 16 mm deep, as long as the model's fur blades (tools/things/models/dog_detail.mjs). One draw call of twelve
-   instances of the coat, while the dog is what the view is of and within 4 m; shown only while the coat is fully opaque, and it casts no shadow of its own. */
-const TH_FUR_N = 12, TH_FUR_LEN = .016, TH_FUR_CELL = .0015, TH_FUR_NEAR = 4;   // drawn only within 4 m of the dog: further out a hair is under a pixel, and the shells would cost twelve coats' triangles
-function thLkFur(rec, geo, bare) {   // bare: geometries of bare parts the hair must not cover (the nose leather): it thins out to nothing over 4 cm round them
-  const main = rec.g.userData.main, m0 = main.material;
+/* Light in a crown (both leaf looks):
+   - the photograph is detail with a mean of one half (the colour is doubled to match); it is applied so that its variation is
+     proportional in linear light (the colour is converted to linear light after it, so a detail multiplied in plainly would have its
+     contrast raised to the power 2.2, and the pale parts of a leaf would bleach to white in sunlight);
+   - each leaf differs a little in brightness and hue (thTint, a hash of its number), as sun and shade leaves and old and young ones do;
+   - light comes through a leaf from behind in a yellow-green (a leaf transmits about as much green light as it reflects, and relatively
+     more red than it reflects), less where the veins are (they are thicker and show dark against the light): the photograph's veins are
+     lighter than the blade, so the light through falls where the picture is brighter;
+   - a leaf in the shadow of others still gets a fifth of the Sun's light: the light that comes through the leaves above and through the
+     small gaps between them, which one shadow map of whole leaves cannot see. Without it a crown's inside is black, which no real one is
+     in daylight (within a crown, light falls to about a tenth to a fifth of open sky: an approximation, not a model of the canopy). */
+const TH_LEAF_THIN = [.6, .45, .12], TH_LEAF_SHF = .2;
+function thLkLeafLight(m, rec) {
+  if (m.userData.thLeafLight) return; m.userData.thLeafLight = true;
+  const geo = rec.g.geometry, n = rec.g.count;
+  if (!geo.attributes.thTint) { const c = new Float32Array(n * 3); for (let i = 0; i < n; i++) { let h = Math.imul(i + 7, 2246822519) >>> 0; h ^= h >>> 13; const b = .84 + .32 * ((h & 1023) / 1023), y = ((h >>> 10) & 1023) / 1023 - .5; c[i * 3] = b * (1 + .16 * y); c[i * 3 + 1] = b; c[i * 3 + 2] = b * (1 - .2 * y); } geo.setAttribute('thTint', new THREE.InstancedBufferAttribute(c, 3)); }
+  const thin = LOOK.part('sss') && m.defines && m.defines.LK_THIN;
+  if (thin) m.defines.LK_THIN = 'thThinV';
+  LOOK.patch(m, 'thleaflight', sh => {
+    sh.vertexShader = 'attribute vec3 thTint;\nvarying vec3 vThTint;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tvThTint = thTint;');
+    sh.fragmentShader = 'varying vec3 vThTint;\nvec3 thThinV = vec3( 0.0 );\n' + sh.fragmentShader
+      .replace('#include <shadowmap_pars_fragment>', THREE.ShaderChunk.shadowmap_pars_fragment.replace('float getShadow(', `float thShadow0( sampler2D shadowMap, vec2 shadowMapSize, float shadowBias, float shadowRadius, vec4 shadowCoord );
+	float getShadow( sampler2D shadowMap, vec2 shadowMapSize, float shadowBias, float shadowRadius, vec4 shadowCoord ) { return max( ${TH_LEAF_SHF.toFixed(2)}, thShadow0( shadowMap, shadowMapSize, shadowBias, shadowRadius, shadowCoord ) ); }
+	float thShadow0(`))
+      .replace('#include <map_fragment>', `#ifdef USE_MAP
+	{ vec4 texelColor = texture2D( map, vUv ); diffuseColor.rgb *= .5 * pow( 2.0 * texelColor.rgb, vec3( .4545 ) ); }
+	#endif
+	diffuseColor.rgb *= vThTint;
+	#ifdef USE_MAP
+	{ float thRel = dot( texture2D( map, vUv ).rgb, vec3( .2126, .7152, .0722 ) ) * 2.0; thThinV = vec3( ${TH_LEAF_THIN.map(x => x.toFixed(2)).join(', ')} ) * clamp( 1.0 - 1.4 * ( thRel - 1.0 ), .3, 1.25 ); }
+	#else
+	thThinV = vec3( ${TH_LEAF_THIN.map(x => x.toFixed(2)).join(', ')} );
+	#endif`);
+  });
+}
+/* Shells: a short coat (the dog's undercoat, the ears' short hair, a moss cushion's shoots) under the realistic look, at the high level only:
+   o.n copies of the surface pushed out along its normal, each keeping the strands that reach it (a strand's height is a hash of where it
+   grows, strands o.cell apart), darker at the root where less light gets in. One draw call of o.n instances of the mesh, while the thing
+   is what the view is of and within o.near metres; shown only while the part is fully opaque, and it casts no shadow of its own.
+   o.comb: the direction the coat lies (in the model's axes): each shell is pushed a little further along it than the one below, so the
+   hairs lean and lie over, nose to tail, instead of standing straight out; the strands are longer along it than across (the lie of the
+   coat). o.lenAt(v): the length factor where a vertex is (shorter hair on a dog's face and legs). o.bare: geometries the strands must not
+   pass through: they thin to nothing within o.bareR of any of their vertices (the nose leather; the ears, which lie on the head).
+   o.both: strands on both faces (a thin double-sided part, an ear). */
+const TH_FUR = { n: 12, len: .016, cell: .0015, near: 4, comb: [-1, -.32, 0], lean: .9, stretch: 2.6, root: .62, tip: 1.12 };   // the dog: 16 mm deep, as long as the model's fur blades (tools/things/models/dog_detail.mjs); drawn within 4 m of it
+const TH_FUR_NEAR = TH_FUR.near;
+function thLkFur(rec, geo, o) {
+  o = Object.assign({}, TH_FUR, o);
   if (!geo.attributes.thHair) {
-    const P = geo.attributes.position, h = new Uint8Array(P.count), S = bare.filter(Boolean).map(g => { g.computeBoundingSphere(); return g.boundingSphere; }), v = new V3();
-    for (let i = 0; i < P.count; i++) { v.fromBufferAttribute(P, i); let f = 1; for (const b of S) f = Math.min(f, Math.max(0, Math.min(1, (v.distanceTo(b.center) - b.radius) / .04))); h[i] = Math.round(f * 255); }
+    const P = geo.attributes.position, h = new Uint8Array(P.count), v = new V3(), w = new V3(), pts = [];
+    for (const g of (o.bare || []).filter(Boolean)) { const Q = g.attributes.position, step = Math.max(1, Math.floor(Q.count / 1500)); for (let j = 0; j < Q.count; j += step) pts.push(new V3().fromBufferAttribute(Q, j)); }
+    const R = o.bareR || .04;
+    for (let i = 0; i < P.count; i++) { v.fromBufferAttribute(P, i); let d = 1e9; for (const q of pts) { const e = q.distanceToSquared(v); if (e < d) d = e; } let f = pts.length ? Math.max(0, Math.min(1, (Math.sqrt(d) - R * .15) / R)) : 1; if (o.lenAt) f *= o.lenAt(v); h[i] = Math.round(Math.max(0, Math.min(1, f)) * 255); }
     geo.setAttribute('thHair', new THREE.BufferAttribute(h, 1, true));
   }
-  if (!geo.attributes.thLayer) { const a = new Float32Array(TH_FUR_N); for (let i = 0; i < TH_FUR_N; i++) a[i] = (i + 1) / TH_FUR_N; geo.setAttribute('thLayer', new THREE.InstancedBufferAttribute(a, 1)); }
-  const m = new THREE.MeshStandardMaterial({ color: m0.color, vertexColors: m0.vertexColors, roughness: m0.roughness, metalness: 0 });
-  m.clippingPlanes = m0.clippingPlanes;
-  LOOK.patch(m, 'thfur', sh => {
+  const N = o.both ? o.n * 2 : o.n;
+  if (!geo.attributes.thLayer) { const a = new Float32Array(N); for (let i = 0; i < N; i++) a[i] = ((i % o.n) + 1) / o.n * (i >= o.n ? -1 : 1); geo.setAttribute('thLayer', new THREE.InstancedBufferAttribute(a, 1)); }
+  const m0 = rec.g.userData.main.material, m = new THREE.MeshStandardMaterial({ color: m0.color, vertexColors: m0.vertexColors, roughness: m0.roughness, metalness: 0, side: o.both ? THREE.DoubleSide : THREE.FrontSide });
+  m.clippingPlanes = m0.clippingPlanes; if (m0.defines && m0.defines.LK_SSS) m.defines = { LK_SSS: m0.defines.LK_SSS };
+  const c = o.comb ? new V3(...o.comb).normalize() : null, F = x => x.toFixed(4), st = o.comb ? o.stretch : 1;
+  LOOK.patch(m, 'thfur' + (c ? 'c' : '') + (o.both ? 'b' : '') + o.cell, sh => {
     sh.vertexShader = 'attribute float thLayer;\nattribute float thHair;\nvarying float vThL;\nvarying vec3 vThP;\n' + sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>
-	vThL = thLayer / max( thHair, 1e-3 ); vThP = position; transformed += normalize( objectNormal ) * thLayer * thHair * ${TH_FUR_LEN.toFixed(4)};`);
+	{ float thA = abs( thLayer ); vThL = thA / max( thHair, 1e-3 ); vThP = position; vec3 thN = normalize( objectNormal ) * sign( thLayer );
+	  transformed += thN * thA * thHair * ${F(o.len)};` + (c ? `
+	  vec3 thC = vec3( ${F(c.x)}, ${F(c.y)}, ${F(c.z)} ); thC = normalize( thC - thN * dot( thC, thN ) + 1e-5 ); transformed += thC * thA * thA * thHair * ${F(o.len * o.lean)};` : '') + ' }');
     sh.fragmentShader = `varying float vThL; varying vec3 vThP;
 float thFH(vec3 p){ return fract(sin(dot(p,vec3(12.9898,78.233,45.164)))*43758.5453); }
 ` + sh.fragmentShader.replace('#include <map_fragment>', `#include <map_fragment>
-	{ vec3 q = vThP / ${TH_FUR_CELL.toFixed(4)}, c = floor( q ), f = fract( q ) - .5; float h = thFH( c ), r = length( f - ( vec3( thFH( c + 1.3 ), thFH( c + 2.9 ), thFH( c + 4.1 ) ) - .5 ) * .5 );
+	{ vec3 q = vThP / vec3( ${F(o.cell * st)}, ${F(o.cell)}, ${F(o.cell)} ), c = floor( q ), f = fract( q ) - .5; float h = thFH( c ), r = length( ( f - ( vec3( thFH( c + 1.3 ), thFH( c + 2.9 ), thFH( c + 4.1 ) ) - .5 ) * .5 ) * vec3( 1.0 / ${F(st)}, 1.0, 1.0 ) );
 	  if ( h < vThL || r > .5 * ( 1.0 - vThL ) + .08 ) discard;
-	  diffuseColor.rgb *= mix( .55, 1.08, vThL ); }`);
+	  diffuseColor.rgb *= mix( ${F(o.root)}, ${F(o.tip)}, vThL ) * ( .92 + .16 * thFH( c + 7.7 ) ); }`);
   });
   thLkAO(m, geo);
-  const im = new THREE.InstancedMesh(geo, m, TH_FUR_N), I = new THREE.Matrix4(); for (let i = 0; i < TH_FUR_N; i++) im.setMatrixAt(i, I);
+  const im = new THREE.InstancedMesh(geo, m, N), I = new THREE.Matrix4(); for (let i = 0; i < N; i++) im.setMatrixAt(i, I);
   im.matrixAutoUpdate = false; im.frustumCulled = false; im._lkNoCast = true; im.receiveShadow = LOOK.quality === 'high'; im.userData.lkFur = true; im.raycast = () => { };
-  rec.g.add(im); rec.lkFur = im;
+  rec.g.add(im); rec.lkFur = im; rec.lkFurNear = o.near;
 }
 /* baked ambient occlusion (per vertex, or per instance) multiplies the light from the environment only: the sky and the ground it
    reflects, diffuse and specular. The Sun's light is shadowed by the shadow map, not by this. */
@@ -453,6 +555,73 @@ function thLkAO(m, geo) {
     sh.fragmentShader = 'varying float vThAO;\n' + sh.fragmentShader.replace('#include <aomap_fragment>', `#include <aomap_fragment>
 	reflectedLight.indirectDiffuse *= vThAO;
 	reflectedLight.indirectSpecular *= mix( 1.0, vThAO, 0.85 );`);
+  });
+}
+/* Lichen crusts: a thallus is not a disc but a rosette of lobes, or a crust broken into patches. Each patch keeps the lichen's own
+   colour (its data) and takes the mottling of photographed crustose lichens (mossy_rock, enlarged), and its outline is cut into lobes
+   (five to nine, a hash of where the patch is), with a paler growing margin (as in Xanthoria and Lecanora). */
+const TH_LICHEN = { t: null };
+function thLkLichen(m) {
+  if (!TH_LICHEN.t) { TH_LICHEN.t = thLkFlat(128, 128, 128); TH_LICHEN.t.wrapS = TH_LICHEN.t.wrapT = THREE.RepeatWrapping; thLkTrack(thLkImg('mossy_rock_color_512.jpg').then(im => { TH_LICHEN.t.image = thLkDetail(im); TH_LICHEN.t.needsUpdate = true; }).catch(() => { })); }
+  m.userData.thLichen = { value: TH_LICHEN.t };
+  LOOK.patch(m, 'thlichen', sh => {
+    sh.uniforms.thLiTex = m.userData.thLichen;
+    sh.vertexShader = 'varying vec3 vThLp;\nvarying float vThLs;\n' + sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>
+	vThLp = position;
+	#ifdef USE_INSTANCING
+	vThLs = fract( sin( dot( instanceMatrix[ 3 ].xyz, vec3( 127.1, 311.7, 74.7 ) ) ) * 43758.5453 );
+	#else
+	vThLs = 0.5;
+	#endif`);
+    sh.fragmentShader = 'uniform sampler2D thLiTex;\nvarying vec3 vThLp;\nvarying float vThLs;\nfloat thLiN( vec2 p ) { vec2 i = floor( p ), f = fract( p ); f = f * f * ( 3.0 - 2.0 * f ); float a = fract( sin( dot( i, vec2( 127.1, 311.7 ) ) ) * 43758.5 ), b = fract( sin( dot( i + vec2( 1, 0 ), vec2( 127.1, 311.7 ) ) ) * 43758.5 ), c = fract( sin( dot( i + vec2( 0, 1 ), vec2( 127.1, 311.7 ) ) ) * 43758.5 ), d = fract( sin( dot( i + vec2( 1, 1 ), vec2( 127.1, 311.7 ) ) ) * 43758.5 ); return mix( mix( a, b, f.x ), mix( c, d, f.x ), f.y ); }\n' + sh.fragmentShader.replace('#include <map_fragment>', `#include <map_fragment>
+	{ float r = length( vThLp.xz ), a = atan( vThLp.z, vThLp.x ), lobes = floor( 5.0 + vThLs * 4.99 );
+	  float edge = .8 + .06 * sin( a * lobes + vThLs * 40.0 ) + .05 * sin( a * ( lobes * 1.7 + 1.0 ) + vThLs * 17.0 ) + .04 * sin( a * 13.0 + vThLs * 9.0 ) + .08 * ( thLiN( vThLp.xz * 6.0 + vThLs * 9.0 ) - .5 );
+	  if ( r > edge ) discard;
+	  vec3 det = pow( texture2D( thLiTex, vThLp.xz * .07 + vec2( vThLs * 3.1, vThLs * 7.3 ) ).rgb * 2.0, vec3( .4545 ) );   // proportional in linear light
+	  diffuseColor.rgb *= mix( vec3( 1.0 ), det, .9 ) * mix( 1.0, 1.1, smoothstep( edge - .1, edge, r ) ); }`);
+  });
+}
+/* The fly agaric's cap: scarlet, fading toward orange at the margin, mottled where the viscid skin is thicker or thinner, with fine radial
+   grooves at the very margin (it is striate there), and the skin's sheen varying with it. Its gills: crowded free lamellae seen edge-on
+   from below, about 150 round the cap (drawn as light and shade between them, not as modelled plates). Patterns in the model's own
+   coordinates, about the stem's axis; colours chosen against photographs of Amanita muscaria. */
+const TH_NOISE = `float thN3( vec3 p ) { vec3 i = floor( p ), f = fract( p ); f = f * f * ( 3.0 - 2.0 * f ); float n = dot( i, vec3( 1.0, 57.0, 113.0 ) );
+  return mix( mix( mix( fract( sin( n ) * 43758.5 ), fract( sin( n + 1.0 ) * 43758.5 ), f.x ), mix( fract( sin( n + 57.0 ) * 43758.5 ), fract( sin( n + 58.0 ) * 43758.5 ), f.x ), f.y ),
+    mix( mix( fract( sin( n + 113.0 ) * 43758.5 ), fract( sin( n + 114.0 ) * 43758.5 ), f.x ), mix( fract( sin( n + 170.0 ) * 43758.5 ), fract( sin( n + 171.0 ) * 43758.5 ), f.x ), f.y ), f.z ); }
+`;
+function thLkMP(sh) { sh.vertexShader = 'varying vec3 vThMp;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tvThMp = position;'); sh.fragmentShader = 'varying vec3 vThMp;\n' + TH_NOISE + sh.fragmentShader; }
+function thLkCap(m, ax, R) {
+  LOOK.patch(m, 'thcap', sh => {
+    thLkMP(sh);
+    sh.fragmentShader = sh.fragmentShader.replace('#include <map_fragment>', `#include <map_fragment>
+	float thR = length( vThMp.xz - vec2( ${ax[0].toFixed(4)}, ${ax[1].toFixed(4)} ) ) / ${R.toFixed(4)}, thA = atan( vThMp.z - ${ax[1].toFixed(4)}, vThMp.x - ${ax[0].toFixed(4)} );
+	float thM = thN3( vThMp * 70.0 ) * .6 + thN3( vThMp * 190.0 ) * .4;
+	diffuseColor.rgb = mix( diffuseColor.rgb, vec3( .9, .38, .12 ), .55 * smoothstep( .5, 1.0, thR ) ) * ( .88 + .22 * thM );
+	diffuseColor.rgb *= 1.0 - .1 * smoothstep( .82, .97, thR ) * ( .5 + .5 * sin( thA * 150.0 ) );`)
+      .replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\n\troughnessFactor = clamp( roughnessFactor * ( .7 + .6 * thM ), .25, .8 );');
+  });
+}
+function thLkGills(m, ax, R) {
+  LOOK.patch(m, 'thgills', sh => {
+    thLkMP(sh);
+    sh.fragmentShader = sh.fragmentShader.replace('#include <map_fragment>', `#include <map_fragment>
+	{ float thR = length( vThMp.xz - vec2( ${ax[0].toFixed(4)}, ${ax[1].toFixed(4)} ) ) / ${R.toFixed(4)}, thA = atan( vThMp.z - ${ax[1].toFixed(4)}, vThMp.x - ${ax[0].toFixed(4)} );
+	  float thG = .5 + .5 * sin( thA * 150.0 + thN3( vThMp * 400.0 ) * 1.5 ), thS = .5 + .5 * sin( thA * 75.0 + 1.3 );
+	  diffuseColor.rgb *= mix( 1.0, mix( .62, 1.04, smoothstep( .15, .75, thG ) ) * mix( .9, 1.0, thS ), smoothstep( .14, .3, thR ) ); }`);
+  });
+}
+/* An insect wing is a clear membrane a few micrometres thick: it hardly scatters light, so it shows what is behind it, darkened a little,
+   and reflects the sky from its two surfaces (a dielectric's Fresnel reflection, about 4 percent face-on, rising toward grazing). So the
+   membrane keeps 6 percent of its colour as diffuse, its reflection is added on top of what is behind (premultiplied blending: nothing
+   is painted over the abdomen), and it covers only 7 percent face-on, more edge-on. The veins are their own part, opaque chitin. */
+function thLkWing(m) {
+  if (!m || !m.isMeshStandardMaterial) return;
+  m.blending = THREE.CustomBlending; m.blendSrc = THREE.OneFactor; m.blendDst = THREE.OneMinusSrcAlphaFactor; m.roughness = .12; m.userData.thWing = true;
+  if (m.defines) { delete m.defines.LK_THIN; delete m.defines.LK_SSS; }
+  LOOK.patch(m, 'thwing', sh => {
+    sh.fragmentShader = sh.fragmentShader.replace('#include <map_fragment>', '#include <map_fragment>\n\tdiffuseColor.rgb *= 0.06;')
+      .replace('#include <output_fragment>', `{ float thWk = saturate( opacity * 2.0 ), thWF = pow( 1.0 - saturate( abs( dot( normal, normalize( vViewPosition ) ) ) ), 5.0 );
+	gl_FragColor = vec4( outgoingLight * thWk, ( 0.07 + 0.45 * thWF ) * thWk ); }`);
   });
 }
 /* the patches every lit material of a thing takes under the look: the rim that marks the part pointed at or selected, and a see-through
@@ -493,7 +662,7 @@ class ThingObj {
     if (def.auto && def.auto.layers) { const ops = {}; this.layers.forEach((l, i) => (l.systems || []).forEach(sy => ops[sy] = i === 0 ? 1 : 0)); this.peelMode = { id: 'auto', show: Object.assign(ops, def.auto.always || {}) }; }
     this.autoOp = null; this.revealOp = null; this.revealId = null; this.revealFront = null; this.layerName = '';
     for (const pd of def.parts) this._addPart(pd);
-    if (def.shadow && o.ground !== false) this._addShadow(def.shadow);   // the contact shadow belongs to a thing that stands on a ground
+    if (def.shadow && o.ground !== false && !(TH_LK.on && LOOK.part('shadow'))) this._addShadow(def.shadow);   // under the look the Sun's shadow map draws the shadow and the foundation the small contact under what stands on the lawn (DESIGN 3.8): a disc of our own would be a second, painted one   // the contact shadow belongs to a thing that stands on a ground
     for (const h of def.hotspots || []) this._addHotspot(h);
     this._addAnims();
     // parts that no animation moves keep the matrix they have (identity): it is not composed again every frame
@@ -518,7 +687,8 @@ class ThingObj {
     return sway || swing ? { sway: sway || null, swing: swing || null } : null;
   }
   _addPart(pd) {
-    const def = this.def, color = new THREE.Color(pd.color || '#aaaaaa').getHex(), sw = this._sway(pd);
+    if (TH_LK.on && pd.look_lod) pd.lod = pd.look_lod;   // under the look a part may be drawn in other detail tiers (kinds.mjs LOOK_OF); the data is shared by every placement, so this is done once per part
+    const def = this.def, color = new THREE.Color((TH_LK.on && pd.look_color) || pd.color || '#aaaaaa').getHex(), sw = this._sway(pd);
     let g, geo;
     if (pd.mesh) {
       geo = thGeo(def.id, this.bundle, pd.mesh); if (!geo) { console.warn('thing', def.id, 'part', pd.id, 'missing mesh', pd.mesh); return; }
@@ -567,13 +737,34 @@ class ThingObj {
   }
   _lkDress(rec, geo) {   // the realistic look's extras for one part (see TH_KINDS)
     const pd = rec.pd, m = rec.g.userData.main.material; thLkMarks(m); thLkAO(m, geo);
-    const cap = rec.g.userData.cap; if (cap) { cap._lkNoCast = true; cap.receiveShadow = false; }   // the cut face is drawn on the solid's far inside: a shadow looked up there would be the solid's own, uncut
+    const cap = rec.g.userData.cap; if (cap) { cap._lkNoCast = true; cap.receiveShadow = false; }
+    if (pd.look_section) thLkFill(m);   // the cut face is drawn on the solid's far inside: a shadow looked up there would be the solid's own, uncut
     if (!LOOK.part('tex') || !m.isMeshStandardMaterial) return;
     if (pd.uv && pd.uv.grid && pd.kind === 'bark' && LOOK.texSet) {   // the trunk: bark along its own coordinates, not laid on from three sides
-      const s = LOOK.texSet('bark'); thLkTrunkUV(geo, pd.uv, [1, 2]); if (m.defines) delete m.defines.LK_TRI; m.map = s.map; m.normalMap = s.normalMap; m.normalScale.set(s.bump, s.bump); m.needsUpdate = true;
+      const s = LOOK.texSet('bark'); thLkTrunkUV(geo, pd.uv, [1, 2]); if (m.defines) delete m.defines.LK_TRI; m.map = s.map; m.normalMap = s.normalMap; m.normalScale.set(s.bump * 1.6, s.bump * 1.6); m.needsUpdate = true;   // along its own coordinates the relief is not averaged over three projections, so it takes the photograph's slopes at nearer their full strength
     }
+    if (pd.kind === 'wing') thLkWing(m);
+    if (pd.kind === 'gloss_petal') LOOK.patch(m, 'thglosspetal', sh => { sh.fragmentShader = sh.fragmentShader.replace('#include <lights_physical_fragment>', '#include <lights_physical_fragment>\n\tmaterial.specularColor = vec3( 0.08 );'); });
+    if (pd.kind === 'lichen' && rec.instanced) thLkLichen(m);
+    if (this.def.id === 'mushroom' && (pd.kind === 'cap' || pd.kind === 'gill') && pd.center && !rec.instanced) {   // the fly agaric's cap and gills, about the stem's axis
+      const ax = [pd.center[0], /^c_/.test(pd.id) ? 0 : pd.center[2]], R = (pd.radius || .07) * (/^c_/.test(pd.id) ? .9 : 1);
+      if (pd.kind === 'cap' && /cap/.test(pd.id) && !/cuticle/.test(pd.id)) thLkCap(m, ax, R); else if (pd.kind === 'gill') thLkGills(m, ax, R);
+    }
+    if (pd.kind === 'moss' && !rec.instanced && LOOK.quality === 'high' && LOOK.part('fur'))   // a moss cushion is a turf of shoots a centimetre tall: shells, uneven in height (tufts), olive
+      thLkFur(rec, geo, { n: 8, len: .01, cell: .0014, near: 8, root: .4, tip: 1.15, lenAt: v => { const s = Math.sin(v.x * 61 + Math.sin(v.z * 47)) * Math.sin(v.z * 53 + Math.sin(v.y * 71)); return .35 + .65 * (.5 + .5 * s); } });
     if (pd.card && pd.kind === 'leaf' && (pd.card.kind === 'lobed_leaf' || pd.card.kind === 'leaf_cluster') && this.def.id === 'oak') rec.lkLeaf = true;
-    if (pd.kind === 'fur' && !rec.instanced && this.def.id === 'dog' && pd.mesh === 'coat' && LOOK.quality === 'high' && LOOK.part('fur')) thLkFur(rec, geo, [thGeo(this.def.id, this.bundle, 'nose')]);
+    if (this.def.id === 'dog' && !rec.instanced && LOOK.quality === 'high' && LOOK.part('fur')) {
+      /* a Labrador's coat is short and dense, lying nose to tail; shortest on the face and the lower legs and paws (about a third), short
+         on the ears; the ears lie on the head, so the head's hairs stop short of them */
+      if (pd.mesh === 'coat') thLkFur(rec, geo, { bare: [thGeo(this.def.id, this.bundle, 'nose'), thGeo(this.def.id, this.bundle, 'ears')], bareR: .012, lenAt: v => (v.x > .27 && v.y > .42 ? .4 + .6 * Math.max(0, Math.min(1, (.36 - v.x) / .09)) : 1) * (v.y < .3 ? .3 + .7 * Math.max(0, Math.min(1, (v.y - .1) / .2)) : 1) });
+      if (pd.mesh === 'ears') thLkFur(rec, geo, { n: 6, len: .004, cell: .0011, both: true, comb: [0, -1, 0], lean: .6 });
+    }
+    if (this.def.id === 'dog' && pd.id === 'fur') LOOK.patch(m, 'thdogblade', sh => {   // the coat's guard-hair blades: as short as the coat where it is short (face, legs), not a halo of spikes round the head
+      sh.vertexShader = sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>
+	#ifdef USE_INSTANCING
+	{ vec3 thO = instanceMatrix[ 3 ].xyz; float thK = ( thO.x > .27 && thO.y > .42 ? .35 + .65 * clamp( ( .36 - thO.x ) / .09, 0.0, 1.0 ) : 1.0 ) * ( thO.y < .3 ? .3 + .7 * clamp( ( thO.y - .1 ) / .2, 0.0, 1.0 ) : 1.0 ); transformed *= vec3( 1.0, thK, 1.0 ); }
+	#endif`);
+    });
     if (TH_SET_OF[pd.kind]) {
       rec.lkSet = TH_SET_OF[pd.kind];
       if (rec.instanced) { const im = rec.g, M = new THREE.Matrix4(), s = new V3(), q = new THREE.Quaternion(), p = new V3(), sc = []; for (let i = 0; i < im.count; i += Math.max(1, Math.floor(im.count / 64))) { im.getMatrixAt(i, M); M.decompose(p, q, s); sc.push((s.x + s.y + s.z) / 3); } sc.sort((a, b) => a - b); rec.lkUnit = sc[sc.length >> 1] || 1; }
@@ -590,8 +781,9 @@ class ThingObj {
   }
   _addHotspot(h) {
     const R = this.def.radius_m || 1, geo = new THREE.SphereGeometry(h.r || Math.max(.01 * this.u, R * .02), 14, 10), g = inked(geo, 0xffd166, { w: .004, extra: { transparent: true } });
+    if (TH_LK.on) { const mm = g.userData.main; mm.material.dispose(); mm.material = new THREE.MeshBasicMaterial({ color: 0xffd166, transparent: true, fog: false }); }   // a marker is a pointer, not a thing in the light: unlit, untoned, no fog or occlusion, as bright as it was drawn
     g.children.forEach(m => { m.material.depthTest = false; m.renderOrder = m.userData.outline ? 9 : 10; });   // ink first, fill on top (both in the blended pass, where renderOrder decides)
-    thPatch(g.userData.main.material, null, this.L);
+    if (!TH_LK.on) thPatch(g.userData.main.material, null, this.L);
     const pv = this._hotPivot(h); g.userData.hotspot = h; g.userData.r0 = geo.parameters.radius; g.userData.pv = pv || null; g.visible = false; g.position.set(...h.at); (pv ? this._pivot(pv) : this.group).add(g); this.hot.push(g);
   }
   _addAnims() {
@@ -687,7 +879,7 @@ class ThingObj {
         const isSel = this.sel === pd.id;
         mat.opacity = op; mat.transparent = op < .99; mat.depthWrite = op > .9; if (mat.clippingPlanes !== planes) { mat.clippingPlanes = planes; mat.needsUpdate = true; }
         const ol = g.userData.ol, olK = isSel || this.hovId === pd.id ? 1 : this.olK; if (ol) { ol.visible = op > .5 && !pd.noink && olK > .02; ol.material.uniforms.uOpacity.value = .85 * op * olK; ol.material.uniforms.uColor.value.setHex(isSel ? 0x1e4e8f : 0x1a1f2b); if (ol.material.clippingPlanes !== planes) { ol.material.clippingPlanes = planes; ol.material.needsUpdate = true; } }
-        if (TH_LK.on) { const rim = mat.userData.thRim; if (mat.userData.thGhost) mat.userData.thGhost.value = op < .995 ? 1 : 0; if (rim) { const a = isSel ? 1.4 : this.hovId === pd.id ? .7 : 0; if (rim.value.w !== a * op) { const c = isSel ? TH_LK.rimSel : TH_LK.rimHov; rim.value.set(c.r, c.g, c.b, a * op); } } if (r.lkSet) thLkApplySet(r); if (r.lkLeaf) thLkApplyLeaves(r); if (r.lkFur) r.lkFur.visible = op > .95 && !cut && this.lkFocus && this.dist < TH_FUR_NEAR; }
+        if (TH_LK.on) { const rim = mat.userData.thRim; if (mat.userData.thGhost) mat.userData.thGhost.value = op < (pd.opacity_max ?? 1) * alpha - .005 ? 1 : 0; if (rim) { const a = isSel ? 1.4 : this.hovId === pd.id ? .7 : 0; if (rim.value.w !== a * op) { const c = isSel ? TH_LK.rimSel : TH_LK.rimHov; rim.value.set(c.r, c.g, c.b, a * op); } } if (r.lkSet) thLkApplySet(r); if (r.lkLeaf) thLkApplyLeaves(r); if (r.lkFur) r.lkFur.visible = op > .95 && !cut && this.lkFocus && this.dist < (r.lkFurNear || TH_FUR_NEAR); }
         const cap = g.userData.cap; if (cap) { cap.visible = !!cut && op > .5; cap.material.uniforms.uOpacity.value = op; cap.material.transparent = op < .995; }
       }
     }
@@ -821,7 +1013,7 @@ function thGroundFade(on) {
 }
 function thFrameUpdate(F, dt, t) {
   const T = F.T; if (!T) return;
-  F._seen = performance.now();
+  F._seen = performance.now(); if (TH_LK.on) { thLkFillStep(); if (F.opts.placement && F.opts.placement.on) thLkRide(F, T); }
   // sun and sky light copied from the park (or from the frame the thing stands in: a landscape, the Earth) so shading and day/night agree; a thing in a device or on the stage keeps its plain pair
   const env = F.opts.env || 'park', P = env === 'park' ? FR.park : env === 'sun' ? F.parent : null;
   if (P && P.scene) {
@@ -1230,7 +1422,7 @@ function thFlyToNode(id, t) {
 /* A view (a layer mode) may say where it is best seen from: mode.view = { dir: [x, y, z] (from the thing toward the camera, thing coordinates), at: [x, y, z], D: metres }.
    Choosing the view (its button, a double click that opens it) turns the camera there: a cut along a fixed plane is seen face on, not edge on. */
 function thModeView(F, md) {
-  const T = F.T, v = md && md.view; if (!T || !v || !(frameWithin(cam.A, F) || drawn.includes(F))) return false;
+  const T = F.T, v = md && ((TH_LK.on && md.look_view) || md.view); if (!T || !v || !(frameWithin(cam.A, F) || drawn.includes(F))) return false;
   const at = thLocalToFrame(T.def, T.pl, v.at || (md.cut && md.cut.at) || [0, (T.def.height_m || 0) / 2, 0]), dv = new V3(...(v.dir || [0, 0, 1])).applyQuaternion(T.xf.q).normalize();
   let D = (v.D || (T.def.radius_m || 1) * 2.4) * T.k; D = thAboveGround(F, at, D, dv);
   convertD(dv, F, cam.A); cam.dir.copy(dv); if (F.up) { const u = F.up.clone(); convertD(u, F, cam.A); cam.up.copy(u); } else orthoUp();

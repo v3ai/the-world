@@ -497,7 +497,8 @@
    "radius": 9.8209,
    "count": 2032,
    "tris": 4064,
-   "kind": "leaf"
+   "kind": "leaf",
+   "look_lod": "mid+far"
   },
   {
    "id": "crown_far",
@@ -518,7 +519,8 @@
    "radius": 9.6277,
    "count": 250,
    "tris": 9000,
-   "kind": "leaf"
+   "kind": "leaf",
+   "look_lod": "off"
   },
   {
    "id": "trunk_far",
@@ -681,7 +683,8 @@
    ],
    "radius": 0.7067,
    "tris": 432,
-   "kind": "wet"
+   "kind": "wet",
+   "look_section": true
   },
   {
    "id": "log_cambium",
@@ -701,7 +704,8 @@
    ],
    "radius": 0.7007,
    "tris": 432,
-   "kind": "wet"
+   "kind": "wet",
+   "look_section": true
   },
   {
    "id": "log_sapwood",
@@ -728,7 +732,8 @@
    "radius": 0.6242,
    "tris": 7488,
    "kind": "wood",
-   "shade": "tone"
+   "shade": "tone",
+   "look_section": true
   },
   {
    "id": "log_heartwood",
@@ -755,7 +760,8 @@
    "radius": 0.6088,
    "tris": 78912,
    "kind": "wood",
-   "shade": "tone"
+   "shade": "tone",
+   "look_section": true
   },
   {
    "id": "log_pith",
@@ -775,7 +781,8 @@
    ],
    "radius": 0.475,
    "tris": 288,
-   "kind": "wood"
+   "kind": "wood",
+   "look_section": true
   },
   {
    "id": "log_rays",
@@ -795,7 +802,8 @@
    ],
    "radius": 0.6017,
    "tris": 260,
-   "kind": "wood"
+   "kind": "wood",
+   "look_section": true
   },
   {
    "id": "flow_water",

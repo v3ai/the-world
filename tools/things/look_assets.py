@@ -17,6 +17,7 @@ SETS = [   # (source file under staging, file in assets/look, size in px, kind o
     ('ground/brown_mud_03/brown_mud_03_normal_gl_1k.jpg', 'brown_mud_03_normal_gl_512.jpg', 512, 'normal'),
     ('bark_rock_wood/dry_river_pebbles/dry_river_pebbles_color_1k.jpg', 'dry_river_pebbles_color_512.jpg', 512, 'color'),
     ('bark_rock_wood/dry_river_pebbles/dry_river_pebbles_normal_gl_1k.jpg', 'dry_river_pebbles_normal_gl_512.jpg', 512, 'normal'),
+    ('bark_rock_wood/mossy_rock/mossy_rock_color_1k.jpg', 'mossy_rock_color_512.jpg', 512, 'color'),
     ('bark_rock_wood/ambientcg_leafset016/ambientcg_leafset016_color_1k.jpg', 'LeafSet016_color_1k.jpg', 1024, 'color'),
     ('bark_rock_wood/ambientcg_leafset016/ambientcg_leafset016_opacity_1k.jpg', 'LeafSet016_opacity_1k.jpg', 1024, 'grey'),
     ('bark_rock_wood/ambientcg_leafset016/ambientcg_leafset016_normal_gl_1k.jpg', 'LeafSet016_normal_gl_512.jpg', 512, 'normal'),

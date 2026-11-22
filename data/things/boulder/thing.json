@@ -215,7 +215,8 @@
    ],
    "radius": 0.507,
    "tris": 9104,
-   "kind": "moss"
+   "kind": "moss",
+   "look_color": "#5b6a31"
   },
   {
    "id": "lichen",

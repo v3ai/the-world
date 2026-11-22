@@ -8,7 +8,7 @@
 export const KIND_NAMES = ['matte', 'plastic', 'metal', 'glass', 'chitin', 'skin', 'wet', 'muscle', 'bone', 'enamel', 'horn', 'eye', 'fur', 'feather',
   'leaf', 'petal', 'bark', 'wood', 'rock', 'soil', 'turf', 'fungus', 'wax', 'water',
   // added by js/things.js (TH_KINDS)
-  'wing', 'mucosa', 'cap', 'gill', 'stone', 'root', 'stem', 'mud', 'foil', 'polymer', 'powder', 'cartilage', 'shell', 'moss', 'lichen', 'marker'];
+  'wing', 'mucosa', 'cap', 'gill', 'stone', 'root', 'stem', 'mud', 'foil', 'polymer', 'powder', 'cartilage', 'shell', 'moss', 'lichen', 'marker', 'gloss_petal'];
 
 const same = (kind, ids) => Object.fromEntries(ids.map(i => [i, kind]));
 export const KINDS_OF = {
@@ -35,7 +35,7 @@ export const KINDS_OF = {
   },
   flower: {
     systems: { stems: 'stem', leaves: 'leaf', flowers: 'petal', buds: 'leaf', fruit: 'stem', roots: 'root', soil: 'soil', half: 'stem' },
-    ids: { hairs: 'stem', petioles: 'stem', sepals: 'leaf', h_sepal0: 'leaf', h_sepals: 'leaf', ...same('petal', ['h_petal0', 'h_petals']), ...same('wax', ['anthers', 'h_anthers', 'nectary_scales', 'nectary_pits', 'h_scales', 'h_pits']),
+    ids: { hairs: 'stem', petioles: 'stem', sepals: 'leaf', h_sepal0: 'leaf', h_sepals: 'leaf', ...same('gloss_petal', ['petals', 'h_petal0', 'h_petals']), ...same('wax', ['anthers', 'h_anthers', 'nectary_scales', 'nectary_pits', 'h_scales', 'h_pits']),
       ...same('stem', ['filaments', 'ovaries', 'styles', 'receptacles', 'flower_discs', 'h_filaments', 'h_ovaries', 'h_styles']), achenes: 'stem', s_pollen_sacs: 'powder' },
     tone: ['petals', 'h_petal0', 'h_petals'],
   },
@@ -61,7 +61,7 @@ export const KINDS_OF = {
   },
   soil: {
     systems: { topsoil: 'soil', subsoil: 'soil', parent: 'soil', turf: 'leaf', roots: 'root', fungi: 'fungus', worm_out: 'skin', worm_in: 'wet', animals: 'chitin' },
-    ids: { flints_a: 'stone', flints_b: 'stone', flints_c: 'stone', flints_s: 'stone', crumbs_a: 'soil', crumbs_b: 'soil', pore_back: 'soil', pore_water: 'water', litter: 'leaf', cast: 'soil', burrow: 'mud',
+    ids: { flints_a: 'stone', flints_b: 'stone', flints_c: 'stone', flints_s: 'stone', crumbs_a: 'soil', crumbs_b: 'soil', pore_back: 'soil', pore_water: 'water', litter: 'matte', cast: 'soil', burrow: 'mud',
       worm_setae: 'horn', woodlouse_eyes: 'eye', beetle_eyes: 'eye', springtail_body: 'chitin', mite_body: 'chitin', worm_gutcontent: 'soil', worm_dorsal_vessel: 'wet', worm_ventral_vessel: 'wet' },
   },
   boulder: {
@@ -89,9 +89,30 @@ export function applyKinds(thing) {
     else if (!KIND_NAMES.includes(k)) problems.push(`part ${p.id}: unknown kind ${k}`);
     else p.kind = k;
     if (tone.has(p.id)) p.shade = 'tone';
+    const lk = (LOOK_OF[thing.id] || {})[p.id]; if (lk) { if (lk.lod) p.look_lod = lk.lod; if (lk.color) p.look_color = lk.color; }
+    if ((SECTIONS[thing.id] || []).includes(p.id)) p.look_section = true;
   }
   return problems;
 }
+/* What a part does differently under the realistic look only (the app without it is left exactly as it is), written into thing.json as
+   `look_lod` (the detail tiers it is drawn in: 'off' for none) and `look_color` (its colour, where the drawn colour was chosen for flat
+   shading and reads wrong in real light). */
+/* Parts that are modelled cut faces (a half mushroom's flesh, a half flower's sections, the log's end grain): under the look they take
+   the cut face's floor of light (js/things.js thLkFill), like the faces drawn where a thing is clipped. */
+const SECTIONS = {
+  mushroom: ['c_flesh', 'c_stipe_sec', 'c_ring_sec', 'c_gill', 'c_cuticle', 'c_subcuticle', 'e_outer', 'e_veil', 'e_roof', 'e_stem', 'e_cap_cuticle', 'e_cap_sub', 'e_cap_flesh', 'e_gills'],
+  flower: ['s_receptacle', 's_pedicel', 's_filament', 's_anther_wall', 's_pollen_sacs', 's_carpel_wall', 's_carpel_cavity', 's_ovule', 's_embryosac'],
+  oak: ['log_phloem', 'log_cambium', 'log_sapwood', 'log_heartwood', 'log_pith', 'log_rays'],
+};
+export const LOOK_OF = {
+  oak: {
+    leaves_mid: { lod: 'mid+far' },   // every oak in view wears the same photographed leaves: the middle tier's tufts are drawn far away too
+    crown_far: { lod: 'off' },        // (fewer triangles than the smooth clumps they replace: 2,032 cards against 250 clumps of 44 triangles)
+  },
+  boulder: {
+    moss: { color: '#5b6a31' },       // moss cushions on rock (Grimmia, Hypnum) in photographs: a dull olive, not the drawing's lime (chosen against photographs; no measured albedo found)
+  },
+};
 
 /* The cut faces (thing.cut.faces), under the realistic look: what kind of material the cut goes through, and the pattern its section
    shows (js/things.js thFaceSurf): `grain` cells of the face's palette (rock, soil, a coating); `fibre` bundles of fibres parted by
@@ -104,7 +125,14 @@ export const FACE_LOOK = {
   fill: { kind: 'wet', pattern: 'grain' }, organ: { kind: 'wet', pattern: 'grain' }, gut: { kind: 'wet', pattern: 'grain' }, gland: { kind: 'wet', pattern: 'grain' },
   brain: { kind: 'wet', pattern: 'grain' }, nerve: { kind: 'wet', pattern: 'fibre' }, skin: { kind: 'skin', pattern: 'plain' }, tract: { kind: 'mucosa', pattern: 'plain' },
   air: { kind: 'mucosa', pattern: 'plain' }, blood_l: { kind: 'wet', pattern: 'plain' }, blood_r: { kind: 'wet', pattern: 'plain' },
-  ho: { kind: 'soil', pattern: 'grain' }, ha: { kind: 'soil', pattern: 'grain' }, hb: { kind: 'soil', pattern: 'grain' }, hc: { kind: 'soil', pattern: 'grain' },
+  /* the soil's horizons under the look: the drawn palette's hues, scaled in linear light to a measured albedo (mean over the face):
+     O 0.075 and A 0.11 (moist, humus-rich topsoil), B 0.20, C 0.38 (dry, light parent sand). Dark soils 0.1 to 0.2, light soils 0.4 to 0.5,
+     less when wet (Encyclopedia of Soil Science, 2006, "Albedo"; https://rd.springer.com/referenceworkentry/10.1007/1-4020-3266-8_32).
+     The drawn palette (flag off) is unlit and is left as it is. */
+  ho: { kind: 'soil', pattern: 'grain', palette: [[0x574631, 0.4], [0x413326, 0.3], [0x6f593c, 0.2], [0x846b47, 0.1]] },
+  ha: { kind: 'soil', pattern: 'grain', palette: [[0x6d543d, 0.4], [0x57422f, 0.3], [0x83674b, 0.2], [0x9a7c54, 0.1]] },
+  hb: { kind: 'soil', pattern: 'grain', palette: [[0x997a4d, 0.4], [0x85683e, 0.3], [0xac8e5d, 0.2], [0x795d37, 0.1]] },
+  hc: { kind: 'soil', pattern: 'grain', palette: [[0xbba980, 0.4], [0xab976c, 0.3], [0xc9b992, 0.2], [0x9a875e, 0.1]] },
   flint: { kind: 'stone', pattern: 'grain' }, root: { kind: 'root', pattern: 'grain' }, cast: { kind: 'soil', pattern: 'grain' },
   clit: { kind: 'wet', pattern: 'plain' }, circ: { kind: 'muscle', pattern: 'fibre' }, long: { kind: 'muscle', pattern: 'fibre' }, coel: { kind: 'wet', pattern: 'plain' },
   pharynx: { kind: 'muscle', pattern: 'fibre' }, oes: { kind: 'mucosa', pattern: 'plain' }, crop: { kind: 'mucosa', pattern: 'plain' }, gizz: { kind: 'muscle', pattern: 'fibre' },
