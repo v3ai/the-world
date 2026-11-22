@@ -127,12 +127,13 @@ FT.localgroup = {
       G.filter(g => g.dist_mpc <= 3.1 && g.name !== 'Milky Way').forEach(g => {
         const p = raDec3(g.ra_deg, g.dec_deg, g.dist_mpc * 1000).applyQuaternion(Q_EQ_TO_GAL).add(SUN_GAL);
         const kind = galKind(g.type), sz = Math.max(g.diam_kpc, .3), member = g.group === 'Local Group';
-        const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: galaxySpriteTex(kind), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, rotation: g.ra_deg * Math.PI / 180 }));
-        s.scale.set(sz * 1.3, kind === 'spiral' ? sz * .55 : sz, 1); s.position.copy(p); F.add(s); sprites.push(s);
+        const ph = SPX.on ? SPX.galOf(g.name) : null;
+        const s = ph ? SPX.galSprite(ph, sz) : new THREE.Sprite(new THREE.SpriteMaterial({ map: galaxySpriteTex(kind), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, rotation: g.ra_deg * Math.PI / 180 }));
+        if (!ph) s.scale.set(sz * 1.3, kind === 'spiral' ? sz * .55 : sz, 1); s.position.copy(p); F.add(s); sprites.push(s);
         const mk = markerSprite(member ? 0x9fc4ff : 0x8a9bb5, 6); mk.position.copy(p); F.add(mk);
         const id = /M31/.test(g.name) ? 'andromeda' : /Large Magellanic/.test(g.name) ? 'lmc' : /Small Magellanic/.test(g.name) ? 'smc' : 'lg_' + g.name;
         const facts = [['Distance from the Sun', spaceDist(g.dist_mpc)], ['Diameter', spaceSize(g.diam_kpc)], ['Group', member ? 'Local Group (a member)' : `${g.group} (a neighbour, not a Local Group member)`]];
-        const note = 'Its position and distance are catalogue values. The glow is a generic symbol for its type, not a picture.' + (g.approx ? ' Values approximate.' : '');
+        const note = (ph ? `Its position and distance are catalogue values. The picture is a photograph taken from the Earth (${ph.credit}), drawn facing you from wherever you look; its size is approximate.` : 'Its position and distance are catalogue values. The glow is a generic symbol for its type, not a picture.') + (g.approx ? ' Values approximate.' : '');
         const info = INFO[id] ? Object.assign({}, INFO[id], { facts, note }) : { title: g.name, tag: `${g.type} · ${g.group}`, body: `<p>${g.note || 'A galaxy near the Local Group.'}</p>`, facts, note };
         const hs = spaceHit(Math.max(sz * .4, .2), { id, priority: 2, info, sim: ['localgroup'], radius: sz, center: () => p.clone() }, { px: 12 });
         hs.position.copy(p); F.add(hs); F.pickables.push(hs);
@@ -143,6 +144,7 @@ FT.localgroup = {
     const ml = spaceLabel(F, mwo, 'Milky Way', 90, { cls: 'you', offset: new V3(0, 18, 0) }); ml.minSizeFn = () => cam.D > 8e21;
     F.blurb = 'The Milky Way, Andromeda, Triangulum and the smaller galaxies around them, at their catalogued positions.';
     F.note = 'What is real: each galaxy\'s sky position and distance (catalogue values). Each glow is a generic symbol for its type, not a photograph, and the Milky Way is the schematic model. Galaxies beyond about 1 Mpc (NGC 3109, Sculptor, Maffei) are neighbours, not members.';
+    if (SPX.on) F.note = 'What is real: each galaxy\'s sky position and distance (catalogue values). Andromeda, Triangulum and the two Magellanic Clouds are photographs taken from the Earth, so each shows the face we see, turned toward you from any direction, at an approximate size; the other galaxies are generic symbols for their type, and the Milky Way is the schematic model. Galaxies beyond about 1 Mpc (NGC 3109, Sculptor, Maffei) are neighbours, not members.';
   }
 };
 /* ---------- Milky Way (kpc, galactic coordinates, GC at origin, Sun at x = -8.2) ---------- */
@@ -183,7 +185,7 @@ FT.milkyway = {
     seg([['vis', 'Visible galaxy'], ['dm', 'Dark matter halo']], 'vis', k => { halo.visible = k === 'dm'; if (k === 'dm') { showInfo('darkhalo'); if (cam.D < 6e21) flyTo(FR.mw, new V3(), 1.2e22); } else if (cam.D > 6e21) flyTo(FR.mw, new V3(), 2e21); });
     F.blurb = 'Our galaxy: 100–400 billion stars. The Sun is about 27,000 light-years (8.2 kpc) from the centre.';
     F.note = 'What is real: the positions of the Sun and of Sagittarius A*. What is illustrative: every other star here is generated. The number of arms, their winding and the bar angle are an artist\'s impression, not the measured arms, and the dark-matter halo (roughly 200 kpc across its radius, schematic) is a smooth glow, not a map.';
-    F.update = () => { const k = smooth(1e19, 6e20, cam.D), gk = smooth(3e17, 3e19, cam.D); cg1.material.opacity = .7 * gk; cg2.material.opacity = gk; cg1.visible = cg2.visible = gk > .01; gal.material.uniforms.uMaxPx.value = lerp(1.7, 64, k); gal.material.uniforms.uOpacity.value = lerp(.55, 1, k) * F.alpha; };
+    F.update = () => { const k = smooth(1e19, 6e20, cam.D), gk = smooth(3e17, 3e19, cam.D); const pk = SPX.on ? 1 - SPX.pvNow() : 1; cg1.material.opacity = .7 * gk * pk; cg2.material.opacity = gk * pk; cg1.visible = cg2.visible = gk * pk > .01; gal.material.uniforms.uMaxPx.value = lerp(1.7, 64, k); gal.material.uniforms.uOpacity.value = lerp(.55, 1, k) * F.alpha * pk; };   // pk: near the Sun the photographed sky takes the place of the model's stars
   }
 };
 /* ---------- solar neighborhood: real stars (HYG), parsecs, equatorial three ---------- */
@@ -227,12 +229,14 @@ function cleanSpectral(sp) {
 const CON_NAMES = { And: 'Andromeda', Ant: 'Antlia', Aps: 'Apus', Aqr: 'Aquarius', Aql: 'Aquila', Ara: 'Ara', Ari: 'Aries', Aur: 'Auriga', Boo: 'Boötes', Cae: 'Caelum', Cam: 'Camelopardalis', Cnc: 'Cancer', CVn: 'Canes Venatici', CMa: 'Canis Major', CMi: 'Canis Minor', Cap: 'Capricornus', Car: 'Carina', Cas: 'Cassiopeia', Cen: 'Centaurus', Cep: 'Cepheus', Cet: 'Cetus', Cha: 'Chamaeleon', Cir: 'Circinus', Col: 'Columba', Com: 'Coma Berenices', CrA: 'Corona Australis', CrB: 'Corona Borealis', Crv: 'Corvus', Crt: 'Crater', Cru: 'Crux', Cyg: 'Cygnus', Del: 'Delphinus', Dor: 'Dorado', Dra: 'Draco', Equ: 'Equuleus', Eri: 'Eridanus', For: 'Fornax', Gem: 'Gemini', Gru: 'Grus', Her: 'Hercules', Hor: 'Horologium', Hya: 'Hydra', Hyi: 'Hydrus', Ind: 'Indus', Lac: 'Lacerta', Leo: 'Leo', LMi: 'Leo Minor', Lep: 'Lepus', Lib: 'Libra', Lup: 'Lupus', Lyn: 'Lynx', Lyr: 'Lyra', Men: 'Mensa', Mic: 'Microscopium', Mon: 'Monoceros', Mus: 'Musca', Nor: 'Norma', Oct: 'Octans', Oph: 'Ophiuchus', Ori: 'Orion', Pav: 'Pavo', Peg: 'Pegasus', Per: 'Perseus', Phe: 'Phoenix', Pic: 'Pictor', Psc: 'Pisces', PsA: 'Piscis Austrinus', Pup: 'Puppis', Pyx: 'Pyxis', Ret: 'Reticulum', Sge: 'Sagitta', Sgr: 'Sagittarius', Sco: 'Scorpius', Scl: 'Sculptor', Sct: 'Scutum', Ser: 'Serpens', Sex: 'Sextans', Tau: 'Taurus', Tel: 'Telescopium', Tri: 'Triangulum', TrA: 'Triangulum Australe', Tuc: 'Tucana', UMa: 'Ursa Major', UMi: 'Ursa Minor', Vel: 'Vela', Vir: 'Virgo', Vol: 'Volans', Vul: 'Vulpecula' };
 FT.neighborhood = {
   build(F) {
+    const sky = SPX.on ? SPX.skyMesh() : null; if (sky) { F.add(sky); F.update = () => SPX.skyStep(F, sky); }
     loadStars().then(({ f, meta, con }) => {
       if (!F.built) return;
       const n = f.length / 6, pos = new Float32Array(n * 3), mag = new Float32Array(n), col = new Float32Array(n * 3);
       for (let i = 0; i < n; i++) { const x = f[i * 6], y = f[i * 6 + 1], z = f[i * 6 + 2]; pos[i * 3] = x; pos[i * 3 + 1] = z; pos[i * 3 + 2] = -y; mag[i] = f[i * 6 + 3]; const c = bvColor(f[i * 6 + 4]); col.set(c.slice(0, 3), i * 3); }
+      if (SPX.on) col.set(SPX.starColors(f, n));
       const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('aMag', new THREE.BufferAttribute(mag, 1)); g.setAttribute('aColor', new THREE.BufferAttribute(col, 3));
-      const mat = starMaterial(), pts = new THREE.Points(g, mat); pts.frustumCulled = false; F.add(pts);
+      const mat = SPX.on ? SPX.starMat() : starMaterial(), pts = new THREE.Points(g, mat); pts.frustumCulled = false; F.add(pts);
       const names = {}; meta.named.forEach(([i, nm, sp, ly]) => names[i] = [nm, sp, ly]);
       const phys = meta.phys || {}, notes = meta.notes || {};
       // everything the card and the star scene need to know about star i
@@ -306,6 +310,7 @@ FT.neighborhood = {
       F.update = () => {
         mat.uniforms.uExp.value = 5 * Math.log10(Math.max(1, F.dLoc / 10)) + 4.5 * (1 - smooth(5, 60, F.dLoc)); // pulling far out, stars are brightened evenly so the catalogue stays visible
         if (F.conLines && F.conLines.visible && F.C) F.conLines.scale.setScalar(Math.max(5, F.C.length() * 2));
+        if (sky) SPX.skyStep(F, sky);
       };
     });
     const sunh = spaceHit(.0005, { id: 'sun', priority: 3, radius: 1e-6, center: () => new V3(), zoomTo: () => { flyTo(FR.solar, new V3(), 1.5e13); } }, { px: 14 }); F.add(sunh); F.pickables.push(sunh);
@@ -313,6 +318,7 @@ FT.neighborhood = {
     seg([['off', 'No constellations'], ['on', 'Constellation lines']], store.get('const', false) ? 'on' : 'off', k => { store.set('const', k === 'on'); if (F.conLines) F.conLines.visible = k === 'on'; });
     F.blurb = '109,400 real stars from the HYG catalog, at their measured positions and colours. All stars are brightened evenly (like a long exposure) so the faint ones show; their relative brightness is true.';
     F.note = 'Real: the positions, colours and brightness of the catalogued stars. Constellation lines, if shown, are a pattern on our sky, drawn on a sphere around you: the stars in each figure are at very different distances and are not connected in space.';
+    if (SPX.on) F.note = 'Real: the positions, colours and brightness of the 109,400 catalogued stars (each colour is the colour of a blackbody at the star\'s temperature, worked out from its measured B-V index). Behind them, near the Sun, is a photograph of our sky: the ESO panorama by S. Brunier (CC BY 4.0), with its single stars taken out so that they are not drawn twice; its brightness is the panorama\'s own long exposure, so the band of the Milky Way is brighter than the eye sees it, and it does not move as you travel (it fades out from 100 to 400 pc, where our sky would have changed). Constellation lines, if shown, are a pattern on our sky: the stars in each figure are at very different distances and are not connected in space.';
     F.spawn = (T, hint) => {
       if (!F.stars) return null;
       const f = F.stars.f; let i = -1;
@@ -415,7 +421,8 @@ function sunQuarter(u, v) { // a quarter disc of radius 1 in the plane spanned b
 }
 FT.sun = {
   build(F) {
-    const mat = sunPhotoMat(), shell = new THREE.Mesh(new THREE.SphereGeometry(1, 256, 128), mat); F.add(shell);
+    const mat = SPX.on ? SPX.sunMat(sunPhotoMat()) : sunPhotoMat(), shell = new THREE.Mesh(new THREE.SphereGeometry(1, 256, 128), mat); F.add(shell);
+    if (SPX.on) F.exposure = SPX.SUN_FILTER;   // as through a solar filter
     let cutOn = false, userCut = false; const sg = new V3(1, 1, 1), cutGrp = new THREE.Group(); F.add(cutGrp);
     const rc = THREE.Mesh.prototype.raycast, loc = new V3();
     shell.raycast = function (ray, hits) { const tmp = []; rc.call(shell, ray, tmp); tmp.forEach(h => { loc.copy(h.point).add(F.C); if (!(cutOn && loc.x * sg.x > 0 && loc.y * sg.y > 0 && loc.z * sg.z > 0)) hits.push(h); }); };
@@ -430,6 +437,7 @@ FT.sun = {
     const cutSeg = seg([['whole', 'Whole Sun'], ['cut', 'Cut-away']], 'whole', k => { userCut = k === 'cut'; });
     F.blurb = 'The Sun at its true size: a ball of plasma 1.39 million km across. Zoom in to the surface, or open the cut-away to see its layers.';
     F.note = 'To scale: the Sun\'s size, its limb darkening and the granule size (about 1,000 km). Interior: radii, temperatures and densities come from standard solar models; the cut-away colours are a temperature diagram, not what you would see. Sunspots are not drawn.';
+    if (SPX.on) F.note = 'Seen as through a solar filter that passes about one part in 36,000 of the light: the colour is the Sun\'s own (a 5,772 K blackbody, which on a screen is white with the faintest warm cast), and the edge is darker and redder than the middle (limb darkening, measured). The granules (about 1,000 km) are a generated pattern of the right size, not an image of today\'s Sun; sunspots, the corona and prominences are not drawn (the corona is a million times fainter than the disc and is seen only when the disc is covered). Interior: radii, temperatures and densities come from standard solar models; the cut-away colours are a temperature diagram, not what you would see.';
     F.spawnD = 6e5;   // above the floor: the patch of gas is waiting when the camera reaches the floor, and so lifts it (js/engine.js zoomFloor)
     Object.defineProperty(F, 'floorD', { get: () => cam.T.length() > .95 ? 2e5 : 0 }); // the Sun has no solid surface to land on: the view stops 200 km above the photosphere; use "See what it is made of" for the gas itself
     surfaceAtt(F, (i, c) => i ? 0 : (c.set(0, 0, 0), 1));   // aimed at the corona or the glow: the zoom lands on the photosphere
@@ -441,7 +449,7 @@ FT.sun = {
       mat.uniforms.uPix.value = Math.max(cam.D / F.unit, 1e-9) * 2 * Math.tan(25 * Math.PI / 180) / H * 1.0;
       faces.forEach(m => { m.visible = cutOn; }); lbls.forEach(o => { o.visible = cutOn; });
       cutSeg.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === (cutOn ? 'cut' : 'whole')));
-      corona.visible = halo.visible = cam.D > 6e8;
+      corona.visible = halo.visible = !SPX.on && cam.D > 6e8;   // under the look: no painted glow (a camera's glare comes from the bloom, from the light itself)
       if (cam.A === F && cam.T.length() > .95 && cam.D < 2.2e5 && performance.now() - (F._msg || 0) > 8000) { F._msg = performance.now(); message('The Sun has no solid surface to land on. Choose "See what it is made of" to go into its gas.'); }
     };
   }
@@ -472,13 +480,13 @@ function voyagerAt(V, ms, out) { const dd = ms / 86400000 + 2440587.5 - 2461362.
 FT.solarsystem = {
   build(F) {
     F.scene.background = null;
-    F.add(new THREE.AmbientLight(0x404a66, .25)); const pl = new THREE.PointLight(0xfff4e0, 2.2, 0, 0); F.add(pl);
+    F.add(new THREE.AmbientLight(0x404a66, .25)); const pl = SPX.on ? new THREE.PointLight(0xffffff, 1, 0, 0) : new THREE.PointLight(0xfff4e0, 2.2, 0, 0); F.add(pl);
     const KM = 1 / 1.495978707e8, PXK = 2 * Math.tan(25 * Math.PI / 180) / H, _v = new V3(), _w = new V3(), CP = new V3(), SUND = new V3(), PX = new V3(); let SD0 = 1, SUNHALF = 0;
-    const sunR = 695700 * KM, sunMat = sunPhotoMat(), sunM = new THREE.Mesh(new THREE.SphereGeometry(sunR, 128, 64), sunMat);
+    const sunR = 695700 * KM, sunMat = SPX.on ? SPX.sunMat(sunPhotoMat()) : sunPhotoMat(), sunM = new THREE.Mesh(new THREE.SphereGeometry(sunR, 128, 64), sunMat);
     const sunGrp = new THREE.Group(); F.add(sunGrp); sunGrp.add(sunM); F.pick(sunM, 'sun'); sunM.userData.madeOf = 'plasma';
     const toSun = () => { flyTo(FR.sun, new V3(), 3e9); };
     sunM.userData.zoomTo = toSun;
-    [glowSprite(0xffc070, sunR * 14, .3), glowSprite(0xfff1d0, sunR * 4, .5)].forEach(g => { g.renderOrder = -1; sunGrp.add(g); });
+    if (!SPX.on) [glowSprite(0xffc070, sunR * 14, .3), glowSprite(0xfff1d0, sunR * 4, .5)].forEach(g => { g.renderOrder = -1; sunGrp.add(g); });   // under the look the Sun's own light makes its glare
     if (FR.sun) FR.sun.proxy = sunGrp; // the stand-in disappears when the detailed Sun frame is fully shown
     const sunH = hitSphere(1, 'sun', 3); sunH.userData.zoomTo = toSun; sunH.userData.madeOf = 'plasma'; F.add(sunH); F.pickables.push(sunH);
     const sunMk = markerSprite(0xfff1c8, 16); F.add(sunMk); F.label(sunM, 'Sun', { offset: new V3(0, sunR * 2, 0) });
@@ -492,7 +500,7 @@ FT.solarsystem = {
         const grp = new THREE.Group(); F.add(grp);
         const rAU = d.radius_km * KM;
         const map = d.texture ? tex(d.texture) : null;
-        const mesh = new THREE.Mesh(new THREE.SphereGeometry(rAU, 48, 32), new THREE.MeshStandardMaterial({ map, color: map ? 0xffffff : new THREE.Color(d.color || '#bbbbbb'), roughness: .9 }));
+        const mesh = new THREE.Mesh(new THREE.SphereGeometry(rAU, 48, 32), SPX.on ? SPX.bodyMat(name, map, new THREE.Color(d.color || '#bbbbbb'), true) : new THREE.MeshStandardMaterial({ map, color: map ? 0xffffff : new THREE.Color(d.color || '#bbbbbb'), roughness: .9 }));
         grp.add(mesh);
         if (d.ring && d.ring.texture) { const ri = d.ring.inner_km * KM, ro = d.ring.outer_km * KM, rg = new THREE.RingGeometry(ri, ro, 128, 1); const pa = rg.attributes.position, uv = rg.attributes.uv, v = new V3(); for (let i = 0; i < pa.count; i++) { v.fromBufferAttribute(pa, i); uv.setXY(i, (v.length() - ri) / (ro - ri), .5); } const ring = new THREE.Mesh(rg, new THREE.MeshBasicMaterial({ map: tex(d.ring.texture), transparent: true, side: THREE.DoubleSide, depthWrite: false })); ring.rotation.x = -Math.PI / 2; grp.add(ring); }
         grp.rotation.z = (d.axial_tilt_deg || 0) * Math.PI / 180;
@@ -843,9 +851,9 @@ const SPX = (() => {
     });
   }
   /* a body's material: its map (or tint) through the table of kinds; airless bodies get the lunar-Lambert patch */
-  X.bodyMat = (name, fallbackMap, fallbackColor) => {
-    const b = BODY[name], file = b && b.file, mp = file ? map(file) : fallbackMap;
-    const col = b && b.tint ? b.tint : mp ? 0xffffff : fallbackColor;
+  X.bodyMat = (name, fallbackMap, fallbackColor, own) => {   // own: keep the body's own map (the small spheres of the solar-system view)
+    const b = BODY[name], file = !own && b && b.file, mp = file ? map(file) : fallbackMap;
+    const col = b && b.tint && (file || !mp) ? b.tint : mp ? 0xffffff : fallbackColor;
     const m = LOOK.material(/Jupiter|Saturn|Uranus|Neptune|Venus/.test(name) ? 'cloudtop' : 'regolith', col, { extra: { map: mp || null } });
     m.roughness = 1; m.metalness = 0;
     if (b && b.ll || ICY_BODIES.test(name) || /Mercury|Moon|Phobos|Deimos|Ceres|Io|Ganymede|Callisto|Mimas|Tethys|Dione|Rhea|Iapetus/.test(name)) lunar(m);
@@ -1084,5 +1092,92 @@ if (SPX.on) (() => {
       nMoons ? 'Moon sizes and distances are true; where each moon sits on its orbit is illustrative. Smaller moons are not drawn.' : '',
       d.ring ? (d.ring.texture ? 'The rings are lit as a layer of ice particles: their brightness on the lit and the unlit face (light scattered once exactly, more than once approximately), the planet\'s shadow on them and their shadow on the planet are computed. The ring map is an artist\'s rendering of the measured ring profiles, and all the rings are given one pale tan; the rings are drawn with no thickness (the main rings are about 10 to 20 metres thick), and the faint outer rings are not drawn.' : 'The planet\'s faint rings are not drawn.') : '',
     ].filter(Boolean).join(' ');
+  };
+})();
+/* ---- the Sun, the stars, the sky and the galaxies under the look ---- */
+if (SPX.on) (() => {
+  const X = SPX, HIGH = X.high;
+  /* The colour of a blackbody of temperature T on a display (sRGB primaries, D65 white): Mitchell Charity's table ("What color is a
+     blackbody?", vendian.org, 2001, 2-degree observer), between its rows in a straight line. The Sun (5,772 K) comes out almost white. */
+  const CH = [[2000, 0xff8912], [2500, 0xffa148], [3000, 0xffb46b], [3500, 0xffc489], [4000, 0xffd1a3], [4500, 0xffdbba], [5000, 0xffe4ce], [5500, 0xffece0], [5800, 0xfff0e9], [6000, 0xfff3ef], [6500, 0xfff9fd], [7000, 0xf5f3ff], [8000, 0xe3e9ff], [9000, 0xd6e1ff], [10000, 0xccdbff], [12000, 0xbfd3ff], [15000, 0xb3ccff], [20000, 0xa8c5ff], [30000, 0x9fbfff], [40000, 0x9bbcff]];
+  const rgbOf = h => [(h >> 16 & 255) / 255, (h >> 8 & 255) / 255, (h & 255) / 255];
+  X.bbColor = T => {
+    T = clamp(T, 2000, 40000); let i = 0; while (i < CH.length - 2 && T > CH[i + 1][0]) i++;
+    const a = rgbOf(CH[i][1]), b = rgbOf(CH[i + 1][1]), u = (T - CH[i][0]) / (CH[i + 1][0] - CH[i][0]);
+    return [lerp(a[0], b[0], u), lerp(a[1], b[1], u), lerp(a[2], b[2], u)];
+  };
+  /* The Sun's surface in the units of this app (a white matte card facing the Sun at 1 AU shows 1): its radiance is pi / (solid angle of
+     the disc at 1 AU, 6.8e-5 sr), about 46,000 times the card. In the Sun's own scene the picture is exposed as through a solar filter
+     that passes about 1/20,000 of the light; everywhere else the Sun is far brighter than anything the screen can show. */
+  X.SUN_L = 46200;
+  const SUNC = X.bbColor(5772).map(c => Math.pow(c, 2.2));
+  X.sunMat = m => {
+    m.uniforms.uSxL = { value: X.SUN_L };
+    const f = m.fragmentShader, a = 'lt=mix(vec3(1.),mix(vec3(1.,.78,.55),vec3(1.),lane),wg);', b = 'vec3 base=vec3(1.,.93,.76);\n        gl_FragColor=vec4(base*limb*lt*b*.93,uOpacity);';
+    if (!f.includes(a) || !f.includes(b)) { console.warn('space look: the Sun\'s shader has changed'); return m; }
+    m.fragmentShader = 'uniform float uSxL;\n' + f.replace(a, 'lt=mix(vec3(1.),mix(vec3(1.,.93,.86),vec3(1.),lane),wg);')
+      .replace(b, `vec3 base=vec3(${SUNC.map(c => c.toFixed(4)).join(',')});\n        gl_FragColor=vec4(base*limb*lt*b*uSxL,uOpacity);\n        #include <tonemapping_fragment>\n        #include <encodings_fragment>`);
+    m.needsUpdate = true; return m;
+  };
+  X.SUN_FILTER = 1.3 / X.SUN_L / .9;   // the disc's centre a little below white, so that the darker edge shows
+  /* the stars: each one a point of light spread by the optics (a Gaussian about 0.7 pixel wide, and a faint wide skirt of glare), its total
+     light from its magnitude; bright stars fill their core and spread, as in a photograph. Colours from the table above. */
+  X.starMat = () => new THREE.ShaderMaterial({
+    uniforms: { uScale: { value: PIXR_BASE }, uPixK: PIXK, uOpacity: { value: 1 }, uLim: { value: 6.8 }, uExp: { value: 0 } },
+    vertexShader: LDV(`attribute float aMag; attribute vec3 aColor; uniform float uScale; uniform float uPixK; uniform float uLim; uniform float uExp; varying vec3 vC; varying float vPk; varying float vS; varying float vSig;
+      void main(){ vec4 mv = modelViewMatrix * vec4( position, 1.0 ); float d = max( length( mv.xyz ), 1e-7 );
+        float m = aMag + 5.0 * log( d ) / 2.302585 - 5.0 - uExp; float pk = 1.5 * pow( 10.0, -0.4 * ( m - 1.0 ) ) * ( 1.0 - smoothstep( uLim - 1.0, uLim + 1.5, m ) );
+        float sig = 0.7 * uScale * uPixK, r = sig * 4.0 * sqrt( 2.0 * log( max( pk * 0.006 * 255.0, 1.0 ) ) ), r0 = sig * sqrt( 2.0 * log( max( pk * 255.0, 1.0 ) ) );
+        vS = clamp( 2.0 * max( r, r0 ) + 2.0, 2.0, 28.0 * uScale * uPixK ); vPk = pk; vSig = sig; vC = aColor;
+        gl_PointSize = vS; gl_Position = projectionMatrix * mv; }`),
+    fragmentShader: LDF(`uniform float uOpacity; varying vec3 vC; varying float vPk; varying float vS; varying float vSig;
+      void main(){ float d = length( gl_PointCoord - 0.5 ) * vS, s2 = vSig * vSig;
+        float I = vPk * ( exp( - d * d / ( 2.0 * s2 ) ) + 0.006 * exp( - d * d / ( 32.0 * s2 ) ) ) * smoothstep( 0.5 * vS, 0.5 * vS - 1.0, d );
+        if ( I < 0.002 ) discard; gl_FragColor = vec4( vC * I * uOpacity, 1.0 ); }`),
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+  });
+  X.starColors = (f, n) => { const col = new Float32Array(n * 3); for (let i = 0; i < n; i++) col.set(X.bbColor(bvColor(f[i * 6 + 4])[3]), i * 3); return col; };
+  /* The Milky Way as photographed from the Earth (ESO/S. Brunier), on a sphere round the camera, with the single stars taken out of the
+     picture so that the catalogue's stars are not drawn twice. It is our sky, so it is shown only near the Sun (fading out from 100 to 400 pc,
+     where the sky would really have changed). Its brightness is the panorama's own composite exposure. */
+  const Mg = [[-0.0548755604, -0.8734370902, -0.4838350155], [0.4941094279, -0.4448296300, 0.7469822445], [-0.8676661490, -0.1980763734, 0.4559837762]];
+  X.skyGain = .55;
+  X.skyMesh = () => {
+    const t = X.map(HIGH ? 'look_milkyway_4k.jpg' : 'look_milkyway_2k.jpg'); t.generateMipmaps = false; t.minFilter = THREE.LinearFilter;
+    const M3 = new THREE.Matrix3().set(...Mg[0], ...Mg[1], ...Mg[2]);
+    const m = new THREE.ShaderMaterial({
+      uniforms: { tSky: { value: t }, uM: { value: M3 }, uGain: { value: X.skyGain }, uOpacity: { value: 1 } },
+      vertexShader: LDV(`varying vec3 vD; void main(){ vD = position; gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 ); }`),
+      fragmentShader: LDF(`uniform sampler2D tSky; uniform mat3 uM; uniform float uGain; uniform float uOpacity; varying vec3 vD;
+        void main(){ vec3 L = normalize( vD ), e = vec3( L.x, - L.z, L.y ), g = e * uM;   // three to equatorial; rows of uM are the galactic axes
+          float l = atan( g.y, g.x ), b = asin( clamp( g.z, -1.0, 1.0 ) );
+          vec2 uv = vec2( fract( 0.5 - l / 6.2831853 ), 0.5 + b / 3.14159265 );
+          gl_FragColor = vec4( texture2D( tSky, uv ).rgb * uGain * uOpacity, 1.0 ); }`),
+      side: THREE.BackSide, depthTest: false, depthWrite: false, transparent: true, blending: THREE.AdditiveBlending,
+    });
+    const s = new THREE.Mesh(new THREE.SphereGeometry(1, 64, 32), m); s.renderOrder = -1e9; s.frustumCulled = false; s.userData.noPick = true;
+    s.raycast = () => {};
+    return s;
+  };
+  X.pv = 0;   // how much of the panorama shows (1 near the Sun); the generated stars of the Galaxy model give way to it
+  const _p = new V3();
+  X.pvNow = () => { if (!FR.nb) return 0; camPosIn(FR.nb, _p); return 1 - smooth(100, 400, _p.length()); };   // the camera's distance from the Sun, pc
+  X.skyStep = (F, sky) => {
+    X.pv = X.pvNow();
+    const c = F.cam; if (F.C) sky.position.copy(F.C); sky.scale.setScalar(Math.sqrt(c.near * c.far));   // centred on the camera, between its near and far planes
+    sky.material.uniforms.uOpacity.value = X.pv * (F.alpha === undefined ? 1 : F.alpha); sky.visible = X.pv > .002;
+  };
+  /* the galaxies with a photograph: the galaxy itself, faded out at its edges; width of the picture in units of the galaxy's catalogued diameter */
+  X.GAL = {
+    andromeda: { file: 'look_gal_m31_1k.jpg', w: 1.06, credit: 'Brody Wesner (CC0)' },
+    lg_M33: { file: 'look_gal_m33_1k.jpg', w: 1.25, credit: 'ESO (CC BY 4.0)' },
+    lmc: { file: 'look_gal_lmc_1k.jpg', w: 1.0, credit: 'ESO (CC BY 4.0)' },
+    smc: { file: 'look_gal_smc_1k.jpg', w: 1.5, credit: 'CTIO/NOIRLab/NSF/AURA/SMASH/D. Nidever; processing T. Rector, M. Zamani, D. de Martin (CC BY 4.0)' },
+  };
+  X.galOf = name => /M31/.test(name) ? X.GAL.andromeda : /M33/.test(name) ? X.GAL.lg_M33 : /Large Magellanic/.test(name) ? X.GAL.lmc : /Small Magellanic/.test(name) ? X.GAL.smc : null;
+  X.galSprite = (g, sz) => {
+    const t = X.map(g.file, tt => { const k = tt.image.height / tt.image.width; s.scale.set(sz * g.w, sz * g.w * k, 1); });
+    const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+    s.scale.set(sz * g.w, sz * g.w * .7, 1); return s;
   };
 })();
