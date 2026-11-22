@@ -835,7 +835,19 @@ function zoomBy(lnDelta, x, y) {
          can be seen), the part first pointed at stays the aim while it is still drawn under the pointer: scrolling at the pond's water ends in water, not
          in the mud that shows through it. (A layered thing's Auto peel is different: there the descent ends in what the peel uncovers, as before.) */
       const stays = held && now2 && held.frame === now2.frame && held.frame.aimHolds && held.obj !== now2.obj && (held.obj.userData.shown || 0) > .05 && visibleChain(held.obj);
-      if (held && (!now2 || stays)) { lastZoomHit = held; if (stays) held.held = true; }
+      /* ... and a thing that drifts across the resting pointer (the park's clouds move at 0.6 m/s) does not take the zoom over. Scaling about the pivot keeps the pointer's
+         ray where it was, so a thing that comes between the eye and the point the zoom is closing on has either moved there or has only just been drawn (a tree grown
+         big enough to be picked): it is taken once it is seen standing still at a second look, never while it moves; until then the first point is kept (also when that point was on a
+         place the zoom has since gone down past: London's land, entering the park). */
+      let drifts = false;
+      if (held && now2 && now2.obj !== held.obj && _pvHit && _pvHit.meters < camPosIn(held.frame, _ztV).distanceTo(held.point) * held.frame.unit * .97) {
+        const r = _pvHit.frame.root, q = _ztW.set(0, 0, 0); let a = _pvHit.obj;   // where it is in its frame, from the local matrices (world matrices lag the camera's moves)
+        for (; a && a !== r; a = a.parent) { if (a.matrixAutoUpdate) a.updateMatrix(); q.applyMatrix4(a.matrix); }
+        if (!a) _pvHit.obj.getWorldPosition(q).add(_pvHit.frame.C);
+        const s = zoom.seen;
+        drifts = !s || s.obj !== _pvHit.obj || s.p.distanceTo(q) > 1e-6 * _pvHit.meters / _pvHit.frame.unit; zoom.seen = { obj: _pvHit.obj, p: q.clone() };
+      }
+      if (held && (!now2 || stays || drifts)) { lastZoomHit = held; if (stays) held.held = true; }
       else {
         zoom.pivot = zoom.pivot || { p }; zoom.pivot.p.copy(p); if (!anchored.includes(zoom.pivot)) anchored.push(zoom.pivot);
         if (zoomLabel && zoomLabel.t > now - 50) { ztSet(zoomLabel.h, x, y); zoomLabel = null; }   // the pointer is on a name's text: that thing is the target
