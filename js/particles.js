@@ -21,23 +21,33 @@ PX.COL = { quark: 0xa98bd9, lepton: 0x58b88a, neutrino: 0x8fd6c4, boson: 0xe58d5
 PX.CC = [0xe2533f, 0x3fae6b, 0x3f80e0];        // colour charge "red", "green", "blue" (a label, not a real colour)
 PX.ACC = [0x2bbfcf, 0xd24fae, 0xe8c23a];       // anticolours: anti-red = cyan, anti-green = magenta, anti-blue = yellow
 PX.CL = ['R', 'G', 'B']; PX.ACL = ['R̄', 'Ḡ', 'B̄'];
+/* Under the realistic look (?look=2) these three views are diagrams (docs/DESIGN.md 3.1, 3.2): drawn flat on the models' graphite ground, in the
+   figure code's colours (section 4), with symbols set upright in the interface's sans, as particle symbols are printed. Nothing glows: a halo
+   that marked a state becomes a hairline ring. Off, nothing changes. */
+PX.LOOK = typeof MD !== 'undefined' && MD.on;
+if (PX.LOOK) {
+  PX.COL = { quark: 0x6b4a9c, lepton: 0x3f7a3a, neutrino: 0x1f7a78, boson: 0xb4412f, higgs: 0x96690a, proton: 0xb4412f, neutron: 0x5d6670 };
+  PX.CC = [0xc0453a, 0x3f8a52, 0x3a68b8]; PX.ACC = [0x2f8f99, 0xa0467f, 0xa8862a];
+}
+PX.SANS = "-apple-system, BlinkMacSystemFont, 'IBM Plex Sans', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif";
+PX.ring = () => canvasTex('px|lkring', 256, 256, g => { g.clearRect(0, 0, 256, 256); g.strokeStyle = '#fff'; g.lineWidth = 3; g.beginPath(); g.arc(128, 128, 88, 0, TAU); g.stroke(); });
 PX.CSS = c => '#' + new THREE.Color(c).getHexString();
 const _px_v = new V3(), _px_v2 = new V3(), _px_q = new THREE.Quaternion();
 
 /* ---------- text glyphs drawn on the balls (so meaning never rests on colour alone) ---------- */
 PX.glyph = (main, o = {}) => {
-  const key = 'px|' + JSON.stringify([main, o.sub || '', o.sup || '', !!o.anti, o.line || '', o.fg || '']);
+  const key = 'px|' + (PX.LOOK ? 'lk|' : '') + JSON.stringify([main, o.sub || '', o.sup || '', !!o.anti, o.line || '', o.fg || '']);
   return canvasTex(key, 256, 256, g => {
     g.clearRect(0, 0, 256, 256); g.textBaseline = 'alphabetic'; g.fillStyle = o.fg || '#ffffff'; g.strokeStyle = o.fg || '#ffffff';
     const big = o.line ? 118 : 138, y0 = o.line ? 138 : 164;
-    g.font = `italic 600 ${big}px 'Source Serif 4', Georgia, 'Times New Roman', serif`;
+    g.font = PX.LOOK ? `500 ${big}px ${PX.SANS}` : `italic 600 ${big}px 'Source Serif 4', Georgia, 'Times New Roman', serif`;
     const w = g.measureText(main).width; let x = 128 - w / 2 - (o.sub || o.sup ? 16 : 0);
-    g.shadowColor = 'rgba(0,0,0,.45)'; g.shadowBlur = 6;
+    if (!PX.LOOK) { g.shadowColor = 'rgba(0,0,0,.45)'; g.shadowBlur = 6; }
     g.fillText(main, x, y0);
-    if (o.anti) { g.lineWidth = 9; g.lineCap = 'round'; g.beginPath(); g.moveTo(x + w * .1, y0 - big * .78); g.lineTo(x + w * .95, y0 - big * .78); g.stroke(); }
-    g.font = `italic 600 ${big * .5}px 'Source Serif 4', Georgia, serif`;
+    if (o.anti) { g.lineWidth = PX.LOOK ? 7 : 9; g.lineCap = PX.LOOK ? 'butt' : 'round'; g.beginPath(); g.moveTo(x + w * .1, y0 - big * .78); g.lineTo(x + w * .95, y0 - big * .78); g.stroke(); }
+    g.font = PX.LOOK ? `500 ${big * .5}px ${PX.SANS}` : `italic 600 ${big * .5}px 'Source Serif 4', Georgia, serif`;
     if (o.sub) g.fillText(o.sub, x + w + 2, y0 + big * .18);
-    if (o.sup) { g.font = `600 ${big * .5}px 'Source Serif 4', Georgia, serif`; g.fillText(o.sup, x + w + 2, y0 - big * .5); }
+    if (o.sup) { g.font = PX.LOOK ? `500 ${big * .5}px ${PX.SANS}` : `600 ${big * .5}px 'Source Serif 4', Georgia, serif`; g.fillText(o.sup, x + w + 2, y0 - big * .5); }
     if (o.line) { g.font = `600 ${big * .42}px 'IBM Plex Sans', system-ui, sans-serif`; const lw = g.measureText(o.line).width; g.fillText(o.line, 128 - lw / 2, 226); }
   });
 };
@@ -55,7 +65,7 @@ PX.orb = (r, color, o = {}) => {
     glyph.scale.set(r * 1.55, r * 1.55, 1); glyph.renderOrder = 5; grp.add(glyph); parts.push({ m: glyph.material, base: 1 });
   }
   let halo = null;
-  if (o.halo) { halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex(), color, transparent: true, depthWrite: false })); halo.scale.set(r * o.halo, r * o.halo, 1); grp.add(halo); parts.push({ m: halo.material, base: o.haloA || .3 }); }
+  if (o.halo) { halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: PX.LOOK ? PX.ring() : glowTex(), color, transparent: true, depthWrite: false })); halo.scale.set(r * o.halo, r * o.halo, 1); grp.add(halo); parts.push({ m: halo.material, base: o.haloA || .3 }); }
   let hit = null;
   if (o.hit !== false) { hit = new THREE.Mesh(new THREE.SphereGeometry(r * (o.hitK || 1.25), 12, 8), hitMat()); grp.add(hit); }
   Object.assign(grp.userData, { body, ol, glyph, halo, hit, parts, r, a: 1 });
@@ -133,7 +143,7 @@ PX.dashRing = (key, col, lw) => canvasTex('px|ring|' + key, 512, 512, g => {
 FT.proton = {
   build(F, o) {
     let kind = o.kind === 'neutron' ? 'neutron' : 'proton';
-    F.illo = true; F.env = { bg: 0x0b1222, opaque: true };
+    F.illo = true; F.env = { bg: PX.LOOK ? MD.BG : 0x0b1222, opaque: true }; MD.kind(F, 'Diagram');
     F.add(new THREE.HemisphereLight(0xe3ebff, 0x40486e, .8)); const dl = new THREE.DirectionalLight(0xffffff, .85); dl.position.set(2, 3, 4); F.add(dl);
     const R = PX.PR, rnd = rng(kind === 'neutron' ? 91 : 17);
     const root = new THREE.Group(); F.add(root);
@@ -148,7 +158,7 @@ FT.proton = {
     const flav = PX.quarksOf(kind), cols = [0, 1, 2];
     const colOrder = shuffle(cols.slice(), rnd);
     flav.forEach((fl, i) => {
-      const orb = PX.orb(.17, PX.CC[colOrder[i]], { glyph: { main: fl, line: PX.CL[colOrder[i]] }, halo: 4.2, haloA: .32, hitK: 1.2 });
+      const orb = PX.orb(.17, PX.CC[colOrder[i]], { glyph: { main: fl, line: PX.CL[colOrder[i]] }, halo: PX.LOOK ? 0 : 4.2, haloA: .32, hitK: 1.2 });
       orb.userData.id = PX.FLAV[fl].node; orb.userData.node = PX.FLAV[fl].node; orb.userData.priority = 2; orb.userData.title = PX.FLAV[fl].name + ' (valence)'; orb.userData.sm = fl === 'u' ? 'up' : 'down';
       root.add(orb); F.pickables.push(orb);
       S.Q.push({ orb, fl, ci: colOrder[i], tgt: colOrder[i], col: new THREE.Color(PX.CC[colOrder[i]]), p: new V3(), ph: [rnd() * 6, rnd() * 6, rnd() * 6] });
@@ -162,7 +172,7 @@ FT.proton = {
     for (let i = 0; i < NH; i++) hseg.push({ k: i % 3, s: rnd(), off: new V3(gauss(rnd), gauss(rnd), gauss(rnd)).multiplyScalar(.075) });
     const hg = new THREE.BufferGeometry(); hg.setAttribute('position', new THREE.BufferAttribute(hpos, 3)); hg.setAttribute('color', new THREE.BufferAttribute(hcol, 3));
     const hazeMat = new THREE.PointsMaterial({ size: .1, map: glowTex(), vertexColors: true, transparent: true, opacity: .5, depthWrite: false, sizeAttenuation: true });
-    const haze = new THREE.Points(hg, hazeMat); haze.frustumCulled = false; root.add(haze);
+    const haze = new THREE.Points(hg, hazeMat); haze.frustumCulled = false; if (!PX.LOOK) root.add(haze);   // the look: no haze of glowing dots (the flux tubes stand for the field)
     const junction = new THREE.Object3D(); root.add(junction);
     // a gluon: a small ball in two halves, one half the colour it carries and the other its anticolour
     const halfGeo = [new THREE.SphereGeometry(.1, 18, 12, 0, Math.PI), new THREE.SphereGeometry(.1, 18, 12, Math.PI, Math.PI)];
@@ -192,7 +202,7 @@ FT.proton = {
     labs.push({ L: F.label(edge, 'Edge', { offset: new V3(0, 0, 0) }), text: () => S.kind === 'proton' ? 'Proton edge ≈ 0.84 fm (charge radius)' : 'Edge: drawn as for the proton (not measured the same way)', pri: 3 });
     F.name = kind === 'proton' ? 'Proton' : 'Neutron';
     F.blurb = kind === 'proton' ? 'Inside a proton: two up quarks and a down quark, trading gluons, in a sea of quark–antiquark pairs.' : 'Inside a neutron: one up quark and two down quarks, trading gluons, in a sea of quark–antiquark pairs.';
-    F.note = 'A cartoon, not a photograph. Quarks have no measured size (no structure found down to about 10⁻¹⁹ m), nothing here has a definite position, and the sizes are not to scale. The share of momentum carried by gluons depends on the energy scale: at 2 GeV one lattice calculation gives 51 ± 3%, while global fits to scattering data give about 40% (the neutron should match, by symmetry).';
+    F.note = (PX.LOOK ? 'Diagram: no picture of the inside of a proton is possible. ' : 'A cartoon, not a photograph. ') + 'Quarks have no measured size (no structure found down to about 10⁻¹⁹ m), nothing here has a definite position, and the sizes are not to scale. The share of momentum carried by gluons depends on the energy scale: at 2 GeV one lattice calculation gives 51 ± 3%, while global fits to scattering data give about 40% (the neutron should match, by symmetry).';
     F.spawnD = 2.4e-16;
     // the three valence quarks are what a zoom ends on: it closes on the one nearest the pointer, and the Standard Model view opens at that quark
     F.att = {
@@ -304,7 +314,7 @@ PX.nucleonGlyph = (isP) => ({ main: isP ? 'p' : 'n' });
 FT.nucleus = {
   build(F, o) {
     const Z = Math.max(0, o.Z === undefined ? 8 : o.Z | 0), N = Math.max(0, o.N === undefined ? 8 : o.N | 0), A = Math.max(1, Z + N);
-    F.illo = true; F.env = { opaque: true, bg: 0x0b1222 };
+    F.illo = true; F.env = { opaque: true, bg: PX.LOOK ? MD.BG : 0x0b1222 }; MD.kind(F, 'Diagram');
     F.add(new THREE.HemisphereLight(0xe3ebff, 0x40486e, .8)); const dl = new THREE.DirectionalLight(0xffffff, .85); dl.position.set(5, 8, 6); F.add(dl);
     const rn = PX.PR, r = rng(A * 11 + Z), pts = PX.pack(A), small = A > 90;
     const types = shuffle([...Array(Z).fill(true), ...Array(N).fill(false)], r); if (!types.length) types.push(true);
@@ -316,7 +326,7 @@ FT.nucleus = {
       const u = orb.userData; u.id = isP ? 'proton' : 'neutron'; u.node = isP ? 'sm_proton' : 'sm_neutron'; u.kind = u.id; u.priority = 3; u.madeOf = 'quarks'; u.title = isP ? 'Proton' : 'Neutron';
       u.base = new V3(pts[i * 3], pts[i * 3 + 1], pts[i * 3 + 2]); orb.position.copy(u.base); u.seed = r() * 100;
       F.add(orb); F.pickables.push(orb); F.nucleons.push(orb);
-      if (isP) orb.userData.body.material.emissive.setHex(0x2a0a05);
+      if (isP && !PX.LOOK) orb.userData.body.material.emissive.setHex(0x2a0a05);
     });
     const Rn = PX.nuclearR(A);
     const whole = new THREE.Group(); whole.userData = { id: 'nucleus_all', node: 'sm_residual_strong', priority: 0, title: `Nucleus (${Z} protons, ${N} neutrons)` };
@@ -331,7 +341,7 @@ FT.nucleus = {
     const labE = F.label(edge, 'edge', {});
     F.name = F.name || `Nucleus${el ? ' of ' + el : ''}`;
     F.blurb = `${Z} proton${Z === 1 ? '' : 's'} and ${N} neutron${N === 1 ? '' : 's'}, packed at about the real density. Click one to open it and look inside.`;
-    F.note = 'Schematic. Nucleons are drawn as touching balls the size of a proton (0.84 fm); in truth each is a fuzzy quantum state, the neighbours overlap, and the arrangement here is random. Red balls marked p are protons, pale balls marked n are neutrons.';
+    F.note = (PX.LOOK ? 'Diagram: nucleons' : 'Schematic. Nucleons') + ' are drawn as touching balls the size of a proton (0.84 fm); in truth each is a fuzzy quantum state, the neighbours overlap, and the arrangement here is random. ' + (PX.LOOK ? 'Red discs marked p are protons, grey discs marked n are neutrons (the colours are a code).' : 'Red balls marked p are protons, pale balls marked n are neutrons.');
     F.spawnD = 4e-15;
     // the nucleons are what a zoom ends on: it closes on the one under the pointer, or on the one nearest the pointer when it is beside the nucleus (engine.js, "attractors").
     // From the moment the camera is in this frame: the nucleus is a speck in the view then, and a target left to drift toward the pointer would wander out of it again.
@@ -453,6 +463,7 @@ PX.eVtext = ev => ev >= 1e9 ? (ev / 1e9).toPrecision(4).replace(/\.?0+$/, '') + 
 PX.famColor = d => d.id.startsWith('nu_') ? PX.COL.neutrino : d.family === 'quark' ? PX.COL.quark : d.family === 'lepton' ? PX.COL.lepton : d.id === 'higgs' ? PX.COL.higgs : PX.COL.boson;
 PX.glyphSpec = (id, anti) => { const M = PX.META[id], d = PX.P[id], g = Object.assign({}, anti ? M.a : M.m); let c = d.charge; g.line = anti && !M.self ? PX.chgText(c, true) : PX.chgText(c); return g; };
 PX.accent = { strong: 0xe2533f, em: 0xf0c330, weak: 0x4aa3df, higgs: 0xe9c94f, gravity: 0xb9c2d3 };
+if (PX.LOOK) PX.accent = { strong: 0xd0614f, em: 0xd9b14a, weak: 0x5f8fd2, higgs: 0xc9a94a, gravity: 0x9aa3ad };   // the look: the index yellow means "you are here" only
 PX.ringTex = () => canvasTex('px|ring2', 256, 256, g => { g.clearRect(0, 0, 256, 256); g.strokeStyle = '#fff'; g.lineWidth = 7; g.beginPath(); g.arc(128, 128, 100, 0, TAU); g.stroke(); const gr = g.createRadialGradient(128, 128, 90, 128, 128, 128); gr.addColorStop(0, 'rgba(255,255,255,.45)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, 256, 256); });
 PX.hollow = (orb, h) => { // 0 = solid toon ball, 1 = hollow (antimatter) ball with a coloured ink edge
   const u = orb.userData; if (u.hol === h) return; u.hol = h;
@@ -461,7 +472,7 @@ PX.hollow = (orb, h) => { // 0 = solid toon ball, 1 = hollow (antimatter) ball w
 
 FT.sm = {
   build(F, o) {
-    const D = PX.D; F.illo = true; F.env = { bg: 0x0a1120, opaque: true };
+    const D = PX.D; F.illo = true; F.env = { bg: PX.LOOK ? MD.BG : 0x0a1120, opaque: true }; MD.kind(F, 'Diagram', PX.LOOK ? 'Colours group the particles (quarks violet, charged leptons green, neutrinos teal, force carriers red, the Higgs boson ochre); they are a code, not colours of the particles.' : '');
     F.add(new THREE.HemisphereLight(0xe3ebff, 0x40486e, .8)); const dl = new THREE.DirectionalLight(0xffffff, .85); dl.position.set(3, 5, 6); F.add(dl);
     F.name = 'The Standard Model';
     F.blurb = 'The seventeen kinds of particle that, as far as experiments have reached, everything else is made of. Click any one.';
@@ -523,7 +534,7 @@ FT.sm = {
     const lnMat = new THREE.LineBasicMaterial({ color: 0xf0c330, transparent: true, opacity: .45 }); const lines = new THREE.LineSegments(lnGeo, lnMat); lines.frustumCulled = false; board.add(lines);
     // decay stage
     const stage = new THREE.Group(); stage.visible = false; board.add(stage);
-    const dParent = PX.orb(1.1, 0xffffff, { glyph: { main: 'μ' }, hit: false }), dKids = [0, 1, 2, 3].map(() => PX.orb(.8, 0xffffff, { glyph: { main: 'e' }, hit: false })), flash = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex(), color: 0xfff1b0, transparent: true, depthWrite: false })); flash.scale.set(1, 1, 1);
+    const dParent = PX.orb(1.1, 0xffffff, { glyph: { main: 'μ' }, hit: false }), dKids = [0, 1, 2, 3].map(() => PX.orb(.8, 0xffffff, { glyph: { main: 'e' }, hit: false })), flash = new THREE.Sprite(new THREE.SpriteMaterial({ map: PX.LOOK ? PX.ring() : glowTex(), color: PX.LOOK ? 0xcfd3d8 : 0xfff1b0, transparent: true, depthWrite: false })); flash.scale.set(1, 1, 1);
     const vtx = new THREE.Object3D(); stage.add(vtx);
     stage.add(dParent, flash); dKids.forEach(k => stage.add(k));
     const dLabs = [F.label(dParent, 'parent', { offset: new V3(0, -1.5, 0) })].concat(dKids.map((k, i) => F.label(k, 'k' + i, { offset: new V3(0, -1.2, 0) })));
