@@ -35,7 +35,7 @@ def rank_map(mask, lo, hi, power=1.0):
 tau = np.zeros_like(r)
 rings = [(74658, 92000, 0.05, 0.12), (92000, 117580, 0.4, 3.6), (122170, 136775, 0.4, 0.9)]
 for a, b, lo, hi in rings:
-    m = (r >= a) & (r < b); tau += rank_map(m, lo, hi, 1.6 if hi > 2 else 1.0)
+    m = (r >= a) & (r < b); tau += rank_map(m, lo, hi, 0.8 if hi > 2 else 1.0)
 tau[(r >= 117580) & (r < 122170)] = 0.1                       # the Cassini Division (assumed)
 tau[(r >= 74500) & (r < 74658)] = 0.02                         # the D ring's outer part, very faint
 
@@ -51,7 +51,7 @@ for c, w, t in ringlets:
 
 # brightness of the particles (display value, linear-ish): B brightest, A next, C and the Cassini Division darker
 c = np.full_like(r, 0.5)
-c[(r < 92000)] = 0.38; c[(r >= 92000) & (r < 117580)] = 0.56; c[(r >= 117580) & (r < 122170)] = 0.40; c[r >= 122170] = 0.52
+c[(r < 92000)] = 0.38; c[(r >= 92000) & (r < 117580)] = 0.62; c[(r >= 117580) & (r < 122170)] = 0.40; c[r >= 122170] = 0.52
 tau = tau.reshape(W, SS).mean(1); c = c.reshape(W, SS).mean(1)
 al = 1 - np.exp(-tau)
 px = np.stack([c * al, c * al * 0.95, c * al * 0.88, al], -1)
