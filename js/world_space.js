@@ -437,7 +437,7 @@ FT.sun = {
     const cutSeg = seg([['whole', 'Whole Sun'], ['cut', 'Cut-away']], 'whole', k => { userCut = k === 'cut'; });
     F.blurb = 'The Sun at its true size: a ball of plasma 1.39 million km across. Zoom in to the surface, or open the cut-away to see its layers.';
     F.note = 'To scale: the Sun\'s size, its limb darkening and the granule size (about 1,000 km). Interior: radii, temperatures and densities come from standard solar models; the cut-away colours are a temperature diagram, not what you would see. Sunspots are not drawn.';
-    if (SPX.on) F.note = 'Seen as through a solar filter that passes about one part in 36,000 of the light: the colour is the Sun\'s own (a 5,772 K blackbody, which on a screen is white with the faintest warm cast), and the edge is darker and redder than the middle (limb darkening, measured). The granules (about 1,000 km) are a generated pattern of the right size, not an image of today\'s Sun; sunspots, the corona and prominences are not drawn (the corona is a million times fainter than the disc and is seen only when the disc is covered). Interior: radii, temperatures and densities come from standard solar models; the cut-away colours are a temperature diagram, not what you would see.';
+    if (SPX.on) F.note = 'Seen as through a solar filter that passes about one part in 46,000 of the light: the colour is the Sun\'s own (a 5,772 K blackbody, which on a screen is white with the faintest warm cast), and the edge is darker and redder than the middle (limb darkening, measured). The granules (about 1,000 km) are a generated pattern of the right size, not an image of today\'s Sun; sunspots, the corona and prominences are not drawn (the corona is a million times fainter than the disc and is seen only when the disc is covered). Interior: radii, temperatures and densities come from standard solar models; the cut-away colours are a temperature diagram, not what you would see.';
     F.spawnD = 6e5;   // above the floor: the patch of gas is waiting when the camera reaches the floor, and so lifts it (js/engine.js zoomFloor)
     Object.defineProperty(F, 'floorD', { get: () => cam.T.length() > .95 ? 2e5 : 0 }); // the Sun has no solid surface to land on: the view stops 200 km above the photosphere; use "See what it is made of" for the gas itself
     surfaceAtt(F, (i, c) => i ? 0 : (c.set(0, 0, 0), 1));   // aimed at the corona or the glow: the zoom lands on the photosphere
@@ -1119,14 +1119,14 @@ if (SPX.on) (() => {
       .replace(b, `vec3 base=vec3(${SUNC.map(c => c.toFixed(4)).join(',')});\n        gl_FragColor=vec4(base*limb*lt*b*uSxL,uOpacity);\n        #include <tonemapping_fragment>\n        #include <encodings_fragment>`);
     m.needsUpdate = true; return m;
   };
-  X.SUN_FILTER = 1.3 / X.SUN_L / .9;   // the disc's centre a little below white, so that the darker edge shows
+  X.SUN_FILTER = 1 / X.SUN_L / .9;   // the disc's centre well below white, as a photograph through a filter is exposed, so that the darker edge shows
   /* the stars: each one a point of light spread by the optics (a Gaussian about 0.7 pixel wide, and a faint wide skirt of glare), its total
      light from its magnitude; bright stars fill their core and spread, as in a photograph. Colours from the table above. */
   X.starMat = () => new THREE.ShaderMaterial({
     uniforms: { uScale: { value: PIXR_BASE }, uPixK: PIXK, uOpacity: { value: 1 }, uLim: { value: 6.8 }, uExp: { value: 0 } },
     vertexShader: LDV(`attribute float aMag; attribute vec3 aColor; uniform float uScale; uniform float uPixK; uniform float uLim; uniform float uExp; varying vec3 vC; varying float vPk; varying float vS; varying float vSig;
       void main(){ vec4 mv = modelViewMatrix * vec4( position, 1.0 ); float d = max( length( mv.xyz ), 1e-7 );
-        float m = aMag + 5.0 * log( d ) / 2.302585 - 5.0 - uExp; float pk = 1.5 * pow( 10.0, -0.4 * ( m - 1.0 ) ) * ( 1.0 - smoothstep( uLim - 1.0, uLim + 1.5, m ) );
+        float m = aMag + 5.0 * log( d ) / 2.302585 - 5.0 - uExp; float pk = 1.0 * pow( 10.0, -0.4 * ( m - 1.0 ) ) * ( 1.0 - smoothstep( uLim - 1.0, uLim + 1.5, m ) );
         float sig = 0.7 * uScale * uPixK, r = sig * 4.0 * sqrt( 2.0 * log( max( pk * 0.006 * 255.0, 1.0 ) ) ), r0 = sig * sqrt( 2.0 * log( max( pk * 255.0, 1.0 ) ) );
         vS = clamp( 2.0 * max( r, r0 ) + 2.0, 2.0, 28.0 * uScale * uPixK ); vPk = pk; vSig = sig; vC = aColor;
         gl_PointSize = vS; gl_Position = projectionMatrix * mv; }`),
