@@ -388,7 +388,7 @@
    "count": 18663,
    "tris": 74652,
    "kind": "leaf",
-   "look_color": "#4c6436"
+   "look_color": "#55703e"
   },
   {
    "id": "acorn_nuts",
@@ -500,7 +500,7 @@
    "tris": 4064,
    "kind": "leaf",
    "look_lod": "mid+far",
-   "look_color": "#4c6436"
+   "look_color": "#55703e"
   },
   {
    "id": "crown_far",

@@ -107,17 +107,20 @@ const SECTIONS = {
 /* Colours under the look are chosen against photographs opened for the purpose (no measured albedo of these surfaces was found); each
    keeps roughly the brightness of the drawn colour and takes the photograph's hue (the ratios of red, green and blue in the lit parts):
    - oak leaves: an English oak in July, Baginton (Wikimedia Commons, "Baginton oak tree july06.JPG", CC BY-SA 3.0): the crown's lit
-     leaves #a8c28e, median #6e8456: a dull blue-green, far less yellow than the drawing's #4f8a2e;
+     leaves #a8c28e, median #6e8456: a dull green, far less yellow than the drawing's #4f8a2e. Drawn #55703e: between the photograph's
+     hue and the drawing's lightness (a judgement: no measured albedo of oak leaves in the visible was found; the photograph's own
+     exposure is unknown);
    - robin: "Erithacus rubecula with cocked head.jpg" (Wikimedia Commons, Francis C. Franklin, CC BY-SA 3.0): orange breast and face,
      lit #96522d; bluish-grey border #9698a9; upperparts grey-brown, olive-tinged (#a89b8e median); belly buff-white #cfbea8; and the
      text of Wikipedia, "European robin": "an orange breast and face lined by a bluish grey on the sides of the neck and chest. The
      upperparts are brownish, or olive-tinged in British birds, and the belly whitish";
    - dog: a yellow Labrador in sun ("Labrador on Quantock (2175262184).jpg", CC BY-SA 2.0): flank #f9d3ab lit, the ears darker and
-     redder (#c58c60, about 0.8 of the flank's lightness), the legs and chest paler (#fbeed9); the drawing's #e8cd8a is too yellow. */
+     redder (#c58c60, about 0.8 of the flank's lightness; drawn at 0.85, since the model's ear lies flat on the head and a darker flap
+     read as a patch stuck on), the legs and chest paler (#fbeed9); the drawing's #e8cd8a is too yellow. */
 export const LOOK_OF = {
   oak: {
-    leaves: { color: '#4c6436' },
-    leaves_mid: { lod: 'mid+far', color: '#4c6436' },   // every oak in view wears the same photographed leaves: the middle tier's tufts are drawn far away too
+    leaves: { color: '#55703e' },
+    leaves_mid: { lod: 'mid+far', color: '#55703e' },   // every oak in view wears the same photographed leaves: the middle tier's tufts are drawn far away too
     crown_far: { lod: 'mid+far', color: '#34492a' },   // drawn inside the tufts as the crown's shaded inner mass (js/things.js thLkCrownMass), in the colour of oak leaves in shade (the same photograph's shaded crown, #3d4f2a, at the drawing's brightness)
   },
   robin: {
@@ -130,7 +133,7 @@ export const LOOK_OF = {
     f_prim: { color: '#5a4a3a' }, f_sec: { color: '#5e4d3c' }, f_tert: { color: '#64513f' }, f_tail: { color: '#4f4234' },
   },
   dog: {
-    coat: { color: '#d8b48c' }, coat_mid: { color: '#d8b48c' }, coat_far: { color: '#d8b48c' }, fur: { color: '#dcb990' }, ears: { color: '#b98d63' },
+    coat: { color: '#d8b48c' }, coat_mid: { color: '#d8b48c' }, coat_far: { color: '#d8b48c' }, fur: { color: '#dcb990' }, ears: { color: '#c19870' },
   },
   boulder: {
     moss: { color: '#5b6a31' },       // moss cushions on rock (Grimmia, Hypnum) in photographs: a dull olive, not the drawing's lime (chosen against photographs; no measured albedo found)
