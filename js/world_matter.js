@@ -48,6 +48,8 @@ const MOL_GROUPS = { amino_acid: 'Amino acids', cofactor: 'Cofactors and vitamin
    photographed in a studio: the foundation's studio rig (one environment, one lamp), materials of a kind from LOOK.KINDS, a plain graphite
    ground, far parts fading into it (a depth cue), and contact darkening between touching spheres. With the look off, MD.on is false
    and nothing here runs. */
+const _mdV = new V3(), _mdB = new THREE.Box3();
+if (typeof LOOK !== 'undefined' && LOOK.on && LOOK.KINDS && !LOOK.KINDS.satin) LOOK.KINDS.satin = { rough: .66 };   // a kind this family adds (DESIGN 3.5: a scene may add a kind)
 const MD = {
   on: typeof LOOK !== 'undefined' && LOOK.on && LOOK.part('pbr'),
   BG: 0x16191c,                                   // the studio ground: graphite, the same for every model scene
@@ -55,7 +57,7 @@ const MD = {
      carbon is the other common reading), nitrogen blue, oxygen red, sulfur yellow, phosphorus orange, chlorine green, sodium violet, iron
      rust-orange, each toned to a colour a real surface can have (DESIGN 3.5: no channel near 0 or 255, nothing purely saturated). An
      element not listed keeps its data colour, toned the same way. The card's colour key and the scene use the same values. */
-  CPK: { H: 0xe6e6e3, C: 0x50555b, N: 0x4166c8, O: 0xcc4137, S: 0xd9b843, P: 0xd98a35, F: 0x8cbf5c, Cl: 0x53ad55, Br: 0x9a4a3a, I: 0x7a4f9a,
+  CPK: { H: 0xe6e6e3, C: 0x7b828b, N: 0x4166c8, O: 0xcc4137, S: 0xd9b843, P: 0xd98a35, F: 0x8cbf5c, Cl: 0x53ad55, Br: 0x9a4a3a, I: 0x7a4f9a,
     Na: 0x8b6ccf, K: 0x8a62c4, Li: 0xa77ccc, Mg: 0x79a650, Ca: 0x9aa1a8, Fe: 0xc8743f, Cu: 0xc58a5c, Zn: 0x8a93b0, Au: 0xd6ae4c, Al: 0xb3a7aa, Si: 0xc4ab86,
     Ti: 0x9ea3a9, Co: 0xc98c9a, He: 0xd9e3e3, Ar: 0x86b7c4, B: 0xd0a08a },
   _cpk: {},
@@ -82,12 +84,19 @@ const MD = {
     if (F.exposure === undefined) F.exposure = MD.EXPOSURE; if (F._lkKeyI === undefined) F._lkKeyI = MD.KEY;
     F.env = Object.assign({}, F.env || {}, { opaque: true, bg: MD.BG }); if (F.scene.background && F.scene.background.isColor) F.scene.background.setHex(MD.BG);
     const fog = new THREE.Fog(MD.BG, 1e9, 2e9); F.scene.fog = fog; const near = o.near || .9, far = o.far || 3.2, u0 = F.update;
-    F.update = function (dt, t) { if (u0) u0.call(this, dt, t);
+    F.update = function (dt, t) { if (u0) u0.call(this, dt, t); if (F._mdTick) F._mdTick();
       const bg = F.scene.background; if (bg && bg.isColor && bg.getHex() !== MD.BG) { bg.setHex(MD.BG); F.env = Object.assign({}, F.env, { bg: MD.BG }); }   // the ground stays the family's (a later dressing may set its own)
       if (F.scene.fog !== fog) F.scene.fog = fog; if (fog.color.getHex() !== MD.BG) fog.color.setHex(MD.BG);
       if (cam.A === F) { const d = cam.D / F.unit; fog.near = d * near; fog.far = d * far; } else { fog.near = 1e9; fog.far = 2e9; } };
   },
-  mat(color, kind, o) { const m = LOOK.material(kind || 'plastic', color, o); m.envMapIntensity *= MD.ENVK; return m; },
+  /* every model material: the kind's roughness, the room's share cut, and a depth cue that stops short of the ground: far parts lose at
+     most FOGMAX of their colour to it, so a dark atom at the back (carbon) keeps its own tone and never reads as a hole */
+  FOGMAX: .5,
+  /* a crowd of atoms (liquid water, a large crystal) in a satin finish: the same highlight repeated on a thousand beads reads as a pile of
+     plastic beads; a small molecule keeps the plastic of a model kit */
+  KIND_CROWD: 'satin',
+  mat(color, kind, o) { const m = LOOK.material(kind || 'plastic', color, o); m.envMapIntensity *= MD.ENVK; return MD.fogCap(m); },
+  fogCap(m) { return LOOK.patch(m, 'mdfog' + MD.FOGMAX, sh => { sh.fragmentShader = sh.fragmentShader.replace('#include <fog_fragment>', THREE.ShaderChunk.fog_fragment.replace('fogColor, fogFactor', 'fogColor, min( fogFactor, ' + MD.FOGMAX.toFixed(2) + ' )')); }); },
   /* a thin film (a membrane): a lit surface that is nearly clear where it is seen face on and denser where it is seen edge on, as a
      bubble or a membrane in a microscope is. Its reflections of the studio are part of it. a0, a1: opacity face on and edge on. */
   film(color, a0, a1, kind) {
@@ -95,25 +104,36 @@ const MD = {
     return LOOK.patch(m, 'mdfilm' + a0 + '_' + a1, sh => { sh.fragmentShader = sh.fragmentShader.replace('#include <tonemapping_fragment>',   // r128 writes gl_FragColor just before the tone curve
       `{ float mdF = pow( 1.0 - abs( dot( normalize( normal ), normalize( vViewPosition ) ) ), 2.2 ); gl_FragColor.a *= mix( ${a0.toFixed(3)}, ${a1.toFixed(3)}, mdF ); }\n#include <tonemapping_fragment>`); });
   },
+  /* a membrane seen edge on, as an electron micrograph shows it: two thin darker lines with a paler core where the surface turns away
+     from the eye (the band of the silhouette where the view runs along the surface); far thicker than the real 7 nm or so, as every
+     outline at this scale is */
+  bilayer(m) {
+    return LOOK.patch(m, 'mdbilayer', sh => { sh.fragmentShader = sh.fragmentShader.replace('#include <tonemapping_fragment>',
+      `{ float mdU = abs( dot( normalize( normal ), normalize( vViewPosition ) ) );
+         float mdL = smoothstep( 0.03, 0.06, mdU ) * ( 1.0 - smoothstep( 0.09, 0.12, mdU ) ) + smoothstep( 0.17, 0.2, mdU ) * ( 1.0 - smoothstep( 0.23, 0.26, mdU ) );
+         float mdC = smoothstep( 0.1, 0.13, mdU ) * ( 1.0 - smoothstep( 0.16, 0.19, mdU ) );
+         gl_FragColor.rgb = mix( gl_FragColor.rgb, gl_FragColor.rgb * 0.45, mdL ); gl_FragColor.a = max( gl_FragColor.a, 0.75 * mdL + 0.55 * mdC ); }
+#include <tonemapping_fragment>`); });
+  },
   /* the cell's parts in one code of muted colours (DESIGN 3.2: colours a code, named as such in the note); chlorophyll green is real */
-  CELL: { membrane: 0xd8c9c6, cytoplasm: 0x23272b, nucleus: 0x8e86b5, pore: 0xc9c2dc, nucleolus: 0x5d4d86, chromatin: 0xb6a7d2, er: 0x6d9fb4, golgi: 0xc6a55c,
-    mito: 0xcf8a5f, cristae: 0x9a5538, lysosome: 0x8fab62, chloroplast: 0x3f7f3a, vacuole: 0x9cc1d2, ribosome: 0xd9d2c4, cytoskeleton: 0xc8c2b4, cellwall: 0xb3c993,
+  CELL: { membrane: 0xd8c9c6, cytoplasm: 0x23272b, nucleus: 0x8e86b5, pore: 0xc9c2dc, nucleolus: 0x5d4d86, chromatin: 0xb6a7d2, er: 0x8aa2ad, golgi: 0xc6a55c,
+    mito: 0xcf8a5f, cristae: 0x9a5538, lysosome: 0xa3a77f, chloroplast: 0x3f7f3a, vacuole: 0x9cc1d2, ribosome: 0xd9d2c4, cytoskeleton: 0xc8c2b4, cellwall: 0xb3c993,
     bacwall: 0xb8c98e, nucleoid: 0xb9a8d6, flagellum: 0xcbb98a, head: 0xd9a95e, tail: 0xe6d9ae, channel: 0x8e7cc3, glyco: 0x6fae7c, sugar: 0xd6aede, ion: 0x7fc9d6 },
   restyleCell(F, c) {
     if (!MD.on) return; const K = MD.CELL;
     const idOf = o => { for (let x = o; x && x !== c.group; x = x.parent) if (x.userData && x.userData.id) return x.userData.id; return ''; };
     const std = (o, col, kind) => { const m = o.material; if (m && m.isMeshStandardMaterial && !m.transparent) { m.color.setHex(col); if (m.emissive) m.emissive.setRGB(0, 0, 0); if (m.map) { m.map = null; m.needsUpdate = true; } LOOK.dress(m, kind || 'wet'); m.envMapIntensity *= MD.ENVK; m._lkUn = true; } else { const n = MD.mat(col, kind || 'wet'); n.side = m && m.side || THREE.FrontSide; n.userData = Object.assign({}, m && m.userData); n._lkUn = true; o.material = n; } };
-    const film = (o, col, a0, a1) => { const n = MD.film(col, a0, a1); n.userData = Object.assign({}, o.material && o.material.userData); o.material = n; };
+    const film = (o, col, a0, a1, kind) => { const n = MD.film(col, a0, a1, kind); n.side = o.material && o.material.side || THREE.FrontSide; n.userData = Object.assign({}, o.material && o.material.userData); o.material = n; };
     const drop = [];
     c.group.traverse(o => {
       if (o.isPoints) { drop.push(o); return; }
       const id = idOf(o), m = o.material; if (!m || Array.isArray(m)) return;
       if (m.isShaderMaterial && m.uniforms && m.uniforms.uInt) {   // the additive rim shells: the membrane becomes a film, the others go
-        if (id === 'membrane' && o.userData.id === 'membrane') film(o, K.membrane, .05, .62); else drop.push(o); return; }
+        if (id === 'membrane' && o.userData.id === 'membrane') { film(o, K.membrane, .04, .5); MD.bilayer(o.material); } else drop.push(o); return; }
       if (o.isLineSegments) { if (id === 'cellwall' || !id && m.opacity > .5) { m.color.setHex(K.cellwall); m.opacity = .35; } else { m.color.setHex(K.cytoskeleton); m.opacity = .14; } return; }
       if (m.isMeshBasicMaterial) {
         if (!m.visible) return;
-        if (id === 'cytoplasm') { m.color.setHex(K.cytoplasm); m.opacity = .55; return; }
+        if (id === 'cytoplasm') { film(o, K.cytoplasm, .62, .12, 'matte'); return; }   // a volume: denser through the middle than at the rim, so the cell is a body, not a flat disc
         if (id === 'nucleoid') { drop.push(o); return; }                                  // the nucleoid's halo
         if (id === 'channel') { std(o, K.ion, 'plastic'); return; }                         // the ions passing through
         return;                                                                            // scale bars stay annotations
@@ -122,10 +142,10 @@ const MD = {
         case 'nucleus': if (o.userData.id === 'nucleus') film(o, K.nucleus, .22, .8); else std(o, K.pore); break;
         case 'nucleolus': std(o, K.nucleolus); break;
         case 'chromatin': std(o, K.chromatin); break;
-        case 'er': std(o, K.er); m.transparent = false; m.opacity = 1; break;
+        case 'er': std(o, K.er, 'matte'); m.transparent = false; m.opacity = 1; break;   // a membrane sheet seen at this scale: matte, not wrap
         case 'golgi': std(o, K.golgi); break;
         case 'mito': if (m.transparent) film(o, K.mito, .3, .9); else std(o, K.cristae); break;
-        case 'lysosome': std(o, K.lysosome); break;
+        case 'lysosome': std(o, K.lysosome, 'matte'); break;
         case 'chloroplast': std(o, K.chloroplast, 'leaf'); break;
         case 'vacuole': film(o, K.vacuole, .06, .5); break;
         case 'ribosome': std(o, K.ribosome); break;
@@ -140,11 +160,23 @@ const MD = {
       }
     });
     drop.forEach(o => o.parent && o.parent.remove(o));
-    c.group.traverse(o => { const m = o.material; if (m && !Array.isArray(m)) m._lkUn = true; });   // the colours above are final: the foundation's generic toning of a cell (look.js, DRESS.cell) leaves them alone
+    c.group.traverse(o => { const m = o.material; if (m && !Array.isArray(m)) m._lkUn = true; });
+    /* ribosomes are drawn at their true size: where one is under about a pixel it is not drawn (a part smaller than a pixel lit one pixel
+       here and there, and read as specks); from about 2 px it is fully there */
+    let rib = null; c.group.traverse(o => { if (o.isInstancedMesh && o.userData.id === 'ribosome') rib = o; });
+    if (rib) { const rm = rib.material, r0 = rib.geometry.parameters.radius || .0165; rm.transparent = true;
+      rib.onBeforeRender = (rr, sc, camera) => { const s = rib.matrixWorld.getMaxScaleOnAxis(), d = Math.max(1e-9, camera.position.distanceTo(_mdV.setFromMatrixPosition(rib.matrixWorld))), px = 2 * r0 * s / d * H / (2 * Math.tan(camera.fov * Math.PI / 360));
+        const a = Math.min(1, Math.max(0, (px - 1) / 1.2)); rm.opacity = a * (rm.userData.baseOp === undefined ? 1 : rm.userData.baseOp); rm.depthWrite = a > .99; };
+      F._mdRib = rib; }
+    /* the labels' stems end on the part they name: the anchor is put on the top of the part (its vertices, as it turns), not above it */
+    const LBL = (F.labels || []).filter(L => L.off && L.off.y > 0 && L.off.x === 0 && L.obj && (L.obj.isMesh || L.obj.isGroup));
+    LBL.forEach(L => { L._mdOff0 = L.off.y; });
+    let tLbl = 0; F._mdTick = () => { const now = performance.now(); if (now - tLbl < 400) return; tLbl = now;
+      LBL.forEach(L => { if (!L.obj.visible) return; L.obj.updateWorldMatrix(true, true); _mdB.setFromObject(L.obj); if (_mdB.isEmpty()) return; L.obj.getWorldPosition(_mdV); const k = L.scaleRef ? L.scaleRef.k || 1 : 1; L.off.y = Math.min(L._mdOff0, (_mdB.max.y - _mdV.y) / k); }); };   // the colours above are final: the foundation's generic toning of a cell (look.js, DRESS.cell) leaves them alone
   },
   /* DNA: the four letters keep their code (A green, T red, G yellow, C blue: the usual convention), toned to sit beside CPK colours; the
      backbone is a pale sugar and an ochre phosphate. The water-and-ion dots drawn round it for atmosphere are removed: they were not data. */
-  DNA: { A: 0x5fb779, T: 0xd06a63, G: 0xd9b445, C: 0x5f8bd2, sugar: 0xe2d8bc, phos: 0xd8954f, tube: 0xd8b88f, sugarNew: 0xbfd2e2, phosNew: 0x6f9cc6, tubeNew: 0x86a9c8, hist: [0xc98aa6, 0xcf9a6c, 0x7f9fcf, 0x79b394], fiber: 0x86a9c8 },
+  DNA: { A: 0x5fb779, T: 0xd06a63, G: 0xd9b445, C: 0x5f8bd2, sugar: 0xc6bda5, phos: 0xe3a463, tube: 0xd8b88f, sugarNew: 0xbfd2e2, phosNew: 0x6f9cc6, tubeNew: 0x86a9c8, hist: [0xc98aa6, 0xcf9a6c, 0x7f9fcf, 0x79b394], fiber: 0x86a9c8 },
   restyleDNA(F, c) {
     if (!MD.on) return; const K = MD.DNA, OLD = { 0x4ade80: K.A, 0xf87171: K.T, 0xfacc15: K.G, 0x60a5fa: K.C, 0xe9e2c6: K.sugar, 0xff9f43: K.phos, 0xbfe6ff: K.sugarNew, 0x38bdf8: K.phosNew,
       0xf2c38b: K.tube, 0x7dd3fc: K.tubeNew, 0xf472b6: K.hist[0], 0xfb923c: K.hist[1], 0x34d399: K.hist[3] };
@@ -161,7 +193,8 @@ const MD = {
     // histones share the hue of cytosine (#60a5fa) in the old code; the core spheres are told apart by their place, so their blue is set by the group
     c.group.traverse(o => { if (o.userData && o.userData.id === 'histone') o.children.forEach((s, j) => { if (s.material && s.material.color) { s.material = s.material.clone(); s.material.color.setHex(K.hist[j % 4]); } }); });
     drop.forEach(o => o.parent && o.parent.remove(o));
-    const strip = (F.uiEls || []).find(e => e && e.id === 'seq'); if (strip) strip.querySelectorAll('.l span').forEach(s => { const L = s.textContent; if (K[L]) s.style.color = '#' + K[L].toString(16).padStart(6, '0'); });
+    const strip = (F.uiEls || []).find(e => e && e.id === 'seq'); if (strip) { strip.querySelectorAll('.l span').forEach(s => { const L = s.textContent; if (K[L]) s.style.color = '#' + K[L].toString(16).padStart(6, '0'); });
+      const mk = 'linear-gradient(90deg, #000 calc(100% - 56px), transparent)'; strip.style.webkitMaskImage = mk; strip.style.maskImage = mk; }   // the strip runs on past the edge: it fades there instead of being cut through a codon
   },
   /* contact darkening between spheres (an approximation, stated here and in DESIGN 3.8: occlusion between parts is not computed by the
      renderer). Each sphere gets a direction toward its neighbours and a strength (the solid angle they cover, summed); the side of the
@@ -191,6 +224,57 @@ const MD = {
       transparent: true, depthWrite: true });   // transparent only so the frame's fade can pass through (engine.js applyFade); at rest it is opaque
     m0.dispose(); return pts;
   },
+  /* hydrogen bonds between separate molecules of one model (the two bases of a pair, a dimer): a hydrogen bonded to N or O, and an N or O
+     of another molecule 1.5 to 2.3 Å from it (the nearest) with the donor, the hydrogen and the acceptor within 60° of a line (an A-T pair
+     gives its two, a G-C pair its three). Drawn as dashes: short
+     sticks, thinner than a bond, in a cool grey. Returns how many were found. */
+  HB: 0x9fb0c2,
+  hbonds(F, parent, atoms, bonds) {
+    const n = atoms.length, root = atoms.map((_, i) => i), find = i => root[i] === i ? i : (root[i] = find(root[i]));
+    bonds.forEach(([i, j]) => { root[find(i)] = find(j); });
+    const nb = atoms.map(() => []); bonds.forEach(([i, j]) => { nb[i].push(j); nb[j].push(i); });
+    const P = i => new V3(atoms[i][1], atoms[i][2], atoms[i][3]), pairs = [];
+    for (let h = 0; h < n; h++) {
+      if (atoms[h][0] !== 'H') continue; const d = nb[h].find(k => atoms[k][0] === 'N' || atoms[k][0] === 'O'); if (d === undefined) continue;
+      const ph = P(h), pd = P(d); let best = -1, bl = 2.3;   // one acceptor per hydrogen: the nearest
+      for (let a = 0; a < n; a++) {
+        if ((atoms[a][0] !== 'N' && atoms[a][0] !== 'O') || find(a) === find(h)) continue;
+        const pa = P(a), L = ph.distanceTo(pa); if (L < 1.5 || L > bl) continue;
+        if (pd.clone().sub(ph).angleTo(pa.clone().sub(ph)) < 120 * Math.PI / 180) continue;
+        best = a; bl = L;
+      }
+      if (best >= 0) pairs.push([h, best]);
+    }
+    if (!pairs.length) return 0;
+    const dash = .2, gap = .13, segs = [];
+    pairs.forEach(([h, a]) => { const p = P(h), q = P(a), L = p.distanceTo(q), k = Math.max(2, Math.round((L + gap) / (dash + gap))), step = L / k;
+      for (let i = 0; i < k; i++) segs.push([p.clone().lerp(q, (i * step + gap / 2) / L), p.clone().lerp(q, ((i + 1) * step - gap / 2) / L)]); });
+    const g = new THREE.CylinderGeometry(1, 1, 1, 10, 1); g.translate(0, .5, 0);
+    const mesh = new THREE.InstancedMesh(g, MD.mat(MD.HB, 'plastic'), segs.length), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new V3(0, 1, 0);
+    segs.forEach(([a, b], i) => { const d = b.clone().sub(a), L = d.length(); q.setFromUnitVectors(up, d.normalize()); m4.compose(a, q, new V3(.055, L, .055)); mesh.setMatrixAt(i, m4); });
+    parent.add(mesh); F.pick(mesh, 'hbond', 1.5);
+    const [h0, a0] = pairs[0], mid = P(h0).lerp(P(a0), .5), lo = new THREE.Object3D(); lo.position.copy(mid); parent.add(lo);
+    return { count: pairs.length, mesh, anchor: lo };
+  },
+  /* a crystal's unit cell seen through the atoms in front of it: its edges again, thinner and faint, drawn over everything, and the atoms
+     that belong to it (corners, faces, centre) as faint ghosts, so the block the label names, and the atom at the centre of a bcc cell,
+     can be found inside the crowd. An annotation, like the label: unlit, no fog. */
+  cellXray(holder, E, corners, atoms, L, ctr, g) {
+    const em = new THREE.MeshBasicMaterial({ color: 0xffe08a, transparent: true, opacity: .5, depthTest: false, depthWrite: false, fog: false }), grp = new THREE.Group();
+    const cg = new THREE.CylinderGeometry(.035, .035, 1, 6); cg.translate(0, .5, 0);
+    const edges = new THREE.InstancedMesh(cg, em, E.length), q = new THREE.Quaternion(), e4 = new THREE.Matrix4();
+    E.forEach(([a, b], i) => { const d = corners[b].clone().sub(corners[a]), Ld = d.length(); q.setFromUnitVectors(new V3(0, 1, 0), d.normalize()); e4.compose(corners[a], q, new V3(1, Ld, 1)); edges.setMatrixAt(i, e4); });
+    edges.renderOrder = 21; grp.add(edges);
+    const inv = new THREE.Matrix4().makeBasis(L[0], L[1], L[2]).invert(), fr = new V3(), mine = [];
+    atoms.forEach(a => { fr.set(a[1], a[2], a[3]).add(ctr).applyMatrix4(inv); if (fr.x > -1e-3 && fr.y > -1e-3 && fr.z > -1e-3 && fr.x < 1 + 1e-3 && fr.y < 1 + 1e-3 && fr.z < 1 + 1e-3) mine.push(a); });
+    if (mine.length) {
+      const sm = (g.userData.meshes || [])[0], R0 = sm ? (sm.userData.radius() || .5) : .5, gm = new THREE.MeshBasicMaterial({ color: 0xffe08a, transparent: true, opacity: .32, depthTest: false, depthWrite: false, fog: false });
+      const ring = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 20, 14), gm, mine.length), m4 = new THREE.Matrix4();
+      mine.forEach((a, i) => { const s = (g.userData.meshes.find(m => m.userData.sym === a[0]) || sm).userData.radius() * .55; m4.makeScale(s, s, s).setPosition(a[1], a[2], a[3]); ring.setMatrixAt(i, m4); });
+      ring.renderOrder = 20; grp.add(ring);
+    }
+    holder.add(grp); return grp;
+  },
   occPatch(m) {
     return LOOK.patch(m, 'mdocc', sh => {
       sh.vertexShader = 'attribute vec4 aOcc;\nvarying vec4 vOcc;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tvOcc = vec4( normalize( normalMatrix * mat3( instanceMatrix ) * ( aOcc.xyz + vec3( 0.0, 0.0, 1e-4 ) ) ), aOcc.w );');
@@ -217,7 +301,7 @@ function atomSet(F, parent, atoms, bonds, o = {}) {
     occ = MD.occlusion(C, R, Math.max(2.5, 2.2 * Math.max(...R)));
   }
   for (const s in bySym) {
-    const idx = bySym[s], mat = MD.on ? MD.mat(elColor(s), 'plastic') : new THREE.MeshStandardMaterial({ color: elColor(s), emissive: elColor(s).multiplyScalar(.28), roughness: .4, metalness: 0 });
+    const idx = bySym[s], mat = MD.on ? MD.mat(elColor(s), atoms.length >= 600 ? MD.KIND_CROWD : 'plastic') : new THREE.MeshStandardMaterial({ color: elColor(s), emissive: elColor(s).multiplyScalar(.28), roughness: .4, metalness: 0 });
     const mesh = new THREE.InstancedMesh(occ ? sg.clone() : sg, mat, idx.length);
     if (occ) { const a = new Float32Array(idx.length * 4); idx.forEach((ai, k) => a.set(occ.subarray(4 * ai, 4 * ai + 4), 4 * k)); mesh.geometry.setAttribute('aOcc', new THREE.InstancedBufferAttribute(a, 4)); MD.occPatch(mat); }
     const rad = radOf(s);
@@ -238,7 +322,7 @@ function atomSet(F, parent, atoms, bonds, o = {}) {
     const plan = bonds.map(([i, j, ord]) => ord >= 2.5 ? [[-.22, .065], [0, .065], [.22, .065]] : ord >= 1.95 ? [[-.13, .07], [.13, .07]] : ord > 1.05 ? [[-.07, .09], [.2, .04]] : [[0, .11]]);
     const total = plan.reduce((s, p) => s + p.length * 2, 0);
     const cg = new THREE.CylinderGeometry(1, 1, 1, MD.on && atoms.length < 600 ? 16 : 8, 1); cg.translate(0, .5, 0);
-    const bm = new THREE.InstancedMesh(cg, MD.on ? MD.mat(0xffffff, 'plastic') : new THREE.MeshStandardMaterial({ roughness: .5 }), total), q = new THREE.Quaternion(), up = new V3(0, 1, 0), bondOf = [];
+    const bm = new THREE.InstancedMesh(cg, MD.on ? MD.mat(0xffffff, atoms.length >= 600 ? MD.KIND_CROWD : 'plastic') : new THREE.MeshStandardMaterial({ roughness: .5 }), total), q = new THREE.Quaternion(), up = new V3(0, 1, 0), bondOf = [];
     let k = 0;
     bonds.forEach(([i, j, ord], bi) => {
       const a = A(i), b = A(j), dir = b.clone().sub(a).normalize(), mid = a.clone().lerp(b, .5);
@@ -332,6 +416,9 @@ FT.mol = {
       g.userData.meshes.forEach(m => m.userData.molInfo = info);
       F.info = info; F.name = o.cname || (o.stand ? 'Example molecule: ' + M.name : M.name); F.blurb = `${o.cname ? o.cname + '. ' : o.stand ? 'An example molecule that stands in for the topic you came from (the topic is bigger than one molecule). ' : ''}${M.name} (${fm.text}): ${M.atoms.length} atoms, about ${(2 * rmax / 10 + .3).toFixed(1)} nm across.`; F.note = STYLE_NOTE[style];
       if (F.molLabel) { F.molLabel.el.remove(); F.labels.splice(F.labels.indexOf(F.molLabel), 1); }
+      if (F.hbLabel) { F.hbLabel.el.remove(); F.labels.splice(F.labels.indexOf(F.hbLabel), 1); F.hbLabel = null; }
+      const hb = MD.on && style === 'bs' ? MD.hbonds(F, holder, atoms, bonds) : 0;
+      if (hb) { F.hbLabel = F.label(hb.anchor, hb.count === 1 ? 'Hydrogen bond (dashed)' : 'Hydrogen bonds (dashed)'); F.note = STYLE_NOTE[style] + ` The dashes are the ${hb.count} hydrogen bonds between the two molecules.`; }
       const lo = new THREE.Object3D(); lo.position.set(0, rmax + 2, 0); lo.userData = { id: 'moleculecard', info, noZoom: true }; holder.add(lo); F.molLabel = F.label(lo, M.name);
       if (fit && cam.A === F) cam.D = Math.max(rmax * 2.6e-10, 1.2e-9);
       if (o.onLoad) o.onLoad(F);
@@ -388,6 +475,7 @@ FT.crystal = {
       const E = [[0, 1], [0, 2], [0, 4], [1, 3], [1, 5], [2, 3], [2, 6], [3, 7], [4, 5], [4, 6], [5, 7], [6, 7]], boxG = new THREE.Group(), em = new THREE.MeshBasicMaterial({ color: 0xffe08a });
       E.forEach(([a, b]) => { const d = corners[b].clone().sub(corners[a]), m = new THREE.Mesh(new THREE.CylinderGeometry(.06, .06, d.length(), 6), em); m.position.copy(corners[a]).addScaledVector(d, .5); m.quaternion.setFromUnitVectors(new V3(0, 1, 0), d.normalize()); boxG.add(m); });
       holder.add(boxG); myLabels.push(F.label(boxG, 'One unit cell (the repeating block)', { offset: corners[7].clone() }));
+      if (MD.on && mode !== 'cell') MD.cellXray(holder, E, corners, atoms, L, ctr, g);
       const ionNote = ionic ? 'Ions are drawn at half their true radius (Shannon 1976 effective radii, 6-coordinate) so you can see into the lattice; the big ones are the negative ions. No sticks: ionic crystals are held by attraction between ions, not by bonds between pairs.' : metal ? 'Atoms of a metal share their outer electrons across the whole crystal, so no sticks are drawn between pairs.' : noBonds ? '' : 'Sticks join nearest neighbours. Atoms are drawn at a quarter of their van der Waals radius.';
       const info = { title: X.name, tag: `Crystal · ${toSub(X.formula)}`, body: `<p>${X.notes || ''}</p><p class="mini">Atoms sit on a repeating 3-D lattice. The yellow box is one unit cell; a real crystal is this box copied about 10²⁰ times. ${ionNote}</p>${colorKey(atoms.map(a => a[0]))}`, facts: [['Formula', toSub(X.formula)], ['Cell edges', L.map(v => v.length().toFixed(2) + ' Å').join(' × ')], ['Atoms drawn', atoms.length]] };
       F.info = info; F.name = X.name; F.blurb = `${X.name}: ${mode === 'cell' ? 'the atoms of one unit cell' : 'a small piece of the crystal'}, at true atomic positions (ångström units).`;
@@ -442,8 +530,11 @@ FT.liquid = {
     for (let i = 0; i < N; i++) { const interior = mols[i].length() < R - 4; if (interior) innerN++; nb[i].forEach(j => { for (let k = 0; k < 2; k++) { const d = Hs[i][k].distanceTo(mols[j]); if (d < 2.4) { _a.subVectors(mols[i], Hs[i][k]); _b.subVectors(mols[j], Hs[i][k]); if (_a.angleTo(_b) > 140 * Math.PI / 180) { lp.push(Hs[i][k].x, Hs[i][k].y, Hs[i][k].z, mols[j].x, mols[j].y, mols[j].z); nbond++; if (interior) inner++; } } } }); }
     const perMol = innerN ? 2 * inner / innerN : 0;   // each bond counts once for its donor and once for its acceptor, but inner counts donors only: 2x gives both ends
     const lg = new THREE.BufferGeometry(); lg.setAttribute('position', new THREE.Float32BufferAttribute(lp, 3));
-    const hb = new THREE.LineSegments(lg, new THREE.LineDashedMaterial({ color: 0x7fd8ff, dashSize: .2, gapSize: .15, transparent: true, opacity: .8 })); hb.computeLineDistances(); F.add(hb); F.pick(hb, 'hbond_water', 1.5);
-    F.label(hb, 'Hydrogen bonds (dashed)', { offset: new V3(0, R + 1, 0) });
+    const hb = new THREE.LineSegments(lg, new THREE.LineDashedMaterial({ color: MD.on ? 0xb4d2e6 : 0x7fd8ff, dashSize: .2, gapSize: .15, transparent: true, opacity: MD.on ? 1 : .8 })); hb.computeLineDistances(); F.add(hb); F.pick(hb, 'hbond_water', 1.5);
+    if (MD.on && lp.length) {   // the look: the label stands on one of the dashes (the highest one near the front), not in the air above the drop
+      let bi = 0, bs = -Infinity; for (let i = 0; i < lp.length; i += 6) { const y = (lp[i + 1] + lp[i + 4]) / 2, z = (lp[i + 2] + lp[i + 5]) / 2, sc = y + .5 * z; if (Math.hypot(lp[i], y, z) < R - 1 && sc > bs) { bs = sc; bi = i; } }
+      const a = new THREE.Object3D(); a.position.set((lp[bi] + lp[bi + 3]) / 2, (lp[bi + 1] + lp[bi + 4]) / 2, (lp[bi + 2] + lp[bi + 5]) / 2); F.add(a); F.label(a, 'Hydrogen bonds (dashed)', { pick: hb });
+    } else F.label(hb, 'Hydrogen bonds (dashed)', { offset: new V3(0, R + 1, 0) });
     const info = { title: 'Liquid water', tag: 'H₂O · about 1 g/cm³', body: `<p>Each water molecule is a bent H–O–H unit about 0.28 nm across. In the liquid they are packed almost shoulder to shoulder (33 molecules per cubic nanometer) and keep forming and breaking hydrogen bonds, each lasting only about ten trillionths of a second.</p><p class="mini">This is a model, not a snapshot of a simulation: positions are random at the right density, and each molecule was turned to make as many hydrogen bonds as it can. In this picture the molecules away from the edge average about ${perMol.toFixed(1)} hydrogen bonds each (counting a bond for both partners). For comparison, simulations of real water give about 3.5 (the counting rules differ, so compare only roughly); real water also has a tetrahedral order that this random arrangement lacks. Pure water is shown; pond, sea and cell water also hold dissolved salts and molecules.</p>`, facts: [['Molecules shown', N], ['Density', '≈ 33.4 molecules/nm³'], ['O–H bond', '0.957 Å'], ['H–O–H angle', '104.5°'], ['Hydrogen bonds drawn', nbond]] };
     g.userData.meshes.forEach(m => m.userData.molInfo = info); F.info = info;
     F.blurb = 'Liquid water: a ball about 3 nm across cut from the bulk, every atom shown.';
@@ -635,7 +726,7 @@ v2frame('cell', 'cell', (c) => c.opts.type === 'bacterium' ? .1 : 10 / 12, (F, c
     bacterium: 'A rod-shaped bacterium, about 2 µm long. It has no nucleus: its DNA floats in the cell as a tangle called the nucleoid.',
   };
   F.name = (F.opts && F.opts.cname) || NAMES[kind]; F.blurb = (F.opts && F.opts.blurb) || BLURBS[kind];
-  if (MD.on) { MD.restyleCell(F, c); MD.kind(F, 'Model', kind === 'plant' ? 'Colours are a code to tell the parts apart (living cells are nearly colourless); only the chloroplasts\' green is their real colour.' : 'Colours are a code to tell the parts apart: living cells are nearly colourless.'); MD.stage(F, { near: .75, far: 2.4 }); }
+  if (MD.on) { MD.restyleCell(F, c); MD.kind(F, 'Model', kind === 'plant' ? 'Colours are a code to tell the parts apart (living cells are nearly colourless); only the chloroplasts\' green is their real colour.' : 'Colours are a code to tell the parts apart: living cells are nearly colourless.' + (kind === 'bacterium' ? '' : ' The membrane\'s edge shows its two layers, drawn far thicker than they are.')); MD.stage(F, { near: .75, far: 2.4 }); }
   const nuc0 = c.nucPos.clone();
   F.chooseHit = cands => {
     let best = null; for (const k of cands) if (!best || k.pri > best.pri) best = k;
