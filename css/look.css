@@ -215,7 +215,8 @@ html.look2 .qitem .qq { font: 600 18px/24px var(--serif); letter-spacing: -.008e
 html.look2 .qitem .qt { font: 400 15px/23px var(--serif); margin-top: 2px }
 html.look2 .qitem .qm { font: 400 12px/16px var(--sans); margin-top: 5px }
 html.look2 .qitem:hover .qq { color: var(--ink) }
-html.look2 #tracks { top: 0; right: auto; width: 360px; max-height: none; border-radius: 0; box-shadow: .5px 0 0 rgba(22,25,29,.16), 10px 0 28px -16px rgba(22,25,29,.35); padding: 20px 20px 24px }
+html.look2 #tracks { top: 12px; bottom: 16px; left: 12px; width: 360px; max-height: none; border: 0; border-radius: var(--r-panel); box-shadow: var(--lift); padding: 20px 20px 24px }   /* a sheet like the others: it floats, it does not run the height of the screen over the ruler */
+html.look2 body:has(#tracks.open) #controls { left: 388px }
 html.look2 details summary { font: 400 14px/20px var(--sans); padding: 6px 0 }
 html.look2 .jl { font: 600 13px/18px var(--sans); margin: 18px 0 4px }
 html.look2 #library .libsb { padding: 9px 12px; font: 500 13px/18px var(--sans) }
@@ -236,8 +237,16 @@ html.look2 .toast { background: var(--tip); color: #fff; border-radius: var(--r-
 html.look2 .toast.m, html.look2 #push, html.look2 #loadNote, html.look2 #tourBar { background: var(--vellum); color: var(--ink); border: 0; border-radius: var(--r-ctl); box-shadow: var(--lift-ctl) }
 html.look2 #perf, html.look2 #scalePop, html.look2 .cfg, html.look2 #seq, html.look2 .specw { border: 0; border-radius: var(--r-panel); box-shadow: var(--lift) }
 html.look2 #perf .pf-warn { border-left: 0; background: var(--paper-2); border-radius: var(--r-ctl); padding: 8px 10px }
-html.look2 #perf .pf-seg button { border-radius: 0 }
-html.look2 #perf .pf-seg button.on { background: var(--ink); color: var(--paper) }
+html.look2 #perf, html.look2 body.panelOpen #perf { right: calc(var(--panel-w) + 32px); top: 64px; bottom: 16px; max-height: calc(100vh - 80px); overflow-y: auto; padding: 12px 16px; background: var(--paper) }   /* beside the panel: the meter no longer covers the buttons and the search field */
+html.look2 #perf header b { font: 600 18px/24px var(--serif); letter-spacing: -.008em }
+html.look2 #perf dl, html.look2 #perf dt, html.look2 #perf dd { border-color: var(--rule) }
+html.look2 #perf dt { font: 400 12px/16px var(--sans); color: var(--muted) } html.look2 #perf dd { font: 400 13px/18px var(--sans) }
+html.look2 #perf .pf-row > span:first-child { font: 400 12px/16px var(--sans) }
+html.look2 #perf .pf-seg { gap: 2px; padding: 3px; background: var(--paper-2); border-radius: 10px }   /* the meter's switches are the one segmented control */
+html.look2 #perf .pf-seg button { margin: 0; border-radius: var(--r-in); padding: 3px 9px; font: 500 12px/16px var(--sans); color: var(--ink-2); background: none }
+html.look2 #perf .pf-seg button:hover { background: rgba(22,25,29,.06); color: var(--ink) }
+html.look2 #perf .pf-seg button.on { background: var(--raised); color: var(--ink); box-shadow: var(--lift-ctl) }
+html.look2 #perf textarea { border: 0; background: var(--paper-2); border-radius: var(--r-ctl) }
 html.look2 #selMark { border: 1.5px solid #fff; box-shadow: 0 0 0 1px rgba(22,25,29,.7), inset 0 0 0 1px rgba(22,25,29,.7) }
 
 /* ---------- labels in the scene: names, set like the names on a map ----------
@@ -326,3 +335,16 @@ html.look2 #tip { max-width: 260px }
 /* keyboard focus is a 2 px accent outline, 2 px off, on everything; never removed; inside a field it is the field's ring */
 html.look2 #srchQ:focus-visible { outline: 0 }
 html.look2 .seg button:focus-visible, html.look2 .tb:focus-visible { outline-offset: -2px }
+
+/* the path's long form ("N more"): a list of plain rows on a raised ground, not a white box with a rule */
+html.look2 #crumbMenu { background: var(--raised); border: 0; border-radius: 10px; box-shadow: var(--lift-ctl); padding: 4px }
+html.look2 #crumbMenu .cmi { font: 500 13px/18px var(--sans); border-radius: var(--r-in); min-height: 32px }
+html.look2 #crumbMenu button.cmi:hover, html.look2 #crumbMenu button.cmi:focus-visible { background: var(--paper-2); text-decoration: none }
+
+/* the path on a phone is one row that scrolls, so a separator never starts a line on its own */
+@media (max-width: 860px) {
+  html.look2 #crumbList { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 92%, transparent); mask-image: linear-gradient(90deg, #000 92%, transparent) }
+  html.look2 #crumbList::-webkit-scrollbar { display: none }
+  html.look2 #crumbList li { flex: none }
+  html.look2 .seg.fold.open button { border-top: 0 }
+}
