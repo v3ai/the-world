@@ -1304,7 +1304,11 @@ function pickFrame(f, forZoom) { // best candidate inside one frame: highest pri
     cands.push({ frame: f, obj: o, hit: h, pri: o.userData.priority ?? 1 });
   }
   let fb = null;
-  if (f.chooseHit) fb = f.chooseHit(cands, forZoom); // a frame may apply its own rule (the body: nearest part you can actually see)
+  /* a marker (priority 3 or more, drawn over everything with no depth test) on the ray is what is seen there: it comes before the frame's own rule, which may
+     drop it as lying in a cut-away half (the human eye's Cornea marker sits on the front that "Cut open" removes, and a click on it went to the eye) */
+  const mk = cands.find(c => c.pri >= 3 && c.hit.object.material && c.hit.object.material.depthTest === false);
+  if (mk) fb = mk;
+  else if (f.chooseHit) fb = f.chooseHit(cands, forZoom); // a frame may apply its own rule (the body: nearest part you can actually see)
   else { let bp = -Infinity; for (const c of cands) if (c.pri > bp) { fb = c; bp = c.pri; } }
   /* a hit on what a cut-open view has cut away is no hit: nothing is drawn there (the dog's "Inside the eye" cuts the near eyeball away whole, and the
      frame's own rule, finding nothing left on the ray, fell back to it; clicks and the reframing of the cut view then went to an eyeball nobody could see) */

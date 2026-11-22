@@ -85,7 +85,7 @@ note = ('A schematic, not a micrograph: three alveoli packed together, cut acros
         'NOT DRAWN: the surfactant film, the pores between neighbouring sacs, elastic fibres and the cells of the connective tissue in the wall. The sacs are drawn round and shallow (scene depth about 60 micrometres); real ones are many-sided. '
         'Birds have no alveoli: their lungs exchange gas in air capillaries a few micrometres wide, so this scene is for the lungs of mammals such as people and dogs, not for birds.')
 scene = {'id': 'lung_alveoli', 'title': 'Lung: alveoli and capillaries', 'node': 'lung_alveoli_scene', 'tag': 'Inside the lung', 'cell': 'animal', 'bg': '#f3efe6',
-         'center': [-290, 0, 0], 'D_um': 1250,
+         'center': [0, -41, 0], 'D_um': 1250,   # the middle of the three sacs: a scene is entered looking at its center from about 0.4 mm (js/descent.js VIEW_D), so the airway is at the left edge
          'blurb': 'A slice through three air sacs (alveoli) of a lung and a small airway. The thin wall between air and blood holds a capillary with red cells in single file. Zoom into the wall to reach the barrier, drawn 0.6 micrometres thick. Click a part.',
          'note': note, 'labels': labels, 'populations': P}
 json.dump(scene, open('data/things/tissues/lung_alveoli.json', 'w'), indent=1)

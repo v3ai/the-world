@@ -8,6 +8,10 @@
   "cord": "nervous_tissue",
   "d_heart": "cardiac_muscle"
  },
+ "over": {
+  "m_fore_tendons": "tendon",
+  "m_hind_tendons": "tendon"
+ },
  "ids": {
   "claws": "keratin",
   "coat_mid": "dog_skin",

@@ -76,7 +76,7 @@ const DESCENT = (() => {
   function materialOf(F, q, explicit) {   // explicit: only a row that names this part (not the frame's default)
     const u = q.u || {};
     const a = Z.A[tableKey(F)], s = a ? subOf(a, F) : null;
-    const ov = s && s.over && q.id != null ? s.over[q.id] : undefined;   // `over`: a structure of a scene whose own `material` is replaced by a truer one (assign/tissue2.json)
+    const ov = q.id == null ? undefined : (s && s.over && s.over[q.id]) || (a && a.over && a.over[q.id]) || undefined;   // `over`: a structure of a scene whose own `material` is replaced by a truer one (assign/tissue2.json); at the top of a thing's file, a part whose own `deeper` is replaced (the dog's tendons are not muscle)
     if (ov && Z.M[ov]) return { id: ov, via: 'over' };
     if (u.material && Z.M[u.material]) return { id: u.material, via: 'part' };
     let m = rowOf(s, q); if (m === undefined) m = rowOf(a, q);
@@ -164,7 +164,7 @@ const DESCENT = (() => {
   /* the scene of a part the zoom has kept as its aim although the thing now draws it see-through (js/engine.js, zoomBy): the part's own closer view if it has one, else its material */
   Z.spawnHeld = (F, hint, T) => {
     const u = hint.obj && hint.obj.userData, rec = u && u.part && F.T && F.T.parts[u.id]; if (!rec) return null;
-    if (rec.pd.deeper && typeof thDeepFrame === 'function') return thDeepFrame(rec.pd.deeper, T, undefined, F.unit);
+    if (rec.pd.deeper && typeof thDeepFrame === 'function' && !Z.over(F, { id: rec.pd.id, u })) return thDeepFrame(rec.pd.deeper, T, undefined, F.unit);
     return Z.spawnFor(F, { id: rec.pd.id, node: rec.pd.node, system: rec.pd.system, what: rec.pd.name, obj: hint.obj, u }, T);
   };
   /* the scene of a named material at T (a micro scene that was opened for a material asks for it by name) */
@@ -173,6 +173,8 @@ const DESCENT = (() => {
   Z.has = (F, q) => { if (!Z.ready) return false; const r = materialOf(F, q); if (!r) return false; const R = resolve(r.id, q.what); return !!(R && !R.stop); };
   /* does the table name this very part (a row for its id, node or system, not just the frame's default)? A frame with a spawn of its own asks this first. */
   Z.known = (F, q) => Z.ready && !!materialOf(F, q, true);
+  /* does an `over` row replace this part's own closer view (its `deeper`)? */
+  Z.over = (F, q) => { const r = Z.ready && q && q.id != null ? materialOf(F, q, true) : null; return !!(r && r.via === 'over'); };
   Z.covers = F => Z.ready && !!Z.A[tableKey(F)];
   /* is this scene one material throughout, with things in it (a sub-table with `everywhere` and a default: a drop of pond water), so that a pointer between
      the things is on that material? (A whole file marked `everywhere`, a chip or a galaxy, keeps its own spawn: it has places of its own to lead to.) */
@@ -206,7 +208,7 @@ const DESCENT = (() => {
     else if (f.type === 'cell' && o.cname) n = o.cname; else if (f.type === 'tissue2' && n === 'Inside the tissue') n = Z.tisName[o.id] || n;
     return !n || /^[A-Za-z0-9]+(_[A-Za-z0-9]+)+$/.test(n) ? String(n || f.type).replace(/_/g, ' ') : n;
   };
-  function flyInto(P, f, D) { f.dynamic = true; f.keep = performance.now() + 60000; P.addChild(f); f.ensure(); if (typeof closeInfo === 'function') closeInfo(); flyTo(f, new V3(), D || viewD(f)); }
+  function flyInto(P, f, D) { f.dynamic = true; f.keep = performance.now() + 60000; P.addChild(f); f.ensure(); if (typeof closeInfo === 'function') closeInfo(); flyTo(f, new V3(), D || viewD(f), undefined, typeof thSceneDir === 'function' ? thSceneDir(f) : undefined); }
   /* what the next level down is for a pick: {ok, title, kind, standIn, note, go()} or {ok: false, reason, card} */
   function plan(h, act) {
     if (!h || !h.frame || !h.obj) return { ok: false, reason: 'Point at something first.', card: null };

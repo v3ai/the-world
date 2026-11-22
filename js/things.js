@@ -712,6 +712,7 @@ function thPartAt(F, hint) {
   const pid = thVisibleAt(F); return (pid && F.T.parts[pid]) || own || null;
 }
 const thQuery = rec => ({ id: rec.pd.id, node: rec.pd.node, system: rec.pd.system, what: rec.pd.name, obj: rec.g, u: rec.g.userData });
+const thOver = (F, rec) => typeof DESCENT !== 'undefined' && !!DESCENT.over && DESCENT.over(F, thQuery(rec));   // the thing's assignment file replaces this part's own `deeper` (`over`: the dog's tendons lead into tendon, not into its muscle scene)
 function thSpawn(F, T0, hint) {
   if (!F.T) return null;
   const hu = hint && hint.obj && hint.obj.userData;
@@ -725,7 +726,7 @@ function thSpawn(F, T0, hint) {
      that is aimed at another part of the thing must not fall into it again: it is entered again only with the pointer on the part it was made for. */
   const forObj = hint && hint.obj;   // what the pointer was on when the scene was made (a peeled layer in front of the part, or a marker, is not the part itself)
   const own = f => { if (f && forObj) f.enterIf = aim => !f.entered || aim.frame !== F || aim.obj === rec.g || aim.obj === forObj; return f; };
-  if (rec.pd.deeper) return own(thDeepFrame(rec.pd.deeper, T0, undefined, F.unit));
+  if (rec.pd.deeper && !thOver(F, rec)) return own(thDeepFrame(rec.pd.deeper, T0, undefined, F.unit));
   return own(typeof DESCENT !== 'undefined' ? DESCENT.spawnFor(F, thQuery(rec), T0) : null);
 }
 const TH_CELLS = {
@@ -750,8 +751,12 @@ function thDeepFrame(d, T0, dflt, pu = 1e-6) {
 const TH_DEEP_D = { liquid: 5e-9, crystal: 4e-9, mol: 2.5e-9, cell: 4e-5, tissue2: 4e-4, micro: 1.2e-3, tissue: 4e-4 };
 function thGoDeeper(F, h, d, dflt) {
   closeInfo(); const p = h && h.pointLocal ? h.pointLocal.clone() : new V3(); const f = thDeepFrame(d, p, dflt, F.unit); if (!f) return;
-  f.dynamic = true; f.keep = performance.now() + 60000; F.addChild(f); f.ensure(); flyTo(f, new V3(), d.D || TH_DEEP_D[d.type] || 4e-9);
+  f.dynamic = true; f.keep = performance.now() + 60000; F.addChild(f); f.ensure(); flyTo(f, new V3(), d.D || TH_DEEP_D[d.type] || 4e-9, undefined, thSceneDir(f));
 }
+/* A tissue scene is a slice: a slab across x and y, thin in z, with its names on the near (+z) face (tools/things/SCHEMA.md section 5). It is entered
+   looking at that face, a little from above. Without this the camera kept the direction it came with, and a slice could be seen edge-on (the dog's tendon:
+   a thin column of fibres). */
+const thSceneDir = f => f && f.type === 'tissue2' ? new V3(0, .3, 1) : undefined;
 /* the size (frame units) of the one instance that was clicked, for framing it: the instance's scale times its mesh's radius */
 const _thIM = new THREE.Matrix4(), _thIS = new V3();
 function thInstSize(T, rec, h) {
@@ -769,8 +774,14 @@ function thCutOpen(F, h, peek) {
   const cur = T.modeId === 'auto' ? null : T.modeDef(T.modeId); if (cur && (cur.cut || cur.pivot)) return false;
   const p = h.pointLocal.clone().applyMatrix4(_thIM.copy(T.group.matrix).invert()), R = T.def.radius_m || 1, reach = Math.max((pd && pd.radius) || 0, R * .35);
   let best = null, bd = reach;
+  const sys = pd && pd.system, inner = sys && T.rank[sys] > 0;   // a part of an inner layer, uncovered to be clicked (the dog's tendons, its kidneys)
   for (const m of T.def.modes) {
     if (!m.cut && !m.pivot) continue;
+    if (inner && ((m.show || {})[sys] ?? (m.show || {})['*'] ?? 0) < .5) continue;   // a cut view that does not draw it is no way into it: the foreleg's tendons opened "Inside the heart"
+    if (inner && m.cut && m.cut.normal && pd.center && pd.radius && (m.cut.at || (T.def.cut && T.def.cut.at))) {   // ... nor one whose plane misses it: the cut face is capped, and what lies behind the cap is hidden (the dog's kidneys in "Cut in half")
+      const a = m.cut.at || T.def.cut.at, n = new V3(...m.cut.normal).normalize();
+      if (Math.abs(n.dot(new V3(...pd.center).sub(new V3(...a)))) > pd.radius) continue;
+    }
     const at = m.cut ? (m.cut.at || (T.def.cut && T.def.cut.at)) : ((T.def.pivots || {})[m.pivot] || {}).at; if (!at) continue;
     const dd = at.length === 2 ? Math.hypot(at[0] - p.x, at[1] - p.z) : Math.hypot(at[0] - p.x, at[1] - p.y, at[2] - p.z);
     if (dd < bd - 1e-9) { bd = dd; best = m; }
@@ -785,7 +796,7 @@ function thCutOpen(F, h, peek) {
 /* the card's "See what it is made of" button: a part's or a marker's own `deeper`; (a frame's cardMadeOf: see CARD_HOOKS in nodes.js) */
 function thCardMadeOf(F, h, n) {
   const ud = h && h.obj && h.obj.userData; if (!ud || !F.T) return undefined;
-  const d = ud.hotspot ? ud.hotspot.deeper : (F.T.parts[ud.id] || {}).pd && F.T.parts[ud.id].pd.deeper; if (!d) return undefined;
+  const d = ud.hotspot ? ud.hotspot.deeper : (F.T.parts[ud.id] || {}).pd && F.T.parts[ud.id].pd.deeper; if (!d || (!ud.hotspot && thOver(F, F.T.parts[ud.id]))) return undefined;
   return { label: d.button || 'See what it is made of', go: () => thGoDeeper(F, h, d) };
 }
 CARD_HOOKS.push((id, h, n) => {   // a structure in a tissue scene: the scene's own tag in front of the card's kind line ("Inside a leaf · Cell, about 20 µm across")
