@@ -94,13 +94,14 @@ FT.cosmos = {
       near.forEach(([j, d]) => { if (j < i || d > 140) return; const m = nodes[j], cnt2 = Math.floor(d * 1.6); for (let k = 0; k < cnt2; k++) { const t = r(), p = new V3().lerpVectors(n, m, t), w2 = 2 + Math.sin(t * Math.PI) * 2; const c = gc(), b = .35 + r() * .45; P.push(p.x + gauss(r) * w2, p.y + gauss(r) * w2, p.z + gauss(r) * w2); C.push(c[0] * b, c[1] * b, c[2] * b); S.push(1 + r()); } });
     });
     const web = makePoints(P, C, S); F.add(web); F.pick(web, 'filament', .3);
+    const sym = [];   // the symbols for galaxies and clusters (under the look they give way to the photographed sky near the Sun, which shows what is really there)
     getJSON('data/galaxies.json').then(G => {
       if (!F.built) return;
       G.filter(g => g.dist_mpc > 3.1).forEach(g => {
         const p = raDec3(g.ra_deg, g.dec_deg, g.dist_mpc).applyQuaternion(Q_EQ_TO_GAL);
         const big = g.diam_kpc / 1000, isGroup = g.diam_kpc >= 1000 || /cluster|group|attractor|anomaly/i.test(g.type);
         const s = glowSprite(/cluster|supercluster|attractor/i.test(g.type + g.name) ? 0xffe3b0 : 0xcfe0ff, Math.max(big * .5, .05), .35); s.position.copy(p); F.add(s);
-        const mk = markerSprite(0xcfe0ff, 5); mk.position.copy(p); F.add(mk);
+        const mk = markerSprite(0xcfe0ff, 5); mk.position.copy(p); F.add(mk); sym.push(s, mk);
         const info = { title: g.name, tag: g.type + (g.group ? ` · ${g.group}` : ''), body: `<p>${g.note || ''}</p>`, facts: [['Distance from the Sun', spaceDist(g.dist_mpc)], [isGroup ? 'Extent' : 'Diameter', spaceSize(g.diam_kpc, isGroup)]], note: 'Its position and distance are catalogue values. The glow is a symbol for it, not a picture.' + (g.approx ? ' Values approximate.' : '') };
         const hs = spaceHit(Math.min(Math.max(big * .5, .05), 6), { id: 'cluster_' + g.name, priority: 2, info, sim: ['cosmos'], radius: Math.max(big / 2, .02), center: () => p.clone() });
         hs.position.copy(p); F.add(hs); F.pickables.push(hs);
@@ -111,7 +112,8 @@ FT.cosmos = {
     const lgm = markerSprite(0xffd166, 12); F.add(lgm);
     const lgh = spaceHit(.2, { id: 'localgroup', priority: 1.5, sim: ['localgroup'], center: () => new V3(), radius: 1.5 }, { off: () => cam.D < 1e24 }); F.add(lgh); F.pickables.push(lgh);
     spaceLabel(F, lgh, 'Local Group (you are here)', 100, { cls: 'you', always: true });
-    F.update = () => { const k = smooth(5e22, 8e23, cam.D); web.material.uniforms.uOpacity.value = k; web.visible = k > .02; cmb.material.opacity = .5 * smooth(2e24, 1.5e26, cam.D); };
+    F.update = () => { const k = smooth(5e22, 8e23, cam.D); web.material.uniforms.uOpacity.value = k; web.visible = k > .02; cmb.material.opacity = .5 * smooth(2e24, 1.5e26, cam.D);
+      if (SPX.on) { const k = 1 - SPX.pvNow(); for (const o of sym) { if (o.userData.sxO === undefined) o.userData.sxO = o.material.opacity; o.material.opacity = o.userData.sxO * k; o.visible = k > .01; } } };
     F.blurb = 'The observable universe, from our Local Group out to the shell of the oldest light we can see.';
     F.note = 'What is real: the labelled galaxies and clusters, at their catalogued sky positions and distances. What is illustrative: the glowing web of points (generated at random, drawn only out to about 650 Mpc, about 2 billion light-years) and the colours of the shell, which is not the Planck map.';
   }
@@ -119,20 +121,23 @@ FT.cosmos = {
 /* ---------- Local Group (kpc, galactic orientation, GC at origin) ---------- */
 FT.localgroup = {
   build(F) {
-    F.scene.background = new THREE.Color(0); const sprites = [];
+    F.scene.background = new THREE.Color(0); const sprites = [], marks = [];
     // far galaxies fade out when the view is zoomed in on the Milky Way, so Andromeda does not sit over our own disc
-    F.update = () => { const k = smooth(2e20, 4e21, cam.D), dl = F.dLoc || 1; sprites.forEach(s => s.material.opacity = (.12 + .88 * k) * F.alpha * (F.C ? 1 - smooth(4 * dl, 10 * dl, s.position.distanceTo(F.C)) : 1)); };
+    F.update = () => { const k = smooth(2e20, 4e21, cam.D), dl = F.dLoc || 1, pk = SPX.on ? 1 - SPX.pvNow() : 1; sprites.forEach(s => s.material.opacity = (.12 + .88 * k) * F.alpha * (F.C ? 1 - smooth(4 * dl, 10 * dl, s.position.distanceTo(F.C)) : 1) * pk * (s.userData.sxK || 1)); if (SPX.on) { marks.forEach(m => { m.visible = pk > .01 && !(m.userData.sxPh && m.userData.sxPh.userData.sxPx > 2); m.material.opacity = pk; }); SPX.galGain(F, sprites); } };   // under the look the photographs and symbols give way to the photographed sky, which holds what is really there
     getJSON('data/galaxies.json').then(G => {
       if (!F.built) return;
       G.filter(g => g.dist_mpc <= 3.1 && g.name !== 'Milky Way').forEach(g => {
         const p = raDec3(g.ra_deg, g.dec_deg, g.dist_mpc * 1000).applyQuaternion(Q_EQ_TO_GAL).add(SUN_GAL);
         const kind = galKind(g.type), sz = Math.max(g.diam_kpc, .3), member = g.group === 'Local Group';
-        const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: galaxySpriteTex(kind), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, rotation: g.ra_deg * Math.PI / 180 }));
-        s.scale.set(sz * 1.3, kind === 'spiral' ? sz * .55 : sz, 1); s.position.copy(p); F.add(s); sprites.push(s);
-        const mk = markerSprite(member ? 0x9fc4ff : 0x8a9bb5, 6); mk.position.copy(p); F.add(mk);
+        const ph = SPX.on ? SPX.galOf(g.name) : null;
+        const s = ph ? SPX.galSprite(ph, sz) : new THREE.Sprite(new THREE.SpriteMaterial({ map: galaxySpriteTex(kind), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, rotation: g.ra_deg * Math.PI / 180 }));
+        if (!ph) s.scale.set(sz * 1.3, kind === 'spiral' ? sz * .55 : sz, 1);
+        s.position.copy(p); F.add(s); sprites.push(s);
+        if (SPX.on && !ph && /dSph/.test(g.type)) s.userData.sxK = .3;   // a dwarf spheroidal is far too faint to see as a glow (the Sagittarius dwarf lies behind our own galaxy's centre): its symbol is kept faint
+        const mk = markerSprite(member ? 0x9fc4ff : 0x8a9bb5, SPX.on && !ph ? 4 : 6); mk.position.copy(p); F.add(mk); marks.push(mk); if (ph) mk.userData.sxPh = s;   // under the look a photographed galaxy is its own mark once it is two pixels across
         const id = /M31/.test(g.name) ? 'andromeda' : /Large Magellanic/.test(g.name) ? 'lmc' : /Small Magellanic/.test(g.name) ? 'smc' : 'lg_' + g.name;
         const facts = [['Distance from the Sun', spaceDist(g.dist_mpc)], ['Diameter', spaceSize(g.diam_kpc)], ['Group', member ? 'Local Group (a member)' : `${g.group} (a neighbour, not a Local Group member)`]];
-        const note = 'Its position and distance are catalogue values. The glow is a generic symbol for its type, not a picture.' + (g.approx ? ' Values approximate.' : '');
+        const note = (ph ? `Its position and distance are catalogue values. The picture is a photograph taken from the Earth (${ph.credit}), drawn facing you from wherever you look; its size is approximate.` : 'Its position and distance are catalogue values. The glow is a generic symbol for its type, not a picture.') + (g.approx ? ' Values approximate.' : '');
         const info = INFO[id] ? Object.assign({}, INFO[id], { facts, note }) : { title: g.name, tag: `${g.type} · ${g.group}`, body: `<p>${g.note || 'A galaxy near the Local Group.'}</p>`, facts, note };
         const hs = spaceHit(Math.max(sz * .4, .2), { id, priority: 2, info, sim: ['localgroup'], radius: sz, center: () => p.clone() }, { px: 12 });
         hs.position.copy(p); F.add(hs); F.pickables.push(hs);
@@ -143,6 +148,7 @@ FT.localgroup = {
     const ml = spaceLabel(F, mwo, 'Milky Way', 90, { cls: 'you', offset: new V3(0, 18, 0) }); ml.minSizeFn = () => cam.D > 8e21;
     F.blurb = 'The Milky Way, Andromeda, Triangulum and the smaller galaxies around them, at their catalogued positions.';
     F.note = 'What is real: each galaxy\'s sky position and distance (catalogue values). Each glow is a generic symbol for its type, not a photograph, and the Milky Way is the schematic model. Galaxies beyond about 1 Mpc (NGC 3109, Sculptor, Maffei) are neighbours, not members.';
+    if (SPX.on) F.note = 'What is real: each galaxy\'s sky position and distance (catalogue values). Andromeda, Triangulum and the two Magellanic Clouds are photographs taken from the Earth, so each shows the face we see, turned toward you from any direction, at an approximate size; the other galaxies are generic symbols for their type, and the Milky Way is the schematic model. Galaxies beyond about 1 Mpc (NGC 3109, Sculptor, Maffei) are neighbours, not members.';
   }
 };
 /* ---------- Milky Way (kpc, galactic coordinates, GC at origin, Sun at x = -8.2) ---------- */
@@ -165,7 +171,7 @@ FT.milkyway = {
     for (let i = 0; i < 9000; i++) { const rr = Math.min(18, -Math.log(1 - r() * .99) * 3.6), th = r() * TAU, b = .15 + r() * .2; push(rr * Math.cos(th), gauss(r) * .15, rr * Math.sin(th), b * .95, b * .9, b * .85, .12); }
     for (let k = 0; k < 150; k++) { const v = new V3(gauss(r), gauss(r) * .8, gauss(r)).normalize().multiplyScalar(2 + Math.pow(r(), 1.6) * 30); for (let i = 0; i < 25; i++) push(v.x + gauss(r) * .06, v.y + gauss(r) * .06, v.z + gauss(r) * .06, 1, .88, .7, .1); }
     const gal = makePoints(P, C, S); F.add(gal); F.pick(gal, 'spiralArm', .2);
-    const cg1 = glowSprite(0xffd9a0, 6, .7), cg2 = glowSprite(0xfff3dc, 2, 1); F.add(cg1); F.add(cg2); // magnified from inside, their texture shows as blocks: fade them out when the camera is close
+    const cg1 = glowSprite(0xffd9a0, 6, .7), cg2 = glowSprite(0xfff3dc, 2, 1); F.add(cg1); F.add(cg2); if (SPX.on) { cg1.material.map = cg2.material.map = SPX.glowTexHQ(); F.glow = false; }   // under the look: no bloom here (its coarse levels drew a stepped octagon around the bright model; the core's own glow is these two sprites) // magnified from inside, their texture shows as blocks: fade them out when the camera is close
     // Sagittarius A*: a click, a double-click, a card button and scrolling onto it all lead into the black-hole scene
     const sgr = spaceHit(.0004, { id: 'sgrA', priority: 2.5, radius: 3e-9, center: () => new V3(), zoomTo: () => { flyTo(FR.sgr, new V3(), 3e11); } }, { px: 16, off: () => chainOf(cam.A).includes(FR.sgr) });
     F.add(sgr); F.pickables.push(sgr); spaceLabel(F, sgr, 'Sagittarius A* (black hole)', 90, { offset: new V3(0, .6, 0) });
@@ -183,7 +189,7 @@ FT.milkyway = {
     seg([['vis', 'Visible galaxy'], ['dm', 'Dark matter halo']], 'vis', k => { halo.visible = k === 'dm'; if (k === 'dm') { showInfo('darkhalo'); if (cam.D < 6e21) flyTo(FR.mw, new V3(), 1.2e22); } else if (cam.D > 6e21) flyTo(FR.mw, new V3(), 2e21); });
     F.blurb = 'Our galaxy: 100–400 billion stars. The Sun is about 27,000 light-years (8.2 kpc) from the centre.';
     F.note = 'What is real: the positions of the Sun and of Sagittarius A*. What is illustrative: every other star here is generated. The number of arms, their winding and the bar angle are an artist\'s impression, not the measured arms, and the dark-matter halo (roughly 200 kpc across its radius, schematic) is a smooth glow, not a map.';
-    F.update = () => { const k = smooth(1e19, 6e20, cam.D), gk = smooth(3e17, 3e19, cam.D); cg1.material.opacity = .7 * gk; cg2.material.opacity = gk; cg1.visible = cg2.visible = gk > .01; gal.material.uniforms.uMaxPx.value = lerp(1.7, 64, k); gal.material.uniforms.uOpacity.value = lerp(.55, 1, k) * F.alpha; };
+    F.update = () => { const k = smooth(1e19, 6e20, cam.D), gk = smooth(3e17, 3e19, cam.D); const pk = SPX.on ? 1 - SPX.pvNow() : 1; cg1.material.opacity = .7 * gk * pk; cg2.material.opacity = gk * pk; cg1.visible = cg2.visible = gk * pk > .01; gal.material.uniforms.uMaxPx.value = lerp(1.7, 64, k); gal.material.uniforms.uOpacity.value = lerp(.55, 1, k) * F.alpha * pk; };   // pk: near the Sun the photographed sky takes the place of the model's stars
   }
 };
 /* ---------- solar neighborhood: real stars (HYG), parsecs, equatorial three ---------- */
@@ -227,12 +233,14 @@ function cleanSpectral(sp) {
 const CON_NAMES = { And: 'Andromeda', Ant: 'Antlia', Aps: 'Apus', Aqr: 'Aquarius', Aql: 'Aquila', Ara: 'Ara', Ari: 'Aries', Aur: 'Auriga', Boo: 'Boötes', Cae: 'Caelum', Cam: 'Camelopardalis', Cnc: 'Cancer', CVn: 'Canes Venatici', CMa: 'Canis Major', CMi: 'Canis Minor', Cap: 'Capricornus', Car: 'Carina', Cas: 'Cassiopeia', Cen: 'Centaurus', Cep: 'Cepheus', Cet: 'Cetus', Cha: 'Chamaeleon', Cir: 'Circinus', Col: 'Columba', Com: 'Coma Berenices', CrA: 'Corona Australis', CrB: 'Corona Borealis', Crv: 'Corvus', Crt: 'Crater', Cru: 'Crux', Cyg: 'Cygnus', Del: 'Delphinus', Dor: 'Dorado', Dra: 'Draco', Equ: 'Equuleus', Eri: 'Eridanus', For: 'Fornax', Gem: 'Gemini', Gru: 'Grus', Her: 'Hercules', Hor: 'Horologium', Hya: 'Hydra', Hyi: 'Hydrus', Ind: 'Indus', Lac: 'Lacerta', Leo: 'Leo', LMi: 'Leo Minor', Lep: 'Lepus', Lib: 'Libra', Lup: 'Lupus', Lyn: 'Lynx', Lyr: 'Lyra', Men: 'Mensa', Mic: 'Microscopium', Mon: 'Monoceros', Mus: 'Musca', Nor: 'Norma', Oct: 'Octans', Oph: 'Ophiuchus', Ori: 'Orion', Pav: 'Pavo', Peg: 'Pegasus', Per: 'Perseus', Phe: 'Phoenix', Pic: 'Pictor', Psc: 'Pisces', PsA: 'Piscis Austrinus', Pup: 'Puppis', Pyx: 'Pyxis', Ret: 'Reticulum', Sge: 'Sagitta', Sgr: 'Sagittarius', Sco: 'Scorpius', Scl: 'Sculptor', Sct: 'Scutum', Ser: 'Serpens', Sex: 'Sextans', Tau: 'Taurus', Tel: 'Telescopium', Tri: 'Triangulum', TrA: 'Triangulum Australe', Tuc: 'Tucana', UMa: 'Ursa Major', UMi: 'Ursa Minor', Vel: 'Vela', Vir: 'Virgo', Vol: 'Volans', Vul: 'Vulpecula' };
 FT.neighborhood = {
   build(F) {
+    const sky = SPX.on ? SPX.skyMesh() : null; if (sky) { F.add(sky); F.update = () => SPX.skyStep(F, sky); }
     loadStars().then(({ f, meta, con }) => {
       if (!F.built) return;
       const n = f.length / 6, pos = new Float32Array(n * 3), mag = new Float32Array(n), col = new Float32Array(n * 3);
       for (let i = 0; i < n; i++) { const x = f[i * 6], y = f[i * 6 + 1], z = f[i * 6 + 2]; pos[i * 3] = x; pos[i * 3 + 1] = z; pos[i * 3 + 2] = -y; mag[i] = f[i * 6 + 3]; const c = bvColor(f[i * 6 + 4]); col.set(c.slice(0, 3), i * 3); }
+      if (SPX.on) col.set(SPX.starColors(f, n));
       const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('aMag', new THREE.BufferAttribute(mag, 1)); g.setAttribute('aColor', new THREE.BufferAttribute(col, 3));
-      const mat = starMaterial(), pts = new THREE.Points(g, mat); pts.frustumCulled = false; F.add(pts);
+      const mat = SPX.on ? SPX.starMat() : starMaterial(), pts = new THREE.Points(g, mat); pts.frustumCulled = false; F.add(pts);
       const names = {}; meta.named.forEach(([i, nm, sp, ly]) => names[i] = [nm, sp, ly]);
       const phys = meta.phys || {}, notes = meta.notes || {};
       // everything the card and the star scene need to know about star i
@@ -288,7 +296,7 @@ FT.neighborhood = {
         if (!show.includes(nm)) return;
         const o = new THREE.Object3D(); o.position.set(pos[i * 3], pos[i * 3 + 1], pos[i * 3 + 2]);
         o.userData = Object.assign(hitOf(i), { center: () => o.position.clone(), radius: 2e-7, zoomTo: () => zoomStar(i) }); F.add(o);
-        spaceLabel(F, o, nm, 40 - f[i * 6 + 3] * .5, {});
+        const L = spaceLabel(F, o, nm, 40 - f[i * 6 + 3] * .5, {}); if (SPX.on) (F._sxStarL = F._sxStarL || []).push(L);
       });
       // constellation figures: drawn on a sphere around the Sun's neighbourhood, as a pattern on the sky (the stars in each figure are at very different distances)
       if (con && con.lines) {
@@ -306,13 +314,16 @@ FT.neighborhood = {
       F.update = () => {
         mat.uniforms.uExp.value = 5 * Math.log10(Math.max(1, F.dLoc / 10)) + 4.5 * (1 - smooth(5, 60, F.dLoc)); // pulling far out, stars are brightened evenly so the catalogue stays visible
         if (F.conLines && F.conLines.visible && F.C) F.conLines.scale.setScalar(Math.max(5, F.C.length() * 2));
+        if (sky) SPX.skyStep(F, sky);
+        if (F._sxStarL && F._sxSunL) SPX.starLabelsClear(F._sxStarL, F._sxSunL);
       };
     });
     const sunh = spaceHit(.0005, { id: 'sun', priority: 3, radius: 1e-6, center: () => new V3(), zoomTo: () => { flyTo(FR.solar, new V3(), 1.5e13); } }, { px: 14 }); F.add(sunh); F.pickables.push(sunh);
-    const sun = markerSprite(0xfff1c8, 10); F.add(sun); spaceLabel(F, sunh, 'Sun', 100, { cls: 'you', always: true });
+    const sun = markerSprite(0xfff1c8, 10); F.add(sun); F._sxSunL = spaceLabel(F, sunh, 'Sun', 100, { cls: 'you', always: true });
     seg([['off', 'No constellations'], ['on', 'Constellation lines']], store.get('const', false) ? 'on' : 'off', k => { store.set('const', k === 'on'); if (F.conLines) F.conLines.visible = k === 'on'; });
     F.blurb = '109,400 real stars from the HYG catalog, at their measured positions and colours. All stars are brightened evenly (like a long exposure) so the faint ones show; their relative brightness is true.';
     F.note = 'Real: the positions, colours and brightness of the catalogued stars. Constellation lines, if shown, are a pattern on our sky, drawn on a sphere around you: the stars in each figure are at very different distances and are not connected in space.';
+    if (SPX.on) F.note = 'Real: the positions, colours and brightness of the 109,400 catalogued stars (each colour is the colour of a blackbody at the star\'s temperature, worked out from its measured B-V index). Behind them, near the Sun, is a photograph of our sky: the ESO panorama by S. Brunier (CC BY 4.0), with its single stars taken out so that they are not drawn twice; its brightness is the panorama\'s own long exposure, so the band of the Milky Way is brighter than the eye sees it, and it does not move as you travel (it fades out from 100 to 400 pc, where our sky would have changed). Constellation lines, if shown, are a pattern on our sky: the stars in each figure are at very different distances and are not connected in space.';
     F.spawn = (T, hint) => {
       if (!F.stars) return null;
       const f = F.stars.f; let i = -1;
@@ -415,7 +426,8 @@ function sunQuarter(u, v) { // a quarter disc of radius 1 in the plane spanned b
 }
 FT.sun = {
   build(F) {
-    const mat = sunPhotoMat(), shell = new THREE.Mesh(new THREE.SphereGeometry(1, 256, 128), mat); F.add(shell);
+    const mat = SPX.on ? SPX.sunMat(sunPhotoMat()) : sunPhotoMat(), shell = new THREE.Mesh(new THREE.SphereGeometry(1, 256, 128), mat); F.add(shell);
+    if (SPX.on) F.exposure = SPX.SUN_FILTER;   // as through a solar filter
     let cutOn = false, userCut = false; const sg = new V3(1, 1, 1), cutGrp = new THREE.Group(); F.add(cutGrp);
     const rc = THREE.Mesh.prototype.raycast, loc = new V3();
     shell.raycast = function (ray, hits) { const tmp = []; rc.call(shell, ray, tmp); tmp.forEach(h => { loc.copy(h.point).add(F.C); if (!(cutOn && loc.x * sg.x > 0 && loc.y * sg.y > 0 && loc.z * sg.z > 0)) hits.push(h); }); };
@@ -430,6 +442,7 @@ FT.sun = {
     const cutSeg = seg([['whole', 'Whole Sun'], ['cut', 'Cut-away']], 'whole', k => { userCut = k === 'cut'; });
     F.blurb = 'The Sun at its true size: a ball of plasma 1.39 million km across. Zoom in to the surface, or open the cut-away to see its layers.';
     F.note = 'To scale: the Sun\'s size, its limb darkening and the granule size (about 1,000 km). Interior: radii, temperatures and densities come from standard solar models; the cut-away colours are a temperature diagram, not what you would see. Sunspots are not drawn.';
+    if (SPX.on) F.note = 'Seen as through a solar filter that passes about one part in 54,000 of the light (a standard solar filter passes one part in 100,000), exposed so that the middle of the disc is just below white: the colour is the Sun\'s own (a 5,772 K blackbody, which on a screen is white with the faintest warm cast), and the edge is darker and redder than the middle (limb darkening, measured). The granules (about 1,000 km) are a generated pattern of the right size, not an image of today\'s Sun; sunspots, the corona and prominences are not drawn (the corona is a million times fainter than the disc and is seen only when the disc is covered). No stars are drawn: through a filter this dark none would show. Interior: radii, temperatures and densities come from standard solar models; the cut-away colours are a temperature diagram, not what you would see.';
     F.spawnD = 6e5;   // above the floor: the patch of gas is waiting when the camera reaches the floor, and so lifts it (js/engine.js zoomFloor)
     Object.defineProperty(F, 'floorD', { get: () => cam.T.length() > .95 ? 2e5 : 0 }); // the Sun has no solid surface to land on: the view stops 200 km above the photosphere; use "See what it is made of" for the gas itself
     surfaceAtt(F, (i, c) => i ? 0 : (c.set(0, 0, 0), 1));   // aimed at the corona or the glow: the zoom lands on the photosphere
@@ -441,7 +454,7 @@ FT.sun = {
       mat.uniforms.uPix.value = Math.max(cam.D / F.unit, 1e-9) * 2 * Math.tan(25 * Math.PI / 180) / H * 1.0;
       faces.forEach(m => { m.visible = cutOn; }); lbls.forEach(o => { o.visible = cutOn; });
       cutSeg.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === (cutOn ? 'cut' : 'whole')));
-      corona.visible = halo.visible = cam.D > 6e8;
+      corona.visible = halo.visible = !SPX.on && cam.D > 6e8;   // under the look: no painted glow (a camera's glare comes from the bloom, from the light itself)
       if (cam.A === F && cam.T.length() > .95 && cam.D < 2.2e5 && performance.now() - (F._msg || 0) > 8000) { F._msg = performance.now(); message('The Sun has no solid surface to land on. Choose "See what it is made of" to go into its gas.'); }
     };
   }
@@ -472,18 +485,19 @@ function voyagerAt(V, ms, out) { const dd = ms / 86400000 + 2440587.5 - 2461362.
 FT.solarsystem = {
   build(F) {
     F.scene.background = null;
-    F.add(new THREE.AmbientLight(0x404a66, .25)); const pl = new THREE.PointLight(0xfff4e0, 2.2, 0, 0); F.add(pl);
+    F.add(new THREE.AmbientLight(0x404a66, .25)); const pl = SPX.on ? new THREE.PointLight(0xffffff, 1, 0, 0) : new THREE.PointLight(0xfff4e0, 2.2, 0, 0); F.add(pl);
     const KM = 1 / 1.495978707e8, PXK = 2 * Math.tan(25 * Math.PI / 180) / H, _v = new V3(), _w = new V3(), CP = new V3(), SUND = new V3(), PX = new V3(); let SD0 = 1, SUNHALF = 0;
-    const sunR = 695700 * KM, sunMat = sunPhotoMat(), sunM = new THREE.Mesh(new THREE.SphereGeometry(sunR, 128, 64), sunMat);
+    const sunR = 695700 * KM, sunMat = SPX.on ? SPX.sunMat(sunPhotoMat()) : sunPhotoMat(), sunM = new THREE.Mesh(new THREE.SphereGeometry(sunR, 128, 64), sunMat);
     const sunGrp = new THREE.Group(); F.add(sunGrp); sunGrp.add(sunM); F.pick(sunM, 'sun'); sunM.userData.madeOf = 'plasma';
     const toSun = () => { flyTo(FR.sun, new V3(), 3e9); };
     sunM.userData.zoomTo = toSun;
-    [glowSprite(0xffc070, sunR * 14, .3), glowSprite(0xfff1d0, sunR * 4, .5)].forEach(g => { g.renderOrder = -1; sunGrp.add(g); });
+    if (!SPX.on) [glowSprite(0xffc070, sunR * 14, .3), glowSprite(0xfff1d0, sunR * 4, .5)].forEach(g => { g.renderOrder = -1; sunGrp.add(g); });   // under the look the Sun's own light makes its glare
     if (FR.sun) FR.sun.proxy = sunGrp; // the stand-in disappears when the detailed Sun frame is fully shown
     const sunH = hitSphere(1, 'sun', 3); sunH.userData.zoomTo = toSun; sunH.userData.madeOf = 'plasma'; F.add(sunH); F.pickables.push(sunH);
-    const sunMk = markerSprite(0xfff1c8, 16); F.add(sunMk); F.label(sunM, 'Sun', { offset: new V3(0, sunR * 2, 0) });
+    const sunMk = markerSprite(SPX.on ? 0xfff0e9 : 0xfff1c8, 16); F.add(sunMk);   // under the look: the Sun's own colour (5,772 K), as in its own scene F.label(sunM, 'Sun', { offset: new V3(0, sunR * 2, 0) });
     sunM.userData.extent = sunH.userData.extent = () => ({ p: new V3(), r: sunR });   // a click frames the Sun itself (its dot has no size: the click used to select it and leave the camera 4 AU away)
     const orbitMat = new THREE.LineBasicMaterial({ color: 0x7084b0, transparent: true, opacity: .35, depthWrite: false });
+    const ppStep = SPX.on ? SPX.planetPoints(F, PXK) : null;   // under the look: each planet also a point of light, at its real brightness
     F.bodies = {}; // a planet label shows only when it is not on top of the Sun's disc, not behind it, and far enough from the Sun on screen not to pile up
     getJSON('data/solar.json').then(SD => {
       SOLAR = SD;
@@ -492,11 +506,11 @@ FT.solarsystem = {
         const grp = new THREE.Group(); F.add(grp);
         const rAU = d.radius_km * KM;
         const map = d.texture ? tex(d.texture) : null;
-        const mesh = new THREE.Mesh(new THREE.SphereGeometry(rAU, 48, 32), new THREE.MeshStandardMaterial({ map, color: map ? 0xffffff : new THREE.Color(d.color || '#bbbbbb'), roughness: .9 }));
+        const mesh = new THREE.Mesh(new THREE.SphereGeometry(rAU, 48, 32), SPX.on ? SPX.bodyMat(name, map, new THREE.Color(d.color || '#bbbbbb'), true) : new THREE.MeshStandardMaterial({ map, color: map ? 0xffffff : new THREE.Color(d.color || '#bbbbbb'), roughness: .9 }));
         grp.add(mesh);
         if (d.ring && d.ring.texture) { const ri = d.ring.inner_km * KM, ro = d.ring.outer_km * KM, rg = new THREE.RingGeometry(ri, ro, 128, 1); const pa = rg.attributes.position, uv = rg.attributes.uv, v = new V3(); for (let i = 0; i < pa.count; i++) { v.fromBufferAttribute(pa, i); uv.setXY(i, (v.length() - ri) / (ro - ri), .5); } const ring = new THREE.Mesh(rg, new THREE.MeshBasicMaterial({ map: tex(d.ring.texture), transparent: true, side: THREE.DoubleSide, depthWrite: false })); ring.rotation.x = -Math.PI / 2; grp.add(ring); }
         grp.rotation.z = (d.axial_tilt_deg || 0) * Math.PI / 180;
-        const mk = markerSprite(0xffffff, 7); grp.add(mk);
+        const mk = markerSprite(0xffffff, 7); grp.add(mk); if (SPX.on) mk.visible = false;   // under the look the planet is a point of light at its real brightness instead (SPX.planetPoints)
         const id = name === 'Earth' ? 'earthPlanet' : name.toLowerCase();
         grp.userData.id = id; grp.userData.priority = 2; grp.userData.radius = rAU; if (!d.elements) grp.userData.sim = [name === 'Pluto' ? 'dwarf:pluto' : 'planet:' + name.toLowerCase()];
         F.pickables.push(grp); const hs = hitSphere(1, id, 3); hs.userData.radius = rAU; grp.add(hs);
@@ -548,6 +562,7 @@ FT.solarsystem = {
       }
       if (!F._sunLbl) { F._sunLbl = 1; F.labels.forEach(L => { if (L.el.textContent === 'Sun') L.minSizeFn = () => !(sunShown()); else if (/^Heliopause/.test(L.el.textContent)) L.minSizeFn = () => !(sunShown()) && cam.D < 6e13; }); }
       oortRings.forEach(l => { l.visible = cam.D > 2e13; }); helH.visible = cd0 > 125; // the heliopause can be picked from outside it, never from the inner solar system
+      if (ppStep) { ppStep(CP); belt.visible = kb.visible = oort.visible = SPX.relExp(cam.A) === Infinity; }   // the enlarged belt dots are a diagram of the system: not in the picture of a body
       const sc = avg => Math.min(40, Math.max(1, 1.6 * (cam.D / F.unit) / (300 * avg))); belt.material.uniforms.uScale.value = PIXR_BASE * sc(.007); kb.material.uniforms.uScale.value = PIXR_BASE * sc(.075);
       vgs.forEach(o => { voyagerAt(o.V, simTime, o.g.position); const dd = Math.max(o.g.position.distanceTo(CP), 1e-9); o.hs.scale.setScalar(dd * PXK * 12); if (performance.now() - o.t > 400) { o.t = performance.now(); o.L.el.textContent = `${o.V.name} (${Math.round(o.g.position.length())} AU from the Sun)`; } if (!o.L.hooked) { o.L.hooked = 1; o.L.minSizeFn = () => !(sunShown()) && o.g.position.length() / Math.max(o.g.position.distanceTo(CP), 1e-9) / PXK > 14; } });
     };
@@ -584,22 +599,27 @@ const fmtKm = x => x >= 1000 ? Math.round(x).toLocaleString('en-US') : String(+x
 FT.planet = {
   build(F, o) {
     const d = SOLAR && SOLAR.find(b => b.name === o.body); if (!d) return;
-    F.add(new THREE.AmbientLight(0x334455, .22)); const sl = new THREE.DirectionalLight(0xffffff, { Saturn: 1.1, Uranus: 1.0, Neptune: 1.0, Mars: 1.0, Mercury: .95 }[o.body] || .8); F.add(sl); F.add(sl.target); // about 0.8: the day side of a bright texture (Venus, Jupiter) stays below white
-    const R = d.radius_km / 1000, map = d.texture ? tex(d.texture) : null;
+    F.add(new THREE.AmbientLight(0x334455, .22)); const sl = new THREE.DirectionalLight(0xffffff, SPX.on ? 1 : { Saturn: 1.1, Uranus: 1.0, Neptune: 1.0, Mars: 1.0, Mercury: .95 }[o.body] || .8); F.add(sl); F.add(sl.target); // about 0.8: the day side of a bright texture (Venus, Jupiter) stays below white
+    const R = d.radius_km / 1000, map = d.texture && !(SPX.on && SPX.body(o.body)) ? tex(d.texture) : null;
     const spin = new THREE.Group(); F.add(spin); spin.rotation.z = (d.axial_tilt_deg || 0) * Math.PI / 180;
+    if (SPX.on && SPX.pole(o.body)) spin.quaternion.setFromUnitVectors(new V3(0, 1, 0), SPX.pole(o.body));   // the axis where it really points
     const body = new THREE.Group(); spin.add(body);
-    const mesh = new THREE.Mesh(new THREE.SphereGeometry(R, 96, 64), new THREE.MeshStandardMaterial({ map, color: map ? 0xffffff : new THREE.Color(d.color || '#bbbbbb'), roughness: .95 })); body.add(mesh);
+    const mesh = new THREE.Mesh(new THREE.SphereGeometry(R, 96, 64), SPX.on ? SPX.bodyMat(o.body, map, new THREE.Color(d.color || '#bbbbbb')) : new THREE.MeshStandardMaterial({ map, color: map ? 0xffffff : new THREE.Color(d.color || '#bbbbbb'), roughness: .95 })); body.add(mesh);
+    const shape = SPX.on ? SPX.shape(mesh, o.body) : null;
     const id = o.body === 'Pluto' ? 'pluto' : o.body.toLowerCase(); F.pick(mesh, id); mesh.userData.madeOf = /Jupiter|Saturn|Uranus|Neptune/.test(o.body) ? 'gasgiant' : 'regolith';
     if (!d.elements) mesh.userData.sim = ['planet:' + id];
-    if (d.ring && d.ring.texture) { const ri = d.ring.inner_km / 1000, ro = d.ring.outer_km / 1000, rg = new THREE.RingGeometry(ri, ro, 256, 1); const pa = rg.attributes.position, uv = rg.attributes.uv, v = new V3(); for (let i = 0; i < pa.count; i++) { v.fromBufferAttribute(pa, i); uv.setXY(i, (v.length() - ri) / (ro - ri), .5); } const ring = new THREE.Mesh(rg, new THREE.MeshBasicMaterial({ map: tex(d.ring.texture), color: 0xdddddd, transparent: true, side: THREE.DoubleSide, depthWrite: false })); ring.rotation.x = -Math.PI / 2; spin.add(ring); F.pick(ring, 'saturn', .5); }
+    if (d.ring && d.ring.texture) { const ri = d.ring.inner_km / 1000, ro = d.ring.outer_km / 1000, rg = new THREE.RingGeometry(ri, ro, 256, 1); const pa = rg.attributes.position, uv = rg.attributes.uv, v = new V3(); for (let i = 0; i < pa.count; i++) { v.fromBufferAttribute(pa, i); uv.setXY(i, (v.length() - ri) / (ro - ri), .5); } const ring = new THREE.Mesh(rg, SPX.on ? SPX.ringMat(tex(d.ring.texture), ri, ro, R, SPX.flat(o.body)) : new THREE.MeshBasicMaterial({ map: tex(d.ring.texture), color: 0xdddddd, transparent: true, side: THREE.DoubleSide, depthWrite: false })); ring.rotation.x = -Math.PI / 2; spin.add(ring); F.pick(ring, 'saturn', .5);
+      if (SPX.on) { F._sxRing = ring; F._sxSunM = new V3(); SPX.ringShadow(mesh.material, tex(d.ring.texture), ri, ro, shape, F._sxSunM); } }
     const ATM = { Venus: [0xffe6b0, .22], Jupiter: [0xe8d9c0, .14], Saturn: [0xeedfb5, .14], Uranus: [0x9fe6ee, .3], Neptune: [0x7aa5ff, .3] }[o.body];
-    if (ATM) F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.012, 64, 48), fresnelMat(ATM[0], 4, ATM[1])));
+    if (ATM && !SPX.on) F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.012, 64, 48), fresnelMat(ATM[0], 4, ATM[1])));
     const moons = (SOLAR || []).filter(m => m.parent === o.body);
     F.moons = moons.map(m => {
-      const mr = m.radius_km / 1000, mm = new THREE.Mesh(new THREE.SphereGeometry(mr, 48, 32), new THREE.MeshStandardMaterial({ map: m.texture ? tex(m.texture) : null, color: m.texture ? 0xffffff : new THREE.Color(m.color || '#aaaaaa'), roughness: 1 }));
+      const mr = m.radius_km / 1000, mm = new THREE.Mesh(new THREE.SphereGeometry(mr, 48, 32), SPX.on ? SPX.bodyMat(m.name, m.texture ? tex(m.texture) : null, new THREE.Color(m.color || '#aaaaaa')) : new THREE.MeshStandardMaterial({ map: m.texture ? tex(m.texture) : null, color: m.texture ? 0xffffff : new THREE.Color(m.color || '#aaaaaa'), roughness: 1 }));
       const P = Math.abs(m.orbital_period_days);
       spin.add(mm); mm.userData = { id: 'moon_' + m.name, priority: 2, info: { title: m.name, tag: `Moon of ${o.body}${m.orbital_period_days < 0 ? ' · orbits backwards' : ''}`, body: `<p>${MOON_TEXT[m.name] || ''}</p>`, facts: [['Radius', `${fmtKm(m.radius_km)} km`], ['Distance from ' + o.body + '\'s centre', `${fmtKm(m.semimajor_km)} km`], ['One orbit', `${+P.toPrecision(4)} days`]], note: 'Size and orbit are true; where the moon sits on its orbit here is illustrative, and its tint is approximate (no surface map).' }, madeOf: 'regolith' }; F.pickables.push(mm);
-      F.label(mm, m.name, { offset: new V3(0, mr * 1.6, 0) }); const mk = markerSprite(0xffffff, 5); mm.add(mk);
+      if (SPX.on && SPX.body(m.name)) mm.userData.info.note = 'Size and orbit are true; where the moon sits on its orbit here is illustrative. Surface: ' + SPX.body(m.name).src + '.';
+      const mL = F.label(mm, m.name, { offset: new V3(0, mr * 1.6, 0) }); const mk = markerSprite(0xffffff, 5); mm.add(mk);
+      if (SPX.on) mL.minSizeFn = () => { const A = freeArea(), x = (_lv.x * .5 + .5) * W, y = (-_lv.y * .5 + .5) * H; return x > A.l + 24 && x < A.r - 24 && y > A.t + 20; };   // a moon far off to the side is not named over the scale or the panel
       return { mm, a: m.semimajor_km / 1000, P: Math.abs(m.orbital_period_days || 1), ph: (m.name.length * 1.7) % TAU, retro: (m.orbital_period_days || 1) < 0 };
     });
     F.radius = Math.max(R * 8, ...F.moons.map(m => m.a * 1.15), 10);
@@ -607,11 +627,13 @@ FT.planet = {
       body.rotation.y = (simTime / 3600000 / (d.rotation_period_h || 24)) % 1 * TAU;
       const days = simTime / 86400000; F.moons.forEach(m => { const a = m.ph + days / m.P * TAU * (m.retro ? -1 : 1); m.mm.position.set(Math.cos(a) * m.a, 0, -Math.sin(a) * m.a); });
       const s = sunDirIn(F); sl.position.copy(s).multiplyScalar(100);
+      if (SPX.on) SPX.planetStep(F, s, mesh, F.moons);
     };
     F.blurb = `${o.body} at its true size${F.moons.length ? `, with ${F.moons.length === 1 ? 'its largest moon' : 'its ' + F.moons.length + ' largest moons'} at their real orbital distances` : ''}.`;
     F.note = [map ? 'The surface colours come from a published map; brightness is scaled for display.' : 'No surface map is drawn: the colour is an approximate tint.',
       F.moons.length ? 'Moon sizes and distances are true; where each moon sits on its orbit is illustrative. Smaller moons are not drawn.' : '',
       d.ring ? (d.ring.texture ? 'The ring is drawn flat, with no thickness (the real main rings are about 10 to 20 metres thick) and no shadow; its fainter parts are not drawn.' : 'The planet\'s faint rings are not drawn.') : ''].filter(Boolean).join(' ');
+    if (SPX.on) F.note = SPX.planetNote(o.body, d, F.moons.length);
     surfaceAtt(F, (i, c) => { if (!i) { c.set(0, 0, 0); return R; } const m = F.moons[i - 1]; if (!m) return 0; c.copy(m.mm.position).applyQuaternion(spin.quaternion); return m.mm.geometry.parameters.radius; });
     F.spawn = (T) => { if (T.length() < R * 1.05) return spaceBodySurface(() => new V3(), () => body.getWorldQuaternion(new THREE.Quaternion()), R, T, surfaceBiome(o.body), o.body);
       for (const m of F.moons) if (T.distanceTo(m.mm.position.clone().applyQuaternion(spin.quaternion)) < m.mm.geometry.parameters.radius * 1.05) { const mm = m.mm; return spaceBodySurface(() => mm.position.clone().applyQuaternion(spin.quaternion), () => spin.quaternion.clone(), mm.geometry.parameters.radius, T, surfaceBiome(mm.userData.info.title), mm.userData.info.title); }
@@ -649,8 +671,8 @@ FT.earth = {
     F.add(new THREE.AmbientLight(0x223355, .08));
     const sl = new THREE.DirectionalLight(0xffffff, 1.0); F.add(sl); F.add(sl.target); // 1.0: the lit half of the Moon stays below white, so craters and maria show
     const R = 6.371, spin = new THREE.Group(); F.add(spin); F.spin = spin;
-    const day = tex('earth_day.jpg', t => { const c = document.createElement('canvas'); c.width = 1024; c.height = 512; const g = c.getContext('2d'); g.drawImage(t.image, 0, 0, 1024, 512); EARTH_PIX = g.getImageData(0, 0, 1024, 512); });
-    const mat = new THREE.ShaderMaterial({
+    const day = SPX.on ? SPX.earthDay() : tex('earth_day.jpg', t => { const c = document.createElement('canvas'); c.width = 1024; c.height = 512; const g = c.getContext('2d'); g.drawImage(t.image, 0, 0, 1024, 512); EARTH_PIX = g.getImageData(0, 0, 1024, 512); });
+    const mat = SPX.on ? SPX.earthMat(day) : new THREE.ShaderMaterial({
       uniforms: { tDay: { value: day }, tNight: { value: tex('earth_night.jpg') }, tSpec: { value: tex('earth_water_mask.png') }, uSun: { value: new V3(1, 0, 0) }, uOpacity: { value: 1 } },
       vertexShader: LDV(`varying vec2 vUv; varying vec3 vN; varying vec3 vW; void main(){ vUv=uv; vN=normalize(mat3(modelMatrix)*normal); vec4 w=modelMatrix*vec4(position,1.); vW=w.xyz; gl_Position=projectionMatrix*viewMatrix*w; }`),
       fragmentShader: LDF(`uniform sampler2D tDay; uniform sampler2D tNight; uniform sampler2D tSpec; uniform vec3 uSun; uniform float uOpacity; varying vec2 vUv; varying vec3 vN; varying vec3 vW;
@@ -661,12 +683,13 @@ FT.earth = {
     });
     const globe = new THREE.Mesh(new THREE.SphereGeometry(R, 160, 96), mat); spin.add(globe);
     globe.userData = { priority: 1, /* no interior view of the Earth is built: a double click goes down to the land or sea at that point (F.spawn) */ resolve: h => { if (!h || !h.uv || !EARTH_PIX) return 'earth'; const b = biomeAtUV(h.uv.x, h.uv.y); return b === 'ocean' ? 'ocean' : b === 'ice' ? 'ice' : 'land'; } }; F.pickables.push(globe);
-    const clouds = new THREE.Mesh(new THREE.SphereGeometry(R * 1.006, 128, 64), new THREE.MeshStandardMaterial({ map: tex('earth_clouds.png'), transparent: true, depthWrite: false, roughness: 1 })); spin.add(clouds);
-    F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.0157, 96, 64), fresnelMat(0x6ab8ff, 3.2, 1.3))); // the glow is drawn about 100 km thick (the conventional edge of space)
-    F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.03, 96, 64), haloMat(0x4aa0ff, 2.4)));
+    const clouds = SPX.on ? new THREE.Object3D() : new THREE.Mesh(new THREE.SphereGeometry(R * 1.006, 128, 64), new THREE.MeshStandardMaterial({ map: tex('earth_clouds.png'), transparent: true, depthWrite: false, roughness: 1 })); spin.add(clouds);   // under the look the clouds are in the globe's own shader
+    const air = SPX.on ? SPX.earthShell() : null; if (air) F.add(air);
+    if (!SPX.on) F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.0157, 96, 64), fresnelMat(0x6ab8ff, 3.2, 1.3))); // the glow is drawn about 100 km thick (the conventional edge of space)
+    if (!SPX.on) F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.03, 96, 64), haloMat(0x4aa0ff, 2.4)));
     const atm = hitSphere(R * 1.03, 'atmosphere', .5); atm.userData.noZoom = true; F.add(atm); F.pickables.push(atm); const eLbl = F.label(atm, 'Earth', { offset: new V3(0, R * 1.2, 0) }); eLbl.minSizeFn = () => cam.D > 3e8;
     const pk = markerSprite(0xffd166, 11); pk.position.copy(latLon3(PARK.lat, PARK.lon, R * 1.001)); spin.add(pk); pk.userData = Object.assign(pk.userData, { id: 'parkMarker', priority: 3, zoomTo: () => { flyTo(FR.park, new V3(0, 0, 0), 450); }, zoomPoint: () => { if (FR.region.place) FR.region.place(); return FR.region.pos.clone(); } }); /* the dot floats 6 km above the ground: a scroll aimed at it ends on the park itself */ F.pickables.push(pk); const pkL = F.label(pk, 'Greenwich Park', { cls: 'you', always: true }); pkL.minSizeFn = () => cam.D < 1.5e8;
-    const moon = new THREE.Mesh(new THREE.SphereGeometry(1.7374, 96, 64), new THREE.MeshStandardMaterial({ map: tex('moon.jpg'), color: 0xd8d8d8, roughness: 1 })); F.add(moon);
+    const moon = new THREE.Mesh(new THREE.SphereGeometry(1.7374, 96, 64), SPX.on ? SPX.bodyMat('Moon') : new THREE.MeshStandardMaterial({ map: tex('moon.jpg'), color: 0xd8d8d8, roughness: 1 })); F.add(moon);
     moon.userData = { id: 'moon', priority: 2, madeOf: 'regolith', sim: ['moon'] }; F.pickables.push(moon); F.label(moon, 'Moon', { offset: new V3(0, 1.84, 0) });   /* the dot just above the Moon's north limb (radius 1.7374): at 2.6 it floated about 140 px above the sphere once the Moon was framed */ const mkM = markerSprite(0xffffff, 6); moon.add(mkM); const mh = hitSphere(1, 'moon', 3); mh.userData.zoomTo = () => { flyTo(F, moon.position.clone(), 6e6); }; moon.add(mh); // a pick target a few pixels wide, so the Moon dot can be hit
     moon.userData.zoomTo = mh.userData.zoomTo;
     /* A click on the Moon's dot frames the Moon itself. It used to be slid to the middle of the view at the distance you were at (a dot has no size to frame),
@@ -681,9 +704,10 @@ FT.earth = {
     { const go = new THREE.Object3D(); go.position.set(42.164, 0, 0); F.add(go); const gl = F.label(go, 'Geostationary orbit (35,786 km up)'); gl.minSizeFn = () => cam.D < 3e8; }
     const iss = new THREE.Group(); iss.add(markerSprite(0xffffff, 6)); const issH = hitSphere(1, 'iss', 3); iss.add(issH); F.add(iss); iss.userData = { id: 'iss', priority: 3, noZoom: true }; F.pickables.push(iss); const issL = F.label(iss, 'ISS (position illustrative)', { offset: new V3(0, .15, 0) }); issL.minSizeFn = () => cam.D < 6e7;
     const PXKe = 2 * Math.tan(25 * Math.PI / 180) / H;
-    F.update = () => {
+    F.update = (dt) => {
       spin.rotation.y = gmst(); clouds.rotation.y = (simTime / 3.6e6 * .004) % TAU;
       const s = sunDirIn(F); mat.uniforms.uSun.value.copy(s); sl.position.copy(s).multiplyScalar(100);
+      if (SPX.on) SPX.earthStep(F, s, dt, { mat, air, moon, sl });
       if (window.Astronomy) {
         const dtt = astroDate(), v = Astronomy.GeoMoon(dtt); moon.position.copy(eq3(v.x, v.y, v.z).multiplyScalar(149597.870));
         // near side toward Earth, north pole along the Moon's rotation axis (IAU); libration is not modelled
@@ -696,6 +720,7 @@ FT.earth = {
     };
     F.blurb = 'Earth at its true size, turning in real time, lit by the Sun from its true direction. The Moon is at its true size, distance and position for the date shown.';
     F.note = 'True: sizes, the Sun\'s direction, the day and night line, the Moon\'s position and phase. Illustrative: the clouds are a fixed sample image, not today\'s weather; the ISS position; the blue glow, drawn about 100 km thick (the conventional edge of space), where the air really thins out gradually.';
+    if (SPX.on) Object.defineProperty(F, 'note', { get: () => F._sxOnMoon ? SPX.NOTE.moon : SPX.NOTE.earth, set() {}, configurable: true });   // centred on the Moon, the place's note is the Moon's
     F.spawnD = 2e5;
     surfaceAtt(F, (i, c) => i === 0 ? (c.set(0, 0, 0), R) : i === 1 ? (c.copy(moon.position), 1.7374) : 0);   // aimed at the blue glow: the zoom lands on the ground below it
     F.spawn = (T) => {
@@ -773,3 +798,525 @@ WORLD_EXT.push(async FR2 => {
     dt.onchange = () => { if (dt.value) { const [y, m, d] = dt.value.split('-').map(Number); simTime = Date.UTC(y, m - 1, d, 12, 0, 0); timeSpeed = 0; si = 6; apply(); } };
   }, 200);
 });
+
+/* ================= Space under the realistic look (?look=2): docs/DESIGN.md 3.1 to 3.4, rollout step 12 =================
+   The frames above ask SPX only where it is on. With the flag off SPX.on is false, nothing below is reached, and space is drawn exactly
+   as it always was. Units (DESIGN 3.12): a white matte surface that faces the Sun at 1 AU shows 1.0 before the tone curve, so the Sun's
+   irradiance there is pi. Every shader here that carries light works in linear light and ends with the tone curve and the encoding;
+   points, the sky photograph and the galaxy photographs are drawn as they were recorded (no tone curve), like the app's other unlit things. */
+const SPX = (() => {
+  const X = { on: false, ready: Promise.resolve(true) };
+  if (!(typeof LOOK !== 'undefined' && LOOK.on && LOOK.part('pbr'))) return X;
+  X.on = true;
+  const HIGH = LOOK.quality !== 'low', C = THREE.ShaderChunk;
+  X.high = HIGH;
+  /* ---- maps: assets/textures/look_*.jpg (sources and licences: assets/ATTRIBUTION.md). 4k (or the source's own size) at the high
+     level, 2k at the low level; loaded when a frame that shows them is built, and counted in SPX.ready ---- */
+  const ld = new THREE.TextureLoader(), CACHE = {}, PEND = new Set();
+  const settle = () => PEND.size ? Promise.all([...PEND]).then(settle) : Promise.resolve(true);
+  Object.defineProperty(X, 'ready', { get: () => Promise.all([settle(), LOOK.ready]).then(() => true), enumerable: true });
+  function map(file, cb) {
+    let c = CACHE[file];
+    if (!c) {
+      let done; const p = new Promise(r => { done = r; }); PEND.add(p); p.then(() => PEND.delete(p));
+      const t = ld.load('assets/textures/' + file, tt => done(tt), undefined, () => { console.warn('space look: no texture', file); done(null); });
+      t.anisotropy = 8; c = CACHE[file] = { t, p };
+    }
+    if (cb) c.p.then(tt => { if (tt) cb(tt); });
+    return c.t;
+  }
+  X.map = map;
+  const q = (hi, lo) => HIGH ? hi : lo;
+  /* the maps that replace a body's own under the look (better sources, staged and checked; see ATTRIBUTION). tint: the colour the
+     map is multiplied by (a monochrome map takes the body's measured colour); ll: lunar-Lambert (airless, dusty surfaces) */
+  const BODY = {
+    Mercury: { file: 'look_mercury_2k.jpg', tint: 0xa39b91, ll: true, src: 'MESSENGER (NASA/JHU APL), monochrome, tinted to Mercury\'s grey-brown' },
+    /* Mars: the Viking colour mosaic is blue-heavy (its mean is a mauve with blue as strong as green). It is balanced here so that its mean,
+       on a sphere, is the measured mean of Mars: geometric albedo 0.089 in blue, 0.170 in green (V) and 0.289 in red light (Mallama 2007,
+       Icarus 192, 404), as the albedo of a Lambert surface (1.5 times the geometric albedo). Gains in display units: the map's own mean
+       measured over the sphere, 2k and 4k alike. */
+    Mars: { file: q('look_mars_4k.jpg', 'look_mars_2k.jpg'), gain: [1.41, 1.41, 1.07], src: 'Viking orbiters (NASA/JPL/USGS, MDIM 2.1), its colour balanced to the measured mean brightness of Mars in blue, green and red light (Mallama 2007). The light and shade of craters in the Viking photographs is part of the map, so relief shows lit from the Viking-era Sun, not from today\'s' },
+    Jupiter: { file: q('look_jupiter_4k.jpg', 'look_jupiter_2k.jpg'), src: 'Cassini, December 2000 (NASA/JPL/SSI); the polar regions were poorly imaged and are smoothed' },
+    Moon: { file: q('moon.jpg', 'look_moon_2k.jpg'), ll: true },
+    Europa: { file: 'look_europa_1k.jpg', tint: 0xd9cfc0, ll: true, src: 'Voyager and Galileo (USGS), monochrome, tinted' },
+    Enceladus: { file: 'look_enceladus_1k.jpg', ll: true, src: 'Cassini (NASA/JPL/SSI/LPI), its false colour taken almost to grey' },
+    Charon: { file: 'look_charon_1k.jpg', tint: 0xb8b3ad, ll: true, src: 'New Horizons (NASA/JHU APL/SwRI), monochrome, tinted' },
+    Pluto: { file: 'look_pluto_2k.jpg', ll: true, src: 'New Horizons (NASA/JHU APL/SwRI); its enhanced colour halved toward grey: approximate' },
+  };
+  X.body = name => BODY[name] || null;
+  // flattening (1 - polar/equatorial radius): NASA planetary fact sheets
+  const FLAT = { Mercury: 0, Venus: 0, Earth: .00335, Mars: .00589, Jupiter: .06487, Saturn: .09796, Uranus: .02293, Neptune: .01708 };
+  X.flat = name => FLAT[name] || 0;
+  LOOK.KINDS.regolith = LOOK.KINDS.regolith || { rough: 1 };    // dust and rock of an airless body
+  LOOK.KINDS.cloudtop = LOOK.KINDS.cloudtop || { rough: 1 };    // the cloud deck of a giant planet
+
+  /* ---- lunar-Lambert: a dusty airless surface is nearly as bright at its edge as at its centre near full phase (the full Moon is a
+     flat disc, not a ball). L ~ (1 - A) cos i + 2 A cos i / (cos i + cos e), with A from the phase angle (McEwen's polynomial). ---- */
+  const LAMBERT = 'reflectedLight.directDiffuse += ( 1.0 - clearcoatDHR ) * irradiance * BRDF_Diffuse_Lambert( material.diffuseColor );';
+  const SPECULAR = 'reflectedLight.directSpecular += ( 1.0 - clearcoatDHR ) * irradiance * BRDF_Specular_GGX( directLight, geometry.viewDir, geometry.normal, material.specularColor, material.specularRoughness);';
+  X.llA = deg => clamp(1 - .019 * deg + 2.42e-4 * deg * deg - 1.46e-6 * deg * deg * deg, 0, 1);
+  /* How a planet's or a moon's surface sends the Sun's light back. No glossy highlight: a cloud deck or a dusty regolith has none, and the
+     standard material's sheen at grazing angles made the limbs of the giants bright, like a ball. Cloud decks: Lambert (Minnaert k = 1, within
+     the 0.8 to 1.2 measured for Jupiter in visible light). Airless bodies: lunar-Lambert, and the shadows of slopes smaller than the map can show
+     (rms slope about 22 degrees for the Moon; USGS, "A new look at photometry of the Moon"): Smith's shadowing term, so the light falls off
+     faster toward the terminator and the edge between day and night is crisp, as it is on the real Moon. */
+  function surfaceBRDF(m, airless) {
+    const u = { value: 1 }; if (airless) m.userData.uLL = u;
+    return LOOK.patch(m, airless ? 'lunarLambert' : 'cloudDeck', sh => {
+      sh.uniforms.uLL = u;
+      const t = C.lights_physical_pars_fragment;
+      if (!t.includes(LAMBERT) || !t.includes(SPECULAR)) { console.warn('space look: the lighting chunk has changed'); return; }
+      sh.fragmentShader = sh.fragmentShader.replace('#include <lights_physical_pars_fragment>', 'uniform float uLL;\n' + t.replace(SPECULAR, '').replace(LAMBERT, airless
+        ? `float sxNV = saturate( dot( geometry.normal, geometry.viewDir ) ), sxT2 = max( 1.0 - dotNL * dotNL, 0.0 ) / max( dotNL * dotNL, 1e-6 );
+	reflectedLight.directDiffuse += irradiance * BRDF_Diffuse_Lambert( material.diffuseColor ) * ( ( 1.0 - uLL ) + 2.0 * uLL / max( dotNL + sxNV, 1e-3 ) ) * 2.0 / ( 1.0 + sqrt( 1.0 + 0.163 * sxT2 ) );`
+        : LAMBERT));
+    });
+  }
+  /* a body's material: its map (or tint) through the table of kinds; airless bodies get lunar-Lambert, cloud decks plain Lambert */
+  X.bodyMat = (name, fallbackMap, fallbackColor, own) => {   // own: keep the body's own map (the small spheres of the solar-system view)
+    const b = BODY[name], file = !own && b && b.file, mp = file ? map(file) : fallbackMap;
+    const col = b && b.tint && (file || !mp) ? b.tint : mp ? 0xffffff : fallbackColor;
+    const m = LOOK.material(/Jupiter|Saturn|Uranus|Neptune|Venus/.test(name) ? 'cloudtop' : 'regolith', col, { extra: { map: mp || null } });
+    m.roughness = 1; m.metalness = 0;
+    if (file && b.gain) m.color.setRGB(...b.gain);   // a colour balance measured for the map (see BODY)
+    surfaceBRDF(m, !!(b && b.ll || ICY_BODIES.test(name) || /Mercury|Moon|Phobos|Deimos|Ceres|Io|Ganymede|Callisto|Mimas|Tethys|Dione|Rhea|Iapetus/.test(name)));
+    return m;
+  };
+  /* the phase angle at a body (degrees): between the Sun and the camera, seen from the body */
+  const _a = new V3(), _b = new V3();
+  X.phaseAt = (F, p, sunDir) => { camPosIn(F, _a).sub(p).normalize(); return Math.acos(clamp(_a.dot(sunDir), -1, 1)) * 180 / Math.PI; };
+  X.setLL = (m, F, p, s) => { if (m && m.userData.uLL) m.userData.uLL.value = X.llA(X.phaseAt(F, p, s)); };
+  X._a = _a; X._b = _b;
+  return X;
+})();
+/* ---- the Earth under the look: one shader for the ground, the sea, the clouds, the lights of cities and the air in front of them,
+   and a shell for the air seen against space at the limb ---- */
+if (SPX.on) (() => {
+  const X = SPX, HIGH = X.high;
+  /* Single scattering in an air of two exponential layers (Rayleigh and Mie, sea-level coefficients and scale heights of the standard
+     Earth presets in Bruneton 2017 and Hillaire 2020), in frame units of 1,000 km. Sunlight reaching each point is dimmed along its path
+     by the air mass of a Chapman-function approximation; the planet's own shadow cuts it off. Ozone and light scattered more than once
+     are left out: the twilight band is thinner and less purple than a real one. */
+  const ATM = `
+#define SX_RP 6.371
+#define SX_RT 6.471
+#define SX_N ${HIGH ? 14 : 7}
+const vec3 SX_BR = vec3( 5.802, 13.558, 33.1 );
+const float SX_BMS = 3.996, SX_BME = 4.40, SX_HR = 0.008, SX_HM = 0.0012;
+float sxCh( float x, float mu ) {
+  float c = sqrt( 1.5707963 * x );
+  if ( mu >= 0.0 ) return c / ( ( c - 1.0 ) * mu + 1.0 );
+  float st = sqrt( max( 0.0, 1.0 - mu * mu ) ), xt = x * st;
+  return 2.0 * sqrt( 1.5707963 * xt ) * exp( min( x - xt, 40.0 ) ) - c / ( ( c - 1.0 ) * ( - mu ) + 1.0 );
+}
+vec3 sxSunT( float r, float mu ) {
+  float h = max( r - SX_RP, 0.0 ), muH = - sqrt( max( 0.0, 1.0 - SX_RP * SX_RP / ( r * r ) ) );
+  float vis = smoothstep( muH - 0.0047, muH + 0.0047, mu );
+  if ( vis <= 0.0 ) return vec3( 0.0 );
+  vec3 tau = SX_BR * exp( - h / SX_HR ) * SX_HR * sxCh( r / SX_HR, mu ) + SX_BME * exp( - h / SX_HM ) * SX_HM * sxCh( r / SX_HM, mu );
+  return exp( - tau ) * vis;
+}
+vec3 sxScatter( vec3 ro, vec3 rd, float t0, float t1, vec3 s, bool ground, out vec3 trans ) {
+  float tc = clamp( - dot( ro, rd ), t0, t1 );
+  vec3 sumR = vec3( 0.0 ), sumM = vec3( 0.0 ), od = vec3( 0.0 );
+  for ( int i = 0; i < SX_N; i ++ ) {
+    float u = ( float( i ) + 0.5 ) / float( SX_N ), t, dt;
+    if ( ground ) { float w = 1.0 - u; t = t1 - ( t1 - t0 ) * w * w; dt = 2.0 * w * ( t1 - t0 ) / float( SX_N ); }
+    else { float qq = 2.0 * u - 1.0, L = qq < 0.0 ? tc - t0 : t1 - tc; t = tc + qq * abs( qq ) * L; dt = 4.0 * abs( qq ) * L / float( SX_N ); }
+    vec3 p = ro + rd * t; float r = length( p ), h = max( r - SX_RP, 0.0 );
+    float dR = exp( - h / SX_HR ), dM = exp( - h / SX_HM );
+    vec3 dod = ( SX_BR * dR + SX_BME * dM ) * dt;
+    vec3 tv = exp( - ( od + 0.5 * dod ) ) * sxSunT( r, dot( p, s ) / r );
+    sumR += tv * dR * dt; sumM += tv * dM * dt; od += dod;
+  }
+  trans = exp( - od );
+  float c = dot( rd, s ), g = 0.8;
+  float pR = 0.0596831 * ( 1.0 + c * c );
+  float pM = 0.1193662 * ( 1.0 - g * g ) * ( 1.0 + c * c ) / ( ( 2.0 + g * g ) * pow( 1.0 + g * g - 2.0 * g * c, 1.5 ) );
+  return 3.14159265 * ( SX_BR * sumR * pR + SX_BMS * sumM * pM );
+}
+// the sky straight overhead at a point of the ground (single scattering, 10 steps up through the air): with the Sun below the horizon this is
+// the twilight, lit by sunlight that passes above the Earth's shadow; the ground takes it as light from the whole sky (an even sky)
+vec3 sxZenith( vec3 up, vec3 s ) {
+  vec3 sumR = vec3( 0.0 ), sumM = vec3( 0.0 ), od = vec3( 0.0 ); float c = dot( up, s ), H = SX_RT - SX_RP;
+  for ( int i = 0; i < 10; i ++ ) {
+    float u = ( float( i ) + 0.5 ) / 10.0, h = H * u * u, dh = 2.0 * u * H / 10.0, r = SX_RP + h;
+    float dR = exp( - h / SX_HR ), dM = exp( - h / SX_HM ); vec3 dod = ( SX_BR * dR + SX_BME * dM ) * dh;
+    vec3 tv = exp( - ( od + 0.5 * dod ) ) * sxSunT( r, c ); sumR += tv * dR * dh; sumM += tv * dM * dh; od += dod;
+  }
+  float g = 0.8, pR = 0.0596831 * ( 1.0 + c * c ), pM = 0.1193662 * ( 1.0 - g * g ) * ( 1.0 + c * c ) / ( ( 2.0 + g * g ) * pow( 1.0 + g * g - 2.0 * g * c, 1.5 ) );
+  return 3.14159265 * ( SX_BR * sumR * pR + SX_BMS * sumM * pM );
+}`;
+  X.ATM_GLSL = ATM;
+  X.earthDay = () => X.map(HIGH ? 'look_earth_day_3600.jpg' : 'look_earth_day_2k.jpg', t => {   // the picking of land, sea and ice (biomeAtUV) reads this map's colours
+    const c = document.createElement('canvas'); c.width = 1024; c.height = 512; const g = c.getContext('2d'); g.drawImage(t.image, 0, 0, 1024, 512); EARTH_PIX = g.getImageData(0, 0, 1024, 512);
+  });
+  /* the globe. tPack: R water, G cloud cover (one sample picture), B night lights (display brightness of the composite) */
+  X.earthMat = day => new THREE.ShaderMaterial({
+    uniforms: { tDay: { value: day }, tPack: { value: X.map('look_earth_pack_2k.jpg') }, tNrm: { value: HIGH ? X.map('look_earth_normal_2k.jpg') : null }, uSun: { value: new V3(1, 0, 0) }, uOpacity: { value: 1 }, uSunE: { value: 1 }, uCity: { value: 2e-5 } },
+    defines: HIGH ? { SX_RELIEF: 1 } : {},
+    vertexShader: LDV(`varying vec2 vUv; varying vec3 vW; varying vec3 vC; varying vec3 vE;
+      void main(){ vUv = uv; vec4 w = modelMatrix * vec4( position, 1.0 ); vW = w.xyz; vC = ( modelMatrix * vec4( 0.0, 0.0, 0.0, 1.0 ) ).xyz;
+        vE = normalize( mat3( modelMatrix ) * vec3( position.z, 0.0, - position.x ) + vec3( 1e-6 ) ); gl_Position = projectionMatrix * viewMatrix * w; }`),
+    fragmentShader: LDF(ATM + `
+      uniform sampler2D tDay; uniform sampler2D tPack; uniform sampler2D tNrm; uniform vec3 uSun; uniform float uOpacity; uniform float uSunE; uniform float uCity;
+      varying vec2 vUv; varying vec3 vW; varying vec3 vC; varying vec3 vE;
+      void main(){
+        vec3 p = vW - vC, n = normalize( p ), s = normalize( uSun ), V = cameraPosition - vW; float dist = length( V ); vec3 v = V / dist;
+        float mu0 = dot( n, s ), mu = max( dot( n, v ), 0.02 );
+        vec3 E = normalize( vE - n * dot( vE, n ) ), N = cross( n, E );
+        vec4 pk = texture2D( tPack, vUv ); float water = smoothstep( 0.3, 0.7, pk.r ), cl = pk.g;
+        vec3 alb = pow( texture2D( tDay, vUv ).rgb, vec3( 2.2 ) );
+        vec3 nm = n;
+        #ifdef SX_RELIEF
+          vec3 tn = texture2D( tNrm, vUv ).xyz * 2.0 - 1.0; nm = normalize( mix( E * tn.x + N * tn.y + n * tn.z, n, water ) );
+        #endif
+        vec3 Ts = sxSunT( SX_RP, mu0 ) * uSunE;   // sunlight at the ground: reddened near the terminator, gone beyond it
+        // clouds 5 km up cast their shadows away from the Sun
+        vec3 st = s - n * mu0; float sl = length( st ), lat = ( vUv.y - 0.5 ) * 3.14159265;
+        vec2 dir = sl > 1e-4 ? vec2( dot( st, E ), dot( st, N ) ) / sl : vec2( 0.0 );
+        vec2 duv = dir * min( sl / max( mu0, 0.05 ), 20.0 ) * 0.005 / vec2( 6.2831853 * SX_RP * max( cos( lat ), 0.05 ), 3.14159265 * SX_RP );
+        float shade = 1.0 - 0.75 * texture2D( tPack, vUv + duv ).g;
+        // land and sea
+        vec3 surf = alb * max( dot( nm, s ), 0.0 ) * shade;
+        vec3 h = normalize( s + v ); float nh = max( dot( n, h ), 0.0 ), a2 = 0.04, m0 = max( mu0, 0.0 );
+        float D = a2 / ( 3.14159265 * pow( nh * nh * ( a2 - 1.0 ) + 1.0, 2.0 ) ), kk = 0.1;
+        float G = ( mu / ( mu * ( 1.0 - kk ) + kk ) ) * ( m0 / ( m0 * ( 1.0 - kk ) + kk ) );
+        float F = 0.02 + 0.98 * pow( 1.0 - max( dot( h, v ), 0.0 ), 5.0 );
+        surf += water * shade * 3.14159265 * D * G * F / ( 4.0 * mu ) * vec3( 1.0 );   // the Sun's glint: GGX, slope spread of a sea at about 7 m/s, Fresnel of water
+        vec3 col = mix( surf, vec3( 0.72 ) * m0, cl ) * Ts;
+        // light from the sky: worked out only near and beyond the terminator, where it is the twilight that a long exposure on the night
+        // side shows as a soft edge to the burnt-out crescent (on the day side the direct sunlight is far stronger, and it fades out there)
+        if ( mu0 < 0.35 && mu0 > - 0.35 ) col += mix( alb * shade, vec3( 0.72 ), cl ) * sxZenith( n, s ) * uSunE * smoothstep( 0.35, 0.15, mu0 );
+        // city lights: emitted, so they show only where the ground is dark enough for them to matter (the exposure decides)
+        col += pow( pk.b, 2.2 ) * uCity * ( 1.0 - 0.85 * cl ) * vec3( 1.0, 0.78, 0.5 );
+        // the air between the eye and the ground
+        vec3 ro = cameraPosition - vC, rd = - v; float b = dot( ro, rd ), c = dot( ro, ro ) - SX_RT * SX_RT, d = b * b - c;
+        float t0 = d > 0.0 ? max( 0.0, - b - sqrt( d ) ) : 0.0; vec3 Tv;
+        vec3 Lin = sxScatter( ro, rd, min( t0, dist ), dist, s, true, Tv );
+        gl_FragColor = vec4( col * Tv + Lin * uSunE, uOpacity );
+        #include <tonemapping_fragment>
+        #include <encodings_fragment>
+      }`),
+  });
+  /* the air seen against space: a shell 100 km up, drawn from inside (its far side), so the globe hides it wherever the ground is */
+  X.earthShell = () => {
+    const m = new THREE.ShaderMaterial({
+      uniforms: { uSun: { value: new V3(1, 0, 0) }, uOpacity: { value: 1 }, uSunE: { value: 1 } },
+      vertexShader: LDV(`varying vec3 vW; varying vec3 vC; void main(){ vec4 w = modelMatrix * vec4( position, 1.0 ); vW = w.xyz; vC = ( modelMatrix * vec4( 0.0, 0.0, 0.0, 1.0 ) ).xyz; gl_Position = projectionMatrix * viewMatrix * w; }`),
+      fragmentShader: LDF(ATM + `
+        uniform vec3 uSun; uniform float uOpacity; uniform float uSunE; varying vec3 vW; varying vec3 vC;
+        void main(){
+          vec3 ro = cameraPosition - vC, rd = normalize( vW - cameraPosition ), s = normalize( uSun );
+          float b = dot( ro, rd ), c = dot( ro, ro ) - SX_RT * SX_RT, d = b * b - c; if ( d <= 0.0 ) discard;
+          float sq = sqrt( d ), t0 = max( 0.0, - b - sq ), t1 = - b + sq;
+          float cp = dot( ro, ro ) - SX_RP * SX_RP, dp = b * b - cp; if ( dp > 0.0 && - b - sqrt( dp ) > 0.0 ) t1 = - b - sqrt( dp );   // that ray ends on the ground, where the globe (nearer) hides this; stopping there keeps the faceted globe's edge from showing gaps
+          vec3 Tv; vec3 L = sxScatter( ro, rd, t0, t1, s, false, Tv ) * uSunE;
+          gl_FragColor = vec4( L * uOpacity, mix( 1.0, dot( Tv, vec3( 0.2126, 0.7152, 0.0722 ) ), uOpacity ) );   // alpha: what the air lets through of the stars behind it
+          #include <tonemapping_fragment>
+          #include <encodings_fragment>
+        }`),
+      side: THREE.BackSide, transparent: true, depthWrite: false, blending: THREE.CustomBlending, blendSrc: THREE.OneFactor, blendDst: THREE.SrcAlphaFactor,
+    });
+    return new THREE.Mesh(new THREE.SphereGeometry(6.471, 128, 64), m);
+  };
+  /* Exposure, like a camera's: set for the sunlit Earth, and opened up (up to 2 x 10^5 times, about 17.6 stops) when what is in the
+     middle of the view is the night side, so that the lights of cities can be seen. Eased over half a second. */
+  /* Centred on the Moon, the camera meters on the Moon instead: its surface reflects about a third of what the Earth does (Bond albedo
+     0.11 against 0.31), so the exposure opens by 2.5 times; the brightest highlands then sit near 0.85 of white, as in a photograph of
+     the Moon. */
+  const NIGHT = 2e5, MOON_K = 2.5, _c = new V3(), _t = new V3();
+  X.earthExposure = (F, s, dt, moon) => {
+    camPosIn(F, _c); const L = _c.length(); let k = 1;
+    _t.copy(cam.T); if (cam.A !== F) convertP(_t, cam.A, F);   // what the view is centred on, in the Earth frame
+    const onMoon = !!moon && _t.distanceTo(moon.position) < 1.7374 * 1.3 && cam.D < 6e7;
+    if (onMoon !== !!F._sxOnMoon) { F._sxOnMoon = onMoon; if (typeof capFrame !== 'undefined') capFrame = null; }   // the place's note follows (F.note, below)
+    if (onMoon) k = MOON_K;
+    else if (L > 0) {
+      const toT = _t.clone().sub(_c).normalize(), b = _c.dot(toT), cc = _c.lengthSq() - 6.371 * 6.371, d = b * b - cc;
+      let n; if (d > 0 && -b - Math.sqrt(d) > 0) n = _c.clone().addScaledVector(toT, -b - Math.sqrt(d)).normalize(); else n = _c.clone().normalize();   // the ground in the middle of the view, else the point below the camera
+      const mu0 = n.dot(s); k = Math.exp(Math.log(NIGHT) * smooth(.02, -.12, mu0));
+    }
+    const was = F._sxK || 1, a = 1 - Math.exp(-(dt || .016) / .5); F._sxK = Math.exp(Math.log(was) + (Math.log(k) - Math.log(was)) * a);
+    F.exposure = F._sxK / .9;
+    return F._sxK;
+  };
+})();
+if (SPX.on) (() => {
+  const X = SPX;
+  /* the Sun's light where a body is: 1 at 1 AU, falling as the inverse square of the distance */
+  X.sunE = name => { const r = helioAt(name, simTime).length(); return r > 0 ? 1 / (r * r) : 1; };
+  X.earthStep = (F, s, dt, o) => {
+    const now = performance.now();
+    if (!F._sxT || now - F._sxT > 1000) { F._sxT = now; F._sxE = X.sunE('Earth'); }
+    const E = F._sxE; o.mat.uniforms.uSunE.value = E; o.sl.intensity = E;
+    if (o.air) { o.air.material.uniforms.uSun.value.copy(s); o.air.material.uniforms.uSunE.value = E; }
+    X.earthExposure(F, s, dt, o.moon);
+    F.glow = F._sxK > 30;   // exposed for the night side, the burnt-out crescent and the Moon spread glare, as in a camera (the bloom acts only on what is over white)
+    X.setLL(o.moon.material, F, o.moon.position, s);
+  };
+  X.NOTE = {
+    moon: 'As it looks, from the date\'s real sunlight, with the exposure set for the Moon (about 2.5 times the exposure for the sunlit Earth, because the Moon reflects about a third as much light). The surface is a map made from NASA lunar imagery (Solar System Scope, CC BY 4.0); its brightness follows the measured way the Moon\'s dust scatters light, so the full Moon is a flat disc. Mountains and crater walls are not modelled as relief, so near the line between day and night they cast no shadows of their own; slopes too small for the map are allowed for, which makes that line crisp. The near side always faces the Earth; the small rocking of libration is not shown. A camera exposed for the Moon records no stars: they are drawn faint so that the sky can still be read.',
+    earth: 'As it looks, from the date\'s real sunlight: the ground is NASA\'s Blue Marble (a cloud-free composite of 2004) with the open ocean drawn in one colour, because the map\'s sea-floor relief cannot be seen from space; the clouds are one sample picture, not today\'s weather, and their shadows assume they are 5 km up. The air is computed (scattering by molecules and haze in a single bounce), so the blue limb and the red line at sunset are calculated, not painted. City lights are a satellite composite, drawn in an assumed warm colour. The exposure follows the middle of the view like a camera\'s: on the night side it is about 200,000 times longer, which is why the sunlit edge then burns out white. A camera exposed for the sunlit Earth records no stars at all: they are drawn faint, so that the sky can still be read, and come up in full when the exposure opens on the night side. Not shown: today\'s weather, the Moon\'s and the Earth\'s shadows on each other, the ISS\'s real position.',
+  };
+})();
+/* ---- planets and moons under the look: the best staged map for each body, the flattening of the giant planets, phase from the real
+   Sun, Saturn's rings lit as a layer of ice particles, with the planet's shadow on them and their shadow on the planet ---- */
+if (SPX.on) (() => {
+  const X = SPX;
+  X.SATURN_RING_A = .98;
+  /* the shape: volume kept, equator out and poles in by the measured flattening */
+  X.shape = (mesh, name) => { const f = X.flat(name); if (!f) return new V3(1, 1, 1); const a = Math.pow(1 - f, -1 / 3); mesh.scale.set(a, a * (1 - f), a); return mesh.scale.clone(); };
+  /* Saturn's rings. Optical depth from the map's opacity (tau = -ln(1 - alpha), alpha read as the fraction of light the ring stops at
+     normal incidence); light scattered once by a thick layer of particles (Chandrasekhar's slab: reflected on the lit face, passed through
+     to the other); particles that scatter like Lambert spheres. Each point is tested against the planet's own shadow (an oblate spheroid). */
+  X.ringMat = (ringTex, ri, ro, R, f) => {
+    const a = R * Math.pow(1 - f, -1 / 3), c = a * (1 - f);
+    ringTex.anisotropy = 1;   // the map is a radial profile: plain mipmapping by the radial footprint is its right prefilter (anisotropic sampling showed as speckle)
+    return new THREE.ShaderMaterial({
+      uniforms: { tRing: { value: ringTex }, uSunL: { value: new V3(0, 0, 1) }, uSun: { value: new V3(1, 0, 0) }, uOpacity: { value: 1 }, uA: { value: a }, uK: { value: a / c }, uRi: { value: ri }, uRo: { value: ro } },
+      vertexShader: LDV(`varying vec3 vL; varying vec3 vW; varying vec3 vN; void main(){ vL = position; vec4 w = modelMatrix * vec4( position, 1.0 ); vW = w.xyz; vN = normalize( mat3( modelMatrix ) * vec3( 0.0, 0.0, 1.0 ) ); gl_Position = projectionMatrix * viewMatrix * w; }`),
+      fragmentShader: LDF(`uniform sampler2D tRing; uniform vec3 uSunL; uniform vec3 uSun; uniform float uOpacity; uniform float uA; uniform float uK; uniform float uRi; uniform float uRo;
+        varying vec3 vL; varying vec3 vW; varying vec3 vN;
+        void main(){
+          float r = length( vL.xy ); vec4 tx = texture2D( tRing, vec2( ( r - uRi ) / ( uRo - uRi ), 0.5 ) );
+          float al = min( tx.a, 0.995 ); if ( al < 0.004 ) discard;
+          float tau = - log( 1.0 - al );
+          vec3 s = normalize( uSun ), v = normalize( cameraPosition - vW ), n = normalize( vN );
+          float sn = dot( s, n ), vn = dot( v, n ), mu0 = max( abs( sn ), 1e-3 ), mu = max( abs( vn ), 1e-3 );
+          // the planet's shadow: does the ray toward the Sun cross the spheroid? (in the ring's frame, polar axis stretched to make it a sphere)
+          vec3 sl = normalize( uSunL ), d = vec3( sl.xy, sl.z * uK ), o = vec3( vL.xy, 0.0 ); float b = dot( o, d ), sh = 1.0;
+          if ( b < 0.0 ) { float m2 = dot( o, o ) - b * b / dot( d, d ); sh = smoothstep( uA * 0.997, uA * 1.003, sqrt( max( m2, 0.0 ) ) ); }
+          // particles: single-scattering albedo from the map's colour; phase function of a Lambert sphere
+          vec4 tc = texture2D( tRing, vec2( ( r - uRi ) / ( uRo - uRi ), 0.5 ), 3.0 );   // the colour, smoothed across the ringlets (the map's colour varies more than its brightness does)
+          float lw = dot( pow( tc.rgb / max( tc.a, 0.05 ), vec3( 2.2 ) ), vec3( 0.2126, 0.7152, 0.0722 ) );
+          vec3 w = clamp( lw * 3.5, 0.0, 0.95 ) * vec3( 1.0, 0.93, 0.82 );   // one pale tan for all the rings (their real colour differences are slight)
+          float ph = acos( clamp( dot( s, v ), -1.0, 1.0 ) ), P = 0.8488264 * ( sin( ph ) + ( 3.14159265 - ph ) * cos( ph ) );
+          float tm0 = tau / mu0, tm = tau / mu, I;
+          if ( sn * vn > 0.0 ) I = mu0 / ( mu0 + mu ) * ( 1.0 - exp( - tm0 - tm ) );                       // the lit face
+          else I = abs( mu - mu0 ) < 1e-3 ? mu0 * tau / ( mu * mu ) * exp( - tm ) : mu0 / ( mu - mu0 ) * ( exp( - tm ) - exp( - tm0 ) );   // light that has come through
+          // light scattered more than once, approximated as a diffuse layer (Lambert-like reflection on the lit face, diffuse transmission on the other)
+          vec3 ms = w * w * 0.4 * mu0 * ( sn * vn > 0.0 ? ( 1.0 - exp( - tm0 ) ) * ( 1.0 - exp( - tm ) ) : tau * exp( - tau ) );
+          gl_FragColor = vec4( ( w * P * 0.25 * max( I, 0.0 ) + ms ) * sh * uOpacity, ( 1.0 - exp( - tm ) ) * uOpacity );
+          #include <tonemapping_fragment>
+          #include <encodings_fragment>
+        }`),
+      transparent: true, depthWrite: false, side: THREE.DoubleSide, blending: THREE.CustomBlending, blendSrc: THREE.OneFactor, blendDst: THREE.OneMinusSrcAlphaFactor,
+    });
+  };
+  /* the rings' shadow on the planet: sunlight reaching a point of the cloud tops is dimmed by the ring it passed through on the way */
+  X.ringShadow = (m, ringTex, ri, ro, scale, sunM) => { const U = m.userData.sxRingU = { tRingS: { value: ringTex }, uSunM: { value: sunM }, uRiS: { value: ri }, uRoS: { value: ro }, uScaleS: { value: scale } }; return LOOK.patch(m, 'ringShadow', sh => {
+    Object.assign(sh.uniforms, U);
+    sh.vertexShader = 'uniform vec3 uScaleS; varying vec3 vSxP;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tvSxP = position * uScaleS;');
+    sh.fragmentShader = 'uniform sampler2D tRingS; uniform vec3 uSunM; uniform float uRiS; uniform float uRoS; varying vec3 vSxP;\n' + sh.fragmentShader.replace('#include <lights_fragment_begin>',
+      THREE.ShaderChunk.lights_fragment_begin.replace('getDirectionalDirectLightIrradiance( directionalLight, geometry, directLight );',
+        `getDirectionalDirectLightIrradiance( directionalLight, geometry, directLight );
+		{ vec3 sM = normalize( uSunM ); if ( abs( sM.y ) > 1e-4 ) { float t = - vSxP.y / sM.y; if ( t > 0.0 ) {
+			// where the ray toward the Sun crosses the ring plane; averaged over the pixel's own spread of ring radii (five taps), so the
+			// edges of the shadow and its ringlets are smooth (the Sun's penumbra there is a few tens of km, far below a pixel)
+			float rr = length( ( vSxP + sM * t ).xz ), fw = fwidth( rr ), tr = 0.0;
+			for ( int k = -2; k <= 2; k ++ ) { float r2 = rr + fw * 0.4 * float( k ), u = ( r2 - uRiS ) / ( uRoS - uRiS );
+				float aa = ( u > 0.0 && u < 1.0 ) ? min( texture2D( tRingS, vec2( u, 0.5 ) ).a, 0.995 ) : 0.0; tr += pow( 1.0 - aa, 1.0 / abs( sM.y ) ); }
+			directLight.color *= tr / 5.0; } } }`));
+  }); };
+})();
+if (SPX.on) (() => {
+  const X = SPX;
+  /* north poles (IAU WGCCRE 2015, J2000 right ascension and declination, degrees) */
+  const POLE = { Mercury: [281.0103, 61.4155], Venus: [272.76, 67.16], Mars: [317.269, 54.432], Jupiter: [268.057, 64.495], Saturn: [40.589, 83.537], Uranus: [257.311, -15.175], Neptune: [299.36, 43.46], Pluto: [132.993, -6.163] };
+  const PC = {};
+  X.pole = name => { const p = POLE[name]; if (!p) return null; return PC[name] || (PC[name] = raDec3(p[0], p[1]).applyQuaternion(Q_EQ_TO_ECL).normalize()); };
+  const _q = new THREE.Quaternion();
+  X.planetStep = (F, s, mesh, moons) => {
+    X.setLL(mesh.material, F, X._b.set(0, 0, 0), s);
+    for (const m of moons) { m.mm.getWorldPosition(X._b).add(F.C || X._a.set(0, 0, 0)); X.setLL(m.mm.material, F, X._b, s); }
+    const ring = F._sxRing; if (!ring) return;
+    ring.getWorldQuaternion(_q).invert(); ring.material.uniforms.uSunL.value.copy(s).applyQuaternion(_q); ring.material.uniforms.uSun.value.copy(s);
+    mesh.getWorldQuaternion(_q).invert(); F._sxSunM.copy(s).applyQuaternion(_q);
+  };
+  X.planetNote = (name, d, nMoons) => {
+    const b = X.body(name), E = X.sunE(name), f = X.flat(name);
+    return [
+      `Lit by the Sun from its true direction, so the phase is the real one. The picture is exposed for the sunlight at ${name}${E < .9 ? `, which is ${sig(1 / E)} times weaker than at the Earth` : E > 1.1 ? `, which is ${sig(E)} times stronger than at the Earth` : ''}, as a camera there would be. Such a camera records no stars: they are drawn faint, so that the sky can still be read.`,
+      b && b.src ? `Surface: ${b.src}.` : d.texture ? 'The surface colours come from a published map; their brightness is approximate.' : 'No surface map is drawn: the colour is an approximate tint.',
+      f > .01 ? `Drawn flattened at the poles by the measured ${sig(f * 100)}%.` : '',
+      'The axis points where it really does; the turn of the globe about it (which longitude faces you) is not the real one.',
+      nMoons ? 'Moon sizes and distances are true; where each moon sits on its orbit is illustrative. Smaller moons are not drawn.' : '',
+      d.ring ? (d.ring.texture ? 'The rings are lit as a layer of ice particles: their brightness on the lit and the unlit face (light scattered once exactly, more than once approximately), the planet\'s shadow on them and their shadow on the planet are computed. The ring map is an artist\'s rendering of the measured ring profiles, and all the rings are given one pale tan; the rings are drawn with no thickness (the main rings are about 10 to 20 metres thick), and the faint outer rings are not drawn.' : 'The planet\'s faint rings are not drawn.') : '',
+    ].filter(Boolean).join(' ');
+  };
+})();
+/* ---- the Sun, the stars, the sky and the galaxies under the look ---- */
+if (SPX.on) (() => {
+  const X = SPX, HIGH = X.high;
+  /* The colour of a blackbody of temperature T on a display (sRGB primaries, D65 white): Mitchell Charity's table ("What color is a
+     blackbody?", vendian.org, 2001, 2-degree observer), between its rows in a straight line. The Sun (5,772 K) comes out almost white. */
+  const CH = [[2000, 0xff8912], [2500, 0xffa148], [3000, 0xffb46b], [3500, 0xffc489], [4000, 0xffd1a3], [4500, 0xffdbba], [5000, 0xffe4ce], [5500, 0xffece0], [5800, 0xfff0e9], [6000, 0xfff3ef], [6500, 0xfff9fd], [7000, 0xf5f3ff], [8000, 0xe3e9ff], [9000, 0xd6e1ff], [10000, 0xccdbff], [12000, 0xbfd3ff], [15000, 0xb3ccff], [20000, 0xa8c5ff], [30000, 0x9fbfff], [40000, 0x9bbcff]];
+  const rgbOf = h => [(h >> 16 & 255) / 255, (h >> 8 & 255) / 255, (h & 255) / 255];
+  X.bbColor = T => {
+    T = clamp(T, 2000, 40000); let i = 0; while (i < CH.length - 2 && T > CH[i + 1][0]) i++;
+    const a = rgbOf(CH[i][1]), b = rgbOf(CH[i + 1][1]), u = (T - CH[i][0]) / (CH[i + 1][0] - CH[i][0]);
+    return [lerp(a[0], b[0], u), lerp(a[1], b[1], u), lerp(a[2], b[2], u)];
+  };
+  /* The Sun's surface in the units of this app (a white matte card facing the Sun at 1 AU shows 1): its radiance is pi / (solid angle of
+     the disc at 1 AU, 6.8e-5 sr), about 46,000 times the card. In the Sun's own scene the picture is exposed as through a solar filter
+     that passes about 1/20,000 of the light; everywhere else the Sun is far brighter than anything the screen can show. */
+  X.SUN_L = 46200;
+  const SUNC = X.bbColor(5772).map(c => Math.pow(c, 2.2));
+  X.sunMat = m => {
+    m.uniforms.uSxL = { value: X.SUN_L };
+    const blot = 'b*=1.+(fbm3(p*6.+uTime*.01)-.5)*.06;';
+    const f = m.fragmentShader, a = 'lt=mix(vec3(1.),mix(vec3(1.,.78,.55),vec3(1.),lane),wg);', b = 'vec3 base=vec3(1.,.93,.76);\n        gl_FragColor=vec4(base*limb*lt*b*.93,uOpacity);';
+    if (!f.includes(a) || !f.includes(b) || !f.includes(blot)) { console.warn('space look: the Sun\'s shader has changed'); return m; }
+    m.fragmentShader = 'uniform float uSxL;\n' + f.replace(a, 'lt=mix(vec3(1.),mix(vec3(1.,.93,.86),vec3(1.),lane),wg);').replace(blot, '')   // no broad blotches: the photosphere's brightness is even apart from granules and the limb
+      .replace(b, `vec3 base=vec3(${SUNC.map(c => c.toFixed(4)).join(',')});\n        gl_FragColor=vec4(base*limb*lt*b*uSxL,uOpacity);\n        #include <tonemapping_fragment>\n        #include <encodings_fragment>`);
+    m.needsUpdate = true; return m;
+  };
+  /* exposed so that the middle of the disc shows at about 0.85 of display white (0.75 before the tone curve: LOOK.shown; measured 0.84
+     on screen) and the brightest granules stay below white, so the measured limb darkening shows all the way to the edge: the filter
+     passes 0.86 / 46,200, about one part in 54,000 (the page's own exposure, 0.9, included) */
+  X.SUN_FILTER = .86 / .9 / X.SUN_L;
+  /* the stars: each one a point of light spread by the optics (a Gaussian about 0.7 pixel wide, and a faint wide skirt of glare), its total
+     light from its magnitude; bright stars fill their core and spread, as in a photograph. Colours from the table above. */
+  X.starMat = appMag => new THREE.ShaderMaterial({
+    uniforms: { uScale: { value: PIXR_BASE }, uPixK: PIXK, uOpacity: { value: 1 }, uLim: { value: 6.8 }, uExp: { value: 0 }, uGain: X.starGainU },
+    defines: appMag ? { SX_APPMAG: 1 } : {},
+    vertexShader: LDV(`attribute float aMag; attribute vec3 aColor; uniform float uScale; uniform float uPixK; uniform float uLim; uniform float uExp; uniform float uGain; varying vec3 vC; varying float vPk; varying float vS; varying float vSig;
+      void main(){ vec4 mv = modelViewMatrix * vec4( position, 1.0 ); float d = max( length( mv.xyz ), 1e-7 );
+        #ifdef SX_APPMAG
+          float m = aMag - uExp;   // the magnitude as seen from the camera, worked out on the CPU (the planets)
+        #else
+          float m = aMag + 5.0 * log( d ) / 2.302585 - 5.0 - uExp;
+        #endif
+        float pk = uGain * pow( 10.0, -0.4 * ( m - 1.0 ) ) * ( 1.0 - smoothstep( uLim - 1.0, uLim + 1.5, m ) );
+        float sig = 0.7 * uScale * uPixK, r = sig * 4.0 * sqrt( 2.0 * log( max( pk * 0.006 * 255.0, 1.0 ) ) ), r0 = sig * sqrt( 2.0 * log( max( pk * 255.0, 1.0 ) ) );
+        vS = clamp( 2.0 * max( r, r0 ) + 2.0, 2.0, 28.0 * uScale * uPixK ); vPk = pk; vSig = sig; vC = aColor;
+        gl_PointSize = vS; gl_Position = projectionMatrix * mv; }`),
+    fragmentShader: LDF(`uniform float uOpacity; varying vec3 vC; varying float vPk; varying float vS; varying float vSig;
+      void main(){ float d = length( gl_PointCoord - 0.5 ) * vS, s2 = vSig * vSig;
+        float I = vPk * ( exp( - d * d / ( 2.0 * s2 ) ) + 0.006 * exp( - d * d / ( 32.0 * s2 ) ) ) * smoothstep( 0.5 * vS, 0.5 * vS - 1.0, d );
+        if ( I < 0.002 ) discard; gl_FragColor = vec4( vC * I * uOpacity, 1.0 ); }`),
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+  });
+  /* The planets in the solar-system view, as points of light through the same optics and the same exposure as the stars, each at the
+     brightness it has from where the camera is: its visual magnitude from its distances to the Sun and to the camera and its phase
+     (astronomy-engine's VisualMagnitude and SaturnMagnitude, which follow Hilton 2005 and Schlyter; Saturn's rings from the camera's
+     height over the ring plane; the Earth from its size and geometric albedo, 0.367, as a Lambert sphere). Once a planet's disc is
+     larger than about a pixel and a half, its point fades and the lit globe takes over. */
+  const MAGC = { Mercury: [-0.60, 4.98, -4.88, 3.02], Venus: [-4.47, 1.03, 0.57, 0.13], Mars: [-1.52, 1.60, 0, 0], Jupiter: [-9.40, 0.50, 0, 0], Uranus: [-7.19, 0.25, 0, 0], Neptune: [-6.87, 0, 0, 0], Pluto: [-1.00, 4.00, 0, 0] };
+  X.planetMag = (name, r, D, ph, ringSin) => {
+    let m;
+    if (name === 'Saturn') m = -9.0 + 0.044 * ph + ringSin * (-2.6 + 1.2 * ringSin);
+    else if (name === 'Earth') { const a = ph * Math.PI / 180, P = (Math.sin(a) + (Math.PI - a) * Math.cos(a)) / Math.PI; m = 5 * Math.log10(1329 / (12742 * Math.sqrt(.367))) - 2.5 * Math.log10(Math.max(P, 1e-6)); }
+    else if (name === 'Venus' && ph >= 163.6) { const x = ph / 100; m = 0.98 - 1.02 * x; }
+    else { const c = MAGC[name]; if (!c) return null; const x = ph / 100; m = c[0] + x * (c[1] + x * (c[2] + x * c[3])); }
+    return m + 5 * Math.log10(Math.max(r * D, 1e-12));
+  };
+  X.planetPoints = (F, PXK) => {
+    const N = 9, pos = new Float32Array(N * 3), mag = new Float32Array(N).fill(99), col = new Float32Array(N * 3), g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('aMag', new THREE.BufferAttribute(mag, 1)); g.setAttribute('aColor', new THREE.BufferAttribute(col, 3));
+    const pts = new THREE.Points(g, X.starMat(true)); pts.frustumCulled = false; pts.raycast = () => {}; pts.userData.noPick = true; F.add(pts);
+    const names = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'], c3 = new THREE.Color(), toS = new V3(), toC = new V3();
+    const pole = X.pole('Saturn');
+    return CP => {
+      const nb = FR.nb && FR.nb.stars && FR.nb.stars.pts.material.uniforms; if (nb) pts.material.uniforms.uExp.value = nb.uExp.value;
+      names.forEach((nm, i) => {
+        const b = F.bodies && F.bodies[nm]; if (!b) return;
+        const P = b.grp.position; pos[i * 3] = P.x; pos[i * 3 + 1] = P.y; pos[i * 3 + 2] = P.z;
+        toS.copy(P).negate(); const r = toS.length(); toC.copy(CP).sub(P); const D = toC.length();
+        const ph = Math.acos(clamp(toS.dot(toC) / Math.max(r * D, 1e-12), -1, 1)) * 180 / Math.PI;
+        const m = X.planetMag(nm, r, D, ph, nm === 'Saturn' && pole ? Math.abs(toC.dot(pole)) / D : 0);
+        const px = b.rAU / Math.max(D, 1e-12) / PXK;   // the disc's radius in pixels
+        mag[i] = m === null ? 99 : m + 2.5 * Math.log10(1 / Math.max(1 - smooth(.75, 1.5, px), 1e-4));
+        c3.set(b.d.color || '#cccccc'); col[i * 3] = c3.r; col[i * 3 + 1] = c3.g; col[i * 3 + 2] = c3.b;
+      });
+      g.attributes.position.needsUpdate = g.attributes.aMag.needsUpdate = g.attributes.aColor.needsUpdate = true;
+    };
+  };
+  /* How much of the star layer (the stars and the photographed sky) shows: the exposure of the view, against the long exposure in which the
+     stars are drawn. At the exposure of a sunlit planet a camera records no stars at all (the brightest, Sirius, would be about a ten-
+     thousandth of white); they are kept at a faint floor so the sky can still be read, and every such card says so. On the night side of
+     the Earth, where the exposure is opened about 200,000 times, they come up in full. Through the Sun's filter: none. */
+  X.STAR_FLOOR = .14;
+  X.starGainU = { value: 1 };
+  X.relExp = A => {
+    for (let f = A; f; f = f.parent) {
+      if (f.type === 'sun') return 0;
+      if (f.type === 'earth') return f._sxK || 1;
+      if (f.type === 'planet') return 1 / X.sunE((f.opts && f.opts.body) || f.name);
+      if (f.type === 'solarsystem' || f.type === 'neighborhood') return Infinity;
+    }
+    return Infinity;
+  };
+  X.starStep = () => {
+    const e = X.relExp(cam.A), u = X.starGainU;
+    const want = e === 0 ? 0 : e === Infinity ? 1 : X.STAR_FLOOR + (1 - X.STAR_FLOOR) * clamp(e / 2e4, 0, 1);
+    u.value += (want - u.value) * .25; if (Math.abs(want - u.value) < .002) u.value = want;
+  };
+  X.starColors = (f, n) => { const col = new Float32Array(n * 3); for (let i = 0; i < n; i++) col.set(X.bbColor(bvColor(f[i * 6 + 4])[3]), i * 3); return col; };
+  /* The Milky Way as photographed from the Earth (ESO/S. Brunier), on a sphere round the camera, with the single stars taken out of the
+     picture so that the catalogue's stars are not drawn twice. It is our sky, so it is shown only near the Sun (fading out from 100 to 400 pc,
+     where the sky would really have changed). Its brightness is the panorama's own composite exposure. */
+  const Mg = [[-0.0548755604, -0.8734370902, -0.4838350155], [0.4941094279, -0.4448296300, 0.7469822445], [-0.8676661490, -0.1980763734, 0.4559837762]];
+  X.skyGain = .55;
+  X.skyMesh = () => {
+    const t = X.map(HIGH ? 'look_milkyway_4k.jpg' : 'look_milkyway_2k.jpg'); t.generateMipmaps = false; t.minFilter = THREE.LinearFilter;
+    const M3 = new THREE.Matrix3().set(...Mg[0], ...Mg[1], ...Mg[2]);
+    const m = new THREE.ShaderMaterial({
+      uniforms: { tSky: { value: t }, uM: { value: M3 }, uGain: { value: X.skyGain }, uOpacity: { value: 1 }, uStar: X.starGainU },
+      vertexShader: LDV(`varying vec3 vD; void main(){ vD = position; gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 ); }`),
+      fragmentShader: LDF(`uniform sampler2D tSky; uniform mat3 uM; uniform float uGain; uniform float uOpacity; uniform float uStar; varying vec3 vD;
+        void main(){ vec3 L = normalize( vD ), e = vec3( L.x, - L.z, L.y ), g = uM * e;   // three to equatorial, then to galactic (the rows of uM are the galactic axes)
+          float l = atan( g.y, g.x ), b = asin( clamp( g.z, -1.0, 1.0 ) );
+          vec2 uv = vec2( fract( 0.5 - l / 6.2831853 ), 0.5 + b / 3.14159265 );
+          gl_FragColor = vec4( texture2D( tSky, uv ).rgb * uGain * uOpacity * uStar, 1.0 ); }`),
+      side: THREE.BackSide, depthTest: false, depthWrite: false, transparent: true, blending: THREE.AdditiveBlending,
+    });
+    const s = new THREE.Mesh(new THREE.SphereGeometry(1, 64, 32), m); s.renderOrder = -1e9; s.frustumCulled = false; s.userData.noPick = true;
+    s.raycast = () => {};
+    return s;
+  };
+  X.pv = 0;   // how much of the panorama shows (1 near the Sun); the generated stars of the Galaxy model give way to it
+  const _p = new V3();
+  X.pvNow = () => { if (!FR.nb) return 0; camPosIn(FR.nb, _p); return 1 - smooth(100, 400, _p.length()); };   // the camera's distance from the Sun, pc
+  X.skyStep = (F, sky) => {
+    X.pv = X.pvNow(); X.starStep();
+    const c = F.cam; if (F.C) sky.position.copy(F.C); sky.scale.setScalar(Math.sqrt(c.near * c.far));   // centred on the camera, between its near and far planes
+    sky.material.uniforms.uOpacity.value = X.pv * (F.alpha === undefined ? 1 : F.alpha); sky.visible = X.pv > .002;
+  };
+  /* the galaxies with a photograph: the galaxy itself, faded out at its edges; width of the picture in units of the galaxy's catalogued diameter */
+  X.GAL = {
+    andromeda: { file: 'look_gal_m31_1k.jpg', w: 1.06, credit: 'Brody Wesner (CC0)' },
+    lg_M33: { file: 'look_gal_m33_1k.jpg', w: 1.25, credit: 'ESO (CC BY 4.0)' },
+    lmc: { file: 'look_gal_lmc_1k.jpg', w: 1.0, credit: 'ESO (CC BY 4.0)' },
+    smc: { file: 'look_gal_smc_1k.jpg', w: 1.5, credit: 'CTIO/NOIRLab/NSF/AURA/SMASH/D. Nidever; processing T. Rector, M. Zamani, D. de Martin (CC BY 4.0)' },
+  };
+  X.galOf = name => /M31/.test(name) ? X.GAL.andromeda : /M33/.test(name) ? X.GAL.lg_M33 : /Large Magellanic/.test(name) ? X.GAL.lmc : /Small Magellanic/.test(name) ? X.GAL.smc : null;
+  // a star's name that would sit on the Sun's "you are here" mark (the brightest stars are near the Sun, so this is common: Sirius at
+  // 8.6 light-years) goes beside its star, on the side away from the Sun, instead of being hidden
+  let _lblCss = false;
+  X.starLabelsClear = (Ls, sunL) => {
+    if (!_lblCss) { _lblCss = true; const st = document.createElement('style'); st.textContent = 'html.look2 .lbl.sx-l, html.look2 .lbl.sx-r { margin-top: 13px } html.look2 .lbl.sx-l { translate: calc(-50% - 9px) 0 } html.look2 .lbl.sx-r { translate: calc(50% + 9px) 0 } html.look2 .lbl.sx-l::before, html.look2 .lbl.sx-r::before { display: none }'; document.head.appendChild(st); }
+    const xy = e => { const m = /translate\(([-\d.]+)px, ([-\d.]+)px\)/.exec(e.style.transform); return m ? [+m[1], +m[2]] : null; };
+    const S = sunL.el.style.display !== 'none' && xy(sunL.el); const ws = S ? sunL.el.offsetWidth : 0;
+    for (const L of Ls) { const e = L.el, P = S && e.style.display !== 'none' && xy(e);
+      const on = !!P && Math.abs(P[0] - S[0]) < (ws + e.offsetWidth) / 2 + 6 && P[1] - S[1] > -44 && P[1] - S[1] < 26;
+      e.classList.toggle('sx-l', on && P[0] <= S[0]); e.classList.toggle('sx-r', on && P[0] > S[0]); }
+  };
+  // a photographed galaxy a few pixels across: its whole light goes into those pixels, so the picture is brightened as it shrinks
+  // (up to three times; the sizes stay true), and M31 then reads as the largest and brightest of the group, as it is
+  X.galGain = (F, sprites) => { const t = 2 * Math.tan(F.cam.fov * Math.PI / 360) / innerHeight, v = new THREE.Vector3();
+    for (const s of sprites) { if (!s.userData.sxPhoto) continue; s.getWorldPosition(v); const px = s.scale.x / (v.distanceTo(F.cam.position) * t); s.userData.sxPx = px; s.material.color.setScalar(Math.min(3, Math.max(1, 12 / px))); } };
+  // a smooth glow with no 8-bit steps: a Gaussian that reaches zero at the edge, with a little noise so that its faint tail does not band
+  let _glowHQ = null;
+  X.glowTexHQ = () => { if (_glowHQ) return _glowHQ; const n = 256, d = new Uint8Array(n * n * 4);
+    for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) { const dx = (x + .5) / n * 2 - 1, dy = (y + .5) / n * 2 - 1, r2 = dx * dx + dy * dy;
+      const w = r2 < 1 ? Math.exp(-r2 * 5) * (1 - r2) * (1 - r2) : 0, v = Math.min(255, Math.max(0, Math.floor(w * 255 + Math.random()))), i = (y * n + x) * 4;
+      d[i] = d[i + 1] = d[i + 2] = 255; d[i + 3] = v; }
+    _glowHQ = new THREE.DataTexture(d, n, n, THREE.RGBAFormat); _glowHQ.magFilter = _glowHQ.minFilter = THREE.LinearFilter; _glowHQ.needsUpdate = true; return _glowHQ; };
+  X.galSprite = (g, sz) => {
+    const t = X.map(g.file, tt => { const k = tt.image.height / tt.image.width; s.scale.set(sz * g.w, sz * g.w * k, 1); });
+    const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+    s.scale.set(sz * g.w, sz * g.w * .7, 1); s.userData.sxPhoto = true; return s;
+  };
+})();
