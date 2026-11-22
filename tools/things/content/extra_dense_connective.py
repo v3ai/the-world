@@ -35,7 +35,7 @@ labels = [
  {'text': 'Small blood vessel (capillary)', 'at': [-170, -120, 30], 'pop': 'capillary'},
 ]
 pops = [
- pop('ground', 'Ground substance', 'dc_ground', 'rbox', [S['fascicle_w'], 300, 64], '#e9dcc6', .28, L([{'at': [0, 0, 0]}])),
+ dict(pop('ground', 'Ground substance', 'dc_ground', 'rbox', [S['fascicle_w'], 300, 64], '#e9dcc6', .28, L([{'at': [0, 0, 0]}])), priority=1),   # the see-through gel round everything: a pick goes to the fibre or cell seen through it (as the cell's electrolyte, the soil's water film)
  pop('fibre', 'Collagen fibre', 'dc_fibre', 'cylinder', [S['fibre_d'], S['seg'], S['fibre_d']], '#f3ece0', .95, L(fibres), 'collagen'),
  pop('fibril', 'Collagen fibril', 'dc_fibril', 'cylinder', [S['fibril_d'], 25, S['fibril_d']], '#d9b98a', 1, fibrils, 'collagen'),
  pop('tenocyte', 'Fibroblast (tenocyte)', 'dc_tenocyte', 'ellipsoid', S['tenocyte'], '#a9737a', .95, L(cells), None, {'type': 'cell', 'cell': 'animal'}),
