@@ -10,7 +10,7 @@ Encke, Keeler) and the range of optical depth in each ring (C 0.05-0.12, B 0.4 t
 What is not: the pattern of ringlets inside each ring is taken from the earlier map (assets/textures/saturn_ring.png, an artist's rendering of
 the measured profiles, 4096 px for 62,280 km) and stretched to each ring's published range of optical depth, in rank order; it has the right
 statistics, not the right ringlets. The Cassini Division's own optical depth (0.1) and the contents of the gaps (0.02) are assumed.
-Output: 8192 x 4 PNG, r,g,b = brightness x opacity (the shader divides by opacity), a = 1 - exp(-tau); radius 74,500 to 136,780 km (the
+Output: 8192 x 4 PNG, r,g,b = reflectance level (1.25 = white, coded 2.2) x opacity (the shader divides by opacity), a = 1 - exp(-tau); radius 74,500 to 136,780 km (the
 mesh's own inner and outer edge).
 """
 import sys, numpy as np
@@ -49,12 +49,22 @@ for c, w, t in gaps:
 for c, w, t in ringlets:
     m = np.abs(r - c) < w / 2; tau[m] = t
 
-# brightness of the particles (display value, linear-ish): B brightest, A next, C and the Cassini Division darker
-c = np.full_like(r, 0.5)
-c[(r < 92000)] = 0.38; c[(r >= 92000) & (r < 117580)] = 0.62; c[(r >= 117580) & (r < 122170)] = 0.40; c[r >= 122170] = 0.52
+# Brightness of the particles (what they reflect, apart from how much light they stop: kept separate, because above an optical depth of about 1 the
+# light reflected no longer follows it). Relative levels (B = 1) after the typical radiometric values of the lit rings in Cassini imaging at moderate
+# phase: C about 0.2, the Cassini Division about 0.3, A about 0.7, and within B brightening outward; NOT a measured radial profile (that would be
+# a Cassini ISS or VIMS I/F scan). The structure within each ring is the earlier map's ringlet pattern, in rank order, as for the optical depth:
+# plausible banding of the right kind, not the real bands.
+def lowpass(x, n): return np.convolve(np.pad(x, n // 2, mode='edge'), np.ones(n) / n, mode='valid')[:len(x)]
+pat = lowpass(t_old, 9 * SS)
+lvl = np.full_like(r, 0.3)
+for a_, b_, base0, base1, amp in [(74658, 92000, 0.18, 0.24, 0.5), (92000, 117580, 0.88, 1.08, 0.45), (122170, 136775, 0.66, 0.74, 0.4)]:
+    m = (r >= a_) & (r < b_); rk = np.zeros_like(r); v = pat[m]; rk[m] = v.argsort().argsort() / max(len(v) - 1, 1)
+    lvl[m] = (base0 + (base1 - base0) * (r[m] - a_) / (b_ - a_)) * (1 + amp * (rk[m] - 0.5))
+c = lvl
 tau = tau.reshape(W, SS).mean(1); c = c.reshape(W, SS).mean(1)
 al = 1 - np.exp(-tau)
-px = np.stack([c * al, c * al * 0.95, c * al * 0.88, al], -1)
+cd = (np.clip(c, 0, 1.25) / 1.25) ** (1 / 2.2)   # the shader raises it to 2.2 and divides by 1.25
+px = np.stack([cd * al, cd * al, cd * al, al], -1)
 img = np.clip(np.round(px * 255), 0, 255).astype(np.uint8)
 Image.fromarray(np.repeat(img[None], 4, 0)).save(sys.argv[2], optimize=True)
 print('tau range', tau.min(), tau.max(), 'alpha max', al.max())
