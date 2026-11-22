@@ -516,6 +516,14 @@ function openLibrary(force) { const p = $('#library'); const o = force || !p.cla
 const RULER_MIN = -19, RULER_MAX = 27;
 let LANDMARKS = []; // filled by world: {label, D, go()}
 function rulerY(e, h) { return (1 - (e - RULER_MIN) / (RULER_MAX - RULER_MIN)) * h; }
+/* push names down so none overlap; if the last runs off the bottom, pin it there and push the ones above it up; with more names than room, close the spacing up.
+   Under the new look it is run again over the names that are shown, so that a hidden name leaves no gap (updateRuler). */
+function rulerLayout(items, h) {
+  const n = items.length, gap = Math.min(15, n > 1 ? (h - 12) / (n - 1) : 15);
+  if (n) items[0].p = Math.max(items[0].y, 6);
+  for (let k = 1; k < n; k++) items[k].p = Math.max(items[k].y, items[k - 1].p + gap);
+  if (n && items[n - 1].p > h - 6) { items[n - 1].p = h - 6; for (let k = n - 2; k >= 0; k--) items[k].p = Math.min(items[k].p, items[k + 1].p - gap); }
+}
 function buildRuler() {
   const box = $('#rulerScale'); if (!box) return; const h = box.clientHeight || 600; box.innerHTML = '';
   let svg = `<svg viewBox="0 0 ${box.clientWidth || 184} ${h}" preserveAspectRatio="none">`;
@@ -527,13 +535,11 @@ function buildRuler() {
   }
   // landmarks: place names at their true heights, nudged apart so none overlap
   const items = LANDMARKS.map(L => ({ L, y: rulerY(Math.log10(L.D), h) })).sort((a, b) => a.y - b.y);
-  // push names down so none overlap; if the last runs off the bottom, pin it there and push the ones above it up; with more names than room, close the spacing up
-  const n = items.length, gap = Math.min(15, n > 1 ? (h - 12) / (n - 1) : 15);
-  if (n) items[0].p = Math.max(items[0].y, 6);
-  for (let k = 1; k < n; k++) items[k].p = Math.max(items[k].y, items[k - 1].p + gap);
-  if (n && items[n - 1].p > h - 6) { items[n - 1].p = h - 6; for (let k = n - 2; k >= 0; k--) items[k].p = Math.min(items[k].p, items[k + 1].p - gap); }
+  rulerLayout(items, h);
   items.forEach(it => { svg += `<path class="lead" d="M15 ${it.y} L48 ${it.y} L58 ${it.p}"/>`; });
   svg += '</svg>'; box.insertAdjacentHTML('beforeend', svg);
+  { const ld = box.querySelectorAll('path.lead'); items.forEach((it, k) => { it.L._lead = ld[k]; }); }   // the leader line of each name, so the name and its line can be shown and hidden together
+  box._items = items; box._h = h; box._sig = null;
   items.forEach(it => { const b = document.createElement('button'); b.className = 'lm'; b.style.top = it.p + 'px'; b.textContent = it.L.label; b.title = `Fly to ${it.L.label} (${fmtLen(it.L.D)} across)`; b.onclick = () => { cancelTour(); it.L.go(); }; it.L._el = b; box.appendChild(b); });
   const m = document.createElement('i'); m.id = 'rulerMark'; m.innerHTML = '<span class="ro" id="rulerRO"></span>'; box.appendChild(m);
   // on a phone the strip has no room for names: tapping it opens a small list of the places on the scale around where you tapped (and says where you are now); tap one to fly there
@@ -570,6 +576,17 @@ function updateRuler() {
   // the name is bold only where the camera really is: a landmark whose frame is not on the camera's path (another cell, a surface you flew past) is not named, the scale tick still shows the size
   const path = chainOf(cam.A); let best = null, bd = .35; LANDMARKS.forEach(L => { const d = Math.abs(Math.log10(L.D) - e); if (d < bd && lmHere(L, path)) { bd = d; best = L; } });
   LANDMARKS.forEach(L => L._el && L._el.classList.toggle('near', L === best));
+  /* the new look: a side stop (an organ, the phone) is named only within three decades of where you are, so that about twenty names are on the ruler at a time (docs/DESIGN.md 2.4) */
+  if (typeof LOOK !== 'undefined' && LOOK.on && box._items) {
+    const items = box._items, near = it => Math.abs(Math.log10(it.L.D) - e) <= 3, show = new Set(items.filter(it => !it.L.side || near(it)));
+    /* a name on each side of the needle, always: where nothing is named within a decade and a half on one side, the nearest side stops there are named after all */
+    for (const dir of [1, -1]) { const side = items.filter(it => dir * (Math.log10(it.L.D) - e) > 0 && it.L._el); if (side.some(it => show.has(it) && Math.abs(Math.log10(it.L.D) - e) < 1.5)) continue; side.sort((a, b) => Math.abs(Math.log10(a.L.D) - e) - Math.abs(Math.log10(b.L.D) - e)).slice(0, 2).forEach(it => show.add(it)); }
+    const sig = items.map(it => show.has(it) ? 1 : 0).join('');
+    if (sig !== box._sig) {
+      box._sig = sig; const on = items.filter(it => show.has(it)); rulerLayout(on, box._h);
+      items.forEach(it => { const far = !show.has(it); it.L._far = far; it.L._el.classList.toggle('lk-far', far); if (it.L._lead) it.L._lead.classList.toggle('lk-far', far); if (!far) { it.L._el.style.top = it.p + 'px'; if (it.L._lead) it.L._lead.setAttribute('d', `M15 ${it.y} L48 ${it.y} L58 ${it.p}`); } });
+    }
+  }
 }
 
 /* ================= TOUR (continuous Powers-of-Ten flight) ================= */

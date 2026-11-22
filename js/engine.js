@@ -1755,11 +1755,23 @@ function declutterLabels(now) {
   if (now - lblClashT < 160) return; lblClashT = now;
   const items = []; for (const el of labelLayer.children) if (el.style.display !== 'none') items.push({ e: el, pri: +el.dataset.pri || 0, r: el.getBoundingClientRect() }); else if (el.classList.contains('lblhide')) el.classList.remove('lblhide');
   items.sort((a, b) => b.pri - a.pri || a.r.top - b.r.top);
-  const kept = [];
-  for (const it of items) { const r = it.r, clash = kept.some(k => !(r.right + 4 < k.left || r.left - 4 > k.right || r.bottom + 2 < k.top || r.top - 2 > k.bottom)); it.e.classList.toggle('lblhide', clash); if (!clash) kept.push(r); }
+  const kept = [], look = typeof LOOK !== 'undefined' && LOOK.on;
+  /* under the new look (docs/DESIGN.md 2.4): a name does not run under the ruler, the main buttons, the search field or the open panel, and where names have priorities the lower ones are set at 60 percent */
+  const under = look ? ['#ruler', '#topright', '#srch', '#panel:not(.min)', '.pop.open', '#tracks.open', '#perf.open', '#controls > *'].flatMap(q => [...document.querySelectorAll(q)]).filter(e => e && e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden').map(e => e.getBoundingClientRect()) : null;
+  const top = look && items.length ? items[0].pri : 0;
+  for (const it of items) {
+    const r = it.r; let clash = kept.some(k => !(r.right + 4 < k.left || r.left - 4 > k.right || r.bottom + 2 < k.top || r.top - 2 > k.bottom));
+    if (!clash && under) clash = under.some(k => !(r.right + 8 < k.left || r.left - 8 > k.right || r.bottom + 8 < k.top || r.top - 8 > k.bottom)) || r.left < 8 || r.right > innerWidth - 8 || r.bottom > innerHeight - 8;   // 8 px of air round a control, and a name is never cut by the edge
+    it.e.classList.toggle('lblhide', clash); if (!clash) kept.push(r);
+    if (look) it.e.classList.toggle('lk-sec', top > 0 && it.pri < top);
+  }
 }
 const _lv = new V3(), _lo = new V3();
+const LBL_STEM = 9;   // length of the stem under a name, px (css/look.css .lbl::before)
+let _lkLbl = false;
+function lblSize(el) { const k = el.textContent + '|' + document.fonts.status; if (el._lsk !== k) { el._lsk = k; el._lsw = { w: el.offsetWidth, h: el.offsetHeight }; } return el._lsw; }
 function updateLabels() {
+  _lkLbl = typeof LOOK !== 'undefined' && !!LOOK.on;
   const shown = new Set(), topY = W <= 860 ? freeArea().t / H : 0;   // on a phone the top of the screen belongs to the buttons: a name is not drawn under them (the Search button sat on "Storage" in the battery view)
   for (const f of drawn) {
     if (f.alpha < .6 || !f.labels || f._culled) continue;
@@ -1773,6 +1785,10 @@ function updateLabels() {
       if (L.minSizeFn && !L.minSizeFn(f)) continue;
       shown.add(L.el);
       L.el.style.display = 'block';
+      if (_lkLbl) {   /* the new look: whole device pixels, centred by the measured width, so the letters are not set at a half pixel; the stem ends on the point the name is anchored to */
+        const w = lblSize(L.el), dpr = devicePixelRatio || 1, rd = v => Math.round(v * dpr) / dpr;
+        L.el.style.transform = `translate(${rd((_lv.x * .5 + .5) * W - w.w / 2)}px,${rd((-_lv.y * .5 + .5) * H - w.h - LBL_STEM)}px)`;
+      } else
       L.el.style.transform = `translate(${(_lv.x * .5 + .5) * W}px,${(-_lv.y * .5 + .5) * H}px) translate(-50%,-120%)`;
     }
   }
@@ -1796,7 +1812,11 @@ function seg(items, activeK, onSel) {
 /* A double tap (or click) whose second half lands on a control that appeared between the two (the dog's row of views comes up when the first tap selects
    it) is the double tap the visitor meant: it goes to the scene, not to the button that slid under the finger. */
 let ctrlBuiltT = -1e9, canvasTapT = -1e9, canvasTapXY = null;
-new MutationObserver(() => { ctrlBuiltT = performance.now(); }).observe(ctrlEl, { childList: true, subtree: true });
+/* the new look: a row of views that does not fit on one line folds to the choice in force and a "Views (n)" menu, instead of wrapping to a second row (css/look.css, .seg.folded) */
+function fitSegs() { if (typeof LOOK === 'undefined' || !LOOK.on) return; const cw = ctrlEl.clientWidth; for (const d of ctrlEl.querySelectorAll('.seg.fold')) { if (d.classList.contains('open')) continue; d.classList.remove('folded'); if (d.offsetWidth > cw - 4) d.classList.add('folded'); } }
+let _fitQ = 0; const fitSegsSoon = () => { if (!_fitQ) _fitQ = requestAnimationFrame(() => { _fitQ = 0; fitSegs(); }); };
+new ResizeObserver(fitSegsSoon).observe(ctrlEl);
+new MutationObserver(() => { ctrlBuiltT = performance.now(); fitSegsSoon(); }).observe(ctrlEl, { childList: true, subtree: true });
 canvas.addEventListener('pointerup', e => { canvasTapT = performance.now(); canvasTapXY = { x: e.clientX, y: e.clientY, touch: e.pointerType === 'touch' }; }, true);
 function ctrlSwallow(e) {
   const now = performance.now(), c = canvasTapXY;

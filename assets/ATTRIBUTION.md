@@ -66,3 +66,9 @@ All CC0 1.0; no attribution is required, and each is credited here. Licence page
 
 - js/vendor/RGBELoader.js: the Radiance .hdr loader from three.js r128 (`examples/js/loaders/RGBELoader.js`, 12,572 bytes, from https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/RGBELoader.js), copied unchanged. MIT, copyright 2010-2021 three.js authors (https://github.com/mrdoob/three.js/blob/r128/LICENSE). Loaded only with `?look=2`.
 - The sky in js/look.js follows Preetham, Shirley and Smits, "A practical analytic model for daylight" (1999), as implemented in three.js r128 `examples/js/objects/Sky.js` (MIT; credits there: Simon Wallner, Martin Upitis, zz85), rewritten into one fragment shader.
+
+## Interface fonts (assets/fonts/, css/fonts.css)
+Two open-licence families, self-hosted so that no request leaves for a font server. Both are variable fonts, taken as the latin, latin-ext and greek subsets of the files Google Fonts serves (unchanged).
+- IBM Plex Sans (the interface's sans): (c) 2017 IBM Corp., Reserved Font Name "Plex". SIL Open Font License 1.1: assets/fonts/IBM-Plex-Sans-OFL.txt (https://github.com/IBM/plex).
+- Source Serif 4 (the interface's serif): (c) 2014 - 2023 Adobe, Reserved Font Name "Source". SIL Open Font License 1.1: assets/fonts/Source-Serif-4-OFL.md (https://github.com/adobe-fonts/source-serif).
+The platform's own faces (San Francisco, Segoe UI, Roboto, Iowan Old Style, Georgia) are reached only through CSS keywords and system font names in the stacks; they are never copied or shipped.

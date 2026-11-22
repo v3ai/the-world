@@ -186,10 +186,19 @@
    },
    {
     "k": "text",
-    "x": 2.2,
+    "x": 0.2,
     "y": 9,
-    "text": "f(x) = x²   chord slope = {2*x0+h}",
-    "color": "gold"
+    "text": "f(x) = x²",
+    "color": "white",
+    "align": "left"
+   },
+   {
+    "k": "text",
+    "x": 0.2,
+    "y": 8.2,
+    "text": "chord, slope {2*x0+h}",
+    "color": "gold",
+    "align": "left"
    }
   ],
   "caption": "The slope of the chord from x₀ to x₀+h approaches the tangent slope 2x₀ as h shrinks. Drag h toward 0.",

@@ -327,7 +327,9 @@
   function groupRows(res) {
     const good = res.results.filter(r => r.band === 0), weak = res.results.filter(r => r.band === 1);
     const take = (list, caps) => { const cnt = {}, o = []; list.forEach(r => { const g = r.e.g; cnt[g] = (cnt[g] || 0) + 1; if (cnt[g] <= (caps[g] || 3)) o.push(r); }); return o; };
-    return take(good, CAP).concat(good.length >= 4 ? [] : take(weak, { model: 3, card: 3, lab: 2, trail: 2 }).slice(0, 4)); // loose matches only when there are few good ones
+    const rows = take(good, CAP).concat(good.length >= 4 ? [] : take(weak, { model: 3, card: 3, lab: 2, trail: 2 }).slice(0, 4)); // loose matches only when there are few good ones
+    const rank = r => r.band === 1 ? 9 : { model: 0, card: 1, lab: 1, trail: 2, book: 3 }[r.e.g] ?? 4;   // one group head per group: rows of a group stay together, in their own order
+    return rows.map((r, i) => [r, i]).sort((a, b) => rank(a[0]) - rank(b[0]) || a[1] - b[1]).map(x => x[0]);
   }
   function row(r, i) {
     const [kind, act] = describe(r);
