@@ -870,7 +870,7 @@ const PKL = (() => {
     });
     return m;
   }
-  K.turfMat = turfMat; K.U = U;
+  K.turfMat = turfMat;
   /* the hills as heights of the ground itself: each of the old sphere caps (radius R, centre 18 m down, flattened to 0.6) becomes a bump of
      the same height with a soft foot; nothing rises within 48 m of the middle, where the things stand on level ground; beyond the park a
      gentle roll. Heights in metres, park coordinates. */
