@@ -997,9 +997,9 @@ const PKL = (() => {
     Object.assign(m.uniforms, { uCloud: { value: TEX ? tx('cloud_noise_256.png') : flat([0, 0, 0]) }, uCloudOff: { value: new THREE.Vector2() }, uCloudCover: { value: TEX ? .6 : 9 }, uCloudSun: { value: 1.25 } });
     const f = LK.SKY_FRAG.replace('uniform vec3 uSun;', 'uniform vec3 uSun; uniform sampler2D uCloud; uniform vec2 uCloudOff; uniform float uCloudCover; uniform float uCloudSun;')
       .replace('gl_FragColor = vec4( col,', CLOUDS + 'gl_FragColor = vec4( col,').replace('#include <tonemapping_fragment>', 'gl_FragColor.a = max( gl_FragColor.a, uOpacity * lkCa );\n  #include <tonemapping_fragment>');
-    m.fragmentShader = LDF(f); m.needsUpdate = true; K.skyMat = m; return true;
+    m.fragmentShader = LDF(f); m.needsUpdate = true; return true;
   };
-  const cloudStep = () => { const m = K.skyMat; if (!m || typeof simTime === 'undefined') return; const s = (simTime / 1000 * 6) % 12000; m.uniforms.uCloudOff.value.set(s, s * .35 % 12000); };
+  const cloudStep = m => { if (!m || !m.userData.pkClouds || typeof simTime === 'undefined') return; const s = (simTime / 1000 * 6) % 12000; m.uniforms.uCloudOff.value.set(s, s * .35 % 12000); };
 
   /* ---------- 4. the pond: ripples, the sky in it, its depth, a wet bank, pebbles ---------- */
   /* Absorption of the pond's water per metre (red, green, blue): (1.2, 0.6, 1.0). Pure water's is (0.32, 0.045, 0.029) (Hale and Querry 1973);
@@ -1092,11 +1092,141 @@ const PKL = (() => {
       up0(dt, t);
       if (P.sky.visible && F.C) P.sky.position.y = F.C.y;   // the sky's dome round the eye, also above the ground: its horizon at the eye's level
       if (!P.sky.material.userData.pkClouds && P.sky.material.uniforms && P.sky.material.uniforms.uGain) K.skyClouds(P.sky.material);
-      cloudStep(); if (P.sg) P.sg.visible = false;
+      cloudStep(P.sky.material); if (P.sg) P.sg.visible = false;
       { const su = LK.sun(); U.uSunUp.value = su ? smooth(-.01, .08, su.dir.y) : 1; }   // the sky draws the Sun's glare itself (its aureole): no sprite over it
       const now = performance.now();
       if (now - tMask > 2000) { tMask = now; maskDraw(F); }
       if (!POND.done && now - tPond > 1000) { tPond = now; const pf = (FR.things || []).find(f => f.opts && f.opts.thing === 'pond' && f.T); if (pf && pondDress(pf)) POND.done = pf; }
+    };
+  };
+
+  /* ---------- 6. landscapes on the Earth and other worlds ---------- */
+  /* The ground's albedo (the share of light it sends back, linear, red green blue), measured where known:
+     the Moon's regolith about 0.12 (normal albedo, maria 0.07 to highlands 0.2: Lucey et al. 2006); Mars's bright dusty plains about 0.25
+     in red and 0.06 in blue (Bond albedo 0.25, the colour from the Mars Pathfinder and Curiosity cameras); Europa's ice 0.67 (geometric);
+     fresh snow 0.8; desert sand 0.35; bare rock 0.2; Venus's basalt 0.1. Grass and forest keep their old colours, as illustrations. */
+  const ALB = { moonrock: [.125, .118, .108], mars: [.26, .12, .062], icemoon: [.62, .6, .56], ice: [.78, .8, .84], desert: [.42, .33, .2], rock: [.2, .19, .17], venus: [.11, .095, .08] };
+  const RADIUS = { Moon: 1737.4e3, Mars: 3389.5e3, Mercury: 2439.7e3, Venus: 6051.8e3, Earth: 6371e3, Io: 1821.6e3, Europa: 1560.8e3, Ganymede: 2634.1e3, Callisto: 2410.3e3, Titan: 2574.7e3, Pluto: 1188.3e3 };
+  const hexOf = c => new THREE.Color(Math.pow(c[0], 1 / 2.2), Math.pow(c[1], 1 / 2.2), Math.pow(c[2], 1 / 2.2)).getHex();   // the look raises a material's colour to 2.2: this colour gives the albedo
+  /* a photographed dry earth (Poly Haven Brown Mud) as the surface's grain, its colour taken away and the albedo put in its place: a stand-in
+     for regolith and for Martian soil (no photographed texture of either is used) */
+  function soilMat(alb, Cref, hole) {
+    const m = LK.material('soil', hexOf(alb)); m.vertexColors = false;
+    const u = { uC: { value: Cref }, uG: { value: TEX ? tx('brown_mud_color_512.jpg', { detail: true }) : flat([128, 128, 128]) }, uGN: { value: TEX ? tx('brown_mud_normal_gl_512.jpg', { normal: true }) : flat([128, 128, 255]) }, uNz: { value: nz() }, uHole: { value: hole || 0 } };
+    LK.patch(m, 'pksoil' + (hole ? 'h' : ''), sh => {
+      Object.assign(sh.uniforms, u);
+      sh.vertexShader = 'uniform vec3 uC; varying vec3 lkW;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tlkW = ( modelMatrix * vec4( transformed, 1.0 ) ).xyz + uC;');
+      sh.fragmentShader = 'uniform sampler2D uG; uniform sampler2D uGN; uniform sampler2D uNz; uniform float uHole; varying vec3 lkW;\n' + sh.fragmentShader
+        .replace('#include <map_fragment>', `
+	if ( max( abs( lkW.x ), abs( lkW.z ) ) < uHole ) discard;   // under the near ground (the two met 2 cm apart and fought in depth)
+	vec2 w = lkW.xz, wB = mat2( 0.8, 0.6, -0.6, 0.8 ) * w * 0.29 + 0.41; float lkF = length( vViewPosition );
+	float b = smoothstep( 0.3, 0.7, texture2D( uNz, w * 0.021 ).r );
+	vec3 g1 = texture2D( uG, w * 0.8 ).rgb, g2 = texture2D( uG, wB ).rgb; float lum = dot( mix( g1, g2, b ), vec3( 0.3, 0.59, 0.11 ) ) * 2.0;
+	lum = mix( lum, 1.0, smoothstep( 30.0, 300.0, lkF ) * 0.6 );
+	float mac = 0.8 + 0.4 * texture2D( uNz, w * 0.0031 + 0.2 ).r * texture2D( uNz, w * 0.0007 + 0.6 ).r * 3.0;   // darker and brighter ground over hundreds of metres
+	diffuseColor.rgb *= clamp( lum, 0.0, 2.0 ) * clamp( mac, 0.6, 1.4 );`)
+        .replace('#include <normal_fragment_maps>', `
+	{ vec3 nA = texture2D( uGN, w * 0.8 ).xyz * 2.0 - 1.0, nB = texture2D( uGN, wB ).xyz * 2.0 - 1.0; nB.xy = mat2( 0.8, -0.6, 0.6, 0.8 ) * nB.xy;
+	  vec3 nm = mix( nA, nB, b ); nm.xy *= 1.1 * ( 1.0 - smoothstep( 8.0, 80.0, lkF ) );
+	  vec3 Np = normalize( ( vec4( normal, 0.0 ) * viewMatrix ).xyz ), Tp = normalize( vec3( 1.0, 0.0, 0.0 ) - Np * Np.x ), Bp = cross( Tp, Np );
+	  normal = normalize( ( viewMatrix * vec4( normalize( Tp * nm.x + Bp * nm.y + Np * max( nm.z, 0.2 ) ), 0.0 ) ).xyz ); }`);
+    });
+    return m;
+  }
+  /* rocks: rounded, broken blocks (an icosahedron pushed about by noise), not dodecahedra */
+  function rockGeo(seed) {
+    const g = new THREE.IcosahedronGeometry(1, 2), a = g.attributes.position, r = rng(seed), k = [r() * 9, r() * 9, r() * 9], v = new V3();
+    for (let i = 0; i < a.count; i++) { v.fromBufferAttribute(a, i); const n = Math.sin(v.x * 2.3 + k[0]) * Math.sin(v.y * 2.9 + k[1]) * Math.sin(v.z * 2.1 + k[2]) * .22 + Math.sin(v.x * 6.1 + v.z * 5.3 + k[1]) * .05;
+      v.multiplyScalar(1 + n); v.y = v.y < -.2 ? -.2 - (v.y + .2) * .15 : v.y * .7; a.setXYZ(i, v.x, v.y, v.z); }   // a flat underside sunk in the ground
+    g.computeVertexNormals(); return g;
+  }
+  K.landscape = (F, o, B, L) => {
+    const C = F.C || (F.C = new V3()), body = o.body || 'Earth', R = RADIUS[body], earth = body === 'Earth';
+    /* the ground curves away at the body's own radius (the old terrain curved at the Earth's on every world): the Moon's horizon is 2.4 km from an eye 1.7 m up */
+    const bend = R && !earth ? (1 / (2 * R) - 1 / 12742000) : 0;
+    const alb = ALB[o.biome];
+    for (const gm of [L.ground, L.near]) {
+      if (!gm || B.water) continue;
+      if (bend) { const pa = gm.geometry.attributes.position; for (let i = 0; i < pa.count; i++) { const x = pa.getX(i), z = pa.getZ(i); pa.setY(i, pa.getY(i) - (x * x + z * z) * bend); } pa.needsUpdate = true; gm.geometry.computeVertexNormals(); gm.geometry.computeBoundingSphere(); }
+      if (alb) { gm.material.dispose(); gm.material = soilMat(alb, C, gm === L.ground && L.near ? 59.5 : 0); gm.receiveShadow = true; }
+    }
+    /* rocks: Mars's (in place of the dodecahedra) and a scatter of ejecta blocks on the Moon, which takes no click (it is the ground's) */
+    const rocky = B.rocks || B.craters;
+    if (rocky) {
+      if (L.rocks) L.rocks.visible = false;
+      const N = 700, ra = rng(o.biome.length * 7 + 1), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), ca = new THREE.Color(), rc = (alb || [.2, .19, .17]).map(v => v * .9);
+      const geos = [rockGeo(3), rockGeo(8), rockGeo(13)], per = Math.ceil(N / 3), groups = [];
+      geos.forEach((g, gi) => {
+        const im = new THREE.InstancedMesh(g, LK.material('rock', 0xffffff, { instanced: true }), per); let n = 0;
+        for (let i = 0; i < per; i++) {
+          const a = ra() * TAU, d = 1.5 + Math.pow(ra(), .7) * 260, s = .04 + Math.pow(ra(), 4) * (B.rocks ? 1.3 : .9), x = Math.cos(a) * d, z = Math.sin(a) * d;
+          const y = -(x * x + z * z) * (1 / 12742000 + bend);
+          q.setFromEuler(new THREE.Euler((ra() - .5) * .5, ra() * TAU, (ra() - .5) * .5)); m4.compose(new V3(x, y + s * .1, z), q, new V3(s * (.8 + ra() * .5), s * (.7 + ra() * .5), s * (.8 + ra() * .5))); im.setMatrixAt(n, m4);
+          const v = .75 + ra() * .45; im.setColorAt(n++, ca.setRGB(Math.pow(rc[0] * v * 2, 1 / 2.2), Math.pow(rc[1] * v * 2, 1 / 2.2), Math.pow(rc[2] * v * 2, 1 / 2.2)));   // the rock texture's mean is one half
+        }
+        im.count = n; im.castShadow = im.receiveShadow = true; F.add(im); groups.push(im);
+        if (B.rocks) { F.pick(im, 'rock', 2); im.userData.madeOf = 'rock'; }
+      });
+    }
+    /* the Sun's shadow on a square round where the camera looks (rocks on the ground) */
+    const sun = L.sun; sun.castShadow = true; const SH = sun.shadow; SH.mapSize.set(LK.quality === 'low' ? 1024 : 2048, LK.quality === 'low' ? 1024 : 2048); SH.bias = -.0004;
+    /* another world's sky dome (Mars) */
+    if (!earth && L.sky && L.sky.material.fragmentShader) {
+      const m = L.sky.material; m.fragmentShader = m.fragmentShader.replace('smoothstep(.35,0.,abs(uSun.y))', '(1.-smoothstep(0.,.35,abs(uSun.y)))'); m.needsUpdate = true;   // (GLSL leaves smoothstep with reversed edges undefined)
+      /* the light this sky gives (the environment) is drawn from a version of it that writes its colour in the target's encoding: the dome
+         itself does not, the prefiltered target stores RGBE, its alpha of 1 was read as an exponent of 127, and every lit surface went black. The dust's sky gives about a third of the light on level ground at midday (optical
+         depth about 0.5: Lemmon et al. 2015), and blue round a low Sun. */
+      const e = new THREE.ShaderMaterial({ uniforms: { uSun: m.uniforms.uSun, uTop: m.uniforms.uTop, uHor: m.uniforms.uHor, uOpacity: { value: 1 } }, side: THREE.BackSide, depthTest: false, depthWrite: false,
+        vertexShader: 'varying vec3 vD; void main(){ vD = normalize( position ); gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 ); }',
+        fragmentShader: `uniform vec3 uSun; uniform vec3 uTop; uniform vec3 uHor; uniform float uOpacity; varying vec3 vD;
+void main(){
+  vec3 d = normalize( vD ), sn = normalize( uSun + vec3( 0.0, 1e-4, 0.0 ) ); float h = clamp( d.y, 0.0, 1.0 ), day = clamp( ( sn.y + 0.15 ) / 0.27, 0.0, 1.0 ); day = day * day * ( 3.0 - 2.0 * day );
+  float s = clamp( dot( d, sn ), 0.0, 1.0 ), s2 = s * s, s8 = s2 * s2 * s2 * s2;
+  vec3 c = ( mix( uHor, uTop, sqrt( h + 1e-6 ) ) + vec3( 0.3, 0.42, 0.62 ) * s8 * 0.6 ) * day * 0.6;
+  c = mix( c, uHor * 0.18 * day, 1.0 - smoothstep( -0.05, 0.0, d.y ) );   // below the horizon: the light the ground sends back up
+  gl_FragColor = vec4( c, 1.0 );
+  #include <encodings_fragment>
+}` });
+      F._lkSkyMat = e;   // the foundation's cache of what a world's environment is drawn from (js/look.js skyMatOf)
+    }
+    /* the sky over the Earth's places: the same computed sky as the park's, with its clouds; a haze to the horizon (the sea's water reaches past it) */
+    if (earth && L.sky && LK.part('sky')) {
+      const m = L.sky.material; Object.assign(m.uniforms, { uDisc: { value: 1 }, uEnv: { value: 0 }, uGain: { value: .08 }, uOpacity: { value: 1 } }); m.fragmentShader = LDF(LK.SKY_FRAG); m.needsUpdate = true; K.skyClouds(m);
+      F.scene.fog = new THREE.FogExp2(0xbfcbd6, B.water ? 4.5e-5 : 2.2e-4);
+    }
+    /* the sea: the water's own colour (about 1 percent of blue light comes back up out of deep open ocean, less of green, almost none of red:
+       oligotrophic Atlantic water), the sky reflected by the environment, and waves from the ripple map at three scales */
+    if (B.water && !B.cloud && L.ground) {
+      const pos = [], idx = [], na = 160, nr = 60, r0 = .5, r1 = 26000;
+      for (let i = 0; i <= nr; i++) { const r = i ? r0 * Math.pow(r1 / r0, i / nr) : 0; for (let j = 0; j <= na; j++) { const a = j / na * TAU; pos.push(Math.cos(a) * r, -r * r / 12742000, Math.sin(a) * r); } }
+      for (let i = 0; i < nr; i++) for (let j = 0; j < na; j++) { const A = i * (na + 1) + j, Bq = A + na + 1; idx.push(A, A + 1, Bq, Bq, A + 1, Bq + 1); /* facing up */ }
+      const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals(); g.computeBoundingSphere();
+      const wm = LK.material('water', hexOf([.002, .011, .03])); wm.roughness = .06;
+      const u = { uC: { value: C }, uRip: { value: TEX ? tx('pond_ripples_normal_512.jpg', { normal: true }) : flat([128, 128, 255]) }, uT: { value: 0 } };
+      LK.patch(wm, 'pksea', sh => {
+        Object.assign(sh.uniforms, u);
+        sh.vertexShader = 'uniform vec3 uC; varying vec3 lkW;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tlkW = ( modelMatrix * vec4( transformed, 1.0 ) ).xyz + uC;');
+        sh.fragmentShader = 'uniform sampler2D uRip; uniform float uT; varying vec3 lkW;\n' + sh.fragmentShader
+          .replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\n\troughnessFactor = mix( roughnessFactor, 0.22, smoothstep( 60.0, 3000.0, length( vViewPosition ) ) );   // waves too small to see still spread the reflection')
+          .replace('#include <normal_fragment_maps>', `
+	{ vec2 w = lkW.xz; float f = length( vViewPosition );
+	  vec2 s1 = ( texture2D( uRip, w * 0.031 + uT * vec2( 0.006, 0.004 ) ).xy * 2.0 - 1.0 ), s2 = ( texture2D( uRip, mat2( 0.8, 0.6, -0.6, 0.8 ) * w * 0.11 + uT * vec2( -0.011, 0.017 ) ).xy * 2.0 - 1.0 ), s3 = ( texture2D( uRip, w * 0.43 + uT * vec2( 0.03, -0.02 ) ).xy * 2.0 - 1.0 );
+	  vec2 sl = s1 * 0.55 + s2 * 0.35 * ( 1.0 - smoothstep( 80.0, 600.0, f ) ) + s3 * 0.25 * ( 1.0 - smoothstep( 6.0, 60.0, f ) );
+	  normal = normalize( ( viewMatrix * vec4( normalize( vec3( sl.x * 0.45, 1.0, - sl.y * 0.45 ) ), 0.0 ) ).xyz ); }`);
+      });
+      L.ground.geometry.dispose(); L.ground.geometry = g; L.ground.rotation.set(0, 0, 0); L.ground.updateMatrix(); L.ground.material.dispose(); L.ground.material = wm; L.ground.receiveShadow = false;
+      K._seaT = u.uT;
+    }
+    if (B.trees && !L.noteTrees) F.note = (F.note ? F.note + ' ' : '') + 'The far trees are simple shapes.';
+    const up0 = F.update, fv = new V3();
+    F.update = (dt, t) => {
+      up0(dt, t);
+      if (K._seaT) K._seaT.value = typeof simTime !== 'undefined' ? (simTime / 1000) % 1e4 : t;
+      if (F.scene.fog && F.scene.fog.isFogExp2) { const s = sunDirIn(F), c = LK.horizon(s, LK.exposureOf(F)); F.scene.fog.color.setRGB(c[0], c[1], c[2]); }
+      if (L.sky) cloudStep(L.sky.material);
+      /* the shadow's square follows where the camera looks */
+      const s = sunDirIn(F); if (s.y > 0 && typeof cam !== 'undefined') { fv.copy(cam.T); if (cam.A !== F && typeof convertP === 'function') convertP(fv, cam.A, F); const h = Math.max(12, Math.min(60, cam.D * 1.5));
+        Object.assign(SH.camera, { left: -h, right: h, top: h, bottom: -h, near: 1, far: 400 + h * 2 }); SH.camera.updateProjectionMatrix(); sun.target.position.copy(fv); sun.position.copy(fv).addScaledVector(s, 200 + h); sun.target.updateMatrixWorld(); SH.normalBias = 2 * h / SH.mapSize.x * 1.2; }
     };
   };
   return K;

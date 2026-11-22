@@ -685,6 +685,7 @@ FT.landscape = {
       const kind = id === 'tree' ? 'leaf' : id === 'ocean' ? 'ocean' : id === 'cloudtop' ? 'cloudtops' : id === 'rock' ? (o.biome === 'mars' ? 'mars' : 'rock') : B.micro;   // cloud tops lead into the giant's own gas (they used to lead into Earth's air)
       return microFrame(kind, T);
     };
+    if (PKL.on) PKL.landscape(F, o, B, { ground, near: F.root.children.find(m => m.isMesh && m !== ground && m.userData === ground.userData), sun, sky, rocks: B.rocks ? F.pickables.find(m => m.userData.id === 'rock') : null });   // the realistic look (js/levels_v2.js)
   }
 };
 /* ---------- region (unit km): a 40-km patch of the surface ---------- */
