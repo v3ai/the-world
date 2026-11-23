@@ -608,215 +608,30 @@
  "at_models": {
   "type": "blocks",
   "flow": true,
-  "caption": "Five models and what forced each change.",
+  "caption": "From Bohr’s levels to the quantum cloud, and what forced the change.",
   "nodes": [
-   {
-    "id": "d",
-    "label": "Dalton 1803: solid ball",
-    "x": 10,
-    "y": 50,
-    "shape": "box"
-   },
-   {
-    "id": "t",
-    "label": "Thomson 1904: pudding",
-    "x": 30,
-    "y": 50,
-    "shape": "box"
-   },
-   {
-    "id": "r",
-    "label": "Rutherford 1911: nucleus",
-    "x": 50,
-    "y": 50,
-    "shape": "box"
-   },
    {
     "id": "b",
     "label": "Bohr 1913: levels",
-    "x": 70,
+    "x": 28,
     "y": 50,
     "shape": "box"
    },
    {
     "id": "q",
     "label": "Quantum 1926: wavefunction",
-    "x": 90,
+    "x": 72,
     "y": 50,
     "shape": "box"
    }
   ],
   "edges": [
    {
-    "from": "d",
-    "to": "t",
-    "label": "electrons found"
-   },
-   {
-    "from": "t",
-    "to": "r",
-    "label": "alpha bounce-back"
-   },
-   {
-    "from": "r",
-    "to": "b",
-    "label": "stability, spectra"
-   },
-   {
     "from": "b",
     "to": "q",
     "label": "multi-electron atoms"
    }
   ]
- },
- "at_model_dalton": {
-  "type": "geometry",
-  "range": [
-   -4,
-   4,
-   -3,
-   3
-  ],
-  "equal": true,
-  "shapes": [
-   {
-    "k": "circle",
-    "x": 0,
-    "y": 0,
-    "r": 2,
-    "fill": "#6a8fc7"
-   },
-   {
-    "k": "text",
-    "x": 0,
-    "y": -2.7,
-    "text": "a solid ball, no inside",
-    "align": "center"
-   }
-  ],
-  "caption": "Dalton’s atom: a ball with nothing inside. The size is not part of the model."
- },
- "at_model_thomson": {
-  "type": "geometry",
-  "range": [
-   -4,
-   4,
-   -3,
-   3
-  ],
-  "equal": true,
-  "shapes": [
-   {
-    "k": "circle",
-    "x": 0,
-    "y": 0,
-    "r": 2.4,
-    "fill": "#e59a9a",
-    "alpha": 0.5
-   },
-   {
-    "k": "point",
-    "x": 1.4,
-    "y": 0.0,
-    "size": 6,
-    "color": "blue"
-   },
-   {
-    "k": "point",
-    "x": 0.87,
-    "y": 1.09,
-    "size": 6,
-    "color": "blue"
-   },
-   {
-    "k": "point",
-    "x": -0.31,
-    "y": 1.36,
-    "size": 6,
-    "color": "blue"
-   },
-   {
-    "k": "point",
-    "x": -1.26,
-    "y": 0.61,
-    "size": 6,
-    "color": "blue"
-   },
-   {
-    "k": "point",
-    "x": -1.26,
-    "y": -0.61,
-    "size": 6,
-    "color": "blue"
-   },
-   {
-    "k": "point",
-    "x": -0.31,
-    "y": -1.36,
-    "size": 6,
-    "color": "blue"
-   },
-   {
-    "k": "point",
-    "x": 0.87,
-    "y": -1.09,
-    "size": 6,
-    "color": "blue"
-   },
-   {
-    "k": "text",
-    "x": 0,
-    "y": -2.8,
-    "text": "electrons (blue) in a positive ball",
-    "align": "center"
-   }
-  ],
-  "caption": "The plum-pudding atom. The electron positions are drawn for illustration."
- },
- "at_model_rutherford": {
-  "type": "plot",
-  "x": [
-   1,
-   100
-  ],
-  "y": [
-   0,
-   180
-  ],
-  "xlabel": "impact parameter b (fm)",
-  "ylabel": "deflection angle θ (degrees)",
-  "fns": [
-   {
-    "f": "deg(2*atan(2*Z*1.43996454/E/(2*x)))",
-    "label": "θ"
-   }
-  ],
-  "params": [
-   {
-    "id": "Z",
-    "label": "nucleus charge Z (gold is 79)",
-    "min": 2,
-    "max": 92,
-    "value": 79,
-    "step": 1
-   },
-   {
-    "id": "E",
-    "label": "alpha energy (MeV)",
-    "min": 1,
-    "max": 10,
-    "value": 5,
-    "step": 0.5
-   }
-  ],
-  "readouts": [
-   {
-    "label": "closest approach, head-on",
-    "value": "2*Z*1.43996454/E",
-    "unit": "fm"
-   }
-  ],
-  "caption": "Point-charge scattering: how far an alpha particle is turned by a bare nucleus, as a function of how close it passes. Raise Z or lower the energy and the turns get larger."
  },
  "at_model_bohr": {
   "type": "bars",

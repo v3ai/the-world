@@ -612,7 +612,7 @@ ATM.wlRGB = function (nm) {   // rough visible colour of a wavelength; outside 3
   return [Math.min(1, r * f * 0.9), Math.min(1, g * f * 0.9), Math.min(1, b * f * 0.9)];
 };
 ATM.colorName = nm => nm < 380 ? 'ultraviolet (invisible)' : nm < 450 ? 'violet' : nm < 495 ? 'blue' : nm < 570 ? 'green' : nm < 590 ? 'yellow' : nm < 620 ? 'orange' : nm <= 750 ? 'red' : 'infrared (invisible)';
-/* the colour used for each family; shared by the picker and by the Dalton ball */
+/* the colour used for each family; used by the element picker */
 ATM.FAMILY = [['Alkali metals', '#e07a5f', 'Alkali metals'], ['Alkaline earth metals', '#e9b44c', 'Alkaline earth metals'], ['Transition metals', '#6a8fc7', 'Transition metals'],
   ['Poor metals', '#8bb5a3', 'Post-transition metals'], ['Metalloids', '#b58fc2', 'Metalloids'], ['Nonmetals', '#6bb36b', 'Reactive nonmetals'], ['Halogens', '#d9d35f', 'Halogens'],
   ['Noble gases', '#5fc4d6', 'Noble gases'], ['Lanthanides', '#d98fa8', 'Lanthanides'], ['Actinides', '#c0707a', 'Actinides']];
@@ -672,21 +672,6 @@ ATM.tipSuper = function (spec, cloud, which) {
   return t + ATM.CERT;
 };
 ATM.MODELS = {
-  dalton: { year: 1803, title: 'Dalton, 1803', node: 'at_model_dalton',
-    what: 'Every element is made of its own kind of tiny, solid, indivisible ball, and chemical change is a rearrangement of balls.',
-    evidence: 'It explained why a given compound always has the same proportions by mass (Proust, 1797), and why, when two elements make more than one compound, the masses of one that combine with a fixed mass of the other are in small whole-number ratios (the law of multiple proportions, which Dalton noticed in 1804; his book of 1808 set out the theory). The date 1803 marks when his ideas took shape; historians give slightly different dates for the steps.',
-    killed: 'In 1897 J. J. Thomson showed that cathode rays are particles about two thousand times lighter than the lightest atom, and that they come out of every kind of atom. Atoms have parts.',
-    scale: 'Drawn as a ball with the element’s empirical atomic radius. The model itself says nothing about size or inside; the colour is just the element’s family.' },
-  thomson: { year: 1904, title: 'Thomson, 1904', node: 'at_model_thomson',
-    what: 'A ball of positive charge, with the electrons spread inside it so that the atom is neutral. (Later nicknamed the plum-pudding model.)',
-    evidence: 'It explained why atoms are neutral, why electrons can be pulled out of any atom, and why atoms of one element are all alike. Thomson also worked out that electrons in such a ball would settle into rings.',
-    killed: 'In 1909 Geiger and Marsden found that about 1 in 8,000 alpha particles hitting a metal sheet (platinum in that first report) bounced back towards the source. A spread-out positive ball can only give tiny nudges, so it cannot do that. Rutherford’s paper of 1911 explained the result by putting the positive charge in a tiny core.',
-    scale: 'Ball drawn at the atomic radius. Electron positions are illustrative, not Thomson’s calculated rings, and the electrons are drawn as balls only so you can see them: an electron has no measured size.' },
-  rutherford: { year: 1911, title: 'Rutherford, 1911', node: 'at_model_rutherford',
-    what: 'All the positive charge and almost all the mass sit in a tiny nucleus; the electrons are somewhere around it in mostly empty space.',
-    evidence: 'It explained the rare large-angle scattering of alpha particles, and it gave a nuclear size: the nucleus is thousands of times smaller than the atom.',
-    killed: 'Classical physics says an electron circling a nucleus must radiate light and spiral in within a tiny fraction of a second, so atoms could not be stable. The model also could not explain why each element emits only particular colours.',
-    scale: 'The nucleus is at its true size, so it is too small to see (the ring marks where it is). Electron paths here are only a classical picture; Rutherford’s model did not say how electrons move. Electron balls are exaggerated.' },
   bohr: { year: 1913, title: 'Bohr, 1913', node: 'at_model_bohr',
     what: 'Electrons move on circles with only certain allowed energies; light is emitted or absorbed when an electron jumps between them.',
     evidence: 'For hydrogen it reproduced the measured colours of the spectrum (the Rydberg formula) from fundamental constants. It did not explain why atoms are stable: it simply postulated that an electron on an allowed circle does not radiate.',
@@ -761,7 +746,7 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
     const nucAnchor = mkAnchor(); const nucLbl = F.label(nucAnchor, 'Nucleus (true size, far too small to see)', { offset: new V3(0, 0, 0) });
     // ---------- interface ----------
     const btnEl = actBtn('', () => ATM.openPicker(F));
-    const modelSeg = seg([['dalton', 'Dalton 1803'], ['thomson', 'Thomson 1904'], ['rutherford', 'Rutherford 1911'], ['bohr', 'Bohr 1913'], ['quantum', 'Quantum 1926']], S.model, k => { S.model = k; store.set('atomModel', k); refresh(true); });
+    const modelSeg = seg([['bohr', 'Bohr 1913'], ['quantum', 'Quantum 1926']], S.model, k => { S.model = k; store.set('atomModel', k); refresh(true); });
     const panel = uiEl(document.createElement('div')); panel.className = 'atomOpts glass';
     const modeSeg = ATM.segEl([['atom', 'Whole atom', 'Every occupied subshell, averaged over direction'], ['sub', 'One subshell', 'Pick a subshell in the strip and see one orbital'], ['free', 'Any n, l, m', 'Hydrogen-like atom: this nucleus with a single electron in any state'], ['super', 'Two states', 'Mix two energy states: the cloud moves']], S.qmode === 'orbital' ? 'sub' : S.qmode, k => setMode(k), 'modeSeg');
     const strip = document.createElement('div'); strip.className = 'cfgStrip';
@@ -815,33 +800,6 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
     function addLbl(obj, text, off) { const L = F.label(obj, text, { offset: off || new V3() }); S.lbls.push(L); return L; }
 
     /* ---- the models ---- */
-    function buildDalton(e) {
-      const R = ATM.rad(e), m = new THREE.Mesh(new THREE.SphereGeometry(R, 48, 32), keep(smat(new THREE.Color(ATM.famColor(e.category)), { roughness: 0.55 }))); keep(m.geometry); gModel.add(m);
-      S.extentPm = R * 1.25; S.anim = dt => { m.rotation.y += dt * 0.1; };
-    }
-    function buildThomson(e) {
-      const Z = e.Z, R = ATM.rad(e), sph = new THREE.Mesh(new THREE.SphereGeometry(R, 48, 32), keep(new THREE.MeshStandardMaterial({ color: 0xe59a9a, transparent: true, opacity: 0.30, roughness: 0.7, depthWrite: false })));
-      keep(sph.geometry); sph.renderOrder = 2; gModel.add(sph);
-      const er = Math.min(R * 0.07, R * 0.34 / Math.cbrt(Z) * 1.0), geo = keep(new THREE.SphereGeometry(er, 16, 12)), im = new THREE.InstancedMesh(geo, keep(smat(0x1f4e8f, { roughness: 0.35 })), Z), M = new THREE.Matrix4();
-      for (let i = 0; i < Z; i++) {   // golden-angle spiral filling the ball evenly: illustrative positions
-        const u = 1 - 2 * (i + 0.5) / Z, rr = R * 0.8 * Math.cbrt(((i * 0.6180339887) % 1) * 0.9 + 0.1), th = i * 2.399963229728653, s = Math.sqrt(1 - u * u);
-        M.makeTranslation(rr * s * Math.cos(th), rr * u, rr * s * Math.sin(th)); im.setMatrixAt(i, M);
-      }
-      im.userData = { id: 'at_model_electron', priority: 2, title: 'Electron (drawn as a ball)', node: null, onPick: () => { im.userData.node = (typeof NODE !== 'undefined' && NODE.sm_electron) ? 'sm_electron' : 'at_model_thomson'; } };
-      gModel.add(im); F.pickables.push(im); S.extentPm = R * 1.25;
-    }
-    function buildRutherford(e) {
-      const Z = e.Z, R = ATM.rad(e), er = Math.min(R * 0.035, 4), geo = keep(new THREE.SphereGeometry(er, 14, 10)), im = new THREE.InstancedMesh(geo, keep(smat(0x1f4e8f, { roughness: 0.35 })), Z), M = new THREE.Matrix4(), rn = AQ.rngMake(Z * 13 + 5);
-      const el = [];
-      for (let i = 0; i < Z; i++) {
-        const r = R * (0.22 + 0.78 * Math.cbrt(rn())), a = new V3(rn() - 0.5, rn() - 0.5, rn() - 0.5).normalize(), b = new V3(rn() - 0.5, rn() - 0.5, rn() - 0.5); b.addScaledVector(a, -b.dot(a)).normalize();
-        el.push({ r, a, b, ph: rn() * 6.283, w: 0.9 * Math.pow(R * 0.22 / r, 1.5) + 0.12 });
-      }
-      const upd = dt => { for (const q of el) { q.ph += q.w * dt; const c = Math.cos(q.ph) * q.r, s = Math.sin(q.ph) * q.r; M.makeTranslation(q.a.x * c + q.b.x * s, q.a.y * c + q.b.y * s, q.a.z * c + q.b.z * s); } };
-      const place = () => { el.forEach((q, i) => { const c = Math.cos(q.ph) * q.r, s = Math.sin(q.ph) * q.r; M.makeTranslation(q.a.x * c + q.b.x * s, q.a.y * c + q.b.y * s, q.a.z * c + q.b.z * s); im.setMatrixAt(i, M); }); im.instanceMatrix.needsUpdate = true; };
-      im.userData = { id: 'at_model_electron', priority: 2, title: 'Electron (drawn as a ball)', node: null, onPick: () => { im.userData.node = (typeof NODE !== 'undefined' && NODE.sm_electron) ? 'sm_electron' : 'at_model_rutherford'; } };
-      im.frustumCulled = false; place(); gModel.add(im); F.pickables.push(im); S.anim = dt => { el.forEach(q => { q.ph += q.w * dt; }); place(); }; S.extentPm = R * 1.25;
-    }
     function bohrRadiusPm(n) { return n * n * AQ.A0_PM; }
     function ringMesh(R, tube, col) { const m = new THREE.Mesh(keep(new THREE.TorusGeometry(R, tube, 6, 160)), keep(new THREE.MeshBasicMaterial({ color: col }))); keep(m.geometry); return m; }
     function buildBohr(e) {
@@ -943,8 +901,7 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
       if (typeof NODE !== 'undefined' && !NODE[hitMain.userData.node]) { hitMain.userData.node = null; hitMain.userData.infoFn = () => elInfo(S.el); }
       if (S.model === 'quantum' && S.qmode === 'atom') hitMain.userData.title = `${e.name} atom (click for the element card)`;
       cloud.marker.visible = true;
-      nucAnchor.position.set(0, 0, 0); nucLbl.el.textContent = S.model === 'quantum' || S.model === 'bohr' || S.model === 'rutherford' ? 'Nucleus (true size, far too small to see)' : '';
-      if (S.model === 'dalton' || S.model === 'thomson') { cloud.marker.visible = false; nucLbl.el.textContent = ''; }
+      nucAnchor.position.set(0, 0, 0); nucLbl.el.textContent = S.model === 'quantum' || S.model === 'bohr' ? 'Nucleus (true size, far too small to see)' : '';
     }
     function updateNote() {
       const e = ELJ[S.el], M = ATM.MODELS[S.model]; let h = '', head = '', links = [];
@@ -1022,7 +979,7 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
         if (cs.kind === 'orbital' && cloud.flows === false) S.flowNote = 0;
       } else {
         cloud.group.visible = false; gModel.visible = true;
-        ({ dalton: buildDalton, thomson: buildThomson, rutherford: buildRutherford, bohr: buildBohr }[S.model])(e);
+        buildBohr(e);   // the only model besides the quantum cloud
         if (S.model === 'bohr' && e.Z === 1) syncBohr();
       }
       updateProxies(); updateNote(); updateUI();

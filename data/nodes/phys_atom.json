@@ -593,7 +593,7 @@
  },
  {
   "id": "at_models",
-  "title": "The historical models of the atom",
+  "title": "Two models of the atom",
   "kind": "concept",
   "template": "concept",
   "scale_m": null,
@@ -603,25 +603,13 @@
   "processes": [],
   "related": [],
   "mesh": null,
-  "summary": "Our picture of the atom changed in five steps between 1803 and 1926, each forced by an experiment the previous model could not explain.",
+  "summary": "The atom view shows two pictures of the atom: Bohr’s of 1913, which is simple and partly right, and the quantum picture of 1926, which has not been contradicted since.",
   "layers": {
-   "basics": "<p>Each model in the atom view is a real stage in the history, and each was dropped because of something it could not explain. Dalton’s solid, indivisible ball had no room for the electrons that experiments in the 1890s showed come out of every atom; Thomson’s pudding could not explain how alpha particles bounce back; Rutherford’s planetary atom should collapse; Bohr’s circles only work for hydrogen. Quantum mechanics (1925–26) has not been contradicted by an atomic experiment since; its early non-relativistic form was extended by Dirac’s relativistic theory and by quantum electrodynamics, which agree with measurements to many digits.</p><p>Choose a year at the top of the atom view to see each one, with a note on what it got right, what ended it, and how the picture on screen is only an illustration.</p>",
-   "deeper": "<p>A good model is not a lie. Dalton’s ball still works for counting atoms in chemistry; Bohr’s levels still give hydrogen’s spectrum correctly. A model is right in some range and wrong beyond it.</p>",
+   "basics": "<p>Bohr’s model puts the electron on circles with only certain allowed energies. It is easy to picture, and for hydrogen its energy levels give the measured colours of the spectrum. But electrons do not travel on circles, and the model fails for every atom with more than one electron.</p><p>The quantum model replaces the circles with a cloud: at each point it gives the chance of finding the electron there. Choose Bohr or Quantum at the top of the atom view to see each, with a note on what it gets right and where it stops being true.</p>",
+   "deeper": "<p>A good model is not a lie. Bohr’s levels still give hydrogen’s spectrum correctly; a model is right in some range and wrong beyond it. Quantum mechanics (1925–26) has not been contradicted by an atomic experiment since; its early non-relativistic form was extended by Dirac’s relativistic theory and by quantum electrodynamics, which agree with measurements to many digits.</p>",
    "expert": "<p>The jump from Bohr’s model to quantum mechanics (1925–26) was made by Heisenberg’s matrix mechanics and Schrödinger’s wave mechanics.</p>"
   },
   "facts": [
-   [
-    "Dalton",
-    "1803"
-   ],
-   [
-    "Thomson",
-    "1904"
-   ],
-   [
-    "Rutherford",
-    "1911"
-   ],
    [
     "Bohr",
     "1913"
@@ -642,117 +630,6 @@
     "CHE",
     "6.2",
     "6-2-the-bohr-model"
-   ]
-  ]
- },
- {
-  "id": "at_model_dalton",
-  "title": "Dalton’s atom, 1803",
-  "kind": "concept",
-  "template": "concept",
-  "scale_m": null,
-  "parents": [],
-  "parts": [],
-  "made_of": [],
-  "processes": [],
-  "related": [],
-  "mesh": null,
-  "summary": "Dalton pictured each element as its own kind of small, solid, indivisible ball.",
-  "layers": {
-   "basics": "<p>John Dalton explained the way elements combine by supposing that each element is made of identical, indestructible atoms, with different elements having atoms of different weights. A chemical reaction just rearranges them.</p><p>It explained why compounds have fixed proportions by mass, and why when two elements make several compounds, the masses combine in small whole-number ratios.</p><p>It was dropped as the final story when Thomson found in 1897 that every atom contains much lighter, negatively charged particles: atoms have parts.</p>",
-   "deeper": "<p>In Dalton’s picture atoms of different elements differ in weight, and all atoms of one element are alike.</p>",
-   "expert": "<p>Dates vary in the history: the multiple-proportions observation is dated 1804, with the full theory published in 1808; 1803 is the date given for the start of this work.</p>"
-  },
-  "facts": [
-   [
-    "Idea",
-    "atoms are solid, indivisible balls"
-   ],
-   [
-    "Evidence",
-    "laws of definite and multiple proportions"
-   ]
-  ],
-  "certainty": "C1",
-  "refs": [
-   [
-    "CHE",
-    "2.2",
-    "2-2-evolution-of-atomic-theory"
-   ]
-  ]
- },
- {
-  "id": "at_model_thomson",
-  "title": "Thomson’s atom, 1904",
-  "kind": "concept",
-  "template": "concept",
-  "scale_m": null,
-  "parents": [],
-  "parts": [],
-  "made_of": [],
-  "processes": [],
-  "related": [],
-  "mesh": null,
-  "summary": "Thomson pictured an atom as a ball of positive charge with the electrons embedded in it.",
-  "layers": {
-   "basics": "<p>J. J. Thomson showed in 1897 that cathode rays are streams of negatively charged particles much lighter than any atom. By 1904 he proposed that an atom is a sphere of positive charge with these electrons spread inside so that the whole is neutral. It was later nicknamed the plum-pudding model.</p><p>It explained neutrality and why electrons could be pulled out of any atom. In 1909 Geiger and Marsden found that some alpha particles bounced back from a thin metal sheet, which a diffuse positive ball cannot do.</p>",
-   "deeper": "<p>Thomson’s calculation put the electrons into rings in the ball (he later thought of concentric shells); the electrons in the atom view are placed for illustration only.</p>",
-   "expert": "<p>Electron charge-to-mass ratio from combined electric and magnetic deflection: 1.759 × 10¹¹ C/kg; Millikan’s oil-drop work showed charge comes in units of 1.6 × 10⁻¹⁹ C (OpenStax Chemistry 2e, section 2.2).</p>"
-  },
-  "facts": [
-   [
-    "Charge-to-mass of the electron",
-    "1.759 × 10¹¹ C/kg"
-   ],
-   [
-    "Elementary charge",
-    "1.6 × 10⁻¹⁹ C"
-   ]
-  ],
-  "certainty": "C1",
-  "refs": [
-   [
-    "CHE",
-    "2.2",
-    "2-2-evolution-of-atomic-theory"
-   ]
-  ]
- },
- {
-  "id": "at_model_rutherford",
-  "title": "Rutherford’s atom, 1911",
-  "kind": "concept",
-  "template": "concept",
-  "scale_m": null,
-  "parents": [],
-  "parts": [],
-  "made_of": [],
-  "processes": [],
-  "related": [],
-  "mesh": null,
-  "summary": "Rutherford put all the positive charge and nearly all the mass in a tiny nucleus, with the electrons around it in mostly empty space.",
-  "layers": {
-   "basics": "<p>Geiger and Marsden fired alpha particles at thin metal sheets. Most went nearly straight through, but a tiny fraction (about 1 in 8,000 in their first report) bounced back. Rutherford’s 1911 paper explained it: the positive charge and mass must be packed into a tiny core, because only a concentrated charge can turn an alpha particle round.</p><p>The nucleus is thousands of times smaller than the atom, so atoms are mostly empty space.</p><p>The model could not say why electrons orbiting a nucleus do not radiate away their energy and spiral in, and it could not explain atomic spectra.</p>",
-   "deeper": "<p>The figure shows the angle by which a point-like alpha particle is turned as it passes a heavy nucleus at distance b. Closer passes give bigger turns; a head-on approach stops at the distance d.</p>",
-   "expert": "<p>Rutherford scattering: tan(θ/2) = d/(2b), where d = 2 Z e²/(4πε₀ E) is the distance of closest approach in a head-on collision for an alpha particle of energy E on a nucleus of charge Z, with e²/(4πε₀) = 1.43996 MeV fm. This treats both as point charges, ignores the electrons and the recoil of the nucleus, and fails when the alpha particle reaches the nucleus’s surface.</p>"
-  },
-  "facts": [
-   [
-    "e²/(4πε₀)",
-    "1.43996 MeV fm"
-   ],
-   [
-    "Idea",
-    "tiny, dense, positive nucleus"
-   ]
-  ],
-  "certainty": "C1",
-  "refs": [
-   [
-    "CHE",
-    "2.2",
-    "2-2-evolution-of-atomic-theory"
    ]
   ]
  },
