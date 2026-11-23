@@ -471,14 +471,16 @@ function thLkBarkRelief(m, T) {
       .replace('#include <normal_fragment_maps>', THREE.ShaderChunk.normal_fragment_maps.split('texture2D( normalMap, vUv )').join('texture2D( normalMap, thPomUv )'));
   });
 }
-/* The oak's leaves: six photographed oak leaves (ambientCG LeafSet016 at 2048 px, a 3 x 2 atlas, CC0) on the leaf cards, each card one of
-   the six by a hash of its number, so neighbours differ. The photograph is detail (its outline, veins and variation); the colour stays the
-   model's green. The middle distance's tufts are drawn from the same six leaves. Fetched when the first leaves are shown (about 600 kB). */
-const TH_LEAF = { p: null, atlas: null, rosette: null };
+/* The oak's leaves: six photographed oak leaves (ambientCG LeafSet016, a 3 x 2 atlas, CC0) on the leaf cards, each card one of the six by
+   a hash of its number, so neighbours differ. The photograph is detail (its outline, veins and variation); the colour stays the model's
+   green. The middle distance's tufts are drawn from the same six leaves. At 512 px when the first leaves are shown (about 90 kB with the
+   normal map); the 2048 px colour and outline (about 450 kB, each leaf about 680 x 1024 px) only once the camera is within `fine` metres
+   of an oak it is looking at, so the park's views stay inside the download budget (DESIGN 3.14). */
+const TH_LEAF = { p: null, atlas: null, rosette: null, fine: 9, pf: null, px: { value: 512 } };
 function thLkLeaves() {
   if (TH_LEAF.p) return TH_LEAF.p;
   TH_LEAF.atlas = thLkFlat(128, 128, 128); TH_LEAF.alpha = thLkFlat(255, 255, 255); TH_LEAF.normal = thLkFlat(128, 128, 255); TH_LEAF.rosette = thLkFlat(128, 128, 128); TH_LEAF.rosetteA = thLkFlat(255, 255, 255);
-  TH_LEAF.p = thLkTrack(Promise.all([thLkImg('LeafSet016_color_2k.jpg'), thLkImg('LeafSet016_opacity_2k.jpg'), thLkImg('LeafSet016_normal_gl_1k.jpg')]).then(([c, o, n]) => {
+  TH_LEAF.p = thLkTrack(Promise.all([thLkImg('LeafSet016_color_512.jpg'), thLkImg('LeafSet016_opacity_512.jpg'), thLkImg('LeafSet016_normal_gl_512.jpg')]).then(([c, o, n]) => {
     /* colour and outline are two pictures: the colour opaque (round each leaf the mean grey, so filtering at the edge does not darken
        it), the outline the alpha map. A colour picture with an alpha channel would lose its colour where it is clear, and the leaf's
        edge would darken in the distance. */
@@ -517,6 +519,13 @@ function thLkLeaves() {
     TH_LEAF.ok = true;
   }).catch(() => { }));
   return TH_LEAF.p;
+}
+function thLkLeavesFine() {   // the 2048 px colour and outline, in place of the 512 px ones (the tufts and the leaves' boxes stay as they are)
+  if (TH_LEAF.pf || !TH_LEAF.ok) return;
+  TH_LEAF.pf = thLkTrack(Promise.all([thLkImg('LeafSet016_color_2k.jpg'), thLkImg('LeafSet016_opacity_2k.jpg')]).then(([c, o]) => {
+    const cv = thLkDetail(c, o), q = document.createElement('canvas'); q.width = cv.width; q.height = cv.height; const x = q.getContext('2d'); x.fillStyle = 'rgb(128,128,128)'; x.fillRect(0, 0, q.width, q.height); x.drawImage(cv, 0, 0);
+    TH_LEAF.atlas.image = q; TH_LEAF.atlas.needsUpdate = true; TH_LEAF.alpha.image = o; TH_LEAF.alpha.needsUpdate = true; TH_LEAF.px.value = o.width;
+  }).catch(() => { }));
 }
 /* An oak's leaves grow in clusters: alternate on the shoot but crowded at its tip, five or so radiating from almost one point (Q. robur:
    leaves 10 to 12 cm, on a stalk of 2 to 3 mm; Wikipedia, "Quercus robur"). The model places about 18,700 leaves, one card each, along its
@@ -645,9 +654,10 @@ function thLkApplyLeaves(rec) {
   const thTopK = Math.max(0, (.6 / (TH_LEAF.rosetteCov || .08) - 1 - 9 * .3) / 16);
   m.extensions = Object.assign(m.extensions || {}, { derivatives: true });
   LOOK.patch(m, 'thleafmip', sh => {
-    sh.fragmentShader = sh.fragmentShader.replace('#include <alphamap_fragment>', `#include <alphamap_fragment>
+    sh.uniforms.thLeafPx = cluster ? { value: 512 } : TH_LEAF.px;   // the outline's size in pixels (the leaves' grows when the 2048 px one arrives)
+    sh.fragmentShader = 'uniform float thLeafPx;\n' + sh.fragmentShader.replace('#include <alphamap_fragment>', `#include <alphamap_fragment>
 	#ifdef USE_ALPHAMAP
-	{ vec2 thT = vUv * ${cluster ? '512.0' : '2048.0'}; vec2 thDx = dFdx( thT ), thDy = dFdy( thT ); float thMip = max( 0.0, 0.5 * log2( max( dot( thDx, thDx ), dot( thDy, thDy ) ) ) );
+	{ vec2 thT = vUv * thLeafPx; vec2 thDx = dFdx( thT ), thDy = dFdy( thT ); float thMip = max( 0.0, 0.5 * log2( max( dot( thDx, thDx ), dot( thDy, thDy ) ) ) );
 	  diffuseColor.a *= 1.0 + max( 0.0, thMip - ${cluster ? '0.0' : '1.0'} ) * 0.3${cluster ? ` + pow( max( 0.0, thMip - 5.0 ), 2.0 ) * ${thTopK.toFixed(4)}` : ''}; }
 	#endif`);
   });
@@ -1262,7 +1272,7 @@ class ThingObj {
         const isSel = this.sel === pd.id;
         mat.opacity = op; mat.transparent = op < .99; mat.depthWrite = op > .9; if (mat.clippingPlanes !== planes) { mat.clippingPlanes = planes; mat.needsUpdate = true; }
         const ol = g.userData.ol, olK = isSel || this.hovId === pd.id ? 1 : this.olK; if (ol) { ol.visible = op > .5 && !pd.noink && olK > .02; ol.material.uniforms.uOpacity.value = .85 * op * olK; ol.material.uniforms.uColor.value.setHex(isSel ? 0x1e4e8f : 0x1a1f2b); if (ol.material.clippingPlanes !== planes) { ol.material.clippingPlanes = planes; ol.material.needsUpdate = true; } }
-        if (TH_LK.on) { const rim = mat.userData.thRim; if (mat.userData.thGhost) mat.userData.thGhost.value = op < (pd.opacity_max ?? 1) * alpha - .005 ? 1 : 0; LOOK.selSet(mat, (isSel ? 1 : this.hovId === pd.id ? .55 : 0) * op); if (r.lkSet) thLkApplySet(r); if (r.lkLeaf) thLkApplyLeaves(r); if (r.lkSprayN) r.g.geometry.setDrawRange(0, this.lkFocus ? Infinity : r.lkSprayN); if (r.lkFur) r.lkFur.visible = op > .95 && !cut && (this.lkFocus ? this.dist < (r.lkFurNear || TH_FUR_NEAR) : this.dist < r.lkFurAny); }
+        if (TH_LK.on) { const rim = mat.userData.thRim; if (mat.userData.thGhost) mat.userData.thGhost.value = op < (pd.opacity_max ?? 1) * alpha - .005 ? 1 : 0; LOOK.selSet(mat, (isSel ? 1 : this.hovId === pd.id ? .55 : 0) * op); if (r.lkSet) thLkApplySet(r); if (r.lkLeaf) thLkApplyLeaves(r); if (r.lkSprayN) { r.g.geometry.setDrawRange(0, this.lkFocus ? Infinity : r.lkSprayN); if (this.lkFocus && this.dist < TH_LEAF.fine && !TH_LEAF.pf) thLkLeavesFine(); } if (r.lkFur) r.lkFur.visible = op > .95 && !cut && (this.lkFocus ? this.dist < (r.lkFurNear || TH_FUR_NEAR) : this.dist < r.lkFurAny); }
         const cap = g.userData.cap; if (cap) { cap.visible = !!cut && op > .5; cap.material.uniforms.uOpacity.value = op; cap.material.transparent = op < .995; }
       }
     }

@@ -5,8 +5,9 @@ assets/look/, re-encoded to the size docs/DESIGN.md 3.14 allows. Every set is CC
 usage: python3 tools/things/look_assets.py /path/to/assets_staging      (needs Pillow)
 
 Colour maps: JPEG quality 80. Normal maps (OpenGL convention): JPEG quality 85 without chroma subsampling, so the two slopes are
-not blurred into each other. The oak leaf atlas (LeafSet016 at 2K, staged as ambientcg_leafset016_2k): colour and opacity at 2048 px
-(each leaf about 680 x 1024 px, so a leaf that fills a third of the screen is not magnified), normal at 1024 px. The colour's background
+not blurred into each other. The oak leaf atlas (LeafSet016 at 2K, staged as ambientcg_leafset016_2k): colour and opacity at 512 px for every
+oak, fetched with the first leaves, and at 2048 px (each leaf about 680 x 1024 px, so a leaf that fills a third of the screen is not
+magnified) fetched only when the camera comes close to an oak, so the park's views stay inside the download budget; normal at 512 px. The colour's background
 (where the opacity map is clear) is filled with the leaves' own mean colour: it is never seen, the runtime reads the outline from the
 opacity map, and a flat background costs almost nothing in the JPEG and does not bleed a white fringe into the leaf edge at coarse mips.
 The oak bark's height (Jolcham Oak Bark 01's displacement map, 1 x 2 m of bark) at 512 x 1024 px, greyscale: the trunk's relief under
@@ -25,7 +26,9 @@ SETS = [   # (source file under staging, file in assets/look, size in px, kind o
     ('bark_rock_wood/mossy_rock/mossy_rock_color_1k.jpg', 'mossy_rock_color_512.jpg', 512, 'color'),
     ('bark_rock_wood/ambientcg_leafset016_2k/LeafSet016_2K-JPG_Color.jpg', 'LeafSet016_color_2k.jpg', 2048, 'leafcolor'),
     ('bark_rock_wood/ambientcg_leafset016_2k/LeafSet016_2K-JPG_Opacity.jpg', 'LeafSet016_opacity_2k.jpg', 2048, 'grey'),
-    ('bark_rock_wood/ambientcg_leafset016_2k/LeafSet016_2K-JPG_NormalGL.jpg', 'LeafSet016_normal_gl_1k.jpg', 1024, 'normal'),
+    ('bark_rock_wood/ambientcg_leafset016_2k/LeafSet016_2K-JPG_Color.jpg', 'LeafSet016_color_512.jpg', 512, 'leafcolor'),
+    ('bark_rock_wood/ambientcg_leafset016_2k/LeafSet016_2K-JPG_Opacity.jpg', 'LeafSet016_opacity_512.jpg', 512, 'grey'),
+    ('bark_rock_wood/ambientcg_leafset016_2k/LeafSet016_2K-JPG_NormalGL.jpg', 'LeafSet016_normal_gl_512.jpg', 512, 'normal'),
     ('bark_rock_wood/jolcham_oak_bark_01/jolcham_oak_bark_01_displacement_1k.jpg', 'jolcham_oak_bark_01_height_512.jpg', (512, 1024), 'grey'),
 ]
 LEAF_MASK = 'bark_rock_wood/ambientcg_leafset016_2k/LeafSet016_2K-JPG_Opacity.jpg'
