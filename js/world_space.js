@@ -608,8 +608,8 @@ FT.planet = {
     const shape = SPX.on ? SPX.shape(mesh, o.body) : null;
     const id = o.body === 'Pluto' ? 'pluto' : o.body.toLowerCase(); F.pick(mesh, id); mesh.userData.madeOf = /Jupiter|Saturn|Uranus|Neptune/.test(o.body) ? 'gasgiant' : 'regolith';
     if (!d.elements) mesh.userData.sim = ['planet:' + id];
-    if (d.ring && d.ring.texture) { const ri = d.ring.inner_km / 1000, ro = d.ring.outer_km / 1000, rg = new THREE.RingGeometry(ri, ro, 256, 1); const pa = rg.attributes.position, uv = rg.attributes.uv, v = new V3(); for (let i = 0; i < pa.count; i++) { v.fromBufferAttribute(pa, i); uv.setXY(i, (v.length() - ri) / (ro - ri), .5); } const ring = new THREE.Mesh(rg, SPX.on ? SPX.ringMat(tex(d.ring.texture), ri, ro, R, SPX.flat(o.body)) : new THREE.MeshBasicMaterial({ map: tex(d.ring.texture), color: 0xdddddd, transparent: true, side: THREE.DoubleSide, depthWrite: false })); ring.rotation.x = -Math.PI / 2; spin.add(ring); F.pick(ring, 'saturn', .5);
-      if (SPX.on) { F._sxRing = ring; F._sxSunM = new V3(); SPX.ringShadow(mesh.material, tex(d.ring.texture), ri, ro, shape, F._sxSunM); } }
+    if (d.ring && d.ring.texture) { const ri = d.ring.inner_km / 1000, ro = d.ring.outer_km / 1000, rg = new THREE.RingGeometry(ri, ro, 256, 1); const pa = rg.attributes.position, uv = rg.attributes.uv, v = new V3(); for (let i = 0; i < pa.count; i++) { v.fromBufferAttribute(pa, i); uv.setXY(i, (v.length() - ri) / (ro - ri), .5); } const ring = new THREE.Mesh(rg, SPX.on ? SPX.ringMat(SPX.ringMap(), ri, ro, R, SPX.flat(o.body)) : new THREE.MeshBasicMaterial({ map: tex(d.ring.texture), color: 0xdddddd, transparent: true, side: THREE.DoubleSide, depthWrite: false })); ring.rotation.x = -Math.PI / 2; spin.add(ring); F.pick(ring, 'saturn', .5);
+      if (SPX.on) { F._sxRing = ring; F._sxSunM = new V3(); SPX.ringShadow(mesh.material, SPX.ringMap(), ri, ro, shape, F._sxSunM); } }
     const ATM = { Venus: [0xffe6b0, .22], Jupiter: [0xe8d9c0, .14], Saturn: [0xeedfb5, .14], Uranus: [0x9fe6ee, .3], Neptune: [0x7aa5ff, .3] }[o.body];
     if (ATM && !SPX.on) F.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.012, 64, 48), fresnelMat(ATM[0], 4, ATM[1])));
     const moons = (SOLAR || []).filter(m => m.parent === o.body);
@@ -633,7 +633,7 @@ FT.planet = {
     F.note = [map ? 'The surface colours come from a published map; brightness is scaled for display.' : 'No surface map is drawn: the colour is an approximate tint.',
       F.moons.length ? 'Moon sizes and distances are true; where each moon sits on its orbit is illustrative. Smaller moons are not drawn.' : '',
       d.ring ? (d.ring.texture ? 'The ring is drawn flat, with no thickness (the real main rings are about 10 to 20 metres thick) and no shadow; its fainter parts are not drawn.' : 'The planet\'s faint rings are not drawn.') : ''].filter(Boolean).join(' ');
-    if (SPX.on) F.note = SPX.planetNote(o.body, d, F.moons.length);
+    if (SPX.on) { const n = SPX.planetNote(o.body, d, F.moons.length); F.note = n.head; F._sxAbout = n.about; }
     surfaceAtt(F, (i, c) => { if (!i) { c.set(0, 0, 0); return R; } const m = F.moons[i - 1]; if (!m) return 0; c.copy(m.mm.position).applyQuaternion(spin.quaternion); return m.mm.geometry.parameters.radius; });
     F.spawn = (T) => { if (T.length() < R * 1.05) return spaceBodySurface(() => new V3(), () => body.getWorldQuaternion(new THREE.Quaternion()), R, T, surfaceBiome(o.body), o.body);
       for (const m of F.moons) if (T.distanceTo(m.mm.position.clone().applyQuaternion(spin.quaternion)) < m.mm.geometry.parameters.radius * 1.05) { const mm = m.mm; return spaceBodySurface(() => mm.position.clone().applyQuaternion(spin.quaternion), () => spin.quaternion.clone(), mm.geometry.parameters.radius, T, surfaceBiome(mm.userData.info.title), mm.userData.info.title); }
@@ -720,7 +720,7 @@ FT.earth = {
     };
     F.blurb = 'Earth at its true size, turning in real time, lit by the Sun from its true direction. The Moon is at its true size, distance and position for the date shown.';
     F.note = 'True: sizes, the Sun\'s direction, the day and night line, the Moon\'s position and phase. Illustrative: the clouds are a fixed sample image, not today\'s weather; the ISS position; the blue glow, drawn about 100 km thick (the conventional edge of space), where the air really thins out gradually.';
-    if (SPX.on) Object.defineProperty(F, 'note', { get: () => F._sxOnMoon ? SPX.NOTE.moon : SPX.NOTE.earth, set() {}, configurable: true });   // centred on the Moon, the place's note is the Moon's
+    if (SPX.on) Object.defineProperty(F, 'note', { get: () => (F._sxOnMoon ? SPX.NOTE.moon : SPX.NOTE.earth).head, set() {}, configurable: true }), Object.defineProperty(F, '_sxAbout', { get: () => (F._sxOnMoon ? SPX.NOTE.moon : SPX.NOTE.earth).about, configurable: true });   // centred on the Moon, the place's note is the Moon's
     F.spawnD = 2e5;
     surfaceAtt(F, (i, c) => i === 0 ? (c.set(0, 0, 0), R) : i === 1 ? (c.copy(moon.position), 1.7374) : 0);   // aimed at the blue glow: the zoom lands on the ground below it
     F.spawn = (T) => {
@@ -835,9 +835,9 @@ const SPX = (() => {
        on a sphere, is the measured mean of Mars: geometric albedo 0.089 in blue, 0.170 in green (V) and 0.289 in red light (Mallama 2007,
        Icarus 192, 404), as the albedo of a Lambert surface (1.5 times the geometric albedo). Gains in display units: the map's own mean
        measured over the sphere, 2k and 4k alike. */
-    Mars: { file: q('look_mars_4k.jpg', 'look_mars_2k.jpg'), gain: [1.41, 1.41, 1.07], src: 'Viking orbiters (NASA/JPL/USGS, MDIM 2.1), its colour balanced to the measured mean brightness of Mars in blue, green and red light (Mallama 2007). The light and shade of craters in the Viking photographs is part of the map, so relief shows lit from the Viking-era Sun, not from today\'s' },
+    Mars: { file: q('look_mars_4k.jpg', 'look_mars_2k.jpg'), gain: [1.41, 1.41, 1.07], nrm: q('look_mars_nrm_4k.png', 'look_mars_nrm_2k.png'), R: 3.3895, rel: 'fill', src: 'Viking orbiters (NASA/JPL/USGS, MDIM 2.1), its colour balanced to the measured mean brightness of Mars in blue, green and red light (Mallama 2007). Where the ground is steep (the scarps of the volcanoes, the walls of the canyons) the map\'s own baked light and shade is replaced by the average of the gentle ground around it, so that large relief is lit by today\'s Sun only; the shading of small craters and ridges in the Viking photographs stays, lit from the Viking-era Sun, not from today\'s. Relief: the heights of the Mars Orbiter Laser Altimeter on Mars Global Surveyor (the USGS Astropedia 463 m model, public domain, all of Olympus Mons\'s 21 km included), at true slope with no exaggeration, about 5 km per pixel (10 km at the low quality level), so craters under about 20 km are not in it. Mars\'s dusty sky fills the shadows with a little light (about 6% of the direct light, in the dust\'s colour, a first estimate: not measured)' },
     Jupiter: { file: q('look_jupiter_4k.jpg', 'look_jupiter_2k.jpg'), src: 'Cassini, December 2000 (NASA/JPL/SSI); the polar regions were poorly imaged and are smoothed' },
-    Moon: { file: q('moon.jpg', 'look_moon_2k.jpg'), ll: true },
+    Moon: { file: q('moon.jpg', 'look_moon_2k.jpg'), ll: true, nrm: q('look_moon_nrm_4k.png', 'look_moon_nrm_2k.png'), R: 1.7374, rel: 'gate' },
     Europa: { file: 'look_europa_1k.jpg', tint: 0xd9cfc0, ll: true, src: 'Voyager and Galileo (USGS), monochrome, tinted' },
     Enceladus: { file: 'look_enceladus_1k.jpg', ll: true, src: 'Cassini (NASA/JPL/SSI/LPI), its false colour taken almost to grey' },
     Charon: { file: 'look_charon_1k.jpg', tint: 0xb8b3ad, ll: true, src: 'New Horizons (NASA/JHU APL/SwRI), monochrome, tinted' },
@@ -860,16 +860,29 @@ const SPX = (() => {
      the 0.8 to 1.2 measured for Jupiter in visible light). Airless bodies: lunar-Lambert, and the shadows of slopes smaller than the map can show
      (rms slope about 22 degrees for the Moon; USGS, "A new look at photometry of the Moon"): Smith's shadowing term, so the light falls off
      faster toward the terminator and the edge between day and night is crisp, as it is on the real Moon. */
-  function surfaceBRDF(m, airless) {
+  /* Relief (the normal maps of tools/space/make_relief.py: r, g the slope in the odd coding described there, b the height for the Moon). The patch
+     decodes the slope, and lets two things depend on the geometric normal (vSxG, the sphere's own): 'gate' (the Moon: no atmosphere) allows the
+     slope's light past the geometric terminator only as far as a peak of the map's own height could catch it, because it stands above the horizon
+     of the datum sphere by acos(R / (R + h)); 'fill' (Mars: a dusty sky) adds the light of the sky to the shadows, a few per cent of the direct
+     light, in the dust's colour, falling away toward the terminator and on slopes that turn from the zenith. */
+  const SXMAX = '1.2', SXGAMMA = '0.7', REL_DECODE = 'vec4 sxT = texture2D( normalMap, vUv ); vec2 sxV = sxT.xy * 2.0 - 1.0; sxH = sxT.z; vec3 mapN = vec3( ' + SXMAX + ' * sign( sxV ) * pow( abs( sxV ), vec2( 1.0 / ' + SXGAMMA + ' ) ), 1.0 );';
+  const MARS_FILL = 0.06;   // of the direct light on flat ground with the Sun overhead (the dusty sky of Mars scatters about this much into shadow; a first estimate)
+  function surfaceBRDF(m, airless, rel) {
     const u = { value: 1 }; if (airless) m.userData.uLL = u;
-    return LOOK.patch(m, airless ? 'lunarLambert' : 'cloudDeck', sh => {
+    return LOOK.patch(m, (airless ? 'lunarLambert' : 'cloudDeck') + (rel ? ':' + rel : ''), sh => {
       sh.uniforms.uLL = u;
       const t = C.lights_physical_pars_fragment;
       if (!t.includes(LAMBERT) || !t.includes(SPECULAR)) { console.warn('space look: the lighting chunk has changed'); return; }
-      sh.fragmentShader = sh.fragmentShader.replace('#include <lights_physical_pars_fragment>', 'uniform float uLL;\n' + t.replace(SPECULAR, '').replace(LAMBERT, airless
-        ? `float sxNV = saturate( dot( geometry.normal, geometry.viewDir ) ), sxT2 = max( 1.0 - dotNL * dotNL, 0.0 ) / max( dotNL * dotNL, 1e-6 );
-	reflectedLight.directDiffuse += irradiance * BRDF_Diffuse_Lambert( material.diffuseColor ) * ( ( 1.0 - uLL ) + 2.0 * uLL / max( dotNL + sxNV, 1e-3 ) ) * 2.0 / ( 1.0 + sqrt( 1.0 + 0.163 * sxT2 ) );`
-        : LAMBERT));
+      const gate = rel === 'gate' ? `float sxG = dot( normalize( vSxG ), directLight.direction ), sxHk = sxH * 11.0, sxS = sqrt( max( 1.0 - pow( 1737.4 / ( 1737.4 + sxHk ), 2.0 ), 0.0 ) ), sxGate = smoothstep( -0.012, 0.03, sxG + sxS );` : '';
+      const fill = rel === 'fill' ? `float sxG = dot( normalize( vSxG ), directLight.direction ); reflectedLight.directDiffuse += directLight.color * BRDF_Diffuse_Lambert( material.diffuseColor ) * vec3( 1.0, 0.8, 0.58 ) * ${MARS_FILL} * ( 0.5 + 0.5 * dot( geometry.normal, normalize( vSxG ) ) ) * smoothstep( -0.1, 0.35, sxG ) * 1.4;` : '';
+      sh.fragmentShader = sh.fragmentShader.replace('#include <lights_physical_pars_fragment>', 'uniform float uLL;\n' + (rel ? 'varying vec3 vSxG; float sxH = 0.0;\n' : '') + t.replace(SPECULAR, '').replace(LAMBERT, airless
+        ? `float sxNV = saturate( dot( geometry.normal, geometry.viewDir ) ), sxT2 = max( 1.0 - dotNL * dotNL, 0.0 ) / max( dotNL * dotNL, 1e-6 ); ${gate}
+	reflectedLight.directDiffuse += irradiance * BRDF_Diffuse_Lambert( material.diffuseColor ) * ( ( 1.0 - uLL ) + 2.0 * uLL / max( dotNL + sxNV, 1e-3 ) ) * 2.0 / ( 1.0 + sqrt( 1.0 + 0.163 * sxT2 ) )${rel === 'gate' ? ' * sxGate' : ''};`
+        : LAMBERT + fill));
+      if (rel) {
+        sh.vertexShader = 'varying vec3 vSxG;\n' + sh.vertexShader.replace('#include <defaultnormal_vertex>', '#include <defaultnormal_vertex>\n\tvSxG = transformedNormal;');
+        sh.fragmentShader = sh.fragmentShader.replace('#include <normal_fragment_maps>', C.normal_fragment_maps.replace('vec3 mapN = texture2D( normalMap, vUv ).xyz * 2.0 - 1.0;', REL_DECODE));
+      }
     });
   }
   /* a body's material: its map (or tint) through the table of kinds; airless bodies get lunar-Lambert, cloud decks plain Lambert */
@@ -879,13 +892,28 @@ const SPX = (() => {
     const m = LOOK.material(/Jupiter|Saturn|Uranus|Neptune|Venus/.test(name) ? 'cloudtop' : 'regolith', col, { extra: { map: mp || null } });
     m.roughness = 1; m.metalness = 0;
     if (file && b.gain) m.color.setRGB(...b.gain);   // a colour balance measured for the map (see BODY)
-    surfaceBRDF(m, !!(b && b.ll || ICY_BODIES.test(name) || /Mercury|Moon|Phobos|Deimos|Ceres|Io|Ganymede|Callisto|Mimas|Tethys|Dione|Rhea|Iapetus/.test(name)));
+    if (file && b.nrm) {   // relief: a flat normal map now (so that the program never changes), the real one fetched when the camera comes near (X.relief)
+      m.normalMap = FLATN; m.normalScale.set(1, 1); m.userData.nrm = { file: b.nrm, R: b.R, done: false };
+    }
+    surfaceBRDF(m, !!(b && b.ll || ICY_BODIES.test(name) || /Mercury|Moon|Phobos|Deimos|Ceres|Io|Ganymede|Callisto|Mimas|Tethys|Dione|Rhea|Iapetus/.test(name)), file && b.nrm ? b.rel : null);
     return m;
   };
   /* the phase angle at a body (degrees): between the Sun and the camera, seen from the body */
   const _a = new V3(), _b = new V3();
   X.phaseAt = (F, p, sunDir) => { camPosIn(F, _a).sub(p).normalize(); return Math.acos(clamp(_a.dot(sunDir), -1, 1)) * 180 / Math.PI; };
-  X.setLL = (m, F, p, s) => { if (m && m.userData.uLL) m.userData.uLL.value = X.llA(X.phaseAt(F, p, s)); };
+  const FLATN = new THREE.DataTexture(new Uint8Array([128, 128, 0, 255]), 1, 1, THREE.RGBAFormat); FLATN.needsUpdate = true;
+  /* relief (height models: Moon NASA SVS 4720 / LRO LOLA; others in tools/space): the normal map is fetched only when the camera is within
+     10 radii of the body, so a visitor who never goes near it never downloads it. Slope is true (vertical exaggeration X.EXAG = 1). */
+  X.EXAG = 1;
+  X.relief = (m, F, p) => {
+    const n = m && m.userData.nrm; if (!n || n.done) return;
+    if (camPosIn(F, X._b2).distanceTo(p) > n.R * 10) return;
+    n.done = true; const t = map(n.file); n.tex = t;
+    PEND_ASSIGN(m, t);
+  };
+  X._b2 = new V3();
+  const PEND_ASSIGN = (m, t) => { const go = () => { m.normalMap = t; m.normalScale.set(X.EXAG, X.EXAG); }; if (t.image) go(); else map(m.userData.nrm.file, go); };
+  X.setLL = (m, F, p, s) => { if (m && m.userData.uLL) m.userData.uLL.value = X.llA(X.phaseAt(F, p, s)); X.relief(m, F, p); };
   X._a = _a; X._b = _b;
   return X;
 })();
@@ -1030,6 +1058,7 @@ vec3 sxZenith( vec3 up, vec3 s ) {
     camPosIn(F, _c); const L = _c.length(); let k = 1;
     _t.copy(cam.T); if (cam.A !== F) convertP(_t, cam.A, F);   // what the view is centred on, in the Earth frame
     const onMoon = !!moon && _t.distanceTo(moon.position) < 1.7374 * 1.3 && cam.D < 6e7;
+    X.foldAbout(F);
     if (onMoon !== !!F._sxOnMoon) { F._sxOnMoon = onMoon; if (typeof capFrame !== 'undefined') capFrame = null; }   // the place's note follows (F.note, below)
     if (onMoon) k = MOON_K;
     else if (L > 0) {
@@ -1056,8 +1085,8 @@ if (SPX.on) (() => {
     X.setLL(o.moon.material, F, o.moon.position, s);
   };
   X.NOTE = {
-    moon: 'As it looks, from the date\'s real sunlight, with the exposure set for the Moon (about 2.5 times the exposure for the sunlit Earth, because the Moon reflects about a third as much light). The surface is a map made from NASA lunar imagery (Solar System Scope, CC BY 4.0); its brightness follows the measured way the Moon\'s dust scatters light, so the full Moon is a flat disc. Mountains and crater walls are not modelled as relief, so near the line between day and night they cast no shadows of their own; slopes too small for the map are allowed for, which makes that line crisp. The near side always faces the Earth; the small rocking of libration is not shown. A camera exposed for the Moon records no stars: they are drawn faint so that the sky can still be read.',
-    earth: 'As it looks, from the date\'s real sunlight: the ground is NASA\'s Blue Marble (a cloud-free composite of 2004) with the open ocean drawn in one colour, because the map\'s sea-floor relief cannot be seen from space; the clouds are one sample picture, not today\'s weather, and their shadows assume they are 5 km up. The air is computed (scattering by molecules and haze in a single bounce), so the blue limb and the red line at sunset are calculated, not painted. City lights are a satellite composite, drawn in an assumed warm colour. The exposure follows the middle of the view like a camera\'s: on the night side it is about 200,000 times longer, which is why the sunlit edge then burns out white. A camera exposed for the sunlit Earth records no stars at all: they are drawn faint, so that the sky can still be read, and come up in full when the exposure opens on the night side. Not shown: today\'s weather, the Moon\'s and the Earth\'s shadows on each other, the ISS\'s real position.',
+    moon: { head: 'As it looks, from the date\'s real sunlight, with the exposure set for the Moon. The relief is shaded from the heights measured by the Lunar Reconnaissance Orbiter\'s laser altimeter, at true slope (2.7 km per pixel); peaks do not yet cast shadows.', about: 'As it looks, from the date\'s real sunlight, with the exposure set for the Moon (about 2.5 times the exposure for the sunlit Earth, because the Moon reflects about a third as much light). The surface is a map made from NASA lunar imagery (Solar System Scope, CC BY 4.0); its brightness follows the measured way the Moon\'s dust scatters light, so the full Moon is a flat disc. Relief is real: the slopes come from the Moon\'s measured heights (LRO laser altimeter, NASA SVS 4720), drawn at their true steepness with no exaggeration, at about 2.7 km per pixel (5.3 km at the low quality level) near the equator, so crater rims and walls catch the Sun near the line between day and night; craters smaller than a few pixels are not in the height data, and heights do not cast shadows on each other, so the long shadows of the lowest Sun are not drawn (slopes too small for the data are allowed for, which keeps that line crisp). Light past the line between day and night is allowed only to ground high enough to see over the curve of the Moon (from its measured height), so that only real peaks catch it. The colour map\'s own faint light and shade is part of the picture. The near side always faces the Earth; the small rocking of libration is not shown. A camera exposed for the Moon records no stars: they are drawn faint so that the sky can still be read.' },
+    earth: { head: 'As it looks, from the date\'s real sunlight: NASA\'s Blue Marble for the ground, one sample picture for the clouds (not today\'s weather), and an air that is computed. The Moon\'s and the Earth\'s shadows on each other, today\'s weather and the Space Station are not shown.', about: 'As it looks, from the date\'s real sunlight: the ground is NASA\'s Blue Marble (a cloud-free composite of 2004) with the open ocean drawn in one colour, because the map\'s sea-floor relief cannot be seen from space; the clouds are one sample picture, not today\'s weather, and their shadows assume they are 5 km up. The air is computed (scattering by molecules and haze in a single bounce), so the blue limb and the red line at sunset are calculated, not painted. City lights are a satellite composite, drawn in an assumed warm colour. The exposure follows the middle of the view like a camera\'s: on the night side it is about 200,000 times longer, which is why the sunlit edge then burns out white. A camera exposed for the sunlit Earth records no stars at all: they are drawn faint, so that the sky can still be read, and come up in full when the exposure opens on the night side. Not shown: today\'s weather, the Moon\'s and the Earth\'s shadows on each other, the ISS\'s real position.' },
   };
 })();
 /* ---- planets and moons under the look: the best staged map for each body, the flattening of the giant planets, phase from the real
@@ -1065,6 +1094,9 @@ if (SPX.on) (() => {
 if (SPX.on) (() => {
   const X = SPX;
   X.SATURN_RING_A = .98;
+  X.RING_K = 1.25;   // the map's reflectance level (1.25 = white) to the particles' albedo: set so that the lit B ring is about as bright as the globe beside it
+  /* the ring profile with the edges and gaps at their measured radii (tools/space/make_rings.py; sources in assets/ATTRIBUTION.md): 8192 px at the high level, 4096 at the low level */
+  X.ringMap = () => X.map(X.high ? 'look_saturn_ring_8k.png' : 'look_saturn_ring_4k.png');
   /* the shape: volume kept, equator out and poles in by the measured flattening */
   X.shape = (mesh, name) => { const f = X.flat(name); if (!f) return new V3(1, 1, 1); const a = Math.pow(1 - f, -1 / 3); mesh.scale.set(a, a * (1 - f), a); return mesh.scale.clone(); };
   /* Saturn's rings. Optical depth from the map's opacity (tau = -ln(1 - alpha), alpha read as the fraction of light the ring stops at
@@ -1074,9 +1106,9 @@ if (SPX.on) (() => {
     const a = R * Math.pow(1 - f, -1 / 3), c = a * (1 - f);
     ringTex.anisotropy = 1;   // the map is a radial profile: plain mipmapping by the radial footprint is its right prefilter (anisotropic sampling showed as speckle)
     return new THREE.ShaderMaterial({
-      uniforms: { tRing: { value: ringTex }, uSunL: { value: new V3(0, 0, 1) }, uSun: { value: new V3(1, 0, 0) }, uOpacity: { value: 1 }, uA: { value: a }, uK: { value: a / c }, uRi: { value: ri }, uRo: { value: ro } },
+      uniforms: { tRing: { value: ringTex }, uSunL: { value: new V3(0, 0, 1) }, uSun: { value: new V3(1, 0, 0) }, uOpacity: { value: 1 }, uA: { value: a }, uK: { value: a / c }, uRi: { value: ri }, uRo: { value: ro }, uRK: { value: X.RING_K } },
       vertexShader: LDV(`varying vec3 vL; varying vec3 vW; varying vec3 vN; void main(){ vL = position; vec4 w = modelMatrix * vec4( position, 1.0 ); vW = w.xyz; vN = normalize( mat3( modelMatrix ) * vec3( 0.0, 0.0, 1.0 ) ); gl_Position = projectionMatrix * viewMatrix * w; }`),
-      fragmentShader: LDF(`uniform sampler2D tRing; uniform vec3 uSunL; uniform vec3 uSun; uniform float uOpacity; uniform float uA; uniform float uK; uniform float uRi; uniform float uRo;
+      fragmentShader: LDF(`uniform sampler2D tRing; uniform vec3 uSunL; uniform vec3 uSun; uniform float uOpacity; uniform float uA; uniform float uK; uniform float uRi; uniform float uRo; uniform float uRK;
         varying vec3 vL; varying vec3 vW; varying vec3 vN;
         void main(){
           float r = length( vL.xy ); vec4 tx = texture2D( tRing, vec2( ( r - uRi ) / ( uRo - uRi ), 0.5 ) );
@@ -1088,9 +1120,9 @@ if (SPX.on) (() => {
           vec3 sl = normalize( uSunL ), d = vec3( sl.xy, sl.z * uK ), o = vec3( vL.xy, 0.0 ); float b = dot( o, d ), sh = 1.0;
           if ( b < 0.0 ) { float m2 = dot( o, o ) - b * b / dot( d, d ); sh = smoothstep( uA * 0.997, uA * 1.003, sqrt( max( m2, 0.0 ) ) ); }
           // particles: single-scattering albedo from the map's colour; phase function of a Lambert sphere
-          vec4 tc = texture2D( tRing, vec2( ( r - uRi ) / ( uRo - uRi ), 0.5 ), 3.0 );   // the colour, smoothed across the ringlets (the map's colour varies more than its brightness does)
+          vec4 tc = texture2D( tRing, vec2( ( r - uRi ) / ( uRo - uRi ), 0.5 ), 1.0 );   // what the particles reflect (the map's colour channels; its alpha is how much light they stop): kept apart from the optical depth, above 1 of which the reflected light no longer follows it
           float lw = dot( pow( tc.rgb / max( tc.a, 0.05 ), vec3( 2.2 ) ), vec3( 0.2126, 0.7152, 0.0722 ) );
-          vec3 w = clamp( lw * 3.5, 0.0, 0.95 ) * vec3( 1.0, 0.93, 0.82 );   // one pale tan for all the rings (their real colour differences are slight)
+          vec3 w = clamp( lw * uRK, 0.0, 0.97 ) * vec3( 1.0, 0.93, 0.82 );   // one pale tan for all the rings (their real colour differences are slight)
           float ph = acos( clamp( dot( s, v ), -1.0, 1.0 ) ), P = 0.8488264 * ( sin( ph ) + ( 3.14159265 - ph ) * cos( ph ) );
           float tm0 = tau / mu0, tm = tau / mu, I;
           if ( sn * vn > 0.0 ) I = mu0 / ( mu0 + mu ) * ( 1.0 - exp( - tm0 - tm ) );                       // the lit face
@@ -1130,20 +1162,38 @@ if (SPX.on) (() => {
   X.planetStep = (F, s, mesh, moons) => {
     X.setLL(mesh.material, F, X._b.set(0, 0, 0), s);
     for (const m of moons) { m.mm.getWorldPosition(X._b).add(F.C || X._a.set(0, 0, 0)); X.setLL(m.mm.material, F, X._b, s); }
+    X.foldAbout(F);
     const ring = F._sxRing; if (!ring) return;
     ring.getWorldQuaternion(_q).invert(); ring.material.uniforms.uSunL.value.copy(s).applyQuaternion(_q); ring.material.uniforms.uSun.value.copy(s);
     mesh.getWorldQuaternion(_q).invert(); F._sxSunM.copy(s).applyQuaternion(_q);
   };
+  /* the card says two sentences (head); everything else, the sources and what is a stand-in, is in the section "About this picture" one tap away (about) */
   X.planetNote = (name, d, nMoons) => {
     const b = X.body(name), E = X.sunE(name), f = X.flat(name);
-    return [
-      `Lit by the Sun from its true direction, so the phase is the real one. The picture is exposed for the sunlight at ${name}${E < .9 ? `, which is ${sig(1 / E)} times weaker than at the Earth` : E > 1.1 ? `, which is ${sig(E)} times stronger than at the Earth` : ''}, as a camera there would be. Such a camera records no stars: they are drawn faint, so that the sky can still be read.`,
-      b && b.src ? `Surface: ${b.src}.` : d.texture ? 'The surface colours come from a published map; their brightness is approximate.' : 'No surface map is drawn: the colour is an approximate tint.',
+    const first = `Lit by the Sun from its true direction, so the phase is the real one, and exposed for the sunlight at ${name}${E < .9 ? `, which is ${sig(1 / E)} times weaker than at the Earth` : E > 1.1 ? `, which is ${sig(E)} times stronger than at the Earth` : ''}.`;
+    const second = d.ring && d.ring.texture ? 'The ring edges, the Cassini Division and the gaps are at their measured radii; the bands inside each ring and each ring\'s brightness are stand-ins.'
+      : b && b.nrm ? 'Its relief is real, at true slope, from a laser altimeter, and the small craters of the colour map keep the light of the Viking-era Sun.'
+      : d.texture ? 'The surface colours come from a published map; their brightness is approximate.' : 'No surface map is drawn: the colour is an approximate tint.';
+    const about = [
+      `The picture is exposed as a camera there would be. Such a camera records no stars: they are drawn faint, so that the sky can still be read.`,
+      b && b.src ? `Surface: ${b.src}.` : '',
       f > .01 ? `Drawn flattened at the poles by the measured ${sig(f * 100)}%.` : '',
       'The axis points where it really does; the turn of the globe about it (which longitude faces you) is not the real one.',
       nMoons ? 'Moon sizes and distances are true; where each moon sits on its orbit is illustrative. Smaller moons are not drawn.' : '',
-      d.ring ? (d.ring.texture ? 'The rings are lit as a layer of ice particles: their brightness on the lit and the unlit face (light scattered once exactly, more than once approximately), the planet\'s shadow on them and their shadow on the planet are computed. The ring map is an artist\'s rendering of the measured ring profiles, and all the rings are given one pale tan; the rings are drawn with no thickness (the main rings are about 10 to 20 metres thick), and the faint outer rings are not drawn.' : 'The planet\'s faint rings are not drawn.') : '',
+      d.ring ? (d.ring.texture ? 'The rings are lit as a layer of ice particles: their brightness on the lit and the unlit face (light scattered once exactly, more than once approximately), the planet\'s shadow on them and their shadow on the planet are computed. The ring edges, the Cassini Division and the named gaps (Encke, Keeler, Huygens, Laplace and others) are at their measured radii, and each ring\'s opacity lies in its measured range (C 0.05 to 0.12, B 0.4 to more than 3 here, A 0.4 to 0.9). The fine ringlet pattern inside each ring is a generated stand-in with the right range, not the real ringlets. How much light each ring reflects is set from typical values of Cassini photographs (B brightest, A about 0.7 of it, the Cassini Division about 0.3, C about 0.2), not from a measured scan, and the Cassini Division\'s own opacity (0.1) is assumed. All the rings are given one pale tan. The rings are drawn with no thickness (the main rings are about 10 to 20 metres thick), and the faint outer rings are not drawn. The rings\' shadow on the planet uses the same opacity profile, so the Division and the C ring show as lighter lines in it when the Sun is high over the ring plane; near the equinox, when the Sun is low over the rings, the slant path through even the C ring and the Division stops nearly all the light, and the shadow is a solid band.' : 'The planet\'s faint rings are not drawn.') : '',
     ].filter(Boolean).join(' ');
+    return { head: first + ' ' + second, about };
+  };
+  /* the card's note is the head; "About this picture" (a closed details element, one tap away) holds the rest, put in by this each frame for the frame the card is about
+     (the card sets its text only when the place changes, and clears the section then) */
+  X.foldAbout = F => {
+    if (typeof capFrame === 'undefined' || capFrame !== F) return;
+    const el = document.getElementById('capNote'), ab = F._sxAbout; if (!el || !ab || (el.lastElementChild && el.lastElementChild.className === 'sxAbout' && el.lastElementChild.dataset.k === ab.length + ':' + ab.slice(0, 24))) return;
+    if (el.textContent !== F.note && !(el.lastElementChild && el.lastElementChild.className === 'sxAbout')) return;
+    el.textContent = F.note;
+    const d = document.createElement('details'); d.className = 'sxAbout'; d.dataset.k = ab.length + ':' + ab.slice(0, 24); d.style.cssText = 'margin-top:8px;font:italic 400 13.5px/1.55 var(--serif)';
+    const sm = document.createElement('summary'); sm.textContent = 'About this picture'; sm.style.cssText = 'cursor:pointer;font:600 12.5px/1.4 var(--sans);font-style:normal;color:var(--accent)'; d.appendChild(sm);
+    const p = document.createElement('p'); p.style.cssText = 'margin:6px 0 0'; p.textContent = ab; d.appendChild(p); el.appendChild(d);
   };
 })();
 /* ---- the Sun, the stars, the sky and the galaxies under the look ---- */
