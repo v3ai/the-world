@@ -470,22 +470,23 @@
   },
   {
    "id": "bank_grass",
-   "name": "Grass at the water's edge",
+   "name": "Sedge and grass at the water's edge",
    "system": "bank",
    "node": "pond_bank",
    "color": "#4a6e2c",
    "instances": "bank_tufts",
    "tint": 0.2,
    "double": true,
+   "noink": true,
    "lod": "near+mid",
    "center": [
-    0.1209,
-    0.0118,
-    0.1504
+    0.4514,
+    0.0124,
+    0.5144
    ],
-   "radius": 3.7325,
-   "count": 190,
-   "tris": 16720,
+   "radius": 3.9478,
+   "count": 59,
+   "tris": 6136,
    "kind": "leaf"
   },
   {
@@ -505,7 +506,7 @@
    ],
    "radius": 1.8802,
    "count": 7,
-   "tris": 224,
+   "tris": 1512,
    "kind": "leaf"
   },
   {
@@ -573,7 +574,7 @@
    ],
    "radius": 2.7652,
    "count": 90,
-   "tris": 2880,
+   "tris": 6480,
    "kind": "leaf"
   },
   {
@@ -1495,8 +1496,8 @@
  "stats": {
   "parts": 55,
   "uniqueMeshTris": 64228,
-  "nearTris": 67548,
-  "midTris": 33516,
+  "nearTris": 58252,
+  "midTris": 24220,
   "farTris": 12730
  }
 }

@@ -20,7 +20,7 @@ export default function build() {
     part('bank', 'Bank and marginal zone', 'bank', 'pond_bank', '#6a5c3c', { mesh: 'bank', solid: false, double: true, noink: true }),
     part('stones', 'Edging stones', 'bank', 'pond_stones', '#8b8a84', { instances: 'stones', tint: .15 }),
     part('stones_slab', 'Edging stones (flat)', 'bank', 'pond_stones', '#85847d', { instances: 'stones_slab', tint: .15, kind: 'stone' }),
-    part('bank_grass', 'Grass at the water\'s edge', 'bank', 'pond_bank', '#4a6e2c', { instances: 'bank_tufts', tint: .2, double: true, lod: 'near+mid' }),
+    part('bank_grass', 'Sedge and grass at the water\'s edge', 'bank', 'pond_bank', '#4a6e2c', { instances: 'bank_tufts', tint: .2, double: true, noink: true, lod: 'near+mid' }),
     part('floating_leaves', 'Fallen leaves floating', 'floating', 'pond_leaf_litter', '#6f6a2c', { instances: 'floating_leaves', tint: .3, double: true, lod: 'near+mid' }),
     part('water', 'Open water', 'water', 'pond_water', '#4a928d', { mesh: 'water', cutFace: 'water', noink: true, deeper: { type: 'tissue2', id: 'pond_drop', D: 6e-4, button: 'Look at a drop of pond water' } }),
     // ---- bed ----

@@ -45,8 +45,10 @@ export default function core(R) {
     }
     instances.stones = st; instances.stones_slab = sl; }
   // ---- leaf litter on the bed: fallen leaves, about 90 (oak-like in outline: lobed blades; the park's oaks drop them) ----
-  { const lobed = t => .5 * Math.sin(Math.PI * Math.pow(t, .8)) * (1 + .22 * Math.sin(t * Math.PI * 7)) ;
-    meshes.leaf = L.bakeShade(L.blade({ length: 1, halfWidth: t => .42 * lobed(t) / .5 * .8, thickness: .006, nAlong: 5, nAcross: 1, curlAcross: .25, curlAlong: .5 }), (p, n) => .75 + .25 * n[2]);
+  { const lobed = t => .5 * Math.sin(Math.PI * Math.pow(t, .8)) * (1 + .4 * Math.sin(t * Math.PI * 7)) ;
+    meshes.leaf = L.bakeShade(L.blade({ length: 1, halfWidth: t => .42 * lobed(t) / .5 * .8, thickness: .006, nAlong: 10, nAcross: 1, curlAcross: .25, curlAlong: .5 }), (p, n) => .75 + .25 * n[2]);
+    // the leaves lying on the water are the ones seen close and from below: the lobed outline cut finely (28 sections), the ones on the bed coarsely
+        meshes.leaf_f = L.bakeShade(L.blade({ length: 1, halfWidth: t => .42 * lobed(t) / .5 * .8, thickness: .006, nAlong: 28, nAcross: 1, curlAcross: .25, curlAlong: .5 }), (p, n) => .75 + .25 * n[2]);
     const lit = new L.Instances('leaf');
     for (let i = 0; i < 90; i++) { const s = R.range(.25, .92), th = R.range(0, 6.28), x = Math.cos(th) * A * s, z = Math.sin(th) * B * s, y = bedY(x, z) + .004, len = R.range(.07, .13);
       // blade lies in the xy plane facing +z: turn so it faces up (+y), then spin about the vertical
@@ -55,16 +57,16 @@ export default function core(R) {
     instances.litter = lit; }
   // ---- leaves floating on the surface: a few fallen oak leaves lying flat on the water (the same lobed leaf as the ones on the bed), 6 to 12 cm.
   // They lie with their upper side up and a little curl at the edge; seen from below the same leaf shows its underside (a light-through leaf, not a black cut-out).
-  { const FR = L.rng(7203), lit = new L.Instances('leaf'), spots = [[.6, .9], [-.4, -1.0], [1.7, .45], [-1.9, -.5], [.1, .1], [1.0, -.9], [-1.1, .3]];
+  { const FR = L.rng(7203), lit = new L.Instances('leaf_f'), spots = [[.6, .9], [-.4, -1.0], [1.7, .45], [-1.9, -.5], [.1, .1], [1.0, -.9], [-1.1, .3]];
     for (const [x0, z0] of spots) { const x = x0 + FR.range(-.18, .18), z = z0 + FR.range(-.18, .18), len = FR.range(.06, .12);
       const q = L.quatMul(L.quatAxisAngle([0, 1, 0], FR.range(0, 6.28)), L.quatAxisAngle([1, 0, 0], -Math.PI / 2 + FR.range(-.06, .06)));
       lit.add([x, yw + .0004, z], q, len); }
     instances.floating_leaves = lit; }
   // ---- grass and sedge at the bank, leaning out over the water: tufts of blades 18 to 40 cm, each blade a ribbon that rises and then arches toward the water.
   // A tuft is one shape (11 blades, 88 triangles) turned to lean to the pond's middle and put where the bank is, in runs with gaps (the drifts of stones have none).
-  { const tuft = L.newMesh(), TR = L.rng(61), nb = 11, ns = 4;
+  { const tuft = L.newMesh(), TR = L.rng(61), nb = 13, ns = 4;
     for (let b = 0; b < nb; b++) {
-      const ang = (b / nb) * 6.2832 + TR.range(-.3, .3), bx = Math.cos(ang) * .012, bz = Math.sin(ang) * .012, len = TR.range(.3, 1) * TR.range(.7, 1), w = TR.range(.0026, .0042), lean = TR.range(.2, 1.5), side = TR.range(-.8, .8);
+      const ang = (b / nb) * 6.2832 + TR.range(-.3, .3), bx = Math.cos(ang) * .012, bz = Math.sin(ang) * .012, len = TR.range(.25, 1) * TR.range(.6, 1), w = TR.range(.0009, .0017), lean = TR.range(.2, 1.5), side = TR.range(-.8, .8);
       const k0 = tuft.pos.length / 3;
       for (let i = 0; i <= ns; i++) { const t = i / ns, out = lean * len * .42 * Math.pow(t, 1.6), wt = w * (1 - .85 * Math.pow(t, 2.2));   // width tapers to a point
         const cx = bx + out + Math.cos(ang) * .02 * t, cz = bz + side * len * .12 * t * t + Math.sin(ang) * .02 * t, cy = len * .75 * (t - .75 * t * t);
@@ -72,12 +74,15 @@ export default function core(R) {
       for (let i = 0; i < ns; i++) { const a = k0 + i * 2; tuft.idx.push(a, a + 1, a + 3, a, a + 3, a + 2); }
     }
     meshes.tuft = L.bakeShade(tuft, p => .55 + .45 * Math.min(1, p[1] / .16));
+    // sedge and rush (and a little coarse grass) in irregular clumps: 24 places round the bank, each with one to six tufts of different height (a third to one and a half times the model's) and lean,
+    // with long bare stretches between (no even spacing: the tufts of one clump overlap and the gaps between clumps are open mud and lawn)
     const tf = new L.Instances('tuft'), TF = L.rng(8801);
-    for (let i = 0; i < 400 && tf.count < 190; i++) {
-      const t = TF.range(0, 6.2832), e = TF.range(-.03, .3), nx = Math.cos(t) / A, nz = Math.sin(t) / B, nl = Math.hypot(nx, nz), x = Math.cos(t) * A + nx / nl * e, z = Math.sin(t) * B + nz / nl * e;
-      const run = .5 + .5 * Math.sin(t * 3.1 + 1.7) * Math.sin(t * 1.3 + .4); if (run < .3 || TF() > run + .25) continue;   // runs of tufts with gaps
-      const sOf2 = Math.hypot(x / A, z / B), y = sOf2 < 1 ? bedY(x, z) : .02 - .012 * sm(.985, 1.22, sOf2);   // +x of the tuft turned to the pond's middle
-      tf.add([x, y, z], L.quatAxisAngle([0, 1, 0], Math.atan2(z, -x) + TF.range(-.5, .5)), TF.range(.55, 1.25)); }
+    for (let c = 0; c < 24; c++) {
+      const t0 = TF.range(0, 6.2832), e0 = TF.range(-.05, .28), n = 1 + Math.floor(TF.range(0, 1) * TF.range(0, 1) * 6.5);
+      for (let i = 0; i < n; i++) {
+        const t = t0 + TF.range(-.05, .05), e = e0 + TF.range(-.09, .09), nx = Math.cos(t) / A, nz = Math.sin(t) / B, nl = Math.hypot(nx, nz), x = Math.cos(t) * A + nx / nl * e, z = Math.sin(t) * B + nz / nl * e;
+        const sOf2 = Math.hypot(x / A, z / B), y = sOf2 < 1 ? bedY(x, z) : .02 - .012 * sm(.985, 1.22, sOf2);   // +x of the tuft turned to the pond's middle
+        tf.add([x, y, z], L.quatAxisAngle([0, 1, 0], Math.atan2(z, -x) + TF.range(-.9, .9)), TF.range(.33, 1.5)); } }
     instances.bank_tufts = tf; }
   // ---- gas bubbles rising from the mud (a flow part: markers travel up fixed paths, looping; the speed is a drawing speed, not a measurement) ----
   { meshes.bubble = uvSphere(.0035, 8, 5);
