@@ -1154,7 +1154,8 @@
    ],
    "radius": 0.6277,
    "tris": 32596,
-   "kind": "fur"
+   "kind": "fur",
+   "look_color": "#dabb88"
   },
   {
    "id": "coat_mid",
@@ -1173,7 +1174,8 @@
    ],
    "radius": 0.626,
    "tris": 10470,
-   "kind": "fur"
+   "kind": "fur",
+   "look_color": "#dabb88"
   },
   {
    "id": "coat_far",
@@ -1192,7 +1194,8 @@
    ],
    "radius": 0.6251,
    "tris": 1514,
-   "kind": "fur"
+   "kind": "fur",
+   "look_color": "#dabb88"
   },
   {
    "id": "fill",
@@ -1238,7 +1241,8 @@
    "radius": 0.6393,
    "count": 15693,
    "tris": 31386,
-   "kind": "fur"
+   "kind": "fur",
+   "look_color": "#dec190"
   },
   {
    "id": "ears",
@@ -1259,7 +1263,8 @@
    ],
    "radius": 0.0918,
    "tris": 1488,
-   "kind": "fur"
+   "kind": "fur",
+   "look_color": "#c7a070"
   },
   {
    "id": "nose",

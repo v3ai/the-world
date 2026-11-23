@@ -240,11 +240,14 @@ function applyMode(F) {
     if (BLK.on) { BLK.ghost(m, 1 - smooth(.3, .9, ev), F.alpha); if (u.shell) BLK.ghost(u.shell.material, .85, F.alpha); }   // a peeled layer is clear glass
     g.visible = ev > .01 && (!F.hidden.has(id) || isSel);
     u.shown = g.visible ? op : 0; vi++; if (u.shown >= BODY_VISIBLE_OP) vs = (vs * 31 + vi) | 0;
+    if (BLK.on) { u.ol.visible = false; LOOK.selSet(m, isSel ? 1 : isHov ? .55 : 0); }   // the realistic look: no ink; the part selected or pointed at takes the foundation's one selection mark
+    else {
     u.ol.visible = (ev > .5 && olK > .02) || (hl && ev > .2); u.ol.material.uniforms.uOpacity.value = .85 * Math.max(ev * olK, hl ? .9 : 0) * F.alpha;
     u.ol.material.uniforms.uColor.value.setHex(hl ? 0x1e4e8f : 0x1a1f2b);
+    }
     u.main.renderOrder = (s === 'skin' ? 2 : 1) + u.rank; u.ol.renderOrder = u.rank; // ink first, then the parts in index order, the skin last
   }
-  if (BLK.on) { BLK.eyes(F, focus); BLK.shadow(F); }   // the eyes show through the openings of the skin while it is shown; the park's shadow is cast by what is solid
+  if (BLK.on) { BLK.eyes(F, focus); BLK.shadow(F); BLK.hd(F); }   // the eyes show through the openings of the skin while it is shown; the park's shadow is cast by what is solid
   if (vs !== F._vs) { F._vs = vs; viewChanged(); }
   if (F.showAllBtn) { const n = F.hidden.size, on = n || F.reveal, d = on ? '' : 'none'; if (F.showAllBtn.style.display !== d) F.showAllBtn.style.display = d; const t = n ? `Show everything (${n} hidden)` : F.reveal ? 'Show everything' : ''; if (on && F.showAllBtn.textContent !== t) F.showAllBtn.textContent = t; }
 }

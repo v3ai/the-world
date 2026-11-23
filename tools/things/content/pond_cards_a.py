@@ -109,11 +109,11 @@ N('pond_bank', 'The bank and the marginal zone', 'structure', 4, ['park_pond'],
   parts=['pond_iris', 'pond_stones'], where='park_pond')
 
 N('pond_stones', 'Edging stones', 'structure', 0.2, ['pond_bank'],
-  "A ring of stones round the water's edge: a design feature, kept from the park's earlier pond.",
-  "In this park the stones simply mark where the water ends. There are 38 of them in the model, each between about 7 and 15 cm in radius. The stones are drawn as generic weathered rock, not a particular kind.",
-  "A natural pond rarely has a neat ring of stones; this one is a garden feature. Stone at the water's edge is slowly weathered by water and frost and colonised by algae, moss and lichens (see the Boulder card in this park for the same processes at larger scale).",
-  "Each stone is an ellipsoid roughened by noise, 38 in all, scaled between 7 and 15 cm. They are an illustration, not a survey of any real pond.",
-  [('Stones in the model', '38'), ('Radius', '≈ 7 to 15 cm')], 'C1', [], [], where='park_pond', related=['boulder', 'boulder_debris'])
+  "Stones lying along the water's edge in a few uneven drifts, some in the shallows and some up the bank, half sunk in the mud.",
+  "The stones simply mark where the water ends. There are 37 of them in the model, between about 4 and 45 cm long (the middle one is about 12 cm), in seven drifts and a few single stones with bare bank between them, some lying in the shallows and some a little way up the bank. Two shapes are used, a rounded cobble and a flat slab, and each one is sunk part way into the mud. The stones are drawn as generic weathered rock, not a particular kind. Where the water reaches them they are darker and glossy, with a green film of algae under the water line and a damp band just above it.",
+  "A natural pond rarely has a neat ring of stones; the park's earlier pond had one, and this one has instead a loose scatter that follows how stones lie where a bank is trodden or washed. Stone at the water's edge is slowly weathered by water and frost and colonised by algae, moss and lichens (see the Boulder card in this park for the same processes at larger scale).",
+  "Each stone is an ellipsoid roughened by noise, 28 rounded and 9 flat, scaled from 6 to 50 cm in their longest direction. Where they lie, how big they are and how deep they are sunk are choices made for the picture. They are an illustration, not a survey of any real pond.",
+  [('Stones in the model', '37'), ('Length', '≈ 6 to 50 cm (middle one ≈ 16 cm)')], 'C1', [], [], where='park_pond', related=['boulder', 'boulder_debris'])
 
 N('pond_mud', 'Mud', 'structure', 2, ['park_pond'],
   "The soft sediment on the bottom: tiny mineral grains mixed with rotting plant matter, home to bacteria and archaea that use up the oxygen and make methane.",
@@ -135,9 +135,9 @@ N('pond_mud_oxygen', 'Where the oxygen runs out', 'process', 0.01, ['pond_mud'],
 
 N('pond_leaf_litter', 'Fallen leaves on the bottom', 'structure', 0.1, ['pond_mud'],
   "Leaves from the trees around the pond fall in, sink and rot. They are the main food of the mud's decomposers.",
-  "Every autumn leaves fall into a pond. Over weeks they soften and are eaten by bacteria and fungi, until only fine dark fragments are left. The breakdown returns the nutrients the leaves held to the water and mud, and uses oxygen while it goes on. The park's oaks are the source of this model's 90 leaves; their outline is an oak-like lobed shape.",
+  "Every autumn leaves fall into a pond. Over weeks they soften and are eaten by bacteria and fungi, until only fine dark fragments are left. The breakdown returns the nutrients the leaves held to the water and mud, and uses oxygen while it goes on. The park's oaks are the source of this model's leaves; their outline is an oak-like lobed shape. Seven fresh leaves lie floating on the surface, where they stay until they waterlog and sink.",
   "Leaf litter is the base of the 'detritus' part of a pond's food web: energy that came from the leaf's own photosynthesis is passed to the decomposers and then to the animals that eat them. Cellulose, the long chain of glucose units that makes up leaf cell walls, is broken down by microbes; see the cellulose molecule in the mud scene.",
-  "In the model there are 90 leaves, each 7 to 13 cm long, lying on the bed where the water is at least 0.2 m deep. Their number and positions are illustrative.",
+  "In the model there are 90 leaves, each 7 to 13 cm long, lying on the bed where the water is at least 0.2 m deep, and 7 floating on the surface, 6 to 12 cm long. Their number and positions are illustrative.",
   [('Leaves in the model', '90, each ≈ 7 to 13 cm'), ('Broken down by', 'bacteria and fungi'), ('Main structural material', 'cellulose')],
   'C1', [R_ECO, R_FLOW, R('24.3', '24-3-ecology-of-fungi')], [W_BACT], related=['bio_primary_production_decomposition', 'bio_polysaccharides', 'oak_leaf'], where='park_pond')
 

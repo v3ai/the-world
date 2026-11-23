@@ -441,14 +441,73 @@
    "instances": "stones",
    "tint": 0.15,
    "center": [
-    -0.0038,
-    0.0339,
-    -0.0021
+    0.8537,
+    0.0073,
+    0.2687
    ],
-   "radius": 3.4166,
-   "count": 38,
-   "tris": 5320,
+   "radius": 4.1512,
+   "count": 28,
+   "tris": 5600,
    "kind": "stone"
+  },
+  {
+   "id": "stones_slab",
+   "name": "Edging stones (flat)",
+   "system": "bank",
+   "node": "pond_stones",
+   "color": "#85847d",
+   "instances": "stones_slab",
+   "tint": 0.15,
+   "kind": "stone",
+   "center": [
+    -0.5873,
+    0.0064,
+    0.1625
+   ],
+   "radius": 3.533,
+   "count": 9,
+   "tris": 1584
+  },
+  {
+   "id": "bank_grass",
+   "name": "Sedge and grass at the water's edge",
+   "system": "bank",
+   "node": "pond_bank",
+   "color": "#4a6e2c",
+   "instances": "bank_tufts",
+   "tint": 0.2,
+   "double": true,
+   "noink": true,
+   "lod": "near+mid",
+   "center": [
+    0.4514,
+    0.0124,
+    0.5144
+   ],
+   "radius": 3.9478,
+   "count": 59,
+   "tris": 6136,
+   "kind": "leaf"
+  },
+  {
+   "id": "floating_leaves",
+   "name": "Fallen leaves floating",
+   "system": "floating",
+   "node": "pond_leaf_litter",
+   "color": "#6f6a2c",
+   "instances": "floating_leaves",
+   "tint": 0.3,
+   "double": true,
+   "lod": "near+mid",
+   "center": [
+    0.0054,
+    0.0204,
+    -0.1232
+   ],
+   "radius": 1.8802,
+   "count": 7,
+   "tris": 1512,
+   "kind": "leaf"
   },
   {
    "id": "water",
@@ -515,7 +574,7 @@
    ],
    "radius": 2.7652,
    "count": 90,
-   "tris": 2880,
+   "tris": 6480,
    "kind": "leaf"
   },
   {
@@ -595,7 +654,7 @@
    "name": "Common duckweed (raft)",
    "system": "floating",
    "node": "pond_duckweed",
-   "color": "#6aa83a",
+   "color": "#4f6d2b",
    "mesh": "duckweed_mat",
    "solid": false,
    "double": true,
@@ -1435,10 +1494,10 @@
   }
  ],
  "stats": {
-  "parts": 52,
+  "parts": 55,
   "uniqueMeshTris": 64228,
-  "nearTris": 48740,
-  "midTris": 14708,
-  "farTris": 10866
+  "nearTris": 58252,
+  "midTris": 24220,
+  "farTris": 12730
  }
 }
