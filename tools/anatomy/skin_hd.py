@@ -20,12 +20,16 @@ Steps (all in the app's body metres: +x the body's left, +y up, +z its front, fe
   3. the 3.0 head fitted to the 4.0 surface (a screened Laplacian, FIT_LAMBDA); the eyes scaled to the average adult size; the lids
      made again round 4.0's eyes and opened to average measurements (fit_lids), with a short strip turned in from each lid edge (the
      lid's margin) so the opening has thickness;
-  4. head and body joined along a curve round the neck (y = 1.462 + 9 x^2), sharing one line of vertices; the 4.0 ears added;
+  4. head and body joined along a curve round the neck (y = 1.462 + 9 x^2), sharing one line of vertices; the 4.0 ears added; the
+     small openings the atlas's surface has (under 15 mm round: slits where its pieces do not quite meet) closed (fill_holes);
   5. reduced region by region (borders kept, so the regions stay joined): about 50,000 triangles in all;
-  6. normals taken from the full-resolution surface, so the reduced mesh shades like the fine one;
-  7. what each vertex is: the red of the lips, the lids' margins, the brows, the hair of the head; on the hands, the fingernails;
-  8. occlusion baked per vertex (rays, as bake_ao.mjs); the eyes (sclera, iris, lens; the cornea apart) reduced and baked;
-  9. written as one binary file (write_bin has the layout); js/body_core.js (BLK.hd) reads it.
+  6. normals taken from the full-resolution surface (averaged over the reduced mesh's own spacing), so it shades like the fine one;
+  7. what each vertex is: the red of the lips, the lids' margins, the brows, the hair of the head;
+  8. occlusion baked per vertex (rays, as bake_ao.mjs), and the skin's thickness under each vertex (rays inward: how far light
+     can go through it, at the ears, the webs of the fingers and the fingertips); the eyes (sclera, iris, lens; the cornea apart)
+     reduced and baked;
+  9. the fingernails as plates of their own, laid on the back of each fingertip by rule from published proportions (nails);
+  10. written as one binary file (write_bin has the layout); js/body_core.js (BLK.hd) reads it.
 
 usage: python tools/anatomy/skin_hd.py SRC WORK [--out data/anatomy/skin_hd.bin] [--preview]
   SRC holds the atlas files: FJ2810.obj FJ2811.obj FJ2813.obj FJ2814.obj FJ1289.obj FJ1340.obj FJ1297.obj FJ1348.obj FJ1305.obj FJ1356.obj
@@ -234,11 +238,14 @@ def main():
         parts.append((v, f)); log('region %-5s %6d -> %6d triangles' % (r_id, n0, len(f)))
     parts.append((VE, FE))
     SV, SF = merge_exact(parts)
+    SV, SF = fill_holes(SV, SF)
     log('skin: %d vertices, %d triangles' % (len(SV), len(SF)))
 
     # ---- 6. normals from the full-resolution surface (the joined mesh before it was reduced, and the ears)
     FV, FF = np.r_[V, VE], np.r_[F, FE + len(V)]
     SN = transfer_normals(FV, FF, SV, SF)
+    # how thick the body is under each vertex (straight in, to the skin on the other side): light comes through only where it is thin
+    th = rays(2, SV, SF, SV, SN, 9, .03, a.work, 'thick_skin')
 
     # ---- 7. what each vertex is: the red of the lips (4.0's lips), the lid's margin, the brows (3.0's set of eyebrows), the hair of the head (4.0)
     mask = np.zeros((len(SV), 4))
@@ -254,19 +261,21 @@ def main():
     mask[:, 3] = np.clip((.005 - dh) / .003, 0, 1) * (SV[:, 1] > 1.55)
     mask = smooth_attr(SF, len(SV), mask, 2)
     log('masks: lips %d, lid margins %d, brows %d, hair %d vertices' % tuple((mask > .5).sum(0)))
-    # the nails (the atlas has none): on the hands and feet, channel 2 is the nail and channel 3 where along it (0 at the fold, 1 at the free edge)
-    nm, nc = nails(SV, SF, SN)
-    lim = SV[:, 1] < 1.2; mask[lim, 2] = nm[lim]; mask[lim, 3] = nc[lim]
+    # below the head, channels 2 and 3 carry nothing; the fingernails (the atlas has none) are plates of their own (nails())
+    lim = SV[:, 1] < 1.2; mask[lim, 2] = 0; mask[lim, 3] = 0
+    NV, NF, NN, NM = nails(SV, SF, SN)
 
     # ---- 8. occlusion baked per vertex (the skin by itself, as bake_ao.mjs bakes the skin)
     ao = rays(1, SV, SF, SV, SN, 64, .10, a.work, 'ao_skin')
     ao = smooth_attr(SF, len(SV), ao[:, None], 2)[:, 0]
 
     # ---- 9. the eyes: sclera, iris and lens in one mesh (a code per vertex), the cornea in another (it is clear)
-    meshes = [dict(id='skin', V=SV, F=SF, N=SN, ao=ao, mask=mask)]
+    meshes = [dict(id='skin', V=SV, F=SF, N=SN, ao=ao, mask=mask, thick=th)]
+    meshes.append(dict(id='nails', V=NV, F=NF, N=NN, ao=np.ones(len(NV)), mask=NM))
+    log('nails: %d vertices, %d triangles' % (len(NV), len(NF)))
     for sd, E in EYE.items():
         P = E['parts']; ev, ef, code = [], [], []
-        for i, (pn, tgt) in enumerate((('sclera', 1500), ('iris', 700), ('lens', 200))):
+        for i, (pn, tgt) in enumerate((('sclera', 1100), ('iris', 700), ('lens', 120))):   # most of the sclera is behind the lids
             v, f = P[pn]; f = orient_out(v, f) if pn != 'iris' else f
             v, f = reduce(v, f, tgt); f = f + sum(len(x) for x in ev); ev.append(v); ef.append(f); code.append(np.full(len(v), i))
         ev, ef, code = np.concatenate(ev), np.concatenate(ef), np.concatenate(code)
@@ -275,7 +284,7 @@ def main():
         eao = rays(1, occV, occF, ev, en, 64, .02, a.work, 'ao_eye_' + sd)
         em = np.zeros((len(ev), 4)); em[:, 0] = code / 2.0
         meshes.append(dict(id='eye_' + sd, V=ev, F=ef, N=en, ao=eao, mask=em))
-        cv, cf = P['cornea']; cv, cf = reduce(cv, orient_out(cv, cf), 800); cn = vnormals(cv, cf)
+        cv, cf = P['cornea']; cv, cf = reduce(cv, orient_out(cv, cf), 700); cn = vnormals(cv, cf)
         meshes.append(dict(id='cornea_' + sd, V=cv, F=cf, N=cn, ao=np.ones(len(cv)), mask=np.zeros((len(cv), 4))))
         log('eye %s: %d + %d triangles (cornea)' % (sd, len(ef), len(cf)))
     meta = dict(eyes={sd: dict(centre=np.round(E['c'], 5).tolist(), radius=round(float(E['r']), 5), pupil=np.round(E['pupil'], 5).tolist(), gaze=np.round(E['gaze'], 4).tolist()) for sd, E in EYE.items()},
@@ -283,8 +292,8 @@ def main():
     write_bin(a.out, meshes, meta)
 
 
-REGION_TRIS = {'head': 25000, 'hand': 10000, 'foot': 4000, 'body': 9000}   # hands and feet: both of them. With the eyes, about 32,000
-# triangles more than the coarse skin: the body seen from 1 m stays inside its budget (docs/DEVELOPMENT.md, Performance: 420,000)
+REGION_TRIS = {'head': 25000, 'hand': 10000, 'foot': 3200, 'body': 9800}   # hands and feet: both of them. With the eyes and the nails,
+# about 34,000 triangles more than the coarse skin: the body seen from 1 m stays inside its budget (docs/DEVELOPMENT.md, Performance: 420,000)
 
 
 NAIL_WL = (1.04, .94, .95, .95, .93)   # width over length of men's fingernails, thumb to little finger (Park et al. 2015, Arch Plast Surg 42:753)
@@ -295,10 +304,12 @@ def nails(SV, SF, SN):
     further from the wrist than all the skin within 8 mm of it, with a last bone of a finger of data/anatomy's skeleton under it (a small
     bone; the thumb's is the largest); the axis runs along the middles of the finger's skin 5 and 15 mm back from the tip; the back of a finger faces away from the palm
     (the model stands with its palms forward), the thumb's half turned out to its side. The plate is four fifths as wide as the tip, measured on this model 7 mm from the tip (no wider than 1.3 times the
-    tip's depth there, where the thumb's skin runs into a finger's); its length from the width and the published ratio (NAIL_WL); its
-    free edge 2.5 mm short of the tip; its fold curving back 1.5 mm at the middle. Returns (in the nail 0..1, along it from the fold 0..1).
+    tip's depth there, where the thumb's skin runs into a finger's); its length from the width and the published ratio (NAIL_WL); it
+    leaves the skin 2.5 mm short of the tip, with a 2 mm free edge; its fold curving back 1.5 mm at the middle. Each nail is a small
+    plate of its own (nail_plate), laid on the back of the finger only (the skin's normal within 73 degrees of the finger's back), so
+    nothing of it wraps round the pad. Returns the plates as one mesh: vertices, triangles, normals and a mask per vertex (nail_plate).
     Not the toes: the atlas's toes are one piece of skin, and where each nail would lie is not clear in it."""
-    m = np.zeros(len(SV)); co = np.zeros(len(SV))
+    plates = []
     sk = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'data', 'anatomy', 'skeletal.json')))
     bones = {}
     for p in sk['parts']:
@@ -342,21 +353,95 @@ def nails(SV, SF, SN):
             ctr = near & (np.abs(s_ + .007) < .0015)
             u0 = .5 * (up[ctr].min() + up[ctr].max()); c0 = .5 * (la[ctr].min() + la[ctr].max())
             wid = min(np.ptp(la[ctr]), 1.3 * np.ptp(up[ctr]))   # a fingertip is about as wide as it is deep: where the thumb lies against a finger, the skin is one
-            geo.append([rank, near, dv, s_, up, la, u0, c0, wid])
+            geo.append([rank, near, dv, s_, up, la, u0, c0, wid, T, ax, lat])
         # where the thumb's skin runs into a finger's, its width measured is the two together: no more than 1.35 times the index's (the
         # thumbnail is about 1.33 times as wide as the index's), centred on the tip
         fw = [g[8] for g in geo[1:]]
         if geo and fw and geo[0][8] > 1.35 * fw[0]:
             geo[0][8] = 1.35 * fw[0]; geo[0][7] = 0.0
-        for rank, near, dv, s_, up, la, u0, c0, wid in geo:
+        for rank, near, dv, s_, up, la, u0, c0, wid, T, ax, lat in geo:
             wl = NAIL_WL[min(rank, 4)]
-            nw = .8 * wid; L = nw / wl; sd_ = -.0025; sp_ = sd_ - L
-            ln = (la - c0) / (nw / 2)
-            marg = np.minimum.reduce([(1 - np.abs(ln)) * nw / 2, sd_ - s_, s_ - (sp_ + .0015 * (1 - np.clip(ln, -1, 1) ** 2))])
-            v = np.clip(marg / .0006 + .5, 0, 1) * (up > u0) * near * (SN[idx] @ dv > .2)
-            m[idx] = np.maximum(m[idx], v); co[idx] = np.where(v > 0, np.clip((s_ - sp_) / L, 0, 1), co[idx])
-            log('nail: %s %s %d: %.1f x %.1f mm (%d vertices)' % (kind, sd, rank, nw * 1e3, L * 1e3, (v > .5).sum()))
-    return m, co
+            nw = .8 * wid; L = nw / wl; sh = -.0025; sp_ = sh - L   # sh: where the plate leaves the skin (the hyponychium), 2.5 mm short of the tip
+            back = near & (up > u0) & (SN[idx] @ dv > .3)   # the back of this finger's end
+            loc = -np.ones(len(SV), np.int64); loc[idx] = np.arange(len(idx))
+            ft = SF[(loc[SF] >= 0).all(1)]; ft = loc[ft]; ft = ft[near[ft].all(1)]   # this finger's own triangles
+            v, f, n, mk = nail_plate(np.stack([s_[ft], la[ft], up[ft]], -1), c0, nw, sp_, sh)
+            X = T + np.outer(v[:, 0], ax) + np.outer(v[:, 1], lat) + np.outer(v[:, 2], dv)
+            Nw = np.outer(n[:, 0], ax) + np.outer(n[:, 1], lat) + np.outer(n[:, 2], dv)
+            if (np.cross(X[f[:, 1]] - X[f[:, 0]], X[f[:, 2]] - X[f[:, 0]]) @ dv).sum() < 0:   # (ax, lat, dv) is a left-handed frame: wind the plate to face out of the finger's back
+                f = f[:, ::-1]
+            plates.append((X, f, Nw, mk))
+            log('nail: %s %s %d: %.1f x %.1f mm, on %d vertices of the finger\'s back' % (kind, sd, rank, nw * 1e3, L * 1e3, back.sum()))
+    V = np.concatenate([p[0] for p in plates]); N = np.concatenate([p[2] for p in plates]); M = np.concatenate([p[3] for p in plates])
+    F = []; o = 0
+    for p in plates:
+        F.append(p[1] + o); o += len(p[0])
+    return V, np.concatenate(F), N / np.linalg.norm(N, axis=1, keepdims=True), M
+
+
+def nail_plate(T3, c0, nw, sp, sh, nu=7, nv=11):
+    """one nail as a plate of its own, in the finger's frame (s along the finger, 0 at the tip; l across it; h out of its back), laid
+    on the back of the finger's skin: T3 are the finger's own triangles in that frame, (n, 3 corners, (s, l, h)), and the skin's height
+    under a point (s, l) is that of the highest triangle over it, as a ray straight down onto the finger's back would find it. The
+    proximal edge an arc under the fold of skin; each row no wider than 0.72 of the finger there (seen from its back), so the plate narrows with the
+    fingertip and its sides stay in the lateral folds (sunk 0.8 mm), the free edge a little narrower; the plate 0.35 mm above the skin over the bed, then leaving the
+    skin at `sh` and running on straight for 2 mm (the free edge) along the slope of the bed. Returns the vertices (s, l, h),
+    triangles, normals and a mask per vertex: across the nail (0..1), along it from the fold (0..1), the free edge (1 past the
+    hyponychium), 0."""
+    A, B, C = T3[:, 0], T3[:, 1], T3[:, 2]
+    den = (B[:, 1] - C[:, 1]) * (A[:, 0] - C[:, 0]) + (C[:, 0] - B[:, 0]) * (A[:, 1] - C[:, 1])
+    ok = np.abs(den) > 1e-14; A, B, C, den = A[ok], B[ok], C[ok], den[ok]
+
+    def H(qs, ql):
+        qs, ql = np.atleast_1d(qs).ravel(), np.atleast_1d(ql).ravel(); out = np.full(len(qs), np.nan)
+        for i in range(len(qs)):
+            w1 = ((B[:, 1] - C[:, 1]) * (qs[i] - C[:, 0]) + (C[:, 0] - B[:, 0]) * (ql[i] - C[:, 1])) / den
+            w2 = ((C[:, 1] - A[:, 1]) * (qs[i] - C[:, 0]) + (A[:, 0] - C[:, 0]) * (ql[i] - C[:, 1])) / den
+            w3 = 1 - w1 - w2; m = (w1 >= -1e-9) & (w2 >= -1e-9) & (w3 >= -1e-9)
+            if m.any():
+                out[i] = (w1[m] * A[m, 2] + w2[m] * B[m, 2] + w3[m] * C[m, 2]).max()
+        return out
+
+    se = sh + .002
+    ln = np.linspace(-1, 1, nu); tv = np.linspace(0, 1, nv)
+    LN, TV = np.meshgrid(ln, tv)   # rows along the nail, columns across
+    s0 = sp - .0015 * (1 - LN ** 2)   # the fold's arc, its middle 1.5 mm further back
+    s1 = se + .0006 * (1 - LN ** 2) - .0012 * LN ** 4   # the free edge, rounded, its corners further back
+    S = s0 + TV * (s1 - s0)
+    # each row's half width: no more than 0.42 of the finger's width there (seen from above), centred where the finger is
+    probe = np.linspace(-nw, nw, 61) + c0; HW = np.zeros(nv); CC = np.zeros(nv)
+    for i in range(nv):
+        sr = min(S[i].mean(), sh); hit = ~np.isnan(H(np.full(len(probe), sr), probe))
+        lo, hi = (probe[hit].min(), probe[hit].max()) if hit.any() else (c0 - nw / 2, c0 + nw / 2)
+        HW[i] = min(nw / 2, .36 * (hi - lo)) * (1 - .1 * sm_(sh - .001, sh + .002, S[i].mean())); CC[i] = np.clip(c0, lo + HW[i], hi - HW[i]) if hi - lo > 2 * HW[i] else (lo + hi) / 2
+    Lw = CC[:, None] + LN * HW[:, None]
+    L = sh - sp; Sb = np.minimum(S, sh); Hb = H(Sb, Lw).reshape(S.shape)
+    if np.isnan(Hb).any():   # a corner the finger does not reach under: the row's own height
+        rowm = np.nanmean(np.where(np.isnan(Hb), np.nan, Hb), axis=1, keepdims=True); Hb = np.where(np.isnan(Hb), np.nanmin(Hb, axis=1, keepdims=True) if not np.isnan(rowm).all() else 0, Hb)
+    i1, i0 = np.argmin(np.abs(S[:, nu // 2] - (sh - .25 * L))), np.argmin(np.abs(S[:, nu // 2] - (sp + .33 * L)))
+    slope = np.clip((Hb[i1] - Hb[i0]) / max(S[i1, nu // 2] - S[i0, nu // 2], 1e-4), -.35, .1)   # the bed's own slope, per column (a nail does not turn up)
+    ish = np.argmin(np.abs(S[:, nu // 2] - sh))
+    Hp = np.where(S > sh, Hb[ish][None, :] + slope[None, :] * (S - S[ish][None, :]), Hb)
+    off = .00035 - .0012 * (1 - sm_(.0, .12, TV)) - .0008 * sm_(.62, 1.0, np.abs(LN))   # sunk under the fold (steeply, so the skin's edge over it is clean) and into the lateral folds
+    Hp = Hp + off
+    V = np.c_[S.ravel(), Lw.ravel(), Hp.ravel()]
+    F = []
+    for i in range(nv - 1):
+        for j in range(nu - 1):
+            a = i * nu + j; b = a + 1; c = a + nu; d = c + 1
+            F += [[a, c, b], [b, c, d]]
+    F = np.array(F, np.int64)
+    fn = np.cross(V[F[:, 1]] - V[F[:, 0]], V[F[:, 2]] - V[F[:, 0]])
+    if fn[:, 2].mean() < 0:
+        F = F[:, ::-1]
+    N = vnormals(V, F)
+    M = np.c_[(LN.ravel() + 1) / 2, TV.ravel(), sm_(sh - .0003, sh + .0003, S.ravel()), np.zeros(V.shape[0])]
+    return V, F, N, M
+
+
+def sm_(a, b, x):
+    t = np.clip((x - a) / (b - a), 0, 1)
+    return t * t * (3 - 2 * t)
 
 
 def front_profile(P, y0, y1, step=.0005):
@@ -427,9 +512,11 @@ def merge_exact(parts):
 
 
 def transfer_normals(FV, FF, SV, SF, step=.0012):
-    """each vertex's normal: the fine surface's own (smooth) normal at the nearest points of it: the fine surface sampled every
-    `step` with its vertex normals interpolated, the 8 samples nearest each vertex averaged, those facing away from the reduced
-    mesh's own normal left out (so the two sides of a thin fold, a lid's margin or an ear, do not mix)"""
+    """each vertex's normal: the fine surface's own (smooth) normal round it: the fine surface sampled every `step` with its vertex
+    normals interpolated, averaged over a disc as wide as the reduced mesh's own triangles there (half the mean length of the vertex's
+    edges, at least the 8 nearest samples), leaving out samples that face away from the reduced mesh's own normal (so the two sides of
+    a thin fold, a lid's margin or an ear, do not mix). Over the trunk the reduced triangles are 2 cm across: a normal taken from a few
+    millimetres of the fine surface there was a bump the triangle cannot hold, and the belly shaded as a patchwork."""
     FN = vnormals(FV, FF); own = vnormals(SV, SF)
     A = np.linalg.norm(fnormals(FV, FF), axis=1) / 2
     n = np.maximum(1, np.ceil(A / (step * step * .5)).astype(int)); tri = np.repeat(np.arange(len(FF)), n)
@@ -437,13 +524,44 @@ def transfer_normals(FV, FF, SV, SF, step=.0012):
     f = FF[tri]
     P = np.r_[FV, FV[f[:, 0]] * u[:, None] + FV[f[:, 1]] * v[:, None] + FV[f[:, 2]] * w[:, None]]
     Q = np.r_[FN, FN[f[:, 0]] * u[:, None] + FN[f[:, 1]] * v[:, None] + FN[f[:, 2]] * w[:, None]]
-    d, j = cKDTree(P).query(SV, k=8)
-    nq = Q[j]; ok = (nq * own[:, None, :]).sum(2) > .3
-    wt = ok / np.maximum(d, 1e-5)
-    N = (nq * wt[:, :, None]).sum(1)
-    none = ~ok.any(1); N[none] = own[none]
+    E = edges_of(SF); el = np.linalg.norm(SV[E[:, 0]] - SV[E[:, 1]], axis=1)
+    rad = (np.bincount(E[:, 0], el, len(SV)) + np.bincount(E[:, 1], el, len(SV))) / np.maximum(np.bincount(E[:, 0], None, len(SV)) + np.bincount(E[:, 1], None, len(SV)), 1) * .5
+    tr = cKDTree(P); d8, j8 = tr.query(SV, k=8); N = np.zeros_like(SV)
+    for i in range(len(SV)):
+        J = j8[i] if rad[i] <= d8[i, -1] else np.array(tr.query_ball_point(SV[i], rad[i]))
+        nq = Q[J]; ok = nq @ own[i] > .3
+        if not ok.any():
+            N[i] = own[i]; continue
+        dd = np.linalg.norm(P[J] - SV[i], axis=1); wt = ok * np.clip(1 - dd / max(rad[i], d8[i, -1]) * .7, .05, 1)
+        N[i] = (nq * wt[:, None]).sum(0)
     N /= np.maximum(np.linalg.norm(N, axis=1, keepdims=True), 1e-20)
     return N
+
+
+def fill_holes(V, F, maxext=.015):
+    """close the small openings the outer-surface pass and the reductions left (a missing triangle, a slit by a lid, a gap in the
+    groin): each boundary loop less than `maxext` across is closed by a fan round a new vertex at its middle. The eye openings and
+    the ears' bases, which are meant to be open, are larger."""
+    E = np.r_[F[:, [0, 1]], F[:, [1, 2]], F[:, [2, 0]]]
+    key = np.sort(E, axis=1); u, inv, c = np.unique(key, axis=0, return_inverse=True, return_counts=True)
+    be = E[c[inv.ravel()] == 1]   # directed, as they run in their faces
+    if not len(be):
+        return V, F
+    nodes = np.unique(be); m = {x: i for i, x in enumerate(nodes)}
+    k, lab = connected_components(coo_matrix((np.ones(len(be)), ([m[a] for a in be[:, 0]], [m[b] for b in be[:, 1]])), shape=(len(nodes),) * 2), directed=False)
+    newV, newF, n0 = [], [], 0
+    for comp in range(k):
+        vs = nodes[lab == comp]
+        if np.ptp(V[vs], 0).max() >= maxext:
+            continue
+        ci = len(V) + len(newV); newV.append(V[vs].mean(0))
+        for a, b in be[np.isin(be[:, 0], vs)]:
+            newF.append([b, a, ci])
+        n0 += 1
+    log('holes: %d of %d openings closed (%d triangles)' % (n0, k, len(newF)))
+    if not newV:
+        return V, F
+    return np.r_[V, np.array(newV)], np.r_[F, np.array(newF, np.int64)]
 
 
 def smooth_attr(F, n, X, rounds):
@@ -478,8 +596,9 @@ def oct_encode(N):
 
 def write_bin(path, meshes, meta):
     """'SKHD', uint32 header length, the header (JSON), then per mesh, each block 4-byte aligned: positions int16 x3 (over the mesh's
-    box), normals int8 x2 (octahedral), occlusion uint8 (255 = closed), masks uint8 x4, indices uint16 (or uint32 if 65,536 vertices or more)"""
-    blobs = []; head = dict(format='skin-hd-1', units='m', meshes=[], **meta)
+    box), normals int8 x2 (octahedral), occlusion uint8 (255 = closed), masks uint8 x4, if the mesh's header says `thick`: the thickness
+    under each vertex uint8 (0.1 mm, up to 25.5 mm), then indices uint16 (or uint32 if 65,536 vertices or more)"""
+    blobs = []; head = dict(format='skin-hd-2', units='m', meshes=[], **meta)
     for m in meshes:
         V, F = m['V'], m['F']; lo, hi = V.min(0), V.max(0); sc = (hi - lo) / 65534
         N = m['N']; bad = ~np.isfinite(N).all(1) | (np.abs(N).sum(1) < 1e-6)
@@ -490,8 +609,12 @@ def write_bin(path, meshes, meta):
         occ = np.round(255 * (1 - np.clip(m['ao'], 0, 1))).astype(np.uint8)
         mk = np.round(255 * np.clip(m['mask'], 0, 1)).astype(np.uint8)
         it = '<u2' if len(V) < 65536 else '<u4'
-        parts = [q.tobytes(), oct_encode(m['N']).tobytes(), occ.tobytes(), mk.tobytes(), F.astype(it).tobytes()]
-        head['meshes'].append(dict(id=m['id'], vertices=len(V), triangles=len(F), scale=sc.tolist(), offset=(lo + sc * 32767).tolist(), index=it[1:]))
+        parts = [q.tobytes(), oct_encode(m['N']).tobytes(), occ.tobytes(), mk.tobytes()]
+        hm = dict(id=m['id'], vertices=len(V), triangles=len(F), scale=sc.tolist(), offset=(lo + sc * 32767).tolist(), index=it[1:])
+        if m.get('thick') is not None:
+            parts.append(np.round(np.clip(m['thick'] * 1e4, 0, 255)).astype(np.uint8).tobytes()); hm['thick'] = 1
+        parts.append(F.astype(it).tobytes())
+        head['meshes'].append(hm)
         blobs.append(parts)
     hj = json.dumps(head, separators=(',', ':')).encode(); hj += b' ' * (-len(hj) % 4)
     with open(path, 'wb') as fh:

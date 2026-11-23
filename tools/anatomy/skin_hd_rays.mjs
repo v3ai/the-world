@@ -10,7 +10,9 @@
        off the surface (on either side) leaves the mesh without hitting it within maxd. 0 means the point is shut in: the inside face
        of the skin's shell, which is never seen.
      mode 1 (openness): the share of the hemisphere above the point (cosine-weighted, on whichever side is more open) that is not
-       closed within maxd: ambient occlusion, as bake_ao.mjs bakes it. */
+       closed within maxd: ambient occlusion, as bake_ao.mjs bakes it.
+     mode 2 (thickness): how far in the surface on the other side is: the median, over `rays` directions within 25 degrees of straight
+       in (against the normal), of the distance to the first hit (maxd if none). */
 import fs from 'fs';
 
 const [IN, OUT] = process.argv.slice(2);
@@ -37,14 +39,15 @@ function bvh(pos, idx) {
   return { T, N, order };
 }
 const stack = new Int32Array(512);
-function hits(B, ox, oy, oz, dx, dy, dz, tmax) {
+function hits(B, ox, oy, oz, dx, dy, dz, tmax, nearest) {   // nearest: the distance to the first hit (tmax if none) instead of whether there is one
+  let best = tmax;
   const { T, N, order } = B, ix = 1 / dx, iy = 1 / dy, iz = 1 / dz; let sp = 0; stack[sp++] = 0;
   while (sp) {
     const n = stack[--sp] * 8;
     let t0 = (N[n] - ox) * ix, t1 = (N[n + 3] - ox) * ix; if (t0 > t1) { const q = t0; t0 = t1; t1 = q; }
     let u0 = (N[n + 1] - oy) * iy, u1 = (N[n + 4] - oy) * iy; if (u0 > u1) { const q = u0; u0 = u1; u1 = q; }
     let w0 = (N[n + 2] - oz) * iz, w1 = (N[n + 5] - oz) * iz; if (w0 > w1) { const q = w0; w0 = w1; w1 = q; }
-    const near = Math.max(t0, u0, w0, 0), far = Math.min(t1, u1, w1, tmax); if (near > far) continue;
+    const near = Math.max(t0, u0, w0, 0), far = Math.min(t1, u1, w1, best); if (near > far) continue;
     if (N[n + 7] < 0) {
       for (let i = N[n + 6], e = i - N[n + 7]; i < e; i++) {
         const q = order[i] * 9, ax = T[q], ay = T[q + 1], az = T[q + 2];
@@ -52,11 +55,11 @@ function hits(B, ox, oy, oz, dx, dy, dz, tmax) {
         const px = dy * e2z - dz * e2y, py = dz * e2x - dx * e2z, pz = dx * e2y - dy * e2x, det = e1x * px + e1y * py + e1z * pz;
         if (Math.abs(det) < 1e-14) continue; const inv = 1 / det, sx = ox - ax, sy = oy - ay, sz = oz - az, u = (sx * px + sy * py + sz * pz) * inv; if (u < 0 || u > 1) continue;
         const qx = sy * e1z - sz * e1y, qy = sz * e1x - sx * e1z, qz = sx * e1y - sy * e1x, v = (dx * qx + dy * qy + dz * qz) * inv; if (v < 0 || u + v > 1) continue;
-        const t = (e2x * qx + e2y * qy + e2z * qz) * inv; if (t > 0 && t < tmax) return true;
+        const t = (e2x * qx + e2y * qy + e2z * qz) * inv; if (t > 0 && t < best) { if (!nearest) return true; best = t; }
       }
     } else { stack[sp++] = N[n + 6]; stack[sp++] = N[n + 7]; }
   }
-  return false;
+  return nearest ? best : false;
 }
 const t0 = Date.now(), B = bvh(pos, idx); console.log('tree', nF, 'triangles', ((Date.now() - t0) / 1000).toFixed(1), 's');
 const EPS = 2e-4, res = new Float32Array(nQ);
@@ -67,6 +70,15 @@ if (mode === 0) {
     const px = QP[q * 3], py = QP[q * 3 + 1], pz = QP[q * 3 + 2], nx = QN[q * 3], ny = QN[q * 3 + 1], nz = QN[q * 3 + 2]; let open = 0;
     for (const [dx, dy, dz] of D) { const s = dx * nx + dy * ny + dz * nz >= 0 ? 1 : -1; if (!hits(B, px + nx * EPS * s, py + ny * EPS * s, pz + nz * EPS * s, dx, dy, dz, MAXD)) open++; }
     res[q] = open / RAYS;
+  }
+} else if (mode === 2) {
+  const D = []; for (let i = 0; i < RAYS; i++) { const a = i * 2.39996323, r = Math.sin(25 * Math.PI / 180) * Math.sqrt((i + .5) / RAYS); D.push([r * Math.cos(a), r * Math.sin(a), Math.sqrt(1 - r * r)]); }
+  for (let q = 0; q < nQ; q++) {
+    const nx = -QN[q * 3], ny = -QN[q * 3 + 1], nz = -QN[q * 3 + 2];
+    let tx = Math.abs(nx) < .9 ? 1 : 0, ty = tx ? 0 : 1, tz = 0; const d0 = tx * nx + ty * ny; tx -= d0 * nx; ty -= d0 * ny; tz -= d0 * nz; const tl = Math.hypot(tx, ty, tz); tx /= tl; ty /= tl; tz /= tl;
+    const bx = ny * tz - nz * ty, by = nz * tx - nx * tz, bz = nx * ty - ny * tx, ox = QP[q * 3] + nx * EPS, oy = QP[q * 3 + 1] + ny * EPS, oz = QP[q * 3 + 2] + nz * EPS, T = [];
+    for (const [a, b, w] of D) T.push(hits(B, ox, oy, oz, tx * a + bx * b + nx * w, ty * a + by * b + ny * w, tz * a + bz * b + nz * w, MAXD, true));
+    T.sort((x, y) => x - y); res[q] = T[T.length >> 1];
   }
 } else {
   const D = []; { const g = Math.ceil(Math.sqrt(RAYS)); for (let i = 0; i < g && D.length < RAYS; i++) for (let j = 0; j < g && D.length < RAYS; j++) { const u = (i + .5) / g, v = (j + .5) / g, r = Math.sqrt(u), a = 2 * Math.PI * v; D.push([r * Math.cos(a), r * Math.sin(a), Math.sqrt(1 - u)]); } }
