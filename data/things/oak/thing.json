@@ -8,6 +8,8 @@
  "main_part": "trunk",
  "blurb": "A mature English oak. Click the trunk, a branch, a leaf or an acorn. Use the layer buttons for the wood, the roots, and the water and sugar flow.",
  "model_note": "A model built from typical measurements of the species, not a scan of one individual. It has about 18,700 leaves; that count is illustrative.",
+ "look_model_note": "A model built from typical measurements of the species, not a scan of one individual. Close up, the oak you are looking at is drawn with about 93,300 leaves, in clusters of five; estimates for a real mature oak run from 200,000 to 500,000.",
+ "look_model_note_low": "A model built from typical measurements of the species, not a scan of one individual. It has about 18,700 leaves; estimates for a real mature oak run from 200,000 to 500,000.",
  "size_m": {
   "height": 20,
   "crown_width": 20,
@@ -522,8 +524,7 @@
    "count": 250,
    "tris": 9000,
    "kind": "leaf",
-   "look_lod": "mid+far",
-   "look_color": "#34492a"
+   "look_lod": "off"
   },
   {
    "id": "trunk_far",

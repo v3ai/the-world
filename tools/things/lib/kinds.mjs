@@ -116,12 +116,14 @@ const SECTIONS = {
      upperparts are brownish, or olive-tinged in British birds, and the belly whitish";
    - dog: a yellow Labrador in sun ("Labrador on Quantock (2175262184).jpg", CC BY-SA 2.0): flank #f9d3ab lit, the ears darker and
      redder (#c58c60, about 0.8 of the flank's lightness; drawn at 0.85, since the model's ear lies flat on the head and a darker flap
-     read as a patch stuck on), the legs and chest paler (#fbeed9); the drawing's #e8cd8a is too yellow. */
+     read as a patch stuck on), the legs and chest paler (#fbeed9). The breed's yellows "range from light cream to fox red" (The Royal
+     Kennel Club, breed standard), all on the yellow side: the coat is drawn #dabb88, a cream-gold between the drawing's #e8cd8a and
+     the photograph's warmer hue (#d8b48c, its hue taken whole, read as pinkish beige, close to flesh, in the park). */
 export const LOOK_OF = {
   oak: {
     leaves: { color: '#55703e' },
     leaves_mid: { lod: 'mid+far', color: '#55703e' },   // every oak in view wears the same photographed leaves: the middle tier's tufts are drawn far away too
-    crown_far: { lod: 'mid+far', color: '#34492a' },   // drawn inside the tufts as the crown's shaded inner mass (js/things.js thLkCrownMass), in the colour of oak leaves in shade (the same photograph's shaded crown, #3d4f2a, at the drawing's brightness)
+    crown_far: { lod: 'off' },        // (fewer triangles than the smooth clumps they replace: 2,032 cards against 250 clumps of 44 triangles; a shaded inner mass drawn from them showed as balls at every distance)
   },
   robin: {
     r_breast: { color: '#bf6834' }, r_face: { color: '#bc6331' }, r_grey: { color: '#8a8d9c' }, r_back: { color: '#7b6e5c' }, r_crown: { color: '#7d705e' },
@@ -133,7 +135,7 @@ export const LOOK_OF = {
     f_prim: { color: '#5a4a3a' }, f_sec: { color: '#5e4d3c' }, f_tert: { color: '#64513f' }, f_tail: { color: '#4f4234' },
   },
   dog: {
-    coat: { color: '#d8b48c' }, coat_mid: { color: '#d8b48c' }, coat_far: { color: '#d8b48c' }, fur: { color: '#dcb990' }, ears: { color: '#c19870' },
+    coat: { color: '#dabb88' }, coat_mid: { color: '#dabb88' }, coat_far: { color: '#dabb88' }, fur: { color: '#dec190' }, ears: { color: '#c7a070' },
   },
   boulder: {
     moss: { color: '#5b6a31' },       // moss cushions on rock (Grimmia, Hypnum) in photographs: a dull olive, not the drawing's lime (chosen against photographs; no measured albedo found)
