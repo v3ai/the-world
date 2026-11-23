@@ -146,6 +146,9 @@ FT.body = {
     F.readyP = new Promise(res => { F._ready = res; });
     F.chooseHit = cands => bodyChooseHit(F, cands);
     const grp = new THREE.Group(); F.add(grp); F.grp = grp;
+    /* Nothing of the person is drawn until the whole anatomical model has arrived: neither the park's simple figure (it used to stand in, and
+       looked like a low-detail person that then changed) nor the model's parts one file at a time. The loading note says what is coming. */
+    grp.visible = false; F.hideStandIn = () => { const v = FR.park && FR.park.v2; if (v && v.parts && v.parts.human && v.parts.human.visible) v.parts.human.visible = false; }; F.hideStandIn();
     F.blurb = 'You, as an anatomical model at true size. Click anywhere to see what is under that spot; double-click a part to look inside it. Zoom in and the skin turns see-through: first muscles, then bones and organs.';
     Promise.all([loadAnatomyIndex(), loadNodes()]).then(([A]) => {
       if (!A || !F.built) return;
@@ -185,7 +188,7 @@ FT.body = {
         if (!F.built) return;
         if (BLK.on) BLK.applyAO(F);
         F.mats = null; applyMode(F);
-        if (FR.park && FR.park.v2 && F.parts.skin) FR.park.v2.parts.human.visible = false;
+        F.hideStandIn(); grp.visible = true;
         F.partsReady = true; F._ready();
       });
       const lab = new THREE.Object3D(); lab.position.set(0, 1.95, 0); lab.userData.id = 'skin'; lab.userData.node = 'skin'; lab.userData.title = 'You'; F.add(lab); F.label(lab, 'You', { cls: 'you' });
@@ -195,7 +198,7 @@ FT.body = {
     F.showAllBtn = actBtn('Show everything', () => { F.hidden.clear(); F.reveal = null; applyMode(F); toast('Everything is back.'); }); F.showAllBtn.style.display = 'none';
     F.env = { bg: BLK.on ? BLK.BG : 0x0e1422, opaque: false };
     if (BLK.on) F.note = BLK.NOTE;
-    F.update = (dt, t) => { F._k = 1 - Math.exp(-Math.min(dt, .25) * 9); bodyAutoUpdate(F, dt); applyMode(F); pulse(F, t); F.env.opaque = cam.D < .75 && chainOf(cam.A).includes(F) && !chainOf(cam.A).some(f => f.type === 'tissue' || f.type === 'cell'); };
+    F.update = (dt, t) => { if (!F.partsReady) F.hideStandIn(); F._k = 1 - Math.exp(-Math.min(dt, .25) * 9); bodyAutoUpdate(F, dt); applyMode(F); pulse(F, t); F.env.opaque = cam.D < .75 && chainOf(cam.A).includes(F) && !chainOf(cam.A).some(f => f.type === 'tissue' || f.type === 'cell'); };
     F.spawn = (T, hint) => {
       if (!hint || !hint.obj || !hint.obj.userData.part) return null;
       const u = hint.obj.userData, id = u.id, nid = nodeForMesh(id), n = NODE[nid], tis = n && n.made_of && n.made_of[0];
