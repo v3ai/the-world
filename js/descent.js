@@ -112,6 +112,7 @@ const DESCENT = (() => {
       case 'tissue2': return tissue2Frame(sc.id, T);
       case 'tissue': { const f = tissueFrame(sc.node || TISSUE_NODE[sc.kind] || sc.kind, T, q && q.id); f.opts.kind = sc.kind; if (sc.variant) f.opts.variant = sc.variant; return f; }   // variant: the same scene with another assignment table (assign/tissue.json sub)
       case 'cell': {
+        if (typeof CELLS !== 'undefined' && CELLS.has(sc.cell)) return CELLS.frame(sc.cell, T, { node: q && q.node || undefined, stands: what || undefined });   // a cell type with its own spec (data/cells, js/cells.js)
         const fungal = sc.cell === 'fungal', type = fungal ? 'animal' : sc.cell, base = { animal: 'Animal cell', plant: 'Plant cell', bacterium: 'Bacterium' }[type] || 'Cell';
         const f = new Frame({ type: 'cell', name: base, unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T.clone(), opts: { type, cname: fill(sc.cname, what) || (R.standIn && what ? `${cap(what)}: drawn as a generic ${type === 'bacterium' ? 'bacterium' : type + ' cell'}` : undefined), blurb: fill(sc.blurb, what) || undefined, node: q && q.node || undefined, stands: what || undefined } });
         return f;
@@ -200,7 +201,7 @@ const DESCENT = (() => {
 
   /* ---------- the contract ---------- */
   const hintOf = h => ({ frame: h.frame, obj: h.obj, point: (h.pointLocal || h.point || new V3()).clone(), normal: h.normalLocal || null, id: h.id, hit: h.hit || null });
-  const viewD = f => VIEW_D[f.type] || (f.r1 !== Infinity ? f.r1 * .2 : f.radius * f.unit * 2.5);
+  const viewD = f => f.viewD || VIEW_D[f.type] || (f.r1 !== Infinity ? f.r1 * .2 : f.radius * f.unit * 2.5);
   /* the name a scene will have once it is built (a molecule, crystal or tissue scene takes its name from its data when it loads) */
   const nameOf = f => {
     const o = f.opts || {}; let n = f.name || '';

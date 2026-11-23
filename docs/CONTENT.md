@@ -20,6 +20,7 @@ Run every command from the repository root. `node` is Node.js; the checks that n
 | a park thing | `tools/things/models/<id>.mjs`, `data/things/index.json`, cards | `node tools/things/bake.mjs <id>`, then the thing check below |
 | an object outside the park | the same, with `in` in its placement; `data/descent/assign/<id>.json`, close-up scenes | the same, then `node tools/descent/check.mjs` |
 | a molecule or crystal | `data/molecules_all.json`, `data/crystals.json` | the molecule check below |
+| a cell type | `data/cells/<id>.json`, `data/cells/_inventory.json`, `data/descent/materials.json` | `node tools/cells/check.mjs data/cells/<id>.json` |
 
 ## A topic card
 
@@ -381,6 +382,133 @@ EOF
 
 It prints `250 molecules, 17 crystals, 0 problems`. The check does not test the chemistry. `tools/chem/check_mols.py` does compare bond lengths with RDKit, but it reads a `data/molecules/` folder that is not in the repository.
 
+## A cell type
+
+**Files.** Each kind of cell the app draws in its own right has a spec, `data/cells/<id>.json`, drawn by `js/cells.js` inside the cell frame. A cell type without a spec is drawn as the generic cut-open cell, and its name says it is a stand-in. `data/cells/_inventory.json` lists every cell type the app reaches, where it is reached from, whether it has a spec, and which shape would fit it. Add an entry there for a new type and set `spec: true` once its file exists. `data/cells/_shapes.json` is the vocabulary of shapes: each parameter with its range, default, unit and meaning. The checker reads its ranges.
+
+**Truth.** Every number is either measured, with a source you have opened, or marked illustrative. The note shown on screen begins "Model". It says which numbers are measured and which are illustrative, and it names the species the measurements come from. A cell of one species is not used for another where the cell differs: a dog's red blood cell does not open the human one.
+
+**Fields.**
+
+| field | meaning |
+|---|---|
+| `id` | the file's name; the scene `cell:<id>` in `data/descent/materials.json` opens it |
+| `name`, `organism`, `species` | the frame's title; `human`, `mammal (dog)` ...; the species the numbers come from |
+| `card` | a node id for the panel, or `null` |
+| `blurb` | one line, shown under the title |
+| `note` | the on-screen note: begins "Model", says what is measured and what is illustrative, and names the species |
+| `shape` | `{type, ...parameters}`: one shape of the vocabulary below. A parameter left out takes its default. Lengths are in micrometres (`_um`). |
+| `dimensions` | named numbers: `{value, range?, unit, measured, source?, calc?, compare?, note?}`. `measured: true` needs a `source` (a key of `sources`); `calc` says how a number was worked out from measured ones. |
+| `nucleus` | `{count, shape?, volume_fraction?, size_um?, per_mm?, nucleoli?, position?}`. Its size comes from `size_um` (illustrative or measured) or from `volume_fraction` of the drawn cell's volume. |
+| `organelles` | `mitochondria: {volume_fraction, size_um: [length, width], max_drawn}`; `lysosomes`, `melanosomes`, `lamellar_bodies`, `granules`, `lipid_droplets`: `{count, size_um, elongation?, position?: supranuclear, apical or peripheral}` (count for the whole cell; the kept half gets its share); `golgi: {stacks}`; `rough_er: {form: "nissl", clusters}`; `absent` or `not_drawn`: lists said in the panel. Each number is a `{value, measured, source}` as above. |
+| `special` | structures of this cell: `{kind, params?, source?, note}`. Kinds read by the code: `crowd` (molecules drawn at their true size and spacing only close in: `params: {count, size_nm, show_below_um, max_drawn}`, `part`, `role`) and `keratin_bundles` (`params: {bundles, drawn_um}`). Other kinds only describe. |
+| `cut` | what the cut shows, in words |
+| `colours` | `{convention, true_colour: [roles whose colour is real], override?: {role: "#rrggbb"}}` |
+| `parts` | every named part: `{name, card (node id or null), material, about?, source?}`. `material` names a row of `data/descent/materials.json`, so a double click goes on down from it. `about` is shown when there is no card, or instead of it. |
+| `reached` | where it opens: `tissue: [{kind, id, variant?, organ?}]` (a pick in an FT.tissue scene; `organ` is a regular expression on the organ it was opened from), `materials: [...]` (rows whose first constituent is `cell:<id>`), `tissue2: [{scene, structure}]`, `landmark` (the ruler's stop) |
+| `view` | `{radius_um, r1_m, arrive_m, spawn_m, break?: {text, text_short?}, landmark_depth_um?}`. The frame's radius (µm), the distance at which it fades (m), the distance it is entered at (m), and the label at a break where a long cell goes on beyond what is drawn |
+| `about` | paragraphs for "About this picture". `{drawn.x}` is replaced by a count of what was drawn (`cellVolume`, `nuclei`, `nucleiWanted`, `mitochondria`, `spines`, `boutons`, `desmosomes` ...) |
+| `sources` | `{key: {cite, url, opened, used_for}}`. Only sources actually opened; a number seen in a search summary is a lead, not a source |
+
+**Shapes.** `js/cells.js` draws each one. A cell is cut in half and turns its cut face to the camera that opened it. Its organelles are placed in the kept half by volume, and drawn as instanced meshes. Details too fine to see from the arrival distance (spines, haemoglobin molecules) are drawn only close to where the camera looks.
+
+| shape | fits | parameters |
+|---|---|---|
+| `ellipsoid` | a rounded cell: lymphocyte, monocyte, neutrophil, eosinophil, basophil, mast cell, egg (with zona), yeast (with bud), coccus, amoeba (pseudopods), ciliate (cilia), chondrocyte (lacuna), adipocyte (one lipid droplet), platelet (flat), bird red blood cell (flat, with nucleus) | `a_um`, `b_um`, `c_um`, `bumps`, `pseudopods`, `pseudopod_um`, `cilia`, `cilium_um`, `coat_um`, `bud` |
+| `disc_biconcave` | a mammalian red blood cell (the Evans-Fung profile: half-thickness z(r) = 0.5 sqrt(1 - (r/R)^2) (c0 + c2 (r/R)^2 + c4 (r/R)^4), R = diameter/2) | `diameter_um`, `c0_um`, `c2_um`, `c4_um` |
+| `polyhedron` | a many-sided epithelial or packed cell: squamous (flat), cuboidal, columnar, keratinocyte by layer, hepatocyte, pancreatic acinar cell (taper), endothelial cell (flat), hair cell (stereocilia), plant cells with a wall (palisade, spongy, epidermal, xylem vessel element: hollow, sieve tube element) | `sides`, `width_um`, `height_um`, `taper`, `irregularity`, `round_um`, `apical`, `apical_um`, `wall_um`, `hollow`, `neighbours`, `desmosomes` |
+| `spindle` | a spindle-shaped cell: smooth muscle cell, fibroblast; a bent pair: guard cells | `length_um`, `width_um`, `flat`, `bend`, `pair`, `wall_um` |
+| `fibre` | a long striated cell: skeletal muscle fibre (many peripheral nuclei); with branched = 1, a cardiac muscle cell (branches, intercalated discs, central nuclei) | `diameter_um`, `drawn_length_um`, `window_um`, `sarcomere_um`, `thick_um`, `thin_um`, `myofibril_um`, `nuclei_per_mm`, `nucleus_position`, `branched`, `disc_spacing_um` |
+| `neuron` | a neuron: pyramidal (apical dendrite, basal dendrites), stellate or multipolar (motor neuron), bipolar; with spines, an axon with myelin, nodes and boutons | `soma`, `soma_w_um`, `soma_h_um`, `basal_n`, `basal_total_um`, `basal_branch_points`, `apical_trunk_um`, `apical_reach_um`, `oblique_total_um`, `oblique_branch_points`, `tuft_total_um`, `tuft_branch_points`, `dendrite_um`, `trunk_um`, `spines_basal_per_um`, `spines_apical_per_um`, `spine_um`, `spine_head_um`, `axon_um`, `ais_um`, `myelin`, `internode_um`, `node_um`, `g_ratio`, `axon_drawn_um`, `collaterals`, `collateral_um`, `bouton_spacing_um`, `bouton_um` |
+| `stellate` | a cell body with many branching processes and no axon: astrocyte (end-feet), melanocyte (dendrites carrying melanosomes), osteocyte (fine canaliculi in a lacuna), podocyte (foot processes), microglia | `soma_um`, `processes`, `reach_um`, `branch_points`, `process_um`, `endfeet`, `endfoot_um`, `lacuna_um`, `flat` |
+| `segmented` | a cell built of segments along one axis: rod and cone photoreceptors (outer segment discs, inner segment, nucleus, synaptic terminal), sperm (head, midpiece with a mitochondrial helix, tail) | `segments`, `disc_spacing_um`, `bend` |
+| `rod` | a rod or curved prokaryote (bacillus, vibrio, with helix_turns a spirillum), and a fungal hypha compartment (septa, a wall) | `length_um`, `width_um`, `curve`, `helix_turns`, `flagella`, `flagellum_um`, `pili`, `wall`, `septa` |
+
+What the vocabulary still lacks is listed in `_shapes.json` under `lacks`, and per type in the inventory's `shape_hint`.
+
+**Example.** `data/cells/red_blood_cell.json`, in full:
+
+```json
+{
+ "id": "red_blood_cell",
+ "name": "Red blood cell",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "red_blood_cell",
+ "blurb": "A human red blood cell: a disc thinner in the middle than at the rim, with no nucleus, packed with haemoglobin.",
+ "note": "Model: a human red blood cell, cut through its middle. Measured in human blood: its outline (the Evans–Fung shape, 7.8 µm across), its volume and the number and size of its haemoglobin molecules. Illustrative: the colours, the thickness drawn for the membrane and the spectrin net under it (in life a few nanometres), and the tilt.",
+ "shape": {
+  "type": "disc_biconcave",
+  "diameter_um": 7.82,
+  "c0_um": 0.81,
+  "c2_um": 7.38,
+  "c4_um": -4.39
+ },
+ "dimensions": {
+  "diameter": { "value": 7.82, "range": [6.0, 9.0], "unit": "um", "measured": true, "source": "evansfung", "note": "2 x R0 = 2 x 3.91 µm; the range is that of 500 healthy cells measured by holographic microscopy (mean 7.43 µm)", "also": "bhabhor" },
+  "max_thickness": { "value": 2.41, "unit": "um", "measured": true, "calc": "the Evans-Fung profile with the coefficients above, at 2.7 µm from the axis", "source": "evansfung", "compare": "3.23 ± 0.48 µm in 500 cells (bhabhor)" },
+  "centre_thickness": { "value": 0.81, "unit": "um", "measured": true, "source": "evansfung" },
+  "volume": { "value": 88.3, "range": [72, 100], "unit": "um3", "measured": true, "calc": "the volume of the profile turned about its axis", "source": "evansfung", "compare": "86.1 ± 14.0 fL in 500 cells (bhabhor); 1 fL = 1 µm³" },
+  "surface_area": { "value": 129.7, "unit": "um2", "measured": true, "calc": "the area of the profile turned about its axis", "source": "evansfung", "compare": "121.2 ± 10.8 µm² in 500 cells (bhabhor)" }
+ },
+ "nucleus": { "count": 0, "note": "A mature human red blood cell has no nucleus.", "source": "openstax_rbc" },
+ "organelles": {
+  "absent": ["nucleus", "mitochondria", "endoplasmic reticulum", "ribosomes"],
+  "absent_source": "openstax_rbc"
+ },
+ "special": [
+  { "kind": "crowd", "part": "haemoglobin", "role": "haemoglobin",
+    "params": { "count": 300000000, "size_nm": [5.4, 5.7, 6.6], "show_below_um": 0.3, "max_drawn": 6000 },
+    "source": "openstax_rbc", "size_source": "pdb_4hhb",
+    "note": "About 300 million haemoglobin molecules per cell (openstax_rbc). Their size: the extent of the atoms of the 4HHB structure along its three main axes (calculated from data/proteins/4hhb.json). Drawn only where the view is under 0.3 µm across, in a thin layer behind the cut face, at the spacing that number gives (about 6.6 nm between centres)." },
+  { "kind": "spectrin_net", "part": "spectrin",
+    "params": {},
+    "source": "liu1987",
+    "note": "Under the membrane: a mostly six-sided net of short actin filaments joined by spectrin (liu1987). Drawn as one band along the cut edge; the mesh itself is not drawn." }
+ ],
+ "cut": "A cut through the axis of the disc: the section is a dumbbell, thick at the rim and thin in the middle, filled with haemoglobin; the membrane and the spectrin net run round its edge.",
+ "colours": {
+  "convention": "Haemoglobin red (a red blood cell is red because of it); the membrane pale; the spectrin net light orange so it shows against the haemoglobin. Only the red of the haemoglobin is the real colour; the rest is a code.",
+  "true_colour": ["haemoglobin", "rbc"]
+ },
+ "parts": {
+  "membrane": { "name": "Cell membrane", "card": "cell_membrane", "material": "membrane" },
+  "haemoglobin": { "name": "Haemoglobin", "card": "bio_hemoglobin_cooperativity", "material": "haemoglobin" },
+  "spectrin": { "name": "Spectrin net", "card": null, "material": "spectrin", "about": "Under the membrane a net of spectrin, a long flexible protein, holds the cell's shape: mostly six-sided meshes whose corners are short actin filaments. It lets the cell bend through capillaries narrower than itself and spring back." }
+ },
+ "reached": {
+  "materials": ["red_blood_cell"],
+  "tissue": [{ "kind": "blood", "id": "red_blood_cell" }, { "kind": "alveoli", "id": "red_blood_cell" }],
+  "tissue2": [{ "scene": "lung_alveoli", "structure": "rbc" }, { "scene": "loose_connective_fat", "structure": "rbc" }]
+ },
+ "view": { "radius_um": 7, "r1_m": 1.2e-4, "arrive_m": 2.2e-5, "spawn_m": 6e-8 },
+ "about": [
+  "The outline is the Evans–Fung formula for a healthy human red blood cell (diameter 7.82 µm). Turned about its axis it gives a volume of {drawn.cellVolume} µm³; 500 healthy cells measured by holographic microscopy averaged 86 ± 14 µm³ (femtolitres).",
+  "There is no nucleus and there are no mitochondria: the cell is a bag of haemoglobin, about 300 million molecules of it. Come close to the cut face (under 0.3 µm across) and the molecules are drawn at their true size and spacing.",
+  "The membrane and the spectrin net are drawn as bands thick enough to see; in life each is only a few nanometres thick."
+ ],
+ "sources": {
+  "evansfung": { "cite": "Totero Gongora JS, Fratalocchi A (2016) Optical force on diseased blood cells: towards the optical sorting of biological matter, arXiv:1605.04509 (Evans-Fung coefficients of a healthy, isotonic red blood cell, from Evans E, Fung YC 1972, Microvasc Res 4:335)", "url": "https://arxiv.org/abs/1605.04509", "opened": "2026-11-23", "used_for": "R0 = 3.91 µm, C0 = 0.81 µm, C2 = 7.38 µm, C4 = -4.39 µm (the 1972 paper itself was not opened)" },
+  "bhabhor": { "cite": "Bhabhor GD, Patel C, Chhillar N, Anand A, Lad KN (2023) Geometrical characterization of healthy red blood cells using digital holographic microscopy and parametric shape models, arXiv:2301.12879", "url": "https://arxiv.org/abs/2301.12879", "opened": "2026-11-23", "used_for": "500 healthy cells: diameter 6.0-9.0 µm (mean 7.43), maximum thickness 3.23 ± 0.48 µm, volume 86.1 ± 14.0 fL, surface 121.2 ± 10.8 µm²" },
+  "openstax_rbc": { "cite": "OpenStax Anatomy and Physiology 2e, 18.3 Erythrocytes", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-3-erythrocytes", "opened": "2026-11-23", "used_for": "biconcave disc about 7-8 µm across; no nucleus, mitochondria or ER; about 300 million haemoglobin molecules per cell; lives up to 120 days" },
+  "liu1987": { "cite": "Liu SC, Derick LH, Palek J (1987) Visualization of the hexagonal lattice in the erythrocyte membrane skeleton, J Cell Biol 104:527", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2114560/", "opened": "2026-11-23", "used_for": "a mainly hexagonal lattice of junctional actin complexes cross-linked by spectrin (abstract)" },
+  "pdb_4hhb": { "cite": "Fermi G, Perutz MF, Shaanan B, Fourme R (1984) The crystal structure of human deoxyhaemoglobin at 1.74 Å resolution, PDB 4HHB (data/proteins/4hhb.json)", "url": "https://www.rcsb.org/structure/4HHB", "opened": "2026-11-23", "used_for": "the size of one haemoglobin molecule: 5.4 x 5.7 x 6.6 nm, the extent of its atom centres along its principal axes (calculated)" }
+ }
+}
+```
+
+**Wiring.** A spec is opened from where its `reached` says: the FT.tissue scenes ask `CELLS.specFor({tissue, variant, id, organ})` before anything else (`js/nodes.js`). The descent opens `cell:<id>` scenes through `CELLS.frame` (`js/descent.js`). The ruler's "Skin cell" stop is the spec whose `reached.landmark` is `Skin cell`. For a new material leading to it, add a row with `"scene": "cell:<id>"` as its first constituent.
+
+**Check.**
+
+```
+node tools/cells/check.mjs data/cells/<id>.json
+node tools/cells/check.mjs
+node tools/descent/check.mjs
+```
+
+The first checks one spec: the fields above, the note's wording, the shape's parameters against their ranges, that every number says whether it is measured and that a measured one has an opened source, that each part's material and card exist, that `reached` names real places, and that the inventory marks it. The second checks every spec and the inventory (it prints `inventory: 108 cell types, 4 with a spec` and `OK`). The third confirms the descent table still resolves, now with the spec scenes. A browser test (`t_cells.py`, in the headless-browser harness, which is not in this repository) builds each spec, double-clicks one of its parts and the tissue picks that lead to it, and takes a picture of it in each look.
+
 ## Other checks that run without a browser
 
 These were run on the current data. All exit 0 unless noted.
@@ -388,6 +516,7 @@ These were run on the current data. All exit 0 unless noted.
 | command | result |
 |---|---|
 | `node tools/viz/validate.mjs $(ls data/viz/*.json \| grep -v manifest)` | `1741 specs, 0 errors` |
+| `node tools/cells/check.mjs` | `inventory: 108 cell types, 4 with a spec`, `OK` |
 | `node tools/trails/check_trails.mjs` | `15 trails, 100 stops`, `OK: no errors` |
 | `node tools/search/test_search.mjs` | `276 passed, 0 failed` |
 | `node --test tools/things/test/` | 21 tests, 21 pass |

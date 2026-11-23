@@ -391,12 +391,17 @@
    "card": "red_blood_cell",
    "inside": [
     {
+     "name": "a human red blood cell",
+     "scene": "cell:red_blood_cell",
+     "title": "Red blood cell"
+    },
+    {
      "name": "haemoglobin",
      "material": "haemoglobin",
      "note": "A red blood cell has no nucleus: it is packed with haemoglobin instead."
     }
    ],
-   "src": "card red_blood_cell"
+   "src": "card red_blood_cell; data/cells/red_blood_cell.json"
   },
   "platelet": {
    "title": "Platelet",
@@ -2689,6 +2694,140 @@
     }
    ],
    "src": "notes/tissues/insect_gut_wall.md"
+  },
+  "red_blood_cell_dog": {
+   "title": "Red blood cell (dog)",
+   "desc": "A dog's red blood cell: a disc with no nucleus, packed with haemoglobin.",
+   "card": "red_blood_cell",
+   "inside": [
+    {
+     "name": "haemoglobin",
+     "material": "haemoglobin",
+     "note": "A dog's red blood cell, like a human one, has no nucleus and is packed with haemoglobin. No picture of the dog's own cell is built (the human one is measured, not the dog's): the way down goes on through its haemoglobin."
+    }
+   ],
+   "src": "card red_blood_cell; the human cell's spec data/cells/red_blood_cell.json is not used for a dog"
+  },
+  "skeletal_muscle_fibre": {
+   "title": "Skeletal muscle fibre",
+   "desc": "One skeletal muscle cell: very long, with many nuclei, packed with striped myofibrils.",
+   "card": "skeletal_muscle_fiber",
+   "inside": [
+    {
+     "name": "a human skeletal muscle fibre",
+     "scene": "cell:skeletal_muscle_fibre",
+     "title": "Skeletal muscle fibre"
+    }
+   ],
+   "src": "data/cells/skeletal_muscle_fibre.json"
+  },
+  "mitochondrion": {
+   "title": "Mitochondrion",
+   "desc": "The cell's power station: two membranes, the inner one folded, full of the proteins that make ATP.",
+   "card": "mitochondrion",
+   "inside": [
+    {
+     "name": "its membranes",
+     "material": "membrane",
+     "note": "A mitochondrion is built of two membranes, the inner one folded into cristae, packed with proteins, with a small DNA of its own. Shown: the membrane it is built of."
+    }
+   ],
+   "src": "card mitochondrion"
+  },
+  "myelin": {
+   "title": "Myelin",
+   "desc": "Many turns of membrane wrapped round an axon by a glial cell.",
+   "card": null,
+   "inside": [
+    {
+     "name": "its membrane",
+     "material": "membrane",
+     "note": "Myelin is membrane wound round and round the axon, tens of layers deep. Shown: the membrane it is made of."
+    }
+   ],
+   "src": "data/cells/neuron_pyramidal.json (parts.myelin)"
+  },
+  "synaptic_vesicles": {
+   "title": "Synaptic vesicles",
+   "desc": "Tiny membrane bubbles in an axon terminal, filled with a transmitter.",
+   "card": "synapse",
+   "inside": [
+    {
+     "name": "glutamate, the transmitter",
+     "scene": "mol:aa_glu",
+     "note": "A bouton of a pyramidal neuron is full of vesicles of glutamate, which it releases onto the cell it contacts. Shown: one glutamate molecule.",
+     "title": "Glutamate"
+    }
+   ],
+   "src": "Eichler et al. 2025, Front Synaptic Neurosci 17:1724377 (https://pmc.ncbi.nlm.nih.gov/articles/PMC12728076/): pyramidal cells of human layers 2/3 release glutamate"
+  },
+  "myofibril": {
+   "title": "Myofibril",
+   "desc": "A chain of sarcomeres: thick myosin and thin actin filaments that slide past each other.",
+   "card": "sarcomere",
+   "inside": [
+    {
+     "name": "protein filaments",
+     "material": "protein",
+     "note": "A myofibril is made of protein filaments: thick ones of myosin and thin ones of actin, with other proteins that hold them in register."
+    }
+   ],
+   "src": "card sarcomere"
+  },
+  "desmosome": {
+   "title": "Desmosome",
+   "desc": "A button of proteins that rivets two cells together.",
+   "card": null,
+   "inside": [
+    {
+     "name": "its proteins",
+     "material": "protein",
+     "note": "A desmosome is made of proteins: adhesion proteins that reach across the gap between the two cells, and plaque proteins inside each cell that hold its keratin filaments."
+    }
+   ],
+   "src": "data/cells/keratinocyte.json (parts.desmosome); OpenStax A&P 2e 5.1"
+  },
+  "melanosome": {
+   "title": "Melanosome",
+   "desc": "A small granule of melanin, the brown-black pigment of skin and hair.",
+   "card": "melanocyte",
+   "inside": [
+    {
+     "name": "L-DOPA, a building block of melanin",
+     "scene": "mol:l_dopa",
+     "standIn": true,
+     "note": "Melanin is a large, irregular polymer, too large and too varied to show as one molecule. It is built from units made from the amino acid tyrosine by way of L-DOPA. Shown: L-DOPA.",
+     "title": "L-DOPA (a building block of melanin)"
+    }
+   ],
+   "src": "card melanocyte"
+  },
+  "lamellar_body": {
+   "title": "Lamellar body",
+   "desc": "A small granule of stacked lipid layers in a skin cell.",
+   "card": null,
+   "inside": [
+    {
+     "name": "lipid layers",
+     "material": "membrane",
+     "standIn": true,
+     "note": "A lamellar body holds stacked layers of lipids that the cell later pours out between the cells of the skin. Shown: a membrane lipid, as a stand-in for the mixture it carries."
+    }
+   ],
+   "src": "data/cells/keratinocyte.json (parts.lamellar_body)"
+  },
+  "spectrin": {
+   "title": "Spectrin",
+   "desc": "A long, flexible protein that forms a net under the membrane of a red blood cell.",
+   "card": null,
+   "inside": [
+    {
+     "name": "protein",
+     "material": "protein",
+     "note": "Spectrin is a protein: long chains that join at short actin filaments into a net under the membrane."
+    }
+   ],
+   "src": "Liu, Derick and Palek 1987, J Cell Biol 104:527"
   }
  }
 }

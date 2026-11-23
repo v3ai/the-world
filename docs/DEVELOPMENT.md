@@ -232,6 +232,8 @@ Limits per view at 1280 × 800, device pixel ratio 1, enforced by `t_perf_budget
 | atom | 1 | 0 | 10 | 2 thousand | 260 thousand | 2 | 2 |
 | Standard Model | 1 | 0 | 90 | 92 thousand | 0 | 3 | 2 |
 | cell | 1 | 11 | 225 | 160 thousand | 0 | 4 | 2 |
+| a neuron from its spec, at its cell body | 1 | 11 | 40 | 220 thousand | 0 | 4 | 3 |
+| a skeletal muscle fibre from its spec | 1 | 11 | 30 | 220 thousand | 0 | 4 | 3 |
 | Earth | 6 | 11 | 60 | 101 thousand | 270 thousand | 3 | 2 |
 | inner planets | 5 | 11 | 65 | 53 thousand | 270 thousand | 3 | 2 |
 

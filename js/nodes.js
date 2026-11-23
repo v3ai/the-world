@@ -420,6 +420,8 @@ FT.tissue = {
     if (BLK.on) BLK.tissue(F, K);   // the realistic look: a studio model (js/body_core.js)
     F.spawn = (T, hint) => {
       const id = hint && hint.obj && hint.obj.userData.id || cellId, q = { id, node: NODE[id] ? id : null, what: nodeTitle(id), u: (hint && hint.obj && hint.obj.userData) || {} };
+      const sid = typeof CELLS !== 'undefined' && CELLS.specFor({ tissue: K, variant: o.variant, id, organ: o.organ });   // a cell type drawn from its own spec (data/cells, js/cells.js)
+      if (sid) return CELLS.frame(sid, T, { node: id });
       if (typeof DESCENT !== 'undefined' && DESCENT.known(F, q)) return DESCENT.spawnFor(F, q, T);   // a red blood cell, a platelet, bone matrix ...: data/descent/assign/tissue.json
       return new Frame({ type: 'cell', name: nodeTitle(id), unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T.clone(), opts: { type: 'animal', node: id, cname: `${nodeTitle(id)}: drawn as a generic animal cell` } });   // no scene of this very cell exists: the generic one, and its name says so
     };

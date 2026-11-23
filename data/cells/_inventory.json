@@ -1,0 +1,1129 @@
+{
+ "about": "Every distinct cell type the app reaches, and where from. spec: true when data/cells/<id>.json exists and draws it; otherwise the generic cell stands in and says so. shape_hint: the shape of data/cells/_shapes.json that fits, and what the vocabulary lacks for it. Kept apart by species where the cell differs (a dog's or a bee's cells are not the human ones). Built from js/nodes.js (FT.tissue), js/world_build.js, js/world_matter.js (micro scenes), js/things.js, data/things/tissues and data/descent.",
+ "types": [
+  {
+   "id": "neuron_pyramidal",
+   "name": "Pyramidal neuron (cerebral cortex)",
+   "organism": "human",
+   "reached_from": [
+    "human brain: nervous tissue (FT.tissue nervous, pick \"neuron\", organ brain, cerebrum or a lobe)"
+   ],
+   "spec": true,
+   "shape_hint": "neuron (soma pyramidal; apical and basal trees, spines, myelinated axon, boutons)",
+   "species": "Homo sapiens"
+  },
+  {
+   "id": "red_blood_cell",
+   "name": "Red blood cell",
+   "organism": "human",
+   "reached_from": [
+    "human blood tissue (FT.tissue blood, pick \"red_blood_cell\")",
+    "human alveoli tissue (FT.tissue alveoli)",
+    "lung_alveoli tissue scene, structure rbc",
+    "loose_connective_fat tissue scene, structure rbc",
+    "material red_blood_cell (data/descent)"
+   ],
+   "spec": true,
+   "shape_hint": "disc_biconcave (Evans-Fung profile) with a near-only haemoglobin crowd",
+   "species": "Homo sapiens"
+  },
+  {
+   "id": "skeletal_muscle_fibre",
+   "name": "Skeletal muscle fibre",
+   "organism": "human",
+   "reached_from": [
+    "human skeletal muscle tissue (FT.tissue skeletal, pick \"skeletal_muscle_fiber\")",
+    "material skeletal_muscle_fibre (data/descent/assign/tissue.json)"
+   ],
+   "spec": true,
+   "shape_hint": "fibre (window cut, banded myofibrils, peripheral nuclei, labelled breaks)",
+   "species": "Homo sapiens"
+  },
+  {
+   "id": "keratinocyte",
+   "name": "Keratinocyte (spinous layer)",
+   "organism": "human",
+   "reached_from": [
+    "the ruler's \"Skin cell\" stop (FR.cell, under the skin micro scene)",
+    "human epithelium tissue (FT.tissue epithelium, pick \"keratinocyte\", no variant)"
+   ],
+   "spec": true,
+   "shape_hint": "polyhedron (desmosomes, keratin bundles, neighbours)",
+   "species": "Homo sapiens"
+  },
+  {
+   "id": "neuron_motor",
+   "name": "Motor neuron and other nerve cells (spinal cord, nerves)",
+   "organism": "human",
+   "reached_from": [
+    "human nervous tissue from the spinal cord, brainstem or nerves (FT.tissue nervous, pick \"neuron\", other organs)"
+   ],
+   "spec": false,
+   "shape_hint": "neuron (soma stellate, no apical dendrite; long myelinated axon with a break)"
+  },
+  {
+   "id": "astrocyte",
+   "name": "Astrocyte",
+   "organism": "human",
+   "reached_from": [
+    "human nervous tissue (FT.tissue nervous, pick \"astrocyte\")"
+   ],
+   "spec": false,
+   "shape_hint": "stellate (endfeet)"
+  },
+  {
+   "id": "neutrophil",
+   "name": "Neutrophil",
+   "organism": "human",
+   "reached_from": [
+    "human blood tissue (pick \"neutrophil\")"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (lobed nucleus: the vocabulary lacks a multi-lobed nucleus; granules)"
+  },
+  {
+   "id": "lymphocyte_t",
+   "name": "T lymphocyte",
+   "organism": "human",
+   "reached_from": [
+    "human blood tissue (pick \"lymphocyte_t\")"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (large round nucleus, thin rim of cytoplasm)"
+  },
+  {
+   "id": "lymphocyte_b",
+   "name": "B lymphocyte",
+   "organism": "human",
+   "reached_from": [
+    "human blood tissue (pick \"lymphocyte_b\")"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (large round nucleus)"
+  },
+  {
+   "id": "macrophage",
+   "name": "Macrophage",
+   "organism": "human",
+   "reached_from": [
+    "human blood tissue (pick \"macrophage\")",
+    "loose_connective_fat tissue scene, structure macrophage"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (pseudopods, bumps, lysosomes)"
+  },
+  {
+   "id": "alveolar_macrophage",
+   "name": "Alveolar macrophage",
+   "organism": "human",
+   "reached_from": [
+    "lung_alveoli tissue scene, structure macro"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (pseudopods)"
+  },
+  {
+   "id": "platelet",
+   "name": "Platelet",
+   "organism": "human",
+   "reached_from": [
+    "human blood tissue (pick \"platelet\"; material platelet)"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (flat disc, no nucleus, granules)"
+  },
+  {
+   "id": "corneocyte",
+   "name": "Corneocyte (dead skin cell)",
+   "organism": "human",
+   "reached_from": [
+    "human epithelium tissue, top row (pick \"stratum_corneum\"; material corneocytes)",
+    "skin micro scene, surface (material corneocytes)"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (very flat, no nucleus, filled with keratin: hollow = 0, no organelles)"
+  },
+  {
+   "id": "lining_surface_cell",
+   "name": "Living surface cell of a lining",
+   "organism": "human",
+   "reached_from": [
+    "human epithelium tissue, variant \"lining\", top row (material living_lining_cells)"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (squamous, flat)"
+  },
+  {
+   "id": "cardiomyocyte",
+   "name": "Cardiac muscle cell",
+   "organism": "human",
+   "reached_from": [
+    "human cardiac tissue (FT.tissue cardiac, pick \"cardiomyocyte\")"
+   ],
+   "spec": false,
+   "shape_hint": "fibre with branched = 1 (central nuclei, intercalated discs)"
+  },
+  {
+   "id": "smooth_muscle_cell",
+   "name": "Smooth muscle cell",
+   "organism": "human",
+   "reached_from": [
+    "human smooth muscle tissue (FT.tissue smooth, pick \"smooth_muscle_cell\")"
+   ],
+   "spec": false,
+   "shape_hint": "spindle"
+  },
+  {
+   "id": "osteocyte",
+   "name": "Osteocyte",
+   "organism": "human",
+   "reached_from": [
+    "human bone tissue (FT.tissue bone, pick \"osteocyte\")"
+   ],
+   "spec": false,
+   "shape_hint": "stellate (lacuna_um, many fine processes in canaliculi)"
+  },
+  {
+   "id": "chondrocyte",
+   "name": "Chondrocyte",
+   "organism": "human",
+   "reached_from": [
+    "human cartilage tissue (FT.tissue cartilage, pick \"chondrocyte\")",
+    "hyaline_cartilage tissue scene, structures cell1-3 and gcell1-3"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (coat_um for the lacuna)"
+  },
+  {
+   "id": "adipocyte",
+   "name": "White fat cell (adipocyte)",
+   "organism": "human",
+   "reached_from": [
+    "human adipose tissue (FT.tissue adipose, pick \"adipocyte\"; material fat)",
+    "loose_connective_fat tissue scene, structure adipocyte"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (one lipid droplet filling it, a flattened nucleus at the rim: the vocabulary lacks a single droplet pressing the nucleus flat)"
+  },
+  {
+   "id": "enterocyte",
+   "name": "Enterocyte (gut lining cell)",
+   "organism": "human",
+   "reached_from": [
+    "human villi tissue (FT.tissue villi, pick \"enterocyte\")"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (columnar, apical microvilli)"
+  },
+  {
+   "id": "hepatocyte",
+   "name": "Hepatocyte (liver cell)",
+   "organism": "human",
+   "reached_from": [
+    "human liver tissue (FT.tissue liver, pick \"hepatocyte\")"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (cuboidal, sometimes two nuclei)"
+  },
+  {
+   "id": "fibroblast",
+   "name": "Fibroblast",
+   "organism": "human",
+   "reached_from": [
+    "loose_connective_fat tissue scene, structure fibroblast",
+    "hyaline_cartilage tissue scene, structure fibroblast (perichondrium)"
+   ],
+   "spec": false,
+   "shape_hint": "spindle (flat)"
+  },
+  {
+   "id": "tenocyte",
+   "name": "Tenocyte (tendon fibroblast)",
+   "organism": "human",
+   "reached_from": [
+    "dense_connective tissue scene, structure tenocyte"
+   ],
+   "spec": false,
+   "shape_hint": "spindle (very flat, long, in rows between collagen bundles)"
+  },
+  {
+   "id": "mast_cell",
+   "name": "Mast cell",
+   "organism": "human",
+   "reached_from": [
+    "loose_connective_fat tissue scene, structure mast"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (granules filling it)"
+  },
+  {
+   "id": "type2_pneumocyte",
+   "name": "Type II alveolar cell",
+   "organism": "human",
+   "reached_from": [
+    "lung_alveoli tissue scene, structure type2"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (cuboidal, apical microvilli, lamellar bodies)"
+  },
+  {
+   "id": "kidney_pct_cell",
+   "name": "Proximal tubule cell",
+   "organism": "human",
+   "reached_from": [
+    "kidney_cortex tissue scene, structure pct"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (cuboidal, tall brush border of microvilli, many mitochondria at the base)"
+  },
+  {
+   "id": "kidney_dct_cell",
+   "name": "Distal tubule cell",
+   "organism": "human",
+   "reached_from": [
+    "kidney_cortex tissue scene, structure dct"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (cuboidal, few microvilli)"
+  },
+  {
+   "id": "corneal_epithelial_cell",
+   "name": "Corneal epithelial cell (surface, wing and basal)",
+   "organism": "human",
+   "reached_from": [
+    "cornea_layers tissue scene, structures sup, wing, basal"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (flat at the surface, columnar at the base)"
+  },
+  {
+   "id": "corneal_keratocyte",
+   "name": "Corneal keratocyte",
+   "organism": "human",
+   "reached_from": [
+    "cornea_layers tissue scene, structure kerato"
+   ],
+   "spec": false,
+   "shape_hint": "stellate (flat = 0.1; long thin processes between collagen sheets)"
+  },
+  {
+   "id": "corneal_endothelial_cell",
+   "name": "Corneal endothelial cell",
+   "organism": "human",
+   "reached_from": [
+    "cornea_layers tissue scene, structure endo"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (flat hexagon)"
+  },
+  {
+   "id": "animal_cell_generic",
+   "name": "Animal cell (generic)",
+   "organism": "human",
+   "reached_from": [
+    "material animal_cells and every animal cell without a spec",
+    "the things framework (TH_CELLS animal)"
+   ],
+   "spec": false,
+   "shape_hint": "the generic cut-open animal cell (js/world_matter.js), says it is a stand-in"
+  },
+  {
+   "id": "keratinocyte_dog",
+   "name": "Keratinocyte (dog skin)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_skin tissue scene, structure epi"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron",
+   "note": "kept apart from the human cell: dog epidermis is thinner and has fewer layers"
+  },
+  {
+   "id": "skeletal_muscle_fibre_dog",
+   "name": "Skeletal muscle fibre (dog)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_muscle tissue scene, structure fibre (material muscle_fibre)"
+   ],
+   "spec": false,
+   "shape_hint": "fibre",
+   "note": "same structure as the human fibre, but the human measurements are not used for it"
+  },
+  {
+   "id": "red_blood_cell_dog",
+   "name": "Red blood cell (dog)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_muscle tissue scene, structure rbc (material red_blood_cell_dog)"
+   ],
+   "spec": false,
+   "shape_hint": "disc_biconcave (smaller than the human cell)"
+  },
+  {
+   "id": "endothelial_cell",
+   "name": "Capillary endothelial cell",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_muscle tissue scene, structure capillary",
+    "robin_flight_muscle tissue scene, structure capillary (bird)"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (very flat, curved round the vessel: the vocabulary lacks a curved sheet)"
+  },
+  {
+   "id": "motor_axon_dog",
+   "name": "Motor nerve fibre (dog)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_muscle tissue scene, structure axon"
+   ],
+   "spec": false,
+   "shape_hint": "neuron (the axon only, myelinated, ending on the muscle)"
+  },
+  {
+   "id": "olfactory_neuron_dog",
+   "name": "Olfactory sensory neuron (dog)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_olfactory_epithelium tissue scene, structures dendrite, axons, lamina"
+   ],
+   "spec": false,
+   "shape_hint": "neuron (bipolar soma; a dendrite ending in a knob of cilia)"
+  },
+  {
+   "id": "sustentacular_cell_dog",
+   "name": "Supporting (sustentacular) cell (dog)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_olfactory_epithelium tissue scene, structure sust"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (tall columnar, microvilli)"
+  },
+  {
+   "id": "olfactory_basal_cell_dog",
+   "name": "Olfactory basal (stem) cell (dog)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_olfactory_epithelium tissue scene, structure basal"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (small, low)"
+  },
+  {
+   "id": "bowman_gland_cell_dog",
+   "name": "Bowman's gland cell (dog)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_olfactory_epithelium tissue scene, structure gland"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (taper, secretory granules)"
+  },
+  {
+   "id": "retinal_ganglion_cell_dog",
+   "name": "Retinal ganglion cell (dog)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_retina tissue scene, structure gang"
+   ],
+   "spec": false,
+   "shape_hint": "neuron (soma round; dendrites in one plane; unmyelinated axon in the retina)",
+   "note": "not the cortical pyramidal neuron, though its pick names the neuron card"
+  },
+  {
+   "id": "bipolar_cell_dog",
+   "name": "Retinal bipolar cell (dog)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_retina tissue scene, structure bip"
+   ],
+   "spec": false,
+   "shape_hint": "neuron (soma bipolar)"
+  },
+  {
+   "id": "cone_cell_dog",
+   "name": "Cone photoreceptor (dog)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_retina tissue scene, structure cones"
+   ],
+   "spec": false,
+   "shape_hint": "segmented (outer segment discs, inner segment, nucleus, terminal)"
+  },
+  {
+   "id": "rpe_cell_dog",
+   "name": "Retinal pigment epithelium cell (dog)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_retina tissue scene, structure rpe"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (hexagonal, melanosomes)"
+  },
+  {
+   "id": "tapetal_cell_dog",
+   "name": "Tapetal cell (dog)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_retina tissue scene, structure tap"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (flat, packed with reflecting rods: the vocabulary lacks the rodlets)"
+  },
+  {
+   "id": "choroid_cells_dog",
+   "name": "Choroid (vessels and pigment cells, dog)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_retina tissue scene, structure choroid"
+   ],
+   "spec": false,
+   "shape_hint": "not one cell type: a layer of vessels, melanocytes and fibroblasts"
+  },
+  {
+   "id": "hair_matrix_cell_dog",
+   "name": "Hair bulb (matrix) cell (dog)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_skin tissue scene, structure bulb"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron"
+  },
+  {
+   "id": "sebocyte_dog",
+   "name": "Sebaceous gland cell (dog)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_skin tissue scene, structure sebaceous"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (filled with lipid droplets)"
+  },
+  {
+   "id": "apocrine_cell_dog",
+   "name": "Apocrine sweat gland cell (dog)",
+   "organism": "mammal (dog)",
+   "reached_from": [
+    "dog_skin tissue scene, structure apocrine"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (cuboidal to columnar)"
+  },
+  {
+   "id": "osteocyte_bird",
+   "name": "Osteocyte (robin)",
+   "organism": "bird (robin)",
+   "reached_from": [
+    "robin_bone tissue scene, structure cell"
+   ],
+   "spec": false,
+   "shape_hint": "stellate (lacuna_um)"
+  },
+  {
+   "id": "flight_muscle_fibre_bird",
+   "name": "Flight muscle fibre (robin)",
+   "organism": "bird (robin)",
+   "reached_from": [
+    "robin_flight_muscle tissue scene, structure fibre (material muscle_fibre)"
+   ],
+   "spec": false,
+   "shape_hint": "fibre (thin, rich in mitochondria)"
+  },
+  {
+   "id": "retinal_axon_bird",
+   "name": "Retinal nerve fibre (robin)",
+   "organism": "bird (robin)",
+   "reached_from": [
+    "robin_retina tissue scene, structure fibre"
+   ],
+   "spec": false,
+   "shape_hint": "neuron (axon only)"
+  },
+  {
+   "id": "crop_cell_bee",
+   "name": "Crop wall cell (bee)",
+   "organism": "insect (honey bee)",
+   "reached_from": [
+    "bee_crop tissue scene, structure crop_cell"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (flat, under a cuticle lining)"
+  },
+  {
+   "id": "epidermal_cell_bee",
+   "name": "Epidermal cell under the cuticle (bee)",
+   "organism": "insect (honey bee)",
+   "reached_from": [
+    "bee_cuticle tissue scene, structure epidermis"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (cuboidal)"
+  },
+  {
+   "id": "cone_cell_bee",
+   "name": "Crystalline cone cell (bee)",
+   "organism": "insect (honey bee)",
+   "reached_from": [
+    "bee_eye tissue scene, structure cone"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (taper: the vocabulary lacks the clear cone it secretes)"
+  },
+  {
+   "id": "pigment_cell_bee",
+   "name": "Screening pigment cell (bee)",
+   "organism": "insect (honey bee)",
+   "reached_from": [
+    "bee_eye tissue scene, structure pigment"
+   ],
+   "spec": false,
+   "shape_hint": "spindle (pigment granules)"
+  },
+  {
+   "id": "photoreceptor_bee",
+   "name": "Photoreceptor cell and its axon (bee)",
+   "organism": "insect (honey bee)",
+   "reached_from": [
+    "bee_eye tissue scene, structure axon"
+   ],
+   "spec": false,
+   "shape_hint": "segmented (rhabdomere of microvilli: lacking) and an axon"
+  },
+  {
+   "id": "flight_muscle_fibre_bee",
+   "name": "Flight muscle fibre (bee)",
+   "organism": "insect (honey bee)",
+   "reached_from": [
+    "bee_flight_muscle tissue scene, structure fibre (material muscle_fibre)"
+   ],
+   "spec": false,
+   "shape_hint": "fibre (asynchronous muscle, huge mitochondria: lacking in the vocabulary)"
+  },
+  {
+   "id": "midgut_digestive_cell_bee",
+   "name": "Midgut digestive cell (bee)",
+   "organism": "insect (honey bee)",
+   "reached_from": [
+    "insect_gut_wall tissue scene, structure cells"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (columnar, microvilli)"
+  },
+  {
+   "id": "midgut_regenerative_cell_bee",
+   "name": "Midgut regenerative cell (bee)",
+   "organism": "insect (honey bee)",
+   "reached_from": [
+    "insect_gut_wall tissue scene, structure regen"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (small, in nests)"
+  },
+  {
+   "id": "gut_muscle_fibre_bee",
+   "name": "Gut muscle fibre (bee)",
+   "organism": "insect (honey bee)",
+   "reached_from": [
+    "insect_gut_wall tissue scene, structures cm and lm (material muscle_fibre)"
+   ],
+   "spec": false,
+   "shape_hint": "fibre (thin, striated)"
+  },
+  {
+   "id": "nematode_cells",
+   "name": "Nematode (roundworm) cells",
+   "organism": "animal (nematode)",
+   "reached_from": [
+    "soil_crumb tissue scene, structure nematode"
+   ],
+   "spec": false,
+   "shape_hint": "not one cell: a whole small animal (about 1000 cells); the generic animal cell stands in"
+  },
+  {
+   "id": "rotifer_cells",
+   "name": "Rotifer cells",
+   "organism": "animal (rotifer)",
+   "reached_from": [
+    "pond_drop tissue scene, structures rotifer, rotifer_corona"
+   ],
+   "spec": false,
+   "shape_hint": "not one cell: a whole small animal"
+  },
+  {
+   "id": "paramecium",
+   "name": "Paramecium",
+   "organism": "protist (ciliate)",
+   "reached_from": [
+    "pond_drop tissue scene, structure paramecium (material single_cell)"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (cilia; the vocabulary lacks the oral groove and contractile vacuoles)"
+  },
+  {
+   "id": "volvox_cell",
+   "name": "Volvox cell",
+   "organism": "protist (green alga)",
+   "reached_from": [
+    "pond_drop tissue scene, structure volvox (material algal_cells)"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (two flagella, one cup-shaped chloroplast: lacking) in a hollow colony"
+  },
+  {
+   "id": "diatom",
+   "name": "Diatom",
+   "organism": "protist (diatom)",
+   "reached_from": [
+    "soil and pond micro scenes, diatoms (cellOpts DIATOM)"
+   ],
+   "spec": false,
+   "shape_hint": "lacking: a two-part silica shell with pores (frustule)"
+  },
+  {
+   "id": "green_alga_cell",
+   "name": "Green alga cell (Chlorella-like)",
+   "organism": "protist (green alga)",
+   "reached_from": [
+    "micro scenes, algae (cellOpts ALGA)"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (one large chloroplast: lacking)"
+  },
+  {
+   "id": "bacterium_rod",
+   "name": "Bacterium (rod)",
+   "organism": "bacterium",
+   "reached_from": [
+    "skin, soil and other micro scenes, bacteria (cellOpts bacterium)",
+    "pond_drop tissue scene, structure bacteria",
+    "material bacteria"
+   ],
+   "spec": false,
+   "shape_hint": "rod (wall gram_positive or gram_negative, flagella, pili)"
+  },
+  {
+   "id": "hypha",
+   "name": "Hypha compartment (fungal thread)",
+   "organism": "fungus",
+   "reached_from": [
+    "soil and micro scenes, hyphae (cellOpts FUNGAL)",
+    "soil_crumb tissue scene, structure hypha",
+    "fungal_gill tissue scene, structure hypha",
+    "mushroom_flesh structures cuticle, subcuticle",
+    "mushroom_ecm structures hartig, hartig_h, mantle",
+    "oak_ecm_tip structure mantle",
+    "material fungal_cells"
+   ],
+   "spec": false,
+   "shape_hint": "rod (septa, wall chitin)"
+  },
+  {
+   "id": "basidium",
+   "name": "Basidium (spore-making cell)",
+   "organism": "fungus",
+   "reached_from": [
+    "fungal_gill tissue scene, structure basidium",
+    "mushroom_gill tissue scene, structures basidium, sterigma"
+   ],
+   "spec": false,
+   "shape_hint": "rod (club-shaped with four prongs: the prongs are lacking)"
+  },
+  {
+   "id": "basidiospore",
+   "name": "Basidiospore",
+   "organism": "fungus",
+   "reached_from": [
+    "fungal_gill tissue scene, structure spore",
+    "mushroom_gill tissue scene, structure spore"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (coat_um for the spore wall)"
+  },
+  {
+   "id": "subhymenium_cell",
+   "name": "Subhymenium cell",
+   "organism": "fungus",
+   "reached_from": [
+    "mushroom_gill tissue scene, structure subhymenium"
+   ],
+   "spec": false,
+   "shape_hint": "rod (short, branched)"
+  },
+  {
+   "id": "fungal_flesh",
+   "name": "Gill flesh (packed hyphae)",
+   "organism": "fungus",
+   "reached_from": [
+    "fungal_gill tissue scene, structure gill"
+   ],
+   "spec": false,
+   "shape_hint": "not one cell: woven hyphae"
+  },
+  {
+   "id": "plant_cell_generic",
+   "name": "Plant cell (generic)",
+   "organism": "plant",
+   "reached_from": [
+    "material plant_cells and every plant cell without a spec",
+    "the things framework (TH_CELLS plant)"
+   ],
+   "spec": false,
+   "shape_hint": "the generic plant cell (js/levels_v2.js), says it is a stand-in"
+  },
+  {
+   "id": "leaf_epidermal_cell_dicot",
+   "name": "Leaf epidermis cell (oak, buttercup)",
+   "organism": "plant",
+   "reached_from": [
+    "leaf_section tissue scene, structures epi_top, epi_bottom",
+    "flower_leaf tissue scene, structure cell"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (flat, wall_um; jigsaw outline lacking)"
+  },
+  {
+   "id": "guard_cell_dicot",
+   "name": "Guard cell, kidney-shaped (oak, buttercup)",
+   "organism": "plant",
+   "reached_from": [
+    "leaf_section structure guard",
+    "flower_leaf structure guard",
+    "leaf micro scenes, stoma (cellOpts guard cell)"
+   ],
+   "spec": false,
+   "shape_hint": "spindle (pair = 1, bend, wall_um)"
+  },
+  {
+   "id": "palisade_cell",
+   "name": "Palisade mesophyll cell (oak)",
+   "organism": "plant",
+   "reached_from": [
+    "leaf_section tissue scene, structure palisade"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (tall column, wall_um, chloroplasts: plant organelles lacking in the generic organelle set)"
+  },
+  {
+   "id": "spongy_cell",
+   "name": "Spongy mesophyll cell (oak)",
+   "organism": "plant",
+   "reached_from": [
+    "leaf_section tissue scene, structure spongy"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (irregular, air spaces)"
+  },
+  {
+   "id": "bundle_sheath_cell_dicot",
+   "name": "Bundle sheath cell (oak)",
+   "organism": "plant",
+   "reached_from": [
+    "leaf_section tissue scene, structure sheath"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (wall_um)"
+  },
+  {
+   "id": "petal_cell",
+   "name": "Petal cells (buttercup: mesophyll, starch layer, lower epidermis)",
+   "organism": "plant",
+   "reached_from": [
+    "flower_petal tissue scene, structures starch_cell, meso, epi_bottom"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (wall_um)"
+  },
+  {
+   "id": "leaf_hair",
+   "name": "Leaf hair (buttercup)",
+   "organism": "plant",
+   "reached_from": [
+    "flower_leaf tissue scene, structure hair"
+   ],
+   "spec": false,
+   "shape_hint": "rod (one long cell, wall cellulose)"
+  },
+  {
+   "id": "anther_wall_cell",
+   "name": "Anther wall cell (buttercup)",
+   "organism": "plant",
+   "reached_from": [
+    "flower_anther tissue scene, structures wall, connective"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (wall_um)"
+  },
+  {
+   "id": "pollen_grain",
+   "name": "Pollen grain",
+   "organism": "plant",
+   "reached_from": [
+    "flower_anther structures sac, grain",
+    "flower_carpel structure pollen",
+    "grass_pollen structures grain, pore",
+    "air micro scenes, pollen (cellOpts POLLEN)",
+    "material pollen"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (coat_um for the sporopollenin wall; pores and sculpture lacking)"
+  },
+  {
+   "id": "egg_cell_plant",
+   "name": "Egg cell (buttercup)",
+   "organism": "plant",
+   "reached_from": [
+    "flower_carpel tissue scene, structure egg"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (large vacuole at one end)"
+  },
+  {
+   "id": "synergid",
+   "name": "Synergid (helper cell)",
+   "organism": "plant",
+   "reached_from": [
+    "flower_carpel tissue scene, structure syn"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (filiform apparatus lacking)"
+  },
+  {
+   "id": "central_cell",
+   "name": "Central cell of the embryo sac",
+   "organism": "plant",
+   "reached_from": [
+    "flower_carpel structures central, sac (material embryo_sac)"
+   ],
+   "spec": false,
+   "shape_hint": "ellipsoid (two polar nuclei, big vacuole)"
+  },
+  {
+   "id": "antipodal_cell",
+   "name": "Antipodal cell",
+   "organism": "plant",
+   "reached_from": [
+    "flower_carpel tissue scene, structure anti"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron"
+  },
+  {
+   "id": "carpel_cells",
+   "name": "Ovary wall, style and stigma cells (buttercup)",
+   "organism": "plant",
+   "reached_from": [
+    "flower_carpel structures wall, ovule, style, stigma"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (wall_um)"
+  },
+  {
+   "id": "pollen_tube",
+   "name": "Pollen tube",
+   "organism": "plant",
+   "reached_from": [
+    "flower_carpel tissue scene, structure tube"
+   ],
+   "spec": false,
+   "shape_hint": "rod (one very long cell growing at its tip)"
+  },
+  {
+   "id": "grass_epidermal_cell",
+   "name": "Grass epidermis cell",
+   "organism": "plant",
+   "reached_from": [
+    "grass_leaf_section structures epi_top, epi_bottom",
+    "grass_stoma_scene structure epi"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (long, in rows, wavy walls: lacking)"
+  },
+  {
+   "id": "grass_guard_cell",
+   "name": "Guard cell, dumbbell-shaped (grass)",
+   "organism": "plant",
+   "reached_from": [
+    "grass_leaf_section structure guard",
+    "grass_stoma_scene structures gc_end, gc_mid"
+   ],
+   "spec": false,
+   "shape_hint": "spindle (pair = 1; the bulbous ends are lacking: a dumbbell shape would need a new shape)"
+  },
+  {
+   "id": "grass_subsidiary_cell",
+   "name": "Subsidiary cell (grass)",
+   "organism": "plant",
+   "reached_from": [
+    "grass_stoma_scene structure sub"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron"
+  },
+  {
+   "id": "bulliform_cell",
+   "name": "Bulliform cell (grass)",
+   "organism": "plant",
+   "reached_from": [
+    "grass_leaf_section structure bulliform"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (large, thin-walled, mostly vacuole)"
+  },
+  {
+   "id": "grass_mesophyll_cell",
+   "name": "Mesophyll cell (ryegrass)",
+   "organism": "plant",
+   "reached_from": [
+    "grass_leaf_section structure mesophyll"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (lobed: lacking)"
+  },
+  {
+   "id": "grass_bundle_sheath_cell",
+   "name": "Bundle sheath cell (ryegrass)",
+   "organism": "plant",
+   "reached_from": [
+    "grass_leaf_section structure bsheath"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (wall_um)"
+  },
+  {
+   "id": "sclerenchyma_fibre",
+   "name": "Sclerenchyma fibre",
+   "organism": "plant",
+   "reached_from": [
+    "grass_leaf_section structure scl"
+   ],
+   "spec": false,
+   "shape_hint": "spindle (very thick wall_um, dead and empty)"
+  },
+  {
+   "id": "shoot_meristem_cell",
+   "name": "Shoot meristem and young leaf cell (grass)",
+   "organism": "plant",
+   "reached_from": [
+    "grass_apex structures dome, prim, prim2, gz"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (small, cube-like, dense, no big vacuole)"
+  },
+  {
+   "id": "root_cap_cell",
+   "name": "Root cap cell (grass)",
+   "organism": "plant",
+   "reached_from": [
+    "grass_root_tip structure cap"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (starch grains, slime)"
+  },
+  {
+   "id": "root_meristem_cell",
+   "name": "Dividing and lengthening root cell (grass)",
+   "organism": "plant",
+   "reached_from": [
+    "grass_root_tip structures meri, elong"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron"
+  },
+  {
+   "id": "root_epidermal_cell",
+   "name": "Root epidermal cell and root hair",
+   "organism": "plant",
+   "reached_from": [
+    "grass_root_tip structure mature",
+    "root_tip structures cortex, hair_s, hair_m, hair_l",
+    "soil_crumb structure rhair"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron with a long tube (the root hair: a polyhedron and a rod joined is lacking)"
+  },
+  {
+   "id": "root_cell_oak",
+   "name": "Root cell (oak)",
+   "organism": "plant",
+   "reached_from": [
+    "mushroom_ecm structure root_cell",
+    "oak_ecm_tip structures core, root_behind"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (wall_um)"
+  },
+  {
+   "id": "stigma_hair_grass",
+   "name": "Stigma branch and hair cell (grass)",
+   "organism": "plant",
+   "reached_from": [
+    "grass_pollen structures stig, hair"
+   ],
+   "spec": false,
+   "shape_hint": "rod"
+  },
+  {
+   "id": "phellogen_cell",
+   "name": "Cork cambium and phelloderm cell (oak)",
+   "organism": "plant",
+   "reached_from": [
+    "oak_bark structures phellogen, phelloderm"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (flat, wall_um)"
+  },
+  {
+   "id": "phloem_parenchyma_cell",
+   "name": "Phloem parenchyma cell (oak)",
+   "organism": "plant",
+   "reached_from": [
+    "oak_bark structures oldpar, phpar"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron"
+  },
+  {
+   "id": "sieve_tube_element",
+   "name": "Sieve tube element (oak)",
+   "organism": "plant",
+   "reached_from": [
+    "oak_bark tissue scene, structure sieve"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (long; sieve plates lacking)"
+  },
+  {
+   "id": "companion_cell",
+   "name": "Companion cell (oak)",
+   "organism": "plant",
+   "reached_from": [
+    "oak_bark tissue scene, structure companion"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (narrow, dense)"
+  },
+  {
+   "id": "vascular_cambium_cell",
+   "name": "Vascular cambium cell (oak)",
+   "organism": "plant",
+   "reached_from": [
+    "oak_bark tissue scene, structure cambium"
+   ],
+   "spec": false,
+   "shape_hint": "spindle (flat fusiform initial)"
+  },
+  {
+   "id": "ray_cell",
+   "name": "Ray parenchyma cell (oak)",
+   "organism": "plant",
+   "reached_from": [
+    "oak_bark structure ray",
+    "wood_section structure ray"
+   ],
+   "spec": false,
+   "shape_hint": "polyhedron (brick-shaped)"
+  }
+ ]
+}

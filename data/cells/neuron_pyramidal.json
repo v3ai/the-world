@@ -1,0 +1,119 @@
+{
+ "id": "neuron_pyramidal",
+ "name": "Pyramidal neuron",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "neuron",
+ "blurb": "A pyramidal neuron of the human cerebral cortex: a cell body like a rounded pyramid, a long apical dendrite rising to the surface, a skirt of basal dendrites covered in spines, and one thin axon going down.",
+ "note": "Model: a pyramidal neuron of layers 2 and 3 of the human cortex, its cell body cut open. Measured in human cortex: the total lengths and the branch points of its dendrites (medians of 60 cells), the length and shape of its spines, and its reach. Measured in mouse cortex: the thickness of the axon. Illustrative: the size of the cell body, the thickness of the dendrites, the paths of the branches (drawn flatter toward you than in life), the spine density along each branch, the organelles of the cell body, and the lengths of the axon's segments, myelin and boutons. The axon goes on far beyond what is drawn.",
+ "shape": {
+  "type": "neuron",
+  "soma": "pyramidal",
+  "soma_w_um": 18,
+  "soma_h_um": 24,
+  "basal_n": 6,
+  "basal_total_um": 6466,
+  "basal_branch_points": 31,
+  "apical_trunk_um": 209,
+  "apical_reach_um": 560,
+  "oblique_total_um": 4121,
+  "oblique_branch_points": 13,
+  "tuft_total_um": 3643,
+  "tuft_branch_points": 12,
+  "dendrite_um": 1.4,
+  "trunk_um": 4,
+  "spines_basal_per_um": 1.2,
+  "spines_apical_per_um": 2,
+  "spine_um": 1.5,
+  "spine_head_um": 0.6,
+  "axon_um": 0.45,
+  "ais_um": 40,
+  "myelin": 1,
+  "internode_um": 80,
+  "node_um": 1,
+  "g_ratio": 0.75,
+  "axon_drawn_um": 600,
+  "collaterals": 3,
+  "collateral_um": 150,
+  "bouton_spacing_um": 5,
+  "bouton_um": 0.8
+ },
+ "dimensions": {
+  "basal_total": { "value": 6466, "unit": "um", "measured": true, "source": "mohan2015", "note": "median total length of the basal dendrites, 60 human L2/L3 pyramidal neurons" },
+  "basal_branch_points": { "value": 31, "unit": "count", "measured": true, "source": "mohan2015" },
+  "apical_trunk": { "value": 209, "unit": "um", "measured": true, "source": "mohan2015" },
+  "oblique_total": { "value": 4121, "unit": "um", "measured": true, "source": "mohan2015" },
+  "oblique_branch_points": { "value": 13, "unit": "count", "measured": true, "source": "mohan2015" },
+  "tuft_total": { "value": 3643, "unit": "um", "measured": true, "source": "mohan2015" },
+  "tuft_branch_points": { "value": 12, "unit": "count", "measured": true, "source": "mohan2015" },
+  "total_dendrite": { "value": 14533, "unit": "um", "measured": true, "source": "mohan2015", "note": "median total dendritic length" },
+  "max_path": { "value": 1050, "range": [872, 1228], "unit": "um", "measured": true, "source": "eyal2016", "note": "maximal dendritic distance from the cell body, 6 human L2/3 cells (mean ± SD); the drawn reach is chosen to stay inside it" },
+  "apical_reach": { "value": 560, "unit": "um", "measured": false, "note": "illustrative: from a cell body in layer 3 up into layer 1, which begins about 252 µm below the surface (mohan2015)" },
+  "soma": { "value": [18, 24], "unit": "um", "measured": false, "source": "berg2021", "note": "illustrative width and height; human L2/3 cell bodies grow larger with depth, the largest over 850 µm² in section" },
+  "spine_length": { "value": 1.5, "range": [1.41, 1.78], "unit": "um", "measured": true, "source": "benavides2013", "note": "mean spine length about 1.41 µm on basal and 1.78 µm on apical dendrites, human layer III" },
+  "spine_density": { "value": [1.2, 2.0], "unit": "1/um", "measured": false, "source": "benavides2013", "note": "illustrative even densities (basal, apical), below the measured peaks of 1.87 per µm (basal, at 110 µm from the cell body) and 4.4 per µm (apical, at 160 µm)" },
+  "axon": { "value": 0.45, "unit": "um", "measured": true, "source": "micheva2016", "note": "mean diameter of myelinated excitatory axons, mouse cortex" },
+  "ais": { "value": 40, "unit": "um", "measured": false, "note": "illustrative" },
+  "internode": { "value": 80, "unit": "um", "measured": false, "note": "illustrative" },
+  "bouton_spacing": { "value": 5, "unit": "um", "measured": false, "note": "illustrative" }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "round",
+  "size_um": { "value": [10, 10.5, 10], "unit": "um", "measured": false, "note": "illustrative: a large round nucleus" },
+  "nucleoli": 1
+ },
+ "organelles": {
+  "mitochondria": { "volume_fraction": { "value": 0.08, "measured": false, "note": "illustrative" }, "size_um": [1.2, 0.35], "max_drawn": 400 },
+  "rough_er": { "form": "nissl", "clusters": { "value": 34, "measured": false, "note": "illustrative: stacks of rough ER (Nissl bodies) in the cell body, none in the axon hillock" } },
+  "golgi": { "stacks": { "value": 4, "measured": false, "note": "illustrative" } },
+  "lysosomes": { "count": { "value": 30, "measured": false, "note": "illustrative" }, "size_um": { "value": 0.5, "measured": false } }
+ },
+ "special": [
+  { "kind": "spines", "note": "Spines are placed along every dendrite at the densities above ({drawn.spines} in all) and drawn only round where the camera looks, once it is within about 90 µm." },
+  { "kind": "axon", "note": "The axon leaves the base of the cell body: a bare initial segment, then myelin segments with nodes between them; side branches (collaterals) carry boutons, where it passes signals to other cells. It is drawn for {drawn.axonDrawn} µm and then broken off." }
+ ],
+ "cut": "The cell body is cut open through its middle: the round nucleus with its nucleolus, Nissl bodies (stacks of rough ER) round it and into the bases of the dendrites, Golgi stacks and mitochondria. The dendrites and the axon are whole.",
+ "colours": {
+  "convention": "The neuron in warm yellow (as in many drawings of a single stained neuron), myelin white, boutons pale gold, the nucleus violet, Nissl bodies blue (as they stain in a Nissl stain). These are a code: a living neuron is nearly colourless.",
+  "true_colour": []
+ },
+ "parts": {
+  "soma": { "name": "Cell body", "card": "neuron", "material": "membrane" },
+  "dendrite": { "name": "Dendrite", "card": null, "material": "membrane", "about": "Dendrites are the branches that receive signals. This kind of neuron has a skirt of basal dendrites round the base of its cell body and one long apical dendrite that rises toward the surface of the cortex and branches into a tuft. In human cortex they add up to about 14.5 mm per cell." },
+  "apical": { "name": "Apical dendrite", "card": null, "material": "membrane", "about": "The apical dendrite climbs from the top of the cell body toward the surface of the cortex, giving off oblique branches on the way and spreading into a tuft at its top." },
+  "spine": { "name": "Dendritic spine", "card": "synapse", "material": "membrane", "about": "A spine is a small knob on a dendrite, about 1.5 µm long, where most excitatory synapses onto this cell are made: an axon of another cell touches its head." },
+  "axon": { "name": "Axon", "card": "neuron", "material": "membrane", "about": "The one axon carries the cell's own signals away, to other neurons near and far. It starts at the base of the cell body and is thin: about half a micrometre across." },
+  "ais": { "name": "Axon initial segment", "card": null, "material": "membrane", "about": "The first stretch of the axon, without myelin, where the cell's action potentials usually start." },
+  "myelin": { "name": "Myelin", "card": null, "material": "myelin", "about": "Myelin is many turns of membrane wrapped round the axon by glial cells (oligodendrocytes in the brain). It insulates the axon, so signals jump from gap to gap and travel faster." },
+  "node": { "name": "Node of Ranvier", "card": null, "material": "membrane", "about": "A short gap between two myelin segments, where the axon's membrane is bare and the signal is renewed." },
+  "bouton": { "name": "Bouton (axon terminal)", "card": "synapse", "material": "synaptic_vesicles", "source": "eichler2025", "about": "A swelling on the axon full of small vesicles of glutamate, the transmitter this kind of neuron releases onto the cells it contacts." },
+  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus" },
+  "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna" },
+  "nissl": { "name": "Nissl body (rough ER)", "card": "endoplasmic_reticulum", "material": "rna", "about": "Stacks of rough endoplasmic reticulum, covered in ribosomes, in the cell body of a neuron. They make the proteins the whole long cell needs, and stain blue with a Nissl stain." },
+  "golgi": { "name": "Golgi apparatus", "card": "golgi_apparatus", "material": "membrane" },
+  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion" },
+  "lysosome": { "name": "Lysosome", "card": "lysosome", "material": "membrane" },
+  "cytosol": { "name": "Cytosol", "card": null, "material": "water", "about": "The watery inside of the cell, crowded with proteins." },
+  "axon_break": { "name": "Axon (continues)", "card": "neuron", "material": "membrane", "about": "The axon goes on far past what is drawn: to other parts of the cortex, and in some cells across to the other side of the brain." }
+ },
+ "reached": {
+  "tissue": [{ "kind": "nervous", "id": "neuron", "organ": "^(brain|cerebrum_[lr]|cerebral_cortex|frontal_lobe|parietal_lobe|temporal_lobe|occipital_lobe)$" }]
+ },
+ "view": { "radius_um": 800, "r1_m": 4e-3, "arrive_m": 9e-5, "spawn_m": 2e-6,
+  "break": { "text": "The axon goes on, for millimetres to centimetres" } },
+ "about": [
+  "The dendrites are grown to the medians measured in 60 human layer 2/3 pyramidal neurons: {drawn.dendriteLength} µm in all here (basal 6466 µm with 31 branch points, oblique 4121 µm with 13, tuft 3643 µm with 12, and an apical trunk of 209 µm). The paths of the branches are random, not traced from a real cell.",
+  "{drawn.spines} spines are placed on them; spine lengths follow those measured in human layer III (about 1.4 µm basal, 1.8 µm apical). The densities are even and illustrative, below the measured peaks.",
+  "The axon is 0.45 µm across (measured in mouse cortex). Its initial segment, myelin segments, nodes and boutons have illustrative lengths; {drawn.boutons} boutons are drawn.",
+  "Zoom out to see the whole cell at its true size: about 0.8 mm from the tips of the basal dendrites to the top of the tuft."
+ ],
+ "sources": {
+  "mohan2015": { "cite": "Mohan H, Verhoog MB, Doreswamy KK et al. (2015) Dendritic and axonal architecture of individual pyramidal neurons across layers of adult human neocortex, Cereb Cortex 25:4839-4853", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4635923/", "opened": "2026-11-23", "used_for": "medians of 60 human L2/L3 cells: total dendrite 14533 µm; basal 6466 µm, 31 branch points; apical trunk 209 µm; oblique 4121 µm, 13; tuft 3643 µm, 12; L1/L2 border 252 ± 7 µm below the surface" },
+  "eyal2016": { "cite": "Eyal G, Verhoog MB, Testa-Silva G et al. (2016) Unique membrane properties and enhanced signal processing in human neocortical neurons, eLife 5:e16553", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5100995/", "opened": "2026-11-23", "used_for": "maximal dendritic distance 1050 ± 178 µm in six human L2/3 cells" },
+  "benavides2013": { "cite": "Benavides-Piccione R, Fernaud-Espinosa I, Robles V, Yuste R, DeFelipe J (2013) Age-based comparison of human dendritic spine structure using complete three-dimensional reconstructions, Cereb Cortex 23:1798-1810", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3698364/", "opened": "2026-11-23", "used_for": "human layer III pyramidal cells: spine length about 1.41 µm (basal) and 1.78 µm (apical); peak densities 1.87 per µm (basal) and 4.375 per µm (apical)" },
+  "berg2021": { "cite": "Berg J, Sorensen SA, Ting JT et al. (2021) Human neocortical expansion involves glutamatergic neuron diversification, Nature 598:151-158", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8494638/", "opened": "2026-11-23", "used_for": "human L2/3 cell bodies double in section from L2 to deep L3, the largest over 850 µm²" },
+  "micheva2016": { "cite": "Micheva KD, Wolman D, Mensh BD et al. (2016) A large fraction of neocortical myelin ensheathes axons of local inhibitory neurons, eLife 5:e15784", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4972537/", "opened": "2026-11-23", "used_for": "mouse cortex: myelinated non-GABAergic axons 0.45 µm across" },
+  "eichler2025": { "cite": "Eichler A, Kruse P, Schob C, Lenz M (2025) Synaptic transmission in supragranular layers of the human cortex: comparative review of structure, function, and plasticity, Front Synaptic Neurosci 17:1724377", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12728076/", "opened": "2026-11-23", "used_for": "pyramidal neurons of human layers 2/3 release glutamate from vesicles at their boutons" }
+ }
+}
