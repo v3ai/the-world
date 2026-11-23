@@ -68,7 +68,7 @@
  "reached": {
   "tissue": [{ "kind": "cardiac", "id": "cardiomyocyte" }]
  },
- "view": { "radius_um": 95, "r1_m": 6e-4, "arrive_m": 9e-5, "spawn_m": 1.5e-6,
+ "view": { "radius_um": 95, "r1_m": 6e-4, "arrive_m": 2.1e-4, "spawn_m": 1.5e-6,
   "break": { "text": "The cell ends in an intercalated disc; the next cell begins", "text_short": "An intercalated disc: the next cell begins" } },
  "about": [
   "One heart muscle cell from the left ventricle, {drawn.drawnLength} µm of it. Isolated cells from non-failing human hearts measured 141 µm long, about 7.5 times their width; permeabilized cell preparations from donor hearts were 21 µm across. A cylinder of that size holds about 49,000 µm³, close to the 50,600 µm³ measured in human heart muscle cells aged 10 to 20 years.",

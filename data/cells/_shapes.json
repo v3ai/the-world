@@ -2,11 +2,11 @@
  "about": "The shape vocabulary of cell specs (data/cells/<id>.json, field shape.type). Each parameter: [min, max, default, unit, meaning]. js/cells.js draws each shape; tools/cells/check.mjs checks every parameter is in range. A parameter left out takes its default. Lengths are in micrometres (_um), counts are whole numbers, flags are 0 or 1. Text parameters list their allowed values in place of min and max.",
  "shapes": {
   "ellipsoid": {
-   "fits": "a rounded cell: lymphocyte, monocyte, neutrophil, eosinophil, basophil, mast cell, egg (with zona), yeast (with bud), coccus, amoeba (pseudopods), ciliate (cilia), chondrocyte (lacuna), adipocyte (one lipid droplet), platelet (flat), bird red blood cell (flat, with nucleus)",
+   "fits": "a rounded cell: lymphocyte, monocyte, neutrophil (lobed nucleus), eosinophil, basophil, mast cell, macrophage (pseudopods: blunt fingers and flat ruffles), egg (with zona), yeast (with bud), coccus, amoeba (pseudopods), ciliate (cilia), chondrocyte (lacuna), adipocyte (one lipid droplet), platelet (flat), bird red blood cell (flat, with nucleus)",
    "params": {
-    "a_um": [0.3, 300, 10, "um", "length along x"],
-    "b_um": [0.3, 300, 10, "um", "length along y (height)"],
-    "c_um": [0.3, 300, 10, "um", "length along z"],
+    "a_um": [0.3, 300, 10, "um", "full length along x (a diameter, not a semi-axis)"],
+    "b_um": [0.3, 300, 10, "um", "full length along y (height)"],
+    "c_um": [0.3, 300, 10, "um", "full length along z"],
     "bumps": [0, 1, 0, "", "surface roughness: 0 smooth, 1 strongly ruffled"],
     "pseudopods": [0, 12, 0, "count", "finger-like extensions"],
     "pseudopod_um": [0, 60, 4, "um", "length of a pseudopod"],
@@ -140,6 +140,20 @@
    }
   }
  },
+ "nucleus": {
+  "about": "read by every shape from the spec's nucleus block (js/cells.js, nucleiFromSpec)",
+  "shape": "round | oval | flattened | elongated or cigar | indented (kidney, bean) | lobed (with lobes: n, joined by thin strands); the volume is kept as the shape changes",
+  "size_um": "a {value: [x, y, z]} or a bare list; else the volume share (volume_fraction) of the drawn cell",
+  "position": "basal | apical | central (a column's nucleus low or high in it); a fibre: nucleus_position peripheral | central",
+  "orientation": "the nucleus's longest axis lies along the cell's longest extent"
+ },
+ "drawn_from_special": {
+  "microvilli or brush_border": "params {count, diameter_um}: the apical fringe of a polyhedron with apical microvilli (cilia, stereocilia likewise)",
+  "unilocular_droplet": "an ellipsoid filled by one fat droplet, a thin rim of cytoplasm, its nucleus a lens pressed against the edge",
+  "keratin_bundles": "params {bundles, drawn_um}",
+  "crowd": "params {count, size_nm, show_below_um, max_drawn}"
+ },
+ "flat_cells": "a polyhedron under 0.3 times as tall as it is wide is cut through its own plane (lid off) and tipped toward the viewer, so the whole cell shows from above",
  "lacks": [
   "an oligodendrocyte or Schwann cell wrapping its myelin round an axon (the neuron draws the myelin; the glial cell itself is not a shape yet)",
   "a diatom's two-part silica shell with its pores (frustule)",

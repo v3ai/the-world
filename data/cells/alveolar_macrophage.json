@@ -8,9 +8,9 @@
  "note": "Model: a human alveolar macrophage, cut through its middle. Measured in human lung: its diameter (21 µm, cells washed out of the lung) and volume (about 5,000 µm³), and the width of its nucleus (8.3 µm, lung sections). Illustrative: the number, length and place of the pseudopods, the ruffling, the shape and place of the nucleus, the number and size of the mitochondria, lysosomes and engulfed particles, and the colours.",
  "shape": {
   "type": "ellipsoid",
-  "a_um": 10.6,
-  "b_um": 10.6,
-  "c_um": 10.6,
+  "a_um": 21.2,
+  "b_um": 21.2,
+  "c_um": 21.2,
   "bumps": 0.3,
   "pseudopods": 6,
   "pseudopod_um": 5
@@ -206,12 +206,6 @@
   }
  },
  "reached": {
-  "tissue": [
-   {
-    "kind": "alveoli",
-    "id": "macro"
-   }
-  ],
   "tissue2": [
    {
     "scene": "lung_alveoli",
