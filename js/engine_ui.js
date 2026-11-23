@@ -787,6 +787,13 @@ async function startApp() {
   document.addEventListener('submit', e => { if (e.target && e.target.id === 'srchForm' && document.querySelector('#srchPanel .srow')) panelShow('search'); }, true);
   $('#bLabels').classList.toggle('off', !labelsOn);
   $('#bLabels').onclick = () => { labelsOn = !labelsOn; store.set('labels', labelsOn); $('#bLabels').classList.toggle('off', !labelsOn); };
+  /* Realistic / illustrated: the two pictures are built differently from the first shader on, so the choice is kept and the page reloads with it.
+     A look named in the address (?look=1 or 2) still wins for that visit; the button drops it from the address so the kept choice applies. */
+  { const bl = $('#bLook'), real = typeof PERF !== 'undefined' && PERF.flags.look === '2';
+    if (bl) { bl.classList.toggle('on', real); bl.classList.toggle('off', !real); bl.setAttribute('aria-pressed', real ? 'true' : 'false');
+      bl.onclick = () => { try { localStorage.setItem('world.look', real ? '1' : '2'); } catch (e) { }
+        const u = new URL(location.href); try { localStorage.getItem('world.look'); u.searchParams.delete('look'); } catch (e) { u.searchParams.set('look', real ? '1' : '2'); }
+        location.href = u.toString(); }; } }
   $('#bHelp').onclick = () => $('#help').classList.remove('hide');
   $('#goBtn').onclick = () => { $('#help').classList.add('hide'); store.set('seenHelp', true); canvas.focus(); };
   $('#tourIn').onclick = () => startTour(true); $('#tourOut').onclick = () => startTour(false);

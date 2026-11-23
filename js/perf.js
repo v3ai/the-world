@@ -13,7 +13,8 @@
      depth=log|tight|vert  depth buffer: logarithmic per fragment, fitted near and far planes, logarithmic per vertex
      merge=0|1             draw far things inside their parent's scene
      idle=0|1              drop to a low frame rate when nothing moves
-     look=2                the realistic picture (docs/DESIGN.md section 3; js/look.js). Off by default; reloads the page
+     look=1|2              the illustrated (1) or the realistic (2) picture (docs/DESIGN.md section 3; js/look.js); reloads the page. Without it the
+                           visitor's last choice with the Realistic button in the top bar is used (kept in localStorage as world.look; illustrated at first)
      lookq=high|low        its quality level (fx=low implies low); reloads the page
      lookoff=a,b           parts of it switched off, to judge each alone: pbr tone sky env tex sss rig shadow glow ui labels
                            (env, shadow, glow and labels change live; the others reload the page)
@@ -27,6 +28,8 @@ const PERF = (() => {
   const PRESET = { low: { bloom: '0', shadows: '0', outline: '0', dprMax: 1 }, high: { bloom: 'full', shadows: '1', outline: 'all', dprMax: 2 }, '': { bloom: 'half', shadows: '1', outline: 'near', dprMax: 2 } }[fx];
   const dprQ = q.get('dpr'), dprN = dprQ !== null && isFinite(+dprQ) && +dprQ > 0 ? clampN(+dprQ, .25, 4) : null;
   function clampN(x, a, b) { return Math.max(a, Math.min(b, x)); }
+  /* the visitor's own choice of picture, kept between visits (the Realistic button in the top bar sets it) */
+  function lookPref() { try { return localStorage.getItem('world.look') === '2' ? '2' : '1'; } catch (e) { return '1'; } }
   const flags = {
     stats: q.get('stats') === '1',
     fx,
@@ -38,7 +41,7 @@ const PERF = (() => {
     depth: get('depth', ['log', 'tight', 'vert'], 'log'),
     merge: get('merge', ['0', '1'], '1') === '1',
     idle: get('idle', ['0', '1'], '1') === '1',
-    look: get('look', ['1', '2'], '1'),
+    look: get('look', ['1', '2'], lookPref()),   // the address wins; otherwise what the visitor last chose with the Realistic button
     lookq: get('lookq', ['low', 'high'], fx === 'low' ? 'low' : 'high'),
     lookoff: (q.get('lookoff') || '').split(',').map(s => s.trim()).filter(Boolean).sort().join(','),
     looksky: get('looksky', ['sky', 'photo', 'overcast'], 'sky'),
