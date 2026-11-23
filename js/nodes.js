@@ -390,11 +390,12 @@ FT.tissue = {
       if (K === 'alveoli') { for (let i = 0; i < 9; i++) { const g = inked(new THREE.SphereGeometry(100, 32, 24), 0xf4b6c2, { double: true }); g.userData.main.material.opacity = .45; g.position.set((i % 3 - 1) * 210, -150, (Math.floor(i / 3) - 1) * 210); F.add(pick(g, NODE.alveoli ? 'alveoli' : 'lung_l')); } }
     } else if (K === 'bone') {
       for (let i = 0; i < 7; i++) { const g = new THREE.Group(), cx = (i % 4 - 1.5) * 220 + (Math.floor(i / 4) * 110), cz = (Math.floor(i / 4) - .5) * 200;
-        /* each osteon is cut open on the side toward the viewer (a quarter of its rings left out), so its lamellae and the bone cells between them are seen;
+        /* each osteon is cut open on the side toward the viewer (a quarter of its rings left out), so its lamellae and the bone cells between them are seen
+           (six of them in the open quarter);
            the bone cells (osteocytes, in their lacunae between the rings) are things of their own: a double click opens one */
         for (let k = 5; k >= 1; k--) { const ring = inked(new THREE.CylinderGeometry(k * 20, k * 20, 300, 48, 1, true, Math.PI / 4, Math.PI * 1.5), k % 2 ? 0xeee3c8 : 0xe2d3ae, { double: true }); g.add(ring); }
         const canal = inked(new THREE.CylinderGeometry(10, 10, 302, 24), 0xc0392b); g.add(canal); g.userData.main = canal.userData.main;
-        const ocs = []; for (let k = 0; k < 16; k++) { const a = k < 6 ? (k / 6 - .5) * 1.4 + Math.PI / 2 * 0 + (r() - .5) * .2 : r() * TAU, ring = 1 + Math.floor(r() * 4), d = ring * 20 + 10, oc = inked(new THREE.SphereGeometry(1, 12, 8).scale(8.6, 2.4, 4.7), nucMat); oc.position.set(Math.sin(a) * d, (r() - .5) * 260, Math.cos(a) * d); oc.rotation.y = a; ocs.push(oc); g.add(oc); }
+        const ocs = []; for (let k = 0; k < 16; k++) { const a = k < 6 ? (k / 6 - .5) * 1.4 + (r() - .5) * .2 : r() * TAU, ring = 1 + Math.floor(r() * 4), d = ring * 20 + 10, oc = inked(new THREE.SphereGeometry(1, 12, 8).scale(8.6, 2.4, 4.7), nucMat); oc.position.set(Math.sin(a) * d, (r() - .5) * 260, Math.cos(a) * d); oc.rotation.y = a; ocs.push(oc); g.add(oc); }
         g.position.set(cx, 0, cz); F.add(pick(g, NODE.osteon ? 'osteon' : 'osteocyte')); ocs.forEach(oc => pick(oc, 'osteocyte')); }
     } else if (K === 'adipose' || K === 'cartilage') {
       for (let i = 0; i < 40; i++) { const s = K === 'adipose' ? 45 + r() * 30 : 14; const g = inked(new THREE.IcosahedronGeometry(s, 3), pal[0]); g.position.set((i % 7 - 3) * (K === 'adipose' ? 95 : 70) + (r() - .5) * 20, (Math.floor(i / 7) - 2.5) * (K === 'adipose' ? 95 : 70), (r() - .5) * 40); const nu = inked(new THREE.SphereGeometry(1, 12, 8).scale(6, 3, 6), nucMat); nu.position.set(s * .7, 0, s * .5); g.add(nu); F.add(pick(g, cellId)); }
