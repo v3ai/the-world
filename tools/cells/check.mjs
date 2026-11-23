@@ -14,7 +14,8 @@
    - every part names a material of data/descent/materials.json (so the descent goes on from it) and a card that is a node in data/nodes, or null;
    - the colours say their convention; the cut says what it shows;
    - nothing in the reader's text calls the cell "generic";
-   - `reached` names places: tissue kinds of FT.tissue, materials, tissue scenes of data/things/tissues and their structures;
+   - `reached` names places: tissue kinds of FT.tissue, materials, tissue scenes of data/things/tissues and their structures, and each of those
+     materials and structures leads to this very cell (a material's first constituent is cell:<id>);
    - the inventory lists the spec (spec: true), and every inventory entry marked spec: true has a file. */
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { dirname, join, basename, resolve } from 'node:path';
@@ -28,6 +29,7 @@ for (const f of readdirSync(join(ROOT, 'data/nodes'))) { if (!f.endsWith('.json'
 const TISSUE_KINDS = new Set(['cardiac', 'skeletal', 'smooth', 'blood', 'bone', 'cartilage', 'adipose', 'nervous', 'alveoli', 'villi', 'liver', 'epithelium']);   // FT.tissue, js/nodes.js
 const T2 = {}; for (const f of readdirSync(join(ROOT, 'data/things/tissues'))) if (f.endsWith('.json')) { const d = J('data/things/tissues/' + f); T2[d.id] = d; }
 const INV = J('data/cells/_inventory.json');
+const A2 = J('data/descent/assign/tissue2.json');
 let errors = 0;
 
 function checkSpec(file) {
@@ -92,7 +94,12 @@ function checkSpec(file) {
   const R = S.reached || {};
   for (const t of R.tissue || []) { if (!TISSUE_KINDS.has(t.kind)) err(`reached.tissue: no tissue kind "${t.kind}"`); if (!t.id) err('reached.tissue: no pick id'); if (t.organ) { try { new RegExp(t.organ); } catch (e) { err(`reached.tissue: organ is not a regular expression (${t.organ})`); } } }
   for (const m of R.materials || []) { if (!MATS[m]) err(`reached.materials: no material "${m}"`); else if (!(MATS[m].inside || []).some(c => c.scene === 'cell:' + id)) err(`reached.materials: material "${m}" does not lead to the scene cell:${id}`); }
-  for (const t of R.tissue2 || []) { const d = T2[t.scene]; if (!d) err(`reached.tissue2: no tissue scene "${t.scene}"`); else if (!JSON.stringify(d).includes(`"id": "${t.structure}"`) && !JSON.stringify(d).includes(`"id":"${t.structure}"`)) err(`reached.tissue2: scene ${t.scene} has no structure "${t.structure}"`); }
+  for (const t of R.tissue2 || []) { const d = T2[t.scene]; if (!d) { err(`reached.tissue2: no tissue scene "${t.scene}"`); continue; }
+    const p = (d.populations || []).find(q => q.id === t.structure); if (!p) { err(`reached.tissue2: scene ${t.scene} has no structure "${t.structure}"`); continue; }
+    /* the structure must open this cell: its material (or the one data/descent/assign/tissue2.json puts over it) leads first to cell:<id>, and no `deeper` of its own comes before it */
+    const over = ((A2.sub || {})[t.scene] || {}).over || {}, mat = over[t.structure] || p.material, first = mat && MATS[mat] && (MATS[mat].inside || []).find(c => c.scene || c.material);
+    if (p.deeper) err(`reached.tissue2: ${t.scene}.${t.structure} has a deeper of its own (${JSON.stringify(p.deeper)}), which comes before its material`);
+    else if (!first || first.scene !== 'cell:' + id) err(`reached.tissue2: ${t.scene}.${t.structure} is made of "${mat}", which does not lead first to cell:${id} (node tools/cells/wire.mjs, then the tissue generators)`); }
   if (!R.landmark && !(R.tissue || []).length && !(R.materials || []).length && !(R.tissue2 || []).length) err('reached: it is not reached from anywhere');
   /* view */
   const v = S.view || {};

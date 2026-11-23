@@ -366,11 +366,8 @@
      }
     ]
    },
-   "material": "animal_cells",
+   "material": "chondrocyte",
    "ink": 1,
-   "deeper": {
-    "type": "cell"
-   },
    "priority": 3
   },
   {
@@ -435,11 +432,8 @@
     "margin": 0.55,
     "seed": 11
    },
-   "material": "animal_cells",
+   "material": "chondrocyte",
    "ink": 1,
-   "deeper": {
-    "type": "cell"
-   },
    "priority": 3
   },
   {
@@ -1502,11 +1496,8 @@
      }
     ]
    },
-   "material": "animal_cells",
+   "material": "chondrocyte",
    "ink": 1,
-   "deeper": {
-    "type": "cell"
-   },
    "priority": 3
   },
   {
@@ -1675,11 +1666,8 @@
     "margin": 0.55,
     "seed": 12
    },
-   "material": "animal_cells",
+   "material": "chondrocyte",
    "ink": 1,
-   "deeper": {
-    "type": "cell"
-   },
    "priority": 3
   },
   {
@@ -2566,11 +2554,8 @@
      }
     ]
    },
-   "material": "animal_cells",
+   "material": "chondrocyte",
    "ink": 1,
-   "deeper": {
-    "type": "cell"
-   },
    "priority": 3
   },
   {
@@ -2715,11 +2700,8 @@
     "margin": 0.55,
     "seed": 13
    },
-   "material": "animal_cells",
+   "material": "chondrocyte",
    "ink": 1,
-   "deeper": {
-    "type": "cell"
-   },
    "priority": 3
   },
   {
@@ -2887,11 +2869,8 @@
      }
     ]
    },
-   "material": "animal_cells",
-   "ink": 1,
-   "deeper": {
-    "type": "cell"
-   }
+   "material": "fibroblast",
+   "ink": 1
   },
   {
    "id": "capillary",

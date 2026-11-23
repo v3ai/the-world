@@ -162,19 +162,19 @@
   "lacuna": {
    "name": "Lacuna",
    "card": "osteocyte_lacuna",
-   "material": "bone",
+   "material": "bone_matrix",
    "source": "yu2020"
   },
   "canaliculus": {
    "name": "Canaliculus (tunnel)",
    "card": "osteocyte_canaliculus",
-   "material": "bone",
+   "material": "bone_matrix",
    "source": "repp2017"
   },
   "matrix": {
    "name": "Bone matrix",
    "card": "bone_tissue",
-   "material": "bone",
+   "material": "bone_matrix",
    "source": "openstax_bone",
    "about": "The hard material around the cell: a frame of collagen stiffened with crystals of a calcium phosphate mineral."
   }

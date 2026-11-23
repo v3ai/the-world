@@ -3,6 +3,7 @@
 # cartilage, OARSI grade 0-1); the thickness of the cartilage and its water content are from Sophia Fox et al. 2009.
 # Everything else (perichondrium thickness, cells in the perichondrium, vessels, fibres, cells inside lacunae) is illustrative.
 import json, math, random
+import tissue_material as TM
 SLAB_X, SLAB_Z = 600, 90                   # drawn window, micrometres (illustrative window)
 Y_TOP, Y_BOT = 330, -350                   # matrix runs from the perichondrium (top) down
 PERI_T = 40                                # illustrative perichondrium thickness
@@ -67,7 +68,7 @@ scene = {'id': 'hyaline_cartilage', 'title': 'Inside hyaline cartilage', 'node':
     {'text': 'Isogenous group: cells from one cell dividing', 'at': [-300, 0, 50], 'pop': 'group2'}, {'text': 'Matrix: no vessels (joint cartilage), no fibres you can see', 'at': [-300, -120, 50], 'pop': 'matrix'},
     {'text': 'Larger cells deeper in', 'at': [-300, -250, 50], 'pop': 'cell3'}],
   'populations': pops}
-json.dump(scene, open('data/things/tissues/hyaline_cartilage.json', 'w'), indent=1)
+json.dump(TM.apply(scene), open('data/things/tissues/hyaline_cartilage.json', 'w'), indent=1)
 print('populations', len(pops), 'chondrons by band (total, in groups, single):', counts, 'total', sum(c[0] for c in counts))
 # ---------------- cards ----------------
 SRC = 'Kestila et al. 2018; Sophia Fox et al. 2009'

@@ -112,7 +112,7 @@ const DESCENT = (() => {
       case 'tissue2': return tissue2Frame(sc.id, T);
       case 'tissue': { const f = tissueFrame(sc.node || TISSUE_NODE[sc.kind] || sc.kind, T, q && q.id); f.opts.kind = sc.kind; if (sc.variant) f.opts.variant = sc.variant; return f; }   // variant: the same scene with another assignment table (assign/tissue.json sub)
       case 'cell': {
-        if (typeof CELLS !== 'undefined' && CELLS.has(sc.cell)) return CELLS.frame(sc.cell, T, { node: q && q.node || undefined, stands: what || undefined });   // a cell type with its own spec (data/cells, js/cells.js)
+        if (typeof CELLS !== 'undefined' && CELLS.has(sc.cell)) return CELLS.frame(sc.cell, T, Object.assign({ node: q && q.node || undefined, stands: what || undefined }, R.standIn && what ? { cname: `${cap(what)}: drawn as ${/^[aeiou]/i.test(CELLS.S[sc.cell].name) ? 'an' : 'a'} ${CELLS.S[sc.cell].name.replace(/\s*\(.*\)$/, '').toLowerCase()}` } : {}));   // a cell type with its own spec (data/cells, js/cells.js); standing in for another cell, its caption says which
         const fungal = sc.cell === 'fungal', type = fungal ? 'animal' : sc.cell, base = { animal: 'Animal cell', plant: 'Plant cell', bacterium: 'Bacterium' }[type] || 'Cell';
         const f = new Frame({ type: 'cell', name: base, unit: 1e-6, radius: 16, r1: 2.5e-4, pos: T.clone(), opts: { type, cname: fill(sc.cname, what) || (R.standIn && what ? `${cap(what)}: drawn as a generic ${type === 'bacterium' ? 'bacterium' : type + ' cell'}` : undefined), blurb: fill(sc.blurb, what) || undefined, node: q && q.node || undefined, stands: what || undefined } });
         return f;

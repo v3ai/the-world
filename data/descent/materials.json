@@ -325,16 +325,13 @@
    "card": "bio_prokaryote_eukaryote",
    "inside": [
     {
-     "name": "a generic animal cell",
-     "scene": {
-      "type": "cell",
-      "cell": "animal"
-     },
+     "name": "a plain animal cell",
+     "scene": "cell:animal_cell_generic",
      "standIn": true,
-     "note": "A generic animal cell stands in for the cells of {what}. What it shows (membrane, nucleus, mitochondria and the other organelles) is common to animal cells; the shape and the special equipment of this cell type are not drawn. One cell with one nucleus is drawn. Some animal cells are different: red blood cells have no nucleus, and muscle fibres have many."
+     "note": "A plain animal cell stands in for the cells of {what}. What it shows (membrane, nucleus, mitochondria and the other organelles) is common to animal cells; the shape and the special equipment of this cell type are not drawn. One cell with one nucleus is drawn. Some animal cells are different: red blood cells have no nucleus, and muscle fibres have many."
     }
    ],
-   "src": "the animal-cell scene; OpenStax Anatomy and Physiology 2e 10.2 (muscle fibres: many nuclei)"
+   "src": "the animal-cell scene; OpenStax Anatomy and Physiology 2e 10.2 (muscle fibres: many nuclei); data/cells/animal_cell_generic.json"
   },
   "plant_cells": {
    "title": "Plant cells",
@@ -422,12 +419,17 @@
    "card": "keratinocyte",
    "inside": [
     {
+     "name": "a corneocyte (dead skin cell)",
+     "scene": "cell:corneocyte",
+     "title": "Corneocyte (dead skin cell)"
+    },
+    {
      "name": "keratin",
      "material": "keratin",
      "note": "The surface of skin is dead cells: flat scales with no nucleus, filled with keratin."
     }
    ],
-   "src": "the skin micro scene (\"flattened dead cells (corneocytes)\"), card dog_fur"
+   "src": "the skin micro scene (\"flattened dead cells (corneocytes)\"), card dog_fur; data/cells/corneocyte.json"
   },
   "skeletal_muscle": {
    "title": "Skeletal muscle",
@@ -2251,12 +2253,12 @@
    "card": "epithelial_tissue",
    "inside": [
     {
-     "name": "a living epithelial cell",
-     "material": "animal_cells",
-     "note": "The flat top layer of the skin picture is dead skin, which a lining inside the body does not have. The surface cells of this lining are living cells. A generic cell stands in for them."
+     "name": "a living surface cell of a lining",
+     "scene": "cell:lining_surface_cell",
+     "title": "Living surface cell of a lining"
     }
    ],
-   "src": "cards epithelial_tissue, skin; js/nodes.js (the skin epithelium scene)"
+   "src": "cards epithelial_tissue, skin; js/nodes.js (the skin epithelium scene); data/cells/lining_surface_cell.json"
   },
   "rf_front_end": {
    "title": "Radio front end",
@@ -2701,12 +2703,17 @@
    "card": "red_blood_cell",
    "inside": [
     {
+     "name": "a red blood cell (dog)",
+     "scene": "cell:red_blood_cell_dog",
+     "title": "Red blood cell (dog)"
+    },
+    {
      "name": "haemoglobin",
      "material": "haemoglobin",
-     "note": "A dog's red blood cell, like a human one, has no nucleus and is packed with haemoglobin. No picture of the dog's own cell is built (the human one is measured, not the dog's): the way down goes on through its haemoglobin."
+     "note": "Like a human one, a dog's red blood cell has no nucleus and is packed with haemoglobin."
     }
    ],
-   "src": "card red_blood_cell; the human cell's spec data/cells/red_blood_cell.json is not used for a dog"
+   "src": "card red_blood_cell; data/cells/red_blood_cell_dog.json"
   },
   "skeletal_muscle_fibre": {
    "title": "Skeletal muscle fibre",
@@ -2828,6 +2835,413 @@
     }
    ],
    "src": "Liu, Derick and Palek 1987, J Cell Biol 104:527"
+  },
+  "adipocyte": {
+   "title": "White fat cell (adipocyte)",
+   "desc": "A human white fat cell.",
+   "card": "cell_adipocyte",
+   "inside": [
+    {
+     "name": "a white fat cell (adipocyte)",
+     "scene": "cell:adipocyte",
+     "title": "White fat cell (adipocyte)"
+    }
+   ],
+   "src": "data/cells/adipocyte.json"
+  },
+  "alveolar_macrophage": {
+   "title": "Alveolar macrophage",
+   "desc": "A human alveolar macrophage.",
+   "card": "cell_alveolar_macrophage",
+   "inside": [
+    {
+     "name": "an alveolar macrophage",
+     "scene": "cell:alveolar_macrophage",
+     "title": "Alveolar macrophage"
+    }
+   ],
+   "src": "data/cells/alveolar_macrophage.json"
+  },
+  "apocrine_cell_dog": {
+   "title": "Apocrine sweat gland cell (dog)",
+   "desc": "A secretory cell of a dog's sweat gland.",
+   "card": "cell_apocrine_cell_dog",
+   "inside": [
+    {
+     "name": "an apocrine sweat gland cell (dog)",
+     "scene": "cell:apocrine_cell_dog",
+     "title": "Apocrine sweat gland cell (dog)"
+    }
+   ],
+   "src": "data/cells/apocrine_cell_dog.json"
+  },
+  "bipolar_cell_dog": {
+   "title": "Retinal bipolar cell (dog)",
+   "desc": "A bipolar cell of a dog's retina.",
+   "card": "cell_bipolar_cell_dog",
+   "inside": [
+    {
+     "name": "a retinal bipolar cell (dog)",
+     "scene": "cell:bipolar_cell_dog",
+     "title": "Retinal bipolar cell (dog)"
+    }
+   ],
+   "src": "data/cells/bipolar_cell_dog.json"
+  },
+  "bowman_gland_cell_dog": {
+   "title": "Bowman's gland cell (dog)",
+   "desc": "A mucus-making cell from a gland under the dog's smell lining.",
+   "card": "cell_bowman_gland_cell_dog",
+   "inside": [
+    {
+     "name": "a bowman's gland cell (dog)",
+     "scene": "cell:bowman_gland_cell_dog",
+     "title": "Bowman's gland cell (dog)"
+    }
+   ],
+   "src": "data/cells/bowman_gland_cell_dog.json"
+  },
+  "chondrocyte": {
+   "title": "Chondrocyte (cartilage cell)",
+   "desc": "The one kind of cell in cartilage.",
+   "card": "cell_chondrocyte",
+   "inside": [
+    {
+     "name": "a chondrocyte (cartilage cell)",
+     "scene": "cell:chondrocyte",
+     "title": "Chondrocyte (cartilage cell)"
+    }
+   ],
+   "src": "data/cells/chondrocyte.json"
+  },
+  "choroid_cells_dog": {
+   "title": "Choroid pigment cell (dog)",
+   "desc": "The layer behind a dog's retina, dark with pigment away from the tapetum, is made of blood vessels and the cells between them.",
+   "card": "cell_choroid_cells_dog",
+   "inside": [
+    {
+     "name": "a choroid pigment cell (dog)",
+     "scene": "cell:choroid_cells_dog",
+     "title": "Choroid pigment cell (dog)"
+    }
+   ],
+   "src": "data/cells/choroid_cells_dog.json"
+  },
+  "cone_cell_dog": {
+   "title": "Cone photoreceptor (dog)",
+   "desc": "A cone from a dog's retina.",
+   "card": "cell_cone_cell_dog",
+   "inside": [
+    {
+     "name": "a cone photoreceptor (dog)",
+     "scene": "cell:cone_cell_dog",
+     "title": "Cone photoreceptor (dog)"
+    }
+   ],
+   "src": "data/cells/cone_cell_dog.json"
+  },
+  "corneal_endothelial_cell": {
+   "title": "Corneal endothelial cell",
+   "desc": "A cell of the single inner layer of the cornea.",
+   "card": "cell_corneal_endothelial_cell",
+   "inside": [
+    {
+     "name": "a corneal endothelial cell",
+     "scene": "cell:corneal_endothelial_cell",
+     "title": "Corneal endothelial cell"
+    }
+   ],
+   "src": "data/cells/corneal_endothelial_cell.json"
+  },
+  "corneal_epithelial_cell": {
+   "title": "Corneal epithelial cell (wing cell)",
+   "desc": "A living cell from the middle of the clear skin of the eye.",
+   "card": "cell_corneal_epithelial_cell",
+   "inside": [
+    {
+     "name": "a corneal epithelial cell (wing cell)",
+     "scene": "cell:corneal_epithelial_cell",
+     "title": "Corneal epithelial cell (wing cell)"
+    }
+   ],
+   "src": "data/cells/corneal_epithelial_cell.json"
+  },
+  "corneal_keratocyte": {
+   "title": "Corneal keratocyte",
+   "desc": "The resting cell of the clear front window of the eye.",
+   "card": "cell_corneal_keratocyte",
+   "inside": [
+    {
+     "name": "a corneal keratocyte",
+     "scene": "cell:corneal_keratocyte",
+     "title": "Corneal keratocyte"
+    }
+   ],
+   "src": "data/cells/corneal_keratocyte.json"
+  },
+  "endothelial_cell": {
+   "title": "Capillary endothelial cell",
+   "desc": "The cell that lines the smallest blood vessels.",
+   "card": "cell_endothelial_cell",
+   "inside": [
+    {
+     "name": "a capillary endothelial cell",
+     "scene": "cell:endothelial_cell",
+     "title": "Capillary endothelial cell"
+    }
+   ],
+   "src": "data/cells/endothelial_cell.json"
+  },
+  "fibroblast": {
+   "title": "Fibroblast",
+   "desc": "The main cell of connective tissue.",
+   "card": "cell_fibroblast",
+   "inside": [
+    {
+     "name": "a fibroblast",
+     "scene": "cell:fibroblast",
+     "title": "Fibroblast"
+    }
+   ],
+   "src": "data/cells/fibroblast.json"
+  },
+  "hair_matrix_cell_dog": {
+   "title": "Hair bulb (matrix) cell (dog)",
+   "desc": "A cell from the root of a dog's hair.",
+   "card": "cell_hair_matrix_cell_dog",
+   "inside": [
+    {
+     "name": "a hair bulb (matrix) cell (dog)",
+     "scene": "cell:hair_matrix_cell_dog",
+     "title": "Hair bulb (matrix) cell (dog)"
+    }
+   ],
+   "src": "data/cells/hair_matrix_cell_dog.json"
+  },
+  "keratinocyte_dog": {
+   "title": "Keratinocyte (dog skin)",
+   "desc": "A living skin cell from the thin epidermis of a dog.",
+   "card": "cell_keratinocyte_dog",
+   "inside": [
+    {
+     "name": "a keratinocyte (dog skin)",
+     "scene": "cell:keratinocyte_dog",
+     "title": "Keratinocyte (dog skin)"
+    }
+   ],
+   "src": "data/cells/keratinocyte_dog.json"
+  },
+  "kidney_dct_cell": {
+   "title": "Distal tubule cell",
+   "desc": "A cell lining the distal convoluted tubule of the kidney.",
+   "card": "cell_kidney_dct_cell",
+   "inside": [
+    {
+     "name": "a distal tubule cell",
+     "scene": "cell:kidney_dct_cell",
+     "title": "Distal tubule cell"
+    }
+   ],
+   "src": "data/cells/kidney_dct_cell.json"
+  },
+  "kidney_pct_cell": {
+   "title": "Proximal tubule cell (kidney)",
+   "desc": "A cell lining the first winding tube of the kidney.",
+   "card": "cell_kidney_pct_cell",
+   "inside": [
+    {
+     "name": "a proximal tubule cell (kidney)",
+     "scene": "cell:kidney_pct_cell",
+     "title": "Proximal tubule cell (kidney)"
+    }
+   ],
+   "src": "data/cells/kidney_pct_cell.json"
+  },
+  "macrophage": {
+   "title": "Macrophage",
+   "desc": "A human macrophage: a large, irregular roaming cell with a ruffled surface and finger-like feet, an oval nucleus with a dent in it, and many lysosomes for digesting what it swallows.",
+   "card": "cell_macrophage",
+   "inside": [
+    {
+     "name": "a macrophage",
+     "scene": "cell:macrophage",
+     "title": "Macrophage"
+    }
+   ],
+   "src": "data/cells/macrophage.json"
+  },
+  "mast_cell": {
+   "title": "Mast cell",
+   "desc": "A human mast cell: a small round cell of loose connective tissue whose cytoplasm is packed with over a thousand granules of histamine, heparin and enzymes, around a round central nucleus.",
+   "card": "cell_mast_cell",
+   "inside": [
+    {
+     "name": "a mast cell",
+     "scene": "cell:mast_cell",
+     "title": "Mast cell"
+    }
+   ],
+   "src": "data/cells/mast_cell.json"
+  },
+  "motor_axon_dog": {
+   "title": "Motor nerve fibre (dog)",
+   "desc": "The long thin arm of a dog's motor neuron.",
+   "card": "cell_motor_axon_dog",
+   "inside": [
+    {
+     "name": "a motor nerve fibre (dog)",
+     "scene": "cell:motor_axon_dog",
+     "title": "Motor nerve fibre (dog)"
+    }
+   ],
+   "src": "data/cells/motor_axon_dog.json"
+  },
+  "olfactory_basal_cell_dog": {
+   "title": "Olfactory basal (stem) cell (dog)",
+   "desc": "A small, low stem cell lying on the floor of the dog's smell lining.",
+   "card": "cell_olfactory_basal_cell_dog",
+   "inside": [
+    {
+     "name": "an olfactory basal (stem) cell (dog)",
+     "scene": "cell:olfactory_basal_cell_dog",
+     "title": "Olfactory basal (stem) cell (dog)"
+    }
+   ],
+   "src": "data/cells/olfactory_basal_cell_dog.json"
+  },
+  "olfactory_neuron_dog": {
+   "title": "Olfactory sensory neuron (dog)",
+   "desc": "A smell neuron of the dog's nose.",
+   "card": "cell_olfactory_neuron_dog",
+   "inside": [
+    {
+     "name": "an olfactory sensory neuron (dog)",
+     "scene": "cell:olfactory_neuron_dog",
+     "title": "Olfactory sensory neuron (dog)"
+    }
+   ],
+   "src": "data/cells/olfactory_neuron_dog.json"
+  },
+  "retinal_ganglion_cell_dog": {
+   "title": "Retinal ganglion cell (dog)",
+   "desc": "A ganglion cell from a dog's retina.",
+   "card": "cell_retinal_ganglion_cell_dog",
+   "inside": [
+    {
+     "name": "a retinal ganglion cell (dog)",
+     "scene": "cell:retinal_ganglion_cell_dog",
+     "title": "Retinal ganglion cell (dog)"
+    }
+   ],
+   "src": "data/cells/retinal_ganglion_cell_dog.json"
+  },
+  "rpe_cell_dog": {
+   "title": "Retinal pigment epithelium cell (dog)",
+   "desc": "A cell of the dark lining behind a dog's retina.",
+   "card": "cell_rpe_cell_dog",
+   "inside": [
+    {
+     "name": "a retinal pigment epithelium cell (dog)",
+     "scene": "cell:rpe_cell_dog",
+     "title": "Retinal pigment epithelium cell (dog)"
+    }
+   ],
+   "src": "data/cells/rpe_cell_dog.json"
+  },
+  "sebocyte_dog": {
+   "title": "Sebaceous gland cell (dog)",
+   "desc": "A ripening oil-gland cell from a dog's skin.",
+   "card": "cell_sebocyte_dog",
+   "inside": [
+    {
+     "name": "a sebaceous gland cell (dog)",
+     "scene": "cell:sebocyte_dog",
+     "title": "Sebaceous gland cell (dog)"
+    }
+   ],
+   "src": "data/cells/sebocyte_dog.json"
+  },
+  "skeletal_muscle_fibre_dog": {
+   "title": "Skeletal muscle fibre (dog)",
+   "desc": "One dog skeletal muscle cell.",
+   "card": "cell_skeletal_muscle_fibre_dog",
+   "inside": [
+    {
+     "name": "a skeletal muscle fibre (dog)",
+     "scene": "cell:skeletal_muscle_fibre_dog",
+     "title": "Skeletal muscle fibre (dog)"
+    }
+   ],
+   "src": "data/cells/skeletal_muscle_fibre_dog.json"
+  },
+  "sustentacular_cell_dog": {
+   "title": "Supporting (sustentacular) cell of the dog's nose",
+   "desc": "The tall supporting cell of a dog's smell lining.",
+   "card": "cell_sustentacular_cell_dog",
+   "inside": [
+    {
+     "name": "a supporting (sustentacular) cell of the dog's nose",
+     "scene": "cell:sustentacular_cell_dog",
+     "title": "Supporting (sustentacular) cell of the dog's nose"
+    }
+   ],
+   "src": "data/cells/sustentacular_cell_dog.json"
+  },
+  "tapetal_cell_dog": {
+   "title": "Tapetal cell (dog)",
+   "desc": "A dog's tapetal cell: a flat, many-sided cell in the shiny layer behind the retina, its cytoplasm filled with slender zinc-rich rods that bounce light back.",
+   "card": "cell_tapetal_cell_dog",
+   "inside": [
+    {
+     "name": "a tapetal cell (dog)",
+     "scene": "cell:tapetal_cell_dog",
+     "title": "Tapetal cell (dog)"
+    }
+   ],
+   "src": "data/cells/tapetal_cell_dog.json"
+  },
+  "tenocyte": {
+   "title": "Tenocyte (tendon cell)",
+   "desc": "A tendon cell: a long, flat cell with one slim nucleus, lying in a row with others between the collagen bundles it makes, and reaching thin wings of cytoplasm round them.",
+   "card": "cell_tenocyte",
+   "inside": [
+    {
+     "name": "a tenocyte (tendon cell)",
+     "scene": "cell:tenocyte",
+     "title": "Tenocyte (tendon cell)"
+    }
+   ],
+   "src": "data/cells/tenocyte.json"
+  },
+  "type2_pneumocyte": {
+   "title": "Type II alveolar cell",
+   "desc": "The surfactant-making cell of the lung's air sacs.",
+   "card": "cell_type2_pneumocyte",
+   "inside": [
+    {
+     "name": "a type II alveolar cell",
+     "scene": "cell:type2_pneumocyte",
+     "title": "Type II alveolar cell"
+    }
+   ],
+   "src": "data/cells/type2_pneumocyte.json"
+  },
+  "bone_matrix": {
+   "title": "Bone matrix",
+   "desc": "The hard material round bone cells: a frame of collagen fibres stiffened with tiny crystals of a calcium phosphate mineral.",
+   "card": "bone_tissue",
+   "inside": [
+    {
+     "name": "bone mineral",
+     "material": "bone_mineral",
+     "note": "In bone the mineral crystals are set in collagen fibres; the mineral is shown first, then the collagen."
+    },
+    {
+     "name": "collagen",
+     "material": "collagen"
+    }
+   ],
+   "src": "OpenStax Anatomy and Physiology 2e 6.3 (bone matrix: collagen fibres and calcium phosphate crystals)"
   }
  }
 }

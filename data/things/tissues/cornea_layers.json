@@ -101,10 +101,7 @@
      50
     ]
    },
-   "deeper": {
-    "type": "cell",
-    "cell": "animal"
-   }
+   "material": "corneal_epithelial_cell"
   },
   {
    "id": "wing",
@@ -138,10 +135,7 @@
     ],
     "jitter": 0.04
    },
-   "deeper": {
-    "type": "cell",
-    "cell": "animal"
-   }
+   "material": "corneal_epithelial_cell"
   },
   {
    "id": "basal",
@@ -174,10 +168,7 @@
      10
     ]
    },
-   "deeper": {
-    "type": "cell",
-    "cell": "animal"
-   }
+   "material": "corneal_epithelial_cell"
   },
   {
    "id": "bowman",
@@ -1675,10 +1666,7 @@
     "gap": 1,
     "seed": 11
    },
-   "deeper": {
-    "type": "cell",
-    "cell": "animal"
-   }
+   "material": "corneal_keratocyte"
   },
   {
    "id": "desc",
@@ -1739,10 +1727,7 @@
     ],
     "jitter": 0.03
    },
-   "deeper": {
-    "type": "cell",
-    "cell": "animal"
-   }
+   "material": "corneal_endothelial_cell"
   }
  ]
 }

@@ -77,7 +77,7 @@
   "neighbour": { "name": "Neighbouring cell of the gut lining", "card": "simple_columnar_epithelium", "material": "membrane" }
  },
  "reached": {
-  "tissue": [{ "kind": "villi", "id": "enterocyte" }]
+  "tissue": [{ "kind": "villi", "id": "enterocyte" }, { "kind": "villi", "id": "villi", "note": "a villus is covered by enterocytes (with some goblet cells): its next level down is the cell that covers it" }]
  },
  "view": { "radius_um": 14, "r1_m": 2.0e-4, "arrive_m": 3.5e-5, "spawn_m": 1.0e-6 },
  "about": [

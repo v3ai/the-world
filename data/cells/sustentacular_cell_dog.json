@@ -104,7 +104,7 @@
   "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus", "source": "gizurarsson2012" },
   "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna" },
   "microvillus": { "name": "Microvillus", "card": "cell_sustentacular_cell_dog_microvilli", "material": "protein", "source": "elsevier_atlas", "about": "A finger of the cell surface. Its surface is membrane over a core of actin, a protein; the closer view shows a protein as a stand-in for that actin core." },
-  "wrapped_dendrite": { "name": "Wrapped dendrite of a smell neuron", "card": "cell_sustentacular_cell_dog_wrapping", "material": "nervous_tissue", "source": "liang2020", "about": "A thin fibre of a smell neuron. The closer view is a schematic of nerve tissue in general, a stand-in that also shows cells other than this dendrite." },
+  "wrapped_dendrite": { "name": "Wrapped dendrite of a smell neuron", "card": "cell_sustentacular_cell_dog_wrapping", "material": "olfactory_neuron_dog", "source": "liang2020", "about": "A thin fibre of a smell neuron, the dendrite that carries its knob of cilia to the surface. The closer view is that smell neuron." },
   "apical_junction": { "name": "Junctions near the free face", "card": "cell_sustentacular_cell_dog_junctions", "material": "protein", "source": "elsevier_atlas" },
   "desmosome": { "name": "Desmosome", "card": "bio_cell_junctions", "material": "desmosome", "source": "elsevier_atlas" },
   "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion", "source": "gizurarsson2012" },

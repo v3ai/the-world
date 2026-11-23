@@ -706,7 +706,7 @@
     ]
    },
    "ink": 1,
-   "material": "animal_cells"
+   "material": "type2_pneumocyte"
   },
   {
    "id": "macro",
@@ -733,7 +733,7 @@
     ]
    },
    "ink": 1,
-   "material": "animal_cells"
+   "material": "alveolar_macrophage"
   },
   {
    "id": "bwall",

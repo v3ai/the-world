@@ -511,7 +511,7 @@
     ]
    },
    "ink": 1,
-   "material": "animal_cells"
+   "material": "olfactory_neuron_dog"
   },
   {
    "id": "osn",
@@ -674,7 +674,7 @@
     ]
    },
    "ink": 1,
-   "material": "animal_cells"
+   "material": "sustentacular_cell_dog"
   },
   {
    "id": "basal",
@@ -750,7 +750,7 @@
     ]
    },
    "ink": 1,
-   "material": "animal_cells"
+   "material": "olfactory_basal_cell_dog"
   },
   {
    "id": "lamina",
@@ -777,7 +777,7 @@
     ]
    },
    "ink": 1,
-   "material": "animal_cells"
+   "material": "olfactory_neuron_dog"
   },
   {
    "id": "gland",
@@ -811,7 +811,7 @@
     ]
    },
    "ink": 1,
-   "material": "animal_cells"
+   "material": "bowman_gland_cell_dog"
   },
   {
    "id": "axons",
@@ -852,7 +852,7 @@
     ]
    },
    "ink": 1,
-   "material": "animal_cells"
+   "material": "olfactory_neuron_dog"
   }
  ],
  "tag": "Inside the smell lining",
