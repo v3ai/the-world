@@ -225,7 +225,7 @@ BUILD.dna = (c) => {
   const fork = new THREE.Object3D(); helix.add(fork);
   const _p = new V3(), _q = new V3(), _m = new V3(), _d = new V3(), UP = new V3(0, 1, 0);
   function placeBase(o, sp, mid) { _d.subVectors(mid, sp); const len = Math.max(.01, _d.length() - .35); _d.normalize(); o.base.position.copy(sp).addScaledVector(_d, .35 + len / 2); o.base.scale.set(1, len, 1); o.base.quaternion.setFromUnitVectors(UP, _d); }
-  function layout(u) {
+  let layout = function (u) {
     const pts = [[], [], [], []];
     let forkI = -1;
     for (let i = 0; i < n; i++) {
@@ -261,7 +261,26 @@ BUILD.dna = (c) => {
       if (pts[s].length < 3) continue;
       tubes[s] = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts[s]), pts[s].length * 3, .13, 6, false), s < 2 ? tubeMat : tubeNew); helix.add(tubes[s]);
     }
-  }
+  };
+  /* under the realistic look the helix is drawn as atoms (MD.dnaAtoms, js/world_matter.js); the symbols above stay as the frame of reference
+     (positions for labels and the camera) but are not drawn or picked */
+  const AT = typeof MD !== 'undefined' && MD.on ? MD.dnaAtoms(c.frame, helix, SEQ, COMP, NM, rise, twist) : null, anc = [];
+  if (AT) { const old = new Set(); bp.forEach(e => { [...e.s, ...e.nw].forEach(o => [o.sugar, o.base, o.phos].forEach(m => { if (m) old.add(m); })); old.add(e.hb); old.add(e.hb2); });
+    for (let k = c.pickables.length - 1; k >= 0; k--) if (old.has(c.pickables[k])) c.pickables.splice(k, 1); }
+  const ref = (m, dy) => { if (!AT) return m; const o = new THREE.Object3D(); o.userData = Object.assign({}, m.userData); helix.add(o); anc.push([o, m, dy || 0]); o.position.copy(m.position); o.position.y += dy || 0; return o; };   // a name's anchor stands for its part (a click on the name)
+  const layout0 = layout;
+  layout = u => {
+    layout0(u); if (!AT) return;
+    let anyNew = false;
+    for (let i = 0; i < n; i++) {
+      const e = bp[i], k = smooth(0, 1, (u * (n + 10) - (n - 1 - i)) / 10), sx = SHIFT * k, kn = smooth(.1, .55, k);
+      AT.place(i, 0, 0, -sx, 1); AT.place(i, 1, 0, sx, 1);
+      if (kn > .02) { anyNew = true; AT.place(i, 0, 1, sx, kn); AT.place(i, 1, 1, -sx, kn); } else { AT.place(i, 0, 1, sx, 0); AT.place(i, 1, 1, -sx, 0); }
+      [...e.s, ...e.nw].forEach(o => [o.sugar, o.base, o.phos].forEach(m => { if (m) m.visible = false; })); e.hb.visible = false; e.hb2.visible = false;
+    }
+    for (let s = 0; s < 4; s++) if (tubes[s]) tubes[s].visible = false;
+    AT.showNew(anyNew); AT.commit(u === 0 || u === 1); anc.forEach(([o, m, dy]) => { o.position.copy(m.position); o.position.y += dy; });
+  };
   let unzip = 0, target = 0, built = false;
   layout(0);
   // ---- scale bar (2 nm) under the helix
@@ -278,19 +297,45 @@ BUILD.dna = (c) => {
   const ub = actBtn('Show replication', () => { target = target ? 0 : 1; ub.textContent = target ? 'Zip back up' : 'Show replication'; sceneNote(c, target ? NOTE.rep : NOTE.helix); });
   // ---- labels: the ends of each strand, the grooves, the fork
   const endLbl = (o, t) => c.addLabel(o, t, { offset: new V3(0, .15, 0), always: true });
-  endLbl(bp[0].s[0].sugar, "5′"); endLbl(bp[n - 1].s[0].sugar, "3′"); endLbl(bp[n - 1].s[1].sugar, "5′"); endLbl(bp[0].s[1].sugar, "3′");
-  const grooveAnchor = (a, y, t) => { const o = new THREE.Object3D(); spos(a, Rp + 1.6, y, o.position); helix.add(o); c.addLabel(o, t, { offset: new V3(0, .1, 0) }); return o; };
-  const gA = [grooveAnchor(bp[12].a + off / 2, bp[12].y, 'Minor groove'), grooveAnchor(bp[22].a + off / 2 + Math.PI, bp[22].y, 'Major groove')];
-  c.addLabel(bp[n - 4].s[0].base, 'Base pair', { offset: new V3(0, .3, 0) });
-  c.addLabel(bp[6].s[0].phos, 'Sugar-phosphate backbone', { offset: new V3(0, .5, 0) });
+  const eTop = AT ? .45 * NM : 0, eBot = AT ? -1.55 * NM : 0;   // under the look the strands' ends are named off the ends of the helix, along its axis, clear of the atoms
+  endLbl(ref(bp[0].s[0].sugar, eBot), "5′"); endLbl(ref(bp[n - 1].s[0].sugar, eTop), "3′"); endLbl(ref(bp[n - 1].s[1].sugar, eTop), "5′"); endLbl(ref(bp[0].s[1].sugar, eBot), "3′");
+  const grooveAnchor = (a, y, t) => { const o = new THREE.Object3D(); spos(a, Rp + 1.6, y, o.position); helix.add(o); const L = c.addLabel(o, t, { offset: new V3(0, .1, 0) });
+    if (AT) L.el.style.pointerEvents = 'none';   // a groove is a gap, not a part with a card: under the look its name moves over the atoms, and a click there is on the atom under it
+    return o; };
+  const gOff = AT ? AT.minorAt(0) : off / 2;   // the middle of the minor groove, from the sugars' angle (the atoms' own, under the look)
+  const gA = [grooveAnchor(bp[12].a + gOff, bp[12].y, 'Minor groove'), grooveAnchor(bp[22].a + gOff + Math.PI, bp[22].y, 'Major groove')];
+  c.addLabel(ref(bp[n - 4].s[0].base), 'Base pair', { offset: new V3(0, .3, 0) });
+  c.addLabel(ref(bp[6].s[0].phos), 'Sugar-phosphate backbone', { offset: new V3(0, .5, 0) });
   c.addLabel(fork, 'Replication fork', { offset: new V3(2.6, 0, 0) });
   const NOTE = {
     helix: 'Schematic ball-and-stick model of B-DNA, drawn to scale in length and width: 2.0 nm wide, 0.34 nm per base pair, 10.5 base pairs (3.6 nm) per turn, right-handed. Spheres and rods are symbols, not atoms. 39 base pairs, an invented sequence.',
     rep: 'Schematic of replication. Each new double helix keeps one old strand (tan) and gets one new strand (blue). In a cell, helicase opens the fork and DNA polymerase builds each new strand. The lagging strand is made in short pieces (drawn here as one). Not a real simulation.',
     fiber: 'Schematic at true size: 4 nucleosomes of the beaded 10 nm form of chromatin. Each wraps 147 base pairs (1.65 turns) round 8 histone proteins and is about 11 nm across; DNA is 2 nm thick. Histone shapes are simplified. Inside a living nucleus the next level of folding is irregular, not a neat 30 nm fibre.',
   };
+  if (AT) {
+    NOTE.helix = 'Space-filling, atom by atom: B-DNA with every atom except hydrogen drawn at its van der Waals radius, the base pairs taken from a measured crystal structure (PDB 1BNA) and repeated along the helix: 2.0 nm wide, 0.34 nm per base pair, about 10.5 base pairs (3.6 nm) per turn in solution (10 per turn, 3.4 nm, in the fibres of the first X-ray pictures), right-handed. Hydrogens, about a third of the atoms, are left out. 39 base pairs, an invented sequence.';
+    NOTE.rep = NOTE.rep.replace('one old strand (tan)', 'one old strand (pale and ochre backbone)').replace('one new strand (blue)', 'one new strand (blue backbone)');
+  }
   sceneNote(c, NOTE.helix);
+  /* under the look the groove names are put in the grooves of the turn nearest the middle of the free view, on the side facing the eye,
+     where the name has room (not under the panel, the ruler or the buttons): the minor groove's first, the major groove's a little way off */
+  let grooveT = 0; const _gw = new V3(), _go = new V3(), _ge = new V3(), _gs = new V3();
+  const placeGrooves = () => {
+    const cm = c.frame.cam; if (!cm || typeof freeArea !== 'function') return; const A = freeArea(); _ge.setFromMatrixPosition(cm.matrixWorld); helix.updateWorldMatrix(true, false);
+    const cand = [[], []];
+    for (let i = 1; i < n - 1; i++) for (let k = 0; k < 2; k++) {
+      const a = bp[i].a + gOff + (k ? Math.PI : 0), y = bp[i].y + (k ? rise / 2 : 0); spos(a, (k ? .62 : .72) * NM, y, _gw); const loc = _gw.clone(); helix.localToWorld(_gw);
+      spos(a, 3 * NM, y, _go); helix.localToWorld(_go).sub(_gw).normalize(); if (_go.dot(_gs.copy(_ge).sub(_gw).normalize()) < .3) continue;
+      const pr = _gw.clone().project(cm); if (pr.z > 1) continue; const x = (pr.x * .5 + .5) * W, yy = (-pr.y * .5 + .5) * H;
+      if (x < A.l + 90 || x > A.r - 90 || yy < A.t + 80 || yy > A.b - 40) continue;
+      cand[k].push({ loc, x, y: yy, d: Math.hypot(x - A.cx, yy - A.cy) });
+    }
+    const m0 = cand[0].sort((a, b) => a.d - b.d)[0], m1 = cand[1].filter(c1 => !m0 || Math.hypot(c1.x - m0.x, c1.y - m0.y) > 110).sort((a, b) => a.d - b.d)[0];
+    if (m0) gA[0].position.copy(m0.loc); if (m1) gA[1].position.copy(m1.loc);
+  };
   c.update = (dt) => {
+    if (AT) AT.lod(cam.A === c.frame && cam.D < 1.4e-8);   // the finer spheres only where an atom is large on the screen
+    if (AT && cam.A === c.frame && unzip < .03 && performance.now() - grooveT > 300) { grooveT = performance.now(); placeGrooves(); }
     if (Math.abs(unzip - target) > .001) {
       unzip += Math.sign(target - unzip) * Math.min(Math.abs(target - unzip), dt / 6);
       layout(unzip);

@@ -346,15 +346,19 @@ var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
   const VERT_PLOT = VERT.replace('gl_PointSize = max(uSize * aRnd * uPx / max(max(-mv.z, 0.5 * (-c0.z)), 1e-6), uMinPx);',
     'gl_PointSize = max(min(uSize * aRnd * uPx / max(max(-mv.z, 0.5 * (-c0.z)), 1e-6), uPx * 0.006), uMinPx); vInk = clamp(uInk / (gl_PointSize * gl_PointSize), 0.09, 0.55);')
     .replace('varying float vDepth;', 'varying float vDepth; varying float vInk; uniform float uInk;')
-    .replace('{ vSh = 1.0; vDepth = 1.0; }', '{ vSh = 1.0; vDepth = 2.0; }');   // a dot on a cut face: marked for the fragment shader
+    .replace('{ vSh = 1.0; vDepth = 1.0; }', '{ vSh = 1.0; vDepth = 2.0; }')   // a dot on a cut face: marked for the fragment shader
+    /* close in, inside the cloud: a slice. Only the samples within uSlab of the plane through the nucleus that faces the camera are drawn
+       (uSlabOn fades it in as the camera enters the cloud), each with more ink, since a slice holds far fewer of them than a projection */
+    .replace('varying float vInk; uniform float uInk;', 'varying float vInk; uniform float uInk; uniform float uSlab; uniform float uSlabOn; varying float vSlab;')
+    .replace('vCol = aCol; vSh = aSh;', 'vCol = aCol; vSh = aSh;\n      { float dz = abs(mv.z - c0.z); vSlab = mix(1.0, 1.0 - smoothstep(uSlab, uSlab * 1.8, dz), uSlabOn); if (vSlab < 0.01) gl_Position = vec4(2.0, 2.0, 2.0, 1.0); vInk = min(vInk * (1.0 + 2.2 * uSlabOn), 0.7); }');
   const FRAG_PLOT = lf(`
-    uniform float uOpacity; varying vec3 vCol; varying float vInk; varying float vDepth;
+    uniform float uOpacity; varying vec3 vCol; varying float vInk; varying float vDepth; varying float vSlab;
     void main(){
       vec2 d = gl_PointCoord * 2.0 - 1.0; float r2 = dot(d, d); if (r2 > 1.0) discard;
       // the near half of the cloud a little stronger than the far half (a depth cue for the shapes of single orbitals); dots on the faces
       // of a cut are full strength, so a cut shows the density in the plane it opens
       float a = vDepth > 1.5 ? 0.8 : vInk * mix(0.5, 1.0, vDepth);
-      gl_FragColor = vec4(vCol, uOpacity * a * (1.0 - smoothstep(0.55, 1.0, r2)));
+      gl_FragColor = vec4(vCol, uOpacity * a * vSlab * (1.0 - smoothstep(0.55, 1.0, r2)));
     }`);
 
   /* pale studio backdrop with a soft vignette (one texture, shared by the app frame and the test page) */
@@ -382,7 +386,7 @@ var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
       this.slowAuto = true; this.slow = 1e16; this.flowOn = true; this.T = 0; this.spec = null; this.label = ''; this.extent = 10;
       this.view = { px: 800 * 1.0722, fov: 50 }; this.slowFrames = 0; this.ema = 0.016; this.onQuality = null;
       this.mat = new THREE.ShaderMaterial({
-        uniforms: { uT: { value: 0 }, uDyn: { value: 0 }, uCut: { value: this.cut ? 1 : 0 }, uSize: { value: 0.1 }, uPx: { value: 800 }, uMinPx: { value: 1.6 }, uRad: { value: 10 }, uFace: { value: 0.3 }, uOpacity: { value: 1 }, uInk: { value: 1.4 } },
+        uniforms: { uT: { value: 0 }, uDyn: { value: 0 }, uCut: { value: this.cut ? 1 : 0 }, uSize: { value: 0.1 }, uPx: { value: 800 }, uMinPx: { value: 1.6 }, uRad: { value: 10 }, uFace: { value: 0.3 }, uOpacity: { value: 1 }, uInk: { value: 1.4 }, uSlab: { value: 1 }, uSlabOn: { value: 0 } },
         vertexShader: AQ_LOOK ? VERT_PLOT : VERT, fragmentShader: AQ_LOOK ? FRAG_PLOT : FRAG, transparent: true, depthTest: true, depthWrite: !AQ_LOOK
       });
       this.points = null;
@@ -394,6 +398,13 @@ var AtomCloud = (typeof THREE === 'undefined') ? null : (function () {
     setView(heightPx, fovDeg) { this.view.px = heightPx / (2 * Math.tan(fovDeg * Math.PI / 360)); this.view.hpx = heightPx; }
     setCut(b) { this.cut = !!b; this.mat.uniforms.uCut.value = this.cut ? 1 : 0; if (this.spec) this._shade(); }
     setFlow(b) { this.flowOn = !!b; }
+    /* the slice (the look only): Dpm, the camera's distance from the nucleus in pm. Off outside the cloud (98.5% of the samples lie within
+       this.extent); fully on from three quarters of that radius in; its half-thickness is 12% of the camera's distance. Returns the
+       half-thickness in pm while it is on, else 0. */
+    slice(Dpm) {
+      if (!AQ_LOOK) return 0; const ext = this.extent * AQ.A0_PM, on = Dpm >= ext ? 0 : Dpm <= .75 * ext ? 1 : 1 - (Dpm - .75 * ext) / (.25 * ext), k = on * on * (3 - 2 * on), U = this.mat.uniforms;
+      U.uSlabOn.value = this.cut ? 0 : k; U.uSlab.value = .12 * Dpm / AQ.A0_PM * this.unit; return k > .5 && !this.cut ? .12 * Dpm : 0;
+    }
     setCount(n) { this.count = Math.max(2000, Math.round(n)); if (this.spec) this.setState(this.spec); }
     setSlow(s) { this.slowAuto = false; this.slow = s; }
     setOpacity(a) { this.mat.uniforms.uOpacity.value = a; }
@@ -1051,6 +1062,23 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
     F.update = dt => {
       const v = new THREE.Vector2(); renderer.getDrawingBufferSize(v); cloud.setView(v.y, 50);
       if (S.model === 'quantum') cloud.update(dt);
+      if (AQ_LOOK) {   // inside the cloud the plot becomes a slice; the note says so while it is
+        const sl = S.model === 'quantum' && cam.A === F ? cloud.slice(cam.D / 1e-12) : cloud.slice(1e9), on = sl > 0, pm = on ? Math.max(1, Math.round(sl)) : 0;
+        if (on !== !!S.sliceOn || (on && Math.abs(pm - S.slicePm) > Math.max(2, S.slicePm * .25))) { S.sliceOn = on; S.slicePm = pm; const base = String(F.note || '').replace(/ Inside the cloud the plot is a slice[^.]*\./, '');
+          F.note = on ? base + ` Inside the cloud the plot is a slice: only the samples within ${pm} pm of the plane through the nucleus that faces you are drawn.` : base;
+          if (typeof capFrame !== 'undefined' && capFrame === F) { const t = document.getElementById('capNote'); if (t) t.textContent = F.note; } }
+        /* inside the cloud the nucleus's name stands off to the side, on a thin leader line to the nucleus, not on the densest part of the plot */
+        if (!S.lead) { const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0, 0, 0, 0], 3));
+          S.lead = new THREE.Line(g, new THREE.LineBasicMaterial({ color: 0xd9dde2, transparent: true, opacity: .8, depthTest: false, depthWrite: false })); S.lead.renderOrder = 30; S.lead.frustumCulled = false; S.lead.userData.noHit = true; F.add(S.lead);
+          S.lv = [new V3(), new V3(), new V3(), new V3(), new V3()]; }
+        const lead = on && !!nucLbl.el.textContent;
+        if (lead) { const [w0, cp, rg, uv, P] = S.lv; S.lead.parent.updateWorldMatrix(true, false); S.lead.parent.localToWorld(w0.set(0, 0, 0)); cp.setFromMatrixPosition(F.cam.matrixWorld);
+          const hh = w0.distanceTo(cp) * Math.tan(25 * Math.PI / 180); rg.set(1, 0, 0).applyQuaternion(F.cam.quaternion); uv.set(0, 1, 0).applyQuaternion(F.cam.quaternion);
+          S.lead.parent.worldToLocal(P.copy(w0).addScaledVector(rg, .38 * hh).addScaledVector(uv, .2 * hh)); nucAnchor.position.copy(P);
+          const a = S.lead.geometry.attributes.position; a.setXYZ(1, P.x, P.y, P.z); a.needsUpdate = true; }
+        else if (S.leadOn) nucAnchor.position.set(0, 0, 0);
+        S.lead.visible = lead; S.leadOn = lead;
+      }
       if (S.anim) S.anim(dt);
       centreCloud(dt);
       // arriving by a landmark flight that ends too close for this atom: ease back so the whole atom is in view
