@@ -90,6 +90,11 @@ def to_local(p, F):
     o, B = F; return B @ (p - o)
 
 
+def p3(p, F):
+    """where the primer's 3'-end nucleotide sits round the duplex axis: its C1' atom's angle from y toward z, in radians, and its distance from the axis in nm"""
+    q = to_local(p, F); return [math.atan2(q[2], q[1]), math.hypot(q[1], q[2]) / 10]
+
+
 def on_axis(c, ax, p):
     return c + np.dot(p - c, ax) * ax
 
@@ -120,7 +125,7 @@ def write(mid, title, parts, anchors, note):
     ext = (P.max(0) - P.min(0)).round(1).tolist()
     span = float(max(np.linalg.norm(P[i] - P[j]) for i in range(0, len(P), max(1, len(P) // 300)) for j in range(0, len(P), max(1, len(P) // 300))))
     doc = {'id': mid, 'title': title, 'unit': 'nm/20', 'note': note, 'subunits': subs, 'beads': flat,
-           'anchors': {k: [round(float(v), 2) for v in a] for k, a in anchors.items()}, 'extent_nm': ext, 'span_nm': round(span, 1)}
+           'anchors': {k: [round(float(v), 3) for v in a] for k, a in anchors.items()}, 'extent_nm': ext, 'span_nm': round(span, 1)}
     path = os.path.join(OUT, 'rep_' + mid + '.json')
     with open(path, 'w') as f: json.dump(doc, f, separators=(',', ':'))
     print(f'{mid:9s} beads {len(flat) // 4:5d}  residues {sum(p[4] for p in parts):6d}  extent {ext} nm  span {span:.1f} nm  {os.path.getsize(path):7d} bytes')
@@ -193,7 +198,7 @@ def main():
     parts = []
     for ch, nm, role in [('A', 'POLD1 (catalytic)', 'polymerase and proofreading exonuclease'), ('B', 'POLD2', 'scaffold; binds PCNA'), ('C', 'POLD3', 'binds PCNA; a long flexible tail'), ('D', 'POLD4', 'small subunit')]:
         bl, nr = beads('6TNY', ch, Fd, 2); parts.append((nm, role, '6TNY', ch, nr, bl))
-    write('pold', 'DNA polymerase delta', parts, {}, '6TNY (Lancey et al. 2020)')
+    write('pold', 'DNA polymerase delta', parts, {'p3': p3(pp[k3], Fd)}, '6TNY (Lancey et al. 2020)')
     parts = []
     for ch, nm in [('E', 'PCNA, subunit 1'), ('F', 'PCNA, subunit 2'), ('G', 'PCNA, subunit 3')]:
         bl, nr = beads('6TNY', ch, Fd, 2); parts.append((nm, 'one of three identical subunits of the ring', '6TNY', ch, nr, bl))
@@ -212,13 +217,13 @@ def main():
         bl, nr = beads('7TID', ch, Fr, 2); parts.append((nm, 'one of five subunits of the loader; ATP is bound between them', '7TID', ch, nr, bl))
     for ch, nm in [('F', 'PCNA, subunit 1'), ('G', 'PCNA, subunit 2'), ('H', 'PCNA, subunit 3')]:
         bl, nr = beads('7TID', ch, Fr, 2); parts.append((nm, 'the clamp being loaded', '7TID', ch, nr, bl))
-    write('rfc', 'RFC clamp loader holding PCNA', parts, {'pcna_centre': to_local(centroid('7TID', 'FGH'), Fr) / 10}, '7TID (Gaubitz et al. 2022), yeast')
+    write('rfc', 'RFC clamp loader holding PCNA', parts, {'pcna_centre': to_local(centroid('7TID', 'FGH'), Fr) / 10, 'p3': p3(pp[k3], Fr)}, '7TID (Gaubitz et al. 2022), yeast')
     # ---------------- Pol epsilon's polymerase domain: 4M8O (yeast), with its incoming dATP ----------------
     c, ax, n = duplex_axis('4M8O', 'P', 'T'); pp = c1('4M8O', 'P'); k3 = max(pp)
     if np.dot(pp[k3] - pp[min(pp)], ax) < 0: ax = -ax
     o = on_axis(c, ax, pp[k3]); Fe = frame(o, ax, centroid('4M8O', 'A') - o)
     bl, nr = beads('4M8O', 'A', Fe, 2)
-    write('polecat', 'DNA polymerase epsilon, polymerase domain', [('Pol2, polymerase and exonuclease domain', 'adds nucleotides to the leading strand and proofreads them', '4M8O', 'A', nr, bl)], {}, '4M8O (Hogg et al. 2014), yeast')
+    write('polecat', 'DNA polymerase epsilon, polymerase domain', [('Pol2, polymerase and exonuclease domain', 'adds nucleotides to the leading strand and proofreads them', '4M8O', 'A', nr, bl)], {'p3': p3(pp[k3], Fe)}, '4M8O (Hogg et al. 2014), yeast')
     dtp = [a for a in load('4M8O') if a['res'] == 'DTP' and a['el'] != 'H']
     nuc = {'atoms': [[a['name'], a['el']] + [round(float(v), 2) for v in to_local(np.array([a['x'], a['y'], a['z']]), Fe)] for a in dtp]}
     with open(os.path.join(OUT, 'rep_dntp.json'), 'w') as f: json.dump(nuc, f, separators=(',', ':'))
@@ -229,7 +234,7 @@ def main():
     if np.dot(dn[min(dn)] - up[max(up)], ax) < 0: ax = -ax
     o = on_axis(c, ax, nick); Fl = frame(o, ax, centroid('1X9N', 'A') - o)
     bl, nr = beads('1X9N', 'A', Fl, 2)
-    write('lig1', 'DNA ligase I', [('LIG1', 'seals the nick between neighbouring fragments', '1X9N', 'A', nr, bl)], {}, '1X9N (Pascal et al. 2004)')
+    write('lig1', 'DNA ligase I', [('LIG1', 'seals the nick between neighbouring fragments', '1X9N', 'A', nr, bl)], {'p3': p3(up[max(up)], Fl)}, '1X9N (Pascal et al. 2004)')
     # ---------------- Topoisomerase I: 1A36 ----------------
     c, ax, n = duplex_axis('1A36', 'B', 'C'); Ft = frame(c, ax, centroid('1A36', 'A') - c)
     bl, nr = beads('1A36', 'A', Ft, 2)
