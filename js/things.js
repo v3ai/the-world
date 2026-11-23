@@ -804,7 +804,7 @@ float thFH(vec3 p){ return fract(sin(dot(p,vec3(12.9898,78.233,45.164)))*43758.5
 /* The dog's lips and nose leather under the look. A Labrador's lip margins are pigmented, dark brown to black even on a yellow dog (photograph:
    "Afra 013.jpg", Wikimedia Commons, public domain: the lip line #513c39 against a pale coat), and bare of the coat's hairs. The lip line
    is the model's own mouth groove (tools/things/models/dog_head.mjs, mouthGroove: the same head frame and curve), widened to the lip's
-   margin, about 3 mm each side of it (thLipF, drawn per pixel: the coat is too coarse to carry it). The nose leather is not smooth: its surface is a mosaic of small raised polygons, each about a
+   margin, at most about 1.3 mm each side of it (thLipF, drawn per pixel: the coat is too coarse to carry it). The nose leather is not smooth: its surface is a mosaic of small raised polygons, each about a
    millimetre or two across (the planum nasale; a judgement from photographs, no measurement found), drawn as relief on the nose's own
    surface. */
 /* The dog's feet: "Round, compact; well-arched toes and well-developed pads" (breed standard, The Royal Kennel Club, "Retriever
