@@ -24,7 +24,7 @@ const REP = (() => {
   const SLOW = 3;               // shown this many times slower than in the cell
   const VD = 50;                // Pol delta with PCNA at physiological nucleotide levels, nt/s (Burgers and Kunkel 2017)
   const VP = 20;                // priming drawn at 20 nt/s (not measured)
-  const NLEAD = 40;             // nt between unwinding and Pol epsilon's active site (Burgers and Kunkel 2017)
+  const NLEAD = 40;             // nt of single strand drawn between the helicase and Pol epsilon's active site (the length of the drawn path; not measured)
   const NRNA = 10, NPRIM = 30, NREM = 12, MERR = 100;   // RNA primer ~10 nt, + ~20 nt of DNA by Pol alpha; nucleotides replaced in primer removal; where the shown error happens
   const SS0 = .25;              // rest spacing of single strand coated with RPA, nm per nucleotide (drawn)
   // the timeline of one Okazaki fragment, seconds from the start of its priming
@@ -44,7 +44,7 @@ const REP = (() => {
     [tErr, 'Proofreading', 'A wrong nucleotide has been added (shown once a fragment; before proofreading it happens about once in 10,000 to 100,000). Pol δ moves the mismatched end to a second site that cuts it off, then adds the right one.'],
     [tFix, 'Reaching the last fragment', 'Pol δ carries on until it runs into the RNA primer at the start of the previous fragment. At the fork the helicase and Pol ε keep going without a break.'],
     [tRem0, 'Primer removal', 'Pol δ pushes into the previous fragment and peels its start off as a short flap, and FEN1 cuts each flap off, a nucleotide or two at a time. When the RNA and a little of Pol α’s DNA have been replaced, one break in the backbone, a nick, is left.'],
-    [tRemEnd, 'Ligation', 'DNA ligase I closes the nick with energy from ATP, joining the new fragment to the previous one. The lagging strand is now one continuous strand like the leading one.'],
+    [tLigIn, 'Ligation', 'DNA ligase I closes the nick with energy from ATP, joining the new fragment to the previous one. The lagging strand is now one continuous strand like the leading one.'],
     [tLigGone, 'The fork moves on', 'The machines leave, and the fork moves on, laying bare more single strand for the next primer. The clamp is left on the DNA; how and when it comes off is not shown.'],
   ];
   const MACH = ['cmg', 'partners', 'pole', 'polecat', 'pola', 'pold', 'pcna', 'rfc', 'fen1', 'lig1', 'top1', 'rpa'];
@@ -55,8 +55,8 @@ const REP = (() => {
   const HUE = { cmg: [0x7fae9f, 0x6f9f92, 0x8dbbaa, 0x76a596, 0x86b4a5, 0x699689, 0xc2a46e, 0xa48fbe, 0x9a86b6, 0xae99c6, 0x947fad], partners: [0x9aa3ad, 0xa3acb6, 0x919aa4, 0xb99a85, 0xcaa98f, 0x8e9dbf],
     pole: [0xcc8a6c, 0xdba184], polecat: [0xcc8a6c], pola: [0xd4b25e, 0xc8a24f, 0xb59f73, 0xd9bd7a, 0xe2c784, 0xbf9a4a], pold: [0x9283c2, 0xa597cf, 0x8274b5, 0xb3a7d6],
     pcna: [0x6e9fd0, 0x5f91c4, 0x7dabd9], rfc: [0x93b874, 0x86ad68, 0xa0c482, 0x7ba25e, 0xadcd90, 0x6e9fd0, 0x5f91c4, 0x7dabd9], fen1: [0xd77f98], lig1: [0xd9a04f], top1: [0x5fb0c4], rpa: [0xc3bfa7, 0xb2ae95, 0xd2cfb9] };
-  const DNA = () => (typeof MD !== 'undefined' && MD.on) ? { A: MD.DNA.A, T: MD.DNA.T, G: MD.DNA.G, C: MD.DNA.C, old: MD.DNA.tube, nw: MD.DNA.tubeNew, rna: 0xa98bc4 }
-    : { A: 0x4ade80, T: 0xf87171, G: 0xfacc15, C: 0x60a5fa, old: 0xf2c38b, nw: 0x7dd3fc, rna: 0xc4a1f0 };
+  const DNA_I = { A: 0x4ade80, T: 0xf87171, G: 0xfacc15, C: 0x60a5fa, old: 0xf2c38b, nw: 0x7dd3fc, rna: 0xc4a1f0 }; let DNA_R = null;   // the app's colour code, in each look (made once: draw() asks every frame)
+  const DNA = () => (typeof MD !== 'undefined' && MD.on) ? (DNA_R || (DNA_R = { A: MD.DNA.A, T: MD.DNA.T, G: MD.DNA.G, C: MD.DNA.C, old: MD.DNA.tube, nw: MD.DNA.tubeNew, rna: 0xa98bc4 })) : DNA_I;
   const COMP = { A: 'T', T: 'A', G: 'C', C: 'G' }, WRONG = { A: 'G', T: 'C', G: 'A', C: 'T' };
   const SEQ = (() => { const r = rng(1953), s = []; for (let i = 0; i < L; i++) s.push('ATGC'[Math.floor(r() * 4)]); return s; })();   // an invented sequence, repeated every fragment
   const seqA = j => SEQ[((j % L) + L) % L];          // the leading strand's template (the strand the helicase encircles), at chromosome position j
@@ -265,7 +265,6 @@ const REP = (() => {
     s = s === undefined ? 1 : s; const w = BASEW * s, th = BASET * s;
     return put16(m, px * w, py * w, pz * w, dx * l, dy * l, dz * l, zx * th, zy * th, zz * th, (ax + bx) / 2, (ay + by) / 2, (az + bz) / 2);
   }
-  const PAIRS = [];   // the base pairs drawn this frame that the tests may sample: [template letter, partner letter, base mesh of the template, its instance, base mesh of the partner, its instance]
   function finishDR() {
     for (const m of DR.all) {
       const n = m._n; if (n < m._prev) { const A = m.instanceMatrix.array; for (let i = n * 16; i < m._prev * 16; i++) A[i] = 0; }
@@ -326,6 +325,7 @@ const REP = (() => {
     for (const id of ['pold', 'fen1', 'lig1']) meshFor(F, id, machine(id), LABEL[id]);
     meshFor(F, 'rfc', machine('rfc', .55, { keep: s => s < 5 }), LABEL.rfc);
     const tg = machine('top1'); meshFor(F, 'top1', tg, LABEL.top1); M.top1b = new THREE.Mesh(tg, M.top1.material); M.top1b.matrixAutoUpdate = false; M.top1b.userData = M.top1.userData; S.root.add(M.top1b); F.pickables.push(M.top1b);
+    { const a = M.top1.children[0].clone(); a.userData = M.top1.userData; M.top1b.add(a); F.label(a, LABEL.top1, { pick: M.top1b }); }
     instFor(F, 'pcna', machine('pcna'), 4); instFor(F, 'rpa', machine('rpa'), 24);
     { const a = new THREE.Object3D(); S.root.add(a); M.pcnaA = a; a.userData = M.pcna.userData; F.label(a, LABEL.pcna, { pick: M.pcna }); }
     { const a = new THREE.Object3D(); S.root.add(a); M.rpaA = a; a.userData = M.rpa.userData; F.label(a, LABEL.rpa, { pick: M.rpa }); }
@@ -413,7 +413,7 @@ const REP = (() => {
     pairs[k * 4] = 'ATGC'.indexOf(mA); pairs[k * 4 + 1] = iA; pairs[k * 4 + 2] = 'ATGC'.indexOf(mB); pairs[k * 4 + 3] = iB;
   }
   function draw(t) {
-    const sf = V * t, jTop = Math.floor(sf), C = DNA(); pairsN = 0; pairsSeen = 0;
+    const sf = V * t, jTop = Math.floor(sf); pairsN = 0; pairsSeen = 0;
     lagCompute(t);
     const nTopo = Math.floor(sf / 84) + 1, jT = 84 * nTopo + 30;
     let px = 0, py = 0, pz = 0, has = false, qx = 0, qy = 0, qz = 0, hasN = false;
@@ -606,15 +606,16 @@ const REP = (() => {
   /* ---------- show and hide (the DNA scene's button) ---------- */
   function fitView() {
     const F = S.F, A = typeof freeArea === 'function' ? freeArea() : { w: W, h: H }, k = 2 * Math.tan(25 * PI / 180);
-    const D = Math.max(132 / (k * Math.max(.2, A.w / H)), 66 / (k * Math.max(.2, A.h / H)));
-    flyTo(F, new V3(-24, -4, 0), D * 1e-9);
+    const tall = A.w < A.h, wd = tall ? 78 : 132, ht = tall ? 60 : 66;   // a tall screen (a phone): the fork and its machines, the long strands running off the sides
+    const D = Math.max(wd / (k * Math.max(.2, A.w / H)), ht / (k * Math.max(.2, A.h / H)));
+    flyTo(F, tall ? new V3(-8, -6, 0) : new V3(-24, -4, 0), D * 1e-9);
   }
   function show(on, quiet) {
     const F = S.F, c = S.c; if (!F || on === S.on) return S.loading;
     S.on = on; if (S.hooks) S.hooks.hide(on);
     if (UI) UI.el.style.display = on ? '' : 'none';
     if (on) {
-      S.blurb0 = F.blurb; S.r1 = F.r1; S.rad = F.radius; F.r1 = 6e-7; F.radius = 150;
+      S.blurb0 = F.blurb; S.r1 = F.r1; S.rad = F.radius; F.r1 = 1.2e-6; F.radius = 150;
       sceneNote(c, 'Model: loading the replication machines…');
       return load().then(() => { if (!S.on || S.F !== F) return; if (!S.built) build(); S.root.visible = true; S.dirty = true; S.stage = -1; syncUI(true); if (!quiet) fitView(); });
     }
@@ -642,7 +643,7 @@ const REP = (() => {
     const src = id === 'polecat' ? 'polecat' : id, D = S.D[src]; let c;
     if (h && h.obj && h.obj.isInstancedMesh && h.hit && h.hit.instanceId != null) { h.obj.getMatrixAt(h.hit.instanceId, _m4); c = new V3().setFromMatrixPosition(_m4); }
     else { const m = M[id] || (h && h.obj); m.geometry.computeBoundingSphere(); c = m.geometry.boundingSphere.center.clone().applyMatrix4(m.matrix); }
-    const R = Math.max(6, D.span_nm / 2 + 1.5), ch = new Frame({ type: 'repm', name: id === 'polecat' ? 'Pol ε, polymerase domain' : NAME[id], unit: 1e-9, radius: R * 1.4, r1: R * 1e-8, pos: c, pinned: true, opts: { m: src } });
+    const R = Math.max(6, D.span_nm / 2 + 1.5), ch = new Frame({ type: 'repm', name: id === 'polecat' ? 'Pol ε, polymerase domain' : NAME[id], unit: 1e-9, radius: R * 1.4, r1: R * 2.5e-8, pos: c, pinned: true, opts: { m: src } });
     ch.dynamic = true; ch.keep = performance.now() + 6e4; F.addChild(ch); ch.ensure();
     flyTo(ch, new V3(), Math.max(fitD(ch, R * .95), 4e-9));
     return 'inner';
@@ -677,7 +678,7 @@ const REP = (() => {
     const id = hint && hint.id || ''; if (!S.on || !/^rep_/.test(id)) return null;
     const mid = id.slice(4); if (!S.D[mid] || !M[mid]) return null;
     const D = S.D[mid], R = Math.max(6, D.span_nm / 2 + 1.5);
-    return new Frame({ type: 'repm', name: NAME[mid], unit: 1e-9, radius: R * 1.4, r1: R * 1e-8, pos: T0.clone(), pinned: true, opts: { m: mid } });
+    return new Frame({ type: 'repm', name: NAME[mid], unit: 1e-9, radius: R * 1.4, r1: R * 2.5e-8, pos: T0.clone(), pinned: true, opts: { m: mid } });
   }
   const IDS = new Set(['dna_replication']); Object.values(NODE_OF).forEach(i => IDS.add(i)); ['rep_template', 'rep_okazaki', 'rep_rna_primer', 'rep_leading', 'rep_dntp', 'rep_fidelity'].forEach(i => IDS.add(i));
   function goto(id) {
@@ -702,14 +703,17 @@ const REP = (() => {
   /* for the tests: where things are, and the base pairs drawn */
   function probe() {
     if (!S.built) return { on: S.on, built: false };
-    const vis = {}; for (const k of MACH) { const m = M[k]; vis[k] = !!(m && m.visible && (!m.isInstancedMesh || m.count > 0)); }
+    const vis = {}; for (const k of MACH) vis[k] = !!shown(k);
     const pr = []; for (let i = 0; i < pairsN; i++) pr.push(['ATGC'[pairs[i * 4]], pairs[i * 4 + 1], 'ATGC'[pairs[i * 4 + 2]], pairs[i * 4 + 3]]);
     return { on: S.on, built: true, clk: S.clk, T, stage: stageAt(S.clk), play: S.play, visible: vis, pairs: pr, dntp: M.dnB.count, ppi: M.ppi.count };
   }
+  function shown(k) {   // the mesh of machine k that is drawn now (Topo I has two that take turns), or null
+    const on = m => m && m.visible && (!m.isInstancedMesh || m._prev > 0) ? m : null; return on(M[k]) || (k === 'top1' ? on(M.top1b) : null);
+  }
   function screenOf(id) {   // a point on the screen over the machine (or null), for clicking it
-    const m = M[id]; if (!m || !m.visible || !S.F || !S.F.cam) return null; const c = new V3();
+    const m = shown(id); if (!m || !m.visible || !S.F || !S.F.cam) return null; const c = new V3();
     if (m.isInstancedMesh) { if (!m.count) return null; m.getMatrixAt(0, _m4); c.setFromMatrixPosition(_m4); } else { m.geometry.computeBoundingSphere(); c.copy(m.geometry.boundingSphere.center).applyMatrix4(m.matrix); }
     c.applyMatrix4(S.root.matrixWorld); const v = c.project(S.F.cam); return v.z < 1 ? { x: (v.x + 1) / 2 * W, y: (1 - v.y) / 2 * H } : null;
   }
-  return { attach, spawn, goto, probe, screenOf, goStage, setClock: t => { S.clk = ((t % T) + T) % T; S.dirty = true; S.play = false; }, play: on => { S.play = on; S.dirty = true; }, STAGES, NAME, NODE_OF, MACH, T, V, SLOW, L, M, S };
+  return { attach, spawn, goto, probe, screenOf, goStage, setClock: t => { S.clk = ((t % T) + T) % T; S.dirty = true; S.play = false; }, play: on => { S.play = on; S.dirty = true; }, STAGES, NAME, NODE_OF, MACH, T, V, SLOW, L, M, S, shown, colours: DNA, get DR() { return DR; } };
 })();

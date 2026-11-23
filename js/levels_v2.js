@@ -267,7 +267,8 @@ BUILD.dna = (c) => {
   const AT = typeof MD !== 'undefined' && MD.on ? MD.dnaAtoms(c.frame, helix, SEQ, COMP, NM, rise, twist) : null, anc = [];
   if (AT) { const old = new Set(); bp.forEach(e => { [...e.s, ...e.nw].forEach(o => [o.sugar, o.base, o.phos].forEach(m => { if (m) old.add(m); })); old.add(e.hb); old.add(e.hb2); });
     for (let k = c.pickables.length - 1; k >= 0; k--) if (old.has(c.pickables[k])) c.pickables.splice(k, 1); }
-  const ref = (m, dy) => { if (!AT) return m; const o = new THREE.Object3D(); o.userData = Object.assign({}, m.userData); helix.add(o); anc.push([o, m, dy || 0]); o.position.copy(m.position); o.position.y += dy || 0; return o; };   // a name's anchor stands for its part (a click on the name)
+  let BAKE = false;   // set below: the drawn helix's spheres and rods are drawn as instances, the separate meshes kept hidden as anchors
+  const ref = (m, dy) => { if (!AT && !BAKE) return m; const o = new THREE.Object3D(); o.userData = Object.assign({}, m.userData); helix.add(o); anc.push([o, m, dy || 0]); o.position.copy(m.position); o.position.y += dy || 0; return o; };   // a name's anchor stands for its part (a click on the name)
   const layout0 = layout;
   layout = u => {
     layout0(u); if (!AT) return;
@@ -283,6 +284,17 @@ BUILD.dna = (c) => {
   };
   let unzip = 0, target = 0, built = false;
   layout(0);
+  /* with js/replication.js the old unzip below never runs, so the drawn helix stays as laid out: its spheres and rods are drawn as one instanced
+     mesh per kind (a few draw calls instead of one per sphere); the separate meshes stay, hidden, for the names and the camera to use */
+  if (!AT && typeof REP !== 'undefined') {
+    BAKE = true; helix.updateMatrixWorld(true);
+    const inv = new THREE.Matrix4().copy(helix.matrixWorld).invert(), groups = new Map(), was = new Set();
+    const put = (m, ud) => { if (!m || !m.visible) return; const k = m.geometry.uuid + m.material.uuid; let gr = groups.get(k); if (!gr) groups.set(k, gr = { geo: m.geometry, mat: m.material, ud, at: [] });
+      gr.at.push(new THREE.Matrix4().multiplyMatrices(inv, m.matrixWorld)); m.visible = false; };
+    bp.forEach(e => { e.s.forEach(o => [o.sugar, o.base, o.phos].forEach(m => { if (m) { put(m, m.userData); was.add(m); } })); e.hb.children.forEach(d => put(d, e.hb.userData)); was.add(e.hb); });
+    for (let k = c.pickables.length - 1; k >= 0; k--) if (was.has(c.pickables[k])) c.pickables.splice(k, 1);
+    for (const gr of groups.values()) { const im = new THREE.InstancedMesh(gr.geo, gr.mat, gr.at.length); gr.at.forEach((M4, i) => im.setMatrixAt(i, M4)); im.instanceMatrix.needsUpdate = true; im.frustumCulled = false; im.userData = Object.assign({}, gr.ud); helix.add(im); c.pickables.push(im); }
+  }
   // ---- scale bar (2 nm) under the helix
   const bar = new THREE.Group(); g.add(bar); bar.position.set(0, -(n * rise / 2 + 3.2), 0);
   const barM = new THREE.MeshBasicMaterial({ color: 0xdbeafe }); const barMesh = new THREE.Mesh(new THREE.BoxGeometry(2 * NM, .09, .09), barM); bar.add(barMesh);
