@@ -1,0 +1,258 @@
+{
+ "id": "choroid_cells_dog",
+ "name": "Choroid pigment cell (dog)",
+ "organism": "mammal (dog)",
+ "species": "Canis familiaris",
+ "card": "cell_choroid_cells_dog",
+ "blurb": "The layer behind a dog's retina, dark with pigment away from the tapetum, is made of blood vessels and the cells between them; here one of its star-shaped pigment cells, a melanocyte, is drawn, packed with melanin granules.",
+ "note": "Model: one pigment cell (a melanocyte) from the choroid of a dog's eye, cut in half; the choroid also holds blood vessels and fibroblasts, which are not drawn. Measured in dogs: the order of the choroid's layers and its thickness (about 110 to 183 µm, in living dogs by optical scanning) and the thickness of the tapetum (20 to 70 µm). Illustrative: every size and number of the cell itself (the body, the arms, the nucleus, the melanin granules, the mitochondria) and all colours; no source read gives them for the dog.",
+ "shape": {
+  "type": "stellate",
+  "soma_um": 12,
+  "processes": 6,
+  "reach_um": 45,
+  "branch_points": 8,
+  "process_um": 1.5,
+  "endfeet": 0,
+  "flat": 0.3
+ },
+ "dimensions": {
+  "choroid_thickness_tapetal": {
+   "value": 183,
+   "range": [
+    100,
+    260
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "zwolska2023",
+   "note": "whole choroid, dorsal fundus (above the optic disc, over the tapetum): 183.02 ± 30.15 µm in 21 dogs aged 4-7 years and 182.93 ± 32.01 µm in 24 dogs aged 8-13 years; measured in living dogs, so it includes the tapetum"
+  },
+  "choroid_thickness_nontapetal": {
+   "value": 110,
+   "range": [
+    70,
+    160
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "zwolska2023",
+   "note": "whole choroid, ventral fundus (non-tapetal): 110.24 ± 23.50 µm (4-7 years) and 107.84 ± 17.68 µm (8-13 years)"
+  },
+  "tapetum_thickness": {
+   "value": 53,
+   "range": [
+    20,
+    70
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "tapetum_dog",
+   "note": "the thickest part of the normal tapetum: mean 53 ± 17 µm"
+  },
+  "capillary_layer_thickness": {
+   "value": 7.7,
+   "range": [
+    6,
+    10
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "faust2024",
+   "note": "HUMAN choriocapillaris, posterior pole, 7.7 ± 2.1 µm in histology sections; no dog value was found, the whole layer under the retina in dogs (pigment epithelium, Bruch's membrane and capillaries together) measured about 8 µm in non-tapetal areas by OCT (zwolska2023), so the capillary layer alone is thinner; no dog value for it was found"
+  },
+  "cell_body": {
+   "value": 12,
+   "range": [
+    6,
+    25
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: the width of the cell body drawn"
+  },
+  "reach": {
+   "value": 45,
+   "range": [
+    15,
+    150
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: how far the arms reach"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "size_um": {
+   "value": [
+    8,
+    6,
+    4
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: one oval nucleus in a flat 12 µm body"
+  },
+  "nucleoli": 1,
+  "position": "central"
+ },
+ "organelles": {
+  "melanosomes": {
+   "count": {
+    "value": 600,
+    "measured": false,
+    "note": "illustrative: a crowd of granules, as the dark colour of the choroid needs; the number in a real cell was not found"
+   },
+   "size_um": {
+    "value": 0.6,
+    "measured": false,
+    "note": "illustrative"
+   },
+   "elongation": 1.4,
+   "position": "any"
+  },
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.04,
+    "measured": false,
+    "note": "illustrative"
+   },
+   "size_um": [
+    1.2,
+    0.4
+   ],
+   "max_drawn": 200
+  },
+  "golgi": {
+   "stacks": {
+    "value": 2,
+    "measured": false,
+    "note": "illustrative"
+   }
+  },
+  "not_drawn": [
+   "rough endoplasmic reticulum",
+   "ribosomes",
+   "the blood vessels and the thin cell layer lining them",
+   "fibroblasts and the collagen between the cells",
+   "neighbouring pigment cells, which lie in layers"
+  ]
+ },
+ "special": [
+  {
+   "kind": "layers",
+   "source": "zwolska2023",
+   "also": "tapetum_dog",
+   "note": "In the dog, from the retina outward: the pigment layer of the retina, a thin membrane and a layer of fine capillaries; the tapetum, a shiny layer of cells in the upper part of the eye; a layer of medium vessels; a layer of large vessels; and the thin boundary layer against the sclera. In places without a tapetum the capillary layer sits directly on the medium vessels. Only the layers are named here; none is drawn."
+  },
+  {
+   "kind": "vessels",
+   "source": "zwolska2023",
+   "note": "The vessels make up most of the choroid's thickness: in the dogs measured the layer of large vessels (with the thin boundary layer against the sclera) was about 120 µm thick over the tapetum and about 75 to 78 µm in the non-tapetal fundus. They are not drawn in this cell, which shows a pigment cell lying between them."
+  },
+  {
+   "kind": "fibroblasts",
+   "note": "Fibroblasts, long flat cells that make the fibres of connective tissue, are generally described as lying in the choroid between the vessels. They are not drawn; the fibroblast has its own picture. That fibroblasts lie in the choroid is not backed by a source opened for this cell and is stated as a general description."
+  },
+  {
+   "kind": "pigment_cells",
+   "note": "Pigment cells in the dog's choroid have been described as differing in form and arrangement from the human ones, and as following the shape of the tapetum. No source with numbers was opened. A search summary of a 1990 paper (not opened) describes the dog's choroidal pigment cells as flattened, tapetal-cell-like cells packed with melanin granules and lying in layers, unlike the branched cells of the human choroid; the star shape drawn is the nearest shape available and is a stand-in, as are the Golgi stacks and mitochondria."
+  }
+ ],
+ "cut": "The cell is cut through its flat body: an oval nucleus in the middle, a crowd of dark melanin granules (melanosomes) filling the cytoplasm and running out into the arms, and a few mitochondria and a Golgi stack beside the nucleus.",
+ "colours": {
+  "convention": "Melanosomes dark brown, which is near their real colour (melanin is brown-black); membrane pale; nucleus violet; mitochondria orange as a code.",
+  "true_colour": [
+   "melanosome"
+  ]
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytoplasm",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell, crowded with melanin granules."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "melanosome": {
+   "name": "Melanosome",
+   "card": "cell_choroid_cells_dog_melanosome",
+   "material": "melanosome"
+  },
+  "mitochondria": {
+   "name": "Mitochondria",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": null,
+   "material": "membrane",
+   "about": "A stack of flat membrane sacs that sorts and packages proteins; in a pigment cell the enzymes that make melanin pass through it. Its size and number here are illustrative."
+  },
+  "process": {
+   "name": "Arm of the cell",
+   "card": null,
+   "material": "membrane",
+   "about": "One of the thin arms that reach out between the vessels and fibres. The number, length and thickness drawn are illustrative."
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "dog_retina",
+    "structure": "choroid"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 60,
+  "r1_m": 0.0005,
+  "arrive_m": 0.00011,
+  "spawn_m": 3e-06,
+  "break": {
+   "text": "The arms end here: the cell's finest ends are not drawn"
+  }
+ },
+ "about": [
+  "The choroid is the dark layer between the retina and the white of the eye. It is mostly blood vessels, with pigment cells and fibroblasts lying between them. In a dog the tapetum, the shiny layer that gives dogs their eyeshine, sits inside it, between the finest capillaries and the medium vessels. This frame shows a single pigment cell, because the layer is not one cell type.",
+  "The choroid measured about 183 µm thick over the tapetum and about 110 µm below it in living dogs. The cell itself is much smaller than that: drawn about 12 µm across with arms reaching about 45 µm, giving a volume of {drawn.cellVolume} µm³ and {drawn.nuclei} nucleus. All of these sizes, and the count of melanin granules, are illustrative.",
+  "Not drawn: the vessels, the fibroblasts, the collagen, the tapetum, and neighbouring pigment cells."
+ ],
+ "sources": {
+  "zwolska2023": {
+   "cite": "Zwolska J et al. (2023) Morphological and Morphometric Analysis of Canine Choroidal Layers Using Spectral Domain Optical Coherence Tomography. Int J Environ Res Public Health 20(4):3121",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9963096/",
+   "opened": "2026-11-23",
+   "used_for": "45 healthy mixed-breed dogs: order of the choroidal layers, thickness of the whole choroid in the tapetal and non-tapetal fundus (in life, by OCT)"
+  },
+  "tapetum_dog": {
+   "cite": "Histological study of the canine tapetum lucidum (53 dogs; 5 beagles, 1 Chihuahua, mixed breeds), PMC4155189",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4155189",
+   "opened": "2026-11-23",
+   "used_for": "the tapetum lies between the capillary layer under the pigment epithelium and the rest of the choroid; thickness 20-70 um (mean 53 um), up to 20 cell layers; pigmentation of the choroid is normal in dogs with a thin tapetum"
+  },
+  "faust2024": {
+   "cite": "Faust CD et al. (2024) The vascular geometry of the choriocapillaris is associated with spatially heterogeneous molecular exchange with the neural retina. J Physiol, PMC13547138 (a literature table of human choriocapillaris geometry)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13547138",
+   "opened": "2026-11-23",
+   "used_for": "human choriocapillaris thickness 6.2-7.7 um in histology sections (table of published values, Spraul et al.); human, not dog"
+  }
+ }
+}

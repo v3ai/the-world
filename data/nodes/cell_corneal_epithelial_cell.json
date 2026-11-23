@@ -1,0 +1,122 @@
+[
+ {
+  "id": "cell_corneal_epithelial_cell",
+  "title": "Corneal epithelial cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2e-05,
+  "parents": [
+   "cornea_epithelium"
+  ],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "cytoskeleton",
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [
+   "cornea",
+   "epithelial_tissue",
+   "keratinocyte"
+  ],
+  "mesh": null,
+  "summary": "The living cells of the cornea's outer skin, in a stack five to seven deep: flat on top, many-sided in the middle, tall at the bottom.",
+  "layers": {
+   "basics": "The front of the eye is covered by a skin of clear cells only about 50 micrometres thick. The cells are alive and see-through. The ones at the very top are wide flat plates washed by tears. Under them lie wing cells, and at the bottom a single row of tall basal cells divides to replace the ones lost above. A cell is shed about a week to ten days after it is made.",
+   "deeper": "Each kind is built for its place. Surface cells are 40 to 60 micrometres across and only a few micrometres thick, their tops folded into small ridges and fingers that hold the tear film, and their sides sealed against the tears. Wing cells are many-sided and packed with keratin bundles that end at desmosomes on their sides. Basal cells are columns about 20 micrometres tall that grip the basement membrane below with hemidesmosomes. Unlike skin, the surface cells are not dead scales.",
+   "expert": "The drawing shows one wing cell. Its width and height come from confocal measurements of the central cornea; the nucleus size and small organelles are illustrative. New cells come from stem cells at the rim of the cornea as well as from the basal row."
+  },
+  "facts": [
+   [
+    "Epithelium thickness",
+    "about 50 µm (5-7 cell layers)"
+   ],
+   [
+    "Surface cell",
+    "40-60 µm across, 2-6 µm thick"
+   ],
+   [
+    "Basal cell height",
+    "about 20 µm"
+   ],
+   [
+    "Cell lifespan",
+    "7-10 days"
+   ],
+   [
+    "Nuclei per cell",
+    "1"
+   ],
+   [
+    "Drawn wing cell",
+    "21.5 µm wide (confocal), 7.3 µm tall (calculated)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Confocal gives a 12.7 µm basal layer against about 20 µm in histology: which is closer to the living cell?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ]
+ },
+ {
+  "id": "cell_corneal_epithelial_junctions",
+  "title": "Junctions of the corneal epithelium",
+  "kind": "structure",
+  "template": "cell",
+  "scale_m": 2e-05,
+  "parents": [
+   "cell_corneal_epithelial_cell"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "bio_cell_junctions",
+   "cornea_epithelium"
+  ],
+  "mesh": null,
+  "summary": "The ties between corneal cells: desmosomes along the sides, tight seals near the top, and hemidesmosomes at the base.",
+  "layers": {
+   "basics": "Cells of the cornea's skin hold on to each other and to the layer below. Along their sides are desmosomes, small protein rivets. Near the top, the sides of the surface cells are sealed so tears cannot seep between them. At the bottom, the tall cells are fixed to the layer beneath by hemidesmosomes, half-rivets.",
+   "deeper": "A desmosome links the keratin bundles of one cell to those of the next, so a push on one cell is spread over many. The seals near the surface keep tears out of the gaps between cells. Hemidesmosomes anchor the lowest cells to the basement membrane; when they fail, the skin can lift and the eye hurts, as in recurrent corneal erosion.",
+   "expert": "Reviews differ on which junction sits where: one places the tight seals only on the sides of the topmost cells, another gives wing cells similar seals. Only the desmosomes are drawn, 120 in the model, an illustrative number."
+  },
+  "facts": [
+   [
+    "Desmosomes",
+    "along the sides of all cells"
+   ],
+   [
+    "Tight junctions",
+    "near the surface; some reviews also place them between wing cells"
+   ],
+   [
+    "Hemidesmosomes",
+    "under the basal cells"
+   ],
+   [
+    "Basement membrane",
+    "40-60 nm thick"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Which layers carry full tight junctions in the living human cornea?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ]
+ }
+]

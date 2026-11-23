@@ -1,0 +1,188 @@
+[
+ {
+  "id": "cell_neutrophil_nucleus",
+  "title": "Lobed nucleus of the neutrophil",
+  "kind": "organelle",
+  "template": "thing",
+  "scale_m": 5e-06,
+  "area": "bio_animals",
+  "parents": [
+   "neutrophil"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "nucleus",
+   "neutrophil"
+  ],
+  "summary": "The neutrophil's nucleus is one nucleus pinched into two to four lobes, an unusual shape that suits a cell built to squeeze through narrow gaps.",
+  "layers": {
+   "basics": "Most cells have a round or oval nucleus. A neutrophil's is divided into lobes, usually two to four, that look like beads in a stained blood sample. The lobes belong to a single nucleus. Younger cells have a nucleus that is not yet lobed and are called bands, and the number of lobes tends to rise as the cell ages.",
+   "deeper": "Lobes form as the cell matures in the bone marrow. The protein lamin B receptor in the nuclear envelope is needed for this, and people with a fault in its gene have neutrophils with round nuclei (the Pelger-Huet anomaly). Circulating cells in a healthy person have two to four lobes. Cells with more lobes moved faster through very narrow channels in a laboratory test than cells with one or two, so the lobes may help the cell to deform and squeeze between other cells on its way out of the blood.",
+   "expert": "The nuclear envelope of a mature neutrophil is poor in lamin A and C and rich in lamin B receptor, a mix that makes the nucleus soft and easy to fold. Whether the lobed shape itself or the softness is what helps in narrow gaps is not settled. In the drawing the lobes are separate bodies with equal volume; in life they are joined by thin strands, and their number varies from cell to cell."
+  },
+  "facts": [
+   [
+    "Lobes in circulating cells",
+    "2 to 4"
+   ],
+   [
+    "Share of cell volume",
+    "about 21% (human)"
+   ],
+   [
+    "Shape drawn",
+    "three separate lobes"
+   ],
+   [
+    "Nucleolus",
+    "not drawn"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Is the lobed shape itself what lets a neutrophil pass narrow gaps, or is it the softness of the nucleus?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "18.4",
+    "18-4-leukocytes-and-platelets"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Neutrophils with more nuclear lobes migrated faster through narrow channels; circulating cells have two to four lobes",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10309577/"
+   },
+   {
+    "title": "Review of nuclear shape in immune cells, including the lamin B receptor and neutrophil lobes",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12785203/"
+   }
+  ]
+ },
+ {
+  "id": "cell_neutrophil_granules",
+  "title": "Granules of the neutrophil",
+  "kind": "organelle",
+  "template": "thing",
+  "scale_m": 5e-07,
+  "area": "bio_animals",
+  "parents": [
+   "neutrophil"
+  ],
+  "parts": [],
+  "processes": [
+   "immune_response"
+  ],
+  "related": [
+   "neutrophil",
+   "lysosome"
+  ],
+  "summary": "Granules are small bags packed with proteins that kill microbes; they take up about a sixth of a neutrophil.",
+  "layers": {
+   "basics": "The neutrophil's cytoplasm is crowded with small round or rod-shaped bags called granules. They hold germ-killing proteins, including an enzyme that breaks down bacterial cell walls and small proteins that puncture the membranes of microbes. The granules give the cell its fine grainy look; with the neutral stains used on blood smears they appear a pale lilac.",
+   "deeper": "There are several kinds. The larger azurophil granules are round, about half a micrometre across. The smaller specific granules are spheres about 0.2 micrometres across, or rods about 0.13 micrometres wide and a micrometre long. The two kinds are made at different times as the cell grows in the bone marrow, and in the mature cell the specific granules are the more numerous. Sizes measured on human bone-marrow cells. Later work divides the granules further into four groups: azurophil (primary), specific (secondary), gelatinase (tertiary) and small secretory vesicles.",
+   "expert": "The groups differ in their proteins: myeloperoxidase marks the azurophil granules, lactoferrin the specific granules and gelatinase B the gelatinase granules. Measured by electron microscopy of human cells, granules take about 15% of the cell volume. The model draws one kind, 0.3 micrometres across, in a number that fills that share; the real mix of sizes, shapes and contents is not drawn."
+  },
+  "facts": [
+   [
+    "Azurophil granule",
+    "round, about 0.5 um"
+   ],
+   [
+    "Specific granule",
+    "sphere about 0.2 um, or rod about 0.13 x 1 um"
+   ],
+   [
+    "Share of cell volume",
+    "about 15% (human)"
+   ],
+   [
+    "Drawn",
+    "one kind, 0.3 um spheres"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How many granules does one human neutrophil hold, of each kind?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "18.4",
+    "18-4-leukocytes-and-platelets"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Granule shapes and sizes in human neutrophils from bone marrow",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2138991/"
+   },
+   {
+    "title": "Review of neutrophil granule groups: primary, secondary, tertiary and secretory vesicles",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6421822/"
+   }
+  ]
+ },
+ {
+  "id": "cell_neutrophil",
+  "title": "Neutrophil: inside the cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 8.3e-06,
+  "parents": [
+   "neutrophil"
+  ],
+  "parts": [],
+  "processes": [
+   "immune_response"
+  ],
+  "related": [
+   "neutrophil",
+   "cell_neutrophil_nucleus",
+   "cell_neutrophil_granules"
+  ],
+  "summary": "A round white cell about 8 micrometres across when floating free, with a lobed nucleus, granules full of germ-killing proteins and few mitochondria.",
+  "layers": {
+   "basics": "A neutrophil is built to reach an infection quickly. Its nucleus is divided into lobes, its cytoplasm is crowded with granules, and it has few mitochondria. It circulates in the blood and leaves it where tissue is infected or damaged.",
+   "deeper": "Floating free, the cell is nearly round, about 8 micrometres across, with a volume of about 300 cubic micrometres; on a flattened smear it looks 10 to 12 micrometres across. The nucleus takes about a fifth of the volume and the granules about a sixth. Mitochondria take well under 1%. The cell gets much of its energy by breaking down sugar in the cytoplasm.",
+   "expert": "Volume shares come from electron-microscope sections of human cells in an isotonic medium and differ with how cells are prepared. The mitochondria of neutrophils keep a membrane voltage but make little of the cell's energy; they appear to help regulate glycolysis. The drawing shows three nuclear lobes as separate bodies, one size of granule and a rough surface; the cytoskeleton, glycogen, secretory vesicles and the thin links between lobes are not drawn."
+  },
+  "facts": [
+   [
+    "Volume",
+    "about 300 um3"
+   ],
+   [
+    "Diameter, round",
+    "about 8.3 um"
+   ],
+   [
+    "Nuclear lobes",
+    "2 to 4"
+   ],
+   [
+    "Mitochondria",
+    "about 0.6% of volume"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How do the numbers of each kind of granule vary between people and with age?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "18.4",
+    "18-4-leukocytes-and-platelets"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Neutrophils contain relatively few mitochondria, and their membrane voltage is kept without much respiration",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2295260/"
+   }
+  ]
+ }
+]

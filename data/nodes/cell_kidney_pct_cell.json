@@ -1,0 +1,119 @@
+[
+  {
+    "id": "cell_kidney_pct_cell",
+    "title": "Proximal tubule cell",
+    "kind": "cell",
+    "template": "cell",
+    "scale_m": 1.5e-05,
+    "parents": [],
+    "parts": [
+      "cell_kidney_pct_brush_border"
+    ],
+    "made_of": [
+      "cell_kidney_pct_brush_border",
+      "nucleus",
+      "mitochondrion",
+      "lysosome",
+      "golgi_apparatus",
+      "cell_membrane"
+    ],
+    "processes": [],
+    "related": [
+      "kidney_cortex_pct",
+      "nephron"
+    ],
+    "mesh": null,
+    "summary": "The cell that lines the first winding tube of the kidney and takes back most of what the filter let through.",
+    "layers": {
+      "basics": "Each kidney is made of about a million tiny tubes. Blood is first filtered, and the fluid that results flows into the first tube, where proximal tubule cells take back most of the water, salts, sugar and amino acids so that the body does not lose them. The cells are cube-shaped and sit side by side in one layer. The side facing the fluid is covered in a thick fur of tiny fingers, and the side facing the blood is packed with mitochondria that supply the energy.",
+      "deeper": "Taking back so much is hard work. Sodium is pumped out of the cell on the blood side using energy, which keeps sodium low inside, and so sodium flows in from the fluid through carriers that bring sugar or amino acids with it. Water follows. About two thirds of the water, sodium and potassium that enter the nephron are taken back here, and almost all of the sugar and amino acids. The fingers (the brush border) enlarge the surface facing the fluid, and the folded base and sides enlarge the surface facing the blood. Mitochondria lie upright in those folds, close to the pumps they power.",
+      "expert": "The tube is divided into three segments: S1 and S2 are named for the winding (convoluted) part and S3 for the straight part, though authors place the boundaries differently. The segments differ in cell height and in the amount of organelles. Lengths and volume shares here are from the mouse kidney; human values are not yet measured. Surface fingers are about 2.6 micrometres long, and mitochondria take about 44 percent of the volume in the adult mouse kidney, a figure quoted in a paper on embryonic tubules. The width and height of the cell drawn, the nucleus size and the organelle counts are illustrative. The folds of the base and sides, the pits and vesicles that take up protein, the rough endoplasmic reticulum and peroxisomes are not drawn."
+    },
+    "facts": [
+      [
+        "Surface fingers (microvilli), length",
+        "about 2.6 µm (mouse)"
+      ],
+      [
+        "Mitochondrial share of volume",
+        "about 44% (adult mouse, as quoted in a paper on embryonic tubules)"
+      ],
+      [
+        "Water, sodium and potassium taken back in this tube",
+        "about 67%"
+      ],
+      [
+        "Glucose and amino acids taken back",
+        "almost 100%"
+      ],
+      [
+        "Width and height drawn",
+        "14 and 16 µm (illustrative)"
+      ]
+    ],
+    "did_you_know": "The filter passes about 125 millilitres of fluid a minute, roughly 180 litres a day, and this first tube takes back about two thirds of it.",
+    "certainty": "C2",
+    "open_questions": [
+      "What are the height and volume of a human proximal tubule cell, and how much of it do the mitochondria fill?",
+      "How long are the surface fingers in the human proximal tubule?"
+    ],
+    "refs": [
+      [
+        "ANP",
+        "25.4",
+        "25-4-microscopic-anatomy-of-the-kidney"
+      ],
+      [
+        "ANP",
+        "25.6",
+        "25-6-tubular-reabsorption"
+      ]
+    ]
+  },
+  {
+    "id": "cell_kidney_pct_brush_border",
+    "title": "Brush border of the proximal tubule",
+    "kind": "structure",
+    "template": "thing",
+    "scale_m": 3e-06,
+    "parents": [
+      "cell_kidney_pct_cell"
+    ],
+    "parts": [],
+    "processes": [],
+    "related": [
+      "kidney_cortex_brush"
+    ],
+    "summary": "A dense fur of finger-like folds of the cell membrane on the side of the cell that faces the tube.",
+    "layers": {
+      "basics": "On top of each cell stand thousands of tiny fingers, each a fold of the cell's skin. Together they look like the bristles of a brush under the microscope, which is where the name comes from. They give the cell a much bigger surface for catching water, salts and sugar from the fluid that flows past.",
+      "deeper": "Each finger, a microvillus, has a stiff core of protein threads (actin filaments) that holds it upright, and its surface carries the carriers that bring sodium, sugar and amino acids into the cell. Together the fingers add a very large area for the width of the cell. Disruption of the actin core of these fingers is one of the early signs of acute kidney injury.",
+      "expert": "In mouse kidney sections the fingers are about 2.6 micrometres long (2.55 measured), and each core holds about 19 actin filaments. The length drawn is the mouse value; the human length is not yet measured. The number of fingers per cell and their spacing are illustrative."
+    },
+    "facts": [
+      [
+        "Length",
+        "about 2.6 µm (mouse)"
+      ],
+      [
+        "Actin filaments in the core of one finger",
+        "about 19"
+      ],
+      [
+        "Number and spacing drawn",
+        "illustrative"
+      ]
+    ],
+    "certainty": "C2",
+    "open_questions": [
+      "How long are the fingers in the human proximal tubule?"
+    ],
+    "refs": [
+      [
+        "ANP",
+        "25.4",
+        "25-4-microscopic-anatomy-of-the-kidney"
+      ]
+    ]
+  }
+]

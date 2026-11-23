@@ -1,0 +1,121 @@
+[
+ {
+  "kind": "cell",
+  "template": "thing",
+  "area": "bio_animals",
+  "parts": [],
+  "processes": [],
+  "ext": [],
+  "id": "cell_astrocyte",
+  "title": "Astrocyte",
+  "scale_m": 0.00014,
+  "parents": [
+   "astrocyte"
+  ],
+  "related": [
+   "astrocyte",
+   "neuron",
+   "synapse",
+   "capillary",
+   "cell_astrocyte_endfoot"
+  ],
+  "summary": "A star-shaped support cell of the brain: a small body with many branching processes that touch synapses and, at their ends, the walls of blood vessels.",
+  "layers": {
+   "basics": "Astrocytes are the star-shaped cells that fill the spaces between neurons. A small cell body sends out many branches. Some branches settle against synapses, where neurons talk to each other, and others end as feet on blood vessels. They help keep the chemistry around neurons steady and take part in the barrier between blood and brain.",
+   "deeper": "A protoplasmic astrocyte of the human cortex is about 143 micrometres across, which is roughly two and a half times the width of a rodent's, and it carries about ten times as many main branches. In rat hippocampus each cell holds its own territory of about 66,000 cubic micrometres with very little overlap; human cortical astrocytes are reported to overlap their neighbours more than rodent ones. In the white matter lie fibrous astrocytes, wider still at about 183 micrometres. In the rat the cell body is only 10 to 20 micrometres across and holds one oval nucleus.",
+   "expert": "Under the microscope the cytoplasm is pale, with bundles of intermediate filaments built of GFAP and many glycogen granules. A GFAP stain shows only about 13% of the volume of a rat astrocyte; the rest is a mesh of fine twigs that no stain for the filament reaches. The number of synapses inside one human astrocyte's territory is an estimate, from 270,000 to 2 million, not a count."
+  },
+  "facts": [
+   [
+    "Width, protoplasmic (human cortex)",
+    "142.6 um"
+   ],
+   [
+    "Width, protoplasmic (rodent)",
+    "56.0 um"
+   ],
+   [
+    "Width, fibrous (human)",
+    "183.2 um"
+   ],
+   [
+    "Cell body, rat/unspecified (SynapseWeb)",
+    "10-20 um"
+   ],
+   [
+    "Territory (rat hippocampus)",
+    "about 65,900 um3"
+   ],
+   [
+    "Species of the width",
+    "human"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "How many synapses does one human astrocyte really contact?",
+   "How much of the cell's volume lies in the finest twigs, and how does that differ between humans and other animals?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "12.2",
+    "12-2-nervous-tissue"
+   ]
+  ]
+ },
+ {
+  "kind": "cell",
+  "template": "thing",
+  "area": "bio_animals",
+  "parts": [],
+  "processes": [],
+  "ext": [],
+  "id": "cell_astrocyte_endfoot",
+  "title": "Astrocyte endfoot",
+  "scale_m": 3e-06,
+  "parents": [
+   "cell_astrocyte"
+  ],
+  "related": [
+   "cell_astrocyte",
+   "capillary",
+   "hc_capillary"
+  ],
+  "summary": "The wide end of an astrocyte process where it lies against the wall of a blood vessel; together the feet form a sheath round the vessel.",
+  "layers": {
+   "basics": "Where a branch of an astrocyte meets a blood vessel, it flattens into a foot that lies against the vessel wall. The feet of many astrocytes sit side by side and overlap, so they wrap the vessel like a sleeve. This sleeve is one part of the barrier that controls what passes between blood and brain tissue.",
+   "deeper": "The feet overlap without leaving slits and form a nearly complete sheath. About 63% of the tube of endothelial cells touches the feet directly; the rest lies under a pericyte (another cell that wraps small vessels), and there the feet lie over the pericyte. The vessel wall is covered all round by endfeet. Only a few small holes were found in a 10 micrometre three-dimensional reconstruction, and they were missed in single sections.",
+   "expert": "The 63% comes from counts on single thin sections of many vessels in three rats; a 3D reconstruction of a 10 micrometre stretch (235 sections) found no slits between feet, only a few small holes. It may differ in other vessels, regions and species. It has not been measured in human vessels. The foot size drawn here is illustrative."
+  },
+  "facts": [
+   [
+    "Endothelial tube in direct contact with endfeet (rest lies under a pericyte)",
+    "about 63%"
+   ],
+   [
+    "Stretch of vessel reconstructed",
+    "10 um"
+   ],
+   [
+    "Species",
+    "rat"
+   ],
+   [
+    "Foot drawn",
+    "about 3 um (illustrative)"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "How completely do endfeet cover vessels of different sizes in the human brain?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "12.2",
+    "12-2-nervous-tissue"
+   ]
+  ]
+ }
+]

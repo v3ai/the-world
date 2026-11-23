@@ -1,0 +1,269 @@
+{
+ "id": "macrophage",
+ "name": "Macrophage",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_macrophage",
+ "blurb": "A human macrophage: a large, irregular roaming cell with a ruffled surface and finger-like feet, an oval nucleus with a dent in it, and many lysosomes for digesting what it swallows.",
+ "note": "Model: a human macrophage, cut through its middle. Measured in humans: its size (diameter and volume, from macrophages washed out of the lungs of healthy non-smokers), the shares of a blood monocyte's volume taken by nucleus, mitochondria and granules, and the descriptions of its oval, dented nucleus, ruffled surface and many lysosomes. Illustrative: the exact outline, the number and length of the feet and ruffles, the nucleus share (a monocyte's share, 26%, shrinks as the cell grows, so 10% is a guess), the number and size of lysosomes and mitochondria, and the colours. Not drawn: the dent in the nucleus, swallowed particles, the endoplasmic reticulum, ribosomes, the cytoskeleton and the receptors on the surface.",
+ "shape": {
+  "type": "ellipsoid",
+  "a_um": 24,
+  "b_um": 20,
+  "c_um": 20,
+  "bumps": 0.6,
+  "pseudopods": 5,
+  "pseudopod_um": 7
+ },
+ "dimensions": {
+  "diameter": {
+   "value": 21.2,
+   "range": [
+    10,
+    30
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "krombach1997",
+   "note": "mean of human alveolar macrophages from healthy non-smoking volunteers; a macrophage resting in loose connective tissue may differ, and a crawling one is longer than wide; the range (10 to 30) is illustrative, only the mean is measured"
+  },
+  "volume": {
+   "value": 4990,
+   "range": [
+    3000,
+    7000
+   ],
+   "unit": "um3",
+   "measured": true,
+   "source": "krombach1997",
+   "note": "the same human alveolar macrophages, by flow cytometry; the range is illustrative",
+   "compare": "the drawn ellipsoid, 24 x 20 x 20 µm, is 5027 µm³"
+  },
+  "axes": {
+   "value": 24,
+   "unit": "um",
+   "measured": false,
+   "calc": "pi/6 x 24 x 20 x 20 = 5027 um3, within 1% of the measured volume",
+   "note": "illustrative: a cell a little longer than wide, as one on the move is; the axes 24 x 20 x 20 are chosen to give the measured volume"
+  },
+  "monocyte_nucleus_share": {
+   "value": 0.259,
+   "unit": "fraction",
+   "measured": true,
+   "source": "schmid1980",
+   "note": "nucleus 25.9% of the volume of a human blood monocyte, the cell a macrophage grows from; not a macrophage figure"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "volume_fraction": {
+   "value": 0.1,
+   "range": [
+    0.06,
+    0.26
+   ],
+   "measured": false,
+   "calc": "a blood monocyte's nucleus is 25.9% of its volume (schmid1980); monocytes grown into macrophages swell three- to four-fold while the nuclear surface grows only a little (sokol1987), so about 26% / 3.5 = 7%, nudged up to 10% because the nucleus does grow some; no study of a human macrophage's nucleus share was opened",
+   "source": "schmid1980"
+  },
+  "nucleoli": 1,
+  "note": "Oval and often dented, a mark of its origin in the monocyte; the dent is not drawn.",
+  "source": "digihisto13"
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.035,
+    "range": [
+     0.02,
+     0.06
+    ],
+    "measured": false,
+    "calc": "3.5% of a human blood monocyte's volume (schmid1980); mitochondrial volume rises as monocytes become macrophages (sokol1987), by an amount not found, so the share is a stand-in",
+    "source": "schmid1980"
+   },
+   "size_um": [
+    0.8,
+    0.3
+   ],
+   "size_measured": false,
+   "max_drawn": 300
+  },
+  "lysosomes": {
+   "count": {
+    "value": 220,
+    "measured": false,
+    "calc": "illustrative: 'numerous' lysosomes (digihisto13); a monocyte's granules, among them its lysosome-like ones, take 2.6% of its volume (schmid1980), which would be several thousand small ones, so far more than are drawn"
+   },
+   "size_um": {
+    "value": 0.45,
+    "measured": false,
+    "note": "illustrative; they vary in size and look (digihisto14)"
+   },
+   "elongation": 1.3,
+   "position": "any",
+   "source": "digihisto14"
+  },
+  "golgi": {
+   "stacks": {
+    "value": 1,
+    "measured": false,
+    "note": "illustrative: one stack, drawn beside the nucleus"
+   }
+  },
+  "not_drawn": [
+   "rough endoplasmic reticulum",
+   "ribosomes",
+   "cytoskeleton",
+   "swallowed particles and the phagosomes round them",
+   "surface receptors"
+  ]
+ },
+ "special": [
+  {
+   "kind": "ruffles",
+   "part": "membrane",
+   "params": {
+    "bumps": 0.6,
+    "pseudopods": 5,
+    "pseudopod_um": 7
+   },
+   "source": "digihisto13",
+   "note": "The surface is heavily folded and ruffled, and the cell puts out broad feet (pseudopodia) to crawl and to wrap round what it swallows (openstax_innate; uribe2020: the feet are built by growth of actin filaments). The fold pattern, five feet and their 7 µm length are illustrative."
+  },
+  {
+   "kind": "phagocytosis",
+   "part": "lysosome",
+   "source": "uribe2020",
+   "note": "A particle larger than 0.5 µm is enclosed in a bag of membrane (a phagosome), which fuses with lysosomes to become a phagolysosome, as acid as pH 4.5 inside (uribe2020; openstax_innate). Only the waiting lysosomes are drawn; swallowed particles are not."
+  },
+  {
+   "kind": "habit",
+   "part": "membrane",
+   "source": "openstax_ct",
+   "note": "Some macrophages roam the tissue, moving by amoeboid crawling; others are fixed and stay in their tissue for good. The drawn cell is not marked as one or the other."
+  }
+ ],
+ "cut": "The cell is cut through its middle: a ruffled outline with a few blunt feet, one oval nucleus with a nucleolus off to one side, mitochondria scattered through the cytoplasm, a stack of Golgi next to the nucleus and many small lysosomes of different sizes among them.",
+ "colours": {
+  "convention": "Cell membrane pale pink, the cytoplasm dark; nucleus violet; mitochondria orange; Golgi yellow; lysosomes olive green. All the colours are a code: a living macrophage is almost colourless, and these are the stains and the shading of a picture.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane (ruffled surface)",
+   "card": "cell_macrophage_surface",
+   "material": "membrane",
+   "source": "digihisto13"
+  },
+  "cytosol": {
+   "name": "Cytoplasm",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell, crowded with proteins and with the many lysosomes and swallowed particles that fill a macrophage."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "cell_macrophage_nucleus",
+   "material": "cell_nucleus",
+   "source": "digihisto14"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "lysosome": {
+   "name": "Lysosome",
+   "card": "cell_macrophage_lysosome",
+   "material": "membrane",
+   "source": "uribe2020"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane"
+  }
+ },
+ "reached": {
+  "tissue": [
+   {
+    "kind": "blood",
+    "id": "macrophage"
+   }
+  ],
+  "tissue2": [
+   {
+    "scene": "loose_connective_fat",
+    "structure": "macrophage"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 18,
+  "r1_m": 0.0003,
+  "arrive_m": 5e-05,
+  "spawn_m": 1.5e-06
+ },
+ "about": [
+  "A macrophage of a person. Its size is that measured for human macrophages washed out of the lungs of healthy non-smokers: 21 µm across and about 4990 µm³ (the drawn cell holds {drawn.cellVolume} µm³). One in loose connective tissue or in the blood-vessel wall may differ in size, and a crawling one is longer than it is wide.",
+  "It begins as a monocyte of the blood, leaves a vessel and grows into a macrophage in the tissue. A monocyte's nucleus is about a quarter of the cell; as the cell swells three- to four-fold the nucleus share falls, and 10% is drawn (a guess). The nucleus is oval and, in life, often dented.",
+  "Its work is to swallow microbes, dead cells and debris. The surface is folded and ruffled and the cell puts out feet around what it takes in; the swallowed bag then fuses with lysosomes. {drawn.lysosomes} lysosomes are drawn in this half; a real cell has far more, of many sizes, and often particles in the middle of digestion, which are not drawn."
+ ],
+ "sources": {
+  "krombach1997": {
+   "cite": "Krombach F, Münzing S, Allmeling AM, Gerlach JT, Behr J, Dörger M (1997) Cell size of alveolar macrophages: an interspecies comparison, Environ Health Perspect 105(Suppl 5):1261-1263",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1470168",
+   "opened": "2026-11-23",
+   "used_for": "human alveolar macrophages of healthy non-smokers: diameter 21.2 ± 0.3 µm, volume 4990 ± 174 µm³ (flow cytometry)"
+  },
+  "schmid1980": {
+   "cite": "Schmid-Schönbein GW, Shih YY, Chien S (1980) Morphometry of human leukocytes, Blood 56(5):866-875, Table 2; read in the BioNumbers entry (BNID 115196), not in the paper",
+   "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=115196",
+   "opened": "2026-11-23",
+   "used_for": "human blood monocyte, stereology of electron micrographs: nucleus 25.9%, granules 2.6%, mitochondria 3.5%, cytoplasm 68.1% of cell volume"
+  },
+  "sokol1987": {
+   "cite": "Sokol RJ, Hudson G, James NT, Frost IJ, Wales J (1987) Human macrophage development: a morphometric study, J Anat 151:27-35 (abstract opened only)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1261696/",
+   "opened": "2026-11-23",
+   "used_for": "over six days in culture the cell volume rises three- to four-fold, the surface more than doubles with more irregularity, mitochondrial volume rises and the nuclear surface grows only a little (abstract; no absolute values)"
+  },
+  "openstax_innate": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 21.2 Barrier Defenses and the Innate Immune Response",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/21-2-barrier-defenses-and-the-innate-immune-response",
+   "opened": "2026-11-23",
+   "used_for": "a macrophage is an irregularly shaped amoeboid phagocyte that grows from a monocyte, moves by pseudopodia, and engulfs a pathogen into a phagosome that fuses with a lysosome"
+  },
+  "openstax_ct": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 4.3 Connective Tissue Supports and Protects",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects",
+   "opened": "2026-11-23",
+   "used_for": "roaming macrophages move by amoeboid movement; fixed macrophages are permanent residents of their tissues; they come from monocytes"
+  },
+  "digihisto13": {
+   "cite": "Digital Histology, Connective Tissue Proper, Cells 13 (Macrophage)",
+   "url": "https://digitalhistology.org/tissues/connective/connective-tissue-proper/cells/cells-13/",
+   "opened": "2026-11-23",
+   "used_for": "nucleus oval and often indented; cytoplasm with numerous lysosomes and swallowed material; a heavily folded and ruffled surface"
+  },
+  "digihisto14": {
+   "cite": "Digital Histology, Connective Tissue Proper, Cells 14 (electron micrograph of a macrophage)",
+   "url": "https://digitalhistology.org/tissues/connective/connective-tissue-proper/cells/cells-14/",
+   "opened": "2026-11-23",
+   "used_for": "prominent nuclear indentation; heterochromatin along the nuclear envelope; numerous lysosomes of varied appearance; prominent folding and ruffling of the processes"
+  },
+  "uribe2020": {
+   "cite": "Uribe-Querol E, Rosales C (2020) Phagocytosis: Our Current Understanding of a Universal Biological Process, Front Immunol 11:1066",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7280488/",
+   "opened": "2026-11-23",
+   "used_for": "phagocytosis is of particles over 0.5 µm; feet are built by actin growth; the phagosome fuses with lysosomes, reaching pH as low as 4.5 (first 100,000 characters read)"
+  }
+ }
+}

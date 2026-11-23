@@ -1,0 +1,83 @@
+{
+ "id": "rpe_cell_dog",
+ "name": "Retinal pigment epithelium cell (dog)",
+ "organism": "mammal (dog)",
+ "species": "Canis lupus familiaris",
+ "card": "cell_rpe_cell_dog",
+ "blurb": "A cell of the dark lining behind a dog's retina: a six-sided cell with one nucleus, a crown of fine processes reaching up between the light-sensing cells, and brown pigment granules in its upper half.",
+ "note": "Model: a pigmented cell of the retinal pigment epithelium of a dog (Canis lupus familiaris), cut in half, the upper face towards the light-sensing cells. Measured in dogs: only that the layer over the tapetum is almost without pigment and that the rest is heavily pigmented, and that the tapetum lies in the choroid behind it. Measured in people, not in dogs, and used here as a guide: the six-sided outline, the cell's area (177 to 329 square micrometres by region of the eye), its nucleus, mitochondria, pigment granules and apical processes in one reconstructed cell. Illustrative: every size and count drawn, the position of the organelles, the colours and the neighbours. Not drawn: the folded base, the tight-junction belt, swallowed tips of light-sensing cells and the ageing pigment.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 15,
+  "height_um": 12,
+  "taper": 1,
+  "irregularity": 0.2,
+  "round_um": 1.2,
+  "apical": "microvilli",
+  "apical_um": 8,
+  "neighbours": 1
+ },
+ "dimensions": {
+  "width": { "value": 15, "range": [8, 30], "unit": "um", "measured": false, "note": "illustrative for the dog: no study of dog cells was found. A six-sided cell 15 µm across the flats has an area of 195 µm², close to the human area below.", "compare": "human cells of the mid-periphery average 215 µm² (about 15.8 µm across the flats of a regular hexagon); human macula 177 µm²; far periphery 329 µm² (bhatia2016)" },
+ "height": { "value": 12, "range": [6, 25], "unit": "um", "measured": false, "note": "illustrative for the dog. This is the whole drawn height of the cell body; the renderer reads height_um as the full height and does not add the apical_um fringe on top, so apical_um is not extra height.", "compare": "about 12 µm in the one human cell reconstructed (hum3d, calculated below)" },
+  "human_cell_area": { "value": 215.4, "range": [177.3, 328.6], "unit": "um2", "measured": true, "source": "bhatia2016", "note": "human donor eyes, flat-mounted: mean 177 µm² in the macula, 215 µm² in the mid-periphery, 329 µm² in the far periphery (Table 8). About 40% of the cells were six-sided in each region. Not measured in dogs." },
+  "human_cell_height": { "value": 12.2, "unit": "um", "measured": true, "calc": "5262 µm³ cell volume divided by the 433 µm² area seen from above, for one parafoveal human cell; the volume includes the apical processes, so the height of the cell body alone is less (about 7.6 µm: (5262 - 1982 µm³ of processes) / 433). The paper gives no height, only the volume and the area; this value is calculated, not measured directly", "source": "hum3d", "note": "one cell, one 21-year-old donor; a guide, not a mean" },
+  "human_cell_volume": { "value": 5262, "unit": "um3", "measured": true, "source": "hum3d", "note": "one parafoveal human cell; the drawn dog cell is 195 x 12 = about 2300 µm³ (illustrative)" },
+  "tapetum_thickness": { "value": 53, "range": [20, 70], "unit": "um", "measured": true, "source": "yamaue2014", "also": "lesiuk1983", "note": "thickest part of the tapetum in 53 dogs (average 53, SD 17 µm). The tapetum lies in the choroid behind this layer, not in the layer itself; not drawn." },
+  "apical_process_length": { "value": 8, "range": [1, 20], "unit": "um", "measured": false, "note": "illustrative for the dog", "compare": "8.8 ± 6.1 µm in the one human cell, which had slightly over 800 such processes (hum3d)" },
+  "pigment_over_tapetum": { "value": 0, "unit": "fraction", "measured": true, "source": "yamaue2014", "note": "In 53 dogs the epithelium lying over the tapetum was unpigmented, as reported there for the normal tapetum; its narrow outer rim was lightly pigmented (the drawn cell is a pigmented one from outside the tapetum). The value is a stand-in for 'almost none'.", "also": "granar2011" }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "round",
+  "volume_fraction": { "value": 0.07, "range": [0.03, 0.12], "measured": false, "note": "illustrative for the dog", "compare": "7% in the one human cell: a round nucleus of 379 µm³ in a cell of 5262 µm³ (hum3d)" },
+  "nucleoli": 2,
+  "source": "hum3d",
+  "note": "One nucleus. The human cell reconstructed had one round nucleus with two nucleoli. A count for dog cells was not found, so one is illustrative here."
+ },
+ "organelles": {
+  "mitochondria": { "volume_fraction": { "value": 0.05, "range": [0.02, 0.09], "measured": false, "note": "illustrative for the dog", "compare": "261 µm³ of mitochondria in a human cell of 5262 µm³: 5.0% (calculated, hum3d)" }, "size_um": [1.2, 0.4], "size_measured": false, "max_drawn": 300, "note": "In the human cell most mitochondria lay in the lower half. The drawing spreads them evenly." },
+  "melanosomes": { "count": { "value": 300, "measured": false, "calc": "illustrative: the human cell held 714 dark granules in 5262 µm³ (hum3d); scaled to the drawn volume of about 2300 µm³ it comes to about 310" }, "size_um": { "value": 0.4, "measured": false }, "elongation": 2.5, "position": "supranuclear", "source": "hum3d", "note": "Pigment granules gather in the upper part of the cell and in its processes (human: 72 of them inside slim apical processes). Their size and shape are illustrative; the 714 dark bodies counted in the human cell included other dark granules besides melanosomes." },
+  "golgi": { "stacks": { "value": 2, "measured": false, "note": "illustrative" } },
+  "not_drawn": ["folds of the cell base", "tight-junction belt", "swallowed tips of light-sensing cells", "lipofuscin (ageing pigment)", "smooth endoplasmic reticulum", "the pigment-free form over the tapetum"]
+ },
+ "special": [
+  { "kind": "apical_processes", "part": "apical_processes", "source": "hum3d", "note": "The top of the cell carries many long processes that reach down between the tips of the light-sensing cells. They are drawn as a fringe of fingers; their number, length and thickness are illustrative for the dog (human: slightly over 800 per cell, 8.8 µm long on average)." },
+  { "kind": "tight_junctions", "part": "tight_junction", "source": "naylor_strauss", "note": "A belt of tight junctions seals each cell to its neighbours near its top; together they form a barrier between the retina and the blood supply behind it. Not drawn as a separate structure: the belt is named but the cell outline is the only sign of it." }
+ ],
+ "cut": "The cell is cut in half from top to base: a round nucleus with two nucleoli, dark brown pigment granules in the upper part and among the fringe of processes at the top, mitochondria through the body, and a faint ring of neighbouring six-sided cells behind.",
+ "colours": {
+  "convention": "Cell membrane pale peach, the inside dark; nucleus violet; mitochondria orange; pigment granules dark brown (melanin really is brown, so only this is a true colour); the rest is a code. Outside the tapetum a dog's pigmented layer is usually densely pigmented, so dark brown in life (not in every dog); over the tapetum it would show almost colourless.",
+  "true_colour": ["melanin"]
+ },
+ "parts": {
+  "membrane": { "name": "Cell membrane", "card": "cell_membrane", "material": "membrane" },
+  "cytosol": { "name": "Cytosol", "card": null, "material": "water", "about": "The watery inside of the cell, crowded with proteins." },
+  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus" },
+  "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna" },
+  "melanosome": { "name": "Pigment granule (melanosome)", "card": "cell_rpe_melanosome", "material": "melanosome", "source": "hum3d" },
+  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion" },
+  "golgi": { "name": "Golgi apparatus", "card": "golgi_apparatus", "material": "membrane" },
+  "apical_processes": { "name": "Apical processes", "card": "cell_rpe_apical_processes", "material": "membrane" },
+  "tight_junction": { "name": "Tight junctions", "card": "cell_rpe_tight_junction", "material": "membrane", "about": "Shown: the membrane the junction sits in, as a stand-in. The sealing proteins of the junction are not shown." },
+  "neighbour": { "name": "Neighbouring pigment cell", "card": "cell_rpe_cell_dog", "material": "membrane" }
+ },
+ "reached": {
+  "tissue2": [{ "scene": "dog_retina", "structure": "rpe" }]
+ },
+ "view": { "radius_um": 14, "r1_m": 2.2e-4, "arrive_m": 3.5e-5, "spawn_m": 1.2e-6 },
+ "about": [
+  "A pigmented cell of the layer behind the dog's retina. Its outline is six-sided, as these cells are in the one animal where they have been measured in detail, the human: there the cell is about 15 µm across and covers 177 to 329 µm² depending on where in the eye it sits, and only about 4 in 10 cells have exactly six sides (5.7 neighbours on average). As drawn here it holds {drawn.cellVolume} µm³. No measurement of a dog's cell was found, so the width and height are illustrative.",
+  "The top of the cell faces the light-sensing cells. A fringe of fine processes reaches down between their tips, and pigment granules (about {drawn.melanosomes} drawn in this half, an illustrative count) gather there. The base rests on Bruch's membrane, the thin sheet between the layer and the choroid. {drawn.nuclei} nucleus is drawn, with {drawn.mitochondria} mitochondria in this half.",
+  "In a dog the cells lying over the reflective tapetum are almost without pigment, so that the tapetum shows through; the cell drawn is one from the dark area outside it. The tapetum itself is made of cells of the choroid, not of this layer."
+ ],
+ "sources": {
+  "bhatia2016": { "cite": "Bhatia SK, Rashid A, Chrenek MA, Zhang Q, Bruce BB, Klein M, Boatright JH, Jiang Y, Grossniklaus HE, Nickerson JM (2016) Analysis of RPE morphometry in human eyes, Mol Vis 22:898-916", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4968610", "opened": "2026-11-23", "used_for": "human donor eyes: cell area 177 / 215 / 329 µm² (macula / mid / far periphery), density 4960 / 3990 / 2520 per mm², about 40% six-sided" },
+  "hum3d": { "cite": "Volumetric Reconstruction of a Human Retinal Pigment Epithelial Cell Reveals Specialized Membranes and Polarized Distribution of Organelles (2023), PMC10746928 (one parafoveal cell from a 21-year-old donor, serial-section electron microscopy)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10746928", "opened": "2026-11-23", "used_for": "one human cell: volume 5262 µm³, area from above 433 µm², nucleus 379 µm³ (7%) with two nucleoli, 475 mitochondria of 261 µm³, 714 dark granules, about 800 apical processes of 8.8 ± 6.1 µm, tight junctions in the top fifth of the cell (the author list and journal were not copied; first part of the text read)" },
+  "yamaue2014": { "cite": "Yamaue Y, Hosaka YZ, Uehara M (2014) Macroscopic and histological variations in the cellular tapetum in dogs, J Vet Med Sci 76:1099-1103 (53 dogs)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4155189", "opened": "2026-11-23", "used_for": "in the normal dog tapetum the retinal pigment epithelium over it was almost unpigmented; its narrow rim was lightly pigmented; tapetum thickest part 20-70 µm (average 53), up to 20 cell layers" },
+  "granar2011": { "cite": "Granar MIKS, Nilsson BR, Hamberg-Nystrom HL, Normal color variations of the canine ocular fundus, a retrospective study in Swedish dogs (539 adult dogs of 20 breeds)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3055842", "opened": "2026-11-23", "used_for": "the part of the pigment epithelium over the tapetal area is unpigmented; elsewhere it is typically densely pigmented" },
+  "lesiuk1983": { "cite": "Lesiuk TP, Braekevelt CR (1983) Fine structure of the canine tapetum lucidum, J Anat 136:157-164", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1171936", "opened": "2026-11-23", "used_for": "abstract only: the dog has no retinal tapetum; its tapetum is in the choroid" },
+  "naylor_strauss": { "cite": "Strauss O, The retinal pigment epithelium, Webvision (University of Utah)", "url": "https://webvision.pitt.edu/?p=89", "opened": "2026-11-23", "used_for": "a hexagonally packed single sheet of cells joined by tight junctions, containing pigment granules; takes up the tips of outer segments each morning; renewal of an outer segment about eleven days; part of the blood-retina barrier (the text is general, not dog)" }
+ }
+}

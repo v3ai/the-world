@@ -1,0 +1,228 @@
+{
+ "id": "osteocyte",
+ "name": "Osteocyte (bone cell)",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_osteocyte",
+ "blurb": "The resident cell of bone: a small body sitting in a hollow in the hard matrix, reaching out through thin tunnels to its neighbours with dozens of fine arms.",
+ "note": "Model: an osteocyte of human compact bone, cut through its middle. Measured in human thigh bone (femur): the size and flattened shape of the hollow it lives in (the lacuna) and the number of tunnels leaving it. Quoted from earlier work: the width of the tunnels (about 0.3 µm; 0.1 to 0.5 reported) and the usual distance between neighbouring cells (23 µm). Illustrative: the size of the cell body and its nucleus, how many arms are drawn (40, where about 80 leave a real lacuna), the length and paths of the arms, the thickness of the arms (drawn as wide as the tunnel they run in; a real arm is thinner and fluid fills the rest), the organelles and the colours.",
+ "shape": {
+  "type": "stellate",
+  "soma_um": 11,
+  "processes": 40,
+  "reach_um": 23,
+  "branch_points": 40,
+  "process_um": 0.3,
+  "endfeet": 0,
+  "lacuna_um": 17.2,
+  "flat": 0.3
+ },
+ "dimensions": {
+  "lacuna_length": {
+   "value": 17.2,
+   "unit": "um",
+   "measured": true,
+   "source": "yu2020",
+   "note": "longest of the three axes of the hollow; mean of 7 femora from women aged 56 to 95 (SD 1.8)"
+  },
+  "lacuna_width": {
+   "value": 9.4,
+   "unit": "um",
+   "measured": true,
+   "source": "yu2020",
+   "note": "middle axis (SD 1.1)"
+  },
+  "lacuna_depth": {
+   "value": 4.8,
+   "unit": "um",
+   "measured": true,
+   "source": "yu2020",
+   "note": "shortest axis (SD 0.7): the hollow is a flattened ellipsoid"
+  },
+  "lacuna_volume": {
+   "value": 347.8,
+   "unit": "um3",
+   "measured": true,
+   "source": "yu2020",
+   "note": "mean of the same femora (SD 61.4)"
+  },
+  "flatness": {
+   "value": 0.28,
+   "unit": "fraction",
+   "measured": true,
+   "calc": "shortest axis divided by longest, 4.8 / 17.2, rounded to 0.3 in the drawing",
+   "source": "yu2020"
+  },
+  "canaliculus_diameter": {
+   "value": 0.3,
+   "unit": "um",
+   "measured": false,
+   "source": "repp2017",
+   "note": "reported in earlier work (Varga et al. 2015), quoted by repp2017: about 300 nm; other reports give 0.1 to 0.5 µm"
+  },
+  "neighbour_distance": {
+   "value": 23,
+   "unit": "um",
+   "measured": false,
+   "source": "repp2017",
+   "note": "peak of nearest-neighbour lacunar distance in human femoral osteons, from Hannah et al. 2010 as quoted by repp2017"
+  },
+  "cell_body": {
+   "value": 11,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: a body somewhat smaller than the 17 µm hollow, as the lining of the lacuna leaves a thin fluid gap"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "volume_fraction": {
+   "value": 0.25,
+   "range": [
+    0.1,
+    0.4
+   ],
+   "measured": false,
+   "note": "illustrative: the nucleus fills a large share of the small body"
+  },
+  "size_um": [
+   7,
+   4,
+   3
+  ],
+  "nucleoli": 1,
+  "position": "central",
+  "note": "One nucleus. Its size and place are illustrative."
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.03,
+    "measured": false
+   },
+   "size_um": [
+    0.8,
+    0.3
+   ],
+   "max_drawn": 40
+  },
+  "golgi": {
+   "stacks": {
+    "value": 1,
+    "measured": false,
+    "note": "illustrative"
+   }
+  }
+ },
+ "cut": "The cell is cut through the middle of its flat body: the oval nucleus fills the centre of the cell body, with mitochondria and a Golgi apparatus beside it, inside the flattened hollow of the lacuna in bone. A thin gap lies between the cell and the hollow wall, and fine arms leave the body in every direction in the plane of the hollow, each running in its own tunnel.",
+ "colours": {
+  "convention": "Cell body pale peach with a violet nucleus; the arms the same peach; the bone matrix around it a warm ivory; mitochondria orange. All are a code: real cells are transparent in the light microscope and take their colours from stains.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytosol",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell, crowded with proteins."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane"
+  },
+  "process": {
+   "name": "Cell process (dendrite)",
+   "card": "cell_osteocyte",
+   "material": "membrane",
+   "source": "wu2025",
+   "about": "The arms are thin extensions of the cell. Each runs in its own narrow tunnel, a canaliculus, and meets the arm of a neighbouring cell, where the two are linked by small channels called gap junctions. Through this net the cells share signals and small molecules."
+  },
+  "lacuna": {
+   "name": "Lacuna",
+   "card": "osteocyte_lacuna",
+   "material": "bone",
+   "source": "yu2020"
+  },
+  "canaliculus": {
+   "name": "Canaliculus (tunnel)",
+   "card": "osteocyte_canaliculus",
+   "material": "bone",
+   "source": "repp2017"
+  },
+  "matrix": {
+   "name": "Bone matrix",
+   "card": "bone_tissue",
+   "material": "bone",
+   "source": "openstax_bone",
+   "about": "The hard material around the cell: a frame of collagen stiffened with crystals of a calcium phosphate mineral."
+  }
+ },
+ "reached": {
+  "tissue": [
+   {
+    "kind": "bone",
+    "id": "osteocyte"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 22,
+  "r1_m": 0.0003,
+  "arrive_m": 5e-05,
+  "spawn_m": 1.5e-06
+ },
+ "about": [
+  "The hollow around this cell, its lacuna, is drawn as a flattened ellipsoid 17.2 x 9.4 x 4.8 µm, which has the measured mean volume of 348 µm³ of human thigh bone. The cell inside, {drawn.cellVolume} µm³ as drawn, is an illustrative size, a little smaller than its hollow.",
+  "A real lacuna has about 80 tunnels leaving it, and more after they branch. Only 40 arms are drawn, reaching 23 µm, about the usual distance to the next cell. The tunnels are about 0.3 µm wide, and each arm is drawn as wide as its tunnel.",
+  "Osteocytes are the most common cell of mature bone. They begin as bone-building cells (osteoblasts) that are walled in as the matrix hardens around them. The organelles of the cell are drawn simply; their number and size are illustrative.",
+  "Not drawn: the collagen and mineral of the matrix in detail, the fluid in the gap round the cell, the fluid space around each arm inside its tunnel, and the canaliculi of neighbouring cells."
+ ],
+ "sources": {
+  "yu2020": {
+   "cite": "Yu B, Pacureanu A, Olivier C, Cloetens P, Peyrin F (2020) Assessment of the human bone lacuno-canalicular network at the nanoscale and impact of spatial resolution, Sci Rep 10:4567",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7067834",
+   "opened": "2026-11-23",
+   "used_for": "femoral shaft of 7 women aged 56 to 95: lacuna volume 347.8 µm³, axes 17.2 / 9.4 / 4.8 µm, 79.7 primary canaliculi per lacuna"
+  },
+  "repp2017": {
+   "cite": "Repp F, Kollmannsberger P, Roschger A, Kerschnitzki M, Berzlanovich A, Gruber GM, Roschger P, Wagermaier W, Weinkamer R (2017) Spatial heterogeneity in the canalicular density of the osteocyte network in human osteons, Bone Reports 6:101-108",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5369863",
+   "opened": "2026-11-23",
+   "used_for": "femoral shaft of 4 women aged 48 to 56: canalicular density 0.074 µm per µm³; canaliculus about 300 nm and neighbour spacing 23 µm (both quoted there from earlier work)"
+  },
+  "openstax_bone": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 6.3 Bone Structure",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/6-3-bone-structure",
+   "opened": "2026-11-23",
+   "used_for": "osteocyte is the main cell of mature bone, sits in a lacuna and reaches through canaliculi; osteoblasts come from osteogenic cells; matrix of collagen and mineral"
+  },
+  "wu2025": {
+   "cite": "Wu Y et al. (2025) Osteocytes: master orchestrators of skeletal homeostasis, remodeling, and osteoporosis pathogenesis, Front Cell Dev Biol 13:1670716",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12508660",
+   "opened": "2026-11-23",
+   "used_for": "numerous processes; connexin 43 gap junctions; osteocytes come from osteoblasts and are long-lived"
+  }
+ }
+}

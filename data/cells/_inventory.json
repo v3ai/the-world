@@ -58,7 +58,7 @@
    "reached_from": [
     "human nervous tissue from the spinal cord, brainstem or nerves (FT.tissue nervous, pick \"neuron\", other organs)"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "neuron (soma stellate, no apical dendrite; long myelinated axon with a break)"
   },
   {
@@ -68,7 +68,7 @@
    "reached_from": [
     "human nervous tissue (FT.tissue nervous, pick \"astrocyte\")"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "stellate (endfeet)"
   },
   {
@@ -78,7 +78,7 @@
    "reached_from": [
     "human blood tissue (pick \"neutrophil\")"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "ellipsoid (lobed nucleus: the vocabulary lacks a multi-lobed nucleus; granules)"
   },
   {
@@ -88,7 +88,7 @@
    "reached_from": [
     "human blood tissue (pick \"lymphocyte_t\")"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "ellipsoid (large round nucleus, thin rim of cytoplasm)"
   },
   {
@@ -98,7 +98,7 @@
    "reached_from": [
     "human blood tissue (pick \"lymphocyte_b\")"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "ellipsoid (large round nucleus)"
   },
   {
@@ -109,7 +109,7 @@
     "human blood tissue (pick \"macrophage\")",
     "loose_connective_fat tissue scene, structure macrophage"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "ellipsoid (pseudopods, bumps, lysosomes)"
   },
   {
@@ -119,7 +119,7 @@
    "reached_from": [
     "lung_alveoli tissue scene, structure macro"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "ellipsoid (pseudopods)"
   },
   {
@@ -129,7 +129,7 @@
    "reached_from": [
     "human blood tissue (pick \"platelet\"; material platelet)"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "ellipsoid (flat disc, no nucleus, granules)"
   },
   {
@@ -140,7 +140,7 @@
     "human epithelium tissue, top row (pick \"stratum_corneum\"; material corneocytes)",
     "skin micro scene, surface (material corneocytes)"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (very flat, no nucleus, filled with keratin: hollow = 0, no organelles)"
   },
   {
@@ -150,7 +150,7 @@
    "reached_from": [
     "human epithelium tissue, variant \"lining\", top row (material living_lining_cells)"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (squamous, flat)"
   },
   {
@@ -160,7 +160,7 @@
    "reached_from": [
     "human cardiac tissue (FT.tissue cardiac, pick \"cardiomyocyte\")"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "fibre with branched = 1 (central nuclei, intercalated discs)"
   },
   {
@@ -170,7 +170,7 @@
    "reached_from": [
     "human smooth muscle tissue (FT.tissue smooth, pick \"smooth_muscle_cell\")"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "spindle"
   },
   {
@@ -180,7 +180,7 @@
    "reached_from": [
     "human bone tissue (FT.tissue bone, pick \"osteocyte\")"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "stellate (lacuna_um, many fine processes in canaliculi)"
   },
   {
@@ -191,7 +191,7 @@
     "human cartilage tissue (FT.tissue cartilage, pick \"chondrocyte\")",
     "hyaline_cartilage tissue scene, structures cell1-3 and gcell1-3"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "ellipsoid (coat_um for the lacuna)"
   },
   {
@@ -202,7 +202,7 @@
     "human adipose tissue (FT.tissue adipose, pick \"adipocyte\"; material fat)",
     "loose_connective_fat tissue scene, structure adipocyte"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "ellipsoid (one lipid droplet filling it, a flattened nucleus at the rim: the vocabulary lacks a single droplet pressing the nucleus flat)"
   },
   {
@@ -212,7 +212,7 @@
    "reached_from": [
     "human villi tissue (FT.tissue villi, pick \"enterocyte\")"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (columnar, apical microvilli)"
   },
   {
@@ -222,7 +222,7 @@
    "reached_from": [
     "human liver tissue (FT.tissue liver, pick \"hepatocyte\")"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (cuboidal, sometimes two nuclei)"
   },
   {
@@ -233,7 +233,7 @@
     "loose_connective_fat tissue scene, structure fibroblast",
     "hyaline_cartilage tissue scene, structure fibroblast (perichondrium)"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "spindle (flat)"
   },
   {
@@ -243,7 +243,7 @@
    "reached_from": [
     "dense_connective tissue scene, structure tenocyte"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "spindle (very flat, long, in rows between collagen bundles)"
   },
   {
@@ -253,7 +253,7 @@
    "reached_from": [
     "loose_connective_fat tissue scene, structure mast"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "ellipsoid (granules filling it)"
   },
   {
@@ -263,7 +263,7 @@
    "reached_from": [
     "lung_alveoli tissue scene, structure type2"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (cuboidal, apical microvilli, lamellar bodies)"
   },
   {
@@ -273,7 +273,7 @@
    "reached_from": [
     "kidney_cortex tissue scene, structure pct"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (cuboidal, tall brush border of microvilli, many mitochondria at the base)"
   },
   {
@@ -283,7 +283,7 @@
    "reached_from": [
     "kidney_cortex tissue scene, structure dct"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (cuboidal, few microvilli)"
   },
   {
@@ -293,7 +293,7 @@
    "reached_from": [
     "cornea_layers tissue scene, structures sup, wing, basal"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (flat at the surface, columnar at the base)"
   },
   {
@@ -303,7 +303,7 @@
    "reached_from": [
     "cornea_layers tissue scene, structure kerato"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "stellate (flat = 0.1; long thin processes between collagen sheets)"
   },
   {
@@ -313,7 +313,7 @@
    "reached_from": [
     "cornea_layers tissue scene, structure endo"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (flat hexagon)"
   },
   {
@@ -324,7 +324,7 @@
     "material animal_cells and every animal cell without a spec",
     "the things framework (TH_CELLS animal)"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "the generic cut-open animal cell (js/world_matter.js), says it is a stand-in"
   },
   {
@@ -334,7 +334,7 @@
    "reached_from": [
     "dog_skin tissue scene, structure epi"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron",
    "note": "kept apart from the human cell: dog epidermis is thinner and has fewer layers"
   },
@@ -345,7 +345,7 @@
    "reached_from": [
     "dog_muscle tissue scene, structure fibre (material muscle_fibre)"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "fibre",
    "note": "same structure as the human fibre, but the human measurements are not used for it"
   },
@@ -356,7 +356,7 @@
    "reached_from": [
     "dog_muscle tissue scene, structure rbc (material red_blood_cell_dog)"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "disc_biconcave (smaller than the human cell)"
   },
   {
@@ -367,7 +367,7 @@
     "dog_muscle tissue scene, structure capillary",
     "robin_flight_muscle tissue scene, structure capillary (bird)"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (very flat, curved round the vessel: the vocabulary lacks a curved sheet)"
   },
   {
@@ -377,7 +377,7 @@
    "reached_from": [
     "dog_muscle tissue scene, structure axon"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "neuron (the axon only, myelinated, ending on the muscle)"
   },
   {
@@ -387,7 +387,7 @@
    "reached_from": [
     "dog_olfactory_epithelium tissue scene, structures dendrite, axons, lamina"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "neuron (bipolar soma; a dendrite ending in a knob of cilia)"
   },
   {
@@ -397,7 +397,7 @@
    "reached_from": [
     "dog_olfactory_epithelium tissue scene, structure sust"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (tall columnar, microvilli)"
   },
   {
@@ -407,7 +407,7 @@
    "reached_from": [
     "dog_olfactory_epithelium tissue scene, structure basal"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (small, low)"
   },
   {
@@ -417,7 +417,7 @@
    "reached_from": [
     "dog_olfactory_epithelium tissue scene, structure gland"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (taper, secretory granules)"
   },
   {
@@ -427,7 +427,7 @@
    "reached_from": [
     "dog_retina tissue scene, structure gang"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "neuron (soma round; dendrites in one plane; unmyelinated axon in the retina)",
    "note": "not the cortical pyramidal neuron, though its pick names the neuron card"
   },
@@ -438,7 +438,7 @@
    "reached_from": [
     "dog_retina tissue scene, structure bip"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "neuron (soma bipolar)"
   },
   {
@@ -448,7 +448,7 @@
    "reached_from": [
     "dog_retina tissue scene, structure cones"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "segmented (outer segment discs, inner segment, nucleus, terminal)"
   },
   {
@@ -458,7 +458,7 @@
    "reached_from": [
     "dog_retina tissue scene, structure rpe"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (hexagonal, melanosomes)"
   },
   {
@@ -468,7 +468,7 @@
    "reached_from": [
     "dog_retina tissue scene, structure tap"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (flat, packed with reflecting rods: the vocabulary lacks the rodlets)"
   },
   {
@@ -478,7 +478,7 @@
    "reached_from": [
     "dog_retina tissue scene, structure choroid"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "not one cell type: a layer of vessels, melanocytes and fibroblasts"
   },
   {
@@ -488,7 +488,7 @@
    "reached_from": [
     "dog_skin tissue scene, structure bulb"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron"
   },
   {
@@ -498,7 +498,7 @@
    "reached_from": [
     "dog_skin tissue scene, structure sebaceous"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "ellipsoid (filled with lipid droplets)"
   },
   {
@@ -508,7 +508,7 @@
    "reached_from": [
     "dog_skin tissue scene, structure apocrine"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (cuboidal to columnar)"
   },
   {

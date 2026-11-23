@@ -1,0 +1,203 @@
+{
+ "id": "kidney_dct_cell",
+ "name": "Distal tubule cell",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_kidney_dct_cell",
+ "blurb": "A cell lining the distal convoluted tubule of the kidney: a low cube with short microvilli on the side facing the fluid, its nucleus pushed up under them, and a crowd of mitochondria packed into folds at its base.",
+ "note": "Model: a distal convoluted tubule cell of the human kidney cortex, cut in half. Measured: the layout of the cell (the nucleus close to the surface facing the fluid, mitochondria in the folds of the base and round the nucleus, short microvilli on top), which comes from reviews and micrographs of mainly rat and rabbit tissue (the species of the histology image is not given), and the tubule width of 40 µm, which was measured in mouse. The sources call the microvilli numerous and short, fewer and shorter than on a proximal tubule cell. Illustrative: every size of the cell and of its organelles, the number and length of the microvilli and mitochondria, the number of folds, and the colours. The height and volume of a human distal tubule cell are not well measured.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 10,
+  "height_um": 9,
+  "taper": 1,
+  "irregularity": 0.15,
+  "round_um": 1,
+  "apical": "microvilli",
+  "apical_um": 0.8,
+  "neighbours": 1
+ },
+ "dimensions": {
+  "tubule_outer_diameter": {
+   "value": 40.2,
+   "unit": "um",
+   "measured": true,
+   "source": "karger_tubules",
+   "note": "the long outer diameter of distal tubule sections from the mouse, 5 µm sections; mean ± SEM 0.9 µm, n = 3 male CD1 mice aged 2 months; a stand-in, no human value is known; the short diameter is 32.2 ± 0.6 µm"
+  },
+  "width": {
+   "value": 10,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: the cell is drawn as a low cube, shorter than a proximal tubule cell (openstax_kidney)"
+  },
+  "height": {
+   "value": 9,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative; the height of a human distal tubule cell is not well measured"
+  },
+  "microvillus_length": {
+   "value": 0.8,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative; sources say numerous short microvilli, fewer than the proximal tubule (no length found)"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "position": "apical",
+  "volume_fraction": {
+   "value": 0.1,
+   "range": [
+    0.05,
+    0.15
+   ],
+   "measured": false,
+   "note": "illustrative"
+  },
+  "size_um": [
+   6,
+   5,
+   3.5
+  ],
+  "nucleoli": 1,
+  "source": "mccormick2015",
+  "note": "One nucleus per cell, close to the surface facing the fluid, often flattened by the membrane there (rat, rabbit and other species; the review gives no human value)."
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.3,
+    "range": [
+     0.2,
+     0.4
+    ],
+    "measured": false,
+    "note": "illustrative: the sources say only that these cells hold the most mitochondria per length of any cell in the nephron, packed round the nucleus and between the folds of the base"
+   },
+   "size_um": [
+    1.2,
+    0.4
+   ],
+   "size_measured": false,
+   "max_drawn": 700
+  },
+  "golgi": {
+   "stacks": {
+    "value": 2,
+    "measured": false,
+    "note": "illustrative"
+   }
+  },
+  "absent": [],
+  "absent_source": "mccormick2015"
+ },
+ "special": [],
+ "cut": "The cell is cut in half from fluid side to base: the oval nucleus close under the short microvilli of the top, mitochondria all round it and standing in rows between the narrow folds of the base, and the folds of the sides reaching into the neighbouring cells. Neighbouring cells of the tubule wall show faintly behind.",
+ "colours": {
+  "convention": "Membrane pale; inside dark; nucleus violet; mitochondria orange; the folds of the base and sides a pale tint; the sodium chloride carrier and the sodium pump are not drawn. All colours are a code; none is the real colour of the cell.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytosol",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell, crowded with proteins. In this cell it is mostly taken up by mitochondria and folds of membrane."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion",
+   "source": "mccormick2015"
+  },
+  "microvilli": {
+   "name": "Microvilli",
+   "card": null,
+   "material": "membrane",
+   "source": "openstax_kidney",
+   "about": "Short finger-like folds of membrane on the surface that faces the fluid in the tube. The sources call them numerous and short, fewer and shorter than on a proximal tubule cell. Their number and length here are illustrative."
+  },
+  "basolateral_folds": {
+   "name": "Folded base and sides",
+   "card": "dct_basolateral_folds",
+   "material": "membrane",
+   "source": "digitalhistology"
+  },
+  "sodium_pump": {
+   "name": "Sodium-potassium pump",
+   "card": "dct_sodium_potassium_pump",
+   "material": "protein",
+   "source": "mccormick2015"
+  },
+  "ncc": {
+   "name": "Sodium chloride carrier (NCC)",
+   "card": "dct_ncc_carrier",
+   "material": "protein",
+   "source": "mccormick2015"
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "kidney_cortex",
+    "structure": "dct"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 8,
+  "r1_m": 0.0001,
+  "arrive_m": 2e-05,
+  "spawn_m": 5e-08
+ },
+ "about": [
+  "This is one cell of the wall of a distal convoluted tubule, the winding part of the kidney tube that comes after the loop of Henle. Its size here, {drawn.cellVolume} µm³, is a drawing choice: the size of a human cell of this kind is not well measured. Only the tube's width (40 µm) was measured, in the mouse.",
+  "The nucleus lies close to the surface that faces the fluid, and mitochondria fill the space around it and the narrow folds of the base and sides. {drawn.mitochondria} of about {drawn.mitochondriaWanted} mitochondria are drawn; their number is illustrative, the crowding is not. The folds of one cell reach between its neighbours, which is why the cell edges look palisaded in a stained slice.",
+  "Not drawn: the sodium chloride carrier in the surface facing the fluid and the sodium pump in the folds, which are single proteins (open their parts to meet them); the tight seals between neighbours; the cells of other kinds that appear later along the tubule (intercalated cells); and the fine rough and smooth membrane network."
+ ],
+ "sources": {
+  "mccormick2015": {
+   "cite": "McCormick JA, Ellison DH (2015) The distal convoluted tubule, Compr Physiol 5:45-98 (opened as PMC5810970)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5810970/",
+   "opened": "2026-11-23",
+   "used_for": "nucleus near the apical surface and flattened by it; mitochondria fill the perinuclear region and sit in the basolateral processes (palisading); most mitochondria per length of any nephron cell; basolateral area about twice the apical area in rat and rabbit; numerous short microvilli; highest sodium pump activity in the nephron; sodium pump on the basolateral membrane; NCC in the early part (DCT1); tubule 1.15 mm long in the rat"
+  },
+  "openstax_kidney": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 25.4 Microscopic Anatomy of the Kidney",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/25-4-microscopic-anatomy-of-the-kidney",
+   "opened": "2026-11-23",
+   "used_for": "simple cuboidal epithelium; fewer microvilli than the proximal tubule; shorter and tortuous; ions pumped against their gradient"
+  },
+  "karger_tubules": {
+   "cite": "The convoluted tubules of the nephron: measured diameters in the mouse, Kidney Blood Press Res 46:229 (2021)",
+   "url": "https://karger.com/kbr/article/46/2/229/185974/The-Convoluted-Tubules-of-the-Nephron-Must-Be",
+   "opened": "2026-11-23",
+   "used_for": "distal tubule long diameter 40.2 ± 0.9 µm, short 32.2 ± 0.6 µm, male CD1 mice"
+  },
+  "digitalhistology": {
+   "cite": "Digital Histology, Tubules and collecting system (electron micrograph of a distal convoluted tubule cell)",
+   "url": "https://digitalhistology.org/organs-systems/urinary/tubules-and-collecting-system/tubules-and-collecting-system-6",
+   "opened": "2026-11-23",
+   "used_for": "numerous infoldings of the base with long mitochondria wedged between the folds, next to a capillary with pores"
+  }
+ }
+}

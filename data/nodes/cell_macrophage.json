@@ -1,0 +1,244 @@
+[
+ {
+  "id": "cell_macrophage",
+  "title": "Macrophage",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 2e-05,
+  "area": "bio_animals",
+  "parents": [],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "macrophage"
+  ],
+  "summary": "A macrophage is a large, irregular cell that crawls through tissue and swallows microbes, dead cells and debris.",
+  "layers": {
+   "basics": "A macrophage is a cleaning and guard cell of the body. It lives in the tissues, in the loose packing between organs, around blood vessels and in the lungs, and it eats whatever should not be there: germs, dying cells and rubbish. It is big for a body cell, about as wide as three red blood cells side by side, and its outline is uneven, with folds and blunt feet. When it finds a germ it wraps round it and takes it in, and acid and enzymes inside the cell break it up. It also sends out chemical signals that call other defending cells to the place.",
+   "deeper": "Every macrophage starts as a monocyte, a white blood cell that circulates in the blood. It leaves a vessel, settles in a tissue and swells, becoming several times bigger in volume. Some macrophages roam through the tissue on their feet; others stay in one place for good. The nucleus is oval and often dented. The cytoplasm holds a great many lysosomes, small bags of digestive enzymes, and often the remains of what the cell has swallowed. Human macrophages washed out of the lungs of healthy non-smokers measured 21 micrometres across and about 4990 cubic micrometres.",
+   "expert": "The picture's size comes from lung macrophages, since no measured size of a connective-tissue macrophage was found; the shape of the drawn cell, 24 by 20 by 20 micrometres, is chosen to give that volume. The nucleus share drawn, 10 per cent, is an estimate between a monocyte's 26 per cent and the fall expected as the cell swells; no direct measurement for a human macrophage was found. The number of lysosomes is far smaller than a real cell holds. The dent in the nucleus, swallowed particles, the endoplasmic reticulum, ribosomes, the cytoskeleton and the surface receptors are not drawn. Macrophages of different organs (liver, brain, bone, lung) look and behave differently."
+  },
+  "facts": [
+   [
+    "Diameter (human lung macrophages)",
+    "about 21 um"
+   ],
+   [
+    "Volume (human lung macrophages)",
+    "about 4990 um3"
+   ],
+   [
+    "Origin",
+    "blood monocyte"
+   ],
+   [
+    "Nucleus",
+    "one, oval, often dented"
+   ],
+   [
+    "Share of a blood monocyte that is nucleus",
+    "25.9 %"
+   ],
+   [
+    "Nucleus share drawn",
+    "10 % (estimate)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How much of a tissue macrophage's volume is nucleus, and how does it differ from organ to organ?",
+   "What sets the number and size of lysosomes in a macrophage that has not been feeding?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "21.2",
+    "21-2-barrier-defenses-and-the-innate-immune-response"
+   ],
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Cell size of alveolar macrophages: an interspecies comparison (Environ Health Perspect 1997)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1470168"
+   },
+   {
+    "title": "Digital Histology: macrophage",
+    "url": "https://digitalhistology.org/tissues/connective/connective-tissue-proper/cells/cells-13/"
+   }
+  ]
+ },
+ {
+  "id": "cell_macrophage_surface",
+  "title": "Macrophage surface",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 1e-06,
+  "area": "bio_animals",
+  "parents": [
+   "cell_macrophage"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "macrophage"
+  ],
+  "summary": "The surface of a macrophage is heavily folded and ruffled, and it puts out broad feet to crawl and to wrap round what it swallows.",
+  "layers": {
+   "basics": "Where most cells have a fairly smooth skin, a macrophage's skin is crumpled into folds and ruffles that wave about. From it the cell pushes out blunt feet called pseudopodia, Greek for false feet. It pulls itself along with them, squeezing through gaps in a tissue and even through the wall of a blood vessel. To eat, it stretches feet round a germ or a scrap until they meet and close it in.",
+   "deeper": "The feet are pushed out by growth of actin, a protein that forms long thin filaments just under the membrane. The extra membrane stored in the folds is what lets the cell stretch round a large particle without tearing. A particle must be bigger than about half a micrometre to be swallowed this way; smaller things are taken in by other routes. In culture, as monocytes grow into macrophages, their surface area more than doubles and the surface becomes more irregular.",
+   "expert": "The drawn folds, the five feet and their length of about 7 micrometres are illustrative; real feet change shape from minute to minute. The membrane is drawn as a thick skin so that it can be seen, while a real one is only a few nanometres thick. Receptors that recognise germs, antibodies and dying cells sit in it and are not drawn."
+  },
+  "facts": [
+   [
+    "Surface",
+    "heavily folded and ruffled"
+   ],
+   [
+    "Feet drawn (illustrative)",
+    "5, about 7 um long"
+   ],
+   [
+    "Smallest particle taken in this way",
+    "about 0.5 um"
+   ],
+   [
+    "Real membrane thickness",
+    "a few nm"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How much extra membrane do the folds hold, and how fast is it used up when the cell eats?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "21.2",
+    "21-2-barrier-defenses-and-the-innate-immune-response"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Phagocytosis: Our Current Understanding of a Universal Biological Process (Front Immunol 2020)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7280488/"
+   }
+  ]
+ },
+ {
+  "id": "cell_macrophage_nucleus",
+  "title": "Macrophage nucleus",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 8e-06,
+  "area": "bio_animals",
+  "parents": [
+   "cell_macrophage"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "nucleus",
+   "macrophage"
+  ],
+  "summary": "The nucleus of a macrophage is oval and often dented, and it holds the cell's DNA.",
+  "layers": {
+   "basics": "Inside is the cell's DNA, as in other body cells. The nucleus is oval and often has a dent in one side. That dent is linked to the cell's origin as a monocyte. In sections the tightly packed DNA is seen gathered against the inner wall of the nucleus.",
+   "deeper": "A monocyte's nucleus takes about a quarter of the cell, but a macrophage is several times larger in volume while its nucleus grows little, so the nucleus is a smaller share. The drawn share is 10 per cent.",
+   "expert": "The drawn nucleus is an oval without its dent, and the share, 10 per cent, is an estimate. Cells from different organs and in different states of activity have differently shaped nuclei, so the drawn one is a typical outline rather than a measurement."
+  },
+  "facts": [
+   [
+    "Shape",
+    "oval, often dented"
+   ],
+   [
+    "Share of a blood monocyte",
+    "25.9 %"
+   ],
+   [
+    "Share drawn (estimate)",
+    "10 %"
+   ],
+   [
+    "Number per cell",
+    "one"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Why is the dent kept as the monocyte becomes a macrophage?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "21.2",
+    "21-2-barrier-defenses-and-the-innate-immune-response"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Digital Histology: electron micrograph of a macrophage",
+    "url": "https://digitalhistology.org/tissues/connective/connective-tissue-proper/cells/cells-14/"
+   }
+  ]
+ },
+ {
+  "id": "cell_macrophage_lysosome",
+  "title": "Lysosomes of a macrophage",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 5e-07,
+  "area": "bio_animals",
+  "parents": [
+   "cell_macrophage"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "lysosome",
+   "macrophage"
+  ],
+  "summary": "A macrophage is full of lysosomes, small bags of acid and enzymes that break up what the cell has swallowed.",
+  "layers": {
+   "basics": "When a macrophage swallows a germ, the germ sits in a bag of membrane inside the cell. That bag joins up with lysosomes, which pour their digesting enzymes into it. The inside turns acidic, and the germ is broken into small pieces. A macrophage has many lysosomes, of many sizes and looks, because it is always at work.",
+   "deeper": "The joined bag is called a phagolysosome, and its inside can be as acid as pH 4.5. Some microbes, such as the one that causes tuberculosis, are able to survive the attack. Pieces of the broken germ can then be shown on the cell's surface to other immune cells.",
+   "expert": "The lysosomes drawn, 220 of about 0.45 micrometre, are illustrative: a real cell holds far more small ones, and many are different in size and shape. The bags with swallowed material inside, which a working macrophage always has some of, are not drawn."
+  },
+  "facts": [
+   [
+    "Where it comes from",
+    "lysosomes joining a bag of swallowed material"
+   ],
+   [
+    "Acidity inside",
+    "as low as pH 4.5"
+   ],
+   [
+    "Lysosomes drawn (illustrative)",
+    "220, about 0.45 um"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How many lysosomes does a resting human tissue macrophage hold, and of what size?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "21.2",
+    "21-2-barrier-defenses-and-the-innate-immune-response"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Phagocytosis: Our Current Understanding of a Universal Biological Process (Front Immunol 2020)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7280488/"
+   }
+  ]
+ }
+]

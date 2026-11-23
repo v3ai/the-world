@@ -1,0 +1,242 @@
+{
+ "id": "corneal_endothelial_cell",
+ "name": "Corneal endothelial cell",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_corneal_endothelial_cell",
+ "blurb": "A cell of the single inner layer of the cornea: a flat six-sided tile, only about 5 micrometres thick, whose pumps keep the clear window of the eye from soaking up water.",
+ "note": "Model: a human corneal endothelial cell, cut in half through its thickness, with its neighbours faint around it. Measured in human corneas: the thickness (5 µm), the area of the top and bottom faces (about 312 µm², from 10 cells of one cornea), the six-sided outline, the folding of the side membranes (at least 1.6 times the area of straight sides, from a model of 3 cells), and the density at birth. The volume and the width across are calculated from these. Illustrative: the base, which is drawn as the same hexagon as the top (in the cell the top face is hexagonal and the base is an irregular, flower-shaped outline of similar area, with much more perimeter; basal to apical perimeter ratio 5.6), the size and shape of the nucleus, the share of the cell taken by mitochondria, their size and number, the colours, and the small irregularity of the outline. The folds of the side membranes, the junction belt and the surface microvilli are not drawn.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 19,
+  "height_um": 5,
+  "taper": 1,
+  "irregularity": 0.08,
+  "round_um": 1.2,
+  "apical": "none",
+  "neighbours": 1,
+  "desmosomes": 0
+ },
+ "dimensions": {
+  "thickness": {
+   "value": 5,
+   "range": [
+    4,
+    6
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "he2016",
+   "also": "harrison2016",
+   "note": "flat cells 5 µm thick (human) in the 16-year-old cornea (he2016); the whole layer is given as 5 µm in two further reviews (2 µm in mice). Sridhar 2018 also gives about 10 µm at birth, thinning to about 4 µm in adults. The range 4 to 6 is chosen here, not measured."
+  },
+  "apical_area": {
+   "value": 312,
+   "range": [
+    232,
+    392
+   ],
+   "unit": "um2",
+   "measured": true,
+   "source": "he2016",
+   "note": "mean 312, standard deviation 80, for 10 cells of one cornea from a 16-year-old with keratoconus; the base was 307 ± 56 µm²"
+  },
+  "width_across": {
+   "value": 19,
+   "range": [
+    15,
+    23
+   ],
+   "unit": "um",
+   "measured": true,
+   "calc": "for a regular hexagon, area = (√3/2) × d², where d is the distance between opposite flat sides; d = sqrt(312 / 0.866) = 19.0 µm",
+   "source": "he2016",
+   "note": "the range follows the spread of the area (232 to 392 µm²)"
+  },
+  "volume": {
+   "value": 1560,
+   "range": [
+    1100,
+    2000
+   ],
+   "unit": "um3",
+   "measured": true,
+   "calc": "area 312 µm² × thickness 5 µm, treating the cell as a straight prism (top and base areas are alike in the study)",
+   "source": "he2016",
+   "note": "an upper figure, since the corners are rounded",
+   "compare": "the measured cornea had 3,200 cells per mm² (he2016), and 1,000,000 / 3,200 = 312 µm² per cell; at the birth density of 3,500 (sridhar2018) a cell has about 286 µm², and at 4,000 about 250 µm²"
+  },
+  "lateral_membrane_gain": {
+   "value": 1.6,
+   "range": [
+    1.0,
+    3.0
+   ],
+   "unit": "fraction",
+   "measured": true,
+   "source": "he2016",
+   "note": "the side membranes of 3 modelled cells had at least about 1.6 times the area of straight six-sided walls; a ratio, not a fraction"
+  },
+  "descemet_thickness": {
+   "value": 7,
+   "unit": "um",
+   "measured": true,
+   "source": "sridhar2018",
+   "note": "the basement membrane the cell rests on, as a review states it; not drawn"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "size_um": [
+   7,
+   7,
+   3
+  ],
+  "nucleoli": 1,
+  "position": "central",
+  "note": "illustrative: one flattened nucleus in the middle of the cell, sized to fit inside a cell 5 µm thick. The number of nuclei and their size were not given in any source opened; a post-mitotic cell with one nucleus is the usual description."
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.08,
+    "measured": false,
+    "note": "illustrative: sources say only that these cells hold a high density of mitochondria (ongtone2021); no share was found"
+   },
+   "size_um": [
+    1.0,
+    0.4
+   ],
+   "size_measured": false,
+   "max_drawn": 300
+  },
+  "golgi": {
+   "stacks": {
+    "value": 1,
+    "measured": false,
+    "note": "illustrative"
+   }
+  },
+  "not_drawn": [
+   "rough endoplasmic reticulum",
+   "ribosomes",
+   "lysosomes",
+   "surface microvilli",
+   "folds of the side membranes",
+   "the belt of tight junctions",
+   "gap junctions",
+   "the Descemet membrane under the cell"
+  ]
+ },
+ "special": [
+  {
+   "kind": "lateral_folds",
+   "source": "he2016",
+   "note": "The side membranes are folded and interlock with those of the neighbours, which gives the pumps at least 1.6 times the area that straight walls would. Not drawn: the cut shows straight sides."
+  },
+  {
+   "kind": "tight_junction_belt",
+   "source": "he2016",
+   "note": "A ring of tight junctions runs round the top of each cell, level with a thin net of actin and myosin bound to it, which holds the hexagonal outline; the ring is interrupted where three cells meet. Gap junctions lie lower on the sides. Neither is drawn as a separate structure."
+  }
+ ],
+ "cut": "The cell is cut in half through its thickness: a flat slab with a rounded oval nucleus in the middle, mitochondria scattered through the cytoplasm, the top face toward the watery fluid inside the eye and the base toward the Descemet membrane, and faint neighbouring cells on every side.",
+ "colours": {
+  "convention": "Membrane pale lilac, cytoplasm dark, nucleus violet, mitochondria orange. All colours are a code; none is the real colour of the living cell, which is clear.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytosol",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell, crowded with proteins."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "mitochondrion": {
+   "name": "Mitochondria",
+   "card": "mitochondrion",
+   "material": "mitochondrion",
+   "source": "ongtone2021",
+   "about": "These cells run on a large supply of ATP: they hold a high density of mitochondria, which feed the pumps in the side membranes."
+  },
+  "pump": {
+   "name": "Sodium-potassium pump",
+   "card": "cell_corneal_endothelial_pump",
+   "material": "protein",
+   "source": "he2016"
+  },
+  "junctions": {
+   "name": "Cell junctions",
+   "card": "cell_corneal_endothelial_junctions",
+   "material": "protein",
+   "source": "he2016"
+  },
+  "neighbour": {
+   "name": "Neighbouring cell",
+   "card": "cell_corneal_endothelial_cell",
+   "material": "membrane"
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "cornea_layers",
+    "structure": "endo"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 14,
+  "r1_m": 0.0002,
+  "arrive_m": 3e-05,
+  "spawn_m": 1e-06
+ },
+ "about": [
+  "This is a cell of the layer on the inner face of the human cornea, one cell thick (about 5 µm). Its top face, toward the fluid at the front of the eye, is a six-sided tile of about 312 µm² in the one cornea measured; as drawn, the cell's volume is {drawn.cellVolume} µm³. At birth there are about 3,500 to 4,000 of these cells in each square millimetre, so each has about 250 to 290 µm² to itself. The 312 µm² cell measured comes from a 16-year-old whose density was 3,200 per mm² (1,000,000 / 3,200 = 312), which fits well.",
+  "The layer works as a pump. Water leaks into the cornea from the fluid behind it, and these cells pump it back out, mainly with sodium-potassium pumps in their side membranes, so the stack of collagen sheets stays clear. The side membranes are folded and interlock, which gives the pumps at least 1.6 times the area of straight walls. The cells hold many mitochondria to supply the pumps.",
+  "After the first years of life the cells do not divide in the body, and their density falls by about 0.6% a year in adults, so each remaining cell spreads out to cover the gaps. The nucleus (one, flattened, in the middle), the mitochondria and their share of the cell are illustrative; no source opened gave their size. The folds, the junction belt and the microvilli are not drawn. {drawn.nuclei} nucleus drawn; {drawn.mitochondria} mitochondria drawn in this half."
+ ],
+ "sources": {
+  "he2016": {
+   "cite": "He Z, Forest F, Gain P, Rageade D, Bernard A, Acquart S, Peoc'h M, Defoe DM, Thuret G (2016) 3D map of the human corneal endothelial cell. Sci Rep 6:29047",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4933894",
+   "opened": "2026-11-23",
+   "used_for": "5 µm thickness; apical 312 ± 80 and basal 307 ± 56 µm² (10 cells); hexagonal ZO-1 and N-cadherin belt; side-membrane folds at least 1.6 times straight walls; Na/K ATPase in side membranes; gap junctions"
+  },
+  "sridhar2018": {
+   "cite": "Sridhar MS (2018) Anatomy of cornea and ocular surface. Indian J Ophthalmol 66:190",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5819093/",
+   "opened": "2026-11-23",
+   "used_for": "single layer 5 µm thick; hexagonal cells; 3,500 cells/mm² at birth; 0.6% a year loss; lateral interdigitations with gap and tight junctions; endothelial pump; Descemet membrane 7 µm; no regeneration in adults"
+  },
+  "ongtone2021": {
+   "cite": "Ong Tone S, Kocaba V, Böhm M, Wylegala A, White TL, Jurkunas UV (2021) Fuchs endothelial corneal dystrophy: the vicious cycle of Fuchs pathogenesis. Prog Retin Eye Res 80:100863",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7648733",
+   "opened": "2026-11-23",
+   "used_for": "about 4,000 cells/mm² at birth; high density of mitochondria that make ATP; pump-leak; cells arrested in G1"
+  },
+  "harrison2016": {
+   "cite": "Harrison TA, He Z, Boggs K, Thuret G, Liu HX, Defoe DM (2016) Corneal endothelial cells possess an elaborate multipolar shape to maximize the basolateral to apical membrane area. Mol Vis 22:102",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4814271",
+   "opened": "2026-11-23",
+   "used_for": "endothelium only 5 µm thick in humans (2 µm in mice); expanded side membranes"
+  }
+ }
+}

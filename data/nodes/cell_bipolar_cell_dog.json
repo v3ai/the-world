@@ -1,0 +1,128 @@
+[
+ {
+  "id": "cell_bipolar_cell_dog",
+  "title": "Retinal bipolar cell (dog)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-4,
+  "parents": ["neuron"],
+  "parts": [],
+  "made_of": ["nucleus", "mitochondrion", "golgi_apparatus", "cell_membrane"],
+  "processes": ["synaptic_transmission"],
+  "related": ["retina", "neuron", "synapse"],
+  "mesh": null,
+  "summary": "A small nerve cell in the middle of the retina that passes the signal from the light-sensing cells on to the cells that lead to the optic nerve.",
+  "layers": {
+    "basics": "Light is caught at the back of the eye by rods and cones. They do not send their signal straight to the brain: they pass it to bipolar cells, which pass it on towards the ganglion cells whose fibres make the optic nerve. A bipolar cell has two ends, which is where its name comes from. A bushy tuft of dendrites reaches up to the rods and cones, and one thin axon runs down to a small terminal.",
+    "deeper": "The cell body sits in the middle layer of the retina, in the inner nuclear layer. The dendrites spread in the outer plexiform layer, where they meet the rods and cones; the axon ends deep in the inner plexiform layer, near the ganglion cells. In most bipolar cells the voltage is thought to change smoothly, not in spikes, and sets how much glutamate the cell releases. Rod bipolar cells serve dim light and take their input from rods; many kinds of cone bipolar cells (10 to 15 in mammals) split the cone signal into ON and OFF paths for brightening and darkening.",
+    "expert": "The cell drawn is a rod bipolar cell. In the dog it is marked by the same proteins that mark it in other mammals (protein kinase C alpha, an L-type calcium channel), and its dendrites carry GPR179, part of the ON signalling complex. The sizes drawn are those of the rat, because a full tracing with measurements exists for it; the dog's own sizes have not been taken from a source, so they may differ. The rod bipolar cell makes ribbon synapses onto amacrine cells rather than straight onto ganglion cells."
+  },
+  "facts": [
+    ["Cell body (rat)", "about 8.6 x 4.9 um"],
+    ["Dendrites (rat)", "about 175 um in all"],
+    ["Axon (rat)", "about 0.76 um across, 56 um long"],
+    ["Cell body lies in", "inner nuclear layer (dog)"],
+    ["Axon ends in", "innermost part of the inner plexiform layer (dog)"],
+    ["Cone bipolar types in mammals", "10 to 15"]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+    "How large are the bipolar cells of the dog, type by type, and do they match those of the rat?"
+  ],
+  "refs": [["BIO", "36.5", "36-5-vision"], ["ANP", "12.2", "12-2-nervous-tissue"]],
+  "ext": [
+    { "title": "Rod bipolar cells in mouse, hamster, rabbit and dog retina (PKC-alpha and calcium channel labels)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4427564/" },
+    { "title": "Reconstruction and measurement of rat bipolar cells", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9310816/" }
+  ]
+ },
+ {
+  "id": "cell_bipolar_dog_dendrite",
+  "title": "Bipolar cell dendrites (dog)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2e-5,
+  "parents": ["cell_bipolar_cell_dog"],
+  "parts": [],
+  "made_of": ["cell_membrane"],
+  "processes": ["synaptic_transmission"],
+  "related": ["synapse"],
+  "mesh": null,
+  "summary": "The bushy tuft at the top of a bipolar cell that reaches up to the rods and cones.",
+  "layers": {
+    "basics": "The dendrites of a bipolar cell branch like a small shrub at the top of the cell. Their fine tips reach into the knobs at the ends of rods and cones and listen for the chemical signal those cells release when the light changes.",
+    "deeper": "The tuft lies in the outer plexiform layer, the thin layer where rods and cones meet the cells that listen to them. A rod bipolar cell sends its dendrite tips into the knobs of rods and ends beside a ribbon, a bar that holds vesicles ready to release. The receptors on the tips decide whether the cell is of the ON or the OFF kind.",
+    "expert": "In the rat, the dendrites of a rod bipolar cell add up to about 175 um with about 37 branch points; in the dog the lengths have not been taken from a source. In normal dogs the dendrites carry GPR179, and in a dog model of a night-blinding disease the dendrites and the rod and cone knobs are stretched and overreach each other. The branches drawn have illustrative paths."
+  },
+  "facts": [
+    ["Total length (rat)", "about 175 um"],
+    ["Branch points (rat)", "about 37"],
+    ["Lies in", "outer plexiform layer"]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [["BIO", "36.5", "36-5-vision"]],
+  "ext": [
+    { "title": "Gene therapy and synaptic ribbons in a dog model of retinal degeneration", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13355175/" }
+  ]
+ },
+ {
+  "id": "cell_bipolar_dog_axon",
+  "title": "Bipolar cell axon (dog)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 6e-5,
+  "parents": ["cell_bipolar_cell_dog"],
+  "parts": [],
+  "made_of": ["cell_membrane"],
+  "processes": [],
+  "related": ["neuron"],
+  "mesh": null,
+  "summary": "The thin, unwrapped fibre that carries a bipolar cell's signal down through the retina to its terminal.",
+  "layers": {
+    "basics": "The axon is the one fibre that leaves the bottom of the cell body. In a rod bipolar cell it is the longest part of the cell, about 56 µm in the rat, yet only about 0.76 µm across. It is drawn without an insulating wrap. It runs down through the retina to the layer where the next cells wait.",
+    "deeper": "A rod bipolar cell's axon runs to the innermost part of the inner plexiform layer, close to the ganglion cells, and is long and thick compared with the rest of the cell. The whole cell is small, so the signal has only a short way to go.",
+    "expert": "In the rat the axon shaft is about 0.76 um across and 56 um long, measured in 14 rod bipolar cells; the dog's axon has been seen in sections to end in the innermost layer but not measured. The drawn axon has no myelin."
+  },
+  "facts": [
+    ["Width (rat)", "about 0.76 um"],
+    ["Length (rat)", "about 56 um"],
+    ["Myelin", "none drawn"]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [["ANP", "12.2", "12-2-nervous-tissue"]],
+  "ext": [
+    { "title": "Rod bipolar cells in the dog retina", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4427564/" }
+  ]
+ },
+ {
+  "id": "cell_bipolar_dog_terminal",
+  "title": "Bipolar cell terminal (dog)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2e-5,
+  "parents": ["cell_bipolar_cell_dog"],
+  "parts": [],
+  "made_of": ["cell_membrane"],
+  "processes": ["synaptic_transmission"],
+  "related": ["synapse"],
+  "mesh": null,
+  "summary": "The small knobbly end of a bipolar cell's axon, where it releases glutamate onto the next cells in the retina.",
+  "layers": {
+    "basics": "The axon ends in a short, branched terminal with a few knobs. Each knob is packed with tiny packages of glutamate, the chemical the cell uses to pass its signal on.",
+    "deeper": "At a ribbon synapse the packages line up along a bar of protein and are released steadily, more or less as the light changes, not in bursts. A rod bipolar cell passes its signal to amacrine cells, which relay it on, rather than directly to ganglion cells.",
+    "expert": "In the rat, a terminal has about 69 um of branch and about six swellings of about 1.07 um across. The dog's terminal has not been measured. The drawn knobs are at an illustrative spacing."
+  },
+  "facts": [
+    ["Swellings per terminal (rat)", "about 6"],
+    ["Swelling width (rat)", "about 1.07 um"],
+    ["Signal chemical", "glutamate"]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [["ANP", "12.2", "12-2-nervous-tissue"]],
+  "ext": [
+    { "title": "Circuitry for rod signals through the retina", "url": "https://webvision.med.utah.edu/?p=116" }
+  ]
+ }
+]

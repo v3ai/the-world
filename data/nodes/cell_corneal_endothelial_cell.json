@@ -1,0 +1,98 @@
+[
+ {
+  "id": "cell_corneal_endothelial_cell",
+  "title": "Corneal endothelial cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1.9e-05,
+  "parents": [],
+  "parts": ["cell_corneal_endothelial_pump", "cell_corneal_endothelial_junctions"],
+  "made_of": ["cell_membrane", "mitochondrion"],
+  "processes": [],
+  "related": ["cornea_endothelium", "cornea_descemet"],
+  "summary": "A flat, six-sided cell about 5 micrometres thick that lines the inside of the cornea, where it pumps water out so that the cornea stays clear.",
+  "layers": {
+    "basics": "The cornea is the clear window at the front of the eye. Its inner face is covered by a single layer of flat, six-sided cells that fit together like floor tiles. Water seeps into the cornea from the fluid behind it, and if it stayed, the cornea would swell and turn cloudy. These cells pump the water back out all day, and so keep the window clear. A person is born with a fixed supply, because the cells almost never divide in the body.",
+    "deeper": "Seen from the front, the top face of each cell is a hexagon about 19 micrometres across, but it is only about 5 micrometres thick. Its top face touches the watery fluid inside the eye and its base rests on a thick basement membrane. A ring of tight junctions near the top joins the cells and is broken where three cells meet, so the layer is a leaky barrier, which is why the pumps must keep working against the leak. Gap junctions lower down let neighbours share small molecules. The side walls are not straight: they fold and interlock with those of the neighbours, which multiplies the surface that holds the pumps. Many mitochondria give the energy for pumping. When a cell dies, its neighbours spread and slide to cover the space, so the cells grow larger and less regular with age and the number per square millimetre falls by about 0.6 percent a year.",
+    "expert": "The area of the top and base faces was measured on only 10 cells from a single cornea, taken from a young patient with keratoconus, so the mean of 312 square micrometres is a guide and not a norm. The volume of about 1,560 cubic micrometres is calculated from that area and the thickness. The side-membrane gain of 1.6 times comes from a simplified model of three cells and is a lower bound. The nucleus, the mitochondria's share and their size are illustrative in the drawing, and the folds, junction belt and surface microvilli are left out."
+  },
+  "facts": [
+    ["Thickness", "about 5 um (about 10 at birth, about 4 in adults, Sridhar 2018)"],
+    ["Top-face area", "312 um2 (mean of 10 cells, one cornea)"],
+    ["Width across (calculated)", "about 19 um"],
+    ["Volume (calculated)", "about 1,560 um3"],
+    ["Cells per mm2 at birth", "3,500 to 4,000"],
+    ["Loss in adults", "about 0.6 % a year"],
+    ["Side-membrane area gain", "at least 1.6 times straight walls"],
+    ["Nucleus", "one (size illustrative)"]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+    "How large is the nucleus, and what share of the cell do the mitochondria take, in a healthy adult cell?",
+    "Why do these cells almost never divide in the body, although they can in a dish?"
+  ],
+  "refs": [],
+  "ext": [
+    { "title": "3D map of the human corneal endothelial cell (Scientific Reports, 2016)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4933894" },
+    { "title": "Anatomy of cornea and ocular surface (Indian Journal of Ophthalmology, 2018)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5819093/" }
+  ]
+ },
+ {
+  "id": "cell_corneal_endothelial_pump",
+  "title": "Pumps of the corneal endothelium",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-08,
+  "parents": ["cell_corneal_endothelial_cell"],
+  "parts": [],
+  "made_of": ["cell_membrane"],
+  "processes": [],
+  "related": ["cornea_endothelium"],
+  "summary": "Sodium-potassium pumps in the folded side walls of the cell push ions out, and water follows, which keeps the cornea from swelling.",
+  "layers": {
+    "basics": "Each cell carries enzymes called pumps in its side walls. A pump uses energy to move sodium out of the cell and potassium in. Ions moved out of the cornea draw water along with them, and so the cornea is kept thin and clear.",
+    "deeper": "The cornea leaks water in at about the rate the cells pump it out. This balance is called pump and leak. The folds of the side walls give the pumps much more room than a flat wall would, at least 1.6 times as much in a model of three cells. The energy comes from ATP made by the many mitochondria in the cell.",
+    "expert": "The sodium-potassium enzyme sits in the lateral membranes. The 1.6 figure is from a simplified model and is a lower bound; the number of pumps per cell was not found and is not drawn. The pump is shown here as a general protein."
+  },
+  "facts": [
+    ["Where", "folded side membranes"],
+    ["Area gain from folds", "at least 1.6 times"],
+    ["Energy", "ATP from mitochondria"]
+  ],
+  "certainty": "C2",
+  "open_questions": ["How many pumps does one cell hold?"],
+  "refs": [],
+  "ext": [
+    { "title": "3D map of the human corneal endothelial cell (Scientific Reports, 2016)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4933894" }
+  ]
+ },
+ {
+  "id": "cell_corneal_endothelial_junctions",
+  "title": "Junctions of the corneal endothelium",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-07,
+  "parents": ["cell_corneal_endothelial_cell"],
+  "parts": [],
+  "made_of": ["cell_membrane"],
+  "processes": [],
+  "related": ["cornea_endothelium"],
+  "summary": "A ring of tight junctions near the top of each cell joins it to its neighbours and, with a net of actin beneath, holds its six-sided outline; gap junctions lower down link neighbours.",
+  "layers": {
+    "basics": "Where two cells meet, proteins hold them together. Near the top face a ring of tight junctions runs round every cell and joins it to its neighbours, though not completely. Further down, small channels called gap junctions let neighbours pass tiny molecules to each other.",
+    "deeper": "A thin net of the proteins actin and myosin is joined to the ring of tight junctions and holds the outline under a steady pull; when the junctions were broken up in a lab test, the hexagonal shape was lost altogether. The ring is broken where three cells meet, so the layer leaks a little. A cell-sticking protein called N-cadherin also lies just beneath the top face.",
+    "expert": "The junctions are not drawn as separate structures in the model; the junction proteins are shown as a general protein."
+  },
+  "facts": [
+    ["Tight junctions", "ring near the top face"],
+    ["Gap junctions", "lower on the side walls"],
+    ["Outline", "six-sided"]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [],
+  "ext": [
+    { "title": "3D map of the human corneal endothelial cell (Scientific Reports, 2016)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4933894" }
+  ]
+ }
+]

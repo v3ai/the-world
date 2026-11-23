@@ -1,0 +1,85 @@
+{
+ "id": "type2_pneumocyte",
+ "name": "Type II alveolar cell",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_type2_pneumocyte",
+ "blurb": "The surfactant-making cell of the lung's air sacs: a small cube-like cell with short fingers on its air-facing side and a store of layered surfactant bodies inside.",
+ "note": "Model: a type II alveolar cell of the human lung, cut in half. Measured in human lungs (Homo sapiens): the volume of the cell, and the number, size and combined volume of its lamellar bodies. Measured in rat lungs, not human: the share of the cell taken by the nucleus and by mitochondria (used here as illustrative stand-ins). Illustrative: the six-sided outline and its width and height, the microvilli, the nucleolus, the two Golgi stacks, the size and number of mitochondria drawn, where the lamellar bodies lie in the cell, the colours and the neighbouring cells; the cell is drawn alone, not in the corner where the walls of neighbouring sacs meet. Not drawn: the surfactant film in the air space, the rough endoplasmic reticulum and the cytoskeleton.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 11.2,
+  "height_um": 8,
+  "taper": 1,
+  "irregularity": 0.2,
+  "round_um": 1.5,
+  "apical": "microvilli",
+  "apical_um": 0.5,
+  "neighbours": 1
+ },
+ "dimensions": {
+  "volume": { "value": 650, "unit": "um3", "measured": true, "source": "vanhecke2025", "note": "mean of five human lungs (about 24 billion of these cells per lung); 1 fL = 1 µm³" },
+  "width": { "value": 11.2, "unit": "um", "measured": false, "calc": "chosen so that a six-sided cell of this width and the height below has about the measured volume (area of a regular hexagon 0.65 x width squared, times height)", "note": "illustrative" },
+  "height": { "value": 8, "unit": "um", "measured": false, "note": "illustrative; the cell is described as often cuboidal (pmc7152382), so its height is drawn close to its width" },
+  "lamellar_body_volume": { "value": 74, "unit": "um3", "measured": true, "source": "vanhecke2025", "note": "total volume of the lamellar bodies in one cell" },
+  "lamellar_body_share": { "value": 0.114, "range": [0, 1], "unit": "fraction", "measured": true, "calc": "74 µm³ of lamellar bodies divided by 650 µm³ of cell", "source": "vanhecke2025", "compare": "15 to 19% in rat type II cells (huttmann2025)" },
+  "surface_share": { "value": 0.05, "range": [0, 1], "unit": "fraction", "measured": true, "source": "pmc7152382", "note": "the cells cover less than 5% of the alveolar surface; type I cells cover the rest" },
+  "alveolus_diameter": { "value": 200, "unit": "um", "measured": true, "source": "openstax_resp", "note": "about; so the cell is small next to the sac it lines" }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "volume_fraction": { "value": 0.194, "range": [0.19, 0.31], "measured": false, "calc": "rat value at 90 days, nuclei over cell volume; rat range 19 to 30% over development", "source": "huttmann2025", "note": "illustrative for the human cell: measured in rat" },
+  "nucleoli": 1,
+  "note": "One nucleus is drawn; the count is illustrative."
+ },
+ "organelles": {
+  "mitochondria": { "volume_fraction": { "value": 0.096, "range": [0.082, 0.096], "measured": false, "calc": "rat value at 90 days, mitochondria over cell volume", "source": "huttmann2025", "note": "illustrative for the human cell: measured in rat; the cell is described as rich in mitochondria (pmc7152382)" }, "size_um": [1.0, 0.4], "size_measured": false, "max_drawn": 300 },
+  "lamellar_bodies": {
+   "count": { "value": 324, "measured": true, "source": "vanhecke2025" },
+   "size_um": { "value": 0.77, "measured": true, "calc": "diameter of a sphere of the measured mean volume 0.24 µm³: (6 x 0.24 / pi) to the power 1/3", "source": "vanhecke2025" },
+   "elongation": 1,
+   "position": "any",
+   "note": "Drawn as spheres; the real bodies are layered like an onion (not drawn) and vary in size."
+  },
+  "golgi": { "stacks": { "value": 2, "measured": false, "note": "illustrative" } },
+  "not_drawn": ["rough endoplasmic reticulum", "ribosomes", "cytoskeleton", "surfactant film in the air space"],
+  "absent_source": "pmc7152382"
+ },
+ "special": [
+  { "kind": "tight_junctions", "part": "tight_junction", "source": "pmc7152382", "note": "Tight junctions seal the cell to its neighbours, type I cells included; type II cells make mainly the protein claudin-3. Described in the panel; the junction is not drawn as a separate structure." },
+  { "kind": "microvilli", "part": "microvilli", "note": "Short fingers on the air-facing side raise the surface. Their number and length (0.5 µm) are illustrative; no measurement was opened." }
+ ],
+ "cut": "The cell is cut in half through its height: the oval nucleus with its nucleolus, round lamellar bodies scattered through the cell and many mitochondria, with short microvilli along the air-facing top and neighbouring cells showing faintly beside it.",
+ "colours": {
+  "convention": "Membrane pale pink; nucleus violet; lamellar bodies pale blue-white; mitochondria orange. All are a code, not true colours.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": { "name": "Cell membrane", "card": "cell_membrane", "material": "membrane" },
+  "cytosol": { "name": "Cytosol", "card": null, "material": "water", "about": "The watery inside of the cell, crowded with proteins." },
+  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus" },
+  "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna" },
+  "lamellar_body": { "name": "Lamellar body", "card": "cell_type2_lamellar_body", "material": "membrane", "source": "vanhecke2025" },
+  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion" },
+  "golgi": { "name": "Golgi apparatus", "card": "golgi_apparatus", "material": "membrane" },
+  "microvilli": { "name": "Microvilli", "card": null, "material": "membrane", "about": "Short finger-like folds of the membrane on the side of the cell that faces the air. They enlarge the surface through which the cell releases surfactant and takes back fluid." },
+  "tight_junction": { "name": "Tight junction", "card": null, "material": "protein", "source": "pmc7152382", "about": "A ring of proteins at the top of the cell where it meets its neighbours, closing the gap so that fluid cannot leak between the cells of the lining." }
+ },
+ "reached": {
+  "tissue2": [{ "scene": "lung_alveoli", "structure": "type2" }]
+ },
+ "view": { "radius_um": 8, "r1_m": 0.0002, "arrive_m": 3.5e-05, "spawn_m": 1e-06 },
+ "about": [
+  "A type II cell of the lining of a human air sac. Its volume as drawn is {drawn.cellVolume} µm³; the mean measured in five human lungs is 650 µm³. Together these cells cover less than 5% of the sac's surface, yet they are about 18% of its cells; the thin type I cells cover the rest.",
+  "Each cell holds about 324 lamellar bodies in the measured mean, 74 µm³ of its volume; {drawn.lamellarBodies} are drawn in this half. They store surfactant, which the cell releases onto the lining of the sac. About 85% of what is released is taken back in and reused.",
+  "The nucleus ({drawn.nuclei} drawn) and mitochondria ({drawn.mitochondria} drawn in this half) take shares measured in rat lungs, so they are only a guide for the human cell. The outline, the microvilli and the neighbours are illustrative."
+ ],
+ "sources": {
+  "vanhecke2025": { "cite": "Vanhecke D, Nyengaard JR, Haenni B, Schipke J, Ochs M (2025) Ultrastructural analysis of lamellar bodies in type II alveolar epithelial cells in the human lung. Am J Physiol Lung Cell Mol Physiol 328:L113-L119 (read as the Europe PMC record and abstract; full text not available)", "url": "https://doi.org/10.1152/ajplung.00284.2024", "opened": "2026-11-23", "used_for": "five human lungs: about 24 billion cells per lung, mean volume about 650 µm³; about 324 lamellar bodies per cell, mean 0.24 µm³ each, about 74 µm³ together; about 300 single, 23 joined by pores, 1 to the membrane" },
+  "pmc7152382": { "cite": "Alveolar Epithelium and Pulmonary Surfactant. In: Murray and Nadel's Textbook of Respiratory Medicine (2015)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7152382/", "opened": "2026-11-23", "used_for": "often cuboidal; about 30% of the volume of a type I cell; less than 5% of the surface; about 18% of alveolar cells; tight junctions, mainly claudin-3; many mitochondria; about 85% of surfactant recycled; progenitor of the lining" },
+  "huttmann2025": { "cite": "Huttmann J, Knudsen L, Schmiedl A (2025) Characterization of alveolar epithelial cells type II during postnatal lung development in relation to alveolarization: stereological studies of rat lungs. PLoS One", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12633894/", "opened": "2026-11-23", "used_for": "rat tables 4 and 5: nucleus 19 to 30%, mitochondria 8 to 10%, lamellar bodies 15 to 19% of the cell (rat, not human)" },
+  "openstax_resp": { "cite": "OpenStax Anatomy and Physiology 2e, 22.1 Organs and Structures of the Respiratory System", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-1-organs-and-structures-of-the-respiratory-system", "opened": "2026-11-23", "used_for": "an alveolus is about 200 µm across; type II cells make surfactant and lie among type I cells" }
+ }
+}

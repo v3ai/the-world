@@ -1,0 +1,243 @@
+{
+ "id": "lymphocyte_b",
+ "name": "B lymphocyte (B cell)",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_lymphocyte_b",
+ "blurb": "A resting human B cell from the blood: a small round cell almost filled by one large, dense nucleus, with a thin rim of cytoplasm holding relatively few, small mitochondria and scattered ribosomes.",
+ "note": "Model: a resting B lymphocyte of human blood, cut through its middle. Measured: the volume and surface area of B cells (185 µm³; donors at a hospital, human by implication), the share of a lymphocyte taken by the nucleus (44%) and by mitochondria (3.8%), the membrane area, and the fact that the organelles are few. Illustrative: the exact outline (a slightly uneven sphere), the nucleus size worked out from the share, the size and number of the mitochondria, the single Golgi stack, the nucleolus, the folds of the membrane and the colours. The receptors on the surface are not drawn. Ribosomes are drawn only close in; their number (150000) and size (25 nm) are illustrative, the source says only that they are numerous.",
+ "shape": {
+  "type": "ellipsoid",
+  "a_um": 7.2,
+  "b_um": 7.0,
+  "c_um": 7.0,
+  "bumps": 0.3,
+  "pseudopods": 0,
+  "cilia": 0,
+  "coat_um": 0,
+  "bud": 0
+ },
+ "dimensions": {
+  "volume": {
+   "value": 185,
+   "range": [
+    150,
+    220
+   ],
+   "unit": "um3",
+   "measured": true,
+   "source": "ryu2021",
+   "compare": "125 ± 15 µm³ for all lymphocytes fixed for electron microscopy (schmid1980); the two methods differ, and the B cell figure is the one for this cell type",
+   "note": "185.05 ± 34.86 fL (1 fL = 1 µm³), B cells sorted with CD19 beads from ten healthy donors, imaged live without stain"
+  },
+  "surface_area": {
+   "value": 169,
+   "range": [
+    120,
+    220
+   ],
+   "unit": "um2",
+   "measured": true,
+   "source": "ryu2021",
+   "compare": "about 260 µm² of membrane for lymphocytes fixed for electron microscopy, because the surface is folded (schmid1980)",
+   "note": "169.39 ± 49.21 µm² for the smooth outline of live B cells"
+  },
+  "diameter": {
+   "value": 7.1,
+   "range": [
+    6,
+    9
+   ],
+   "unit": "um",
+   "measured": true,
+   "calc": "the diameter of a sphere of 185 µm³: 2 x (3 x 185 / 4π)^(1/3) = 7.07 µm; the drawn cell is 7.2 x 7.0 x 7.0 µm, which holds 185 µm³",
+   "source": "ryu2021",
+   "also": "openstax_blood",
+   "compare": "6 to 9 µm for small lymphocytes on a blood smear (openstax_blood); about 7 µm in an electron micrograph of a small lymphocyte (histguide)"
+  },
+  "nucleus_diameter": {
+   "value": 5.4,
+   "unit": "um",
+   "measured": false,
+   "calc": "a sphere of 44.4% of 185 µm³ = 82 µm³ has a diameter of 5.4 µm; the share is measured, the sphere is an illustrative stand-in for the real nucleus"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "round",
+  "volume_fraction": {
+   "value": 0.444,
+   "range": [
+    0.35,
+    0.55
+   ],
+   "measured": true,
+   "calc": "nucleus share of the volume of human lymphocytes in isotonic medium; the study did not separate B cells from T cells, so the range is illustrative",
+   "source": "schmid1980"
+  },
+  "size_um": [
+   5.4,
+   5.4,
+   5.4
+  ],
+  "position": "any",
+  "nucleoli": 1,
+  "note": "One round nucleus fills nearly half of the cell, with a thin rim of cytoplasm round it (histguide). The nucleolus is small and is drawn as one illustrative body; the clumped dense chromatin is not drawn as separate clumps.",
+  "source": "histguide"
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.038,
+    "range": [
+     0.02,
+     0.06
+    ],
+    "measured": true,
+    "source": "schmid1980",
+    "note": "3.8% of the volume of human lymphocytes (B and T not separated)"
+   },
+   "size_um": [
+    1.2,
+    0.5
+   ],
+   "size_measured": false,
+   "max_drawn": 50
+  },
+  "golgi": {
+   "stacks": {
+    "value": 1,
+    "measured": false,
+    "note": "illustrative: the stack's position and size"
+   }
+  },
+  "absent": [],
+  "not_drawn": [
+   "endoplasmic reticulum",
+   "surface receptors",
+   "chromatin clumps",
+   "lysosomes"
+  ]
+ },
+ "special": [
+  {
+   "kind": "crowd",
+   "part": "ribosome",
+   "role": "ribosome",
+   "params": {
+    "count": 150000,
+    "size_nm": [
+     25,
+     25,
+     25
+    ],
+    "show_below_um": 0.5,
+    "max_drawn": 1500
+   },
+   "source": "histguide",
+   "note": "Numerous free ribosomes lie in the cytoplasm (measured: described as numerous); the count of 150000 and the 25 nm size are illustrative, drawn only close in."
+  }
+ ],
+ "cut": "The cell is cut through its middle: one large round nucleus fills nearly half the section, with its small nucleolus, surrounded by a thin rim of cytoplasm that holds relatively few, small mitochondria and a small Golgi stack, inside a membrane that is slightly folded.",
+ "colours": {
+  "convention": "Cell membrane pale; cytoplasm dark; nucleus violet (as in a stained blood smear, a code); nucleolus deeper violet; mitochondria orange; Golgi yellow. None of these is a real colour: the living cell is almost colourless.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane",
+   "about": "The membrane carries the B cell receptor, a copy of the antibody that the cell could make, held at the surface. Folded membrane gives lymphocytes in general about 260 µm² of surface (measured on lymphocytes as a group), more than the 169 µm² of a smooth B cell.",
+   "source": "schmid1980"
+  },
+  "cytosol": {
+   "name": "Cytoplasm",
+   "card": null,
+   "material": "water",
+   "about": "A thin rim of cytoplasm round the nucleus, with free ribosomes, a few mitochondria and a few scattered fragments of endoplasmic reticulum.",
+   "source": "histguide"
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna",
+   "about": "The site where the parts of ribosomes are made. It is small in a resting lymphocyte."
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion",
+   "source": "schmid1980"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane",
+   "about": "A small Golgi stack beside the nucleus; in a resting B cell it is small. After the cell meets its antigen, its descendants, the plasma cells, secrete antibody in bulk.",
+   "source": "openstax_lymph"
+  },
+  "ribosome": {
+   "name": "Ribosomes",
+   "card": "ribosome",
+   "material": "rna",
+   "source": "histguide"
+  }
+ },
+ "reached": {
+  "tissue": [
+   {
+    "kind": "blood",
+    "id": "lymphocyte_b"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 6,
+  "r1_m": 0.0001,
+  "arrive_m": 1.8e-05,
+  "spawn_m": 5e-08
+ },
+ "about": [
+  "A B cell of the blood at rest, drawn as a nearly round cell 7 µm across. Its volume, {drawn.cellVolume} µm³ as drawn, is the mean volume measured for B cells from ten healthy donors (185 µm³); the share of the nucleus (44%) is the mean for all human lymphocytes, which cannot be told apart in the cut, so it is applied to this cell as an estimate.",
+  "Nearly the whole cell is nucleus. A resting B cell has not yet met its antigen and is not secreting antibodies, so it keeps relatively few organelles: {drawn.mitochondria} small mitochondria are drawn (of about {drawn.mitochondriaWanted} worked out from the measured 3.8% of volume and an illustrative size), one small Golgi stack, and no stack of endoplasmic reticulum. After it meets its antigen, its descendants called plasma cells secrete antibodies.",
+  "Not drawn: the receptors on the surface (ribosomes are drawn only close in), the fragments of endoplasmic reticulum, the clumps of dense chromatin and lysosomes. The cell is drawn as the round shape it has in blood; in a lymph node it is not necessarily round."
+ ],
+ "sources": {
+  "ryu2021": {
+   "cite": "Ryu D, Kim J, Lim D, et al. (2021) Label-free white blood cell classification using refractive index tomography and deep learning. BME Frontiers 2021:9893804",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10521749",
+   "opened": "2026-11-23",
+   "used_for": "B cell volume 185.05 ± 34.86 fL and surface area 169.39 ± 49.21 µm² (CD19-sorted cells from ten healthy donors); species implied by the clinical donors, not stated in the text"
+  },
+  "schmid1980": {
+   "cite": "Schmid-Schönbein GW, Shih YY, Chien S (1980) Morphometry of human leukocytes. Blood 56:866-875 (read through BioNumbers entries 111439, 115185 and 115194)",
+   "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=115194",
+   "opened": "2026-11-23",
+   "used_for": "lymphocyte volume shares: nucleus 44.4%, mitochondria 3.8%, granules 0.2%, cytoplasm 51.6%; membrane area about 260 µm²; volume 125 µm³"
+  },
+  "histguide": {
+   "cite": "Histology Guide, electron micrograph of a lymphocyte (EM 199), University of Leeds",
+   "url": "https://histologyguide.com/EM-view/EM-199-lymphocyte/07-photo-1.html",
+   "opened": "2026-11-23",
+   "used_for": "small lymphocyte about 7 µm; round nucleus; thin rim of cytoplasm; few mitochondria; few scattered fragments of endoplasmic reticulum; numerous free ribosomes; Golgi not visible"
+  },
+  "openstax_blood": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 18.4 Leukocytes and Platelets",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-4-leukocytes-and-platelets",
+   "opened": "2026-11-23",
+   "used_for": "small lymphocytes typically 6 to 9 µm; simple, unlobed nucleus; B cells mature in bone marrow; B and T cells cannot be told apart on a smear"
+  },
+  "openstax_lymph": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 21.1 Anatomy of the Lymphatic and Immune Systems",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/21-1-anatomy-of-the-lymphatic-and-immune-systems",
+   "opened": "2026-11-23",
+   "used_for": "B cells mature in red bone marrow, circulate in blood and lymph, live in lymph nodes and spleen; activated B cells give plasma cells that secrete antibodies"
+  }
+ }
+}

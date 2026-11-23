@@ -1,0 +1,76 @@
+{
+ "id": "neutrophil",
+ "name": "Neutrophil",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "neutrophil",
+ "blurb": "A human neutrophil, the white blood cell that reaches an infection first: a round cell with a nucleus in several lobes and a cytoplasm full of small granules loaded with germ-killing proteins.",
+ "note": "Model: a human neutrophil of the blood, cut through its middle. Measured in human cells: its volume, the share of the cell taken by the nucleus, the granules and the mitochondria, and the sizes of the two kinds of granule (from bone-marrow cells). Taken from the literature: circulating cells have two to four nuclear lobes; three are drawn, the same size. Illustrative: the exact outline, the surface roughness, the number, size and place of the lobes, the sizes and places of the drawn granules and mitochondria, and the colours. The lobes of the nucleus are drawn as separate bodies; the thin links between them are not drawn.",
+ "shape": {
+  "type": "ellipsoid",
+  "a_um": 8.3,
+  "b_um": 8.3,
+  "c_um": 8.3,
+  "bumps": 0.2
+ },
+ "dimensions": {
+  "volume": { "value": 300, "range": [268, 332], "unit": "um3", "measured": true, "source": "tingbeall1993", "note": "300 µm³ from the diameters of living human cells held on a micropipette (Ting-Beall et al. 1993), as listed by BioNumbers; the range 268 to 332 is an illustrative allowance of about ±10%, not a measured spread" },
+  "diameter_round": { "value": 8.3, "unit": "um", "measured": true, "calc": "the diameter of a sphere of 300 µm³: (6 × 300 / π)^(1/3)", "source": "tingbeall1993", "note": "a cell floating free is nearly round" },
+  "diameter_smear": { "value": 11, "range": [10, 12], "unit": "um", "measured": false, "source": "openstax_leuko", "note": "the book gives 10 to 12 µm for the cell as seen on a stained blood smear, where it lies flattened on glass; 11 is the middle of that range, not a separate measurement" },
+  "nuclear_lobes": { "value": 3, "range": [2, 4], "unit": "lobes", "measured": false, "source": "shen2023", "note": "circulating neutrophils of healthy balance have two to four lobes; three is a choice inside that range" },
+  "azurophil_granule": { "value": 0.5, "unit": "um", "measured": true, "source": "bainton1971", "note": "the usual form is round, about 500 nm across; human bone-marrow cells" },
+  "specific_granule_sphere": { "value": 0.2, "unit": "um", "measured": true, "source": "bainton1971", "note": "specific granules are spheres of about 200 nm or rods of about 130 x 1000 nm; human bone-marrow cells" },
+  "specific_granule_rod": { "value": [0.13, 1.0], "unit": "um", "measured": true, "source": "bainton1971", "note": "width and length of the rod form" }
+ },
+ "nucleus": {
+  "count": 3,
+  "shape": "oval",
+  "volume_fraction": { "value": 0.213, "range": [0.15, 0.28], "measured": true, "calc": "the three lobes together take this share of the cell; each is drawn as one third of it", "source": "schmid1980", "note": "21.3% of the volume of human neutrophils in an isotonic medium; the range is an illustrative allowance, not a measurement" },
+  "nucleoli": 0,
+  "note": "One nucleus in two to four lobes; here three are drawn as separate bodies, because the shape vocabulary has no multi-lobed nucleus. Mature neutrophils are not drawn with a nucleolus.",
+  "source": "shen2023"
+ },
+ "organelles": {
+  "granules": {
+   "count": { "value": 3300, "measured": false, "calc": "the measured granule share (15.4% of 300 µm³ = 46.2 µm³) divided by the volume of one sphere 0.3 µm across (0.0141 µm³)" },
+   "volume_fraction": { "value": 0.154, "range": [0.1, 0.2], "measured": true, "source": "schmid1980", "note": "granules take 15.4% of the cell volume in the cited table; the range is an illustrative allowance" },
+   "size_um": { "value": 0.3, "measured": false, "note": "a single size between the measured 0.2 µm specific granules and 0.5 µm azurophil granules; the real granules differ in size and shape" },
+   "max_drawn": 1500,
+   "position": "any"
+  },
+  "mitochondria": { "volume_fraction": { "value": 0.006, "range": [0.003, 0.012], "measured": true, "source": "schmid1980", "note": "0.6% of the cell volume; the range is an illustrative allowance" }, "size_um": [1.0, 0.3], "size_measured": false, "max_drawn": 60 },
+  "golgi": { "stacks": { "value": 1, "measured": false, "note": "a small Golgi complex is seen in a mature cell; one is drawn, its size and place illustrative" }, "source": "bainton1971" },
+  "not_drawn": ["glycogen granules", "the small endoplasmic reticulum", "secretory vesicles", "the actin and microtubule skeleton", "the network the few mitochondria form"]
+ },
+ "cut": "A cut through the middle of the round cell: three lobes of the nucleus lie in the cytoplasm, which is crowded with small round granules of two kinds mixed together (drawn as one size), with a few mitochondria and a small Golgi complex among them, all inside the cell membrane.",
+ "colours": {
+  "convention": "Cell membrane pale; cytoplasm light; nucleus violet as in a stained smear; granules a pale lilac, the neutral-stain colour of the name; mitochondria orange. The stain colours are a code, not the cell's own colour.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": { "name": "Cell membrane", "card": "cell_membrane", "material": "membrane" },
+  "cytosol": { "name": "Cytosol", "card": null, "material": "water", "about": "The watery inside of the cell between the granules and the nucleus. It holds scattered particles of glycogen, a store of sugar, and the strands of the cell's internal skeleton; neither is drawn." },
+  "nucleus": { "name": "Nucleus (lobed)", "card": "cell_neutrophil_nucleus", "material": "cell_nucleus", "source": "shen2023" },
+  "granule": { "name": "Granules", "card": "cell_neutrophil_granules", "material": "protein", "source": "bainton1971", "about": "Small bags filled with proteins that damage microbes and break down tissue. Several kinds exist, made at different stages of the cell's growth in the bone marrow; they are drawn here as one kind." },
+  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion", "source": "vanraam2008" },
+  "golgi": { "name": "Golgi complex", "card": null, "material": "membrane", "about": "A small stack of flattened sacs that packed the granules while the cell was growing in the bone marrow. In a mature neutrophil it is small." }
+ },
+ "reached": {
+  "tissue": [{ "kind": "blood", "id": "neutrophil" }]
+ },
+ "view": { "radius_um": 8, "r1_m": 1.0e-4, "arrive_m": 2.0e-5, "spawn_m": 5e-8 },
+ "about": [
+  "The cell is drawn round, 8.3 µm across, the diameter of a sphere with the measured volume of about 300 µm³ for a human neutrophil. On a stained blood smear the same cell lies flattened and looks 10 to 12 µm across.",
+  "Its nucleus is one nucleus divided into lobes, two to four in circulating cells. {drawn.nuclei} lobes are drawn as separate bodies that together take the measured 21% of the cell; in life they are joined by thin links that are not drawn.",
+  "Small granules fill much of the cytoplasm, about 15% of its volume. At the measured size of 0.2 to 0.5 µm about {drawn.granulesWanted} would fill that share; {drawn.granules} are drawn at one size (0.3 µm), their places illustrative. The real cell holds several kinds, round and rod-shaped.",
+  "Mitochondria are few, about 0.6% of the volume: {drawn.mitochondriaWanted} would fit, and {drawn.mitochondria} are drawn as separate small bodies, though in life they form a network. The cell's mitochondria are not its main source of energy; it relies mostly on breaking sugar down in the cytoplasm."
+ ],
+ "sources": {
+  "tingbeall1993": { "cite": "BioNumbers entry 115153 (volume of neutrophil, human, 300 µm³), citing Ting-Beall HP, Needham D, Hochmuth RM (1993) Blood 81:2774", "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=115153", "opened": "2026-11-23", "used_for": "volume 300 µm³ from micropipette measurements of living human cells; the round diameter is calculated from it" },
+  "schmid1980": { "cite": "BioNumbers entry 115195 (neutrophil volume distribution, human), citing Schmid-Schönbein GW, Shih YY, Chien S (1980) Morphometry of human leukocytes, Blood 56:866, Table 2", "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=115195", "opened": "2026-11-23", "used_for": "volume shares of nucleus 21.3%, granules 15.4%, mitochondria 0.6% and cytoplasm 62.7%, from electron-microscope sections in isotonic medium" },
+  "openstax_leuko": { "cite": "OpenStax Anatomy and Physiology 2e, 18.4 Leukocytes and Platelets", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-4-leukocytes-and-platelets", "opened": "2026-11-23", "used_for": "10 to 12 µm across on a smear; nucleus of two to five lobes; fine granules that stain light lilac with neutral stains; 50 to 70% of white cells" },
+  "shen2023": { "cite": "Shen C, Mulder E, Buitenwerf W et al. (2023) Nuclear segmentation facilitates neutrophil migration, J Cell Sci 136:jcs260768", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10309577/", "opened": "2026-11-23", "used_for": "circulating human neutrophils have two to four nuclear lobes; banded (one lobe) and hypersegmented (four or more) forms also occur" },
+  "bainton1971": { "cite": "Bainton DF, Ullyot JL, Farquhar MG (1971) The development of neutrophilic polymorphonuclear leukocytes in human bone marrow, J Exp Med 134:907", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2138991/", "opened": "2026-11-23", "used_for": "azurophil granules round, about 500 nm; specific granules spheres of about 200 nm or rods of about 130 x 1000 nm; specific granules outnumber azurophils in the mature cell; a few mitochondria and a small Golgi complex in the mature cell" },
+  "vanraam2008": { "cite": "van Raam BJ, Sluiter W, de Wit E et al. (2008) Mitochondrial membrane potential in human neutrophils is maintained by complex III activity in the absence of supercomplex organisation, PLoS ONE 3:e2013", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2295260/", "opened": "2026-11-23", "used_for": "neutrophils contain relatively few mitochondria; their mitochondria help regulate glycolysis rather than make the cell's energy" }
+ }
+}

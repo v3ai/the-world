@@ -1,0 +1,80 @@
+[
+ {
+  "id": "cell_tenocyte",
+  "title": "Tenocyte (tendon cell)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2.7e-5,
+  "area": "bio_animals",
+  "parents": ["dc_tenocyte"],
+  "parts": ["nucleus", "mitochondrion", "golgi_apparatus", "cell_membrane"],
+  "processes": [],
+  "related": ["dc_tenocyte", "fibroblast", "tendon"],
+  "summary": "A long, flat cell that lies in a row between the collagen bundles of a tendon and makes the collagen around it.",
+  "layers": {
+    "basics": "A tenocyte is the cell of a tendon. It is long and flat, with one slim nucleus in the middle and only a thin layer of cytoplasm round it. Tenocytes lie end to end in rows, squeezed between the ropes of collagen that carry the pull. They make the collagen and the gel between the fibres, and they mend them. Each cell reaches thin wings of cytoplasm round the bundles beside it and touches its neighbours.",
+    "deeper": "A tenocyte is a fibroblast that has settled into a tendon. Because tendon is mostly collagen, the cells are few and their cytoplasm is stretched out along the fibres. Where cell wings meet, small channels called gap junctions let signals pass from one cell to the next, so the cells in a tendon form a network that can sense a load together. In mouse-tail tendon the cell body is about 27 micrometres long at six weeks, and the nuclei in a row are about 27.5 micrometres apart, so the cells lie end to end with little overlap. Each cell touches about 4 or 5 neighbours and has about 8 processes. This picture draws the human cell with the mouse length, because no human value was found.",
+    "expert": "In cross-section the mouse cell is star-shaped, because its processes lengthen as the collagen fibrils thicken after birth. Measured in human Achilles tendon, collagen fibrils took about 61% of the tissue between the cells in the apparently healthy part of the Achilles tendon of patients with tendinopathy elsewhere in it (0.56 in the diseased part). The drawn width, thickness, nucleus size, mitochondria and Golgi are illustrative. Rough endoplasmic reticulum, which is well developed in these cells, is not drawn."
+  },
+  "facts": [
+    ["Cell length, mouse-tail tendon at 6 weeks", "27 um (used here for the human cell)"],
+    ["Distance between nuclei in a row, mouse", "27.5 um"],
+    ["Neighbours touched per cell, mouse", "about 4.5"],
+    ["Collagen fibrils, share of tissue between cells, apparently healthy part of Achilles tendon in patients with tendinopathy", "0.61"],
+    ["Nuclei", "one, slim and oval"]
+  ],
+  "certainty": "C2",
+  "open_questions": ["How long, and how thick, is a human tenocyte, and how does it change with age?"],
+  "refs": [["ANP", "4.3", "4-3-connective-tissue-supports-and-protects"]]
+ },
+ {
+  "id": "cell_tenocyte_processes",
+  "title": "Tenocyte processes",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-5,
+  "area": "bio_animals",
+  "parents": ["cell_tenocyte"],
+  "parts": [],
+  "processes": [],
+  "related": ["cell_tenocyte", "dc_fibre"],
+  "summary": "Thin wings and threads of cytoplasm that reach from a tenocyte round the collagen bundles beside it.",
+  "layers": {
+    "basics": "A tenocyte does not end at its body. It sends out thin sheets and threads of cytoplasm that reach between the collagen bundles and wrap them. Where the processes of two cells meet, the cells are linked.",
+    "deeper": "In rat tendon the processes are of two kinds: broad, flat sideways ones that enclose bundles of collagen, and long, thin ones that run along the tendon and meet the processes of cells further on. In mouse-tail tendon each cell has about 8 of them, and they lengthen as the tendon grows, so that the cell looks star-shaped in cross-section.",
+    "expert": "The processes make the cell's surface area far larger than the body alone suggests, while the cell volume stays about the same after birth in the mouse. The cell drawn here is a smooth spindle and does not show the processes as separate arms."
+  },
+  "facts": [
+    ["Processes per cell, mouse-tail tendon at 6 weeks", "about 8"],
+    ["Kinds in rat tendon", "broad flat sideways; long thin lengthwise"]
+  ],
+  "certainty": "C2",
+  "open_questions": ["How far do the processes of a human tenocyte reach?"],
+  "refs": []
+ },
+ {
+  "id": "cell_tenocyte_junction",
+  "title": "Gap junction between tenocytes",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-7,
+  "area": "bio_animals",
+  "parents": ["cell_tenocyte"],
+  "parts": [],
+  "processes": [],
+  "related": ["cell_tenocyte", "bio_cell_junctions"],
+  "summary": "A patch of tiny channels where two tenocytes meet, letting small molecules and signals pass between them.",
+  "layers": {
+    "basics": "Where the processes of two tenocytes touch, the membranes are joined by gap junctions: clusters of small channels that open straight from the inside of one cell into the inside of the next. Through them the cells share chemical signals, so a row of tenocytes can act together.",
+    "deeper": "Each channel is built from proteins called connexins. In rat tendon, connexin 43 was found where processes meet and between cell bodies, and connexin 32 only between cell bodies. Both were also found in mouse tendon at six weeks. This kind of link is thought to help the cells share information about the load on the tendon.",
+    "expert": "The evidence here is from rat and mouse tendon; human tendon was not examined in the sources used. The junctions are not drawn on the cell."
+  },
+  "facts": [
+    ["Proteins that form the channels", "connexin 43 and connexin 32"],
+    ["Seen in", "rat and mouse tendon"]
+  ],
+  "certainty": "C2",
+  "open_questions": ["Which signals pass through the gap junctions of tenocytes when a tendon is loaded?"],
+  "refs": []
+ }
+]

@@ -1,0 +1,328 @@
+{
+ "id": "cone_cell_dog",
+ "name": "Cone photoreceptor (dog)",
+ "organism": "mammal (dog)",
+ "species": "Canis lupus familiaris",
+ "card": "cell_cone_cell_dog",
+ "blurb": "A cone from a dog's retina: a slim cell with a tapering outer segment of stacked membrane folds that catches light, a mitochondria-packed section below it, a nucleus, and a foot that passes the signal on.",
+ "note": "Model: a cone photoreceptor of a dog (Canis lupus familiaris), drawn whole and upright with its light-catching tip at the top. Measured in dogs: how many cones sit in a square millimetre of the retina's sharpest region, how small the inner segment is there, what share of cones carry each of the two colour pigments, and how long the signal of the cone's connecting cilium is. Measured in other animals (mouse, human) and not in dogs: the outer segment's shape and its open folds. The folds are drawn as separate flat stripes; the way they stay open to the outside is not drawn. Illustrative: every length of the segments, the width of the outer segment, the spacing of the folds, the size of the nucleus and the foot, the number and the arrangement of the mitochondria drawn (drawn along a spiral for lack of a better shape; in a real cone they are packed side by side in the ellipsoid), and all colours. No dog measurement of a cone's outer-segment length was found, so none of the lengths is a dog measurement.",
+ "shape": {
+  "type": "segmented",
+  "disc_spacing_um": 0.05,
+  "bend": 0.08,
+  "segments": [
+   {
+    "part": "outer_segment",
+    "length_um": 15,
+    "d0_um": 0.8,
+    "d1_um": 1.4,
+    "fill": "discs"
+   },
+   {
+    "part": "ellipsoid",
+    "length_um": 8,
+    "d0_um": 2.95,
+    "d1_um": 2.95,
+    "fill": "mito_helix"
+   },
+   {
+    "part": "inner_segment",
+    "length_um": 6,
+    "d0_um": 2.95,
+    "d1_um": 2.2,
+    "fill": "none"
+   },
+   {
+    "part": "nucleus",
+    "length_um": 5,
+    "d0_um": 2.2,
+    "d1_um": 3.2,
+    "fill": "nucleus"
+   },
+   {
+    "part": "axon",
+    "length_um": 8,
+    "d0_um": 0.7,
+    "d1_um": 0.7,
+    "fill": "none"
+   },
+   {
+    "part": "pedicle",
+    "length_um": 3,
+    "d0_um": 1.0,
+    "d1_um": 4.0,
+    "fill": "none"
+   }
+  ]
+ },
+ "dimensions": {
+  "cone_density_area_centralis": {
+   "value": 26299,
+   "range": [
+    20635,
+    29848
+   ],
+   "unit": "per_mm2",
+   "measured": true,
+   "source": "mowat2008",
+   "also": "beltran2014",
+   "note": "cones per square millimetre in the area centralis, the dog retina's region of sharpest sight; mean of 9 flatmount retinas from 5 beagles (grid analysis; range is lowest to highest retina); a count by DIC microscopy in the same paper gave 23,080 ± 1,593 per mm². A second study using a different method found a peak of 127,000 per square millimetre in 15 dog eyes, so the figure depends strongly on how it is counted"
+  },
+  "cone_density_periphery": {
+   "value": 3053,
+   "range": [
+    1872,
+    4083
+   ],
+   "unit": "per_mm2",
+   "measured": true,
+   "source": "mowat2008",
+   "note": "inferior periphery, same 9 flatmount retinas from 5 beagles"
+  },
+  "inner_segment_area": {
+   "value": 6.82,
+   "unit": "um2",
+   "measured": true,
+   "source": "mowat2008",
+   "note": "cross-section of the cone inner segment in the area centralis, 6.82 ± 0.62 µm² (11.46 ± 0.90 µm² in the periphery)"
+  },
+  "inner_segment_width": {
+   "value": 2.95,
+   "unit": "um",
+   "measured": true,
+   "calc": "the width of a circle of area 6.82 µm²: 2 x sqrt(6.82 / pi) = 2.95 µm; the real section is not exactly round, so this is a calculated stand-in",
+   "source": "mowat2008"
+  },
+  "share_L_M_cones": {
+   "value": 0.88,
+   "range": [
+    0.861,
+    0.899
+   ],
+   "unit": "fraction",
+   "measured": true,
+   "source": "mowat2008",
+   "note": "88.0 ± 1.9 % (mean ± error) of cones in area centralis flatmounts carried the long/medium-wavelength pigment; the range shown is that mean ± its error, not a spread of single retinas. Sections of the same region gave 93.6 ± 1.2 % (the section shares do not sum to 100 % with the S share); 80.5 % in the periphery (flatmounts)"
+  },
+  "share_S_cones": {
+   "value": 0.099,
+   "range": [
+    0.082,
+    0.116
+   ],
+   "unit": "fraction",
+   "measured": true,
+   "source": "mowat2008",
+   "note": "9.9 ± 1.7 % (flatmounts, mean ± error; the range shown is that mean ± its error) of cones in the area centralis carried the short-wavelength pigment; sections gave 11.9 ± 1.3 %; 18.3 % in the periphery (flatmounts). This cell is drawn as one of the long/medium-wavelength cones, the commonest kind"
+  },
+  "cone_share_of_photoreceptors": {
+   "value": 0.042,
+   "unit": "fraction",
+   "measured": true,
+   "calc": "1 / (1 + 22.8), from the measured rod-to-cone ratio of 22.8 ± 1.7 in the area centralis (41.4 in the periphery): about 4 photoreceptors in 100 are cones",
+   "source": "mowat2008"
+  },
+  "colour_pigment_peaks": {
+   "value": 2,
+   "unit": "count",
+   "measured": true,
+   "source": "mowat2008",
+   "note": "two kinds of cone, with peak sensitivity near 429 nm (short) and 555 nm (long); a dog's colour vision uses only these two. Measured by Neitz, Geist and Jacobs (1989) and cited in Mowat 2008 and Kasparson 2013",
+   "also": "kasparson2013"
+  },
+  "connecting_cilium_length": {
+   "value": 900,
+   "unit": "nm",
+   "measured": true,
+   "source": "takahashi2024",
+   "note": "mean ± SD 900 ± 169 nm of the connecting-cilium-specific signal in normal adult dogs, after correcting for the expansion factor (3.83) of the expanded tissue; it is the length of the labelled cilium signal, not necessarily of the whole cilium. The preprint prints the unit as µm, which cannot be right for a cell this size, so the unit is read as nm",
+   "sd": 169
+  },
+  "outer_segment_length": {
+   "value": 15,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative, between the 13.4 µm of a mouse cone outer segment and the 41-50 µm of a human cone in the fovea, which carries a longer cell as a whole (mustafi2009); not measured in dogs"
+  },
+  "outer_segment_width": {
+   "value": 1.4,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: base width, tapering to 0.8 µm at the tip; a mouse cone's outer segment is 1.2 µm wide and a human foveal cone 1-1.2 µm (mustafi2009)"
+  },
+  "disc_spacing": {
+   "value": 50,
+   "unit": "nm",
+   "measured": false,
+   "note": "illustrative; the folds are drawn about 50 nm apart, thick enough to see as stripes; not a measured spacing"
+  },
+  "total_length": {
+   "value": 45,
+   "unit": "um",
+   "measured": false,
+   "calc": "sum of the drawn segments: 15 + 8 + 6 + 5 + 8 + 3 µm; illustrative"
+  },
+  "nucleus_width": {
+   "value": 3.2,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative, a guess; in the fovea-like area of the dog retina cone cell bodies lie in 2.9 ± 0.6 rows (Beltran 2014), elsewhere about 1 row, which does not itself fix a nucleus width"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "size_um": [
+   2.2,
+   3.2,
+   5.0
+  ],
+  "nucleoli": 0,
+  "note": "One nucleus, in the cell body below the inner segment; its size is illustrative. In the fovea-like area of the dog retina cone cell bodies lie in about 2.9 rows (beltran2014).",
+  "source": "beltran2014"
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.5,
+    "range": [
+     0.2,
+     0.7
+    ],
+    "measured": false,
+    "note": "illustrative: the share of the ellipsoid taken by mitochondria; no dog source gives it; their arrangement is also illustrative"
+   },
+   "size_um": [
+    1.0,
+    0.3
+   ],
+   "max_drawn": 80,
+   "position": "any"
+  },
+  "absent": [
+   "myelin"
+  ]
+ },
+ "special": [
+  {
+   "kind": "open_discs",
+   "part": "outer_segment",
+   "role": "discs",
+   "params": {
+    "spacing_nm": 50
+   },
+   "source": "mustafi2009",
+   "note": "The outer segment is a stack of flattened folds of the cell's own membrane. In cones they stay open to the space outside the cell (measured in mouse cones, mustafi2009); in rods they pinch off into closed discs. This picture draws plain stacked discs and does not show them open. The spacing drawn is illustrative."
+  },
+  {
+   "kind": "connecting_cilium",
+   "part": "inner_segment",
+   "source": "takahashi2024",
+   "note": "A short cilium, about 0.9 µm long in dogs, joins the inner segment to the outer segment. It is far too thin to draw at this scale; not drawn."
+  }
+ ],
+ "cut": "The cell is drawn whole, not cut: the tapering outer segment with its stacked folds of membrane at the top, the section packed with mitochondria below it, the narrower inner segment, the oval nucleus, the thin fibre and the broad foot at the bottom.",
+ "colours": {
+  "convention": "Membrane folds pale pink, mitochondria orange, nucleus violet: all of it is a code, not the colour of the living cell.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "outer_segment": {
+   "name": "Outer segment (the folds that catch light)",
+   "card": "cell_cone_outer_segment_dog",
+   "material": "membrane",
+   "source": "mustafi2009"
+  },
+  "ellipsoid": {
+   "name": "Ellipsoid (the mitochondria-packed part of the inner segment)",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "inner_segment": {
+   "name": "Myoid (the rest of the inner segment, where protein is made)",
+   "card": null,
+   "material": "water",
+   "about": "The part of the inner segment between the mitochondria-packed ellipsoid and the nucleus. It holds the machinery that makes protein and membrane for the outer segment. In a dog's sharpest retinal region the whole inner segment is only about 3 micrometres across, narrower than in the periphery.",
+   "source": "mowat2008"
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus",
+   "source": "beltran2014"
+  },
+  "axon": {
+   "name": "Cone fibre",
+   "card": null,
+   "material": "water",
+   "about": "A thin fibre that carries the cell's signal from the nucleus down to its foot. Its length and width here are illustrative."
+  },
+  "pedicle": {
+   "name": "Pedicle (the foot that passes the signal on)",
+   "card": "cell_cone_pedicle_dog",
+   "material": "synaptic_vesicles",
+   "source": "mustafi2009"
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "dog_retina",
+    "structure": "cones"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 24,
+  "r1_m": 0.0004,
+  "arrive_m": 5e-05,
+  "spawn_m": 2e-06
+ },
+ "about": [
+  "A cone is one of the two kinds of light-sensing cell in the back of the eye. In a dog it is much rarer than the other kind, the rod: in the retina's sharpest region there are about 23 rods for each cone, so about 4 photoreceptors in 100 are cones. There the cones number about 26,000 in every square millimetre. This cell is drawn about 45 µm long (an illustrative total), from the tapering tip that faces the back wall of the eye to the foot that faces the rest of the retina.",
+  "Dogs have two kinds of cone, with peak sensitivity near 429 nm (blue-violet) and 555 nm (yellow-green), and about 9 in 10 of the cones in the sharp region are the second kind. This cell is drawn as one of the second kind; the pigment itself is not drawn.",
+  "The widths of the inner segment and the shares of cone types are measured in dogs. The lengths of the segments, the width of the outer segment, the fold spacing, the nucleus and the foot are illustrative, taken to fit the proportions seen in mouse and human cones. Not drawn: the connecting cilium, the cell's neighbours, the rods packed around it, the glial cells that wrap it, and the layer of cells behind that eats the worn-out tips of the outer segment."
+ ],
+ "sources": {
+  "mowat2008": {
+   "cite": "Mowat FM et al. (2008) Topographical characterization of cone photoreceptors and the area centralis of the canine retina. Mol Vis 14:2518-2527",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2610288/",
+   "opened": "2026-11-23",
+   "used_for": "cone density, inner segment area, rod to cone ratio, share of each cone pigment (beagle)"
+  },
+  "beltran2014": {
+   "cite": "Beltran WA et al. (2014) Canine retina has a primate fovea-like bouquet of cone photoreceptors which is affected by inherited macular degenerations. PLoS One 9(3):e90390",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3944008/",
+   "opened": "2026-11-23",
+   "used_for": "peak cone density 64-212 thousand per mm2 in dog eyes; cone cell bodies in 2.9 ± 0.6 rows in the fovea-like area (about 1 row elsewhere); says nothing about nucleus width"
+  },
+  "kasparson2013": {
+   "cite": "Kasparson AA, Badridze J, Maximov VV (2013) Colour cues proved to be more informative for dogs than brightness. Proc R Soc B",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3730601",
+   "opened": "2026-11-23",
+   "used_for": "two cone types in dogs; peaks near 429 and 555 nm, cited there from Neitz, Geist and Jacobs 1989 (also stated in Mowat 2008)"
+  },
+  "mustafi2009": {
+   "cite": "Mustafi D, Engel AH, Palczewski K (2009) Structure of cone photoreceptors. Prog Retin Eye Res 28:289-302",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2740621",
+   "opened": "2026-11-23",
+   "used_for": "open discs, tapered outer segment, mouse and human cone sizes, many synaptic ribbons in a cone foot"
+  },
+  "takahashi2024": {
+   "cite": "Takahashi K, Sudharsan R, Beltran WA (2024) Mapping protein distribution in the canine photoreceptor sensory cilium and calyceal processes by ultrastructure expansion microscopy. bioRxiv 10.1101/2024.06.27.600953",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11230445/",
+   "opened": "2026-11-23",
+   "used_for": "cone connecting cilium length in normal adult dogs"
+  }
+ }
+}

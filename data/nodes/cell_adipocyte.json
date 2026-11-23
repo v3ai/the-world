@@ -1,0 +1,106 @@
+[
+ {
+  "id": "cell_adipocyte",
+  "title": "White fat cell (adipocyte)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 8e-05,
+  "parents": [],
+  "parts": ["cell_adipocyte_droplet", "cell_adipocyte_nucleus"],
+  "made_of": ["cell_adipocyte_droplet", "cell_adipocyte_nucleus", "cell_membrane", "mitochondrion"],
+  "processes": [],
+  "related": ["adipocyte", "adipose_tissue", "lcf_adipocyte"],
+  "mesh": null,
+  "summary": "A round cell that stores energy as fat: almost all of it is one droplet, and the rest of the cell is squeezed into a thin rim.",
+  "layers": {
+    "basics": "A white fat cell is like a balloon of oil with a thin skin of living cell around it. The oil is fat, kept for times when the body needs fuel. When more food arrives than is needed, the cell fills and swells; when the body needs energy, the cell releases fat into the blood and shrinks. The nucleus is a flat lens pressed against the edge.",
+    "deeper": "The droplet is one piece, not many small ones, and it takes up about nine tenths of the cell. The cell's working parts, such as the mitochondria and the endoplasmic reticulum, lie in the thin rim of cytoplasm round it, right next to the droplet's surface where fat is built up and broken down. The droplet's surface is a single layer of fat-like molecules with proteins on it, among them perilipin, which keeps fat in until a hormone signal tells the cell to let it go. The membrane is dotted with small pits called caveolae. Many small blood vessels run beside the cell, so fat can be stored and released quickly.",
+    "expert": "The mean width in lean people is about 75 to 80 micrometres, rising with body fat to a plateau near 120; in single cells it ranges from about 20 micrometres to several hundred, and it varies between fat depots. The 90 percent droplet share is reported for mice and humans together. Pits (caveolae) may cover up to 30 percent of the membrane, a figure the review takes from earlier work. The picture here uses a droplet sphere that holds 90 percent of the volume, so the rim averages about 1.4 micrometres; the real rim is uneven. The nucleus size is illustrative, and the mitochondria, endoplasmic reticulum, Golgi apparatus, caveolae, droplet coat proteins and the surrounding blood vessels are not drawn."
+  },
+  "facts": [
+    ["Width in lean adults", "75-80 µm mean; single cells from about 20 µm to several hundred µm"],
+    ["Share of the cell taken by the droplet", "about 90%"],
+    ["Volume drawn", "about 0.25 nanolitres (a 78 µm sphere, worked out)"],
+    ["Nuclei", "one, flattened, at the edge of the cell"],
+    ["Drawn rim thickness", "about 1.4 µm on average (worked out; uneven in life)"]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+    "What sets how large a fat cell grows before the body makes a new one?"
+  ],
+  "refs": [
+    ["ANP", "4.3", "4-3-connective-tissue-supports-and-protects"]
+  ],
+  "ext": [
+    { "title": "Adipocyte size in lean people: a mean of 75-80 micrometres (Frontiers in Cell and Developmental Biology, 2022)", "url": "https://www.frontiersin.org/journals/cell-and-developmental-biology/articles/10.3389/fcell.2022.1003219/full" },
+    { "title": "The cell biology of fat expansion (J Cell Biol, 2015)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4347644" }
+  ]
+ },
+ {
+  "id": "cell_adipocyte_droplet",
+  "title": "Fat droplet of a white fat cell",
+  "kind": "organelle",
+  "template": "cell",
+  "scale_m": 7.5e-05,
+  "parents": ["cell_adipocyte"],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": ["lcf_lipid_droplet", "adipocyte"],
+  "mesh": null,
+  "summary": "The single large store of fat that fills a white fat cell.",
+  "layers": {
+    "basics": "The droplet is the cell's fuel tank. It is made of triglycerides, fat molecules each built from three fatty acids joined to one glycerol. In a white fat cell there is one big droplet instead of many small ones.",
+    "deeper": "Most cells have only tiny droplets. Here the droplet takes about nine tenths of the cell and can grow wider than 100 micrometres. It has no true membrane: a single layer of fat-like molecules, with their water-loving ends facing out, wraps it, and proteins sit on that layer. When the body signals a need for energy, enzymes at the surface cut the triglycerides and release fatty acids to the blood.",
+    "expert": "The surface layer carries perilipin 1, a protein that regulates how fat is released from the droplet in white fat cells; its modification by a hormone signal is part of how release is switched on. A histology atlas gives the surface layer as about 5 nanometres thick, in rat tissue, with a network of vimentin filaments over it. The droplet is drawn as one sphere of about 75 micrometres, the size that holds 90 percent of a 78 micrometre cell; the real droplet is not a perfect sphere."
+  },
+  "facts": [
+    ["Share of the cell", "about 90%"],
+    ["Drawn diameter", "about 75 µm (worked out from the share)"],
+    ["Surface", "one layer of phospholipid molecules with proteins, not a two-layer membrane"],
+    ["Made of", "triglycerides: three fatty acids on one glycerol"]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+    "How does a fat cell keep its fat in one droplet instead of many?"
+  ],
+  "refs": [
+    ["ANP", "4.3", "4-3-connective-tissue-supports-and-protects"]
+  ],
+  "ext": [
+    { "title": "Not just fat: the structure and function of the lipid droplet (Cold Spring Harbor Perspectives in Biology, 2011)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3039932" }
+  ]
+ },
+ {
+  "id": "cell_adipocyte_nucleus",
+  "title": "Nucleus of a white fat cell",
+  "kind": "organelle",
+  "template": "cell",
+  "scale_m": 1.4e-05,
+  "parents": ["cell_adipocyte"],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": ["nucleus", "lcf_adipocyte_nucleus"],
+  "mesh": null,
+  "summary": "The single nucleus of a fat cell, flattened and pushed to the edge by the droplet.",
+  "layers": {
+    "basics": "A fat cell has one nucleus. The big droplet leaves no room in the middle, so the nucleus is pressed flat against the cell's edge, like a thin lens. In a thin slice under a microscope it often looks like a crescent or the stone of a ring.",
+    "deeper": "The nucleus holds the cell's DNA, which carries the instructions for building the proteins that store and release fat and the hormones the cell sends out. It sits in the thin layer of cytoplasm beside the mitochondria and other organelles.",
+    "expert": "Its position at the edge is shown in electron micrographs, one of a fetal specimen. Its size is not given in the sources used here: the lens of about 14 by 14 by 4 micrometres drawn is illustrative."
+  },
+  "facts": [
+    ["Number per cell", "one"],
+    ["Position", "pressed against the cell membrane"],
+    ["Drawn size", "14 × 14 × 4 µm (illustrative)"]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+    ["ANP", "4.3", "4-3-connective-tissue-supports-and-protects"]
+  ],
+  "ext": [
+    { "title": "Electron micrograph of a fat cell: the nucleus pressed to one side by the large droplet (Histology Guide)", "url": "https://www.histologyguide.com/EM-view/EM-120-adipocyte/03-photo-1.html" }
+  ]
+ }
+]

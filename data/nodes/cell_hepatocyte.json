@@ -1,0 +1,41 @@
+[
+ {
+  "id": "cell_hepatocyte",
+  "title": "Hepatocyte (liver cell)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2.6e-05,
+  "parents": ["liver_lobule"],
+  "parts": [],
+  "made_of": ["nucleus", "mitochondrion", "golgi_apparatus", "lysosome", "peroxisome", "cell_membrane"],
+  "processes": [],
+  "related": ["liver_lobule", "hepatocyte"],
+  "mesh": null,
+  "summary": "The main cell of the liver, which takes up what the blood brings from the gut, makes proteins and bile, and breaks down drugs and poisons.",
+  "layers": {
+    "basics": "About four in every five parts of the liver, by volume, are hepatocytes. They are many-sided cells stacked in branching plates that are often only one cell thick. On two sides each cell touches a blood channel, so it can take in sugar, fats and other things from the blood and put proteins back. Between neighbours, a small groove in the wall of each cell makes a tube that collects bile.",
+    "deeper": "Inside, the cell is crowded with machinery for chemistry. Mitochondria and endoplasmic reticulum together take up a large part of its volume. The rough endoplasmic reticulum makes blood proteins, and the smooth endoplasmic reticulum handles drugs, steroids and bilirubin and works with the stores of glycogen, the sugar that the liver keeps for later. Two faces are different from each other: the faces toward the blood carry tiny finger-like microvilli, and the face that forms the bile tube is sealed from the rest of the gap by tight junctions, so that bile does not leak back.",
+    "expert": "A share of human hepatocytes have two nuclei, and at least a quarter of those in adults are polyploid, with more than two sets of chromosomes. The picture draws one nucleus. Its volume, worked out from the number of cells isolated per gram of human liver (a yield from isolation, not a count of hepatocytes in intact liver), is about 7,500 µm³ as an illustrative estimate; the count varied nearly threefold between livers, and another estimate (1.2 × 10⁸ hepatocytes per gram) gives about 6,700 µm³. The shares of nucleus and organelles come from a textbook table that does not name its species, so they are shown as illustrative. The endoplasmic reticulum, glycogen, microvilli and the bile tube are not drawn."
+  },
+  "facts": [
+    ["Share of liver volume", "about 80%"],
+    ["Cells per gram of liver (isolated suspensions)", "≈ 1.07 × 10⁸ cells counted per gram of liver in isolated-cell suspensions (0.65-1.85 × 10⁸; seven livers)"],
+    ["Volume", "≈ 7,500 µm³ (worked out; range 4,300-12,300)"],
+    ["Nuclei", "1 or 2; at least 25% polyploid in adults"],
+    ["Mitochondria", "≈ 22% of cell volume (textbook figure, species not stated)"],
+    ["Endoplasmic reticulum", "≈ 14% of cell volume (textbook figure, species not stated)"]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+    "What share of human hepatocytes have two nuclei, and does it change with age and disease?",
+    "How do the shares of organelles in a human hepatocyte compare with those measured in other species?"
+  ],
+  "refs": [
+    ["ANP", "23.6", "23-6-accessory-organs-in-digestion-the-liver-pancreas-and-gallbladder"],
+    ["ANP", "3.2", "3-2-the-cytoplasm-and-cellular-organelles"]
+  ],
+  "ext": [
+    { "title": "Review of diploid and polyploid hepatocytes in the injured liver", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8056861" }
+  ]
+ }
+]

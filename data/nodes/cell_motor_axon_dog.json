@@ -1,0 +1,250 @@
+[
+ {
+  "kind": "cell",
+  "template": "thing",
+  "area": "bio_animals",
+  "parts": [],
+  "processes": [],
+  "ext": [
+   {
+    "title": "Cat spinal roots: adult alpha axons about 9 um with segments about 1400 um",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1570693/"
+   },
+   {
+    "title": "Calf and dog peripheral nerve morphometry",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4857965/"
+   }
+  ],
+  "id": "cell_motor_axon_dog",
+  "title": "Motor nerve fibre (dog)",
+  "scale_m": 1e-05,
+  "parents": [
+   "neuromuscular_junction"
+  ],
+  "related": [
+   "neuron",
+   "cell_motor_axon",
+   "cell_node_of_ranvier",
+   "neuromuscular_junction",
+   "dog_nmj"
+  ],
+  "summary": "The long fibre that carries a dog's order to contract from the spinal cord to a muscle, wrapped in myelin and ending on muscle fibres.",
+  "layers": {
+   "basics": "A dog's muscles move only when a nerve tells them to. The nerve is a bundle of very long fibres, and each fibre is the arm of one motor neuron whose cell body lies in the spinal cord. The fibre is much thinner than a hair (a hair is roughly 50 to 100 µm across, this fibre about 12 µm; hair width from general knowledge, not opened), but it runs from the spine all the way to the muscle, and it is wrapped in a white fatty coat called myelin that makes signals travel faster. At the muscle it splits into small branches, and each branch ends on one muscle fibre. Click a part to meet it.",
+   "deeper": "Along the fibre, myelin comes in lengths, each made by one Schwann cell, with short bare gaps called nodes between them. A signal is renewed at each node and jumps to the next, which is far faster than creeping along a bare fibre of the same size. Thicker fibres have thicker myelin and longer lengths, and carry signals faster; the largest fibres of a limb nerve are the ones that drive the muscle fibres that produce the force. One motor neuron and the muscle fibres it serves are called a motor unit.",
+   "expert": "No dog measurement of a limb motor axon was read for this picture. The largest cat fibres have an axon-to-fibre width ratio of 0.70 to 0.75; calf nerve gives 0.61. A table of other studies lists a 3-month-old dog's fibular nerve with largest fibres of 12 µm; adult dog values are larger and were not read, and 12 µm is not the largest dog fibre. Cat spinal roots (L7 ventral root) give large axons of about 9 µm with segments averaging about 1400 µm, and the largest adult cat fibres are about 15 µm. The drawn axon, fibre, myelin thickness and end branches are illustrative and sit within those ranges. The cell body, dendrites and the cell that makes the myelin are not drawn to size."
+  },
+  "facts": [
+   [
+    "Axon width drawn",
+    "8.4 um (illustrative)"
+   ],
+   [
+    "Fibre width drawn",
+    "12 um (illustrative)"
+   ],
+   [
+    "Axon-to-fibre ratio drawn",
+    "0.70 (cat value)"
+   ],
+   [
+    "Myelin segment drawn",
+    "1400 um (cat large axon)"
+   ],
+   [
+    "Node length drawn",
+    "1 um"
+   ],
+   [
+    "Longest human motor axon",
+    "about 0.9 m"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How much do the size and spacing of myelin in a dog's limb motor axon differ from the cat's?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "12.2",
+    "12-2-nervous-tissue"
+   ],
+   [
+    "ANP",
+    "10.2",
+    "10-2-skeletal-muscle"
+   ]
+  ]
+ },
+ {
+  "kind": "cell",
+  "template": "thing",
+  "area": "bio_animals",
+  "parts": [],
+  "processes": [],
+  "ext": [
+   {
+    "title": "Cat spinal roots: segment length by axon size",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1570693/"
+   }
+  ],
+  "id": "cell_motor_axon_dog_myelin",
+  "title": "Myelin on a motor axon",
+  "scale_m": 1e-06,
+  "parents": [
+   "cell_motor_axon_dog"
+  ],
+  "related": [
+   "cell_motor_axon_dog",
+   "cell_node_of_ranvier",
+   "myelin"
+  ],
+  "summary": "A wrapping of many layers of membrane round a nerve fibre, laid down by one Schwann cell for each length.",
+  "layers": {
+   "basics": "Myelin is a white coat of fat-rich membrane round a nerve fibre. It works like the plastic round an electric wire: it keeps the signal in the fibre and lets it move quickly. It comes in lengths with small gaps between.",
+   "deeper": "In nerves outside the brain and spinal cord, each length is one Schwann cell wrapped round the fibre many times. A Schwann cell wraps only one length of one fibre. In the L7 ventral root of an adult cat, large axons (about 9 µm across) have lengths averaging about 1400 µm, and small axons (about 3 µm) about 650 µm, so thicker fibres have longer lengths.",
+   "expert": "The drawn wall is 1.8 µm thick, from an axon of 8.4 µm and a ratio of 0.70; this is illustrative. Calf nerve gave walls of 0.38 to 3.20 µm. The layers are drawn as one smooth wall, and the Schwann cell's own body and nucleus lie outside it and are not drawn."
+  },
+  "facts": [
+   [
+    "Wall thickness drawn",
+    "1.8 um (illustrative)"
+   ],
+   [
+    "Calf nerve wall",
+    "0.38-3.20 um"
+   ],
+   [
+    "Cat large-axon segment (mean)",
+    "about 1400 um"
+   ],
+   [
+    "Cat small-axon segment (mean)",
+    "about 650 um"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What sets the length of each segment as a nerve grows?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "12.2",
+    "12-2-nervous-tissue"
+   ]
+  ]
+ },
+ {
+  "kind": "cell",
+  "template": "thing",
+  "area": "bio_animals",
+  "parts": [],
+  "processes": [],
+  "ext": [
+   {
+    "title": "Mechanisms of sodium channel clustering and its influence on axonal impulse conduction",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4735253/"
+   }
+  ],
+  "id": "cell_motor_axon_dog_node",
+  "title": "Node of Ranvier on a motor axon",
+  "scale_m": 1e-06,
+  "parents": [
+   "cell_motor_axon_dog"
+  ],
+  "related": [
+   "cell_motor_axon_dog",
+   "cell_node_of_ranvier",
+   "cell_motor_axon_dog_myelin"
+  ],
+  "summary": "A bare gap of about a micrometre between two lengths of myelin, where a nerve signal is renewed.",
+  "layers": {
+   "basics": "A node is the short place where the myelin stops and the fibre is bare. The signal is topped up there and jumps to the next node.",
+   "deeper": "Nodes are packed with channels that let sodium ions in, about 1200 per square micrometre at a node against 20 to 25 in the stretch under myelin. Each node is over a thousand times shorter than the length of myelin beside it (about 1 µm against about 1400 µm in the cat), and side branches of the fibre leave at nodes.",
+   "expert": "The node length of 1 µm is from a review that does not say which animal; it is drawn here for the dog as illustrative. The channels and the sealing at the ends of each myelin length are not drawn."
+  },
+  "facts": [
+   [
+    "Node length",
+    "about 1 um"
+   ],
+   [
+    "Sodium channels at a node",
+    "about 1200 per um2"
+   ],
+   [
+    "Sodium channels under myelin",
+    "20-25 per um2"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How are the channels gathered into so small a place?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "12.2",
+    "12-2-nervous-tissue"
+   ]
+  ]
+ },
+ {
+  "kind": "cell",
+  "template": "thing",
+  "area": "bio_animals",
+  "parts": [],
+  "processes": [],
+  "ext": [
+   {
+    "title": "OpenStax Anatomy and Physiology 2e, Skeletal Muscle",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-2-skeletal-muscle"
+   }
+  ],
+  "id": "cell_motor_axon_dog_terminal",
+  "title": "Motor nerve ending",
+  "scale_m": 1e-06,
+  "parents": [
+   "cell_motor_axon_dog"
+  ],
+  "related": [
+   "cell_motor_axon_dog",
+   "neuromuscular_junction",
+   "dog_nmj",
+   "synapse"
+  ],
+  "summary": "The end of a motor fibre, a small swelling on a muscle fibre that releases acetylcholine to make it contract.",
+  "layers": {
+   "basics": "At the muscle the fibre splits, and each branch ends on one muscle fibre. When a signal arrives, the ending releases a chemical, acetylcholine, across a tiny gap. The muscle fibre answers by contracting. Every skeletal muscle fibre has such an ending, and the nerve is the only way to start it.",
+   "deeper": "Acetylcholine crosses the gap and opens channels in the part of the muscle fibre's surface called the motor end plate, which makes the fibre fire. An enzyme, acetylcholinesterase, then breaks the acetylcholine down so it cannot keep the muscle on.",
+   "expert": "The branches and swellings drawn here are illustrative in number, length, size (3 µm) and spacing; in life the myelin stops before the muscle, the terminal branches are bare, and one branch's several swellings lie along one muscle fibre. The real ending sits in a pocket of the muscle fibre's surface and is folded; this is not drawn. No dog measurement of it was read."
+  },
+  "facts": [
+   [
+    "Endings per muscle fibre",
+    "one"
+   ],
+   [
+    "Transmitter",
+    "acetylcholine"
+   ],
+   [
+    "Swelling drawn",
+    "3 um (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How many muscle fibres does one motor axon serve in a dog's limb muscle?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "10.2",
+    "10-2-skeletal-muscle"
+   ]
+  ]
+ }
+]

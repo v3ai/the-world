@@ -1,0 +1,233 @@
+[
+ {
+  "kind": "cell",
+  "template": "thing",
+  "area": "bio_animals",
+  "parts": [],
+  "processes": [],
+  "ext": [],
+  "id": "cell_neuron_motor",
+  "title": "Motor neuron (spinal cord)",
+  "scale_m": 5e-05,
+  "parents": [
+   "neuron"
+  ],
+  "related": [
+   "neuron",
+   "cell_motor_dendrite",
+   "cell_motor_axon",
+   "cell_node_of_ranvier",
+   "synapse"
+  ],
+  "summary": "A large nerve cell of the spinal cord or brainstem whose long axon runs out to muscle fibres and makes them contract.",
+  "layers": {
+   "basics": "A motor neuron is the last nerve cell in the chain that moves a muscle. Its large cell body sits in the spinal cord, or in the brainstem for muscles of the head. Many short branches called dendrites spread out from the body on all sides and collect signals from other neurons. One long thick fibre, the axon, leaves the cord in a nerve and ends on muscle fibres. When enough signals arrive, the cell sends an electrical pulse down the axon and the muscle fibres it touches contract.",
+   "deeper": "Under the microscope a healthy motor neuron has a large, many-branched body with a round nucleus near the middle and dark-staining Nissl substance throughout the cytoplasm, which is rough endoplasmic reticulum making proteins. In control human spinal cords from infants (1 day to 12 months), neurons over 46 micrometres across (maximum diameter) were counted as large; none were found in the SMA cords. In adult human lumbar cord, neurons of the motor layer reach about 120 micrometres across. In cats, a motor neuron has on average 11 main dendrites, and each dendrite tree is about 4.7 millimetres long in all, so almost the whole surface of the cell is dendrite. One motor neuron and the muscle fibres it controls are called a motor unit.",
+   "expert": "Most numbers for the dendrites and the myelin segments come from the cat, because the studies that traced single stained cells were done there. Human cell bodies are about twice the size of the mouse's. The model draws the dendrites at 30 millimetres in all, the most it can draw, and gives their branch points and paths as illustrative. Spines on motor neuron dendrites were not measured here, so none are drawn. The cell body is drawn 55 by 60 micrometres, illustrative for an adult cell and below the adult upper range. Stand-in: the model has no spinal interneuron, sensory, autonomic or brainstem relay neuron, so a click on any of these shows this motor neuron, which is only one of the many kinds of neuron there."
+  },
+  "facts": [
+   [
+    "Large neurons, infant human spinal cord",
+    "over 46 um (max diameter)"
+   ],
+   [
+    "Largest cell bodies (human lumbar cord)",
+    "up to about 120 um"
+   ],
+   [
+    "Main dendrites per cell (cat)",
+    "11.2"
+   ],
+   [
+    "Length of one dendrite tree (cat)",
+    "4.7 mm"
+   ],
+   [
+    "Share of cell surface that is dendrite (cat)",
+    "97%"
+   ],
+   [
+    "Fastest axons, fibre width (human root)",
+    "13.1 um"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "How long and how branched are the dendrite trees of human motor neurons, measured on human cells rather than cat cells?",
+   "Which cell bodies of the human cord are alpha motor neurons, and which are other large neurons?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "12.2",
+    "12-2-nervous-tissue"
+   ]
+  ]
+ },
+ {
+  "kind": "cell",
+  "template": "thing",
+  "area": "bio_animals",
+  "parts": [],
+  "processes": [],
+  "ext": [],
+  "id": "cell_motor_dendrite",
+  "title": "Motor neuron dendrite",
+  "scale_m": 0.001,
+  "parents": [
+   "cell_neuron_motor"
+  ],
+  "related": [
+   "cell_neuron_motor",
+   "synapse",
+   "neuron"
+  ],
+  "summary": "One of the many branches that leave a motor neuron's cell body and collect signals from other cells.",
+  "layers": {
+   "basics": "A cat motor neuron has about eleven main dendrites (no human count was found). Each divides again and again, and the whole tree reaches far from the cell body, hundreds of micrometres (in the cat, most of the dendrite surface lies more than 300 micrometres away and the trees reach past 800 micrometres). Other neurons touch the dendrites at synapses, and their signals add together at the cell body.",
+   "deeper": "In cats, a motor neuron has 11.2 main dendrites on average. Each dendrite tree is about 4.7 millimetres long in all. About three quarters of the dendrite surface lies more than 300 micrometres from the cell body, and the dendrites make up about 97 percent of the surface of the cell once the axon is left out. Thicker main dendrites belong to trees with more length and more branches.",
+   "expert": "These counts are from cat cells stained one at a time and traced in the light microscope, and may miss the finest twigs. The thickness of the dendrite, its branch points and its path in the picture are illustrative. The dendrites are drawn smooth."
+  },
+  "facts": [
+   [
+    "Main dendrites (cat)",
+    "11.2"
+   ],
+   [
+    "Length of one tree (cat)",
+    "4.7 mm"
+   ],
+   [
+    "Surface beyond 300 um from cell body (cat)",
+    "75%"
+   ],
+   [
+    "Share of cell surface (cat)",
+    "97%"
+   ],
+   [
+    "Drawn total length",
+    "30 mm (the most the model draws)"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "How do the numbers differ in human motor neurons?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "12.2",
+    "12-2-nervous-tissue"
+   ]
+  ]
+ },
+ {
+  "kind": "cell",
+  "template": "thing",
+  "area": "bio_animals",
+  "parts": [],
+  "processes": [],
+  "ext": [],
+  "id": "cell_motor_axon",
+  "title": "Motor axon",
+  "scale_m": 1e-05,
+  "parents": [
+   "cell_neuron_motor"
+  ],
+  "related": [
+   "cell_neuron_motor",
+   "cell_node_of_ranvier",
+   "neuron"
+  ],
+  "summary": "The one long thick fibre of a motor neuron, wrapped in myelin, carrying its pulses out to muscle.",
+  "layers": {
+   "basics": "The axon of a motor neuron leaves the cell body and leaves the spinal cord in a nerve, then runs to a muscle, in a leg a long way down the body. It is wrapped in a sheath of fat-rich myelin with small gaps, so a pulse jumps from gap to gap and travels fast. Motor axons are among the thickest in the body.",
+   "deeper": "In a human nerve root, the fastest group of motor fibres is about 13 micrometres across and conducts at about 60 metres per second. In the cat, a segment of myelin on such a fibre is about 1.4 millimetres long in the nerve root and about 0.56 millimetres inside the cord, and the axon narrows at each gap to a third or so of its width. Thicker fibres conduct faster.",
+   "expert": "The 13.1 micrometre figure is the width of the whole fibre including its myelin; the axon inside is drawn about 9 micrometres (13.1 times the illustrative myelin ratio 0.7). The myelin lengths are from the cat. The thickness of myelin and the length of the bare first stretch are illustrative. In the cord the wrapping cell is an oligodendrocyte and in the nerve it is a Schwann cell; neither is drawn."
+  },
+  "facts": [
+   [
+    "Fastest fibres, width (human root)",
+    "13.1 um"
+   ],
+   [
+    "Speed of those fibres (human root)",
+    "60 m/s"
+   ],
+   [
+    "Myelin segment, root (cat)",
+    "1390 um"
+   ],
+   [
+    "Myelin segment, cord (cat)",
+    "560 um"
+   ],
+   [
+    "Width at a gap, share of segment (cat)",
+    "30-40%"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "How long are the myelin segments of human motor axons?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "12.2",
+    "12-2-nervous-tissue"
+   ]
+  ]
+ },
+ {
+  "kind": "cell",
+  "template": "thing",
+  "area": "bio_animals",
+  "parts": [],
+  "processes": [],
+  "ext": [],
+  "id": "cell_node_of_ranvier",
+  "title": "Node of Ranvier",
+  "scale_m": 1e-06,
+  "parents": [
+   "cell_motor_axon"
+  ],
+  "related": [
+   "cell_motor_axon",
+   "cell_neuron_motor",
+   "neuron"
+  ],
+  "summary": "A short bare gap between two lengths of myelin on an axon, where the pulse is renewed.",
+  "layers": {
+   "basics": "Myelin does not cover an axon all the way along. It comes in lengths, and between two lengths is a small gap where the axon's membrane is bare. A nerve pulse is renewed at each gap and jumps to the next, which is much faster than creeping along the whole fibre.",
+   "deeper": "In the cat, the axon narrows at a gap to about 30 to 40 percent of its width in the myelin segment. The gaps are tiny compared with the segments: the myelin segments of a cat motor axon are about 1400 micrometres long in the root and about 560 in the cord, a gap only about a micrometre or two.",
+   "expert": "The length of the gap drawn here, 1.5 micrometres, is illustrative. The narrowing is measured in the cat spinal cord; the same was not read for human fibres."
+  },
+  "facts": [
+   [
+    "Axon width at a node (cat)",
+    "30-40% of the segment's width"
+   ],
+   [
+    "Myelin segment beside it (cat root)",
+    "1390 um"
+   ],
+   [
+    "Gap length drawn",
+    "1.5 um (illustrative)"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "What do the ion channels at a human motor node do differently from other nerves?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "12.2",
+    "12-2-nervous-tissue"
+   ]
+  ]
+ }
+]

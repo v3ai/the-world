@@ -1,0 +1,224 @@
+{
+ "id": "lymphocyte_t",
+ "name": "T lymphocyte (T cell)",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_lymphocyte_t",
+ "blurb": "A human T cell from the blood: a small, nearly round cell almost filled by one large round nucleus, with only a thin rim of cytoplasm.",
+ "note": "Model: a human T lymphocyte of the blood, cut through its middle. Measured in human cells: its volume (freshly isolated, mostly unactivated T cells from healthy donors; the authors note not all are strictly naive). Calculated: its diameter, worked out from the volume as a sphere. Illustrative: the share of the cell taken by the nucleus (taken from activated human T cells, not resting ones), the nucleolus (resting small lymphocytes have a small, inconspicuous one) and the dent of the nucleus, the number and size of mitochondria and lysosomes, the exact outline and the colours. The spread shown around the volume is the mean plus or minus 2 standard deviations (SD 30.8, n 74), not the measured range of the cells; the range for the nucleus share is illustrative. Microvilli sizes (70-150 nm wide, median length 300-400 nm) are from a review of resting T cells that does not state the species for these figures. Not drawn: the fine surface fingers (microvilli), the receptors on the surface, ribosomes, the endoplasmic reticulum and the cytoskeleton. The outline carries only a slight unevenness.",
+ "shape": {
+  "type": "ellipsoid",
+  "a_um": 7.4,
+  "b_um": 7.4,
+  "c_um": 7.4,
+  "bumps": 0.25
+ },
+ "dimensions": {
+  "volume": {
+   "value": 208.7,
+   "range": [
+    150,
+    270
+   ],
+   "unit": "um3",
+   "measured": true,
+   "source": "tcellvol2023",
+   "note": "mean of 74 freshly isolated human T cells (SD 30.8), calculated by the authors from the cell's diameter as a sphere; an older electron-microscope count of human lymphocytes gave about 125 um3 (schmid1980, read only on the BioNumbers page); the two differ by method and preparation; the range 150-270 is the mean plus or minus 2 SD, not the measured range of the cells",
+   "compare": "125 um3 by electron microscopy (schmid1980)"
+  },
+  "diameter": {
+   "value": 7.4,
+   "range": [
+    6,
+    9
+   ],
+   "unit": "um",
+   "measured": false,
+   "calc": "(6 x 208.7 / pi)^(1/3) = 7.36 um, the diameter of a sphere of the measured volume",
+   "note": "calculated from the measured volume; the textbook range for small lymphocytes is 6-9 um (openstax_blood)"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "round",
+  "volume_fraction": {
+   "value": 0.55,
+   "range": [
+    0.4,
+    0.7
+   ],
+   "measured": false,
+   "calc": "nuclear volume over total cell volume, the mean ratio found in activated human T cells; resting cells were not measured in a source opened, so the number is used as illustrative; the range 0.4-0.7 is illustrative, with no source",
+   "source": "hua2024"
+  },
+  "nucleoli": 1,
+  "note": "One large, simple round nucleus (sometimes slightly dented) with a thin rim of cytoplasm round it. The single small nucleolus is illustrative: resting small lymphocytes show a small, inconspicuous one or none.",
+  "source": "openstax_blood"
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.02,
+    "measured": false,
+    "note": "illustrative: a resting T cell has few mitochondria; no source opened gives a figure"
+   },
+   "size_um": [
+    0.8,
+    0.3
+   ],
+   "size_measured": false,
+   "max_drawn": 40
+  },
+  "lysosomes": {
+   "count": {
+    "value": 12,
+    "measured": false
+   },
+   "size_um": {
+    "value": 0.3,
+    "measured": false
+   },
+   "position": "any"
+  },
+  "golgi": {
+   "stacks": {
+    "value": 1,
+    "measured": false,
+    "note": "illustrative"
+   }
+  },
+  "not_drawn": [
+   "ribosomes",
+   "endoplasmic reticulum",
+   "cytoskeleton",
+   "surface receptors"
+  ]
+ },
+ "special": [
+  {
+   "kind": "microvilli",
+   "part": "microvilli",
+   "params": {
+    "drawn": 0,
+    "length_um": 0.35,
+    "width_um": 0.1
+   },
+   "source": "pettmann2018",
+   "note": "Not drawn: the code reads no microvilli kind, so no fingers appear. The surface of a resting T cell carries finger-like microvilli, 70-150 nm wide and from 100 nm to several micrometres long (median 300-400 nm); the review that gives these figures does not state the species, and reports that human and mouse lymphocytes have microvilli of similar size."
+  }
+ ],
+ "cut": "A cut through the middle of the cell: a round section almost filled by the round nucleus with its darker rim and one small nucleolus, and a thin band of cytoplasm round it holding a few small mitochondria and lysosomes.",
+ "colours": {
+  "convention": "Membrane pale blue-grey, cytoplasm light; nucleus violet; nucleolus dark violet; mitochondria orange; lysosomes green. All colours are a code; none is the real colour of the cell, which is nearly colourless in life.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "microvilli": {
+   "name": "Microvilli",
+   "card": "cell_lymphocyte_t_microvilli",
+   "material": "membrane"
+  },
+  "tcr": {
+   "name": "T cell receptor",
+   "card": "cell_lymphocyte_t_tcr",
+   "material": "protein",
+   "source": "openstax_tcell",
+   "about": "Each T cell carries one kind of receptor, a protein of two chains, on its surface. It is not drawn: the receptors are a few nanometres across and are far smaller than the cell's fingers."
+  },
+  "cytosol": {
+   "name": "Cytoplasm",
+   "card": null,
+   "material": "water",
+   "about": "The thin rim of watery, protein-crowded cytoplasm round the nucleus. A resting T cell has little of it."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "cell_nucleus",
+   "about": "The nucleolus is where ribosomal RNA is made and ribosome subunits are assembled; it is made of RNA, protein and DNA. Its single small appearance here is illustrative."
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "lysosome": {
+   "name": "Lysosome",
+   "card": "lysosome",
+   "material": "membrane"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane"
+  }
+ },
+ "reached": {
+  "tissue": [
+   {
+    "kind": "blood",
+    "id": "lymphocyte_t"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 5,
+  "r1_m": 9e-05,
+  "arrive_m": 1.5e-05,
+  "spawn_m": 6e-08
+ },
+ "about": [
+  "A T cell of human blood, drawn {drawn.cellVolume} um3 in volume. Freshly isolated, mostly unactivated T cells from healthy donors averaged about 209 um3, which is a sphere about 7.4 um across. An older electron-microscope study gave a smaller 125 um3 for lymphocytes, so the true value depends on how the cell is measured.",
+  "The nucleus fills more than half the cell and is simple and round; the cytoplasm is only a thin rim, which gives small lymphocytes their look of a nucleus with a halo. The share drawn (55%) was measured in activated T cells and is only a stand-in for a resting one. {drawn.mitochondria} mitochondria are drawn in this half.",
+  "T cells mature in the thymus and leave as mature cells carrying either CD4 or CD8 on the surface. Which of the two the cell carries cannot be seen in the shape: helper, killer and regulatory T cells look alike in blood. After meeting its antigen a T cell grows to about three times its volume.",
+  "Cells in a living person also differ in size and shape from one another; this is one typical cell, a stand-in for a mostly unactivated T cell."
+ ],
+ "sources": {
+  "tcellvol2023": {
+   "cite": "Activation effects on the physical characteristics of T lymphocytes. Frontiers in Bioengineering and Biotechnology (2023), doi 10.3389/fbioe.2023.1175570",
+   "url": "https://www.frontiersin.org/articles/10.3389/fbioe.2023.1175570/full",
+   "opened": "2026-11-23",
+   "used_for": "volume of freshly isolated human T cells, 208.7 um3 (SD 30.8, n 74); about three times larger after activation"
+  },
+  "hua2024": {
+   "cite": "Hua X, Han K et al. (2024) Light-field flow cytometry for high-resolution, volumetric and multiparametric 3D single-cell analysis. Nat Commun 15:1975",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10912605/",
+   "opened": "2026-11-23 (figure legend via search snippet; the full PMC page was not readable)",
+   "used_for": "nucleus-to-cell volume ratio 0.55 in activated human T cells (cell 7.99 um, nucleus 6.57 um across), as given in the figure legend; activated human T cells, activation method not read"
+  },
+  "schmid1980": {
+   "cite": "Schmid-Schonbein GW, Shih YY, Chien S (1980) Morphometry of human leukocytes. Blood 56:866 (value read from the BioNumbers entry 111439)",
+   "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=111439",
+   "opened": "2026-11-23",
+   "used_for": "125 um3 mean volume of a human lymphocyte by electron microscopy"
+  },
+  "openstax_blood": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 18.4 Leukocytes and Platelets",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-4-leukocytes-and-platelets",
+   "opened": "2026-11-23",
+   "used_for": "small lymphocytes 6-9 um; simple nucleus without lobes; large nucleus-to-cytoplasm ratio; 20-30 percent of white cells"
+  },
+  "openstax_tcell": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 21.3 The Adaptive Immune Response: T lymphocytes and Their Functional Types",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/21-3-the-adaptive-immune-response-t-lymphocytes-and-their-functional-types",
+   "opened": "2026-11-23",
+   "used_for": "two-chain receptor, one kind per cell; maturation in the thymus; CD4 or CD8 but not both; memory cells long-lived"
+  },
+  "pettmann2018": {
+   "cite": "Pettmann J, Santos AM, Dushek O, Davis SJ (2018) Membrane Ultrastructure and T Cell Activation. Front Immunol 9:2152",
+   "url": "https://www.frontiersin.org/articles/10.3389/fimmu.2018.02152/full",
+   "opened": "2026-11-23",
+   "used_for": "microvilli on resting T cells: 70-150 nm wide, 100 nm to several um long, median 300-400 nm (species not stated for these figures; human and mouse similar)"
+  }
+ }
+}

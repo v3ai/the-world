@@ -1,0 +1,171 @@
+[
+ {
+  "id": "cell_apocrine_cell_dog",
+  "title": "Apocrine sweat gland cell of a dog",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1.1e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cell_membrane",
+   "golgi_apparatus"
+  ],
+  "processes": [],
+  "related": [
+   "dog_skin_scene",
+   "apocrine",
+   "sweat_gland",
+   "dog_skin"
+  ],
+  "summary": "The cell that lines the coiled sweat gland of dog skin: a low column that makes the gland's fluid and pinches a bit of itself off into the tube.",
+  "layers": {
+   "basics": "A dog cannot sweat all over like a person. Over most of its body, the sweat glands are the apocrine kind, coiled tubes deep in the skin whose ducts open into the hair follicle. Each tube is lined by one layer of cells shaped like short columns. These cells make a fluid and release it into the hollow of the tube. Around the outside of the tube lie other cells that can squeeze, pushing the fluid up toward the hair.",
+   "deeper": "Apocrine means the cell gives up a little of its own top as it secretes: a bleb of cytoplasm bulges into the hollow and breaks free. In dogs the gland cells look cuboidal to low columnar under the microscope, with pink cytoplasm and blebs on the free face. Electron microscopes show tiny fingers (microvilli) all over that face, a well-developed endoplasmic reticulum, and several kinds of large granule, among them giant mitochondria. The base of the cell is folded against the thin layer of squeezing cells beneath.",
+   "expert": "Dogs also release small vesicle-filled packets (multivesicular bodies) by exocytosis from these cells, so more than one way of secreting goes on in the same cell. The detailed electron microscope study used the apocrine glands beside the circumanal glands, which are more active than those over the rest of the body, so the ultrastructure of an ordinary body-surface gland is less well known. Some teaching sources argue that these cells in people secrete by the usual route, not by pinching off; the dog papers describe the pinching-off kind. The drawn width, height, nucleus share and counts of granules are illustrative."
+  },
+  "facts": [
+   [
+    "Gland type in haired dog skin",
+    "apocrine (eccrine glands only in the paw pads)"
+   ],
+   [
+    "Cell shape",
+    "cuboidal to low columnar"
+   ],
+   [
+    "Free face",
+    "microvilli, with apical blebs"
+   ],
+   [
+    "Cells under the lining",
+    "myoepithelial (contractile)"
+   ],
+   [
+    "Drawn cell size",
+    "about 11 um across, 12 um tall (illustrative)"
+   ],
+   [
+    "Nucleus",
+    "1 per cell, oval"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How tall and wide is one secretory cell in a dog's body-surface gland, and how much does it change between resting and secreting?",
+   "How much of the fluid leaves by pinched-off blebs and how much by exocytosis?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "5.1",
+    "5-1-layers-of-the-skin"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Dog skin gland cells, with apical blebs, myoepithelial cells and the duct (dog)",
+    "url": "https://sites.tufts.edu/histologyimages/?p=294"
+   },
+   {
+    "title": "Electron microscopy of dog apocrine sweat glands: microvilli, multivesicular bodies, large granules",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/9811218/"
+   },
+   {
+    "title": "Normal canine apocrine gland lining: low cuboidal cells with apical blebbing on myoepithelial cells",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8959319"
+   }
+  ]
+ },
+ {
+  "id": "cell_apocrine_granule_dog",
+  "title": "Large granules of a dog apocrine gland cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 6e-07,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [
+   "cell_apocrine_cell_dog",
+   "golgi_apparatus"
+  ],
+  "summary": "Membrane-wrapped bodies in the cell's upper half, some filled with smaller vesicles, that the cell empties into the gland's hollow.",
+  "layers": {
+   "basics": "The top of the gland cell holds large bodies wrapped in a membrane. Some are packed with smaller bubbles. The cell sends them to its free face and empties them into the hollow of the tube, which is how some of its fluid gets out.",
+   "deeper": "Electron microscopy of dog glands shows three kinds of large granule: giant mitochondria that lack their inner folds, membrane-enclosed globules (some with layered, myelin-like contents), and dense, even-textured round bodies. Multivesicular bodies are also abundant and are released into the hollow.",
+   "expert": "The study was done on apocrine glands of the circumanal region of dogs. The counts and sizes drawn here are illustrative; none were measured."
+  },
+  "facts": [
+   [
+    "Kinds of large granule",
+    "3 (giant mitochondria; membrane-wrapped globules; dense round bodies)"
+   ],
+   [
+    "Drawn count",
+    "40 per cell (illustrative)"
+   ],
+   [
+    "Drawn size",
+    "about 0.6 um (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What do the dense round bodies contain, and what do they do?"
+  ],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Electron microscopy of dog apocrine sweat glands: microvilli, multivesicular bodies, large granules",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/9811218/"
+   }
+  ]
+ },
+ {
+  "id": "cell_apocrine_microvilli_dog",
+  "title": "Microvilli of a dog apocrine gland cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 8e-07,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [
+   "cell_apocrine_cell_dog"
+  ],
+  "summary": "The tiny finger-like folds that cover the free face of the cell, where it meets the hollow of the gland.",
+  "layers": {
+   "basics": "The face of the cell that looks into the hollow of the tube is not smooth. It is covered with tiny finger-like folds called microvilli. They give the surface more area for passing fluid and secretions out.",
+   "deeper": "In dog apocrine glands the faces toward the hollow were always covered with microvilli, while the cell membrane at the base was extensively folded against the layer beneath. Apocrine secretion was seen at the same luminal surfaces.",
+   "expert": "The length and number drawn here are illustrative; the microvilli are measured as present, not measured for size. Basal folding is not drawn."
+  },
+  "facts": [
+   [
+    "Where",
+    "every free (lumen) face examined"
+   ],
+   [
+    "Drawn length",
+    "0.8 um (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How long are the microvilli of a dog sweat gland cell, and do they change as the cell secretes?"
+  ],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Electron microscopy of dog apocrine sweat glands: microvilli, multivesicular bodies, large granules",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/9811218/"
+   }
+  ]
+ }
+]

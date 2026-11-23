@@ -1,0 +1,187 @@
+[
+ {
+  "id": "cell_mast_cell",
+  "title": "Mast cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-05,
+  "area": "bio_animals",
+  "parents": [
+   "mast_cell"
+  ],
+  "parts": [
+   "nucleus",
+   "mitochondrion",
+   "golgi_apparatus",
+   "cell_membrane",
+   "cell_mast_cell_granule"
+  ],
+  "processes": [
+   "immune_response"
+  ],
+  "related": [
+   "lcf_mast",
+   "macrophage",
+   "lymphocyte_b"
+  ],
+  "summary": "A round immune cell of loose connective tissue, packed with over a thousand small granules of histamine and enzymes that it can release within minutes.",
+  "layers": {
+   "basics": "A mast cell sits in the loose tissue under the skin and around vessels and organs, ready to sound an alarm. Its cytoplasm is crammed with small granules, so many that the round nucleus in the middle is ringed by them. When the cell is set off, by an injury or by an allergen meeting antibodies on its surface, the granules open and spill their contents. The histamine in them widens nearby vessels and makes them leak, which is why a sting or an allergic reaction swells and reddens.",
+   "deeper": "In human lung mast cells measured in electron micrographs, the whole cell took about 391 cubic micrometres, which is a sphere about 9 micrometres across. The nucleus took 83 of those, around a fifth. A cell held 1,352 granules on average, each about 0.025 cubic micrometres, a little elongated, so together they fill roughly a tenth of the cell. Inside a granule the stored material often forms scroll-like rolls or crystals, and a granule is wrapped in its own membrane. Humans have two kinds of mast cell, told apart by their enzymes: one makes only tryptase, the other makes tryptase and chymase.",
+   "expert": "Granule counts and sizes here come from fixed lung cells isolated from tissue, and from one study; another study of human lung cells gave granules a far bigger share of the cell, and the reason for the gap was not found. Lung mast cells hold lipid bodies, 71 per cell in one count, which were not seen in human skin mast cells, so cells from other places may differ. When a mast cell releases, its granules swell and fuse with each other into chains and channels opening to the outside, and the granule membrane does not itself leave the cell. The drawn mitochondria and Golgi stack, the faint roughness of the surface and the exact outline are illustrative."
+  },
+  "facts": [
+   [
+    "Volume (human lung mast cells)",
+    "391 um3"
+   ],
+   [
+    "Equivalent diameter",
+    "about 9 um (worked out from the volume)"
+   ],
+   [
+    "Nucleus share of volume",
+    "about 21%"
+   ],
+   [
+    "Granules per cell",
+    "about 1,350"
+   ],
+   [
+    "Granule volume (mean)",
+    "0.025 um3"
+   ],
+   [
+    "Granule share of cell volume",
+    "about 9% (worked out)"
+   ],
+   [
+    "Main granule contents",
+    "histamine, heparin, proteases (tryptase, chymase)"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "Why do two electron-microscope studies of human lung mast cells give such different shares of the cell to its granules?",
+   "How do granule number and size differ between mast cells of skin, gut and lung in people?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "21.2",
+    "21-2-barrier-defenses-and-the-innate-immune-response"
+   ]
+  ]
+ },
+ {
+  "id": "cell_mast_cell_granule",
+  "title": "Mast cell granule",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 4e-07,
+  "area": "bio_animals",
+  "parents": [
+   "cell_mast_cell"
+  ],
+  "parts": [],
+  "processes": [
+   "immune_response"
+  ],
+  "related": [
+   "lcf_mast_granule",
+   "cell_mast_cell",
+   "lysosome"
+  ],
+  "summary": "A small membrane-bound bag in a mast cell that stores histamine, heparin and enzymes ready for release.",
+  "layers": {
+   "basics": "A mast cell granule is a tiny sac, about a third of a micrometre across. It is filled with a dense mix of molecules stored ahead of time: histamine, which acts on vessels, heparin, and enzymes that cut proteins. When the cell is triggered the granule swells and its contents leave in a rush, much faster than if each substance had to be made on demand.",
+   "deeper": "Heparin and its relatives are sugar chains attached to a core protein. Granules are a kind of lysosome that has been adapted to store rather than to digest, and carry some lysosomal enzymes and membrane proteins as well. In electron micrographs of human lung mast cells the contents form scrolls, crystals, particles or a thread-like network, and the volume of granules comes in near-multiples of one small unit of about 0.007 cubic micrometres.",
+   "expert": "After a trigger, neighbouring granules fuse to each other before any of them opens to the cell surface, which produces chains and channels, and the granule is then emptied in place. The granule size distribution in human lung cells has peaks at whole multiples of a basic unit; why is not known. Shape details here are from lung cells; the drawn granules are plain slightly elongated spheres and the internal pattern is not drawn."
+  },
+  "facts": [
+   [
+    "Size",
+    "about 0.33 x 0.44 um (worked out from volume)"
+   ],
+   [
+    "Mean volume",
+    "0.025 um3"
+   ],
+   [
+    "Stores",
+    "histamine, heparin, tryptase (and chymase in one of the two human types)"
+   ],
+   [
+    "Wrapped by",
+    "one membrane"
+   ],
+   [
+    "Number per cell",
+    "about 1,350 (human lung)"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "What sets the small unit of volume that granule sizes are made of?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "21.2",
+    "21-2-barrier-defenses-and-the-innate-immune-response"
+   ]
+  ]
+ },
+ {
+  "id": "cell_mast_cell_surface",
+  "title": "Mast cell surface and IgE receptors",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 1e-08,
+  "area": "bio_animals",
+  "parents": [
+   "cell_mast_cell"
+  ],
+  "parts": [
+   "cell_membrane"
+  ],
+  "processes": [
+   "immune_response"
+  ],
+  "related": [
+   "cell_mast_cell",
+   "bio_antibody_diversity"
+  ],
+  "summary": "The outer membrane of a mast cell, which carries receptors that grip antibodies of the IgE kind and trigger the release of the granules.",
+  "layers": {
+   "basics": "The surface of a mast cell is studded with receptors that hold IgE antibodies, a class of antibody. The cell wears them like a set of tripwires. When an allergen attaches to two neighbouring antibodies and pulls them together, the cell reads this as a signal and releases its granules at once.",
+   "deeper": "The receptor is called the high-affinity IgE receptor, because it grips IgE tightly. When an allergen links the antibodies on neighbouring receptors, the cell is activated and its granules release their contents. Tissue injury also releases mast cell granules.",
+   "expert": "The receptor is present on both human mast cell types. Its number and spacing on the surface, and the folds of the membrane, are not drawn. The model does not draw receptors at all: only the membrane is drawn, as a band thick enough to see."
+  },
+  "facts": [
+   [
+    "Receptor",
+    "high-affinity IgE receptor"
+   ],
+   [
+    "Trigger",
+    "allergen joining two IgE antibodies on the surface"
+   ],
+   [
+    "Result",
+    "granules open and release their contents"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "How many receptors does a single human mast cell carry in different tissues?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "21.2",
+    "21-2-barrier-defenses-and-the-innate-immune-response"
+   ]
+  ]
+ }
+]

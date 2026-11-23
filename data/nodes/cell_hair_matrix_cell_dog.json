@@ -1,0 +1,42 @@
+[
+ {
+  "id": "cell_hair_matrix_cell_dog",
+  "title": "Hair matrix cell of a dog",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 9e-06,
+  "parents": [],
+  "parts": [],
+  "made_of": ["cell_membrane", "cytoskeleton"],
+  "processes": [],
+  "related": ["dog_follicle", "hair_follicle", "dog_skin_scene", "skin"],
+  "summary": "A small, fast-dividing cell at the very root of a dog's hair: it sits in the bulb round a knob of connective tissue and becomes the hair itself.",
+  "layers": {
+   "basics": "Every hair grows from its root, a swollen base called the bulb that sits deep in the skin. The bulb is packed with small cells called matrix cells. They divide again and again, and the cells pushed up from them harden into the hair. The hair you see is the dead, finished end of this assembly line. A dog's hair only grows while its bulb is there: when growth stops, the bulb breaks down.",
+   "deeper": "In the middle of the bulb stands the dermal papilla, a small knob of connective tissue that sends signals to the matrix cells around it. The matrix cells divide quickly, and as the daughters are pushed upward they stop dividing and turn into the cells of the hair shaft. Pigment cells (melanocytes) are scattered among the matrix cells and hand their pigment on to the cells that become the hair, which is why the colour of a coat is set at the root. In a dog the bulb is a feature of the growth phase only: it breaks down in the short regression phase and is gone in the resting phase, and a new one forms when the hair starts to grow again. Dogs also grow hairs in groups, several to a pore, so many bulbs lie side by side in one patch of skin.",
+   "expert": "Most of what is known about matrix cells in detail comes from mouse and human follicles; dog work shows the same layout but few numbers. No study of dogs gives the volume of one matrix cell, its nucleus share or its doubling time, so the drawn size, nucleus share, organelle shares and counts are illustrative. A matrix cell is drawn with a large nucleus and little cytoplasm, the usual look of a rapidly dividing cell; the keratin filaments that fill the cells higher up are not drawn."
+  },
+  "facts": [
+   ["Place", "the bulb, at the base of a growing hair follicle"],
+   ["Neighbour", "dermal papilla (connective tissue) in the middle of the bulb"],
+   ["Behaviour", "divides fast; daughters become hair shaft cells"],
+   ["Pigment", "made by melanocytes among the matrix cells, not by the matrix cells"],
+   ["Present in a dog", "only while the hair grows; the bulb breaks down in regression"],
+   ["Nucleus", "1 per cell"],
+   ["Drawn cell size", "about 9 um across, 11 um tall (illustrative)"]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How big is one matrix cell of a dog, and how long does it take to divide?",
+   "How closely does a dog's bulb match the mouse and human bulbs described in detail?"
+  ],
+  "refs": [
+   ["ANP", "5.2", "5-2-accessory-structures-of-the-skin"]
+  ],
+  "ext": [
+   { "title": "Review: matrix cells surround the dermal papilla, divide fast and form the hair; melanocytes live among them", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11504027" },
+   { "title": "Dog follicles: the bulb breaks down in regression and is missing in the resting phase", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13663342" },
+   { "title": "Dogs: pigment granules in bulb melanocytes, absent from neighbouring matrix keratinocytes in affected dogs", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3330242" }
+  ]
+ }
+]

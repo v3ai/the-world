@@ -1,0 +1,193 @@
+[
+ {
+  "id": "cell_corneal_keratocyte",
+  "title": "Corneal keratocyte",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 3e-05,
+  "parents": [
+   "cornea_keratocyte"
+  ],
+  "parts": [
+   "cell_keratocyte_process",
+   "cell_keratocyte_crystallins"
+  ],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "golgi_apparatus",
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [
+   "cornea_keratocyte",
+   "cornea_stroma",
+   "cornea_layers_scene"
+  ],
+  "mesh": null,
+  "summary": "The resting cell of the cornea's thick middle layer: very flat, with long thin arms, lying between sheets of collagen and clear enough to be almost invisible.",
+  "layers": {
+   "basics": "Between the many sheets of collagen that make up most of the cornea lie flat, star-shaped cells called keratocytes. Each is wide and extremely thin, like a pressed leaf, and sends fine arms along the sheet to meet the arms of its neighbours, so that together they form a net. The cells are clear, which matters because the cornea must let light through. They keep the collagen in repair and make new when it is needed.",
+   "deeper": "About 26,600 keratocytes are found in each cubic millimetre of a healthy human cornea, which leaves each one roughly the room of a cube 34 micrometres on a side, nearly all of it collagen. There are more in the front of the stroma than in the back. Their cytoplasm is rich in a few soluble enzymes, called corneal crystallins by analogy with the lens, which are thought to help keep the cell clear. After an injury a keratocyte can change into a repair cell that moves, divides and makes scar; the resting cell shown here is the form that keeps the cornea clear.",
+   "expert": "The density comes from counting the bright nuclei in confocal images of living human corneas; counts vary with the instrument and with the depth, and the figure here is for the whole thickness. The flat shape, the processes and the gap junctions between neighbours are described in reviews and have been shown in detail in pig cornea; human numbers for the size of the body and the number of processes were not found, so the drawing's sizes are illustrative."
+  },
+  "facts": [
+   [
+    "Density in the stroma",
+    "≈ 26,600 per mm³ (mean of 63 normal human corneas)"
+   ],
+   [
+    "Room per cell",
+    "≈ 37,600 µm³, a cube about 34 µm across (calculated)"
+   ],
+   [
+    "Lies between",
+    "collagen sheets up to 2 µm thick"
+   ],
+   [
+    "Crystallins (corneal)",
+    "≈ 25 to 30 % in a review that names no species (rabbit measurement ≈ 30 %; human share not found)"
+   ],
+   [
+    "Nuclei",
+    "1, thin"
+   ],
+   [
+    "Body and processes drawn",
+    "illustrative sizes"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How wide and how thick is a single human keratocyte body, measured in a living or fixed cornea?",
+   "How many primary processes does one cell have, and how far do they reach?",
+   "How much of the stroma's volume do the cells and their processes take up in a healthy human cornea?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Squishy matters - corneal mechanobiology in health and disease (Prog Retin Eye Res, 2024)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11193890"
+   },
+   {
+    "title": "Morphological analysis of cell distribution and network structure via gap junctions in swine corneal stroma (J Vet Med Sci, 2022)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9791234/"
+   }
+  ]
+ },
+ {
+  "id": "cell_keratocyte_process",
+  "title": "Keratocyte process",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": 3e-05,
+  "parents": [
+   "cell_corneal_keratocyte"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "cell_corneal_keratocyte",
+   "cornea_keratocyte"
+  ],
+  "mesh": null,
+  "summary": "A long thin arm of a keratocyte, running along a collagen sheet to meet the arm of a neighbour.",
+  "layers": {
+   "basics": "The arms of a keratocyte spread through the plane of the sheet it lies in. In pig cornea, where it has been shown in detail, small channels join the arms of neighbouring cells, so signals and small molecules can pass from cell to cell; reviews describe the same connected net in human cornea, although each cell lies alone between its sheets of collagen.",
+   "deeper": "The channels are gap junctions built of the protein connexin 43. In pig cornea they were found along the surface of the arms, and some cells had extensions reaching vertically that were connected to the arms.",
+   "expert": "The number and length of the arms in the drawing are illustrative, and the drawn arms are thicker than real ones so that they show. The detail of the junctions comes from pig; reviews describe the same net in human cornea but without a count of junctions."
+  },
+  "facts": [
+   [
+    "Joined by",
+    "gap junctions (connexin 43)"
+   ],
+   [
+    "Reach drawn",
+    "28 µm, illustrative"
+   ],
+   [
+    "Width drawn",
+    "0.8 µm, illustrative"
+   ],
+   [
+    "Number drawn",
+    "9 primary arms, illustrative"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "How many gap junctions join one human keratocyte to its neighbours?"
+  ],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Squishy matters - corneal mechanobiology in health and disease (Prog Retin Eye Res, 2024)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11193890"
+   },
+   {
+    "title": "Morphological analysis of cell distribution and network structure via gap junctions in swine corneal stroma (J Vet Med Sci, 2022)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9791234/"
+   }
+  ]
+ },
+ {
+  "id": "cell_keratocyte_crystallins",
+  "title": "Keratocyte crystallins",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": 1e-08,
+  "parents": [
+   "cell_corneal_keratocyte"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "cell_corneal_keratocyte"
+  ],
+  "mesh": null,
+  "summary": "Soluble proteins that fill a large share of the keratocyte's cytoplasm and are thought to help keep it clear.",
+  "layers": {
+   "basics": "The watery inside of a keratocyte is unusually rich in a few ordinary enzymes, such as one that breaks down aldehydes and one that works in sugar chemistry. Because the lens stays clear with abundant soluble proteins, these are called corneal crystallins by analogy. Having so much of them is thought to make the cell's inside more like clear glass and so scatter less light.",
+   "deeper": "In rabbit cornea, two enzymes, an aldehyde dehydrogenase and transketolase, were found to make up about 30% of the soluble protein of keratocytes; a review that reports 25 to 30% does not name a species, and the human share has not been given. Different species use different ones; in human keratocytes the aldehyde dehydrogenase is mainly ALDH3A1. Whether they are needed for the cornea's clearness is not settled.",
+   "expert": "The share is from a review that does not name the species; the primary measurement is in rabbit (Jester et al 1999). The proteins are not drawn as molecules; a double click on the cytoplasm leads on down to water and the molecules of the cell."
+  },
+  "facts": [
+   [
+    "Share of soluble protein",
+    "≈ 25 to 30 %"
+   ],
+   [
+    "Examples",
+    "aldehyde dehydrogenases (ALDH1A1 in rabbit, ALDH3A1 in most mammals; human keratocytes express both), transketolase"
+   ],
+   [
+    "Drawn",
+    "not as molecules"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "Are the crystallins needed for the clearness of the cornea, or only helpful?"
+  ],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Squishy matters - corneal mechanobiology in health and disease (Prog Retin Eye Res, 2024)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11193890"
+   },
+   {
+    "title": "The cellular basis of corneal transparency: evidence for corneal crystallins (J Cell Sci, 1999)",
+    "url": "https://europepmc.org/article/MED/9973596"
+   }
+  ]
+ }
+]

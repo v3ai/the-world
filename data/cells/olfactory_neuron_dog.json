@@ -1,0 +1,104 @@
+{
+ "id": "olfactory_neuron_dog",
+ "name": "Olfactory sensory neuron (dog)",
+ "organism": "mammal (dog)",
+ "species": "Canis familiaris",
+ "card": "cell_olfactory_neuron_dog",
+ "blurb": "A smell neuron of the dog's nose: a small round cell body in the lining, a thin dendrite up to the surface where it ends in a knob carrying cilia, and one very thin axon going down toward the brain.",
+ "note": "Model: a smell neuron of the dog's nose, its cell body cut open. Measured in the dog: only how many such neurons a dog has and how many axons meet in one glomerulus of the olfactory bulb. Measured in the mouse: the size of the cell body, the thickness of the dendrite and how many cilia the knob carries. Measured in the human (a textbook figure): the thickness of the axon. Illustrative: the length of the dendrite in the dog, the nucleus, the organelles, the three thin branches that stand for the cilia, the path of the axon and where it is broken off.",
+ "shape": {
+  "type": "neuron",
+  "soma": "bipolar",
+  "soma_w_um": 6.5,
+  "soma_h_um": 7,
+  "basal_n": 0,
+  "basal_total_um": 0,
+  "basal_branch_points": 0,
+  "apical_trunk_um": 30,
+  "apical_reach_um": 42,
+  "oblique_total_um": 1,
+  "oblique_branch_points": 0,
+  "tuft_total_um": 36,
+  "tuft_branch_points": 0,
+  "dendrite_um": 1,
+  "trunk_um": 1,
+  "spines_basal_per_um": 0,
+  "spines_apical_per_um": 0,
+  "axon_um": 0.2,
+  "ais_um": 0,
+  "myelin": 0,
+  "axon_drawn_um": 300,
+  "collaterals": 0,
+  "collateral_um": 0
+ },
+ "dimensions": {
+  "soma_diameter": { "value": 6.5, "range": [5, 8], "unit": "um", "measured": true, "source": "maue1988", "calc": "the middle of the 5 to 8 µm measured for isolated mouse smell neurons", "compare": "the same 5 to 8 µm is given for the human cell body (gray_elsevier)" },
+  "dendrite_diameter": { "value": 1, "unit": "um", "measured": true, "source": "maue1988", "note": "isolated mouse smell neurons; a textbook figure for the human gives about 2 µm (gray_elsevier)" },
+  "dendrite_length": { "value": 30, "unit": "um", "measured": false, "note": "illustrative. Isolated mouse cells had dendrites of 5 to 15 µm, sometimes 30 to 35 µm (maue1988), but in the lining the dendrite spans the whole distance from the cell body to the surface, which was not found for the dog" },
+  "cilia_per_knob": { "value": [5, 10], "unit": "count", "measured": true, "source": "maue1988", "note": "most isolated mouse cells had 5 to 10, some 15 to 20; a review of mouse neurons (mcclintock2020) gives about 20 to 35, so the count is not settled" },
+  "cilium_length": { "value": [10, 25], "unit": "um", "measured": true, "source": "maue1988", "note": "isolated mouse cells; some reached 40 to 45 µm" },
+  "cilia_drawn": { "value": 3, "unit": "count", "measured": false, "note": "illustrative: three thin branches at the top of the dendrite stand for the cilia; the real knob carries several more" },
+  "axon_diameter": { "value": 0.2, "unit": "um", "measured": true, "source": "gray_elsevier", "note": "unmyelinated axon, from a human anatomy textbook (Gray's Anatomy, 41st edition); not measured in the dog here" },
+  "neurons_in_dog_nose": { "value": 200000000, "unit": "count", "measured": true, "source": "alvites2023", "note": "'more than 200 million' smell receptors in the dog, against about 50 million in a person, in a review of the dog's olfactory system; the same review also gives 6 to 10 million for the neuroepithelium, so counts differ widely" },
+  "axons_per_glomerulus": { "value": [5000, 40000], "unit": "count", "measured": true, "source": "alvites2023", "note": "dog; about 5000 glomeruli in the olfactory bulb" }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "round",
+  "size_um": { "value": [5, 5.5, 5], "unit": "um", "measured": false, "note": "illustrative: a round nucleus that fills most of the small cell body" },
+  "nucleoli": 1,
+  "note": "One nucleus, lying in the cell body in the neuron layer of the lining; its size and the nucleolus are illustrative."
+ },
+ "organelles": {
+  "mitochondria": { "volume_fraction": { "value": 0.05, "measured": false, "note": "illustrative" }, "size_um": [0.8, 0.3], "max_drawn": 40 },
+  "golgi": { "stacks": { "value": 1, "measured": false, "note": "illustrative" } },
+  "not_drawn": ["the cilia as separate rods (three stand-ins only)", "the receptor proteins on the cilia", "the dendritic knob as a swelling", "the supporting cells and basal cells beside it", "the glial cells that wrap the axons", "the rest of the axon, its bundle and its end in the olfactory bulb"]
+ },
+ "special": [
+  { "kind": "axon", "note": "The axon leaves the base of the cell body, thin and without myelin, and is drawn for {drawn.axonDrawn} µm before a labelled break. Its path is illustrative." }
+ ],
+ "cut": "The small cell body is cut open through its middle: the round nucleus fills most of it, with a thin rim of cytoplasm holding mitochondria and a Golgi stack. The dendrite and the axon are whole.",
+ "colours": {
+  "convention": "The neuron in warm yellow as in drawings of a single stained neuron, the nucleus violet, mitochondria orange. These are a code: a living neuron is nearly colourless.",
+  "true_colour": []
+ },
+ "parts": {
+  "soma": { "name": "Cell body", "card": "cell_olfactory_neuron_dog", "material": "membrane" },
+  "dendrite": { "name": "Dendrite and cilia", "card": "cell_olfactory_neuron_dog_dendrite", "material": "membrane", "source": "maue1988", "about": "One unbranched dendrite runs from the cell body up to the surface of the lining, where it ends in a knob bearing the cilia that meet the odour molecules. The three thin branches drawn at its top stand for the cilia; the real knob carries several more, and in the nose they lie along the surface rather than pointing up." },
+  "apical": { "name": "Dendrite", "card": "cell_olfactory_neuron_dog_dendrite", "material": "membrane", "about": "The dendrite is about 1 µm across and, in the lining, as long as the distance from the cell body to the surface. The length drawn is illustrative." },
+  "spine": { "name": "Dendrite shaft", "card": "cell_olfactory_neuron_dog_dendrite", "material": "membrane", "about": "The smooth shaft of the dendrite. No spines are drawn on it." },
+  "axon": { "name": "Axon", "card": "cell_olfactory_neuron_dog_axon", "material": "membrane", "source": "gray_elsevier", "about": "The axon is very thin, about 0.2 µm, and has no myelin. It leaves the base of the cell body, passes down through the lamina propria and on toward the olfactory bulb." },
+  "axon_break": { "name": "Axon (continues)", "card": "cell_olfactory_neuron_dog_axon", "material": "membrane", "source": "alvites2023", "about": "The axon goes on to the olfactory bulb of the brain, where thousands of axons from smell neurons with the same receptor gather into one glomerulus." },
+  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus" },
+  "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna" },
+  "golgi": { "name": "Golgi apparatus", "card": "golgi_apparatus", "material": "membrane" },
+  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion" },
+  "cytosol": { "name": "Cytosol", "card": null, "material": "water", "about": "The watery inside of the cell, crowded with proteins; here only a thin rim round the nucleus." }
+ },
+ "reached": {
+  "tissue2": [
+   { "scene": "dog_olfactory_epithelium", "structure": "dendrite" },
+   { "scene": "dog_olfactory_epithelium", "structure": "axons" },
+   { "scene": "dog_olfactory_epithelium", "structure": "lamina" }
+  ]
+ },
+ "view": {
+  "radius_um": 160,
+  "r1_m": 8e-4,
+  "arrive_m": 2.5e-5,
+  "spawn_m": 1.5e-6,
+  "break": { "text": "The axon goes on to the olfactory bulb of the brain" }
+ },
+ "about": [
+  "The cell body is 6.5 µm across, the middle of the 5 to 8 µm measured in isolated mouse smell neurons; the dendrite is about 1 µm thick (mouse). The dendrite is drawn 30 µm long, an illustrative length: it has to reach the surface of the lining, and the thickness of a dog's lining was not found in the sources read.",
+  "At the top of the dendrite the real cell has a knob with several cilia, 5 to 10 in most isolated mouse cells and 10 to 25 µm long. The drawing has no knob: three thin branches stand in for the cilia, and they are shown pointing up although in life the cilia lie along the surface, in the mucus.",
+  "The axon is drawn 0.2 µm across (a human textbook figure), with no myelin, for {drawn.axonDrawn} µm. One review gives a dog more than 200 million smell receptors (the same review gives 6 to 10 million neurons), and the axons of those with the same receptor gather, thousands to a glomerulus, in the olfactory bulb.",
+  "Not drawn: the neighbouring supporting cells, the basal stem cells that replace this neuron, and the glial cells that wrap the axons. The nucleus, mitochondria and Golgi stack are illustrative in size and number."
+ ],
+ "sources": {
+  "maue1988": { "cite": "Maue RA, Dionne VE (1988) Membrane properties of isolated olfactory receptor neurons, in Margolis FL, Getchell TV (eds) Molecular Neurobiology of the Olfactory System, Plenum, p. 145; as listed in BioNumbers", "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=112193", "opened": "2026-11-23", "used_for": "mouse: cell body 5-8 µm, dendrite 1 µm thick and 5-35 µm long, 5-10 cilia of 10-25 µm" },
+  "gray_elsevier": { "cite": "Elsevier anatomy resource, olfactory epithelium (cell body; dendrite), citing Standring S (2016) Gray's Anatomy, 41st edition", "url": "https://www.elsevier.com/resources/anatomy/olfactory-organ/olfactory-epithelium/dendrite-of-olfactory-sensory-neuron/16044", "opened": "2026-11-23", "used_for": "unmyelinated axon 0.2 µm; dendrite 2 µm; cell body 5-8 µm (human textbook figures); dendrite ends in a knob with up to 20 cilia" },
+  "alvites2023": { "cite": "Alvites R, Caine A, Cherubini GB, Prada J, Varejão ASP, Maurício AC (2023) The Olfactory Bulb in Companion Animals - Anatomy, Physiology, and Clinical Importance, Brain Sci 13:713", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10216273/", "opened": "2026-11-23", "used_for": "dog: more than 200 million smell receptors; unmyelinated axon; about 5000 glomeruli of 5000-40,000 axons each; olfactory vesicle with cilia" },
+  "mcclintock2020": { "cite": "McClintock TS, Khan N, Xie C, Martens JR (2020) Maturation of the Olfactory Sensory Neuron and Its Cilia, Chem Senses 45:805-822", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8133333/", "opened": "2026-11-23", "used_for": "about 20-35 cilia per knob (species not stated in the text read; the work is mostly on mice); olfactory cilia lack dynein arms and are immotile" }
+ }
+}

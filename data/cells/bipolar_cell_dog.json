@@ -1,0 +1,103 @@
+{
+ "id": "bipolar_cell_dog",
+ "name": "Retinal bipolar cell (dog)",
+ "organism": "mammal (dog)",
+ "species": "Canis familiaris",
+ "card": "cell_bipolar_cell_dog",
+ "blurb": "A bipolar cell of a dog's retina: a small cell with a bushy dendrite tuft that reaches up to the light-sensing cells and one thin axon that runs down to a small terminal.",
+ "note": "Model: a rod bipolar cell of a dog's retina, its cell body cut open. Measured in the dog: the kind of cell, where its body, dendrites and axon lie in the retina layers, and that a dog's bipolar cells carry the receptor protein of the ON kind. Measured in the rat (a close mammal; no size has been measured in the dog): the size of the cell body, the total length of the dendrites, the width and length of the axon and the size of its terminal swellings. Illustrative: the paths of the branches, how far the tuft reaches, the size of the nucleus and small organelles, and the colours. The dog's own sizes may differ.",
+ "shape": {
+  "type": "neuron",
+  "soma": "bipolar",
+  "soma_w_um": 5,
+  "soma_h_um": 8.6,
+  "basal_n": 0,
+  "basal_total_um": 0,
+  "basal_branch_points": 0,
+  "apical_trunk_um": 4,
+  "apical_reach_um": 14,
+  "oblique_total_um": 0,
+  "oblique_branch_points": 0,
+  "tuft_total_um": 175,
+  "tuft_branch_points": 37,
+  "dendrite_um": 0.5,
+  "trunk_um": 1.2,
+  "spines_basal_per_um": 0,
+  "spines_apical_per_um": 0,
+  "axon_um": 0.76,
+  "ais_um": 0,
+  "myelin": 0,
+  "axon_drawn_um": 56,
+  "collaterals": 3,
+  "collateral_um": 23,
+  "bouton_spacing_um": 4,
+  "bouton_um": 1.07
+ },
+ "dimensions": {
+  "soma_length": { "value": 8.6, "range": [4.9, 13.1], "unit": "um", "measured": true, "source": "fournel2022", "note": "longest width of the cell body in the picture plane, 14 rod bipolar cells of the rat (mean, range); not measured in the dog" },
+  "soma_width": { "value": 4.94, "range": [2.96, 6.13], "unit": "um", "measured": true, "source": "fournel2022", "note": "shortest width of the cell body, 14 rod bipolar cells of the rat" },
+  "soma_volume": { "value": 95, "range": [23, 132], "unit": "um3", "measured": true, "source": "fournel2022", "note": "14 rod bipolar cells of the rat" },
+  "cell_volume": { "value": 185, "range": [98, 250], "unit": "um3", "measured": true, "source": "fournel2022", "note": "the whole cell, 14 rod bipolar cells of the rat" },
+  "primary_dendrites": { "value": 2.1, "range": [1, 5], "unit": "count", "measured": true, "source": "fournel2022", "note": "rat; drawn as one trunk that splits, an illustrative simplification" },
+  "dendrite_total": { "value": 175, "range": [97, 273], "unit": "um", "measured": true, "source": "fournel2022", "note": "total length of the dendrites that reach toward the outer plexiform layer, rat rod bipolar cells" },
+  "dendrite_branch_points": { "value": 37, "range": [22, 59], "unit": "count", "measured": true, "source": "fournel2022", "note": "nodes of the dendrites, rat rod bipolar cells" },
+  "dendrite_reach": { "value": 14, "unit": "um", "measured": false, "note": "illustrative: how far the tuft is drawn to reach above the cell body" },
+  "axon_shaft_width": { "value": 0.76, "range": [0.59, 0.9], "unit": "um", "measured": true, "source": "fournel2022", "note": "rat rod bipolar cells" },
+  "axon_shaft_length": { "value": 56, "range": [36, 75], "unit": "um", "measured": true, "source": "fournel2022", "note": "from the cell body to the terminal, rat rod bipolar cells; the dog's retina is not known to give the same length" },
+  "terminal_length": { "value": 69, "range": [37, 116], "unit": "um", "measured": true, "source": "fournel2022", "note": "total length of the branches of the axon terminal, rat" },
+  "terminal_volume": { "value": 26.7, "range": [8.2, 46.7], "unit": "um3", "measured": true, "source": "fournel2022", "note": "rat" },
+  "varicosities": { "value": 6.1, "range": [2, 11], "unit": "count", "measured": true, "source": "fournel2022", "note": "swellings on the axon terminal, rat" },
+  "varicosity_width": { "value": 1.07, "range": [0.85, 1.52], "unit": "um", "measured": true, "source": "fournel2022", "note": "mean width of a swelling, rat" },
+  "dendrite_width": { "value": 0.5, "unit": "um", "measured": false, "note": "illustrative" },
+  "drawn_height": { "value": 100, "unit": "um", "measured": false, "calc": "dendrite reach (14, illustrative) + cell body (8.6) + axon shaft (56) + terminal drawn (about 23), in µm", "note": "calculated from the numbers above" }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "size_um": { "value": [4, 7, 4], "unit": "um", "measured": false, "note": "illustrative: an oval nucleus of 4 x 7 x 4 µm, about 60% of the rat cell-body volume of 95 µm3; its true size has not been measured here" },
+  "nucleoli": 1
+ },
+ "organelles": {
+  "mitochondria": { "volume_fraction": { "value": 0.05, "measured": false, "note": "illustrative" }, "size_um": [0.8, 0.3], "max_drawn": 40 },
+  "golgi": { "stacks": { "value": 1, "measured": false, "note": "illustrative" } },
+  "lysosomes": { "count": { "value": 4, "measured": false, "note": "illustrative" }, "size_um": { "value": 0.3, "measured": false } }
+ },
+ "special": [
+  { "kind": "axon", "source": "fournel2022", "note": "One axon leaves the lower end of the cell body and runs down into the inner plexiform layer, where it divides into a small terminal with about six swellings (rat numbers; {drawn.boutons} drawn). It is drawn without myelin (illustrative; none was checked in a source), and the whole cell, terminal included, is drawn: there is no labelled break." }
+ ],
+ "cut": "The cell body is cut open through its middle: a small oval nucleus with its nucleolus, drawn filling most of it, with a little cytoplasm, mitochondria and a Golgi stack around it. The dendrite tuft rises from the top and the axon runs down from the bottom to its terminal swellings.",
+ "colours": {
+  "convention": "The cell in lilac, as the bipolar cells are tinted in the retina scene; its terminal swellings pale gold; the nucleus violet. All of this is a code: a living bipolar cell is nearly colourless.",
+  "true_colour": [],
+  "override": { "bouton": "#e8d28a" }
+ },
+ "parts": {
+  "soma": { "name": "Cell body", "card": "cell_bipolar_cell_dog", "material": "membrane" },
+  "dendrite": { "name": "Dendrite tuft", "card": "cell_bipolar_dog_dendrite", "material": "membrane", "source": "beckwith2026" },
+  "apical": { "name": "Dendrite trunk", "card": "cell_bipolar_dog_dendrite", "material": "membrane", "source": "kolb_rod" },
+  "axon": { "name": "Axon", "card": "cell_bipolar_dog_axon", "material": "membrane", "source": "huh2015" },
+  "bouton": { "name": "Axon terminal swelling", "card": "cell_bipolar_dog_terminal", "material": "synaptic_vesicles", "source": "kolb_rod", "about": "The swellings on the axon terminal hold small packages (vesicles) of glutamate, the signal chemical this cell releases onto amacrine cells at ribbon synapses. They lie deep in the retina, close to the ganglion cells." },
+  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus" },
+  "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna" },
+  "golgi": { "name": "Golgi apparatus", "card": "golgi_apparatus", "material": "membrane" },
+  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion" },
+  "lysosome": { "name": "Lysosome", "card": "lysosome", "material": "membrane" },
+  "cytosol": { "name": "Cytosol", "card": null, "material": "water", "about": "The watery inside of the cell, crowded with proteins." }
+ },
+ "reached": {
+  "tissue2": [{ "scene": "dog_retina", "structure": "bip" }]
+ },
+ "view": { "radius_um": 60, "r1_m": 5e-4, "arrive_m": 6e-5, "spawn_m": 1e-6 },
+ "about": [
+  "This is a rod bipolar cell, the kind that takes its signal from rods, the cells that see in dim light. In dogs, as in mouse, hamster and rabbit, an antibody against protein kinase C alpha labels such cells: bodies in the outer part of the inner nuclear layer, branched dendrites in the outer plexiform layer, and a long thick axon to the innermost part of the inner plexiform layer. The layout drawn here follows that.",
+  "The sizes are from the rat, the nearest mammal for which a bipolar cell has been traced and measured in full: a cell body about 8.6 µm long and 4.9 µm wide, dendrites 175 µm long in all, an axon 0.76 µm across and 56 µm long, and a terminal with about six swellings. They are not measured in the dog. The branch paths are random, not traced from a real cell; {drawn.dendriteLength} µm of dendrite is drawn.",
+  "A dog's retina also holds many kinds of cone bipolar cell (mammals have 10 to 15), which look different, are wider in the terminal and reach other depths. They are not drawn: the retina holds mostly other kinds of bipolar cell, and this rod kind is the only one drawn.",
+  "The cell is tiny: about 100 µm from the top of the dendrites to the end of the terminal, a tenth of a millimetre."
+ ],
+ "sources": {
+  "huh2015": { "cite": "Huh YJ, Oh SJ, Chun MH et al. (2015) Localization of Rod Bipolar Cells in the Mammalian Retina Using an Antibody against the alpha1c L-type Ca2+ Channel, Acta Histochem Cytochem 48:75-80 (mouse, hamster, rabbit and Korean mixed-breed dogs)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4427564/", "opened": "2026-11-23", "used_for": "in the dog retina: rod bipolar cell bodies in the outermost inner nuclear layer, dendrites in the outer plexiform layer, a long thick axon to the innermost inner plexiform layer, next to the ganglion cells" },
+  "fournel2022": { "cite": "Fournel R, Veruki ML, Hartveit E (2022) Digital reconstruction and quantitative morphometric analysis of bipolar cells in live rat retinal slices, J Comp Neurol 530:1700-1728", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9310816/", "opened": "2026-11-23", "used_for": "14 rat rod bipolar cells: soma 8.6 x 4.94 µm, soma volume 95 µm3, cell volume 185 µm3, dendrites 175 µm with 37 nodes, axon shaft 0.76 µm across and 56 µm long, terminal 69 µm of branch, 6.1 swellings of 1.07 µm; mammals have 10-15 cone bipolar types and one rod bipolar type" },
+  "kolb_rod": { "cite": "Kolb H, Circuitry for Rod Signals Through The Retina, in Webvision: The Organization of the Retina and Visual System (cat and human retina)", "url": "https://webvision.med.utah.edu/?p=116", "opened": "2026-11-23", "used_for": "rod bipolar dendrites enter the rod spherules to end at synaptic ribbons; axons end deep in the inner plexiform layer as narrow-field clumpy terminals and make ribbon synapses onto amacrine cells" },
+  "beckwith2026": { "cite": "Beckwith-Cohen B et al. (2026) Gene therapy induces synaptic ribbon maturation, synaptogenesis and vision recovery in an adult dog model of retinal degeneration, Mol Ther Adv", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13355175/", "opened": "2026-11-23", "used_for": "in normal dogs: bipolar cell dendrites carry the protein GPR179 (a receptor of ON bipolar cells) and meet cone and rod terminals in the outer plexiform layer; PKC-alpha labels rod bipolar cells" }
+ }
+}

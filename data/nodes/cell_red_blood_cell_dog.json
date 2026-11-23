@@ -1,0 +1,69 @@
+[
+ {
+  "id": "cell_red_blood_cell_dog",
+  "title": "Dog red blood cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 7e-06,
+  "parents": [],
+  "parts": ["cell_red_blood_cell_dog_haemoglobin"],
+  "made_of": ["cell_membrane"],
+  "processes": ["breathing"],
+  "related": ["red_blood_cell"],
+  "summary": "A dog's red blood cell is a small disc with a dip on each face, no nucleus, and an inside that is almost all haemoglobin.",
+  "layers": {
+   "basics": "Blood carries oxygen in red cells, and a dog's are much like ours: round discs that are pressed in on both faces, with no nucleus. A dog's cell is a little smaller across than a human one. It spends about 100 days in the blood, then is cleared away and replaced by new cells from the marrow.",
+   "deeper": "A cell like this gives up its nucleus and most of its other machinery as it ripens in the marrow, which leaves room for haemoglobin, the red protein that picks up oxygen. In dogs the cell is about 7 micrometres wide on a stained smear, against about 7.4 to 7.8 for a human one. In a blood count of healthy dogs the average cell volume is usually reported between 66 and 77 cubic micrometres and the haemoglobin per cell between 21 and 26 picograms. Dog cells show a wide pale centre on a stained smear, which is much less obvious in the cells of a cat or a horse.",
+   "expert": "The width is measured on smears of two breeds; the blood values are laboratory reference intervals for healthy dogs, not measured means of one cell. The thickness of a dog cell has not been measured in the sources used, so the picture takes the human curve with the dog's width. The volume it gives falls inside the dog's range, which is a consistency check, not a proof. The haemoglobin count of about 220 million per cell is worked out with the mass of the human molecule. The spectrin net under the membrane is left out."
+  },
+  "facts": [
+   ["Width", "≈ 7.0 µm on stained smears (6.3–7.7 µm, two breeds)"],
+   ["Average cell volume", "66–77 µm³ (reference range, healthy dogs)"],
+   ["Haemoglobin per cell", "21–26 pg (reference range, healthy dogs); about 220 million molecules (worked out)"],
+   ["Nucleus", "none"],
+   ["Time in the blood", "about 100 days"]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How thick is a dog red cell across its width, and how deep is its dip, measured directly?"
+  ],
+  "refs": [
+   ["ANP", "18.3", "18-3-erythrocytes"]
+  ],
+  "ext": [
+   {"title": "Red blood cell diameter of dogs and other domestic animals", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5057034/"},
+   {"title": "Dog blood-count reference ranges", "url": "https://www.merckvetmanual.com/appendixes/reference-guides/hematologic-reference-ranges"}
+  ]
+ },
+ {
+  "id": "cell_red_blood_cell_dog_haemoglobin",
+  "title": "Haemoglobin in a dog red cell",
+  "kind": "structure",
+  "template": "cell",
+  "scale_m": 6e-09,
+  "parents": ["cell_red_blood_cell_dog"],
+  "parts": [],
+  "made_of": [],
+  "processes": ["breathing"],
+  "related": ["bio_hemoglobin_cooperativity"],
+  "summary": "Haemoglobin fills the inside of the cell: a ball of four protein chains, each holding an iron-carrying heme that binds oxygen.",
+  "layers": {
+   "basics": "Almost everything inside a red cell is haemoglobin. Each molecule is a small ball, about 6 nanometres across, made of four chains of protein. Each chain holds a red heme with an iron atom that can hold one molecule of oxygen. So one haemoglobin carries four.",
+   "deeper": "A dog's cell holds about 220 million of these. The number is worked out by dividing the weight of haemoglobin in one cell, 21 to 26 picograms in the reference range for healthy dogs, by the weight of one molecule, about 65,000 daltons. The molecules are packed so tightly that they nearly touch, and the picture shows them when you are close.",
+   "expert": "The mass and the size, 5.4 by 5.6 by 6.6 nanometres from the spread of the atom positions, belong to the human molecule. The dog's own has a different chain sequence, and its size is not known here, so the human molecule stands in for it, and this is said on screen."
+  },
+  "facts": [
+   ["Size drawn", "5.4 × 5.6 × 6.6 nm (human molecule)"],
+   ["Mass", "≈ 64.7 kDa (human molecule)"],
+   ["Per cell", "≈ 220 million (worked out)"],
+   ["Haemoglobin weight per cell", "21–26 pg (reference range, healthy dogs)"]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How far does the dog's own haemoglobin differ in size and shape from the human molecule?"
+  ],
+  "refs": [
+   ["ANP", "18.3", "18-3-erythrocytes"]
+  ]
+ }
+]

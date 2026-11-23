@@ -1,0 +1,134 @@
+[
+ {
+  "id": "cell_sustentacular_cell_dog",
+  "title": "Supporting (sustentacular) cell of the smell lining",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 6e-05,
+  "parents": [],
+  "parts": [
+   "cell_sustentacular_cell_dog_microvilli",
+   "cell_sustentacular_cell_dog_wrapping",
+   "cell_sustentacular_cell_dog_junctions"
+  ],
+  "made_of": [
+   "cell_sustentacular_cell_dog_microvilli",
+   "cell_sustentacular_cell_dog_wrapping",
+   "cell_sustentacular_cell_dog_junctions",
+   "nucleus",
+   "mitochondrion",
+   "golgi_apparatus",
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [
+   "dog_olfactory_epithelium",
+   "simple_columnar_epithelium"
+  ],
+  "mesh": null,
+  "summary": "The cell that holds a dog's smell neurons in place: a tall column with a fur of tiny fingers on its free face, standing between the neurons in the lining of the nose.",
+  "layers": {
+   "basics": "The lining at the back of a dog's nose, where smells are detected, is made mainly of three kinds of cell. The smell neurons do the sensing. Basal cells at the bottom make new ones. Between the neurons stand the supporting cells, which outnumber the neurons. Each is a tall column that reaches from the surface of the lining down toward its base. On the free face it carries many tiny fingers, microvilli, that stand in the layer of mucus where smell molecules dissolve.",
+   "deeper": "A supporting cell does more than prop the neurons up. It partly wraps the thin dendrite of a smell neuron, like a hand round a candle, which helps to keep each neuron's signal separate from its neighbours. It takes part in the make-up of the mucus, it protects the lining from what is breathed in, and it clears away neurons that have died. Smell neurons last only weeks and are replaced from basal cells, which can also make new supporting cells. The nucleus of a supporting cell lies high in the lining, above the nuclei of the neurons, so a section through the lining shows a top band of nuclei that belong mostly to supporting cells.",
+   "expert": "Much of the fine structure here was worked out in mouse, rat and human, and the reviews on the dog's nose are general, so it is likely, not proven, that the dog's cell is the same in every detail. The supporting cell is thought of as part epithelial cell and part glial cell. Sources differ on which junctions seal it to the neurons near the surface. The height, width, microvillus length, nucleus size and number of junctions drawn here are illustrative: no source read gives them for the dog. Not drawn: the endoplasmic reticulum, the neurons, and the thin extensions that wrap nerve fibres near the base."
+  },
+  "facts": [
+   ["Where", "free surface of the lining down toward its base, between the smell neurons"],
+   ["Number", "more supporting cells than smell neurons (dog)"],
+   ["Nucleus", "high in the lining, above the neurons' nuclei"],
+   ["Life of the smell neurons beside it", "a few weeks"],
+   ["Height drawn", "60 µm (illustrative)"],
+   ["Width drawn", "8 µm at the base, 14 µm at the top (illustrative)"]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How tall is the supporting cell in the dog's lining, and how do its microvilli and wrapping compare with those of mouse and human?",
+   "How much of the cell's work protects the neurons from airborne chemicals, and how much clears the mucus?"
+  ],
+  "refs": [
+   ["BIO", "36.3", "36-3-taste-and-smell"],
+   ["ANP", "4.2", "4-2-epithelial-tissue"]
+  ]
+ },
+ {
+  "id": "cell_sustentacular_cell_dog_microvilli",
+  "title": "Microvilli of the supporting cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-06,
+  "parents": ["cell_sustentacular_cell_dog"],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": ["tissue_igw_microvilli"],
+  "mesh": null,
+  "summary": "The tiny fingers on the free face of a supporting cell, standing in the mucus among the cilia of the smell neurons.",
+  "layers": {
+   "basics": "A smell neuron sends up a knob that carries long, thin hairs called cilia, and these lie in the thin layer of mucus over the lining. Between them stand the microvilli of the supporting cells, shorter fingers that are part of the cell's own surface. The two kinds of process meet and interlock in the mucus.",
+   "deeper": "Microvilli make a cell's surface much larger without making the cell bigger. The supporting cells regulate the make-up of the nasal mucus (reviews of the dog's nose), and their microvilli stand in that mucus. Microvilli are built round a core of actin, a protein that makes strong, thin rods.",
+   "expert": "The microvilli drawn are 1.5 µm long and 0.1 µm across; both numbers and the count are illustrative. Their length in the dog was not found in a source. The drawing shows only those on the cut face and the visible face."
+  },
+  "facts": [
+   ["Where", "free face of the supporting cell, in the mucus"],
+   ["Meets", "the cilia of the smell neurons"],
+   ["Length drawn", "1.5 µm (illustrative)"]
+  ],
+  "certainty": "C2",
+  "open_questions": ["What do the microvilli of a supporting cell do in the mucus, and how does that shape what the neurons smell?"],
+  "refs": [["BIO", "36.3", "36-3-taste-and-smell"]]
+ },
+ {
+  "id": "cell_sustentacular_cell_dog_wrapping",
+  "title": "A smell-neuron dendrite wrapped by a supporting cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2e-06,
+  "parents": ["cell_sustentacular_cell_dog"],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": ["bio_synapse_neurotransmitters"],
+  "mesh": null,
+  "summary": "The thin fibre of a smell neuron, lying in a pocket of the supporting cell around it.",
+  "layers": {
+   "basics": "Each smell neuron reaches up to the surface of the lining by a thin fibre, its dendrite. For much of its length the fibre does not lie bare between cells: a supporting cell folds round it, partly or all the way, so that the fibre sits in a groove of the cell.",
+   "deeper": "This wrapping was seen first in the mouse and goldfish, then in rat and human, and has been compared to the sheath that Schwann cells and other glia make round nerve fibres. It may keep the electrical signal of one neuron from leaking to the next. Fibres of young neurons are more often found between cells than inside them.",
+   "expert": "In the dog the wrapping has not been measured in the sources read; the picture is borrowed from other mammals. Two wrapped dendrites are drawn near the top of the cell, and that number is illustrative. The wrapping is one reason the supporting cell is called partly glial."
+  },
+  "facts": [
+   ["Seen in", "mouse, rat, human, goldfish"],
+   ["Wrapped fibre", "dendrite of a smell neuron"],
+   ["Drawn", "2 dendrites (illustrative)"]
+  ],
+  "certainty": "C2",
+  "open_questions": ["Does the wrapping change how a neuron fires, or only how it is supported?"],
+  "refs": [["BIO", "36.3", "36-3-taste-and-smell"]]
+ },
+ {
+  "id": "cell_sustentacular_cell_dog_junctions",
+  "title": "Junctions of the supporting cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-07,
+  "parents": ["cell_sustentacular_cell_dog"],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": ["bio_cell_junctions"],
+  "mesh": null,
+  "summary": "The belt of links that joins a supporting cell to its neighbours and to the smell neurons, just under the free face.",
+  "layers": {
+   "basics": "Cells in a lining must hold together, and they must keep the air side apart from the inside. Near the free face a belt of linking proteins joins each supporting cell to the cells around it and to the neurons between them. Close to the free face, rivet-like desmosomes also hold neighbouring supporting cells together.",
+   "deeper": "The belt runs all the way round each cell and closes the gap between cells so that little can slip between them. The links to the neurons are of a different kind from those between supporting cells.",
+   "expert": "Sources differ on the kind of junction that seals the neurons to the supporting cells, so the ring in the drawing stands for the whole belt and is drawn much thicker than in life. The 40 desmosomes drawn are an illustrative number."
+  },
+  "facts": [
+   ["Where", "ring round the cell just under the microvilli"],
+   ["Between supporting cells", "desmosomes, near the surface"],
+   ["Desmosomes drawn", "40 (illustrative)"]
+  ],
+  "certainty": "C2",
+  "open_questions": ["Which junction proteins seal the neurons to the supporting cells in the dog?"],
+  "refs": [["ANP", "4.2", "4-2-epithelial-tissue"]]
+ }
+]

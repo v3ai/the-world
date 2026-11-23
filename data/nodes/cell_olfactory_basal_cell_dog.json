@@ -1,0 +1,118 @@
+[
+ {
+  "id": "cell_olfactory_basal_cell_dog",
+  "title": "Olfactory basal (stem) cell (dog)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 8e-06,
+  "parents": [],
+  "parts": [
+   "cell_olfactory_hemidesmosome"
+  ],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "golgi_apparatus",
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A small, low cell on the floor of the nose's smell lining that replaces smell neurons and supporting cells when they die.",
+  "layers": {
+   "basics": "Smell neurons wear out and are lost, yet a dog keeps its sense of smell for life. The reason is a layer of small stem cells lying at the bottom of the smell lining, right on the thin sheet that the lining rests on. They are not part of the smelling itself and have no cilia or fibres. When a neuron or supporting cell is lost, they make a new one to take its place.",
+   "deeper": "Two kinds of basal cell are known from rats and mice. The flat kind lies directly on the basement membrane, holds on to it with hemidesmosomes and makes keratin 5 and 14. In a healthy nose it is quiet, a reserve that is called on after serious damage. The round kind lies just above, has little cytoplasm, and divides all the time to supply new neurons. A study of dogs found dividing cells near the basement membrane, in the same place.",
+   "expert": "Most of what is known comes from rodents, and some from people; the dog studies read here give the layers and the position of the dividing cells but no sizes. The cell is drawn as the flat kind, 8 µm wide and 4 µm tall, an illustrative size; the round-type basal cell of the human lining is 5 to 7 µm across. Whether the dog has the two kinds in the same proportion as the mouse is not settled in the sources read. Not drawn: the round kind, the dividing stage, the endoplasmic reticulum and the nerve-bundle tunnels the flat kind makes in rats."
+  },
+  "facts": [
+   [
+    "Position",
+    "deepest layer of the lining, on the basement membrane"
+   ],
+   [
+    "Width of the human round-type basal cell",
+    "5 to 7 µm"
+   ],
+   [
+    "Keratin markers",
+    "keratins 5 and 14 (flat kind)"
+   ],
+   [
+    "Anchor to the floor",
+    "hemidesmosomes"
+   ],
+   [
+    "Width and height drawn",
+    "8 µm by 4 µm (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Which basal cells make new neurons in the healthy dog, and how many of each kind lie in its lining?"
+  ],
+  "refs": [
+   [
+    "BIO",
+    "36.3",
+    "36-3-taste-and-smell"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Review of stem and progenitor cells of the olfactory epithelium",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5805156"
+   },
+   {
+    "title": "Review of the human olfactory mucosa: round-type basal cell 5 to 7 µm across",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4176544/"
+   }
+  ]
+ },
+ {
+  "id": "cell_olfactory_hemidesmosome",
+  "title": "Hemidesmosome",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-07,
+  "parents": [
+   "cell_olfactory_basal_cell_dog"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "bio_cell_junctions"
+  ],
+  "mesh": null,
+  "summary": "A button of proteins that fixes the underside of a basal cell to the sheet beneath it.",
+  "layers": {
+   "basics": "Where the cell lies on the basement membrane, small patches of protein reach through the cell's skin and grip the sheet below. Keratin filaments inside the cell are tied to them. The grip keeps the stem cells in place when the lining is pushed or stretched.",
+   "deeper": "A hemidesmosome looks like half of a desmosome, which joins two cells; here the other half is the basement membrane. Proteins called integrins reach out to the sheet, and the keratin filaments of the cell are anchored on the inside.",
+   "expert": "Hemidesmosomes of the flat basal cells have been seen under the electron microscope in rodents. They are not drawn as molecules here; the patches drawn are illustrative in number and size."
+  },
+  "facts": [
+   [
+    "Joins",
+    "cell underside to basement membrane"
+   ],
+   [
+    "Inside anchor",
+    "keratin filaments"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Review of stem and progenitor cells of the olfactory epithelium: hemidesmosomes of the flat basal cells",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5805156"
+   }
+  ]
+ }
+]

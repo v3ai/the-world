@@ -1,0 +1,230 @@
+[
+ {
+  "id": "cell_enterocyte",
+  "title": "Enterocyte (gut lining cell)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2.5e-05,
+  "parents": [],
+  "parts": [
+   "cell_enterocyte_brush_border",
+   "cell_enterocyte_glycocalyx",
+   "cell_enterocyte_tight_junction"
+  ],
+  "made_of": [
+   "cell_enterocyte_brush_border",
+   "cell_enterocyte_glycocalyx",
+   "cell_enterocyte_tight_junction",
+   "nucleus",
+   "mitochondrion",
+   "golgi_apparatus",
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [
+   "simple_columnar_epithelium"
+  ],
+  "mesh": null,
+  "summary": "The cell that absorbs food in the small intestine: a tall column whose gut-facing end is covered in thousands of tiny fingers.",
+  "layers": {
+   "basics": "Enterocytes line the inside of the small intestine in a single layer, like bricks standing on end. The end that faces the food carries a fur of tiny fingers called microvilli, which gives the cell far more surface to take in sugars, amino acids and fats. The other end rests on a thin sheet above the blood vessels, which carry the nutrients away. Side by side, the cells are sealed together so that large molecules and bacteria cannot slip between them.",
+   "deeper": "The fingers together are called the brush border, and digestive enzymes sit in their membrane, so the last steps of digestion happen right where the food is taken up. Below the fingers a ring of tight junctions seals the gaps between neighbouring cells, and rivet-like desmosomes hold the sides together. The nucleus lies in the lower half; the parts that make and pack proteins lie above it. Enterocytes are short-lived, lasting only a few days before they are shed into the gut and replaced by new cells from stem cells in the pits between the villi.",
+   "expert": "Healthy adult small intestine has 60 to 120 times the surface of a smooth tube, from folds, villi and microvilli together. The size of the cell drawn here (25 µm tall, 8 µm across) is illustrative; the microvillus sizes are measured, though the reviews that report them do not all name the species. In untreated coeliac disease (gluten sensitivity) the lining cells become smaller and cube-like. Not drawn: the endoplasmic reticulum, fat droplets, the brush-border enzymes, and the goblet cells among the enterocytes."
+  },
+  "facts": [
+   [
+    "Microvillus size",
+    "about 100 nm wide, 1 to 3 µm long"
+   ],
+   [
+    "Microvilli per cell",
+    "up to about 3,000 (organism not stated)"
+   ],
+   [
+    "Surface gain, villi and microvilli together (human adults)",
+    "60 to 120 times"
+   ],
+   [
+    "Life of one cell",
+    "about 3 to 7 days"
+   ],
+   [
+    "Height drawn",
+    "25 µm (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How many microvilli does one human enterocyte carry on average, and how does it change along the gut?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "23.7",
+    "23-7-chemical-digestion-and-absorption-a-closer-look"
+   ],
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ]
+ },
+ {
+  "id": "cell_enterocyte_brush_border",
+  "title": "Brush border (microvilli)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-06,
+  "parents": [
+   "cell_enterocyte"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "simple_columnar_epithelium"
+  ],
+  "mesh": null,
+  "summary": "The fur of tiny fingers on the gut side of an enterocyte, each stiffened by a rod of actin.",
+  "layers": {
+   "basics": "Each finger is a microvillus, a thin fold of the cell's skin about one tenth of a micrometre wide and about a micrometre long. Thousands stand side by side, all the same height, like the pile of a carpet. Together they add a great deal of surface where food can be taken up.",
+   "deeper": "Inside every finger runs a bundle of about 30 to 40 stiff actin threads, held together by proteins called villin, espin and fimbrin. A single thread is too floppy to push the skin out, but a bundle can. The bundle is tied to the finger's membrane along its length by small arms, and its root sinks into a mesh of filaments (the terminal web) under the surface. Seen from above, the fingers stand in a regular hexagonal pattern.",
+   "expert": "Lengths of about 1 to 3 µm depend on the part of the gut; a histology text gives about 1 µm. The count of up to 3,000 per cell is a ceiling from one textbook, while other texts say about 1,000. Surface gain from the fingers is 9 to 16 times in one review of measurements and about 30 times in a textbook, so the true value is uncertain. The drawn count shows only a fraction of the fingers and each core is drawn as a single rod."
+  },
+  "facts": [
+   [
+    "Width",
+    "about 100 nm"
+   ],
+   [
+    "Length",
+    "about 1 to 3 µm"
+   ],
+   [
+    "Actin filaments in one core",
+    "about 30 to 40"
+   ],
+   [
+    "Packing",
+    "hexagonal"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Which forces and proteins set the exact length of a microvillus?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "23.7",
+    "23-7-chemical-digestion-and-absorption-a-closer-look"
+   ],
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ]
+ },
+ {
+  "id": "cell_enterocyte_glycocalyx",
+  "title": "Mucin coat (glycocalyx)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-06,
+  "parents": [
+   "cell_enterocyte"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "A fuzzy coat of long mucin molecules, mostly sugar on a protein backbone, that stands over the tips of the microvilli.",
+  "layers": {
+   "basics": "The coat is like a thin layer of fur on top of the fur. It is made of mucin molecules, mostly sugar chains on a protein backbone, so many that they stand out stiff from the surface. The coat keeps bacteria away from the cell while letting small food molecules through.",
+   "deeper": "The mucin threads reach up to about a micrometre into the gut, forming a mesh about 1 µm thick with pores about 30 nm wide. A mesh like this lets molecules smaller than its pores pass and holds back things much larger, such as bacteria. The coat is renewed far faster than the cell itself: its main mucin is replaced in about 12 to 24 hours, in a cell that lives for 3 to 5 days.",
+   "expert": "The thickness and the pore size come from a review; the review draws on mouse work, and the figures have not been checked in human tissue. The absence of a coat in the newborn gut is described in rodents. The haze is drawn illustratively; the real coat is far too fine to see with a light microscope."
+  },
+  "facts": [
+   [
+    "Thickness",
+    "about 1 µm"
+   ],
+   [
+    "Pore size",
+    "about 30 nm"
+   ],
+   [
+    "Renewal of its main mucin",
+    "about 12 to 24 hours"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How does the mesh decide which molecules pass?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "23.7",
+    "23-7-chemical-digestion-and-absorption-a-closer-look"
+   ],
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ]
+ },
+ {
+  "id": "cell_enterocyte_tight_junction",
+  "title": "Tight junction",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-07,
+  "parents": [
+   "cell_enterocyte"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "bio_cell_junctions"
+  ],
+  "mesh": null,
+  "summary": "A seal between two neighbouring gut cells, just below their fingers.",
+  "layers": {
+   "basics": "Where two gut cells meet at their food-facing ends, a ring of linked proteins zips their skins together. Nothing large can squeeze between them, so food molecules and bacteria cannot pass between the cells; nutrients are taken up mainly through them, though water and ions also cross between cells.",
+   "deeper": "The seal runs all the way round each cell, like the plastic ring that holds a six-pack together. Below it, rivet-like desmosomes and other junctions hold the cells' sides to one another, but only the tight junction closes the gap. The seal is not perfectly waterproof; it lets some water and ions through, and different parts of the gut leak by different amounts.",
+   "expert": "The picture draws the ring thicker than it is in life so that it can be seen. How leaky the seal is depends on which proteins make it, and it can change with diet, infection and disease. The number of desmosomes drawn (120) is illustrative."
+  },
+  "facts": [
+   [
+    "Where",
+    "ring round the food-facing end of each cell"
+   ],
+   [
+    "Job",
+    "keep food and bacteria out of the gaps between cells"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How do tight junctions open briefly to let some water and ions pass?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "23.7",
+    "23-7-chemical-digestion-and-absorption-a-closer-look"
+   ],
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ]
+ }
+]

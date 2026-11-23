@@ -1,0 +1,76 @@
+[
+ {
+  "id": "cell_cardiomyocyte",
+  "title": "Cardiac muscle cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 0.00014,
+  "area": "bio_animals",
+  "parents": [],
+  "parts": [],
+  "processes": ["cardiac_cycle", "muscle_contraction"],
+  "related": ["cardiomyocyte", "cardiac_muscle_tissue", "sarcomere", "mitochondrion"],
+  "summary": "A heart muscle cell is a striped cell about 140 micrometres long, usually with one nucleus in its middle, packed with mitochondria and joined end to end to its neighbours.",
+  "layers": {
+    "basics": "The wall of the heart is built of muscle cells that each pull inward when told to, and all of them at nearly the same moment. Each cell is a short cylinder, a little over a tenth of a millimetre long and about as thick as a few red blood cells are wide. Inside, rods called myofibrils run the length of the cell and give it a striped look, as in the muscles of the arm. Unlike an arm muscle fibre, a heart cell is short, has mostly a single nucleus in the middle, and has branches that join it to several neighbours. Between the myofibrils lie many mitochondria, because the heart never rests. The ends of each cell are locked to the next cell by thick folded joints called intercalated discs.",
+    "deeper": "A heart muscle cell does not work alone. At each intercalated disc three kinds of contact sit side by side. Adherens junctions tie the ends of the myofibrils to the neighbour so that the pull passes from cell to cell. Desmosomes anchor the cell's internal cable network of intermediate filaments to the neighbour so the wall resists being torn apart. Gap junctions are small channels that let ions flow straight from one cell into the next, which carries the electrical signal of the beat along a chain of cells without delay. Because of this the heart wall acts as one unit, a syncytium in function even though every cell is separate. Mitochondria took about 28 percent of the volume in the one human heart cell block measured, far more than in most cells, and supply the energy for each beat. Tubes that run in from the surface at each Z disc, the T-tubules, carry the signal into the cell, and a textbook puts them at about half as many as in a skeletal fibre. Calcium entering through channels in the cell surface and T-tubules is only the trigger. It sets off a much larger release from the sarcoplasmic reticulum, the cell's internal calcium store, which supplies most of the calcium for each beat (about four fifths, by a textbook account).",
+    "expert": "In the scene the cell is drawn as a cylinder 21 micrometres across and 141 micrometres long, the measured length for cells isolated from non-failing human hearts, with a length-to-width ratio of about 7.5. Measured in human heart: the cell length, the width, the share of volume taken by mitochondria (27.9 percent in one block of a donor myocyte), and the share of cells with one nucleus (about 70 percent, from a review). The sarcomere length is illustrative, within the 1.95 to 2.25 micrometre range used in human donor-cell experiments. Illustrative: the sarcomere length drawn (2.0 micrometres), the filament lengths, the myofibril width, the nucleus size and shape, the size and places of the mitochondria, the number and angle of branches, and the colours. Not drawn: T-tubules (1.8 percent of the volume in the human block measured), the sarcoplasmic reticulum, lipid droplets (1.9 percent) and glycogen. The cell is drawn as a cylinder, so its volume is an estimate of the order of size. Most of the numbers come from adult donor hearts, a few from young people, and heart failure changes the length and width, so the healthy adult values are the ones used."
+  },
+  "facts": [
+    ["Length", "141 ± 9 µm (isolated human left-ventricle cells)"],
+    ["Width", "about 19 to 21 µm (isolated cells, 141 ÷ 7.5; permeabilized donor preparations 21 ± 2 µm)"],
+    ["Length to width", "7.5 ± 0.6"],
+    ["Nuclei", "one in the middle in about 70% of cells; most of the others have two, a few more"],
+    ["Mitochondria", "27.9% of cell volume (one block, about 15 × 15 × 2.2 µm, of one donor cell)"],
+    ["Sarcomere length", "about 2 µm (illustrative; 1.95 to 2.25 µm in human donor-cell experiments)"],
+    ["Contacts at each end", "adherens junctions, desmosomes, gap junctions"]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+    "How many branches does a typical cell of the human ventricle have, and at what angles do they leave?",
+    "How do the sizes of the cell and its nucleus differ between the ventricle, the atrium and the conduction system in the same heart?"
+  ],
+  "refs": [
+    ["ANP", "10.7", "10-7-cardiac-muscle-tissue"],
+    ["ANP", "19.2", "19-2-cardiac-muscle-and-electrical-activity"]
+  ],
+  "ext": [
+    { "title": "Isolated left-ventricle cells of non-failing human hearts: length 141 µm, length to width 7.5", "url": "https://europepmc.org/article/MED/1638711" },
+    { "title": "Mitochondria 27.9% of the volume of a human left-ventricle cell block", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4295200/" }
+  ]
+ },
+ {
+  "id": "cell_cardiomyocyte_disc",
+  "title": "Intercalated disc",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 0.00002,
+  "area": "bio_animals",
+  "parents": ["cell_cardiomyocyte"],
+  "parts": [],
+  "processes": ["cardiac_cycle"],
+  "related": ["cardiomyocyte", "cardiac_muscle_tissue"],
+  "summary": "The intercalated disc is the stepped joint at the end of a heart muscle cell where it is fastened to the next cell and where the electrical signal of the beat passes on.",
+  "layers": {
+    "basics": "Where two heart cells meet end to end, their membranes fold together like the teeth of two combs. This stepped joint is the intercalated disc. It does two jobs at once. It holds the cells together so that the pull of one cell is passed to the next, and it lets the electrical signal for the beat jump across, so a wave of contraction runs smoothly through the wall of the heart.",
+    "deeper": "Three kinds of contact share the disc. Adherens junctions link to the actin filaments at the ends of the myofibrils, so force passes from the inside of one cell to the inside of the next. Desmosomes link to the intermediate filaments, a cable network that resists tearing. Gap junctions are clusters of small channels through both membranes that let ions and small molecules pass between the cells. Sodium and potassium channels also gather in the disc. A fault in a protein of any of these contacts can make the heart wall weaker or more prone to an irregular beat.",
+    "expert": "The scene draws the disc as one stepped band across the end of the cell and does not show the three contacts one by one; the way a real disc is folded, and the numbers of each contact, are not measured here. Its size drawn is illustrative. The description of three contacts is a long-standing one, and a review of the disc (Pruna and Ehler 2020) describes a mixed contact, the area composita, that combines parts of adherens junctions and desmosomes, and desmosome proteins that interact with the gap-junction protein connexin43, so the neat division into three is a simplification."
+  },
+  "facts": [
+    ["Contacts in the disc", "adherens junctions, desmosomes, gap junctions"],
+    ["Distance between discs along a chain", "about one cell length, 141 µm"],
+    ["Also holds", "sodium and potassium channels"]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+    "How are the three contacts of the disc arranged in space, and how does the arrangement change with age and disease?"
+  ],
+  "refs": [
+    ["ANP", "19.2", "19-2-cardiac-muscle-and-electrical-activity"]
+  ],
+  "ext": [
+    { "title": "Review: the intercalated disc, adhesion and electrical coupling between heart cells", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7429531/" },
+    { "title": "Review: role of the intercalated disc in propagation of the beat", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4201087/" }
+  ]
+ }
+]

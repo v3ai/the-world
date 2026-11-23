@@ -1,0 +1,73 @@
+[
+ {
+  "id": "cell_chondrocyte",
+  "title": "Chondrocyte (cartilage cell)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": ["nucleus", "mitochondrion", "golgi_apparatus", "cell_membrane"],
+  "processes": [],
+  "related": ["chondrocyte", "cartilage_tissue", "cell_chondrocyte_lacuna"],
+  "summary": "A rounded cell about 10 µm across that usually lies singly in a small cavity of cartilage, making and keeping the matrix around it.",
+  "layers": {
+    "basics": "Joint cartilage has only one kind of cell, the chondrocyte. It sits in a small cavity in the firm, rubbery material that it has made, and it makes more as the old wears out. Cells are only a small part of cartilage; almost all of it is the material they have made.",
+    "deeper": "Cartilage has no blood vessels, so food and oxygen must seep through the matrix to reach each cell, and the cell gets most of its energy without using oxygen. It builds the long collagen fibres and the large sugar-rich molecules that hold water in the matrix. In joint cartilage the cells near the surface are flatter, those in the middle are round and scattered, and those deep down often stand in short columns. This model shows a round cell of the middle layer.",
+    "expert": "Measured cell volumes in the middle layer of human knee cartilage graded normal (grade 0) average about 522 µm³, but single cells range from a few hundred to over a thousand cubic micrometres, and the volume rises in damaged cartilage. The drawn axes, the size of the nucleus, the mitochondria and the Golgi apparatus are illustrative, and the cell's rough endoplasmic reticulum, glycogen, cilium and thin processes are not drawn."
+  },
+  "facts": [
+    ["Volume (middle layer, human knee, graded normal)", "about 522 µm³ (some cells 200-300, some over 1000)"],
+    ["Width if round", "about 10 µm"],
+    ["Share of joint cartilage volume", "about 2%"],
+    ["Nuclei", "1"],
+    ["Primary cilium", "1-2 µm long (not drawn)"],
+    ["Energy", "mostly without oxygen"]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+    "How does the shape and volume of a chondrocyte change the way it makes matrix?",
+    "Why do some human chondrocytes put out long processes into the matrix when those in several other animals do not?"
+  ],
+  "refs": [
+    ["ANP", "4.3", "4-3-connective-tissue-supports-and-protects"]
+  ],
+  "ext": [
+    { "title": "Review of chondrocyte shape and volume in joint cartilage, with the 522 µm³ figure", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6571082/" },
+    { "title": "Review of the structure of joint cartilage: cells about 2% of the volume", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3445147/" }
+  ],
+  "kn": ["musculoskeletal"]
+ },
+ {
+  "id": "cell_chondrocyte_lacuna",
+  "title": "Lacuna and the matrix touching a chondrocyte",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1.2e-05,
+  "parents": ["cell_chondrocyte"],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": ["cell_chondrocyte", "cartilage_tissue", "hc_lacuna"],
+  "summary": "The small cavity in which each cartilage cell lies, lined by a thin layer of matrix that touches the cell all the way round.",
+  "layers": {
+    "basics": "Each cartilage cell lies in a tiny space of its own, called a lacuna. The cell does not move out of it. A thin layer of matrix right against the cell separates it from the firmer matrix farther away.",
+    "deeper": "The layer next to the cell wall is rich in the sugar-rich molecules that hold water, and it is the only place in the cartilage matrix where collagen of type VI is found. It surrounds the cell completely, holds it in place, and sets the squeezing and stretching that the cell feels when the joint is loaded. Food and waste must pass through it, because there are no vessels.",
+    "expert": "In this picture the cavity is drawn as a pale rim 1.8 µm wide; that width is illustrative, not measured. The cavity wall in real tissue is not a sharp membrane but a gradual change from the thin layer around the cell to the stiffer matrix beyond."
+  },
+  "facts": [
+    ["Position", "usually one cell per cavity (groups of two to eight occur in growing or repairing cartilage)"],
+    ["Special content", "in cartilage, the only place with collagen type VI"],
+    ["Rim width drawn", "1.8 µm (illustrative)"]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+    ["ANP", "4.3", "4-3-connective-tissue-supports-and-protects"]
+  ],
+  "ext": [
+    { "title": "Review of chondrocyte shape and the pericellular matrix", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6571082/" }
+  ],
+  "kn": ["musculoskeletal"]
+ }
+]

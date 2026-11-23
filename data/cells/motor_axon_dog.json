@@ -1,0 +1,95 @@
+{
+ "id": "motor_axon_dog",
+ "name": "Motor nerve fibre (dog)",
+ "organism": "mammal (dog)",
+ "species": "Canis familiaris",
+ "card": "cell_motor_axon_dog",
+ "blurb": "The long thin arm of a dog's motor neuron: one thick axon wrapped in myelin in lengths with short bare gaps between, ending in small branches that touch the muscle.",
+ "note": "Model: a dog's motor nerve fibre, the axon of a motor neuron, cut open along its length. Measured: only that each muscle fibre gets a nerve ending and that nodes are about a micrometre long, and the sizes of cat and calf fibres, which are used as a guide because no dog value for a limb motor axon was read. Illustrative: the thickness of the axon (8.4 µm) and of the fibre (12 µm), the myelin thickness, the length of each myelin segment (1400 µm, measured in cat), the g-ratio (0.70, measured in cat), the paths and lengths of the end branches, the size of the end swellings and every colour. The cell body lies in the spinal cord and is only hinted at by a small stub at the top, with a short dendrite stump; neither is drawn to size. The nucleus, the glial cell that makes the myelin and the inside of the axon (microtubules and neurofilaments) are not drawn. The fibre goes on, far past what is drawn.",
+ "shape": {
+  "type": "neuron",
+  "soma": "round",
+  "soma_w_um": 6,
+  "soma_h_um": 6,
+  "basal_n": 1,
+  "basal_total_um": 30,
+  "basal_branch_points": 0,
+  "apical_trunk_um": 0,
+  "apical_reach_um": 0,
+  "oblique_total_um": 0,
+  "oblique_branch_points": 0,
+  "tuft_total_um": 0,
+  "tuft_branch_points": 0,
+  "dendrite_um": 0.5,
+  "trunk_um": 1,
+  "spines_basal_per_um": 0,
+  "spines_apical_per_um": 0,
+  "axon_um": 8.4,
+  "ais_um": 0,
+  "myelin": 1,
+  "internode_um": 1400,
+  "node_um": 1,
+  "g_ratio": 0.7,
+  "axon_drawn_um": 2800,
+  "collaterals": 3,
+  "collateral_um": 120,
+  "bouton_spacing_um": 12,
+  "bouton_um": 3
+ },
+ "dimensions": {
+  "fibre_diameter": { "value": 12, "range": [4, 20], "unit": "um", "measured": false, "source": "schenk2014", "calc": "axon 8.4 µm divided by the g-ratio 0.70", "compare": "in the fibular nerve of a dog 3 months old (0.25 years) the largest fibres were 12 µm, from a table of other studies in schenk2014 (citing Sims and Redding 1980); adult dog values are larger and were not read. Calf nerve reached 17.9 µm (schenk2014); the largest adult cat fibres are about 15 µm, and a cat axon of 9 µm with g-ratio 0.70 gives a fibre of about 13 µm (berthold2002)", "note": "illustrative: 12 µm is near the cat alpha value and equals the largest fibre of a 3-month-old dog; it is not the largest dog fibre. The range 4 to 20 µm is not sourced" },
+  "axon_diameter": { "value": 8.4, "range": [3, 15], "unit": "um", "measured": false, "source": "berthold2002", "calc": "fibre 12 µm times the g-ratio 0.70", "compare": "mean about 9 µm for the large axons (about two-thirds of axons) of the L7 ventral root of the adult cat (berthold2002)", "note": "illustrative for the dog" },
+  "g_ratio": { "value": 0.7, "range": [0.55, 0.8], "unit": "fraction", "measured": false, "source": "arbuthnott1980", "compare": "about 0.70 to 0.75 for the largest cat fibres, 0.61 ± 0.04 in calf nerve (schenk2014)", "note": "cat value used for the dog; no dog g-ratio was read" },
+  "myelin_thickness": { "value": 1.8, "range": [0.4, 3.2], "unit": "um", "measured": false, "calc": "(12 − 8.4) / 2", "source": "schenk2014", "compare": "1.62 ± 0.64 µm, range 0.38 to 3.20 µm, in calf nerve", "note": "follows from the two values above" },
+  "internode": { "value": 1400, "range": [300, 2000], "unit": "um", "measured": false, "source": "berthold2002", "compare": "in the L7 ventral root of the adult cat, large axons average about 9 µm across with segments averaging about 1400 µm; small axons about 3 µm with about 650 µm; a mean in a spinal root, not the limb nerve; the dog value was not read", "note": "cat value used for the dog" },
+  "node_length": { "value": 1, "range": [0.5, 5], "unit": "um", "measured": false, "source": "freeman2016", "note": "about 1 µm, from a review that does not give the species" },
+  "cell_body_stub": { "value": 6, "range": [6, 6], "unit": "um", "measured": false, "note": "illustrative: a real motor neuron cell body is tens of µm; the 30 µm dendrite stump is also illustrative and far shorter than life" },
+  "drawn_length": { "value": 2800, "range": [20, 3000], "unit": "um", "measured": false, "note": "illustrative: the stretch drawn, about two segments of myelin; the fibre goes on for a long way" },
+  "end_swelling": { "value": 3, "range": [0.2, 5], "unit": "um", "measured": false, "note": "illustrative width of each swelling on the end branches" }
+ },
+ "nucleus": { "count": 0, "note": "No nucleus is drawn. The nucleus of a motor neuron is in its cell body in the spinal cord, and the nuclei of the myelin-making cells lie outside the myelin; neither is in view.", "source": "openstax_nt" },
+ "organelles": {
+  "absent": ["nucleus (of the neuron: in the cell body)", "ribosomes and rough ER in the fibre", "glial cell nuclei"],
+  "absent_source": "openstax_nt"
+ },
+ "special": [
+  { "kind": "axon", "source": "openstax_nt", "note": "The axon leaves the cell body and runs on without a bare start (the first bare stretch is left out), then myelin in lengths of {drawn.internodes} segments with short bare nodes between; side branches off nodes end in small swellings on the muscle. It is drawn for {drawn.axonDrawn} µm and then broken off." }
+ ],
+ "cut": "The fibre is cut along its length: the thick axon runs down the middle, wrapped in a wall of myelin that stops at each node, where the bare axon is seen; near the nodes thin branches leave and end in swellings. The small stub at the top stands for the cell body.",
+ "colours": {
+  "convention": "The axon in warm yellow, myelin white and the end swellings pale gold, a code as in drawings of a stained neuron; living nerve is nearly colourless, and fresh myelin looks white because it is rich in fat.",
+  "true_colour": []
+ },
+ "parts": {
+  "soma": { "name": "Cell body (stub)", "card": "neuron", "material": "membrane", "source": "openstax_nt", "about": "The cell body of a motor neuron lies in the spinal cord, or in the brainstem for some muscles of the head and neck, and is much larger than this stub. The stub only marks where the axon leaves it." },
+  "dendrite": { "name": "Dendrite stump", "card": null, "material": "membrane", "about": "Motor neurons have dendrites that receive signals in the spinal cord. One short stump is drawn only to complete the cell body; its branches are not drawn." },
+  "spine": { "name": "Dendrite (cut short)", "card": null, "material": "membrane", "about": "The same short stump of a dendrite, labelled at a different spot. No spines are drawn on it." },
+  "axon": { "name": "Axon of a motor neuron", "card": "cell_motor_axon_dog", "material": "membrane", "source": "openstax_sm", "about": "The axon carries signals from the spinal cord to the muscle, in a human up to about 0.9 m. Here it is drawn 8.4 µm across, a size chosen to fall near the large cat axon (about 9 µm, berthold2002); no adult dog value was read." },
+  "myelin": { "name": "Myelin", "card": "cell_motor_axon_dog_myelin", "material": "myelin", "source": "berthold2002", "about": "In nerves outside the brain and spinal cord, each length of myelin is one Schwann cell wrapped round the axon many times. In the L7 ventral root of an adult cat, large axons average about 9 µm across with segments averaging about 1400 µm." },
+  "node": { "name": "Node of Ranvier", "card": "cell_motor_axon_dog_node", "material": "membrane", "source": "freeman2016", "about": "The bare gap between two lengths of myelin, about a micrometre long, where the membrane is packed with sodium channels and the signal is renewed." },
+  "bouton": { "name": "Nerve ending on the muscle", "card": "cell_motor_axon_dog_terminal", "material": "membrane", "source": "openstax_sm", "about": "The end of a motor axon splits into branches that reach muscle fibres; at the junction acetylcholine is released. Every skeletal muscle fibre has one such ending. In life the myelin stops before the muscle and the terminal branches are bare, and a branch's several swellings lie along one muscle fibre; here the branches leave myelinated stretches at nodes and the swellings are spaced for drawing only (illustrative)." }
+ },
+ "reached": {
+  "tissue2": [{ "scene": "dog_muscle", "structure": "axon" }]
+ },
+ "view": {
+  "radius_um": 1500,
+  "r1_m": 0.008,
+  "arrive_m": 0.00018,
+  "spawn_m": 5e-6,
+  "break": { "text": "The fibre goes on, back to the spinal cord", "text_short": "Goes on to the spinal cord" }
+ },
+ "about": [
+  "This is the axon of a motor neuron in a dog: the cable that carries the order to contract from the spinal cord to a muscle. It is drawn {drawn.axonDrawn} µm long and then broken off; in a large animal the whole fibre may be many centimetres.",
+  "No dog value for a limb motor axon was read. The sizes follow cat and calf nerve: the large axons of an adult cat's L7 ventral root average about 9 µm across with myelin segments averaging about 1400 µm, the g-ratio (axon width over fibre width) is about 0.70 in the largest cat fibres, and a table of other studies lists a 3-month-old dog's fibular nerve with largest fibres of 12 µm (adult dogs were not read). The drawn axon is 8.4 µm and the fibre 12 µm, which is illustrative.",
+  "Nodes are drawn 1 µm long, as the gaps are said to be about that. The side branches, their length and the swellings on them ({drawn.boutons} here) are illustrative. The cell body, the dendrite stump and the first bare stretch of the axon are not drawn to size: a dog or cat spinal motor neuron's cell body is tens of micrometres across (general neuroanatomy, not opened here), so the 6 µm stub and 30 µm dendrite are much smaller than life and illustrative."
+ ],
+ "sources": {
+  "arbuthnott1980": { "cite": "Arbuthnott ER, Boyd IA, Kalu KU (1980) Ultrastructural dimensions of myelinated peripheral nerve fibres in the cat and their relation to conduction velocity, J Physiol 308:125-157 (abstract page)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1274542/", "opened": "2026-11-23", "used_for": "cat g-ratio about 0.70 to 0.75 for the largest fibres (alpha and group I)" },
+  "schenk2014": { "cite": "Schenk HC et al. (2014) Morphometric parameters of peripheral nerves in calves correlated with conduction velocity, J Vet Intern Med 28", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4857965/", "opened": "2026-11-23", "used_for": "calf fibres 8.40 ± 2.80 µm (to 17.9), g-ratio 0.61, myelin 0.38 to 3.20 µm; a table of other studies lists a 0.25-year-old dog, N. fibularis, mean 3.82 µm, maximum 12 µm (citing Sims and Redding)" },
+  "berthold2002": { "cite": "Berthold CH, Nilsson Remahl I (2002) De- and remyelination in spinal roots during normal perinatal development in the cat, J Anat 200:391-403", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1570693/", "opened": "2026-11-23", "used_for": "L7 ventral root of adult cat: large axons (about two-thirds) mean 9 µm, internodes mean about 1400 µm; small axons 3 µm, about 650 µm" },
+  "freeman2016": { "cite": "Freeman SA, Desmazieres A, Fricker D, Lubetzki C, Sol-Foulon N (2016) Mechanisms of sodium channel clustering and its influence on axonal impulse conduction, Cell Mol Life Sci 73:723-735", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4735253/", "opened": "2026-11-23", "used_for": "nodes about 1 µm long, about 1200 sodium channels per µm² at nodes against 20 to 25 in internodes" },
+  "openstax_nt": { "cite": "OpenStax Anatomy and Physiology 2e, 12.2 Nervous Tissue", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/12-2-nervous-tissue", "opened": "2026-11-23", "used_for": "Schwann cell wraps one axon segment; nodes are the gaps; axon hillock and terminals; axons 1 to 20 µm across" },
+  "openstax_sm": { "cite": "OpenStax Anatomy and Physiology 2e, 10.2 Skeletal Muscle", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-2-skeletal-muscle", "opened": "2026-11-23", "used_for": "motor axon runs from the spinal cord to the muscle, up to about three feet; every muscle fibre has a neuromuscular junction; acetylcholine" }
+ }
+}

@@ -1,0 +1,113 @@
+[
+ {
+  "id": "cell_type2_pneumocyte",
+  "title": "Type II alveolar cell",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_animals",
+  "parents": [
+   "lung_type2_cell"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "lung_type2_cell",
+   "alveoli"
+  ],
+  "summary": "The cell that makes surfactant, the soapy film that keeps the lung's air sacs from collapsing; it is small and cube-like and tucked in among far larger, thinner cells.",
+  "layers": {
+   "basics": "The inside of each air sac is wet, and water pulls hard on itself, which would tend to shut the sac like a wet balloon. Type II cells release surfactant, a mix of fats and proteins that weakens that pull. The cell stores it in many small round bodies and lets it out onto the surface of the lining. The cell sits among the very thin cells that carry gas, and covers only a small part of the sac's surface.",
+   "deeper": "A human lung holds around 24 billion of these cells, each with a volume near 650 cubic micrometres. Inside, about 324 lamellar bodies make up roughly a ninth of the volume. The cells are often cuboidal. They also act as the lining's repair cells: when the thin cells are lost, type II cells divide and give rise to new cells of both kinds. Most of the surfactant they release is taken back in and reused.",
+   "expert": "Counts of the cell and its lamellar bodies come from five human lungs measured with electron microscopy and stereology, and are means over cells that differ in size. The nucleus and mitochondria shares drawn come from rat lungs, so they are only a guide for the human cell. The six-sided outline, the microvilli and the neighbouring cells are illustrative."
+  },
+  "facts": [
+   [
+    "Volume (human)",
+    "about 650 um3"
+   ],
+   [
+    "Cells per lung (human)",
+    "about 24 billion"
+   ],
+   [
+    "Lamellar bodies per cell",
+    "about 324"
+   ],
+   [
+    "Share of the sac surface",
+    "under 5%"
+   ],
+   [
+    "Species",
+    "human (nucleus and mitochondria shares from rat)"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "What sets how many lamellar bodies a cell holds, and does the number change with a deep breath?",
+   "Where exactly do the cells sit, and how many lie in each sac?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "22.1",
+    "22-1-organs-and-structures-of-the-respiratory-system"
+   ]
+  ],
+  "ext": []
+ },
+ {
+  "id": "cell_type2_lamellar_body",
+  "title": "Lamellar body",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 1e-05,
+  "area": "bio_animals",
+  "parents": [
+   "cell_type2_pneumocyte"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "lung_type2_cell",
+   "alveoli"
+  ],
+  "summary": "A small round store inside the type II cell, packed with layers of surfactant waiting to be released.",
+  "layers": {
+   "basics": "A lamellar body is a package. Inside, the surfactant fats are stacked in thin sheets like the layers of an onion. When the cell needs to, the package joins the cell surface and empties its contents into the air sac.",
+   "deeper": "A single cell holds around 324 of them, each with a volume near a quarter of a cubic micrometre, together roughly 74 cubic micrometres. About 23 per cell are joined to each other through pores, and about one is joined to the cell membrane through a fusion pore. Together these linked bodies hold about 14% of a cell's lamellar body volume and are taken to be an intermediate pool of surfactant on its way out.",
+   "expert": "The figures are means over five human lungs. The picture draws the bodies as plain spheres of the mean size, so the layered inside and the spread of sizes are not shown."
+  },
+  "facts": [
+   [
+    "Count per cell",
+    "about 324"
+   ],
+   [
+    "Mean volume",
+    "about 0.24 um3"
+   ],
+   [
+    "Volume per cell",
+    "about 74 um3"
+   ],
+   [
+    "Species",
+    "human"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "How is the pool of joined bodies refilled after a release?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "22.1",
+    "22-1-organs-and-structures-of-the-respiratory-system"
+   ]
+  ],
+  "ext": []
+ }
+]

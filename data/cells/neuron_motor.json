@@ -1,0 +1,121 @@
+{
+ "id": "neuron_motor",
+ "name": "Motor neuron (spinal cord)",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_neuron_motor",
+ "blurb": "A motor neuron of the human spinal cord: a big cell body with a ring of dendrites growing out all round it, and one thick myelinated axon leaving toward a muscle. It stands in for other spinal and brainstem neurons, which are not modelled.",
+ "note": "Model: a motor neuron of the human spinal cord, its cell body cut open. Measured in humans: the look of the cell body (a large many-branched body, a central nucleus, Nissl substance), the width of the whole fibre of the fastest motor axons in a human nerve root, myelin included (13.1 µm), and, in infants, the size class of large neurons in the cord (over 46 µm across; adult cells reach about 120 µm). Measured in the cat, not the human: the number of main dendrites (11), how long each dendrite tree is (4.7 mm), the length of a myelin segment in the nerve root (1.39 mm) and the narrowing of the axon at a node. Illustrative: the exact size of the cell body (55 by 60 µm, below the adult upper range), the axon inside the fibre (drawn 9.2 µm, which is 13.1 x the illustrative g-ratio 0.7), the paths and branch points of the dendrites, the dendrite thickness, the nucleus, the organelles, the node length and the thickness of the myelin. The dendrite trees are drawn at 30 mm in all, the most the model can draw, which is less than the cat's 53 mm. The axon goes on far beyond what is drawn. Stand-in: the model has no spinal interneuron, sensory, autonomic or brainstem relay neuron, so a click on any of these shows this alpha motor neuron, which is only one of the many kinds of neuron there.",
+ "shape": {
+  "type": "neuron",
+  "soma": "stellate",
+  "soma_w_um": 55,
+  "soma_h_um": 60,
+  "basal_n": 11,
+  "basal_total_um": 30000,
+  "basal_branch_points": 150,
+  "apical_trunk_um": 0,
+  "apical_reach_um": 0,
+  "oblique_total_um": 0,
+  "oblique_branch_points": 0,
+  "tuft_total_um": 0,
+  "tuft_branch_points": 0,
+  "dendrite_um": 4,
+  "trunk_um": 4,
+  "spines_basal_per_um": 0,
+  "spines_apical_per_um": 0,
+  "spine_um": 1.4,
+  "spine_head_um": 0.6,
+  "axon_um": 9.2,
+  "ais_um": 40,
+  "myelin": 1,
+  "internode_um": 1390,
+  "node_um": 1.5,
+  "g_ratio": 0.7,
+  "axon_drawn_um": 3000,
+  "collaterals": 0,
+  "collateral_um": 0,
+  "bouton_spacing_um": 5,
+  "bouton_um": 0.8
+ },
+ "dimensions": {
+  "soma_size_class": { "value": 46, "unit": "um", "measured": true, "source": "allardyce2024", "note": "human spinal ventral horn, control cases that are infants (1 day to 12 months): neurons over 46 µm across (maximum caliper diameter) counted as large; none were found in the SMA cords. Not an adult class" },
+  "soma_largest": { "value": 120, "unit": "um", "measured": true, "source": "yadav2023", "note": "up to about 120 µm across (longest caliper length) for neurons of the motor-neuron layer of human lumbar cord; mouse about 50 µm" },
+  "soma": { "value": [55, 60], "unit": "um", "measured": false, "source": "zwaagstra1980", "note": "illustrative width and height for an adult cell, below the adult upper range (about 120 µm); in the cat, motor neurons with a soma diameter over about 50 µm usually had an after-hyperpolarization shorter than 110 ms (Zwaagstra & Kernell 1980), used only to show that 55-60 µm is plausible" },
+  "stem_dendrites": { "value": 11, "unit": "count", "measured": true, "source": "ulfhake1981", "note": "11.2 dendrites on average leave the cell body of a cat spinal alpha motor neuron; drawn as 11" },
+  "dendrite_length_per_stem": { "value": 4.7, "unit": "mm", "measured": true, "source": "ulfhake1981", "note": "mean combined length of one whole dendrite tree, cat" },
+  "dendrite_total": { "value": 52.6, "unit": "mm", "measured": true, "source": "ulfhake1981", "calc": "11.2 stem dendrites x 4.7 mm", "note": "cat; the model draws at most 30 mm, so the drawn trees are shorter than this" },
+  "dendrite_beyond_300": { "value": 0.75, "unit": "fraction", "measured": true, "source": "ulfhake1981", "note": "share of the dendrite surface more than 300 µm from the cell body, cat; trees reach past 800 µm" },
+  "dendrite_surface_share": { "value": 0.97, "unit": "fraction", "measured": true, "source": "ulfhake1981", "note": "share of the cell's surface (axon left out) that is dendrite, cat" },
+  "dendrite_branch_points": { "value": 150, "unit": "count", "measured": false, "note": "illustrative; no count of branch points was read" },
+  "dendrite_thickness": { "value": 4, "unit": "um", "measured": false, "note": "illustrative, thickness of a main dendrite at the cell body" },
+  "axon": { "value": 13.1, "unit": "um", "measured": true, "source": "schalow1992", "note": "fibre diameter of the fastest group of motor axons (60 m/s), human lower sacral nerve roots; this is the diameter of the whole fibre with its myelin; the axon inside is drawn 9.2 µm (13.1 x the illustrative g-ratio 0.7, close to the cat cord axon of 8.6 µm)" },
+  "axon_in_cord_cat": { "value": 8.6, "unit": "um", "measured": true, "source": "fabricius1994", "note": "mean axon diameter in the cord's white matter, alpha motor fibres, cat; smaller than in the root" },
+  "internode": { "value": 1390, "unit": "um", "measured": true, "source": "nilsson1988", "note": "mean length of a myelin segment of an alpha fibre in the ventral root, adult cat; the first 3 mm of axon drawn therefore hold about two segments" },
+  "node_axon_width": { "value": [0.3, 0.4], "unit": "fraction", "measured": true, "source": "fabricius1994", "note": "axon diameter at a node, as a share of its width in the myelin segment, cat" },
+  "node": { "value": 1.5, "unit": "um", "measured": false, "note": "illustrative length of the bare gap" },
+  "g_ratio": { "value": 0.7, "unit": "fraction", "measured": false, "note": "illustrative; no value was read (the cat study found the cord fibres thinner-sheathed than is best for conduction, without giving a g-ratio)" },
+  "ais": { "value": 40, "unit": "um", "measured": false, "note": "illustrative length of the bare first stretch of the axon" },
+  "large_area": { "value": 1500, "unit": "um2", "measured": true, "source": "takeda2014", "note": "human sacral cord: cell bodies of 1500 µm² or more in a section were counted as large" }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "round",
+  "size_um": { "value": [18, 18, 18], "unit": "um", "measured": false, "note": "illustrative: one large round nucleus near the middle of the cell body" },
+  "position": "central",
+  "nucleoli": 1,
+  "source": "allardyce2024"
+ },
+ "organelles": {
+  "mitochondria": { "volume_fraction": { "value": 0.08, "measured": false, "note": "illustrative" }, "size_um": [1.2, 0.4], "max_drawn": 500 },
+  "rough_er": { "form": "nissl", "clusters": { "value": 70, "measured": false, "note": "illustrative count: stacks of rough ER (Nissl bodies) throughout the cell body, none in the axon hillock; the human cell body is seen to be full of Nissl substance" }, "source": "allardyce2024" },
+  "golgi": { "stacks": { "value": 6, "measured": false, "note": "illustrative" } },
+  "lysosomes": { "count": { "value": 40, "measured": false, "note": "illustrative" }, "size_um": { "value": 0.5, "measured": false } }
+ },
+ "special": [
+  { "kind": "axon", "note": "The axon leaves the base of the cell body: a bare first stretch, then segments of myelin with nodes between. It is drawn for {drawn.axonDrawn} µm and then broken off. Its run to the muscle, which can be a long way in a leg, is not drawn." }
+ ],
+ "cut": "The cell body is cut open through its middle: the round central nucleus with its nucleolus, Nissl bodies (stacks of rough ER) filling the cytoplasm and running into the bases of the dendrites, Golgi stacks and mitochondria. The dendrites and the axon are whole.",
+ "colours": {
+  "convention": "The neuron in warm yellow (as in many drawings of a single stained neuron), myelin white, the nucleus violet, Nissl bodies blue (as they stain in a Nissl stain). These are a code: a living neuron is nearly colourless.",
+  "true_colour": []
+ },
+ "parts": {
+  "soma": { "name": "Cell body", "card": "cell_neuron_motor", "material": "membrane", "source": "allardyce2024" },
+  "dendrite": { "name": "Dendrite", "card": "cell_motor_dendrite", "material": "membrane", "source": "ulfhake1981" },
+  "spine": { "name": "Dendritic spine", "card": "synapse", "material": "membrane", "about": "Spines are not drawn on this cell: no density of spines on motor neuron dendrites was read, so none are placed." },
+  "axon": { "name": "Axon", "card": "cell_motor_axon", "material": "membrane", "source": "schalow1992" },
+  "ais": { "name": "Axon initial segment", "card": null, "material": "membrane", "about": "The first stretch of the axon, without myelin, drawn 40 µm long (illustrative). It is where the cell's action potentials usually start." },
+  "myelin": { "name": "Myelin", "card": "cell_motor_axon", "material": "myelin", "source": "nilsson1988" },
+  "node": { "name": "Node of Ranvier", "card": "cell_node_of_ranvier", "material": "membrane", "source": "fabricius1994" },
+  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus" },
+  "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna" },
+  "nissl": { "name": "Nissl body (rough ER)", "card": "endoplasmic_reticulum", "material": "rna", "about": "Stacks of rough endoplasmic reticulum, covered in ribosomes (shown as one RNA nucleotide, a stand-in for the ribosomal RNA; the protein and membrane are not shown), that fill the cell body of a motor neuron. They make the proteins the whole long cell needs, and stain dark purple-blue with a Nissl stain.", "source": "allardyce2024" },
+  "golgi": { "name": "Golgi apparatus", "card": "golgi_apparatus", "material": "membrane" },
+  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion" },
+  "lysosome": { "name": "Lysosome", "card": "lysosome", "material": "membrane" },
+  "cytosol": { "name": "Cytosol", "card": null, "material": "water", "about": "The watery inside of the cell, crowded with proteins. Shown: water, its main component; the proteins are not shown." },
+  "axon_break": { "name": "Axon (continues)", "card": "cell_motor_axon", "material": "membrane", "about": "The axon goes on far past what is drawn: out of the cord through a ventral root and along a nerve to the muscle fibres it controls, a long way in a leg." }
+ },
+ "reached": {
+  "tissue": [{ "kind": "nervous", "id": "neuron", "organ": "^(spinal_cord|brainstem)$" }]
+ },
+ "view": { "radius_um": 1000, "r1_m": 5e-3, "arrive_m": 2e-4, "spawn_m": 4e-6,
+  "break": { "text": "The axon goes on, to a muscle far away" } },
+ "about": [
+  "The cell body is shown at 55 by 60 µm, an illustrative size for an adult cell (control infant cords count neurons over 46 µm as large; adult cells reach about 120 µm). It is cut through its middle: a central round nucleus with one nucleolus, and Nissl bodies throughout, as in the large many-branched motor neurons seen in human spinal cord sections.",
+  "Eleven main dendrites leave the cell body, the number counted on average in cat motor neurons (11.2). Together the trees are drawn {drawn.dendriteLength} µm long, with 150 branch points whose count and paths are illustrative. Cat trees add up to about 53 mm and reach beyond 800 µm.",
+  "The whole fibre of the fastest human motor axons, myelin included, is 13.1 µm across; the axon inside it is drawn about 9 µm (illustrative, from the illustrative g-ratio 0.7). Myelin segments 1.39 mm long (measured in the cat) alternate with bare nodes between them. Dendrites leave on all sides; there is no single long apical dendrite, and no spines are drawn.",
+  "Not drawn: the cell's synapses, the cells that wrap the myelin (oligodendrocytes in the cord, Schwann cells in the nerve), side branches of the axon and its ending on a muscle fibre. Zoom out to see the whole cell: about 2 mm across."
+ ],
+ "sources": {
+  "ulfhake1981": { "cite": "Ulfhake B, Kellerth JO (1981) A quantitative light microscopic study of the dendrites of cat spinal alpha-motoneurons after intracellular staining with horseradish peroxidase, J Comp Neurol 202:571-583", "url": "https://europepmc.org/article/MED/7298916", "opened": "2026-11-23", "used_for": "cat: 11.2 dendrites per cell body, 4.7 mm per dendrite tree, 75% of dendrite surface beyond 300 µm, dendrites 97% of the surface" },
+  "zwaagstra1980": { "cite": "Zwaagstra B, Kernell D (1980) The duration of after-hyperpolarization in hindlimb alpha motoneurones of different sizes in the cat, Brain Res 204:295-309", "url": "https://europepmc.org/article/MED/7052536", "opened": "2026-11-23", "used_for": "cat: soma diameter over about 50 µm usually with after-hyperpolarization shorter than 110 ms; used only to show 55-60 µm is plausible" },
+  "schalow1992": { "cite": "Schalow G, Barth H (1992) Group conduction velocities and nerve fibre diameters of alpha and gamma-motoneurons from lower sacral nerve roots of the dog and humans, Gen Physiol Biophys", "url": "https://europepmc.org/article/MED/1499983", "opened": "2026-11-23", "used_for": "human: fastest alpha group 60 m/s with fibre diameter 13.1 µm" },
+  "nilsson1988": { "cite": "Nilsson I, Berthold CH (1988) Axon classes and internodal growth in the ventral spinal root L7 of adult and developing cats, J Anat", "url": "https://europepmc.org/article/MED/3417553", "opened": "2026-11-23", "used_for": "adult cat: mean myelin segment of alpha fibres 1390 µm" },
+  "fabricius1994": { "cite": "Fabricius C, Berthold CH, Rydmark M (1994) Dimensions of individual alpha and gamma motor fibres in the ventral funiculus of the cat spinal cord, J Anat", "url": "https://europepmc.org/article/MED/8014123", "opened": "2026-11-23", "used_for": "cat: cord axon 8.6 µm, myelin segment 560 µm, axon at a node 30-40% of its width in the segment" },
+  "allardyce2024": { "cite": "Allardyce H, Lawrence BD, Crawford TO, Sumner CJ, Parson SH (2024) A reassessment of spinal cord pathology in severe infantile spinal muscular atrophy, Neuropathol Appl Neurobiol", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11972064/", "opened": "2026-11-23", "used_for": "human (control cases, infants 1 day to 12 months): neurons over 46 µm maximum diameter; healthy motor neuron has a large multipolar body, central nucleus and abundant Nissl substance" },
+  "yadav2023": { "cite": "Yadav A, Matson KJE et al. (2023) A cellular taxonomy of the adult human spinal cord, Neuron", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10044516", "opened": "2026-11-23", "used_for": "human lumbar cord: lamina IX neurons up to about 120 µm across, twice as large as mouse" },
+  "takeda2014": { "cite": "Takeda T, Uchihara T et al. (2014) Dendritic retraction, but not atrophy, is consistent in amyotrophic lateral sclerosis, Acta Neuropathol Commun 2:11", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3922781/", "opened": "2026-11-23", "used_for": "human sacral cord: large neurons defined as cell body area of 1500 µm² or more" }
+ }
+}

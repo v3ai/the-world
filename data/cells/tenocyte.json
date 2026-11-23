@@ -1,0 +1,74 @@
+{
+ "id": "tenocyte",
+ "name": "Tenocyte (tendon cell)",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_tenocyte",
+ "blurb": "A tendon cell: a long, flat cell with one slim nucleus, lying in a row with others between the collagen bundles it makes, and reaching thin wings of cytoplasm round them.",
+ "note": "Model: a tenocyte of a human tendon, cut along its length. Measured in human tendon: the share of the tissue between the cells taken by collagen fibrils. Measured in the mouse-tail tendon (not human): the length of the cell, the spacing of the nuclei in a row, the number of neighbours each cell touches and the wing-like processes; no source gives these for the human cell, so they are used here as stand-ins. Illustrative: the width and thickness, the size and shape of the nucleus, the organelle counts, the paths of the processes and all colours. The collagen bundles and the cells in the row are drawn faintly or not at all.",
+ "shape": {
+  "type": "spindle",
+  "length_um": 27,
+  "width_um": 8,
+  "flat": 0.45,
+  "bend": 0
+ },
+ "dimensions": {
+  "length": { "value": 27, "range": [15, 60], "unit": "um", "measured": false, "source": "elife2015", "note": "illustrative for a human cell: 27 ± 2 µm is the cell length in mouse-tail tendon at 6 weeks (55 µm in a newborn mouse); human tenocyte length was not found in any source opened" },
+  "width": { "value": 8, "unit": "um", "measured": false, "note": "illustrative; the cell is stellate in cross-section, so one width is only a rough summary" },
+  "thickness": { "value": 3.6, "unit": "um", "measured": false, "calc": "width 8 µm x flat 0.45", "note": "illustrative" },
+  "nucleus_spacing_in_row": { "value": 27.5, "unit": "um", "measured": false, "source": "elife2015", "note": "mouse-tail tendon at 6 weeks: 27.5 ± 1.1 µm between nuclei along a row; cells there lie end to end with little overlap" },
+  "neighbours_touched": { "value": 4.5, "unit": "per cell", "measured": false, "source": "elife2015", "note": "mouse-tail tendon at 6 weeks: each cell contacts 4.5 ± 0.1 neighbours" },
+  "collagen_fibril_share": { "value": 0.61, "unit": "fraction", "measured": true, "source": "pingel2012", "note": "human Achilles tendon, the healthy region of tendons of 14 patients with tendinopathy elsewhere in the same tendon: fibrils took 0.61 ± 0.08 of the tissue between the cells; not drawn in the cell" }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "elongated oval",
+  "size_um": [14, 3, 1.8],
+  "position": "central",
+  "nucleoli": 1,
+  "note": "One slim, oval nucleus lying along the cell, taking up much of its length (nucleolus described by wikipedia_tenocyte; in tendon sections the cells show dark oval nuclei between the fibres, openstax_ct). Its size is illustrative and no source gives it for human cells.",
+  "source": "openstax_ct"
+ },
+ "organelles": {
+  "mitochondria": { "volume_fraction": { "value": 0.01, "measured": false, "note": "illustrative: no measured share was found; 1% is a placeholder" }, "size_um": [0.8, 0.3], "size_measured": false, "max_drawn": 60 },
+  "golgi": { "stacks": { "value": 1, "measured": false, "note": "illustrative: one stack beside the nucleus" } },
+  "absent": [],
+  "not_drawn": ["rough endoplasmic reticulum (well developed in these collagen-making cells, but its amount is not measured here)", "ribosomes", "the collagen bundles between the cells", "the neighbouring cells of the row", "the gap junctions on the processes"]
+ },
+ "special": [
+  { "kind": "processes", "part": "processes", "source": "elife2015", "note": "At 6 weeks the mouse cell body sends out prominent lateral extensions that reach deep between the fibril bundles, about 8 per cell (8.3 ± 0.2), so that in cross-section it looks star-shaped. In a rat tendon they were shown as broad, flat lateral processes round collagen bundles plus thin longitudinal ones (mcneilly1996). The spindle drawn here is the body and the wings are not drawn as separate arms." },
+  { "kind": "gap_junctions", "part": "gap_junction", "source": "mcneilly1996", "note": "Cells meet where their processes touch, at gap junctions that hold connexin 43 and, between cell bodies, connexin 32 (rat tendon); connexins 32 and 43 were also found at 6 weeks in mouse tendon (elife2015). Not drawn; named so that the panel can describe them." }
+ ],
+ "cut": "The cell is cut along its length: a long, thin section with one slim oval nucleus and its nucleolus in the middle, a few mitochondria and one Golgi stack beside the nucleus, and cytoplasm thinning to a point at each end where the next cells of the row begin.",
+ "colours": {
+  "convention": "Cell membrane pale peach, the inside dark; nucleus violet; nucleolus deeper violet; mitochondria orange; Golgi yellow. None is a real colour: the living cell is almost colourless.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": { "name": "Cell membrane", "card": "cell_membrane", "material": "membrane" },
+  "cytosol": { "name": "Cytoplasm", "card": null, "material": "water", "about": "A thin layer of cytoplasm round the nucleus, stretched out between the collagen fibres. Cells that make collagen carry much endoplasmic reticulum for it; this is not drawn." },
+  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus" },
+  "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna", "about": "The site where the parts of ribosomes are made; rich in ribosomal RNA (it also holds DNA and protein)." },
+  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion" },
+  "golgi": { "name": "Golgi apparatus", "card": "golgi_apparatus", "material": "membrane", "about": "A stack of flattened sacs beside the nucleus where collagen precursors are sorted and packed for release. One stack is drawn; the real number is not known from the sources used." },
+  "processes": { "name": "Cell processes", "card": "cell_tenocyte_processes", "material": "membrane" },
+  "gap_junction": { "name": "Gap junction", "card": "cell_tenocyte_junction", "material": "membrane" }
+ },
+ "reached": {
+  "tissue2": [{ "scene": "dense_connective", "structure": "tenocyte" }]
+ },
+ "view": { "radius_um": 16, "r1_m": 3e-4, "arrive_m": 5e-5, "spawn_m": 1e-7 },
+ "about": [
+  "A tenocyte is the cell of a tendon. This one is drawn as a spindle {drawn.cellVolume} µm³ in volume, 27 µm long: that length is the one measured in mouse-tail tendon at 6 weeks, since no human value was found, and the width and thickness are illustrative.",
+  "In a tendon the cells lie end to end in rows between the collagen bundles, 27.5 µm apart in the mouse, each touching about four or five others through thin processes that wrap the bundles. Only one cell is drawn; the processes are shown as the cell's flat outline, not as separate arms.",
+  "Not drawn: the endoplasmic reticulum and ribosomes, the collagen bundles, the neighbouring cells and the gap junctions. The mitochondria and the Golgi stack are illustrative in number and size."
+ ],
+ "sources": {
+  "elife2015": { "cite": "Kalson NS et al. (2015) eLife 4:e07219, mouse tail tendon (E15.5, newborn, 6 weeks) by serial block-face electron microscopy", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4438642", "opened": "2026-11-23", "used_for": "cell length 27 ± 2 µm, nuclei 27.5 µm apart, 4.5 neighbours, 8.3 protrusions, connexins 32 and 43 (all mouse)" },
+  "pingel2012": { "cite": "Pingel J et al. (2012) BMC Musculoskelet Disord 13:53, human Achilles tendon biopsies", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3341204", "opened": "2026-11-23", "used_for": "collagen fibril volume fraction 0.61 in the healthy region (human)" },
+  "mcneilly1996": { "cite": "McNeilly CM, Banes AJ, Benjamin M, Ralphs JR (1996) J Anat 189:593 (abstract read through Europe PMC; rat digital flexor tendon)", "url": "https://europepmc.org/article/MED/8982835", "opened": "2026-11-23", "used_for": "broad flat lateral processes, thin longitudinal processes, gap junctions with connexins 43 and 32 (rat)" },
+  "wikipedia_tenocyte": { "cite": "Wikipedia, Tendon cell (a weak source; used only for the nucleolus and the well-developed rough endoplasmic reticulum)", "url": "https://en.wikipedia.org/wiki/Tenocyte", "opened": "2026-11-23", "used_for": "elongated spindle-shaped cell, central nucleus with nucleolus, well-developed rough endoplasmic reticulum" },
+  "openstax_ct": { "cite": "OpenStax Anatomy and Physiology 2e, 4.3 Connective Tissue Supports and Protects", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects", "opened": "2026-11-23", "used_for": "fibroblast is the commonest cell; tendons are dense regular tissue with parallel fibres; dark oval fibroblast nuclei between the fibres" }
+ }
+}
