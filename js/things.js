@@ -1733,7 +1733,13 @@ function thCutOpen(F, h, peek) {
   if (!best) return false;
   if (!peek) {
     T.setMode(best.id); thUpdateControls(F); toast(`${best.label}: a cut-open view. Double-click a part again to go further in.`);
-    if (!thModeView(F, best) && cam.A !== F && R * T.k < cam.D * .22) { const c = thLocalToFrame(T.def, T.pl, [0, (T.def.height_m || 0) / 2, 0]); flyKeep(F, c, R * T.k * 2.6, () => { if (F.T) F.T.faceCut(); }); camHold = F; }   // a small thing seen from afar (the cell in the opened phone): come up to it
+    if (!thModeView(F, best) && cam.A !== F && R * T.k < cam.D * .22) {   // a small thing seen from afar (the cell in the opened phone): come up to it
+      /* to the part that was double-clicked, not to the thing's middle: lookInside then frames what the cut view shows (frameShownSoon). Flying to the middle of
+         the dog left its 2 cm eye 8 px across, 2 m away, and the next double click in the middle of the view went into the lawn behind it */
+      const f0 = fly; frameSelected(h);
+      if (fly && fly !== f0) { const th = fly.then; fly.then = () => { if (F.T) F.T.faceCut(); safeThen(th); }; }
+      else { const c = thLocalToFrame(T.def, T.pl, [0, (T.def.height_m || 0) / 2, 0]); flyKeep(F, c, R * T.k * 2.6, () => { if (F.T) F.T.faceCut(); }); camHold = F; }
+    }
   }
   return 'cut';
 }

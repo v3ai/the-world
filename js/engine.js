@@ -1635,7 +1635,10 @@ function lookInside(h) {
   let r = false;
   if (typeof layerStep === 'function') { flyKeepDo(() => { r = layerStep(h); }); if (r) return went('layer'); }   // a layered thing in Auto: one layer in at that spot (js/body_core.js)
   r = cutOpenOf(h, false);
-  if (r) { if (!(fly && fly !== fly0)) { frameSelected(h); frameShownSoon(f); } return went(r); }   // a cut-open view of a thing the camera is not yet at: go to it as well (the view used to open seven metres away, where nothing could be seen to change)
+  /* a cut-open view of a thing the camera is not yet at: go to it as well (the view used to open seven metres away, where nothing could be seen to change); and once
+     there, frame what the view shows. A thing's cut may fly by itself (its view's own direction, or coming up to a small thing seen from afar): the framing still
+     follows that flight, or the middle of the view is the empty air where the cut-away half was, and the next double click goes into whatever lies behind */
+  if (r) { const flew = fly && fly !== fly0; if (!flew) frameSelected(h); if (!flew || f.T) frameShownSoon(f); return went(r); }
   if (ud.lookInside) { flyKeepDo(() => { r = ud.lookInside(h); }); if (r !== false) return went(typeof r === 'string' ? r : 'own'); }
   if (typeof DESCENT !== 'undefined' && DESCENT && DESCENT.inside) { // the next level down: the descent module's
     flyKeepDo(() => { r = DESCENT.inside(h); });
@@ -1755,6 +1758,9 @@ function addLabelTo(f, obj, text, o = {}) {
        body) is under the pointer, the click is on that; the name answers only over the lawn, the sky or empty space. */
     const u = pickAt(ev.clientX, ev.clientY);
     if (u && u.frame.coRender && !pickWeak(u)) { onClick(ev.clientX, ev.clientY, false, ev.timeStamp); return; }
+    /* ... and a name that stands for nothing with a card (a crystal's "One unit cell" names an outline, not a thing) is no click target either: the click goes to what is
+       drawn under it (a double click there selected the outline, and the panel showed "No description has been written for this yet") */
+    if (!target.userData.id && typeof hasCard === 'function' && !hasCard(target, null)) { onClick(ev.clientX, ev.clientY, false, ev.timeStamp); return; }
     const h = { frame: f, obj: target, id: target.userData.id, pointLocal: target.getWorldPosition(new V3()).add(f.C), hit: null }; onLabelClick(h, ev.clientX, ev.clientY, ev.timeStamp);
   });
   return L;
