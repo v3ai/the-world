@@ -104,10 +104,38 @@ const SECTIONS = {
   flower: ['s_receptacle', 's_pedicel', 's_filament', 's_anther_wall', 's_pollen_sacs', 's_carpel_wall', 's_carpel_cavity', 's_ovule', 's_embryosac'],
   oak: ['log_phloem', 'log_cambium', 'log_sapwood', 'log_heartwood', 'log_pith', 'log_rays'],
 };
+/* Colours under the look are chosen against photographs opened for the purpose (no measured albedo of these surfaces was found); each
+   keeps roughly the brightness of the drawn colour and takes the photograph's hue (the ratios of red, green and blue in the lit parts):
+   - oak leaves: an English oak in July, Baginton (Wikimedia Commons, "Baginton oak tree july06.JPG", CC BY-SA 3.0): the crown's lit
+     leaves #a8c28e, median #6e8456: a dull green, far less yellow than the drawing's #4f8a2e. Drawn #55703e: between the photograph's
+     hue and the drawing's lightness (a judgement: no measured albedo of oak leaves in the visible was found; the photograph's own
+     exposure is unknown);
+   - robin: "Erithacus rubecula with cocked head.jpg" (Wikimedia Commons, Francis C. Franklin, CC BY-SA 3.0): orange breast and face,
+     lit #96522d; bluish-grey border #9698a9; upperparts grey-brown, olive-tinged (#a89b8e median); belly buff-white #cfbea8; and the
+     text of Wikipedia, "European robin": "an orange breast and face lined by a bluish grey on the sides of the neck and chest. The
+     upperparts are brownish, or olive-tinged in British birds, and the belly whitish";
+   - dog: a yellow Labrador in sun ("Labrador on Quantock (2175262184).jpg", CC BY-SA 2.0): flank #f9d3ab lit, the ears darker and
+     redder (#c58c60, about 0.8 of the flank's lightness; drawn at 0.85, since the model's ear lies flat on the head and a darker flap
+     read as a patch stuck on), the legs and chest paler (#fbeed9). The breed's yellows "range from light cream to fox red" (The Royal
+     Kennel Club, breed standard), all on the yellow side: the coat is drawn #dabb88, a cream-gold between the drawing's #e8cd8a and
+     the photograph's warmer hue (#d8b48c, its hue taken whole, read as pinkish beige, close to flesh, in the park). */
 export const LOOK_OF = {
   oak: {
-    leaves_mid: { lod: 'mid+far' },   // every oak in view wears the same photographed leaves: the middle tier's tufts are drawn far away too
-    crown_far: { lod: 'off' },        // (fewer triangles than the smooth clumps they replace: 2,032 cards against 250 clumps of 44 triangles)
+    leaves: { color: '#55703e' },
+    leaves_mid: { lod: 'mid+far', color: '#55703e' },   // every oak in view wears the same photographed leaves: the middle tier's tufts are drawn far away too
+    crown_far: { lod: 'off' },        // (fewer triangles than the smooth clumps they replace: 2,032 cards against 250 clumps of 44 triangles; a shaded inner mass drawn from them showed as balls at every distance)
+  },
+  robin: {
+    r_breast: { color: '#bf6834' }, r_face: { color: '#bc6331' }, r_grey: { color: '#8a8d9c' }, r_back: { color: '#7b6e5c' }, r_crown: { color: '#7d705e' },
+    r_nape: { color: '#7f725f' }, r_rump: { color: '#7e6f58' }, r_flank: { color: '#a8957b' }, r_belly: { color: '#ddd2c0' },
+    r_breast_mid: { color: '#bf6834' }, r_face_mid: { color: '#bc6331' }, r_grey_mid: { color: '#8a8d9c' }, r_back_mid: { color: '#7b6e5c' }, r_crown_mid: { color: '#7d705e' },
+    r_vent: { color: '#e0d6c4' }, r_vent_mid: { color: '#e0d6c4' }, f_undertc: { color: '#e0d6c4' },
+    r_nape_mid: { color: '#7f725f' }, r_rump_mid: { color: '#7e6f58' }, r_flank_mid: { color: '#a8957b' }, r_belly_mid: { color: '#ddd2c0' },
+    f_pcov: { color: '#7a6a55' }, f_gcov: { color: '#7a6a55' }, f_mcov: { color: '#7a6a55' }, f_lcov: { color: '#7a6a55' }, f_utc: { color: '#7a6b57' },
+    f_prim: { color: '#5a4a3a' }, f_sec: { color: '#5e4d3c' }, f_tert: { color: '#64513f' }, f_tail: { color: '#4f4234' },
+  },
+  dog: {
+    coat: { color: '#dabb88' }, coat_mid: { color: '#dabb88' }, coat_far: { color: '#dabb88' }, fur: { color: '#dec190' }, ears: { color: '#c7a070' },
   },
   boulder: {
     moss: { color: '#5b6a31' },       // moss cushions on rock (Grimmia, Hypnum) in photographs: a dull olive, not the drawing's lime (chosen against photographs; no measured albedo found)
