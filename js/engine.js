@@ -844,13 +844,20 @@ function zoomBy(lnDelta, x, y) {
          ray where it was, so a thing that comes between the eye and the point the zoom is closing on has either moved there or has only just been drawn (a tree grown
          big enough to be picked): it is taken once it is seen standing still at a second look, never while it moves; until then the first point is kept (also when that point was on a
          place the zoom has since gone down past: London's land, entering the park). */
+      /* This holds for ANY other thing under the pointer, not only one clearly in front of the held point. It used to apply only to a thing more than 3 % nearer
+         than the held point, but seen from a kilometre up a cloud 26-40 m above the ground is within 3 % of the ground's distance (and the held point need not be on
+         the pointer's ray at all: from high above the park the zoom homes in on the park's middle, `attract`, which moves the pivot and not lastZoomHit). A cloud under
+         the pointer at the first looks in the park was then taken at once, became the zoom's target, and the zoom ended in it 90 m from the middle (fix1's a3).
+         A thing that is really there (the ground below London's land, leaves where a tree's far shape was) is taken one look later. And a second look needs a frame
+         drawn since the first (a slow frame can take two wheel notches; nothing has moved between them, a cloud included). */
       let drifts = false;
-      if (held && now2 && now2.obj !== held.obj && _pvHit && _pvHit.meters < camPosIn(held.frame, _ztV).distanceTo(held.point) * held.frame.unit * .97) {
+      if (held && now2 && now2.obj !== held.obj && _pvHit) {
         const r = _pvHit.frame.root, q = _ztW.set(0, 0, 0); let a = _pvHit.obj;   // where it is in its frame, from the local matrices (world matrices lag the camera's moves)
         for (; a && a !== r; a = a.parent) { if (a.matrixAutoUpdate) a.updateMatrix(); q.applyMatrix4(a.matrix); }
         if (!a) _pvHit.obj.getWorldPosition(q).add(_pvHit.frame.C);
         const s = zoom.seen;
-        drifts = !s || s.obj !== _pvHit.obj || s.p.distanceTo(q) > 1e-6 * _pvHit.meters / _pvHit.frame.unit; zoom.seen = { obj: _pvHit.obj, p: q.clone() };
+        if (s && s.obj === _pvHit.obj && s.ck === clock) drifts = true;   // no frame since the first look: not a second look (and the first one is kept to compare with)
+        else { drifts = !s || s.obj !== _pvHit.obj || s.p.distanceTo(q) > 1e-6 * _pvHit.meters / _pvHit.frame.unit; zoom.seen = { obj: _pvHit.obj, p: q.clone(), ck: clock }; }
       }
       if (held && (!now2 || stays || drifts)) { lastZoomHit = held; if (stays) held.held = true; }
       else {
@@ -1557,9 +1564,12 @@ function frameSelected(h) {
    from the part that was clicked: its centre may now be empty air, and the next double click in the middle of the view went into the lawn behind. So once the
    view has changed (the parts fade over about half a second of the app's clock) and the flight to the part has ended, the camera frames what of the frame can
    now be seen: a 16 by 16 grid of picks over the free area finds it, the point on it nearest the middle of what shows becomes the target,
-   and the distance is set so that it fills about two thirds of the view. Skipped if the visitor has clicked, scrolled or gone elsewhere meanwhile. */
+   and the distance is set so that it fills about two thirds of the view. Skipped if the visitor has clicked, scrolled or gone elsewhere meanwhile.
+   mid: only if nothing is under the middle of the view (a scene the descent has just opened: "The surface of a buttercup leaf" is looked at from the side, at a
+   point among the hairs 150 micrometres above the cells, so the middle of the first view is the dark between two hairs and a double click there did nothing);
+   then what shows is brought to the middle at the same distance. Not where a double click between things already goes into the nearest (lookInsideNear). */
 let _fsTok = 0, _fsPend = false, _fsWhy = '';   // _fsPend: a reframing is still to come (the tests wait for it); _fsWhy: what the last one did
-function frameShownSoon(f) {
+function frameShownSoon(f, mid) {
   const tok = ++_fsTok, c0 = clock, t0 = performance.now(), fly0 = fly; _fsPend = true; _fsWhy = 'waiting';
   const go = () => {
     if (tok !== _fsTok) return;   // a later click has taken over (and has cleared or re-set _fsPend)
@@ -1569,6 +1579,7 @@ function frameShownSoon(f) {
     if ((clock - c0 < .7 && wall < 20000) || (fly && fly === fly0 && wall < 120000)) { setTimeout(go, 150); return; }
     _fsPend = false;
     if (pointers.size || Math.abs(zoom.pending) > 1e-3 || fly || !f.built || !f.C || !chainOf(cam.A).concat(drawn).includes(f)) { _fsWhy = 'skipped'; return; }   // the visitor has clicked, scrolled or gone elsewhere meanwhile
+    if (mid) { const vc = viewCentre(), h0 = pickAt(vc.x, vc.y); if ((h0 && !isBackdrop(h0)) || (cam.A.att && cam.A.spawn)) { _fsWhy = 'middle on something'; return; } }
     /* what of the frame can be seen now: a grid of picks over the free area (a pick knows what a cut has removed; a bounding box does not: "Inside the eye"
        keeps both eyeballs in its parts and cuts one of them away) */
     const A = freeArea(), N = 16, H2 = []; let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9, sx = 0, sy = 0;
@@ -1579,8 +1590,8 @@ function frameShownSoon(f) {
     if (H2.length) {
       const cx = sx / H2.length, cy = sy / H2.length, cell = Math.max(A.w, A.h) / N, ext = Math.max(x1 - x0, y1 - y0) + cell, fill = ext / Math.min(A.w, A.h), vc = viewCentre();
       let best = H2[0], bd = Infinity; for (const q of H2) { const d = Math.hypot(q[0] - cx, q[1] - cy) + (q[2].obj.userData.hotspot ? 1e4 : 0); if (d < bd) { bd = d; best = q; } }   // a point that is on the thing (on a part rather than on a marker), nearest the middle of what shows
-      if (fill >= .95 || (fill > .45 && Math.hypot(best[0] - vc.x, best[1] - vc.y) < Math.min(A.w, A.h) * .12)) { _fsWhy = 'framed already'; return; }   // it covers the view, or fills it with its middle in the middle
-      const D = Math.max(cam.D * clamp(fill / .7, .05, 1), (f.floorD || 0) * 2, (f.spawnD || 0) * 1.3, MIN_D * 10);   // closer, never further out: this is a look inside
+      if (!mid && (fill >= .95 || (fill > .45 && Math.hypot(best[0] - vc.x, best[1] - vc.y) < Math.min(A.w, A.h) * .12))) { _fsWhy = 'framed already'; return; }   // it covers the view, or fills it with its middle in the middle
+      const D = mid ? cam.D : Math.max(cam.D * clamp(fill / .7, .05, 1), (f.floorD || 0) * 2, (f.spawnD || 0) * 1.3, MIN_D * 10);   // closer, never further out: this is a look inside
       flyKeep(f, best[2].pointLocal.clone(), D); _fsWhy = 'reframed'; return;
     }
     // nothing of it in view: the bound of its parts that are drawn solid
@@ -1635,11 +1646,14 @@ function lookInside(h) {
   let r = false;
   if (typeof layerStep === 'function') { flyKeepDo(() => { r = layerStep(h); }); if (r) return went('layer'); }   // a layered thing in Auto: one layer in at that spot (js/body_core.js)
   r = cutOpenOf(h, false);
-  if (r) { if (!(fly && fly !== fly0)) { frameSelected(h); frameShownSoon(f); } return went(r); }   // a cut-open view of a thing the camera is not yet at: go to it as well (the view used to open seven metres away, where nothing could be seen to change)
+  /* a cut-open view of a thing the camera is not yet at: go to it as well (the view used to open seven metres away, where nothing could be seen to change); and once
+     there, frame what the view shows. A thing's cut may fly by itself (its view's own direction, or coming up to a small thing seen from afar): the framing still
+     follows that flight, or the middle of the view is the empty air where the cut-away half was, and the next double click goes into whatever lies behind */
+  if (r) { const flew = fly && fly !== fly0; if (!flew) frameSelected(h); if (!flew || f.T) frameShownSoon(f); return went(r); }
   if (ud.lookInside) { flyKeepDo(() => { r = ud.lookInside(h); }); if (r !== false) return went(typeof r === 'string' ? r : 'own'); }
   if (typeof DESCENT !== 'undefined' && DESCENT && DESCENT.inside) { // the next level down: the descent module's
     flyKeepDo(() => { r = DESCENT.inside(h); });
-    if (r && r.ok) return went('descent', r.note);
+    if (r && r.ok) { if (fly && fly !== fly0 && fly.frame !== f) frameShownSoon(fly.frame, true); return went('descent', r.note); }   // and once there, the middle of the view on something of the new place
     if (typeof showNotBuilt === 'function') showNotBuilt(h, r && r.reason, r && r.card);
     return lastInside = { how: 'not-built', frame: f };
   }
@@ -1755,6 +1769,9 @@ function addLabelTo(f, obj, text, o = {}) {
        body) is under the pointer, the click is on that; the name answers only over the lawn, the sky or empty space. */
     const u = pickAt(ev.clientX, ev.clientY);
     if (u && u.frame.coRender && !pickWeak(u)) { onClick(ev.clientX, ev.clientY, false, ev.timeStamp); return; }
+    /* ... and a name that stands for nothing with a card (a crystal's "One unit cell" names an outline, not a thing) is no click target either: the click goes to what is
+       drawn under it (a double click there selected the outline, and the panel showed "No description has been written for this yet") */
+    if (!target.userData.id && typeof hasCard === 'function' && !hasCard(target, null)) { onClick(ev.clientX, ev.clientY, false, ev.timeStamp); return; }
     const h = { frame: f, obj: target, id: target.userData.id, pointLocal: target.getWorldPosition(new V3()).add(f.C), hit: null }; onLabelClick(h, ev.clientX, ev.clientY, ev.timeStamp);
   });
   return L;
