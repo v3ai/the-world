@@ -410,7 +410,7 @@ It prints `250 molecules, 17 crystals, 0 problems`. The check does not test the 
 | `about` | paragraphs for "About this picture". `{drawn.x}` is replaced by a count of what was drawn (`cellVolume`, `nuclei`, `nucleiWanted`, `mitochondria`, `spines`, `boutons`, `desmosomes` ...) |
 | `sources` | `{key: {cite, url, opened, used_for}}`. Only sources actually opened; a number seen in a search summary is a lead, not a source |
 
-**Shapes.** `js/cells.js` draws each one. A cell is cut in half and turns its cut face to the camera that opened it (a flat cell, under a third as tall as it is wide, is cut through its own plane, lid off, so the cut face shows the whole cell from above). It arrives framed whole: a compact cell at about three times its half-size, a long one (fibre, neuron) at `view.arrive_m`. Its organelles are placed in the kept half by volume, and drawn as instanced meshes. Details too fine to see from the arrival distance (spines, haemoglobin molecules) are drawn only close to where the camera looks.
+**Shapes.** `js/cells.js` draws each one. A cell is cut in half and turns its cut face to the camera that opened it (a flat cell, under a third as tall as it is wide, is cut through its own plane, lid off, so the cut face shows the whole cell from above, without its neighbours). It arrives framed whole: a compact cell at about three times its half-size, a long one (fibre, neuron) at `view.arrive_m`. Its organelles are placed in the kept half by volume, and drawn as instanced meshes. Details too fine to see from the arrival distance (spines, haemoglobin molecules) are drawn only close to where the camera looks.
 
 | shape | fits | parameters |
 |---|---|---|

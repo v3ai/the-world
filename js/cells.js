@@ -189,12 +189,12 @@ const CELLS = (() => {
     const ctx = { F, S, P, G, r: rng(hash(S.id)), mats: {}, counts: {}, anchors: [], parts: S.parts || {}, inside: () => false, nuclei: [], focus: { pos: new V3(), r: 10 }, near: [], noCut: false };
     /* the spec's own id for a part the code draws under a common name (a spec may call its mitochondria "mitochondria", its microvilli "brush_border") */
     ctx.pid = id => { if (ctx.parts[id]) return id; for (const a of PART_ALIAS[id] || []) if (ctx.parts[a]) return a; return id; };
-    ctx.pname = (id, dflt) => { const p = ctx.parts[ctx.pid(id)]; return (p && p.name) || dflt; };
+    ctx.pname = (id, dflt) => { const p = ctx.parts[ctx.pid(id)] || DEF_PART[ctx.pid(id)]; return (p && p.name) || dflt; };
     ctx.mat = (role, o) => { const k = role + JSON.stringify(o || {}); return ctx.mats[k] || (ctx.mats[k] = makeMat(S, role, o)); };
     /* a pickable part: its card (a node, or the spec's own words), its material for the descent, its priority in a pick */
     ctx.ud = (partId, pri) => {
       partId = ctx.pid(partId);
-      const pd = ctx.parts[partId] || {}, node = pd.card && typeof NODE !== 'undefined' && NODE[pd.card] ? pd.card : null;
+      const pd = ctx.parts[partId] || DEF_PART[partId] || {}, node = pd.card && typeof NODE !== 'undefined' && NODE[pd.card] ? pd.card : null;
       const u = { id: 'cell_' + partId, part_: partId, node, priority: pri !== undefined ? pri : 1, material: pd.material || undefined, title: pd.name || partId };
       if (!node || pd.about) u.info = { title: pd.name || partId, tag: pd.tag || S.name, body: pd.about ? `<p>${pd.about}</p>` : '' };
       if (u.info && node) u.node = null;   // a part with its own words: those, not the general card
@@ -206,9 +206,16 @@ const CELLS = (() => {
     ctx.anchor = (partId, p, text, pri, dimUm) => ctx.anchors.push({ partId, p: p.clone(), text, pri: pri || 2, dimUm: dimUm || 0, g: ctx.G });
     return ctx;
   }
+  /* a part drawn that the spec does not name (most specs name these; a few leave one out): the words, card and material every cell shares, so a double click
+     on it still goes on down */
+  const DEF_PART = { golgi: { name: 'Golgi apparatus', card: 'golgi_apparatus', material: 'membrane' }, lysosome: { name: 'Lysosome', card: 'lysosome', material: 'membrane' },
+    nucleolus: { name: 'Nucleolus', card: 'nucleus', material: 'rna' }, nucleus: { name: 'Nucleus', card: 'nucleus', material: 'cell_nucleus' }, cytosol: { name: 'Cytosol', card: null, material: 'water' },
+    mitochondrion: { name: 'Mitochondrion', card: 'mitochondrion', material: 'mitochondrion' }, membrane: { name: 'Cell membrane', card: 'cell_membrane', material: 'membrane' },
+    spine: { name: 'Dendritic spine', card: 'synapse', material: 'membrane' }, neighbour: { name: 'Neighbouring cell', card: null, material: 'membrane' },
+    granule: { name: 'Granule', card: null, material: 'protein' } };
   const PART_ALIAS = { mitochondrion: ['mitochondria'], microvilli: ['microvillus', 'brush_border', 'apical_processes'], process: ['processes'], pseudopod: ['pseudopods'],
-    granule: ['granules'], membrane: ['soma'], intercalated_disc: ['disc'], lipid_droplet: ['droplet'], cilia: ['cilium'] };
-  function defaults(type) { const s = Z.shapes && Z.shapes[type], o = {}; if (s) for (const k in s.params) o[k] = s.params[k][2]; return o; }
+    granule: ['granules', 'phagosome'], membrane: ['soma'], intercalated_disc: ['disc'], lipid_droplet: ['droplet'], cilia: ['cilium'] };
+  function defaults(type) { const s = Z.shapes && Z.shapes[type], o = {}; if (s) for (const k in s.params) { const p = s.params[k]; o[k] = typeof p[0] === "string" ? p[p.length - 3] : p[2]; } return o; }   // a text parameter lists its allowed values first: its default is the third from the end
   function hash(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
   const M4 = () => new THREE.Matrix4();
   const place = (p, q, s) => new THREE.Matrix4().compose(p, q || new THREE.Quaternion(), s || new V3(1, 1, 1));
@@ -260,9 +267,9 @@ const CELLS = (() => {
       const d = (o.size_um && o.size_um.value) || def, el = o.elongation || 1, n = Math.min(Math.round(o.count.value * V.kept / Math.max(1, V.cell)), o.max_drawn || 800);
       const where = o.position === 'supranuclear' && ctx.nuclei[0] ? (p => { const nu = ctx.nuclei[0]; return p.y > nu.c.y + nu.ax.y * .3 && Math.hypot(p.x - nu.c.x, p.z - nu.c.z) < Math.max(nu.ax.x, nu.ax.z) * 1.25 && p.y < nu.c.y + nu.ax.y + 2.2; }) : o.position === 'apical' ? (p => p.y > box.max.y * .3) : o.position === 'peripheral' ? (p => !ctx.inside(p, d * 4)) : null;
       const pts = samplePts(ctx, n, box, d / 2, where || ctx.organOk);
-      const geo = new THREE.SphereGeometry(d / 2, 10, 8); geo.scale(el, 1, 1);
+      const lo = pts.length > 400 || d < .5, geo = new THREE.SphereGeometry(d / 2, lo ? 7 : 10, lo ? 5 : 8); geo.scale(el, 1, 1);   // many small granules: fewer facets each (a neutrophil's 1,500 granules)
       ctx.inst(geo, role, partId, 1.3, pts.map(p => place(p, randQ(ctx.r)))); ctx.counts[key] = pts.length;
-      if (pts.length) ctx.anchor(partId, pts.reduce((a, b) => b.z > a.z ? b : a), ctx.parts[partId] ? ctx.parts[partId].name : partId, 1.8, d);
+      if (pts.length) ctx.anchor(partId, pts.reduce((a, b) => b.z > a.z ? b : a), ctx.pname(partId, partId.charAt(0).toUpperCase() + partId.slice(1).replace(/_/g, ' ')), 1.8, d);
     };
     blob('lysosomes', 'lysosome', 'lysosome', .5); blob('melanosomes', 'melanin', 'melanosome', .5); blob('lamellar_bodies', 'lamellar', 'lamellar_body', .25);
     blob('granules', 'vesicle', 'granule', .4); blob('lipid_droplets', 'lipid', 'lipid_droplet', 1);
@@ -341,7 +348,7 @@ const CELLS = (() => {
   SHAPE.polyhedron = ctx => {
     const P = ctx.P, r = ctx.r, n = P.sides, hw = P.width_um / 2, hh = P.height_um / 2, tilt = (1 - P.taper) * hw / P.height_um;
     /* a flat cell (a scale, a squame, a cell of a lining one sheet thick) is cut through its own plane, not across it: lid off, its top half lifted away, so
-       the cut face shows the whole cell from above with its nucleus, and the view is tipped so the sheet's edge shows its thickness. M maps the cell's own
+       the cut face shows the whole cell from above with its nucleus. M maps the cell's own
        coordinates (y its height) into the cut's (z toward the viewer). */
     const lid = P.height_um < P.width_um * .3, M = (x, y, z) => lid ? new V3(x, -z, y) : new V3(x, y, z), Mv = v => M(v.x, v.y, v.z);
     const planes = [];
@@ -365,8 +372,8 @@ const CELLS = (() => {
     if (!lid) apicalFringe(ctx);
     /* desmosomes: plaques on the surface; keratin bundles run in from them and round the nucleus */
     if (P.desmosomes) desmosomes(ctx, P.desmosomes);
-    if (P.neighbours) neighbours(ctx, shell);
-    if (lid) { ctx.G.rotation.x = -.62; ctx.G.updateMatrix(); ctx.counts.cutFlat = 1; }
+    if (P.neighbours && !lid) neighbours(ctx, shell);   // a flat cell's neighbours would lie in the plane of its cut, over the edges of the view
+    if (lid) ctx.counts.cutFlat = 1;
   };
   /* the nucleus (or nuclei) a spec asks for. Its axes: size_um (a {value} or a bare list), else its volume share and the shape word. The axes follow the
      cell's form (the longest along the cell's longest extent: standing in a column, lying in a flat cell, along a spindle); its place: position
@@ -423,7 +430,8 @@ const CELLS = (() => {
       const px = x + (r() - .5) * s * .25, pz = z + (r() - .5) * s * .25; if (pz > -d * .6) continue;
       const y = (top.d - top.n.x * px - top.n.z * pz) / top.n.y; if (!ctx.inside(new V3(px, y - edge - P.round_um - .05, pz), edge)) continue;
       const len = L * (kind === 'stereocilia' ? .6 + .4 * Math.max(0, -x / hw) : .94 + r() * .12), q = new THREE.Quaternion().setFromUnitVectors(up, new V3((r() - .5) * .08, 1, (r() - .5) * .08).normalize());
-      mats.push(place(new V3(px, y - .02, pz), q, new V3(1, len, 1)));
+      const dv = new V3(px, y, pz).normalize(), base = dv.multiplyScalar(ctx.rad(dv) - .04);   // rooted on the drawn (rounded) surface, not on the ideal plane above it
+      mats.push(place(base, q, new V3(1, len + .04, 1)));
     }
     if (!mats.length) return;
     const geo = capsuleGeo(d / 2, 1, 7, 2); geo.translate(0, .5, 0);   // unit length: scaled by each instance; the rounded tip stretches with it, a small error at this size

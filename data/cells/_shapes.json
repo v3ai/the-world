@@ -153,7 +153,7 @@
   "keratin_bundles": "params {bundles, drawn_um}",
   "crowd": "params {count, size_nm, show_below_um, max_drawn}"
  },
- "flat_cells": "a polyhedron under 0.3 times as tall as it is wide is cut through its own plane (lid off) and tipped toward the viewer, so the whole cell shows from above",
+ "flat_cells": "a polyhedron under 0.3 times as tall as it is wide is cut through its own plane (lid off), so the whole cell shows from above; its neighbours are not drawn",
  "lacks": [
   "an oligodendrocyte or Schwann cell wrapping its myelin round an axon (the neuron draws the myelin; the glial cell itself is not a shape yet)",
   "a diatom's two-part silica shell with its pores (frustule)",
