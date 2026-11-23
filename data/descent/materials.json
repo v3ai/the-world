@@ -28,6 +28,7 @@
   "phone",
   "planet",
   "pond",
+  "repm",
   "robin",
   "sgrA",
   "soil",
@@ -169,6 +170,21 @@
     }
    ],
    "src": "the metal scene (js/world_matter.js), data/crystals.json iron_bcc"
+  },
+  "replisome_protein": {
+   "title": "Protein (a part of a replication machine)",
+   "desc": "One protein chain of a machine that copies DNA: hundreds of amino acids folded into its own shape.",
+   "card": "bio_protein_structure",
+   "inside": [
+    {
+     "name": "a short chain of amino acids",
+     "scene": "mol:polyglycine_5",
+     "standIn": true,
+     "note": "{What}: one protein chain, hundreds of amino acids of twenty kinds joined in a row and folded into the shape the structure shows. The whole chain is not built here. Shown: five units of the simplest amino acid, glycine, joined the way every protein chain is joined.",
+     "title": "A five-unit chain of glycine (stands in for the protein chain)"
+    }
+   ],
+   "src": "card bio_protein_structure; the chains of data/proteins/rep_*.json; data/molecules_all.json polyglycine_5"
   },
   "protein": {
    "title": "Protein",

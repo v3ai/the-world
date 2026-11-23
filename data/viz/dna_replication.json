@@ -1,0 +1,220 @@
+{
+ "dna_replication": {
+  "type": "geometry",
+  "range": [
+   0,
+   10,
+   -2.6,
+   2.6
+  ],
+  "aspect": 0.5,
+  "shapes": [
+   {
+    "k": "line",
+    "x1": 0,
+    "y1": 1,
+    "x2": "(3+mod(t,6))",
+    "y2": 1,
+    "color": "dim"
+   },
+   {
+    "k": "line",
+    "x1": 0,
+    "y1": -1,
+    "x2": "(3+mod(t,6))",
+    "y2": -1,
+    "color": "dim"
+   },
+   {
+    "k": "line",
+    "x1": "(3+mod(t,6))",
+    "y1": 0.25,
+    "x2": 10,
+    "y2": 0.25,
+    "color": "dim"
+   },
+   {
+    "k": "line",
+    "x1": "(3+mod(t,6))",
+    "y1": -0.25,
+    "x2": 10,
+    "y2": -0.25,
+    "color": "dim"
+   },
+   {
+    "k": "arrow",
+    "x1": 0.1,
+    "y1": 0.6,
+    "x2": "(3+mod(t,6))-0.2",
+    "y2": 0.6,
+    "color": "accent",
+    "width": 3
+   },
+   {
+    "k": "arrow",
+    "x1": 1.4,
+    "y1": -0.6,
+    "x2": "1.4-min(1.4,max(.02,2*mod(t,6)--2.6))",
+    "y2": -0.6,
+    "color": "pink"
+   },
+   {
+    "k": "arrow",
+    "x1": 2.9,
+    "y1": -0.6,
+    "x2": "2.9-min(1.4,max(.02,2*mod(t,6)-0.4))",
+    "y2": -0.6,
+    "color": "pink"
+   },
+   {
+    "k": "arrow",
+    "x1": 4.4,
+    "y1": -0.6,
+    "x2": "4.4-min(1.4,max(.02,2*mod(t,6)-3.4))",
+    "y2": -0.6,
+    "color": "pink"
+   },
+   {
+    "k": "arrow",
+    "x1": 5.9,
+    "y1": -0.6,
+    "x2": "5.9-min(1.4,max(.02,2*mod(t,6)-6.4))",
+    "y2": -0.6,
+    "color": "pink"
+   },
+   {
+    "k": "arrow",
+    "x1": 7.4,
+    "y1": -0.6,
+    "x2": "7.4-min(1.4,max(.02,2*mod(t,6)-9.4))",
+    "y2": -0.6,
+    "color": "pink"
+   },
+   {
+    "k": "arrow",
+    "x1": 8.9,
+    "y1": -0.6,
+    "x2": "8.9-min(1.4,max(.02,2*mod(t,6)-12.4))",
+    "y2": -0.6,
+    "color": "pink"
+   },
+   {
+    "k": "text",
+    "x": 0.1,
+    "y": 1.3,
+    "text": "3′",
+    "align": "left"
+   },
+   {
+    "k": "text",
+    "x": 0.1,
+    "y": -1.35,
+    "text": "5′",
+    "align": "left"
+   },
+   {
+    "k": "text",
+    "x": 9.9,
+    "y": 0.55,
+    "text": "5′",
+    "align": "right"
+   },
+   {
+    "k": "text",
+    "x": 9.9,
+    "y": -0.6,
+    "text": "3′",
+    "align": "right"
+   },
+   {
+    "k": "text",
+    "x": 0.1,
+    "y": 2.1,
+    "text": "leading strand: grows towards the fork",
+    "color": "accent",
+    "size": 11,
+    "align": "left"
+   },
+   {
+    "k": "text",
+    "x": 0.1,
+    "y": -2.1,
+    "text": "lagging strand: grows away, in pieces",
+    "color": "pink",
+    "size": 11,
+    "align": "left"
+   },
+   {
+    "k": "arrow",
+    "x1": "(3+mod(t,6))",
+    "y1": 1.7,
+    "x2": "(3+mod(t,6))+0.8",
+    "y2": 1.7,
+    "color": "gold",
+    "width": 2
+   },
+   {
+    "k": "text",
+    "x": "(3+mod(t,6))+0.9",
+    "y": 1.7,
+    "text": "fork",
+    "color": "gold",
+    "size": 11,
+    "align": "left"
+   }
+  ],
+  "caption": "The direction problem. Grey: the old strands, running opposite ways. A polymerase only adds to a 3′ end (arrowheads), so the leading strand grows towards the fork and the lagging strand away from it, restarted in pieces as the fork uncovers template. Not to scale."
+ },
+ "rep_fidelity": {
+  "type": "bars",
+  "logy": true,
+  "ylabel": "errors per nucleotide copied (log scale)",
+  "bars": [
+   {
+    "label": "Pol α (no proofreading)",
+    "value": 0.0001
+   },
+   {
+    "label": "a polymerase choosing bases, typical",
+    "value": 1e-05
+   },
+   {
+    "label": "replication without mismatch repair (yeast)",
+    "value": 1.6e-08
+   },
+   {
+    "label": "with mismatch repair (yeast)",
+    "value": 1.7e-10
+   }
+  ],
+  "caption": "Each check removes most of the errors left by the one before. Base selection: about 1 error in 10⁴ to 10⁵ (the bar shows 10⁻⁵); Pol α, which cannot proofread, about 10⁻⁴. Proofreading improves fidelity 10 to 1,000-fold. The two lower bars are measured rates per base pair per generation in yeast with and without mismatch repair (Lujan and others 2014). Sources on the card."
+ },
+ "rep_okazaki": {
+  "type": "bars",
+  "logy": true,
+  "ylabel": "nucleotides per second (log scale)",
+  "bars": [
+   {
+    "label": "human fork, HeLa cells (mean)",
+    "value": 11.3
+   },
+   {
+    "label": "Pol δ, physiological dNTPs (test tube)",
+    "value": 50
+   },
+   {
+    "label": "Pol δ with PCNA, saturating dNTPs (test tube)",
+    "value": 250
+   },
+   {
+    "label": "RNA primer removal, human proteins (test tube)",
+    "value": 0.09
+   },
+   {
+    "label": "E. coli fork",
+    "value": 1000
+   }
+  ],
+  "caption": "How fast the parts go. The fork in HeLa cells averages 0.68 kb a minute (Guilbaud and others 2011). Pol δ figures from Burgers and Kunkel 2017; primer removal by Pol δ and FEN1 with purified human proteins takes about 11 s a nucleotide (Raducanu and others 2022), so cells must have a faster way. E. coli figure from OpenStax Biology."
+ }
+}

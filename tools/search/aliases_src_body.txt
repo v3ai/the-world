@@ -137,6 +137,19 @@ inheritance, heredity, genes, genetics, inherited, gene, mendel, punnett => node
 
 # ---------------- cells and DNA ----------------
 dna, my dna, deoxyribonucleic acid, double helix => lm:DNA, node:bio_dna_structure, kn:dna_structure, node:bio_genetic_code, node:bio_chromatin_packaging, mol:bp_AT // src: openstax-bio
+dna replication, replication of dna, how does dna copy itself, how is dna copied, how dna copies itself, copying dna, dna copying, replicating dna, replication fork, replisome, semiconservative replication => node:dna_replication, node:dna_replication_process, node:bio_replication_machinery // Show replication in the DNA scene shows the machines at work. // src: openstax-bio app-card
+helicase, dna helicase, cmg helicase, cmg, mcm helicase, unwinding dna => node:rep_cmg, node:dna_replication // src: openstax-bio app-card
+dna polymerase, dna polymerases, polymerase, pol delta, polymerase delta, pol epsilon, polymerase epsilon, pol alpha, polymerase alpha => node:rep_pol_delta, node:rep_pol_epsilon, node:rep_pol_alpha_primase, node:dna_replication // A cell has several DNA polymerases; these are the three that copy the chromosomes. // src: openstax-bio app-card
+okazaki fragment, okazaki fragments, lagging strand => node:rep_okazaki, node:dna_replication // src: openstax-bio app-card
+leading strand => node:dna_replication, node:rep_pol_epsilon // src: openstax-bio app-card
+primase, rna primer, dna primase, primer rna => node:rep_pol_alpha_primase, node:rep_rna_primer // src: openstax-bio app-card
+sliding clamp, pcna, dna clamp => node:rep_pcna // src: openstax-bio app-card
+clamp loader, rfc, replication factor c => node:rep_rfc // src: app-card
+dna ligase, ligase, ligase i => node:rep_ligase // src: openstax-bio app-card
+flap endonuclease, fen1 => node:rep_fen1 // src: app-card
+topoisomerase, topoisomerases, topoisomerase i, supercoiling => node:rep_topo1 // src: openstax-bio app-card
+single strand binding protein, single-stranded binding protein, rpa, replication protein a => node:rep_rpa // src: openstax-bio app-card
+proofreading, dna proofreading, copying errors, replication errors, replication fidelity => node:rep_fidelity, node:rep_pol_delta // src: openstax-bio app-card
 genetic code, the genetic code, codon, codons, triplet code => node:bio_genetic_code, lm:DNA, node:bio_dna_structure, kn:dna_structure // src: openstax-bio
 genome, genomes, human genome, genomics => node:bio_genome_organization, kn:chromatin_genome, node:bio_comparative_human_genomics // src: openstax-bio
 chromosome, chromosomes => node:bio_chromatin_packaging, kn:chromatin_genome, node:bio_meiosis_variation // src: openstax-bio
