@@ -1067,6 +1067,17 @@ if (typeof FT !== 'undefined' && AtomCloud) FT.atom = {
         if (on !== !!S.sliceOn || (on && Math.abs(pm - S.slicePm) > Math.max(2, S.slicePm * .25))) { S.sliceOn = on; S.slicePm = pm; const base = String(F.note || '').replace(/ Inside the cloud the plot is a slice[^.]*\./, '');
           F.note = on ? base + ` Inside the cloud the plot is a slice: only the samples within ${pm} pm of the plane through the nucleus that faces you are drawn.` : base;
           if (typeof capFrame !== 'undefined' && capFrame === F) { const t = document.getElementById('capNote'); if (t) t.textContent = F.note; } }
+        /* inside the cloud the nucleus's name stands off to the side, on a thin leader line to the nucleus, not on the densest part of the plot */
+        if (!S.lead) { const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0, 0, 0, 0], 3));
+          S.lead = new THREE.Line(g, new THREE.LineBasicMaterial({ color: 0xd9dde2, transparent: true, opacity: .8, depthTest: false, depthWrite: false })); S.lead.renderOrder = 30; S.lead.frustumCulled = false; S.lead.userData.noHit = true; F.add(S.lead);
+          S.lv = [new V3(), new V3(), new V3(), new V3(), new V3()]; }
+        const lead = on && !!nucLbl.el.textContent;
+        if (lead) { const [w0, cp, rg, uv, P] = S.lv; S.lead.parent.updateWorldMatrix(true, false); S.lead.parent.localToWorld(w0.set(0, 0, 0)); cp.setFromMatrixPosition(F.cam.matrixWorld);
+          const hh = w0.distanceTo(cp) * Math.tan(25 * Math.PI / 180); rg.set(1, 0, 0).applyQuaternion(F.cam.quaternion); uv.set(0, 1, 0).applyQuaternion(F.cam.quaternion);
+          S.lead.parent.worldToLocal(P.copy(w0).addScaledVector(rg, .38 * hh).addScaledVector(uv, .2 * hh)); nucAnchor.position.copy(P);
+          const a = S.lead.geometry.attributes.position; a.setXYZ(1, P.x, P.y, P.z); a.needsUpdate = true; }
+        else if (S.leadOn) nucAnchor.position.set(0, 0, 0);
+        S.lead.visible = lead; S.leadOn = lead;
       }
       if (S.anim) S.anim(dt);
       centreCloud(dt);

@@ -173,12 +173,17 @@ const MD = {
         const a = Math.min(1, Math.max(0, (px - 1) / 1.2)); rm.opacity = a * (rm.userData.baseOp === undefined ? 1 : rm.userData.baseOp); rm.depthWrite = a > .99; };
       F._mdRib = rib; }
     F._mdc = F._mdcStep = F._mdChoose = null; if (F._mdcClip0 !== undefined) F.coreClip = F._mdcClip0;   // a rebuild (another kind of cell) starts clean
+    if (F._mdcSec && F.uiEls && F.uiEls.includes(F._mdcSec)) F.uiEls.splice(F.uiEls.indexOf(F._mdcSec), 1);
     if (c.cellKind === 'animal') MDC.build(F, c);   // the model with real counts and forms (MDC, below)
     /* the labels' stems end on the part they name: the anchor is put on the top of the part (its vertices, as it turns), not above it */
     const LBL = (F.labels || []).filter(L => L.off && L.off.y > 0 && L.off.x === 0 && L.obj && (L.obj.isMesh || L.obj.isGroup));
     LBL.forEach(L => { L._mdOff0 = L.off.y; });
     let tLbl = 0; F._mdTick = () => { const now = performance.now(); if (now - tLbl < 400) return; tLbl = now;
-      LBL.forEach(L => { if (!L.obj.visible) return; L.obj.updateWorldMatrix(true, true); _mdB.setFromObject(L.obj); if (_mdB.isEmpty()) return; L.obj.getWorldPosition(_mdV); const k = L.scaleRef ? L.scaleRef.k || 1 : 1; L.off.y = Math.min(L._mdOff0, (_mdB.max.y - _mdV.y) / k); }); if (F._mdcStep) F._mdcStep(); };   // the colours above are final: the foundation's generic toning of a cell (look.js, DRESS.cell) leaves them alone
+      LBL.forEach(L => { if (!L.obj.visible) return; L.obj.updateWorldMatrix(true, true); _mdB.setFromObject(L.obj); if (_mdB.isEmpty()) return; L.obj.getWorldPosition(_mdV); const k = L.scaleRef ? L.scaleRef.k || 1 : 1; L.off.y = Math.min(L._mdOff0, (_mdB.max.y - _mdV.y) / k); }); if (F._mdcStep) F._mdcStep();
+      /* on a screen taller than wide (a phone) the whole cell is fitted to the width on arrival: the view's height is what the engine
+         fits, and the cell (20 µm across) ran off both sides */
+      if (cam.A === F && !fly && F._mdc && W < H && cam.D > 3.7e-5 && cam.D < 4.4e-5 && Math.abs(zoom.pending) < 1e-4) {   // at the distance of arrival (the landmark's 40 µm)
+        const need = 11.5e-6 / (Math.tan(25 * Math.PI / 180) * W / H); if (cam.D < need) flyTo(F, cam.T.clone(), need); } };   // the colours above are final: the foundation's generic toning of a cell (look.js, DRESS.cell) leaves them alone
   },
   /* DNA: the four letters keep their code (A green, T red, G yellow, C blue: the usual convention), toned to sit beside CPK colours; the
      backbone is a pale sugar and an ochre phosphate. The water-and-ion dots drawn round it for atmosphere are removed: they were not data. */
@@ -281,13 +286,17 @@ const MD = {
     }
     holder.add(grp); return grp;
   },
-  occPatch(m) {
-    return LOOK.patch(m, 'mdocc', sh => {
+  /* crev (the DNA): deeper contact shading, and the crevices where spheres meet darkened: a sphere's light falls off toward its outline
+     where it is crowded (the strength of its neighbours' cover), as the light that reaches the bottom of a crevice between two balls does.
+     It is light, not a drawn outline (DESIGN 3.10). */
+  occPatch(m, crev) {
+    return LOOK.patch(m, 'mdocc' + (crev ? 'c' : ''), sh => {
       sh.vertexShader = 'attribute vec4 aOcc;\nvarying vec4 vOcc;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tvOcc = vec4( normalize( normalMatrix * mat3( instanceMatrix ) * ( aOcc.xyz + vec3( 0.0, 0.0, 1e-4 ) ) ), aOcc.w );');
       sh.fragmentShader = 'varying vec4 vOcc;\n' + sh.fragmentShader.replace('#include <aomap_fragment>', `#include <aomap_fragment>
-	{ float mdO = 1.0 - vOcc.w * pow( clamp( dot( normal, normalize( vOcc.xyz ) ) * 0.5 + 0.5, 0.0, 1.0 ), 1.6 );
+	{ float mdO = 1.0 - vOcc.w * pow( clamp( dot( normal, normalize( vOcc.xyz ) ) * 0.5 + 0.5, 0.0, 1.0 ), ${crev ? '1.1' : '1.6'} );
+	${crev ? `float mdNV = clamp( dot( normal, normalize( vViewPosition ) ), 0.0, 1.0 ); mdO *= 1.0 - ( 0.35 + 0.55 * vOcc.w ) * pow( 1.0 - mdNV, 1.8 );` : ''}
 	reflectedLight.indirectDiffuse *= mdO; reflectedLight.indirectSpecular *= mdO;
-	reflectedLight.directDiffuse *= mix( 1.0, mdO, 0.55 ); reflectedLight.directSpecular *= mix( 1.0, mdO, 0.55 ); }`);
+	reflectedLight.directDiffuse *= mix( 1.0, mdO, ${crev ? '0.8' : '0.55'} ); reflectedLight.directSpecular *= mix( 1.0, mdO, ${crev ? '0.8' : '0.55'} ); }`);
     });
   },
   /* DNA atom by atom. The four kinds of base pair are taken from a measured structure: the Dickerson-Drew dodecamer, PDB 1BNA (Drew et al.
@@ -321,7 +330,7 @@ const MD = {
     const nOld = {}; cls.forEach(c => { nOld[c] = list[c].filter(r => !r.isNew).length; });
     cls.forEach(c => {
       const N = list[c].length, gl = lo.clone(), gh = hi.clone(), occ = new THREE.InstancedBufferAttribute(new Float32Array(N * 4), 4); gl.setAttribute('aOcc', occ); gh.setAttribute('aOcc', occ);
-      const m = new THREE.InstancedMesh(gl, MD.occPatch(MD.mat(col[c], 'plastic')), N); m.userData = { id: c === 's' ? 'sugar' : c === 'p' ? 'phosphate' : 'base_' + c, priority: 1 }; m.frustumCulled = false;
+      const m = new THREE.InstancedMesh(gl, MD.occPatch(MD.mat(col[c], 'plastic'), true), N); m.userData = { id: c === 's' ? 'sugar' : c === 'p' ? 'phosphate' : 'base_' + c, priority: 1 }; m.frustumCulled = false;
       if (c === 's' || c === 'p') { const cn = new THREE.Color(c === 's' ? K.sugarNew : K.phosNew), co = new THREE.Color(col[c]); m.material.color.setHex(0xffffff); for (let k = 0; k < N; k++) m.setColorAt(k, list[c][k].isNew ? cn : co); }
       m.count = nOld[c]; m.userData.geo = [gl, gh]; holder.add(m); F.pickables.push(m); meshes[c] = m;
     });
@@ -372,7 +381,7 @@ const MDC = {
   U: 1.2,                                            // builder units per micrometre
   N0: [0.3194, 0.2555, 0.9125], UP0: [-0.0844, 0.9668, -0.2412],   // the view on arrival from the skin (the cell frame's own axes): the cut faces it
   COL: { membrane: 0xd9cfc6, nucleus: 0x9c92bd, pore: 0xbcb2d6, hetero: 0x4f4279, eu: 0xb3a4d6, nucleolus: 0x54467a, rer: 0x8fa7b3, ser: 0xa7b9c0,
-    golgi: 0xc9a865, vesicle: 0xd2bf8e, mito: 0xc98a62, cristae: 0xe6b796, lysosome: 0x9ea37c, ribosome: 0xe4dccb, mt: 0xcfd6dc, actin: 0xc9b9ae, centriole: 0xd8d2c6 },
+    golgi: 0xc9a44a, golgiLumen: 0xe6cb84, vesicle: 0xd2bf8e, mito: 0xb8714f, cristae: 0xe6b796, lysosome: 0x9ea37c, ribosome: 0x9d9388, mt: 0xa2aaaf, actin: 0xa89c94, centriole: 0xd8d2c6 },
   /* smooth noise made of sines, the same in JavaScript and in the shaders, so the holes in an ER sheet (drawn by the shader) and the
      ribosomes put on it (placed here) agree */
   sn(x, y, z) { return Math.sin(x * 1.7 + 1.3 * Math.sin(z * 1.1)) * Math.sin(y * 1.9 + 1.1 * Math.sin(x * .9)) * Math.sin(z * 1.5 + 1.2 * Math.sin(y * 1.3)); },
@@ -393,25 +402,86 @@ const MDC = {
   /* the cut: every material of the model knows where it is in the cell (vMdP, builder units) and drops what lies in the half that was
      taken away (mode 1), or in the eighth of the nucleus that was cut out (mode 2); mode 0 keeps all. Inside surfaces (seen through a cut)
      are drawn a little darker, as the inside of a cut fruit is in shadow. */
+  /* o.cap: the solid is closed and the cut shows its inside as a flat face in the plane of the cut (a cap): where the inside of the
+     solid is seen through the opening, the colour is that of the cap point (Q, where the eye's ray crosses the plane) and the light is
+     that of the plane. 'tube' (a mitochondrion: its membranes and cristae, from attributes along its axis), 'ball' (a lysosome or a
+     vesicle, instanced: its membrane and contents), or a colour (a Golgi cisterna). o.fade false: no fading with depth (the nucleus's
+     cut faces, the labels' parts in front of the cut). Every part behind the cut fades toward the cytosol's tint with its depth behind
+     the plane (DESIGN 3.2: a cue for depth, said in the note), and that tint carries a faint grain fixed to the plane: the cut face. */
   cut(m, S, mode, o) {
-    o = o || {}; m.side = THREE.DoubleSide;
-    return LOOK.patch(m, 'mdcut' + mode + (o.fen ? 'f' + o.fen.join('_') : '') + (o.mask ? 'm' + o.mask.join('_') : '') + (o.dark === undefined ? '' : 'd' + o.dark), sh => {
+    o = o || {}; m.side = THREE.DoubleSide; const cap = o.cap === undefined ? '' : typeof o.cap === 'string' ? o.cap : 'c' + o.cap.toString(16), fade = o.fade !== false;
+    m.extensions = Object.assign({}, m.extensions, { derivatives: true });   // fwidth in the cut faces (WebGL 1)
+    return LOOK.patch(m, 'mdcut' + mode + (o.fen ? 'f' + o.fen.join('_') : '') + (o.mask ? 'm' + o.mask.join('_') : '') + (o.dark === undefined ? '' : 'd' + o.dark) + (cap ? 'k' + cap : '') + (fade ? 'z' : '') + (o.gz ? 'g' : ''), sh => {
       Object.assign(sh.uniforms, S.uni);
-      sh.vertexShader = 'uniform mat4 uMdW2L;\nvarying vec3 vMdP;\n' + sh.vertexShader.replace('#include <project_vertex>', `#include <project_vertex>
+      const tube = cap === 'tube', ball = cap === 'ball';
+      sh.vertexShader = 'uniform mat4 uMdW2L;\nvarying vec3 vMdP;\n' + (tube ? 'attribute vec3 aAx, aTg; attribute vec4 aSr;\nvarying vec3 vAx, vTg; varying vec4 vSr;\n' : '') + (ball ? 'varying vec4 vMdO;\n' : '') + sh.vertexShader.replace('#include <project_vertex>', `#include <project_vertex>
 	{ vec4 mdQ = vec4( transformed, 1.0 );
 	#ifdef USE_INSTANCING
 		mdQ = instanceMatrix * mdQ;
 	#endif
-		vMdP = ( uMdW2L * modelMatrix * mdQ ).xyz; }`);
+		vMdP = ( uMdW2L * modelMatrix * mdQ ).xyz;
+		${tube ? 'vAx = aAx; vTg = aTg; vSr = aSr;' : ''}
+		${ball ? `#ifdef USE_INSTANCING
+		mat4 mdM = uMdW2L * modelMatrix * instanceMatrix; vMdO = vec4( ( mdM * vec4( 0.0, 0.0, 0.0, 1.0 ) ).xyz, length( ( mdM * vec4( 1.0, 0.0, 0.0, 0.0 ) ).xyz ) );
+	#endif
+	` : ''} }`);
       const test = mode === 1 ? 'dot( vMdP - uMdC, uMdN ) > 0.0' : mode === 2 ? '( dot( vMdP - uMdC, uMdA ) > 0.0 && dot( vMdP - uMdC, uMdB ) > 0.0 && dot( vMdP - uMdC, uMdN2 ) > 0.0 )' : 'false';
-      const fen = (o.mask ? `if ( mdSn( vMdP * ${o.mask[0].toFixed(3)} + vec3( 7.3, 2.9, 4.1 ) ) > ${o.mask[1].toFixed(3)} ) discard;\n\t` : '') + (o.fen ? `if ( 0.62 * mdSn( vMdP * ${o.fen[0].toFixed(3)} ) + 0.38 * mdSn( vMdP * ${(o.fen[0] * 2.3).toFixed(3)} + vec3( 3.1, 1.7, 5.3 ) ) > ${o.fen[1].toFixed(3)} ) discard;` : '');
-      sh.fragmentShader = 'uniform vec3 uMdC, uMdN, uMdA, uMdB, uMdN2;\nvarying vec3 vMdP;\n' + MDC.SN + sh.fragmentShader.replace('void main() {', `void main() {
+      const fen = (o.mask ? `if ( mdSn( vMdP * ${o.mask[0].toFixed(3)} + vec3( 7.3, 2.9, 4.1 ) ) > ${o.mask[1].toFixed(3)} ) discard;\n\t` : '') + (o.fen ? `if ( 0.62 * mdSn( vMdP * ${o.fen[0].toFixed(3)} ) + 0.38 * mdSn( vMdP * ${(o.fen[0] * 2.3).toFixed(3)} + vec3( 3.1, 1.7, 5.3 ) ) > ${o.fen[1].toFixed(3)} ) discard;` : '')
+        + (o.gz ? `if ( mdGz( vMdP ) ) discard;` : '');
+      sh.fragmentShader = 'uniform vec3 uMdC, uMdN, uMdA, uMdB, uMdN2, uMdE, uMdNv, uMdTint; uniform vec2 uMdFade; uniform vec4 uMdGz[' + MDC.GZN + '];\nvarying vec3 vMdP;\n' + (tube ? 'varying vec3 vAx, vTg; varying vec4 vSr;\n' : '') + (ball ? 'varying vec4 vMdO;\n' : '') + MDC.SN + MDC.GLSL + sh.fragmentShader.replace('void main() {', `void main() {
 	if ( ${test} ) discard;
 	${fen}`);
-      if (o.dark !== 0 && sh.fragmentShader.includes('#include <color_fragment>')) sh.fragmentShader = sh.fragmentShader.replace('#include <color_fragment>', `#include <color_fragment>
+      const isLit = sh.fragmentShader.includes('#include <normal_fragment_maps>');
+      if (cap && isLit) {
+        sh.fragmentShader = sh.fragmentShader.replace('#include <normal_fragment_maps>', '#include <normal_fragment_maps>\n\tif ( ! gl_FrontFacing ) normal = normalize( uMdNv );')
+          .replace('#include <color_fragment>', `#include <color_fragment>
+	if ( ! gl_FrontFacing ) { vec3 Q = mdQ(); ${tube ? 'diffuseColor.rgb = mdMito( Q, vAx, vTg, vSr );' : ball ? `diffuseColor.rgb = mdBall( Q, vMdO, diffuseColor.rgb );` : `diffuseColor.rgb = vec3( ${new THREE.Color(o.cap).toArray().map(x => x.toFixed(3)).join(', ')} );`} }`);
+      } else if (o.dark !== 0 && sh.fragmentShader.includes('#include <color_fragment>')) sh.fragmentShader = sh.fragmentShader.replace('#include <color_fragment>', `#include <color_fragment>
 	if ( ! gl_FrontFacing ) diffuseColor.rgb *= ${(o.dark === undefined ? .72 : o.dark).toFixed(2)};`);
+      if (fade) sh.fragmentShader = sh.fragmentShader.replace('#include <premultiplied_alpha_fragment>', `{ float mdS = - dot( vMdP - uMdC, uMdN );
+	  float mdK = ${cap ? '! gl_FrontFacing ? 0.0 : ' : ''}max( uMdFade.y * ( 1.0 - exp( - max( mdS, 0.0 ) / uMdFade.x ) ), ${MDC.VEIL.toFixed(2)} * smoothstep( 0.1, 0.2, mdS ) );
+	  vec3 mdG = mdQ(); float mdGr = mdV( mdG * 34.0 ) * 0.6 + mdV( mdG * 9.0 + 3.0 ) * 0.4;
+	  gl_FragColor.rgb = mix( gl_FragColor.rgb, uMdTint * ( 0.9 + 0.2 * mdGr ), mdK ); }
+#include <premultiplied_alpha_fragment>`);
     });
   },
+  GZN: 10,   // the Golgi's zone, kept clear of ER sheets: up to this many spheres (centre, radius), in the shader and in mdGz below
+  /* shared GLSL: value noise, the cap point, the Golgi zone, and the cut faces of a mitochondrion and of a ball */
+  GLSL: `float mdH( vec3 p ) { return fract( sin( dot( p, vec3( 127.1, 311.7, 74.7 ) ) ) * 43758.5453 ); }
+	float mdH1( float x ) { return fract( sin( x * 91.345 + 3.17 ) * 47453.5453 ); }
+	float mdV( vec3 p ) { vec3 i = floor( p ), f = fract( p ); f = f * f * ( 3.0 - 2.0 * f );
+		return mix( mix( mix( mdH( i ), mdH( i + vec3( 1, 0, 0 ) ), f.x ), mix( mdH( i + vec3( 0, 1, 0 ) ), mdH( i + vec3( 1, 1, 0 ) ), f.x ), f.y ),
+		            mix( mix( mdH( i + vec3( 0, 0, 1 ) ), mdH( i + vec3( 1, 0, 1 ) ), f.x ), mix( mdH( i + vec3( 0, 1, 1 ) ), mdH( i + vec3( 1, 1, 1 ) ), f.x ), f.y ), f.z ); }
+	vec3 mdQ() { vec3 d = vMdP - uMdE; float k = dot( d, uMdN ); return abs( k ) < 1e-6 ? vMdP : uMdE + d * ( dot( uMdC - uMdE, uMdN ) / k ); }
+	bool mdGz( vec3 p ) { for ( int i = 0; i < ${10}; i++ ) { if ( uMdGz[ i ].w > 0.0 && length( p - uMdGz[ i ].xyz ) < uMdGz[ i ].w ) return true; } return false; }
+	/* a line of width w (any unit) at c, antialiased by the pixel's footprint fw; thinner than a pixel it fades by its coverage */
+	float mdBand( float x, float c, float w, float fw ) { float e = max( w, fw ); return clamp( ( 0.5 * e - abs( x - c ) ) / fw + 0.5, 0.0, 1.0 ) * min( 1.0, w / fw ); }
+	/* a mitochondrion cut open (lengths in µm; 1.2 builder units to the µm): the outer membrane, a gap of about 20 nm, the inner
+	   membrane, and the cristae as folds of the inner membrane reaching into the matrix from one side, about one every 0.12 µm (a choice) */
+	vec3 mdMito( vec3 Q, vec3 ax, vec3 tg, vec4 sr ) {
+		vec3 T = normalize( tg ), v = Q - ax; float al = dot( v, T ); vec3 pp = v - T * al * ( 1.0 - min( abs( sr.z ), 1.0 ) );
+		float dd = length( pp ), x = ( sr.y - dd ) / 1.2, sQ = ( sr.x + al ) / 1.2, fw = max( fwidth( x ), 1e-5 ), fs = max( fwidth( sQ ), 1e-5 );
+		vec3 B = normalize( cross( T, uMdN ) ); float y = dot( pp, B ) / max( sr.y, 1e-4 );
+		vec3 cM = vec3( 0.80, 0.52, 0.38 ), cI = vec3( 0.90, 0.68, 0.54 ), cL = vec3( 0.46, 0.24, 0.17 );
+		float mem = max( mdBand( x, 0.0035, 0.007, fw ), mdBand( x, 0.0305, 0.007, fw ) ), ims = mdBand( x, 0.017, 0.02, fw );
+		float sp = 0.12, k = floor( sQ / sp ), h1 = mdH1( k ), h2 = mdH1( k + 17.0 ), h3 = mdH1( k + 41.0 );
+		float c0 = ( k + 0.5 + 0.3 * ( h1 - 0.5 ) ) * sp, sd = h2 > 0.5 ? 1.0 : -1.0, reach = 0.55 + 0.45 * h3;
+		float yin = sd * y, tip = 1.0 - 2.0 * reach;
+		float cr = 0.85 * mdBand( sQ, c0, 0.02, fs ) * smoothstep( tip - 0.04, tip + 0.04, yin ) * step( 0.03, x );
+		float far = smoothstep( 0.03, 0.06, fs );   // cristae closer than about two pixels: their average, a faint stripe
+		cr = mix( cr, 0.2 * reach * smoothstep( 0.03, 0.05, x ), far );
+		vec3 c = mix( cM, cI, ims * ( 1.0 - far ) );
+		c = mix( c, cL, max( mem * ( 1.0 - 0.6 * far ), cr ) );
+		return c * ( 0.94 + 0.12 * mdV( Q * 60.0 ) );
+	}
+	/* a ball cut open (a lysosome or a vesicle, instanced: o = its centre and radius): its membrane at the rim and its contents */
+	vec3 mdBall( vec3 Q, vec4 o, vec3 col ) {
+		float r = length( Q - o.xyz ) / max( o.w, 1e-5 ), fw = max( fwidth( r ), 1e-4 ), ring = mdBand( r, 0.97, 0.06, fw );
+		float g = 0.7 * mdV( Q * 70.0 ) + 0.3 * mdV( Q * 160.0 );
+		vec3 in_ = col * ( 0.62 + 0.5 * g );
+		return mix( in_, col * 0.45, ring );
+	}
+`,
   mat(S, col, kind, mode, o) { const m = MD.mat(col, kind || 'wet', o && o.extra ? { extra: o.extra } : undefined); m._lkUn = true; return MDC.cut(m, S, mode, o); },
   ell(a, p) { return (p.x / a.x) ** 2 + (p.y / a.y) ** 2 + (p.z / a.z) ** 2; },
   build(F, c) {
@@ -427,23 +497,31 @@ const MDC = {
     /* the geometry of the cut */
     const nN = new V3().fromArray(MDC.N0).normalize(), up = new V3().fromArray(MDC.UP0), rt = new V3().crossVectors(up, nN).normalize(); up.crossVectors(nN, rt).normalize();
     const C = c.nucPos.clone(), uni = { uMdW2L: { value: new THREE.Matrix4() }, uMdC: { value: C.clone() }, uMdN: { value: nN.clone() },
-      uMdA: { value: rt.clone().addScaledVector(nN, .55).normalize() }, uMdB: { value: up.clone().addScaledVector(nN, .55).normalize() }, uMdN2: { value: nN.clone() } };
+      uMdA: { value: rt.clone().addScaledVector(nN, .55).normalize() }, uMdB: { value: up.clone().addScaledVector(nN, .55).normalize() }, uMdN2: { value: nN.clone() },
+      uMdE: { value: new V3() }, uMdNv: { value: new V3(0, 0, 1) }, uMdTint: { value: new THREE.Color(MDC.TINT) }, uMdFade: { value: new THREE.Vector2(MDC.FADE_UM * U, MDC.FADE_MAX) },
+      uMdGz: { value: Array.from({ length: MDC.GZN }, () => new THREE.Vector4(0, 0, 0, 0)) } };
     const S = { uni, G };
     const gone1 = p => _mdV.copy(p).sub(C).dot(nN) > 0;   // in the half taken away
-    if (!F._mdcHook) { F._mdcHook = true; const b0 = F.scene.onBeforeRender;   // once per frame: the world-to-cell matrix of the model built last
-      F.scene.onBeforeRender = function (rr, sc, cm) { const M = F._mdc; if (M && M.G.parent) { M.G.updateWorldMatrix(true, false); M.uni.uMdW2L.value.copy(M.G.matrixWorld).invert(); } if (b0) b0.call(this, rr, sc, cm); }; }
+    if (!F._mdcHook) { F._mdcHook = true; const b0 = F.scene.onBeforeRender, M3 = new THREE.Matrix3(), M4 = new THREE.Matrix4();   // once per frame: where the cell is against the eye
+      F.scene.onBeforeRender = function (rr, sc, cm) { const M = F._mdc; if (M && M.G.parent) { const u = M.uni; M.G.updateWorldMatrix(true, false); u.uMdW2L.value.copy(M.G.matrixWorld).invert();
+        u.uMdE.value.setFromMatrixPosition(cm.matrixWorld).applyMatrix4(u.uMdW2L.value); M3.getNormalMatrix(M4.multiplyMatrices(cm.matrixWorldInverse, M.G.matrixWorld)); u.uMdNv.value.copy(u.uMdN.value).applyMatrix3(M3).normalize(); }
+        if (b0) b0.call(this, rr, sc, cm); }; }
     const E = new V3(12, 12 * .82, 12 * .92);            // the membrane (the old builder's: 20 x 16.4 x 18.4 µm)
     const inCell = (p, m) => MDC.ell(new V3(E.x - m, E.y - m, E.z - m), p) < 1;
     /* membrane: the old film, cut, seen from inside where it is open; its cut edge drawn as the two leaflets of the bilayer */
     MDC.cut(mem.material, S, 1, { dark: 0 }); mem.material.needsUpdate = true;
     if (fill) { fill.material.visible = false; }
+    /* the inside of the membrane, seen through the cut: the far wall of the cytosol, so that between the parts there is cytosol (it takes
+       the cytosol's tint with depth), not the black of the studio */
+    const back = new THREE.Mesh(mem.geometry, MDC.mat(S, MDC.TINT, 'matte', 1, { dark: 0 })); back.material.side = THREE.BackSide; back.scale.copy(mem.scale).multiplyScalar(.995); back.position.copy(mem.position); back.quaternion.copy(mem.quaternion);
+    back.userData.noHit = true; G.add(back);
     const rim = []; { const n = 160, pts = [[], []]; for (let i = 0; i <= n; i++) { const a = i / n * TAU2, d = rt.clone().multiplyScalar(Math.cos(a)).addScaledVector(up, Math.sin(a));
         // the plane through C meets the ellipsoid at C + t d: solve |(C + t d) / E| = 1
         const q = new V3(C.x / E.x, C.y / E.y, C.z / E.z), w = new V3(d.x / E.x, d.y / E.y, d.z / E.z), A2 = w.dot(w), B2 = 2 * q.dot(w), C2 = q.dot(q) - 1, t = (-B2 + Math.sqrt(B2 * B2 - 4 * A2 * C2)) / (2 * A2);
         const p = C.clone().addScaledVector(d, t), nr = new V3(p.x / E.x / E.x, p.y / E.y / E.y, p.z / E.z / E.z).normalize();
         pts[0].push(p.clone().addScaledVector(nr, .05)); pts[1].push(p.clone().addScaledVector(nr, -.05)); }
       pts.forEach(P => rim.push([new THREE.TubeGeometry(new THREE.CatmullRomCurve3(P, true), n, .028, 5, true)])); }
-    const rimM = new THREE.Mesh(MDC.merge(rim), MDC.mat(S, K.membrane, 'matte', 0)); rimM.userData = { id: 'membrane', priority: 0 }; G.add(rimM); c.pickables.push(rimM);
+    const rimM = new THREE.Mesh(MDC.merge(rim), MDC.mat(S, K.membrane, 'matte', 0, { fade: false })); rimM.userData = { id: 'membrane', priority: 0 }; G.add(rimM); c.pickables.push(rimM);
     /* ---- nucleus: an ellipsoid of 10% of the cell's volume (BioNumbers 113848), its surface not quite smooth */
     const vCell = 4 / 3 * Math.PI * E.x * E.y * E.z, k3 = Math.cbrt(.1 * vCell / (4 / 3 * Math.PI * 5.3 * 4.5 * 5.0)), NA = new V3(5.3, 4.5, 5.0).multiplyScalar(k3);
     const nucG = new THREE.Group(); nucG.position.copy(C); G.add(nucG);
@@ -451,20 +529,28 @@ const MDC = {
     const nucSurf = (dir, out) => { const s = 1 + .025 * MDC.sn(dir.x * 3.1, dir.y * 3.1, dir.z * 3.1) + .012 * MDC.sn(dir.x * 7 + 2, dir.y * 7, dir.z * 7 + 1); return out.set(dir.x * NA.x * s, dir.y * NA.y * s, dir.z * NA.z * s); };
     for (let i = 0; i < npos.count; i++) { const d = new V3().fromBufferAttribute(npos, i).normalize(); nucSurf(d, d); npos.setXYZ(i, d.x, d.y, d.z); } ng.computeVertexNormals();
     const env = new THREE.Mesh(ng, MDC.mat(S, K.nucleus, 'wet', 2)); env.userData = { id: 'nucleus', priority: .5 }; nucG.add(env); c.pickables.push(env);
+    const vNucUm = 4 / 3 * Math.PI * NA.x * NA.y * NA.z / (U * U * U);
+    if (typeof INFO !== 'undefined' && INFO.nucleus) {   // the card's size is this nucleus's (the old card's 6 µm was the old schematic's)
+      const dEq = Math.cbrt(6 * vNucUm / Math.PI), ax = [NA.x, NA.y, NA.z].map(v => (2 * v / U).toFixed(1)).join(' × ');
+      env.userData.info = Object.assign({}, INFO.nucleus, { facts: INFO.nucleus.facts.map(f => /^Diameter$/.test(f[0]) ? ['Size', `about ${dEq.toFixed(1)} µm across here (${ax} µm, ${Math.round(vNucUm)} µm³); a HeLa cell's nucleus is about 374 µm³, about 9 µm across`] : f) });
+    }
     /* nuclear pores: about 3,900 in a HeLa nucleus of 374 µm³ (Maul and Deaven 1977; BioNumbers 101390, 101402), so about 15.7 per µm² of
-       envelope; here at that density over this nucleus, except in the eighth cut out. Each is drawn as its ring, 0.12 µm across with a
-       channel about 0.06 µm wide (the in-cell structure of the human pore, 2021), on a flat disc that lies on the envelope. */
+       envelope; here at that density over this nucleus, except in the eighth cut out. Each is a ring 0.12 µm across with a channel about
+       0.06 µm wide (the in-cell structure of the human pore, 2021): a disc on the envelope in the envelope's own tone, its ring raised (a
+       relief map) and its channel dark. Placed at random but never closer than 0.15 µm centre to centre, since pores cannot overlap. */
     const ap = 1.6075, areaU = 4 * Math.PI * Math.pow((Math.pow(NA.x * NA.y, ap) + Math.pow(NA.x * NA.z, ap) + Math.pow(NA.y * NA.z, ap)) / 3, 1 / ap), areaUm = areaU / (U * U);
-    const nPore = Math.round(15.7 * areaUm), poreTex = (() => { const cv = document.createElement('canvas'); cv.width = cv.height = 64; const g = cv.getContext('2d'); g.fillStyle = '#000'; g.fillRect(0, 0, 64, 64);
-      g.fillStyle = '#fff'; g.beginPath(); g.arc(32, 32, 30, 0, TAU2); g.arc(32, 32, 15, 0, TAU2, true); g.fill(); for (let k = 0; k < 8; k++) { const a = k / 8 * TAU2; g.beginPath(); g.arc(32 + Math.cos(a) * 23, 32 + Math.sin(a) * 23, 6.5, 0, TAU2); g.fill(); }
-      const t = new THREE.CanvasTexture(cv); return t; })();
-    const poreM = MDC.mat(S, K.pore, 'wet', 2, { extra: { alphaMap: poreTex, alphaTest: .5 } });
-    const pq = new THREE.PlaneGeometry(.12 * U, .12 * U), pores = [], gold = Math.PI * (3 - Math.sqrt(5)), cl = new V3();
-    for (let i = 0; i < Math.round(nPore); i++) {
-      const y = 1 - (i + .5) / nPore * 2, rr2 = Math.sqrt(1 - y * y), a = i * gold + (r() - .5) * 3.2 / Math.sqrt(nPore), d = new V3(Math.cos(a) * rr2, y + (r() - .5) * 2.4 / Math.sqrt(nPore), Math.sin(a) * rr2).normalize();
-      const p = nucSurf(d, new V3()), nr = new V3(p.x / NA.x / NA.x, p.y / NA.y / NA.y, p.z / NA.z / NA.z).normalize(); cl.copy(p).add(C);
+    const nPore = Math.round(15.7 * areaUm), poreTex = MDC.poreTex();
+    const poreM = MDC.mat(S, K.nucleus, 'wet', 2, { extra: { map: poreTex.map, normalMap: poreTex.nrm, alphaTest: .5, transparent: false }, fade: false }); poreM.normalScale.set(.45, .45);
+    const pq = new THREE.PlaneGeometry(.12 * U, .12 * U), pores = [], cl = new V3(), dMin = .15 * U, pGrid = new Map(), pk = (x, y, z) => x + ',' + y + ',' + z;
+    let placedAll = 0;
+    for (let tries = 0; tries < nPore * 40 && placedAll < nPore; tries++) {
+      const d = new V3(gauss(r), gauss(r), gauss(r)).normalize(), p = nucSurf(d, new V3());
+      const gx = Math.floor(p.x / dMin), gy = Math.floor(p.y / dMin), gz = Math.floor(p.z / dMin); let bad = false;
+      for (let a = -1; a <= 1 && !bad; a++) for (let b = -1; b <= 1 && !bad; b++) for (let e = -1; e <= 1 && !bad; e++) for (const o of pGrid.get(pk(gx + a, gy + b, gz + e)) || []) if (o.distanceToSquared(p) < dMin * dMin) { bad = true; break; }
+      if (bad) continue; (pGrid.get(pk(gx, gy, gz)) || pGrid.set(pk(gx, gy, gz), []).get(pk(gx, gy, gz))).push(p); placedAll++;
+      const nr = new V3(p.x / NA.x / NA.x, p.y / NA.y / NA.y, p.z / NA.z / NA.z).normalize(); cl.copy(p).add(C);
       if (cl.clone().sub(C).dot(uni.uMdA.value) > 0 && cl.clone().sub(C).dot(uni.uMdB.value) > 0 && cl.clone().sub(C).dot(nN) > 0) continue;
-      pores.push([p.addScaledVector(nr, .012), nr]);
+      pores.push([p.clone().addScaledVector(nr, .006), nr]);
     }
     const poreI = new THREE.InstancedMesh(pq, poreM, pores.length), q = new THREE.Quaternion(), Z = new V3(0, 0, 1), m4 = new THREE.Matrix4(), one = new V3(1, 1, 1);
     pores.forEach(([p, nr], i) => { q.setFromUnitVectors(Z, nr); m4.compose(p, q, one); poreI.setMatrixAt(i, m4); });
@@ -473,11 +559,12 @@ const MDC = {
     // placed so that the faces of the cut pass through them (a point's distances from the three cut planes: eA, eB, eN)
     const e2p = (a, b, n) => new V3(a, b, n).applyMatrix3(new THREE.Matrix3().set(...uni.uMdA.value.toArray(), ...uni.uMdB.value.toArray(), ...nN.toArray()).invert());
     const NUCL = [[e2p(.15, 1.5, 1.2), .95 * U], [e2p(1.7, -.25, .9), .65 * U]];
-    const nlM = MDC.mat(S, K.nucleolus, 'matte', 2); const nlG = MDC.merge(NUCL.map(([p, R]) => { const g = new THREE.IcosahedronGeometry(1, 3), a = g.attributes.position;
+    const nlM = MDC.mat(S, K.nucleolus, 'matte', 2, { fade: false }); const nlG = MDC.merge(NUCL.map(([p, R]) => { const g = new THREE.IcosahedronGeometry(1, 3), a = g.attributes.position;
       for (let i = 0; i < a.count; i++) { const v = new V3().fromBufferAttribute(a, i), s = 1 + .08 * MDC.sn(v.x * 5, v.y * 5, v.z * 5); a.setXYZ(i, v.x * s, v.y * s, v.z * s); } g.computeVertexNormals(); return [g, new THREE.Matrix4().makeScale(R, R, R).setPosition(p)]; }));
     const nlMesh = new THREE.Mesh(nlG, nlM); nlMesh.userData = { id: 'nucleolus', priority: 2 }; nucG.add(nlMesh); c.pickables.push(nlMesh);
-    /* the faces of the cut-out eighth: chromatin, denser (heterochromatin) at the envelope and round the nucleoli, looser inside; the
-       nucleoli where the faces pass through them. A texture of noise, not a map of real chromatin. */
+    /* the faces of the cut-out eighth: chromatin (a texture of noise, not a map of real chromatin): a dense band of heterochromatin under
+       the envelope, dense clumps round the nucleoli and scattered through, fine looser euchromatin between; the nucleoli where the faces
+       pass through them */
     const capM = MDC.capMat(S, NA, NUCL, nN); const caps = [];
     [[uni.uMdA.value, uni.uMdB.value, nN], [uni.uMdB.value, uni.uMdA.value, nN], [nN, uni.uMdA.value, uni.uMdB.value]].forEach(([pn]) => {
       // a disc on the plane through C with normal pn, filling the nucleus there; the shader keeps the part that faces the open eighth
@@ -488,9 +575,46 @@ const MDC = {
       caps.push([g]);
     });
     const capMesh = new THREE.Mesh(MDC.merge(caps), capM); capMesh.userData = { id: 'chromatin', priority: 1.5 }; nucG.add(capMesh); c.pickables.push(capMesh);
+    /* ---- the centrosome and the Golgi: the Golgi is a ribbon of stacks joined side by side, 5 to 7 µm long, round the centrosome beside
+       the nucleus (a review of the Golgi ribbon); stacks of 4 to 8 flattened sacs (cisternae) in mammalian cells, each sac 0.5 to 1 µm
+       across (Frontiers in Endocrinology 2013), their lumen 10 to 20 nm wide in the middle (Klumperman 2011). Here: eight stacks of five
+       sacs 0.8 to 1 µm across and 30 nm thick, 20 nm apart (the spacing a choice), along 7 µm of an arc 1.7 µm out from the envelope,
+       lying across the cut so that it shows them in section. The centrosome between the ribbon and the nucleus: two centrioles at right
+       angles, about 0.25 µm across and 0.5 µm long, nine triplets of microtubules each. Round both, a zone without mitochondria or ER
+       sheets, as in a real cell. */
+    const gDir = rt.clone().multiplyScalar(.78).addScaledVector(up, .62).normalize();   // in the plane of the cut
+    const surfAlong = dir => nucSurf(new V3(dir.x / NA.x, dir.y / NA.y, dir.z / NA.z).normalize(), new V3());
+    const cs = C.clone().add(surfAlong(gDir)).addScaledVector(gDir, .8 * U).addScaledVector(nN, -.12 * U);
+    const cenL = [], tri = new THREE.CylinderGeometry(.0125 * U, .0125 * U, .5 * U, 6, 1);
+    [[new V3(0, 1, 0), 0], [new V3(1, 0, 0), .32]].forEach(([ax, off]) => { const qa = new THREE.Quaternion().setFromUnitVectors(new V3(0, 1, 0), ax);
+      for (let b = 0; b < 9; b++) for (let t = 0; t < 3; t++) { const a = b / 9 * TAU2 + t * .1, rad = (.11 - t * .022) * U; const p = new V3(Math.cos(a) * rad, 0, Math.sin(a) * rad).applyQuaternion(qa).add(cs).addScaledVector(gDir, off * U);
+        cenL.push([tri.clone(), new THREE.Matrix4().compose(p, qa, one)]); } });
+    const cen = new THREE.Mesh(MDC.merge(cenL), MDC.mat(S, K.centriole, 'matte', 1)); cen.userData = { id: 'centrosome', priority: 1.2, info: MDC.INFO.centrosome() }; G.add(cen); c.pickables.push(cen);
+    const arc = [], NST = 8, arcL = 7 * U, gOut = 1.7 * U;
+    { const a0 = Math.atan2(gDir.dot(up), gDir.dot(rt)); let len = 0, prev = null; const pts = [];   // walk the outline of the nucleus in the plane, 1.7 µm out, for 7 µm centred on gDir
+      for (let i = -400; i <= 400; i++) { const a = a0 + i * .004, d = rt.clone().multiplyScalar(Math.cos(a)).addScaledVector(up, Math.sin(a)), s = surfAlong(d), p = C.clone().add(s).addScaledVector(d, gOut); pts.push([p, d]); }
+      const mid = 400; const acc = [0]; for (let i = 1; i < pts.length; i++) acc.push(acc[i - 1] + pts[i][0].distanceTo(pts[i - 1][0]));
+      for (let s = 0; s < NST; s++) { const want = acc[mid] + (s - (NST - 1) / 2) * arcL / (NST - 1) * .96; let j = 0; while (j < acc.length - 1 && acc[j] < want) j++; arc.push({ p: pts[j][0], d: pts[j][1] }); } }
+    const gl = [], gzone = [];
+    arc.forEach(({ p, d }, s) => {
+      // the stack's axis (cis to trans) points away from the nucleus, tilted toward the visitor so the cut shows both the sacs in section and the face of the last
+      const axS = d.clone().multiplyScalar(.9).addScaledVector(nN, .43).normalize(), qS = new THREE.Quaternion().setFromUnitVectors(new V3(0, 1, 0), axS);
+      const ctr = p.clone().addScaledVector(nN, -.05 * U), qq = qS.clone().multiply(new THREE.Quaternion().setFromAxisAngle(new V3(0, 1, 0), r() * TAU2));
+      [.8, .9, 1.0, .95, .85].forEach((D, k) => { const R = D / 2 * U, h = .015 * U, g = new THREE.SphereGeometry(1, 18, 6), a = g.attributes.position;
+        for (let i = 0; i < a.count; i++) { const v = new V3().fromBufferAttribute(a, i), rho2 = v.x * v.x + v.z * v.z; a.setXYZ(i, v.x * R, v.y * h + (.16 * U) * (rho2 - .4) * (D / .95) ** 2, v.z * R); }   // curved: the trans side concave
+        g.computeVertexNormals(); gl.push([g, new THREE.Matrix4().compose(ctr.clone().addScaledVector(axS, (k - 2) * .05 * U), qq, one)]); });
+      gzone.push(new THREE.Vector4(p.x, p.y, p.z, .95 * U));
+    });
+    // the stacks are joined into a ribbon by tubules about 30 nm across (the noncompact zone: Klumperman 2011)
+    for (let s = 0; s < arc.length - 1; s++) for (let k = 0; k < 3; k++) { const a = arc[s].p.clone().addScaledVector(nN, (-.05 - .12 * k) * U), b = arc[s + 1].p.clone().addScaledVector(nN, (-.05 - .12 * k) * U), m = a.clone().lerp(b, .5).add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(.06 * U));
+      gl.push([new THREE.TubeGeometry(new THREE.CatmullRomCurve3([a, m, b]), 6, .015 * U, 4, false)]); }
+    gzone.push(new THREE.Vector4(cs.x, cs.y, cs.z, .85 * U)); gzone.forEach((v, i) => { if (i < MDC.GZN) uni.uMdGz.value[i].copy(v); });
+    const inGz = (p, m) => gzone.some(v => (p.x - v.x) ** 2 + (p.y - v.y) ** 2 + (p.z - v.z) ** 2 < (v.w + (m || 0)) ** 2);
+    const golM = MDC.mat(S, K.golgi, 'wet', 1, { cap: K.golgiLumen }), gol = new THREE.Mesh(MDC.merge(gl), golM); gol.userData = { id: 'golgi', priority: 1.3 }; G.add(gol); c.pickables.push(gol);
     /* ---- rough ER: flattened sacs (cisternae) stacked round the nucleus, 60 to 100 nm thick (BioNumbers 111388), joined to the outer
-       membrane of the envelope (they are one membrane: OpenStax Biology 2e, 4.4); edges and holes (fenestrae) from the noise */
-    const rerL = [], rerD = [.3, .6, .92, 1.28, 1.7];
+       membrane of the envelope (they are one membrane: OpenStax Biology 2e, 4.4); edges and holes (fenestrae) from the noise; none in the
+       Golgi's zone */
+    const rerL = [], rerD = [.3, .66, 1.08, 1.55];
     const sheetPt = (d, k) => { const p = nucSurf(d, new V3()), nr = new V3(p.x / NA.x / NA.x, p.y / NA.y / NA.y, p.z / NA.z / NA.z).normalize();
       return p.addScaledVector(nr, rerD[k] * U * .9 + .18 * MDC.sn(d.x * 4 + k, d.y * 4, d.z * 4 - k)).add(C); };
     rerD.forEach((dd, k) => { const g = new THREE.SphereGeometry(1, 48, 32), a = g.attributes.position;
@@ -500,90 +624,123 @@ const MDC = {
     for (let k = 0; k < 70; k++) { const d = new V3(gauss(r), gauss(r), gauss(r)).normalize(), j = Math.floor(r() * rerD.length); const p0 = nucSurf(d, new V3()), nr = new V3(p0.x / NA.x / NA.x, p0.y / NA.y / NA.y, p0.z / NA.z / NA.z).normalize();
       const a = j ? rerD[j - 1] * U * .9 : 0, b = rerD[j] * U * .9, g = new THREE.CylinderGeometry(.045 * U, .045 * U, Math.max(.05, b - a), 7, 1, true); q.setFromUnitVectors(new V3(0, 1, 0), nr);
       rerL.push([g, new THREE.Matrix4().compose(p0.clone().addScaledVector(nr, (a + b) / 2).add(C), q, one)]); }
-    const rerM = MDC.mat(S, K.rer, 'matte', 1, { fen: [.62, .3], mask: [.55, .2] }), rer = new THREE.Mesh(MDC.merge(rerL), rerM); rer.userData = { id: 'er', priority: 1 }; G.add(rer); c.pickables.push(rer);
-    const rerOn = p => MDC.fen(p.x, p.y, p.z, .62) <= .3 && MDC.sn(p.x * .55 + 7.3, p.y * .55 + 2.9, p.z * .55 + 4.1) <= .2;
-    /* ---- the centrosome: two centrioles at right angles, each about 0.25 µm across and 0.5 µm long, nine triplets of microtubules
-       (reviews of centriole structure), beside the nucleus; the Golgi ribbon round it */
-    const gDir = rt.clone().multiplyScalar(.78).addScaledVector(up, .5).addScaledVector(nN, -.38).normalize();
-    const cs = C.clone().add(nucSurf(new V3(gDir.x / NA.x, gDir.y / NA.y, gDir.z / NA.z).normalize(), new V3()).multiplyScalar(1).addScaledVector(gDir, 1.35));
-    const cenL = [], tri = new THREE.CylinderGeometry(.0125 * U, .0125 * U, .5 * U, 6, 1);
-    [[new V3(0, 1, 0), 0], [new V3(1, 0, 0), .32]].forEach(([ax, off]) => { const qa = new THREE.Quaternion().setFromUnitVectors(new V3(0, 1, 0), ax);
-      for (let b = 0; b < 9; b++) for (let t = 0; t < 3; t++) { const a = b / 9 * TAU2 + t * .1, rad = (.11 - t * .022) * U; const p = new V3(Math.cos(a) * rad, 0, Math.sin(a) * rad).applyQuaternion(qa).add(cs).addScaledVector(gDir, off * U);
-        cenL.push([tri.clone(), new THREE.Matrix4().compose(p, qa, one)]); } });
-    const cen = new THREE.Mesh(MDC.merge(cenL), MDC.mat(S, K.centriole, 'matte', 1)); cen.userData = { id: 'centrosome', priority: 1.2, info: MDC.INFO.centrosome() }; G.add(cen); c.pickables.push(cen);
-    /* ---- Golgi: a ribbon 5 to 7 µm long beside the centrosome, of stacks of four to six flattened sacs (reviews of Golgi structure);
-       here five stacks of five, each sac about 1.3 µm across, curved, with holes near its rim */
-    const gl = [], gq = new THREE.Quaternion(), side = new V3().crossVectors(gDir, nN).normalize();
-    for (let s = 0; s < 5; s++) { const t = (s - 2) / 2, ctr = cs.clone().addScaledVector(side, t * 1.55 * U).addScaledVector(gDir, (.45 + .35 * t * t) * U); const ax = gDir.clone().addScaledVector(side, -t * .45).normalize();
-      gq.setFromUnitVectors(new V3(0, 1, 0), ax);
-      for (let k = 0; k < 5; k++) { const R = (1.0 - k * .05) * U, g = new THREE.SphereGeometry(R, 30, 5, 0, TAU2, 0, .62 / (1 + k * .04)); const a = g.attributes.position;
-        for (let i = 0; i < a.count; i++) { const v = new V3().fromBufferAttribute(a, i); v.y *= .55; a.setXYZ(i, v.x, v.y, v.z); } g.computeVertexNormals();
-        gl.push([g, new THREE.Matrix4().compose(ctr.clone().addScaledVector(ax, k * .1 * U - R * .55), gq, one)]); } }
-    const golM = MDC.mat(S, K.golgi, 'wet', 1, { fen: [1.9, .62] }), gol = new THREE.Mesh(MDC.merge(gl), golM); gol.userData = { id: 'golgi', priority: 1 }; G.add(gol); c.pickables.push(gol);
-    /* ---- mitochondria: 0.27 to 0.31 µm³ each, an ellipsoid of axes 5 : 1.38 : 1, 9.4 to 11% of the cytoplasm's volume, 0.35 to 0.43 per
-       µm³ of cytoplasm (HeLa cells: Posakony, England and Attardi 1977, Table II). Here 0.4 per µm³, in the half that is kept; drawn
-       bent a little, as they lie along microtubules, aligned outward from the centrosome. */
-    const vCyto = (vCell - 4 / 3 * Math.PI * NA.x * NA.y * NA.z) / (U * U * U), nMitoAll = Math.round(.4 * vCyto);
-    const c0 = Math.cbrt(.29 / (4 / 3 * Math.PI * 5 * 1.38)), MA = new V3(5 * c0, 1.38 * c0, c0).multiplyScalar(U);   // semi-axes in builder units
-    // what is already placed, in cubes of 2 units (no part is more than 1.8 units round), so a new part is tested only against its neighbours
+    const rerM = MDC.mat(S, K.rer, 'matte', 1, { fen: [.62, .3], mask: [.55, MDC.RERMASK], gz: true }), rer = new THREE.Mesh(MDC.merge(rerL), rerM); rer.userData = { id: 'er', priority: 1 }; G.add(rer); c.pickables.push(rer);
+    const rerOn = p => MDC.fen(p.x, p.y, p.z, .62) <= .3 && MDC.sn(p.x * .55 + 7.3, p.y * .55 + 2.9, p.z * .55 + 4.1) <= MDC.RERMASK && !inGz(p);
+    /* does a ball at p of radius R meet an ER sheet (where the sheet is there, not in a hole)? */
+    const hitsER = (p, R) => { const dl = p.clone().sub(C), d = new V3(dl.x / NA.x, dl.y / NA.y, dl.z / NA.z).normalize(), t1 = new V3().crossVectors(d, Math.abs(d.y) < .9 ? new V3(0, 1, 0) : new V3(1, 0, 0)).normalize(), t2 = new V3().crossVectors(d, t1), e = R / NA.length() * 1.7;
+      for (let k = 0; k < rerD.length; k++) { const sp = sheetPt(d, k); if (sp.distanceTo(p) > R + .2) continue;
+        for (const [a, b] of [[0, 0], [1, 0], [-1, 0], [0, 1], [0, -1]]) { const s2 = sheetPt(d.clone().addScaledVector(t1, a * e).addScaledVector(t2, b * e).normalize(), k); if (s2.distanceTo(p) < R + .07 && rerOn(s2)) return true; } }
+      return false; };
+    /* ---- mitochondria: 0.27 to 0.31 µm³ each on average, 9.4 to 11% of the cytoplasm's volume, 0.35 to 0.43 per µm³ of cytoplasm (HeLa
+       cells: Posakony, England and Attardi 1977, Table II). Here 0.4 per µm³ at that mean volume; each a tube with rounded ends, 0.40 to
+       0.54 µm thick, its length from a spread of volumes (log-normal, a choice: from round ones under 1 µm long to tubes of 6 µm and more,
+       the longest of them branched; 1 to 10 µm is the range found in fibroblasts), curving as it goes, more of them near the nucleus,
+       none in the Golgi's zone, none through an ER sheet. */
+    const vCyto = (vCell - 4 / 3 * Math.PI * NA.x * NA.y * NA.z) / (U * U * U), nMitoAll = Math.round(.4 * vCyto), VM = .29;
+    // what is already placed, in cubes of 2 units, so a new part is tested only against its neighbours
     const occ = [], occG = new Map(), ok3 = (x, y, z) => x + ',' + y + ',' + z;
     occ.push = function (e) { const k = ok3(Math.floor(e[0].x / 2), Math.floor(e[0].y / 2), Math.floor(e[0].z / 2)); (occG.get(k) || occG.set(k, []).get(k)).push(e); return Array.prototype.push.call(this, e); };
-    const avoid = (p, R) => { const d = p.clone().sub(C); if (MDC.ell(new V3(NA.x + R + .35, NA.y + R + .35, NA.z + R + .35), d) < 1) return true; if (p.distanceTo(cs) < 2.4 * U) return true;
-      const gx = Math.floor(p.x / 2), gy = Math.floor(p.y / 2), gz = Math.floor(p.z / 2);
+    const clash = (p, R) => { const gx = Math.floor(p.x / 2), gy = Math.floor(p.y / 2), gz = Math.floor(p.z / 2);
       for (let a = -1; a <= 1; a++) for (let b = -1; b <= 1; b++) for (let e = -1; e <= 1; e++) for (const [o, ro] of occG.get(ok3(gx + a, gy + b, gz + e)) || []) if (o.distanceToSquared(p) < (R + ro) ** 2) return true; return false; };
-    const mito = [];
-    // all of the cell's are placed (so the count is the cell's), those in the half taken away are then not drawn
-    for (let k = 0; k < nMitoAll * 40 && mito.length < nMitoAll; k++) {
-      const p = new V3((r() * 2 - 1) * E.x, (r() * 2 - 1) * E.y, (r() * 2 - 1) * E.z); if (!inCell(p, .55)) continue;
-      const dn = p.distanceTo(C) / 10; if (r() > .55 + .45 * Math.exp(-dn * dn)) continue;   // more of them round the nucleus
-      if (MDC.ell(new V3(NA.x + .3, NA.y + .3, NA.z + .3), p.clone().sub(C)) < 1) continue;
-      const s = .7 + r() * .7, R = MA.x * s * .5; if (avoid(p, R)) continue; occ.push([p, R]);
-      if (_mdV.copy(p).sub(C).dot(nN) > .5) { mito.push(null); continue; }   // in the half taken away: counted, not drawn
-      const ax = p.clone().sub(cs).normalize().add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(.9)).normalize();
-      mito.push({ p, ax, s, w: .85 + r() * .3, roll: r() * TAU2, bend: Math.floor(r() * 3) });
+    const nucD = p => { const d = p.clone().sub(C); return (Math.sqrt(MDC.ell(NA, d)) - 1) * (NA.x + NA.y + NA.z) / 3; };   // roughly, how far outside the envelope
+    const avoid = (p, R) => nucD(p) < R + .12 * U || inGz(p, R + .1 * U) || !inCell(p, R + .1) || clash(p, R);
+    // the volumes: log-normal of mean VM (sigma 0.8), scaled so that the total is the measured one
+    const vols = []; for (let i = 0; i < nMitoAll; i++) vols.push(Math.min(4, Math.max(.035, Math.exp(Math.log(VM) - .32 + .8 * gauss(r))))); { const k = nMitoAll * VM / vols.reduce((a, b) => a + b, 0); for (let i = 0; i < vols.length; i++) vols[i] *= k; }
+    vols.sort((a, b) => b - a);   // the long ones first, while there is room
+    const mito = []; let vPlaced = 0;
+    const walk = (p0, d0, n, h, R) => { const pts = [p0.clone()]; let p = p0.clone(), d = d0.clone();
+      for (let s = 1; s < n; s++) { d.add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(.22)).normalize(); const nx = p.clone().addScaledVector(d, h);
+        const dn = nx.clone().sub(C); if (nucD(nx) < R + .15 * U) { const nr = new V3(dn.x / NA.x / NA.x, dn.y / NA.y / NA.y, dn.z / NA.z / NA.z).normalize(); d.addScaledVector(nr, -d.dot(nr) * 1.4).normalize(); nx.copy(p).addScaledVector(d, h); }
+        if (avoid(nx, R) || hitsER(nx, R)) return null; p = nx; pts.push(p.clone()); }
+      return pts; };
+    for (let i = 0; i < vols.length; i++) {
+      const R = (.2 + .07 * r()) * U, vU = vols[i] * U * U * U, Lc = Math.max(0, (vU - 4 / 3 * Math.PI * R ** 3) / (Math.PI * R * R));   // the length of the straight part
+      const branched = Lc > 3.5 * U && r() < .6, h = .2 * U;
+      let placed = null;
+      for (let t = 0; t < 60 && !placed; t++) {
+        const p = new V3((r() * 2 - 1) * E.x, (r() * 2 - 1) * E.y, (r() * 2 - 1) * E.z); if (!inCell(p, .7)) continue;
+        const dn = Math.max(0, nucD(p)) / (2.6 * U); if (r() > .3 + .7 * Math.exp(-dn * dn)) continue;   // more of them near the nucleus
+        if (avoid(p, R) || hitsER(p, R)) continue;
+        const d0 = p.clone().sub(cs).normalize().add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(.8)).normalize();   // along the microtubules from the centrosome, loosely
+        const L1 = branched ? Lc * .62 : Lc, n1 = Math.max(1, Math.round(L1 / h) + 1), pts = n1 > 1 ? walk(p, d0, n1, L1 / (n1 - 1), R) : [p.clone()]; if (!pts) continue;
+        const arms = [pts];
+        if (branched) { const j = Math.floor(pts.length * (.35 + .3 * r())), dj = pts[Math.min(pts.length - 1, j + 1)].clone().sub(pts[Math.max(0, j - 1)]).normalize(), side = new V3(gauss(r), gauss(r), gauss(r)); side.addScaledVector(dj, -side.dot(dj)).normalize();
+          const L2 = Lc * .38, n2 = Math.max(2, Math.round(L2 / h) + 1), start = pts[j].clone().addScaledVector(side, R * .6);
+          pts.forEach(x => occ.push([x, R])); const b = walk(start.clone().addScaledVector(side, R * 1.5), side.clone().add(dj.clone().multiplyScalar(.4)).normalize(), n2, L2 / (n2 - 1), R);
+          for (let k = 0; k < pts.length; k++) occ.pop(); occG.forEach(a => { for (let k = a.length - 1; k >= 0; k--) if (pts.includes(a[k][0])) a.splice(k, 1); });
+          if (!b) continue; b.unshift(start); arms.push(b); }
+        placed = arms;
+      }
+      if (!placed) continue;
+      placed.forEach(a => a.forEach(x => occ.push([x, R]))); vPlaced += vols[i];
+      const drawn = placed.some(a => a.some(x => _mdV.copy(x).sub(C).dot(nN) < R));   // all in the half taken away: counted, not drawn
+      mito.push({ arms: placed, R, drawn, s0: r() * 900, v: vols[i], ctr: placed[0][Math.floor(placed[0].length / 2)] });
     }
-    const mitoDrawn = mito.filter(Boolean);
-    const bentGeo = (bend, segL, segR) => { const g = new THREE.SphereGeometry(1, segR, segL), a = g.attributes.position; g.rotateZ(Math.PI / 2);
-      for (let i = 0; i < a.count; i++) { const v = new V3().fromBufferAttribute(a, i); const bb = [0, .55, 1.0][bend]; v.y += bb * (1 - v.x * v.x) - bb * .5; a.setXYZ(i, v.x, v.y, v.z); } g.computeVertexNormals(); return g; };
-    const mitoM = MDC.mat(S, K.mito, 'wet', 1, { dark: .62 }), mitoMesh = [0, 1, 2].map(b => { const L = mitoDrawn.filter(x => x.bend === b), im = new THREE.InstancedMesh(bentGeo(b, 5, 7), mitoM, L.length); im.userData = { id: 'mito', priority: 1 }; im.frustumCulled = false; L.forEach((x, i) => { x.inst = [im, i]; }); G.add(im); c.pickables.push(im); return im; });
-    const mxOf = (x, out) => { q.setFromUnitVectors(new V3(1, 0, 0), x.ax); const qr = new THREE.Quaternion().setFromAxisAngle(new V3(1, 0, 0), x.roll); q.multiply(qr); return out.compose(x.p, q, new V3(MA.x * x.s, MA.y * x.w, MA.z * x.w)); };
-    mitoDrawn.forEach(x => { mxOf(x, m4); x.inst[0].setMatrixAt(x.inst[1], m4); });
+    const mitoDrawn = mito.filter(x => x.drawn);
+    /* one tube (an arm of a mitochondrion) with rounded ends: rings of nr vertices along the axis, every h at most; each vertex carries its
+       axis point, the axis direction, and (length along it, radius, 1 on the rounded ends) for the cut face (mdMito) */
+    const tubeInto = (B, axis, R, nr, nc, step, s0) => {
+      const curve = axis.length > 1 ? new THREE.CatmullRomCurve3(axis) : null, len = curve ? curve.getLength() : 0, nb = curve ? Math.max(2, Math.ceil(len / step) + 1) : 1;
+      const P = [], T = []; if (curve) for (let i = 0; i < nb; i++) { const u = i / (nb - 1); P.push(curve.getPointAt(u)); T.push(curve.getTangentAt(u)); } else { P.push(axis[0].clone()); T.push(new V3(1, 0, 0)); }
+      let nrm = new V3(gauss(r), gauss(r), gauss(r)); nrm.addScaledVector(T[0], -nrm.dot(T[0])).normalize(); if (nrm.lengthSq() < .5) nrm.set(0, 1, 0).addScaledVector(T[0], -T[0].y).normalize();
+      const rings = [];   // [centre, tangent, ring radius, offset along tangent, s, end]
+      for (let j = nc - 1; j >= 1; j--) { const ph = j / nc * Math.PI / 2; rings.push([P[0], T[0], R * Math.cos(ph), -R * Math.sin(ph), 0, 1]); }
+      let s = 0; for (let i = 0; i < nb; i++) { if (i) s += P[i].distanceTo(P[i - 1]); rings.push([P[i], T[i], R, 0, s, 0]); }
+      for (let j = 1; j <= nc - 1; j++) { const ph = j / nc * Math.PI / 2; rings.push([P[nb - 1], T[nb - 1], R * Math.cos(ph), R * Math.sin(ph), s, 1]); }
+      const base = B.P.length / 3; let n0 = nrm.clone(), tPrev = T[0].clone();
+      rings.forEach(([c0, t, rr, off, ss, end]) => {
+        n0.addScaledVector(t, -n0.dot(t)).normalize(); if (!isFinite(n0.x) || n0.lengthSq() < .5) n0 = new V3(1, 0, 0).addScaledVector(t, -t.x).normalize(); const b0 = new V3().crossVectors(t, n0); tPrev.copy(t);
+        for (let k = 0; k < nr; k++) { const a = k / nr * TAU2, dir = n0.clone().multiplyScalar(Math.cos(a)).addScaledVector(b0, Math.sin(a));
+          const p = c0.clone().addScaledVector(t, off).addScaledVector(dir, rr), nn = end ? p.clone().sub(c0).normalize() : dir;
+          B.P.push(p.x, p.y, p.z); B.N.push(nn.x, nn.y, nn.z); B.A.push(c0.x, c0.y, c0.z); B.T.push(t.x, t.y, t.z); B.S.push(s0 + ss, R, end, 0); } });
+      const nRing = rings.length;
+      for (let i = 0; i < nRing - 1; i++) for (let k = 0; k < nr; k++) { const a = base + i * nr + k, b = base + i * nr + (k + 1) % nr, c2 = a + nr, d2 = b + nr; B.I.push(a, b, c2, b, d2, c2); }
+      // the two tips
+      for (const [ri, c0, t, sgn, ss] of [[0, P[0], T[0], -1, 0], [nRing - 1, P[nb - 1], T[nb - 1], 1, s]]) { const tip = B.P.length / 3, p = c0.clone().addScaledVector(t, sgn * R);
+        B.P.push(p.x, p.y, p.z); B.N.push(t.x * sgn, t.y * sgn, t.z * sgn); B.A.push(c0.x, c0.y, c0.z); B.T.push(t.x, t.y, t.z); B.S.push(s0 + ss, R, 1, 0);
+        for (let k = 0; k < nr; k++) { const a = base + ri * nr + k, b = base + ri * nr + (k + 1) % nr; if (sgn < 0) B.I.push(tip, b, a); else B.I.push(tip, a, b); } }
+    };
+    const tubeGeo = (list, nr, nc, step) => { const B = { P: [], N: [], A: [], T: [], S: [], I: [] }; list.forEach(x => x.arms.forEach((a, j) => tubeInto(B, a, x.R, nr, nc, step, x.s0 + j * 37)));
+      const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(B.P, 3)); g.setAttribute('normal', new THREE.Float32BufferAttribute(B.N, 3));
+      g.setAttribute('aAx', new THREE.Float32BufferAttribute(B.A, 3)); g.setAttribute('aTg', new THREE.Float32BufferAttribute(B.T, 3)); g.setAttribute('aSr', new THREE.Float32BufferAttribute(B.S, 4));
+      g.setIndex(B.I.length / 3 > 65535 / 3 || B.P.length / 3 > 65535 ? new THREE.Uint32BufferAttribute(B.I, 1) : new THREE.Uint16BufferAttribute(B.I, 1)); g.computeBoundingSphere(); return g; };
+    const mitoM = MDC.mat(S, K.mito, 'wet', 1, { cap: 'tube' }), mitoMesh = new THREE.Mesh(tubeGeo(mitoDrawn, 6, 2, .42 * U), mitoM);
+    mitoMesh.userData = { id: 'mito', priority: 1 }; G.add(mitoMesh); c.pickables.push(mitoMesh);
     /* ---- lysosomes: 50 to 1,000 a cell, typically 0.5 µm across, 0.1 to 1.2 (BioNumbers 107483, 106072; 0.34 µm on average in HeLa);
        here 300 in the whole cell, 0.25 to 0.6 µm, more of them near the nucleus */
     const lyso = []; for (let k = 0; k < 9000 && lyso.length < 300; k++) { const p = new V3((r() * 2 - 1) * E.x, (r() * 2 - 1) * E.y, (r() * 2 - 1) * E.z); if (!inCell(p, .5)) continue; const dn = p.distanceTo(C) / 9; if (r() > .35 + .65 * Math.exp(-dn * dn)) continue;
-      if (MDC.ell(new V3(NA.x + .3, NA.y + .3, NA.z + .3), p.clone().sub(C)) < 1) continue;
-      const R = (.125 + r() * .175) * U; if (avoid(p, R)) continue; occ.push([p, R]); lyso.push(_mdV.copy(p).sub(C).dot(nN) > .4 ? null : { p, R }); }
-    const lysoD = lyso.filter(Boolean), lysoI = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(1, 1), MDC.mat(S, K.lysosome, 'matte', 1), lysoD.length);
+      const R = (.125 + r() * .175) * U; if (avoid(p, R) || hitsER(p, R)) continue; occ.push([p, R]); lyso.push(_mdV.copy(p).sub(C).dot(nN) > R ? null : { p, R }); }
+    const lysoD = lyso.filter(Boolean), lysoI = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(1, 1), MDC.mat(S, K.lysosome, 'matte', 1, { cap: 'ball' }), lysoD.length);
     lysoD.forEach((x, i) => { m4.makeScale(x.R, x.R * (.85 + r() * .3), x.R).setPosition(x.p); lysoI.setMatrixAt(i, m4); }); lysoI.frustumCulled = false; lysoI.userData = { id: 'lysosome', priority: 1 }; G.add(lysoI); c.pickables.push(lysoI);
     /* ---- vesicles near the Golgi and through the cytoplasm (a choice of number and size: tens of nanometres to 0.15 µm) */
-    const ves = []; for (let k = 0; k < 3000 && ves.length < 300; k++) { const nearG = k % 2 === 0, p = nearG ? cs.clone().addScaledVector(gDir, .6 * U).add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(1.1 * U)) : new V3((r() * 2 - 1) * E.x, (r() * 2 - 1) * E.y, (r() * 2 - 1) * E.z);
-      if (!inCell(p, .3) || gone1(p)) continue; const R = (.035 + r() * .04) * U; if (avoid(p, R)) continue; ves.push([p, R]); }
-    const vesI = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(1, 1), MDC.mat(S, K.vesicle, 'wet', 1), ves.length); ves.forEach(([p, R], i) => { m4.makeScale(R, R, R).setPosition(p); vesI.setMatrixAt(i, m4); });
+    const ves = []; for (let k = 0; k < 4000 && ves.length < 300; k++) { const nearG = k % 2 === 0, a = arc[Math.floor(r() * arc.length)], p = nearG ? a.p.clone().addScaledVector(a.d, (r() - .3) * .8 * U).add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(.35 * U)) : new V3((r() * 2 - 1) * E.x, (r() * 2 - 1) * E.y, (r() * 2 - 1) * E.z);
+      if (!inCell(p, .3) || gone1(p)) continue; const R = (.035 + r() * .04) * U; if (nucD(p) < R + .05 || clash(p, R) || (!nearG && inGz(p, R))) continue; ves.push([p, R]); }
+    const vesI = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(1, 1), MDC.mat(S, K.vesicle, 'wet', 1, { cap: 'ball' }), ves.length); ves.forEach(([p, R], i) => { m4.makeScale(R, R, R).setPosition(p); vesI.setMatrixAt(i, m4); });
     vesI.frustumCulled = false; vesI.userData = { id: 'vesicle', priority: 1, info: MDC.INFO.vesicle() }; G.add(vesI); c.pickables.push(vesI);
     /* ---- smooth ER: a net of tubules 60 to 100 nm across (BioNumbers 111388) out in the cytoplasm, meeting in threes */
-    const nodes = []; for (let k = 0; k < 6000 && nodes.length < 340; k++) { const p = new V3((r() * 2 - 1) * E.x, (r() * 2 - 1) * E.y, (r() * 2 - 1) * E.z); if (!inCell(p, .6) || _mdV.copy(p).sub(C).dot(nN) > .6) continue; if (MDC.ell(new V3(NA.x + 2.3 * U, NA.y + 2.3 * U, NA.z + 2.3 * U), p.clone().sub(C)) < 1) continue; if (nodes.some(o => o.distanceToSquared(p) < 1.1)) continue; nodes.push(p); }
+    const nodes = []; for (let k = 0; k < 6000 && nodes.length < 340; k++) { const p = new V3((r() * 2 - 1) * E.x, (r() * 2 - 1) * E.y, (r() * 2 - 1) * E.z); if (!inCell(p, .6) || _mdV.copy(p).sub(C).dot(nN) > .6) continue; if (MDC.ell(new V3(NA.x + 2.3 * U, NA.y + 2.3 * U, NA.z + 2.3 * U), p.clone().sub(C)) < 1 || inGz(p, .2)) continue; if (nodes.some(o => o.distanceToSquared(p) < 1.1)) continue; nodes.push(p); }
     const serL = [], deg = nodes.map(() => 0), seen = new Set();
     nodes.forEach((p, i) => { const nb = nodes.map((o, j) => [o.distanceToSquared(p), j]).filter(([d, j]) => j !== i && d < 7).sort((a, b) => a[0] - b[0]);
       for (const [, j] of nb) { if (deg[i] >= 3) break; if (deg[j] >= 3 || seen.has(Math.min(i, j) + ':' + Math.max(i, j))) continue; seen.add(Math.min(i, j) + ':' + Math.max(i, j)); deg[i]++; deg[j]++;
         const a = p, b = nodes[j], mid = a.clone().lerp(b, .5).add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(.25));
         serL.push([new THREE.TubeGeometry(new THREE.CatmullRomCurve3([a, mid, b]), 5, .04 * U, 4, false)]); } });
     const ser = new THREE.Mesh(MDC.merge(serL), MDC.mat(S, K.ser, 'matte', 1)); ser.userData = { id: 'er', priority: 1 }; G.add(ser); c.pickables.push(ser);
-    /* ---- microtubules: from the centrosome outward to the cortex, 25 nm across (OpenStax Biology 2e, 4.5): drawn as lines one pixel wide
-       from afar (far wider than they are), as tubes of their true width close in. How many a cell has is not sourced here: 140 are drawn. */
+    /* ---- microtubules: from the centrosome outward to the cortex, 25 nm across (OpenStax Biology 2e, 4.5): drawn as faint lines from
+       afar (far wider than they are), as tubes of their true width close in. How many a cell has is not sourced here: 140 are drawn. */
     const mtP = [], mtCurves = [];
-    for (let k = 0; k < 400 && mtCurves.length < 140; k++) { let d = new V3(gauss(r), gauss(r), gauss(r)).normalize(); if (d.dot(nN) > .35) continue; const pts = [cs.clone()]; let p = cs.clone();
-      for (let s = 0; s < 60; s++) { d.add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(.12)).normalize(); const nx = p.clone().addScaledVector(d, .35 * U);
+    for (let k = 0; k < 600 && mtCurves.length < 140; k++) { let d = new V3(gauss(r), gauss(r), gauss(r)).normalize(); if (d.dot(nN) > .2) continue; const pts = [cs.clone()]; let p = cs.clone();
+      for (let s = 0; s < 60; s++) { d.add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(s < 4 ? .03 : .12)).normalize(); const nx = p.clone().addScaledVector(d, .35 * U);
         const dn = nx.clone().sub(C); if (MDC.ell(new V3(NA.x + .25, NA.y + .25, NA.z + .25), dn) < 1) { const nr = new V3(dn.x / NA.x / NA.x, dn.y / NA.y / NA.y, dn.z / NA.z / NA.z).normalize(); d.addScaledVector(nr, -d.dot(nr) * 1.3).normalize(); continue; }
         if (!inCell(nx, .25)) break; p = nx; pts.push(p.clone()); }
       if (pts.length < 6) continue; mtCurves.push(pts); for (let i = 1; i < pts.length; i++) mtP.push(pts[i - 1].x, pts[i - 1].y, pts[i - 1].z, pts[i].x, pts[i].y, pts[i].z); }
     const lineMat = (col, op) => { const m = new THREE.LineBasicMaterial({ color: col, transparent: true, opacity: op, depthWrite: false }); return MDC.cut(m, S, 1, { dark: 0 }); };
-    const mtg = new THREE.BufferGeometry(); mtg.setAttribute('position', new THREE.Float32BufferAttribute(mtP, 3)); const mtL = new THREE.LineSegments(mtg, lineMat(K.mt, .55)); mtL.userData.noHit = true; G.add(mtL);
+    const mtg = new THREE.BufferGeometry(); mtg.setAttribute('position', new THREE.Float32BufferAttribute(mtP, 3)); const mtL = new THREE.LineSegments(mtg, lineMat(K.mt, .18)); mtL.userData.noHit = true; G.add(mtL);
     let mtT = null; const mtTubes = () => { if (mtT) return mtT; mtT = new THREE.Mesh(MDC.merge(mtCurves.map(P => [new THREE.TubeGeometry(new THREE.CatmullRomCurve3(P), P.length, .0125 * U, 5, false)])), MDC.mat(S, K.mt, 'matte', 1)); mtT.userData = { id: 'microtubule', priority: 1.1, info: MDC.INFO.microtubule() }; mtT.visible = false; G.add(mtT); c.pickables.push(mtT); return mtT; };
-    /* ---- the actin cortex: a mesh of filaments just inside the membrane, 7 nm thick (OpenStax 4.5); drawn as one-pixel lines */
+    /* ---- the actin cortex: a mesh of filaments just inside the membrane, 7 nm thick (OpenStax 4.5); drawn as faint lines, only closer in */
     const acP = []; for (let k = 0; k < 9000; k++) { const d = new V3(gauss(r), gauss(r), gauss(r)).normalize(); const p = new V3(d.x * E.x, d.y * E.y, d.z * E.z).multiplyScalar(.985); if (gone1(p)) continue;
       const nr = new V3(p.x / E.x / E.x, p.y / E.y / E.y, p.z / E.z / E.z).normalize(), t = new V3(gauss(r), gauss(r), gauss(r)); t.addScaledVector(nr, -t.dot(nr)).normalize().multiplyScalar(.22 + r() * .3);
       acP.push(p.x - t.x, p.y - t.y, p.z - t.z, p.x + t.x, p.y + t.y, p.z + t.z); }
-    const acg = new THREE.BufferGeometry(); acg.setAttribute('position', new THREE.Float32BufferAttribute(acP, 3)); const acL = new THREE.LineSegments(acg, lineMat(K.actin, .3)); acL.userData.noHit = true; G.add(acL);
+    const acg = new THREE.BufferGeometry(); acg.setAttribute('position', new THREE.Float32BufferAttribute(acP, 3)); const acL = new THREE.LineSegments(acg, lineMat(K.actin, .16)); acL.userData.noHit = true; G.add(acL);
     /* ---- ribosomes, 25 to 30 nm (BioNumbers 100483): 3 to 10 million in a HeLa cell (BioNumbers 107347; Duncan and Hershey 1983; a
        review, 2001), so roughly 2,000 to 6,000 per µm³ of cytoplasm. Far too many to draw: only those within a slab 0.1 µm deep behind the
        cut face, near where the camera looks, at 2,500 per µm³ (free), and on the rough ER sheets there; drawn only once they are more than
@@ -592,7 +749,7 @@ const MDC = {
     ribI.userData = { id: 'ribosome', priority: .8 }; G.add(ribI); c.pickables.push(ribI);
     const mitoGrid = new Map(), gk = (x, y, z) => x + ',' + y + ',' + z; occ.forEach(([p, R]) => { const k0 = gk(Math.floor(p.x), Math.floor(p.y), Math.floor(p.z)); (mitoGrid.get(k0) || mitoGrid.set(k0, []).get(k0)).push([p, R]); });
     const inOrg = p => { const d = p.clone().sub(C); if (MDC.ell(new V3(NA.x + .05, NA.y + .05, NA.z + .05), d) < 1) return true; const x = Math.floor(p.x), y = Math.floor(p.y), z = Math.floor(p.z);
-      for (let a = -1; a <= 1; a++) for (let b = -1; b <= 1; b++) for (let e = -1; e <= 1; e++) for (const [o, R] of mitoGrid.get(gk(x + a, y + b, z + e)) || []) if (o.distanceToSquared(p) < R * R) return true; return false; };
+      for (let a = -1; a <= 1; a++) for (let b = -1; b <= 1; b++) for (let e = -1; e <= 1; e++) for (const [o, R] of mitoGrid.get(gk(x + a, y + b, z + e)) || []) if (o.distanceToSquared(p) < R * R * 1.1) return true; return inGz(p, -.2 * U); };
     let ribAt = null;
     const ribFill = T => {   // ribosomes in cubes of 1 builder unit near T (builder coordinates), each cube from its own seed, so the pattern holds still
       const perCube = Math.round(2500 / (U * U * U)), out = []; const R = 3;
@@ -608,33 +765,42 @@ const MDC = {
         if (p.distanceToSquared(T) > 9 || p.clone().sub(C).dot(nN) > 0 || !rerOn(p)) continue; out.push(p); }
       out.forEach((p, i) => { m4.makeTranslation(p.x, p.y, p.z); ribI.setMatrixAt(i, m4); }); ribI.count = out.length; ribI.instanceMatrix.needsUpdate = true; ribAt = T.clone(); S.ribN = out.length;
     };
-    /* ---- close in: the mitochondria near where the camera looks get their inner membrane, folded into cristae across the long axis
-       (the folds' number and spacing are a choice, about one per 0.12 µm of length) */
-    const crG = new THREE.SphereGeometry(1, 14, 10), crM = MDC.mat(S, K.cristae, 'wet', 1, { dark: .8 }), crI = new THREE.InstancedMesh(crG, crM, 60 * 18); crI.count = 0; crI.frustumCulled = false; crI.userData = { id: 'mito', priority: 1 }; G.add(crI); c.pickables.push(crI);
-    const innerM = MDC.mat(S, K.mito, 'wet', 1, { dark: .5 }), inI = [0, 1, 2].map(b => { const im = new THREE.InstancedMesh(bentGeo(b, 16, 20), innerM, 60); im.count = 0; im.frustumCulled = false; im.userData = { id: 'mito', priority: 1 }; G.add(im); c.pickables.push(im); return im; });
-    let near = [], nearAt = null; const zero = new THREE.Matrix4().makeScale(0, 0, 0);
+    /* ---- close in: the mitochondria near where the camera looks are drawn again with finer rings over the coarse ones (which lie inside
+       them), so their outline is round; their cut faces are the same (mdMito) */
+    const mitoHi = new THREE.Mesh(new THREE.BufferGeometry(), mitoM); mitoHi.userData = { id: 'mito', priority: 1 }; mitoHi.visible = false; mitoHi.userData.noHit = true; mitoHi.frustumCulled = false; G.add(mitoHi);
+    let nearAt = null;
     const mitoNear = T => {
-      near.forEach(x => { mxOf(x, m4); x.inst[0].setMatrixAt(x.inst[1], m4); x.inst[0].instanceMatrix.needsUpdate = true; });
-      near = T ? mitoDrawn.filter(x => x.p.distanceToSquared(T) < 16).sort((a, b) => a.p.distanceToSquared(T) - b.p.distanceToSquared(T)).slice(0, 60) : [];
-      let k = 0; const nb = [0, 0, 0]; near.forEach(x => { x.inst[0].setMatrixAt(x.inst[1], zero); x.inst[0].instanceMatrix.needsUpdate = true; mxOf(x, m4); inI[x.bend].setMatrixAt(nb[x.bend]++, m4);
-        const bb = [0, .55, 1.0][x.bend], nC = Math.max(6, Math.round(x.s * 13)); for (let i = 0; i < nC && k < crI.instanceMatrix.count; i++) { const t = -.82 + 1.64 * (i + .5) / nC, wy = Math.sqrt(Math.max(0, 1 - t * t)), sdir = i % 2 ? 1 : -1;
-          const loc = new THREE.Matrix4().compose(new V3(t, sdir * .14 * wy + bb * (1 - t * t) - bb * .5, 0), new THREE.Quaternion(), new V3(.022 / x.s, .78 * wy, .8 * wy)); crI.setMatrixAt(k++, m4.clone().multiply(loc)); } });
-      inI.forEach((im, b) => { im.count = nb[b]; im.instanceMatrix.needsUpdate = true; }); crI.count = k; crI.instanceMatrix.needsUpdate = true; nearAt = T ? T.clone() : null;
+      const near = T ? mitoDrawn.filter(x => x.ctr.distanceToSquared(T) < 25).sort((a, b) => a.ctr.distanceToSquared(T) - b.ctr.distanceToSquared(T)).slice(0, 70) : [];
+      mitoHi.geometry.dispose(); mitoHi.geometry = near.length ? tubeGeo(near, 18, 6, .05 * U) : new THREE.BufferGeometry(); mitoHi.visible = near.length > 0; nearAt = T ? T.clone() : null;
     };
-    /* ---- labels: on the parts themselves */
+    /* ---- labels: on the parts themselves. Where names crowd, the nucleus, the mitochondria and the ER keep theirs (data-pri, js/engine.js
+       declutterLabels); a name is shown only while its part is at least about 6 px across on the screen (dim: the part's width, µm); on a
+       phone only those three and the Golgi */
     const anchor = p => { const o = new THREE.Object3D(); o.position.copy(p); G.add(o); return o; };
+    const _ws = new V3(), _we = new V3(), pxPerUnit = (o, f) => { const cmr = f.cam; if (!cmr) return 1e9; o.getWorldPosition(_mdV); _we.setFromMatrixPosition(cmr.matrixWorld); const d = Math.max(1e-30, _we.distanceTo(_mdV)); return G.getWorldScale(_ws).x / d * H / (2 * Math.tan((cmr.fov || 50) * Math.PI / 360)); };
     // a name's anchor stands for its part (its id and card), so a click on the name goes to that place, not to the middle of the whole set
-    const lbl = (o, t, pk, x) => { o.userData = Object.assign({}, pk.userData); const L = F.label(o, t, x || {}); L.scaleRef = c; return L; };
+    const lbl = (o, t, pk, pri, dimUm) => { o.userData = Object.assign({}, pk.userData); const L = F.label(o, t, {}); L.scaleRef = c; L.el.dataset.pri = pri;
+      L.minSizeFn = f => (W > 860 ? !L.phone : pri >= 2.5 && !L.desk) && (!dimUm || dimUm * U * pxPerUnit(o, f) >= 6); return L; };
     const topOfNuc = C.clone().addScaledVector(up, NA.y * .98).addScaledVector(nN, -.8);
-    lbl(anchor(topOfNuc), 'Nucleus', env);
-    lbl(anchor(C.clone().add(NUCL[0][0]).addScaledVector(up, NUCL[0][1])), 'Nucleolus', nlMesh);
-    const rerA = C.clone().add(nucSurf(rt.clone().multiplyScalar(-.75).addScaledVector(up, .45).normalize(), new V3()).multiplyScalar(1.12)); lbl(anchor(rerA), 'Rough endoplasmic reticulum', rer);
-    const fm = mitoDrawn.filter(x => x.p.clone().sub(C).dot(nN) > -1.6 && x.p.clone().sub(C).dot(rt) > 4).sort((a, b) => b.p.y - a.p.y)[0] || mitoDrawn[0]; if (fm) lbl(anchor(fm.p.clone().addScaledVector(up, MA.y * fm.w)), 'Mitochondrion', mitoMesh[fm.bend]);
-    lbl(anchor(cs.clone().addScaledVector(side, 1.55 * U).addScaledVector(gDir, .65 * U)), 'Golgi apparatus', gol);   // on the ribbon itself (a name over another part takes its clicks)
-    lbl(anchor(cs.clone().addScaledVector(up, .35 * U)), 'Centrosome', cen);
-    const fl = lysoD.filter(x => x.p.clone().sub(C).dot(nN) > -1.5).sort((a, b) => a.p.x - b.p.x)[0]; if (fl) lbl(anchor(fl.p.clone().addScaledVector(up, fl.R)), 'Lysosome', lysoI);
-    const sn = nodes.filter(p => p.clone().sub(C).dot(nN) > -1.5).sort((a, b) => a.y - b.y)[0]; if (sn) lbl(anchor(sn), 'Smooth endoplasmic reticulum', ser);
-    const ribL = lbl(anchor(new V3()), 'Ribosomes (true size)', ribI); ribL.minSizeFn = () => ribI.visible && ribI.count > 0;
+    lbl(anchor(topOfNuc), 'Nucleus', env, 3);
+    lbl(anchor(C.clone().add(NUCL[0][0]).addScaledVector(up, NUCL[0][1])), 'Nucleolus', nlMesh, 2, 1.3);
+    const rerA = C.clone().add(nucSurf(rt.clone().multiplyScalar(-.75).addScaledVector(up, .45).normalize(), new V3()).multiplyScalar(1.12)); lbl(anchor(rerA), 'Rough endoplasmic reticulum', rer, 3).desk = true;
+    // the mitochondrion named: one cut by the plane, low and to the right of the nucleus, in the open
+    const fm = mitoDrawn.map(x => [x, x.arms[0].find(p => Math.abs(p.clone().sub(C).dot(nN)) < x.R * .6)]).filter(([x, p]) => p && p.clone().sub(C).dot(rt) > 3.2 * U && p.clone().sub(C).dot(up) < -1 * U && nucD(p) > 1.2 * U)
+      .sort((a, b) => b[1].clone().sub(C).dot(rt) - a[1].clone().sub(C).dot(rt))[2] || [mitoDrawn[0], mitoDrawn[0].ctr];
+    lbl(anchor(fm[1].clone().addScaledVector(up, fm[0].R)), 'Mitochondrion', mitoMesh, 3, .45).desk = true;
+    /* on a phone the cell fills the width and the top of the screen is the buttons': three names put lower and nearer the middle */
+    const fmP = mitoDrawn.map(x => [x, x.arms[0].find(p => Math.abs(p.clone().sub(C).dot(nN)) < x.R * .6)]).filter(([x, p]) => p && p.clone().sub(C).dot(up) < -(NA.y + 1.2 * U) && Math.abs(p.clone().sub(C).dot(rt)) < 2.5 * U)
+      .sort((a, b) => Math.abs(a[1].clone().sub(C).dot(rt) - 1.5 * U) - Math.abs(b[1].clone().sub(C).dot(rt) - 1.5 * U))[0];
+    if (fmP) lbl(anchor(fmP[1].clone().addScaledVector(up, fmP[0].R)), 'Mitochondrion', mitoMesh, 3, .45).phone = true;
+    lbl(anchor(C.clone().add(nucSurf(rt.clone().multiplyScalar(-.8).addScaledVector(up, -.55).normalize(), new V3()).multiplyScalar(1.12))), 'Rough endoplasmic reticulum', rer, 3).phone = true;
+    const gLow = arc.reduce((a, b) => b.p.clone().sub(C).dot(up) < a.p.clone().sub(C).dot(up) ? b : a); lbl(anchor(gLow.p.clone().addScaledVector(nN, .1 * U)), 'Golgi apparatus', gol, 2.6, .6).phone = true;
+    const ga = arc[Math.floor(arc.length / 2) + 1]; lbl(anchor(ga.p.clone().addScaledVector(nN, .1 * U)), 'Golgi apparatus', gol, 2.6, .6).desk = true;
+    lbl(anchor(cs.clone().addScaledVector(nN, .1 * U)), 'Centrosome', cen, 1, .25);
+    const fl = lysoD.filter(x => x.p.clone().sub(C).dot(nN) > -.6 * U && x.p.clone().sub(C).dot(rt) < -3 * U).sort((a, b) => a.p.clone().sub(C).dot(up) - b.p.clone().sub(C).dot(up))[0]; if (fl) lbl(anchor(fl.p.clone().addScaledVector(up, fl.R)), 'Lysosome', lysoI, 2, .4);
+    const sn = nodes.filter(p => p.clone().sub(C).dot(nN) > -1.5).sort((a, b) => a.y - b.y)[0]; if (sn) lbl(anchor(sn), 'Smooth endoplasmic reticulum', ser, 2, 1);
+    const ribL = lbl(anchor(new V3()), 'Ribosomes (true size)', ribI, 2); ribL.minSizeFn = () => ribI.visible && ribI.count > 0 && W > 860;
+    F.labels.forEach(L => { if (L.el.textContent === 'Cell membrane' && !L.el.dataset.pri) L.el.dataset.pri = 2; });
     /* the frame's per-frame step: detail where the camera is close */
     let tChk = 0; const _T = new V3();
     S.step = () => {
@@ -643,8 +809,8 @@ const MDC = {
       const close = here && D < 1.1e-5, mtClose = here && D < 7e-6;
       if (close && (!ribAt || ribAt.distanceTo(Tl) > 1.2)) ribFill(Tl); ribI.visible = close && here && D < 9e-6;
       if (ribI.visible) { const lp = Tl.clone(); lp.addScaledVector(nN, -.05); ribL.obj.position.copy(lp); }
-      if (close && (!nearAt || nearAt.distanceTo(Tl) > 1)) mitoNear(Tl); else if (!close && near.length) mitoNear(null);
-      mtTubes().visible = mtClose; mtL.visible = !mtClose;
+      if (close && (!nearAt || nearAt.distanceTo(Tl) > 1)) mitoNear(Tl); else if (!close && nearAt) mitoNear(null);
+      mtTubes().visible = mtClose; mtL.visible = !mtClose; acL.visible = here && D < 2.2e-5;
     };
     F._mdcStep = S.step;
     /* clicks: what is cut away is not hit; the membrane only at its cut edge or where nothing else is; otherwise the nearest thing */
@@ -653,53 +819,86 @@ const MDC = {
         if (id === 'chromatin') return eA > -.03 && eB > -.03 && eN > -.03;                                           // a face of the cut-out eighth: only where it is drawn
         if (id === 'nucleus' || id === 'nucleolus' || id === 'pore') return !(eA > 0 && eB > 0 && eN > 0);
         if (k.obj === rer && !rerOn(p)) return false;                                                                  // a hole in a sheet (the shader's, the same noise)
-        if (k.obj === gol && MDC.fen(p.x, p.y, p.z, 1.9) > .62) return false;
         return !gone1(p) || k.obj === rimM; });
       const solid = ok.filter(k => !/^(membrane|cytoplasm)$/.test(k.obj.userData.id)); if (solid.length) return solid.reduce((a, b) => a.hit.distance <= b.hit.distance ? a : b);
       return ok.find(k => k.obj.userData.id === 'cytoplasm') || ok[0] || null;
     };
     if (F._mdcClip0 === undefined) F._mdcClip0 = F.coreClip || null;
     F.coreClip = p => { const l = G.worldToLocal(p.clone()); return l.clone().sub(C).dot(nN) > .12 && MDC.ell(new V3(NA.x + .1, NA.y + .1, NA.z + .1), l.clone().sub(C)) > 1; };
-    S.counts = { mitoAll: mito.length, vCyto, mitoDrawn: mitoDrawn.length, lyso: lysoD.length, lysoAll: lyso.length, pores: pores.length, poresAll: nPore, ves: ves.length, ser: serL.length, mt: mtCurves.length, vCell: vCell / (U * U * U), vNuc: 4 / 3 * Math.PI * NA.x * NA.y * NA.z / (U * U * U) };
+    const lens = mito.map(x => x.arms.reduce((a, arm) => a + (arm.length > 1 ? new THREE.CatmullRomCurve3(arm).getLength() : 0), 0) / U + 2 * x.R / U).sort((a, b) => a - b);
+    S.counts = { mitoAll: mito.length, mitoWanted: nMitoAll, vMito: vPlaced, vCyto, mitoDrawn: mitoDrawn.length, mitoBranched: mito.filter(x => x.arms.length > 1).length, mitoLen: [lens[0], lens[Math.floor(lens.length / 2)], lens[lens.length - 1]],
+      lyso: lysoD.length, lysoAll: lyso.length, pores: pores.length, poresAll: placedAll, poresWanted: nPore, ves: ves.length, ser: serL.length, mt: mtCurves.length, vCell: vCell / (U * U * U), vNuc: vNucUm, golgiStacks: NST };
     F._mdc = S; c.nucR = NA; return S;
   },
-  /* the cut faces of the nucleus: chromatin as a texture of noise in two tones, heterochromatin (dense) at the envelope and round the
-     nucleoli, euchromatin (loose) between; the nucleoli where a face passes through them */
+  RERMASK: -.02,   // where the noise is above this, an ER sheet is not there (about half of each sheet, in patches)
+  TINT: 0x434950, FADE_UM: 1.5, FADE_MAX: .9, VEIL: .3,   // VEIL: what lies more than about 0.1 µm (0.12 builder units) under the face is seen through it, as through frosted glass   // the cytosol's tint (as shown), and how parts behind the cut face fade into it: to 1 - 1/e at 1.5 µm, at most 90%
+  /* the pore's look: a ring raised from the envelope (a relief map) round a dark channel, in the envelope's own colour */
+  poreTex() {
+    if (MDC._pore) return MDC._pore; const n = 64, cv = document.createElement('canvas'), cn = document.createElement('canvas'); cv.width = cv.height = cn.width = cn.height = n;
+    const g = cv.getContext('2d'), gn = cn.getContext('2d'), im = g.createImageData(n, n), imn = gn.createImageData(n, n);
+    const h = r => Math.exp(-(((r - .66) / .2) ** 2)) - .7 * Math.exp(-((r / .3) ** 2));   // the ring's height against the radius (1 = 60 nm), the channel sunk
+    for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) { const u = (x + .5) / n * 2 - 1, v = (y + .5) / n * 2 - 1, r = Math.hypot(u, v), i = 4 * (y * n + x);
+      const e = 1.5 / n, dx = (h(Math.hypot(u + e, v)) - h(Math.hypot(u - e, v))) / (2 * e), dy = (h(Math.hypot(u, v + e)) - h(Math.hypot(u, v - e))) / (2 * e), k = .09, L = Math.hypot(dx * k, dy * k, 1);
+      const sh = r < .42 ? .45 + .55 * Math.min(1, (Math.max(0, r - .1) / .32) ** 2) : 1;   // the channel: dark at its middle
+      im.data.set([255 * sh * .98, 255 * sh * .98, 255 * sh, r < 1 ? 255 : 0], i);
+      imn.data.set([(-dx * k / L * .5 + .5) * 255, (dy * k / L * .5 + .5) * 255, (1 / L * .5 + .5) * 255, 255], i); }
+    g.putImageData(im, 0, 0); gn.putImageData(imn, 0, 0);
+    const map = new THREE.CanvasTexture(cv), nrm = new THREE.CanvasTexture(cn); map.encoding = THREE.sRGBEncoding;
+    return (MDC._pore = { map, nrm });
+  },
+  /* the cut faces of the nucleus, as an electron micrograph of a section shows chromatin (a texture of noise, not a map of real
+     chromatin): fine grain everywhere, a dense band of heterochromatin about 0.3 µm deep under the envelope, dense clumps round the
+     nucleoli and scattered through, looser euchromatin between; the nucleoli with a sharp edge, granular, with paler fibrillar centres.
+     The faces are lit half from the lamp and half as if facing the eye, so that no face of the cut is in black. */
   capMat(S, NA, NUCL, nN) {
-    const m = MD.mat(MDC.COL.eu, 'matte'); m._lkUn = true; m.side = THREE.DoubleSide;
-    const het = new THREE.Color(MDC.COL.hetero), nl = new THREE.Color(MDC.COL.nucleolus);
-    LOOK.patch(m, 'mdcap', sh => {
+    const m = MD.mat(MDC.COL.eu, 'matte'); m._lkUn = true; m.side = THREE.DoubleSide; m.extensions = { derivatives: true };
+    const het = new THREE.Color(MDC.COL.hetero), nl = new THREE.Color(MDC.COL.nucleolus), U = MDC.U;
+    LOOK.patch(m, 'mdcap2', sh => {
       Object.assign(sh.uniforms, S.uni);
       sh.vertexShader = 'uniform mat4 uMdW2L;\nvarying vec3 vMdP;\n' + sh.vertexShader.replace('#include <project_vertex>', '#include <project_vertex>\n\tvMdP = ( uMdW2L * modelMatrix * vec4( transformed, 1.0 ) ).xyz;');
-      sh.fragmentShader = `uniform vec3 uMdC, uMdN, uMdA, uMdB, uMdN2;\nvarying vec3 vMdP;
-	float mdH( vec3 p ) { return fract( sin( dot( p, vec3( 127.1, 311.7, 74.7 ) ) ) * 43758.5453 ); }
-	float mdV( vec3 p ) { vec3 i = floor( p ), f = fract( p ); f = f * f * ( 3.0 - 2.0 * f );
-		return mix( mix( mix( mdH( i ), mdH( i + vec3( 1, 0, 0 ) ), f.x ), mix( mdH( i + vec3( 0, 1, 0 ) ), mdH( i + vec3( 1, 1, 0 ) ), f.x ), f.y ),
-		            mix( mix( mdH( i + vec3( 0, 0, 1 ) ), mdH( i + vec3( 1, 0, 1 ) ), f.x ), mix( mdH( i + vec3( 0, 1, 1 ) ), mdH( i + vec3( 1, 1, 1 ) ), f.x ), f.y ), f.z ); }
-` + sh.fragmentShader.replace('void main() {', `void main() {
+      sh.fragmentShader = `uniform vec3 uMdC, uMdN, uMdA, uMdB, uMdN2, uMdE, uMdNv, uMdTint; uniform vec2 uMdFade; uniform vec4 uMdGz[${MDC.GZN}];\nvarying vec3 vMdP;\n` + MDC.SN + MDC.GLSL
+        + `float mdF( vec3 p ) { return 0.5 * mdV( p ) + 0.3 * mdV( p * 2.03 + 11.0 ) + 0.2 * mdV( p * 4.11 + 23.0 ); }\n` + sh.fragmentShader.replace('void main() {', `void main() {
 	{ vec3 d = vMdP - uMdC; float eA = dot( d, uMdA ), eB = dot( d, uMdB ), eN = dot( d, uMdN2 );
 	  // a face lies on one of the three planes; it shows only where the other two say the point is in the eighth that was cut out
 	  float tol = 0.02; if ( !( ( abs( eA ) < tol || eA > 0.0 ) && ( abs( eB ) < tol || eB > 0.0 ) && ( abs( eN ) < tol || eN > 0.0 ) ) ) discard; }`)
+        .replace('#include <normal_fragment_maps>', '#include <normal_fragment_maps>\n\tnormal = normalize( mix( normal, normalize( vViewPosition ), 0.55 ) );')
         .replace('#include <color_fragment>', `#include <color_fragment>
-	{ vec3 d = vMdP - uMdC; vec3 e = d / vec3( ${NA.x.toFixed(3)}, ${NA.y.toFixed(3)}, ${NA.z.toFixed(3)} ); float rim = 1.0 - length( e );
-	  float n = 0.45 * mdV( vMdP * 5.5 ) + 0.35 * mdV( vMdP * 12.0 + 4.0 ) + 0.2 * mdV( vMdP * 26.0 + 9.0 );
-	  float het = smoothstep( 0.09, 0.0, rim ) * 0.9 + smoothstep( 0.25, 0.08, rim ) * 0.25;
-	  ${NUCL.map(([p, R], i) => `float dn${i} = length( d - vec3( ${p.x.toFixed(3)}, ${p.y.toFixed(3)}, ${p.z.toFixed(3)} ) ) - ${R.toFixed(3)}; het = max( het, smoothstep( 0.45, 0.0, dn${i} ) * 0.8 );`).join('\n\t  ')}
-	  float k = smoothstep( 0.52 - 0.3 * het, 0.68 - 0.3 * het, n );
-	  k = k * 0.8;
-	  diffuseColor.rgb = mix( diffuseColor.rgb, vec3( ${het.r.toFixed(3)}, ${het.g.toFixed(3)}, ${het.b.toFixed(3)} ), k );
-	  ${NUCL.map((_, i) => `if ( dn${i} < 0.0 ) diffuseColor.rgb = vec3( ${nl.r.toFixed(3)}, ${nl.g.toFixed(3)}, ${nl.b.toFixed(3)} ) * ( 0.7 + 0.6 * mdV( vMdP * 14.0 ) ) * ( 0.85 + 0.3 * mdV( vMdP * 40.0 ) );`).join('\n\t  ')} }`);
+	{ vec3 d = vMdP - uMdC; vec3 e = d / vec3( ${NA.x.toFixed(3)}, ${NA.y.toFixed(3)}, ${NA.z.toFixed(3)} ); float depth = ( 1.0 - length( e ) ) * ${((NA.x + NA.y + NA.z) / 3 / U).toFixed(3)};   // µm under the envelope
+	  vec3 P = vMdP / ${U.toFixed(2)};   // µm
+	  float fw = length( fwidth( P ) );
+	  float fine = mix( 0.6 * mdV( P * 60.0 ) + 0.4 * mdV( P * 130.0 + 7.0 ), 0.5, smoothstep( 0.004, 0.015, fw ) ), mid = mdF( P * 9.0 ), coarse = mdF( P * 2.2 + 5.0 );
+	  float band = 1.0 - smoothstep( 0.22, 0.36, depth + 0.08 * ( mid - 0.5 ) );   // heterochromatin under the envelope, about 0.3 µm deep
+	  float clump = smoothstep( 0.5, 0.75, coarse * 0.55 + mid * 0.45 );   // clumps through the nucleus, soft edged
+	  float het = max( band * 0.95, clump * 0.85 );
+	  ${NUCL.map(([p, R], i) => `float dn${i} = ( length( d - vec3( ${p.x.toFixed(3)}, ${p.y.toFixed(3)}, ${p.z.toFixed(3)} ) ) - ${R.toFixed(3)} ) / ${U.toFixed(2)}; het = max( het, ( 1.0 - smoothstep( 0.05, 0.3 + 0.1 * mid, dn${i} ) ) * 0.9 );`).join('\n\t  ')}
+	  het = clamp( het * ( 0.75 + 0.5 * mid ), 0.0, 1.0 );
+	  vec3 cE = diffuseColor.rgb * ( 0.78 + 0.3 * fine + 0.12 * ( mid - 0.5 ) ), cH = vec3( ${het.r.toFixed(3)}, ${het.g.toFixed(3)}, ${het.b.toFixed(3)} ) * ( 0.85 + 0.3 * fine );
+	  diffuseColor.rgb = mix( cE, cH, het );
+	  ${NUCL.map((_, i) => `{ float ed = clamp( 0.5 - dn${i} / max( fw, 0.004 ), 0.0, 1.0 ); float gr = 0.65 + 0.5 * mdV( P * 45.0 + 3.0 ) * ( 1.0 - smoothstep( 0.008, 0.02, fw ) ) + 0.25 * mdF( P * 12.0 );
+	    float fc = smoothstep( 0.62, 0.7, mdF( P * 5.0 + 7.0 ) );   // fibrillar centres: paler
+	    vec3 cN = vec3( ${nl.r.toFixed(3)}, ${nl.g.toFixed(3)}, ${nl.b.toFixed(3)} ) * gr; cN = mix( cN, vec3( ${(nl.r * 1.9).toFixed(3)}, ${(nl.g * 1.9).toFixed(3)}, ${(nl.b * 1.8).toFixed(3)} ), fc * 0.8 );
+	    diffuseColor.rgb = mix( diffuseColor.rgb, cN, ed ); }`).join('\n\t  ')} }`);
     });
     return m;
   },
-  /* the whole cell's note: what is drawn, how many of each against how many a cell has, and what is left out. The old schematic's note
-     (set again whenever the cell's view is switched) is replaced by this one; the scene's kind (MD.kind) still leads it. */
+  /* the whole cell's note: two sentences in the card; what is drawn, how many of each against how many a cell has, and what is left out
+     in a section of the panel, "About this picture", shut until opened. The old schematic's note (set again whenever the cell's view is
+     switched) is replaced by this one; the scene's kind (MD.kind) still leads it. */
   note(F, S) {
     const n = S.counts, f = x => Math.round(x).toLocaleString('en-GB'), r2 = x => Math.round(x / 100) * 100;
-    const text = `an animal cell cut open, at its true size (20 µm across), with counts and sizes from measurements of human HeLa cells. The nucleus is 10% of the cell's volume; ${f(n.pores)} pores are drawn on it, at the measured density (about 16 per µm²). ${f(n.mitoDrawn)} mitochondria of 0.29 µm³ are drawn in the half kept (about ${f(r2(n.mitoAll))} in the whole cell, ${(n.mitoAll / n.vCyto).toFixed(2)} per µm³ of cytoplasm; 0.35 to 0.43 measured), and ${f(n.lyso)} lysosomes. The rough ER is drawn as sheets joined to the nuclear envelope, the smooth ER as tubules, the Golgi as a ribbon of five stacks beside the centrosome. Microtubules and the actin under the membrane are drawn as lines, far wider than they are, until close in. Ribosomes (3 to 10 million in a cell) are drawn only close in, in a thin layer behind the cut face. Not drawn: the cell's roughly 2 billion other protein molecules, the water and small molecules between, the intermediate filaments. The arrangement is invented and the shapes smoothed.`;
+    const text = `an animal cell cut open, at its true size (20 µm across), with counts and sizes measured in human HeLa cells. Colours are a code, and the parts behind the cut face fade into it with depth.`;
     const d = Object.getOwnPropertyDescriptor(F, 'note'), get = d && d.get ? d.get : () => F._mdcN0, set = d && d.set ? d.set : v => { F._mdcN0 = v; };
     Object.defineProperty(F, 'note', { configurable: true, enumerable: true, get, set: v => set.call(F, /schematic animal cell/i.test(String(v)) ? text : v) });
     F.note = text;
+    const P = s => `<p>${s}</p>`;
+    const html = P(`<b>What is measured.</b> The nucleus is 10% of the cell's volume (${Math.round(n.vNuc)} µm³ here); ${f(n.pores)} pores are drawn on it, at the measured density (about 16 per µm²), none closer than 0.15 µm to the next. Mitochondria: ${f(n.mitoAll)} in the whole cell, ${(n.mitoAll / n.vCyto).toFixed(2)} per µm³ of cytoplasm (0.35 to 0.43 measured), ${(100 * n.vMito / n.vCyto).toFixed(1)}% of its volume (9.4 to 11% measured), 0.29 µm³ each on average; ${f(n.mitoDrawn)} of them in the half kept are drawn. ${f(n.lyso)} lysosomes are drawn, of 300 in the cell.`)
+      + P(`<b>What is a choice.</b> How long each mitochondrion is (from ${n.mitoLen[0].toFixed(1)} to ${n.mitoLen[2].toFixed(1)} µm here, middle ${n.mitoLen[1].toFixed(1)} µm; ${f(n.mitoBranched)} branched): real ones form a more connected network. The Golgi as ${n.golgiStacks} stacks of five sacs along 7 µm; the vesicles; the folds (cristae) inside a mitochondrion, about one every 0.12 µm; the chromatin's pattern. The arrangement is invented and the shapes smoothed.`)
+      + P(`<b>How it is drawn.</b> The rough ER as sheets joined to the nuclear envelope, the smooth ER as tubules. Microtubules and the actin under the membrane are lines, far wider than they are, until close in. Ribosomes (3 to 10 million in a cell) are drawn only close in, in a layer 0.1 µm deep behind the cut face. The cut face is drawn as a frosted surface of cytosol, and what lies behind it fades into its tint over a few µm: a cue for depth, since a real cut shows only a thin slice.`)
+      + P(`<b>Not drawn.</b> The cell's roughly 2 billion other protein molecules, the water and small molecules between, the intermediate filaments. Living cells are nearly colourless; the colours are a code. The membrane's edge shows its two layers, drawn far thicker than they are.`);
+    let el = F._mdcSec; if (!el) { el = F._mdcSec = document.createElement('div'); el.dataset.sec = 'About this picture'; el.dataset.secKey = 'mdcAbout'; }
+    el.innerHTML = html; F.uiEls = F.uiEls || []; if (!F.uiEls.includes(el)) F.uiEls.push(el);
+    if (typeof PANEL !== 'undefined' && PANEL.secs && !PANEL.secs.mdcAbout) PANEL.secs.mdcAbout = 'shut';
+    if (typeof uiFrame !== 'undefined' && uiFrame === F && typeof updateControls === 'function') { uiFrame = null; updateControls(F); }
   },
   /* cards for the parts the old schematic did not have (the others keep theirs, js/content_extra.js) */
   INFO: {
@@ -1150,7 +1349,7 @@ v2frame('cell', 'cell', (c) => c.opts.type === 'bacterium' ? .1 : 10 / 12, (F, c
     bacterium: 'A rod-shaped bacterium, about 2 µm long. It has no nucleus: its DNA floats in the cell as a tangle called the nucleoid.',
   };
   F.name = (F.opts && F.opts.cname) || NAMES[kind]; F.blurb = (F.opts && F.opts.blurb) || BLURBS[kind];
-  if (MD.on) { MD.restyleCell(F, c); MD.kind(F, 'Model', kind === 'plant' ? 'Colours are a code to tell the parts apart (living cells are nearly colourless); only the chloroplasts\' green is their real colour.' : 'Colours are a code to tell the parts apart: living cells are nearly colourless.' + (kind === 'bacterium' ? '' : ' The membrane\'s edge shows its two layers, drawn far thicker than they are.')); MD.stage(F, { near: .75, far: 2.4 }); if (F._mdc) MDC.note(F, F._mdc); }
+  if (MD.on) { MD.restyleCell(F, c); MD.kind(F, 'Model', F._mdc ? undefined : kind === 'plant' ? 'Colours are a code to tell the parts apart (living cells are nearly colourless); only the chloroplasts\' green is their real colour.' : 'Colours are a code to tell the parts apart: living cells are nearly colourless.' + (kind === 'bacterium' ? '' : ' The membrane\'s edge shows its two layers, drawn far thicker than they are.')); MD.stage(F, { near: .75, far: 2.4 }); if (F._mdc) MDC.note(F, F._mdc); }
   const nuc0 = c.nucPos.clone();
   F.chooseHit = cands => {
     let best = null; for (const k of cands) if (!best || k.pri > best.pri) best = k;
