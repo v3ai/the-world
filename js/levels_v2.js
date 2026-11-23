@@ -867,7 +867,7 @@ const PKL = (() => {
   }
   K.tx = tx;
   /* uniforms shared by every material below (one object each, so a change reaches all) */
-  const U = { uParkC: { value: new V3() }, uT: { value: 0 }, uNz: { value: null }, uMask: { value: null }, uEarth: { value: null }, uEarthCol: { value: new THREE.Color(0x6a5a48) }, uSunUp: { value: 1 }, uSunVis: { value: 1 } };
+  const U = { uParkC: { value: new V3() }, uT: { value: 0 }, uNz: { value: null }, uMask: { value: null }, uEarth: { value: null }, uEarthCol: { value: new THREE.Color(0x6a5a48) }, uSunUp: { value: 1 }, uSunVis: { value: 1 }, uUnder: { value: 0 } };
   const nz = () => U.uNz.value || (U.uNz.value = TEX ? tx('cloud_noise_256.png') : flat([128, 128, 128]));
   const PARKC = `uniform vec3 uParkC;\nvarying vec3 lkPk;\nvarying vec3 lkPn;\n`;
   const PARKV = `\n\tlkPk = ( modelMatrix * vec4( transformed, 1.0 ) ).xyz + uParkC;\n\tlkPn = normalize( mat3( modelMatrix ) * objectNormal );`;
@@ -889,6 +889,22 @@ vec3 pkMacro( vec2 p, float dist, float slope, out float lkW ) {
 	float dry = smoothstep( 0.1, 0.42, m ), lush = smoothstep( -0.08, -0.4, m );
 	float cl = ( texture2D( uNz, mat2( 0.788, -0.616, 0.616, 0.788 ) * p / 13.3 + 0.19 ).r - 0.53 ) * nr;   // tufts and clumps, near only
 	return mix( vec3( 1.0 ), vec3( 1.12, 1.06, 0.84 ), dry ) * mix( 1.0, 0.88, lush ) * ( 1.0 + 0.18 * cl );
+}
+/* Land cover beyond the park (150 m out): fields of 170 by 120 m (turned), each pasture, hay, rough grass or ploughed (a colour from its cell's number),
+   a faint line where two meet (a hedge or ditch, within about 2 km), and darker ground in the woods, where the far trees stand (the same slow noise as the trees'
+   woods: pkWood is farTrees' wood()). Invented, not the real land: the park's note says so. */
+float pkWood( vec2 p ) { return sin( p.x * 0.0061 + 1.7 ) * sin( p.y * 0.0053 + 0.3 ) + 0.7 * sin( p.x * 0.0143 - p.y * 0.011 + 2.4 ) + 0.45 * sin( p.x * 0.031 + p.y * 0.027 ); }
+vec3 pkCover( vec2 p ) {
+	float r = length( p ), far = smoothstep( 110.0, 220.0, r );
+	vec2 q = mat2( 0.9, 0.44, -0.44, 0.9 ) * p / vec2( 170.0, 120.0 ), id = floor( q ), f = fract( q );
+	float h = fract( sin( dot( id, vec2( 127.1, 311.7 ) ) ) * 43758.5453 ), h2 = fract( h * 7.13 + 0.31 );
+	vec3 c = h < 0.4 ? vec3( 1.0 ) : h < 0.65 ? vec3( 1.38, 1.2, 0.68 ) : h < 0.85 ? vec3( 0.74, 0.92, 0.66 ) : vec3( 1.18, 0.88, 0.64 );
+	c *= 0.92 + 0.16 * h2;
+	c *= mix( 1.0, mix( 0.78, 1.0, smoothstep( 0.0, 0.04, min( min( f.x, 1.0 - f.x ), min( f.y, 1.0 - f.y ) ) ) ), 1.0 - smoothstep( 1200.0, 2200.0, r ) );
+	c = mix( vec3( dot( c, vec3( 0.333 ) ) ), c, 1.0 - smoothstep( 1500.0, 2600.0, r ) * 0.5 );
+	float w = mix( smoothstep( 0.95, 1.15, pkWood( p ) ), smoothstep( 0.95, 1.15, pkWood( p * 0.6 ) ), smoothstep( 1500.0, 1900.0, r ) );
+	c = mix( c, vec3( 0.5, 0.62, 0.42 ), w );
+	return mix( vec3( 1.0 ), c, far );
 }
 `;
   /* Haze (aerial perspective), in linear light before the tone curve: the ground fades into the sky's own colour at the horizon in the
@@ -946,9 +962,9 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
     else { U.uTurf = U.uTurfN = { value: flat([128, 128, 255]) }; U.uEarth.value = flat([128, 128, 128]); }
     nz(); if (!U.uMask.value) U.uMask.value = flat([0, 0, 0]);
     LK.patch(m, 'pkturf', sh => {
-      for (const k of ['uParkC', 'uNz', 'uMask', 'uEarth', 'uEarthCol', 'uTurf', 'uTurfN', 'uSunUp', 'uSunVis']) sh.uniforms[k] = U[k];
+      for (const k of ['uParkC', 'uNz', 'uMask', 'uEarth', 'uEarthCol', 'uTurf', 'uTurfN', 'uSunUp', 'uSunVis']) sh.uniforms[k] = U[k]; Object.assign(sh.uniforms, CS);
       sh.vertexShader = PARKC + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>' + PARKV);
-      sh.fragmentShader = PARKC + 'uniform sampler2D uNz; uniform sampler2D uMask; uniform sampler2D uEarth; uniform vec3 uEarthCol; uniform sampler2D uTurf; uniform sampler2D uTurfN; uniform float uSunUp; uniform float uSunVis;\n' + MACRO + sh.fragmentShader
+      sh.fragmentShader = PARKC + CS_DECL + 'uniform sampler2D uNz; uniform sampler2D uMask; uniform sampler2D uEarth; uniform vec3 uEarthCol; uniform sampler2D uTurf; uniform sampler2D uTurfN; uniform float uSunUp; uniform float uSunVis;\n' + MACRO + sh.fragmentShader
         .replace('#include <map_fragment>', `
 	vec2 pk = lkPk.xz, pkB = mat2( 0.8, 0.6, -0.6, 0.8 ) * pk * 0.27 + vec2( 0.37, 0.71 ); float lkW, lkF = length( vViewPosition );
 	vec3 lkMac = pkMacro( pk, lkF, 1.0 - clamp( normalize( lkPn ).y, 0.0, 1.0 ), lkW );
@@ -965,7 +981,7 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
 	float edge = mk.r + e1 * 0.24 + e2 * 0.13, bare = smoothstep( 0.62, 0.95, edge );
 	float thin = smoothstep( 0.08, 0.55, edge + mk.g * 0.15 ) * smoothstep( 0.02, 0.2, mk.r + mk.g * 0.3 ) * smoothstep( 1.1, 0.75, dot( lkT, vec3( 0.333 ) ) + e2 * 0.1 ) * 0.9;
 	float litter = smoothstep( 0.58, 0.78, texture2D( uNz, pk * 2.3 + 0.27 ).b + e2 * 0.08 ) * smoothstep( 0.25, 0.7, mk.g ) * ( 0.35 + 0.65 * max( bare, thin ) );
-	vec3 lkG = diffuseColor.rgb * lkT * lkMac * mix( 1.0, 0.84, mk.g ), lkEa = mix( uEarthCol * lkE, vec3( 0.5, 0.39, 0.24 ) * ( 0.9 + 0.15 * e2 ), litter * 0.75 );
+	vec3 lkG = diffuseColor.rgb * lkT * lkMac * pkCover( pk ) * mix( 1.0, 0.84, mk.g ), lkEa = mix( uEarthCol * lkE, vec3( 0.5, 0.39, 0.24 ) * ( 0.9 + 0.15 * e2 ), litter * 0.75 );
 	diffuseColor.rgb = mix( lkG, lkEa, clamp( max( bare, thin ), 0.0, 1.0 ) );`)
         .replace('#include <normal_fragment_maps>', `
 	#ifdef PK_TEX
@@ -977,7 +993,7 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
         /* a Sun under the horizon lights no ground (the foundation still gives it a little light); and turf has no sheen at grazing
            angles: the blades hide the light reflected toward an eye that looks along the ground (it made a pale line along the hills' crests) */
         .replace('#include <aomap_fragment>', `{ float lkG = smoothstep( 0.0, 0.3, dot( normalize( geometryNormal ), normalize( vViewPosition ) ) );
-	  reflectedLight.directDiffuse *= uSunVis; reflectedLight.directSpecular *= uSunVis * lkG; reflectedLight.indirectSpecular *= lkG; }
+	  float lkCs = pkCloudShade( lkPk.xz ); reflectedLight.directDiffuse *= uSunVis * lkCs; reflectedLight.directSpecular *= uSunVis * lkG * lkCs; reflectedLight.indirectSpecular *= lkG; }
 	#include <aomap_fragment>`);
     });
     hazeOn(m, 'pkhaze', 'lkPk');
@@ -994,6 +1010,12 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
     // the hills are not one smooth arc: shoulders and hollows of 30 to 80 m across, up to about a metre and a half, where a hill stands
     h += h / (h + 3) * (1.2 * Math.sin(x * .071 + z * .043 + .7) * Math.sin(z * .083 - x * .031 + 2.1) + .55 * Math.sin(x * .19 - z * .13 + 1.3) * Math.sin(z * .17 + x * .07));
     h += smooth(160, 420, r) * (1 - smooth(1500, 4000, r)) * (3.2 * Math.sin(x * .0093 + 1.1) * Math.sin(z * .0071 + .4) + 1.6 * Math.sin(x * .021 - z * .017));
+    // rolling parkland beyond the hills: swells 1 to 3 m high and 120 to 190 m across between 80 m and about 2 km, then ridges and valleys of 10 to 40 m
+    // with wavelengths of 0.7 to 3 km from 1 km out to about 10 km, so that a view at eye height meets a ridge line (with the trees along it) and not one smooth arc.
+    // Invented, not the real relief of south-east London (the park's note says so).
+    h += smooth(80, 200, r) * (1 - smooth(1200, 2600, r)) * (2.3 * Math.sin(x * .034 + z * .021 + 1.2) * Math.sin(z * .039 - x * .017 + .3) + 1.1 * Math.sin(x * .0213 - z * .0187 + 2.2) * Math.sin(x * .0153 + z * .0261 + .5));
+    { const rf = smooth(900, 2400, r) * (1 - smooth(9000, 15000, r)), u = x + 420 * Math.sin(z * .0011 + .4), v = z + 380 * Math.sin(x * .0013 + 1.1);
+      h += rf * (21 * Math.sin(u * .0021 + .7) * Math.sin(v * .0017 + 1.9) + 9 * Math.sin(u * .0047 - v * .0039 + .6) * Math.sin(v * .0043 + u * .0031) + 12 * Math.max(0, Math.sin(u * .0011 + v * .0009 + 2.0))); }
     return h * smooth(48, 76, r);
   }
   K.hgt = hgt;
@@ -1118,7 +1140,7 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
 		vec3 FexS = exp( - ( betaR * 8.4E3 * invS + betaM * 1.25E3 * invS ) );
 		float lit = lsum / max( acc, 1e-3 ) * ( 0.85 + 0.45 * pow( max( dot( dir, sun ), 0.0 ), 6.0 ) );
 		vec3 cl = ( sunE / 1000.0 ) * FexS * uCloudSun * lit + col * 0.9;
-		lkCa = acc * smoothstep( 0.03, 0.22, dir.y ) * exp( - lkD / 20000.0 );   // fading into the haze below about 12 degrees, where a flat layer's heaps would smear into streaks
+		lkCa = acc * smoothstep( 0.012, 0.15, dir.y ) * exp( - lkD / 26000.0 );   // fading into the haze below about 12 degrees, where a flat layer's heaps would smear into streaks
 		col = mix( col, cl, lkCa );
 	}
 	`;
@@ -1130,7 +1152,24 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
       .replace('gl_FragColor = vec4( col,', CLOUDS + 'gl_FragColor = vec4( col,').replace('#include <tonemapping_fragment>', 'gl_FragColor.a = max( gl_FragColor.a, uOpacity * lkCa );\n  #include <tonemapping_fragment>');
     m.fragmentShader = LDF(f); m.needsUpdate = true; return true;
   };
-  const cloudStep = m => { if (!m || !m.userData.pkClouds || typeof simTime === 'undefined') return; const s = (simTime / 1000 * 6) % 12000; m.uniforms.uCloudOff.value.set(s, s * .35 % 12000); };
+  /* The clouds' shadows on the ground and the far trees: the same noise, scale, turned reads, drift and cover as the sky's lowest slice (1.5 km up),
+     found where the Sun's ray from the ground meets that layer, so a cloud that is seen in the sky has its shadow where the Sun's light would
+     have crossed it (with a soft edge, as a shadow from 1.5 km up has: the Sun is half a degree wide, and a cloud's edge is thin), and the
+     shadows drift with the clouds. Under a thick cloud a quarter of the direct light is left (the cloud is not black). */
+  const CS = { uCsTex: { value: null }, uCsOff: { value: new THREE.Vector2() }, uCsCover: { value: 9 }, uCsSun: { value: new V3(0, 1, 0) } };
+  const CS_DECL = `uniform sampler2D uCsTex; uniform vec2 uCsOff; uniform float uCsCover; uniform vec3 uCsSun;
+float pkCloudShade( vec2 p ) {
+	if ( uCsSun.y < 0.06 ) return 1.0;
+	vec2 q = p + uCsSun.xz / uCsSun.y * 1500.0 + uCsOff;
+	float d0 = texture2D( uCsTex, q / 5200.0 ).r * 0.6 + texture2D( uCsTex, mat2( 0.788, -0.616, 0.616, 0.788 ) * q / 1900.0 + 0.31 ).r * 0.28 + texture2D( uCsTex, mat2( -0.208, 0.978, -0.978, -0.208 ) * q / 610.0 + 0.67 ).r * 0.12;
+	return 1.0 - 0.75 * smoothstep( uCsCover - 0.03, uCsCover + 0.09, d0 ) * smoothstep( 0.06, 0.2, uCsSun.y );
+}
+`;
+  /* the clouds are fixed to the ground, not to the eye: the layer's offset takes the eye's place in the park (uParkC), so that flying about does not carry the clouds along,
+     and the shadows below (CS) fall where they are */
+  const cloudStep = m => { if (!m || !m.userData.pkClouds || typeof simTime === 'undefined') return; const s = (simTime / 1000 * 6) % 12000, d = s * .35 % 12000, pc = U.uParkC.value;
+    m.uniforms.uCloudOff.value.set(s + pc.x, d + pc.z);
+    const ky = LK.key ? LK.key() : LK.sun(); CS.uCsTex.value = m.uniforms.uCloud.value; CS.uCsOff.value.set(s, d); CS.uCsCover.value = m.uniforms.uCloudCover.value; if (ky) CS.uCsSun.value.copy(ky.dir); };
 
   /* ---------- 4. the pond: ripples, the sky in it, its depth, a wet bank, pebbles ---------- */
   /* Absorption of the pond's water per metre (red, green, blue): (1.2, 0.6, 1.0). Pure water's is (0.32, 0.045, 0.029) (Hale and Querry 1973);
@@ -1138,6 +1177,7 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
      The pond's figures are a starting value, not a measurement. Light crosses the depth twice (down, and up toward the eye). The deep water
      sends back almost nothing (about 1 percent): what is seen is the bed through the shallows and the sky reflected. */
   const POND = { pebbles: null, ell: null };
+  K.POND = POND;
   /* The pond's reflection: the park scene drawn once into a cube (128 px a face) from the middle of the pond, just above the water, with the
      same exposure, tone curve and encoding as the screen (so no material needs a second program), and drawn again only when the pond is
      rebuilt, the Sun has moved about two degrees, or the things in view have changed (at most every four seconds). Six renders then, none in
@@ -1151,14 +1191,14 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
     if (su) { const moving = su.dir.angleTo(PC.prev) > 1e-4; PC.prev.copy(su.dir); if (moving) return; }   // wait for a frame in which the scene's lights already follow the new Sun
     const da = su ? su.dir.angleTo(PC.sun) : 0, sunMoved = da >= .2 || (da >= .035 && now - PC.t > 1000);   // the clock jumped or ran on: redraw at once (a frame drawn after an idle pause must not show the old light)
     if (!force && PC.u.value && !sunMoved && (key === PC.key || now - PC.t < 4000)) return;
-    if (!PC.rt) { PC.rt = new THREE.WebGLCubeRenderTarget(128, { format: THREE.RGBAFormat, generateMipmaps: false, minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, encoding: THREE.sRGBEncoding }); PC.cam = new THREE.CubeCamera(.05, 40000, PC.rt); PC.u.value = PC.rt.texture; }
+    if (!PC.rt) { PC.rt = new THREE.WebGLCubeRenderTarget(128, { format: THREE.RGBAFormat, generateMipmaps: true, minFilter: THREE.LinearMipmapLinearFilter, magFilter: THREE.LinearFilter, encoding: THREE.sRGBEncoding }); PC.cam = new THREE.CubeCamera(.05, 40000, PC.rt); PC.u.value = PC.rt.texture; }
     sm.geometry.computeBoundingBox(); const c = sm.geometry.boundingBox.getCenter(new V3()).applyMatrix4(sm.matrixWorld);
     PC.cam.position.set(c.x, c.y + .03, c.z); PC.cam.updateMatrixWorld(true);
     const vis = sm.visible, rt0 = renderer.getRenderTarget(), ex = renderer.toneMappingExposure, au = renderer.shadowMap.autoUpdate;
     const skm = F.v2 && F.v2.parts.sky && F.v2.parts.sky.material, bl = skm && skm.blending;   // the sky is see-through at night (the stars of the frames above show through it): in the cube there is nothing behind it, so it is drawn opaque there
-    sm.visible = false; renderer.shadowMap.autoUpdate = false; renderer.toneMappingExposure = LK.exposureOf(F); if (skm) skm.blending = THREE.NoBlending;
+    K.capturing = true; sm.visible = false; renderer.shadowMap.autoUpdate = false; renderer.toneMappingExposure = LK.exposureOf(F); if (skm) skm.blending = THREE.NoBlending;
     try { PC.cam.update(renderer, F.scene); } catch (e) { console.warn('park look: pond reflection', e && e.message); }
-    if (skm) skm.blending = bl; renderer.setRenderTarget(rt0); renderer.toneMappingExposure = ex; renderer.shadowMap.autoUpdate = au; sm.visible = vis;
+    if (skm) skm.blending = bl; renderer.setRenderTarget(rt0); renderer.toneMappingExposure = ex; renderer.shadowMap.autoUpdate = au; sm.visible = vis; K.capturing = false;
     PC.on.value = 1; PC.t = now; PC.key = key; if (su) PC.sun.copy(su.dir);
   }
 
@@ -1174,19 +1214,35 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
     T.group.updateMatrixWorld(true); const sc = new V3().setFromMatrixScale(sm.matrixWorld).x;
     const ex = (bb.max.x - bb.min.x) / 2, ez = (bb.max.z - bb.min.z) / 2, cx = (bb.max.x + bb.min.x) / 2, cz = (bb.max.z + bb.min.z) / 2;
     bm.geometry.computeBoundingBox(); const bb2 = bm.geometry.boundingBox, bw = Math.max(1.02, Math.min((bb2.max.x - bb2.min.x) / 2 / ex, (bb2.max.z - bb2.min.z) / 2 / ez));   // the bank's outer edge, in the water's radii
-    const PU = { uParkC: U.uParkC, uRip: { value: TEX ? tx('pond_ripples_normal_512.jpg', { normal: true }) : flat([128, 128, 255]) }, uRipK: { value: TEX ? .32 : 0 }, uT: U.uT, uPS: { value: sc }, uBed: { value: new THREE.Color(md.pd.color || '#4a3c2d') }, uEll: { value: new THREE.Vector4(cx, cz, ex, ez) }, uBankW: { value: bw }, uNz: U.uNz, uCube: PC.u, uCubeOn: PC.on };
-    { const o = new V3(cx, 0, cz).applyMatrix4(sm.matrixWorld).add(U.uParkC.value); POND.ell = [o.x, o.z, ex * sc, ez * sc, bw]; }   // where the pond is, in park coordinates (for the worn ground round it)
+    const PU = { uParkC: U.uParkC, uRip: { value: TEX ? tx('pond_ripples_normal_512.jpg', { normal: true }) : flat([128, 128, 255]) }, uRipK: { value: TEX ? .32 : 0 }, uT: U.uT, uPS: { value: sc }, uBed: { value: new THREE.Color(md.pd.color || '#4a3c2d') }, uEll: { value: new THREE.Vector4(cx, cz, ex, ez) }, uBankW: { value: bw }, uNz: U.uNz, uCube: PC.u, uCubeOn: PC.on, uSunUp: U.uSunUp };
+    { const at = F.pos || { x: 5, z: -4 }; POND.ell = [at.x + cx * sc, at.z + cz * sc, ex * sc, ez * sc, bw]; }   // (the frame's own place: the eye-relative matrices are stale after a jump)   // where the pond is, in park coordinates (for the worn ground round it)
     const wm = sm.material; if (!wm.userData.pkWater) { wm.userData.pkWater = true; wm.envMapIntensity = 1;   // water reflects what the sky sends, no more (the kind's 1.5 brightened it)
     LK.patch(wm, 'pkwater', sh => {
       Object.assign(sh.uniforms, PU);
       sh.vertexShader = 'uniform vec3 uParkC; uniform float uPS; attribute float lkDepth; varying float lkD; varying vec3 lkPk;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tlkD = lkDepth * uPS; lkPk = ( modelMatrix * vec4( transformed, 1.0 ) ).xyz + uParkC;');
-      sh.fragmentShader = 'uniform vec3 uParkC; uniform sampler2D uRip; uniform float uRipK; uniform float uT; uniform vec3 uBed; uniform samplerCube uCube; uniform float uCubeOn; varying float lkD; varying vec3 lkPk;\n' + sh.fragmentShader
+      sh.fragmentShader = 'uniform vec3 uParkC; uniform sampler2D uRip; uniform float uRipK; uniform float uT; uniform vec3 uBed; uniform samplerCube uCube; uniform float uCubeOn; uniform float uSunUp; uniform sampler2D uNz; varying float lkD; varying vec3 lkPk;\n' + sh.fragmentShader
         /* what the water reflects: the park round it, drawn once into a cube from the middle of the pond (PC below), in place of the sky's
            light alone; at the Fresnel share of water (2 percent straight down, all of it at a grazing angle), bent by the ripples */
         .replace('#include <aomap_fragment>', 'reflectedLight.indirectSpecular *= 1.0 - uCubeOn;\n\t#include <aomap_fragment>')
-        .replace('#include <encodings_fragment>', `{ vec3 V = normalize( vViewPosition ), R = ( vec4( reflect( - V, normal ), 0.0 ) * viewMatrix ).xyz; R.y = abs( R.y );
-	  float Fr = 0.02 + 0.98 * pow( 1.0 - clamp( dot( normal, V ), 0.0, 1.0 ), 5.0 );
-	  gl_FragColor.rgb += pow( textureCube( uCube, R ).rgb, vec3( 2.2 ) ) * Fr * uCubeOn; }
+        .replace('#include <encodings_fragment>', `{ vec3 V = normalize( vViewPosition ), R = ( vec4( reflect( - V, normal ), 0.0 ) * viewMatrix ).xyz;
+	  if ( gl_FrontFacing ) {
+	    R.y = abs( R.y ); float Fr = 0.02 + 0.98 * pow( 1.0 - clamp( dot( normal, V ), 0.0, 1.0 ), 5.0 );
+	    gl_FragColor.rgb += pow( textureCube( uCube, R, 1.6 ).rgb, vec3( 2.2 ) ) * Fr * uCubeOn; }   // (a little blurred: the water is not a mirror, and the cube is 128 px a face)
+	  else {
+	    /* seen from under the water: the sky and the bank through a circular window about 97 degrees across (Snell's law, n = 1.33), squeezed
+	       toward its rim, seen through the water between (it takes the water's own colour with distance); beyond the window the surface is a mirror
+	       (total internal reflection) of the water and the bed: the bed's silt dimmed by the water's absorption and scattering over the path
+	       the light takes (down to the bed and up again), fading into the colour of the water itself (olive-brown, visibility about a metre) */
+	    float c = clamp( dot( normal, V ), 0.0, 1.0 ), sn = sqrt( 1.0 - c * c ) * 1.33, dE = length( vViewPosition ), sk = 0.2 + 0.8 * uSunUp;
+	    vec3 sg = vec3( 1.5, 1.0, 1.9 ), bodyU = vec3( 0.058, 0.056, 0.018 ) * sk, silt = pow( uBed, vec3( 2.2 ) ) * vec3( 1.0, 0.8, 0.5 ) * 0.5 * sk;
+	    vec3 Rd = ( vec4( reflect( - V, normal ), 0.0 ) * viewMatrix ).xyz;
+	    float mu = max( abs( Rd.y ), 0.1 ), pth = dE + lkD / mu;
+	    vec3 Tm = exp( - sg * pth ), Te = exp( - sg * dE );
+	    float cau = 0.8 + 0.4 * texture2D( uNz, lkPk.xz * 0.9 + uT * vec2( 0.03, 0.02 ) ).g;   // light patches wandering on the bed
+	    vec3 mir = ( silt * cau * exp( - sg * lkD ) * Tm + bodyU * ( 1.0 - Tm ) ) * ( 0.72 + 0.5 * texture2D( uNz, lkPk.xz * 0.5 + uT * vec2( 0.017, -0.012 ) ).b * ( 0.6 + 0.8 * cau ) ), win = bodyU;
+	    if ( sn < 1.0 ) { vec3 T = ( vec4( refract( - V, normal, 1.33 ), 0.0 ) * viewMatrix ).xyz; win = pow( textureCube( uCube, T ).rgb, vec3( 2.2 ) ) * uCubeOn * 0.9 * Te + bodyU * ( 1.0 - Te * uCubeOn ); }
+	    float Fr = smoothstep( 0.55, 1.0, sn );
+	    gl_FragColor = vec4( mix( win, mir, Fr ), 1.0 ); } }
 	#include <encodings_fragment>`)
         .replace('#include <map_fragment>', `#include <map_fragment>
 	{ vec3 lkV = normalize( cameraPosition - ( lkPk - uParkC ) ); float mu = max( abs( lkV.y ), 0.2 );
@@ -1197,8 +1253,8 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
         .replace('#include <normal_fragment_maps>', `
 	{ vec2 w = lkPk.xz;
 	  vec3 n1 = texture2D( uRip, w * 0.55 + uT * vec2( 0.021, 0.013 ) ).xyz * 2.0 - 1.0, n2 = texture2D( uRip, w * 1.7 + uT * vec2( -0.017, 0.029 ) ).xyz * 2.0 - 1.0;
-	  vec2 sl = ( n1.xy + n2.xy * 0.6 ) * uRipK * ( 1.0 - smoothstep( 4.0, 40.0, length( vViewPosition ) ) * 0.7 );
-	  normal = normalize( ( viewMatrix * vec4( normalize( vec3( sl.x, 1.0, - sl.y ) ), 0.0 ) ).xyz ); }`);
+	  vec2 sl = ( n1.xy + n2.xy * 0.35 ) * uRipK * ( 1.0 - smoothstep( 2.5, 30.0, length( vViewPosition ) ) * 0.8 );
+	  normal = normalize( ( viewMatrix * vec4( normalize( vec3( sl.x, 1.0, - sl.y ) ) * faceDirection, 0.0 ) ).xyz ); }`);
     });
     }
     // the bank: the mud's photographed surface, and wet (darker, glossy) within about 35 cm of the water's edge
@@ -1213,7 +1269,9 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
           .replace('#include <map_fragment>', `#include <map_fragment>
 	float lkQ = length( ( lkLoc.xz - uEll.xy ) / uEll.zw ), lkE = ( lkQ - 1.0 ) * min( uEll.z, uEll.w ) * uPS;   // metres outside the water's edge
 	{ float o = ( lkQ - 1.0 ) / ( uBankW - 1.0 ), n = ( texture2D( uNz, lkPk.xz * 0.23 + 0.17 ).r - 0.53 ) * 6.0 * 0.22 + ( texture2D( uNz, lkPk.xz * 0.9 + 0.6 ).r - 0.53 ) * 6.0 * 0.08;
-	  if ( o > 0.55 + n ) discard; }   // the bank's outer edge is ragged and of uneven width: the grass (and the worn ground drawn into the lawn) takes over
+	  float th = atan( lkLoc.z - uEll.y, lkLoc.x - uEll.x ), sec = 0.6 * sin( th * 1.7 + 0.4 ) + 0.4 * sin( th * 4.3 + 1.9 ) + 0.25 * sin( th * 7.9 + 0.2 );
+	  float wf = 0.04 + 0.96 * smoothstep( -0.35, 0.6, sec );   // the band is from no width (the lawn reaches the water) to about 40 cm, by stretches 1 to 4 m long
+	  if ( o > wf * 0.6 + n * 0.7 ) discard; }   // the bank's outer edge is ragged and of uneven width: the grass (and the worn ground drawn into the lawn) takes over
 	float lkWet = 1.0 - smoothstep( -0.05, 0.35 + ( texture2D( uEarth, lkPk.xz * 0.37 ).g - 0.5 ) * 0.3, lkE );
 	diffuseColor.rgb *= texture2D( uEarth, lkPk.xz * 0.77 ).rgb * 2.0 * mix( 1.0, 0.55, lkWet );`)
           .replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\n\troughnessFactor = mix( roughnessFactor, 0.3, lkWet );')
@@ -1222,6 +1280,9 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
 	  normal = normalize( ( viewMatrix * vec4( normalize( vec3( nm.x, max( nm.z, 0.2 ), - nm.y ) ), 0.0 ) ).xyz ); }`);
       });
     }
+    /* the bed seen from under the water: silt in the olive-brown the water gives it (the photographed mud set reads blue-grey from below, like plaster) */
+    { const mt = mm.material; if (mt && mt.isMeshStandardMaterial && !mt.userData.pkSilt) { mt.userData.pkSilt = true;
+      LK.patch(mt, 'pksilt', sh => { sh.uniforms.uUnder = U.uUnder; sh.fragmentShader = 'uniform float uUnder;\n' + sh.fragmentShader.replace('#include <tonemapping_fragment>', 'gl_FragColor.rgb *= mix( vec3( 1.0 ), vec3( 0.82, 0.6, 0.32 ), uUnder );\n\tgl_FragColor.a = mix( gl_FragColor.a, 1.0, uUnder );   // seen from inside the water the bed is the bed, not a ghost of it over the sky\n\t#include <tonemapping_fragment>'); }); } }
     // pebbles at the water's edge: rounded flint gravel, 1.5 to 4 cm, on the bank where it meets the water (a stand-in rock surface: DESIGN 3.2)
     if (!POND.pebbles || POND.pebbles.parent !== T.group) {
       const pg = new THREE.IcosahedronGeometry(1, 1), pa = pg.attributes.position, pr = rng(5);
@@ -1240,58 +1301,259 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
       im.count = n; im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true;
       im.userData.noPick = true; im.receiveShadow = true; im.castShadow = false; im.frustumCulled = false; T.group.add(im); POND.pebbles = im;   // (its geometry's bound is one pebble at the pond's middle, not the ring: the pond's own culling decides)
     }
+    /* the edging stones: wet where the water reaches them (darker, a little glossy, a film of algae below the water line, a dark band a few
+       centimetres above it where the stone draws water up), and muddy where they sit in the bank; the dry top keeps the stone's own colour */
+    for (const id of ['stones', 'stones_slab']) { const sp = T.parts[id], stm = sp && sp.g.userData.main, mt = stm && stm.material; if (!mt || !mt.isMeshStandardMaterial || mt.userData.pkStone) continue; mt.userData.pkStone = true;
+      LK.patch(mt, 'pkstone', sh => {
+        Object.assign(sh.uniforms, { uParkC: U.uParkC, uNz: U.uNz });
+        sh.vertexShader = 'uniform vec3 uParkC; varying vec3 lkPs;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tlkPs = ( modelMatrix * instanceMatrix * vec4( transformed, 1.0 ) ).xyz + uParkC;');
+        sh.fragmentShader = 'uniform sampler2D uNz; varying vec3 lkPs;\nfloat lkWetS = 0.0;\n' + sh.fragmentShader
+          .replace('#include <map_fragment>', `#include <map_fragment>
+	{ float h = lkPs.y, nn = texture2D( uNz, lkPs.xz * 3.1 + lkPs.y * 1.7 ).g - 0.5, lw = 0.02;
+	  float under = 1.0 - smoothstep( lw - 0.004, lw + 0.004, h + nn * 0.01 ), band = ( 1.0 - smoothstep( lw + 0.01, lw + 0.06 + nn * 0.03, h ) ) * 0.7;
+	  float mud = ( 1.0 - smoothstep( 0.005, 0.04 + nn * 0.03, h ) ) * 0.8; lkWetS = max( under, band );
+	  diffuseColor.rgb *= mix( 1.0, 0.5, band ) * mix( 1.0, 0.55, under );
+	  diffuseColor.rgb = mix( diffuseColor.rgb, vec3( 0.3, 0.37, 0.18 ) * ( 0.5 + nn ), under * 0.55 );   // a green film of algae below the water line
+	  diffuseColor.rgb = mix( diffuseColor.rgb, vec3( 0.2, 0.15, 0.1 ) * ( 0.7 + 0.6 * nn ), mud );
+	  /* the stone's own grain and its lichen: mottling at 7 cm and 2 cm, and pale grey-green crust on the dry parts above the damp band */
+	  vec3 gp = lkPs * 14.0; float g1 = texture2D( uNz, gp.xz + gp.y * 0.7 ).r, g2 = texture2D( uNz, gp.xz * 3.3 + gp.y * 2.1 + 0.4 ).g, li = smoothstep( 0.6, 0.72, texture2D( uNz, lkPs.xz * 6.0 + lkPs.y * 4.0 + 0.2 ).b );
+	  diffuseColor.rgb *= 0.55 + 1.1 * g1 * ( 0.7 + 0.6 * g2 ); diffuseColor.rgb = mix( diffuseColor.rgb, vec3( 0.55, 0.58, 0.4 ) * ( 0.8 + 0.4 * g2 ), li * 0.45 * ( 1.0 - band ) * ( 1.0 - under ) ); }`)
+          .replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\n\troughnessFactor = mix( roughnessFactor, 0.32, lkWetS );');
+      }); }
+    /* the duckweed raft seen from a distance (a flat stand-in for 1,900 fronds of 3 mm): a speckle of fronds with gaps between them, a ragged
+       edge and a dull yellow-green, not a flat green patch (at this size a pixel covers a few fronds) */
+    { const dm = T.parts.duckweed_mat, mm = dm && dm.g.userData.main, mt = mm && mm.material;
+      if (mt && mt.isMeshStandardMaterial && !mt.userData.pkMat) { mt.userData.pkMat = true;
+        LK.patch(mt, 'pkmat', sh => {
+          Object.assign(sh.uniforms, { uParkC: U.uParkC, uNz: U.uNz });
+          sh.vertexShader = 'uniform vec3 uParkC; varying vec3 lkPm;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tlkPm = ( modelMatrix * vec4( transformed, 1.0 ) ).xyz + uParkC;');
+          sh.fragmentShader = 'uniform sampler2D uNz; varying vec3 lkPm;\n' + sh.fragmentShader.replace('#include <map_fragment>', `#include <map_fragment>
+	{ float a = texture2D( uNz, lkPm.xz * 38.0 ).r, b = texture2D( uNz, lkPm.xz * 9.0 + 0.3 ).g, c = texture2D( uNz, lkPm.xz * 2.4 + 0.7 ).b;
+	  float v = ( a * 0.7 + b * 0.3 - 0.53 ) * 5.0;   // about -1 to 1: where the fronds are (low) and where there is open water between them
+	  if ( v > 0.15 + ( c - 0.53 ) * 4.0 ) discard;
+	  diffuseColor.rgb = vec3( 0.52, 0.66, 0.19 ) * mix( 0.78, 1.12, a ) * mix( 0.88, 1.08, b ); }   // Lemna minor: a matte, bright yellow-green mat (about sRGB 130 170 50)`)
+            .replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\n\troughnessFactor = 0.92;')
+            .replace('#include <normal_fragment_maps>', '#include <normal_fragment_maps>\n\tnormal = geometryNormal;');   // flat and rough: no ripple streaks, no glitter (the fronds damp the ripples)
+          specFix(sh);
+        }); } }
+    /* oak leaves on the water and on the bed: a midrib and side veins (darker), the outline is the leaf's own lobes (the mesh has them);
+       from above no white rim of light on the edge (specFix); from below, in the water, the thin blade is lit through: dark veins
+       against green-gold light. */
+    for (const id of ['floating_leaves', 'leaf_litter']) { const lp = T.parts[id], lm = lp && lp.g.userData.main, mt = lm && lm.material; if (!mt || !mt.isMeshStandardMaterial || mt.userData.pkLeaf) continue; mt.userData.pkLeaf = true;
+      LK.patch(mt, 'pkleaf', sh => {
+        Object.assign(sh.uniforms, { uSunUp: U.uSunUp });
+        sh.vertexShader = 'varying vec3 lkLf;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tlkLf = transformed;');
+        sh.fragmentShader = 'uniform float uSunUp; varying vec3 lkLf; float lkVn = 0.0;\n' + sh.fragmentShader
+          .replace('#include <map_fragment>', `#include <map_fragment>
+	{ float sd = abs( lkLf.x ), f = fract( lkLf.y * 8.0 - sd * 5.5 ), mid = 1.0 - smoothstep( 0.006, 0.016, sd ), lat = ( 1.0 - smoothstep( 0.03, 0.08, min( f, 1.0 - f ) ) ) * smoothstep( 0.02, 0.06, lkLf.y ) * ( 1.0 - smoothstep( 0.25, 0.4, sd ) );
+	  lkVn = max( mid * 0.9, lat * 0.6 ); diffuseColor.rgb *= 1.0 - 0.4 * lkVn;
+	  if ( ! gl_FrontFacing ) diffuseColor.rgb *= vec3( 0.7, 0.85, 0.4 ); }`)
+          .replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>
+	if ( ! gl_FrontFacing ) totalEmissiveRadiance += vec3( 0.12, 0.16, 0.02 ) * uSunUp * ( 1.0 - 0.85 * lkVn );   // light through the blade, green-gold, the veins dark`);
+        specFix(sh);
+      }); }
+    // sedge and grass at the water's edge: no sheen on the narrow blades (their normals bend through every angle in a few millimetres, and a highlight on each would be a white speck)
+    { const gp = T.parts.bank_grass, gm = gp && gp.g.userData.main, mt = gm && gm.material;
+      if (mt && mt.isMeshStandardMaterial && !mt.userData.pkTuft) { mt.userData.pkTuft = true; LK.patch(mt, 'pktuft', sh => { sh.fragmentShader = sh.fragmentShader.replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\n\troughnessFactor = max( roughnessFactor, 0.62 );'); specFix(sh); }); } }
     return true;
   }
 
-  /* ---------- 4b. the far trees: woods, clumps and lines of generic broadleaf trees beyond the park's own oaks ----------
-     Greenwich Park and the land round it are full of trees; without them the ground beyond the oaks was a bare green plain and, from eye
-     height, met the sky in one hard line. These are simple shapes, not a model of any real tree (the park's note says so): a lumpy crown
-     (an icosahedron pushed about by noise, darker underneath, where it shades itself) on a short trunk, 8 to 21 m tall, one instanced mesh,
-     drawn from 140 m out to about 1.6 km where woods are (a slow noise) and along a few avenues, taking the haze as the ground does. They
-     cast the Sun's shadow where its square reaches. A click on one opens the card of a tree. */
+  /* ---------- 4b. the far trees: woods, parkland trees, avenues and hedgerows of generic broadleaf trees beyond the park's own oaks ----------
+     Without them the ground beyond the oaks was a bare green plain. These are stand-ins in the proportions of the park's English oak (data/things/oak:
+     20 m tall, a crown about as wide as it is tall; an open-grown oak has a short stout bole that forks low into heavy limbs under a broad, deep dome).
+     Within 130 m (30 trees at most) a tree is a mesh of about 60 clumps of foliage on four limbs; beyond, it is a picture of that crown (drawn once at
+     start into a texture, with the sky showing through the foliage and its ragged edge) on a quad that turns to face the eye: up to 3,400 of them
+     (2 quads, 4 triangles each), in loose parkland groups, three avenues, hedgerow trees and woods out to 5 km. None of them casts a Sun shadow (the
+     shadow pass would draw every crown's polygons as a hard edge on the grass): each has a soft dark patch on the ground thrown away from the Sun
+     instead. Hedgerows are a solid, dark, irregular band 2 to 3.6 m tall (one mesh), from 150 m out. It is not a model of any real tree, wood or
+     hedge (the park's note says so); the real oaks, which are drawn out to 700 m, are the same colour and size. One click on one opens the card of a tree. */
+  const RAW = c => new THREE.Color(c).toArray();   // (the app takes a hex colour as it is, for materials and vertex colours alike: the oak's leaves are #4f8a2e the same way)
+  /* One open-grown oak in unit size (height 1, crown radius about 0.55): a short stout bole that forks at 0.14 into heavy limbs running out
+     under the crown, and a broad deep dome of foliage clumps from 0.26 to 1.0 in rings (wide and low, narrowing toward the top), its lower
+     edge ragged (clumps missing, some hanging lower on a limb) so that the limbs and the sky show under it. Used as the mesh of the near
+     trees and drawn once into a picture (bakeCrown) for the far ones. */
+  function treeGeo(variant, det) {
+    const pos = [], nor = [], col = [], r = rng(7 + variant * 13), nv = new V3(), v = new V3();
+    const leaf = RAW(0x4f8a2e), bark = RAW(0x6a6054);
+    const ico = new THREE.IcosahedronGeometry(1, det || 0), ia = ico.attributes.position, TAUv = Math.PI * 2;
+    const CY = .6, rings = [[.94, 0, .13, 1], [.89, .17, .13, 5], [.8, .31, .14, 8], [.68, .45, .15, 11], [.54, .55, .15, 12], [.4, .6, .15, 12], [.3, .5, .11, 8]];
+    const lobes = [];
+    rings.forEach((rg, ri) => { for (let i = 0; i < rg[3]; i++) {
+      if (ri === rings.length - 1 && r() < .35) continue;   // gaps in the ragged lower edge
+      const a = (i + r() * .6) / rg[3] * TAUv + ri * .7, rad = rg[1] * (.85 + r() * .3), y = rg[0] + (r() - .5) * .07 - (ri >= 4 && r() < .3 ? .07 : 0);
+      lobes.push([Math.cos(a) * rad, y, Math.sin(a) * rad, rg[2] * (.85 + r() * .35)]); } });
+    lobes.forEach((lb, li) => {
+      const sd = li * 3.7 + variant * 11, ry = .78;
+      for (let i = 0; i < ia.count; i++) {
+        v.fromBufferAttribute(ia, i).normalize();
+        const k = 1 + .2 * Math.sin(v.x * 3.9 + sd) * Math.sin(v.y * 3.3 + sd * .7) * Math.sin(v.z * 4.2 + sd * 1.3) + .08 * Math.sin(v.x * 7.1 + v.z * 5.3 + sd);
+        const px = lb[0] + v.x * lb[3] * k, py = lb[1] + v.y * lb[3] * k * ry, pz = lb[2] + v.z * lb[3] * k;
+        // the normal: half the clump's own round, half the whole crown's, so that the crown reads as one dome with clumps in it, not as a heap of balls
+        nv.set(px * 1.1, (py - CY) / .8, pz * 1.1).normalize(); const nx = v.x * .3 + nv.x * .7, ny = (v.y / ry) * .3 + nv.y * .7, nz = v.z * .3 + nv.z * .7, nl = Math.hypot(nx, ny, nz) || 1;
+        const top = Math.min(1, Math.max(0, (py - .3) / .7)), inner = Math.min(1, Math.hypot(px, pz) / .45), sh = .38 + .75 * top * (.7 + .3 * inner) - .08 * (1 - inner);
+        pos.push(px, py, pz); nor.push(nx / nl, ny / nl, nz / nl); col.push(leaf[0] * sh * .78, leaf[1] * sh * .78, leaf[2] * sh * .78);
+      }
+    });
+    const tube = (pts, rr, sides, shade) => {
+      for (let i = 0; i < pts.length - 1; i++) for (let j = 0; j < sides; j++) {
+        const a0 = j / sides * TAUv, a1 = (j + 1) / sides * TAUv, p = pts[i], q = pts[i + 1], r0 = rr[i], r1 = rr[i + 1];
+        const dx = q[0] - p[0], dy = q[1] - p[1], dz = q[2] - p[2], L = Math.hypot(dx, dy, dz) || 1, ux = dx / L, uy = dy / L, uz = dz / L;   // axis; two perpendiculars:
+        let bx = uy, by = -ux, bz = 0; if (Math.hypot(bx, by) < .01) { bx = 0; by = uz; bz = -uy; } const bl = Math.hypot(bx, by, bz); bx /= bl; by /= bl; bz /= bl;
+        const cx = uy * bz - uz * by, cy = uz * bx - ux * bz, cz = ux * by - uy * bx;
+        const at = (pp, rd, a) => [pp[0] + (bx * Math.cos(a) + cx * Math.sin(a)) * rd, pp[1] + (by * Math.cos(a) + cy * Math.sin(a)) * rd, pp[2] + (bz * Math.cos(a) + cz * Math.sin(a)) * rd, bx * Math.cos(a) + cx * Math.sin(a), by * Math.cos(a) + cy * Math.sin(a), bz * Math.cos(a) + cz * Math.sin(a)];
+        const A = at(p, r0, a0), B = at(p, r0, a1), C = at(q, r1, a0), D = at(q, r1, a1);
+        for (const w of [A, C, B, B, C, D]) { pos.push(w[0], w[1], w[2]); nor.push(w[3], w[4], w[5]); const g = shade * (.85 + .15 * (i / pts.length)); col.push(bark[0] * g, bark[1] * g, bark[2] * g); }
+      }
+    };
+    // a short stout bole, flared at the foot, forking at 0.14 into four heavy limbs that run out and up under the crown
+    tube([[0, 0, 0], [0, .03, 0], [0, .09, 0], [0, .15, 0]], [.058, .042, .037, .034], 8, .8);
+    const nl = 4, a0 = r() * TAUv;
+    for (let i = 0; i < nl; i++) { const a = a0 + i / nl * TAUv + (r() - .5) * .5, ca = Math.cos(a), sa = Math.sin(a), rr = .3 + r() * .1, hh = .42 + r() * .12;
+      tube([[0, .13, 0], [ca * rr * .45, .22 + r() * .03, sa * rr * .45], [ca * rr, hh, sa * rr]], [.026, .018, .009], 5, .8); }
+    const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo.setAttribute('normal', new THREE.Float32BufferAttribute(nor, 3)); geo.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); geo.computeBoundingSphere(); ico.dispose(); return geo;
+  }
+  /* A far tree is a picture of the near one. The crown (treeGeo) is drawn once, from the side, into a 640 x 512 texture with its own clumps,
+     its shaded underside, the sky showing through the foliage and through the ragged edge (alpha), and each far tree is a picture of that
+     standing on the ground, always turned to face the eye (a billboard: it changes with the eye's position by turning, not by showing the
+     other side: a stand-in, the park's note says so). Done once at start, with the three variants of the crown. */
+  const BAKE = { tex: null };
+  function bakeCrowns(geos) {
+    if (BAKE.tex || typeof renderer === 'undefined') return BAKE.tex;
+    const W = 512, H = 410, N = geos.length, rt = new THREE.WebGLRenderTarget(W * N, H, { format: THREE.RGBAFormat, minFilter: THREE.LinearMipmapLinearFilter, magFilter: THREE.LinearFilter, generateMipmaps: true });
+    const mat = new THREE.ShaderMaterial({ vertexShader: 'varying vec3 vP; varying vec3 vN; varying vec3 vC; attribute vec3 color;\nvoid main() { vP = position; vN = normal; vC = color; gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 ); }',
+      fragmentShader: `varying vec3 vP; varying vec3 vN; varying vec3 vC;
+float h3( vec3 p ) { p = fract( p * 0.3183099 + 0.1 ); p *= 17.0; return fract( p.x * p.y * p.z * ( p.x + p.y + p.z ) ); }
+float vn( vec3 x ) { vec3 i = floor( x ), f = fract( x ); f = f * f * ( 3.0 - 2.0 * f );
+  return mix( mix( mix( h3( i ), h3( i + vec3( 1, 0, 0 ) ), f.x ), mix( h3( i + vec3( 0, 1, 0 ) ), h3( i + vec3( 1, 1, 0 ) ), f.x ), f.y ), mix( mix( h3( i + vec3( 0, 0, 1 ) ), h3( i + vec3( 1, 0, 1 ) ), f.x ), mix( h3( i + vec3( 0, 1, 1 ) ), h3( i + vec3( 1, 1, 1 ) ), f.x ), f.y ), f.z ); }
+void main() {
+  vec3 n = normalize( vN ); bool lf = vC.g > vC.r * 1.6;
+  float cl = vn( vP * 11.0 ) * 0.55 + vn( vP * 27.0 ) * 0.3 + vn( vP * 61.0 ) * 0.15, rim = 1.0 - abs( n.z );
+  float lit = max( dot( n, normalize( vec3( -0.5, 0.7, 0.55 ) ) ), 0.0 );
+  if ( lf ) { if ( rim > 0.5 + 0.45 * cl || cl < 0.24 + 0.1 * ( 1.0 - vP.y ) ) discard; gl_FragColor = vec4( vC * ( 0.4 + 1.1 * cl ) * ( 0.55 + 0.6 * lit ), 1.0 ); }
+  else gl_FragColor = vec4( vC * ( 0.7 + 0.5 * lit ), 1.0 );
+}` });
+    const sc = new THREE.Scene(), cam = new THREE.OrthographicCamera(-.65, .65, 1.04, 0, .1, 20); cam.position.z = 5;
+    const rt0 = renderer.getRenderTarget(), cc = new THREE.Color(), ca = renderer.getClearAlpha(); renderer.getClearColor(cc);
+    renderer.setClearColor(0x4f8a2e, 0); renderer.setRenderTarget(rt); renderer.clear(); const ae = renderer.autoClear; renderer.autoClear = false;
+    geos.forEach((g, i) => { const m = new THREE.Mesh(g, mat); m.frustumCulled = false; sc.add(m); renderer.setViewport(i * W, 0, W, H); renderer.setScissor(i * W, 0, W, H); renderer.setScissorTest(true); renderer.render(sc, cam); sc.remove(m); });
+    renderer.setScissorTest(false); renderer.autoClear = ae; renderer.setRenderTarget(rt0); renderer.setClearColor(cc, ca); renderer.setViewport(0, 0, renderer.domElement.width, renderer.domElement.height);
+    mat.dispose(); BAKE.tex = rt.texture; BAKE.tex.anisotropy = 4; BAKE.n = N; return BAKE.tex;
+  }
   function farTrees(g, c) {
-    const cr = new THREE.IcosahedronGeometry(1, 1), ca = cr.attributes.position, v = new V3(), nv = new V3(), pos = [], nor = [], col = [];   // (non-indexed: a vertex per face corner)
-    for (let i = 0; i < ca.count; i++) { v.fromBufferAttribute(ca, i).normalize(); nv.set(v.x, v.y / .78, v.z).normalize();   // the normal of the smooth ellipsoid, so the lumps do not show as facets
-      const k = 1 + .16 * Math.sin(v.x * 4.1 + 1.3) * Math.sin(v.y * 3.7 + .4) * Math.sin(v.z * 4.4 + 2.2) + .1 * Math.sin(v.x * 7.3 + v.z * 6.1);
-      pos.push(v.x * k * .5, (v.y * k * .78 + .55) * .5 + .5, v.z * k * .5); nor.push(nv.x, nv.y, nv.z); const a = .5 + .5 * Math.min(1, Math.max(0, (v.y + .6) / 1.4)); col.push(a, a, a); }
-    for (let j = 0; j < 5; j++) { const a0 = j / 5 * TAU, a1 = (j + 1) / 5 * TAU, r = .035;   // a trunk of five sides, darker
-      for (const [a, y] of [[a0, 0], [a1, .62], [a1, 0], [a0, 0], [a0, .62], [a1, .62]]) { pos.push(Math.cos(a) * r, y, Math.sin(a) * r); nor.push(Math.cos(a), 0, Math.sin(a)); col.push(.3, .24, .2); } }
-    const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo.setAttribute('normal', new THREE.Float32BufferAttribute(nor, 3)); geo.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); geo.computeBoundingSphere(); cr.dispose();
-    const mat = LK.material('leaf', 0x405a2c, { instanced: true, extra: { vertexColors: true } });
     nz();
-    LK.patch(mat, 'pkfartree', sh => {
-      sh.uniforms.uParkC = U.uParkC; sh.uniforms.uNz = U.uNz; sh.uniforms.uSunVis = U.uSunVis;
-      sh.vertexShader = PARKC + 'varying vec3 lkTl; varying vec3 lkTn;\n' + sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>
+    // the shading shared by the near trees' mesh and the billboards: the sky's light fills the shade, the Sun's light is dimmed under a cloud's shadow, no sheen on foliage
+    const shade = sh => {
+      sh.fragmentShader = sh.fragmentShader.replace('#include <aomap_fragment>', `float lkSh = pkCloudShade( lkPk.xz );
+	reflectedLight.indirectSpecular *= 0.2; reflectedLight.directSpecular *= 0.35 * uSunVis * lkSh; reflectedLight.directDiffuse *= uSunVis * lkSh;
+	#include <aomap_fragment>`);
+      specFix(sh);
+    };
+    const treeMat = () => {
+      const mat = LK.material('leaf', 0xffffff, { instanced: true, extra: { vertexColors: true } });
+      LK.patch(mat, 'pkfartree', sh => {
+        sh.uniforms.uParkC = U.uParkC; sh.uniforms.uNz = U.uNz; sh.uniforms.uSunVis = U.uSunVis; Object.assign(sh.uniforms, CS);
+        sh.vertexShader = PARKC + 'varying vec3 lkTl; varying vec3 lkTn;\n' + sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>
 	lkPk = ( modelMatrix * instanceMatrix * vec4( transformed, 1.0 ) ).xyz + uParkC; lkPn = vec3( 0.0, 1.0, 0.0 );
 	lkTl = ( instanceMatrix * vec4( transformed, 1.0 ) ).xyz - instanceMatrix[ 3 ].xyz * 0.63; lkTn = abs( normal );`);
-      /* clumps of foliage: the noise's cell channel laid on from three sides in metres (bright clumps, dark gaps), stronger on the shaded
-         side; the canopy shades its own reflection (a crown is not a smooth ball: no sheen at its edge) */
-      sh.fragmentShader = PARKC + 'uniform sampler2D uNz; uniform float uSunVis; varying vec3 lkTl; varying vec3 lkTn;\n' + sh.fragmentShader
-        .replace('#include <color_fragment>', `#include <color_fragment>
+        /* clumps of foliage: the noise's cell channel laid on from three sides in metres (bright clumps, dark gaps); the rim of the crown is broken up (the sky shows through it) */
+        sh.fragmentShader = PARKC + 'uniform sampler2D uNz; uniform float uSunVis; ' + CS_DECL + 'float lkTc = 0.5; varying vec3 lkTl; varying vec3 lkTn;\n' + sh.fragmentShader
+          .replace('#include <color_fragment>', `#include <color_fragment>
 	{ vec3 w = lkTn * lkTn; w /= w.x + w.y + w.z; vec3 p = lkTl * 0.42;
 	  float cl = texture2D( uNz, p.yz ).b * w.x + texture2D( uNz, p.xz + 0.37 ).b * w.y + texture2D( uNz, p.xy + 0.71 ).b * w.z;
-	  diffuseColor.rgb *= mix( 1.0, 0.45 + 1.05 * cl, 1.0 - smoothstep( 300.0, 900.0, length( vViewPosition ) ) ); }`)
-        .replace('#include <aomap_fragment>', 'reflectedLight.indirectSpecular *= 0.2; reflectedLight.directSpecular *= 0.35 * uSunVis; reflectedLight.directDiffuse *= uSunVis;\n\t#include <aomap_fragment>');
-      specFix(sh);
-    });
-    hazeOn(mat, 'pkhaze', 'lkPk');
-    const N = 800, im = new THREE.InstancedMesh(geo, mat, N), rr = rng(41), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), cc = new THREE.Color(), up = new V3(0, 1, 0);
-    const wood = (x, z) => Math.sin(x * .0061 + 1.7) * Math.sin(z * .0053 + .3) + .7 * Math.sin(x * .0143 - z * .011 + 2.4) + .45 * Math.sin(x * .031 + z * .027);   // where the woods are
+	  diffuseColor.rgb *= 0.62 + 0.8 * cl; lkTc = cl; }`)
+          .replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
+	{ float rim = 1.0 - abs( dot( normal, normalize( vViewPosition ) ) ), lf = length( vViewPosition );
+	  if ( lf < 900.0 && vColor.g > vColor.r * 1.6 && rim > 0.5 + 0.42 * lkTc + 0.25 * ( 1.0 - smoothstep( 60.0, 600.0, lf ) ) ) discard; }`);
+        shade(sh);
+      });
+      hazeOn(mat, 'pkhaze', 'lkPk'); return mat;
+    };
+    /* the billboards: the picture of the crown on a quad that turns about the vertical to face the eye (two coincident quads at right angles,
+       so that a click, which sees the quads where they stand, finds the tree from any side); one of the three crowns, and the picture
+       reversed or not, from where the tree stands */
+    const geos = [treeGeo(0), treeGeo(1)], tex = bakeCrowns([treeGeo(0, 1), treeGeo(1, 1), treeGeo(2, 1)]), NV = BAKE.n || 3;   // (the pictures are of finer crowns than the near meshes: they are drawn once)
+    const quad = (() => { const p = [], uv = [], n = [], ix = [], w = .65, h = 1.04;
+      [0, 1].forEach(k => { const o = p.length / 3; for (const [x, y] of [[-w, 0], [w, 0], [w, h], [-w, h]]) { p.push(k ? 0 : x, y, k ? x : 0); uv.push((x + w) / (2 * w), y / h); n.push(0, 0, 1); } ix.push(o, o + 1, o + 2, o, o + 2, o + 3); });
+      const q = new THREE.BufferGeometry(); q.setAttribute('position', new THREE.Float32BufferAttribute(p, 3)); q.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); q.setAttribute('normal', new THREE.Float32BufferAttribute(n, 3)); q.setIndex(ix); q.computeBoundingSphere(); return q; })();
+    const boardMat = () => {
+      const mat = LK.material('leaf', 0xffffff, { double: true, instanced: true, extra: { map: tex, alphaTest: .4 } }); if ('alphaToCoverage' in mat) mat.alphaToCoverage = true;
+      LK.patch(mat, 'pkboard', sh => {
+        sh.uniforms.uParkC = U.uParkC; sh.uniforms.uSunVis = U.uSunVis; Object.assign(sh.uniforms, CS); sh.uniforms.uNV = { value: NV };
+        sh.vertexShader = PARKC + 'uniform float uNV;\n' + sh.vertexShader
+          .replace('#include <beginnormal_vertex>', `#include <beginnormal_vertex>
+	vec3 lkIp = ( modelMatrix * instanceMatrix[ 3 ] ).xyz, lkDr = vec3( cameraPosition.x - lkIp.x, 0.0, cameraPosition.z - lkIp.z ); lkDr = lkDr / max( length( lkDr ), 1e-4 );
+	float lkHs = fract( sin( lkIp.x * 12.9898 + lkIp.z * 78.233 ) * 43758.5453 ), lkFl = lkHs > 0.5 ? 1.0 : -1.0;
+	objectNormal = normalize( vec3( lkDr.x * 0.8, 0.5, lkDr.z * 0.8 ) );`)
+          .replace('#include <begin_vertex>', `#include <begin_vertex>
+	{ float lat = ( position.x + position.z ) * lkFl; transformed = vec3( lkDr.z * lat, position.y, - lkDr.x * lat ); }
+	#ifdef USE_MAP
+	  vUv = vec2( ( floor( fract( lkHs * 91.7 ) * uNV ) + ( lkFl > 0.0 ? uv.x : 1.0 - uv.x ) ) / uNV, uv.y );
+	#endif
+	lkPk = ( modelMatrix * instanceMatrix * vec4( transformed, 1.0 ) ).xyz + uParkC; lkPn = vec3( 0.0, 1.0, 0.0 );`);
+        sh.fragmentShader = PARKC + 'uniform float uSunVis; ' + CS_DECL + sh.fragmentShader; shade(sh);
+      });
+      hazeOn(mat, 'pkhaze', 'lkPk'); return mat;
+    };
+    /* the shadow of a far tree on the ground: a soft dark patch (not a polygon) thrown away from the Sun by the tree's height over the Sun's height, fading into the haze */
+    const blobMat = (() => {
+      const mat = new THREE.MeshBasicMaterial({ color: 0x050a03, transparent: true, depthWrite: false, fog: false, opacity: .42, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
+      mat.onBeforeCompile = sh => {
+        sh.uniforms.uCsSun = CS.uCsSun; sh.uniforms.uSunVis = U.uSunVis;
+        sh.vertexShader = 'uniform vec3 uCsSun; varying vec2 lkQ; varying float lkFd;\n' + sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>
+	lkQ = position.xz * 2.0 / 1.0; { vec3 sd = uCsSun; vec2 off = - sd.xz / max( sd.y, 0.15 ) * 0.55 * instanceMatrix[ 1 ].y; transformed.xz += off / max( instanceMatrix[ 0 ].x, 1e-3 ); }`).replace('#include <project_vertex>', '#include <project_vertex>\n\tlkFd = length( mvPosition.xyz );');
+        sh.fragmentShader = 'uniform float uSunVis; varying vec2 lkQ; varying float lkFd;\n' + sh.fragmentShader.replace('vec4 diffuseColor = vec4( diffuse, opacity );', 'vec4 diffuseColor = vec4( diffuse, opacity * ( 1.0 - smoothstep( 0.35, 1.0, length( lkQ ) ) ) * uSunVis * ( 1.0 - smoothstep( 300.0, 1500.0, lkFd ) ) );');
+      };
+      return mat; })();
+    const blobGeo = new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI / 2); blobGeo.scale(1.3, 1, .95);
+    // ----- where the trees stand -----
+    const wood = (x, z) => Math.sin(x * .0061 + 1.7) * Math.sin(z * .0053 + .3) + .7 * Math.sin(x * .0143 - z * .011 + 2.4) + .45 * Math.sin(x * .031 + z * .027);   // where the woods are (slow noise)
     const avenues = [[-.31, .95, 180], [.88, .47, -140], [.2, -.98, 260]];   // lines of trees: direction and offset from the middle (m)
-    let n = 0;
-    for (let k = 0; k < N * 30 && n < N; k++) {
-      let x, z; const av = rr() < .14 ? avenues[Math.floor(rr() * avenues.length)] : null;
-      if (av) { const t = (rr() - .5) * 1600; x = av[0] * t - av[1] * av[2] + (rr() - .5) * 3; z = av[1] * t + av[0] * av[2] + (rr() - .5) * 3; }
-      else { const a = rr() * TAU, d = 140 + Math.pow(rr(), 1.4) * 1500; x = Math.cos(a) * d; z = Math.sin(a) * d; }
-      const d = Math.hypot(x, z); if (d < 140 || d > 1650) continue;
-      if (!av && wood(x, z) < .7 + (rr() - .5) * .6) continue;
-      const hgtT = 8 + rr() * 7 + Math.pow(rr(), 3) * 6, w = hgtT * (.55 + rr() * .25);
-      q.setFromAxisAngle(up, rr() * TAU); m4.compose(new V3(x, hgt(x, z) - .3, z), q, new V3(w, hgtT, w * (.85 + rr() * .3))); im.setMatrixAt(n, m4);
-      const l = .78 + rr() * .4; im.setColorAt(n++, cc.setRGB(l * (.92 + rr() * .16), l, l * (.85 + rr() * .2)));   // trees differ a little in shade and hue
+    const rr = rng(41), mesh = [], board = [], NEAR = 130, MAXB = 3400;
+    const add = (x, z, H, wr) => { const d = Math.hypot(x, z), t = [x, z, H, wr, rr() * TAU, .78 + rr() * .4, rr(), rr(), rr()]; if (d < NEAR) { if (mesh.length < 30) mesh.push(t); } else if (board.length < MAXB) board.push(t); };
+    // open-grown trees in the parkland, singly and in loose groups (the oaks of a park are 12 to 22 m: the real one is 20)
+    for (let k = 0; k < 60000 && board.length + mesh.length < 1100; k++) { const a = rr() * TAU, d = 130 + Math.pow(rr(), 1.5) * 1500, x = Math.cos(a) * d, z = Math.sin(a) * d;
+      if (wood(x, z) < .15 + rr() * .5) continue; const H = 10 + rr() * 9 + Math.pow(rr(), 3) * 5; add(x, z, H, H * (.95 + rr() * .3)); }
+    // lines of trees along three avenues
+    for (let i = 0; i < 170; i++) { const av = avenues[i % 3], t = (rr() - .5) * 1500, x = av[0] * t - av[1] * av[2] + (rr() - .5) * 3, z = av[1] * t + av[0] * av[2] + (rr() - .5) * 3; if (Math.hypot(x, z) > 110) { const H = 12 + rr() * 8; add(x, z, H, H * (1 + rr() * .2)); } }
+    // woods: a canopy of trees about 12 m apart where the slow noise is high, from 200 m to 1.7 km, then sparser to 5 km (the trees there are a few pixels wide: a dark band on the ridge)
+    for (let x = -1700; x <= 1700; x += 13) for (let z = -1700; z <= 1700; z += 13) { const xx = x + (rr() - .5) * 11, zz = z + (rr() - .5) * 11, d = Math.hypot(xx, zz); if (d < 190 || d > 1700) continue;
+      if (wood(xx, zz) < 1.02 + (rr() - .5) * .22) continue; const H = 11 + rr() * 10; add(xx, zz, H, H * (.8 + rr() * .3)); }
+    for (let x = -5000; x <= 5000; x += 60) for (let z = -5000; z <= 5000; z += 60) { const xx = x + (rr() - .5) * 50, zz = z + (rr() - .5) * 50, d = Math.hypot(xx, zz); if (d < 1700 || d > 5000) continue;
+      if (wood(xx * .6, zz * .6) < 1.0 + (rr() - .5) * .3) continue; const H = 13 + rr() * 11; add(xx, zz, H, H * (.7 + rr() * .3)); }
+    // hedgerows: a solid dark band 2 to 3.5 m tall (the hedge itself, below), with a tall field tree in it every 30 to 70 m
+    const hedges = [], hedge = (cx, cz, th, ln, minD, tall) => {
+      const pts = []; for (let t = -ln / 2; t <= ln / 2; t += Math.hypot(cx, cz) < 600 ? 5 : 12) { const x = cx + Math.cos(th) * t + Math.sin(t * .031) * 4, z = cz + Math.sin(th) * t + Math.cos(t * .027) * 4; if (Math.hypot(x, z) >= minD) pts.push([x, z]); else if (pts.length > 1) { hedges.push(pts.slice()); pts.length = 0; } else pts.length = 0; }
+      if (pts.length > 1) hedges.push(pts);
+      for (let t = -ln / 2; t < ln / 2; t += 30 + rr() * 40) { const x = cx + Math.cos(th) * t + Math.sin(t * .031) * 4, z = cz + Math.sin(th) * t + Math.cos(t * .027) * 4; if (Math.hypot(x, z) < minD) continue; const H = tall[0] + rr() * (tall[1] - tall[0]); add(x, z, H, H * (.9 + rr() * .3)); } };
+    for (let h = 0; h < 44; h++) { const a = rr() * TAU, d = 190 + Math.pow(rr(), 1.3) * 1100; hedge(Math.cos(a) * d, Math.sin(a) * d, rr() * Math.PI, 100 + rr() * 260, 150, [10, 16]); }
+    for (let h = 0; h < 20; h++) { const a = rr() * TAU, d = 1200 + Math.pow(rr(), .8) * 3300; hedge(Math.cos(a) * d, Math.sin(a) * d, rr() * Math.PI, 250 + rr() * 800, 650, [12, 18]); }
+    const mk = (geo, material, list, turn) => {   // turn: the crown is turned about the vertical at random (the billboards and the soft shadows face their own way)
+      const im = new THREE.InstancedMesh(geo, material, Math.max(1, list.length)), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), cc = new THREE.Color(), up = new V3(0, 1, 0);
+      list.forEach((t, i) => { q.setFromAxisAngle(up, turn ? t[4] : 0); m4.compose(new V3(t[0], hgt(t[0], t[1]) - (turn ? .3 : .05), t[1]), q, new V3(t[3], t[2], t[3] * (turn ? .9 + t[8] * .2 : 1))); im.setMatrixAt(i, m4);
+        const l = t[5]; im.setColorAt(i, cc.setRGB(l * (.92 + t[6] * .16), l, l * (.85 + t[7] * .2))); });   // trees differ a little in shade and hue
+      im.count = list.length; im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true;
+      im.castShadow = false; im.receiveShadow = false; im.matrixAutoUpdate = false; im.updateMatrix(); im.frustumCulled = false;
+      return im;
+    };
+    // the near trees: meshes, not shadow casters (the Sun's shadow square would draw each crown's polygons as a hard edge on the grass: the soft patch below stands in for the shadow)
+    const nm = treeMat(); K.farTrees = [0, 1].map(k => { const im = mk(geos[k], nm, mesh.filter((_, i) => i % 2 === k), true); im.userData = { id: 'tree', priority: .3 }; g.add(im); c.pickables.push(im); return im; });
+    const far = mk(quad, boardMat(), board, false); far.userData = { id: 'tree', priority: .3 }; g.add(far); c.pickables.push(far);
+    const blobs = mk(blobGeo, blobMat, mesh.concat(board.filter(t => Math.hypot(t[0], t[1]) < 1800)), false); blobs.userData = { noPick: true }; blobs.renderOrder = 1; blobs.raycast = () => {}; g.add(blobs);
+    K.farTreesFar = far; K.blobs = blobs;
+    // ----- hedges: one mesh of solid, irregular, dark bands -----
+    { const pos = [], nor = [], col = [], idx = [], hr = rng(77), dark = [.2, .32, .12];
+      for (const pts of hedges) { const o = pos.length / 3; let hh = 2.4 + hr() * .8;
+        pts.forEach((p, i) => { const nx = pts[Math.min(i + 1, pts.length - 1)], pv = pts[Math.max(i - 1, 0)], dx = nx[0] - pv[0], dz = nx[1] - pv[1], dl = Math.hypot(dx, dz) || 1, px = -dz / dl, pz = dx / dl;
+          hh += (hr() - .5) * .7; hh = Math.min(3.6, Math.max(1.9, hh)); const gap = (hr() < .06 ? .55 : 1) * (.4 + .6 * Math.min(1, (i + 1) / 4, (pts.length - i) / 4)), h = hh * gap, w = 1.1 + hr() * .5, gy = hgt(p[0], p[1]) - .1;
+          [[-w, 0, -1, 0], [-w * .6, .92, -.5, .87], [w * .6, .92, .5, .87], [w, 0, 1, 0]].forEach(([s, f, nxs, nys], k) => {
+            const sh = (.5 + .6 * f) * (.7 + .6 * hr()); pos.push(p[0] + px * s, gy + h * f + (f > .5 ? (hr() - .5) * .5 : 0), p[1] + pz * s); const nl = Math.hypot(nxs, nys) || 1; nor.push(px * nxs / nl, nys / nl, pz * nxs / nl); col.push(dark[0] * sh, dark[1] * sh, dark[2] * sh); });
+          if (i > 0) { const a = o + (i - 1) * 4, b = o + i * 4; for (let k = 0; k < 3; k++) idx.push(a + k, b + k, b + k + 1, a + k, b + k + 1, a + k + 1); } }); }
+      if (idx.length) { const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo.setAttribute('normal', new THREE.Float32BufferAttribute(nor, 3)); geo.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); geo.setIndex(idx); geo.computeBoundingSphere();
+        const mat = LK.material('leaf', 0xffffff, { double: true, extra: { vertexColors: true } });
+        LK.patch(mat, 'pkhedge', sh => { sh.uniforms.uParkC = U.uParkC; sh.uniforms.uNz = U.uNz; sh.vertexShader = PARKC + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tlkPk = ( modelMatrix * vec4( transformed, 1.0 ) ).xyz + uParkC; lkPn = vec3( 0.0, 1.0, 0.0 );');
+          sh.fragmentShader = PARKC + 'uniform sampler2D uNz;\n' + sh.fragmentShader.replace('#include <color_fragment>', '#include <color_fragment>\n\tdiffuseColor.rgb *= 0.5 + 1.0 * texture2D( uNz, lkPk.xz * 0.31 + lkPk.y * 0.23 ).b;'); specFix(sh); });
+        hazeOn(mat, 'pkhaze', 'lkPk'); const hm = new THREE.Mesh(geo, mat); hm.frustumCulled = false; hm.userData = { id: 'tree', priority: .2, hedge: true }; hm.castShadow = false; hm.receiveShadow = false; g.add(hm); c.pickables.push(hm); K.hedges = hm; }
     }
-    im.count = n; im.instanceMatrix.needsUpdate = true; im.instanceColor.needsUpdate = true;
-    im.castShadow = true; im.receiveShadow = false; im.userData = { id: 'tree', priority: .3 }; im.matrixAutoUpdate = false; im.updateMatrix();
-    g.add(im); c.pickables.push(im); K.farTrees = im;
   }
 
   /* ---------- 5. the park frame: hooks set up once, and its step ---------- */
@@ -1306,13 +1568,14 @@ vec3 pkHaze( vec3 c, vec3 pp, vec3 eye ) {
     // haze: see HAZE (the ground and the far trees); the foundation sets the fog's colour each frame, its distances are set here just before drawing
     const fog = c.scene.fog, b0 = F.scene.onBeforeRender;
     // (three.js's fog, for everything but the ground, which takes the haze above: linear from the eye, as the haze is for its first few hundred metres)
-    F.scene.onBeforeRender = function (r, s, camr) { if (fog) { fog.near = 0; fog.far = 1 / HZ.uHazeK.value.x; } if (b0) b0.call(this, r, s, camr); };
+    F.scene.onBeforeRender = function (r, s, camr) { if (fog) { if (K.under && !K.capturing) { const sk = .2 + .8 * U.uSunUp.value, e = Math.pow(sk, 1 / 2.2); fog.near = 0; fog.far = 2.6; fog.color.setRGB(.235 * e, .22 * e, .085 * e); } else { fog.near = 0; fog.far = 1 / HZ.uHazeK.value.x; } } if (b0) b0.call(this, r, s, camr); };
     // the clouds made of lumps are not drawn: the sky has its own (their groups stay as the place that search and the cloud card point to)
     g.children.forEach(o => { if (o.userData && o.userData.id === 'cloud') o.visible = false; });
-    F.note = 'The sky is computed for the real Sun at this hour; its clouds are typical small fair-weather cumulus, not today\'s weather. Beyond the park the ground, its hills and the far trees are generic shapes, with no roads or buildings, and they fade into the haze of a hazy summer day (about 10 km of visibility), thicker than on a clear one. After sunset the light is the twilight sky, then the Moon at its real place, phase and brightness and the night sky\'s own faint glow; the picture is brightened as an eye adapts to the dark, far less than the light has fallen. London\'s own glow in the night sky is not drawn.';
+    F.note = 'The sky is computed for the real Sun at this hour; its clouds are typical small fair-weather cumulus, not today\'s weather. Beyond the park the ground, its hills and ridges, and the trees (shaped like the park\'s oaks, in woods, rows and hedgerows) are generic and invented: the real park\'s setting (the Observatory on its hill, the Thames and the city to the north) is not drawn, and there are no roads or buildings. All of it fades into the haze of a hazy summer day (about 10 km of visibility), thicker than on a clear one. After sunset the light is the twilight sky, then the Moon at its real place, phase and brightness and the night sky\'s own faint glow; the picture is brightened as an eye adapts to the dark, far less than the light has fallen. London\'s own glow in the night sky is not drawn.';
     const up0 = F.update; let tMask = 0, tPond = 0;
     F.update = (dt, t) => {
       up0(dt, t);
+      { const e = POND.ell; K.under = !!(e && F.C && F.C.y < .02 && Math.hypot((F.C.x - e[0]) / e[2], (F.C.z - e[1]) / e[3]) < 1.0); U.uUnder.value = K.under ? 1 : 0; }   // the eye is under the pond's water: the water's colour and murk (the fog, above)
       if (P.sky.visible && F.C) P.sky.position.y = F.C.y;   // the sky's dome round the eye, also above the ground: its horizon at the eye's level
       if (!P.sky.material.userData.pkClouds && P.sky.material.uniforms && P.sky.material.uniforms.uGain) K.skyClouds(P.sky.material);
       cloudStep(P.sky.material); if (P.sg) P.sg.visible = false;
