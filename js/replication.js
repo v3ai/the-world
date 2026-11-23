@@ -343,10 +343,11 @@ const REP = (() => {
     M.dnB.instanceColor = new THREE.InstancedBufferAttribute(new Float32Array(48 * 3).fill(1), 3); M.dnB.instanceColor.setUsage(THREE.DynamicDrawUsage);
     // names of the strands
     S.lbl = {};
-    for (const [k, t, ud2] of [['lead', 'Leading strand (made continuously)', DR.bead.n.userData], ['lag', 'Lagging strand (made in pieces)', DR.bead.n.userData], ['par', 'Parent DNA', DR.bead.o.userData], ['prim', 'RNA primer', DR.bead.r.userData], ['frag', 'Okazaki fragment', DR.bead.n.userData], ['nick', 'Nick', DR.bead.n.userData]]) {
+    for (const [k, t, ud2] of [['lead', 'Leading strand (made continuously)', DR.bead.n.userData], ['lag', 'Lagging strand (made in pieces)', DR.bead.n.userData], ['par', 'Parent DNA', DR.bead.o.userData], ['prim', 'RNA primer', DR.bead.r.userData], ['frag', 'Okazaki fragment', DR.bead.n.userData], ['nick', 'Nick', DR.bead.n.userData], ['e3', '3′ end: grows towards the fork', DR.bead.n.userData], ['d3', '3′ end: grows away from the fork', DR.bead.n.userData]]) {
       const a = new THREE.Object3D(); a.userData = ud2; S.root.add(a); S.lbl[k] = a; F.label(a, t, { pick: k === 'par' ? DR.bead.o : k === 'prim' ? DR.bead.r : DR.bead.n });
     }
     S.lbl.lead.position.set(-48, 25.5, 0); S.lbl.par.position.set(30, 2.6, 0); S.lbl.lag.position.set(-70, -27.8, 0);
+    S.lbl.e3.position.copy(G.PE).add(new V3(-2.5, -3.5, 2));   // the leading strand's growing end, at Pol epsilon's active site
     S.built = true;
   }
 
@@ -491,6 +492,7 @@ const REP = (() => {
     }
     // the primer end that RFC and PCNA find, and Pol delta
     const pd = polDPose(t, PO); setPose(M.pold, PO.O, PO.X, PO.Y, PO.Z, pd);
+    S.lbl.d3.visible = !!pd && dt >= tSyn && dt < tRem0; if (S.lbl.d3.visible) S.lbl.d3.position.copy(PO.O).addScaledVector(PO.Y, -7);   // the lagging fragment's growing end
     if (pd) S.polD = PO.O; else S.polD = null;
     { const on = dt > tRem0 - .3 && dt < tRemEnd + .25 && pd, away = dt < tRem0 ? 1 - ease((dt - tRem0 + .3) / .3) : dt > tRemEnd ? ease((dt - tRemEnd) / .25) : 0;
       if (on) { P2.O.copy(PO.O).addScaledVector(PO.Y, 10 * away); setPose(M.fen1, P2.O, PO.X, PO.Y, PO.Z, true); } else setPose(M.fen1, PO.O, PO.X, PO.Y, PO.Z, false); }
