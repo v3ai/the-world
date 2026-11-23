@@ -1865,7 +1865,14 @@ function thFindNode(id0) {
 }
 function thModeFor(T, pd) {   // a layered part is revealed in place; otherwise keep the current mode if it shows the part, else the first mode that does
   const sys = pd.system, shows = m => m && ((m.show || {})[sys] ?? (m.show || {})['*'] ?? 0) >= .5 && (!pd.parent || m.cut);
-  if (T.rank[sys] !== undefined && !pd.parent) return null;
+  if (T.rank[sys] !== undefined && !pd.parent) {
+    /* ... in Auto or in a view of its layers. A view that does not draw the part's layer but draws things that are no layer (the cell's opened pair of sheets, its flows)
+       is left: the reveal peels only layers, so those stayed in front (the separator card, after a marker card had opened "One pair of sheets", framed the separator
+       behind the opened graphite sheet) */
+    const cur = T.modeId === 'auto' ? null : T.modeDef(T.modeId);
+    if (!cur || shows(cur) || !Object.keys(cur.show || {}).some(s => s !== '*' && T.rank[s] === undefined && cur.show[s] >= .5)) return null;
+    return T.def.auto ? 'auto' : ((T.def.modes.find(shows) || {}).id || null);
+  }
   if (shows(T.modeId === 'auto' ? null : T.modeDef(T.modeId))) return null;
   const m = T.def.modes.find(shows); return m ? m.id : null;
 }
