@@ -844,13 +844,20 @@ function zoomBy(lnDelta, x, y) {
          ray where it was, so a thing that comes between the eye and the point the zoom is closing on has either moved there or has only just been drawn (a tree grown
          big enough to be picked): it is taken once it is seen standing still at a second look, never while it moves; until then the first point is kept (also when that point was on a
          place the zoom has since gone down past: London's land, entering the park). */
+      /* This holds for ANY other thing under the pointer, not only one clearly in front of the held point. It used to apply only to a thing more than 3 % nearer
+         than the held point, but seen from a kilometre up a cloud 26-40 m above the ground is within 3 % of the ground's distance (and the held point need not be on
+         the pointer's ray at all: from high above the park the zoom homes in on the park's middle, `attract`, which moves the pivot and not lastZoomHit). A cloud under
+         the pointer at the first looks in the park was then taken at once, became the zoom's target, and the zoom ended in it 90 m from the middle (fix1's a3).
+         A thing that is really there (the ground below London's land, leaves where a tree's far shape was) is taken one look later. And a second look needs a frame
+         drawn since the first (a slow frame can take two wheel notches; nothing has moved between them, a cloud included). */
       let drifts = false;
-      if (held && now2 && now2.obj !== held.obj && _pvHit && _pvHit.meters < camPosIn(held.frame, _ztV).distanceTo(held.point) * held.frame.unit * .97) {
+      if (held && now2 && now2.obj !== held.obj && _pvHit) {
         const r = _pvHit.frame.root, q = _ztW.set(0, 0, 0); let a = _pvHit.obj;   // where it is in its frame, from the local matrices (world matrices lag the camera's moves)
         for (; a && a !== r; a = a.parent) { if (a.matrixAutoUpdate) a.updateMatrix(); q.applyMatrix4(a.matrix); }
         if (!a) _pvHit.obj.getWorldPosition(q).add(_pvHit.frame.C);
         const s = zoom.seen;
-        drifts = !s || s.obj !== _pvHit.obj || s.p.distanceTo(q) > 1e-6 * _pvHit.meters / _pvHit.frame.unit; zoom.seen = { obj: _pvHit.obj, p: q.clone() };
+        if (s && s.obj === _pvHit.obj && s.ck === clock) drifts = true;   // no frame since the first look: not a second look (and the first one is kept to compare with)
+        else { drifts = !s || s.obj !== _pvHit.obj || s.p.distanceTo(q) > 1e-6 * _pvHit.meters / _pvHit.frame.unit; zoom.seen = { obj: _pvHit.obj, p: q.clone(), ck: clock }; }
       }
       if (held && (!now2 || stays || drifts)) { lastZoomHit = held; if (stays) held.held = true; }
       else {
