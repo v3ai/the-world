@@ -5,7 +5,7 @@
  "species": "Canis lupus familiaris",
  "card": "cell_cone_cell_dog",
  "blurb": "A cone from a dog's retina: a slim cell with a tapering outer segment of stacked membrane folds that catches light, a mitochondria-packed section below it, a nucleus, and a foot that passes the signal on.",
- "note": "Model: a cone photoreceptor of a dog (Canis lupus familiaris), drawn whole and upright with its light-catching tip at the top. Measured in dogs: how many cones sit in a square millimetre of the retina's sharpest region, how small the inner segment is there, what share of cones carry each of the two colour pigments, and how long the signal of the cone's connecting cilium is. Measured in other animals (mouse, human) and not in dogs: the outer segment's shape and its open folds. The folds are drawn as separate flat stripes; the way they stay open to the outside is not drawn. Illustrative: every length of the segments, the width of the outer segment, the spacing of the folds, the size of the nucleus and the foot, the number and the arrangement of the mitochondria drawn (drawn along a spiral for lack of a better shape; in a real cone they are packed side by side in the ellipsoid), and all colours. No dog measurement of a cone's outer-segment length was found, so none of the lengths is a dog measurement.",
+ "note": "Model: a cone photoreceptor of a dog (Canis lupus familiaris), drawn whole and upright with its light-catching tip at the top. Measured in dogs: how many cones sit in a square millimetre of the retina's sharpest region, how small the inner segment is there, what share of cones carry each of the two colour pigments, and how long the signal of the cone's connecting cilium is. Measured in other animals (mouse, human) and not in dogs: the outer segment's shape and its open folds. The folds are drawn as separate flat stripes; the way they stay open to the outside is not drawn. The connecting cilium is drawn at its measured length, 0.9 µm. Illustrative: every other length of the segments, the cilium's width, the width of the outer segment, the spacing of the folds, the size of the nucleus and the foot, the number and the arrangement of the mitochondria drawn (drawn as long bodies packed side by side in the ellipsoid, a ring round a central one, row on row; the real packing is denser and less regular), and all colours. No dog measurement of a cone's outer-segment length was found, so none of the lengths is a dog measurement.",
  "shape": {
   "type": "segmented",
   "disc_spacing_um": 0.05,
@@ -19,11 +19,20 @@
     "fill": "discs"
    },
    {
+    "part": "connecting_cilium",
+    "length_um": 0.9,
+    "d0_um": 0.3,
+    "d1_um": 0.3,
+    "fill": "none",
+    "source": "takahashi2024",
+    "note": "length 900 nm, measured in dogs; width illustrative"
+   },
+   {
     "part": "ellipsoid",
     "length_um": 8,
     "d0_um": 2.95,
     "d1_um": 2.95,
-    "fill": "mito_helix"
+    "fill": "mito_packed"
    },
    {
     "part": "inner_segment",
@@ -272,6 +281,13 @@
    "card": "cell_cone_pedicle_dog",
    "material": "synaptic_vesicles",
    "source": "mustafi2009"
+  },
+  "connecting_cilium": {
+   "name": "Connecting cilium",
+   "card": null,
+   "material": "membrane",
+   "source": "takahashi2024",
+   "about": "The thin stalk that joins the outer segment to the rest of the cell. Everything the outer segment needs, including the light-catching pigment, is carried up through it. In adult dogs it is about 0.9 µm long (900 ± 169 nm). Its width here is illustrative."
   }
  },
  "reached": {
@@ -291,7 +307,7 @@
  "about": [
   "A cone is one of the two kinds of light-sensing cell in the back of the eye. In a dog it is much rarer than the other kind, the rod: in the retina's sharpest region there are about 23 rods for each cone, so about 4 photoreceptors in 100 are cones. There the cones number about 26,000 in every square millimetre. This cell is drawn about 45 µm long (an illustrative total), from the tapering tip that faces the back wall of the eye to the foot that faces the rest of the retina.",
   "Dogs have two kinds of cone, with peak sensitivity near 429 nm (blue-violet) and 555 nm (yellow-green), and about 9 in 10 of the cones in the sharp region are the second kind. This cell is drawn as one of the second kind; the pigment itself is not drawn.",
-  "The widths of the inner segment and the shares of cone types are measured in dogs. The lengths of the segments, the width of the outer segment, the fold spacing, the nucleus and the foot are illustrative, taken to fit the proportions seen in mouse and human cones. Not drawn: the connecting cilium, the cell's neighbours, the rods packed around it, the glial cells that wrap it, and the layer of cells behind that eats the worn-out tips of the outer segment."
+  "The widths of the inner segment and the shares of cone types are measured in dogs. The lengths of the segments, the width of the outer segment, the fold spacing, the nucleus and the foot are illustrative, taken to fit the proportions seen in mouse and human cones. The thin connecting cilium between the outer segment and the ellipsoid is drawn at its measured length in dogs, 0.9 µm. Not drawn: the cell's neighbours, the rods packed around it, the glial cells that wrap it, and the layer of cells behind that eats the worn-out tips of the outer segment."
  ],
  "sources": {
   "mowat2008": {

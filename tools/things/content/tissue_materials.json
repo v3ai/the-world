@@ -94,7 +94,8 @@
  },
  "leaf_section": {
   "cuticle_top": "plant_wax",
-  "cuticle_bottom": "plant_wax"
+  "cuticle_bottom": "plant_wax",
+  "palisade": "palisade_cell"
  },
  "mushroom_ecm": {
   "hartig": "fungal_cells",
@@ -200,9 +201,9 @@
  },
  "cornea_layers": {
   "endo": "corneal_endothelial_cell",
-  "sup": "corneal_epithelial_cell",
+  "sup": "corneal_surface_cell",
   "wing": "corneal_epithelial_cell",
-  "basal": "corneal_epithelial_cell",
+  "basal": "corneal_basal_cell",
   "kerato": "corneal_keratocyte"
  },
  "kidney_cortex": {

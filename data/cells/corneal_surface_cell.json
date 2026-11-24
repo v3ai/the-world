@@ -1,0 +1,225 @@
+{
+ "id": "corneal_surface_cell",
+ "name": "Corneal surface cell",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_corneal_surface_cell",
+ "blurb": "A living cell from the top of the clear skin of the eye: a wide, thin plate with a flat nucleus, its free face folded into low ridges that hold the tear film.",
+ "note": "Model: a surface (superficial) cell of the human corneal epithelium, cut in half. Measured in human eyes: its width (40 to 60 µm, 50 drawn) and thickness (2 to 6 µm, 4 drawn), that its nucleus is flattened, that its free face carries microplicae and microvilli, and that it is tied to its neighbours by desmosomes at its sides. Illustrative: the outline, the nucleus size, the spacing, height and paths of the microplicae, the numbers of desmosomes, keratin bundles and organelles, and the colours. The neighbours show faintly. Not drawn: the microvilli among the ridges (too small to show at this size), the tight junctions near the top, the sugar coat (glycocalyx) and the tear film.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 50,
+  "height_um": 4,
+  "taper": 1,
+  "irregularity": 0.12,
+  "round_um": 1,
+  "apical": "none",
+  "desmosomes": 90,
+  "neighbours": 1,
+  "half_lid": 1
+ },
+ "dimensions": {
+  "epithelium_thickness": {
+   "value": 50,
+   "unit": "um",
+   "measured": true,
+   "range": [
+    50,
+    52
+   ],
+   "source": "sridhar2018",
+   "also": "ghafar2021",
+   "note": "central cornea; Sridhar gives about 50 µm and Wikipedia (wikipedia_ce) gives approximately 50 to 52 µm, which is the range used; 5 to 7 cell layers centrally"
+  },
+  "width": {
+   "value": 50,
+   "unit": "um",
+   "measured": true,
+   "range": [
+    40,
+    60
+   ],
+   "source": "sridhar2018",
+   "note": "the midpoint of the range given"
+  },
+  "height": {
+   "value": 4,
+   "unit": "um",
+   "measured": true,
+   "range": [
+    2,
+    6
+   ],
+   "source": "sridhar2018",
+   "note": "Sridhar gives 2 to 6 µm; 4 µm, the midpoint, is drawn (calculated)"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "round",
+  "volume_fraction": {
+   "value": 0.03,
+   "measured": false,
+   "note": "illustrative"
+  },
+  "size_um": {
+   "value": [
+    9,
+    9,
+    2
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative sizes; that the nuclei of the surface cells are flattened is measured (wikipedia_ce)"
+  },
+  "nucleoli": 0,
+  "position": "central",
+  "position_note": "illustrative"
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.01,
+    "measured": false,
+    "note": "illustrative"
+   },
+   "size_um": [
+    0.6,
+    0.4
+   ],
+   "size_measured": false,
+   "max_drawn": 120
+  },
+  "golgi": {
+   "stacks": {
+    "value": 1,
+    "measured": false,
+    "note": "illustrative"
+   }
+  }
+ },
+ "special": [
+  {
+   "kind": "keratin_bundles",
+   "params": {
+    "bundles": 12,
+    "drawn_um": 0.3
+   },
+   "source": "ghafar2021",
+   "note": "illustrative number and paths"
+  },
+  {
+   "kind": "desmosomes",
+   "source": "sridhar2018",
+   "note": "desmosomes along the sides of all the epithelial cells (sridhar2018); 90 drawn, an illustrative number"
+  },
+  {
+   "kind": "microplicae",
+   "part": "microplicae",
+   "params": {
+    "spacing_um": 0.9,
+    "height_um": 0.3
+   },
+   "source": "ghafar2021",
+   "note": "microplicae on the surface cells (ghafar2021); their spacing and height are illustrative"
+  }
+ ],
+ "cut": "The plate is seen from above. Over the left half its top is kept, covered in low winding ridges (microplicae); over the right half the top is lifted away to show the flat nucleus and keratin bundles running to the desmosomes at the edges. The cells beside it show faintly.",
+ "colours": {
+  "convention": "Cell membrane pale; the inside dark; keratin bundles straw yellow; desmosomes brown; nucleus violet; mitochondria orange. All colours are a code; none is the real colour of the cell, which is clear and colourless.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytosol",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell, crowded with proteins."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "keratin": {
+   "name": "Keratin filaments",
+   "card": "bio_actin_intermediate",
+   "material": "protein",
+   "source": "ghafar2021",
+   "about": "Bundles of keratin filaments run through a wing cell and end at its desmosomes, so that the stack of cells takes a rub or a blink as one sheet."
+  },
+  "desmosome": {
+   "name": "Desmosome",
+   "card": "cell_corneal_epithelial_junctions",
+   "material": "desmosome",
+   "source": "sridhar2018"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane"
+  },
+  "microplicae": {
+   "name": "Microplicae (surface ridges)",
+   "card": null,
+   "material": "membrane",
+   "source": "ghafar2021",
+   "about": "Low, winding ridges of membrane over the top of the cell. With the microvilli they hold the inner, mucus layer of the tear film on the eye, so the tears spread and do not run off. Their spacing and height here are illustrative."
+  },
+  "neighbour": {
+   "name": "Neighbouring corneal epithelial cell",
+   "card": "cornea_epithelium",
+   "material": "membrane"
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "cornea_layers",
+    "structure": "sup"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 28,
+  "r1_m": 0.0002,
+  "arrive_m": 7e-05,
+  "spawn_m": 1e-06
+ },
+ "about": [
+  "A surface cell is the top layer of the cornea's outer skin, the one the tears wash over. It is a wide, thin plate: 40 to 60 µm across and 2 to 6 µm thick in the human eye, drawn 50 µm across and 4 µm thick ({drawn.cellVolume} µm³). Its nucleus is flattened like the cell ({drawn.nuclei} drawn).",
+  "The top face is not smooth. It is folded into low winding ridges, microplicae ({drawn.microplicae} drawn), with short microvilli among them (too small to draw at this size), and these hold the tear film on the eye. Desmosomes ({drawn.desmosomes} drawn) tie the cell to its neighbours at the sides, and in life the tops of the sides are sealed with tight junctions (not drawn), so tears cannot seep between the cells.",
+  "Unlike the top of the skin, these cells are alive and keep their nuclei. A cell lasts only about a week to ten days: it is born at the bottom of the stack, moves up and is shed into the tears. The ridges' spacing, the numbers drawn and the organelle sizes are illustrative."
+ ],
+ "sources": {
+  "sridhar2018": {
+   "cite": "Sridhar MS (2018) Anatomy of cornea and ocular surface, Indian J Ophthalmol 66:190-194",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5819093/",
+   "opened": "2026-11-23",
+   "used_for": "human corneal epithelium about 50 µm thick, 5-7 layers centrally; surface cells flat, 40-60 µm across and 2-6 µm thick; wing cells 2-3 layers; basal cells single layer, columnar, about 20 µm tall, joined to the basement membrane by hemidesmosomes; desmosomes along the lateral membranes of all cells; basement membrane 40-60 nm; cells live 7-10 days"
+  },
+  "ghafar2021": {
+   "cite": "Ghafar NA, Jalil NAA, Kamarudin TA (2021) Wound healing of the corneal epithelium: a review, Asian Biomed 15:199-212",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10388779",
+   "opened": "2026-11-23",
+   "used_for": "epithelium about 50 µm in humans, 5-7 layers; superficial layer 2-4 layers with microplicae and microvilli; lateral desmosomes, adherens and tight junctions; wing cells rich in tonofilaments; basal cells are the only dividing cells and make up 40% of the thickness; hemidesmosomes anchor basal cells"
+  },
+  "wikipedia_ce": {
+   "cite": "Wikipedia, Corneal epithelium",
+   "url": "https://en.wikipedia.org/wiki/Corneal_epithelium",
+   "opened": "2026-11-23",
+   "used_for": "central thickness about 50 to 52 µm; superficial layers squamous with flattened nuclei; wing cells polyhedral; basal cells columnar; hemidesmosomes; constant mitosis"
+  }
+ }
+}

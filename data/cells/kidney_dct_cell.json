@@ -83,7 +83,11 @@
     0.4
    ],
    "size_measured": false,
-   "max_drawn": 700
+   "max_drawn": 700,
+   "position": "basal",
+   "align": "y",
+   "rows_um": 0.9,
+   "position_note": "illustrative arrangement: upright, in rows between the folds of the base, as the cell is described (the blurb); spacing not measured"
   },
   "golgi": {
    "stacks": {
@@ -95,7 +99,17 @@
   "absent": [],
   "absent_source": "mccormick2015"
  },
- "special": [],
+ "special": [
+  {
+   "kind": "basal_folds",
+   "part": "basolateral_folds",
+   "params": {
+    "spacing_um": 0.9,
+    "height": 0.62
+   },
+   "note": "illustrative spacing and height of the folds"
+  }
+ ],
  "cut": "The cell is cut in half from fluid side to base: the oval nucleus close under the short microvilli of the top, mitochondria all round it and standing in rows between the narrow folds of the base, and the folds of the sides reaching into the neighbouring cells. Neighbouring cells of the tubule wall show faintly behind.",
  "colours": {
   "convention": "Membrane pale; inside dark; nucleus violet; mitochondria orange; the folds of the base and sides a pale tint; the sodium chloride carrier and the sodium pump are not drawn. All colours are a code; none is the real colour of the cell.",
@@ -171,7 +185,7 @@
  },
  "about": [
   "This is one cell of the wall of a distal convoluted tubule, the winding part of the kidney tube that comes after the loop of Henle. Its size here, {drawn.cellVolume} µm³, is a drawing choice: the size of a human cell of this kind is not well measured. Only the tube's width (40 µm) was measured, in the mouse.",
-  "The nucleus lies close to the surface that faces the fluid, and mitochondria fill the space around it and the narrow folds of the base and sides. {drawn.mitochondria} of about {drawn.mitochondriaWanted} mitochondria are drawn; their number is illustrative, the crowding is not. The folds of one cell reach between its neighbours, which is why the cell edges look palisaded in a stained slice.",
+  "The nucleus lies close to the surface that faces the fluid. Below it the base and sides are folded into thin upright plates (about {drawn.folds} across this cell, drawn faint), and the mitochondria stand upright in rows between them. {drawn.mitochondria} of about {drawn.mitochondriaWanted} mitochondria are drawn; their number and the spacing of the folds are illustrative, the crowding is not. The folds of one cell reach between its neighbours, which is why the cell edges look palisaded in a stained slice.",
   "Not drawn: the sodium chloride carrier in the surface facing the fluid and the sodium pump in the folds, which are single proteins (open their parts to meet them); the tight seals between neighbours; the cells of other kinds that appear later along the tubule (intercalated cells); and the fine rough and smooth membrane network."
  ],
  "sources": {

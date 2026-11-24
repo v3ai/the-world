@@ -16,7 +16,7 @@
    }
   ],
   "id": "cell_motor_axon_dog",
-  "title": "Motor nerve fibre (dog)",
+  "title": "Motor neuron (dog)",
   "scale_m": 1e-05,
   "parents": [
    "neuromuscular_junction"
@@ -28,11 +28,11 @@
    "neuromuscular_junction",
    "dog_nmj"
   ],
-  "summary": "The long fibre that carries a dog's order to contract from the spinal cord to a muscle, wrapped in myelin and ending on muscle fibres.",
+  "summary": "A dog's motor neuron: a big cell body in the spinal cord and one long fibre, wrapped in myelin, that carries the order to contract all the way to a muscle and ends on its muscle fibres.",
   "layers": {
    "basics": "A dog's muscles move only when a nerve tells them to. The nerve is a bundle of very long fibres, and each fibre is the arm of one motor neuron whose cell body lies in the spinal cord. The fibre is much thinner than a hair (a hair is roughly 50 to 100 µm across, this fibre about 12 µm; hair width from general knowledge, not opened), but it runs from the spine all the way to the muscle, and it is wrapped in a white fatty coat called myelin that makes signals travel faster. At the muscle it splits into small branches, and each branch ends on one muscle fibre. Click a part to meet it.",
    "deeper": "Along the fibre, myelin comes in lengths, each made by one Schwann cell, with short bare gaps called nodes between them. A signal is renewed at each node and jumps to the next, which is far faster than creeping along a bare fibre of the same size. Thicker fibres have thicker myelin and longer lengths, and carry signals faster; the largest fibres of a limb nerve are the ones that drive the muscle fibres that produce the force. One motor neuron and the muscle fibres it serves are called a motor unit.",
-   "expert": "No dog measurement of a limb motor axon was read for this picture. The largest cat fibres have an axon-to-fibre width ratio of 0.70 to 0.75; calf nerve gives 0.61. A table of other studies lists a 3-month-old dog's fibular nerve with largest fibres of 12 µm; adult dog values are larger and were not read, and 12 µm is not the largest dog fibre. Cat spinal roots (L7 ventral root) give large axons of about 9 µm with segments averaging about 1400 µm, and the largest adult cat fibres are about 15 µm. The drawn axon, fibre, myelin thickness and end branches are illustrative and sit within those ranges. The cell body, dendrites and the cell that makes the myelin are not drawn to size."
+   "expert": "No dog measurement of a limb motor axon was read for this picture. The largest cat fibres have an axon-to-fibre width ratio of 0.70 to 0.75; calf nerve gives 0.61. A table of other studies lists a 3-month-old dog's fibular nerve with largest fibres of 12 µm; adult dog values are larger and were not read, and 12 µm is not the largest dog fibre. Cat spinal roots (L7 ventral root) give large axons of about 9 µm with segments averaging about 1400 µm, and the largest adult cat fibres are about 15 µm. The drawn axon, fibre, myelin thickness and end branches are illustrative and sit within those ranges. The cell body and dendrites in the picture are drawn as for the human motor neuron in this explorer (11 main dendrites, as counted in the cat); no dog motor neuron was measured, and the cell that makes the myelin is not drawn."
   },
   "facts": [
    [

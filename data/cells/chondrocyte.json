@@ -5,7 +5,7 @@
  "species": "Homo sapiens",
  "card": "cell_chondrocyte",
  "blurb": "The one kind of cell in cartilage: a rounded cell about 10 µm across, usually lying singly in a small cavity of the matrix it has made itself.",
- "note": "Model: one human chondrocyte (in growing or repairing cartilage, cells often lie in groups of two to eight in one cavity; one cell of such a group is drawn) of the middle layer of joint cartilage, cut in half, with its cavity (lacuna) drawn as a pale rim round it. Measured in human cartilage: the cell's volume, its roundish shape, the share of the tissue that cells make up and the length of its primary cilium. Illustrative: the exact axes (chosen to give the measured volume), the width of the rim, the nucleus, the mitochondria, the Golgi stacks and the colours. The matrix around the cell is not drawn, and neither are the rough endoplasmic reticulum, the glycogen, the fat droplets, the cilium or the thin cell processes.",
+ "note": "Model: one human chondrocyte (in growing or repairing cartilage, cells often lie in groups of two to eight in one cavity; one cell of such a group is drawn) of the middle layer of joint cartilage, cut in half, with its cavity (lacuna) drawn as a pale rim round it. Measured in human cartilage: the cell's volume, its roundish shape, the share of the tissue that cells make up and the length of its primary cilium. Illustrative: the exact axes (chosen to give the measured volume), the width of the rim, the nucleus, the mitochondria, the Golgi stacks, the stacks of rough endoplasmic reticulum, the glycogen and fat droplets, the size of the faint block of matrix drawn round the cell, and the colours. Not drawn: the cilium and the thin cell processes.",
  "shape": {
   "type": "ellipsoid",
   "a_um": 10.4,
@@ -15,28 +15,153 @@
   "coat_um": 1.8
  },
  "dimensions": {
-  "volume": { "value": 522, "unit": "um3", "measured": true, "source": "hall2019", "note": "human tibial plateau, middle layer of cartilage graded normal (grade 0); quoted in a 2019 review from earlier work on macroscopically normal cartilage of older people; in the same layer some cells were small (200 to 300 µm³) and some very large (over 1000 µm³)", "compare": "a cluster of cells in the middle layer of human femoral head cartilage averaged about 5000 µm³ per cell (karim2017), a figure worked out from the volume of the whole cluster, so it is not comparable" },
-  "diameter": { "value": 10.1, "unit": "um", "measured": true, "calc": "the width of a sphere of 522 µm³: (6 × 522 / π)^(1/3)", "source": "hall2019" },
-  "axes": { "value": 10.4, "unit": "um", "measured": false, "note": "illustrative: axes of 10.4 × 10.4 × 9.2 µm give 521 µm³, the measured volume; the shape of a middle-layer cell was described as spheroidal (karim2017) but its axis ratio was not measured" },
-  "lacuna_rim": { "value": 1.8, "unit": "um", "measured": false, "note": "illustrative: the width drawn for the cavity wall round the cell; the cell lies in a cavity that its own matrix encloses" },
-  "cell_share": { "value": 0.02, "unit": "fraction", "measured": true, "source": "fox2009", "note": "about 2% of the volume of joint cartilage is cells; the rest is matrix", "compare": "13 800 cells per mm³ in the middle layer of femoral head cartilage of older people (karim2017); at 522 µm³ each that is under 1% of the volume, so the two figures differ by tissue and age" },
-  "primary_cilium": { "value": 1.5, "range": [1, 2], "unit": "um", "measured": true, "calc": "the middle of the stated range of 1 to 2 µm", "source": "hall2019", "note": "length of the primary cilium, a sensing rod; not drawn" }
+  "volume": {
+   "value": 522,
+   "unit": "um3",
+   "measured": true,
+   "source": "hall2019",
+   "note": "human tibial plateau, middle layer of cartilage graded normal (grade 0); quoted in a 2019 review from earlier work on macroscopically normal cartilage of older people; in the same layer some cells were small (200 to 300 µm³) and some very large (over 1000 µm³)",
+   "compare": "a cluster of cells in the middle layer of human femoral head cartilage averaged about 5000 µm³ per cell (karim2017), a figure worked out from the volume of the whole cluster, so it is not comparable"
+  },
+  "diameter": {
+   "value": 10.1,
+   "unit": "um",
+   "measured": true,
+   "calc": "the width of a sphere of 522 µm³: (6 × 522 / π)^(1/3)",
+   "source": "hall2019"
+  },
+  "axes": {
+   "value": 10.4,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: axes of 10.4 × 10.4 × 9.2 µm give 521 µm³, the measured volume; the shape of a middle-layer cell was described as spheroidal (karim2017) but its axis ratio was not measured"
+  },
+  "lacuna_rim": {
+   "value": 1.8,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: the width drawn for the cavity wall round the cell; the cell lies in a cavity that its own matrix encloses"
+  },
+  "cell_share": {
+   "value": 0.02,
+   "unit": "fraction",
+   "measured": true,
+   "source": "fox2009",
+   "note": "about 2% of the volume of joint cartilage is cells; the rest is matrix",
+   "compare": "13 800 cells per mm³ in the middle layer of femoral head cartilage of older people (karim2017); at 522 µm³ each that is under 1% of the volume, so the two figures differ by tissue and age"
+  },
+  "primary_cilium": {
+   "value": 1.5,
+   "range": [
+    1,
+    2
+   ],
+   "unit": "um",
+   "measured": true,
+   "calc": "the middle of the stated range of 1 to 2 µm",
+   "source": "hall2019",
+   "note": "length of the primary cilium, a sensing rod; not drawn"
+  }
  },
  "nucleus": {
   "count": 1,
   "shape": "round",
-  "size_um": { "value": [6, 6, 5.5], "unit": "um", "measured": false, "note": "illustrative: the nucleus of a cell this small fills roughly a fifth of it" },
+  "size_um": {
+   "value": [
+    6,
+    6,
+    5.5
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: the nucleus of a cell this small fills roughly a fifth of it"
+  },
   "nucleoli": 1,
   "position": "central"
  },
  "organelles": {
-  "mitochondria": { "volume_fraction": { "value": 0.02, "measured": false, "note": "illustrative: drawn small and few; the cell depends mainly on anaerobic metabolism (fox2009), but no mitochondrial share was measured here" }, "size_um": [0.8, 0.3], "size_measured": false, "max_drawn": 40 },
-  "golgi": { "stacks": { "value": 2, "measured": false, "note": "illustrative: the cell makes large amounts of matrix (fox2009), so a Golgi apparatus is drawn beside the nucleus; its size, number and position are not from a source" } },
-  "not_drawn": ["rough endoplasmic reticulum", "glycogen", "fat droplets", "primary cilium", "cell processes", "the matrix beyond the cavity"]
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.02,
+    "measured": false,
+    "note": "illustrative: drawn small and few; the cell depends mainly on anaerobic metabolism (fox2009), but no mitochondrial share was measured here"
+   },
+   "size_um": [
+    0.8,
+    0.3
+   ],
+   "size_measured": false,
+   "max_drawn": 40
+  },
+  "golgi": {
+   "stacks": {
+    "value": 2,
+    "measured": false,
+    "note": "illustrative: the cell makes large amounts of matrix (fox2009), so a Golgi apparatus is drawn beside the nucleus; its size, number and position are not from a source"
+   }
+  },
+  "not_drawn": [
+   "primary cilium",
+   "cell processes",
+   "the matrix beyond the drawn block"
+  ],
+  "lipid_droplets": {
+   "count": {
+    "value": 6,
+    "measured": false,
+    "note": "illustrative"
+   },
+   "size_um": {
+    "value": 1.0,
+    "measured": false
+   },
+   "max_drawn": 6
+  }
  },
  "special": [
-  { "kind": "pericellular_matrix", "part": "coat", "source": "fox2009", "note": "A thin layer of matrix hugs the cell membrane and surrounds the cell completely; it holds the cell in place and is the only part of cartilage where collagen type VI lies (hall2019). Drawn only as the pale rim round the cell, whose width is illustrative." },
-  { "kind": "cell_processes", "source": "hall2019", "note": "Some human chondrocytes put out short (up to 10 µm) or long (over 10 µm) processes that reach beyond the cavity into the matrix. They were not seen in rat, cow or horse cartilage. Not drawn: the cell is drawn smooth, as healthy cells were described (hall2019)." }
+  {
+   "kind": "pericellular_matrix",
+   "part": "coat",
+   "source": "fox2009",
+   "note": "A thin layer of matrix hugs the cell membrane and surrounds the cell completely; it holds the cell in place and is the only part of cartilage where collagen type VI lies (hall2019). Drawn only as the pale rim round the cell, whose width is illustrative."
+  },
+  {
+   "kind": "cell_processes",
+   "source": "hall2019",
+   "note": "Some human chondrocytes put out short (up to 10 µm) or long (over 10 µm) processes that reach beyond the cavity into the matrix. They were not seen in rat, cow or horse cartilage. Not drawn: the cell is drawn smooth, as healthy cells were described (hall2019)."
+  },
+  {
+   "kind": "matrix_block",
+   "part": "matrix",
+   "lacuna_part": "lacuna",
+   "params": {
+    "size_um": 60,
+    "gap_um": 0.4
+   },
+   "note": "a 60 µm block of the matrix round the cell, drawn faint; cells are only about 2% of joint cartilage (hall2019), so in life the matrix goes on far beyond the block"
+  },
+  {
+   "kind": "rough_er_stacks",
+   "part": "rough_er",
+   "params": {
+    "stacks": 30,
+    "sheets": 4,
+    "width_um": 2.2,
+    "spacing_um": 0.14
+   },
+   "note": "illustrative number and size"
+  },
+  {
+   "kind": "glycogen",
+   "part": "glycogen",
+   "params": {
+    "clumps": 14,
+    "per_clump": 18,
+    "clump_um": 0.9,
+    "granule_um": 0.1
+   },
+   "note": "illustrative amount"
+  }
  ],
  "cut": "The round cell cut in half: a smooth outline inside a pale rim (the cavity wall), a central round nucleus with its nucleolus, a few small mitochondria and a Golgi apparatus beside the nucleus, all in cytoplasm. Nothing else of the surrounding matrix shows.",
  "colours": {
@@ -44,35 +169,145 @@
   "true_colour": []
  },
  "parts": {
-  "membrane": { "name": "Cell membrane", "card": "cell_membrane", "material": "membrane" },
-  "cytosol": { "name": "Cytosol", "card": null, "material": "water", "about": "The watery inside of the cell, crowded with proteins. Here it is also where the cell builds the collagen and the sugar-rich molecules that it sends out into the matrix." },
-  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus" },
-  "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna", "about": "The nucleolus is where ribosomal RNA is made and ribosomes are assembled; going down shows one unit of RNA, not the nucleolus itself." },
-  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion" },
-  "golgi": { "name": "Golgi apparatus", "card": "golgi_apparatus", "material": "membrane" },
-  "coat": { "name": "Lacuna and the matrix touching the cell", "card": "cell_chondrocyte_lacuna", "material": "cartilage_matrix", "about": "Going down shows the water this matrix holds; its collagen and sugar-rich molecules are not built yet.", "source": "openstax_anp" }
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytosol",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell, crowded with proteins. Here it is also where the cell builds the collagen and the sugar-rich molecules that it sends out into the matrix."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna",
+   "about": "The nucleolus is where ribosomal RNA is made and ribosomes are assembled; going down shows one unit of RNA, not the nucleolus itself."
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane"
+  },
+  "coat": {
+   "name": "Lacuna and the matrix touching the cell",
+   "card": "cell_chondrocyte_lacuna",
+   "material": "cartilage_matrix",
+   "about": "Going down shows the water this matrix holds; its collagen and sugar-rich molecules are not built yet.",
+   "source": "openstax_anp"
+  },
+  "matrix": {
+   "name": "Cartilage matrix",
+   "card": null,
+   "material": "cartilage_matrix",
+   "about": "The firm, glassy material the cells make and sit in: fine collagen fibres in a gel of water-holding sugar-rich molecules. Cells take only about 2% of the volume of joint cartilage; the rest is this matrix. Drawn faint, as a block round the cell."
+  },
+  "lacuna": {
+   "name": "Lacuna (the cell's cavity)",
+   "card": null,
+   "material": "cartilage_matrix",
+   "about": "The small cavity in the matrix in which the cell lies, lined by the thin layer of matrix that hugs the cell."
+  },
+  "rough_er": {
+   "name": "Rough endoplasmic reticulum",
+   "card": "endoplasmic_reticulum",
+   "material": "rna",
+   "about": "Stacks of flat membrane sacs covered in ribosomes, where the cell makes collagen and the other proteins of the matrix. The ribosomes are shown as one RNA nucleotide, a stand-in. Their number and size here are illustrative."
+  },
+  "glycogen": {
+   "name": "Glycogen",
+   "card": null,
+   "material": "glycogen",
+   "about": "Clumps of glycogen, the cell's store of sugar; cartilage has no blood vessels, and the cell gets most of its energy from sugar without oxygen. The amount drawn is illustrative."
+  },
+  "lipid_droplet": {
+   "name": "Fat droplet",
+   "card": null,
+   "material": "fat",
+   "about": "A small droplet of stored fat. The number drawn is illustrative."
+  }
  },
  "reached": {
-  "tissue": [{ "kind": "cartilage", "id": "chondrocyte" }],
+  "tissue": [
+   {
+    "kind": "cartilage",
+    "id": "chondrocyte"
+   }
+  ],
   "tissue2": [
-   { "scene": "hyaline_cartilage", "structure": "cell1" },
-   { "scene": "hyaline_cartilage", "structure": "cell2" },
-   { "scene": "hyaline_cartilage", "structure": "cell3" },
-   { "scene": "hyaline_cartilage", "structure": "gcell1" },
-   { "scene": "hyaline_cartilage", "structure": "gcell2" },
-   { "scene": "hyaline_cartilage", "structure": "gcell3" }
+   {
+    "scene": "hyaline_cartilage",
+    "structure": "cell1"
+   },
+   {
+    "scene": "hyaline_cartilage",
+    "structure": "cell2"
+   },
+   {
+    "scene": "hyaline_cartilage",
+    "structure": "cell3"
+   },
+   {
+    "scene": "hyaline_cartilage",
+    "structure": "gcell1"
+   },
+   {
+    "scene": "hyaline_cartilage",
+    "structure": "gcell2"
+   },
+   {
+    "scene": "hyaline_cartilage",
+    "structure": "gcell3"
+   }
   ]
  },
- "view": { "radius_um": 9, "r1_m": 0.00015, "arrive_m": 2.8e-05, "spawn_m": 8e-08 },
+ "view": {
+  "radius_um": 9,
+  "r1_m": 0.00015,
+  "arrive_m": 2.8e-05,
+  "spawn_m": 8e-08
+ },
  "about": [
   "The cell is drawn as an almost round body whose volume is {drawn.cellVolume} µm³; cells of the middle layer of human knee cartilage graded normal averaged 522 µm³ (a figure quoted in a 2019 review from earlier work on older people), with some as small as 200 to 300 µm³ and some over 1000 µm³. The three axes are an illustrative choice that gives that volume.",
   "A chondrocyte usually lies singly in a cavity, the lacuna, of the matrix it has made (cells in growing or repairing cartilage often lie in groups of two to eight in one cavity; one cell of such a group is drawn); the pale rim shows it, 1.8 µm wide (an illustrative width). The cell makes the collagen and the sugar-rich molecules of that matrix, and cartilage has no blood vessels, so food reaches it only by seeping through the matrix and the cell gets most of its energy without oxygen.",
-  "Cells are only about 2% of the volume of joint cartilage. {drawn.nuclei} nucleus and {drawn.mitochondria} mitochondria are drawn; their sizes and number are illustrative. The rough endoplasmic reticulum, glycogen, fat droplets, the primary cilium (1 to 2 µm long) and the thin processes some human cells put out are not drawn, and cells in other layers of the cartilage are flatter or lie in columns."
+  "Cells are only about 2% of the volume of joint cartilage; the faint block round the cell is a little of the matrix it lies in. {drawn.nuclei} nucleus, {drawn.mitochondria} mitochondria, {drawn.erStacks} stacks of rough endoplasmic reticulum (where it makes the matrix's proteins), clumps of glycogen and a few fat droplets are drawn; their sizes and numbers are illustrative. The primary cilium (1 to 2 µm long) and the thin processes some human cells put out are not drawn, and cells in other layers of the cartilage are flatter or lie in columns."
  ],
  "sources": {
-  "hall2019": { "cite": "Hall AC (2019) The Role of Chondrocyte Morphology and Volume in Controlling Phenotype. Curr Rheumatol Rep 21:38", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6571082/", "opened": "2026-11-23", "used_for": "human tibial plateau, middle layer: 522 µm³ in grade 0 cartilage (from Bush and Hall 2003), small and large cells; smooth elliptical and spheroidal shape; processes; primary cilium 1 to 2 µm; pericellular matrix with collagen VI" },
-  "karim2017": { "cite": "Karim A, Amin AK, Hall AC (2018) The clustering and morphology of chondrocytes in normal and mildly degenerate human femoral head cartilage studied by confocal laser scanning microscopy. J Anat 232:686-698", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5835791", "opened": "2026-11-23", "used_for": "shape by layer (middle layer spheroidal); cell density by layer; cluster volume (a comparison only)" },
-  "fox2009": { "cite": "Sophia Fox AJ, Bedi A, Rodeo SA (2009) The basic science of articular cartilage: structure, composition, and function. Sports Health 1:461-468", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3445147/", "opened": "2026-11-23", "used_for": "cells about 2% of the volume; pericellular matrix surrounds the cell; mostly anaerobic metabolism; collagen type II and aggrecan made by the cell" },
-  "openstax_anp": { "cite": "OpenStax Anatomy and Physiology 2e, 4.3 Connective Tissue Supports and Protects", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects", "opened": "2026-11-23", "used_for": "chondrocytes and the spaces they occupy are lacunae; cartilage has no vessels so nutrients diffuse through the matrix" }
+  "hall2019": {
+   "cite": "Hall AC (2019) The Role of Chondrocyte Morphology and Volume in Controlling Phenotype. Curr Rheumatol Rep 21:38",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6571082/",
+   "opened": "2026-11-23",
+   "used_for": "human tibial plateau, middle layer: 522 µm³ in grade 0 cartilage (from Bush and Hall 2003), small and large cells; smooth elliptical and spheroidal shape; processes; primary cilium 1 to 2 µm; pericellular matrix with collagen VI"
+  },
+  "karim2017": {
+   "cite": "Karim A, Amin AK, Hall AC (2018) The clustering and morphology of chondrocytes in normal and mildly degenerate human femoral head cartilage studied by confocal laser scanning microscopy. J Anat 232:686-698",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5835791",
+   "opened": "2026-11-23",
+   "used_for": "shape by layer (middle layer spheroidal); cell density by layer; cluster volume (a comparison only)"
+  },
+  "fox2009": {
+   "cite": "Sophia Fox AJ, Bedi A, Rodeo SA (2009) The basic science of articular cartilage: structure, composition, and function. Sports Health 1:461-468",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3445147/",
+   "opened": "2026-11-23",
+   "used_for": "cells about 2% of the volume; pericellular matrix surrounds the cell; mostly anaerobic metabolism; collagen type II and aggrecan made by the cell"
+  },
+  "openstax_anp": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 4.3 Connective Tissue Supports and Protects",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects",
+   "opened": "2026-11-23",
+   "used_for": "chondrocytes and the spaces they occupy are lacunae; cartilage has no vessels so nutrients diffuse through the matrix"
+  }
  }
 }

@@ -5,33 +5,142 @@
  "species": "Homo sapiens",
  "card": "cell_smooth_muscle_cell",
  "blurb": "A smooth muscle cell: a slim spindle, thick in the middle and tapering to both ends, with one long thin nucleus and no stripes.",
- "note": "Model: one smooth muscle cell of the kind found in the walls of human vessels and hollow organs, cut lengthways through its middle. Measured: that the cell is spindle-shaped, has a single nucleus, is a few micrometres wide and tens to hundreds of micrometres long, has no stripes, and that mitochondria take 2 to 10% of the cell in mammalian smooth muscle (the share in human cells is not given by the source, which reports mammals). Illustrative: the exact length and width drawn, the size and shape of the nucleus, the number and size of the mitochondria and where they lie (in the cell they run along the filaments in columns under the membrane and cluster beyond the nucleus poles; here they are placed without that pattern), the colours, and where the nucleus lies. The filaments, dense bodies, caveolae and sarcoplasmic reticulum are not drawn.",
- "shape": { "type": "spindle", "length_um": 150, "width_um": 6, "flat": 1 },
+ "note": "Model: one smooth muscle cell of the kind found in the walls of human vessels and hollow organs, cut lengthways through its middle. Measured: that the cell is spindle-shaped, has a single nucleus, is a few micrometres wide and tens to hundreds of micrometres long, has no stripes, and that mitochondria take 2 to 10% of the cell in mammalian smooth muscle (the share in human cells is not given by the source, which reports mammals). Illustrative: the exact length and width drawn, the size and shape of the nucleus, the number and size of the mitochondria and where they lie (in the cell they run along the filaments in columns under the membrane and cluster beyond the nucleus poles; here they are placed without that pattern), the colours, and where the nucleus lies. Drawn as a sketch of their layout: dense bodies (an illustrative number) and bundles of contractile filaments strung between them at a slant to the cell, each line standing for many filaments and far thicker than one. Caveolae and the sarcoplasmic reticulum are not drawn. Faint neighbours show that the cell lies in a bundle.",
+ "shape": {
+  "type": "spindle",
+  "length_um": 150,
+  "width_um": 6,
+  "flat": 1
+ },
  "dimensions": {
-  "length_max": { "value": 200, "range": [30, 200], "unit": "um", "measured": true, "source": "openstax_smooth", "note": "the textbook range for smooth muscle fibres is about 30 to 200 µm" },
-  "length_drawn": { "value": 150, "range": [30, 200], "unit": "um", "measured": false, "note": "illustrative: a length chosen inside the range above. Other sources describe lengths up to a few hundred µm in some organs, and Gabella 2018 quotes elongated cells 600 to 800 µm long as a general figure; the length varies with the organ and with how stretched the muscle is", "also": "gabella2021" },
-  "width_drawn": { "value": 6, "range": [2, 10], "unit": "um", "measured": false, "note": "illustrative: sources agree the cell is only a few micrometres across at its widest (siu_smooth, gabella2021); 6 µm is chosen inside that statement" },
-  "caveola_diameter": { "value": 74, "range": [70, 77], "unit": "nm", "measured": true, "source": "popescu2006", "note": "mean flask-shaped pits in the membrane, 70 nm in vascular and 77 nm in visceral cells; rat, guinea pig and human tissue (human ileum among them); the abstract does not say which tissue gave which figure. Not drawn." },
-  "caveola_volume_share": { "value": 0.0143, "range": [0.0143, 0.0366], "unit": "fraction", "measured": true, "source": "popescu2006", "note": "share of cell volume: 1.43% in rat aorta up to 3.66% in rat bladder (the other tissues studied include guinea pig and human ileum). Not drawn." },
-  "caveola_area_gain": { "value": 0.8, "unit": "fraction", "measured": true, "source": "popescu2006", "note": "caveolae enlarge the membrane area by about 80% (rat, guinea pig and human tissue)" }
+  "length_max": {
+   "value": 200,
+   "range": [
+    30,
+    200
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "openstax_smooth",
+   "note": "the textbook range for smooth muscle fibres is about 30 to 200 µm"
+  },
+  "length_drawn": {
+   "value": 150,
+   "range": [
+    30,
+    200
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: a length chosen inside the range above. Other sources describe lengths up to a few hundred µm in some organs, and Gabella 2018 quotes elongated cells 600 to 800 µm long as a general figure; the length varies with the organ and with how stretched the muscle is",
+   "also": "gabella2021"
+  },
+  "width_drawn": {
+   "value": 6,
+   "range": [
+    2,
+    10
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: sources agree the cell is only a few micrometres across at its widest (siu_smooth, gabella2021); 6 µm is chosen inside that statement"
+  },
+  "caveola_diameter": {
+   "value": 74,
+   "range": [
+    70,
+    77
+   ],
+   "unit": "nm",
+   "measured": true,
+   "source": "popescu2006",
+   "note": "mean flask-shaped pits in the membrane, 70 nm in vascular and 77 nm in visceral cells; rat, guinea pig and human tissue (human ileum among them); the abstract does not say which tissue gave which figure. Not drawn."
+  },
+  "caveola_volume_share": {
+   "value": 0.0143,
+   "range": [
+    0.0143,
+    0.0366
+   ],
+   "unit": "fraction",
+   "measured": true,
+   "source": "popescu2006",
+   "note": "share of cell volume: 1.43% in rat aorta up to 3.66% in rat bladder (the other tissues studied include guinea pig and human ileum). Not drawn."
+  },
+  "caveola_area_gain": {
+   "value": 0.8,
+   "unit": "fraction",
+   "measured": true,
+   "source": "popescu2006",
+   "note": "caveolae enlarge the membrane area by about 80% (rat, guinea pig and human tissue)"
+  }
  },
  "nucleus": {
   "count": 1,
   "shape": "cigar",
-  "size_um": [15, 3, 3],
+  "size_um": [
+   15,
+   3,
+   3
+  ],
   "position": "central",
   "nucleoli": 1,
   "source": "siu_smooth",
   "note": "One nucleus per cell (openstax_smooth), long and often cigar-shaped (siu_smooth); in a contracted cell it can look wavy. The length 15 µm, the width 3 µm and the single nucleolus are illustrative; the middle position is the usual one in sections but is not quantified by the sources opened."
  },
  "organelles": {
-  "mitochondria": { "volume_fraction": { "value": 0.05, "range": [0.02, 0.1], "measured": false, "source": "gabella2018", "note": "the measured range of mitochondrial share of cytoplasm in mammalian smooth muscle is about 2 to 10% (various species and muscles; human cells are not listed in the passages read); 5% is a value chosen inside it" }, "size_um": [1.0, 0.3], "size_measured": false, "max_drawn": 400 },
-  "not_drawn": ["contractile filaments", "dense bodies", "caveolae", "sarcoplasmic reticulum", "Golgi apparatus", "intermediate filaments"]
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.05,
+    "range": [
+     0.02,
+     0.1
+    ],
+    "measured": false,
+    "source": "gabella2018",
+    "note": "the measured range of mitochondrial share of cytoplasm in mammalian smooth muscle is about 2 to 10% (various species and muscles; human cells are not listed in the passages read); 5% is a value chosen inside it"
+   },
+   "size_um": [
+    1.0,
+    0.3
+   ],
+   "size_measured": false,
+   "max_drawn": 400
+  },
+  "not_drawn": [
+   "caveolae",
+   "sarcoplasmic reticulum",
+   "Golgi apparatus",
+   "intermediate filaments"
+  ]
  },
  "special": [
-  { "kind": "dense_bodies", "part": "contractile", "source": "openstax_smooth", "note": "Dense bodies, patches in the cytoplasm and on the membrane that play the part the Z-discs play in striped muscle, anchor the thin filaments. Described, not drawn." },
-  { "kind": "caveolae", "source": "popescu2006", "note": "Flask-shaped pits in the membrane, 70 to 77 nm across, close to the sarcoplasmic reticulum. Described, not drawn." },
-  { "kind": "gap_junctions", "source": "openstax_smooth", "note": "In single-unit smooth muscle, cells are joined by gap junctions, so a wave of activity passes from cell to cell. Neighbours are not drawn." }
+  {
+   "kind": "caveolae",
+   "source": "popescu2006",
+   "note": "Flask-shaped pits in the membrane, 70 to 77 nm across, close to the sarcoplasmic reticulum. Described, not drawn."
+  },
+  {
+   "kind": "gap_junctions",
+   "source": "openstax_smooth",
+   "note": "In single-unit smooth muscle, cells are joined by gap junctions, so a wave of activity passes from cell to cell. Neighbours are not drawn."
+  },
+  {
+   "kind": "dense_bodies",
+   "part": "dense_body",
+   "filaments_part": "contractile",
+   "params": {
+    "count": 260,
+    "size_um": 0.4,
+    "reach_um": 5,
+    "filament_um": 0.08
+   },
+   "note": "illustrative: number and size of the dense bodies drawn, and the filament bundles drawn far thicker than the real filaments (myosin about 15 nm, actin about 7 nm), one line for many"
+  },
+  {
+   "kind": "bundle",
+   "params": {}
+  }
  ],
  "cut": "A cut along the length of the spindle: a slender shape with pointed ends, the single long nucleus in the middle, and a few mitochondria lying along the filaments, often clustered at the ends of the nucleus, which is full of contractile filaments (not drawn one by one). The membrane runs round the edge.",
  "colours": {
@@ -39,26 +148,92 @@
   "true_colour": []
  },
  "parts": {
-  "membrane": { "name": "Cell membrane", "card": "cell_membrane", "material": "membrane" },
-  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus", "source": "siu_smooth" },
-  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion", "source": "gabella2018" },
-  "contractile": { "name": "Contractile filaments", "card": "cell_smooth_muscle_filaments", "material": "protein", "source": "openstax_smooth" }
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus",
+   "source": "siu_smooth"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion",
+   "source": "gabella2018"
+  },
+  "contractile": {
+   "name": "Contractile filaments",
+   "card": "cell_smooth_muscle_filaments",
+   "material": "protein",
+   "source": "openstax_smooth"
+  },
+  "dense_body": {
+   "name": "Dense body",
+   "card": null,
+   "material": "protein",
+   "about": "A small dark patch of protein (mostly alpha-actinin) where actin filaments are anchored, scattered through the cytoplasm and stuck to the membrane. Dense bodies do the job of the Z lines of striated muscle. When the slanting filaments between them pull, the cell shortens and bulges."
+  },
+  "neighbour": {
+   "name": "Neighbouring smooth muscle cell",
+   "card": null,
+   "material": "membrane",
+   "about": "Smooth muscle cells lie side by side in bundles and sheets, their tapering ends overlapping, joined by gap junctions so that they contract together. The neighbours are drawn faintly."
+  }
  },
  "reached": {
-  "tissue": [{ "kind": "smooth", "id": "smooth_muscle_cell" }]
+  "tissue": [
+   {
+    "kind": "smooth",
+    "id": "smooth_muscle_cell"
+   }
+  ]
  },
- "view": { "radius_um": 90, "r1_m": 8e-4, "arrive_m": 1.1e-4, "spawn_m": 1e-6 },
+ "view": {
+  "radius_um": 90,
+  "r1_m": 0.0008,
+  "arrive_m": 2.6e-05,
+  "spawn_m": 1e-06
+ },
  "about": [
-  "One smooth muscle cell, a spindle {drawn.cellVolume} µm³ in volume as drawn: about 150 µm long and 6 µm across at its widest. Textbooks put human smooth muscle cells at 30 to 200 µm long; the exact length and width drawn here are illustrative, because cells differ with the organ and shorten and lengthen as the muscle works.",
+  "One smooth muscle cell, a spindle {drawn.cellVolume} µm³ in volume as drawn: about 150 µm long and 6 µm across at its widest. Textbooks put human smooth muscle cells at 30 to 200 µm long; the exact length and width drawn here are illustrative, because cells differ with the organ and shorten and lengthen as the muscle works. The view opens on the middle of the cell, where the nucleus lies; the tapering ends run off on each side.",
   "It has a single nucleus, long and thin like a cigar, in the middle of the cell. {drawn.nuclei} nucleus is drawn. In cross-section such a nucleus looks like a small round dot, which is why a slice of smooth muscle shows far fewer nuclei than cells.",
-  "There are no stripes. The cell holds actin and myosin filaments, but they are not lined up into sarcomeres; thin filaments are anchored in dense bodies, the counterpart of the Z-discs of striped muscle, and the cell shortens by pulling along its whole length. The filaments and dense bodies are not drawn.",
+  "There are no stripes. The cell holds actin and myosin filaments, but they are not lined up into sarcomeres: bundles of them run at a slant between dense bodies, the counterpart of the Z-discs of striped muscle, some scattered through the cytoplasm and some fixed to the membrane. When they pull, the whole lattice shortens and the cell bulges. {drawn.denseBodies} dense bodies and {drawn.filamentBundles} filament bundles are drawn, a sketch of the layout: each line stands for many filaments and is drawn far thicker than one.",
   "Mitochondria take about 2 to 10% of the cytoplasm in mammalian smooth muscle; this picture uses 5%, and draws {drawn.mitochondria} of about {drawn.mitochondriaWanted}. Caveolae, small pits that enlarge the membrane area by about 80%, and the sarcoplasmic reticulum lie too close to the membrane to see at this scale and are not drawn."
  ],
  "sources": {
-  "openstax_smooth": { "cite": "OpenStax Anatomy and Physiology 2e, 10.8 Smooth Muscle", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-8-smooth-muscle", "opened": "2026-11-23", "used_for": "spindle shape; 30 to 200 µm long; single nucleus; no striations or sarcomeres; dense bodies; membrane indentations (called calveoli on the page); gap junctions in single-unit muscle" },
-  "siu_smooth": { "cite": "Southern Illinois University School of Medicine, histology: Smooth muscle", "url": "https://histology.siu.edu/ssb/smoothm.htm", "opened": "2026-11-23", "used_for": "a few micrometres wide; each cell has its own nucleus, elongated and often cigar-shaped; wavy when contracted; round dots in cross-section" },
-  "gabella2018": { "cite": "Gabella G (2018) Mitochondria in smooth muscle cells of viscera. J Smooth Muscle Res 54:1 (review; data from mouse, rat, guinea pig and sheep intestine and other viscera)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6060277/", "opened": "2026-11-23", "used_for": "mitochondria about 2 to 10% of cytoplasm in mammalian smooth muscle; a general figure of elongated cells 600 to 800 µm long (Discussion); mitochondria elongated along the filaments" },
-  "gabella2021": { "cite": "Gabella G (2021) Spatial lay-out of various smooth muscles. J Smooth Muscle Res", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8443803/", "opened": "2026-11-23", "used_for": "small spindle-shaped cells, a few micrometres wide and well below a millimetre long" },
-  "popescu2006": { "cite": "Popescu LM, Gherghiceanu M, Cretoiu D, Radu E (2006) Caveolae in smooth muscles: nanocontacts. J Cell Mol Med 10:960 (rat stomach, bladder, myometrium and aorta; guinea pig taenia coli; human ileum)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3933089/", "opened": "2026-11-23", "used_for": "caveola diameter 70 to 77 nm; 1.43 to 3.66% of cell volume; membrane area up by about 80%; contact with sarcoplasmic reticulum" }
+  "openstax_smooth": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 10.8 Smooth Muscle",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-8-smooth-muscle",
+   "opened": "2026-11-23",
+   "used_for": "spindle shape; 30 to 200 µm long; single nucleus; no striations or sarcomeres; dense bodies; membrane indentations (called calveoli on the page); gap junctions in single-unit muscle"
+  },
+  "siu_smooth": {
+   "cite": "Southern Illinois University School of Medicine, histology: Smooth muscle",
+   "url": "https://histology.siu.edu/ssb/smoothm.htm",
+   "opened": "2026-11-23",
+   "used_for": "a few micrometres wide; each cell has its own nucleus, elongated and often cigar-shaped; wavy when contracted; round dots in cross-section"
+  },
+  "gabella2018": {
+   "cite": "Gabella G (2018) Mitochondria in smooth muscle cells of viscera. J Smooth Muscle Res 54:1 (review; data from mouse, rat, guinea pig and sheep intestine and other viscera)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6060277/",
+   "opened": "2026-11-23",
+   "used_for": "mitochondria about 2 to 10% of cytoplasm in mammalian smooth muscle; a general figure of elongated cells 600 to 800 µm long (Discussion); mitochondria elongated along the filaments"
+  },
+  "gabella2021": {
+   "cite": "Gabella G (2021) Spatial lay-out of various smooth muscles. J Smooth Muscle Res",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8443803/",
+   "opened": "2026-11-23",
+   "used_for": "small spindle-shaped cells, a few micrometres wide and well below a millimetre long"
+  },
+  "popescu2006": {
+   "cite": "Popescu LM, Gherghiceanu M, Cretoiu D, Radu E (2006) Caveolae in smooth muscles: nanocontacts. J Cell Mol Med 10:960 (rat stomach, bladder, myometrium and aorta; guinea pig taenia coli; human ileum)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3933089/",
+   "opened": "2026-11-23",
+   "used_for": "caveola diameter 70 to 77 nm; 1.43 to 3.66% of cell volume; membrane area up by about 80%; contact with sarcoplasmic reticulum"
+  }
  }
 }

@@ -1384,6 +1384,7 @@ v2frame('cell', 'cell', (c) => c.opts.type === 'bacterium' ? .1 : 10 / 12, (F, c
     return null;   // anything else: the materials table's default for a cell (js/descent.js)
   };
   F.spawnD = kind === 'bacterium' ? 6e-6 : 1.2e-6;
+  if (kind === 'bacterium' && !F.viewD) F.viewD = 6e-6;   // opened from a scene, a bacterium arrives filling the view (about 5 µm across), not as a speck
 });
 /* ---------- micro scale (unit µm): tissue surfaces, grains, pond life, aerosols ---------- */
 function voronoiTex(key, cols, n, line, seed, w = 512) {

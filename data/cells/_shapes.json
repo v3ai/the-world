@@ -39,7 +39,8 @@
     "wall_um": [0, 10, 0, "um", "a cell wall round it (plants); 0 none"],
     "hollow": [0, 1, 0, "flag", "dead and empty inside (a xylem vessel element)"],
     "neighbours": [0, 1, 0, "flag", "draw the neighbouring cells behind the cut, faintly"],
-    "desmosomes": [0, 2000, 0, "count", "desmosomes on its surface (drawn as plaques; a keratinocyte)"]
+    "desmosomes": [0, 2000, 0, "count", "desmosomes on its surface (drawn as plaques; a keratinocyte)"],
+    "half_lid": [0, 1, 0, "flag", "a flat cell cut through its own plane keeps the lid over its left half, so its top face shows"]
    }
   },
   "spindle": {
@@ -50,7 +51,10 @@
     "flat": [0.2, 1, 1, "", "depth over width (1 round in section)"],
     "bend": [0, 1, 0, "", "how far it bends into an arc (guard cells)"],
     "pair": [0, 1, 0, "flag", "two mirrored cells round a pore (guard cells)"],
-    "wall_um": [0, 10, 0, "um", "a cell wall (plants); 0 none"]
+    "wall_um": [0, 10, 0, "um", "a cell wall (plants); 0 none"],
+    "processes": [0, 20, 0, "count", "thin branching processes from the rim, in the cell's plane (a fibroblast)"],
+    "process_um": [0.2, 5, 1, "um", "thickness of a process at its root"],
+    "process_reach_um": [0, 200, 20, "um", "length of a process"]
    }
   },
   "fibre": {
@@ -114,13 +118,14 @@
     "endfeet": [0, 1, 0, "flag", "processes end in end-feet (astrocyte on a vessel, podocyte's feet)"],
     "endfoot_um": [0.2, 10, 2, "um", "diameter of an end-foot"],
     "lacuna_um": [0, 80, 0, "um", "the cell sits in a cavity of this size (osteocyte); 0 none"],
-    "flat": [0.1, 1, 1, "", "depth over width (melanocytes and podocytes spread flat)"]
+    "flat": [0.1, 1, 1, "", "depth over width (melanocytes and podocytes spread flat)"],
+    "vessel_um": [0, 30, 0, "um", "with endfeet: a capillary of this width under the cell; only the processes that reach toward it end on it in end-feet (0: every tip has a foot)"]
    }
   },
   "segmented": {
    "fits": "a cell built of segments along one axis: rod and cone photoreceptors (outer segment discs, inner segment, nucleus, synaptic terminal), sperm (head, midpiece with a mitochondrial helix, tail)",
    "params": {
-    "segments": ["list", "list", [], "", "from the top down: [{part, length_um, d0_um, d1_um, fill: none|discs|mito_helix|axoneme|nucleus}]"],
+    "segments": ["list", "list", [], "", "from the top down: [{part, length_um, d0_um, d1_um, fill: none|discs|mito_helix|mito_packed|axoneme|nucleus}] (mito_packed: long mitochondria side by side inside a see-through segment, a cone's ellipsoid)"],
     "disc_spacing_um": [0.01, 1, 0.03, "um", "spacing of the stacked discs of an outer segment"],
     "bend": [0, 1, 0.1, "", "how far the tail curves"]
    }
@@ -138,6 +143,18 @@
     "wall": ["none", "gram_positive", "gram_negative", "chitin", "cellulose", "none", "", "the wall and its kind"],
     "septa": [0, 20, 0, "count", "cross-walls (a hypha); 0 none"]
    }
+  },
+  "wrapped_sheet": {
+   "fits": "a thin cell curled round a channel: a capillary's endothelial cell (its nucleus bulging into the lumen), drawn cut along the vessel with its neighbours faint and the junctions as seams",
+   "params": {
+    "lumen_um": [1, 60, 7.5, "um", "width of the channel the sheet lines"],
+    "length_um": [3, 300, 30, "um", "length of the cell along the vessel"],
+    "thickness_um": [0.05, 5, 0.6, "um", "thickness of the sheet away from the nucleus"],
+    "wrap": [0.1, 1, 0.85, "", "share of the ring round the channel that this one cell covers"],
+    "seam_deg": [-180, 180, 55, "deg", "where round the ring the cell's own edge lies (0 at the back of the cut tube)"],
+    "coat_um": [0, 3, 0, "um", "the coat on the blood face (glycocalyx); 0 none"],
+    "neighbours": [0, 1, 1, "flag", "draw the rest of the ring and the cells before and after along the vessel, faintly"]
+   }
   }
  },
  "nucleus": {
@@ -151,7 +168,26 @@
   "microvilli or brush_border": "params {count, diameter_um}: the apical fringe of a polyhedron with apical microvilli (cilia, stereocilia likewise)",
   "unilocular_droplet": "an ellipsoid filled by one fat droplet, a thin rim of cytoplasm, its nucleus a lens pressed against the edge",
   "keratin_bundles": "params {bundles, drawn_um}",
-  "crowd": "params {count, size_nm, show_below_um, max_drawn}"
+  "crowd": "params {count, size_nm, show_below_um, max_drawn}",
+  "keratin_matrix": "params {texture_um}: a dead scale's cut face filled with a felt of keratin (a corneocyte); a flat cell with neighbours also gets three of its stack beneath it, faint",
+  "side_microvilli": "params {length_um, diameter_um, spacing_um, channel_um, channel_part}: microvilli on the side face toward the blood, and a faint blood channel beyond it (a hepatocyte)",
+  "canaliculus": "params {diameter_um, faces}: a channel grooved into the faces shared with neighbours (a bile canaliculus)",
+  "rough_er_stacks": "params {stacks, sheets, width_um, spacing_um}: stacks of flat rough-ER sacs through the cytoplasm",
+  "glycogen": "params {clumps, per_clump, clump_um, granule_um}: clumps of glycogen granules",
+  "basal_folds": "params {spacing_um, height}: upright folds of the base, the mitochondria standing in rows between them (with mitochondria align: y, rows_um)",
+  "apical_bleb": "params {diameter_um, height, granules}: a dome of cytoplasm pinching off the free face (apocrine secretion)",
+  "basement_membrane": "params {thickness_um}: the sheet under the cell's base, faint",
+  "dense_bodies": "params {count, size_um, reach_um, filament_um}: dense bodies and the slanting contractile filament bundles between them (smooth muscle)",
+  "bundle": "params {offsets: [[x, y, z] in cell lengths and widths]}: more cells of the same spindle round it, faint (a bundle; a row)",
+  "collagen_fibres": "params {diameter_um, wing_deg}: two collagen fibres the cell lies between, and wings of cytoplasm part way round them (a tenocyte)",
+  "phagosomes": "params {count, size_um, content: debris | dust}: sacs of swallowed things",
+  "vacuoles": "params {count, size_um, role}: small clear sacs (a foamy cell; swallowed surfactant)",
+  "ruffles": "params {sheets, sheet_um, arc, arc_from}: thin wavy sheets spreading from the cell's edge (lamellipodia), over an arc of the rim (radians, from arc_from)",
+  "microplicae": "params {spacing_um, height_um}: low winding ridges over the free face (a corneal surface cell)",
+  "hemidesmosomes": "params {spacing_um}: rivets along the base (a basal epithelial cell)",
+  "plant_cell": "params {chloroplasts, chloroplast_fl, cytoplasm_um, wall_um}: a plant cell on a polyhedron: the wall outside, a central vacuole, the chloroplasts flat against the wall in the cytoplasm layer, the nucleus against a side",
+  "matrix_block": "params {size_um, gap_um}: a faint block of matrix round a cell that lies alone in it, and the wall of its cavity (a chondrocyte in its lacuna)",
+  "marginal_band": "params {thickness_um, inset_um, coils}: the ring of microtubules round the rim of a platelet"
  },
  "flat_cells": "a polyhedron under 0.3 times as tall as it is wide is cut through its own plane (lid off), so the whole cell shows from above; its neighbours are not drawn",
  "lacks": [

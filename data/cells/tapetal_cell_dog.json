@@ -5,7 +5,7 @@
  "species": "Canis lupus familiaris",
  "card": "cell_tapetal_cell_dog",
  "blurb": "A dog's tapetal cell: a flat, many-sided cell in the shiny layer behind the retina, its cytoplasm filled with slender zinc-rich rods that bounce light back.",
- "note": "Model: a tapetal cell of the dog's eye (Canis lupus familiaris), cut in half. Measured in dogs: the tapetum is up to 20 cells thick where thickest and 20 to 70 µm thick; its cells hold slender electron-dense rods in a regular array; the rods of normal beagles contain zinc and cysteine. Measured in the cat: rodlet length about 5 µm, diameter 100 to 230 nm, cell thickness 3 to 4 µm. The dog study says the dog's rodlets are similar in size to the cat's, but more closely packed and less well lined up. No dog figure for cell thickness was found, so the cat thickness stands in for it. Illustrative: the width of the cell, its nucleus, the rodlet count and directions, and the colours. The cells above and below show faintly.",
+ "note": "Model: a tapetal cell of the dog's eye (Canis lupus familiaris), cut in half. Measured in dogs: the tapetum is up to 20 cells thick where thickest and 20 to 70 µm thick; its cells hold slender electron-dense rods in a regular array; the rods of normal beagles contain zinc and cysteine. Measured in the cat: rodlet length about 5 µm, diameter 100 to 230 nm, cell thickness 3 to 4 µm. The dog study says the dog's rodlets are similar in size to the cat's, but more closely packed and less well lined up. No dog figure for cell thickness was found, so the cat thickness stands in for it. Illustrative: the width of the cell, its nucleus, the rodlet count, the size of the bundles and their directions, and the colours. The cells above and below show faintly.",
  "shape": {
   "type": "polyhedron",
   "sides": 6,
@@ -107,7 +107,8 @@
    "max_drawn": 700,
    "position": "any",
    "source": "lesiuk1983",
-   "note": "drawn as rods 3 µm long, shorter than the 5 µm measured in the cat, so that they lie inside a cell only 3.5 µm thick when drawn in random directions"
+   "note": "drawn as rods 3 µm long, shorter than the 5 µm measured in the cat; they lie flat in the plane of the layer, side by side in bundles that each run their own way (cat, zueva2022), slightly disordered (the dog array is described as less regular)",
+   "axis": "layer"
   },
   "not_drawn": [
    "mitochondria",
@@ -122,7 +123,7 @@
    "part": "granule",
    "source": "yamaue2014",
    "size_source": "zueva2022",
-   "note": "Slender, electron-dense rods lie in a regular array in the cytoplasm of dog tapetal cells (yamaue2014); the rods are rich in zinc (wen1982). In life they lie side by side in bundles parallel to the plane of the layer (cat, zueva2022); here 700 are drawn in random directions, an illustrative simplification."
+   "note": "Slender, electron-dense rods lie in a regular array in the cytoplasm of dog tapetal cells (yamaue2014); the rods are rich in zinc (wen1982). They lie side by side in bundles parallel to the plane of the layer (cat, zueva2022); 700 are drawn so, in bundles about 3.5 µm across whose directions are illustrative."
   }
  ],
  "cut": "The cell is cut in half through its thickness: a flat slab with the oval nucleus in it and slender rods filling the cytoplasm around the nucleus; the cells of the layers above and below show faintly.",
@@ -182,7 +183,7 @@
  "about": [
   "The tapetum lucidum of a dog lies in the choroid behind the retina. Where it is thickest it is up to 20 cells deep, and it averaged 53 µm thick in a study of dogs. Light that passes the retina meets these cells and is sent back through it.",
   "The cell here is a flat six-sided slab, 24 µm across and 3.5 µm thick. The thickness is the cat value; the width is illustrative. Its volume works out to {drawn.cellVolume} µm³.",
-  "The rods are real structures, long and thin, packed side by side. {drawn.granules} of the about 16,000 estimated are drawn, in random directions; in the eye they lie parallel to the layer. In the dog they are packed more closely than in the cat and are less well lined up.",
+  "The rods are real structures, long and thin, packed side by side. {drawn.granules} of the about 16,000 estimated are drawn, lying flat in the plane of the layer in bundles, each bundle running its own way, as in the cat. In the dog they are packed more closely than in the cat and are less well lined up, so the drawn bundles are a little disordered.",
   "Not drawn: mitochondria, endoplasmic reticulum and the Golgi apparatus, whose size in these cells is not known from the sources used; the junctions between neighbours; and the capillaries beneath the layer. The nucleus is a single illustrative oval."
  ],
  "sources": {

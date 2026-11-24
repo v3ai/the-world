@@ -15,7 +15,8 @@
   "process_um": 1.2,
   "endfeet": 1,
   "endfoot_um": 3,
-  "flat": 1
+  "flat": 1,
+  "vessel_um": 8
  },
  "dimensions": {
   "diameter": {
@@ -199,6 +200,12 @@
    "material": "membrane",
    "source": "mathiisen2010",
    "about": "The wide end of a process on the vessel wall. The vessel wall is covered all round by endfeet, over the pericytes where there are any."
+  },
+  "vessel": {
+   "name": "Capillary",
+   "card": null,
+   "material": "vessel_wall",
+   "about": "A small blood vessel of the brain. Astrocytes press flat end-feet against it, covering most of its tube (63% of the lining cells were in direct contact with end-feet in rat brain); the rest lies under pericytes. Its width here (8 µm across) is illustrative."
   }
  },
  "reached": {

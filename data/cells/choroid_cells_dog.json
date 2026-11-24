@@ -14,7 +14,7 @@
   "branch_points": 8,
   "process_um": 1.5,
   "endfeet": 0,
-  "flat": 0.3
+  "flat": 0.45
  },
  "dimensions": {
   "choroid_thickness_tapetal": {
@@ -111,7 +111,9 @@
     "note": "illustrative"
    },
    "elongation": 1.4,
-   "position": "any"
+   "position": "any",
+   "in_processes": 1,
+   "in_processes_note": "illustrative: the arms carry pigment as the body does; drawn as a row of granules down each arm thick enough to hold them"
   },
   "mitochondria": {
    "volume_fraction": {
@@ -163,10 +165,17 @@
  ],
  "cut": "The cell is cut through its flat body: an oval nucleus in the middle, a crowd of dark melanin granules (melanosomes) filling the cytoplasm and running out into the arms, and a few mitochondria and a Golgi stack beside the nucleus.",
  "colours": {
-  "convention": "Melanosomes dark brown, which is near their real colour (melanin is brown-black); membrane pale; nucleus violet; mitochondria orange as a code.",
+  "convention": "The cell body and arms a warm brown and the melanosomes dark brown: both near their real colour, since melanin is brown-black and fills the cell. The nucleus violet and the mitochondria orange are a code.",
   "true_colour": [
-   "melanosome"
-  ]
+   "melanosome",
+   "cell"
+  ],
+  "override": {
+   "cell": {
+    "illo": "#8a6446",
+    "real": "#6d5240"
+   }
+  }
  },
  "parts": {
   "membrane": {
@@ -224,7 +233,7 @@
  "view": {
   "radius_um": 60,
   "r1_m": 0.0005,
-  "arrive_m": 0.00011,
+  "arrive_m": 5e-05,
   "spawn_m": 3e-06,
   "break": {
    "text": "The arms end here: the cell's finest ends are not drawn"

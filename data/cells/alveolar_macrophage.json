@@ -5,7 +5,7 @@
  "species": "Homo sapiens",
  "card": "cell_alveolar_macrophage",
  "blurb": "A human alveolar macrophage: a large, rounded scavenger cell that lives in the air space of the lung, ruffled and reaching out fingers of membrane to engulf dust and microbes.",
- "note": "Model: a human alveolar macrophage, cut through its middle. Measured in human lung: its diameter (21 µm, cells washed out of the lung) and volume (about 5,000 µm³), and the width of its nucleus (8.3 µm, lung sections). Illustrative: the number, length and place of the pseudopods, the ruffling, the shape and place of the nucleus, the number and size of the mitochondria, lysosomes and engulfed particles, and the colours.",
+ "note": "Model: a human alveolar macrophage, cut through its middle. Measured in human lung: its diameter (21 µm, cells washed out of the lung) and volume (about 5,000 µm³), and the width of its nucleus (8.3 µm, lung sections). Illustrative: the number, length and place of the pseudopods, the ruffling, the shape and place of the nucleus, the number and size of the mitochondria, lysosomes and engulfed dust particles and surfactant sacs, and the colours.",
  "shape": {
   "type": "ellipsoid",
   "a_um": 21.2,
@@ -122,18 +122,6 @@
    },
    "position": "any"
   },
-  "granules": {
-   "count": {
-    "value": 8,
-    "measured": false,
-    "note": "illustrative: engulfed particles inside membrane bags (phagosomes)"
-   },
-   "size_um": {
-    "value": 1.5,
-    "measured": false
-   },
-   "position": "peripheral"
-  },
   "golgi": {
    "stacks": {
     "value": 2,
@@ -189,10 +177,10 @@
    "material": "membrane"
   },
   "phagosome": {
-   "name": "Phagosome (engulfed particle)",
-   "card": "cell_alveolar_macrophage_phagosome",
+   "name": "Phagosome with dust",
+   "card": null,
    "material": "membrane",
-   "source": "openstax_phago"
+   "about": "A sac of membrane round particles the cell has swallowed from the air in the lung: dust, soot or microbes. In a smoker or a city dweller these dark particles build up in the cells. The number and size drawn are illustrative."
   },
   "mitochondrion": {
    "name": "Mitochondrion",
@@ -203,6 +191,12 @@
    "name": "Golgi apparatus",
    "card": "golgi_apparatus",
    "material": "membrane"
+  },
+  "surfactant_inclusion": {
+   "name": "Swallowed surfactant",
+   "card": null,
+   "material": "membrane",
+   "about": "Pale sacs of surfactant, the film of lipids and proteins that lines the air spaces. Alveolar macrophages take it up and break it down, helping to keep the amount right. Their number here is illustrative."
   }
  },
  "reached": {
@@ -222,7 +216,7 @@
  "about": [
   "The ball is 21.2 µm across, the size measured for human alveolar macrophages washed out of the lung; its volume is {drawn.cellVolume} µm³ with the pseudopods, against 4,990 µm³ measured. This is large for a body cell and about four times the volume of the same cell in a rat (1,166 µm³) or hamster (1,328 µm³) in the same study.",
   "The cell lives in the air space of the lung, not inside the wall: most of these cells (about 95% in one count of human lungs) sit in the gas-exchange air spaces, some free and some attached to the wall. Clinging to the wall it flattens, so this round shape is the one seen in suspension.",
-  "When it meets a particle or microbe it wraps a pseudopod round it and pinches it off into a bag, a phagosome, which then fuses with lysosomes full of digestive enzymes. The pseudopods and the bags drawn here are examples; their number, place and size are illustrative.",
+  "When it meets a particle or microbe it wraps a pseudopod or a thin ruffled sheet round it and pinches it off into a bag, a phagosome, which then fuses with lysosomes full of digestive enzymes. {drawn.phagosomes} phagosomes are drawn holding dark dust, with {drawn.surfactantInclusions} pale sacs of swallowed surfactant, the lipid film that lines the air spaces. Their number, place and size are illustrative.",
   "{drawn.nuclei} nucleus and {drawn.mitochondria} of about {drawn.mitochondriaWanted} mitochondria are drawn. The nucleus width is measured; its oval shape and position, and every organelle count, are illustrative. The rough endoplasmic reticulum, the ribosomes and the filament skeleton are not drawn."
  ],
  "sources": {
@@ -256,5 +250,38 @@
    "opened": "2026-11-23",
    "used_for": "alveolar macrophages as phagocytes clearing debris and pathogens in the alveoli"
   }
- }
+ },
+ "special": [
+  {
+   "kind": "ruffles",
+   "ruffle_part": "pseudopod",
+   "params": {
+    "sheets": 3,
+    "sheet_um": 3.5,
+    "arc": 2.0,
+    "arc_from": 2.2
+   }
+  },
+  {
+   "kind": "phagosomes",
+   "part": "phagosome",
+   "params": {
+    "count": 10,
+    "size_um": 1.5,
+    "content": "dust"
+   },
+   "note": "illustrative"
+  },
+  {
+   "kind": "vacuoles",
+   "part": "surfactant_inclusion",
+   "count_key": "surfactantInclusions",
+   "params": {
+    "count": 16,
+    "size_um": 0.9,
+    "role": "lamellar"
+   },
+   "note": "illustrative"
+  }
+ ]
 }

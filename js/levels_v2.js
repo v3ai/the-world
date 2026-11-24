@@ -429,9 +429,9 @@ function buildBacterium(c) {
   const fl = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(fp), 240, .1, 6), smat(0xfde68a, { emissive: 0x2a2000, roughness: .5 })); fl.userData = { id: 'flagellum', priority: 1 }; cell.add(fl); c.pickables.push(fl);
   c.addLabel(wall, 'Cell wall', { offset: new V3(0, RO + 1.4, 0) });
   c.addLabel(mem, 'Cell membrane', { offset: new V3(3, -RO - 1.6, 0) });
-  c.addLabel(nuc, 'Nucleoid: DNA, no nucleus', { offset: new V3(0, 3.4, 0) });
+  const na = new THREE.Object3D(); na.position.copy(pts.reduce((a, b) => (b.y - Math.abs(b.x) * .3 > a.y - Math.abs(a.x) * .3 ? b : a))); cell.add(na); c.addLabel(na, 'Nucleoid (DNA, no nucleus)', { pick: nuc });   // on the tangle itself
   const ra = new THREE.Object3D(); ra.position.set(-7.5, 0, 1); cell.add(ra); c.addLabel(ra, 'Ribosomes (70S)', { pick: rib });
-  c.addLabel(fl, 'Flagellum', { offset: new V3(0, 1.4, 0) });
+  const fa = new THREE.Object3D(); fa.position.copy(fp[22]).add(new V3(0, 1.4, 0)); cell.add(fa); c.addLabel(fa, 'Flagellum', { pick: fl });   // on the tail, out beyond the cell
   c.update = (dt, t) => { };
   sceneNote(c, 'Schematic rod-shaped bacterium, drawn at true size: about 2 µm long and 0.7 µm wide. Ribosomes (about 20 nm) are true size, so they show only when you zoom in; the DNA thread is drawn about 10 times too thick, and the real cell holds far more ribosomes. Layers of the envelope are simplified.');
   c.focusIn = () => new V3(); c.focusFor = () => ({ pos: new V3(), r: RO });

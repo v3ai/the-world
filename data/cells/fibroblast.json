@@ -5,7 +5,7 @@
  "species": "Homo sapiens",
  "card": "cell_fibroblast",
  "blurb": "The main cell of connective tissue: a long, flat, tapering cell with an oval nucleus and a well-developed protein-making and packaging system. It makes the fibres and gel that fill the space around it.",
- "note": "Model: a human fibroblast of connective tissue, drawn as an active (matrix-making) cell and cut in half along its length. Measured: its shape as a long, spindle-like cell with an oval nucleus of about 500 µm³ (human fibroblasts), and a rough endoplasmic reticulum and Golgi apparatus that are prominent when the cell is active. Two or more nucleoli are described in the literature; two are drawn (illustrative). Illustrative: the nucleus placed at the centre of the cell, the number of nucleoli, the length, width and thickness drawn, the nucleus axes (chosen to match the measured volume), the numbers and sizes of mitochondria, lysosomes and Golgi stacks, and all colours. Real fibroblasts are branched and vary with the tissue; this is one simplified, smooth example.",
+ "note": "Model: a human fibroblast of connective tissue, drawn as an active (matrix-making) cell and cut in half along its length. Measured: its shape as a long, spindle-like cell with an oval nucleus of about 500 µm³ (human fibroblasts), and a rough endoplasmic reticulum and Golgi apparatus that are prominent when the cell is active. Two or more nucleoli are described in the literature; two are drawn (illustrative). Illustrative: the nucleus placed at the centre of the cell, the number of nucleoli, the length, width and thickness drawn, the nucleus axes (chosen to match the measured volume), the numbers and sizes of mitochondria, lysosomes, Golgi stacks and stacks of rough endoplasmic reticulum, the number, length and paths of the thin processes, and all colours. Real fibroblasts vary with the tissue; this is one simplified example.",
  "shape": {
   "type": "spindle",
   "length_um": 80,
@@ -13,7 +13,10 @@
   "flat": 0.5,
   "bend": 0,
   "pair": 0,
-  "wall_um": 0
+  "wall_um": 0,
+  "processes": 6,
+  "process_um": 0.8,
+  "process_reach_um": 18
  },
  "dimensions": {
   "length": {
@@ -125,12 +128,9 @@
    }
   },
   "not_drawn": [
-   "rough endoplasmic reticulum",
-   "ribosomes",
    "collagen fibres and the gel outside the cell",
    "actin stress fibres",
    "adhesions to the fibres",
-   "the branched thin processes",
    "a primary cilium",
    "neighbouring cells"
   ]
@@ -160,6 +160,17 @@
    "source": "buffalo_cartilage",
    "also": "openstax_ct",
    "note": "Two places reach this cell: loose connective tissue between organs and around fat cells, and the outer fibrous layer of the perichondrium around cartilage, which holds type I collagen, fibroblasts and blood vessels. The cell is the same kind in both; how long and how flat it is in each place is not measured here."
+  },
+  {
+   "kind": "rough_er_stacks",
+   "part": "rough_er",
+   "params": {
+    "stacks": 45,
+    "sheets": 5,
+    "width_um": 1.6,
+    "spacing_um": 0.14
+   },
+   "note": "illustrative number and size of the stacks"
   }
  ],
  "cut": "The cell is cut in half along its length, through the middle of the flattened body: the long oval nucleus with two nucleoli lies in the thick middle, with Golgi stacks beside it, rod-shaped mitochondria and small lysosomes scattered through the cytoplasm, and the body tapering to a point at each end.",
@@ -205,6 +216,18 @@
    "card": "cell_fibroblast_golgi",
    "material": "membrane",
    "source": "openstax_endo"
+  },
+  "rough_er": {
+   "name": "Rough endoplasmic reticulum",
+   "card": "endoplasmic_reticulum",
+   "material": "rna",
+   "about": "Stacks of flat membrane sacs covered in ribosomes, where the fibroblast makes collagen and the other proteins of the fibres and gel around it. The ribosomes are shown as one RNA nucleotide, a stand-in. Their number and size here are illustrative."
+  },
+  "processes": {
+   "name": "Cell processes",
+   "card": null,
+   "material": "membrane",
+   "about": "Thin, branching arms of the cell that reach out through the fibres around it and touch other cells. Their number and length here are illustrative."
   }
  },
  "reached": {
@@ -222,13 +245,13 @@
  "view": {
   "radius_um": 45,
   "r1_m": 0.00075,
-  "arrive_m": 0.00012,
+  "arrive_m": 9e-05,
   "spawn_m": 3.4e-06
  },
  "about": [
   "A fibroblast lies among the fibres of connective tissue: in the loose tissue that packs spaces between organs and around fat cells, and in the outer layer of the perichondrium, the skin around cartilage, where it is described as lying among type I collagen with blood vessels. It is the most abundant cell of connective tissue, and it makes the fibres and the gel between them.",
   "The cell is drawn about 80 µm long, 14 µm wide and 7 µm thick, with a volume of {drawn.cellVolume} µm³. These sizes are illustrative: the only measured length quoted here, about 25 µm, comes from one thin slice that cuts the cell short. Only the nucleus is tied to a measurement, a volume of about 500 µm³ in human fibroblasts (a BioNumbers entry that its own compilers flag as needing a better reference), drawn here as a long oval {drawn.nuclei} nucleus with two nucleoli (the number is illustrative).",
-  "This is drawn as an active cell. A resting one, sometimes called a fibrocyte, is smaller and has less rough endoplasmic reticulum. Not drawn: the rough endoplasmic reticulum itself, the cell's thin branches, the fibres and the filaments inside the cell that pull on them. No neighbouring cells or junctions are drawn."
+  "This is drawn as an active cell, with stacks of rough endoplasmic reticulum ({drawn.erStacks} drawn) where it makes collagen, and {drawn.processes} thin branching processes reaching out from its edges (their number and length are illustrative). A resting cell, sometimes called a fibrocyte, is smaller and has less rough endoplasmic reticulum. Not drawn: the fibres around it and the filaments inside the cell that pull on them. No neighbouring cells or junctions are drawn."
  ],
  "sources": {
   "openstax_ct": {

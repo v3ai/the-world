@@ -1,0 +1,259 @@
+{
+ "id": "corneal_basal_cell",
+ "name": "Corneal basal cell",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_corneal_basal_cell",
+ "blurb": "A living cell from the bottom of the clear skin of the eye: a tall column with an oval nucleus, riveted to the basement membrane below; the only cells of the stack that divide.",
+ "note": "Model: a basal cell of the human corneal epithelium, cut in half. Measured in human eyes: its height (about 20 µm in histology; 12.7 µm for the whole basal layer by confocal microscopy), its width (12.8 µm, confocal), that it is a column, that it grips the basement membrane (40 to 60 nm thick) with hemidesmosomes and its neighbours with desmosomes, and that it is the only cell of the stack that divides. Illustrative: the outline, the nucleus size and shape, the numbers of hemidesmosomes, desmosomes, keratin bundles and organelles, and the colours. The basement membrane is drawn far thicker than it is so that it shows. The neighbours show faintly.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 12.8,
+  "height_um": 20,
+  "taper": 1,
+  "irregularity": 0.12,
+  "round_um": 1.2,
+  "apical": "none",
+  "desmosomes": 110,
+  "neighbours": 1
+ },
+ "dimensions": {
+  "epithelium_thickness": {
+   "value": 50,
+   "unit": "um",
+   "measured": true,
+   "range": [
+    50,
+    52
+   ],
+   "source": "sridhar2018",
+   "also": "ghafar2021",
+   "note": "central cornea; Sridhar gives about 50 µm and Wikipedia (wikipedia_ce) gives approximately 50 to 52 µm, which is the range used; 5 to 7 cell layers centrally"
+  },
+  "height": {
+   "value": 20,
+   "unit": "um",
+   "measured": true,
+   "source": "sridhar2018",
+   "also": "ghafar2021",
+   "calc": "a basal cell is 40% of the thickness (ghafar2021): 0.4 x 50 µm = 20 µm, the same as the 20 µm given directly",
+   "note": "the basal cell, not drawn here; confocal microscopy of the central cornea gives a thinner basal layer, 12.7 ± 3.8 µm (mathews2015), against about 20 µm in histology; the histology figure, 20 µm, is drawn"
+  },
+  "width": {
+   "value": 12.8,
+   "unit": "um",
+   "measured": true,
+   "range": [
+    12.1,
+    13.5
+   ],
+   "source": "mathews2015",
+   "note": "central-cornea basal cell diameter by in vivo confocal microscopy, 12.8 ± 0.7 µm (mean ± SD, three subjects; mathews2015 Table 1)"
+  },
+  "basement_membrane": {
+   "value": 50,
+   "unit": "nm",
+   "measured": true,
+   "range": [
+    40,
+    60
+   ],
+   "source": "sridhar2018",
+   "note": "the sheet under the basal cells"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "round",
+  "volume_fraction": {
+   "value": 0.15,
+   "measured": false,
+   "note": "illustrative"
+  },
+  "size_um": {
+   "value": [
+    6,
+    10,
+    6
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: an oval nucleus standing along the column"
+  },
+  "nucleoli": 1,
+  "position": "central",
+  "position_note": "illustrative"
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.02,
+    "measured": false,
+    "note": "illustrative"
+   },
+   "size_um": [
+    0.6,
+    0.4
+   ],
+   "size_measured": false,
+   "max_drawn": 150
+  },
+  "golgi": {
+   "stacks": {
+    "value": 2,
+    "measured": false,
+    "note": "illustrative"
+   }
+  }
+ },
+ "special": [
+  {
+   "kind": "keratin_bundles",
+   "params": {
+    "bundles": 12,
+    "drawn_um": 0.3
+   },
+   "source": "ghafar2021",
+   "note": "illustrative number and paths"
+  },
+  {
+   "kind": "desmosomes",
+   "source": "sridhar2018",
+   "note": "110 drawn, an illustrative number"
+  },
+  {
+   "kind": "hemidesmosomes",
+   "part": "hemidesmosome",
+   "params": {
+    "spacing_um": 1.3
+   },
+   "source": "sridhar2018",
+   "note": "hemidesmosomes join the basal cells to the basement membrane (sridhar2018); their spacing is illustrative"
+  },
+  {
+   "kind": "basement_membrane",
+   "part": "basement_membrane",
+   "params": {
+    "thickness_um": 0.15
+   },
+   "source": "sridhar2018",
+   "note": "40 to 60 nm thick (sridhar2018); drawn 150 nm so that it shows"
+  }
+ ],
+ "cut": "The column is cut in half from top to bottom: the oval nucleus in the middle, keratin bundles running to desmosomes on the sides, hemidesmosomes along the base, and the basement membrane under it. The cells beside it show faintly.",
+ "colours": {
+  "convention": "Cell membrane pale; the inside dark; keratin bundles straw yellow; desmosomes brown; nucleus violet; mitochondria orange. All colours are a code; none is the real colour of the cell, which is clear and colourless.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytosol",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell, crowded with proteins."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "keratin": {
+   "name": "Keratin filaments",
+   "card": "bio_actin_intermediate",
+   "material": "protein",
+   "source": "ghafar2021",
+   "about": "Bundles of keratin filaments run through a wing cell and end at its desmosomes, so that the stack of cells takes a rub or a blink as one sheet."
+  },
+  "desmosome": {
+   "name": "Desmosome",
+   "card": "cell_corneal_epithelial_junctions",
+   "material": "desmosome",
+   "source": "sridhar2018"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane"
+  },
+  "hemidesmosome": {
+   "name": "Hemidesmosome",
+   "card": "cell_corneal_epithelial_junctions",
+   "material": "desmosome",
+   "source": "sridhar2018",
+   "about": "A half-rivet that fixes the base of the cell to the basement membrane below. When these hold badly the skin of the cornea can lift off, which hurts (recurrent corneal erosion). Their number here is illustrative."
+  },
+  "basement_membrane": {
+   "name": "Basement membrane",
+   "card": null,
+   "material": "collagen",
+   "source": "sridhar2018",
+   "about": "A thin sheet of collagen and other proteins, 40 to 60 nm thick, on which the epithelium rests; under it lies Bowman's layer. Drawn far thicker than it is so that it shows."
+  },
+  "neighbour": {
+   "name": "Neighbouring corneal epithelial cell",
+   "card": "cornea_epithelium",
+   "material": "membrane"
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "cornea_layers",
+    "structure": "basal"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 14,
+  "r1_m": 0.0002,
+  "arrive_m": 4e-05,
+  "spawn_m": 1e-06
+ },
+ "about": [
+  "A basal cell stands at the bottom of the cornea's outer skin, in a single row on the basement membrane. It is a column, about 20 µm tall in stained sections (confocal imaging of the living eye gives a thinner basal layer, 12.7 µm) and 12.8 µm across; drawn 20 µm tall, {drawn.cellVolume} µm³.",
+  "It is the only cell of the stack that divides. Its daughters move up, become wing cells and then surface cells, and are shed into the tears about a week to ten days later; new basal cells also come from stem cells at the rim of the cornea.",
+  "Hemidesmosomes ({drawn.hemidesmosomes} drawn) rivet its base to the basement membrane, and desmosomes ({drawn.desmosomes} drawn) tie it to its neighbours at the sides, linked inside by keratin bundles. The nucleus ({drawn.nuclei} drawn) and the small organelles are illustrative in size and number."
+ ],
+ "sources": {
+  "sridhar2018": {
+   "cite": "Sridhar MS (2018) Anatomy of cornea and ocular surface, Indian J Ophthalmol 66:190-194",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5819093/",
+   "opened": "2026-11-23",
+   "used_for": "human corneal epithelium about 50 µm thick, 5-7 layers centrally; surface cells flat, 40-60 µm across and 2-6 µm thick; wing cells 2-3 layers; basal cells single layer, columnar, about 20 µm tall, joined to the basement membrane by hemidesmosomes; desmosomes along the lateral membranes of all cells; basement membrane 40-60 nm; cells live 7-10 days"
+  },
+  "ghafar2021": {
+   "cite": "Ghafar NA, Jalil NAA, Kamarudin TA (2021) Wound healing of the corneal epithelium: a review, Asian Biomed 15:199-212",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10388779",
+   "opened": "2026-11-23",
+   "used_for": "epithelium about 50 µm in humans, 5-7 layers; superficial layer 2-4 layers with microplicae and microvilli; lateral desmosomes, adherens and tight junctions; wing cells rich in tonofilaments; basal cells are the only dividing cells and make up 40% of the thickness; hemidesmosomes anchor basal cells"
+  },
+  "mathews2015": {
+   "cite": "Mathews S et al. (2015) In vivo confocal microscopic analysis of normal human anterior limbal stroma, Cornea 34:464-470",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4748399/",
+   "opened": "2026-11-23",
+   "used_for": "Table 1, in vivo confocal microscopy of three subjects, central cornea: wing (suprabasal) cells 21.5 ± 1.3 µm across, layer 18.3 ± 5.0 µm thick, 4078 ± 237 cells/mm²; basal cells 12.8 ± 0.7 µm across, layer 12.7 ± 3.8 µm thick, 6787 ± 274 cells/mm². Limbal wing cells 21.2 ± 1.2 µm, layer 27 ± 14.2 µm"
+  },
+  "wikipedia_ce": {
+   "cite": "Wikipedia, Corneal epithelium",
+   "url": "https://en.wikipedia.org/wiki/Corneal_epithelium",
+   "opened": "2026-11-23",
+   "used_for": "central thickness about 50 to 52 µm; superficial layers squamous with flattened nuclei; wing cells polyhedral; basal cells columnar; hemidesmosomes; constant mitosis"
+  }
+ }
+}

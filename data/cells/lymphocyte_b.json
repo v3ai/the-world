@@ -206,7 +206,8 @@
  "about": [
   "A B cell of the blood at rest, drawn as a nearly round cell 7 µm across. Its volume, {drawn.cellVolume} µm³ as drawn, is the mean volume measured for B cells from ten healthy donors (185 µm³); the share of the nucleus (44%) is the mean for all human lymphocytes, which cannot be told apart in the cut, so it is applied to this cell as an estimate.",
   "Nearly the whole cell is nucleus. A resting B cell has not yet met its antigen and is not secreting antibodies, so it keeps relatively few organelles: {drawn.mitochondria} small mitochondria are drawn (of about {drawn.mitochondriaWanted} worked out from the measured 3.8% of volume and an illustrative size), one small Golgi stack, and no stack of endoplasmic reticulum. After it meets its antigen, its descendants called plasma cells secrete antibodies.",
-  "Not drawn: the receptors on the surface (ribosomes are drawn only close in), the fragments of endoplasmic reticulum, the clumps of dense chromatin and lysosomes. The cell is drawn as the round shape it has in blood; in a lymph node it is not necessarily round."
+  "Not drawn: the receptors on the surface (ribosomes are drawn only close in), the fragments of endoplasmic reticulum, the clumps of dense chromatin and lysosomes. The cell is drawn as the round shape it has in blood; in a lymph node it is not necessarily round.",
+  "A resting B cell and a resting T cell look the same under a light microscope, and nearly so under an electron microscope: they are told apart by the proteins on their surface (stained with antibodies), not by their shape. So the two drawings are alike on purpose."
  ],
  "sources": {
   "ryu2021": {

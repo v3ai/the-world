@@ -1,11 +1,11 @@
 {
  "id": "corneal_epithelial_cell",
- "name": "Corneal epithelial cell (wing cell)",
+ "name": "Corneal wing cell",
  "organism": "human",
  "species": "Homo sapiens",
  "card": "cell_corneal_epithelial_cell",
  "blurb": "A living cell from the middle of the clear skin of the eye: a many-sided cell with a round nucleus, riveted to its neighbours at the sides, in a stack five to seven cells deep.",
- "note": "Model: a wing cell from the middle of the human corneal epithelium, cut in half. This one drawing stands for all three kinds in the stack, and the flat surface cell and the tall basal cell are not drawn as such. Measured in human eyes: the width of a wing cell (confocal), the thickness of the epithelium, the size and thickness of the surface cell, the height of the basal cell, and a wing-cell height calculated from a measured layer thickness, that the cells carry desmosomes at their sides and are rich in keratin bundles. Illustrative: this cell's sides, the nucleus, the mitochondria, the Golgi, the number of desmosomes and keratin bundles, and the colours. The neighbours show faintly. Not drawn: microvilli and surface folds, tight junctions, hemidesmosomes, nerve endings.",
+ "note": "Model: a wing cell from the middle of the human corneal epithelium, cut in half. The flat surface cell and the tall basal cell are drawn as cells of their own. Measured in human eyes: the width of a wing cell (confocal), the thickness of the epithelium, the size and thickness of the surface cell, the height of the basal cell, and a wing-cell height calculated from a measured layer thickness, that the cells carry desmosomes at their sides and are rich in keratin bundles. Illustrative: this cell's sides, the nucleus, the mitochondria, the Golgi, the number of desmosomes and keratin bundles, and the colours. The neighbours show faintly. Not drawn: microvilli and surface folds, tight junctions, hemidesmosomes, nerve endings.",
  "shape": {
   "type": "polyhedron",
   "sides": 6,
@@ -215,15 +215,7 @@
   "tissue2": [
    {
     "scene": "cornea_layers",
-    "structure": "sup"
-   },
-   {
-    "scene": "cornea_layers",
     "structure": "wing"
-   },
-   {
-    "scene": "cornea_layers",
-    "structure": "basal"
    }
   ]
  },
@@ -234,8 +226,8 @@
   "spawn_m": 1e-06
  },
  "about": [
-  "The cornea's outer skin is about 50 µm thick and five to seven cells deep. It has three kinds of cell: flat surface cells on top (40 to 60 µm across, 2 to 6 µm thick), many-sided wing cells in the middle, and tall basal cells on the bottom (about 20 µm), which are the only ones that divide. This picture shows one wing cell, {drawn.cellVolume} µm³ as drawn. A surface cell would be a much wider, thinner plate, and a basal cell a taller column set on the basement membrane.",
-  "The cells are alive and keep their nuclei (the nucleus drawn is {drawn.nuclei} of {drawn.nucleiWanted}). Unlike skin, the surface is not a layer of dead scales. Keratin bundles and {drawn.desmosomes} desmosomes tie the cells together; surface cells in life also seal their sides with tight junctions, and basal cells grip the basement membrane with hemidesmosomes. Neither is drawn here.",
+  "The cornea's outer skin is about 50 µm thick and five to seven cells deep. It has three kinds of cell: flat surface cells on top (40 to 60 µm across, 2 to 6 µm thick), many-sided wing cells in the middle, and tall basal cells on the bottom (about 20 µm), which are the only ones that divide. This picture shows one wing cell, {drawn.cellVolume} µm³ as drawn. The surface cell, a much wider and thinner plate, and the basal cell, a taller column set on the basement membrane, are drawn as cells of their own.",
+  "The cells are alive and keep their nuclei (the nucleus drawn is {drawn.nuclei} of {drawn.nucleiWanted}). Unlike skin, the surface is not a layer of dead scales. Keratin bundles and {drawn.desmosomes} desmosomes tie the cells together; surface cells in life also seal their sides with tight junctions, and basal cells grip the basement membrane with hemidesmosomes. The hemidesmosomes are drawn with the basal cell; the tight junctions are not drawn.",
   "A cell lasts only about a week to ten days: it is born at the bottom, moves up and is shed into the tears. The sizes of the nucleus and the small organelles are illustrative, not measured."
  ],
  "sources": {

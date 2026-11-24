@@ -5,64 +5,246 @@
  "species": "Homo sapiens",
  "card": "cell_platelet",
  "blurb": "A human platelet: a small flat oval of cytoplasm with no nucleus, holding about fifty storage granules, a handful of dense granules and about ten mitochondria.",
- "note": "Model: a resting human platelet, cut through its middle. Measured in human platelets: its length, thickness and volume, and how many granules and mitochondria it holds, how big the granules are and what share of the volume each takes. Illustrative: the colours, the thickness drawn for the membrane, the exact oval outline (a plain ellipsoid with the measured volume, where a real platelet has a rim and a flatter middle), where each granule sits, and the size of the mitochondria.",
- "shape": {"type": "ellipsoid", "a_um": 3.82, "b_um": 1.47, "c_um": 2.62},
- "dimensions": {
-  "long_axis": {"value": 3.82, "range": [2.3, 5.13], "unit": "um", "measured": true, "source": "pokrovskaya2020", "note": "mean of 30 resting platelets from 3 donors (mean 3.82 ± 0.12 µm); the range is the shortest and longest single platelet"},
-  "short_axis": {"value": 1.47, "range": [0.87, 2.42], "unit": "um", "measured": true, "source": "pokrovskaya2020", "note": "the shortest axis of the rendered platelet (the paper calls it the short axis length and does not call it the disc thickness); mean 1.47 ± 0.06 µm; the range is the smallest and largest single platelet"},
-  "width_drawn": {"value": 2.62, "unit": "um", "measured": false, "calc": "chosen so that an ellipsoid 3.82 x 1.47 x 2.62 µm has the measured mean volume of 7.7 µm³: c = 6 V / (π a b); the paper gives no third axis"},
-  "volume": {"value": 7.7, "range": [3.9, 14.8], "unit": "um3", "measured": true, "source": "pokrovskaya2020", "note": "mean 7.7 ± 0.5 µm³ (standard error) over 30 platelets; range of single platelets"},
-  "alpha_granule_number": {"value": 50, "range": [9, 141], "unit": "count", "measured": true, "source": "pokrovskaya2020", "note": "mean 50 ± 5 per platelet; the number rises with platelet size"},
-  "dense_granule_number": {"value": 5.5, "range": [2, 14], "unit": "count", "measured": true, "source": "pokrovskaya2020", "note": "mean 5.5 ± 0.5 per platelet; range from Table 1 (minimum 2, maximum 14)"},
-  "mitochondria_number": {"value": 10.6, "range": [3, 18], "unit": "count", "measured": true, "source": "pokrovskaya2020", "note": "mean 10.6 per platelet (the text gives 10.9 ± 0.9 for the pooled donors)"},
-  "canalicular_volume_fraction": {"value": 0.113, "unit": "fraction", "measured": true, "source": "pokrovskaya2020", "note": "the canalicular system, the channels that run in from the surface and the closed ones beside them, is the largest organelle by volume; mean 0.113 ± 0.011; the paper multiplied the canalicular volumes by 2.3 to make up for thin channels falling between its 30 nm slices"},
-  "count_per_blood": {"value": 155000, "range": [150000, 160000], "unit": "per_mm", "measured": true, "source": "openstax_plt", "note": "the textbook states 150,000-160,000 per µL (1 µL = 1 mm³) as typical; the healthy range is wider (about 150,000-450,000), which is a general figure not checked against an opened source"},
-  "lifespan_days": {"value": 10, "unit": "count", "measured": true, "source": "openstax_plt", "note": "about 10 days, then macrophages remove the platelet"}
+ "note": "Model: a resting human platelet, cut through its middle. Measured in human platelets: its length, thickness and volume, and how many granules and mitochondria it holds, how big the granules are and what share of the volume each takes. Illustrative: the colours, the thickness drawn for the membrane, the exact oval outline (a plain ellipsoid with the measured volume, where a real platelet has a rim and a flatter middle), where each granule sits, the size of the mitochondria, and the thickness and coiling of the marginal band.",
+ "shape": {
+  "type": "ellipsoid",
+  "a_um": 3.82,
+  "b_um": 1.47,
+  "c_um": 2.62
  },
- "nucleus": {"count": 0, "note": "A platelet is a fragment of a megakaryocyte and has no nucleus.", "source": "diagouraga2014"},
+ "dimensions": {
+  "long_axis": {
+   "value": 3.82,
+   "range": [
+    2.3,
+    5.13
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "pokrovskaya2020",
+   "note": "mean of 30 resting platelets from 3 donors (mean 3.82 ± 0.12 µm); the range is the shortest and longest single platelet"
+  },
+  "short_axis": {
+   "value": 1.47,
+   "range": [
+    0.87,
+    2.42
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "pokrovskaya2020",
+   "note": "the shortest axis of the rendered platelet (the paper calls it the short axis length and does not call it the disc thickness); mean 1.47 ± 0.06 µm; the range is the smallest and largest single platelet"
+  },
+  "width_drawn": {
+   "value": 2.62,
+   "unit": "um",
+   "measured": false,
+   "calc": "chosen so that an ellipsoid 3.82 x 1.47 x 2.62 µm has the measured mean volume of 7.7 µm³: c = 6 V / (π a b); the paper gives no third axis"
+  },
+  "volume": {
+   "value": 7.7,
+   "range": [
+    3.9,
+    14.8
+   ],
+   "unit": "um3",
+   "measured": true,
+   "source": "pokrovskaya2020",
+   "note": "mean 7.7 ± 0.5 µm³ (standard error) over 30 platelets; range of single platelets"
+  },
+  "alpha_granule_number": {
+   "value": 50,
+   "range": [
+    9,
+    141
+   ],
+   "unit": "count",
+   "measured": true,
+   "source": "pokrovskaya2020",
+   "note": "mean 50 ± 5 per platelet; the number rises with platelet size"
+  },
+  "dense_granule_number": {
+   "value": 5.5,
+   "range": [
+    2,
+    14
+   ],
+   "unit": "count",
+   "measured": true,
+   "source": "pokrovskaya2020",
+   "note": "mean 5.5 ± 0.5 per platelet; range from Table 1 (minimum 2, maximum 14)"
+  },
+  "mitochondria_number": {
+   "value": 10.6,
+   "range": [
+    3,
+    18
+   ],
+   "unit": "count",
+   "measured": true,
+   "source": "pokrovskaya2020",
+   "note": "mean 10.6 per platelet (the text gives 10.9 ± 0.9 for the pooled donors)"
+  },
+  "canalicular_volume_fraction": {
+   "value": 0.113,
+   "unit": "fraction",
+   "measured": true,
+   "source": "pokrovskaya2020",
+   "note": "the canalicular system, the channels that run in from the surface and the closed ones beside them, is the largest organelle by volume; mean 0.113 ± 0.011; the paper multiplied the canalicular volumes by 2.3 to make up for thin channels falling between its 30 nm slices"
+  },
+  "count_per_blood": {
+   "value": 155000,
+   "range": [
+    150000,
+    160000
+   ],
+   "unit": "per_mm",
+   "measured": true,
+   "source": "openstax_plt",
+   "note": "the textbook states 150,000-160,000 per µL (1 µL = 1 mm³) as typical; the healthy range is wider (about 150,000-450,000), which is a general figure not checked against an opened source"
+  },
+  "lifespan_days": {
+   "value": 10,
+   "unit": "count",
+   "measured": true,
+   "source": "openstax_plt",
+   "note": "about 10 days, then macrophages remove the platelet"
+  }
+ },
+ "nucleus": {
+  "count": 0,
+  "note": "A platelet is a fragment of a megakaryocyte and has no nucleus.",
+  "source": "diagouraga2014"
+ },
  "organelles": {
   "mitochondria": {
-   "volume_fraction": {"value": 0.019, "measured": true, "source": "pokrovskaya2020", "note": "mean 0.019 ± 0.001"},
-   "size_um": [0.38, 0.24],
+   "volume_fraction": {
+    "value": 0.019,
+    "measured": true,
+    "source": "pokrovskaya2020",
+    "note": "mean 0.019 ± 0.001"
+   },
+   "size_um": [
+    0.38,
+    0.24
+   ],
    "size_measured": false,
    "calc": "0.019 x 7.7 µm³ / 10.6 mitochondria = 0.0138 µm³ each; a capsule 0.38 x 0.24 µm has about that volume (the shape is illustrative)",
    "max_drawn": 40
   },
   "granules": {
-   "volume_fraction": {"value": 0.083, "measured": true, "source": "pokrovskaya2020", "note": "alpha granules; mean 0.083 ± 0.009"},
-   "count": {"value": 50, "range": [9, 141], "measured": true, "source": "pokrovskaya2020", "note": "alpha granules"},
-   "size_um": {"value": 0.28, "measured": true, "source": "pokrovskaya2020", "calc": "the mean of the short axis, 0.254 µm, and the long axis, 0.301 µm"},
+   "volume_fraction": {
+    "value": 0.083,
+    "measured": true,
+    "source": "pokrovskaya2020",
+    "note": "alpha granules; mean 0.083 ± 0.009"
+   },
+   "count": {
+    "value": 50,
+    "range": [
+     9,
+     141
+    ],
+    "measured": true,
+    "source": "pokrovskaya2020",
+    "note": "alpha granules"
+   },
+   "size_um": {
+    "value": 0.28,
+    "measured": true,
+    "source": "pokrovskaya2020",
+    "calc": "the mean of the short axis, 0.254 µm, and the long axis, 0.301 µm"
+   },
    "elongation": 1.18,
    "elongation_calc": "0.301 / 0.254",
    "position": "any",
    "max_drawn": 80
   },
-  "absent": ["nucleus"],
+  "absent": [
+   "nucleus"
+  ],
   "absent_source": "diagouraga2014"
  },
- "special": [],
+ "special": [
+  {
+   "kind": "marginal_band",
+   "part": "marginal_band",
+   "params": {
+    "thickness_um": 0.2,
+    "inset_um": 0.15,
+    "coils": 3
+   },
+   "source": "diagouraga2014",
+   "note": "the ring of microtubules at the rim that holds the disc shape (diagouraga2014); its thickness and coiling are illustrative"
+  }
+ ],
  "cut": "A cut through the middle of the flat oval: a thin lens-shaped section with a membrane round it, filled with cytoplasm, scattered storage granules and a few mitochondria; no nucleus anywhere.",
  "colours": {
   "convention": "Colours are codes, not the real colours: a platelet is almost colourless in life. Membrane pale; granules and mitochondria each their own tint.",
   "true_colour": []
  },
  "parts": {
-  "membrane": {"name": "Cell membrane", "card": "cell_membrane", "material": "membrane", "about": "The surface membrane. In a resting platelet it also dips inward into a system of channels, which are not drawn."},
-  "granule": {"name": "Alpha granules", "card": "cell_platelet_alpha_granules", "material": "protein"},
-  "mitochondrion": {"name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion"}
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane",
+   "about": "The surface membrane. In a resting platelet it also dips inward into a system of channels, which are not drawn."
+  },
+  "granule": {
+   "name": "Alpha granules",
+   "card": "cell_platelet_alpha_granules",
+   "material": "protein"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "marginal_band": {
+   "name": "Marginal band (ring of microtubules)",
+   "card": null,
+   "material": "protein",
+   "source": "diagouraga2014",
+   "about": "A bundle of microtubules coiled round and round the rim of the resting platelet, like a hoop, which holds it in its flat disc shape. When the platelet is activated, motor proteins make the ring coil up, and the platelet rounds up and spreads. Its thickness here is illustrative."
+  }
  },
  "reached": {
-  "tissue": [{"kind": "blood", "id": "platelet"}]
+  "tissue": [
+   {
+    "kind": "blood",
+    "id": "platelet"
+   }
+  ]
  },
- "view": {"radius_um": 2.2, "r1_m": 3.2e-5, "arrive_m": 5.5e-6, "spawn_m": 4e-8},
+ "view": {
+  "radius_um": 2.2,
+  "r1_m": 3.2e-05,
+  "arrive_m": 5.5e-06,
+  "spawn_m": 4e-08
+ },
  "about": [
   "A platelet is a piece of cytoplasm pinched off a very large marrow cell, so it has no nucleus. The outline is a plain ellipsoid, 3.8 µm long and 1.5 µm across its shortest axis, whose volume is {drawn.cellVolume} µm³; 30 platelets measured by electron microscopy averaged 7.7 µm³. A real resting platelet is a disc with a thicker rim, and that is not drawn.",
   "The storage granules are the alpha granules, about 0.25 to 0.30 µm across; {drawn.granules} are drawn in this cut half, from an average of about 50 in a whole platelet. {drawn.mitochondria} mitochondria are drawn, from about 11 in a whole platelet (about {drawn.mitochondriaWanted} for this half by volume).",
-  "Not drawn: the dense granules (about 5 per platelet), the channels that open to the surface, the dense tubular system, the ring of microtubules that holds the disc shape, the actin beneath the membrane, glycogen, and the protein coat on the outside."
+  "Not drawn: the dense granules (about 5 per platelet), the channels that open to the surface, the dense tubular system, the actin beneath the membrane, glycogen, and the protein coat on the outside. The ring of microtubules at the rim that holds the disc shape, the marginal band, is drawn (its back half, behind the cut)."
  ],
  "sources": {
-  "pokrovskaya2020": {"cite": "Pokrovskaya ID et al. (2020) 3D ultrastructural analysis of alpha-granule, dense granule, mitochondria, and canalicular system arrangement in resting human platelets. Res Pract Thromb Haemost 4:72-85", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6971324", "opened": "2026-11-23", "used_for": "30 resting human platelets, 3 donors: axes, volume, counts and volume fractions of the granules, mitochondria and canalicular system (Table 1 and results text)"},
-  "openstax_plt": {"cite": "OpenStax Anatomy and Physiology 2e, 18.4 Leukocytes and Platelets", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-4-leukocytes-and-platelets", "opened": "2026-11-23", "used_for": "a platelet is a fragment of a megakaryocyte; 150,000-160,000 per µL; about 10 days"},
-  "diagouraga2014": {"cite": "Diagouraga B et al. (2014) Motor-driven marginal band coiling promotes cell shape change during platelet activation. J Cell Biol 204:177-185", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3897189", "opened": "2026-11-23", "used_for": "no nucleus; the flat discoid shape of a resting platelet comes from a ring of microtubules, the marginal band, at the rim"}
+  "pokrovskaya2020": {
+   "cite": "Pokrovskaya ID et al. (2020) 3D ultrastructural analysis of alpha-granule, dense granule, mitochondria, and canalicular system arrangement in resting human platelets. Res Pract Thromb Haemost 4:72-85",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6971324",
+   "opened": "2026-11-23",
+   "used_for": "30 resting human platelets, 3 donors: axes, volume, counts and volume fractions of the granules, mitochondria and canalicular system (Table 1 and results text)"
+  },
+  "openstax_plt": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 18.4 Leukocytes and Platelets",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-4-leukocytes-and-platelets",
+   "opened": "2026-11-23",
+   "used_for": "a platelet is a fragment of a megakaryocyte; 150,000-160,000 per µL; about 10 days"
+  },
+  "diagouraga2014": {
+   "cite": "Diagouraga B et al. (2014) Motor-driven marginal band coiling promotes cell shape change during platelet activation. J Cell Biol 204:177-185",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3897189",
+   "opened": "2026-11-23",
+   "used_for": "no nucleus; the flat discoid shape of a resting platelet comes from a ring of microtubules, the marginal band, at the rim"
+  }
  }
 }

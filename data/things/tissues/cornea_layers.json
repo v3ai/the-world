@@ -101,7 +101,7 @@
      50
     ]
    },
-   "material": "corneal_epithelial_cell"
+   "material": "corneal_surface_cell"
   },
   {
    "id": "wing",
@@ -168,7 +168,7 @@
      10
     ]
    },
-   "material": "corneal_epithelial_cell"
+   "material": "corneal_basal_cell"
   },
   {
    "id": "bowman",

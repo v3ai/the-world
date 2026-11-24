@@ -3242,6 +3242,75 @@
     }
    ],
    "src": "OpenStax Anatomy and Physiology 2e 6.3 (bone matrix: collagen fibres and calcium phosphate crystals)"
+  },
+  "glycogen": {
+   "title": "Glycogen",
+   "desc": "The store of sugar in liver and muscle cells: tree-like molecules made of thousands of glucose units.",
+   "card": null,
+   "inside": [
+    {
+     "name": "maltose, two glucose units of a glycogen chain",
+     "scene": "mol:maltose",
+     "standIn": true,
+     "note": "{What}: glycogen, a branched chain of thousands of glucose units joined as in maltose, with a side branch every so often. Shown: maltose, two such units.",
+     "title": "Maltose (two units of a glycogen chain)"
+    }
+   ],
+   "src": "OpenStax Biology 2e 3.2 (glycogen, the storage form of glucose in animals, in liver and muscle cells); data/molecules_all.json maltose"
+  },
+  "corneal_basal_cell": {
+   "title": "Corneal basal cell",
+   "desc": "A living cell from the bottom of the clear skin of the eye.",
+   "card": "cell_corneal_basal_cell",
+   "inside": [
+    {
+     "name": "a corneal basal cell",
+     "scene": "cell:corneal_basal_cell",
+     "title": "Corneal basal cell"
+    }
+   ],
+   "src": "data/cells/corneal_basal_cell.json"
+  },
+  "corneal_surface_cell": {
+   "title": "Corneal surface cell",
+   "desc": "A living cell from the top of the clear skin of the eye.",
+   "card": "cell_corneal_surface_cell",
+   "inside": [
+    {
+     "name": "a corneal surface cell",
+     "scene": "cell:corneal_surface_cell",
+     "title": "Corneal surface cell"
+    }
+   ],
+   "src": "data/cells/corneal_surface_cell.json"
+  },
+  "chloroplast": {
+   "title": "Chloroplast",
+   "desc": "The green organelle where a plant catches light: stacks of membranes coloured by chlorophyll.",
+   "card": "bio_chloroplasts_plastids",
+   "inside": [
+    {
+     "name": "chlorophyll a, the green pigment",
+     "scene": "mol:chlorophyll_a",
+     "standIn": true,
+     "note": "{What}: a chloroplast, whose membranes hold the green pigment chlorophyll among many proteins and lipids. Shown: chlorophyll a.",
+     "title": "Chlorophyll a (the green pigment)"
+    }
+   ],
+   "src": "card bio_chloroplasts_plastids; leaf_section scene (chloroplasts open chlorophyll a)"
+  },
+  "palisade_cell": {
+   "title": "Palisade cell (leaf)",
+   "desc": "The main light-catching cell of a leaf.",
+   "card": "oak_leaf_palisade",
+   "inside": [
+    {
+     "name": "a palisade cell (leaf)",
+     "scene": "cell:palisade_cell",
+     "title": "Palisade cell (leaf)"
+    }
+   ],
+   "src": "data/cells/palisade_cell.json"
   }
  }
 }

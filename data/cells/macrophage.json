@@ -5,14 +5,14 @@
  "species": "Homo sapiens",
  "card": "cell_macrophage",
  "blurb": "A human macrophage: a large, irregular roaming cell with a ruffled surface and finger-like feet, an oval nucleus with a dent in it, and many lysosomes for digesting what it swallows.",
- "note": "Model: a human macrophage, cut through its middle. Measured in humans: its size (diameter and volume, from macrophages washed out of the lungs of healthy non-smokers), the shares of a blood monocyte's volume taken by nucleus, mitochondria and granules, and the descriptions of its oval, dented nucleus, ruffled surface and many lysosomes. Illustrative: the exact outline, the number and length of the feet and ruffles, the nucleus share (a monocyte's share, 26%, shrinks as the cell grows, so 10% is a guess), the number and size of lysosomes and mitochondria, and the colours. Not drawn: the dent in the nucleus, swallowed particles, the endoplasmic reticulum, ribosomes, the cytoskeleton and the receptors on the surface.",
+ "note": "Model: a human macrophage, cut through its middle. Measured in humans: its size (diameter and volume, from macrophages washed out of the lungs of healthy non-smokers), the shares of a blood monocyte's volume taken by nucleus, mitochondria and granules, and the descriptions of its oval, dented nucleus, ruffled surface and many lysosomes. Illustrative: the exact outline, the number and length of the feet and of the thin ruffled sheets (lamellipodia), the number and size of the swallowed-debris sacs and of the clear vacuoles, the nucleus share (a monocyte's share, 26%, shrinks as the cell grows, so 10% is a guess), the number and size of lysosomes and mitochondria, and the colours. Not drawn: the dent in the nucleus, the endoplasmic reticulum, ribosomes, the cytoskeleton and the receptors on the surface.",
  "shape": {
   "type": "ellipsoid",
   "a_um": 24,
   "b_um": 20,
   "c_um": 20,
   "bumps": 0.6,
-  "pseudopods": 5,
+  "pseudopods": 3,
   "pseudopod_um": 7
  },
  "dimensions": {
@@ -116,7 +116,6 @@
    "rough endoplasmic reticulum",
    "ribosomes",
    "cytoskeleton",
-   "swallowed particles and the phagosomes round them",
    "surface receptors"
   ]
  },
@@ -126,11 +125,16 @@
    "part": "membrane",
    "params": {
     "bumps": 0.6,
-    "pseudopods": 5,
-    "pseudopod_um": 7
+    "pseudopods": 3,
+    "pseudopod_um": 7,
+    "sheets": 4,
+    "sheet_um": 3.5,
+    "arc": 2.4,
+    "arc_from": -0.8
    },
    "source": "digihisto13",
-   "note": "The surface is heavily folded and ruffled, and the cell puts out broad feet (pseudopodia) to crawl and to wrap round what it swallows (openstax_innate; uribe2020: the feet are built by growth of actin filaments). The fold pattern, five feet and their 7 µm length are illustrative."
+   "note": "The surface is heavily folded and ruffled, and the cell puts out broad feet (pseudopodia) to crawl and to wrap round what it swallows (openstax_innate; uribe2020: the feet are built by growth of actin filaments). The fold pattern, five feet and their 7 µm length are illustrative.",
+   "ruffle_part": "membrane"
   },
   {
    "kind": "phagocytosis",
@@ -143,6 +147,26 @@
    "part": "membrane",
    "source": "openstax_ct",
    "note": "Some macrophages roam the tissue, moving by amoeboid crawling; others are fixed and stay in their tissue for good. The drawn cell is not marked as one or the other."
+  },
+  {
+   "kind": "phagosomes",
+   "part": "phagosome",
+   "params": {
+    "count": 7,
+    "size_um": 1.6,
+    "content": "debris"
+   },
+   "note": "illustrative number and size"
+  },
+  {
+   "kind": "vacuoles",
+   "part": "vacuole",
+   "params": {
+    "count": 22,
+    "size_um": 0.7
+   },
+   "count_key": "vacuoles",
+   "note": "illustrative"
   }
  ],
  "cut": "The cell is cut through its middle: a ruffled outline with a few blunt feet, one oval nucleus with a nucleolus off to one side, mitochondria scattered through the cytoplasm, a stack of Golgi next to the nucleus and many small lysosomes of different sizes among them.",
@@ -189,6 +213,18 @@
    "name": "Golgi apparatus",
    "card": "golgi_apparatus",
    "material": "membrane"
+  },
+  "phagosome": {
+   "name": "Phagosome (swallowed debris)",
+   "card": null,
+   "material": "membrane",
+   "about": "A sac of membrane round something the cell has swallowed, such as a dead cell or a bacterium. Lysosomes fuse with it and digest what is inside. The number and size drawn are illustrative."
+  },
+  "vacuole": {
+   "name": "Vacuole",
+   "card": null,
+   "material": "membrane",
+   "about": "A small clear sac of membrane; macrophages that have eaten a lot often look foamy, full of them. The number drawn is illustrative."
   }
  },
  "reached": {
@@ -214,7 +250,7 @@
  "about": [
   "A macrophage of a person. Its size is that measured for human macrophages washed out of the lungs of healthy non-smokers: 21 µm across and about 4990 µm³ (the drawn cell holds {drawn.cellVolume} µm³). One in loose connective tissue or in the blood-vessel wall may differ in size, and a crawling one is longer than it is wide.",
   "It begins as a monocyte of the blood, leaves a vessel and grows into a macrophage in the tissue. A monocyte's nucleus is about a quarter of the cell; as the cell swells three- to four-fold the nucleus share falls, and 10% is drawn (a guess). The nucleus is oval and, in life, often dented.",
-  "Its work is to swallow microbes, dead cells and debris. The surface is folded and ruffled and the cell puts out feet around what it takes in; the swallowed bag then fuses with lysosomes. {drawn.lysosomes} lysosomes are drawn in this half; a real cell has far more, of many sizes, and often particles in the middle of digestion, which are not drawn."
+  "Its work is to swallow microbes, dead cells and debris. Its edge spreads into thin ruffled sheets (lamellipodia) and blunt feet that close round what it takes in; the swallowed bag, a phagosome ({drawn.phagosomes} drawn, each with its debris), then fuses with lysosomes ({drawn.lysosomes} drawn in this half; a real cell has far more, of many sizes). Small clear vacuoles ({drawn.vacuoles} drawn) give a busy macrophage its foamy look. All these numbers are illustrative."
  ],
  "sources": {
   "krombach1997": {

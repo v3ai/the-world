@@ -5,7 +5,7 @@
  "species": "Homo sapiens",
  "card": "cell_animal_cell_generic",
  "blurb": "A plain animal cell, drawn with figures from human cells. It stands in for animal cells that have no picture of their own, in any animal.",
- "note": "Model: a plain animal cell drawn with measurements from human cells (and, where said, rat liver and HeLa cells), used for animal cells of any species that have no drawing of their own, so it is not the cell of the animal you came from. No real cell looks like this one; every kind of cell adds or changes parts, cut in half. Measured: the cell's volume (a crude range of 500 to 4000 µm³ given for mammalian cells with no cell type named), the nucleus's share of it, the mitochondria's share of the cytoplasm, and the number and size of the lysosomes. Illustrative: the six-sided shape and its size, the sizes of the mitochondria and the Golgi, their placing, and the colours. The lysosome count comes from one cell type (breast epithelium) and may not scale with the volume drawn here. Only part of the mitochondria are drawn (a few hundred), so the picture holds fewer than the 9% share. Several shares come from rat liver or human cell lines, and the note on each says which.",
+ "note": "Model: a plain animal cell drawn with measurements from human cells (and, where said, rat liver and HeLa cells), used for animal cells of any species that have no drawing of their own, so it is not the cell of the animal you came from. No real cell looks like this one; every kind of cell adds or changes parts, cut in half. Measured: the cell's volume (a crude range of 500 to 4000 µm³ given for mammalian cells with no cell type named), the nucleus's share of it, the mitochondria's share of the cytoplasm, and the number and size of the lysosomes. Illustrative: the six-sided shape and its size, the sizes of the mitochondria, the Golgi and the stacks of rough endoplasmic reticulum, their placing, and the colours. The lysosome count comes from one cell type (breast epithelium) and may not scale with the volume drawn here. Only part of the mitochondria are drawn (a few hundred), so the picture holds fewer than the 9% share. Several shares come from rat liver or human cell lines, and the note on each says which.",
  "shape": {
   "type": "polyhedron",
   "sides": 6,
@@ -104,8 +104,8 @@
    }
   },
   "not_drawn": [
-   "endoplasmic reticulum",
-   "ribosomes",
+   "the smooth endoplasmic reticulum",
+   "free ribosomes (too small to draw at this size)",
    "peroxisomes",
    "centrosome and centrioles",
    "cytoskeleton",
@@ -123,6 +123,17 @@
    "source": "openstax_anp32",
    "note": "All body cells carry the same DNA and differ in which genes they use. Cells differ in how much of each part they carry: a textbook puts a busy neuron at over a thousand mitochondria and a bone cell at a couple of hundred (a textbook statement, not a count); muscle cells need many for the energy of contraction, white blood cells that swallow things carry many lysosomes, liver cells many peroxisomes. None of this is drawn here; the cells with their own pictures show their own balance.",
    "also": "openstax_anp36"
+  },
+  {
+   "kind": "rough_er_stacks",
+   "part": "rough_er",
+   "params": {
+    "stacks": 25,
+    "sheets": 4,
+    "width_um": 2.2,
+    "spacing_um": 0.14
+   },
+   "note": "illustrative number and size"
   }
  ],
  "cut": "The cell is cut in half through the middle: the round nucleus with its nucleolus in the centre, mitochondria scattered through the cytoplasm around it, small lysosomes, and one Golgi apparatus beside the nucleus, all inside the membrane.",
@@ -169,6 +180,12 @@
    "card": "golgi_apparatus",
    "material": "membrane",
    "about": "Shown on a double click: the lipid of the membranes that bound the Golgi sacs (POPC, a stand-in for the real lipid mix), not the stacked flattened sacs themselves."
+  },
+  "rough_er": {
+   "name": "Rough endoplasmic reticulum",
+   "card": "endoplasmic_reticulum",
+   "material": "rna",
+   "about": "Stacks of flat membrane sacs covered in ribosomes, where the cell makes proteins to export or to build into its membranes. The ribosomes are shown as one RNA nucleotide, a stand-in. Their number and size here are illustrative; cells differ greatly in how much they have."
   }
  },
  "reached": {
@@ -185,7 +202,7 @@
  "about": [
   "This is a plain animal cell, drawn where the app has no picture of the exact kind of cell. It is no real cell: the six-sided body is chosen so that its volume, {drawn.cellVolume} µm³ as drawn, matches the 2250 µm³ given for a human cell, a crude figure with a range from 500 to 4000 µm³ for mammalian cells.",
   "The nucleus takes about a tenth of the cell ({drawn.nuclei} drawn), the mitochondria about 9% of it ({drawn.mitochondria} drawn in this half, fewer than that share would hold). The 9% is worked out from a human cell line, where they fill about a tenth of the cytoplasm; in rat liver cells they fill 22% of the cell. There are about 220 lysosomes per cell, counted in human breast cells.",
-  "All the cells of the body carry the same DNA and differ in which genes they use, so most of the parts here are in every cell, in different amounts. The endoplasmic reticulum, ribosomes, peroxisomes, centrosome and cytoskeleton are not drawn."
+  "All the cells of the body carry the same DNA and differ in which genes they use, so most of the parts here are in every cell, in different amounts. A few stacks of rough endoplasmic reticulum ({drawn.erStacks} drawn, an illustrative number) stand for the cell's protein-making membranes. The smooth endoplasmic reticulum, the free ribosomes, peroxisomes, centrosome and cytoskeleton are not drawn."
  ],
  "sources": {
   "bn_volume": {

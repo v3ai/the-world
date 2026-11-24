@@ -5,7 +5,7 @@
  "species": "Homo sapiens",
  "card": "cell_hepatocyte",
  "blurb": "The main cell of the liver: a many-sided cell packed with mitochondria and endoplasmic reticulum, lying in a one-cell-thick plate beside blood channels, with a bile channel grooved into the wall it shares with its neighbours.",
- "note": "Model: a human hepatocyte, cut in half. Measured in human liver: the number of cells per gram of liver and the share of the liver they make up, from which its volume is worked out; that some cells have two nuclei and that at least a quarter are polyploid. Illustrative: the shape and its sides, the shares of the cell taken by the nucleus and the organelles (textbook figures whose species is not stated), the size and count of every organelle drawn, and the colours. The neighbouring cells are drawn faintly.",
+ "note": "Model: a human hepatocyte, cut in half. Measured in human liver: the number of cells per gram of liver and the share of the liver they make up, from which its volume is worked out; that some cells have two nuclei and that at least a quarter are polyploid. Illustrative: the shape and its sides, the shares of the cell taken by the nucleus and the organelles (textbook figures whose species is not stated), the size and count of every organelle drawn, the widths of the bile canaliculus, microvilli and blood channel, the amount of glycogen, and the colours. The neighbouring cells are drawn faintly.",
  "shape": {
   "type": "polyhedron",
   "sides": 6,
@@ -131,12 +131,9 @@
    }
   },
   "not_drawn": [
-   "rough endoplasmic reticulum (about 9% of the cell volume) and smooth endoplasmic reticulum (about 5%)",
-   "glycogen granules",
-   "microvilli on the sinusoidal face",
-   "the bile channel between neighbours",
    "endosomes",
-   "a second nucleus"
+   "a second nucleus",
+   "smooth endoplasmic reticulum (about 5% of the cell)"
   ]
  },
  "special": [
@@ -150,6 +147,51 @@
    "kind": "plate",
    "source": "leeds_hepatocyte",
    "note": "The cells lie in branching plates, often one cell thick, between sinusoids; blood runs toward the central vein and bile the other way (openstax_liver)."
+  },
+  {
+   "kind": "side_microvilli",
+   "part": "microvilli",
+   "params": {
+    "length_um": 0.5,
+    "diameter_um": 0.1,
+    "spacing_um": 0.35,
+    "channel_um": 10,
+    "channel_part": "sinusoid"
+   },
+   "note": "illustrative sizes: microvilli about 0.5 µm long and 0.1 µm wide, the blood channel 10 µm wide"
+  },
+  {
+   "kind": "canaliculus",
+   "part": "canaliculus",
+   "params": {
+    "diameter_um": 1,
+    "faces": 2
+   },
+   "source": "openstax_liver",
+   "note": "grooves in the walls shared with neighbours form the bile channel (openstax_liver); its 1 µm width is illustrative"
+  },
+  {
+   "kind": "rough_er_stacks",
+   "part": "rough_er",
+   "params": {
+    "stacks": 90,
+    "sheets": 5,
+    "width_um": 2.4,
+    "spacing_um": 0.14
+   },
+   "source": "alberts_table",
+   "note": "rough ER about 9% of the cell (alberts_table); the number and size of the stacks drawn are illustrative"
+  },
+  {
+   "kind": "glycogen",
+   "part": "glycogen",
+   "params": {
+    "clumps": 60,
+    "per_clump": 20,
+    "clump_um": 1.0,
+    "granule_um": 0.1
+   },
+   "note": "illustrative: the amount of glycogen varies with meals"
   }
  ],
  "cut": "The cell is cut in half: a round, pale nucleus with a nucleolus near the middle, a great many small mitochondria through the cytoplasm, lysosomes and peroxisomes as small dots, a few round lipid droplets, Golgi stacks beside the nucleus, and the faint outlines of neighbouring liver cells behind.",
@@ -210,6 +252,36 @@
    "name": "Neighbouring hepatocyte",
    "card": "cell_hepatocyte",
    "material": "membrane"
+  },
+  "microvilli": {
+   "name": "Microvilli (face toward the blood)",
+   "card": null,
+   "material": "membrane",
+   "about": "Short fingers of membrane on the faces that look onto the blood channels. They reach into the narrow space between the cell and the channel wall and greatly enlarge the surface through which the cell takes up and returns substances. Their size here is illustrative."
+  },
+  "sinusoid": {
+   "name": "Blood channel (sinusoid)",
+   "card": null,
+   "material": "blood",
+   "about": "A wide, leaky capillary of the liver that runs beside the plate of liver cells. Blood from the gut and the liver artery flows through it toward the central vein. Drawn faint, 10 µm wide (illustrative)."
+  },
+  "canaliculus": {
+   "name": "Bile canaliculus",
+   "card": null,
+   "material": "water",
+   "about": "A tiny channel formed by grooves in the walls of two neighbouring liver cells, sealed by tight junctions. The cell secretes bile into it; bile flows the opposite way to the blood, toward the bile ducts. Bile is mostly water (shown), with bile salts, bilirubin and cholesterol. Its width here is illustrative."
+  },
+  "rough_er": {
+   "name": "Rough endoplasmic reticulum",
+   "card": "endoplasmic_reticulum",
+   "material": "rna",
+   "about": "Stacks of flat membrane sacs covered in ribosomes, about 9% of the cell. Here the liver cell makes the proteins of the blood plasma, such as albumin. The ribosomes are shown as one RNA nucleotide, a stand-in."
+  },
+  "glycogen": {
+   "name": "Glycogen",
+   "card": null,
+   "material": "glycogen",
+   "about": "Clumps of glycogen granules, the store of sugar the liver builds after a meal and breaks down between meals to keep the blood sugar steady. Each granule is a branched molecule of thousands of glucose units. The amount drawn is illustrative; it changes with meals."
   }
  },
  "reached": {
@@ -229,7 +301,7 @@
  "about": [
   "The hepatocyte makes up about 80% of the liver. Its volume, {drawn.cellVolume} µm³ as drawn, is close to 7,500 µm³ worked out from the number of cells isolated per gram of human liver; the real figure varies a good deal from person to person, since the count ranged from 65 to 185 million cells per gram.",
   "The shares of the cell taken by the nucleus (about 6%), mitochondria (about 22%) and the rest come from a textbook table that does not say which species was measured, so they are used here as a guide and marked illustrative. {drawn.mitochondria} of about {drawn.mitochondriaWanted} mitochondria are drawn in this half.",
-  "Some liver cells have two nuclei, and at least a quarter of adult cells hold extra sets of chromosomes. One nucleus ({drawn.nuclei} drawn) is shown. The endoplasmic reticulum, the glycogen stores, the microvilli and the bile channel are not drawn."
+  "Some liver cells have two nuclei, and at least a quarter of adult cells hold extra sets of chromosomes. One nucleus ({drawn.nuclei} drawn) is shown. The face on the left looks onto a blood channel (sinusoid, drawn faint) and carries short microvilli ({drawn.sideMicrovilli} in this half). Grooves in two of the walls shared with neighbours are the bile canaliculi, into which the cell secretes bile. Stacks of rough endoplasmic reticulum ({drawn.erStacks} stacks) make the blood's proteins, and clumps of glycogen store sugar. Their sizes and numbers are illustrative; the smooth endoplasmic reticulum is not drawn."
  ],
  "sources": {
   "openstax_liver": {

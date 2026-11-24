@@ -5,7 +5,7 @@
  "species": "Homo sapiens",
  "card": "cell_corneocyte",
  "blurb": "A dead cell of the skin's outer layer: a wide, paper-thin six-sided scale with no nucleus, packed solid with keratin and wrapped in a tough protein shell.",
- "note": "Model: a human corneocyte from the outer layer of the skin of the forearm, cut through its thickness. Measured in human skin: the area of the cell (from forearm cells lifted with tape), the thickness of the whole outer layer, its number of cell layers, the thickness of the protein shell and the fact that nucleus and organelles are gone. Illustrative: the thickness drawn for this one cell (only a range is known), the six-sided outline, the number of keratin bundles and rivets between cells, and the colours. The cells above and below are drawn faintly.",
+ "note": "Model: a human corneocyte from the outer layer of the skin of the forearm, cut through its thickness. Measured in human skin: the area of the cell (from forearm cells lifted with tape), the thickness of the whole outer layer, its number of cell layers, the thickness of the protein shell and the fact that nucleus and organelles are gone. Illustrative: the thickness drawn for this one cell (only a range is known), the six-sided outline, the number of rivets between cells, the felt drawn for the keratin filling (each strand stands for many filaments of about 10 nm), and the colours. The cut is taken through its plane, so the whole filled scale is seen from above; three cells of the layer beneath show faintly.",
  "shape": {
   "type": "polyhedron",
   "sides": 6,
@@ -97,16 +97,6 @@
  },
  "special": [
   {
-   "kind": "keratin_bundles",
-   "part": "keratin",
-   "params": {
-    "bundles": 14,
-    "drawn_um": 0.1
-   },
-   "source": "hoober2022",
-   "note": "The inside of the cell is a solid mass of keratin filaments, gathered together by the protein filaggrin until the cytoplasm has collapsed onto them (hoober2022). In life the filling is dense and even; 14 bundles are drawn, thick enough to see, only to show that the cell is filled with filaments. Their number and paths are illustrative."
-  },
-  {
    "kind": "desmosomes",
    "part": "desmosome",
    "source": "haftek2022",
@@ -117,9 +107,16 @@
    "part": "lipids",
    "source": "openstax_skin",
    "note": "Between the cells lies a sealing lipid; it is released from lamellar bodies while the cells are still alive (openstax_skin). The mixture in the gaps (mostly ceramides, cholesterol and free fatty acids) differs from the lamellar-body contents. Not drawn as layers: the gaps between cells are only a few tens of nanometres, too thin to show."
+  },
+  {
+   "kind": "keratin_matrix",
+   "part": "keratin",
+   "params": {
+    "texture_um": 6
+   }
   }
  ],
- "cut": "The cell is cut through its thickness: a long thin slab, a sliver under a micrometre tall and some 42 µm wide, with no nucleus or organelles, filled with keratin filaments; the protein shell runs round the edge, and rivets (corneodesmosomes) join it to the cells above and beside it, which show faintly.",
+ "cut": "The cell is cut through its thickness: a long thin slab, a sliver under a micrometre tall and some 42 µm wide, with no nucleus or organelles, filled with keratin filaments; the protein shell runs round the edge, and rivets (corneodesmosomes) join it to the cells above and beside it, which show faintly. The cut face is the keratin filling seen from above.",
  "colours": {
   "convention": "The shell pale peach, the inside straw yellow for keratin, rivets brown, the neighbours faint. All of these colours are a code; none is the real colour of the cell, which is nearly clear.",
   "true_colour": []

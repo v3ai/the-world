@@ -4,8 +4,8 @@
  "organism": "mammal (dog)",
  "species": "Canis lupus familiaris",
  "card": "cell_apocrine_cell_dog",
- "blurb": "A secretory cell of a dog's sweat gland: a low column with microvilli on its free face. In life a bleb of cytoplasm pinches off into the lumen (not drawn).",
- "note": "Model: an apocrine sweat gland secretory cell of a dog (Canis lupus familiaris), cut through from base to lumen. Measured in dogs (electron microscopy of the apocrine glands beside the circumanal glands, more active than glands on the body surface): endoplasmic reticulum, multivesicular bodies, three kinds of large granule, microvilli; light microscopy: cuboidal to low columnar cells with apical blebs. Illustrative: width, height, the nuclear share, the nucleolus count, the positions of the nucleus and Golgi, the number of granules and microvilli, the colours. Not drawn: the apical bleb, the basal folds, the myoepithelial layer. The neighbouring cells are drawn faintly.",
+ "blurb": "A secretory cell of a dog's sweat gland: a low column with microvilli on its free face. A dome of its cytoplasm swells from the top and pinches off into the gland's channel, carrying the secretion.",
+ "note": "Model: an apocrine sweat gland secretory cell of a dog (Canis lupus familiaris), cut through from base to lumen. Measured in dogs (electron microscopy of the apocrine glands beside the circumanal glands, more active than glands on the body surface): endoplasmic reticulum, multivesicular bodies, three kinds of large granule, microvilli; light microscopy: cuboidal to low columnar cells with apical blebs. Illustrative: width, height, the nuclear share, the nucleolus count, the positions of the nucleus and Golgi, the number of granules and microvilli, the size of the apical bleb, the colours. Not drawn: the basal folds, the myoepithelial layer. The neighbouring cells are drawn faintly.",
  "shape": {
   "type": "polyhedron",
   "sides": 6,
@@ -105,7 +105,6 @@
    "rough endoplasmic reticulum (well developed in dogs, anatrec1998)",
    "folds of the basal membrane",
    "the myoepithelial cell beneath",
-   "the apical bleb that pinches off",
    "multivesicular bodies (the granules stand in for them)",
    "the missing cristae of the giant mitochondria"
   ]
@@ -164,6 +163,12 @@
    "name": "Neighbouring secretory cell",
    "card": "cell_apocrine_cell_dog",
    "material": "membrane"
+  },
+  "bleb": {
+   "name": "Apical bleb (pinching off)",
+   "card": null,
+   "material": "membrane",
+   "about": "In apocrine secretion the top of the cell swells into a dome of cytoplasm that pinches off into the gland's channel, carrying its contents with it. Its size here is illustrative."
   }
  },
  "reached": {
@@ -229,5 +234,16 @@
    "used_for": "dog sweat gland secretory cells stain with PAS (carry glycoprotein) in fresh skin and lose it by 12 h after death; no cell sizes"
   }
  },
- "special": []
+ "special": [
+  {
+   "kind": "apical_bleb",
+   "part": "bleb",
+   "params": {
+    "diameter_um": 6,
+    "height": 0.8,
+    "granules": 8
+   },
+   "note": "illustrative size of the bleb"
+  }
+ ]
 }

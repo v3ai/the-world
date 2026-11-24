@@ -181,7 +181,8 @@
   "A T cell of human blood, drawn {drawn.cellVolume} um3 in volume. Freshly isolated, mostly unactivated T cells from healthy donors averaged about 209 um3, which is a sphere about 7.4 um across. An older electron-microscope study gave a smaller 125 um3 for lymphocytes, so the true value depends on how the cell is measured.",
   "The nucleus fills more than half the cell and is simple and round; the cytoplasm is only a thin rim, which gives small lymphocytes their look of a nucleus with a halo. The share drawn (55%) was measured in activated T cells and is only a stand-in for a resting one. {drawn.mitochondria} mitochondria are drawn in this half.",
   "T cells mature in the thymus and leave as mature cells carrying either CD4 or CD8 on the surface. Which of the two the cell carries cannot be seen in the shape: helper, killer and regulatory T cells look alike in blood. After meeting its antigen a T cell grows to about three times its volume.",
-  "Cells in a living person also differ in size and shape from one another; this is one typical cell, a stand-in for a mostly unactivated T cell."
+  "Cells in a living person also differ in size and shape from one another; this is one typical cell, a stand-in for a mostly unactivated T cell.",
+  "A resting T cell and a resting B cell look the same under a light microscope, and nearly so under an electron microscope: they are told apart by the proteins on their surface (stained with antibodies), not by their shape. So the two drawings are alike on purpose."
  ],
  "sources": {
   "tcellvol2023": {

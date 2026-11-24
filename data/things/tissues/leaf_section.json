@@ -172,9 +172,6 @@
    "color": "#cfe9b6",
    "opacity": 0.32,
    "ink": 1,
-   "deeper": {
-    "type": "cell"
-   },
    "arrange": {
     "kind": "grid",
     "origin": [
@@ -201,7 +198,8 @@
       ]
      }
     ]
-   }
+   },
+   "material": "palisade_cell"
   },
   {
    "id": "spongy",

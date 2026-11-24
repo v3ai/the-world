@@ -287,14 +287,34 @@
    "shape_hint": "polyhedron (cuboidal, few microvilli)"
   },
   {
-   "id": "corneal_epithelial_cell",
-   "name": "Corneal epithelial cell (surface, wing and basal)",
+   "id": "corneal_surface_cell",
+   "name": "Corneal surface cell",
    "organism": "human",
    "reached_from": [
-    "cornea_layers tissue scene, structures sup, wing, basal"
+    "cornea_layers tissue scene, structure sup"
    ],
    "spec": true,
-   "shape_hint": "polyhedron (flat at the surface, columnar at the base)"
+   "shape_hint": "polyhedron (a wide thin plate; microplicae on top)"
+  },
+  {
+   "id": "corneal_epithelial_cell",
+   "name": "Corneal wing cell",
+   "organism": "human",
+   "reached_from": [
+    "cornea_layers tissue scene, structure wing"
+   ],
+   "spec": true,
+   "shape_hint": "polyhedron (many-sided, in the middle of the stack)"
+  },
+  {
+   "id": "corneal_basal_cell",
+   "name": "Corneal basal cell",
+   "organism": "human",
+   "reached_from": [
+    "cornea_layers tissue scene, structure basal"
+   ],
+   "spec": true,
+   "shape_hint": "polyhedron (a column on the basement membrane)"
   },
   {
    "id": "corneal_keratocyte",
@@ -372,7 +392,7 @@
   },
   {
    "id": "motor_axon_dog",
-   "name": "Motor nerve fibre (dog)",
+   "name": "Motor neuron (dog)",
    "organism": "mammal (dog)",
    "reached_from": [
     "dog_muscle tissue scene, structure axon"
@@ -797,12 +817,12 @@
   },
   {
    "id": "palisade_cell",
-   "name": "Palisade mesophyll cell (oak)",
+   "name": "Palisade cell (leaf)",
    "organism": "plant",
    "reached_from": [
     "leaf_section tissue scene, structure palisade"
    ],
-   "spec": false,
+   "spec": true,
    "shape_hint": "polyhedron (tall column, wall_um, chloroplasts: plant organelles lacking in the generic organelle set)"
   },
   {

@@ -70,13 +70,14 @@ const CELLS = (() => {
   const PAL = {
     illo: { membrane: 0xf0b9c9, cytosol: 0x3a1a30, nucleus: 0x9a7ee0, chromatin: 0x6c4fb0, nucleolus: 0x4c3290, mito: 0xf08a5e, er: 0x7fb5dc, nissl: 0x6e93e6, golgi: 0xf0c85a,
       lysosome: 0xb7c06e, vesicle: 0xe7d39a, haemoglobin: 0xd8463c, rbc: 0xe0584a, spectrin: 0xf3c9a6, myofibril: 0xe07a7a, sarcoplasm: 0xc86a72, myelin: 0xf4efe2, axon: 0xf2d36b,
-      dendrite: 0xf2c46a, soma: 0xf2c46a, spine: 0xf7d98a, bouton: 0xffe08a, keratin: 0xf0d68e, desmosome: 0x9c6b46, melanin: 0x5a3a22, lamellar: 0xcfe7f0, cell: 0xf2c7a8, neighbour: 0xe8c2a8, lipid: 0xf4d97a, disc: 0x5a2f3a },
-    real: { membrane: 0xd8c9c6, cytosol: 0x2a2d31, nucleus: 0x8e86b5, chromatin: 0x6f6496, nucleolus: 0x5d4d86, mito: 0xcf8a5f, er: 0x8aa2ad, nissl: 0x7d93b8, golgi: 0xc6a55c,
+      dendrite: 0xf2c46a, soma: 0xf2c46a, spine: 0xf7d98a, bouton: 0xffe08a, keratin: 0xf0d68e, desmosome: 0x9c6b46, melanin: 0x5a3a22, lamellar: 0xcfe7f0, cell: 0xf2c7a8, neighbour: 0xe8c2a8, lipid: 0xf4d97a, disc: 0x5a2f3a, bile: 0x8fae3e, glycogen: 0xc0587e, dense: 0x3a1f2c, collagen: 0xe9e1cf, dust: 0x2a2624, debris: 0x8a6a4a, wall: 0xd6e3b0, chloroplast: 0x4f9a3a, grana: 0x2f6a28, vacuole: 0xbfe0d8 },
+    real: { membrane: 0xd8c9c6, cytosol: 0x4a4c52, nucleus: 0x8e86b5, chromatin: 0x6f6496, nucleolus: 0x5d4d86, mito: 0xcf8a5f, er: 0x8aa2ad, nissl: 0x7d93b8, golgi: 0xc6a55c,
       lysosome: 0xa3a77f, vesicle: 0xd2c7a2, haemoglobin: 0x9c2f2a, rbc: 0xb8433a, spectrin: 0xd9b89a, myofibril: 0xb76b66, sarcoplasm: 0xa45f62, myelin: 0xe9e4d6, axon: 0xcdb48c,
-      dendrite: 0xcdb48c, soma: 0xcdb48c, spine: 0xd8c29a, bouton: 0xdcc58e, keratin: 0xd5bd84, desmosome: 0x7d5a40, melanin: 0x4a3222, lamellar: 0xb9cdd3, cell: 0xcdb7a4, neighbour: 0xbfae9e, lipid: 0xe2c46a, disc: 0x4c2a30 },
+      dendrite: 0xcdb48c, soma: 0xcdb48c, spine: 0xd8c29a, bouton: 0xdcc58e, keratin: 0xd5bd84, desmosome: 0x7d5a40, melanin: 0x4a3222, lamellar: 0xb9cdd3, cell: 0xcdb7a4, neighbour: 0xbfae9e, lipid: 0xe2c46a, disc: 0x4c2a30, bile: 0x7f9a44, glycogen: 0xa45a74, dense: 0x2e2328, collagen: 0xd8d0bf, dust: 0x2b2826, debris: 0x7d644a, wall: 0xb9c49a, chloroplast: 0x3f7a2e, grana: 0x2a5524, vacuole: 0xa9c4bf },
   };
   const look = () => (typeof MD !== 'undefined' && MD.on) ? 'real' : 'illo';
-  function colourOf(S, role) { const o = S.colours && S.colours.override && S.colours.override[role]; return o !== undefined ? new THREE.Color(o).getHex() : (PAL[look()][role] !== undefined ? PAL[look()][role] : 0xcccccc); }
+  function colourOf(S, role) { let o = S.colours && S.colours.override && S.colours.override[role]; if (o && typeof o === 'object') o = o[look()];   // an override may differ by look: {illo, real}
+  return o !== undefined ? new THREE.Color(o).getHex() : (PAL[look()][role] !== undefined ? PAL[look()][role] : 0xcccccc); }
   /* one material per role and variant; realistic look: the model family's (MD.mat); otherwise a plain lit surface on the dark ground */
   function makeMat(S, role, o = {}) {
     const col = o.color !== undefined ? o.color : colourOf(S, role);
@@ -260,16 +261,21 @@ const CELLS = (() => {
     if (mt && mt.volume_fraction && !ctx.ownMito) {
       const L = (mt.size_um && mt.size_um[0]) || 1.2, Wd = (mt.size_um && mt.size_um[1]) || .4, v1 = Math.PI * (Wd / 2) ** 2 * (L - Wd) + 4 / 3 * Math.PI * (Wd / 2) ** 3;
       const want = Math.round(mt.volume_fraction.value * cyto / v1), n = Math.min(want, mt.max_drawn || 1500), pts = samplePts(ctx, n, box, Wd, mt.position === 'basal' ? (p => p.y < box.min.y + (box.max.y - box.min.y) * .45) : mt.position === 'apical' ? (p => p.y > box.max.y * .2) : ctx.organOk);
-      const geo = capsuleGeo(Wd / 2, L - Wd, 10, 5); ctx.inst(geo, 'mito', 'mitochondrion', 1.2, pts.map(p => place(p, randQ(ctx.r))));
+      if (mt.rows_um) pts.forEach(p => { p.x = (Math.round(p.x / mt.rows_um - .5) + .5) * mt.rows_um; });   // in rows between the folds of the base (a kidney tubule cell)
+      const rotM = mt.align === 'y' ? () => new THREE.Quaternion().setFromEuler(new THREE.Euler((ctx.r() - .5) * .2, ctx.r() * TAU, (ctx.r() - .5) * .2)) : () => randQ(ctx.r);   // standing upright
+      const geo = capsuleGeo(Wd / 2, L - Wd, 10, 5); ctx.inst(geo, 'mito', 'mitochondrion', 1.2, pts.map(p => place(p, rotM())));
       ctx.counts.mitochondria = pts.length; ctx.counts.mitochondriaWanted = want; if (pts[0]) ctx.anchor('mitochondrion', pts.reduce((a, b) => b.z > a.z ? b : a), ctx.parts.mitochondrion ? ctx.pname('mitochondrion', 'Mitochondrion') : 'Mitochondrion', 2.4, L);
     }
     const blob = (key, role, partId, def) => {   // granules of one kind: spheres or ellipsoids, a count, a size, a place
       const o = O[key]; if (!o || !o.count || !o.count.value || (ctx.skipBlob && ctx.skipBlob[key])) return;
       const d = (o.size_um && o.size_um.value) || def, el = o.elongation || 1, n = Math.min(Math.round(o.count.value * V.kept / Math.max(1, V.cell)), o.max_drawn || 800);
-      const where = o.position === 'supranuclear' && ctx.nuclei[0] ? (p => { const nu = ctx.nuclei[0]; return p.y > nu.c.y + nu.ax.y * .3 && Math.hypot(p.x - nu.c.x, p.z - nu.c.z) < Math.max(nu.ax.x, nu.ax.z) * 1.25 && p.y < nu.c.y + nu.ax.y + 2.2; }) : o.position === 'apical' ? (p => p.y > box.max.y * .3) : o.position === 'peripheral' ? (p => !ctx.inside(p, d * 4)) : null;
+      const yMid = (box.min.y + box.max.y) / 2, where = o.position === 'apical_half' ? (p => p.y > yMid + (box.max.y - box.min.y) * .04) : o.position === 'supranuclear' && ctx.nuclei[0] ? (p => { const nu = ctx.nuclei[0]; return p.y > nu.c.y + nu.ax.y * .3 && Math.hypot(p.x - nu.c.x, p.z - nu.c.z) < Math.max(nu.ax.x, nu.ax.z) * 1.25 && p.y < nu.c.y + nu.ax.y + 2.2; }) : o.position === 'apical' ? (p => p.y > box.max.y * .3) : o.position === 'peripheral' ? (p => !ctx.inside(p, d * 4)) : null;
       const pts = samplePts(ctx, n, box, d / 2, where || ctx.organOk);
-      const lo = pts.length > 400 || d < .5, geo = new THREE.SphereGeometry(d / 2, lo ? 7 : 10, lo ? 5 : 8); geo.scale(el, 1, 1);   // many small granules: fewer facets each (a neutrophil's 1,500 granules)
-      ctx.inst(geo, role, partId, 1.3, pts.map(p => place(p, randQ(ctx.r)))); ctx.counts[key] = pts.length;
+      const lo = pts.length > 400 || d < .5, geo = new THREE.SphereGeometry(d / 2, lo ? 7 : 10, lo ? 5 : 8), upright = o.axis === 'y'; if (upright) geo.scale(1, el, 1); else geo.scale(el, 1, 1);   // many small granules: fewer facets each (a neutrophil's 1,500 granules); axis y: standing along the cell's height (an RPE cell's melanosomes)
+      /* axis layer: lying in the plane of a flat layer, side by side in bundles that each run their own way, a little disordered (a tapetal cell's rodlets) */
+      const nrmL = ctx.lid ? new V3(0, 0, 1) : new V3(0, 1, 0), bundleQ = p => { const gx = Math.floor(p.x / 3.5), gy = Math.floor((ctx.lid ? p.y : p.z) / 3.5), h = Math.sin(gx * 127.1 + gy * 311.7) * 43758.5453, ang = (h - Math.floor(h)) * Math.PI + (ctx.r() - .5) * .25;
+        return new THREE.Quaternion().setFromAxisAngle(nrmL, ang).multiply(new THREE.Quaternion().setFromAxisAngle(new V3(1, 0, 0), (ctx.r() - .5) * .15)).multiply(new THREE.Quaternion().setFromAxisAngle(new V3(0, 1, 0), (ctx.r() - .5) * .12)); };
+      ctx.inst(geo, role, partId, 1.3, pts.map(p => place(p, o.axis === 'layer' ? bundleQ(p) : upright ? new THREE.Quaternion().setFromEuler(new THREE.Euler((ctx.r() - .5) * .5, ctx.r() * TAU, (ctx.r() - .5) * .5, 'YXZ')) : randQ(ctx.r)))); ctx.counts[key] = pts.length;
       if (pts.length) ctx.anchor(partId, pts.reduce((a, b) => b.z > a.z ? b : a), ctx.pname(partId, partId.charAt(0).toUpperCase() + partId.slice(1).replace(/_/g, ' ')), 1.8, d);
     };
     blob('lysosomes', 'lysosome', 'lysosome', .5); blob('melanosomes', 'melanin', 'melanosome', .5); blob('lamellar_bodies', 'lamellar', 'lamellar_body', .25);
@@ -361,19 +367,29 @@ const CELLS = (() => {
     const radOf = PL => d => { let s = 0; for (const pl of PL) { const c = pl.n.dot(d); if (c > 1e-4) s += Math.exp(-k * pl.d / c); } return -Math.log(Math.max(s, 1e-300)) / k; }, rad = radOf(planes), rad0 = radOf(planes0);
     ctx.inside = (p, m) => { m = m || 0; for (const pl of planes) if (pl.n.dot(p) > pl.d - P.round_um * .6 - m) return false; return true; };
     const shell = starGeo(d => { const t = rad0(d); return new V3(t, t, t); }, lid ? 96 : 64, lid ? 64 : 44); if (lid) shell.rotateX(Math.PI / 2);   // (x, y, z) -> (x, -z, y), as M
-    const k2 = cutZ(shell.clone(), false); shell.dispose();
+    const km = (ctx.S.special || []).find(s => s.kind === 'keratin_matrix');   // a dead scale packed solid with keratin: its cut face is that filling
+    const k2 = cutZ(shell.clone(), !!km);
     ctx.mesh(k2.body, 'cell', 'membrane', .6, { side: THREE.FrontSide, kind: 'wet' }); cytosolBack(ctx, k2.body);
+    if (km && k2.cap) keratinFill(ctx, k2.cap, km, P.width_um);
+    if (lid && P.neighbours && km) stack(ctx, shell, km);
+    /* a flat cell whose top face matters (ridges on a corneal surface cell): the lid is lifted off only the right half, so the left half shows the top */
+    if (lid && P.half_lid) { const g = shell.clone(); g.rotateY(Math.PI); const t = cutZ(g, false).body; t.rotateY(Math.PI); t.rotateY(-Math.PI / 2); const h = cutZ(t, false).body; h.rotateY(Math.PI / 2);
+      ctx.mesh(h, 'cell', 'membrane', .6, { side: THREE.FrontSide, kind: 'wet' }); ctx.halfLid = true; }
+    shell.dispose();
     ctx.box = lid ? new THREE.Box3(new V3(-hw * 1.3, -hw * 1.3, -hh * 1.1), new V3(hw * 1.3, hw * 1.3, 0)) : new THREE.Box3(new V3(-hw * 1.3, -hh * 1.1, -hw * 1.3), new V3(hw * 1.3, hh * 1.1, 0));
     ctx.focus = { pos: new V3(), r: Math.max(hw, hh) };
     ctx.anchor('membrane', M(-hw * .7, hh * .9, -hw * .35), ctx.pname('membrane', 'Cell membrane'), 2.6, P.width_um);
     ctx.planes = planes; ctx.rad = rad; ctx.ext = lid ? new V3(P.width_um, P.width_um, P.height_um) : new V3(P.width_um, P.height_um, P.width_um); ctx.lid = lid;
     /* the nucleus (or nuclei) from the spec: volume share and shape; low in a column when it is basal, high when apical */
     ctx.nucAt = (pos, ax) => { const ay = lid ? ax.z : ax.y, m = Math.min(1.2, P.height_um * .08) + P.round_um * .5; const y = /basal/.test(pos) ? Math.min(0, -hh + ay + m) : /apical/.test(pos) ? Math.max(0, hh - ay - m) : lid ? 0 : -hh * .05; return M(0, y, 0); };
+    const plant = (ctx.S.special || []).find(x => x.kind === 'plant_cell');
+    if (plant) { const c = (plant.params || {}).cytoplasm_um || 2; ctx.inVacuole = p => p.length() < ctx.rad(p.clone().normalize()) - c - P.round_um * .3; ctx.organOk = p => !ctx.inVacuole(p); ctx.plantLayer = c;
+      ctx.nucAt = (pos, ax) => M(-(hw - P.round_um * .4 - ax.x * .85), hh * .1, 0); }
     nucleiFromSpec(ctx, M(0, lid ? 0 : -hh * .05, 0));
     organelles(ctx);
     if (!lid) apicalFringe(ctx);
     /* desmosomes: plaques on the surface; keratin bundles run in from them and round the nucleus */
-    if (P.desmosomes) desmosomes(ctx, P.desmosomes);
+    if (P.desmosomes) desmosomes(ctx, P.desmosomes, !!km);
     if (P.neighbours && !lid) neighbours(ctx, shell);   // a flat cell's neighbours would lie in the plane of its cut, over the edges of the view
     if (lid) ctx.counts.cutFlat = 1;
   };
@@ -406,30 +422,39 @@ const CELLS = (() => {
     ctx.counts.nuclei = nu.count; if (lobes) ctx.counts.lobes = lobes;
     ctx.counts.nucFraction = nu.count * 4 / 3 * Math.PI * ax.x * ax.y * ax.z / vol.cell;
   }
-  /* a nucleus of several lobes in a curved row, joined by thin strands of chromatin (a neutrophil): the volume of the ellipsoid ax shared among the lobes */
+  /* a nucleus of several lobes (a neutrophil): sausage-shaped lobes in a curved chain, joined end to end by thin strands of chromatin, the whole drawn as one
+     tube whose radius swells into each lobe and narrows to the strand between. Its volume is the spec's (the measured share of the cell); the lobes' length
+     over thickness and the strands' 0.4 µm are illustrative. The chain lies just behind the cut, whole, so every lobe and strand is seen. */
   function lobedNucleus(ctx, c, ax, n) {
-    const V = 4 / 3 * Math.PI * ax.x * ax.y * ax.z, R = Math.cbrt(V / n * 3 / (4 * Math.PI)), arc = R * 1.55, gb = [], P = [];
-    const rho = R / Math.sin(Math.PI / n) * 1.04;   // the lobes round a ring, just apart, so the whole nucleus stays as compact as the cell needs it
-    for (let i = 0; i < n; i++) { const t = Math.PI / 2 + (i + .5) * TAU / n, p = c.clone().add(new V3(Math.cos(t) * rho, Math.sin(t) * rho * .92, (i % 2 ? -.3 : .2) * R)); P.push(p); }
-    void arc;
-    const parts = [];
-    P.forEach((p, i) => { const g = cutSphere(1, 28, 20); g.scale(R * (1.05 + (i % 2) * .08), R * .92, R * .85); g.rotateZ((i - (n - 1) / 2) * .45); g.translate(p.x, p.y, p.z); parts.push(g); });
-    for (let i = 0; i < n - 1; i++) { const t = new GB(); const a = P[i], b = P[i + 1], m = a.clone().lerp(b, .5).add(new V3(0, -R * .15, 0)); tube(t, [a, m, b], [R * .22, R * .16, R * .22], 8, false, false); parts.push(t.geo()); }
-    for (const g of parts) { const k = !ctx.noCut ? cutZ(g, true) : { body: g }; ctx.mesh(k.body, 'nucleus', 'nucleus', 1.5, { side: THREE.DoubleSide }); if (k.cap) ctx.mesh(k.cap, 'chromatin', 'nucleus', 1.5, { side: THREE.DoubleSide, rough: .8, kind: 'matte' }); }
-    P.forEach(p => ctx.nuclei.push({ c: p.clone(), ax: new V3(R * 1.1, R, R), rot: null }));
-    ctx.anchor('nucleus', P[0].clone().add(new V3(0, R * .9, 0)), ctx.pname('nucleus', 'Nucleus'), 3, R * 2);
+    const V = 4 / 3 * Math.PI * ax.x * ax.y * ax.z, Vl = V / n, E = ctx.ext || new V3(ax.x * 2, ax.y * 2, ax.z * 2), Rc = Math.min(E.x, E.y, E.z);
+    const gap = .6, rb = .2, nuS = ctx.S.nucleus || {};
+    /* the lobe's radius rl (the spec's lobe_um, else from a compact shape) and its end-to-end length 2 k rl, from its volume (a cylinder of length 2 rl (k - 1) with
+       two half-sphere ends) */
+    const rl = nuS.lobe_um ? nuS.lobe_um / 2 : Math.cbrt(Vl / (Math.PI * (2 * .25 + 4 / 3))), k = Math.max(1, (Vl - 4 / 3 * Math.PI * rl ** 3) / (Math.PI * rl * rl) / (2 * rl) + 1);
+    const len = 2 * k * rl, Ltot = n * len + (n - 1) * gap, rho = Math.max(rl, Rc - rl - .2), sweep = Ltot / rho, a0 = Math.PI * .5 - sweep / 2 + Math.PI, zc = -rl - .15;   // a C round the middle of the cell, its gap at the top
+    const zOf = s => sweep > 1.85 * Math.PI ? (s / Ltot - .5) * (sweep - 1.85 * Math.PI) / (.15 * Math.PI) * -1.2 : 0;   // a C too long to close flat: its ends pass one behind the other
+    const radAt = s => { for (let i = 0; i < n; i++) { const s0 = i * (len + gap), s1 = s0 + len; if (s >= s0 - 1e-6 && s <= s1 + 1e-6) { const u = Math.min(s - s0, s1 - s), q = Math.max(0, rl - u) / rl; return Math.max(rb, rl * Math.sqrt(Math.max(0, 1 - q * q))); } } return rb; };
+    const pts = [], rs = [], N = 260; for (let i = 0; i <= N; i++) { const s = i / N * Ltot, t = a0 + s / rho; pts.push(new V3(Math.cos(t) * rho, Math.sin(t) * rho * .96, zc + zOf(s) + .15 * Math.sin(s / Ltot * Math.PI * n))); rs.push(i === 0 || i === N ? .02 : radAt(s)); }
+    const gb = new GB(); tube(gb, pts, rs, 18, true, true); const g = gb.geo();
+    const kk = !ctx.noCut ? cutZ(g, true) : { body: g }; ctx.mesh(kk.body, 'nucleus', 'nucleus', 1.5, { side: THREE.DoubleSide }); if (kk.cap) ctx.mesh(kk.cap, 'chromatin', 'nucleus', 1.5, { side: THREE.DoubleSide, rough: .8, kind: 'matte' });
+    for (let i = 0; i <= N; i += 6) if (rs[i] > .3) ctx.nuclei.push({ c: pts[i].clone(), ax: new V3(rs[i], rs[i], rs[i]).multiplyScalar(1.05), rot: null });
+    const mid0 = pts[Math.round(N * len / 2 / Ltot)];
+    ctx.anchor('nucleus', mid0.clone().add(new V3(0, rl * .9, rl * .5)), ctx.pname('nucleus', 'Nucleus'), 3, rl * 2);
+    const sb = pts[Math.round(N * (len + gap / 2) / Ltot)]; ctx.anchor('nucleus', sb.clone().add(new V3(0, 0, .3)), 'Strand joining two lobes', 2.2, rb * 2);
+    ctx.counts.lobeThick = rl * 2; ctx.counts.lobeLength = len; ctx.counts.strand = rb * 2;
   }
   /* what stands on the top face of an epithelial cell: microvilli (a brush border), cilia or stereocilia, at their true width and length, close-packed over the
      flat of the top face (the number from the spec's microvilli or brush_border entry when it gives one) */
   function apicalFringe(ctx) {
     const P = ctx.P, kind = P.apical; if (!kind || kind === 'none' || !(P.apical_um > 0)) return;
-    const sp = (ctx.S.special || []).find(s => /microvill|brush|cilia|stereocil/.test(s.kind)) || {}, pr = sp.params || {};
+    const sp = (ctx.S.special || []).find(s => /microvill|brush|cilia|stereocil|apical_process/.test(s.kind)) || {}, pr = sp.params || {};
     const d = pr.diameter_um || pr.width_um || (kind === 'cilia' ? .25 : kind === 'stereocilia' ? .3 : .1), L = P.apical_um, hw = P.width_um / 2, hh = P.height_um / 2;
     const top = ctx.planes[ctx.planes.length - 2], area = P.sides * hw * hw * Math.tan(Math.PI / P.sides);
     let s = kind === 'cilia' ? d * 2.2 : d * 1.9; if (pr.count > 0) s = Math.max(d * 1.15, Math.sqrt(area * 2 / Math.sqrt(3) / pr.count));
     const nMax = 7000, mats = [], up = new V3(0, 1, 0), r = ctx.r, edge = Math.max(P.round_um * 1.1, s);
+    const bl = (ctx.S.special || []).find(x => x.kind === 'apical_bleb'), blR = bl ? ((bl.params || {}).diameter_um || P.width_um * .55) / 2 : 0;   // none where a bleb is swelling out
     for (let j = 0, z = -hw * 1.3; z < 0 && mats.length < nMax; z += s * .866, j++) for (let x = -hw * 1.3 + (j % 2) * s * .5; x < hw * 1.3 && mats.length < nMax; x += s) {
-      const px = x + (r() - .5) * s * .25, pz = z + (r() - .5) * s * .25; if (pz > -d * .6) continue;
+      const px = x + (r() - .5) * s * .25, pz = z + (r() - .5) * s * .25; if (pz > -d * .6 || Math.hypot(px, pz) < blR) continue;
       const y = (top.d - top.n.x * px - top.n.z * pz) / top.n.y; if (!ctx.inside(new V3(px, y - edge - P.round_um - .05, pz), edge)) continue;
       const len = L * (kind === 'stereocilia' ? .6 + .4 * Math.max(0, -x / hw) : .94 + r() * .12), q = new THREE.Quaternion().setFromUnitVectors(up, new V3((r() - .5) * .08, 1, (r() - .5) * .08).normalize());
       const dv = new V3(px, y, pz).normalize(), base = dv.multiplyScalar(ctx.rad(dv) - .04);   // rooted on the drawn (rounded) surface, not on the ideal plane above it
@@ -438,11 +463,15 @@ const CELLS = (() => {
     if (!mats.length) return;
     const geo = capsuleGeo(d / 2, 1, 7, 2); geo.translate(0, .5, 0);   // unit length: scaled by each instance; the rounded tip stretches with it, a small error at this size
     const part = kind === 'cilia' ? 'cilia' : 'microvilli';
-    ctx.inst(geo, 'cell', part, 1.4, mats, { kind: 'wet' });
+    ctx.inst(geo, 'cell', part, 1.4, mats, pr.film ? { film: look() === 'real' ? [.22, .6] : [.3, .7], kind: 'wet' } : { kind: 'wet' });   // film: see-through, so what they carry shows (an RPE cell's processes)
     ctx.counts.apical = mats.length; ctx.counts.apicalWanted = pr.count || null;
+    /* melanosomes carried up into the processes (an RPE cell): a share of the processes each hold one, low in it, standing along it */
+    const mo = (ctx.S.organelles || {}).melanosomes; if (mo && mo.in_processes > 0) { const md = (mo.size_um && mo.size_um.value) || .5, el = mo.elongation || 1, mm = [], r = ctx.r;
+      for (let i = 0; i < mats.length && mm.length < mo.in_processes; i += Math.max(1, Math.floor(mats.length / mo.in_processes))) { const b = new V3().setFromMatrixPosition(mats[i]); mm.push(place(b.add(new V3(0, md * el * .5 + .2 + r() * L * .35, 0)), new THREE.Quaternion().setFromEuler(new THREE.Euler((r() - .5) * .12, r() * TAU, (r() - .5) * .12)))); }
+      const g = new THREE.SphereGeometry(md / 2, 10, 8); g.scale(1, el, 1); ctx.inst(g, 'melanin', 'melanosome', 1.5, mm); ctx.counts.melanosomesInProcesses = mm.length; }
     const m = new V3().setFromMatrixPosition(mats[Math.floor(mats.length * .8)]); ctx.anchor(part, m.add(new V3(0, L, 0)), ctx.pname(part, kind === 'cilia' ? 'Cilia' : 'Microvilli'), 2.3, L);
   }
-  function desmosomes(ctx, n) {
+  function desmosomes(ctx, n, noBundles) {
     const r = ctx.r, mats = [], plaque = new THREE.CylinderGeometry(.22, .22, .06, 10, 1), Ks = [];
     const sph = new V3(); for (let t = 0; t < n * 8 && mats.length < n; t++) {
       sph.set(gauss(r), gauss(r), gauss(r)).normalize(); if (sph.z > -.02) continue; const R = ctx.rad(sph); const p = sph.clone().multiplyScalar(R + .01);
@@ -456,23 +485,49 @@ const CELLS = (() => {
     ctx.inst(plaque, 'desmosome', 'desmosome', 2, mats); ctx.counts.desmosomes = mats.length;
     if (Ks.length) { const best = Ks.reduce((a, b) => (b.p.y - b.p.z * .2 > a.p.y - a.p.z * .2 ? b : a)); ctx.anchor('desmosome', best.p, ctx.parts.desmosome ? ctx.pname('desmosome', 'Desmosome') : 'Desmosome', 2.2, .5); }
     /* keratin filament bundles: from a share of the desmosomes inwards, curving round the nucleus to another (tonofilaments) */
-    const kb = ctx.S.special && ctx.S.special.find(s => s.kind === 'keratin_bundles'); if (!kb || !ctx.nuclei[0]) return;
-    const nu = ctx.nuclei[0], gb = new GB(), nb = Math.min(kb.params.bundles, Ks.length), wid = kb.params.drawn_um / 2;
-    for (let i = 0; i < nb; i++) {
-      const a = Ks[(i * 7) % Ks.length], b = Ks[(i * 13 + 5) % Ks.length]; if (a === b) continue;
-      const pa = a.p.clone().addScaledVector(a.nrm, -.1), pb = b.p.clone().addScaledVector(b.nrm, -.1), mid = pa.clone().add(pb).multiplyScalar(.5);
-      const away = mid.clone().sub(nu.c); const need = Math.max(nu.ax.x, nu.ax.y) + 1.1; if (away.length() < need) away.setLength(need); const ctl = nu.c.clone().add(away); ctl.z = Math.min(ctl.z, -.25);
-      const curve = new THREE.QuadraticBezierCurve3(pa, ctl, pb); let run = [];
-      const flush = () => { if (run.length >= 4) tube(gb, run, run.map(() => wid), 5, true, true); run = []; };
-      for (const p of curve.getPoints(40)) { if (ctx.inside(p, -.05) && p.z < -wid * 1.6 && !inNucleus(ctx, p, wid * 1.5)) run.push(p); else flush(); } flush();   // a bundle passes round the nucleus, never through it, and stays behind the cut
+    const kb = ctx.S.special && ctx.S.special.find(s => s.kind === 'keratin_bundles'); if (!kb || !ctx.nuclei[0] || noBundles) return;
+    /* each bundle runs in from one desmosome's plaque, turns round the nucleus (a basket round it) and out to another plaque some way round the cell */
+    const nu = ctx.nuclei[0], gb = new GB(), nb = Math.min(kb.params.bundles, Ks.length), wid = kb.params.drawn_um / 2, rr = rng(hash(ctx.S.id) + 17);
+    const need = Math.max(nu.ax.x, nu.ax.y, nu.ax.z) + Math.max(.6, wid * 3), dirOf = p => { const d = p.clone().sub(nu.c); d.z = Math.min(d.z, -.15 * d.length()); return d.normalize(); };
+    let drawn = 0;
+    for (let i = 0; i < nb * 4 && drawn < nb; i++) {
+      const a = Ks[Math.floor(rr() * Ks.length)]; let b = null;
+      for (let t = 0; t < 20; t++) { const c = Ks[Math.floor(rr() * Ks.length)], ang = dirOf(a.p).angleTo(dirOf(c.p)); if (c !== a && ang > .9 && ang < 2.4) { b = c; break; } } if (!b) continue;
+      const pa = a.p.clone().addScaledVector(a.nrm, -.12), pb = b.p.clone().addScaledVector(b.nrm, -.12), da = dirOf(pa), db = dirOf(pb), ang = da.angleTo(db), ax = new V3().crossVectors(da, db).normalize();
+      const R = need * (1 + .25 * rr()), ctl = [pa, pa.clone().lerp(nu.c.clone().addScaledVector(da, R), .55)];
+      for (let k = 0; k <= 6; k++) { const d = da.clone().applyAxisAngle(ax, ang * k / 6); const q = nu.c.clone().addScaledVector(d, R * (1 + .08 * Math.sin(k * 1.3))); q.z = Math.min(q.z, -wid * 2.5); ctl.push(q); }
+      ctl.push(pb.clone().lerp(nu.c.clone().addScaledVector(db, R), .55), pb);
+      /* long legs (a flat cell's, from its far edge in to the nucleus) wander a little, as bundles do, instead of running as straight chords */
+      for (let k = ctl.length - 1; k > 0; k--) { const u = ctl[k - 1], v = ctl[k], L = u.distanceTo(v); if (L < 4) continue; const side = new V3().crossVectors(v.clone().sub(u), new V3(0, 0, 1)).normalize();
+        const m1 = u.clone().lerp(v, .35).addScaledVector(side, L * .07 * (rr() - .5) * 2), m2 = u.clone().lerp(v, .7).addScaledVector(side, L * .07 * (rr() - .5) * 2); ctl.splice(k, 0, m1, m2); }
+      const curve = new THREE.CatmullRomCurve3(ctl, false, 'centripetal'); let run = [], any = false;
+      const flush = () => { if (run.length >= 4) { tube(gb, run, run.map(() => wid), 5, true, true); any = true; } run = []; };
+      for (const p of curve.getPoints(70)) { if (ctx.inside(p, wid * .5) && p.z < -wid * 1.6 && !inNucleus(ctx, p, wid * 1.5)) run.push(p); else flush(); } flush();   // a bundle passes round the nucleus, never through it, stays inside the cell and behind the cut
+      if (any) drawn++;
     }
-    if (gb.vc) { ctx.mesh(gb.geo(), 'keratin', 'keratin', 1.6); const p = Ks[0].p.clone().lerp(nu.c, .35); ctx.anchor('keratin', p, ctx.parts.keratin ? ctx.pname('keratin', 'Keratin') : 'Keratin filaments', 2.3, .6); ctx.counts.keratinBundles = nb; }
+    if (gb.vc) { const kp = kb.part || 'keratin'; ctx.mesh(gb.geo(), 'keratin', kp, 1.6); const p = Ks[0].p.clone().lerp(nu.c, .35); ctx.anchor(kp, p, ctx.parts[kp] ? ctx.pname(kp, 'Keratin') : 'Keratin filaments', 2.3, .6); ctx.counts.keratinBundles = drawn; }
+  }
+  /* the keratin that fills a dead scale, on its cut face: a felt of filaments in a matrix (a texture; each drawn strand stands for many 8 to 10 nm filaments) */
+  function keratinFill(ctx, cap, km, w) {
+    const pa = cap.attributes.position, uv = new Float32Array(pa.count * 2), rep = w / ((km.params && km.params.texture_um) || 6); for (let i = 0; i < pa.count; i++) { uv[2 * i] = pa.getX(i) / w * rep; uv[2 * i + 1] = pa.getY(i) / w * rep; } cap.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+    const tex = canvasTex('cellsKeratinFelt', 512, 512, (g, W, H) => { g.fillStyle = '#9a9a9a'; g.fillRect(0, 0, W, H); const r = rng(5); g.lineCap = 'round';
+      for (let i = 0; i < 1400; i++) { const x = r() * W, y = r() * H, a = r() * Math.PI, L = 20 + r() * 50, bend = (r() - .5) * 30, l = 150 + Math.floor(r() * 105); g.strokeStyle = `rgba(${l},${l},${l},.55)`; g.lineWidth = 1.5 + r() * 2.5; g.beginPath(); g.moveTo(x, y); g.quadraticCurveTo(x + Math.cos(a) * L / 2 - Math.sin(a) * bend, y + Math.sin(a) * L / 2 + Math.cos(a) * bend, x + Math.cos(a) * L, y + Math.sin(a) * L); g.stroke();
+        for (const dx of [-W, W]) { if ((dx < 0 && x + L > W) || (dx > 0 && x < L)) { g.beginPath(); g.moveTo(x + dx, y); g.lineTo(x + dx + Math.cos(a) * L, y + Math.sin(a) * L); g.stroke(); } } } }, { wrap: true });
+    const m = ctx.mesh(cap, 'keratin', 'keratin', 1.2, { side: THREE.DoubleSide, kind: 'matte', rough: .85, glow: .12, extra: { map: tex } });
+    ctx.anchor('keratin', new V3(w * .12, -w * .1, 0), ctx.pname('keratin', 'Keratin'), 2.6, w * .3); ctx.counts.keratinFill = 1; return m;
+  }
+  /* a flat cell's stack: the scales below it in their layer, overlapping it, faint (the one cut open lies on top) */
+  function stack(ctx, shell, km) {
+    const P = ctx.P, w = P.width_um, h = P.height_um, gb = [];
+    for (const [x, y, k] of [[.36, -.22, 1], [-.3, .28, 2], [.05, .42, 3]]) { const g = shell.clone(); g.translate(x * w, y * w, -k * (h + .25)); gb.push([g]); }
+    const mesh = new THREE.Mesh(MDC.merge(gb), ctx.mat(km ? 'keratin' : 'neighbour', { film: look() === 'real' ? [.25, .6] : [.2, .55], kind: 'wet' })); mesh.matrixAutoUpdate = false; mesh.renderOrder = 2; ctx.G.add(mesh); ctx.tag(mesh, 'neighbour', -.2);
+    ctx.anchor('neighbour', new V3(.36 * w + w * .3, -.22 * w - w * .2, -(h + .25)), ctx.pname('neighbour', 'Neighbouring cell'), 1.8, w); ctx.counts.stacked = 3;
   }
   /* the cells round it, behind the cut, faint: it is one of a layer */
   function neighbours(ctx, shell) {
     const P = ctx.P, w = P.width_um, gb = [];
     const offs = ctx.lid ? [[.87, .5, 0], [-.87, .5, 0], [0, -1, 0], [.87, -.5, 0]] : [[.87, 0, -.5], [-.87, 0, -.5], [0, 0, -1]];   // the cells behind it in its layer (beside it, for a flat cell cut through its plane)
-    const m = ctx.mat('neighbour', { film: [.03, .32], kind: 'wet' });
+    const m = ctx.mat('neighbour', { film: look() === 'real' ? [.07, .45] : [.03, .32], kind: 'wet' });
     for (const [x, y, z] of offs) { const g = shell.clone ? null : null; void g; const s = starGeo(d => { const t = ctx.rad(d) * .98; return new V3(t, t, t); }, 32, 22); s.translate(x * w * 1.02, y * (ctx.lid ? w : P.height_um) * 1.02, z * w * 1.02); const k = cutZ(s, false); gb.push([k.body]); }
     const g = MDC.merge(gb); const mesh = new THREE.Mesh(g, m); mesh.matrixAutoUpdate = false; mesh.renderOrder = 2; ctx.G.add(mesh); ctx.tag(mesh, 'neighbour', -.2);
   }
@@ -489,9 +544,11 @@ const CELLS = (() => {
       return gb.geo(); };
     const sarc = P.sarcomere_um, thick = P.thick_um, thin = P.thin_um;
     /* the mass of myofibrils under the membrane: a cylinder in the sarcoplasm's colour, banded */
-    const inner = new THREE.Mesh(cyl(Ri, Math.round(L / 3), 64), striate(ctx.mat('sarcoplasm', { kind: 'wet' }), sarc, thick, thin, .55)); inner.matrixAutoUpdate = false; ctx.G.add(inner); ctx.tag(inner, 'myofibril', .5);
+    const inner = new THREE.Mesh(cyl(Ri, Math.round(L / 3), 64), striate(ctx.mat('sarcoplasm', { kind: look() === 'real' ? 'matte' : 'wet', rough: .82 }), sarc, thick, thin, .55)); inner.matrixAutoUpdate = false; ctx.G.add(inner); ctx.tag(inner, 'myofibril', .5);
     /* the membrane (sarcolemma): see-through, so the banding and the nuclei under it show */
-    const sl = new THREE.Mesh(cyl(R, Math.round(L / 6), 64), ctx.mat('membrane', { film: look() === 'real' ? [.02, .22] : [.12, .55], kind: 'wet' })); sl.matrixAutoUpdate = false; sl.renderOrder = 3; ctx.G.add(sl); ctx.tag(sl, 'sarcolemma', .3);
+    const sleeve = () => ctx.mat('sarcoplasm', { film: look() === 'real' ? [.03, .2] : [.06, .3], kind: 'matte', rough: .85, glow: .02 });   // a thin clear film in the muscle's own tone, so the banding under it shows and it never reads as a glossy pipe
+    ctx.sleeve = sleeve;
+    const sl = new THREE.Mesh(cyl(R, Math.round(L / 6), 64), sleeve()); sl.matrixAutoUpdate = false; sl.renderOrder = 3; ctx.G.add(sl); ctx.tag(sl, 'sarcolemma', .3);
     /* the window's floor: the cut face, a bed of myofibrils lying lengthwise, one row deep, banded */
     const md = P.myofibril_um, step = md * 1.12, rows = Math.floor(2 * Ri / step), mats = [];
     /* a central nucleus (cardiac): the myofibrils part round it, leaving the clear zone beside it */
@@ -550,9 +607,10 @@ const CELLS = (() => {
       for (let i = 0; i < nx; i++) for (let k = 0; k < nt; k++) { const a = rows[i][k], b = rows[i][k + 1], c = rows[i + 1][k], d = rows[i + 1][k + 1]; gb.i.push(a, c, b, b, c, d); }
       return gb.geo(); };
     /* the branch: from the trunk's side near the +x end, out at an angle; drawn along its own x so its bands lie across it */
-    const W = ctx.P.window_um, ang = .42, x0 = W / 2 + 6, len = Math.max(30, L / 2 - x0 + 30), rb = R * .72, bg = new THREE.Group(); bg.position.set(x0, 0, -R * .1); bg.rotation.z = ang; G.add(bg);
-    const inner = new THREE.Mesh(piece(len, rb - 1, false, false), striate(ctx.mat('sarcoplasm', { kind: 'wet' }), sarc, thick, thin, .55)); bg.add(inner); ctx.tag(inner, 'myofibril', .5);
-    const film = new THREE.Mesh(piece(len, rb, false, false), ctx.mat('membrane', { film: look() === 'real' ? [.02, .22] : [.12, .55], kind: 'wet' })); film.renderOrder = 3; bg.add(film); ctx.tag(film, 'sarcolemma', .3);
+    /* the fork on the left of the window (the side the panel never covers), the branch running up and out to its own disc: a Y */
+    const W = ctx.P.window_um, ang = .55, x0 = W / 2 + 4, len = Math.max(30, L / 2 - x0 + 22), rb = R * .75, bg = new THREE.Group(); bg.position.set(-x0, R * .35, -R * .1); bg.rotation.z = Math.PI - ang; G.add(bg);
+    const inner = new THREE.Mesh(piece(len, rb - 1, false, false), striate(ctx.mat('sarcoplasm', { kind: look() === 'real' ? 'matte' : 'wet', rough: .82 }), sarc, thick, thin, .55)); bg.add(inner); ctx.tag(inner, 'myofibril', .5);
+    const film = new THREE.Mesh(piece(len, rb, false, false), ctx.sleeve()); film.renderOrder = 3; bg.add(film); ctx.tag(film, 'sarcolemma', .3);
     discs.push({ g: bg, x: len, r: rb }); discs.push({ g: G, x: L / 2, r: R }); discs.push({ g: G, x: -L / 2, r: R, flip: true });
     /* each disc: a stepped plate across the end, dark, and the neighbour's stub beyond it */
     const stepW = 3.2, stepH = 1.6, nb = ctx.mat('neighbour', { film: [.05, .35], kind: 'wet' });
@@ -564,7 +622,8 @@ const CELLS = (() => {
       const stub = new THREE.Mesh(piece(9, d.r * .98), nb); stub.position.x = d.flip ? d.x - 9 - stepH : d.x + stepH; stub.renderOrder = 2; d.g.add(stub); ctx.tag(stub, ctx.parts.neighbour ? 'neighbour' : 'sarcolemma', -.2);
       d.g.updateMatrixWorld(true);
     }
-    const p = new V3(L / 2 + 1, R * .6, 0); ctx.anchor('intercalated_disc', p, ctx.pname('intercalated_disc', 'Intercalated disc'), 2.8, R);
+    const p = new V3(-L / 2 - 1, R * .6, 0); ctx.anchor('intercalated_disc', p, ctx.pname('intercalated_disc', 'Intercalated disc'), 2.8, R);
+    const bp = new V3(Math.cos(Math.PI - ang) * len * .55 - x0, Math.sin(Math.PI - ang) * len * .55 + R * .35 + rb, 0); ctx.anchor('branch', bp, ctx.pname('branch', 'Branch'), 2.6, rb * 2);
     ctx.counts.branches = 1; ctx.counts.discs = discs.length;
   }
 
@@ -679,9 +738,10 @@ const CELLS = (() => {
     const ld = (S.organelles || {}).lipid_droplets, uni = (S.special || []).some(s => s.kind === 'unilocular_droplet') || (ld && ld.count && ld.count.value === 1 && ld.size_um && ld.size_um.value > Math.min(a, b, c));
     const Rd = uni ? Math.min(ld && ld.size_um ? ld.size_um.value / 2 : Math.min(a, b, c) * .95, Math.min(a, b, c) - .3) : 0;
     const nDir = new V3(-.62, .78, 0).normalize(), nu = S.nucleus || {}, nsz = nu.size_um && (Array.isArray(nu.size_um) ? nu.size_um : nu.size_um.value) || [12, 3, 12];
-    const bulge = uni && nu.count ? Math.max(0, nsz[1] - (Math.min(a, b, c) - Rd)) * .9 : 0, bw = (nsz[0] / 2) / Math.max(1, Rd);
+    /* the signet ring: the flat nucleus lies inside the thin rim, swelling the outline a little and pressing a hollow into the droplet */
+    const rim0 = Math.min(a, b, c) - Rd, bulge = uni && nu.count ? Math.max(0, nsz[1] - rim0) * .45 : 0, dent = uni && nu.count ? Math.max(0, nsz[1] + .95 - rim0 - bulge) : 0, bw = (nsz[0] / 2) / Math.max(1, Rd);
     const lump = d => bump * .08 * (Math.sin(d.x * 11 + 1) * Math.sin(d.y * 13 + 2) * Math.sin(d.z * 9 + 3)) + bump * .035 * Math.sin(d.x * 29 + d.y * 23 + 1.3) * Math.sin(d.z * 31 - d.y * 17);
-    const rf = d => { let n = 1 + lump(d); if (bulge) { const ang = Math.acos(Math.max(-1, Math.min(1, d.dot(nDir)))); n += bulge / Math.min(a, b, c) * Math.exp(-((ang / bw) ** 2) * 1.6); } return new V3(a * n, b * n, c * n); };
+    const rf = d => { let n = 1 + lump(d); if (bulge) { const ang = Math.acos(Math.max(-1, Math.min(1, d.dot(nDir)))); n += bulge / Math.min(a, b, c) * Math.exp(-((ang / (bw * 1.2)) ** 4)); } return new V3(a * n, b * n, c * n); };
     const g = starGeo(rf, 72, 50), k = cutZ(g, false); ctx.mesh(k.body, 'cell', 'membrane', .6, { kind: 'wet' }); cytosolBack(ctx, k.body);
     ctx.inside = (p, m) => (p.x / Math.max(.01, a - (m || 0))) ** 2 + (p.y / Math.max(.01, b - (m || 0))) ** 2 + (p.z / Math.max(.01, c - (m || 0))) ** 2 < 1;
     ctx.box = new THREE.Box3(new V3(-a, -b, -c), new V3(a, b, 0)); ctx.focus = { pos: new V3(), r: Math.max(a, b, c) }; ctx.ext = new V3(a, b, c);
@@ -692,17 +752,19 @@ const CELLS = (() => {
       ctx.mesh(gb.geo(), 'cell', 'pseudopod', .7, { kind: 'wet' }); if (gs.vc) ctx.mesh(gs.geo(), 'cell', 'pseudopod', .7, { kind: 'wet', side: THREE.DoubleSide });
       ctx.anchor('pseudopod', new V3(-a * 1.1, -b * .4, -c * .3), ctx.pname('pseudopod', 'Pseudopod'), 1.9, P.pseudopod_um); }
     if (P.coat_um) { const cg = starGeo(d => { const q = rf(d); return q.addScalar(P.coat_um); }, 48, 32), kc = cutZ(cg, false); ctx.mesh(kc.body, 'neighbour', 'coat', .2, { film: [.08, .45] }); }
-    ctx.anchor('membrane', new V3(-a * .7, b * .75, -c * .2), ctx.pname('membrane', 'Cell membrane'), 2.4, a * 2);
+    if (uni) ctx.anchor('membrane', new V3(a * .62, -b * .76, -c * .2), ctx.pname('membrane', 'Cell membrane'), 2.4, a * 2);   // away from the nucleus, so the two names do not meet
+    else ctx.anchor('membrane', new V3(-a * .7, b * .75, -c * .2), ctx.pname('membrane', 'Cell membrane'), 2.4, a * 2);
     if (uni) {
-      const dg = cutSphere(Rd, 72, 48), kd = cutZ(dg, true); ctx.mesh(kd.body, 'lipid', 'lipid_droplet', 1.2, { kind: 'wet' }); if (kd.cap) ctx.mesh(kd.cap, 'lipid', 'lipid_droplet', 1.2, { side: THREE.DoubleSide, kind: 'matte', rough: .5, glow: .12 });
+      const dg = cutSphere(1, 96, 64), dpa = dg.attributes.position, dd = new V3(); for (let i = 0; i < dpa.count; i++) { dd.fromBufferAttribute(dpa, i).normalize(); const ang = Math.acos(Math.max(-1, Math.min(1, dd.dot(nDir)))), rr = Rd - dent * Math.exp(-((ang / (bw * 1.12)) ** 4)); dpa.setXYZ(i, dd.x * rr, dd.y * rr, dd.z * rr); } dg.computeVertexNormals();
+      const kd = cutZ(dg, true); ctx.mesh(kd.body, 'lipid', 'lipid_droplet', 1.2, { kind: 'wet' }); if (kd.cap) ctx.mesh(kd.cap, 'lipid', 'lipid_droplet', 1.2, { side: THREE.DoubleSide, kind: 'matte', rough: .5, glow: .12 });
       ctx.anchor('lipid_droplet', new V3(Rd * .25, -Rd * .2, 0), ctx.pname('lipid_droplet', 'Fat droplet'), 3, Rd * 2); ctx.counts.droplet = Rd * 2; ctx.counts.rim = Math.min(a, b, c) - Rd;
       ctx.organOk = p => p.length() > Rd + .15;
       if (nu.count) {   // the nucleus: a flat lens bent round the droplet, half in the kept half so the cut shows its section
-        const t1 = new V3(0, 0, 1).cross(nDir).normalize(), t2 = new V3(0, 0, 1), Rm = Rd + nsz[1] / 2 - .2, ng = cutSphere(1, 40, 24), pa = ng.attributes.position;
+        const t1 = new V3(0, 0, 1).cross(nDir).normalize(), t2 = new V3(0, 0, 1), Rm = Math.min(a, b, c) + bulge - .8 - nsz[1] / 2, ng = cutSphere(1, 40, 24), pa = ng.attributes.position;   // its outer face just under the membrane
         for (let i = 0; i < pa.count; i++) { const x = pa.getX(i) * nsz[0] / 2, y = pa.getY(i) * nsz[1] / 2, z = pa.getZ(i) * nsz[2] / 2, q = nDir.clone().multiplyScalar(Rm).addScaledVector(t1, x).addScaledVector(t2, z).normalize().multiplyScalar(Rm + y); pa.setXYZ(i, q.x, q.y, q.z); }
         ng.computeVertexNormals(); const kn = cutZ(ng, true); ctx.mesh(kn.body, 'nucleus', 'nucleus', 1.5, { side: THREE.DoubleSide }); if (kn.cap) ctx.mesh(kn.cap, 'chromatin', 'nucleus', 1.5, { side: THREE.DoubleSide, rough: .8, kind: 'matte' });
         const nc = nDir.clone().multiplyScalar(Rm); ctx.nuclei.push({ c: nc, ax: new V3(nsz[0] / 2, nsz[1] / 2, nsz[2] / 2), rot: new THREE.Quaternion().setFromUnitVectors(new V3(0, 1, 0), nDir) });
-        ctx.anchor('nucleus', nc.clone().addScaledVector(nDir, nsz[1] * .6), ctx.pname('nucleus', 'Nucleus'), 3, nsz[0]); ctx.counts.nuclei = 1;
+        ctx.anchor('nucleus', nc.clone().addScaledVector(nDir, -nsz[1] * .2).addScaledVector(t1, nsz[0] * .2), ctx.pname('nucleus', 'Nucleus'), 3, nsz[0]); ctx.counts.nuclei = 1; ctx.counts.dent = dent;
         ctx.vol = ctx.vol || volumes(ctx, ctx.box); ctx.counts.cellVolume = ctx.vol.cell;
       }
       ctx.skipBlob = { lipid_droplets: true }; organelles(ctx); return;
@@ -713,31 +775,52 @@ const CELLS = (() => {
     const P = ctx.P, L = P.length_um / 2, Wd = P.width_um / 2;
     const one = (sx) => { const rf = d => { const s = Math.pow(1 - Math.min(1, Math.abs(d.x)), .9); return new V3(L, Wd * s / Math.max(.05, Math.sqrt(1 - d.x * d.x)) * Math.sqrt(1 - d.x * d.x), Wd * P.flat * s / Math.max(.05, Math.sqrt(1 - d.x * d.x)) * Math.sqrt(1 - d.x * d.x)); };
       const g = starGeo(rf, 64, 32); if (P.bend) { const pa = g.attributes.position; for (let i = 0; i < pa.count; i++) { const x = pa.getX(i), y = pa.getY(i); pa.setY(i, y - P.bend * L * .5 * (1 - (x / L) ** 2) * sx); } g.computeVertexNormals(); } if (sx < 0) g.scale(1, -1, 1); return g; };
-    const shapes = P.pair ? [[1, Wd * 1.4], [-1, -Wd * 1.4]] : [[1, 0]];
+    ctx.spindleGeo = one; const shapes = P.pair ? [[1, Wd * 1.4], [-1, -Wd * 1.4]] : [[1, 0]];
     for (const [sx, off] of shapes) { const g = one(sx); g.translate(0, off, 0); const k = cutZ(g, false); ctx.mesh(k.body, 'cell', 'membrane', .6, { kind: 'wet' }); cytosolBack(ctx, k.body); }
     ctx.inside = (p, m) => { const t = Math.abs(p.x) / L; if (t >= 1) return false; const rr = Wd * Math.pow(1 - t, .9) - (m || 0); return Math.hypot(p.y, p.z / P.flat) < rr; };
     ctx.box = new THREE.Box3(new V3(-L, -Wd, -Wd), new V3(L, Wd, 0)); ctx.focus = { pos: new V3(), r: L * .5 }; ctx.ext = new V3(L, Wd, Wd * P.flat);
     ctx.anchor('membrane', new V3(-L * .4, Wd * .8, 0), ctx.parts.membrane ? ctx.pname('membrane', 'Membrane') : 'Cell membrane', 2.4, Wd * 2);
     if (!P.pair) { nucleiFromSpec(ctx, new V3()); organelles(ctx); }
+    /* thin branching processes from the rim of a flat cell (a fibroblast), in its own plane */
+    if (P.processes > 0) { const r = ctx.r, gb = new GB();
+      for (let i = 0; i < P.processes; i++) { const u = (r() - .5) * 1.5, side = i % 2 ? 1 : -1, x = u * L, rr = Wd * Math.pow(1 - Math.min(1, Math.abs(u)), .9), root = new V3(x, side * rr * .92, -Wd * P.flat * .15), dir = new V3(Math.sign(u) * .9 + u * .6, side * .7, -.08).normalize();
+        growTree(r, root, dir, P.process_reach_um * (.6 + r() * .8), 1 + Math.floor(r() * 2), { r0: P.process_um / 2, rMin: Math.min(.25, P.process_um / 4), flat: .08, step: Math.max(1, P.process_reach_um / 18), wiggle: .22, bias: q => new V3(0, Math.sign(q.y), 0), biasK: .04 }).forEach(l => tube(gb, l.pts, l.rs, 6, false, true)); }
+      ctx.mesh(gb.geo(), 'cell', 'processes', 1, { film: look() === 'real' ? [.3, .7] : [.4, .8], kind: 'wet' }); ctx.anchor('processes', new V3(L * .25, Wd * 1.4, 0), ctx.pname('processes', 'Cell processes'), 2.2, P.process_um); ctx.counts.processes = P.processes; }
   };
   SHAPE.stellate = ctx => {
     const P = ctx.P, r = ctx.r, s = P.soma_um / 2;
     const g = starGeo(d => new V3(s, s * .9, s * P.flat), 40, 28), k = cutZ(g, false); ctx.mesh(k.body, 'cell', 'membrane', .6, { kind: 'wet' }); cytosolBack(ctx, k.body);
     ctx.inside = (p, m) => (p.x / (s - (m || 0))) ** 2 + (p.y / (s * .9 - (m || 0))) ** 2 + (p.z / Math.max(.05, s * P.flat - (m || 0))) ** 2 < 1;
     ctx.box = new THREE.Box3(new V3(-s, -s, -s), new V3(s, s, 0)); ctx.focus = { pos: new V3(), r: s * 2.5 }; ctx.ext = new V3(s, s * .9, s * P.flat);
-    const gb = new GB(), feet = []; const each = Array(P.processes).fill(0); for (let b = 0; b < P.branch_points; b++) each[Math.floor(r() * P.processes)]++;
+    const gb = new GB(), feet = [], arms = []; const each = Array(P.processes).fill(0); for (let b = 0; b < P.branch_points; b++) each[Math.floor(r() * P.processes)]++;
+    const V = P.endfeet && P.vessel_um > 0 ? { R: P.vessel_um / 2, y: -P.reach_um * .5, z: 0 } : null;   // a capillary under the cell, its axis along x
     for (let i = 0; i < P.processes; i++) { const a = i / P.processes * TAU + r() * .4, dir = new V3(Math.cos(a), Math.sin(a), (r() - .5) * P.flat).normalize();
-      growTree(r, dir.clone().multiplyScalar(s * .85), dir, P.reach_um * 1.4, each[i], { r0: P.process_um / 2, rMin: Math.min(.3, P.process_um / 4), flat: P.flat, step: Math.max(.5, P.reach_um / 30), bias: q => q.clone().normalize(), biasK: .1 }).forEach(l => { tube(gb, l.pts, l.rs, 5, false, !P.endfeet); if (P.endfeet && l.terminal) feet.push(place(l.pts[l.pts.length - 1], null, new V3(1, 1, 1))); }); }
-    ctx.mesh(gb.geo(), 'cell', 'process', 1); if (feet.length) ctx.inst(new THREE.SphereGeometry(P.endfoot_um / 2, 10, 8).scale(1, .45, 1), 'cell', 'endfoot', 1.5, feet);
+      growTree(r, dir.clone().multiplyScalar(s * .85), dir, P.reach_um * 1.4, each[i], { r0: P.process_um / 2, rMin: Math.min(.3, P.process_um / 4), flat: P.flat, step: Math.max(.5, P.reach_um / 30), bias: q => q.clone().normalize(), biasK: .1 }).forEach(l => { arms.push(l);
+        /* with a blood vessel drawn (an astrocyte), only the processes that reach toward it end on it, in end-feet flattened against its wall; the rest end fine */
+        const tip = l.pts[l.pts.length - 1], toV = V && l.terminal && Math.hypot(tip.y - V.y, tip.z - V.z) < V.R + P.reach_um * .12;   // only the tips that already lie close to it
+        if (toV) { const ax = new V3(tip.x, V.y, V.z), nrm = tip.clone().sub(ax).setX(0).normalize(), on = ax.clone().addScaledVector(nrm, V.R + P.endfoot_um * .12); l.pts.push(tip.clone().lerp(on, .5), on); l.rs.push(l.rs[l.rs.length - 1], l.rs[l.rs.length - 1]); tube(gb, l.pts, l.rs, 5, false, false); feet.push(place(on, qAlong(nrm), new V3(1, 1, 1))); }
+        else { tube(gb, l.pts, l.rs, 5, false, !(P.endfeet && !V)); if (P.endfeet && !V && l.terminal) feet.push(place(tip, null, new V3(1, 1, 1))); } }); }
+    if (V) { const vg = new THREE.CylinderGeometry(V.R, V.R, P.reach_um * 3.2, 40, 1, true, Math.PI / 2, Math.PI); vg.rotateZ(Math.PI / 2); vg.translate(0, V.y, V.z); const vm = ctx.mesh(vg, 'rbc', 'vessel', .3, { film: look() === 'real' ? [.08, .35] : [.08, .35], side: THREE.DoubleSide }); vm.renderOrder = 1;
+      ctx.anchor('vessel', new V3(-P.reach_um * .9, V.y + V.R * .6, V.z), ctx.pname('vessel', 'Capillary'), 1.9, V.R * 2); ctx.counts.endfeet = feet.length; }
+    ctx.mesh(gb.geo(), 'cell', 'process', 1); if (feet.length) ctx.inst(new THREE.SphereGeometry(P.endfoot_um / 2, 10, 8).scale(1, V ? .3 : .45, 1), 'cell', 'endfoot', 1.5, feet);
     if (P.lacuna_um) { const lg = new THREE.SphereGeometry(P.lacuna_um / 2, 40, 28); lg.scale(1, .55, .7); const kl = cutZ(lg, false); ctx.mesh(kl.body, 'neighbour', 'lacuna', .1, { film: [.05, .4], side: THREE.DoubleSide }); }
     ctx.anchor('membrane', new V3(-s, s, 0), ctx.parts.membrane ? ctx.pname('membrane', 'Membrane') : 'Cell body', 2.4, s * 2);
     nucleiFromSpec(ctx, new V3()); organelles(ctx);
+    /* pigment along the arms (a melanocyte): melanosomes in a row down each arm thick enough to hold them, half sunk in its surface */
+    const mo = (ctx.S.organelles || {}).melanosomes; if (mo && mo.in_processes) { const d = (mo.size_um && mo.size_um.value) || .5, el = mo.elongation || 1, step = d * .7, mm = [], X = new V3(1, 0, 0);
+      for (const l of arms) for (let i = 1; i < l.pts.length && mm.length < 5000; i++) { const a = l.pts[i - 1], b = l.pts[i], L = a.distanceTo(b), rad = l.rs[i - 1]; if (rad < d * .5) continue; const t = b.clone().sub(a).normalize();
+        for (let u = r() * step; u < L; u += step * (.8 + r() * .4)) { const o = new V3(gauss(r), gauss(r), gauss(r)); o.addScaledVector(t, -o.dot(t)).normalize(); const p = a.clone().lerp(b, u / L).addScaledVector(o, rad * (.3 + .45 * r())); mm.push(place(p, new THREE.Quaternion().setFromUnitVectors(X, t))); } }
+      const g = new THREE.SphereGeometry(d / 2, 7, 5); g.scale(el, 1, 1); ctx.inst(g, 'melanin', 'melanosome', 1.35, mm); ctx.counts.melanosomesInArms = mm.length; }
   };
   SHAPE.segmented = ctx => {
     const P = ctx.P, segs = P.segments || [], gb = new GB(), r = ctx.r; let y = 0; const total = segs.reduce((a, s) => a + s.length_um, 0); y = total / 2;
     for (const s of segs) { const pts = [], rs = []; for (let t = 0; t <= 1.0001; t += .1) { pts.push(new V3(P.bend * Math.sin((total / 2 - (y - t * s.length_um)) / total * 3) * 2, y - t * s.length_um, 0)); rs.push((s.d0_um + (s.d1_um - s.d0_um) * t) / 2); }
-      const g2 = new GB(); tube(g2, pts, rs, 14, true, true); ctx.mesh(g2.geo(), s.fill === 'nucleus' ? 'nucleus' : 'cell', s.part || 'membrane', 1);
+      const g2 = new GB(); tube(g2, pts, rs, 14, true, true); ctx.mesh(g2.geo(), s.fill === 'nucleus' ? 'nucleus' : 'cell', s.part || 'membrane', 1, s.fill === 'mito_packed' ? { film: look() === 'real' ? [.2, .6] : [.22, .62], kind: 'wet' } : undefined);   // see-through where it holds packed mitochondria
       if (s.fill === 'discs') { const mats = [], n = Math.min(400, Math.floor(s.length_um / P.disc_spacing_um)); for (let i = 0; i < n; i++) mats.push(place(new V3(0, y - (i + .5) * s.length_um / n, 0), null, new V3(1, 1, 1))); ctx.inst(new THREE.CylinderGeometry(rs[0] * .92, rs[0] * .92, Math.min(.02, s.length_um / n * .5), 16, 1), 'membrane', s.part || 'discs', 1.6, mats); }
+      /* mitochondria packed side by side, long and standing along the cell, inside the segment (a cone's ellipsoid): a ring round a central one, row on row */
+      if (s.fill === 'mito_packed') { const mats = [], R0 = rs[0], mr = R0 * .17, ml = Math.min(2, s.length_um / 4), ring = Math.max(5, Math.floor(TAU * R0 * .58 / (mr * 2.3)));
+        for (let t = ml / 2 + mr; t < s.length_um - ml / 2 - mr; t += ml + mr * 2.4) { const yy = y - t, off = (t * 1.7) % TAU; mats.push(place(new V3((r() - .5) * mr * .3, yy, (r() - .5) * mr * .3))); for (let k = 0; k < ring; k++) { const a = off + k / ring * TAU; mats.push(place(new V3(Math.cos(a) * R0 * .58, yy + (r() - .5) * mr, Math.sin(a) * R0 * .58))); } }
+        ctx.inst(capsuleGeo(mr, ml, 8, 3), 'mito', 'mitochondrion', 1.7, mats); ctx.counts.mitochondria = mats.length; }
       if (s.fill === 'mito_helix') { const mats = []; for (let t = 0; t < s.length_um; t += .1) { const a = t * 11; mats.push(place(new V3(Math.cos(a) * rs[0] * .9, y - t, Math.sin(a) * rs[0] * .9), null, new V3(1, 1, 1))); } ctx.inst(new THREE.SphereGeometry(rs[0] * .3, 6, 4), 'mito', 'mitochondrion', 1.7, mats); }
       ctx.anchor(s.part || 'membrane', new V3(rs[0] + .5, y - s.length_um / 2, 0), (ctx.parts[s.part] && ctx.parts[s.part].name) || s.part, 2.2, rs[0] * 2); y -= s.length_um; void r; }
     ctx.inside = () => false; ctx.focus = { pos: new V3(), r: total / 2 }; ctx.noCut = true;
@@ -754,6 +837,253 @@ const CELLS = (() => {
     nucleiFromSpec(ctx, new V3()); organelles(ctx);
   };
 
+  /* ---- a sheet wrapped round a channel (a capillary's endothelial cell): one thin cell curled round the lumen, its nucleus bulging into the blood; the tube is
+     cut along its length so the inside of its back half is seen. Neighbours finish the ring and go on along the vessel, faint; the junctions are dark seams. ---- */
+  SHAPE.wrapped_sheet = ctx => {
+    const P = ctx.P, S = ctx.S, r = ctx.r, Rl = P.lumen_um / 2, t = P.thickness_um, L = P.length_um, span = P.wrap * TAU, phi0 = -P.seam_deg * Math.PI / 180;   // phi: round the tube, 0 at the back (-z)
+    const tilt = new THREE.Group(); tilt.rotation.set(-.42, .5, 0); ctx.G.add(tilt); const G0 = ctx.G; ctx.G = tilt;   // turned so the curve of the channel is seen
+    const at = (x, ph, rad) => new V3(x, Math.sin(ph) * rad, -Math.cos(ph) * rad);
+    const nu = S.nucleus || {}, nsz = (nu.size_um && (Array.isArray(nu.size_um) ? nu.size_um : nu.size_um.value)) || [12, 5, 3], nL = nsz[0] / 2, nW = nsz[1] / 2, nT = nsz[2];
+    const rcN = Rl + t - .12 - nT / 2;   // the nucleus: its outer face just under the outer membrane, the rest bulging into the channel
+    const endTaper = x => 1 - Math.pow(Math.min(1, Math.abs(x) / (L / 2)), 6) * .0;   // (square ends: the junctions are drawn as seams)
+    const bump = (x, ph) => { const q = (x / (nL + .3)) ** 2 + (ph * rcN / (nW + .3)) ** 2; return q < 1 ? (nT + .24 - t) * Math.sqrt(1 - q) : 0; };
+    const ri = () => Rl, ro = () => Rl + t; void bump;   // the nucleus itself is the bulge into the channel: the sheet's faces run on through it, hidden inside it
+    /* the sheet: inner and outer faces over (x, phi), closed at its four edges */
+    const gb = new GB(), nx = 120, nt = 160, sheet = (rf, flip) => { const base = gb.vc; for (let i = 0; i <= nx; i++) { const x = -L / 2 + i / nx * L; for (let j = 0; j <= nt; j++) { const ph = phi0 + j / nt * span, rr = rf(x, ph); gb.v(at(x, ph, rr), new V3(0, Math.sin(ph), -Math.cos(ph)).multiplyScalar(flip ? -1 : 1)); } }
+      for (let i = 0; i < nx; i++) for (let j = 0; j < nt; j++) { const a = base + i * (nt + 1) + j, b = a + 1, c = a + nt + 1, d = c + 1; if (flip) gb.i.push(a, b, c, b, d, c); else gb.i.push(a, c, b, b, c, d); } return base; };
+    const bIn = sheet(ri, true), bOut = sheet(ro, false), idx = (base, i, j) => base + i * (nt + 1) + j;
+    for (let i = 0; i < nx; i++) for (const j of [0, nt]) { const a = idx(bIn, i, j), b = idx(bIn, i + 1, j), c = idx(bOut, i, j), d = idx(bOut, i + 1, j); if (j) gb.i.push(a, b, c, b, d, c); else gb.i.push(a, c, b, b, c, d); }
+    for (let j = 0; j < nt; j++) for (const i of [0, nx]) { const a = idx(bIn, i, j), b = idx(bIn, i, j + 1), c = idx(bOut, i, j), d = idx(bOut, i, j + 1); if (i) gb.i.push(a, c, b, b, c, d); else gb.i.push(a, b, c, b, d, c); }
+    const g = gb.geo(); g.computeVertexNormals(); const k = cutZ(g, true);
+    ctx.mesh(k.body, 'cell', 'membrane', .6, { kind: 'wet', side: THREE.DoubleSide }); if (k.cap) ctx.mesh(k.cap, 'cytosol', 'cytosol', .5, { side: THREE.DoubleSide, kind: 'matte', glow: .05 });
+    /* the nucleus: a lens bent to the curve of the channel */
+    const ng = cutSphere(1, 40, 28), pa = ng.attributes.position; for (let i = 0; i < pa.count; i++) { const x = pa.getX(i) * nL, u = pa.getY(i) * nW, w = pa.getZ(i) * nT / 2, q = at(x, u / rcN, rcN + w); pa.setXYZ(i, q.x, q.y, q.z); } ng.computeVertexNormals();
+    const kn = cutZ(ng, true); ctx.mesh(kn.body, 'nucleus', 'nucleus', 1.5, { side: THREE.DoubleSide }); if (kn.cap) ctx.mesh(kn.cap, 'chromatin', 'nucleus', 1.5, { side: THREE.DoubleSide, rough: .8, kind: 'matte' });
+    const nC = at(0, 0, rcN); ctx.nuclei.push({ c: nC.clone(), ax: new V3(nL, nW, nT / 2), rot: null }); ctx.counts.nuclei = 1;
+    ctx.anchor('nucleus', at(-nL * .2, 0, rcN - nT / 2 - .2), ctx.pname('nucleus', 'Nucleus'), 3, nsz[0]);
+    /* inside the sheet (for the organelles), its box, its focus */
+    const phOf = p => { let ph = Math.atan2(p.y, -p.z) - phi0; ph = ((ph % TAU) + TAU) % TAU; return ph; };
+    ctx.inside = (p, m) => { m = m || 0; if (Math.abs(p.x) > L / 2 - m) return false; const ph = phOf(p); if (ph < m / Rl || ph > span - m / Rl) return false; const rr = Math.hypot(p.y, p.z), a = phi0 + ph; return rr > ri(p.x, a > Math.PI ? a - TAU : a) + m && rr < Rl + t - m; };
+    ctx.box = new THREE.Box3(new V3(-L / 2, -Rl - t - .1, -Rl - t - .1), new V3(L / 2, Rl + t + .1, 0)); ctx.focus = { pos: new V3(0, 0, -Rl * .5), r: L / 2 };
+    ctx.ext = new V3(L, Rl, Rl); ctx.vol = volumes(ctx, ctx.box); ctx.counts.cellVolume = ctx.vol.cell;
+    organelles(ctx);
+    /* the coat on the blood face (glycocalyx) and the basement membrane outside, as films */
+    const film = (rf, role, part, a) => { const gf = new GB(), base = gf.vc; for (let i = 0; i <= 60; i++) { const x = -L / 2 + i / 60 * L; for (let j = 0; j <= 80; j++) { const ph = phi0 + j / 80 * span; gf.v(at(x, ph, rf(x, ph)), new V3(0, Math.sin(ph), -Math.cos(ph))); } }
+      for (let i = 0; i < 60; i++) for (let j = 0; j < 80; j++) { const a0 = base + i * 81 + j; gf.i.push(a0, a0 + 81, a0 + 1, a0 + 1, a0 + 81, a0 + 82); } const kf = cutZ(gf.geo(), false); const m = ctx.mesh(kf.body, role, part, .15, { film: a, kind: 'wet', side: THREE.DoubleSide }); m.renderOrder = 2; return m; };
+    if (ctx.parts.glycocalyx) { film((x, ph) => ri(x, ph) - (P.coat_um || .45), 'lamellar', 'glycocalyx', [.1, .35]); ctx.anchor('glycocalyx', at(L * .3, -.5, Rl - (P.coat_um || .45)), ctx.pname('glycocalyx', 'Glycocalyx'), 1.6, .45); }
+    if (ctx.parts.basement_membrane) { film(() => Rl + t + .08, 'neighbour', 'basement_membrane', [.05, .3]); }
+    /* caveolae: small pits on both faces at their true size (about 75 nm), seen only close up; a share of the measured number */
+    const cv = (S.special || []).find(x => x.kind === 'crowd' && x.part === 'caveola'); if (cv) { const cs = cv.params.size_nm[0] / 1000, n = Math.min(cv.params.max_drawn || 900, 4000), mm = [];
+      for (let i = 0; i < n * 3 && mm.length < n; i++) { const x = (r() - .5) * L * .98, ph = phi0 + r() * span, out = r() < .5, rr = out ? Rl + t - cs * .2 : ri(x, ph) + cs * .2, q = at(x, ph, rr); if (q.z > 0) continue; mm.push(place(q)); }
+      ctx.inst(new THREE.SphereGeometry(cs / 2, 8, 6), 'lamellar', 'caveola', 2, mm); ctx.counts.caveolae = mm.length; if (mm[0]) ctx.anchor('caveola', new V3().setFromMatrixPosition(mm[0]), ctx.pname('caveola', 'Caveola'), 2, cs); }
+    /* the rest of the ring and the cells before and after along the vessel: faint; the junctions where they meet it, dark seams */
+    const nb = ctx.mat('neighbour', { film: look() === 'real' ? [.1, .5] : [.08, .45], kind: 'wet', side: THREE.DoubleSide }), gn = new GB();
+    const patch = (x0, x1, p0, p1) => { const base = gn.vc, NX = 24, NT = Math.max(4, Math.round((p1 - p0) / TAU * 80)); for (let i = 0; i <= NX; i++) { const x = x0 + i / NX * (x1 - x0); for (let j = 0; j <= NT; j++) { const ph = p0 + j / NT * (p1 - p0); gn.v(at(x, ph, Rl + t * .5), new V3(0, Math.sin(ph), -Math.cos(ph))); } }
+      for (let i = 0; i < NX; i++) for (let j = 0; j < NT; j++) { const a0 = base + i * (NT + 1) + j; gn.i.push(a0, a0 + NT + 1, a0 + 1, a0 + 1, a0 + NT + 1, a0 + NT + 2); } };
+    patch(-L / 2, L / 2, phi0 + span, phi0 + TAU); patch(L / 2, L / 2 + 10, 0, TAU); patch(-L / 2 - 10, -L / 2, 0, TAU);
+    const kN = cutZ(gn.geo(), false); const mN = new THREE.Mesh(kN.body, nb); mN.matrixAutoUpdate = false; mN.renderOrder = 2; ctx.G.add(mN); ctx.tag(mN, 'neighbour', -.2);
+    ctx.anchor('neighbour', at(L / 2 + 5, -.9, Rl + t), ctx.pname('neighbour', 'Neighbouring cell'), 1.8, 10);
+    const gj = new GB(), jr = .09, seamX = ph => { const pts = []; for (let i = 0; i <= 40; i++) pts.push(at(-L / 2 + i / 40 * L, ph, Rl + t * .5)); tube(gj, pts, pts.map(() => jr), 5); }, seamR = x => { const pts = []; for (let j = 0; j <= 90; j++) pts.push(at(x, j / 90 * TAU, Rl + t * .5)); tube(gj, pts, pts.map(() => jr), 5); };
+    seamX(phi0); seamX(phi0 + span); seamR(L / 2); seamR(-L / 2);
+    const kj = cutZ(gj.geo(), false); ctx.mesh(kj.body, 'desmosome', 'junction', 1.7, { kind: 'matte' }); ctx.anchor('junction', at(-L * .3, phi0, Rl + t), ctx.pname('junction', 'Junction'), 2, .3);
+    ctx.anchor('membrane', at(L * .32, .7, Rl + t), ctx.pname('membrane', 'Cell membrane'), 2.4, L);
+    if (ctx.parts.lumen) ctx.anchor('lumen', at(-L * .38, 1.0, Rl * .4), ctx.pname('lumen', 'Channel (lumen)'), 1.5, P.lumen_um);
+    ctx.G = G0; ctx.tiltG = tilt; ctx.counts.lumen = P.lumen_um; ctx.counts.wrapDeg = Math.round(P.wrap * 360);
+    tilt.updateMatrixWorld(true);
+  };
+
+  /* ================= FEATURES: drawn on any shape from the spec's `special` list (kind -> drawer), after the shape itself ================= */
+  const FEATURE = {};
+  /* a polyhedron's side face: its outward normal, a point on it, and its two in-face directions (along, up) */
+  function sideFace(ctx, pick) {
+    const n = ctx.P.sides, faces = ctx.planes.slice(0, n).map((pl, i) => ({ i, n: pl.n.clone(), d: pl.d }));
+    const f = faces.reduce((a, b) => (pick(b) > pick(a) ? b : a)); const up = new V3(0, 1, 0).addScaledVector(f.n, -f.n.y).normalize(), along = new V3().crossVectors(up, f.n).normalize();
+    return Object.assign(f, { c: f.n.clone().multiplyScalar(f.d), up, along });
+  }
+  /* microvilli standing on one side face (a hepatocyte's face toward the blood channel), at their true size: a fuzz at the arrival distance */
+  FEATURE.side_microvilli = (ctx, sp) => {
+    if (!ctx.planes) return; const pr = sp.params || {}, f = sideFace(ctx, x => -x.n.x - Math.abs(x.n.z) * .6), L = pr.length_um || .5, d = pr.diameter_um || .1, step = pr.spacing_um || .35, mats = [], r = ctx.r, hh = ctx.P.height_um / 2, hw = ctx.P.width_um;
+    for (let u = -hw; u < hw; u += step) for (let v = -hh; v < hh; v += step) { const p0 = f.c.clone().addScaledVector(f.along, u + (r() - .5) * step * .4).addScaledVector(f.up, v + (r() - .5) * step * .4); if (p0.z > -d) continue;
+      const dv = p0.clone().normalize(), rr = ctx.rad(dv); const base = dv.multiplyScalar(rr - .03); if (!ctx.inside(base.clone().addScaledVector(f.n, -ctx.P.round_um * 1.2), 0) || Math.abs(base.clone().sub(f.c).dot(f.n)) > ctx.P.round_um * .4) continue;
+      mats.push(place(base, qAlong(f.n.clone().add(new V3((r() - .5) * .3, (r() - .5) * .3, (r() - .5) * .3))), new V3(1, L + .03, 1))); }
+    const geo = capsuleGeo(d / 2, 1, 6, 2); geo.translate(0, .5, 0); ctx.inst(geo, 'cell', sp.part || 'microvilli', 1.4, mats, { kind: 'wet' }); ctx.counts.sideMicrovilli = mats.length;
+    if (mats[0]) ctx.anchor(sp.part || 'microvilli', new V3().setFromMatrixPosition(mats[Math.floor(mats.length * .6)]).addScaledVector(f.n, L + .3), ctx.pname(sp.part || 'microvilli', 'Microvilli'), 2.3, L);
+    /* the blood channel beyond that face (a sinusoid), faint */
+    if (pr.channel_um) { const R = pr.channel_um / 2, g = new THREE.CylinderGeometry(R, R, ctx.P.height_um * 2.2, 40, 1, true, Math.PI / 2, Math.PI); g.translate(f.c.x + f.n.x * (R + L + .8), 0, 0); const k = { body: g };   // the back half of the channel, cut open like the cell
+      const m = ctx.mesh(k.body, 'rbc', pr.channel_part || 'sinusoid', .1, { film: look() === 'real' ? [.04, .22] : [.04, .22], side: THREE.DoubleSide }); m.renderOrder = 2;
+      ctx.anchor(pr.channel_part || 'sinusoid', new V3(f.c.x + f.n.x * (R + L + .6), hh * .6, Math.min(-.5, f.c.z + f.n.z * R)), ctx.pname(pr.channel_part || 'sinusoid', 'Blood channel'), 1.9, R * 2); }
+  };
+  /* a channel grooved into the faces shared with neighbours (a bile canaliculus): a tube half in this cell's wall, along the face at mid height */
+  FEATURE.canaliculus = (ctx, sp) => {
+    if (!ctx.planes) return; const pr = sp.params || {}, R = (pr.diameter_um || 1) / 2, n = ctx.P.sides, gb = new GB(); let shown = null;
+    const faces = ctx.planes.slice(0, n).filter(pl => pl.n.x > -.3 && pl.n.z < .5).sort((a, b) => b.n.x - a.n.x).slice(0, pr.faces || 2);   // the right-hand face first, so the channel shows in the cut as a round hole at the cell's edge
+    for (const pl of faces) { const up = new V3(0, 1, 0), along = new V3().crossVectors(up, pl.n).normalize(), c = pl.n.clone().multiplyScalar(pl.d).addScaledVector(up, (pr.height || 0) * ctx.P.height_um), pts = [];
+      for (let u = -ctx.P.width_um; u <= ctx.P.width_um; u += .3) { const p = c.clone().addScaledVector(along, u); if (p.z > -R * 1.2) continue; const dv = p.clone().normalize(); if (!ctx.inside(dv.clone().multiplyScalar(ctx.rad(dv) - ctx.P.round_um * 1.5), 0)) continue; pts.push(dv.multiplyScalar(ctx.rad(dv) - R * .15)); }
+      if (pts.length > 3) { tube(gb, pts, pts.map(() => R), 12, true, true); const near = pts.reduce((a, b) => b.z > a.z ? b : a); if (!shown || near.z > shown.z) shown = near; } }
+    if (!gb.vc) return; ctx.mesh(gb.geo(), 'bile', sp.part || 'canaliculus', 1.8, { kind: 'wet' }); ctx.counts.canaliculi = faces.length;
+    if (shown) ctx.anchor(sp.part || 'canaliculus', shown.clone().add(new V3(0, R * 2, 0)), ctx.pname(sp.part || 'canaliculus', 'Bile canaliculus'), 2.4, R * 2);
+  };
+  /* rough endoplasmic reticulum: stacks of flat, slightly curved sacs (cisternae) studded with ribosomes, scattered through the cytoplasm */
+  FEATURE.rough_er_stacks = (ctx, sp) => {
+    const pr = sp.params || {}; if (!ctx.box) return; const n = pr.stacks || 40, w = pr.width_um || 2.4, gap = pr.spacing_um || .14, k = pr.sheets || 5, pts = samplePts(ctx, n, ctx.box, w * .5, ctx.organOk), mats = [], dots = [];
+    const sheet = new THREE.CylinderGeometry(.5, .5, .04, 20, 1); sheet.scale(1, 1, .42);
+    for (const p of pts) { const q = randQ(ctx.r), nrm = new V3(0, 1, 0).applyQuaternion(q); for (let j = 0; j < k; j++) { const c = p.clone().addScaledVector(nrm, (j - (k - 1) / 2) * gap); if (inNucleus(ctx, c, .2) || !ctx.inside(c, .1)) continue; const s = w * (1 - Math.abs(j - (k - 1) / 2) * .08); mats.push(place(c, q, new V3(s, 1, s))); } }
+    ctx.inst(sheet, 'er', sp.part || 'rough_er', 1.25, mats); ctx.counts.erSheets = mats.length; ctx.counts.erStacks = pts.length;
+    if (pts[0]) ctx.anchor(sp.part || 'rough_er', pts.reduce((a, b) => b.z > a.z ? b : a), ctx.pname(sp.part || 'rough_er', 'Rough endoplasmic reticulum'), 2.2, w);
+  };
+  /* glycogen: rosettes of small granules in clumps (each granule drawn about 0.1 µm) */
+  FEATURE.glycogen = (ctx, sp) => {
+    const pr = sp.params || {}; if (!ctx.box) return; const n = pr.clumps || 40, per = pr.per_clump || 24, R = pr.clump_um ? pr.clump_um / 2 : .5, g = pr.granule_um || .1, pts = samplePts(ctx, n, ctx.box, R, ctx.organOk), mats = [], r = ctx.r;
+    for (const p of pts) for (let j = 0; j < per; j++) { const o = new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(R * .45); mats.push(place(p.clone().add(o))); }
+    ctx.inst(new THREE.IcosahedronGeometry(g / 2, 0), 'glycogen', sp.part || 'glycogen', 1.1, mats); ctx.counts.glycogenClumps = pts.length;
+    if (pts[0]) ctx.anchor(sp.part || 'glycogen', pts.reduce((a, b) => b.z > a.z ? b : a), ctx.pname(sp.part || 'glycogen', 'Glycogen'), 1.9, R * 2);
+  };
+  /* folds of the base and sides (a kidney tubule cell): thin upright folds of membrane from the base, with the mitochondria standing in rows between them */
+  FEATURE.basal_folds = (ctx, sp) => {
+    const pr = sp.params || {}; if (!ctx.box) return; const P = ctx.P, hh = P.height_um / 2, hw = P.width_um / 2, step = pr.spacing_um || .9, top = -hh + P.height_um * (pr.height || .55), mats = [], plate = new THREE.BoxGeometry(.05, 1, 1);
+    for (let x = Math.ceil(-hw / step) * step; x < hw; x += step) for (let z = -hw; z < -.15; z += .6) { const y0 = -hh, p = new V3(x, (y0 + top) / 2, z); if (!ctx.inside(new V3(x, y0 + P.round_um * 1.5, z), .1)) continue; mats.push(place(p, null, new V3(1, top - y0, .62))); }
+    ctx.inst(plate, 'lamellar', sp.part || 'basolateral_folds', 1.15, mats, { film: [.35, .7] }); ctx.counts.folds = Math.round(2 * hw / step);
+    ctx.foldsX = { step, top, hw }; if (mats[0]) ctx.anchor(sp.part || 'basolateral_folds', new V3(-hw * .5, -hh * .6, -.5), ctx.pname(sp.part || 'basolateral_folds', 'Folds'), 2, step);
+  };
+  /* a dome of cytoplasm swelling from the free face, about to pinch off (apocrine secretion) */
+  FEATURE.apical_bleb = (ctx, sp) => {
+    if (!ctx.planes) return; const pr = sp.params || {}, P = ctx.P, R = (pr.diameter_um || P.width_um * .55) / 2, top = ctx.planes[ctx.planes.length - 2], y = top.d / top.n.y - P.round_um * .4;
+    const g = cutSphere(R, 40, 28); g.scale(1, (pr.height || .8), 1); g.translate(0, y + R * .35, 0); const k = cutZ(g, false); ctx.mesh(k.body, 'cell', sp.part || 'bleb', .9, { kind: 'wet' }); cytosolBack(ctx, k.body);
+    const gr = (ctx.S.organelles || {}).granules, mm = []; if (gr) { const d = (gr.size_um && gr.size_um.value) || .5; for (let i = 0; i < (pr.granules || 10) * 4 && mm.length < (pr.granules || 10); i++) { const p = new V3((ctx.r() - .5) * R * 1.6, y + R * .25 + (ctx.r() - .2) * R * .6, -ctx.r() * R * .7); if ((p.x / R) ** 2 + ((p.y - y - R * .25) / (R * .8)) ** 2 + (p.z / R) ** 2 > .7 || p.y < y + .2) continue; mm.push(place(p)); } ctx.inst(new THREE.SphereGeometry(d / 2, 10, 8), 'vesicle', 'granule', 1.3, mm); }
+    ctx.anchor(sp.part || 'bleb', new V3(R * .4, y + R * (pr.height || .8) * 1.1, -R * .3), ctx.pname(sp.part || 'bleb', 'Apical bleb'), 2.5, R * 2); ctx.counts.bleb = R * 2;
+  };
+  /* a thin sheet the cell rests on (a basement membrane), under its base, faint */
+  FEATURE.basement_membrane = (ctx, sp) => {
+    if (!ctx.planes) return; const P = ctx.P, w = P.width_um * 2.4, g = new THREE.BoxGeometry(w, (sp.params && sp.params.thickness_um) || .1, w * .6); const bot = ctx.planes[ctx.planes.length - 1], y = -bot.d / Math.max(.2, -bot.n.y);
+    g.translate(0, y - .08, -w * .3); const m = ctx.mesh(g, 'neighbour', sp.part || 'basement_membrane', .2, { film: look() === 'real' ? [.35, .6] : [.35, .6], kind: 'matte' }); m.renderOrder = 1;
+    ctx.anchor(sp.part || 'basement_membrane', new V3(P.width_um * .75, y - .2, -1), ctx.pname(sp.part || 'basement_membrane', 'Basement membrane'), 1.8, P.width_um);
+  };
+  /* microplicae: low winding ridges of membrane over the free face (a corneal surface cell), which hold the tear film */
+  FEATURE.microplicae = (ctx, sp) => {
+    if (!ctx.planes) return; const pr = sp.params || {}, P = ctx.P, r = ctx.r, hw = P.width_um / 2, hh = P.height_um / 2, gap = pr.spacing_um || .8, rr = (pr.height_um || .3) / 2, gb = new GB(); let n = 0;
+    /* in the cut's frame: the top face points up (+y) on an upright cell, toward the viewer (+z) on a flat one cut through its own plane; on a flat cell only the
+       half whose lid is kept (x < 0) carries them, and on an upright one only the half behind the cut */
+    const U = ctx.lid ? (a, b, h) => new V3(a, b, h) : (a, b, h) => new V3(a, h, b), ok = q => ctx.lid ? q.x < -.3 && ctx.halfLid : q.z < -rr * 2;
+    for (let b = -hw * 1.2; b < hw * 1.2; b += gap) { let pts = []; const ph = r() * TAU, k = 1.2 + r() * .8;
+      const flush = () => { if (pts.length > 2) { tube(gb, pts, pts.map(() => rr), 5, true, true); n++; } pts = []; };
+      for (let a = -hw * 1.2; a < hw * 1.2; a += .25) { const bb = b + Math.sin(a * k + ph) * gap * .35, q = U(a, bb, hh); if (!ok(q) || r() < .01) { flush(); continue; }
+        const d = q.clone().normalize(), R = ctx.rad(d), pp = d.multiplyScalar(R - rr * .5), lev = ctx.lid ? pp.z : pp.y; if (lev < hh - P.round_um * .35) { flush(); continue; } pts.push(pp); }
+      flush(); }
+    if (gb.vc) ctx.mesh(gb.geo(), 'cell', sp.part || 'microplicae', 1.3, { kind: 'wet' }); ctx.counts.microplicae = n;
+    ctx.anchor(sp.part || 'microplicae', ctx.lid ? new V3(-hw * .45, hw * .35, hh + .3) : new V3(hw * .3, hh + .3, -hw * .4), ctx.pname(sp.part || 'microplicae', 'Microplicae'), 2.3, rr * 2);
+  };
+  /* hemidesmosomes: rivets on the base that hold the cell to the basement membrane (a basal epithelial cell) */
+  FEATURE.hemidesmosomes = (ctx, sp) => {
+    if (!ctx.planes) return; const pr = sp.params || {}, P = ctx.P, bot = ctx.planes[ctx.planes.length - 1], y = -bot.d / Math.max(.2, -bot.n.y), hw = P.width_um / 2, mats = [], s = pr.spacing_um || 1.2;
+    for (let x = -hw; x < hw; x += s) for (let z = -s * .6; z > -hw; z -= s) { const p = new V3(x + (ctx.r() - .5) * s * .4, y + .02, z + (ctx.r() - .5) * s * .4); if (!ctx.inside(new V3(p.x, y + P.round_um * 1.8 + .3, p.z), P.round_um * .3)) continue; mats.push(place(p)); }
+    ctx.inst(new THREE.CylinderGeometry(.2, .2, .07, 10, 1), 'desmosome', sp.part || 'hemidesmosome', 2, mats); ctx.counts.hemidesmosomes = mats.length;
+    if (mats[0]) ctx.anchor(sp.part || 'hemidesmosome', new V3().setFromMatrixPosition(mats[Math.floor(mats.length * .7)]), ctx.pname(sp.part || 'hemidesmosome', 'Hemidesmosome'), 2.2, .4);
+  };
+  /* a plant cell (a palisade cell of a leaf): the wall outside the membrane, the big central vacuole filling most of the cell, and the chloroplasts lying flat
+     in the thin layer of cytoplasm between the two, pressed against the wall. Chloroplast count and volume from the spec; their shape (a lens 1 : 0.85 : 0.45) is
+     drawn to that volume. Only the back half is drawn, so about half the count shows. */
+  FEATURE.plant_cell = (ctx, sp) => {
+    if (!ctx.planes) return; const pr = sp.params || {}, P = ctx.P, r = ctx.r, c = pr.cytoplasm_um || 2, wall = pr.wall_um || .5;
+    /* the wall: a shell just outside the membrane, cut open like the cell */
+    const rad = ctx.rad, wg = starGeo(d => { const t = rad(d) + wall; return new V3(t, t, t); }, 72, 48), kw = cutZ(wg, false);
+    ctx.mesh(kw.body, 'wall', sp.wall_part || 'wall', .5, { film: look() === 'real' ? [.25, .6] : [.25, .6], kind: 'matte', side: THREE.DoubleSide });
+    /* the vacuole: the cell shrunk by the cytoplasm's thickness, a clear sac */
+    const vg = starGeo(d => { const t = Math.max(.5, rad(d) - c - P.round_um * .3); return new V3(t, t, t); }, 72, 48), kv = cutZ(vg, false);
+    ctx.mesh(kv.body, 'vacuole', sp.vacuole_part || 'vacuole', .7, { film: look() === 'real' ? [.12, .45] : [.14, .5], kind: 'wet', side: THREE.DoubleSide });
+    /* its share of the cell, for the words */
+    const vol = ctx.vol || volumes(ctx, ctx.box); let inV = 0, inC = 0; for (let i = 0; i < 6000; i++) { const p = new V3(ctx.box.min.x + r() * (ctx.box.max.x - ctx.box.min.x), ctx.box.min.y + r() * (ctx.box.max.y - ctx.box.min.y), ctx.box.min.z + r() * (ctx.box.max.z - ctx.box.min.z)); if (!ctx.inside(p, 0)) continue; inC++; if (ctx.inVacuole ? ctx.inVacuole(p) : ctx.inside(p, c)) inV++; }
+    ctx.counts.vacuoleShare = Math.round(inV / Math.max(1, inC) * 100);
+    /* chloroplasts: flat lenses against the wall, in the layer */
+    const n = Math.round((pr.chloroplasts || 100) / 2), v1 = pr.chloroplast_fl || 30, l = Math.cbrt(v1 / (4 / 3 * Math.PI * .5 * .425 * .225)), mats = [], gr = [];
+    const g = new THREE.SphereGeometry(.5, 18, 12); g.scale(l, l * .45, l * .85);
+    for (let t = 0; t < n * 80 && mats.length < n; t++) { const d = new V3(gauss(r), gauss(r), gauss(r)).normalize(); if (d.z > -.05) continue; const R0 = rad(d), p = d.clone().multiplyScalar(R0);
+      const pl = ctx.planes.reduce((a, b) => (b.n.dot(p) - b.d > a.n.dot(p) - a.d ? b : a)); const q = p.clone().addScaledVector(pl.n, -(P.round_um * .6 + l * .225 + .3));
+      if (q.z > -l * .45 || !ctx.inside(q, 0) || inNucleus(ctx, q, l * .45) || mats.some(m => new V3().setFromMatrixPosition(m).distanceTo(q) < l * .9)) continue;
+      const qa = qAlong(pl.n).multiply(new THREE.Quaternion().setFromAxisAngle(new V3(0, 1, 0), r() * TAU)); mats.push(place(q, qa)); }
+    ctx.inst(g, 'chloroplast', sp.part || 'chloroplast', 1.6, mats, { kind: 'wet' }); ctx.counts.chloroplasts = mats.length; ctx.counts.chloroplastLength = Math.round(l * 10) / 10;
+    if (mats[0]) { const best = mats.map(m => new V3().setFromMatrixPosition(m)).reduce((a, b) => (b.z > a.z ? b : a)); ctx.anchor(sp.part || 'chloroplast', best, ctx.pname(sp.part || 'chloroplast', 'Chloroplast'), 2.6, l); }
+    ctx.anchor(sp.vacuole_part || 'vacuole', new V3(P.width_um * .08, -P.height_um * .15, -P.width_um * .3), ctx.pname(sp.vacuole_part || 'vacuole', 'Central vacuole'), 2.4, P.width_um);
+    ctx.anchor(sp.wall_part || 'wall', new V3(P.width_um * .5 + wall, P.height_um * .3, 0), ctx.pname(sp.wall_part || 'wall', 'Cell wall'), 2.2, wall);
+  };
+  /* the matrix round a cell that lies alone in it (a chondrocyte in its lacuna): a faint block of matrix cut open with the cell, and the cavity's wall */
+  FEATURE.matrix_block = (ctx, sp) => {
+    const pr = sp.params || {}, E = ctx.ext || new V3(10, 10, 10), w = pr.size_um || Math.max(E.x, E.y) * 5, R = Math.max(E.x, E.y, E.z) + (ctx.P.coat_um || 0) + (pr.gap_um || .3);
+    const g = new THREE.BoxGeometry(w, w * .8, w, 1, 1, 1); g.translate(0, 0, -w / 2); const m = ctx.mesh(g, 'collagen', sp.part || 'matrix', .05, { film: look() === 'real' ? [.06, .2] : [.05, .18], kind: 'matte', side: THREE.BackSide }); m.renderOrder = 0;
+    const lg = new THREE.SphereGeometry(1, 48, 32); lg.scale(E.x + R - Math.max(E.x, E.y, E.z), E.y + R - Math.max(E.x, E.y, E.z), E.z + R - Math.max(E.x, E.y, E.z)); const kl = cutZ(lg, false);
+    const ml = ctx.mesh(kl.body, 'collagen', sp.lacuna_part || 'lacuna', .15, { film: look() === 'real' ? [.12, .45] : [.12, .45], kind: 'matte', side: THREE.DoubleSide }); ml.renderOrder = 1;
+    ctx.anchor(sp.part || 'matrix', new V3(-w * .3, w * .25, -w * .2), ctx.pname(sp.part || 'matrix', 'Matrix'), 1.6, w); ctx.anchor(sp.lacuna_part || 'lacuna', new V3(R * .72, -R * .72, -.3), ctx.pname(sp.lacuna_part || 'lacuna', 'Lacuna'), 1.9, R * 2);
+  };
+  /* the marginal band (a platelet): a bundle of microtubules coiled round the rim of the flat disc, which holds its shape; the back half of the ring */
+  FEATURE.marginal_band = (ctx, sp) => {
+    const pr = sp.params || {}, E = ctx.ext; if (!E) return; const inset = pr.inset_um || .18, rb = (pr.thickness_um || .12) / 2, turns = pr.coils || 3, pts = [], rs = [];
+    for (let i = 0; i <= 96; i++) { const a = Math.PI + i / 96 * Math.PI, k = Math.sin(i / 96 * Math.PI * turns * 2) * rb * .8; pts.push(new V3(Math.cos(a) * (E.x - inset - rb) + k * Math.cos(a), k * .6, Math.sin(a) * (E.z - inset - rb))); rs.push(rb); }
+    const gb = new GB(); tube(gb, pts, rs, 8, true, true); ctx.mesh(gb.geo(), 'er', sp.part || 'marginal_band', 1.8, { kind: 'matte' });
+    ctx.anchor(sp.part || 'marginal_band', pts[60], ctx.pname(sp.part || 'marginal_band', 'Marginal band'), 2.4, rb * 2); ctx.counts.marginalBand = 1;
+  };
+  /* dense bodies (smooth muscle): small dark bodies through the cytoplasm and plaques on the membrane, and the contractile filament bundles strung between
+     them at a slant to the cell's length, a lattice that shortens the cell when it pulls */
+  FEATURE.dense_bodies = (ctx, sp) => {
+    const pr = sp.params || {}; if (!ctx.box) return; const r = ctx.r, n = pr.count || 220, d = pr.size_um || .4, pts = samplePts(ctx, n, ctx.box, .2, ctx.organOk), mats = [];
+    for (const p of pts) mats.push(place(p, new THREE.Quaternion().setFromAxisAngle(new V3(0, 0, 1), (r() - .5) * .6), new V3(1.8, 1, 1)));
+    ctx.inst(new THREE.SphereGeometry(d / 2, 8, 6), 'dense', sp.part || 'dense_body', 1.6, mats); ctx.counts.denseBodies = pts.length;
+    const gb = new GB(), X = new V3(1, 0, 0), fr = pr.filament_um ? pr.filament_um / 2 : .04; let nf = 0;
+    for (const a of pts) { const near = pts.filter(b => b !== a && b.x > a.x).map(b => ({ b, d: a.distanceTo(b), ang: b.clone().sub(a).angleTo(X) })).filter(q => q.d > 1 && q.d < (pr.reach_um || 5) && q.ang > .18 && q.ang < .7).sort((p, q) => p.d - q.d).slice(0, 2);
+      for (const q of near) { const m = a.clone().lerp(q.b, .5); if (!ctx.inside(m, .05) || inNucleus(ctx, m, .1)) continue; tube(gb, [a, m, q.b], [fr, fr, fr], 4); nf++; } }
+    if (gb.vc) ctx.mesh(gb.geo(), 'myofibril', sp.filaments_part || 'contractile', 1.4, { kind: 'matte' }); ctx.counts.filamentBundles = nf;
+    if (pts[0]) { const top = pts.reduce((a, b) => b.z > a.z ? b : a); ctx.anchor(sp.part || 'dense_body', top, ctx.pname(sp.part || 'dense_body', 'Dense body'), 2.3, d * 2); ctx.anchor(sp.filaments_part || 'contractile', top.clone().add(new V3(1.2, .6, 0)), ctx.pname(sp.filaments_part || 'contractile', 'Contractile filaments'), 2.2, 1); }
+  };
+  /* more cells of the same kind round it, faint: a bundle of smooth muscle cells, or tenocytes in their row */
+  FEATURE.bundle = (ctx, sp) => {
+    if (!ctx.spindleGeo) return; const pr = sp.params || {}, P = ctx.P, L = P.length_um, W = P.width_um, gb = [], offs = pr.offsets || [[.5, 1.05, -.6], [-.45, -1.05, -.5], [.05, 0, -1.5], [-.5, 1.1, -1.3]];
+    for (const [fx, fy, fz] of offs) { const g = ctx.spindleGeo(1); g.translate(fx * L, fy * W, fz * W); const k = cutZ(g, false); gb.push([k.body]); }
+    const m = new THREE.Mesh(MDC.merge(gb), ctx.mat(pr.role || 'neighbour', { film: look() === 'real' ? [.1, .5] : [.08, .45], kind: 'wet' })); m.matrixAutoUpdate = false; m.renderOrder = 2; ctx.G.add(m); ctx.tag(m, 'neighbour', -.2);
+    ctx.anchor('neighbour', new V3(offs[0][0] * L + L * .2, offs[0][1] * W, offs[0][2] * W), ctx.pname('neighbour', 'Neighbouring cell'), 1.8, W); ctx.counts.bundle = offs.length;
+  };
+  /* the collagen fibres a tendon cell lies between, and the thin wings of cytoplasm it reaches round them */
+  FEATURE.collagen_fibres = (ctx, sp) => {
+    const pr = sp.params || {}, P = ctx.P, R = (pr.diameter_um || 22) / 2, Lc = (pr.length_um || P.length_um * 3), th = P.width_um * .3,   // the cell sits in the groove between the two fibres, its edges tucked behind them
+      gb = new GB(), wing = new GB();
+    const axes = [[0, th + R + .15, -R * .35], [0, -(th + R + .15), -R * .35]];
+    for (const [x, y, z] of axes) { const g = new THREE.CylinderGeometry(R, R, Lc, 48, 1, true); g.rotateZ(Math.PI / 2); g.translate(x, y, z); const k = cutZ(g, false); const m = ctx.mesh(k.body, 'collagen', sp.part || 'collagen', .4, { film: look() === 'real' ? [.2, .55] : [.16, .5], kind: 'matte', side: THREE.DoubleSide }); m.renderOrder = 1;
+      /* the fibre's fibrils, as fine lines along it on its near face */
+      const lines = []; for (let j = 0; j < 14; j++) { const a = j / 14 * TAU, yy = y + Math.cos(a) * R * .985, zz = z + Math.sin(a) * R * .985; if (zz > -.1) continue; lines.push([new V3(-Lc / 2, yy, zz), new V3(Lc / 2, yy, zz)]); }
+      for (const [a, b] of lines) tube(gb, [a, b], [.05, .05], 3);
+      /* a wing: a thin sheet from the cell's edge spreading round the fibre both ways from where the cell touches it */
+      const ul = Math.hypot(y, z), uy = -y / ul, uz = -z / ul, wy = -uz, wz = uy, base = wing.vc, NX = 20, NA = 16, span = (pr.wing_deg || 70) * Math.PI / 180, wl = P.length_um * .85, Rw = R + .12;
+      for (let i = 0; i <= NX; i++) { const xx = -wl / 2 + i / NX * wl, taper = Math.max(.15, Math.sin(Math.PI * i / NX)); for (let j = 0; j <= NA; j++) { const a = (j / NA * 2 - 1) * span * taper, cy = Math.cos(a) * uy + Math.sin(a) * wy, cz = Math.cos(a) * uz + Math.sin(a) * wz; wing.v(new V3(xx, y + Rw * cy, z + Rw * cz), new V3(0, cy, cz)); } }
+      for (let i = 0; i < NX; i++) for (let j = 0; j < NA; j++) { const q = base + i * (NA + 1) + j; wing.i.push(q, q + NA + 1, q + 1, q + 1, q + NA + 1, q + NA + 2); } }
+    ctx.mesh(gb.geo(), 'collagen', sp.part || 'collagen', .45, { film: [.12, .3], kind: 'matte', rough: .9 });
+    const kw = cutZ(wing.geo(), false); ctx.mesh(kw.body, 'cell', sp.wing_part || 'processes', 1.1, { side: THREE.DoubleSide, kind: 'wet' });
+    ctx.anchor(sp.part || 'collagen', new V3(-P.length_um * .9, th + R * 1.4, -R * .2), ctx.pname(sp.part || 'collagen', 'Collagen fibre'), 1.9, R * 2);
+    ctx.anchor(sp.wing_part || 'processes', new V3(P.length_um * .15, th + 1.6, -1), ctx.pname(sp.wing_part || 'processes', 'Wing of cytoplasm'), 2.1, 2); ctx.counts.fibres = axes.length;
+  };
+  /* swallowed things in sacs (phagosomes): a clear sac with its contents, a dark particle or debris; and empty or lipid-filled vacuoles (a foamy cell) */
+  FEATURE.phagosomes = (ctx, sp) => {
+    const pr = sp.params || {}; if (!ctx.box) return; const r = ctx.r, n = pr.count || 12, d = pr.size_um || 1.5, pts = samplePts(ctx, n, ctx.box, d / 2 + .1, ctx.organOk), sacs = [], bits = [];
+    for (const p of pts) { sacs.push(place(p)); const k = pr.content === 'dust' ? 1 + Math.floor(r() * 3) : 1; for (let j = 0; j < k; j++) bits.push(place(p.clone().add(new V3(gauss(r), gauss(r), gauss(r)).multiplyScalar(d * .12)), randQ(r), new V3(.6 + r() * .5, .5 + r() * .4, .6 + r() * .4).multiplyScalar(pr.content === 'dust' ? .55 : 1))); }
+    ctx.inst(new THREE.SphereGeometry(d / 2, 16, 12), 'vesicle', sp.part || 'phagosome', 1.3, sacs, { film: [.25, .65], kind: 'wet' });
+    ctx.inst(new THREE.IcosahedronGeometry(d * .28, 0), pr.content === 'dust' ? 'dust' : 'debris', sp.content_part || sp.part || 'phagosome', 1.4, bits, { kind: 'matte', rough: .9 });
+    ctx.counts[sp.count_key || 'phagosomes'] = pts.length;
+    if (pts[0]) ctx.anchor(sp.content_part || sp.part || 'phagosome', pts.reduce((a, b) => b.z > a.z ? b : a), ctx.pname(sp.content_part || sp.part || 'phagosome', 'Phagosome'), 2.4, d);
+  };
+  FEATURE.vacuoles = (ctx, sp) => {
+    const pr = sp.params || {}; if (!ctx.box) return; const n = pr.count || 30, d = pr.size_um || .8, pts = samplePts(ctx, n, ctx.box, d / 2 + .05, ctx.organOk);
+    ctx.inst(new THREE.SphereGeometry(d / 2, 12, 9), pr.role || 'lamellar', sp.part || 'vacuole', 1.2, pts.map(p => place(p, null, new V3(1, 1, 1).multiplyScalar(.7 + ctx.r() * .6))), { film: [.3, .75], kind: 'wet' });
+    ctx.counts[sp.count_key || 'vacuoles'] = pts.length; if (pts[0]) ctx.anchor(sp.part || 'vacuole', pts.reduce((a, b) => b.z > a.z ? b : a), ctx.pname(sp.part || 'vacuole', 'Vacuole'), 2, d);
+  };
+  /* lamellipodia: thin ruffled sheets of membrane spreading from the cell's edge, folded in waves (a macrophage's ruffled border) */
+  FEATURE.ruffles = (ctx, sp) => {
+    const pr = sp.params || {}, E = ctx.ext; if (!E || !pr.sheets) return; const r = ctx.r, gb = new GB(), ext = pr.sheet_um || 5;
+    for (let s = 0; s < pr.sheets; s++) { const th0 = (pr.arc_from || -.6) + (s + r() * .5) / pr.sheets * (pr.arc || 2.6), dTh = .3 + r() * .25, base = gb.vc, NU = 28, NV = 8, waves = 3 + Math.floor(r() * 3), amp = ext * (.18 + r() * .12), tiltZ = -.25 - r() * .5;
+      for (let i = 0; i <= NU; i++) { const th = th0 + (i / NU - .5) * dTh * 2; for (let j = 0; j <= NV; j++) { const v = j / NV, rad = (1 - .06 + v * ext / Math.max(E.x, E.y)), w = Math.sin(i / NU * Math.PI * waves + s) * amp * v * Math.sin(Math.PI * i / NU);
+        const p = new V3(Math.cos(th) * E.x * rad, Math.sin(th) * E.y * rad, tiltZ * E.z * .5 + w + v * tiltZ * ext * .4); gb.v(p, new V3(0, 0, 1)); } }
+      for (let i = 0; i < NU; i++) for (let j = 0; j < NV; j++) { const q = base + i * (NV + 1) + j; gb.i.push(q, q + NV + 1, q + 1, q + 1, q + NV + 1, q + NV + 2); } }
+    const g = gb.geo(); g.computeVertexNormals(); const k = cutZ(g, false); ctx.mesh(k.body, 'cell', sp.ruffle_part || 'pseudopod', .75, { film: look() === 'real' ? [.3, .7] : [.35, .75], side: THREE.DoubleSide, kind: 'wet' });
+    ctx.anchor(sp.ruffle_part || 'pseudopod', new V3(E.x * 1.15, E.y * .25, -E.z * .3), pr.label || 'Ruffles (lamellipodia)', 2, ext); ctx.counts.ruffles = pr.sheets;
+  };
+
+  function features(ctx) { for (const sp of ctx.S.special || []) { const f = FEATURE[sp.kind]; if (f) { try { f(ctx, sp); } catch (e) { console.error('cells: feature failed', ctx.S.id, sp.kind, e); } } } }
+
   /* ---------- the frame ---------- */
   Z.build = (F, o) => {
     const S = Z.S[o.spec]; if (!S) return false;
@@ -766,6 +1096,7 @@ const CELLS = (() => {
     const ctx = newCtx(F, S);
     if (!F.dynamic && o.faceN) { const z = new V3().fromArray(o.faceN).normalize(), u = new V3().fromArray(o.faceUp || [0, 1, 0]), x = new V3().crossVectors(u, z).normalize(), y = new V3().crossVectors(z, x); ctx.G.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(x, y, z)); }
     try { (SHAPE[S.shape.type] || SHAPE.ellipsoid)(ctx); } catch (e) { console.error('cells: shape failed', S.id, e); }
+    if (ctx.tiltG) { const G0 = ctx.G; ctx.G = ctx.tiltG; features(ctx); ctx.G = G0; } else features(ctx);
     F._cells = ctx;
     labels(F, ctx); breaks(F, ctx);
     /* the name, the one-line summary, the card, the note (it begins "Model"), and "About this picture" */

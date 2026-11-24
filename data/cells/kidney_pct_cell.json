@@ -5,7 +5,7 @@
  "species": "Homo sapiens",
  "card": "cell_kidney_pct_cell",
  "blurb": "A cell lining the first winding tube of the kidney: a cube-shaped cell with a thick fur of fingers facing the passing fluid and a base packed with energy-making mitochondria.",
- "note": "Model: a proximal tubule cell of the human kidney, cut in half. Measured: the length of its surface fingers (microvilli) and the share of the cell filled by mitochondria, both in the mouse kidney (human values are not yet measured), and the jobs it does, from human physiology. Illustrative: the width and height of the cell, the number and size of its organelles, the nucleus size, the neighbours and the colours. Not drawn: the folds of the base and sides, the pits and vesicles that take up protein, and the molecular pumps.",
+ "note": "Model: a proximal tubule cell of the human kidney, cut in half. Measured: the length of its surface fingers (microvilli) and the share of the cell filled by mitochondria, both in the mouse kidney (human values are not yet measured), and the jobs it does, from human physiology. Illustrative: the width and height of the cell, the number and size of its organelles, the nucleus size, the neighbours and the colours. The folds of the base are drawn faint, at an illustrative spacing. Not drawn: the pits and vesicles that take up protein, and the molecular pumps.",
  "shape": {
   "type": "polyhedron",
   "sides": 6,
@@ -112,7 +112,6 @@
    }
   },
   "not_drawn": [
-   "basal and lateral membrane folds",
    "endosomes, coated pits and vesicles",
    "rough endoplasmic reticulum",
    "peroxisomes"
@@ -127,9 +126,13 @@
   },
   {
    "kind": "basal_folds",
-   "part": "mitochondrion",
+   "part": "basolateral_folds",
    "source": "wiki_pt",
-   "note": "Not drawn as folds: the base of the cell and its sides are folded into the neighbours, and rod-shaped mitochondria lie in these folds. Here the mitochondria are placed in the lower part of the cell."
+   "note": "The base of the cell and its sides are folded into the neighbours, and rod-shaped mitochondria lie in these folds (wiki_pt). Drawn as thin upright folds from the base, faint; their spacing and height are illustrative.",
+   "params": {
+    "spacing_um": 1.0,
+    "height": 0.5
+   }
   },
   {
    "kind": "transport",
@@ -190,6 +193,12 @@
    "name": "Neighbouring tubule cell",
    "card": "cell_kidney_pct_cell",
    "material": "membrane"
+  },
+  "basolateral_folds": {
+   "name": "Folds of the base",
+   "card": null,
+   "material": "membrane",
+   "about": "The base and sides of the cell are folded deeply into thin plates that interlock with the neighbouring cells; rod-shaped mitochondria lie between them, close to the pumps in the membrane that drive the cell's work. Drawn faint; their spacing and height are illustrative."
   }
  },
  "reached": {
@@ -209,7 +218,7 @@
  "about": [
   "The cell is drawn as a six-sided block {drawn.cellVolume} µm³ in volume, cut in half. Its width and height are illustrative; only the length of the surface fingers (about 2.6 µm, from mouse kidney) is measured.",
   "Facing the tube is the brush border, a fur of microvilli that multiplies the surface for taking back water, salts, sugar and amino acids from the filtered fluid. The base holds the mitochondria that power the pumps; {drawn.mitochondria} are drawn in this half, out of {drawn.mitochondriaWanted} the chosen share asks for.",
-  "In life the base and the sides of the cell are deeply folded and interlock with the neighbouring cells, which this picture does not show. The mitochondrial share drawn is lower than the mouse figure of 44%."
+  "In life the base and the sides of the cell are deeply folded and interlock with the neighbouring cells; the folds of the base are drawn faint, at an illustrative spacing. The mitochondrial share drawn is lower than the mouse figure of 44%."
  ],
  "sources": {
   "kumaran2020": {
