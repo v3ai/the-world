@@ -45,6 +45,7 @@ const T = [
   // the body
   ['heart', 'node:heart'], ['brain', 'node:brain'], ['lungs', 'node:lung_l'], ['liver', 'node:liver'], ['stomach', 'node:stomach'], ['tummy', 'node:stomach'], ['kidney', 'node:kidney_l'], ['eye', 'node:eye_l'], ['skull', 'node:skull'], ['kneecap', 'node:patella_l'],
   ['collarbone', 'node:clavicle_l'], ['biceps', 'node:biceps_brachii'], ['voice box', 'node:larynx'], ['windpipe', 'node:trachea'], ['teeth', 'node:teeth'], ['tongue', 'node:tongue'], ['skin', 'node:skin'], ['blood', 'node:blood_vessels'], ['skeleton', 'lm:You'],
+  ['dna replication', 'node:dna_replication'], ['helicase', 'node:rep_cmg'], ['dna polymerase', 'node:rep_pol_delta'], ['okazaki fragment', 'node:rep_okazaki'], ['how does dna copy itself', 'node:dna_replication'],
   ['dna', 'lm:DNA'], ['cell', 'lm:Skin cell'], ['mitochondria', 'node:mitochondrion'], ['heartbeat', ['node:heart', 'trail:how_does_my_heart_beat']],
   // park, Earth, space
   ['dog', 'pl:Dog'], ['bee', 'node:park_bee'], ['a bee', 'node:park_bee'], ['buttercup', 'node:rn_acris'], ['the genetic code', 'lm:DNA'], ['tree', 'pl:Tree'], ['mushroom', 'pl:Mushroom'], ['flower', 'pl:Flowers'], ['pond', 'pl:Pond'], ['cloud', 'pl:Cloud'], ['soil', 'pl:Soil'],

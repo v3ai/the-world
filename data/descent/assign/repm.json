@@ -1,0 +1,7 @@
+{
+ "about": "Inside one machine of DNA replication (js/replication.js, frame type repm): each part is one protein chain of a measured structure.",
+ "default": "replisome_protein",
+ "ids": {
+  "repsub": "replisome_protein"
+ }
+}

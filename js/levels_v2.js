@@ -267,7 +267,8 @@ BUILD.dna = (c) => {
   const AT = typeof MD !== 'undefined' && MD.on ? MD.dnaAtoms(c.frame, helix, SEQ, COMP, NM, rise, twist) : null, anc = [];
   if (AT) { const old = new Set(); bp.forEach(e => { [...e.s, ...e.nw].forEach(o => [o.sugar, o.base, o.phos].forEach(m => { if (m) old.add(m); })); old.add(e.hb); old.add(e.hb2); });
     for (let k = c.pickables.length - 1; k >= 0; k--) if (old.has(c.pickables[k])) c.pickables.splice(k, 1); }
-  const ref = (m, dy) => { if (!AT) return m; const o = new THREE.Object3D(); o.userData = Object.assign({}, m.userData); helix.add(o); anc.push([o, m, dy || 0]); o.position.copy(m.position); o.position.y += dy || 0; return o; };   // a name's anchor stands for its part (a click on the name)
+  let BAKE = false;   // set below: the drawn helix's spheres and rods are drawn as instances, the separate meshes kept hidden as anchors
+  const ref = (m, dy) => { if (!AT && !BAKE) return m; const o = new THREE.Object3D(); o.userData = Object.assign({}, m.userData); helix.add(o); anc.push([o, m, dy || 0]); o.position.copy(m.position); o.position.y += dy || 0; return o; };   // a name's anchor stands for its part (a click on the name)
   const layout0 = layout;
   layout = u => {
     layout0(u); if (!AT) return;
@@ -283,6 +284,17 @@ BUILD.dna = (c) => {
   };
   let unzip = 0, target = 0, built = false;
   layout(0);
+  /* with js/replication.js the old unzip below never runs, so the drawn helix stays as laid out: its spheres and rods are drawn as one instanced
+     mesh per kind (a few draw calls instead of one per sphere); the separate meshes stay, hidden, for the names and the camera to use */
+  if (!AT && typeof REP !== 'undefined') {
+    BAKE = true; helix.updateMatrixWorld(true);
+    const inv = new THREE.Matrix4().copy(helix.matrixWorld).invert(), groups = new Map(), was = new Set();
+    const put = (m, ud) => { if (!m || !m.visible) return; const k = m.geometry.uuid + m.material.uuid; let gr = groups.get(k); if (!gr) groups.set(k, gr = { geo: m.geometry, mat: m.material, ud, at: [] });
+      gr.at.push(new THREE.Matrix4().multiplyMatrices(inv, m.matrixWorld)); m.visible = false; };
+    bp.forEach(e => { e.s.forEach(o => [o.sugar, o.base, o.phos].forEach(m => { if (m) { put(m, m.userData); was.add(m); } })); e.hb.children.forEach(d => put(d, e.hb.userData)); was.add(e.hb); });
+    for (let k = c.pickables.length - 1; k >= 0; k--) if (was.has(c.pickables[k])) c.pickables.splice(k, 1);
+    for (const gr of groups.values()) { const im = new THREE.InstancedMesh(gr.geo, gr.mat, gr.at.length); gr.at.forEach((M4, i) => im.setMatrixAt(i, M4)); im.instanceMatrix.needsUpdate = true; im.frustumCulled = false; im.userData = Object.assign({}, gr.ud); helix.add(im); c.pickables.push(im); }
+  }
   // ---- scale bar (2 nm) under the helix
   const bar = new THREE.Group(); g.add(bar); bar.position.set(0, -(n * rise / 2 + 3.2), 0);
   const barM = new THREE.MeshBasicMaterial({ color: 0xdbeafe }); const barMesh = new THREE.Mesh(new THREE.BoxGeometry(2 * NM, .09, .09), barM); bar.add(barMesh);
@@ -294,7 +306,9 @@ BUILD.dna = (c) => {
   strip.innerHTML = '<span id="seqLbl">Invented example, read three letters at a time →</span>' + SEQ.match(/.{3}/g).map(cd => `<div class="codon"><span class="l">${cd.split('').map(ch => `<span style="color:#${BC[ch].toString(16).padStart(6, '0')}">${ch}</span>`).join('')}</span><span class="aa">${AA[cd]}</span></div>`).join('');
   strip.title = 'These 39 letters are made up, not a real gene. A cell first copies a gene into messenger RNA (T becomes U), and the ribosome reads that copy three letters (one codon) at a time; each codon names one amino acid.';
   uiEl(strip);
-  const ub = actBtn('Show replication', () => { target = target ? 0 : 1; ub.textContent = target ? 'Zip back up' : 'Show replication'; sceneNote(c, target ? NOTE.rep : NOTE.helix); });
+  /* replication: the machines that copy DNA, at true size and working (REP, js/replication.js); without that module, the schematic unzip below */
+  const rep = typeof REP !== 'undefined' ? REP.attach(c, { hide: on => { tilt.visible = !on; bar.visible = !on; strip.style.display = on ? 'none' : ''; }, note: () => NOTE.helix, button: on => { ub.textContent = on ? 'Zip back up' : 'Show replication'; } }) : null;
+  const ub = actBtn('Show replication', () => { if (rep) { const on = !rep.on(); ub.textContent = on ? 'Zip back up' : 'Show replication'; rep.show(on); return; } target = target ? 0 : 1; ub.textContent = target ? 'Zip back up' : 'Show replication'; sceneNote(c, target ? NOTE.rep : NOTE.helix); });
   // ---- labels: the ends of each strand, the grooves, the fork
   const endLbl = (o, t) => c.addLabel(o, t, { offset: new V3(0, .15, 0), always: true });
   const eTop = AT ? .45 * NM : 0, eBot = AT ? -1.55 * NM : 0;   // under the look the strands' ends are named off the ends of the helix, along its axis, clear of the atoms
@@ -309,7 +323,7 @@ BUILD.dna = (c) => {
   c.addLabel(fork, 'Replication fork', { offset: new V3(2.6, 0, 0) });
   const NOTE = {
     helix: 'Schematic ball-and-stick model of B-DNA, drawn to scale in length and width: 2.0 nm wide, 0.34 nm per base pair, 10.5 base pairs (3.6 nm) per turn, right-handed. Spheres and rods are symbols, not atoms. 39 base pairs, an invented sequence.',
-    rep: 'Schematic of replication. Each new double helix keeps one old strand (tan) and gets one new strand (blue). In a cell, helicase opens the fork and DNA polymerase builds each new strand. The lagging strand is made in short pieces (drawn here as one). Not a real simulation.',
+    rep: 'Model, schematic: each new double helix keeps one old strand (tan) and gets one new strand (blue). The machines that do it are not drawn here, and the lagging strand, made in pieces of about 200 nucleotides, is drawn as one. Not a simulation.',
     fiber: 'Schematic at true size: 4 nucleosomes of the beaded 10 nm form of chromatin. Each wraps 147 base pairs (1.65 turns) round 8 histone proteins and is about 11 nm across; DNA is 2 nm thick. Histone shapes are simplified. Inside a living nucleus the next level of folding is irregular, not a neat 30 nm fibre.',
   };
   if (AT) {
@@ -334,6 +348,7 @@ BUILD.dna = (c) => {
     if (m0) gA[0].position.copy(m0.loc); if (m1) gA[1].position.copy(m1.loc);
   };
   c.update = (dt) => {
+    if (rep) { rep.update(dt); if (rep.on()) return; }
     if (AT) AT.lod(cam.A === c.frame && cam.D < 1.4e-8);   // the finer spheres only where an atom is large on the screen
     if (AT && cam.A === c.frame && unzip < .03 && performance.now() - grooveT > 300) { grooveT = performance.now(); placeGrooves(); }
     if (Math.abs(unzip - target) > .001) {
@@ -372,7 +387,8 @@ BUILD.dna = (c) => {
   bar2.add(new THREE.Mesh(new THREE.BoxGeometry(10 * NM, .12, .12), barM)); [-1, 1].forEach(sd => { const t = new THREE.Mesh(new THREE.BoxGeometry(.12, .7, .12), barM); t.position.x = sd * 5 * NM; bar2.add(t); });
   c.addLabel(bar2, '10 nm', { offset: new V3(0, .3, 0), always: true });
   const view = k => {
-    const f = k === 'fiber'; chrom.visible = f; tilt.visible = !f; bar.visible = !f; strip.style.display = f ? 'none' : ''; ub.style.display = f ? 'none' : '';
+    const f = k === 'fiber'; if (f && rep && rep.on()) { rep.show(false, true); ub.textContent = 'Show replication'; }
+    chrom.visible = f; tilt.visible = !f; bar.visible = !f; strip.style.display = f ? 'none' : ''; ub.style.display = f ? 'none' : '';
     sceneNote(c, f ? NOTE.fiber : (target ? NOTE.rep : NOTE.helix));
     if (f) showInfo('nucleosome');
     if (typeof flyTo === 'function' && c.frame) flyTo(c.frame, new V3(), f ? 6.5e-8 : 2.6e-8);

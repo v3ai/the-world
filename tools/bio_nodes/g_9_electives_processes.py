@@ -100,7 +100,7 @@ use('cellular_respiration protein_synthesis mitosis action_potential synaptic_tr
 proc('dna_replication_process','DNA replication','bio_replication_machinery','Copying the genome before cell division.',
  'The cell unzips its DNA and builds a new partner strand for each old strand, so two identical double helices result.',
  'Replication starts at origins, runs in both directions, and is checked for mistakes as it goes.',
- 'Fork speed ≈ 1,000 nt/s (E. coli) or ≈ 50 nt/s (human); error rate ≈ 10⁻⁹–10⁻¹⁰ per base after proofreading and mismatch repair.',
+ 'Fork speed ≈ 1,000 nt/s (E. coli); in human HeLa cells a mean of 0.68 kb/min (≈ 11 nt/s), at most ≈ 2 kb/min; error rate ≈ 10⁻⁹–10⁻¹⁰ per base after proofreading and mismatch repair.',
  'Human origins|≈ 30,000–50,000;Okazaki fragment length|≈ 100–200 nt (eukaryotes)', 'BIO:14.3 BIO:14.4 BIO:14.5',
  [('Origin recognition','Initiator proteins bind an origin of replication and load the helicase.','nucleus bio_dna_structure'),
   ('Unwinding','Helicase separates the two strands, forming two replication forks; single-strand binding proteins and topoisomerase relieve strain.','bio_replication_machinery'),

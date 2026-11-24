@@ -1334,6 +1334,7 @@ v2frame('dna', 'dna', () => 1 / 2.4, (F, c) => {
   if (MD.on) { MD.restyleDNA(F, c); MD.kind(F, 'Model', 'Colours are a code: A green, T red, G yellow, C blue; the backbone pale (sugar) and ochre (phosphate).'); MD.stage(F, { near: .85, far: 2.4 }); }
   F.spawn = (T, hint) => {
     const id = hint && hint.id || '';
+    if (typeof REP !== 'undefined') { const r = REP.spawn(F, T, hint); if (r) return r; }   // a machine of replication: its parts (js/replication.js)
     const mol = /base_[AT]/.test(id) ? 'bp_AT' : /base_[GC]/.test(id) ? 'bp_GC' : id === 'sugar' ? 'deoxyribose' : id === 'phosphate' ? 'phosphate' : 'bp_GC';
     const nm = { bp_AT: 'Adenine-thymine base pair', bp_GC: 'Guanine-cytosine base pair', deoxyribose: 'Deoxyribose (the sugar in DNA)', phosphate: 'Phosphate group' }[mol];
     return new Frame({ type: 'mol', name: nm, unit: 1e-10, radius: 25, r1: 1.2e-8, spawnD: 1e-9, pos: T.clone(), opts: { mol, fixed: true } });

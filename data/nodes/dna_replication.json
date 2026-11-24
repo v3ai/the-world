@@ -1,0 +1,1244 @@
+[
+ {
+  "id": "dna_replication",
+  "title": "DNA replication at the fork",
+  "kind": "process",
+  "template": "concept",
+  "scale_m": 2e-08,
+  "parents": [],
+  "parts": [
+   "rep_cmg",
+   "rep_fork_partners",
+   "rep_pol_epsilon",
+   "rep_pol_alpha_primase",
+   "rep_pol_delta",
+   "rep_pcna",
+   "rep_rfc",
+   "rep_fen1",
+   "rep_ligase",
+   "rep_topo1",
+   "rep_rpa",
+   "rep_template",
+   "rep_okazaki",
+   "rep_rna_primer",
+   "rep_dntp",
+   "rep_fidelity"
+  ],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "dna_replication_process",
+   "bio_replication_machinery",
+   "bio_dna_structure",
+   "bio_dna_damage_repair"
+  ],
+  "summary": "How a cell copies its DNA: a team of protein machines unwinds the double helix and builds a new partner for each old strand.",
+  "layers": {
+   "basics": "Before a cell divides it copies all of its DNA. The two strands of the double helix come apart at a <b>fork</b>, and each old strand is used as a pattern for a new one: A pairs with T and G with C. The work is done by proteins, not by the DNA itself. A ring-shaped <b>helicase</b> pulls one strand through its middle and pushes the other aside. <b>DNA polymerases</b> build the new strands one nucleotide at a time. Other proteins start each new piece, hold the polymerase on, tidy up the ends and join the pieces.",
+   "deeper": "A DNA polymerase can only lengthen a strand at its 3′ end, and it needs an existing strand end to start from. The two old strands run in opposite directions, so on one of them (the leading strand template) the new strand can grow towards the fork without stopping. On the other (the lagging strand template) the new strand has to grow away from the fork. It is made backwards in pieces called Okazaki fragments, each started by a short RNA primer. The primer is later removed, the gap filled, and the pieces joined. Ahead of the fork, untwisting the helix overwinds the DNA in front; topoisomerases undo that strain.",
+   "expert": "In human cells the core replisome is the CMG helicase (Cdc45, the Mcm2–7 ring and GINS) carrying Pol ε, which makes most of the leading strand, with AND-1, Timeless–Tipin and Claspin. CMG moves along the leading strand template 3′ to 5′, with the lagging strand template excluded from its central channel. Pol α–primase is held on CMG above the exit of the lagging strand template and makes an RNA–DNA primer about 20–35 nucleotides long. RFC loads the PCNA clamp at the primer, Pol δ extends it, and when Pol δ reaches the previous fragment it displaces its 5′ end as a flap that FEN1 cuts. Ligase I seals the nick. Fidelity comes from three stages: base selection, proofreading by the 3′→5′ exonuclease of Pol δ and Pol ε, and mismatch repair after the fork has passed."
+  },
+  "facts": [
+   [
+    "Fork speed (HeLa cells, DNA combing)",
+    "mean 0.68 kb per minute (≈ 11 nucleotides a second); maximum ≈ 2 kb per minute"
+   ],
+   [
+    "Okazaki fragment length",
+    "≈ 200 nucleotides"
+   ],
+   [
+    "Primer",
+    "8–10 nucleotides of RNA, extended by Pol α to ≈ 20–35 nucleotides in all"
+   ],
+   [
+    "Pol δ synthesis rate, physiological dNTP levels (in vitro)",
+    "≈ 50 nucleotides a second"
+   ],
+   [
+    "Errors",
+    "polymerase base selection ≈ 1 in 10⁴–10⁵; overall ≈ 1 in 10⁸–10¹⁰ after proofreading and mismatch repair"
+   ],
+   [
+    "Size of the core replisome (CMG with its partners)",
+    "≈ 20 nm across; the DNA it unwinds is 2 nm wide"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "BIO",
+    "14.3",
+    "14-3-basics-of-dna-replication"
+   ],
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ],
+   [
+    "BIO",
+    "14.6",
+    "14-6-dna-repair"
+   ]
+  ],
+  "where": "place:dna",
+  "open_questions": [
+   "How fast forks really move in human cells: in HeLa cells measurements range from under 1 to about 2 kb per minute, and they differ between cell types and methods.",
+   "How human cells remove RNA primers quickly: with purified human proteins the Pol δ–FEN1 cycle takes about 11 seconds a nucleotide, far too slow to keep up.",
+   "How the lagging strand polymerase, clamp loader and ligase are positioned relative to CMG while they work; no structure shows them all together.",
+   "How often topoisomerases ahead of the fork are used, and how often the fork rotates instead."
+  ],
+  "ext": [
+   {
+    "title": "Jones and others 2021, Structure of a human replisome (EMBO Journal)",
+    "url": "https://doi.org/10.15252/embj.2021108819"
+   },
+   {
+    "title": "Jones and others 2023, How Pol α-primase is targeted to replisomes (Molecular Cell)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10501992/"
+   },
+   {
+    "title": "Burgers and Kunkel 2017, Eukaryotic DNA replication fork (Annual Review of Biochemistry)",
+    "url": "https://doi.org/10.1146/annurev-biochem-061516-044709"
+   },
+   {
+    "title": "Guilbaud and others 2011, fork speed in HeLa cells by DNA combing (PLoS Computational Biology)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3248390/"
+   },
+   {
+    "title": "Raducanu and others 2022, human Okazaki fragment maturation is slow (Nature Communications)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9666535/"
+   },
+   {
+    "title": "Bębenek and Ziuzia-Graczyk 2018, Fidelity of DNA replication: a matter of proofreading (Current Genetics)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6153641/"
+   },
+   {
+    "title": "OpenStax Biology 2e, 14.5 DNA replication in eukaryotes",
+    "url": "https://openstax.org/books/biology-2e/pages/14-5-dna-replication-in-eukaryotes"
+   }
+  ],
+  "steps": [
+   {
+    "title": "Unwinding",
+    "text": "The helicase (CMG) moves along one parent strand, 3′ to 5′, pulling it through its ring with energy from ATP. The other strand cannot fit through and is pushed out at the side, so the two are peeled apart. Ahead, the untwisting overwinds the DNA; topoisomerase I cuts one strand, lets it swivel and joins it again.",
+    "focus": [
+     "rep_cmg",
+     "rep_fork_partners",
+     "rep_topo1"
+    ]
+   },
+   {
+    "title": "Leading strand",
+    "text": "Pol ε, riding on the helicase, adds nucleotides to the new leading strand one at a time, as fast as the fork moves. Its 3′ end points towards the fork, so it can follow the helicase without a break.",
+    "focus": [
+     "rep_pol_epsilon",
+     "rep_template",
+     "rep_dntp"
+    ]
+   },
+   {
+    "title": "Priming",
+    "text": "Primase, one half of Pol α–primase, starts a new piece of the lagging strand with an RNA primer about 10 nucleotides long, and Pol α adds about 20 nucleotides of DNA to it. The helicase keeps unwinding meanwhile, so the single strand between it and the primase bulges into a loop.",
+    "focus": [
+     "rep_pol_alpha_primase",
+     "rep_rna_primer"
+    ]
+   },
+   {
+    "title": "Primer released",
+    "text": "Pol α–primase lets go of the finished primer, and the loop of single strand pays out. Single-strand binding protein (RPA) coats the bare strand so it cannot fold back on itself.",
+    "focus": [
+     "rep_rpa"
+    ]
+   },
+   {
+    "title": "Clamp loading",
+    "text": "RFC, the clamp loader, brings the ring-shaped clamp PCNA held open by a gap about 2 nm wide. The DNA at the end of the primer slips in through the gap and the ring closes round it. Opening and closing need no ATP to be split; RFC splits ATP to let go.",
+    "focus": [
+     "rep_rfc",
+     "rep_pcna"
+    ]
+   },
+   {
+    "title": "Pol δ binds",
+    "text": "DNA polymerase δ grips PCNA and the primer’s 3′ end; the clamp slides along the DNA with it. The ring round the DNA keeps it on, so it can add many nucleotides without falling off.",
+    "focus": [
+     "rep_pol_delta",
+     "rep_pcna"
+    ]
+   },
+   {
+    "title": "Okazaki fragment",
+    "text": "Pol δ adds DNA nucleotides to the primer’s 3′ end, about 50 a second, moving away from the fork. A polymerase can only add to a 3′ end, and on this strand the 3′ end points away from the fork: that is why the lagging strand is made backwards, in pieces.",
+    "focus": [
+     "rep_pol_delta",
+     "rep_okazaki",
+     "rep_dntp"
+    ]
+   },
+   {
+    "title": "Proofreading",
+    "text": "A wrong nucleotide has been added (marked; shown once a fragment, though before proofreading it happens only about once in 10,000 to 100,000). Pol δ moves the mismatched end to a second site, its exonuclease, which cuts it off; then it adds the right one.",
+    "focus": [
+     "rep_pol_delta",
+     "rep_fidelity"
+    ]
+   },
+   {
+    "title": "Reaching the last fragment",
+    "text": "Pol δ carries on until it runs into the RNA primer at the start of the previous fragment. At the fork the helicase and Pol ε keep going without a break.",
+    "focus": [
+     "rep_pol_delta",
+     "rep_cmg",
+     "rep_pol_epsilon"
+    ]
+   },
+   {
+    "title": "Primer removal",
+    "text": "Pol δ pushes into the previous fragment and peels its start off as a short flap, and FEN1 cuts each flap off, a nucleotide or two at a time. When the RNA and a little of Pol α’s DNA have been replaced, one break in the backbone, a nick, is left.",
+    "focus": [
+     "rep_fen1",
+     "rep_pol_delta"
+    ]
+   },
+   {
+    "title": "Ligation",
+    "text": "DNA ligase I closes round the nick and seals it with energy from ATP, joining the new fragment to the previous one; then it opens and lets go. The clamp is left on the DNA; how and when it comes off is not shown.",
+    "focus": [
+     "rep_ligase"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rep_cmg",
+  "title": "CMG helicase",
+  "kind": "machine",
+  "template": "concept",
+  "scale_m": 1.75e-08,
+  "parents": [
+   "dna_replication"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "dna_replication"
+  ],
+  "related": [
+   "rep_pol_epsilon",
+   "rep_fork_partners",
+   "rep_topo1"
+  ],
+  "summary": "The ring-shaped motor at the fork that unwinds the double helix, pulling one strand through its centre.",
+  "layers": {
+   "basics": "The helicase is the engine of the fork. It is a ring of six related proteins (Mcm2 to Mcm7) with two helper parts, Cdc45 and the four-part GINS: eleven proteins in all. It wraps round one strand of the DNA and moves along it, using energy from splitting ATP. The other strand cannot fit through the ring and is pushed off to the side, so the two strands are peeled apart.",
+   "deeper": "CMG encircles the leading strand template and moves along it 3′ to 5′, with the N-terminal tier of the Mcm ring at the front. The parental duplex enters through the front of the ring; the lagging strand template is excluded and leaves past the outside of the ring, where Pol α–primase sits. CMG also carries the leading strand polymerase Pol ε and the partner proteins AND-1, Timeless–Tipin and Claspin.",
+   "expert": "The model here is the human core replisome solved by cryo-electron microscopy at 3.2 Å (PDB 7PFO; Jones and others 2021), with the DNA drawn where the structure has it: the parental duplex in front, the leading strand template through the Mcm pore. In budding yeast the same arrangement was shown earlier. The motor domains are AAA+ ATPases in the C-terminal tier; how ATP hydrolysis around the ring pulls the strand is still argued over."
+  },
+  "facts": [
+   [
+    "Subunits",
+    "11: Mcm2, Mcm3, Mcm4, Mcm5, Mcm6, Mcm7, Cdc45, Psf1, Psf2, Psf3, Sld5"
+   ],
+   [
+    "Size (model)",
+    "≈ 14 × 15 × 17.5 nm"
+   ],
+   [
+    "Strand it encircles",
+    "the leading strand template"
+   ],
+   [
+    "Direction",
+    "3′ to 5′ along the strand it encircles"
+   ],
+   [
+    "Speed",
+    "the fork's speed: mean 0.68 kb per minute in HeLa cells"
+   ],
+   [
+    "Structure",
+    "PDB 7PFO, human, cryo-EM, 3.2 Å"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ]
+  ],
+  "where": "place:dna",
+  "open_questions": [
+   "How the six ATPase sites of the Mcm ring take turns to pull the strand.",
+   "Exactly where the two strands separate inside or at the edge of the ring."
+  ],
+  "ext": [
+   {
+    "title": "Jones and others 2021, Structure of a human replisome (EMBO Journal)",
+    "url": "https://doi.org/10.15252/embj.2021108819"
+   },
+   {
+    "title": "Protein Data Bank 7PFO: core human replisome",
+    "url": "https://www.rcsb.org/structure/7PFO"
+   },
+   {
+    "title": "Burgers and Kunkel 2017, Eukaryotic DNA replication fork (Annual Review of Biochemistry)",
+    "url": "https://doi.org/10.1146/annurev-biochem-061516-044709"
+   }
+  ]
+ },
+ {
+  "id": "rep_fork_partners",
+  "title": "AND-1, Timeless–Tipin and Claspin",
+  "kind": "machine",
+  "template": "concept",
+  "scale_m": null,
+  "parents": [
+   "dna_replication"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "dna_replication"
+  ],
+  "related": [
+   "rep_cmg"
+  ],
+  "summary": "Partner proteins that ride on the helicase: they grip the incoming DNA, hold the replisome together and help the fork keep moving.",
+  "layers": {
+   "basics": "Several proteins travel with the helicase. Timeless and Tipin sit at the front and hold the double helix just before it is split. AND-1 is a three-armed hub on the side of the ring. Claspin stretches across the replisome, touching many of its parts.",
+   "deeper": "Timeless–Tipin (the fork protection complex) cradles the parental duplex in front of Mcm2, 6, 4 and 7. AND-1 (Ctf4 in yeast) is a trimer and a hub: in yeast it binds GINS and Pol α, and the human protein also binds Pol δ. Claspin (Mrc1 in yeast) works with Pol ε to link replication to the checkpoint that stops the cell cycle when something goes wrong.",
+   "expert": "In 7PFO the AND-1 SepB domains form a trimer; about two-thirds of Timeless is resolved, and the last ≈ 400 amino acids, with DNA-binding and PARP-binding domains, are not. Three short regions of Claspin are resolved. Their exact contributions to speed and to fork protection are still being worked out."
+  },
+  "facts": [
+   [
+    "Parts drawn",
+    "AND-1 (three copies), Timeless, Tipin, Claspin (three short segments)"
+   ],
+   [
+    "Structure",
+    "PDB 7PFO, human, cryo-EM, 3.2 Å"
+   ],
+   [
+    "Size (model)",
+    "≈ 15 × 18 × 17 nm with CMG removed"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ]
+  ],
+  "where": "place:dna",
+  "open_questions": [
+   "What Claspin does in the moving replisome, beyond signalling to the checkpoint.",
+   "Whether Timeless recruits topoisomerase I ahead of the fork in human cells, as its yeast counterpart Tof1 may."
+  ],
+  "ext": [
+   {
+    "title": "Jones and others 2021, Structure of a human replisome (EMBO Journal)",
+    "url": "https://doi.org/10.15252/embj.2021108819"
+   },
+   {
+    "title": "Protein Data Bank 7PFO: core human replisome",
+    "url": "https://www.rcsb.org/structure/7PFO"
+   }
+  ]
+ },
+ {
+  "id": "rep_pol_epsilon",
+  "title": "DNA polymerase ε (Pol ε)",
+  "kind": "machine",
+  "template": "concept",
+  "scale_m": null,
+  "parents": [
+   "dna_replication"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "dna_replication"
+  ],
+  "related": [
+   "rep_cmg",
+   "rep_pol_delta",
+   "rep_fidelity"
+  ],
+  "summary": "The polymerase that makes most of the leading strand, riding on the helicase and adding nucleotides without a break.",
+  "layers": {
+   "basics": "Pol ε builds the new strand on the leading side of the fork. Because it can lengthen that strand in the same direction as the fork moves, it keeps going for as long as the fork does. Half of it is fixed to the helicase; the other half, the part that actually adds nucleotides, hangs on a flexible link next to it.",
+   "deeper": "Pol ε has four subunits. Its catalytic subunit, POLE1, has the polymerase and a 3′→5′ exonuclease that removes wrongly paired nucleotides (proofreading). A small extra domain lets it wrap round the new double helix, which helps it stay on.",
+   "expert": "In 7PFO the non-catalytic half (POLE2 and the C-terminal half of POLE1) is fixed to CMG; the N-terminal catalytic half is flexible and only seen at low resolution. Here the catalytic part is drawn from the yeast structure 4M8O (2.2 Å X-ray, with DNA and an incoming dATP), placed by illustration where the leading strand leaves CMG. POLE3 and POLE4 are not drawn. Losing Pol ε or Pol δ proofreading raises mutation rates 10 to 100-fold, and changes in their exonuclease domains have been found in some human cancers."
+  },
+  "facts": [
+   [
+    "Subunits",
+    "4 (POLE1, POLE2, POLE3, POLE4); 2 drawn on CMG, catalytic part from yeast"
+   ],
+   [
+    "Strand",
+    "leading (the main leading-strand polymerase; shared with Pol δ in part)"
+   ],
+   [
+    "Proofreading",
+    "yes, 3′→5′ exonuclease"
+   ],
+   [
+    "Structures",
+    "PDB 7PFO (human, cryo-EM 3.2 Å); PDB 4M8O (yeast Pol2 catalytic domain, X-ray 2.2 Å)"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ]
+  ],
+  "where": "place:dna",
+  "open_questions": [
+   "Where exactly the catalytic half sits while it works: it is flexible in the structures.",
+   "How the leading strand is shared between Pol ε and Pol δ. Most evidence gives Pol ε the bulk of it, but Pol δ may start it at origins and take over under some conditions, and one model has Pol δ making it while Pol ε mainly proofreads. Yeast cells can even live without Pol ε's polymerase domain, though not with a disabled one in its place."
+  ],
+  "ext": [
+   {
+    "title": "Jones and others 2021, Structure of a human replisome (EMBO Journal)",
+    "url": "https://doi.org/10.15252/embj.2021108819"
+   },
+   {
+    "title": "Protein Data Bank 4M8O: yeast Pol ε catalytic domain with DNA and dATP",
+    "url": "https://www.rcsb.org/structure/4M8O"
+   },
+   {
+    "title": "Burgers and Kunkel 2017, Eukaryotic DNA replication fork (Annual Review of Biochemistry)",
+    "url": "https://doi.org/10.1146/annurev-biochem-061516-044709"
+   },
+   {
+    "title": "Bębenek and Ziuzia-Graczyk 2018, Fidelity of DNA replication: a matter of proofreading (Current Genetics)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6153641/"
+   }
+  ]
+ },
+ {
+  "id": "rep_pol_alpha_primase",
+  "title": "Pol α–primase",
+  "kind": "machine",
+  "template": "concept",
+  "scale_m": null,
+  "parents": [
+   "dna_replication"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "dna_replication"
+  ],
+  "related": [
+   "rep_rna_primer",
+   "rep_cmg"
+  ],
+  "summary": "The machine that starts every new piece of DNA: it makes a short RNA primer and adds a little DNA to it.",
+  "layers": {
+   "basics": "No DNA polymerase can start a strand from nothing; it can only lengthen one. Pol α–primase solves this. Its primase half strings together a short piece of RNA, about 10 nucleotides, matched to the template. Its Pol α half then adds about 20 nucleotides of DNA. The result is a primer for Pol δ to extend.",
+   "deeper": "On the lagging strand a primer is needed for every Okazaki fragment, so Pol α–primase works again and again. It is held on the helicase with its primase just above the place where the lagging strand template comes out, which is why it primes there and almost never on the leading strand. Pol α has no proofreading, so its DNA is less accurate; Pol δ later replaces most of it.",
+   "expert": "Four subunits: PRIM1 (the primase), PRIM2, POLA1 (the polymerase) and POLA2. In 8B9D (human, cryo-EM 3.4 Å) PRIM1 sits over the exit channel for lagging strand single-stranded DNA. The polymerase core is drawn here from the crystal structure 5EXR (3.6 Å), joined at POLA2. Primase makes 8–10 nucleotides of RNA, and Pol α extends it to a total of about 20–35. Pol α makes about 1.5% of the genome, with an error rate of about 1 in 10,000 per base."
+  },
+  "facts": [
+   [
+    "Subunits",
+    "4 (PRIM1, PRIM2, POLA1, POLA2)"
+   ],
+   [
+    "RNA made by primase",
+    "8–10 nucleotides"
+   ],
+   [
+    "Whole primer",
+    "≈ 20–35 nucleotides"
+   ],
+   [
+    "Proofreading",
+    "none"
+   ],
+   [
+    "Error rate (Pol α)",
+    "≈ 10⁻⁴ per base"
+   ],
+   [
+    "Structures",
+    "PDB 8B9D (human replisome with Pol α–primase, cryo-EM 3.4 Å); PDB 5EXR (human primosome, X-ray 3.6 Å)"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ]
+  ],
+  "where": "place:dna",
+  "open_questions": [
+   "How primase picks the place to start, and how it hands the primer over to Pol α.",
+   "How many of Pol α's errors survive into the finished strand."
+  ],
+  "ext": [
+   {
+    "title": "Jones and others 2023, How Pol α-primase is targeted to replisomes (Molecular Cell)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10501992/"
+   },
+   {
+    "title": "Protein Data Bank 8B9D: human replisome bound by Pol α",
+    "url": "https://www.rcsb.org/structure/8B9D"
+   },
+   {
+    "title": "Protein Data Bank 5EXR: human primosome",
+    "url": "https://www.rcsb.org/structure/5EXR"
+   },
+   {
+    "title": "Bębenek and Ziuzia-Graczyk 2018, Fidelity of DNA replication: a matter of proofreading (Current Genetics)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6153641/"
+   }
+  ]
+ },
+ {
+  "id": "rep_pol_delta",
+  "title": "DNA polymerase δ (Pol δ)",
+  "kind": "machine",
+  "template": "concept",
+  "scale_m": null,
+  "parents": [
+   "dna_replication"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "dna_replication"
+  ],
+  "related": [
+   "rep_pcna",
+   "rep_fen1",
+   "rep_okazaki",
+   "rep_fidelity"
+  ],
+  "summary": "The polymerase that builds each Okazaki fragment of the lagging strand and checks its own work as it goes.",
+  "layers": {
+   "basics": "Pol δ takes over from the primer and adds DNA nucleotides one at a time, each matched to the template. It is held on the DNA by the ring-shaped clamp PCNA. If it adds a wrong nucleotide, it moves the end into a second site that cuts it off and then tries again. When it reaches the previous fragment it keeps going a little, peeling the old primer off as a flap.",
+   "deeper": "Pol δ has four subunits in humans. The catalytic subunit POLD1 holds both the polymerase site and a 3′→5′ exonuclease for proofreading. Bound to PCNA it is fast and stays on; with physiological nucleotide levels it adds about 50 nucleotides a second in the test tube. It also proofreads errors left by Pol α.",
+   "expert": "The model is 6TNY (human Pol δ with PCNA on primer–template DNA, cryo-EM 3.08 Å; Lancey and others 2020). Strand displacement into the downstream fragment creates 5′ flaps that FEN1 removes; with human proteins in vitro this cycle is slow, about 11 seconds per nucleotide (Raducanu and others 2022). Losing Pol δ proofreading raises mutation rates 10 to 100-fold."
+  },
+  "facts": [
+   [
+    "Subunits",
+    "4 (POLD1, POLD2, POLD3, POLD4)"
+   ],
+   [
+    "Strand",
+    "mainly lagging (Okazaki fragments)"
+   ],
+   [
+    "Rate (in vitro, physiological dNTPs)",
+    "≈ 50 nucleotides a second"
+   ],
+   [
+    "Proofreading",
+    "3′→5′ exonuclease; improves fidelity ≈ 10–1,000-fold"
+   ],
+   [
+    "Copies per cell (POLD1, one cancer cell line)",
+    "≈ 2 × 10⁴"
+   ],
+   [
+    "Structure",
+    "PDB 6TNY, human, cryo-EM, 3.08 Å"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ]
+  ],
+  "where": "place:dna",
+  "open_questions": [
+   "How the Pol δ–FEN1 cycle runs fast enough in cells, when it is so slow with purified proteins."
+  ],
+  "ext": [
+   {
+    "title": "Protein Data Bank 6TNY: processive human Pol δ holoenzyme",
+    "url": "https://www.rcsb.org/structure/6TNY"
+   },
+   {
+    "title": "Raducanu and others 2022, human Okazaki fragment maturation is slow (Nature Communications)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9666535/"
+   },
+   {
+    "title": "Burgers and Kunkel 2017, Eukaryotic DNA replication fork (Annual Review of Biochemistry)",
+    "url": "https://doi.org/10.1146/annurev-biochem-061516-044709"
+   },
+   {
+    "title": "Bębenek and Ziuzia-Graczyk 2018, Fidelity of DNA replication: a matter of proofreading (Current Genetics)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6153641/"
+   }
+  ]
+ },
+ {
+  "id": "rep_pcna",
+  "title": "PCNA sliding clamp",
+  "kind": "machine",
+  "template": "concept",
+  "scale_m": 9e-09,
+  "parents": [
+   "dna_replication"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "dna_replication"
+  ],
+  "related": [
+   "rep_rfc",
+   "rep_pol_delta"
+  ],
+  "summary": "A ring of three proteins that encircles the DNA and slides along it, holding the polymerase on.",
+  "layers": {
+   "basics": "PCNA is a closed ring with the DNA through its hole. It cannot fall off, but it slides freely. Pol δ, FEN1 and ligase all grip it, so it keeps them on the DNA and lets them take turns at the same spot.",
+   "deeper": "Each PCNA ring has three identical subunits. It is loaded by RFC at each primer and stays on the finished fragment afterwards. Because it is a ring, it can only be put on or taken off where the DNA has a free end or by a loader that opens it.",
+   "expert": "Drawn from 6TNY (human, cryo-EM). In the model the ring is about 9 nm across and 4 nm thick, with the 2 nm double helix through its hole. It is also how the polymerase, FEN1 and ligase take turns: all three bind it."
+  },
+  "facts": [
+   [
+    "Subunits",
+    "3 identical (homotrimer)"
+   ],
+   [
+    "Size (model)",
+    "≈ 9 nm across, ≈ 4 nm thick"
+   ],
+   [
+    "Structure",
+    "PDB 6TNY, human, cryo-EM, 3.08 Å"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ]
+  ],
+  "where": "place:dna",
+  "open_questions": [
+   "How the clamps left on finished fragments are removed, and when."
+  ],
+  "ext": [
+   {
+    "title": "Protein Data Bank 6TNY: human Pol δ holoenzyme with PCNA",
+    "url": "https://www.rcsb.org/structure/6TNY"
+   },
+   {
+    "title": "Burgers and Kunkel 2017, Eukaryotic DNA replication fork (Annual Review of Biochemistry)",
+    "url": "https://doi.org/10.1146/annurev-biochem-061516-044709"
+   }
+  ]
+ },
+ {
+  "id": "rep_rfc",
+  "title": "RFC clamp loader",
+  "kind": "machine",
+  "template": "concept",
+  "scale_m": null,
+  "parents": [
+   "dna_replication"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "dna_replication"
+  ],
+  "related": [
+   "rep_pcna"
+  ],
+  "summary": "The machine that opens the PCNA ring and closes it round the DNA at each new primer.",
+  "layers": {
+   "basics": "A ring cannot simply be pushed onto a long DNA molecule. RFC grips the PCNA ring, cracks it open, finds the end of a primer and closes the ring round the DNA there. Then it lets go.",
+   "deeper": "RFC has five subunits. It recognises the junction between the primer–template double helix and single strand. It uses ATP: in the structures, ATP binding is enough to open and close the clamp, but splitting ATP is needed to release RFC from the closed clamp.",
+   "expert": "The model is 7TID (yeast RFC with PCNA on primer–template DNA, cryo-EM 3.3 Å; Gaubitz and others 2022). The human complex is similar. In the scene RFC brings PCNA to the primer end and leaves; the time it takes is chosen, not measured."
+  },
+  "facts": [
+   [
+    "Subunits",
+    "5 (Rfc1 to Rfc5)"
+   ],
+   [
+    "Uses",
+    "ATP"
+   ],
+   [
+    "Structure",
+    "PDB 7TID, yeast, cryo-EM, 3.3 Å"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ]
+  ],
+  "where": "place:dna",
+  "open_questions": [
+   "How fast clamp loading happens at a moving fork."
+  ],
+  "ext": [
+   {
+    "title": "Protein Data Bank 7TID: yeast RFC bound to PCNA and primer–template DNA",
+    "url": "https://www.rcsb.org/structure/7TID"
+   }
+  ]
+ },
+ {
+  "id": "rep_fen1",
+  "title": "FEN1 flap endonuclease",
+  "kind": "machine",
+  "template": "concept",
+  "scale_m": null,
+  "parents": [
+   "dna_replication"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "dna_replication"
+  ],
+  "related": [
+   "rep_pol_delta",
+   "rep_ligase"
+  ],
+  "summary": "A cutting enzyme that trims off the old primer as Pol δ peels it up.",
+  "layers": {
+   "basics": "When Pol δ reaches the start of the previous fragment, it keeps adding nucleotides and lifts the old end up as a loose flap. FEN1 cuts the flap off where it joins the double helix. This repeats until the RNA primer and some of Pol α's DNA are gone.",
+   "deeper": "FEN1 rides on PCNA next to Pol δ (the 'toolbelt' arrangement). It cuts a 5′ flap at its base, leaving a nick that ligase can seal. Many short flaps are cut in turn.",
+   "expert": "Drawn from 6TNZ (human Pol δ–FEN1–PCNA, cryo-EM 4.05 Å). In one human cell line there are about 140,000 FEN1 molecules per cell, several times more than Pol δ or ligase I. With purified human proteins the cycle of displacement and cutting is slow (≈ 11 s per nucleotide), and RNase H, which removes RNA directly, speeds it up about tenfold."
+  },
+  "facts": [
+   [
+    "Cuts",
+    "5′ flaps"
+   ],
+   [
+    "Copies per cell (one cancer cell line)",
+    "≈ 1.4 × 10⁵"
+   ],
+   [
+    "Structure",
+    "PDB 6TNZ, human, cryo-EM, 4.05 Å"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ]
+  ],
+  "where": "place:dna",
+  "open_questions": [
+   "How much of the primer is removed by FEN1 and how much by other routes in cells: long flaps can also be cut by Dna2, and RNase H2 can cut the primer's RNA directly."
+  ],
+  "ext": [
+   {
+    "title": "Protein Data Bank 6TNZ: human Pol δ–FEN1–PCNA toolbelt",
+    "url": "https://www.rcsb.org/structure/6TNZ"
+   },
+   {
+    "title": "Raducanu and others 2022, human Okazaki fragment maturation is slow (Nature Communications)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9666535/"
+   }
+  ]
+ },
+ {
+  "id": "rep_ligase",
+  "title": "DNA ligase I",
+  "kind": "machine",
+  "template": "concept",
+  "scale_m": null,
+  "parents": [
+   "dna_replication"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "dna_replication"
+  ],
+  "related": [
+   "rep_fen1",
+   "rep_okazaki"
+  ],
+  "summary": "The enzyme that joins each Okazaki fragment to the one before by sealing the last break in the backbone.",
+  "layers": {
+   "basics": "After the primer has been removed and replaced, the new fragment and the previous one sit end to end with one missing bond between them: a nick. Ligase I wraps right round the DNA and makes that bond, using energy from ATP.",
+   "deeper": "Ligase first attaches AMP from ATP to itself, then passes it to the 5′ phosphate at the nick, and finally joins the 3′ end to that phosphate, releasing AMP. It is selective about what it joins: in yeast, high-fidelity ligation helps keep the joins between Okazaki fragments free of errors.",
+   "expert": "The model is 1X9N (human ligase I bound to 5′-adenylated, nicked DNA, X-ray 3.0 Å; Pascal and others 2004), which showed it completely encircling the DNA and partly unwinding it. About 26,000 copies per cell in one human cell line."
+  },
+  "facts": [
+   [
+    "Energy source",
+    "ATP"
+   ],
+   [
+    "Copies per cell (one cancer cell line)",
+    "≈ 2.6 × 10⁴"
+   ],
+   [
+    "Structure",
+    "PDB 1X9N, human, X-ray, 3.0 Å"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ]
+  ],
+  "where": "place:dna",
+  "ext": [
+   {
+    "title": "Protein Data Bank 1X9N: human DNA ligase I on nicked DNA",
+    "url": "https://www.rcsb.org/structure/1X9N"
+   },
+   {
+    "title": "Williams and others 2021, High-fidelity ligation in Okazaki fragment maturation (Nature Communications)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7817679/"
+   },
+   {
+    "title": "Raducanu and others 2022, human Okazaki fragment maturation is slow (Nature Communications)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9666535/"
+   }
+  ]
+ },
+ {
+  "id": "rep_topo1",
+  "title": "Topoisomerase I",
+  "kind": "machine",
+  "template": "concept",
+  "scale_m": null,
+  "parents": [
+   "dna_replication"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "dna_replication"
+  ],
+  "related": [
+   "rep_cmg"
+  ],
+  "summary": "An enzyme ahead of the fork that lets the overwound DNA untwist by cutting one strand and letting it turn.",
+  "layers": {
+   "basics": "The two strands of DNA wind round each other once every ten or so base pairs. Pulling them apart at the fork winds up the DNA in front, like pulling apart a twisted rope. Topoisomerase I cuts one strand, lets the DNA spin to release the twist, and joins the strand again.",
+   "deeper": "Overwinding (positive supercoiling) ahead of the fork would stop the helicase. Topoisomerases I and II remove it, acting as a 'swivel' ahead of the fork. Type I topoisomerases cut one strand; type II topoisomerases cut both and pass another stretch of DNA through the break. The fork can also rotate instead, passing the twist behind it as intertwined new DNA.",
+   "expert": "Drawn from 1A36 (human topoisomerase I with DNA, X-ray 2.8 Å; Stewart and others 1998), which suggested 'controlled rotation' of the cut strand. In the scene one enzyme binds about 39 nm ahead of the fork, rides in with the DNA, and releases the twist that builds up between it and the fork; real numbers and positions are not known."
+  },
+  "facts": [
+   [
+    "Breaks",
+    "one strand at a time"
+   ],
+   [
+    "Structure",
+    "PDB 1A36, human, X-ray, 2.8 Å"
+   ],
+   [
+    "Strands wind round each other",
+    "once every ≈ 10.4 base pairs"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ]
+  ],
+  "where": "place:dna",
+  "open_questions": [
+   "How often topoisomerases act ahead of the fork and how often the fork rotates instead.",
+   "How the swivel is coordinated with transcription, which also overwinds DNA."
+  ],
+  "ext": [
+   {
+    "title": "Protein Data Bank 1A36: human topoisomerase I–DNA complex",
+    "url": "https://www.rcsb.org/structure/1A36"
+   },
+   {
+    "title": "Keszthelyi and others 2016, Topological stress during DNA replication (Genes)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5192510/"
+   },
+   {
+    "title": "Lalonde and others 2021, Transcription–replication conflicts (Life)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8303131/"
+   }
+  ]
+ },
+ {
+  "id": "rep_rpa",
+  "title": "RPA, single-strand binding protein",
+  "kind": "machine",
+  "template": "concept",
+  "scale_m": null,
+  "parents": [
+   "dna_replication"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "dna_replication"
+  ],
+  "related": [
+   "rep_pol_alpha_primase"
+  ],
+  "summary": "A protein that coats bare single-stranded DNA so it cannot tangle or fold back on itself.",
+  "layers": {
+   "basics": "Single-stranded DNA is sticky: it pairs with itself and is easily damaged. Wherever the lagging strand template is waiting to be copied, RPA wraps it. It moves aside when a polymerase or primase needs the strand.",
+   "deeper": "RPA has three subunits (RPA70, RPA32 and RPA14) with several DNA-binding domains; together they hold about 30 nucleotides. It binds very tightly but can slide and be displaced quickly. It also signals to the cell when too much single strand builds up.",
+   "expert": "Drawn from 4GOP (RPA from the fungus Ustilago maydis on single-stranded DNA, X-ray 3.1 Å; Fan and Pavletich 2012), used because no human structure of the full complex on DNA exists. In the scene RPA appears on each stretch of about 30 bare nucleotides."
+  },
+  "facts": [
+   [
+    "Subunits",
+    "3"
+   ],
+   [
+    "Footprint",
+    "≈ 30 nucleotides (stable mode); ≈ 20 also seen"
+   ],
+   [
+    "Structure",
+    "PDB 4GOP, Ustilago maydis, X-ray, 3.1 Å"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ]
+  ],
+  "where": "place:dna",
+  "open_questions": [
+   "How primase takes the template from RPA at the fork."
+  ],
+  "ext": [
+   {
+    "title": "Protein Data Bank 4GOP: RPA heterotrimer on single-stranded DNA",
+    "url": "https://www.rcsb.org/structure/4GOP"
+   },
+   {
+    "title": "Chen and Wold 2014, Replication protein A: single-stranded DNA's first responder (BioEssays)",
+    "url": "https://doi.org/10.1002/bies.201400107"
+   }
+  ]
+ },
+ {
+  "id": "rep_template",
+  "title": "Parent strands (templates)",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "parents": [
+   "dna_replication"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "dna_replication"
+  ],
+  "related": [
+   "bio_dna_structure",
+   "rep_cmg"
+  ],
+  "summary": "The two old strands of DNA: each is the pattern for a new one.",
+  "layers": {
+   "basics": "Each old strand stays whole and becomes half of a new double helix (the copying is semi-conservative). The order of its bases decides the order of the new strand: A opposite T, G opposite C.",
+   "deeper": "The two strands run in opposite directions. The one the helicase moves along 3′ to 5′ is the leading strand template; the other, pushed out of the ring, is the lagging strand template and spends time as single strand, coated by RPA.",
+   "expert": "In the scene the old strands are pale and the bases use the app's colour code; the sequence is invented and repeats every 168 nucleotides."
+  },
+  "facts": [
+   [
+    "Pairing",
+    "A–T, G–C"
+   ],
+   [
+    "Width of the double helix",
+    "≈ 2 nm"
+   ],
+   [
+    "Rise per base pair",
+    "0.34 nm"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "14.3",
+    "14-3-basics-of-dna-replication"
+   ]
+  ],
+  "where": "place:dna"
+ },
+ {
+  "id": "rep_okazaki",
+  "title": "Okazaki fragment (lagging strand)",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "parents": [
+   "dna_replication"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "dna_replication"
+  ],
+  "related": [
+   "rep_pol_delta",
+   "rep_rna_primer",
+   "rep_ligase"
+  ],
+  "summary": "A short piece of new DNA: the lagging strand is made backwards in these pieces and then joined.",
+  "layers": {
+   "basics": "A polymerase can only lengthen a strand at its 3′ end. On the lagging strand template that end points away from the fork, so the new strand cannot follow the fork. Instead, each time enough template has been uncovered, a new primer is made near the fork and a short piece is built backwards from it, away from the fork, until it meets the piece before.",
+   "deeper": "In human cells each piece is about 200 nucleotides long. Pol δ builds it, FEN1 and Pol δ replace its primer, and ligase I joins it to the next. In the scene the piece is 168 nucleotides, so that the picture repeats exactly every 16 turns of the helix.",
+   "expert": "Each fragment begins with Pol α's DNA, which lacks proofreading; Pol δ replaces part of it during maturation, and mismatch repair checks the rest."
+  },
+  "facts": [
+   [
+    "Length (human cells)",
+    "≈ 200 nucleotides"
+   ],
+   [
+    "Length drawn",
+    "168 nucleotides"
+   ],
+   [
+    "Made by",
+    "Pol α–primase (primer), Pol δ (the rest)"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ]
+  ],
+  "where": "place:dna",
+  "open_questions": [
+   "How human cells mature fragments as fast as forks make them."
+  ],
+  "ext": [
+   {
+    "title": "Raducanu and others 2022, human Okazaki fragment maturation is slow (Nature Communications)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9666535/"
+   },
+   {
+    "title": "Burgers and Kunkel 2017, Eukaryotic DNA replication fork (Annual Review of Biochemistry)",
+    "url": "https://doi.org/10.1146/annurev-biochem-061516-044709"
+   }
+  ]
+ },
+ {
+  "id": "rep_rna_primer",
+  "title": "RNA primer",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": null,
+  "parents": [
+   "dna_replication"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "dna_replication"
+  ],
+  "related": [
+   "rep_pol_alpha_primase",
+   "rep_fen1"
+  ],
+  "summary": "The short RNA starter that every new DNA piece begins with.",
+  "layers": {
+   "basics": "Primase can start a chain from nothing; DNA polymerases cannot. So each new piece begins with about 10 nucleotides of RNA made by primase. RNA uses U instead of T. It is later removed and replaced by DNA.",
+   "deeper": "Pol α adds about 20 nucleotides of DNA to the RNA, making a primer of about 30 nucleotides. On the leading strand a primer is needed only at the start; on the lagging strand it is needed for every fragment.",
+   "expert": "Primase makes 8–10 nucleotides of RNA and Pol α extends to 20–35 nucleotides in total (Jones and others 2023, citing earlier biochemistry). The RNA is shown violet in the scene."
+  },
+  "facts": [
+   [
+    "RNA part",
+    "8–10 nucleotides"
+   ],
+   [
+    "Whole primer",
+    "≈ 20–35 nucleotides"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "14.5",
+    "14-5-dna-replication-in-eukaryotes"
+   ]
+  ],
+  "where": "place:dna",
+  "ext": [
+   {
+    "title": "Jones and others 2023, How Pol α-primase is targeted to replisomes (Molecular Cell)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10501992/"
+   }
+  ]
+ },
+ {
+  "id": "rep_dntp",
+  "title": "Nucleotides arriving (dNTPs)",
+  "kind": "molecule",
+  "template": "concept",
+  "scale_m": null,
+  "parents": [
+   "dna_replication"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "dna_replication"
+  ],
+  "related": [
+   "bio_nucleotides",
+   "rep_pol_delta"
+  ],
+  "summary": "The building blocks: each nucleotide arrives with three phosphates; one stays in the DNA and the other two leave as pyrophosphate.",
+  "layers": {
+   "basics": "A polymerase builds DNA from deoxynucleoside triphosphates (dATP, dTTP, dGTP, dCTP) that drift in from the surroundings. Only the one that pairs correctly with the template fits well. When it is joined on, two of its three phosphates break off as pyrophosphate, and that releases the energy that makes the bond.",
+   "deeper": "The new bond, a phosphodiester bond, links the free 3′-OH at the end of the growing strand to the 5′ phosphate of the incoming nucleotide; the other two phosphates leave as pyrophosphate. Ribonucleotides, the building blocks of RNA, compete for the same site, so polymerases must also reject the wrong sugar, and they occasionally fail.",
+   "expert": "The incoming nucleotide in the scene is drawn from the dATP bound in the yeast Pol ε structure 4M8O. The shape is dATP's for all four bases; only the colour code differs. Each one flies in from about 9 nm away: diffusion is really much faster and less direct than drawn."
+  },
+  "facts": [
+   [
+    "Building blocks",
+    "dATP, dTTP, dGTP, dCTP"
+   ],
+   [
+    "Leaves",
+    "pyrophosphate (two phosphates)"
+   ],
+   [
+    "Shape source",
+    "PDB 4M8O (dATP in yeast Pol ε), used for all four"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "BIO",
+    "14.4",
+    "14-4-dna-replication-in-prokaryotes"
+   ]
+  ],
+  "where": "place:dna",
+  "ext": [
+   {
+    "title": "Protein Data Bank 4M8O: Pol ε with an incoming dATP",
+    "url": "https://www.rcsb.org/structure/4M8O"
+   }
+  ]
+ },
+ {
+  "id": "rep_fidelity",
+  "title": "How accurate copying is",
+  "kind": "concept",
+  "template": "concept",
+  "scale_m": null,
+  "parents": [
+   "dna_replication"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "dna_replication"
+  ],
+  "related": [
+   "bio_mutations",
+   "bio_dna_damage_repair",
+   "rep_pol_delta"
+  ],
+  "summary": "Three checks in turn make DNA copying very accurate: choosing the right base, proofreading, and mismatch repair.",
+  "layers": {
+   "basics": "A polymerase picks the nucleotide that pairs with the template, and gets it wrong roughly once in tens of thousands. Pol δ and Pol ε then check the end they have just made and cut off a wrong one. After the fork has passed, mismatch repair finds most of the errors that are left. Together they bring the error rate down to about one in a billion or less.",
+   "deeper": "Base selection: errors about 1 in 10⁴–10⁵. Proofreading by the 3′→5′ exonuclease improves this by about 10–1,000 times. Mismatch repair improves it again by about 100 times or more. Pol α has no proofreading, but its DNA is mostly replaced or checked.",
+   "expert": "In yeast, genome sequencing of many generations gives about 1.7 × 10⁻¹⁰ mutations per base pair per generation with mismatch repair and 1.6 × 10⁻⁸ without it (Lujan and others 2014). The size of each contribution differs between polymerases, strands and kinds of error, so the figure shows ranges, not one number."
+  },
+  "facts": [
+   [
+    "Base selection",
+    "≈ 1 error in 10⁴–10⁵"
+   ],
+   [
+    "Proofreading",
+    "≈ 10–1,000 times fewer errors"
+   ],
+   [
+    "Mismatch repair (yeast)",
+    "≈ 100 times fewer (1.6 × 10⁻⁸ → 1.7 × 10⁻¹⁰ per base pair)"
+   ],
+   [
+    "Overall",
+    "≈ 1 in 10⁸–10¹⁰"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "BIO",
+    "14.6",
+    "14-6-dna-repair"
+   ]
+  ],
+  "where": "place:dna",
+  "open_questions": [
+   "How the error rate differs between the leading and lagging strands in human cells."
+  ],
+  "ext": [
+   {
+    "title": "Bębenek and Ziuzia-Graczyk 2018, Fidelity of DNA replication: a matter of proofreading (Current Genetics)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6153641/"
+   },
+   {
+    "title": "Lujan and others 2014, polymerase fidelity and mismatch repair across the yeast genome (Genome Research)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4216917/"
+   },
+   {
+    "title": "Lujan and others 2012, Mismatch repair balances leading and lagging strand fidelity (PLoS Genetics)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3469411/"
+   }
+  ]
+ }
+]
