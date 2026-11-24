@@ -48,7 +48,7 @@
  },
  "reached": {
   "tissue": [{ "kind": "adipose", "id": "adipocyte" }],
-  "tissue2": [{ "scene": "loose_connective_fat", "structure": "adipocyte" }]
+  "tissue2": [{ "scene": "loose_connective_fat", "structure": "adipocyte" }, { "scene": "loose_connective_fat", "structure": "droplet", "note": "the fat droplet fills the fat cell: a click on a fat cell lands on its droplet, and opens the cell" }]
  },
  "view": { "radius_um": 45, "r1_m": 0.0004, "arrive_m": 7e-05, "spawn_m": 2e-06 },
  "about": [

@@ -181,7 +181,8 @@
   "fibroblast": "fibroblast",
   "macrophage": "macrophage",
   "mast": "mast_cell",
-  "rbc": "red_blood_cell"
+  "rbc": "red_blood_cell",
+  "droplet": "adipocyte"
  },
  "lung_alveoli": {
   "macro": "alveolar_macrophage",

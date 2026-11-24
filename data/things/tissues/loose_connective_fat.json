@@ -2152,12 +2152,7 @@
      }
     ]
    },
-   "deeper": {
-    "type": "mol",
-    "mol": "tripalmitin",
-    "name": "Tripalmitin, a typical fat (triglyceride) of a lipid droplet"
-   },
-   "material": "fat",
+   "material": "adipocyte",
    "priority": 2
   },
   {

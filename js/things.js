@@ -2216,6 +2216,9 @@ FT.tissue2 = {
       }
       return typeof DESCENT !== 'undefined' ? DESCENT.spawnFor(F, { id: u.id, node: u.node, what: u.info && u.info.title, u }, T0) : null;
     };
+    /* what a click picks: the highest priority on the ray, as everywhere, but a see-through layer (a cartilage's matrix, a capsule, a fat cell's thin rim) only
+       where nothing solid is on the ray behind it: what is seen through it is what is clicked (the chondrocytes inside the matrix) */
+    F.chooseHit = cands => { const solid = cands.filter(c => (c.obj.userData.op ?? 1) >= .6), L = solid.length ? solid : cands; let b = null; for (const c of L) if (!b || c.pri > b.pri) b = c; return b; };
     F.cardMadeOf = (h, n) => { const d = h && h.obj && h.obj.userData.deeper; return d ? { label: d.button, go: () => thGoDeeper(h.frame, h, d) } : null; };
     Promise.all([thLoadTissue(o.id), loadNodes()]).then(([def]) => {
       if (!F.built) return;
@@ -2234,7 +2237,7 @@ FT.tissue2 = {
         inst.forEach((t, i) => { thTissueQuat(t, pop, q); m4.compose(new V3(...t.p), q, new V3(...t.s)); im.setMatrixAt(i, m4); im.setColorAt(i, col.setRGB(1 - rr() * .08, 1 - rr() * .06, 1 - rr() * .08)); });
         im.instanceMatrix.needsUpdate = true; im.frustumCulled = false; grp.add(im);
         const nid = NODE[pop.node] ? pop.node : null, deeper = thTissueDeeper(def, pop); if (!nid) console.warn('tissue2', def.id, pop.id, 'has no card', pop.node);
-        im.userData = { id: pop.id, node: nid, priority: pop.priority ?? 3, deeper, thing: 'tissue2', madeOf: deeper ? 'cell' : undefined, material: pop.material, info: { title: pop.name, tag: pop.tag || def.tag || 'Inside the tissue', body: '' }, main: im };
+        im.userData = { id: pop.id, node: nid, priority: pop.priority ?? 3, op, deeper, thing: 'tissue2', madeOf: deeper ? 'cell' : undefined, material: pop.material, info: { title: pop.name, tag: pop.tag || def.tag || 'Inside the tissue', body: '' }, main: im };
         { const cen = im.userData.cen = new Float32Array(inst.length * 4), gp = grp.position; inst.forEach((t, i) => { cen[i * 4] = t.p[0] + gp.x; cen[i * 4 + 1] = t.p[1] + gp.y; cen[i * 4 + 2] = t.p[2] + gp.z; cen[i * 4 + 3] = Math.min(t.s[0], t.s[1], t.s[2]) / 2; }); }   // centres (frame coordinates) and half the smallest side, for "the structure nearest this point"
         im.userData.resolve = () => pop.id; im.userData.pickRoot = im;
         F.pickables.push(im); if (nid) regMesh(pop.id, im);
